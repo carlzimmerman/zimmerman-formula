@@ -1,0 +1,39 @@
+# Delaunay
+
+**Cited in 30 file(s), 118 occurrence(s).**
+
+**Files (GitHub links):**
+
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/inv_06_delaunay_z2_distance.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/inv_06_delaunay_z2_distance.py) — 28×
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/inv_02_atomic_voronoi_packing.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/inv_02_atomic_voronoi_packing.py) — 21×
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/geo_04_z2_geometric_scorer.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/geo_04_z2_geometric_scorer.py) — 8×
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/emp_01_kinetic_expansion.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/emp_01_kinetic_expansion.py) — 7×
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/val_15_decoy_falsification.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/val_15_decoy_falsification.py) — 4×
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/emp_02_dielectric_shielding.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/emp_02_dielectric_shielding.py) — 4×
+- `Data/config` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/web/package-lock.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/web/package-lock.json) — 4×
+- `Data/config` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/web/package-lock.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/web/package-lock.json) — 4×
+- `Data/config` — [`ai_slop/HermesFlow/hermes_agent/web/package-lock.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/web/package-lock.json) — 4×
+- `Data/config` — [`ai_slop/TruthFlow/hermes_agent/web/package-lock.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/web/package-lock.json) — 4×
+- `Python script` — [`ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/m4_binding_site_prediction.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/m4_binding_site_prediction.py) — 3×
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/emp_03_universal_geometry_law.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/emp_03_universal_geometry_law.py) — 3×
+- `Markdown/notes` — [`citations/king/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/king/index.md) — 2×
+- `Markdown/notes` — [`ai_slop/olympusflow_v3_findings_claude/ca+_king_plot/ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_v3_findings_claude/ca+_king_plot/ANALYSIS.md) — 2×
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/inv_04_core_isolation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/inv_04_core_isolation.py) — 2×
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/framework/analysis_manifold_oxtr.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/framework/analysis_manifold_oxtr.py) — 2×
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/eng_01_tat_conjugation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/eng_01_tat_conjugation.py) — 2×
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/zenodo/scripts/analysis_manifold_oxtr.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/zenodo/scripts/analysis_manifold_oxtr.py) — 2×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/LITERATURE_SCOPE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/LITERATURE_SCOPE.md) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/REPORT.md) — 1×
+- `Python script` — [`real_research/reviews/toe_law/agentA_f4_eccentric.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentA_f4_eccentric.py) — 1×
+- `Python script` — [`ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/z2_framework_v2.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/z2_framework_v2.py) — 1×
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/cap_02_autoimmune_capper.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/cap_02_autoimmune_capper.py) — 1×
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/cap_03_pd1_disrupter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/cap_03_pd1_disrupter.py) — 1×
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/ai_slop_quarantine/cap_01_glp1r_oral_agonist.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/ai_slop_quarantine/cap_01_glp1r_oral_agonist.py) — 1×
+- `Python script` — [`ai_slop/extended_research/biotech/geometry/geo_02_surface_curvature.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/geometry/geo_02_surface_curvature.py) — 1×
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/emp_04_sidechain_z2_isolation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/emp_04_sidechain_z2_isolation.py) — 1×
+- `Python script` — [`ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/voronoi_packing_analysis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/voronoi_packing_analysis.py) — 1×
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/bio_09_calculate_expansion_multiplier.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/bio_09_calculate_expansion_multiplier.py) — 1×
+- `Data/config` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/zenodo_upload/file_manifest.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/zenodo_upload/file_manifest.json) — 1×
+
+---
+*Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*

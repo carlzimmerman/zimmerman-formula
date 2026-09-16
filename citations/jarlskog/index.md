@@ -1,0 +1,144 @@
+# Jarlskog
+
+**Cited in 135 file(s), 384 occurrence(s).**
+
+**Files (GitHub links):**
+
+- `Python script` — [`ai_slop/research/cp_violation_wilson_lines.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/cp_violation_wilson_lines.py) — 19×
+- `Other` — [`ai_slop/daemon_outputs/overnight_run.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/overnight_run.log) — 13×
+- `Other` — [`ai_slop/daemon_v2.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_v2.log) — 13×
+- `Markdown/notes` — [`citations/king/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/king/index.md) — 12×
+- `Python script` — [`ai_slop/research/PMNS_CP_PHASE_PREDICTION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/PMNS_CP_PHASE_PREDICTION.py) — 12×
+- `Python script` — [`ai_slop/research/proofs/geometric_leptogenesis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proofs/geometric_leptogenesis.py) — 11×
+- `Python script` — [`ai_slop/research/geometric_closure/MIXING_ANGLES_DERIVATION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/MIXING_ANGLES_DERIVATION.py) — 8×
+- `Python script` — [`ai_slop/research/geometric_closure/quark_ckm_physics.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/quark_ckm_physics.py) — 8×
+- `Python script` — [`ai_slop/research/neutrino/Z2_NEUTRINO_CP_PHASE.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/neutrino/Z2_NEUTRINO_CP_PHASE.py) — 8×
+- `HTML` — [`ai_slop/core_theory/Z2_COMPLETE_DERIVATION_UPDATED.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/core_theory/Z2_COMPLETE_DERIVATION_UPDATED.html) — 7×
+- `Python script` — [`ai_slop/research/geometric_closure/CP_VIOLATION_DERIVATION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/CP_VIOLATION_DERIVATION.py) — 7×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.0.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.0.html) — 6×
+- `Data/config` — [`ai_slop/daemon_outputs/derivations/ckm_jarlskog_invariant_result.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/derivations/ckm_jarlskog_invariant_result.json) — 6×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.4.0.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.4.0.html) — 6×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.1.1.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.1.1.html) — 6×
+- `Python script` — [`ai_slop/research/CKM_GEOMETRIC_DERIVATION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/CKM_GEOMETRIC_DERIVATION.py) — 6×
+- `Python script` — [`ai_slop/research/foundations/Z2_MATTER_ANTIMATTER.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_MATTER_ANTIMATTER.py) — 6×
+- `Python script` — [`ai_slop/research/foundations/Z2_CABIBBO_CKM.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_CABIBBO_CKM.py) — 6×
+- `Data/config` — [`ai_slop/daemon_outputs/derivations/jarlskog_invariant_j_result.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/derivations/jarlskog_invariant_j_result.json) — 5×
+- `Data/config` — [`ai_slop/daemon_outputs/derivations/ckm_jarlskog_result.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/derivations/ckm_jarlskog_result.json) — 5×
+- `Python script` — [`ai_slop/research/mysterious_connections/cp_violation_exploration.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/mysterious_connections/cp_violation_exploration.py) — 5×
+- `Python script` — [`ai_slop/research/z2_flavor_simulator.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/z2_flavor_simulator.py) — 5×
+- `Markdown/notes` — [`ai_slop/research/CP_VIOLATION_DERIVATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/CP_VIOLATION_DERIVATION.md) — 5×
+- `Python script` — [`ai_slop/research/foundations/Z2_CKM_DERIVATION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_CKM_DERIVATION.py) — 5×
+- `Markdown/notes` — [`project_atomos/targets/SM_PARAMETERS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/project_atomos/targets/SM_PARAMETERS.md) — 4×
+- `Python script` — [`ai_slop/research/geometric_closure/FLAVOR_SYMMETRY_DERIVATION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/FLAVOR_SYMMETRY_DERIVATION.py) — 4×
+- `Markdown/notes` — [`ai_slop/research/BARYON_ASYMMETRY_DERIVATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/BARYON_ASYMMETRY_DERIVATION.md) — 4×
+- `Python script` — [`ai_slop/research/ULTIMATE_FIRST_PRINCIPLES.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/ULTIMATE_FIRST_PRINCIPLES.py) — 4×
+- `Markdown/notes` — [`ai_slop/core_theory/Z2_COMPLETE_DERIVATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/core_theory/Z2_COMPLETE_DERIVATION.md) — 3×
+- `Data/config` — [`ai_slop/daemon_outputs/full_660_run_20260507_163018/queue_state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/full_660_run_20260507_163018/queue_state.json) — 3×
+- `Markdown/notes` — [`ai_slop/olympusflow_v3_findings_claude/056_ckm_phase_delta/ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_v3_findings_claude/056_ckm_phase_delta/ANALYSIS.md) — 3×
+- `Markdown/notes` — [`ai_slop/papers/CABIBBO_ANGLE_FROM_GEOMETRY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/CABIBBO_ANGLE_FROM_GEOMETRY.md) — 3×
+- `Markdown/notes` — [`ai_slop/papers/MATTER_ANTIMATTER_ASYMMETRY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/MATTER_ANTIMATTER_ASYMMETRY.md) — 3×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v3.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v3.html) — 3×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY.html) — 3×
+- `Markdown/notes` — [`ai_slop/papers/Z2_COMPLETE_DERIVATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_COMPLETE_DERIVATION.md) — 3×
+- `Data/config` — [`ai_slop/daemon_outputs/full_660_run_20260507_151319/queue_state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/full_660_run_20260507_151319/queue_state.json) — 3×
+- `Python script` — [`ai_slop/OlympusFlow/flows/truth/autonomous_discovery.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/truth/autonomous_discovery.py) — 3×
+- `Python script` — [`ai_slop/research/geometric_closure/QUARK_SECTOR_FORMULAS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/QUARK_SECTOR_FORMULAS.py) — 3×
+- `Python script` — [`ai_slop/research/geometric_closure/NEUTRINO_FORMULAS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/NEUTRINO_FORMULAS.py) — 3×
+- `Python script` — [`ai_slop/research/geometric_closure/PMNS_MATRIX_DERIVATION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/PMNS_MATRIX_DERIVATION.py) — 3×
+- `Python script` — [`ai_slop/research/geometric_closure/THREE_GENERATIONS_DERIVATION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/THREE_GENERATIONS_DERIVATION.py) — 3×
+- `Python script` — [`ai_slop/research/particle_physics_proof/UNDENIABLE_PROOF.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/particle_physics_proof/UNDENIABLE_PROOF.py) — 3×
+- `Python script` — [`ai_slop/research/mysterious_connections/ckm_complete_analysis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/mysterious_connections/ckm_complete_analysis.py) — 3×
+- `Python script` — [`ai_slop/research/ckm_matrix/CKM_MATRIX_DERIVATION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/ckm_matrix/CKM_MATRIX_DERIVATION.py) — 3×
+- `Python script` — [`ai_slop/research/foundations/Z2_BARYOGENESIS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_BARYOGENESIS.py) — 3×
+- `Python script` — [`ai_slop/research/foundations/Z2_NEUTRINO_MIXING.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_NEUTRINO_MIXING.py) — 3×
+- `Python script` — [`ai_slop/research/foundations/Z2_PARAMETER_AUDIT.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_PARAMETER_AUDIT.py) — 3×
+- `Python script` — [`ai_slop/research/foundations/Z2_UNEXPLORED_TERRITORY.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_UNEXPLORED_TERRITORY.py) — 3×
+- `Python script` — [`ai_slop/research/foundations/Z2_COMPLETE_PARAMETERS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_COMPLETE_PARAMETERS.py) — 3×
+- `Python script` — [`ai_slop/TruthFlow/autonomous_discovery.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/autonomous_discovery.py) — 3×
+- `Python script` — [`project_atomos/targets/pdg_constants.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/project_atomos/targets/pdg_constants.py) — 2×
+- `Python script` — [`project_atomos/exhaust_relational.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/project_atomos/exhaust_relational.py) — 2×
+- `Python script` — [`ai_slop/core_theory/Z2_FINAL_PARAMETERS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/core_theory/Z2_FINAL_PARAMETERS.py) — 2×
+- `Data/config` — [`ai_slop/AlpheusFlow/queue_state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/AlpheusFlow/queue_state.json) — 2×
+- `Markdown/notes` — [`ai_slop/papers/CP_VIOLATION_PATTERNS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/CP_VIOLATION_PATTERNS.md) — 2×
+- `HTML` — [`ai_slop/papers/Z2_FRAMEWORK_v3.7.0.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_FRAMEWORK_v3.7.0.html) — 2×
+- `Markdown/notes` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY.md) — 2×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v2.1.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v2.1.html) — 2×
+- `Data/config` — [`ai_slop/daemon_outputs/queue_state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/queue_state.json) — 2×
+- `Python script` — [`ai_slop/research/z_squared_time_causality.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/z_squared_time_causality.py) — 2×
+- `Data/config` — [`ai_slop/OlympusFlow/lakes/lethe/entries/index.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/lakes/lethe/entries/index.json) — 2×
+- `Python script` — [`ai_slop/research/PRECISION_TESTS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/PRECISION_TESTS.py) — 2×
+- `Markdown/notes` — [`ai_slop/research/CP_VIOLATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/CP_VIOLATION.md) — 2×
+- `Python script` — [`ai_slop/research/geometric_closure/neutrino_physics.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/neutrino_physics.py) — 2×
+- `Python script` — [`ai_slop/research/geometric_closure/STRONG_CP_DEEP_DIVE.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/STRONG_CP_DEEP_DIVE.py) — 2×
+- `Python script` — [`ai_slop/research/geometric_closure/CP_VIOLATION_HIERARCHY.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/CP_VIOLATION_HIERARCHY.py) — 2×
+- `Markdown/notes` — [`ai_slop/research/EXPANDED_FORMULA_CATALOG.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/EXPANDED_FORMULA_CATALOG.md) — 2×
+- `Python script` — [`ai_slop/research/HUNDRED_DERIVATIONS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/HUNDRED_DERIVATIONS.py) — 2×
+- `Python script` — [`ai_slop/research/deep_structural_search_3.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/deep_structural_search_3.py) — 2×
+- `Python script` — [`ai_slop/research/ckm_pmns_stable_algorithm.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/ckm_pmns_stable_algorithm.py) — 2×
+- `Python script` — [`ai_slop/research/mysterious_connections/neutrino_mass_exploration.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/mysterious_connections/neutrino_mass_exploration.py) — 2×
+- `Python script` — [`ai_slop/research/proofs/unified_constants_summary.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proofs/unified_constants_summary.py) — 2×
+- `Markdown/notes` — [`ai_slop/research/STRONG_CP_SOLUTION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/STRONG_CP_SOLUTION.md) — 2×
+- `Python script` — [`ai_slop/research/foundations/Z2_BARYON_ASYMMETRY.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_BARYON_ASYMMETRY.py) — 2×
+- `Python script` — [`ai_slop/research/foundations/Z2_FINAL_PARAMETERS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_FINAL_PARAMETERS.py) — 2×
+- `Markdown/notes` — [`qwen_38_experiment/seeds/archive_20260914/interp/interp_0074.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_38_experiment/seeds/archive_20260914/interp/interp_0074.md) — 1×
+- `Markdown/notes` — [`project_atomos/targets/TARGETS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/project_atomos/targets/TARGETS.md) — 1×
+- `Python script` — [`ai_slop/run_discovery.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/run_discovery.py) — 1×
+- `Data/config` — [`ai_slop/metis_outputs/ckm_jarlskog_strategy.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/metis_outputs/ckm_jarlskog_strategy.json) — 1×
+- `Markdown/notes` — [`ai_slop/archive/STRUCTURAL_FORMULAS_v4.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/archive/STRUCTURAL_FORMULAS_v4.md) — 1×
+- `Python script` — [`real_research/reviews/e6_gut_predictions.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/e6_gut_predictions.py) — 1×
+- `Markdown/notes` — [`ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v6.0.0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v6.0.0.md) — 1×
+- `Markdown/notes` — [`ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_PUBLICATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_PUBLICATION.md) — 1×
+- `Markdown/notes` — [`ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v7.0.0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v7.0.0.md) — 1×
+- `Python script` — [`ai_slop/papers/generate_complete_pdf.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/generate_complete_pdf.py) — 1×
+- `Markdown/notes` — [`ai_slop/papers/NEUTRINO_PATTERNS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/NEUTRINO_PATTERNS.md) — 1×
+- `Data/config` — [`ai_slop/metis_outputs/jarlskog_invariant_j_strategy.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/metis_outputs/jarlskog_invariant_j_strategy.json) — 1×
+- `HTML` — [`ai_slop/papers/Z2_UNIFIED_ACTION_PUBLICATION.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_PUBLICATION.html) — 1×
+- `HTML` — [`ai_slop/papers/Z2_FRAMEWORK_COMPREHENSIVE.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_FRAMEWORK_COMPREHENSIVE.html) — 1×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v2.1.0.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v2.1.0.html) — 1×
+- `Markdown/notes` — [`ai_slop/papers/Z2_UNIFIED_ACTION_PUBLICATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_PUBLICATION.md) — 1×
+- `Python script` — [`ai_slop/papers/generate_pdf.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/generate_pdf.py) — 1×
+- `Markdown/notes` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v2.0.0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v2.0.0.md) — 1×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.2.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.2.html) — 1×
+- `Markdown/notes` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.0.md) — 1×
+- `Markdown/notes` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.2.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.2.md) — 1×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v5.3.0.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v5.3.0.html) — 1×
+- `Markdown/notes` — [`ai_slop/papers/COMPLETE_Z2_ACTION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/COMPLETE_Z2_ACTION.md) — 1×
+- `HTML` — [`ai_slop/papers/Z2_FRAMEWORK_v2.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_FRAMEWORK_v2.html) — 1×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v5.4.0.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v5.4.0.html) — 1×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v2.0.0.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v2.0.0.html) — 1×
+- `HTML` — [`ai_slop/papers/Z2_FRAMEWORK_ACADEMIC_REVIEW.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_FRAMEWORK_ACADEMIC_REVIEW.html) — 1×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v2.0.0_FINAL.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v2.0.0_FINAL.html) — 1×
+- `Data/config` — [`ai_slop/metis_outputs/ckm_jarlskog_invariant_strategy.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/metis_outputs/ckm_jarlskog_invariant_strategy.json) — 1×
+- `Data/config` — [`ai_slop/OlympusFlow/discoveries/overnight_anomalies.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/discoveries/overnight_anomalies.json) — 1×
+- `Data/config` — [`ai_slop/OlympusFlow/discoveries/curated_topics_v2.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/discoveries/curated_topics_v2.json) — 1×
+- `Data/config` — [`ai_slop/OlympusFlow/discoveries/physics_anomalies_500.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/discoveries/physics_anomalies_500.json) — 1×
+- `Data/config` — [`ai_slop/OlympusFlow/discoveries/autonomous_research/particle_physics_ckm_matrix_jarlskog_invariant.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/discoveries/autonomous_research/particle_physics_ckm_matrix_jarlskog_invariant.json) — 1×
+- `Data/config` — [`ai_slop/OlympusFlow/discoveries/curated_topics_v3.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/discoveries/curated_topics_v3.json) — 1×
+- `Markdown/notes` — [`ai_slop/research/geometric_closure/ZIMMERMAN_FRAMEWORK_PUBLICATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/ZIMMERMAN_FRAMEWORK_PUBLICATION.md) — 1×
+- `Python script` — [`ai_slop/research/geometric_closure/COMPLETE_FORMULA_DERIVATIONS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/COMPLETE_FORMULA_DERIVATIONS.py) — 1×
+- `Python script` — [`ai_slop/research/geometric_closure/comprehensive_60_count.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/comprehensive_60_count.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/geometric_closure/INDEX.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/INDEX.md) — 1×
+- `Python script` — [`ai_slop/research/geometric_closure/COEFFICIENT_ORIGINS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/COEFFICIENT_ORIGINS.py) — 1×
+- `Python script` — [`ai_slop/research/geometric_closure/THREE_GENERATIONS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/THREE_GENERATIONS.py) — 1×
+- `Python script` — [`ai_slop/research/geometric_closure/comprehensive_80_count.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/comprehensive_80_count.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/CKM_MATRIX_DERIVATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/CKM_MATRIX_DERIVATION.md) — 1×
+- `Data/config` — [`ai_slop/research/overnight_results/cp_violation_wilson_lines_20260416_124701.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/overnight_results/cp_violation_wilson_lines_20260416_124701.json) — 1×
+- `Markdown/notes` — [`ai_slop/research/overnight_results/cp_wilson_summary_20260416_124535.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/overnight_results/cp_wilson_summary_20260416_124535.md) — 1×
+- `Data/config` — [`ai_slop/research/overnight_results/pmns_cp_phase_prediction.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/overnight_results/pmns_cp_phase_prediction.json) — 1×
+- `Markdown/notes` — [`ai_slop/research/overnight_results/cp_wilson_summary_20260416_125912.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/overnight_results/cp_wilson_summary_20260416_125912.md) — 1×
+- `Data/config` — [`ai_slop/research/overnight_results/cp_violation_wilson_lines_20260416_125912.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/overnight_results/cp_violation_wilson_lines_20260416_125912.json) — 1×
+- `Python script` — [`ai_slop/research/BEYOND_STANDARD_MODEL.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/BEYOND_STANDARD_MODEL.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/Z2_FIRST_PRINCIPLES_AUDIT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/Z2_FIRST_PRINCIPLES_AUDIT.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/overnight_results/cp_wilson_summary_20260416_124701.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/overnight_results/cp_wilson_summary_20260416_124701.md) — 1×
+- `Data/config` — [`ai_slop/research/overnight_results/cp_violation_wilson_lines_20260416_124535.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/overnight_results/cp_violation_wilson_lines_20260416_124535.json) — 1×
+- `Python script` — [`ai_slop/research/deep_structural_search.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/deep_structural_search.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/WHATS_STILL_MISSING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/WHATS_STILL_MISSING.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/dynamical_framework/deep_derivations.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamical_framework/deep_derivations.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/dynamical_framework/HONEST_DERIVATION_AUDIT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamical_framework/HONEST_DERIVATION_AUDIT.md) — 1×
+- `Python script` — [`ai_slop/research/foundations/Z2_NEUTRINO_SECTOR.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_NEUTRINO_SECTOR.py) — 1×
+- `Python script` — [`ai_slop/research/foundations/Z2_CPT_THEOREM.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_CPT_THEOREM.py) — 1×
+- `Data/config` — [`ai_slop/TruthFlow/truth_accumulator/autonomous_discovery_20260503_194519.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/truth_accumulator/autonomous_discovery_20260503_194519.json) — 1×
+- `Python script` — [`ai_slop/research_topics.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research_topics.py) — 1×
+
+---
+*Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*

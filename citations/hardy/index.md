@@ -1,0 +1,79 @@
+# Hardy
+
+**Cited in 70 file(s), 183 occurrence(s).**
+
+**Files (GitHub links):**
+
+- `Markdown/notes` — [`ai_slop/research/proof_attempt/RH_THE_FINAL_WALL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/RH_THE_FINAL_WALL.md) — 16×
+- `Python script` — [`ai_slop/research/proof_attempt/RH_HARDY_LITTLEWOOD_BRIDGE.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/RH_HARDY_LITTLEWOOD_BRIDGE.py) — 15×
+- `Other` — [`ai_slop/daemon_outputs/overnight_run.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/overnight_run.log) — 14×
+- `Markdown/notes` — [`ai_slop/research/proof_attempt/RH_WHY_ZEROS_OBEY_RMT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/RH_WHY_ZEROS_OBEY_RMT.md) — 12×
+- `Python script` — [`ai_slop/research/proof_attempt/extreme_analytic_attack.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/extreme_analytic_attack.py) — 11×
+- `Markdown/notes` — [`ai_slop/research/proof_attempt/RH_DETECTION_FILTER_SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/RH_DETECTION_FILTER_SYNTHESIS.md) — 8×
+- `Python script` — [`ai_slop/research/proof_attempt/RH_DETECTION_FILTER_1_HARDY_Z.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/RH_DETECTION_FILTER_1_HARDY_Z.py) — 6×
+- `Markdown/notes` — [`ai_slop/research/RH_COMPLETE_PROOF.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_COMPLETE_PROOF.md) — 5×
+- `Python script` — [`ai_slop/research/RH_FRESH_LOOK.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_FRESH_LOOK.py) — 5×
+- `Markdown/notes` — [`ai_slop/research/proof_attempt/RH_MASTER_SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/RH_MASTER_SYNTHESIS.md) — 4×
+- `Markdown/notes` — [`ai_slop/research/RH_INVESTIGATION_PAPER.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_INVESTIGATION_PAPER.md) — 4×
+- `Markdown/notes` — [`ai_slop/papers/RH_Symmetry_Identity_Gap_Zenodo/PAPER_RH_SYMMETRY_IDENTITY_GAP.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/RH_Symmetry_Identity_Gap_Zenodo/PAPER_RH_SYMMETRY_IDENTITY_GAP.md) — 3×
+- `Paper` — [`ai_slop/papers/RH_Symmetry_Identity_Gap_Zenodo/PAPER_RH_SYMMETRY_IDENTITY_GAP.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/RH_Symmetry_Identity_Gap_Zenodo/PAPER_RH_SYMMETRY_IDENTITY_GAP.tex) — 3×
+- `Markdown/notes` — [`ai_slop/research/proof_attempt/PAPER_RH_SYMMETRY_IDENTITY_GAP.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/PAPER_RH_SYMMETRY_IDENTITY_GAP.md) — 3×
+- `Paper` — [`ai_slop/research/proof_attempt/PAPER_RH_SYMMETRY_IDENTITY_GAP.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/PAPER_RH_SYMMETRY_IDENTITY_GAP.tex) — 3×
+- `Markdown/notes` — [`ai_slop/research/RH_FRESH_FINDINGS_WITH_LITERATURE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_FRESH_FINDINGS_WITH_LITERATURE.md) — 3×
+- `Markdown/notes` — [`citations/king/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/king/index.md) — 2×
+- `Markdown/notes` — [`ai_slop/olympusflow_v3_findings_claude/057_ckm_unitarity/ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_v3_findings_claude/057_ckm_unitarity/ANALYSIS.md) — 2×
+- `Data/config` — [`ai_slop/daemon_outputs/queue_state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/queue_state.json) — 2×
+- `Data/config` — [`ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json) — 2×
+- `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/1ihm.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/1ihm.pdb) — 2×
+- `Python script` — [`ai_slop/research/RH_FIX_CIRCULARITY_ATTEMPTS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_FIX_CIRCULARITY_ATTEMPTS.py) — 2×
+- `Python script` — [`ai_slop/research/RH_NYMAN_BEURLING_DEEP.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_NYMAN_BEURLING_DEEP.py) — 2×
+- `Markdown/notes` — [`ai_slop/research/RH_PROOF_EXECUTIVE_SUMMARY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_PROOF_EXECUTIVE_SUMMARY.md) — 2×
+- `Python script` — [`ai_slop/research/proof_attempt/RH_LEHMER_PHENOMENON.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/RH_LEHMER_PHENOMENON.py) — 2×
+- `Markdown/notes` — [`ai_slop/research/proof_attempt/FINAL_RH_SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/FINAL_RH_SYNTHESIS.md) — 2×
+- `Python script` — [`ai_slop/research/proof_attempt/specific_architecture_hunt.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/specific_architecture_hunt.py) — 2×
+- `Python script` — [`ai_slop/research/proof_attempt/RH_ODLYZKO_FINITE_HEIGHT.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/RH_ODLYZKO_FINITE_HEIGHT.py) — 2×
+- `Python script` — [`ai_slop/research/proof_attempt/variance_derivation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/variance_derivation.py) — 2×
+- `Markdown/notes` — [`ai_slop/research/RH_ANALYSIS_DISCREPANCY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_ANALYSIS_DISCREPANCY.md) — 2×
+- `Python script` — [`ai_slop/papers/RH_COMPLETE_PROOF_ATTEMPT.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/RH_COMPLETE_PROOF_ATTEMPT.py) — 1×
+- `Python script` — [`ai_slop/papers/RH_FINAL_ATTACK.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/RH_FINAL_ATTACK.py) — 1×
+- `Markdown/notes` — [`ai_slop/papers/RH_Symmetry_Identity_Gap_Zenodo/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/RH_Symmetry_Identity_Gap_Zenodo/README.md) — 1×
+- `Python script` — [`real_research/reviews/mi_cauchy_wellposed_2026/causal_retarded.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_cauchy_wellposed_2026/causal_retarded.py) — 1×
+- `Python script` — [`real_research/reviews/mi_cauchy_wellposed_2026/cauchy_compute.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_cauchy_wellposed_2026/cauchy_compute.py) — 1×
+- `Python script` — [`ai_slop/research/RH_CLOSE_CIRCULARITY.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_CLOSE_CIRCULARITY.py) — 1×
+- `Python script` — [`ai_slop/research/RH_GEOMETRIC_CONSTRAINT.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_GEOMETRIC_CONSTRAINT.py) — 1×
+- `Python script` — [`ai_slop/research/proof_attempt/RH_KATZ_SARNAK_UNIVERSALITY.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/RH_KATZ_SARNAK_UNIVERSALITY.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/proof_attempt/RH_ZERO_COLLISION_SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/RH_ZERO_COLLISION_SYNTHESIS.md) — 1×
+- `Python script` — [`ai_slop/research/proof_attempt/arithmetic_site_final_siege.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/arithmetic_site_final_siege.py) — 1×
+- `Data/config` — [`ai_slop/OlympusFlow/discoveries/overnight_anomalies.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/discoveries/overnight_anomalies.json) — 1×
+- `Data/config` — [`ai_slop/OlympusFlow/discoveries/physics_anomalies_500.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/discoveries/physics_anomalies_500.json) — 1×
+- `Python script` — [`ai_slop/research/proof_attempt/global_consistency_attack.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/global_consistency_attack.py) — 1×
+- `Python script` — [`ai_slop/research/proof_attempt/RH_ARITHMETIC_TOPOLOGY.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/RH_ARITHMETIC_TOPOLOGY.py) — 1×
+- `Python script` — [`ai_slop/research/proof_attempt/variance_to_mertens.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/variance_to_mertens.py) — 1×
+- `Python script` — [`ai_slop/research/proof_attempt/spectral_operator_approach.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/spectral_operator_approach.py) — 1×
+- `Python script` — [`ai_slop/research/proof_attempt/RH_ARITHMETIC_QUE.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/RH_ARITHMETIC_QUE.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/RH_COMPLETE_INVESTIGATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_COMPLETE_INVESTIGATION.md) — 1×
+- `Python script` — [`ai_slop/research/proof_attempt/RH_DETECTION_FILTER_3_LI_MASKING.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/RH_DETECTION_FILTER_3_LI_MASKING.py) — 1×
+- `Python script` — [`ai_slop/research/ckm_unitarity/ckm_unitarity_analysis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/ckm_unitarity/ckm_unitarity_analysis.py) — 1×
+- `Python script` — [`ai_slop/research/RH_DECAY_RATE_ANALYSIS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_DECAY_RATE_ANALYSIS.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/RH_PROOF_CRITICAL_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_PROOF_CRITICAL_ANALYSIS.md) — 1×
+- `Python script` — [`ai_slop/research/RH_SYSTEMATIC_ATTACK.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_SYSTEMATIC_ATTACK.py) — 1×
+- `Python script` — [`ai_slop/research/RH_FIRST_PRINCIPLES.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_FIRST_PRINCIPLES.py) — 1×
+- `Python script` — [`ai_slop/research/RH_SPECTRAL_DETERMINANT_ATTACK.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_SPECTRAL_DETERMINANT_ATTACK.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/RH_WORKING_SESSION_SUMMARY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_WORKING_SESSION_SUMMARY.md) — 1×
+- `Python script` — [`ai_slop/research/RH_FINAL_ASSESSMENT.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_FINAL_ASSESSMENT.py) — 1×
+- `Python script` — [`ai_slop/research/foundations/Z2_NUMBER_THEORY_CONNECTIONS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_NUMBER_THEORY_CONNECTIONS.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/RH_SCIENTIFIC_METHOD_SUMMARY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_SCIENTIFIC_METHOD_SUMMARY.md) — 1×
+- `Python script` — [`ai_slop/research/EXACT_IDENTITIES_EXTENDED.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/EXACT_IDENTITIES_EXTENDED.py) — 1×
+- `Python script` — [`ai_slop/research/RH_FINAL_CLOSING_ATTACK.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_FINAL_CLOSING_ATTACK.py) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/5LUN.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/5LUN.pdb) — 1×
+- `Other` — [`deepseek_push/G114_data/leisman/d6.bbl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/leisman/d6.bbl) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/egfr_kinase_z2/msas/fold_egfr_kinase_z2_unpaired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/egfr_kinase_z2/msas/fold_egfr_kinase_z2_unpaired_msa_chains_a.a3m) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pcsk9_cholesterol_z2/msas/fold_pcsk9_cholesterol_z2_unpaired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pcsk9_cholesterol_z2/msas/fold_pcsk9_cholesterol_z2_unpaired_msa_chains_a.a3m) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/egfr_kinase_z2/msas/fold_egfr_kinase_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/egfr_kinase_z2/msas/fold_egfr_kinase_z2_paired_msa_chains_a.a3m) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_paired_msa_chains_a.a3m) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pcsk9_cholesterol_z2/msas/fold_pcsk9_cholesterol_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pcsk9_cholesterol_z2/msas/fold_pcsk9_cholesterol_z2_paired_msa_chains_a.a3m) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/bcr_abl_kinase_z2/msas/fold_bcr_abl_kinase_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/bcr_abl_kinase_z2/msas/fold_bcr_abl_kinase_z2_paired_msa_chains_a.a3m) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/bcr_abl_kinase_z2/msas/fold_bcr_abl_kinase_z2_unpaired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/bcr_abl_kinase_z2/msas/fold_bcr_abl_kinase_z2_unpaired_msa_chains_a.a3m) — 1×
+
+---
+*Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*

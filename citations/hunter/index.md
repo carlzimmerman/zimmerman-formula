@@ -1,101 +1,77 @@
 # Deidre Hunter
 
-**Cited in 80 file(s), 451 total occurrence(s) across the repo — full list:**
+**Cited in 62 file(s), 125 occurrence(s) across the repo:**
 
-**Data/config (7 files):**
+**Data/config (1 files):**
 
-- [`ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json) — 15×
-- [`ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/lysosomal_enzyme_bbb/engineering_summary.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/lysosomal_enzyme_bbb/engineering_summary.json) — 4×
-- [`ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/validation_report.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/validation_report.json) — 1×
-- [`ai_slop/extended_research/biotech/pediatric/peptides/pediatric_peptides_20260420_193715.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/pediatric/peptides/pediatric_peptides_20260420_193715.json) — 10×
-- [`glm53_push/data/rotation_curve_corpus_v7.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/data/rotation_curve_corpus_v7.json) — 26×
-- [`real_research/reviews/wallaby_rar_2026/dwarf.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/wallaby_rar_2026/dwarf.json) — 26×
-- [`real_research/reviews/wallaby_rar_2026/wallaby.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/wallaby_rar_2026/wallaby.json) — 26×
+- [`ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json) — 5×
 
-**Markdown/notes (17 files):**
+**Markdown/notes (58 files):**
 
-- [`ai_slop/COMPREHENSIVE_SESSION_REPORT_20260420.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/COMPREHENSIVE_SESSION_REPORT_20260420.md) — 1×
-- [`ai_slop/extended_research/biotech/BIOTECH_PIPELINE_SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/BIOTECH_PIPELINE_SYNTHESIS.md) — 1×
-- [`ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/EXPANSION_ROADMAP.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/EXPANSION_ROADMAP.md) — 1×
-- [`ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/Z2_RESEARCH_SUMMARY_FOR_REVIEW.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/Z2_RESEARCH_SUMMARY_FOR_REVIEW.md) — 1×
-- [`ai_slop/extended_research/biotech/prior_art_factory/Z2_BIOTECH_DEEP_REVIEW.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/prior_art_factory/Z2_BIOTECH_DEEP_REVIEW.md) — 1×
-- [`ai_slop/extended_research/biotech/prior_art_factory/final_full_log.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/prior_art_factory/final_full_log.txt) — 1×
-- [`ai_slop/extended_research/biotech/prior_art_factory/pandemic_design_log.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/prior_art_factory/pandemic_design_log.txt) — 1×
-- [`ai_slop/extended_research/biotech/prior_art_factory/pandemic_design_log_v2.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/prior_art_factory/pandemic_design_log_v2.txt) — 1×
-- [`ai_slop/extended_research/biotech/prior_art_factory/pandemic_design_log_v3.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/prior_art_factory/pandemic_design_log_v3.txt) — 1×
-- [`ai_slop/extended_research/biotech/validation/HONESTY_AUDIT_20260420.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/HONESTY_AUDIT_20260420.md) — 2×
-- [`ai_slop/research/digital_twin/GHOST_HUNTER_SUMMARY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/digital_twin/GHOST_HUNTER_SUMMARY.md) — 2×
-- [`book/32_what_would_it_take_to_know_a_reader_s_gu.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/32_what_would_it_take_to_know_a_reader_s_gu.md) — 1×
-- [`book/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE.md) — 1×
-- [`book/audiobook/32_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/32_narration.txt) — 1×
-- [`book/audiobook/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE_AUDIOBOOK.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE_AUDIOBOOK.txt) — 1×
-- [`real_research/PUMP_HUNT_AND_TRIGGERS_2026-07.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/PUMP_HUNT_AND_TRIGGERS_2026-07.md) — 1×
-- [`real_research/reviews/directional_efe_2026/laneB_data/oh2015_ReadMe.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/directional_efe_2026/laneB_data/oh2015_ReadMe.txt) — 14×
+- [`CITATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/CITATIONS.md) — 2×
+- [`README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/README.md) — 1×
+- [`citations/car/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/car/index.md) — 2×
+- [`citations/clean/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/clean/index.md) — 2×
+- [`citations/cli/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/cli/index.md) — 2×
+- [`citations/comparison/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/comparison/index.md) — 2×
+- [`citations/das/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/das/index.md) — 2×
+- [`citations/deepseek/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/deepseek/index.md) — 2×
+- [`citations/des/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/des/index.md) — 2×
+- [`citations/direct/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/direct/index.md) — 2×
+- [`citations/dwarf/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/dwarf/index.md) — 2×
+- [`citations/efe/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/efe/index.md) — 2×
+- [`citations/era/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/era/index.md) — 2×
+- [`citations/fasta/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/fasta/index.md) — 2×
+- [`citations/final/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/final/index.md) — 2×
+- [`citations/formula/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/formula/index.md) — 2×
+- [`citations/full/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/full/index.md) — 2×
+- [`citations/gen/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/gen/index.md) — 2×
+- [`citations/geometric/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/geometric/index.md) — 2×
+- [`citations/git/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/git/index.md) — 2×
+- [`citations/hermes/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/hermes/index.md) — 2×
+- [`citations/ida/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ida/index.md) — 2×
+- [`citations/ids/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ids/index.md) — 2×
+- [`citations/index/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/index/index.md) — 2×
+- [`citations/kill/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/kill/index.md) — 2×
+- [`citations/lane/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lane/index.md) — 2×
+- [`citations/law/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/law/index.md) — 2×
+- [`citations/lean/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lean/index.md) — 2×
+- [`citations/legomena/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/legomena/index.md) — 2×
+- [`citations/leisman/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/leisman/index.md) — 2×
+- [`citations/lie/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lie/index.md) — 2×
+- [`citations/lin/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lin/index.md) — 2×
+- [`citations/list/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/list/index.md) — 2×
+- [`citations/mar/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/mar/index.md) — 2×
+- [`citations/medicine/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/medicine/index.md) — 2×
+- [`citations/mode/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/mode/index.md) — 2×
+- [`citations/not/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/not/index.md) — 2×
+- [`citations/oke/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/oke/index.md) — 2×
+- [`citations/only/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/only/index.md) — 2×
+- [`citations/openclaw/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/openclaw/index.md) — 2×
+- [`citations/page/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/page/index.md) — 2×
+- [`citations/pep/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/pep/index.md) — 2×
+- [`citations/python/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/python/index.md) — 2×
+- [`citations/ratio/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ratio/index.md) — 2×
+- [`citations/real/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/real/index.md) — 2×
+- [`citations/ren/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ren/index.md) — 2×
+- [`citations/repo/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/repo/index.md) — 2×
+- [`citations/research/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/research/index.md) — 2×
+- [`citations/rotation/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/rotation/index.md) — 2×
+- [`citations/ruth/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ruth/index.md) — 2×
+- [`citations/sample/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/sample/index.md) — 2×
+- [`citations/sign/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/sign/index.md) — 2×
+- [`citations/skill/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/skill/index.md) — 2×
+- [`citations/ten/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ten/index.md) — 2×
+- [`citations/ter/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ter/index.md) — 2×
+- [`citations/tools/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/tools/index.md) — 2×
+- [`citations/universe/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/universe/index.md) — 2×
+- [`citations/yaml/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/yaml/index.md) — 2×
 
-**Other (26 files):**
+**Python script (3 files):**
 
-- [`ai_slop/HermesFlow/hermes_agent/cli-config.yaml.example`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/cli-config.yaml.example) — 1×
-- [`ai_slop/HermesFlow/hermes_agent/hermes_agent/cli-config.yaml.example`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/cli-config.yaml.example) — 1×
-- [`ai_slop/TruthFlow/hermes_agent/cli-config.yaml.example`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/cli-config.yaml.example) — 1×
-- [`ai_slop/TruthFlow/hermes_agent/hermes_agent/cli-config.yaml.example`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/cli-config.yaml.example) — 1×
-- [`ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/lysosomal_enzyme_bbb/ids/ids_angiopep2.fasta`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/lysosomal_enzyme_bbb/ids/ids_angiopep2.fasta) — 2×
-- [`ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/lysosomal_enzyme_bbb/ids/ids_rvg29.fasta`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/lysosomal_enzyme_bbb/ids/ids_rvg29.fasta) — 2×
-- [`ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/lysosomal_enzyme_bbb/ids/ids_tat.fasta`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/lysosomal_enzyme_bbb/ids/ids_tat.fasta) — 2×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/1E9W.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/1E9W.pdb) — 2×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/4ANN.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/4ANN.pdb) — 2×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/4AVR.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/4AVR.pdb) — 1×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/4QL3.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/4QL3.pdb) — 2×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/6HS9.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/6HS9.pdb) — 1×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/6HSA.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/6HSA.pdb) — 1×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/6NIA.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/6NIA.pdb) — 1×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/7UYA.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/7UYA.pdb) — 1×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/7UYC.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/7UYC.pdb) — 1×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/7UYD.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/7UYD.pdb) — 1×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/8TSX.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/8TSX.pdb) — 2×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/8TT5.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/8TT5.pdb) — 2×
-- [`ai_slop/extended_research/biotech/pediatric/peptides/pediatric_peptides_20260420_193715.fasta`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/pediatric/peptides/pediatric_peptides_20260420_193715.fasta) — 10×
-- [`ai_slop/extended_research/biotech/validation/pdb_cache/1pin.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/1pin.pdb) — 3×
-- [`ai_slop/extended_research/biotech/validation/pdb_cache/2v2z.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/2v2z.pdb) — 2×
-- [`deepseek_push/G114_data/leisman/d6.bbl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/leisman/d6.bbl) — 2×
-- [`deepseek_push/G114_data/oh2015/ms.bbl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/oh2015/ms.bbl) — 11×
-- [`real_research/data/oc_hunt2024_clusters.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/oc_hunt2024_clusters.tsv) — 1×
-- [`real_research/data/opencluster_hr24/members/Aveni-Hunter_1.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/opencluster_hr24/members/Aveni-Hunter_1.tsv) — 198×
-
-**Paper (2 files):**
-
-- [`deepseek_push/G114_data/leisman/d6.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/leisman/d6.tex) — 2×
-- [`deepseek_push/G114_data/oh2015/ms.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/oh2015/ms.tex) — 17×
-
-**Python script (28 files):**
-
-- [`ai_slop/HermesFlow/hermes_agent/hermes_agent/plugins/hermes-achievements/dashboard/plugin_api.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/plugins/hermes-achievements/dashboard/plugin_api.py) — 1×
-- [`ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/cli/test_cli_approval_ui.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/cli/test_cli_approval_ui.py) — 1×
-- [`ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/skills/test_openclaw_migration_hardening.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/skills/test_openclaw_migration_hardening.py) — 1×
-- [`ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/tools/test_code_execution.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/tools/test_code_execution.py) — 1×
-- [`ai_slop/HermesFlow/hermes_agent/plugins/hermes-achievements/dashboard/plugin_api.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/plugins/hermes-achievements/dashboard/plugin_api.py) — 1×
-- [`ai_slop/HermesFlow/hermes_agent/tests/cli/test_cli_approval_ui.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/tests/cli/test_cli_approval_ui.py) — 1×
-- [`ai_slop/HermesFlow/hermes_agent/tests/skills/test_openclaw_migration_hardening.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/tests/skills/test_openclaw_migration_hardening.py) — 1×
-- [`ai_slop/HermesFlow/hermes_agent/tests/tools/test_code_execution.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/tests/tools/test_code_execution.py) — 1×
-- [`ai_slop/TruthFlow/hermes_agent/hermes_agent/plugins/hermes-achievements/dashboard/plugin_api.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/plugins/hermes-achievements/dashboard/plugin_api.py) — 1×
-- [`ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/cli/test_cli_approval_ui.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/cli/test_cli_approval_ui.py) — 1×
-- [`ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/skills/test_openclaw_migration_hardening.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/skills/test_openclaw_migration_hardening.py) — 1×
-- [`ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/tools/test_code_execution.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/tools/test_code_execution.py) — 1×
-- [`ai_slop/TruthFlow/hermes_agent/plugins/hermes-achievements/dashboard/plugin_api.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/plugins/hermes-achievements/dashboard/plugin_api.py) — 1×
-- [`ai_slop/TruthFlow/hermes_agent/tests/cli/test_cli_approval_ui.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/tests/cli/test_cli_approval_ui.py) — 1×
-- [`ai_slop/TruthFlow/hermes_agent/tests/skills/test_openclaw_migration_hardening.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/tests/skills/test_openclaw_migration_hardening.py) — 1×
-- [`ai_slop/TruthFlow/hermes_agent/tests/tools/test_code_execution.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/tests/tools/test_code_execution.py) — 1×
-- [`ai_slop/extended_research/biotech/dark_proteome/m4_cmyc_remd_sampler.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/dark_proteome/m4_cmyc_remd_sampler.py) — 1×
-- [`ai_slop/extended_research/biotech/dark_proteome/m4_cryptic_pocket_hunter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/dark_proteome/m4_cryptic_pocket_hunter.py) — 5×
-- [`ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/m4_lysosomal_enzyme_bbb.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/m4_lysosomal_enzyme_bbb.py) — 2×
-- [`ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/m4_sequence_validation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/hybrid_z2_test/m4_pipeline/m4_sequence_validation.py) — 1×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/z2_statistical_validation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/z2_statistical_validation.py) — 1×
-- [`ai_slop/extended_research/biotech/pediatric/m4_genetic_childhood_pipeline.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/pediatric/m4_genetic_childhood_pipeline.py) — 2×
-- [`ai_slop/extended_research/biotech/prior_art_factory/hotspot_designer.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/prior_art_factory/hotspot_designer.py) — 2×
-- [`ai_slop/extended_research/biotech/validation/m4_cern_opendata_hunter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/m4_cern_opendata_hunter.py) — 3×
-- [`ai_slop/meteorology/scripts/model_comparison_analysis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/meteorology/scripts/model_comparison_analysis.py) — 1×
+- [`ai_slop/extended_research/biotech/dark_proteome/m4_cryptic_pocket_hunter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/dark_proteome/m4_cryptic_pocket_hunter.py) — 2×
 - [`ai_slop/research/applied_z2/PERCEPTION_COGNITION_FORMULAS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/applied_z2/PERCEPTION_COGNITION_FORMULAS.py) — 1×
-- [`ai_slop/research/digital_twin/mast_ghost_query.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/digital_twin/mast_ghost_query.py) — 1×
 - [`real_research/reviews/quasar_ghost_custom.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/quasar_ghost_custom.py) — 2×
 
 ---
-*Living citation page for Deidre Hunter · index: [CITATIONS.md](../CITATIONS.md) · auto-generated full-repo sweep, append-only.*
+*Living citation page for Deidre Hunter · index: [CITATIONS.md](../CITATIONS.md) · append-only.*

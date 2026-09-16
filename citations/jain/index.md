@@ -1,0 +1,43 @@
+# Jain
+
+**Cited in 34 file(s), 85 occurrence(s).**
+
+**Files (GitHub links):**
+
+- `Python script` — [`ai_slop/research/gemini_prompts_analysis/GEMINI_10_PROMPTS_RIGOROUS_REVIEW.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/gemini_prompts_analysis/GEMINI_10_PROMPTS_RIGOROUS_REVIEW.py) — 21×
+- `Python script` — [`ai_slop/research/condensed_matter/Z2_QUANTUM_HALL_EFFECT.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/condensed_matter/Z2_QUANTUM_HALL_EFFECT.py) — 12×
+- `Python script` — [`ai_slop/run_discovery.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/run_discovery.py) — 8×
+- `Data/config` — [`ai_slop/daemon_outputs/full_660_run_20260507_163018/queue_state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/full_660_run_20260507_163018/queue_state.json) — 3×
+- `Data/config` — [`ai_slop/daemon_outputs/full_660_run_20260507_151319/queue_state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/full_660_run_20260507_151319/queue_state.json) — 3×
+- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (CS template).ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (CS template).ipynb) — 3×
+- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
+- `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/2pwa.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/2pwa.pdb) — 2×
+- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (collider template).ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (collider template).ipynb) — 2×
+- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (ghost template).ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (ghost template).ipynb) — 2×
+- `Python script` — [`ai_slop/research/QUANTUM_INFO_TOPOLOGY.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/QUANTUM_INFO_TOPOLOGY.py) — 2×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data_scaleup/2PWA.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data_scaleup/2PWA.pdb) — 2×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/2PWA.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/2PWA.pdb) — 2×
+- `Python script` — [`opus_48_extended_research/reviews/route_f_metric_partner.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/route_f_metric_partner.py) — 1×
+- `Python script` — [`opus_48_extended_research/reviews/route1_dhost_pure_slip.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/route1_dhost_pure_slip.py) — 1×
+- `Data/config` — [`ai_slop/daemon_outputs/full_660_run_20260507_175002/queue_state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/full_660_run_20260507_175002/queue_state.json) — 1×
+- `Python script` — [`real_research/reviews/toe_law/agentN3_tail_scale.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentN3_tail_scale.py) — 1×
+- `Data/config` — [`ai_slop/OlympusFlow/discoveries/autonomous_research/condensed_matter_jain_sequence_filling_fractions.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/discoveries/autonomous_research/condensed_matter_jain_sequence_filling_fractions.json) — 1×
+- `Data/config` — [`ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/z2_geometry_analysis/pdb_structures/9ARN.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/z2_geometry_analysis/pdb_structures/9ARN.pdb) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/clock_response_repair_2026/closure_front_2026/disformal_cone/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/clock_response_repair_2026/closure_front_2026/disformal_cone/REPORT.md) — 1×
+- `Python script` — [`ai_slop/research_topics.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research_topics.py) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/8AZC.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/8AZC.pdb) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/9YCU.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/9YCU.pdb) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/6YF2.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/6YF2.pdb) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/6YF3.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/6YF3.pdb) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/7T89.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/7T89.pdb) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/9YGX.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/9YGX.pdb) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/8PFF.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/8PFF.pdb) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/9YH8.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/9YH8.pdb) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/9YFR.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/9YFR.pdb) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/9YGW.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/9YGW.pdb) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/9YFS.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/9YFS.pdb) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/9YKF.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/9YKF.pdb) — 1×
+
+---
+*Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*

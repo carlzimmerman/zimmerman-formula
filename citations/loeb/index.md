@@ -1,45 +1,6 @@
 # Avi Loeb
 
-**Homepage:** [https://www.cfa.harvard.edu/~loeb/](https://www.cfa.harvard.edu/~loeb/)
-
-**Cited in 25 file(s), 152 total occurrence(s) across the repo — full list:**
-
-**Data/config (1 files):**
-
-- [`ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json) — 1×
-
-**Markdown/notes (3 files):**
-
-- [`CITATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/CITATIONS.md) — 1×
-- [`README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/README.md) — 1×
-- [`citations/loeb/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/loeb/index.md) — 3×
-
-**Other (20 files):**
-
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/2026_04_23_21_09/msas/fold_2026_04_23_21_09_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/2026_04_23_21_09/msas/fold_2026_04_23_21_09_paired_msa_chains_a.a3m) — 1×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/2026_04_23_21_10/msas/fold_2026_04_23_21_10_paired_msa_chains_a_b.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/2026_04_23_21_10/msas/fold_2026_04_23_21_10_paired_msa_chains_a_b.a3m) — 6×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/2026_04_23_21_10/msas/fold_2026_04_23_21_10_unpaired_msa_chains_a_b.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/2026_04_23_21_10/msas/fold_2026_04_23_21_10_unpaired_msa_chains_a_b.a3m) — 1×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/bcr_abl_kinase_z2/msas/fold_bcr_abl_kinase_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/bcr_abl_kinase_z2/msas/fold_bcr_abl_kinase_z2_paired_msa_chains_a.a3m) — 42×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/bcr_abl_kinase_z2/msas/fold_bcr_abl_kinase_z2_unpaired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/bcr_abl_kinase_z2/msas/fold_bcr_abl_kinase_z2_unpaired_msa_chains_a.a3m) — 3×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_paired_msa_chains_a.a3m) — 8×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/egfr_kinase_z2/msas/fold_egfr_kinase_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/egfr_kinase_z2/msas/fold_egfr_kinase_z2_paired_msa_chains_a.a3m) — 33×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/egfr_kinase_z2/msas/fold_egfr_kinase_z2_unpaired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/egfr_kinase_z2/msas/fold_egfr_kinase_z2_unpaired_msa_chains_a.a3m) — 1×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/il6_receptor_z2/msas/fold_il6_receptor_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/il6_receptor_z2/msas/fold_il6_receptor_z2_paired_msa_chains_a.a3m) — 11×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/il6_receptor_z2/msas/fold_il6_receptor_z2_unpaired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/il6_receptor_z2/msas/fold_il6_receptor_z2_unpaired_msa_chains_a.a3m) — 2×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/jak2_kinase_z2/msas/fold_jak2_kinase_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/jak2_kinase_z2/msas/fold_jak2_kinase_z2_paired_msa_chains_a.a3m) — 2×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pcsk9_cholesterol_z2/msas/fold_pcsk9_cholesterol_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pcsk9_cholesterol_z2/msas/fold_pcsk9_cholesterol_z2_paired_msa_chains_a.a3m) — 2×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pd1_pdl1_z2/msas/fold_pd1_pdl1_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pd1_pdl1_z2/msas/fold_pd1_pdl1_z2_paired_msa_chains_a.a3m) — 6×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pd1_pdl1_z2/msas/fold_pd1_pdl1_z2_unpaired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pd1_pdl1_z2/msas/fold_pd1_pdl1_z2_unpaired_msa_chains_a.a3m) — 2×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pd1_pdl1_z2_2/msas/fold_pd1_pdl1_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pd1_pdl1_z2_2/msas/fold_pd1_pdl1_z2_paired_msa_chains_a.a3m) — 6×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pd1_pdl1_z2_2/msas/fold_pd1_pdl1_z2_unpaired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pd1_pdl1_z2_2/msas/fold_pd1_pdl1_z2_unpaired_msa_chains_a.a3m) — 2×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/plasmepsin_malaria_z2/msas/fold_plasmepsin_malaria_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/plasmepsin_malaria_z2/msas/fold_plasmepsin_malaria_z2_paired_msa_chains_a.a3m) — 12×
-- [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/tnf_alpha_z2/msas/fold_tnf_alpha_z2_paired_msa_chains_c_b_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/tnf_alpha_z2/msas/fold_tnf_alpha_z2_paired_msa_chains_c_b_a.a3m) — 2×
-- [`deepseek_push/G114_data/leisman/d6.bbl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/leisman/d6.bbl) — 2×
-- [`opus_48_extended_research/reviews/_front_gaia_widebinary_workflow.js`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/_front_gaia_widebinary_workflow.js) — 1×
-
-**Python script (1 files):**
-
-- [`hunt_2026/h73_h86_h87_cosmic_dawn.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h73_h86_h87_cosmic_dawn.py) — 1×
+**No file hits in the current sweep — see [CITATIONS.md](../CITATIONS.md) for context.**
 
 ---
-*Living citation page for Avi Loeb · index: [CITATIONS.md](../CITATIONS.md) · auto-generated full-repo sweep, append-only.*
+*Living citation page for Avi Loeb · index: [CITATIONS.md](../CITATIONS.md) · append-only.*

@@ -1,0 +1,83 @@
+# Wonder
+
+**Cited in 74 file(s), 144 occurrence(s).**
+
+**Files (GitHub links):**
+
+- `Data/config` — [`ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json) — 31×
+- `Markdown/notes` — [`book/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE.md) — 14×
+- `Markdown/notes` — [`book/audiobook/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE_AUDIOBOOK.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE_AUDIOBOOK.txt) — 12×
+- `Markdown/notes` — [`ai_slop/curiosities_and_culture/WILD_WILD_WEST_Z2_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/WILD_WILD_WEST_Z2_ANALYSIS.md) — 5×
+- `Other` — [`ai_slop/HermesFlow/autoresearch_v2_cache/https___www_climate_gov_maps_data_dataset_wind_roses_charts_and_tabular_data`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/autoresearch_v2_cache/https___www_climate_gov_maps_data_dataset_wind_roses_charts_and_tabular_data) — 4×
+- `Markdown/notes` — [`ai_slop/curiosities_and_culture/z2_analysis_i_just_called_to_say_i_love_you.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/z2_analysis_i_just_called_to_say_i_love_you.md) — 3×
+- `Markdown/notes` — [`book/02_weighing_the_sky_kepler_newton_and_the_l.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/02_weighing_the_sky_kepler_newton_and_the_l.md) — 2×
+- `Markdown/notes` — [`book/audiobook/02_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/02_narration.txt) — 2×
+- `Markdown/notes` — [`ai_slop/curiosities_and_culture/STAN_EMINEM_Z2_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/STAN_EMINEM_Z2_ANALYSIS.md) — 2×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/baoyu-comic/references/tones/energetic.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/baoyu-comic/references/tones/energetic.md) — 2×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/baoyu-comic/references/tones/energetic.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/baoyu-comic/references/tones/energetic.md) — 2×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/creative/baoyu-comic/references/tones/energetic.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/creative/baoyu-comic/references/tones/energetic.md) — 2×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/creative/baoyu-comic/references/tones/energetic.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/creative/baoyu-comic/references/tones/energetic.md) — 2×
+- `Markdown/notes` — [`book/10_echoes_of_the_beginning_the_cosmic_micro.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/10_echoes_of_the_beginning_the_cosmic_micro.md) — 1×
+- `Markdown/notes` — [`book/18_the_two_great_regularities_rar_and_baryo.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/18_the_two_great_regularities_rar_and_baryo.md) — 1×
+- `Markdown/notes` — [`book/14_temperature_from_acceleration_the_unruh_.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/14_temperature_from_acceleration_the_unruh_.md) — 1×
+- `Markdown/notes` — [`book/11_1998_the_universe_accelerates_and_dark_e.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/11_1998_the_universe_accelerates_and_dark_e.md) — 1×
+- `Markdown/notes` — [`book/27_the_value_of_a_is_not_derived_and_the_st.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/27_the_value_of_a_is_not_derived_and_the_st.md) — 1×
+- `Markdown/notes` — [`book/30_a_bridge_to_particle_physics_the_lorentz.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/30_a_bridge_to_particle_physics_the_lorentz.md) — 1×
+- `Markdown/notes` — [`book/01_a_mystery_in_the_spin_of_galaxies.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/01_a_mystery_in_the_spin_of_galaxies.md) — 1×
+- `Markdown/notes` — [`book/05_two_roads_from_the_fork_a_particle_or_a_.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/05_two_roads_from_the_fork_a_particle_or_a_.md) — 1×
+- `Markdown/notes` — [`book/04_vera_rubin_and_the_flat_rotation_curves_.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/04_vera_rubin_and_the_flat_rotation_curves_.md) — 1×
+- `Markdown/notes` — [`book/24_one_knob_against_six_parameters_and_a_pa.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/24_one_knob_against_six_parameters_and_a_pa.md) — 1×
+- `Markdown/notes` — [`book/09_an_expanding_universe_hubble_friedmann_a.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/09_an_expanding_universe_hubble_friedmann_a.md) — 1×
+- `Markdown/notes` — [`book/audiobook/18_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/18_narration.txt) — 1×
+- `Markdown/notes` — [`book/audiobook/05_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/05_narration.txt) — 1×
+- `Markdown/notes` — [`book/audiobook/01_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/01_narration.txt) — 1×
+- `Markdown/notes` — [`book/audiobook/11_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/11_narration.txt) — 1×
+- `Markdown/notes` — [`book/audiobook/14_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/14_narration.txt) — 1×
+- `Markdown/notes` — [`book/audiobook/10_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/10_narration.txt) — 1×
+- `Markdown/notes` — [`book/audiobook/13_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/13_narration.txt) — 1×
+- `Markdown/notes` — [`book/audiobook/24_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/24_narration.txt) — 1×
+- `Markdown/notes` — [`book/audiobook/30_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/30_narration.txt) — 1×
+- `Markdown/notes` — [`book/audiobook/27_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/27_narration.txt) — 1×
+- `Markdown/notes` — [`book/13_what_is_inertia_really.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/13_what_is_inertia_really.md) — 1×
+- `Other` — [`ai_slop/carl_journal_4.24.26`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/carl_journal_4.24.26) — 1×
+- `Python script` — [`venv_physics_analysis/lib/python3.9/site-packages/setuptools/_distutils/core.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/venv_physics_analysis/lib/python3.9/site-packages/setuptools/_distutils/core.py) — 1×
+- `Data/config` — [`real_research/COMMIT_LEDGER.csv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/COMMIT_LEDGER.csv) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
+- `Markdown/notes` — [`ai_slop/OLYMPUSFLOW_REFACTOR_PLAN.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OLYMPUSFLOW_REFACTOR_PLAN.md) — 1×
+- `Markdown/notes` — [`ai_slop/curiosities_and_culture/DREAMER_OZZY_OSBOURNE_Z2_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/DREAMER_OZZY_OSBOURNE_Z2_ANALYSIS.md) — 1×
+- `Markdown/notes` — [`ai_slop/curiosities_and_culture/WHERE_IS_MY_MIND_PIXIES_Z2_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/WHERE_IS_MY_MIND_PIXIES_Z2_ANALYSIS.md) — 1×
+- `Other` — [`ai_slop/HermesFlow/autoresearch_v2_cache/https___www_climate_gov_maps_data_all_listingMain_datasetgallery`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/autoresearch_v2_cache/https___www_climate_gov_maps_data_all_listingMain_datasetgallery) — 1×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/SCIENTIFIC_AMERICAN_article_draft.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/SCIENTIFIC_AMERICAN_article_draft.md) — 1×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/SCIENTIFIC_AMERICAN_article_full.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/SCIENTIFIC_AMERICAN_article_full.md) — 1×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/QUANTA_MAGAZINE_article_draft.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/QUANTA_MAGAZINE_article_draft.md) — 1×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/Z2_Framework_Science_Article.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/Z2_Framework_Science_Article.md) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/baoyu-comic/references/tones/romantic.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/baoyu-comic/references/tones/romantic.md) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/baoyu-comic/references/tones/romantic.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/baoyu-comic/references/tones/romantic.md) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/mlops/training/unsloth/references/llms-full.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/mlops/training/unsloth/references/llms-full.md) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/mlops/training/unsloth/references/llms-txt.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/mlops/training/unsloth/references/llms-txt.md) — 1×
+- `Data/config` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/index-cache/lobehub_index.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/index-cache/lobehub_index.json) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/mlops/training/unsloth/references/llms-full.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/mlops/training/unsloth/references/llms-full.md) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/mlops/training/unsloth/references/llms-txt.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/mlops/training/unsloth/references/llms-txt.md) — 1×
+- `Data/config` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/index-cache/lobehub_index.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/index-cache/lobehub_index.json) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/optional-skills/health/neuroskill-bci/references/protocols.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/optional-skills/health/neuroskill-bci/references/protocols.md) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/creative/baoyu-comic/references/tones/romantic.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/creative/baoyu-comic/references/tones/romantic.md) — 1×
+- `Python script` — [`ai_slop/research/music_z2/CREED_ARMS_WIDE_OPEN_Z2_ANALYSIS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/music_z2/CREED_ARMS_WIDE_OPEN_Z2_ANALYSIS.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/dynamical_framework/deep_derivations.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamical_framework/deep_derivations.md) — 1×
+- `Paper` — [`ai_slop/research/latex_papers/hawking_perspective_on_z2.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/latex_papers/hawking_perspective_on_z2.tex) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/mlops/training/unsloth/references/llms-full.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/mlops/training/unsloth/references/llms-full.md) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/mlops/training/unsloth/references/llms-txt.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/mlops/training/unsloth/references/llms-txt.md) — 1×
+- `Data/config` — [`ai_slop/HermesFlow/hermes_agent/skills/index-cache/lobehub_index.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/index-cache/lobehub_index.json) — 1×
+- `Python script` — [`ai_slop/research/SPECULATION/philosophy/CREED_ARMS_WIDE_OPEN_Z2_ANALYSIS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/SPECULATION/philosophy/CREED_ARMS_WIDE_OPEN_Z2_ANALYSIS.py) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/optional-skills/health/neuroskill-bci/references/protocols.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/optional-skills/health/neuroskill-bci/references/protocols.md) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/optional-skills/health/neuroskill-bci/references/protocols.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/optional-skills/health/neuroskill-bci/references/protocols.md) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/mlops/training/unsloth/references/llms-full.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/mlops/training/unsloth/references/llms-full.md) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/mlops/training/unsloth/references/llms-txt.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/mlops/training/unsloth/references/llms-txt.md) — 1×
+- `Data/config` — [`ai_slop/TruthFlow/hermes_agent/skills/index-cache/lobehub_index.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/index-cache/lobehub_index.json) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/creative/baoyu-comic/references/tones/romantic.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/creative/baoyu-comic/references/tones/romantic.md) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/optional-skills/health/neuroskill-bci/references/protocols.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/optional-skills/health/neuroskill-bci/references/protocols.md) — 1×
+- `Markdown/notes` — [`book_2e/14_temperature_from_acceleration_the_unruh_.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book_2e/14_temperature_from_acceleration_the_unruh_.md) — 1×
+- `Markdown/notes` — [`book_2e/05_two_roads_from_the_fork_a_particle_or_a_.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book_2e/05_two_roads_from_the_fork_a_particle_or_a_.md) — 1×
+- `Markdown/notes` — [`book_2e/13_what_is_inertia_really.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book_2e/13_what_is_inertia_really.md) — 1×
+
+---
+*Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*

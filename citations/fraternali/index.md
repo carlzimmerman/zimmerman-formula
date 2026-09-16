@@ -1,35 +1,6 @@
 # Filippo Fraternali
 
-**Cited in 14 file(s), 16 total occurrence(s) across the repo — full list:**
-
-**HTML (1 files):**
-
-- [`gext_vectors_2026/data/raw/chae21_ar5iv.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_ar5iv.html) — 1×
-
-**Markdown/notes (3 files):**
-
-- [`gext_vectors_2026/data/raw/chae21_fulltext.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_fulltext.txt) — 1×
-- [`prep_2026/a0z_crossscale/A0Z_CROSSSCALE_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/A0Z_CROSSSCALE_2026.md) — 1×
-- [`real_research/papers/A0Z_CROSSSCALE_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/A0Z_CROSSSCALE_2026.md) — 1×
-
-**Other (2 files):**
-
-- [`fable_independent_2026/L100_killshot_test_plan.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L100_killshot_test_plan.out) — 1×
-- [`real_research/data/SPARC_Lelli2016c.mrt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/SPARC_Lelli2016c.mrt) — 1×
-
-**Paper (2 files):**
-
-- [`prep_2026/journal_submissions/kit_jcap/manuscript.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/journal_submissions/kit_jcap/manuscript.tex) — 1×
-- [`real_research/papers/A0Z_CROSSSCALE_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/A0Z_CROSSSCALE_2026.tex) — 1×
-
-**Python script (6 files):**
-
-- [`fable_independent_2026/L100_killshot_test_plan.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L100_killshot_test_plan.py) — 1×
-- [`hunt_2026/f14_isolated_dwarf_msigma_law.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/f14_isolated_dwarf_msigma_law.py) — 1×
-- [`nbody_2026/stage60_ev_btfr_lane_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage60_ev_btfr_lane_2026.py) — 2×
-- [`nbody_2026/stage60_ev_btfr_referee_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage60_ev_btfr_referee_2026.py) — 1×
-- [`prep_2026/a0z_crossscale/highz_systematics_floor.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/highz_systematics_floor.py) — 2×
-- [`prep_2026/a0z_crossscale/lensed_deepmond_floor_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/lensed_deepmond_floor_2026.py) — 1×
+**No file hits in the current sweep — see [CITATIONS.md](../CITATIONS.md) for context.**
 
 ---
-*Living citation page for Filippo Fraternali · index: [CITATIONS.md](../CITATIONS.md) · auto-generated full-repo sweep, append-only.*
+*Living citation page for Filippo Fraternali · index: [CITATIONS.md](../CITATIONS.md) · append-only.*

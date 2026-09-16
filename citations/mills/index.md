@@ -1,0 +1,118 @@
+# Mills
+
+**Cited in 109 file(s), 225 occurrence(s).**
+
+**Files (GitHub links):**
+
+- `Python script` — [`opus_48_extended_research/reviews/derivation_chain/gap1_mm_invariant_enumeration.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/derivation_chain/gap1_mm_invariant_enumeration.py) — 8×
+- `Data/config` — [`ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json) — 8×
+- `Markdown/notes` — [`ai_slop/research/dynamical_framework/field_equations.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamical_framework/field_equations.md) — 8×
+- `Python script` — [`ai_slop/research/foundations/Z2_LAGRANGIAN_FORMULATION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_LAGRANGIAN_FORMULATION.py) — 7×
+- `Other` — [`ai_slop/LegomenaLLM/clean_2026/corpus/gold_examples.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/corpus/gold_examples.jsonl) — 6×
+- `Python script` — [`ai_slop/research/Z2_LAGRANGIAN_MASTER_EQUATION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/Z2_LAGRANGIAN_MASTER_EQUATION.py) — 6×
+- `Python script` — [`ai_slop/research/geometric_closure/GAUGE_SYMMETRIES.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/GAUGE_SYMMETRIES.py) — 5×
+- `Markdown/notes` — [`ai_slop/research/dynamical_framework/deep_derivations.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamical_framework/deep_derivations.md) — 5×
+- `Markdown/notes` — [`ai_slop/research/dynamical_framework/action_principle.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamical_framework/action_principle.md) — 5×
+- `Markdown/notes` — [`ai_slop/papers/Z2_UNIFIED_ACTION_v10.0.0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_v10.0.0.md) — 4×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v4.1.0.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v4.1.0.html) — 4×
+- `Markdown/notes` — [`ai_slop/papers/Z2_UNIFIED_ACTION_v9.5.0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_v9.5.0.md) — 4×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v4.3.0.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v4.3.0.html) — 4×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v4.2.0.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v4.2.0.html) — 4×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v4.1.1.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v4.1.1.html) — 4×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v4.1.2.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v4.1.2.html) — 4×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v4.0.6.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v4.0.6.html) — 4×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v4.1.3.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v4.1.3.html) — 4×
+- `Markdown/notes` — [`ai_slop/papers/Z2_UNIFIED_ACTION_NATURE_DRAFT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_NATURE_DRAFT.md) — 4×
+- `Other` — [`ai_slop/LegomenaLLM/clean_2026/corpus/train.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/corpus/train.jsonl) — 4×
+- `Python script` — [`ai_slop/research/rigorous_proofs/task3_instanton_action.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/rigorous_proofs/task3_instanton_action.py) — 4×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/bridge_scout/MOND_FROM_FUNDAMENTAL_2026-06-19.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/bridge_scout/MOND_FROM_FUNDAMENTAL_2026-06-19.md) — 3×
+- `Markdown/notes` — [`ai_slop/papers/Z2_HISTORICAL_MATHEMATICAL_CONTEXT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_HISTORICAL_MATHEMATICAL_CONTEXT.md) — 3×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v5.3.0.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v5.3.0.html) — 3×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v5.4.0.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v5.4.0.html) — 3×
+- `Markdown/notes` — [`ai_slop/research/GAP_ANALYSIS_v1.2.1.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/GAP_ANALYSIS_v1.2.1.md) — 3×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_unpaired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_unpaired_msa_chains_a.a3m) — 3×
+- `Other` — [`opus_48_extended_research/reviews/_bridge_connections_compdoors_workflow.js`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/_bridge_connections_compdoors_workflow.js) — 2×
+- `Python script` — [`opus_48_extended_research/reviews/derivation_chain/gap1_so41_invariant_uniqueness.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/derivation_chain/gap1_so41_invariant_uniqueness.py) — 2×
+- `HTML` — [`opus_48_extended_research/papers/DESITTER_GAUGE_MOND_SCALE.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/DESITTER_GAUGE_MOND_SCALE.html) — 2×
+- `Markdown/notes` — [`opus_48_extended_research/papers/DESITTER_GAUGE_MOND_SCALE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/DESITTER_GAUGE_MOND_SCALE.md) — 2×
+- `Python script` — [`opus_48_extended_research/reviews/cluster_explain/route3_literature_sweep.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/cluster_explain/route3_literature_sweep.py) — 2×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.0.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.0.html) — 2×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.4.0.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.4.0.html) — 2×
+- `Markdown/notes` — [`ai_slop/papers/Z2_UNIFIED_ACTION_v8.3.0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_v8.3.0.md) — 2×
+- `Markdown/notes` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY.md) — 2×
+- `Other` — [`ai_slop/LegomenaLLM/clean_2026/corpus/valid.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/corpus/valid.jsonl) — 2×
+- `Markdown/notes` — [`ai_slop/non-peer-review/arkani-hamed/Arkani-Hamed_Cross_Review.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/arkani-hamed/Arkani-Hamed_Cross_Review.md) — 2×
+- `Markdown/notes` — [`ai_slop/office_hours_with_claude/physics/04_gauge_theory.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/office_hours_with_claude/physics/04_gauge_theory.md) — 2×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/QUANTA_MAGAZINE_article_draft.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/QUANTA_MAGAZINE_article_draft.md) — 2×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/PHYSICS_TODAY_article_draft.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/PHYSICS_TODAY_article_draft.md) — 2×
+- `Markdown/notes` — [`real_research/papers/v12_FORMAL_CORE_action.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/v12_FORMAL_CORE_action.md) — 2×
+- `Python script` — [`ai_slop/research/QCD_MASS_GAP.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/QCD_MASS_GAP.py) — 2×
+- `Python script` — [`ai_slop/research/foundations/Z2_HOLOGRAPHY.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_HOLOGRAPHY.py) — 2×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/pdb_cache/1I7Q.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/pdb_cache/1I7Q.pdb) — 2×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_paired_msa_chains_a.a3m) — 2×
+- `Other` — [`fable_independent_2026/L140_branch_adjudication_and_mondness.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L140_branch_adjudication_and_mondness.out) — 1×
+- `Python script` — [`fable_independent_2026/L140_branch_adjudication_and_mondness.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L140_branch_adjudication_and_mondness.py) — 1×
+- `Python script` — [`opus_48_extended_research/reviews/door_runs/door_S_seraille_coefficient.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/door_runs/door_S_seraille_coefficient.py) — 1×
+- `Python script` — [`opus_48_extended_research/reviews/derivation_chain/gap2_germ_fingerprint_FDR.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/derivation_chain/gap2_germ_fingerprint_FDR.py) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/papers/WHY_SKORDIS_AND_ZLOSNIK_WERE_RIGHT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/WHY_SKORDIS_AND_ZLOSNIK_WERE_RIGHT.md) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/TOE_STAGE2_CALC_VERDICT_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/TOE_STAGE2_CALC_VERDICT_2026-06-15.md) — 1×
+- `Paper` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v5.4.0.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v5.4.0.tex) — 1×
+- `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v3.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v3.html) — 1×
+- `Paper` — [`ai_slop/papers/Z2_FRAMEWORK_v5.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_FRAMEWORK_v5.tex) — 1×
+- `Paper` — [`ai_slop/papers/Z2_UNIFIED_ACTION_v10.0.0.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_v10.0.0.tex) — 1×
+- `Markdown/notes` — [`ai_slop/non-peer-review/maldacena/Maldacena_Cross_Review.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/maldacena/Maldacena_Cross_Review.md) — 1×
+- `Markdown/notes` — [`ai_slop/non-peer-review/witten/Witten_Cross_Review.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/witten/Witten_Cross_Review.md) — 1×
+- `Markdown/notes` — [`ai_slop/non-peer-review/connes/HONESTY_ASSESSMENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/connes/HONESTY_ASSESSMENT.md) — 1×
+- `Markdown/notes` — [`ai_slop/non-peer-review/connes/Connes_Cross_Review.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/connes/Connes_Cross_Review.md) — 1×
+- `Markdown/notes` — [`ai_slop/non-peer-review/arkani-hamed/KEY_FINDINGS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/arkani-hamed/KEY_FINDINGS.md) — 1×
+- `Markdown/notes` — [`ai_slop/office_hours_with_claude/physics/09_holography.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/office_hours_with_claude/physics/09_holography.md) — 1×
+- `Markdown/notes` — [`ai_slop/office_hours_with_claude/physics/05_general_relativity.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/office_hours_with_claude/physics/05_general_relativity.md) — 1×
+- `Markdown/notes` — [`ai_slop/office_hours_with_claude/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/office_hours_with_claude/README.md) — 1×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/SCIENTIFIC_AMERICAN_article_draft.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/SCIENTIFIC_AMERICAN_article_draft.md) — 1×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/NATURE_article_draft.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/NATURE_article_draft.md) — 1×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/PHYSICS_TODAY_article_full.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/PHYSICS_TODAY_article_full.md) — 1×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/NATURE_PHYSICS_article_full.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/NATURE_PHYSICS_article_full.md) — 1×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/README.md) — 1×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/NATURE_PHYSICS_article_draft.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/NATURE_PHYSICS_article_draft.md) — 1×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/QUANTA_MAGAZINE_article_full.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/QUANTA_MAGAZINE_article_full.md) — 1×
+- `Data/config` — [`qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic13_ic14_run_001/run_index.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic13_ic14_run_001/run_index.json) — 1×
+- `Data/config` — [`ai_slop/TruthFlow/fetched_papers/spectral_dimension_20260503_182815.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/fetched_papers/spectral_dimension_20260503_182815.json) — 1×
+- `Data/config` — [`ai_slop/TruthFlow/extracted_data/all_extractions.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/extracted_data/all_extractions.json) — 1×
+- `Markdown/notes` — [`real_research/papers/v12_SCALING_MOND_ACTION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/v12_SCALING_MOND_ACTION.md) — 1×
+- `Markdown/notes` — [`real_research/papers/v12_ACTION_PRINCIPLE_ROADMAP.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/v12_ACTION_PRINCIPLE_ROADMAP.md) — 1×
+- `Markdown/notes` — [`real_research/papers/v12_E6_GUT_CONSTRUCTION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/v12_E6_GUT_CONSTRUCTION.md) — 1×
+- `Markdown/notes` — [`real_research/papers/v12_TOE_DONE_RIGHT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/v12_TOE_DONE_RIGHT.md) — 1×
+- `Markdown/notes` — [`real_research/papers/v12_RADION_MOND_BRIDGE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/v12_RADION_MOND_BRIDGE.md) — 1×
+- `Markdown/notes` — [`real_research/GEMINI_10_IDEAS_REVIEW_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/GEMINI_10_IDEAS_REVIEW_2026-06.md) — 1×
+- `Markdown/notes` — [`ai_slop/extended_research/biotech/alphafold_comparison/CHATGPT_WEINBERG_ANGLE_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/alphafold_comparison/CHATGPT_WEINBERG_ANGLE_ANALYSIS.md) — 1×
+- `Markdown/notes` — [`ai_slop/ErgonFlow/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/ErgonFlow/README.md) — 1×
+- `Python script` — [`ai_slop/research/computational_math/audit_prompt1_bulk_calculus.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/computational_math/audit_prompt1_bulk_calculus.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/derivations/PHYSICAL_MECHANISM.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/derivations/PHYSICAL_MECHANISM.md) — 1×
+- `Python script` — [`ai_slop/research/computational_math/betti_additive_derivation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/computational_math/betti_additive_derivation.py) — 1×
+- `Python script` — [`ai_slop/research/geometric_closure/HOLOGRAPHIC_PRINCIPLE_DERIVATION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/HOLOGRAPHIC_PRINCIPLE_DERIVATION.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/rigorous_proofs/COMPREHENSIVE_ASSESSMENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/rigorous_proofs/COMPREHENSIVE_ASSESSMENT.md) — 1×
+- `Python script` — [`ai_slop/research/geometric_closure/MATHEMATICS_REALITY.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/MATHEMATICS_REALITY.py) — 1×
+- `Python script` — [`ai_slop/research/geometric_closure/SIMPLICITY.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/SIMPLICITY.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/meteorology/LIGHTNING_STRIKE_PREDICTION_Z2.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/meteorology/LIGHTNING_STRIKE_PREDICTION_Z2.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/OP2_GAUGE_COUPLING_DERIVATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/OP2_GAUGE_COUPLING_DERIVATION.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/WHATS_STILL_MISSING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/WHATS_STILL_MISSING.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/RANK_BOUND_PROOF_ATTEMPT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RANK_BOUND_PROOF_ATTEMPT.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/perspectives/HAWKING_PERSPECTIVE_ON_Z2.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/perspectives/HAWKING_PERSPECTIVE_ON_Z2.md) — 1×
+- `Python script` — [`ai_slop/research/foundations/Z2_EMERGENT_SPACETIME.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_EMERGENT_SPACETIME.py) — 1×
+- `Python script` — [`ai_slop/research/foundations/Z2_PRINCIPLE_OF_LEAST_ACTION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_PRINCIPLE_OF_LEAST_ACTION.py) — 1×
+- `Python script` — [`ai_slop/research/foundations/Z2_TWISTOR_THEORY.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_TWISTOR_THEORY.py) — 1×
+- `Python script` — [`ai_slop/research/foundations/Z2_INSTANTON_DERIVATION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_INSTANTON_DERIVATION.py) — 1×
+- `Python script` — [`ai_slop/research/foundations/Z2_ALPHA_DERIVATION_ATTEMPT.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_ALPHA_DERIVATION_ATTEMPT.py) — 1×
+- `Python script` — [`ai_slop/research/foundations/Z2_GAUGE_EDGE_DERIVATION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_GAUGE_EDGE_DERIVATION.py) — 1×
+- `Python script` — [`ai_slop/research/foundations/Z2_ACTION_PRINCIPLE_RIGOROUS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_ACTION_PRINCIPLE_RIGOROUS.py) — 1×
+- `Python script` — [`ai_slop/research/Z2_MASTER_LAGRANGIAN_FINAL.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/Z2_MASTER_LAGRANGIAN_FINAL.py) — 1×
+- `Python script` — [`ai_slop/research/quadratic_gravity_comparison/QUADRATIC_GRAVITY_Z2_ANALYSIS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/quadratic_gravity_comparison/QUADRATIC_GRAVITY_Z2_ANALYSIS.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/PEER_REVIEW_RESPONSE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/PEER_REVIEW_RESPONSE.md) — 1×
+- `Python script` — [`ai_slop/research/GRAND_UNIFICATION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/GRAND_UNIFICATION.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/GAUGE_THEORY_DERIVATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/GAUGE_THEORY_DERIVATION.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/TESTABILITY_ANALYSIS_100_THEORIES.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/TESTABILITY_ANALYSIS_100_THEORIES.md) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/3V1A.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/3V1A.pdb) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/3V1E.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/3V1E.pdb) — 1×
+
+---
+*Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*

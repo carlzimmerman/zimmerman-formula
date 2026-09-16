@@ -1,92 +1,65 @@
 # Daniel Eisenstein
 
-**Cited in 74 file(s), 117 total occurrence(s) across the repo — full list:**
+**Cited in 56 file(s), 111 occurrence(s) across the repo:**
 
-**Data/config (1 files):**
+**Markdown/notes (56 files):**
 
-- [`deepseek_push/G079_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G079_results.json) — 1×
-
-**Markdown/notes (7 files):**
-
-- [`ai_slop/research/cmb_predictions/BAO_DESI_COMPARISON.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/cmb_predictions/BAO_DESI_COMPARISON.md) — 1×
-- [`ai_slop/research/dynamical_framework/deep_derivations.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamical_framework/deep_derivations.md) — 3×
-- [`ai_slop/research/dynamical_framework/structure_formation.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamical_framework/structure_formation.md) — 2×
-- [`fable_independent_2026/FINDINGS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/FINDINGS.md) — 1×
-- [`fable_independent_2026/L93_LINEAR_GROWTH_SIGMA8.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L93_LINEAR_GROWTH_SIGMA8.md) — 1×
-- [`hunt_2026/THE_LIABILITY_TABLE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/THE_LIABILITY_TABLE.md) — 1×
-- [`prep_2026/bulkflow_dipole/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/bulkflow_dipole/VERIFY.md) — 1×
-
-**Other (38 files):**
-
-- [`deepseek_push/G079_cosmic_budget.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G079_cosmic_budget.out) — 2×
-- [`deepseek_push/G114_data/bdj2001/onecolfloat.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/bdj2001/onecolfloat.sty) — 1×
-- [`deepseek_push/G114_data/bell2003b/onecolfloat.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/bell2003b/onecolfloat.sty) — 1×
-- [`deepseek_push/G114_data/oh2015/ms.bbl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/oh2015/ms.bbl) — 2×
-- [`fable_independent_2026/L152_class_running_cs2/site/classy/external/HMcode/hmcode.c`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L152_class_running_cs2/site/classy/external/HMcode/hmcode.c) — 2×
-- [`fable_independent_2026/L152_class_running_cs2/site/classy/external/HMcode/hmcode.h`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L152_class_running_cs2/site/classy/external/HMcode/hmcode.h) — 1×
-- [`fable_independent_2026/L152_class_running_cs2/site/classy/python/classy.pyx`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L152_class_running_cs2/site/classy/python/classy.pyx) — 1×
-- [`fable_independent_2026/L152_class_running_cs2/site/classy/source/fourier.c`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L152_class_running_cs2/site/classy/source/fourier.c) — 2×
-- [`fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/external/HMcode/hmcode.c`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/external/HMcode/hmcode.c) — 2×
-- [`fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/external/HMcode/hmcode.h`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/external/HMcode/hmcode.h) — 1×
-- [`fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/python/classy.pyx`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/python/classy.pyx) — 1×
-- [`fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/source/fourier.c`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/source/fourier.c) — 2×
-- [`fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/external/HMcode/hmcode.c`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/external/HMcode/hmcode.c) — 2×
-- [`fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/external/HMcode/hmcode.h`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/external/HMcode/hmcode.h) — 1×
-- [`fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/python/classy.cpp`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/python/classy.cpp) — 1×
-- [`fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/python/classy.pyx`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/python/classy.pyx) — 1×
-- [`fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/source/fourier.c`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/source/fourier.c) — 2×
-- [`fable_independent_2026/L160_decay_two_body_kick_branch.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L160_decay_two_body_kick_branch.out) — 1×
-- [`fable_independent_2026/L183_class_mond_kernel/site/classy/external/HMcode/hmcode.c`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/site/classy/external/HMcode/hmcode.c) — 2×
-- [`fable_independent_2026/L183_class_mond_kernel/site/classy/external/HMcode/hmcode.h`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/site/classy/external/HMcode/hmcode.h) — 1×
-- [`fable_independent_2026/L183_class_mond_kernel/site/classy/python/classy.cpp`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/site/classy/python/classy.cpp) — 1×
-- [`fable_independent_2026/L183_class_mond_kernel/site/classy/python/classy.pyx`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/site/classy/python/classy.pyx) — 1×
-- [`fable_independent_2026/L183_class_mond_kernel/site/classy/source/fourier.c`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/site/classy/source/fourier.c) — 2×
-- [`fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/external/HMcode/hmcode.c`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/external/HMcode/hmcode.c) — 2×
-- [`fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/external/HMcode/hmcode.h`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/external/HMcode/hmcode.h) — 1×
-- [`fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/python/classy.cpp`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/python/classy.cpp) — 1×
-- [`fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/python/classy.pyx`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/python/classy.pyx) — 1×
-- [`fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/source/fourier.c`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/source/fourier.c) — 2×
-- [`fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/external/HMcode/hmcode.c`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/external/HMcode/hmcode.c) — 2×
-- [`fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/external/HMcode/hmcode.h`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/external/HMcode/hmcode.h) — 1×
-- [`fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/python/classy.cpp`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/python/classy.cpp) — 1×
-- [`fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/python/classy.pyx`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/python/classy.pyx) — 1×
-- [`fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/source/fourier.c`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/source/fourier.c) — 2×
-- [`fable_independent_2026/L254_ksz_pairwise_velocity.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L254_ksz_pairwise_velocity.out) — 1×
-- [`fable_independent_2026/L93_linear_growth_sigma8.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L93_linear_growth_sigma8.out) — 2×
-- [`hunt_2026/f07_two_component_nogo.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/f07_two_component_nogo.out) — 1×
-- [`hunt_2026/h32_hi_velocity_function.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h32_hi_velocity_function.out) — 1×
-- [`hy4_push/H002_results.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hy4_push/H002_results.out) — 1×
-
-**Python script (28 files):**
-
-- [`ai_slop/research/applied_z2/NUMBER_THEORY_FORMULAS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/applied_z2/NUMBER_THEORY_FORMULAS.py) — 1×
-- [`ai_slop/research/cmb_predictions/bao_z2_verification.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/cmb_predictions/bao_z2_verification.py) — 3×
-- [`ai_slop/research/consistency_checks/CMB_SOLAR_SYSTEM_ANALYSIS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/consistency_checks/CMB_SOLAR_SYSTEM_ANALYSIS.py) — 1×
-- [`ai_slop/research/dynamics/Z2_MODULAR_FORMS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamics/Z2_MODULAR_FORMS.py) — 5×
-- [`ai_slop/research/euclid_audit/s8_power_truncation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/euclid_audit/s8_power_truncation.py) — 4×
-- [`ai_slop/research/foundations/Z2_STRING_THEORY_CONNECTION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_STRING_THEORY_CONNECTION.py) — 1×
-- [`ai_slop/research/z2_testible_predictions/verify_all_tests.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/z2_testible_predictions/verify_all_tests.py) — 1×
-- [`deepseek_push/G079_cosmic_budget.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G079_cosmic_budget.py) — 5×
-- [`deepseek_push/G115_low_mass_floor.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G115_low_mass_floor.py) — 1×
-- [`fable_independent_2026/L140_branch_adjudication_and_mondness.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L140_branch_adjudication_and_mondness.py) — 1×
-- [`fable_independent_2026/L159_decay_lifetime_window_and_background_cost.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L159_decay_lifetime_window_and_background_cost.py) — 1×
-- [`fable_independent_2026/L160_decay_two_body_kick_branch.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L160_decay_two_body_kick_branch.py) — 2×
-- [`fable_independent_2026/L225_flux_power.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L225_flux_power.py) — 1×
-- [`fable_independent_2026/L254_ksz_pairwise_velocity.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L254_ksz_pairwise_velocity.py) — 2×
-- [`fable_independent_2026/L37_recombination_footing.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L37_recombination_footing.py) — 2×
-- [`fable_independent_2026/L93_linear_growth_sigma8.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L93_linear_growth_sigma8.py) — 3×
-- [`hunt_2026/f07_two_component_nogo.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/f07_two_component_nogo.py) — 2×
-- [`hunt_2026/h113_kids_two_halo.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h113_kids_two_halo.py) — 1×
-- [`hunt_2026/h32_hi_velocity_function.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h32_hi_velocity_function.py) — 2×
-- [`hunt_2026/h73_h86_h87_cosmic_dawn.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h73_h86_h87_cosmic_dawn.py) — 1×
-- [`hunt_2026/h84_eg_1to5Mpc.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h84_eg_1to5Mpc.py) — 1×
-- [`hy4_push/H002_cmb_perturbations.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hy4_push/H002_cmb_perturbations.py) — 2×
-- [`nbody_2026/stage16_lognormal_forest_mock_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage16_lognormal_forest_mock_2026.py) — 1×
-- [`prep_2026/bulkflow_dipole/verify_indep.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/bulkflow_dipole/verify_indep.py) — 2×
-- [`qwen_claude_field_theory/closure_2026/g04h_pk_regeneration_causal_boost.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/g04h_pk_regeneration_causal_boost.py) — 2×
-- [`qwen_claude_field_theory/closure_2026/route5_caustics_multistream_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/route5_caustics_multistream_2026.py) — 2×
-- [`real_research/reviews/door_e6su3_exhaust.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/door_e6su3_exhaust.py) — 2×
-- [`real_research/reviews/mi_route_c_no_dm_today_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_route_c_no_dm_today_2026.py) — 1×
+- [`CITATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/CITATIONS.md) — 2×
+- [`README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/README.md) — 1×
+- [`citations/bulk/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/bulk/index.md) — 2×
+- [`citations/car/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/car/index.md) — 2×
+- [`citations/claude/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/claude/index.md) — 2×
+- [`citations/cli/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/cli/index.md) — 2×
+- [`citations/closure/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/closure/index.md) — 2×
+- [`citations/comparison/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/comparison/index.md) — 2×
+- [`citations/dan/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/dan/index.md) — 2×
+- [`citations/daniel/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/daniel/index.md) — 2×
+- [`citations/dec/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/dec/index.md) — 2×
+- [`citations/deepseek/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/deepseek/index.md) — 2×
+- [`citations/des/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/des/index.md) — 2×
+- [`citations/dipole/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/dipole/index.md) — 2×
+- [`citations/door/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/door/index.md) — 2×
+- [`citations/era/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/era/index.md) — 2×
+- [`citations/float/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/float/index.md) — 2×
+- [`citations/formula/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/formula/index.md) — 2×
+- [`citations/four/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/four/index.md) — 2×
+- [`citations/full/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/full/index.md) — 2×
+- [`citations/gen/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/gen/index.md) — 2×
+- [`citations/get/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/get/index.md) — 2×
+- [`citations/git/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/git/index.md) — 2×
+- [`citations/hmcode/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/hmcode/index.md) — 2×
+- [`citations/independent/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/independent/index.md) — 2×
+- [`citations/index/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/index/index.md) — 2×
+- [`citations/kids/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/kids/index.md) — 2×
+- [`citations/lau/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lau/index.md) — 2×
+- [`citations/lie/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lie/index.md) — 2×
+- [`citations/life/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/life/index.md) — 2×
+- [`citations/lin/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lin/index.md) — 2×
+- [`citations/list/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/list/index.md) — 2×
+- [`citations/lux/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lux/index.md) — 2×
+- [`citations/mar/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/mar/index.md) — 2×
+- [`citations/not/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/not/index.md) — 2×
+- [`citations/oda/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/oda/index.md) — 2×
+- [`citations/only/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/only/index.md) — 2×
+- [`citations/page/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/page/index.md) — 2×
+- [`citations/pole/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/pole/index.md) — 2×
+- [`citations/predictions/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/predictions/index.md) — 2×
+- [`citations/prep/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/prep/index.md) — 2×
+- [`citations/python/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/python/index.md) — 2×
+- [`citations/qwen/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/qwen/index.md) — 2×
+- [`citations/ratio/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ratio/index.md) — 2×
+- [`citations/real/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/real/index.md) — 2×
+- [`citations/ren/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ren/index.md) — 2×
+- [`citations/research/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/research/index.md) — 2×
+- [`citations/route/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/route/index.md) — 2×
+- [`citations/sigma/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/sigma/index.md) — 2×
+- [`citations/site/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/site/index.md) — 2×
+- [`citations/stage/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/stage/index.md) — 2×
+- [`citations/sys/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/sys/index.md) — 2×
+- [`citations/ten/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ten/index.md) — 2×
+- [`citations/ter/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ter/index.md) — 2×
+- [`citations/uri/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/uri/index.md) — 2×
+- [`citations/work/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/work/index.md) — 2×
 
 ---
-*Living citation page for Daniel Eisenstein · index: [CITATIONS.md](../CITATIONS.md) · auto-generated full-repo sweep, append-only.*
+*Living citation page for Daniel Eisenstein · index: [CITATIONS.md](../CITATIONS.md) · append-only.*

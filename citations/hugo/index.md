@@ -1,0 +1,36 @@
+# Hugo
+
+**Cited in 27 file(s), 215 occurrence(s).**
+
+**Files (GitHub links):**
+
+- `Other` — [`ai_slop/HermesFlow/hermes_cache/7d9f12b9caeb5cf006ba450df01a778d`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_cache/7d9f12b9caeb5cf006ba450df01a778d) — 124×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_cache/ebtrk_atlantic_new.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_cache/ebtrk_atlantic_new.txt) — 61×
+- `Data/config` — [`ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json) — 3×
+- `Python script` — [`ai_slop/meteorology/scripts/z2_advanced_research.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/meteorology/scripts/z2_advanced_research.py) — 2×
+- `Other` — [`ai_slop/HermesFlow/autoresearch_v2_cache/https___www_nhc_noaa_gov_data_`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/autoresearch_v2_cache/https___www_nhc_noaa_gov_data_) — 2×
+- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/Nseries Odd-Parity 4PCF.ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/Nseries Odd-Parity 4PCF.ipynb) — 2×
+- `Python script` — [`ai_slop/meteorology/scripts/z_squared_prediction_comparison.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/meteorology/scripts/z_squared_prediction_comparison.py) — 1×
+- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (CS template).ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (CS template).ipynb) — 1×
+- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (collider template).ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (collider template).ipynb) — 1×
+- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (ghost template).ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (ghost template).ipynb) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/iclr2026_conference.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/iclr2026_conference.sty) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/iclr2026_conference.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/iclr2026_conference.sty) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/colm2025/colm2025_conference.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/colm2025/colm2025_conference.sty) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/colm2025/colm2025_conference.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/colm2025/colm2025_conference.sty) — 1×
+- `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_cli/tools_config.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_cli/tools_config.py) — 1×
+- `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_cli/setup.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_cli/setup.py) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/iclr2026_conference.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/iclr2026_conference.sty) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/colm2025/colm2025_conference.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/colm2025/colm2025_conference.sty) — 1×
+- `Python script` — [`ai_slop/TruthFlow/hermes_agent/hermes_cli/tools_config.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_cli/tools_config.py) — 1×
+- `Python script` — [`ai_slop/TruthFlow/hermes_agent/hermes_cli/setup.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_cli/setup.py) — 1×
+- `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/hermes_cli/tools_config.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/hermes_cli/tools_config.py) — 1×
+- `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/hermes_cli/setup.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/hermes_cli/setup.py) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/iclr2026_conference.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/iclr2026_conference.sty) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/colm2025/colm2025_conference.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/colm2025/colm2025_conference.sty) — 1×
+- `Python script` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/hermes_cli/tools_config.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/hermes_cli/tools_config.py) — 1×
+- `Python script` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/hermes_cli/setup.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/hermes_cli/setup.py) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/7RH3.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/7RH3.pdb) — 1×
+
+---
+*Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*

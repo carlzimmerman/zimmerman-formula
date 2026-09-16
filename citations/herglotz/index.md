@@ -1,0 +1,200 @@
+# Herglotz
+
+**Cited in 191 file(s), 693 occurrence(s).**
+
+**Files (GitHub links):**
+
+- `Python script` — [`prep_2026/mi_eta_selection/q1d_passivity_analyticity.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_eta_selection/q1d_passivity_analyticity.py) — 19×
+- `Other` — [`prep_2026/oneloop_finite/base_rerun.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/oneloop_finite/base_rerun.log) — 18×
+- `Python script` — [`prep_2026/mi_eta_selection/q1b_feynman_vernon.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_eta_selection/q1b_feynman_vernon.py) — 15×
+- `Python script` — [`real_research/reviews/mi_gate_herglotz_admissibility_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_gate_herglotz_admissibility_2026.py) — 13×
+- `Python script` — [`real_research/reviews/mi_formal_completion_2026/operator_definition.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_formal_completion_2026/operator_definition.py) — 13×
+- `Paper` — [`prep_2026/journal_submissions/kit_prd/manuscript.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/journal_submissions/kit_prd/manuscript.tex) — 12×
+- `Python script` — [`real_research/reviews/mi_formal_completion_2026/stability.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_formal_completion_2026/stability.py) — 12×
+- `Markdown/notes` — [`prep_2026/mi_eta_selection/ATTEMPT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_eta_selection/ATTEMPT.md) — 11×
+- `Markdown/notes` — [`real_research/papers/MI_COMPLETION_WRITTEN_2026-07.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_COMPLETION_WRITTEN_2026-07.md) — 11×
+- `Python script` — [`real_research/reviews/mi_twoloop_alpha2_transfer_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_twoloop_alpha2_transfer_2026.py) — 11×
+- `Other` — [`prep_2026/mi_eta_selection/q1d_passivity_analyticity.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_eta_selection/q1d_passivity_analyticity.out) — 10×
+- `Other` — [`prep_2026/mi_eta_selection/q1b_feynman_vernon.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_eta_selection/q1b_feynman_vernon.out) — 10×
+- `Other` — [`real_research/reviews/mi_twoloop_alpha2_transfer_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_twoloop_alpha2_transfer_2026.out) — 9×
+- `Markdown/notes` — [`STANDING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/STANDING.md) — 9×
+- `Markdown/notes` — [`real_research/papers/MI_FIELD_THEORY_RESULTS_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_FIELD_THEORY_RESULTS_2026.md) — 9×
+- `Paper` — [`real_research/papers/MI_FIELD_THEORY_RESULTS_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_FIELD_THEORY_RESULTS_2026.tex) — 9×
+- `Python script` — [`real_research/reviews/toe_law/agentQQ_part9_synth.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentQQ_part9_synth.py) — 9×
+- `Python script` — [`real_research/reviews/mi_formal_completion_2026/twoloop_laneA_finite.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_formal_completion_2026/twoloop_laneA_finite.py) — 9×
+- `Python script` — [`prep_2026/mi_fingerprint/rb2_frequency_dependence.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_fingerprint/rb2_frequency_dependence.py) — 8×
+- `Python script` — [`prep_2026/mi_closure_pin/ostro_nonlocal_verify.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_closure_pin/ostro_nonlocal_verify.py) — 8×
+- `Python script` — [`prep_2026/mi_planetary_falsification/origin_window_scales.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_planetary_falsification/origin_window_scales.py) — 8×
+- `Markdown/notes` — [`prep_2026/mi_eta_selection/SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_eta_selection/SYNTHESIS.md) — 8×
+- `Python script` — [`prep_2026/mi_field_theory/wellposed.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_field_theory/wellposed.py) — 8×
+- `Python script` — [`real_research/reviews/mi_cauchy_wellposed_2026/setupB_spectral_ghost.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_cauchy_wellposed_2026/setupB_spectral_ghost.py) — 8×
+- `Python script` — [`real_research/reviews/mi_loop_edge_alpha2_measure_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_loop_edge_alpha2_measure_2026.py) — 7×
+- `Markdown/notes` — [`prep_2026/mi_eta_selection/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_eta_selection/VERIFY.md) — 7×
+- `Python script` — [`prep_2026/planetary_doors/laneK_kernel_planets.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/planetary_doors/laneK_kernel_planets.py) — 7×
+- `Python script` — [`real_research/reviews/mi_formal_completion_2026/oneloop_laneA_divergences.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_formal_completion_2026/oneloop_laneA_divergences.py) — 7×
+- `Python script` — [`real_research/reviews/no_dm_roads_2026/lane2_a0_nonlocal.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/no_dm_roads_2026/lane2_a0_nonlocal.py) — 7×
+- `Other` — [`prep_2026/mi_fingerprint/rb2_frequency_dependence.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_fingerprint/rb2_frequency_dependence.out) — 6×
+- `Markdown/notes` — [`prep_2026/mi_fingerprint/KERNEL_THEORY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_fingerprint/KERNEL_THEORY.md) — 6×
+- `Markdown/notes` — [`prep_2026/journal_submissions/SUBMIT_PRD.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/journal_submissions/SUBMIT_PRD.md) — 6×
+- `Markdown/notes` — [`prep_2026/mi_field_theory/MI_FIELD_THEORY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_field_theory/MI_FIELD_THEORY.md) — 6×
+- `Markdown/notes` — [`prep_2026/planetary_doors/KERNEL_PLANETS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/planetary_doors/KERNEL_PLANETS.md) — 6×
+- `Python script` — [`project_atomos/rg_flow_correspondence.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/project_atomos/rg_flow_correspondence.py) — 6×
+- `Python script` — [`real_research/reviews/toe_law/agentSS_part6_nonmarkovian.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentSS_part6_nonmarkovian.py) — 6×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentQQ_routeEdge.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentQQ_routeEdge.md) — 6×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentPP_verify_qnm-moments.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentPP_verify_qnm-moments.md) — 6×
+- `Python script` — [`real_research/reviews/mi_formal_completion_2026/twoloop_laneC_a0.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_formal_completion_2026/twoloop_laneC_a0.py) — 6×
+- `Python script` — [`real_research/reviews/mi_disformal_tail_freedom_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_disformal_tail_freedom_2026.py) — 5×
+- `Other` — [`prep_2026/mi_closure_pin/ostro_nonlocal_verify.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_closure_pin/ostro_nonlocal_verify.out) — 5×
+- `Python script` — [`real_research/reviews/route_b_memory_time_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/route_b_memory_time_2026.py) — 5×
+- `Python script` — [`real_research/reviews/mi_llr_drift_sign_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_llr_drift_sign_2026.py) — 5×
+- `Other` — [`prep_2026/mi_planetary_falsification/origin_window_scales.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_planetary_falsification/origin_window_scales.out) — 5×
+- `Python script` — [`prep_2026/mi_field_theory/closure_map.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_field_theory/closure_map.py) — 5×
+- `Markdown/notes` — [`prep_2026/mi_field_theory/BASELINE_ACTION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_field_theory/BASELINE_ACTION.md) — 5×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentSS_routeKstruct.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentSS_routeKstruct.md) — 5×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentPP_qnm_fold.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentPP_qnm_fold.md) — 5×
+- `Python script` — [`real_research/reviews/mi_closure_vs_action_gap_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_closure_vs_action_gap_2026.py) — 5×
+- `Python script` — [`real_research/reviews/mi_formal_completion_2026/graviton_census_2loop/sib3_causalKL-loop-assemble_2_Sigma_perp_pstruct_and_analytic.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_formal_completion_2026/graviton_census_2loop/sib3_causalKL-loop-assemble_2_Sigma_perp_pstruct_and_analytic.py) — 5×
+- `Other` — [`real_research/reviews/mi_disformal_tail_freedom_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_disformal_tail_freedom_2026.out) — 4×
+- `Python script` — [`reviews/mi_spectral_weight_swing_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/reviews/mi_spectral_weight_swing_2026.py) — 4×
+- `Python script` — [`reviews/mi_bootstrap_circularity_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/reviews/mi_bootstrap_circularity_2026.py) — 4×
+- `Other` — [`real_research/reviews/route_b_memory_time_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/route_b_memory_time_2026.out) — 4×
+- `Markdown/notes` — [`prep_2026/mi_planetary_falsification/ORIGIN.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_planetary_falsification/ORIGIN.md) — 4×
+- `Python script` — [`prep_2026/mi_eta_selection/_common.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_eta_selection/_common.py) — 4×
+- `Markdown/notes` — [`prep_2026/mi_lensing_completion/MI_LENSING_NOGO_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_completion/MI_LENSING_NOGO_2026.md) — 4×
+- `Python script` — [`prep_2026/mi_lensing_completion/verify_adversarial.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_completion/verify_adversarial.py) — 4×
+- `Python script` — [`prep_2026/mi_integrator/mi_integrator.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_integrator/mi_integrator.py) — 4×
+- `Markdown/notes` — [`real_research/papers/MI_LENSING_NOGO_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_LENSING_NOGO_2026.md) — 4×
+- `Markdown/notes` — [`prep_2026/mi_lensing_completion/SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_completion/SYNTHESIS.md) — 4×
+- `Python script` — [`real_research/reviews/pure_mi_lensing_2026/lane2_slip.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/pure_mi_lensing_2026/lane2_slip.py) — 4×
+- `Paper` — [`real_research/papers/MI_LENSING_NOGO_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_LENSING_NOGO_2026.tex) — 4×
+- `Markdown/notes` — [`prep_2026/mi_field_theory/WELLPOSED.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_field_theory/WELLPOSED.md) — 4×
+- `Python script` — [`prep_2026/mi_field_theory/matter_coupling_Tmunu.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_field_theory/matter_coupling_Tmunu.py) — 4×
+- `Python script` — [`real_research/reviews/mi_kernel_axis_separation_omegac_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_kernel_axis_separation_omegac_2026.py) — 4×
+- `Other` — [`real_research/reviews/mi_formal_completion_2026/oneloop_laneA_divergences.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_formal_completion_2026/oneloop_laneA_divergences.out) — 4×
+- `Other` — [`real_research/reviews/mi_formal_completion_2026/twoloop_laneC_a0.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_formal_completion_2026/twoloop_laneC_a0.out) — 4×
+- `Python script` — [`real_research/reviews/mi_alpha2_migration_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_alpha2_migration_2026.py) — 4×
+- `Other` — [`real_research/reviews/mi_closure_vs_action_gap_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_closure_vs_action_gap_2026.out) — 4×
+- `Python script` — [`real_research/reviews/mi_cauchy_wellposed_2026/cauchy_compute.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_cauchy_wellposed_2026/cauchy_compute.py) — 4×
+- `Data/config` — [`predictions_2026/inventory_sweep2_completion_eqbook_empirical_2026.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/predictions_2026/inventory_sweep2_completion_eqbook_empirical_2026.json) — 3×
+- `Markdown/notes` — [`predictions_2026/INVENTORY_SWEEP2_completion_eqbook_empirical_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/predictions_2026/INVENTORY_SWEEP2_completion_eqbook_empirical_2026.md) — 3×
+- `Markdown/notes` — [`opus_48_extended_research/papers/MI_STRUCTURAL_THEOREMS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/MI_STRUCTURAL_THEOREMS.md) — 3×
+- `Data/config` — [`opus_48_extended_research/papers/MI_STRUCTURAL_THEOREMS.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/MI_STRUCTURAL_THEOREMS.zenodo.json) — 3×
+- `Markdown/notes` — [`qwen_claude_field_theory/PRIOR_WORK_INDEX.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/PRIOR_WORK_INDEX.md) — 3×
+- `Python script` — [`real_research/reviews/mi_eigenvalue_a2_operator_nogo_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_eigenvalue_a2_operator_nogo_2026.py) — 3×
+- `Python script` — [`real_research/reviews/AUDIT_mi_kernel_axis_gate_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/AUDIT_mi_kernel_axis_gate_2026.py) — 3×
+- `Python script` — [`reviews/mi_kappa_spectral_reduction_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/reviews/mi_kappa_spectral_reduction_2026.py) — 3×
+- `Markdown/notes` — [`prep_2026/SALVAGE_SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/SALVAGE_SYNTHESIS.md) — 3×
+- `Markdown/notes` — [`prep_2026/mi_fingerprint/PRIOR_ART.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_fingerprint/PRIOR_ART.md) — 3×
+- `Python script` — [`prep_2026/mi_fingerprint/cd1_frequency_gamma.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_fingerprint/cd1_frequency_gamma.py) — 3×
+- `Markdown/notes` — [`prep_2026/mi_closure_pin/CONSEQUENCES.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_closure_pin/CONSEQUENCES.md) — 3×
+- `Markdown/notes` — [`prep_2026/equation_book/MINE_M2.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/equation_book/MINE_M2.md) — 3×
+- `Markdown/notes` — [`prep_2026/mi_integrator/EOM_DERIVATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_integrator/EOM_DERIVATION.md) — 3×
+- `Markdown/notes` — [`real_research/reviews/pure_mi_lensing_2026/lane2_nonlocal_notes.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/pure_mi_lensing_2026/lane2_nonlocal_notes.md) — 3×
+- `Other` — [`prep_2026/mi_field_theory/wellposed.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_field_theory/wellposed.out) — 3×
+- `Markdown/notes` — [`real_research/papers/WHITEPAPER_TOE_MAP_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/WHITEPAPER_TOE_MAP_2026.md) — 3×
+- `Markdown/notes` — [`prep_2026/mi_field_theory/CLOSURE_MAP.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_field_theory/CLOSURE_MAP.md) — 3×
+- `Other` — [`prep_2026/mi_field_theory/matter_coupling_Tmunu.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_field_theory/matter_coupling_Tmunu.out) — 3×
+- `Paper` — [`real_research/papers/zimmerman_toe_map_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/zimmerman_toe_map_2026.tex) — 3×
+- `Markdown/notes` — [`prep_2026/planetary_doors/BOUNDS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/planetary_doors/BOUNDS.md) — 3×
+- `Other` — [`prep_2026/planetary_doors/laneK_kernel_planets.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/planetary_doors/laneK_kernel_planets.out) — 3×
+- `Python script` — [`real_research/reviews/mi_omegac_naturalness_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_omegac_naturalness_2026.py) — 3×
+- `Other` — [`real_research/reviews/mi_loop_edge_alpha2_measure_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_loop_edge_alpha2_measure_2026.out) — 3×
+- `Python script` — [`real_research/reviews/mi_formal_completion_2026/oneloop_laneB_mixing.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_formal_completion_2026/oneloop_laneB_mixing.py) — 3×
+- `Other` — [`real_research/reviews/mi_formal_completion_2026/twoloop_graviton_TTloop.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_formal_completion_2026/twoloop_graviton_TTloop.out) — 3×
+- `Python script` — [`real_research/reviews/mi_formal_completion_2026/mi_oneloop_desitter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_formal_completion_2026/mi_oneloop_desitter.py) — 3×
+- `Python script` — [`real_research/reviews/mi_formal_completion_2026/twoloop_graviton_TTloop.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_formal_completion_2026/twoloop_graviton_TTloop.py) — 3×
+- `Markdown/notes` — [`citations/king/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/king/index.md) — 2×
+- `Other` — [`real_research/reviews/mi_alpha2_migration_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_alpha2_migration_2026.out) — 2×
+- `Markdown/notes` — [`reviews/outputs_kappa_session_2026-07-29/01_bootstrap_circularity.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/reviews/outputs_kappa_session_2026-07-29/01_bootstrap_circularity.txt) — 2×
+- `Python script` — [`reviews/mi_kappa_linear_class_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/reviews/mi_kappa_linear_class_2026.py) — 2×
+- `Other` — [`real_research/reviews/AUDIT_mi_kernel_axis_gate_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/AUDIT_mi_kernel_axis_gate_2026.out) — 2×
+- `Markdown/notes` — [`prep_2026/mi_fingerprint/VERIFY_kernel.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_fingerprint/VERIFY_kernel.md) — 2×
+- `Markdown/notes` — [`prep_2026/mi_closure_pin/SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_closure_pin/SYNTHESIS.md) — 2×
+- `Python script` — [`prep_2026/oneloop_finite/finite_checks_sumrule_positivity.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/oneloop_finite/finite_checks_sumrule_positivity.py) — 2×
+- `Markdown/notes` — [`prep_2026/oneloop_finite/SETUP.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/oneloop_finite/SETUP.md) — 2×
+- `Python script` — [`prep_2026/equation_book/s2_thermal_identities.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/equation_book/s2_thermal_identities.py) — 2×
+- `Markdown/notes` — [`prep_2026/equation_book/EQUATION_BOOK.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/equation_book/EQUATION_BOOK.md) — 2×
+- `Markdown/notes` — [`prep_2026/mi_planetary_falsification/SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_planetary_falsification/SYNTHESIS.md) — 2×
+- `Markdown/notes` — [`prep_2026/mi_lensing_completion/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_completion/VERIFY.md) — 2×
+- `Markdown/notes` — [`prep_2026/mi_integrator/SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_integrator/SYNTHESIS.md) — 2×
+- `Python script` — [`real_research/reviews/pure_mi_lensing_2026/lane1_theorem.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/pure_mi_lensing_2026/lane1_theorem.py) — 2×
+- `Other` — [`prep_2026/mi_field_theory/closure_map.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_field_theory/closure_map.out) — 2×
+- `Markdown/notes` — [`prep_2026/mi_field_theory/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_field_theory/VERIFY.md) — 2×
+- `Markdown/notes` — [`real_research/papers/DESITTER_UNRUH_MODIFIED_INERTIA_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/DESITTER_UNRUH_MODIFIED_INERTIA_2026.md) — 2×
+- `Markdown/notes` — [`real_research/MI_BEYOND_TRICHOTOMY_CARTOGRAPHY_2026-07.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/MI_BEYOND_TRICHOTOMY_CARTOGRAPHY_2026-07.md) — 2×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentQQ_active_fold.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentQQ_active_fold.md) — 2×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentSS_verify_heatkernel-symmetry.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentSS_verify_heatkernel-symmetry.md) — 2×
+- `Python script` — [`real_research/reviews/toe_law/agentQQ_part3_moments.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentQQ_part3_moments.py) — 2×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentQQ_routeActiveCS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentQQ_routeActiveCS.md) — 2×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentQQ_verify_edge-stability.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentQQ_verify_edge-stability.md) — 2×
+- `Python script` — [`real_research/reviews/mi_formal_completion_2026/twoloop_graviton_cone_vs_mass_decider.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_formal_completion_2026/twoloop_graviton_cone_vs_mass_decider.py) — 2×
+- `Python script` — [`real_research/reviews/mi_formal_completion_2026/graviton_census_2loop/sib3_vertex-alln_1_pstructure_n1to5.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_formal_completion_2026/graviton_census_2loop/sib3_vertex-alln_1_pstructure_n1to5.py) — 2×
+- `Python script` — [`real_research/reviews/AUDIT_mi_llr_drift_sign_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/AUDIT_mi_llr_drift_sign_2026.py) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/papers/WB_CUBIC_GATE_LAW.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/WB_CUBIC_GATE_LAW.md) — 1×
+- `Data/config` — [`opus_48_extended_research/papers/WB_CUBIC_GATE_LAW.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/WB_CUBIC_GATE_LAW.zenodo.json) — 1×
+- `Python script` — [`real_research/reviews/mi_psi_search_r2Z_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_psi_search_r2Z_2026.py) — 1×
+- `Other` — [`real_research/reviews/mi_action_eom_vs_rar_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_action_eom_vs_rar_2026.out) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/toe_law/OPEN_DOORS_TO_TOE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/toe_law/OPEN_DOORS_TO_TOE.md) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/papers/DESITTER_GAUGE_MOND_SCALE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/DESITTER_GAUGE_MOND_SCALE.md) — 1×
+- `Python script` — [`real_research/reviews/mi_action_eom_vs_rar_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_action_eom_vs_rar_2026.py) — 1×
+- `Python script` — [`qwen_36_experiment/03_kubo_program/tn10_field_theory_mi_nu.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/03_kubo_program/tn10_field_theory_mi_nu.py) — 1×
+- `Python script` — [`qwen_36_experiment/tn18_action_neSS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/tn18_action_neSS.py) — 1×
+- `Python script` — [`reviews/mi_forced_weight_attempt_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/reviews/mi_forced_weight_attempt_2026.py) — 1×
+- `Markdown/notes` — [`reviews/outputs_kappa_session_2026-07-29/02_spectral_weight_swing.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/reviews/outputs_kappa_session_2026-07-29/02_spectral_weight_swing.txt) — 1×
+- `Markdown/notes` — [`reviews/outputs_kappa_session_2026-07-29/04_kappa_reduction.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/reviews/outputs_kappa_session_2026-07-29/04_kappa_reduction.txt) — 1×
+- `Python script` — [`reviews/mi_spectral_kms_bootstrap_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/reviews/mi_spectral_kms_bootstrap_2026.py) — 1×
+- `Python script` — [`reviews/mi_kernel_measure_from_desitter_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/reviews/mi_kernel_measure_from_desitter_2026.py) — 1×
+- `Python script` — [`real_research/reviews/mi_theta_efe_from_closure_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_theta_efe_from_closure_2026.py) — 1×
+- `Markdown/notes` — [`prep_2026/gaia_dr4_prep/PREREGISTRATION_DR4.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/gaia_dr4_prep/PREREGISTRATION_DR4.md) — 1×
+- `Python script` — [`real_research/reviews/mi_boundedness_thread_closed_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_boundedness_thread_closed_2026.py) — 1×
+- `Python script` — [`prep_2026/mi_closure_pin/rider_c_planetary.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_closure_pin/rider_c_planetary.py) — 1×
+- `Python script` — [`prep_2026/mi_fingerprint/rb1_circular_exactness.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_fingerprint/rb1_circular_exactness.py) — 1×
+- `Markdown/notes` — [`prep_2026/mi_closure_pin/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_closure_pin/VERIFY.md) — 1×
+- `Python script` — [`prep_2026/mi_closure_pin/pullback_dsunruh.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_closure_pin/pullback_dsunruh.py) — 1×
+- `Markdown/notes` — [`prep_2026/sigma_spread/GAP_STATEMENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sigma_spread/GAP_STATEMENT.md) — 1×
+- `Python script` — [`prep_2026/equation_book/s4_kernel_spectral.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/equation_book/s4_kernel_spectral.py) — 1×
+- `Markdown/notes` — [`prep_2026/mi_planetary_falsification/WINDOW.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_planetary_falsification/WINDOW.md) — 1×
+- `Python script` — [`prep_2026/mi_planetary_falsification/window_joint.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_planetary_falsification/window_joint.py) — 1×
+- `Markdown/notes` — [`prep_2026/mi_planetary_falsification/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_planetary_falsification/VERIFY.md) — 1×
+- `Python script` — [`real_research/reviews/mi_alpha2_costs_the_kernel_derivation_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_alpha2_costs_the_kernel_derivation_2026.py) — 1×
+- `Markdown/notes` — [`prep_2026/journal_submissions/SUBMISSION_STRATEGY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/journal_submissions/SUBMISSION_STRATEGY.md) — 1×
+- `Markdown/notes` — [`prep_2026/mi_integrator/APPLICATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_integrator/APPLICATIONS.md) — 1×
+- `Other` — [`prep_2026/mi_integrator/mi_integrator.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_integrator/mi_integrator.out) — 1×
+- `Python script` — [`prep_2026/mi_lensing_completion/nogo.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_completion/nogo.py) — 1×
+- `Markdown/notes` — [`prep_2026/mi_integrator/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_integrator/VERIFY.md) — 1×
+- `Markdown/notes` — [`prep_2026/mi_lensing_completion/C3.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_completion/C3.md) — 1×
+- `Python script` — [`prep_2026/mi_integrator/applications.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_integrator/applications.py) — 1×
+- `Other` — [`prep_2026/mi_integrator/gate_rerun.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_integrator/gate_rerun.log) — 1×
+- `Markdown/notes` — [`prep_2026/mi_lensing_completion/NOGO.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_completion/NOGO.md) — 1×
+- `Python script` — [`prep_2026/mi_lensing_completion/c3_carrier.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_completion/c3_carrier.py) — 1×
+- `Python script` — [`real_research/reviews/pure_mi_lensing_2026/lane1_variation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/pure_mi_lensing_2026/lane1_variation.py) — 1×
+- `Markdown/notes` — [`real_research/reviews/pure_mi_lensing_2026/lane1_notes.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/pure_mi_lensing_2026/lane1_notes.md) — 1×
+- `Markdown/notes` — [`prep_2026/mi_field_theory/MATTER_COUPLING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_field_theory/MATTER_COUPLING.md) — 1×
+- `Python script` — [`prep_2026/planetary_doors/laneR_bounds_compute.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/planetary_doors/laneR_bounds_compute.py) — 1×
+- `Markdown/notes` — [`real_research/papers/LENSING_TRILEMMA_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/LENSING_TRILEMMA_2026.md) — 1×
+- `Markdown/notes` — [`real_research/papers/FLAGSHIP_DESITTER_UNRUH_MI_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/FLAGSHIP_DESITTER_UNRUH_MI_2026.md) — 1×
+- `Data/config` — [`real_research/papers/MI_FIELD_THEORY_RESULTS_2026.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_FIELD_THEORY_RESULTS_2026.zenodo.json) — 1×
+- `Other` — [`real_research/reviews/mi_theta_efe_from_closure_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_theta_efe_from_closure_2026.out) — 1×
+- `Python script` — [`real_research/reviews/mi_offcircular_action_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_offcircular_action_2026.py) — 1×
+- `Python script` — [`real_research/reviews/toe_law/agentQQ_referee_herglotz.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentQQ_referee_herglotz.py) — 1×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentSS_verify_k-structure.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentSS_verify_k-structure.md) — 1×
+- `Python script` — [`real_research/reviews/toe_law/agentQQ_referee_proper_selfenergy.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentQQ_referee_proper_selfenergy.py) — 1×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentSS_qnm_symmetry.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentSS_qnm_symmetry.md) — 1×
+- `Data/config` — [`project_atomos/rg_flow_correspondence_log.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/project_atomos/rg_flow_correspondence_log.json) — 1×
+- `Python script` — [`real_research/reviews/toe_law/agentQQ_part7_tension.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentQQ_part7_tension.py) — 1×
+- `Python script` — [`real_research/reviews/toe_law/agentSS_verify_p4_active_theorem.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentSS_verify_p4_active_theorem.py) — 1×
+- `Markdown/notes` — [`real_research/reviews/toe_law/DERIVATION_CHAIN.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/DERIVATION_CHAIN.md) — 1×
+- `Python script` — [`real_research/reviews/toe_law/agentQQ_part1.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentQQ_part1.py) — 1×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentQQ_verify_active-cs.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentQQ_verify_active-cs.md) — 1×
+- `Python script` — [`real_research/reviews/toe_law/agentQQ_referee_recompute.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentQQ_referee_recompute.py) — 1×
+- `Markdown/notes` — [`real_research/reviews/toe_law/TOE_STATUS_AND_DOORS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/TOE_STATUS_AND_DOORS.md) — 1×
+- `Python script` — [`real_research/reviews/AUDIT_mi_auxfield_scope_omegac_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/AUDIT_mi_auxfield_scope_omegac_2026.py) — 1×
+- `Python script` — [`real_research/reviews/mi_formal_completion_2026/oneloop_laneC_positivity.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_formal_completion_2026/oneloop_laneC_positivity.py) — 1×
+- `Python script` — [`real_research/reviews/two_loop_vs_alpha_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/two_loop_vs_alpha_2026.py) — 1×
+- `Python script` — [`real_research/reviews/mi_laneA_moment_window_alpha2_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_laneA_moment_window_alpha2_2026.py) — 1×
+- `Other` — [`real_research/reviews/mi_offcircular_action_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_offcircular_action_2026.out) — 1×
+- `Python script` — [`real_research/reviews/lensing_source_fork_2026/lane1_bath.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_source_fork_2026/lane1_bath.py) — 1×
+- `Python script` — [`real_research/reviews/lensing_source_fork_2026/lane3_displacement.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_source_fork_2026/lane3_displacement.py) — 1×
+
+---
+*Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*

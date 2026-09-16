@@ -1,0 +1,81 @@
+# Jong
+
+**Cited in 72 file(s), 147 occurrence(s).**
+
+**Files (GitHub links):**
+
+- `Paper` — [`deepseek_push/G114_data/bdj2001/ms.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/bdj2001/ms.tex) — 13×
+- `Paper` — [`deepseek_push/G114_data/bell2003b/lf.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/bell2003b/lf.tex) — 10×
+- `Paper` — [`deepseek_push/G070_data/simon_ufds_v8.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G070_data/simon_ufds_v8.tex) — 9×
+- `Data/config` — [`ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json) — 6×
+- `HTML` — [`gext_vectors_2026/data/raw/chae21_ar5iv.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_ar5iv.html) — 5×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_paired_msa_chains_a.a3m) — 5×
+- `Python script` — [`prep_2026/a0_line_mlpriors/setup_mlpriors.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line_mlpriors/setup_mlpriors.py) — 4×
+- `Paper` — [`prep_2026/journal_submissions/kit_mnras/manuscript.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/journal_submissions/kit_mnras/manuscript.tex) — 4×
+- `Markdown/notes` — [`ai_slop/research/OUTREACH_EMAILS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/OUTREACH_EMAILS.md) — 4×
+- `Markdown/notes` — [`gext_vectors_2026/data/raw/chae21_fulltext.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_fulltext.txt) — 3×
+- `Markdown/notes` — [`prep_2026/a0_line_mlpriors/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line_mlpriors/VERIFY.md) — 2×
+- `Markdown/notes` — [`prep_2026/a0_line_mlpriors/SETUP.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line_mlpriors/SETUP.md) — 2×
+- `Python script` — [`prep_2026/a0_line_mlpriors/est_marg.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line_mlpriors/est_marg.py) — 2×
+- `Python script` — [`prep_2026/a0_line_mlpriors/est_indep.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line_mlpriors/est_indep.py) — 2×
+- `Python script` — [`hunt_2026/h119_upsilon_colour.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h119_upsilon_colour.py) — 2×
+- `Paper` — [`real_research/papers/A0LINE_LAMBDA_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/A0LINE_LAMBDA_2026.tex) — 2×
+- `Markdown/notes` — [`real_research/papers/A0LINE_LAMBDA_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/A0LINE_LAMBDA_2026.md) — 2×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/p5js/references/visual-effects.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/p5js/references/visual-effects.md) — 2×
+- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (collider template).ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (collider template).ipynb) — 2×
+- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (ghost template).ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (ghost template).ipynb) — 2×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/ascii-video/references/effects.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/ascii-video/references/effects.md) — 2×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/p5js/references/visual-effects.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/p5js/references/visual-effects.md) — 2×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/ascii-video/references/effects.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/ascii-video/references/effects.md) — 2×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/creative/p5js/references/visual-effects.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/creative/p5js/references/visual-effects.md) — 2×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/creative/ascii-video/references/effects.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/creative/ascii-video/references/effects.md) — 2×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/creative/p5js/references/visual-effects.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/creative/p5js/references/visual-effects.md) — 2×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/creative/ascii-video/references/effects.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/creative/ascii-video/references/effects.md) — 2×
+- `Other` — [`deepseek_push/data2/simon2019_dwarf_tab_ascii_14sep2018.dat`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/data2/simon2019_dwarf_tab_ascii_14sep2018.dat) — 2×
+- `Python script` — [`deepseek_push/G114_deepend_hi.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_deepend_hi.py) — 2×
+- `Paper` — [`deepseek_push/G070_data/dwarf_tab.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G070_data/dwarf_tab.tex) — 2×
+- `Other` — [`deepseek_push/G114_data/oh2015/ms.bbl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/oh2015/ms.bbl) — 2×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pcsk9_cholesterol_z2/msas/fold_pcsk9_cholesterol_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pcsk9_cholesterol_z2/msas/fold_pcsk9_cholesterol_z2_paired_msa_chains_a.a3m) — 2×
+- `Markdown/notes` — [`predictions_2026/SECOND_LAW_HUNT_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/predictions_2026/SECOND_LAW_HUNT_2026.md) — 1×
+- `Other` — [`hunt_2026/g06v_adversarial_group_rung_refutation.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g06v_adversarial_group_rung_refutation.out) — 1×
+- `Python script` — [`hunt_2026/h17_diskmass_thickness.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h17_diskmass_thickness.py) — 1×
+- `Python script` — [`hunt_2026/k02_turnaround_lambda_weld.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k02_turnaround_lambda_weld.py) — 1×
+- `Python script` — [`hunt_2026/g06v_adversarial_estimator_audit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g06v_adversarial_estimator_audit.py) — 1×
+- `Other` — [`hunt_2026/g06v_adversarial_estimator_audit.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g06v_adversarial_estimator_audit.out) — 1×
+- `Python script` — [`prep_2026/a0_line_mlpriors/est_wall.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line_mlpriors/est_wall.py) — 1×
+- `Markdown/notes` — [`prep_2026/a0_line_mlpriors/_est_indep_console.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line_mlpriors/_est_indep_console.txt) — 1×
+- `Markdown/notes` — [`prep_2026/a0_line_mlpriors/_marg_console.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line_mlpriors/_marg_console.txt) — 1×
+- `Python script` — [`hunt_2026/g06_local_volume_groups_lambda_edge.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g06_local_volume_groups_lambda_edge.py) — 1×
+- `Markdown/notes` — [`prep_2026/a0_line_mlpriors/EST_MARG.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line_mlpriors/EST_MARG.md) — 1×
+- `Markdown/notes` — [`prep_2026/a0_line_mlpriors/EST_INDEP.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line_mlpriors/EST_INDEP.md) — 1×
+- `Markdown/notes` — [`prep_2026/a0_line_mlpriors/EST_WALL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line_mlpriors/EST_WALL.md) — 1×
+- `Markdown/notes` — [`prep_2026/a0_line_mlpriors/SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line_mlpriors/SYNTHESIS.md) — 1×
+- `Markdown/notes` — [`prep_2026/journal_submissions/kit_mnras/INSTRUCTIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/journal_submissions/kit_mnras/INSTRUCTIONS.md) — 1×
+- `Python script` — [`hunt_2026/k_dimensional_turnaround_groups.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_dimensional_turnaround_groups.py) — 1×
+- `Python script` — [`real_research/reviews/directional_efe_2026/laneB_assemble.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/directional_efe_2026/laneB_assemble.py) — 1×
+- `Markdown/notes` — [`real_research/reviews/directional_efe_2026/laneB_FEASIBILITY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/directional_efe_2026/laneB_FEASIBILITY.md) — 1×
+- `Python script` — [`hunt_2026/g05_dsph_prescription_fixed_and_expanded.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g05_dsph_prescription_fixed_and_expanded.py) — 1×
+- `Python script` — [`hunt_2026/g06v_adversarial_group_rung_refutation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g06v_adversarial_group_rung_refutation.py) — 1×
+- `Python script` — [`hunt_2026/g06v_adversarial_lv_groups_refutation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g06v_adversarial_lv_groups_refutation.py) — 1×
+- `Other` — [`hunt_2026/g06v_adversarial_lv_groups_refutation.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g06v_adversarial_lv_groups_refutation.out) — 1×
+- `Other` — [`hunt_2026/g05_dsph_prescription_fixed_and_expanded.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g05_dsph_prescription_fixed_and_expanded.out) — 1×
+- `Markdown/notes` — [`real_research/TOP20_EMPIRICAL_PHYSICISTS_DOORS_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/TOP20_EMPIRICAL_PHYSICISTS_DOORS_2026-06.md) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/2phh.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/2phh.pdb) — 1×
+- `Markdown/notes` — [`real_research/reviews/lensing_rar/lr_published_pipeline.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/lr_published_pipeline.md) — 1×
+- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (CS template).ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (CS template).ipynb) — 1×
+- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/Nseries Odd-Parity 4PCF.ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/Nseries Odd-Parity 4PCF.ipynb) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/ascii-video/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/ascii-video/README.md) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/1phh.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/1phh.pdb) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/ascii-video/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/ascii-video/README.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/CITATIONS_AND_SCIENTISTS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/CITATIONS_AND_SCIENTISTS.md) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/creative/ascii-video/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/creative/ascii-video/README.md) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/creative/ascii-video/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/creative/ascii-video/README.md) — 1×
+- `Python script` — [`deepseek_push/G217_kink_sample.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G217_kink_sample.py) — 1×
+- `Other` — [`deepseek_push/G114_deepend_hi.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_deepend_hi.out) — 1×
+- `Data/config` — [`deepseek_push/G114_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_results.json) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/6CNW.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/6CNW.pdb) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_unpaired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_unpaired_msa_chains_a.a3m) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/5U3A.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/5U3A.pdb) — 1×
+
+---
+*Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*

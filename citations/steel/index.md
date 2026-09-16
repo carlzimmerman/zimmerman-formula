@@ -1,0 +1,67 @@
+# Steel
+
+**Cited in 58 file(s), 128 occurrence(s).**
+
+**Files (GitHub links):**
+
+- `Data/config` — [`ai_slop/AlpheusFlow/queue_state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/AlpheusFlow/queue_state.json) — 13×
+- `Data/config` — [`ai_slop/OlympusFlow/discoveries/curated_topics_v2.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/discoveries/curated_topics_v2.json) — 12×
+- `Data/config` — [`ai_slop/daemon_outputs/derivations/hardness_ratio_diamond_steel_result.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/derivations/hardness_ratio_diamond_steel_result.json) — 7×
+- `Data/config` — [`ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json) — 6×
+- `Markdown/notes` — [`book/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE.md) — 4×
+- `Markdown/notes` — [`book/08_the_field_equations_how_matter_tells_spa.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/08_the_field_equations_how_matter_tells_spa.md) — 4×
+- `Markdown/notes` — [`book/audiobook/08_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/08_narration.txt) — 4×
+- `Markdown/notes` — [`book/audiobook/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE_AUDIOBOOK.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE_AUDIOBOOK.txt) — 4×
+- `Data/config` — [`ai_slop/daemon_outputs/derivations/yield_strength_of_steel_result.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/derivations/yield_strength_of_steel_result.json) — 4×
+- `Data/config` — [`ai_slop/daemon_outputs/derivations/steel_steel_friction_coefficient_(dry)_result.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/derivations/steel_steel_friction_coefficient_(dry)_result.json) — 4×
+- `Data/config` — [`ai_slop/daemon_outputs/derivations/young's_modulus_of_steel_result.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/derivations/young's_modulus_of_steel_result.json) — 3×
+- `Other` — [`ai_slop/daemon_outputs/overnight_run.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/overnight_run.log) — 2×
+- `Data/config` — [`ai_slop/daemon_outputs/derivations/speed_of_sound_in_steel_result.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/derivations/speed_of_sound_in_steel_result.json) — 2×
+- `Data/config` — [`ai_slop/daemon_outputs/derivations/steel_young's_modulus_result.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/derivations/steel_young's_modulus_result.json) — 2×
+- `Markdown/notes` — [`ai_slop/curiosities_and_culture/ancient_cultures/HUMANITYS_GEOMETRIC_INTUITION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/ancient_cultures/HUMANITYS_GEOMETRIC_INTUITION.md) — 2×
+- `HTML` — [`ai_slop/curiosities_and_culture/ancient_cultures/HUMANITYS_GEOMETRIC_INTUITION.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/ancient_cultures/HUMANITYS_GEOMETRIC_INTUITION.html) — 2×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/popular-web-designs/templates/pinterest.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/popular-web-designs/templates/pinterest.md) — 2×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/popular-web-designs/templates/pinterest.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/popular-web-designs/templates/pinterest.md) — 2×
+- `Data/config` — [`ai_slop/OlympusFlow/discoveries/curated_topics_v3.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/discoveries/curated_topics_v3.json) — 2×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/creative/popular-web-designs/templates/pinterest.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/creative/popular-web-designs/templates/pinterest.md) — 2×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/optional-skills/creative/concept-diagrams/examples/wind-turbine-structure.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/optional-skills/creative/concept-diagrams/examples/wind-turbine-structure.md) — 2×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/optional-skills/creative/concept-diagrams/examples/wind-turbine-structure.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/optional-skills/creative/concept-diagrams/examples/wind-turbine-structure.md) — 2×
+- `Markdown/notes` — [`citations/review/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/review/index.md) — 2×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/optional-skills/creative/concept-diagrams/examples/wind-turbine-structure.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/optional-skills/creative/concept-diagrams/examples/wind-turbine-structure.md) — 2×
+- `Markdown/notes` — [`citations/formula/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/formula/index.md) — 2×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/creative/popular-web-designs/templates/pinterest.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/creative/popular-web-designs/templates/pinterest.md) — 2×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/optional-skills/creative/concept-diagrams/examples/wind-turbine-structure.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/optional-skills/creative/concept-diagrams/examples/wind-turbine-structure.md) — 2×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/ROUTE_AEST_JOINT_COEFFICIENT_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/ROUTE_AEST_JOINT_COEFFICIENT_2026-06-15.md) — 1×
+- `Python script` — [`real_research/reviews/labels_close/aest_tilt_eom_part2_sizing.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/labels_close/aest_tilt_eom_part2_sizing.py) — 1×
+- `HTML` — [`unattributed/FIRST_PRINCIPLES_OF_LIVING.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/unattributed/FIRST_PRINCIPLES_OF_LIVING.html) — 1×
+- `Markdown/notes` — [`real_research/FIRST_PRINCIPLES_OF_LIVING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/FIRST_PRINCIPLES_OF_LIVING.md) — 1×
+- `Markdown/notes` — [`real_research/reviews/OPEN_PROBLEM_yphi32_KQ.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/OPEN_PROBLEM_yphi32_KQ.md) — 1×
+- `Data/config` — [`ai_slop/daemon_outputs/honesty_assessment.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/honesty_assessment.json) — 1×
+- `Other` — [`ai_slop/daemon_outputs/overnight_legomena_xl_20260509_004158.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/overnight_legomena_xl_20260509_004158.log) — 1×
+- `Other` — [`ai_slop/daemon_outputs/daemon_continuous_20260512_003958.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/daemon_continuous_20260512_003958.log) — 1×
+- `Data/config` — [`ai_slop/daemon_outputs/full_analysis.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/full_analysis.json) — 1×
+- `Other` — [`ai_slop/daemon_outputs/overnight_20260509_004336.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/overnight_20260509_004336.log) — 1×
+- `Other` — [`ai_slop/daemon_outputs/daemon_overnight_20260512_003855.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/daemon_overnight_20260512_003855.log) — 1×
+- `Data/config` — [`ai_slop/metis_outputs/hardness_ratio_diamond_steel_strategy.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/metis_outputs/hardness_ratio_diamond_steel_strategy.json) — 1×
+- `Python script` — [`real_research/reviews/aest_radial_aether_eom.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/aest_radial_aether_eom.py) — 1×
+- `Other` — [`ai_slop/daemon_outputs/daemon_anomalies500_20260512_004245.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/daemon_anomalies500_20260512_004245.log) — 1×
+- `Data/config` — [`ai_slop/daemon_outputs/derivations/poisson_ratio_for_steel_result.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/derivations/poisson_ratio_for_steel_result.json) — 1×
+- `Other` — [`ai_slop/daemon_v2.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_v2.log) — 1×
+- `Markdown/notes` — [`ai_slop/non-peer-review/susskind/HONESTY_ASSESSMENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/susskind/HONESTY_ASSESSMENT.md) — 1×
+- `Markdown/notes` — [`ai_slop/curiosities_and_culture/FOGGY_MOUNTAIN_BREAKDOWN_FLATT_SCRUGGS_Z2_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/FOGGY_MOUNTAIN_BREAKDOWN_FLATT_SCRUGGS_Z2_ANALYSIS.md) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/popular-web-designs/templates/sanity.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/popular-web-designs/templates/sanity.md) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/touchdesigner-mcp/references/3d-scene.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/touchdesigner-mcp/references/3d-scene.md) — 1×
+- `Data/config` — [`ai_slop/OlympusFlow/lakes/mnemosyne/truths/truth_index.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/lakes/mnemosyne/truths/truth_index.json) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/popular-web-designs/templates/sanity.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/popular-web-designs/templates/sanity.md) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/touchdesigner-mcp/references/3d-scene.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/touchdesigner-mcp/references/3d-scene.md) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/creative/popular-web-designs/templates/sanity.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/creative/popular-web-designs/templates/sanity.md) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/creative/touchdesigner-mcp/references/3d-scene.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/creative/touchdesigner-mcp/references/3d-scene.md) — 1×
+- `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/hermes_cli/skin_engine.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/hermes_cli/skin_engine.py) — 1×
+- `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_cli/skin_engine.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_cli/skin_engine.py) — 1×
+- `Python script` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/hermes_cli/skin_engine.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/hermes_cli/skin_engine.py) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/creative/popular-web-designs/templates/sanity.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/creative/popular-web-designs/templates/sanity.md) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/creative/touchdesigner-mcp/references/3d-scene.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/creative/touchdesigner-mcp/references/3d-scene.md) — 1×
+- `Python script` — [`ai_slop/TruthFlow/hermes_agent/hermes_cli/skin_engine.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_cli/skin_engine.py) — 1×
+
+---
+*Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*

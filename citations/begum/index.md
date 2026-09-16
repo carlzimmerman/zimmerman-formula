@@ -1,43 +1,34 @@
 # Ayesha Begum
 
-**Cited in 22 file(s), 61 total occurrence(s) across the repo — full list:**
+**Cited in 25 file(s), 49 occurrence(s) across the repo:**
 
-**Data/config (5 files):**
+**Markdown/notes (25 files):**
 
-- [`deepseek_push/G114_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_results.json) — 3×
-- [`deepseek_push/G128_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G128_results.json) — 1×
-- [`deepseek_push/G131_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G131_results.json) — 2×
-- [`deepseek_push/G167_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G167_results.json) — 1×
-- [`deepseek_push/Z10_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/Z10_results.json) — 1×
-
-**Markdown/notes (2 files):**
-
-- [`deepseek_push/G128_pooled_deepend.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G128_pooled_deepend.md) — 1×
-- [`deepseek_push/MNRAS_METHODS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/MNRAS_METHODS.md) — 2×
-
-**Other (7 files):**
-
-- [`ai_slop/extended_research/biotech/validation/pdb_cache/6gnp.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/6gnp.pdb) — 1×
-- [`deepseek_push/G114_data/figgs_ov/abegum.fig3.ps`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/figgs_ov/abegum.fig3.ps) — 1×
-- [`deepseek_push/G114_data/oh2015/ms.bbl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/oh2015/ms.bbl) — 4×
-- [`deepseek_push/G114_deepend_hi.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_deepend_hi.out) — 2×
-- [`deepseek_push/G131_ten_decade.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G131_ten_decade.out) — 1×
-- [`deepseek_push/G167_pipeline_split.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G167_pipeline_split.out) — 1×
-- [`real_research/data/SPARC_Lelli2016c.mrt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/SPARC_Lelli2016c.mrt) — 2×
-
-**Paper (4 files):**
-
-- [`deepseek_push/G070_data/simon_ufds_v8.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G070_data/simon_ufds_v8.tex) — 2×
-- [`deepseek_push/G114_data/figgs/FIGGS_BTF.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/figgs/FIGGS_BTF.tex) — 10×
-- [`deepseek_push/G114_data/figgs_ov/abegum.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/figgs_ov/abegum.tex) — 11×
-- [`deepseek_push/G114_data/oh2015/ms.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/oh2015/ms.tex) — 1×
-
-**Python script (4 files):**
-
-- [`deepseek_push/G114_deepend_hi.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_deepend_hi.py) — 8×
-- [`deepseek_push/G128_pooled_deepend.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G128_pooled_deepend.py) — 1×
-- [`deepseek_push/G131_ten_decade.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G131_ten_decade.py) — 3×
-- [`deepseek_push/G167_pipeline_split.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G167_pipeline_split.py) — 2×
+- [`CITATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/CITATIONS.md) — 2×
+- [`README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/README.md) — 1×
+- [`citations/car/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/car/index.md) — 2×
+- [`citations/dec/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/dec/index.md) — 2×
+- [`citations/deepseek/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/deepseek/index.md) — 2×
+- [`citations/era/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/era/index.md) — 2×
+- [`citations/formula/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/formula/index.md) — 2×
+- [`citations/full/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/full/index.md) — 2×
+- [`citations/gen/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/gen/index.md) — 2×
+- [`citations/git/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/git/index.md) — 2×
+- [`citations/ida/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ida/index.md) — 2×
+- [`citations/index/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/index/index.md) — 2×
+- [`citations/lin/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lin/index.md) — 2×
+- [`citations/list/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/list/index.md) — 2×
+- [`citations/mar/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/mar/index.md) — 2×
+- [`citations/not/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/not/index.md) — 2×
+- [`citations/only/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/only/index.md) — 2×
+- [`citations/page/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/page/index.md) — 2×
+- [`citations/python/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/python/index.md) — 2×
+- [`citations/real/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/real/index.md) — 2×
+- [`citations/ren/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ren/index.md) — 2×
+- [`citations/repo/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/repo/index.md) — 2×
+- [`citations/research/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/research/index.md) — 2×
+- [`citations/sha/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/sha/index.md) — 2×
+- [`citations/ten/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ten/index.md) — 2×
 
 ---
-*Living citation page for Ayesha Begum · index: [CITATIONS.md](../CITATIONS.md) · auto-generated full-repo sweep, append-only.*
+*Living citation page for Ayesha Begum · index: [CITATIONS.md](../CITATIONS.md) · append-only.*

@@ -1,0 +1,921 @@
+# Survey
+
+**Cited in 912 file(s), 3942 occurrence(s).**
+
+**Files (GitHub links):**
+
+- `Data/config` — [`real_research/reviews/wallaby_rar_2026/wallaby.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/wallaby_rar_2026/wallaby.json) — 440×
+- `Data/config` — [`glm53_push/data/rotation_curve_corpus_v7.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/data/rotation_curve_corpus_v7.json) — 440×
+- `Data/config` — [`real_research/reviews/wallaby_rar_2026/dwarf.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/wallaby_rar_2026/dwarf.json) — 159×
+- `Python script` — [`hunt_2026/k02_upsilon_amplification_a0z.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k02_upsilon_amplification_a0z.py) — 58×
+- `Python script` — [`hunt_2026/h101_fdm_inversion_surveys.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h101_fdm_inversion_surveys.py) — 52×
+- `Other` — [`hunt_2026/h101_fdm_inversion_surveys.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h101_fdm_inversion_surveys.out) — 40×
+- `Other` — [`hunt_2026/k02_upsilon_amplification_a0z.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k02_upsilon_amplification_a0z.out) — 39×
+- `Paper` — [`deepseek_push/G070_data/simon_ufds_v8.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G070_data/simon_ufds_v8.tex) — 33×
+- `Python script` — [`deepseek_push/G129_tsz_proposal.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G129_tsz_proposal.py) — 29×
+- `Paper` — [`ai_slop/papers/COSMIC_DIPOLE_Z2_COMPLETE.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/COSMIC_DIPOLE_Z2_COMPLETE.tex) — 28×
+- `Markdown/notes` — [`ai_slop/papers/COSMIC_DIPOLE_Z2_PDF.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/COSMIC_DIPOLE_Z2_PDF.md) — 26×
+- `Markdown/notes` — [`ai_slop/papers/COSMIC_DIPOLE_Z2_COMPLETE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/COSMIC_DIPOLE_Z2_COMPLETE.md) — 26×
+- `Python script` — [`ai_slop/research/offensive_campaign/radio_continuum_fetcher.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/radio_continuum_fetcher.py) — 26×
+- `Markdown/notes` — [`glm53_push/data/READMEv7.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/data/READMEv7.md) — 26×
+- `Markdown/notes` — [`ai_slop/research/COSMIC_DIPOLE_Z2_PAPER.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/COSMIC_DIPOLE_Z2_PAPER.md) — 25×
+- `Data/config` — [`ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json) — 24×
+- `Markdown/notes` — [`book/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE.md) — 23×
+- `Python script` — [`hunt_2026/h104_w0wa_from_a0z.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h104_w0wa_from_a0z.py) — 23×
+- `Python script` — [`deepseek_push/G076_sheet_funnel.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G076_sheet_funnel.py) — 23×
+- `Python script` — [`deepseek_push/G174_merger_first_scoring.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G174_merger_first_scoring.py) — 23×
+- `Markdown/notes` — [`ai_slop/olympusflow_v3_findings_claude/065_cosmic_dipole_anomaly/ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_v3_findings_claude/065_cosmic_dipole_anomaly/ANALYSIS.md) — 22×
+- `Data/config` — [`ai_slop/research/offensive_campaign/radio_ghost_data.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/radio_ghost_data.json) — 22×
+- `Python script` — [`ai_slop/research/offensive_campaign/frb_catalog_fetcher.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/frb_catalog_fetcher.py) — 22×
+- `Markdown/notes` — [`ai_slop/research/OSMU2026_DIPOLE_PRESENTATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/OSMU2026_DIPOLE_PRESENTATION.md) — 22×
+- `Python script` — [`ai_slop/examples/09_s8_tension/run.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/examples/09_s8_tension/run.py) — 21×
+- `Python script` — [`hunt_2026/k_high-z_amplified_scatter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_high-z_amplified_scatter.py) — 20×
+- `Other` — [`hunt_2026/h104_w0wa_from_a0z.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h104_w0wa_from_a0z.out) — 20×
+- `Paper` — [`deepseek_push/G114_data/bell2003b/lf.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/bell2003b/lf.tex) — 20×
+- `Paper` — [`deepseek_push/G114_data/oh2015/ms.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/oh2015/ms.tex) — 20×
+- `Data/config` — [`ai_slop/research/offensive_campaign/frb_dispersion_data.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/frb_dispersion_data.json) — 19×
+- `Paper` — [`deepseek_push/G114_data/leisman/d6.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/leisman/d6.tex) — 19×
+- `Markdown/notes` — [`ai_slop/research/COSMIC_DIPOLE_ANOMALY_Z2.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/COSMIC_DIPOLE_ANOMALY_Z2.md) — 18×
+- `Other` — [`hunt_2026/k_high-z_amplified_scatter.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_high-z_amplified_scatter.out) — 17×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/references/paper-types.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/references/paper-types.md) — 17×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/references/paper-types.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/references/paper-types.md) — 17×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/references/paper-types.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/references/paper-types.md) — 17×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/references/paper-types.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/references/paper-types.md) — 17×
+- `Markdown/notes` — [`book/audiobook/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE_AUDIOBOOK.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE_AUDIOBOOK.txt) — 15×
+- `Python script` — [`real_research/reviews/mi_a0_sensitivity_survey_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_a0_sensitivity_survey_2026.py) — 15×
+- `Python script` — [`ai_slop/research/comprehensive_validation/frontier_problems.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_validation/frontier_problems.py) — 15×
+- `Other` — [`deepseek_push/G100_wallaby_efe.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G100_wallaby_efe.out) — 15×
+- `Python script` — [`prep_2026/a0_line_crossz/crossz_estimator_landscape.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line_crossz/crossz_estimator_landscape.py) — 14×
+- `Python script` — [`deepseek_push/G100_wallaby_efe.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G100_wallaby_efe.py) — 14×
+- `Data/config` — [`deepseek_push/G100_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G100_results.json) — 14×
+- `Python script` — [`ai_slop/research/jwst_audit/high_z_volume_deficit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/jwst_audit/high_z_volume_deficit.py) — 13×
+- `Markdown/notes` — [`ai_slop/research/DIPOLE_QUESTIONS_ANSWERED.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/DIPOLE_QUESTIONS_ANSWERED.md) — 13×
+- `Python script` — [`real_research/reviews/wallaby_rar_2026/WALLABY_rar_framework.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/wallaby_rar_2026/WALLABY_rar_framework.py) — 12×
+- `Markdown/notes` — [`ai_slop/papers/README_FULL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/README_FULL.md) — 12×
+- `Python script` — [`real_research/reviews/current_data_2026/WALLABY_rar_framework.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/current_data_2026/WALLABY_rar_framework.py) — 12×
+- `Data/config` — [`deepseek_push/G174_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G174_results.json) — 12×
+- `Markdown/notes` — [`deepseek_push/TSZ_PROPOSAL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/TSZ_PROPOSAL.md) — 12×
+- `Markdown/notes` — [`deepseek_push/PLATEAU_REGISTRY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/PLATEAU_REGISTRY.md) — 11×
+- `Other` — [`deepseek_push/G076_sheet_funnel.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G076_sheet_funnel.out) — 11×
+- `Other` — [`deepseek_push/G203_data/ReadMe`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G203_data/ReadMe) — 11×
+- `Python script` — [`deepseek_push/G177_tsz_amendment.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G177_tsz_amendment.py) — 11×
+- `Python script` — [`opus_48_extended_research/reviews/route5_desi_dr3_forecast.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/route5_desi_dr3_forecast.py) — 10×
+- `Data/config` — [`prep_2026/a0_line_crossz/crossz_estimator_landscape_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line_crossz/crossz_estimator_landscape_results.json) — 10×
+- `Markdown/notes` — [`real_research/DATA_GATE_PREREGISTRATION_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/DATA_GATE_PREREGISTRATION_2026.md) — 10×
+- `Markdown/notes` — [`ai_slop/research/COSMIC_DIPOLE_DERIVATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/COSMIC_DIPOLE_DERIVATIONS.md) — 10×
+- `Python script` — [`deepseek_push/G220_tsz_final.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G220_tsz_final.py) — 10×
+- `Paper` — [`deepseek_push/G114_data/bell2003/bell2003.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/bell2003/bell2003.tex) — 10×
+- `Data/config` — [`deepseek_push/G129_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G129_results.json) — 10×
+- `Markdown/notes` — [`prep_2026/mmu_scout/SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mmu_scout/SYNTHESIS.md) — 9×
+- `Python script` — [`hunt_2026/h62_phantom_ellipticity.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h62_phantom_ellipticity.py) — 9×
+- `Markdown/notes` — [`ai_slop/research/ZIMMERMAN_PROOFS_COMPENDIUM.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/ZIMMERMAN_PROOFS_COMPENDIUM.md) — 9×
+- `Python script` — [`glm53_push/G044_corpus_inspection.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G044_corpus_inspection.py) — 9×
+- `Python script` — [`ai_slop/research/comprehensive_validation/advanced_problems.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_validation/advanced_problems.py) — 9×
+- `Markdown/notes` — [`fable_independent_2026/L62_GROUP_CHANNEL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L62_GROUP_CHANNEL.md) — 8×
+- `Markdown/notes` — [`predictions_2026/SECOND_LAW_HUNT_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/predictions_2026/SECOND_LAW_HUNT_2026.md) — 8×
+- `Other` — [`fable_independent_2026/L62_group_channel.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L62_group_channel.out) — 8×
+- `Python script` — [`prep_2026/dipole_mock/dipole_mock.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/dipole_mock/dipole_mock.py) — 8×
+- `Python script` — [`hunt_2026/k_high-z_floor_census.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_high-z_floor_census.py) — 8×
+- `Python script` — [`prep_2026/cluster_efe_data_scout/reachability_gonogo.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_data_scout/reachability_gonogo.py) — 8×
+- `Python script` — [`ai_slop/extended_research/environmental/project_nephele/simulations/exoplanet_omega_z_survey.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/environmental/project_nephele/simulations/exoplanet_omega_z_survey.py) — 8×
+- `Markdown/notes` — [`ai_slop/docs/zimmerman_formula.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/docs/zimmerman_formula.md) — 8×
+- `Python script` — [`glm53_push/G044_corpus_extension.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G044_corpus_extension.py) — 8×
+- `Python script` — [`deepseek_push/g078_surface_density.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/g078_surface_density.py) — 8×
+- `Markdown/notes` — [`book/12_cdm_and_its_patches_the_honest_ledger_of.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/12_cdm_and_its_patches_the_honest_ledger_of.md) — 7×
+- `HTML` — [`gext_vectors_2026/data/raw/chae21_ar5iv.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_ar5iv.html) — 7×
+- `Other` — [`hunt_2026/h62_phantom_ellipticity.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h62_phantom_ellipticity.out) — 7×
+- `Python script` — [`real_research/reviews/mi_a0_profile_likelihood_sparc_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_a0_profile_likelihood_sparc_2026.py) — 7×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/mlops/inference/outlines/references/examples.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/mlops/inference/outlines/references/examples.md) — 7×
+- `Markdown/notes` — [`ai_slop/research/offensive_campaign/DATA_HONESTY_ASSESSMENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/DATA_HONESTY_ASSESSMENT.md) — 7×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/mlops/inference/outlines/references/examples.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/mlops/inference/outlines/references/examples.md) — 7×
+- `Markdown/notes` — [`ai_slop/research/dynamical_framework/deep_derivations.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamical_framework/deep_derivations.md) — 7×
+- `Markdown/notes` — [`ai_slop/research/DIPOLE_MECHANISM_DERIVATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/DIPOLE_MECHANISM_DERIVATION.md) — 7×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/mlops/inference/outlines/references/examples.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/mlops/inference/outlines/references/examples.md) — 7×
+- `Markdown/notes` — [`ai_slop/research/PENDING_MEASUREMENTS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/PENDING_MEASUREMENTS.md) — 7×
+- `Data/config` — [`ai_slop/research/gn_z11_analysis/high_z_verification_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/gn_z11_analysis/high_z_verification_results.json) — 7×
+- `Python script` — [`ai_slop/research/gn_z11_analysis/high_z_comprehensive_verification.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/gn_z11_analysis/high_z_comprehensive_verification.py) — 7×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/mlops/inference/outlines/references/examples.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/mlops/inference/outlines/references/examples.md) — 7×
+- `Paper` — [`deepseek_push/G114_data/figgs_ov/abegum.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/figgs_ov/abegum.tex) — 7×
+- `Markdown/notes` — [`deepseek_push/BREAK_PROPOSAL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/BREAK_PROPOSAL.md) — 7×
+- `Python script` — [`deepseek_push/G156_ontology_decision.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G156_ontology_decision.py) — 7×
+- `Markdown/notes` — [`gext_vectors_2026/data/raw/chae21_fulltext.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_fulltext.txt) — 6×
+- `Python script` — [`fable_independent_2026/L62_group_channel.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L62_group_channel.py) — 6×
+- `Markdown/notes` — [`citations/king/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/king/index.md) — 6×
+- `Markdown/notes` — [`citations/lelli/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lelli/index.md) — 6×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/SCHEDULE_2026_PUBLIC_DATA_RELEASES_ROUTE5_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/SCHEDULE_2026_PUBLIC_DATA_RELEASES_ROUTE5_2026-06-14.md) — 6×
+- `Python script` — [`real_research/reviews/sigma_spread_prereg_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/sigma_spread_prereg_2026.py) — 6×
+- `Markdown/notes` — [`opus_48_extended_research/papers/THE_SEARCH_WAS_NEVER_WASTED.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/THE_SEARCH_WAS_NEVER_WASTED.md) — 6×
+- `Markdown/notes` — [`real_research/reviews/directional_efe_2026/laneB_data/oh2015_ReadMe.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/directional_efe_2026/laneB_data/oh2015_ReadMe.txt) — 6×
+- `Python script` — [`prep_2026/a0z_crossscale/archive_inventory_d2_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/archive_inventory_d2_2026.py) — 6×
+- `Markdown/notes` — [`prep_2026/cluster_efe_channel/POWER.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_channel/POWER.md) — 6×
+- `Python script` — [`real_research/reviews/project10_a0z_compilation_pipeline.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project10_a0z_compilation_pipeline.py) — 6×
+- `Python script` — [`hunt_2026/h120_diskmass_upsilon_localise.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h120_diskmass_upsilon_localise.py) — 6×
+- `Python script` — [`ai_slop/examples/08_lsst_predictions/run.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/examples/08_lsst_predictions/run.py) — 6×
+- `Python script` — [`real_research/predictions/combined_fisher_ultra.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/predictions/combined_fisher_ultra.py) — 6×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 6×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 6×
+- `Data/config` — [`real_research/COMMIT_LEDGER.csv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/COMMIT_LEDGER.csv) — 6×
+- `Paper` — [`real_research/papers/MI_SIGMA_SPREAD_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_SIGMA_SPREAD_2026.tex) — 6×
+- `Markdown/notes` — [`real_research/papers/MI_SIGMA_SPREAD_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_SIGMA_SPREAD_2026.md) — 6×
+- `Markdown/notes` — [`ai_slop/research/DIPOLE_FDT_DERIVATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/DIPOLE_FDT_DERIVATION.md) — 6×
+- `Markdown/notes` — [`real_research/FRONTIER_SURVEY_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/FRONTIER_SURVEY_2026-06.md) — 6×
+- `Markdown/notes` — [`ai_slop/research/PUBLICATION_STRATEGY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/PUBLICATION_STRATEGY.md) — 6×
+- `Markdown/notes` — [`ai_slop/research/btfr_evolution/BTFR_EVOLUTION_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/btfr_evolution/BTFR_EVOLUTION_ANALYSIS.md) — 6×
+- `Markdown/notes` — [`ai_slop/research/validation_engine/GEMINI_VERIFICATION_STEPS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/validation_engine/GEMINI_VERIFICATION_STEPS.md) — 6×
+- `Markdown/notes` — [`ai_slop/research/desi_audit/DESI_AUDIT_SUMMARY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/desi_audit/DESI_AUDIT_SUMMARY.md) — 6×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 6×
+- `Python script` — [`ai_slop/research/unsolved_problems/peculiar_velocities.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/peculiar_velocities.py) — 6×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 6×
+- `Python script` — [`deepseek_push/G217_kink_sample.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G217_kink_sample.py) — 6×
+- `Python script` — [`deepseek_push/G118_merger_registry.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G118_merger_registry.py) — 6×
+- `Python script` — [`deepseek_push/G085_vertical_disk.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G085_vertical_disk.py) — 6×
+- `Other` — [`deepseek_push/G174_merger_first_scoring.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G174_merger_first_scoring.out) — 6×
+- `Markdown/notes` — [`book/audiobook/12_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/12_narration.txt) — 5×
+- `Python script` — [`real_research/reviews/mi_route_a_mi_vs_mg_separation_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_route_a_mi_vs_mg_separation_2026.py) — 5×
+- `Markdown/notes` — [`prep_2026/a0z_crossscale/archive_inventory_d2_2026_results.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/archive_inventory_d2_2026_results.txt) — 5×
+- `Other` — [`hunt_2026/h120_diskmass_upsilon_localise.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h120_diskmass_upsilon_localise.out) — 5×
+- `Markdown/notes` — [`prep_2026/wallaby_prep/RELEASES.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/wallaby_prep/RELEASES.md) — 5×
+- `Other` — [`prep_2026/cluster_efe_channel/power.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_channel/power.out) — 5×
+- `Markdown/notes` — [`prep_2026/cluster_efe_data_scout/INVENTORY_MEMBERSHIP.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_data_scout/INVENTORY_MEMBERSHIP.md) — 5×
+- `Other` — [`ai_slop/LegomenaLLM/corpus/gold_examples.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/corpus/gold_examples.jsonl) — 5×
+- `Other` — [`ai_slop/LegomenaLLM/corpus/train.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/corpus/train.jsonl) — 5×
+- `Python script` — [`ai_slop/research/offensive_campaign/real_data_fetcher.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/real_data_fetcher.py) — 5×
+- `Python script` — [`ai_slop/research/predictions/10_SZ_CLUSTER_ABUNDANCE.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/predictions/10_SZ_CLUSTER_ABUNDANCE.py) — 5×
+- `Data/config` — [`ai_slop/OlympusFlow/discoveries/curated_topics_v3.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/discoveries/curated_topics_v3.json) — 5×
+- `Markdown/notes` — [`ai_slop/research/z2_testible_predictions/TESTS_11_TO_20.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/z2_testible_predictions/TESTS_11_TO_20.md) — 5×
+- `Python script` — [`glm53_push/G062_mw_test.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G062_mw_test.py) — 5×
+- `Markdown/notes` — [`ai_slop/research/gn_z11_analysis/HIGH_Z_KINEMATICS_COMPILATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/gn_z11_analysis/HIGH_Z_KINEMATICS_COMPILATION.md) — 5×
+- `Python script` — [`ai_slop/research/comprehensive_validation/data_backed_problems.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_validation/data_backed_problems.py) — 5×
+- `Data/config` — [`deepseek_push/G076_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G076_results.json) — 5×
+- `Python script` — [`deepseek_push/G073_lensing_completion.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G073_lensing_completion.py) — 5×
+- `Paper` — [`deepseek_push/G114_data/figgs/FIGGS_BTF.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/figgs/FIGGS_BTF.tex) — 5×
+- `Python script` — [`fable_independent_2026/L29_sigma8_test.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L29_sigma8_test.py) — 4×
+- `Markdown/notes` — [`fable_independent_2026/L29_SIGMA8.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L29_SIGMA8.md) — 4×
+- `Markdown/notes` — [`citations/mcgaug/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/mcgaug/index.md) — 4×
+- `Markdown/notes` — [`citations/schombert/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/schombert/index.md) — 4×
+- `Markdown/notes` — [`citations/milgrom/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/milgrom/index.md) — 4×
+- `Markdown/notes` — [`book/26_how_it_will_be_tested_btfr_sign_desi_and.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/26_how_it_will_be_tested_btfr_sign_desi_and.md) — 4×
+- `Markdown/notes` — [`fable_independent_2026/FINDINGS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/FINDINGS.md) — 4×
+- `Python script` — [`real_research/reviews/member_sigma_efe_pilot_run.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/member_sigma_efe_pilot_run.py) — 4×
+- `Python script` — [`opus_48_extended_research/reviews/sigma_predict/observational_test_design.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/sigma_predict/observational_test_design.py) — 4×
+- `Markdown/notes` — [`prep_2026/cluster_kink_spec/PREREGISTRATION_EUCLID_NULL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_kink_spec/PREREGISTRATION_EUCLID_NULL.md) — 4×
+- `Python script` — [`prep_2026/cluster_kink_spec/kink_target_spec.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_kink_spec/kink_target_spec.py) — 4×
+- `Python script` — [`hunt_2026/h49_polar_rings.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h49_polar_rings.py) — 4×
+- `Data/config` — [`prep_2026/a0z_crossscale/highz_deepmond_target_list_2026_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/highz_deepmond_target_list_2026_results.json) — 4×
+- `Python script` — [`prep_2026/a0z_crossscale/highz_deepmond_target_list_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/highz_deepmond_target_list_2026.py) — 4×
+- `Markdown/notes` — [`opus_48_extended_research/papers/HISTORY_lcdm_adjustments_to_the_dipole.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/HISTORY_lcdm_adjustments_to_the_dipole.md) — 4×
+- `Python script` — [`hunt_2026/h111_h112_kids_ml_machine.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h111_h112_kids_ml_machine.py) — 4×
+- `Other` — [`real_research/reviews/mi_route_a_mi_vs_mg_separation_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_route_a_mi_vs_mg_separation_2026.out) — 4×
+- `Markdown/notes` — [`ai_slop/olympusflow_v3_findings_claude/066_cosmic_shear_s8/ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_v3_findings_claude/066_cosmic_shear_s8/ANALYSIS.md) — 4×
+- `Other` — [`hunt_2026/k_high-z_floor_census.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_high-z_floor_census.out) — 4×
+- `Python script` — [`prep_2026/cluster_efe_data_scout/inventory_membership.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_data_scout/inventory_membership.py) — 4×
+- `Markdown/notes` — [`ai_slop/papers/EXPERIMENTAL_TESTS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/EXPERIMENTAL_TESTS.md) — 4×
+- `Other` — [`hunt_2026/h111_h112_kids_ml_machine.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h111_h112_kids_ml_machine.out) — 4×
+- `Python script` — [`hunt_2026/k_kernel-shape_qaniso.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_kernel-shape_qaniso.py) — 4×
+- `Markdown/notes` — [`prep_2026/sigma_spread/RECON.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sigma_spread/RECON.md) — 4×
+- `Data/config` — [`ai_slop/examples/07_btf_evolution/data/kmos3d_tully_fisher.csv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/examples/07_btf_evolution/data/kmos3d_tully_fisher.csv) — 4×
+- `Python script` — [`real_research/predictions/combined_forecast.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/predictions/combined_forecast.py) — 4×
+- `Python script` — [`ai_slop/research/offensive_campaign/dark_flow_fetcher.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/dark_flow_fetcher.py) — 4×
+- `Markdown/notes` — [`real_research/WAVE1_SUMMARY_AUDIT_2026-09-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/WAVE1_SUMMARY_AUDIT_2026-09-15.md) — 4×
+- `Markdown/notes` — [`real_research/NEW_DOORS_FROM_LITERATURE_2026-07.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/NEW_DOORS_FROM_LITERATURE_2026-07.md) — 4×
+- `Markdown/notes` — [`real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.md) — 4×
+- `Paper` — [`real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.tex) — 4×
+- `Markdown/notes` — [`real_research/DESI_AND_THE_A0Z_TEST.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/DESI_AND_THE_A0Z_TEST.md) — 4×
+- `Markdown/notes` — [`real_research/PENROSE_CROSS_DOORS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/PENROSE_CROSS_DOORS.md) — 4×
+- `Python script` — [`glm53_push/G049_sag_decomposition.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G049_sag_decomposition.py) — 4×
+- `Python script` — [`ai_slop/research/desi_audit/t3_geometric_deficit_map.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/desi_audit/t3_geometric_deficit_map.py) — 4×
+- `Markdown/notes` — [`ai_slop/research/comprehensive_validation/COMPLETE_VALIDATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_validation/COMPLETE_VALIDATION.md) — 4×
+- `Python script` — [`ai_slop/research/comprehensive_validation/final_frontier.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_validation/final_frontier.py) — 4×
+- `Python script` — [`ai_slop/research/unsolved_problems/baryon_acoustic_oscillations.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/baryon_acoustic_oscillations.py) — 4×
+- `Other` — [`deepseek_push/G217_kink_sample.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G217_kink_sample.out) — 4×
+- `Data/config` — [`deepseek_push/G218_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G218_results.json) — 4×
+- `Other` — [`deepseek_push/G220_tsz_final.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G220_tsz_final.out) — 4×
+- `Data/config` — [`deepseek_push/G217_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G217_results.json) — 4×
+- `Other` — [`deepseek_push/G118_merger_registry.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G118_merger_registry.out) — 4×
+- `Other` — [`fable_independent_2026/L29_sigma8_test.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L29_sigma8_test.out) — 3×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/GHOST_CONDENSATE_CONSEQUENCES_2026-06-19.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/GHOST_CONDENSATE_CONSEQUENCES_2026-06-19.md) — 3×
+- `Markdown/notes` — [`predictions_2026/SWEEP3_A0Z_COSMIC_DAWN_INVENTORY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/predictions_2026/SWEEP3_A0Z_COSMIC_DAWN_INVENTORY.md) — 3×
+- `Markdown/notes` — [`fable_independent_2026/L24_LENSING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L24_LENSING.md) — 3×
+- `Python script` — [`real_research/reviews/inhand_2026_07/L5_wallaby_corpus_outofsample_rar.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/inhand_2026_07/L5_wallaby_corpus_outofsample_rar.py) — 3×
+- `Python script` — [`fable_independent_2026/L24_lensing_vs_dynamics.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L24_lensing_vs_dynamics.py) — 3×
+- `Markdown/notes` — [`book/audiobook/26_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/26_narration.txt) — 3×
+- `Python script` — [`nbody_2026/stage9_construct_the_function_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage9_construct_the_function_2026.py) — 3×
+- `Markdown/notes` — [`opus_48_extended_research/papers/DARK_MATTER_COMPLETE_CHRONOLOGY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/DARK_MATTER_COMPLETE_CHRONOLOGY.md) — 3×
+- `Markdown/notes` — [`opus_48_extended_research/papers/THE_COMPLETION_FOR_EVERYONE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/THE_COMPLETION_FOR_EVERYONE.md) — 3×
+- `Python script` — [`hunt_2026/h12_h14_satellites_and_oort.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h12_h14_satellites_and_oort.py) — 3×
+- `Markdown/notes` — [`prep_2026/cluster_kink_spec/run_output.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_kink_spec/run_output.txt) — 3×
+- `Markdown/notes` — [`prep_2026/cluster_kink_spec/TARGET_SPEC.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_kink_spec/TARGET_SPEC.md) — 3×
+- `Python script` — [`hunt_2026/h17_diskmass_thickness.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h17_diskmass_thickness.py) — 3×
+- `Python script` — [`hunt_2026/h113_kids_two_halo.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h113_kids_two_halo.py) — 3×
+- `Python script` — [`hunt_2026/k_high-z_gas_extent_calibration.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_high-z_gas_extent_calibration.py) — 3×
+- `Python script` — [`hunt_2026/h59_h60_cluster_T_Y_slopes.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h59_h60_cluster_T_Y_slopes.py) — 3×
+- `Markdown/notes` — [`prep_2026/mmu_scout/SCOUT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mmu_scout/SCOUT.md) — 3×
+- `Python script` — [`prep_2026/mmu_scout/sampleAB_quantify.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mmu_scout/sampleAB_quantify.py) — 3×
+- `Markdown/notes` — [`ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v7.0.0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v7.0.0.md) — 3×
+- `Python script` — [`prep_2026/cosmicweb_a0/environment_power_confound.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cosmicweb_a0/environment_power_confound.py) — 3×
+- `Python script` — [`hunt_2026/h40_sednoid_perihelia.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h40_sednoid_perihelia.py) — 3×
+- `Other` — [`hunt_2026/h71b_saddle_forecast.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h71b_saddle_forecast.out) — 3×
+- `Other` — [`hunt_2026/h49_polar_rings.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h49_polar_rings.out) — 3×
+- `Other` — [`ai_slop/daemon_outputs/overnight_run.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/overnight_run.log) — 3×
+- `Python script` — [`prep_2026/wallaby_prep/wallaby_census.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/wallaby_prep/wallaby_census.py) — 3×
+- `Other` — [`hunt_2026/h59_h60_cluster_T_Y_slopes.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h59_h60_cluster_T_Y_slopes.out) — 3×
+- `Python script` — [`prep_2026/cluster_efe_channel/arm_prereg.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_channel/arm_prereg.py) — 3×
+- `Other` — [`prep_2026/cluster_efe_channel/two_zone_power.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_channel/two_zone_power.out) — 3×
+- `Python script` — [`hunt_2026/h71b_saddle_forecast.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h71b_saddle_forecast.py) — 3×
+- `Markdown/notes` — [`prep_2026/highz_tfr_fork/DATA_LEDGER.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/highz_tfr_fork/DATA_LEDGER.md) — 3×
+- `Python script` — [`hunt_2026/g03v_adversarial_partial_audit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g03v_adversarial_partial_audit.py) — 3×
+- `Markdown/notes` — [`prep_2026/sigma_spread/GAP_STATEMENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sigma_spread/GAP_STATEMENT.md) — 3×
+- `Other` — [`hunt_2026/h113_kids_two_halo.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h113_kids_two_halo.out) — 3×
+- `Python script` — [`hunt_2026/h71_saddle_point.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h71_saddle_point.py) — 3×
+- `Python script` — [`ai_slop/examples/07_btf_evolution/run.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/examples/07_btf_evolution/run.py) — 3×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/mlops/inference/outlines/references/json_generation.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/mlops/inference/outlines/references/json_generation.md) — 3×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/mlops/inference/outlines/references/json_generation.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/mlops/inference/outlines/references/json_generation.md) — 3×
+- `Python script` — [`ai_slop/research/offensive_campaign/cluster_member_fetcher.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/cluster_member_fetcher.py) — 3×
+- `Markdown/notes` — [`ai_slop/research/Z2_100_TARGET_VALIDATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/Z2_100_TARGET_VALIDATION.md) — 3×
+- `Markdown/notes` — [`real_research/PREREGISTERED_EMPIRICAL_FLEET_2026-07.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/PREREGISTERED_EMPIRICAL_FLEET_2026-07.md) — 3×
+- `Markdown/notes` — [`real_research/INHAND_CALCS_RESULTS_2026-07.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/INHAND_CALCS_RESULTS_2026-07.md) — 3×
+- `Markdown/notes` — [`real_research/KOIDE_SELFDUALITY_DEVELOP_2026-06-25.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/KOIDE_SELFDUALITY_DEVELOP_2026-06-25.md) — 3×
+- `Markdown/notes` — [`real_research/data_watch/ROUTINE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data_watch/ROUTINE.md) — 3×
+- `Markdown/notes` — [`real_research/EMAILED_PHYSICISTS_TOE_MINING_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/EMAILED_PHYSICISTS_TOE_MINING_2026-06.md) — 3×
+- `Markdown/notes` — [`ai_slop/research/z2_testible_predictions/NOVEL_EXPERIMENTS_DEEP_REVIEW.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/z2_testible_predictions/NOVEL_EXPERIMENTS_DEEP_REVIEW.md) — 3×
+- `Markdown/notes` — [`qwen_36_experiment/opus_orchestrator_oracle/DOORS/G5_dssyk_and_triality_leads.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/opus_orchestrator_oracle/DOORS/G5_dssyk_and_triality_leads.md) — 3×
+- `Markdown/notes` — [`qwen_36_experiment/opus_orchestrator_oracle/TASKS/M10_cluster_decider.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/opus_orchestrator_oracle/TASKS/M10_cluster_decider.md) — 3×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/mlops/inference/outlines/references/json_generation.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/mlops/inference/outlines/references/json_generation.md) — 3×
+- `Markdown/notes` — [`ai_slop/research/amateur_astronomy/AMATEUR_VERIFICATION_GUIDE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/amateur_astronomy/AMATEUR_VERIFICATION_GUIDE.md) — 3×
+- `Markdown/notes` — [`ai_slop/research/TESTABLE_PREDICTIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/TESTABLE_PREDICTIONS.md) — 3×
+- `Python script` — [`ai_slop/research/desi_audit/symmetric_pipeline_corrected.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/desi_audit/symmetric_pipeline_corrected.py) — 3×
+- `Python script` — [`ai_slop/research/comprehensive_validation/unsolved_mysteries.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_validation/unsolved_mysteries.py) — 3×
+- `Python script` — [`ai_slop/research/unsolved_problems/void_galaxy_properties.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/void_galaxy_properties.py) — 3×
+- `Python script` — [`ai_slop/research/unsolved_problems/kbc_void.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/kbc_void.py) — 3×
+- `Paper` — [`qwen_claude_field_theory/papers_2026/PAPER5_bounded_boost_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER5_bounded_boost_2026.tex) — 3×
+- `Python script` — [`ai_slop/research/unsolved_problems/missing_baryon_problem.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/missing_baryon_problem.py) — 3×
+- `Markdown/notes` — [`ai_slop/research/EMPIRICAL_TESTS_2020-2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/EMPIRICAL_TESTS_2020-2026.md) — 3×
+- `Markdown/notes` — [`ai_slop/research/RH_FRESH_FINDINGS_WITH_LITERATURE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_FRESH_FINDINGS_WITH_LITERATURE.md) — 3×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/mlops/inference/outlines/references/json_generation.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/mlops/inference/outlines/references/json_generation.md) — 3×
+- `Markdown/notes` — [`book_2e/33_standing_on_shoulders_who_found_what.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book_2e/33_standing_on_shoulders_who_found_what.md) — 3×
+- `Python script` — [`deepseek_push/G157_slope_floor.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G157_slope_floor.py) — 3×
+- `Python script` — [`deepseek_push/Z06_tsz_pull.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/Z06_tsz_pull.py) — 3×
+- `Markdown/notes` — [`deepseek_push/G156_ontology_decision.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G156_ontology_decision.md) — 3×
+- `Data/config` — [`deepseek_push/G113_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G113_results.json) — 3×
+- `Other` — [`deepseek_push/G085_vertical_disk.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G085_vertical_disk.out) — 3×
+- `Python script` — [`deepseek_push/G232_gap_environment.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G232_gap_environment.py) — 3×
+- `Markdown/notes` — [`deepseek_push/G118_merger_registry.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G118_merger_registry.md) — 3×
+- `Data/config` — [`deepseek_push/G220_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G220_results.json) — 3×
+- `Python script` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/z2_statistical_validation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/z2_statistical_validation.py) — 3×
+- `Other` — [`fable_independent_2026/L197_s8_gate.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L197_s8_gate.out) — 2×
+- `Markdown/notes` — [`book/25_the_signature_prediction_a_tracks_dark_e.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/25_the_signature_prediction_a_tracks_dark_e.md) — 2×
+- `Other` — [`fable_independent_2026/L24_lensing_vs_dynamics.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L24_lensing_vs_dynamics.out) — 2×
+- `Other` — [`fable_independent_2026/L161_decay_structure_clusters_and_synthesis.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L161_decay_structure_clusters_and_synthesis.out) — 2×
+- `Python script` — [`real_research/reviews/inhand_2026_07/l6_dw_cusp_kill.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/inhand_2026_07/l6_dw_cusp_kill.py) — 2×
+- `Python script` — [`real_research/reviews/inhand_2026_07/L5_corpus_oos_rar_FINAL.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/inhand_2026_07/L5_corpus_oos_rar_FINAL.py) — 2×
+- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
+- `Markdown/notes` — [`qwen_claude_field_theory/IDEAS_401_500.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/IDEAS_401_500.md) — 2×
+- `Markdown/notes` — [`citations/verlinde/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/verlinde/index.md) — 2×
+- `Python script` — [`fable_independent_2026/L161_decay_structure_clusters_and_synthesis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L161_decay_structure_clusters_and_synthesis.py) — 2×
+- `Markdown/notes` — [`citations/singh/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/singh/index.md) — 2×
+- `Markdown/notes` — [`book/audiobook/32_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/32_narration.txt) — 2×
+- `Markdown/notes` — [`book/audiobook/25_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/25_narration.txt) — 2×
+- `Markdown/notes` — [`citations/zlosnik/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/zlosnik/index.md) — 2×
+- `Markdown/notes` — [`citations/rines/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/rines/index.md) — 2×
+- `Markdown/notes` — [`citations/fisher/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/fisher/index.md) — 2×
+- `Markdown/notes` — [`book/32_what_would_it_take_to_know_a_reader_s_gu.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/32_what_would_it_take_to_know_a_reader_s_gu.md) — 2×
+- `Markdown/notes` — [`citations/unruh/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/unruh/index.md) — 2×
+- `Markdown/notes` — [`citations/skordis/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/skordis/index.md) — 2×
+- `Markdown/notes` — [`citations/tully/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/tully/index.md) — 2×
+- `Python script` — [`real_research/reviews/verify_VEIN1_P1_stream_release_memory_KILL.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/verify_VEIN1_P1_stream_release_memory_KILL.py) — 2×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/LENSING_MODALITY_LATEST_AND_MEASUREMENT_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/LENSING_MODALITY_LATEST_AND_MEASUREMENT_2026-06-14.md) — 2×
+- `Python script` — [`fable_independent_2026/L197_s8_gate.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L197_s8_gate.py) — 2×
+- `Python script` — [`real_research/reviews/mi_routeA_sigma_dyn_floor_extended_baryons_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_routeA_sigma_dyn_floor_extended_baryons_2026.py) — 2×
+- `Python script` — [`nbody_2026/stage19_class_rerun_derived_law_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage19_class_rerun_derived_law_2026.py) — 2×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/COSMIC_DIPOLE_LCDM_CRACK_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/COSMIC_DIPOLE_LCDM_CRACK_2026.md) — 2×
+- `Markdown/notes` — [`opus_48_extended_research/press/HYPOTHETICAL_ASTRONOMY_astronomy_magazine.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/press/HYPOTHETICAL_ASTRONOMY_astronomy_magazine.md) — 2×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/gc_consequences/PK_K4_SIGNATURE_VERDICT_2026-06-19.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/gc_consequences/PK_K4_SIGNATURE_VERDICT_2026-06-19.md) — 2×
+- `Python script` — [`real_research/reviews/directional_efe_2026/confrontation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/directional_efe_2026/confrontation.py) — 2×
+- `Python script` — [`opus_48_extended_research/reviews/gc_consequences/pk_k4_signature.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/gc_consequences/pk_k4_signature.py) — 2×
+- `Other` — [`real_research/reviews/directional_efe_2026/confrontation.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/directional_efe_2026/confrontation.out) — 2×
+- `Markdown/notes` — [`opus_48_extended_research/papers/WHY_GALAXIES_SPIN_TOO_FAST.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/WHY_GALAXIES_SPIN_TOO_FAST.md) — 2×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/WB_CONTAMINATION_ROUTE4_VERDICT_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/WB_CONTAMINATION_ROUTE4_VERDICT_2026-06-14.md) — 2×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/SZ_BARYON_CENSUS_VIRIAL_MEASUREMENT_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/SZ_BARYON_CENSUS_VIRIAL_MEASUREMENT_2026-06-14.md) — 2×
+- `Python script` — [`opus_48_extended_research/reviews/sigma_spread/feasibility.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/sigma_spread/feasibility.py) — 2×
+- `Python script` — [`opus_48_extended_research/reviews/sigma_spread/mi_sigma_spread_amplitude.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/sigma_spread/mi_sigma_spread_amplitude.py) — 2×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/TOE_LITERATURE_MAP_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/TOE_LITERATURE_MAP_2026-06-15.md) — 2×
+- `Markdown/notes` — [`README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/README.md) — 2×
+- `Python script` — [`prep_2026/a0z_crossscale/bao_killswitch_a0z_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/bao_killswitch_a0z_2026.py) — 2×
+- `Python script` — [`prep_2026/a0z_crossscale/cross_redshift_a0line_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/cross_redshift_a0line_2026.py) — 2×
+- `Python script` — [`real_research/reviews/project15_dsph_efe_thermometers.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project15_dsph_efe_thermometers.py) — 2×
+- `Python script` — [`prep_2026/a0z_crossscale/lensed_deepmond_floor_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/lensed_deepmond_floor_2026.py) — 2×
+- `Python script` — [`hunt_2026/h105_btfr_a0_meter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h105_btfr_a0_meter.py) — 2×
+- `Other` — [`hunt_2026/k01_kernel_width_alpha.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k01_kernel_width_alpha.out) — 2×
+- `Python script` — [`hunt_2026/k07c_lensing_degeneracy_theorem.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k07c_lensing_degeneracy_theorem.py) — 2×
+- `Python script` — [`prep_2026/mmu_scout/mmu_access.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mmu_scout/mmu_access.py) — 2×
+- `Other` — [`hunt_2026/h17_diskmass_thickness.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h17_diskmass_thickness.out) — 2×
+- `Other` — [`hunt_2026/h15_wide_binary_orientation.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h15_wide_binary_orientation.out) — 2×
+- `Python script` — [`hunt_2026/h85_bulk_flow_null.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h85_bulk_flow_null.py) — 2×
+- `Markdown/notes` — [`ai_slop/papers/DERIVING_MOND_SCALE_FROM_HORIZON_PHYSICS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/DERIVING_MOND_SCALE_FROM_HORIZON_PHYSICS.md) — 2×
+- `Markdown/notes` — [`real_research/reviews/DATA_AUDIT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/DATA_AUDIT.md) — 2×
+- `Python script` — [`real_research/reviews/door3_growing_nu_sharpening.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/door3_growing_nu_sharpening.py) — 2×
+- `Other` — [`hunt_2026/h40_sednoid_perihelia.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h40_sednoid_perihelia.out) — 2×
+- `Markdown/notes` — [`ai_slop/zenodo/RESPONSE_TO_REVIEWER.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/zenodo/RESPONSE_TO_REVIEWER.md) — 2×
+- `Other` — [`hunt_2026/g03v_adversarial_partial_audit.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g03v_adversarial_partial_audit.out) — 2×
+- `Python script` — [`real_research/reviews/project_escape_freezing.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project_escape_freezing.py) — 2×
+- `Python script` — [`hunt_2026/k04_inversion_upsilon_amplifier.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k04_inversion_upsilon_amplifier.py) — 2×
+- `Python script` — [`hunt_2026/h29_fast_bars.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h29_fast_bars.py) — 2×
+- `Python script` — [`hunt_2026/k_ml-free_shape_a0_nuisance.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_ml-free_shape_a0_nuisance.py) — 2×
+- `Python script` — [`prep_2026/cluster_efe_channel/two_zone_power.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_channel/two_zone_power.py) — 2×
+- `Markdown/notes` — [`prep_2026/cluster_efe_channel/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_channel/VERIFY.md) — 2×
+- `Data/config` — [`ai_slop/daemon_outputs/full_660_run_20260507_175002/queue_state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/full_660_run_20260507_175002/queue_state.json) — 2×
+- `Markdown/notes` — [`prep_2026/cluster_efe_channel/SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_channel/SYNTHESIS.md) — 2×
+- `Other` — [`hunt_2026/k_kernel-shape_qaniso.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_kernel-shape_qaniso.out) — 2×
+- `Python script` — [`hunt_2026/k01_kernel_width_alpha.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k01_kernel_width_alpha.py) — 2×
+- `Python script` — [`prep_2026/cluster_efe_data_scout/overlap_power.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_data_scout/overlap_power.py) — 2×
+- `Markdown/notes` — [`prep_2026/cluster_efe_data_scout/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_data_scout/VERIFY.md) — 2×
+- `Markdown/notes` — [`prep_2026/cluster_efe_data_scout/INVENTORY_MANGA.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_data_scout/INVENTORY_MANGA.md) — 2×
+- `Markdown/notes` — [`prep_2026/cluster_efe_data_scout/SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_data_scout/SYNTHESIS.md) — 2×
+- `Python script` — [`hunt_2026/k_kernel-shape_alphawb.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_kernel-shape_alphawb.py) — 2×
+- `Paper` — [`ai_slop/papers/deriving_mond_scale.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/deriving_mond_scale.tex) — 2×
+- `Other` — [`hunt_2026/h12_h14_satellites_and_oort.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h12_h14_satellites_and_oort.out) — 2×
+- `Markdown/notes` — [`ai_slop/extended_research/environmental/project_nephele/MARS_HONESTY_ASSESSMENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/environmental/project_nephele/MARS_HONESTY_ASSESSMENT.md) — 2×
+- `Python script` — [`hunt_2026/g06v_adversarial_external_field_baryon_budget.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g06v_adversarial_external_field_baryon_budget.py) — 2×
+- `Python script` — [`real_research/reviews/mi_omegac_naturalness_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_omegac_naturalness_2026.py) — 2×
+- `Other` — [`hunt_2026/h105_btfr_a0_meter.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h105_btfr_a0_meter.out) — 2×
+- `Markdown/notes` — [`prep_2026/rubin_prereg/RUBIN_PREREG_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/rubin_prereg/RUBIN_PREREG_2026.md) — 2×
+- `Other` — [`hunt_2026/k_ml-free_shape_a0_nuisance.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_ml-free_shape_a0_nuisance.out) — 2×
+- `Python script` — [`hunt_2026/h15_wide_binary_orientation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h15_wide_binary_orientation.py) — 2×
+- `Python script` — [`prep_2026/sigma_spread/rederive_spread_and_power.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sigma_spread/rederive_spread_and_power.py) — 2×
+- `Python script` — [`prep_2026/sigma_spread/census_verify.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sigma_spread/census_verify.py) — 2×
+- `Other` — [`prep_2026/sigma_spread/census_verify.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sigma_spread/census_verify.out) — 2×
+- `Markdown/notes` — [`ai_slop/office_hours_with_claude/physics/06_adm_formalism.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/office_hours_with_claude/physics/06_adm_formalism.md) — 2×
+- `Other` — [`real_research/reviews/toe_law/agentE_solar_reflex.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentE_solar_reflex.out) — 2×
+- `Other` — [`real_research/reviews/toe_law/agentE_run.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentE_run.log) — 2×
+- `Python script` — [`real_research/reviews/toe_law/agentE_solar_reflex.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentE_solar_reflex.py) — 2×
+- `Markdown/notes` — [`project_atomos/notes/KOIDE_SECTOR_VERDICT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/project_atomos/notes/KOIDE_SECTOR_VERDICT.md) — 2×
+- `HTML` — [`ai_slop/submissions/gravity_research_foundation_2026/essay.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/submissions/gravity_research_foundation_2026/essay.html) — 2×
+- `Markdown/notes` — [`ai_slop/submissions/gravity_research_foundation_2026/essay.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/submissions/gravity_research_foundation_2026/essay.md) — 2×
+- `Markdown/notes` — [`ai_slop/non-peer-review/verlinde/Verlinde_Cross_Review.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/verlinde/Verlinde_Cross_Review.md) — 2×
+- `Python script` — [`real_research/reviews/koide_falsifiable_frontier.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/koide_falsifiable_frontier.py) — 2×
+- `Python script` — [`ai_slop/curiosities_and_culture/ancient_cultures/telesterion/telesterion_z2_honesty_check.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/ancient_cultures/telesterion/telesterion_z2_honesty_check.py) — 2×
+- `Other` — [`real_research/reviews/lensing_rar/agentK_jackknife_stack.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/agentK_jackknife_stack.out) — 2×
+- `Python script` — [`ai_slop/examples/15_core_cusp/run.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/examples/15_core_cusp/run.py) — 2×
+- `Python script` — [`real_research/reviews/mi_aqual_mond_refit_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_aqual_mond_refit_2026.py) — 2×
+- `Python script` — [`real_research/reviews/mi_cubic_rank4_signature_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_cubic_rank4_signature_2026.py) — 2×
+- `Markdown/notes` — [`qwen_38_experiment/TASKS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_38_experiment/TASKS.md) — 2×
+- `Data/config` — [`ai_slop/OlympusFlow/discoveries/curated_topics_v2.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/discoveries/curated_topics_v2.json) — 2×
+- `Python script` — [`ai_slop/research/offensive_campaign/ghost_quasar_search.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/ghost_quasar_search.py) — 2×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/references/sources.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/references/sources.md) — 2×
+- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (CS template).ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (CS template).ipynb) — 2×
+- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/Nseries Odd-Parity 4PCF.ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/Nseries Odd-Parity 4PCF.ipynb) — 2×
+- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (collider template).ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (collider template).ipynb) — 2×
+- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (ghost template).ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (ghost template).ipynb) — 2×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/references/sources.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/references/sources.md) — 2×
+- `Data/config` — [`real_research/data/slacs_auger2009_lenses.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/slacs_auger2009_lenses.tsv) — 2×
+- `Python script` — [`ai_slop/research/offensive_campaign/directional_4pcf_extraction.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/directional_4pcf_extraction.py) — 2×
+- `Python script` — [`ai_slop/TruthFlow/hermes_agent/tests/tools/test_delegate.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/tests/tools/test_delegate.py) — 2×
+- `Python script` — [`ai_slop/research/offensive_campaign/jwst_lensing_fetcher.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/jwst_lensing_fetcher.py) — 2×
+- `Python script` — [`ai_slop/research/predictions/01_JWST_BTFR_PREDICTION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/predictions/01_JWST_BTFR_PREDICTION.py) — 2×
+- `Markdown/notes` — [`real_research/GEOMETRIC_FRAMEWORKS_SEARCH_2026-06-05.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/GEOMETRIC_FRAMEWORKS_SEARCH_2026-06-05.md) — 2×
+- `Python script` — [`ai_slop/HermesFlow/hermes_agent/tests/tools/test_delegate.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/tests/tools/test_delegate.py) — 2×
+- `Markdown/notes` — [`real_research/data_watch/log/2026-08-07.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data_watch/log/2026-08-07.md) — 2×
+- `Markdown/notes` — [`real_research/LEPTON_SELECTIVE_KOIDE_PROGRAM_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/LEPTON_SELECTIVE_KOIDE_PROGRAM_2026-06.md) — 2×
+- `Markdown/notes` — [`real_research/PAPER_evolving_a0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/PAPER_evolving_a0.md) — 2×
+- `Markdown/notes` — [`ai_slop/research/SYSTEMATIC_DERIVATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/SYSTEMATIC_DERIVATIONS.md) — 2×
+- `Paper` — [`real_research/EFE_vs_z_Forecast_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/EFE_vs_z_Forecast_2026.tex) — 2×
+- `Markdown/notes` — [`real_research/papers/WHY_DARK_MATTER_WON_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/WHY_DARK_MATTER_WON_2026.md) — 2×
+- `Markdown/notes` — [`real_research/papers/RUBIN_PREREG_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/RUBIN_PREREG_2026.md) — 2×
+- `Python script` — [`ai_slop/research/expanded_applications/even_more_problems.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/expanded_applications/even_more_problems.py) — 2×
+- `Paper` — [`real_research/papers/RUBIN_PREREG_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/RUBIN_PREREG_2026.tex) — 2×
+- `Markdown/notes` — [`ai_slop/research/z2_testible_predictions/TEST_05_dark_energy_w.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/z2_testible_predictions/TEST_05_dark_energy_w.md) — 2×
+- `Python script` — [`ai_slop/research/frb_analysis/csiro_frb_z2_analysis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/frb_analysis/csiro_frb_z2_analysis.py) — 2×
+- `Markdown/notes` — [`ai_slop/research/dynamical_framework/computational_tools_investigation.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamical_framework/computational_tools_investigation.md) — 2×
+- `Python script` — [`ai_slop/research/new_applications/unexplored_applications.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/new_applications/unexplored_applications.py) — 2×
+- `Markdown/notes` — [`ai_slop/research/CITATIONS_AND_SCIENTISTS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/CITATIONS_AND_SCIENTISTS.md) — 2×
+- `Markdown/notes` — [`qwen_36_experiment/opus_orchestrator_oracle/DOORS/G2_e6_su3f_neighbourhood.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/opus_orchestrator_oracle/DOORS/G2_e6_su3f_neighbourhood.md) — 2×
+- `Markdown/notes` — [`qwen_36_experiment/opus_orchestrator_oracle/DOORS/E4_sigma_spread_cluster_shell.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/opus_orchestrator_oracle/DOORS/E4_sigma_spread_cluster_shell.md) — 2×
+- `Markdown/notes` — [`qwen_36_experiment/tn26_master_synthesis_paper.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/tn26_master_synthesis_paper.md) — 2×
+- `Markdown/notes` — [`ai_slop/research/rar_evolution/RAR_EVOLUTION_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/rar_evolution/RAR_EVOLUTION_ANALYSIS.md) — 2×
+- `Python script` — [`qwen_claude_field_theory/closure_2026/sf20_btfr_evolution_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/sf20_btfr_evolution_2026.py) — 2×
+- `Markdown/notes` — [`glm53_push/G044_preregistration.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G044_preregistration.md) — 2×
+- `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/tools/test_delegate.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/tools/test_delegate.py) — 2×
+- `Python script` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/tools/test_delegate.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/tools/test_delegate.py) — 2×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/finite_interval_mond_2026/LITERATURE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/finite_interval_mond_2026/LITERATURE.md) — 2×
+- `Data/config` — [`glm53_push/G062_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G062_results.json) — 2×
+- `Markdown/notes` — [`ai_slop/research/jwst_audit/WORK_ORDER_J.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/jwst_audit/WORK_ORDER_J.md) — 2×
+- `Markdown/notes` — [`ai_slop/research/TARS_Z2_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/TARS_Z2_ANALYSIS.md) — 2×
+- `Python script` — [`ai_slop/research/telesterion_z2_honesty_check.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/telesterion_z2_honesty_check.py) — 2×
+- `Markdown/notes` — [`ai_slop/research/RH_HONEST_NEXT_STEPS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_HONEST_NEXT_STEPS.md) — 2×
+- `Markdown/notes` — [`ai_slop/research/interstellar_objects/INTERSTELLAR_OBJECTS_RAW_DATA.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/interstellar_objects/INTERSTELLAR_OBJECTS_RAW_DATA.md) — 2×
+- `Data/config` — [`ai_slop/research/desi_audit/t3_geometric_deficit_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/desi_audit/t3_geometric_deficit_results.json) — 2×
+- `Python script` — [`ai_slop/research/key_visualizations/recent_observational_evidence.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/key_visualizations/recent_observational_evidence.py) — 2×
+- `Markdown/notes` — [`ai_slop/research/desi_audit/GEMINI_BRIEFING_MAY22_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/desi_audit/GEMINI_BRIEFING_MAY22_2026.md) — 2×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/references/sources.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/references/sources.md) — 2×
+- `Python script` — [`ai_slop/research/comprehensive_validation/more_problems.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_validation/more_problems.py) — 2×
+- `Python script` — [`ai_slop/research/comprehensive_validation/even_more_problems_v2.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_validation/even_more_problems_v2.py) — 2×
+- `Python script` — [`ai_slop/research/unsolved_problems/cmb_cold_spot.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/cmb_cold_spot.py) — 2×
+- `Python script` — [`ai_slop/research/unsolved_problems/ultra_diffuse_galaxies.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/ultra_diffuse_galaxies.py) — 2×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/references/sources.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/references/sources.md) — 2×
+- `Python script` — [`ai_slop/research/unsolved_problems/morphology_density_relation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/morphology_density_relation.py) — 2×
+- `Python script` — [`ai_slop/research/unsolved_problems/lyman_alpha_forest.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/lyman_alpha_forest.py) — 2×
+- `Python script` — [`ai_slop/research/unsolved_problems/dark_flow_bulk_flows.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/dark_flow_bulk_flows.py) — 2×
+- `Python script` — [`ai_slop/research/unsolved_problems/cosmic_web_filaments.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/cosmic_web_filaments.py) — 2×
+- `Data/config` — [`qwen_claude_field_theory/papers_2026/PAPER5_bounded_boost_2026.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER5_bounded_boost_2026.zenodo.json) — 2×
+- `Other` — [`qwen_claude_field_theory/papers_2026/PAPER8_references.bib`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER8_references.bib) — 2×
+- `Markdown/notes` — [`ai_slop/research/GEMINI_RESEARCH_INSTRUCTIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/GEMINI_RESEARCH_INSTRUCTIONS.md) — 2×
+- `Markdown/notes` — [`book_2e/21_the_mechanism_de_sitter_unruh_modified_i.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book_2e/21_the_mechanism_de_sitter_unruh_modified_i.md) — 2×
+- `Python script` — [`deepseek_push/G119_break_factor.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G119_break_factor.py) — 2×
+- `Python script` — [`ai_slop/extended_research/biotech/project_protogonos/rigorous_validation/statistical_significance_analysis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/project_protogonos/rigorous_validation/statistical_significance_analysis.py) — 2×
+- `Data/config` — [`deepseek_push/G173_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G173_results.json) — 2×
+- `Python script` — [`deepseek_push/G173_break_proposal.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G173_break_proposal.py) — 2×
+- `Markdown/notes` — [`deepseek_push/data2/MANIFEST.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/data2/MANIFEST.md) — 2×
+- `Python script` — [`deepseek_push/G161_plateau_registry.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G161_plateau_registry.py) — 2×
+- `Python script` — [`deepseek_push/G113_tsz_prediction.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G113_tsz_prediction.py) — 2×
+- `Other` — [`deepseek_push/G218_galaxy_beta.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G218_galaxy_beta.out) — 2×
+- `Data/config` — [`deepseek_push/G177_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G177_results.json) — 2×
+- `Python script` — [`deepseek_push/G218_galaxy_beta.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G218_galaxy_beta.py) — 2×
+- `Other` — [`deepseek_push/G129_tsz_proposal.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G129_tsz_proposal.out) — 2×
+- `Markdown/notes` — [`deepseek_push/WAVEBOARD.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/WAVEBOARD.md) — 2×
+- `Markdown/notes` — [`deepseek_push/G203_data/PROVENANCE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G203_data/PROVENANCE.md) — 2×
+- `Markdown/notes` — [`deepseek_push/G089_dimensionless_inventory.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G089_dimensionless_inventory.md) — 2×
+- `Other` — [`deepseek_push/G113_tsz_prediction.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G113_tsz_prediction.out) — 2×
+- `Data/config` — [`deepseek_push/G073_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G073_results.json) — 2×
+- `Markdown/notes` — [`deepseek_push/MNRAS_RESULTS_SKELETON.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/MNRAS_RESULTS_SKELETON.md) — 2×
+- `Markdown/notes` — [`deepseek_push/FOOTING_DECISION_TREE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/FOOTING_DECISION_TREE.md) — 2×
+- `Other` — [`deepseek_push/G156_ontology_decision.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G156_ontology_decision.out) — 2×
+- `Other` — [`deepseek_push/g078_surface_density.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/g078_surface_density.out) — 2×
+- `Data/config` — [`deepseek_push/G202_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G202_results.json) — 2×
+- `Other` — [`deepseek_push/G177_tsz_amendment.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G177_tsz_amendment.out) — 2×
+- `Markdown/notes` — [`gext_vectors_2026/src/METHOD_NOTES.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/src/METHOD_NOTES.md) — 1×
+- `Other` — [`fable_independent_2026/L42_what_decides.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L42_what_decides.out) — 1×
+- `Python script` — [`real_research/a0z_lensing_forecast.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/a0z_lensing_forecast.py) — 1×
+- `Markdown/notes` — [`predictions_2026/INVENTORY_4_lensing_clusters_environment_kappa.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/predictions_2026/INVENTORY_4_lensing_clusters_environment_kappa.md) — 1×
+- `Python script` — [`fable_independent_2026/L45_cgm_baryons.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L45_cgm_baryons.py) — 1×
+- `Markdown/notes` — [`fable_independent_2026/L38_SUPERNOVA.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L38_SUPERNOVA.md) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/ALREADY_TRIED.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/ALREADY_TRIED.md) — 1×
+- `Python script` — [`fable_independent_2026/L241_nonlocal_kernel_verdict.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L241_nonlocal_kernel_verdict.py) — 1×
+- `Python script` — [`fable_independent_2026/L242_efe_break_radius_law.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L242_efe_break_radius_law.py) — 1×
+- `Markdown/notes` — [`book/03_the_virial_theorem_and_fritz_zwicky_s_he.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/03_the_virial_theorem_and_fritz_zwicky_s_he.md) — 1×
+- `Python script` — [`fable_independent_2026/L18_hse_bias.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L18_hse_bias.py) — 1×
+- `Python script` — [`fable_independent_2026/L38_supernova_reexam.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L38_supernova_reexam.py) — 1×
+- `Python script` — [`fable_independent_2026/L61_permitted_branches.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L61_permitted_branches.py) — 1×
+- `Other` — [`fable_independent_2026/L242_efe_break_radius_law.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L242_efe_break_radius_law.out) — 1×
+- `Python script` — [`fable_independent_2026/L151_overlap_verdict.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L151_overlap_verdict.py) — 1×
+- `Other` — [`fable_independent_2026/L45_cgm_baryons.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L45_cgm_baryons.out) — 1×
+- `Python script` — [`fable_independent_2026/L143_a0z_prediction_and_tests.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L143_a0z_prediction_and_tests.py) — 1×
+- `Data/config` — [`fable_independent_2026/L241_nonlocal_kernel_verdict_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L241_nonlocal_kernel_verdict_results.json) — 1×
+- `Python script` — [`fable_independent_2026/L225_flux_power.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L225_flux_power.py) — 1×
+- `Python script` — [`fable_independent_2026/L237_the_mandel_reading.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L237_the_mandel_reading.py) — 1×
+- `Other` — [`fable_independent_2026/L225_flux_power.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L225_flux_power.out) — 1×
+- `Python script` — [`real_research/reviews/inhand_2026_07/L5_control_overlap_calibration.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/inhand_2026_07/L5_control_overlap_calibration.py) — 1×
+- `Python script` — [`fable_independent_2026/L42_what_decides.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L42_what_decides.py) — 1×
+- `Other` — [`fable_independent_2026/L241_nonlocal_kernel_verdict.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L241_nonlocal_kernel_verdict.out) — 1×
+- `Data/config` — [`fable_independent_2026/L242_efe_break_radius_law_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L242_efe_break_radius_law_results.json) — 1×
+- `Python script` — [`real_research/reviews/ghost_quasar_sdss_live_check.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/ghost_quasar_sdss_live_check.py) — 1×
+- `Markdown/notes` — [`fable_independent_2026/L18_HSE_BIAS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L18_HSE_BIAS.md) — 1×
+- `Other` — [`fable_independent_2026/L237_the_mandel_reading.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L237_the_mandel_reading.out) — 1×
+- `Other` — [`fable_independent_2026/L143_a0z_prediction_and_tests.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L143_a0z_prediction_and_tests.out) — 1×
+- `Python script` — [`real_research/reviews/mi_kappa_sensitivity_census_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_kappa_sensitivity_census_2026.py) — 1×
+- `Markdown/notes` — [`fable_independent_2026/HANDOFF_CONTRACT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/HANDOFF_CONTRACT.md) — 1×
+- `Markdown/notes` — [`book/00_front_matter.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/00_front_matter.md) — 1×
+- `Markdown/notes` — [`book/05_two_roads_from_the_fork_a_particle_or_a_.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/05_two_roads_from_the_fork_a_particle_or_a_.md) — 1×
+- `Markdown/notes` — [`book/09_an_expanding_universe_hubble_friedmann_a.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/09_an_expanding_universe_hubble_friedmann_a.md) — 1×
+- `Markdown/notes` — [`book/audiobook/11_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/11_narration.txt) — 1×
+- `Markdown/notes` — [`book/audiobook/28_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/28_narration.txt) — 1×
+- `Markdown/notes` — [`book/audiobook/29_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/29_narration.txt) — 1×
+- `Markdown/notes` — [`book/31_not_a_theory_of_everything_yet_the_hones.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/31_not_a_theory_of_everything_yet_the_hones.md) — 1×
+- `Markdown/notes` — [`book/28_the_lensing_wall_why_bending_light_stays.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/28_the_lensing_wall_why_bending_light_stays.md) — 1×
+- `Markdown/notes` — [`book/11_1998_the_universe_accelerates_and_dark_e.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/11_1998_the_universe_accelerates_and_dark_e.md) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/LCDM_INTERNAL_STRESS_AUDIT_2026-06-13.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/LCDM_INTERNAL_STRESS_AUDIT_2026-06-13.md) — 1×
+- `Markdown/notes` — [`book/29_the_cluster_residual_and_the_mond_shared.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/29_the_cluster_residual_and_the_mond_shared.md) — 1×
+- `Python script` — [`opus_48_extended_research/reviews/front_cassini/stx_dipole_vs_latest_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/front_cassini/stx_dipole_vs_latest_2026.py) — 1×
+- `Python script` — [`real_research/reviews/mi_routeA_box_clearance_verified_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_routeA_box_clearance_verified_2026.py) — 1×
+- `Other` — [`fable_independent_2026/L38_supernova_reexam.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L38_supernova_reexam.out) — 1×
+- `Python script` — [`venv_physics_analysis/lib/python3.9/site-packages/pip/_vendor/urllib3/packages/ssl_match_hostname/_implementation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/venv_physics_analysis/lib/python3.9/site-packages/pip/_vendor/urllib3/packages/ssl_match_hostname/_implementation.py) — 1×
+- `Python script` — [`real_research/reviews/alpha2_literature_forensics_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/alpha2_literature_forensics_2026.py) — 1×
+- `Python script` — [`nbody_2026/stage23_s8_confrontation_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage23_s8_confrontation_2026.py) — 1×
+- `Python script` — [`nbody_2026/stage60_btfr_discriminator_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage60_btfr_discriminator_2026.py) — 1×
+- `Python script` — [`nbody_2026/stage24_cosmic_dawn_confrontation_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage24_cosmic_dawn_confrontation_2026.py) — 1×
+- `Python script` — [`real_research/reviews/mi_aqual_mcmillan2017_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_aqual_mcmillan2017_2026.py) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/REGRADE_ROUTE3_MOND_COLUMN_AND_2026_SCHEDULE_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/REGRADE_ROUTE3_MOND_COLUMN_AND_2026_SCHEDULE_2026-06-14.md) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/PIN9_REGRADE_HOSTILE_VERIFY_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/PIN9_REGRADE_HOSTILE_VERIFY_2026-06-14.md) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/RIVALS_ROUTE4_AND_2026_RELEASE_SCHEDULE_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/RIVALS_ROUTE4_AND_2026_RELEASE_SCHEDULE_2026-06-14.md) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/papers/MONKEY_COMPRESSION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/MONKEY_COMPRESSION.md) — 1×
+- `Python script` — [`real_research/reviews/vein3_a0z_fresh_observables.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/vein3_a0z_fresh_observables.py) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/papers/RAPIDITY_GAP_MI_ACTION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/RAPIDITY_GAP_MI_ACTION.md) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/press/HYPOTHETICAL_NATURE_nature_news_feature.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/press/HYPOTHETICAL_NATURE_nature_news_feature.md) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/press/HYPOTHETICAL_NEWSCI_new_scientist.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/press/HYPOTHETICAL_NEWSCI_new_scientist.md) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/press/HYPOTHETICAL_AEON_aeon.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/press/HYPOTHETICAL_AEON_aeon.md) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/press/HYPOTHETICAL_SCIAM_scientific_american.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/press/HYPOTHETICAL_SCIAM_scientific_american.md) — 1×
+- `Python script` — [`ai_slop/ligo_stuff/ai_slop/advanced_ligo_methods.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/ligo_stuff/ai_slop/advanced_ligo_methods.py) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/press/HYPOTHETICAL_WIRED_wired.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/press/HYPOTHETICAL_WIRED_wired.md) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/papers/THE_HORIZON_FORM_OF_THE_BTFR.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/THE_HORIZON_FORM_OF_THE_BTFR.md) — 1×
+- `Python script` — [`opus_48_extended_research/reviews/gc_consequences/eft_validity_window_calc.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/gc_consequences/eft_validity_window_calc.py) — 1×
+- `Python script` — [`opus_48_extended_research/reviews/gc_consequences/dS_window_check.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/gc_consequences/dS_window_check.py) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/gc_consequences/EFT_VALIDITY_WINDOW_VERDICT_2026-06-19.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/gc_consequences/EFT_VALIDITY_WINDOW_VERDICT_2026-06-19.md) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/CMB_APEX_ANISOTROPY_FRONT_2026-06-21.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/CMB_APEX_ANISOTROPY_FRONT_2026-06-21.md) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/EMPIRICAL_PROGRAM_2026-2030_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/EMPIRICAL_PROGRAM_2026-2030_2026-06-15.md) — 1×
+- `Python script` — [`hunt_2026/h28_chae_efe_wallaby.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h28_chae_efe_wallaby.py) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/papers/CLUSTER_RESIDUAL_DENSITY_NOGO.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/CLUSTER_RESIDUAL_DENSITY_NOGO.md) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/TOE_STAGE2_CALC_VERDICT_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/TOE_STAGE2_CALC_VERDICT_2026-06-15.md) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/papers/THE_COSMOLOGICAL_CONSTANT_SETS_A0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/THE_COSMOLOGICAL_CONSTANT_SETS_A0.md) — 1×
+- `Python script` — [`real_research/reviews/koide_mechanism_audit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/koide_mechanism_audit.py) — 1×
+- `Python script` — [`venv_physics_analysis/lib/python3.9/site-packages/pip/_vendor/distlib/compat.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/venv_physics_analysis/lib/python3.9/site-packages/pip/_vendor/distlib/compat.py) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/ROUTE4_DATA_PROVENANCE_CLUSTERS_CMB_FISHY_CHECK_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/ROUTE4_DATA_PROVENANCE_CLUSTERS_CMB_FISHY_CHECK_2026-06-15.md) — 1×
+- `Python script` — [`opus_48_extended_research/reviews/sigma_predict/mi_amplitude_band.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/sigma_predict/mi_amplitude_band.py) — 1×
+- `Other` — [`hunt_2026/h75_disc_orientation_efe.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h75_disc_orientation_efe.out) — 1×
+- `Other` — [`real_research/reviews/mi_aqual_route_a_refit_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_aqual_route_a_refit_2026.out) — 1×
+- `Python script` — [`opus_48_extended_research/reviews/cluster_measurement/route_a_baryon_census.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/cluster_measurement/route_a_baryon_census.py) — 1×
+- `Markdown/notes` — [`ai_slop/olympusflow_v3_findings_claude/059_cmb_dipole_hemispherical/ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_v3_findings_claude/059_cmb_dipole_hemispherical/ANALYSIS.md) — 1×
+- `Other` — [`hunt_2026/k03_a0z_desi_curve_and_upsilon_lever.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k03_a0z_desi_curve_and_upsilon_lever.out) — 1×
+- `Python script` — [`opus_48_extended_research/reviews/wb_contamination_route4.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/wb_contamination_route4.py) — 1×
+- `Data/config` — [`prep_2026/a0z_crossscale/bao_killswitch_a0z_2026_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/bao_killswitch_a0z_2026_results.json) — 1×
+- `Python script` — [`hunt_2026/u01_common_currency_disc_lensing.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/u01_common_currency_disc_lensing.py) — 1×
+- `Markdown/notes` — [`prep_2026/a0z_crossscale/FRAMEWORK_VS_LCDM_TEST_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/FRAMEWORK_VS_LCDM_TEST_2026.md) — 1×
+- `Other` — [`hunt_2026/h39_open_cluster_tails.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h39_open_cluster_tails.out) — 1×
+- `Python script` — [`prep_2026/a0z_crossscale/a0z_lcdm_native_hypothesis_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/a0z_lcdm_native_hypothesis_2026.py) — 1×
+- `Python script` — [`prep_2026/a0z_crossscale/bao_razor_desi_forecast.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/bao_razor_desi_forecast.py) — 1×
+- `Other` — [`prep_2026/a0z_crossscale/a0z_lcdm_native_hypothesis_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/a0z_lcdm_native_hypothesis_2026.out) — 1×
+- `Python script` — [`prep_2026/a0z_crossscale/forecast_rubin_a0z.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/forecast_rubin_a0z.py) — 1×
+- `Python script` — [`real_research/reviews/mi_theta_efe_from_closure_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_theta_efe_from_closure_2026.py) — 1×
+- `Other` — [`hunt_2026/g06v_adversarial_external_field_baryon_budget.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g06v_adversarial_external_field_baryon_budget.out) — 1×
+- `Python script` — [`hy4_push/H024_evolving_dark_sector.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hy4_push/H024_evolving_dark_sector.py) — 1×
+- `Python script` — [`hy4_push/H038_dark_matter_density_profile.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hy4_push/H038_dark_matter_density_profile.py) — 1×
+- `Other` — [`hunt_2026/k04_efe_anisotropy_invariant.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k04_efe_anisotropy_invariant.out) — 1×
+- `Other` — [`hunt_2026/h85_bulk_flow_null.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h85_bulk_flow_null.out) — 1×
+- `Data/config` — [`prep_2026/a0z_crossscale/lensed_deepmond_floor_2026_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/lensed_deepmond_floor_2026_results.json) — 1×
+- `Other` — [`hy4_push/H024_results.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hy4_push/H024_results.out) — 1×
+- `Python script` — [`real_research/reviews/mi_realization_ladder_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_realization_ladder_2026.py) — 1×
+- `Markdown/notes` — [`hy4_push/H048_NEW_DOORS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hy4_push/H048_NEW_DOORS.md) — 1×
+- `Markdown/notes` — [`hy4_push/H001_CROSS_TRACK_AUDIT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hy4_push/H001_CROSS_TRACK_AUDIT.md) — 1×
+- `Python script` — [`venv_physics_analysis/lib/python3.9/site-packages/pip/_internal/resolution/resolvelib/reporter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/venv_physics_analysis/lib/python3.9/site-packages/pip/_internal/resolution/resolvelib/reporter.py) — 1×
+- `Other` — [`hunt_2026/k_high-z_gas_extent_calibration.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_high-z_gas_extent_calibration.out) — 1×
+- `Python script` — [`hunt_2026/k01_shape_only_estimators.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k01_shape_only_estimators.py) — 1×
+- `Markdown/notes` — [`prep_2026/mmu_scout/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mmu_scout/VERIFY.md) — 1×
+- `Other` — [`hunt_2026/h59b_h60b_aperture_and_selection.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h59b_h60b_aperture_and_selection.out) — 1×
+- `Other` — [`hunt_2026/h98_oort_efe_tensor.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h98_oort_efe_tensor.out) — 1×
+- `Paper` — [`ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v7.2.0.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v7.2.0.tex) — 1×
+- `Paper` — [`ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v6.0.2.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v6.0.2.tex) — 1×
+- `Paper` — [`ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v6.0.1.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v6.0.1.tex) — 1×
+- `Paper` — [`ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v8.0.0.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v8.0.0.tex) — 1×
+- `Python script` — [`hunt_2026/k_ml-free_lever_conservation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_ml-free_lever_conservation.py) — 1×
+- `Data/config` — [`ai_slop/daemon_outputs/full_660_run_20260507_163018/queue_state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/full_660_run_20260507_163018/queue_state.json) — 1×
+- `Python script` — [`hunt_2026/h59b_h60b_aperture_and_selection.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h59b_h60b_aperture_and_selection.py) — 1×
+- `Markdown/notes` — [`ai_slop/papers/CMB_LOW_ELL_ANOMALIES_T3Z2.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/CMB_LOW_ELL_ANOMALIES_T3Z2.md) — 1×
+- `Other` — [`prep_2026/dipole_mock/full_run.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/dipole_mock/full_run.log) — 1×
+- `Data/config` — [`prep_2026/dipole_mock/dipole_mock_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/dipole_mock/dipole_mock_results.json) — 1×
+- `Markdown/notes` — [`ai_slop/papers/Z2_UNIFIED_ACTION_v10.0.0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_v10.0.0.md) — 1×
+- `Python script` — [`real_research/reviews/member_sigma_efe_forecast.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/member_sigma_efe_forecast.py) — 1×
+- `Other` — [`ai_slop/papers/publish_rh_paper_to_zenodo.sh`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/publish_rh_paper_to_zenodo.sh) — 1×
+- `Python script` — [`prep_2026/manga_anisotropy/fire_anisotropy.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/fire_anisotropy.py) — 1×
+- `Other` — [`prep_2026/manga_anisotropy/fire_anisotropy.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/fire_anisotropy.out) — 1×
+- `Python script` — [`hunt_2026/k07b_calibration_lever_theorem.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k07b_calibration_lever_theorem.py) — 1×
+- `Python script` — [`real_research/reviews/growing_nu_camb_fisher.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/growing_nu_camb_fisher.py) — 1×
+- `Python script` — [`hunt_2026/k04_efe_anisotropy_invariant.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k04_efe_anisotropy_invariant.py) — 1×
+- `Markdown/notes` — [`prep_2026/kids_rar/TRIANGLE_KIDS_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/kids_rar/TRIANGLE_KIDS_2026.md) — 1×
+- `Paper` — [`ai_slop/papers/latex_series/03_cosmic_birefringence_z2_framework.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/latex_series/03_cosmic_birefringence_z2_framework.tex) — 1×
+- `Python script` — [`real_research/reviews/project12_efe_airtight_evolve.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project12_efe_airtight_evolve.py) — 1×
+- `Paper` — [`ai_slop/papers/latex_series/01_inflation_z2_framework.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/latex_series/01_inflation_z2_framework.tex) — 1×
+- `Markdown/notes` — [`ai_slop/papers/Z2_UNIFIED_ACTION_v9.5.0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_v9.5.0.md) — 1×
+- `Python script` — [`real_research/reviews/mi_route_a_efe_dipole_resolve_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_route_a_efe_dipole_resolve_2026.py) — 1×
+- `Python script` — [`real_research/reviews/project17b_target_list.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project17b_target_list.py) — 1×
+- `Other` — [`hunt_2026/k01_shape_only_estimators.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k01_shape_only_estimators.out) — 1×
+- `Other` — [`hunt_2026/k04_inversion_upsilon_amplifier.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k04_inversion_upsilon_amplifier.out) — 1×
+- `Python script` — [`real_research/reviews/project_sparc_a0_vs_cosmicweb.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project_sparc_a0_vs_cosmicweb.py) — 1×
+- `Python script` — [`hunt_2026/g06_local_volume_groups_lambda_edge.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g06_local_volume_groups_lambda_edge.py) — 1×
+- `Markdown/notes` — [`ai_slop/papers/Z2_UNIFIED_ACTION_NATURE_DRAFT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_NATURE_DRAFT.md) — 1×
+- `Other` — [`prep_2026/wallaby_prep/run_census.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/wallaby_prep/run_census.out) — 1×
+- `Markdown/notes` — [`prep_2026/sarkar_lecture_doors/OPEN_DOORS_SARKAR_2026-07-17.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sarkar_lecture_doors/OPEN_DOORS_SARKAR_2026-07-17.md) — 1×
+- `Other` — [`prep_2026/cluster_efe_channel/verify.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_channel/verify.out) — 1×
+- `Data/config` — [`ai_slop/daemon_outputs/derivations/sound_horizon_at_recombination_result.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/derivations/sound_horizon_at_recombination_result.json) — 1×
+- `Paper` — [`ai_slop/papers/Z2_UNIFIED_ACTION_v10.0.0.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_v10.0.0.tex) — 1×
+- `Python script` — [`hunt_2026/k03_efe_ending_radius.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k03_efe_ending_radius.py) — 1×
+- `Data/config` — [`ai_slop/extended_research/environmental/project_nephele/data/results/mars_deep_analysis.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/environmental/project_nephele/data/results/mars_deep_analysis.json) — 1×
+- `Python script` — [`prep_2026/cluster_efe_data_scout/inventory_manga.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_data_scout/inventory_manga.py) — 1×
+- `Data/config` — [`ai_slop/extended_research/environmental/project_nephele/data/results/exoplanet_omega_z_survey.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/environmental/project_nephele/data/results/exoplanet_omega_z_survey.json) — 1×
+- `Other` — [`prep_2026/cluster_efe_data_scout/overlap_power.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_data_scout/overlap_power.out) — 1×
+- `Markdown/notes` — [`prep_2026/cluster_efe_data_scout/OVERLAP_POWER.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/cluster_efe_data_scout/OVERLAP_POWER.md) — 1×
+- `Paper` — [`ai_slop/papers/Z2_UNIFIED_ACTION_v11.1.0.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_v11.1.0.tex) — 1×
+- `Markdown/notes` — [`ai_slop/papers/RH_Symmetry_Identity_Gap_Zenodo/PAPER_RH_SYMMETRY_IDENTITY_GAP.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/RH_Symmetry_Identity_Gap_Zenodo/PAPER_RH_SYMMETRY_IDENTITY_GAP.md) — 1×
+- `Python script` — [`prep_2026/a0_line/cosmic_web_environment.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line/cosmic_web_environment.py) — 1×
+- `Python script` — [`ai_slop/extended_research/environmental/project_nephele/simulations/mars_deep_analysis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/environmental/project_nephele/simulations/mars_deep_analysis.py) — 1×
+- `Markdown/notes` — [`ai_slop/papers/RH_Symmetry_Identity_Gap_Zenodo/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/RH_Symmetry_Identity_Gap_Zenodo/README.md) — 1×
+- `Python script` — [`prep_2026/a0_line/reach_target.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line/reach_target.py) — 1×
+- `Data/config` — [`prep_2026/a0_line/reach_target_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line/reach_target_results.json) — 1×
+- `Markdown/notes` — [`hunt_2026/WHAT_THE_HUNT_TAUGHT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/WHAT_THE_HUNT_TAUGHT.md) — 1×
+- `Python script` — [`hunt_2026/h39_open_cluster_tails.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h39_open_cluster_tails.py) — 1×
+- `Python script` — [`hunt_2026/h98_oort_efe_tensor.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h98_oort_efe_tensor.py) — 1×
+- `Other` — [`real_research/reviews/mi_theta_efe_from_closure_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_theta_efe_from_closure_2026.out) — 1×
+- `Other` — [`hunt_2026/k_kernel-shape_alphawb.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_kernel-shape_alphawb.out) — 1×
+- `Other` — [`hunt_2026/u01_common_currency_disc_lensing.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/u01_common_currency_disc_lensing.out) — 1×
+- `Python script` — [`hunt_2026/k03_gmc_efe_saturation_law.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k03_gmc_efe_saturation_law.py) — 1×
+- `Python script` — [`real_research/reviews/efe_evolution_forecast.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/efe_evolution_forecast.py) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/REPORT.md) — 1×
+- `Python script` — [`real_research/reviews/project_a0z_muse_test.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project_a0z_muse_test.py) — 1×
+- `Python script` — [`hunt_2026/h75_disc_orientation_efe.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h75_disc_orientation_efe.py) — 1×
+- `Other` — [`hunt_2026/k_ml-free_lever_conservation.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_ml-free_lever_conservation.out) — 1×
+- `Other` — [`hunt_2026/h1_h66_h2_h65_lensing.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h1_h66_h2_h65_lensing.out) — 1×
+- `Data/config` — [`prep_2026/highz_tfr_fork/data_ledger.csv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/highz_tfr_fork/data_ledger.csv) — 1×
+- `Python script` — [`real_research/reviews/mi_aqual_route_a_refit_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_aqual_route_a_refit_2026.py) — 1×
+- `Python script` — [`hunt_2026/k03_a0z_desi_curve_and_upsilon_lever.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k03_a0z_desi_curve_and_upsilon_lever.py) — 1×
+- `Python script` — [`hunt_2026/h52_fundamental_plane.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h52_fundamental_plane.py) — 1×
+- `Python script` — [`hunt_2026/h1_h66_h2_h65_lensing.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h1_h66_h2_h65_lensing.py) — 1×
+- `Python script` — [`real_research/reviews/residual_doors_2026_07/D3_discrimination_detectability.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/residual_doors_2026_07/D3_discrimination_detectability.py) — 1×
+- `Other` — [`hunt_2026/h71_saddle_point.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h71_saddle_point.out) — 1×
+- `Python script` — [`prep_2026/sigma_spread/power_analysis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sigma_spread/power_analysis.py) — 1×
+- `Markdown/notes` — [`prep_2026/sigma_spread/POWER_cluster_efe_channel.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sigma_spread/POWER_cluster_efe_channel.md) — 1×
+- `Other` — [`prep_2026/sigma_spread/power_analysis.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sigma_spread/power_analysis.out) — 1×
+- `Python script` — [`prep_2026/sigma_spread/mg_zero.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sigma_spread/mg_zero.py) — 1×
+- `Other` — [`prep_2026/sigma_spread/rederive_spread_and_power.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sigma_spread/rederive_spread_and_power.out) — 1×
+- `Data/config` — [`ai_slop/daemon_outputs/full_660_run_20260507_151319/queue_state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/full_660_run_20260507_151319/queue_state.json) — 1×
+- `Python script` — [`prep_2026/sne_lambda/linkedin_card.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sne_lambda/linkedin_card.py) — 1×
+- `Other` — [`prep_2026/sne_lambda/pantheonplus_full.dat`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sne_lambda/pantheonplus_full.dat) — 1×
+- `Data/config` — [`ai_slop/daemon_outputs/queue_state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/queue_state.json) — 1×
+- `Markdown/notes` — [`prep_2026/journal_submissions/kit_jcap/INSTRUCTIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/journal_submissions/kit_jcap/INSTRUCTIONS.md) — 1×
+- `Paper` — [`prep_2026/journal_submissions/kit_jcap/manuscript.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/journal_submissions/kit_jcap/manuscript.tex) — 1×
+- `Markdown/notes` — [`prep_2026/journal_submissions/SUBMIT_JCAP.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/journal_submissions/SUBMIT_JCAP.md) — 1×
+- `Markdown/notes` — [`prep_2026/journal_submissions/kit_mnras/INSTRUCTIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/journal_submissions/kit_mnras/INSTRUCTIONS.md) — 1×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentH4_hostile_walls.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentH4_hostile_walls.md) — 1×
+- `Markdown/notes` — [`ai_slop/CylleneFlow/experiments/venice_10iter/FULL_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/CylleneFlow/experiments/venice_10iter/FULL_ANALYSIS.md) — 1×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentII_cmb_slip_audit.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentII_cmb_slip_audit.md) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/experimental_api.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/experimental_api.py) — 1×
+- `Data/config` — [`ai_slop/AlpheusFlow/queue_state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/AlpheusFlow/queue_state.json) — 1×
+- `Markdown/notes` — [`ai_slop/non-peer-review/maldacena/Maldacena_Cross_Review.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/maldacena/Maldacena_Cross_Review.md) — 1×
+- `Markdown/notes` — [`ai_slop/non-peer-review/verlinde/HONESTY_ASSESSMENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/verlinde/HONESTY_ASSESSMENT.md) — 1×
+- `Markdown/notes` — [`ai_slop/non-peer-review/verlinde/KEY_FINDINGS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/verlinde/KEY_FINDINGS.md) — 1×
+- `Markdown/notes` — [`ai_slop/non-peer-review/WHAT_WE_LEARNED.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/WHAT_WE_LEARNED.md) — 1×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/SCIENTIFIC_AMERICAN_article_draft.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/SCIENTIFIC_AMERICAN_article_draft.md) — 1×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/SCIENCE_article_draft.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/SCIENCE_article_draft.md) — 1×
+- `Markdown/notes` — [`ai_slop/curiosities_and_culture/HOW_FAR_WEVE_COME_Z2_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/HOW_FAR_WEVE_COME_Z2_ANALYSIS.md) — 1×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/NATURE_PHYSICS_article_draft.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/NATURE_PHYSICS_article_draft.md) — 1×
+- `Python script` — [`real_research/reviews/mi_state_clause/gauntlet4_gates.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_state_clause/gauntlet4_gates.py) — 1×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/DESI_Tension_Z2_Framework_Article.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/DESI_Tension_Z2_Framework_Article.md) — 1×
+- `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/Z2_Framework_Science_Article.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/Z2_Framework_Science_Article.md) — 1×
+- `Markdown/notes` — [`ai_slop/non-peer-review/penrose/Penrose_Cross_Review.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/penrose/Penrose_Cross_Review.md) — 1×
+- `Python script` — [`real_research/reviews/member_MI_nonadiabatic_plunge.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/member_MI_nonadiabatic_plunge.py) — 1×
+- `Python script` — [`real_research/reviews/sigma_spread_survey_forecast.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/sigma_spread_survey_forecast.py) — 1×
+- `Markdown/notes` — [`ai_slop/curiosities_and_culture/ancient_cultures/telesterion/TELESTERION_FIRST_PRINCIPLES_SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/ancient_cultures/telesterion/TELESTERION_FIRST_PRINCIPLES_SYNTHESIS.md) — 1×
+- `Markdown/notes` — [`ai_slop/curiosities_and_culture/ancient_cultures/HUMANITYS_GEOMETRIC_INTUITION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/ancient_cultures/HUMANITYS_GEOMETRIC_INTUITION.md) — 1×
+- `HTML` — [`ai_slop/curiosities_and_culture/ancient_cultures/HUMANITYS_GEOMETRIC_INTUITION.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/ancient_cultures/HUMANITYS_GEOMETRIC_INTUITION.html) — 1×
+- `Python script` — [`ai_slop/HermesFlow/truth_knowledge_graph.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/truth_knowledge_graph.py) — 1×
+- `Other` — [`real_research/reviews/mi_route_a_efe_dipole_resolve_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_route_a_efe_dipole_resolve_2026.out) — 1×
+- `Python script` — [`real_research/reviews/mi_sigma_spread_aext_scan_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_sigma_spread_aext_scan_2026.py) — 1×
+- `Markdown/notes` — [`real_research/reviews/lensing_rar/agentK_remeasure_errors.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/agentK_remeasure_errors.md) — 1×
+- `Python script` — [`real_research/reviews/lensing_rar/agentZ_second_variable.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/agentZ_second_variable.py) — 1×
+- `Markdown/notes` — [`real_research/reviews/lensing_rar/A0Z_LENSING_ZBIN_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/A0Z_LENSING_ZBIN_2026.md) — 1×
+- `Python script` — [`real_research/reviews/lensing_rar/agentK_jackknife_stack.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/agentK_jackknife_stack.py) — 1×
+- `Data/config` — [`ai_slop/TruthFlow/fetched_papers/hierarchy_20260503_182815.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/fetched_papers/hierarchy_20260503_182815.json) — 1×
+- `Python script` — [`ai_slop/TruthFlow/02_parser/extract_empirical.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/02_parser/extract_empirical.py) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/HRM_METHODOLOGY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/HRM_METHODOLOGY.md) — 1×
+- `Data/config` — [`ai_slop/TruthFlow/extracted_data/all_extractions.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/extracted_data/all_extractions.json) — 1×
+- `Markdown/notes` — [`ai_slop/examples/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/examples/README.md) — 1×
+- `Markdown/notes` — [`real_research/reviews/no_dm_roads_2026/lane3_landscape.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/no_dm_roads_2026/lane3_landscape.md) — 1×
+- `Python script` — [`real_research/reviews/project_routes_to_sign.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project_routes_to_sign.py) — 1×
+- `Data/config` — [`ai_slop/examples/04_hubble_tension/data/h0_measurements.csv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/examples/04_hubble_tension/data/h0_measurements.csv) — 1×
+- `Python script` — [`real_research/reviews/quasar_ghost_custom.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/quasar_ghost_custom.py) — 1×
+- `Python script` — [`real_research/reviews/project18_efe_vs_z_campaign.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project18_efe_vs_z_campaign.py) — 1×
+- `Other` — [`qwen_claude_field_theory/closure_2026/supernova_reaudit_2026/release.dat`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/supernova_reaudit_2026/release.dat) — 1×
+- `Python script` — [`real_research/predictions/ground_highz_btfr_realdata.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/predictions/ground_highz_btfr_realdata.py) — 1×
+- `Python script` — [`real_research/predictions/highz_btfr_fork_test.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/predictions/highz_btfr_fork_test.py) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/humanizer/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/humanizer/SKILL.md) — 1×
+- `Data/config` — [`real_research/data/prg_huchtmeier1997_derived_table2.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/prg_huchtmeier1997_derived_table2.tsv) — 1×
+- `Data/config` — [`real_research/data/sluggs_forbes2017_galaxies.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/sluggs_forbes2017_galaxies.tsv) — 1×
+- `Data/config` — [`real_research/data/diskmass_bershady2010_sample.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/diskmass_bershady2010_sample.tsv) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/manim-video/references/paper-explainer.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/manim-video/references/paper-explainer.md) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/humanizer/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/humanizer/SKILL.md) — 1×
+- `Paper` — [`paper/dark_universe_bridge.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/paper/dark_universe_bridge.tex) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/manim-video/references/paper-explainer.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/manim-video/references/paper-explainer.md) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/flows/hermes/truth_knowledge_graph.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/hermes/truth_knowledge_graph.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/flows/truth/02_parser/extract_empirical.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/truth/02_parser/extract_empirical.py) — 1×
+- `Python script` — [`ai_slop/TruthFlow/hermes_agent/tests/run_agent/test_review_prompt_class_first.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/tests/run_agent/test_review_prompt_class_first.py) — 1×
+- `Paper` — [`ai_slop/manuscript/v8.2.0/zimmerman_formula_v8.8.0.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/manuscript/v8.2.0/zimmerman_formula_v8.8.0.tex) — 1×
+- `Paper` — [`ai_slop/manuscript/v8.2.0/zimmerman_formula_v8.5.0.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/manuscript/v8.2.0/zimmerman_formula_v8.5.0.tex) — 1×
+- `Paper` — [`ai_slop/manuscript/v8.2.0/zimmerman_formula_v8.7.0.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/manuscript/v8.2.0/zimmerman_formula_v8.7.0.tex) — 1×
+- `Paper` — [`ai_slop/manuscript/v8.2.0/zimmerman_formula_v8.8.8.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/manuscript/v8.2.0/zimmerman_formula_v8.8.8.tex) — 1×
+- `Paper` — [`ai_slop/manuscript/v8.2.0/zimmerman_formula_v8.6.0.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/manuscript/v8.2.0/zimmerman_formula_v8.6.0.tex) — 1×
+- `Paper` — [`ai_slop/manuscript/v8.2.0/zimmerman_formula_v8.2.4.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/manuscript/v8.2.0/zimmerman_formula_v8.2.4.tex) — 1×
+- `Paper` — [`ai_slop/manuscript/v8.2.0/zimmerman_formula_v8.4.0.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/manuscript/v8.2.0/zimmerman_formula_v8.4.0.tex) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/prediction_generator.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/prediction_generator.py) — 1×
+- `Python script` — [`ai_slop/research/offensive_campaign/proper_parity_odd_4pcf_analysis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/proper_parity_odd_4pcf_analysis.py) — 1×
+- `Data/config` — [`ai_slop/research/offensive_campaign/dark_flow_data.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/dark_flow_data.json) — 1×
+- `Markdown/notes` — [`ai_slop/research/offensive_campaign/GHOST_QUASAR_INVESTIGATION_REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/GHOST_QUASAR_INVESTIGATION_REPORT.md) — 1×
+- `Python script` — [`ai_slop/research/offensive_campaign/void_catalog_fetcher.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/void_catalog_fetcher.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/offensive_campaign/GEMINI_BRIEFING_MAY26_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/GEMINI_BRIEFING_MAY26_2026.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/offensive_campaign/GEMINI_BRIEFING_MAY24_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/GEMINI_BRIEFING_MAY24_2026.md) — 1×
+- `Python script` — [`ai_slop/research/offensive_campaign/WORK_ORDER_V_ghost_quasar_ingestion.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/WORK_ORDER_V_ghost_quasar_ingestion.py) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/software-development/hermes-agent-skill-authoring/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/software-development/hermes-agent-skill-authoring/SKILL.md) — 1×
+- `Python script` — [`ai_slop/HermesFlow/hermes_agent/tests/run_agent/test_review_prompt_class_first.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/tests/run_agent/test_review_prompt_class_first.py) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/acl/acl_natbib.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/acl/acl_natbib.bst) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/iclr2026_conference.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/iclr2026_conference.bst) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.bst) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/icml2026/icml2026.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/icml2026/icml2026.bst) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/colm2025/colm2025_conference.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/colm2025/colm2025_conference.bst) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/references/human-evaluation.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/references/human-evaluation.md) — 1×
+- `Data/config` — [`real_research/data/fp_6dfgs_campbell2014.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/fp_6dfgs_campbell2014.tsv) — 1×
+- `Data/config` — [`real_research/data/diskmass_swaters2025_dmsXI.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/diskmass_swaters2025_dmsXI.tsv) — 1×
+- `Python script` — [`real_research/data/_load_erass1.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/_load_erass1.py) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/software-development/hermes-agent-skill-authoring/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/software-development/hermes-agent-skill-authoring/SKILL.md) — 1×
+- `Data/config` — [`real_research/data/prg_huchtmeier1997_hi_table1.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/prg_huchtmeier1997_hi_table1.tsv) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/acl/acl_natbib.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/acl/acl_natbib.bst) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/iclr2026_conference.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/iclr2026_conference.bst) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.bst) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/icml2026/icml2026.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/icml2026/icml2026.bst) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/colm2025/colm2025_conference.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/colm2025/colm2025_conference.bst) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/references/human-evaluation.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/references/human-evaluation.md) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/HERMES_TRUTH_ENGINE_ARCHITECTURE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/HERMES_TRUTH_ENGINE_ARCHITECTURE.md) — 1×
+- `Data/config` — [`ai_slop/HermesFlow/model_comparison_output/model_comparison_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/model_comparison_output/model_comparison_results.json) — 1×
+- `Data/config` — [`qwen_claude_field_theory/closure_2026/kgb_nonaffine_clock_2026/cosmology/run_002/manifest.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/kgb_nonaffine_clock_2026/cosmology/run_002/manifest.json) — 1×
+- `Data/config` — [`qwen_claude_field_theory/closure_2026/kgb_nonaffine_clock_2026/cosmology/run_001/manifest.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/kgb_nonaffine_clock_2026/cosmology/run_001/manifest.json) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/kgb_nonaffine_clock_2026/cosmology/SOURCES.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/kgb_nonaffine_clock_2026/cosmology/SOURCES.md) — 1×
+- `Data/config` — [`qwen_claude_field_theory/closure_2026/kgb_nonaffine_clock_2026/cosmology/audit_contract.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/kgb_nonaffine_clock_2026/cosmology/audit_contract.json) — 1×
+- `Data/config` — [`ai_slop/research/offensive_campaign/jwst_mond_lensing.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/jwst_mond_lensing.json) — 1×
+- `Markdown/notes` — [`real_research/data/msa3d_2026_rotation_curves.provenance.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/msa3d_2026_rotation_curves.provenance.txt) — 1×
+- `Python script` — [`ai_slop/research/offensive_campaign/cosmos_web_lensing.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/cosmos_web_lensing.py) — 1×
+- `Python script` — [`ai_slop/research/offensive_campaign/desi_full_ingest.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/desi_full_ingest.py) — 1×
+- `Data/config` — [`real_research/data/sluggs_forbes2017_gcvel.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/sluggs_forbes2017_gcvel.tsv) — 1×
+- `Markdown/notes` — [`ai_slop/research/offensive_campaign/PARITY_ODD_4PCF_RESULTS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/PARITY_ODD_4PCF_RESULTS.md) — 1×
+- `Data/config` — [`ai_slop/research/offensive_campaign/cosmic_void_catalog.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/cosmic_void_catalog.json) — 1×
+- `Data/config` — [`real_research/data/2mrs_huchra2012.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/2mrs_huchra2012.tsv) — 1×
+- `Markdown/notes` — [`ai_slop/research/offensive_campaign/DATA_INTEGRITY_AUDIT_MAY26.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/DATA_INTEGRITY_AUDIT_MAY26.md) — 1×
+- `Markdown/notes` — [`real_research/data/lensing_rar/brouwer2021_rar_README.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/lensing_rar/brouwer2021_rar_README.txt) — 1×
+- `Markdown/notes` — [`real_research/data/lensing_rar/brouwer2021_rar/README.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/lensing_rar/brouwer2021_rar/README.txt) — 1×
+- `Python script` — [`ai_slop/research/predictions/02_DESI_STRUCTURE_GROWTH.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/predictions/02_DESI_STRUCTURE_GROWTH.py) — 1×
+- `Python script` — [`ai_slop/research/predictions/04_JUNO_NEUTRINOS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/predictions/04_JUNO_NEUTRINOS.py) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026_final/15_structure/structure_formation.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026_final/15_structure/structure_formation.md) — 1×
+- `Python script` — [`ai_slop/research/predictions/08_CMB_NEUTRINO_MASS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/predictions/08_CMB_NEUTRINO_MASS.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/predictions/PREDICTIONS_2026_2027.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/predictions/PREDICTIONS_2026_2027.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/proof_attempt/COMPLETE_SUMMARY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/COMPLETE_SUMMARY.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/proof_attempt/PAPER_RH_SYMMETRY_IDENTITY_GAP.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/PAPER_RH_SYMMETRY_IDENTITY_GAP.md) — 1×
+- `Markdown/notes` — [`real_research/PROGRAM_20_FINDINGS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/PROGRAM_20_FINDINGS.md) — 1×
+- `Python script` — [`real_research/snia_massstep_acceleration_test.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/snia_massstep_acceleration_test.py) — 1×
+- `Markdown/notes` — [`real_research/THREE_DOORS_EXHAUSTION_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/THREE_DOORS_EXHAUSTION_2026-06.md) — 1×
+- `Markdown/notes` — [`real_research/WEB_SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/WEB_SYNTHESIS.md) — 1×
+- `Markdown/notes` — [`real_research/A0Z_OPEN_DOORS_AND_LENSING_FORECAST_2026-06-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/A0Z_OPEN_DOORS_AND_LENSING_FORECAST_2026-06-06.md) — 1×
+- `Markdown/notes` — [`real_research/ROUTES_TO_THE_DEEPMOND_SIGN.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/ROUTES_TO_THE_DEEPMOND_SIGN.md) — 1×
+- `Markdown/notes` — [`real_research/FRONTIER_CALCS_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/FRONTIER_CALCS_2026-06.md) — 1×
+- `Markdown/notes` — [`real_research/OPEN_DOORS_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/OPEN_DOORS_2026-06.md) — 1×
+- `Markdown/notes` — [`real_research/SPONTANEOUS_RADIATION_AND_A0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/SPONTANEOUS_RADIATION_AND_A0.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/proof_attempt/COMPREHENSIVE_RH_ASSESSMENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/COMPREHENSIVE_RH_ASSESSMENT.md) — 1×
+- `Markdown/notes` — [`real_research/data_watch/log/2026-08-13.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data_watch/log/2026-08-13.md) — 1×
+- `Markdown/notes` — [`real_research/data_watch/log/2026-06-24.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data_watch/log/2026-06-24.md) — 1×
+- `Markdown/notes` — [`real_research/data_watch/log/2026-06-22.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data_watch/log/2026-06-22.md) — 1×
+- `Markdown/notes` — [`real_research/data_watch/log/2026-06-23.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data_watch/log/2026-06-23.md) — 1×
+- `Markdown/notes` — [`real_research/data_watch/log/2026-07-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data_watch/log/2026-07-06.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/proof_attempt/PROOF_SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/PROOF_SYNTHESIS.md) — 1×
+- `Markdown/notes` — [`real_research/data_watch/log/2026-07-23.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data_watch/log/2026-07-23.md) — 1×
+- `Markdown/notes` — [`real_research/TESTABLE_PREDICTIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/TESTABLE_PREDICTIONS.md) — 1×
+- `Markdown/notes` — [`real_research/COSMOGONY_DOORS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/COSMOGONY_DOORS.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/PEER_REVIEW_RESPONSE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/PEER_REVIEW_RESPONSE.md) — 1×
+- `Markdown/notes` — [`real_research/PROVE_WITH_EXISTING_DATA_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/PROVE_WITH_EXISTING_DATA_2026-06.md) — 1×
+- `Markdown/notes` — [`real_research/INSTITUTIONS_LAST3MO_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/INSTITUTIONS_LAST3MO_2026-06.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/DAEMON_VS_DEEP_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/DAEMON_VS_DEEP_ANALYSIS.md) — 1×
+- `Markdown/notes` — [`real_research/RESEARCH_ROADMAP_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/RESEARCH_ROADMAP_2026-06.md) — 1×
+- `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/run_agent/test_review_prompt_class_first.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/run_agent/test_review_prompt_class_first.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/TESTABILITY_ANALYSIS_100_THEORIES.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/TESTABILITY_ANALYSIS_100_THEORIES.md) — 1×
+- `Data/config` — [`real_research/papers/MI_SIGMA_SPREAD_2026.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_SIGMA_SPREAD_2026.zenodo.json) — 1×
+- `Python script` — [`ai_slop/research/unified_theory/zimmerman_unified_theory.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unified_theory/zimmerman_unified_theory.py) — 1×
+- `Markdown/notes` — [`real_research/papers/TRIANGLE_KIDS_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/TRIANGLE_KIDS_2026.md) — 1×
+- `Markdown/notes` — [`real_research/papers/RESIDUAL_DOORS_ERRATUM_D3_2026-07-17.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/RESIDUAL_DOORS_ERRATUM_D3_2026-07-17.md) — 1×
+- `Python script` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/run_agent/test_review_prompt_class_first.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/run_agent/test_review_prompt_class_first.py) — 1×
+- `Markdown/notes` — [`real_research/papers/RESIDUAL_DOORS_COMPUTED_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/RESIDUAL_DOORS_COMPUTED_2026.md) — 1×
+- `Paper` — [`real_research/papers/TRIANGLE_KIDS_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/TRIANGLE_KIDS_2026.tex) — 1×
+- `Markdown/notes` — [`ai_slop/research/NEUTRINO_MASS_DERIVATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/NEUTRINO_MASS_DERIVATION.md) — 1×
+- `Markdown/notes` — [`real_research/papers/A0Z_NONMONOTONIC_DISCRIMINANT_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/A0Z_NONMONOTONIC_DISCRIMINANT_2026.md) — 1×
+- `Markdown/notes` — [`real_research/papers/POSITION_WHITEPAPER_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/POSITION_WHITEPAPER_2026.md) — 1×
+- `Markdown/notes` — [`real_research/FRAMEWORK_RESEARCH_PROGRAM_20.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/FRAMEWORK_RESEARCH_PROGRAM_20.md) — 1×
+- `Paper` — [`real_research/z3_a0_Measurement_Proposal_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/z3_a0_Measurement_Proposal_2026.tex) — 1×
+- `Data/config` — [`qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/run_001/manifest.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/run_001/manifest.json) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/SOURCES.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/SOURCES.md) — 1×
+- `Data/config` — [`qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/audit_contract.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/extension/audit_contract.json) — 1×
+- `Markdown/notes` — [`real_research/A0Z_KERNEL_STANDING_2026-06-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/A0Z_KERNEL_STANDING_2026-06-06.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/frb_analysis/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/frb_analysis/README.md) — 1×
+- `Python script` — [`real_research/kappa_gas_dominated_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/kappa_gas_dominated_2026.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/dynamical_framework/observational_fits.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamical_framework/observational_fits.md) — 1×
+- `Python script` — [`real_research/a0z_snia_systematics_forks.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/a0z_snia_systematics_forks.py) — 1×
+- `Other` — [`real_research/data_cache/PantheonPlusSH0ES.dat`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data_cache/PantheonPlusSH0ES.dat) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/clock_response_repair_2026/mond_braiding_completion/SOURCE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/clock_response_repair_2026/mond_braiding_completion/SOURCE.md) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/sweep/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/kgb_joint_tangency_2026/sweep/README.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/dynamical_framework/GAP_DERIVATIONS_SUMMARY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamical_framework/GAP_DERIVATIONS_SUMMARY.md) — 1×
+- `Markdown/notes` — [`real_research/DARK_MATTER_FROM_TOWER_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/DARK_MATTER_FROM_TOWER_2026-06.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/dynamical_framework/TENSOR_SCALAR_RATIO_DERIVATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamical_framework/TENSOR_SCALAR_RATIO_DERIVATION.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/dynamical_framework/DARK_ENERGY_W_DERIVATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamical_framework/DARK_ENERGY_W_DERIVATION.md) — 1×
+- `Python script` — [`ai_slop/research/gap_computations/dark_energy_w_analysis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/gap_computations/dark_energy_w_analysis.py) — 1×
+- `Python script` — [`qwen_36_experiment/03_kubo_program/tn06_phase15_falsification.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/03_kubo_program/tn06_phase15_falsification.py) — 1×
+- `Paper` — [`ai_slop/research/latex_papers/jades_kinematic_analysis.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/latex_papers/jades_kinematic_analysis.tex) — 1×
+- `Data/config` — [`qwen_36_experiment/03_kubo_program/phase15_falsification_report.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/03_kubo_program/phase15_falsification_report.json) — 1×
+- `Markdown/notes` — [`qwen_36_experiment/RESEARCH_LOG.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/RESEARCH_LOG.md) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/creative/humanizer/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/creative/humanizer/SKILL.md) — 1×
+- `Markdown/notes` — [`qwen_36_experiment/opus_orchestrator_oracle/DOORS_INDEX.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/opus_orchestrator_oracle/DOORS_INDEX.md) — 1×
+- `Markdown/notes` — [`qwen_36_experiment/opus_orchestrator_oracle/DOORS/G3_sme_lorentz_bridge.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/opus_orchestrator_oracle/DOORS/G3_sme_lorentz_bridge.md) — 1×
+- `Markdown/notes` — [`qwen_36_experiment/opus_orchestrator_oracle/DOORS/G1_koide_relation.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/opus_orchestrator_oracle/DOORS/G1_koide_relation.md) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/creative/manim-video/references/paper-explainer.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/creative/manim-video/references/paper-explainer.md) — 1×
+- `Markdown/notes` — [`qwen_36_experiment/opus_orchestrator_oracle/DOORS/G4_number_field_obstruction.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/opus_orchestrator_oracle/DOORS/G4_number_field_obstruction.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/GAP_ANALYSIS_v1.2.1.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/GAP_ANALYSIS_v1.2.1.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/100_EMPIRICAL_TARGETS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/100_EMPIRICAL_TARGETS.md) — 1×
+- `Markdown/notes` — [`qwen_36_experiment/opus_orchestrator_oracle/TASKS/QUEUE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/opus_orchestrator_oracle/TASKS/QUEUE.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/digital_twin/GHOST_HUNTER_SUMMARY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/digital_twin/GHOST_HUNTER_SUMMARY.md) — 1×
+- `Markdown/notes` — [`ai_slop/extended_research/biotech/BIOTECH_PEER_REVIEW.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/BIOTECH_PEER_REVIEW.md) — 1×
+- `Data/config` — [`glm53_push/G003_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G003_results.json) — 1×
+- `Other` — [`glm53_push/G020_s8_growth_gate.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G020_s8_growth_gate.out) — 1×
+- `Python script` — [`glm53_push/G003_halo_is_the_phantom.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G003_halo_is_the_phantom.py) — 1×
+- `Python script` — [`glm53_push/G020_s8_growth_gate.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G020_s8_growth_gate.py) — 1×
+- `Other` — [`glm53_push/G003_halo_is_the_phantom.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G003_halo_is_the_phantom.out) — 1×
+- `Other` — [`glm53_push/G044_corpus_extension.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G044_corpus_extension.out) — 1×
+- `Python script` — [`ai_slop/research/foundations/testable_predictions.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/testable_predictions.py) — 1×
+- `Other` — [`glm53_push/G023_growth_profile.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G023_growth_profile.out) — 1×
+- `Data/config` — [`glm53_push/G044_corpus_extension.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G044_corpus_extension.json) — 1×
+- `Python script` — [`qwen_claude_field_theory/closure_2026/sf38_lensing_tolerance_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/sf38_lensing_tolerance_2026.py) — 1×
+- `Python script` — [`glm53_push/G023_growth_profile.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G023_growth_profile.py) — 1×
+- `Python script` — [`glm53_push/G057_sag_parameter_sweep.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G057_sag_parameter_sweep.py) — 1×
+- `Data/config` — [`ai_slop/research/validation_engine/validation_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/validation_engine/validation_results.json) — 1×
+- `Markdown/notes` — [`ai_slop/research/RH_HARPER_FRAMEWORK_COMPLETE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_HARPER_FRAMEWORK_COMPLETE.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/validation_engine/COMPUTATIONAL_VALIDATION_LEDGER.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/validation_engine/COMPUTATIONAL_VALIDATION_LEDGER.md) — 1×
+- `Data/config` — [`ai_slop/research/validation_engine/targets.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/validation_engine/targets.json) — 1×
+- `Markdown/notes` — [`ai_slop/research/DEEP_DIVE_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/DEEP_DIVE_ANALYSIS.md) — 1×
+- `Python script` — [`ai_slop/research/cf4_audit/observer_coordinate_verification.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/cf4_audit/observer_coordinate_verification.py) — 1×
+- `Python script` — [`ai_slop/research/interstellar_objects/interstellar_objects_data.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/interstellar_objects/interstellar_objects_data.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/TELESTERION_FIRST_PRINCIPLES_SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/TELESTERION_FIRST_PRINCIPLES_SYNTHESIS.md) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/software-development/hermes-agent-skill-authoring/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/software-development/hermes-agent-skill-authoring/SKILL.md) — 1×
+- `Python script` — [`ai_slop/research/verify_fourth_relationship.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/verify_fourth_relationship.py) — 1×
+- `Python script` — [`ai_slop/research/NEXT_FRONTIERS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/NEXT_FRONTIERS.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/LSST_PREDICTIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/LSST_PREDICTIONS.md) — 1×
+- `Python script` — [`ai_slop/research/desi_audit/rsd_growth_deficit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/desi_audit/rsd_growth_deficit.py) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/kgb_universal_clock_2026/latest_review/SOURCES.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/kgb_universal_clock_2026/latest_review/SOURCES.md) — 1×
+- `Python script` — [`ai_slop/research/desi_audit/ai_slop/cleaned_pipeline_EFG.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/desi_audit/ai_slop/cleaned_pipeline_EFG.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/desi_audit/ai_slop/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/desi_audit/ai_slop/README.md) — 1×
+- `Python script` — [`ai_slop/research/RH_HARPER_DEEP_DIVE.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RH_HARPER_DEEP_DIVE.py) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/acl/acl_natbib.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/acl/acl_natbib.bst) — 1×
+- `Markdown/notes` — [`ai_slop/research/desi_audit/HONEST_ASSESSMENT_SUMMARY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/desi_audit/HONEST_ASSESSMENT_SUMMARY.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/Z2_MOND_COSMOLOGY_INTEGRATED.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/Z2_MOND_COSMOLOGY_INTEGRATED.md) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/iclr2026_conference.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/iclr2026_conference.bst) — 1×
+- `Python script` — [`ai_slop/research/neutrinos/NEUTRINO_MASS_DERIVATION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/neutrinos/NEUTRINO_MASS_DERIVATION.py) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.bst) — 1×
+- `Markdown/notes` — [`ai_slop/research/z2_mond_predictions/UPCOMING_KINEMATIC_PREDICTIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/z2_mond_predictions/UPCOMING_KINEMATIC_PREDICTIONS.md) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/creative/humanizer/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/creative/humanizer/SKILL.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/z2_mond_predictions/JADES_KINEMATIC_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/z2_mond_predictions/JADES_KINEMATIC_ANALYSIS.md) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/icml2026/icml2026.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/icml2026/icml2026.bst) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/colm2025/colm2025_conference.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/colm2025/colm2025_conference.bst) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/acl/acl_natbib.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/acl/acl_natbib.bst) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/creative/manim-video/references/paper-explainer.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/creative/manim-video/references/paper-explainer.md) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/iclr2026_conference.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/iclr2026_conference.bst) — 1×
+- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/references/human-evaluation.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/references/human-evaluation.md) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.bst) — 1×
+- `Markdown/notes` — [`ai_slop/research/spectral_dimension/OBSERVATIONAL_VERIFICATION_SUMMARY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/spectral_dimension/OBSERVATIONAL_VERIFICATION_SUMMARY.md) — 1×
+- `Python script` — [`ai_slop/research/geometric_closure/TESTABLE_PREDICTIONS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/TESTABLE_PREDICTIONS.py) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/icml2026/icml2026.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/icml2026/icml2026.bst) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/colm2025/colm2025_conference.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/colm2025/colm2025_conference.bst) — 1×
+- `Python script` — [`ai_slop/research/comprehensive_validation/validate_all_problems.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_validation/validate_all_problems.py) — 1×
+- `Python script` — [`ai_slop/research/unsolved_problems/satellite_planes.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/satellite_planes.py) — 1×
+- `Python script` — [`ai_slop/research/unsolved_problems/impossible_early_blackholes.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/impossible_early_blackholes.py) — 1×
+- `Python script` — [`ai_slop/research/unsolved_problems/globular_cluster_dynamics.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/globular_cluster_dynamics.py) — 1×
+- `Python script` — [`ai_slop/research/geometric_closure/cosmological_evolution.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/cosmological_evolution.py) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/references/human-evaluation.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/references/human-evaluation.md) — 1×
+- `Python script` — [`ai_slop/research/unsolved_problems/fast_radio_bursts.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/fast_radio_bursts.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/DATA_VERIFICATION_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/DATA_VERIFICATION_2026.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/quasars/M_SIGMA_Z2_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/quasars/M_SIGMA_Z2_ANALYSIS.md) — 1×
+- `Paper` — [`qwen_claude_field_theory/papers_2026/PAPER8_complete_theory_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER8_complete_theory_2026.tex) — 1×
+- `Paper` — [`qwen_claude_field_theory/papers_2026/PAPER9_foliation_theorem_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER9_foliation_theorem_2026.tex) — 1×
+- `Markdown/notes` — [`ai_slop/extended_research/biotech/papers/z2_protein_topology_paper_v1.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/papers/z2_protein_topology_paper_v1.md) — 1×
+- `Markdown/notes` — [`book_2e/05_two_roads_from_the_fork_a_particle_or_a_.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book_2e/05_two_roads_from_the_fork_a_particle_or_a_.md) — 1×
+- `Markdown/notes` — [`book_2e/CHANGE_ORDERS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book_2e/CHANGE_ORDERS.md) — 1×
+- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/software-development/hermes-agent-skill-authoring/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/software-development/hermes-agent-skill-authoring/SKILL.md) — 1×
+- `Data/config` — [`deepseek_push/G161_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G161_results.json) — 1×
+- `Python script` — [`deepseek_push/_g208_explore2.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/_g208_explore2.py) — 1×
+- `Python script` — [`deepseek_push/G203_hecs_commission.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G203_hecs_commission.py) — 1×
+- `Other` — [`deepseek_push/G191_kink_width.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G191_kink_width.out) — 1×
+- `Data/config` — [`deepseek_push/G115_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G115_results.json) — 1×
+- `Python script` — [`deepseek_push/G087_btfr_scatter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G087_btfr_scatter.py) — 1×
+- `Python script` — [`deepseek_push/G191_kink_width.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G191_kink_width.py) — 1×
+- `Markdown/notes` — [`deepseek_push/THEORY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/THEORY.md) — 1×
+- `Python script` — [`deepseek_push/G206_wojtak_2d.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G206_wojtak_2d.py) — 1×
+- `Python script` — [`deepseek_push/G215_mw_census.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G215_mw_census.py) — 1×
+- `Python script` — [`deepseek_push/G109_cross_instrument.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G109_cross_instrument.py) — 1×
+- `Python script` — [`deepseek_push/G071_sparc_fullcurve.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G071_sparc_fullcurve.py) — 1×
+- `Other` — [`deepseek_push/G232_gap_environment.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G232_gap_environment.out) — 1×
+- `Data/config` — [`deepseek_push/G207_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G207_results.json) — 1×
+- `Other` — [`deepseek_push/G203_hecs_commission.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G203_hecs_commission.out) — 1×
+- `Markdown/notes` — [`deepseek_push/FALSIFIER_MATRIX.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/FALSIFIER_MATRIX.md) — 1×
+- `Other` — [`deepseek_push/G157_slope_floor.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G157_slope_floor.out) — 1×
+- `Other` — [`deepseek_push/G073_lensing_completion.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G073_lensing_completion.out) — 1×
+- `Other` — [`deepseek_push/G115_low_mass_floor.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G115_low_mass_floor.out) — 1×
+- `Python script` — [`deepseek_push/G115_low_mass_floor.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G115_low_mass_floor.py) — 1×
+- `Other` — [`deepseek_push/G114_data/oh2015/apsrmp.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/oh2015/apsrmp.bst) — 1×
+- `Other` — [`deepseek_push/G114_data/oh2015/apsrev.bst`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/oh2015/apsrev.bst) — 1×
+- `Markdown/notes` — [`deepseek_push/DR4_AMENDMENT_12.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/DR4_AMENDMENT_12.md) — 1×
+- `Markdown/notes` — [`deepseek_push/STATE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/STATE.md) — 1×
+- `Markdown/notes` — [`deepseek_push/THEORY_CLOSURE_2026-09-16.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/THEORY_CLOSURE_2026-09-16.md) — 1×
+- `Markdown/notes` — [`deepseek_push/TSZ_AMENDMENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/TSZ_AMENDMENT.md) — 1×
+- `Other` — [`deepseek_push/G161_plateau_registry.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G161_plateau_registry.out) — 1×
+- `Other` — [`deepseek_push/G109_cross_instrument.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G109_cross_instrument.out) — 1×
+- `Data/config` — [`deepseek_push/G156_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G156_results.json) — 1×
+- `Markdown/notes` — [`deepseek_push/CLUSTER_CLOSEOUT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/CLUSTER_CLOSEOUT.md) — 1×
+- `Python script` — [`deepseek_push/G208_deep_staircase.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G208_deep_staircase.py) — 1×
+- `Python script` — [`deepseek_push/G149_kernel_rcut.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G149_kernel_rcut.py) — 1×
+- `Data/config` — [`deepseek_push/G191_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G191_results.json) — 1×
+- `Markdown/notes` — [`deepseek_push/KINK_WIDTH_PROJECT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/KINK_WIDTH_PROJECT.md) — 1×
+- `Data/config` — [`deepseek_push/G085_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G085_results.json) — 1×
+- `Data/config` — [`deepseek_push/G118_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G118_results.json) — 1×
+- `Markdown/notes` — [`deepseek_push/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/README.md) — 1×
+- `Markdown/notes` — [`deepseek_push/LAW_VERIFIED.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/LAW_VERIFIED.md) — 1×
+- `Data/config` — [`deepseek_push/G205_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G205_results.json) — 1×
+- `Data/config` — [`deepseek_push/G192_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G192_results.json) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/6WQY.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/6WQY.pdb) — 1×
+
+---
+*Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*

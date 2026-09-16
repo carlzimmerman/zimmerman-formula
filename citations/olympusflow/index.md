@@ -1,0 +1,333 @@
+# Olympusflow
+
+**Cited in 324 file(s), 2110 occurrence(s).**
+
+**Files (GitHub links):**
+
+- `Markdown/notes` — [`citations/king/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/king/index.md) — 210×
+- `Markdown/notes` — [`citations/bekenstein/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/bekenstein/index.md) — 72×
+- `Other` — [`ai_slop/alpheus_outputs/chaos_fluid_dynamics/22dd847c/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/chaos_fluid_dynamics/22dd847c/events.jsonl) — 43×
+- `Markdown/notes` — [`citations/fisher/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/fisher/index.md) — 34×
+- `Python script` — [`ai_slop/BriareusFlow/olympus_bridge.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/BriareusFlow/olympus_bridge.py) — 33×
+- `Python script` — [`ai_slop/OlympusFlow/flows/briareus/olympus_bridge.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/briareus/olympus_bridge.py) — 33×
+- `Markdown/notes` — [`citations/white/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/white/index.md) — 28×
+- `Other` — [`ai_slop/olympus_outputs/tornado_blind/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/tornado_blind/events.jsonl) — 27×
+- `Markdown/notes` — [`citations/tully/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/tully/index.md) — 26×
+- `Markdown/notes` — [`ai_slop/OLYMPUSFLOW_REFACTOR_PLAN.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OLYMPUSFLOW_REFACTOR_PLAN.md) — 23×
+- `Data/config` — [`real_research/COMMIT_LEDGER.csv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/COMMIT_LEDGER.csv) — 23×
+- `Other` — [`ai_slop/olympus_outputs/sunspot_blind/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/sunspot_blind/events.jsonl) — 21×
+- `Python script` — [`ai_slop/OlympusFlow/benchmark_comparison.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/benchmark_comparison.py) — 21×
+- `Python script` — [`ai_slop/OlympusFlow/daemon.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/daemon.py) — 20×
+- `Other` — [`ai_slop/alpheus_outputs/chaos_fluid_dynamics/5549ae4b/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/chaos_fluid_dynamics/5549ae4b/events.jsonl) — 19×
+- `Other` — [`ai_slop/alpheus_outputs/complex_systems_biology/eb646099/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/eb646099/events.jsonl) — 17×
+- `Other` — [`ai_slop/alpheus_outputs/astrophysics_planetary/c030be37/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/c030be37/events.jsonl) — 17×
+- `Other` — [`ai_slop/alpheus_outputs/material_limits/43521959/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/material_limits/43521959/events.jsonl) — 17×
+- `Markdown/notes` — [`citations/hawking/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/hawking/index.md) — 16×
+- `Markdown/notes` — [`ai_slop/ARCHITECTURE_ASSESSMENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/ARCHITECTURE_ASSESSMENT.md) — 16×
+- `Other` — [`ai_slop/olympus_outputs/integration_test_v14/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/integration_test_v14/events.jsonl) — 16×
+- `Markdown/notes` — [`citations/chae/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/chae/index.md) — 14×
+- `Other` — [`ai_slop/olympus_outputs/earthquake_test/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/earthquake_test/events.jsonl) — 14×
+- `Other` — [`ai_slop/alpheus_outputs/condensed_matter/13ac0590/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/13ac0590/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/condensed_matter/cb9d7cc4/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/cb9d7cc4/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/condensed_matter/6116141d/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/6116141d/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/condensed_matter/165b73f4/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/165b73f4/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/condensed_matter/7cf72e62/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/7cf72e62/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/condensed_matter/9aeed33d/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/9aeed33d/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/condensed_matter/c20dc874/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/c20dc874/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/condensed_matter/cbd25941/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/cbd25941/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/condensed_matter/382ee33b/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/382ee33b/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/condensed_matter/376d1941/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/376d1941/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/chaos_fluid_dynamics/624b11e1/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/chaos_fluid_dynamics/624b11e1/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/chaos_fluid_dynamics/d9266c69/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/chaos_fluid_dynamics/d9266c69/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/chaos_fluid_dynamics/d2a87199/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/chaos_fluid_dynamics/d2a87199/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/complex_systems_biology/015eb786/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/015eb786/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/complex_systems_biology/4790d57e/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/4790d57e/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/complex_systems_biology/30999afd/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/30999afd/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/complex_systems_biology/26fb7e55/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/26fb7e55/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/complex_systems_biology/df2d3c6f/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/df2d3c6f/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/complex_systems_biology/b9473f32/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/b9473f32/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/astrophysics_planetary/2ee61eae/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/2ee61eae/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/astrophysics_planetary/3655bc6d/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/3655bc6d/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/complex_systems_biology/2650a12e/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/2650a12e/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/astrophysics_planetary/76d48a8b/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/76d48a8b/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/complex_systems_biology/5690ec22/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/5690ec22/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/astrophysics_planetary/2567c382/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/2567c382/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/astrophysics_planetary/fb0cc437/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/fb0cc437/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/astrophysics_planetary/2c2fa779/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/2c2fa779/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/astrophysics_planetary/64b0ed20/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/64b0ed20/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/astrophysics_planetary/9a4b8f36/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/9a4b8f36/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/material_limits/d8f96d43/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/material_limits/d8f96d43/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/material_limits/7a37ab2f/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/material_limits/7a37ab2f/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/material_limits/0a423321/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/material_limits/0a423321/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/material_limits/fa6539e8/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/material_limits/fa6539e8/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/nuclear_subatomic/3a37dbac/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/3a37dbac/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/nuclear_subatomic/ebf6cd46/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/ebf6cd46/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/nuclear_subatomic/429d10c6/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/429d10c6/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/nuclear_subatomic/c8dbed1b/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/c8dbed1b/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/nuclear_subatomic/347bc0de/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/347bc0de/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/nuclear_subatomic/49ae55b2/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/49ae55b2/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/nuclear_subatomic/41de2393/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/41de2393/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/nuclear_subatomic/8ad73e26/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/8ad73e26/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/nuclear_subatomic/c5de88ab/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/c5de88ab/events.jsonl) — 13×
+- `Other` — [`ai_slop/alpheus_outputs/nuclear_subatomic/14038aef/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/14038aef/events.jsonl) — 13×
+- `Other` — [`ai_slop/olympus_outputs/hurricane_blind_v14/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/hurricane_blind_v14/events.jsonl) — 13×
+- `Other` — [`ai_slop/olympus_outputs/volcano_blind/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/volcano_blind/events.jsonl) — 13×
+- `Markdown/notes` — [`citations/salpeter/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/salpeter/index.md) — 12×
+- `Markdown/notes` — [`citations/bode/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/bode/index.md) — 12×
+- `Markdown/notes` — [`citations/bondi/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/bondi/index.md) — 12×
+- `Python script` — [`ai_slop/AlpheusFlow/orchestrator.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/AlpheusFlow/orchestrator.py) — 12×
+- `Data/config` — [`ai_slop/olympus_outputs/sunspot_blind/state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/sunspot_blind/state.json) — 12×
+- `Python script` — [`ai_slop/OlympusFlow/flows/alpheus/orchestrator.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/alpheus/orchestrator.py) — 12×
+- `Python script` — [`ai_slop/OlympusFlow/watchers/persephone/orchestrator.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/watchers/persephone/orchestrator.py) — 11×
+- `Python script` — [`ai_slop/tests/test_statistical_validation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/tests/test_statistical_validation.py) — 11×
+- `Python script` — [`ai_slop/tests/test_al_blind_pipeline.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/tests/test_al_blind_pipeline.py) — 11×
+- `Other` — [`ai_slop/metis_test_outputs/metis_test/8479fbb5/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/metis_test_outputs/metis_test/8479fbb5/events.jsonl) — 11×
+- `Other` — [`ai_slop/metis_test_outputs/metis_test/d7f5c69f/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/metis_test_outputs/metis_test/d7f5c69f/events.jsonl) — 11×
+- `Python script` — [`ai_slop/OlympusFlow/pipeline.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/pipeline.py) — 11×
+- `Other` — [`ai_slop/alpheus_outputs/complex_systems_biology/0b6f804f/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/0b6f804f/events.jsonl) — 10×
+- `Other` — [`ai_slop/alpheus_outputs/astrophysics_planetary/290d359e/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/290d359e/events.jsonl) — 10×
+- `Python script` — [`ai_slop/BriareusFlow/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/BriareusFlow/__init__.py) — 9×
+- `Python script` — [`ai_slop/OlympusFlow/autonomous_controller.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/autonomous_controller.py) — 9×
+- `Markdown/notes` — [`citations/jackson/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/jackson/index.md) — 8×
+- `Markdown/notes` — [`citations/faber/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/faber/index.md) — 8×
+- `Python script` — [`ai_slop/tests/test_volcano_blind.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/tests/test_volcano_blind.py) — 8×
+- `Python script` — [`ai_slop/tests/test_tornado_blind.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/tests/test_tornado_blind.py) — 8×
+- `Python script` — [`ai_slop/tests/test_sunspot_blind.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/tests/test_sunspot_blind.py) — 8×
+- `Python script` — [`ai_slop/OlympusFlow/stages.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/stages.py) — 8×
+- `Python script` — [`ai_slop/run_full_660_topics.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/run_full_660_topics.py) — 7×
+- `Python script` — [`ai_slop/tests/test_integrated_pipeline.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/tests/test_integrated_pipeline.py) — 7×
+- `Python script` — [`ai_slop/tests/test_hurricane_olympusflow.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/tests/test_hurricane_olympusflow.py) — 7×
+- `Python script` — [`ai_slop/OlympusFlow/flows/briareus/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/briareus/__init__.py) — 7×
+- `Python script` — [`ai_slop/OlympusFlow/derivation_pipeline.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/derivation_pipeline.py) — 7×
+- `Markdown/notes` — [`ai_slop/OlympusFlow/ARCHITECTURE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/ARCHITECTURE.md) — 7×
+- `Python script` — [`ai_slop/start_100hr_run.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/start_100hr_run.py) — 7×
+- `Markdown/notes` — [`citations/mcgaug/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/mcgaug/index.md) — 6×
+- `Markdown/notes` — [`citations/hoyle/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/hoyle/index.md) — 6×
+- `Markdown/notes` — [`citations/jeans/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/jeans/index.md) — 6×
+- `Python script` — [`ai_slop/AletheiaLake/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/AletheiaLake/__init__.py) — 6×
+- `Data/config` — [`ai_slop/daemon_outputs/olympus_run_v2.0.0_firstprinciples_derivation_20260507_142900/queue_state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/olympus_run_v2.0.0_firstprinciples_derivation_20260507_142900/queue_state.json) — 6×
+- `Other` — [`ai_slop/daemon_outputs/overnight_run.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/overnight_run.log) — 6×
+- `Python script` — [`ai_slop/CylleneFlow/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/CylleneFlow/__init__.py) — 6×
+- `Markdown/notes` — [`ai_slop/ARCHITECTURE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/ARCHITECTURE.md) — 6×
+- `Python script` — [`ai_slop/AlpheusFlow/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/AlpheusFlow/__init__.py) — 6×
+- `Python script` — [`ai_slop/run_discovery.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/run_discovery.py) — 6×
+- `Python script` — [`ai_slop/MnemosyneLake/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/MnemosyneLake/__init__.py) — 6×
+- `Markdown/notes` — [`ai_slop/analysis/RESEARCH_SUMMARY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/analysis/RESEARCH_SUMMARY.md) — 6×
+- `Python script` — [`ai_slop/HermesFlow/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/__init__.py) — 6×
+- `Other` — [`ai_slop/olympus_outputs/al_blind_test/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/al_blind_test/events.jsonl) — 6×
+- `Python script` — [`ai_slop/MetisFlow/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/MetisFlow/__init__.py) — 6×
+- `Markdown/notes` — [`ai_slop/SYSTEM_GUIDE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/SYSTEM_GUIDE.md) — 6×
+- `Python script` — [`ai_slop/run_extended_ideas.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/run_extended_ideas.py) — 6×
+- `Python script` — [`ai_slop/BriareusFlow/briareus_controller.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/BriareusFlow/briareus_controller.py) — 6×
+- `Python script` — [`ai_slop/run_complete_discovery.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/run_complete_discovery.py) — 6×
+- `Python script` — [`ai_slop/OlympusFlow/flows/hermes/helicon_lake.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/hermes/helicon_lake.py) — 6×
+- `Python script` — [`ai_slop/OlympusFlow/flows/briareus/briareus_controller.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/briareus/briareus_controller.py) — 6×
+- `Python script` — [`ai_slop/OlympusFlow/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/__init__.py) — 6×
+- `Python script` — [`ai_slop/HermesFlow/helicon_lake.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/helicon_lake.py) — 6×
+- `Python script` — [`ai_slop/TruthFlow/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/__init__.py) — 6×
+- `Python script` — [`ai_slop/ErgonFlow/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/ErgonFlow/__init__.py) — 6×
+- `Python script` — [`ai_slop/setup_overnight_run.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/setup_overnight_run.py) — 5×
+- `Markdown/notes` — [`ai_slop/HermesFlow/legomena_training/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/legomena_training/README.md) — 5×
+- `Other` — [`ai_slop/olympus_outputs/hermes_deepening_test/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/hermes_deepening_test/events.jsonl) — 5×
+- `Python script` — [`ai_slop/OlympusFlow/lakes/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/lakes/__init__.py) — 5×
+- `Markdown/notes` — [`citations/deser/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/deser/index.md) — 4×
+- `Python script` — [`ai_slop/run_full_pipeline.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/run_full_pipeline.py) — 4×
+- `Python script` — [`ai_slop/tests/test_deepening_wiring.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/tests/test_deepening_wiring.py) — 4×
+- `Markdown/notes` — [`ai_slop/olympus_outputs/DOMAIN_TEST_ASSESSMENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/DOMAIN_TEST_ASSESSMENT.md) — 4×
+- `Data/config` — [`ai_slop/olympus_outputs/tornado_blind/state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/tornado_blind/state.json) — 4×
+- `Python script` — [`ai_slop/OlympusFlow/experimental_api.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/experimental_api.py) — 4×
+- `Data/config` — [`ai_slop/olympus_outputs/integration_test_v14/state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/integration_test_v14/state.json) — 4×
+- `Markdown/notes` — [`ai_slop/HECATE_IMPLEMENTATION_PLAN.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HECATE_IMPLEMENTATION_PLAN.md) — 4×
+- `Python script` — [`ai_slop/OlympusFlow/watchers/hecate/banisher.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/watchers/hecate/banisher.py) — 4×
+- `Python script` — [`ai_slop/OlympusFlow/flows/alpheus/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/alpheus/__init__.py) — 4×
+- `Python script` — [`ai_slop/OlympusFlow/flows/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/__init__.py) — 4×
+- `Python script` — [`ai_slop/OlympusFlow/events.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/events.py) — 4×
+- `Python script` — [`ai_slop/OlympusFlow/blind_test_10.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/blind_test_10.py) — 4×
+- `Python script` — [`ai_slop/OlympusFlow/blind_test_full_pipeline.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/blind_test_full_pipeline.py) — 4×
+- `Python script` — [`ai_slop/run_full_pipeline_v2.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/run_full_pipeline_v2.py) — 3×
+- `Other` — [`ai_slop/daemon_outputs/full_660_run_20260507_163018/daemon.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/full_660_run_20260507_163018/daemon.log) — 3×
+- `Other` — [`ai_slop/daemon_outputs/full_660_run_20260507_175002/daemon.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/full_660_run_20260507_175002/daemon.log) — 3×
+- `Other` — [`ai_slop/daemon_outputs/overnight_legomena_xl_20260509_004158.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/overnight_legomena_xl_20260509_004158.log) — 3×
+- `Other` — [`ai_slop/daemon_outputs/daemon_continuous_20260512_003958.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/daemon_continuous_20260512_003958.log) — 3×
+- `Other` — [`ai_slop/daemon_outputs/olympus_run_v2.0.0_firstprinciples_derivation_20260507_142900/daemon.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/olympus_run_v2.0.0_firstprinciples_derivation_20260507_142900/daemon.log) — 3×
+- `Other` — [`ai_slop/daemon_outputs/full_660_run_20260507_174751/daemon.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/full_660_run_20260507_174751/daemon.log) — 3×
+- `Other` — [`ai_slop/daemon_outputs/daemon_anomalies500_20260512_004245.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/daemon_anomalies500_20260512_004245.log) — 3×
+- `Other` — [`ai_slop/daemon_outputs/overnight_20260509_004336.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/overnight_20260509_004336.log) — 3×
+- `Other` — [`ai_slop/daemon_outputs/full_660_run_20260507_151319/daemon.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/full_660_run_20260507_151319/daemon.log) — 3×
+- `Markdown/notes` — [`ai_slop/olympusflow_v3_findings_claude/XDIAG_INSTRUCTIONS_QUEUED.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_v3_findings_claude/XDIAG_INSTRUCTIONS_QUEUED.md) — 3×
+- `Other` — [`ai_slop/daemon_outputs/daemon_overnight_20260512_003855.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/daemon_overnight_20260512_003855.log) — 3×
+- `Markdown/notes` — [`ai_slop/COMPLETE_DISCOVERY_STATUS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/COMPLETE_DISCOVERY_STATUS.md) — 3×
+- `Other` — [`ai_slop/daemon_v2.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_v2.log) — 3×
+- `Python script` — [`ai_slop/run_full_discovery.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/run_full_discovery.py) — 3×
+- `Other` — [`ai_slop/olympus_outputs/wiring_test/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/wiring_test/events.jsonl) — 3×
+- `Markdown/notes` — [`ai_slop/olympus_outputs/ROADMAP_TO_AUTONOMOUS_RESEARCH.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/ROADMAP_TO_AUTONOMOUS_RESEARCH.md) — 3×
+- `Markdown/notes` — [`ai_slop/WHAT_WE_LEARNED.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/WHAT_WE_LEARNED.md) — 3×
+- `Python script` — [`ai_slop/run_all_originals.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/run_all_originals.py) — 3×
+- `Python script` — [`ai_slop/run_full_queue.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/run_full_queue.py) — 3×
+- `Python script` — [`ai_slop/BriareusFlow/domains/eddington_stellar.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/BriareusFlow/domains/eddington_stellar.py) — 3×
+- `Other` — [`ai_slop/extended_ideas_run.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_ideas_run.log) — 3×
+- `Python script` — [`ai_slop/OlympusFlow/watchers/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/watchers/__init__.py) — 3×
+- `Python script` — [`ai_slop/OlympusFlow/flows/hermes/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/hermes/__init__.py) — 3×
+- `Python script` — [`ai_slop/OlympusFlow/flows/briareus/domains/eddington_stellar.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/briareus/domains/eddington_stellar.py) — 3×
+- `Python script` — [`ai_slop/OlympusFlow/blind_test_50_constants.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/blind_test_50_constants.py) — 3×
+- `Other` — [`ai_slop/OlympusFlow/ground_truth_lookup.py.CONTAMINATED`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/ground_truth_lookup.py.CONTAMINATED) — 3×
+- `Markdown/notes` — [`ai_slop/ErgonFlow/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/ErgonFlow/README.md) — 3×
+- `Markdown/notes` — [`citations/lelli/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lelli/index.md) — 2×
+- `Markdown/notes` — [`citations/simon/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/simon/index.md) — 2×
+- `Markdown/notes` — [`citations/gunn/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/gunn/index.md) — 2×
+- `Markdown/notes` — [`citations/padmanabhan/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/padmanabhan/index.md) — 2×
+- `Markdown/notes` — [`citations/rines/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/rines/index.md) — 2×
+- `Other` — [`ai_slop/daemon_outputs/daemon_4hr_run.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/daemon_4hr_run.log) — 2×
+- `Markdown/notes` — [`ai_slop/olympusflow_v3_findings_claude/bullet_cluster_mass_ratio/ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_v3_findings_claude/bullet_cluster_mass_ratio/ANALYSIS.md) — 2×
+- `Markdown/notes` — [`real_research/reviews/AI_SLOP_SALVAGE_REVIEW_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/AI_SLOP_SALVAGE_REVIEW_2026-06.md) — 2×
+- `Markdown/notes` — [`ai_slop/papers/SLOW_ROLL_GEOMETRIC_BOUND.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/SLOW_ROLL_GEOMETRIC_BOUND.md) — 2×
+- `Markdown/notes` — [`ai_slop/olympusflow_legit_findings/DAEMON_ANALYSIS_MAY2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_legit_findings/DAEMON_ANALYSIS_MAY2026.md) — 2×
+- `Markdown/notes` — [`ai_slop/olympusflow_legit_findings/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_legit_findings/README.md) — 2×
+- `Data/config` — [`ai_slop/olympusflow_legit_findings/legit_discoveries.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_legit_findings/legit_discoveries.json) — 2×
+- `Markdown/notes` — [`ai_slop/daemon_outputs/OLYMPUSFLOW_FINAL_RESULTS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/OLYMPUSFLOW_FINAL_RESULTS.md) — 2×
+- `Markdown/notes` — [`ai_slop/tests/tornado_blind_results/PIPELINE_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/tests/tornado_blind_results/PIPELINE_ANALYSIS.md) — 2×
+- `Python script` — [`ai_slop/tests/test_hurricane_blind.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/tests/test_hurricane_blind.py) — 2×
+- `Other` — [`ai_slop/olympus_outputs/test_pipeline/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/test_pipeline/events.jsonl) — 2×
+- `Data/config` — [`ai_slop/OlympusFlow/research_topics_v2_firstprinciples.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/research_topics_v2_firstprinciples.json) — 2×
+- `Other` — [`ai_slop/olympus_outputs/integration_test/events.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/integration_test/events.jsonl) — 2×
+- `Markdown/notes` — [`ai_slop/AUTOMATION_GAPS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/AUTOMATION_GAPS.md) — 2×
+- `Python script` — [`ai_slop/BriareusFlow/phenomenological.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/BriareusFlow/phenomenological.py) — 2×
+- `Python script` — [`ai_slop/OlympusFlow/derivation_contracts.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/derivation_contracts.py) — 2×
+- `Python script` — [`ai_slop/OlympusFlow/flows/briareus/phenomenological.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/briareus/phenomenological.py) — 2×
+- `Python script` — [`ai_slop/OlympusFlow/contracts.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/contracts.py) — 2×
+- `Python script` — [`ai_slop/OlympusFlow/cyllene_bridge.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/cyllene_bridge.py) — 2×
+- `Python script` — [`ai_slop/OlympusFlow/constants.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/constants.py) — 2×
+- `Markdown/notes` — [`ai_slop/research/theoretical/FIRST_PRINCIPLES_ASSESSMENT_ANOMALIES.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/theoretical/FIRST_PRINCIPLES_ASSESSMENT_ANOMALIES.md) — 2×
+- `Python script` — [`ai_slop/run_autonomous_research.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/run_autonomous_research.py) — 1×
+- `Other` — [`ai_slop/daemon_outputs/training_export.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/training_export.jsonl) — 1×
+- `Other` — [`ai_slop/daemon_outputs/full_660_run_20260507_175002/training_export.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/full_660_run_20260507_175002/training_export.jsonl) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/condensed_matter/13ac0590/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/13ac0590/REPORT.md) — 1×
+- `Other` — [`ai_slop/daemon_outputs/full_660_run_20260507_163018/training_export.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/full_660_run_20260507_163018/training_export.jsonl) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/condensed_matter/cb9d7cc4/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/cb9d7cc4/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/condensed_matter/6116141d/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/6116141d/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/condensed_matter/165b73f4/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/165b73f4/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/condensed_matter/7cf72e62/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/7cf72e62/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/condensed_matter/9aeed33d/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/9aeed33d/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/condensed_matter/c20dc874/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/c20dc874/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/condensed_matter/cbd25941/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/cbd25941/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/condensed_matter/382ee33b/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/382ee33b/REPORT.md) — 1×
+- `Other` — [`ai_slop/training_demo.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/training_demo.jsonl) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/condensed_matter/376d1941/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/condensed_matter/376d1941/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/chaos_fluid_dynamics/624b11e1/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/chaos_fluid_dynamics/624b11e1/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/chaos_fluid_dynamics/5549ae4b/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/chaos_fluid_dynamics/5549ae4b/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/chaos_fluid_dynamics/d9266c69/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/chaos_fluid_dynamics/d9266c69/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/chaos_fluid_dynamics/d2a87199/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/chaos_fluid_dynamics/d2a87199/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/chaos_fluid_dynamics/22dd847c/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/chaos_fluid_dynamics/22dd847c/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/complex_systems_biology/015eb786/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/015eb786/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/complex_systems_biology/4790d57e/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/4790d57e/REPORT.md) — 1×
+- `Other` — [`ai_slop/daemon_outputs/olympus_run_v2.0.0_firstprinciples_derivation_20260507_142900/training_export.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/olympus_run_v2.0.0_firstprinciples_derivation_20260507_142900/training_export.jsonl) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/complex_systems_biology/30999afd/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/30999afd/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/complex_systems_biology/0b6f804f/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/0b6f804f/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/complex_systems_biology/26fb7e55/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/26fb7e55/REPORT.md) — 1×
+- `Data/config` — [`ai_slop/daemon_outputs/olympus_run_v2.0.0_firstprinciples_derivation_20260507_142900/derivations/avogadro_number_result.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/olympus_run_v2.0.0_firstprinciples_derivation_20260507_142900/derivations/avogadro_number_result.json) — 1×
+- `Markdown/notes` — [`ai_slop/olympusflow_v3_findings_claude/ca+_king_plot/ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_v3_findings_claude/ca+_king_plot/ANALYSIS.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/complex_systems_biology/df2d3c6f/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/df2d3c6f/REPORT.md) — 1×
+- `Data/config` — [`ai_slop/daemon_outputs/olympus_run_v2.0.0_firstprinciples_derivation_20260507_142900/derivations/random_number_test_result.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/olympus_run_v2.0.0_firstprinciples_derivation_20260507_142900/derivations/random_number_test_result.json) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/complex_systems_biology/b9473f32/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/b9473f32/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/astrophysics_planetary/2ee61eae/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/2ee61eae/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/complex_systems_biology/eb646099/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/eb646099/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/astrophysics_planetary/3655bc6d/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/3655bc6d/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/complex_systems_biology/2650a12e/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/2650a12e/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/astrophysics_planetary/76d48a8b/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/76d48a8b/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/olympusflow_v3_findings_claude/born_rule_tests/ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_v3_findings_claude/born_rule_tests/ANALYSIS.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/complex_systems_biology/5690ec22/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/complex_systems_biology/5690ec22/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/astrophysics_planetary/2567c382/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/2567c382/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/astrophysics_planetary/290d359e/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/290d359e/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/olympusflow_v3_findings_claude/050_cabibbo_angle_z2_test/ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_v3_findings_claude/050_cabibbo_angle_z2_test/ANALYSIS.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/astrophysics_planetary/fb0cc437/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/fb0cc437/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/papers/Z2_UNIFIED_ACTION_v8.0.3.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_v8.0.3.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/astrophysics_planetary/2c2fa779/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/2c2fa779/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/astrophysics_planetary/64b0ed20/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/64b0ed20/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/astrophysics_planetary/c030be37/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/c030be37/REPORT.md) — 1×
+- `Python script` — [`ai_slop/CylleneFlow/iteration_runner.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/CylleneFlow/iteration_runner.py) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/astrophysics_planetary/9a4b8f36/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/astrophysics_planetary/9a4b8f36/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/material_limits/43521959/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/material_limits/43521959/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/material_limits/d8f96d43/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/material_limits/d8f96d43/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/material_limits/7a37ab2f/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/material_limits/7a37ab2f/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/material_limits/0a423321/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/material_limits/0a423321/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/material_limits/fa6539e8/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/material_limits/fa6539e8/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/nuclear_subatomic/3a37dbac/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/3a37dbac/REPORT.md) — 1×
+- `Other` — [`ai_slop/daemon_outputs/full_660_run_20260507_151319/training_export.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/full_660_run_20260507_151319/training_export.jsonl) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/nuclear_subatomic/ebf6cd46/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/ebf6cd46/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/nuclear_subatomic/429d10c6/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/429d10c6/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/nuclear_subatomic/c8dbed1b/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/c8dbed1b/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/olympusflow_legit_findings/NOVEL_DISCOVERIES_MAY2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_legit_findings/NOVEL_DISCOVERIES_MAY2026.md) — 1×
+- `Markdown/notes` — [`ai_slop/olympusflow_legit_findings/DAEMON_VS_EXISTING_DERIVATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_legit_findings/DAEMON_VS_EXISTING_DERIVATIONS.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/nuclear_subatomic/347bc0de/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/347bc0de/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/olympusflow_legit_findings/DAEMON_ANALYSIS_200_400_MAY2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_legit_findings/DAEMON_ANALYSIS_200_400_MAY2026.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/nuclear_subatomic/49ae55b2/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/49ae55b2/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/nuclear_subatomic/41de2393/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/41de2393/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/nuclear_subatomic/8ad73e26/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/8ad73e26/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/nuclear_subatomic/c5de88ab/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/c5de88ab/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/alpheus_outputs/nuclear_subatomic/14038aef/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/alpheus_outputs/nuclear_subatomic/14038aef/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/olympusflow_v3_findings_claude/bullet_cluster_velocity/ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympusflow_v3_findings_claude/bullet_cluster_velocity/ANALYSIS.md) — 1×
+- `Data/config` — [`ai_slop/MnemosyneLake/truths/truth_index.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/MnemosyneLake/truths/truth_index.json) — 1×
+- `Python script` — [`ai_slop/analysis/z2_predictions.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/analysis/z2_predictions.py) — 1×
+- `Markdown/notes` — [`ai_slop/analysis/z2_predictions_table.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/analysis/z2_predictions_table.md) — 1×
+- `Markdown/notes` — [`ai_slop/analysis/paper_audit_v720.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/analysis/paper_audit_v720.md) — 1×
+- `Python script` — [`ai_slop/analysis/desi_omega_m_tension.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/analysis/desi_omega_m_tension.py) — 1×
+- `Markdown/notes` — [`ai_slop/analysis/llm_call_count.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/analysis/llm_call_count.md) — 1×
+- `Markdown/notes` — [`ai_slop/analysis/alpha_results.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/analysis/alpha_results.md) — 1×
+- `Python script` — [`ai_slop/analysis/alpha_verification.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/analysis/alpha_verification.py) — 1×
+- `Python script` — [`ai_slop/analysis/tensor_scalar_analysis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/analysis/tensor_scalar_analysis.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/watchers/base.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/watchers/base.py) — 1×
+- `Python script` — [`ai_slop/tests/test_hurricane_direct.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/tests/test_hurricane_direct.py) — 1×
+- `Markdown/notes` — [`ai_slop/HONESTY_ASSESSMENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HONESTY_ASSESSMENT.md) — 1×
+- `Markdown/notes` — [`ai_slop/olympus_outputs/tornado_blind/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/tornado_blind/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/olympus_outputs/sunspot_blind/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/sunspot_blind/REPORT.md) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/statistical_validator.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/statistical_validator.py) — 1×
+- `Markdown/notes` — [`ai_slop/olympus_outputs/integration_test_v14/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/integration_test_v14/REPORT.md) — 1×
+- `Python script` — [`ai_slop/MetisFlow/metis_engine.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/MetisFlow/metis_engine.py) — 1×
+- `Python script` — [`ai_slop/MetisFlow/derivation_strategy.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/MetisFlow/derivation_strategy.py) — 1×
+- `Python script` — [`ai_slop/HermesFlow/autonomous_api_discovery.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/autonomous_api_discovery.py) — 1×
+- `Markdown/notes` — [`ai_slop/olympus_outputs/volcano_blind/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/olympus_outputs/volcano_blind/REPORT.md) — 1×
+- `Data/config` — [`ai_slop/full_pipeline_results/all_originals_20260507_073310/results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/full_pipeline_results/all_originals_20260507_073310/results.json) — 1×
+- `Data/config` — [`ai_slop/full_pipeline_results/all_originals_20260507_073440/results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/full_pipeline_results/all_originals_20260507_073440/results.json) — 1×
+- `Python script` — [`ai_slop/run_unified_derivations.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/run_unified_derivations.py) — 1×
+- `Data/config` — [`ai_slop/full_pipeline_results/all_originals_20260507_064249/results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/full_pipeline_results/all_originals_20260507_064249/results.json) — 1×
+- `Markdown/notes` — [`ai_slop/BriareusFlow/domains/DISCOVERY_RESULTS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/BriareusFlow/domains/DISCOVERY_RESULTS.md) — 1×
+- `Python script` — [`ai_slop/scripts/honesty_assessment.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/scripts/honesty_assessment.py) — 1×
+- `Markdown/notes` — [`ai_slop/metis_test_outputs/metis_test/8479fbb5/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/metis_test_outputs/metis_test/8479fbb5/REPORT.md) — 1×
+- `Markdown/notes` — [`ai_slop/metis_test_outputs/metis_test/d7f5c69f/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/metis_test_outputs/metis_test/d7f5c69f/REPORT.md) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/watchers/hecate/watcher.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/watchers/hecate/watcher.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/watchers/hecate/prompts.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/watchers/hecate/prompts.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/watchers/hecate/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/watchers/hecate/__init__.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/watchers/hecate/framework.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/watchers/hecate/framework.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/flows/hermes/universal_data_discovery.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/hermes/universal_data_discovery.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/flows/hermes/autonomous_api_discovery.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/hermes/autonomous_api_discovery.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/flows/truth/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/truth/__init__.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/flows/ergon/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/ergon/__init__.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/flows/ergon/action_deriver.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/ergon/action_deriver.py) — 1×
+- `Markdown/notes` — [`ai_slop/OlympusFlow/flows/briareus/domains/DISCOVERY_RESULTS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/briareus/domains/DISCOVERY_RESULTS.md) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/flows/metis/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/metis/__init__.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/flows/metis/metis_engine.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/metis/metis_engine.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/flows/metis/derivation_strategy.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/metis/derivation_strategy.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/flows/cyllene/iteration_runner.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/cyllene/iteration_runner.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/flows/cyllene/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/cyllene/__init__.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/derivation_engine.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/derivation_engine.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/honest_contracts.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/honest_contracts.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/lakes/helicon/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/lakes/helicon/__init__.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/lakes/aletheia/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/lakes/aletheia/__init__.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/lakes/mnemosyne/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/lakes/mnemosyne/__init__.py) — 1×
+- `Data/config` — [`ai_slop/OlympusFlow/lakes/mnemosyne/truths/truth_index.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/lakes/mnemosyne/truths/truth_index.json) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/lakes/tartarus/__init__.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/lakes/tartarus/__init__.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/learning_loop.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/learning_loop.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/symbolic_engine.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/symbolic_engine.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/honest_derivation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/honest_derivation.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/honest_pipeline.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/honest_pipeline.py) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/deep_derivation_engine.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/deep_derivation_engine.py) — 1×
+- `Markdown/notes` — [`ai_slop/OlympusFlow/discoveries/Z2_DISCOVERIES_REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/discoveries/Z2_DISCOVERIES_REPORT.md) — 1×
+- `Python script` — [`ai_slop/OlympusFlow/discoveries/HONESTY_ASSESSMENT.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/discoveries/HONESTY_ASSESSMENT.py) — 1×
+- `Python script` — [`ai_slop/HermesFlow/universal_data_discovery.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/universal_data_discovery.py) — 1×
+- `Python script` — [`real_research/commit_walk.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/commit_walk.py) — 1×
+- `Python script` — [`ai_slop/ErgonFlow/action_deriver.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/ErgonFlow/action_deriver.py) — 1×
+- `Markdown/notes` — [`ai_slop/research/PAPER_VS_FINDINGS_COMPARISON.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/PAPER_VS_FINDINGS_COMPARISON.md) — 1×
+- `Markdown/notes` — [`ai_slop/research/dynamical_framework/deep_derivations.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamical_framework/deep_derivations.md) — 1×
+
+---
+*Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*

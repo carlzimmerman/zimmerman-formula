@@ -1,0 +1,149 @@
+# Cherenkov
+
+**Cited in 140 file(s), 645 occurrence(s).**
+
+**Files (GitHub links):**
+
+- `Other` — [`fable_independent_2026/L10_khronon_gate.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L10_khronon_gate.out) — 31×
+- `Markdown/notes` — [`fable_independent_2026/FINDINGS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/FINDINGS.md) — 30×
+- `Python script` — [`fable_independent_2026/L10_khronon_gate.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L10_khronon_gate.py) — 28×
+- `Markdown/notes` — [`fable_independent_2026/L19_CHERENKOV.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L19_CHERENKOV.md) — 24×
+- `Python script` — [`fable_independent_2026/L19_cherenkov_applicability.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L19_cherenkov_applicability.py) — 23×
+- `Other` — [`fable_independent_2026/L19_cherenkov_applicability.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L19_cherenkov_applicability.out) — 19×
+- `Python script` — [`real_research/reviews/mi_propagator_2026/dispersion_setup.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_propagator_2026/dispersion_setup.py) — 16×
+- `Python script` — [`real_research/reviews/mi_kinetic_completion_2026/kinetic_compute.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_kinetic_completion_2026/kinetic_compute.py) — 14×
+- `Paper` — [`qwen_claude_field_theory/papers_2026/PAPER8_complete_theory_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER8_complete_theory_2026.tex) — 12×
+- `Paper` — [`qwen_claude_field_theory/papers_2026/PAPER9_foliation_theorem_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER9_foliation_theorem_2026.tex) — 12×
+- `Markdown/notes` — [`fable_independent_2026/HANDOFF_CONTRACT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/HANDOFF_CONTRACT.md) — 11×
+- `Python script` — [`fable_independent_2026/L43_assemble_theory.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L43_assemble_theory.py) — 10×
+- `Markdown/notes` — [`real_research/papers/WHITEPAPER_TOE_MAP_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/WHITEPAPER_TOE_MAP_2026.md) — 10×
+- `Paper` — [`real_research/papers/zimmerman_toe_map_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/zimmerman_toe_map_2026.tex) — 10×
+- `Python script` — [`fable_independent_2026/L15_sigma_one.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L15_sigma_one.py) — 9×
+- `Python script` — [`fable_independent_2026/L33_scalar_cone.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L33_scalar_cone.py) — 9×
+- `Python script` — [`real_research/reviews/mi_khronon_spin0_health_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_khronon_spin0_health_2026.py) — 9×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentHH_pump_profile.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentHH_pump_profile.md) — 9×
+- `Other` — [`fable_independent_2026/L15_sigma_one.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L15_sigma_one.out) — 8×
+- `Markdown/notes` — [`fable_independent_2026/L15_SIGMA_ONE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L15_SIGMA_ONE.md) — 8×
+- `Python script` — [`fable_independent_2026/L64_screened_solve.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L64_screened_solve.py) — 7×
+- `Other` — [`fable_independent_2026/L43_assemble_theory.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L43_assemble_theory.out) — 7×
+- `Python script` — [`fable_independent_2026/L26_sigma_above_one.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L26_sigma_above_one.py) — 7×
+- `Other` — [`fable_independent_2026/L33_scalar_cone.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L33_scalar_cone.out) — 7×
+- `Python script` — [`fable_independent_2026/L46_mode_floor.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L46_mode_floor.py) — 7×
+- `Markdown/notes` — [`fable_independent_2026/THE_COMPLETE_THEORY_2026-09-08.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/THE_COMPLETE_THEORY_2026-09-08.md) — 7×
+- `Python script` — [`fable_independent_2026/L36_record_audit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L36_record_audit.py) — 7×
+- `Other` — [`fable_independent_2026/L46_mode_floor.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L46_mode_floor.out) — 6×
+- `Other` — [`fable_independent_2026/L64_screened_solve.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L64_screened_solve.out) — 6×
+- `Markdown/notes` — [`citations/deser/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/deser/index.md) — 6×
+- `Markdown/notes` — [`citations/milgrom/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/milgrom/index.md) — 6×
+- `Python script` — [`real_research/reviews/mi_propagator_2026/refute_strongcoupling.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_propagator_2026/refute_strongcoupling.py) — 6×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentH1_candidate_matrix.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentH1_candidate_matrix.md) — 6×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentU_khronon_m22.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentU_khronon_m22.md) — 6×
+- `Python script` — [`real_research/reviews/toe_law/agentI_fraction_amplitude.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentI_fraction_amplitude.py) — 6×
+- `Python script` — [`qwen_claude_field_theory/closure_2026/g04c_peak_radius_with_nurar.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/g04c_peak_radius_with_nurar.py) — 6×
+- `Markdown/notes` — [`fable_independent_2026/L33_SCALAR_CONE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L33_SCALAR_CONE.md) — 5×
+- `Markdown/notes` — [`fable_independent_2026/L54_REPAIR_CONSTRAINTS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L54_REPAIR_CONSTRAINTS.md) — 5×
+- `Other` — [`fable_independent_2026/L26_sigma_above_one.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L26_sigma_above_one.out) — 5×
+- `Markdown/notes` — [`fable_independent_2026/L26_SIGMA_ABOVE_ONE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L26_SIGMA_ABOVE_ONE.md) — 5×
+- `Markdown/notes` — [`fable_independent_2026/L64_SCREENED_SOLVE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L64_SCREENED_SOLVE.md) — 5×
+- `Python script` — [`fable_independent_2026/L14_parameter_sweep.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L14_parameter_sweep.py) — 5×
+- `Python script` — [`fable_independent_2026/L54_repair_constraints.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L54_repair_constraints.py) — 5×
+- `Data/config` — [`opus_48_extended_research/papers/COVARIANT_MI_FIELD_THEORY.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/COVARIANT_MI_FIELD_THEORY.zenodo.json) — 5×
+- `Python script` — [`qwen_claude_field_theory/closure_2026/route2_mechC_constrained_vector_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/route2_mechC_constrained_vector_2026.py) — 5×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentH3_gauntlet.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentH3_gauntlet.md) — 5×
+- `Python script` — [`real_research/reviews/toe_law/agentHH_pump_profile.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentHH_pump_profile.py) — 5×
+- `Python script` — [`qwen_claude_field_theory/closure_2026/g03v_k2_pincer_closure.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/g03v_k2_pincer_closure.py) — 5×
+- `Markdown/notes` — [`fable_independent_2026/L46_MODE_FLOOR.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L46_MODE_FLOOR.md) — 4×
+- `Other` — [`fable_independent_2026/L54_repair_constraints.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L54_repair_constraints.out) — 4×
+- `Markdown/notes` — [`citations/king/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/king/index.md) — 4×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/toe_law/agentXX_verify_symmetry-lock.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/toe_law/agentXX_verify_symmetry-lock.md) — 4×
+- `Python script` — [`real_research/reviews/mi_propagator_2026/propagator_compute.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_propagator_2026/propagator_compute.py) — 4×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentI_fraction_amplitude.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentI_fraction_amplitude.md) — 4×
+- `Other` — [`real_research/reviews/toe_law/agentH3_gauntlet.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentH3_gauntlet.out) — 4×
+- `Python script` — [`real_research/reviews/mi_kinetic_completion_2026/aether_ppn_corner.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_kinetic_completion_2026/aether_ppn_corner.py) — 4×
+- `Markdown/notes` — [`real_research/reviews/toe_law/agentH4_hostile_walls.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentH4_hostile_walls.md) — 4×
+- `Other` — [`real_research/reviews/toe_law/agentHH_pump_profile.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentHH_pump_profile.out) — 4×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/THE_ACTION_2026-09-05.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/THE_ACTION_2026-09-05.md) — 4×
+- `Other` — [`qwen_claude_field_theory/closure_2026/g03v_k2_pincer_closure.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/g03v_k2_pincer_closure.out) — 4×
+- `Other` — [`fable_independent_2026/L36_record_audit.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L36_record_audit.out) — 3×
+- `Markdown/notes` — [`fable_independent_2026/L14_PARAMETER_SPACE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L14_PARAMETER_SPACE.md) — 3×
+- `Markdown/notes` — [`fable_independent_2026/L20_GHOST_PAST.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L20_GHOST_PAST.md) — 3×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/toe_law/agentXX_routeRadiative.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/toe_law/agentXX_routeRadiative.md) — 3×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/toe_law/agentXX_verify_ds-radiative.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/toe_law/agentXX_verify_ds-radiative.md) — 3×
+- `Python script` — [`real_research/reviews/mi_disformal_completion_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_disformal_completion_2026.py) — 3×
+- `Other` — [`real_research/reviews/toe_law/agentU_khronon_m22.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentU_khronon_m22.out) — 3×
+- `Other` — [`real_research/reviews/toe_law/agentI_fraction_amplitude.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentI_fraction_amplitude.out) — 3×
+- `Python script` — [`real_research/reviews/toe_law/agentH3_gauntlet.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentH3_gauntlet.py) — 3×
+- `Python script` — [`real_research/reviews/toe_law/agentU_khronon_m22.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentU_khronon_m22.py) — 3×
+- `Python script` — [`qwen_claude_field_theory/closure_2026/g03z_nurar_action_gate_ladder.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/g03z_nurar_action_gate_ladder.py) — 3×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/CAUSALITY_EXPLAINER_2026-09-05.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/CAUSALITY_EXPLAINER_2026-09-05.md) — 3×
+- `Other` — [`qwen_claude_field_theory/closure_2026/g04c_peak_radius_with_nurar.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/g04c_peak_radius_with_nurar.out) — 3×
+- `Python script` — [`qwen_claude_field_theory/closure_2026/route2_vainshtein_kmouflage_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/route2_vainshtein_kmouflage_2026.py) — 3×
+- `Other` — [`qwen_claude_field_theory/closure_2026/g03z_nurar_action_gate_ladder.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/g03z_nurar_action_gate_ladder.out) — 3×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/RESUME_HERE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/RESUME_HERE.md) — 3×
+- `Other` — [`fable_independent_2026/L20_ghost_past.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L20_ghost_past.out) — 2×
+- `Other` — [`fable_independent_2026/L14_parameter_sweep.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L14_parameter_sweep.out) — 2×
+- `Python script` — [`fable_independent_2026/L20_ghost_past.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L20_ghost_past.py) — 2×
+- `Python script` — [`real_research/reviews/mi_khronon_covariantisation_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_khronon_covariantisation_2026.py) — 2×
+- `Markdown/notes` — [`opus_48_extended_research/papers/COVARIANT_MI_FIELD_THEORY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/COVARIANT_MI_FIELD_THEORY.md) — 2×
+- `Python script` — [`opus_48_extended_research/reviews/toe_law/agentXX_verify_block2_nogo_and_luminal.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/toe_law/agentXX_verify_block2_nogo_and_luminal.py) — 2×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/toe_law/agentXX_scale_lock.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/toe_law/agentXX_scale_lock.md) — 2×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/SM_BRIDGE_SME_LORENTZ_2026-06-17.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/SM_BRIDGE_SME_LORENTZ_2026-06-17.md) — 2×
+- `Markdown/notes` — [`opus_48_extended_research/papers/A_GUIDE_FOR_COSMOLOGISTS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/A_GUIDE_FOR_COSMOLOGISTS.md) — 2×
+- `Other` — [`real_research/reviews/mi_disformal_completion_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_disformal_completion_2026.out) — 2×
+- `Python script` — [`real_research/reviews/opt1_construction_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/opt1_construction_2026.py) — 2×
+- `Python script` — [`real_research/reviews/esc_s_window_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/esc_s_window_2026.py) — 2×
+- `Markdown/notes` — [`real_research/reviews/toe_law/UNIFIED_ACTION_ASSEMBLY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/UNIFIED_ACTION_ASSEMBLY.md) — 2×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic13_ic14_run_001/l20/stdout.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/integrable_clock_construction_2026/ic13_ic14_run_001/l20/stdout.txt) — 2×
+- `Python script` — [`qwen_claude_field_theory/closure_2026/route5b_multistream_completion_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/route5b_multistream_completion_2026.py) — 2×
+- `Python script` — [`qwen_claude_field_theory/closure_2026/route3B_entropic_independent_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/route3B_entropic_independent_2026.py) — 2×
+- `Markdown/notes` — [`qwen_claude_field_theory/IDEAS_201_300.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/IDEAS_201_300.md) — 2×
+- `Data/config` — [`qwen_claude_field_theory/papers_2026/PAPER9_foliation_theorem_2026.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER9_foliation_theorem_2026.zenodo.json) — 2×
+- `Python script` — [`qwen_claude_field_theory/closure_2026/route3_entropic_gravity_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/route3_entropic_gravity_2026.py) — 2×
+- `Paper` — [`deepseek_push/G070_data/simon_ufds_v8.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G070_data/simon_ufds_v8.tex) — 2×
+- `Markdown/notes` — [`FRIED_CHICKEN.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/FRIED_CHICKEN.md) — 1×
+- `Python script` — [`fable_independent_2026/L52_marginal_sweep.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L52_marginal_sweep.py) — 1×
+- `Markdown/notes` — [`FINDINGS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/FINDINGS.md) — 1×
+- `Other` — [`fable_independent_2026/L88_gw_polarization.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L88_gw_polarization.out) — 1×
+- `Python script` — [`fable_independent_2026/L88_gw_polarization.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L88_gw_polarization.py) — 1×
+- `Other` — [`fable_independent_2026/L52_marginal_sweep.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L52_marginal_sweep.out) — 1×
+- `Markdown/notes` — [`fable_independent_2026/L60_ANISOTROPIC_HEALTH.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L60_ANISOTROPIC_HEALTH.md) — 1×
+- `Markdown/notes` — [`fable_independent_2026/L88_GW_POLARIZATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L88_GW_POLARIZATION.md) — 1×
+- `Markdown/notes` — [`fable_independent_2026/L52_MARGINAL_SWEEP.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L52_MARGINAL_SWEEP.md) — 1×
+- `Paper` — [`opus_48_extended_research/papers/AMPLITUDE_LAW.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/AMPLITUDE_LAW.tex) — 1×
+- `Python script` — [`opus_48_extended_research/reviews/toe_law/agentXX_part2_rgflow.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/toe_law/agentXX_part2_rgflow.py) — 1×
+- `Python script` — [`opus_48_extended_research/reviews/toe_law/agentXX_part5_hostile_both_ways.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/toe_law/agentXX_part5_hostile_both_ways.py) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/toe_law/agentXX_routeSymmetry.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/toe_law/agentXX_routeSymmetry.md) — 1×
+- `Markdown/notes` — [`opus_48_extended_research/reviews/toe_law/OPEN_DOORS_TO_TOE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/toe_law/OPEN_DOORS_TO_TOE.md) — 1×
+- `Python script` — [`opus_48_extended_research/reviews/toe_law/agentXX_routeRadiative.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/toe_law/agentXX_routeRadiative.py) — 1×
+- `Python script` — [`gemini_38_flash_push/07_cluster_infall_amplitude_accretion.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gemini_38_flash_push/07_cluster_infall_amplitude_accretion.py) — 1×
+- `Markdown/notes` — [`gemini_38_flash_push/08_SYNTHESIS_AND_SWING_FORWARD.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gemini_38_flash_push/08_SYNTHESIS_AND_SWING_FORWARD.md) — 1×
+- `Markdown/notes` — [`gemini_38_flash_push/05_FEEDBACK_FROM_CLOSURE_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gemini_38_flash_push/05_FEEDBACK_FROM_CLOSURE_2026.md) — 1×
+- `Python script` — [`nbody_2026/stage74_ppn_fork_adjudicated_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage74_ppn_fork_adjudicated_2026.py) — 1×
+- `Markdown/notes` — [`real_research/PUMP_HUNT_AND_TRIGGERS_2026-07.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/PUMP_HUNT_AND_TRIGGERS_2026-07.md) — 1×
+- `Python script` — [`real_research/reviews/mi_propagator_2026/ghost_test_v2.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_propagator_2026/ghost_test_v2.py) — 1×
+- `Markdown/notes` — [`real_research/reviews/toe_law/DERIVATION_CHAIN.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/DERIVATION_CHAIN.md) — 1×
+- `Python script` — [`qwen_claude_field_theory/closure_2026/route5_caustics_multistream_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/route5_caustics_multistream_2026.py) — 1×
+- `Data/config` — [`ai_slop/TruthFlow/research_sessions/session_20260503_195737.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/research_sessions/session_20260503_195737.json) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/theory_2026/FIRST_PRINCIPLES_VERDICT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/theory_2026/FIRST_PRINCIPLES_VERDICT.md) — 1×
+- `Other` — [`qwen_claude_field_theory/theory_2026/gen2/constraint_reduced_scalar_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/theory_2026/gen2/constraint_reduced_scalar_2026.out) — 1×
+- `Other` — [`qwen_claude_field_theory/theory_2026/gen2/gen2_constraint_reduced_tensor_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/theory_2026/gen2/gen2_constraint_reduced_tensor_2026.out) — 1×
+- `Python script` — [`qwen_claude_field_theory/theory_2026/gen2/gen2_constraint_reduced_tensor_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/theory_2026/gen2/gen2_constraint_reduced_tensor_2026.py) — 1×
+- `Python script` — [`qwen_claude_field_theory/theory_2026/gen2/constraint_reduced_scalar_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/theory_2026/gen2/constraint_reduced_scalar_2026.py) — 1×
+- `Python script` — [`qwen_claude_field_theory/theory_2026/gen2/gw_robustness_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/theory_2026/gen2/gw_robustness_2026.py) — 1×
+- `Python script` — [`qwen_claude_field_theory/theory_2026/gen2/gen2_shared_corner_health_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/theory_2026/gen2/gen2_shared_corner_health_2026.py) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/theory_2026/RESEARCH_STATUS_FROZEN.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/theory_2026/RESEARCH_STATUS_FROZEN.md) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/papers_2026/PAPER8_ERRATA_PENDING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER8_ERRATA_PENDING.md) — 1×
+- `Data/config` — [`qwen_claude_field_theory/papers_2026/PAPER8_complete_theory_2026.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER8_complete_theory_2026.zenodo.json) — 1×
+- `Other` — [`qwen_claude_field_theory/papers_2026/PAPER9_references.bib`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER9_references.bib) — 1×
+- `Other` — [`qwen_claude_field_theory/papers_2026/PAPER8_references.bib`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER8_references.bib) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/FINAL_THEORY_CANDIDATE_2026-09-05.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/FINAL_THEORY_CANDIDATE_2026-09-05.md) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_ROADMAP_2026-09-04.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_ROADMAP_2026-09-04.md) — 1×
+- `Data/config` — [`qwen_claude_field_theory/closure_2026/acceleration_locked_clock_2026/run_001/aether_regularization_manifest.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/acceleration_locked_clock_2026/run_001/aether_regularization_manifest.json) — 1×
+- `Python script` — [`qwen_claude_field_theory/closure_2026/route6A_maxent_thermo_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/route6A_maxent_thermo_2026.py) — 1×
+- `Python script` — [`qwen_claude_field_theory/closure_2026/aest_j10/wf2_maxwell_alpha2_pole_pathdep.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/aest_j10/wf2_maxwell_alpha2_pole_pathdep.py) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/theory_discovery/KHRONOMETRIC_MOND_GAUNTLET.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/theory_discovery/KHRONOMETRIC_MOND_GAUNTLET.md) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/gea_exponential_no_go_pack/next_gate/QWEN_NEXT_GATE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/gea_exponential_no_go_pack/next_gate/QWEN_NEXT_GATE.md) — 1×
+- `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/gea_exponential_no_go_pack/next_gate/RESEARCH_PROTOCOL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/gea_exponential_no_go_pack/next_gate/RESEARCH_PROTOCOL.md) — 1×
+
+---
+*Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*

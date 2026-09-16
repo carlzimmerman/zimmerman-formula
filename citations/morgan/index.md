@@ -1,0 +1,34 @@
+# Morgan
+
+**Cited in 25 file(s), 37 occurrence(s).**
+
+**Files (GitHub links):**
+
+- `Data/config` — [`ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json) — 11×
+- `Other` — [`deepseek_push/G114_data/leisman/d6.bbl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/leisman/d6.bbl) — 2×
+- `Paper` — [`deepseek_push/G070_data/simon_ufds_v8.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G070_data/simon_ufds_v8.tex) — 2×
+- `Python script` — [`ai_slop/extended_research/agritech/agritech_plant_growth_geometry.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/agritech/agritech_plant_growth_geometry.py) — 1×
+- `Other` — [`ai_slop/extended_research/agritech/agritech_structures/4HG6.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/agritech/agritech_structures/4HG6.pdb) — 1×
+- `Python script` — [`ai_slop/HermesFlow/hermes_agent/scripts/release.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/scripts/release.py) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.bib`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.bib) — 1×
+- `Paper` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026-unified-template.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026-unified-template.tex) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/icml2026/example_paper.bib`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/icml2026/example_paper.bib) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.bib`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.bib) — 1×
+- `Paper` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026-unified-template.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026-unified-template.tex) — 1×
+- `Other` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/icml2026/example_paper.bib`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/icml2026/example_paper.bib) — 1×
+- `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/scripts/release.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/scripts/release.py) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/8dts.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/8dts.pdb) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.bib`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.bib) — 1×
+- `Paper` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026-unified-template.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026-unified-template.tex) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/icml2026/example_paper.bib`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/icml2026/example_paper.bib) — 1×
+- `Python script` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/scripts/release.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/scripts/release.py) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.bib`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.bib) — 1×
+- `Paper` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026-unified-template.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026-unified-template.tex) — 1×
+- `Other` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/icml2026/example_paper.bib`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/icml2026/example_paper.bib) — 1×
+- `Python script` — [`ai_slop/TruthFlow/hermes_agent/scripts/release.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/scripts/release.py) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/6WFN.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/6WFN.pdb) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/8DTS.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/8DTS.pdb) — 1×
+- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/7QLJ.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/7QLJ.pdb) — 1×
+
+---
+*Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*
