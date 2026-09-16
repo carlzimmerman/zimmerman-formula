@@ -1138,6 +1138,47 @@ cosmology, the ontology pre-registration); (4.5) the force-face (PPN = GR,
 no fifth force); (4.6) the open-items box (the sliver, the gap, the four
 pending verdicts).  THE PAPER'S RESULTS STRUCTURE IS READY TO DRAFT.
 
+## WAVE 24 (landed 3/3 -- the k^4 family dead, the first real-data anisotropy, the closure statement)
+G203 THE HECS COMMISSION -- THE DATA GATE CLOSED, THE FIRST REAL-DATA
+MEASUREMENT DONE: HeCS fetched (Rines+13, VizieR J/ApJ/767/15: 58 clusters,
+22,680 Hectospec galaxies + 2,621 literature members; Table 4 transcribed
+from the PDF; sha256-verified under G203_data/PROVENANCE.md); coverage:
+58/58 reach 2 R500, 55/58 reach 5 R500, 3,629 members in [2, 5] R500;
+THE MEASUREMENT on 10,145 real members: beta_win(2-5 R500) = 0.434 +-
+0.015 (bootstrap, robust to the field cut 0.432 +- 0.015): vs the static
+null 0: z = 29.7 sigma (H0 REJECTED); vs the streaming 0.5 rule: z =
+-4.5 sigma (THE STREAMING ENVELOPE IS 4.5 SIGMA TOO HIGH) -- the first
+confrontation favors a strongly positive but SHALLOWER anisotropy
+(mid-ground); the remaining gating piece: a Wojtak-class 2D phase-space
+fit on the same catalog to resolve the caustic-envelope selection at
+3-5 R500 (G206 dispatched); the DR7 stack marked UNVERIFIED-as-download
+(reconstruction from SDSS CAS required, not a blocker).
+G204 THE SCREENED PARENT -- hy4's H048 DOOR 1: VERDICT DEAD (9/9): the
+ghost is NOT fixed at any finite xi: P_X = -mu_2 < 0 is INVARIANT (the
+biharmonic is a spatial X-independent operator), the k^4 term is
+IR-irrelevant (negative at k -> 0 for every xi, xi_c = infinity in the
+IR); the curved sector is healed above xi_c3 ~ 0.005-0.011 pc but the
+kernel members (cartesian affine / radial 1/r) carry negative gradient
+energy at every xi (Rayleigh bound, the Hessian stays INDEFINITE);
+THE CASSINI GATE FAIL(EV): the propagator (1 - e^{-r/xi})/r is exactly
+the Helmholtz single filter of the 44-solve scan -- the smooth-shell
+lemma applies verbatim: 6.45x/7.65x the Park ceiling, Mercury drift
+0.26/0.31 arcsec/cy vs 0 +- 0.04; the deep gate PASSES (delta rho/rho =
+2(xi/r)^2 = 4e-7 at 0.1 kpc: the r^-2 phantom and the equipartition
+exactness survive).  THE k^4 FAMILY HAS NO SURVIVING MEMBER (H001/H045
+bare ghost, H004 biharmonic ghost-at-every-xi + Cassini 6-8x, f31/H006
+Pais-Uhlenbeck): H048 DOOR 1 CLOSED -- the completion reverts to the
+EQUILIBRIUM reading (the phantom absent in the Solar System: Cassini
+passes by construction).
+G205 THE CLOSURE STATEMENT: THEORY_CLOSURE_2026-09-16.md -- the one-page
+state (the law, the one boundary with the ten diagnostics, the sectors,
+the particle, the force-face, the open items, the 19-row file index);
+the verdict-form paragraph: PROVEN (the Lean-backed EOS reading) /
+MEASURED (the line, the boundary, the closures) / PENDING (the four
+registered verdicts each with its decision rule); 20 NAMED OFFICIAL
+CLOSURES; q reported as derived-within-error (Delta q = +0.081) rather
+than open; the open-items panel keeps its residuals and tests.
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 CLAIMED (deepseek, in flight -- do NOT duplicate): G154 static-branch
 charge, G155 sourced equation, G156 dust charge-vs-relic decision,
