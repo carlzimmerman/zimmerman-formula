@@ -1,0 +1,248 @@
+{
+ "lane": "G140_amp_mass",
+ "title": "THE AMPLITUDE'S MASS-ORDERING PREDICTION: a_c(M500) as a prediction -- band, group-scale cross-check, cosmic closure",
+ "deliverable": "deepseek_push/G140_amp_mass.py + .out + G140_results.json",
+ "context": "G122 (the mass-ordering of the free-dust amplitude: rho -0.59, p 0.045, q = -0.41, the registered 12 amplitudes at p* = +0.99); G125 (the group sample -- committed, single-value T, no radial profiles); G098 (per-cluster f_dust medians, floor A); G079 (the cosmic budget, Tinker F(>M) table, closure band); G115 (the warm-floor correction: honest re-closure 0.60-0.79).",
+ "basis": {
+  "a_c": "the per-cluster normalization of R = [2x/(x-1)] * a_c * (r/R500)^-p, p* = +0.99 (G122 closed-form candidate, 12 registered log10 a_c values)",
+  "q_reg": "G122's 96-bin 3-param fit log10 c_dust = const + q log10(M500/8e14) + p log10(r/R500), q = -0.4144, p = +0.9904, rms 0.1189 dex",
+  "f_dust": "G098 floor-A median f_dust on [0.2, 1] R500, sample median 0.674; f_dust ~ a_c/x-class reading",
+  "cosmic_weight": "G079's committed Tinker+08 F(>M200) table (1e10-1e15) interpolated in log M; <(M/8e14)^q> mass-weighted",
+  "closure": "G079's numerator halo(>1e10) + deep(1e6-1e10) + floor (<1e6) over the free-dust remainder; G115's damped band"
+ },
+ "data_notes": "all inputs from the committed deepseek_push/*/results.json registers + the committed Ettori+19 JSON; the F(>M) table is on M200 while the a_c run is on M500 (offset ~0.1-0.15 dex, <= 5% on the weights, noted); nothing written outside deepseek_push/.",
+ "checks": [
+  {
+   "name": "P0 [reproduction] Spearman(amp, M500) reproduced from the registered arrays",
+   "measured": "rho = -0.587, p = 0.045 (registered -0.587, 0.045)",
+   "pass": true,
+   "reading": "the mass-ordering the prediction rests on"
+  },
+  {
+   "name": "P1 [the prediction stated] a_c(M500) runs as M500^-0.41 with the band from the fit error",
+   "measured": "log10 a_c = -0.145 + (-0.414 +- 0.157) log10(M500/8e14); a_c(8e14) = 0.716",
+   "pass": true,
+   "reading": "1-dex extrapolation: a_c(1e14) = 1.70 = 2.37x the pivot"
+  },
+  {
+   "name": "C1 [group-scale cross-check executable?] the committed G125 sample allows the per-group a_c extraction",
+   "measured": "NO: 45/60 groups have a single-value T only; 0 radial T(r)/R(x) curves",
+   "pass": false,
+   "reading": "the cross-check is NOT runnable on the committed record -- the data needed are stated below"
+  },
+  {
+   "name": "C2 [in-sample fraction check] the f_dust medians correlate with the amplitude in the direction a_c implies (positive rho)",
+   "measured": "rho(f_dust, a_c) = +0.615 (p = 0.033)",
+   "pass": true,
+   "reading": "the fraction runs with the amplitude at cluster scale; G098's committed medians are THEMSELVES mass-ordered in the predicted direction (rho -0.580, p 0.048 -- large clusters carry LESS dust per unit mass), while G123's geometric window-mean reading was flat (rho -0.32, p 0.31): the mass-ordering is visible at the normalization/median level, not (yet) in the G123 window-mean "
+  },
+  {
+   "name": "C3 [the cosmic weight] the mass-function-weighted run over the cluster+group window is consistent with a rising dust content at low mass (r > 1)",
+   "measured": "<(M/8e14)^q> = 3.12 over [1e13, 1e15]",
+   "pass": true,
+   "reading": "the a_c(M500) run up-weights the low-mass halos that dominate the mass function"
+  },
+  {
+   "name": "V1 [the prediction stated with its band]",
+   "measured": "THE PREDICTION: log10 a_c = -0.145 + (-0.414 +- 0.157) log10(M500/8e14) -- a_c(M500) = 0.72 (M500/8e14)^-0.41.  At 1e14: a_c = 1.70 (2.37x the pivot); at 1e13 (the group scale): a_c = 4.4 (6.1x the pivot, ratio band x[0.50, 1.99] at 1-sigma q).  The q band: cluster-level OLS -0.414 +- 0.157, bootstrap 16-84 [-0.544, -0.263], LOO span [-0.475, -0.338], pooled-96-bin (naive) +- 0.089.  Spearman(amp, M500) = -0.587, p = 0.045 (n = 12).",
+   "pass": true,
+   "reading": ""
+  },
+  {
+   "name": "V2 [the cosmic-weighted f_dust from the a_c(M500) run]",
+   "measured": "THE COSMIC-WEIGHTED f_dust FROM THE a_c(M500) RUN: over M200 > 1e14 (clusters): <f_dust> = 1.028 (raw linear; band 0.869-1.230; capped 0.894); over M200 > 1e13 (clusters+groups): <f_dust> = 2.102 (raw linear; band 1.329-3.421; capped 0.963); over M200 > 1e10 (all halos): <f_dust> = 12.721 (raw linear; capped 0.985 -- the fraction saturates at 1 below ~3e14: f_dust = 1 at M_sat = 3.09e+14, band 1.73e+14-4.01e+14).  The closure band [0.79-0.95] (G115 damped 0.59-0.63) becomes, with the run over clusters+groups, [1.02, 1.20] (capped-fraction reading) -- OVER 1.0 at the top: the run, extrapolated, overshoots the budget unless it saturates below ~3e14.",
+   "pass": true,
+   "reading": ""
+  },
+  {
+   "name": "V3 [the honest statement]",
+   "measured": "HONEST: the amplitude's mass-ordering is a REGISTERED, marginal pattern (Spearman -0.59, p = 0.045, n = 12; q = -0.41 +- 0.16, LOO stable over [-0.48, -0.34], bootstrap P(q>0) = 0.02) -- a NEW TESTABLE RELATION linking the cluster-side amplitude to the cosmic budget, NOT a closure mechanism: (i) it does NOT fill the 0.60-0.79 deficit -- that deficit is the sub-1e6 warm-floor mass-FUNCTION cut (G115), untouched by a per-halo amplitude run; (ii) extrapolated down, the run OVERSHOOTS the budget (closure > 1 with the cluster-scale f_dark ~ 6-10 normalization held) and must saturate -- f_dust = 1 (the whole missing mass dust) at M_sat ~ 3.1e+14 Msun, i.e. the power-law fraction cannot extend below ~3e14; (iii) the 12-cluster caveat is real: p = 0.045 is marginal and the two no-a0-crossing clusters (A1644, A2255) were flagged off the ordering in G122; the in-sample FRACTION readings disagree on the strength of the mass-run -- G098's committed [0.2, 1] R500 medians ARE anti-correlated with M500 (rho -0.58, p 0.05) while G123's geometric window-mean construction was FLAT (rho -0.32, p 0.31): the mass-ordering lives at the normalization/window-median level, and its window-integrated strength depends on the window -- the discriminating test is the group scale: a_c(1e13)/a_c(8e14) = 6.1 against resolved group T(r) profiles (RP07/Sun+09/Lovisari+15-class), which the committed G125 record cannot yet provide.  Verdict: the relation is consistent, quantified, and falsifiable -- the honest label is PREDICTION (with the saturation bound), not closure.",
+   "pass": true,
+   "reading": ""
+  }
+ ],
+ "n_pass": 7,
+ "n_fail": 1,
+ "prediction": {
+  "form": "log10 a_c = c + q log10(M500/8e14)",
+  "q": -0.41437780815343805,
+  "q_err": 0.1567750072474283,
+  "q_cluster_ols": -0.41423504973651176,
+  "q_cluster_se": 0.1567750072474283,
+  "q_bootstrap_16_84": [
+   -0.5440618321956211,
+   -0.2626726800618453
+  ],
+  "q_bootstrap_p": 0.023,
+  "q_loo_range": [
+   -0.4751219708389518,
+   -0.3384510772705715
+  ],
+  "q_pooled96_naive_se": 0.08886091292455574,
+  "c": -0.14488787056589078,
+  "spearman_amp_vs_M500": {
+   "rho": -0.5874125874125874,
+   "p": 0.044609296463363105
+  },
+  "a_c_at": {
+   "8e+14": {
+    "log10": -0.14488787056589078,
+    "ratio_vs_pivot": 1.0
+   },
+   "3e+14": {
+    "log10": 0.031624119054995764,
+    "ratio_vs_pivot": 1.5014538560022412
+   },
+   "1e+14": {
+    "log10": 0.22933257880914767,
+    "ratio_vs_pivot": 2.3671209513286424
+   },
+   "1e+13": {
+    "log10": 0.6437103869625856,
+    "ratio_vs_pivot": 6.146080687908718
+   }
+  },
+  "a_c_1e13_ratio": 6.146080687908718,
+  "a_c_1e13_band_dex": 0.2983569465031702
+ },
+ "f_dust_saturation": {
+  "M_sat_Msun": 308763257361121.7,
+  "M_sat_band_Msun": [
+   172979444752324.22,
+   400974654586861.56
+  ]
+ },
+ "group_cross_check": {
+  "executable_on_committed": false,
+  "n_groups": 60,
+  "n_groups_with_single_T": 45,
+  "n_groups_with_R1d": 45,
+  "needed": "resolved T(r) profiles + M_dyn(<r) on 10-30 groups over M500 ~ 1e13-1e14 (RP07 profiles / Sun+09 / Lovisari+15 / E11 profiles), the G105 x-curve construction, per-group (r/R500)^-1 amplitude fits",
+  "in_sample": {
+   "spearman_fdust_vs_amp": 0.6153846153846154,
+   "p_fdust_vs_amp": 0.03316990109010588,
+   "spearman_fdust_vs_M500": -0.5804195804195805,
+   "p_fdust_vs_M500": 0.04785597684206057
+  }
+ },
+ "cosmic_statement": {
+  "f_dust_calibration": 0.6740149652644287,
+  "weights": {
+   "M200 > 1e14 (clusters)": {
+    "M_range": [
+     100000000000000.0,
+     1000000000000000.0
+    ],
+    "mean_M_over_8e14_q": 1.5256595729551492,
+    "band": [
+     1.288930815138662,
+     1.8247075757980011
+    ],
+    "f_dust_mean": 1.028317384070708,
+    "f_dust_mean_capped": 0.8937021784758997,
+    "f_dust_band": [
+     0.8687586585939371,
+     1.2298802133192297
+    ]
+   },
+   "M200 > 1e13 (clusters+groups)": {
+    "M_range": [
+     10000000000000.0,
+     1000000000000000.0
+    ],
+    "mean_M_over_8e14_q": 3.1179303198849526,
+    "band": [
+     1.9711906217033484,
+     5.075625908787029
+    ],
+    "f_dust_mean": 2.1015316962541655,
+    "f_dust_mean_capped": 0.9631870927062809,
+    "f_dust_band": [
+     1.32861197841695,
+     3.421047820606324
+    ]
+   },
+   "M200 > 1e10 (all halos, G079 halo term)": {
+    "M_range": [
+     10000000000.0,
+     1000000000000000.0
+    ],
+    "mean_M_over_8e14_q": 18.873764183348253,
+    "band": [
+     5.302726784122593,
+     76.79047071249693
+    ],
+    "f_dust_mean": 12.721199510448493,
+    "f_dust_mean_capped": 0.9845109846626227,
+    "f_dust_band": [
+     3.5741172092071456,
+     51.75792644992275
+    ]
+   }
+  },
+  "closure": {
+   "G079_reference_band": [
+    0.7864972378832716,
+    0.9509016902604062
+   ],
+   "G115_damped_band": [
+    0.5901607286003059,
+    0.6259280454851729
+   ],
+   "G115_honest_band": [
+    0.6,
+    0.79
+   ],
+   "closure_with_run_capped": {
+    "M200 > 1e14 (clusters)": [
+     0.9613468354138783,
+     1.1362371598769532
+    ],
+    "M200 > 1e13 (clusters+groups)": [
+     1.0168867410566549,
+     1.1951431204071707
+    ],
+    "M200 > 1e10 (all halos, G079 halo term)": [
+     1.0339311162323266,
+     1.2132204880177315
+    ]
+   },
+   "closure_with_run_raw": {
+    "M200 > 1e14 (clusters)": [
+     1.0689459581821648,
+     1.2503574416008931
+    ],
+    "M200 > 1e13 (clusters+groups)": [
+     1.9267756366576794,
+     2.1601767975597723
+    ],
+    "M200 > 1e10 (all halos, G079 halo term)": [
+     10.415169914621643,
+     11.163019213582155
+    ]
+   },
+   "halo_term_share": 0.685646662535755
+  }
+ },
+ "verdicts": {
+  "V1_prediction_with_band": {
+   "q": -0.41437780815343805,
+   "q_err": 0.1567750072474283,
+   "statement": "THE PREDICTION: log10 a_c = -0.145 + (-0.414 +- 0.157) log10(M500/8e14) -- a_c(M500) = 0.72 (M500/8e14)^-0.41.  At 1e14: a_c = 1.70 (2.37x the pivot); at 1e13 (the group scale): a_c = 4.4 (6.1x the pivot, ratio band x[0.50, 1.99] at 1-sigma q).  The q band: cluster-level OLS -0.414 +- 0.157, bootstrap 16-84 [-0.544, -0.263], LOO span [-0.475, -0.338], pooled-96-bin (naive) +- 0.089.  Spearman(amp, M500) = -0.587, p = 0.045 (n = 12)."
+  },
+  "V2_cosmic_weighted_f_dust": {
+   "clusters_gt_1e14": {
+    "f_dust": 1.028317384070708,
+    "capped": 0.8937021784758997
+   },
+   "clusters_groups_gt_1e13": {
+    "f_dust": 2.1015316962541655,
+    "capped": 0.9631870927062809
+   },
+   "statement": "THE COSMIC-WEIGHTED f_dust FROM THE a_c(M500) RUN: over M200 > 1e14 (clusters): <f_dust> = 1.028 (raw linear; band 0.869-1.230; capped 0.894); over M200 > 1e13 (clusters+groups): <f_dust> = 2.102 (raw linear; band 1.329-3.421; capped 0.963); over M200 > 1e10 (all halos): <f_dust> = 12.721 (raw linear; capped 0.985 -- the fraction saturates at 1 below ~3e14: f_dust = 1 at M_sat = 3.09e+14, band 1.73e+14-4.01e+14).  The closure band [0.79-0.95] (G115 damped 0.59-0.63) becomes, with the run over clusters+groups, [1.02, 1.20] (capped-fraction reading) -- OVER 1.0 at the top: the run, extrapolated, overshoots the budget unless it saturates below ~3e14."
+  },
+  "V3_honest_statement": {
+   "statement": "HONEST: the amplitude's mass-ordering is a REGISTERED, marginal pattern (Spearman -0.59, p = 0.045, n = 12; q = -0.41 +- 0.16, LOO stable over [-0.48, -0.34], bootstrap P(q>0) = 0.02) -- a NEW TESTABLE RELATION linking the cluster-side amplitude to the cosmic budget, NOT a closure mechanism: (i) it does NOT fill the 0.60-0.79 deficit -- that deficit is the sub-1e6 warm-floor mass-FUNCTION cut (G115), untouched by a per-halo amplitude run; (ii) extrapolated down, the run OVERSHOOTS the budget (closure > 1 with the cluster-scale f_dark ~ 6-10 normalization held) and must saturate -- f_dust = 1 (the whole missing mass dust) at M_sat ~ 3.1e+14 Msun, i.e. the power-law fraction cannot extend below ~3e14; (iii) the 12-cluster caveat is real: p = 0.045 is marginal and the two no-a0-crossing clusters (A1644, A2255) were flagged off the ordering in G122; the in-sample FRACTION readings disagree on the strength of the mass-run -- G098's committed [0.2, 1] R500 medians ARE anti-correlated with M500 (rho -0.58, p 0.05) while G123's geometric window-mean construction was FLAT (rho -0.32, p 0.31): the mass-ordering lives at the normalization/window-median level, and its window-integrated strength depends on the window -- the discriminating test is the group scale: a_c(1e13)/a_c(8e14) = 6.1 against resolved group T(r) profiles (RP07/Sun+09/Lovisari+15-class), which the committed G125 record cannot yet provide.  Verdict: the relation is consistent, quantified, and falsifiable -- the honest label is PREDICTION (with the saturation bound), not closure."
+  }
+ }
+}

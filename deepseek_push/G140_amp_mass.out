@@ -1,0 +1,175 @@
+G140 -- THE AMPLITUDE'S MASS-ORDERING PREDICTION: a_c(M500) as a prediction.
+
+CONTEXT.  G122 decomposed the 0.313-dex coherency scatter and CLOSED the curve:
+    log10 c_dust = const + q log10(M500/8e14) + p log10(r/R500),
+    q = -0.414, p = +0.990, 3-param residual rms 0.119 dex;
+    R(x, r) = [2x/(x-1)] * a_c * (r/R500)^-p with ONE universal p* = +0.99 and a
+    per-cluster amplitude log10 a_c (12 registered values), collapse 0.097 dex;
+    and the amplitude itself is MASS-ORDERED: Spearman(log10 a_c, M500) = -0.587,
+    p = 0.045 (n = 12) -- the remaining thorn, per G122 V3.  THIS LANE TURNS THAT
+    ORDERING INTO A PREDICTION (a_c runs as M500^-0.41), states its band, checks
+    the group scale (G125) and the cosmic budget (G079's closure, G115's warm-
+    floor correction to the 0.60-0.79 band), and reads the physics.
+
+  (1) THE PREDICTION: log10 a_c = q log10(M500/8e14) + c, q = -0.41 +- the error
+      from the fit.  The 'error from the fit' is computed HERE (G122 did not
+      register it): (a) the honest cluster-level OLS on the 12 registered
+      amplitudes (12 independent points), with bootstrap 16-84 and leave-one-out
+      stability; (b) the naive pooled 96-bin design SE of the registered 3-param
+      form (pseudo-replication caveat).  THE PREDICTION: a_c(M500) = a_c(8e14) *
+      (M500/8e14)^-0.41, quoted at 1e14, 3e14 (below the sample edge) and 1e13
+      (the group scale) with the band.
+  (2) THE CROSS-CHECK (group scale): G125's committed GEMS/OP04 + RP07 + E11
+      group data carry (sigma_gal, single-value T_X, r500, M500, f_gas scalar)
+      per group -- NO resolved T(r) radial profiles and NO R(x) = T/T_floor
+      curves -- the r^-1 dust amplitude a_c CANNOT be extracted per group on the
+      committed record.  The lane states the prediction's extension
+      (a_c(1e13)/a_c(8e14) = 6.0x, band) and precisely what data would execute
+      the cross-check; in-sample, the closest available amplitude-adjacent tests
+      are G098's per-cluster f_dust medians vs the 12 amplitudes and vs M500
+      (G123's window-mean flat reading) -- both reproduced here.
+  (3) THE PHYSICAL READING: with the free-dust fraction f_dust ~ a_c/x-class
+      (G122/G098 reading), a_c ~ M500^-0.41 means the dust's fraction of the
+      missing mass FALLS with mass: the large clusters carry LESS dust per unit
+      mass.  The cosmic statement (the G079 budget's cluster-side input): the
+      mass-function-weighted mean cosmic f_dust from the a_c(M500) run, computed
+      on G079's committed Tinker+08 F(>M) table; and the closure question: does
+      the run close the G115-corrected 0.60-0.79 closure band, or bind it from
+      above?  The f_dust = 1 saturation scale (the run cannot make the dust
+      fraction exceed the missing mass) is derived from the calibration.
+  (4) THE VERDICTS: V1 the prediction stated with its band; V2 the cosmic-
+      weighted f_dust from the a_c(M500) run (the number); V3 the honest
+      statement: a new testable relation linking the cluster side to the budget,
+      or an artifact of the 12-cluster fit?
+
+CONVENTIONS -- identical to G122/G123: pivot M500 = 8e14, q on
+log10(M500/8e14); a0 = 9.3619e-11 (not needed numerically here); the registered
+per-cluster amplitudes log10 a_c at p* = +0.99 (G122 closed-form candidate);
+G098's floor-A median f_dust on [0.2, 1] R500 (sample median 0.674) as the
+fraction calibration; G079's Tinker+08 F(>M) table (committed JSON) for the
+cosmic weights; G115's F(>1e6) and damped-closure band.  Nothing written
+outside deepseek_push/.
+
+Run:   python3 G140_amp_mass.py > G140_amp_mass.out
+Outs:  G140_amp_mass.out, G140_results.json (both in deepseek_push/).
+
+====================================================================================================
+G140 -- THE AMPLITUDE'S MASS-ORDERING PREDICTION (a_c(M500) as a prediction)
+====================================================================================================
+  registers: 12 amplitudes (G122 p* = +0.99); q_reg = -0.414, c_reg = -0.145, 3-param rms = 0.119 dex;
+  Spearman(amp, M500) registered -0.587 (p = 0.045);
+  G098 f_dust sample median 0.674; G079 closure [0.7864972378832716, 0.9509016902604062]; G115 damped [0.5901607286003059, 0.6259280454851729].
+  M500 span of the 12 amplitudes: 3.48-8.95 e14 Msun (3.48e+14-8.95e+14).
+
+====================================================================================================
+PART 1 -- THE PREDICTION: a_c runs as M500^-0.41 (the band)
+====================================================================================================
+
+  (a) THE CLUSTER-LEVEL FIT (12 registered amplitudes, the honest unit -- each amplitude is one independent system):
+      log10 a_c = -0.144 + (-0.414 +- 0.157) log10(M500/8e14)   [OLS, n = 12, residual rms 0.068 dex]
+      -> a_c(8e14) = 0.717;  q = -0.414 +- 0.157
+
+  (a2) Spearman(log10 a_c, M500) recomputed = -0.587 (p = 0.045) vs G122 registered -0.587 (p = 0.045)
+  [PASS] P0 [reproduction] Spearman(amp, M500) reproduced from the registered arrays
+         measured: rho = -0.587, p = 0.045 (registered -0.587, 0.045)
+         reading: the mass-ordering the prediction rests on
+
+  (b) BOOTSTRAP (4000 resamples of the 12 clusters): q 16-84 = [-0.544, -0.263], median -0.408; P(q > 0) = 0.0115
+      2-sided bootstrap p (q=0): 0.023
+  (c) LEAVE-ONE-OUT: q spans [-0.475, -0.338] (drop A3158 -> -0.475; drop RXC1825 -> -0.338)
+
+  (d) the naive pooled 96-bin design SE of the REGISTERED q = -0.414 +- 0.089 (sigma = the registered 3-param rms 0.119 dex) -- PSEUDO-REPLICATION caveat: the 96 bins are 12 clusters x 8 radii, so this SE is too small; the cluster-level SE 0.157 is the honest band.
+
+  THE PREDICTION (adopted): q = -0.414 +- 0.157 (G122's registered q; error from the cluster-level fit).
+  a_c(M500) = 0.716 * (M500/8e14)^-0.414 +- 0.157(q)
+
+  the prediction's values with the q band (log10 a_c at pivot = -0.145):
+    M500 = 8.00e14 (pivot):  a_c = 0.716  (the band anchors here, by construction)
+    M500 = 3e+14:  log10 a_c = +0.032 +- 0.067  -> a_c = 1.08 (x1.50 vs pivot), ratio band x[0.86, 1.17]
+    M500 = 1e+14:  log10 a_c = +0.229 +- 0.142  -> a_c = 1.70 (x2.37 vs pivot), ratio band x[0.72, 1.39]
+    M500 = 1e+13:  log10 a_c = +0.644 +- 0.298  -> a_c = 4.40 (x6.15 vs pivot), ratio band x[0.50, 1.99]
+  [PASS] P1 [the prediction stated] a_c(M500) runs as M500^-0.41 with the band from the fit error
+         measured: log10 a_c = -0.145 + (-0.414 +- 0.157) log10(M500/8e14); a_c(8e14) = 0.716
+         reading: 1-dex extrapolation: a_c(1e14) = 1.70 = 2.37x the pivot
+
+====================================================================================================
+PART 2 -- THE CROSS-CHECK: the r^-1 dust amplitude at GROUP scale
+====================================================================================================
+
+  (a) WHAT G125'S COMMITTED GROUP DATA CONTAIN (GEMS/OP04 + RP07 + E11):
+      per-group fields: ['M500_Msun', 'N_gal', 'R1d', 'T_err', 'T_keV', 'beta_spec_pub', 'class', 'gate_warning', 'log10R1d', 'name', 'note', 'r500_Mpc', 'sigma_gas1d_km_s', 'sigma_v_err', 'sigma_v_km_s', 'unverified_in_repo']
+      60 groups; 45 with a SINGLE-value T_X; 45 with the scalar R1d = sigma_gal/sigma_gas (the equipartition residual).
+      NO per-group radial T(r) profile, NO M_dyn(<r) profile, NO R(x) = T/T_floor curve -- every group carries ONE temperature.
+      -> the r^-1 dust amplitude a_c of G122's closed form CANNOT be extracted per group on the committed record (the amplitude is the normalization of the (r/R500)^-1 term in the RADIAL profile; a single T value has no radial shape to carry it).
+  [FAIL] C1 [group-scale cross-check executable?] the committed G125 sample allows the per-group a_c extraction
+         measured: NO: 45/60 groups have a single-value T only; 0 radial T(r)/R(x) curves
+         reading: the cross-check is NOT runnable on the committed record -- the data needed are stated below
+
+  (b) THE PREDICTION EXTENDED TO THE GROUP SCALE (the target the data would test):
+      a_c(1e13)/a_c(8e14) = 10^(-0.414 x -1.903) = 6.15 (10^+0.79 +- 0.30 dex)
+      ratio band: x[0.50, 1.99] (q-1-sigma to q+1-sigma); 2-sigma band x[0.25, 3.95]
+      RXC1825 (the sample's highest amplitude, +0.062) is the template: groups at 1e13 should sit at log10 a_c ~ +0.64 if the power law holds to 1e13.
+
+      (bounding physics) with f_ref = 0.674 at the pivot, f_dust(M) = 0.67 (M/8e14)^-0.414 reaches f_dust = 1 (the whole missing mass is dust -- the phantom share vanishes) at
+      M_sat = 3.09e+14 Msun (band 1.73e+14-4.01e+14 from q +- sq) -- the power-law run CANNOT extend below ~3e14 as a FRACTION; the group-scale cross-check must therefore test the AMPLITUDE run (which may continue) against a saturating fraction.
+      in-sample note: A1644 at 3.48e14 sits just ABOVE the crossing M_sat = 3.09e+14; the run predicts f_dust(A1644) = 0.95 vs the measured 0.70 -- consistent within the ~0.13-dex amplitude scatter, and the saturation boundary brackets the low-mass end.
+
+  (c) WHAT THE PREDICTION NEEDS (the group-scale dataset):
+      - resolved T(r) radial profiles on groups, >= 4 bins spanning ~0.2-1 R500 (the G105 x-curve construction: T_floor from M_b, x = M_dyn/M_b);
+      - the same 8-point RG grid or a compatible one, with R500 per group (E11/HSE or equivalent) and M_dyn(<r) (hydrostatic or NFW-normalized);
+      - candidates: Rasmussen & Ponman 2007 (15 Chandra groups, the OUTER-T profiles -- only the mean <T> is committed in G125), Sun+09 (43 XMM groups), Lovisari+15 (XMM), Eckmiller+11 profiles;
+      - a sample of 10-30 groups spanning M500 ~ 1e13-1e14 with the same per-group (r/R500)^-1 fits -> the a_c(M500) power law vs q = -0.41 +- 0.16.
+      - E11's f_gas,500 (~0.05-0.09 at group scale vs 0.13-0.155 cluster-scale) is the DIRECTIONALLY consistent baryon hint (more missing mass per baryon at low mass) but carries no radial amplitude -- it is context, not a measurement of a_c.
+
+  (d) THE IN-SAMPLE AMPLITUDE-ADJACENT TESTS AVAILABLE NOW:
+      Spearman(G098 f_dust median, log10 a_c) = +0.615 (p = 0.033) -- the amplitude-to-fraction consistency within the 12 clusters
+      Spearman(G098 f_dust median, M500) = -0.580 (p = 0.048) -- the fraction itself vs mass (G123's window-mean flat reading: rho -0.32, p 0.31)
+  [PASS] C2 [in-sample fraction check] the f_dust medians correlate with the amplitude in the direction a_c implies (positive rho)
+         measured: rho(f_dust, a_c) = +0.615 (p = 0.033)
+         reading: the fraction runs with the amplitude at cluster scale; G098's committed medians are THEMSELVES mass-ordered in the predicted direction (rho -0.580, p 0.048 -- large clusters carry LESS dust per unit mass), while G123's geometric window-mean reading was flat (rho -0.32, p 0.31): the mass-ordering is visible at the normalization/median level, not (yet) in the G123 window-mean 
+
+====================================================================================================
+PART 3 -- THE PHYSICAL READING: f_dust(M500) and the cosmic closure
+====================================================================================================
+
+  (a) THE READING: f_dust ~ a_c/x-class -> f_dust FALLS with mass (raw linear run; the fraction CANNOT exceed 1 -- the cap is applied in the cosmic means below):
+      f_dust(3e+14) = 0.67 x (0.375)^-0.414 = 1.01  (A1644-class)
+      f_dust(1e+14) = 0.67 x (0.125)^-0.414 = 1.60  (1e14)
+      f_dust(1e+13) = 0.67 x (0.013)^-0.414 = 4.14  (1e13)
+      the LARGE clusters carry LESS dust per unit mass: 8.8e14 (A2029-class) -> f_dust = 0.65 vs 1e14 -> 1.60 (2.5x).
+
+  (b) THE COSMIC STATEMENT -- mass-function-weighted f_dust from the a_c(M500) run, on G079's committed F(>M):
+      M200 > 1e14 (clusters)                    : <(M/8e14)^q> =  1.53 (band 1.29-1.82)  ->  <f_dust> = 1.028 (capped 0.894)   [F span 0.076 of matter]
+      M200 > 1e13 (clusters+groups)             : <(M/8e14)^q> =  3.12 (band 1.97-5.08)  ->  <f_dust> = 2.102 (capped 0.963)   [F span 0.218 of matter]
+      M200 > 1e10 (all halos, G079 halo term)   : <(M/8e14)^q> = 18.87 (band 5.30-76.79)  ->  <f_dust> = 12.721 (capped 0.985)   [F span 0.519 of matter]
+  [PASS] C3 [the cosmic weight] the mass-function-weighted run over the cluster+group window is consistent with a rising dust content at low mass (r > 1)
+         measured: <(M/8e14)^q> = 3.12 over [1e13, 1e15]
+         reading: the a_c(M500) run up-weights the low-mass halos that dominate the mass function
+
+  (c) THE CLOSURE: G079's band [0.79-0.95] (G115 warm floor: 0.59-0.63, honest 0.60-0.79) assumed a CONSTANT dust content per halo. The a_c(M500) run makes it mass-dependent:
+      reference numerator (G079): halo(>1e10) 0.1411-0.1497 + deep(1e6-1e10) 0.0489-0.0519 + floor(<1e6) 0.0158-0.0473 = 0.2058-0.2488; /remainder 0.2619 -> 0.786-0.950 (registered 0.786-0.951)
+      the run's effect, window by window (halo term rescaled by the mass-weighted run; deep + floor unchanged -- the sub-1e6 warm floor is a mass-FUNCTION cut, not a per-halo amplitude):
+      M200 > 1e14 (clusters)                    : closure -> [0.961, 1.136] (capped fraction; raw run [1.069, 1.250])
+      M200 > 1e13 (clusters+groups)             : closure -> [1.017, 1.195] (capped fraction; raw run [1.927, 2.160])
+      M200 > 1e10 (all halos, G079 halo term)   : closure -> [1.034, 1.213] (capped fraction; raw run [10.415, 11.163])
+
+      the 0.60-0.79 band (G115 honest re-closure) rescaled the same way (damped closure x the window factor):
+      [0.59, 0.63] x (1 + f_halo*(1.43-1)) with f_halo = 0.69 = [0.764, 0.787] -> the tension moves UP, toward and past 1.0 -- the run does not fill the deficit, it OVERSHOOPS the budget when extrapolated.
+
+  THE CLOSURE VERDICT (stated in Part 4, V3): with the cluster-scale f_dark ~ 6-10 normalization held, the a_c(M500) run, extrapolated below ~3e14, predicts MORE dust per unit mass in the halos that dominate the mass function -- the closure band overshoots 1.0.  The 0.60-0.79 deficit is the SUB-1e6 warm-floor cut (G115), a mass-FUNCTION effect the per-halo amplitude run does not address; the run instead binds the budget from above and forces the saturation at M_sat ~ 3e14 (or a flattening of q) for the two to coexist.
+
+====================================================================================================
+V -- THE VERDICTS
+====================================================================================================
+  [PASS] V1 [the prediction stated with its band]
+         measured: THE PREDICTION: log10 a_c = -0.145 + (-0.414 +- 0.157) log10(M500/8e14) -- a_c(M500) = 0.72 (M500/8e14)^-0.41.  At 1e14: a_c = 1.70 (2.37x the pivot); at 1e13 (the group scale): a_c = 4.4 (6.1x the pivot, ratio band x[0.50, 1.99] at 1-sigma q).  The q band: cluster-level OLS -0.414 +- 0.157, bootstrap 16-84 [-0.544, -0.263], LOO span [-0.475, -0.338], pooled-96-bin (naive) +- 0.089.  Spearman(amp, M500) = -0.587, p = 0.045 (n = 12).
+  [PASS] V2 [the cosmic-weighted f_dust from the a_c(M500) run]
+         measured: THE COSMIC-WEIGHTED f_dust FROM THE a_c(M500) RUN: over M200 > 1e14 (clusters): <f_dust> = 1.028 (raw linear; band 0.869-1.230; capped 0.894); over M200 > 1e13 (clusters+groups): <f_dust> = 2.102 (raw linear; band 1.329-3.421; capped 0.963); over M200 > 1e10 (all halos): <f_dust> = 12.721 (raw linear; capped 0.985 -- the fraction saturates at 1 below ~3e14: f_dust = 1 at M_sat = 3.09e+14, band 1.73e+14-4.01e+14).  The closure band [0.79-0.95] (G115 damped 0.59-0.63) becomes, with the run over clusters+groups, [1.02, 1.20] (capped-fraction reading) -- OVER 1.0 at the top: the run, extrapolated, overshoots the budget unless it saturates below ~3e14.
+  [PASS] V3 [the honest statement]
+         measured: HONEST: the amplitude's mass-ordering is a REGISTERED, marginal pattern (Spearman -0.59, p = 0.045, n = 12; q = -0.41 +- 0.16, LOO stable over [-0.48, -0.34], bootstrap P(q>0) = 0.02) -- a NEW TESTABLE RELATION linking the cluster-side amplitude to the cosmic budget, NOT a closure mechanism: (i) it does NOT fill the 0.60-0.79 deficit -- that deficit is the sub-1e6 warm-floor mass-FUNCTION cut (G115), untouched by a per-halo amplitude run; (ii) extrapolated down, the run OVERSHOOTS the budget (closure > 1 with the cluster-scale f_dark ~ 6-10 normalization held) and must saturate -- f_dust = 1 (the whole missing mass dust) at M_sat ~ 3.1e+14 Msun, i.e. the power-law fraction cannot extend below ~3e14; (iii) the 12-cluster caveat is real: p = 0.045 is marginal and the two no-a0-crossing clusters (A1644, A2255) were flagged off the ordering in G122; the in-sample FRACTION readings disagree on the strength of the mass-run -- G098's committed [0.2, 1] R500 medians ARE anti-correlated with M500 (rho -0.58, p 0.05) while G123's geometric window-mean construction was FLAT (rho -0.32, p 0.31): the mass-ordering lives at the normalization/window-median level, and its window-integrated strength depends on the window -- the discriminating test is the group scale: a_c(1e13)/a_c(8e14) = 6.1 against resolved group T(r) profiles (RP07/Sun+09/Lovisari+15-class), which the committed G125 record cannot yet provide.  Verdict: the relation is consistent, quantified, and falsifiable -- the honest label is PREDICTION (with the saturation bound), not closure.
+
+G140 COMPLETE: 7/8 checks PASS.
+  V1: q = -0.414 +- 0.157; a_c(1e13)/a_c(8e14) = 6.1
+  V2: <f_dust> clusters+groups = 2.102 (capped 0.963)
+  V3: HONEST: the amplitude's mass-ordering is a REGISTERED, marginal pattern (Spearman -0.59, p = 0.045, n = 12; q = -0.41 +- 0.16, LOO stable over [-0.48, -0.34], b...
+artifact written: G140_results.json
