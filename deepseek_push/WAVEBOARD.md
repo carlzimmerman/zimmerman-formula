@@ -415,6 +415,56 @@ mix); the physical-share reading at exact fixed radius is at most marginal
 (-0.170, p=0.145).  The thorn's remaining freedom: the dust amplitude's
 mass-ordering (G140) and the jump-condition prize (G159).
 
+## WAVE 9 (landed 6/6 -- the cap's physics + the 12-decade line)
+G127 THE CAP'S ORIGIN 9/9: NOT a fluid-internal boundary -- c_s^2 = sigma^2
+> 0 CONSTANT (w = +1.6e-7..+9.3e-6: NEC/WEC/SEC/DEC ALL hold; the phantom is
+a positive-pressure gas), c_s t_ff/r = 1/sqrt(2) EXACT at every r (no
+causality boundary), eta = 1/2 everywhere (no self-support failure: the
+failure-radius/cap ratio UNDEFINED +inf in all 13 systems, zero scatter).
+SURVIVING READING: ENVIRONMENTAL (EFE-tidal + share-saturation; the
+saturation set = G123's over-demand set at r_sat/r_M = 1.70-2.28).
+r_efe = sqrt(G M_b/g_ext) NOT derivable from the fluid's equations; the
+form r_efe/r_M = sqrt(a0/g_ext) IS derived (G119, 0.6605 MW).  Discr:
+tSZ outer break, the G008 n<1 selector, the MW break + DR4.
+G128 THE POOLED DEEP-END 3/3: N=236 objects (log M 2.63-10.81): med|r|
+0.134, rms 0.222, slope FLAT (TheilSen +0.029); law-region (no GC/UFD)
+N=104: 0.101/0.150; the universal floor ~0.08-0.15 with the UFD (0.401
+= 2.3x the floor) the SOLE clean outlier; REFEREE: HOLDS as a zero-
+parameter floor -- verified, not exact.
+G129 THE tSZ OBSERVING PROPOSAL 5/5: complete and RUNNABLE -- 12 targets
+(coords from the release FITS), prediction (y0 7.77e-5, slope -1.44, the
+G095 T-extension), instruments (ACT DR6 1.4'/SO resolve inside theta_M
+4.7'; Planck 5-10' on the phantom zone), SNR per cluster/bin (Planck-143
+median 24.8; SO-deep median 206), falsifiers (F1 steeper-than-2 at
+theta_500 ~6 sigma pooled; F2 flatter-than-band ~5 sigma), controls,
+pipeline; WHO: any SZ analyst, ALL INPUTS PUBLIC TODAY, ~2-4 weeks per
+survey, rules fixed before the maps are read.
+G130 THE T-PROFILE PLATEAU 10/10: THE FIRST DIRECT CONFRONTATION PASSES ON
+THE LEVEL: last-bin T = 1.12 x 2 T_floor (6 clusters already at/below the
+plateau level); 'keeps falling' EXCLUDED (>2 sigma below kTvir in 11/12);
+the approach envelope 2 T_floor(1 + r_M/r) tracks the data (median g =
+0.90, 12/12 within 0.3 dex, no trend); NOT yet flat (2/12: the flat tail
+needs r ~ 1.5-2 R500 -- eROSITA/XRISM/SZ).  The phantom-zone temperature
+level is CONFIRMED on existing X-COP data.
+G131 THE 10-DECADE LINE 10/10: log M 2.63-14.35 (248 objects, 5 channels):
+pooled slope b = 0.988 +- 0.020 (Nu = 1 at 0.6 sigma), rms 0.221 pooled /
+0.135 (trio); the dSph x HI overlap (10^6.25-7.51): combined median|r|
+0.068 -- rotation and dispersion faces of ONE line at fixed mass; the
+amplitude departures at the ends (UFD +0.40, clusters +0.27/+0.55
+parallel) -- amplitude, not slope; uncovered gap 10^10.8-13.7 (groups/
+ellipticals) as the next data.  THE LAW IS ONE SLOPE-1 LINE ACROSS TWELVE
+DECADES at ~0.15-dex precision.
+G132 THE CAP'S THERMODYNAMICS 6/6: FIRST-ORDER class (L finite): dS =
+10.8-23.7 k_B/particle, L = 8.9-19.5 meV/particle, L/(N k_B T_b) =
+10.8-23.7 (water: 13.1 -- same class), L_total = (1.8-3.9)e-6 M_b c^2;
+T_b = m sigma^2/k_B = 9.52 K (3.49x the CMB today; == the CMB at z =
+2.37-2.49 -- cosmic noon, flagged coincidence not derived); the HONEST
+verdict: PARTIALLY DERIVABLE = HYBRID: thermodynamic in NATURE (the phantom
+IS the max-entropy state, S_ph > S_dust at fixed m), environmental in
+PLACEMENT (r_cap = 0.62 r_M needs g_ext); the kink test untested at
+cluster scale (0/12 with >= 2 bins per side); its resolved signature = the
+galaxy-scale break (MW 6.1 kpc).
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 CLAIMED (deepseek, in flight -- do NOT duplicate): G154 static-branch
 charge, G155 sourced equation, G156 dust charge-vs-relic decision,
