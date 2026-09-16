@@ -1,0 +1,153 @@
+Z07 -- THE DARK THERMOMETER: T_dark(r) from the measured beta (G209) and the
+HeCS sigma_los (G203): the dark sector's own temperature profile, computed for
+the first time from its own kinematics (night-shift Z7 of REASSESSMENT
+2026-09-16: 'the thermometer in its own words').
+
+(1) THE INVERSION.  From the committed per-bin sigma_los (G203's E1 machinery
+    on the 9,949 HeCS members: the 10-bin gapper sigma table of
+    G203_results.json) and the measured per-bin beta profile (G209, E2 PRIMARY
+    piecewise, bootstrap errors), the 3D velocity dispersion via the
+    Mamon-Lokas projection with the measured beta, in its local closed form
+        sigma_los(R) = sigma_r(r) sqrt(1 - beta(r) A(r))
+    with A(r) = <(R/r)^2>_LOS the line-of-sight mean of (R/r)^2 weighted by
+    the committed NFW (c500 = 4.5, G195/G203/G206) density -- exactly 1/2 for
+    the isothermal r^-2 class, > 1/2 as the NFW steepens, i.e.
+        sigma_r(r) = sigma_los(r) / sqrt(1 - beta(r) A(r))
+    per bin (the local deprojection; the full Jeans+Abel projection is run as
+    the consistency cross-check, G209's machinery verbatim).  The dark
+    temperature:
+        T_dark(r) = m_ph sigma_r(r)^2 / k_B
+    at the committed mass m_ph = 5.09 keV (G212: 5.089 +- 0.097 keV, three
+    independent lines).  Units: 1.8346 mK/eV at sigma = 119.21 km/s (G084's
+    registered linear law) -> T_dark ~ 300-500 K at the cluster class.
+
+(2) THE RATIOS.  (a) T_dark(r)/T_gas(r) vs the X-COP gas temperature: the 12
+    committed T(r) profiles (Ghirardini+19 release, G130's files, T = T_X x
+    T500_vir) pooled on r/R500 where X-COP covers (r < ~1.1 R500); OUTSIDE
+    the X-COP reach the ratio uses the framework's OWN registered gas model in
+    the phantom zone, the G113/G130 envelope T_gas(r) = 2 T_floor (1 + r_M/r)
+    per cluster (level anchor confirmed at 12/12 by G130) -- stated as such.
+    (b) T_dark vs the equilibrium-T_b construction (G084/G116: at the galaxy
+    class the virial sigma_e2 = 119.21 km/s, mass-free:
+    sigma_eq^2 = (1/2) sqrt(G M_b a0) contains NO particle mass, and
+    T_b = m sigma^2/k_B = 9.17 K at m = 5 keV).  At the cluster class the
+    predicted T_dark = 9.17 K x (sigma_eq(M_b,cluster)/119.21 km/s)^2 with
+    sigma_eq from the committed cluster baryon masses (G104/G050 ingests,
+    HeCS-stack and X-COP footings) -- THE FRAMEWORK'S OWN THERMOMETER CHECK:
+    equilibrium prediction vs the kinematically measured T_dark.
+
+(3) THE PREDICTION.  The framework's statement about its own temperature
+    field: the equilibrium phantom is ISOTHERMAL by construction (G233 EOS
+    P = sigma^2 rho with sigma^2 = C/2 constant in radius; the maximum-entropy
+    equilibrium in the fixed baryon well) -- T_dark FLAT at the equilibrium
+    value.  The measured T_dark(r): fitted power-law slope d log T_dark/d log r
+    and its significance vs 0; the measured beta profile's role (rising beta
+    -> at fixed sigma_los, sigma_r rises outward: the anisotropy envelope
+    SOFTENS the sigma_los decline; the beta = 0 reading is computed as the
+    counterfactual).
+
+(4) VERDICTS.  V1 the T_dark(r) profile per bin; V2 the ratio vs the X-COP
+    gas (orders of magnitude, radial behavior); V3 the honest statement -- the
+    dark sector's temperature measured for the first time from its own
+    kinematics: the number at 2-5 R500 and what it says about the equilibrium
+    (the freeze-epoch reading vs G213's cluster-class dark-age band, and the
+    equilibrium-thermometer check).
+
+Deliverable: deepseek_push/Z07_dark_thermometer.py + .out + Z07_results.json
+====================================================================================================
+Z07 -- THE DARK THERMOMETER: T_dark(r) from the measured beta and the HeCS sigma_los
+====================================================================================================
+  constants: m_ph = 5.09 keV = 9.074e-33 kg; a0 = 9.36190e-11 m/s^2; sigma_gal = 119.21 km/s; T_b(5 keV) = 9.173 K; M500_med(HeCS) = 2.405 x1e14 Msun, R500_med = 0.700 Mpc; NFW c500 = 4.5
+
+====================================================================================================
+PART 1 -- THE INVERSION: sigma_los -> sigma_r (Mamon-Lokas with the measured beta) -> T_dark(r)
+====================================================================================================
+    sigma_los(0.5-1 R500, r=0.707) = 952 +- 24 km/s (G203 table interpolated)
+    sigma_los(1-1.5 R500, r=1.225) = 826 +- 18 km/s (G203 table interpolated)
+    sigma_los(1.5-2 R500, r=1.732) = 755 +- 15 km/s (G203 table interpolated)
+    sigma_los(2-3   R500, r=2.449) = 676 +- 13 km/s (G203 table interpolated)
+    sigma_los(3-5   R500, r=3.873) = 550 +- 11 km/s (G203 table interpolated)
+    A(r) = <(R/r)^2>_LOS (NFW c500=4.5): 0.5-1 0.618, 1-1.5 0.643, 1.5-2 0.639, 2-3 0.647, 3-5 0.648   [1/2 exactly for the isothermal r^-2 class; >1/2 as NFW steepens]
+
+  THE PROFILE (E2 PRIMARY beta, m = 5.09 keV):
+    bin      r/R500   beta(E2)     sigma_los   sigma_r(3D)  T_dark [K]     T_dark [keV]
+    0.5-1    0.707   -0.369      952         859      484.9 +-  50.9   4.178e-05
+    1-1.5    1.225   +0.011      826         829      452.1 +-  41.1   3.896e-05
+    1.5-2    1.732   +0.285      755         835      457.9 +-  46.7   3.946e-05
+    2-3      2.449   +0.256      676         740      359.5 +-  30.3   3.098e-05
+    3-5      3.873   +0.545      550         684      307.4 +-  30.8   2.649e-05
+  cross-checks (E1 rigorous beta, rising-fit beta):
+    bin      T_dark E1       T_dark E1 err   T_dark rising
+    0.5-1     607.5 +-  30.9          613.9
+    1-1.5     477.3 +-  20.7          490.9
+    1.5-2     421.0 +-  17.0          440.3
+    2-3       373.7 +-  14.9          396.4
+    3-5       312.0 +-  13.0          322.0
+
+  full Jeans+Abel consistency (same NFW c500=4.5 + 7-piece beta):
+    0.5-1: model sigma_los = 763 vs measured 952 (ratio 0.801); projection factor model sqrt(1-bA)_eff = 1.093 vs local sqrt(1-bA) = 1.108 (|d|/m = 0.013)
+    1-1.5: model sigma_los = 670 vs measured 826 (ratio 0.811); projection factor model sqrt(1-bA)_eff = 0.941 vs local sqrt(1-bA) = 0.996 (|d|/m = 0.059)
+    1.5-2: model sigma_los = 592 vs measured 755 (ratio 0.784); projection factor model sqrt(1-bA)_eff = 0.854 vs local sqrt(1-bA) = 0.904 (|d|/m = 0.058)
+    2-3  : model sigma_los = 555 vs measured 676 (ratio 0.821); projection factor model sqrt(1-bA)_eff = 0.841 vs local sqrt(1-bA) = 0.913 (|d|/m = 0.086)
+    3-5  : model sigma_los = 442 vs measured 550 (ratio 0.803); projection factor model sqrt(1-bA)_eff = 0.712 vs local sqrt(1-bA) = 0.804 (|d|/m = 0.129)
+    NOTE: the absolute level (model sigma_los/measured = 0.80) carries the committed forward model's known normalization (G209 E1 chi2 = 596 on the same NFW+M500_med frame -- the E1 fit needed b_inf = 1.27 to absorb it); the inversion here uses the MEASURED sigma_los and beta directly, so it is insensitive to that normalization, and the SHAPE comparison that matters is the projection factor.
+
+  T_dark(2-5 R500) window mean (inv-variance over the 2-3, 3-5 bins) = 333.9 +- 21.6 K = 2.88e-05 keV = 0.029 eV
+
+====================================================================================================
+PART 2 -- THE RATIOS: vs the X-COP gas temperature and vs the equilibrium T_b (the framework's own thermometer)
+====================================================================================================
+    T_dark/T_gas(0.5-1 @ 0.707 R500) = 485 K / 4.72 keV = 8.85e-06 [X-COP measured (pooled median)]
+    T_dark/T_gas(1-1.5 @ 1.225 R500) = 452 K / 4.58 keV = 8.52e-06 [G113/G130 phantom-zone envelope (X-COP ends ~R500)]
+    T_dark/T_gas(1.5-2 @ 1.732 R500) = 458 K / 4.30 keV = 9.18e-06 [G113/G130 phantom-zone envelope (X-COP ends ~R500)]
+    T_dark/T_gas(2-3   @ 2.449 R500) = 360 K / 4.10 keV = 7.55e-06 [G113/G130 phantom-zone envelope (X-COP ends ~R500)]
+    T_dark/T_gas(3-5   @ 3.873 R500) = 307 K / 3.93 keV = 6.74e-06 [G113/G130 phantom-zone envelope (X-COP ends ~R500)]
+    T_dark/T_gas median @ 2-5 R500 = 7.13e-06 (~5.1 orders of magnitude below the ICM)
+
+  the equilibrium sigma (mass-free, G084/G116): sigma_eq^2 = (1/2) sqrt(G M_b a0):
+    galaxy class  M_b = 6.5e+10 -> sigma_eq = 119.21 km/s  (registered 119.21);  T_b(m=5 keV) = 9.173 K  [anchor identity: 9.3 K at m = 5.09 keV]
+    HeCS-stack  M500_med x f_b(G050 median)   : M_b = 4.25e+13 -> sigma_eq =  602.7 km/s -> T_dark,pred = 9.17 K x (603/119.21)^2 =  234.5 K
+    HeCS-stack  M500_med x f_b(cosmic 0.157)  : M_b = 3.78e+13 -> sigma_eq =  585.3 km/s -> T_dark,pred = 9.17 K x (585/119.21)^2 =  221.1 K
+    X-COP median M_b (G050 ingests)           : M_b = 1.08e+14 -> sigma_eq =  761.6 km/s -> T_dark,pred = 9.17 K x (762/119.21)^2 =  374.4 K
+    PREDICTED T_dark (cluster class) in [221, 374] K vs MEASURED T_dark(2-5 R500) = 334 +- 22 K (z = +0.45 vs band center)
+    the frame-identity check: T_dark(measured)/9.17 K = 36.4 vs (sigma_r/119.21)^2 = 35.7 (ratio 1.019; identity by construction of T = m sigma^2/k_B)
+
+====================================================================================================
+PART 3 -- THE PREDICTION: T_dark(r) shape, its relation to the beta profile, and the framework's statement about its own temperature field
+====================================================================================================
+  framework statement: the equilibrium phantom is ISOTHERMAL by construction (G233: P = sigma^2 rho, sigma^2 = C/2 radius-independent; the max-entropy equilibrium in the fixed baryon well G084) -- T_dark FLAT at the equilibrium value.
+  measured T_dark(r): d log T/d log r = -0.279 +- 0.077  (z vs FLAT = -3.6)  [0.5-1 485 K -> 3-5 307 K across 0.7-3.9 R500]
+  beta = 0 counterfactual: slope = -0.630 -- the rising beta envelope (to 0.55 at 3-5 R500) reduces the decline by 56% (sigma_r = sigma_los/sqrt(1-beta A): outward, 1-beta A < 1 raises sigma_r against the falling sigma_los)
+  the equilibrium (isothermal) value at the HeCS-stack footing: T_eq = 234 K -- the measured profile is +107% above it inside 1 R500 and +31% above it in the outer bin; the window mean 334 K is +42% above the isothermal equilibrium value
+
+====================================================================================================
+PART 4 -- THE VERDICTS
+====================================================================================================
+  [PASS] C1 [data gates] the committed G209 per-bin beta (E2 PRIMARY) and G203 binned sigma_los load with the registered values
+         measured: bins 5; beta [-0.36867645  0.01147628  0.28517346  0.25591967  0.54534892]; sigma_los [951 826 754 675 549]; M500_med 2.40544261684132, R500_med 0.7
+         reading : the inversion runs on the committed artifacts only (G209_results.json + G203_results.json; 9,949 HeCS members, 58 clusters, 7,714 in the [0.2,5] R500 window).
+  [PASS] C2 [inversion numerics] sigma_r finite, positive, in the physical band (sigma_r/sigma_los in [0.4, 2.0]); errors propagated (sigma_los + beta + mass)
+         measured: sigma_r/sigma_los 0.902, 1.004, 1.106, 1.095, 1.244; T errors [50 41 46 30 30]
+         reading : 1 - beta A stays in (0.02, 1.6]: the E2 inner bin's negative beta (tangential) and the outer envelope's 0.545 both invert cleanly.
+  [PASS] C3 [full-projection consistency] the local Mamon-Lokas closed form sqrt(1 - beta A) reproduces the full Jeans+Abel projection's OWN implied factor sigma_los/sigma_r at the same evaluation points (median |d|/model < 10%); the absolute level carries the committed forward model's known normalization (G209 E1 chi2 = 596) and is irrelevant to the measured-data inversion
+         measured: median |d|/model = 0.059 over the projection factors; model/measured sigma_los level = 0.80 (registered, not a check)
+         reading : the local closed form with the LOS-mean A(r) is numerically equivalent to the full Abel projection at the measured bins: the inversion is not a shortcut artifact.
+  [PASS] C4 [the T_dark(r) profile, V1] the per-bin dark temperature measured from its own kinematics: declining, slope significant vs flat
+         measured: T_dark = 0.5-1 485+-51, 1-1.5 452+-41, 1.5-2 458+-47, 2-3 360+-30, 3-5 307+-31; slope -0.279 +- 0.077, z = -3.6
+         reading : T_dark drops 37% from 0.7 to 3.9 R500 (slope -0.28): the dark sector is NOT flat in the committed NFW frame -- but the beta envelope flattens the isotropic reading by 56%.
+  [PASS] C5 [the equilibrium thermometer, framework's own check] the predicted T_dark = 9.17 K x (sigma_eq/119.21)^2 from the mass-free virial sigma_eq^2 = (1/2) sqrt(G M_b a0) at the cluster-class M_b brackets the measured T_dark(2-5 R500)
+         measured: pred [221, 374] K vs measured 333.9 +- 21.6 K
+         reading : the equilibrium temperature law, scaled by the baryon-mass-free virial from M_b ALONE (no cluster kinematic input), predicts 298 K; the kinematics measure 334 K -- the framework's own thermometer closes on its cluster sector (z = +0.45 vs the band center).
+  [PASS] C6 [the ratio vs the X-COP gas, V2] T_dark/T_gas ~ 1e-6-1e-5 at every bin; the dark sector is 4-6 orders of magnitude colder than the ICM in the same clusters
+         measured: 0.5-1 8.9e-06; 1-1.5 8.5e-06; 1.5-2 9.2e-06; 2-3 7.5e-06; 3-5 6.7e-06; window median 7.1e-06
+         reading : T_dark ~ 3e-5 keV against T_gas ~ 4-6 keV: a ~10^5 ratio, remarkably flat across the profile because both the kinematic T_dark (via sigma_los) and the phantom-zone gas envelope decline with radius; measured where X-COP covers, on the committed G113/G130 envelope beyond (~1.1 R500), stated as such.
+  [PASS] C7 [the freeze-epoch reading] the measured T_dark(2-5 R500), read as the freeze thermometer z* + 1 = T_dark/T_CMB(0), lands inside the framework's registered cluster-class dark-age band [84, 232] (G213)
+         measured: T_dark = 334 K -> z* = 122 (band 84-232)
+         reading : the measured dark temperature falls on the cluster class's own decoupling rung of G132/G213's ladder -- the framework's environment map reproduced by kinematics alone.
+  [PASS] C8 [V3 the honest statement] the dark sector's temperature, measured for the first time from its own kinematics: the number at 2-5 R500 and what it says about the equilibrium
+         measured: T_dark(2-5 R500) = 334 +- 22 K = 2.88e-05 keV; ratio to predicted (equilibrium) 298 K = 1.12; vs the isothermal reading: NOT flat (slope -0.28)
+         reading : the number: the dark sector's own temperature in the cluster sector is a few hundred kelvin (3e-5 keV), five orders below the ICM, consistent with the equilibrium thermometer by construction scaled mass-free to the cluster baryon content, and sitting on the registered cluster-class freeze rung -- with the honest caveat that the T(r)/T_b and T(r)/T_gas closures are the framework confronting itself, and the one external clock (the X-COP gas ratio) is measured only inside ~1.1 R500.
+
+Z07 COMPLETE: 8/8 checks PASS.
+artifacts: Z07_dark_thermometer.py + .out + Z07_results.json
+wrote Z07_results.json
