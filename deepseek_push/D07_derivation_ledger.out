@@ -1,0 +1,48 @@
+CHECKS 44/44 PASS
+  PASS a0 identity-pinned: a0 = c^2/(Z R_dS) at ratio 1.00005 (Z11)  | ratio=1.0000507595885317 a0_H=9.362375206191875e-11
+  PASS m derived from the ladder: G212 m = 5.089 +- 0.097 keV (5.09 +- 0.10)  | peak=5.0886 sigma=0.0969
+  PASS f_b NOT pinned -- REMAINS AN INPUT (B09 14/14: band [0.150, 0.157], envelope [0.139, 0.180])  | B09 V3
+  PASS S05 input count registered: 4 measured + 1 identity-pinned + 1 derived = 6 core  | S05 V3
+  PASS ancillary Omega_dm = 0.264, Omega_star = 0.0027 on record (G079 pie)  | {'Omega_dm': 0.264, 'Omega_star': 0.0027}
+  PASS C01 LEAN-CERTIFIED: 10 theorems, exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}  | theorems=10 tracked=True
+  PASS C02 LEAN-CERTIFIED: 8 theorems, exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}  | theorems=8 tracked=True
+  PASS C04 LEAN-CERTIFIED: 7 theorems, exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}  | theorems=7 tracked=True
+  PASS C05 LEAN-CERTIFIED: 10 theorems, exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}  | theorems=10 tracked=True
+  PASS C06 LEAN-CERTIFIED: 8 theorems, exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}  | theorems=8 tracked=True
+  PASS C07 LEAN-CERTIFIED: 11 theorems, exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}  | theorems=11 tracked=True
+  PASS C03 (line E=m/2 + Abel cusp) IN-FLIGHT: file on disk, NOT committed  | on_disk=True tracked=False
+  PASS C08 (thermal fixed point) IN-FLIGHT: file on disk, NOT committed  | on_disk=True tracked=False
+  PASS cert ledger: C09 G227 recount 126 theorems / 16 certificates on record  | 126/16
+  PASS C-wave adds 54 theorems / 6 certificates (10+8+7+10+8+11)  | c_total=54 lanes=['C01', 'C02', 'C04', 'C05', 'C06', 'C07']
+  PASS phantom rho = A/r^2, A = sqrt(G M_b a0)/(4 pi G), coeff 1 -- LEAN (C07 the_spine + EQUILIBRIUM + G031 + G227)  | C07
+  PASS equipartition M_ph(<r_M) = M_b to 1.11e-16 -- LEAN (C07 equipartition_from_amplitude)  | C07 C1
+  PASS deep RAR g^2 = a0 g_N LEAN (G031 deep_rar / G201 deep_limit_sq) + MEASURED 0.150 dex / 55 HI dwarfs  | C09 spine link 5
+  PASS BTFR v^4 = G M_b c^2/(Z R_dS) LEAN (G090 btfr_quartic), horizon form  | C09 spine link 6
+  PASS 12-decade line MEASURED: b = 1.004 +- 0.011, n = 542, rms 0.180 dex (G162/G131/S09)  | {"n": 542, "slope": 1.004, "se": 0.0108, "nu_sigma": 0.3662975368828828, "rms_about_identity": 0.1795, "rms_ab
+  PASS temperature law T = mu m_p sqrt(G M_b a0)/(2 k_B) -- LEAN (C04 field_identity/inverse/ratio) + MEASURED 0.053-dex MAD on 50 objects/3 instruments  | n=50 mad=0.05305
+  PASS dust law (c0, q): q_derived = 2/3 - 1 = -1/3 vs q_measured = -0.414 +- 0.157 at 0.52 sigma, DERIVED-WITHIN-ERROR (Z11 V2 + G200); c0 = -0.1445 (pivot 10^c0 = 0.717 x a0_H); jump algebra LEAN (G201); infall-jump c0 = A_b = (sigma_ph/sigma_d)^3 = 0.6495 (G182/G185)  | q_derived=-0.3333333333333333 q_meas=-0.414 se=0.157 c0=-0.1445 repro_on_record=True
+  PASS the pie (G079 9/9): Omega_dm = 0.264; phantom equilibrium share 0.00209 capped = 0.79% of Omega_dm; dust 98%  | Omega_eq=0.0020925 frac=0.007926136363636364 dust=0.9920738636363636
+  PASS mass ladder m = 5.09 keV -- CLOSED-FORM + LEAN (C05 ladder_closed_form, double-Z m(2Z)/m(Z) = sqrt(2); C02 environment-blind fixed point, 101,600 env max |..| = 4.3e-14) + MEASURED (G212 5.089 +- 0.097, B03 spread 0.00012)  | B03 spread=0.000122
+  PASS 2.55-keV line E = m/2 = 2.5443 keV, sigma_E [1.19, 8.08] eV, exact 1/b cusp -- CLOSED-FORM + profile MEASURED-class (B01/B02); C03 IN-FLIGHT; rate PENDING (always a bound)  | E=2.5443
+  PASS 0.558-Mpc cut lambda_fs = 0.558 Mpc, k_hm = 57.2, M_hm ~ 7.3e5 -- CLOSED-FORM from m, REGISTERED (S07 14/14 / G212); P(k) decider G156 (k ~ 100-500)  | {'k_hm_h_per_Mpc': 57.22, 'lambda_fs_Mpc': 0.5584}
+  PASS offset clock (S06 10/10): merger epoch t_after = 68-102 Myr (main), f_ph <= 0.125, dust carries ~100% of the offset -- measured kinematics read through the two-phase geometry  | t_after range [43.5, 102.2] Myr
+  PASS sound-lag t_sound/t_dyn = sqrt(2) EXACT -- LEAN (C01, 10 theorems, exit 0)  | C01
+  PASS freeze map (G213 11/11): z* = 2.3656-2.4932 at MW (the G132 band); the ladder/freeze inverse LEAN (C02 zstar_function_of_sigma_only)  | G213 V1 + C02 corollary 2
+  PASS ratio arithmetic: density 14/6 = 2.333; certified share 8/14 = 0.571; totals 180 thm / 22 certs  | density=2.3333 share=0.5714 thm=180 certs=22
+  PASS ledger row 1 the phantom rho = A/r^2  | LEAN-CERTIFIED
+  PASS ledger row 2 equipartition M_ph(<r) = M_b r/r_M  | LEAN-CERTIFIED
+  PASS ledger row 3 the deep RAR g^2 = a0 g_N  | LEAN-CERTIFIED + MEASURED
+  PASS ledger row 4 the BTFR v^4 = G M_b a0  | LEAN-CERTIFIED + CLOSED-FORM (horizon)
+  PASS ledger row 5 the 12-decade line  | MEASURED (empirical; never a theorem)
+  PASS ledger row 6 the temperature law (the proton rung)  | LEAN-CERTIFIED + MEASURED
+  PASS ledger row 7 the dust law (c0, q)  | DERIVED-WITHIN-ERROR (+ jump algebra LEAN)
+  PASS ledger row 8 the pie (cosmic budget)  | MEASURED-INPUT composition + derived equilibrium share
+  PASS ledger row 9 the mass ladder m = 5.09 keV  | LEAN-CERTIFIED (closed form + inverse) + MEASURED
+  PASS ledger row 10 the 2.55-keV line  | CLOSED-FORM + profile MEASURED-class; C03 IN-FLIGHT; rate PENDING
+  PASS ledger row 11 the 0.558-Mpc cut  | CLOSED-FORM from m, REGISTERED; the P(k) decider registered
+  PASS ledger row 12 the offset clock  | MEASURED-kinematics reading (framework geometry)
+  PASS ledger row 13 the sound-lag sqrt-2  | LEAN-CERTIFIED
+  PASS ledger row 14 the freeze map  | DERIVED map + inverse algebra LEAN-CERTIFIED
+
+RATIO: inputs 6 | derived 14 | density 2.333 | certified 8 / 14 = 0.571 | theorems 180 | certs 22
+wrote /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/D07_results.json
