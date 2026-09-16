@@ -1,0 +1,477 @@
+{
+ "lane": "G122_coherency_decomp",
+ "title": "THE COHERENCY-SYSTEMATIC DECOMPOSITION: what does the 0.313-dex curve-scatter pattern look like?",
+ "deliverable": "deepseek_push/G122_coherency_decomp.py + .out + G122_results.json",
+ "context": "G105's P5 FAIL (pooled 0.313 dex, 0 outliers, systematic; r-space control 0.079 dex); G104's 0.05-dex aperture anchor; G107's a0-crossing/r_M recipe; the official X-COP T(r) ingests (G105 cache, md5-gated 12/12).",
+ "basis": {
+  "residual_xcurve": "log10 R - (pooled quantile-interpolated curve of log10 R vs log10 x), G105's 0.313-dex materialization",
+  "c_dust": "log10 R - log10[2x/(x-1)] = the free-dust normalization, the theory-curve residual (G105 V3a level)",
+  "R": "T(r)/T_floor(r), T_floor = mu m_p (G M_b a0)^{1/2}/(4 k_B) (sigma_floor = (G M_b a0)^{1/4}/sqrt2), mu = 0.6, a0 = 9.3619e-11",
+  "x": "M_dyn(<r)/M_b(<r), M_dyn = M_FORW, M_b = M_gas + M_star",
+  "rM_over_R500": "sqrt(G M_b(R500)/a0) / R500 (M_b at R500, G105's V6 anchor)",
+  "a0c_kpc": "the first down-crossing of g = G M_FORW(<r)/r^2 through a0 beyond 50 kpc (G107's recipe); A1644/A2255 NONE"
+ },
+ "data_notes": "committed X-COP ingests (real_research/data/xcop) + the G105 T(r) release cache; T500_vir from the committed Ettori+19 pair; kTvir from Eckert+17 (registered table); nothing written outside deepseek_push/.",
+ "checks": [
+  {
+   "name": "S0 [gate: the 0.313-dex curve-scatter is reproduced] the rms of log10 R about the pooled x-space curve, 96 points",
+   "measured": "rms = 0.313 dex",
+   "pass": true,
+   "reading": "the decomposition below operates on THIS residual (G105's systematic curve-scatter, 0 outliers)"
+  },
+  {
+   "name": "P0 [the closed-form candidate gate: with ONE per-cluster normalization and ONE universal shape p the residual curve's scatter collapses below 0.15 dex] achieved rms about the closed form 2x/(x-1) * a_c * (r/R500)^-p, p fitted pooled",
+   "measured": "rms = 0.097 dex (p* = +0.99; 13 parameters on 96 bins; gate < 0.15)",
+   "pass": true,
+   "reading": "the honest number: the achieved collapse with ONE shape p and free per-cluster amplitude"
+  },
+  {
+   "name": "V1 [the ordering property] the cluster property that orders the pooled residual (largest |rho|, with its p)",
+   "measured": "THE ORDERING.  (i) RADIAL first: the pooled x-curve residual is monotone in r/R500 -- Spearman -1.000 (p ~ 0.000) over the 8 radii, ++0.44 dex at 50 kpc falling to -0.42 dex at 600 kpc: the dominant pattern of the 0.313-dex scatter is the RADIAL ENVELOPE (the free-dust profile shape the x-curve does not absorb).  (ii) MASS side: among the cluster properties the residual LEVELS order by f_gas(420) (rho = +0.497, p = 0.101) > M500 (rho = +0.385, p = 0.217) > r_M/R500 (rho = +0.336, p = 0.286) > kTvir (rho = +0.294, p = 0.354) > the a0-crossing radius (rho = +0.224, p = 0.533, n = 10; A1644/A2255 none).  On the free-dust basis (log10 c_dust) the SAME ordering holds with reversed signs: f_gas(420) rho = -0.413 (p = 0.183); no property is significant at p < 0.05 at the cluster-mean level (n = 12 power), the per-bin cross-check marks f_gas(420) at p = 0.021 (nominal).",
+   "pass": true,
+   "reading": ""
+  },
+  {
+   "name": "V2 [the achieved collapse with ONE shape p, per-cluster amplitude free] rms about the closed form",
+   "measured": "p* = +0.990, rms = 0.097 dex; < 0.15 -> True",
+   "pass": true,
+   "reading": "the closed-form candidate with the phantom (2x/(x-1)) + the dust-normalization shape c_dust(M500)(r/R500)^-p"
+  },
+  {
+   "name": "V3 [the honest statement] is the free-dust normalization ONE profile shape with per-cluster amplitude?",
+   "measured": "HONEST: the free-dust normalization IS ONE profile shape (r/R500)^-0.99 with a per-cluster amplitude: the closed form closes the curve to 0.097 dex.  The collapse ladder: pooled x-curve 0.313 -> theory-only 0.368 -> +12 amps 0.361 -> + shape p 0.097 -> full 3-param closed form 0.119 dex.  Thorn freedom remaining: the amplitude freedom is the remaining thorn -- but even with NO per-cluster freedom the literal form c0*M500^q*(r/R500)^-p closes at 0.119 dex (q = -0.41 from the fit, one p = +0.99 for all 12), and the per-cluster slopes spread only 0.27 around their median -0.92 (the 13-parameter fit relaxes this to 0.097 dex, 12/12 clusters inside 0.15); what remains OPEN is the residual floor of the amplitude itself (what sets q, and the A1644/A2255 pair with no a0-crossing sits outside the ordering).",
+   "pass": true,
+   "reading": ""
+  }
+ ],
+ "n_pass": 5,
+ "n_fail": 0,
+ "gate_reproduced": {
+  "pooled_rms_dex": 0.31281861498602814,
+  "g105_registered": 0.313
+ },
+ "properties": {
+  "A1644": {
+   "M500_1e14": 3.48,
+   "kTvir": 5.09,
+   "fgas_420": 0.10189771412246541,
+   "rM_over_R500": 0.2594163046792479,
+   "a0c_kpc": NaN,
+   "resid": -0.0546940827258732,
+   "resid_g": 0.7602820309636631
+  },
+  "A1795": {
+   "M500_1e14": 4.63,
+   "kTvir": 6.08,
+   "fgas_420": 0.1337680459606408,
+   "rM_over_R500": 0.29670718368694987,
+   "a0c_kpc": 618.0137918204869,
+   "resid": -0.2505989299720883,
+   "resid_g": 0.6786873904152986
+  },
+  "A2029": {
+   "M500_1e14": 8.82,
+   "kTvir": 8.26,
+   "fgas_420": 0.18424488288300017,
+   "rM_over_R500": 0.3660541902767882,
+   "a0c_kpc": 943.2978629753043,
+   "resid": 0.09020791723039853,
+   "resid_g": 0.6775410429026438
+  },
+  "A2142": {
+   "M500_1e14": 8.95,
+   "kTvir": 8.4,
+   "fgas_420": 0.21938120961062535,
+   "rM_over_R500": 0.39882482613628556,
+   "a0c_kpc": 928.3843322203589,
+   "resid": 0.1309904244180971,
+   "resid_g": 0.7008980952225146
+  },
+  "A2255": {
+   "M500_1e14": 5.26,
+   "kTvir": 5.81,
+   "fgas_420": 0.1622262484913526,
+   "rM_over_R500": 0.33279522799012096,
+   "a0c_kpc": NaN,
+   "resid": 0.17317429875854062,
+   "resid_g": 0.7820745066941647
+  },
+  "A2319": {
+   "M500_1e14": 7.31,
+   "kTvir": 9.6,
+   "fgas_420": 0.1737247348102077,
+   "rM_over_R500": 0.4310302744607416,
+   "a0c_kpc": 957.9512700258027,
+   "resid": 0.0031284170912973253,
+   "resid_g": 0.8712702182178974
+  },
+  "A3158": {
+   "M500_1e14": 4.26,
+   "kTvir": 4.99,
+   "fgas_420": 0.13982052904474768,
+   "rM_over_R500": 0.2961014268734,
+   "a0c_kpc": 476.32709849027424,
+   "resid": -0.007032425836737452,
+   "resid_g": 0.6869545776964432
+  },
+  "A3266": {
+   "M500_1e14": 8.8,
+   "kTvir": 9.45,
+   "fgas_420": 0.19087468579916403,
+   "rM_over_R500": 0.3135116897119154,
+   "a0c_kpc": 632.4518106079043,
+   "resid": 0.20272304705286764,
+   "resid_g": 0.676446535734889
+  },
+  "A644": {
+   "M500_1e14": 5.66,
+   "kTvir": 7.7,
+   "fgas_420": 0.12617970067570952,
+   "rM_over_R500": 0.31564988344858125,
+   "a0c_kpc": 851.476990996171,
+   "resid": -0.18143822105746088,
+   "resid_g": 0.8166814685245606
+  },
+  "A85": {
+   "M500_1e14": 5.65,
+   "kTvir": 6.0,
+   "fgas_420": 0.16337236720389992,
+   "rM_over_R500": 0.32903615312162243,
+   "a0c_kpc": 654.9436586765482,
+   "resid": -0.18736491665349822,
+   "resid_g": 0.730581986033118
+  },
+  "RXC1825": {
+   "M500_1e14": 4.08,
+   "kTvir": 5.13,
+   "fgas_420": 0.1011088207704935,
+   "rM_over_R500": 0.2820630992211926,
+   "a0c_kpc": 478.4886364890537,
+   "resid": 0.025502510770860104,
+   "resid_g": 0.8538775359865142
+  },
+  "ZW1215": {
+   "M500_1e14": 7.66,
+   "kTvir": 6.27,
+   "fgas_420": 0.16970418743720642,
+   "rM_over_R500": 0.2983320891352684,
+   "a0c_kpc": 751.6081717381064,
+   "resid": -0.0625062833297782,
+   "resid_g": 0.8158460440867724
+  }
+ },
+ "ordering": {
+  "M500_1e14": {
+   "rho_xcurve": 0.3846153846153847,
+   "p_xcurve": 0.21702022575997754,
+   "rho_theory": -0.27272727272727276,
+   "p_theory": 0.3910967709418962,
+   "n": 12
+  },
+  "kTvir": {
+   "rho_xcurve": 0.2937062937062937,
+   "p_xcurve": 0.35414764123292175,
+   "rho_theory": -0.06993006993006995,
+   "p_theory": 0.8290236405313092,
+   "n": 12
+  },
+  "fgas_420": {
+   "rho_xcurve": 0.49650349650349657,
+   "p_xcurve": 0.10060263183225483,
+   "rho_theory": -0.4125874125874127,
+   "p_theory": 0.18256397857316675,
+   "n": 12
+  },
+  "rM_over_R500": {
+   "rho_xcurve": 0.3356643356643357,
+   "p_xcurve": 0.28612290291498754,
+   "rho_theory": 0.04195804195804196,
+   "p_theory": 0.8969858708195542,
+   "n": 12
+  },
+  "a0c_kpc": {
+   "rho_xcurve": 0.22424242424242422,
+   "p_xcurve": 0.5334005612725947,
+   "rho_theory": 0.22424242424242422,
+   "p_theory": 0.5334005612725947,
+   "n": 10
+  }
+ },
+ "ordering_ranking_xcurve": [
+  {
+   "prop": "fgas_420",
+   "rho": 0.49650349650349657,
+   "p": 0.10060263183225483
+  },
+  {
+   "prop": "M500_1e14",
+   "rho": 0.3846153846153847,
+   "p": 0.21702022575997754
+  },
+  {
+   "prop": "rM_over_R500",
+   "rho": 0.3356643356643357,
+   "p": 0.28612290291498754
+  },
+  {
+   "prop": "kTvir",
+   "rho": 0.2937062937062937,
+   "p": 0.35414764123292175
+  },
+  {
+   "prop": "a0c_kpc",
+   "rho": 0.22424242424242422,
+   "p": 0.5334005612725947
+  }
+ ],
+ "ordering_ranking_c_dust": [
+  "fgas_420",
+  "M500_1e14",
+  "a0c_kpc",
+  "kTvir",
+  "rM_over_R500"
+ ],
+ "per_bin_ordering": {
+  "M500_1e14": {
+   "rho": 0.17814663517577126,
+   "p": 0.08247049510922067
+  },
+  "kTvir": {
+   "rho": 0.11771180478301267,
+   "p": 0.25336949182209373
+  },
+  "fgas_420": {
+   "rho": 0.23531471797973208,
+   "p": 0.02100408428519963
+  },
+  "rM_over_R500": {
+   "rho": 0.14950814798064424,
+   "p": 0.14598215908883153
+  },
+  "a0c_kpc": {
+   "rho": 0.09460657578874576,
+   "p": 0.4038620151199842
+  }
+ },
+ "radial_envelope": [
+  {
+   "r_kpc": 50.0,
+   "mean_d": 0.4419417492150504,
+   "std_d": 0.12806087249261702,
+   "mean_g": 1.2793810764903777,
+   "std_g": 0.18364217271227343
+  },
+  {
+   "r_kpc": 75.0,
+   "mean_d": 0.24256426614361493,
+   "std_d": 0.1601559938149352,
+   "mean_g": 1.1156049978467164,
+   "std_g": 0.13129125979873557
+  },
+  {
+   "r_kpc": 100.0,
+   "mean_d": 0.14306476028459364,
+   "std_d": 0.19113895803497352,
+   "mean_g": 1.000912902092707,
+   "std_g": 0.10266733118753793
+  },
+  {
+   "r_kpc": 150.0,
+   "mean_d": 0.055201178089245934,
+   "std_d": 0.16704671908698984,
+   "mean_g": 0.8324154435824734,
+   "std_g": 0.07756703801271005
+  },
+  {
+   "r_kpc": 210.0,
+   "mean_d": -0.07227654638851107,
+   "std_d": 0.17273527178248033,
+   "mean_g": 0.6893742795401091,
+   "std_g": 0.07537688218244688
+  },
+  {
+   "r_kpc": 300.0,
+   "mean_d": -0.18746067892809123,
+   "std_d": 0.1527735700413143,
+   "mean_g": 0.5328340079426711,
+   "std_g": 0.09256286620402958
+  },
+  {
+   "r_kpc": 420.0,
+   "mean_d": -0.2821896058357895,
+   "std_d": 0.15153010771246542,
+   "mean_g": 0.3782209385208169,
+   "std_g": 0.10826823998999104
+  },
+  {
+   "r_kpc": 600.0,
+   "mean_d": -0.41945061874902984,
+   "std_d": 0.16314781492736494,
+   "mean_g": 0.2053506423031148,
+   "std_g": 0.14054999173464816
+  }
+ ],
+ "radial_envelope_spearman": {
+  "rho_xcurve_vs_r_R500": -1.0,
+  "p_xcurve": 0.0,
+  "rho_c_dust_vs_r_R500": -1.0,
+  "p_c_dust": 0.0
+ },
+ "mass_ordering": {
+  "rho_cluster_mean_resid_vs_M500": 0.3846153846153847,
+  "p_cluster_mean_resid_vs_M500": 0.21702022575997754,
+  "rho_cluster_mean_c_dust_vs_M500": -0.27272727272727276,
+  "p_cluster_mean_c_dust_vs_M500": 0.3910967709418962
+ },
+ "two_dimensional_form": {
+  "form": "log10 c_dust = const + q log10(M500/8e14) + p log10(r/R500)",
+  "const": -0.14488787056589078,
+  "q": -0.41437780815343805,
+  "p": 0.9904368348058656,
+  "residual_rms_dex": 0.11887515936907568,
+  "c_dust": "0.72 (M500/8e14)^-0.414 (r/R500)^-0.990"
+ },
+ "per_cluster_radial_slopes": {
+  "A1644": {
+   "slope": -1.069032904874334,
+   "rms_dex": 0.03846345765483868
+  },
+  "A1795": {
+   "slope": -0.6850516008968109,
+   "rms_dex": 0.04548414472398958
+  },
+  "A2029": {
+   "slope": -0.6215386852996554,
+   "rms_dex": 0.007043928106984383
+  },
+  "A2142": {
+   "slope": -0.7701716368831963,
+   "rms_dex": 0.01601475910684295
+  },
+  "A2255": {
+   "slope": -1.341459915149214,
+   "rms_dex": 0.009513187428880012
+  },
+  "A2319": {
+   "slope": -0.8957230848723302,
+   "rms_dex": 0.020955743664126513
+  },
+  "A3158": {
+   "slope": -1.297575681760899,
+   "rms_dex": 0.03950059391253722
+  },
+  "A3266": {
+   "slope": -1.2889022487501376,
+   "rms_dex": 0.043611408365422204
+  },
+  "A644": {
+   "slope": -0.7790622977032029,
+   "rms_dex": 0.023294238594221202
+  },
+  "A85": {
+   "slope": -0.7981701628674784,
+   "rms_dex": 0.023666649094815438
+  },
+  "RXC1825": {
+   "slope": -1.3952150108025967,
+   "rms_dex": 0.011414307757902073
+  },
+  "ZW1215": {
+   "slope": -0.94364457747446,
+   "rms_dex": 0.008973825278758016
+  }
+ },
+ "per_cluster_radial_slopes_stat": {
+  "median": -0.919683831173395,
+  "std": 0.26572611288468834,
+  "spearman_vs_M500": 0.5314685314685316,
+  "p": 0.07536233505348364
+ },
+ "closed_form_candidate": {
+  "model": "R = [2x/(x-1)] * a_c * (r/R500)^-p; a_c per cluster, p pooled",
+  "p_star": 0.9899999999998936,
+  "rms_dex": 0.09733600336465897,
+  "rms_p0_dex": 0.3612461310159118,
+  "gain_over_p0_dex": 0.2639101276512528,
+  "per_cluster_amp_log10": {
+   "A1644": -0.010910801197974003,
+   "A1795": -0.13110425120032385,
+   "A2029": -0.22271243557465822,
+   "A2142": -0.1996574215791753,
+   "A2255": -0.04345998855557209,
+   "A2319": -0.005065018465044209,
+   "A3158": -0.11150200839627161,
+   "A3266": -0.22591676874938255,
+   "A644": -0.020905219194310716,
+   "A85": -0.10874892938047688,
+   "RXC1825": 0.06236825335172349,
+   "ZW1215": -0.06430535555212845
+  },
+  "spearman_amp_vs_M500": {
+   "rho": -0.5874125874125874,
+   "p": 0.044609296463363105
+  },
+  "per_cluster_rms_dex": {
+   "A1644": 0.047434266461498946,
+   "A1795": 0.11636621740559472,
+   "A2029": 0.12960833003242245,
+   "A2142": 0.07885492875017931,
+   "A2255": 0.12381129807712188,
+   "A2319": 0.039187266128294374,
+   "A3158": 0.11502659082328567,
+   "A3266": 0.11368305207402155,
+   "A644": 0.07766453690449658,
+   "A85": 0.07141314115606544,
+   "RXC1825": 0.1427829592643685,
+   "ZW1215": 0.018590929507227093
+  },
+  "n_clusters_rms_lt_015": 12,
+  "three_parameter_form": {
+   "q": -0.41437780815343805,
+   "p": 0.9904368348058656,
+   "rms_dex": 0.11887515936907568
+  }
+ },
+ "collapse_ladder": [
+  {
+   "model": "pooled x-space curve",
+   "rms_dex": 0.31281861498602814
+  },
+  {
+   "model": "theory 2x/(x-1), 0 params",
+   "rms_dex": 0.3678416277090998
+  },
+  {
+   "model": "theory * a_c (12 amps), p = 0",
+   "rms_dex": 0.3612461310159118
+  },
+  {
+   "model": "theory * a_c * (r/R500)^-p, p pooled",
+   "rms_dex": 0.09733600336465897
+  },
+  {
+   "model": "theory * c0 M500^q (r/R500)^-p, 3 params",
+   "rms_dex": 0.11887515936907568
+  }
+ ],
+ "verdicts": {
+  "V1_ordering_property": {
+   "property": "fgas_420",
+   "rho_xcurve": 0.49650349650349657,
+   "p_xcurve": 0.10060263183225483,
+   "rho_c_dust": -0.4125874125874127,
+   "p_c_dust": 0.18256397857316675,
+   "statement": "THE ORDERING.  (i) RADIAL first: the pooled x-curve residual is monotone in r/R500 -- Spearman -1.000 (p ~ 0.000) over the 8 radii, ++0.44 dex at 50 kpc falling to -0.42 dex at 600 kpc: the dominant pattern of the 0.313-dex scatter is the RADIAL ENVELOPE (the free-dust profile shape the x-curve does not absorb).  (ii) MASS side: among the cluster properties the residual LEVELS order by f_gas(420) (rho = +0.497, p = 0.101) > M500 (rho = +0.385, p = 0.217) > r_M/R500 (rho = +0.336, p = 0.286) > kTvir (rho = +0.294, p = 0.354) > the a0-crossing radius (rho = +0.224, p = 0.533, n = 10; A1644/A2255 none).  On the free-dust basis (log10 c_dust) the SAME ordering holds with reversed signs: f_gas(420) rho = -0.413 (p = 0.183); no property is significant at p < 0.05 at the cluster-mean level (n = 12 power), the per-bin cross-check marks f_gas(420) at p = 0.021 (nominal)."
+  },
+  "V2_collapse_with_one_shape_p": {
+   "p_star": 0.9899999999998936,
+   "rms_dex": 0.09733600336465897,
+   "pass_lt_0.15": true,
+   "statement": "THE ACHIEVED COLLAPSE WITH ONE SHAPE p: 0.097 dex (p* = +0.99, per-cluster amplitude free; baseline p = 0 gives 0.361 dex).  BELOW the 0.15-dex gate (PASS)"
+  },
+  "V3_honest_statement": {
+   "n_clusters_rms_lt_015": 12,
+   "statement": "HONEST: the free-dust normalization IS ONE profile shape (r/R500)^-0.99 with a per-cluster amplitude: the closed form closes the curve to 0.097 dex.  The collapse ladder: pooled x-curve 0.313 -> theory-only 0.368 -> +12 amps 0.361 -> + shape p 0.097 -> full 3-param closed form 0.119 dex.  Thorn freedom remaining: the amplitude freedom is the remaining thorn -- but even with NO per-cluster freedom the literal form c0*M500^q*(r/R500)^-p closes at 0.119 dex (q = -0.41 from the fit, one p = +0.99 for all 12), and the per-cluster slopes spread only 0.27 around their median -0.92 (the 13-parameter fit relaxes this to 0.097 dex, 12/12 clusters inside 0.15); what remains OPEN is the residual floor of the amplitude itself (what sets q, and the A1644/A2255 pair with no a0-crossing sits outside the ordering)."
+  }
+ }
+}

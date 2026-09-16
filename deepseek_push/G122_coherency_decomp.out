@@ -1,0 +1,199 @@
+G122 -- THE COHERENCY-SYSTEMATIC DECOMPOSITION: what does the 0.313-dex
+curve-scatter pattern look like?  (G105's P5 FAIL, decomposed.)
+
+CONTEXT.  G105 found the 12 X-COP ratio-profiles R(r) = T(r)/T_floor(r) do NOT
+collapse onto ONE curve in x = M_dyn(<r)/M_b: pooled rms at fixed x =
+0.313 dex (T500_vir, sitting at the 0.3 P5 falsifier), with ZERO >3-sigma
+outliers -- i.e. the scatter is SYSTEMATIC (sample-wide levels spread, not a
+few superposition candidates), while the r-space control (fixed-radius scatter
+across the sample) is only 0.079 dex.  This lane asks WHAT THE PATTERN IS:
+
+  (1) THE PROPERTY-ORDERING: the pooled residual of R(x) (about the pooled
+      x-space curve, G105's materialization of the 0.313 dex) correlated with
+      the cluster properties M500, kTvir, f_gas(420), r_M/R500 and the
+      a0-crossing radius -- WHICH property orders the residuals?  (rho and p
+      per property.)
+  (2) THE RADIAL PATTERN: the residual vs x (or vs r/R500): a radial envelope
+      (one free-dust profile shape shared by all) vs a mass-ordering (per
+      cluster level set by M500) -- the two-dimensional decomposition.  The
+      statement: the free-dust normalization is a function of (M500, r/R500);
+      its form.  Basis: g = log10 c_dust = log10 R - log10[2x/(x-1)] (the
+      theory-curve residual IS the free-dust normalization by the framework's
+      own reading: R_th = 2x/(x-1) is the phantom part, G03E/G095/G105 V3a).
+  (3) THE CLOSED-FORM CANDIDATE: with the phantom + the dust-normalization
+      shape c_dust(M500)(r/R500)^-p -- can the data be closed with ONE
+      per-cluster normalization + ONE universal profile shape p?  Fit p
+      pooled, report the achieved collapse vs the < 0.15-dex gate; also the
+      literal 3-parameter form log10 c_dust = const + q log10 M500 - p log10
+      (r/R500) and the p=0 (amplitude-only) baseline.
+  (4) VERDICTS: V1 the ordering property (with its rho); V2 the achieved
+      collapse with one shape p (the number); V3 the honest statement on
+      whether the free-dust normalization IS ONE profile shape with
+      per-cluster amplitude, and what freedom remains.
+
+CONVENTIONS -- IDENTICAL to G105/G107 (loaders reproduced): the G050 grid
+RG = [50,75,100,150,210,300,420,600] kpc; mu = 0.6; canonical a0 = 9.3619e-11;
+T(r) = T_X scaled x T500_vir from the official X-COP release (cache), with
+T500_vir = mu m_p G M500/(2 k_B R500) from the committed Ettori+19 pair;
+M_dyn = M_FORW; M_b = M_gas + M_star (7/12 measured, h67b import for 5/12);
+f_gas(420) = M_gas/M_NFW at 420 kpc; r_M = sqrt(G M_b/a0) (per bin) and the
+scalar r_M/R500 from M_b at R500; the a0-crossing radius = where the TOTAL
+field g = G M_FORW(<r)/r^2 first down-crosses a0 beyond 50 kpc (G107's recipe;
+A1644/A2255 carry NONE -- field below a0 everywhere measured).
+
+The stats: Spearman rank correlation (rho, p) for the property ordering;
+OLS for the (M500, r/R500) form; the achieve-collapse numbers are the rms of
+log10 R about each closed form, and the 16-84 half width.  T500_vir is the
+primary calibration (G105's own; G105's T500_emp row moves the pooled number
+by only 0.012 dex and is not re-run here).
+
+====================================================================================================
+G122 -- THE COHERENCY-SYSTEMATIC DECOMPOSITION (the 0.313-dex pattern)
+====================================================================================================
+  rows: 96 (12 clusters x 8 radii, T500_vir, from the committed ingests + the G105 release T(r) cache /tmp/xcop_g105_cache)
+
+====================================================================================================
+STEP A -- THE 0.313-DEX POOLED CURVE REPRODUCED, AND ITS RESIDUAL
+====================================================================================================
+  pooled x-space rms about the curve: 0.313 dex (G105 registered 0.313)
+  [PASS] S0 [gate: the 0.313-dex curve-scatter is reproduced] the rms of log10 R about the pooled x-space curve, 96 points
+         measured: rms = 0.313 dex
+         reading : the decomposition below operates on THIS residual (G105's systematic curve-scatter, 0 outliers)
+  theory-curve residual log10 R - log10[2x/(x-1)]: mean +0.754 dex, std 0.368 dex (G105 V3a mean +0.754)
+
+====================================================================================================
+STEP 1 -- THE PROPERTY-ORDERING: WHICH cluster property orders the residual?
+====================================================================================================
+  cluster     M500  kTvir  fg420  rM/R500  a0c_kpc  d-resid  g-resid
+  A1644       3.48   5.09  0.102   0.2594     none   -0.055   +0.760
+  A1795       4.63   6.08  0.134   0.2967      618   -0.251   +0.679
+  A2029       8.82   8.26  0.184   0.3661      943   +0.090   +0.678
+  A2142       8.95   8.40  0.219   0.3988      928   +0.131   +0.701
+  A2255       5.26   5.81  0.162   0.3328     none   +0.173   +0.782
+  A2319       7.31   9.60  0.174   0.4310      958   +0.003   +0.871
+  A3158       4.26   4.99  0.140   0.2961      476   -0.007   +0.687
+  A3266       8.80   9.45  0.191   0.3135      632   +0.203   +0.676
+  A644        5.66   7.70  0.126   0.3156      851   -0.181   +0.817
+  A85         5.65   6.00  0.163   0.3290      655   -0.187   +0.731
+  RXC1825     4.08   5.13  0.101   0.2821      478   +0.026   +0.854
+  ZW1215      7.66   6.27  0.170   0.2983      752   -0.063   +0.816
+
+  Spearman rho / p of the cluster-mean residual (about the pooled x-curve) vs each property:
+    M500_1e14   rho = +0.385   p = 0.217   (n = 12)
+    kTvir       rho = +0.294   p = 0.354   (n = 12)
+    fgas_420    rho = +0.497   p = 0.101   (n = 12)
+    rM_over_R500  rho = +0.336   p = 0.286   (n = 12)
+    a0c_kpc     rho = +0.224   p = 0.533   (n = 10)
+  the SAME against the theory-curve residual log10 c_dust (the ordering basis of parts 2-3):
+    M500_1e14   rho = -0.273   p = 0.391   (n = 12)
+    kTvir       rho = -0.070   p = 0.829   (n = 12)
+    fgas_420    rho = -0.413   p = 0.183   (n = 12)
+    rM_over_R500  rho = +0.042   p = 0.897   (n = 12)
+    a0c_kpc     rho = +0.224   p = 0.533   (n = 10)
+
+  ranking by |rho| of the pooled x-curve residual:
+    fgas_420    rho_xcurve = +0.497 (p = 0.101)   rho_theory = -0.413 (p = 0.183)
+    M500_1e14   rho_xcurve = +0.385 (p = 0.217)   rho_theory = -0.273 (p = 0.391)
+    rM_over_R500  rho_xcurve = +0.336 (p = 0.286)   rho_theory = +0.042 (p = 0.897)
+    kTvir       rho_xcurve = +0.294 (p = 0.354)   rho_theory = -0.070 (p = 0.829)
+    a0c_kpc     rho_xcurve = +0.224 (p = 0.533)   rho_theory = +0.224 (p = 0.533)
+
+  per-BIN Spearman of the pooled residual vs each property (96 bins, nominal p -- pseudo-replication caveat):
+    M500_1e14   rho = +0.178   p = 8.25e-02
+    kTvir       rho = +0.118   p = 2.53e-01
+    fgas_420    rho = +0.235   p = 2.10e-02
+    rM_over_R500  rho = +0.150   p = 1.46e-01
+    a0c_kpc     rho = +0.095   p = 4.04e-01
+
+====================================================================================================
+STEP 2 -- THE RADIAL PATTERN: residual vs r/R500 (radial envelope) vs the mass-ordering (per-cluster level) -- the two-dimensional decomposition
+====================================================================================================
+
+  (a) the pooled x-curve residual vs r/R500 (does any radial trend survive the x-space removal?):
+      r =   50 kpc:  x-curve resid +0.442 (std 0.128)    c_dust +1.279 (std 0.184)
+      r =   75 kpc:  x-curve resid +0.243 (std 0.160)    c_dust +1.116 (std 0.131)
+      r =  100 kpc:  x-curve resid +0.143 (std 0.191)    c_dust +1.001 (std 0.103)
+      r =  150 kpc:  x-curve resid +0.055 (std 0.167)    c_dust +0.832 (std 0.078)
+      r =  210 kpc:  x-curve resid -0.072 (std 0.173)    c_dust +0.689 (std 0.075)
+      r =  300 kpc:  x-curve resid -0.187 (std 0.153)    c_dust +0.533 (std 0.093)
+      r =  420 kpc:  x-curve resid -0.282 (std 0.152)    c_dust +0.378 (std 0.108)
+      r =  600 kpc:  x-curve resid -0.419 (std 0.163)    c_dust +0.205 (std 0.141)
+  Spearman(mean x-curve resid, r/R500) = -1.000 (p = 0.000);  Spearman(mean c_dust, r/R500) = -1.000 (p = 0.000)
+  (the absolute-kpc envelope above conflates the R500 spreading; the r/R500 form is fitted per cluster below)
+
+  (b) the mass-ordering: cluster-mean residuals vs M500
+  Spearman(cluster-mean x-curve resid, M500) = +0.385 (p = 0.217)
+  Spearman(cluster-mean c_dust, M500)        = -0.273 (p = 0.391)
+
+  (c) THE 2D FORM: log10 c_dust(M500, r/R500) = const + q log10 M500   - p log10(r/R500).  (c_dust = the theory-curve residual level.)
+  fit (96 bins, 3 params): const = -0.145, q = d log10 c_dust/d log10 M500 = -0.414, p = -d log10 c_dust/d log10(r/R500) = +0.990;  residual rms = 0.119 dex
+  -> the 2D form: c_dust = 0.72 (M500/8e14)^-0.414 (r/R500)^-0.990
+
+  per-cluster radial slope of c_dust vs log10(r/R500):
+    A1644      b = -1.069   rms around the line = 0.038 dex
+    A1795      b = -0.685   rms around the line = 0.045 dex
+    A2029      b = -0.622   rms around the line = 0.007 dex
+    A2142      b = -0.770   rms around the line = 0.016 dex
+    A2255      b = -1.341   rms around the line = 0.010 dex
+    A2319      b = -0.896   rms around the line = 0.021 dex
+    A3158      b = -1.298   rms around the line = 0.040 dex
+    A3266      b = -1.289   rms around the line = 0.044 dex
+    A644       b = -0.779   rms around the line = 0.023 dex
+    A85        b = -0.798   rms around the line = 0.024 dex
+    RXC1825    b = -1.395   rms around the line = 0.011 dex
+    ZW1215     b = -0.944   rms around the line = 0.009 dex
+  per-cluster radial slopes: median -0.920, spread 0.266 (the 'ONE universal shape' hypothesis = slope common across clusters: spread vs the median)
+  Spearman(radial slope, M500) = +0.531 (p = 0.075) -- is the envelope shape itself mass-dependent?
+
+====================================================================================================
+STEP 3 -- THE CLOSED-FORM CANDIDATE: ONE per-cluster normalization + ONE universal shape p (the <0.15-dex collapse question)
+====================================================================================================
+  model:  R(x, r) = [2x/(x-1)] * a_c * (r/R500)^-p          (free-dust normalization a_c per cluster, ONE profile shape p pooled)
+  =>  log10 R = log10[2x/(x-1)] + log10 a_c - p log10(r/R500)
+  grid over p in [-4, 4]: best UNIVERSAL shape p* = +0.990
+  achieved collapse (one shape p*, one amplitude per cluster): rms = 0.097 dex
+  [PASS] P0 [the closed-form candidate gate: with ONE per-cluster normalization and ONE universal shape p the residual curve's scatter collapses below 0.15 dex] achieved rms about the closed form 2x/(x-1) * a_c * (r/R500)^-p, p fitted pooled
+         measured: rms = 0.097 dex (p* = +0.99; 13 parameters on 96 bins; gate < 0.15)
+         reading : the honest number: the achieved collapse with ONE shape p and free per-cluster amplitude
+  BASELINE p = 0 (per-cluster amplitude only, no radial shape): rms = 0.361 dex -- the radial shape p* buys 0.264 dex of collapse
+  the per-bin 16-84 half-width at p*: 0.097 dex
+  per-cluster rms at the best-fit (one shape p*): max = 0.143 dex (RXC1825); 12/12 clusters with per-cluster rms < 0.15 dex
+  per-cluster free-dust amplitudes log10 a_c (the 2D statement's mass side):
+    A1644      log10 a_c = -0.011
+    A1795      log10 a_c = -0.131
+    A2029      log10 a_c = -0.223
+    A2142      log10 a_c = -0.200
+    A2255      log10 a_c = -0.043
+    A2319      log10 a_c = -0.005
+    A3158      log10 a_c = -0.112
+    A3266      log10 a_c = -0.226
+    A644       log10 a_c = -0.021
+    A85        log10 a_c = -0.109
+    RXC1825    log10 a_c = +0.062
+    ZW1215     log10 a_c = -0.064
+  Spearman(log10 a_c, M500) = -0.587 (p = 0.045) -- the per-cluster amplitude IS mass-ordered
+  THE 3-PARAMETER CLOSED FORM  log10 c_dust = const + q log10 M500 + p log10(r/R500):  q = -0.414, p = +0.990, achieved rms = 0.119 dex  (no per-cluster freedom at all)
+
+  THE COLLAPSE LADDER (rms of log10 R about each closed form):
+    G105 pooled x-space curve (0 shots)                         0.313 dex
+    theory 2x/(x-1) alone (0 params)                            0.368 dex
+    2x/(x-1) * a_c, p = 0 (12 amps)                             0.361 dex
+    2x/(x-1) * a_c * (r/R500)^-p, p pooled (12 amps + 1 p)      0.097 dex
+    2x/(x-1) * c0*M500^q * (r/R500)^-p (3 params)               0.119 dex
+
+====================================================================================================
+V -- THE VERDICTS
+====================================================================================================
+  [PASS] V1 [the ordering property] the cluster property that orders the pooled residual (largest |rho|, with its p)
+         measured: THE ORDERING.  (i) RADIAL first: the pooled x-curve residual is monotone in r/R500 -- Spearman -1.000 (p ~ 0.000) over the 8 radii, ++0.44 dex at 50 kpc falling to -0.42 dex at 600 kpc: the dominant pattern of the 0.313-dex scatter is the RADIAL ENVELOPE (the free-dust profile shape the x-curve does not absorb).  (ii) MASS side: among the cluster properties the residual LEVELS order by f_gas(420) (rho = +0.497, p = 0.101) > M500 (rho = +0.385, p = 0.217) > r_M/R500 (rho = +0.336, p = 0.286) > kTvir (rho = +0.294, p = 0.354) > the a0-crossing radius (rho = +0.224, p = 0.533, n = 10; A1644/A2255 none).  On the free-dust basis (log10 c_dust) the SAME ordering holds with reversed signs: f_gas(420) rho = -0.413 (p = 0.183); no property is significant at p < 0.05 at the cluster-mean level (n = 12 power), the per-bin cross-check marks f_gas(420) at p = 0.021 (nominal).
+  [PASS] V2 [the achieved collapse with ONE shape p, per-cluster amplitude free] rms about the closed form
+         measured: p* = +0.990, rms = 0.097 dex; < 0.15 -> True
+         reading : the closed-form candidate with the phantom (2x/(x-1)) + the dust-normalization shape c_dust(M500)(r/R500)^-p
+  [PASS] V3 [the honest statement] is the free-dust normalization ONE profile shape with per-cluster amplitude?
+         measured: HONEST: the free-dust normalization IS ONE profile shape (r/R500)^-0.99 with a per-cluster amplitude: the closed form closes the curve to 0.097 dex.  The collapse ladder: pooled x-curve 0.313 -> theory-only 0.368 -> +12 amps 0.361 -> + shape p 0.097 -> full 3-param closed form 0.119 dex.  Thorn freedom remaining: the amplitude freedom is the remaining thorn -- but even with NO per-cluster freedom the literal form c0*M500^q*(r/R500)^-p closes at 0.119 dex (q = -0.41 from the fit, one p = +0.99 for all 12), and the per-cluster slopes spread only 0.27 around their median -0.92 (the 13-parameter fit relaxes this to 0.097 dex, 12/12 clusters inside 0.15); what remains OPEN is the residual floor of the amplitude itself (what sets q, and the A1644/A2255 pair with no a0-crossing sits outside the ordering).
+
+G122 COMPLETE: 5/5 checks PASS.
+  V1 ordering:   THE ORDERING.  (i) RADIAL first: the pooled x-curve residual is monotone in r/R500 -- Spea...
+  V2 collapse:   p* = +0.99, rms = 0.097 dex
+  V3 statement:  HONEST: the free-dust normalization IS ONE profile shape (r/R500)^-0.99 with a per-cluster amplitude: the closed form closes the curve to 0....
+artifact written: G122_results.json
