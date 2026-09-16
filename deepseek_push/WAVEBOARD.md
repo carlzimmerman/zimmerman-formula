@@ -1802,6 +1802,81 @@ abstract's particle sentence revised (218 words, inside the 200+-10%
 gate); 1,668 words of section prose (voice-pass trims registered,
 NO number removed). READY FOR THE AUTHOR'S VOICE PASS.
 
+## WAVE 33 (E-series, landed 5/5 -- the TOE-angle: input floor settled, the unification product-face found, the germ's genesis adjudicated)
+E1 THE INPUT REDUCTION 25/25 (afa21ce52): the count is POST-reduction -- BELOW
+6? NO: G irreducible (the phantom amplitude is G-NORMALIZED, verified
+M_ph/M_b = 1.000000000000000 at G = 6.0/6.674/7.5e-11; the RAR holds with G
+cancelling); c never a candidate (c -> 2c leaves every dimensionless
+coefficient exactly 1); Omega_L MEASURED-WITH-STRUCTURE not derived (the C06
+tautology verified: at the germ every Omega is a fixed point, max dev 5.6e-16;
+3Z^2/32 pi = 1 != 0.685; the germ pins the STRUCTURE, Planck pins the VALUE);
+f_b irreducible (the 0.15635 'closure' is the G03C identity); a0 effectively
+GEOMETRIC (the demotion already executed: c^2/(Z R_dS), G-free, zero freedom
+in the slot); m derived. THE IRREDUCIBLE FLOOR = {G, c, f_b} + the one free
+dimensionless datum Z <-> Omega_L; the density 2.33 = yield per input, not
+compressibility.
+E2 THE QUANTUM-FACE INVENTORY 15/15 (2064cfa88): 7 quantum adjacencies
+re-derived (T_b = 9.34 K with k_B T_b = m sigma^2 the definition, no hbar;
+T_dS = 2.198e-30 K and T_dS/Z = the Unruh temperature of a0 itself; the S10
+holographic gap 30.4 orders at r_M / 36.8 cosmic; the B8 Goldstone gap exactly
+zero; the G028/G154 charge a classical surface term; G235 KMS by construction
+with the crossing factor 1 - 4e-28 degenerating to the Maxwellian; the ONE
+hbar = the Sackur-Tetrode phase-space cell, unit conversion only); THE HONEST
+POSITION: NO quantum gravity, no graviton, no UV completion ('the problem is
+not UV', H053/H054), no quantization (n lambda_dB^3 = 8.6e-9, not a
+condensate), no holography -- the framework's quantum-adjacent content =
+statistical origin + geometric scale constant, NOTHING MORE; THE ONE NUMBER:
+xi = 97.5 nm (the coherence length where the B8 healing term turns on and the
+equilibrium description breaks), companion lambda_dB = 612.6 nm -- new physics
+would appear at 97.5 nm, 28 orders below the smallest probe and ~28 orders
+above Planck, and the framework has no content there BY CONSTRUCTION.
+E3 THE UNIFICATION MAP 23/23 (8ce2bc876) -- THE PRODUCT FACE FOUND: one scale
+a0, three sectors: (G) horizon c^2/(Z R_dS), 1.00005; (T) T_X-ray = mu m_p
+sqrt(G M_b a0)/(2 k_B), 0.053-dex MAD, 50 objects; (P) m = k_B T_0(1+z*)/
+sigma^2, env-blind; THE NEW IDENTITY: m x T_X-ray = mu m_p T_0(1+z*) EXACTLY
+-- the a0-CANCELLATION IDENTITY: the same sigma^2(a0) enters both faces and
+the scale cancels in the product (closes 1.000000 at the MW anchor): the
+algebraic fingerprint that ONE scale, not two, is present; the three kill
+conditions with instruments (T-law > 3 sig at 0.326 dex pooled while the RAR
+holds -> decouple; mass > 3 sig off [4.798, 5.379] -> decouple; deep-end
+exponent != 1/2 -> gravity breaks); THE LEAN FACE: 34 theorems (C04+C05+C06+
+C08), the sub-chains a0 -> T-law AND a0 -> m BOTH Lean: the unification is
+certified link-by-link, falsifiable face-by-face, a SCALE claim not a
+derivation of m_p and not a mechanism.
+E4 THE STATISTICAL-ORIGIN STATEMENT 29/29 (52a02476e): every max-entropy link
+re-derived from source constants: G084's phantom (gamma = 2 exactly, dS/dE =
+1/sigma^2), G228's kernel (E[ln(1+u)] = 1/2 -> Lomax 2(1+u)^-3, form-free KKT
+l1* = 3), the H055 lock (n = 2/(gamma-1), l1 = (gamma+1)/(gamma-1) = 3), C02's
+mass fixed point (worst |m_rec - m| = 1.4e-14 over 20k environments), C08's
+thermal fixed point; THE THREE OPEN REGISTERS named with probes: (a) DYNAMICS
+(the G235 FDT register empty -- no committed chi(omega)/S(omega) or two-time
+correlator; the classical FDT at T_b is an identity, not a test), (b) COUPLING
+(the baryon well C = sqrt(G M_b a0) enters as a fixed boundary datum; the
+charge is geometric, not statistical), (c) QUANTUM (only the N^-1/2 floor); THE
+ADVANCE: H054 could only posit the origin as intuition ('if mu_2 falls out,
+that is the breakthrough'); the record now DEMONSTRATES the single-origin
+statement: ONE max-entropy functional at ONE temperature generating phantom +
+kernel + mass + temperature -- the concrete no-Lagrangian claim (input =
+distribution + moment constraints, NOT an action); complements carried
+honestly (G230's composite dM/dg fails 1/5; the null/B4 bound the claim).
+E5 THE GERM'S GENESIS 19/19 (3fbd58b94): Z^2 = 32 pi/3 = 2^5 pi/3 (32 = 2^5 =
+kernel 2^2 x Einstein 2^3; 3 = the generation count = the Friedmann 3 of
+rho_c = 3H0^2/8 pi G); candidates: (a) sphere-volume Z^2 = 8 x (4 pi/3) is
+EXACT ARITHMETIC but no committed mechanism contains the 3-ball volume -> 
+PURELY ARITHMETIC; (b) de Sitter: the 3-sphere-area ratios not clean BUT the
+horizon pair closes Omega_L IFF Z^2 = 32 pi/3 (Lean, 2.2e-16): Z = kappa_dS/a0
+-- its value is FORCED, not free; (c) statistical: strict Z = (kernel
+normalization) FAILS (G228 normalizes to 2, not 5.7888), but the PARTIAL
+IDENTITY Z = (l1 - 1) sqrt(8 pi/l1) at l1 = 3 is EXACT -- the 2 is the kernel
+coefficient (= deep slope n = 2), the 3 the kernel shape (= log-temperature =
+generation count), 8 pi the Einstein measure; THE NEW EXACT FACT: 3Z^2 = 32 pi
+= 100.531 EXACTLY -- m_e/(3Z^2) = m_e/32 pi = 5.083 keV, the near-integer
+32 pi ~ 100 (pi ~ 25/8 = 3.125, 0.53% low), PURELY ARITHMETIC, consistent
+with B04's closed single-coincidence verdict; VERDICT: genesis =
+STATISTICAL-GEOMETRIC on the committed record (the kernel's 2 & 3 + Einstein's
+8 pi + the horizon closure's square), the strict kernel-normalization identity
+open (fails as stated, holds in its partial committed form).
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 ## WAVE 26 (landed 10/10 -- THE MASS CONVERGED; the scale final; the dSph boundary explained; the census leans charge)
 G208 DEEP-STAIRCASE ORTHOGONALITY 14/14 -- TWO-LAYER: the top stair is the
