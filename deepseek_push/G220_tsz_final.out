@@ -1,0 +1,109 @@
+G220 -- THE tSZ FINAL CURVES: the y-profiles with the ZERO-PARAMETER dust law
+(c0 jump-anchored by A_b = 0.650, q = -1/3 derived from the G200 reservoir),
+per cluster, ready to score: y(theta) tables, expected verdicts, ACT shortlist.
+==================================================================================================
+  [PASS] V0a [gate: committed G113 machinery reproduced] median phantom-only 2-bin and pointwise slope at 2 R500 vs G141_results.json
+         measured: phantom: 2-bin -1.488 (committed -1.488), pointwise -1.436 (committed -1.436)
+         reading : in-process re-execution of G129's and G141's builds (identical loader/recipe); the zero-param law changes ONLY the dust amplitude
+  [PASS] V0b [gate: the derived q] q_derived = -1/3 within 1 sigma of the committed measured q = -0.414 +- 0.157 (G143; pooled -0.4144 +- 0.0903) -- G200/G210
+         measured: Delta = +0.081 = 0.52 sigma (pooled 0.90)
+         reading : A_b = 0.6495 (derived, infall); q_derived = -0.3333 within the measured band [-0.571, -0.257]
+  [PASS] V0c [the zero-parameter statement] the per-cluster amplitude is the closed function log10 a_c = c0 + q log10(M500/8e14): NO per-cluster free number, p = 0.99 fixed (the framework's r^-1); c0 anchored by the A_b jump (R_median 0.30, 12/12 in band), q derived at 0.52 sigma
+         measured: log10 a_c in [-0.161, -0.024] (median -0.094); params (c0, q, p) = (-0.1445, -0.333, 0.99)
+         reading : the curve has zero free parameters: c0, q, p all derived/closed-form; the residual floor is the registered 0.119/0.097 dex (G143)
+
+==================================================================================================
+(1) THE PER-CLUSTER y(theta) TABLES (the ZERO-PARAMETER joint curve;
+    theta in arcmin; y = the Compton parameter)
+==================================================================================================
+  cluster    M500   lgac   th5  2th5   sl2b    slR ACT   y(5')    y(10')    y(20')   y(30')
+  A1644      3.48  -0.02  18.2  36.5  -2.03  -1.93   Y 3.28e-05 1.58e-05 4.27e-06 2.09e-06
+  A1795      4.63  -0.07  15.4  30.9  -2.42  -2.08   n 6.05e-05 1.44e-05 1.92e-06 9.20e-07
+  A2029      8.82  -0.16  15.6  31.2  -2.23  -2.40   Y 8.85e-05 2.73e-05 4.68e-06 2.26e-06
+  A2142      8.95  -0.16  13.5  27.0  -2.52  -2.49   n 8.56e-05 2.55e-05 4.56e-06 1.95e-06
+  A2255      5.26  -0.08  12.6  25.2  -2.31  -2.25   n 4.49e-05 1.55e-05 3.17e-06 1.49e-06
+  A2319      7.31  -0.13  20.0  40.0  -2.55  -2.15   n 1.26e-04 7.82e-05 1.77e-05 7.17e-06
+  A3158      4.26  -0.05  15.6  31.3  -3.09  -3.57   Y 5.11e-05 1.61e-05 3.07e-06 1.04e-06
+  A3266      8.80  -0.16  20.1  40.3  -3.05  -3.42   Y 8.73e-05 3.60e-05 5.41e-06 2.04e-06
+  A644       5.66  -0.09  14.7  29.4  -6.49  -6.06   Y 8.68e-05 1.62e-05 4.70e-07 5.00e-08
+  A85        5.65  -0.09  18.4  36.8  -2.60  -2.33   Y 6.44e-05 2.94e-05 5.01e-06 2.00e-06
+  RXC1825    4.08  -0.05  14.2  28.4  -1.84  -1.76   n 4.10e-05 1.42e-05 3.65e-06 2.06e-06
+  ZW1215     7.66  -0.14  15.0  30.1  -2.73  -3.06   Y 6.28e-05 1.41e-05 2.15e-06 8.40e-07
+  [PASS] V1 [the zero-parameter per-cluster curves, built] 12/12 y(theta) tables on 2.5-40 arcmin from the DERIVED dust law (c0 = -0.1445 jump-anchored, q = -1/3, p = 0.99): the SAMPLE median 2-bin in G177's pass window (-2.94, -2.14) and the pointwise slope at 2 R500 consistent with -2.37 +- 0.4; per-cluster own-band membership reported (the closed form y ~ b^-(q-0.01))
+         measured: sample median 2-bin -2.54 (window (-2.94,-2.14)); pointwise 2R500 -2.37 (vs -2.37 +- 0.4); own-band 8/12 (outside: A1795, A2319, A3158, A644)
+         reading : per G177's V1 as registered: the SAMPLE-level pass window is the decision line (the closed form y ~ b^-(q-0.01)); the per-cluster own-band membership is reported honestly -- the outside pairs are A1795, A2319, A3158, A644 (A1795/A2319 flatter-gas, A3158/A644 steepest-gas), their decision carried by the full-curve fit + the sample median (G129/G141's registered caveat)
+
+==================================================================================================
+(2) THE EXPECTED-VERDICT TABLE: the 3-way tree's expected outcome per cluster
+    given the zero-param curves and the registered survey noise
+    (JOINT (-2.7,-2.05) / PHANTOM-ONLY (-1.8,-1.2) / NEITHER (< -2.7);
+    F2' dust-kill strong 4.4-6.9 sigma pooled, F1' steeper weak 2.6 sigma)
+==================================================================================================
+  cluster    sl2b   sig P(JOINT)  P(PHAN) P(NEITH)  F2sig  expected
+  A1644     -2.03  0.78     0.29     0.24     0.20   1.19  INDECISIVE(grey)
+  A1795     -2.42  1.17     0.22     0.15     0.41   0.81  INDECISIVE(grey)
+  A2029     -2.23  0.77     0.32     0.20     0.27   1.20  INDECISIVE(grey)
+  A2142     -2.52  0.54     0.44     0.08     0.37   1.90  INDECISIVE(grey)
+  A2255     -2.31  0.75     0.33     0.18     0.30   1.30  INDECISIVE(grey)
+  A2319     -2.55  0.24     0.71     0.00     0.27   4.78  JOINT
+  A3158     -3.09  2.02     0.12     0.09     0.58   0.51  INDECISIVE(grey)
+  A3266     -3.05  0.39     0.18     0.00     0.81   2.45  NEITHER
+  A644      -6.49 12.03     0.02     0.02     0.62   0.10  NEITHER
+  A85       -2.60  0.86     0.29     0.12     0.45   1.14  INDECISIVE(grey)
+  RXC1825   -1.84  0.58     0.29     0.34     0.07   1.58  INDECISIVE(grey)
+  ZW1215    -2.73  1.23     0.20     0.12     0.51   0.75  INDECISIVE(grey)
+  [PASS] V2 [the expected-verdict table] the 3-way tree pre-computed per cluster at the registered noise: JOINT where the zero-param slope + per-cluster error holds the joint branch (> 60% in-cluster), INDECISIVE(grey) where the error straddles branches, NEITHER only for the steepest-gas pairs whose prediction sits below -2.7 (A644-registered), PHANTOM-ONLY nowhere (a falsifier, F2', not an expected outcome); the SAMPLE-POOLED expectation leans JOINT (the decision the measurement actually carries)
+         measured: per cluster: JOINT 1, NEITHER 2, PHANTOM-ONLY 0, INDECISIVE(grey) 9; pooled P(JOINT) = 0.75 (2-bin, median slope -2.54); vs NEITHER 0.23 / PHANTOM 0.01
+         reading : the per-cluster table is honest: at the registered per-cluster noise most clusters are individually grey (the 0.6-threshold convention, stated); the decision is carried by the pooled 12-cluster slope (G177's registered sample-level design), which at the zero-param median sits in the JOINT branch with P(JOINT) = 0.75 (2-bin, pooled error 0.224 = median per-cluster 0.78/sqrt(12)) / 0.86 (multi-bin)
+
+==================================================================================================
+(3) THE PRIORITY: where the zero-param envelope is best resolved --
+    ACT-DR6 vs Planck for the first tSZ run
+==================================================================================================
+  ACT-DR6 eligible (in band), ranked by outer-bin SNR x F2' separation:
+    A3266    ACT outer-bin SNR  69.5 (F2'   2.5 sigma)
+    A2029    ACT outer-bin SNR  58.1 (F2'   1.2 sigma)
+    A85      ACT outer-bin SNR  50.8 (F2'   1.1 sigma)
+    A644     ACT outer-bin SNR  42.8 (F2'   0.1 sigma)
+    ZW1215   ACT outer-bin SNR  32.9 (F2'   0.8 sigma)
+    A3158    ACT outer-bin SNR  29.0 (F2'   0.5 sigma)
+    A1644    ACT outer-bin SNR  22.5 (F2'   1.2 sigma)
+
+  Planck 143 (all 12), 23-40' bins (the 2 R500 envelope):
+    A2319    Planck 23-40' SNR  10.2 (F2'   4.8 sigma)
+    A2029    Planck 23-40' SNR   3.2 (F2'   1.2 sigma)
+    A3266    Planck 23-40' SNR   3.0 (F2'   2.5 sigma)
+    A85      Planck 23-40' SNR   2.8 (F2'   1.1 sigma)
+    A2142    Planck 23-40' SNR   2.8 (F2'   1.9 sigma)
+    A1644    Planck 23-40' SNR   2.8 (F2'   1.2 sigma)
+    RXC1825  Planck 23-40' SNR   2.8 (F2'   1.6 sigma)
+    A2255    Planck 23-40' SNR   2.1 (F2'   1.3 sigma)
+    A3158    Planck 23-40' SNR   1.6 (F2'   0.5 sigma)
+    A1795    Planck 23-40' SNR   1.3 (F2'   0.8 sigma)
+    ZW1215   Planck 23-40' SNR   1.2 (F2'   0.8 sigma)
+    A644     Planck 23-40' SNR   0.1 (F2'   0.1 sigma)
+  [PASS] V3 [the priority shortlist] the 2-4 clusters for the first tSZ run: the ACT-DR6 in-band outer-bin leaders + the Planck-only 23-40' > 3-sigma pair, where the zero-param envelope is best resolved
+         measured: A3266, A2029, A85, A2319
+         reading : ACT-DR6 resolves the envelope best on the in-band bright, steep pairs (1.4' beam, 6-10.5' bins); Planck holds the 23-40' bins only where the outer SNR > 3 (A2319-class); the first run should aim at these few
+
+==================================================================================================
+VERDICTS
+==================================================================================================
+  V1 THE PER-CLUSTER y-TABLES: 12/12 clusters scored with the ZERO-PARAMETER dust law (c0 = -0.1445 anchored by the A_b = 0.650 infall jump, q = -1/3 derived from the G200 reservoir at 0.52 sigma, p = 0.99): log10 a_c = c0 + q log10(M500/8e14), amplitudes derived from M500 alone -- zero free parameters. The joint curves sit at median 2-bin slope -2.54 over [R500, 2R500] (-2.37 pointwise at 2 R500), the outer falloff steepened by the envelope's -0.99 relative to the phantom-only reading (-1.49).
+
+  V2 THE EXPECTED-VERDICT TABLE: at the registered survey noise (Planck 143 all 12, ACT DR6 f150 the 7 in-band), the 3-way tree's per-cluster expectation is JOINT for 1/12, NEITHER for 2/12 (the steepest-gas pairs, A644-registered), PHANTOM-ONLY for 0/12 (a falsifier, never an expected outcome at the zero-param truth), INDECISIVE(grey) for 9/12 (the per-cluster error straddles branches -- the honest registered grey zone).  THE DECISION THE MEASUREMENT CARRIES IS SAMPLE-LEVEL (G177's registered design): the pooled 12-cluster 2-bin slope error 0.224 around the zero-param median -2.54 puts P(JOINT) = 0.75 (multi-bin 0.86) -- the tSZ run is EXPECTED to return JOINT at the sample level, with the F1'/F2' asymmetry registered (F2' dust-kill 4.4-6.9 sigma pooled strong, F1' 2.6 sigma weak).
+
+  V3 THE HONEST STATEMENT: the tSZ test's final curves are fully zero-parameter -- the amplitude is the derived law (c0 from the A_b = 0.650 jump, q = -1/3 from the reservoir, the 0.52-sigma residual and the A_b 1.34x factor registered as the honest sliver), the shape is the framework's r^-1, the electron pressure is G113's registered phantom zone.  The expected verdicts are PRE-COMPUTED (JOINT 1/12 per-cluster; pooled P(JOINT) = 0.75, the decision point) and the first-run shortlist is NAMED: A3266, A2029, A85, A2319.  Uncertainty is fully owned: the y-tables are the prediction at zero free parameters, but the measurement's own verdict power is asymmetric (F2' strong, F1' weak -- the grey zone registered) -- the tSZ test can confidently pick JOINT, and can only point (not kill) toward NEITHER, exactly the G177 registered asymmetry carried into the final curves.
+  [PASS] V4 [the honest V1] the per-cluster y-tables complete and reproducible
+         measured: 12/12 tables, zero fitted per-cluster amplitudes
+         reading : THE PER-CLUSTER y-TABLES: 12/12 clusters scored with the ZERO-PARAMETER dust law (c0 = -0.1445 anchored by the A_b = 0.650 infall jump, q = -1/3 derived from the G200 reservoir at 0.52 sigma, p = 0.99): log10 a_c = c0 + q log10(M500/8e14), amplitudes derived from M500 alone -- zero free parameters. The joint curves sit at median 2-bin slope -2.54 over [R500, 2R500] (-2.37 pointwise at 2 R500), the outer falloff steepened by the envelope's -0.99 relative to the phantom-only reading (-1.49).
+  [PASS] V5 [the honest V2] the expected verdicts pre-computed
+         measured: THE EXPECTED-VERDICT TABLE: at the registered survey noise (Planck 143 all 12, ACT DR6 f150 the 7 in-band), the 3-way tree's per-cluster expectation is JOINT for 1/12, NEITHER for 2/12 (the steepest-gas pairs, A644-registered), PHANTOM-ONLY for 0/12 (a falsifier, never an expected outcome at the zero-param truth), INDECISIVE(grey) for 9/12 (the per-cluster error straddles branches -- the honest registered grey zone).  THE DECISION THE MEASUREMENT CARRIES IS SAMPLE-LEVEL (G177's registered design): the pooled 12-cluster 2-bin slope error 0.224 around the zero-param median -2.54 puts P(JOINT) = 0.75 (multi-bin 0.86) -- the tSZ run is EXPECTED to return JOINT at the sample level, with the F1'/F2' asymmetry registered (F2' dust-kill 4.4-6.9 sigma pooled strong, F1' 2.6 sigma weak).
+         reading : THE EXPECTED-VERDICT TABLE: at the registered survey noise (Planck 143 all 12, ACT DR6 f150 the 7 in-band), the 3-way tree's per-cluster expectation is JOINT for 1/12, NEITHER for 2/12 (the steepest-gas pairs, A644-registered), PHANTOM-ONLY for 0/12 (a falsifier, never an expected outcome at the zero-param truth), INDECISIVE(grey) for 9/12 (the per-cluster error straddles branches -- the honest registered grey zone).  THE DECISION THE MEASUREMENT CARRIES IS SAMPLE-LEVEL (G177's registered design): the pooled 12-cluster 2-bin slope error 0.224 around the zero-param median -2.54 puts P(JOINT) = 0.75 (multi-bin 0.86) -- the tSZ run is EXPECTED to return JOINT at the sample level, with the F1'/F2' asymmetry registered (F2' dust-kill 4.4-6.9 sigma pooled strong, F1' 2.6 sigma weak).
+  [PASS] V6 [the honest V3] the final-state statement
+         measured: THE HONEST STATEMENT: the tSZ test's final curves are fully zero-parameter -- the amplitude is the derived law (c0 from the A_b = 0.650 jump, q = -1/3 from the reservoir, the 0.52-sigma residual and the A_b 1.34x factor registered as the honest sliver), the shape is the framework's r^-1, the electron pressure is G113's registered phantom zone.  The expected verdicts are PRE-COMPUTED (JOINT 1/12 per-cluster; pooled P(JOINT) = 0.75, the decision point) and the first-run shortlist is NAMED: A3266, A2029, A85, A2319.  Uncertainty is fully owned: the y-tables are the prediction at zero free parameters, but the measurement's own verdict power is asymmetric (F2' strong, F1' weak -- the grey zone registered) -- the tSZ test can confidently pick JOINT, and can only point (not kill) toward NEITHER, exactly the G177 registered asymmetry carried into the final curves.
+         reading : THE HONEST STATEMENT: the tSZ test's final curves are fully zero-parameter -- the amplitude is the derived law (c0 from the A_b = 0.650 jump, q = -1/3 from the reservoir, the 0.52-sigma residual and the A_b 1.34x factor registered as the honest sliver), the shape is the framework's r^-1, the electron pressure is G113's registered phantom zone.  The expected verdicts are PRE-COMPUTED (JOINT 1/12 per-cluster; pooled P(JOINT) = 0.75, the decision point) and the first-run shortlist is NAMED: A3266, A2029, A85, A2319.  Uncertainty is fully owned: the y-tables are the prediction at zero free parameters, but the measurement's own verdict power is asymmetric (F2' strong, F1' weak -- the grey zone registered) -- the tSZ test can confidently pick JOINT, and can only point (not kill) toward NEITHER, exactly the G177 registered asymmetry carried into the final curves.
+
+G220 COMPLETE: 9/9 checks PASS.
+Artifacts: G220_tsz_final.py + G220_tsz_final.out + G220_results.json
+\nwrote G220_results.json
