@@ -579,6 +579,48 @@ committed empirical/pre-registered verification, 6 carry a named open
 edge (cluster amplitude, the footing + MIGHTEE deep, Cassini S2, S8, the
 particle upper bound, the 0.62 gap -- the last now CLOSED by G149's F(e_N)).
 
+## WAVE 11 (landed 5/5 -- the dust law's final form)
+G139 THE r^-1 DUST LAW RESOLVED: the RATIO-space r^-1 is NOT the density
+index: the exact map (via the G095 identity R = 2 x r_M/r) gives the
+density image inheriting the local baryon slope: the coherency window's
+density-space dust reads p_dust = 1.69 +- 0.16 (per-cluster median 1.67)
+-- NEITHER 1.0 nor 2.38 (each rejected ~1.8 sigma); G108's -2.38 IS the
+DEEP-window law (reproduced 2.31/2.79 on (r_M, R500)): the two numbers
+describe DIFFERENT radial windows; the total dark = A_ph r^-2 + B_dust
+r^-1.7 (NOT a single r^-2); amplitude the only freedom across the window.
+G140 THE AMPLITUDE'S MASS-ORDERING, PREDICTED: log10 a_c = -0.145 +
+(-0.414 +- 0.157) log10(M500/8e14) (rms 0.068; bootstrap [-0.54, -0.26],
+P(q>0) = 0.011); the cosmic-weighted f_dust: 0.89 capped (M200 > 1e14),
+-> closure [0.79, 0.95] -> [1.02, 1.20]: the run OVERSHOOTS, forcing
+SATURATION at f_dust = 1, M_sat = 3.09e14 (band 1.73-4.01e14): the
+power-law fraction cannot extend below ~3e14; the tension's deficit is
+the sub-1e6 warm-floor cut, NOT the amplitude run; HONEST: a registered
+marginal pattern (p = 0.045, n = 12) -- a PREDICTION with a saturation
+bound; the discriminating test = the group scale.
+G141 tSZ + DUST JOINT 9/9: the revised y-profile = G113 x G122 EXACTLY
+(zero new params): y0 unchanged (+13%), THE 2R500 NUMBER: y = 0.30x G113
+alone, 31x classic beta = 2/3 (G113 alone 105x); the outer slope -1.44 ->
+-2.37 (2-bin -1.49 -> -2.54); F_joint vs F_phantom 11.6 sigma pooled, vs
+F_classic 5.2 sigma; dust share of the enclosed mass 39%, baryon fraction
+in the dust's well 0.26; one observation, two sectors -- the tSZ outer
+bins are the coherency's first direct test beyond the 600-kpc window.
+G142 THE INNER f_gas GAP CLOSED 9/9: with the per-cluster r_c + the r^-1
+dust (zero new params): r_half/r_M = 1.42 vs 1.43 (residual -1%), pooled
+slope +0.177 +- 0.049 vs +0.235 +- 0.039 (residual -0.058, in band);
+the closing lever = the dust SHAPE, not the baryon concentration
+(per-cluster vs median r_c changes nothing: the median-c_b approximation
+EXONERATED; the task's r_c ~ 0.6-0.9 guess REJECTED numerically);
+leftover: a dust slope between 2.38 and 0.99 (~1.5-2.0) brackets the
+sub-window closure -- a quantified seam, not a tension.
+G143 THE GROUP-SCALE AMPLITUDE 9/9: the r^-1 dust law at 1e13: the group
+f_gas rise +0.536 +- 0.069 = 2.3x steeper (20/26 > +0.235, t = 4.3) AS
+PREDICTED; HONEST CORRECTION: the brief's premise (r_M a larger fraction
+at groups) is FALSE on both footings (M_b 0.13 vs 0.24-0.31) -- the
+steepening rides the amplitude run; THE COMBINED LAW (two MEASURED
+parameters): c_dust = 0.72 (M500/8e14)^(-0.414 +- 0.157) (r/R500)^(-0.990
++- 0.035), residual floor 0.097-0.119 dex, ONE envelope across 1e13-9e14;
+THE THORN'S FREEDOM IS NOW (c0, q) + the 0.1-dex floor.
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 CLAIMED (deepseek, in flight -- do NOT duplicate): G154 static-branch
 charge, G155 sourced equation, G156 dust charge-vs-relic decision,
