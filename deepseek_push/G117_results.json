@@ -1,0 +1,94 @@
+{
+  "task": "G117",
+  "title": "THE BTFR REGISTER CORRECTION",
+  "date": "2026-09-15",
+  "old_claim": {
+    "median_pct": 11.5,
+    "p80_pct": 22.0,
+    "claim_site": "glm53_push/REFEREE_ATTACKS.md:93-95 (section 2.7 'BTFR scatter', STATUS: ANSWERED)"
+  },
+  "new_claim": {
+    "median_pct_range": "5.0-5.6",
+    "p80_pct_range": "9.4-11.6",
+    "rms_dex_v_range": "0.09-0.11",
+    "rms_dex_Mb_range": "0.36-0.44",
+    "bundle_artifact_canonical": {"median_pct": 5.04, "p80_pct": 9.17},
+    "primary_reading_canonical": {"median_pct": 5.59, "p80_pct": 11.65, "n": 171, "rms_dex": 0.1031},
+    "footings": "both (canon 9.3623e-11 and alt 1.1279e-10), three readings",
+    "source": "deepseek_push/G087_btfr_scatter.py/.out/.json (commit 4897308c4)"
+  },
+  "intrinsic_upper_bound": {
+    "E1_loocv_dex": 0.0836,
+    "E1_loocv_pct": 21.24,
+    "E1_insample_dex": 0.0713,
+    "E1_insample_pct": 17.86,
+    "E2_dex2": 0.01441,
+    "errV_floor_dex": 0.0219,
+    "round_number": "0.084 dex = 21%",
+    "rar_floor_analogue_dex": "0.045-0.052 (G036/G044 within-galaxy white-noise floor)"
+  },
+  "provenance": {
+    "note": "the registered 11.5%/22% predates the committed bundle (G033's script carries no such statistic) and likely conflated the EB-E3 1.15 mass-ratio register class",
+    "ebE3_register": {
+      "site": "prep_2026/equation_book/EQUATION_BOOK.md:60 (E3 zero-fit baryon-mass predictor) and predictions_2026/PREDICTIONS_LEDGER_2026-09-02.md:47 (row B-2)",
+      "value": "median M_pred/M_phot = 1.15 canonical / 0.97 alternate"
+    }
+  },
+  "forecast": {
+    "statement": "unchanged by this correction",
+    "model": "sigma_v(M_acc) = sqrt(intr^2 + (M_acc/4)^2), intr = E1_loocv = 0.0836 dex",
+    "observed_rms_pct": 26.8,
+    "jwst_macc0_05_pct": 21.5,
+    "effective_sparc_Macc_dex": 0.24,
+    "v3_registered_bar": "sigma_v(0.05) <= 0.5*sigma_obs = 12.6% : still FAILs at 21.5% (honest, per pre-registration)"
+  },
+  "G051_master_table_per_row_impact": [
+    {"row": "v_flat (MW baryons 6.5e10 Msun) 168.589/176.625 km/s", "site": "G051_master_table", "carried_11_5_22": false, "impact": "STRENGTHENS (zero-point unchanged; tighter scatter raises its weight)"},
+    {"row": "RAR total scatter, deep-regime pooled rms 0.15/0.174 dex", "site": "G051_master_table", "carried_11_5_22": false, "impact": "UNCHANGED value; context strengthened (BTFR tighter, same systematic family)"},
+    {"row": "RAR scatter floor with per-galaxy M/L freedom 0.064/0.094 dex", "site": "G051_master_table", "carried_11_5_22": false, "impact": "STRENGTHENED narrative (G087 confirms M/L-systematic dominance)"},
+    {"row": "Within-galaxy white-noise floor 0.045/0.052 dex (the 0.05-dex-class analogue)", "site": "G051_master_table", "carried_11_5_22": false, "impact": "UNCHANGED value; becomes the honest benchmark caveat (BTFR intrinsic upper bound 0.084 dex sits ~2x above it)"},
+    {"row": "Population-mean deep sag -0.13 dex/dex", "site": "G051_master_table", "carried_11_5_22": false, "impact": "UNCHANGED (orthogonal row)"}
+  ],
+  "claim_impact": [
+    {"claim": "REFEREE_ATTACKS section 2.7 BTFR scatter STATUS ANSWERED", "impact": "AMENDED-in-spirit to the corrected numbers; STRENGTHENS the law (register quoted 2x too much scatter)"},
+    {"claim": "z~2.5 BTFR zero-point 0.00 vs +0.33 dex at +-0.13 (20:1), JWST/ALMA (deepseek STATE:55, glm53 STATE:162/210, REFEREE_ATTACKS:115/180, GRAVITY_EVERYWHERE:304)", "impact": "FORECAST UNCHANGED; tighter 5% background marginally strengthens the discriminator"},
+    {"claim": "EB-E3 finite-mass predictor M_pred/M_phot = 1.15/0.97 (EQUATION_BOOK E3:60, PREDICTIONS_LEDGER B-2:47)", "impact": "UNCHANGED as-measured; recorded as the provenance class of the old 11.5"},
+    {"claim": "GRAVITY_EVERYWHERE triad v_c^2 = 2 sigma^2 = sqrt(G M_b a0) [BTFR]", "impact": "STRENGTHENS (amplitude claim gains from tighter scatter)"},
+    {"claim": "kimik3 P7 BTFR zero-point within 0.03 dex of fitted-scale", "impact": "UNCHANGED (zero-point claim; never used 11.5/22)"},
+    {"claim": "deepseek_push/PREDICTIONS.md E1-E10 ledger", "impact": "no BTFR scatter row; no change needed"}
+  ],
+  "verdicts": {
+    "V1_grep_complete": {
+      "pass": true,
+      "hits_11_5_22": [
+        "glm53_push/REFEREE_ATTACKS.md:93-95 (the register row; THE old number)",
+        "deepseek_push/G087_btfr_scatter.out:78 (re-audit target line)",
+        "deepseek_push/G087_btfr_scatter.py (Part-1 registered-claim line)",
+        "deepseek_push/G087_results.json (registered_claim_reaudit block)"
+      ],
+      "hits_0_05_class_rar_floor_analogue": [
+        "glm53_push/G051_master_table.py:275-277 / .out:24 / .json:316-321 (within-galaxy white-noise floor 0.045/0.052)",
+        "glm53_push/G051_master_table.py:267-269 / .out:22 (RAR total scatter 0.15/0.174 dex)",
+        "glm53_push/G051_master_table.py:271-273 / .out:23 (RAR scatter floor M/L 0.064/0.094 dex)",
+        "glm53_push/REFEREE_ATTACKS.md:87-91 (section 2.6 RAR scatter floor)",
+        "glm53_push/STATE.md:147 (G044 white-noise floor 0.0524/0.0538 dex)",
+        "deepseek_push/STATE.md:16 (M/L floor 0.064 dex board row)",
+        "deepseek_push/G087_btfr_scatter.out:48-49,63-65,146 (V2 reading clause vs analogue)"
+      ],
+      "negative_results": [
+        "glm53_push/G033_build_fluid_bundle.py contains NO 11.5/22 statistic (registered number had no committed artifact inside G033)",
+        "G051_master_table contains NO row quoting 11.5/22 (only the RAR-floor analogue rows); its numeric rows already PASS at the 2% gate and are untouched",
+        "hermes_push/STATE.md:32,47 '22%' = C003 clock-frame-kicks ledger, NOT BTFR",
+        "prep_2026 a0-line 11.5%, cluster_efe_channel 11.5%, hunt_2026/k07d +11.5% = unrelated subjects",
+        "deepseek_push/PREDICTIONS.md (E1-E10), qwen38_push/PREDICTIONS.md: no BTFR scatter rows",
+        "kimik3_push/predictions/PREDICTIONS.md:87-92: BTFR zero-point rows only, no scatter claim"
+      ]
+    },
+    "V2_per_claim_impact": {"pass": true, "note": "per-row grid in G051_master_table_per_row_impact and claim_impact; nothing weakens; the only caveat is the 21% intrinsic upper bound, which is the honest limit, not a legal weakness"},
+    "V3_honest_statement": {"pass": true, "note": "a TIGHTER zero-parameter BTFR is BETTER for the law (5.0-5.6% median vs the registered 11.5%, inside SPARC's own 10-15% literature band); the honest caveat is the 0.084 dex = 21% intrinsic upper bound (above the RAR 0.045-0.052 dex floor), so zero intrinsic scatter is BOUNDED at 21%, not PROVEN at 5%; JWST decides via the unchanged forecast 26.8% -> 21.5%."},
+    "V4_history_amended_without_rewriting": {"pass": true, "note": "superseded commits left intact; G087 + this G117 supersede the 11.5/22 register quotation; circulation of the old number as a live value ends here"}
+  },
+  "grep_scope": "repo-wide over committed .md/.py/.json/.out/.txt; excluded .git/, node_modules, venv; patterns: 11.5%, 22 %, 80th percentile, 80th pct, 0.084, 0.0836, 26.8, 21.5%, BTFR-scatter-adjacent, 0.045/0.052, 0.05 dex, white-noise floor",
+  "deliverables": ["deepseek_push/BTFR_SCATTER_CORRECTION.md", "deepseek_push/G117_results.json"],
+  "commit_pushed": true
+}
