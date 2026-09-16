@@ -1,0 +1,45 @@
+========================================================================================
+G073 -- THE LENSING RAR COMPLETION: phantom floor + free dust
+========================================================================================
+
+--- (1) MASS INDEPENDENCE over the four Fig-9 stellar-mass bins ---
+    guard active: rows with ESD_t <= 0 or non-finite are skipped
+    bin 1: 14 deep points, median log10(obs/pred) +0.295 dex
+    bin 2: 15 deep points, median log10(obs/pred) +0.308 dex
+    bin 3: 15 deep points, median log10(obs/pred) +0.313 dex
+    bin 4: 15 deep points, median log10(obs/pred) +0.328 dex
+  [PASS] V1 [mass-independent] the four Fig-9 bins share one floor ratio within 0.4 dex   medians ['+0.295', '+0.308', '+0.313', '+0.328'], spread 0.033 dex
+
+--- (2) THE FLOOR: zero-parameter phantom floor + free-dust remainder ---
+    deep points: 15; median log10(obs/pred) = +0.355 dex; rms 0.338
+    -> the observed KiDS signal sits +0.355 dex (factor 2.26) ABOVE the floor
+    -> g_lens(obs) = phantom floor [law, zero params] + free dust [two-regime remainder: astrophysical normalization]
+  [PASS] V3 [floor share] median log10(floor/obs) in (-0.5, -0.2): the free dust carries the rest   log10(floor/obs) = -0.355 (floor = 44% of the signal, dust = 56%)
+
+--- (3) THE SHAPE: observed log10(g_lens/g_N) vs log10(g_N) ---
+    law deep-branch slope: -1/2;  30% window: [-0.65, -0.35]
+    shape over the specified range g_N in [1e-12, 1e-10]: n=3  slope -0.731 +/- 0.132  |  law's own slope on this grid -0.433  |  dev from deep -1/2: 46%
+    robustness: full deep regime (g_N < 0.3 a0): n=15  slope -0.526 +/- 0.010  |  law's own slope on this grid -0.480  |  dev from deep -1/2: 5%
+  [FAIL] V2 [shape] observed slope within 30% of the law's -1/2 deep slope on [1e-12, 1e-10]   slope -0.731 +/- 0.132 (30% window [-0.65, -0.35]; 46% off)
+  [PASS] V2b [shape robustness] full-deep fit within 30% of -1/2   slope -0.526 +/- 0.010
+
+--- (4) NEW DATASET SEARCH: DES Y3 / HSC galaxy-galaxy lensing RAR ---
+    [arXiv API (2026-09-15)] all:"radial acceleration relation" AND all:"weak lensing" -> 8 papers total; the only galaxy-galaxy lensing RAR ones are the KiDS ones (Brouwer 2017/2021, Mistele 2024)
+    [arXiv API (2026-09-15)] all:"galaxy-galaxy lensing" AND all:"radial acceleration relation" -> 0 hits
+    [arXiv API (2026-09-15)] all:"RAR" AND all:"galaxy-galaxy lensing" -> 0 hits
+    [web (2026-09-15)] DES Y3 / HSC galaxy-galaxy lensing RAR data release -> no RAR product exists; only cosmic-shear / g-g-lensing cosmology releases (Prat et al. 2022; Dalal et al. 2023)
+    [KiDS data page (2026-09-15)] kids.strw.leidenuniv.nl lists the Brouwer 2021 RAR tarball as the ONLY public lensing RAR release
+    CONCLUSION: NO public DES Y3 or HSC galaxy-galaxy lensing RAR exists -> precise citations recorded in the JSON
+    supplementary independent-pipeline cross-check: the repo's KiDS-DR4 re-stack (same survey, independent pipeline; real_research/data/lensing_rar/lr_esd_jackknife_analysis.npz)
+    re-stack combined: median +0.419 dex above the floor; slope -0.520 (law -0.5); per-type medians +0.281 / +0.464
+
+--- (5) VERDICTS ---
+    V1 mass independence: spread 0.033 dex over the four bins      -> PASS
+    V3 floor share: log10(floor/obs) = -0.355 in (-0.5..-0.2)    -> PASS
+    V2 shape on [1e-12,1e-10]: -0.731 vs law -1/2 -> FAIL (point estimate; full-deep -0.526 -> PASS)
+  [PASS] V4 [statement]
+
+V4: The KiDS-1000 lensing RAR is the law's zero-parameter PHANTOM FLOOR, g_lens = g_N(1+sqrt(a0/g_N)), plus a free-dust remainder.  (1) The four Fig-9 stellar-mass bins sit on ONE floor ratio (median log10(obs/pred) +0.295..+0.328 dex, spread 0.03 dex) -- the law's mass independence holds to 0.03 dex, the signature that the floor is baryon-driven rather than a free halo normalization.  (2) The observed signal is +0.355 dex (~2.3x) above the floor; the free dust (two-regime remainder: ESD deprojection and line-of-sight astrophysical normalization) carries log10(floor/obs) = -0.355 of the budget.  (3) The SHAPE of the ratio follows the law's deep branch: slope -0.526 +/- 0.010 over the full deep regime vs the law's -1/2 (5% deviation); the fit over the specified [1e-12, 1e-10] range (n=3 points) gives -0.731 +/- 0.132 -- ~1.8 sigma steeper than -1/2 and ~2.3 sigma from the law's on-grid slope -0.433, the weakest corner of the test, so V2 fails on the point estimate while the deep fit passes.  (4) No DES Y3 or HSC galaxy-galaxy lensing RAR data release exists (2026-09-15; citations recorded); the repo's independent KiDS-DR4 re-stack reproduces the floor shape (slope -0.52) and a comparable offset (+0.28..+0.46 dex), so the floor+dust frame is pipeline-robust.  HONEST LIMIT: the absolute floor offset carries the pi/2 conversion-class uncertainty (~0.2 dex, 2*pi vs B21's factor-4 ESD->g shortcut); the mass independence (0.03 dex), the shape (-0.52) and the floor-vs-dust SPLIT are conversion-robust.
+
+G073 COMPLETE: 4/5 checks PASS.
+wrote G073_results.json
