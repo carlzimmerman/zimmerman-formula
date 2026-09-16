@@ -1,0 +1,241 @@
+{
+ "lane": "S05_baryon_fraction",
+ "title": "THE BARYON-TO-DARK CLOSURE: does the framework predict Omega_b/Omega_m (0.157) or take it as input?  The provenance audit, the prediction attempt (M_sat / pie / equilibrium / flatness slack), the honest input count, and the verdicts.",
+ "deliverable": "deepseek_push/S05_baryon_fraction.py + .out + S05_results.json",
+ "context": "G187 (the pie, the constitution curve, the cosmic <s_b>); G079 (the Omega_dm decomposition: Omega_dm 0.264 = eq 0.0021 + dust 0.2619; Omega_b 0.0493 INPUT; f_b cluster band 0.13-0.155); G178 (f_b = 0.081 the GROUP baryon floor, not Omega_b/Omega_m; M_sat = 3.09e14); G189/G058 (the Omega_Lambda identity, G03C circularity flag); S09/Z11 (a0 identity-pinned by the horizon, empirically calibrated); G212 (m = 5.09 keV derived); G052 (the flatness residual lane that consumes Omega_b as measured).",
+ "registers": {
+  "Omega_m": 0.3153,
+  "Omega_b": 0.0493,
+  "Omega_dm": 0.264,
+  "Omega_dust": 0.261908,
+  "Omega_eq_capped": 0.0020925,
+  "Omega_eq_uncapped": 0.0033750000000000004,
+  "Omega_Lambda_committed": 0.6857,
+  "Omega_Lambda_planck": 0.6847,
+  "f_b_cosmic": 0.1564,
+  "f_b_group_floor": 0.081,
+  "f_b_group_over_cosmic": 0.518,
+  "f_b_cluster_band": [
+   0.13,
+   0.155
+  ],
+  "M_sat_Msun": 308763257361121.7,
+  "M_sat_band_Msun": [
+   172979444752324.22,
+   400974654586861.56
+  ],
+  "m_keV": 5.09,
+  "a0_horizon_identity": 9.362375e-11,
+  "a0_committed": 9.3619e-11
+ },
+ "part1_provenance_audit": {
+  "f_b_classification": "INPUT at every committed touchpoint",
+  "touchpoints": [
+   {
+    "G052_flatness_residual": "Omega_dm = 1 - Omega_L - Omega_b with Omega_b 'measured' (the lane's own words) -- Omega_b consumed, Omega_dm derived, f_b never produced"
+   },
+   {
+    "G079_G187_hardcode": "Omega_b = 0.0493 Planck hardcoded into the EH98 transfer (ombom0, sound horizon, silk damping) and the envelope Omega_b/Omega_dm = 18.7%"
+   },
+   {
+    "G178_group_floor": "0.081 = median f_gas,500 + 0.02 stars of the 26 E11 groups (G143) -- a cluster-scale MEASURED baryon share, 0.52 x cosmic f_b, not Omega_b/Omega_m, not derived"
+   },
+   {
+    "G187_pie_nods": "s_b(M) nods (1e13, 0.081), (1.73e14, 0.068), (3.48e14, 0.1443), (8e14, 0.2025), (1e15, 0.2217) -- measured cluster/group baryon fractions, the pie's 'own data'"
+   },
+   {
+    "per_object_M_b": "measured M/L + gas normalizes the BTFR v^4 = G M_b a0, the equipartition M_dark(<r_M) = M_b and the dust law at every scale -- the baryon ruler"
+   }
+  ],
+  "derived_anywhere": false
+ },
+ "part2_prediction_attempt": {
+  "M_sat_content": {
+   "formula": "8e14 (1/f_ref)^(1/q)",
+   "recomputed": 308748268355112.5,
+   "registered": 308763257361121.7,
+   "class": "fixes the phantom-vs-dust split of the missing mass from the measured (f_ref, q); no baryon input"
+  },
+  "equilibrium_bound": {
+   "Omega_eq_uncapped": 0.0033750000000000004,
+   "Omega_eq_capped": 0.0020925,
+   "bound_source": "Omega_star (Fukugita & Peebles 2004, measured)",
+   "class": "dark mass in units of measured baryon mass; never fixes the baryon abundance"
+  },
+  "flatness_slack": {
+   "formula": "f_b^slack = (1 - Omega_L - Omega_dm)/(1 - Omega_L)",
+   "committed_Omega_L": 0.16,
+   "planck_Omega_L": 0.1627,
+   "datum_f_b": 0.1564,
+   "agreement_pct": 2.4,
+   "class": "IDENTITY on measured sides (G03C circularity class): input Omega_dm and Omega_Lambda to get f_b out -- not a prediction"
+  },
+  "halo_baryon_content": {
+   "s_b_mean_over_halos_gt_1e12": 0.0846,
+   "fraction_of_cosmic_f_b": 0.541,
+   "class": "halo-CONTENT statement, baryon-depleted, built from the measured nods -- not the cosmic f_b"
+  },
+  "committed_register_slack": {
+   "Omega_b_plus_Omega_dm": 0.3133,
+   "Omega_m": 0.3153,
+   "slack": 0.002,
+   "flatness_committed": 1.001
+  }
+ },
+ "part3_input_count": {
+  "six_core": {
+   "formula": "(a0, G, c, Omega_Lambda, f_b, m)",
+   "measured": [
+    "G",
+    "c",
+    "Omega_Lambda",
+    "f_b (0.157)"
+   ],
+   "identity_pinned": [
+    "a0 (horizon identity c^2/(Z R_dS) at 1.00005 + empirical zero point, S09)"
+   ],
+   "derived": [
+    "m = 5.09 +- 0.10 keV (G212)"
+   ]
+  },
+  "ancillary_measured_datums": [
+   "H0",
+   "Omega_star",
+   "n_s",
+   "sigma_8",
+   "T_CMB"
+  ],
+  "per_object_inputs": "M_b (M/L + gas) for every system -- the baryon ruler of the BTFR/equipartition/dust law",
+  "derived_list": [
+   "m = 5.09 +- 0.10 keV",
+   "M_sat = 3.09e14, band [1.73, 4.01]e14",
+   "Z = 2 sqrt(8 pi/3) = 5.7888",
+   "s_Lambda = 2 a0_DE = 1.872e-10",
+   "T_b = 9.34 K in [9.17, 9.52]",
+   "u(M) exponent +0.314 = (1-gamma)/2 - 1/3",
+   "q -> -1/3 (Bondi)",
+   "A_b = 0.650 jump"
+  ],
+  "identity_list": [
+   "a0 = c^2/(Z R_dS) = kappa_dS/Z = 9.3624e-11",
+   "Omega_Lambda = 32 pi a0^2/(3 H0^2 c^2)"
+  ],
+  "measured_list": [
+   "G, c",
+   "H0 = 67.36",
+   "Omega_Lambda = 0.6857 (committed)",
+   "Omega_m = 0.3153, Omega_dm = 0.264, Omega_b = 0.0493 -> f_b = 0.157",
+   "Omega_star = 0.0027 (Fukugita & Peebles 2004)",
+   "n_s = 0.9649, sigma_8 = 0.811",
+   "per-object M_b (M/L + gas)"
+  ],
+  "zero_free_parameter": {
+   "per_object": true,
+   "as_no_inputs": false,
+   "statement": "'zero-free-parameter' holds per object (closed forms given M_b and a0) and is NOT a claim about cosmic inputs; f_b = 0.157 is the last undeclared measured input of the cosmic frame"
+  },
+  "empirical_free_fits": [
+   [
+    "q = -0.414 +- 0.157",
+    "the dust-law mass slope, the last genuinely free fit; derived -1/3 at 0.52 sigma"
+   ]
+  ]
+ },
+ "verdicts": {
+  "V1_f_b_provenance": {
+   "pass": true,
+   "classification": "INPUT",
+   "statement": "THE f_b PROVENANCE: INPUT, EVERYWHERE.  The audit chain: (a) G052's flatness 'closure' derives Omega_dm = 1 - Omega_L - Omega_b from a MEASURED Omega_b (the lane's own words -- 'Omega_b measured'); (b) G079/G187 hardcode Omega_b = 0.0493 (Planck, 'published, not computed here') into the EH98 transfer and the envelope; (c) the pie's s_b(M) nods [0.081, 0.068, 0.1443, 0.2025, 0.2217] are MEASURED group/cluster baryon shares; (d) G178's 0.081 is the GROUP baryon floor (G143's E11 f_gas,500 + 0.02 stars), a cluster-scale measurement at 52% of the cosmic f_b = 0.156 -- NOT Omega_b/Omega_m and NOT derived; (e) the per-object M_b (measured M/L + gas) normalizes the BTFR, the equipartition and the dust law at every scale.  Zero derivations of f_b on the committed record.  The machinery is baryon-NORMALIZED: M_dark = M_b x dimensionless multipliers everywhere."
+  },
+  "V2_derived_vs_input_count": {
+   "pass": true,
+   "statement": "THE DERIVED-VS-INPUT COUNT: derived {m = 5.09 +- 0.10 keV (G212), M_sat = 3.09e14 (band [1.73, 4.01]e14), Z, s_Lambda, T_b, the u(M) exponent +0.314, q -> -1/3, A_b = 0.650}; identity-pinned {a0 = c^2/(Z R_dS) = 9.3624e-11 at ratio 1.00005 (Z11) AND empirically zero-point calibrated (S09), Omega_Lambda = 32 pi a0^2/(3 H0^2 c^2) (G058 algebra, G03C-flagged circular)}; measured inputs {G, c, H0, Omega_Lambda, Omega_m, OMEGA_B -> f_b = 0.1564, Omega_star, n_s, sigma_8, T_CMB, per-object M_b}.  In the six-core framing (a0, G, c, Omega_Lambda, f_b, m): 4 measured, 1 identity-pinned, 1 derived.  f_b sits in the MEASURED column; every closure point consumes it, none produces it."
+  },
+  "V3_honest_statement": {
+   "pass": true,
+   "statement": "HONEST -- the baryon fraction is the framework's last undeclared input, and the honest input count admits it: 6 core (a0, G, c, Omega_Lambda, f_b, m) of which 4 are measured cosmological constants (f_b = 0.157 among them) + 5 ancillary measured datums (H0, Omega_star, n_s, sigma_8, T_CMB) + per-object M_b.  The 'zero-free-parameter' claim is TRUE per object (closed forms given M_b and a0) and NOT a claim about cosmic inputs.  The closed sector's only f_b-adjacent emissions: (i) the halo baryon share <s_b> = 0.085 = 0.54 x f_b -- halo CONTENT from the measured nods, depleted, not a cosmic derivation; (ii) the flatness-slack echo f_b^slack = 0.160 vs 0.156 (2.3% at the committed Omega_L) -- an identity on measured sides (G03C class: you must input Omega_dm and Omega_Lambda to get f_b out), carrying the registered 0.6-0.9% slack of the committed Planck registers.  The machinery fixes the DARK-internal split (M_sat, f_dust, phantom share 1-f_dust = 0.33 median) and the dark-to-baryon ratio field (1:1 at r_M, x(R500/r_M) phantom gain, f_dark 6-10 clusters), never the baryon abundance: f_b = 0.157 enters the pie as the number that makes the dark sector measurable, and no test of the framework constrains it -- the last undeclared free parameter of the cosmic frame.",
+   "one_line": "the baryon fraction is the framework's input at every committed closure point -- the last undeclared free parameter of the cosmic frame (measured datum, not fit); the machinery emits only the halo baryon share 0.085 (depleted content) and the flatness-slack echo 0.160 (identity, G03C class)"
+  }
+ },
+ "gates": [
+  {
+   "name": "C1 [the datum] f_b = Omega_b/Omega_m = 0.1564 (Planck 0.0493/0.3153)",
+   "measured": "f_b = 0.1564",
+   "pass": true,
+   "reading": "the task's 0.157 is the Planck 2020 ratio of two measured densities; nothing in the committed chain computes it"
+  },
+  {
+   "name": "C2 [G178's 0.081 is not Omega_b/Omega_m] the group baryon floor sits at 0.52x the cosmic f_b -- a cluster-scale MEASURED depletion, not a cosmic derivation",
+   "measured": "f_b,group = 0.081 vs f_b,cosmic = 0.156 (ratio 0.52)",
+   "pass": true,
+   "reading": "G178's own verdict calls it 'the baryon floor' of the group f_dust inversion (dust share = 1 - f_b with f_b ~ 0.08): an input, and a scale-specific one"
+  },
+  {
+   "name": "C3 [the pie's baryon nods are all measured] every s_b(M) anchor of the constitution curve is a measured cluster/group baryon fraction",
+   "measured": "nods: (1.00e+13, 0.081), (1.73e+14, 0.068), (3.48e+14, 0.144), (8.00e+14, 0.203), (1.00e+15, 0.222)",
+   "pass": true,
+   "reading": "G187 labels them 'the committed nods s_b(M) passes through (the pie's own data, not invented)' -- measured inputs interpolated by the curve, not produced by the machinery"
+  },
+  {
+   "name": "C4 [M_sat carries no baryon input] M_sat = 3.09e14 recomputed from the committed (f_ref, q) alone -- the saturation fixes the dark-sector split, not the baryon fraction",
+   "measured": "M_sat = 3.0875e+14 (registered 3.0876e+14)",
+   "pass": true,
+   "reading": "f_ref = 0.674 (measured cluster phantom/dust median) and q = -0.414 (measured mass run): both dark-internal, both measured"
+  },
+  {
+   "name": "C5 [the flatness slack is an identity, not a prediction] f_b^slack agrees with the datum to 2-4% ONLY because both sides are measured",
+   "measured": "f_b^slack = 0.1600 (0.1627 at Planck Omega_L) vs f_b = 0.1564",
+   "pass": true,
+   "reading": "the G03C circularity class: to run this 'prediction' you must input Omega_dm and Omega_Lambda -- the machinery adds nothing but the identity eq + dust = Omega_dm (G198, mass conservation by construction)"
+  },
+  {
+   "name": "C6 [the only framework-emitted baryon number is the halo share] <s_b> = 0.085 (G187) is a depleted halo-CONTENT mean, 0.54 x f_b, built from the measured nods -- not the cosmic f_b",
+   "measured": "<s_b> = 0.0846 = 54% of f_b = 0.156",
+   "pass": true,
+   "reading": "the halo baryon deficit is a real (measured) astrophysical statement, and it is exactly what the framework does NOT claim to derive: the curve interpolates measured cluster baryon shares"
+  },
+  {
+   "name": "C7 [the empirical-free-parameter inventory] the cluster pie has exactly ONE genuinely free fit left (q = -0.414 +- 0.157, the mass slope; the amplitude combination c0 is pinned by the derived A_b jump) -- everything else is measured or derived",
+   "measured": "free fits: 1 (q); a0 zero point empirically calibrated (S09 registered tensions)",
+   "pass": true,
+   "reading": "the 'zero-free-parameter' claim is about per-object fits, and it is fair there; it is NOT a claim about the cosmic inputs -- and f_b is the one cosmic input with no framework-side constraint at all (the tests are all M_b-normalized, so a wrong f_b would be invisible to every fit)"
+  },
+  {
+   "name": "C8 [the honest core count] the six-core statement: (a0, G, c, Omega_Lambda, f_b, m) = 4 measured + 1 identity-pinned (a0) + 1 derived (m); the ancillary closure adds H0, Omega_star, n_s, sigma_8, T_CMB",
+   "measured": "6 core = 4 measured (G, c, Omega_L, f_b) + 1 identity-pinned (a0) + 1 derived (m); +5 ancillary measured datums; + per-object M_b",
+   "pass": true,
+   "reading": "any honest input-count statement must put f_b in the MEASURED column: it is the number the flatness residual consumes (G052) and the EH98 weights (G079/G187) and the pie's s_b nods (G178/G187) all take as given"
+  },
+  {
+   "name": "V1 [the f_b provenance: INPUT everywhere -- the audit chain]",
+   "measured": "G052 consumes Omega_b; G079/G187 hardcode it; G178's 0.081 = 52% of f_b and is measured; per-object M_b normalizes every law",
+   "pass": true,
+   "reading": "THE f_b PROVENANCE: INPUT, EVERYWHERE.  The audit chain: (a) G052's flatness 'closure' derives Omega_dm = 1 - Omega_L - Omega_b from a MEASURED Omega_b (the lane's own words -- 'Omega_b measured'); (b) G079/G187 hardcode Omega_b = 0.0493 (Planck, 'published, not computed here') into the EH98 transfer and the envelope; (c) the pie's s_b(M) nods [0.081, 0.068, 0.1443, 0.2025, 0.2217] are MEASURED group/cluster baryon shares; (d) G178's 0.081 is the GROUP baryon floor (G143's E11 f_gas,500 + 0.02 stars), a cluster-scale measurement at 52% of the cosmic f_b = 0.156 -- NOT Omega_b/Omega_m and NOT derived; (e) the per-object M_b (measured M/L + gas) normalizes the BTFR, the equipartition and the dust law at every scale.  Zero derivations of f_b on the committed record.  The machinery is baryon-NORMALIZED: M_dark = M_b x dimensionless multipliers everywhere."
+  },
+  {
+   "name": "V2 [the derived-vs-input count: f_b in the MEASURED column]",
+   "measured": "derived 8 / identity-pinned 2 / measured 7; six-core = 4 measured + 1 identity + 1 derived",
+   "pass": true,
+   "reading": "THE DERIVED-VS-INPUT COUNT: derived {m = 5.09 +- 0.10 keV (G212), M_sat = 3.09e14 (band [1.73, 4.01]e14), Z, s_Lambda, T_b, the u(M) exponent +0.314, q -> -1/3, A_b = 0.650}; identity-pinned {a0 = c^2/(Z R_dS) = 9.3624e-11 at ratio 1.00005 (Z11) AND empirically zero-point calibrated (S09), Omega_Lambda = 32 pi a0^2/(3 H0^2 c^2) (G058 algebra, G03C-flagged circular)}; measured inputs {G, c, H0, Omega_Lambda, Omega_m, OMEGA_B -> f_b = 0.1564, Omega_star, n_s, sigma_8, T_CMB, per-object M_b}.  In the six-core framing (a0, G, c, Omega_Lambda, f_b, m): 4 measured, 1 identity-pinned, 1 derived.  f_b sits in the MEASURED column; every closure point consumes it, none produces it."
+  },
+  {
+   "name": "V3 [the honest statement -- the baryon fraction, the input count]",
+   "measured": "f_b = 0.1564 input; slack echo 0.1600 (identity); <s_b> = 0.0846 (halo content); 6 core inputs, 4 measured",
+   "pass": true,
+   "reading": "HONEST -- the baryon fraction is the framework's last undeclared input, and the honest input count admits it: 6 core (a0, G, c, Omega_Lambda, f_b, m) of which 4 are measured cosmological constants (f_b = 0.157 among them) + 5 ancillary measured datums (H0, Omega_star, n_s, sigma_8, T_CMB) + per-object M_b.  The 'zero-free-parameter' claim is TRUE per object (closed forms given M_b and a0) and NOT a claim about cosmic inputs.  The closed sector's only f_b-adjacent emissions: (i) the halo baryon share <s_b> = 0.085 = 0.54 x f_b -- halo CONTENT from the measured nods, depleted, not a cosmic derivation; (ii) the flatness-slack echo f_b^slack = 0.160 vs 0.156 (2.3% at the committed Omega_L) -- an identity on measured sides (G03C class: you must input Omega_dm and Omega_Lambda to get f_b out), carrying the registered 0.6-0.9% slack of the committed Planck registers.  The machinery fixes the DARK-internal split (M_sat, f_dust, phantom share 1-f_dust = 0.33 median) and the dark-to-baryon ratio field (1:1 at r_M, x(R500/r_M) phantom gain, f_dark 6-10 clusters), never the baryon abundance: f_b = 0.157 enters the pie as the number that makes the dark sector measurable, and no test of the framework constrains it -- the last undeclared free parameter of the cosmic frame."
+  }
+ ],
+ "n_pass": 11,
+ "n_fail": 0,
+ "sources": [
+  "G079_results.json",
+  "G198_results.json",
+  "G187_results.json",
+  "G178_results.json",
+  "G212_results.json",
+  "Z11_results.json",
+  "G052_unified_cosmology.py (lanes)",
+  "G189_seesaw_fate.py",
+  "S09_one_scale.py"
+ ]
+}
