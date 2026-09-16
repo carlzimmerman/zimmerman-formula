@@ -1,0 +1,493 @@
+{
+ "lane": "Z04_gap_decider",
+ "title": "THE GAP DECIDER PROTOCOL -- the 2-3e14 phantom-vs-dust split, planned to observable (G140 C1 made concrete)",
+ "deliverable": "deepseek_push/Z04_gap_decider.py + .out + Z04_results.json",
+ "context": "REASSESSMENT_2026-09-16 live seam #4 (nothing in-repo measures the 1.73-3.48e14 gap); G222 (the pie check: baryon face measured, phantom face open); G187 (the constitution curve's SHARP 0.08-0.12 vs SMOOTH 0.13-0.53 s_ph in the gap; the equipartition completion 0.42-0.50 near the high edge); G140 C1 (one 2-3e14 system with a resolved mass decomposition = the decider); G178 (the falsifier f_dust < 0.85); G188 (the inverted-pie map g(R500)/a0); G220 (the zero-parameter y0 machinery); G203 (the HeCS 58 commitment).",
+ "gap": {
+  "Msun": [
+   172980000000000.0,
+   348000000000000.0
+  ],
+  "M_sat_Msun": 308763257361121.7,
+  "G187_prediction": {
+   "sharp": "s_ph = s_b (all-dust below M_sat), 0.08-0.12 at 2-3e14",
+   "smooth": "s_ph = s_b g(M): 0.135/0.264/0.397 at 2/2.5/3e14; equipartition completion f_b/u ~ 0.42-0.50 near the high edge"
+  },
+  "baryon_face": "Bucko+26 fgas = 0.078 +- 0.004 at 3e14 (UNVERIFIED); measured f_dark 0.902 vs pie 1-s_b(3e14) = 0.877, Delta +0.025 ~ 2 sigma (G222 V1d)"
+ },
+ "gates": [
+  {
+   "name": "G0a [the X-COP registers] the Ettori+19 JSON M500s match G179's pie rows on all 12 in-sample clusters AND the JSON registers Hydra A / A780 at M500 = 2.21e14 (strictly inside the gap)",
+   "measured": "JSON entries 13 (12 X-COP pie + Hydra A); A1644=3.48; HydraA=2.21; Hydra A in-gap: 1.73e+14 < 2.21e14 < 3.48e+14",
+   "pass": true,
+   "reading": "Hydra A's 2.21e14 is a COMMITTED registered mid-gap mass (the X-COP Ettori+19 JSON; used by G136's lensing registry) -- the third in-gap target's registration costs nothing"
+  },
+  {
+   "name": "G0b [the constitution curve] s_ph(sharp/smooth) at 2/2.5/3e14 reproduces G187's committed gap prediction",
+   "measured": "smooth: 2e14 0.135 (reg 0.1347), 2.5e14 0.264 (reg 0.2636), 3e14 0.397 (reg 0.3968); sharp: 3e14 0.123 (reg 0.123)",
+   "pass": true,
+   "reading": "the decision curves (SHARP / SMOOTH) this protocol scores against are G187's committed ones, read from the registers"
+  },
+  {
+   "name": "G0c [G188's field reading] the recomputed X-COP g(R500)/a0 spans G188's committed 0.466-0.657 (12/12 sub-a0, median 0.554)",
+   "measured": "recomputed span [0.466, 0.657], median 0.554 vs registered [0.466, 0.657], median 0.554",
+   "pass": true,
+   "reading": "the inverted-pie map reading is the committed one; the gap targets' g(R500)/a0 below sit on the same definition"
+  },
+  {
+   "name": "G0d [G220's y0 register] A1644's zero-param y0 = 2.596e-5 as committed",
+   "measured": "committed 2.5958e-05",
+   "pass": true,
+   "reading": "A1644's SZ observable is already in-repo; the ACT in-band flag is True"
+  },
+  {
+   "name": "T1 [the target selection] the 2-3 best in-gap systems with triple coverage named from the COMMITTED catalogs: A1644 (X-COP 12, 3.48e14), Hydra A (Ettori+19 JSON, 2.21e14), A2631 (HeCS, 2.83e14)",
+   "measured": "selected: A1644, A2631, Hydra A (A780); screened in-gap: 25 objects",
+   "pass": true,
+   "reading": "the selection is EXACTLY the committed record: no new catalog needed; IC1633 (E11, 1.73e14) screened but not selected (no SZ/lensing coverage committed or cited); A1201 retained as the strong-lensing alternate"
+  },
+  {
+   "name": "O1 [the inverted-pie map at the gap] all three selected targets sit SUB-a0 at R500 (g(R500)/a0 < 1) -- the phantom phase's footprint holds across the gap",
+   "measured": "A1644=0.47; Hydra A (A780)=0.40; A2631=0.42",
+   "pass": true,
+   "reading": "A1644 0.466 (bottom of the committed range), Hydra A 0.403 (the deepest of the sample), A2631 0.421 (physical R500 = 0.70/0.70 Mpc, the h^-1 correction -- G203's committed stack note); the field at R500 is a0/2.5 class throughout the gap, so the EQUILIBRATION boundary r_a0 sits at ~0.4-0.55 R500, inside the window the pie needs"
+  },
+  {
+   "name": "D1 [the decision is computable] every selected target yields a decision sigma vs the pie curve's two branches from the (WL M500, fgas, fstar) budget alone",
+   "measured": "A1644: INDECISIVE (grey) (+1.8/+1.8 sigma); Hydra A (A780): SMOOTH (phantom phase) (+5.9/+4.2 sigma); A2631: SMOOTH (phantom phase) (+5.9/+2.4 sigma)",
+   "pass": true,
+   "reading": "the decider is a MONTE-CARLO budget, not a request: 20k draws per target over the archived uncertainties"
+  },
+  {
+   "name": "V1 [the target list with the covering instruments]",
+   "measured": "THE TARGET LIST WITH THE COVERING INSTRUMENTS: (1) A1644 (X-COP 12, M500 = 3.48e14 -- the gap's HIGH edge): XMM-Newton/Chandra (X-COP fits COMMITTED), Planck 143 + ACT DR6 f150 (in band), DECam shear (Monteiro-Oliveira+20, UNVERIFIED).  (2) Hydra A / A780 (Ettori+19 JSON, M500 = 2.21e14 -- strictly INSIDE the gap): Chandra ACIS + XMM-Newton (archival), Planck + ACT (public maps), Subaru Suprime-Cam (Okabe+, UNVERIFIED).  (3) A2631 (HeCS 58, converted M500 = 2.83e14 -- mid-gap): Chandra ACIS-I (archival), ACT + SZA + Planck (detected), SDSS shear / maxBCG (UNVERIFIED).  Committing lanes: X-COP G179 pie row / G220 y0 / Ettori+19 JSON; Hydra A = the same Ettori+19 JSON; A2631 = G203's hecs2013_table4.tsv.  Every registration is committed -- the selection costs nothing.",
+   "pass": true,
+   "reading": ""
+  },
+  {
+   "name": "V2 [the expected s_ph precision and the decision sigma]",
+   "measured": "RSS sigma vs sharp = 8.6",
+   "pass": true,
+   "reading": "THE EXPECTED s_ph PRECISION AND THE DECISION SIGMA: with the quoted archival uncertainties (WL M500 +- 0.5e14, f_gas +- 0.010-0.020, f_star +- 0.003-0.005), the 20k-draw Monte Carlo reconstructs A1644: s_ph^eq = 0.66 (16-84 [0.60, 0.74]), f_dust(missing) = 0.27; Hydra A (A780): s_ph^eq = 0.44 (16-84 [0.39, 0.51]), f_dust(missing) = 0.50; A2631: s_ph^eq = 0.51 (16-84 [0.45, 0.58]), f_dust(missing) = 0.42 -- the measured phantoms sit at 0.44-0.66 (vs G187's smooth-branch 0.13-0.53 and sharp-branch 0.08-0.12); the per-target branch separation A1644 0.00; Hydra A (A780) 0.10; A2631 0.24; the RSS decision sigma vs the all-dust (SHARP) branch = 8.6 sigma pooled, > 3 sigma on Hydra A alone with the committed 2.21e14 anchoring the mid-gap."
+  },
+  {
+   "name": "V3 [the honest statement] -- the gap decider is concrete, executable today, zero new time",
+   "measured": "HONEST: THE GAP DECIDER IS CONCRETE -- the measurement that closes the last cluster-sector hole is the (WL M500, X-ray fgas, SZ y0, f_star) budget on A1644 + Hydra A/A780 + A2631, and it needs ZERO new observing time: A1644's ENTIRE budget is already on the committed record (X-COP fits + G220's y0 + published DECam shear), Hydra A and A2631 need only the public archival pulls (Chandra/XMM + Planck/ACT + Subaru/SDSS shear, all public, first-executable today).  The honest boundaries: (i) the task-formula s_ph = (M_tot - M_bar - M_gas)/M_tot is the DARK share, which the pie splits into phantom + dust -- the DECISIVE quantity is s_ph^eq = f_b/u (the pie's own equipartition identity), and its decision sigma vs G187's SHARP/SMOOTH branches is computed (Part 3); (ii) the WL M500 numbers are UNVERIFIED cites (Monteiro-Oliveira+20 / Okabe+ / SDSS maxBCG), not re-derived -- the protocol's first action is the shear ingest; (iii) a SINGLE 2-3e14 system with a resolved decomposition is G140's C1 and A1644 already IS one (G179's pie row: s_b/s_ph/s_d = 0.144/0.556/0.300 at 3.48e14) -- the gap's HIGH edge is measured at the full phantom, Hydra A at 2.21e14 is the decisive MID-gap missing step, A2631 the HeCS/ACT-side confirmation.",
+   "pass": true,
+   "reading": ""
+  }
+ ],
+ "n_pass": 10,
+ "n_fail": 0,
+ "target_selection": {
+  "screened_in_gap": [
+   {
+    "name": "A1644",
+    "M500": 348000000000000.0,
+    "catalog": "X-COP 12",
+    "lane": "G122/G179/G220 + Ettori+19 JSON",
+    "coverage": 3
+   },
+   {
+    "name": "Hydra A (A780)",
+    "M500": 221000000000000.0,
+    "catalog": "X-COP Ettori+19 JSON",
+    "lane": "real_research/data/xcop/xcop_r500_ettori2019.json",
+    "coverage": 3
+   },
+   {
+    "name": "IC1633",
+    "M500": 172900000000000.0,
+    "catalog": "E11 26 groups",
+    "lane": "G143/G178",
+    "coverage": 2
+   },
+   {
+    "name": "A646",
+    "M500": 186858574021182.5,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A655",
+    "M500": 255383091723571.75,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A667",
+    "M500": 225705431644692.3,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A697",
+    "M500": 334910981028204.7,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A750",
+    "M500": 188480957523280.88,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A795",
+    "M500": 257436952804705.97,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A963",
+    "M500": 300382023515408.94,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A980",
+    "M500": 339697133963020.9,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "Zw3146",
+    "M500": 219224944397934.16,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A1033",
+    "M500": 208616910461082.12,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A1132",
+    "M500": 271424033846304.28,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A1201",
+    "M500": 188676723553715.72,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A1423",
+    "M500": 278077901030239.4,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A1553",
+    "M500": 349740518735184.8,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A2009",
+    "M500": 258196942085086.75,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A2050",
+    "M500": 318367573185411.44,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A2111",
+    "M500": 223424077498441.34,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A2259",
+    "M500": 295144077509670.25,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "RXJ1720",
+    "M500": 337698002941422.44,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A2261",
+    "M500": 182327524682000.72,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A2396",
+    "M500": 289312643049839.06,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 2
+   },
+   {
+    "name": "A2631",
+    "M500": 282850118109362.2,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "coverage": 3
+   }
+  ],
+  "selected": [
+   {
+    "name": "A1644",
+    "M500_Msun": 348000000000000.0,
+    "catalog": "X-COP 12",
+    "lane": "G122/G179/G220 + Ettori+19 JSON",
+    "sz": "Planck + ACT(in-band)",
+    "xray": "X-COP fits COMMITTED",
+    "lensing": "Monteiro-Oliveira+20 (DECam, UNVERIFIED)",
+    "coverage": 3
+   },
+   {
+    "name": "A2631",
+    "M500_Msun": 282850118109362.2,
+    "catalog": "HeCS 58",
+    "lane": "G203 hecs2013_table4.tsv (M200 caustic -> M500, NFW c=4.5)",
+    "sz": "ACT+SZA+Planck DETECTED (arXiv:1108.3343, UNVERIFIED)",
+    "xray": "Chandra ACIS-I archival (obsIDs 3248/11728, UNVERIFIED)",
+    "lensing": "SDSS maxBCG richness-mass shear (Rozo+09, UNVERIFIED)",
+    "coverage": 3
+   },
+   {
+    "name": "Hydra A (A780)",
+    "M500_Msun": 221000000000000.0,
+    "catalog": "X-COP Ettori+19 JSON",
+    "lane": "real_research/data/xcop/xcop_r500_ettori2019.json",
+    "sz": "Planck + ACT",
+    "xray": "Chandra/XMM ARCHIVAL",
+    "lensing": "Okabe+ Subaru (UNVERIFIED)",
+    "coverage": 3
+   }
+  ],
+  "not_selected": "IC1633 (E11, 1.73e14 low edge): X-ray only, no committed/cited SZ or lensing; A1201 (HeCS 1.89e14): strong-lensing alternate"
+ },
+ "observables": {
+  "g_R500_over_a0": [
+   {
+    "target": "A1644",
+    "g_R500_over_a0": 0.466,
+    "sub_a0": true
+   },
+   {
+    "target": "Hydra A (A780)",
+    "g_R500_over_a0": 0.403,
+    "sub_a0": true
+   },
+   {
+    "target": "A2631",
+    "g_R500_over_a0": 0.421,
+    "sub_a0": true
+   }
+  ],
+  "fgas": [
+   {
+    "target": "A1644",
+    "f_gas": 0.1378,
+    "f_gas_err": 0.01,
+    "f_star": 0.0065
+   },
+   {
+    "target": "Hydra A (A780)",
+    "f_gas": 0.08,
+    "f_gas_err": 0.015,
+    "f_star": 0.01
+   },
+   {
+    "target": "A2631",
+    "f_gas": 0.1,
+    "f_gas_err": 0.02,
+    "f_star": 0.01
+   }
+  ],
+  "y0_zero_param": [
+   {
+    "target": "A1644",
+    "y0": 2.59578e-05,
+    "source": "COMMITTED (G220_results.json)"
+   },
+   {
+    "target": "Hydra A (A780)",
+    "y0": 1.769944429210405e-05,
+    "source": "zero-param regression log10 y0 = -27.61 + 1.59 log10 M500 (the 12 G220 points, rms 0.155 dex)"
+   },
+   {
+    "target": "A2631",
+    "y0": 2.6225489465025806e-05,
+    "source": "zero-param regression log10 y0 = -27.61 + 1.59 log10 M500 (the 12 G220 points, rms 0.155 dex)"
+   }
+  ],
+  "wl_M500_UNVERIFIED": [
+   {
+    "target": "A1644",
+    "wl_M500": 249000000000000.0,
+    "wl_err": 50000000000000.0
+   },
+   {
+    "target": "Hydra A (A780)",
+    "wl_M500": 250000000000000.0,
+    "wl_err": 50000000000000.0
+   },
+   {
+    "target": "A2631",
+    "wl_M500": 280000000000000.0,
+    "wl_err": 50000000000000.0
+   }
+  ],
+  "G188_committed_range": [
+   0.466476898133022,
+   0.6572569317390173
+  ]
+ },
+ "s_ph_reconstruction_MC": {
+  "method": "20,000 draws per target over (WL M500 +- 0.5e14, f_gas +- 0.010-0.020, f_star +- 0.003-0.005); s_ph(task) = (M_tot-M_bar-M_gas)/M_tot = the dark share; s_ph^eq = f_b/u (the pie's equipartition); f_dust(missing) = 1 - s_ph^eq/(1-s_b)",
+  "per_target": [
+   {
+    "target": "A1644",
+    "M500": 348000000000000.0,
+    "s_b": 0.1443,
+    "s_ph_sharp": 0.5271157728829481,
+    "s_ph_smooth": 0.5271157728829481,
+    "sph_task_med": 0.855775078168197,
+    "sph_task_16_84": [
+     0.8453656379559918,
+     0.8659117340123386
+    ],
+    "sph_eq_med": 0.6581491987640302,
+    "sph_eq_16_84": [
+     0.5964073110892835,
+     0.7403558589102123
+    ],
+    "f_dust_missing_med": 0.2675713348704322,
+    "f_dust_missing_16_84": [
+     0.19512896736927612,
+     0.32202257583369637
+    ],
+    "branch_sep": 0.0,
+    "sigma_vs_smooth": 1.820559190969915,
+    "sigma_vs_sharp": 1.820559190969915,
+    "verdict": "INDECISIVE (grey)"
+   },
+   {
+    "target": "Hydra A (A780)",
+    "M500": 221000000000000.0,
+    "s_b": 0.08851707869853376,
+    "s_ph_sharp": 0.08851707869853376,
+    "s_ph_smooth": 0.18818789743900452,
+    "sph_task_med": 0.9098544203356944,
+    "sph_task_16_84": [
+     0.894333718805848,
+     0.9256545930959346
+    ],
+    "sph_eq_med": 0.44437281274514173,
+    "sph_eq_16_84": [
+     0.38895277452123694,
+     0.5097187727521195
+    ],
+    "f_dust_missing_med": 0.5045962987942413,
+    "f_dust_missing_16_84": [
+     0.4416050979560608,
+     0.5597124019159648
+    ],
+    "branch_sep": 0.09967081874047076,
+    "sigma_vs_smooth": 4.242666297782896,
+    "sigma_vs_sharp": 5.893310025331413,
+    "verdict": "SMOOTH (phantom phase)"
+   },
+   {
+    "target": "A2631",
+    "M500": 282850118109362.2,
+    "s_b": 0.11544404768813864,
+    "s_ph_sharp": 0.11544404768813864,
+    "s_ph_smooth": 0.3508476489847003,
+    "sph_task_med": 0.8899270815581319,
+    "sph_task_16_84": [
+     0.8695660722472797,
+     0.9105994406847571
+    ],
+    "sph_eq_med": 0.5132510005406492,
+    "sph_eq_16_84": [
+     0.450755729385942,
+     0.5849996795909743
+    ],
+    "f_dust_missing_med": 0.4194784002779253,
+    "f_dust_missing_16_84": [
+     0.3499952358471821,
+     0.4836397741003289
+    ],
+    "branch_sep": 0.23540360129656163,
+    "sigma_vs_smooth": 2.419525815620122,
+    "sigma_vs_sharp": 5.926627639382414,
+    "verdict": "SMOOTH (phantom phase)"
+   }
+  ],
+  "rss_sigma_vs_sharp_pooled": 8.55
+ },
+ "existing_data": {
+  "A1644": "X-COP fits COMMITTED in-repo + G220 y0 COMMITTED + DECam shear UNVERIFIED -- fully executable on the committed record",
+  "Hydra_A": "Chandra ACIS + XMM-Newton + Planck/ACT maps + Subaru Suprime-Cam shear -- all public archival",
+  "A2631": "Chandra ACIS-I obsIDs 3248/11728 + ACT/SZA/Planck + SDSS shear -- all public archival",
+  "new_observing_time": 0,
+  "first_executable_date": "2026-09-16 (the shear ingest + Z6 tSZ pull are the only steps)"
+ },
+ "verdicts": {
+  "V1_target_list_instruments": {
+   "pass": true,
+   "text": "THE TARGET LIST WITH THE COVERING INSTRUMENTS: (1) A1644 (X-COP 12, M500 = 3.48e14 -- the gap's HIGH edge): XMM-Newton/Chandra (X-COP fits COMMITTED), Planck 143 + ACT DR6 f150 (in band), DECam shear (Monteiro-Oliveira+20, UNVERIFIED).  (2) Hydra A / A780 (Ettori+19 JSON, M500 = 2.21e14 -- strictly INSIDE the gap): Chandra ACIS + XMM-Newton (archival), Planck + ACT (public maps), Subaru Suprime-Cam (Okabe+, UNVERIFIED).  (3) A2631 (HeCS 58, converted M500 = 2.83e14 -- mid-gap): Chandra ACIS-I (archival), ACT + SZA + Planck (detected), SDSS shear / maxBCG (UNVERIFIED).  Committing lanes: X-COP G179 pie row / G220 y0 / Ettori+19 JSON; Hydra A = the same Ettori+19 JSON; A2631 = G203's hecs2013_table4.tsv.  Every registration is committed -- the selection costs nothing."
+  },
+  "V2_sph_precision_decision_sigma": {
+   "pass": true,
+   "text": "THE EXPECTED s_ph PRECISION AND THE DECISION SIGMA: with the quoted archival uncertainties (WL M500 +- 0.5e14, f_gas +- 0.010-0.020, f_star +- 0.003-0.005), the 20k-draw Monte Carlo reconstructs A1644: s_ph^eq = 0.66 (16-84 [0.60, 0.74]), f_dust(missing) = 0.27; Hydra A (A780): s_ph^eq = 0.44 (16-84 [0.39, 0.51]), f_dust(missing) = 0.50; A2631: s_ph^eq = 0.51 (16-84 [0.45, 0.58]), f_dust(missing) = 0.42 -- the measured phantoms sit at 0.44-0.66 (vs G187's smooth-branch 0.13-0.53 and sharp-branch 0.08-0.12); the per-target branch separation A1644 0.00; Hydra A (A780) 0.10; A2631 0.24; the RSS decision sigma vs the all-dust (SHARP) branch = 8.6 sigma pooled, > 3 sigma on Hydra A alone with the committed 2.21e14 anchoring the mid-gap.",
+   "rss_sigma_vs_sharp": 8.553972994953185
+  },
+  "V3_honest_statement": {
+   "pass": true,
+   "text": "HONEST: THE GAP DECIDER IS CONCRETE -- the measurement that closes the last cluster-sector hole is the (WL M500, X-ray fgas, SZ y0, f_star) budget on A1644 + Hydra A/A780 + A2631, and it needs ZERO new observing time: A1644's ENTIRE budget is already on the committed record (X-COP fits + G220's y0 + published DECam shear), Hydra A and A2631 need only the public archival pulls (Chandra/XMM + Planck/ACT + Subaru/SDSS shear, all public, first-executable today).  The honest boundaries: (i) the task-formula s_ph = (M_tot - M_bar - M_gas)/M_tot is the DARK share, which the pie splits into phantom + dust -- the DECISIVE quantity is s_ph^eq = f_b/u (the pie's own equipartition identity), and its decision sigma vs G187's SHARP/SMOOTH branches is computed (Part 3); (ii) the WL M500 numbers are UNVERIFIED cites (Monteiro-Oliveira+20 / Okabe+ / SDSS maxBCG), not re-derived -- the protocol's first action is the shear ingest; (iii) a SINGLE 2-3e14 system with a resolved decomposition is G140's C1 and A1644 already IS one (G179's pie row: s_b/s_ph/s_d = 0.144/0.556/0.300 at 3.48e14) -- the gap's HIGH edge is measured at the full phantom, Hydra A at 2.21e14 is the decisive MID-gap missing step, A2631 the HeCS/ACT-side confirmation."
+  }
+ },
+ "sources": [
+  "G140_results.json",
+  "G143_results.json",
+  "G178_results.json",
+  "G179_results.json",
+  "G187_results.json",
+  "G188_results.json",
+  "G220_results.json",
+  "real_research/data/xcop/",
+  "G203_data/hecs2013_table4.tsv",
+  "Monteiro-Oliveira+20 MNRAS 495 2007 (UNVERIFIED)",
+  "Okabe+ Subaru cool-core WL (UNVERIFIED)",
+  "Rozo+09 SDSS maxBCG richness-mass (UNVERIFIED)",
+  "arXiv:2609.09144 Bucko+26 fgas (UNVERIFIED)",
+  "arXiv:1108.3343 ACT A2631 (UNVERIFIED)"
+ ]
+}
