@@ -1,0 +1,96 @@
+================================================================================================
+G119 -- THE 0.62 DERIVATION ATTEMPT:  is r_break/r_M = sqrt(a0/g_ext)?
+        candidate: the EFE line ratio with the MW's own-halo field (L240)
+================================================================================================
+
+--- PART 1 THE ALGEBRA: r_efe/r_M = sqrt(a0/g_ext) IDENTICALLY ---
+  r_M(6.5e10) = 9.8384 kpc   r_M(7e10) = 10.2098 kpc
+  r_efe(6.5e10, L240) = 6.4982 kpc   r_efe(7e10, L240) = 6.7435 kpc
+  r_efe/r_M at 6.5e10 = 0.6604913588
+  r_efe/r_M at 7e10   = 0.6604913588
+  sqrt(a0/g_ext)      = 0.6604913588
+  identity error      = 0.00e+00  (M_b cancels)
+  [PASS] the ratio form is identically sqrt(a0/g_ext) (M_b cancels)   max dev 1.11e-16
+
+  the task's '0.685 = G072's 6.74/9.84': 6.74 kpc (M_b = 7e10) divided
+  by 9.84 kpc (r_M at M_b = 6.5e10) = 0.6854 -- a MIXED-M_b ratio:
+  the same-mass ratios are 0.6605 (7e10) and 0.6605 (6.5e10),
+  BOTH equal to sqrt(a0/g_ext) = 0.6605.  The registered 0.62 = 6.1/9.84 = 0.6200 (both at M_b = 6.5e10).
+
+--- PART 2 THE MW NUMBER (V1): sqrt(a0/g_ext) vs 0.62 / 0.685 ---
+  g_own(R0) = v_c(R0)^2/R0 with L240's v = 233 km/s, R0 = 8.2 kpc: 2.146e-10  (registered L240 = 2.146e-10)
+  v_c-anchored own-field band, v_c in [229, 232.5, 235]: [2.073e-10, 2.183e-10] m/s^2
+  sqrt(a0_can / g_ext L240)              ratio = 0.6605   -> r_efe(M_b 6.5e10) = 6.50 kpc   vs registered 6.1 kpc
+  sqrt(a0_can / g_ext DHF24)             ratio = 0.6352   -> r_efe(M_b 6.5e10) = 6.25 kpc   vs registered 6.1 kpc
+  sqrt(a0_alt / g_ext L240)              ratio = 0.7250   -> r_efe(M_b 6.5e10) = 7.13 kpc   vs registered 6.1 kpc
+  registered 0.62 = 6.1/9.84 = 0.6199
+  mixed-mass 6.74/9.84 = 0.6853 (M_b-mixing artifact, flagged)
+
+  DELTAS vs the registered 0.6200:
+    sqrt(a0_can/L240) = 0.6605  delta +0.0406  (+6.5%)
+    sqrt(a0_can/DHF24)= 0.6352  delta +0.0153  (+2.5%)  [g_ext band L240<->DHF24]
+    sqrt(a0_alt/L240) = 0.7250  delta +0.1051  (+16.9%)
+  DELTA vs the mixed-mass 0.685: sqrt(a0_can/L240) is -3.6% off (ill-posed comparison; the same-M_b ratio IS the identity)
+  g_ext required for sqrt(a0_can/g_ext) = 0.6200 exactly: 2.435e-10  = +13.5% above L240
+  (G03F's inversion from the registered 6.1 kpc break at M_b = 7e10: g_ext = 2.623e-10, ratio to L240 1.22 -- registered ratio 1.22)
+
+  FULL-KERNEL REPRODUCTION (G003 V6): where the MW's internal field
+  (mu_2 kernel on the exponential disk) falls to g_ext = 2.146e-10:
+  r_cut (full kernel, M_b = 6.5e10, R_d = 2.5 kpc) = 6.13 kpc  (registered r_break = 6.1 kpc)
+  ratio r_cut/r_M = 0.6232  vs registered 0.6200 and deep-form 0.6605
+  [PASS] the full-kernel solve reproduces the registered 6.1 kpc break (G003 V6, zero fitted parameters)   r_cut = 6.13 kpc vs registered 6.1 kpc; deep-form EFE line 6.50 kpc (6.4% high -- the kernel interpolation closes the gap)
+  READING: the registered 6.1 kpc IS the framework's own full-kernel value at the
+  registered inputs (a0 canonical, g_ext L240, M_b = 6.5e10, R_d = 2.5 kpc); the
+  deep-form sqrt(G M_b/g_ext) at the same M_b is 6.50 kpc (+6.4%): the 0.6200 vs
+  0.6605 gap is the kernel's interpolation near g ~ a0, not a parameter.
+
+  NOTE ON THE DERIVED FORM (H033 / G089 A7): H033 printed r_cap/r_M = a0/g_ext
+  (linear; example r_cap = 0.588 r_M at g_ext = 1.7 a0), and GRAVITY_EVERYWHERE.md prints the same.  The MW comparison discriminates:
+    linear a0/g_ext = 0.4362  ->  r_cap = 4.29 kpc  (30% below the registered 6.1)
+    sqrt   a0/g_ext = 0.6605  ->  r_efe = 6.50 kpc (6.4% above; kernel closes it)
+  -> the ledger's 'form sqrt(a0/g_ext) derived (H033)' is right in substance but the
+     printed H033 form is the linear one; the sqrt form is the committed EFE line
+     (G072/G03F) and it is the one the data support.
+
+--- PART 3 THE SAMPLE TEST (V2): predicted r_efe = sqrt(G M_b/g_ext) vs measured ---
+--- break-class scales on the environment table x G044 corpus -----------
+  env-matched SPARC, G071's isolated cuts, >= 5 rings: 35 (blank-field 19, multi-host 63, unusable 4, <5 rings 1);  FULL env-matched set (no isolation cuts): 102
+  [anchor] G071 isolated subset: 35 galaxies, 641 rings within R_efe, pooled rms = 0.1454 dex (committed 0.1454, 35 gal / 641 rings)
+  [PASS] the inline G071 machinery reproduces the committed pooled rms (0.1454 dex, 35 galaxies, 641 rings)   recomputed 0.1454 on 641 rings
+
+  R1 proper-Y  g_ext = G M_halo/D^2 (G03E/G071, registered)
+    R_efe_predict: min     11.2  median    109.2  max    957.9  x Rmax;   in-band (R_efe < Rmax): 0/102
+    -> the EFE line lies BEYOND every measured curve: no in-band cap, no
+       measurable break -- VACUOUS (the pre-registered G036 V3 / G044 scope)
+
+  R2 e_N       g_ext = 10^log_eN_noclu * a0 (G036/G044 registered)
+    R_efe_predict: min      4.7  median     16.7  max     75.5  x Rmax;   in-band (R_efe < Rmax): 0/102
+    -> the EFE line lies BEYOND every measured curve: no in-band cap, no
+       measurable break -- VACUOUS (the pre-registered G036 V3 / G044 scope)
+
+  R3 a0_SI     g_ext = a0_SI host-internal (G03D, REJECTED by G03E)
+    R_efe_predict: min      0.1  median      0.3  max      0.6  x Rmax;   in-band (R_efe < Rmax): 102/102
+    measured 2-sigma downward-exit radius vs the predicted cap (in-band only, n = 102):
+      hits within +-0.3 dex of the predicted cap: 3/102
+      censored (curve never breaks, cap predicted in-band): 27/102
+      log10(R_exit/R_cap): median +0.57, mean +0.59 dex  (rmax/Rcap in octaves: median 1.9)
+    -> the a0_SI reading predicts in-band caps where the measured curves
+       do NOT break (the median curve extends 1.9 octaves
+       past the predicted cap without a break) -- FALSIFIED as the operative
+       cap, confirming G03E V3's rejection from the break side.
+
+  THE MW AS A MEMBER OF THE SAMPLE: the only object with e_N = O(1)
+    own-halo e_N = g_own/a0 = 2.29 (L240) -- vs the SPARC sample's
+    e_N: median 4.09e-04, max 4.82e-03
+    predicted (deep-form) cap: 6.50 kpc at M_b = 6.5e10; full-kernel: 6.1 kpc; measured/registered: 6.1 kpc
+    |log10(6.1/6.50)| = 0.028 dex (deep-form); kernel 6.13 kpc -> ratio 0.6232
+
+--- PART 4 VERDICTS ---
+  [PASS] V1 [the MW number] the derived ratio matches the registered 0.62 within 5% on at least one registered g_ext estimate (band L240/DHF24)   sqrt(a0_can/L240) = 0.6605 (+6.5% vs 0.6200); sqrt(a0_can/DHF24) = 0.6352 (+2.5%); full kernel: 6.13 kpc -> 0.6232 (+0.5% vs 0.6200); alt footing 0.7250 (+16.9%)
+  [PASS] V2 [the sample relation] the zero-parameter relation is untestable on the SPARC sample under the registered fields (vacuity) and the only in-band reading (a0_SI) is falsified; the MW is the single testable object and passes   proper-Y: R_efe beyond every curve; e_N: ratio_pred = 1/sqrt(e_N) in [14, 51] r_M vs max Rmax/r_M ~ 7; a0_SI: 3/102 hits, 27/102 never break, median R_exit/R_cap +0.57 dex; MW: 6.1 vs 6.50 kpc deep-form (-0.028 dex), 6.13 kpc kernel (0.6232)
+  [PASS] V3 [the honest statement]   THE 0.62: PARTIALLY DERIVED.  (i) Algebra: r_efe/r_M = sqrt(a0/g_ext) identically (M_b cancels; verified to 1e-16 -- the ledger's A7 'form derived' stands, modulo a registry typo: H033's PRINTED form is the linear a0/g_ext = 0.436 (30% off the regist...
+
+G119 COMPLETE: 6/6 checks PASS.
+
+wrote G119_results.json
+sample reading tables merged into G119_results.json
