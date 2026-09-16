@@ -1,0 +1,106 @@
+================================================================================================
+B04 -- THE 3-Z^2 SEQUENCE TEST (the mechanistic hook's next member, pre-registered)
+================================================================================================
+
+STEP 1. THE PRE-REGISTRATION (declared BEFORE the survival scan):
+  FAMILY : m_i / (3 Z^2)^n  with n in {0,1,2} for the 5 SM masses
+           (3 Z^2 = 100.531 = 100 - 0.53%, the A01 denominator reading)
+  -> 15 pre-registered members, compared at the 1% tolerance to the ladder.
+  THREE_Z2 = 32 pi = 100.530965  (Z = 5.7888, Z11 register)
+  member generation table (keV):
+    m_e    n=0       510.999 | n=1         5.083 | n=2     0.0505615
+    m_mu   n=0        105658 | n=1          1051 | n=2       10.4545
+    m_tau  n=0   1.77686e+06 | n=1       17674.8 | n=2       175.814
+    m_p    n=0        938272 | n=1       9333.17 | n=2       92.8387
+    m_n    n=0        939565 | n=1       9346.03 | n=2       92.9667
+
+  THE LADDER (keV):
+    L0_m_band_5p09keV            5.0886   (the committed m band (G212 peak 5.0886; band [4.9917, 5.1855]; canonical cosmic-noon 5.051 keV))
+    L1_cluster_334K         2.87819e-05   (the cluster 334-K-class energy = k_B x 334 K (Z07 measured T_dark(2-5 R500)))
+    L2_phase_9p17K          7.90589e-07   (the 9.17-K phase energy = k_B x 9.1744 K (G151 T_phase at the triad sigma))
+
+  NULL'S WINDOW MATH (gate/fdr.py _poisson_e_chance), PRE-REGISTERED:
+    L0_m_band_5p09keV      n_wide(+-10%) = 1  ->  E_chance(1% window) = 0.100   [members in band: m_e/100.531^1]
+    L1_cluster_334K        n_wide(+-10%) = 0  ->  E_chance(1% window) = 0.000   [members in band: NONE]
+    L2_phase_9p17K         n_wide(+-10%) = 0  ->  E_chance(1% window) = 0.000   [members in band: NONE]
+  ** EXPECTED COINCIDENCE COUNT IN THE PRE-REGISTERED FAMILY AT 1% TOLERANCE:  <N> = 0.10 **
+  P(>=1 anywhere) = 1 - exp(-0.10) = 0.095.  A single hit is ~1-in-10 expectation; a SECOND survivor would be ~10x the null.
+  THE FAMILY-WISE GATE:  E* = 0.05/(19 targets x 8 depths) = 3.2895e-04  (THRESHOLD.py).  Pre-registered consequence: ANY survivor sits inside the +-10% band of its own rung -> its E_chance >= 0.10 = 304x ABOVE E* -- the gate is impassable for this family BY CONSTRUCTION.
+
+  The committed m band (G212) z-scores for every member:
+    m_e/100.531^0  =      510.999 keV   z(m band) = +5220.95 sigma
+    m_e/100.531^1  =        5.083 keV   z(m band) = -0.06 sigma
+    m_e/100.531^2  =    0.0505615 keV   z(m band) = -51.99 sigma
+    m_mu/100.531^0  =       105658 keV   z(m band) = +1090333.20 sigma
+    m_mu/100.531^1  =         1051 keV   z(m band) = +10793.75 sigma
+    m_mu/100.531^2  =      10.4545 keV   z(m band) = +55.38 sigma
+    m_tau/100.531^0  =  1.77686e+06 keV   z(m band) = +18336995.99 sigma
+    m_tau/100.531^1  =      17674.8 keV   z(m band) = +182349.48 sigma
+    m_tau/100.531^2  =      175.814 keV   z(m band) = +1761.87 sigma
+    m_p/100.531^0  =       938272 keV   z(m band) = +9682837.97 sigma
+    m_p/100.531^1  =      9333.17 keV   z(m band) = +96264.98 sigma
+    m_p/100.531^2  =      92.8387 keV   z(m band) = +905.57 sigma
+    m_n/100.531^0  =       939565 keV   z(m band) = +9696185.06 sigma
+    m_n/100.531^1  =      9346.03 keV   z(m band) = +96397.74 sigma
+    m_n/100.531^2  =      92.9667 keV   z(m band) = +906.89 sigma
+
+================================================================================================
+STEP 2. THE RUN -- the family table at the 1% tolerance (|v-L|/L <= 1%)
+================================================================================================
+  SURVIVOR @1%: m_e/100.531^1 = 5.083 keV vs L0_m_band_5p09keV = 5.0886 keV  (delta = 0.110%)
+
+  THE FULL 15 x 3 TABLE (closest ladder rung and its distance per member):
+    m_e/100.531^0  =       510.999 keV  closest rung L0_m_band_5p09keV      (     5.0886)  rel  9942.034%
+    m_e/100.531^1  =         5.083 keV  closest rung L0_m_band_5p09keV      (     5.0886)  rel     0.110%  <-- SURVIVOR (the A01 hook)
+    m_e/100.531^2  =     0.0505615 keV  closest rung L0_m_band_5p09keV      (     5.0886)  rel    99.006%
+    m_mu/100.531^0  =        105658 keV  closest rung L0_m_band_5p09keV      (     5.0886)  rel 2076274.160%
+    m_mu/100.531^1  =          1051 keV  closest rung L0_m_band_5p09keV      (     5.0886)  rel 20554.076%
+    m_mu/100.531^2  =       10.4545 keV  closest rung L0_m_band_5p09keV      (     5.0886)  rel   105.450%
+    m_tau/100.531^0  =   1.77686e+06 keV  closest rung L0_m_band_5p09keV      (     5.0886)  rel 34918345.152%
+    m_tau/100.531^1  =       17674.8 keV  closest rung L0_m_band_5p09keV      (     5.0886)  rel 347240.197%
+    m_tau/100.531^2  =       175.814 keV  closest rung L0_m_band_5p09keV      (     5.0886)  rel  3355.057%
+    m_p/100.531^0  =        938272 keV  closest rung L0_m_band_5p09keV      (     5.0886)  rel 18438607.860%
+    m_p/100.531^1  =       9333.17 keV  closest rung L0_m_band_5p09keV      (     5.0886)  rel 183313.219%
+    m_p/100.531^2  =       92.8387 keV  closest rung L0_m_band_5p09keV      (     5.0886)  rel  1724.445%
+    m_n/100.531^0  =        939565 keV  closest rung L0_m_band_5p09keV      (     5.0886)  rel 18464024.131%
+    m_n/100.531^1  =       9346.03 keV  closest rung L0_m_band_5p09keV      (     5.0886)  rel 183566.039%
+    m_n/100.531^2  =       92.9667 keV  closest rung L0_m_band_5p09keV      (     5.0886)  rel  1726.960%
+  -> 1 survivor(s) at the 1% tolerance in the 15 x 3 = 45 comparisons (expected <N> = 0.10).
+
+================================================================================================
+STEP 3. THE GATE -- E* family-wise threshold + mechanism
+================================================================================================
+  survivor m_e/100.531^1 @ L0_m_band_5p09keV:  E_chance = 0.100  vs  E* = 3.2895e-04  ->  FAILS (300x above)
+  gate summary: 1 survivor(s); hook(s) 1/1 present as the family DEFINITION, new-member survivor(s) 0.
+  the hook's E_chance = 0.10 = 300 x E* = 3.29e-4  ->  FAILS the family-wise gate
+  (consistent with A01: 3.3-3.75 surplus bits << the 10-bit gate).
+
+================================================================================================
+STEP 4. VERDICTS
+================================================================================================
+  V1 THE PRE-REGISTERED FAMILY TABLE: the 5 SM masses x n = {0,1,2} = 15 members (m_i/100.531^n) vs the 3-rung ladder at the 1% tolerance.  15 x 3 = 45 comparisons, expected count <N> = 0.10 (the null's window math: only m_e/100.531 = 5.0830 keV sits within +-10% of the 5.09-keV rung; L1 (334 K = 2.878e-5 keV) and L2 (9.17 K = 7.906e-7 keV) have ZERO members within +-10%, the family's smallest member m_e/100.531^2 = 0.0506 keV being 1756x above L1).  One survivor: m_e/100.531 vs L0 at 0.11% -- the A01 hook itself.  No other member comes within 1% of ANY rung (next closest: m_mu/100.531^2 = 10.45 keV at 2.05x L0; everything else >= 18x).
+
+  V2 THE SURVIVORS: exactly ONE member survives at the 1% tolerance -- m_e/100.531 = 5.083 keV vs the committed m band rung 5.0886 keV, delta -0.11%, z = -0.058 sigma vs G212 (inside the 1-sigma band [4.992, 5.186]).  This is the PRE-EXISTING A01 hook that DEFINED the family -- its survival is by construction, not evidence.  ADDITIONAL survivors at other SM scales: 0.  The same 3-Z^2-class structure appears at NO other SM mass scale.
+
+  V3 THE HONEST STATEMENT -- THE NUMBER THAT TELLS: the 3-Z^2 sequence is CLOSED.  Pre-registered expectation <N> = 0.10 coincidences in the 15-member family at the 1% tolerance; the run finds the expected single member (m_e/100.531 = 5.083 keV vs the 5.09-keV ladder, the A01 hook) and ZERO additional members: m_mu/100.531-class (1050.8, 10.45 keV), m_p/100.531-class (9333, 92.84 keV), m_n/100.531-class (9346, 92.97 keV), m_tau/100.531-class (17675, 175.8 keV), m_e/100.531^2 (50.6 eV) all miss every ladder rung by >= 100% (most by >= 10x).  The gate is closed twice over: (i) FDR - the hook's own chance rate is E_chance = 0.10 = 300x ABOVE the family-wise E* = 3.3e-4 (THRESHOLD.py), and pre-registered as impassable for the family (any survivor carries its own +-10% presence); (ii) MECHANISM - the only framework reading on record (100 = 3 Z^2 - 0.53%) is the m_e hook itself and generalizes to NO other scale, so no next member exists to carry it.  FINAL REGISTER: m_e/100 is a SINGLE COINCIDENCE (the A01 hook at z = +0.22 sigma against G212, with the 3-Z^2 hook at 0.53% post-hoc); the sequence test CLOSES the question - the mechanistic hook has no next member.
+
+  [PASS] V1 THE PRE-REGISTERED FAMILY TABLE
+         measured: V1: family 15 members x 3 rungs = 45 comparisons at 1%; expected <N> = 0.10; survivors 1 (the hook alone).  The 334-K and 9.17-K rungs see ZERO members within +-10%.
+         reading : the pre-registered expected count 0.10 is stated BEFORE the scan and the scan confirms it: the family is built around the m_e hook and produces nothing else
+  [PASS] V2 THE SURVIVORS
+         measured: V2: survivors at 1% = [('m_e/100.531^1', 0.11)]; new-member survivors = 0; hook z vs m band = -0.058
+         reading : the only 1% survivor is the A01 hook; no other SM mass lands on any ladder rung
+  [PASS] V3 THE HONEST STATEMENT (sequence closed or found?)
+         measured: V3: expected 0.10, hook survivors 1, additional 0; hook E_chance 0.10 vs E* 3.289e-04 -> fails 300x; no mechanism on any other scale -> THE 3-Z^2 SEQUENCE IS CLOSED, m_e/100 is a SINGLE COINCIDENCE
+         reading : the number that tells: 0 additional members found at 1% tolerance against expected 0.10; the gate is impassable by construction (0.10 >> 3.3e-4)
+  [PASS] C-GATE [family-wise E*]
+         measured: gate: survivor E_chance = 0.10 vs E* = 3.2895e-04; ratio 304x above
+         reading : family-wise E* = 3.29e-4 is 300x below the minimum possible family E_chance -> the pre-registered gate is impassable for the family as defined
+  [PASS] C-MECH [the next member's mechanism]
+         measured: mechanism: 100 = 3 Z^2 - 0.53% is the m_e reading; new-member survivors = 0
+         reading : a mechanism can only exist where a member lands; no member lands -> no mechanism to invoke -> the hook is a single coincidence
+
+B04 COMPLETE: 5/5 checks PASS.
+THE 3-Z^2 SEQUENCE TEST: expected 0.10 coincidences at 1% tolerance in the 15-member pre-registered family; the run finds the A01 hook alone (m_e/100.531 = 5.083 keV, -0.11% from the m band) and ZERO additional members.  E_chance(hook) = 0.10 = 300x the family-wise E* = 3.3e-4; no mechanism exists at any other scale.  THE SEQUENCE IS CLOSED: m_e/100 is a SINGLE COINCIDENCE.
+
+JSON written: /Users/carlzimmerman/new_physics/zimmerman-formula/project_atomos/B04_results.json
