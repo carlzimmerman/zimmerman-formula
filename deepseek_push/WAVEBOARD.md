@@ -746,6 +746,50 @@ HSE scatter, within).  THE BOOKKEEPING IS CLOSED TO (c0, q) + the 0.1-dex
 floor: the phantom 56.9%, dust 24.6%, baryons 17.7% -- with the pair's
 derivation (G159/G137) still in flight.
 
+## WAVE 14 (landed 5/5 -- the gap filled, the cosmic-noon mass, the kink position, the DR4 verdict)
+G161 THE PLATEAU REGISTRY 5/5: the flat-tail claim is STRONGER than the
+envelope's own continuation (the envelope still falls -1.63 keV/dex at
+1.25-2 R500 = 5.9x the 0.30 claim); the decision rule: |median window
+slope| <= 0.30 AND |slope|/sigma <= 3 AND >= 9/12 clusters; instruments
+(eROSITA FoV 5/12 full-window; XRISM 100-250 ks x 5-8 clusters; tSZ with
+the pooled slope error 0.094); run order: tSZ TODAY, eROSITA as eRASS,
+XRISM via GO.
+G162 FILL THE 12-DECADE GAP 7/7: the gap (log M 10.809-13.701 = 2.89 dex)
+filled by THREE channels: GEMS groups S3 (n=19, med|r| 0.123, rms 0.139),
+ATLAS3D 258 ETGs (med|r| 0.083, rms 0.114, slope 1.30 +- 0.05 -- ON the
+line, IMF shift <= 0.015), SLUGGS 27 (0.153); THE GAP SHRINKS 2.89 -> 0.63
+dex (78% filled; the 5.4%-of-span sliver log M 13.07-13.70 between the
+most massive groups and the least massive cluster); THE AFTER-FILL LINE:
+pooled slope 1.004 +- 0.011 on n = 542 (was 0.988 on n = 248); the seam
+residual +0.115 groups -> +0.273 clusters (a gentle rise, no step);
+FLAGGED: G125's committed M500 JSON carries a 1e9 unit glitch
+(recomputed correctly, not propagated).
+G163 THE COSMIC-NOON CONJECTURE 7/7: z* = T_b/T_0 - 1 = 2.37-2.49
+(reproduced, linear in m, sqrt in a0); THE INVERSION: m(z* = 2.4) =
+4.60-5.05 keV -- INSIDE the [4, 6] band: A COSMOLOGICAL MASS MEASUREMENT
+at ~6% per 0.2 in z*; the brief's z*-window corrected [1.22, 72.9]
+(narrower, strengthens the test); CONDITIONALLY PROMOTED: a registered
+falsifiable connection (the high-z BTFR zero point breaks at z* = 2.4 AND
+m(z*) in [4, 6] keV -- G080's sample validates the z < z* side only, the
+break needs the ~2.4 systems); bonus: rho_Lambda closes the Planck DE
+density at 0.979 with ZERO cosmological input (T_DE eq = 28.87 K).
+G164 THE GALAXY-SCALE KINK 5/5: POSITION DETECTED, WIDTH PENDING: the
+rise->fall handoff in beta(r) = +0.221 step at 3.07 sigma, the curve
+peaks at r_peak = 6.33 kpc (68% CI 6.15-6.56 FULLY INSIDE the predicted
+6.1-6.74 band; P(in band) = 80%); but smooth vs kink is a statistical
+tie (Delta chi2 < 1, bootstrap P(kink) = 53%); H3/APOGEE + streams at
+sigma_v 1-2 km/s per 0.1-0.25 kpc (3-6x sharper) decide: width < 0.3 kpc
+= first-order step DETECTED, > 1-2 kpc = smooth kernel (G191 dispatched).
+G165 THE DR4 READY-TO-SCORE 9/9 (on the mock): dr4_scorer.py -- RIDGE
+(R-level 1.0794 in [1.047, 1.11] at 2.8 sigma-scale; the P-s ridge
++18.4% at 30.7 sigma EXACT; the E7 break bracketed; rise 19.4 sigma),
+DOUBLE-MAP (D1 4.05x at 6.0 sigma; D2 31.9 vs 6.6 at 4.2 sigma; D3 the
+negative bin at 6.1 sigma), FUNNEL (F1a the 34.7/140.6/1357 pc sequence;
+F1b the flaring slopes +0.35 = the registered +1/3); THE CONTRACT (n_pass
+9-4 -> CONFIRMED-STRONG/WEAK/SPLIT/DISFAVORED, F1-F3 binding) printed
+before the score; ready to run the moment DR4 drops -- the December
+verdict is PRE-COMPUTED.
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 CLAIMED (deepseek, in flight -- do NOT duplicate): G154 static-branch
 charge, G155 sourced equation, G156 dust charge-vs-relic decision,
