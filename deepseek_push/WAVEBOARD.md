@@ -1179,7 +1179,33 @@ registered verdicts each with its decision rule); 20 NAMED OFFICIAL
 CLOSURES; q reported as derived-within-error (Delta q = +0.081) rather
 than open; the open-items panel keeps its residuals and tests.
 
-## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
+## WAVE 25 (landed 2/2 -- the anisotropy resolved, the falsifier ledger)
+G206 THE WOJTAK-CLASS 2D FIT (FINAL): beta_win(2-5 R500) = 0.495 +- 0.054
+(profile likelihood; the (b_inf, r_a) ridge inflates the raw Fisher 0.59,
+beta_win itself well-constrained); AGREES with the projected-Jeans 0.434
++- 0.015 at +1.1 sigma -- the caustic-envelope systematic RESOLVED, not a
+driver (FIT_C explicit truncation shifts 0.038 < 1 sigma); COMBINED
+PJ + 2D: beta(2-5 R500) = 0.438 +- 0.014: STATIC NULL DEAD AT 31 SIGMA;
+THE STREAMING 0.5 ENVELOPE EXCLUDED AT -4.4 SIGMA (-11 sigma vs the
+G170 window mean 0.594); the 2D estimator alone sits on 0.5 with a 4x
+larger error -- it CONFIRMS rather than sharpens the PJ rejection;
+THE G170 ENVELOPE'S FATE: the number is ~0.44, not 0.5.  The anisotropy
+test is now TWO-ESTIMATOR RESOLVED on the same 10,145 HeCS members
+(caustic-stable, mass-normalization note: sigma_amp 1.238 = the
+M500-normalized velocity scale ~24% low, not a beta driver).
+G207 THE FALSIFIER MATRIX: 20 REGISTERED ROWS -- 12 ARMED / 3 PENDING /
+3 FIRED-AND-EXPLAINED / ZERO UNEXPLAINED FIRES (+ 2 resolved non-fires);
+per domain: Solar System 1 (DR4 ridge, ARMED); galaxies 8 (5 ARMED, 1
+PENDING slope-floor, 2 EXPLAINED: n-kill + EFE); clusters 8 (3 ARMED:
+tSZ/plateau/pie; 2 PENDING: anisotropy + D2; 3 EXPLAINED: ZW1215,
+saturation, 2/3 law); cosmology 2 ARMED; particles 1 ARMED; the fired-
+and-explained set: ZW1215 (hydrostatic-bias class), the n = 2.000 deep
+reading (12.7 sigma; resolved by the two-scale/effective reading), the
+EFE split (refused, p = 0.114); the resolved non-fires: the saturation
+(0.919 vs 0.85 = exactly the baryon floor 0.081) and the 2/3 law
+(alpha = 0.75 vs 2/3 within 1 sigma); the ledger lives in
+FALSIFIER_MATRIX.md -- THE CAMPAIGN'S FALSIFICATION SCORE = zero
+unexplained fires.
 CLAIMED (deepseek, in flight -- do NOT duplicate): G154 static-branch
 charge, G155 sourced equation, G156 dust charge-vs-relic decision,
 G157 slope-floor -2 at 20-100 kpc, G158 n-footing discriminator,
