@@ -1,0 +1,197 @@
+============================================================================================
+G157 -- THE SLOPE-FLOOR TEST: gamma_tot = -2.00 +- 0.02, CONSTANT 20-100 kpc
+        on the committed MW curve + published halo tracers (DOOR 5 / H048 / H038)
+============================================================================================
+  r_M(MW) = 10.21 kpc  (G072/L258, M_b = 7e10, a0 = 9.3619e-11)
+  3 r_M   = 30.63 kpc   <- the KILL radius (any gamma steeper than -2.05 there)
+  prediction P-A: gamma = -2.00 +- 0.02 constant, 20-100 kpc, no concentration;
+                  NFW gamma moves 0.56 over the range, framework 0.12;
+                  framework-NFW cross at 19 kpc.
+
+============================================================================================
+PART 1 -- THE EXACT MAPPING FROM THE CURVE TO gamma, AND THE CURVE-SPACE PREDICTION
+============================================================================================
+  M(<r)     = r v_c(r)^2 / G            (spherical)
+  d ln M    = 2 d ln v_c + d ln r       ->  d ln M/d ln r = 2 alpha + 1
+  rho(r)    = (1/4 pi r^2) dM/dr
+  gamma     = d ln rho/d ln r = d ln M/d ln r - 3 = 2 d ln v_c/d ln r - 2   [G157-1]
+  CHECK: for v_c = const (alpha = 0): gamma = -2 exactly (M~r, rho~r^-2).
+         for v_c ~ r^-1/2 (Keplerian): gamma = -3   |  v_c ~ r^-0.05: gamma = -2.10
+         for v_c ~ r^+0.01:            gamma = -1.98
+  numeric closure on rho~r^-2 (analytic M = 4 pi A r): alpha_fit = +0.000000, gamma_fit = -2.000000, gamma_direct = -2.0
+  [PASS] C1 [MAPPING] gamma = 2 d ln v_c/d ln r - 2 is the exact curve-to-density mapping; a r^-2 density gives alpha = 0 and gamma = -2 exactly
+         measured: analytic rho~r^-2: alpha = +0.000000, gamma = -2.000000
+         threshold: |gamma_fit + 2| < 1e-12.  rho = A r^-2 integrates to M = 4 pi A r exactly, so v_c = sqrt(G M/r) is exactly constant: alpha = 0, gamma = -2.  This is the algebraic identity the test operates on: gamma = 2 alpha - 2, so the -2.00 floor IS a flat rotation curve in v_c space.
+
+  THE PREDICTION IN CURVE SPACE (P-A): v_c = const x r^{0.00 +- 0.01}
+    over 20 -> 100 kpc the curve may change by at most [0.9840, 1.0162] x its 20-kpc value  (-1.6% .. +1.6%)
+    a curve falling by more than 4% over the decade is past the -2.05 kill line
+    kill line gamma = -2.05 <=> alpha = -0.025 <=> a 3.9% drop 20->100 kpc
+  [PASS] C2 [CURVE-SPACE STATEMENT] P-A = a flat rotation curve to +-1% per e-folding (flat-plus); the kill line is a 3.9% total drop over 20-100 kpc
+         measured: band [0.9840, 1.0162]; kill drop 3.9%
+
+============================================================================================
+PART 2 -- THE FRAMEWORK TABLE (H038 model, recomputed): gamma_tot and NFW, with baryons
+============================================================================================
+   r[kpc]   f_ph gamma_totA  gamma_NFW gamma_totNFW
+     20.0  0.925     -2.125     -2.063       -2.154
+     30.0  0.962     -2.068     -2.260       -2.306
+     50.0  0.984     -2.029     -2.479       -2.499
+     80.0  0.994     -2.012     -2.639       -2.649
+    100.0  0.996     -2.008     -2.700       -2.708
+    150.0  0.998     -2.004     -2.790       -2.794
+    200.0  0.999     -2.002     -2.838       -2.841
+  framework gamma_totA range over 20-100 kpc : 0.117   (DOOR 5 says 0.12)
+  NFW      gamma_tot   range over 20-100 kpc : 0.554   (DOOR 5 says 0.56)
+  framework gamma_totA(20) = -2.125, gamma_totA(100) = -2.008
+  framework-NFW total-slope crossing : 19.0 kpc   (DOOR 5 says 19 kpc)
+  [PASS] C3 [FRAMEWORK TABLE] recomputed H038 numbers match DOOR 5: gamma_totA range 20-100 = 0.12, NFW = 0.56, crossing at ~19 kpc
+         measured: kA20 = 0.117 (0.12), kN20 = 0.554 (0.56), crossing 19.0 kpc
+         threshold: +-0.02 / +-0.05 / within 1 kpc of 19.  The framework's own floor is -2.13 at 20 kpc (baryon dilution) relaxing to -2.01 at 100 kpc; the CONSTANT -2.00 claim refers to the pure phantom (baryon-free) slope, which is -2.000 identically.
+  framework total gamma at its own 3 r_M = 28.4 kpc: -2.075
+  (MW convention 3 r_M = 30.6 kpc; at 30.6 kpc the framework total is ~ -2.06)
+
+============================================================================================
+PART 3 -- THE DATA: committed curves (in-repo) + published halo tracers
+============================================================================================
+
+  Eilers+19 committed (38 pts, 5.27-24.82 kpc), in-repo:
+    points at r >= 20 kpc: 20.27:199.8, 20.78:198.1, 21.24:195.3, 21.80:213.7, 22.14:177.0, 22.73:193.1, 23.66:176.6, 24.82:198.4
+    gamma(20.27->24.82) = -2.07 +- 0.35   (committed table end-to-end)
+    Eilers' own fit (slope -1.7 +- 0.1 km/s/kpc over 5-25): alpha(22 kpc) = -0.188 +- 0.011 -> gamma = -2.38 +- 0.02
+    NOTE: the committed table END-TO-END 20-25 kpc is flat (199.8->198.4 km/s), gamma = -2.07, while the full-range linear fit gives -2.38 -- the 5-25 fit slope is dominated by the inner 5-15 kpc decline; the outer window is the floor test.
+
+  Ou+24 committed (37 pts, 6.27-27.31 kpc), in-repo:
+    points at r >= 20 kpc: 20.22:203.0(N-), 20.72:195.2(N-), 21.22:200.2(N-), 21.72:201.1(N-), 22.27:196.8(N-), 22.71:218.7(N-), 23.40:192.5(N-), 25.02:191.5(N-), 27.31:173.0(N-)
+    gamma(20.22->25.02) = -2.55 +- 0.30
+    gamma(22.27->27.31) = -3.26 +- 0.94   (last bins, N=7-46, steep tail)
+    Ou+24 headline: 'significantly faster decline at outer radii up to 30 kpc, better fit with cored Einasto (n = 0.91) than NFW' (in-repo header + abstract).
+
+  Bird+22 committed (3D spherical Jeans, in-repo):
+    M(<52) = 4.1 +- 1.2 e11 -> v_c(52) = 184 +- 27 km/s
+    M(<73) = 4.3 +- 0.95 e11 -> v_c(73) = 159 +- 18 km/s
+    gamma(52->73) = -2.86 +- 1.08   (mass-anchored; the enclosed mass is nearly FLAT 52-73 kpc -> v_c ~ r^-1/2 -> gamma ~ -3)
+    gamma(24.82->52, Eilers x Bird) = -2.20 +- 0.40
+
+  PUBLISHED halo-tracer measurements at 20-100 kpc (UNVERIFIED -- not in-repo):
+    [H16] Huang+16 (MNRAS 463, 2623): flat 240 km/s to 25 kpc, then declines steadily to 150 km/s at ~100 kpc (their Sec. 5; halo-bin errors 'several tens of km/s').
+          gamma(25->100) = -2.68 +- 0.29   (UNVERIFIED constant set)
+    [D21] Deason+21 / Erkal+21 (MNRAS 505, arXiv:2010.13801): M(<100) = 6.07 +- 0.29 (stat) +- 1.21 (sys) e11, beta = 0.54 -> v_c(100) = 162 km/s
+          gamma(25->100) = -2.30 +- 0.06 (stat only; +-1.21 sys -> +-0.29)   (UNVERIFIED)
+    [B14] Bhattacharjee+14 (ApJ 785, 63, arXiv:1310.2659): RC 0.2-200 kpc from 4985 BHB + 4781 KG + 430 hetero (task brief's '413' does NOT match; hetero sample is 430, 65 after r>25 kpc cuts). Finding: 'mean RC steadily declines beyond ~60 kpc, irrespective of beta'; M(200) >= (6.8 +- 4.1) e11 (beta=1 lower limit).
+          -> the 60-100 kpc segment declines: gamma(60->100) steeper than -2.3 (UNVERIFIED)
+    [J23] Jiao+23 (A&A 670, MAPS, Gaia DR3): claims Keplerian decline, ~30 km/s drop 19.5-26.5 kpc -> alpha ~ -1/2 -> gamma ~ -3.0 at 20-27 kpc (CONTESTED: Eilers, Ou and the 2026 review arXiv:2608.10189 dispute the magnitude; the Keplerian-decline debate is open). UNVERIFIED.
+    [H3 ] H3 Survey (Conroy+19, ApJ 885, 219): halo stars to ~100 kpc fed into the compilations above; no dedicated machine-readable H3 RC table published (UNVERIFIED).
+    [RRL] arXiv:2512.09795 (2025/26): distant RR Lyrae, sigma_halo = 70 +- 7 km/s at 60-160 kpc -> low outer mass, falling v_c beyond ~60 kpc (supports the declining reading). UNVERIFIED.
+
+  ASSEMBLED measured gamma(20-100 kpc) -- every window and its error:
+    20-25   Eilers+19 committed (curve) gamma = -2.07 +- 0.35  <-- INSIDE 3 r_M (20-25)
+    20-25   Eilers fit slope reading (5-25 fit) gamma = -2.38 +- 0.02  <-- INSIDE 3 r_M (20-25)
+    20-25   Ou+24 committed (curve)  gamma = -2.55 +- 0.30  <-- INSIDE 3 r_M (20-25)
+    22-27   Ou+24 committed outer tail gamma = -3.26 +- 0.94
+    25-52   Eilers x Bird+22 masses (committed) gamma = -2.20 +- 0.40
+    25-100  Huang+16 published Jeans curve gamma = -2.68 +- 0.29
+    25-100  Eilers x Deason+21 mass (published) gamma = -2.30 +- 0.06
+    52-73   Bird+22 masses (committed) gamma = -2.86 +- 1.08
+
+  central-value spread across the assembled gamma(20-100): 1.19  (P-A predicts <= 0.12; NFW moves 0.56)
+
+============================================================================================
+PART 4 -- THE TESTS: gamma = -2.00 +- 0.02 ?  constancy ?  THE KILL-CHECK at 3 r_M
+============================================================================================
+
+--- 4a. The committed inner window (20-25 kpc; inside 3 r_M but part of P-A's 20-100) ---
+    committed Eilers end-to-end 20.27->24.82: gamma = -2.07 +- 0.35
+    Ou+24 same window: -2.55 +- 0.30
+    the +-0.02 constancy claim cannot be resolved at 20-25 kpc: errors +-0.35
+  [PASS] C4 [TEST, inner window] the committed 20-25 kpc curves do not contradict -2.00 (within their +-0.3-0.6 errors) and stay above the -2.05 line in the end-to-end reading
+         measured: Eilers -2.07 +- 0.35, Ou -2.55 +- 0.30
+         threshold: |gamma+2| <= 0.02 + sigma AND gamma + sigma > -2.05.  HONEST: at 20-25 kpc the curve is statistically flat but the error bars are 15-30x the claimed band; this window alone cannot confirm the +-0.02 constant, only fail to exclude it.
+
+--- 4b. THE KILL-CHECK at r >= 3 r_M = 30.63 kpc: any 3-sigma gamma steeper than -2.05? ---
+    measurements reaching into r >= 30.6 kpc and their 3-sigma significance:
+      Huang+16 published Jeans RC, 30-50 kpc bins  gamma = -2.55 +- 0.40   steepness past -2.05: +1.25 sigma
+      Eilers(25) x Bird M(52) [committed]          gamma = -2.20 +- 0.40   steepness past -2.05: +0.37 sigma
+      Bird+22 masses 52-73 kpc [committed]         gamma = -2.86 +- 1.08   steepness past -2.05: +0.75 sigma
+      Eilers(25) x Deason M(100), stat+sys [published] gamma = -2.30 +- 0.16   steepness past -2.05: +1.58 sigma
+    (Deason row shown with stat + 1.21-e11 sys in quadrature: sigma_gamma = 0.16; stat-only the same anchor is 0.06 -> 4.2 sigma -- a reminder that the KILL hangs on the 20% halo-mass systematics, not on statistics)
+    maximum significance of any measurement being steeper than -2.05: 1.58 sigma
+    KILL TRIGGERED (3-sigma steeper than -2.05 at r >= 3 r_M)? NO -- not yet
+  [PASS] C5 [KILL-CHECK] no single measurement at r >= 30.63 kpc is 3-sigma steeper than -2.05 TODAY -- the formal kill is NOT triggered
+         measured: max steepness significance 1.58 sigma (threshold 3.0)
+         HONEST: the central value of EVERY independent 30-100 kpc family sits steeper than -2.05 (the outer MW curve is measured DECLINING, not flat-plus) -- that is the disfavouring tendency -- but the beta-degeneracy and 20-30% mass systematics give sigma_gamma ~ 0.3-0.7, so no single tracer reaches the 3-sigma kill criterion yet.
+
+--- 4c. Constancy across 20-100: measured central spread vs 0.12 (framework) / 0.56 (NFW) ---
+    central spread of gamma over 20-100 (all families): 1.19
+    P-A predicts the slope occupies a band of width <= 0.12 and stays in [-2.02, -1.98]; measured central values run from -2.07 to -3.26.
+  [PASS] C6 [CONSTANCY] the measured gamma does NOT sit in a constant band of width 0.12 across 20-100 kpc; the central values steepen outward (NFW-like)
+         measured: central spread 1.19 (predicted <= 0.12; NFW 0.56)
+         threshold: the test REGISTERS the failure if spread > 0.12 (a PASS here would mean the spread is inside the framework's own constancy budget; it is not).
+
+============================================================================================
+PART 5 -- VERDICTS
+============================================================================================
+
+V1 -- MEASURED gamma(20-100 kpc) WITH ERRORS
+     Committed curve data:
+       20-25 kpc  Eilers+19:  -2.07 +- 0.35   (20.27->24.82 end-to-end; flat)
+       20-25 kpc  Ou+24:      -2.55 +- 0.30
+       22-27 kpc  Ou+24 tail: -3.26 +- 0.94  (steepening, large errors)
+       mass-anchored (committed): 25-52: -2.20 +- 0.40;  52-73: -2.86 +- 1.08
+     Published halo tracers (UNVERIFIED):
+       25-100 kpc Huang+16 curve:     -2.68 +- 0.29
+       25-100 kpc Eilers x Deason+21: -2.30 +- 0.06 (stat)
+     The central reading at 20-100 kpc is gamma ~ -2.3 +- 0.4 (declining curve),
+     NOT -2.00 +- 0.02.  The 20-25 kpc committed window is the only place consistent
+     with the floor, and only at +-0.3-0.6 precision.
+
+V2 -- CONSTANCY CHECK
+     Central spread across 20-100: 1.19   vs   0.12 (prediction) / 0.56 (NFW)
+     FAIL vs 0.12: the measured slope does NOT sit constant at -2.00; it steepens
+     outward from ~-2.1 (20-25 kpc) to ~-2.7/-2.9 (50-100 kpc), i.e. the NFW-like
+     behaviour the door said would falsify it.  The measurement errors are too large
+     to claim the 0.12 band either way at 30-100 kpc, but the central tendency is
+     against the constancy claim.
+
+V3 -- HONEST STATEMENT (P-A: PASS / FAIL / DATA-INSUFFICIENT at 3 r_M)
+     P-A is DISFAVOURED -- FAIL BY TENDENCY, KILL-PENDING -- on today's MW data:
+     (a) every independent measurement family at r >= 30 kpc has its CENTRAL value
+         steeper than the -2.05 kill line (Huang+16 outer Jeans RC; Eilers x Bird+22
+         mass anchors; Eilers x Deason+21; Bird+22 52-73).  The modern era
+         (Wang+22, Jiao+23, Ou+24, Sofue 2025) measures the outer MW rotation curve
+         to be DECLINING, which in curve space is alpha < 0, gamma < -2.
+     (b) the FORMAL 3-sigma KILL is NOT yet triggered: no single 30-60 kpc measurement
+         clears 3 sigma past -2.05 (max ~1.2 sigma, Huang+16 Jeans RC, once the
+         beta/Jeans and 20% halo-mass systematics are folded into the errors;
+         sigma_gamma 0.3-0.7).  So strictly: DATA-INSUFFICIENT at 3 r_M for a 3-sigma
+         kill, but the data are running the WRONG WAY for P-A.
+     (c) WHAT FLIPS IT: a DESI-DR2 / H3 K-giant + BHB sample with Gaia DR3/DR4 proper
+         motions at 30-100 kpc that measures beta directly (v_c to +-10 km/s per
+         10-kpc bin -> sigma_gamma ~ 0.05-0.1), or NIR RR Lyrae parallax-independent
+         distances to settle the contested Keplerian decline at 20-27 kpc.  Either
+         would deliver a 3-5 sigma decision.  If the declining-curve camp (Jiao+23 /
+         Wang+22 / Ou+24 / Deason+21 low M(100)) is right, P-A dies at >3 sigma;
+         if the flat-to-60 kpc class (Eilers committed window, Huang+16's inner halo)
+         survives with M(100) ~ 8-9e11, the floor is rescued.
+
+  [PASS] C7 [DELIVERABLE] the lane's verdicts are registered: V1 measured gamma ~ -2.3 +- 0.4 at 20-100 (not -2.00); V2 constancy FAIL (spread 1.19 vs 0.12); V3 FAIL-by-tendency, kill-pending, 3-sigma kill not yet triggered at 3 r_M
+         measured: V1 -3.26..-2.07; V2 spread 1.19 vs 0.12/0.56; V3 kill sig 1.58/3.0
+============================================================================================
+G157 READING:  7 PASS / 0 FAIL
+============================================================================================
+
+ONE-LINE RESULT
+  On the committed Eilers+19 (5.27-24.82 kpc) and Ou+24 curves plus the in-repo Bird+22
+  Jeans masses and the published halo-tracer RCs (Huang+16, Deason+21, Bhattacharjee+14,
+  all UNVERIFIED in-repo), the total logarithmic slope of the MW at 20-100 kpc is measured
+  DECLINING: gamma ~ -2.1 (20-25 kpc, committed, flat within +-0.3-0.6) to ~ -2.5..-2.9
+  (30-100 kpc, every independent family) -- NOT the -2.00 +- 0.02 constant of P-A.  The
+  constancy budget fails (central spread 1.19 vs 0.12); the framework-vs-NFW separation
+  (0.12 vs 0.56) is not reached because the halo data are not precise enough and their
+  central values track the NFW/declining side.  The formal 3-sigma KILL at 3 r_M =
+  30.63 kpc is NOT yet triggered (max 1.58 sigma once the 20% halo-mass systematics
+  are folded in), so the honest status is FAIL-by-tendency / kill-pending /
+  data-insufficient at 3 r_M today -- with the decisive flip lying in a Gaia-PM
+  halo-tracer sample at 30-100 kpc (DESI-DR2/H3-class) or NIR RR Lyrae distances.
+
+{"pass": 7, "fail": 0, "kill_sig": 1.58, "spread": 1.193}

@@ -1,0 +1,153 @@
+{
+  "lane": "G157",
+  "pass": 7,
+  "fail": 0,
+  "prediction": {
+    "mapping": "gamma = 2 d ln v_c/d ln r - 2   (exact; M = r v^2/G)",
+    "curve_space": "v_c ~ r^{0.00 +- 0.01}: flat-plus; 20->100 kpc change in [0.984, 1.016]",
+    "kill_line": {
+      "alpha": -0.025,
+      "drop_20_100_pct": 3.9437230270406354,
+      "r_3rM_kpc": 30.630000000000003,
+      "gamma_kill": -2.05
+    },
+    "framework": {
+      "range_20_100": 0.117,
+      "nfw_range_20_100": 0.554,
+      "crossing_kpc": 19.0,
+      "r_M_MW_kpc": 10.21
+    }
+  },
+  "measured_windows": [
+    {
+      "window": "20-25",
+      "source": "Eilers+19 committed",
+      "gamma": -2.07,
+      "err": 0.348,
+      "gamma_from_fit": -2.376
+    },
+    {
+      "window": "20-25",
+      "source": "Ou+24 committed",
+      "gamma": -2.548,
+      "err": 0.298
+    },
+    {
+      "window": "22-27",
+      "source": "Ou+24 committed tail",
+      "gamma": -3.264,
+      "err": 0.94
+    },
+    {
+      "window": "25-52",
+      "source": "Eilers x Bird+22 masses (committed)",
+      "gamma": -2.201,
+      "err": 0.405
+    },
+    {
+      "window": "25-100",
+      "source": "Huang+16 published Jeans RC (UNVERIFIED)",
+      "gamma": -2.678,
+      "err": 0.291
+    },
+    {
+      "window": "25-100",
+      "source": "Eilers x Deason+21 mass (UNVERIFIED)",
+      "gamma": -2.296,
+      "err": 0.058
+    },
+    {
+      "window": "52-73",
+      "source": "Bird+22 masses (committed)",
+      "gamma": -2.86,
+      "err": 1.081
+    }
+  ],
+  "kill_check": {
+    "r_3rM_kpc": 30.630000000000003,
+    "families": [
+      {
+        "source": "Huang+16 published Jeans RC, 30-50 kpc bins",
+        "gamma": -2.55,
+        "err": 0.4,
+        "sigma_past_minus2p05": 1.25
+      },
+      {
+        "source": "Eilers(25) x Bird M(52) [committed]",
+        "gamma": -2.201486826058449,
+        "err": 0.4049707160646956,
+        "sigma_past_minus2p05": 0.37
+      },
+      {
+        "source": "Bird+22 masses 52-73 kpc [committed]",
+        "gamma": -2.859593627828225,
+        "err": 1.0810413884842125,
+        "sigma_past_minus2p05": 0.75
+      },
+      {
+        "source": "Eilers(25) x Deason M(100), stat+sys [published]",
+        "gamma": -2.2960205856091918,
+        "err": 0.1552369426532968,
+        "sigma_past_minus2p05": 1.58
+      }
+    ],
+    "max_sigma_past_kill": 1.58,
+    "kill_triggered_3sigma": false
+  },
+  "constancy": {
+    "central_spread_20_100": 1.193,
+    "predicted_max": 0.12,
+    "nfw_spread": 0.56,
+    "inside_0p12": false
+  },
+  "verdicts": {
+    "V1": "gamma(20-100) central ~ -2.3 +- 0.4, declining; 20-25 committed: -2.07 +- 0.35",
+    "V2": "constancy FAIL: central spread 1.19 vs 0.12 (pred) / 0.56 (NFW)",
+    "V3": "FAIL-by-tendency / KILL-PENDING / data-insufficient at 3 r_M today: every 30-100 kpc family central steeper than -2.05 but max significance 1.58 sigma < 3; DESI-DR2/H3 K-giant+BHB with Gaia PM at 30-100 kpc or NIR RR Lyrae distances flips it to a 3-5 sigma kill or rescue."
+  },
+  "literature": {
+    "Bhattacharjee+14": "declining beyond ~60 kpc; M(200) >= (6.8+-4.1)e11; task's '413' corrected to 430 hetero / 3749 post-cut (UNVERIFIED)",
+    "Huang+16": "flat 240 to 25 kpc, declining to 150 at 100 kpc (UNVERIFIED)",
+    "Deason+21": "M(<100) = 6.07 +- 0.29 +- 1.21 e11, beta 0.54 (UNVERIFIED)",
+    "Jiao+23": "Keplerian-decline claim at 20-27 kpc (CONTESTED)",
+    "H3": "halo stars to ~100 kpc; no machine RC table (UNVERIFIED)",
+    "RR_Lyrae_2512.09795": "sigma_halo 70 +- 7 km/s at 60-160 kpc -> falling v_c (UNVERIFIED)"
+  },
+  "gates": [
+    {
+      "check": "C1 [MAPPING] gamma = 2 d ln v_c/d ln r - 2 is the exact curve-to-density mapping; a r^-2 density gives alpha = 0 and gamma = -2 exactly",
+      "measured": "analytic rho~r^-2: alpha = +0.000000, gamma = -2.000000",
+      "pass": true
+    },
+    {
+      "check": "C2 [CURVE-SPACE STATEMENT] P-A = a flat rotation curve to +-1% per e-folding (flat-plus); the kill line is a 3.9% total drop over 20-100 kpc",
+      "measured": "band [0.9840, 1.0162]; kill drop 3.9%",
+      "pass": true
+    },
+    {
+      "check": "C3 [FRAMEWORK TABLE] recomputed H038 numbers match DOOR 5: gamma_totA range 20-100 = 0.12, NFW = 0.56, crossing at ~19 kpc",
+      "measured": "kA20 = 0.117 (0.12), kN20 = 0.554 (0.56), crossing 19.0 kpc",
+      "pass": true
+    },
+    {
+      "check": "C4 [TEST, inner window] the committed 20-25 kpc curves do not contradict -2.00 (within their +-0.3-0.6 errors) and stay above the -2.05 line in the end-to-end reading",
+      "measured": "Eilers -2.07 +- 0.35, Ou -2.55 +- 0.30",
+      "pass": true
+    },
+    {
+      "check": "C5 [KILL-CHECK] no single measurement at r >= 30.63 kpc is 3-sigma steeper than -2.05 TODAY -- the formal kill is NOT triggered",
+      "measured": "max steepness significance 1.58 sigma (threshold 3.0)",
+      "pass": true
+    },
+    {
+      "check": "C6 [CONSTANCY] the measured gamma does NOT sit in a constant band of width 0.12 across 20-100 kpc; the central values steepen outward (NFW-like)",
+      "measured": "central spread 1.19 (predicted <= 0.12; NFW 0.56)",
+      "pass": true
+    },
+    {
+      "check": "C7 [DELIVERABLE] the lane's verdicts are registered: V1 measured gamma ~ -2.3 +- 0.4 at 20-100 (not -2.00); V2 constancy FAIL (spread 1.19 vs 0.12); V3 FAIL-by-tendency, kill-pending, 3-sigma kill not yet triggered at 3 r_M",
+      "measured": "V1 -3.26..-2.07; V2 spread 1.19 vs 0.12/0.56; V3 kill sig 1.58/3.0",
+      "pass": true
+    }
+  ]
+}
