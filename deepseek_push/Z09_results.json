@@ -1,0 +1,854 @@
+{
+ "lane": "Z09_ufd_beta",
+ "title": "THE UFD KINEMATIC FALSIFIER -- the never-froze class predicted beta ~ 0 (isotropic, still equilibrating) vs the frozen class's rising 0.03 -> 0.56; the N per radial bin for a 3-sigma detection; the existing PM-based data; the intermediate class and the predicted ordering",
+ "question": "(1) the prediction beta(UFD) ~ 0 with the required precision (N per radial bin at sigma_v 2-11 km/s, G070); (2) the existing UFD member-star catalogs with full PM (UNVERIFIED citations) -- which systems have the N today; (3) the intermediate class (z* near 0, sigma_pred ~ 65 = the freeze floor): partially-frozen systems, the predicted ordering beta vs z*, the correlation test on existing data; (4) verdicts V1-V3",
+ "constants": {
+  "a0_m_s2": 9.3619e-11,
+  "m_keV": 5.0,
+  "T0_K": 2.72548,
+  "sigma_min_kms_5keV": 65.0,
+  "PM_to_kms_per_masyr_per_kpc": 4.74057,
+  "G209_frozen_profile_E1": {
+   "0.5-1": 0.033,
+   "1-1.5": 0.093,
+   "1.5-2": 0.173,
+   "2-3": 0.305,
+   "3-5": 0.56
+  },
+  "galaxy_envelope_G218": "beta 0.565 at 2-4 r_M"
+ },
+ "estimator": {
+  "beta": "beta_B = 1 - <v_t^2>/(2 <v_los^2>), error-subtracted moments on the LOS (1 comp) + PM (2 comps)",
+  "SE": "sqrt([(s_t^2)^2 + 2 (s_l^2)^2]/[(N-1)(s_l^2)^2]), s^2 = sigma_v^2 + e^2 per axis (measurement error dilutes, never subtracts)",
+  "N_req": "1 + 9 [(s_t^2)^2 + 2 (s_l^2)^2] / [beta_c^2 (s_l^2)^2] (3-sigma per radial bin)",
+  "mc_validation": [
+   {
+    "cell": "IDEAL sig5",
+    "N": 50,
+    "se_mc": 0.2615,
+    "se_an": 0.2474,
+    "ratio": 0.946
+   },
+   {
+    "cell": "IDEAL sig5",
+    "N": 200,
+    "se_mc": 0.1241,
+    "se_an": 0.1228,
+    "ratio": 0.989
+   },
+   {
+    "cell": "IDEAL sig5",
+    "N": 800,
+    "se_mc": 0.0614,
+    "se_an": 0.0613,
+    "ratio": 0.999
+   },
+   {
+    "cell": "GAIA D50 sig11",
+    "N": 50,
+    "se_mc": 0.8886,
+    "se_an": 0.8168,
+    "ratio": 0.919
+   },
+   {
+    "cell": "GAIA D50 sig11",
+    "N": 200,
+    "se_mc": 0.4225,
+    "se_an": 0.4053,
+    "ratio": 0.959
+   },
+   {
+    "cell": "GAIA D50 sig11",
+    "N": 800,
+    "se_mc": 0.206,
+    "se_an": 0.2023,
+    "ratio": 0.982
+   },
+   {
+    "cell": "HSTPROMO D100 sig2",
+    "N": 50,
+    "se_mc": 3.7094,
+    "se_an": 2.6902,
+    "ratio": 0.725
+   },
+   {
+    "cell": "HSTPROMO D100 sig2",
+    "N": 200,
+    "se_mc": 1.7202,
+    "se_an": 1.3349,
+    "ratio": 0.776
+   },
+   {
+    "cell": "HSTPROMO D100 sig2",
+    "N": 800,
+    "se_mc": 0.8344,
+    "se_an": 0.6662,
+    "ratio": 0.798
+   }
+  ],
+  "mc_correction": {
+   "correction_factor": 1.2886597938144329,
+   "applied": 1.3,
+   "criterion": "sigma_v <= 2 e_l on the LOS axis"
+  }
+ },
+ "n_req_grid": [
+  {
+   "grade": "IDEAL",
+   "D_kpc": null,
+   "sig_v": 2.0,
+   "e_t_kms": 0.0,
+   "e_l_kms": 0.0,
+   "N_req_beta0.56": 87,
+   "N_req_beta0.31": 282,
+   "N_req_beta0.17": 935
+  },
+  {
+   "grade": "IDEAL",
+   "D_kpc": null,
+   "sig_v": 5.0,
+   "e_t_kms": 0.0,
+   "e_l_kms": 0.0,
+   "N_req_beta0.56": 87,
+   "N_req_beta0.31": 282,
+   "N_req_beta0.17": 935
+  },
+  {
+   "grade": "IDEAL",
+   "D_kpc": null,
+   "sig_v": 11.0,
+   "e_t_kms": 0.0,
+   "e_l_kms": 0.0,
+   "N_req_beta0.56": 87,
+   "N_req_beta0.31": 282,
+   "N_req_beta0.17": 935
+  },
+  {
+   "grade": "GAIA_DR3",
+   "D_kpc": 30.0,
+   "sig_v": 2.0,
+   "e_t_kms": 14.22,
+   "e_l_kms": 1.5,
+   "N_req_beta0.56": 40708,
+   "N_req_beta0.31": 132838,
+   "N_req_beta0.17": 441716
+  },
+  {
+   "grade": "GAIA_DR3",
+   "D_kpc": 30.0,
+   "sig_v": 5.0,
+   "e_t_kms": 14.22,
+   "e_l_kms": 1.5,
+   "N_req_beta0.56": 2054,
+   "N_req_beta0.31": 6702,
+   "N_req_beta0.17": 22283
+  },
+  {
+   "grade": "GAIA_DR3",
+   "D_kpc": 30.0,
+   "sig_v": 11.0,
+   "e_t_kms": 14.22,
+   "e_l_kms": 1.5,
+   "N_req_beta0.56": 256,
+   "N_req_beta0.31": 833,
+   "N_req_beta0.17": 2766
+  },
+  {
+   "grade": "GAIA_DR3",
+   "D_kpc": 50.0,
+   "sig_v": 2.0,
+   "e_t_kms": 23.7,
+   "e_l_kms": 1.5,
+   "N_req_beta0.56": 305860,
+   "N_req_beta0.31": 998098,
+   "N_req_beta0.17": 3318933
+  },
+  {
+   "grade": "GAIA_DR3",
+   "D_kpc": 50.0,
+   "sig_v": 5.0,
+   "e_t_kms": 23.7,
+   "e_l_kms": 1.5,
+   "N_req_beta0.56": 13368,
+   "N_req_beta0.31": 43620,
+   "N_req_beta0.17": 145044
+  },
+  {
+   "grade": "GAIA_DR3",
+   "D_kpc": 50.0,
+   "sig_v": 11.0,
+   "e_t_kms": 23.7,
+   "e_l_kms": 1.5,
+   "N_req_beta0.56": 939,
+   "N_req_beta0.31": 3063,
+   "N_req_beta0.17": 10182
+  },
+  {
+   "grade": "GAIA_DR3",
+   "D_kpc": 100.0,
+   "sig_v": 2.0,
+   "e_t_kms": 47.41,
+   "e_l_kms": 1.5,
+   "N_req_beta0.56": 4840871,
+   "N_req_beta0.31": 15797053,
+   "N_req_beta0.17": 52529296
+  },
+  {
+   "grade": "GAIA_DR3",
+   "D_kpc": 100.0,
+   "sig_v": 5.0,
+   "e_t_kms": 47.41,
+   "e_l_kms": 1.5,
+   "N_req_beta0.56": 199614,
+   "N_req_beta0.31": 651393,
+   "N_req_beta0.17": 2166049
+  },
+  {
+   "grade": "GAIA_DR3",
+   "D_kpc": 100.0,
+   "sig_v": 11.0,
+   "e_t_kms": 47.41,
+   "e_l_kms": 1.5,
+   "N_req_beta0.56": 10655,
+   "N_req_beta0.31": 34768,
+   "N_req_beta0.17": 115610
+  },
+  {
+   "grade": "HSTPROMO",
+   "D_kpc": 30.0,
+   "sig_v": 2.0,
+   "e_t_kms": 2.84,
+   "e_l_kms": 1.0,
+   "N_req_beta0.56": 294,
+   "N_req_beta0.31": 957,
+   "N_req_beta0.17": 3178
+  },
+  {
+   "grade": "HSTPROMO",
+   "D_kpc": 30.0,
+   "sig_v": 5.0,
+   "e_t_kms": 2.84,
+   "e_l_kms": 1.0,
+   "N_req_beta0.56": 105,
+   "N_req_beta0.31": 340,
+   "N_req_beta0.17": 1128
+  },
+  {
+   "grade": "HSTPROMO",
+   "D_kpc": 30.0,
+   "sig_v": 11.0,
+   "e_t_kms": 2.84,
+   "e_l_kms": 1.0,
+   "N_req_beta0.56": 91,
+   "N_req_beta0.31": 293,
+   "N_req_beta0.17": 973
+  },
+  {
+   "grade": "HSTPROMO",
+   "D_kpc": 50.0,
+   "sig_v": 2.0,
+   "e_t_kms": 4.74,
+   "e_l_kms": 1.0,
+   "N_req_beta0.56": 1122,
+   "N_req_beta0.31": 3658,
+   "N_req_beta0.17": 12160
+  },
+  {
+   "grade": "HSTPROMO",
+   "D_kpc": 50.0,
+   "sig_v": 5.0,
+   "e_t_kms": 4.74,
+   "e_l_kms": 1.0,
+   "N_req_beta0.56": 154,
+   "N_req_beta0.31": 501,
+   "N_req_beta0.17": 1662
+  },
+  {
+   "grade": "HSTPROMO",
+   "D_kpc": 50.0,
+   "sig_v": 11.0,
+   "e_t_kms": 4.74,
+   "e_l_kms": 1.0,
+   "N_req_beta0.56": 98,
+   "N_req_beta0.31": 318,
+   "N_req_beta0.17": 1055
+  },
+  {
+   "grade": "HSTPROMO",
+   "D_kpc": 100.0,
+   "sig_v": 2.0,
+   "e_t_kms": 9.48,
+   "e_l_kms": 1.0,
+   "N_req_beta0.56": 13232,
+   "N_req_beta0.31": 43177,
+   "N_req_beta0.17": 143571
+  },
+  {
+   "grade": "HSTPROMO",
+   "D_kpc": 100.0,
+   "sig_v": 5.0,
+   "e_t_kms": 9.48,
+   "e_l_kms": 1.0,
+   "N_req_beta0.56": 619,
+   "N_req_beta0.31": 2017,
+   "N_req_beta0.17": 6705
+  },
+  {
+   "grade": "HSTPROMO",
+   "D_kpc": 100.0,
+   "sig_v": 11.0,
+   "e_t_kms": 9.48,
+   "e_l_kms": 1.0,
+   "N_req_beta0.56": 144,
+   "N_req_beta0.31": 468,
+   "N_req_beta0.17": 1554
+  }
+ ],
+ "per_object": [
+  {
+   "name": "Aquarius II",
+   "cls": "UFD",
+   "D_kpc": 107.9,
+   "sig_obs": 5.4,
+   "sig_pred": 2.1682,
+   "z_star_pred": -0.9989,
+   "e_t_Gaia_kms": 51.2,
+   "dilution_Gaia": 90.7,
+   "N_req_Gaia": 664571,
+   "N_req_HSTPROMO": 2032,
+   "N_avail": 30,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Bootes I",
+   "cls": "dSph",
+   "D_kpc": 66.0,
+   "sig_obs": 4.6,
+   "sig_pred": 3.1776,
+   "z_star_pred": -0.9976,
+   "e_t_Gaia_kms": 31.3,
+   "dilution_Gaia": 47.3,
+   "N_req_Gaia": 171107,
+   "N_req_HSTPROMO": 882,
+   "N_avail": 60,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Bootes II",
+   "cls": "UFD",
+   "D_kpc": 42.0,
+   "sig_obs": 10.5,
+   "sig_pred": 1.5635,
+   "z_star_pred": -0.9994,
+   "e_t_Gaia_kms": 19.9,
+   "dilution_Gaia": 4.6,
+   "N_req_Gaia": 2088,
+   "N_req_HSTPROMO": 309,
+   "N_avail": 10,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Canes Venatici I",
+   "cls": "dSph",
+   "D_kpc": 211.0,
+   "sig_obs": 7.6,
+   "sig_pred": 5.9306,
+   "z_star_pred": -0.9917,
+   "e_t_Gaia_kms": 100.0,
+   "dilution_Gaia": 174.2,
+   "N_req_Gaia": 2633631,
+   "N_req_HSTPROMO": 5877,
+   "N_avail": 60,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Canes Venatici II",
+   "cls": "UFD",
+   "D_kpc": 160.0,
+   "sig_obs": 4.6,
+   "sig_pred": 2.6128,
+   "z_star_pred": -0.9984,
+   "e_t_Gaia_kms": 75.8,
+   "dilution_Gaia": 272.9,
+   "N_req_Gaia": 5697990,
+   "N_req_HSTPROMO": 12231,
+   "N_avail": 20,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Carina",
+   "cls": "dSph",
+   "D_kpc": 106.0,
+   "sig_obs": 6.6,
+   "sig_pred": 7.0,
+   "z_star_pred": -0.9884,
+   "e_t_Gaia_kms": 50.3,
+   "dilution_Gaia": 59.0,
+   "N_req_Gaia": 294631,
+   "N_req_HSTPROMO": 1174,
+   "N_avail": 774,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Carina II",
+   "cls": "UFD",
+   "D_kpc": 36.2,
+   "sig_obs": 3.4,
+   "sig_pred": 2.2392,
+   "z_star_pred": -0.9988,
+   "e_t_Gaia_kms": 17.2,
+   "dilution_Gaia": 26.5,
+   "N_req_Gaia": 46186,
+   "N_req_HSTPROMO": 512,
+   "N_avail": 20,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Carina III",
+   "cls": "UFD",
+   "D_kpc": 27.8,
+   "sig_obs": 5.6,
+   "sig_pred": 1.3807,
+   "z_star_pred": -0.9995,
+   "e_t_Gaia_kms": 13.2,
+   "dilution_Gaia": 6.5,
+   "N_req_Gaia": 3674,
+   "N_req_HSTPROMO": 320,
+   "N_avail": 15,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Coma Berenices",
+   "cls": "UFD",
+   "D_kpc": 42.0,
+   "sig_obs": 4.6,
+   "sig_pred": 2.1286,
+   "z_star_pred": -0.9989,
+   "e_t_Gaia_kms": 19.9,
+   "dilution_Gaia": 19.7,
+   "N_req_Gaia": 29987,
+   "N_req_HSTPROMO": 450,
+   "N_avail": 40,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Crater II",
+   "cls": "dSph",
+   "D_kpc": 117.5,
+   "sig_obs": 2.7,
+   "sig_pred": 5.2493,
+   "z_star_pred": -0.9935,
+   "e_t_Gaia_kms": 55.7,
+   "dilution_Gaia": 426.6,
+   "N_req_Gaia": 12938564,
+   "N_req_HSTPROMO": 23716,
+   "N_avail": 40,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Draco",
+   "cls": "dSph",
+   "D_kpc": 82.0,
+   "sig_obs": 9.1,
+   "sig_pred": 6.139,
+   "z_star_pred": -0.9911,
+   "e_t_Gaia_kms": 38.9,
+   "dilution_Gaia": 19.2,
+   "N_req_Gaia": 33073,
+   "N_req_HSTPROMO": 462,
+   "N_avail": 155,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Eridanus II",
+   "cls": "dSph",
+   "D_kpc": 366.0,
+   "sig_obs": 6.9,
+   "sig_pred": 4.0747,
+   "z_star_pred": -0.9961,
+   "e_t_Gaia_kms": 173.5,
+   "dilution_Gaia": 633.3,
+   "N_req_Gaia": 34248075,
+   "N_req_HSTPROMO": 62292,
+   "N_avail": 50,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Fornax",
+   "cls": "dSph",
+   "D_kpc": 139.0,
+   "sig_obs": 11.7,
+   "sig_pred": 17.1435,
+   "z_star_pred": -0.9304,
+   "e_t_Gaia_kms": 65.9,
+   "dilution_Gaia": 32.7,
+   "N_req_Gaia": 97230,
+   "N_req_HSTPROMO": 663,
+   "N_avail": 2483,
+   "testable_today": "with HSTPROMO-grade PMs"
+  },
+  {
+   "name": "Grus I",
+   "cls": "UFD",
+   "D_kpc": 120.0,
+   "sig_obs": 2.9,
+   "sig_pred": 1.7664,
+   "z_star_pred": -0.9993,
+   "e_t_Gaia_kms": 56.9,
+   "dilution_Gaia": 385.8,
+   "N_req_Gaia": 11278701,
+   "N_req_HSTPROMO": 20288,
+   "N_avail": null,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Hercules",
+   "cls": "UFD",
+   "D_kpc": 132.0,
+   "sig_obs": 5.1,
+   "sig_pred": 3.0416,
+   "z_star_pred": -0.9978,
+   "e_t_Gaia_kms": 62.6,
+   "dilution_Gaia": 151.5,
+   "N_req_Gaia": 1822167,
+   "N_req_HSTPROMO": 4470,
+   "N_avail": 50,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Horologium I",
+   "cls": "UFD",
+   "D_kpc": 87.0,
+   "sig_obs": 4.9,
+   "sig_pred": 1.8884,
+   "z_star_pred": -0.9992,
+   "e_t_Gaia_kms": 41.2,
+   "dilution_Gaia": 71.8,
+   "N_req_Gaia": 404302,
+   "N_req_HSTPROMO": 1457,
+   "N_avail": 20,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Hydrus I",
+   "cls": "UFD",
+   "D_kpc": 27.6,
+   "sig_obs": 2.7,
+   "sig_pred": 2.3502,
+   "z_star_pred": -0.9987,
+   "e_t_Gaia_kms": 13.1,
+   "dilution_Gaia": 24.5,
+   "N_req_Gaia": 42858,
+   "N_req_HSTPROMO": 461,
+   "N_avail": 20,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Leo I",
+   "cls": "dSph",
+   "D_kpc": 254.0,
+   "sig_obs": 9.2,
+   "sig_pred": 11.9702,
+   "z_star_pred": -0.9661,
+   "e_t_Gaia_kms": 120.4,
+   "dilution_Gaia": 172.3,
+   "N_req_Gaia": 2638296,
+   "N_req_HSTPROMO": 5828,
+   "N_avail": 100,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Leo II",
+   "cls": "dSph",
+   "D_kpc": 233.0,
+   "sig_obs": 7.4,
+   "sig_pred": 7.4834,
+   "z_star_pred": -0.9867,
+   "e_t_Gaia_kms": 110.5,
+   "dilution_Gaia": 223.8,
+   "N_req_Gaia": 4327845,
+   "N_req_HSTPROMO": 9062,
+   "N_avail": 100,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Leo IV",
+   "cls": "UFD",
+   "D_kpc": 154.0,
+   "sig_obs": 3.3,
+   "sig_pred": 2.5067,
+   "z_star_pred": -0.9985,
+   "e_t_Gaia_kms": 73.0,
+   "dilution_Gaia": 490.4,
+   "N_req_Gaia": 15470764,
+   "N_req_HSTPROMO": 33451,
+   "N_avail": 40,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Leo T",
+   "cls": "dSph",
+   "D_kpc": 409.0,
+   "sig_obs": 7.5,
+   "sig_pred": 5.013,
+   "z_star_pred": -0.994,
+   "e_t_Gaia_kms": 193.9,
+   "dilution_Gaia": 669.3,
+   "N_req_Gaia": 38790348,
+   "N_req_HSTPROMO": 69723,
+   "N_avail": 40,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Leo V",
+   "cls": "UFD",
+   "D_kpc": 169.0,
+   "sig_obs": 2.3,
+   "sig_pred": 2.1335,
+   "z_star_pred": -0.9989,
+   "e_t_Gaia_kms": 80.1,
+   "dilution_Gaia": 1214.3,
+   "N_req_Gaia": 88370159,
+   "N_req_HSTPROMO": 162714,
+   "N_avail": 15,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Pegasus III",
+   "cls": "UFD",
+   "D_kpc": 205.0,
+   "sig_obs": 5.4,
+   "sig_pred": 2.0422,
+   "z_star_pred": -0.999,
+   "e_t_Gaia_kms": 97.2,
+   "dilution_Gaia": 324.9,
+   "N_req_Gaia": 8519385,
+   "N_req_HSTPROMO": 17237,
+   "N_avail": 20,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Pisces II",
+   "cls": "UFD",
+   "D_kpc": 183.0,
+   "sig_obs": 5.4,
+   "sig_pred": 2.1043,
+   "z_star_pred": -0.999,
+   "e_t_Gaia_kms": 86.8,
+   "dilution_Gaia": 259.1,
+   "N_req_Gaia": 5418560,
+   "N_req_HSTPROMO": 11414,
+   "N_avail": 20,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Reticulum II",
+   "cls": "UFD",
+   "D_kpc": 31.6,
+   "sig_obs": 3.3,
+   "sig_pred": 1.9911,
+   "z_star_pred": -0.9991,
+   "e_t_Gaia_kms": 15.0,
+   "dilution_Gaia": 21.6,
+   "N_req_Gaia": 30219,
+   "N_req_HSTPROMO": 450,
+   "N_avail": 40,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Sagittarius",
+   "cls": "dSph",
+   "D_kpc": 26.7,
+   "sig_obs": 9.6,
+   "sig_pred": 17.7869,
+   "z_star_pred": -0.9251,
+   "e_t_Gaia_kms": 12.7,
+   "dilution_Gaia": 2.7,
+   "N_req_Gaia": 857,
+   "N_req_HSTPROMO": 293,
+   "N_avail": null,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Sculptor",
+   "cls": "dSph",
+   "D_kpc": 86.0,
+   "sig_obs": 9.2,
+   "sig_pred": 9.5962,
+   "z_star_pred": -0.9782,
+   "e_t_Gaia_kms": 40.8,
+   "dilution_Gaia": 20.6,
+   "N_req_Gaia": 38036,
+   "N_req_HSTPROMO": 480,
+   "N_avail": 1365,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Segue 1",
+   "cls": "UFD",
+   "D_kpc": 23.0,
+   "sig_obs": 3.7,
+   "sig_pred": 1.0718,
+   "z_star_pred": -0.9997,
+   "e_t_Gaia_kms": 10.9,
+   "dilution_Gaia": 9.7,
+   "N_req_Gaia": 6666,
+   "N_req_HSTPROMO": 336,
+   "N_avail": 40,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Sextans",
+   "cls": "dSph",
+   "D_kpc": 95.0,
+   "sig_obs": 7.9,
+   "sig_pred": 6.2244,
+   "z_star_pred": -0.9908,
+   "e_t_Gaia_kms": 45.0,
+   "dilution_Gaia": 33.5,
+   "N_req_Gaia": 98090,
+   "N_req_HSTPROMO": 668,
+   "N_avail": 441,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Tucana II",
+   "cls": "UFD",
+   "D_kpc": 58.0,
+   "sig_obs": 8.6,
+   "sig_pred": 1.9503,
+   "z_star_pred": -0.9991,
+   "e_t_Gaia_kms": 27.5,
+   "dilution_Gaia": 11.2,
+   "N_req_Gaia": 11295,
+   "N_req_HSTPROMO": 369,
+   "N_avail": 40,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Ursa Major I",
+   "cls": "UFD",
+   "D_kpc": 97.3,
+   "sig_obs": 7.0,
+   "sig_pred": 2.5888,
+   "z_star_pred": -0.9984,
+   "e_t_Gaia_kms": 46.1,
+   "dilution_Gaia": 44.4,
+   "N_req_Gaia": 169109,
+   "N_req_HSTPROMO": 862,
+   "N_avail": 50,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Ursa Major II",
+   "cls": "UFD",
+   "D_kpc": 34.7,
+   "sig_obs": 5.6,
+   "sig_pred": 2.2034,
+   "z_star_pred": -0.9988,
+   "e_t_Gaia_kms": 16.4,
+   "dilution_Gaia": 9.6,
+   "N_req_Gaia": 7747,
+   "N_req_HSTPROMO": 347,
+   "N_avail": 30,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Ursa Minor",
+   "cls": "dSph",
+   "D_kpc": 76.0,
+   "sig_obs": 9.5,
+   "sig_pred": 6.3548,
+   "z_star_pred": -0.9904,
+   "e_t_Gaia_kms": 36.0,
+   "dilution_Gaia": 15.4,
+   "N_req_Gaia": 21284,
+   "N_req_HSTPROMO": 416,
+   "N_avail": 100,
+   "testable_today": "NOT yet (PM error-bound)"
+  },
+  {
+   "name": "Willman 1",
+   "cls": "UFD",
+   "D_kpc": 45.0,
+   "sig_obs": 4.0,
+   "sig_pred": 1.5492,
+   "z_star_pred": -0.9994,
+   "e_t_Gaia_kms": 21.3,
+   "dilution_Gaia": 29.4,
+   "N_req_Gaia": 62588,
+   "N_req_HSTPROMO": 567,
+   "N_avail": 49,
+   "testable_today": "NOT yet (PM error-bound)"
+  }
+ ],
+ "ordering": {
+  "z_star_ordering": [
+   {
+    "z_star": -0.999,
+    "class": "UFD",
+    "beta_pred": "~ 0 (never-froze isotropy)"
+   },
+   {
+    "z_star": -0.9,
+    "class": "bright dSph",
+    "beta_pred": "small positive, partial envelope"
+   },
+   {
+    "z_star": 0.0,
+    "class": "freeze floor",
+    "beta_pred": "first full envelope (UNOBSERVED)"
+   },
+   {
+    "z_star": 2.4,
+    "class": "galaxy",
+    "beta_pred": "0.565 @ 2-4 r_M (G218)"
+   },
+   {
+    "z_star": "84-232",
+    "class": "cluster",
+    "beta_pred": "0.03 -> 0.56 (G209, E1)"
+   }
+  ],
+  "measured_points": {
+   "Draco": {
+    "z_star_pred": -0.9911,
+    "r_M_pc": 26.1,
+    "beta_global": "-0.20 +0.28/-0.53",
+    "source_unverified": "Vitral+24 ApJ 970,1"
+   },
+   "Sculptor": {
+    "z_star_pred": -0.9782,
+    "r_M_pc": 63.8,
+    "beta_global": "-0.16 +- 0.13 (derived from Vitral+25 ratios; 'consistent with isotropy')",
+    "source_unverified": "Vitral+25 arXiv:2508.20711"
+   }
+  },
+  "E_vs_zstar": {
+   "rho": -0.6907563025210083,
+   "p": 6.13322215610772e-06,
+   "note": "G213 registered -0.691 / 6e-6"
+  }
+ },
+ "verdicts": {
+  "V1": "THE PREDICTION, QUANTIFIED: beta(r) ~ 0 at ALL radii in the never-froze class (z* < 0 for every dSph, sigma_v 2-11 km/s vs the freeze floor 65.0 km/s @ 5 keV, G213) versus the frozen class's measured rising profile 0.033 -> 0.560 (G209 E1).  THE FALSIFIER: beta_B = 1 - <v_t^2>/(2 <v_los^2>) from member 3D velocities, with the measurement-error dilution law SE(beta) = sqrt([(s_t^2)^2 + 2(s_l^2)^2]/[(N-1)(s_l^2)^2]) and N_req = 1 + 9[(s_t^2)^2 + 2(s_l^2)^2]/[beta_c^2 (s_l^2)^2] (3-sigma, per bin): ideal-sample budgets N = 87 (beta 0.56) / 281 (beta 0.31); at Gaia DR3 grade the PM error e_t = 4.74 D x 0.10 mas/yr = 14-47 km/s at 30-100 kpc DOMINATES the 2-11 km/s signal and N_req(0.31) = 43,619-15,797,052 per bin (dilution (1 + e_t^2/sig_v^2)^2); at HSTPROMO grade (e_t <= sig_v) the nearest UFDs need only ~ 449-138 per bin.  The prediction's knife: the envelope is a POSITIVE beta at 2-5 r_M -- the never-froze class should measure ZERO there, and the required precision is now stated bin-by-bin.",
+  "V2": "THE SAMPLE THAT CAN TEST IT TODAY: (i) DONE -- the bright class Draco (Vitral+24: hundreds of HST PMs + LOS, beta_bar_B = -0.20 +0.28/-0.53) and Sculptor (Vitral+25: 119 PM + 1760 LOS, beta ~ -0.16 +- 0.13) both measure ISOTROPY at z* ~ -0.9, at radii 2-35 r_M where the frozen class shows 0.31-0.56; (ii) RUNNABLE SOON -- Carina (774 LOS members), Fornax (2483), Sextans (441), Ursa Minor have the member counts and HST/Gaia PM epochs (HSTPROMO series in progress, UNVERIFIED); (iii) NOT YET -- the deep UFDs (log M* < 4.5): N = 10-200 members with Gaia DR3-grade per-star PM errors cannot reach N_req ~ 43,619-15,797,052; the nearest UFDs (Reticulum II 31.6 kpc, Hydrus I 27.6, Willman 1 45, Tucana II 58) become testable with HSTPROMO-grade multi-epoch PMs (N_req ~ 449-138 per bin).  All literature counts and the two beta values are UNVERIFIED citations.",
+  "V3": "THE HONEST STATEMENT -- the freeze map's kinematic falsifier: the never-froze class's isotropy is the NEW test the framework just made about its own domains, and 2/2 published PM-based measurements (Draco, Sculptor, UNVERIFIED) already sit on the predicted side: beta ~ 0 at radii where the frozen class shows 0.31-0.56.  The ordering (beta rises as z* -> 0+) is staked but its slope is not yet measurable: the z* ~ 0 partially-frozen bin is UNPOPULATED (max sigma_pred 17.8 km/s vs the 65 km/s floor -- a factor 3.7 short), and only n = 2 dwarf points with PM-based betas exist.  The falsifier's sharp edge is the error economy: the test is astrometry-limited, not member-limited -- at Gaia DR3 grade even the nearest UFD needs ~1e4-1e5 stars per bin, at HSTPROMO grade ~1e2-1e3, so the deep-UFD verdict waits on multi-epoch PM programs (HSTPROMO-grade) or on the bright class's full series.  G070's alternative readings of the UFD excess (binary contamination, a dispersion floor, IMF/M_L shift) remain open -- the kinematic isotropy predicted here is the same axis's face and will adjudicate them: a frozen-class-like envelope in the UFDs would falsify the never-froze reading, measured isotropy corroborates it."
+ },
+ "checks": [
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true
+ ],
+ "n_pass": 11,
+ "n_total": 11,
+ "deliverable": "deepseek_push/Z09_ufd_beta.py + .out + Z09_results.json"
+}
