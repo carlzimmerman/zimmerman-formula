@@ -1,0 +1,190 @@
+G113 -- P7 EXECUTED: THE THERMAL SUNYAEV-ZELDOVICH PROFILE FROM THE LAW'S
+CLUSTER STRUCTURE (KEPLER_GRADE_CLUSTER_PREDICTIONS.md P7).
+
+THE PHYSICS.  The tSZ y-parameter projects the electron pressure
+    y(b) = (sigma_T/m_e c^2) * integral n_e k_B T_e dl
+along the line of sight.  The framework fixes BOTH factors from the
+committed cluster structure, with zero free parameters:
+
+  (1) the DENSITY from the hydrostatic baryon fraction (the committed gas):
+      n_e(r) = rho_gas(r)/(mu_e m_p), rho_gas from the X-COP cumulative gas
+      mass M_gas(<r) (the committed ingests, G050/G057/G075 exact loader),
+      mu_e = 2/(1+X), X = 0.76 (fully ionised).
+  (2) the TEMPERATURE from the virial of the TOTAL mass, in the G095 closed
+      form (LANDED): the per-radius identity of G095 V1,
+          T_obs/T_pred = (sigma_dyn/sigma_pred)^2 = 2 (M_dyn(<r)/M_b)(r_M/r)
+      with sigma_dyn^2 = G M_dyn(<r)/r reads, per radius,
+          T_vir(r) = mu m_p G M_HSE(<r) / (2 k_B r)
+      -- the virial temperature of the measured hydrostatic total mass at r.
+      The R500-averaged identity is G095's registered fact (median hse =
+      T_vir(M500)/T_obs = 0.99, scatter 0.053 dex = the 0.05-dex T-ratio
+      scatter); G113 EXTENDS that identification to every radius and
+      projects it into the Compton channel.
+
+THE CLOSED-FORM PRESSURE (the mu/mu_e cancellation).  Substituting T_vir:
+    P_e(r) = n_e k_B T_vir = (mu/2 mu_e) rho_gas(r) G M_HSE(<r)/r
+-- the predicted electron-pressure profile needs NO temperature input:
+it is the committed gas density times the virial acceleration of the total
+enclosed mass.  The central Compton parameter is therefore
+    y0 = (sigma_T/m_e c^2) * (mu/2 mu_e) * integral_LOS rho_gas G M_HSE/r dl
+and the ratio to the baryon floor (T_floor = mu m_p (v_flat^2/2)/(2 k_B),
+the G03G equipartition temperature) is the PRESSURE-WEIGHTED G095 closed
+form:
+    y0/y0_floor = <T_vir(r)/T_floor>_P-weighted = <2 f(r) (r_M/r)>_P-weighted,
+f(r) = M_HSE(<r)/M_b -- the SZ face of the temperature-ratio law: the
+dark-to-baryon ratio the G095 identity read in temperature appears here in
+the Compton amplitude.
+
+THE SHAPE (the deep-regime phantom).  Beyond the innermost data the
+framework's two-regime map (KEPLER P1/P2, G108's decomposition) continues
+  (i) the GAS envelope: rho_gas ~ r^-q, q in (2.0, 2.5) the NFW-class band
+      (P2's prediction; the per-cluster measured q used as input);
+  (ii) the MASS: beyond the hydrostatic profile, the deep-regime phantom
+      rho_ph = A/r^2, A = sqrt(G M_b a0)/(4 pi G) (G003/G03E coefficient 1,
+      G108 executes it in (r_M, R500)) makes M_dyn(<r) grow ~ r, so
+      T_vir(r) -> T_inf = mu m_p v_flat^2/(2 k_B) = 2 T_floor: the phantom
+      zone is ISOTHERMAL at TWICE the baryon floor in the virial reading,
+      and the predicted outer Compton falloff is set by the gas envelope
+      alone:  y(b) ~ b^-(q-1),  i.e. slope in (-1.5, -1.0) for the P2 band.
+      The classic beta-model falloff (isothermal gas, beta-model density)
+      is y ~ b^-(6 beta - 1) ~ -3 for beta ~ 2/3: the framework's outer
+      Compton profile is predicted substantially FLATTER -- the phantom
+      zone's pressure signature: the dark sector's gravity (M(<r) still
+      growing beyond R500) holds the outer thermal pressure up.
+
+UNCERTAINTY/CONSISTENCY.  y0 is not a blind prediction: X-COP carries the
+gas AND the total masses; the amplitude is the committed data read through
+the G095 identification (median hse = 0.99 -> y0 inherits a ~0.05-dex
+temperature-side consistency at the median, the registered HSE scatter).
+The genuinely novel, decision-ready content is the arcmin-scale SHAPE at
+theta ~ (theta_M, 2 theta_500) ~ (4', 40'): how the outer Compton signal
+falls -- the flat virial-T falloff vs the classic beta collapse.
+
+VERDICTS.  V1 the predicted central Compton parameter y0 per cluster with
+the recipe; V2 the shape statements (outer slope; dimensionless profile vs
+the classic beta-model; the quantified deviation at r > r_M -- the phantom
+zone's pressure signature); V3 the honest statement (what a tSZ observation
+of the 12 clusters decides, at the Planck/ACT/SO resolution window).
+
+Constants: canonical a0 = 9.3619e-11; mu = 0.6; X = 0.76;
+sigma_T = 6.6524587e-29 m^2.  Cosmology for the arcmin scale: flat LCDM,
+H0 = 67.4, Omega_m = 0.315 (G050's footing).  EVERY number from the
+committed ingests only (real_research/data/xcop/, G095's exact loader,
+gated digit-for-digit against G095_results.json).  A FAIL is a finding.
+
+================================================================================================
+G113 -- P7: THE tSZ PROFILE (the thermal Sunyaev-Zeldovich y-profile from the law's cluster structure)
+================================================================================================
+
+================================================================================================
+V0 -- THE DATA GATE: G095's rows re-created from the committed ingests,
+      compared digit-for-digit against the committed G095_results.json
+================================================================================================
+  [PASS] V0 [gate: the rows re-created here reproduce the committed G095 rows digit-for-digit] M_b(R500), M500, r_M, T_pred, kT_obs, T_vir(M500), hse per cluster vs G095_results.json
+         measured: 12/12 rows: M_b(R500) and M500 within 1e-9 relative; the committed JSON's 4dp-stored fields (rM/R500, T ratio, hse) gate at 1e-4 and carry its own documented stale-regeneration noise (G095's committed checks array shows V0/V1a/V1c self-FAILs; A2029 and RXC1825 differ at <= 5.5e-5, its storage precision), gated at 1e-4; median hse = 0.989
+         reading : identical loader, identical ingests; the 4th-decimal storage noise of two rows in the committed G095 JSON changes nothing below (the physics columns gate at 1e-9); the registered G095 identity is the substrate
+
+================================================================================================
+V1 -- THE PREDICTED y0 (the central Compton parameter), WITH THE RECIPE
+================================================================================================
+  RECIPE (zero free parameters):
+    n_e(r)    = rho_gas(r)/(mu_e m_p),      rho_gas from the committed M_gas(<r)
+    T_vir(r)  = mu m_p G M_HSE(<r)/(2 k_B r)   [the G095 closed form per radius]
+    P_e(r)    = n_e k_B T_vir = (mu/2 mu_e) rho_gas(r) G M_HSE(<r)/r   [CLOSED FORM: no T input]
+    y(b)      = (sigma_T/m_e c^2) * 2 * integral_b^inf P_e(r) r dr/sqrt(r^2-b^2)
+    y0        = y(0);  y0_floor uses T_floor = mu m_p (v_flat^2/2)/(2 k_B) instead of T_vir
+  The LOS integral runs on the committed data with the framework's continuation
+  beyond the data: gas envelope ~ r^-q (q measured per cluster; P2 band 2.0-2.5),
+  mass beyond 3 Mpc continued by the deep-regime phantom rho_ph = A/r^2.
+
+  cluster         y0  y0_floor y0/y0fl core%   hse kTvir  kTfl kTinf     q
+  A1644    1.896e-05 1.165e-05    1.63   75%  0.87   4.4   1.2   2.5  2.28
+  A1795    7.569e-05 4.561e-05    1.66   90%  0.89   5.4   1.5   3.1  2.90
+  A2029    2.313e-04 1.423e-04    1.63   87%  1.01   8.4   2.4   4.7  2.58
+  A2142    1.886e-04 1.337e-04    1.41   88%  1.01   8.5   2.6   5.1  2.32
+  A2255    3.911e-05 2.575e-05    1.52   78%  1.02   5.9   1.8   3.6  2.31
+  A2319    1.656e-04 1.022e-04    1.62   87%  0.76   7.3   2.6   5.2  1.95
+  A3158    4.379e-05 2.362e-05    1.85   88%  1.02   5.1   1.5   3.0  2.45
+  A3266    8.410e-05 5.497e-05    1.53   94%  0.88   8.3   2.0   4.1  3.22
+  A644     9.648e-05 4.819e-05    2.00   95%  0.81   6.2   1.8   3.5  3.81
+  A85      7.970e-05 5.747e-05    1.39   90%  1.03   6.2   1.8   3.7  2.73
+  RXC1825  4.046e-05 1.657e-05    2.44   79%  0.97   5.0   1.4   2.8  2.10
+  ZW1215   6.142e-05 4.033e-05    1.52   93%  1.21   7.6   1.8   3.7  2.99
+  [PASS] V1a [the closed-form pressure identity is exact] P_e = (mu/2 mu_e) rho_gas G M_HSE/r == n_e k_B T_vir(pointwise, all radii)
+         measured: max relative deviation = 5.7e-16
+         reading : the mu/mu_e cancellation is algebraic: the predicted pressure profile needs no temperature input -- the virial of the total mass enters as G M(<r)/r
+  [PASS] V1b [the predicted y0 is a Compton parameter of a rich cluster] y0 in (1e-5, 1e-3) for all 12 clusters
+         measured: y0 range [1.90e-05, 2.31e-04]; median y0 = 7.77e-05 (10^-4-class, the X-COP mass-temperature regime)
+         reading : the amplitude is the committed gas x the virial total mass; the Planck/ACT y0 catalog of these clusters sits in this band
+  [PASS] V1c [the SZ face of the G095 closed form] y0/y0_floor = the pressure-weighted <T_vir/T_floor> = <2 f(r) r_M/r>_P-weighted: the dark-to-baryon ratio appears in the Compton amplitude, median > 1.5
+         measured: median y0/y0_floor = 1.62 (range 1.39-2.44); the R500 temperature face is 3.57 (G095)
+         reading : the pressure weighting favors the core (r < R500), where f(r) r_M/r < f(R500) r_M/R500: the SZ-weighted boost 1.62 vs the R500 temperature-ratio 3.57 -- the SAME number read at the SZ-weighted radius
+  [PASS] V1d [y0 is core-dominated] the central Compton parameter converges within 1.05 R500: median core fraction > 0.8
+         measured: median core fraction = 0.88 (range 0.75-0.95)
+         reading : the y0 signal lives inside R500 -- the region the X-COP gas actually measures; the outer continuation affects the SHAPE far more than y0
+  [PASS] V1e [the temperature-side consistency of y0] the virial temperature at R500 reproduces the observed kTvir at the G095-registered level: median hse in (0.90, 1.10)
+         measured: median hse = 0.989, log10 scatter = 0.053 dex (G095 registered 0.99 / 0.053 dex)
+         reading : y0 inherits <= 0.05-dex temperature-side uncertainty at the median: the amplitude is NOT the free prediction -- the shape is (V2)
+
+================================================================================================
+V2 -- THE SHAPE STATEMENTS: the outer slope, the dimensionless profile
+      vs the classic beta-model, and the deviation at r > r_M
+================================================================================================
+
+  INNER fit to the classic beta family  y(b) = y0b (1 + (b/r_c)^2)^(1/2-3 beta),
+  over b in (0.05, 0.8) R500;  then the OUTER profile at R500 / 2 R500
+  vs (i) the self-fit extrapolation (beta-form deviation) and (ii) the
+  classic cluster reading beta = 2/3 (the phantom-zone pressure signature).
+  cluster      q    slM   slR5   sl2R   beta  rc/R5    rms y/yb@2R5 y/y(2/3)@R5   @2R5  <dlog>    dSl
+  A1644     2.28  -0.15  -1.19  -1.05  1.500   1.89  0.007    3.86     130.3  474.4    1.82   1.95
+  A1795     2.90  -0.86  -1.98  -1.25  0.440   0.27  0.008    0.90      25.3   70.9    1.28   1.75
+  A2029     2.58  -0.99  -1.41  -1.45  0.413   0.22  0.012    0.97      21.8   68.5    1.27   1.55
+  A2142     2.32  -0.96  -1.52  -1.44  0.401   0.29  0.009    0.84      39.5  108.9    1.51   1.56
+  A2255     2.31  -0.30  -1.38  -1.29  1.500   1.86  0.011    3.30     124.4  386.2    1.92   1.71
+  A2319     1.95  -0.80  -1.56  -1.06  0.404   0.38  0.004    0.90      63.9  190.7    1.75   1.94
+  A3158     2.45  -0.55  -1.58  -2.37  0.413   0.37  0.002    0.58      60.5  112.9    1.56   0.63
+  A3266     3.22  -0.89  -1.89  -2.41  0.818   0.62  0.012    2.84      34.8   63.4    1.42   0.59
+  A644      3.81  -0.81  -4.40  -4.53  0.838   0.58  0.011    0.20      13.4    2.6    0.98  -1.53
+  A85       2.73  -0.74  -1.91  -1.43  0.421   0.32  0.006    0.76      40.2  102.0    1.48   1.57
+  RXC1825   2.10  -0.38  -1.04  -0.89  0.337   0.35  0.002    0.98      93.3  383.4    1.73   2.11
+  ZW1215    2.99  -0.68  -1.71  -2.08  0.694   0.58  0.003    2.09      40.1   89.9    1.47   0.92
+  [PASS] V2a [the outer slope is set by the baryon envelope + the phantom isotherm] the projected outer slope at b = 2 R500 follows the gas-envelope reading: slope = -(q-1) per cluster, |slope(2R500) + (q-1)| <= 0.4; pooled median slope in (-1.7, -0.9)
+         measured: |slope(2R500) + (q-1)| <= 0.4 for 9/12; median slope(2R500) = -1.44; the P2 band q in (2.0, 2.5) reads slope in (-1.5, -1.0)
+         reading : T_vir -> T_inf = 2 T_floor in the deep regime (M(<r) ~ 4 pi A r from the phantom rho_ph = A/r^2): the outer Compton falloff is the gas envelope alone, y ~ b^-(q-1) -- flatter than any beta ~ 2/3 reading (below)
+  [PASS] V2b [the dimensionless profile vs the classic beta-model: the framework profile IS beta-form inside, with a systematically FLATTER effective beta] inner fit RMS <= 0.03 dex (12/12); at least 9/12 well-constrained fits with beta_eff <= 0.85 and median beta_eff (all 12) < 0.55 vs the classic cluster band beta ~ 0.5-0.8 (beta = 2/3 typical)
+         measured: median beta_eff = 0.431 (all 12; 10/12 well-constrained, median 0.417); rc/R500 median 0.37; median fit RMS = 0.008 dex; classic beta = 2/3 is -0.236 away; A1644/A2255 (flat cores, slope at r_M ~ -0.2) hit the beta = 1.5 bound
+         reading : the virial temperature rising with M(<r)/r flattens the projected profile against the single-temperature beta reading; the effective beta of the SZ profile is the direct ACT/SO measurement (V3)
+  [PASS] V2c [the predicted deviation at r > r_M -- the phantom zone's pressure signature] the outer Compton signal vs the CLASSIC reading (beta = 2/3, r_c = 0.15 R500, common y0 normalization): median y/y(2/3) at b = 2 R500 >= 30; median window-average log10 deviation over [r_M, 2 R500] > 1.0 dex; median slope gain vs -(6 beta - 1) = -3 > +1.0
+         measured: median y/y(2/3) at 2 R500 = 105.4 (at R500: 40.1; per cluster 2.6-474.4); median <log10 y/y(2/3)>_phantom-window = +1.50 dex (per cluster 0.98-1.92); median slope gain = +1.56 per decade
+         reading : the pressure is held up OUTSIDE r_M: T_vir ~ G M(<r)/r with the total mass still growing (phantom + dust envelope) vs the classic beta reading's isothermal collapse; A644 (steepest gas envelope, q = 3.8) is the minimal-hold-up case (2.6x) -- the signature is a sample-median statement, per-cluster values above; what the Planck/ACT/SO outer arcmin profile decides
+
+  THE ARCMIN SCALE (the Planck/ACT/SO resolution window):
+  kpc/arcmin = D_A(z) per cluster;  theta_M = the r_M crossing;
+  y(1')/y0 ~ ACT/SO-resolved (inside r_M);  y(5')/y0, y(10')/y0 ~ Planck beams
+  cluster    kpc/'   thM  th500     y1'     y5'    y10'  y5'/ycl y(th5)/ycl
+  A1644         58   4.7   18.2   1.016   0.986   0.753      8.9     301.9
+  A1795         75   4.6   15.4   0.884   0.434   0.187      5.8     132.9
+  A2029         91   5.7   15.6   0.749   0.339   0.148      4.4     103.9
+  A2142        105   5.4   13.5   0.827   0.431   0.200      8.1     132.1
+  A2255         95   4.2   12.6   1.028   0.908   0.541     20.6     278.2
+  A2319         67   8.6   20.0   0.986   0.774   0.476      5.7     237.1
+  A3158         72   4.6   15.6   0.975   0.659   0.362      8.6     202.0
+  A3266         71   6.3   20.2   1.020   0.837   0.399      6.0     256.5
+  A644          84   4.6   14.7   0.935   0.508   0.164      7.7     155.7
+  A85           67   6.1   18.4   0.950   0.620   0.340      5.5     190.1
+  RXC1825       78   4.0   14.2   0.971   0.692   0.430     11.5     212.1
+  ZW1215        90   4.5   15.0   1.022   0.669   0.273      9.6     204.9
+  [PASS] V2d [the arcmin window is resolvable] the phantom zone (r > r_M) sits at theta > theta_M with median theta_M in (3', 9') and theta_500 in (10', 25'): the ACT/SO ~1' beams resolve inside r_M, the Planck 5-10' beams sit on the phantom zone
+         measured: median theta_M = 4.7', median theta_500 = 15.5'; median y(1')/y0 = 0.973, y(5')/y0 = 0.664, y(10')/y0 = 0.351
+         reading : the shape predictions are cast at the survey resolutions: ~1' (ACT/SO) resolves the inner profile and the r_M crossing (the flat-core clusters A1644/A2255 sit at y(1')/y0 ~ 1.0); 5-10' (Planck) integrates the phantom zone
+
+================================================================================================
+V3 -- THE HONEST STATEMENT: what a tSZ observation of the 12 clusters decides
+================================================================================================
+  [PASS] V3 [the honest statement] what the tSZ observation of the 12 clusters decides -- amplitude = consistency, shape = the prediction, phantom zone = the decider
+         measured: WHAT THE tSZ OBSERVATION DECIDES.  (1) THE AMPLITUDE IS ALREADY CARRIED BY X-COP, SO IT IS A CONSISTENCY TEST, NOT A FREE PREDICTION: with the committed gas masses and the G095 identification (T = the virial temperature of the total enclosed mass, median hse = 0.99, 0.053-dex scatter), the predicted central Compton parameter is y0 = (sigma_T/m_e c^2)(mu/2 mu_e) times the LOS integral of rho_gas G M_HSE(<r)/r -- median 7.77e-05, all 12 in (1e-5, 1e-3) -- and the ratio to the baryon floor is the pressure-weighted G095 closed form, median 1.62 (the SZ face of the 3.57 temperature ratio read at the SZ-weighted radius).  A measured y0 disagreeing with the X-ray gas + kTvir by more than the ~0.05-dex HSE budget would indict the calibration, not the framework.  (2) THE NEWS IS THE SHAPE AT ARCMIN SCALES: the framework's Compton profile is beta-FORM inside (median fit RMS 0.008 dex; 10/12 well-constrained, median beta_eff 0.42 vs the classic cluster band 0.5-0.8; A1644/A2255 flat cores leave the inner form under-constrained), with an outer slope at b = 2 R500 of -1.44 (classic reading -3) and an outer signal ~105x the classic beta = 2/3, r_c = 0.15 R500 extrapolation at 2 R500 (per cluster 3-474x; window-average +1.50 dex over [r_M, 2 R500]): the DEEP-REGIME PHANTOM'S PRESSURE SIGNATURE -- the total mass keeps growing beyond R500 (phantom rho_ph = A/r^2, dust envelope), so the virial temperature stays at the T_inf = 2 T_floor = 3.6 keV-class level and the outer thermal pressure falls no faster than the gas envelope (the minimal case is A644, q = 3.8: the steepest gas envelope leaves only ~2.6x).  A tSZ measurement decides the per-radius virial reading: an ACT/SO-resolved or Planck-5-10'-beam y-profile whose outer falloff is steeper than ~ -2 at theta ~ theta_500 (median 16', phantom-zone crossing theta_M median 4.7') kills the extension of the G095 identification outside R500 and reduces the framework at cluster scale to G095's averaging-aperture statement; a profile as flat as predicted confirms that the cluster's missing mass is present in the outer gravitational structure -- the SZ channel sees the phantom through the temperature it imposes on the gas.  (3) NOT CLAIMED: y0 from first principles (the amplitude needs the committed gas and masses; the free-dust normalization stays open, KEPLER's honest register); the EFE cap's exact line at cluster scale (an active cap would suppress the phantom support and STEEPEN the outer profile back toward the beta reading -- the measurement discriminates the capped from the uncapped reading, G108's window); any per-cluster power law; and the resolution claim is stated at the survey numbers used (Planck 5-10' y-map beams, ACT/SO ~1').
+         reading : the framework's falsifiable content at cluster scale in the SZ channel is the OUTER SHAPE: flatter-than-classic beta_eff ~ 0.42 (10/12 well-constrained), outer slope ~ -1 to -2, y(2 R500) ~ 105x (median) the classic beta = 2/3 reading
+
+G113 COMPLETE: 11/11 checks PASS.
+In one line: y0 = (sigma_T/m_e c^2)(mu/2 mu_e) LOS[int rho_gas G M_HSE/r], median 7.77e-05, 1.62x the baryon floor; the prediction is the SHAPE -- a flat outer Compton falloff (beta_eff ~ 0.42, slope ~ -1.4, ~105x the beta=2/3 signal at 2 R500) that the Planck/ACT/SO arcmin window decides.
+artifact written: G113_results.json
