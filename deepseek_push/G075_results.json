@@ -1,0 +1,331 @@
+{
+ "lane": "G075_cluster_triad",
+ "title": "CLUSTERS UNDER THE TRIAD -- the temperature law at the top of the mass function",
+ "law": "sigma_pred = (G M_b a0)^(1/4)/sqrt(2);  T_X,pred = mu m_p sigma^2/(2 k_B), mu = 0.6",
+ "reference_row_Mb_5e13": {
+  "sigma_pred_km_s": {
+   "canonical": 627.8,
+   "alt": 657.7
+  },
+  "T_pred_keV": {
+   "canonical": 1.234,
+   "alt": 1.355
+  },
+  "rM_kpc": 272.9,
+  "brief_slip_note": "brief quoted 320-400 km/s (that needs M_b ~ (0.4-1.1)e13) and r_M ~ 9 kpc (that is M_b ~ 5e10) at 5e13; honest values computed in-file, verdicts use them only"
+ },
+ "data_notes": {
+  "baryons": "committed X-COP ingests, G050/G057 loader identical file set, real_research/data/xcop/ (Eckert+19/Ettori+19/Ghirardini+19 FITS) + committed xcop_r500_ettori2019.json (Ettori+19 A&A 621 A39)",
+  "T_obs_source": "Eckert+2017 arXiv:1611.05051 Table 1, kTvir (X-COP master table); EXTERNAL-SOURCED this run by direct PDF read; ISDC master-table FITS unreachable 2026-09-15 (http+https+curl+browser)",
+  "n_clusters": 12,
+  "imported_star_clusters": [
+   "A1644",
+   "A2255",
+   "A3158",
+   "A3266",
+   "RXC1825"
+  ]
+ },
+ "checks": [
+  {
+   "name": "V0a [gate: the committed ingest reproduces G050's registered rows] median M_gas/M_NFW at 420 kpc over the 12 clusters, read off the committed FITS this run (the registered target: X-COP f_b(420) = 0.127 +/- 0.02, G008/G050)",
+   "measured": "median f_gas(420 kpc) = 0.163, n = 12 (range 0.101-0.219)",
+   "pass": false,
+   "reading": "the same files, same interpolation, same band as G050/G057 -- this row reproduces their registered V0 digit-for-digit (0.163, range 0.101-0.219; both prior lanes FAIL it too): the committed ingest is the same one; the +0.036 offset vs the published 0.127 is the registered on-disk quirk of these rows"
+  },
+  {
+   "name": "V0b [gate: the Eckert+17 temperature table covers all 12 committed clusters] kTvir from Eckert et al. 2017 (arXiv:1611.05051) Table 1 -- the X-COP master table, per cluster",
+   "measured": "12/12 matched; sample median kTvir = 6.17 keV; (not matched on disk: HydraA, incl. HydraA 3.45 keV)",
+   "pass": true,
+   "reading": "EXTERNAL-SOURCED column, precisely cited: fetched by direct read of the arXiv PDF text this run; the ISDC-hosted XCOP_master_table.fits copy was unreachable (dead host, verified 2026-09-15, http+https+curl+browser timeouts) -- any re-run should prefer the FITS copy"
+  },
+  {
+   "name": "V1a [the prediction at 5e13, honestly computed] sigma_pred = (G M_b a0)^(1/4)/sqrt(2) and T_X,pred = mu m_p sigma^2/(2 k_B) at M_b = 5e13 M_sun, both footings",
+   "measured": "sigma = 628 km/s (canonical) / 658 km/s (alt); T = 1.23 keV / 1.35 keV; r_M = 273 kpc; the brief's 320-400 km/s would need M_b ~ (0.4-1.1)e13 M_sun under the same formula (arithmetic slip in the brief, corrected here; see also the r_M discrepancy: r_M = 273 kpc at 5e13, not 9 kpc; 9 kpc is M_b ~ 5e10 M_sun)",
+   "pass": true,
+   "reading": "the verdicts below use only the computed values (628-658 km/s at 5e13)"
+  },
+  {
+   "name": "V1b [sample median prediction] T_X,pred at the per-cluster M_b(R500), canonical footing, with the observed median beside it",
+   "measured": "median M_b(R500) = 1.08e+14 M_sun; median T_X,pred = 1.82 keV (range 1.24-2.62); median T_X,obs = 6.17 keV",
+   "pass": true,
+   "reading": "the registered numbers (G008's 809 km/s at M_b ~ 1.4e14, i.e. ~2.05 keV on this convention, is the same formula at the top end of this mass span)"
+  },
+  {
+   "name": "V2 [sigma_pred vs the measured dynamical sigma] median ratio + scatter against both conventions of the HSE-derived sigma (M500,R500 from the committed Ettori+19 JSON)",
+   "measured": "3D: median 0.53 (scatter 0.02 dex); SIS-1D: median 0.75",
+   "pass": true,
+   "reading": "the brief sets no band for sigma; reported as measured; sigma_pred ~ 0.5-0.7 of the SIS-1D dynamical sigma is coherent with the T ratio below (T ~ sigma^2)"
+  },
+  {
+   "name": "V3a [canonical: T_X,pred vs T_X,obs median ratio within a factor 1.5 -- the V2 verdict] median ratio in [0.667, 1.5]",
+   "measured": "median ratio = 0.280 (observed T = 3.6x the predicted triad temperature); log10 scatter = 0.05 dex; per-cluster range 0.21-0.31; predicted median 1.82 keV vs observed median 6.17 keV",
+   "pass": false,
+   "reading": ""
+  },
+  {
+   "name": "V3b [alt footing: same verdict under a0 = 1.1279e-10] median ratio in [0.667, 1.5]",
+   "measured": "median ratio = 0.307 (observed T = 3.3x the predicted temperature); log10 scatter = 0.05 dex",
+   "pass": false,
+   "reading": ""
+  },
+  {
+   "name": "V4a [the uncapped linear law at r_500 -- the striking intermediate] M_dark/M_b = r_500/r_M taken literally (no EFE) vs the observed dark fraction, within a factor 2",
+   "measured": "median prediction 3.2x vs observed 4.7x: ratio 0.68 (inside the 0.5-2 window -- because r_M ~ 300-400 kpc makes r_500/r_M ~ 3.5-5.5, NOT the brief's 100+, which rested on r_M ~ 9 kpc, a galaxy-scale value at M_b ~ 5e10)",
+   "pass": true,
+   "reading": "the law's harmonic content at cluster outskirts is real and would almost closes at r_500 IF the cap were off -- but the two-regime map REQUIRES the cap (and beyond r_500 the uncapped law is unbounded: the brief's divergence worry is the correct worry, it lives at 2-4 Mpc)"
+  },
+  {
+   "name": "V4b [canonical: THE EFE-CAPPED law vs the observed dark fraction at r_500 within a factor 2 -- V1] M_dark/M_b capped at a0/g_ext with g_ext ~ a0 (the task's cap line) and at a0/cH0 = 0.145 (the registered Hubble-kernel footing); the observed target from the committed ingests: median 4.7x (2.2-5.9x), the certified 420-kpc residual 6.88x as the register's other anchor; median over the 12 clusters",
+   "measured": "cap-a0: median 1.00x vs observed 4.7x (ratio 0.21); cap-cH0: 0.143x vs 4.7x (ratio 0.031)",
+   "pass": false,
+   "reading": ""
+  },
+  {
+   "name": "V4c [alt footing, cap line g_ext ~ a0] the same V1 verdict under a0 = 1.1279e-10",
+   "measured": "median capped ratio pred/obs = 0.21",
+   "pass": false,
+   "reading": ""
+  },
+  {
+   "name": "V5 [the honest statement] the triad extends to the FORMULA at cluster scale but not to the amplitude with the cap; the cluster normalization stays an input",
+   "measured": "THE TRIAD DOES NOT EXTEND TO CLUSTERS WITH THE CAP, AND THE CLUSTER NORMALIZATION STAYS AN INPUT.  G075's numbers: (V1) the EFE-capped law caps M_dark/M_b at 1x (cap line g_ext ~ a0) or 0.145x (Hubble kernel cH0) against the observed (M500 - M_b)/M_b median 4.7x at r_500 (2.2-5.9x; the certified 420-kpc residual is 6.88x, G012/G050) -- the outskirts dark fraction is NOT delivered within a factor 2 on any footing (the uncapped linear law alone would sit at pred/obs 0.68: the honest content is that the law's own regime at r > r_M is real, the EFE cut required by the two-regime map is what leaves the amplitude to the registered free dust); (V2) T_X,pred/T_X,obs median ratio 0.280 (canonical) / 0.307 (alt): the X-COP ICM is 3.6x hotter than the triad floor at the same baryon mass -- outside the factor-1.5 band, and the temperature and sigma failures are exactly ONE number: T_pred/T_obs = (sigma_pred/sigma_dyn,3D)^2 = 0.53^2 = 0.28 (G008's registered 809 km/s, 2.05 keV on this convention at M_b ~ 1.4e14, is the same law and the register already carried this failure at the top end, G075 makes it per cluster).  Positive side, equally honest: the dSph floor (G03G V3, 7 dwarfs, median 0.00 dex) and the cluster floor are the SAME formula: 9.2 km/s at 2.3e6 M_sun and ~630 km/s at 5e13 M_sun; the cluster gap is the regime boundary (g_N > a0 in the core, G016/H012 A1), not a scaling failure of the formula.  The data side agrees with the same fact: Eckert+2022 A&A 662 A123 measure the cluster g_obs-g_bar relation departing strongly from the spiral-galaxy RAR.  VERDICT V3: the triad project onto clusters is its own falsifier; the cluster normalization (G017 LCDM-shaped free dust, G050/G057 split) stays an input -- now with the number pinned: a 3.6x T-shortfall (median, canonical 0.28 / alt 0.31), per cluster.",
+   "pass": true,
+   "reading": "V1 FAIL (canonical and alt), V2 FAIL (canonical and alt); the lane's finding is the previously-unregistered NUMBER of the cluster-scale temperature shortfall (3.6x median canonical / 3.3x alt, per cluster)"
+  }
+ ],
+ "n_pass": 6,
+ "n_fail": 5,
+ "per_cluster": [
+  {
+   "cluster": "A1644",
+   "R500_kpc": 1054.0,
+   "M500_Msun": 348000000000000.0,
+   "Mb_R500_Msun": 50204614959854.97,
+   "Mb_420_Msun": 9432370191935.287,
+   "stars_imported": true,
+   "sigma_pred_canonical_km_s": 628.4453444021578,
+   "sigma_pred_alt_km_s": 658.3994217864121,
+   "vflat_canonical_km_s": 888.7559292637623,
+   "T_pred_canonical_keV": 1.2369258518132766,
+   "T_pred_alt_keV": 1.3576490543357684,
+   "sigma_dyn_3d_km_s": 1191.774873660272,
+   "sigma_dyn_sis1d_km_s": 842.7120948129194,
+   "rM_kpc": 273.4188391886037,
+   "kT_obs_keV": 5.09
+  },
+  {
+   "cluster": "A1795",
+   "R500_kpc": 1153.0,
+   "M500_Msun": 463000000000000.0,
+   "Mb_R500_Msun": 78592774181046.0,
+   "Mb_420_Msun": 22808141391581.465,
+   "stars_imported": false,
+   "sigma_pred_canonical_km_s": 702.9545686170663,
+   "sigma_pred_alt_km_s": 736.4600368865491,
+   "vflat_canonical_km_s": 994.1278846703838,
+   "T_pred_canonical_keV": 1.5476158021404467,
+   "T_pred_alt_keV": 1.6986621527643915,
+   "sigma_dyn_3d_km_s": 1314.3188912179414,
+   "sigma_dyn_sis1d_km_s": 929.3638006217907,
+   "rM_kpc": 342.0959433509019,
+   "kT_obs_keV": 6.08
+  },
+  {
+   "cluster": "A2029",
+   "R500_kpc": 1423.0,
+   "M500_Msun": 882000000000000.0,
+   "Mb_R500_Msun": 182208422058652.56,
+   "Mb_420_Msun": 43392649540181.5,
+   "stars_imported": false,
+   "sigma_pred_canonical_km_s": 867.4085824402869,
+   "sigma_pred_alt_km_s": 908.7525497934063,
+   "vflat_canonical_km_s": 1226.7009814058747,
+   "T_pred_canonical_keV": 2.356438282469322,
+   "T_pred_alt_keV": 2.586425209809605,
+   "sigma_dyn_3d_km_s": 1632.889328907354,
+   "sigma_dyn_sis1d_km_s": 1154.627117397541,
+   "rM_kpc": 520.8837852874065,
+   "kT_obs_keV": 8.26
+  },
+  {
+   "cluster": "A2142",
+   "R500_kpc": 1424.0,
+   "M500_Msun": 894999999999999.9,
+   "Mb_R500_Msun": 216596896379617.66,
+   "Mb_420_Msun": 44502715291529.79,
+   "stars_imported": false,
+   "sigma_pred_canonical_km_s": 905.7214651867729,
+   "sigma_pred_alt_km_s": 948.8915691559472,
+   "vflat_canonical_km_s": 1280.8835797995653,
+   "T_pred_canonical_keV": 2.5692002803555347,
+   "T_pred_alt_keV": 2.81995264785721,
+   "sigma_dyn_3d_km_s": 1644.3014182157897,
+   "sigma_dyn_sis1d_km_s": 1162.6966831350421,
+   "rM_kpc": 567.9142021876737,
+   "kT_obs_keV": 8.4
+  },
+  {
+   "cluster": "A2255",
+   "R500_kpc": 1196.0,
+   "M500_Msun": 526000000000000.0,
+   "Mb_R500_Msun": 106385985603667.52,
+   "Mb_420_Msun": 18015891270572.863,
+   "stars_imported": true,
+   "sigma_pred_canonical_km_s": 758.2330462655691,
+   "sigma_pred_alt_km_s": 794.3732954462577,
+   "vflat_canonical_km_s": 1072.3034574682342,
+   "T_pred_canonical_keV": 1.800586778233355,
+   "T_pred_alt_keV": 1.9763229405662293,
+   "sigma_dyn_3d_km_s": 1375.4733827115942,
+   "sigma_dyn_sis1d_km_s": 972.6065562569676,
+   "rM_kpc": 398.0144371962165,
+   "kT_obs_keV": 5.81
+  },
+  {
+   "cluster": "A2319",
+   "R500_kpc": 1346.0,
+   "M500_Msun": 731000000000000.0,
+   "Mb_R500_Msun": 226033885898160.97,
+   "Mb_420_Msun": 38955906361548.86,
+   "stars_imported": false,
+   "sigma_pred_canonical_km_s": 915.4296841413163,
+   "sigma_pred_alt_km_s": 959.0625184726739,
+   "vflat_canonical_km_s": 1294.6130747115683,
+   "T_pred_canonical_keV": 2.6245727883774834,
+   "T_pred_alt_keV": 2.8807294786122566,
+   "sigma_dyn_3d_km_s": 1528.4845981691844,
+   "sigma_dyn_sis1d_km_s": 1080.8018243046256,
+   "rM_kpc": 580.1541330162908,
+   "kT_obs_keV": 9.6
+  },
+  {
+   "cluster": "A3158",
+   "R500_kpc": 1123.0,
+   "M500_Msun": 426000000000000.0,
+   "Mb_R500_Msun": 74252040787956.89,
+   "Mb_420_Msun": 18596876098832.625,
+   "stars_imported": true,
+   "sigma_pred_canonical_km_s": 693.0406388984978,
+   "sigma_pred_alt_km_s": 726.0735718542619,
+   "vflat_canonical_km_s": 980.1074708059704,
+   "T_pred_canonical_keV": 1.5042708624532661,
+   "T_pred_alt_keV": 1.6510867736175543,
+   "sigma_dyn_3d_km_s": 1277.4379964584111,
+   "sigma_dyn_sis1d_km_s": 903.2850698410995,
+   "rM_kpc": 332.5146712992301,
+   "kT_obs_keV": 4.99
+  },
+  {
+   "cluster": "A3266",
+   "R500_kpc": 1430.0,
+   "M500_Msun": 880000000000000.1,
+   "Mb_R500_Msun": 134973165687275.53,
+   "Mb_420_Msun": 31114070860952.37,
+   "stars_imported": true,
+   "sigma_pred_canonical_km_s": 804.7175290835468,
+   "sigma_pred_alt_km_s": 843.0734041860429,
+   "vflat_canonical_km_s": 1138.0424435093175,
+   "T_pred_canonical_keV": 2.0281289442667276,
+   "T_pred_alt_keV": 2.226073082083487,
+   "sigma_dyn_3d_km_s": 1627.039983955669,
+   "sigma_dyn_sis1d_km_s": 1150.4910059167048,
+   "rM_kpc": 448.31196700538163,
+   "kT_obs_keV": 9.45
+  },
+  {
+   "cluster": "A644",
+   "R500_kpc": 1230.0,
+   "M500_Msun": 566000000000000.0,
+   "Mb_R500_Msun": 101225369590583.84,
+   "Mb_420_Msun": 26545366783745.746,
+   "stars_imported": false,
+   "sigma_pred_canonical_km_s": 748.8657115078842,
+   "sigma_pred_alt_km_s": 784.5594781539892,
+   "vflat_canonical_km_s": 1059.0560456106273,
+   "T_pred_canonical_keV": 1.756372107774889,
+   "T_pred_alt_keV": 1.927792945459647,
+   "sigma_dyn_3d_km_s": 1406.9561696450749,
+   "sigma_dyn_sis1d_km_s": 994.868248388283,
+   "rM_kpc": 388.2409137031643,
+   "kT_obs_keV": 7.7
+  },
+  {
+   "cluster": "A85",
+   "R500_kpc": 1235.0,
+   "M500_Msun": 565000000000000.0,
+   "Mb_R500_Msun": 110889145002161.86,
+   "Mb_420_Msun": 26260061335614.344,
+   "stars_imported": false,
+   "sigma_pred_canonical_km_s": 766.132457604641,
+   "sigma_pred_alt_km_s": 802.6492225486307,
+   "vflat_canonical_km_s": 1083.4749121187135,
+   "T_pred_canonical_keV": 1.8382998998041675,
+   "T_pred_alt_keV": 2.0177168396116776,
+   "sigma_dyn_3d_km_s": 1402.8642677364032,
+   "sigma_dyn_sis1d_km_s": 991.9748368007112,
+   "rM_kpc": 406.35081233701743,
+   "kT_obs_keV": 6.0
+  },
+  {
+   "cluster": "RXC1825",
+   "R500_kpc": 1105.0,
+   "M500_Msun": 408000000000000.0,
+   "Mb_R500_Msun": 65235648597350.6,
+   "Mb_420_Msun": 13996390987855.305,
+   "stars_imported": true,
+   "sigma_pred_canonical_km_s": 670.969608486496,
+   "sigma_pred_alt_km_s": 702.9505528185872,
+   "vflat_canonical_km_s": 948.8943202617684,
+   "T_pred_canonical_keV": 1.40998449978309,
+   "T_pred_alt_keV": 1.5475981199296462,
+   "sigma_dyn_3d_km_s": 1260.2997522947776,
+   "sigma_dyn_sis1d_km_s": 891.1665011753635,
+   "rM_kpc": 311.67294679747147,
+   "kT_obs_keV": 5.13
+  },
+  {
+   "cluster": "ZW1215",
+   "R500_kpc": 1358.0,
+   "M500_Msun": 766000000000000.0,
+   "Mb_R500_Msun": 110221764768726.95,
+   "Mb_420_Msun": 26601453235720.605,
+   "stars_imported": false,
+   "sigma_pred_canonical_km_s": 764.9771152763047,
+   "sigma_pred_alt_km_s": 801.4388122437131,
+   "vflat_canonical_km_s": 1081.8410113287969,
+   "T_pred_canonical_keV": 1.8327596978445342,
+   "T_pred_alt_keV": 2.011635917347583,
+   "sigma_dyn_3d_km_s": 1557.7200439132087,
+   "sigma_dyn_sis1d_km_s": 1101.4744062412365,
+   "rM_kpc": 405.1261669094417,
+   "kT_obs_keV": 6.27
+  }
+ ],
+ "verdicts": {
+  "V1_outskirts_dark_fraction_r500": {
+   "observed_median_x": 4.664349853750087,
+   "uncapped_linear_law_x": 3.1789395264028326,
+   "capped_gext_a0_x": 1.0,
+   "capped_cH0_x": 0.1429736444361873,
+   "pred_over_obs": {
+    "uncapped": 0.6815396842170832,
+    "capped_a0": 0.2143921513940492,
+    "capped_cH0": 0.030652427223322027
+   },
+   "pass_factor2": false,
+   "statement": "FAIL on every footing; uncapped linear law alone within 2x (r_500/r_M ~ 4, not the brief's 100+); the required EFE cap is what removes the cluster amplitude"
+  },
+  "V2_T_pred_over_obs": {
+   "median_ratio_canonical": 0.2800669323647625,
+   "median_ratio_alt": 0.3074012927438907,
+   "log10_scatter_canonical": 0.05128493743481383,
+   "log10_scatter_alt": 0.051284937434813854,
+   "observed_shortfall_x": 3.570575046316386,
+   "pass_factor1.5": false,
+   "predicted_median_T_keV": 1.8166732380389445,
+   "observed_median_T_keV": 6.175
+  },
+  "V3_honest_statement": "THE TRIAD DOES NOT EXTEND TO CLUSTERS WITH THE CAP, AND THE CLUSTER NORMALIZATION STAYS AN INPUT.  G075's numbers: (V1) the EFE-capped law caps M_dark/M_b at 1x (cap line g_ext ~ a0) or 0.145x (Hubble kernel cH0) against the observed (M500 - M_b)/M_b median 4.7x at r_500 (2.2-5.9x; the certified 420-kpc residual is 6.88x, G012/G050) -- the outskirts dark fraction is NOT delivered within a factor 2 on any footing (the uncapped linear law alone would sit at pred/obs 0.68: the honest content is that the law's own regime at r > r_M is real, the EFE cut required by the two-regime map is what leaves the amplitude to the registered free dust); (V2) T_X,pred/T_X,obs median ratio 0.280 (canonical) / 0.307 (alt): the X-COP ICM is 3.6x hotter than the triad floor at the same baryon mass -- outside the factor-1.5 band, and the temperature and sigma failures are exactly ONE number: T_pred/T_obs = (sigma_pred/sigma_dyn,3D)^2 = 0.53^2 = 0.28 (G008's registered 809 km/s, 2.05 keV on this convention at M_b ~ 1.4e14, is the same law and the register already carried this failure at the top end, G075 makes it per cluster).  Positive side, equally honest: the dSph floor (G03G V3, 7 dwarfs, median 0.00 dex) and the cluster floor are the SAME formula: 9.2 km/s at 2.3e6 M_sun and ~630 km/s at 5e13 M_sun; the cluster gap is the regime boundary (g_N > a0 in the core, G016/H012 A1), not a scaling failure of the formula.  The data side agrees with the same fact: Eckert+2022 A&A 662 A123 measure the cluster g_obs-g_bar relation departing strongly from the spiral-galaxy RAR.  VERDICT V3: the triad project onto clusters is its own falsifier; the cluster normalization (G017 LCDM-shaped free dust, G050/G057 split) stays an input -- now with the number pinned: a 3.6x T-shortfall (median, canonical 0.28 / alt 0.31), per cluster."
+ }
+}

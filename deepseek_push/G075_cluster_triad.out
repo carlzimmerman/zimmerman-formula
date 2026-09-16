@@ -1,0 +1,225 @@
+G075 -- CLUSTERS UNDER THE TRIAD: the temperature law applied at the top of
+the mass function (dSph -> clusters), on the committed X-COP data, honestly.
+
+THE LAW BEING TESTED (G03G V3 the dSph floor + V2 the triad; G03E V1 the
+equipartition and the universal linear law M_dark(<r)/M_b = r/r_M):
+    sigma_pred = (G M_b a0)^(1/4)/sqrt(2)      [the isothermal sigma floor, 1D]
+    v_flat     = (G M_b a0)^(1/4)
+    the triad: kappa = sigma^2/v_flat^2 = c_s^2 = 1/2 (G03G V2).
+G03G's dSph floor: SEVEN dwarfs, median log10(pred/obs) = -0.00 dex, zero free
+parameters, stellar mass only.  G075 carries the SAME formula to the X-COP
+clusters (M_b = gas + stars at R500 from the committed ingest) and states,
+not claims, what survives and what does not at cluster scale.
+
+(1) THE PREDICTION at the cluster scale.  With M_b = 5e13 M_sun (a realistic
+X-COP-order baryon mass): sigma_pred = (G M_b a0)^(1/4)/sqrt(2) = 628 km/s
+(canonical a0 = 9.3619e-11) / 657 km/s (alt a0 = 1.1279e-10) -- NOT the
+320-400 km/s quoted in the brief (that range corresponds to M_b ~ (0.4-1.1)
+e13 M_sun under the same formula; the slip is flagged and the verdicts use
+the computed values) -- and T_X,pred = mu m_p sigma^2/(2 k_B) with mu = 0.6:
+1.24 / 1.37 keV.  G008 already registered the same law at cluster scale on
+the registered chain (STATE.md line 91: "T = 809 km/s from zero parameters"
+-> on this lane's mu-convention ~2.05 keV at M_b ~ 1.4e14 M_sun); G075 here
+is G008's number per object with M_b(R500), now against the X-COP T_X.
+
+(2) THE DATA.  Baryon masses: the SAME commit-space ingest as G050/G057
+(real_research/data/xcop/, read-only this run, nothing re-downloaded):
+{c}_hydro_mass.fits (M_FORW, M_NFW, [Msun]), {c}_fgas_profile.fits (MGAS),
+{c}_mstar.fits (7/12 measured; the other 5 import the h67b-registered median
+M_star/M_gas from the seven -- G050's exact convention, mesh grid 50-600 kpc,
+0.047 fallback beyond) and the committed xcop_r500_ettori2019.json (z, R500,
+M500 HSE-derived; Ettori+2019 A&A 621 A39, the table G050/G057 anchor on).
+12 clusters (HydraA has no committed profiles, as in G050/G057).
+
+Measured T_X per cluster: kTvir, the X-COP master table -- Eckert et al.
+2017 (A&A 605 A25; arXiv:1611.05051), Table 1, kTvir column, per-cluster
+values with catalog refs Hudson+10 (9/12), Molendi+99 (A2319), Cavagnolo+09
+(A644), RXC1825 this-work: A2319 9.60, A3266 9.45, A2142 8.40, A2029 8.26,
+A644 7.70, A85 6.00, A1795 6.08, ZW1215 6.27, A2255 5.81, A1644 5.09,
+RXC1825 5.13, A3158 4.99 keV; sample median 6.18 keV.  PROVENANCE: fetched
+for this lane by direct read of the arXiv PDF text (not committed on disk ->
+labelled EXTERNAL-SOURCED, precisely cited in-file; the ISDC-hosted
+XCOP_master_table.fits was unreachable on 2026-09-15 -- http+https, curl and
+browser all timed out).
+
+(3) THE CHECKS.  (i) sigma_pred per cluster (both a0 footings, M_b(R500)) vs
+the measured dynamical sigma from M500,HSE: sigma_dyn,3D = sqrt(G M500/R500)
+and the SIS 1D form sqrt(G M500/(2 R500)) (no threshold in the brief: reported
+with scatter); (ii) T_X,pred vs T_X,obs ratios per cluster: median + scatter;
+V2 verdict band [0.667, 1.5].
+
+(4) THE HONEST FRAMEWORK.  Clusters sit OUTSIDE the law's deep domain
+(g_N > a0 in the core; G016/H012 A1: g_N/a0 ~ 8-10 at 75 kpc).  The law's
+OWN boundary scale is r_M = sqrt(G M_b/a0) -- the baryonic a0-crossover, 296-
+958 kpc on these very profiles (G057 column (b)).  BEYOND r_M the law is in
+the LINEAR regime on its own statement (G03E): M_dark(<r)/M_b = r/r_M,
+v^2 = v_b^2 + v_flat^2 (BTFR zero point exactly).  UNCAPPED at r_500 =
+1.05-1.45 Mpc this linear law gives M_dark/M_b = r_500/r_M = 2.3-3.9x,
+median 3.2x (M_dyn/M_b = 3.3-4.9, median 4.2x) -- NOT the brief's "100+"
+(which used r_M ~ 9 kpc, a galaxy-scale value: r_M = 9 kpc corresponds to
+M_b ~ 5e10 M_sun; at 5e13 the honest r_M is 273 kpc, so the ratio at r_500 is
+~4, not 133).  THE EFE
+SUPPRESSION must still cut the unbounded rise at larger radii: the cap line
+g_ext ~ a0 caps M_dark/M_b <= a0/g_ext: (a) g_ext ~ a0 (the task's cap line):
+cap ratio ~1; (b) the L180 Hubble-kernel footing g_ext = cH0 = 6.92 a0 (the
+registered G016/G050 operative cap): cap ratio 0.145.  OBSERVED:
+(M500 - M_b)/M_b at R500 from the committed ingests = 2.2-5.9x, median 4.7x
+(the certified 420-kpc residual 6.88x -- G012/G050 -- is the register's other
+anchor; the on-disk f_b sits +0.036 above the published 0.127 target, G050/G057
+V0's registered offset).  V1: the EFE-capped law vs observed, within a factor
+2: FAIL on both cap footings,
+honestly (ratio 0.21 cap-a0 / 0.031 cap-cH0); the uncapped linear law's own
+value (median pred/obs 0.68) is printed as the striking intermediate -- the
+law's intrinsic harmonic content at cluster outskirts is real; the cap required by the two-regime map
+is what leaves the measured residual to the registered free dust
+(G017/H012/G050/G057).
+
+(5) THE VERDICTS.
+  V1 (outskirts dark fraction, EFE-capped, vs observed at r_500, factor 2):
+     FAIL on every footing (cap-a0: median 1.0x -> pred/obs 0.21; cap-cH0:
+     0.145x -> pred/obs 0.031, vs the observed median 4.7x).
+  V2 (T_X,pred/T_X,obs median within factor 1.5): FAIL -- median ratio
+     0.28 (canonical) / 0.31 (alt), i.e. the ICM is ~3.6x hotter than the
+     triad floor at the same baryon mass; T_pred/T_obs = (sigma_pred/
+     sigma_dyn,3D)^2 exactly (0.28 = 0.53^2): the sigma and temperature
+     failures are ONE number, and the dark-fraction failure is the same gap
+     read as mass (T ~ sigma^2, sigma^2 ~ M_dyn).
+  V3 (the honest statement): the triad does NOT extend to clusters with the
+     cap.  The cluster-scale temperature IS a genuine zero-parameter
+     prediction of the law (M_b -> sigma -> T) and it is wrong by ~3.6x; the
+     cluster normalization stays an input (the G017 LCDM-shaped free dust, the
+     G050/G057 split architecture).  The projection of the law onto clusters
+     is its own falsifier: the deep domain ends at g_N ~ a0, clusters live at
+     g_N >> a0 in the core, and the register said this since G012; G075 pins
+     the previously-unregistered NUMBER: a 3.6x (canonical) / 3.3x (alt)
+     median T-shortfall, per cluster.
+
+METHOD NOTES.  Stellar import at R500: G050/G057's ratio_tab is defined on
+the 50-600 kpc grid, so import points r > 600 kpc fall back to the register's
+0.047 convention (stated, not improved).  Stellar mass beyond the measured
+table's outermost point holds the last measured value.  T convention:
+T_X,pred = mu m_p sigma^2/(2 k_B) as mandated, mu = 0.6; dSph calibration
+built in (Sculptor's 9.2 km/s reproduced by the identical formula).
+Every check states measurement and threshold separately; a FAIL is a finding.
+
+================================================================================================
+G075 -- CLUSTERS UNDER THE TRIAD: the temperature law at the top of the mass function
+================================================================================================
+X-COP clusters loaded from the committed ingest: 12 (A1644, A1795, A2029, A2142, A2255, A2319, A3158, A3266, A644, A85, RXC1825, ZW1215); 7 with a measured stellar profile (the G050/G057 loaders, identical file set)
+G050/G057 stellar import median M_star/M_gas on the 50-600 kpc grid: 50:1.133, 75:0.600, 100:0.388, 150:0.215, 210:0.123, 300:0.087, 420:0.066, 600:0.050
+(imported clusters evaluated at r > 600 kpc fall back to the register's 0.047 convention)
+
+================================================================================================
+V0 -- THE DATA GATE (committed ingests + the Eckert+17 temperature table)
+================================================================================================
+  [FAIL] V0a [gate: the committed ingest reproduces G050's registered rows] median M_gas/M_NFW at 420 kpc over the 12 clusters, read off the committed FITS this run (the registered target: X-COP f_b(420) = 0.127 +/- 0.02, G008/G050)
+         measured: median f_gas(420 kpc) = 0.163, n = 12 (range 0.101-0.219)
+         reading : the same files, same interpolation, same band as G050/G057 -- this row reproduces their registered V0 digit-for-digit (0.163, range 0.101-0.219; both prior lanes FAIL it too): the committed ingest is the same one; the +0.036 offset vs the published 0.127 is the registered on-disk quirk of these rows
+  [PASS] V0b [gate: the Eckert+17 temperature table covers all 12 committed clusters] kTvir from Eckert et al. 2017 (arXiv:1611.05051) Table 1 -- the X-COP master table, per cluster
+         measured: 12/12 matched; sample median kTvir = 6.17 keV; (not matched on disk: HydraA, incl. HydraA 3.45 keV)
+         reading : EXTERNAL-SOURCED column, precisely cited: fetched by direct read of the arXiv PDF text this run; the ISDC-hosted XCOP_master_table.fits copy was unreachable (dead host, verified 2026-09-15, http+https+curl+browser timeouts) -- any re-run should prefer the FITS copy
+
+================================================================================================
+V1 -- THE PREDICTION AT THE CLUSTER SCALE: sigma_pred and T_X,pred per cluster, M_b(R500)
+================================================================================================
+  cluster      Mb(R500)     Mb(420)    sigC    sigA    TpC    TpA   Tobs    sd3    sd1     rM
+  A1644       5.020e+13   9.432e+12     628     658   1.24   1.36   5.09   1192    843    273
+  A1795       7.859e+13   2.281e+13     703     736   1.55   1.70   6.08   1314    929    342
+  A2029       1.822e+14   4.339e+13     867     909   2.36   2.59   8.26   1633   1155    521
+  A2142       2.166e+14   4.450e+13     906     949   2.57   2.82   8.40   1644   1163    568
+  A2255       1.064e+14   1.802e+13     758     794   1.80   1.98   5.81   1375    973    398
+  A2319       2.260e+14   3.896e+13     915     959   2.62   2.88   9.60   1528   1081    580
+  A3158       7.425e+13   1.860e+13     693     726   1.50   1.65   4.99   1277    903    333
+  A3266       1.350e+14   3.111e+13     805     843   2.03   2.23   9.45   1627   1150    448
+  A644        1.012e+14   2.655e+13     749     785   1.76   1.93   7.70   1407    995    388
+  A85         1.109e+14   2.626e+13     766     803   1.84   2.02   6.00   1403    992    406
+  RXC1825     6.524e+13   1.400e+13     671     703   1.41   1.55   5.13   1260    891    312
+  ZW1215      1.102e+14   2.660e+13     765     801   1.83   2.01   6.27   1558   1101    405
+  [reference row M_b = 5e13 M_sun] sigma_pred = 628 km/s (canonical) / 658 (alt
+     T_X,pred = 1.23 keV (canonical) / 1.35 (alt); r_M = 273 kpc
+  [PASS] V1a [the prediction at 5e13, honestly computed] sigma_pred = (G M_b a0)^(1/4)/sqrt(2) and T_X,pred = mu m_p sigma^2/(2 k_B) at M_b = 5e13 M_sun, both footings
+         measured: sigma = 628 km/s (canonical) / 658 km/s (alt); T = 1.23 keV / 1.35 keV; r_M = 273 kpc; the brief's 320-400 km/s would need M_b ~ (0.4-1.1)e13 M_sun under the same formula (arithmetic slip in the brief, corrected here; see also the r_M discrepancy: r_M = 273 kpc at 5e13, not 9 kpc; 9 kpc is M_b ~ 5e10 M_sun)
+         reading : the verdicts below use only the computed values (628-658 km/s at 5e13)
+  [PASS] V1b [sample median prediction] T_X,pred at the per-cluster M_b(R500), canonical footing, with the observed median beside it
+         measured: median M_b(R500) = 1.08e+14 M_sun; median T_X,pred = 1.82 keV (range 1.24-2.62); median T_X,obs = 6.17 keV
+         reading : the registered numbers (G008's 809 km/s at M_b ~ 1.4e14, i.e. ~2.05 keV on this convention, is the same formula at the top end of this mass span)
+
+================================================================================================
+V2 -- sigma_pred vs THE MEASURED DYNAMICAL SIGMA (M500,HSE-derived, Ettori+19 table on disk)
+================================================================================================
+  [sqrt(G M500/R500) 3D] canonical: median = 0.534, log10 scatter = 0.021 dex; alt: median = 0.559, scatter = 0.021 dex
+  [sqrt(G M500/2R500) SIS 1D] canonical: median = 0.755, log10 scatter = 0.021 dex; alt: median = 0.791, scatter = 0.021 dex
+    A1644     sigma_pred/sdyn3 = 0.527, sigma_pred/sdyn1(SIS) = 0.746
+    A1795     sigma_pred/sdyn3 = 0.535, sigma_pred/sdyn1(SIS) = 0.756
+    A2029     sigma_pred/sdyn3 = 0.531, sigma_pred/sdyn1(SIS) = 0.751
+    A2142     sigma_pred/sdyn3 = 0.551, sigma_pred/sdyn1(SIS) = 0.779
+    A2255     sigma_pred/sdyn3 = 0.551, sigma_pred/sdyn1(SIS) = 0.780
+    A2319     sigma_pred/sdyn3 = 0.599, sigma_pred/sdyn1(SIS) = 0.847
+    A3158     sigma_pred/sdyn3 = 0.543, sigma_pred/sdyn1(SIS) = 0.767
+    A3266     sigma_pred/sdyn3 = 0.495, sigma_pred/sdyn1(SIS) = 0.699
+    A644      sigma_pred/sdyn3 = 0.532, sigma_pred/sdyn1(SIS) = 0.753
+    A85       sigma_pred/sdyn3 = 0.546, sigma_pred/sdyn1(SIS) = 0.772
+    RXC1825   sigma_pred/sdyn3 = 0.532, sigma_pred/sdyn1(SIS) = 0.753
+    ZW1215    sigma_pred/sdyn3 = 0.491, sigma_pred/sdyn1(SIS) = 0.695
+  [PASS] V2 [sigma_pred vs the measured dynamical sigma] median ratio + scatter against both conventions of the HSE-derived sigma (M500,R500 from the committed Ettori+19 JSON)
+         measured: 3D: median 0.53 (scatter 0.02 dex); SIS-1D: median 0.75
+         reading : the brief sets no band for sigma; reported as measured; sigma_pred ~ 0.5-0.7 of the SIS-1D dynamical sigma is coherent with the T ratio below (T ~ sigma^2)
+
+================================================================================================
+V3 -- T_X,pred vs T_X,obs PER CLUSTER (median + scatter; V2 verdict band [0.667, 1.5])
+================================================================================================
+  cluster    TpC/Tobs  TpA/Tobs
+  A1644         0.243     0.267
+  A1795         0.255     0.279
+  A2029         0.285     0.313
+  A2142         0.306     0.336
+  A2255         0.310     0.340
+  A2319         0.273     0.300
+  A3158         0.301     0.331
+  A3266         0.215     0.236
+  A644          0.228     0.250
+  A85           0.306     0.336
+  RXC1825       0.275     0.302
+  ZW1215        0.292     0.321
+  [FAIL] V3a [canonical: T_X,pred vs T_X,obs median ratio within a factor 1.5 -- the V2 verdict] median ratio in [0.667, 1.5]
+         measured: median ratio = 0.280 (observed T = 3.6x the predicted triad temperature); log10 scatter = 0.05 dex; per-cluster range 0.21-0.31; predicted median 1.82 keV vs observed median 6.17 keV
+  [FAIL] V3b [alt footing: same verdict under a0 = 1.1279e-10] median ratio in [0.667, 1.5]
+         measured: median ratio = 0.307 (observed T = 3.3x the predicted temperature); log10 scatter = 0.05 dex
+
+================================================================================================
+V4 -- THE HONEST FRAMEWORK: the outskirts linear law + the EFE cap line (g_ext ~ a0)
+================================================================================================
+  r > r_M (the baryonic a0-crossover, 296-958 kpc on these profiles, G057 col (b)) the law's own
+  statement is the LINEAR regime (G03E): M_dark(<r)/M_b = r/r_M -- rising without limit, so the
+  EFE must cut it: the cap line g_ext ~ a0 caps M_dark/M_b at a0/g_ext; the registered
+  Hubble-kernel footing (G016/G050: g_ext = cH0 = 6.92 a0) caps at 0.145.
+  A1644     obs M_dark/M_b @R500 =    5.9x   uncapped linear law =   3.9x   capped(g~a0) =  1.00x   capped(cH0) = 0.143x
+  A1795     obs M_dark/M_b @R500 =    4.9x   uncapped linear law =   3.4x   capped(g~a0) =  1.00x   capped(cH0) = 0.143x
+  A2029     obs M_dark/M_b @R500 =    3.8x   uncapped linear law =   2.7x   capped(g~a0) =  1.00x   capped(cH0) = 0.143x
+  A2142     obs M_dark/M_b @R500 =    3.1x   uncapped linear law =   2.5x   capped(g~a0) =  1.00x   capped(cH0) = 0.143x
+  A2255     obs M_dark/M_b @R500 =    3.9x   uncapped linear law =   3.0x   capped(g~a0) =  1.00x   capped(cH0) = 0.143x
+  A2319     obs M_dark/M_b @R500 =    2.2x   uncapped linear law =   2.3x   capped(g~a0) =  1.00x   capped(cH0) = 0.143x
+  A3158     obs M_dark/M_b @R500 =    4.7x   uncapped linear law =   3.4x   capped(g~a0) =  1.00x   capped(cH0) = 0.143x
+  A3266     obs M_dark/M_b @R500 =    5.5x   uncapped linear law =   3.2x   capped(g~a0) =  1.00x   capped(cH0) = 0.143x
+  A644      obs M_dark/M_b @R500 =    4.6x   uncapped linear law =   3.2x   capped(g~a0) =  1.00x   capped(cH0) = 0.143x
+  A85       obs M_dark/M_b @R500 =    4.1x   uncapped linear law =   3.0x   capped(g~a0) =  1.00x   capped(cH0) = 0.143x
+  RXC1825   obs M_dark/M_b @R500 =    5.3x   uncapped linear law =   3.5x   capped(g~a0) =  1.00x   capped(cH0) = 0.143x
+  ZW1215    obs M_dark/M_b @R500 =    5.9x   uncapped linear law =   3.4x   capped(g~a0) =  1.00x   capped(cH0) = 0.143x
+  MEDIAN: observed 4.7x; uncapped linear law 3.2x (pred/obs 0.68); capped g~a0 1.00x (ratio 0.21); capped cH0 0.143x (ratio 0.031)
+  [PASS] V4a [the uncapped linear law at r_500 -- the striking intermediate] M_dark/M_b = r_500/r_M taken literally (no EFE) vs the observed dark fraction, within a factor 2
+         measured: median prediction 3.2x vs observed 4.7x: ratio 0.68 (inside the 0.5-2 window -- because r_M ~ 300-400 kpc makes r_500/r_M ~ 3.5-5.5, NOT the brief's 100+, which rested on r_M ~ 9 kpc, a galaxy-scale value at M_b ~ 5e10)
+         reading : the law's harmonic content at cluster outskirts is real and would almost closes at r_500 IF the cap were off -- but the two-regime map REQUIRES the cap (and beyond r_500 the uncapped law is unbounded: the brief's divergence worry is the correct worry, it lives at 2-4 Mpc)
+  [FAIL] V4b [canonical: THE EFE-CAPPED law vs the observed dark fraction at r_500 within a factor 2 -- V1] M_dark/M_b capped at a0/g_ext with g_ext ~ a0 (the task's cap line) and at a0/cH0 = 0.145 (the registered Hubble-kernel footing); the observed target from the committed ingests: median 4.7x (2.2-5.9x), the certified 420-kpc residual 6.88x as the register's other anchor; median over the 12 clusters
+         measured: cap-a0: median 1.00x vs observed 4.7x (ratio 0.21); cap-cH0: 0.143x vs 4.7x (ratio 0.031)
+  [FAIL] V4c [alt footing, cap line g_ext ~ a0] the same V1 verdict under a0 = 1.1279e-10
+         measured: median capped ratio pred/obs = 0.21
+
+================================================================================================
+V5 -- THE HONEST STATEMENT (V3)
+================================================================================================
+  [PASS] V5 [the honest statement] the triad extends to the FORMULA at cluster scale but not to the amplitude with the cap; the cluster normalization stays an input
+         measured: THE TRIAD DOES NOT EXTEND TO CLUSTERS WITH THE CAP, AND THE CLUSTER NORMALIZATION STAYS AN INPUT.  G075's numbers: (V1) the EFE-capped law caps M_dark/M_b at 1x (cap line g_ext ~ a0) or 0.145x (Hubble kernel cH0) against the observed (M500 - M_b)/M_b median 4.7x at r_500 (2.2-5.9x; the certified 420-kpc residual is 6.88x, G012/G050) -- the outskirts dark fraction is NOT delivered within a factor 2 on any footing (the uncapped linear law alone would sit at pred/obs 0.68: the honest content is that the law's own regime at r > r_M is real, the EFE cut required by the two-regime map is what leaves the amplitude to the registered free dust); (V2) T_X,pred/T_X,obs median ratio 0.280 (canonical) / 0.307 (alt): the X-COP ICM is 3.6x hotter than the triad floor at the same baryon mass -- outside the factor-1.5 band, and the temperature and sigma failures are exactly ONE number: T_pred/T_obs = (sigma_pred/sigma_dyn,3D)^2 = 0.53^2 = 0.28 (G008's registered 809 km/s, 2.05 keV on this convention at M_b ~ 1.4e14, is the same law and the register already carried this failure at the top end, G075 makes it per cluster).  Positive side, equally honest: the dSph floor (G03G V3, 7 dwarfs, median 0.00 dex) and the cluster floor are the SAME formula: 9.2 km/s at 2.3e6 M_sun and ~630 km/s at 5e13 M_sun; the cluster gap is the regime boundary (g_N > a0 in the core, G016/H012 A1), not a scaling failure of the formula.  The data side agrees with the same fact: Eckert+2022 A&A 662 A123 measure the cluster g_obs-g_bar relation departing strongly from the spiral-galaxy RAR.  VERDICT V3: the triad project onto clusters is its own falsifier; the cluster normalization (G017 LCDM-shaped free dust, G050/G057 split) stays an input -- now with the number pinned: a 3.6x T-shortfall (median, canonical 0.28 / alt 0.31), per cluster.
+         reading : V1 FAIL (canonical and alt), V2 FAIL (canonical and alt); the lane's finding is the previously-unregistered NUMBER of the cluster-scale temperature shortfall (3.6x median canonical / 3.3x alt, per cluster)
+
+G075 COMPLETE: 6/11 checks PASS.  The FAILs on V1/V2 are the finding.
+artifact written: G075_results.json
