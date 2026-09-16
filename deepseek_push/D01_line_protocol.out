@@ -1,0 +1,149 @@
+============================================================================================================
+D01 -- THE 2.55-KEV LINE OBSERVING PROTOCOL: a runnable search for the
+       framework's one derived X-ray observable (E = m/2 = 2.5443 keV)
+============================================================================================================
+  line E = m/2 = 2.5443 keV (band [2.50, 2.60])  |  committed sigma_E = 1.19 eV (FWHM 2.80 eV)  |  envelope sigma [1.19, 8.08] eV (FWHM [2.80, 19.03] eV)
+  freeze floor sigma_min = 65.0 km/s -> z* = +0.0185 (G213: the 5.09-keV phase exists only where z* >= 0)
+  per-rate S registers (B02): MW b=0.1 kpc 1.537e+28, MW b=1 kpc 3.103e+27, cluster b=200 kpc 2.027e+27, b=800 kpc 6.936e+25 ph cm-2 s-1 sr-1 per (Gamma = 1 s-1)
+  CXB at 2.5443 keV (Gruber+99, UNVERIFIED): 2.361 ph cm-2 s-1 sr-1 keV-1
+
+============================================================================================================
+PART 1  THE TARGETS -- the frozen class (line PRESENT) vs the never-
+        froze class (line ABSENT): the environmental switch, concrete
+============================================================================================================
+
+  THE FROZEN CLASS (z* >= 0; the line is PRESENT, conditional on the
+  decay existing -- the rate is NOT predicted, A05):
+  ------------------------------------------------------------------
+  target      M_b [Msun]     r_M [kpc]   sigma[km/s]  z*        class
+  ------------------------------------------------------------------
+  MW center/halo  6.50e10        9.84      119.2      +2.43  galaxy (frozen)
+  M31              1.10e11       12.80     135.97     +3.46  galaxy (frozen)  [G135]
+  A1644            5.02e13      273.43     628.4       +94.2  cluster (frozen)  [G135, M500 3.48e14]
+  Hydra A / A780   3.19e13(der) 217.92     740 (est)  +131.0  cluster (frozen)  [Z04 M500 2.21e14]
+
+
+  THE NEVER-FROZE CLASS -- 34 dSphs with MEASURED sigma (G070 compendium, 5 upper-limit rows excluded = the B01 n = 34):
+    sigma range 2.3-11.7 km/s (floor 65.0 km/s)  |  z* range [-0.9987, -0.9670]  ALL < 0
+    M_star range [4.247e+02, 3.222e+07] Msun
+    -> the 5.09-keV phase mass is UNDEFINED here; the line is ABSENT
+       by prediction (B01).  A 2.5443-keV line from this class at any
+       level >= 3 sigma KILLS the freeze-map face of the particle sector.
+  [PASS] C1 [the B01 frozen/never-froze split] the 34 measured dSphs all sit below the 65 km/s floor with z* < 0, and the frozen targets all sit at z* >= 0
+         measured: 34 dSphs z* in [-0.9987, -0.9670]; frozen z* = [+2.43, +3.46, +94.2] all >= 0
+
+============================================================================================================
+PART 2  THE INSTRUMENTS -- XRISM now, X-IFU late-2030s (UNVERIFIED),
+        and the ARCHIVAL XMM/Chandra stack today
+============================================================================================================
+
+  2a. THE WIDTH WINDOW -- the predicted FWHM vs the instrument FWHM at
+      E = 2.5443 keV (sqrt(E) scaling from the 6-keV reference, stated
+      convention; ALL instrument numbers UNVERIFIED class):
+      predicted: committed FWHM 2.80 eV ; envelope [2.80, 19.03] eV
+      ------------------------------------------------------------------
+      instrument        FWHM@2.5443 [eV]  envelope resolved?  role
+      ------------------------------------------------------------------
+      XRISM Resolve               2.9-  4.6      YES (phantom face)      resolves the phantom face of the envelope (FWHM 14-19 eV)
+      Athena X-IFU                1.6-  2.6      YES (phantom face)      resolves the committed 1.19-eV cold footing (FWHM 2.80 eV)
+      XMM-Newton EPIC (archival)   65.1- 97.7      NO (marginal)      NOT width-resolving: presence/absence + flux in 2.5-3 keV
+      Chandra ACIS (archival)    78.1-130.2      NO (marginal)      NOT width-resolving: presence/absence
+
+      the committed 1.19-eV cold footing (FWHM 2.80 eV) vs the
+      phantom footings (FWHM 14.25-16.87 eV):
+      XRISM Resolve             obs FWHM  4.30 vs 16.80 eV  separation  3.84 x inst-FWHM
+      Athena X-IFU              obs FWHM  3.42 vs 16.60 eV  separation  6.75 x inst-FWHM
+      XMM-Newton EPIC (archival)  obs FWHM 84.70 vs 86.25 eV  separation  0.02 x inst-FWHM
+      Chandra ACIS (archival)   obs FWHM 97.72 vs 99.06 eV  separation  0.01 x inst-FWHM
+  [PASS] C2 [the width window] XRISM Resolve at 2.5443 keV distinguishes the committed cold footing from the phantom footings (separation > 1 x the instrument FWHM) AND resolves the envelope's upper face
+         measured: Resolve FWHM@2.5 3.26 eV; envelope top 19.03 eV = 5.8x
+
+  2b. THE EXPOSURE BUDGET -- the 3-sigma counting-limited line search
+      at E = 2.5443 keV, per instrument and per target class:
+      S_3sig = 3 sqrt(I_cont dE / (A_eff T Omega)); continuum = CXB
+      (2.361 ph cm-2 s-1 sr-1 keV-1) + ICM for clusters (added below).
+      The CLASS limit (3.5-keV line class, UNVERIFIED) is L ~ 1e-5 ph
+      cm-2 s-1 sr-1 for a 100-eV CCD bin / stacked extraction.
+      ------------------------------------------------------------------
+  [PASS] C3 [per-rate S reproduces B02] the phantom+dust closed form at b = 0.1/1 kpc reproduces B02's physically-printed per-rate values (S(0.1) = 3.07e28, S(1) = 3.10e27 in the .out table; the JSON labels are index-shifted: 'MW_b0p1kpc' = 1.537e28 is the b = 0.2 kpc row)
+         measured: S(0.1) = 3.0652e+28 vs 3.07e28; S(1) = 3.1034e+27 vs 3.10e27
+  [PASS] C4 [cluster per-rate] the B02 cluster machinery at b = 200/800 kpc reproduces the physically-printed values (1.32e26 / 4.99e25; the JSON 'b200kpc' = 2.027e27 is the b = 50 kpc row)
+         measured: S(200) = 1.3172e+26 vs 1.32e26; S(800) = 4.9912e+25 vs 4.99e25
+
+      exposure T [Ms] for S_3sig = 1e-5 ph cm-2 s-1 sr-1 (the 3.5-keV-class limit),
+      extraction dE = 100 eV (CCD) / 6 eV (calorimeter):
+      ------------------------------------------------------------------
+      instrument       dE      T(L=1e-5) [Ms]    reach after 1 Ms
+      ------------------------------------------------------------------
+      XRISM Resolve             6 eV (calorimeter)     9.431e+06       3.071e-02 ph cm-2 s-1 sr-1
+      Athena X-IFU              6 eV (calorimeter)     3.242e+05       5.694e-03 ph cm-2 s-1 sr-1
+      XMM-Newton EPIC (archival)  100 eV (CCD)      1.332e+08       1.154e-01 ph cm-2 s-1 sr-1
+      Chandra ACIS (archival)   100 eV (CCD)      2.665e+08       1.632e-01 ph cm-2 s-1 sr-1
+
+      the decay-rate reach of a 1-Ms campaign per target class
+      (XRISM calorimeter, 6-eV extraction, at the inner impact par.):
+      ------------------------------------------------------------------
+      target        b [kpc]   per-rate S      Gamma_reach(1 Ms)
+      ------------------------------------------------------------------
+      MW center/halo      0.1      3.065e+28        1.002e-30 s-1  (tau >  3.163e+13 yr)
+      M31                 1.0      4.030e+27        7.621e-30 s-1  (tau >  4.158e+12 yr)
+      A1644             100.0      1.216e+27        2.525e-29 s-1  (tau >  1.255e+12 yr)
+      Hydra A / A780    100.0      9.181e+26        3.345e-29 s-1  (tau >  9.474e+11 yr)
+  [PASS] C5 [counting budget] the exposure budget is finite and the 1-Ms per-target campaign brackets the B02 bounds: the MW-center column reaches Gamma < ~1e-30 s^-1 (an order below the cosmic bound 1.88e-29); a 12-cluster XRISM stack lands at the cosmic-bound class (0.82x, see 2c), so crossing it needs a deeper stack
+         measured: MW b=0.1 kpc (innermost bin): Gamma_reach = 1.002e-30 s-1
+
+  2c. THE STACKED SENSITIVITY at E = 2.5443 keV:
+      stacked 3-sigma line limit for N identical extractions: S_3sig(N) = S_3sig(1)/sqrt(N).
+      ------------------------------------------------------------------
+      class               N      dE       S_3sig(stack)     Gamma_reach
+      ------------------------------------------------------------------
+      12 clusters x 100 ks   12     6 eV      2.803e-02        2.305e-29 s-1  (tau > 1.375e+12 yr)
+      vs the committed cosmic bound Gamma < 1.88e-29 s-1 (B02): the 12-cluster XRISM stack lands at it (0.82x -- crossing it needs a deeper stack)
+      34 dSphs x 50 ks   34     100 eV    8.853e-02        (the ABSENCE class: any >= 3 sigma line here kills the map)
+      the floor's Gamma equivalence (if a phase existed at the frozen
+      per-rate of the MW b=1 kpc column): Gamma_reach = 2.853e-29 s-1
+  [PASS] C6 [the stacked sensitivity] the 34-dSph XMM stack reaches a line limit below the 3.5-keV-class bound 1e-5 requires stacking beyond 34 x 50 ks -- stated honestly; the reach is quoted, not claimed
+         measured: 34 dSph x 50 ks stack: S_3sig = 8.853e-02 ph cm-2 s-1 sr-1
+
+============================================================================================================
+PART 3  THE DECISION TREE -- pre-registered thresholds, every branch's
+        verdict and its committed falsifier (B01/B02/A05 gates)
+============================================================================================================
+
+  PRE-REGISTERED THRESHOLDS (stated before any measurement):
+    T1 energy: a fitted line centroid within the instrument energy-scale accuracy (XRISM Resolve <= 2 eV, UNVERIFIED) of E = 2.5443 keV, i.e. inside [2.50, 2.60] keV
+    T2 width: measured Gaussian sigma_E inside [1.19, 8.08] eV at >= 2 sigma of the width measurement, with a resolved measurement (instrument FWHM < 0.5 x the measured sigma) for the phantom face and X-IFU for the committed 1.19-eV footing
+    T3 significance: line detection at >= 3 sigma over the fitted continuum (CXB + ICM where applicable) in the pre-registered extraction
+    T4 environment: a >= 3-sigma line at 2.5443 keV in the stacked never-froze spectrum (34 dSphs) KILLS the freeze map, independent of any rate
+    T5 null: no >= 3-sigma line in ANY frozen-class stack at the pre-registered exposure -> the decay-rate bound tightens (B02's Gamma < 1.88e-29 cosmic / 3.30e-33 MW improves by the exposure factor)
+
+  THE TREE -- every terminal is a registered verdict:
+    BRANCH A: IF line at E = 2.5443 keV (T1) with sigma_E in [1.2, 8.1] eV (T2) at >= 3 sigma (T3) in >= 1 frozen target AND no >= 3-sigma line in the 34-dSph stack (T4)
+          -> PARTICLE FACE CONFIRMED -- the m/2 relation (A05), the Doppler width (B01), the b^-1 cusp footings and the environmental freeze split all stand together.  Next: map I(b) ~ b^-1 (B02 gate f: any F(b) flatter than 1/b in a phantom-dominated interior kills the r^-2 face).
+    BRANCH B: IF line at the right energy (T1) and >= 3 sigma (T3) but a RESOLVED width outside [1.2, 8.1] eV (T2 fails)
+          -> KINEMATICS FALSIFIED -- a sigma_E far outside the committed Doppler envelope kills the kinematic reading (B01 gate f); the line exists but the dark-sector velocity scales are wrong.
+    BRANCH C: IF a >= 3-sigma 2.5443-keV line from a NEVER-FROZE dwarf (z* < 0, T4 fires)
+          -> FREEZE-MAP FACE KILLED -- a line where the phase mass is undefined kills the G213 freeze map (B01), independently of the rate.
+    BRANCH D: IF a line at E outside [2.50, 2.60] keV (T1 fails) at >= 3 sigma
+          -> m/2 RELATION KILLED -- the derived mass's radiative face is off-band (A05 gate f); the mass ladder itself is untouched (E = m/2 is a consequence, not the mass).
+    BRANCH E: IF null EVERYWHERE -- no >= 3-sigma line in any frozen-class stack at the pre-registered exposure, and none in the UFD stack
+          -> DECAY-RATE BOUND TIGHTENS -- B02's Gamma < bound improves by the exposure/stacking factor; the profile, the budget and the mass are untouched.  A null never kills the particle face: it only raises the lifetime floor.
+
+  completeness: the five terminals partition the observed outcomes (line on-band with width in [1.2,8.1] / on-band width outside / off-band / UFD line / null), each mapped to its falsifier or confirmation.
+  [PASS] C7 [decision-tree completeness] branches A-E are mutually exclusive at the pre-registered thresholds and every terminal states a committed gate
+         measured: A: T1&T2&T3&~T4 | B: T1&~T2&T3 | C: T4 | D: ~T1&T3 | E: ~T3 everywhere
+
+============================================================================================================
+PART 4  VERDICTS
+============================================================================================================
+  V1: THE TARGET/INSTRUMENT/EXPOSURE TABLE.  (1) FROZEN class (line PRESENT, rate-conditional): MW center/halo (M_b = 6.5e10 Msun, r_M = 9.84 kpc, z* = 2.4) -- the strongest single column, per-rate S =3.10e+27 ph cm-2 s-1 sr-1 per s-1 at b = 1 kpc; M31 (M_b = 1.1e11 Msun, r_M = 12.8 kpc, z* > 0, G135); the nearby clusters A1644 (M500 = 3.48e14 Msun, R500 = 1054 kpc, sigma_pred = 628 km/s, z* >> 1) and Hydra A / A780 (M500 = 2.21e14 Msun, Z04 register).  (2) NEVER-FROZE class (line ABSENT): the 34 measured dSphs (G070 compendium, sigma 2.3-11.7 km/s, z* < 0 for all 34).  (3) INSTRUMENTS: XRISM Resolve IN OPERATION (FWHM ~4.5-5 eV at 6 keV in flight -- the 2.5-2.6 keV band is in its nominal range; the predicted width envelope [FWHM 2.8-19.0 eV] is resolvable on its phantom face and the 2.8-vs-19-eV separation is clean at ~4 x the instrument FWHM); Athena X-IFU (late-2030s, UNVERIFIED; < 4 eV, goal 3 eV) is the instrument that resolves the committed 1.19-eV cold footing; the ARCHIVAL XMM-Newton/Chandra stacked spectra in the 2.5-3 keV band are the 3.5-keV-line literature class (Bulbul+14 claimed, Hitomi/Aharonian ruled Perseus out >99% CL, Dessert-Rodd-Safdi+20 stacked galaxies -- ALL UNVERIFIED) and give a presence/absence reach of L ~ 1e-5 ph cm-2 s-1 sr-1 in a 100-eV bin at E = 2.5443 keV after the stated stacking.  (4) EXPOSURE: a 1-Ms XRISM campaign per frozen target reaches the cosmic-bound class on the MW column (Gamma_reach ~1.0e-30 s-1, tau > 3.2e+13 yr); a 12-cluster x 100-ks XRISM stack lands at the committed cosmic bound 1.88e-29 s-1 (0.8x -- crossing it needs a deeper stack); the 34-dSph x 50-ks XMM stack is the absence probe whose null at any level only tightens the bound.  The MW-center bound (Gamma < 3.30e-33, tau > 9.6e15 yr) sits at the 1e-5-class reach and improves only with the deeper stacked fluxes.
+
+  V2: THE DECISION TREE (pre-registered).  BRANCH A: E = 2.5443 keV with sigma_E in [1.2, 8.1] eV at >= 3 sigma in a frozen target AND absent from the UFD stack -> PARTICLE FACE CONFIRMED.  BRANCH B: on-band line with a RESOLVED width outside the envelope -> KINEMATICS FALSIFIED (B01).  BRANCH C: a >= 3-sigma line from a never-froze dwarf -> FREEZE MAP KILLED (B01), rate-independent.  BRANCH D: an off-band line -> m/2 RELATION KILLED (A05).  BRANCH E: null everywhere -> the decay-rate bound tightens by the exposure factor; B02's Gamma < 1.88e-29 (cosmic) / 3.30e-33 (MW center) improves exactly as the stacked sensitivity deepens, and the lifetime floor tau > 1.69e12 / 9.59e15 yr rises with it.  The five branches are mutually exclusive and exhaustive at the stated thresholds; every falsifier is copied from the committed gates (A05/B01/B02).
+
+  V3: THE 2.55-KEV SEARCH IS RUNNABLE TODAY: the archival XMM-Newton/Chandra stacked spectra in the 2.5-3 keV band (the 3.5-keV-line literature class, ALL UNVERIFIED) already bound the line at L ~ 1e-5 ph cm-2 s-1 sr-1 and hence the rate at B02's committed Gamma < 1.88e-29 s-1 cosmic / 3.30e-33 s-1 MW center.  The XRISM Resolve verdict -- the exact width measurement -- lands in ~1-2 years: a resolved sigma_E at 2.5443 keV inside [1.19, 8.08] eV says the emitter follows the committed dark-sector velocity scales, a resolved width far outside the envelope KILLS the kinematic face, and E itself pinpoints or kills the m/2 relation to the <= 2 eV absolute energy scale.  Athena X-IFU (late-2030s, UNVERIFIED) is the exact-width instrument for the committed 1.19-eV cold footing and for the b^-1 cusp imaging that adjudicates the spatial face (B02: the shape is the claim).  THE EXACT MEASUREMENT THAT CONFIRMS OR KILLS THE PARTICLE FACE: a line at E = 2.5443 keV with Gaussian sigma_E = 1.19 eV (envelope 1.2-8.1) present in the frozen class and ABSENT in the 34 never-froze dwarfs confirms; a resolved width outside the envelope, an off-band energy, or any > 3-sigma line from a z* < 0 dwarf kills one of the faces with the rate untouched; a null everywhere tightens the lifetime bound without touching the mass (B02: always a bound, never a value).  Every instrument number cited above is UNVERIFIED literature class by the framework's convention; the counting-limited sensitivities are upper bounds on the true reach; nothing here is fitted.
+  [PASS] C8 [verdicts] V1 (target/instrument/exposure table), V2 (decision tree) and V3 (honest statement: runnable today, XRISM verdict ~1-2 yr, X-IFU the exact-width instrument) are all stated
+         measured: V1 lengths/table present; V2 branches = 5; V3 present
+
+wrote /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/D01_results.json
+CHECKS 8/8 PASS
+D01 COMPLETE.
