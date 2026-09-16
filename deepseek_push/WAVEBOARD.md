@@ -1414,6 +1414,122 @@ one-page discussion/conclusions DRAFTED inside; THE PAPER'S DOCUMENTS ARE
 COMPLETE: abstract (G221) + results (G202) + methods (Z10) + solar-face
 (G224) -- assembly + the author's voice pass is ALL that remains.
 
+## WAVE 29 (S-series, landed 10/10 -- the seesaw dead as a scale, the tilt geometrically resolved, the phantom coherent-domain closed)
+S1 THE COHERENCE LENGTH 12/12: lambda_dB = 612.6 nm vs the inter-particle
+spacing 0.298 mm (r_M) / 63.4 um (1 kpc) -- the condensation criterion FAILS
+by ~490x/~100x (n lambda_dB^3 = 8.6e-9 vs the BEC threshold 2.612): NOT
+Bose-condensed anywhere; the coherence length xi = 97.5 nm; xi/r_M = 3.1e-28
+-- twenty-eight orders below r_M; THE G235 TYPE-I-CONDENSATE READING IS AN
+OBSERVABLE-LEVEL EQUIVALENCE (lambda_fs = 0, R(k) = 1), KINEMATICALLY
+EXCLUDED at the committed (m, sigma): the phantom is a dilute, collisionless,
+non-degenerate classical gas (S/N = 22.8-23.8 k_B = the dilute Maxwellian's
+fingerprint); the phase-plateau signature and its granularity falsifier are
+observationally inert; the coherent-condensate door CLOSES with the number.
+S2 THE JWST BTFR FORECAST 17/17: the three z~2.5 zero points (a) horizon
+delta = 0.0000 dex (kill band +-0.0011 dex in v = 120x narrower than the
+0.13-dex floor: certifies the CLASS not the band); (b) seesaw +0.0646 dex;
+(c) a0_eff +0.0166 dex; the sigma separation: N=1: H-S 0.50 / H-E 0.13 sig;
+the registered N=4 plan CANNOT fire the Z11 kill vs the seesaw (1.0 sig); H-S
+3-sig needs N = 26-37 (L100: 163), 5-sig N = 102; H-E 3-sig N = 551 (out of
+reach); the L42 coherent floor caps H-S at 0.92 sig at any N; THE EXPECTED
+VERDICT: 'BOTH' -- zero point on the horizon below z* AND a threshold break
+at z* = 2.4, demoting the seesaw's 8.98 sig and the effective scale's 1.53
+sig to catalog/M-L artifacts (S09); the date ~2027-2028, target-discovery-
+gated (no JWST program ID in-repo; no qualifying deep z~2.5 target in any
+archive, UNVERIFIED).
+S3 THE ATLAS3D M/L_JAM AUDIT 15/15 -- THE FROZEN TILT RESOLVED: the
+mass-trending M/L suspect is SIGN-REFUTED (the tilt needs delta' = -0.229
+dex/dex; the JAM M/L's own mass trend is +0.249 -- opposite signs; after
+removal the slope stays 1.378); the phantom-flattening reading REFUTED (a
+real 1.30 dark slope needs phantom exponent p = -27.6 -- an INVERTED phantom,
+8.5 sig from the committed p = 2.000 G188 unity); THE THIRD READING
+DISCOVERED: the ATLAS3D XV Mass Plane M_JAM ~ sigma_e^2 R_e gives b = 2(1-s)
+with the sample's size-mass slope s = 0.377 -> b_geo = 1.245 vs 1.298
+(z = +1.17); the split-half curvature reproduced EXACTLY (1.951 vs 1.944,
+0.886 vs 0.963, z = -0.05/+1.02): GEOMETRY PREFERRED (z_geo = 1.17 vs
+z_ML = 1.77 vs z_ph = 8.53): the 1.30 decomposes into the ETG size-mass
+relation -- the law's first slope anomaly dissolves as the Mass Plane, not a
+phantom change; caveat: the JAM M/L_JAM is model-dependent (UNVERIFIED).
+S4 THE CORE VORTICITY 8/8 -- THE PHANTOM CORE DOES NOT ROTATE: the negative
+inner beta is mild tangential DISPERSION anisotropy (sigma_t/sigma_r =
+1.0485 +- 0.035, +4.8%, 1.4 sig), not spin; the measured per-cluster v_los
+gradient over the core shell: +30.5 +- 23.6 km/s per R500 vs the shuffle-null
+(z = +1.29), projected rotation amplitude 26 +- 20 km/s (2-sig UL 66 km/s),
+axis uniform -- the beta-implied ordered-rotation reading (v_rot = 376
+km/s-class) EXCLUDED at 13.5 sig; the infall's angular momentum is
+geometrically sufficient (b_req = 0.92 Mpc = 1.32 R500) but kinematically
+UNDEPOSITED (transferred fraction f = 0.09, UL 0.23).
+S5 THE BARYON-TO-DARK CLOSURE 11/11 -- THE HONEST INPUT COUNT: f_b = 0.157
+is INPUT at every committed touchpoint (G052 derives Omega_dm from a MEASURED
+Omega_b; G079/G187 hardcode Omega_b = 0.0493; G178's 0.081 is the group
+baryon FLOOR = 0.52 x f_b; every law is baryon-NORMALIZED -- a wrong f_b is
+invisible to all fits); the prediction attempt fails (M_sat fixes only the
+phantom-vs-dust split; the flatness-slack 0.160 is an identity on measured
+sides); THE INPUT COUNT: six core = 4 measured (G, c, Omega_L, f_b) + 1
+identity-pinned (a0 = the horizon at 1.00005) + 1 derived (m = 5.09 keV) + 5
+ancillary datums + per-object M_b: 'zero-free-parameter' is TRUE per object
+(one free fit left: q) and FALSE as 'no cosmic inputs' -- f_b is the last
+undeclared free parameter of the cosmic frame. REGISTERED as such.
+S6 THE MERGER PHASE-SEPARATION 10/10: the phantom LOCKS (re-settles on
+R/c = 1.90 Myr, zero offset at every operative level); the dust LAGS
+(collisionless, t_relax/t_H = 1e73): the offset clock t_after = d/Delta-v =
+68-102 Myr (main) / 63-95 (sub) -- a NEW merger-history clock un-contaminated
+by the gas-tied phantom; the Bullet decomposition: offset_tot = (1-f_ph)
+Delta-v t_after reproduces the registered 209/203/164/67 kpc row
+(0.00/0.25/1.72/5.45 sig) with the amplitude now MECHANICAL; the capped
+readings' dust displacements are kinematically realizable, the uncapped
+reading impossible by 1.7-2.1x; the offset bounds the gas-tied core phantom
+at f_ph <= 0.125 (1 sig): the distinctive content = the ABSENCE of a gas-side
+phantom peak; the uncapped-linear phantom stays the 5.45-sig registered
+tension from G110.
+S7 THE DARK SECTOR'S POWER SPECTRUM 14/14 -- THE TWO FACE RECONCILIATION:
+one sector cannot both free-stream at 0.558 Mpc (particle face, suppression
+1-R = 0.293/0.984 at k = 30/100 h/Mpc) and lock at R(k) = 1 (charge face,
+0.000): the 5.09 keV number is one number two ways (the phase temperature vs
+a rest mass); the composite R_comp(k; f_d) = (1-f_d) + f_d T^2_WDM: plateau
+R = 1-1.7e-4 at k <= 1 (DES-Y3 blind for any f_d), break onset at 1.79
+h/Mpc, half-mode 57.2; THE CONSTRAINT MAP IS NEARLY K-INDEPENDENT: forest
+allows f_d <= 0.75-0.79 (5.7 keV record rung), the census z(f_d) = -3.52 f_d
+(f_d < 0.28/0.57/0.85 at 1/2/3 sig), the budget pulls f_d ~ 0.98 -> composite
+at budget fraction z = -3.45: an INDEXED tension, not a contradiction-in-
+principle; THE K-RANGE THAT DECIDES: the sub-halo decade k ~ 100-500 h/Mpc
+(M 1e5-1e8, G156's registered decade) where the faces separate by 40-99%,
+with the one-photon-scale forest edge (k ~ 10-30) as auxiliary -- G156's
+declared rule stands as the decider.
+S8 THE WEAK-EQUIVALENCE-PRINCIPLE CROSS 16/16 -- THE HONEST NULL: the phantom
+is the baryons' own field, absent in the SS (g/a0 = 6.3e7 at 1 AU, EFE-capped
+7.4 kAU): eta = 0 EXACTLY (MICROSCOPE passes with the full 1.4e-15 margin);
+the clock cross is null (the metric is GR exactly, G086, PPN all 5); the
+varying-constants clamp |dm/m| <= 4.14e-18/yr satisfied identically; THE ONE
+SEPARATOR IS CORRECTLY LOCATED: the dark sector's OWN observables (the
+2.55-keV line, the 0.558-Mpc cut, the phase plateau T_b = 9.337 K =
+T_CMB(z*=2.4)) -- no WEP/clocks angle exists.
+S9 THE ONE-SCALE RESOLUTION 15/15 -- ESTABLISHED (as consistency, not
+proof): the disk trio (n = 104: bright dSph + HI + SPARC) at the slope-FIXED
+horizon a0: mean r = -0.0026 +- 0.0133 dex, z = -0.20, a0_trio = 0.9764 x
+a0_DE -- ON the prediction (scatter 0.135-0.136 dex, KS p = 0.53); the
+re-scored pool without the ATLAS3D-dominated CH3: z = 1.68 sig (trio-CH3
+variant 1.41) -- SUB-MATERIALITY RESTORED, the Z08 4.89-sig pro-seesaw
+crossing DOES NOT SURVIVE the removal of its carrier, no channel crosses 3
+sig; the registered internal tensions: SPARC 0.66 x a0_DE (z -3.41, G208
+deep-staircase) vs HI 1.19 (+0.95) vs bright dSph 1.17 (+0.37), TRIO free
+slope b = 0.919 +- 0.034 (-2.35 sig): THE FRAMEWORK HAS ONE SCALE, the de
+Sitter horizon, the RAR/disk side measures it cleanly, Z8's seesaw = a
+mixed-catalog equal-weight ladder artifact of the ETG/cluster/dSph ends
+(ATLAS3D carries 56.2% of the offset, but line-minus-ATLAS3D still sits at
+1.644 x a0_DE -- a ladder artifact, not one catalog); the decisive
+instruments stay registered (z~2.5 BTFR, MIGHTEE deep, DR4 ridge, G190).
+S10 THE HOLOGRAPHIC FACE 10/10 -- SUB-BOUND/DISJOINT: S_ph(<r_M) = 3.351e74
+k_B vs S_Bek = 7.835e104 and S_dS = 3.307e122 (A_dS/4 l_P^2 exact): the
+saturation ratio S_ph/S_Bek = 4.28e-31 -- ~30 orders below at r_M, falling
+monotonically (S ~ r vs S_Bek ~ r^2); the cosmic face: phantom total
+8.2-8.9e83 = 2.5e-39 S_dS, full dark sector 5.76e85 = 1.74e-37 S_dS -- ~37
+orders BELOW the holographic budget: the horizon (Z11) sets the sector's
+SCALE (r_M) but hosts NONE of its entropy; the dark sector's entropy is a
+dilute classical gas entropy, non-gravitating, no holographic claim, no
+entropy reservoir added to the cosmic ledger; the k_B-band normalization
+convention-dependence (G132 trap) registered as the open note.
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 ## WAVE 26 (landed 10/10 -- THE MASS CONVERGED; the scale final; the dSph boundary explained; the census leans charge)
 G208 DEEP-STAIRCASE ORTHOGONALITY 14/14 -- TWO-LAYER: the top stair is the
