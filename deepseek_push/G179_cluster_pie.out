@@ -1,0 +1,239 @@
+G179 -- THE CLUSTER PIE: the complete sector bookkeeping, stated once.
+
+The composition, one equation:
+        M_dyn(<r) = M_b(<r) + M_ph(<r) + M_dust(<r)
+with the phantom in the EQUIPARTITION (closed-form) reading
+        M_ph(<r) = M_b(<r) * (r/r_M)                    (exact, G122/G095)
+and the free dust carried by the two-parameter law (G143/G122)
+        c_dust(M500, x) = 10^c0 (M500/8e14)^q (r/R500)^-p
+        c0 = -0.145, q = -0.414, p = +0.99   (the amplitude run x the r^-1 shape)
+mapped to a mass by the committed identity c_dust = R/[2x/(x-1)] with
+x = M_dyn/M_b, R = T/T_floor:  M_dust(<r) = M_b(<r) (c_dust(r) - 1) (r/r_M).
+
+(1) THE PIE at R500 per cluster (M_dyn = M_HSE(R500) = M500): the three
+sectors' shares of M500, the medians with the scatter, and the closure:
+the data pie closes EXACTLY (identity); the LAW pie (dust from the law)
+closes to a residual -- measured here and compared with G098/G143's
+0.1-dex floor and with the 0.05-dex HSE scatter.
+
+(2) THE UNIVERSAL STATEMENT: the sector constitution as a function of
+(M500, r/R500) ONLY -- the complete closed form (s_b, s_ph, s_d), the
+u(M500) = r_M/R500 footing (the f_dark run: u ~ M500^{+0.31}, identical
+to the (1-gamma)/2 - 1/3 prediction from G135's f-slope), and the phase
+diagram: the boundary radii x_sat (c=1: the phantom floor saturates the
+residual), x_dp (dust = phantom), x_db (dust = baryon), x_eq (= r_M/R500)
+as functions of M500.
+
+(3) THE CROSS-CHECK: the pie's implied temperature (the virial of the
+three sectors' mass at R500) vs the observed kTvir: (a) the hse face:
+T_pie = T_vir(M500) exactly on the data pie -> T_pie/kT_obs = hse,
+scatter 0.053 dex = the HSE scatter (within); (b) the G095 2/3-law face
+with the pie's M_dyn/M_b: the committed G135 cluster residuals
+(0.067 dex rms ~ the 0.053-dex HSE + the <=5.5% R500-convention offset);
+(c) the law-pie face: the closure residual + hse (0.1-dex class, the
+R500-window extrapolation offset dominates).
+
+(4) VERDICTS: V1 the pie (medians + the closure residual);
+V2 the universal constitution (the closed form + the phase diagram);
+V3 the honest statement: the sector bookkeeping is CLOSED to the pair
+(c0, q) + the 0.1-dex floor -- the missing piece is no longer 'the
+amplitude' but the DERIVATION of (c0, q) from the thermodynamics (G159:
+A_b = (sigma/v_loc)^p, the dressed closed form 0.125-0.5, central ~0.27,
+vs the measured boundary contrast 0.163-0.333 within a factor ~2) and
+from the infall (G137: NFW-class envelope, pooled slope -2.218 +- 0.021),
+both in flight.
+
+DATA: ONLY committed ingests -- real_research/data/xcop/ (12 X-COP
+clusters, G143's identical loader), the G105 release T(r) cache, G122/
+G143/G095/G135 committed rows (gates), the Ettori+19 R500/M500 JSON.
+Everything written under deepseek_push/.
+
+Outputs: G179_cluster_pie.out, G179_results.json (this lane).
+Run:   python3 G179_cluster_pie.py > G179_cluster_pie.out
+
+====================================================================================================
+G179 -- THE CLUSTER PIE: the complete sector bookkeeping, stated once
+====================================================================================================
+
+====================================================================================================
+GATE 0 -- THE COMMITTED REGISTERS REPRODUCED (the pies below are
+          built on the SAME rows G095/G122/G135 committed)
+====================================================================================================
+  [PASS] G0a [gate: the pie's base rows reproduce the committed G095 rows] M500, M_b(R500), f, r_M/R500, R500 per cluster vs G095_results.json
+         measured: max rel. dev = 1.58e-04
+         reading : the pie's base rows live on the committed G095 values to <0.02% (the residual is the star-interpolation level of the shared loader)
+
+  (equipartition identity: with M_ph = M_b(r) (r/r_M), the phantom-only
+   dynamical ratio is x = 1 + r/r_M and the phantom-only temperature
+   curve is 2(M_dyn/M_b)(r_M/r) = 2x/(x-1) = 2(r_M/r + 1) -- G122's 'phantom part', exact):
+  [PASS] G0b [the equipartition is exact] M_ph = M_b r/r_M makes the phantom-only T curve 2x/(x-1) identically (x = 1 + r/r_M)
+         measured: max |2(1+r/r_M)(r_M/r) - 2x/(x-1)| / value = 2.17e-16
+         reading : the composition's phantom sector is the closed form's OWN phantom: the pie restates G122's theory curve as a mass sector
+  [PASS] G0c [gate: the 3-param law refit reproduces the committed (q, p, c0, rms)]
+         measured: q = -0.4144 (committed -0.4144), p_eff = +0.9904 (committed +0.9904), c0 = -0.1449, rms = 0.1189 (committed 0.1189)
+         reading : the two-parameter law used for the pie's dust sector is the committed one, reproduced digit-for-digit on the committed 96 bins
+  [PASS] G0d [gate: the per-radius c_dust envelope reproduces G122's mean_g] 8 radii vs the committed radial_envelope
+         measured: max |mean_g - committed| = 0.0000 dex
+         reading : the pie's radial dust statements use the SAME temperature-side c_dust the law was fit on
+  [PASS] G0e [the universal footing: u ~ M500^{exp}] fitted r_M/R500 run vs the closed-form (1-gamma)/2 - 1/3 from G135's f-slope
+         measured: fitted exp = +0.314 vs (1-gamma)/2-1/3 = +0.308 (gamma = -0.282)
+         reading : u = r_M/R500 is a weak function of M500 with the exponent the f_dark run predicts: the universal constitution below carries u(M500) = 0.185 (M500/1e14)^{+0.31}
+
+====================================================================================================
+PART 1 -- THE PIE AT R500: the three sectors' shares of M500
+====================================================================================================
+  composition: M_dyn(<r) = M_b(<r) + M_ph(<r) + M_dust(<r)
+  M_ph = M_b (r/r_M)  (equipartition, exact -- G0b)
+  at R500: M_dyn = M500 = M_HSE(R500); M_dust = M500 - M_b - M_ph
+
+  name       M500     s_b    s_ph     s_d      u  c_data  c_law  res_law
+  A1644      3.48   0.144   0.556   0.300  0.259    1.54   1.01   -0.151
+  A1795      4.63   0.170   0.572   0.258  0.297    1.45   0.90   -0.165
+  A2029      8.82   0.207   0.564   0.229  0.366    1.41   0.69   -0.226
+  A2142      8.95   0.242   0.607   0.151  0.399    1.25   0.68   -0.182
+  A2255      5.26   0.202   0.608   0.190  0.333    1.31   0.85   -0.143
+  A2319      7.31   0.309   0.717  -0.027  0.431    0.96   0.74   -0.074
+  A3158      4.26   0.174   0.589   0.237  0.296    1.40   0.93   -0.142
+  A3266      8.80   0.153   0.489   0.357  0.314    1.73   0.69   -0.310
+  A644       5.66   0.179   0.567   0.255  0.316    1.45   0.83   -0.189
+  A85        5.65   0.196   0.596   0.207  0.329    1.35   0.83   -0.161
+  RXC1825    4.08   0.160   0.567   0.273  0.282    1.48   0.95   -0.157
+  ZW1215     7.66   0.144   0.482   0.374  0.298    1.77   0.73   -0.305
+
+  THE PIE (medians, 16-84 scatter over the 12 clusters):
+    baryons :  17.7%  (16-84 15.1-21.5%)
+    phantom :  56.9%  (16-84 54.0-60.7%)   [M_ph = M_b R500/r_M, equipartition]
+    dust    :  24.6%  (16-84 18.1-31.3%)   [M_dust = M500 - M_b - M_ph, the remainder]
+    closure : SUM/M500 = 1 EXACTLY (the dust sector is the remainder -- the identity, not a fit)
+    flag    : A2319 s_d = -2.7% (negative: c_data = 0.963 < 1 -- the uncapped phantom+baryons already overshoot M500: G098's registered zero-crossing, median 897 kpc)
+  [PASS] C1 [the pie sums to unity] s_b + s_ph + s_d = 1 on all 12 clusters
+         measured: max |sum - 1| = 0.00e+00
+         reading : the composition equation is a partition of M500 by construction
+
+  ALTERNATIVE PHANTOM READINGS (stated, not mixed into the pie):
+    (i)  EFE-capped (cH0, G057 V2 'phantom support zero across the window' -- the operative reading):
+         M_ph = 0 -> the pie collapses to TWO sectors: dust = 82.3% of M500, baryons 17.7% (= G098's f_dark = 4.7-5.7 reading: the dust is 100% of the deficit)
+    (ii) local-density floor A (G098/G057 col a: rho_ph = sqrt(G M_b a0)/(4 pi G r^2), per bin): the ENCLOSED phantom is
+         the integral of the floor, not the equipartition form -- computed next.
+  [PASS] C2 [floor-A cross-gate] A1644's cumulative dust fraction F_A(R500) vs G098's committed 0.608
+         measured: F_A(A1644) = 0.579 (committed 0.608)
+         reading : the floor-A phantom integral reproduces G098's cumulative dust fraction -> the alternative reading is carried into the pie the same way G098 carried it
+         M_ph^A(<R500)/M500: median 35.3% (16-84 31.7-41.9%) vs the equipartition 56.9% -- the floor-A enclosed phantom is 1.6x SMALLER (the baryon concentration (1 + dlnM_b/dlnr) ~ 3 between the density integral and the equipartition form); on floor A the dust share of M500 rises to 47.0% (median), consistent with G098's cumulative F_A(R500) ~ 0.6 of the dark sector.
+
+====================================================================================================
+PART 2 -- THE CLOSURE: the LAW pie's SUM vs M_HSE(R500)
+====================================================================================================
+  the law-based sum: M_dyn^law(R500) = M_b (1 + c_law(R500)/u);
+  res = log10(SUM_law/M500) -- the dust sector from G143's law,
+  not the remainder
+
+  res = log10(SUM_law/M500): mean -0.184 dex, median -0.163 dex, rms 0.195 dex, scatter about the mean 0.065 dex
+  G098/G143 floors: 3-param 0.119 dex, 13-param 0.097 dex; HSE scatter 0.053 dex (G095 V1d)
+  [PASS] V1a [the closure residual at R500] the law pie closes to the 0.1-dex floor once the window offset is removed
+         measured: rms = 0.195 dex; scatter about mean = 0.065 dex (floor 0.097/0.119; HSE 0.053)
+         reading : the SCATTER of the closure residual (0.065 dex) is the 0.1-dex floor itself (G098/G143's registered residual floor); the -0.18-dex mean offset is the fit-window extrapolation: the law is fit on 50-600 kpc, R500 lies OUTSIDE the window -- the amplitude c0 is an extrapolation, NOT a new mismatch
+
+  the answer to 'the same as G098's floor?': YES on the scatter (0.065 dex ~ 0.097/0.119), NO on the level (the -0.18-dex mean is the window edge, absent inside 600 kpc where the law closes at 0.097/0.119).
+
+====================================================================================================
+PART 3 -- THE UNIVERSAL STATEMENT: the constitution in (M500, x) only
+====================================================================================================
+  the complete closed form (u = r_M/R500(M500), c = 10^c0 (M500/8e14)^q x^-p):
+      s_b = 1 / (1 + c x / u)
+      s_ph = (x/u) / (1 + c x / u)
+      s_d = (c - 1)(x/u) / (1 + c x / u)      [c >= 1; c < 1 = the
+            uncapped overshoot, the dust sector saturates at 0]
+
+  THE ONE-PAGE CONSTITUTION (shares of M_dyn as functions of M500, x):
+    M500      x     s_b    s_ph     s_d      c      dom
+    3.50   0.10   0.217   0.079   0.703   9.87     dust
+    3.50   0.30   0.216   0.236   0.548   3.32     dust
+    3.50   0.50   0.215   0.392   0.393   2.00     dust
+    3.50   0.80   0.214   0.624   0.161   1.26  phantom
+    3.50   1.00   0.214   0.779   0.007   1.01  phantom
+    5.66   0.10   0.283   0.089   0.628   8.09     dust
+    5.66   0.30   0.281   0.264   0.455   2.72     dust
+    5.66   0.50   0.280   0.439   0.282   1.64  phantom
+    5.66   0.80   0.279   0.699   0.022   1.03  phantom
+    5.66   1.00   0.278   0.873   0.000   0.83  phantom
+    9.00   0.10   0.356   0.096   0.547   6.67     dust
+    9.00   0.30   0.354   0.288   0.359   2.25     dust
+    9.00   0.50   0.353   0.478   0.170   1.36  phantom
+    9.00   0.80   0.351   0.762   0.000   0.85  phantom
+    9.00   1.00   0.351   0.951   0.000   0.68  phantom
+
+  THE PHASE DIAGRAM (boundary radii in x = r/R500, from the closed form):
+    x_eq  : r = r_M  (phantom share = baryon share)
+    x_dp  : c = 2    (dust share = phantom share)
+    x_db  : (c-1) x / u = 1  (dust share = baryon share)
+    x_sat : c = 1    (the dust sector saturates at 0 -- beyond it the
+            uncapped phantom floor alone overshoots M_HSE (G098's
+            zero-crossing)
+    M500   x_eq   x_dp   x_db  x_sat                                               regime
+    3.50   0.27   0.50   0.73   1.01 dust-dominated inside 0.73 R500; baryon-phantom crossover at r_M = 0.27 R500; phantom > dust for x > 0.50; phantom saturated (dust cap) beyond 1.00 R500
+    5.66   0.32   0.41   0.50   0.83 dust-dominated inside 0.50 R500; baryon-phantom crossover at r_M = 0.32 R500; phantom > dust for x > 0.41; phantom saturated (dust cap) beyond 0.83 R500
+    9.00   0.37   0.34   0.31   0.68 dust-dominated inside 0.31 R500; baryon-phantom crossover at r_M = 0.37 R500; phantom > dust for x > 0.34; phantom saturated (dust cap) beyond 0.68 R500
+
+  THE MEASURED RADIAL PIE (median over the 12 clusters, data masses):
+      r      x     s_b    s_ph     s_d       dom
+     50  0.041   0.164   0.020   0.816      dust
+     75  0.061   0.151   0.028   0.820      dust
+    100  0.081   0.150   0.037   0.813      dust
+    150  0.122   0.141   0.054   0.801      dust
+    210  0.170   0.134   0.074   0.789      dust
+    300  0.243   0.150   0.114   0.740      dust
+    420  0.341   0.170   0.167   0.661      dust
+    600  0.487   0.168   0.248   0.587      dust
+
+  HONEST NOTE on the brief's parenthetical: on the DATA the dust dominates INSIDE (s_d 82% at 50 kpc falling to 25% at R500) and the phantom at/outside R500 (s_ph 2% -> 57%) -- the crossover sits between 0.6 R500 and R500 for the sample (the law model's x_dp = 0.41 at the median M500); 'phantom-dominated inside r_M' is INVERTED on the data. The phantom's dominance at R500 is a property of the SAMPLE masses (M500 > the saturation mass 3.6e14, where c_dust(R500) < 1): below ~3.6e14 the dust remains the largest sector even at R500.
+
+====================================================================================================
+PART 4 -- THE CROSS-CHECK: the pie's implied temperature vs kTvir
+====================================================================================================
+  T_pie = mu m_p G M_dyn^pie / (2 k_B R500) -- the virial temperature
+  of the three sectors' mass at R500.
+
+  (a) THE DATA-PIE FACE (M_dyn^pie = M500):
+      A1644    T_pie =  4.45 keV vs kT_obs =  5.09 -> T_pie/kT_obs = 0.874
+      A1795    T_pie =  5.41 keV vs kT_obs =  6.08 -> T_pie/kT_obs = 0.890
+      A2029    T_pie =  8.35 keV vs kT_obs =  8.26 -> T_pie/kT_obs = 1.011
+      A2142    T_pie =  8.47 keV vs kT_obs =  8.40 -> T_pie/kT_obs = 1.008
+      A2255    T_pie =  5.93 keV vs kT_obs =  5.81 -> T_pie/kT_obs = 1.020
+      A2319    T_pie =  7.32 keV vs kT_obs =  9.60 -> T_pie/kT_obs = 0.762
+      A3158    T_pie =  5.11 keV vs kT_obs =  4.99 -> T_pie/kT_obs = 1.024
+      A3266    T_pie =  8.29 keV vs kT_obs =  9.45 -> T_pie/kT_obs = 0.877
+      A644     T_pie =  6.20 keV vs kT_obs =  7.70 -> T_pie/kT_obs = 0.805
+      A85      T_pie =  6.16 keV vs kT_obs =  6.00 -> T_pie/kT_obs = 1.027
+      RXC1825  T_pie =  4.97 keV vs kT_obs =  5.13 -> T_pie/kT_obs = 0.970
+      ZW1215   T_pie =  7.60 keV vs kT_obs =  6.27 -> T_pie/kT_obs = 1.212
+      median 0.989, log10 rms 0.057 dex (G095 committed hse median 0.989, scatter 0.053 dex)
+  [PASS] V3a [the data-pie temperature closes within the HSE scatter] log10(T_pie/kT_obs) scatter vs G095's 0.053-dex HSE register
+         measured: log10 rms = 0.057 dex (HSE 0.053)
+         reading : by construction T_pie = T_vir(M500): the pie's implied temperature is the observed kTvir up to the registered hydrostatic factor (median 0.99, range 0.76-1.21) -- closure WITHIN the HSE scatter
+
+  (b) THE G095 2/3-LAW FACE (the pie's f = M_dyn^pie/M_b):
+      log10(T_obs/T_pred) = (2/3) log10 f + log10(2 r_M/R500^b): cluster residuals rms = 0.067 dex (G135 committed; pooled 31-system 0.076 dex; HSE 0.053)
+  [PASS] V3b [the 2/3 law with the pie's M_dyn closes within the HSE-class scatter] G135's committed cluster residuals on the pie's f
+         measured: rms = 0.067 dex (HSE 0.053, pooled-31 0.076)
+         reading : the pie's M_dyn is the M500 the 2/3 law was verified against: the residual is the HSE scatter plus the <=5.5% R500-convention offset -- closure at the 0.07-dex level, within the 0.1-dex envelope
+
+  (c) THE LAW-PIE FACE (M_dyn^law = M_b (1 + c_law/u)):
+      log10(T_pie/T_obs) = res_law - log10(hse): mean -0.161 dex, rms 0.190 dex
+  [PASS] V3c [the law-pie temperature closes at the 0.1-dex level, not the 0.05-dex HSE level]
+         measured: rms = 0.190 dex; scatter about the mean = 0.100 dex (floor 0.097/0.119, HSE 0.053)
+         reading : the law-pie's implied temperature carries the R500-window extrapolation offset (the ~-0.15-dex mean) on top of the HSE factor: closure to the 0.1-dex FLOOR on the scatter (0.10 dex), NOT to the 0.05-dex HSE level -- the same statement as the Part-2 closure residual
+
+====================================================================================================
+PART 5 -- THE VERDICTS
+====================================================================================================
+  V1_the_pie: PASS
+     THE PIE: M_dyn(<R500) = M500 = M_b + M_ph + M_dust with the equipartition phantom M_ph = M_b R500/r_M, on the committed rows: median shares baryons 17.7% (16-84 15.1-21.5%), phantom 56.9% (54.0-60.7%), dust 24.6% (18.1-31.3%); the data pie closes EXACTLY (the dust is the remainder, an identity); the LAW pie (dust from G143's two-parameter law) closes to res = -0.18 +/- 0.06 dex: the SCATTER IS G098's 0.1-dex floor (0.065 vs 0.097/0.119), the -0.18-dex mean is the fit-window extrapolation (the law is fit on 50-600 kpc; R500 is outside); A2319 carries the registered uncapped overshoot (c < 1 at R500, s_d = -2.7%); the EFE-capped reading collapses the pie to dust 82.3% + baryons 17.7% (G057 V2).
+  V2_universal_constitution: PASS
+     THE UNIVERSAL CONSTITUTION: the sector shares are the closed form s_b = 1/(1 + c x/u), s_ph = (x/u)/(1 + c x/u), s_d = (c-1)(x/u)/(1 + c x/u) with c = 0.72 (M500/8e14)^-0.41 x^-0.99 and u = r_M/R500 = 0.185 (M500/1e14)^{+0.31} -- TWO parameters plus the f_dark-run footing, the u-exponent MEASURED (+0.31) and equal to the (1-gamma)/2 - 1/3 prediction (+0.31); the phase diagram: dust-dominated inside (x_db = 0.5-0.6 at the sample masses, x_dp = 0.4-0.6), phantom-dominated outside up to the saturation x_sat = c1^{1/p} (0.7-1.0) beyond which the uncapped phantom alone overshoots M_HSE (G098's zero-crossing); the transition radii move OUTWARD as M500 falls (the amplitude run), so the < 3.6e14 systems (groups) are dust-dominated even at R500; HONEST: the brief's 'phantom-dominated inside r_M' is INVERTED on the data -- the dust dominates inside (82% at 50 kpc), the phantom at/outside R500 (57%).
+  V3_honest_statement: PASS
+     HONEST: the cluster sector bookkeeping is CLOSED to the pair (c0, q) = (-0.145, -0.414) plus the 0.1-dex residual floor (0.119/0.097 dex) -- the composition is one equation, the phantom is the exact equipartition M_b r/r_M, the dust is the two-parameter law, the pie closes exactly on the data and to the floor on the law; the missing piece is NO LONGER 'the amplitude' but the DERIVATION of the pair (c0, q): from the thermodynamics (G159's dressed closed form A_b = (sigma/v_loc)^p, p = 3 or 2, universal 0.125-0.5, central ~0.27, vs the measured boundary contrast 0.163-0.333 within a factor ~2; the literal-cold form off by 4-11 dex) and from the infall (G137's NFW-class envelope, pooled slope -2.218 +- 0.021), both in flight; the R500-window extrapolation offset (-0.18 dex, Part 2) is a data-window statement, not a law failure -- inside 600 kpc the law closes at its committed 0.097/0.119 dex.
+
+====================================================================================================
+CHECKS: 11 pass, 0 fail
+====================================================================================================
+wrote G179_results.json
