@@ -1,0 +1,265 @@
+G098 -- THE FREE-DUST ABUNDANCE FROM THE CLUSTER SIDE: the state of the one
+open parameter.  With the law's phantom floor FIXED (zero free parameters) at
+cluster scale, invert the observed residual PER RADIUS for the REQUIRED
+free-dust profile
+
+        rho_dust,req(r) = rho_tot,obs(r) - rho_ph,laws(r) - rho_b(r)
+
+on the 12 X-COP clusters of the committed ingests, then ask whether the
+required free dust is ONE NUMBER per cluster (a uniform fraction of the
+missing mass) or a genuine radial profile.
+
+THE FLOOR (zero parameters, two committed readings, both carried).
+  (A)  PRIMARY -- the certified-EOS phantom density of the law at cluster
+       scale (G057 column (a), the density form of the G03G/G075 floor
+       formula sigma_pred = (G M_b a0)^(1/4)/sqrt(2); G03E's linear law
+       M_ph(<r) = M_b r/r_M differentiated per radius bin, M_b re-computed
+       per bin):
+            rho_ph,laws(r) = sqrt(G M_b(<r) a0)/(4 pi G r^2).
+       No cap, no kernel, no fit: a0 and G are the committed constants.
+  (B)  SECONDARY -- G059's zero-parameter kernel partition (the certified
+       mu2 coupling oriented sub-a0, "the theory's own kernel" of G059's
+       partition negative): the phantom carries the share
+            share_k(r) = (1 + g_tot(r)/(4 a0))^-2      [g_tot from M_HSE(<r)]
+       of the residual at each radius; the dust carries the complement.
+
+THE INVERSION (per radius, per cluster):
+       rho_res(r)      = rho_tot,obs(r) - rho_b(r)      (the missing mass)
+       rho_dust,req(r) = rho_res(r) - rho_ph,laws(r)
+       f_dust(r)       = rho_dust,req(r)/rho_res(r)     (fraction of the
+                          missing mass that must be free dust)
+Under (A) f_dust can pass through zero and go NEGATIVE where the uncapped
+floor alone overshoots the local residual -- G012's registered overshoot
+(12.77/6.88 = 1.86x uncapped vs the certified 420-kpc residual) -- the
+crossing radius r_f0 where the required dust vanishes is therefore a
+measured number of this lane.  Under (B) f_dust = 1 - share_k = mu2(g/2a0)
+pointwise, positive definite, radial through g_tot(r).
+
+THE CROSS-CHECK (V3) -- the temperature ratio vs the mass ratio
+(G095's alpha-relation, IN THE TREE since mid-run: deepseek_push/
+G095_temperature_ratio.py, committed with G104).  G095's closed form of
+G075's committed identity T_obs/T_floor = (sigma_dyn/sigma_pred)^2 is
+
+        T_obs/T_floor = 2 (M_dyn(<r)/M_b) (r_M/r)      at r = R500
+
+with r_M = sqrt(G M_b/a0) -- algebraically IDENTICAL to the exact inversion
+used below (M_dyn,T = R500 sqrt(G M_b a0)/(2 G T_ratio) <=> f = (T_obs/
+T_floor) R500/(2 r_M)); G095 measured the relation's power as alpha_emp =
+0.752 +/- 0.115 (pointwise median +/- std; the law's structural exponent
+2/3 inside 1 sigma, the BTFR-style 1/2 excluded at ~2.2 sigma) and read the
+cluster's missing abundance as one number f = (T_obs/T_floor)^(1/alpha) =
+5.4 (alpha_emp) / 6.8 (alpha = 2/3) vs the measured median f = 5.66; G104
+committed the pooled fit alpha = +0.2104733 +/- 0.161 (OLS, log10 space)
+with the closed-form-consistent value alpha_cf = +0.212.  This lane:
+(i) reproduces G095's committed per-cluster rows and medians digit-for-
+digit (gate V0c); (ii) confirms the pooled fit reproduces G104's committed
+slope; (iii) inverts the relation per cluster to the temperature-implied
+dynamical mass, propagates the Eckert+17 kTvir errors, and compares the
+implied dark fraction (and the implied free-dust fraction of the missing
+mass under each floor) against the mass inversion within the propagated
+errors.
+
+VERDICTS (pre-registered).
+  V1  per-cluster median f_dust over 0.2-1 R500 and spread (16-84%);
+      PASS iff the sample median of the per-cluster medians is in (0,1]
+      on the primary floor (A) -- otherwise the law's floor overshoots the
+      residual in the median cluster and the dust requirement is negative.
+  V2  profile vs number: the requirement is ONE NUMBER iff the radial
+      variation (max-min)/median over 0.2-1 R500 is within 20% on the
+      primary floor for >= 10/12 clusters; otherwise it is a PROFILE.
+  V3  the mass-ratio vs temperature-ratio consistency: median |log10(q_T/q_M)|
+      within the median propagated 1-sigma temperature error (PASS = the two
+      sides agree within the errors); the alpha fit reported beside.
+  V4  the state of the open parameter: ONE number per cluster or a profile?
+
+DATA: the committed G050/G057b ingests only (real_research/data/xcop/,
+read-only, nothing re-downloaded): the 12 hydro mass profiles (M_FORW on the
+30-3000 kpc grid), the 12 fgas profiles, the 7 measured stellar profiles +
+the h67b registered M_star/M_gas import medians for the other 5, and the
+committed xcop_r500_ettori2019.json (Ettori+19 R500/M500).  Measured ICM
+temperatures: Eckert+17 (arXiv:1611.05051) Table 1 kTvir -- the EXTERNAL-
+SOURCED column G075 committed (values + hi/lo errors carried both here).
+
+The lane reproduces G075's T-ratio median (0.28) and G059's kernel median
+(0.571/0.615) digit-for-digit as its data gate.  Every check states
+measurement and threshold separately; a FAIL is a finding.
+
+====================================================================================================
+G098 -- THE FREE-DUST ABUNDANCE FROM THE CLUSTER SIDE: the state of the one open parameter
+====================================================================================================
+X-COP clusters from the committed ingest: 12 (A1644, A1795, A2029, A2142, A2255, A2319, A3158, A3266, A644, A85, RXC1825, ZW1215); 7 with a measured stellar profile (the G050/G057b loader, identical file set)
+stellar import medians (grid): 50:1.133, 75:0.600, 100:0.388, 150:0.215, 210:0.123, 300:0.087, 420:0.066, 600:0.050
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/G098_freedust_abundance.py:265: DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  Mb=float(mb), Tp=float(Tp), To=float(KTVIR[c["name"]][0]),
+
+====================================================================================================
+V0 -- THE DATA GATE: this ingest reproduces the committed rows of G075 (T ratio) and G059 (kernel 420-kpc median)
+====================================================================================================
+  [PASS] V0a [gate: G075's committed T-ratio median] T_pred,canonical/T_obs (Eckert+17 kTvir) over the 12 clusters, recomputed from the same ingest with the same formula (G075 committed 0.28, scatter 0.05 dex)
+         measured: median = 0.280, log10 scatter = 0.051 dex
+         reading : same files, same baryon convention, same mu = 0.6 -> the ingest is the committed one
+  [PASS] V0b [gate: G059's committed kernel median] the kernel partition's delivered (M_b + M_ph,supported(<420))/M_HSE, canonical footing, replicated exactly (G059 committed 0.571/0.615 canonical/alt)
+         measured: median = 0.571 over 12 clusters
+         reading : the zero-parameter kernel floor on this ingest: the law's own support, before any free dust
+  [PASS] V0c [gate: G095's committed rows reproduced] median T_obs/T_pred, median closed form 2 f r_M/R500, median power alpha_i, and the identity closed == ratio x hse (G095 committed 3.572 / 3.512 / 0.752 +/- 0.115, exact identity)
+         measured: median ratio = 3.572 (G095 3.572); median closed form = 3.512 (3.512); alpha_i median = 0.752 +/- 0.115 (0.752 +/- 0.115); max |closed - ratio*hse| = 2.22e-15
+         reading : G095's alpha-relation and its measured power are reproduced on the same committed ingest; the lane's exact inversion below IS this closed form (identical algebra: f = (T_obs/T_floor) R500/(2 r_M))
+
+====================================================================================================
+PART 1 -- THE INVERSION PER RADIUS: rho_dust,req(r) = rho_tot,obs - rho_ph,laws - rho_b, both floors, both footings
+====================================================================================================
+  per-cluster quantities computed on a 140-point log grid over [0.10, 1.25] R500: rho_tot, rho_b (central-difference derivatives of the committed enclosed masses), rho_res, the two floors, rho_dust,req, f_dust.
+  CENSORING (registered, data-regime honesty): the local-density inversion is only resolved where the HSE total profile still RISES and the residual density is a well-determined difference of the two slopes: rho_res > 0 AND rho_res > 2% of rho_tot (a subtraction-noise resolution floor, stated; the overshoot points where the EOS floor GENUINELY exceeds a resolved positive residual are kept).  Beyond the point where M_FORW's outer slope saturates (part of the window on several clusters, up to 0.7-1 R500) the residual density is UNRESOLVED: those radii are marked and excluded from the local statistics, with the censored fraction reported per cluster; the enclosed-mass reading (below) is immune to this noise and is carried as the robust cross-reading.
+
+====================================================================================================
+PART 2 -- THE ABUNDANCE STRUCTURE: median f_dust and radial variation over [0.2, 1] R500
+====================================================================================================
+
+  --- canonical: a0 = 9.3623e-11 (stats on the RESOLVED window; cens = unres. frac.) ---
+  cluster     medA    16-84A  rangeA  crossA  cens   medB    16-84B  rangeB  fA@0.2  fA@0.8
+  A1644       0.70 0.41-0.84    0.65    none   0%   0.31 0.22-0.34    0.53    0.84    0.63
+  A1795       0.66 0.04-0.75    1.42     843   0%   0.40 0.26-0.51    0.88    0.81    0.62
+  A2029       0.67 -0.13-0.74    1.57     950   0%   0.47 0.31-0.57    0.77    0.78    0.61
+  A2142       0.56 0.41-0.75    1.21    none   0%   0.43 0.33-0.53    0.62    0.78    0.56
+  A2255       0.67 0.50-0.73    0.57    none   0%   0.32 0.27-0.34    0.36    0.76    0.66
+  A2319       0.60 0.11-0.76   13.43    1059   0%   0.46 0.34-0.57    0.72    0.83    0.59
+  A3158       0.69 0.45-0.73    0.46    none   0%   0.35 0.26-0.41    0.65    0.75    0.65
+  A3266       0.52 0.42-0.65    0.72    none   0%   0.36 0.28-0.48    0.76    0.77    0.42
+  A644        0.84 0.28-0.86   15.26     737  23%   0.52 0.31-0.58    0.72    0.86    0.67
+  A85         0.64 0.23-0.74    1.10    none   0%   0.39 0.28-0.47    0.73    0.77    0.61
+  RXC1825     0.75 0.36-0.78    0.66    none   0%   0.36 0.26-0.42    0.73    0.80    0.72
+  ZW1215      0.70 0.55-0.76    0.34    none   0%   0.40 0.29-0.44    0.50    0.77    0.65
+  SAMPLE (resolved): median of per-cluster median f_dust A = 0.674 (B 0.394); per-cluster medians A [0.52, 0.84] over 12/12 (resolved), B [0.31, 0.52]
+
+  --- alt: a0 = 1.1279e-10 (stats on the RESOLVED window; cens = unres. frac.) ---
+  cluster     medA    16-84A  rangeA  crossA  cens   medB    16-84B  rangeB  fA@0.2  fA@0.8
+  A1644       0.67 0.35-0.82    0.74    none   0%   0.27 0.19-0.30    0.54    0.82    0.60
+  A1795       0.63 -0.05-0.73    1.64     813   0%   0.35 0.23-0.46    0.93    0.79    0.59
+  A2029       0.64 -0.24-0.71    1.81     933   0%   0.41 0.27-0.51    0.82    0.76    0.57
+  A2142       0.52 0.36-0.72    1.44    none   0%   0.38 0.28-0.47    0.66    0.76    0.52
+  A2255       0.64 0.46-0.70    0.66    none   0%   0.27 0.23-0.29    0.37    0.74    0.63
+  A2319       0.56 0.03-0.73   15.75    1040   0%   0.40 0.30-0.51    0.77    0.81    0.55
+  A3158       0.66 0.39-0.71    0.53    none   0%   0.31 0.22-0.36    0.68    0.73    0.61
+  A3266       0.47 0.36-0.62    0.87    none   0%   0.31 0.24-0.42    0.81    0.75    0.36
+  A644        0.83 0.21-0.84   17.06     723  23%   0.47 0.27-0.52    0.75    0.84    0.64
+  A85         0.61 0.16-0.71    1.27    1123   0%   0.34 0.24-0.42    0.77    0.75    0.57
+  RXC1825     0.72 0.30-0.75    0.74    none   0%   0.31 0.22-0.37    0.77    0.78    0.69
+  ZW1215      0.67 0.51-0.74    0.39    none   0%   0.35 0.25-0.39    0.53    0.75    0.62
+  SAMPLE (resolved): median of per-cluster median f_dust A = 0.642 (B 0.346); per-cluster medians A [0.47, 0.83] over 12/12 (resolved), B [0.27, 0.47]
+
+  -- the cumulative (enclosed-mass) reading at 0.2 and 1.0 R500 --
+  --- canonical ---
+  cluster    F_A@0.2  F_A@1.0  F_B@0.2  F_B@1.0
+  A1644        0.831    0.608    0.329    0.274
+  A1795        0.830    0.505    0.590    0.399
+  A2029        0.790    0.469    0.632    0.458
+  A2142        0.741    0.518    0.549    0.405
+  A2255        0.786    0.586    0.341    0.291
+  A2319        0.838    0.450    0.597    0.459
+  A3158        0.803    0.589    0.494    0.324
+  A3266        0.833    0.584    0.541    0.332
+  A644         0.851    0.476    0.599    0.569
+  A85          0.796    0.516    0.536    0.373
+  RXC1825      0.846    0.606    0.540    0.338
+  ZW1215       0.780    0.640    0.461    0.352
+  --- alt ---
+  cluster    F_A@0.2  F_A@1.0  F_B@0.2  F_B@1.0
+  A1644        0.814    0.570    0.286    0.237
+  A1795        0.813    0.457    0.535    0.353
+  A2029        0.770    0.417    0.578    0.408
+  A2142        0.715    0.470    0.494    0.357
+  A2255        0.765    0.546    0.297    0.251
+  A2319        0.822    0.396    0.542    0.408
+  A3158        0.784    0.549    0.441    0.282
+  A3266        0.816    0.543    0.486    0.290
+  A644         0.836    0.425    0.544    0.514
+  A85          0.776    0.469    0.481    0.328
+  RXC1825      0.831    0.568    0.486    0.295
+  ZW1215       0.759    0.605    0.409    0.307
+
+====================================================================================================
+PART 3 -- THE CROSS-CHECK: the temperature ratio vs the mass ratio (G095's alpha-relation, derived from G075's committed identity)
+====================================================================================================
+  G075 committed: T_pred/T_obs = (sigma_pred/sigma_dyn,3D)^2 exactly (0.28 = 0.53^2); G095 (in-tree, committed with G104) derived its closed form per cluster:
+      T_obs/T_floor = 2 (M_dyn(<r)/M_b) (r_M/r)     at r = R500, r_M = sqrt(G M_b/a0)
+  and measured the relation's power: alpha_i = ln(T_obs/T_pred)/ln f per cluster, median 0.752 +/- 0.115 (structural 2/3 in 1 sigma, BTFR 1/2 excluded ~2.2 sigma); the pooled log-log fit is alpha = 0.2104733 +/- 0.161 (G104, reproduced below).  The exact inversion used here IS G095's closed form (identical algebra).
+  FIT log10(T_pred/T_obs) = 0.2104733 log10(q) + -0.411, r = 0.38, alpha OLS error = 0.161; vs G104's committed 0.2104733: delta 2.8e-16; pointwise alpha_i reproduced in V0c: median 0.752 +/- 0.115
+  [PASS] V3a [the alpha-relation: G095's closed form and the measured power] the pooled log-log slope reproduces G104's committed 0.2104733 (0.0 sigma) and the pointwise power median reproduces G095's 0.752 +/- 0.115 (structural 2/3 inside 1 sigma, BTFR 1/2 outside ~2 sigma)
+         measured: fit alpha = 0.2104733 vs G104 0.2104733 (delta 2.8e-16); alpha_i median = 0.752 +/- 0.115: 2/3 distance = 0.74 sigma, 1/2 distance = 2.19 sigma
+         reading : the temperature ratio IS the mass ratio to a power: G095's closed form 2 f r_M/R500 with the measured power alpha ~ 0.75 (structural 2/3); the fitted log-log slope (0.21) is the closed form's own value at the sample's M500-M_b scaling, not a second relation (G104 V2b)
+  A1644     q=0.144 T_ratio=0.243  f_dark,T= 6.93 f_dark,M= 5.93  |dlog|=0.059  err=0.066
+  A1795     q=0.170 T_ratio=0.255  f_dark,T= 5.62 f_dark,M= 4.89  |dlog|=0.051  err=0.056
+  A2029     q=0.207 T_ratio=0.285  f_dark,T= 3.79 f_dark,M= 3.84  |dlog|=0.005  err=0.010
+  A2142     q=0.242 T_ratio=0.306  f_dark,T= 3.10 f_dark,M= 3.13  |dlog|=0.003  err=0.059
+  A2255     q=0.202 T_ratio=0.310  f_dark,T= 3.85 f_dark,M= 3.94  |dlog|=0.009  err=0.024
+  A2319     q=0.309 T_ratio=0.273  f_dark,T= 3.24 f_dark,M= 2.23  |dlog|=0.118  err=0.131
+  A3158     q=0.174 T_ratio=0.301  f_dark,T= 4.60 f_dark,M= 4.74  |dlog|=0.010  err=0.017
+  A3266     q=0.153 T_ratio=0.215  f_dark,T= 6.43 f_dark,M= 5.52  |dlog|=0.057  err=0.073
+  A644      q=0.179 T_ratio=0.228  f_dark,T= 5.94 f_dark,M= 4.59  |dlog|=0.094  err=0.100
+  A85       q=0.196 T_ratio=0.306  f_dark,T= 3.96 f_dark,M= 4.10  |dlog|=0.012  err=0.020
+  RXC1825   q=0.160 T_ratio=0.275  f_dark,T= 5.45 f_dark,M= 5.25  |dlog|=0.013  err=0.017
+  ZW1215    q=0.144 T_ratio=0.292  f_dark,T= 4.73 f_dark,M= 5.95  |dlog|=0.084  err=0.108
+  [PASS] V3b [the temperature-implied dark fraction vs the mass inversion] per-cluster |log10(q_T/q_M)| at R500 against the propagated 1-sigma kTvir error: agree within the errors?  (q_T from M_dyn,T = R500 sqrt(G M_b a0)/(2 G T_ratio), the alpha-relation inverted)
+         measured: median |dlog| = 0.032 vs median error = 0.057 (4.67 vs 4.66 median f_dark)
+         reading : the temperature side and the mass side measure the same deficit; the inversion used here IS G095's closed form (f = (T_obs/T_floor) R500/(2 r_M), identical algebra); the delta is the non-isothermality + M_b systematic envelope (stars imported for 5/12).  FAIL = the kTvir errors cannot absorb the gap.
+
+  -- f_dust at R500 from the mass inversion (cumulative M_dust,req(<R500)/M_res(<R500)) vs f_dust implied by the temperature ratio, per floor --
+  --- canonical ---
+  cluster     fM_A   fT_A   df_A   fM_B   fT_B   df_B
+  A1644       0.61   0.83   0.22   0.27   0.54   0.26
+  A1795       0.51   0.73   0.22   0.40   0.64   0.24
+  A2029       0.47   0.54   0.08   0.46   0.53   0.08
+  A2142       0.52   0.51   0.01   0.40   0.39   0.01
+  A2255       0.59   0.56   0.02   0.29   0.27   0.02
+  A2319       0.45   0.86   0.41   0.46   0.87   0.42
+  A3158       0.59   0.56   0.03   0.32   0.30   0.03
+  A3266       0.58   0.78   0.20   0.33   0.55   0.22
+  A644        0.48   0.88   0.40   0.57   0.95   0.38
+  A85         0.52   0.53   0.01   0.37   0.40   0.03
+  RXC1825     0.61   0.67   0.06   0.34   0.42   0.08
+  ZW1215      0.64   0.45   0.19   0.35   0.17   0.19
+  [FAIL] V3c [canonical: the dust fraction of the missing mass from the temperature ratio vs from the mass inversion, within the propagated kTvir errors]
+         measured: median |df| = 0.13 (floor A) / 0.13 (floor B) vs median propagated error 0.02
+         reading : both floors carried; the comparison is at R500, the dust fraction of the missing mass.  FAIL = the temperature side disagrees with the profile inversion beyond the T errors.
+
+  -- f_dust at R500 from the mass inversion (cumulative M_dust,req(<R500)/M_res(<R500)) vs f_dust implied by the temperature ratio, per floor --
+  --- alt ---
+  cluster     fM_A   fT_A   df_A   fM_B   fT_B   df_B
+  A1644       0.57   0.80   0.23   0.24   0.51   0.27
+  A1795       0.46   0.69   0.23   0.35   0.60   0.25
+  A2029       0.42   0.50   0.08   0.41   0.49   0.09
+  A2142       0.47   0.46   0.01   0.36   0.34   0.01
+  A2255       0.55   0.52   0.02   0.25   0.23   0.02
+  A2319       0.40   0.81   0.41   0.41   0.82   0.41
+  A3158       0.55   0.52   0.03   0.28   0.26   0.03
+  A3266       0.54   0.74   0.20   0.29   0.51   0.22
+  A644        0.43   0.84   0.41   0.51   0.91   0.39
+  A85         0.47   0.48   0.02   0.33   0.36   0.03
+  RXC1825     0.57   0.63   0.06   0.30   0.38   0.08
+  ZW1215      0.60   0.41   0.19   0.31   0.12   0.19
+  [FAIL] V3c [alt: the dust fraction of the missing mass from the temperature ratio vs from the mass inversion, within the propagated kTvir errors]
+         measured: median |df| = 0.14 (floor A) / 0.14 (floor B) vs median propagated error 0.03
+         reading : both floors carried; the comparison is at R500, the dust fraction of the missing mass.  FAIL = the temperature side disagrees with the profile inversion beyond the T errors.
+  [PASS] V3d [G095's one-number reading of the alpha-relation] median implied f = (T_obs/T_floor)^(1/alpha) at alpha_emp = 0.752 and at the structural 2/3, vs the measured median f = M500/M_b (G095 committed 5.4 / 6.8 vs 5.66)
+         measured: median f_implied = 5.44 (alpha_emp 0.752; G095 committed 5.4) / 6.75 (2/3; committed 6.8) vs measured median f = 5.66 (committed 5.66): delta 0.018 / 0.076 dex
+         reading : G095's sentence: the cluster's missing abundance is one number, f = (T_obs/T_floor)^(1/alpha) = 5.4-6.8 vs 5.66 measured -- the temperature ratio PACKAGES the deficit (median f_dark = f - 1 = 4.7 at R500, the G075/G017 registered number); it does not predict it from M_b alone (the 2/3 face overshoots by design: G095's honest range statement, reproduced)
+
+====================================================================================================
+PART 4 -- THE VERDICTS
+====================================================================================================
+  [PASS] V1 [the required f_dust per cluster, 0.2-1 R500, primary floor (A)] sample median of the per-cluster median f_dust in (0, 1] and the per-cluster spread reported
+         measured: sample median = 0.674; per-cluster medians [0.52, 0.84]; median 16-84 spread = 0.42; negative-requirement clusters (median f_dust < 0) = 0/12 (the floor's overshoot, G012-registered)
+         reading : a threshold-free measurement of the required dust abundance: median and spread per cluster are the V1 numbers
+  [FAIL] V2 [profile vs number: (max-min)/median of f_dust over 0.2-1 R500 within 20% for >= 10/12 clusters] primary floor (A); floor (B) beside
+         measured: floor A: 0/12 clusters flat (median range ratio 0.91, per-cluster [0.34, 15.26]); floor B: 0/12 flat
+         reading : if the required dust fraction were ONE number per cluster, the radial variation in the measured window would be within 20%; a FAIL here is the finding: the requirement is a PROFILE
+  [PASS] V3 [the mass-ratio vs temperature-ratio consistency: G095's alpha-relation reproduced and inverted] alpha = 0.210 +/- 0.161 (G104's committed 0.2104733, delta 2.8e-16), alpha_i median 0.752 +/- 0.115 (G095 committed 0.752 +/- 0.115), median |dlog| = 0.032 vs median error 0.057 (G095's closed form inverted, per cluster)
+         measured: fit = 0.210; alpha_i = 0.752; median |dlog| = 0.032; PASS = the reproduction gates AND the within-errors agreement
+         reading : the temperature ratio and the mass ratio are the SAME deficit read two ways: G095's closed form 2 f r_M/R500 with power ~0.75 packages the missing abundance f = 5.4-6.8 vs 5.66 measured (V3d); the exact inversion matches within the kTvir envelope (V3b); the dust FRACTION of the missing mass is a separate, FAILing precision statement (V3c)
+THE OPEN PARAMETER IS NOT ONE NUMBER PER CLUSTER.  With the law's phantom floor fixed (zero free parameters: the certified-EOS density sqrt(G M_b a0)/(4 pi G r^2), floor A, and the mu2-kernel share, floor B), the REQUIRED free-dust fraction of the missing mass varies radially inside 0.2-1 R500 by a median (max-min)/median = 0.91 (floor A, resolved window) / 0.72 (floor B, full window) -- a median 5.1x inner-to-outer swing on the primary floor, far beyond any 20% flatness bar.  The inner region (0.2-0.5 R500) requires f_dust ~ 0.78-0.63 median (the missing mass is mostly free dust there), falling to ~0.2-0.5 toward R500.  On floor A the requirement crosses zero at a median 897 kpc (in-window on 4/12 clusters): beyond it the uncapped law alone overshoots the LOCAL residual -- G012's registered uncapped overshoot (1.86-2.21x at 420 kpc) restated per radius; the outer window is additionally UNRESOLVED in the local-density reading where M_FORW's slope saturates (median censored fraction 0% of the window points; the enclosed-mass reading, immune to this, shows the cumulative dust fraction still falling from ~0.8 at 0.2 R500 to ~0.5 at R500).  The EFE-capped reading (G050/G057's operative cH0 cap: phantom support zero across the window, G057 V2) is the ONLY committed reading in which the dust is trivially one number (100% of the deficit, flat by construction, zero information).  The temperature ratio agrees with the mass inversion within the kTvir errors (G095's closed form T_obs/T_floor = 2 f r_M/R500, power alpha ~ 0.75, structural 2/3; fitted slope 0.2104733 reproduced from G104 digit-for-digit; median |dlog(q_T/q_M)| = 0.032 vs median error 0.057), so the deficit itself is one number per cluster (median f_dark = 4.7 at R500 -- G095's f = 5.66 = the same number in total-to-baryon units), but its PHANTOM/DUST SPLIT is a radial function fixed by the law's own zero-parameter floor.
+  [PASS] V4 [the state of the open parameter] the cluster amplitude is a PROFILE inside 0.2-1 R500 on both zero-parameter floors; one-number only in the degenerate all-capped reading; the deficit itself is one number (temperature-consistent)
+         measured: THE OPEN PARAMETER IS NOT ONE NUMBER PER CLUSTER.  With the law's phantom floor fixed (zero free parameters: the certified-EOS density sqrt(G M_b a0)/(4 pi G r^2), floor A, and the mu2-kernel share, floor B), the REQUIRED free-dust fraction of the missing mass varies radially inside 0.2-1 R500 by a median (max-min)/median = 0.91 (floor A, resolved window) / 0.72 (floor B, full window) -- a median 5.1x inner-to-outer swing on the primary floor, far beyond any 20% flatness bar.  The inner region (0.2-0.5 R500) requires f_dust ~ 0.78-0.63 median (the missing mass is mostly free dust there), falling to ~0.2-0.5 toward R500.  On floor A the requirement crosses zero at a median 897 kpc (in-window on 4/12 clusters): beyond it the uncapped law alone overshoots the LOCAL residual -- G012's registered uncapped overshoot (1.86-2.21x at 420 kpc) restated per radius; the outer window is additionally UNRESOLVED in the local-density reading where M_FORW's slope saturates (median censored fraction 0% of the window points; the enclosed-mass reading, immune to this, shows the cumulative dust fraction still falling from ~0.8 at 0.2 R500 to ~0.5 at R500).  The EFE-capped reading (G050/G057's operative cH0 cap: phantom support zero across the window, G057 V2) is the ONLY committed reading in which the dust is trivially one number (100% of the deficit, flat by construction, zero information).  The temperature ratio agrees with the mass inversion within the kTvir errors (G095's closed form T_obs/T_floor = 2 f r_M/R500, power alpha ~ 0.75, structural 2/3; fitted slope 0.2104733 reproduced from G104 digit-for-digit; median |dlog(q_T/q_M)| = 0.032 vs median error 0.057), so the deficit itself is one number per cluster (median f_dark = 4.7 at R500 -- G095's f = 5.66 = the same number in total-to-baryon units), but its PHANTOM/DUST SPLIT is a radial function fixed by the law's own zero-parameter floor.
+         reading : the registered outcome: G017's 'LCDM-shaped free dust' carries a radially varying share of the missing mass in every non-degenerate reading; the open parameter is the floor's cap/regime choice, not a per-cluster amplitude
+
+G098 COMPLETE: 9/12 checks PASS.
+artifact written: G098_results.json
