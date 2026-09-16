@@ -1289,6 +1289,131 @@ at sign power; the 1-YEAR path (DR17 pool + Gaia DR3, x3.1, no new time)
 22/25 at sign, 14 at strict; THE TIMELINE: SIGN verdict 2027-06-30, STRICT
 2029-06-30 -- the first-order step's signature, dated.
 
+## WAVE 28 (Z-series, landed 10/10 -- the scale question REVERSED; the tSZ test has real data; MNRAS complete)
+Z1 THE FROZEN-DOMAIN TILT 17/17 -- NOT a seam: the ANCOVA seam-free slope
+b = 1.2982 +- 0.0559 (+5.34 sigma) -- freeing intercepts RAISES the slope
+(the zero-point ladder F = 22.0 MASKS the tilt, it does not produce it);
+the tilt lives INSIDE the catalogs, ATLAS3D-led (internal 1.30 +- 0.05,
++6.60 sigma -- 257/323 frozen members); the clean-core (GEMS-G + SPARC
+v>90, n=56): b = 1.258 +- 0.128 (+2.01 sigma) LEANS same direction but
+does NOT fire the 3-sigma falsifier (b-3se = 0.873 < 1.05); the bonus:
+ATLAS3D's rise is CURVATURE not a linear drift (split-half 1.944 +- 0.137
+below vs 0.963 +- 0.076 above the median log M*, ~6 sigma; SLUGGS
+corroborates 1.29 +- 0.13); VERDICT: the law's FIRST REGISTERED SLOPE
+ANOMALY (ATLAS3D-led), the decider named = the mass-trending M/L_JAM/IMF
+zero point inside one catalog vs a genuine dark-mass slope at elliptical
+scale. Falsifier NOT fired.
+Z2 THE BETA MEAN-vs-PROFILE 8/8 -- MOA CONTRADICTION #2 DISSOLVED: the
+2-5 R500 window means are log-uniform integrals (each reproduced from its
+own two-asymptote form, |d| < 6e-4); the profile-weighted re-mean
+0.447/0.417 (boot 0.454/0.405) reproduces the committed 0.434/0.438 at
+|z| <= 0.8 -- NO estimator disagreement; the -4.4 sigma was a
+comparison-category error (window mean vs envelope value); THE ENVELOPE
+-ONLY 0.5 test PASSES (3-5 R500: 0.560 +- 0.015 E1 / 0.545 +- 0.070 E2,
+z vs 0.5 = +4.1/+0.6); one residue kept: the G170 rule AS REGISTERED AT
+THE WINDOW LEVEL (beta(2-5) > 0.5 at 3 sigma) is genuinely not met -- a
+rule-level FAIL at the integration window, envelope content confirmed.
+Z3 THE DR4 RE-REGISTER -- the two-level rule FROZEN today (binding
+December): LEVEL 1 ridge ABSENT (no rise, no 7.4-kAU break, s_exc < 1.15,
+sigma < 10) -> DISFAVORED = KILL regardless of n_pass; LEVEL 2 at ridge
+confirmed: 7-8/9 = WEAK (verticals mixed, envelope-level confirmation),
+<=6/9 = SPLIT (2+ verticals anti-sign = genuine tension, NOT a kill);
+9/9 STRONG declared UNREACHABLE (P = 0.000 at N <= 5,000; the 5 verticals
+cap it at every N, per-test pass 0.53-0.81); DECEMBER EXPECTATIONS at
+N = 2000/5000: P(WEAK) = 0.506/0.474, P(SPLIT) = 0.494/0.526,
+P(DISFAVORED) = 0.000, ridge confirmed in 100% of realizations at
+11.5/18.4 sigma; the triple-check: N_usable ~ 2,250 (alpha=1) to 6,290
+(alpha=2); the 5,760 gate needs 80% of the window -- top of the bracket;
+the number to watch in December = the ridge sigma + the verticals' sign
+consistency, NOT P(STRONG).
+Z4 THE GAP DECIDER 10/10 -- G140 C1 made concrete, ZERO new observing
+time: A1644 (M500 3.48e14, X-ray fits committed, Planck+ACT-DR6 in band,
+DECam shear), HYDRA A (2.21e14, the only committed MID-GAP mass, Chandra/
+XMM+Planck+Subaru), A2631 (2.83e14, ACT+SZA+Planck detected, Chandra,
+SDSS maxBCG); g(R500)/a0 = 0.466/0.403/0.421 -- all sub-a0, the phantom
+footprint holds ACROSS the gap; s_ph = 0.66/0.44/0.51, f_dust =
+0.27/0.50/0.42 all below G178's 0.85 falsifier: THE SMOOTH PHANTOM PHASE
+WINS IN THE GAP, pooled 8.6 sigma vs the all-dust branch (A1644 grey
++1.8, Hydra A +5.9, A2631 +5.9); FIRST-EXECUTABLE DATE: TODAY
+(2026-09-16) -- only the shear ingest + the Z6 tSZ pull stand between
+this commit and the gap decision.
+Z5 THE REVERSE-LOCK ADJUDICATION 6/6 -- the off-by-one RESOLVED IN FAVOR
+of the committed formula: the exponent entering the r^-gamma -> n
+inversion is the CDF/mass-distribution exponent -n, pinned by the phantom
+identity (M_ph = M_b r/r_M + g ~ 1/r -> dM/dg ~ g^-2 EXACTLY at n=2; a
+g^-3 phantom would need M_ph ~ const, contradicting the Lean charge);
+gamma = (2+n)/n STANDS; the (3+n)/(n+1) and (1+n)/n alternatives give
+gamma(2) = 5/3, 3/2 vs the MW interior 2.000 exact -- dead at z = -16.7/
+-25; consistency chi2_A = 5.05 vs 288.6 vs 640.8; H055's formula was
+already the corrected one -- the suspected off-by-one adjudicated away;
+the forward chain (H060) unaffected; G229 re-scored UPWARD at its anchor
+(the phantom n=2 <-> gamma = 2.000 exact now closed).
+Z6 THE tSZ DATA PULL 4/4 -- REAL DATA: the ACT DR6 + Planck Compton-y map
+(1,783,298,880 bytes, sha256 0f47b211...) + wide mask + beam pulled from
+NASA LAMBDA into Z06_data/ (checksummed, PROVENANCE.md, re-fetch script,
+1.78 GB gitignored); the PRE-SCORED run vs G220's zero-param curves:
+A2029 -2.173 (bg-sub, predicted -2.228, +0.07 grey), A85 -3.246
+(-2.596, -0.76 NEITHER P = 0.74), A3266 masked out (ACT south hole,
+synthetic branch), A2319 out of band (dec +43.9, synthetic); BOTH
+measured slopes are background-scheme-sensitive (A85 flips grey<->NEITHER
+with the zero-level scheme -- registered as the next-lane control);
+the tSZ claim moves from prediction-registered to DATA-PULLED-AND-
+PRELIMINARY: 21 days to a scored verdict (2026-10-07) pending the Planck
+branch + PSZ2 subtraction + noise/beam/jackknife controls.
+Z7 THE DARK THERMOMETER 8/8 -- T_dark(r) from the HeCS kinematics + the
+measured beta + m = 5.09 keV: sigma_r = 859/829/835/740/684 km/s ->
+T_dark = 485/452/458/360/307 K at 0.5-1/1-1.5/1.5-2/2-3/3-5 R500;
+T_dark(2-5 R500) = 334 +- 22 K = 0.029 eV = 2.88e-5 keV; T_dark/T_gas =
+6.7-9.2e-6 (the dark sector ~1e5x colder than the ICM); the framework's
+own thermometer: predicted T_dark = 9.17 K x (sigma_eq/119.21)^2 =
+[221, 374] K over the three footings vs the measured 334 +- 22
+(z = +0.45) -- THE EQUILIBRIUM THERMOMETER CLOSES ON ITS CLUSTER SECTOR
+FROM M_b ALONE; the measured slope -0.279 +- 0.077 (z = -3.6 vs flat) is
+the rising-beta envelope's approach to isothermality (56% softening);
+T_dark sits on the registered cluster freeze rung (z* = 122 in G213's
+[84, 232] band) reproduced by kinematics alone.
+Z8 THE LINE'S ABSOLUTE ZERO POINT 12/12 -- THE SCALE QUESTION REVERSED:
+with the slope pinned at exactly 1, the 542-object line measures a0_line =
+1.698e-10 +- 0.011/0.011 (stat/sys) = 1.81 x a0_DE: the line's independent
+scale LANDS ON THE SEESAW SCALE: 0.91 x s_Lambda (z = -1.48) vs +8.98
+sigma from a0_DE and +6.67 sigma from a0_eff; CH3 WAS NOT 0.000:
++0.2585 +- 0.0409 dex (a0-space) replaces the 0.000 +- 0.06 budget ->
+THE G211 POOL z = 1.53 -> 4.89 sigma (stat+sys; 7.38 stat) --
+CROSSES THE 3-SIGMA MATERIALITY BAR IN THE ANTI-DE (PRO-SEESAW)
+DIRECTION, ratio 1.091 -> 1.290; the honest caveat: 56% of the offset is
+the ATLAS3D internal M/L_JAM scale (Z1's named suspect) + the registered
+cluster/UFD end-departures; the deciding audits = the catalog
+normalization + the z~2.5 JWST BTFR (G080/G163); TRIO core (bright dSph
++ HI + SPARC): 0.98 x DE (z = -0.2) -- the disk side keeps DE, the ETG+
+ends carry the seesaw offset.
+Z9 THE UFD KINEMATIC FALSIFIER 11/11 -- the never-froze class predicted
+beta ~ 0 at all radii vs the frozen rising 0.033 -> 0.560; N_req
+(3-sigma/bin): 87/281/935 at beta 0.56/0.31/0.17; GAIA CANNOT do it at
+30-100 kpc (PM errors 14-47 km/s dilute the 2-11 km/s signal >= 4.6x;
+N_req -> 43,619-15.8M/bin); HSTPROMO-grade astrometry can (138-449/bin);
+THE FIRST MEASUREMENTS EXIST: Draco beta_B = -0.20 (+0.28/-0.53, Vitral+24)
+and Sculptor beta = -0.16 +- 0.13 (Vitral+25, 119 PM + 1760 LOS) --
+2/2 points on the predicted side, Sculptor EXCLUDES the frozen envelope
+0.31 at 3.6 sigma; the z* ~ 0 partially-frozen bin is unpopulated
+(max sigma_pred 17.8 vs the 65.0 floor, factor 3.7 short) -- the
+ordering's slope not yet measurable; the deep-UFD verdict is an
+astrometry-precision program, not a member-count one.
+Z10 THE MNRAS METHODS + FIGURES 7/7 -- the paper's last missing section
+DELIVERED: MNRAS_METHODS.md (214 lines): samples 7/7 (SPARC 175/641
+rings, HI 55, ATLAS3D 258, the 12-decade 542, HeCS 58/10,145, X-COP 12,
+E11 26 -- each lane-cited), estimators 8/8 (RAR/deep-line, M/L G167,
+PJ beta G203, 2D G206, per-bin G209 + mass bias 0.891 G219, T-law 2/3
+G135, dust law G139/G143/G200, pie G187), the Lean statement (126
+theorems / 16 certs, spine 79/10, M01 Gauss-map, Mathlib citation form),
+conventions + constants table, the error budget with the THREE live seams
+registered honestly (frozen tilt, beta mean-vs-profile, DR4 class);
+FIGURES F1-F10 specced with lane data (12-decade line, RAR + deep line,
+one-boundary diagram, beta profile, T-law, pie + constitution, dust law,
+cosmology pie + m = 5.09 keV, falsifier matrix, anisotropy window); the
+one-page discussion/conclusions DRAFTED inside; THE PAPER'S DOCUMENTS ARE
+COMPLETE: abstract (G221) + results (G202) + methods (Z10) + solar-face
+(G224) -- assembly + the author's voice pass is ALL that remains.
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 ## WAVE 26 (landed 10/10 -- THE MASS CONVERGED; the scale final; the dSph boundary explained; the census leans charge)
 G208 DEEP-STAIRCASE ORTHOGONALITY 14/14 -- TWO-LAYER: the top stair is the
