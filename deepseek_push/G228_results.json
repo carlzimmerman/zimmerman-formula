@@ -1,0 +1,68 @@
+{
+ "checks": [
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true
+ ],
+ "n_pass": 12,
+ "n_total": 12,
+ "part1_variational": {
+  "constraints": [
+   "int f du = 1",
+   "E[ln(1+u)] = c  (log-moment, the regularized log-energy)"
+  ],
+  "EL": "-ln f - 1 - l0 - l1 ln(1+u) = 0  =>  f_l(u) = (l1-1)(1+u)^{-l1}",
+  "solution_at_l1_3": "f(u) = 2(1+u)^{-3}  EXACTLY (coefficient 2, shape 3)",
+  "closed_forms": {
+   "c(3)": 0.5,
+   "S(3)": 0.8068528194400547,
+   "dS_dc_at_3": 3.0000451484718598
+  },
+  "l1star_grid_convergence": [
+   3.000039919012983,
+   3.0000003989200676,
+   3.000000003986105
+  ],
+  "second_variation": "delta^2 S = -int (df)^2/f < 0: unique global maximum",
+  "competitors": {
+   "exponential_same_logmoment": 0.7460774127628131,
+   "loggaussian_bump_same_logmoment": 0.8030978484977371,
+   "lomax": 0.8068637437191087
+  },
+  "contrast_mean_constraint": {
+   "solution": "exponential e^-u",
+   "tail_slope": -12890859.63653667
+  },
+  "unshifted_log_constraint": "non-normalizable: int u^-3 du diverges as u_min -> 0"
+ },
+ "part2_unification": {
+  "joint_functional": "S_tot[rho,f] = S_rho[rho] + S_f[f]  (additively separable)",
+  "decoupling_mixed_second_deriv": 1.9152099971793817e-10,
+  "gamma_at_DE_temperature": 2.0,
+  "dM_dg_tail_slope": -1.999999999999999,
+  "n_lock": 1.999999999999999,
+  "l1_lock": 2.999999999999999,
+  "l1_from_profile_entropy_slope": 3.000053134218012,
+  "dS_rho_dE_at_gamma2": 6.780964164339699e-11,
+  "one_over_sigma2": 6.781054238450255e-11,
+  "two_solutions": [
+   "rho = A r^-2 (the phantom, G084)",
+   "f = 2(1+u)^{-3} (the kernel, H055)"
+  ]
+ },
+ "verdicts": {
+  "V1": "V1  THE MAX-ENTROPY DERIVATION OF THE LOMAX: the constraint set is {C1: int f du = 1, C2: E[ln(1+u)] = c} -- the normalization and the LOG-MOMENT (the mean of the log-energy ln(1+u), the regularized log of the shifted acceleration).  The Euler-Lagrange / KKT equations give the Lomax family f_l = (l1-1)(1+u)^{-l1} EXACTLY; at l1 = 3 it is f = 2(1+u)^{-3} -- coefficient 2, shape 3 -- the committed PDF, machine-checked by the form-free constraint solve (l1* = 3, converging as the grid widens) with multiplier-temperature dS/dc = l1 = 3; the second variation is strictly negative (unique global maximum: the exponential and a bump with the same log-moment both lose).  In t = ln(1+u) the Lomax is the exponential 2e^{-2t}: isothermal in log-energy, the exact analog of G084's isothermality in the log-well Phi = C ln r.",
+  "V2": "V2  THE UNIFICATION: the joint functional S_tot[rho, f] = S_rho[rho] + S_f[f] is additively separable, so the ELs DECOUPLE into G084's profile equation (rho = A r^{-2} at sigma^2 = C/2) and the Lomax equation (f = 2(1+u)^{-3} at l1 = 3) -- block-diagonal Hessian, joint maximum verified.  The SAME DE-set temperature sigma^2 = C/2 enters both: gamma = C/sigma^2 = 2, and the H055 mass-mapping n = 2/(gamma-1), l1 = n+1 gives l1 = 3.  One functional, one temperature, two solutions.",
+  "V3": "V3  THE HONEST STATEMENT: the kernel's statistical-mechanics origin is DERIVED in form and CALIBRATED in value.  Derived: the log-moment constraint is the unique [0,oo)-support constraint (besides normaliza-tion) that yields a normalizable power-law-tailed density (the mean constraint gives the exponential, E[ln u] is non-normalizable), and the EL/KKT solution is exactly the Lomax family -- the KKT equations themselves force the family form, and the form-free solve returns l1* = 3.  Calibrated: the single free number, the log-moment value c = 1/2 (the log-temperature l1 = 3), is NOT fixed by the single-sector problem alone; it is fixed by consistency with the profile sector through the H055 lock gamma = (2+n)/n with gamma = C/sigma^2_DE = 2 -- the same DE-set temperature that produces the phantom in G084.  The telling number: dS_f/dc = l1 = 3 = (gamma+1)/(gamma-1) = (C/sigma^2_DE + 1)/(C/sigma^2_DE - 1).  The constraint-set is canonical (dictated by the need for a power-law tail, which the gamma=2 profile's dM/dg ~ g^-2 demands); the constraint VALUE is fixed by the other sector.  Neither side is free: the profile and the kernel are the two faces of one maximum-entropy equilibrium at one temperature."
+ },
+ "statement": "The kernel mu_2(u) = 1-(1+u)^{-2} is DERIVED from max entropy: maximizing S = -int f ln f du under {normalization, E[ln(1+u)] = 1/2} gives f = 2(1+u)^{-3} exactly -- isothermal in log-energy, the analog of G084's log-well equilibrium; the log-moment value (the log-tempera-ture l1 = 3) is calibrated by the H055 lock to the phantom gamma = 2 = C/sigma^2_DE, the same DE-set temperature.  Form derived, value calibrated; one functional, one temperature, two solutions."
+}
