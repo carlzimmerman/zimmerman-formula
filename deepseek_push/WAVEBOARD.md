@@ -1097,6 +1097,47 @@ compatible today; the z ~ 2.5 BTFR zero point and the DR4 ridge remain
 the registered scale-pickers.  The equilibrium's shape physics never
 wavered (G172).
 
+## WAVE 23 (landed 4/4 -- the zero-parameter dust law, 8 new Lean, the paper skeleton)
+G199 THE DEEP-LIMIT UNIVERSALITY 12/12: s_Lambda is NOT universal -- the
+UNIVERSAL STATEMENT FAILS: pooled eta = 0.722 (-4.6 sigma below the seesaw
+line); the deep-limit a0_eff staircase SURVIVES (SPARC 0.69 sub-DE < HI
+1.08 RAR-class < MIGHTEE 1.87 = s_Lambda; 2.95x spread AT the deep limit
+itself); flat within samples in M_b (no mass-run); the environment vacuous
+(all low-EFE); WHAT IS UNIVERSAL AT THE DEEP END: the deep SHAPE (per-
+point scatter ~0.1-0.13 dex), not the normalization; the seesaw returns
+through the deep limit for MIGHTEE only.
+G200 THE q-DERIVATION -- THE THORN'S LAST FREEDOM CLOSED: the Bondi-class
+supply exponent alpha_supply = 2/3 (capture surface pi r_BHL^2 ~ M^(2/3)
+at the universal stream speed); alpha_require = 1 (the deficit fraction
+constant); q_pred = 2/3 - 1 = -0.333 vs measured -0.414 +- 0.157: Delta =
++0.081 = 0.52 sigma (0.90 pooled); the crossing-class (-0.667) excluded
+at 68%; witth c0 already derived from the jump chain (G182/G185), THE DUST
+LAW IS NOW ZERO-PARAMETER TO WITHIN THE MEASURED ERROR -- (c0, q) both
+derived, the thorn's last freedom closed at the 1 sigma level.
+G201 THE NEW LEAN 8 THEOREMS (42eac9a85, exit 0, zero sorry, axioms
+{propext, Classical.choice, Quot.sound}): the jump certified CORRECTLY --
+the naive isothermal mechanics gives rho_ph/rho_d = (sigma_d/sigma_ph)^2
+ONLY (the squared, INVERTED, certified as isothermal_density_ratio); the
+G159 cube is the ENTROPY statement: ln A_b = 3 ln(sigma_ph/sigma_d) (the
+3 = the phase-space dimension), certified as entropy_jump_log / _cube /
+_additivity + jump_cube (A_b := exp(dS/k_B), no overclaim); the share
+identity (r/r_M)/(f-1) one field_simp line; the deep-limit sqrt reading
+g = sqrt(a0 g_N) (geometric-mean, sq_eq + nonnegativity); the coverage
+inventory: the new closed forms' algebra is Lean-certified, the physics
+inputs (sigma_d(r_b), the measured ratios, the latent heat, the fitted
+exponents) remain algebra-only-on-record.
+G202 THE MNRAS RESULTS SKELETON 9/9: MNRAS_RESULTS_SKELETON.md -- the
+paper's results structure, sections 4.1-4.6 with every number lane-cited:
+(4.1) the equipartition law (the 12-decade line, the dSph floor, the deep
+end, the surface density; 4 falsifiers + 3 pending); (4.2) the ONE
+BOUNDARY (break/seam/jump/latent-heat/phase diagram; 5 falsifiers incl.
+the d_BIC 16 caveat); (4.3) the cluster sector (the zero-parameter dust
+law, the pie, the 2/3 law, the outer slope at 7.7 sigma; pending tSZ +
+XRISM); (4.4) the dark sector (m = 5.0-5.2 keV, the density-closed
+cosmology, the ontology pre-registration); (4.5) the force-face (PPN = GR,
+no fifth force); (4.6) the open-items box (the sliver, the gap, the four
+pending verdicts).  THE PAPER'S RESULTS STRUCTURE IS READY TO DRAFT.
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 CLAIMED (deepseek, in flight -- do NOT duplicate): G154 static-branch
 charge, G155 sourced equation, G156 dust charge-vs-relic decision,
