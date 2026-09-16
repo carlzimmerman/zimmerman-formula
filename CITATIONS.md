@@ -9,7 +9,6 @@
 
 | Name | Files | Occurrences | Citation page |
 |---|---|---|---|
-| \Citep | 14 | 17 | [citations/\citep/](citations/\citep/index.md) |
 | Abel | 2 | 35 | [citations/abel/](citations/abel/index.md) |
 | Allen | 2 | 14 | [citations/allen/](citations/allen/index.md) |
 | Anderson | 1 | 1 | [citations/anderson/](citations/anderson/index.md) |
