@@ -385,17 +385,35 @@ dust-envelope derivation, G138 the cap-firing reconciliation) + wave 11
 G141 the tSZ+dust joint, G142 the inner f_gas gap with exact r_c, G143 the
 group-scale amplitude test).
 
-## THE CLUSTER THORN, CURRENT STATE (after wave 5)
-STRUCTURE: the framework's cluster face is mostly CONFIRMED -- the
-temperature-curve universality (0.052 dex), the kernel-form share slope
-(within 10%), the NFW-class outer envelope (-2.38 pooled), the gas-
-fraction rise with the r_M-class crossover (1.43), the cross-instrument
-equipartition (0.062 dex), single-structure coherency.  AMPLITUDE: the
-phantom's absolute normalization over-demands the HSE residual in the
-massive clusters (A2029 1.47x; 11.6% negative bins) -- the free-dust
-normalization is now knife-sharp as a MASS-DEPENDENT systematic, and the
-registered V4/0.7 + G050 share-JSON carry the 1e9*MSUN bug (honest
-corrections committed with the lanes).
+## THE CLUSTER THORN, CURRENT STATE (waves 5-10 consolidated:
+temperature-curve universality (0.052 dex, G104), the kernel-form share
+slope (within 10%, G106), the NFW-class outer envelope (-2.38 pooled,
+G108), the gas-fraction rise with the r_M-class crossover (1.43 -> the
+DERIVED shape functional 1.73, G124), the cross-instrument equipartition
+(0.062 dex, G109) extending down to the GROUPS (0.101 dex, G125),
+single-structure coherency (G105) CLOSED by the r^-1 dust law (G122:
+collapse 0.097 dex with one universal shape p* = 0.99 + per-cluster
+amplitude); the temperature-ratio mystery CLOSED (G095: T_obs/T_pred =
+2f(r_M/R500), structural alpha = 2/3, the missing abundance f = 5.66) and
+extended to ONE LAW over 31 X-ray systems (G135: rms 0.076 dex); the
+core-slope falsifier D2 NOT TRIGGERED (G096: -1.53+-0.25, NFW -1 and
+r^-2 both excluded, lensing cores decide); the over-demand RADIUS-selected
+not mass-selected (G123); ZW1215 a hydrostatic-bias case (G126, delta =
+-0.093); the dust envelope DERIVED TO CLASS = NFW/FG secondary infall,
+reservoir-closed (G137); the cap ORIGIN environmental-not-causality
+(G127) and its FIRING radius reconciled (G138: a0-class crossing, the
+testable outer window at 600 kpc-R500).  AMPLITUDE: the phantom's A/r^2
+over-demands the HSE residual in the massive outer bins (A2029 1.47x;
+34/292 negative), one dust abundance buys 97% of the chi2 (G097) but the
+required dust is a PROFILE (G098), now closed to ONE shape (G122) with the
+mass-ordering under test (G140).  THE V4 CORRECTION (G134, honest): the
+registered rising-share claim DOES NOT SURVIVE the fixed-radius test --
+the corrected -0.298 was entirely the radius confound (net of radius the
+relation INVERTS: partial +0.626 p=1.2e-11, fixed-shell +0.672 p=5e-12;
+and the G050/G094 share object itself is degenerate from the Mres-units
+mix); the physical-share reading at exact fixed radius is at most marginal
+(-0.170, p=0.145).  The thorn's remaining freedom: the dust amplitude's
+mass-ordering (G140) and the jump-condition prize (G159).
 
 ## THE STANDING THEORY (one paragraph; wave-3 additions in parens)
 GR + one shift-symmetric scalar; its Noether charge is the dark sector (the
