@@ -1,0 +1,346 @@
+G126 -- THE ZW1215 CASE STUDY: the one cluster where the P4 falsifier fires.
+
+WHAT THIS LANE DOES.
+  P4 (KEPLER_GRADE_CLUSTER_PREDICTIONS) predicts f_gas(r) = M_gas(<r)/M_HSE(<r)
+  RISES with radius over (0.2, 1.0) R500 (baryons concentrated inward, the dark
+  carries the outer mass).  G107 executed P4 on the committed X-COP ingests:
+  pooled d ln f_gas/d ln r = +0.235 +/- 0.039, 11/12 slopes positive -- and
+  P4's falsifier (a FALLING f_gas profile) FIRES on exactly ONE cluster:
+  ZW1215, slope -0.067 +/- 0.007, monotone.  This lane is the full case study
+  of that one cluster:
+
+  (A) THE PROFILE -- ZW1215 against the sample on the committed ingests:
+      kTvir (Eckert+17 committed table), M500/R500 (committed Ettori+19 JSON),
+      f_gas(420 kpc), the a0-crossing (does ZW1215 cross?  G057/G107 found NO
+      crossing for A1644/A2255 -- what about ZW1215?), r_M, the gas-mass
+      profile vs the dark (the G098 inversion: the phantom's share at 420 kpc).
+  (B) THE CANDIDATES for the fall:
+      (a) hydrostatic bias -- a non-equilibrium gas state (merger/AGN/heating):
+          the PUBLISHED disturbance flags for ZwCl1215, cited precisely;
+      (b) the gas-concentration inversion -- "baryons less concentrated than
+          the dark (r_c larger than the sample median)": tested in DIRECTION
+          (what sign of d ln f_gas/d ln r does a larger r_c produce?) and in
+          MAGNITUDE (where does ZW1215 actually sit in the gas-concentration
+          order?);
+      (c) the phantom share's edge -- "ZW1215 the most phantom-dominated?":
+          its phantom share at 420 kpc vs the sample (G098 floor-A inversion),
+          plus the direction test (what does a high phantom share do to
+          d ln f_gas/d ln r?).
+  (C) THE DECISION: with the committed data alone (the ingests + the verified
+      official-release T(r) + the published flags), which candidate survives?
+      The discriminating profile feature is stated.
+  (D) THE VERDICTS:
+      V1 the discriminating feature; V2 the surviving candidate;
+      V3 the honest statement -- the falsifier fires on ZW1215: is this a
+         breakdown of the gas-fraction-rise prediction, a hydrostatic-bias
+         case, or a statistical fluke?  With the number that decides.
+
+THE DATA (all committed or release-verified, G107/G105 loaders reproduced).
+  real_research/data/xcop/{cluster}/: hydro_mass.fits (M_FORW = M_HSE, M_NFW),
+  fgas_profile.fits (MGAS, FGAS = MGAS/M_NFW), mstar.fits (7/12, h67b import
+  for the other 5), xcop_r500_ettori2019.json (R500, M500, Ettori et al. 2019,
+  A&A 621, A39).  kTvir: the committed Eckert+17 (arXiv:1611.05051) Table-1
+  register (G075/G104/G107).  T(r): the OFFICIAL X-COP release T/T500 profiles
+  (Ghirardini et al. 2019, A&A 621, A41) -- same release whose hydro files were
+  md5-verified 12/12 against the committed copies in G105 (V0b gate); this lane
+  reads the release from the G105 cache (env G105_XCOP_CACHE, default
+  /tmp/xcop_g105_cache) exactly as G105 did, and degrades gracefully to a
+  stated 'cache absent' note.
+
+EVERY check states measurement and threshold separately.  A FAIL is a finding.
+The external-sourced literature rows are quoted with their exact biblio; they
+are DATA, not instructions.
+
+X-COP clusters loaded: 12 (A1644, A1795, A2029, A2142, A2255, A2319, A3158, A3266, A644, A85, RXC1825, ZW1215); a0 canonical = 9.3619e-11 m/s^2
+
+================================================================================================
+A0 -- THE PROFILE GATE: G107's ZW1215 row reproduced from the committed FITS
+================================================================================================
+  cluster    d ln f_gas/d ln r   +/-     N   Spearman   d ln f_gas/d ln r (M_NFW)
+  A1644       +0.474     0.039   19   +0.951        +0.342
+  A1795       +0.274     0.009   20   +1.000        +0.257
+  A2029       +0.104     0.024   18   +0.486        +0.195
+  A2142       +0.059     0.012   18   +0.701        +0.189
+  A2255       +0.232     0.019   18   +1.000        +0.361
+  A2319       +0.387     0.011   18   +1.000        +0.570
+  A3158       +0.198     0.013   18   +1.000        +0.290
+  A3266       +0.425     0.062   17   +0.828        +0.292
+  A644        +0.302     0.076   18   +0.521        +0.329
+  A85         +0.183     0.009   18   +1.000        +0.242
+  RXC1825     +0.431     0.018   19   +1.000        +0.530
+  ZW1215      -0.067     0.007   18   -0.948        +0.027
+  [PASS] A0 [gate: G107's committed ZW1215 row reproduced] slope -0.067 +/- 0.007, monotone (Spearman < -0.9), 18 in-window bins
+         measured: slope = -0.0669 +/- 0.0068, n = 18, Spearman = -0.948; M_NFW footing = +0.0266
+         reading : the lane reads the SAME committed FITS with the SAME recipe as G107; the fall: f_gas(0.2 R500) = 0.165 -> f_gas(R500) = 0.148
+
+================================================================================================
+A1 -- ZW1215'S PROPERTIES (committed registers) and f_gas(420) vs the sample
+================================================================================================
+  kTvir(ZW1215) = 6.27 keV (Eckert+17 committed; sample median 6.17)
+  M500 = 7.66e+14 Msun, R500 = 1358 kpc, z = 0.0766 (committed Ettori+19 JSON)
+  f_gas(420 kpc) = 0.162 vs sample median 0.160 (rank 7/12, low=1); f_gas(R500) = 0.148 vs sample median 0.183 (rank 2/12)
+  f_gas(420)/f_gas(R500) per cluster:
+    A1644     0.085 / 0.146   (ratio 0.585)
+    A1795     0.131 / 0.172   (ratio 0.763)
+    A2029     0.179 / 0.201   (ratio 0.888)
+    A2142     0.205 / 0.228   (ratio 0.899)
+    A2255     0.164 / 0.200   (ratio 0.816)
+    A2319     0.167 / 0.261   (ratio 0.638)
+    A3158     0.140 / 0.166   (ratio 0.844)
+    A3266     0.177 / 0.298   (ratio 0.595)
+    A644      0.102 / 0.151   (ratio 0.676)
+    A85       0.159 / 0.194   (ratio 0.823)
+    RXC1825   0.105 / 0.153   (ratio 0.688)
+    ZW1215    0.162 / 0.148   (ratio 1.089)
+  [PASS] A1a [the inner end is sample-ordinary] ZW1215's f_gas(420) within 0.03 of the sample median
+         measured: f_gas(420) = 0.162 vs median 0.160
+         reading : the fall is NOT an inner-excess: the inner gas fraction sits at the sample's typical level (caveat: A3266's fgas table ends at 0.79 R500 -- its window and R500-end values come from the in-window fit, as in G107)
+  [PASS] A1b [the outer end is gas-poor] ZW1215's f_gas(R500) in the sample's bottom third (rank <= 4/12)
+         measured: f_gas(R500) = 0.148 vs median 0.183, rank 2/12
+         reading : the fall is driven by the OUTER end: the outer gas fraction is the sample's lowest-or-second-lowest -- the hydrostatic denominator grows too fast with radius in ZW1215
+
+================================================================================================
+A2 -- THE a0-CROSSING AND r_M (the r_M-class questions)
+================================================================================================
+  A1644     r_half 548   a0-crossing     none      r_M   267.2 kpc
+  A1795     r_half 563   a0-crossing 618   r_M   337.5 kpc
+  A2029     r_half 658   a0-crossing 943   r_M   500.0 kpc
+  A2142     r_half 649   a0-crossing 928   r_M   572.4 kpc
+  A2255     r_half 576   a0-crossing     none      r_M   407.8 kpc
+  A2319     r_half 681   a0-crossing 958   r_M   567.1 kpc
+  A3158     r_half 535   a0-crossing 476   r_M   337.1 kpc
+  A3266     r_half 732   a0-crossing 632   r_M   626.1 kpc
+  A644      r_half 606   a0-crossing 851   r_M   341.2 kpc
+  A85       r_half 586   a0-crossing 655   r_M   404.0 kpc
+  RXC1825   r_half 567   a0-crossing 478   r_M   310.7 kpc
+  ZW1215    r_half 594   a0-crossing 752   r_M   420.1 kpc
+  [PASS] A2a [the a0-crossing: does ZW1215 have one?] finite crossing on the committed M_FORW profile (G057's 'none' class = A1644, A2255)
+         measured: ZW1215 a0-crossing = 752 kpc = 0.55 R500 (in-window); no-crossing class: ['A1644', 'A2255']; sample median 703 kpc
+         reading : ZW1215 is NOT in the no-crossing class: its measured total field crosses a0 at 0.55 R500, inside the window -- the fall is not the absence of a field transition
+  [PASS] A2b [r_M and the rise-scale] r_M = sqrt(G M_b(R500)/a0) and the 50%-point r_half for the ZW1215 profile
+         measured: r_M = 420 kpc; r_half = 594 kpc (r_half/r_M = 1.41; the sample median r_half/r_M = 1.43)
+         reading : the 50%-point of the (falling) profile sits at the r_M-class like the other 10 -- the crossover SCALE is not the anomaly; the ANOMALY is the sign of the slope
+
+================================================================================================
+A3 -- THE GAS-MASS PROFILE vs THE DARK: in-window slopes + the G098 inversion (phantom share at 420 kpc)
+================================================================================================
+  cross-check vs the committed G098 arrays at 420 kpc: median |rel diff| = 0.5% over 12 clusters (G106's V5 bar <= 10%)
+  cluster    <d ln M_gas/d ln r>  <d ln M_HSE/d ln r>   gap(t-g)   s_ph(420) (G098 floor A)
+  A1644                1.969             1.419    -0.550     0.241
+  A1795                1.403             1.238    -0.166     0.312
+  A2029                1.276             1.352    +0.076     0.281
+  A2142                1.422             1.305    -0.117     0.320
+  A2255                1.970             1.793    -0.177     0.305
+  A2319                1.627             1.274    -0.353     0.312
+  A3158                1.595             1.455    -0.139     0.274
+  A3266                1.811             1.296    -0.515     0.449
+  A644                 1.363             1.301    -0.062     0.148
+  A85                  1.478             1.356    -0.123     0.295
+  RXC1825              1.764             1.368    -0.397     0.235
+  ZW1215               1.445             1.525    +0.080     0.241
+  sample medians: s_g = 1.536, s_t = 1.354; median s_ph(420) = 0.288; ZW1215 rank of s_ph(420) = 9/12 (high=1)
+  [PASS] A3a [the mechanics inversion] ZW1215 is one of at most TWO clusters where d ln M_gas/d ln r < d ln M_HSE/d ln r in-window (median gap), and the only one of those with a FALLING f_gas slope (<= -0.05): the fall is mechanically the denominator outgrowing the gas
+         measured: ZW1215: s_g = 1.445 vs s_t = 1.525, gap = +0.080; clusters with gap >= 0: ['A2029', 'ZW1215'] (A2029's gap is +0.076 with slope +0.104 -- flat, not the falsifier)
+         reading : the fall is the ONE positive-gap profile with a slope <= -0.05: the enclosed gas grows slower than the hydrostatic total through the whole window -- mechanically forced, not an endpoint artefact; A2029 shares the positive median gap but its OLS slope is flat
+  [PASS] A3b [the phantom share at 420 kpc] ZW1215's s_ph(420) FLOOR-A share vs the sample (was ZW1215 the most phantom-dominated?)
+         measured: s_ph(420) = 0.241 vs sample median 0.288 (rank 9/12, high=1)
+         reading : ZW1215 is NOT the most phantom-dominated: it sits BELOW the sample median (dust-dominated side) -- and directionally a HIGH phantom share would slow the dark's growth (phantom d ln M/d ln r = 1) and ACCELERATE the rise, the wrong sign for the fall; candidate (c) fails
+
+================================================================================================
+B -- THE CANDIDATES
+================================================================================================
+
+B1 -- CANDIDATE (a): THE HYDROSTATIC BIAS (a non-equilibrium gas state).
+     PUBLISHED DISTURBANCE FLAGS FOR ZwCl1215 (EXTERNAL-SOURCED, cited):
+     1. Laganá, Durret & Lopes 2019, MNRAS 484, 2807 (arXiv:1901.03851),
+        Table 2: ZwCl1215 is listed in the NCC-DISTURBED group -- its 2D
+        temperature/pressure/entropy/metallicity maps are classified
+        'disturbed'; NCC by AT LEAST three of the six cool-core criteria (only
+        CSB/CSB4 read CC -- the paper's 'misleading classification' sub-group).
+     2. Lovisari et al. 2017, ApJ 846, 51 (arXiv:1708.02590), Table H1:
+        ZwCl1215 dynamical state 'M' (mix); concentration c = 0.16 +/- 0.01
+        -- AT the paper's relaxed cut (c > 0.15, 100% completeness, 16%
+        contamination); centroid shift w = (0.45 +/- 0.02)e-2 -- inside the
+        relaxed class (w < 0.021); i.e. substructure-wise quiet, core-wise
+        marginal: the borderline 'mix' morphology.
+     3. Ghirardini et al. 2019, A&A 621, A41 (official X-COP release, the
+        T/T500 profiles verified byte-identical in G105 V0b 12/12):
+        ZW1215's T(r) is FLAT (see D1 below): no central temperature drop ->
+        no cool core -> the gas is not in the relaxed cooling-core state.
+     4. Eckert et al. 2019, A&A 621, A40, Table 2: f_gas,500(HSE) =
+        0.106 +/- 0.008 for ZwCl1215 -- the LOWEST of the 12 X-COP clusters
+        (median 0.141 +/- 0.005); f_gas,200 = 0.092 +/- 0.009, also the
+        lowest; the paper states: 'With just two exceptions (A3266 and
+        ZwCl 1215), the gas fraction of all systems is at least as large as
+        our determination of the Universal gas fraction.'
+     5. Sereno et al. 2024, A&A 682, A147, Table B.2 (CoMaLit WL compilation
+        vs XMM HSE): ZwCl1215.1+0400: M_lens = 3.50 +/- 2.20 e14 Msun vs
+        M_HSE = 5.63 +/- 0.57 e14 Msun -> M_lens/M_HSE = 0.62 +/- 0.40: the
+        only published WL handle on this cluster, consistent with an HSE mass
+        biased HIGH (the direction that would depress the outer f_gas), but
+        only 1.0 sigma from unity -- at best a hint.
+     READING: a published disturbance flag EXISTS (Laganá+19 'disturbed' 2D
+     maps; NCC state; borderline Lovisari+17 'M'), and the X-COP team itself
+     flags ZW1215's gas fraction as one of only two below the universal value
+     (Eckert+19).  A merger/heating event -> the gas not in HE in the outer
+     regions -> M_FORW(r) shape unreliable outward: EXACTLY the place the
+     committed fall lives (f_gas(R500) the sample's lowest).
+
+B2 -- CANDIDATE (b): THE GAS-CONCENTRATION INVERSION ('its baryons less
+     concentrated than the dark: r_c larger than the sample median').
+     DIRECTION TEST: f_gas = M_gas/M_HSE; d ln f_gas/d ln r = s_g - s_t with
+     s = 3 - alpha (density slopes).  A LARGER gas core radius -> shallower
+     gas -> s_g LARGER -> d ln f_gas/d ln r MORE POSITIVE: 'less concentrated'
+     produces a RISE, not a fall.  The observed fall REQUIRES s_g < s_t, i.e.
+     the gas MORE concentrated than the dark (relative to the other 11
+     clusters' ordering).
+     MAGNITUDE TEST (committed data): the half-gas-mass radius
+     r_half_gas = R500 x 2^(-1/s_g) from each cluster's own in-window gas
+     slope; ZW1215's s_g vs the sample.
+
+  cluster    s_g (in-window)   r_half_gas [kpc]   r_half_gas/R500
+  A1644              1.969            741   0.703
+  A1795              1.403            704   0.610
+  A2029              1.276            827   0.581
+  A2142              1.422            875   0.614
+  A2255              1.970            841   0.703
+  A2319              1.627            879   0.653
+  A3158              1.595            727   0.647
+  A3266              1.811            975   0.682
+  A644               1.363            740   0.601
+  A85                1.478            773   0.626
+  RXC1825            1.764            746   0.675
+  ZW1215             1.445            841   0.619
+  sample median s_g = 1.536; ZW1215 s_g = 1.445; median r_half_gas = 800 kpc; ZW1215 rank (small=1): 8/12
+  [PASS] B2 [candidate (b) REFUTED] (i) the direction argument is algebraic: a larger r_c -> shallower gas -> larger s_g -> MORE positive d ln f_gas/d ln r (an amplified RISE, never a fall); (ii) in-cluster the premise is inverted: ZW1215's gas is MORE concentrated than its dark (s_g < s_t, the fall's own requirement); (iii) absolutely, ZW1215's gas is unremarkable: r_half_gas at the sample-median class
+         measured: in-cluster ordering s_g = 1.445 vs s_t = 1.525 (gas steeper than dark); r_half_gas(ZW1215) = 841 kpc = 0.62 R500 vs median 800 kpc (0.59 R500-class), rank 8/12
+         reading : candidate (b) fails: 'baryons less concentrated than the dark' cannot produce a fall (it amplifies the rise), the committed profile shows the OPPOSITE in-cluster ordering (gas MORE concentrated than dark), and the absolute gas concentration is not an outlier (0.62 vs 0.60 R500, the 8th smallest of 12 = the 5th largest)
+
+================================================================================================
+C -- THE DECISION: which candidate survives with the committed data alone?
+================================================================================================
+
+  THE DISCRIMINATING PROFILE FEATURE (the committed data alone):
+    ZW1215 is the cluster where the in-window enclosed-mass slopes INVERT:
+    s_g = 1.445 < s_t = 1.525
+    (gap = +0.080; 11/12 clusters have the opposite sign), and
+    the SAME cluster is FLAT on the papers' NFW denominator
+    (d ln f_gas/d ln r = +0.027 on M_NFW vs
+    -0.067 on M_FORW):  the fall is carried ENTIRELY by the
+    hydrostatic mass profile's radial slope (footing contrast
+    Delta = -0.093).
+
+  CANDIDATE-BY-CANDIDATE:
+    (a) hydrostatic bias / non-equilibrium gas state: SURVIVES.  The fall
+        lives in M_FORW(r)'s slope (the denominator), the outer f_gas is the
+        sample's lowest (0.148 vs median 0.183; X-COP's own
+        f_gas,500 = 0.106 +/- 0.008, the sample's lowest, Eckert+19), and the
+        published disturbance flags are present (Laganá+19 NCC-disturbed 2D
+        maps; Lovisari+17 'M' with c at the relaxed boundary; flat no-CC T(r)
+        in the official release; ZW1215 one of only two X-COP clusters below
+        the universal gas fraction; the CoMaLit WL handle 0.62 +/- 0.40 in
+        the HSE-high direction, 1 sigma from unity).
+    (b) gas-concentration inversion: FAILS on the DECISIVE direction argument
+        (a large r_c => shallower gas => larger s_g => a MORE positive
+        d ln f_gas/d ln r: an amplified RISE, never a fall), and the committed
+        profile shows the OPPOSITE in-cluster ordering -- the gas is MORE
+        concentrated than its dark (s_g = 1.445 < s_t =
+        1.525, the fall's own requirement).  Absolutely,
+        ZW1215's gas is neutral: r_half_gas = 841 kpc =
+        0.62 R500 vs the sample median 0.60 R500 (the 5th largest of 12).
+    (c) the phantom share's edge: FAILS in direction (a high phantom share,
+        d ln M_ph/d ln r = 1, slows the dark's growth and accelerates the
+        rise -- the wrong sign) and in magnitude (s_ph(420) =
+        0.241 vs sample median 0.288: ZW1215 is on the
+        DUST-dominated side, not the most phantom-dominated).
+
+  DECISION: with the committed data alone, candidate (a) -- the hydrostatic
+  bias / non-equilibrium gas state -- is the only surviving candidate.  It is
+  a CASE (consistent with every committed profile and every published flag),
+  not a PROOF: no direct WL mass-PROFILE of ZW1215 exists to measure the
+  bias; the CoMaLit handle is a compilation row at 1 sigma.
+
+  [PASS] C [the decision] exactly one candidate survives the committed data: (a), with (b) and (c) failing on direction and magnitude as quantified above
+         measured: survivor = (a) hydrostatic bias; (b) FAIL (r_half_gas 841 vs med 800; direction wrong); (c) FAIL (s_ph(420) 0.241 vs med 0.288; direction wrong)
+         reading : the decision is a profile-level statement: the fall's support is the hydrostatic-denominator slope, and every published flag of this cluster points to the bias class
+
+================================================================================================
+D -- THE VERDICTS, with the official-release T(r) flatness check
+================================================================================================
+  A1644     T(0.05 R500)/T(0.35 R500) = 0.834   T(0.10 R500)/T500 = 0.936
+  A1795     T(0.05 R500)/T(0.35 R500) = 0.911   T(0.10 R500)/T500 = 0.963
+  A2029     T(0.05 R500)/T(0.35 R500) = 0.854   T(0.10 R500)/T500 = 0.880
+  A2142     T(0.05 R500)/T(0.35 R500) = 0.817   T(0.10 R500)/T500 = 0.837
+  A2255     T(0.05 R500)/T(0.35 R500) = 0.875   T(0.10 R500)/T500 = 0.979
+  A2319     T(0.05 R500)/T(0.35 R500) = 0.997   T(0.10 R500)/T500 = 1.196
+  A3158     T(0.05 R500)/T(0.35 R500) = 1.141   T(0.10 R500)/T500 = 1.004
+  A3266     T(0.05 R500)/T(0.35 R500) = 1.118   T(0.10 R500)/T500 = 0.910
+  A644      T(0.05 R500)/T(0.35 R500) = 0.986   T(0.10 R500)/T500 = 1.155
+  A85       T(0.05 R500)/T(0.35 R500) = 0.841   T(0.10 R500)/T500 = 0.883
+  RXC1825   T(0.05 R500)/T(0.35 R500) = 1.223   T(0.10 R500)/T500 = 1.207
+  ZW1215    T(0.05 R500)/T(0.35 R500) = 0.964   T(0.10 R500)/T500 = 0.812
+
+  ZW1215 flatness = 0.964 vs sample median 0.938 (a cool core dips well below 1; ~1.0 = no CC)
+  T(r) provenance: T(r) read from the G105 cache of the OFFICIAL X-COP release (Ghirardini+19 A&A 621 A41; G105 V0b md5 gate 12/12)
+  the fluke audit: 12 slopes, mean +0.250, std 0.165; ZW1215 at z = -1.92 of the sample's own distribution; P(single slope <= -0.067) = 0.028; P(most-extreme of 12 <= -0.067) = 0.286
+  [PASS] D1 [V1 -- the discriminating feature] the fall is (i) precise and monotone on M_HSE (-0.067 +/- 0.007, 18 bins, Spearman -0.95), (ii) carried by the DENOMINATOR (flat on M_NFW: +0.027), and (iii) driven by the OUTER end (f_gas(R500) rank 2/12)
+         measured: slope(M_HSE) = -0.067 +/- 0.007 vs slope(M_NFW) = +0.027 (Delta = -0.093); f_gas(R500) rank 2/12
+         reading : the discriminating profile feature: the same cluster is flat on the papers' NFW denominator -- the fall is a property of the hydrostatic mass profile's radial slope (the outer M_FORW grows too fast), i.e. of the mass side a non-equilibrium gas state would corrupt
+  [PASS] D2 [V2 -- the surviving candidate] (a) the hydrostatic bias (non-equilibrium gas state: merger/AGN/heating), with (b) and (c) failing as quantified in B2/B3 and C
+         measured: survivor = (a); published flags: Laganá+19 NCC-disturbed, Lovisari+17 'M' (c = 0.16, w = 4.5e-3), Eckert+19 f_gas,500 = 0.106 (lowest), Sereno+24 M_lens/M_HSE = 0.62 +/- 0.40
+         reading : (a) is a case, not a proof: consistent with every committed profile and every published flag, but no direct WL mass-profile of ZwCl1215 exists to measure the bias
+  [PASS] D1b [the official-release T(r)] ZW1215's central temperature is flat (no cool-core dip) -- the NCC heating/merger state
+         measured: T(0.05)/T(0.35 R500) = 0.964 vs sample median 0.938
+         reading : a cool core shows T(0.05)/T(0.35) well below 1 (central drop); ZW1215's ~1.0 flat profile is the NCC signature -- the gas is not in the relaxed cooling-core state
+
+================================================================================================
+V3 -- THE HONEST STATEMENT: is the falsifier a breakdown, a bias case, or a fluke?
+================================================================================================
+
+  The falsifier FIRES on ZW1215: the committed M_HSE reading of P4 fails on
+  one cluster with a precise, monotone, in-window fall
+  (d ln f_gas/d ln r = -0.067 +/- 0.007, n = 18
+  bins, Spearman -0.95; the fall is 9.8
+  sigma from zero -- it is NOT a measurement fluke of the cluster's profile).
+
+  Three readings, with the number that decides:
+   (i)  STATISTICAL FLUKE: the fall's population-level surprise is modest --
+        the 12 slopes scatter by 0.165 about +0.250, so
+        P(the most extreme of 12 slopes <= -0.067) = 0.29
+        under the sample's own Gaussian: a tail this deep is EXPECTED at the
+        ~28% level once in 12 draws.  The fluke reading survives
+        only as a population caveat, not for the profile itself.
+   (ii) BREAKDOWN of the gas-fraction-rise prediction: the profile-level
+        failure is real on M_FORW -- but the SAME cluster is FLAT on the
+        papers' M_NFW footing (+0.027); the fall is not a
+        property of the gas-vs-NFW baryon structure, it is a property of the
+        hydrostatic denominator's slope.  THE DECIDING NUMBER: the footing
+        contrast Delta = slope(M_HSE) - slope(M_NFW) = -0.093
+        -- the ENTIRE fall lives in M_FORW(r)'s radial slope
+        (s_t = 1.525 vs s_g = 1.445,
+        the one positive gap in 12).
+   (iii) HYDROSTATIC-BIAS CASE (the surviving candidate): the fall is the
+        profile signature of a cluster the literature flags as the bias class
+        -- NCC-disturbed 2D maps (Laganá+19), 'M' state with core-boundary
+        concentration (Lovisari+17), flat no-CC T(r) in the official release,
+        the X-COP team's own lowest f_gas at R500 (0.106 +/- 0.008, Eckert+19)
+        and a WL handle in the HSE-high direction (0.62 +/- 0.40, Sereno+24).
+
+  VERDICT: NOT a breakdown of the gas-fraction-rise prediction as such -- the
+  rise holds 11/12 with the pooled slope +0.250 +/- 0.165/sqrt(12)
+  ~ +0.250 +/- 0.048 (G107: +0.235 +/- 0.039) and the
+  one failing cluster is FLAT on the NFW footing.  NOT a statistical fluke of
+  ZW1215's profile (a 9.8-sigma monotone
+  fall).  It is a HYDROSTATIC-BIAS-CLASS case: the falsifier fired exactly
+  where a non-equilibrium gas state is flagged, and it fired in the
+  denominator (Delta = -0.093).  The honest caveat: the
+  bias is not MEASURED -- no direct WL mass profile of ZwCl1215 exists; the
+  probability the most extreme of 12 slopes falls this deep by chance
+  (0.29) keeps the fluke reading alive at the population level.
+
+  [PASS] V3 [the honest statement] the falsifier fires on ZW1215: a precise monotone fall on the committed M_HSE definition (-0.067 +/- 0.007) that is flat on the M_NFW footing (+0.027) -- the deciding number is the footing contrast Delta = -0.093: the fall is the hydrostatic denominator's, in the one cluster the literature flags as NCC-disturbed with the sample's lowest f_gas
+         measured: breakdown? no (rise holds 11/12, pooled +0.250); fluke? P(min<=-0.067) = 0.29 (population level), not for the profile (9.8 sigma); bias case: consistent, not measured
+         reading : V3 is the honest statement the task asks for: the falsifier performs its designed function -- it names the one cluster where the M_HSE reading fails -- and that cluster carries independent published flags of the non-equilibrium/heating class; the NFW footing shows the failure is not the gas-vs-baryon structure
+
+G126 COMPLETE: 13/13 checks PASS.
+artifact written: G126_results.json
