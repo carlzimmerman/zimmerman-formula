@@ -704,6 +704,48 @@ completion.  This is the strongest architectural result of the campaign:
 the entire empirical edifice (Cassini null, lensing = GR x mass, the
 RAR as hydrostatics) is CONSISTENT with only this one reading.
 
+## WAVE 17 (landed 4/4 -- the seam, the phase diagram, the pie)
+G176 THE DUST SEAM: ONE LAW WITH A BOUNDARY at r_t = 387 kpc =
+0.96 x median r_M: p1 = 1.50 +- 0.04 (inside, the streaming envelope) ->
+p2 = 2.94 +- 0.04 (outside, the mixed interior); the seam resolved to 0.30
+dex [269, 543], spanning the r_M class; WINNER by BIC (delta 0) over the
+smooth-steepening log-quadratic (+16), the committed-shapes models (+129/
++234) and the single index (+351); the COMMON r_M-class radius beats the
+per-cluster-r_M model (+111): THE DUST'S SHAPE CHANGES AT THE EQUILIBRIUM
+BOUNDARY, one radius for all clusters.
+G177 THE TSZ AMENDMENT 9/9: the 3-way decision tree: (-2.05..-2.7) JOINT /
+(-1.2..-1.8) phantom-only / steeper than -2.7 neither; the two-sector
+test: joint vs phantom-only Delta chi2 = 2290 = 47.8 sigma pooled (shape-
+only); revised SNR: the far bins drop below 3 sigma in median (2/12
+clusters hold: A2319, RXC1825); HONEST: the falsifiers are ASYMMETRIC --
+F2' (dust-kill) resolves at 4.4-6.9 sigma but F1' (steeper/neither leg)
+only 1.7-2.6 sigma: the measurement separates JOINT from PHANTOM-ONLY
+confidently, but can only POINT at 'a different envelope slope'.
+G178 THE SATURATION TEST 10/10: the sub-3e14 GROUPS SIT AT SATURATION:
+implied f_dust median 0.919 vs 1.0 (dev -0.081 = the baryon floor, f_b
+median 0.081: f_dust = 1 - f_b exactly); the phantom's maximal equilibrated
+share at group scale ~8% vs 26-48% on the clusters; the uncapped law
+overshoots 1 at every group (26/26 capped); THE PHASE DIAGRAM: phantom
+phase above M_sat = 3.09e14 (12 clusters, phantom share 0.157-0.481),
+ALL-DUST below (26 groups); the boundary sits in a 0.30-dex DATA GAP
+(IC1633 1.73e14 -> A1644 3.48e14): regimes measured at their endpoints,
+boundary DERIVED not measured; the falsifier registered: any sub-3.48e14
+system with f_dust < 0.85 voids the all-dust reading.
+G179 THE CLUSTER PIE 11/11: the sector bookkeeping at R500: baryons 17.7%
+(15.1-21.5), phantom 56.9% (54.0-60.7), dust 24.6% (18.1-31.3), closure
+SUM/M500 = 1 (identity); the closure vs M_HSE: res = -0.18 +- 0.06 dex --
+the 0.065-dex scatter IS G098's floor, the -0.18 mean is the 50-600 kpc
+FIT-WINDOW EXTRAPOLATION (R500 outside the law's window -- stated, not
+hidden); THE UNIVERSAL CONSTITUTION: u = r_M/R500 = 0.185 (M500/1e14)^+0.31,
+the fitted exponent EQUALS the (1-gamma)/2 - 1/3 = +0.308 prediction from
+G135's f-slope (a derived match); HONEST CORRECTION: the brief's
+'phantom-dominated inside r_M' is INVERTED on the data -- DUST dominates
+inside (82% at 50 kpc -> 25% at R500), the phantom at/outside R500;
+temperature cross-check: data-pie T = T_vir(M500) at 0.057 dex rms (the
+HSE scatter, within).  THE BOOKKEEPING IS CLOSED TO (c0, q) + the 0.1-dex
+floor: the phantom 56.9%, dust 24.6%, baryons 17.7% -- with the pair's
+derivation (G159/G137) still in flight.
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 CLAIMED (deepseek, in flight -- do NOT duplicate): G154 static-branch
 charge, G155 sourced equation, G156 dust charge-vs-relic decision,
