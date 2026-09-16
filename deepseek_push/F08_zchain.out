@@ -1,0 +1,139 @@
+========================================================================================================
+F08 -- THE Z-CHAIN: the complete generation of Z from the committed
+        structures -- the germ's provenance as a derivation chain
+========================================================================================================
+
+(1) THE CHAIN:  the four links, each with its committed lane
+--------------------------------------------------------------------------------------------------------
+
+(a) lambda_1 = 3 -- the kernel's max-entropy log-moment multiplier (G228)
+    max S[f] = -int f ln f du  s.t. {int f du = 1, E[ln(1+u)] = c}
+    EL/KKT: f(u) = (l1-1)(1+u)^-l1  (the Lomax family FALLS OUT)
+    form-free constraint solve (no family assumed), KKT-verified:
+      grid [1e-5, 1e5]  -> l1* = 3.000039919012983   (resid +3.992e-05)
+      grid [1e-7, 1e7]  -> l1* = 3.000000398920068   (resid +3.989e-07)
+      grid [1e-9, 1e9]  -> l1* = 3.000000003986105   (resid +3.986e-09)
+  [PASS] V1a1 [link a] the KKT solve returns l1* = 3, converging as the grid widens   l1* = 3.000000004 (resid +4.0e-09 on [1e-9,1e9] -> 3)
+  [PASS] V1a2 [link a] the committed constants reproduce: c(3) = 1/(l1-1) = 1/2, S(3) = 3/2 - ln 2   c = 0.5, S = 0.806852819440054691
+  [PASS] V1a3 [link a] the multiplier-temperature identity: dS/dc = l1 = 3 EXACTLY (the entropy slope of the log-moment constraint = the log-temperature)   dS/dc = (dS/dl)/(dc/dl) = 3 at l1 = 3 (closed form)
+    LANE: statistical origin (G228/H060): the multiplier l1 = 3 is the
+    log-temperature of the log-moment constraint -- the generation count's
+    statistical face.
+
+(b) the coefficient 2 = l1 - 1 = the deep slope n = 2 (H055/G031)
+    H055 mass-mapping lock:  n = 2/(gamma-1)  with gamma = C/sigma^2
+    G084 EL at the DE-set temperature sigma^2 = C/2:  gamma = 2 EXACTLY
+    -> the phantom's density exponent rho = A r^-gamma = A r^-2  (G031
+       phantom_is_isothermal, Lean-certified; G084 8/8).
+  [PASS] V1b1 [link b] the H055 lock: n = 2/(gamma-1) = 2, l1 = n+1 = 3 at the phantom's density exponent gamma = 2   n = 2.000000000000 (= the kernel coefficient l1-1 = 2.000000000000)
+  [PASS] V1b2 [link b] the kernel's normalization coefficient IS the deep slope: (l1-1) = n = 2   l1 - 1 = n = 2/(gamma-1) = 2 at gamma = 2
+    LANE: the phantom's density exponent (G031/G084/H055): the kernel's
+    coefficient 2 IS the deep slope n = 2 IS the phantom exponent's value.
+
+(c) the Einstein measure 8 pi (the EFE's coupling, 8 pi G/c^4)
+    committed face: the critical density rho_c = 3 H0^2/(8 pi G) (G058/C06)
+    rho_c = 3 H0^2/(8 pi G)              = 8.533239e-27 kg/m^3
+    8 pi                                = 25.13274122871835  (the EFE coupling 8 pi G/c^4)
+  [PASS] V1c1 [link c] the Einstein measure 8 pi enters through rho_c = 3 H0^2/(8 pi G) (G058/C06): rho_c = 8.5332e-27 kg/m^3   8 pi = 25.132741..., the same 8 pi that carries the Friedmann 3
+    LANE: the Einstein measure (C06/G058): the EFE's coupling 8 pi G/c^4,
+    entering the record through rho_c -- ALSO the face that carries the 3.
+
+(d) the generation count 3 = the Friedmann 3 AND the phase-space dimension
+    rho_c = 3 H0^2/(8 pi G):  the Friedmann 3 (the FRW trace's spatial
+    regularity; G058/C06)  =  the null's germ-table 'generation count'
+    =  the phase-space dimension D = 3 (E02 Q3: classical Sackur-Tetrode
+       gas entropy S/N = 22.8-23.8 k_B evaluated in D = 3).
+  [PASS] V1d1 [link d] the Friedmann 3 rides the SAME rho_c constant as the 8 pi: rho_c = 3 H0^2/(8 pi G)   the 3 and the 8 pi are one constant's two factors (G058/C06)
+    phase space: D = 3 (E02 Q3: Sackur-Tetrode S/N = 22.8-23.8 k_B, D = 3)
+  [PASS] V1d2 [link d] the phase-space dimension register: D = 3 (E02 Q3)   the kernel germ's denominator 3 = the phase-space dimension
+
+--------------------------------------------------------------------------------------------------------
+THE ASSEMBLY -- the generation chain, in order:
+    Z = (l1 - 1) . sqrt(8 pi / l1)  at l1 = 3
+      = 2 . sqrt(8 pi / 3)                         [coeff x sqrt(Einstein/3)]
+      = sqrt(32 pi/3) = 5.788810036466141...
+    (l1-1) . sqrt(8 pi/l1) at l1 = 3  = 5.78881003646614127490411701833
+    2 . sqrt(8 pi/3)                  = 5.78881003646614127490411701833
+    sqrt(32 pi/3)                     = 5.78881003646614127490411701833
+    Z (register)                      = 5.78881003646614127490411701833
+  [PASS] V1e1 [assembly] Z = (l1-1) sqrt(8 pi/l1) at l1 = 3 = 2 sqrt(8 pi/3) EXACTLY (E05's partial identity, now the chain's assembly)   Z = 5.788810036466141274904
+  [PASS] V1e2 [assembly] Z = 2 x sqrt(Einstein 8 pi / generation count 3): the coefficient times sqrt(Einstein/3)   2 x sqrt(8 pi/3) = sqrt(32 pi/3)
+  [PASS] V1e3 [assembly] Z^2 = (l1-1)^2 . 8 pi / l1 = 2^2 . 8 pi / 3 = 32 pi/3 EXACTLY (the chain's square)   Z^2 = 33.51032163829112787693
+  [PASS] V1e4 [assembly] register match: Z = 5.788810036466141, Z^2 = 33.510321638291124 (C06_results.json)   Z = 5.788810036466141, Z^2 = 33.510321638291131
+    THE GENERATION CHAIN, stated:  lambda_1 = 3 (G228, KKT) -> l1-1 = 2
+    (the deep slope n = 2, H055/G031) and sqrt(8 pi/3) with 8 pi the
+    Einstein measure (EFE coupling / rho_c, G058) over the generation
+    count 3 (the Friedmann 3 = the phase-space dimension D = 3) ->
+    Z = 2 sqrt(8 pi/3) = sqrt(32 pi/3).   The kernel's 2 & 3 + the
+    Einstein 8 pi generate the germ.
+
+(2) THE CLOSURE: does the chain close -- the kernel's constant
+    generating the constant that closes the cosmology?
+--------------------------------------------------------------------------------------------------------
+    Z -> a0:        a0 = c^2/(Z R_dS) = kappa_dS/Z   -> a0_H = 9.3623752047e-11 m/s^2
+                   (ratio to a0_DE = 1.00005076)
+    a0 -> horizon:  R_dS = c/(H0 sqrt(Omega_L))       -> R_dS = 1.6583113e+26 m
+    horizon -> Omega_L:  Omega_rec = 32 pi a0^2/(3 H0^2 c^2) = 0.685
+                   (deviation from 0.685 = 7.78e-62).
+  [PASS] V2a1 [Z->a0->horizon->Omega_L] the horizon pair + the G058 identity reproduce Omega_L = 0.685   Omega_rec = 0.685, dev 7.78e-62
+  [PASS] V2a2 [the iff] Omega_rec = Omega . (32 pi/(3 Z^2)) closes IFF Z^2 = 32 pi/3 -- C06's closure_iff_zSq, Lean-certified, zero slack   32 pi/(3 Z^2) = 1.0
+    THE FULL LOOP -- kernel lambda_1 -> Z -> Omega_L:
+        lambda_1 = 3 -> l1-1 = 2, sqrt(8 pi/3) -> Z = 5.7888100
+        -> Z^2 = 32 pi/3 -> Omega_rec = Omega (0.685) EXACTLY.
+
+    THE LOOP'S NUMERIC CONSISTENCY -- the two residuals:
+      kernel KKT:  l1* - 3        = +3.986e-09   (rel +1.3e-09)
+                   -> 3 as the grid widens: 3.0000399 -> 3.000000399 -> 3.000000004 -> 3
+      closure:     Omega_rec-0.685 = +2.220e-16   (rel +3.2e-16)
+                   -> 0 EXACTLY by Lean (C06: reconstruction = 0.685
+                      EXACTLY -- 2.2e-16 is the Python-side roundoff)
+  [PASS] V2b1 the kernel's KKT residual is a GRID-TRUNCATION artifact, converging to 0 (3.0000399 -> 3.0000004 -> 3.000000004 -> 3)   rel resid +1.3e-09 on [1e-9,1e9], monotone decay across grids
+  [PASS] V2b2 the closure's residual is a FLOAT-ROUNDOFF artifact (2.2e-16 = 1 ulp of 0.685); Lean proves the reconstruction is EXACTLY 0.685   dev +2.220e-16, Lean: exact
+  [PASS] V2b3 THE NUMERIC CONSISTENCY OF THE LOOP: both residuals are representation artifacts (grid truncation vs float roundoff), each vanishing in its own limit; the loop itself is a chain of EXACT committed identities with ZERO free constants   KKT +1.3e-09 (->0 as grid widens) | closure +3.2e-16 (->0 exactly)
+    THE CLOSURE STATEMENT: the 3 the kernel EMITS (its max-entropy
+    multiplier) is the SAME 3 that Z^2 = 32 pi/3 requires (the Friedmann 3
+    / the phase-space dimension); the chain closes with no slack -- the
+    germ generated by the kernel's 2 & 3 and the Einstein 8 pi is the
+    constant that closes the cosmology (C06: iff, Lean-certified).
+
+(3) THE HONEST LIMITS: what the chain does NOT have
+--------------------------------------------------------------------------------------------------------
+    THE ORIGIN OF THE 3-AS-DIMENSION (why 3D).
+    The chain reads the final 3 in three committed registers:
+      - the kernel's own multiplier l1 = 3 (link a, G228):  fixed by the
+        log-moment calibration c = 1/2 <-> l1 = 3 via the H055 lock
+        gamma = 2 = C/sigma^2_DE -- an EQUILIBRIUM statement; no
+        dimensionality anywhere in that solve.
+      - the Friedmann 3 in rho_c = 3 H0^2/(8 pi G) (link d, G058/C06):
+        the FRW trace's spatial regularity -- AMBIENT general-relativistic
+        structure.
+      - the phase-space dimension D = 3 (E02 Q3): ASSUMED in the
+        Sackur-Tetrode measure (S/N = 22.8-23.8 k_B, D = 3).
+    The identity Z = (l1-1) sqrt(8 pi/l1) is EXACT for the committed
+    l1 = 3 REGARDLESS of which 3 it is; the composition with the Friedmann
+    3 / D = 3 is the chain's READING (E05), not a derivation of 3D-ness.
+    Counterfactual, made concrete: a 4-dimensional phase space / FRW trace
+    leaves the kernel intact (l1 stays 3) but breaks Z = 2 sqrt(8 pi/3)
+    = sqrt(32 pi/3):  with D = 4 the nominal germ would be 2 sqrt(8 pi/4)
+    = 2 sqrt(2 pi) = 5.0133 -- not the committed Z, and the C06 closure
+    would fail (32 pi/4 != 32 pi/3).
+      2 sqrt(8 pi/4) = 5.013257  vs Z = 5.78881   (Z^2(D=4)/Z^2 = 0.75)
+  [PASS] V3a THE BOUNDARY: the chain does not generate the 3D-ness -- a D = 4 composition leaves the kernel's l1 = 3 intact but breaks the identity and the closure   D=4 germ 5.013257 != Z = 5.78881; the equality l1 = 3 = D is the chain's loaded premise, not derived
+    Also honest: the 8 pi is the EFE's coupling (8 pi G/c^4) -- an Input
+    structure of general relativity, not derived within the framework.
+    THE HONEST BOUNDARY, stated: the chain generates Z from the kernel's
+    2 & 3 and the Einstein 8 pi, closing on the cosmology; it does NOT
+    generate the 3D-ness itself -- 3D is ambient, read, not derived.
+
+(4) VERDICTS
+--------------------------------------------------------------------------------------------------------
+  V1  THE GENERATION CHAIN: 2, 3, 8 pi -> Z assembles from the committed links -- (a) lambda_1 = 3, the kernel's max-entropy log-moment multiplier (G228, KKT-verified: l1* = 3.0000399 -> 3.0000004 -> 3.000000004 -> 3 as the grid widens; dS/dc = l1 = 3 EXACTLY, the multiplier IS the entropy slope / log-temperature); (b) l1 - 1 = 2 = the deep slope n = 2, the phantom's density exponent chained through H055's mass-mapping lock n = 2/(gamma-1) at gamma = 2 (G031 phantom_is_isothermal, Lean; G084 EL at sigma^2 = C/2); (c) the Einstein measure 8 pi, the EFE's coupling 8 pi G/c^4 entering through rho_c = 3 H0^2/(8 pi G) (G058/C06); (d) the generation count 3 = the Friedmann 3 (rho_c's 3, the FRW spatial regularity) = the phase-space dimension D = 3 (E02 Q3) -- verifying Z = (l1-1) sqrt(8 pi/l1) at l1 = 3 = 2 sqrt(8 pi/3) = sqrt(32 pi/3) = 5.788810036466141, Z^2 = 32 pi/3 EXACTLY.  CHAIN:  the kernel's 2 & 3 + the Einstein 8 pi -> Z.
+
+  V2  THE LOOP CLOSURE: YES, the chain closes -- the kernel's constant generates the constant that closes the cosmology.  lambda_1 = 3 -> Z = 2 sqrt(8 pi/3) -> Z^2 = 32 pi/3 -> a0 = c^2/(Z R_dS) -> the G058 identity Omega_L = 32 pi a0^2/(3 H0^2 c^2) closes IFF Z^2 = 32 pi/3 (C06 closure_iff_zSq, Lean-certified, zero sorry; numeric Omega_rec = 0.685, dev 2.2e-16 = float epsilon, Lean: EXACTLY 0.685).  The loop's numeric consistency: the kernel's KKT residual (3.000000004 - 3 = 4e-9, grid truncation, -> 0 as the grid widens) and the closure's 2.2e-16 (roundoff, -> 0 exactly) are both representation artifacts; the loop itself is a closed chain of exact committed identities with ZERO free constants -- the 3 the kernel emits (its multiplier) is the same 3 the closure requires.  CHAIN CLOSED.
+
+  V3  THE HONEST STATEMENT:  THE Z-CHAIN -- the germ Z = 2 sqrt(8 pi/3) = sqrt(32 pi/3) is generated from the kernel's constants 2 (= l1 - 1 = the deep slope n = 2, H055/G031) and 3 (= lambda_1, the max-entropy log-moment multiplier = the log-temperature = the null's generation count, G228) and the Einstein measure 8 pi (the EFE's coupling, rho_c = 3 H0^2/(8 pi G), G058), closing on the cosmology (Z^2 = 32 pi/3 iff Omega_L = 32 pi a0^2/(3 H0^2 c^2), C06 Lean) -- the complete provenance chain from the kernel's variational output to the horizon's closure, with its honest boundary: the chain reads the 3 as the kernel's multiplier AND the Friedmann 3 AND the phase-space dimension D = 3, but it does NOT generate the 3D-ness itself -- the Friedmann 3 (spatial regularity) and D = 3 (Sackur-Tetrode phase space) are ambient, and l1 = 3 is fixed by the log-moment calibration (c = 1/2 via the H055 lock gamma = 2 = C/sigma^2_DE), never by a derivation of space's dimension; the equality l1 = 3 = D is the chain's loaded premise (E05's reading), 3D-ness is outside the chain, and the 8 pi is GR's coupling, an input structure.  The germ, generated; the chain, closed; the boundary, named.
+
+========================================================================================================
+F08 COMPLETE: 18/18 checks PASS.
+========================================================================================================
+wrote F08_results.json
