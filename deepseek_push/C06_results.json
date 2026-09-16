@@ -1,0 +1,122 @@
+{
+ "lane": "C06_horizon_omega",
+ "title": "THE HORIZON-OMEGA CLOSURE: the germ identity Z^2 = 32 pi/3 and the algebraic fixed-point closure of the G058 identity at the de Sitter horizon footing (Z11) -- Lean certificate",
+ "status_date": "2026-09-16",
+ "gate": "PASS",
+ "lean": {
+  "file": "deepseek_push/lean/C06_horizon_omega.lean",
+  "lake": "fable_independent_2026/lean_2026 (leanprover/lean4:v4.34.0-rc2, mathlib)",
+  "compile": "lake env lean deepseek_push/lean/C06_horizon_omega.lean",
+  "exit_code": 0,
+  "zero_sorry": true,
+  "axioms": "every theorem: [propext, Classical.choice, Quot.sound] only -- no sorryAx",
+  "theorem_count": 8
+ },
+ "constants": {
+  "H0_kms_Mpc": 67.4,
+  "H0_si": 2.1836546009122904e-18,
+  "c": 299792458.0,
+  "Omega_lambda_committed": 0.685,
+  "Z": 5.788810036466141,
+  "Z_squared": 33.510321638291124,
+  "32pi_over_3": 33.510321638291124,
+  "R_dS_m": 1.6583113217641275e+26,
+  "a0_H": 9.362375206191876e-11,
+  "a0_DE_reference": 9.3619e-11,
+  "ratio_a0H_over_a0DE": 1.000050759588532
+ },
+ "theorems": [
+  {
+   "name": "zSq",
+   "statement": "(2*sqrt(8*pi/3))^2 = 32*pi/3 -- THE SQUARING OF THE GERM at the real level (Real.sq_sqrt, valid since 8*pi/3 > 0; 4*(8*pi/3) = 32*pi/3 by ring)"
+  },
+  {
+   "name": "zSq_named",
+   "statement": "any Z = 2*sqrt(8*pi/3) satisfies Z^2 = 32*pi/3 (the germ identity with the germ named)"
+  },
+  {
+   "name": "a0_horizon_reexpression",
+   "statement": "R_dS = c/(H0*sqrt(Omega)) and a0 = c^2/(Z R_dS) imply a0 = c*H0*sqrt(Omega)/Z (the de Sitter face kappa_dS/Z = c H_Lambda/Z)"
+  },
+  {
+   "name": "horizon_omega_fixed_point",
+   "statement": "THE ALGEBRAIC FIXED-POINT CLOSURE: with Z^2 = 32*pi/3 and the horizon pair (R_dS = c/(H0*sqrt(Omega)), a0 = c^2/(Z R_dS)), omega = 32*pi*a0^2/(3 H0^2 c^2) is satisfied IDENTICALLY -- substituting the pair returns Omega (Omega_L = Omega_L, the tautological self-consistency made explicit); every component cancels, only the germ Z survives"
+  },
+  {
+   "name": "tautological_fixed_point",
+   "statement": "the pure substitution without names: 32*pi*(c^2/(Z*(c/(H0*sqrt(Omega)))))^2/(3 H0^2 c^2) = Omega -- EVERY Omega is a fixed point of the map Omega -> 32*pi*a0(Omega)^2/(3 H0^2 c^2)"
+  },
+  {
+   "name": "closure_iff_zSq",
+   "statement": "THE TIGHTNESS STATEMENT: the closure carries NO slack -- the identity 32*pi*a0^2/(3 H0^2 c^2) = Omega holds (given the horizon pair) IFF Z^2 = 32*pi/3; the germ identity is EXACTLY equivalent to the cosmological self-consistency"
+  },
+  {
+   "name": "num_horizon_omega_exact",
+   "statement": "at the committed constants (H0 = 67.4 km/s/Mpc, c = 299792458, Omega = 0.685) the horizon reconstruction returns 0.685 EXACTLY -- stronger than 1e-4; the result is independent of the NUMERIC values of c and H0 (everything cancels)"
+  },
+  {
+   "name": "num_horizon_omega_close",
+   "statement": "the registered numeric claim: |reconstruction - 0.685| < 1e-4 at the committed constants"
+  }
+ ],
+ "numeric": {
+  "reconstructed_omega": 0.6850000000000003,
+  "deviation_from_0_685": 2.220446049250313e-16,
+  "within_1e_4": true,
+  "lean_strength": "Lean proves the reconstruction is EXACTLY 0.685 (float roundoff 2.2e-16 is the Python-side artifact); the <=1e-4 claim is a certified corollary"
+ },
+ "checks": [
+  {
+   "name": "compile",
+   "pass": true,
+   "detail": "lake env lean C06_horizon_omega.lean -- exit 0"
+  },
+  {
+   "name": "zero_sorry",
+   "pass": true,
+   "detail": "no sorry/admit in code (the only 'sorry' string is the header's 'zero sorry' self-description)"
+  },
+  {
+   "name": "axioms_clean",
+   "pass": true,
+   "detail": "#print axioms: every theorem depends only on [propext, Classical.choice, Quot.sound]"
+  },
+  {
+   "name": "germ_squaring",
+   "pass": true,
+   "detail": "Z = 2*sqrt(8*pi/3) -> Z^2 = 32*pi/3 EXACTLY (certified zSq/zSq_named)"
+  },
+  {
+   "name": "fixed_point_closure",
+   "pass": true,
+   "detail": "substitution of the horizon pair into the G058 identity returns Omega identically (certified horizon_omega_fixed_point / tautological_fixed_point)"
+  },
+  {
+   "name": "tightness",
+   "pass": true,
+   "detail": "the identity closes IFF Z^2 = 32*pi/3 (certified closure_iff_zSq)"
+  },
+  {
+   "name": "a0_reexpression",
+   "pass": true,
+   "detail": "a0 = c*H0*sqrt(Omega)/Z re-expression certified; a0_H = 9.362375206191876e-11 vs Z11's 9.362375e-11 (ratio 1.00005076 to a0_DE = 9.3619e-11)"
+  },
+  {
+   "name": "numeric_0_685_to_1e4",
+   "pass": true,
+   "detail": "reconstruction = 0.685 EXACTLY (Lean), registered claim |..| < 1e-4 certified"
+  },
+  {
+   "name": "register_crosscheck",
+   "pass": true,
+   "detail": "R_dS = 1.6583113217641275e26 m matches Z11's 1.658311e26 m; Z = 5.7888100 matches Z11/S09 'Z = 5.7888'"
+  }
+ ],
+ "verdicts": {
+  "V1": "THE GERM IDENTITY CERTIFIED: Z = 2*sqrt(8*pi/3) squares to Z^2 = 32*pi/3 EXACTLY at the real level -- no approximation, no pi bounds needed.",
+  "V2": "THE FIXED-POINT CLOSURE CERTIFIED: substituting a0 = c^2/(Z R_dS), R_dS = c/(H0*sqrt(Omega_Lambda)) into Omega_Lambda = 32*pi*a0^2/(3 H0^2 c^2) returns Omega_Lambda IDENTICALLY (Omega_L = Omega_L, the tautological self-consistency made explicit); the closure is TIGHT -- it holds iff Z^2 = 32*pi/3.",
+  "V3": "THE HONEST STATEMENT: the numerical value of the identity's right-hand side is independent of the numeric values of c and H0 -- every component cancels; at the committed constants the reconstruction is 0.685 EXACTLY, so '0.685 to 1e-4' is certified as (much) stronger. The physics content lives in the INPUT definitions (Z11's germ, G058's identity); Lean certifies the algebra of the closure, including that no slack exists (the iff).",
+  "honest_scope": "All theorems are pure real algebra in G058's fraction-field pattern; positivity enters only where a square root is squared (Omega > 0) and where denominators must be nonzero. The identity shifts NO physics: it is the tautological self-consistency of the committed horizon form."
+ },
+ "deliverable": "deepseek_push/lean/C06_horizon_omega.lean + deepseek_push/C06_results.json committed and pushed"
+}
