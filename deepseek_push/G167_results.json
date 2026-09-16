@@ -1,0 +1,135 @@
+{
+ "lane": "G167",
+ "title": "THE PIPELINE SPLIT: why dwarfs FIT the law while MIGHTEE runs 1.4-1.6x high",
+ "checks": [
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true
+ ],
+ "n_pass": 13,
+ "n_total": 13,
+ "registers": {
+  "G114_rms": 0.14970371040522312,
+  "MIGHTEE_a0": 1.8432e-10,
+  "offset_dex": -0.1371837798175508,
+  "paper_MLS_a0": 1.69e-10,
+  "paper_table3": {
+   "radial_avg": 1.47,
+   "fixed_0.6": 1.08,
+   "no_mol": 2.06
+  }
+ },
+ "dichotomy": {
+  "tracer": {
+   "LT": "V_max asymmetric-drift-corrected at R_max (Oh+15); AD APPLIED",
+   "FIGGS": "V_rot pressure-corrected at last point (Begum+08); pressure APPLIED",
+   "MIGHTEE": "3D Barolo beam-convolved, <5 arcsec inner cut, NO pressure correction (declared negligible)",
+   "direction": "dwarfs' corrections raise v_obs; MIGHTEE's non-correction is anti-closing vs its offset -> tracer not causal"
+  },
+  "M/L_convention": {
+   "MIGHTEE": "resolved-SED Ks Ystar median 0.36 SFH-free + molecular gas + X^-1",
+   "FIGGS": "TRGB + diet-Salpeter M/L_I(B-V); M_gas = 1.4 M_HI",
+   "LT": "Oh+15 3.6um-model M/L",
+   "closure_dex": {
+    "radial_avg": 0.03,
+    "fixed_0.6": 0.097,
+    "no_mol": -0.043,
+    "fiducial": 0.0
+   },
+   "full_closure_at_0.6": false,
+   "residual_after_0.6_dex": 0.039968525436638064,
+   "Ystar_for_full_closure_est": 1.3755410218456534
+  }
+ },
+ "cross_convention": {
+  "conventions": [
+   "lane",
+   "Ystar0.36",
+   "Ystar0.5",
+   "Ystar0.6"
+  ],
+  "a0_star": [
+   1.1176e-10,
+   1.256e-10,
+   1.1792e-10,
+   1.1314e-10
+  ],
+  "rms_at_DE": [
+   0.14970123520709136,
+   0.14994357552914114,
+   0.14835156692987325,
+   0.14760073449164754
+  ],
+  "med_r_dex": [
+   0.01502509255226947,
+   0.028155770898277588,
+   0.02568024974187466,
+   0.020135820502187762
+  ],
+  "dwarf_a0_lane_e10": 1.1176,
+  "dwarf_a0_lane_sigma": 2.0531599999999992e-11,
+  "dwarf_a0_ystar036_e10": 1.256,
+  "dwarf_a0_ystar06_e10": 1.1314,
+  "mightee_at_sparc06_e10": 1.08,
+  "ratio_mightee_over_dwarfs_lane": 1.6492483894058696,
+  "ratio_matched_0.6": 0.9545695598373697
+ },
+ "mass_dependence": {
+  "dwarf_bins": [
+   {
+    "logMb_lo": 6.2552725051033065,
+    "logMb_hi": 7.8874562812325015,
+    "a0": 1.264e-10,
+    "sigma": 3.1544799999999994e-11,
+    "n": 18
+   },
+   {
+    "logMb_lo": 7.895974732359065,
+    "logMb_hi": 8.270212854896243,
+    "a0": 1.0326e-10,
+    "sigma": 3.2887999999999985e-11,
+    "n": 19
+   },
+   {
+    "logMb_lo": 8.318812576482886,
+    "logMb_hi": 9.153235418652296,
+    "a0": 1.0743999999999999e-10,
+    "sigma": 4.2309599999999996e-11,
+    "n": 18
+   }
+  ],
+  "theil_sen_dlogA0_dlogMb": -0.007174071390612951,
+  "dwarf_low_over_high_a0": 1.1764705882352942,
+  "mightee_sample_a0": 1.8432e-10,
+  "mightee_logMstar": {
+   "min": 7.48,
+   "max": 10.92,
+   "median": 9.49
+  },
+  "mightee_per_group_a0": {
+   "median": 1.9132e-10,
+   "p16": 9.70184e-11,
+   "p84": 2.4e-10,
+   "min": 6e-11,
+   "max": 2.4e-10
+  },
+  "gate": "MIGHTEE per-mass-bin NOT computable: the committed digitized rings carry no stellar mass (colour groups are per-galaxy proxies only)",
+  "mass_overlap": "dwarf log M_b reaches 9.15; MIGHTEE log M* 7.48-10.92; dwarf high-mass bin sits in MIGHTEE's range yet wants the low a0 -> no smooth a0(M)"
+ },
+ "verdicts": {
+  "V1": "V1 THE CROSS-CONVENTION RE-RUN: re-deriving the G114 dwarfs' stellar masses the MIGHTEE way (fixed SFH-free Ystar on the measured light, gas unchanged) moves their free-a0 preference from a0* = 1.118e-10 (lane) to 1.256e-10 (Ystar 0.36) / 1.131e-10 (0.6) -- the dwarfs stay at/above the DE anchor and NEVER approach MIGHTEE's 1.84e-10, because they are gas-dominated (median f_gas 0.80; the M/L lever moves M_b by only (1-f_gas) on the stellar term).  CONVERSELY, the paper's OWN MIGHTEE-only refit at SPARC-class Ystar = 0.6 drops MIGHTEE to a0 = 1.08e-10, i.e. ONTO the dwarf scale: at MATCHED stellar M/L the two pipelines' a0 preferences converge (0.95x), so the 1.4-1.6x 'MIGHTEE excess' vs the dwarfs is an M/L-NORMALISATION ARTIFACT.",
+  "V2": "V2 THE MASS-BINNED a0* (with errors): the dwarfs are FLAT in mass -- a0* = 1.264e-10 +- 3.15e-11 (log M_b 6.26-7.89), 1.033e-10 +- 3.29e-11 (7.90-8.23), 1.074e-10 +- 4.23e-11 (8.27-9.15), Theil-Sen dlog a0/dlog M_b = -0.007; the high-mass dwarf bin sits INSIDE MIGHTEE's mass range (log M* 7.48-10.92, median 9.49) yet wants 1.074e-10 while MIGHTEE wants 1.843e-10 -- at FIXED mass the split persists, so the mass-dependence reading (small dwarfs 0.94-1.2e-10, massive MIGHTEE 1.7-1.8e-10) is NOT supported as a smooth a0(M): it is the M/L convention travelling with the samples.  MIGHTEE per-mass-bin: GATE (the committed digitized rings carry no stellar mass; only the per-colour-group proxy spread, median 1.913e-10, 16-84 9.70e-11..2.40e-10).",
+  "V3": "V3 THE HONEST STATEMENT: the pipeline split is a CONVENTION ARTIFACT, not a physical mass-dependence and not a shape failure.  (1) THE NUMBER THAT DECIDES: the matched-convention pair -- MIGHTEE at SPARC-class Ystar 0.6 (the paper's own Table-3 refit) wants a0 = 1.08e-10, the dwarfs at the same SPARC-class M/L want a0* = 1.131e-10 (lane 1.118e-10): ratio 0.95x, i.e. the 1.4-1.6x split closes to ~1x once both samples are put on the same stellar M/L.  (2) The SAME cross-calibration on the dwarfs (Ystar 0.36, the MIGHTEE SFH-free value) leaves them at 1.256e-10 -- the dwarf side is M/L-immune (gas-dominated), while the MIGHTEE side is M/L-laden (f_star ~ 0.25-0.5), which is exactly why the two pipelines, calibrated against different M/L families (SFH-free 0.36 vs diet-Salpeter ~0.5-0.7), disagree.  (3) THE RESIDue: at matched M/L both samples sit at ~1.08-1.1e-10 = the RAR-class scale, +0.07 dex above the DE anchor 9.3619e-11 -- the G133 staircase (DE 0.936 < SPARC 1.2 < MIGHTEE 1.69-1.84) COLLAPSES to a two-rung statement: the deep end is RAR-class, not DE-class, and the MIGHTEE 'top step' was its own low-M/L convention.  (4) The deep-end zero-parameter law still holds on the dwarfs at 0.150 dex rms (unchanged), so no unresolved deep-end systematics is hiding in the dwarf sample; MIGHTEE's excess reduces to a normalization difference already quantified by the paper itself (0.097 of 0.137 dex at Ystar 0.6, residual +0.040 dex)."
+ },
+ "statement": "V3 THE HONEST STATEMENT: the pipeline split is a CONVENTION ARTIFACT, not a physical mass-dependence and not a shape failure.  (1) THE NUMBER THAT DECIDES: the matched-convention pair -- MIGHTEE at SPARC-class Ystar 0.6 (the paper's own Table-3 refit) wants a0 = 1.08e-10, the dwarfs at the same SPARC-class M/L want a0* = 1.131e-10 (lane 1.118e-10): ratio 0.95x, i.e. the 1.4-1.6x split closes to ~1x once both samples are put on the same stellar M/L.  (2) The SAME cross-calibration on the dwarfs (Ystar 0.36, the MIGHTEE SFH-free value) leaves them at 1.256e-10 -- the dwarf side is M/L-immune (gas-dominated), while the MIGHTEE side is M/L-laden (f_star ~ 0.25-0.5), which is exactly why the two pipelines, calibrated against different M/L families (SFH-free 0.36 vs diet-Salpeter ~0.5-0.7), disagree.  (3) THE RESIDue: at matched M/L both samples sit at ~1.08-1.1e-10 = the RAR-class scale, +0.07 dex above the DE anchor 9.3619e-11 -- the G133 staircase (DE 0.936 < SPARC 1.2 < MIGHTEE 1.69-1.84) COLLAPSES to a two-rung statement: the deep end is RAR-class, not DE-class, and the MIGHTEE 'top step' was its own low-M/L convention.  (4) The deep-end zero-parameter law still holds on the dwarfs at 0.150 dex rms (unchanged), so no unresolved deep-end systematics is hiding in the dwarf sample; MIGHTEE's excess reduces to a normalization difference already quantified by the paper itself (0.097 of 0.137 dex at Ystar 0.6, residual +0.040 dex)."
+}
