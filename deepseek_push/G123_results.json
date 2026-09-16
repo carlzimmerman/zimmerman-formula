@@ -1,0 +1,2832 @@
+{
+ "lane": "G123_phantom_overdemand",
+ "title": "THE PHANTOM OVER-DEMAND -- does rho_ph/rho_res scale with M500? (the P2 amplitude FAIL's mass-dependence)",
+ "references": {
+  "G108": "the P2 amplitude FAIL: 34/292 (r_M, R500) window bins with rho_dust < 0 on the fixed-A subtraction (peak 1.47 A2029, min 0.286 A644); pooled envelope slope -2.377 -- reproduced here (gate V0c) as the object of the mass-dependence question",
+  "G098": "the free-dust inversion: floor A rho_ph = sqrt(G M_b(<r) a0)/(4 pi G r^2), committed per-cluster median f_dust on [0.2, 1] R500 (0.519-0.843, sample median 0.674) -- reproduced digit-for-digit (gate V0b) and used as the f_dust anchor",
+  "G075": "r_M = sqrt(G M_b(R500)/a0); T_ratio 0.28 gate; the G050/G057 ingest convention",
+  "G095_G104": "the temperature ratio packages the deficit; not used for the ratio itself, only cited for context"
+ },
+ "definitions": {
+  "r_M": "sqrt(G M_b(R500)/a0)/KPC (G075/G108 convention; baryons at R500)",
+  "window": "shells of the committed M_FORW grid with midpoint in (r_M, R500) (G108's exact binned_profile)",
+  "footing_A": "rho_ph = A_cl/r^2, A_cl = sqrt(G M_b(R500) a0)/(4 pi G) -- the r_M-equipartition reading (G03E: M_ph(<r_M) = M_b(R500))",
+  "footing_B": "rho_ph = sqrt(G M_b(<r) a0)/(4 pi G r^2) -- G098's floor A, per-bin baryons (the G098-comparable reading)",
+  "ratio": "rho_ph/rho_res, rho_res = rho_tot - rho_b (shell densities); ratio > 1 = the phantom over-demands (negative dust)",
+  "f_dust": "1 - <ratio>_window: the free-dust fraction of the missing mass on the window (G098's definition per radius, window-mean)"
+ },
+ "constants": {
+  "a0_committed": 9.362307184320096e-11,
+  "a0_g108_literal": 9.3619e-11,
+  "G": 6.674e-11,
+  "mu": 0.6,
+  "resolution_floor": "rho_res > 2% of rho_tot (G098 registered)"
+ },
+ "data": "committed X-COP ingests, real_research/data/xcop/ (identical loader to G098/G108); M500/R500 from xcop_r500_ettori2019.json (Ettori+19); the G098 anchor read from the committed deepseek_push/G098_results.json",
+ "gates": {
+  "V0a_T_ratio_median": 0.2800669323647625,
+  "V0b_G098_fdust_max_abs_delta": 1.1102230246251565e-16,
+  "V0c": {
+   "total_bins": 292,
+   "negative_bins": 34,
+   "peak_ratio": [
+    "A644",
+    11.086200512264817
+   ],
+   "min_ratio": [
+    "A644",
+    0.28598992610538077
+   ],
+   "envelope_slope_pooled": -2.3771784967561618
+  }
+ },
+ "per_cluster": {
+  "A1644": {
+   "M500_1e14": 3.48,
+   "rM_kpc": 273.4247851319273,
+   "R500_kpc": 1054.0,
+   "A_kg_m": 9.418017899914075e+20,
+   "n_bins": 29,
+   "n_resolved": 29,
+   "median_ratio_A": 0.6478544868150519,
+   "median_ratio_B": 0.397443586736358,
+   "geomean_ratio_A": 0.6330549351860726,
+   "max_ratio_A_resolved": 0.7735021108579734,
+   "frac_over_demand_resolved_A": 0.0,
+   "frac_over_demand_raw_A": 0.0,
+   "f_dust_window_A": 0.3669450648139274,
+   "f_dust_window_med_B": 0.6025564132636421,
+   "f_dust_G098_committed": 0.7024670591681688,
+   "delta_vs_G098_A": -0.33552199435424135,
+   "bins": [
+    {
+     "r_kpc": 286.36454262429834,
+     "x": 0.2716931144443058,
+     "rho_res_Msun_kpc3": 331517.0021259703,
+     "ratio_Afixed": 0.5374667530368559,
+     "ratio_Bperbin": 0.16153530859128906,
+     "resolved": true
+    },
+    {
+     "r_kpc": 299.9999995993466,
+     "x": 0.28462998064454137,
+     "rho_res_Msun_kpc3": 308553.11933540105,
+     "ratio_Afixed": 0.5261668072448593,
+     "ratio_Bperbin": 0.1652704588366745,
+     "resolved": true
+    },
+    {
+     "r_kpc": 314.28472473434186,
+     "x": 0.2981828507915957,
+     "rho_res_Msun_kpc3": 285302.97480630985,
+     "ratio_Afixed": 0.5184931824531497,
+     "ratio_Bperbin": 0.17040403074528582,
+     "resolved": true
+    },
+    {
+     "r_kpc": 329.2496406989547,
+     "x": 0.3123810632817407,
+     "rho_res_Msun_kpc3": 261376.2339132011,
+     "ratio_Afixed": 0.5156786861310226,
+     "ratio_Bperbin": 0.17725701851503092,
+     "resolved": true
+    },
+    {
+     "r_kpc": 344.92710203757684,
+     "x": 0.327255315026164,
+     "rho_res_Msun_kpc3": 238604.0929257786,
+     "ratio_Afixed": 0.5147109039823758,
+     "ratio_Bperbin": 0.18500023184900924,
+     "resolved": true
+    },
+    {
+     "r_kpc": 361.35106483604113,
+     "x": 0.3428378224250865,
+     "rho_res_Msun_kpc3": 215588.0920643648,
+     "ratio_Afixed": 0.5190538902323822,
+     "ratio_Bperbin": 0.1950415229783607,
+     "resolved": true
+    },
+    {
+     "r_kpc": 378.55707394319614,
+     "x": 0.3591623092440191,
+     "rho_res_Msun_kpc3": 192708.67547884583,
+     "ratio_Afixed": 0.5290928571536115,
+     "ratio_Bperbin": 0.20779966734448982,
+     "resolved": true
+    },
+    {
+     "r_kpc": 396.5823495794196,
+     "x": 0.3762640887850281,
+     "rho_res_Msun_kpc3": 172536.66792012352,
+     "ratio_Afixed": 0.5384529090900378,
+     "ratio_Bperbin": 0.22101259107717133,
+     "resolved": true
+    },
+    {
+     "r_kpc": 415.46591369908055,
+     "x": 0.39418018377521874,
+     "rho_res_Msun_kpc3": 153384.99018285895,
+     "ratio_Afixed": 0.5518769268066642,
+     "ratio_Bperbin": 0.23675913450020872,
+     "resolved": true
+    },
+    {
+     "r_kpc": 435.2486332947952,
+     "x": 0.4129493674523673,
+     "rho_res_Msun_kpc3": 135528.90729711892,
+     "ratio_Afixed": 0.5691007109004524,
+     "ratio_Bperbin": 0.2553353377895071,
+     "resolved": true
+    },
+    {
+     "r_kpc": 455.97332830262474,
+     "x": 0.4326122659417692,
+     "rho_res_Msun_kpc3": 117566.42926545117,
+     "ratio_Afixed": 0.5977694136943309,
+     "ratio_Bperbin": 0.28056542516003713,
+     "resolved": true
+    },
+    {
+     "r_kpc": 477.6848475617298,
+     "x": 0.4532114303242218,
+     "rho_res_Msun_kpc3": 103489.80687720957,
+     "ratio_Afixed": 0.6187502533247307,
+     "ratio_Bperbin": 0.303808902807853,
+     "resolved": true
+    },
+    {
+     "r_kpc": 500.43017529985747,
+     "x": 0.47479143766589893,
+     "rho_res_Msun_kpc3": 90059.89738850608,
+     "ratio_Afixed": 0.6478544868150519,
+     "ratio_Bperbin": 0.3327742655982456,
+     "resolved": true
+    },
+    {
+     "r_kpc": 524.258523420695,
+     "x": 0.49739897857750953,
+     "rho_res_Msun_kpc3": 78232.76082850431,
+     "ratio_Afixed": 0.6795419004548684,
+     "ratio_Bperbin": 0.3650938702623729,
+     "resolved": true
+    },
+    {
+     "r_kpc": 549.2214670954803,
+     "x": 0.5210829858590895,
+     "rho_res_Msun_kpc3": 68484.48136469784,
+     "ratio_Afixed": 0.7073082409148106,
+     "ratio_Bperbin": 0.397443586736358,
+     "resolved": true
+    },
+    {
+     "r_kpc": 575.3730540879084,
+     "x": 0.545894738223822,
+     "rho_res_Msun_kpc3": 60468.403929522865,
+     "ratio_Afixed": 0.7299083860591146,
+     "ratio_Bperbin": 0.42872275724201303,
+     "resolved": true
+    },
+    {
+     "r_kpc": 602.7698792940764,
+     "x": 0.5718879310190478,
+     "rho_res_Msun_kpc3": 53941.033245915605,
+     "ratio_Afixed": 0.7455444668956617,
+     "ratio_Bperbin": 0.45713615852474593,
+     "resolved": true
+    },
+    {
+     "r_kpc": 631.4712224636593,
+     "x": 0.5991188068915173,
+     "rho_res_Msun_kpc3": 48909.35284819209,
+     "ratio_Afixed": 0.7491984212296829,
+     "ratio_Bperbin": 0.4804868756366257,
+     "resolved": true
+    },
+    {
+     "r_kpc": 661.5392001192175,
+     "x": 0.6276462999233563,
+     "rho_res_Msun_kpc3": 44188.27963872385,
+     "ratio_Afixed": 0.7555750973758122,
+     "ratio_Bperbin": 0.506636211472033,
+     "resolved": true
+    },
+    {
+     "r_kpc": 693.03888907924,
+     "x": 0.6575321528266034,
+     "rho_res_Msun_kpc3": 39792.77509561306,
+     "ratio_Afixed": 0.7644981861305314,
+     "ratio_Bperbin": 0.5356918161097474,
+     "resolved": true
+    },
+    {
+     "r_kpc": 726.0384769577412,
+     "x": 0.6888410597322022,
+     "rho_res_Msun_kpc3": 35835.636260603904,
+     "ratio_Afixed": 0.7735021108579734,
+     "ratio_Bperbin": 0.565931687052136,
+     "resolved": true
+    },
+    {
+     "r_kpc": 760.6093572910373,
+     "x": 0.7216407564431094,
+     "rho_res_Msun_kpc3": 32959.8738961834,
+     "ratio_Afixed": 0.7662791834473391,
+     "ratio_Bperbin": 0.585182604398777,
+     "resolved": true
+    },
+    {
+     "r_kpc": 796.8263368298772,
+     "x": 0.7560022171061453,
+     "rho_res_Msun_kpc3": 30619.513437856982,
+     "ratio_Afixed": 0.7515714113836858,
+     "ratio_Bperbin": 0.5981712299773854,
+     "resolved": true
+    },
+    {
+     "r_kpc": 834.7678257929923,
+     "x": 0.791999834718209,
+     "rho_res_Msun_kpc3": 28617.058940222934,
+     "ratio_Afixed": 0.7327224454464651,
+     "ratio_Bperbin": 0.6075408267930194,
+     "resolved": true
+    },
+    {
+     "r_kpc": 874.5159244756094,
+     "x": 0.8297115032975421,
+     "rho_res_Msun_kpc3": 26988.721294768606,
+     "ratio_Afixed": 0.7079101581794264,
+     "ratio_Bperbin": 0.6106054013926271,
+     "resolved": true
+    },
+    {
+     "r_kpc": 916.156668875822,
+     "x": 0.8692188509258273,
+     "rho_res_Msun_kpc3": 26054.95320790495,
+     "ratio_Afixed": 0.6681378958719161,
+     "ratio_Bperbin": 0.5990314303252946,
+     "resolved": true
+    },
+    {
+     "r_kpc": 959.780154217633,
+     "x": 0.9106073569427259,
+     "rho_res_Msun_kpc3": 24462.004276949803,
+     "ratio_Afixed": 0.6484258621626006,
+     "ratio_Bperbin": 0.6035157843499853,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1005.480774898486,
+     "x": 0.9539665796000816,
+     "rho_res_Msun_kpc3": 23605.699933242027,
+     "ratio_Afixed": 0.6122537763988952,
+     "ratio_Bperbin": 0.5907805661220709,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1053.3574729550583,
+     "x": 0.999390391797968,
+     "rho_res_Msun_kpc3": 22676.005577319687,
+     "ratio_Afixed": 0.5807347052361221,
+     "ratio_Bperbin": 0.5804664863975874,
+     "resolved": true
+    }
+   ]
+  },
+  "A1795": {
+   "M500_1e14": 4.63,
+   "rM_kpc": 342.1033827910532,
+   "R500_kpc": 1153.0,
+   "A_kg_m": 1.1783627373768306e+21,
+   "n_bins": 26,
+   "n_resolved": 26,
+   "median_ratio_A": 0.6125651116218087,
+   "median_ratio_B": 0.4205542819478575,
+   "geomean_ratio_A": 0.7455724959199633,
+   "max_ratio_A_resolved": 1.2791211000238027,
+   "frac_over_demand_resolved_A": 0.2692307692307692,
+   "frac_over_demand_raw_A": 0.2692307692307692,
+   "f_dust_window_A": 0.25442750408003667,
+   "f_dust_window_med_B": 0.5794457180521425,
+   "f_dust_G098_committed": 0.6609671065056766,
+   "delta_vs_G098_A": -0.4065396024256399,
+   "bins": [
+    {
+     "r_kpc": 344.92710203757684,
+     "x": 0.29915620298141965,
+     "rho_res_Msun_kpc3": 255593.01170158348,
+     "ratio_Afixed": 0.601190032553809,
+     "ratio_Bperbin": 0.2816191438385418,
+     "resolved": true
+    },
+    {
+     "r_kpc": 361.35106483604113,
+     "x": 0.3134007500746237,
+     "rho_res_Msun_kpc3": 233202.63941583456,
+     "ratio_Afixed": 0.6003758949397359,
+     "ratio_Bperbin": 0.29093082006258486,
+     "resolved": true
+    },
+    {
+     "r_kpc": 378.55707394319614,
+     "x": 0.32832356803399493,
+     "rho_res_Msun_kpc3": 214471.26265472203,
+     "ratio_Afixed": 0.5948172371985958,
+     "ratio_Bperbin": 0.29784124420122543,
+     "resolved": true
+    },
+    {
+     "r_kpc": 396.5823495794196,
+     "x": 0.3439569380567386,
+     "rho_res_Msun_kpc3": 197171.31213028837,
+     "ratio_Afixed": 0.5895286240559023,
+     "ratio_Bperbin": 0.30499940646909907,
+     "resolved": true
+    },
+    {
+     "r_kpc": 415.46591369908055,
+     "x": 0.3603347039887949,
+     "rho_res_Msun_kpc3": 181200.4513575455,
+     "ratio_Afixed": 0.5845010747332934,
+     "ratio_Bperbin": 0.3124913586216278,
+     "resolved": true
+    },
+    {
+     "r_kpc": 435.2486332947952,
+     "x": 0.3774923098827365,
+     "rho_res_Msun_kpc3": 167841.29473463734,
+     "ratio_Afixed": 0.5749654295519979,
+     "ratio_Bperbin": 0.3174732708458129,
+     "resolved": true
+    },
+    {
+     "r_kpc": 455.97332830262474,
+     "x": 0.39546689358423653,
+     "rho_res_Msun_kpc3": 156989.06969168282,
+     "ratio_Afixed": 0.5601019578684597,
+     "ratio_Bperbin": 0.3196042766485048,
+     "resolved": true
+    },
+    {
+     "r_kpc": 477.6848475617298,
+     "x": 0.41429735261208134,
+     "rho_res_Msun_kpc3": 143733.6375436056,
+     "ratio_Afixed": 0.5574090797154323,
+     "ratio_Bperbin": 0.3284899168260249,
+     "resolved": true
+    },
+    {
+     "r_kpc": 500.43017529985747,
+     "x": 0.43402443651331957,
+     "rho_res_Msun_kpc3": 133852.76100742404,
+     "ratio_Afixed": 0.5453823436865411,
+     "ratio_Bperbin": 0.3315530380493916,
+     "resolved": true
+    },
+    {
+     "r_kpc": 524.258523420695,
+     "x": 0.4546908269043322,
+     "rho_res_Msun_kpc3": 121617.61443829632,
+     "ratio_Afixed": 0.5469251642605448,
+     "ratio_Bperbin": 0.3429279982709724,
+     "resolved": true
+    },
+    {
+     "r_kpc": 549.2214670954803,
+     "x": 0.4763412550698008,
+     "rho_res_Msun_kpc3": 110111.37130924509,
+     "ratio_Afixed": 0.5504123971224564,
+     "ratio_Bperbin": 0.3557386271731805,
+     "resolved": true
+    },
+    {
+     "r_kpc": 575.3730540879084,
+     "x": 0.49902259678049293,
+     "rho_res_Msun_kpc3": 97789.32107161694,
+     "ratio_Afixed": 0.5647092701001349,
+     "ratio_Bperbin": 0.3762672821249233,
+     "resolved": true
+    },
+    {
+     "r_kpc": 602.7698792940764,
+     "x": 0.522783936941957,
+     "rho_res_Msun_kpc3": 86378.24518059591,
+     "ratio_Afixed": 0.5825160887020773,
+     "ratio_Bperbin": 0.399881437973268,
+     "resolved": true
+    },
+    {
+     "r_kpc": 631.4712224636593,
+     "x": 0.5476766890404677,
+     "rho_res_Msun_kpc3": 73479.34862241322,
+     "ratio_Afixed": 0.6239401906898085,
+     "ratio_Bperbin": 0.44122712592244695,
+     "resolved": true
+    },
+    {
+     "r_kpc": 661.5392001192175,
+     "x": 0.5737547269030507,
+     "rho_res_Msun_kpc3": 61830.25791127623,
+     "ratio_Afixed": 0.6756210318328872,
+     "ratio_Bperbin": 0.49250906195905136,
+     "resolved": true
+    },
+    {
+     "r_kpc": 693.03888907924,
+     "x": 0.6010744918293495,
+     "rho_res_Msun_kpc3": 51075.83656889207,
+     "ratio_Afixed": 0.7452203178845577,
+     "ratio_Bperbin": 0.5593192701709171,
+     "resolved": true
+    },
+    {
+     "r_kpc": 726.0384769577412,
+     "x": 0.6296951231203306,
+     "rho_res_Msun_kpc3": 42006.768438704596,
+     "ratio_Afixed": 0.8256136019425305,
+     "ratio_Bperbin": 0.6376515548682343,
+     "resolved": true
+    },
+    {
+     "r_kpc": 760.6093572910373,
+     "x": 0.6596785405819925,
+     "rho_res_Msun_kpc3": 33474.55382295395,
+     "ratio_Afixed": 0.9440114484793964,
+     "ratio_Bperbin": 0.7508086279225383,
+     "resolved": true
+    },
+    {
+     "r_kpc": 796.8263368298772,
+     "x": 0.6910896243103878,
+     "rho_res_Msun_kpc3": 27355.86677745932,
+     "ratio_Afixed": 1.0525374229466313,
+     "ratio_Bperbin": 0.8615930336283129,
+     "resolved": true
+    },
+    {
+     "r_kpc": 834.7678257929923,
+     "x": 0.7239963796990393,
+     "rho_res_Msun_kpc3": 22538.969549684516,
+     "ratio_Afixed": 1.163991813099344,
+     "ratio_Bperbin": 0.9788111682050368,
+     "resolved": true
+    },
+    {
+     "r_kpc": 874.5159244756094,
+     "x": 0.7584700125547349,
+     "rho_res_Msun_kpc3": 19195.63261024828,
+     "ratio_Afixed": 1.2453101062933745,
+     "ratio_Bperbin": 1.0760634287037605,
+     "resolved": true
+    },
+    {
+     "r_kpc": 916.156668875822,
+     "x": 0.794585142129941,
+     "rho_res_Msun_kpc3": 17028.02302318633,
+     "ratio_Afixed": 1.2791211000238027,
+     "ratio_Bperbin": 1.1368180401140253,
+     "resolved": true
+    },
+    {
+     "r_kpc": 959.780154217633,
+     "x": 0.8324199082546687,
+     "rho_res_Msun_kpc3": 16154.221919589407,
+     "ratio_Afixed": 1.228530124815213,
+     "ratio_Bperbin": 1.1209127132083492,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1005.480774898486,
+     "x": 0.8720561794436131,
+     "rho_res_Msun_kpc3": 15658.19340803151,
+     "ratio_Afixed": 1.154851627623673,
+     "ratio_Bperbin": 1.080801353557589,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1053.3574729550583,
+     "x": 0.913579768391204,
+     "rho_res_Msun_kpc3": 15610.369831348857,
+     "ratio_Afixed": 1.0554815171676812,
+     "ratio_Bperbin": 1.0113924822501592,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1103.51388856286,
+     "x": 0.9570805625003123,
+     "rho_res_Msun_kpc3": 15921.676414405418,
+     "ratio_Afixed": 0.9429116161776502,
+     "ratio_Bperbin": 0.9235309956471126,
+     "resolved": true
+    }
+   ]
+  },
+  "A2029": {
+   "M500_1e14": 8.82,
+   "rM_kpc": 520.8951127638696,
+   "R500_kpc": 1423.0,
+   "A_kg_m": 1.7942043891964072e+21,
+   "n_bins": 22,
+   "n_resolved": 22,
+   "median_ratio_A": 0.9082879017970147,
+   "median_ratio_B": 0.6951333390151132,
+   "geomean_ratio_A": 0.8389908684674064,
+   "max_ratio_A_resolved": 1.4662254690066026,
+   "frac_over_demand_resolved_A": 0.4090909090909091,
+   "frac_over_demand_raw_A": 0.4090909090909091,
+   "f_dust_window_A": 0.16100913153259355,
+   "f_dust_window_med_B": 0.3048666609848868,
+   "f_dust_G098_committed": 0.6733746454830335,
+   "delta_vs_G098_A": -0.5123655139504399,
+   "bins": [
+    {
+     "r_kpc": 524.258523420695,
+     "x": 0.36841779579809913,
+     "rho_res_Msun_kpc3": 194048.71480982163,
+     "ratio_Afixed": 0.5219231129419891,
+     "ratio_Bperbin": 0.29527803969557664,
+     "resolved": true
+    },
+    {
+     "r_kpc": 549.2214670954803,
+     "x": 0.3859602720277444,
+     "rho_res_Msun_kpc3": 181526.79145537125,
+     "ratio_Afixed": 0.5083613930448366,
+     "ratio_Bperbin": 0.2963236226791233,
+     "resolved": true
+    },
+    {
+     "r_kpc": 575.3730540879084,
+     "x": 0.40433805628103187,
+     "rho_res_Msun_kpc3": 165883.2966764867,
+     "ratio_Afixed": 0.5068816909741336,
+     "ratio_Bperbin": 0.30427173294074145,
+     "resolved": true
+    },
+    {
+     "r_kpc": 602.7698792940764,
+     "x": 0.42359092009422095,
+     "rho_res_Msun_kpc3": 152135.84194950428,
+     "ratio_Afixed": 0.5035860296186305,
+     "ratio_Bperbin": 0.31152194188054133,
+     "resolved": true
+    },
+    {
+     "r_kpc": 631.4712224636593,
+     "x": 0.44376052175942327,
+     "rho_res_Msun_kpc3": 137723.95656802933,
+     "ratio_Afixed": 0.5068642753004234,
+     "ratio_Bperbin": 0.322538682632073,
+     "resolved": true
+    },
+    {
+     "r_kpc": 661.5392001192175,
+     "x": 0.46489051308448176,
+     "rho_res_Msun_kpc3": 121838.15627792946,
+     "ratio_Afixed": 0.5220520606343219,
+     "ratio_Bperbin": 0.3421726053508817,
+     "resolved": true
+    },
+    {
+     "r_kpc": 693.03888907924,
+     "x": 0.4870266261976388,
+     "rho_res_Msun_kpc3": 105186.94739749352,
+     "ratio_Afixed": 0.5509741684789813,
+     "ratio_Bperbin": 0.37171288272636666,
+     "resolved": true
+    },
+    {
+     "r_kpc": 726.0384769577412,
+     "x": 0.5102167793097268,
+     "rho_res_Msun_kpc3": 89708.89946954824,
+     "ratio_Afixed": 0.5886450513634117,
+     "ratio_Bperbin": 0.4087651029089279,
+     "resolved": true
+    },
+    {
+     "r_kpc": 760.6093572910373,
+     "x": 0.5345111435636243,
+     "rho_res_Msun_kpc3": 74684.4474840621,
+     "ratio_Afixed": 0.6442505530082834,
+     "ratio_Bperbin": 0.45986916911863934,
+     "resolved": true
+    },
+    {
+     "r_kpc": 796.8263368298772,
+     "x": 0.5599622887068708,
+     "rho_res_Msun_kpc3": 60111.907620974336,
+     "ratio_Afixed": 0.7293238737096878,
+     "ratio_Bperbin": 0.535240802364646,
+     "resolved": true
+    },
+    {
+     "r_kpc": 834.7678257929923,
+     "x": 0.5866253167905778,
+     "rho_res_Msun_kpc3": 47289.585960984274,
+     "ratio_Afixed": 0.8447172929029118,
+     "ratio_Bperbin": 0.6372231912903438,
+     "resolved": true
+    },
+    {
+     "r_kpc": 874.5159244756094,
+     "x": 0.6145579230327544,
+     "rho_res_Msun_kpc3": 37451.551498004694,
+     "ratio_Afixed": 0.9718585106911177,
+     "ratio_Bperbin": 0.7530434867398826,
+     "resolved": true
+    },
+    {
+     "r_kpc": 916.156668875822,
+     "x": 0.6438205684299522,
+     "rho_res_Msun_kpc3": 29833.011902980634,
+     "ratio_Afixed": 1.111659297052202,
+     "ratio_Bperbin": 0.884425897509252,
+     "resolved": true
+    },
+    {
+     "r_kpc": 959.780154217633,
+     "x": 0.6744765665619347,
+     "rho_res_Msun_kpc3": 24130.302883575296,
+     "ratio_Afixed": 1.2522815898752997,
+     "ratio_Bperbin": 1.0223923974355484,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1005.480774898486,
+     "x": 0.7065922522125692,
+     "rho_res_Msun_kpc3": 20007.648469515367,
+     "ratio_Afixed": 1.376146626060307,
+     "ratio_Bperbin": 1.1532617795429432,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1053.3574729550583,
+     "x": 0.7402371559768505,
+     "rho_res_Msun_kpc3": 17110.235216669516,
+     "ratio_Afixed": 1.4662254690066026,
+     "ratio_Bperbin": 1.2606459176302998,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1103.51388856286,
+     "x": 0.7754841100230921,
+     "rho_res_Msun_kpc3": 15821.278419493028,
+     "ratio_Afixed": 1.4448112686264745,
+     "ratio_Bperbin": 1.274817366542591,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1156.0585744269188,
+     "x": 0.8124093987539837,
+     "rho_res_Msun_kpc3": 14978.3545784971,
+     "ratio_Afixed": 1.3905432929309425,
+     "ratio_Bperbin": 1.2571852174711857,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1211.1052087527548,
+     "x": 0.8510929084699612,
+     "rho_res_Msun_kpc3": 14663.726280840772,
+     "ratio_Afixed": 1.2941964706006803,
+     "ratio_Bperbin": 1.1993176167596413,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1268.772899084997,
+     "x": 0.891618340888965,
+     "rho_res_Msun_kpc3": 14447.678461262298,
+     "ratio_Afixed": 1.1968574998041521,
+     "ratio_Bperbin": 1.134244930312373,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1329.1864293534675,
+     "x": 0.9340733867557748,
+     "rho_res_Msun_kpc3": 14440.762488842132,
+     "ratio_Afixed": 1.0910543321999122,
+     "ratio_Bperbin": 1.0569733904878682,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1392.4766205043363,
+     "x": 0.978549979272197,
+     "rho_res_Msun_kpc3": 14602.80966855031,
+     "ratio_Afixed": 0.9830962767880558,
+     "ratio_Bperbin": 0.9728711348853758,
+     "resolved": true
+    }
+   ]
+  },
+  "A2142": {
+   "M500_1e14": 8.95,
+   "rM_kpc": 567.9265524180706,
+   "R500_kpc": 1424.0,
+   "A_kg_m": 1.9562024832273754e+21,
+   "n_bins": 20,
+   "n_resolved": 20,
+   "median_ratio_A": 0.6756355914649,
+   "median_ratio_B": 0.476087641310795,
+   "geomean_ratio_A": 0.6928298515202861,
+   "max_ratio_A_resolved": 0.9002870632985956,
+   "frac_over_demand_resolved_A": 0.0,
+   "frac_over_demand_raw_A": 0.0,
+   "f_dust_window_A": 0.3071701484797139,
+   "f_dust_window_med_B": 0.5239123586892049,
+   "f_dust_G098_committed": 0.5607426304701535,
+   "delta_vs_G098_A": -0.2535724819904396,
+   "bins": [
+    {
+     "r_kpc": 575.3730540879084,
+     "x": 0.40405411101678956,
+     "rho_res_Msun_kpc3": 120464.63974425987,
+     "ratio_Afixed": 0.7610121087236749,
+     "ratio_Bperbin": 0.43740285833114145,
+     "resolved": true
+    },
+    {
+     "r_kpc": 602.7698792940764,
+     "x": 0.4232934545604469,
+     "rho_res_Msun_kpc3": 112335.19232910147,
+     "ratio_Afixed": 0.7435861186307638,
+     "ratio_Bperbin": 0.44213188343499216,
+     "resolved": true
+    },
+    {
+     "r_kpc": 631.4712224636593,
+     "x": 0.443448892179536,
+     "rho_res_Msun_kpc3": 106346.84134570802,
+     "ratio_Afixed": 0.7156793213903926,
+     "ratio_Bperbin": 0.4399489828730646,
+     "resolved": true
+    },
+    {
+     "r_kpc": 661.5392001192175,
+     "x": 0.4645640450275404,
+     "rho_res_Msun_kpc3": 100271.4931456625,
+     "ratio_Afixed": 0.6916104421420771,
+     "ratio_Bperbin": 0.43904487483610033,
+     "resolved": true
+    },
+    {
+     "r_kpc": 693.03888907924,
+     "x": 0.4866846131174438,
+     "rho_res_Msun_kpc3": 94360.86671255213,
+     "ratio_Afixed": 0.6696425780763136,
+     "ratio_Bperbin": 0.4386429727201684,
+     "resolved": true
+    },
+    {
+     "r_kpc": 726.0384769577412,
+     "x": 0.5098584810096497,
+     "rho_res_Msun_kpc3": 87936.47527174103,
+     "ratio_Afixed": 0.654729430780486,
+     "ratio_Bperbin": 0.4424332109845673,
+     "resolved": true
+    },
+    {
+     "r_kpc": 760.6093572910373,
+     "x": 0.5341357846144925,
+     "rho_res_Msun_kpc3": 82843.47653695414,
+     "ratio_Afixed": 0.6332403025457587,
+     "ratio_Bperbin": 0.44093307911016694,
+     "resolved": true
+    },
+    {
+     "r_kpc": 796.8263368298772,
+     "x": 0.5595690567625542,
+     "rho_res_Msun_kpc3": 76386.86458873021,
+     "ratio_Afixed": 0.6257547389422616,
+     "ratio_Bperbin": 0.4487826529533779,
+     "resolved": true
+    },
+    {
+     "r_kpc": 834.7678257929923,
+     "x": 0.5862133608096856,
+     "rho_res_Msun_kpc3": 69929.25648907952,
+     "ratio_Afixed": 0.6228161665313403,
+     "ratio_Bperbin": 0.460219159210065,
+     "resolved": true
+    },
+    {
+     "r_kpc": 874.5159244756094,
+     "x": 0.6141263514575909,
+     "rho_res_Msun_kpc3": 64554.70578904318,
+     "ratio_Afixed": 0.6147334437691679,
+     "ratio_Bperbin": 0.4678608081517192,
+     "resolved": true
+    },
+    {
+     "r_kpc": 916.156668875822,
+     "x": 0.643368447244257,
+     "rho_res_Msun_kpc3": 58441.69666746667,
+     "ratio_Afixed": 0.6187110623674312,
+     "ratio_Bperbin": 0.4843144744698708,
+     "resolved": true
+    },
+    {
+     "r_kpc": 959.780154217633,
+     "x": 0.6740029172876636,
+     "rho_res_Msun_kpc3": 53066.50040018258,
+     "ratio_Afixed": 0.6208493235922665,
+     "ratio_Bperbin": 0.49981096699432925,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1005.480774898486,
+     "x": 0.7060960497882626,
+     "rho_res_Msun_kpc3": 46972.53241955198,
+     "ratio_Afixed": 0.6390850735315682,
+     "ratio_Bperbin": 0.5284829773664191,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1053.3574729550583,
+     "x": 0.7397173265133836,
+     "rho_res_Msun_kpc3": 41800.98850923063,
+     "ratio_Afixed": 0.6543529701353585,
+     "ratio_Bperbin": 0.5560100425406447,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1103.51388856286,
+     "x": 0.7749395284851546,
+     "rho_res_Msun_kpc3": 36563.41712548412,
+     "ratio_Afixed": 0.6816286048534865,
+     "ratio_Bperbin": 0.5944834343918414,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1156.0585744269188,
+     "x": 0.8118388865357575,
+     "rho_res_Msun_kpc3": 31736.062985222936,
+     "ratio_Afixed": 0.7155458441056094,
+     "ratio_Bperbin": 0.640714968327985,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1211.1052087527548,
+     "x": 0.8504952308656987,
+     "rho_res_Msun_kpc3": 27709.42449440773,
+     "ratio_Afixed": 0.7467219912570988,
+     "ratio_Bperbin": 0.685732788944283,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1268.772899084997,
+     "x": 0.8909922044136216,
+     "rho_res_Msun_kpc3": 23471.926572057026,
+     "ratio_Afixed": 0.803218432871763,
+     "ratio_Bperbin": 0.7566416733678992,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1329.1864293534675,
+     "x": 0.9334174363437272,
+     "rho_res_Msun_kpc3": 20848.628220015475,
+     "ratio_Afixed": 0.823950097272879,
+     "ratio_Bperbin": 0.7949848628932964,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1392.4766205043363,
+     "x": 0.977862795297989,
+     "rho_res_Msun_kpc3": 17385.747085571915,
+     "ratio_Afixed": 0.9002870632985956,
+     "ratio_Bperbin": 0.8898389048502762,
+     "resolved": true
+    }
+   ]
+  },
+  "A2255": {
+   "M500_1e14": 5.26,
+   "rM_kpc": 398.02309267618466,
+   "R500_kpc": 1196.0,
+   "A_kg_m": 1.370976156969374e+21,
+   "n_bins": 23,
+   "n_resolved": 23,
+   "median_ratio_A": 0.6144199548022573,
+   "median_ratio_B": 0.3814623903083709,
+   "geomean_ratio_A": 0.6191761047148018,
+   "max_ratio_A_resolved": 0.748578695077657,
+   "frac_over_demand_resolved_A": 0.0,
+   "frac_over_demand_raw_A": 0.0,
+   "f_dust_window_A": 0.3808238952851982,
+   "f_dust_window_med_B": 0.6185376096916291,
+   "f_dust_G098_committed": 0.674655285045824,
+   "delta_vs_G098_A": -0.2938313897606257,
+   "bins": [
+    {
+     "r_kpc": 415.46591369908055,
+     "x": 0.34737952650424797,
+     "rho_res_Msun_kpc3": 164610.68711869372,
+     "ratio_Afixed": 0.748578695077657,
+     "ratio_Bperbin": 0.3045553908019252,
+     "resolved": true
+    },
+    {
+     "r_kpc": 435.2486332947952,
+     "x": 0.36392026195216987,
+     "rho_res_Msun_kpc3": 156125.78837948997,
+     "ratio_Afixed": 0.7191455723469687,
+     "ratio_Bperbin": 0.3074127087137731,
+     "resolved": true
+    },
+    {
+     "r_kpc": 455.97332830262474,
+     "x": 0.3812486022597197,
+     "rho_res_Msun_kpc3": 145776.27381696852,
+     "ratio_Afixed": 0.7017793144703611,
+     "ratio_Bperbin": 0.31467308798503824,
+     "resolved": true
+    },
+    {
+     "r_kpc": 477.6848475617298,
+     "x": 0.3994020464562958,
+     "rho_res_Msun_kpc3": 139089.28350712697,
+     "ratio_Afixed": 0.6701772586724712,
+     "ratio_Bperbin": 0.31509692761342617,
+     "resolved": true
+    },
+    {
+     "r_kpc": 500.43017529985747,
+     "x": 0.4184198790132588,
+     "rho_res_Msun_kpc3": 128549.83042809686,
+     "ratio_Afixed": 0.660705315775995,
+     "ratio_Bperbin": 0.32521564954401994,
+     "resolved": true
+    },
+    {
+     "r_kpc": 524.258523420695,
+     "x": 0.4383432470072701,
+     "rho_res_Msun_kpc3": 123919.07108769754,
+     "ratio_Afixed": 0.6245067521504317,
+     "ratio_Bperbin": 0.3216071665763441,
+     "resolved": true
+    },
+    {
+     "r_kpc": 549.2214670954803,
+     "x": 0.4592152734912043,
+     "rho_res_Msun_kpc3": 114666.40888117596,
+     "ratio_Afixed": 0.6149432916345605,
+     "ratio_Bperbin": 0.3308684718364051,
+     "resolved": true
+    },
+    {
+     "r_kpc": 575.3730540879084,
+     "x": 0.4810811489029334,
+     "rho_res_Msun_kpc3": 107530.69401062273,
+     "ratio_Afixed": 0.5974957224865813,
+     "ratio_Bperbin": 0.33557987209940027,
+     "resolved": true
+    },
+    {
+     "r_kpc": 602.7698792940764,
+     "x": 0.503988193389696,
+     "rho_res_Msun_kpc3": 100618.67695101514,
+     "ratio_Afixed": 0.5818145803499201,
+     "ratio_Bperbin": 0.34034527532891656,
+     "resolved": true
+    },
+    {
+     "r_kpc": 631.4712224636593,
+     "x": 0.5279859719595813,
+     "rho_res_Msun_kpc3": 92924.75312267113,
+     "ratio_Afixed": 0.5740209516872261,
+     "ratio_Bperbin": 0.35017042841997226,
+     "resolved": true
+    },
+    {
+     "r_kpc": 661.5392001192175,
+     "x": 0.5531264215043625,
+     "rho_res_Msun_kpc3": 83911.64335249114,
+     "ratio_Afixed": 0.579205788320237,
+     "ratio_Bperbin": 0.36820694239071405,
+     "resolved": true
+    },
+    {
+     "r_kpc": 693.03888907924,
+     "x": 0.5794639540796321,
+     "rho_res_Msun_kpc3": 76806.13920335122,
+     "ratio_Afixed": 0.5765741162039641,
+     "ratio_Bperbin": 0.3814623903083709,
+     "resolved": true
+    },
+    {
+     "r_kpc": 726.0384769577412,
+     "x": 0.6070555827405862,
+     "rho_res_Msun_kpc3": 68909.21337425428,
+     "ratio_Afixed": 0.5855577334337255,
+     "ratio_Bperbin": 0.403000521406258,
+     "resolved": true
+    },
+    {
+     "r_kpc": 760.6093572910373,
+     "x": 0.6359610010794626,
+     "rho_res_Msun_kpc3": 63237.41663492402,
+     "ratio_Afixed": 0.581391716400426,
+     "ratio_Bperbin": 0.41572146182074937,
+     "resolved": true
+    },
+    {
+     "r_kpc": 796.8263368298772,
+     "x": 0.66624275654672,
+     "rho_res_Msun_kpc3": 57649.649589649176,
+     "ratio_Afixed": 0.5810884664706722,
+     "ratio_Bperbin": 0.4316058953858514,
+     "resolved": true
+    },
+    {
+     "r_kpc": 834.7678257929923,
+     "x": 0.6979664095259133,
+     "rho_res_Msun_kpc3": 51938.561601174566,
+     "ratio_Afixed": 0.587685486957689,
+     "ratio_Bperbin": 0.45283100653801167,
+     "resolved": true
+    },
+    {
+     "r_kpc": 874.5159244756094,
+     "x": 0.7312006057488373,
+     "rho_res_Msun_kpc3": 46625.70445677328,
+     "ratio_Afixed": 0.5964931170030597,
+     "ratio_Bperbin": 0.47669299298748014,
+     "resolved": true
+    },
+    {
+     "r_kpc": 916.156668875822,
+     "x": 0.7660172816687475,
+     "rho_res_Msun_kpc3": 42303.89584803472,
+     "ratio_Afixed": 0.599027042649393,
+     "ratio_Bperbin": 0.495915586794756,
+     "resolved": true
+    },
+    {
+     "r_kpc": 959.780154217633,
+     "x": 0.8024917677404958,
+     "rho_res_Msun_kpc3": 37580.05784707797,
+     "ratio_Afixed": 0.6144199548022573,
+     "ratio_Bperbin": 0.5267515628617577,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1005.480774898486,
+     "x": 0.8407029890455568,
+     "rho_res_Msun_kpc3": 34098.309914014106,
+     "ratio_Afixed": 0.6170010334980147,
+     "ratio_Bperbin": 0.5473621342622838,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1053.3574729550583,
+     "x": 0.8807336730393464,
+     "rho_res_Msun_kpc3": 30949.30102408239,
+     "ratio_Afixed": 0.6193895601851626,
+     "ratio_Bperbin": 0.5681233424411668,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1103.51388856286,
+     "x": 0.9226704753870067,
+     "rho_res_Msun_kpc3": 27877.199439157517,
+     "ratio_Afixed": 0.6265583736076072,
+     "ratio_Bperbin": 0.593603087885923,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1156.0585744269188,
+     "x": 0.9666041592198318,
+     "rho_res_Msun_kpc3": 25573.74171193319,
+     "ratio_Afixed": 0.6223179595418247,
+     "ratio_Bperbin": 0.6084426101268102,
+     "resolved": true
+    }
+   ]
+  },
+  "A2319": {
+   "M500_1e14": 7.31,
+   "rM_kpc": 580.1667494241582,
+   "R500_kpc": 1346.0,
+   "A_kg_m": 1.9983633994172468e+21,
+   "n_bins": 18,
+   "n_resolved": 18,
+   "median_ratio_A": 0.7418633133894894,
+   "median_ratio_B": 0.5596976658112093,
+   "geomean_ratio_A": 1.0930150886931649,
+   "max_ratio_A_resolved": 8.431852271097423,
+   "frac_over_demand_resolved_A": 0.3333333333333333,
+   "frac_over_demand_raw_A": 0.3333333333333333,
+   "f_dust_window_A": -0.09301508869316488,
+   "f_dust_window_med_B": 0.4403023341887907,
+   "f_dust_G098_committed": 0.6029591328117305,
+   "delta_vs_G098_A": -0.6959742215048954,
+   "bins": [
+    {
+     "r_kpc": 602.7698792940764,
+     "x": 0.44782309011446986,
+     "rho_res_Msun_kpc3": 120333.59796427748,
+     "ratio_Afixed": 0.7091218471563748,
+     "ratio_Bperbin": 0.39727560713213933,
+     "resolved": true
+    },
+    {
+     "r_kpc": 631.4712224636593,
+     "x": 0.46914652486155967,
+     "rho_res_Msun_kpc3": 112901.27354176021,
+     "ratio_Afixed": 0.6886600415550622,
+     "ratio_Bperbin": 0.399865318154552,
+     "resolved": true
+    },
+    {
+     "r_kpc": 661.5392001192175,
+     "x": 0.4914852898359714,
+     "rho_res_Msun_kpc3": 104509.94914020467,
+     "ratio_Afixed": 0.677863185942804,
+     "ratio_Bperbin": 0.4076955995931236,
+     "resolved": true
+    },
+    {
+     "r_kpc": 693.03888907924,
+     "x": 0.5148877333426746,
+     "rho_res_Msun_kpc3": 96481.8383786459,
+     "ratio_Afixed": 0.669036900856953,
+     "ratio_Bperbin": 0.4171497139111728,
+     "resolved": true
+    },
+    {
+     "r_kpc": 726.0384769577412,
+     "x": 0.5394045148274451,
+     "rho_res_Msun_kpc3": 90116.08570072183,
+     "ratio_Afixed": 0.6526633998535875,
+     "ratio_Bperbin": 0.4214463106404769,
+     "resolved": true
+    },
+    {
+     "r_kpc": 760.6093572910373,
+     "x": 0.5650886755505478,
+     "rho_res_Msun_kpc3": 82072.96569632365,
+     "ratio_Afixed": 0.6529612332324478,
+     "ratio_Bperbin": 0.4365827278411552,
+     "resolved": true
+    },
+    {
+     "r_kpc": 796.8263368298772,
+     "x": 0.5919957925927765,
+     "rho_res_Msun_kpc3": 73493.30963025666,
+     "ratio_Afixed": 0.6644092757808111,
+     "ratio_Bperbin": 0.4597846806796094,
+     "resolved": true
+    },
+    {
+     "r_kpc": 834.7678257929923,
+     "x": 0.6201841202028174,
+     "rho_res_Msun_kpc3": 65617.58981218791,
+     "ratio_Afixed": 0.6780460252523054,
+     "ratio_Bperbin": 0.4856382787844289,
+     "resolved": true
+    },
+    {
+     "r_kpc": 874.5159244756094,
+     "x": 0.6497146541423546,
+     "rho_res_Msun_kpc3": 56789.481852803634,
+     "ratio_Afixed": 0.7138508844618706,
+     "ratio_Bperbin": 0.5290346154555926,
+     "resolved": true
+    },
+    {
+     "r_kpc": 916.156668875822,
+     "x": 0.6806513141722303,
+     "rho_res_Msun_kpc3": 47978.948091495025,
+     "ratio_Afixed": 0.7698757423171083,
+     "ratio_Bperbin": 0.590360716166826,
+     "resolved": true
+    },
+    {
+     "r_kpc": 959.780154217633,
+     "x": 0.7130610358229071,
+     "rho_res_Msun_kpc3": 39315.792466328014,
+     "ratio_Afixed": 0.856052278128493,
+     "ratio_Bperbin": 0.6789772749503796,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1005.480774898486,
+     "x": 0.7470139486615794,
+     "rho_res_Msun_kpc3": 31329.307656900768,
+     "ratio_Afixed": 0.9788418125955273,
+     "ratio_Bperbin": 0.802907887523924,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1053.3574729550583,
+     "x": 0.7825835608878591,
+     "rho_res_Msun_kpc3": 24165.01110885268,
+     "ratio_Afixed": 1.1563047029143976,
+     "ratio_Bperbin": 0.9799810314201312,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1103.51388856286,
+     "x": 0.8198468711462557,
+     "rho_res_Msun_kpc3": 17934.986589793672,
+     "ratio_Afixed": 1.4195614246637718,
+     "ratio_Bperbin": 1.2424502424324801,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1156.0585744269188,
+     "x": 0.8588845278060318,
+     "rho_res_Msun_kpc3": 12255.4987467284,
+     "ratio_Afixed": 1.8928673675540308,
+     "ratio_Bperbin": 1.7105622200684032,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1211.1052087527548,
+     "x": 0.8997809871862963,
+     "rho_res_Msun_kpc3": 8571.888278168079,
+     "ratio_Afixed": 2.465872438935459,
+     "ratio_Bperbin": 2.2998776822556195,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1268.772899084997,
+     "x": 0.9426247392904882,
+     "rho_res_Msun_kpc3": 4914.086780632494,
+     "ratio_Afixed": 3.919225423496863,
+     "ratio_Bperbin": 3.7703234073394665,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1329.1864293534675,
+     "x": 0.9875084913473012,
+     "rho_res_Msun_kpc3": 2081.210778040637,
+     "ratio_Afixed": 8.431852271097423,
+     "ratio_Bperbin": 8.364175278689228,
+     "resolved": true
+    }
+   ]
+  },
+  "A3158": {
+   "M500_1e14": 4.26,
+   "rM_kpc": 332.5219023788282,
+   "R500_kpc": 1123.0,
+   "A_kg_m": 1.1453596744004909e+21,
+   "n_bins": 26,
+   "n_resolved": 26,
+   "median_ratio_A": 0.5978245802820625,
+   "median_ratio_B": 0.4049673880598832,
+   "geomean_ratio_A": 0.5982069002984979,
+   "max_ratio_A_resolved": 0.6788429727398403,
+   "frac_over_demand_resolved_A": 0.0,
+   "frac_over_demand_raw_A": 0.0,
+   "f_dust_window_A": 0.4017930997015021,
+   "f_dust_window_med_B": 0.5950326119401168,
+   "f_dust_G098_committed": 0.6907524537437457,
+   "delta_vs_G098_A": -0.2889593540422436,
+   "bins": [
+    {
+     "r_kpc": 344.92710203757684,
+     "x": 0.3071479092053222,
+     "rho_res_Msun_kpc3": 237641.07778552713,
+     "ratio_Afixed": 0.6284954260936718,
+     "ratio_Bperbin": 0.26563730278226316,
+     "resolved": true
+    },
+    {
+     "r_kpc": 361.35106483604113,
+     "x": 0.3217729873873919,
+     "rho_res_Msun_kpc3": 226185.36299043644,
+     "ratio_Afixed": 0.6016654858100826,
+     "ratio_Bperbin": 0.2650787032611307,
+     "resolved": true
+    },
+    {
+     "r_kpc": 378.55707394319614,
+     "x": 0.33709445587105624,
+     "rho_res_Msun_kpc3": 213772.7908517945,
+     "ratio_Afixed": 0.5800469063225011,
+     "ratio_Bperbin": 0.2661483459906372,
+     "resolved": true
+    },
+    {
+     "r_kpc": 396.5823495794196,
+     "x": 0.35314545821853927,
+     "rho_res_Msun_kpc3": 200620.59718539863,
+     "ratio_Afixed": 0.5631654359974354,
+     "ratio_Bperbin": 0.26882270572095174,
+     "resolved": true
+    },
+    {
+     "r_kpc": 415.46591369908055,
+     "x": 0.3699607423856461,
+     "rho_res_Msun_kpc3": 187717.01155514037,
+     "ratio_Afixed": 0.5484080806663097,
+     "ratio_Bperbin": 0.27205035878056827,
+     "resolved": true
+    },
+    {
+     "r_kpc": 435.2486332947952,
+     "x": 0.3875766992829877,
+     "rho_res_Msun_kpc3": 173544.4191630602,
+     "ratio_Afixed": 0.5404963801526408,
+     "ratio_Bperbin": 0.2785925030785391,
+     "resolved": true
+    },
+    {
+     "r_kpc": 455.97332830262474,
+     "x": 0.40603145886253317,
+     "rho_res_Msun_kpc3": 160067.44050494718,
+     "ratio_Afixed": 0.5339448400405803,
+     "ratio_Bperbin": 0.285704846937507,
+     "resolved": true
+    },
+    {
+     "r_kpc": 477.6848475617298,
+     "x": 0.425364957757551,
+     "rho_res_Msun_kpc3": 145940.10172975904,
+     "ratio_Afixed": 0.5336059930181224,
+     "ratio_Bperbin": 0.2962500627433159,
+     "resolved": true
+    },
+    {
+     "r_kpc": 500.43017529985747,
+     "x": 0.44561903410494874,
+     "rho_res_Msun_kpc3": 132360.22674066687,
+     "ratio_Afixed": 0.536085169894363,
+     "ratio_Bperbin": 0.30845273715438976,
+     "resolved": true
+    },
+    {
+     "r_kpc": 524.258523420695,
+     "x": 0.4668375097245726,
+     "rho_res_Msun_kpc3": 118701.58840503253,
+     "ratio_Afixed": 0.5446665991284038,
+     "ratio_Bperbin": 0.3246836006563022,
+     "resolved": true
+    },
+    {
+     "r_kpc": 549.2214670954803,
+     "x": 0.4890663108597331,
+     "rho_res_Msun_kpc3": 105573.13406647343,
+     "ratio_Afixed": 0.5579944148442015,
+     "ratio_Bperbin": 0.34421055238773257,
+     "resolved": true
+    },
+    {
+     "r_kpc": 575.3730540879084,
+     "x": 0.5123535655279683,
+     "rho_res_Msun_kpc3": 93368.88765523811,
+     "ratio_Afixed": 0.5748798028771694,
+     "ratio_Bperbin": 0.36690636354357914,
+     "resolved": true
+    },
+    {
+     "r_kpc": 602.7698792940764,
+     "x": 0.5367496698967733,
+     "rho_res_Msun_kpc3": 82338.06957048888,
+     "ratio_Afixed": 0.5939836747540426,
+     "ratio_Bperbin": 0.39138638357888667,
+     "resolved": true
+    },
+    {
+     "r_kpc": 631.4712224636593,
+     "x": 0.5623074109204446,
+     "rho_res_Msun_kpc3": 72587.65306568885,
+     "ratio_Afixed": 0.613915208209982,
+     "ratio_Bperbin": 0.4185483925408797,
+     "resolved": true
+    },
+    {
+     "r_kpc": 661.5392001192175,
+     "x": 0.5890821016199622,
+     "rho_res_Msun_kpc3": 63925.400610348566,
+     "ratio_Afixed": 0.6351753683317584,
+     "ratio_Bperbin": 0.44773451932725694,
+     "resolved": true
+    },
+    {
+     "r_kpc": 693.03888907924,
+     "x": 0.6171316910767943,
+     "rho_res_Msun_kpc3": 56514.83205317616,
+     "ratio_Afixed": 0.6546371120748606,
+     "ratio_Bperbin": 0.4770286307272494,
+     "resolved": true
+    },
+    {
+     "r_kpc": 726.0384769577412,
+     "x": 0.6465168984485674,
+     "rho_res_Msun_kpc3": 50343.430726149316,
+     "ratio_Afixed": 0.6696011518845153,
+     "ratio_Bperbin": 0.5041605234501119,
+     "resolved": true
+    },
+    {
+     "r_kpc": 760.6093572910373,
+     "x": 0.6773012976767919,
+     "rho_res_Msun_kpc3": 45490.39045446975,
+     "ratio_Afixed": 0.6752044279013949,
+     "ratio_Bperbin": 0.5251256138874069,
+     "resolved": true
+    },
+    {
+     "r_kpc": 796.8263368298772,
+     "x": 0.7095515020746903,
+     "rho_res_Msun_kpc3": 41226.98615319756,
+     "ratio_Afixed": 0.6788429727398403,
+     "ratio_Bperbin": 0.5450664134559114,
+     "resolved": true
+    },
+    {
+     "r_kpc": 834.7678257929923,
+     "x": 0.7433373337426468,
+     "rho_res_Msun_kpc3": 37999.87598772537,
+     "ratio_Afixed": 0.6710651587268186,
+     "ratio_Bperbin": 0.5560569094357499,
+     "resolved": true
+    },
+    {
+     "r_kpc": 874.5159244756094,
+     "x": 0.7787319006906585,
+     "rho_res_Msun_kpc3": 34892.49062760946,
+     "ratio_Afixed": 0.6659028279325656,
+     "ratio_Bperbin": 0.5691867286503944,
+     "resolved": true
+    },
+    {
+     "r_kpc": 916.156668875822,
+     "x": 0.8158118155617293,
+     "rho_res_Msun_kpc3": 33265.772722103684,
+     "ratio_Afixed": 0.6364161083349984,
+     "ratio_Bperbin": 0.560809562158,
+     "resolved": true
+    },
+    {
+     "r_kpc": 959.780154217633,
+     "x": 0.854657305625675,
+     "rho_res_Msun_kpc3": 30895.034702031448,
+     "ratio_Afixed": 0.6243757906566709,
+     "ratio_Bperbin": 0.5669982058666878,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1005.480774898486,
+     "x": 0.8953524264456687,
+     "rho_res_Msun_kpc3": 29023.49234691155,
+     "ratio_Afixed": 0.6055933012569362,
+     "ratio_Bperbin": 0.5662662372153068,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1053.3574729550583,
+     "x": 0.9379852831300608,
+     "rho_res_Msun_kpc3": 27661.03752537803,
+     "ratio_Afixed": 0.5789729143154653,
+     "ratio_Bperbin": 0.5572669206000654,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1103.51388856286,
+     "x": 0.9826481643480499,
+     "rho_res_Msun_kpc3": 26177.44990062618,
+     "ratio_Afixed": 0.5574364074433326,
+     "ratio_Bperbin": 0.5516757588694926,
+     "resolved": true
+    }
+   ]
+  },
+  "A3266": {
+   "M500_1e14": 8.8,
+   "rM_kpc": 448.321716288039,
+   "R500_kpc": 1430.0,
+   "A_kg_m": 1.5442279480566082e+21,
+   "n_bins": 25,
+   "n_resolved": 25,
+   "median_ratio_A": 0.661677452370194,
+   "median_ratio_B": 0.5323065833449026,
+   "geomean_ratio_A": 0.6298093738830947,
+   "max_ratio_A_resolved": 0.9791786454416432,
+   "frac_over_demand_resolved_A": 0.0,
+   "frac_over_demand_raw_A": 0.0,
+   "f_dust_window_A": 0.37019062611690534,
+   "f_dust_window_med_B": 0.46769341665509745,
+   "f_dust_G098_committed": 0.5191355411304834,
+   "delta_vs_G098_A": -0.1489449150135781,
+   "bins": [
+    {
+     "r_kpc": 455.97332830262474,
+     "x": 0.3188624673444928,
+     "rho_res_Msun_kpc3": 118469.33401112941,
+     "ratio_Afixed": 0.9726642800221175,
+     "ratio_Bperbin": 0.5072962216124268,
+     "resolved": true
+    },
+    {
+     "r_kpc": 477.6848475617298,
+     "x": 0.3340453479452656,
+     "rho_res_Msun_kpc3": 107495.94760752904,
+     "ratio_Afixed": 0.9767260491927775,
+     "ratio_Bperbin": 0.5330804331549643,
+     "resolved": true
+    },
+    {
+     "r_kpc": 500.43017529985747,
+     "x": 0.34995117153836186,
+     "rho_res_Msun_kpc3": 97700.97142423685,
+     "ratio_Afixed": 0.9791786454416432,
+     "ratio_Bperbin": 0.5589928164398901,
+     "resolved": true
+    },
+    {
+     "r_kpc": 524.258523420695,
+     "x": 0.3666143520424441,
+     "rho_res_Msun_kpc3": 89467.42595369971,
+     "ratio_Afixed": 0.9742980903547267,
+     "ratio_Bperbin": 0.5808144598884825,
+     "resolved": true
+    },
+    {
+     "r_kpc": 549.2214670954803,
+     "x": 0.3840709560108254,
+     "rho_res_Msun_kpc3": 83498.47136969559,
+     "ratio_Afixed": 0.9512052994299931,
+     "ratio_Bperbin": 0.5916633621873233,
+     "resolved": true
+    },
+    {
+     "r_kpc": 575.3730540879084,
+     "x": 0.40235877908245343,
+     "rho_res_Msun_kpc3": 77441.89727872389,
+     "ratio_Afixed": 0.9344859393514048,
+     "ratio_Bperbin": 0.6056062992138581,
+     "resolved": true
+    },
+    {
+     "r_kpc": 602.7698792940764,
+     "x": 0.42151739810774574,
+     "rho_res_Msun_kpc3": 74339.37849425532,
+     "ratio_Afixed": 0.8870044187732675,
+     "ratio_Bperbin": 0.5973097723798668,
+     "resolved": true
+    },
+    {
+     "r_kpc": 631.4712224636593,
+     "x": 0.4415882674571044,
+     "rho_res_Msun_kpc3": 70123.28000552923,
+     "ratio_Afixed": 0.856798001237027,
+     "ratio_Bperbin": 0.6003349978807457,
+     "resolved": true
+    },
+    {
+     "r_kpc": 661.5392001192175,
+     "x": 0.4626148252581941,
+     "rho_res_Msun_kpc3": 66006.26680711903,
+     "ratio_Afixed": 0.8293759843362317,
+     "ratio_Bperbin": 0.6033633432114647,
+     "resolved": true
+    },
+    {
+     "r_kpc": 693.03888907924,
+     "x": 0.4846425797756923,
+     "rho_res_Msun_kpc3": 63635.115121859555,
+     "ratio_Afixed": 0.7838550294068687,
+     "ratio_Bperbin": 0.5916852203611213,
+     "resolved": true
+    },
+    {
+     "r_kpc": 726.0384769577412,
+     "x": 0.5077192146557631,
+     "rho_res_Msun_kpc3": 61385.8679677848,
+     "ratio_Afixed": 0.7403892743521205,
+     "ratio_Bperbin": 0.5784981985413451,
+     "resolved": true
+    },
+    {
+     "r_kpc": 760.6093572910373,
+     "x": 0.5318946554482779,
+     "rho_res_Msun_kpc3": 59223.21216741775,
+     "ratio_Afixed": 0.699250051142754,
+     "ratio_Bperbin": 0.5649278871965081,
+     "resolved": true
+    },
+    {
+     "r_kpc": 796.8263368298772,
+     "x": 0.5572212145663477,
+     "rho_res_Msun_kpc3": 57026.15603933285,
+     "ratio_Afixed": 0.661677452370194,
+     "ratio_Bperbin": 0.5516938078609244,
+     "resolved": true
+    },
+    {
+     "r_kpc": 834.7678257929923,
+     "x": 0.5837537243307639,
+     "rho_res_Msun_kpc3": 55471.08491059763,
+     "ratio_Afixed": 0.6197973716300792,
+     "ratio_Bperbin": 0.5323065833449026,
+     "resolved": true
+    },
+    {
+     "r_kpc": 874.5159244756094,
+     "x": 0.6115495975353912,
+     "rho_res_Msun_kpc3": 53173.430929799935,
+     "ratio_Afixed": 0.5891388546862218,
+     "ratio_Bperbin": 0.5205599701661643,
+     "resolved": true
+    },
+    {
+     "r_kpc": 916.156668875822,
+     "x": 0.6406689992138616,
+     "rho_res_Msun_kpc3": 51412.230517679716,
+     "ratio_Afixed": 0.555190278812378,
+     "ratio_Bperbin": 0.503466540073392,
+     "resolved": true
+    },
+    {
+     "r_kpc": 959.780154217633,
+     "x": 0.6711749330193238,
+     "rho_res_Msun_kpc3": 49524.962764499,
+     "ratio_Afixed": 0.5251460521052442,
+     "ratio_Bperbin": 0.4884046506015244,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1005.480774898486,
+     "x": 0.7031334090199203,
+     "rho_res_Msun_kpc3": 47468.511454054795,
+     "ratio_Afixed": 0.4992230605061534,
+     "ratio_Bperbin": 0.4750472850959037,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1053.3574729550583,
+     "x": 0.7366136174510897,
+     "rho_res_Msun_kpc3": 45862.234233305324,
+     "ratio_Afixed": 0.47080495440908277,
+     "ratio_Bperbin": 0.4579255187535585,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1103.51388856286,
+     "x": 0.771688033960042,
+     "rho_res_Msun_kpc3": 44361.867878705125,
+     "ratio_Afixed": 0.4434885001278255,
+     "ratio_Bperbin": 0.4401861371445834,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1156.0585744269188,
+     "x": 0.8084325695293139,
+     "rho_res_Msun_kpc3": 46960.18933778369,
+     "ratio_Afixed": 0.38173174374075486,
+     "ratio_Bperbin": 0.38173174374075486,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1211.1052087527548,
+     "x": 0.8469267194075208,
+     "rho_res_Msun_kpc3": 44082.727483368944,
+     "ratio_Afixed": 0.3705233590562693,
+     "ratio_Bperbin": 0.3705233590562693,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1268.772899084997,
+     "x": 0.887253775583914,
+     "rho_res_Msun_kpc3": 41190.66857531118,
+     "ratio_Afixed": 0.3613109848598107,
+     "ratio_Bperbin": 0.36131098485981067,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1329.1864293534675,
+     "x": 0.9295009995478793,
+     "rho_res_Msun_kpc3": 38331.90333891995,
+     "ratio_Afixed": 0.3537656099891441,
+     "ratio_Bperbin": 0.353765609989144,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1392.4766205043363,
+     "x": 0.9737598744785568,
+     "rho_res_Msun_kpc3": 35374.388318232646,
+     "ratio_Afixed": 0.34928748938913035,
+     "ratio_Bperbin": 0.34928748938913035,
+     "resolved": true
+    }
+   ]
+  },
+  "A644": {
+   "M500_1e14": 5.66,
+   "rM_kpc": 388.24935664175496,
+   "R500_kpc": 1230.0,
+   "A_kg_m": 1.3373108764510477e+21,
+   "n_bins": 25,
+   "n_resolved": 17,
+   "median_ratio_A": 0.3923803129751829,
+   "median_ratio_B": 0.24899274161790974,
+   "geomean_ratio_A": 0.6437229604420811,
+   "max_ratio_A_resolved": 11.086200512264817,
+   "frac_over_demand_resolved_A": 0.23529411764705882,
+   "frac_over_demand_raw_A": 0.16,
+   "f_dust_window_A": 0.3562770395579189,
+   "f_dust_window_med_B": 0.7510072583820903,
+   "f_dust_G098_committed": 0.8426462946070967,
+   "delta_vs_G098_A": -0.48636925504917783,
+   "bins": [
+    {
+     "r_kpc": 396.5823495794196,
+     "x": 0.3224246744548127,
+     "rho_res_Msun_kpc3": 447698.6190417859,
+     "ratio_Afixed": 0.29465664844441236,
+     "ratio_Bperbin": 0.1449474811664141,
+     "resolved": true
+    },
+    {
+     "r_kpc": 415.46591369908055,
+     "x": 0.33777716560900856,
+     "rho_res_Msun_kpc3": 416818.62882035505,
+     "ratio_Afixed": 0.2883705094835856,
+     "ratio_Bperbin": 0.1465642447468778,
+     "resolved": true
+    },
+    {
+     "r_kpc": 435.2486332947952,
+     "x": 0.35386067747544325,
+     "rho_res_Msun_kpc3": 382950.98830069957,
+     "ratio_Afixed": 0.28598992610538077,
+     "ratio_Bperbin": 0.15016221286696485,
+     "resolved": true
+    },
+    {
+     "r_kpc": 455.97332830262474,
+     "x": 0.370710023010264,
+     "rho_res_Msun_kpc3": 346662.4095427963,
+     "ratio_Afixed": 0.2878611999625479,
+     "ratio_Bperbin": 0.15618430301663028,
+     "resolved": true
+    },
+    {
+     "r_kpc": 477.6848475617298,
+     "x": 0.38836166468433314,
+     "rho_res_Msun_kpc3": 312260.98616695614,
+     "ratio_Afixed": 0.2911844002097425,
+     "ratio_Bperbin": 0.1631823217625989,
+     "resolved": true
+    },
+    {
+     "r_kpc": 500.43017529985747,
+     "x": 0.4068538010567947,
+     "rho_res_Msun_kpc3": 273920.8138615755,
+     "ratio_Afixed": 0.30245220189311883,
+     "ratio_Bperbin": 0.17475420316847332,
+     "resolved": true
+    },
+    {
+     "r_kpc": 524.258523420695,
+     "x": 0.4262264418054431,
+     "rho_res_Msun_kpc3": 234221.21119632886,
+     "ratio_Afixed": 0.32229349494144327,
+     "ratio_Bperbin": 0.19203626178683778,
+     "resolved": true
+    },
+    {
+     "r_kpc": 549.2214670954803,
+     "x": 0.4465215179638051,
+     "rho_res_Msun_kpc3": 196267.1789180496,
+     "ratio_Afixed": 0.35045000816299093,
+     "ratio_Bperbin": 0.21545308325755122,
+     "resolved": true
+    },
+    {
+     "r_kpc": 575.3730540879084,
+     "x": 0.46778297080317754,
+     "rho_res_Msun_kpc3": 159721.18177095373,
+     "ratio_Afixed": 0.3923803129751829,
+     "ratio_Bperbin": 0.24899274161790974,
+     "resolved": true
+    },
+    {
+     "r_kpc": 602.7698792940764,
+     "x": 0.49005681243420846,
+     "rho_res_Msun_kpc3": 124800.93337279237,
+     "ratio_Afixed": 0.4575597819993679,
+     "ratio_Bperbin": 0.2992470417938858,
+     "resolved": true
+    },
+    {
+     "r_kpc": 631.4712224636593,
+     "x": 0.5133912377753328,
+     "rho_res_Msun_kpc3": 91157.57211120991,
+     "ratio_Afixed": 0.5707801818775072,
+     "ratio_Bperbin": 0.38539457012425743,
+     "resolved": true
+    },
+    {
+     "r_kpc": 661.5392001192175,
+     "x": 0.5378367480644045,
+     "rho_res_Msun_kpc3": 68189.84915568474,
+     "ratio_Afixed": 0.6952449852428253,
+     "ratio_Bperbin": 0.48409846075500623,
+     "resolved": true
+    },
+    {
+     "r_kpc": 693.03888907924,
+     "x": 0.563446251283935,
+     "rho_res_Msun_kpc3": 44387.04274419151,
+     "ratio_Afixed": 0.9731893339787379,
+     "ratio_Bperbin": 0.6998645108598152,
+     "resolved": true
+    },
+    {
+     "r_kpc": 726.0384769577412,
+     "x": 0.5902751845184888,
+     "rho_res_Msun_kpc3": 29835.32222494605,
+     "ratio_Afixed": 1.3192246438503332,
+     "ratio_Bperbin": 0.9787052826591319,
+     "resolved": true
+    },
+    {
+     "r_kpc": 760.6093572910373,
+     "x": 0.6183815912935263,
+     "rho_res_Msun_kpc3": 17316.90644840863,
+     "ratio_Afixed": 2.070976275130945,
+     "ratio_Bperbin": 1.583162846071593,
+     "resolved": true
+    },
+    {
+     "r_kpc": 796.8263368298772,
+     "x": 0.6478262901055912,
+     "rho_res_Msun_kpc3": 8532.918212183502,
+     "ratio_Afixed": 3.82951539144785,
+     "ratio_Bperbin": 3.0157020038491735,
+     "resolved": true
+    },
+    {
+     "r_kpc": 834.7678257929923,
+     "x": 0.6786730290999937,
+     "rho_res_Msun_kpc3": 2685.6822534670955,
+     "ratio_Afixed": 11.086200512264817,
+     "ratio_Bperbin": 8.98735637339137,
+     "resolved": true
+    },
+    {
+     "r_kpc": 874.5159244756094,
+     "x": 0.7109885564842353,
+     "rho_res_Msun_kpc3": -972.5977110289863,
+     "ratio_Afixed": NaN,
+     "ratio_Bperbin": NaN,
+     "resolved": false
+    },
+    {
+     "r_kpc": 916.156668875822,
+     "x": 0.7448428202242455,
+     "rho_res_Msun_kpc3": -3836.3005456942788,
+     "ratio_Afixed": NaN,
+     "ratio_Bperbin": NaN,
+     "resolved": false
+    },
+    {
+     "r_kpc": 959.780154217633,
+     "x": 0.7803090684696203,
+     "rho_res_Msun_kpc3": -3983.1440583602125,
+     "ratio_Afixed": NaN,
+     "ratio_Bperbin": NaN,
+     "resolved": false
+    },
+    {
+     "r_kpc": 1005.480774898486,
+     "x": 0.8174640446329154,
+     "rho_res_Msun_kpc3": -5074.012043422251,
+     "ratio_Afixed": NaN,
+     "ratio_Bperbin": NaN,
+     "resolved": false
+    },
+    {
+     "r_kpc": 1053.3574729550583,
+     "x": 0.8563881893943563,
+     "rho_res_Msun_kpc3": -5473.36704368291,
+     "ratio_Afixed": NaN,
+     "ratio_Bperbin": NaN,
+     "resolved": false
+    },
+    {
+     "r_kpc": 1103.51388856286,
+     "x": 0.8971657630592358,
+     "rho_res_Msun_kpc3": -5757.986772007026,
+     "ratio_Afixed": NaN,
+     "ratio_Bperbin": NaN,
+     "resolved": false
+    },
+    {
+     "r_kpc": 1156.0585744269188,
+     "x": 0.9398850198592835,
+     "rho_res_Msun_kpc3": -5844.678933641258,
+     "ratio_Afixed": NaN,
+     "ratio_Bperbin": NaN,
+     "resolved": false
+    },
+    {
+     "r_kpc": 1211.1052087527548,
+     "x": 0.9846383810998007,
+     "rho_res_Msun_kpc3": -5885.497708725909,
+     "ratio_Afixed": NaN,
+     "ratio_Bperbin": NaN,
+     "resolved": false
+    }
+   ]
+  },
+  "A85": {
+   "M500_1e14": 5.65,
+   "rM_kpc": 406.3596491052037,
+   "R500_kpc": 1235.0,
+   "A_kg_m": 1.399691124280864e+21,
+   "n_bins": 24,
+   "n_resolved": 24,
+   "median_ratio_A": 0.6417162675718375,
+   "median_ratio_B": 0.45665249712513983,
+   "geomean_ratio_A": 0.7139598792480442,
+   "max_ratio_A_resolved": 0.9724018147015348,
+   "frac_over_demand_resolved_A": 0.0,
+   "frac_over_demand_raw_A": 0.0,
+   "f_dust_window_A": 0.28604012075195584,
+   "f_dust_window_med_B": 0.5433475028748602,
+   "f_dust_G098_committed": 0.6412422333198193,
+   "delta_vs_G098_A": -0.3552021125678635,
+   "bins": [
+    {
+     "r_kpc": 415.46591369908055,
+     "x": 0.33640964671990325,
+     "rho_res_Msun_kpc3": 206582.60127607567,
+     "ratio_Afixed": 0.6089814381671866,
+     "ratio_Bperbin": 0.29378529614684945,
+     "resolved": true
+    },
+    {
+     "r_kpc": 435.2486332947952,
+     "x": 0.3524280431536803,
+     "rho_res_Msun_kpc3": 190483.0500129257,
+     "ratio_Afixed": 0.6017795506821186,
+     "ratio_Bperbin": 0.30102859464540427,
+     "resolved": true
+    },
+    {
+     "r_kpc": 455.97332830262474,
+     "x": 0.3692091727146759,
+     "rho_res_Msun_kpc3": 175287.6652533,
+     "ratio_Afixed": 0.5958519407052435,
+     "ratio_Bperbin": 0.3088343383642249,
+     "resolved": true
+    },
+    {
+     "r_kpc": 477.6848475617298,
+     "x": 0.3867893502524128,
+     "rho_res_Msun_kpc3": 159540.64208982274,
+     "ratio_Afixed": 0.5965053288939794,
+     "ratio_Bperbin": 0.32018760405283503,
+     "resolved": true
+    },
+    {
+     "r_kpc": 500.43017529985747,
+     "x": 0.40520661967599797,
+     "rho_res_Msun_kpc3": 145349.223161801,
+     "ratio_Afixed": 0.5965802899279845,
+     "ratio_Bperbin": 0.33190745584529957,
+     "resolved": true
+    },
+    {
+     "r_kpc": 524.258523420695,
+     "x": 0.42450082868072475,
+     "rho_res_Msun_kpc3": 133118.66865898977,
+     "ratio_Afixed": 0.5935244698656934,
+     "ratio_Bperbin": 0.34154282025412835,
+     "resolved": true
+    },
+    {
+     "r_kpc": 549.2214670954803,
+     "x": 0.44471373853885043,
+     "rho_res_Msun_kpc3": 119865.40598998981,
+     "ratio_Afixed": 0.6005922526828703,
+     "ratio_Bperbin": 0.35817826180350393,
+     "resolved": true
+    },
+    {
+     "r_kpc": 575.3730540879084,
+     "x": 0.46588911262178817,
+     "rho_res_Msun_kpc3": 109937.79131549754,
+     "ratio_Afixed": 0.5966539888762312,
+     "ratio_Bperbin": 0.3678197168004223,
+     "resolved": true
+    },
+    {
+     "r_kpc": 602.7698792940764,
+     "x": 0.4880727767563372,
+     "rho_res_Msun_kpc3": 99796.15788577612,
+     "ratio_Afixed": 0.5988963803335584,
+     "ratio_Bperbin": 0.38140492632034323,
+     "resolved": true
+    },
+    {
+     "r_kpc": 631.4712224636593,
+     "x": 0.5113127307398051,
+     "rho_res_Msun_kpc3": 89179.19944707493,
+     "ratio_Afixed": 0.6106577844040574,
+     "ratio_Bperbin": 0.40163542123329626,
+     "resolved": true
+    },
+    {
+     "r_kpc": 661.5392001192175,
+     "x": 0.5356592713515932,
+     "rho_res_Msun_kpc3": 80106.35837480372,
+     "ratio_Afixed": 0.6194274359736112,
+     "ratio_Bperbin": 0.4205410773149107,
+     "resolved": true
+    },
+    {
+     "r_kpc": 693.03888907924,
+     "x": 0.5611650923718542,
+     "rho_res_Msun_kpc3": 71549.94079360602,
+     "ratio_Afixed": 0.6318938158337181,
+     "ratio_Bperbin": 0.44267249047256235,
+     "resolved": true
+    },
+    {
+     "r_kpc": 726.0384769577412,
+     "x": 0.5878854064435152,
+     "rho_res_Msun_kpc3": 63227.94840916382,
+     "ratio_Afixed": 0.6515387193099571,
+     "ratio_Bperbin": 0.4706325037777173,
+     "resolved": true
+    },
+    {
+     "r_kpc": 760.6093572910373,
+     "x": 0.6158780220980059,
+     "rho_res_Msun_kpc3": 54656.264959549095,
+     "ratio_Afixed": 0.6867605129154722,
+     "ratio_Bperbin": 0.5115340856438315,
+     "resolved": true
+    },
+    {
+     "r_kpc": 796.8263368298772,
+     "x": 0.6452035116031394,
+     "rho_res_Msun_kpc3": 47120.08680109888,
+     "ratio_Afixed": 0.7258303976171323,
+     "ratio_Bperbin": 0.5576582688778682,
+     "resolved": true
+    },
+    {
+     "r_kpc": 834.7678257929923,
+     "x": 0.6759253650145687,
+     "rho_res_Msun_kpc3": 40116.66026946969,
+     "ratio_Afixed": 0.7768057291484801,
+     "ratio_Bperbin": 0.6150159269945462,
+     "resolved": true
+    },
+    {
+     "r_kpc": 874.5159244756094,
+     "x": 0.7081100603041371,
+     "rho_res_Msun_kpc3": 34365.47030913739,
+     "ratio_Afixed": 0.8262488311124135,
+     "ratio_Bperbin": 0.6744546458130678,
+     "resolved": true
+    },
+    {
+     "r_kpc": 916.156668875822,
+     "x": 0.7418272622476292,
+     "rho_res_Msun_kpc3": 29505.90754236685,
+     "ratio_Afixed": 0.8768395338837033,
+     "ratio_Bperbin": 0.7372269679471752,
+     "resolved": true
+    },
+    {
+     "r_kpc": 959.780154217633,
+     "x": 0.7771499224434275,
+     "rho_res_Msun_kpc3": 26097.612518883645,
+     "ratio_Afixed": 0.9032839308887446,
+     "ratio_Bperbin": 0.7814273495145073,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1005.480774898486,
+     "x": 0.8141544736020129,
+     "rho_res_Msun_kpc3": 22912.233447816678,
+     "ratio_Afixed": 0.9374619000421299,
+     "ratio_Bperbin": 0.8342273312142112,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1053.3574729550583,
+     "x": 0.8529210307328406,
+     "rho_res_Msun_kpc3": 20126.63970841996,
+     "ratio_Afixed": 0.9724018147015348,
+     "ratio_Bperbin": 0.8892885123000256,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1103.51388856286,
+     "x": 0.8935335130063644,
+     "rho_res_Msun_kpc3": 18502.4225479568,
+     "ratio_Afixed": 0.9637943863860764,
+     "ratio_Bperbin": 0.906477661746404,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1156.0585744269188,
+     "x": 0.9360798173497318,
+     "rho_res_Msun_kpc3": 16780.134364033493,
+     "ratio_Afixed": 0.9683079150156445,
+     "ratio_Bperbin": 0.9344980808561918,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1211.1052087527548,
+     "x": 0.9806519908929189,
+     "rho_res_Msun_kpc3": 15987.008887501874,
+     "ratio_Afixed": 0.9260568188631315,
+     "ratio_Bperbin": 0.916970152104837,
+     "resolved": true
+    }
+   ]
+  },
+  "RXC1825": {
+   "M500_1e14": 4.08,
+   "rM_kpc": 311.6797246394178,
+   "R500_kpc": 1105.0,
+   "A_kg_m": 1.073569546476189e+21,
+   "n_bins": 28,
+   "n_resolved": 28,
+   "median_ratio_A": 0.5954133161467776,
+   "median_ratio_B": 0.31568106450853706,
+   "geomean_ratio_A": 0.6015447999779001,
+   "max_ratio_A_resolved": 0.7899408890704194,
+   "frac_over_demand_resolved_A": 0.0,
+   "frac_over_demand_raw_A": 0.0,
+   "f_dust_window_A": 0.3984552000220999,
+   "f_dust_window_med_B": 0.6843189354914629,
+   "f_dust_G098_committed": 0.7475806662386162,
+   "delta_vs_G098_A": -0.3491254662165163,
+   "bins": [
+    {
+     "r_kpc": 314.28472473434186,
+     "x": 0.28442056537044513,
+     "rho_res_Msun_kpc3": 258939.53541985233,
+     "ratio_Afixed": 0.6512108950173189,
+     "ratio_Bperbin": 0.22707660974942837,
+     "resolved": true
+    },
+    {
+     "r_kpc": 329.2496406989547,
+     "x": 0.29796347574566034,
+     "rho_res_Msun_kpc3": 245422.09005961395,
+     "ratio_Afixed": 0.6260403122856574,
+     "ratio_Bperbin": 0.22910890459442987,
+     "resolved": true
+    },
+    {
+     "r_kpc": 344.92710203757684,
+     "x": 0.31215122356341796,
+     "rho_res_Msun_kpc3": 233996.71731253853,
+     "ratio_Afixed": 0.5982768040706326,
+     "ratio_Bperbin": 0.2294808958510679,
+     "resolved": true
+    },
+    {
+     "r_kpc": 361.35106483604113,
+     "x": 0.3270145383131594,
+     "rho_res_Msun_kpc3": 221933.5483307438,
+     "ratio_Afixed": 0.5747578805395184,
+     "ratio_Bperbin": 0.23096362616284416,
+     "resolved": true
+    },
+    {
+     "r_kpc": 378.55707394319614,
+     "x": 0.34258558727891053,
+     "rho_res_Msun_kpc3": 210368.9634513305,
+     "ratio_Afixed": 0.552487135308505,
+     "ratio_Bperbin": 0.23220161207233006,
+     "resolved": true
+    },
+    {
+     "r_kpc": 396.5823495794196,
+     "x": 0.35889805391802676,
+     "rho_res_Msun_kpc3": 200376.4693363543,
+     "ratio_Afixed": 0.528509850518477,
+     "ratio_Bperbin": 0.23221314430089027,
+     "resolved": true
+    },
+    {
+     "r_kpc": 415.46591369908055,
+     "x": 0.3759872522163625,
+     "rho_res_Msun_kpc3": 188145.96196675792,
+     "ratio_Afixed": 0.512862411696995,
+     "ratio_Bperbin": 0.23519703627040509,
+     "resolved": true
+    },
+    {
+     "r_kpc": 435.2486332947952,
+     "x": 0.3938901658776427,
+     "rho_res_Msun_kpc3": 177337.2104568683,
+     "ratio_Afixed": 0.4957832662453969,
+     "ratio_Bperbin": 0.23728683411410897,
+     "resolved": true
+    },
+    {
+     "r_kpc": 455.97332830262474,
+     "x": 0.412645545975226,
+     "rho_res_Msun_kpc3": 165722.40043001008,
+     "ratio_Afixed": 0.4833998087739587,
+     "ratio_Bperbin": 0.24124071137629688,
+     "resolved": true
+    },
+    {
+     "r_kpc": 477.6848475617298,
+     "x": 0.4322939796938731,
+     "rho_res_Msun_kpc3": 153947.64769201374,
+     "ratio_Afixed": 0.4741443512847775,
+     "ratio_Bperbin": 0.24647753486325383,
+     "resolved": true
+    },
+    {
+     "r_kpc": 500.43017529985747,
+     "x": 0.4528779866967036,
+     "rho_res_Msun_kpc3": 141260.913186625,
+     "ratio_Afixed": 0.4708229035314675,
+     "ratio_Bperbin": 0.2547622266342977,
+     "resolved": true
+    },
+    {
+     "r_kpc": 524.258523420695,
+     "x": 0.47444210264316294,
+     "rho_res_Msun_kpc3": 127614.46136983602,
+     "ratio_Afixed": 0.4748710317609305,
+     "ratio_Bperbin": 0.2671488928414335,
+     "resolved": true
+    },
+    {
+     "r_kpc": 549.2214670954803,
+     "x": 0.4970330018963623,
+     "rho_res_Msun_kpc3": 113915.52989929175,
+     "ratio_Afixed": 0.4847174185822859,
+     "ratio_Bperbin": 0.2834118912057016,
+     "resolved": true
+    },
+    {
+     "r_kpc": 575.3730540879084,
+     "x": 0.5206995964596456,
+     "rho_res_Msun_kpc3": 100835.34203900101,
+     "ratio_Afixed": 0.4989473899262078,
+     "ratio_Bperbin": 0.30281953295666036,
+     "resolved": true
+    },
+    {
+     "r_kpc": 602.7698792940764,
+     "x": 0.5454931034335533,
+     "rho_res_Msun_kpc3": 87780.3465507539,
+     "ratio_Afixed": 0.5222352630767342,
+     "ratio_Bperbin": 0.3285425960604138,
+     "resolved": true
+    },
+    {
+     "r_kpc": 631.4712224636593,
+     "x": 0.5714671696503704,
+     "rho_res_Msun_kpc3": 75147.62058805706,
+     "ratio_Afixed": 0.5558328471032322,
+     "ratio_Bperbin": 0.36306838851030443,
+     "resolved": true
+    },
+    {
+     "r_kpc": 661.5392001192175,
+     "x": 0.5986780091576629,
+     "rho_res_Msun_kpc3": 64228.9060204393,
+     "ratio_Afixed": 0.5925498282229227,
+     "ratio_Bperbin": 0.4017733792675438,
+     "resolved": true
+    },
+    {
+     "r_kpc": 693.03888907924,
+     "x": 0.6271845150038371,
+     "rho_res_Msun_kpc3": 55311.23330757946,
+     "ratio_Afixed": 0.6269573763649956,
+     "ratio_Bperbin": 0.4411134328310462,
+     "resolved": true
+    },
+    {
+     "r_kpc": 726.0384769577412,
+     "x": 0.6570483954368699,
+     "rho_res_Msun_kpc3": 46752.291024197555,
+     "ratio_Afixed": 0.6758407860795804,
+     "ratio_Bperbin": 0.4932994086673587,
+     "resolved": true
+    },
+    {
+     "r_kpc": 760.6093572910373,
+     "x": 0.688334259991889,
+     "rho_res_Msun_kpc3": 39867.71687953111,
+     "ratio_Afixed": 0.7221407883697105,
+     "ratio_Bperbin": 0.546734835182477,
+     "resolved": true
+    },
+    {
+     "r_kpc": 796.8263368298772,
+     "x": 0.7211098070858617,
+     "rho_res_Msun_kpc3": 34984.77575018392,
+     "ratio_Afixed": 0.7498253426015682,
+     "ratio_Bperbin": 0.5885492114177513,
+     "resolved": true
+    },
+    {
+     "r_kpc": 834.7678257929923,
+     "x": 0.7554459961927532,
+     "rho_res_Msun_kpc3": 30926.654039399225,
+     "ratio_Afixed": 0.7728624891058992,
+     "ratio_Bperbin": 0.6288359245578606,
+     "resolved": true
+    },
+    {
+     "r_kpc": 874.5159244756094,
+     "x": 0.7914171262222709,
+     "rho_res_Msun_kpc3": 27569.985034639107,
+     "ratio_Afixed": 0.7899408890704194,
+     "ratio_Bperbin": 0.6658481496010121,
+     "resolved": true
+    },
+    {
+     "r_kpc": 916.156668875822,
+     "x": 0.8291010578061737,
+     "rho_res_Msun_kpc3": 25343.63618940645,
+     "ratio_Afixed": 0.7829934859538885,
+     "ratio_Bperbin": 0.683602060302686,
+     "resolved": true
+    },
+    {
+     "r_kpc": 959.780154217633,
+     "x": 0.8685793250838308,
+     "rho_res_Msun_kpc3": 23623.09019259029,
+     "ratio_Afixed": 0.7653962495495201,
+     "ratio_Bperbin": 0.6916916448291076,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1005.480774898486,
+     "x": 0.9099373528493085,
+     "rho_res_Msun_kpc3": 22207.227197142187,
+     "ratio_Afixed": 0.7418646733657424,
+     "ratio_Bperbin": 0.6936701068120451,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1053.3574729550583,
+     "x": 0.9532646814072926,
+     "rho_res_Msun_kpc3": 21021.52546003377,
+     "ratio_Afixed": 0.7140864292917548,
+     "ratio_Bperbin": 0.6904623192492888,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1103.51388856286,
+     "x": 0.9986551027718191,
+     "rho_res_Msun_kpc3": 20450.164574116152,
+     "ratio_Afixed": 0.668827551237978,
+     "ratio_Bperbin": 0.6682041935097414,
+     "resolved": true
+    }
+   ]
+  },
+  "ZW1215": {
+   "M500_1e14": 7.66,
+   "rM_kpc": 405.1349770456945,
+   "R500_kpc": 1358.0,
+   "A_kg_m": 1.3954727856352227e+21,
+   "n_bins": 26,
+   "n_resolved": 26,
+   "median_ratio_A": 0.48329426135387055,
+   "median_ratio_B": 0.3897651115421674,
+   "geomean_ratio_A": 0.48809341143310614,
+   "max_ratio_A_resolved": 0.5558438566015782,
+   "frac_over_demand_resolved_A": 0.0,
+   "frac_over_demand_raw_A": 0.0,
+   "f_dust_window_A": 0.5119065885668939,
+   "f_dust_window_med_B": 0.6102348884578326,
+   "f_dust_G098_committed": 0.6998642498486654,
+   "delta_vs_G098_A": -0.1879576612817715,
+   "bins": [
+    {
+     "r_kpc": 415.46591369908055,
+     "x": 0.30593955353393265,
+     "rho_res_Msun_kpc3": 254896.46492864165,
+     "ratio_Afixed": 0.4920657615980435,
+     "ratio_Bperbin": 0.2396655988994442,
+     "resolved": true
+    },
+    {
+     "r_kpc": 435.2486332947952,
+     "x": 0.32050709373696257,
+     "rho_res_Msun_kpc3": 238737.3058176228,
+     "ratio_Afixed": 0.47869912789936025,
+     "ratio_Bperbin": 0.24189878229384704,
+     "resolved": true
+    },
+    {
+     "r_kpc": 455.97332830262474,
+     "x": 0.33576828299162353,
+     "rho_res_Msun_kpc3": 221735.98897970692,
+     "ratio_Afixed": 0.46961578917930974,
+     "ratio_Bperbin": 0.246226069521659,
+     "resolved": true
+    },
+    {
+     "r_kpc": 477.6848475617298,
+     "x": 0.3517561469526729,
+     "rho_res_Msun_kpc3": 205853.35088416815,
+     "ratio_Afixed": 0.46091080069090506,
+     "ratio_Bperbin": 0.2506076625210651,
+     "resolved": true
+    },
+    {
+     "r_kpc": 500.43017529985747,
+     "x": 0.3685052837259628,
+     "rho_res_Msun_kpc3": 191473.59058021315,
+     "ratio_Afixed": 0.4515043065820298,
+     "ratio_Bperbin": 0.25420315130823484,
+     "resolved": true
+    },
+    {
+     "r_kpc": 524.258523420695,
+     "x": 0.3860519318267268,
+     "rho_res_Msun_kpc3": 174831.34431113667,
+     "ratio_Afixed": 0.45055463318386474,
+     "ratio_Bperbin": 0.26247246599899804,
+     "resolved": true
+    },
+    {
+     "r_kpc": 549.2214670954803,
+     "x": 0.40443407002612686,
+     "rho_res_Msun_kpc3": 159106.6490333036,
+     "ratio_Afixed": 0.4511016545572622,
+     "ratio_Bperbin": 0.27206033635709076,
+     "resolved": true
+    },
+    {
+     "r_kpc": 575.3730540879084,
+     "x": 0.4236914978556026,
+     "rho_res_Msun_kpc3": 143275.69034907865,
+     "ratio_Afixed": 0.456442640398925,
+     "ratio_Bperbin": 0.2848053271755101,
+     "resolved": true
+    },
+    {
+     "r_kpc": 602.7698792940764,
+     "x": 0.44386589049637437,
+     "rho_res_Msun_kpc3": 129310.67175365865,
+     "ratio_Afixed": 0.46080831234014813,
+     "ratio_Bperbin": 0.29735323860495066,
+     "resolved": true
+    },
+    {
+     "r_kpc": 631.4712224636593,
+     "x": 0.46500090019415263,
+     "rho_res_Msun_kpc3": 115576.84866776333,
+     "ratio_Afixed": 0.46976405310826963,
+     "ratio_Bperbin": 0.3130992757593805,
+     "resolved": true
+    },
+    {
+     "r_kpc": 661.5392001192175,
+     "x": 0.48714226812902617,
+     "rho_res_Msun_kpc3": 101397.02461898692,
+     "ratio_Afixed": 0.48788939480838084,
+     "ratio_Bperbin": 0.3354517005411363,
+     "resolved": true
+    },
+    {
+     "r_kpc": 693.03888907924,
+     "x": 0.5103379153749926,
+     "rho_res_Msun_kpc3": 89191.77096200848,
+     "ratio_Afixed": 0.505379660412596,
+     "ratio_Bperbin": 0.3585481187706869,
+     "resolved": true
+    },
+    {
+     "r_kpc": 726.0384769577412,
+     "x": 0.5346380537244044,
+     "rho_res_Msun_kpc3": 78891.39615467313,
+     "ratio_Afixed": 0.5206056065854624,
+     "ratio_Bperbin": 0.38046291392217646,
+     "resolved": true
+    },
+    {
+     "r_kpc": 760.6093572910373,
+     "x": 0.5600952557371409,
+     "rho_res_Msun_kpc3": 70670.30622662474,
+     "ratio_Afixed": 0.5295383962785548,
+     "ratio_Bperbin": 0.39906730916215843,
+     "resolved": true
+    },
+    {
+     "r_kpc": 796.8263368298772,
+     "x": 0.5867646073857711,
+     "rho_res_Msun_kpc3": 63607.85164932478,
+     "ratio_Afixed": 0.5360677359333046,
+     "ratio_Bperbin": 0.41497247061241427,
+     "resolved": true
+    },
+    {
+     "r_kpc": 834.7678257929923,
+     "x": 0.6147038481538971,
+     "rho_res_Msun_kpc3": 56433.59422182082,
+     "ratio_Afixed": 0.550539700362007,
+     "ratio_Bperbin": 0.4375388888355193,
+     "resolved": true
+    },
+    {
+     "r_kpc": 874.5159244756094,
+     "x": 0.6439734348126726,
+     "rho_res_Msun_kpc3": 50929.51056115079,
+     "ratio_Afixed": 0.5558438566015782,
+     "ratio_Bperbin": 0.4531375240915427,
+     "resolved": true
+    },
+    {
+     "r_kpc": 916.156668875822,
+     "x": 0.6746367222944197,
+     "rho_res_Msun_kpc3": 46723.632771351506,
+     "ratio_Afixed": 0.5520541265225711,
+     "ratio_Bperbin": 0.46187460286193655,
+     "resolved": true
+    },
+    {
+     "r_kpc": 959.780154217633,
+     "x": 0.7067600546521599,
+     "rho_res_Msun_kpc3": 43226.5018968549,
+     "ratio_Afixed": 0.5437060105340051,
+     "ratio_Bperbin": 0.4660502671194642,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1005.480774898486,
+     "x": 0.7404129417514624,
+     "rho_res_Msun_kpc3": 40248.0980820956,
+     "ratio_Afixed": 0.5320651967270358,
+     "ratio_Bperbin": 0.4674385860594581,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1053.3574729550583,
+     "x": 0.7756682422349471,
+     "rho_res_Msun_kpc3": 37861.88108657011,
+     "ratio_Afixed": 0.5153520505780983,
+     "ratio_Bperbin": 0.46323443330401115,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1103.51388856286,
+     "x": 0.8126022743467305,
+     "rho_res_Msun_kpc3": 35769.221535821096,
+     "ratio_Afixed": 0.4970415117787857,
+     "ratio_Bperbin": 0.4563329647943385,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1156.0585744269188,
+     "x": 0.8512949738048002,
+     "rho_res_Msun_kpc3": 33943.2378014119,
+     "ratio_Afixed": 0.47724876343580963,
+     "ratio_Bperbin": 0.44743298142692844,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1211.1052087527548,
+     "x": 0.8918300506279491,
+     "rho_res_Msun_kpc3": 32160.345479280222,
+     "ratio_Afixed": 0.45895838381707665,
+     "ratio_Bperbin": 0.43912417293327516,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1268.772899084997,
+     "x": 0.9342952128755502,
+     "rho_res_Msun_kpc3": 31403.24399062663,
+     "ratio_Afixed": 0.4282678333254922,
+     "ratio_Bperbin": 0.4175947776554566,
+     "resolved": true
+    },
+    {
+     "r_kpc": 1329.1864293534675,
+     "x": 0.9787823485666182,
+     "rho_res_Msun_kpc3": 30441.93534697477,
+     "ratio_Afixed": 0.40254431764392296,
+     "ratio_Bperbin": 0.3992625456663767,
+     "resolved": true
+    }
+   ]
+  }
+ },
+ "pooled_resolved_bins": {
+  "Afixed": {
+   "pearson_rho": 0.09861751000169527,
+   "pearson_p": 0.09718683043173953,
+   "spearman_rho": 0.07895345324653592,
+   "spearman_p": 0.1845910404977627,
+   "n_bins": 284,
+   "slope": 0.12657126749191652,
+   "slope_err": 0.09861751000169529
+  },
+  "Bperbin": {
+   "pearson_rho": 0.24244550618096875,
+   "pearson_p": 3.6352070370816284e-05,
+   "spearman_rho": 0.24124448633638626,
+   "spearman_p": 3.98347354112996e-05,
+   "n_bins": 284,
+   "slope": 0.418826608943486,
+   "slope_err": 0.24244550618096875
+  }
+ },
+ "fixed_r_over_R500": {
+  "0.35": {
+   "n": 9,
+   "slope": 0.2795674945857201,
+   "pearson_rho": 0.24979564339810145,
+   "pearson_p": 0.5168438808252485,
+   "spearman_rho": 0.18333333333333335,
+   "spearman_p": 0.6368198117628943
+  },
+  "0.45": {
+   "n": 12,
+   "slope": 0.2181601931296063,
+   "pearson_rho": 0.3148956079392779,
+   "pearson_p": 0.3187978708239988,
+   "spearman_rho": 0.2377622377622378,
+   "spearman_p": 0.4568008526399232
+  },
+  "0.55": {
+   "n": 12,
+   "slope": 0.01961369356923226,
+   "pearson_rho": 0.051163010907283375,
+   "pearson_p": 0.8745294419577798,
+   "spearman_rho": 0.20979020979020982,
+   "spearman_p": 0.5128409431818263
+  },
+  "0.65": {
+   "n": 12,
+   "slope": -0.11909052475783584,
+   "pearson_rho": -0.07121659300541604,
+   "pearson_p": 0.8259201949635654,
+   "spearman_rho": -0.20979020979020982,
+   "spearman_p": 0.5128409431818263
+  },
+  "0.75": {
+   "n": 11,
+   "slope": -0.07374471024018411,
+   "pearson_rho": -0.07313691399561675,
+   "pearson_p": 0.8307803124414413,
+   "spearman_rho": -0.14545454545454548,
+   "spearman_p": 0.6695786456420787
+  },
+  "0.85": {
+   "n": 11,
+   "slope": -0.007394815349588901,
+   "pearson_rho": -0.005623291315458193,
+   "pearson_p": 0.986908282982351,
+   "spearman_rho": 0.018181818181818184,
+   "spearman_p": 0.9576852410216187
+  },
+  "0.95": {
+   "n": 11,
+   "slope": 0.22527847828333336,
+   "pearson_rho": 0.11727274100607782,
+   "pearson_p": 0.7313003972030121,
+   "spearman_rho": 0.15454545454545454,
+   "spearman_p": 0.65003396549758
+  }
+ },
+ "window_mean_vs_M500": {
+  "Afixed": {
+   "pearson_rho": 0.2597379550486497,
+   "pearson_p": 0.41491778618863584,
+   "spearman_rho": 0.3216783216783217,
+   "spearman_p": 0.30790987618065263,
+   "slope": 0.1577512335184223,
+   "slope_err": 0.2597379550486497,
+   "intercept": -0.2905241772625856,
+   "Mstar_1e14": 69.44808215865787,
+   "Mstar_log_err": 3.4504807116828733,
+   "frac_over_spearman": 0.26626940799136295,
+   "frac_over_p": 0.4028511435895954
+  }
+ },
+ "threshold": {
+  "Mstar_1e14": 69.44808215865787,
+  "Mstar_bracket_1e14": [
+   0.02461384975562862,
+   195948.0602749993
+  ],
+  "over_demand_window_mean_clusters": [
+   "A2319"
+  ],
+  "clean_threshold": false,
+  "monotonic": false
+ },
+ "f_dust_M500": {
+  "median_delta_vs_G098_A": -0.3423237302853788,
+  "median_delta_vs_G098_B": -0.09063419880791962,
+  "n_clusters_at_or_below_G098": 12,
+  "pearson_rho_fd_A_vs_M500": -0.28395684464738763,
+  "pearson_p_fd_A_vs_M500": 0.3710812056798549,
+  "spearman_rho_fd_A_vs_M500": -0.3216783216783217,
+  "spearman_p_fd_A_vs_M500": 0.30790987618065263,
+  "pearson_rho_delta_vs_M500": 0.3186946456147501,
+  "pearson_p_delta_vs_M500": 0.31267366072856845,
+  "sample_median_fd_A": 0.36161105218592315,
+  "sample_median_fd_G098": 0.6740149652644287
+ },
+ "verdicts": {
+  "V1": {
+   "pass_": false,
+   "statement": "THE MASS-DEPENDENCE: the pooled resolved-bin relation log10(ratio) vs log10(M500) on footing A (fixed A/r^2, the equipartition reading) has Pearson rho = +0.099 (p = 0.097), Spearman = +0.079 (p = 0.185), slope +0.127 +- 0.099 dex/dex over 284 resolved bins -- at most a BORDERLINE positive trend (bins are clustered in 12 systems; the honest per-cluster reading below is weaker).  Footing B (per-bin M_b) shows rho = +0.242, p = 0.000 (same caveat).  At FIXED r/R500 the cross-cluster slopes are consistent with zero at every slice (median +0.02 dex/dex over x = 0.35-0.95, all p > 0.3); the window-mean relation gives rho = +0.260 (p = 0.415), Spearman = +0.322 (p = 0.308) on n = 12 clusters, and Spearman(over-demand fraction, M500) = +0.266 (p = 0.403).  THE THRESHOLD QUESTION: over-demand bins (ratio > 1) appear in 4/12 clusters spanning M500 = 4.63-8.82 e14 (A2029 8.8, A2319 7.3, A644 5.7, A1795 4.6) -- DOWN TO A1795 at 4.63 e14 (rank 9/12) while A2142 at 8.95 e14 and ZW1215 at 7.66 e14 (its demand is the LOWEST of the sample) never over-demand; a clean mass threshold would need A1795 below M_* and A2142/ZW1215 above it.  The fitted window-mean crossing ratio = 1 at M_* = 69.4 e14 is UNCONSTRAINED (1-sigma bracket 0.0-195948.1, lower slope branch never crosses).  VERDICT: NO clean M_* -- the over-demand is NOT mass-selected (it is radius-selected: every over-demand bin sits at x >= 0.59 R500); the trend is weakly positive, not monotonic-significant.",
+   "pooled": {
+    "pearson_rho": 0.09861751000169527,
+    "pearson_p": 0.09718683043173953,
+    "spearman_rho": 0.07895345324653592,
+    "spearman_p": 0.1845910404977627,
+    "n_bins": 284,
+    "slope": 0.12657126749191652,
+    "slope_err": 0.09861751000169529
+   },
+   "window_mean": {
+    "pearson_rho": 0.2597379550486497,
+    "pearson_p": 0.41491778618863584,
+    "spearman_rho": 0.3216783216783217,
+    "spearman_p": 0.30790987618065263,
+    "slope": 0.1577512335184223,
+    "slope_err": 0.2597379550486497,
+    "intercept": -0.2905241772625856,
+    "Mstar_1e14": 69.44808215865787,
+    "Mstar_log_err": 3.4504807116828733,
+    "frac_over_spearman": 0.26626940799136295,
+    "frac_over_p": 0.4028511435895954
+   },
+   "threshold_Mstar_1e14": 69.44808215865787
+  },
+  "V2": {
+   "pass_": true,
+   "statement": "f_dust(M500) = 1 - <rho_ph/rho_res>_window: per-cluster values -0.09-0.51 (footing A, geometric window-mean), median 0.362 vs G098's committed [0.2, 1] R500 medians (sample median 0.674): median delta = -0.342 (A) / -0.091 (B), 12/12 clusters at or below G098; Pearson rho(f_dust_A, M500) = -0.284 (p = 0.371), Spearman = -0.322 (p = 0.308); rho(delta_A, M500) = +0.319 (p = 0.313)",
+   "median_delta_A": -0.3423237302853788,
+   "median_delta_B": -0.09063419880791962,
+   "n_at_or_below_G098": 12,
+   "rho_fd_vs_M500": -0.28395684464738763,
+   "p_fd_vs_M500": 0.3710812056798549
+  },
+  "V3": {
+   "statement": "THE HONEST STATEMENT -- what the phantom's over-demand says about the equilibrium's validity range at cluster scale: the phantom's demand rho_ph/rho_res does NOT robustly scale with M500 (pooled-A Pearson rho = +0.10, p = 0.10; fixed-r/R500 slopes median +0.02 dex/dex across x = 0.35-0.95, all p > 0.3; window-mean p = 0.41 on 12 clusters).  The over-demand is confined to 26 resolved bins in 4/12 clusters, every one at x = 0.59-0.99 R500 (the OUTER window, where the residual density is thinnest and the inversion is closest to G098's censored tail), and the over-demanding set spans A1795 (4.63 e14, rank 9/12) through A2029 (8.82 e14) while A2142 (8.95 e14, the most massive) and ZW1215 (7.66 e14, the LOWEST demand of the sample) never over-demand: there is NO mass threshold, and the window-mean equilibrium is consistent in 11/12 clusters (the single exception, A2319, is driven by its last resolved shells at x ~ 0.94-0.99).  the fitted M_* = 69.4 e14 is unconstrained (1-sigma bracket 0.0-195948.1; the lower slope branch never crosses ratio = 1), so NO mass limit is measured -- VERDICT ON THE EQUILIBRIUM AT CLUSTER SCALE: the r_M-equipartition is TOO STRONG in an outer-bin tail that is RADIUS-selected (every over-demand bin at x >= 0.59 R500), not mass-selected -- the two-regime architecture's mass limit at cluster scale is NOT established on this sample: the phantom over-demands in an outer-bin tail whose per-cluster severity correlates only weakly with mass (Spearman(over-demand fraction, M500) = +0.27, p = 0.40), and the per-bin floor B (G098's own footing) reproduces the same outer bins (e.g. A2029 x = 0.67-0.93, ratios to 1.28) -- the over-demand is a real but per-cluster, outer-region phenomenon, not a mass-selected regime boundary.  NOT CLAIMED: that the equilibrium is wrong anywhere -- the window-mean demand stays inside the residual for 11/12 clusters, and the borderline pooled trend (A ~ M_b(R500)^(1/2) predicts demand rising with mass) is consistent with the data within its spread; the claim that FAILS is the threshold M_*: it is not measured here."
+  }
+ },
+ "checks": [
+  {
+   "name": "V0a [gate: G075's committed T-ratio median] T_pred,canonical/T_obs (Eckert+17 kTvir) over the 12 clusters (G075 committed 0.28)",
+   "measured": "median = 0.280, log10 scatter = 0.051 dex",
+   "pass": true,
+   "reading": "same files, same baryon convention, same mu = 0.6 -> the ingest is the committed one; G098's V0a criterion repeated verbatim"
+  },
+  {
+   "name": "V0b [gate: G098's committed f_dust medians reproduced] exact re-implementation of G098's PART-1 (floor A, canonical, [0.2, 1] R500 window, validity mask) vs the COMMITTED G098_results.json rows",
+   "measured": "max |recomputed - committed| = 1.110e-16 over 12 clusters; recomputed medians: A1644:0.702; A1795:0.661; A2029:0.673; A2142:0.561; A2255:0.675; A2319:0.603; A3158:0.691; A3266:0.519; A644:0.843; A85:0.641; RXC1825:0.748; ZW1215:0.700",
+   "pass": true,
+   "reading": "G098's committed numbers are the comparison anchor for V2; this gate proves the loader + floor-A machinery here IS G098's (digit-for-digit)"
+  },
+  {
+   "name": "V0c [gate: G108's committed over-demand rows reproduced] the fixed-A shell decomposition on the (r_M, R500) window: total bins, negative dust bins (G108's count, all bins), peak rho_ph/residual over physical-residual bins, min ratio, pooled envelope slope (G108 committed: 292 bins / 34 negative (11.6%) / per-cluster max 11.086 A644 835 kpc / min 0.286 A644 435 kpc / slope -2.377; the 1.466 A2029 row is the resolved-bin headline of the massive-cluster run)",
+   "measured": "292 bins, 34 negative (11.6%, 26 with a physical local residual), peak ratio 11.086 (A644 r=835 kpc), min ratio 0.286 (A644 r=435 kpc), pooled envelope slope -2.377",
+   "pass": true,
+   "reading": "the G108 reading (fixed A from M_b(R500), a0 = 9.3619e-11, G108's scalar star import) is the exact object whose amplitude FAIL G123 interrogates; the 8 negative bins without a physical local residual are A644's M_FORW-saturation shells (G098's registered censor), counted in the total exactly as G108 counts them"
+  },
+  {
+   "name": "V1a [per-cluster data gate] every cluster yields a resolved sub-window of >= 5 bins on the (r_M, R500) window after the G098 resolution floor",
+   "measured": "resolved bins per cluster: 17-29 (pooled 284/292)",
+   "pass": true,
+   "reading": "the resolved sub-window is where the local-density inversion is meaningful; the unresolved tail (M_FORW slope saturation) is the registered G098 censor, reported per cluster in the artifact"
+  },
+  {
+   "name": "V2z [the window-mean f_dust sits at/below G098's committed medians] the outer-window mean free-dust fraction does not EXCEED G098's [0.2, 1] R500 median for the sample (f_dust falls outward)",
+   "measured": "median delta vs G098 = -0.342 (footing A) / -0.091 (B); 12/12 clusters at or below G098",
+   "pass": true,
+   "reading": "the window shift (r_M -> R500 vs 0.2 -> 1 R500) moves the mean to larger radius where G098's profile is lower -- a positive median delta would contradict G098's committed radial fall (a finding)"
+  },
+  {
+   "name": "V1 [THE MASS-DEPENDENCE of rho_ph/rho_res] does the phantom demand scale with M500, and is the over-demand thresholded at M_* or monotonic?  (rho, p, slope, M_* -- measured)",
+   "measured": "THE MASS-DEPENDENCE: the pooled resolved-bin relation log10(ratio) vs log10(M500) on footing A (fixed A/r^2, the equipartition reading) has Pearson rho = +0.099 (p = 0.097), Spearman = +0.079 (p = 0.185), slope +0.127 +- 0.099 dex/dex over 284 resolved bins -- at most a BORDERLINE positive trend (bins are clustered in 12 systems; the honest per-cluster reading below is weaker).  Footing B (per-bin M_b) shows rho = +0.242, p = 0.000 (same caveat).  At FIXED r/R500 the cross-cluster slopes are consistent with zero at every slice (median +0.02 dex/dex over x = 0.35-0.95, all p > 0.3); the window-mean relation gives rho = +0.260 (p = 0.415), Spearman = +0.322 (p = 0.308) on n = 12 clusters, and Spearman(over-demand fraction, M500) = +0.266 (p = 0.403).  THE THRESHOLD QUESTION: over-demand bins (ratio > 1) appear in 4/12 clusters spanning M500 = 4.63-8.82 e14 (A2029 8.8, A2319 7.3, A644 5.7, A1795 4.6) -- DOWN TO A1795 at 4.63 e14 (rank 9/12) while A2142 at 8.95 e14 and ZW1215 at 7.66 e14 (its demand is the LOWEST of the sample) never over-demand; a clean mass threshold would need A1795 below M_* and A2142/ZW1215 above it.  The fitted window-mean crossing ratio = 1 at M_* = 69.4 e14 is UNCONSTRAINED (1-sigma bracket 0.0-195948.1, lower slope branch never crosses).  VERDICT: NO clean M_* -- the over-demand is NOT mass-selected (it is radius-selected: every over-demand bin sits at x >= 0.59 R500); the trend is weakly positive, not monotonic-significant.",
+   "pass": false,
+   "reading": "V1 PASS = a mass-dependence is established at all (monotonic or threshold); FAIL = the relation is flat or noise -- and here it is: pooled-A p = 0.10, fixed-x slices flat, window-mean p = 0.31-0.42, and the over-demanding set (A1795 4.6e14 through A2029 8.8e14) violates any clean threshold (A2142 8.95 and ZW1215 7.66 never over-demand).  THE FAIL IS THE FINDING: the equilibrium's r_M-equipartition does NOT have a mass limit at cluster scale on this sample; the over-demand is radius-selected, not mass-selected."
+  },
+  {
+   "name": "V2 [f_dust(M500) vs G098's committed medians] the outer-window free-dust fraction runs at or below G098's committed [0.2, 1] R500 medians and shows the mass dependence consistently in both directions (stated with deltas and correlations)",
+   "measured": "f_dust(M500) = 1 - <rho_ph/rho_res>_window: per-cluster values -0.09-0.51 (footing A, geometric window-mean), median 0.362 vs G098's committed [0.2, 1] R500 medians (sample median 0.674): median delta = -0.342 (A) / -0.091 (B), 12/12 clusters at or below G098; Pearson rho(f_dust_A, M500) = -0.284 (p = 0.371), Spearman = -0.322 (p = 0.308); rho(delta_A, M500) = +0.319 (p = 0.313)",
+   "pass": true,
+   "reading": "G098's committed numbers are the anchor; the window-shift delta is the expected direction (f_dust falls outward) -- measured: 12/12 at or below G098, and rho(f_dust_A, M500) = -0.28 (p = 0.37): the consequence's hypothesized mass-dependent free-dust fraction is NOT detected at cluster scale (stated with its correlation, not claimed as a detection)"
+  },
+  {
+   "name": "V3 [the honest statement] the equilibrium's r_M-equipartition at cluster scale: consistent below the mass limit, too strong above it -- or the trend stated with its spread, exactly",
+   "measured": "THE HONEST STATEMENT -- what the phantom's over-demand says about the equilibrium's validity range at cluster scale: the phantom's demand rho_ph/rho_res does NOT robustly scale with M500 (pooled-A Pearson rho = +0.10, p = 0.10; fixed-r/R500 slopes median +0.02 dex/dex across x = 0.35-0.95, all p > 0.3; window-mean p = 0.41 on 12 clusters).  The over-demand is confined to 26 resolved bins in 4/12 clusters, every one at x = 0.59-0.99 R500 (the OUTER window, where the residual density is thinnest and the inversion is closest to G098's censored tail), and the over-demanding set spans A1795 (4.63 e14, rank 9/12) through A2029 (8.82 e14) while A2142 (8.95 e14, the most massive) and ZW1215 (7.66 e14, the LOWEST demand of the sample) never over-demand: there is NO mass threshold, and the window-mean equilibrium is consistent in 11/12 clusters (the single exception, A2319, is driven by its last resolved shells at x ~ 0.94-0.99).  the fitted M_* = 69.4 e14 is unconstrained (1-sigma bracket 0.0-195948.1; the lower slope branch never crosses ratio = 1), so NO mass limit is measured -- VERDICT ON THE EQUILIBRIUM AT CLUSTER SCALE: the r_M-equipartition is TOO STRONG in an outer-bin tail that is RADIUS-selected (every over-demand bin at x >= 0.59 R500), not mass-selected -- the two-regime architecture's mass limit at cluster scale is NOT established on this sample: the phantom over-demands in an outer-bin tail whose per-cluster severity correlates only weakly with mass (Spearman(over-demand fraction, M500) = +0.27, p = 0.40), and the per-bin floor B (G098's own footing) reproduces the same outer bins (e.g. A2029 x = 0.67-0.93, ratios to 1.28) -- the over-demand is a real but per-cluster, outer-region phenomenon, not a mass-selected regime boundary.  NOT CLAIMED: that the equilibrium is wrong anywhere -- the window-mean demand stays inside the residual for 11/12 clusters, and the borderline pooled trend (A ~ M_b(R500)^(1/2) predicts demand rising with mass) is consistent with the data within its spread; the claim that FAILS is the threshold M_*: it is not measured here.",
+   "pass": true,
+   "reading": "the threshold M_*, its bracket, the over-demanding clusters, and the bin radii where ratio > 1 are all measured quantities of this run; the unresolved-tail caveat (G098's censor) is carried"
+  }
+ ],
+ "n_pass": 7,
+ "n_fail": 1
+}

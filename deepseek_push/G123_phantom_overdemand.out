@@ -1,0 +1,198 @@
+G123 -- THE PHANTOM OVER-DEMAND: does rho_ph/rho_res scale with M500?
+
+The question behind the P2 amplitude FAIL (G108: 34/292 window bins with
+rho_dust = rho_tot - A/r^2 - rho_b < 0, peak rho_ph/residual = 1.47 at
+A2029): is the phantom's over-demand a MASS-DEPENDENT phenomenon -- the
+equilibrium's r_M-equipartition is consistent below some M_* and too
+strong above it (a threshold, the two-regime architecture's mass limit at
+cluster scale) -- or a monotonic trend, or a noise tail?
+
+  (1) PER CLUSTER PER BIN: the ratio rho_ph(r)/rho_res(r) over the deep
+      window (r_M, R500), r_M = sqrt(G M_b(R500)/a0) (G075/G108's
+      convention), on the committed X-COP shell grid (G108's exact
+      binned_profile), with the G098 resolution floor (rho_res > 2% of
+      rho_tot) applied and reported.  TWO footings of the phantom:
+        A_fixed  rho_ph = A_cl/r^2, A_cl = sqrt(G M_b(R500) a0)/(4 pi G)
+                 -- the r_M-equipartition reading (G108's V2; at r_M the
+                 phantom encloses M_b(R500), G03E's identity);
+        B_perbin rho_ph = sqrt(G M_b(<r) a0)/(4 pi G r^2)
+                 -- G098's certified-EOS floor A (density form of the
+                 same law with M_b per bin; the G098-comparable footing).
+  (2) THE MASS-DEPENDENCE: (a) the pooled relation log10(ratio) vs
+      log10(M500) with Pearson rho and p (and Spearman), both footings,
+      on the resolved bins; (b) the ratio at FIXED r/R500 vs M500 -- per
+      slice x = r/R500 in {0.35 .. 0.95}, the cross-cluster OLS slope +
+      rho/p; (c) the window-mean ratio <rho_ph/rho_res>_window vs M500:
+      monotonic (Spearman) or a threshold M_* where the fitted relation
+      crosses 1 (the equilibrium's equipartition over-demands above it).
+  (3) THE CONSEQUENCE: if the over-demand is mass-dependent the free-dust
+      fraction's mass-dependence f_dust(M500) = 1 - <ratio>_window(M500)
+      per cluster (both footings), compared AGAINST G098's COMMITTED
+      per-cluster median f_dust on [0.2, 1] R500 (read from the committed
+      G098_results.json, not recomputed): per-cluster deltas, median
+      delta, correlation.  (The windows differ: (r_M, R500) is the outer
+      window ~0.26-0.43 -> 1.0 R500 vs G098's [0.2, 1]; f_dust falls
+      outward, so G123's window-mean should sit at or below G098's.)
+  (4) VERDICTS:
+      V1  the mass-dependence of rho_ph/rho_res (rho, p, slope, the
+          threshold M_* if a clean one exists -- measured and stated;
+          monotonic vs threshold);
+      V2  f_dust(M500) vs G098's committed medians (deltas + correlation);
+      V3  the honest statement: what the phantom's over-demand says about
+          the equilibrium's validity range at cluster scale -- the
+          two-regime architecture's mass limit.
+
+GATES (the analysis is only read through the committed lanes' rows):
+  V0a  G075's committed T-ratio median 0.28 reproduced (G098's V0a);
+  V0b  G098's committed per-cluster median f_dust (floor A, canonical,
+       [0.2,1] R500) reproduced digit-for-digit by exact re-implementation
+       of G098's PART-1 grid machinery;
+  V0c  G108's committed V1/V2 rows reproduced: 292 window bins, 34
+       negative dust bins (G108's count over all bins), per-cluster peak
+       rho_ph/residual 11.086 (A644 835 kpc) / min 0.286 (A644, 435 kpc),
+       pooled envelope slope -2.377, fixed-A footing, positive-dust bins
+       (the 1.466 A2029 row is the resolved massive-cluster headline of
+       G108's run, reproduced in Part 1).
+
+DATA: the committed G050/G057b ingests only (real_research/data/xcop/,
+read-only): M_FORW hydro masses, fgas profiles, 7 measured star profiles
++ h67b import, xcop_r500_ettori2019.json (Ettori+19 M500/R500); Eckert+17
+kTvir for the V0a gate.  The G098 medians come from the COMMITTED
+G098_results.json (deepseek_push/, read-only).  Every check states
+measurement and threshold separately; a FAIL is a finding.
+
+====================================================================================================
+G123 -- THE PHANTOM OVER-DEMAND: does rho_ph/residual scale with M500?
+====================================================================================================
+X-COP clusters from the committed ingest: 12 (A1644, A1795, A2029, A2142, A2255, A2319, A3158, A3266, A644, A85, RXC1825, ZW1215); 7 with a measured stellar profile (the G050/G057b loader, identical file set)
+stellar import medians (grid): 50:1.133, 75:0.600, 100:0.388, 150:0.215, 210:0.123, 300:0.087, 420:0.066, 600:0.050
+
+====================================================================================================
+V0 -- THE GATES: this analysis reproduces the committed rows of G075 (T ratio), G098 (f_dust medians), G108 (the over-demand counts)
+====================================================================================================
+  [PASS] V0a [gate: G075's committed T-ratio median] T_pred,canonical/T_obs (Eckert+17 kTvir) over the 12 clusters (G075 committed 0.28)
+         measured: median = 0.280, log10 scatter = 0.051 dex
+         reading : same files, same baryon convention, same mu = 0.6 -> the ingest is the committed one; G098's V0a criterion repeated verbatim
+  [PASS] V0b [gate: G098's committed f_dust medians reproduced] exact re-implementation of G098's PART-1 (floor A, canonical, [0.2, 1] R500 window, validity mask) vs the COMMITTED G098_results.json rows
+         measured: max |recomputed - committed| = 1.110e-16 over 12 clusters; recomputed medians: A1644:0.702; A1795:0.661; A2029:0.673; A2142:0.561; A2255:0.675; A2319:0.603; A3158:0.691; A3266:0.519; A644:0.843; A85:0.641; RXC1825:0.748; ZW1215:0.700
+         reading : G098's committed numbers are the comparison anchor for V2; this gate proves the loader + floor-A machinery here IS G098's (digit-for-digit)
+  [PASS] V0c [gate: G108's committed over-demand rows reproduced] the fixed-A shell decomposition on the (r_M, R500) window: total bins, negative dust bins (G108's count, all bins), peak rho_ph/residual over physical-residual bins, min ratio, pooled envelope slope (G108 committed: 292 bins / 34 negative (11.6%) / per-cluster max 11.086 A644 835 kpc / min 0.286 A644 435 kpc / slope -2.377; the 1.466 A2029 row is the resolved-bin headline of the massive-cluster run)
+         measured: 292 bins, 34 negative (11.6%, 26 with a physical local residual), peak ratio 11.086 (A644 r=835 kpc), min ratio 0.286 (A644 r=435 kpc), pooled envelope slope -2.377
+         reading : the G108 reading (fixed A from M_b(R500), a0 = 9.3619e-11, G108's scalar star import) is the exact object whose amplitude FAIL G123 interrogates; the 8 negative bins without a physical local residual are A644's M_FORW-saturation shells (G098's registered censor), counted in the total exactly as G108 counts them
+
+====================================================================================================
+PART 1 -- PER CLUSTER PER BIN: ratio = rho_ph/rho_res over (r_M, R500), both footings, with the G098 resolution floor
+====================================================================================================
+  rho_res = rho_tot - rho_b (shell densities, committed M_FORW); footing A_fixed: rho_ph = A_cl/r^2 (A from M_b(R500), the r_M-equipartition reading); footing B_perbin: rho_ph = sqrt(G M_b(<r) a0)/(4 pi G r^2) (G098's floor A).
+  RESOLUTION floor (G098 registered): rho_res > 0 AND rho_res > 2% of rho_tot; unresolved bins (M_FORW outer-slope saturation) are marked, not deleted -- stats on resolved bins with the raw counts beside.
+  A1644     M500= 3.48 rM= 273.4 R500= 1054 bins= 29 resolved= 29  medA=0.648 medB=0.397 geomeanA=0.633 maxA=0.77 overA=   0% (raw    0%)  f_dust=A 0.352/B 0.603  G098 0.702
+  A1795     M500= 4.63 rM= 342.1 R500= 1153 bins= 26 resolved= 26  medA=0.613 medB=0.421 geomeanA=0.746 maxA=1.28 overA=  27% (raw   27%)  f_dust=A 0.387/B 0.579  G098 0.661
+      -> over-demand bin: r=  796.8 kpc (x=0.691) ratio A=1.053 / B=0.862
+      -> over-demand bin: r=  834.8 kpc (x=0.724) ratio A=1.164 / B=0.979
+      -> over-demand bin: r=  874.5 kpc (x=0.758) ratio A=1.245 / B=1.076
+      -> over-demand bin: r=  916.2 kpc (x=0.795) ratio A=1.279 / B=1.137
+      -> over-demand bin: r=  959.8 kpc (x=0.832) ratio A=1.229 / B=1.121
+      -> over-demand bin: r= 1005.5 kpc (x=0.872) ratio A=1.155 / B=1.081
+      -> over-demand bin: r= 1053.4 kpc (x=0.914) ratio A=1.055 / B=1.011
+  A2029     M500= 8.82 rM= 520.9 R500= 1423 bins= 22 resolved= 22  medA=0.908 medB=0.695 geomeanA=0.839 maxA=1.47 overA=  41% (raw   41%)  f_dust=A 0.092/B 0.305  G098 0.673
+      -> over-demand bin: r=  916.2 kpc (x=0.644) ratio A=1.112 / B=0.884
+      -> over-demand bin: r=  959.8 kpc (x=0.674) ratio A=1.252 / B=1.022
+      -> over-demand bin: r= 1005.5 kpc (x=0.707) ratio A=1.376 / B=1.153
+      -> over-demand bin: r= 1053.4 kpc (x=0.740) ratio A=1.466 / B=1.261
+      -> over-demand bin: r= 1103.5 kpc (x=0.775) ratio A=1.445 / B=1.275
+      -> over-demand bin: r= 1156.1 kpc (x=0.812) ratio A=1.391 / B=1.257
+      -> over-demand bin: r= 1211.1 kpc (x=0.851) ratio A=1.294 / B=1.199
+      -> over-demand bin: r= 1268.8 kpc (x=0.892) ratio A=1.197 / B=1.134
+      -> over-demand bin: r= 1329.2 kpc (x=0.934) ratio A=1.091 / B=1.057
+  A2142     M500= 8.95 rM= 567.9 R500= 1424 bins= 20 resolved= 20  medA=0.676 medB=0.476 geomeanA=0.693 maxA=0.90 overA=   0% (raw    0%)  f_dust=A 0.324/B 0.524  G098 0.561
+  A2255     M500= 5.26 rM= 398.0 R500= 1196 bins= 23 resolved= 23  medA=0.614 medB=0.381 geomeanA=0.619 maxA=0.75 overA=   0% (raw    0%)  f_dust=A 0.386/B 0.619  G098 0.675
+  A2319     M500= 7.31 rM= 580.2 R500= 1346 bins= 18 resolved= 18  medA=0.742 medB=0.560 geomeanA=1.093 maxA=8.43 overA=  33% (raw   33%)  f_dust=A 0.258/B 0.440  G098 0.603
+      -> over-demand bin: r= 1053.4 kpc (x=0.783) ratio A=1.156 / B=0.980
+      -> over-demand bin: r= 1103.5 kpc (x=0.820) ratio A=1.420 / B=1.242
+      -> over-demand bin: r= 1156.1 kpc (x=0.859) ratio A=1.893 / B=1.711
+      -> over-demand bin: r= 1211.1 kpc (x=0.900) ratio A=2.466 / B=2.300
+      -> over-demand bin: r= 1268.8 kpc (x=0.943) ratio A=3.919 / B=3.770
+      -> over-demand bin: r= 1329.2 kpc (x=0.988) ratio A=8.432 / B=8.364
+  A3158     M500= 4.26 rM= 332.5 R500= 1123 bins= 26 resolved= 26  medA=0.598 medB=0.405 geomeanA=0.598 maxA=0.68 overA=   0% (raw    0%)  f_dust=A 0.402/B 0.595  G098 0.691
+  A3266     M500= 8.80 rM= 448.3 R500= 1430 bins= 25 resolved= 25  medA=0.662 medB=0.532 geomeanA=0.630 maxA=0.98 overA=   0% (raw    0%)  f_dust=A 0.338/B 0.468  G098 0.519
+  A644      M500= 5.66 rM= 388.2 R500= 1230 bins= 25 resolved= 17  medA=0.392 medB=0.249 geomeanA=0.644 maxA=11.09 overA=  24% (raw   16%)  f_dust=A 0.608/B 0.751  G098 0.843
+      -> over-demand bin: r=  726.0 kpc (x=0.590) ratio A=1.319 / B=0.979
+      -> over-demand bin: r=  760.6 kpc (x=0.618) ratio A=2.071 / B=1.583
+      -> over-demand bin: r=  796.8 kpc (x=0.648) ratio A=3.830 / B=3.016
+      -> over-demand bin: r=  834.8 kpc (x=0.679) ratio A=11.086 / B=8.987
+  A85       M500= 5.65 rM= 406.4 R500= 1235 bins= 24 resolved= 24  medA=0.642 medB=0.457 geomeanA=0.714 maxA=0.97 overA=   0% (raw    0%)  f_dust=A 0.358/B 0.543  G098 0.641
+  RXC1825   M500= 4.08 rM= 311.7 R500= 1105 bins= 28 resolved= 28  medA=0.595 medB=0.316 geomeanA=0.602 maxA=0.79 overA=   0% (raw    0%)  f_dust=A 0.405/B 0.684  G098 0.748
+  ZW1215    M500= 7.66 rM= 405.1 R500= 1358 bins= 26 resolved= 26  medA=0.483 medB=0.390 geomeanA=0.488 maxA=0.56 overA=   0% (raw    0%)  f_dust=A 0.517/B 0.610  G098 0.700
+  pooled resolved bins: 284/292 (97%)
+  [PASS] V1a [per-cluster data gate] every cluster yields a resolved sub-window of >= 5 bins on the (r_M, R500) window after the G098 resolution floor
+         measured: resolved bins per cluster: 17-29 (pooled 284/292)
+         reading : the resolved sub-window is where the local-density inversion is meaningful; the unresolved tail (M_FORW slope saturation) is the registered G098 censor, reported per cluster in the artifact
+
+====================================================================================================
+PART 2 -- THE MASS-DEPENDENCE: ratio vs M500 (pooled, fixed r/R500, and the window-mean; threshold or monotonic?)
+====================================================================================================
+  (a) POOLED RESOLVED BINS: log10(ratio) vs log10(M500/1e14), both footings -- Pearson rho/p and Spearman (the task's pooled relation with rho and p)
+    Afixed: n = 284 bins  Pearson rho = +0.099 (p = 0.097)  Spearman = +0.079 (p = 0.185)  slope = +0.127 +- 0.099 dex/dex
+    Bperbin: n = 284 bins  Pearson rho = +0.242 (p = 0.000)  Spearman = +0.241 (p = 0.000)  slope = +0.419 +- 0.242 dex/dex
+  (b) FIXED r/R500: log10(ratio_Afixed) vs log10(M500/1e14) across clusters at x = r/R500, interpolated on each cluster's RESOLVED bins only
+    x=0.35: n =  9 clusters  slope = +0.280  Pearson rho = +0.250 (p = 0.517)  Spearman = +0.183 (p = 0.637)
+    x=0.45: n = 12 clusters  slope = +0.218  Pearson rho = +0.315 (p = 0.319)  Spearman = +0.238 (p = 0.457)
+    x=0.55: n = 12 clusters  slope = +0.020  Pearson rho = +0.051 (p = 0.875)  Spearman = +0.210 (p = 0.513)
+    x=0.65: n = 12 clusters  slope = -0.119  Pearson rho = -0.071 (p = 0.826)  Spearman = -0.210 (p = 0.513)
+    x=0.75: n = 11 clusters  slope = -0.074  Pearson rho = -0.073 (p = 0.831)  Spearman = -0.145 (p = 0.670)
+    x=0.85: n = 11 clusters  slope = -0.007  Pearson rho = -0.006 (p = 0.987)  Spearman = +0.018 (p = 0.958)
+    x=0.95: n = 11 clusters  slope = +0.225  Pearson rho = +0.117 (p = 0.731)  Spearman = +0.155 (p = 0.650)
+  (c) WINDOW-MEAN: <rho_ph/rho_res>_window (geometric mean over resolved bins) vs M500, both footings -- monotonic trend and the M_* crossing where the fitted relation demands ratio = 1
+    Afixed: rho = +0.260 (p = 0.415)  Spearman = +0.322 (p = 0.308)  slope = +0.158 +- 0.260  M_* (ratio=1 crossing) = 69.45 e14
+    window-mean over-demand (geomean ratio >= 1) by cluster, mass-ranked:
+      A2142     M500= 8.95  geomean_A=0.693  med_B=0.476  resolved bins=20  within demand
+      A2029     M500= 8.82  geomean_A=0.839  med_B=0.695  resolved bins=22  within demand
+      A3266     M500= 8.80  geomean_A=0.630  med_B=0.532  resolved bins=25  within demand
+      ZW1215    M500= 7.66  geomean_A=0.488  med_B=0.390  resolved bins=26  within demand
+      A2319     M500= 7.31  geomean_A=1.093  med_B=0.560  resolved bins=18  OVER-DEMAND
+      A644      M500= 5.66  geomean_A=0.644  med_B=0.249  resolved bins=17  within demand
+      A85       M500= 5.65  geomean_A=0.714  med_B=0.457  resolved bins=24  within demand
+      A2255     M500= 5.26  geomean_A=0.619  med_B=0.381  resolved bins=23  within demand
+      A1795     M500= 4.63  geomean_A=0.746  med_B=0.421  resolved bins=26  within demand
+      A3158     M500= 4.26  geomean_A=0.598  med_B=0.405  resolved bins=26  within demand
+      RXC1825   M500= 4.08  geomean_A=0.602  med_B=0.316  resolved bins=28  within demand
+      A1644     M500= 3.48  geomean_A=0.633  med_B=0.397  resolved bins=29  within demand
+    Spearman(frac_over_demand_resolved, M500) = +0.266 (p = 0.403); over-demanding clusters span M500 = 4.63-8.82 e14 (4/12 clusters)
+
+====================================================================================================
+PART 3 -- THE CONSEQUENCE: f_dust(M500) = 1 - <rho_ph/rho_res>_window vs G098's committed f_dust profile medians
+====================================================================================================
+  G098's medians are the COMMITTED rows on [0.2, 1] R500 (G098_results.json, read-only); G123's window-mean runs on (r_M, R500) = the OUTER window (median r_M/R500 ~ 0.33).  f_dust falls outward (G098's finding), so G123's window-mean is expected at or BELOW G098's median.
+cluster     M500 f_dustA f_dustB   G098      dA      dB
+  A2142       8.95   0.307   0.524  0.561  -0.254  -0.037
+  A2029       8.82   0.161   0.305  0.673  -0.512  -0.369
+  A3266       8.80   0.370   0.468  0.519  -0.149  -0.051
+  ZW1215      7.66   0.512   0.610  0.700  -0.188  -0.090
+  A2319       7.31  -0.093   0.440  0.603  -0.696  -0.163
+  A644        5.66   0.356   0.751  0.843  -0.486  -0.092
+  A85         5.65   0.286   0.543  0.641  -0.355  -0.098
+  A2255       5.26   0.381   0.619  0.675  -0.294  -0.056
+  A1795       4.63   0.254   0.579  0.661  -0.407  -0.082
+  A3158       4.26   0.402   0.595  0.691  -0.289  -0.096
+  RXC1825     4.08   0.398   0.684  0.748  -0.349  -0.063
+  A1644       3.48   0.367   0.603  0.702  -0.336  -0.100
+  median delta vs G098: A -0.342 / B -0.091; Pearson rho(delta_A, M500) = +0.319 (p = 0.313)
+  [PASS] V2z [the window-mean f_dust sits at/below G098's committed medians] the outer-window mean free-dust fraction does not EXCEED G098's [0.2, 1] R500 median for the sample (f_dust falls outward)
+         measured: median delta vs G098 = -0.342 (footing A) / -0.091 (B); 12/12 clusters at or below G098
+         reading : the window shift (r_M -> R500 vs 0.2 -> 1 R500) moves the mean to larger radius where G098's profile is lower -- a positive median delta would contradict G098's committed radial fall (a finding)
+
+====================================================================================================
+PART 4 -- THE VERDICTS
+====================================================================================================
+  [FAIL] V1 [THE MASS-DEPENDENCE of rho_ph/rho_res] does the phantom demand scale with M500, and is the over-demand thresholded at M_* or monotonic?  (rho, p, slope, M_* -- measured)
+         measured: THE MASS-DEPENDENCE: the pooled resolved-bin relation log10(ratio) vs log10(M500) on footing A (fixed A/r^2, the equipartition reading) has Pearson rho = +0.099 (p = 0.097), Spearman = +0.079 (p = 0.185), slope +0.127 +- 0.099 dex/dex over 284 resolved bins -- at most a BORDERLINE positive trend (bins are clustered in 12 systems; the honest per-cluster reading below is weaker).  Footing B (per-bin M_b) shows rho = +0.242, p = 0.000 (same caveat).  At FIXED r/R500 the cross-cluster slopes are consistent with zero at every slice (median +0.02 dex/dex over x = 0.35-0.95, all p > 0.3); the window-mean relation gives rho = +0.260 (p = 0.415), Spearman = +0.322 (p = 0.308) on n = 12 clusters, and Spearman(over-demand fraction, M500) = +0.266 (p = 0.403).  THE THRESHOLD QUESTION: over-demand bins (ratio > 1) appear in 4/12 clusters spanning M500 = 4.63-8.82 e14 (A2029 8.8, A2319 7.3, A644 5.7, A1795 4.6) -- DOWN TO A1795 at 4.63 e14 (rank 9/12) while A2142 at 8.95 e14 and ZW1215 at 7.66 e14 (its demand is the LOWEST of the sample) never over-demand; a clean mass threshold would need A1795 below M_* and A2142/ZW1215 above it.  The fitted window-mean crossing ratio = 1 at M_* = 69.4 e14 is UNCONSTRAINED (1-sigma bracket 0.0-195948.1, lower slope branch never crosses).  VERDICT: NO clean M_* -- the over-demand is NOT mass-selected (it is radius-selected: every over-demand bin sits at x >= 0.59 R500); the trend is weakly positive, not monotonic-significant.
+         reading : V1 PASS = a mass-dependence is established at all (monotonic or threshold); FAIL = the relation is flat or noise -- and here it is: pooled-A p = 0.10, fixed-x slices flat, window-mean p = 0.31-0.42, and the over-demanding set (A1795 4.6e14 through A2029 8.8e14) violates any clean threshold (A2142 8.95 and ZW1215 7.66 never over-demand).  THE FAIL IS THE FINDING: the equilibrium's r_M-equipartition does NOT have a mass limit at cluster scale on this sample; the over-demand is radius-selected, not mass-selected.
+  [PASS] V2 [f_dust(M500) vs G098's committed medians] the outer-window free-dust fraction runs at or below G098's committed [0.2, 1] R500 medians and shows the mass dependence consistently in both directions (stated with deltas and correlations)
+         measured: f_dust(M500) = 1 - <rho_ph/rho_res>_window: per-cluster values -0.09-0.51 (footing A, geometric window-mean), median 0.362 vs G098's committed [0.2, 1] R500 medians (sample median 0.674): median delta = -0.342 (A) / -0.091 (B), 12/12 clusters at or below G098; Pearson rho(f_dust_A, M500) = -0.284 (p = 0.371), Spearman = -0.322 (p = 0.308); rho(delta_A, M500) = +0.319 (p = 0.313)
+         reading : G098's committed numbers are the anchor; the window-shift delta is the expected direction (f_dust falls outward) -- measured: 12/12 at or below G098, and rho(f_dust_A, M500) = -0.28 (p = 0.37): the consequence's hypothesized mass-dependent free-dust fraction is NOT detected at cluster scale (stated with its correlation, not claimed as a detection)
+  [PASS] V3 [the honest statement] the equilibrium's r_M-equipartition at cluster scale: consistent below the mass limit, too strong above it -- or the trend stated with its spread, exactly
+         measured: THE HONEST STATEMENT -- what the phantom's over-demand says about the equilibrium's validity range at cluster scale: the phantom's demand rho_ph/rho_res does NOT robustly scale with M500 (pooled-A Pearson rho = +0.10, p = 0.10; fixed-r/R500 slopes median +0.02 dex/dex across x = 0.35-0.95, all p > 0.3; window-mean p = 0.41 on 12 clusters).  The over-demand is confined to 26 resolved bins in 4/12 clusters, every one at x = 0.59-0.99 R500 (the OUTER window, where the residual density is thinnest and the inversion is closest to G098's censored tail), and the over-demanding set spans A1795 (4.63 e14, rank 9/12) through A2029 (8.82 e14) while A2142 (8.95 e14, the most massive) and ZW1215 (7.66 e14, the LOWEST demand of the sample) never over-demand: there is NO mass threshold, and the window-mean equilibrium is consistent in 11/12 clusters (the single exception, A2319, is driven by its last resolved shells at x ~ 0.94-0.99).  the fitted M_* = 69.4 e14 is unconstrained (1-sigma bracket 0.0-195948.1; the lower slope branch never crosses ratio = 1), so NO mass limit is measured -- VERDICT ON THE EQUILIBRIUM AT CLUSTER SCALE: the r_M-equipartition is TOO STRONG in an outer-bin tail that is RADIUS-selected (every over-demand bin at x >= 0.59 R500), not mass-selected -- the two-regime architecture's mass limit at cluster scale is NOT established on this sample: the phantom over-demands in an outer-bin tail whose per-cluster severity correlates only weakly with mass (Spearman(over-demand fraction, M500) = +0.27, p = 0.40), and the per-bin floor B (G098's own footing) reproduces the same outer bins (e.g. A2029 x = 0.67-0.93, ratios to 1.28) -- the over-demand is a real but per-cluster, outer-region phenomenon, not a mass-selected regime boundary.  NOT CLAIMED: that the equilibrium is wrong anywhere -- the window-mean demand stays inside the residual for 11/12 clusters, and the borderline pooled trend (A ~ M_b(R500)^(1/2) predicts demand rising with mass) is consistent with the data within its spread; the claim that FAILS is the threshold M_*: it is not measured here.
+         reading : the threshold M_*, its bracket, the over-demanding clusters, and the bin radii where ratio > 1 are all measured quantities of this run; the unresolved-tail caveat (G098's censor) is carried
+
+G123 COMPLETE: 7/8 checks PASS.
+artifact written: G123_results.json
