@@ -6,7 +6,6 @@
 
 - `Python script` — [`prep_2026/a0_line/fire_occam.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line/fire_occam.py) — 5×
 - `Data/config` — [`ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json) — 3×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/1lmb.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/1lmb.pdb) — 2×
 - `Python script` — [`ai_slop/research/pta_analysis/chiral_hd_audit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/pta_analysis/chiral_hd_audit.py) — 2×
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/1tup.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/1tup.pdb) — 2×

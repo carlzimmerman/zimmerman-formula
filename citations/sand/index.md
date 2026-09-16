@@ -328,7 +328,6 @@
 - `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/pdb_cache/1A7W.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/pdb_cache/1A7W.pdb) — 4×
 - `Python script` — [`fable_independent_2026/L218_criticality_at_the_tightened_w.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L218_criticality_at_the_tightened_w.py) — 3×
 - `Markdown/notes` — [`opus_48_extended_research/papers/DUST_FALLS_INTO_GALAXIES.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/DUST_FALLS_INTO_GALAXIES.md) — 3×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 3×
 - `Data/config` — [`fable_independent_2026/L224_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L224_results.json) — 3×
 - `Markdown/notes` — [`book_2e/16_entropy_horizons_and_holography.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book_2e/16_entropy_horizons_and_holography.md) — 3×
 - `Markdown/notes` — [`book/10_echoes_of_the_beginning_the_cosmic_micro.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/10_echoes_of_the_beginning_the_cosmic_micro.md) — 3×

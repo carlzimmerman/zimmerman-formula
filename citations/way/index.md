@@ -983,7 +983,6 @@
 - `Markdown/notes` — [`book/audiobook/14_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/14_narration.txt) — 15×
 - `Markdown/notes` — [`book/audiobook/30_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/30_narration.txt) — 15×
 - `Other` — [`real_research/reviews/mi_route_a_mi_vs_mg_separation_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_route_a_mi_vs_mg_separation_2026.out) — 15×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 15×
 - `Markdown/notes` — [`real_research/reviews/toe_law/agentX_sk_gate.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentX_sk_gate.md) — 15×
 - `Markdown/notes` — [`real_research/reviews/toe_law/agentHH_pump_profile.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentHH_pump_profile.md) — 15×
 - `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/RELEASE_v0.7.0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/RELEASE_v0.7.0.md) — 15×
@@ -1054,9 +1053,7 @@
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/tests/gateway/test_irc_adapter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/tests/gateway/test_irc_adapter.py) — 14×
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/tests/gateway/test_discord_connect.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/tests/gateway/test_discord_connect.py) — 14×
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/tests/agent/test_insights.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/tests/agent/test_insights.py) — 14×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 14×
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/tests/hermes_cli/test_status.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/tests/hermes_cli/test_status.py) — 14×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 14×
 - `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/CONTRIBUTING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/CONTRIBUTING.md) — 14×
 - `Other` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/ui-tui/src/gatewayTypes.ts`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/ui-tui/src/gatewayTypes.ts) — 14×
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/CONTRIBUTING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/CONTRIBUTING.md) — 14×
@@ -1088,7 +1085,6 @@
 - `Python script` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/gateway/test_discord_connect.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/gateway/test_discord_connect.py) — 14×
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_cli/cron.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_cli/cron.py) — 14×
 - `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/CONTRIBUTING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/CONTRIBUTING.md) — 14×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 14×
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/agent/test_insights.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/agent/test_insights.py) — 14×
 - `Python script` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/agent/test_insights.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/agent/test_insights.py) — 14×
 - `Python script` — [`ai_slop/TruthFlow/hermes_agent/tests/gateway/test_title_command.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/tests/gateway/test_title_command.py) — 14×
@@ -1114,7 +1110,6 @@
 - `Python script` — [`ai_slop/TruthFlow/hermes_agent/plugins/platforms/teams/adapter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/plugins/platforms/teams/adapter.py) — 14×
 - `Python script` — [`ai_slop/TruthFlow/hermes_agent/plugins/platforms/irc/adapter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/plugins/platforms/irc/adapter.py) — 14×
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/CONTRIBUTING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/CONTRIBUTING.md) — 14×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 14×
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/creative/popular-web-designs/templates/hashicorp.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/creative/popular-web-designs/templates/hashicorp.md) — 14×
 - `Other` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/ui-tui/src/gatewayTypes.ts`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/ui-tui/src/gatewayTypes.ts) — 14×
 - `Python script` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/hermes_cli/cron.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/hermes_cli/cron.py) — 14×

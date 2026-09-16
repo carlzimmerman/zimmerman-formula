@@ -114,8 +114,6 @@
 - `Python script` — [`hunt_2026/h120_diskmass_upsilon_localise.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h120_diskmass_upsilon_localise.py) — 6×
 - `Python script` — [`ai_slop/examples/08_lsst_predictions/run.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/examples/08_lsst_predictions/run.py) — 6×
 - `Python script` — [`real_research/predictions/combined_fisher_ultra.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/predictions/combined_fisher_ultra.py) — 6×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 6×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 6×
 - `Data/config` — [`real_research/COMMIT_LEDGER.csv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/COMMIT_LEDGER.csv) — 6×
 - `Paper` — [`real_research/papers/MI_SIGMA_SPREAD_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_SIGMA_SPREAD_2026.tex) — 6×
 - `Markdown/notes` — [`real_research/papers/MI_SIGMA_SPREAD_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_SIGMA_SPREAD_2026.md) — 6×
@@ -125,9 +123,7 @@
 - `Markdown/notes` — [`ai_slop/research/btfr_evolution/BTFR_EVOLUTION_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/btfr_evolution/BTFR_EVOLUTION_ANALYSIS.md) — 6×
 - `Markdown/notes` — [`ai_slop/research/validation_engine/GEMINI_VERIFICATION_STEPS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/validation_engine/GEMINI_VERIFICATION_STEPS.md) — 6×
 - `Markdown/notes` — [`ai_slop/research/desi_audit/DESI_AUDIT_SUMMARY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/desi_audit/DESI_AUDIT_SUMMARY.md) — 6×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 6×
 - `Python script` — [`ai_slop/research/unsolved_problems/peculiar_velocities.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/peculiar_velocities.py) — 6×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 6×
 - `Python script` — [`deepseek_push/G217_kink_sample.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G217_kink_sample.py) — 6×
 - `Python script` — [`deepseek_push/G118_merger_registry.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G118_merger_registry.py) — 6×
 - `Python script` — [`deepseek_push/G085_vertical_disk.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G085_vertical_disk.py) — 6×
@@ -270,7 +266,6 @@
 - `Other` — [`fable_independent_2026/L161_decay_structure_clusters_and_synthesis.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L161_decay_structure_clusters_and_synthesis.out) — 2×
 - `Python script` — [`real_research/reviews/inhand_2026_07/l6_dw_cusp_kill.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/inhand_2026_07/l6_dw_cusp_kill.py) — 2×
 - `Python script` — [`real_research/reviews/inhand_2026_07/L5_corpus_oos_rar_FINAL.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/inhand_2026_07/L5_corpus_oos_rar_FINAL.py) — 2×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
 - `Markdown/notes` — [`qwen_claude_field_theory/IDEAS_401_500.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/IDEAS_401_500.md) — 2×
 - `Markdown/notes` — [`citations/verlinde/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/verlinde/index.md) — 2×
 - `Python script` — [`fable_independent_2026/L161_decay_structure_clusters_and_synthesis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L161_decay_structure_clusters_and_synthesis.py) — 2×

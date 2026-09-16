@@ -914,7 +914,6 @@
 - `Python script` — [`qwen_36_experiment/03_kubo_program/tn01_phase12_context.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/03_kubo_program/tn01_phase12_context.py) — 4×
 - `Markdown/notes` — [`opus_48_extended_research/reviews/PUREDS_LEGVII_FORCING_VERDICT_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/PUREDS_LEGVII_FORCING_VERDICT_2026-06-15.md) — 4×
 - `Python script` — [`qwen_36_experiment/03_kubo_program/tn04_phase69_accelerated_worldline.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/03_kubo_program/tn04_phase69_accelerated_worldline.py) — 4×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 4×
 - `Python script` — [`real_research/reviews/mi_strongcoupling_framework_2026/window_compute.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_strongcoupling_framework_2026/window_compute.py) — 4×
 - `Other` — [`fable_independent_2026/L121_a0_scaling_cmb_recheck.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L121_a0_scaling_cmb_recheck.out) — 4×
 - `Python script` — [`qwen_36_experiment/generate_figures.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/generate_figures.py) — 4×

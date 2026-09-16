@@ -1099,7 +1099,6 @@
 - `Other` — [`hunt_2026/h67_hff_cores.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h67_hff_cores.out) — 1×
 - `Markdown/notes` — [`prep_2026/sigma_spread/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sigma_spread/VERIFY.md) — 1×
 - `Python script` — [`real_research/reviews/koide_anomaly_selector_construct.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/koide_anomaly_selector_construct.py) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/MESSAGE_TO_ASTRA_2026-09-05_STRIP_PATHS_CONTINUE_G03.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/MESSAGE_TO_ASTRA_2026-09-05_STRIP_PATHS_CONTINUE_G03.md) — 1×
 - `Python script` — [`real_research/reviews/project10d_gas_systematic.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project10d_gas_systematic.py) — 1×
 - `Markdown/notes` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY.md) — 1×

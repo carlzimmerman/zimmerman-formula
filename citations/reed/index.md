@@ -228,7 +228,6 @@
 - `Markdown/notes` — [`opus_48_extended_research/papers/MI_STRUCTURAL_THEOREMS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/MI_STRUCTURAL_THEOREMS.md) — 5×
 - `Markdown/notes` — [`opus_48_extended_research/papers/TWO_BARRIERS_TO_THE_MOND_COEFFICIENT_2026-08-03.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/TWO_BARRIERS_TO_THE_MOND_COEFFICIENT_2026-08-03.md) — 5×
 - `Python script` — [`qwen_claude_field_theory/closure_2026/route2_mechC_constrained_vector_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/route2_mechC_constrained_vector_2026.py) — 5×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 5×
 - `Markdown/notes` — [`opus_48_extended_research/papers/DARK_MATTER_COMPLETE_CHRONOLOGY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/DARK_MATTER_COMPLETE_CHRONOLOGY.md) — 5×
 - `Markdown/notes` — [`fable_independent_2026/L72_LEAD_TWO_CONCERNS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L72_LEAD_TWO_CONCERNS.md) — 5×
 - `Python script` — [`real_research/reviews/mi_orbital_q_selfaudit_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_orbital_q_selfaudit_2026.py) — 5×

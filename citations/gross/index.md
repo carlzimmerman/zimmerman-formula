@@ -50,7 +50,6 @@
 - `Markdown/notes` — [`opus_48_extended_research/reviews/QFT_STANDARD_MODEL_PREDICTIONS_GOLD_STANDARD_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/QFT_STANDARD_MODEL_PREDICTIONS_GOLD_STANDARD_2026-06-14.md) — 1×
 - `Other` — [`hunt_2026/h30_warp_onset.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h30_warp_onset.out) — 1×
 - `Markdown/notes` — [`opus_48_extended_research/reviews/DENSITY_A0_ELL_1MPC_VERDICT_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/DENSITY_A0_ELL_1MPC_VERDICT_2026-06-14.md) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Markdown/notes` — [`fable_independent_2026/FINDINGS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/FINDINGS.md) — 1×
 - `Python script` — [`hunt_2026/h30_warp_onset.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h30_warp_onset.py) — 1×
 - `Markdown/notes` — [`prep_2026/bulkflow_dipole/RESULT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/bulkflow_dipole/RESULT.md) — 1×

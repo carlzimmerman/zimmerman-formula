@@ -448,7 +448,6 @@
 - `Python script` — [`real_research/reviews/branchB_q2_gate_2026/laneA_family_scan.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/branchB_q2_gate_2026/laneA_family_scan.py) — 3×
 - `Python script` — [`qwen_36_experiment/tn17_rho_to_nu_neSS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/tn17_rho_to_nu_neSS.py) — 3×
 - `Python script` — [`hunt_2026/k01_solar_efe_quadrupole.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k01_solar_efe_quadrupole.py) — 3×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 3×
 - `Other` — [`hunt_2026/k_unexplained-regularities_closure.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_unexplained-regularities_closure.out) — 3×
 - `Other` — [`fable_independent_2026/L244_disformal_preferred_frame_mu2.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L244_disformal_preferred_frame_mu2.out) — 3×
 - `Python script` — [`hunt_2026/k03_hi_edge_acceleration.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k03_hi_edge_acceleration.py) — 3×

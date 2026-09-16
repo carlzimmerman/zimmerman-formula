@@ -86,7 +86,6 @@
 - `Markdown/notes` — [`ai_slop/curiosities_and_culture/CLOSER_NEYO_Z2_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/CLOSER_NEYO_Z2_ANALYSIS.md) — 3×
 - `Markdown/notes` — [`ai_slop/curiosities_and_culture/AS_LONG_AS_YOU_LOVE_ME_Z2_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/AS_LONG_AS_YOU_LOVE_ME_Z2_ANALYSIS.md) — 3×
 - `Markdown/notes` — [`ai_slop/curiosities_and_culture/WALKING_ON_A_DREAM_EMPIRE_OF_THE_SUN_Z2_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/WALKING_ON_A_DREAM_EMPIRE_OF_THE_SUN_Z2_ANALYSIS.md) — 3×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 3×
 - `Data/config` — [`ai_slop/TruthFlow/extracted_data/all_extractions.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/extracted_data/all_extractions.json) — 3×
 - `Python script` — [`ai_slop/examples/15_core_cusp/run.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/examples/15_core_cusp/run.py) — 3×
 - `Markdown/notes` — [`book_2e/16_entropy_horizons_and_holography.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book_2e/16_entropy_horizons_and_holography.md) — 3×

@@ -769,7 +769,6 @@
 - `Python script` — [`real_research/reviews/mi_gw_ppn_gauntlet_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_gw_ppn_gauntlet_2026.py) — 2×
 - `Python script` — [`real_research/reviews/residual_doors_2026_07/D1_3_kl_reduction_burst_scan.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/residual_doors_2026_07/D1_3_kl_reduction_burst_scan.py) — 2×
 - `Data/config` — [`ai_slop/extended_research/environmental/project_potimos/designs/STAGE3_REACTOR_CAD_METADATA.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/environmental/project_potimos/designs/STAGE3_REACTOR_CAD_METADATA.json) — 2×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
 - `Python script` — [`real_research/reviews/wb_a0_amplitude_degeneracy.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/wb_a0_amplitude_degeneracy.py) — 2×
 - `Python script` — [`real_research/reviews/lensing_rar/lr_battery.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/lr_battery.py) — 2×
 - `Other` — [`real_research/reviews/lensing_rar/lr_battery.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/lr_battery.out) — 2×

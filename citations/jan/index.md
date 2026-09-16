@@ -1341,7 +1341,6 @@
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/1ctf.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/1ctf.pdb) — 1×
 - `Other` — [`ai_slop/daemon_outputs/overnight_20260509_004336.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/overnight_20260509_004336.log) — 1×
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/3u36.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/3u36.pdb) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Other` — [`ai_slop/daemon_outputs/daemon_overnight_20260512_003855.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/daemon_overnight_20260512_003855.log) — 1×
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/3nir.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/3nir.pdb) — 1×
 - `Python script` — [`real_research/reviews/mi_omegac_edges_closure_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_omegac_edges_closure_2026.py) — 1×

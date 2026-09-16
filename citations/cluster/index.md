@@ -2775,7 +2775,6 @@
 - `Python script` — [`glm53_push/G040_offset_decomposition.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G040_offset_decomposition.py) — 1×
 - `Python script` — [`glm53_push/G024_desi_pointwise.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G024_desi_pointwise.py) — 1×
 - `Data/config` — [`glm53_push/G022_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G022_results.json) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/fried_chicken_final/FC_A_scorecard.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/fried_chicken_final/FC_A_scorecard.md) — 1×
 - `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/fried_chicken_final/FC_SELECTION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/fried_chicken_final/FC_SELECTION.md) — 1×
 - `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/fried_chicken_final/FINAL_LENSING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/fried_chicken_final/FINAL_LENSING.md) — 1×

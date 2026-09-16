@@ -431,6 +431,11 @@ full-repo corpus sweep (Surname et al. / (Year) / &\ / \cite{} / filename-author
 every file and occurrence listed (no caps); non-person tokens (tools, words, instruments)
 flagged and listed separately.**
 
+> **No personal communications are cited.** Private/personal communication sources are
+> excluded from the index by directive — see
+> [`CITATIONS_personal_comm_excluded.txt`](CITATIONS_personal_comm_excluded.txt) for the
+> excluded files (15 files, 2,249 links stripped; nothing deleted from the repo).
+
 ## Paper citations
 
 Direct citations in the paper(s) — [`paper/dark_universe_bridge.tex`](paper/dark_universe_bridge.tex):

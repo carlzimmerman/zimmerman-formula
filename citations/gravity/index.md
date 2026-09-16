@@ -21,7 +21,6 @@
 - `Data/config` — [`ai_slop/OlympusFlow/discoveries/physics_anomalies_500.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/discoveries/physics_anomalies_500.json) — 50×
 - `Paper` — [`real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.tex) — 47×
 - `Markdown/notes` — [`real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.md) — 45×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 42×
 - `Markdown/notes` — [`ai_slop/research/100_THEORIES_SM_DM_CLASSIFICATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/100_THEORIES_SM_DM_CLASSIFICATION.md) — 40×
 - `Markdown/notes` — [`book/05_two_roads_from_the_fork_a_particle_or_a_.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/05_two_roads_from_the_fork_a_particle_or_a_.md) — 38×
 - `Markdown/notes` — [`book_2e/05_two_roads_from_the_fork_a_particle_or_a_.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book_2e/05_two_roads_from_the_fork_a_particle_or_a_.md) — 38×

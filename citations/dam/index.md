@@ -1032,7 +1032,6 @@
 - `Markdown/notes` — [`ai_slop/papers/WHAT_REMAINS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/WHAT_REMAINS.md) — 3×
 - `Markdown/notes` — [`ai_slop/papers/MATTER_ANTIMATTER_ASYMMETRY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/MATTER_ANTIMATTER_ASYMMETRY.md) — 3×
 - `Python script` — [`real_research/reviews/mi_propagator_2026/dispersion_setup.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_propagator_2026/dispersion_setup.py) — 3×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 3×
 - `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY.html) — 3×
 - `Data/config` — [`ai_slop/daemon_outputs/derivations/second_radiation_constant_c₂_result.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/derivations/second_radiation_constant_c₂_result.json) — 3×
 - `Python script` — [`real_research/reviews/dm_candidate_test.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/dm_candidate_test.py) — 3×

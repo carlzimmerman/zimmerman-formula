@@ -4810,10 +4810,8 @@
 - `Python script` — [`ai_slop/analysis/tensor_scalar_analysis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/analysis/tensor_scalar_analysis.py) — 2×
 - `Markdown/notes` — [`citations/garzilli/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/garzilli/index.md) — 2×
 - `Markdown/notes` — [`citations/holtzman/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/holtzman/index.md) — 2×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 2×
 - `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/references/writing-guide.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/references/writing-guide.md) — 2×
 - `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/creative/baoyu-comic/references/presets/ohmsha.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/creative/baoyu-comic/references/presets/ohmsha.md) — 2×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 2×
 - `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/references/writing-guide.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/references/writing-guide.md) — 2×
 - `Data/config` — [`ai_slop/full_pipeline_results/all_originals_20260507_064249/results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/full_pipeline_results/all_originals_20260507_064249/results.json) — 2×
 - `Data/config` — [`ai_slop/full_pipeline_results/all_originals_20260507_064249/learning/failures.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/full_pipeline_results/all_originals_20260507_064249/learning/failures.json) — 2×
@@ -4853,7 +4851,6 @@
 - `Markdown/notes` — [`citations/neklesa/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/neklesa/index.md) — 2×
 - `Markdown/notes` — [`citations/warmels/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/warmels/index.md) — 2×
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/baoyu-comic/references/presets/ohmsha.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/baoyu-comic/references/presets/ohmsha.md) — 2×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 2×
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/references/writing-guide.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/references/writing-guide.md) — 2×
 - `Markdown/notes` — [`citations/eberhardt/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/eberhardt/index.md) — 2×
 - `Markdown/notes` — [`citations/zakamska/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/zakamska/index.md) — 2×
@@ -4868,7 +4865,6 @@
 - `Markdown/notes` — [`citations/metzger/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/metzger/index.md) — 2×
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/creative/baoyu-comic/references/presets/ohmsha.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/creative/baoyu-comic/references/presets/ohmsha.md) — 2×
 - `Markdown/notes` — [`real_research/NESS_SIGNFLIP_VERDICT_2026-07.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/NESS_SIGNFLIP_VERDICT_2026-07.md) — 2×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 2×
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/references/writing-guide.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/references/writing-guide.md) — 2×
 - `Python script` — [`real_research/a0_value_and_cpl_evolution_check.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/a0_value_and_cpl_evolution_check.py) — 2×
 - `Markdown/notes` — [`ai_slop/extended_research/biotech/oral_health/LICENSE_NOTICE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/oral_health/LICENSE_NOTICE.md) — 2×
@@ -4968,7 +4964,6 @@
 - `Markdown/notes` — [`citations/zehavi/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/zehavi/index.md) — 2×
 - `Markdown/notes` — [`citations/melmed/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/melmed/index.md) — 2×
 - `Markdown/notes` — [`citations/halkola/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/halkola/index.md) — 2×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
 - `Python script` — [`qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/test_exact_exponential_aqual_efe_kepler_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/test_exact_exponential_aqual_efe_kepler_2026.py) — 2×
 - `Markdown/notes` — [`citations/meech/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/meech/index.md) — 2×
 - `Markdown/notes` — [`citations/kashlinsky/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/kashlinsky/index.md) — 2×

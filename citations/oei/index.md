@@ -34,7 +34,6 @@
 - `Python script` — [`prep_2026/a0_line/fullrange_family_bias.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line/fullrange_family_bias.py) — 1×
 - `Python script` — [`real_research/reviews/a0_census_ensemble.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/a0_census_ensemble.py) — 1×
 - `Markdown/notes` — [`ai_slop/curiosities_and_culture/UP_INTO_THE_ETHER_I_BUILT_THE_SKY_Z2_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/UP_INTO_THE_ETHER_I_BUILT_THE_SKY_Z2_ANALYSIS.md) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Data/config` — [`ai_slop/HermesFlow/hermes_agent/ui-tui/package-lock.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/ui-tui/package-lock.json) — 1×
 - `Other` — [`ai_slop/HermesFlow/hermes_agent/ui-tui/packages/hermes-ink/src/ink/components/App.tsx`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/ui-tui/packages/hermes-ink/src/ink/components/App.tsx) — 1×
 - `Other` — [`ai_slop/TruthFlow/hermes_agent/ui-tui/packages/hermes-ink/src/ink/components/App.tsx`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/ui-tui/packages/hermes-ink/src/ink/components/App.tsx) — 1×

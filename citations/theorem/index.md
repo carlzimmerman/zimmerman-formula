@@ -1532,8 +1532,6 @@
 - `Data/config` — [`ai_slop/metis_outputs/von_karman_constant_strategy.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/metis_outputs/von_karman_constant_strategy.json) — 2×
 - `Python script` — [`ai_slop/meteorology/scripts/data_assimilation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/meteorology/scripts/data_assimilation.py) — 2×
 - `Markdown/notes` — [`ai_slop/analysis/paper_audit_v720.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/analysis/paper_audit_v720.md) — 2×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 2×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 2×
 - `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/SCIENTIFIC_AMERICAN_article_draft.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/SCIENTIFIC_AMERICAN_article_draft.md) — 2×
 - `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/SCIENCE_article_draft.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/SCIENCE_article_draft.md) — 2×
 - `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/README.md) — 2×
@@ -1549,7 +1547,6 @@
 - `Python script` — [`ai_slop/MetisFlow/literature_searcher.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/MetisFlow/literature_searcher.py) — 2×
 - `Python script` — [`kimik3_push/scripts/K014_saturation_amplitude_law.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/kimik3_push/scripts/K014_saturation_amplitude_law.py) — 2×
 - `Data/config` — [`kimik3_push/scripts/K005_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/kimik3_push/scripts/K005_results.json) — 2×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 2×
 - `Markdown/notes` — [`book/08_the_field_equations_how_matter_tells_spa.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/08_the_field_equations_how_matter_tells_spa.md) — 2×
 - `Markdown/notes` — [`book/19_what_mond_gets_right_and_its_real_proble.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/19_what_mond_gets_right_and_its_real_proble.md) — 2×
 - `Markdown/notes` — [`book/09_an_expanding_universe_hubble_friedmann_a.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/09_an_expanding_universe_hubble_friedmann_a.md) — 2×
@@ -1558,7 +1555,6 @@
 - `Markdown/notes` — [`book/13_what_is_inertia_really.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/13_what_is_inertia_really.md) — 2×
 - `Markdown/notes` — [`real_research/THEORETICAL_CONTEXT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/THEORETICAL_CONTEXT.md) — 2×
 - `Markdown/notes` — [`real_research/DEEP_MOND_SIGN_CENTER_VS_EDGE_2026-06-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/DEEP_MOND_SIGN_CENTER_VS_EDGE_2026-06-06.md) — 2×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 2×
 - `Markdown/notes` — [`citations/paper/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/paper/index.md) — 2×
 - `Markdown/notes` — [`real_research/TOE_POSITS_LEDGER_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/TOE_POSITS_LEDGER_2026-06.md) — 2×
 - `Python script` — [`real_research/aest_3d_nbody/resonant_channel.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/aest_3d_nbody/resonant_channel.py) — 2×

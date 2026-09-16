@@ -473,7 +473,6 @@
 - `Python script` — [`glm53_push/G024_slab_limit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G024_slab_limit.py) — 11×
 - `Markdown/notes` — [`real_research/FORWARD_PROGRESS_2026-06-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/FORWARD_PROGRESS_2026-06-06.md) — 11×
 - `Python script` — [`real_research/predictions/predictions_catalog.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/predictions/predictions_catalog.py) — 11×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 11×
 - `Python script` — [`real_research/reviews/residual_doors_2026_07/D4_tail_kernel_kill_margin.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/residual_doors_2026_07/D4_tail_kernel_kill_margin.py) — 11×
 - `Markdown/notes` — [`real_research/reviews/toe_law/agentN2_memory_langevin.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentN2_memory_langevin.md) — 11×
 - `Markdown/notes` — [`real_research/reviews/toe_law/agentEE_sigma_khronon.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentEE_sigma_khronon.md) — 11×
@@ -505,11 +504,7 @@
 - `Markdown/notes` — [`ai_slop/papers/CMB_AND_COSMOLOGICAL_PARAMETERS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/CMB_AND_COSMOLOGICAL_PARAMETERS.md) — 11×
 - `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/run_002/stdout.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/run_002/stdout.txt) — 11×
 - `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/run_001/stdout.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/kgb_mass_compatibility_2026/run_001/stdout.txt) — 11×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 11×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 11×
 - `Python script` — [`qwen_claude_field_theory/closure_2026/collapse_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/collapse_2026.py) — 11×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 11×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 11×
 - `Markdown/notes` — [`book/18_the_two_great_regularities_rar_and_baryo.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/18_the_two_great_regularities_rar_and_baryo.md) — 10×
 - `Markdown/notes` — [`book/12_cdm_and_its_patches_the_honest_ledger_of.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/12_cdm_and_its_patches_the_honest_ledger_of.md) — 10×
 - `Data/config` — [`deepseek_push/G209_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G209_results.json) — 10×

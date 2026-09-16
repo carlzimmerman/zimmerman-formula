@@ -2314,7 +2314,6 @@
 - `Other` — [`ai_slop/HermesFlow/hermesflow_research_output/hurricane_4b_results/session.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermesflow_research_output/hurricane_4b_results/session.log) — 3×
 - `Python script` — [`real_research/reviews/coefficient_vs_hubble_tension.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/coefficient_vs_hubble_tension.py) — 3×
 - `Data/config` — [`ai_slop/daemon_outputs/olympus_run_v2.0.0_firstprinciples_derivation_20260507_142900/queue_state.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/olympus_run_v2.0.0_firstprinciples_derivation_20260507_142900/queue_state.json) — 3×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 3×
 - `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/PHYSICS_TODAY_article_full.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/PHYSICS_TODAY_article_full.md) — 3×
 - `Python script` — [`ai_slop/HermesFlow/z2_autoresearch.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/z2_autoresearch.py) — 3×
 - `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/QUANTA_MAGAZINE_article_draft.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/QUANTA_MAGAZINE_article_draft.md) — 3×

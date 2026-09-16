@@ -123,7 +123,6 @@
 - `Other` — [`fable_independent_2026/L111_independent_cam_dirac_closure.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L111_independent_cam_dirac_closure.out) — 2×
 - `Markdown/notes` — [`opus_48_extended_research/papers/COVARIANT_MI_FIELD_THEORY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/COVARIANT_MI_FIELD_THEORY.md) — 2×
 - `Other` — [`fable_independent_2026/L12_constraint_first.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L12_constraint_first.out) — 2×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
 - `Markdown/notes` — [`book_2e/21_the_mechanism_de_sitter_unruh_modified_i.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book_2e/21_the_mechanism_de_sitter_unruh_modified_i.md) — 2×
 - `Markdown/notes` — [`book_2e/05_two_roads_from_the_fork_a_particle_or_a_.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book_2e/05_two_roads_from_the_fork_a_particle_or_a_.md) — 2×
 - `Markdown/notes` — [`fable_independent_2026/EXPLAINER_what_is_cuscuton_theory.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/EXPLAINER_what_is_cuscuton_theory.md) — 2×

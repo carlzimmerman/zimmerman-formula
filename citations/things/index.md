@@ -342,7 +342,6 @@
 - `Data/config` — [`fable_independent_2026/L238_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L238_results.json) — 1×
 - `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/NORMALIZATION_LOCK.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/NORMALIZATION_LOCK.md) — 1×
 - `Python script` — [`fable_independent_2026/L236_can_the_two_tracks_merge.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L236_can_the_two_tracks_merge.py) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Python script` — [`real_research/reviews/inhand_2026_07/L5_control_overlap_calibration.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/inhand_2026_07/L5_control_overlap_calibration.py) — 1×
 - `Python script` — [`fable_independent_2026/L221_the_cutoff_step.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L221_the_cutoff_step.py) — 1×
 - `Markdown/notes` — [`fable_independent_2026/L58_ANISOTROPIC_STRESS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L58_ANISOTROPIC_STRESS.md) — 1×

@@ -405,7 +405,6 @@
 - `Other` — [`deepseek_push/G114_data/bdj2001/f8.ps`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/bdj2001/f8.ps) — 6×
 - `Other` — [`deepseek_push/G114_data/bdj2001/f10.ps`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/bdj2001/f10.ps) — 6×
 - `Paper` — [`deepseek_push/G114_data/leisman/d6.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/leisman/d6.tex) — 6×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 6×
 - `Python script` — [`ai_slop/research/gn_z11_analysis/high_z_visualization.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/gn_z11_analysis/high_z_visualization.py) — 6×
 - `Python script` — [`venv_physics_analysis/lib/python3.9/site-packages/pip/_vendor/packaging/utils.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/venv_physics_analysis/lib/python3.9/site-packages/pip/_vendor/packaging/utils.py) — 6×
 - `Data/config` — [`opus_48_extended_research/papers/AMPLITUDE_LAW.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/AMPLITUDE_LAW.zenodo.json) — 6×

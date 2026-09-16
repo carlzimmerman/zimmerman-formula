@@ -20,7 +20,6 @@
 - `Markdown/notes` — [`book/BOOK_AUDIT_LEDGER_2026-07.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/BOOK_AUDIT_LEDGER_2026-07.md) — 35×
 - `Markdown/notes` — [`book/26_how_it_will_be_tested_btfr_sign_desi_and.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/26_how_it_will_be_tested_btfr_sign_desi_and.md) — 34×
 - `Python script` — [`opus_48_extended_research/reviews/route_f_adversarial_fifthforce.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/route_f_adversarial_fifthforce.py) — 32×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 32×
 - `Python script` — [`real_research/reviews/mi_gw_ppn_gauntlet_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_gw_ppn_gauntlet_2026.py) — 29×
 - `Markdown/notes` — [`fable_independent_2026/FINDINGS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/FINDINGS.md) — 27×
 - `Python script` — [`fable_independent_2026/L204_boosted_metric_expansion.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L204_boosted_metric_expansion.py) — 26×

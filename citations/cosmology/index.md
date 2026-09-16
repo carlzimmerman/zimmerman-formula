@@ -548,7 +548,6 @@
 - `Markdown/notes` — [`ai_slop/papers/CMB_LOW_ELL_ANOMALIES_T3Z2.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/CMB_LOW_ELL_ANOMALIES_T3Z2.md) — 3×
 - `Markdown/notes` — [`ai_slop/papers/Z2_UNIFIED_ACTION_v10.0.0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_v10.0.0.md) — 3×
 - `Paper` — [`ai_slop/papers/Z2_FRAMEWORK_v5.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_FRAMEWORK_v5.tex) — 3×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 3×
 - `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY.html) — 3×
 - `Markdown/notes` — [`prep_2026/mi_kernel_argument/RESULT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_kernel_argument/RESULT.md) — 3×
 - `Markdown/notes` — [`ai_slop/papers/Z2_UNIFIED_ACTION_v9.5.0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_v9.5.0.md) — 3×

@@ -123,10 +123,6 @@
 - `Markdown/notes` — [`citations/experiment/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/experiment/index.md) — 112×
 - `Markdown/notes` — [`citations/iclr/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/iclr/index.md) — 112×
 - `Markdown/notes` — [`citations/phys/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/phys/index.md) — 110×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 109×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 109×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 109×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 109×
 - `Markdown/notes` — [`citations/lean/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lean/index.md) — 108×
 - `Markdown/notes` — [`citations/known/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/known/index.md) — 108×
 - `Markdown/notes` — [`citations/lau/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lau/index.md) — 108×
@@ -976,7 +972,6 @@
 - `Data/config` — [`prep_2026/a0_line/published_a0_catalogue_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0_line/published_a0_catalogue_results.json) — 3×
 - `Other` — [`real_research/reviews/mi_forest_a0_footing_forks_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_forest_a0_footing_forks_2026.out) — 3×
 - `Markdown/notes` — [`prep_2026/gaia_dr4_prep/AMENDMENT12_DRAFT_NOT_FILED.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/gaia_dr4_prep/AMENDMENT12_DRAFT_NOT_FILED.md) — 3×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 3×
 - `Markdown/notes` — [`real_research/papers/DESITTER_UNRUH_MODIFIED_INERTIA_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/DESITTER_UNRUH_MODIFIED_INERTIA_2026.md) — 3×
 - `Data/config` — [`real_research/papers/TDG_HISTORY_2026.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/TDG_HISTORY_2026.zenodo.json) — 3×
 - `Other` — [`real_research/reviews/VERIFY_mi_precision_ledger_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/VERIFY_mi_precision_ledger_2026.out) — 3×

@@ -77,7 +77,6 @@
 - `Markdown/notes` — [`citations/teyssandier/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/teyssandier/index.md) — 2×
 - `Python script` — [`hunt_2026/g03_anisotropy_correlation_test.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g03_anisotropy_correlation_test.py) — 2×
 - `Python script` — [`real_research/reviews/mi_cmb_a0_horizon_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_cmb_a0_horizon_2026.py) — 2×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/plugins/spotify/tools.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/plugins/spotify/tools.py) — 2×
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/plugins/spotify/client.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/plugins/spotify/client.py) — 2×
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/5ire.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/5ire.pdb) — 2×

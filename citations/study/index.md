@@ -95,8 +95,6 @@
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/humanizer/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/humanizer/SKILL.md) — 3×
 - `Other` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/mlops/inference/obliteratus/templates/analysis-study.yaml`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/mlops/inference/obliteratus/templates/analysis-study.yaml) — 3×
 - `Other` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/mlops/inference/obliteratus/templates/analysis-study.yaml`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/mlops/inference/obliteratus/templates/analysis-study.yaml) — 3×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 3×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 3×
 - `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/aqual_solar_gate_2026/CONTRACT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/aqual_solar_gate_2026/CONTRACT.md) — 3×
 - `Python script` — [`ai_slop/research/proof_attempt/structural_necessity_attack.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/proof_attempt/structural_necessity_attack.py) — 3×
 - `Markdown/notes` — [`ai_slop/research/CITATIONS_AND_SCIENTISTS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/CITATIONS_AND_SCIENTISTS.md) — 3×
@@ -110,8 +108,6 @@
 - `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/df2_fixed_a0_2026/REPORT.md) — 3×
 - `Other` — [`ai_slop/HermesFlow/hermes_agent/skills/mlops/inference/obliteratus/templates/analysis-study.yaml`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/mlops/inference/obliteratus/templates/analysis-study.yaml) — 3×
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/creative/humanizer/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/creative/humanizer/SKILL.md) — 3×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 3×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 3×
 - `Python script` — [`ai_slop/research/unsolved_problems/kbc_void.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/kbc_void.py) — 3×
 - `Python script` — [`ai_slop/research/unsolved_problems/dark_flow_bulk_flows.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/unsolved_problems/dark_flow_bulk_flows.py) — 3×
 - `Markdown/notes` — [`ai_slop/research/EMPIRICAL_TESTS_2020-2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/EMPIRICAL_TESTS_2020-2026.md) — 3×
@@ -200,7 +196,6 @@
 - `HTML` — [`gext_vectors_2026/data/raw/chae21_ar5iv.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_ar5iv.html) — 1×
 - `Other` — [`fable_independent_2026/L39_nonlocal_modes.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L39_nonlocal_modes.out) — 1×
 - `Markdown/notes` — [`gext_vectors_2026/data/raw/chae21_fulltext.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_fulltext.txt) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Other` — [`fable_independent_2026/L53_saturated_cores.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L53_saturated_cores.out) — 1×
 - `Python script` — [`fable_independent_2026/L39_nonlocal_modes.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L39_nonlocal_modes.py) — 1×
 - `Markdown/notes` — [`book/20_the_central_claim_a_c_32.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/20_the_central_claim_a_c_32.md) — 1×

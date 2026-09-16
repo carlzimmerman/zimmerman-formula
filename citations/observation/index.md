@@ -186,7 +186,6 @@
 - `Markdown/notes` — [`ai_slop/curiosities_and_culture/WHAT_A_FOOL_BELIEVES_DOOBIE_BROTHERS_Z2_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/WHAT_A_FOOL_BELIEVES_DOOBIE_BROTHERS_Z2_ANALYSIS.md) — 6×
 - `Python script` — [`real_research/reviews/parameter_space_map.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/parameter_space_map.py) — 6×
 - `Markdown/notes` — [`ai_slop/docs/FIRST_PRINCIPLES_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/docs/FIRST_PRINCIPLES_ANALYSIS.md) — 6×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 6×
 - `Markdown/notes` — [`ai_slop/docs/zimmerman_formula.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/docs/zimmerman_formula.md) — 6×
 - `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/NATURE_PHYSICS_article_full.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/NATURE_PHYSICS_article_full.md) — 6×
 - `Data/config` — [`ai_slop/TruthFlow/fetched_papers/dark_energy_20260503_182815.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/fetched_papers/dark_energy_20260503_182815.json) — 6×

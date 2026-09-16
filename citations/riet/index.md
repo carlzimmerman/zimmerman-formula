@@ -135,7 +135,6 @@
 - `Markdown/notes` — [`hy4_push/H052_LEAN_MATH_50.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hy4_push/H052_LEAN_MATH_50.md) — 1×
 - `Markdown/notes` — [`opus_48_extended_research/press/HYPOTHETICAL_AEON_aeon.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/press/HYPOTHETICAL_AEON_aeon.md) — 1×
 - `Markdown/notes` — [`hy4_push/H051_MATH_TRANSPLANTS_100.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hy4_push/H051_MATH_TRANSPLANTS_100.md) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Markdown/notes` — [`book/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE.md) — 1×
 - `Markdown/notes` — [`opus_48_extended_research/papers/THE_COMPLETION_FOR_EVERYONE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/THE_COMPLETION_FOR_EVERYONE.md) — 1×
 - `Markdown/notes` — [`opus_48_extended_research/reviews/SCHEDULE_2026_PUBLIC_DATA_RELEASES_ROUTE5_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/SCHEDULE_2026_PUBLIC_DATA_RELEASES_ROUTE5_2026-06-14.md) — 1×

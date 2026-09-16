@@ -4,10 +4,6 @@
 
 **Files (GitHub links):**
 
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 11×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 11×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 11×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 11×
 - `Data/config` — [`ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/fused_model/tokenizer.json) — 2×
 - `Other` — [`ai_slop/HermesFlow/hermes_agent/ui-tui/src/components/thinking.tsx`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/ui-tui/src/components/thinking.tsx) — 2×
 - `Other` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/ui-tui/src/components/thinking.tsx`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/ui-tui/src/components/thinking.tsx) — 2×

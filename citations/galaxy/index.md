@@ -42,7 +42,6 @@
 - `Other` — [`ai_slop/LegomenaLLM/clean_2026/corpus/train.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/clean_2026/corpus/train.jsonl) — 46×
 - `Python script` — [`opus_48_extended_research/reviews/a0_law/rar_empirical_law.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/a0_law/rar_empirical_law.py) — 45×
 - `Python script` — [`opus_48_extended_research/reviews/dark_sector_cmb/cluster_component_cmb.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/dark_sector_cmb/cluster_component_cmb.py) — 45×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 45×
 - `Python script` — [`fable_independent_2026/L57_nonlocal_functional.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L57_nonlocal_functional.py) — 44×
 - `Other` — [`fable_independent_2026/L28_tightness.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L28_tightness.out) — 43×
 - `Python script` — [`fable_independent_2026/L55_composition_kernel.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L55_composition_kernel.py) — 43×

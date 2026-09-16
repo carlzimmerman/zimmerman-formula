@@ -17,7 +17,6 @@
 - `Paper` — [`deepseek_push/G114_data/figgs/FIGGS_BTF.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/figgs/FIGGS_BTF.tex) — 98×
 - `Paper` — [`deepseek_push/G114_data/bdj2001/ms.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/bdj2001/ms.tex) — 86×
 - `Paper` — [`deepseek_push/G114_data/leisman/d6.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/leisman/d6.tex) — 79×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 71×
 - `Markdown/notes` — [`ai_slop/papers/README_FULL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/README_FULL.md) — 59×
 - `Markdown/notes` — [`real_research/reviews/directional_efe_2026/laneB_data/oh2015_ReadMe.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/directional_efe_2026/laneB_data/oh2015_ReadMe.txt) — 42×
 - `Python script` — [`hunt_2026/h120_diskmass_upsilon_localise.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h120_diskmass_upsilon_localise.py) — 41×

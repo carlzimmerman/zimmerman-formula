@@ -377,9 +377,7 @@
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/tests/test_toolsets.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/tests/test_toolsets.py) — 15×
 - `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/software-development/spike/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/software-development/spike/SKILL.md) — 15×
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/software-development/spike/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/software-development/spike/SKILL.md) — 15×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 15×
 - `Data/config` — [`ai_slop/HermesFlow/hermes_agent/web/package-lock.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/web/package-lock.json) — 15×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 15×
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/cli.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/cli.py) — 15×
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/model_tools.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/model_tools.py) — 15×
 - `Python script` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/cli.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/cli.py) — 15×
@@ -389,7 +387,6 @@
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/test_toolsets.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/test_toolsets.py) — 15×
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_cli/tips.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_cli/tips.py) — 15×
 - `Python script` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/acp/test_tools.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/acp/test_tools.py) — 15×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 15×
 - `Data/config` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/web/package-lock.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/web/package-lock.json) — 15×
 - `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/software-development/spike/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/software-development/spike/SKILL.md) — 15×
 - `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/optional-skills/research/parallel-cli/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/optional-skills/research/parallel-cli/SKILL.md) — 15×
@@ -402,7 +399,6 @@
 - `Python script` — [`ai_slop/TruthFlow/hermes_agent/tests/test_toolsets.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/tests/test_toolsets.py) — 15×
 - `Python script` — [`ai_slop/TruthFlow/hermes_agent/cli.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/cli.py) — 15×
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/creative/p5js/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/creative/p5js/SKILL.md) — 15×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 15×
 - `Data/config` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/web/package-lock.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/web/package-lock.json) — 15×
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/software-development/spike/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/software-development/spike/SKILL.md) — 15×
 - `Python script` — [`ai_slop/TruthFlow/hermes_agent/model_tools.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/model_tools.py) — 15×
@@ -2172,7 +2168,6 @@
 - `Python script` — [`real_research/predictions/project_sparc_groupcontrast_kt2017.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/predictions/project_sparc_groupcontrast_kt2017.py) — 1×
 - `Python script` — [`real_research/reviews/lensing_source_fork_2026/lane0_target.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_source_fork_2026/lane0_target.py) — 1×
 - `Markdown/notes` — [`real_research/TOP20_EMPIRICAL_PHYSICISTS_DOORS_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/TOP20_EMPIRICAL_PHYSICISTS_DOORS_2026-06.md) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Python script` — [`real_research/reviews/gravity_particle_connection_search.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/gravity_particle_connection_search.py) — 1×
 - `Data/config` — [`ai_slop/metis_outputs/food_web_connectance_strategy.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/metis_outputs/food_web_connectance_strategy.json) — 1×
 - `Python script` — [`real_research/reviews/nu_de_tower.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/nu_de_tower.py) — 1×

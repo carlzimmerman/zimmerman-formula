@@ -42,7 +42,6 @@
 - `Other` — [`ai_slop/carl_journal_4.24.26`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/carl_journal_4.24.26) — 1×
 - `Python script` — [`venv_physics_analysis/lib/python3.9/site-packages/setuptools/_distutils/core.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/venv_physics_analysis/lib/python3.9/site-packages/setuptools/_distutils/core.py) — 1×
 - `Data/config` — [`real_research/COMMIT_LEDGER.csv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/COMMIT_LEDGER.csv) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Markdown/notes` — [`ai_slop/OLYMPUSFLOW_REFACTOR_PLAN.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OLYMPUSFLOW_REFACTOR_PLAN.md) — 1×
 - `Markdown/notes` — [`ai_slop/curiosities_and_culture/DREAMER_OZZY_OSBOURNE_Z2_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/DREAMER_OZZY_OSBOURNE_Z2_ANALYSIS.md) — 1×
 - `Markdown/notes` — [`ai_slop/curiosities_and_culture/WHERE_IS_MY_MIND_PIXIES_Z2_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/WHERE_IS_MY_MIND_PIXIES_Z2_ANALYSIS.md) — 1×

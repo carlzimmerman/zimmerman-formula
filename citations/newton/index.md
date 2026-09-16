@@ -22,7 +22,6 @@
 - `Other` — [`hunt_2026/k02_gc_efe_saturation_law.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k02_gc_efe_saturation_law.out) — 52×
 - `Python script` — [`hunt_2026/exact_mu_cassini_2026/exact_mu_qumond_cassini.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/exact_mu_cassini_2026/exact_mu_qumond_cassini.py) — 50×
 - `Python script` — [`ai_slop/research/offensive_campaign/WORK_ORDER_AA_real_gaia.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/WORK_ORDER_AA_real_gaia.py) — 48×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 47×
 - `Python script` — [`hunt_2026/k_kernel-shape_qaniso.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_kernel-shape_qaniso.py) — 45×
 - `Markdown/notes` — [`book/13_what_is_inertia_really.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/13_what_is_inertia_really.md) — 42×
 - `Markdown/notes` — [`book_2e/13_what_is_inertia_really.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book_2e/13_what_is_inertia_really.md) — 42×

@@ -29,10 +29,6 @@
 - `Data/config` — [`real_research/COMMIT_LEDGER.csv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/COMMIT_LEDGER.csv) — 17×
 - `Python script` — [`ai_slop/research/desi_audit/ai_slop/asymmetric_torus_test.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/desi_audit/ai_slop/asymmetric_torus_test.py) — 17×
 - `Python script` — [`ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/chemical_evolution.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/chemical_evolution.py) — 17×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 17×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 17×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 17×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 17×
 - `Markdown/notes` — [`fable_independent_2026/FINDINGS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/FINDINGS.md) — 16×
 - `Python script` — [`hunt_2026/g05v_adversarial_confound_refutation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g05v_adversarial_confound_refutation.py) — 16×
 - `Other` — [`qwen_claude_field_theory/closure_2026/field_equations_2026/sector2_aether_scalar_equations_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/field_equations_2026/sector2_aether_scalar_equations_2026.out) — 16×
@@ -329,7 +325,6 @@
 - `Python script` — [`real_research/reviews/a0_z_empirical_rigorous.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/a0_z_empirical_rigorous.py) — 4×
 - `Other` — [`hunt_2026/f26_matched_disc_forward_solve.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/f26_matched_disc_forward_solve.out) — 4×
 - `Python script` — [`hunt_2026/h120_diskmass_upsilon_localise.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h120_diskmass_upsilon_localise.py) — 4×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 4×
 - `Paper` — [`ai_slop/papers/latex_series/06_mond_modified_gravity_z2_framework.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/latex_series/06_mond_modified_gravity_z2_framework.tex) — 4×
 - `Paper` — [`ai_slop/papers/latex_series/02_dark_energy_z2_framework.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/latex_series/02_dark_energy_z2_framework.tex) — 4×
 - `Paper` — [`ai_slop/papers/geometric_unification_v2.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/geometric_unification_v2.tex) — 4×

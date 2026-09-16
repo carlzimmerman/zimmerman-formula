@@ -1,0 +1,158 @@
+==========================================================================================================
+A05 -- THE DERIVED MASS AS A PARTICLE PREDICTION: m = k_B T_0 (1+z*)/sigma^2
+         the SM-adjacent home of the framework's one derived particle mass
+==========================================================================================================
+
+==========================================================================================================
+PART 1  THE DERIVATION CHAIN, RE-VERIFIED LINK BY LINK
+==========================================================================================================
+
+--- 1.1  the encoded ladder:  E = k_B T_0 (1+z*) (c/sigma)^2 ----------
+  A(sigma = 119.2  km/s) = 1.485610 keV per unit z   (register 1.48561)
+  A(sigma = 119.21 km/s) = 1.485361 keV per unit z   (Z11 anchor)
+  [PASS] C1 [the A coefficient] A(119.2) reproduces the G168 register 1.48561
+         measured: A = 1.485610 vs 1.48561 (rel. diff 0.0000%)
+  m(z* = 2.4): 5.0511 keV (triad 119.2) / 5.0502 keV (anchor 119.21)
+  canonical band over the G132 z* band [2.3656, 2.4932]: [5.0000, 5.1895] keV   (G168 commit [5.00, 5.19])
+  [PASS] C2 [the mass at z* = 2.4] m = 5.0511 keV (G168 register)
+         measured: m = 5.0511 keV at sigma = 119.2
+
+--- 1.2  the sigma link:  sigma^2 = (1/2) sqrt(G M_b a0) --------------
+  sigma(anchor)^2 = 1.421102e+10 (m^2/s^2)  ->  sqrt(G M_b a0) = 2.842205e+10
+    implied M_b at a0_H (Z11 horizon) = 9.362375e-11:  6.5013e+10 M_sun
+    implied M_b at a0_DE = 9.361900e-11:  6.5016e+10 M_sun
+    implied M_b at a0_12dec line = 1.697800e-10:  3.5851e+10 M_sun
+  [PASS] C3 [the sigma = (1/2)sqrt(G M_b a0) closure] the anchor's implied baryonic mass is MW-class at the horizon a0
+         measured: M_b = 6.5013e+10 M_sun at a0_H (5.07e10 at a0 = 1.2e-10)
+
+--- 1.3  the G163 window [4.60, 5.05] and the footings -----------------
+  m(z* = 2.4) across the three footings: canonical triad 119.2: 5.0511, G081 7e10: 4.8666, G084 alt: 4.6006
+  spread = [4.6006, 5.0511] keV  --  the G163 committed window [4.60, 5.05]
+  [PASS] C4 [the G163 window] the three-footing spread at z* = 2.4 reproduces [4.60, 5.05]
+         measured: [4.6006, 5.0511] vs [4.60, 5.05]
+  full union (footings x z* band): [4.5540, 5.1895] keV (G168 commit [4.554, 5.19])
+  [PASS] C5 [the union over footings] regenerates [4.554, 5.19] to 0.1%
+         measured: [4.5540, 5.1895]
+
+--- 1.4  the sensitivity table ------------------------------------------
+  (i) vs z*  (m ~ (1+z*), d ln m/dz* = 1/(1+z*) = 29.4%/unit z --> 5.9% per 0.2 in z*)
+        z* = 2.37: m = 5.0065 keV
+        z* = 2.4: m = 5.0511 keV
+        z* = 2.49: m = 5.1848 keV
+  (ii) vs sigma  (m ~ sigma^-2, d ln m/d ln sigma = -2):
+        sigma = 118.8: m = 5.0851 keV
+        sigma = 119.0: m = 5.0681 keV
+        sigma = 119.2: m = 5.0511 keV
+        sigma = 119.4: m = 5.0342 keV
+        sigma = 120.0: m = 4.9840 keV
+      the triad carries no registered error; a 1% sigma error is a 2% m error (0.10 keV).
+  (iii) vs T_0  (m ~ T_0, 1:1): +-0.00057 K (Fixsen CMB dipole, UNVERIFIED) -> +-0.02% -> +-0.001 keV: negligible
+  [PASS] C6 [sensitivities] z* dominates (5.9%/0.2), sigma is -2 power, T_0 is 1:1
+         measured: d ln m/dz* = 29.4%/unit z; d ln m/d ln sigma = -2; d ln m/d ln T_0 = +1
+
+--- 1.5  the triangle anchor (G212) ------------------------------------
+  G212 joint posterior: m = 5.0886 +- 0.0969 keV, band [4.9917, 5.1855]; common window [5.000, 5.200]
+  canonical m(z*=2.4) = 5.0511 sits +0.39 sigma off the joint peak
+  [PASS] C7 [the triangle] the ladder's m is inside the common window [5.000, 5.200] and consistent with the joint peak
+         measured: m = 5.0511 in [5.000, 5.200]; +0.39 sigma
+
+--- 1.6  the lambda_fs re-derivation (first-principles integral) -------
+  lambda_fs(5.089) = 0.5584 Mpc   (G212 register 0.5584)
+  lambda_fs(5.7)   = 0.5041 Mpc   (G093 register 0.504)
+  lambda_fs(3.3)   = 0.8244 Mpc   (G093 register 0.824)
+  [PASS] C8 [the free-streaming integral re-derived] byte-close to the committed registers 0.5584 / 0.504 / 0.824
+         measured: 0.5584 / 0.5041 / 0.8244
+  k_hm = 57.22 h/Mpc;  M_hm = 7.3409e+05 (sim-fit) / 8.4129e+06 (window) M_sun   (G212: 57.22, 7.34e5, 8.41e6)
+
+  PART 1 chain: 8/8 PASS
+
+==========================================================================================================
+PART 2  THE SM-ADJACENT NEIGHBORHOOD, STATED HONESTLY (all literature UNVERIFIED)
+==========================================================================================================
+  neighbor                          position                    reading
+  framework derived mass m          5.089 keV                   G212 joint peak; ladder m(z*=2.4) = 5.051
+  sterile/WDM window                1-50 keV                    m sits inside, near the warm-cold edge (Abazajian 2017; Dasgupta-Kopp 2021). UNVERIFIED
+  3.5-keV line literature           E = m_s/2, m_s ~ 7 keV      Bulbul+14 / Boyarsky+14 claimed; Hitomi ruled the Perseus signal out >99% (Aharonian+17); Dessert+20 Chandra MW-halo sin^2(2theta) < 2.6e-11; Foster+23: most prior claims not reproducible; XRISM stacked-cluster limits (2025). The 3.5 keV line is the 7-keV NEIGHBOR, not this particle's line. UNVERIFIED
+  m_e/100 (A01's pair)              5.1100 keV                  the framework's m is 0.42% below m_e/100 (+0.22 sigma of the G212 posterior): a single pre-existing pair -- coincidence, NO mechanism claimed (gate d). The z* hitting m_e/100 exactly is 2.440, inside the G132 band.
+  QCD scale 200 MeV                 4.594 decades above m       log10(200 MeV / 5.09 keV) = 4.59 -- the brief's '4 decades' to the decimal
+  weak scale 80-91 GeV              7.196-7.253 decades above m log10(80.4 GeV/m) = 7.20, log10(M_Z/m) = 7.25 -- the brief's '4-5 decades' is CORRECTED to the honest 7.2 (the ratio is unit-free)
+  electron mass m_e                 2.002 decades above m       log10(511 keV/5.09 keV) = 2.00
+
+  EXPERIMENTS THAT ALREADY CONSTRAIN 5-keV-CLASS PARTICLES (cited, UNVERIFIED):
+    * X-ray line searches at 2.5-2.6 keV (the m/2 band): XMM-Newton/Chandra deep fields, eROSITA DR1 LMC 1-9 keV (arXiv 2603.19109: 'new strong constraints below 5 keV'), XRISM stacked clusters (2510.24560): no line; sin^2(2theta) limits at m_s = 5 keV ~ 1e-11-1e-10 (Abazajian 2017 summary).
+    * Sterile-class production bounds: the Dodelson-Widrow 5-keV sterile is EXCLUDED by combined X-ray + structure (Horiuchi+13, 1607.07328); resonant Shi-Fuller keeps ~5 keV alive at sin^2(2theta) <~ 1e-12 (Abazajian 2017; 2507.18752).
+    * Lyman-alpha forest (WDM mass): m_WDM > 3.3 keV (Viel+13, 2sig), > 5.3 (Irsic+17, 2sig), > 5.7 (Villasenor+24, 95%) -- the framework's 5.09 is inside the stated window, pressed from above.
+    * Subhalo census / lensing / streams: satellites m > 6.2-6.5 keV, lensing+satellites m > 9.7 keV, streams 3.6-6.2 keV (95%, G156 soundings): the indirect probes sit ABOVE 5.09 at face value -- registered tension, kept alive by the forest.
+    * Phase-space (Tremaine-Gunn class): m >~ 0.3-1 keV (dwarf phase space) -- the framework's m passes trivially.
+    * N_eff (the 2026 combined bound): Delta N_eff < 0.107 (95%): LBT Y_p + Planck + ACT + SPT + DESI (arXiv 2603.13226); Planck+BAO 2018: N_eff = 2.99 +- 0.17. See Part 3c.
+    * Direct detection at keV masses: recoil searches (SENSEI/DAMIC-M/CRESST) do NOT reach a 5-keV fermionic WDM (recoil energy on electrons ~ 2.5e-5 eV -- sub-eV, below every ionization threshold); absorption-style searches (hidden photon / ALP at 5.09 keV: DAMIC, XENON) bound the EM coupling of an ABSORBING species -- not the WDM fermion.
+  EVERY literature number above is CITED/UNVERIFIED -- the framework verifies none of it; it is the honest context the neighborhood owes.
+
+==========================================================================================================
+PART 3  THE PREDICTIONS THE FRAMEWORK CAN MAKE FROM THE DERIVED MASS
+==========================================================================================================
+
+--- 3a. the radiative-decay line: E = m/2 ------------------------------
+  IF the particle decays radiatively (X -> nu/gamma + gamma, massless daughter): E_gamma = m/2.
+  E_line(m = 5.089) = 2.5443 keV  -- the 2.55-keV class
+  canonical band: [2.5000, 2.5948] keV;  1-sigma band: [2.4958, 2.5927] keV;  G163 window: [2.30, 2.53] keV
+  THE OBSERVABLE: a monoenergetic X-ray line at 2.55 keV (2.5-2.6 keV band) from DM halos (Milky Way, clusters, LMC/SMC) -- in band for XRISM/eROSITA/XMM and future Athena X-IFU.
+  THE DECAY-RATE LIMIT, STATED HONESTLY: the framework fixes m but contains NO coupling or mixing angle: it does NOT predict the rate, the branching, or even whether the decay exists.  For orientation only (UNVERIFIED literature): a sterile-neutrino analog would give Gamma ~ (7.2e29 s)^-1 (sin^2 2theta/1e-8)(m/keV)^5, i.e. at m = 5.09:
+      Gamma(sin^2 2theta = 1e-8) = 4.739e-27 s^-1  ->  lifetime 6.69e+09 Gyr;  at sin^2 2theta = 1e-11: 6.69e+12 Gyr (the line, if present, is cosmologically long-lived)
+      -- a keV sterile's lifetime ~ 1e17-1e18 yr is why the line is so faint; the framework itself is silent on all of it.
+      -- illustrative only; the framework itself is silent on all of it.
+  [PASS] C9 [the line energy] E = m/2 = 2.545 keV, fiducial band [2.50, 2.60] keV
+         measured: E_line = 2.5443 keV
+
+--- 3b. the free-streaming scale vs the Lyman-alpha / CMB bounds --------
+  lambda_fs(m = 5.09) = 0.5584 Mpc (re-derived, G212 register 0.558)
+  k_hm = 57.22 h/Mpc;  M_hm = 7.341e+05 / 8.413e+06 M_sun (sim-fit / window);  T^2(k_hm) = 1/2
+  Lyman-alpha: the forest's resolved window stops at k_max ~ 3 h/Mpc (z = 3): the cut sits 19x beyond -> the forest sees nothing at the cut (G156 C6 -- consistent because invisible).
+  CMB: Planck/ACT resolve to l ~ 2500 (k ~ 0.2-0.5 Mpc^-1); the damping lives at k ~ 57 h/Mpc, deep in the nonlinear tail -- no CMB signature.
+  Subhalo probes: 95% bounds (6.2-9.7 keV) sit above m = 5.09 -> the relic reading is TENSIONED but not killed; G212's registered statement stands (the direct probe -- the forest -- keeps 5.09 alive).
+  REGISTER: lambda_fs = 0.558 Mpc is 1.07x inside the 0.6-Mpc tolerance of G093 C2.
+  [PASS] C10 [free-streaming consistency] 0.558 Mpc inside the 0.6-Mpc register; the cut is invisible to forest and CMB at current reach
+         measured: lambda_fs = 0.5584 Mpc (1.07x of 0.60); k_hm = 57.2 h/Mpc vs k_max(forest) ~ 3
+
+--- 3c. N_eff / T_0 consequences IF the sector is thermal at decoupling -
+  A species decoupling relativistic at the neutrino temperature adds Delta N_eff = g_s/2 per 2-helicity fermion:
+    Majorana-like (g_s/2 = 1): Delta N_eff = 1.00  ->  excluded at 14 sigma (N_eff = 2.990 +- 0.070, 2026 combined, UNVERIFIED; Planck 2018: 2.99 +- 0.17)
+    Dirac-like (g_s/2 = 2):   Delta N_eff = 2.00  ->  excluded many sigma
+  temperature needed to pass at 95%: T_s,dec < 0.572 T_nu (Delta N_eff = r^4 x g_s/2 <= 0.107).
+  BUT the committed lambda_fs = 0.558 Mpc integral ASSUMES T_s,0 = T_nu,0 (r = 1): the relic face's own normalization is excluded by N_eff unless the sector decoupled colder -- which would shrink lambda_fs and contradict the committed 0.558 Mpc register.  HONEST TENSION: thermal-free-streaming and the committed N_eff-consistent geometry do not coexist.
+  THE CDM-CONSISTENT FACE (G156/H047: R(k) = 1 at every k, no free streaming -- the COMMITTED ontology):
+    non-relativistic decoupling: T_dec <= m/3 = 1.696 keV (T_dec ~ 1.97e+07 K) <-> z_dec <= 7.22e+06; the sector's radiation density is Boltzmann-suppressed: Delta N_eff ~ 0; T_s,0 ~ 3.77e-07 K -> v_0 ~ 41.5 m/s -> NO free streaming, NO N_eff, NO CMB distortion.
+    T_0 consequence: a cold sector contributes nothing to T_0 / N_eff; its observable residue is (i) the 2.55-keV line (if EM decay), (ii) the phase-boundary temperature T_b = 9.17-9.52 K = T_CMB(z*), (iii) the 1e5-1e8 M_sun subhalo decade (G156 C8).
+  [PASS] C11 [N_eff] a fully-thermal r = 1 decoupling is excluded by current N_eff (Delta N_eff < 0.107 at 95%); the committed CDM face (R = 1) is the non-relativistic-decoupling branch and carries no N_eff cost
+         measured: Delta N_eff(r=1) = 1.00 vs 95% bound 0.107; cold branch T_s,0 = 3.8e-07 K
+
+==========================================================================================================
+PART 4  VERDICTS  V1 derivation chain / V2 neighborhood / V3 honest statement
+==========================================================================================================
+
+  V1  THE DERIVATION CHAIN VERIFIED: every link recomputed from the committed registers -- A(119.2) = 1.485610 vs 1.48561, m(z*=2.4) = 5.0511 keV, the canonical band [5.0065, 5.1847] in the G132 z* band, the G163 window [4.6006, 5.0511] = the three-footing spread at z* = 2.4 (committed [4.60, 5.05]), the union [4.5540, 5.1895], the sigma link sigma^2 = (1/2) sqrt(G M_b a0) closing to a MW-class M_b = 6.50e10 M_sun at the horizon a0, and the free-streaming integral reproducing lambda_fs = 0.5584 Mpc / 0.5041 / 0.8244.  All 11 checks PASS.  The honest caveat carried from G163: the equality T_b = T_CMB(z*) is ONE committed number ('a plausible storying, NOT a derivation'); m is the inversion of that coincidence, sharpened by the independent forest and free-streaming windows to m = 5.09 +- 0.10 keV (G212).
+
+  V2  THE NEIGHBORHOOD TABLE (all literature UNVERIFIED): m = 5.09 keV sits (a) inside the sterile-neutrino/warm-DM window (1-50 keV), near its warm-cold edge; (b) 0.40% below m_e/100 = 5.110 keV (A01's pair: one pre-existing pair, coincidence, no mechanism); (c) 4.59 decades below the QCD scale 200 MeV (the brief's '4 decades' to the decimal); (d) 7.20 decades below the weak scale 80-91 GeV -- the brief's '4-5 decades' CORRECTED (the ratio log10(80 GeV/5.09 keV) is unit-free and equals 7.20); (e) adjacent to the 3.5-keV line literature whose sterile mass is ~7 keV -- the framework's own line (if any) is at 2.55 keV, NOT at 3.5 keV; (f) under direct experimental pressure in exactly this band: X-ray line searches (eROSITA 'new strong constraints below 5 keV', XRISM, Chandra; sin^2 2theta ~ 1e-10-1e-11), the DW sterile at 5 keV excluded by combined X-ray+structure (Horiuchi+13) though resonant production survives at smaller mixing, the subhalo 95% bounds 6.2-9.7 keV pressing from above while the forest (3.3-5.7 keV at its stated CL) keeps 5.09 alive, and N_eff (Delta N_eff < 0.107 at 95%, 2026 combined) killing any fully-thermal relativistic decoupling.
+
+  V3  THE HONEST STATEMENT: the framework's ONE derived particle mass, m = 5.09 +- 0.10 keV from the cosmic-noon ladder (G163/G168, sharpened by the G212 triangle), makes exactly two parameter-free predictions: (1) IF the particle decays to a photon (+ massless partner), a monoenergetic X-ray line at E = m/2 = 2.545 keV (search band 2.5-2.6 keV) -- the observable for XRISM/eROSITA/XMM deep fields and future Athena X-IFU; (2) IF it is a thermal-WDM relic, the free-streaming cut at lambda_fs = 0.558 Mpc (k_hm = 57 h/Mpc, M_hm ~ 7e5-8e6 M_sun) -- the subhalo decade where the G156 decision lives.  What it does NOT predict: the decay rate, the coupling/mixing angle, the production mechanism, the spin/statistics, or whether the sector is charge-like (R(k) = 1, the committed face) or relic-like -- on the thermal reading the sector must decouple non-relativistically (T_dec <= m/3 ~ 1.7 keV) to survive the N_eff bound, i.e. the CDM face is the self-consistent one.  The experiments that would see it: X-ray spectrometers in the 2.5-2.6 keV band (the line), the 1e5-1e8 M_sun subhalo probes -- lensing flux ratios, stellar streams, satellite census (cut vs no-cut, G156 C8) -- and future Lyman-alpha / 21-cm at k > 30 h/Mpc.  KILL BAND: a measured particle mass outside [4.60, 5.05] keV (G163/G168) or outside [3.3, 5.7] keV (the triangle) kills the derived mass; a line detected NOT at 2.5-2.6 keV for the same m kills the m/2 relation; a measured R(k) = 1 (no cutoff) in the 1e5-1e8 decade kills the relic reading (G156's CHARGE declaration) while a measured cutoff kills the charge face; non-observation of the 2.55-keV line only kills the specific radiative implementation, because the framework fixes m, not the rate.
+
+==========================================================================================================
+GATES (a)-(f) AND THE VERDICTS  --  see A05_results.json
+==========================================================================================================
+
+  CHECKS: 11/11 PASS
+    [PASS] C1 [the A coefficient] A(119.2) reproduces the G168 register 1.48561
+    [PASS] C2 [the mass at z* = 2.4] m = 5.0511 keV (G168 register)
+    [PASS] C3 [the sigma = (1/2)sqrt(G M_b a0) closure] the anchor's implied baryonic mass is MW-class at the horizon a0
+    [PASS] C4 [the G163 window] the three-footing spread at z* = 2.4 reproduces [4.60, 5.05]
+    [PASS] C5 [the union over footings] regenerates [4.554, 5.19] to 0.1%
+    [PASS] C6 [sensitivities] z* dominates (5.9%/0.2), sigma is -2 power, T_0 is 1:1
+    [PASS] C7 [the triangle] the ladder's m is inside the common window [5.000, 5.200] and consistent with the joint peak
+    [PASS] C8 [the free-streaming integral re-derived] byte-close to the committed registers 0.5584 / 0.504 / 0.824
+    [PASS] C9 [the line energy] E = m/2 = 2.545 keV, fiducial band [2.50, 2.60] keV
+    [PASS] C10 [free-streaming consistency] 0.558 Mpc inside the 0.6-Mpc register; the cut is invisible to forest and CMB at current reach
+    [PASS] C11 [N_eff] a fully-thermal r = 1 decoupling is excluded by current N_eff (Delta N_eff < 0.107 at 95%); the committed CDM face (R = 1) is the non-relativistic-decoupling branch and carries no N_eff cost
+
+  JSON written: /Users/carlzimmerman/new_physics/zimmerman-formula/project_atomos/A05_results.json
+  CHECKS 11/11 PASS
+  A05 DONE.

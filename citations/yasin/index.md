@@ -15,7 +15,6 @@
 - `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/2026_04_23_21_15/msas/fold_2026_04_23_21_15_unpaired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/2026_04_23_21_15/msas/fold_2026_04_23_21_15_unpaired_msa_chains_a.a3m) — 4×
 - `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/bcr_abl_kinase_z2/msas/fold_bcr_abl_kinase_z2_unpaired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/bcr_abl_kinase_z2/msas/fold_bcr_abl_kinase_z2_unpaired_msa_chains_a.a3m) — 2×
 - `Markdown/notes` — [`opus_48_extended_research/reviews/bridge_scout/SCOUT_mond_phenomenology_data_2026-06-19.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/bridge_scout/SCOUT_mond_phenomenology_data_2026-06-19.md) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 
 ---
 *Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*

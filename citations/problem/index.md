@@ -65,10 +65,6 @@
 - `HTML` — [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.2.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.2.html) — 21×
 - `Python script` — [`ai_slop/research/dynamics/Z2_THREE_BODY_RIGOROUS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/dynamics/Z2_THREE_BODY_RIGOROUS.py) — 20×
 - `Python script` — [`real_research/reviews/project_cluster_evolving_a0.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project_cluster_evolving_a0.py) — 19×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 19×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 19×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 19×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 19×
 - `Markdown/notes` — [`ai_slop/research/comprehensive_applications.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_applications.md) — 19×
 - `Python script` — [`ai_slop/research/foundations/Z2_COSMOLOGICAL_CONSTANT_PROBLEM.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_COSMOLOGICAL_CONSTANT_PROBLEM.py) — 19×
 - `Markdown/notes` — [`ai_slop/research/RIGOROUS_GAP_ANALYSIS_v1.5.2.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/RIGOROUS_GAP_ANALYSIS_v1.5.2.md) — 19×
@@ -936,7 +932,6 @@
 - `Python script` — [`ai_slop/HermesFlow/literature_collector.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/literature_collector.py) — 3×
 - `Markdown/notes` — [`ai_slop/SCIENTIFIC_METHOD_REVIEW.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/SCIENTIFIC_METHOD_REVIEW.md) — 3×
 - `Markdown/notes` — [`real_research/reviews/toe_law/agentX_sk_gate.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentX_sk_gate.md) — 3×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 3×
 - `Markdown/notes` — [`ai_slop/docs/holographic_derivation_sqrt3pi2.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/docs/holographic_derivation_sqrt3pi2.md) — 3×
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/gateway/run.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/gateway/run.py) — 3×
 - `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/LITERATURE_SCOPE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/LITERATURE_SCOPE.md) — 3×

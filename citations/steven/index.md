@@ -41,7 +41,6 @@
 - `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/2XFR.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/2XFR.pdb) — 2×
 - `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/5FI3.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/5FI3.pdb) — 2×
 - `Markdown/notes` — [`book/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE.md) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Markdown/notes` — [`book/06_hunting_the_invisible_wimps_axions_and_f.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/06_hunting_the_invisible_wimps_axions_and_f.md) — 1×
 - `Markdown/notes` — [`book/audiobook/06_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/06_narration.txt) — 1×
 - `Markdown/notes` — [`book/audiobook/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE_AUDIOBOOK.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE_AUDIOBOOK.txt) — 1×

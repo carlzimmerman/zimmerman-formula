@@ -327,7 +327,6 @@
 - `Python script` — [`fable_independent_2026/L143_a0z_prediction_and_tests.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L143_a0z_prediction_and_tests.py) — 1×
 - `Python script` — [`qwen_claude_field_theory/gates_2026/gate6_exact_nuisance_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/gate6_exact_nuisance_2026.py) — 1×
 - `Python script` — [`fable_independent_2026/L111_independent_cam_dirac_closure.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L111_independent_cam_dirac_closure.py) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Python script` — [`real_research/reviews/inhand_2026_07/l2_cluster_gravz_discriminator.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/inhand_2026_07/l2_cluster_gravz_discriminator.py) — 1×
 - `Python script` — [`fable_independent_2026/L9_late_transition.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L9_late_transition.py) — 1×
 - `Other` — [`fable_independent_2026/L143_a0z_prediction_and_tests.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L143_a0z_prediction_and_tests.out) — 1×

@@ -335,7 +335,6 @@
 - `Markdown/notes` — [`ai_slop/non-peer-review/witten/Witten_Cross_Review.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/witten/Witten_Cross_Review.md) — 1×
 - `Markdown/notes` — [`real_research/reviews/toe_law/agentMM_routeA.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentMM_routeA.md) — 1×
 - `Python script` — [`ai_slop/curiosities_and_culture/ancient_cultures/telesterion/telesterion_ultimate_synthesis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/ancient_cultures/telesterion/telesterion_ultimate_synthesis.py) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/MESSAGE_TO_ASTRA_2026-09-05_STRIP_PATHS_CONTINUE_G03.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/MESSAGE_TO_ASTRA_2026-09-05_STRIP_PATHS_CONTINUE_G03.md) — 1×
 - `Other` — [`real_research/reviews/toe_law/agentN3_tail_scale.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentN3_tail_scale.out) — 1×
 - `Python script` — [`ai_slop/scripts/64pi_detailed_analysis.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/scripts/64pi_detailed_analysis.py) — 1×

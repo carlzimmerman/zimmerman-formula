@@ -394,7 +394,6 @@
 - `Markdown/notes` — [`real_research/FULL_MACH_REST_MASS_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/FULL_MACH_REST_MASS_2026-06.md) — 2×
 - `Markdown/notes` — [`EXECUTIVE_SUMMARY_2026-07-20_to_08-02.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/EXECUTIVE_SUMMARY_2026-07-20_to_08-02.md) — 2×
 - `Markdown/notes` — [`qwen_claude_field_theory/PRIOR_WORK_INDEX.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/PRIOR_WORK_INDEX.md) — 2×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
 - `Python script` — [`real_research/reviews/mi_alpha2_migration_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_alpha2_migration_2026.py) — 2×
 - `Python script` — [`real_research/reviews/mi_dr4_readiness_audit_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_dr4_readiness_audit_2026.py) — 2×
 - `Other` — [`real_research/reviews/toe_law/agentH3_gauntlet.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentH3_gauntlet.out) — 2×

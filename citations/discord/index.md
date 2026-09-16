@@ -713,7 +713,6 @@
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/mlops/research/dspy/references/optimizers.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/mlops/research/dspy/references/optimizers.md) — 2×
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/mlops/research/dspy/references/examples.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/mlops/research/dspy/references/examples.md) — 2×
 - `Other` — [`deepseek_push/G114_data/figgs_ov/abegum.fig2.ps`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/figgs_ov/abegum.fig2.ps) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Markdown/notes` — [`STANDING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/STANDING.md) — 1×
 - `Markdown/notes` — [`ai_slop/LegomenaLLM/MACBOOK_TRAINING_GUIDE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/LegomenaLLM/MACBOOK_TRAINING_GUIDE.md) — 1×
 - `Markdown/notes` — [`hunt_2026/SUPPORT_BRIEF_FOR_ASTRA_2026-09-04_ADDENDUM.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/SUPPORT_BRIEF_FOR_ASTRA_2026-09-04_ADDENDUM.md) — 1×

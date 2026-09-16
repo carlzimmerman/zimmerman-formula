@@ -5,17 +5,9 @@
 **Other (12 files):**
 
 - [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.sty) — 1×
-- [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/colm2025/natbib.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/colm2025/natbib.sty) — 1×
-- [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/natbib.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/natbib.sty) — 1×
 - [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.sty) — 1×
-- [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/colm2025/natbib.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/colm2025/natbib.sty) — 1×
-- [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/natbib.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/natbib.sty) — 1×
 - [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.sty) — 1×
-- [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/colm2025/natbib.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/colm2025/natbib.sty) — 1×
-- [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/natbib.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/natbib.sty) — 1×
 - [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/aaai2026/aaai2026.sty) — 1×
-- [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/colm2025/natbib.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/colm2025/natbib.sty) — 1×
-- [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/natbib.sty`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/templates/iclr2026/natbib.sty) — 1×
 
 **Paper (2 files):**
 

@@ -6,7 +6,6 @@
 
 - `Other` — [`ai_slop/daemon_outputs/overnight_run.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/daemon_outputs/overnight_run.log) — 13×
 - `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/7MBO.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/7MBO.pdb) — 5×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 3×
 - `Markdown/notes` — [`gext_vectors_2026/data/raw/chae21_fulltext.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_fulltext.txt) — 2×
 - `HTML` — [`gext_vectors_2026/data/raw/chae21_ar5iv.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_ar5iv.html) — 2×
 - `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pcsk9_cholesterol_z2/msas/fold_pcsk9_cholesterol_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pcsk9_cholesterol_z2/msas/fold_pcsk9_cholesterol_z2_paired_msa_chains_a.a3m) — 2×

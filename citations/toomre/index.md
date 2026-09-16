@@ -4,7 +4,6 @@
 
 **Files (GitHub links):**
 
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
 - `Python script` — [`nbody_2026/stage60_btfr_discriminator_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage60_btfr_discriminator_2026.py) — 1×
 - `Python script` — [`nbody_2026/stage60_ev_btfr_lane_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage60_ev_btfr_lane_2026.py) — 1×
 - `Markdown/notes` — [`hy4_push/H050_200_MORE_DOORS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hy4_push/H050_200_MORE_DOORS.md) — 1×

@@ -14,7 +14,6 @@
 - `Markdown/notes` — [`real_research/reviews/toe_law/agentF_nonpert_detector.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentF_nonpert_detector.md) — 2×
 - `Markdown/notes` — [`real_research/MODIFIED_INERTIA_the_natural_home.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/MODIFIED_INERTIA_the_natural_home.md) — 2×
 - `Markdown/notes` — [`real_research/FOUNDATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/FOUNDATIONS.md) — 2×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Markdown/notes` — [`book/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE.md) — 1×
 - `Markdown/notes` — [`book_2e/13_what_is_inertia_really.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book_2e/13_what_is_inertia_really.md) — 1×
 - `Markdown/notes` — [`book/audiobook/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE_AUDIOBOOK.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE_AUDIOBOOK.txt) — 1×

@@ -701,7 +701,6 @@
 - `Other` — [`qwen38_push/Q001_sound_speed_identity.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen38_push/Q001_sound_speed_identity.out) — 1×
 - `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/MESSAGE_TO_ASTRA_2026-09-05_STRIP_PATHS_CONTINUE_G03.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/MESSAGE_TO_ASTRA_2026-09-05_STRIP_PATHS_CONTINUE_G03.md) — 1×
 - `Data/config` — [`opus_48_extended_research/papers/MI_STRUCTURAL_THEOREMS.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/MI_STRUCTURAL_THEOREMS.zenodo.json) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Lean proof` — [`qwen38_push/lean/Q007_triad_half.lean`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen38_push/lean/Q007_triad_half.lean) — 1×
 - `Python script` — [`fable_independent_2026/L231_the_curve.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L231_the_curve.py) — 1×
 - `Python script` — [`prep_2026/a0z_crossscale/model_comparison_a0z.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/model_comparison_a0z.py) — 1×

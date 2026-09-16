@@ -612,7 +612,6 @@
 - `Python script` — [`real_research/reviews/member_sigma_efe_pilot_run.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/member_sigma_efe_pilot_run.py) — 2×
 - `Python script` — [`qwen_claude_field_theory/gates_2026/gate4_invariant_hierarchy_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/gate4_invariant_hierarchy_2026.py) — 2×
 - `Data/config` — [`qwen_claude_field_theory/gates_2026/gate4_result.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/gate4_result.json) — 2×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
 - `Python script` — [`real_research/reviews/mi_drift_magnitude_audit_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_drift_magnitude_audit_2026.py) — 2×
 - `Python script` — [`real_research/reviews/pt_gates/pu_g3_constraint_chain.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/pt_gates/pu_g3_constraint_chain.py) — 2×
 - `Python script` — [`real_research/reviews/mi_bh_unravel_desitter_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_bh_unravel_desitter_2026.py) — 2×

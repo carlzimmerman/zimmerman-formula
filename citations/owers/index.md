@@ -222,7 +222,6 @@
 - `Markdown/notes` — [`ai_slop/non-peer-review/randall/Randall_Cross_Review.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/randall/Randall_Cross_Review.md) — 2×
 - `Markdown/notes` — [`real_research/reviews/toe_law/agentMM_routeA.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentMM_routeA.md) — 2×
 - `Markdown/notes` — [`real_research/reviews/toe_law/agentPP_verify_peakedness.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentPP_verify_peakedness.md) — 2×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
 - `Markdown/notes` — [`ai_slop/curiosities_and_culture/ancient_cultures/HUMANITYS_GEOMETRIC_INTUITION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/ancient_cultures/HUMANITYS_GEOMETRIC_INTUITION.md) — 2×
 - `HTML` — [`ai_slop/curiosities_and_culture/ancient_cultures/HUMANITYS_GEOMETRIC_INTUITION.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/ancient_cultures/HUMANITYS_GEOMETRIC_INTUITION.html) — 2×
 - `Python script` — [`ai_slop/OlympusFlow/flows/hermes/mcp_server.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/OlympusFlow/flows/hermes/mcp_server.py) — 2×

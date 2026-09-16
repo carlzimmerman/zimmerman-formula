@@ -1597,7 +1597,6 @@
 - `Markdown/notes` — [`ai_slop/curiosities_and_culture/THE_SIGN_ACE_OF_BASE_Z2_ANALYSIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/THE_SIGN_ACE_OF_BASE_Z2_ANALYSIS.md) — 1×
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/gateway/platforms/matrix.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/gateway/platforms/matrix.py) — 1×
 - `Python script` — [`ai_slop/curiosities_and_culture/ancient_cultures/telesterion/Z2_WEYLS_LAW_CONNECTION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/curiosities_and_culture/ancient_cultures/telesterion/Z2_WEYLS_LAW_CONNECTION.py) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Other` — [`real_research/reviews/toe_law/agentWW_modular_DL.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentWW_modular_DL.out) — 1×
 - `Markdown/notes` — [`qwen_claude_field_theory/LEDGER.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/LEDGER.md) — 1×
 - `Markdown/notes` — [`qwen_claude_field_theory/IDEAS_401_500.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/IDEAS_401_500.md) — 1×

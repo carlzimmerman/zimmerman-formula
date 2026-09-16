@@ -1067,7 +1067,6 @@
 - `Python script` — [`fable_independent_2026/L157_soundspeed_growth_realizability.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L157_soundspeed_growth_realizability.py) — 1×
 - `Python script` — [`fable_independent_2026/L258_closure_audit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L258_closure_audit.py) — 1×
 - `Python script` — [`fable_independent_2026/L145_cmb_third_peak_floor.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L145_cmb_third_peak_floor.py) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Python script` — [`book/figures/ch11_density_scaling_eos.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/figures/ch11_density_scaling_eos.py) — 1×
 - `Other` — [`fable_independent_2026/L61_permitted_branches.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L61_permitted_branches.out) — 1×
 - `Python script` — [`fable_independent_2026/L17_elliptic_nonlocal.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L17_elliptic_nonlocal.py) — 1×

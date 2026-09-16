@@ -12,7 +12,6 @@
 - `Markdown/notes` — [`book/18_the_two_great_regularities_rar_and_baryo.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/18_the_two_great_regularities_rar_and_baryo.md) — 1×
 - `HTML` — [`gext_vectors_2026/data/raw/chae21_ar5iv.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_ar5iv.html) — 1×
 - `Markdown/notes` — [`gext_vectors_2026/data/raw/chae21_fulltext.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_fulltext.txt) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Markdown/notes` — [`book/audiobook/18_narration.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/18_narration.txt) — 1×
 - `Markdown/notes` — [`book/audiobook/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE_AUDIOBOOK.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/audiobook/A_BEAUTIFULLY_GEOMETRIC_UNIVERSE_AUDIOBOOK.txt) — 1×
 - `Markdown/notes` — [`CITATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/CITATIONS.md) — 1×

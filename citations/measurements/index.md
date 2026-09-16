@@ -211,7 +211,6 @@
 - `Python script` — [`real_research/reviews/mi_omegac_edges_closure_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_omegac_edges_closure_2026.py) — 3×
 - `Data/config` — [`ai_slop/HermesFlow/hermesflow_research_output/remove_pfas_forever_chemicals_from_wastewater/results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermesflow_research_output/remove_pfas_forever_chemicals_from_wastewater/results.json) — 3×
 - `Markdown/notes` — [`ai_slop/WHAT_WE_LEARNED.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/WHAT_WE_LEARNED.md) — 3×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 3×
 - `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/NATURE_article_full.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/NATURE_article_full.md) — 3×
 - `Markdown/notes` — [`qwen_claude_field_theory/IDEAS_401_500.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/IDEAS_401_500.md) — 3×
 - `Markdown/notes` — [`ai_slop/article_ideas_for_publishers/SCIENCE_article_full.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/article_ideas_for_publishers/SCIENCE_article_full.md) — 3×

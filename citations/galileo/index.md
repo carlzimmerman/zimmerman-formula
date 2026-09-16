@@ -45,7 +45,6 @@
 - `Markdown/notes` — [`fable_independent_2026/L70_BIMETRIC_BRANCH.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L70_BIMETRIC_BRANCH.md) — 3×
 - `Markdown/notes` — [`fable_independent_2026/L31_FOLIATION_NOGO.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L31_FOLIATION_NOGO.md) — 3×
 - `Markdown/notes` — [`real_research/GEMINI_IDEAS_11_20_REVIEW_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/GEMINI_IDEAS_11_20_REVIEW_2026-06.md) — 3×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 3×
 - `Data/config` — [`qwen_claude_field_theory/neda_flow/state/KNOWLEDGE_GRAPH.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/neda_flow/state/KNOWLEDGE_GRAPH.json) — 3×
 - `Paper` — [`qwen_claude_field_theory/papers_2026/PAPER9_foliation_theorem_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER9_foliation_theorem_2026.tex) — 3×
 - `Markdown/notes` — [`citations/king/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/king/index.md) — 2×

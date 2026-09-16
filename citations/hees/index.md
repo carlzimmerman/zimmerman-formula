@@ -10,7 +10,6 @@
 
 - [`citations/formula/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/formula/index.md) — 2×
 - [`citations/paper/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/paper/index.md) — 2×
-- [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 
 **Other (1 files):**
 

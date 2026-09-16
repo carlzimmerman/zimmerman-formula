@@ -5271,7 +5271,6 @@
 - `Lean proof` — [`glm53_push/lean/G047_efe_cap.lean`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/lean/G047_efe_cap.lean) — 1×
 - `Lean proof` — [`glm53_push/lean/G007_bimetric.lean`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/lean/G007_bimetric.lean) — 1×
 - `Other` — [`glm53_push/G046_run.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G046_run.log) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Python script` — [`qwen_claude_field_theory/closure_2026/fried_chicken_final/fc_isotropic_legendre/fc_iso_construct.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/fried_chicken_final/fc_isotropic_legendre/fc_iso_construct.py) — 1×
 - `Markdown/notes` — [`qwen_claude_field_theory/closure_2026/fried_chicken_final/fc_isotropic_legendre/FC_ISO_REPORT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/fried_chicken_final/fc_isotropic_legendre/FC_ISO_REPORT.md) — 1×
 - `Python script` — [`qwen_claude_field_theory/closure_2026/fried_chicken_final/fc_final_4ac/fc4ac_alpha_ppn.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/fried_chicken_final/fc_final_4ac/fc4ac_alpha_ppn.py) — 1×

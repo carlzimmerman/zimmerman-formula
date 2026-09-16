@@ -1436,7 +1436,6 @@
 - `Python script` — [`real_research/reviews/project_maxforce_minaccel.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project_maxforce_minaccel.py) — 7×
 - `Python script` — [`real_research/reviews/mi_shift_charge_ic_route_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_shift_charge_ic_route_2026.py) — 7×
 - `Python script` — [`real_research/reviews/project_heatkernel_longshot.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project_heatkernel_longshot.py) — 7×
-- `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/2dhb.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/2dhb.pdb) — 7×
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/4lyz.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/4lyz.pdb) — 7×
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/8zst.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/8zst.pdb) — 7×
 - `Markdown/notes` — [`ai_slop/core_theory/THEORETICAL_FOUNDATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/core_theory/THEORETICAL_FOUNDATIONS.md) — 7×
@@ -1482,7 +1481,6 @@
 - `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/4O8H.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/4O8H.pdb) — 7×
 - `Other` — [`ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/1lyz.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/1lyz.pdb) — 7×
 - `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/3ZUC.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/3ZUC.pdb) — 7×
-- `Other` — [`ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/2dhb.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/2dhb.pdb) — 7×
 - `Other` — [`ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/1utg.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/1utg.pdb) — 7×
 - `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/4HHB.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/4HHB.pdb) — 7×
 - `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data_scaleup/6UF7.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data_scaleup/6UF7.pdb) — 7×
@@ -4524,7 +4522,6 @@
 - `Markdown/notes` — [`fable_independent_2026/L49_MINIMUM_ADDITION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L49_MINIMUM_ADDITION.md) — 3×
 - `Python script` — [`fable_independent_2026/L49_minimum_addition.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L49_minimum_addition.py) — 3×
 - `Other` — [`fable_independent_2026/L49_minimum_addition.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L49_minimum_addition.out) — 3×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 3×
 - `Markdown/notes` — [`fable_independent_2026/L53_SATURATED_CORES.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L53_SATURATED_CORES.md) — 3×
 - `Python script` — [`fable_independent_2026/L84_stiff_bbn_bound.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L84_stiff_bbn_bound.py) — 3×
 - `Markdown/notes` — [`opus_48_extended_research/reviews/CLUSTER_CLOSURE_HUNT2_2026-06-20.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/CLUSTER_CLOSURE_HUNT2_2026-06-20.md) — 3×

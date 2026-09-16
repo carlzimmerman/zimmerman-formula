@@ -479,7 +479,6 @@
 - `Python script` — [`ai_slop/research/abacus_audit/q4_vertex_kinematics.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/abacus_audit/q4_vertex_kinematics.py) — 1×
 - `Python script` — [`real_research/reviews/mi_khronon_spin0_health_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_khronon_spin0_health_2026.py) — 1×
 - `Python script` — [`real_research/reviews/mi_btfr_intercept_kappa_door_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_btfr_intercept_kappa_door_2026.py) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Other` — [`qwen_claude_field_theory/gates_2026/gate2_dhf.log`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/gate2_dhf.log) — 1×
 - `Python script` — [`ai_slop/research/geometric_closure/UNIFIED_CLOSURE_STATUS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/UNIFIED_CLOSURE_STATUS.py) — 1×
 - `Other` — [`ai_slop/extended_research/environmental/project_aitheria/LICENSE`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/environmental/project_aitheria/LICENSE) — 1×

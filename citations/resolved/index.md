@@ -1485,7 +1485,6 @@
 - `Data/config` — [`opus_48_extended_research/papers/MI_STRUCTURAL_THEOREMS.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/MI_STRUCTURAL_THEOREMS.zenodo.json) — 1×
 - `Python script` — [`prep_2026/a0z_crossscale/a0z_prediction_band_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/a0z_prediction_band_2026.py) — 1×
 - `Python script` — [`qwen_claude_field_theory/closure_2026/route2_mechC_constrained_vector_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/route2_mechC_constrained_vector_2026.py) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Python script` — [`prep_2026/a0z_crossscale/bigwheel_update.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/bigwheel_update.py) — 1×
 - `Python script` — [`prep_2026/a0z_crossscale/jeanneau_perobject_horizon_fork_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/jeanneau_perobject_horizon_fork_2026.py) — 1×
 - `Python script` — [`opus_48_extended_research/reviews/door_runs/doorA_REAL_coefficients_VERIFY.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/door_runs/doorA_REAL_coefficients_VERIFY.py) — 1×

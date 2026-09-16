@@ -8,7 +8,6 @@
 - `Other` — [`deepseek_push/G114_data/leisman/d6.bbl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/leisman/d6.bbl) — 4×
 - `HTML` — [`gext_vectors_2026/data/raw/chae21_ar5iv.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_ar5iv.html) — 2×
 - `Markdown/notes` — [`gext_vectors_2026/data/raw/chae21_fulltext.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_fulltext.txt) — 2×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
 - `Python script` — [`hunt_2026/k01_bosma_factor.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k01_bosma_factor.py) — 1×
 - `Python script` — [`hunt_2026/k_unexplained-regularities_hisize.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_unexplained-regularities_hisize.py) — 1×
 - `Python script` — [`hunt_2026/k_unexplained-regularities_bosma.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_unexplained-regularities_bosma.py) — 1×

@@ -1881,7 +1881,6 @@
 - `Markdown/notes` — [`qwen_38_experiment/seeds/archive_20260914/refereed/ref_0069.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_38_experiment/seeds/archive_20260914/refereed/ref_0069.md) — 4×
 - `Other` — [`fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/external/HyRec2020/hydrogen.c`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/external/HyRec2020/hydrogen.c) — 4×
 - `Python script` — [`deepseek_push/Z11_horizon_form.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/Z11_horizon_form.py) — 4×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 4×
 - `Python script` — [`real_research/reviews/ppn_newtonian_lambda_diag_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/ppn_newtonian_lambda_diag_2026.py) — 4×
 - `Other` — [`ai_slop/extended_research/environmental/project_potimos/LICENSE`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/environmental/project_potimos/LICENSE) — 4×
 - `Python script` — [`real_research/reviews/period_ring_obstruction_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/period_ring_obstruction_2026.py) — 4×

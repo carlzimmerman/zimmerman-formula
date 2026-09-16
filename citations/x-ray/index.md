@@ -814,7 +814,6 @@
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/6n7e.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/6n7e.pdb) — 3×
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/1ejg.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/1ejg.pdb) — 3×
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/2o7a.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/2o7a.pdb) — 3×
-- `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/2dhb.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/2dhb.pdb) — 3×
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/2vwd.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/2vwd.pdb) — 3×
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/4lbs.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/4lbs.pdb) — 3×
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/1xpu.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/1xpu.pdb) — 3×
@@ -904,7 +903,6 @@
 - `Python script` — [`ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/high_res_pdb_audit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/high_res_pdb_audit.py) — 3×
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/1x8q.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/1x8q.pdb) — 3×
 - `Data/config` — [`gext_vectors_2026/data/raw/mcxc.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/mcxc.tsv) — 3×
-- `Other` — [`ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/2dhb.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/2dhb.pdb) — 3×
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/2ajf.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/2ajf.pdb) — 3×
 - `Other` — [`ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/1aj8.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/project_protogonos/computational_abiogenesis/1aj8.pdb) — 3×
 - `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/6tov.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/6tov.pdb) — 3×

@@ -470,7 +470,6 @@
 - `Python script` — [`real_research/reviews/koide_two_sqrt2.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/koide_two_sqrt2.py) — 2×
 - `Python script` — [`real_research/reviews/project_the_wall.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project_the_wall.py) — 2×
 - `Python script` — [`real_research/reviews/project_red_team_z2.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project_red_team_z2.py) — 2×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
 - `Python script` — [`real_research/reviews/dm_scale.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/dm_scale.py) — 2×
 - `Python script` — [`real_research/reviews/koide_transition_map.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/koide_transition_map.py) — 2×
 - `Other` — [`real_research/reviews/mi_theorem8_redone_alpha2_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_theorem8_redone_alpha2_2026.out) — 2×

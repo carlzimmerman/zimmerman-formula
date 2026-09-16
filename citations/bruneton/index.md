@@ -12,7 +12,6 @@
 - `Python script` — [`hunt_2026/eft01_positivity_causality_mu_family_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/eft01_positivity_causality_mu_family_2026.py) — 3×
 - `Python script` — [`fable_independent_2026/L33_scalar_cone.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L33_scalar_cone.py) — 2×
 - `Python script` — [`real_research/reviews/mi_PX_field_sector_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_PX_field_sector_2026.py) — 2×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
 - `Paper` — [`qwen_claude_field_theory/papers_2026/PAPER28_photocount_and_clock_nogo_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER28_photocount_and_clock_nogo_2026.tex) — 2×
 - `Python script` — [`fable_independent_2026/L26_sigma_above_one.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L26_sigma_above_one.py) — 1×
 - `Other` — [`fable_independent_2026/L26_sigma_above_one.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L26_sigma_above_one.out) — 1×

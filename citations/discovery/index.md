@@ -369,7 +369,6 @@
 - `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/autonomous-ai-agents/claude-code/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/autonomous-ai-agents/claude-code/SKILL.md) — 3×
 - `Markdown/notes` — [`ai_slop/ARCHITECTURE_ASSESSMENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/ARCHITECTURE_ASSESSMENT.md) — 3×
 - `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/mcp/native-mcp/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/mcp/native-mcp/SKILL.md) — 3×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 3×
 - `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/CONTRIBUTING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/CONTRIBUTING.md) — 3×
 - `Markdown/notes` — [`ai_slop/SYSTEM_GUIDE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/SYSTEM_GUIDE.md) — 3×
 - `Markdown/notes` — [`ai_slop/SCIENTIFIC_METHOD_REVIEW.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/SCIENTIFIC_METHOD_REVIEW.md) — 3×
@@ -387,7 +386,6 @@
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/mcp/native-mcp/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/mcp/native-mcp/SKILL.md) — 3×
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/tools/test_docker_find.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/tools/test_docker_find.py) — 3×
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/test_tui_gateway_server.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/test_tui_gateway_server.py) — 3×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 3×
 - `Markdown/notes` — [`real_research/COMPLETE_ASSESSMENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/COMPLETE_ASSESSMENT.md) — 3×
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/CONTRIBUTING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/CONTRIBUTING.md) — 3×
 - `Python script` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/agent/google_code_assist.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/agent/google_code_assist.py) — 3×
@@ -409,7 +407,6 @@
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/tests/hermes_cli/test_setup_irc.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/tests/hermes_cli/test_setup_irc.py) — 3×
 - `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/mcp/native-mcp/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/mcp/native-mcp/SKILL.md) — 3×
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/tests/hermes_cli/test_plugins.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/tests/hermes_cli/test_plugins.py) — 3×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 3×
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/optional-skills/research/domain-intel/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/optional-skills/research/domain-intel/SKILL.md) — 3×
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/optional-skills/research/drug-discovery/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/optional-skills/research/drug-discovery/SKILL.md) — 3×
 - `Python script` — [`ai_slop/HermesFlow/hermes_agent/tests/tools/test_docker_find.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/tests/tools/test_docker_find.py) — 3×
@@ -433,7 +430,6 @@
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/mcp/native-mcp/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/mcp/native-mcp/SKILL.md) — 3×
 - `Python script` — [`ai_slop/TruthFlow/hermes_agent/tests/agent/test_bedrock_adapter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/tests/agent/test_bedrock_adapter.py) — 3×
 - `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/CONTRIBUTING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/CONTRIBUTING.md) — 3×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 3×
 - `Data/config` — [`project_atomos/PAPER_ATOMOS_NULL.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/project_atomos/PAPER_ATOMOS_NULL.zenodo.json) — 2×
 - `Markdown/notes` — [`opus_48_extended_research/papers/MONKEY_COMPRESSION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/MONKEY_COMPRESSION.md) — 2×
 - `Markdown/notes` — [`opus_48_extended_research/papers/WHY_SKORDIS_AND_ZLOSNIK_WERE_RIGHT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/WHY_SKORDIS_AND_ZLOSNIK_WERE_RIGHT.md) — 2×

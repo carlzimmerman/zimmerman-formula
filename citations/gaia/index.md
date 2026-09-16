@@ -106,7 +106,6 @@
 - `Markdown/notes` — [`opus_48_extended_research/reviews/TELESCOPES_TESTABLE_NOW_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/TELESCOPES_TESTABLE_NOW_2026-06-15.md) — 7×
 - `Python script` — [`hunt_2026/h76_h13_h36_h63.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h76_h13_h36_h63.py) — 7×
 - `Python script` — [`opus_48_extended_research/reviews/front_gaia/widebinary_MI_EFE_DR4_front_2026-06-20.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/front_gaia/widebinary_MI_EFE_DR4_front_2026-06-20.py) — 7×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 7×
 - `Markdown/notes` — [`prep_2026/sigma_spread/OBSERVABLE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sigma_spread/OBSERVABLE.md) — 7×
 - `Markdown/notes` — [`prep_2026/sigma_spread/POWER.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sigma_spread/POWER.md) — 7×
 - `Python script` — [`ai_slop/research/offensive_campaign/extract_more_binaries.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/extract_more_binaries.py) — 7×

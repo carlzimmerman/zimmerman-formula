@@ -575,7 +575,6 @@
 - `Python script` — [`ai_slop/research/geometric_closure/quark_ckm_physics.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/quark_ckm_physics.py) — 2×
 - `Python script` — [`real_research/reviews/framework_vs_siv.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/framework_vs_siv.py) — 2×
 - `Python script` — [`ai_slop/research/geometric_closure/NEUTRINO_FORMULAS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/NEUTRINO_FORMULAS.py) — 2×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
 - `Python script` — [`real_research/reviews/ppn_alpha_independent_check_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/ppn_alpha_independent_check_2026.py) — 2×
 - `Python script` — [`ai_slop/research/geometric_closure/COSMOLOGICAL_CONSTANT_DERIVATION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/COSMOLOGICAL_CONSTANT_DERIVATION.py) — 2×
 - `Python script` — [`ai_slop/extended_research/environmental/project_nephele/simulations/omega_z_calculator.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/environmental/project_nephele/simulations/omega_z_calculator.py) — 2×

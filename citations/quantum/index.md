@@ -964,7 +964,6 @@
 - `Python script` — [`project_atomos/engine/alphabet.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/project_atomos/engine/alphabet.py) — 1×
 - `Paper` — [`opus_48_extended_research/papers/theory_comparison_card.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/theory_comparison_card.tex) — 1×
 - `Markdown/notes` — [`opus_48_extended_research/papers/CLUSTER_RESIDUAL_DENSITY_NOGO.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/CLUSTER_RESIDUAL_DENSITY_NOGO.md) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Markdown/notes` — [`opus_48_extended_research/papers/MG_ARM_FIELD_THEORY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/MG_ARM_FIELD_THEORY.md) — 1×
 - `Python script` — [`opus_48_extended_research/reviews/route3_horava_nonprojectable_IR.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/route3_horava_nonprojectable_IR.py) — 1×
 - `Markdown/notes` — [`real_research/MODULAR_WEIGHT_OMEGA_TEST_2026-06-25.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/MODULAR_WEIGHT_OMEGA_TEST_2026-06-25.md) — 1×

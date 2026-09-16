@@ -4228,7 +4228,6 @@
 - `Python script` — [`real_research/predictions/ground_highz_btfr_realdata.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/predictions/ground_highz_btfr_realdata.py) — 1×
 - `Python script` — [`qwen_claude_field_theory/gates_2026/gate6_exact_nuisance_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/gate6_exact_nuisance_2026.py) — 1×
 - `Python script` — [`qwen_claude_field_theory/gates_2026/gate0_dhf_reproduction_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/gate0_dhf_reproduction_2026.py) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Python script` — [`real_research/reviews/vein3_a0z_fresh_observables.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/vein3_a0z_fresh_observables.py) — 1×
 - `Python script` — [`real_research/reviews/project_the_wall_2026_relitigation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project_the_wall_2026_relitigation.py) — 1×
 - `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/DHF2024_KEY_EQUATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/DHF2024_KEY_EQUATIONS.md) — 1×

@@ -117,10 +117,6 @@
 - `Paper` — [`real_research/papers/MI_SIGMA_SPREAD_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_SIGMA_SPREAD_2026.tex) — 23×
 - `Markdown/notes` — [`book_2e/05_two_roads_from_the_fork_a_particle_or_a_.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book_2e/05_two_roads_from_the_fork_a_particle_or_a_.md) — 22×
 - `Markdown/notes` — [`book/05_two_roads_from_the_fork_a_particle_or_a_.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/05_two_roads_from_the_fork_a_particle_or_a_.md) — 22×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 22×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 22×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 22×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/research/research-paper-writing/SKILL.md) — 22×
 - `Paper` — [`ai_slop/papers/latex_series/05_particle_physics_z2_framework.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/latex_series/05_particle_physics_z2_framework.tex) — 21×
 - `Other` — [`deepseek_push/G114_data/oh2015/aastex.cls`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/oh2015/aastex.cls) — 21×
 - `Paper` — [`real_research/papers/zimmerman_toe_map_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/zimmerman_toe_map_2026.tex) — 21×
@@ -1229,7 +1225,6 @@
 - `Markdown/notes` — [`opus_48_extended_research/papers/COVARIANT_MI_FIELD_THEORY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/COVARIANT_MI_FIELD_THEORY.md) — 2×
 - `Other` — [`fable_independent_2026/L12_constraint_first.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L12_constraint_first.out) — 2×
 - `Python script` — [`prep_2026/mi_fingerprint/ring_by_ring.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_fingerprint/ring_by_ring.py) — 2×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
 - `Other` — [`qwen38_push/Q002_omega_lambda_selector.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen38_push/Q002_omega_lambda_selector.out) — 2×
 - `Python script` — [`prep_2026/a0z_crossscale/jeanneau_perobject_horizon_fork_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/jeanneau_perobject_horizon_fork_2026.py) — 2×
 - `Python script` — [`fable_independent_2026/L231_the_curve.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L231_the_curve.py) — 2×

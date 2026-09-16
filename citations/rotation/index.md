@@ -391,7 +391,6 @@
 - `Python script` — [`hy4_push/H038_dark_matter_density_profile.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hy4_push/H038_dark_matter_density_profile.py) — 5×
 - `Python script` — [`hy4_push/H029_circularity_audit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hy4_push/H029_circularity_audit.py) — 5×
 - `Other` — [`prep_2026/mi_fingerprint/rb3_eccentric_offset.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_fingerprint/rb3_eccentric_offset.out) — 5×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 5×
 - `Markdown/notes` — [`book/12_cdm_and_its_patches_the_honest_ledger_of.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/book/12_cdm_and_its_patches_the_honest_ledger_of.md) — 5×
 - `Python script` — [`prep_2026/sne_lambda/sne_extract.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sne_lambda/sne_extract.py) — 5×
 - `Markdown/notes` — [`prep_2026/sne_lambda/SNE_EXTRACT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sne_lambda/SNE_EXTRACT.md) — 5×

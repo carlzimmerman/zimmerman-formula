@@ -1450,7 +1450,6 @@
 - `Python script` — [`qwen_claude_field_theory/gates_2026/gate6b_penalty_representation_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/gate6b_penalty_representation_2026.py) — 1×
 - `Python script` — [`real_research/reviews/mi_propagator_2026/K_formfactor_poles.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_propagator_2026/K_formfactor_poles.py) — 1×
 - `Python script` — [`real_research/reviews/mi_propagator_2026/dispersion_setup.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_propagator_2026/dispersion_setup.py) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Python script` — [`real_research/reviews/project_derivation_front.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project_derivation_front.py) — 1×
 - `Markdown/notes` — [`real_research/reviews/OPEN_PROBLEM_yphi32_KQ.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/OPEN_PROBLEM_yphi32_KQ.md) — 1×
 - `Python script` — [`real_research/reviews/curl_sector_cluster_pricing_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/curl_sector_cluster_pricing_2026.py) — 1×

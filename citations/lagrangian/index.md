@@ -493,7 +493,6 @@
 - `Python script` — [`real_research/reviews/ppn_newtonian_screened_eft_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/ppn_newtonian_screened_eft_2026.py) — 2×
 - `Python script` — [`real_research/reviews/ppn_verify_transcription_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/ppn_verify_transcription_2026.py) — 2×
 - `Python script` — [`real_research/reviews/mi_offcircular_action_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_offcircular_action_2026.py) — 2×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 2×
 - `Python script` — [`qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/symbolic_action_audit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/exact_exponential_aqual_efe_kepler_2026/symbolic_action_audit.py) — 2×
 - `Python script` — [`real_research/reviews/strained_horizon_O_eps3.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/strained_horizon_O_eps3.py) — 2×
 - `Markdown/notes` — [`real_research/reviews/verlinde_foundation_stress_test.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/verlinde_foundation_stress_test.md) — 2×

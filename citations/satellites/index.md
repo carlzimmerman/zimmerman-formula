@@ -149,7 +149,6 @@
 - `Python script` — [`opus_48_extended_research/reviews/collective_efe/route3_longrange_horizon.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/collective_efe/route3_longrange_horizon.py) — 1×
 - `Python script` — [`prep_2026/mi_fingerprint/rb3_eccentric_offset.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_fingerprint/rb3_eccentric_offset.py) — 1×
 - `Other` — [`prep_2026/mi_fingerprint/rb3_eccentric_offset.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_fingerprint/rb3_eccentric_offset.out) — 1×
-- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 - `Python script` — [`fable_independent_2026/L96_no_halo_dynamical_friction.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L96_no_halo_dynamical_friction.py) — 1×
 - `Python script` — [`fable_independent_2026/L250_void_evacuation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L250_void_evacuation.py) — 1×
 - `Markdown/notes` — [`opus_48_extended_research/reviews/LCDM_TENSIONS_REGRADE_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/LCDM_TENSIONS_REGRADE_2026-06-14.md) — 1×

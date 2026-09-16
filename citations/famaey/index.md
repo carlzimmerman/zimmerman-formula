@@ -157,7 +157,6 @@
 - [`citations/xrism/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/xrism/index.md) — 2×
 - [`citations/yin/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/yin/index.md) — 2×
 - [`citations/zen/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/zen/index.md) — 2×
-- [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
 
 ---
 *Living citation page for Benoît Famaey · index: [CITATIONS.md](../CITATIONS.md) · append-only.*
