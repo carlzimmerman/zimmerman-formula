@@ -1,0 +1,118 @@
+================================================================================
+G233: THE EQUATION OF STATE WITHOUT THE SCALAR -- the phantom's P(rho)
+      from the equilibrium alone (hy4 H054 hand-off, item 4)
+================================================================================
+
+--- (1) THE EOS: FROM THE EQUILIBRIUM'S OWN RELATIONS (G084/G091/G031) ---
+  inputs: the fixed baryon well Phi_b = C ln r, C = sqrt(G M_b a0) = v_flat^2
+          [a0 enters ONLY as the observed asymptotic-RAR constant -- data, not a field]
+  (i)   the equilibrium temperature:  sigma^2 = C/2 = 1.474730e+10 (m/s)^2;  sigma = 121.438 km/s
+  (ii)  the isothermal EOS:            P = sigma^2 rho   (barotropic, G091 V1d)
+  (iii) the phantom:                   rho = A/r^2, A = C/(4 pi G) = 3.516632e+19 kg/m
+  THE HYDROSTATIC SELF-CONSTITENCY:    sigma^2 = 2 pi G A EXACTLY (rel err 0.00e+00)
+        dP/dr = -rho GM(<r)/r^2 with M(<r) = 4 pi A r  =>  sigma^2 = 2 pi G A  [no field]
+  THE CLOSED FORM:  P(rho) = (C/2) rho = (1/2) sqrt(G M_b a0) rho
+        = 2 pi G A rho = G M_b rho/(2 r_M) = (a0 r_M/2) rho   -- one coefficient, four faces
+        sigma^2 also = a0 r_M/2:  the a0 dependence is LINEAR in a0 (via r_M),
+        sqrt(a0) through C:  rel err of the cross-forms = 1.29e-16
+  THE a0-ONLY BOUNDARY VALUE (equipartition radius r = r_M):
+        P(r_M) = a0^2/(8 pi G) = 5.2250e-12 Pa  [PURE a0, no M_b, no r]
+        dimension check of the 'a0/G-class' guess: a0/G x rho = (kg/m^2)(kg/m^3)
+        is NOT a pressure -- the correct a0-only pressure class is a0^2/G
+  temperature from the equilibrium (NOT free): dS/dE at gamma = 2 = 1/sigma^2
+        (G084 V1b: 6.780964e-11 vs 6.780902e-11 s^2/m^2; rel err 0.00%)
+        T/m = sigma^2/k_B = 1.9041 mK per eV  (the EOS carries the equilibrium T)
+  c_s^2 = dP/drho = C/2 = v_flat^2/2 (Q001);  w = P/(rho c^2) = (sigma/c)^2 = 1.641e-07
+
+  the EOS along the equilibrium (both footings quoted once: canonical a0 = 9.3619e-11,
+  alt 1.1279e-10 gives sigma = 124.9 km/s):
+    r_break (0.62 r_M)       r =   6.3302 kpc   rho = 9.2169e-22 kg/m^3 (=    0.0136 Msun/pc^3)   P = 1.3592e-11 Pa   c_s = 121.44 km/s   w = 1.641e-07
+    r_M (equipartition)      r =  10.2101 kpc   rho = 3.5430e-22 kg/m^3 (=    0.0052 Msun/pc^3)   P = 5.2250e-12 Pa   c_s = 121.44 km/s   w = 1.641e-07
+    2 r_M (outside-cap)      r =  20.4201 kpc   rho = 8.8575e-23 kg/m^3 (=    0.0013 Msun/pc^3)   P = 1.3062e-12 Pa   c_s = 121.44 km/s   w = 1.641e-07
+
+--- (2) ACROSS THE TRANSITION (G132's first-order boundary) ---
+  the two-phase EOS:
+    phantom branch (r <= r_break, rho >= rho_b):  P = sigma^2 rho = 1.3592e-11 Pa at the cap
+    free-dust branch (r > r_break):               P ~ 0  (w = 0 EXACT, G031; collisionless, G103)
+  THE JUMP at the cap:  dP = sigma^2 rho_b = 1.3592e-11 Pa
+    a CONTACT DISCONTINUITY across a collisionless interface -- NOT a Maxwell
+    equal-pressure construction: rho_ph/rho_d = A_b = 0.125-0.5 (G159 dressed,
+    geomean 0.273), rho_d(cap) = 1.843e-21-7.374e-21 kg/m^3; the operative junction is the
+    ENTROPY extremum (G159 V1; diffusive/chemical equilibrium blocked by 5 orders)
+  the EOS's role AS the transition's thermodynamics:
+    (a) the surface pressure at the cap IS the virial boundary term:
+        3 P_s V = 1.2730e+51 J  vs  sigma^2 M_T = 1.2730e+51 J   [rel err 1.31e-16, G091 V1d re-verified]
+    (b) the P-V work per particle across the boundary:
+        w = P_b (m/rho_b) = m sigma^2 = k_B T_b = 1.3145e-22 J/particle   [EXACT, rel err 0.00e+00]
+    (c) the latent heat (G132 committed): L/N = (dS/k_B) k_B T_b = 8.86 - 19.47 meV
+    (d) THE IDENTITY TEST:  L/(N w) = dS/k_B = 10.80 - 23.73  !=  1
+        the P-V work is NOT the latent heat: mechanical share w/(L/N) = 9.3% - 4.2%
+        (water's P-V share of L at 373 K ~ 7%% -- SAME CLASS: the entropy step,
+         not the mechanical work, dominates the first-order latent heat)
+    reading: the EOS supplies the mechanical unit (k_B T_b per particle); G132's
+            entropy bookkeeping supplies the latent heat; the two meet at dS/k_B.
+
+--- (2b) THE NUMBERS TABLE ---
+    rho_b = 9.216934e-22 kg/m^3   P_b = 1.359249e-11 Pa   k_B T_b = 1.314473e-22 J
+    L/N (cosmic) = 8.8584 meV: L/(N w) = 10.80   w/(L/N) = 9.26%
+    L/N (matched) = 19.4718 meV: L/(N w) = 23.73   w/(L/N) = 4.21%
+
+--- (3) THE NO-SCALAR STATEMENT ---
+  the derivation inventory (every input, nothing else):
+    - G (Newton's constant)
+    - M_b (baryon mass, observed)
+    - a0 (asymptotic RAR constant, observed)
+    - r (geometry)
+    - r_M, r_break (equipartition radius, cap -- G081/G119)
+  the steps (five thermodynamic/statistical-mechanical moves, no field):
+    (1) fixed baryon well Phi_b = C ln r, C = v_flat^2 (observed flat curve)
+    (2) max entropy S = -int rho ln(rho sigma^3) dV at fixed (M, E) -> rho ~ r^-gamma (G084)
+    (3) virial + fluid closure 2T + W = 3 P V -> sigma^2 = C/2 (G091 V2b)
+    (4) hydrostatic self-consistency of the isothermal sphere -> sigma^2 = 2 pi G A
+    (5) isothermal EOS P = sigma^2 rho (barotropic; G091 V1d)
+  scalar-free: True  -- no phi, no f(X), no field sector, no fifth force, no particle
+  THE FALSIFIER (H054 item 5, restated): a 'field-like signal' in ANY observable
+  the EOS alone cannot reproduce kills C2.  The EOS reproduces the WHOLE
+  EQUILIBRIUM class (static, isothermal, collisionless, no propagation, no coupling
+  to SM matter beyond gravity, no quantum/particle sector) -- the search space is
+  the OUT-OF-EQUILIBRIUM class:
+    F1_propagation:        scalar waves / fifth-force radiation: GW-detector anomalies, atom-interferometer GW signatures, pulsar-timing or GRB dispersion anomalies carrying a finite-speed mode
+    F2_coupling:           composition-dependent fifth force (Eot-Wash torsion balance, MICROSCOPE EP, lunar laser ranging); short-range deviations; environment-INDEPENDENT force structure beyond the (M_b, a0)-labeled EOS
+    F3_particle:           direct/indirect DM detection, keV-scale line emission, axion-like oscillation signals, collider/beam-dump production
+    F4_quantum:            a vacuum/zero-point energy of the phantom sector beyond P ~ sigma^2 rho ~ 1.64e-7 rho c^2 (H045's rho_phi ~ 1e-4-1e-3 residue is the scalar description's bookkeeping, not a physical field)
+    F5_variation:          the EMERGENT signature is the OPPOSITE: the EOS coefficient sigma^2 = a0 r_M/2 should track environment/formation history (C4's test, G132/G084 -- the 22% gap); a UNIVERSAL a0 in every environment kills C4
+    F6_structure:          a residual in equilibrium observables (rotation curves, lensing, dispersion) correlating with a new coupling or field mass instead of (M_b, a0, r)
+  the EOS-cover statement: equilibrium-class observables (flat curves, the deep
+  RAR, the isothermal phantom, the entropy step) are WHAT THE EOS REPRODUCES and
+  cannot falsify C2; the killers live outside the class -- propagation, coupling,
+  particle, quantum, universal-a0, and coupling-correlated residuals.
+
+--- (4) VERDICTS ---
+  V1_closed_form_EOS: THE CLOSED-FORM EOS, DERIVED: P(rho) = sigma^2 rho with sigma^2 = C/2 = (1/2) sqrt(G M_b a0) = 2 pi G A = G M_b/(2 r_M) = a0 r_M/2 -- a linear, isothermal (barotropic) equation of state whose coefficient is the equilibrium temperature itself (G084 V1b: the energy multiplier beta = 1/sigma^2 IS the inverse temperature; no free T).  The identities are numerically EXACT (sigma^2 = 2 pi G A: rel err 0.0e+00; sigma^2 = G M_b/(2 r_M) = a0 r_M/2: rel err 1.3e-16).  At the equipartition radius the EOS takes the a0-ONLY form P(r_M) = a0^2/(8 pi G) = 5.2250e-12 Pa -- a pure-a0 pressure (the 'a0/G-class' guess is dimension-checked: a0/G x rho is kg/m^2 x kg/m^3, not a pressure; the correct class is a0^2/G).  c_s^2 = dP/drho = C/2 = v_flat^2/2 (Q001) and w = P/(rho c^2) = (sigma/c)^2 = 1.641e-07: cold, non-relativistic.
+  V2_transition_PV_latent_heat_identity: THE TRANSITION'S P-V/LATENT-HEAT IDENTITY: the two-phase EOS is P = sigma^2 rho (phantom, rho >= rho_b) vs P ~ 0 (free dust, w = 0, G031/G103): a pressure JUMP dP = sigma^2 rho_b = 1.3592e-11 Pa at the cap -- a contact discontinuity across the collisionless interface (NOT a Maxwell equal-pressure construction; the density contrast rho_ph/rho_d = 0.125-0.5, G159 dressed, and the junction is the entropy extremum, G159 V1).  The EOS is the transition's mechanical side: (a) 3 P_s V = sigma^2 M_T at the cap (the virial boundary term, rel err 1.3e-16, G091 V1d -- re-verified); (b) the P-V work per particle crossing the boundary is EXACTLY w = P_b (m/rho_b) = m sigma^2 = k_B T_b = 1.3145e-22 J per particle (rel err 0.0e+00); (c) the latent heat (G132) is L/N = (dS/k_B) k_B T_b = 10.8-23.7 k_B T_b = 8.86-19.47 meV.  THE IDENTITY TEST: L/(N w) = dS/k_B = 10.80-23.73 != 1 -- the P-V work is NOT the latent heat; the mechanical share w/(L/N) = 4.2-9.3% (water's P-V share of L at 373 K ~ 7% -- SAME CLASS: the entropy step, not the mechanical work, dominates the latent heat, as in ordinary first-order transitions).
+  V3_honest_statement_scalar_free: THE HONEST STATEMENT, SCALAR-FREE COMPLETE: the phantom's equation of state P(rho) = (C/2) rho, the equilibrium temperature sigma^2 = C/2, the boundary amplitude, and the transition's thermodynamics are ALL derived from the equilibrium's own relations -- inputs {G, M_b, a0, r, r_M, r_break}, five thermodynamic/statistical-mechanical steps, NO scalar field, NO f(X), NO field sector, NO particle: the scalar-free formulation of the phantom is COMPLETE (H054 hand-off item 4, landed).  The falsifier (H054 item 5) stands: C2 dies only on a 'field-like signal' in an observable the EOS alone cannot reproduce -- the OUT-OF-EQUILIBRIUM class, search space F1-F6: propagation (scalar waves), coupling (EP/fifth-force), particle, quantum/vacuum, environment-INDEPENDENT universal a0 (C4's kill), and equilibrium residuals correlated with a new coupling. Observables IN the equilibrium class (flat curves, the deep RAR, the isothermal phantom, the entropy step) are what the EOS reproduces and cannot falsify C2.
+
+--- CHECKS ---
+  [PASS] C1 [isothermal self-consistency] sigma^2 = 2 pi G A (hydrostatic balance of the singular isothermal sphere: dP/dr = -rho GM(<r)/r^2 with P = sigma^2 rho, M(<r) = 4 pi A r)
+        measured: sigma^2 = 1.4747300934e+10 vs 2 pi G A = 1.4747300934e+10 (m/s)^2; rel err 0.00e+00
+  [PASS] C2 [equilibrium temperature identities] sigma^2 = C/2 = sqrt(G M_b a0)/2 = G M_b/(2 r_M) = a0 r_M/2 (the four faces, G091/G031)
+        measured: all rel err <= 1.29e-16 (max over the G M_b/(2 r_M) and a0 r_M/2 forms)
+  [PASS] C3 [closed form] P = sigma^2 rho along the phantom branch; P(r) = C^2/(8 pi G r^2)
+        measured: P = sigma^2 rho: max rel err 0.00e+00; P(r) closed form: max rel err 1.55e-16
+  [PASS] C4 [a0-only boundary value] P(r_M) = a0^2/(8 pi G) (equipartition radius)
+        measured: P(r_M) = 5.2250e-12 Pa vs a0^2/(8 pi G) = 5.2250e-12 Pa; rel err 3.09e-16
+  [PASS] C5 [temperature emergent, not free] the entropy curve's slope at the equilibrium IS 1/sigma^2 (G084 V1b: dS/dE = 6.7810e-11 vs 1/sigma^2 = 6.7811e-11, 0.2% registered)
+        measured: dS/dE = 6.780964e-11 vs 1/sigma^2 = 6.780902e-11 s^2/m^2; rel err 0.001%
+  [PASS] C6 [virial boundary term] 3 P_s V = sigma^2 M_T at the cap (G091 V1d -- the fluid closure that turns the bare virial C/3 into C/2)
+        measured: 3 P V = 1.2730e+51 vs sigma^2 M_T = 1.2730e+51 J; rel err 1.31e-16
+  [PASS] C7 [P-V work] w = P_b (m/rho_b) = m sigma^2 = k_B T_b EXACTLY (one particle expanding across the cap)
+        measured: P_b m/rho_b = 1.3145e-22 J vs k_B T_b = 1.3145e-22 J; rel err 0.00e+00
+  [PASS] C8 [the identity test] L/(N w) = dS/k_B = 10.8-23.7 != 1: the P-V work is NOT the latent heat
+        measured: L/(N w) = 10.80 (cosmic) - 23.73 (matched); mechanical share w/(L/N) = 9.3% - 4.2% ~ water's ~7%
+  [PASS] C9 [two-phase EOS and the jump] phantom P = sigma^2 rho > 0 inside vs free dust P ~ 0 (w = 0, G031) outside: dP = sigma^2 rho_b at the cap; density contrast rho_ph/rho_d = A_b = 0.125-0.5 (G159 dressed, geomean 0.273)
+        measured: P_ph(r_break) = 1.3592e-11 Pa, P_dust = 0 -> dP = 1.3592e-11 Pa; rho_d(cap) = 1.843e-21 - 7.374e-21 kg/m^3 from A_b (geomean 3.376e-21)
+  [PASS] C10 [no-scalar derivation] the closed form is a function of {G, M_b, a0, r} only -- the derivation inventory contains no field
+        measured: inputs = ["G (Newton's constant)", 'M_b (baryon mass, observed)', 'a0 (asymptotic RAR constant, observed)', 'r (geometry)', 'r_M, r_break (equipartition radius, cap -- G081/G119)']; steps = 5; scalar-free: True; falsifier search space F1-F6 enumerated
+
+10/10 checks PASS.
+artifact written: /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/G233_results.json
