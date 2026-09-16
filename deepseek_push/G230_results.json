@@ -1,0 +1,456 @@
+{
+ "lane": "G230",
+ "title": "THE dM/dg MEASUREMENT: the acceleration distribution of the dark sector, directly measured",
+ "observable": {
+  "definition": "M_dark(<r) = v_obs^2 r / G - v_b^2 r / G;  g = v_obs^2/r;  dM/dg = (dM_dark/dr)/(dg/dr) = Delta M_dark_shell / Delta g, at sqrt(g_i g_{i+1})",
+  "a0_SI": 9.3619e-11,
+  "deep_cut": "g < 0.3 a0",
+  "sparc": {
+   "committed": "G071_results.json (G071 isolated low-EFE sample)",
+   "galaxies": 35,
+   "rings": 641,
+   "shells": 361,
+   "dropped_dM_le_0": 117,
+   "dropped_dg_le_0": 128,
+   "g_a0": {
+    "min": 0.0740879429728152,
+    "median": 0.3928069232249875,
+    "max": 7.901217735315853
+   },
+   "galaxies_with_shells": 35,
+   "median_shells_per_galaxy": 7.0
+  },
+  "hi": {
+   "committed": "G114_data/G114_combined_sample.csv (G114 55 dwarfs)",
+   "n_total": 55,
+   "n_lt": 26,
+   "n_figgs_excluded_no_radius": 29,
+   "mass_elements": 26,
+   "g_a0": {
+    "min": 0.0365,
+    "median": 0.1596,
+    "max": 3.1156
+   },
+   "mdark_Msun": {
+    "min": 8576990.632272227,
+    "median": 1038529858.214057,
+    "max": 7036518412.221261
+   }
+  },
+  "mightee": {
+   "committed": "data2/mightee2025_rar_digitized_points.csv (G099 digitized)",
+   "rings": 80,
+   "note": "no committed radii -> g_obs only, equal-mass-per-ring assumption (FLAGGED)",
+   "g_a0": {
+    "min": 0.10535035469629135,
+    "median": 0.312959471975683,
+    "max": 1.7054382614569876
+   }
+  }
+ },
+ "power_law": {
+  "prediction": "dM/dg ~ g^-2 (H055 phantom; Lomax falloff-class), deep g < 0.3 a0",
+  "sparc_differential": {
+   "index": 0.07563721257349819,
+   "se": 0.6089644245581054,
+   "n": 1,
+   "z_vs_-2": 3.4084703947684347,
+   "index_robust_dgg_ge_0.02": 0.04811807868130567,
+   "se_robust": 0.580619052772124,
+   "n_robust": 109,
+   "z_robust": 3.5274730805038397,
+   "per_galaxy_median_index": -1.4676647546775854,
+   "per_galaxy_mean_index": 5.253754553983108,
+   "per_galaxy_std": 15.809741524531724,
+   "per_galaxy_n": 16,
+   "binned_median_index": 0.884535564666846
+  },
+  "sparc_survival": {
+   "p": 4.559460649544574,
+   "se_p": 0.28448893719704466,
+   "slope": -3.559460649544574,
+   "n": 126.0,
+   "g_min": 0.0740879429728152,
+   "g_max": 0.2947077202214032,
+   "S_min": 0.00039501486642322826
+  },
+  "hi_survival": {
+   "p": 3.28503888471336,
+   "se_p": 0.3748382176249593,
+   "slope": -2.28503888471336,
+   "n": 18.0,
+   "g_min": 0.0365,
+   "g_max": 0.231,
+   "S_min": 0.0030243237387269383
+  },
+  "mightee_survival_eqweight": {
+   "p": 3.3935555700512263,
+   "se_p": 0.25931397975881876,
+   "slope": -2.3935555700512263,
+   "n": 37.0,
+   "g_min": 0.10535035469629135,
+   "g_max": 0.2990446258885319,
+   "S_min": 0.02702702702702703
+  },
+  "pooled_sparc_hi": {
+   "p": 3.472860764420205,
+   "se_p": 0.20221293731362047,
+   "slope": -2.472860764420205,
+   "n": 144.0,
+   "g_min": 0.0365,
+   "g_max": 0.2947077202214032,
+   "S_min": 0.0003774971677895522
+  },
+  "pooled_all3": {
+   "p": 3.550194295620905,
+   "se_p": 0.17416386394872022,
+   "slope": -2.550194295620905,
+   "n": 181.0,
+   "g_min": 0.0365,
+   "g_max": 0.2990446258885319,
+   "S_min": 0.00037749716773741995
+  },
+  "zscores": {
+   "sparc": 3.4084703947684347,
+   "sparc_robust": 3.5274730805038397,
+   "sparc_survival": 8.99669658427464,
+   "hi": 3.428249373437938,
+   "pooled": 7.283711833609756,
+   "mightee_eqweight": 5.374008649079916,
+   "pooled_all3": 8.900780336828856
+  }
+ },
+ "lomax_shape": {
+  "family": "Lomax(Pareto II), shape alpha = 2, PDF 2(1+u)^-3, CDF 1-(1+u)^-2, u = g/s",
+  "scale": "s = mass-weighted mean g (the shape-2 moment E[u]=1); one estimated parameter",
+  "tests": {
+   "sparc": {
+    "tag": "SPARC shells (full)",
+    "n": 361,
+    "s": 4.0888698408411224e-11,
+    "D": 0.44947973641368416,
+    "p_ks": 1.2887145409501091e-64,
+    "chi2_frac": 1.2549779228501197,
+    "dof": 8,
+    "p_mc": 0.00997506234413965,
+    "frac_obs": [
+     0.0,
+     0.0,
+     0.0032556062977116837,
+     0.003200700270850933,
+     0.0606650020335399,
+     0.15726990657701823,
+     0.20094418900664335,
+     0.3430136768560927,
+     0.19391149891954818,
+     0.037739420038595074
+    ],
+    "frac_null": [
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1
+    ],
+    "edges": [
+     0.0,
+     0.05409255338945984,
+     0.1180339887498949,
+     0.1952286093343938,
+     0.2909944487358056,
+     0.41421356237309515,
+     0.5811388300841895,
+     0.8257418583505536,
+     1.2360679774997898,
+     2.1622776601683795,
+     null
+    ],
+    "u_min": 0.16963218207369424,
+    "u_max": 18.090673754740262
+   },
+   "hi": {
+    "tag": "HI mass elements",
+    "n": 26,
+    "s": 5.466879596153481e-11,
+    "D": 0.1977351127314258,
+    "p_ks": 0.23315068848624051,
+    "chi2_frac": 0.7128630646453721,
+    "dof": 8,
+    "p_mc": 0.885286783042394,
+    "frac_obs": [
+     0.0,
+     0.050674823497091084,
+     0.11062638923971263,
+     0.24355770620981557,
+     0.25636498784431794,
+     0.016717545543579074,
+     0.10995914883559173,
+     0.054270021175645826,
+     0.03610099172072082,
+     0.12172838593352547
+    ],
+    "frac_null": [
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1
+    ],
+    "edges": [
+     0.0,
+     0.05409255338945984,
+     0.1180339887498949,
+     0.1952286093343938,
+     0.2909944487358056,
+     0.41421356237309515,
+     0.5811388300841895,
+     0.8257418583505536,
+     1.2360679774997898,
+     2.1622776601683795,
+     null
+    ],
+    "u_min": 0.06250537331029352,
+    "u_max": 5.335390166727411
+   },
+   "mi": {
+    "tag": "MIGHTEE eq-weight",
+    "n": 80,
+    "s": 3.475195201415469e-11,
+    "D": 0.42115661234214724,
+    "p_ks": 4.060602052316978e-13,
+    "chi2_frac": 1.040625,
+    "dof": 8,
+    "p_mc": 0.3740648379052369,
+    "frac_obs": [
+     0.0,
+     0.0,
+     0.0,
+     0.0125,
+     0.0875,
+     0.15,
+     0.225,
+     0.3,
+     0.175,
+     0.05
+    ],
+    "frac_null": [
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1
+    ],
+    "edges": [
+     0.0,
+     0.05409255338945984,
+     0.1180339887498949,
+     0.1952286093343938,
+     0.2909944487358056,
+     0.41421356237309515,
+     0.5811388300841895,
+     0.8257418583505536,
+     1.2360679774997898,
+     2.1622776601683795,
+     null
+    ],
+    "u_min": 0.2838054924884485,
+    "u_max": 4.594315292974352
+   },
+   "pool": {
+    "tag": "POOLED SPARC+HI",
+    "n": 144,
+    "s": 1.964113219185207e-11,
+    "D": 0.585140097193746,
+    "p_ks": 3.5418253490319367e-44,
+    "chi2_frac": 3.5674254902140685,
+    "dof": 8,
+    "p_mc": 0.0024937655860349127,
+    "frac_obs": [
+     0.0,
+     0.0,
+     0.0003774971677895522,
+     0.005529742331062913,
+     0.01691705329432604,
+     0.030825087106495428,
+     0.15019314927331204,
+     0.6388941362024638,
+     0.15726333462455033,
+     0.0
+    ],
+    "frac_null": [
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1
+    ],
+    "edges": [
+     0.0,
+     0.05409255338945984,
+     0.1180339887498949,
+     0.1952286093343938,
+     0.2909944487358056,
+     0.41421356237309515,
+     0.5811388300841895,
+     0.8257418583505536,
+     1.2360679774997898,
+     2.1622776601683795,
+     null
+    ],
+    "u_min": 0.17397640149367496,
+    "u_max": 1.4047174974390266
+   },
+   "pool3": {
+    "tag": "POOLED+3",
+    "n": 181,
+    "s": 1.9641132191853965e-11,
+    "D": 0.5851400971802767,
+    "p_ks": 2.7664735696313583e-55,
+    "chi2_frac": 3.567425489929091,
+    "dof": 8,
+    "p_mc": 0.0024937655860349127,
+    "frac_obs": [
+     0.0,
+     0.0,
+     0.00037749716773741995,
+     0.005529742330299257,
+     0.016917053291989798,
+     0.03082508711343576,
+     0.1501931492861622,
+     0.6388941361739515,
+     0.1572633346364241,
+     0.0
+    ],
+    "frac_null": [
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1,
+     0.1
+    ],
+    "edges": [
+     0.0,
+     0.05409255338945984,
+     0.1180339887498949,
+     0.1952286093343938,
+     0.2909944487358056,
+     0.41421356237309515,
+     0.5811388300841895,
+     0.8257418583505536,
+     1.2360679774997898,
+     2.1622776601683795,
+     null
+    ],
+    "u_min": 0.17397640149365817,
+    "u_max": 1.4253892574823026
+   }
+  },
+  "sparc_deep_ownscale": {
+   "tag": "SPARC shells, deep (own scale)",
+   "n": 126,
+   "s": 2.038919339621366e-11,
+   "D": 0.6125906819459018,
+   "p_ks": 1.886366472089873e-42,
+   "chi2_frac": 3.506535742263565,
+   "dof": 8,
+   "p_mc": 0.0024937655860349127,
+   "frac_obs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.013375268194654977,
+    0.008456307511863225,
+    0.19578096392953673,
+    0.6214196109879669,
+    0.16096784937597824,
+    0.0
+   ],
+   "frac_null": [
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1
+   ],
+   "edges": [
+    0.0,
+    0.05409255338945984,
+    0.1180339887498949,
+    0.1952286093343938,
+    0.2909944487358056,
+    0.41421356237309515,
+    0.5811388300841895,
+    0.8257418583505536,
+    1.2360679774997898,
+    2.1622776601683795,
+    null
+   ],
+   "u_min": 0.34018212483383625,
+   "u_max": 1.3531796733327932
+  },
+  "tail_conditional": {
+   "sparc": {
+    "tag": "tail",
+    "n": 126,
+    "D": 0.6598223620300655,
+    "p_ks": 3.510377768982701e-49
+   },
+   "pooled": {
+    "tag": "tail",
+    "n": 144,
+    "D": 0.7176616180766449,
+    "p_ks": 3.072033209449575e-66
+   }
+  },
+  "only_tail_match": false
+ },
+ "verdicts": {
+  "V1_power_law": false,
+  "V2_lomax_shape": false,
+  "V2_full": [
+   false,
+   false
+  ],
+  "checks": [
+   false,
+   false,
+   false,
+   false,
+   true
+  ],
+  "n_pass": 1,
+  "n_total": 5
+ },
+ "statement": "A NEW DIRECTLY-MEASURED OBSERVABLE -- the mass-weighted acceleration distribution of the dark sector, dM/dg, computed ring by ring from the committed rotation-curve samples (SPARC 361 shells from 35 galaxies / 641 rings, HI 26 deep-end mass elements from 26 LITTLE THINGS dwarfs, MIGHTEE 80 g_obs rings [no committed radii -> shape-only, equal-weight]).  V1 (power law, g < 0.3 a0): the composite deep dM/dg is NOT a single g^-2 law on any pooled estimator: pooled log-log slope of dM/dg vs g over g < 0.3 a0 = +0.08 +- 0.61 (z = +3.41 vs -2) and, with the noise-dominated shells (Delta g/g < 0.02) removed, +0.05 +- 0.58 (z = +3.53); binned-median slope +0.88 (composite RISING, not falling), the mass-weighted survival index p = +3.47 +- 0.20 (z = +7.28); PER-HALO the story differs: the median per-galaxy deep index is -1.47 (consistent with -2) but with per-galaxy scatter std 15.8 (n = 16 galaxies, 3-8 deep shells each) -- too noisy to pin, and consistent with the KINEMATIC IDENTITY |dM/dg| = v_flat^4/(G g^2) that ANY near-flat rotation curve satisfies (so per-halo agreement is not independent evidence for the phantom) -- the measured index vs the H055 phantom prediction -2: NOT CONSISTENT (SPARC z = +3.41, pool z = +7.28, HI z = +3.43).  V2 (Lomax shape, FULL distribution): the full-range Lomax KS p = 0.00 (SPARC), 0.00 (pooled), 0.23 (HI, n=26, weak), 0.00 (MIGHTEE eq-weight); mass-fraction chi2 1.25/8 (p_mc 0.01) and 3.57/8 (p_mc 0.00); tail-only (g < 0.3 a0, conditional) KS p = 0.00 (SPARC) / 0.00 (pooled) -- the full shape DEPARTS; tail-only KS p = 0.00 / 0.00 (tail also departs); caveats: within-galaxy shells are correlated (per-galaxy median index reported), the weighted KS treats elements as independent and the scale s is estimated (p-values approximate), inner baryon-dominated rings dropped (117 of 606 candidate shells), FIGGS carries no committed radii and MIGHTEE no masses (both flagged).  VERDICT: BOTH TESTS DEPART: measured dM/dg does not reproduce the kernel's -2 index or the full Lomax shape on the committed samples -- the measured mass-weighted acceleration distribution of the dark sector is NOT the Lomax the kernel predicts, as a composite (per-halo the -2 identity holds but is the flat-curve kinematic tautology and is statistically unconstrained)."
+}

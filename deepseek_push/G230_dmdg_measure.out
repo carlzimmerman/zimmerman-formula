@@ -1,0 +1,69 @@
+==============================================================================================
+G230 -- THE dM/dg MEASUREMENT: the acceleration distribution of the dark sector
+        dM/dg = (dM_dark/dr)/(dg/dr) per ring; deep index vs -2; Lomax shape vs 2(1+u)^-3
+==============================================================================================
+
+--- (1a) SPARC: the differential observable from the G071 committed sample ---
+    G071 committed sample: 35 galaxies, 641 rings (G071_results.json)
+    shells built: 361  (dropped 245: 117 with dM_dark <= 0 [inner, baryon-dominated], 128 with dg <= 0)
+    g/a0: min 0.0741, median 0.393, max 7.90;  dM/dg span log10 16.04 .. 23.27 [Msun/(m s^-2)]
+    deep shells (g < 0.3 a0): 126  (35%),  shell dark mass share of the deep window 30%
+    galaxies with >= 1 shell: 35; median shells/galaxy 7
+
+--- (1b) HI dwarfs: dark mass at the last measured point (G114) ---
+    G114 committed: 55 dwarfs (26 LITTLE THINGS + 29 FIGGS); 26 carry committed g_N/a0 at R_max -> mass elements (29 FIGGS excluded: no committed radius/R_max in this lane's artifacts -- flagged)
+    g/a0: min 0.0365, median 0.160, max 3.12;  M_dark: 8.58e+06 .. 7.04e+09 Msun (median 1.04e+09)
+    deep elements (g < 0.3 a0): 18/26 (median g_N/a0 of the G114 LT sample: 0.16 -- the deep regime is its home)
+
+--- (1c) MIGHTEE: g_obs values (no committed radii -> no masses) ---
+    80 rings, g_obs/a0: min 0.1054, median 0.313, max 1.71;  deep: 37
+    NOTE: the committed MIGHTEE artifact carries (g_bar, g_obs) only -- no per-ring radius -> no masses -> enters the distribution tests under an EXPLICIT equal-mass-per-ring assumption (shape-only).
+
+--- (2) THE POWER-LAW TEST: log-log index of dM/dg vs g over g < 0.3 a0 (H055 predicts -2) ---
+    SPARC differential (per-shell dM/dg, 126 deep shells):
+      index = +0.076 +- 0.609  vs -2.000  ->  z = +3.41
+  [FAIL] V1a [SPARC] dM/dg index +0.08 +- 0.61 consistent with -2 (|z|<=2)   z = +3.41, n = 126 deep shells
+      robust (Delta g/g >= 0.02, 109 deep shells): index = +0.048 +- 0.581  vs -2.000  ->  z = +3.53
+      per-galaxy deep indices (>=3 deep shells, 16 galaxies): median -1.47, MAD 3.79
+      binned-median index (7 bins, 5 used): +0.885 +- 0.420 (z vs -2: +6.87)
+    SPARC survival index (cross-check): p = +4.559 +- 0.284 vs 2  ->  z = +9.00 (n = 126 deep shells)
+    HI mass-weighted survival index: p = +3.285 +- 0.375 vs 2  ->  z = +3.43 (n = 18 deep elements; window g/a0 in [0.036, 0.231])
+    POOLED (SPARC deep shells + HI deep mass elements): p = +3.473 +- 0.202 vs 2  ->  z = +7.28 (n = 144 weighted elements)
+  [FAIL] V1b [POOLED] dM/dg index p = +3.47 +- 0.20 consistent with -2 (|z|<=2)   z = +7.28, n = 144
+    MIGHTEE equal-weight survival index [FLAGGED assumption]: p = +3.394 +- 0.259 vs 2  ->  z = +5.37 (n = 37 deep rings)
+    POOLED+3 (SPARC + HI + MIGHTEE eq-weight): p = +3.550 +- 0.174  ->  z = +8.90 [flagged]
+
+--- (3) THE LOMAX SHAPE TEST: u = g/s, CDF 1-(1+u)^-2 (PDF 2(1+u)^-3) ---
+    s (scale) = the mass-weighted mean g -- the shape-2 Lomax moment E[u] = 1 => E[g] = s; ONE estimated parameter (chi2 dof corrected).
+    SPARC shells (full)          n=  361  s/a0=  0.437  KS D=0.4495 p=0.000  mass-frac chi2=1.25/8 (p_mc 0.01)
+    HI mass elements             n=   26  s/a0=  0.584  KS D=0.1977 p=0.233  mass-frac chi2=0.71/8 (p_mc 0.89)
+    MIGHTEE eq-weight            n=   80  s/a0=  0.371  KS D=0.4212 p=0.000  mass-frac chi2=1.04/8 (p_mc 0.37)
+    POOLED SPARC+HI              n=  144  s/a0=  0.210  KS D=0.5851 p=0.000  mass-frac chi2=3.57/8 (p_mc 0.00)
+    POOLED+3                     n=  181  s/a0=  0.210  KS D=0.5851 p=0.000  mass-frac chi2=3.57/8 (p_mc 0.00)
+    SPARC TAIL-only (conditional on g < 0.3 a0): n=126  KS D=0.6598 p=0.000
+    POOLED TAIL-only (g < 0.3 a0): n=144  KS D=0.7177 p=0.000
+  [FAIL] V2 [Lomax shape, full range] SPARC KS p = 0.000 AND pooled KS p = 0.000 both > 0.05   mass-frac chi2 SPARC 1.25/8 (p_mc 0.01), pooled 3.57/8 (p_mc 0.00)
+
+--- (4) VERDICTS ---
+  V1 the measured dM/dg index:
+      SPARC  differential: +0.076 +- 0.609  (z = +3.41 vs -2)   [INCONSISTENT]
+      SPARC  differential, robust (Delta g/g >= 0.02): +0.048 +- 0.581  (z = +3.53 vs -2)
+      SPARC  survival:     p = +4.559 +- 0.284  (z = +9.00)
+      HI     survival:     p = +3.285 +- 0.375  (z = +3.43)   [INCONSISTENT]
+      POOLED survival:     p = +3.473 +- 0.202  (z = +7.28)   [INCONSISTENT]
+      MIGHTEE (eq-weight): p = +3.394 +- 0.259  (z = +5.37)   [FLAGGED assumption]
+  [FAIL] V1 [power law] pooled index consistent with -2   SPARC z = +3.41, pooled z = +7.28
+  V2 the Lomax-shape test (the FULL distribution):
+      SPARC shells (full)          KS p = 0.000, mass-frac chi2 = 1.25/8 (p_mc 0.01)
+      HI mass elements             KS p = 0.233, mass-frac chi2 = 0.71/8 (p_mc 0.89)
+      MIGHTEE eq-weight            KS p = 0.000, mass-frac chi2 = 1.04/8 (p_mc 0.37)
+      POOLED SPARC+HI              KS p = 0.000, mass-frac chi2 = 3.57/8 (p_mc 0.00)
+      POOLED+3                     KS p = 0.000, mass-frac chi2 = 3.57/8 (p_mc 0.00)
+      tail-only: SPARC KS p = 0.000, pooled KS p = 0.000
+      tail-only verdict: tail also departs
+  V3 the honest statement:
+      A NEW DIRECTLY-MEASURED OBSERVABLE -- the mass-weighted acceleration distribution of the dark sector, dM/dg, computed ring by ring from the committed rotation-curve samples (SPARC 361 shells from 35 galaxies / 641 rings, HI 26 deep-end mass elements from 26 LITTLE THINGS dwarfs, MIGHTEE 80 g_obs rings [no committed radii -> shape-only, equal-weight]).  V1 (power law, g < 0.3 a0): the composite deep dM/dg is NOT a single g^-2 law on any pooled estimator: pooled log-log slope of dM/dg vs g over g < 0.3 a0 = +0.08 +- 0.61 (z = +3.41 vs -2) and, with the noise-dominated shells (Delta g/g < 0.02) removed, +0.05 +- 0.58 (z = +3.53); binned-median slope +0.88 (composite RISING, not falling), the mass-weighted survival index p = +3.47 +- 0.20 (z = +7.28); PER-HALO the story differs: the median per-galaxy deep index is -1.47 (consistent with -2) but with per-galaxy scatter std 15.8 (n = 16 galaxies, 3-8 deep shells each) -- too noisy to pin, and consistent with the KINEMATIC IDENTITY |dM/dg| = v_flat^4/(G g^2) that ANY near-flat rotation curve satisfies (so per-halo agreement is not independent evidence for the phantom) -- the measured index vs the H055 phantom prediction -2: NOT CONSISTENT (SPARC z = +3.41, pool z = +7.28, HI z = +3.43).  V2 (Lomax shape, FULL distribution): the full-range Lomax KS p = 0.00 (SPARC), 0.00 (pooled), 0.23 (HI, n=26, weak), 0.00 (MIGHTEE eq-weight); mass-fraction chi2 1.25/8 (p_mc 0.01) and 3.57/8 (p_mc 0.00); tail-only (g < 0.3 a0, conditional) KS p = 0.00 (SPARC) / 0.00 (pooled) -- the full shape DEPARTS; tail-only KS p = 0.00 / 0.00 (tail also departs); caveats: within-galaxy shells are correlated (per-galaxy median index reported), the weighted KS treats elements as independent and the scale s is estimated (p-values approximate), inner baryon-dominated rings dropped (117 of 606 candidate shells), FIGGS carries no committed radii and MIGHTEE no masses (both flagged).  VERDICT: BOTH TESTS DEPART: measured dM/dg does not reproduce the kernel's -2 index or the full Lomax shape on the committed samples -- the measured mass-weighted acceleration distribution of the dark sector is NOT the Lomax the kernel predicts, as a composite (per-halo the -2 identity holds but is the flat-curve kinematic tautology and is statistically unconstrained).
+
+G230 COMPLETE: 1/5 checks PASS.
+
+wrote G230_results.json
