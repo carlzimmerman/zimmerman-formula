@@ -1,11 +1,12 @@
 # GRAVITY EVERYWHERE — the complete theory assembly (the TOE statement)
 
-**Status:** assembly of committed, verified results as of 2026-09-15. Every
-number below is a committed artifact of the cited gate; nothing here is new
-calculation. The document is the EFT one-pager of the theory: one action, three
-regimes, two energy sectors, one open list. The style rule of the programme
-applies: nothing "closed" that a gate did not close, nothing "open" that
-decides the story but is not named.
+**Status:** assembly of committed, verified results as of 2026-09-15 (G120
+refresh: waves 1–3 folded — the entropy/virial origin, the particle census,
+the DR4 ridge and double-map). Every number below is a committed artifact of
+the cited gate; nothing here is new calculation. The document is the EFT
+one-pager of the theory: one action, three regimes, two energy sectors, one
+open list. The style rule of the programme applies: nothing "closed" that a
+gate did not close, nothing "open" that decides the story but is not named.
 
 The one-line theory:
 
@@ -132,6 +133,16 @@ selected by the same numbers (H032: two states of one charge).
     The Solar-System-adjacent observable is the wide-binary cloud, mass linear
     in separation, γ_v rising 1.002 → 1.047 to 30 kAU with the 7.4 kAU
     period–separation cap (E6/E7, registered; the DR4 falsifier).
+    The DR4 forecast (G088, 5/5, 200,000 simulated pairs) arms the channel:
+    the identification's zero-parameter statement is the **period–separation
+    ridge** — at fixed period the cloud pairs sit at s/s_N = (1+m/M)^(1/3),
+    +18.4% in separation and +28.9% in γ_v at 10–30 kAU, the ridge at **30.7σ**
+    with DR4's realistic N (2500 bright pairs per bin, 30 uas) — rising to the
+    cap and **breaking at 7.4 kAU** (E7). The γ_v LEVEL is triple-confounded
+    (+2–10% mimics) and the strict plateau 1.2886 is already B-falsified on
+    DR3 (Banik+24); a triple's s-excess is flat with no break, so the ridge is
+    not mimickable — the ridge, not the level, is what DR4 alone settles (open
+    row 6).
   * The Milky Way in the strong part of its field: v_c(R₀) = 224 km/s against
     the measured 229–235 (G072; within 5% of 232.5).
 
@@ -139,7 +150,9 @@ selected by the same numbers (H032: two states of one charge).
 
 Where the well is deep enough and isolated enough, the sector **equilibrates**.
 This is the regime the programme derived three independent ways (G046, G056,
-Q001) and the one the RAR lives in. The content:
+Q001) and the one the RAR lives in; wave 3 adds the origin — the entropy
+extremum at the DE-set temperature (G084) and the virial closure (G091) —
+five routes, one landing point. The content:
 
   * **The equipartition** (G03E V1): the phantom mass inside the MOND radius
     equals the baryonic mass **exactly** —
@@ -158,6 +171,41 @@ Q001) and the one the RAR lives in. The content:
     the density ρ = √(GM_b a₀)/(4πG r²) [G003, coefficient exactly 1], the flat
     curve v_c² = 2σ² = √(GM_b a₀) [BTFR], and the deep RAR g² = a₀ g_N
     [coefficient 1] are one chain (G031 V3–V6, sympy-exact).
+  * **The origin — the equilibrium is derived, not assumed** (wave 3; two
+    independent chains, one landing point):
+    – The **maximum-entropy derivation** (G084, 8/8): among spherical
+      equilibria of a collisionless isothermal fluid in the fixed baryon well
+      Φ = C ln r (C = √(GM_b a₀)), constrained to the sector's (M, E), the
+      entropy functional S = −∫ρ ln(ρ σ³) dV is maximized by a pure power law:
+      the Euler–Lagrange equation gives ρ = A r^(−βC), the Boltzmann
+      identification β = 1/σ² holds (dS/dE = 1/σ² to 0.2%), and at the virial
+      temperature σ² = C/2 (rung 4 — the DE-set temperature) the exponent is
+      **2 exactly** — ρ = A/r² with the G03E normalization (EL residual
+      4.3e-14 at (2, C/2), nonzero at any other (γ, σ²)). The second variation
+      δ²S = −∫(δρ)²/ρ is strictly negative: a unique global maximum in the
+      fixed well (5 M,E-preserving modes; numeric = analytic to 0.01%). Stated
+      with it: the maximum exists because the well is fixed (the LBW
+      self-gravitating non-existence belongs to a different problem) and the
+      dynamical fundamental mode is marginal (ω² = 0, G081) — an entropy
+      extremum is not a dynamical attractor. The fixed-well configurational
+      heat capacity is positive (dW/dT = +2.45 per unit mass), unlike the LBW
+      negative value.
+    – The **virial chain** (G091, 12/12, sympy-exact): with the equipartition
+      normalization (A fixed by M_ph(<r_M) = M_b) the truncated phantom closes
+      in one line — 2T + W_self + W_bar = 3P_sV, with the closed forms
+      W_self = −G M_T²/r_break, W_bar = −M_b C ln(r_break/r_b) and the
+      boundary term 3P_sV = σ² M_T (the fluid closure: the phantom is a
+      barotropic fluid P = σ²ρ) — giving σ² = (C/2)[1 + (1/λ)ln(r_break/r_b)],
+      i.e. **σ² = C/2 exactly** at the well-consistent boundary (any λ, any
+      M_b, both footings). The bare collisionless virial without the boundary
+      term gives σ² = C/3 — **the phantom's own pressure IS the 1/2**. The
+      same chain pins γ = 2 (virial + hydrostatic consistency), E = −T, and
+      reproduces the registered σ = 119.2/124.9 km/s and NGC3198's 118.05
+      km/s; G091's energy bookkeeping (E_bind = (1/4)λM_b√(GM_b a₀) in the
+      fluid closure) is the side the entropy problem keeps fixed.
+    The flatness selection (G03G), the entropy extremum (G084) and the virial
+    closure (G091) are one statement: the isothermal law is **derived, not
+    assumed** — five routes, one landing point.
   * **The dSph floor** (G03G V3): the predicted internal dispersion
     σ_pred = (GM_b a₀)^{1/4}/√2 sits on the classical dwarfs — 7 dwarfs
     (Draco to Crater II), median log₁₀(pred/obs) = **−0.00**, all inside
@@ -200,7 +248,7 @@ Q001) and the one the RAR lives in. The content:
     mildly declining, log-slope −0.16, non-Keplerian — the registered handoff
     (G072 V5; G03E V2: the dark total keeps the linear law, the phantom-only
     share saturates at 0.62 M_b — the shortfall IS the free dust's registered
-    share, G050/G059).
+    share, G050/G059; the 0.62 factor itself is open, row 9).
   * Clusters sit here: the phantom shape survives (G008/G012 slope −1.478 vs
     −1.53, T = 809 km/s) while the amplitude carries the environment order
     parameter — the open item of §4.1. In the deepest-Newtonian interiors
@@ -214,7 +262,7 @@ Q001) and the one the RAR lives in. The content:
 | Place | Regime | The sector | Gravity |
 |---|---|---|---|
 | Solar System, strong sources | (i) + EFE cap | absent (unbound, capped 7.4 kAU) | Newton; Cassini null |
-| Wide binaries (2–30 kAU) | (i) cloud | mass linear in separation | Newton + cloud (E6/E7) |
+| Wide binaries (2–30 kAU) | (i) cloud | mass linear in separation | Newton + cloud (E6/E7; the P–s ridge, G088) |
 | Galaxies, discs | (i) | free dust | Newtonian discs; R₀ = 224–230 km/s |
 | Galaxies, deep (r ≳ r_M) | (ii) | equilibrated phantom + dust | flat: v_c² = 2σ² = √(GM_b a₀) |
 | Galaxy outer edge | (iii) | phantom capped, free dust takes over | 6.1 kpc break, log-slope −0.16 |
@@ -259,6 +307,31 @@ The cold sector is not a particle species; it is the shift-symmetry charge
   * **Free dust** (g ≫ a₀): collisionless, does not know a₀, follows the
     galaxies not the gas — the Bullet, the cluster share, the Milky Way's outer
     handoff.
+  * **The particle-level census** (G093, 13/13): both phases are ONE COLD
+    species carrying the shift charge. The free dust: m ≥ 3.3–5.7 keV
+    (Viel+13 2σ / Irsic+17 / Villasenor+24 95% CL), v_therm < 0.055 km/s today
+    (< 0.22 km/s at z = 3), λ_fs < 0.5–0.8 Mpc against the registered 0.6 Mpc
+    (the 11 eV relic kill reproduced at 103–190 Mpc); Tremaine–Gunn never
+    binds it (field floor 0.6 eV, MW 35 eV, Draco ~1 keV, clusters 12 eV) —
+    the coldest species in the cosmological inventory short of absolute zero,
+    dynamically indistinguishable from pressureless CDM dust (which is exactly
+    what the L224/L194 forest registers need). One species, two phases is
+    **CONSISTENT** (G093 V2): the EFE line g_ext ~ a₀ IS the phase line —
+    below it the same charge equilibrates to the isothermal phantom, above it
+    it stays collisionless (clusters sit 49× above the line in the squared
+    footing; the MW local field ~2.7 a₀ is the marginal zone) — and the
+    separating observable is the enclosed-mass slope, d ln M/d ln r = 1 inside
+    r_M vs ~2 (NFW-class, −1.478) in clusters; the two readings never overlap
+    a galaxy in the wrong phase. (The sector-mass synthesis — G116 — pending.)
+  * **The equilibrium phase clears Tremaine–Gunn** (G084 V3): at
+    ρ = 0.008 M☉/pc³, σ = 119 km/s the phantom needs m > 23.25 eV (canonical;
+    22.45 eV alt; grid 22.5–27.2 eV) — a factor 4.01 BELOW the f04/f06 killed
+    window (93.3–148 eV) and 1.59× above the 14.68 eV cluster floor: phase
+    space does NOT cap the equilibrium sector, while the light-thermal-relic
+    reading stays dead on the free-streaming floor (charge, not a species).
+    The sector thermodynamics ride on the same mass: T = m σ²/k_B = 1.9 mK/eV
+    (sub-Kelvin for every relic-scale mass), and the phantom's entropy
+    s/k_B = 5/2 + ln(ρ_max/gρ) per particle — 1.8 k_B at the TG cap.
 
 This is why 40 years of direct detection found nothing: **there is no particle
 to find** (H032). The charged object is the field configuration, not a species.
@@ -285,7 +358,9 @@ internal consistency, not on any external datum:
     (f06 A3).
   * Independent, unchanged: Tremaine–Gunn needs m > 65 eV against m_ν < 0.1 eV
     (650×); the mass budget is short by 206×; free-streaming washes out galaxy
-    scales (H027 T5).
+    scales (H027 T5). The wave-3 floors bracket the relic window from below
+    (the equilibrium's own TG bound, 23.25 eV, §3.2) — the relic reading stays
+    dead.
 
 The cold sector is a charge, not a species; neutrinos stay hot, subdominant,
 and not the dark matter.
@@ -300,10 +375,15 @@ that kills it.
 | # | Open item | What it is | Its falsifier |
 |---|---|---|---|
 | 1 | **The cluster normalization** | The phantom shape passes (G008/G012) but the cluster amplitude carries the environment order parameter (G03E V4); the honest astrophysical normalization — how phantom + free dust compose at g_ext ≫ a₀ — is not derived (as LCDM's concentration–mass relation is not ours to use). | A cluster sample whose dark-mass amplitude and radial profile cannot be produced by phantom (equilibrated share) + free dust (collisionless share) with no fitted normalization — in particular a residual growing inward that the free dust cannot supply, or an amplitude varying with environment faster than the EFE line's reach allows. |
-| 2 | **The relaxation/stability gate (G081)** | The equilibrium's formation: does the sector actually relax to the Zimmerman temperature σ² = √(GM_b a₀)/2, and is the isothermal equilibrium stable? The temperature's dynamical origin is the theory's contested rung (K001 N-body relaxes to 0.53 R₀ — no attractor found; PAPER29's audit relabels it POSTULATED; G031 honest edge). | An N-body/stability computation showing the charge dust does not relax to σ² = √(GM_b a₀)/2 from generic initial data, or that the isothermal equilibrium is unstable (a small perturbation grows). This gate decides whether §2.ii is dynamics or ansatz. |
+| 2 | **The relaxation/stability gate (G081)** | The equilibrium's formation: does the sector actually relax to the Zimmerman temperature σ² = √(GM_b a₀)/2, and is the isothermal equilibrium stable? The temperature's dynamical origin is the theory's contested rung (K001 N-body relaxes to 0.53 R₀ — no attractor found; PAPER29's audit relabels it POSTULATED; G031 honest edge) — and the equilibrium itself is now derived two ways (G084's entropy extremum, G091's virial closure), so the open rung is the dynamics alone. | An N-body/stability computation showing the charge dust does not relax to σ² = √(GM_b a₀)/2 from generic initial data, or that the isothermal equilibrium is unstable (a small perturbation grows). This gate decides whether §2.ii is dynamics or ansatz. |
 | 3 | **The high-z zero point (G080)** | The BTFR zero point at z ≈ 2.5: the equipartition amplitude scales with M_b at all z — 0.00 dex against the +0.33 dex drift of the competing family (20:1 odds). H026: NOT ESTABLISHED — the baseline is not yet wide enough. | JWST/ALMA measuring a drifting zero point (+0.33 dex class): the phantom amplitude is then not M_b-scaled at high z and the equipartition is a local coincidence. |
 | 4 | **The DR4 funnel (G076)** | The vertical-funnel map of the phantom sheet: z_c(R) = a₀/(16πG ρ_b(R)) — 140.63 pc at the solar circle (E2, exact on G024's ρ_b(R₀) = 0.095), the e^{+R/3} flare (z_c(15)/z_c(8.2) = 9.6472 = e^{2.2667}), the box-ν = 2 arithmetic (E1), the 1/√z fall (E4), and the radial 6.1 kpc break (E5). | Gaia DR4 (Dec 2 2026): no 140.6 pc break, ν_layer ≠ 2, a flat or rising box-ν, a smooth NFW-like vertical profile with no surface-density coupling, or no radial break at 6.1 kpc. Any one kills the EOS identification (§2.ii) or the two-component architecture (§2.iii). |
-| 5 | **The free-dust phase's microphysics** | The free-dust abundance is not derived (L258 A3; G072 V5's edge); the phase split (phantom vs free) is set by g/a₀ alone (H032), and the free dust is collisionless by construction — but its own equation of state, its sourcing within the EFE-capped regime, and its cluster share are open. | A measured free-dust behavior contradicting collisionless dynamics (e.g. a density signature tied to gas rather than galaxies in a well-resolved merger), a direct-detection claim of a particle (there is no species — 40 years of nulls are the prediction), or LIGO/EHT seeing non-GR ringdowns or shadow deviations (no scalar hair, H027 T2). |
+| 5 | **The free-dust phase's microphysics** | The free-dust abundance is not derived (L258 A3; G072 V5's edge); the phase split (phantom vs free) is set by g/a₀ alone (H032), and the free dust is collisionless by construction — but its own equation of state, its sourcing within the EFE-capped regime, and its cluster share are open. | A measured free-dust behavior contradicting collisionless dynamics (e.g. a density signature tied to gas rather than galaxies in a well-resolved merger), a direct-detection claim of a particle (there is no species to find: the G093 carriers, m ≥ 3.3–5.7 keV, carry no detection coupling, so 40 years of nulls are the prediction), or LIGO/EHT seeing non-GR ringdowns or shadow deviations (no scalar hair, H027 T2). |
+| 6 | **The DR4 wide-binary ridge (G088)** | The period–separation ridge of the bound cloud — extra mass growing with orbit size, at fixed period s/s_N = (1+m/M)^(1/3): +18.4% in separation, +28.9% in γ_v at 10–30 kAU, predicted at **30.7σ** on DR4's realistic N (200k simulated pairs, 30 uas, G < 15.5), rising to the cap and **breaking at 7.4 kAU** (E7). The γ_v level alone is triple-confounded (+2–10% mimics) and the strict plateau 1.2886 is already B-falsified on DR3 — the ridge, not the level, is the identification's zero-parameter statement. | Gaia DR4 (Dec 2 2026): a Newtonian ridge at 10–30 kAU — or a flat, breakless s-excess (the triple shape: a triple's extra mass does not grow with s) — kills the wide-binary identification. |
+| 7 | **The DR4 double-map (G092)** | The two-scale vertical dark map at R₀ — phantom slab (z_c = 140.6 pc, z* = 4z_c = 562.5 pc, column a₀/8πG = 26.7 M☉/pc²) + sech² disk (h ~ 1 kpc, ρ₀ = 0.008–0.015 M☉/pc³) — with the **negative outer bin** as the sign discriminator: the dark column in 300–2000 pc is −5.6 M☉/pc² (ratio to inner −0.20) vs +15.5/+2.31 (sech²) and +36.7/+5.57 (NFW); the inner |z| < 300 pc column is 25.7–29.8 M☉/pc² vs 6.6–8.7 for the single-component alternatives; the dark density crosses zero at 180 pc and re-enters at z*. | Gaia DR4 (Dec 2 2026): a single-scale z-profile (no two-component break), or a POSITIVE outer-bin dark column (no negative trough) — and positive dark mass measured at |z| ~ 300–560 pc kills the slab outright (G024 V7 falsifier, sharpened by G092). |
+| 8 | **The BTFR register correction (G117)** | The registered 11.5%/22% BTFR scatter is NOT reproduced by the committed pipeline: the bundle reads 5.0–5.6% / 9.4–11.6% (rms 0.09–0.11 dex; provenance likely the EB-E3 1.15 mass-ratio register — the amendment is G117, pending); the honest intrinsic upper bound is 0.084 dex = 21% in v (fails the 5% bar, sits above the 0.045 RAR floor); the scatter tracks the quality axes univariately (errV ρ = +0.21, Q ρ = +0.20) but not multivariately (LOOCV R² = 0.03) — the dominant systematics are population-model (IMF/M-L) errors invisible to SPARC's photometric proxies (G087, 0/3 — the Fails are the findings). | The quantitative forecast σ_v(M_acc) = √(intr² + (M_acc/4)²): JWST-resolved masses (M_acc = 0.05 dex) must shrink the scatter 26.8% → 21.5% (SPARC-era effective M_acc ≈ 0.24 dex); a measured scatter that does not track the mass-accuracy curve — or a corrected register that contradicts the 5.0/9.2 bundle reading — kills the "all systematic" claim. |
+| 9 | **The 0.62 factor (G119)** | The registered saturation share — the phantom form caps at 0.62 M_b beyond the EFE break, the shortfall IS the free dust's share (§2.iii; G050/G059; the ratio 0.62 = r_break/r_M verified dimensionlessly, G089) — lacks a closed-form derivation from the constants. | The G119 candidate derivation sqrt(a₀/g_ext) = 0.635 vs the registered 0.62 (in flight) must close the gap: a measurement of the outer-MW saturation share outside the derived band — or a derivation that cannot reach 0.62 — reopens the registered handoff. |
+| 10 | **The merger-rate registry (G118)** | G086's registered pair-tidal prediction: the 1/r law scales galaxy-pair tidal fields by exactly (1 + r/r_M) — a factor 2.000 at r_M, with r_M(pair) = 12–39 kpc over 1e11–1e12 M☉ — so the close-pair fraction / merger rate at fixed stellar mass is the registry's datum (G118 executes the registry; G121 forecasts the observable). | Close-pair statistics at fixed stellar mass disagreeing with the (1 + r/r_M) tidal enhancement — a measured pair excess incompatible with the factor-2.000 differential at r_M. |
 
 Registered elsewhere and not re-opened here: n = 2 remains the one empirical
 premise (all derivation routes closed, G009/G019); the growth raise is in the
@@ -318,8 +398,8 @@ registered DESI band and its tension with direct lensing is recorded (G020/G022)
 3. The scalar modifies no force anywhere; it generates a sector of Noether charge.
 4. That charge is the dark matter — a field configuration, not a species.
 5. Where the field is strong, the sector is cold collisionless dust and gravity is Newtonian (the Solar System passes Cassini by construction).
-6. Where it is deep and isolated, the dust equilibrates to the virial temperature σ² = √(GM_b a₀)/2 set by the vacuum scale; the equilibrium is the phantom.
+6. Where it is deep and isolated, the dust equilibrates to the virial temperature σ² = √(GM_b a₀)/2 set by the vacuum scale — the derived state (maximum entropy at the DE-set temperature, G084; the virial chain's fluid closure, G091); the equilibrium is the phantom.
 7. The phantom is real mass: M_dark = M_b·r/r_M, ρ ~ r⁻², σ² = v_flat²/2, Σ = a₀/πG, g² = a₀g_N — the RAR is the sector's equation of state, and lensing is GR on the real total mass.
 8. Where the external field dominates, the phantom form caps at r_efe = √(GM_b/g_ext) — the MW's 6.1 kpc break — and free dust carries the outer part.
 9. The vacuum value of the same scalar is the dark energy: w = −1, Ω_Λ = 0.6857 from a₀ alone; it acts locally by setting every well's equilibrium temperature.
-10. What is still open is named and armed: cluster normalization, the G081 relaxation/stability gate, the high-z zero point (G080), and the DR4 funnel (G076) — with its falsifier in print, decided by Gaia DR4 (Dec 2 2026), DESI, JWST/ALMA and Euclid.
+10. What is still open is named and armed: the cluster normalization, the G081 relaxation gate, the high-z zero point (G080), the DR4 funnel, double-map and wide-binary ridge (G076/G092/G088), the BTFR register correction (G117), the 0.62 factor (G119), and the merger-rate registry (G118) — each with its falsifier in print, decided by Gaia DR4 (Dec 2 2026), DESI, JWST/ALMA and Euclid.
