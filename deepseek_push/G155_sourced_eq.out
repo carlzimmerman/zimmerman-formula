@@ -1,0 +1,142 @@
+==============================================================================
+G155 -- THE SOURCED EQUATION (candidates, gates, verdict)
+==============================================================================
+
+  M_pl (reduced) = 2.4353e+18 GeV
+  rho_Lambda (a0 canonical) = 5.8444e-27 kg/m^3 ;  Lambda = 2.2403 meV
+  M_MOND = sqrt(2) M_pl = 3.4441e+18 GeV
+  [PASS] C0 [the interpolant] df/dK = mu_2(u) = u(2+u)/(1+u)^2 (H011's f, H034's equation)
+         measured: df/dK - mu_2 = True
+         reading : the completion's interpolant is the derivative of the n = 2 function; everything below uses this f'(K) = mu_2.
+
+==============================================================================
+PART 1 -- CANDIDATE (a): THE CONFORMAL COUPLING g~ = e^{2 phi/M} g
+==============================================================================
+
+  S = int sqrt(-g)[ M_pl^2 R/2 + Lambda^4 f(K) ] + S_m[ g~ = e^{2 phi/M} g ],  K = (1/2)(d phi)^2/Lambda^4
+
+  vary phi:   delta S_m = int (delta S_m/delta g~_ab) (2/M) g~_ab delta phi
+                       = -(1/M) int sqrt(-g~) T~ delta phi,
+  so the exact sourced scalar equation is
+      grad_mu[ f'(K) d^mu phi ] = (1/M) (sqrt(-g~)/sqrt(-g)) T~
+  T~ = g~_ab T~^ab (trace wrt g~).  For dust T~ = -rho c^2 -> the STATIC
+  WEAK-FIELD form is
+      div[ mu_2(u) grad phi ] = (rho c^2 / M) e^{4 phi/M} ~ (rho c^2)/M
+
+  [PASS] C1 [the exact source] delta S_m/delta phi = -(1/M) sqrt(-g~) T~  -- the conformal coupling sources the scalar with the TRACE, coefficient 1/M
+         measured: coeff = -1/M ; for dust T~ = -rho c^2 -> + rho c^2/M
+         reading : the field couples to T (the trace), not to T_00 or a charge: dust gives the AQUAL-type source with coupling strength 1/M. This is the f(R)-class trace coupling (the scalaron couples to -T/(3 ...) likewise).
+
+==============================================================================
+PART 2 -- THE AQUAL IDENTIFICATION AND THE FIFTH FORCE (natural units c=hbar=1)
+==============================================================================
+
+  Observed potential: Phi_obs = Phi_N + (c^2/M) phi  ->  MOND potential psi = (c^2/M) phi.
+  In psi the sourced equation is  div[ mu_2 grad psi ] = rho c^4 / M^2.
+  AQUAL:  div[ mu_2 grad psi ] = 4 pi G rho,  4 pi G = c^3 hbar/(2 M_pl^2)  =>  M_MOND = sqrt(2) M_pl.
+  Fifth force on baryons (unscreened):
+      a_5 = (c^2/M)|grad phi|,  a_N = G M_b/r^2  ->  F_5/F_N = 2 (M_pl/M)^2 / mu_2.
+
+  [PASS] C2 [the lock] the MOND-required coupling scale: M_MOND = sqrt(2) M_pl -- the source coefficient c^4/M^2 must equal 4 pi G = c^3 hbar/(2 M_pl^2)
+         measured: M_MOND = 3.4441e+18 GeV = sqrt(2) x 2.4353e+18 GeV (reduced M_pl)
+         reading : the coupling is FIXED by Newton's constant (Planck-scale), not by a0 or rho_Lambda: the framework's own scales cannot change where this lands.
+  [PASS] C3 [the deep law at the required scale] with M = M_MOND the sourced equation gives the deep RAR g^2 = a0 g_N coefficient 1 (the phantom) -- the conformal route DOES source MOND at that scale
+         measured: deep RAR follows by the AQUAL identity: mu_2 ~ |grad psi|/a0 -> g^2 = a0 g_N (coeff 1)
+         reading : so candidate (a) is not empty: at M = sqrt(2) M_pl it reproduces the sourced equation H008/H011 use. The question is the price (the gates below).
+  [PASS] C4 [the fifth force at the required scale] F_5/F_N = 2(M_pl/M)^2/mu_2 = 1/mu_2 at M_MOND -- ORDER ONE (Solar System mu_2 = 1) and diverging deep
+         measured: F_5/F_N(M_MOND) = 1/mu_2: at u=1: 1.333; at u=1e-2: 50.751; at u=1e-4: 5.0e+03
+         reading : the same 1/M that sources the equation IS the fifth-force coupling: at the MOND-required strength the fifth force is order one vs gravity in the Solar System and dominates deep. NO screening exists in this class (no V(phi), no derivative self-couplings, no chameleon) -- it reads a FIFTH FORCE, not a screened equilibrium floor.
+
+==============================================================================
+PART 3 -- THE PPN GATES AND THE WEP GATES (the numbers)
+==============================================================================
+  [PASS] C5 [PPN alpha_1, alpha_2] the conformal route is a Lorentz-invariant scalar-tensor: NO vector field -> alpha_1 = alpha_2 = 0 identically (the preferred-frame parameters do not exist, H011 P1)
+         measured: alpha_1 = alpha_2 = 0 (structural: no c_14, no K_B, no aether)
+         reading : condition (i) of the verdict is satisfied by the conformal route -- the trace coupling introduces no frame. The price moves to gamma and the WEP.
+  [PASS] C6 [gamma] gamma = (3 - 2(M_pl/M)^2)/(3 + 2(M_pl/M)^2): at the MOND-required scale gamma = 0.5000 -- 1-gamma = 0.5000 vs Cassini 2.3e-05
+         measured: 1 - gamma(M_MOND) = 0.5000 = -2.2e+04x the Cassini bound |gamma-1| < 2.3e-05; passes only at M > 5.864e+20 GeV
+         reading : the slip Phi~ - Psi~ = 2(M_pl/M)chi (L241 V5) is nonzero: this is the Brans-Dicke 1/(2+w) deficit. At the coupling that sources the equation gamma = 5/7-class (0.5), 2.2e4x the Cassini bound; to pass Cassini the coupling must be M > 240 x M_pl -- which suppresses the MOND source by (240/sqrt 2)^2 = 2.9e4 (C8).
+  [PASS] C7 [the WEP/MICROSCOPE gate on M] the Eotvos signal of the trace coupling is composition-dependent ONLY through the binding-energy fraction: eta ~ 2(M_pl/M)^2 Delta(E_b/mc^2) < 1.4e-15 (MICROSCOPE) with Delta in [1e-6, 1e-4]
+         measured: M_WEP in [9.205e+22, 9.205e+23] GeV = [3.78e+04, 3.78e+05] x M_pl
+         reading : the coupling must sit 4-5 orders above the Planck scale to satisfy the laboratory WEP floor (MICROSCOPE 2022: eta(Ti,Pt) <= 1.4e-15; the LLR SEP bound is weaker, ~1e-4-class, and Cassini C6 is the weakest of the three frames' gates).
+  [PASS] C8 [THE KEY QUESTION -- contradiction or consistent scale] the WEP-satisfying M kills the MOND source: the source coefficient is 1/M^2 vs the required 1/(2 M_pl^2), so the phantom amplitude drops by M_MOND/M
+         measured: source suppressed by (M_MOND/M_WEP)^2 in [7.14e+08, 7.14e+10]; deep-RAR amplitude g -> g x M_MOND/M_WEP = g/[3.74e-05, 3.74e-06] -- the flat rotation curve dies by 4-5 orders of magnitude
+         reading : CONTRADICTION: the coupling needed to source div[mu_2 grad phi] = 4 pi G rho_bar (M ~ sqrt(2) M_pl, fixed by Newton's constant) gives an order-one fifth force (C4) and gamma = 1/2 (C6); the WEP-legal coupling (M ~ 4e4-4e5 M_pl) suppresses the source by 7e8-7e10. The ratio F_5/F_N to the source coefficient is fixed by the theory (= 1/mu_2), not a dial: there is NO consistent intermediate scale. The framework's own scales (a0 = 9.36e-11, rho_Lambda = 5.8e-27, Lambda = 2.24 meV) do not enter the coupling: M is fixed by G alone.
+
+  scale ledger (the coupling vs the framework's constants):
+    M_MOND        = 3.4441e+18 GeV
+    M_Cassini     = 5.864e+20 GeV = 240.8 x M_pl
+    M_WEP         = [9.205e+22, 9.205e+23] GeV
+    Lambda        = 2.2403 meV = 2.24e-12 GeV
+    Lambda^4/c^2  = rho_Lambda = 5.8444e-27 kg/m^3 ;  a0 = 9.3619e-11 m/s^2
+    M_MOND/Lambda = 1.54e+30 (no scale in the framework is near the coupling; a coupling M_MOND ~ 3e18 GeV is ~30 orders above the vacuum scale whose physics phi describes)
+
+==============================================================================
+PART 4 -- CANDIDATE (b): THE VARIABLE-MASS COUPLING  L_int = 4 pi G rho phi mu_2(K)
+==============================================================================
+
+  The exact static field equation from L_int is
+      div[ ( mu_2 + 4 pi G rho phi d(mu_2)/dK / Lambda^4 ) grad phi ] = 4 pi G rho mu_2(K)
+  Deep regime (u -> 0):  mu_2 ~ 2u ,  d(mu_2)/dK ~ 1/u  ->  the u's cancel to
+  leading order:   lap phi = 4 pi G rho .   NEWTONIAN POISSON -- not MOND.
+
+  the bracket correction / mu_2 in a MW halo ~ 4 pi G rho phi/(Lambda^4/c^2) = 4.47e-11  (negligible where it is finite; singular at K = 0, see C10)
+  [PASS] C9 [(b) does NOT give MOND] the mu_2-multiplied source gives the NEWTONIAN deep equation: div[mu_2 grad phi] = 4 pi G rho mu_2 -> lap phi = 4 pi G rho (the mu_2 cancels: no deep RAR, no flat curve)
+         measured: deep: u~0: mu_2 ~ 2u -> lap phi ~ 4 pi G rho (Newtonian); the bracket correction is 1e-5-class where finite
+         reading : the candidate that was built to reproduce div[mu_2 grad phi] = 4 pi G rho_bar reproduces Poisson instead: the RHS multiplied by mu_2 is NOT the MOND law -- the AQUAL source must be mu_2-free (a linear-in-phi trace coupling = candidate (a), with its WEP price).
+  [PASS] C10 [shift symmetry is broken] the explicit phi in L_int kills the Noether charge: grad_mu J^mu = 4 pi G rho mu_2(K) != 0 wherever K > 0 -- H034's separate-conservation lemma (the dark fluid as a distinct conserved component) and G028's cold conserved charge die; and d(mu_2)/dK ~ 1/(u(1+u)^3) DIVERGES at K = 0, so the coupling's linear perturbations about the FRW vacuum (K = 0, the w = -1 point) are singular
+         measured: grad_mu J^mu = 4 pi G rho mu_2(K);  d mu_2/dK = 1/(3*K**(3/2) + sqrt(K) + K**2 + 3*K); background K = 0: mu_2(0) = 0 keeps w = -1 AT the background, but the perturbation delta(mu_2) ~ delta K /(u(1+u)^3) -> infinity
+         reading : the 'variable-mass' coupling cannot be perturbed around the completion's own vacuum, and its source term is charge-non-conserving: the cosmology changes structurally (no conserved dark charge: n ~ a^-3 and c_s^2 = 0 both lose their derivation), even though the background w = -1 is formally untouched by mu_2(0) = 0.
+
+==============================================================================
+PART 5 -- CANDIDATE (c): THE DARK-SECTOR SELF-SOURCE (RHS = the dust density)
+==============================================================================
+  phantom: div[mu_2 grad phi] = 0 exactly (phi = C ln r; r^2 mu_2 phi' = C^2/a0)
+  rho_phi = -Lambda^4 f(K): at u = 0.1: +0.999 ; u = 0.5: +0.894 ; u = u* = 1.22385628142208: +9.77e-15 ; u = 2: -2.136  (units of Lambda^4)
+  [PASS] C11 [(c) is circular AND inconsistent] the self-source 4 pi G rho_phi(phi) vanishes only at u = u* = 1.2239 (ONE radius) while the phantom is the sourceless solution div[mu_2 grad phi] = 0 everywhere: the equation div[mu_2 grad phi] = 4 pi G rho_phi has NO phantom solution
+         measured: rho_phi = 0 only at u = u*; the phantom's divergence-free identity vs the negative self-source (rho_phi < 0 for u > u*) -- and J^0 = f' phidot = 0 on the static branch (H048 DOOR 3): the Noether charge density is zero, so 'the dust charge sources the field' is empty
+         reading : sourcing the field by its own stress-energy double-counts what eq. (I) already does (lap Phi = 4 pi G(rho_b + rho_phi)) and has no solution: the dark-sector source is circular and negative-energy (H045).
+
+==============================================================================
+PART 6 -- VERDICTS
+==============================================================================
+
+V1  THE DERIVED SOURCED FORM (candidate a, exact):
+      grad_mu[ f'(K) d^mu phi ] = (1/M)(sqrt(-g~)/sqrt(-g)) T~,
+      static dust:  div[ mu_2(u) grad phi ] = (rho c^2/M) e^{4 phi/M}.
+    The AQUAL identification fixes M_MOND = sqrt(2) M_pl = 3.44e18 GeV:
+    at that scale the deep law g^2 = a0 g_N (coeff 1) IS reproduced -- the
+    conformal route is the ONLY candidate that actually sources the equation.
+    BLOCKERS: (b) reproduces Newton (C9) + breaks the Noether charge with
+    singular perturbations (C10); (c) has no phantom solution and is circular
+    (C11); the disformal route is already dead (G032 Horn A alpha_1 = 0 by
+    architecture; L244: the disformal preferred-frame alpha_1 = O(1) with
+    kernel-independent failure).
+
+V2  THE WEP/PPN GATES (the numbers):
+      alpha_1 = alpha_2 = 0        (no vector: condition (i) SATISFIED)
+      gamma    = 1/2 at M_MOND     (Cassini |1-gamma| < 2.3e-5: FAILS by 2.2e4x;
+                                    passes only at M > 2.4e2 M_pl)
+      F_5/F_N  = 2(M_pl/M)^2/mu_2 = 1/mu_2 at M_MOND  (order one, unscreened)
+      MICROSCOPE eta < 1.4e-15     -> M_WEP in [3.8e4, 3.8e5] M_pl
+      source suppressed by (M_MOND/M_WEP)^2 in [7.1e8, 7.1e10]
+      deep-RAR amplitude g -> g x [3.7e-5, 3.7e-6]  (the flat curve dies)
+
+V3  THE HONEST STATEMENT -- the force-law reading is CLOSED as a fundamental
+    sourced field equation of a shift-symmetric completion. The coupling that
+    sources the equation is the trace/conformal coupling, and its strength is
+    locked to the fifth force: F_5/F_N = 1/mu_2 at the MOND-required scale.
+    The WEP-legal scale kills the source by 8e8-8e10; the MOND-required scale
+    violates WEP/Cassini by 4+ orders: NO consistent scale (C8 -- the deciding
+    constraint). The sourced form forces at least TWO of the three gates to
+    fail (WEP + the H045 ghost, which the conformal coupling does not touch).
+    The AVAILABLE reading is G031's equilibrium/EOS reading of the SOURCELESS
+    equation: the phantom as the Noether dust's isothermal state at the
+    Zimmerman temperature -- force-law content without a field-level coupling,
+    which is exactly why the sourceless equation is the one that survives.
+
+  [FAIL] V1 the sourced conformal form is derived BUT the WEP gate kills it: M_MOND = 3.4441e+18 GeV
+  [FAIL] V2 the WEP/PPN gates: Cassini 2.2e4x, MICROSCOPE M > [3.8e4, 3.8e5] M_pl
+  [FAIL] V3 the force-law reading: CLOSED as a sourced field equation; open only as G031's equilibrium reading
+
+G155 COMPLETE: 12/12 checks PASS.
