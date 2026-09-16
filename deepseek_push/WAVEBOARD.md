@@ -1018,6 +1018,45 @@ the amplitude chain, the seam, c0) / MEASURED (q, the outer slope, the
 phase diagram endpoints) / PENDING (the tSZ 3-way, XRISM plateau, DR4,
 z~2.5 BTFR).
 
+## WAVE 22 (landed 3/3 -- the one-boundary statement, the galaxy pie, the cosmic closure)
+G196 THE ONE-BOUNDARY PAPER STATEMENT: ONE_BOUNDARY_STATEMENT.md -- the six
+diagnostics with lanes + values (galaxy break 0.623 r_M, seam 0.96, the
+jump 0.364 ~ 0.273, the latent heat, the 2/3 pivot, the pie pivot), the
+meaning (the a0-crossing as a phase switch: the RAR as a phase diagram),
+the paper-ready paragraph, both caveats registered (smooth-steepening
+d_BIC 16, cap-firing contested G138).
+G197 THE GALAXY-SCALE PIE 12/12: interior phantom / exterior dust: at
+R_sun the interior dark = 0.89 phantom (dust 4.3%, f = 1.65); outside R_efe
+the free dust takes over (0.74-0.84 of the exterior dark); the G157
+RECONCILIATION: the interior holds -2 INSIDE r_M (committed Eilers: -2.01
+on [5.27, 10.21], -1.89 on the phantom window) while the -2.3 at 20-100
+kpc is the OUTER envelope (the dust + EFE exterior, entirely outside the
+deep-law regime [0.30, 0.66] r_M) -- not a contradiction; THE UNITY: the
+pie is a function of x = r/r_M ONLY (phantom share x/(f-1)), the crossover
+x_cross = (f-1)/2 shifted by saturation (f 1.65 -> 5.66 moves it 0.33 ->
+2.33 r_M); at matched x = 0.80 the sectors flip -- the SAME two-regime map.
+G198 THE TOTAL COSMIC DUST 9/9 -- THE DENSITY CLOSES: within-R500 dust =
+0.0879 = 33.3% of Omega_dm; envelope + ambient + field = 0.1740 = 65.9%;
+TOTAL Omega_dust = 0.2619 = 99.2% of the observed 0.264; the closure:
+equilibrium (0.79-1.28%) + envelope-inclusive dust (99.2%) = 1.000 of
+Omega_dm (100.0004%, register-rounding dust); the HALO-INTEGRAL gap stays
+(0.60-0.79, G115's sub-1e6 warm-floor cut); the ONTOLOGY LEAN: CHARGE
+(the envelope over-fills 2.0-6.2x, feeds 8.28e12 Msun/Gyr, FG secondary-
+infall, 99.2% present -- the relic's truncated tally disfavored as the
+carrier); THE DARK SECTOR'S COSMIC SUM IS DENSITY-CLOSED, the single open
+item the sub-1e6 collapsed count (G156's registered charge/relic test).
+
+## THE CLOSED COSMOLOGY (wave-22 headline)
+The framework's full cosmic bookkeeping: dark energy = the vacuum (closes
+Planck DE at 0.979 with zero cosmological input, G163); dark matter =
+equilibrium (0.8-1.3% of Omega_dm, the phantom, Gauss-map charge) + the
+free dust (99.2% of Omega_dm, envelope-inclusive, collisionless-forever,
+FG-infall streaming) = 1.000 of Omega_dm -- DENSITY-CLOSED.  The one open
+item: the sub-1e6 collapsed count (the registered charge-vs-relic test,
+G156).  The one boundary (r_M) marks every phase change.  The one mass
+prediction: m in [5.0, 5.2] keV (G168, kill band 4-6 keV).  The one
+scale question: a0_eff, pinned by the registered pair (z~2.5 BTFR + DR4).
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 CLAIMED (deepseek, in flight -- do NOT duplicate): G154 static-branch
 charge, G155 sourced equation, G156 dust charge-vs-relic decision,
