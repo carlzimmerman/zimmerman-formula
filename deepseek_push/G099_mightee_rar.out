@@ -1,0 +1,55 @@
+============================================================================================
+G099 -- THE MIGHTEE-HI RAR TEST (MeerKAT), zero parameters
+        g_obs^2 = g_N^2 + a0 g_N,  a0 = 9.3619e-11 m/s^2 (committed)
+============================================================================================
+
+--- (1) THE G077 SAMPLE: MIGHTEE-HI Table 5 (19 galaxies) ---
+    citation: Varasteanu et al. 2025, MNRAS, 541, 2366 (arXiv:2504.20857)
+    columns: Galaxy, z, i_opt_deg, log10_Mstar_Msun, Upsilon_star_Msun_Lsun
+    rows: 19
+    log10 Mstar: 7.48 .. 10.92 (median 9.49)
+    Upsilon_star: 0.24 .. 0.57 (median 0.36)
+    z: 0.0058 .. 0.0791
+    G077 extraction glitch (stated): each field carries the value twice,
+    e.g. '7.48±0.087.48\pm 0.08' -- central values parsed by regex.
+    selection (the paper's own): purely HI-selected (MIGHTEE-HI detections
+    with resolved rotation curves + resolved 10-band photometry in COSMOS);
+    HI selection -> low-mass, gas-rich discs -> the deep regime is the
+    sample's home.  NO isolation/EFE cut is applied in the paper (its own
+    selection is the HI detection); field dwarfs at z <= 0.08: the law's
+    EFE line R_efe = sqrt(G M_b/g_ext) ~ 10^2-10^3 kpc lies beyond every
+    ring -- the RAR test here sits inside the law's domain.
+
+--- (2) THE PAIRS: Fig. 3 top panel of the paper, vector-extracted ---
+    rings: 80 (paper's own DPL sample size: 80)
+
+--- (3) ZERO-PARAMETER RAR: log10(g_obs,pred/g_obs) ---
+    pooled rms = 0.1901 dex on 80 rings (benchmark 0.13-0.15)
+    decomposition: offset -0.1372 dex (median -0.1436),
+      scatter around it 0.1316 dex
+  [PASS] V1 [rms] the law's zero-parameter rms on MIGHTEE-HI = 0.190 dex <= 0.2 dex   benchmark 0.13-0.15 dex; scatter component 0.132 dex
+
+--- (4) THE DEEP REGIME: where the points sit in g_N/a0 ---
+    g_N/a0: min 0.0078, p16 0.018, median 0.042, p84 0.138, max 1.146
+    fraction with g_N < a0: 99%;  g_N < 0.2 a0: 90%
+    deep subset (g_N < 0.2 a0): n = 72, median offset -0.151 +- 0.015 dex (-9.9 sigma vs 0), rms 0.196
+    transition subset (g_N/a0 in [0.22, 1.15]): n = 8, median -0.050, rms 0.119
+  [FAIL] V2 [deep end] median offset at g_N < 0.2 a0 = -0.151 dex, |.| <= 0.1 dex   -9.9 sigma vs 0, n = 72
+
+    per-galaxy (colour-coded) groups: 18 (>= 18 of the 19 galaxies; two galaxies share one colour bin)
+    per-galaxy rms: median 0.153, mean 0.164, range 0.067..0.292;
+    per-galaxy median residual: median -0.152, same-sign fraction: 83%
+
+--- ROBUSTNESS: the alternative a0 footing (1.1279e-10) ---
+    pooled rms = 0.1642 dex; deep median -0.111 dex (n = 73)
+    context: the MIGHTEE paper's OWN fit (MLS form, its Table 3) prefers
+    a0 = 1.69+-0.13e-10 on this sample alone (1.32+-0.13 combined with
+    SPARC-high-g); sqrt(1.69/0.936) = 1.34 -> +0.13 dex is the deep-end
+    offset that normalization alone makes.
+
+--- V3 THE HONEST STATEMENT ---
+  [PASS] V3 [statement]   THE EQUIPARTITION LAW ON MIGHTEE-HI (MeerKAT, first use): zero-parameter rms = 0.190 dex on 80 rings (18 galaxies sensed by colour grouping) — WITHIN the declared 0.2 dex bar but ABOVE the registered SPARC benchmark 0.13-0.15 dex; the residual splits into a scatter of 0.132 dex (AT the benchmark) and a systemic deep-end offset of -0.151 dex (data ABOVE the law; -9.9 sigma, n = 72) — the offset is the MIGHTEE sample's own a0 preference (the paper fits a0 = 1.69e-10 on this sample alone, i.e. +0.13 dex in the deep end, and reports its 2-sigma tension with the SPARC-anchored RAR — the law inherits it). VERDICT: SHAPE CONFIRMED, ZERO-PARAMETER AMPLITUDE CONFLICTED at the deep end.  Sample limits: 80 rings / 19 galaxies, all HI-selected gas-rich discs at z <= 0.08 with g_N/a0 in [0.008, 1.146] — 99% of the points below a0 and 90% below 0.2 a0, so the test covers the deep asymptote and the transition but has NO Newtonian anchor (max g_N = 1.15 a0) and cannot probe the law's high-g convergence; pairs digitized from the authors' figure (validated against the paper's own residual panel to 0.036 dex rms); sample alone favours a higher a0 — a selection/photometric-system difference (resolved SED Upsilon_star, median 0.35 vs SPARC's 0.5) that lives exactly in the offset direction.
+
+G099 COMPLETE: 2/3 checks PASS.
+wrote data2/mightee2025_rar_digitized_points.csv (80 rows)
+wrote G099_results.json

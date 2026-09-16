@@ -95,4 +95,12 @@ Registry context (G044, frozen 2026-09-14): WALLABY DR2 max e_N ≈ 0.119 vs the
 
 ---
 
-## Total: 13 files downloaded (17 504 4 B total), 4 registrations with NOT-DOWNLOADED status + 1 open question (BIG-SPARC pre-release).
+## G099 addendum (2026-09-15) -- digitized RAR pairs, MIGHTEE-HI Fig. 3
+
+| field | value |
+|---|---|
+| source | Varasteanu et al. 2025, MNRAS, 541, 2366 (arXiv:2504.20857), Fig. 3 top panel, from the arXiv e-print vector PDF `Figures/RAR_best_fit_residuals_with_postpredictive.pdf` (e-print sha256 `0a3174fc2c7b3b619ff589011b6af3593e3d5952e87911a400869187a875ec49`) |
+| local | `mightee2025_rar_digitized_points.csv` sha256 `f1d6170d51a84f45c194028065c8b36f4544b1cad451c693d761abad8a3f0ea2` (2547 B; 80 rows: log10_gbar, log10_gobs [m/s2], color_r/g/b = the figure's per-galaxy equivalent-baryonic-surface-density colour) |
+| status | DERIVED (figure-only per-ring data; no machine-readable table exists in the paper or on CDS -- verified in the e-print source, 2026-09-15). Extraction: matplotlib vector marker paths + PDF tick-label calibration (G099_mightee_rar.py docstring); VALIDATED full-sample: recomputing the paper's own bottom-panel residuals (its best-fit MLS, a0 = 1.69e-10) from these pairs reproduces the plotted residuals to 0.036 dex rms. |
+
+## Total: 13 files downloaded (17 504 4 B total), 4 registrations with NOT-DOWNLOADED status + 1 open question (BIG-SPARC pre-release) + 1 derived file (G099 digitized pairs).
