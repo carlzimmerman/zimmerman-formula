@@ -1057,6 +1057,46 @@ G156).  The one boundary (r_M) marks every phase change.  The one mass
 prediction: m in [5.0, 5.2] keV (G168, kill band 4-6 keV).  The one
 scale question: a0_eff, pinned by the registered pair (z~2.5 BTFR + DR4).
 
+## WAVE 21 (landed 3/3 -- the footing's true size, the dark-ages phantom, the anisotropy executable)
+G193 THE COMPOSITE RECONSIDERED 9/9: the corrected a0_c = (1.269 +- 0.027)
+e-10; the NEAREST REGISTERED CANDIDATE: L232's SPARC free-fit 1.2457e-10
+at ratio 1.00016 -- AND THE COMPOSITE IS SELF-REFERENTIAL:
+sqrt(a0_DE x a0_RAR_hi) = 1.0799e-10 = the observed 1.08e-10 low edge
+(0.99992); the residual tension: +15.4-17.5% = 2.18-2.46 sigma
+statistical-only, 1.78-2.01 sigma with the M/L spread -- MARGINAL, down
+from the staircase's 5.2 sigma; THE FOOTING CRISIS'S TRUE REMAINING SIZE
+= a ~15% / ~2 sigma NORMALIZATION PREFERENCE (RAR-class over DE), with
+the z ~ 2.5 BTFR zero point still decisive.
+G194 THE DARK-AGES PHANTOM 10/10: the formation-epoch ladder: z*+1 =
+m sigma^2/(k_B T_0): galaxy phantom (119 km/s, 5 keV) -> z* = 2.37
+(cosmic noon); cluster-class (600-1000 km/s) -> z* = 84-232 (155-265 at
+5.7 keV) -- the cluster phantom is a DARK-AGES relic; HONEST CORRECTION:
+the brief's 1e4-K class was 1.5-2 dex high (the arithmetic needs T_b =
+425-725 K for z* = 155-265); THE CONSTANCY TEST: f_ph flat across the
+disturbed/relaxed split (Mann-Whitney p = 0.39/0.59/0.49, three
+conventions; ZW1215, the fully-flagged NCC case, at 0.66 sigma from the
+median -- ZERO MEMORY OF ASSEMBLY); the dark-ages phantom: a testable
+relic prediction with a kill condition (f_ph trending with the flags).
+G195 THE STACKED-SDSS ANISOTROPY 7/7: the executable built (projected-
+Jeans inversion, Diaferio-class; the two-asymptote beta(r), G170's
+anchors mapped); INJECTION TESTS: the streaming reading detected at
+8.1 sigma (beta_win = 0.637 +- 0.079 vs truth 0.594), the static null
+stays at 0.136 +- 0.205 (no false detection); the stacked-SDSS scale
+sigma_beta = 0.090 within the 0.167 gate; HONEST: DATA-GATED -- no
+member (R, v_los) catalog is in-repo; the first providing stacks cited
+(HeCS Rines+13 ~230 clusters to 2-3 r_vir; Wojtak-Mamon DR7 satellite
+stack; CIRS; Wojtak+11) -- the beta(2-5 R500) measurement awaits
+committing those catalogs (G204 dispatched).
+
+## THE FOOTING, FINAL SIZE (wave-21 headline)
+The staircase's 5.2-sigma crisis has been reduced in three steps (the M/L
+convention artifact G167, the s_Lambda deep-end match G189, the
+self-referential composite G193) to a ~15% / ~2 sigma NORMALIZATION
+PREFERENCE -- the DE anchor and the RAR-class are statistically
+compatible today; the z ~ 2.5 BTFR zero point and the DR4 ridge remain
+the registered scale-pickers.  The equilibrium's shape physics never
+wavered (G172).
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 CLAIMED (deepseek, in flight -- do NOT duplicate): G154 static-branch
 charge, G155 sourced equation, G156 dust charge-vs-relic decision,
