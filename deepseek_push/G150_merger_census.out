@@ -1,0 +1,127 @@
+====================================================================================================
+G150 -- THE MERGER-CENSUS EXECUTABLE: the combined f_pair(s) curve, implementable
+====================================================================================================
+
+--- (0) THE REGISTRY ANCHORS REPRODUCED (G086/G118, committed) ---
+    M_pair,tot = 1.0e+11 Msun: r_M =   12.203 kpc  (G086 committed   12.203)
+    M_pair,tot = 2.5e+11 Msun: r_M =   19.295 kpc  (G086 committed   19.295)
+    M_pair,tot = 5.0e+11 Msun: r_M =   27.287 kpc  (G086 committed   27.287)
+    M_pair,tot = 1.0e+12 Msun: r_M =   38.590 kpc  (G086 committed   38.590)
+    s = r_M/2 : R_baryon = (1 + r_M/s)^1 =  3.000  (registered  3.00, q = 1)
+    s = r_M   : R_baryon = (1 + r_M/s)^1 =  2.000  (registered  2.00, q = 1)
+    s = 2 r_M : R_baryon = (1 + r_M/s)^1 =  1.500  (registered  1.50, q = 1)
+  [PASS] C1 [G086 registry] r_M(pair) rows reproduce the committed values to 1e-9 rel (12.2031/19.2948/27.2869/38.5895 kpc at 1e11/2.5e11/5e11/1e12 Msun)
+  [PASS] C2 [G118 curve] the q = 1 excess vs baryon-only: 2.000 at s = r_M (G086 EXACT), 1.500 at 2 r_M, 3.000 at r_M/2
+
+--- (1) THE COMBINED CURVE f_pair(s; M_b, M_host, z) ---
+    (a) vs the baryon-only baseline: R = (1 + r_M/s)^q, q = 1 (G118 closed form),
+        honest envelope band q in {1/2, 3/2};
+    (b) vs the SHMR-matched NFW (G121's conventions): delta = sqrt(Me_law/Me_cdm) - 1
+        (std) and (Me_law/Me_cdm)^1.5 (rho_cdm/rho_law) - 1 (direct), band over
+        k x(0.7,1.4) x c {9,15} x a0 {can,alt} x treatment;
+    (c) the corners: deep-deficit (light members, 40-60 kpc, direct) and
+        massive-excess (heavy members, 10-20 kpc, k-band-upper std).
+    s_kpc | r_M | s/r_M | R_baryon [env band]   | delta_std% | delta_band%      | corners
+       10 |  17.3 |  0.58 |  2.726 [1.651,4.500] |   +4.5 | [ -31.1, +12.9] | ..ME
+       15 |  17.3 |  0.87 |  2.151 [1.466,3.154] |   +2.4 | [ -23.5, +13.7] | ..ME
+       20 |  17.3 |  1.16 |  1.863 [1.365,2.543] |   +0.9 | [ -27.5, +14.1] | ..ME
+       25 |  17.3 |  1.45 |  1.690 [1.300,2.198] |   -0.1 | [ -32.0, +14.4] | ....
+       30 |  17.3 |  1.74 |  1.575 [1.255,1.977] |   -0.5 | [ -35.7, +14.8] | ....
+       40 |  17.3 |  2.32 |  1.431 [1.196,1.713] |   -0.5 | [ -41.6, +16.0] | ....
+       50 |  17.3 |  2.90 |  1.345 [1.160,1.560] |   +0.3 | [ -45.7, +17.5] | ....
+       60 |  17.3 |  3.48 |  1.288 [1.135,1.461] |   +1.5 | [ -48.7, +19.3] | ....
+    the q = 1 curve vs baryon-only at the SDSS-prime mass (M_b pair = 1e11, z = 0.1):
+      s =  10 kpc: R_baryon = 2.220 (band [1.490, 3.308]), delta_SHMR =  +2.6% (band [-20, +14]%)
+      s =  15 kpc: R_baryon = 1.814 (band [1.347, 2.442]), delta_SHMR =  -0.5% (band [-22, +13]%)
+      s =  20 kpc: R_baryon = 1.610 (band [1.269, 2.043]), delta_SHMR =  -2.4% (band [-28, +13]%)
+      s =  25 kpc: R_baryon = 1.488 (band [1.220, 1.815]), delta_SHMR =  -3.4% (band [-34, +13]%)
+      s =  30 kpc: R_baryon = 1.407 (band [1.186, 1.669]), delta_SHMR =  -3.8% (band [-38, +13]%)
+      s =  40 kpc: R_baryon = 1.305 (band [1.142, 1.491]), delta_SHMR =  -3.5% (band [-44, +14]%)
+      s =  50 kpc: R_baryon = 1.244 (band [1.115, 1.388]), delta_SHMR =  -2.4% (band [-49, +16]%)
+      s =  60 kpc: R_baryon = 1.203 (band [1.097, 1.320]), delta_SHMR =  -0.9% (band [-53, +18]%)
+    THE CORNERS: deep-deficit row (members 1e10, s = 60 kpc): delta_direct = -52.1%  (corner flag True);
+    massive-excess row (members 1e11, s = 20 kpc): AGGREGATE band upper = +15.2%  (G121 committed +15.2 at 20 kpc; corner flag True)
+  [PASS] C3 [the combined curve] the executable emits (a) the q = 1 excess with the envelope band, (b) the SHMR-NFW delta with the full band, (c) the corner flags, at every grid row
+  [PASS] C4 [the corners] the deep-deficit row (members 1e10, 60 kpc, direct) is <= -40% (-52.1%) and the massive-excess row (members 1e11, 20 kpc, aggregate band upper) is >= +15% (+15.2%) -- G121's corner structure stands
+  [PASS] C5 [G121 band reproduction] the AGGREGATE band reproduces G121's committed band rows: 20 kpc [-38.8, +15.2]% vs committed [-38.8, +15.2]; 40 kpc [-53.7, +19.7]% vs committed [-53.7, +19.7]   the massive-corner '+15..+20%' reading IS the aggregate upper at the massive-corner separations
+
+--- (2) THE SENSITIVITY: WHICH BASELINE IS FAIR, AND THE DEVIATIONS ---
+    THE FAIR COMPARISON for a real catalog: the SHMR-matched NFW ratio (G121's
+    conventions) multiplied onto the LCDM-OBSERVED consensus (GAMA/MaNGA/zCOSMOS
+    verified rows) for the absolute normalization.  The BARYON-ONLY baseline is the
+    MECHANISM reference (G118's q = 1 curve -- the deep-regime force-ratio transfer),
+    NOT a realizable control: a real catalog's selection lives in a universe with dark
+    halos and its control (identical-cut LCDM mocks) already contains them.  The three
+    baselines answer three different questions; only the SHMR-NFW x consensus pair
+    produces a number a real catalog can confront.
+    the observed consensus curve: f_obs(s) = 2.0% (s/30 kpc)^1.39 ((1+z)/1.1)^1.53;
+    scale index beta = 1.393 derived from the committed GAMA counts (1434/4741/13496 at 20/50/100 kpc [V]); anchor band [1.5, 3.0]% at 30 kpc (zCOSMOS 1.6% [V], consensus 2.0% [V], MaNGA 3.0% [V]); the task anchor 5-10% [U -- not itself verified].
+    cross-checks: f_obs(30, z=0.1) = 2.00% (the 2% consensus [V] EXACT); zCOSMOS at z=0.1: 1.63% [V]; MaNGA ~3% (1-30 kpc, z~0.04) [V]
+  [PASS] C6 [the observed consensus] f_obs(30 kpc, z=0.1) = 2.00% EXACT (the [V] consensus anchor); the zCOSMOS and MaNGA [V] rows fall inside the declared anchor envelope [1.5, 3.0]%   beta = 1.393 from the GAMA counts; task anchor 5-10% flagged U
+    THE DEVIATION TABLE vs the OBSERVED CONSENSUS (the consensus sample M* = 4.6e10
+    -> M_b = 8.36e10 per member; z = 0.1; central = std treatment, k(M_b), c = 12,
+    a0 canonical; the band propagates consensus-envelope x SHMR-band x z-band):
+    s_kpc | f_obs% | f_fw% central | deviation (pt) | deviation (rel%) | f_fw band%
+      20 |   1.14 |      1.14 |   -0.001 |     -0.1 | [ 0.54,  2.59]
+      30 |   2.00 |      1.97 |   -0.031 |     -1.5 | [ 0.88,  4.43]
+      40 |   2.99 |      2.94 |   -0.044 |     -1.5 | [ 1.16,  6.90]
+      60 |   5.25 |      5.29 |   +0.034 |     +0.6 | [ 1.72, 13.10]
+    the G121-prime row (M_b = 5e10) for continuity: delta(20) = -2.4%, delta(40) = -3.5%
+  [PASS] C7 [the centroid non-discriminability] at the consensus mass the prediction differs from the observed consensus by |dev| < 0.15 pt at 20/30/40/60 kpc (the -1.5..+0.6% relative centroid row; the G121-prime 5e10 row runs -2.4..-0.9%) -- an order of magnitude inside the consensus envelope: the CENTROID is not the test, the CORNERS are   deviations: 20 kpc: -0.001 pt (-0.1%), 30 kpc: -0.031 pt (-1.5%), 40 kpc: -0.044 pt (-1.5%), 60 kpc: +0.034 pt (+0.6%)
+
+--- (3) THE SCORING CONTRACT (pre-registered here, before any real catalog) ---
+    A catalog of N pairs (columns s, M_star,1, M_star,2, z, g_ext) DECIDES the
+    q = 1 merger-census law at 3 sigma when ALL of the following hold:
+      (i) CORNER RESOLUTION: a pre-registered corner bin carries N_bin >= N3 and its
+          measured ratio R_meas = f_pair,cat(s-bin)/f_pair,obs(s-bin) clears the null
+          on the predicted side at >= 3 sigma (|R_meas - 1 - delta_pred| <= 3 sigma_bin,
+          sigma_bin^2 = 1/N_bin + sys^2):
+          * DEEP-DEFICIT corner (member M_b <= 3e10, s in [40, 60] kpc,
+            R_pred <= 0.60):  N3(0.46, 0.10) = 75, N3(0.52, 0.10) = 50 --
+            N <= 100 pairs per bin at a 10% systematic (G121 V3);
+          * MASSIVE-EXCESS corner (member M_b >= 1e11, s in [10, 20] kpc,
+            R_pred >= 1.15):  N3(0.15, 0.00) = 400, N3(0.20, 0.00) = 225 --
+            N ~ 300 sys-free; the systematic floor must be <= 5% (N3(0.20, 0.05) = 515;
+            the +15% row is unreachable at sys = 5%);
+      (ii) SHAPE: q_meas = d log10(R_meas)/d log10(1 + r_M/s) over >= 3 populated
+           universal bins lies in [0.5, 1.5] with |q_meas - 1| <= 3 sigma_q;
+      (iii) NO FALSIFIER FIRES: F1 (R_meas <= 1.00 at the anchor bin s/r_M in
+            [2/3, 4/3]), F2 (slope outside [0.5, 1.5]), F3 (residuals correlate with
+            g_ext at |Spearman| > 0.3, n >= 50, or residual scatter > 20% -- the
+            M_b-only statement), F4 (the excess confined outside the registered
+            10-60 kpc window).
+    The prime-mass centroid (-2 to -5%) is explicitly NOT 3-sigma-decidable at any
+    achievable N (G121 V3): the test resolves on the corners and the shape.  A catalog
+    satisfying (i)-(iii) DECIDES q = 1; a guard violation fires the falsifier;
+    otherwise INCONCLUSIVE.
+  [PASS] C8 [the N3 arithmetic] the contract's sample numbers reproduce G121's committed N3 table exactly (101/57/515/134 at (0.3,0)/(0.5,0.1)/(0.2,0.05)/(0.3,0.05)); the corner N3s: deep-deficit 75-50 @ sys 10%, massive 400-225 sys-free   {'N3_0p30_sys0': 101, 'N3_0p50_sys0p10': 57, 'N3_0p20_sys0p05': 515, 'N3_0p30_sys0p05': 134, 'N3_0p46_sys0p10': 75, 'N3_0p52_sys0p10': 50, 'N3_0p15_sys0': 401, 'N3_0p20_sys0': 225}
+
+--- (4) THE SCORER: score_catalog(csv) -> the predicted f_pair(s) curve + band ---
+    NO real pair catalog is committed in-repo (searched this lane: 0 matches,
+    UNVERIFIED).  The default run scores a DECLARED SYNTHETIC SDSS-class catalog
+    (seeded 20260916, uniform draws, NOT drawn from the model) to exercise the
+    machinery end-to-end; a real catalog is read with --catalog <csv>.
+    synthetic catalog provenance: seeded 20260916, uniform draws in s (10-60 kpc),
+    M* (1e10-1e11 both members), z (0.04-0.3), log10 g_ext/a0 (-1.5, +0.5); the
+    scorer accepts a real CSV with columns s, M_star_1, M_star_2, z, g_ext via
+    --catalog (flexible header spellings: Mstar1/Mstar_1, etc.).
+    catalog: N = 3000 pairs, z in [0.04, 0.30], s in [10, 60] kpc, M* members in [1.0, 10.0] x 1e10 Msun
+    per s/r_M universal bin -- THE PREDICTED f_pair(s) CURVE WITH THE ERROR BAND:
+    bin         n  med s  med s/rM | R_q=1 [env band]      | delta_std% [band]   | f_fw% [band]         | sigma_ach
+    [0.50,1.00)   536  12.4  0.81 |  2.313 [1.521,3.518]  |   +3.0 [-24,+13] |   0.66 [0.27,1.38] |   0.3
+    [1.00,2.00)  1133  19.7  1.44 |  1.722 [1.312,2.259]  |   -1.0 [-27,+13] |   1.21 [0.53,2.53] |   0.1
+    [2.00,4.00)  1080  37.6  2.71 |  1.367 [1.169,1.599]  |   -2.8 [-42,+14] |   2.92 [1.08,6.24] |   0.3
+    the pre-registered corner bins:
+      DEEP-DEFICIT (Mb<=3e10, 40-60 kpc)          : n =  267 (med s 48.8 kpc), prediction delta = -43.0%, N3(sys=0.10) = 95 -> RESOLVABLE at >= 3 sigma
+      MASSIVE-EXCESS (Mb>=1e11, 10-20 kpc)        : n =  487 (med s 14.2 kpc), prediction delta = +15.4%, N3(sys=0.10) = unreachable -> underpowered
+    q_meas (shape fit; for a uniform-draw demo catalog need NOT match the model) = 1.3570164395584192 (the q = 1 envelope is [0.5, 1.5] -- the contract's F2 guard); F3 environment check: Spearman(residual, log10 g_ext) = +0.001 -> PASS (M_b-only, no g_ext dependence)
+  [PASS] C9 [the scorer end-to-end] the catalog -> curve pipeline runs: universal bins populated (n >= 20), the predicted f_pair(s) curve with the error band emitted per bin, the corner N3 arithmetic computed, q_meas fitted (finite), F3 (g_ext) checked on the M_b-only statement   bins: [0.5,1.0) n=536, [1.0,2.0) n=1133, [2.0,4.0) n=1080; q_meas = 1.357 (the uniform-draw synthetic catalog need NOT follow the model shape -- the scorer classifies it per the contract: inside [0.5, 1.5] and |q_meas-1| <= 3 sigma_q passes the F2 guard, outside fires it; a real catalog's measured fractions decide)
+
+--- VERDICTS ---
+  [PASS] V1 [executable complete] the curve, the three baselines, the scorer, the corners -- one runnable artifact   f_pair(s; M_b, M_host, z) + score_catalog(csv) -> predicted f_pair(s) with the error band
+  [PASS] V2 [observed-consensus comparison] the deviations at 20/30/40/60 kpc with the propagated errors; the fair-baseline answer stated   consensus-row centroid -1.5..+0.6% rel (5e10 row -2.4..-0.9%) inside the +/-25% consensus envelope; corners carry the signal
+  [PASS] V3 [honest statement] the merger census is ready to score the next resolved pair catalog; no catalog in-repo (UNVERIFIED); the contract resolves on the corners and the shape, not a single number   implementable today: SDSS/GAMA-class columns s, M_star,1, M_star,2, z, g_ext
+
+G150 COMPLETE: 12/12 checks PASS.
+UNVERIFIED-IN-REPO ledger: (1) no pair catalog committed (searched this lane, 0 matches) -- the scorer ran on the declared synthetic catalog; (2) the observed-consensus rows carry G121's committed V/U flags (GAMA/MaNGA/zCOSMOS/consensus V; task anchor 5-10% U); (3) GASF = 0.55 M_star/M_b is G121's U-class convention.
+WROTE G150_results.json
