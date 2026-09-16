@@ -1,0 +1,95 @@
+============================================================================================
+Z01 -- THE FROZEN-DOMAIN TILT ADJUDICATION: restore b = 1.00 or honestly
+refute it (REASSESSMENT seam #1 -- G223 measured, nobody adjudicated)
+============================================================================================
+
+(0) REPRODUCTION (the G223 registers, rebuilt from the committed files)
+--------------------------------------------------------------------------------------------
+  FULL LINE          : n =  542  slope 1.004 +- 0.011  rms_id 0.179  (committed 1.0040 +- 0.0108, 0.1795)
+  FROZEN (z* > 0)    : n =  323  slope 1.155 +- 0.029  (b-1)/se +5.35  rms_id 0.140  (committed 1.1553 +- 0.0290, +5.35, 0.140)
+  NEVER-FROZE (z*<0) : n =  219  slope 0.917 +- 0.030  (b-1)/se -2.81  rms_id 0.225
+
+(1) THE PER-CATALOG COMMITTED REGISTER (b-values and zero points on record)
+--------------------------------------------------------------------------------------------
+  catalog                   n  n_frz  committed slope (src)  recomputed             zero point med r
+  GC                      112      0  2.3568     +- 0.1184    2.3568     +- 0.1184     +0.0595  [OK]
+  dSph bright (log M* > 4.5)   14      0  0.4552     +- 0.1662    0.4552     +- 0.1662     +0.0493  [OK]
+  dSph UFD (log M* <= 4.5)   20      0  -0.0993    +- 0.3733    -0.0993    +- 0.3733     +0.4007  [OK]
+  HI                       55      0  0.9163     +- 0.1474    0.9163     +- 0.1474     +0.0150  [OK]
+  SPARC                    35     18  1.0278     +- 0.0871    1.0278     +- 0.0871     -0.0541  [OK]
+  clusters (G075)          12     12  0.8534     +- 0.1297    0.8534     +- 0.1297     +0.2728  [OK]
+  GEMS G-class             36     36  1.5321     +- 0.3892    1.5321     +- 0.3892     +0.1147  [OK]
+  ATLAS3D ETGs            258    257  1.2977     +- 0.0451    1.2977     +- 0.0451     +0.0813  [OK]
+  (sources: G131_results.json fits -- GC 2.3568 +- 0.1184 / dSph bright 0.4552 +- 0.1662 /
+   UFD -0.0993 +- 0.3733 / HI 0.9163 +- 0.1474 / SPARC 1.0278 +- 0.0871 / CL 0.8534 +- 0.1297;
+   G162_results.json -- GEMS G 1.5321 +- 0.3892 (+1.37 sigma), S3 1.4562 +- 0.5199,
+   ATLAS3D 1.2977 +- 0.0451 (+6.60 sigma, drift +0.0744/dex), SLUGGS 1.286 +- 0.128,
+   E11 0.824 +- 0.105; G075 cluster median r +0.2728; G125 V2 groups mass-independent
+   rho 0.207 / slope 0.057 dex/dex)
+
+(2) V1 -- THE SEAM-FREE SLOPE (per-catalog free zero points, ANCOVA)
+--------------------------------------------------------------------------------------------
+  FROZEN domain (n = 323, 4 catalogs: SPARC_f/CL/GRP/A3D):
+    b = 1.2982 +- 0.0559   (b-1)/se = +5.34   rms_about_fit = 0.1044   df = 318
+    F(ladder vs single line) = 22.0 on (3, 318) df -- the zero-point ladder is real
+    pooled 1.155 -> seam-free 1.298: freeing the intercepts RAISES the slope --
+    the ladder MASKS the tilt, it does not produce it (the pooled 1.155 was a
+    partial cancellation of a steeper within-catalog slope; the excess-over-unity
+    moves -92% under the seam model).
+    per-catalog line levels (alpha_c, ANCOVA frame) and internal slopes (frozen):
+      A3D    alpha = -0.5278   (internal slope 1.279 +- 0.045, (b-1)/se +6.20, n=257, med r +0.081)
+      CL     alpha = -0.5885   (internal slope 0.853 +- 0.130, (b-1)/se -1.13, n=12, med r +0.273)
+      GRP    alpha = -0.6892   (internal slope 1.532 +- 0.389, (b-1)/se +1.37, n=36, med r +0.115)
+      SPARC_f alpha = -0.6607   (internal slope 1.208 +- 0.183, (b-1)/se +1.14, n=18, med r -0.042)
+    ATLAS3D split-half (where does the internal 1.30 live?):
+      below_median_logMstar  n=129  slope 1.944 +- 0.137  med r +0.044
+      above_median_logMstar  n=129  slope 0.963 +- 0.076  med r +0.098
+    between-catalog macro ladder (catalog medians): slope +0.288 +- 0.088 per dex, rms 0.0445
+    leave-one-catalog-out (frozen domain):
+      without A3D   : n= 66  b = 1.406 +- 0.243  (b-1)/se +1.67
+      without CL    : n=311  b = 1.302 +- 0.057  (b-1)/se +5.29
+      without GRP   : n=287  b = 1.272 +- 0.043  (b-1)/se +6.37
+      without SPARC_f: n=305  b = 1.302 +- 0.058  (b-1)/se +5.21
+  FULL 542 (7 channels) context:
+    b = 1.1231 +- 0.0485   (b-1)/se = +2.54   rms_about_fit = 0.1551
+
+(3) V2 -- THE CLEAN-CORE TEST (individually committed near-unity slopes)
+--------------------------------------------------------------------------------------------
+  SPARC v_flat > 90        : n=20  slope 1.172 +- 0.168  (b-1)/se +1.02  med r -0.042  rms_id 0.081
+  GEMS G-class             : n=36  slope 1.532 +- 0.389  (b-1)/se +1.37  med r +0.115  rms_id 0.235
+  CLEAN CORE pooled        : n=56  slope 1.258 +- 0.128  (b-1)/se +2.01  rms_id 0.195
+  CLEAN CORE ANCOVA (free zero points): b = 1.417 +- 0.264  (b-1)/se +1.58
+  fired-falsifier rule (slope > 1.05 at 3 sigma): single-line b-3se = 0.873 [does not fire];
+                                                  ANCOVA      b-3se = 0.625 [does not fire]
+  point estimate above 1.05: yes   (b-2se = 1.001)
+
+(4) VERDICTS
+--------------------------------------------------------------------------------------------
+[V1] PASS
+    THE SEAM-FREE SLOPE: with PER-CATALOG free zero points (ANCOVA), the frozen-domain slope is b = 1.298 +- 0.056 ((b-1)/se = +5.34, n = 323, 4 catalogs) -- NOT 1.00 +- 0.03.  The between-catalog zero-point ladder is real -- the committed per-catalog levels (median r): SPARC_f -0.042 -> ATLAS3D +0.081 -> GEMS G +0.115 -> clusters +0.273 (the normalization ladder: ATLAS3D M*/IMF footing, GEMS f_b,500 footing, cluster M500 footing; F = 22.0 on 3 df vs the single line) -- but freeing the intercepts RAISES the slope to 1.298: the ladder MASKS the tilt, it does not produce it (the pooled 1.155 was a partial cancellation of a steeper within-catalog slope).  The tilt lives INSIDE the catalogs, dominated by ATLAS3D: internal slope 1.30 +- 0.05 ((b-1)/se = +6.60, n = 258, drift +0.074/dex of log M*, committed G162; split-half: below-median log M* 1.944 +- 0.137, above-median 0.963 +- 0.076 -- the rise is CONCENTRATED below the median mass and saturates above: curvature, not a linear drift, the halves differ at ~6 sigma), and ATLAS3D is 257 of the frozen domain's 323 members.  Leave-one-out: without ATLAS3D b = 1.406 +- 0.243 (n = 66) -- the remaining frozen catalogs lean the same way.  FULL-542 context: ANCOVA across all 7 channels gives b = 1.123 +- 0.049 -- the 12-decade line's pooled unity is itself a blend of steep within-channel windows (GC virial 2.36, A3D 1.30) and near-unity channels.
+[V2] PASS
+    THE CLEAN-CORE TEST (the catalogs with individually committed slopes near 1.0): GEMS G-class (committed 1.53 +- 0.39, +1.37 sigma) and SPARC v_flat > 90 (SPARC committed 1.03 +- 0.09, +0.32 sigma).  Pooled single-line clean slope: b = 1.258 +- 0.128 ((b-1)/se = +2.01, n = 56, rms 0.195); pooled with per-catalog free zero points (2 catalogs): b = 1.417 +- 0.264 ((b-1)/se = +1.58).  Alone: SPARC v_flat > 90 b = 1.172 +- 0.168 ((b-1)/se = +1.02, n = 20, rms 0.081); GEMS G-class b = 1.532 +- 0.389 ((b-1)/se = +1.37, n = 36, rms 0.235).  The fired-falsifier rule (clean slope > 1.05 at 3 sigma): single-line b - 3se = 0.873 (does not fire); ANCOVA b - 3se = 0.625 (does not fire).  The clean core's point estimate LEANS the same direction as the frozen tilt (+2.01 sigma from unity) but does not fire at 3 sigma.
+[V3] PASS
+    HONEST: HONEST MIDDLE -- FIRST SLOPE ANOMALY ON THE RECORD.  the seam does NOT absorb the tilt (the frozen slope lives INSIDE the catalogs -- freeing the intercepts RAISES the slope, so the zero-point ladder masks the tilt rather than producing it), and the clean core (GEMS G-class + SPARC v_flat > 90) leans the same direction at +2.0 sigma but does NOT fire the 3-sigma falsifier: the law's first slope anomaly is registered -- concentrated in the dispersion face with ATLAS3D's internal 1.30 as the dominant carrier -- with its adjudication (the M/L_JAM / IMF-tilt zero point vs a real dark-mass slope) stated honestly.  THE NUMBERS: (a) the frozen domain's pooled slope 1.155 +- 0.029 (+5.35 sigma) decomposes into a REAL between-catalog zero-point ladder (median r: SPARC_f -0.042 -> ATLAS3D +0.081 -> GEMS G +0.115 -> clusters +0.273; F = 22.0 on 3 df -- the ladder is statistically real) PLUS a REAL within-catalog slope; (b) the seam model FAILS decisively: with per-catalog free zero points the slope is b = 1.298 +- 0.056 ((b-1)/se = +5.34), HIGHER than the pooled 1.155 -- the ladder masks the tilt, it does not produce it, so the 'normalization ladder' branch of the decision is closed: the frozen domain is NOT restored to unity by the seams; (c) the tilt's dominant carrier is ATLAS3D's internal slope 1.30 +- 0.05 (+6.60 sigma, drift +0.074/dex of log M*, corroborated by the in-repo SLUGGS lane at 1.29 +- 0.13, G162 B2), 257 of the frozen domain's 323 members, with the rise CONCENTRATED below median log M* (split-half slopes 1.944 below / 0.963 above, curvature at ~6 sigma); (d) the clean core -- the catalogs whose committed slopes sit within ~1.5 sigma of unity (GEMS G-class 1.53 +- 0.39, SPARC v_flat > 90 on SPARC's 1.03 +- 0.09) -- pools to b = 1.258 +- 0.128 ((b-1)/se = +2.01, n = 56): unity is NOT restored there either, but the falsifier does NOT fire (b - 3se = 0.873 < 1.05); the clean core leans the same direction at 2 sigma -- consistent with, not proof of, a mild real tilt in the dispersion face.  THE REGISTER: the 12-decade line's frozen domain carries the law's FIRST SLOPE ANOMALY on the record -- concentrated in the frozen dispersion face, ATLAS3D-led, echoed at 2 sigma by the clean core, and NOT a catalog-normalization seam.  Its adjudication (a mass-trending M/L_JAM / IMF zero point, which would be a normalization-ladder effect INSIDE one catalog, vs a genuine dark-mass slope at the elliptical scale) is the named decider for whether the anomaly demotes to a footing artifact or stands as the law's first slope failure.
+
+(5) CHECKS: 17/17 pass
+    [OK] G223 full line reproduced (1.0040 +- 0.0108, rms_id 0.1795, n=542)
+    [OK] G223 frozen-domain line reproduced (1.1553 +- 0.0290, +5.35, rms 0.140, n=323)
+    [OK] G223 unfrozen reproduced (0.917 +- 0.0296, n=219)
+    [OK] GC committed slope 2.3568 +- 0.1184 / zero point +0.0595 (n=112) recomputed from per-object rows
+    [OK] dSph bright (log M* > 4.5) committed slope 0.4552 +- 0.1662 / zero point +0.0493 (n=14) recomputed from per-object rows
+    [OK] dSph UFD (log M* <= 4.5) committed slope -0.0993 +- 0.3733 / zero point +0.4007 (n=20) recomputed from per-object rows
+    [OK] HI committed slope 0.9163 +- 0.1474 / zero point +0.015 (n=55) recomputed from per-object rows
+    [OK] SPARC committed slope 1.0278 +- 0.0871 / zero point -0.0541 (n=35) recomputed from per-object rows
+    [OK] clusters (G075) committed slope 0.8534 +- 0.1297 / zero point +0.2728 (n=12) recomputed from per-object rows
+    [OK] GEMS G-class committed slope 1.5321 +- 0.3892 / zero point +0.1147 (n=36) recomputed from per-object rows
+    [OK] ATLAS3D ETGs committed slope 1.2977 +- 0.0451 / zero point +0.0813 (n=258) recomputed from per-object rows
+    [OK] frozen membership 323 = 18 SPARC_f + 12 CL + 36 GRP + 257 A3D
+    [OK] SPARC v_flat > 90 subset = 20 galaxies
+    [OK] GEMS G-class = 36 groups
+    [OK] ANCOVA residual df sanity (n - k - 1)
+    [OK] ANCOVA slope/se finite on every call (frozen, full, 4x LOO, clean core)
+    [OK] G162_results.json unmodified by the import (byte-identical, guarded restore)
+
+wrote /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/Z01_results.json
+checks: 17/17 pass
