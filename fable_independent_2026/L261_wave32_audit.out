@@ -1,0 +1,167 @@
+L261 -- the 2026-09-13..16 waves ('the loop is closed'), audited on their own numbers
+
+====================================================================================================
+PART A -- the mass ladder: where z* = 2.4 comes from (G132 / G163 / G168 / G213)
+====================================================================================================
+    G132: M_5KEV literal 5000 eV -> True; z_eq := T_b(m)/T_CMB0 - 1 -> True;  G163: M_KEV_REF = 5.0 -> True
+    G168 header: 'z* is DEFINED by T_b(m = 5 keV) = T_CMB' present -> True
+    z*(m = 5 keV, sigma = G081 (121.44 km/s)) = 2.4933   (T_b = 9.5209 K)
+    z*(m = 5 keV, sigma = registered canonical (119.21 km/s)) = 2.3662   (T_b = 9.1745 K)
+  [FAIL] A1 the registered z* band [2.3656, 2.4932] has an origin OTHER than T_b(m = 5 keV) = T_CMB at the two sigma footings (|z*(5 keV) - band edge| > 0.01 at either edge)
+           (max deviation 5.86e-04: the band IS the 5-keV anchor; G168 states it ('z* is DEFINED by'). [FAIL is the finding])
+    inverting the band at sigma = 119.21 km/s: m = [4.999, 5.189] keV;  (121.44/119.21)^2 = 1.0378 -> 5 x that = 5.189 keV
+  [FAIL] A2 the cosmic-noon 'window' [5.0, 5.2] keV is wider than the two-footing identity 5 keV x [1, (121.44/119.21)^2] (upper edge differs from 5 (sigma_G081/sigma_canon)^2 by > 0.02 keV)
+           (upper edge 5.189 vs 5 x footing ratio 5.189: the window's width is the sigma-footing mismatch, not an uncertainty. [FAIL is the finding])
+
+====================================================================================================
+PART B -- the mass-consistency triangle (G212): independence, intervals, checks, the forest bound
+====================================================================================================
+    G212: check(...) calls = 9; of these check(True, ...) = 9
+  [FAIL] B1 G212 contains at least one check whose first argument is a computed condition (not the literal True)
+           (9/9 literal-True: the lane's 9/9 cannot fail. [FAIL is the finding])
+    G093 forest constraints as cited by the track: m_WDM > [3.3, 5.3, 5.7] keV (all lower bounds);  G212 W_B = (3.3, 5.7)
+  [FAIL] B2 G212's forest window W_B is a two-sided interval whose upper edge is NOT one of G093's published LOWER bounds
+           (W_B upper edge 5.7 keV == the record lower bound m_WDM > 5.7 keV (95% CL): a floor used as a ceiling. [FAIL is the finding])
+    G212 joint m = 5.0886 +- 0.0969 keV;  (5.7 - m)/sigma = 6.31;  (5.3 - m)/sigma = 2.18
+  [FAIL] B3 the triangle's m = 5.0886 +- 0.0969 keV sits ABOVE the record forest floor m_WDM > 5.7 keV (95% CL) at >= -2 sigma
+           (it sits 6.3 sigma BELOW the floor (2.2 sigma below Irsic+17's 5.3); only Viel+13's 3.3 keV is satisfied. [FAIL is the finding])
+    G212's Gaussian for the forest leg: N(4.5, 0.6000000000000001) -> P(m > 5.7) = 0.023
+  [FAIL] B4 G212's forest likelihood puts >= 50% of its mass in the region the forest ALLOWS (m > record floor)
+           (2.3% allowed / 97.7% in the excluded region: the leg is inverted. [FAIL is the finding])
+
+====================================================================================================
+PART C -- the Lean inventory (L261_lean_inventory.json): compiles, axioms, the 180/22 count, the statements
+====================================================================================================
+    73 files, 848 theorem/lemma declarations, exit-0 files 71, theorems on nonstandard axioms 5
+      non-zero exit: qwen38_push/lean/Q005_btfr_zero_point.lean (exit 1, 3 errors): ['Q005_btfr_zero_point.lean:76:0: error: Expression', 'Q005_btfr_zero_point.lean:77:0: error: Expression']
+      non-zero exit: gemini38_flash_push/UnifiedGravitationalTheoryProof.lean (exit 1, 16 errors): ['UnifiedGravitationalTheoryProof.lean:104:18: error(lean.unknownIdentifier): Unknown constant `Real.sqrt`', 'UnifiedGravitationalTheoryProof.lean:107:16: error(lean.unknownIdentifier): Unknown constant `Real.sqrt`']
+  [FAIL] C1 every tracked certificate in the agent tracks compiles (exit 0)
+           (2 file(s) fail: ['qwen38_push/lean/Q005_btfr_zero_point.lean', 'gemini38_flash_push/UnifiedGravitationalTheoryProof.lean']. [FAIL is the finding])
+  [FAIL] C2 qwen38 Q005 ('Lean-certified, exit 0, zero sorry' in commit 65ac81130) exits 0
+           (exit 1; its three #eval/decide checks evaluate to false. [FAIL is the finding])
+  [PASS] C3 among compiling files, zero theorems rest on axioms outside {propext, Classical.choice, Quot.sound}
+    D07's 22 certificate files -> 180 theorem declarations (D07 claims 180)
+  [PASS] C4 D07's '180 theorems / 22 certificates' reproduces from the 22 named files
+           (180)
+    of the 180 names: 10 numeric-interval checks, 6 named as inverse/identity/tautology: ['response_lag_defs', 'inversion_identity', 'inversion_dual', 'a0_horizon_reexpression', 'tautological_fixed_point', 'accel_inversesq']
+    the certified STATEMENTS: substitution algebra (C04 field_identity: T = mu m_p sigma^2/k_B with sigma^2 substituted), mutual inverses (C02 ladder(freeze(m)) = m;
+    C04 inversion_identity/inversion_dual), sqrt algebra (C05), decimal intervals (C08 num_*), and C06 closure_iff_zSq: Omega = 32 pi a0^2/(3 H0^2 c^2) <=> Z^2 = 32 pi/3
+    given a0 := c^2/(Z R_dS), R_dS := c/(H0 sqrt Omega) -- the rung-9 circularity of L258 part A, now as a theorem (and one theorem is named tautological_fixed_point).
+
+====================================================================================================
+PART D -- the outer-envelope slope -2.404 +- 0.078, '7.7 sigma from NFW's -3' (G184)
+====================================================================================================
+    measured common mean -2.404 +- 0.078;  G184's own NFW fits at 1-2 R500: -2.0 .. -2.75;  asymptote -3 -> 7.6 sigma
+  [FAIL] D1 the measured outer slope lies OUTSIDE the range G184 records for the committed NFW fits at the same radii (1-2 R500)
+           (-2.404 is inside [-2.75, -2.0]: the 7.7 sigma is against the r >> r_s asymptote, not against NFW where it was measured. [FAIL is the finding])
+
+====================================================================================================
+PART E -- the temperature law T = mu m_p sqrt(G M_b a0)/(2 k_B): amplitude vs scatter (B06 / A02)
+====================================================================================================
+    X-COP   median T_pred/T_obs = 0.5601 (identity form)  ->  T_obs/T_pred = 1.79  = 0.25 dex off
+    HeCS    median T_pred/T_obs = 0.7209 (identity form)  ->  T_obs/T_pred = 1.39  = 0.14 dex off
+    E11     median T_pred/T_obs = 0.4331 (identity form)  ->  T_obs/T_pred = 2.31  = 0.36 dex off
+    POOLED  median T_pred/T_obs = 0.4754 (identity form)  ->  T_obs/T_pred = 2.10  = 0.32 dex off
+    within-sample residual (each sample's own mean removed): pstdev 0.1087 / MAD 0.0531 dex  <- the quoted '0.053 dex'
+  [FAIL] E1 the zero-parameter law's UNNORMALIZED pooled amplitude is within 0.1 dex of the data (|log10 median T_pred/T_obs| < 0.1, n = 50)
+           (pooled median T_pred/T_obs = 0.4754 -> 0.32 dex (2.1x under-prediction): Sanders' 1994/1999 MOND cluster residual, intact. [FAIL is the finding])
+    B06 V1 pass_bool: TAB["X-COP"]["log10r_pstdev"] < 0.067 and TAB["within_sample"]["log10r_mad"] < 0.067
+  [FAIL] E2 B06's headline verdict V1 conditions on the AMPLITUDE (median ratio) and not only on scatter
+           (V1 tests pstdev < 0.067 and within-sample MAD < 0.067 only; the 2.1x miss cannot fail it (F_VIR = 5.664 is M500/M_b, the missing mass relabelled). [FAIL is the finding])
+
+====================================================================================================
+PART F -- the 12-decade line at the horizon zero point (Z08 / Z01 / S09 / S03)
+====================================================================================================
+    full 542, slope fixed at 1: a0_line = 1.8136 x a0_DE, log10 offset +0.2585 +- 0.0288 dex, z = 8.98 sigma
+    per-channel a0/a0_DE: {'SPARC': 0.663, 'HI': 1.194, 'ATLAS3D': 2.02, 'GEMS': 1.326, 'dSph': 7.378, 'CLU': 12.164, 'GC': 1.401}
+  [FAIL] F1 the full-sample slope-fixed zero point sits within 3 sigma of the horizon a0 (|z| < 3)
+           (z = +8.98 (stat); a0_line = 1.8136 x a0_DE = an 81% amplitude error in a0. [FAIL is the finding])
+  [FAIL] F2 the seven channels' zero points agree to within 0.5 dex (max/min a0_channel < 10^0.5)
+           (span 1.26 dex: SPARC 0.663x .. clusters 12.164x a0_DE (the MOND cluster deficit and the ETG/dSph offsets, on the record). [FAIL is the finding])
+    Z01 frozen-domain (n = 323) slope 1.155 +- 0.029 ((b-1)/se = 5.35);  ANCOVA per-catalog zero points: b = 1.298 +- 0.056
+  [FAIL] F3 the frozen-domain line (the law's own domain, z* > 0) has slope 1 within 3 sigma
+           ((b-1)/se = +5.35; with per-catalog zero points b = 1.298: the pooled 1.004 is a cross-channel lever arm. [FAIL is the finding])
+    S09: without ATLAS3D (n = 284) the line sits at 1.644 x a0_DE;  the n = 104 trio's free slope b = 0.9189 +- 0.0345
+  [FAIL] F4 removing the ATLAS3D channel (S09's stated 56%-of-the-offset resolution) brings the line to the horizon a0 (|log10 ratio| < 0.1 dex)
+           (1.644 x a0_DE = 0.22 dex: S09's own line 'a MIXED-CATALOG ladder artifact (the ETG/cluster/dSph ENDS)'. The z = -0.20 trio is SPARC (-3.41 sigma) cancelling HI (+0.95). [FAIL is the finding])
+
+====================================================================================================
+PART G -- the 09-16 documents against each other, the retracted lemma, the kernel 'derivation', the pre-registration
+====================================================================================================
+    THE_COMPLETE_THEORY: 'Omega_Lambda = 0.685 from a0 alone (G058, Lean)' -> True;  MNRAS_ABSTRACT: 'the +0.07% Omega_Lambda closure is the inversion of a definition' -> True
+  [FAIL] G1 the capstone and the abstract (same track, same day) agree on whether Omega_Lambda is derived from a0
+           (both present: derived in one, a definition in the other (L258 part A: it is the definition). [FAIL is the finding])
+    hy4 H037: 'H033 RETRACTED: Sigma = a_0/(pi G) = 213.8 Msun/pc^2 is WRONG by 2.04x';  MNRAS_ABSTRACT 'What is new and owned': 'the universal surface density a0/(pi G) = 213.74'
+  [FAIL] G2 the abstract's 'new and owned' universal surface density a0/(pi G) is not a lemma a sibling track retracted on SPARC (H037: wrong by 2.04x)
+           (retracted 09-15 (SPARC log10 Sigma = 1.91 vs 2.33), still in the abstract 09-16. [FAIL is the finding])
+    THE_COMPLETE_THEORY Link 1: 'Σ = 106.882 M☉/pc²' (= a0/(2 pi G));  abstract: 213.74 (= a0/(pi G))
+  [FAIL] G3 the capstone and the abstract quote the SAME universal surface density (ratio within 10%)
+           (ratio 2.00: a factor 2 between two documents of the same closure. [FAIL is the finding])
+    WAVEBOARD rev 32 'the loop closes' -> True;  THE_COMPLETE_THEORY V3 'The theory is not closed as a theory' -> True
+  [FAIL] G4 the wave board and the capstone agree on closure
+           (both present. [FAIL is the finding])
+    G228 ('the Lomax from max-entropy: derived, not assumed'): literal-True verdict checks = 3; the file says the log-moment c = 1/2 is 'CALIBRATED' -> True
+    G230 (the distribution reading's own measurement): G230 COMPLETE: 1/5 checks PASS; V1b pooled dM/dg index +3.47 +- 0.20 vs -2 (z = +7.28), Lomax KS p = 0.000
+  [FAIL] G5 G228's 'derived, not assumed' rests on computed verdict checks and does not call its exponent calibrated
+           (3 literal-True verdicts; c = 1/2 (=> alpha = 2 => kappa = 1/2) 'CALIBRATED': the textbook log-moment => Lomax fact with the exponent put in by hand. [FAIL is the finding])
+  [FAIL] G6 the Lomax/distribution reading passes its own shape test (G230 majority PASS)
+           (1/5: the track's own FAIL, correctly listed in REASSESSMENT_2026-09-16 -- H055/H060/N1 'CANDIDATE TOE PIECE' is not. [FAIL is the finding])
+    commits since 2026-09-13 touching PREREGISTRATION_DR4.md or any *_HASH.txt: none
+  [PASS] G7 the frozen Gaia DR4 pre-registration and its hash files were not modified by the waves
+           (integrity intact)
+
+====================================================================================================
+PART H -- the L258 (09-15) findings F1-F4 against the 09-16 documents: fixed, acknowledged, relabeled, or carried?
+====================================================================================================
+    G152 (09-16 01:04) lists as CIRCULAR_ruled_out: ['C1 seesaw singles out 1/2', 'C2 Lambda from a0 to +0.0% (rung-9 circularity)', 'C3 Omega_Lambda closure at +0.07%', "C4 n = 2 from the graviton's polarisation count"] ...
+    THEORY_CLOSURE (05:06) 'from a0 alone' -> True; MNRAS_METHODS 'key certified identities' carries the Omega_Lambda closure -> True
+  [FAIL] H1 (F1) once the track's own inventory ruled the Omega_Lambda closure CIRCULAR, no later 09-16 document re-prints it as 'from a0 alone'
+           (G152 -> CIRCULAR at 01:04; THEORY_CLOSURE 05:06, THE_COMPLETE_THEORY 14:55, MNRAS_METHODS: 'from a0 alone (G058, Lean)'. RELABELED. [FAIL is the finding])
+    G198_total_dust.py: 'Omega_dust_uncap = Omega_dm - Omega_eq_uncap'  -> the 'equilibrium + dust = 1.000 of Omega_dm' is x + (Omega_dm - x)
+  [FAIL] H2 (F3) 'equilibrium + dust = 1.000 x Omega_dm' is computed from something other than Omega_dust := Omega_dm(Planck) - Omega_phantom
+           (it is that subtraction; Planck's Omega_dm fed back (L258 A3). The 1.72 v_flat double count (L258 B3) is mentioned nowhere. CARRIED. [FAIL is the finding])
+    the registered entrance certificates C1 'virial_rung4' / C2 'maxentropy_phantom' exist in any .lean -> (False, False);  G03G sigma_virial_half DEFINES sg2 := sqrt(G Mb a0)/2 -> True
+  [FAIL] H3 (F2) at least one of the 'five routes' to sigma^2 = sqrt(G M_b a0)/2 is a Lean certificate that does not take sigma^2 = C/2 or rho ~ r^-2 as a hypothesis or definition
+           (C1/C2 absent; G03G proves (x/2)/x = 1/2 from the definition; G084 inputs sigma^2 = C/2 and outputs gamma = 2; G091 inputs rho = A/r^2 and says it is the same statement as hydrostatic balance. RELABELED. [FAIL is the finding])
+    G086/S08 (PPN face): the sector is 'ORDINARY MATTER (barotropic dust: p = 0)' -> True;  G234 (ontology): the phantom is the Gauss-map charge of 'div[f'(K) grad phi] = 4 pi G rho_b' -> True;  L243: that mu_2 field's EFE quadrupole = 6.44x the Cassini ceiling
+  [FAIL] H4 (F4) the 09-16 lanes give ONE account of what produces the RAR: either a sourced mu_2 field (then L243's quadrupole is inherited) or no field (then GR + a prescribed halo)
+           (both: 'no field force' for Cassini, 'the sourced field's charge' for the RAR -- L258 C2's splice, now inside one track; the 6.44x stands. CARRIED. [FAIL is the finding])
+
+====================================================================================================
+PART I -- the sibling tracks' kills vs the capstone; the boundary's factor 2; the cluster law; the registered rules
+====================================================================================================
+    hy4 H045: the frozen-scalar action L = Lambda^4 f(K) has P_X = -mu_2 < 0 (wrong-sign gradient energy, no ground state) -> True;  deepseek E02 (latest lane): 'The framework is EFFECTIVE, not fundamental' -> True;  capstone section 6: 'One scalar ... carrying our gravity' -> True
+  [FAIL] I1 the capstone's 'one scalar field carrying our gravity' is not an action the sibling track falsified (H045 ghost) and the track's own latest lane conceded (E02)
+           (all three present: the paper set presents a field theory whose action is ghost-ridden by its own record. IGNORED. [FAIL is the finding])
+    glm53 G035 attractor test: 'The temperature must be POSTULATED' -> True;  deepseek G081: 'G035's KILL ... stands' -> True;  capstone Link 2: 'derived ... by five routes' -> True
+  [FAIL] I2 the capstone's 'sigma^2 derived by five routes' cites or rebuts the sibling's dynamical KILL of that temperature (G035) with a committed run
+           (G035 uncited in the capstone; the rebuttal (G111 relaxation N-body) is an unrun spec. IGNORED. [FAIL is the finding])
+    at r_M (g_N = a0) the committed kernel gives g/g_N = 1.4893 -> M_dark(<r_M)/M_b = 0.489 (hy4 H037: 0.489, Sigma = a0/(2 pi G) = 106.9);  the 'Lean-certified equipartition' says M_ph(<r_M) = M_b (1.000, Sigma = a0/(pi G) = 213.7)
+  [FAIL] I3 the equipartition M_ph(<r_M) = M_b (Link 4, 'exact to 2.2e-16') agrees within 10% with the dark mass the committed mu_2 kernel puts inside r_M
+           (0.489 vs 1.000: a factor 2.04 at the one boundary -- the same factor as Sigma 213.7 vs 106.9 (G3) and H037's retraction (G2). [FAIL is the finding])
+    G223: frozen-domain slope 1.155 +- 0.029 ((b-1)/se = +5.35);  FALSIFIER_MATRIX mentions G223 -> False; 'Unexplained fires: ZERO' -> True
+  [FAIL] I4 every registered > 3 sigma departure is entered in the falsifier matrix that reports 'zero unexplained fires' (the 5.35-sigma frozen-domain tilt)
+           (not entered; the matrix's 20 rows also omit the -4.4 sigma window rule, the +8.98 sigma full-sample zero point, the 7-sigma Sigma mass dependence (H033_P1), the cluster break FAIL (D036/G160) and the escalated sag (G049). [FAIL is the finding])
+    H033_P1 (SPARC, 171 curves): pass 4 / fail 4 -- Sigma measured 81 vs 213.7 Msun/pc^2 (-0.42 dex), M_b-dependence 7 sigma;  G237 registers a Sigma kill ('M_b NOT cancelling') -> True;  matrix cites H033 -> False
+  [FAIL] I5 the Sigma = a0/(pi G) kill G237 registers is scored against the SPARC measurement that meets it (H033_P1)
+           (registered, met, not scored. [FAIL is the finding])
+    the one direct a0(z) measurement in the repo (MUSE, Ciocan et al.: a1 = +1.59 +- 0.105 per unit z, RISING; L143) cited in deepseek_push -> 0 files
+  [FAIL] I6 the cosmic-noon freeze picture (a0 flat for z < 2.4) confronts the repo's one direct a0(z) measurement (MUSE, rising)
+           (uncited; L143 registers '> 3 sigma either sign kills the flat law'. IGNORED. [FAIL is the finding])
+    G122: 'fit (96 bins, 3 params): const = -0.145, q = -0.414, p = 0.990' (OLS on 12 X-COP clusters x 8 radii);  D03 inverts with Q_MEAS = -0.4144 (not the 'derived' -1/3)
+  [FAIL] I7 the 'zero-parameter dust law' c_dust = c0 (M/8e14)^q (r/R500)^p has at least one of (c0, q, p) that is not an OLS fit to the same 12 clusters
+           (all three fitted (G122:129); 'derived' q = -1/3 (0.52 sigma on +-0.157) never enters the law; the dust amount 'remains an INPUT (G110 P7)'. [FAIL is the finding])
+    G170 registered the streaming rule beta(2-5 R500) > 0.5 at >= 3 sigma; G203 measured 0.434 +- 0.015: '[FAIL] C6 [streaming rule]' -> True, z vs 0.5 = -4.5;  capstone: 'anisotropy beta 0.03 -> 0.56 measured' among the closed sectors
+  [FAIL] I8 the registered anisotropy rule (beta > 0.5 at >= 3 sigma, G170) passed on the HeCS data
+           (z = -4.5: the pre-registered prediction FAILED; the '31 sigma' kills beta = 0, which nothing predicts, and 0.434 is the Hansen-Moore LCDM value, never compared. [FAIL is the finding])
+    tSZ: proposal pass window ('−1.7', '−0.9') (G129, 00:30) -> amendment pass window ('−2.94', '−2.14') (G177, 02:52, before the map at 11:38);  first real cluster A85: slope -3.246 vs pred -2.596 -> 'NEITHER' (the framework's own branch label)
+  [FAIL] I9 the tSZ pass window used for scoring is the one registered in the proposal
+           (rewritten pre-data (the old kill line -2 now inside the pass window); the 47.8 sigma is a synthetic forecast; A85 sits in the NEITHER branch at forecast errors. [FAIL is the finding])
+
+====================================================================================================
+L261 COMPLETE: 3/37 checks PASS.  Every FAIL is a finding: the 09-13..16 waves certify algebra, define the mass they
+derive (5.09 keV from a 5-keV anchor, 6.3 sigma below the forest floor they cite), grade scatter where the amplitude misses (T-law 2.1x,
+the line 1.81x a0 at 9 sigma), compare to an asymptote, fit the 'zero-parameter' dust law, fail their own registered beta rule, rewrite
+the tSZ window pre-data, and carry a ghost-ridden action, a killed temperature, a retracted lemma and a factor 2 at the one boundary
+between their own documents.  What stands: the Lean algebra compiles (bar Q005 and the gemini38 file), the pre-registration is intact,
+and the honest FAILs the tracks themselves recorded (G230, G059, G035, H037, H045, S03, G203 C6, D036) are on the record.
