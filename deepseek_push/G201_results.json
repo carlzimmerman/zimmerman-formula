@@ -1,0 +1,142 @@
+{
+ "lane": "G201_jump_share",
+ "title": "THE NEW LEAN CERTIFICATES -- the jump, the share, the lift",
+ "question": "Certify the three new closed forms from the G159/G186 wave, algebra-only in the G03G/G083/G090 spine convention (standalone file, no imports, every sqrt closed by the sqrt_pair sign-resolution technique, rM2 = G*Mb/a0 kept symbolic where sqrt appears): (1) jump_cube -- the G159 amplitude A_b = (sigma_ph/sigma_d)^3 = exp(dS/k_B) as an ENTROPY statement (ln A_b = 3 ln(sigma_ph/sigma_d), the 3 the phase-space dimension count), NOT the naive isothermal reading (which gives rho_ph/rho_d = (sigma_d/sigma_ph)^2 only); (2) share_identity -- the phantom share of the missing mass = (r/r_M)/(f-1), one field_simp line; (3) deep_limit_sq -- the deep RAR g^2 = a0 g_N restated (G031 deep_rar already certified) plus the NEW sqrt reading g = sqrt(a0 g_N), stated carefully; (4) the honest inventory: which of the wave's closed forms are Lean-CERTIFIED vs algebra-only-on-record.",
+ "compile": {
+  "toolchain": "leanprover/lean4:v4.34.0-rc2 (fable_independent_2026/lean_2026, lake env lean)",
+  "file": "deepseek_push/lean/G201_jump_share.lean",
+  "exit_code": 0,
+  "zero_sorry": true,
+  "axioms": "ALL 8 theorems: [propext, Classical.choice, Quot.sound] only"
+ },
+ "theorems": [
+  {
+   "name": "isothermal_density_ratio",
+   "statement": "rph/rd = (sd/sph)^2 from rph*sph^2 = rd*sd^2 (shared-C isothermal identity at equal r) -- the honest 2D MECHANICAL ratio: exponent 2, ratio INVERTED",
+   "axioms": "[propext, Classical.choice, Quot.sound]",
+   "physics": "the shared-well mechanics (rho*sigma^2 = C/(4 pi G r^2)) does NOT give (sph/sd)^3; it gives the inverted square -- certified exactly so, the correction the task demanded"
+  },
+  {
+   "name": "entropy_jump_log",
+   "statement": "ln A_b = 3 ln(sph/sd) with A_b := exp(3 ln(sph/sd)) -- the G159 entropy jump exactly as stated (one Real.log_exp)",
+   "axioms": "[propext, Classical.choice, Quot.sound]",
+   "physics": "the 3 is the phase-space dimension count: dS/k_B = 3 ln(sigma_ph/sigma_d)"
+  },
+  {
+   "name": "entropy_jump_cube",
+   "statement": "log((sph/sd)^3) = 3 log(sph/sd) -- the same 3 at the power level (Real.log_pow, unconditional)",
+   "axioms": "[propext, Classical.choice, Quot.sound]",
+   "physics": "the cube falls out of the logarithm of the 3D phase-space occupancy ratio"
+  },
+  {
+   "name": "entropy_jump_additivity",
+   "statement": "exp(3 ln(sph/sd)) = (sph/sd)^3 -- the amplitude as exp(dS/k_B), positivity-closed via Real.exp_log",
+   "axioms": "[propext, Classical.choice, Quot.sound]",
+   "physics": "A_b = exp(dS/k_B) with dS = 3 ln(sigma_ph/sigma_d): the G159 branch-B closed form, entropy-carried"
+  },
+  {
+   "name": "jump_cube",
+   "statement": "A_b := exp(3 ln(sph/sd)) = (sph/sd)^3 -- the G159 amplitude A_b = (sigma_ph/sigma_d)^3, stated WITHOUT overclaim (an entropy consequence, not an isothermal-mechanics one)",
+   "axioms": "[propext, Classical.choice, Quot.sound]",
+   "physics": "the certified reading of G159's (sigma_ph/sigma_d)^3; the dressed numbers (0.125-0.5, geomean 0.273) and their comparison with G098/G185 are committed-lane physics, NOT certified here"
+  },
+  {
+   "name": "share_identity",
+   "statement": "(Mb*(r/rM))/(f*Mb - Mb) = (r/rM)/(f-1) -- the phantom share of the missing mass, one field_simp line, rM symbolic (no sqrt)",
+   "axioms": "[propext, Classical.choice, Quot.sound]",
+   "physics": "with M_ph = M_b r/r_M (linear law) and M_dyn = f M_b: share = M_ph/(M_dyn - M_b); the M_b cancels, leaving (r/r_M)/(f-1)"
+  },
+  {
+   "name": "share_identity_deep",
+   "statement": "the same share with r_M := sqrt(G*Mb/a0) (rM2 = G*Mb/a0 symbolic under the single sqrt, closed by Real.sqrt_pos)",
+   "axioms": "[propext, Classical.choice, Quot.sound]",
+   "physics": "the deep instantiation of the pie law (G186/G197/G188 use the share (r/r_M)/(f-1) with r_M = sqrt(G M_b/a0))"
+  },
+  {
+   "name": "deep_limit_sq",
+   "statement": "g^2 = a0*g_N AND g = sqrt(a0*g_N) with g := S/r, S := sqrt(G*Mb*a0), g_N := G*Mb/r^2 -- the deep RAR restated (G031 deep_rar) plus the NEW sqrt reading",
+   "axioms": "[propext, Classical.choice, Quot.sound]",
+   "physics": "the deep-limit acceleration is the GEOMETRIC MEAN sqrt(a0*g_N); stated carefully: the same statement in geometric-mean form, not an independent law -- valid because g >= 0 (sq_eq + nonnegativity, the sqrt_pair sign-resolution technique)"
+  }
+ ],
+ "coverage_inventory": {
+  "statement": "THE HONEST INVENTORY -- which of the wave's closed forms are Lean-CERTIFIED vs algebra-only-on-record (as of G201, 2026-09-16)",
+  "lean_certified": [
+   "sqrt_pair: sqrt(G Mb a0)*sqrt(G Mb/a0) = G Mb -- G03G sqrt_pair (certified)",
+   "rung-6 identity: v_flat^2 = G Mb/r_M = sqrt(G Mb a0), r_M := sqrt(G Mb/a0) -- G090 vflat_sq_identity (certified)",
+   "equipartition: M_ph(<r_M) = M_b -- G03G equipartition_exact, G090 equipartition_linear_law (certified)",
+   "flatness selection: linear law -> v_c^2 = v_flat^2 -- G03G vc_flat_exact (certified)",
+   "virial half: sigma^2/v_flat^2 = 1/2 -- G03G sigma_virial_half, G090 equipartition_virial (certified)",
+   "BTFR quartic: v_flat^4 = G Mb a0 -- G090 btfr_quartic, G031 btfr (certified)",
+   "deep RAR: g^2 = a0 g_N, coefficient exactly 1 -- G031 deep_rar (certified)",
+   "universal surface density: M_b/(pi r_M^2) = a0/(pi G) + the number 213.75 M_sun/pc^2 -- G083 surface_density_universal / num_sigma_bar_msun (certified)",
+   "THE SHARE: M_ph/(M_dyn - M_b) = (r/r_M)/(f-1) -- G201 share_identity / share_identity_deep (NOW CERTIFIED)",
+   "THE JUMP AS ENTROPY: ln A_b = 3 ln(sph/sd); A_b = exp(3 ln(sph/sd)) = (sph/sd)^3 -- G201 entropy_jump_log / entropy_jump_cube / entropy_jump_additivity / jump_cube (NOW CERTIFIED)",
+   "THE 2D MECHANICAL RATIO: rho_ph/rho_d = (sigma_d/sigma_ph)^2 in the shared well -- G201 isothermal_density_ratio (NOW CERTIFIED, the correction)",
+   "THE SQRT READING: g = sqrt(a0 g_N) in the deep limit -- G201 deep_limit_sq (NOW CERTIFIED)"
+  ],
+  "algebra_only_on_record": [
+   "the DRESSED jump numbers: A_dressed = 0.125-0.5, geomean 0.273 (chemical p=3: 0.125-0.354; mechanical p=2: 0.25-0.5) -- G159/G186 Python lanes; the physics input sigma_d(r_b) = the potential scale at the cap (G103/G137 class c, the missing piece sigma_d(r_b)) is a committed-lane claim, NOT certified",
+   "the measured-boundary comparisons: rho_ph/rho_d = (1-f)/f inner 0.163-0.333 / outer 1.0-4.0 / r_sat 0.25-1.0 / median 0.484 (G098), G185 per-cluster median 0.297 at r_b = 0.62 r_M -- data registers, algebra-only",
+   "the latent-heat numbers: L/(N k_B T_b) = dS = 10.8-23.7 k_B (G132), T_b = 9.17-9.52 K (G116/G081) -- committed registers, algebra-only",
+   "the seam integral: A'_integral = 10^[-(p2-p1) dlog r] = 0.365 over the 1-sigma band (G186) -- exponential algebra on fitted slopes, algebra-only (the p1/p2/r_t fit values are data, not theorems)",
+   "the pie closed forms: dust share 10^[-dlog rho] / (r/r_M)/(f-1) applications, x_cross = (f-1)/2, s_d = (c-1)(x/u)/(1+c x/u) (G179/G187/G188/G197) -- algebra-only",
+   "the 2/3 temperature law 2 f (r_M/r) (G095/G135) -- algebra-only on fitted scalings",
+   "the EFE cap line r_b/r_M = sqrt(a0/g_ext) (G119, exact to 1e-16 as a numeric identity) -- algebra-only (the sqrt identity itself is G03G/G090-class and is the certified sqrt_pair square)",
+   "G031 the_spine and EQUILIBRIUM_THEORY the_equilibrium_spine conjunctions -- certified, but their PHYSICAL reading (the cold sector equilibrates into the phantom) is the committed lanes' claim, not a theorem"
+  ],
+  "bottom_line": "The ALGEBRA of every new closed form in the G201 wave is now Lean-certified (8/8 theorems, exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}); the PHYSICS inputs (the dressed dispersion at the cap, the measured boundary ratios, the fitted exponents, the G098/G185 registers) remain algebra-only-on-record -- Lean certifies the mathematics, the committed lanes carry the physical reading."
+ },
+ "checks": [
+  {
+   "name": "C1 [compile] deepseek_push/lean/G201_jump_share.lean compiles with lake env lean (lean_2026, v4.34.0-rc2), exit 0",
+   "measured": "exit 0, no warnings",
+   "pass": true,
+   "reading": "complete, sound, machine-checked proofs"
+  },
+  {
+   "name": "C2 [sorry] zero sorry in the theorem bodies",
+   "measured": "only occurrence of 'sorry' is the header's 'Zero sorry.' declaration",
+   "pass": true,
+   "reading": "no sorryAx anywhere"
+  },
+  {
+   "name": "C3 [axioms] all 8 theorems depend only on {propext, Classical.choice, Quot.sound}",
+   "measured": "isothermal_density_ratio, entropy_jump_log, entropy_jump_cube, entropy_jump_additivity, jump_cube, share_identity, share_identity_deep, deep_limit_sq -- all [propext, Classical.choice, Quot.sound]",
+   "pass": true,
+   "reading": "the spine axiom discipline holds"
+  },
+  {
+   "name": "C4 [jump algebra] the entropy jump is certified exactly as G159 states it: ln A_b = 3 ln(sph/sd), A_b = exp(dS/k_B) = (sph/sd)^3",
+   "measured": "entropy_jump_log + entropy_jump_additivity + jump_cube",
+   "pass": true,
+   "reading": "the (sigma_ph/sigma_d)^3 is carried by the phase-space 3, no overclaim"
+  },
+  {
+   "name": "C5 [2D correction] the naive isothermal reading is NOT certified as the cube -- the shared-well mechanics gives rho_ph/rho_d = (sigma_d/sigma_ph)^2",
+   "measured": "isothermal_density_ratio: rph/rd = (sd/sph)^2 from rph*sph^2 = rd*sd^2",
+   "pass": true,
+   "reading": "exponent 2, inverted ratio -- the task's 'get it right' statement, certified exactly"
+  },
+  {
+   "name": "C6 [share] the phantom share of the missing mass = (r/r_M)/(f-1), one field_simp line",
+   "measured": "share_identity: (Mb*(r/rM))/(f*Mb - Mb) = (r/rM)/(f-1); share_identity_deep at r_M := sqrt(G Mb/a0)",
+   "pass": true,
+   "reading": "M_ph = M_b r/r_M, M_dyn = f M_b: the M_b cancels, (r/r_M)/(f-1) remains"
+  },
+  {
+   "name": "C7 [deep RAR restated] g^2 = a0 g_N with the equilibrium is the G031 deep_rar identity, already certified, restated here",
+   "measured": "deep_limit_sq first conjunct: (S/r)^2 = a0*(G*Mb/r^2) with S := sqrt(G Mb a0)",
+   "pass": true,
+   "reading": "the square law was on record; the restatement is definitional"
+  },
+  {
+   "name": "C8 [the lift] the NEW sqrt reading g = sqrt(a0 g_N) is certified, stated carefully as the geometric-mean form, valid because g >= 0",
+   "measured": "deep_limit_sq second conjunct: g = sqrt(a0*g_N), closed by sq_eq + nonnegativity (sqrt_pair sign-resolution technique)",
+   "pass": true,
+   "reading": "not an independent law -- the same statement in geometric-mean form; rM2 = G*Mb/a0 nowhere expanded"
+  }
+ ],
+ "n_pass": 8,
+ "n_total": 8
+}
