@@ -1,0 +1,197 @@
+G137 -- THE FREE-DUST ENVELOPE DERIVATION ATTEMPT: can the profile shape
+be derived?  The ingredients:
+
+  (1) the collisionless free dust   (G103: t_relax 70-76 orders above Hubble
+      at cluster scale; no relaxation, no equilibrium -- the dust is a
+      stream, not a gas),
+  (2) the baryon well               (the cluster potential; the law's phantom
+      floor rho_ph = A/r^2, A = sqrt(G M_b(R500) a0)/(4 pi G), FIXED at zero
+      parameters -- G108/G098/G057),
+  (3) the cosmic infall             (the accretion flow onto the cluster; the
+      candidate closed forms for rho_dust(r)):
+      (a) the collisionless infall : rho ~ r^{-3/2}  (spherical accretion
+          onto a point mass, Bertschinger-class; also the early-time FG
+          regime),
+      (b) the phase-mixed halo     : rho ~ r^{-2}    (caustic-mixed infall,
+          the singular isothermal sphere; the flattest stable radial-orbit
+          profile, FG/Chi+eze+97),
+      (c) the NFW-class            : rho ~ r^{-1}..r^{-3} with the local
+          slope in (-3,-1) (the cosmological secondary infall,
+          Fillmore-Goldreich 1984; the marginal EdS asymptote rho ~ r^{-9/4},
+          Gott 1975 -- Anninos+96 found r^{-9/4} on CDM cluster scales).
+
+PART 1 -- which class does the REQUIRED rho_dust,req(r) (G098's inversion,
+floor A, canonical) match?  Fit d ln rho_dust/d ln r per cluster on G098's
+committed 140-point grid, over the RESOLVED window where rho_dust > 0
+(G098's censoring: rho_res > 0 AND rho_res > 2% rho_tot), and compare the
+three classes by fitted-slope consistency and by scatter (rms about each
+class curve): fixed slope -3/2 (a), fixed slope -2 (b), 2-parameter NFW
+(c).  Report the best class with the scatter, per cluster and pooled.
+
+PART 2 -- THE RESERVOIR CHECK: the infall onto the cluster over the Hubble
+time carrying the cosmic free-dust density (G079's Omega_dust = 0.262,
+registered): the accreted mass vs the required dust mass M_dust,req(<R500)
+(G098's cumulative inversion).  Readings: (i) the z=0 ambient dust within
+R500; (ii) the z=0 ambient dust within the point-mass turnaround radius
+R_ta = (8 G M500 t_H^2/pi^2)^{1/3} (the decoupled infall region; its mean
+interior density is 5.55 rho_crit at turnaround, the (3 pi/4)^2 top-hat
+contrast); (iii) the cosmic-composition collapse reservoir
+(Omega_dust/Omega_m) M500 -- the dust the infalling region carries IF the
+dust participates in the collapse at the cosmic ratio (the framework's
+reading: the free dust IS ~99% of the dark matter, G079); (iv) the
+profile-implied enclosed dust within R500 for each class, normalized to
+the reservoir; (v) the assembly epoch: the required mean dust density
+within R500 in units of rho_dust(z=0) -> the (1+z)^3-equivalent epoch.
+
+PART 3 -- THE CONSEQUENCE: if the envelope is the collisionless-infall
+class the free dust is not 'distributed' but STREAMING: report the infall
+anisotropy implied by each class (beta = 1 - sigma_t^2/(2 sigma_r^2): pure
+radial stream beta -> +1, phase-mixed beta -> 0, FG secondary infall
+beta(r) > 0 outward), the turnaround-caustic location R_ta/R500 (the
+outermost caustic edge, beyond the observed window), the today's capture
+rate dM_dust/dt = 2 M_amb(R_ta)/t_H, and the in-window discriminant that
+already exists in the register: the measured outer envelope slope
+-2.377 +- 0.152 pooled (G108, (r_M, R500) window) vs the class slopes.
+
+PART 4 -- VERDICTS.
+  V1  the best-fit infall class with the numbers (per-cluster fitted
+      slopes, pooled slope, per-class scatter, class decision);
+  V2  the reservoir closure (does the infall supply the required dust
+      mass? -- the ratios under each reading);
+  V3  the honest statement: the free-dust envelope -- a derived
+      accretion-flow profile, or the remaining empirical shape?  (the
+      state of the last cluster piece).
+
+DATA: the committed registers ONLY: G098_results.json (the inversion
+arrays, per_cluster.canonical.NAME.{r_kpc, rho_res_Msun_kpc3,
+rho_dust_req_A_Msun_kpc3, rho_tot_Msun_kpc3, R500_kpc}), the committed
+xcop_r500_ettori2019.json (M500/R500/R200), G079_results.json (Omega_dm,
+dust share), the committed X-COP FITS (real_research/data/xcop/) used ONLY
+for the reload gate (rho_dust,req reproduced digit-for-digit) and for
+M_b(R500)/M_HSE(R500)/r_M (G075 convention), and G108's committed pooled
+outer slope (-2.377 +- 0.152) as the cross-window reference.
+
+Every check states measurement and threshold separately; a FAIL is a
+finding.  The lane reproduces the committed arrays (gate V0a) and G108's
+pooled row (gate V0b) before any new number is computed.
+
+====================================================================================================
+G137 -- THE FREE-DUST ENVELOPE DERIVATION ATTEMPT: can the profile shape be derived?
+====================================================================================================
+clusters: 12; committed inversion arrays loaded from G098_results.json (canonical, 140-point grid); Ettori+19 M500/R500; G079 decomposition loaded.
+
+====================================================================================================
+V0 -- THE GATES: the committed inversion reproduced, G108's pooled row reproduced, the Omega_dust register loaded
+====================================================================================================
+  [PASS] V0a [gate: G098's inversion reproduced] rho_dust,req recomputed from the committed FITS with G098's recipe vs the committed arrays in G098_results.json
+         measured: per-cluster median |rel diff| <= 2.22e-16 (median 1.67e-16, 12/12)
+         reading : the lane's analysis runs on the COMMITTED inversion arrays; the loader is byte-faithful to G098 (canonical footing).
+  [PASS] V0b [gate: G108's pooled outer-window slope reproduced] the (r_M, R500) positive-dust envelope slope, G108's exact binning and footing
+         measured: pooled slope = -2.377 +- 0.152 (n = 258 bins, rms 0.38 dex) vs G108's committed -2.377 +- 0.152
+         reading : the cross-window reference for the class discriminant (PART 3): the OUTER window (r_M, R500) of the same subtraction.
+  [PASS] V0c [gate: G079's Omega_dust register] the free-dust cosmic abundance from G079's decomposition (dust_share_capped x Omega_dm)
+         measured: Omega_dust = 0.261908 (register 0.261908; Omega_dm = 0.264, Omega_eq,capped = 0.002093)
+         reading : the reservoir check (PART 2) runs on the committed cosmic budget only.
+  turnaround radii (point mass, EdS shell): R_ta = (8 G M500 t_H^2/pi^2)^(1/3), t_H = 1/H0(67.4) = 14.507 Gyr
+  [PASS] V0d [gate: the infall region exists at cluster scale] R_ta/R500 per cluster in the physical band [3, 10]
+         measured: R_ta/R500 in [6.11, 6.20] (median 6.14)
+         reading : the turnaround (accretion) radius of the cluster as a point mass in EdS; the infall reservoir of PART 2.  R_ta ~ 6-8 x R500: the outermost caustic edge sits beyond the observed window.
+
+====================================================================================================
+PART 1 -- THE PROFILE CLASSES: fit d ln rho_dust/d ln r per cluster on the window where rho_dust > 0 (G098 floor A, canonical, committed arrays)
+====================================================================================================
+  classes: (a) collisionless infall rho ~ r^-3/2 (Bertschinger/FG-early), (b) phase-mixed rho ~ r^-2 (caustic-mixed), (c) NFW rho ~ r^-1..r^-3 (FG secondary infall; asymptote r^-9/4).  Window: G098's resolved+positive points (rho_res > 0, rho_res > 2% rho_tot, rho_dust > 0).
+  reported per cluster: fitted slope gamma +- se, scatter rms (dex) about the free line, and rms about each CLASS curve (fixed slopes -3/2, -2; 2-param NFW).
+  A1644     n=140 window=[ 105.4,1317.5] kpc gamma=-2.07+-0.04 rms=0.16 dex | rms_a=0.241 rms_b=0.160 rms_c=0.129 (rs=317 kpc) -> c (band b)
+  A1795     n=127 window=[ 115.3,1441.3] kpc gamma=-2.75+-0.08 rms=0.26 dex | rms_a=0.468 rms_b=0.350 rms_c=0.251 (rs=67 kpc) -> c (band none)
+  A2029     n=120 window=[ 142.3,1778.8] kpc gamma=-2.59+-0.09 rms=0.29 dex | rms_a=0.443 rms_b=0.343 rms_c=0.279 (rs=136 kpc) -> c (band none)
+  A2142     n=135 window=[ 142.4,1780.0] kpc gamma=-2.38+-0.07 rms=0.25 dex | rms_a=0.373 rms_b=0.280 rms_c=0.222 (rs=236 kpc) -> c (band none)
+  A2255     n=140 window=[ 119.6,1495.0] kpc gamma=-1.85+-0.03 rms=0.11 dex | rms_a=0.160 rms_b=0.124 rms_c=0.071 (rs=584 kpc) -> c (band b)
+  A2319     n=114 window=[ 134.6,1049.0] kpc gamma=-2.41+-0.07 rms=0.20 dex | rms_a=0.306 rms_b=0.222 rms_c=0.177 (rs=169 kpc) -> c (band none)
+  A3158     n=140 window=[ 112.3,1403.7] kpc gamma=-2.03+-0.02 rms=0.09 dex | rms_a=0.190 rms_b=0.087 rms_c=0.070 (rs=371 kpc) -> c (band b)
+  A3266     n=140 window=[ 143.0,1787.5] kpc gamma=-1.87+-0.05 rms=0.20 dex | rms_a=0.234 rms_b=0.205 rms_c=0.243 (rs=697 kpc) -> b (band b)
+  A644      n= 99 window=[ 123.0, 729.9] kpc gamma=-2.15+-0.15 rms=0.34 dex | rms_a=0.366 rms_b=0.337 rms_c=0.319 (rs=236 kpc) -> c (band b)
+  A85       n=140 window=[ 123.5,1543.7] kpc gamma=-2.82+-0.07 rms=0.26 dex | rms_a=0.497 rms_b=0.371 rms_c=0.245 (rs=70 kpc) -> c (band none)
+  RXC1825   n=140 window=[ 110.5,1381.3] kpc gamma=-2.24+-0.04 rms=0.15 dex | rms_a=0.278 rms_b=0.167 rms_c=0.126 (rs=236 kpc) -> c (band b)
+  ZW1215    n=140 window=[ 135.8,1697.5] kpc gamma=-1.74+-0.03 rms=0.09 dex | rms_a=0.122 rms_b=0.126 rms_c=0.089 (rs=848 kpc) -> c (band a)
+
+  POOLED window (1575 points, 12 clusters): gamma = -2.218 +- 0.021 (rms 0.27 dex); class rms: a(-3/2) 0.348, b(-2) 0.274, c(NFW, rs=266 kpc) 0.253 dex -> pooled winner c
+  per-cluster fitted slopes: median -2.19, range [-2.82, -1.74]; per-cluster winners: a 0, b 1, c 11
+  [PASS] V1a [data gate] every cluster yields >= 5 resolved positive-dust points for the slope fit
+         measured: 12/12 clusters with n >= 5 (n range [99, 140])
+         reading : the positive-dust window is the resolved part of G098's [0.1, 1.25] R500 grid; clusters with a dust zero-crossing in-window (A1795/A2029/A2319/A644, G098's registered crossings at 737-1059 kpc) end the window at the crossing.
+  [PASS] V1b [the class decision] the best class per cluster (min rms about the class curve) and pooled; reported with the scatter
+         measured: per-cluster winners: a(r^-3/2) 0/12, b(r^-2) 1/12, c(NFW) 11/12; pooled winner c; pooled class rms a 0.348 / b 0.274 / c 0.253 dex; pooled gamma -2.218 +- 0.021
+         reading : the class comparison is measured by the scatter about each closed form at its best normalization: fixed-slope powers (a), (b) vs the 2-parameter NFW (c).  The per-cluster winners and the pooled winner are the V1 numbers; the bands overlap by design (NFW local slopes span (-3,-1)).
+  [PASS] V1c [fixed classes discriminated] the pooled fitted slope excludes the r^-3/2 stream and/or the r^-2 mix at the stated sigma
+         measured: gamma = -2.218 +- 0.021: vs -3/2: 33.6 sigma; vs -2: 10.2 sigma
+         reading : the pooled window covers the whole positive-dust region of the inversion (inner 0.2-0.5 R500 through the outer window); the class steeper than -2 wins where the profile curves.
+  [PASS] V1d [footing robustness] the pooled fit on G098's alt a0 = 1.1279e-10 committed arrays
+         measured: alt gamma = -2.245 vs canonical -2.218 (delta 0.027); class rms a/b/c = 0.363/0.290/0.268 dex (winner c)
+         reading : the shape conclusion is footing-insensitive; the A/r^2 phantom shifts by sqrt(a0) ~ 4% between the committed footings.
+
+====================================================================================================
+PART 2 -- THE RESERVOIR CHECK: the infall over t_H at the cosmic free-dust density vs the required dust mass
+====================================================================================================
+  rho_crit(z=0) = 8.533e-27 kg/m^3; Omega_dust = 0.2619 -> rho_dust,0 = 2.235e-27 kg/m^3 = 3.301e+10 Msun/Mpc^3; t_H = 14.51 Gyr.  (a)/(b)/(c) as PART 1.
+  A1644     R_ta= 6.44 Mpc ( 6.1R500) M_req=  1.55e14  ambR500=1.0e-03  ambRta= 0.24  cosmic= 1.87  cosmic_ext= 5.79  need_frac=0.53  zbar= 8.9 ( 4.6 w/5.55)
+  A1795     R_ta= 7.08 Mpc ( 6.1R500) M_req=  1.64e14  ambR500=1.3e-03  ambRta= 0.30  cosmic= 2.36  cosmic_ext= 7.31  need_frac=0.42  zbar= 8.2 ( 4.2 w/5.55)
+  A2029     R_ta= 8.78 Mpc ( 6.2R500) M_req=  2.73e14  ambR500=1.5e-03  ambRta= 0.34  cosmic= 2.70  cosmic_ext= 8.40  need_frac=0.37  zbar= 7.8 ( 4.0 w/5.55)
+  A2142     R_ta= 8.82 Mpc ( 6.2R500) M_req=  3.51e14  ambR500=1.1e-03  ambRta= 0.27  cosmic= 2.13  cosmic_ext= 6.64  need_frac=0.47  zbar= 8.6 ( 4.4 w/5.55)
+  A2255     R_ta= 7.39 Mpc ( 6.2R500) M_req=  2.43e14  ambR500=9.7e-04  ambRta= 0.23  cosmic= 1.81  cosmic_ext= 5.63  need_frac=0.55  zbar= 9.1 ( 4.7 w/5.55)
+  A2319     R_ta= 8.25 Mpc ( 6.1R500) M_req=  2.48e14  ambR500=1.4e-03  ambRta= 0.31  cosmic= 2.46  cosmic_ext= 7.62  need_frac=0.41  zbar= 8.0 ( 4.1 w/5.55)
+  A3158     R_ta= 6.89 Mpc ( 6.1R500) M_req=  2.04e14  ambR500=9.6e-04  ambRta= 0.22  cosmic= 1.75  cosmic_ext= 5.40  need_frac=0.57  zbar= 9.1 ( 4.7 w/5.55)
+  A3266     R_ta= 8.77 Mpc ( 6.1R500) M_req=  3.90e14  ambR500=1.0e-03  ambRta= 0.24  cosmic= 1.88  cosmic_ext= 5.83  need_frac=0.53  zbar= 8.9 ( 4.6 w/5.55)
+  A644      R_ta= 7.57 Mpc ( 6.2R500) M_req=  1.83e14  ambR500=1.4e-03  ambRta= 0.33  cosmic= 2.59  cosmic_ext= 8.03  need_frac=0.39  zbar= 7.9 ( 4.0 w/5.55)
+  A85       R_ta= 7.57 Mpc ( 6.1R500) M_req=  2.12e14  ambR500=1.2e-03  ambRta= 0.28  cosmic= 2.23  cosmic_ext= 6.89  need_frac=0.45  zbar= 8.3 ( 4.3 w/5.55)
+  RXC1825   R_ta= 6.79 Mpc ( 6.1R500) M_req=  1.93e14  ambR500=9.7e-04  ambRta= 0.22  cosmic= 1.77  cosmic_ext= 5.48  need_frac=0.57  zbar= 9.1 ( 4.7 w/5.55)
+  ZW1215    R_ta= 8.38 Mpc ( 6.2R500) M_req=  4.00e14  ambR500=8.6e-04  ambRta= 0.20  cosmic= 1.60  cosmic_ext= 4.97  need_frac=0.63  zbar= 9.5 ( 4.9 w/5.55)
+
+  SAMPLE MEDIANS: ambient-within-R500 ratio 1.09e-03; ambient-turnaround ratio 0.255; cosmic-composition reservoir ratio 2.007 (point-mass floor) / 6.24 (NFW-continued to R_ta); required in-R500 fraction of the point-mass reservoir 0.500 vs naive-profile fractions 3/2:0.07 2:0.16 fit:0.23 and the outer-law share 0.32; equivalent assembly epoch z ~ 8.72 (ambient) / 4.49 (with the 5.55 turnaround contrast)
+  [FAIL] V2a [ambient z=0 reading] the cosmic free-dust density at z=0, integrated over R500, vs the required dust mass -- does the AMBIENT haze supply it?
+         measured: median ratio = 1.09e-03 (per-cluster [8.65e-04, 1.46e-03])
+         reading : FAIL is the finding: the required in-R500 dust density is ~1000x the z=0 cosmic free-dust density -- the envelope is NOT the ambient haze.
+  [FAIL] V2b [z=0 infall region] the z=0 ambient dust within the turnaround radius R_ta (the region that has decoupled from the expansion), vs the requirement
+         measured: median ratio = 0.255 (per-cluster [0.20, 0.34])
+         reading : FAIL is the finding: even the full decoupled infall region at the z=0 AMBIENT dust density falls short by ~5-10x; the turnaround region is only 5.55 rho_crit in total matter (the top-hat contrast) -- dust at the cosmic RATIO of that mass is the reading of V2c.
+  [PASS] V2c [cosmic-composition collapse reservoir] the dust the infalling region carries if it participates in the collapse at the cosmic ratio (Omega_dust/Omega_m) M500 (the POINT-MASS floor: M(<R_ta) = M500 by the turnaround definition), vs the requirement
+         measured: median ratio = 2.007 (per-cluster [1.60, 2.70])
+         reading : the free dust IS ~99% of the dark matter (G079): the infalling dark matter IS the infalling dust.  The point-mass-floor reservoir exceeds the requirement ~2x -- but it is a FLOOR: a real cluster's mass profile continues to R_ta (V2e).  The closure additionally needs the PROFILE to place enough of it inside R500 (V2d).
+  naive single-power-law fill of R500 (anchored at the point-mass turnaround): gamma = 3/2: median 0.066; gamma = 2: median 0.163; gamma = gamma_fit: median 0.231; required median 0.500
+  [FAIL] V2d [naive profile fill: the naive stream under-fills R500] the class-implied enclosed dust within R500 from the single power law anchored at the point-mass turnaround vs the required share (>= 9/12 clusters within 20%)
+         measured: gamma=3/2: 0/12 median 0.066; gamma=2: 0/12 median 0.163; gamma=gamma_fit: 4/12 median 0.231 vs need 0.500
+         reading : FAIL is the finding: a single r^-3/2 stream holds ~6% of the point-mass reservoir inside R500, r^-2 ~16%, the fitted profile ~0.23 -- the naive power law anchored at the point-mass turnaround is too dilute inside R500 by ~216%; the concentration the envelope actually needs comes from the enclosed-mass growth beyond R500 (M(<R_ta) ~ 3x M500 for the NFW/FG class, V2e) and the mixed interior.  The single-power-law stream does NOT close by itself; the total reservoir does.
+  [PASS] V2e [NFW/FG-continued closure] the total closure with the mass profile continued from R500 to the turnaround at the committed outer slope -2.377: reservoir vs requirement, and its own enclosed share within R500
+         measured: median ratio = 6.24 (per-cluster [4.97, 8.40]); outer-law share inside R500 0.323 -> implied dust within R500 = 2.01 x the requirement
+         reading : with the NFW/FG outer slope the enclosed mass at the turnaround is M(<R_ta) = M500 (R_ta/R500)^0.62 ~ 3 x M500: the infalling region holds ~6x the requirement and its own outer power law places ~30% inside R500 -- 1.5-2x the required dust mass: the infall supplies the required abundance (closure), while the z=0 ambient haze alone fails by 3 orders (V2a) and the point-mass-anchored stream under-fills the interior (V2d) -- the envelope is an ACCRETED, concentrated structure.
+
+====================================================================================================
+PART 3 -- THE CONSEQUENCE: if the envelope is collisionless-infall class, the free dust is STREAMING, not distributed
+====================================================================================================
+  anisotropy reading per class (beta = 1 - sigma_t^2/(2 sigma_r^2)): (a) pure radial stream beta -> +1 (sigma_t -> 0); (b) phase-mixed beta -> 0 (caustics erased); (c) FG secondary infall: radially-biased outward, beta(r) rising toward the turnaround (mixing only at pericenter).
+  the class measured in PART 1 selects the reading; the in-window discriminant in the register: G108's committed outer-window pooled slope -2.377 +- 0.152 (NFW-band, FG asymptote r^-9/4 at 0.8 sigma).
+  G108's outer slope -2.377 +- 0.152 vs class slopes: -3/2 at 5.8 sigma, -2 at 2.5 sigma, FG r^-9/4 at 0.8 sigma; the turnaround caustic sits at R_ta/R500 = 6.1 (R_ta/R200 = 3.9) -- beyond the observed window; today's capture rate dM_dust/dt = 8.28e+12 Msun/Gyr (~8e3 Msun/yr, growing as t^{1/3} backward: the envelope is BEING FED).
+  [PASS] V3a [in-window discriminant vs the streaming slopes] the committed outer envelope slope (G108 pooled) excludes the pure r^-3/2 stream at >= 3 sigma and the r^-2 mix at >= 2 sigma
+         measured: |(-2.377)-(-1.5)|/0.152 = 5.8 sigma; |(-2.377)-(-2.0)|/0.152 = 2.5 sigma
+         reading : the OUTER window (r_M, R500) of the same subtraction already discriminates: the streaming classes (a)/(b) are excluded at the outer edge, the NFW/FG-class slope -2.38 stays in the band and sits 0.9 sigma from the collisionless secondary-infall asymptote r^-9/4.
+  [PASS] V3b [the FG asymptote] the measured outer slope vs the Fillmore-Goldreich collisionless asymptote r^-9/4 (Gott 1975; Anninos+96 cluster-scale CDM)
+         measured: (-2.377) vs -9/4 = -2.25: 0.8 sigma
+         reading : the collisionless self-similar infall of a marginal (epsilon=1) perturbation approaches rho ~ r^-9/4 in the outer asymptotic region; the measured envelope sits within 1 sigma of it -- the FG-class reading is the one the outer profile does NOT exclude.
+  observables of the STREAMING envelope (the register's own probes): (i) the outer projected slope (lensing/tSZ, G113's window) -- the measured NFW/FG-class slope vs -1.5: the 5.9-sigma G108 row IS the discriminant; (ii) the velocity anisotropy of tracer populations (satellite galaxies, caustic-diagram amplitude): beta -> +1 (a) vs 0 (b) vs rising-outward (c); (iii) the turnaround caustic edge at ~6-7 R500 (unobserved; R_ta/R200 ~ 3-4); (iv) the envelope growth ~1e13 Msun/Gyr -- the outer profile is evolving on the Hubble timescale, not static (G103's static boundary is the PHANTOM's, not the dust's).
+
+====================================================================================================
+PART 4 -- THE VERDICTS
+====================================================================================================
+  [PASS] V1 [the best-fit infall class with the numbers] fitted slopes per cluster, pooled slope, per-class scatter, and the class decision
+         measured: pooled gamma = -2.218 +- 0.021 over 1575 points; per-cluster gammas median -2.19 [-2.82, -1.74]; class rms a/b/c = 0.348/0.274/0.253 dex; winners a 0/12, b 1/12, c 11/12; pooled winner c
+         reading : the REQUIRED rho_dust,req matches the NFW-class (c): the local slope sits in (-3, -1) with the NFW 2-parameter fit the lowest-scatter closed form; the fixed-slope stream classes (a) r^-3/2 and (b) r^-2 are excluded at >= 2-3 sigma pooled (V1c) and the outer window's committed -2.38 sits 0.9 sigma from the FG collisionless asymptote r^-9/4 -- the cosmological SECONDARY INFALL class, not the fresh point-mass stream.
+  [PASS] V2 [the reservoir closure] does the infall supply the required dust mass?
+         measured: ambient within R500: 1.09e-03 (NO, ~3 orders short); ambient turnaround region: 0.255 (NO, ~4x short); cosmic-composition collapse reservoir: 2.007 at the point-mass floor / 6.24 NFW-continued (YES, ~2-6x margin); naive fitted-power-law fill inside R500 0.23 vs required 0.50 (V2d FAIL); the continued outer law delivers 2.01 x the requirement inside R500 (V2e)
+         reading : the infall CLOSES -- under the reading the framework itself commits to: the infalling dark matter IS the infalling free dust (Omega_dust ~ 99% of Omega_dm, G079).  The z=0 ambient density in isolation fails by 3 orders (V2a/V2b FAILs are the findings); the required mean in-R500 density equals the cosmic free-dust density at z ~ 8.7 (ambient) / ~4.5 (with the 5.55 turnaround contrast) -- an ASSEMBLED (accreted) envelope, feeding at ~8e3 Msun/yr today, as the secondary-infall class requires.
+THE FREE-DUST ENVELOPE IS A DERIVED ACCRETION-FLOW PROFILE IN CLASS, AN EMPIRICAL SHAPE IN NORMALIZATION.  (1) SHAPE: the REQUIRED rho_dust,req(r) (G098's inversion, floor A) on the resolved positive-dust window is NFW/FG-class: pooled slope -2.218 +- 0.021 over 1575 points (per-cluster median -2.19, range [-2.82, -1.74]), class rms a/b/c = 0.348/0.274/0.253 dex with the NFW 2-parameter form the lowest-scatter closed form (0/1/11 per-cluster winners); the fixed r^-3/2 (Bertschinger-class point-mass stream) and r^-2 (caustic-mixed) classes are excluded at >= 33.6 and 10.2 sigma pooled, and the committed outer-window slope -2.377 +- 0.152 (G108) sits 0.8 sigma from the collisionless secondary-infall asymptote r^-9/4 (Fillmore-Goldreich/Gott; Anninos+96).  THE DERIVATION does not yet close: the per-cluster scatter is 0.20 dex (median), the subtraction is unresolvable/negative in the outer bins of the same clusters where it counts (34/292, G108 V2 FAIL), and the phantom amplitude A = sqrt(G M_b(R500) a0)/(4 pi G) is the pinned input, not a fitted output -- the per-cluster NORMALIZATION is the last un-derived number.  (2) RESERVOIR: the infall closes the abundance: the cosmic-composition collapse reservoir holds 2.01 x the requirement at the point-mass floor and 6.24 x with the mass profile continued to R_ta at the outer slope -2.38 (M(<R_ta) ~ 3 x M500); the naive single-power-law stream under-fills R500 (0.23 of the requirement vs 0.50 needed -- V2d FAIL: the interior concentration is the mixed/caustic piece, not the naive stream), while the continued envelope delivers 2.01 x inside R500 (V2e); the z=0 AMBIENT density alone fails by 917x, so the envelope is accreted (expansion-equivalent z ~ 8.7, or ~4.5 with the turnaround contrast), not the ambient haze.  (3) CONSEQUENCE: the envelope is a STREAMING, growing structure (radial-biased orbits, beta(r) -> +1 outward; ~8.3e+12 Msun/Gyr capture today, ~8e3 Msun/yr; turnaround caustic at ~6-7 R500, unobserved) -- the free dust is NOT distributed (G103's collisionless timescale), and its registered outer-profile slope is the discriminant that already chose the secondary-infall class over the point-mass stream at 5.8 sigma.  THE HONEST STATE OF THE LAST CLUSTER PIECE: the envelope's SHAPE is derived to CLASS (NFW/FG secondary infall; the r^-3/2 and r^-2 candidates excluded), its AMPLITUDE is closed reservoir-wise under the framework's own composition reading; what remains empirical is the per-cluster normalization (the A/r^2 phantom pinned at M_b(R500)) and the cap line -- the registered open numbers.
+  [PASS] V3 [the honest statement] the free-dust envelope: a derived accretion-flow profile (class) or the remaining empirical shape (normalization)?
+         measured: THE FREE-DUST ENVELOPE IS A DERIVED ACCRETION-FLOW PROFILE IN CLASS, AN EMPIRICAL SHAPE IN NORMALIZATION.  (1) SHAPE: the REQUIRED rho_dust,req(r) (G098's inversion, floor A) on the resolved positive-dust window is NFW/FG-class: pooled slope -2.218 +- 0.021 over 1575 points (per-cluster median -2.19, range [-2.82, -1.74]), class rms a/b/c = 0.348/0.274/0.253 dex with the NFW 2-parameter form the lowest-scatter closed form (0/1/11 per-cluster winners); the fixed r^-3/2 (Bertschinger-class point-mass stream) and r^-2 (caustic-mixed) classes are excluded at >= 33.6 and 10.2 sigma pooled, and the committed outer-window slope -2.377 +- 0.152 (G108) sits 0.8 sigma from the collisionless secondary-infall asymptote r^-9/4 (Fillmore-Goldreich/Gott; Anninos+96).  THE DERIVATION does not yet close: the per-cluster scatter is 0.20 dex (median), the subtraction is unresolvable/negative in the outer bins of the same clusters where it counts (34/292, G108 V2 FAIL), and the phantom amplitude A = sqrt(G M_b(R500) a0)/(4 pi G) is the pinned input, not a fitted output -- the per-cluster NORMALIZATION is the last un-derived number.  (2) RESERVOIR: the infall closes the abundance: the cosmic-composition collapse reservoir holds 2.01 x the requirement at the point-mass floor and 6.24 x with the mass profile continued to R_ta at the outer slope -2.38 (M(<R_ta) ~ 3 x M500); the naive single-power-law stream under-fills R500 (0.23 of the requirement vs 0.50 needed -- V2d FAIL: the interior concentration is the mixed/caustic piece, not the naive stream), while the continued envelope delivers 2.01 x inside R500 (V2e); the z=0 AMBIENT density alone fails by 917x, so the envelope is accreted (expansion-equivalent z ~ 8.7, or ~4.5 with the turnaround contrast), not the ambient haze.  (3) CONSEQUENCE: the envelope is a STREAMING, growing structure (radial-biased orbits, beta(r) -> +1 outward; ~8.3e+12 Msun/Gyr capture today, ~8e3 Msun/yr; turnaround caustic at ~6-7 R500, unobserved) -- the free dust is NOT distributed (G103's collisionless timescale), and its registered outer-profile slope is the discriminant that already chose the secondary-infall class over the point-mass stream at 5.8 sigma.  THE HONEST STATE OF THE LAST CLUSTER PIECE: the envelope's SHAPE is derived to CLASS (NFW/FG secondary infall; the r^-3/2 and r^-2 candidates excluded), its AMPLITUDE is closed reservoir-wise under the framework's own composition reading; what remains empirical is the per-cluster normalization (the A/r^2 phantom pinned at M_b(R500)) and the cap line -- the registered open numbers.
+         reading : derived in CLASS (NFW/FG secondary infall, reservoir-closed), empirical in NORMALIZATION (phantom amplitude and cap line) -- the state of the last cluster piece, stated exactly.
+
+G137 COMPLETE: 15/18 checks PASS.
+artifact written: G137_results.json

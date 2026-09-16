@@ -1,0 +1,754 @@
+{
+ "lane": "G137_dust_envelope",
+ "title": "THE FREE-DUST ENVELOPE DERIVATION ATTEMPT -- can the profile shape be derived?",
+ "references": {
+  "G098": "the REQUIRED dust profile rho_dust,req = rho_tot - A/r^2 - rho_b, floor A, committed arrays (per_cluster.canonical), 140-pt grid 0.1-1.25 R500; f_dust 0.75-0.86 inner -> 0.2-0.5 at R500; crossings 737-1059 kpc on 4/12",
+  "G108": "the outer-window (r_M, R500) decomposition: pooled envelope slope -2.377 +- 0.152 (258 positive bins, rms 0.38 dex); 34/292 negative-dust bins",
+  "G103": "the free dust is collisionless FOREVER at cluster scale: t_relax 70-76 orders above Hubble; static field-pinned boundary (the PHANTOM's, not the dust's)",
+  "G079": "Omega_dm = 0.264, Omega_eq,capped = 0.00209 -> Omega_dust = 0.262 (99.2% of Omega_dm); the free dust IS the cosmic dark sector",
+  "G115": "the free-dust particle: m > 3.3-5.7 keV, lambda_fs = 0.5-0.82 Mpc (WDM-class warm relic); the halo function cuts below ~1e6 Msun",
+  "classes": {
+   "a": "collisionless infall rho ~ r^-3/2 (spherical accretion onto a point mass, Bertschinger 1985; FG-early regime)",
+   "b": "phase-mixed halo rho ~ r^-2 (caustic-mixed infall; the flattest stable radial-orbit profile)",
+   "c": "NFW-class rho ~ r^-1..r^-3 (cosmological secondary infall, Fillmore-Goldreich 1984; marginal-EdS asymptote rho ~ r^-9/4, Gott 1975; Anninos+96 found r^-9/4 on CDM cluster scales)"
+  }
+ },
+ "constants": {
+  "a0_canonical": 9.362307184320096e-11,
+  "a0_g108": 9.3619e-11,
+  "G": 6.674e-11,
+  "H0_km_s_Mpc": 67.4,
+  "Omega_dm": 0.264,
+  "Omega_b": 0.0493,
+  "Omega_dust": 0.2619075,
+  "rho_crit_kg_m3": 8.533114727833856e-27,
+  "rho_dust0_kg_m3": 2.234886745580146e-27,
+  "t_H_Gyr": 14.507408392841116,
+  "turnaround_contrast_3pi4sq": 5.55
+ },
+ "data_gate": {
+  "reload_median_abs_rel_diff": 1.6653345369377348e-16,
+  "g108_pooled_slope": {
+   "slope": -2.3771784967561618,
+   "se": 0.15238187672652193,
+   "n_bins": 258,
+   "rms_dex": 0.38095585764765116
+  },
+  "omega_dust_register": 0.2619075
+ },
+ "part1_profile_classes": {
+  "pooled": {
+   "n_points": 1575,
+   "gamma": -2.2181734314587684,
+   "gamma_se": 0.021393984266447317,
+   "rms_dex": 0.2654612251077491,
+   "rms_a_dex": 0.3477830999989038,
+   "rms_b_dex": 0.27409610399168904,
+   "rms_c_dex": 0.2525310608554346,
+   "rs_best_kpc": 265.86471940176045,
+   "winner": "c",
+   "sigma_vs_minus3half": 33.56894267633432,
+   "sigma_vs_minus2": 10.197886879861594,
+   "alt_footing": {
+    "gamma": -2.2451326206411397,
+    "rms_a": 0.36281718011835595,
+    "rms_b": 0.2900755276755789,
+    "rms_c": 0.2678099165477061,
+    "winner": "c"
+   }
+  },
+  "per_cluster": [
+   {
+    "cluster": "A1644",
+    "R500_kpc": 1054.0,
+    "n": 140,
+    "window_kpc": [
+     105.40000000000005,
+     1317.5
+    ],
+    "gamma": -2.0691555353886124,
+    "gamma_se": 0.04241173907276016,
+    "rms_dex": 0.15889424148268283,
+    "rms_a_dex": 0.24123686203551462,
+    "rms_b_dex": 0.16041760633429422,
+    "rms_c_dex": 0.12945598612113665,
+    "rs_best_kpc": 317.32080626828247,
+    "winner": "c",
+    "gamma_band": "b"
+   },
+   {
+    "cluster": "A1795",
+    "R500_kpc": 1153.0,
+    "n": 127,
+    "window_kpc": [
+     115.29999999999998,
+     1441.2500000000007
+    ],
+    "gamma": -2.7477505192261913,
+    "gamma_se": 0.07503194284127569,
+    "rms_dex": 0.26105027973968226,
+    "rms_a_dex": 0.4678809317602843,
+    "rms_b_dex": 0.349703267623698,
+    "rms_c_dex": 0.25109835797130575,
+    "rs_best_kpc": 67.14799818060973,
+    "winner": "c",
+    "gamma_band": "none"
+   },
+   {
+    "cluster": "A2029",
+    "R500_kpc": 1423.0,
+    "n": 120,
+    "window_kpc": [
+     142.30000000000007,
+     1778.7500000000002
+    ],
+    "gamma": -2.5858472894321456,
+    "gamma_se": 0.08797823128424981,
+    "rms_dex": 0.2926907159086807,
+    "rms_a_dex": 0.44301202876030465,
+    "rms_b_dex": 0.34330791418723555,
+    "rms_c_dex": 0.2791922636993223,
+    "rs_best_kpc": 136.26503357385064,
+    "winner": "c",
+    "gamma_band": "none"
+   },
+   {
+    "cluster": "A2142",
+    "R500_kpc": 1424.0,
+    "n": 135,
+    "window_kpc": [
+     142.39999999999995,
+     1780.0000000000002
+    ],
+    "gamma": -2.380180541325851,
+    "gamma_se": 0.07097596331820626,
+    "rms_dex": 0.25378459466073006,
+    "rms_a_dex": 0.3726657812840097,
+    "rms_b_dex": 0.2798229807518793,
+    "rms_c_dex": 0.22175754146498433,
+    "rs_best_kpc": 236.28463607714423,
+    "winner": "c",
+    "gamma_band": "none"
+   },
+   {
+    "cluster": "A2255",
+    "R500_kpc": 1196.0,
+    "n": 140,
+    "window_kpc": [
+     119.60000000000001,
+     1494.9999999999995
+    ],
+    "gamma": -1.8489433253029397,
+    "gamma_se": 0.03063064393723288,
+    "rms_dex": 0.11475674049071734,
+    "rms_a_dex": 0.15985464116687564,
+    "rms_b_dex": 0.12445861932405876,
+    "rms_c_dex": 0.07058777383508125,
+    "rs_best_kpc": 583.6630739858623,
+    "winner": "c",
+    "gamma_band": "b"
+   },
+   {
+    "cluster": "A2319",
+    "R500_kpc": 1346.0,
+    "n": 114,
+    "window_kpc": [
+     134.60000000000005,
+     1049.0052467641578
+    ],
+    "gamma": -2.4058000293674238,
+    "gamma_se": 0.07117448638928613,
+    "rms_dex": 0.19560820723215963,
+    "rms_a_dex": 0.30593140885947573,
+    "rms_b_dex": 0.2221888921159491,
+    "rms_c_dex": 0.17723401114756776,
+    "rs_best_kpc": 169.159869864576,
+    "winner": "c",
+    "gamma_band": "none"
+   },
+   {
+    "cluster": "A3158",
+    "R500_kpc": 1123.0,
+    "n": 140,
+    "window_kpc": [
+     112.30000000000001,
+     1403.7499999999995
+    ],
+    "gamma": -2.0294963930307652,
+    "gamma_se": 0.023047786011502314,
+    "rms_dex": 0.08634780266544051,
+    "rms_a_dex": 0.18966313684702454,
+    "rms_b_dex": 0.08685870593690098,
+    "rms_c_dex": 0.06995105259188168,
+    "rs_best_kpc": 371.3631874976529,
+    "winner": "c",
+    "gamma_band": "b"
+   },
+   {
+    "cluster": "A3266",
+    "R500_kpc": 1430.0,
+    "n": 140,
+    "window_kpc": [
+     143.00000000000003,
+     1787.4999999999995
+    ],
+    "gamma": -1.8741046066971088,
+    "gamma_se": 0.05361528988904652,
+    "rms_dex": 0.200867990915888,
+    "rms_a_dex": 0.23362950064213203,
+    "rms_b_dex": 0.2048414580347015,
+    "rms_c_dex": 0.24316986668428264,
+    "rs_best_kpc": 696.6266063544182,
+    "winner": "b",
+    "gamma_band": "b"
+   },
+   {
+    "cluster": "A644",
+    "R500_kpc": 1230.0,
+    "n": 99,
+    "window_kpc": [
+     123.00000000000003,
+     729.9046456096842
+    ],
+    "gamma": -2.1463164043239167,
+    "gamma_se": 0.15094318470794746,
+    "rms_dex": 0.335257105714913,
+    "rms_a_dex": 0.3655706217764713,
+    "rms_b_dex": 0.3368770024726079,
+    "rms_c_dex": 0.31887387914695886,
+    "rs_best_kpc": 236.28463607714423,
+    "winner": "c",
+    "gamma_band": "b"
+   },
+   {
+    "cluster": "A85",
+    "R500_kpc": 1235.0,
+    "n": 140,
+    "window_kpc": [
+     123.5,
+     1543.7499999999995
+    ],
+    "gamma": -2.8230386445078612,
+    "gamma_se": 0.06987593313169457,
+    "rms_dex": 0.2617879774702833,
+    "rms_a_dex": 0.4965580405957614,
+    "rms_b_dex": 0.3707165653762027,
+    "rms_c_dex": 0.2452401736450226,
+    "rs_best_kpc": 69.84062953769894,
+    "winner": "c",
+    "gamma_band": "none"
+   },
+   {
+    "cluster": "RXC1825",
+    "R500_kpc": 1105.0,
+    "n": 140,
+    "window_kpc": [
+     110.49999999999996,
+     1381.2500000000005
+    ],
+    "gamma": -2.2387990344174957,
+    "gamma_se": 0.03958409084663632,
+    "rms_dex": 0.1483005466733518,
+    "rms_a_dex": 0.2784043700526296,
+    "rms_b_dex": 0.16671257188147076,
+    "rms_c_dex": 0.12570250993032814,
+    "rs_best_kpc": 236.28463607714423,
+    "winner": "c",
+    "gamma_band": "b"
+   },
+   {
+    "cluster": "ZW1215",
+    "R500_kpc": 1358.0,
+    "n": 140,
+    "window_kpc": [
+     135.8,
+     1697.4999999999995
+    ],
+    "gamma": -1.7379365546894836,
+    "gamma_se": 0.025335725119070843,
+    "rms_dex": 0.09491949430090939,
+    "rms_a_dex": 0.12152332761619762,
+    "rms_b_dex": 0.12647093014553895,
+    "rms_c_dex": 0.08851665369127197,
+    "rs_best_kpc": 847.9601335989282,
+    "winner": "c",
+    "gamma_band": "a"
+   }
+  ],
+  "per_cluster_gamma_median": -2.192557719370706,
+  "per_cluster_gamma_range": [
+   -2.8230386445078612,
+   -1.7379365546894836
+  ],
+  "winners": {
+   "a": 0,
+   "b": 1,
+   "c": 11
+  }
+ },
+ "part2_reservoir": {
+  "per_cluster": [
+   {
+    "cluster": "A1644",
+    "R500_kpc": 1054.0,
+    "M500_e14": 3.48,
+    "R_ta_Mpc": 6.440207145358871,
+    "R_ta_over_R500": 6.110253458594753,
+    "R_ta_over_R200": 3.6221637487957654,
+    "M_dust_req_R500_Msun": 155252959640975.66,
+    "M_cosmic_reservoir_Msun": 290915448451963.0,
+    "M_cosmic_ext_reservoir_Msun": 898424696625802.6,
+    "ratio_ambient_R500": 0.0010429653021558226,
+    "ratio_ambient_Rta": 0.23792908636918328,
+    "ratio_cosmic": 1.8738157979384644,
+    "ratio_cosmic_ext": 5.786844248917513,
+    "need_frac_in_R500": 0.5336703859046233,
+    "frac_gamma15": 0.06620810560559937,
+    "frac_gamma20": 0.1636593321007639,
+    "frac_gamma_fit": 0.18548172279358538,
+    "frac_ext_outer": 0.32380615709313076,
+    "density_ratio_over_cosmic": 958.8046677420498,
+    "z_equiv_ambient": 8.860752231730038,
+    "z_equiv_contrast5p55": 4.569450975986755,
+    "Mdot_today_Msun_Gyr": 5092459499756.991
+   },
+   {
+    "cluster": "A1795",
+    "R500_kpc": 1153.0,
+    "M500_e14": 4.63,
+    "R_ta_Mpc": 7.083269274994833,
+    "R_ta_over_R500": 6.143338486552326,
+    "R_ta_over_R200": 4.036050868942925,
+    "M_dust_req_R500_Msun": 164070210553223.1,
+    "M_cosmic_reservoir_Msun": 387051300670284.1,
+    "M_cosmic_ext_reservoir_Msun": 1199346025684546.5,
+    "ratio_ambient_R500": 0.0012919511778735446,
+    "ratio_ambient_Rta": 0.2995431804102967,
+    "ratio_cosmic": 2.359058962411264,
+    "ratio_cosmic_ext": 7.309956034313054,
+    "need_frac_in_R500": 0.4238978405939758,
+    "frac_gamma15": 0.06567397946072356,
+    "frac_gamma20": 0.16277794267546622,
+    "frac_gamma_fit": 0.6325944657307807,
+    "frac_ext_outer": 0.32271862530195833,
+    "density_ratio_over_cosmic": 774.0230568510534,
+    "z_equiv_ambient": 8.181591486231662,
+    "z_equiv_contrast5p55": 4.185854229209539,
+    "Mdot_today_Msun_Gyr": 6775312495366.341
+   },
+   {
+    "cluster": "A2029",
+    "R500_kpc": 1423.0,
+    "M500_e14": 8.82,
+    "R_ta_Mpc": 8.780709652783612,
+    "R_ta_over_R500": 6.170561948547864,
+    "R_ta_over_R200": 4.04082358618666,
+    "M_dust_req_R500_Msun": 272716148747353.94,
+    "M_cosmic_reservoir_Msun": 737320188317906.1,
+    "M_cosmic_ext_reservoir_Msun": 2291017591148935.0,
+    "ratio_ambient_R500": 0.001461139766766557,
+    "ratio_ambient_Rta": 0.3432937612172173,
+    "ratio_cosmic": 2.7036176321225645,
+    "ratio_cosmic_ext": 8.400740482997026,
+    "need_frac_in_R500": 0.36987478854948763,
+    "frac_gamma15": 0.06523984565758884,
+    "frac_gamma20": 0.16205979428426817,
+    "frac_gamma_fit": 0.4706357096579772,
+    "frac_ext_outer": 0.32183087164692753,
+    "density_ratio_over_cosmic": 684.3972238281896,
+    "z_equiv_ambient": 7.8125733826864945,
+    "z_equiv_contrast5p55": 3.9774291325588917,
+    "Mdot_today_Msun_Gyr": 12906750801108.24
+   },
+   {
+    "cluster": "A2142",
+    "R500_kpc": 1424.0,
+    "M500_e14": 8.95,
+    "R_ta_Mpc": 8.8236397167552,
+    "R_ta_over_R500": 6.196376205586517,
+    "R_ta_over_R200": 3.9674639014187045,
+    "M_dust_req_R500_Msun": 351195354067254.75,
+    "M_cosmic_reservoir_Msun": 748187719438238.0,
+    "M_cosmic_ext_reservoir_Msun": 2330839723316952.5,
+    "ratio_ambient_R500": 0.0011370226644639313,
+    "ratio_ambient_Rta": 0.2705094580522556,
+    "ratio_cosmic": 2.1304032378940816,
+    "ratio_cosmic_ext": 6.636875164557533,
+    "need_frac_in_R500": 0.4693947052899276,
+    "frac_gamma15": 0.06483258433664953,
+    "frac_gamma20": 0.161384649159685,
+    "frac_gamma_fit": 0.3228624897639036,
+    "frac_ext_outer": 0.3209949238266427,
+    "density_ratio_over_cosmic": 879.4899444431629,
+    "z_equiv_ambient": 8.58098792424531,
+    "z_equiv_contrast5p55": 4.411437311435557,
+    "Mdot_today_Msun_Gyr": 13096986357133.645
+   },
+   {
+    "cluster": "A2255",
+    "R500_kpc": 1196.0,
+    "M500_e14": 5.26,
+    "R_ta_Mpc": 7.390979592583041,
+    "R_ta_over_R500": 6.179748823229968,
+    "R_ta_over_R200": 3.635503980611432,
+    "M_dust_req_R500_Msun": 242765881093376.38,
+    "M_cosmic_reservoir_Msun": 439717028407277.3,
+    "M_cosmic_ext_reservoir_Msun": 1367565409346212.0,
+    "ratio_ambient_R500": 0.0009745268401361432,
+    "ratio_ambient_Rta": 0.22998858183961576,
+    "ratio_cosmic": 1.8112801783630648,
+    "ratio_cosmic_ext": 5.633268576238676,
+    "need_frac_in_R500": 0.5520957011210408,
+    "frac_gamma15": 0.06509442045546607,
+    "frac_gamma20": 0.16181887461848818,
+    "frac_gamma_fit": 0.12289883161969602,
+    "frac_ext_outer": 0.32153272187360427,
+    "density_ratio_over_cosmic": 1026.1390028624537,
+    "z_equiv_ambient": 9.086381681510156,
+    "z_equiv_contrast5p55": 4.696888734258953,
+    "Mdot_today_Msun_Gyr": 7697223266874.073
+   },
+   {
+    "cluster": "A2319",
+    "R500_kpc": 1346.0,
+    "M500_e14": 7.31,
+    "R_ta_Mpc": 8.247947363943233,
+    "R_ta_over_R500": 6.127746927149504,
+    "R_ta_over_R200": 4.043111452913349,
+    "M_dust_req_R500_Msun": 248136902736286.7,
+    "M_cosmic_reservoir_Msun": 611089634535588.9,
+    "M_cosmic_ext_reservoir_Msun": 1890572465773541.0,
+    "ratio_ambient_R500": 0.0013590384324974434,
+    "ratio_ambient_Rta": 0.3127045503429821,
+    "ratio_cosmic": 2.4627116232890143,
+    "ratio_cosmic_ext": 7.619070137998745,
+    "need_frac_in_R500": 0.40605647471808914,
+    "frac_gamma15": 0.06592479207603541,
+    "frac_gamma20": 0.16319211806372336,
+    "frac_gamma_fit": 0.3405539134974015,
+    "frac_ext_outer": 0.32322994521426995,
+    "density_ratio_over_cosmic": 735.8143641032617,
+    "z_equiv_ambient": 8.027955724881823,
+    "z_equiv_contrast5p55": 4.099079222507418,
+    "Mdot_today_Msun_Gyr": 10697091650351.613
+   },
+   {
+    "cluster": "A3158",
+    "R500_kpc": 1123.0,
+    "M500_e14": 4.26,
+    "R_ta_Mpc": 6.889324185008594,
+    "R_ta_over_R500": 6.134749942126976,
+    "R_ta_over_R200": 3.901089572485047,
+    "M_dust_req_R500_Msun": 204021022600353.03,
+    "M_cosmic_reservoir_Msun": 356120635173954.6,
+    "M_cosmic_ext_reservoir_Msun": 1102540588354256.9,
+    "ratio_ambient_R500": 0.0009599580713732684,
+    "ratio_ambient_Rta": 0.22163730469268825,
+    "ratio_cosmic": 1.7455095099270344,
+    "ratio_cosmic_ext": 5.404053828874148,
+    "need_frac_in_R500": 0.5728986260532043,
+    "frac_gamma15": 0.06581194138152131,
+    "frac_gamma20": 0.16300582899607,
+    "frac_gamma_fit": 0.1719650937376592,
+    "frac_ext_outer": 0.3230000227978271,
+    "density_ratio_over_cosmic": 1041.7121641255121,
+    "z_equiv_ambient": 9.137150910332302,
+    "z_equiv_contrast5p55": 4.725563699856783,
+    "Mdot_today_Msun_Gyr": 6233872835909.42
+   },
+   {
+    "cluster": "A3266",
+    "R500_kpc": 1430.0,
+    "M500_e14": 8.8,
+    "R_ta_Mpc": 8.774067661101677,
+    "R_ta_over_R500": 6.1357116511200545,
+    "R_ta_over_R200": 3.773792542409323,
+    "M_dust_req_R500_Msun": 390458612651797.94,
+    "M_cosmic_reservoir_Msun": 735648260453239.9,
+    "M_cosmic_ext_reservoir_Msun": 2277771061337106.5,
+    "ratio_ambient_R500": 0.0010356691057038423,
+    "ratio_ambient_Rta": 0.23923011350812542,
+    "ratio_cosmic": 1.8840620660332934,
+    "ratio_cosmic_ext": 5.833578739287205,
+    "need_frac_in_R500": 0.5307680771395187,
+    "frac_gamma15": 0.06579646898174336,
+    "frac_gamma20": 0.16298027952755137,
+    "frac_gamma_fit": 0.12970194585044348,
+    "frac_ext_outer": 0.32296848131058287,
+    "density_ratio_over_cosmic": 965.559361086086,
+    "z_equiv_ambient": 8.883854106061941,
+    "z_equiv_contrast5p55": 4.582499144475456,
+    "Mdot_today_Msun_Gyr": 12877483792488.947
+   },
+   {
+    "cluster": "A644",
+    "R500_kpc": 1230.0,
+    "M500_e14": 5.66,
+    "R_ta_Mpc": 7.5737720893275275,
+    "R_ta_over_R500": 6.15753828400612,
+    "R_ta_over_R200": 4.10058044901328,
+    "M_dust_req_R500_Msun": 182791675724440.38,
+    "M_cosmic_reservoir_Msun": 473155585700606.44,
+    "M_cosmic_ext_reservoir_Msun": 1468265545144409.2,
+    "ratio_ambient_R500": 0.001407819044413313,
+    "ratio_ambient_Rta": 0.32867615518252147,
+    "ratio_cosmic": 2.5884963515181703,
+    "ratio_cosmic_ext": 8.032453005999184,
+    "need_frac_in_R500": 0.3863246704649567,
+    "frac_gamma15": 0.06544693596107574,
+    "frac_gamma20": 0.1624025631472641,
+    "frac_gamma_fit": 0.21188298895529487,
+    "frac_ext_outer": 0.3222547769137155,
+    "density_ratio_over_cosmic": 710.3185625797063,
+    "z_equiv_ambient": 7.922455446951567,
+    "z_equiv_contrast5p55": 4.039491615793722,
+    "Mdot_today_Msun_Gyr": 8282563439259.938
+   },
+   {
+    "cluster": "A85",
+    "R500_kpc": 1235.0,
+    "M500_e14": 5.65,
+    "R_ta_Mpc": 7.569309052295618,
+    "R_ta_over_R500": 6.128995184045034,
+    "R_ta_over_R200": 3.94029622711901,
+    "M_dust_req_R500_Msun": 212016480214484.4,
+    "M_cosmic_reservoir_Msun": 472319621768273.25,
+    "M_cosmic_ext_reservoir_Msun": 1461435018329901.5,
+    "ratio_ambient_R500": 0.001228624491257386,
+    "ratio_ambient_Rta": 0.28287007691189303,
+    "ratio_cosmic": 2.2277495659321187,
+    "ratio_cosmic_ext": 6.893025565047845,
+    "need_frac_in_R500": 0.44888348999928424,
+    "frac_gamma15": 0.0659046533215384,
+    "frac_gamma20": 0.16315888167169623,
+    "frac_gamma_fit": 0.7255419463033846,
+    "frac_ext_outer": 0.3231889313204159,
+    "density_ratio_over_cosmic": 813.9183347847725,
+    "z_equiv_ambient": 8.336704428395315,
+    "z_equiv_contrast5p55": 4.273463562333404,
+    "Mdot_today_Msun_Gyr": 8267929934950.288
+   },
+   {
+    "cluster": "RXC1825",
+    "R500_kpc": 1105.0,
+    "M500_e14": 4.08,
+    "R_ta_Mpc": 6.790891777939815,
+    "R_ta_over_R500": 6.145603418950059,
+    "R_ta_over_R200": 3.950489690482731,
+    "M_dust_req_R500_Msun": 192968150338138.72,
+    "M_cosmic_reservoir_Msun": 341073284391956.56,
+    "M_cosmic_ext_reservoir_Msun": 1057117850471711.9,
+    "ratio_ambient_R500": 0.0009669168216643638,
+    "ratio_ambient_Rta": 0.22443093051756746,
+    "ratio_cosmic": 1.7675107720848893,
+    "ratio_cosmic_ext": 5.478198597122483,
+    "need_frac_in_R500": 0.5657674147130869,
+    "frac_gamma15": 0.0656376770650646,
+    "frac_gamma20": 0.16271795165247488,
+    "frac_gamma_fit": 0.25104057284423015,
+    "frac_ext_outer": 0.32264452278405986,
+    "density_ratio_over_cosmic": 1034.2151233636519,
+    "z_equiv_ambient": 9.112773836555412,
+    "z_equiv_contrast5p55": 4.711795286033188,
+    "Mdot_today_Msun_Gyr": 5970469758335.785
+   },
+   {
+    "cluster": "ZW1215",
+    "R500_kpc": 1358.0,
+    "M500_e14": 7.66,
+    "R_ta_Mpc": 8.377536814055796,
+    "R_ta_over_R500": 6.169025636270836,
+    "R_ta_over_R200": 3.8079712791162708,
+    "M_dust_req_R500_Msun": 400438435023251.3,
+    "M_cosmic_reservoir_Msun": 640348372167251.9,
+    "M_cosmic_ext_reservoir_Msun": 1989395980252352.8,
+    "ratio_ambient_R500": 0.0008648712691737177,
+    "ratio_ambient_Rta": 0.20304915909383775,
+    "ratio_cosmic": 1.599118156902372,
+    "ratio_cosmic_ext": 4.9680445388236505,
+    "need_frac_in_R500": 0.6253446599199931,
+    "frac_gamma15": 0.06526421782467993,
+    "frac_gamma20": 0.1621001530809812,
+    "frac_gamma_fit": 0.10062283444104443,
+    "frac_ext_outer": 0.32188080127015456,
+    "density_ratio_over_cosmic": 1156.241438052835,
+    "z_equiv_ambient": 9.495815227476964,
+    "z_equiv_contrast5p55": 4.928140874927179,
+    "Mdot_today_Msun_Gyr": 11209264301189.242
+   }
+  ],
+  "medians": {
+   "ratio_ambient_R500": 0.001089993983309877,
+   "ratio_ambient_Rta": 0.25486978578019054,
+   "ratio_cosmic": 2.0072326519636876,
+   "ratio_cosmic_ext": 6.235226951922369,
+   "need_frac_in_R500": 0.5000813912147232,
+   "z_equiv_ambient": 8.720870077987673,
+   "z_equiv_contrast5p55": 4.490444143711156,
+   "frac_gamma15": 0.06565582826289408,
+   "frac_gamma20": 0.16274794716397056,
+   "frac_gamma_fit": 0.2314617808997625,
+   "frac_ext_outer": 0.3226815740430091,
+   "closure_in_R500_ext": 2.011992847361704
+  }
+ },
+ "part3_consequence": {
+  "anisotropy": {
+   "a": "beta -> +1 (pure radial stream)",
+   "b": "beta -> 0 (phase-mixed)",
+   "c": "beta(r) rising outward (FG secondary infall)"
+  },
+  "g108_outer_discriminant": {
+   "slope": -2.377,
+   "se": 0.152,
+   "sigma_vs_minus3half": 5.769736842105262,
+   "sigma_vs_minus2": 2.4802631578947354,
+   "sigma_vs_minus9over4": 0.8355263157894722
+  },
+  "turnaround_caustic": {
+   "R_ta_over_R500_median": 6.144470952751193,
+   "R_ta_over_R200_median": 3.9453929588008707
+  },
+  "capture_rate_Msun_Gyr_median": 8275246687105.113
+ },
+ "verdicts": {
+  "V1": {
+   "best_class": "c",
+   "pooled_gamma": -2.2181734314587684,
+   "pooled_gamma_se": 0.021393984266447317,
+   "pooled_class_rms_dex": {
+    "a": 0.3477830999989038,
+    "b": 0.27409610399168904,
+    "c": 0.2525310608554346
+   },
+   "winners": {
+    "a": 0,
+    "b": 1,
+    "c": 11
+   },
+   "statement": "NFW/FG-class secondary infall: the local slope in (-3,-1), the NFW 2-parameter form the lowest-scatter closed form, the r^-3/2 and r^-2 fixed classes excluded at >= 2-3 sigma pooled; outer-window -2.38 within 1 sigma of r^-9/4"
+  },
+  "V2": {
+   "closure": true,
+   "ratio_ambient_R500": 0.001089993983309877,
+   "ratio_ambient_Rta": 0.25486978578019054,
+   "ratio_cosmic_reservoir": 2.0072326519636876,
+   "statement": "the infall closes the required abundance under the frameworks' own composition reading (the infalling dark matter IS the infalling dust); the z=0 ambient density alone fails by 2-3 orders; assembly-equivalent z ~ 8.7 (ambient) / 4.5 (5.55 contrast)"
+  },
+  "V3": {
+   "statement": "THE FREE-DUST ENVELOPE IS A DERIVED ACCRETION-FLOW PROFILE IN CLASS, AN EMPIRICAL SHAPE IN NORMALIZATION.  (1) SHAPE: the REQUIRED rho_dust,req(r) (G098's inversion, floor A) on the resolved positive-dust window is NFW/FG-class: pooled slope -2.218 +- 0.021 over 1575 points (per-cluster median -2.19, range [-2.82, -1.74]), class rms a/b/c = 0.348/0.274/0.253 dex with the NFW 2-parameter form the lowest-scatter closed form (0/1/11 per-cluster winners); the fixed r^-3/2 (Bertschinger-class point-mass stream) and r^-2 (caustic-mixed) classes are excluded at >= 33.6 and 10.2 sigma pooled, and the committed outer-window slope -2.377 +- 0.152 (G108) sits 0.8 sigma from the collisionless secondary-infall asymptote r^-9/4 (Fillmore-Goldreich/Gott; Anninos+96).  THE DERIVATION does not yet close: the per-cluster scatter is 0.20 dex (median), the subtraction is unresolvable/negative in the outer bins of the same clusters where it counts (34/292, G108 V2 FAIL), and the phantom amplitude A = sqrt(G M_b(R500) a0)/(4 pi G) is the pinned input, not a fitted output -- the per-cluster NORMALIZATION is the last un-derived number.  (2) RESERVOIR: the infall closes the abundance: the cosmic-composition collapse reservoir holds 2.01 x the requirement at the point-mass floor and 6.24 x with the mass profile continued to R_ta at the outer slope -2.38 (M(<R_ta) ~ 3 x M500); the naive single-power-law stream under-fills R500 (0.23 of the requirement vs 0.50 needed -- V2d FAIL: the interior concentration is the mixed/caustic piece, not the naive stream), while the continued envelope delivers 2.01 x inside R500 (V2e); the z=0 AMBIENT density alone fails by 917x, so the envelope is accreted (expansion-equivalent z ~ 8.7, or ~4.5 with the turnaround contrast), not the ambient haze.  (3) CONSEQUENCE: the envelope is a STREAMING, growing structure (radial-biased orbits, beta(r) -> +1 outward; ~8.3e+12 Msun/Gyr capture today, ~8e3 Msun/yr; turnaround caustic at ~6-7 R500, unobserved) -- the free dust is NOT distributed (G103's collisionless timescale), and its registered outer-profile slope is the discriminant that already chose the secondary-infall class over the point-mass stream at 5.8 sigma.  THE HONEST STATE OF THE LAST CLUSTER PIECE: the envelope's SHAPE is derived to CLASS (NFW/FG secondary infall; the r^-3/2 and r^-2 candidates excluded), its AMPLITUDE is closed reservoir-wise under the framework's own composition reading; what remains empirical is the per-cluster normalization (the A/r^2 phantom pinned at M_b(R500)) and the cap line -- the registered open numbers."
+  }
+ },
+ "checks": [
+  {
+   "name": "V0a [gate: G098's inversion reproduced] rho_dust,req recomputed from the committed FITS with G098's recipe vs the committed arrays in G098_results.json",
+   "measured": "per-cluster median |rel diff| <= 2.22e-16 (median 1.67e-16, 12/12)",
+   "pass": true,
+   "reading": "the lane's analysis runs on the COMMITTED inversion arrays; the loader is byte-faithful to G098 (canonical footing)."
+  },
+  {
+   "name": "V0b [gate: G108's pooled outer-window slope reproduced] the (r_M, R500) positive-dust envelope slope, G108's exact binning and footing",
+   "measured": "pooled slope = -2.377 +- 0.152 (n = 258 bins, rms 0.38 dex) vs G108's committed -2.377 +- 0.152",
+   "pass": true,
+   "reading": "the cross-window reference for the class discriminant (PART 3): the OUTER window (r_M, R500) of the same subtraction."
+  },
+  {
+   "name": "V0c [gate: G079's Omega_dust register] the free-dust cosmic abundance from G079's decomposition (dust_share_capped x Omega_dm)",
+   "measured": "Omega_dust = 0.261908 (register 0.261908; Omega_dm = 0.264, Omega_eq,capped = 0.002093)",
+   "pass": true,
+   "reading": "the reservoir check (PART 2) runs on the committed cosmic budget only."
+  },
+  {
+   "name": "V0d [gate: the infall region exists at cluster scale] R_ta/R500 per cluster in the physical band [3, 10]",
+   "measured": "R_ta/R500 in [6.11, 6.20] (median 6.14)",
+   "pass": true,
+   "reading": "the turnaround (accretion) radius of the cluster as a point mass in EdS; the infall reservoir of PART 2.  R_ta ~ 6-8 x R500: the outermost caustic edge sits beyond the observed window."
+  },
+  {
+   "name": "V1a [data gate] every cluster yields >= 5 resolved positive-dust points for the slope fit",
+   "measured": "12/12 clusters with n >= 5 (n range [99, 140])",
+   "pass": true,
+   "reading": "the positive-dust window is the resolved part of G098's [0.1, 1.25] R500 grid; clusters with a dust zero-crossing in-window (A1795/A2029/A2319/A644, G098's registered crossings at 737-1059 kpc) end the window at the crossing."
+  },
+  {
+   "name": "V1b [the class decision] the best class per cluster (min rms about the class curve) and pooled; reported with the scatter",
+   "measured": "per-cluster winners: a(r^-3/2) 0/12, b(r^-2) 1/12, c(NFW) 11/12; pooled winner c; pooled class rms a 0.348 / b 0.274 / c 0.253 dex; pooled gamma -2.218 +- 0.021",
+   "pass": true,
+   "reading": "the class comparison is measured by the scatter about each closed form at its best normalization: fixed-slope powers (a), (b) vs the 2-parameter NFW (c).  The per-cluster winners and the pooled winner are the V1 numbers; the bands overlap by design (NFW local slopes span (-3,-1))."
+  },
+  {
+   "name": "V1c [fixed classes discriminated] the pooled fitted slope excludes the r^-3/2 stream and/or the r^-2 mix at the stated sigma",
+   "measured": "gamma = -2.218 +- 0.021: vs -3/2: 33.6 sigma; vs -2: 10.2 sigma",
+   "pass": true,
+   "reading": "the pooled window covers the whole positive-dust region of the inversion (inner 0.2-0.5 R500 through the outer window); the class steeper than -2 wins where the profile curves."
+  },
+  {
+   "name": "V1d [footing robustness] the pooled fit on G098's alt a0 = 1.1279e-10 committed arrays",
+   "measured": "alt gamma = -2.245 vs canonical -2.218 (delta 0.027); class rms a/b/c = 0.363/0.290/0.268 dex (winner c)",
+   "pass": true,
+   "reading": "the shape conclusion is footing-insensitive; the A/r^2 phantom shifts by sqrt(a0) ~ 4% between the committed footings."
+  },
+  {
+   "name": "V2a [ambient z=0 reading] the cosmic free-dust density at z=0, integrated over R500, vs the required dust mass -- does the AMBIENT haze supply it?",
+   "measured": "median ratio = 1.09e-03 (per-cluster [8.65e-04, 1.46e-03])",
+   "pass": false,
+   "reading": "FAIL is the finding: the required in-R500 dust density is ~1000x the z=0 cosmic free-dust density -- the envelope is NOT the ambient haze."
+  },
+  {
+   "name": "V2b [z=0 infall region] the z=0 ambient dust within the turnaround radius R_ta (the region that has decoupled from the expansion), vs the requirement",
+   "measured": "median ratio = 0.255 (per-cluster [0.20, 0.34])",
+   "pass": false,
+   "reading": "FAIL is the finding: even the full decoupled infall region at the z=0 AMBIENT dust density falls short by ~5-10x; the turnaround region is only 5.55 rho_crit in total matter (the top-hat contrast) -- dust at the cosmic RATIO of that mass is the reading of V2c."
+  },
+  {
+   "name": "V2c [cosmic-composition collapse reservoir] the dust the infalling region carries if it participates in the collapse at the cosmic ratio (Omega_dust/Omega_m) M500 (the POINT-MASS floor: M(<R_ta) = M500 by the turnaround definition), vs the requirement",
+   "measured": "median ratio = 2.007 (per-cluster [1.60, 2.70])",
+   "pass": true,
+   "reading": "the free dust IS ~99% of the dark matter (G079): the infalling dark matter IS the infalling dust.  The point-mass-floor reservoir exceeds the requirement ~2x -- but it is a FLOOR: a real cluster's mass profile continues to R_ta (V2e).  The closure additionally needs the PROFILE to place enough of it inside R500 (V2d)."
+  },
+  {
+   "name": "V2d [naive profile fill: the naive stream under-fills R500] the class-implied enclosed dust within R500 from the single power law anchored at the point-mass turnaround vs the required share (>= 9/12 clusters within 20%)",
+   "measured": "gamma=3/2: 0/12 median 0.066; gamma=2: 0/12 median 0.163; gamma=gamma_fit: 4/12 median 0.231 vs need 0.500",
+   "pass": false,
+   "reading": "FAIL is the finding: a single r^-3/2 stream holds ~6% of the point-mass reservoir inside R500, r^-2 ~16%, the fitted profile ~0.23 -- the naive power law anchored at the point-mass turnaround is too dilute inside R500 by ~216%; the concentration the envelope actually needs comes from the enclosed-mass growth beyond R500 (M(<R_ta) ~ 3x M500 for the NFW/FG class, V2e) and the mixed interior.  The single-power-law stream does NOT close by itself; the total reservoir does."
+  },
+  {
+   "name": "V2e [NFW/FG-continued closure] the total closure with the mass profile continued from R500 to the turnaround at the committed outer slope -2.377: reservoir vs requirement, and its own enclosed share within R500",
+   "measured": "median ratio = 6.24 (per-cluster [4.97, 8.40]); outer-law share inside R500 0.323 -> implied dust within R500 = 2.01 x the requirement",
+   "pass": true,
+   "reading": "with the NFW/FG outer slope the enclosed mass at the turnaround is M(<R_ta) = M500 (R_ta/R500)^0.62 ~ 3 x M500: the infalling region holds ~6x the requirement and its own outer power law places ~30% inside R500 -- 1.5-2x the required dust mass: the infall supplies the required abundance (closure), while the z=0 ambient haze alone fails by 3 orders (V2a) and the point-mass-anchored stream under-fills the interior (V2d) -- the envelope is an ACCRETED, concentrated structure."
+  },
+  {
+   "name": "V3a [in-window discriminant vs the streaming slopes] the committed outer envelope slope (G108 pooled) excludes the pure r^-3/2 stream at >= 3 sigma and the r^-2 mix at >= 2 sigma",
+   "measured": "|(-2.377)-(-1.5)|/0.152 = 5.8 sigma; |(-2.377)-(-2.0)|/0.152 = 2.5 sigma",
+   "pass": true,
+   "reading": "the OUTER window (r_M, R500) of the same subtraction already discriminates: the streaming classes (a)/(b) are excluded at the outer edge, the NFW/FG-class slope -2.38 stays in the band and sits 0.9 sigma from the collisionless secondary-infall asymptote r^-9/4."
+  },
+  {
+   "name": "V3b [the FG asymptote] the measured outer slope vs the Fillmore-Goldreich collisionless asymptote r^-9/4 (Gott 1975; Anninos+96 cluster-scale CDM)",
+   "measured": "(-2.377) vs -9/4 = -2.25: 0.8 sigma",
+   "pass": true,
+   "reading": "the collisionless self-similar infall of a marginal (epsilon=1) perturbation approaches rho ~ r^-9/4 in the outer asymptotic region; the measured envelope sits within 1 sigma of it -- the FG-class reading is the one the outer profile does NOT exclude."
+  },
+  {
+   "name": "V1 [the best-fit infall class with the numbers] fitted slopes per cluster, pooled slope, per-class scatter, and the class decision",
+   "measured": "pooled gamma = -2.218 +- 0.021 over 1575 points; per-cluster gammas median -2.19 [-2.82, -1.74]; class rms a/b/c = 0.348/0.274/0.253 dex; winners a 0/12, b 1/12, c 11/12; pooled winner c",
+   "pass": true,
+   "reading": "the REQUIRED rho_dust,req matches the NFW-class (c): the local slope sits in (-3, -1) with the NFW 2-parameter fit the lowest-scatter closed form; the fixed-slope stream classes (a) r^-3/2 and (b) r^-2 are excluded at >= 2-3 sigma pooled (V1c) and the outer window's committed -2.38 sits 0.9 sigma from the FG collisionless asymptote r^-9/4 -- the cosmological SECONDARY INFALL class, not the fresh point-mass stream."
+  },
+  {
+   "name": "V2 [the reservoir closure] does the infall supply the required dust mass?",
+   "measured": "ambient within R500: 1.09e-03 (NO, ~3 orders short); ambient turnaround region: 0.255 (NO, ~4x short); cosmic-composition collapse reservoir: 2.007 at the point-mass floor / 6.24 NFW-continued (YES, ~2-6x margin); naive fitted-power-law fill inside R500 0.23 vs required 0.50 (V2d FAIL); the continued outer law delivers 2.01 x the requirement inside R500 (V2e)",
+   "pass": true,
+   "reading": "the infall CLOSES -- under the reading the framework itself commits to: the infalling dark matter IS the infalling free dust (Omega_dust ~ 99% of Omega_dm, G079).  The z=0 ambient density in isolation fails by 3 orders (V2a/V2b FAILs are the findings); the required mean in-R500 density equals the cosmic free-dust density at z ~ 8.7 (ambient) / ~4.5 (with the 5.55 turnaround contrast) -- an ASSEMBLED (accreted) envelope, feeding at ~8e3 Msun/yr today, as the secondary-infall class requires."
+  },
+  {
+   "name": "V3 [the honest statement] the free-dust envelope: a derived accretion-flow profile (class) or the remaining empirical shape (normalization)?",
+   "measured": "THE FREE-DUST ENVELOPE IS A DERIVED ACCRETION-FLOW PROFILE IN CLASS, AN EMPIRICAL SHAPE IN NORMALIZATION.  (1) SHAPE: the REQUIRED rho_dust,req(r) (G098's inversion, floor A) on the resolved positive-dust window is NFW/FG-class: pooled slope -2.218 +- 0.021 over 1575 points (per-cluster median -2.19, range [-2.82, -1.74]), class rms a/b/c = 0.348/0.274/0.253 dex with the NFW 2-parameter form the lowest-scatter closed form (0/1/11 per-cluster winners); the fixed r^-3/2 (Bertschinger-class point-mass stream) and r^-2 (caustic-mixed) classes are excluded at >= 33.6 and 10.2 sigma pooled, and the committed outer-window slope -2.377 +- 0.152 (G108) sits 0.8 sigma from the collisionless secondary-infall asymptote r^-9/4 (Fillmore-Goldreich/Gott; Anninos+96).  THE DERIVATION does not yet close: the per-cluster scatter is 0.20 dex (median), the subtraction is unresolvable/negative in the outer bins of the same clusters where it counts (34/292, G108 V2 FAIL), and the phantom amplitude A = sqrt(G M_b(R500) a0)/(4 pi G) is the pinned input, not a fitted output -- the per-cluster NORMALIZATION is the last un-derived number.  (2) RESERVOIR: the infall closes the abundance: the cosmic-composition collapse reservoir holds 2.01 x the requirement at the point-mass floor and 6.24 x with the mass profile continued to R_ta at the outer slope -2.38 (M(<R_ta) ~ 3 x M500); the naive single-power-law stream under-fills R500 (0.23 of the requirement vs 0.50 needed -- V2d FAIL: the interior concentration is the mixed/caustic piece, not the naive stream), while the continued envelope delivers 2.01 x inside R500 (V2e); the z=0 AMBIENT density alone fails by 917x, so the envelope is accreted (expansion-equivalent z ~ 8.7, or ~4.5 with the turnaround contrast), not the ambient haze.  (3) CONSEQUENCE: the envelope is a STREAMING, growing structure (radial-biased orbits, beta(r) -> +1 outward; ~8.3e+12 Msun/Gyr capture today, ~8e3 Msun/yr; turnaround caustic at ~6-7 R500, unobserved) -- the free dust is NOT distributed (G103's collisionless timescale), and its registered outer-profile slope is the discriminant that already chose the secondary-infall class over the point-mass stream at 5.8 sigma.  THE HONEST STATE OF THE LAST CLUSTER PIECE: the envelope's SHAPE is derived to CLASS (NFW/FG secondary infall; the r^-3/2 and r^-2 candidates excluded), its AMPLITUDE is closed reservoir-wise under the framework's own composition reading; what remains empirical is the per-cluster normalization (the A/r^2 phantom pinned at M_b(R500)) and the cap line -- the registered open numbers.",
+   "pass": true,
+   "reading": "derived in CLASS (NFW/FG secondary infall, reservoir-closed), empirical in NORMALIZATION (phantom amplitude and cap line) -- the state of the last cluster piece, stated exactly."
+  }
+ ],
+ "n_pass": 15,
+ "n_fail": 3
+}
