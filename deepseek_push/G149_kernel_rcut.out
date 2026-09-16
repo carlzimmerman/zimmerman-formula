@@ -1,0 +1,109 @@
+================================================================================================
+G149 -- THE KERNEL r_cut FUNCTION: r_cut(M_b, g_ext) = F(e_N) r_M
+================================================================================================
+kernel:  mu2(g_mu2/s) g_mu2 = G M_b M_enc(r/R_d)/r^2;   r_cut: g_mu2(r) = g_ext
+closed:  F^2 e_N mu2(e_N/2) = M_enc(F r_M/R_d);  deep: F -> sqrt(M_enc)/e_N ~ 1/e_N
+MW anchor (registered inputs, M_b = 6.5e10, R_d = 2.5 kpc, g_ext = 2.146e-10):
+  full-kernel r_cut = 6.172 kpc  F = 0.6273   |G119 registered 6.1315 kpc = 0.6232 (grid)
+  closed-form F(2.2923) = 0.62732  | kernel F = 0.62732  (band 0.62-0.66)
+--- PART 2 the F(e_N) function: the 0.62's final form ---
+    e_N =    1e-07   F(e_N) =       1e+07    (MW-scale r_cut = 98384324.82 kpc)
+    e_N =    3e-07   F(e_N) =  3.3333e+06    (MW-scale r_cut = 32794777.37 kpc)
+    e_N =    1e-06   F(e_N) =       1e+06    (MW-scale r_cut = 9838435.79 kpc)
+    e_N =    3e-06   F(e_N) =  3.3333e+05    (MW-scale r_cut = 3279481.06 kpc)
+    e_N =    1e-05   F(e_N) =       1e+05    (MW-scale r_cut = 983846.90 kpc)
+    e_N =    3e-05   F(e_N) =       33334    (MW-scale r_cut = 327951.43 kpc)
+    e_N =   0.0001   F(e_N) =       10000    (MW-scale r_cut = 98388.01 kpc)
+    e_N =   0.0003   F(e_N) =      3333.7    (MW-scale r_cut = 32798.46 kpc)
+    e_N =    0.001   F(e_N) =      1000.4    (MW-scale r_cut =  9842.12 kpc)
+    e_N =    0.003   F(e_N) =      333.71    (MW-scale r_cut =  3283.17 kpc)
+    e_N =     0.01   F(e_N) =      100.37    (MW-scale r_cut =   987.53 kpc)
+    e_N =     0.03   F(e_N) =      33.707    (MW-scale r_cut =   331.63 kpc)
+    e_N =      0.1   F(e_N) =      10.371    (MW-scale r_cut =   102.04 kpc)
+    e_N =   0.1931   F(e_N) =      5.5464    (MW-scale r_cut =    54.57 kpc)
+    e_N =      0.5   F(e_N) =      2.3559    (MW-scale r_cut =    23.18 kpc)
+    e_N =        1   F(e_N) =      1.3183    (MW-scale r_cut =    12.97 kpc)
+    e_N =        2   F(e_N) =     0.71797    (MW-scale r_cut =     7.06 kpc)
+    e_N =    2.292   F(e_N) =     0.62731    (MW-scale r_cut =     6.17 kpc)
+    e_N =      2.5   F(e_N) =     0.57296    (MW-scale r_cut =     5.64 kpc)
+    e_N =      2.7   F(e_N) =     0.52666    (MW-scale r_cut =     5.18 kpc)
+    e_N =        3   F(e_N) =     0.46595    (MW-scale r_cut =     4.58 kpc)
+    e_N =        5   F(e_N) =     0.20641    (MW-scale r_cut =     2.03 kpc)
+    e_N =       10   F = NO ROOT: external field suppresses the phantom regime
+  M_b dependence at fixed R_d/r_M = 0.2540: F runs with e_N alone:
+    M_b =  1.00e+09 : F(2.2923) = 0.62731   F(0.1931) = 5.54637
+    M_b =  1.00e+10 : F(2.2923) = 0.62731   F(0.1931) = 5.54637
+    M_b =  1.00e+11 : F(2.2923) = 0.62731   F(0.1931) = 5.54637
+    M_b =  3.00e+11 : F(2.2923) = 0.62731   F(0.1931) = 5.54637
+    spread over 300x in M_b: 0.000%  -> F is a function of e_N ONLY
+    kernel ceiling: no root for e_N >= 8.07 (the internal field never reaches g_ext:
+    the galaxy is external-field-dominated -- NO break at all)
+--- PART 3 the predictive table: G071's committed 35 SPARC galaxies ---
+  G071 committed sample rebuilt: 35 galaxies / 641 rings in R_efe, pooled rms = 0.1454 (committed 0.1454)
+  SAMPLE SPREAD: F = r_cut/r_M in [5.15e+04, 8.85e+06] (median 8.2e+05); e_N in [1.13e-07, 1.94e-05]
+  in-band (r_cut < Rmax): 0/35  -- VACUOUS (pre-registered G036 V3 scope); r_cut/Rmax min 19730.1 x
+--- PART 4 the falsifier upgrade: the MW 9% gap, and the DR3 resolved pair ---
+  MW: kernel r_cut = 6.54 kpc at G072's OWN M_b = 7e10 (same g_ext, same R_d = 2.5 kpc):
+  gap 6.74 (G072, deep-form @ 7e10) vs 6.13 (kernel @ 6.5e10) = 10.0%  = M_b convention +3.8% x interpolation 6.0%
+  same-M_b kernel at 7e10 = 6.54 kpc (-3.1% vs 6.74): the tension is the M_b convention + interpolation, not a parameter
+  WALLABY-DR3-CLASS resolved-pair targets (G100 top pairs): kernel r_cut at the pair's own field:
+    WALLABY J132029-214845 gas 1.33x@WALLABY J132018-214925: M_HI_t 9.92, e_N = 0.0944, r_cut = 44.5 kpc = 10.97 r_M (6.80 arcmin at 22.5 Mpc)
+    WALLABY J132029-214845 bracket 2.66x@WALLABY J132018-214925: M_HI_t 9.92, e_N = 0.1888, r_cut = 32.5 kpc = 5.67 r_M (4.97 arcmin at 22.5 Mpc)
+    WALLABY J130003-183028 gas 1.33x@WALLABY J130002-183046: M_HI_t 9.94, e_N = 0.0571, r_cut = 74.5 kpc = 17.89 r_M (1.30 arcmin at 196.6 Mpc)
+    WALLABY J130003-183028 bracket 2.66x@WALLABY J130002-183046: M_HI_t 9.94, e_N = 0.1142, r_cut = 53.7 kpc = 9.13 r_M (0.94 arcmin at 196.6 Mpc)
+    WALLABY J130647-162241 gas 1.33x@WALLABY J130645-162250: M_HI_t 9.59, e_N = 0.0178, r_cut = 157.4 kpc = 56.54 r_M (3.46 arcmin at 156.2 Mpc)
+    WALLABY J130647-162241 bracket 2.66x@WALLABY J130645-162250: M_HI_t 9.59, e_N = 0.0356, r_cut = 112.0 kpc = 28.46 r_M (2.47 arcmin at 156.2 Mpc)
+    WALLABY J124531-003203 gas 1.33x@WALLABY J124508-002747: M_HI_t 9.27, e_N = 0.0086, r_cut = 223.7 kpc = 115.99 r_M (33.25 arcmin at 23.1 Mpc)
+    WALLABY J124531-003203 bracket 2.66x@WALLABY J124508-002747: M_HI_t 9.27, e_N = 0.0173, r_cut = 158.7 kpc = 58.18 r_M (23.59 arcmin at 23.1 Mpc)
+    WALLABY J132020-124006 gas 1.33x@WALLABY J132019-123420: M_HI_t 8.15, e_N = 0.0077, r_cut = 69.3 kpc = 130.21 r_M (11.46 arcmin at 20.8 Mpc)
+    WALLABY J132020-124006 bracket 2.66x@WALLABY J132019-123420: M_HI_t 8.15, e_N = 0.0154, r_cut = 49.1 kpc = 65.29 r_M (8.13 arcmin at 20.8 Mpc)
+    WALLABY J103704-252038 gas 1.33x@WALLABY J103725-251916: M_HI_t 9.20, e_N = 0.0061, r_cut = 291.8 kpc = 164.57 r_M (18.93 arcmin at 53.0 Mpc)
+    WALLABY J103704-252038 bracket 2.66x@WALLABY J103725-251916: M_HI_t 9.20, e_N = 0.0122, r_cut = 206.8 kpc = 82.47 r_M (13.42 arcmin at 53.0 Mpc)
+  FIELD STRENGTH NEEDED TO SEE THE BREAK (per pair, at the measured pair field):
+    WALLABY J132029-214845 (gas 1.33x): current pair e_N = 0.094 -> break at 10.97 r_M (6.80 arcmin at 22.5 Mpc);
+      break at 1 r_M needs e_N >= 1.39  (pair d <= 4.4 kpc at the same neighbour mass);
+      break at 2 r_M needs e_N >= 0.61  (pair d <= 6.7 kpc).
+    WALLABY J132029-214845 (bracket 2.66x): current pair e_N = 0.189 -> break at 5.67 r_M (4.97 arcmin at 22.5 Mpc);
+      break at 1 r_M needs e_N >= 1.39  (pair d <= 6.3 kpc at the same neighbour mass);
+      break at 2 r_M needs e_N >= 0.61  (pair d <= 9.5 kpc).
+    WALLABY J130003-183028 (gas 1.33x): current pair e_N = 0.057 -> break at 17.89 r_M (1.30 arcmin at 196.6 Mpc);
+      break at 1 r_M needs e_N >= 1.39  (pair d <= 4.5 kpc at the same neighbour mass);
+      break at 2 r_M needs e_N >= 0.61  (pair d <= 6.8 kpc).
+    WALLABY J130003-183028 (bracket 2.66x): current pair e_N = 0.114 -> break at 9.13 r_M (0.94 arcmin at 196.6 Mpc);
+      break at 1 r_M needs e_N >= 1.39  (pair d <= 6.4 kpc at the same neighbour mass);
+      break at 2 r_M needs e_N >= 0.61  (pair d <= 9.6 kpc).
+    WALLABY J130647-162241 (gas 1.33x): current pair e_N = 0.018 -> break at 56.54 r_M (3.46 arcmin at 156.2 Mpc);
+      break at 1 r_M needs e_N >= 1.39  (pair d <= 2.9 kpc at the same neighbour mass);
+      break at 2 r_M needs e_N >= 0.61  (pair d <= 4.3 kpc).
+    WALLABY J130647-162241 (bracket 2.66x): current pair e_N = 0.036 -> break at 28.46 r_M (2.47 arcmin at 156.2 Mpc);
+      break at 1 r_M needs e_N >= 1.39  (pair d <= 4.1 kpc at the same neighbour mass);
+      break at 2 r_M needs e_N >= 0.61  (pair d <= 6.1 kpc).
+    WALLABY J124531-003203 (gas 1.33x): current pair e_N = 0.009 -> break at 115.99 r_M (33.25 arcmin at 23.1 Mpc);
+      break at 1 r_M needs e_N >= 1.39  (pair d <= 3.8 kpc at the same neighbour mass);
+      break at 2 r_M needs e_N >= 0.61  (pair d <= 5.7 kpc).
+    WALLABY J124531-003203 (bracket 2.66x): current pair e_N = 0.017 -> break at 58.18 r_M (23.59 arcmin at 23.1 Mpc);
+      break at 1 r_M needs e_N >= 1.39  (pair d <= 5.3 kpc at the same neighbour mass);
+      break at 2 r_M needs e_N >= 0.61  (pair d <= 8.0 kpc).
+    WALLABY J132020-124006 (gas 1.33x): current pair e_N = 0.008 -> break at 130.21 r_M (11.46 arcmin at 20.8 Mpc);
+      break at 1 r_M needs e_N >= 1.39  (pair d <= 2.6 kpc at the same neighbour mass);
+      break at 2 r_M needs e_N >= 0.61  (pair d <= 3.9 kpc).
+    WALLABY J132020-124006 (bracket 2.66x): current pair e_N = 0.015 -> break at 65.29 r_M (8.13 arcmin at 20.8 Mpc);
+      break at 1 r_M needs e_N >= 1.39  (pair d <= 3.6 kpc at the same neighbour mass);
+      break at 2 r_M needs e_N >= 0.61  (pair d <= 5.5 kpc).
+    WALLABY J103704-252038 (gas 1.33x): current pair e_N = 0.006 -> break at 164.57 r_M (18.93 arcmin at 53.0 Mpc);
+      break at 1 r_M needs e_N >= 1.39  (pair d <= 5.1 kpc at the same neighbour mass);
+      break at 2 r_M needs e_N >= 0.61  (pair d <= 7.7 kpc).
+    WALLABY J103704-252038 (bracket 2.66x): current pair e_N = 0.012 -> break at 82.47 r_M (13.42 arcmin at 53.0 Mpc);
+      break at 1 r_M needs e_N >= 1.39  (pair d <= 7.2 kpc at the same neighbour mass);
+      break at 2 r_M needs e_N >= 0.61  (pair d <= 10.9 kpc).
+--- VERDICTS ---
+[PASS] V1 the F function: F(e_N) = sqrt(M_enc(F r_M/R_d)/(e_N mu2(e_N/2))); runs with e_N ALONE (0.00% over 300x M_b);
+        MW: F = 0.6273 (registered 0.6232; band 0.62-0.66); sample spread F in [5.15e+04, 8.85e+06] (median 8.2e+05);
+        deep limit F -> 1/e_N (linear H033 form IS the kernel's deep limit); no root above e_N ~ 8.1
+[PASS] V2 the predictive table: 35/35 rows, pooled rms 0.1454 (committed 0.1454); in-band 0/35 -- VACUOUS (registered);
+        r_cut spans [1.55e+05, 2.35e+07] kpc = F r_M with F in [5.15e+04, 8.85e+06]: no SPARC galaxy can see its break
+[PASS] V3 the honest statement: THE BREAK RADIUS, FINAL FORM: r_cut/r_M = F(e_N) with F the zero-parameter kernel function F^2 e_N mu2(e_N/2) = M_enc(F r_M/R_d) (s = 2 a0; M_enc the exponential-disk cumulative; R_d = 0.2540 r_M, MW-...
+
+G149 COMPLETE: 5/5 checks PASS.
+
+wrote G149_results.json

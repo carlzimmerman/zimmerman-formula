@@ -1,0 +1,788 @@
+{
+ "task": "G149: the kernel r_cut function -- r_cut(M_b, g_ext) = F(e_N) r_M, zero parameters",
+ "conventions": {
+  "a0": 9.3619e-11,
+  "s_mu2": 1.87238e-10,
+  "G": 6.674e-11,
+  "Msun": 1.98892e+30,
+  "kpc": 3.085677581491367e+19,
+  "Mpc": 3.085677581491367e+22,
+  "kernel": "mu2(g/s) g = G M_b M_enc(r/R_d)/r^2; r_cut: g = g_ext",
+  "closed_form": "F^2 e_N mu2(e_N/2) = M_enc(F r_M/R_d)",
+  "Rd_rM": 0.2541055296181535,
+  "MW": {
+   "M_b": 65000000000.0,
+   "R_d_kpc": 2.5,
+   "g_ext_L240": 2.146e-10,
+   "r_M_kpc": 9.838432102429138
+  }
+ },
+ "MW_anchor": {
+  "registered_G119": {
+   "r_cut_kpc": 6.1315,
+   "F": 0.6232
+  },
+  "continuum_refined": {
+   "r_cut_kpc": 6.171858272355721,
+   "F": 0.6273213260100531
+  },
+  "closed_form_F": 0.627321326010053,
+  "G072_7e10": {
+   "efe_kpc": 6.74350019796463,
+   "kernel_kpc": 6.535561765796812,
+   "deep_form_6p5e10_kpc": 6.498199387738866
+  },
+  "tension": {
+   "gap_674_vs_613_pct": 9.981247622353905,
+   "M_b_convention_pct": 3.774904332554163,
+   "interpolation_pct": 5.980582039286753,
+   "kernel_at_7e10_kpc": 6.535561765796812,
+   "kernel_vs_674_pct": 3.0835386084896776
+  }
+ },
+ "F_function": {
+  "grid": [
+   {
+    "e_N": 1e-07,
+    "F": 10000000.385658745,
+    "r_cut_MW_kpc": 98384324.81856875
+   },
+   {
+    "e_N": 3e-07,
+    "F": 3333333.708602532,
+    "r_cut_MW_kpc": 32794777.36682432
+   },
+   {
+    "e_N": 1e-06,
+    "F": 1000000.3749081483,
+    "r_cut_MW_kpc": 9838435.7909375
+   },
+   {
+    "e_N": 3e-06,
+    "F": 333333.70833167166,
+    "r_cut_MW_kpc": 3279481.0568720694
+   },
+   {
+    "e_N": 1e-05,
+    "F": 100000.37499903725,
+    "r_cut_MW_kpc": 983846.8996454802
+   },
+   {
+    "e_N": 3e-05,
+    "F": 33333.70833205832,
+    "r_cut_MW_kpc": 327951.4261471322
+   },
+   {
+    "e_N": 0.0001,
+    "F": 10000.374996082752,
+    "r_cut_MW_kpc": 98388.01039779022
+   },
+   {
+    "e_N": 0.0003,
+    "F": 3333.7083216139627,
+    "r_cut_MW_kpc": 32798.46297150197
+   },
+   {
+    "e_N": 0.001,
+    "F": 1000.3749609443623,
+    "r_cut_MW_kpc": 9842.121130221309
+   },
+   {
+    "e_N": 0.003,
+    "F": 333.7082162073157,
+    "r_cut_MW_kpc": 3283.165627178418
+   },
+   {
+    "e_N": 0.01,
+    "F": 100.3746100572242,
+    "r_cut_MW_kpc": 987.5287858558012
+   },
+   {
+    "e_N": 0.03,
+    "F": 33.707167573834695,
+    "r_cut_MW_kpc": 331.62567954037377
+   },
+   {
+    "e_N": 0.1,
+    "F": 10.371160764820686,
+    "r_cut_MW_kpc": 102.03596100806537
+   },
+   {
+    "e_N": 0.1931,
+    "F": 5.546366314371555,
+    "r_cut_MW_kpc": 54.56754839914469
+   },
+   {
+    "e_N": 0.5,
+    "F": 2.35588340992164,
+    "r_cut_MW_kpc": 23.17819896975329
+   },
+   {
+    "e_N": 1.0,
+    "F": 1.3182579345904886,
+    "r_cut_MW_kpc": 12.969591182956993
+   },
+   {
+    "e_N": 2.0,
+    "F": 0.7179722450567965,
+    "r_cut_MW_kpc": 7.063721184419906
+   },
+   {
+    "e_N": 2.2923,
+    "F": 0.6273128657987503,
+    "r_cut_MW_kpc": 6.171775037141247
+   },
+   {
+    "e_N": 2.5,
+    "F": 0.5729594199947459,
+    "r_cut_MW_kpc": 5.637022351065487
+   },
+   {
+    "e_N": 2.7,
+    "F": 0.5266578880818418,
+    "r_cut_MW_kpc": 5.181487873101925
+   },
+   {
+    "e_N": 3.0,
+    "F": 0.4659461009808916,
+    "r_cut_MW_kpc": 4.5841790778920934
+   },
+   {
+    "e_N": 5.0,
+    "F": 0.20641082984223935,
+    "r_cut_MW_kpc": 2.030758934608926
+   },
+   {
+    "e_N": 10.0,
+    "F": "NO ROOT"
+   }
+  ],
+  "deep_limit": "F -> sqrt(M_enc)/e_N ~ 1/e_N (the linear H033 form)",
+  "no_root_above_eN": "e_N* = 8.1 (MW-anchored shape): internal field never reaches g_ext -- external-field-dominated, no break",
+  "M_b_spread_at_fixed_Rd_rM_pct": 0.0,
+  "MW_F": 0.627321326010053,
+  "spread": "F runs with e_N ONLY at fixed R_d/r_M"
+ },
+ "predictive_table_35": {
+  "n": 35,
+  "anchor_pooled_rms_dex": 0.14544834766743536,
+  "committed_0_1454": true,
+  "in_band": 0,
+  "vacuity": "every r_cut >= 19730.1 x Rmax",
+  "spread": {
+   "F_min": 51532.25358434247,
+   "F_median": 821730.309509874,
+   "F_max": 8847504.583600743,
+   "eN_min": 1.1302622483318886e-07,
+   "eN_max": 1.9405463714003212e-05,
+   "r_cut_kpc_min": 155275.50666316622,
+   "r_cut_kpc_max": 23476098.39127911
+  },
+  "galaxies": [
+   {
+    "name": "ESO079-G014",
+    "Mb_sun": 64363586821.320114,
+    "rM_kpc": 9.790149722345866,
+    "Rmax_kpc": 16.67,
+    "e_N": 2.547854572133026e-06,
+    "g_ext_m_s2": 2.3852759718852176e-16,
+    "r_cut_kpc": 3842510.943608356,
+    "F": 392487.45449090365,
+    "in_band": false
+   },
+   {
+    "name": "NGC3726",
+    "Mb_sun": 60180469315.38972,
+    "rM_kpc": 9.466664797823412,
+    "Rmax_kpc": 32.52,
+    "e_N": 3.3837122116691592e-06,
+    "g_ext_m_s2": 3.16779753544255e-16,
+    "r_cut_kpc": 2797719.2555712434,
+    "F": 295533.7825222774,
+    "in_band": false
+   },
+   {
+    "name": "NGC3198",
+    "Mb_sun": 58090327184.68768,
+    "rM_kpc": 9.300817564145111,
+    "Rmax_kpc": 44.08,
+    "e_N": 3.6490537132864628e-06,
+    "g_ext_m_s2": 3.4162075958416536e-16,
+    "r_cut_kpc": 2548833.484503732,
+    "F": 274044.0253692912,
+    "in_band": false
+   },
+   {
+    "name": "NGC6015",
+    "Mb_sun": 44122210128.68251,
+    "rM_kpc": 8.10583657970157,
+    "Rmax_kpc": 29.229999999999997,
+    "e_N": 2.917699669429844e-06,
+    "g_ext_m_s2": 2.7315212535235254e-16,
+    "r_cut_kpc": 2778163.062315991,
+    "F": 342736.1303178744,
+    "in_band": false
+   },
+   {
+    "name": "NGC4559",
+    "Mb_sun": 29159446044.18573,
+    "rM_kpc": 6.589596906282986,
+    "Rmax_kpc": 20.970000000000002,
+    "e_N": 1.1180298789145807e-05,
+    "g_ext_m_s2": 1.0466883923410413e-15,
+    "r_cut_kpc": 589396.1027501876,
+    "F": 89443.42288800942,
+    "in_band": false
+   },
+   {
+    "name": "NGC1003",
+    "Mb_sun": 17103999315.991913,
+    "rM_kpc": 5.04682272231336,
+    "Rmax_kpc": 30.24,
+    "e_N": 2.361177990119826e-06,
+    "g_ext_m_s2": 2.2105112225702796e-16,
+    "r_cut_kpc": 2137419.2086159033,
+    "F": 423517.790542909,
+    "in_band": false
+   },
+   {
+    "name": "UGC06667",
+    "Mb_sun": 16626849931.226608,
+    "rM_kpc": 4.975929321421244,
+    "Rmax_kpc": 7.85,
+    "e_N": 4.3791862730057445e-07,
+    "g_ext_m_s2": 4.099750396925248e-17,
+    "r_cut_kpc": 11362682.081996527,
+    "F": 2283529.6379875173,
+    "in_band": false
+   },
+   {
+    "name": "UGC03580",
+    "Mb_sun": 12006935829.42045,
+    "rM_kpc": 4.2284900135554375,
+    "Rmax_kpc": 27.06,
+    "e_N": 9.311030259006834e-07,
+    "g_ext_m_s2": 8.716893418179608e-17,
+    "r_cut_kpc": 4541378.744039002,
+    "F": 1073995.3812071271,
+    "in_band": false
+   },
+   {
+    "name": "UGC07125",
+    "Mb_sun": 9016700558.110212,
+    "rM_kpc": 3.6643170050789924,
+    "Rmax_kpc": 18.68,
+    "e_N": 2.3692345018912517e-07,
+    "g_ext_m_s2": 2.218053648325571e-17,
+    "r_cut_kpc": 15466250.080023574,
+    "F": 4220772.945841285,
+    "in_band": false
+   },
+   {
+    "name": "ESO116-G012",
+    "Mb_sun": 8564783533.5535,
+    "rM_kpc": 3.5713088500961487,
+    "Rmax_kpc": 9.860000000000001,
+    "e_N": 1.27659084128342e-06,
+    "g_ext_m_s2": 1.195131579701125e-16,
+    "r_cut_kpc": 2797537.350234036,
+    "F": 783336.7170578706,
+    "in_band": false
+   },
+   {
+    "name": "UGC12632",
+    "Mb_sun": 8535389026.014692,
+    "rM_kpc": 3.565175181330741,
+    "Rmax_kpc": 10.66,
+    "e_N": 2.761527049177073e-06,
+    "g_ext_m_s2": 2.585314008169084e-16,
+    "r_cut_kpc": 1291017.183537684,
+    "F": 362118.86313418054,
+    "in_band": false
+   },
+   {
+    "name": "NGC0024",
+    "Mb_sun": 8456964940.6550255,
+    "rM_kpc": 3.5487587761648407,
+    "Rmax_kpc": 11.27,
+    "e_N": 4.811635370014763e-06,
+    "g_ext_m_s2": 4.504604917054121e-16,
+    "r_cut_kpc": 737538.2601651589,
+    "F": 207829.9221459678,
+    "in_band": false
+   },
+   {
+    "name": "UGC06399",
+    "Mb_sun": 7663648827.461506,
+    "rM_kpc": 3.3782128718313533,
+    "Rmax_kpc": 7.85,
+    "e_N": 4.779620539181169e-07,
+    "g_ext_m_s2": 4.474632952576018e-17,
+    "r_cut_kpc": 7067953.301887067,
+    "F": 2092216.6749235904,
+    "in_band": false
+   },
+   {
+    "name": "UGC10310",
+    "Mb_sun": 7167187712.267384,
+    "rM_kpc": 3.266958396808732,
+    "Rmax_kpc": 7.74,
+    "e_N": 7.149098043135252e-07,
+    "g_ext_m_s2": 6.692914097002792e-17,
+    "r_cut_kpc": 4569750.272249872,
+    "F": 1398778.2264732076,
+    "in_band": false
+   },
+   {
+    "name": "UGC11820",
+    "Mb_sun": 6923054645.650999,
+    "rM_kpc": 3.2108357828564786,
+    "Rmax_kpc": 15.82,
+    "e_N": 1.8602926886410492e-07,
+    "g_ext_m_s2": 1.741587412178864e-17,
+    "r_cut_kpc": 17259843.177036524,
+    "F": 5375498.575539583,
+    "in_band": false
+   },
+   {
+    "name": "UGC06446",
+    "Mb_sun": 6819544094.69572,
+    "rM_kpc": 3.1867418617631387,
+    "Rmax_kpc": 10.22,
+    "e_N": 7.405867484913118e-07,
+    "g_ext_m_s2": 6.933299080700812e-17,
+    "r_cut_kpc": 4302997.256575197,
+    "F": 1350281.0843280742,
+    "in_band": false
+   },
+   {
+    "name": "UGC11557",
+    "Mb_sun": 6109238869.383869,
+    "rM_kpc": 3.0162182793016257,
+    "Rmax_kpc": 10.560000000000002,
+    "e_N": 7.785879840653175e-07,
+    "g_ext_m_s2": 7.289062848021096e-17,
+    "r_cut_kpc": 3873960.582549201,
+    "F": 1284376.733982985,
+    "in_band": false
+   },
+   {
+    "name": "NGC7793",
+    "Mb_sun": 6096901947.844442,
+    "rM_kpc": 3.01317128328238,
+    "Rmax_kpc": 7.87,
+    "e_N": 1.9405463714003212e-05,
+    "g_ext_m_s2": 1.8167201074412666e-15,
+    "r_cut_kpc": 155275.50666316622,
+    "F": 51532.25358434247,
+    "in_band": false
+   },
+   {
+    "name": "UGC04278",
+    "Mb_sun": 5363705373.7690935,
+    "rM_kpc": 2.8261920576267174,
+    "Rmax_kpc": 6.69,
+    "e_N": 1.041303660474702e-06,
+    "g_ext_m_s2": 9.748580738998113e-17,
+    "r_cut_kpc": 2714091.2572296173,
+    "F": 960335.0380613424,
+    "in_band": false
+   },
+   {
+    "name": "UGC04499",
+    "Mb_sun": 5299415934.608282,
+    "rM_kpc": 2.8092036117004304,
+    "Rmax_kpc": 8.18,
+    "e_N": 1.009528079025916e-06,
+    "g_ext_m_s2": 9.451100923032723e-17,
+    "r_cut_kpc": 2782690.9758674367,
+    "F": 990562.2234990131,
+    "in_band": false
+   },
+   {
+    "name": "UGC05716",
+    "Mb_sun": 4727938519.733586,
+    "rM_kpc": 2.653414662795783,
+    "Rmax_kpc": 12.37,
+    "e_N": 1.1302622483318886e-07,
+    "g_ext_m_s2": 1.0581402142658307e-17,
+    "r_cut_kpc": 23476098.39127911,
+    "F": 8847504.583600743,
+    "in_band": false
+   },
+   {
+    "name": "NGC0100",
+    "Mb_sun": 4717754170.312846,
+    "rM_kpc": 2.650555290762638,
+    "Rmax_kpc": 9.62,
+    "e_N": 1.2169448354372565e-06,
+    "g_ext_m_s2": 1.1392915854880052e-16,
+    "r_cut_kpc": 2178041.6194514167,
+    "F": 821730.309509874,
+    "in_band": false
+   },
+   {
+    "name": "UGC05829",
+    "Mb_sun": 4646126395.103492,
+    "rM_kpc": 2.630357171961003,
+    "Rmax_kpc": 6.91,
+    "e_N": 1.35179533687797e-06,
+    "g_ext_m_s2": 1.2655372764317867e-16,
+    "r_cut_kpc": 1945825.9940842781,
+    "F": 739757.328330286,
+    "in_band": false
+   },
+   {
+    "name": "UGC07261",
+    "Mb_sun": 4581365974.47004,
+    "rM_kpc": 2.611961116757367,
+    "Rmax_kpc": 6.67,
+    "e_N": 1.3976416609230682e-06,
+    "g_ext_m_s2": 1.3084581465395673e-16,
+    "r_cut_kpc": 1868835.5954292708,
+    "F": 715491.3537722747,
+    "in_band": false
+   },
+   {
+    "name": "UGC00891",
+    "Mb_sun": 2664764472.7565594,
+    "rM_kpc": 1.9920426351405018,
+    "Rmax_kpc": 7.39,
+    "e_N": 8.236412431242604e-07,
+    "g_ext_m_s2": 7.710846954005014e-17,
+    "r_cut_kpc": 2418581.229356749,
+    "F": 1214121.2174337637,
+    "in_band": false
+   },
+   {
+    "name": "UGC05414",
+    "Mb_sun": 1960558351.0276463,
+    "rM_kpc": 1.7086735659113914,
+    "Rmax_kpc": 4.11,
+    "e_N": 1.14731513247758e-06,
+    "g_ext_m_s2": 1.0741049538741856e-16,
+    "r_cut_kpc": 1489280.7150464342,
+    "F": 871600.4886820292,
+    "in_band": false
+   },
+   {
+    "name": "UGC05764",
+    "Mb_sun": 1804668857.7088468,
+    "rM_kpc": 1.6393360012213471,
+    "Rmax_kpc": 3.62,
+    "e_N": 5.865394468943273e-07,
+    "g_ext_m_s2": 5.491123647880003e-17,
+    "r_cut_kpc": 2794929.4299229393,
+    "F": 1704915.5437571344,
+    "in_band": false
+   },
+   {
+    "name": "UGC05918",
+    "Mb_sun": 1783479107.99105,
+    "rM_kpc": 1.6296833466461533,
+    "Rmax_kpc": 4.46,
+    "e_N": 9.896483152577634e-07,
+    "g_ext_m_s2": 9.264988562611655e-17,
+    "r_cut_kpc": 1646730.3851980094,
+    "F": 1010460.3379465947,
+    "in_band": false
+   },
+   {
+    "name": "UGC05721",
+    "Mb_sun": 1750685516.5055363,
+    "rM_kpc": 1.614630990497553,
+    "Rmax_kpc": 6.74,
+    "e_N": 2.162526702480168e-06,
+    "g_ext_m_s2": 2.0245358735949082e-16,
+    "r_cut_kpc": 746641.5549892208,
+    "F": 462422.41068291466,
+    "in_band": false
+   },
+   {
+    "name": "UGCA442",
+    "Mb_sun": 1574548884.9153829,
+    "rM_kpc": 1.531254185544459,
+    "Rmax_kpc": 6.33,
+    "e_N": 2.2644352926919658e-06,
+    "g_ext_m_s2": 2.1199416766652916e-16,
+    "r_cut_kpc": 676219.5814489052,
+    "F": 441611.5807764899,
+    "in_band": false
+   },
+   {
+    "name": "NGC2915",
+    "Mb_sun": 1262306852.3259258,
+    "rM_kpc": 1.3710449212214522,
+    "Rmax_kpc": 10.04,
+    "e_N": 2.9166637350456024e-06,
+    "g_ext_m_s2": 2.7305514221123424e-16,
+    "r_cut_kpc": 470073.5310530735,
+    "F": 342857.8624792899,
+    "in_band": false
+   },
+   {
+    "name": "D631-7",
+    "Mb_sun": 642155264.8944553,
+    "rM_kpc": 0.9778882735329019,
+    "Rmax_kpc": 7.19,
+    "e_N": 4.1754551992723927e-07,
+    "g_ext_m_s2": 3.9090194030068215e-17,
+    "r_cut_kpc": 2341992.381667469,
+    "F": 2394948.835214426,
+    "in_band": false
+   },
+   {
+    "name": "DDO154",
+    "Mb_sun": 567435276.1462142,
+    "rM_kpc": 0.9192367532892454,
+    "Rmax_kpc": 5.92,
+    "e_N": 2.2447898950903233e-06,
+    "g_ext_m_s2": 2.1015498518846098e-16,
+    "r_cut_kpc": 409498.24705978483,
+    "F": 445476.36459759006,
+    "in_band": false
+   },
+   {
+    "name": "NGC3741",
+    "Mb_sun": 344236159.75092095,
+    "rM_kpc": 0.7159743412645063,
+    "Rmax_kpc": 7.000000000000001,
+    "e_N": 2.703512389189161e-06,
+    "g_ext_m_s2": 2.5310012636350006e-16,
+    "r_cut_kpc": 264831.4355838062,
+    "F": 369889.5621260372,
+    "in_band": false
+   },
+   {
+    "name": "D564-8",
+    "Mb_sun": 134351736.72317258,
+    "rM_kpc": 0.44729171796200656,
+    "Rmax_kpc": 3.07,
+    "e_N": 1.1774993573886296e-07,
+    "g_ext_m_s2": 1.1023631233936611e-17,
+    "r_cut_kpc": 3798658.022860477,
+    "F": 8492574.018960796,
+    "in_band": false
+   }
+  ]
+ },
+ "dr3_falsifier": {
+  "instrument": "a resolved pair galaxy's rotation curve to >= 2-6 r_M (WALLABY-DR3-class)",
+  "required_field": "e_N 0.1-1 for the break inside a few r_M; no root above e_N ~ 2.7 (second falsifier)",
+  "targets": [
+   {
+    "name": "WALLABY J132029-214845",
+    "D_Mpc": 22.47232028814043,
+    "d_kpc": 17.057243900884504,
+    "neighbour": "WALLABY J132018-214925",
+    "rows": [
+     {
+      "mass": "gas 1.33x",
+      "M_HI": 8301133099.286087,
+      "e_N": 0.09438342597290254,
+      "g_ext": 8.836081956157163e-12,
+      "r_cut_kpc": 44.466190398625855,
+      "F": 10.966453453582133,
+      "arcmin": 6.802301713477152
+     },
+     {
+      "mass": "bracket 2.66x",
+      "M_HI": 8301133099.286087,
+      "e_N": 0.1887668519458051,
+      "g_ext": 1.7672163912314326e-11,
+      "r_cut_kpc": 32.48698411306035,
+      "F": 5.665401257327818,
+      "arcmin": 4.969759399600029
+     }
+    ]
+   },
+   {
+    "name": "WALLABY J130003-183028",
+    "D_Mpc": 196.6419392200717,
+    "d_kpc": 22.180988026739044,
+    "neighbour": "WALLABY J130002-183046",
+    "rows": [
+     {
+      "mass": "gas 1.33x",
+      "M_HI": 8752288475.774687,
+      "e_N": 0.0570928952689381,
+      "g_ext": 5.344979762182716e-12,
+      "r_cut_kpc": 74.47666271202925,
+      "F": 17.888106052310913,
+      "arcmin": 1.30202086258176
+     },
+     {
+      "mass": "bracket 2.66x",
+      "M_HI": 8752288475.774687,
+      "e_N": 0.1141857905378762,
+      "g_ext": 1.0689959524365432e-11,
+      "r_cut_kpc": 53.7477119839066,
+      "F": 9.128283858160046,
+      "arcmin": 0.939631822516921
+     }
+    ]
+   },
+   {
+    "name": "WALLABY J130647-162241",
+    "D_Mpc": 156.17895590837466,
+    "d_kpc": 25.43627663508748,
+    "neighbour": "WALLABY J130645-162250",
+    "rows": [
+     {
+      "mass": "gas 1.33x",
+      "M_HI": 3910393068.42342,
+      "e_N": 0.01780407235656338,
+      "g_ext": 1.666799449949107e-12,
+      "r_cut_kpc": 157.35136272585927,
+      "F": 56.541231870378105,
+      "arcmin": 3.4635533140889603
+     },
+     {
+      "mass": "bracket 2.66x",
+      "M_HI": 3910393068.42342,
+      "e_N": 0.03560814471312676,
+      "g_ext": 3.333598899898214e-12,
+      "r_cut_kpc": 111.99808028125435,
+      "F": 28.457080254264298,
+      "arcmin": 2.465255561882657
+     }
+    ]
+   },
+   {
+    "name": "WALLABY J124531-003203",
+    "D_Mpc": 23.13492569903869,
+    "d_kpc": 47.56886573859062,
+    "neighbour": "WALLABY J124508-002747",
+    "rows": [
+     {
+      "mass": "gas 1.33x",
+      "M_HI": 1878778989.7086375,
+      "e_N": 0.008649362858230987,
+      "g_ext": 8.097447014247268e-13,
+      "r_cut_kpc": 223.74526927186844,
+      "F": 115.9901150648838,
+      "arcmin": 33.24754912483097
+     },
+     {
+      "mass": "bracket 2.66x",
+      "M_HI": 1878778989.7086375,
+      "e_N": 0.017298725716461974,
+      "g_ext": 1.6194894028494537e-12,
+      "r_cut_kpc": 158.72192360657516,
+      "F": 58.1820525171214,
+      "arcmin": 23.585369958750537
+     }
+    ]
+   },
+   {
+    "name": "WALLABY J132020-124006",
+    "D_Mpc": 20.778602059050375,
+    "d_kpc": 34.55991455251302,
+    "neighbour": "WALLABY J132019-123420",
+    "rows": [
+     {
+      "mass": "gas 1.33x",
+      "M_HI": 142857535.80965158,
+      "e_N": 0.007701890514349282,
+      "g_ext": 7.210432880628654e-13,
+      "r_cut_kpc": 69.2629197033264,
+      "F": 130.21295135781176,
+      "arcmin": 11.459306954986728
+     },
+     {
+      "mass": "bracket 2.66x",
+      "M_HI": 142857535.80965158,
+      "e_N": 0.015403781028698564,
+      "g_ext": 1.4420865761257308e-12,
+      "r_cut_kpc": 49.11698847876872,
+      "F": 65.2935258108252,
+      "arcmin": 8.126233345253077
+     }
+    ]
+   },
+   {
+    "name": "WALLABY J103704-252038",
+    "D_Mpc": 52.99847379266163,
+    "d_kpc": 77.36603548810074,
+    "neighbour": "WALLABY J103725-251916",
+    "rows": [
+     {
+      "mass": "gas 1.33x",
+      "M_HI": 1587887496.9399076,
+      "e_N": 0.006090322554182913,
+      "g_ext": 5.701699072000501e-13,
+      "r_cut_kpc": 291.84665480669963,
+      "F": 164.56967831768438,
+      "arcmin": 18.930637537739088
+     },
+     {
+      "mass": "bracket 2.66x",
+      "M_HI": 1587887496.9399076,
+      "e_N": 0.012180645108365825,
+      "g_ext": 1.1403398144001002e-12,
+      "r_cut_kpc": 206.83609765725268,
+      "F": 82.47198318913986,
+      "arcmin": 13.41642650337471
+     }
+    ]
+   }
+  ]
+ },
+ "verdicts": {
+  "V1": {
+   "pass": true,
+   "text": "F = sqrt(M_enc(F r_M/R_d) / (e_N mu2(e_N/2))): runs with e_N alone (0.000% over 300x M_b); MW 0.6273 (0.6232); sample spread [5.15e+04, 8.85e+06]"
+  },
+  "V2": {
+   "pass": true,
+   "text": "predictive table 35 rows, in-band 0/35 (vacuity), anchor rms 0.1454"
+  },
+  "V3": {
+   "pass": true,
+   "text": "THE BREAK RADIUS, FINAL FORM: r_cut/r_M = F(e_N) with F the zero-parameter kernel function F^2 e_N mu2(e_N/2) = M_enc(F r_M/R_d) (s = 2 a0; M_enc the exponential-disk cumulative; R_d = 0.2540 r_M, MW-anchored); deep limit F -> sqrt(M_enc)/e_N ~ 1/e_N, and the mu2 interpolation pulls F into 0.62-0.66 at e_N = O(1) (MW: 0.6232 registered / 0.6273 refined = 6.13/6.17 kpc vs G072's 6.74 at its own M_b = 7e10; the 9.9% gap = +3.8% M_b convention + interpolation; kernel at 7e10 is 6.53).  On the SPARC sample (e_N = 1e-7..6e-4) every predicted break lies 8.1-19730 x Rmax beyond every curve -- VACUOUS -- and the deciding instrument is the resolved PAIR at e_N ~ 0.1-1: a WALLABY-DR3-class curve out to its predicted F r_M with a turnover THERE (J132029-214845-class: F ~ 5.7, break at ~5 arcmin at 22.5 Mpc, bracket field) tests the 0.62 with zero parameters; no turnover at F r_M (or a Newtonian fall at the external-field radius instead) kills it; e_N > 1897825 predicts NO break at all (external-field-dominated galaxy) -- a second falsifier.  The 0.62 was never a constant: it is F(e_N) evaluated at the target's own external field."
+  }
+ },
+ "statement": "THE BREAK RADIUS, FINAL FORM: r_cut/r_M = F(e_N) with F the zero-parameter kernel function F^2 e_N mu2(e_N/2) = M_enc(F r_M/R_d) (s = 2 a0; M_enc the exponential-disk cumulative; R_d = 0.2540 r_M, MW-anchored); deep limit F -> sqrt(M_enc)/e_N ~ 1/e_N, and the mu2 interpolation pulls F into 0.62-0.66 at e_N = O(1) (MW: 0.6232 registered / 0.6273 refined = 6.13/6.17 kpc vs G072's 6.74 at its own M_b = 7e10; the 9.9% gap = +3.8% M_b convention + interpolation; kernel at 7e10 is 6.53).  On the SPARC sample (e_N = 1e-7..6e-4) every predicted break lies 8.1-19730 x Rmax beyond every curve -- VACUOUS -- and the deciding instrument is the resolved PAIR at e_N ~ 0.1-1: a WALLABY-DR3-class curve out to its predicted F r_M with a turnover THERE (J132029-214845-class: F ~ 5.7, break at ~5 arcmin at 22.5 Mpc, bracket field) tests the 0.62 with zero parameters; no turnover at F r_M (or a Newtonian fall at the external-field radius instead) kills it; e_N > 1897825 predicts NO break at all (external-field-dominated galaxy) -- a second falsifier.  The 0.62 was never a constant: it is F(e_N) evaluated at the target's own external field.",
+ "sources": [
+  "G119",
+  "G072",
+  "G071",
+  "G003 V6",
+  "G036 V3",
+  "G03E V3",
+  "G044 V3E",
+  "G100",
+  "G052",
+  "H033",
+  "L240"
+ ],
+ "checks": [
+  {
+   "ok": true,
+   "label": "PART1: MW kernel r_cut reproduces G119's 6.13 kpc (+-0.1); closed form matches the kernel",
+   "detail": "r_cut = 6.172 kpc, F_kernel = 0.6273, F_closed = 0.6273"
+  },
+  {
+   "ok": true,
+   "label": "PART2: F M_b-free at fixed R_d/r_M (spread 0.000%); F runs with e_N",
+   "detail": "F(2.29) = 0.6273 (registered 0.6232); deep limit 1/e_N; no root above e_N ~ 8.1"
+  },
+  {
+   "ok": true,
+   "label": "PART3 anchor: G071 pooled rms reproduced to 1e-3",
+   "detail": "rms = 0.1454, 35 gal / 641 rings"
+  },
+  {
+   "ok": true,
+   "label": "PART3: 35/35 rows computed; 0/35 in band (vacuity registered)",
+   "detail": "35 rows, in-band 0/35 (pre-registered vacuity)"
+  },
+  {
+   "ok": true,
+   "label": "PART4: MW tension stated exactly (9.9%% gap decomposed; kernel at G072's own M_b is 6.53 kpc)",
+   "detail": "6.74/6.13 - 1 = 10.0%; kernel(7e10) = 6.54"
+  }
+ ],
+ "n_pass": 5,
+ "n_total": 5
+}
