@@ -1,0 +1,261 @@
+{
+ "lane": "B09_baryon_pin",
+ "title": "THE BARYON-FRACTION PIN: the halo-scale depleted share (<s_b> = 0.0846 = 0.54 x f_b) vs the cosmic 0.157 -- the depletion chain (star share, gas retention, feedback, the G178 group floor), the group-cosmic two-rung bridge, the decision (pinned -> a 5-input framework, or input still), and the finally-settled input count.",
+ "deliverable": "project_atomos/B09_baryon_pin.py + .out + B09_results.json",
+ "context": "S05 (the baryon fraction = the last undeclared input, 0.157: the provenance audit, the G03C classification, the six-core count); G178 (the group baryon floor 0.081 = f_gas,500 0.061 + 0.02 stars; retention 0.52; M_sat = 3.09e14); G187 (the halo baryon share <s_b> = 0.0846 = 0.54 x f_b; the pie's s_b(M) nods); G143 (the 26 E11 groups; the f_gas mass-run +0.34 dex/dex); G079 (Omega_dm = 0.264 closure; Omega_star 0.0027; the baryon-normalized equilibrium bound); A02 (the mu m_p rung -- baryon-SCALE content, not abundance).",
+ "registers": {
+  "Omega_m": 0.3153,
+  "Omega_b": 0.0493,
+  "Omega_dm": 0.264,
+  "Omega_star": 0.0027,
+  "Omega_eq_capped": 0.0020925,
+  "f_b_cosmic": 0.1564,
+  "f_b_group_floor": 0.081,
+  "f_gas_500_median": 0.061,
+  "f_star_group_convention": 0.02,
+  "s_b_halo_mean_G187": 0.0846,
+  "s_b_over_f_b": 0.5411,
+  "retention_group": 0.518,
+  "retention_halo_mean": 0.5411,
+  "M_sat_Msun": 308763257361121.7,
+  "cluster_anchor_f_ref": 0.674
+ },
+ "part1_depletion_chain": {
+  "chain": "s_b,halo = f_b,cosmic x f_retention",
+  "links": [
+   {
+    "L1_star_share": "cosmic Omega_star/Omega_b = 5.5% (Fukugita & Peebles 2004 via G079); group convention 0.02 (G143) = 24.7% of the retained budget",
+    "measured": true
+   },
+   {
+    "L2_gas_retention": "f_gas,500 median 0.061 (E11 via G143/G178), R500-truncated; the E11 window [r2500, R500] where the gas profile still rises (+0.536)",
+    "measured": true
+   },
+   {
+    "L3_feedback": "retention mass-run d log f_gas/d log M500 = +0.34 dex/dex (G143); group rise +0.536 vs cluster +0.235; reionization photo-evaporation + stellar/AGN ejection -- mechanism statement, NO committed quantitative budget",
+    "measured": false
+   },
+   {
+    "L4_group_floor": "f_b,group = 0.081 = 0.061 + 0.02 (G178), retention 0.518",
+    "measured": true
+   },
+   {
+    "L5_halo_mean": "<s_b> = 0.0846 (G187 cosmic closure), retention 0.541",
+    "measured": true
+   }
+  ],
+  "closure": {
+   "formula": "f_b = <s_b>/0.54",
+   "f_b_pred": 0.1567,
+   "datum": 0.1564,
+   "delta_pct": 0.2,
+   "classification": "IDENTITY on measured sides (G03C class): the depletion factor 0.54 IS the measured ratio <s_b>/f_b (G187), so dividing the measured share by the measured ratio restores the measured datum"
+  },
+  "completion_status": {
+   "arithmetic": "CLOSED (f_b = 0.157 at 0.2%)",
+   "physics": "OPEN -- the retention is a measured ratio; the ejected fraction (1 - retention = 0.48 group / 0.46 halo mean) is unpartitioned between 'beyond R500' and 'genuinely ejected'; zero framework mechanisms in the chain",
+   "framework_machinery_terms": {
+    "a0": false,
+    "m_keV": false,
+    "Z": false,
+    "ladder": false
+   },
+   "framework_content": "NONE -- the chain is a measured-shares assembly (E11 gas UNVERIFIED-in-repo, gated vs G125) + standard feedback astrophysics, unquantified in-repo"
+  }
+ },
+ "part2_group_cosmic_bridge": {
+  "rung_A_groups": {
+   "f_b": 0.081,
+   "retention": 0.518,
+   "f_b_under_depletion_0p54": 0.15,
+   "per_group_spread_f_b": [
+    0.033,
+    0.118
+   ],
+   "per_group_retention_spread": [
+    0.21,
+    0.75
+   ],
+   "note": "E11 26 groups, f_gas,500 + 0.02 stars (G143/G178)"
+  },
+  "rung_B_halo_mean": {
+   "s_b": 0.0846,
+   "retention": 0.541,
+   "f_b_under_depletion_0p54": 0.1567,
+   "note": "the Tinker-weighted pie over halos M > 1e12 (G187)"
+  },
+  "two_rung_band": [
+   0.15,
+   0.1567
+  ],
+  "band_centre": 0.1533,
+  "datum_inside": true,
+  "low_edge_vs_datum_pct": -4.1,
+  "systematic_envelope": {
+   "retention_sigma": 0.07,
+   "f_b_band": [
+    0.1387,
+    0.18
+   ],
+   "f_b_central": 0.1567,
+   "half_width": 0.018,
+   "note": "the task's 0.157 +- 0.02 bracket; fair given r = 0.54 +- 0.07 (f_gas,500 calibration, the 0.02 star convention, the R500 truncation)"
+  },
+  "self_consistency_identity": {
+   "group_own_retention": 0.1564,
+   "halo_own_retention": 0.1564,
+   "note": "each rung under its OWN retention returns the datum exactly -- r IS defined as s_b/f_b (the identity)"
+  }
+ },
+ "part3_decision": {
+  "question": "does the depletion chain pin f_b = 0.157 +- 0.02?",
+  "first_principles_content": "zero on the framework side -- no a0, m, Z, ladder, equilibrium bound or M_sat term anywhere in the chain; the feedback physics is standard astrophysics with no committed quantitative ejection budget",
+  "empirical_floor": "every link is a measured datum (E11 gas fractions UNVERIFIED-in-repo gated vs G125; Fukugita & Peebles stellar density; the pie's measured cluster nods); the retention 0.54 is the measured ratio <s_b>/f_b",
+  "circularity": "G03C class (S05's own flag): you must input f_b to state the chain's depletion factor, then recover f_b from it -- an identity, not a constraint",
+  "decision": "f_b = 0.157 REMAINS AN INPUT; the 5-input framework is NOT earned; the six-core (a0, G, c, Omega_Lambda, f_b, m) stands with f_b in the measured column",
+  "what_is_earned": "the halo-scale ANCHOR: two independent rungs (group floor 0.081, halo mean 0.0846) render the cosmic datum consistent at ~4% (band [0.150, 0.157]); f_b is now consistency-anchored at halo scale while remaining an input"
+ },
+ "input_count_final": {
+  "core": "(a0, G, c, Omega_Lambda, f_b, m)",
+  "measured": [
+   "G",
+   "c",
+   "Omega_Lambda",
+   "f_b = 0.157"
+  ],
+  "identity_pinned": [
+   "a0 = c^2/(Z R_dS) = 9.3624e-11 (Z11/S09)"
+  ],
+  "derived": [
+   "m = 5.09 +- 0.10 keV (G212)"
+  ],
+  "ancillary_measured": [
+   "H0",
+   "Omega_star",
+   "n_s",
+   "sigma_8",
+   "T_CMB"
+  ],
+  "per_object": "M_b (the baryon ruler at every scale)",
+  "statement": "6 core = 4 measured + 1 identity-pinned + 1 derived; f_b stays in the measured column after the halo-depletion attack -- the baryon fraction is halo-ANCHORED (consistency at 4%), not halo-DERIVED"
+ },
+ "gates_a_f": {
+  "a_single_pair_pre_existing": "N/A -- no search was performed; B09 assembles COMMITTED measured shares into the task's own fixed construction (s_b = 0.54 x f_b); nothing was found, everything was read from the registers",
+  "b_fdr": "N/A -- no search space exists (single fixed assembly of committed numbers); the 'closing' is priced as an identity on measured sides (G03C class), not as a found coincidence",
+  "c_accuracy": "the arithmetic closure is 0.2% (an identity); the two-rung consistency is 4.3% on the low edge -- ABOVE the 1% bridge gate, so the chain's result is registered as a CONSISTENCY, not a kepler-grade prediction",
+  "d_mechanism": "the depletion mechanism (reionization photo-evaporation + stellar/AGN ejection, gas retention) is standard baryon astrophysics, evidenced on the record by the measured f_gas mass-run (+0.34 dex/dex, G143) -- it is NOT framework machinery; the framework's mechanism content in the chain is zero",
+  "e_framework_originated": "NO -- every link is a measured share (E11 gas, F&P stars, the pie's measured nods) or an external astrophysics statement; the framework's only role is orchestrating the Tinker+EH98 weighting (imported standard cosmology).  The framework-originated gate FAILS: this is a measured-inputs assembly, and the verdicts say so",
+  "f_falsifier": "registered: (i) any resolved group-scale baryon share outside [0.066, 0.097] (0.54 x f_b +- 0.10 retention) at 1e13-1e14 would break the group rung; (ii) any 2-3e14 gap-filling system (the G187 discriminator sample) whose baryon share deviates from the pie's s_b(M) beyond the 16-84 scatter shifts the halo rung; (iii) a low-z measurement of Omega_star/Omega_b at >30% from 5.5% alters the star link; (iv) any measured f_b-band exclusive sample irreconcilable with 0.157 discards the anchor (the chain is falsifiable -- which is consistent with it being empirical, not framework-derived)"
+ },
+ "verdicts": {
+  "V1_depletion_chain": {
+   "pass": true,
+   "statement": "THE DEPLETION CHAIN: ASSEMBLED, ARITHMETICALLY CLOSED, PHYSICS-OPEN.  The chain s_b = f_retention x f_b with the committed links -- stars (cosmic Omega_star/Omega_b = 5.5%; group convention 0.02 = 25% of the retained 0.081), gas retention (f_gas,500 median 0.061 = 75% of the retained, 39% of the cosmic budget, R500-truncated), feedback (the measured retention mass-run +0.34 dex/dex and the group f_gas rise +0.536 vs cluster +0.235, G143 -- reionization + ejection, mechanism statement only, no committed quantitative budget), and the G178 floor (0.081 = 0.061 + 0.02, retention 0.52) -- CLOSES at f_b = <s_b>/0.54 = 0.1567 vs the datum 0.1564 (delta +0.20%), an IDENTITY on measured sides: the depletion factor 0.54 IS the measured ratio <s_b>/f_b (G187), and the ejected share (1 - retention = 0.48 group / 0.46 halo mean) is never partitioned between 'beyond R500' and 'genuinely ejected' on the committed record.  Completion status: every link is MEASURED (E11 gas -- UNVERIFIED-in-repo, gated vs G125; F&P stars; the pie's measured nods); the framework's machinery contributes zero terms; the chain's first-principles content resides in the feedback MECHANISM STATEMENT, which is standard astrophysics, quantified nowhere in-repo."
+  },
+  "V2_derived_f_b_band": {
+   "pass": true,
+   "statement": "THE DERIVED f_b BAND: under the SAME depletion factor 0.54, the two independent rungs give f_b(rung A, groups) = 0.081/0.54 = 0.1500 and f_b(rung B, halo mean) = 0.0846/0.54 = 0.1567 -- the TWO-RUNG CONSISTENCY BAND [0.1500, 0.1567], centre 0.1533, which brackets the Planck datum 0.1564 to 4.1% on the low edge.  WITH THE HONEST SYSTEMATICS (f_gas,500 calibration, the 0.02 star convention, the R500 truncation: retention +/- 0.07, ~13%): f_b = 0.157 +/- 0.018 = [0.139, 0.180] -- the task's 0.157 +/- 0.02 bracket, datum inside.  BUT the central value reproduces the datum ONLY because both factors of the ratio (the numerator <s_b> and the denominator 0.54 = <s_b>/f_b) carry it: the band is a CONSISTENCY BAND, not a prediction band.  The genuinely new content: two independent measurements of halo baryon content (26 E11 groups vs the Tinker-weighted pie) are mutually consistent and consistent with the cosmic datum at 4%."
+  },
+  "V3_honest_statement": {
+   "pass": true,
+   "statement": "HONEST -- THE BARYON FRACTION IS NOT PINNED BY THE HALO-DEPLETION CHAIN; IT REMAINS AN INPUT, NOW HALO-ANCHORED.  The chain closes arithmetically (f_b = <s_b>/0.54 = 0.1567 = the datum to +0.20%) but as a DERIVATION it is an identity on measured sides (G03C class): the depletion factor 0.54 is THE MEASURED RATIO of the halo baryon share to the cosmic share -- you must input f_b to state the chain, so recovering f_b from it proves nothing; the framework contributes zero machinery to the chain (no a0, m, Z, ladder, equilibrium or M_sat term; the feedback physics is standard astrophysics, unquantified in-repo); every link is a measured share (E11 gas, UNVERIFIED-in-repo; F&P stars; the pie's measured cluster nods).  THE INPUT COUNT, FINALLY SETTLED: six core inputs (a0, G, c, Omega_Lambda, f_b, m) = 4 measured (f_b = 0.157 among them) + 1 identity-pinned (a0) + 1 derived (m) -- the '5-input framework' is NOT earned; f_b stays in the measured column.  WHAT B09 ADDS TO S05: the halo-scale ANCHOR -- the two rungs (group floor 0.081, halo mean 0.0846) render the cosmic datum consistent at 4% (band [0.150, 0.157]) and the systematic envelope 0.157 +/- 0.02 brackets Planck -- a measured cross-check the framework can now point to, exactly as the 'depleted halo baryon share' was S05's only f_b-adjacent emission: it is a consistency statement, not a derivation, and f_b = 0.157 remains the last measured input of the cosmic frame.",
+   "one_line": "f_b = 0.157 is NOT pinned by the halo-depletion chain -- the chain's depletion factor 0.54 is itself the measured ratio of the halo baryon share to the cosmic share (G03C identity, no framework mechanism anywhere); f_b remains an input, now halo-ANCHORED at 4% (the two rungs 0.081 / 0.0846 render the datum consistent, band [0.150, 0.157]); the input count is finally settled at SIX core = 4 measured + 1 identity-pinned (a0) + 1 derived (m) -- the 5-input framework is not earned"
+  }
+ },
+ "gates": [
+  {
+   "name": "G0a [the group floor gate] the 26 E11 groups' median f_b = f_gas,500 + 0.02 stars reproduces G178's registered 0.081",
+   "measured": "median f_gas,500 = 0.061 (spread [0.013, 0.098]); median f_b = 0.081 (spread [0.033, 0.118])",
+   "pass": true,
+   "reading": "G143's committed E11 transcription, gated there against G125; the 0.02 stellar share is G143's group convention"
+  },
+  {
+   "name": "G0b [the halo-share gate] G187's cosmic closure <s_b> = 0.0846 is the mass-function-weighted mean baryon share of halos M > 1e12 (Tinker+08 on the committed EH98 pipeline, gated in G187)",
+   "measured": "<s_b> = 0.0846 = 54.1% of f_b = 0.1564",
+   "pass": true,
+   "reading": "the task's 0.54 depletion factor is exactly this measured ratio <s_b>/f_b -- a MEASURED share ratio, not a framework output"
+  },
+  {
+   "name": "G0c [the retention mass-run] r(M) = s_b(M)/f_b rises with mass 0.52 -> 1.42 through the pie's nods -- the low-mass depletion signature the feedback chain is built on",
+   "measured": "r: 0.52, 0.43, 0.92, 1.30, 1.42 (at 1.0e+13, 1.7e+14, 3.5e+14, 8.0e+14, 1.0e+15)",
+   "pass": true,
+   "reading": "retention rises steeply through the saturation gap (groups ~0.5 -> clusters ~0.9-1.4): low-mass halos are the most depleted -- the canonical reionization + feedback signature (G143's +0.34 dex/dex gas level-run is the same effect measured on the f_gas field)"
+  },
+  {
+   "name": "C1 [the chain closes arithmetically] f_b = <s_b>/0.54 = 0.157 reproduces the Planck datum to 0.2%",
+   "measured": "f_b = 0.1567 vs 0.1564 (delta +0.20%)",
+   "pass": true,
+   "reading": "the arithmetic closes -- but only because 0.54 IS <s_b>/f_b: this is an identity on measured sides, the same class S05 registered for the flatness-slack echo (0.160 vs 0.156)"
+  },
+  {
+   "name": "C2 [the chain's links are all measured, none derived] every link of the depletion chain is a measured share (E11 gas, F&P stars, the pie nods) or a measured gradient (G143 +0.34 dex/dex, +0.536 rise); NO framework mechanism (a0, m, Z, the ladder, the equilibrium bound) appears anywhere in the chain",
+   "measured": "links: L1 star 5.5% cosmic (measured), L2 gas 0.061 (measured), L3 feedback gradient (measured), L4 floor 0.081 (measured), L5 mean 0.0846 (measured)",
+   "pass": true,
+   "reading": "the honest completion status: ARITHMETICALLY CLOSED, PHYSICS-OPEN -- the retention factor is a measured ratio, the ejected fraction is unpartitioned, and the framework's machinery contributes zero terms to the chain"
+  },
+  {
+   "name": "C3 [the two-rung consistency] under the SAME depletion 0.54 the two independent rungs give f_b = 0.150 (groups) and 0.157 (halos) -- a band that brackets the datum 0.1564 to within 4.3%",
+   "measured": "band [0.150, 0.157] vs datum 0.156 (low edge -4.1%)",
+   "pass": true,
+   "reading": "the two rungs are independent measurements of halo baryon content (26 E11 groups vs the mass-function-weighted pie); their same-depletion f_b values are consistent with the Planck datum at the 4-5% level -- a REAL consistency lock, though both rungs are measured shares"
+  },
+  {
+   "name": "C4 [the derived band] the honest derived f_b band (two rungs + the retention systematics) is 0.157 +- 0.02 and contains the datum",
+   "measured": "band [0.139, 0.180] = 0.157 +- 0.018; datum 0.1564 inside: True",
+   "pass": true,
+   "reading": "the +-0.02 needs only r = 0.54 +- 0.07, well inside the rung scatter (group retention spans 0.2-0.75) and the f_gas systematics -- but the CENTRAL value is the datum by construction (both factors of the ratio carry it)"
+  },
+  {
+   "name": "C5 [the framework-machinery audit] ZERO framework mechanisms appear in the depletion chain -- it is a measured-shares assembly",
+   "measured": "machinery terms in the chain: 0/4 (a0: no, m: no, Z: no, ladder: no); links are E11 gas + F&P stars + the pie's measured nods + the G143 gradients",
+   "pass": true,
+   "reading": "the first-principles content of the chain is zero ON THE FRAMEWORK SIDE: the retention physics (reionization + ejection) is standard astrophysics, and its quantitative budget is not computed anywhere in the committed record -- the chain stands entirely on its empirical floor"
+  },
+  {
+   "name": "C6 [the G03C circularity] the closure f_b = s_b/0.54 restores the datum because the depletion factor is DEFINED as s_b/f_b -- recovering an input from an input (the identity class S05 flagged for the flatness slack)",
+   "measured": "f_b(pred) = 0.1567 = the datum 0.1564 to +0.20% -- because 0.54 = 0.0846/0.1564 = 0.541",
+   "pass": true,
+   "reading": "f_retention = s_b/f_b is a definition; f_b = s_b/f_retention is its inversion -- the chain adds no independent constraint, exactly as S05's verdict V3 stated ('no test of the framework constrains it')"
+  },
+  {
+   "name": "C7 [the input count] the six-core (a0, G, c, Omega_Lambda, f_b, m) stands: 4 measured + 1 identity-pinned + 1 derived; f_b stays in the measured column after the depletion-chain attack",
+   "measured": "6 core = 4 measured (incl. f_b = 0.1564) + 1 identity-pinned (a0) + 1 derived (m); the chain adds the halo anchor, not a derivation",
+   "pass": true,
+   "reading": "the depletion chain was the machinery's best shot at f_b (S05's only f_b-adjacent emission, <s_b> = 0.54 x f_b); it closes arithmetically and fails as a derivation -- f_b is halo-ANCHORED, not halo-DERIVED"
+  },
+  {
+   "name": "C8 [the equilibrium bound adds nothing] G079's Omega_eq <= Omega_star (1 + f_gas) is baryon-normalized (measured stellar density): it bounds dark mass in baryon units, never the baryon abundance itself -- re-confirmed as a dead end for f_b",
+   "measured": "Omega_eq <= 0.0027 x (1 + 0.25) = 0.0034 (uncapped 0.0034) = 1.28% of Omega_dm",
+   "pass": true,
+   "reading": "S05 verdict 2b re-confirmed: the only baryon-bound in the closed sector is dark mass in units of the MEASURED stellar density -- the equilibrium phase never fixes Omega_b itself"
+  },
+  {
+   "name": "V1 [the depletion chain]",
+   "measured": "links star 0.02 + gas 0.061 = floor 0.081 (r 0.52); halo mean 0.0846 (r 0.54); closure f_b = 0.1567 (+0.20%)",
+   "pass": true,
+   "reading": "THE DEPLETION CHAIN: ASSEMBLED, ARITHMETICALLY CLOSED, PHYSICS-OPEN.  The chain s_b = f_retention x f_b with the committed links -- stars (cosmic Omega_star/Omega_b = 5.5%; group convention 0.02 = 25% of the retained 0.081), gas retention (f_gas,500 median 0.061 = 75% of the retained, 39% of the cosmic budget, R500-truncated), feedback (the measured retention mass-run +0.34 dex/dex and the group f_gas rise +0.536 vs cluster +0.235, G143 -- reionization + ejection, mechanism statement only, no committed quantitative budget), and the G178 floor (0.081 = 0.061 + 0.02, retention 0.52) -- CLOSES at f_b = <s_b>/0.54 = 0.1567 vs the datum 0.1564 (delta +0.20%), an IDENTITY on measured sides: the depletion factor 0.54 IS the measured ratio <s_b>/f_b (G187), and the ejected share (1 - retention = 0.48 group / 0.46 halo mean) is never partitioned between 'beyond R500' and 'genuinely ejected' on the committed record.  Completion status: every link is MEASURED (E11 gas -- UNVERIFIED-in-repo, gated vs G125; F&P stars; the pie's measured nods); the framework's machinery contributes zero terms; the chain's first-principles content resides in the feedback MECHANISM STATEMENT, which is standard astrophysics, quantified nowhere in-repo."
+  },
+  {
+   "name": "V2 [the derived f_b band]",
+   "measured": "two-rung band [0.150, 0.157] vs datum 0.156; systematic band [0.139, 0.180]",
+   "pass": true,
+   "reading": "THE DERIVED f_b BAND: under the SAME depletion factor 0.54, the two independent rungs give f_b(rung A, groups) = 0.081/0.54 = 0.1500 and f_b(rung B, halo mean) = 0.0846/0.54 = 0.1567 -- the TWO-RUNG CONSISTENCY BAND [0.1500, 0.1567], centre 0.1533, which brackets the Planck datum 0.1564 to 4.1% on the low edge.  WITH THE HONEST SYSTEMATICS (f_gas,500 calibration, the 0.02 star convention, the R500 truncation: retention +/- 0.07, ~13%): f_b = 0.157 +/- 0.018 = [0.139, 0.180] -- the task's 0.157 +/- 0.02 bracket, datum inside.  BUT the central value reproduces the datum ONLY because both factors of the ratio (the numerator <s_b> and the denominator 0.54 = <s_b>/f_b) carry it: the band is a CONSISTENCY BAND, not a prediction band.  The genuinely new content: two independent measurements of halo baryon content (26 E11 groups vs the Tinker-weighted pie) are mutually consistent and consistent with the cosmic datum at 4%."
+  },
+  {
+   "name": "V3 [the honest statement -- pinned or input, the count settled]",
+   "measured": "f_b = 0.1564 INPUT (halo-anchored at 4%, not derived); six core = 4 measured + 1 identity + 1 derived; 5-input framework NOT earned",
+   "pass": true,
+   "reading": "HONEST -- THE BARYON FRACTION IS NOT PINNED BY THE HALO-DEPLETION CHAIN; IT REMAINS AN INPUT, NOW HALO-ANCHORED.  The chain closes arithmetically (f_b = <s_b>/0.54 = 0.1567 = the datum to +0.20%) but as a DERIVATION it is an identity on measured sides (G03C class): the depletion factor 0.54 is THE MEASURED RATIO of the halo baryon share to the cosmic share -- you must input f_b to state the chain, so recovering f_b from it proves nothing; the framework contributes zero machinery to the chain (no a0, m, Z, ladder, equilibrium or M_sat term; the feedback physics is standard astrophysics, unquantified in-repo); every link is a measured share (E11 gas, UNVERIFIED-in-repo; F&P stars; the pie's measured cluster nods).  THE INPUT COUNT, FINALLY SETTLED: six core inputs (a0, G, c, Omega_Lambda, f_b, m) = 4 measured (f_b = 0.157 among them) + 1 identity-pinned (a0) + 1 derived (m) -- the '5-input framework' is NOT earned; f_b stays in the measured column.  WHAT B09 ADDS TO S05: the halo-scale ANCHOR -- the two rungs (group floor 0.081, halo mean 0.0846) render the cosmic datum consistent at 4% (band [0.150, 0.157]) and the systematic envelope 0.157 +/- 0.02 brackets Planck -- a measured cross-check the framework can now point to, exactly as the 'depleted halo baryon share' was S05's only f_b-adjacent emission: it is a consistency statement, not a derivation, and f_b = 0.157 remains the last measured input of the cosmic frame."
+  }
+ ],
+ "n_pass": 14,
+ "n_fail": 0,
+ "sources": [
+  "deepseek_push/G178_results.json",
+  "deepseek_push/G187_results.json",
+  "deepseek_push/G143_results.json",
+  "deepseek_push/G079_results.json",
+  "deepseek_push/S05_results.json",
+  "project_atomos/A02_results.json (baryon-scale, not abundance)"
+ ]
+}
