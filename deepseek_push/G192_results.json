@@ -1,0 +1,127 @@
+{
+ "lane": "G192_thorn_closeout",
+ "title": "THE THORN CLOSEOUT -- the cluster sector's complete accounting for the MNRAS cluster section: the closed form assembled, the open items named, the paper-ready statement, the final scorecard",
+ "deliverable": "deepseek_push/CLUSTER_CLOSEOUT.md + G192_results.json",
+ "question": "Assemble the sector's closed form M_dyn(<r) = M_b(<r) + M_ph(<r) + M_dust(<r); state the remaining open items honestly; write the one-page paper-ready statement a referee can check; deliver verdicts V1 (closeout complete), V2 (paper-ready), V3 (the scorecard: DERIVED / MEASURED / PENDING).",
+ "context": "COMPILATION ONLY -- every number is committed and re-cited from its provenance lane (G095/G098/G108/G122/G135/G137/G139/G140/G143/G154/G159/G176/G177/G178/G179/G180/G182/G184/G185/G186); nothing new is derived or downloaded in this lane; nothing written outside deepseek_push/.",
+ "data_notes": {
+  "clusters": "12 X-COP clusters, committed ingests (real_research/data/xcop, Ettori+19 R500/M500), G098 canonical floor-A density arrays",
+  "groups": "26 E11 groups from G143's committed register (UNVERIFIED-in-repo, gated vs G125 in G143)",
+  "registers_gate": "G095 rows reproduced to 1.58e-4; G143 law digits (c0=-0.1445, q=-0.414, p=+0.990) reproduced digit-for-digit in G179 G0c; G140 M_sat = 3.0876e14 reproduced exactly in G178 G0a",
+  "reading_direction": "the pie uses the equipartition phantom (G122/G095 exact identity); the EFE-capped alternative (M_ph = 0) collapses the pie to dust 82.3% + baryons 17.7% (G057 V2, stated not mixed)"
+ },
+ "closed_form": {
+  "equation": "M_dyn(<r) = M_b(<r) + M_ph(<r) + M_dust(<r)",
+  "phantom": {
+   "form": "M_ph(<r) = M_b(<r) (r/r_M) = (1/4 pi G) oint g.dA",
+   "status": "DERIVED (Gauss-map charge of the sourced field; G154/G180; the static-branch shift-Noether current is empty -- M_ph is ASSIGNED charge, ontology amended in wording)"
+  },
+  "dust": {
+   "law": "c_dust = 10^c0 (M500/8e14)^q (r/R500)^-p",
+   "c0": -0.1445,
+   "q": -0.414,
+   "q_err": 0.157,
+   "p": 0.990,
+   "p_err": 0.035,
+   "law_repr": "c_dust = 0.72 (M500/8e14)^(-0.414+-0.157) (r/R500)^(-0.990+-0.035)",
+   "mass_map": "M_dust(<r) = M_b(<r) (c_dust(r) - 1) (r/r_M)",
+   "coverage": "ONE envelope across M500 ~ 1e13-9e14, 38 systems (12 X-COP + 26 E11)",
+   "residual_floor_dex": {"3param": 0.1189, "13param": 0.0973}
+  },
+  "pin": {
+   "chain": "infall -> sigma_d = v_ff/sqrt(3) = 140.2 km/s -> A_b = (sigma_ph/sigma_d)^3 = 0.650",
+   "A_b": 0.65,
+   "vs_measured": "measured boundary ratio 0.484 -> factor 1.34 (within 2)",
+   "boundary_agreement_R": 1.09,
+   "clusters_in_derived_band": "12/12 inside [0.125, 0.5] (G185, 8/8)",
+   "pins": "the jump pins the c0-combination c0 + q log10(M500/8e14); the LAST cluster freedom is the single number q"
+  },
+  "seam": {
+   "r_t_kpc": 386.8,
+   "r_t_over_rM": 0.96,
+   "rM_median_kpc": 402,
+   "band_kpc": [269, 543],
+   "p1": 1.5,
+   "p1_err": 0.04,
+   "p2": 2.94,
+   "p2_err": 0.04,
+   "model_choice": "two-index r_t free, BIC -4640.0, dBIC vs single index -350.8, vs smooth log-quadratic -16.0, vs per-cluster r_M seam -110.8",
+   "kink": "G186: pure slope kink (A'_step = 1.006); the seam's integral A'_integral = 0.364 agrees with A_b = 0.273 within 1.34x"
+  },
+  "saturation": {
+   "formula": "M_sat = 8e14 (1/f_ref)^(1/q)",
+   "M_sat_Msun": 3.0876e14,
+   "band_Msun": [1.7298e14, 4.0097e14]
+  },
+  "phase_diagram": {
+   "phantom_phase": "M500 > 3.09e14: 12 clusters, f_dust medians 0.52-0.84, phantom share 0.157-0.481",
+   "alldust_phase": "M500 < 3.09e14: 26 groups, implied f_dust median 0.919 = 1 - f_b (f_b = 0.081, the median baryon floor); phantom share <= 0.09",
+   "boundary": "DERIVED not measured: sits in the 0.30-dex DATA GAP IC1633 (1.73e14) -> A1644 (3.48e14)",
+   "falsifier": "any sub-3.48e14 system with f_dust < 0.85 voids the all-dust reading",
+   "anti_branch": "the linear-law extension (M_ph = M_b R500/r_M, no saturation) is REJECTED: it demands f_dust ~ 0.2-0.5 at group scale vs the measured 0.92"
+  },
+  "pie_at_R500": {
+   "baryons": {"median": 0.177, "i16": 0.151, "i84": 0.215},
+   "phantom": {"median": 0.569, "i16": 0.54, "i84": 0.607},
+   "dust": {"median": 0.246, "i16": 0.181, "i84": 0.313},
+   "closure": "SUM/M500 = 1 EXACTLY (the dust is the remainder, an identity)",
+   "law_pie_residual": "res = log10(SUM_law/M500): mean -0.184 dex, scatter about mean 0.065 dex (the 0.1-dex floor), the mean = the 50-600 kpc fit-window extrapolation (R500 outside the law's window)"
+  },
+  "temperature_law": {
+   "form": "log10(T_obs/T_pred) = (2/3) log10 f + log10(2 r_M/R500)",
+   "alpha": "2/3 structural (virial +1, -1/3 from Delta500 self-similarity); 1/2 excluded at 2.2 sigma",
+   "rms_31_systems_dex": 0.076,
+   "clusters_rms_dex": 0.067,
+   "groups_rms_dex": 0.081,
+   "cluster_pred_obs": "pred 3.35 vs obs 3.57",
+   "source": "G135 (12/12 clusters + 19 groups + MW/M31 + 2)"
+  },
+  "outer_slope": {
+   "three_instrument_mean": -2.404,
+   "err": 0.078,
+   "xray_dark_residual": -2.169,
+   "xray_dark_err": 0.318,
+   "xray_gas_betamodel": -2.624,
+   "xray_gas_err": 0.176,
+   "tsz_joint_G141": -2.37,
+   "tsz_joint_err": 0.09,
+   "consistency": "chi2 = 2.29/2 dof (p = 0.319)",
+   "vs_NFW": "7.7 sigma from -3.0 (the NFW asymptote / classic beta=2/3 projection)",
+   "source": "G184, 6/6"
+  }
+ },
+ "open_items": [
+  {"item": "THE SINGLE NUMBER q", "status": "MEASURED -0.414+-0.157 (G140/G143), consistent with the derived mass run q_jump = -0.34+-0.27 but NOT independently derived (12-point power); the discriminating test = the group scale (G140's prediction, G143's 26-group rise +0.536+-0.069 = 2.3x the cluster +0.235 at t = 4.3)"},
+  {"item": "THE 0.63-dex GAP'S SLIVER (G162)", "status": "the 12-decade line's unfilled 5.4%-of-span sliver log M 13.07-13.70 between the most massive groups and least massive clusters; 2.89 -> 0.63 dex filled (78%), slope 1.004+-0.011 on n = 542; seam residual +0.115 groups -> +0.273 clusters (a gentle rise, no step); OPEN BY DATA, not by law"},
+  {"item": "THE POSITION-INSIDE-R500 DEGENERACY (G160)", "status": "knee at r_b/R_cap = 0.44 (canonical) / 0.54 (alt) = r_b/rs = 0.54, coincident with NFW's OWN transition (slope -1.70 at the knee, -2.00 at rs): unresolvable inside R500; only the OUTER slope discriminates; the 1-2 R500 continuation is the tSZ's job"},
+  {"item": "THE TSZ 3-WAY VERDICT (G177) -- PENDING Planck/ACT", "status": "decision tree on the sample-median 2-bin slope [R500,2R500]: (-2.94,-2.14) JOINT (center -2.54+-0.4) / phantom-only -1.44-class / steeper neither; two-sector Delta chi2 = 2290 = 47.8 sigma pooled (shape-only); ASYMMETRIC falsifiers: F2' (dust-kill) 4.4-6.9 sigma, F1' (steeper/neither) 1.7-2.6 sigma; all inputs public today, ~2-4 weeks per survey"}
+ ],
+ "carried_caveats": [
+  "A2319's pie s_d = -2.7% (c < 1 at R500, G098's registered uncapped overshoot, median zero-crossing 897 kpc)",
+  "the -0.18-dex R500 law-pie closure offset is a fit-window extrapolation statement, not a law failure (inside 600 kpc the law closes at 0.097/0.119 dex)",
+  "the EFE-capped alternative reading collapses the pie to dust 82.3% + baryons 17.7% (G057 V2, stated not mixed)",
+  "the phase boundary location M_sat = 3.09e14 is DERIVED from the fit, not measured (0.30-dex gap)",
+  "F1' (steeper-than-band tSZ leg) resolves only at 1.7-2.6 sigma -- the tSZ can only POINT at a different envelope slope"
+ ],
+ "verdicts": {
+  "V1_closeout_complete": {
+   "pass": true,
+   "statement": "THE CLOSEOUT IS COMPLETE: the closed form M_dyn = M_b + M_b(r/r_M) + M_dust(c0,q) is fully assembled -- phantom DERIVED (Gauss-map charge), dust MEASURED (two-parameter law, 0.1-dex floor), amplitude PINNED by the derived jump (A_b = 0.650 -> c0, R = 1.09, 12/12), seam/saturation/phase diagram DERIVED, pie closed (17.7/56.9/24.6), 2/3 temperature law measured on 31 systems, outer slope -2.404+-0.078 at 7.7 sigma vs NFW; the open items are named and bounded (q, the 0.63-dex sliver, the inside-R500 degeneracy, the tSZ 3-way verdict)."
+  },
+  "V2_paper_ready": {
+   "pass": true,
+   "statement": "THE PAPER-READY STATEMENT STANDS: CLUSTER_CLOSEOUT.md section (3) is one page a referee can check -- every number carries its provenance row, the two-parameter dust law, the derived amplitude (the infall-jump chain with errors), the phase diagram with its falsifier, and the falsifiable outer slope are stated with windows and errors."
+  },
+  "V3_honest_statement": {
+   "pass": true,
+   "statement": "THE FINAL SCORECARD -- DERIVED: M_ph = M_b r/r_M (Gauss-map charge), A_b = 0.650 (infall-jump chain, within 1.34x), the seam r_t = 0.96 r_M, the saturation M_sat = 3.09e14, the 2/3 exponent, the u-exponent +0.31 = (1-gamma)/2 - 1/3, the r^-1 dust shape, the phase structure. MEASURED: (c0, q) = (-0.145, -0.414) over 38 systems with c0's combination pinned (R = 1.09), the pie 17.7/56.9/24.6 (identity closure), the 0.076-dex 31-system temperature law, the outer slope -2.404+-0.078 (7.7 sigma vs NFW), the phase endpoints. PENDING: q alone (group-scale test), the 0.63-dex sliver (data), the knee position inside R500 (unresolvable; outer slope decides), the tSZ 3-way verdict (ACT/Planck), the 0.1-dex floor, the phase boundary's measured location. THE THORN'S FINAL STATE: effectively closed -- one derived amplitude chain, one measured two-parameter law, ONE open single number (q), ONE pending observation (tSZ), four named caveats."
+  }
+ },
+ "n_pass": 3,
+ "n_fail": 0,
+ "checks": [
+  {"id": "C1", "name": "provenance_density", "pass": true, "note": "every headline number re-cited from its committed lane; no new derivation, no new download; nothing written outside deepseek_push/"},
+  {"id": "C2", "name": "registers_reproduced", "pass": true, "note": "the compile rests on lanes whose gates already reproduced the committed digits (G095 1.58e-4, G143 digit-for-digit, G140 M_sat exact)"},
+  {"id": "C3", "name": "open_items_are_honest", "pass": true, "note": "the single number q is stated MEASURED-not-derived; the tSZ falsifiers are stated ASYMMETRIC; the boundary/closure caveats (A2319 overshoot, -0.18-dex window offset, EFE-capped alternative, 0.30-dex derived boundary) are carried, not hidden"}
+ ]
+}
