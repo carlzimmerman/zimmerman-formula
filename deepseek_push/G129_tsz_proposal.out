@@ -1,0 +1,72 @@
+G129 -- THE tSZ OBSERVING PROPOSAL: G113's zero-parameter y-profile as a
+real, executable, pre-registered measurement on the 12 X-COP clusters
+================================================================================================
+  [PASS] V0 [gate: the profiles re-created here reproduce G113's own build digit-for-digit] (i) in-process code-level equality vs G113's build; (ii) the committed G113_results.json at its documented storage class
+         measured: max |y0_mine/y0_G113build - 1| = 0.000e+00 (theta_M 0.000e+00); vs the committed JSON: y0 1.159e-04, theta_M 8.899e-04, theta_500 3.566e-04 (stale-regeneration class, gates 1e-12 / 2e-4 / 2e-3)
+         reading : identical loader, ingests and recipe -> bit-identical profiles; the committed G113 JSON carries regeneration noise at the 1e-4 class vs its own current script (the same phenomenon G113 documented for G095's 4dp-stored rows); all physics columns gate at the quoted precision
+
+THE SPECTRAL CONVERSION  dT_CMB = T_CMB * y * g(x), x = h nu/(k T_CMB):
+  ACT_DR6_f090   nu=  98.0 GHz  g=-1.527  dT/y = -4.161 K  (~4.16 uK per 1e-6 y)  sigma_map =  10.0 uK-arcmin  sigma_beam =  6.04 uK
+  ACT_DR6_f150   nu= 150.0 GHz  g=-0.953  dT/y = -2.598 K  (~2.60 uK per 1e-6 y)  sigma_map =  10.0 uK-arcmin  sigma_beam =  9.49 uK
+  SO_LAT_93      nu=  93.0 GHz  g=-1.572  dT/y = -4.284 K  (~4.28 uK per 1e-6 y)  sigma_map =   6.0 uK-arcmin  sigma_beam =  5.69 uK
+  SO_deep_93     nu=  93.0 GHz  g=-1.572  dT/y = -4.284 K  (~4.28 uK per 1e-6 y)  sigma_map =   1.6 uK-arcmin  sigma_beam =  1.52 uK
+  Planck_100     nu= 100.0 GHz  g=-1.508  dT/y = -4.110 K  (~4.11 uK per 1e-6 y)  sigma_map =  77.4 uK-arcmin  sigma_beam = 10.64 uK
+  Planck_143     nu= 143.0 GHz  g=-1.040  dT/y = -2.836 K  (~2.84 uK per 1e-6 y)  sigma_map =  33.0 uK-arcmin  sigma_beam =  6.07 uK
+  Planck_217     nu= 217.0 GHz  g=-0.008  dT/y = -0.021 K  (~0.02 uK per 1e-6 y)  sigma_map =  46.8 uK-arcmin  sigma_beam = 12.69 uK
+
+TARGETS (the 12 X-COP clusters; RA/DEC from the committed FITS headers):
+  cluster         RA       DEC      z   thM  th500        y0 ACT SNRc_ACT SNRc_P143 SNRc_SO16
+  A1644     194.3015  -17.4097 0.0473  4.73  18.24  1.90e-05   Y      5.2       8.8      54.0
+  A1795     207.2196   26.5896 0.0622  4.58  15.45  7.57e-05   n     19.0      20.2     196.0
+  A2029     227.7342    5.7444 0.0773  5.72  15.62  2.31e-04   Y     51.3      49.6     528.8
+  A2142     239.5862   27.2294 0.0909  5.39  13.50  1.89e-04   n     44.7      48.3     460.4
+  A2255     258.2160   64.0631 0.0809  4.19  12.59  3.91e-05   n     10.9      17.4     112.4
+  A2319     290.3028   43.9450 0.0557  8.61  19.98  1.66e-04   n     44.8      64.4     462.1
+  A3158      55.7180  -53.6277 0.0597  4.63  15.63  4.38e-05   Y     11.8      15.6     121.2
+  A3266      67.8434  -61.4297 0.0589  6.32  20.15  8.41e-05   Y     23.3      35.3     240.5
+  A644      124.3574   -7.5087 0.0704  4.64  14.70  9.65e-05   Y     25.2      28.9     259.4
+  A85        10.4594   -9.3029 0.0555  6.05  18.40  7.97e-05   Y     21.0      26.9     216.6
+  RXC1825   276.3355   30.4367 0.0650  4.01  14.21  4.05e-05   n     10.8      14.7     111.8
+  ZW1215    184.4219    3.6557 0.0766  4.48  15.03  6.14e-05   Y     17.1      22.6     175.8
+
+MODEL-SEPARATION FORECAST (expected chi2 of the framework profile vs each
+alternative AT THE FORECAST NOISE, common-y0 normalization, per cluster):
+  cluster  ch2 vs 2/3 ch2 vs 0.7
+  A1644          1806       1836
+  A1795           319        339
+  A2029         11354      12239
+  A2142          2430       2543
+  A2255           692        703
+  A2319          8251       8505
+  A3158          2460       2536
+  A3266         10557      10987
+  A644           4137       4367
+  A85            6352       6623
+  RXC1825         544        554
+  ZW1215         3715       3851
+  median combined chi2: vs beta=2/3 3087;  vs beta=0.7 3197;  clusters with chi2 > 25 vs beta=2/3: 12/12
+
+SAMPLE-MEDIAN PER-BIN SNR (ACT DR6 f150, 1.4'; Planck 143 GHz, 7.2';
+per-channel; ~1.4x ILC/component-separation penalty applies to all;
+ACT medians over the in-band 7 clusters only):
+  ACT bins (arcmin): 0-1  1-2  2-3  3-4.5  4.5-6  6-8  8-10.5  10.5-14  14-18
+  median SNR:         20.5   22.5   25.9   33.6   32.4   30.5   23.5   20.9   18.5
+  Planck bins:       0-4  4-8  8-12  12-17  17-23  23-31  31-40
+  median SNR:         22.6   15.7   10.2    9.3    7.8    6.6    5.4
+  [PASS] V1 [targets complete] the 12 X-COP clusters with sky positions read from the committed FITS headers and z from the committed ingest
+         measured: 12/12 rows; RA/DEC present; ACT footprint band (dec in -63,23) covers 7/12
+         reading : the targets table of the proposal = the committed ingests' own numbers
+  [PASS] V2a [central SNR: the amplitude is a high-SNR measurement on every survey] median central SNR > 15 and min > 5 for Planck 143 GHz on all 12 clusters
+         measured: median SNRc = 24.8 (Planck 143), 20.0 (ACT f150 over the in-band 7), min Planck 8.8 (A1644, the weakest y0 = 1.9e-5)
+         reading : the amplitude (y0) is NOT the observation's risk: it is a tens-of-sigma consistency test per cluster; the decision channel is the outer shape (V2b/V2c)
+  [PASS] V2b [the phantom-zone bins are above the decision threshold] median Planck SNR in the phantom-zone bins (8-31 arcmin) >= 5; the per-cluster 2-bin slope error over [theta_500, 2 theta_500] <= 0.35 (conservative; a multi-bin fit reaches ~0.15), pooled over 12 clusters -> F1/F2 resolved at >5 sigma pooled
+         measured: median Planck bin SNR 8-12' 10.2, 12-17' 9.3, 17-23' 7.8, 23-31' 6.6; median 2-bin slope error 0.321 -> pooled 0.09 (12 clusters)
+         reading : the outer bins carry SNR 6-20 -> the F1 line (-2 vs -1.44) separates at ~2 sigma per cluster and ~6 sigma pooled; the F2 line (the flat edge of the [-(q-1)+-0.4] band) at ~1.5 sigma per cluster, ~5 sigma pooled -- the decision is sample-level, as registered in G113 V2c
+  [PASS] V2c [the shape separation is decisive] median combined chi2 of the framework profile vs the classic beta = 2/3 profile > 25 (5-sigma-class) at the forecast noise
+         measured: median chi2 vs beta=2/3 = 3087 (vs beta=0.7: 3197); 12/12 clusters above 25
+         reading : at the forecast noise the measurement separates the framework's outer profile from the classic reading on the sample median -- and the per-cluster curves are the zero-parameter predictions (common-y0 normalization in the shape comparison)
+
+DOES THIS PROPOSAL DECIDE THE PHANTOM-ZONE PRESSURE SIGNATURE?  DECIDES, WITH QUALIFICATION.  (1) WHAT IT DECIDES CLEANLY: the per-cluster outer Compton shape at theta in [theta_500, 2 theta_500] (median 15.5' to 31') at Planck 143 GHz bin SNR 10.2 (8-12'), 9.3 (12-17'), 7.8 (17-23'), 6.6 (23-31'), with a conservative 2-bin slope error of 0.32 per cluster (a multi-bin fit over the four outer bins reaches ~0.15), i.e. 0.09 pooled over the 12 -> the F1 decision line (steeper than -2 at theta_500, killing the G095 extension) separates at ~2 sigma per cluster and ~6 sigma pooled; the F2 line (flatter than the registered [-(q-1)-0.4, -(q-1)+0.4] band, killing the T_inf-isotherm x gas-envelope reading) at ~1.5 sigma per cluster, ~5 sigma pooled.  The model separation vs the classic beta = 2/3 profile is chi2 ~ 3087 (median combined, common-y0 shape comparison; 12/12 clusters > 25).  The inner profile (theta < theta_M, the r_M crossing at 4.7') is ACT/SO-resolved at central SNR 20 for the 7/12 clusters inside the public ACT band (A1795, A2142, A2255, A2319, RXC1825 are outside it and get Planck-alone inner coverage).  (2) WHAT IT DECIDES ONLY PARTIALLY: (i) the 40x/105x phantom-zone multiples are ratios vs the CLASSIC beta = 2/3, r_c = 0.15 R500 convention -- the physically scored quantities are the absolute convolved per-cluster curves and the slope; (ii) A644 (q = 3.8, the steepest gas envelope) carries only ~2.6x hold-up -- for it the signature is a factor, not two decades; (iii) a profile in the framework band confirms the outer pressure hold-up but the mechanism attribution (phantom vs dust envelope vs active EFE cap) is NOT one measurement: the capped reading would steepen the profile back toward the beta family, so the measurement DISCRIMINATES capped vs uncapped (G108's window) but does not by itself prove the phantom density profile rho = A/r^2; (iv) the amplitude y0 is a consistency test (the ~0.05-dex HSE budget), not a free prediction.  (3) WHO CAN RUN IT: any SZ analyst.  All inputs are public today: Planck HFI 100/143/217/353 GHz 2018 maps and the MILCA/NILC y-maps; ACT DR5/DR6 maps (LAMBDA) and the Coulton et al. 2024 arcminute y-map over ~13,000 deg2; the Planck PSZ2 catalog for neighbour subtraction; X-COP profiles (committed in this repo and public); public tools healpy/NILC/fgbuster and matched-filter codes.  No observing time is requested -- this is a pre-registered analysis proposal whose decision rules (F1/F2, the band windows, the chi2 convention, the common-y0 normalization) are fixed in deepseek_push/TSZ_PROPOSAL.md BEFORE the maps are read.  Runtime: ~2-4 weeks of postdoc-level analysis per survey; the SO numbers scale the same thresholds in uK-arcmin when SO maps become public.
+
+G129 COMPLETE: 5/5 checks PASS.
+Artifact written: G129_results.json; proposal: deepseek_push/TSZ_PROPOSAL.md
