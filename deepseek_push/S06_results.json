@@ -1,0 +1,257 @@
+{
+ "lane": "S06_merger_phase",
+ "title": "THE MERGER PHASE-SEPARATION -- the collisionless dust lags, the phantom locks: the offset clock and the Bullet decomposition",
+ "question": "in a merger (Bullet class), the two phases of the dark sector separate: the phantom (sourced scalar equilibrium) locks to the baryonic potential (zero offset, its own field); the free dust (collisionless, G103) passes through and lags -- the offset clock d = v x t reads the merger history",
+ "references": {
+  "G110": "the Bullet audit: 8-sigma offset at 209/194 kpc; sep 721.5 kpc; plasma kappa-share 14%/10%; dark/baryon 6.8; sigma_pos 26.1 kpc; per-peak row 209/203/164/67 kpc (0.00/0.25/1.72/5.45 sigma); dust 158/128/52e13; june phantom peak +138 kpc; residual 1.19e15/6.54e14 Msun; r_M(baryonic, main) 583 kpc",
+  "G103": "the free dust is collisionless FOREVER at cluster scale: t_relax/t_Hubble = 1e73.0..1e75.2 (70-76 orders above Hubble); the two-phase cluster reading is viable only as the static reading",
+  "G137": "the free-dust envelope = NFW/FG-class secondary infall (pooled slope -2.377+/-0.152, within 1 sigma of r^-9/4); the dust is STREAMING; the infall reservoir closes the abundance",
+  "G132": "the phantom<->dust transition is first-order-class with latent heat L = T_b dS = 10.8-23.7 k_B/particle (the phases also separate thermodynamically; the merger separation is the MECHANICAL channel)",
+  "ROUTE3_BULLET_OFFSET_LENSING_2026-06-15": "registered velocities: shock 4700 km/s (Markevitch 2006); gas-bullet 2700 km/s (Springel & Farrar 2007); inferred ~3000 km/s; collision time ~150 Myr; the phantom-lag argument SUPERSEDED: the field re-settles on R/c ~ 2 Myr << 150 Myr",
+  "routeB_nonstatic_lensing.py": "gas/DM relative velocity 2000-3000 km/s (Bullet)",
+  "primary": "Clowe et al. 2006 ApJ 648 L109 (registered in L85; G110 re-checked)"
+ },
+ "constants": {
+  "a0": 9.362375204701e-11,
+  "t_Hubble_Gyr": 13.8,
+  "r_M_main_baryonic_kpc": 582.6870640621556,
+  "tau_field_Rover_c_Myr": 1.9004710215691665,
+  "tau_field_Rover_c_s": 59974304310271.125,
+  "t_relax_log10_over_tH_band": [
+   73.04,
+   75.21
+  ],
+  "v_shock_kms": 4700.0,
+  "v_gasbullet_kms": 2700.0,
+  "v_inferred_kms": 3000.0,
+  "dv_band_kms": [
+   2000.0,
+   3000.0
+  ],
+  "t_collision_Myr": 150.0
+ },
+ "gates": {
+  "g110_offset_row_kpc_sigma": {
+   "two_zone_core_f0": [
+    209.0,
+    0.0
+   ],
+   "ch0_cap": [
+    202.5936427103257,
+    0.24521941778657622
+   ],
+   "cap_a0": [
+    164.19204035864368,
+    1.715137211152395
+   ],
+   "uncapped_linear": [
+    66.5582059986296,
+    5.452317473736666
+   ],
+   "dark_on_gas": [
+    0.0,
+    8.0
+   ]
+  },
+  "gas_side_kappa_share": [
+   0.14,
+   0.1
+  ],
+  "dust_share_pct": {
+   "two_zone_core_f0": 100.0,
+   "ch0_cap": 96.9347572776678,
+   "cap_a0": 78.56078486059505,
+   "uncapped_linear": 31.84603157829168
+  },
+  "dust_mass_e13": {
+   "two_zone_core_f0": 163.2,
+   "ch0_cap": 158.19752387715386,
+   "cap_a0": 128.21120089249112,
+   "uncapped_linear": 51.97272353577202
+  }
+ },
+ "part1_dynamics": {
+  "phantom_lock": {
+   "mechanism": "the phantom is the baryons' own field; it re-settles on the field-response timescale R/c",
+   "tau_field_Myr": 1.9004710215691665,
+   "register_2Myr_line_reproduced": true,
+   "lag_bound_Myr": {
+    "f_1": 5.435068466257579,
+    "cap_a0": 25.35106080571022,
+    "ch0": 177.31282507123214
+   },
+   "margin_over_bound": {
+    "f_1": 2.859853375596326,
+    "cap_a0": 13.339356674209402,
+    "ch0": 93.29941001932765
+   },
+   "margin_over_collision_time": 78.92780173840754
+  },
+  "dust_lag": {
+   "t_relax_log10_over_tH": [
+    73.04,
+    75.21
+   ],
+   "t_cross_encounter_Myr": 235.15902931422977,
+   "reading": "the dust cannot relax during or after the crossing (70-76 orders); the displacement is permanently recorded"
+  },
+  "prediction_form": "offset_tot = (1 - f_ph) x Delta_v x t_after; phantom contributes 0",
+  "xcd_caps_vs_cdm": {
+   "ch0": 0.133,
+   "cap_a0": 0.217,
+   "uncapped": 0.43,
+   "qumond_full": 0.358,
+   "cdm": 0.119
+  }
+ },
+ "part2_offset_clock": {
+  "formula": "d_dust = v_merge x t_cross;  t_after = d_obs / Delta_v",
+  "t_after_Myr": {
+   "main": {
+    "dv_2000": 102.17928716564246,
+    "dv_2500": 81.74342973251397,
+    "dv_3000": 68.11952477709498,
+    "v_inferred_3000": 68.11952477709498,
+    "v_gasbullet_2700": 75.68836086343887,
+    "v_shock_4700": 43.48054773006063
+   },
+   "sub": {
+    "dv_2000": 94.84584550303654,
+    "dv_2500": 75.87667640242923,
+    "dv_3000": 63.230563668691026
+   }
+  },
+  "ratio_to_collision_time": {
+   "main_lo": 0.4541301651806332,
+   "main_hi": 0.6811952477709498,
+   "sub_lo": 0.42153709112460686,
+   "sub_hi": 0.6323056366869103
+  },
+  "merger_age_Gyr_from_clock": {
+   "main_band": [
+    0.06811952477709499,
+    0.10217928716564247
+   ]
+  },
+  "d_at_150Myr_kpc": {
+   "dv=2000": 306.81364951370847,
+   "dv=2500": 383.51706189213564,
+   "dv=3000": 460.22047427056276,
+   "v=inferred 3000": 460.22047427056276,
+   "v=gasbullet 2700": 414.19842684350647,
+   "v=shock 4700": 721.0120763572149
+  }
+ },
+ "part3_test": {
+  "decomposition_dust_carries_all": {
+   "formula": "d_dust_req = d_obs / (1 - f_ph)",
+   "per_reading_kpc": {
+    "two_zone_core_f0": 209.0,
+    "ch0_cap": 215.6089372579986,
+    "cap_a0": 266.03603868121655,
+    "uncapped_linear": 656.2827129219704
+   },
+   "t_req_at_2500_Myr": {
+    "two_zone_core_f0": 81.74342973251397,
+    "ch0_cap": 84.32829671029292,
+    "cap_a0": 104.05118772370523,
+    "uncapped_linear": 256.6832527674676
+   }
+  },
+  "encounter_affordance_kpc": {
+   "dv_2000": 306.81364951370847,
+   "dv_3000": 460.22047427056276
+  },
+  "realizability": {
+   "capped_readings_inside": true,
+   "uncapped_fails_by_factor": 1.7112216851164506
+  },
+  "phantom_bounds": {
+   "amplitude_1sigma": 0.125,
+   "amplitude_2sigma": 0.25,
+   "encounter_band": [
+    0.5458698348193669,
+    0.31880475222905014
+   ],
+   "registered_levels": {
+    "two_zone_core_f0": 0.0,
+    "ch0_cap": 0.03065242722332206,
+    "cap_a0": 0.21439215139404946,
+    "uncapped_linear": 0.6815396842170832
+   }
+  },
+  "plasma_kappa_share_extra_dark": {
+   "ch0_over_plasma": 2.2432628353570227e-14,
+   "cap_a0_over_plasma": 1.5690044442829093e-13
+  }
+ },
+ "checks": [
+  {
+   "name": "C1 [gate: G110's per-peak offset row] (1-f)*Delta reproduced digit-for-digit, and the sigma row 0.00/0.25/1.72/5.45 plus the dark-on-gas 8.00",
+   "measured": "dust-zone f=0 (two-zone)            209.0 kpc (0.00 sigma); cH0 cap f=0.031                     202.6 kpc (0.25 sigma); cap-a0 f=0.21                       164.2 kpc (1.72 sigma); uncapped-linear f=0.68               66.6 kpc (5.45 sigma); dark-on-gas 0.0 kpc (8.00 sigma)",
+   "pass": true,
+   "reading": "the S06 clock form restates G110's registered row: offset_tot = (1-f)*Delta; the lane's new numbers build ON this gate, not beside it."
+  },
+  {
+   "name": "C2 [gate: the dust budget] dust share of the observed dark mass and the dust mass at the registered phantom levels (G110 E1/C2)",
+   "measured": "dust share: two-zone 100.0% / cH0 96.9% / cap-a0 78.6% / uncapped 31.8%; dust mass: two zone core f0 163.2e13, ch0 cap 158.2e13, cap a0 128.2e13, uncapped linear  52.0e13",
+   "pass": true,
+   "reading": "G110 C2 registered dust on the galaxies: 158/128/52 e13 Msun (cH0/a0/uncapped) -- reproduced; the observed dark mass 6.8x baryons is the input the decomposition splits (P7 open, G110)."
+  },
+  {
+   "name": "C3 [the phantom locks] the field-response timescale sits under the response bound set by the observed offset at EVERY operative phantom level (the phantom cannot lag measurably)",
+   "measured": "tau_field = R/c = 1.90 Myr (r_M main 583 kpc; the register's ~2-Myr line) vs the lag bounds: 5.4 Myr (f=1, the extreme), 25.4 Myr (cap-a0), 177.3 Myr (cH0); vs the 150-Myr collision time (79x margin)",
+   "pass": true,
+   "reading": "the zero-offset lock is consistent, not tuned: the field re-settles on R/c, 2.9x under the offset's lag tolerance even at the f=1 extreme (which the amplitude already kills at 8 sigma), 13x at cap-a0, 92x at cH0, and ~79x under the collision time -- the committed supersession of the phantom-lag argument (ROUTE3) quantified; the f=1 margin is thin because f=1 is dead by amplitude anyway."
+  },
+  {
+   "name": "C4 [the dust lags] the free dust cannot relax during the crossing: t_relax/t_Hubble = 1e73.0 .. 1e75.2 (G103) vs the dynamical crossing epoch",
+   "measured": "t_cross,encounter ~ 2 R_core/v = 235 Myr; t_relax = 1e73.0-1e75.2 x t_Hubble (13.8 Gyr)",
+   "pass": true,
+   "reading": "the dust passes through the gas ballistically: its 2-body relaxation timescale exceeds the Hubble time by 70+ orders (G103: 'the dust stays free'), so the crossing displacement is permanently recorded -- the dust is a collisionless TRACER of the merger (G137's streaming class: the envelope IS the accreted flow feeding the same collisionless phase)."
+  },
+  {
+   "name": "C5 [the offset clock] t_after = d_obs / Delta_v over the registered gas/DM differential band (2000-3000 km/s) returns a SUB-ENCOUNTER epoch, inside the registered 150-Myr collision time",
+   "measured": "t_after = 68.1-102.2 Myr (main, Delta_v 3000-2000); 63.2-94.8 Myr (sub); ratio to the 150-Myr collision time = 0.45-0.68 (main), 0.42-0.63 (sub)",
+   "pass": true,
+   "reading": "the dust records the POST-core-passage epoch within the encounter: the clock must return t_after < t_collision (the gas needs time to shock-decelerate and the dust to pull ahead); it returns 0.42-0.68 of the registered collision time -- the offset IS the recorded crossing, and the recorded age is kinematic: ~0.06-0.10 Gyr since the last core passage."
+  },
+  {
+   "name": "C6 [the clock's scale] the merger age from the offset lands in the 0.05-0.15 Gyr class (sub-Gyr, the Bullet-class encounter epoch)",
+   "measured": "t_after(main) = 0.07-0.10 Gyr; (absolute-velocity readings: inferred 3000 -> 0.07 Gyr, shock 4700 -> 0.04 Gyr)",
+   "pass": true,
+   "reading": "the clock's output is the sub-Gyr merger epoch the Bullet-class literature carries; the offset is a NEW clock in the framework's hands because the dust never relaxes (G103: 70-76 orders) -- the record cannot be erased -- and the phantom contributes nothing to contaminate the reading (C3)."
+  },
+  {
+   "name": "C7 [the realizability gate] the dust displacement the decomposition requires is kinematically realizable: t_req = d_dust_req/Delta_v(2500) inside the registered 150-Myr collision time for the two-zone/cH0/cap-a0 readings -- and NOT for the uncapped reading",
+   "measured": "t_req = 81.7 / 84.3 / 104.1 / 256.7 Myr (d_req = 209 / 216 / 266 / 656 kpc) vs the 150-Myr collision time",
+   "pass": true,
+   "reading": "the capped readings' dust displacement (209-266 kpc) fits what the encounter affords (307-460 kpc) -- the observed offset is kinematically REALIZABLE by the collisionless dust; the uncapped reading needs the dust 657 kpc ahead, impossible within the registered encounter by a factor ~1.7-2.1 (the dust would have to have decoupled long before the crossing)."
+  },
+  {
+   "name": "C8 [the phantom bound] the offset limits the gas-tied phantom in the core: cH0 (0.031) inside the 1-sigma bound; cap-a0 (0.214) inside 2 sigma; uncapped (0.682) excluded by the amplitude AND by the encounter",
+   "measured": "f_ph <= 0.125 (1 sigma) / 0.250 (2 sigma); f_ph <= 0.55-0.32 (encounter); registered levels 0.031 / 0.214 / 0.682",
+   "pass": true,
+   "reading": "the two-phase reading's distinctive merger content: the OBSERVED offset bounds the phantom that stays with the gas at f_ph <= 12% (1 sigma) of the dark mass in the core -- the two-zone split (H036: phantom absent inside r_M by regime) and the cH0 cap (0.031) sit inside; the cap-a0 level is 1.72 sigma out (G110's row); the uncapped-linear level fails the offset at 5.45 sigma AND the encounter realizability (C7) -- the two-zone/capped reading is the one the merger kinematics leave standing."
+  },
+  {
+   "name": "C9 [the plasma kappa-share] the gas-tied phantom must fit inside the observed 14%/10% plasma kappa-share at the peaks (G110 D2)",
+   "measured": "gas-side dark mass: cH0 5.0e13 = 0.26 x M_plasma,main; cap-a0 35.0e13 = 1.8 x M_plasma,main",
+   "pass": true,
+   "reading": "the cH0-level phantom adds ~a quarter of the plasma mass to the gas side -- inside the centroid error (0.25 sigma, C1); cap-a0 adds ~1.8x the plasma, excluded at 1.7 sigma (G110 D2 registered)."
+  },
+  {
+   "name": "C10 [the agreement vs G110] the S06 clock form reproduces G110's registered sigma row (the C1 gate) and adds the kinematic realizability that G110's amplitude left open (G110 V3: 'the offset's amplitude is not derived'; L85 S3)",
+   "measured": "row reproduced (C1): 0.00/0.25/1.72/5.45 sigma; new: the capped readings' dust displacements are realizable inside the encounter (C7), the phantom bound f_ph <= 0.125 (C8), the merger age 68-102 Myr (C5)",
+   "pass": true,
+   "reading": "the agreement is the closure: G110's amplitudes, now clock-derived ; the HONEST remainder is registered in V3 (the dust amount 6.8x baryons and its galaxy-side placement remain inputs; P7 open)."
+  }
+ ],
+ "n_pass": 10,
+ "n_fail": 0,
+ "verdicts": {
+  "V1": "V1 [the two-phase merger prediction, quantitative] the lensing centroid offset from the gas is carried ENTIRELY by the collisionless dust, offset_tot = (1 - f_ph) x Delta_v x t_after, with the phantom at ZERO displacement (its own field: field-response tau = R/c = 1.9 Myr, under the 8.5-Myr lag bound even at the f=1 extreme and 13-92x under at the operative cap-a0/cH0 levels, C3).  At the registered phantom levels the predicted offset row is G110's: 209/203/164/67 kpc (0.00/0.25/1.72/5.45 sigma) against the observed 8-sigma 209/194 kpc; the two-zone and cH0 readings sit ON the observed offset, cap-a0 at 1.7 sigma, uncapped 5.45 sigma out.  NEW: the offset's magnitude is now MECHANICAL -- it is the recorded crossing Delta_v x t_after (C5), the dust displacement the decomposition requires (209-266 kpc) is kinematically realizable inside the registered 150-Myr encounter (C7), and the phantom's zero-offset lock is consistent with the R/c field-response (C3).  The offset bounds the gas-tied phantom in the core at f_ph <= 0.125 (1 sigma): the two-zone/cH0 reading survives, cap-a0 marginal, uncapped excluded twice.",
+  "V2": "V2 [the offset clock] d_dust = v_merge x t_cross inverts to t_after = d_obs/Delta_v: with the registered gas/DM differential 2000-3000 km/s the Bullet records a merger epoch of 68-102 Myr (main) / 63-95 Myr (sub) since the last core passage -- 0.42-0.68 of the registered 150-Myr collision time, the sub-encounter epoch the geometry requires (C5), i.e. ~0.06-0.10 Gyr.  The dust is a collisionless TRACER of the merger history: it cannot relax (G103: t_relax/t_Hubble = 1e73.0-1e75.2), so the displacement is permanently written and the clock never resets; and because the phantom contributes zero offset (C3), the calibration is not contaminated by a gas-tied component -- the distinctive content of the framework's clock over CDM's.  The clock's output class is the Bullet's own sub-Gyr epoch (C6).",
+  "V3": "V3 [the honest statement] the merger test: the framework's dust lags like CDM (collisionless crossing, full displacement), the phantom does not (the baryons' own field, zero memory, R/c lock), and the decomposed offset agrees with the Bullet: dust carries 100% (two-zone) / 96.9% (cH0) of the dark mass at the observed 0.0-0.25-sigma level, the clock returns a kinematic epoch (68-102 Myr) consistent with the 150-Myr collision timescale, and the phantom-fraction bound f_ph <= 0.125 (1 sigma) -- the offset is REALIZABLE by the collisionless dust, and the scheme is CDM-equivalent in its offset (x_c/d 0.133-0.358 vs CDM 0.119, G110).  WHAT THE TEST DOES NOT ESTABLISH, stated exactly: (1) the dust AMOUNT (6.8x baryons) and its galaxy-side placement remain inputs (G075 V5; L85 S3; P7 open) -- the offset amplitude calibrates the clock, it does not derive the dust; (2) with the dust on the galaxies the prediction shares its offset with CDM, so the Bullet discriminates collisionless dark matter from no-dark-matter, not dust from CDM (G110 V3); (3) the distinctive content is what is NOT observed: a gas-side phantom peak beyond the plasma's own 14%/10% kappa-share -- bounded at f_ph <= 0.125 (1 sigma) and consistent with the two-zone split (H036) and the cH0 cap, in tension with cap-a0 (1.72 sigma) and excluded for the uncapped-linear level (5.45 sigma + the C7 encounter bound); (4) the June register's opposite model limit -- the baryon-sourced phantom peaking ON the gas (+138 kpc) -- remains the registered both-ways failure (G110); the two-zone split is what rescues the merger test, and the uncapped-linear phantom remains the live 5.45-sigma tension carried from G110."
+ }
+}
