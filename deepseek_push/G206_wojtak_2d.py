@@ -322,7 +322,8 @@ def fit(ps, mode, x0=None, niter=500, xatol=1e-4, fatol=1e-3, s_amp=None):
         # basin); keep the better of the two.
         starts = [np.array(x0, float)]
         gs = grid_seed(ps, "free")
-        if not any(np.allclose(gs, s, atol=1e-4) for s in starts):
+        if not any(len(gs) == len(s) and np.allclose(gs, s, atol=1e-4)
+                   for s in starts):
             starts.append(gs)
         best = None
         for s0 in starts:
@@ -354,12 +355,6 @@ def kap_fit(R, V, nb=12):
     A = math.exp(c)
     return (lambda Rr: A * np.power(np.asarray(Rr, float), p),
             dict(A_km=A, p=p, nbins_used=len(cs)))
-
-
-def win_amplitude(r_a):
-    """A(r_a) = <r^2/(r_a^2+r^2)>_window so that beta_win = b_inf * A(r_a)."""
-    rr = np.geomspace(2.0, 5.0, 40)
-    return float(np.mean(rr * rr / (r_a * r_a + rr * rr)))
 
 
 def profile_sigma(ps, x0, wgrid=None, niter=60, fatol=2e-2):

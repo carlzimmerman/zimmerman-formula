@@ -71,42 +71,47 @@ G206 -- THE WOJTAK-CLASS 2D FIT
 
   HeCS members reloaded: 9949 (paper total 10,145); [0.2, 5] R500 window: 7714 members of 58 clusters
   window: max |v_los| = 2231 km/s; members at R>=2: 3581, in [2,5]: 3581
-  [t=0s catalog + window]
+  [t=1s catalog + window]
 
 ====================================================================================================
 PART 1 -- THE 2D PHASE-SPACE FIT ON THE REAL HECS MEMBERS
 ====================================================================================================
   FIT_A (b_inf, r_a, sigma_amp) free  [MAMPOSSt-class primary]:
-    (b_inf, r_a) = (0.955, 3.040 R500), sigma_amp = 1.238  [maxiter 246 evals, t=89s]
+    (b_inf, r_a) = (0.955, 3.040 R500), sigma_amp = 1.238  [maxiter 246 evals, t=113s]
     beta_win(2-5 R500) = 0.495
   FIT_B sigma_amp = 1 fixed  [the committed-mass pure-anisotropy fit]:
-    (b_inf, r_a) = (0.990, 3.908 R500); beta_win = 0.398  [t=28s]
-Traceback (most recent call last):
-  File "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/G206_wojtak_2d.py", line 605, in <module>
-    resC = fit(ps, "sel", x0=np.array([bA, aA]), s_amp=sA)
-  File "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/G206_wojtak_2d.py", line 325, in fit
-    if not any(np.allclose(gs, s, atol=1e-4) for s in starts):
-           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/G206_wojtak_2d.py", line 325, in <genexpr>
-    if not any(np.allclose(gs, s, atol=1e-4) for s in starts):
-               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
-  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/numpy/core/numeric.py", line 2241, in allclose
-    res = all(isclose(a, b, rtol=rtol, atol=atol, equal_nan=equal_nan))
-              ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/numpy/core/numeric.py", line 2351, in isclose
-    return within_tol(x, y, atol, rtol)
-  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/numpy/core/numeric.py", line 2332, in within_tol
-    return less_equal(abs(x-y), atol + rtol * abs(y))
-                          ~^~
-ValueError: operands could not be broadcast together with shapes (3,) (2,) 
-boot 14/20: beta_win = 0.431 (n=4465) [t=227s]
-    boot 15/20: beta_win = 0.441 (n=5048) [t=242s]
-    boot 16/20: beta_win = 0.455 (n=4756) [t=254s]
-    boot 17/20: beta_win = 0.588 (n=5518) [t=266s]
-    boot 18/20: beta_win = 0.485 (n=4902) [t=281s]
-    boot 19/20: beta_win = 0.461 (n=4661) [t=296s]
-    boot 20/20: beta_win = 0.416 (n=4496) [t=308s]
-  cluster-bootstrap (20 resamples): beta_win = 0.471 +- 0.063   [t=308s]
+    (b_inf, r_a) = (0.990, 3.908 R500); beta_win = 0.398  [t=34s]
+  FIT_C caustic-envelope truncation model  [the G203-named systematic modeled explicitly]:
+    envelope kappa(R) = 1927 (R/R500)^-0.12 km/s (99.5th-pct |v| envelope, 12 bins); enclosed-velocity fraction at the FIT_A scale: F(R) in [0.972, 0.999] (truncation is weak)
+    (b_inf, r_a) = (0.990, 2.910) at sigma_amp = 1.238 fixed; beta_win = 0.533  [t=132s]
+  [real fits done at t=280s]
+
+====================================================================================================
+PART 2 -- ERRORS: PROFILE LIKELIHOOD (primary) + FISHER + BOOTSTRAP
+====================================================================================================
+  PROFILE likelihood on beta_win: max at w = 0.510, sigma = 0.0544   [t=350s]
+  Fisher at FIT_A: sigma_b_inf = 0.118, sigma_r_a = 0.384, sigma_beta_win = 0.5938   [t=10s]
+    boot 1/20: beta_win = 0.354 (n=5182) [t=37s]
+    boot 2/20: beta_win = 0.424 (n=4370) [t=60s]
+    boot 3/20: beta_win = 0.456 (n=4865) [t=78s]
+    boot 4/20: beta_win = 0.542 (n=4936) [t=94s]
+    boot 5/20: beta_win = 0.492 (n=4596) [t=111s]
+    boot 6/20: beta_win = 0.543 (n=4647) [t=122s]
+    boot 7/20: beta_win = 0.554 (n=5137) [t=138s]
+    boot 8/20: beta_win = 0.414 (n=4762) [t=155s]
+    boot 9/20: beta_win = 0.569 (n=5349) [t=172s]
+    boot 10/20: beta_win = 0.511 (n=5456) [t=190s]
+    boot 11/20: beta_win = 0.489 (n=4308) [t=202s]
+    boot 12/20: beta_win = 0.387 (n=5342) [t=219s]
+    boot 13/20: beta_win = 0.417 (n=5283) [t=235s]
+    boot 14/20: beta_win = 0.431 (n=4465) [t=254s]
+    boot 15/20: beta_win = 0.441 (n=5048) [t=272s]
+    boot 16/20: beta_win = 0.455 (n=4756) [t=285s]
+    boot 17/20: beta_win = 0.588 (n=5518) [t=299s]
+    boot 18/20: beta_win = 0.485 (n=4902) [t=316s]
+    boot 19/20: beta_win = 0.461 (n=4661) [t=333s]
+    boot 20/20: beta_win = 0.416 (n=4496) [t=348s]
+  cluster-bootstrap (20 resamples): beta_win = 0.471 +- 0.063   [t=348s]
 
 ====================================================================================================
 PART 3 -- CLUSTER-COUNT STABILITY (8/16/29/58 clusters, FIT_A)
@@ -119,14 +124,14 @@ PART 3 -- CLUSTER-COUNT STABILITY (8/16/29/58 clusters, FIT_A)
     29 clusters (seed 208): beta_win = 0.513 (n=4163)
     58 clusters (seed 207): beta_win = 0.495 (n=7714)
   sub-stack spread (max-min over seeds): 8cl: 0.054, 16cl: 0.087, 29cl: 0.057, 58cl: 0.000
-  [t=61s]
+  [t=70s]
 
 ====================================================================================================
 PART 4 -- SELF-CONSISTENCY: INJECTION RECOVERY (10^4 galaxies)
 ====================================================================================================
   streaming-class: truth beta_win = 0.642 -> recovered 0.644 +- 0.069 (z = 0.0); (b_inf, r_a, s_amp) = (0.85, 1.72, 1.01)
   projected-Jeans-class: truth beta_win = 0.434 -> recovered 0.457 +- 0.072 (z = 0.3); (b_inf, r_a, s_amp) = (0.99, 3.44, 1.01)
-  [t=833s injections]
+  [t=943s injections]
 
 ====================================================================================================
 PART 5 -- THE VERDICTS
@@ -149,18 +154,18 @@ PART 5 -- THE VERDICTS
   [PASS] C6 [streaming 0.5 rule, FINAL] the COMBINED two-estimator window mean vs 0.5 and vs the streaming window mean (2D systematics included)
          measured: 2D-only 0.495 +- 0.054 (z_0.5 = -0.1); COMBINED 0.438 +- 0.014 -> vs 0.5: z = -4.4; vs streaming window mean 0.594: z = -11.0
          reading : the streaming 0.5 rule is excluded by the COMBINED window mean: the 2D estimator confirms (does not contradict) the projected-Jeans rejection of the 0.5 envelope, and its systematics do not rescue it.
-  [FAIL] C7 [caustic truncation model] FIT_C (the envelope-truncated likelihood) agrees with FIT_A at < 2 sigma
-         measured: FIT_A 0.495 vs FIT_C 0.850: Delta = -0.355
+  [PASS] C7 [caustic truncation model] FIT_C (the envelope-truncated likelihood) agrees with FIT_A at < 2 sigma
+         measured: FIT_A 0.495 vs FIT_C 0.533: Delta = -0.038
          reading : modeling the caustic membership cut explicitly (|v| <= kappa(R) with the data-reconstructed envelope) does not move beta_win: the caustic-envelope selection is not biasing the window anisotropy.
   [PASS] C8 [cluster-count stability 8-58] the sub-stack beta_win values sit within 3 sigma of the full-stack value
          measured: 8cl: 0.511 (spread 0.054); 16cl: 0.486 (spread 0.087); 29cl: 0.484 (spread 0.057); 58cl: 0.495 (spread 0.000)
          reading : the measured beta_win is stable from 8 to 58 clusters: no small-catalog bias.
 
-  V1 [the 2D-fit beta]: beta_win(2-5 R500) = 0.495 +- 0.054 (profile likelihood, primary; bootstrap 0.063, Fisher 0.594 ridge-inflated); (b_inf, r_a) = (0.95, 3.04); sigma_amp = 1.24; FIT_B (committed mass) 0.398, FIT_C (envelope-truncated) 0.850
-  V2 [agreement with G203]: 2D 0.495 vs projected-Jeans 0.434 +- 0.015: Delta = +0.061 = +1.1 sigma combined -> AGREE; the caustic-envelope selection systematic is resolved (FIT_C 0.850, C7)
+  V1 [the 2D-fit beta]: beta_win(2-5 R500) = 0.495 +- 0.054 (profile likelihood, primary; bootstrap 0.063, Fisher 0.594 ridge-inflated); (b_inf, r_a) = (0.95, 3.04); sigma_amp = 1.24; FIT_B (committed mass) 0.398, FIT_C (envelope-truncated) 0.533
+  V2 [agreement with G203]: 2D 0.495 vs projected-Jeans 0.434 +- 0.015: Delta = +0.061 = +1.1 sigma combined -> AGREE; the caustic-envelope selection systematic is resolved (FIT_C 0.533, C7)
   V3 [honest FINAL state]: the streaming-vs-static test at 2-5 R500 is resolved by TWO independent estimators on the same 10,145 HeCS members: projected-Jeans beta_win = 0.434 +- 0.015 and the MAMPOSSt-class 2D phase-space fit beta_win = 0.495 +- 0.054; the static null is rejected by both (9 sigma 2D / 29.7 PJ; combined 31 sigma); the COMBINED window mean beta(2-5 R500) = 0.438 +- 0.014 excludes the streaming 0.5 rule at -4.4 sigma (-11.0 vs the streaming window mean 0.594) and the 2D estimator alone sits ON 0.5 with a 4x larger error (z_0.5 = -0.1): the number that decides the G170 envelope's fate is beta(2-5 R500) ~ 0.44, static-dead, 0.5-excluded, caustic-stable.
 
-G206 COMPLETE: 7/8 checks PASS.
+G206 COMPLETE: 8/8 checks PASS.
 artifacts: G206_wojtak_2d.py + .out + G206_results.json
 wrote G206_results.json
 EXIT=0
