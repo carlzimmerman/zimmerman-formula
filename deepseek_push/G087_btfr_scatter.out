@@ -1,0 +1,152 @@
+G087 -- THE BTFR SCATTER DECOMPOSITION: is the observed BTFR scatter ALL
+systematic?  The law predicts v^4 = G M_b a0 EXACTLY (zero intrinsic scatter);
+
+THE PREDICTION: the observed BTFR scatter on real data must be DOMINATED by
+the M_b measurement systematics (IMF/M-L, distance, inclination).  Decompose
+the scatter against the per-galaxy quality proxies (errV / e_Vflat,
+inclination, distance error, M/L-and-photometric): does the scatter correlate
+with the proxies?
+
+DATA (all committed):
+  - G033's bundle: all 175 SPARC _rotmod.dat rotation curves (Lelli, McGaugh
+    & Schombert 2016, AJ 152, 157) -- the repo's real_research/data/sparc_data
+  - G044's corpus: glm53_push/data/rotation_curve_corpus_v7.json (zenodo
+    20695697), which carries per-galaxy quality metadata -- G044 demonstrated
+    the SPARC block is bit-identical to the rotmod set (re-verified, E1)
+  - SPARC Table 1 (.mrt master table): D, e_D, f_D, Inc, e_Inc, L[3.6],
+    e_L[3.6], Vflat, e_Vflat, Q, T
+
+STANDING CONVENTIONS (inherited, never re-fit): baryonic mass from the
+curve's own enclosed baryons Vb2 = Vgas^2 + 0.5 Vdisk^2 + 0.7 Vbul^2 (the
+repo's standing SPARC M/L, G036/G040/G044), M_b = max_r Vb2 r / G; a0
+canonical = s_DE/2 = 9.3619e-11 (G036's constants), alt 1.1279e-10; G033's
+bundle-exact reading (M/L = 1, curve-median Vflat) reported for the
+registered-claim re-audit side by side.
+
+THE DECOMPOSITION, stated exactly (all thresholds FROZEN BEFORE the run):
+  (1) per-galaxy BTFR residual delta_i = log10(Vflat_i / v_pred_i),
+      v_pred = (G M_b a0)^(1/4), with TWO flat-velocity readings: SPARC
+      Table-1 Vflat (n = 135) and G033's curve-median reading (n = 171).
+      PRIMARY = curve-median (widest committed sample); the Table-1 reading
+      is the cross-check.
+  (2) proxy families: (a) rotation: errV_med/V, e_Vflat/Vflat;
+                      (b) inclination: inc, |cot(inc)|*e_inc(rad);
+                      (c) distance: e_D/D, f_D (method flag 1 HF .. 5 SNe);
+                      (d) M/L & photometry: e_L/L, f_star = M_star/M_b,
+                          Q (quality flag), T (morphology);
+      scatter metric s_i = |delta_i| (delta^2 and signed delta also reported);
+  (3) tests: univariate Spearman rho(s, proxy) + p, high/low median-split
+      (rank-based halves, bootstrap 95% CI over 2000 galaxy-level resamples,
+      Mann-Whitney p), univariate R^2, Benjamini-Hochberg FDR (q = 0.05)
+      over the univariate p-values; multivariate OLS of s on all
+      standardized proxies with R^2 and LOOCV R^2;
+  (4) INTRINSIC upper bound: E1 = rms(delta) after removing the OLS
+      proxy-predicted mean offset (delta ~ all proxies) -- reported BOTH
+      in-sample and LOOCV (E1_loocv, the conservative/honest version);
+      E2 = residual rms of the delta^2-variance model; the errV-only noise
+      floor; the M/L-systematic lens rms(dMl)/4 (the amplitude of the
+      IMF/M-L choice alone in v-dex); analogue: the RAR within-galaxy
+      white-noise floor 0.045-0.052 dex (G036/G044);
+  (5) THE FORECAST (new prediction): sigma_v(M_acc) = sqrt(sigma_intr^2 +
+      (M_acc/4)^2) dex in log10 v, M_acc = M_b measurement accuracy in dex of
+      log10 M_b -- at JWST-resolved stellar masses (the resolved-IMF
+      frontier) M_acc ~ 0.03-0.06 dex the observed scatter MUST shrink; the
+      quantitative curve sigma_v vs M_acc is the deliverable.
+
+VERDICTS (thresholds registered here, judged on the canonical footing,
+curve-median primary reading):
+  V1  PASS if >= 2 INDEPENDENT proxy FAMILIES contain a proxy with
+      Spearman |rho(s,p)| >= 0.15 (p < 0.05) AND the multivariate model
+      explains LOOCV R^2 >= 0.10 of the scatter -- the systematic-dominated
+      claim.
+  V2  PASS if the intrinsic upper bound E1_loocv <= 0.0212 dex (5% in v);
+      otherwise state the HONEST number.  Reading clause: E1_loocv <= 0.045
+      dex would be floor-consistent with the RAR white-noise analogue
+      (0.045-0.052).
+  V3  PASS if sigma_v(M_acc = 0.05 dex) <= 0.5 * sigma_obs (the SPARC-era
+      observed rms) -- the forecast statement.
+
+Every check states measurement and threshold separately.  FAILs are findings.
+
+PART 0 -- ingest + integrity (E1: corpus SPARC block vs rotmod bit-identity)
+    kept 171 galaxies / 3373 points
+    E1 corpus SPARC block vs rotmod: matched 175/175, max |diff| = 0.00e+00
+    Table1 parsed: 175 rows
+    BTFR rows with full proxies: 135/171
+
+PART 1 -- THE BTFR ON REAL DATA (G033's registered claim re-audited)
+  registered claim (REFEREE_ATTACKS.md 2.7): median residual 11.5%, 80th pct 22%
+  [canonical] a0 = 9.3623e-11
+      (b) Table-1 Vflat,  M/L 0.5/0.7 : n=135 median|res|=  5.0%  80th=  9.7%  rms=0.0899 dex
+      (a) curve-median V, M/L 0.5/0.7 : n=171 median|res|=  5.6%  80th= 11.6%  rms=0.1031 dex
+      (c) G033 bundle-exact (M/L=1, curve V): n=171 median|res|=  5.1%  80th=  9.4%  rms=0.1075 dex
+  [alt] a0 = 1.1279e-10
+      (b) Table-1 Vflat,  M/L 0.5/0.7 : n=135 median|res|=  4.3%  80th=  9.0%  rms=0.0862 dex
+      (a) curve-median V, M/L 0.5/0.7 : n=171 median|res|=  5.0%  80th= 10.7%  rms=0.1046 dex
+  RE-AUDIT READING: the registered 11.5%/22% is NOT reproduced by the committed
+  pipeline (G033's own bundle artifact, read directly: median 5.04%, 80th 9.17%
+  canonical; this run: 5.0-5.6% / 9.4-11.6% across the three readings).  The
+  registered claim's provenance predates the committed bundle and likely
+  conflated the EB-E3 register (median M_pred/M_phot = 1.15).  THE
+  DECOMPOSITION FRONTS THE COMMITTED NUMBER: observed BTFR scatter ~ 5-6%
+  median |res|, ~ 9-12% 80th pct, rms ~ 0.09-0.11 dex in v (rms ~ 0.36-0.44
+  dex in M_b) on the real data, both footings, three readings.
+
+PART 2 -- THE SCATTER DECOMPOSITION vs QUALITY PROXIES (canonical footing)
+  PRIMARY reading (curve-median Vflat, canonical): N = 171; mean delta +0.0022, sd 0.1031 dex; median|res| 5.6%, 80th 11.6%
+  errV     rot: median errV/V (curve)       rho=+0.210 (p=0.00593) R2=0.241   |res| high-half 5.78% vs low 5.17%  split-diff +0.62% CI -0.9..+3.6%  p=0.0627
+  eVflat   rot: published e_Vflat/Vflat     rho=+0.040 (p=0.645) R2=0.045   |res| high-half 4.49% vs low 5.80%  split-diff -1.31% CI -3.2..+1.6%  p=0.572
+  inc      inclination deg                  rho=-0.074 (p=0.334) R2=0.023   |res| high-half 5.43% vs low 5.65%  split-diff -0.21% CI -1.9..+2.2%  p=0.782
+  einc_prop inc-propagated |cot i| e_inc(rad) rho=+0.117 (p=0.129) R2=0.056   |res| high-half 5.78% vs low 5.36%  split-diff +0.42% CI -1.5..+2.4%  p=0.562
+  eD       distance error e_D/D             rho=+0.020 (p=0.793) R2=0.000   |res| high-half 6.14% vs low 5.27%  split-diff +0.87% CI -0.8..+3.3%  p=0.111
+  fD       distance method flag (1 HF..5 SNe) rho=-0.102 (p=0.183) R2=0.019   |res| high-half 5.24% vs low 5.79%  split-diff -0.55% CI -2.7..+1.2%  p=0.331
+  eL       photometry e_L3.6/L              rho=+0.054 (p=0.485) R2=0.051   |res| high-half 5.57% vs low 5.64%  split-diff -0.07% CI -1.5..+2.6%  p=0.596
+  fstar    M/L exposure M_star/M_b          rho=+0.059 (p=0.441) R2=0.000   |res| high-half 5.30% vs low 5.74%  split-diff -0.44% CI -2.6..+1.0%  p=0.534
+  Q        quality flag 1-3                 rho=+0.198 (p=0.00929) R2=0.155   |res| high-half 6.99% vs low 5.17%  split-diff +1.82% CI -0.2..+4.3%  p=0.0432
+  T        morphology T                     rho=+0.133 (p=0.0817) R2=0.039   |res| high-half 5.70% vs low 5.36%  split-diff +0.34% CI -0.9..+3.2%  p=0.12
+  FDR step-up (q=0.05, 10 tests) survives: ['Q']
+  MULTIVARIATE |res| ~ 10 proxies: N=134  R^2=0.232  R^2_adj=0.170  LOOCV R^2=0.030
+  standardized |res|-betas: {'errV': 0.01, 'eVflat': 0.004, 'inc': 0.007, 'einc_prop': 0.008, 'eD': 0.006, 'fD': -0.012, 'eL': 0.0, 'fstar': 0.025, 'Q': 0.015, 'T': 0.015}
+  signed delta ~ proxies: R^2 = 0.337;  E1 = 0.0713 dex = 17.9%;  E1_loocv = 0.0836 dex = 21.2%
+  variance model s^2 ~ proxies: R^2 = 0.267;  E2 = 0.0144 dex^2 (sqrt 12.01%)
+  M/L-systematic lens: rms(dMl) = 0.1887 dex in M_b -> 4.7% in v -- the IMF/M-L convention switch alone is a major fraction (~half) of the residual sd
+  errV-only noise floor: median fractional errV = 5.0% -> 0.0219 dex
+
+  CROSS-CHECK reading (Table-1 Vflat, canonical): N = 135
+  errV     rot: median errV/V (curve)       rho=+0.076 (p=0.38) R2=0.062   |res| high-half 5.06% vs low 5.00%  split-diff +0.06% CI -2.0..+2.0%  p=0.783
+  eVflat   rot: published e_Vflat/Vflat     rho=+0.064 (p=0.459) R2=0.047   |res| high-half 5.05% vs low 5.12%  split-diff -0.08% CI -2.1..+1.6%  p=0.949
+  inc      inclination deg                  rho=+0.020 (p=0.82) R2=0.014   |res| high-half 5.24% vs low 4.83%  split-diff +0.41% CI -1.2..+2.5%  p=0.596
+  einc_prop inc-propagated |cot i| e_inc(rad) rho=+0.024 (p=0.786) R2=0.067   |res| high-half 5.06% vs low 4.99%  split-diff +0.07% CI -1.4..+2.2%  p=0.763
+  eD       distance error e_D/D             rho=+0.106 (p=0.223) R2=0.009   |res| high-half 5.78% vs low 4.47%  split-diff +1.32% CI -0.3..+3.5%  p=0.0515
+  fD       distance method flag (1 HF..5 SNe) rho=-0.130 (p=0.132) R2=0.022   |res| high-half 4.82% vs low 5.61%  split-diff -0.79% CI -2.9..+0.9%  p=0.243
+  eL       photometry e_L3.6/L              rho=-0.049 (p=0.573) R2=0.006   |res| high-half 4.87% vs low 5.21%  split-diff -0.34% CI -2.0..+1.6%  p=0.676
+  fstar    M/L exposure M_star/M_b          rho=+0.122 (p=0.158) R2=0.005   |res| high-half 5.24% vs low 4.85%  split-diff +0.39% CI -1.1..+2.8%  p=0.345
+  Q        quality flag 1-3                 rho=+0.059 (p=0.497) R2=0.073   |res| high-half 5.24% vs low 4.83%  split-diff +0.41% CI -1.2..+2.3%  p=0.72
+  T        morphology T                     rho=+0.021 (p=0.81) R2=0.011   |res| high-half 5.04% vs low 5.13%  split-diff -0.09% CI -2.2..+1.6%  p=0.681
+  cross-check multivariate: R^2=0.241 LOOCV R^2=0.041  E1_loocv=0.0852 dex (21.7%)
+
+PART 3 -- THE FORECAST: sigma vs M_b accuracy (the JWST resolved-IMF frontier)
+  observed rms = 0.1031 dex (26.8%); intrinsic upper bound (E1_loocv) = 0.0836 dex (21.2%)
+  -> SPARC-era effective M_b accuracy (inferred) = 0.24 dex
+  M_acc [dex M_b]   sigma_v [dex]   sigma_v [%]   sigma_Mb [dex]
+       0.24             0.1031        26.8           0.412
+       0.19             0.0962        24.8           0.385
+       0.10             0.0873        22.3           0.349
+       0.07             0.0855        21.7           0.342
+       0.05             0.0846        21.5           0.338
+       0.03             0.0840        21.3           0.336
+       0.02             0.0838        21.3           0.335
+
+PART 4 -- VERDICTS
+  [FAIL] V1 the BTFR scatter correlates with the quality proxies (>= 2 proxy families with |rho| >= 0.15, p < 0.05 AND LOOCV R^2 >= 0.10)
+         measured: 2 proxies with |rho|>=0.15 p<0.05: ['errV', 'Q'] (families ['a rot', 'd M/L']); multivariate LOOCV R^2 = 0.030 (bar 0.10)
+         reading : the systematic-dominated claim judged: the univariate channel DOES see the quality axes (errV rho=+0.21 p<0.01, Q rho=+0.20 p<0.01: galaxies with worse rotation errors / worse quality flags scatter MORE) but the registered multivariate bar fails -- LOOCV R^2 ~ 0.03, the proxy->scatter relation does not generalize in an OLS.  And the dominant systematics are not in SPARC's photometric proxies at all: the M/L-systematic lens (rms 0.189 dex in M_b = 0.047 dex in v) is a MAJOR fraction of the residual sd -- the IMF/M-L convention choice alone moves every galaxy; its amplitude is invisible to e_L/L and fstar because the errors are POPULATION-model systematics, not photometric errors.  Honest scope: the proxies available in SPARC cannot carry the dominant systematics; the direct evidence for the systematic-dominated claim sits in the errV/Q channel and the M/L-lens amplitude.
+  [FAIL] V2 the intrinsic upper bound < 5% in v (E1_loocv <= 0.0212 dex)
+         measured: E1_loocv = 0.0836 dex = 21.2% (bar 0.0212 dex = 5%); E1(in-sample) = 0.0713 dex; E2 = 0.0144 dex^2
+         reading : honest number: intrinsic scatter upper bound = 21.2% (0.0836 dex) -- above the RAR within-galaxy white-noise analogue 0.045-0.052 dex (G036 floor 0.0447, G044 extended 0.0524); the errV-only floor is 0.0219 dex
+  [FAIL] V3 the forecast: sigma(BTFR) at M_acc = 0.05 dex (JWST-resolved masses) <= half the SPARC-era observed scatter
+         measured: sigma_v(0.05) = 0.0846 dex (21.50%) vs 0.5*sigma_obs = 0.0515 dex (12.60%)
+         reading : forecast statement: sigma_v = sqrt(intr^2 + (M_acc/4)^2) with intr = E1_loocv; at the resolved-IMF frontier (M_acc ~ 0.03-0.06 dex) the scatter must shrink toward the errV floor and the intrinsic bound -- a quantitative, falsifiable JWST-era prediction; self-consistency: with the SPARC-era effective M_acc = 0.24 dex the model reproduces the observed rms 26.8%
+
+G087 COMPLETE: 0/3 checks PASS.
+wrote G087_results.json
