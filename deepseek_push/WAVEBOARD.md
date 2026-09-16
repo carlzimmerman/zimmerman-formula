@@ -1702,6 +1702,106 @@ point, the Abel cusp, the proton rung + its inverse, the Z^+1/2 exponent,
 the horizon-omega fixed point, the Gauss exponent chain, the thermal
 fixed point.
 
+## WAVE 32 (D-series, landed 8/8 -- the loop closes: 180 theorems, the particle section drafted, the residual budget fully assigned)
+D01 THE 2.55-KEV OBSERVING PROTOCOL 8/8 (a1c4db29c): the environmental
+switch made concrete -- frozen class (MW center/halo z* = +2.43, M31
++3.46, A1644 +94, Hydra A) vs the never-froze class (ALL 34 dSphs z* < 0,
+sigma 2.3-11.7 all below the 65 km/s floor); XRISM Resolve in operation
+(FWHM ~4.5-5 eV @6 keV -> ~3.3 eV @2.5443 keV) RESOLVES the phantom face
+and separates the 2.8-eV cold footing at 3.8x instrument FWHM; Athena
+X-IFU (<4 eV, late-2030s UNVERIFIED) resolves the 1.19-eV footing itself;
+the ARCHIVAL XMM/Chandra stack is the today-search; 1-Ms XRISM on the MW
+column reaches Gamma < 1.0e-30 /s (10x below the cosmic bound); the
+DECISION TREE pre-registered (T1 energy band, T2 width [1.2, 8.1] eV,
+T3 >= 3 sig, T4 UFD line kills the freeze map, T5 null tightens the
+bound): A on-band+width+UFD-absent = PARTICLE FACE CONFIRMED; B right
+energy wrong width = kinematics falsified; C UFD line = freeze map killed;
+D off-band = m/2 killed; E null = B02's bound improves. Runnable TODAY.
+D02 THE F_B-INVARIANT SECTOR 15/15 (674c2cb4d): the invariance audit
+12 rows -> 10 INVARIANT / 2 f_b-DEPENDENT: the invariant set = the
+per-object M_b-normalized laws (BTFR/12-decade, equipartition, dust law,
+T_X-ray, mass ladder, phantom rho, deep RAR, the line, the sqrt-2
+identity, the Omega_eq bound) -- a wrong f_b is INVISIBLE to every
+per-object fit; the f_b-DEPENDENT pair = the pie halo share (<s_b> =
+0.5411 f_b) and the cosmology budget; the f_b-sweep [0.01..0.99] leaves
+every invariant prediction bit-identical (max |delta| = 0.0 -- the symbol
+never enters the arithmetic); the robust core stands for ANY baryon
+fraction, and the deciding cosmic observables wait on it.
+D03 THE DUST-LAW INVERSION 14/14 (e92749bc3): the closed-form inversion
+log10(M/8e14) = (log10 c_dust - c0 - p log10(r/R500))/q with the precision
+= the law's own floor propagated: 0.287 dex (3-param) / 0.234 (13-param),
+two-radius averaging -> 0.203/0.166; THE CROSS-CHECK on the X-COP 12:
+median log10(M_dust-inv/M500) = -0.006 dex (UNBIASED), recovery pstdev
+0.176 dex (inside the floor band); the E11 26 groups invert to the
+committed masses (median -0.0001 dex); the Bullet budget closes exactly
+(6.8x baryons, ratio 1.0 to 1e-6); THE THIRD ZERO-PARAMETER MASS
+ESTIMATOR (after the T-law and the RAR), SZ-class at 0.176 dex, the
+cluster sector closing on its own masses at its residual floor.
+D04 THE COMPLETE RESIDUAL BUDGET 12/12 (af77ba275): ALL SIX AXES stacked
+on Var_tot = 0.1795^2 = 0.032213 dex^2: channel 0.0607 dex (11.4%),
+catalog seams 0.0325 (3.3%), M/L 0.0472 (6.9%), distance 0.021 (1.3%),
+zero-point offset 0.0646 (13.0%), the freeze net-of-channel 0.04%;
+axes+offset = 36.0%; + independently-measured intrinsic (G087 E1_loocv
+0.0836, clean SPARC core 0.081) = 57.7%; + the identified per-channel
+measurement excess (GC virial, dSph unfrozen, CL M500, GRP f_b) = 100.0%
+EXACTLY -- zero un-modeled remainder; THE TRUE INTRINSIC FLOOR =
+0.081-0.084 dex per object (the frozen population's equilibrium/assembly
+spread; no M/L, seam, or distance fix can beat it). The 0.1795-dex
+scatter is FULLY ASSIGNED.
+D05 THE PHANTOM RE-SETTLING CLOCK 6/6 (737d4b100): the three-timescale
+hierarchy in the Bullet: phantom at the LIGHT crossing tau_ph = 1.90 Myr;
+condensate at the SOUND response t_sound = sqrt 2 x t_dyn = 621 Myr (the
+B5/C01 second clock, ratio 1.414213562); baryonic gas at the shock
+crossing ~481 Myr; dust NEVER (1e73-1e75 t_H) -- the phantom re-attaches
+to the baryonic centroid ~253x BEFORE the gas re-conditions; the
+'PHANTOM-FIRST' ordering as the framework's distinctive merger signature
+(the OPPOSITE of CDM's slow dark re-attachment t_dark ~ t_dyn >= t_gas);
+THE FALSIFIER: any merger whose dark offset persists >= the gas's
+re-alignment kills the sourced-field reading; the Bullet does not fire it
+(its offset is dust-carried, f_ph <= 0.125); the discriminating
+observation = a merger caught between ~2 Myr and ~1e8 yr.
+D06 THE COSMIC-NOON CONDENSATION 13/13 (46899c574): the condensation
+TIMELINE map z*(sigma) with cosmic ages: cluster 600-992 km/s -> z* =
+85.8-236.3 (dark ages, 5-22 Myr), group 250 -> 14.1 (EoR), galaxy 119.2
+-> 2.426 (cosmic noon, 2.72 Gyr after BB, lookback 11.07 Gyr), dSph z* <
+0 (never condensed; floor 65 km/s); pre-freeze: no equilibrium phase (the
+occupation 10^-2.8e6 empty -- no phantom gas waits); THE ENERGETICS
+identity verified to 1.8e-16: E_bind = (1/2)G M_b^2/r_M = N_ph k_B T_b =
+M_b sigma^2 -- the halo binding energy is EXACTLY one k_B T_b per
+particle; the ratio L_tot/E_bind = L/N = 10.80-23.73 EXACTLY (the
+condensation's latent content is 11-24x the halo's binding energy: rigid
+by more than bound); the imprint: bias = 1 by construction, R(k) = 1
+plateau, the LSS is the post-condensation structure; the transition's own
+signature = the high-z BTFR break (G011/G080/G163, pre-registered);
+falsifiers: no BTFR break kills the identification; a free-streaming cut
+kills the coherent face. Condensed at cosmic noon, never melted.
+D07 THE DERIVATION LEDGER 44/44 (f80c9f7a8): INPUTS-FINAL: 6 core = 4
+measured {G, c, Omega_L, f_b} + 1 identity-pinned {a0 = c^2/(Z R_dS),
+C06: closure iff Z^2 = 32 pi/3, NO SLACK} + 1 derived {m = 5.09 keV} + 5
+ancillary + per-object M_b; THE DERIVED LEDGER: 14 rows (phantom,
+equipartition 1.11e-16, deep RAR, BTFR, 12-decade line, T-law, dust law
+with q derived -1/3 at 0.52 sig, pie, mass ladder, 2.55-keV line,
+0.558-Mpc cut, offset clock 68-102 Myr, sound-lag sqrt 2, freeze map),
+each tagged LEAN/CLOSED-FORM/MEASURED/DERIVED-WITHIN-ERROR/PENDING with
+its falsifier; THE RATIO: 14 derived identities / 6 inputs = 2.3 per
+input, 8/14 (57%) fully Lean-certified; CERTIFIED TOTALS: 126 + 54 =
+180 THEOREMS / 22 CERTIFICATES (C03/C08 caught IN-FLIGHT, C01+C02+C04+
+C05+C06+C07 read as landed); 1 rate permanently a bound; 1 registered
+decider (G156). The accounting the paper's introduction should state.
+D08 THE MNRAS PARTICLE SECTION 13/13 (6fa8bf8d9): MNRAS_PARTICLE_
+SECTION.md, section 4.4 per the G202 skeleton (between the cluster sector
+and the force-face): the claim (m = 5.09 +- 0.10, environment-blind 11/11
+rungs, the double-Z, the massless UFD rung), the line (2.5443 keV,
+sigma_E 1.19 eV, the b^-1 cusp, the UFD switch, the lifetime bound), the
+cut (0.558 Mpc, both P(k) faces, the deciding decade), the thermodynamic
+face (isothermal EOS, the sqrt-2 lag, c/c_s = 327, the D05 clocks, the
+thermal fixed point), the honest limits (no rate, no coupling, f_b an
+input), the predictions table (B10's 17 condensed to the 8 most decisive,
+each with instrument/date/verbatim falsifier), 9 named falsifiers; the
+abstract's particle sentence revised (218 words, inside the 200+-10%
+gate); 1,668 words of section prose (voice-pass trims registered,
+NO number removed). READY FOR THE AUTHOR'S VOICE PASS.
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 ## WAVE 26 (landed 10/10 -- THE MASS CONVERGED; the scale final; the dSph boundary explained; the census leans charge)
 G208 DEEP-STAIRCASE ORTHOGONALITY 14/14 -- TWO-LAYER: the top stair is the
