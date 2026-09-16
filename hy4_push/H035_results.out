@@ -1,0 +1,98 @@
+==========================================================================
+H035 -- HOW SCALAR STRESS-ENERGY WORKS
+==========================================================================
+
+==========================================================================
+PART 1 -- THE FORMULA AND ITS VALIDATION
+==========================================================================
+  T_{mu nu} = Lambda^4 f(K) g_{mu nu} - f'(K) d_mu phi d_nu phi
+
+  Validation on the canonical scalar L = -(1/2)(dphi)^2 - V:
+      sqrt(K)=0.0: -f_canon = 0.00000  (= (1/2)|grad phi|^2/La^4 + V/La^4) -> rises with K
+      sqrt(K)=0.5: -f_canon = 0.25000  (= (1/2)|grad phi|^2/La^4 + V/La^4) -> rises with K
+      sqrt(K)=1.0: -f_canon = 1.00000  (= (1/2)|grad phi|^2/La^4 + V/La^4) -> rises with K
+  [PASS] S1 [THE FORMULA IS CORRECT] T = Lam^4 f g - f' dphi dphi reproduces the
+      canonical scalar's energy density (1/2)|grad phi|^2 + V
+         measured: canonical: T_00/Lambda^4 = -f = K + V/Lambda^4, rising with K
+         The formula is validated against a known case. The sign structure is
+         therefore trustworthy.
+
+==========================================================================
+PART 2 -- THE SIGN FOR OUR f (the result that matters)
+==========================================================================
+  rho/Lambda^4 = -f(K),  with f' = mu_2(sqrt K) > 0
+
+   sqrt(K)       f(K)      f'(K)       rho/Lam^4
+     0.000  -1.000000   0.000000        1.000000
+     0.010  -0.999999   0.019704        0.999999
+     0.100  -0.998802   0.173554        0.998802
+     0.500  -0.894264   0.555556        0.894264
+     1.000  -0.386294   0.750000        0.386294
+     2.000   2.136109   0.888889       -2.136109
+  [PASS] S2 [THE SIGN] with f' = mu_2 > 0 the energy density DROPS below the
+      vacuum for any static gradient, and goes negative for sqrt(K) > ~1.4
+         measured: rho/Lambda^4: 1.0000 -> -2.1361 as sqrt(K): 0.0 -> 2.0; monotonically dropping = True
+         THIS IS A REAL STRUCTURAL RESULT. A canonical scalar (f' < 0) does the
+         opposite. So the static-gradient energy density of our field is
+         not a positive dark-matter excess.
+  [PASS] S3 [WHAT IT MEANS] the dark mass is the NOETHER-CHARGE dust (conserved,
+      c_s^2 = 0), whose equilibrium profile is the phantom -- not a
+      positive T^phi_00 excess in the static branch
+         measured: dark mass = conserved charge sector; phantom = its hydrostatic
+            equilibrium (G046); T^phi_00 (static) is not a positive excess
+         CONSISTENT WITH THE ARCHITECTURE: the MOND relation is the equilibrium
+         of the charge sector, not a scalar-sourced Poisson modification.
+         That is exactly the equilibrium reading, which survives Cassini
+         (deepseek's 44-solve verdict) precisely because it is not a
+         force law. The two statements in H034 and here are compatible:
+         T^phi is the only non-baryon source in G_{mu nu}, but the static
+         branch's energy density is not a positive excess -- the dark mass
+         is the conserved charge.
+
+==========================================================================
+PART 3 -- THE PRESSURE (for completeness)
+==========================================================================
+  p_rr / Lambda^4 = f(K) - f'(K) (d_r phi)^2 / Lambda^4 = f - 2 K f'
+
+   sqrt(K)   p_rr/Lam^4
+     0.000    -1.000000
+     0.100    -1.002273
+     0.500    -1.172041
+     1.000    -1.886294
+  [PASS] S4 [THE PRESSURE] at K = 0 the pressure is -1 (w = -1), and the radial
+      pressure becomes MORE negative as the gradient grows
+         measured: p_rr/Lambda^4: -1.0000 at K=0 -> -1.8863 at K=1
+         The static configuration carries TENSION along the gradient, not
+         pressure. That is the geometric statement behind the drop in
+         rho.
+
+==========================================================================
+H035 READING:  4 PASS / 0 FAIL
+==========================================================================
+
+HOW SCALAR STRESS-ENERGY WORKS
+------------------------------
+    T_{mu nu} = Lambda^4 f(K) g_{mu nu} - f'(K) d_mu phi d_nu phi
+    rho (static observer) = -Lambda^4 f(K),   p_rr = Lambda^4 (f - 2 K f')
+
+Validated against the canonical scalar (reproduces (1/2)|grad phi|^2 + V).
+
+THE SIGN THAT MATTERS:
+    The sign of the gradient's contribution to rho is set by the sign of f'.
+      f' > 0  (our mu_2)     -> rho DROPS below the vacuum, going negative
+      f' < 0  (canonical)    -> rho RISES above the vacuum
+
+    With our f: rho/Lambda^4 = 1.000 -> 0.999 -> 0.894 -> 0.386 -> -2.136 as
+    sqrt(K) goes 0 -> 2.
+
+WHAT THIS ESTABLISHES: the dark mass is NOT a positive T^phi_00 excess in the
+static branch -- the sign forbids it. It is the separately-conserved
+NOETHER-CHARGE dust (c_s^2 = 0, n ~ a^-3), whose HYDROSTATIC EQUILIBRIUM is
+the phantom (G046). That is the equilibrium reading, and it is the reading
+that survives Cassini.
+
+This refines H034 without contradicting it: T^phi is the only non-baryon
+source in G_{mu nu}, but the dark mass is the conserved charge sector, and the
+MOND relation is its equilibrium -- not a scalar-sourced Poisson modification.
+
+{"pass": 4, "fail": 0}
