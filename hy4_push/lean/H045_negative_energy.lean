@@ -102,7 +102,7 @@ theorem crossing_exists : ∃ u ∈ Set.Icc (7/6 : ℝ) (5/2), fK u = 0 := by
 /-! ## 3. f is strictly increasing (f'(u) = 2 u mu_2(u) = 2 y(u) > 0) -/
 
 lemma hasDerivAt_fK (u : ℝ) (hu : 1 + u ≠ 0) :
-    HasDerivAt fK (2 * u - 2 * (1 + u)⁻¹ + 2 / (1 + u)^2) u := by
+    HasDerivAt fK (2 * u * fp u) u := by
   have hA : HasDerivAt (fun x : ℝ => x ^ 2) (2 * u) u := by
     simpa using ((hasDerivAt_id u).pow 2)
   have hlin : HasDerivAt (fun x : ℝ => 1 + x) 1 u := by
@@ -112,24 +112,26 @@ lemma hasDerivAt_fK (u : ℝ) (hu : 1 + u ≠ 0) :
   have hB : HasDerivAt (fun x : ℝ => 2 * Real.log (1 + x)) (2 * (1 + u)⁻¹) u := by
     simpa using (hlog.const_mul (2 : ℝ))
   have hinv : HasDerivAt (fun x : ℝ => (1 + x)⁻¹) (-(1 : ℝ) / (1 + u)^2) u := by
-    simpa using (hlin.inv hu)
-  have hC : HasDerivAt (fun x : ℝ => 2 * (1 + x)⁻¹) (-2 / (1 + u)^2) u := by
-    have h := hinv.const_mul (2 : ℝ)
-    convert h using 1
-    ring
+    simpa only [Pi.inv_apply] using (hlin.inv hu)
+  have hC : HasDerivAt (fun x : ℝ => 2 * (1 + x)⁻¹)
+      (2 * (-(1 : ℝ) / (1 + u)^2)) u := by
+    exact hinv.const_mul (2 : ℝ)
   have hD : HasDerivAt (fun _ : ℝ => (1 : ℝ)) 0 u := hasDerivAt_const u 1
   have h := (((hA.sub hB).sub hC).add hD)
-  convert h using 1
-  · ext x
+  have hfn : ((((fun x : ℝ => x ^ 2) - fun x => 2 * Real.log (1 + x))
+                - fun x => 2 * (1 + x)⁻¹) + fun _ : ℝ => (1 : ℝ)) = fK := by
+    funext x
     simp [fK, div_eq_mul_inv]
-  · ring
+  have hval : (2 * u - 2 * (1 + u)⁻¹ - (2 * (-(1 : ℝ) / (1 + u)^2)) + 0)
+      = 2 * u * fp u := by
+    unfold fp
+    field_simp [hu]
+    ring
+  simpa [hfn, hval] using h
 
 lemma deriv_fK_eq (u : ℝ) (hu : 0 < u) : deriv fK u = 2 * u * fp u := by
   have hne : 1 + u ≠ 0 := by linarith
-  rw [(hasDerivAt_fK u hne).deriv]
-  unfold fp
-  field_simp [hne]
-  ring
+  exact (hasDerivAt_fK u hne).deriv
 
 /-- df/du = 2 u mu_2(u) > 0 for u > 0, so f is strictly increasing and
     rho = -f is strictly decreasing: THE CROSSING IS UNIQUE. -/

@@ -442,7 +442,12 @@ check("V1a [THE BREAK SITS AT r_M: the two-zone fit's FREE phantom turn-on "
       all(0.67 <= m <= 1.5 for m in _check_v1),
       "read this before the slope: the free-turn-on fit is the estimator that "
       "uses the predicted phantom NORMALISATION as well as its slope, and it "
-      "is the one that can say where the break actually is")
+      "is the one that can say where the break actually is.  The median lands "
+      "near r_M, but the per-cluster spread is a factor of six (0.69-4.31) and "
+      "V1b, which asks the sharper question -- is the data COMPATIBLE with the "
+      "turn-on being at r_M? -- says no in 8/10 clusters at > 3 sigma.  A "
+      "median that lands near 1 with that spread is not a confirmation, and "
+      "the two checks are reported together so the tension is visible")
 
 THRESH["V1b"] = "median chi2 penalty for forcing the turn-on to r_M below 9 (3 sigma, 1 dof)"
 _dc = {}
@@ -995,7 +1000,12 @@ JSON = {
     "model_comparison": {ft: CHI[ft] for ft in A0},
     "verdict": {
         "n_clusters": len(CL),
-        "break_matches_prediction": bool(all(0.67 <= m <= 1.5 for m in _check_v1)),
+        "break_matches_prediction": bool(all(0.67 <= m <= 1.5 for m in _check_v1)
+                                          and all(np.median(_dc[ft]) < 9.0
+                                                  for ft in _dc)),
+        "break_chi2_penalty_for_fixing_rM": {ft: [float(np.median(_dc[ft])),
+                                                  int((_dc[ft] > 9).sum()), len(_dc[ft])]
+                                             for ft in _dc},
         "median_r_on_over_rM": {ft: _check_v1[i] for i, ft in enumerate(A0)},
         "measured_outer_slope": {ft: [SLOPE[ft]["_a2_mean"], SLOPE[ft]["_a2_sem"]]
                                  for ft in A0},
