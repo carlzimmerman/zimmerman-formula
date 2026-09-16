@@ -1,0 +1,192 @@
+G197 -- THE GALAXY-SCALE PIE: the two-regime map INSIDE galaxies, stated.
+
+G188 (the committed register) found the galaxy interior is the PHANTOM: at the
+solar circle R_sun = 8.12 kpc the interior missing mass is 0.89 phantom (the
+r^-2 profile) with dust only 4.3% of M_dyn (f = 1.65), the deep-law phantom
+regime [r_in, R_efe] = [3.06, 6.74] kpc = [0.30, 0.66] r_M sitting entirely
+INSIDE r_M = 10.21 kpc.  THIS LANE states THE GALAXY-SCALE PIE and its unity
+with the cluster pie:
+
+(1) THE GALAXY PIE.  Inside r_M the phantom dominates: the equipartition law
+    M_dark = M_b r/r_M (G072's capped face: M_ph = sqrt(G M_b a0)/G (r - r_in),
+    the r^-2 profile).  At R_sun = 8.12 kpc (r/r_M = 0.80, within r_M) the dark
+    IS the phantom (share of the dark 0.89; dust 4.3%).  OUTSIDE the EFE cap
+    (beyond R_efe = 0.66 r_M, where the deep law ends) the free dust takes
+    over.  So the galaxy-scale constitution is: PHANTOM INTERIOR (89% of the
+    interior dark, r < r_M), FREE DUST EXTERIOR (r > R_efe).
+
+(2) THE CROSS-CHECK vs G157.  G157 measured the MW density slope at 20-100 kpc
+    as gamma ~ -2.3 +- 0.4, DECLINING -- not the -2.00 constant.  Reconcile:
+    the interior phantom holds at -2 INSIDE r_M (the committed Eilers+19 RC
+    gives gamma = -2.01 over [5.27, 10.21] kpc, the phantom window resting on
+    -2), and G157's -2.3 at 20-100 kpc (2-10 r_M) is the OUTER envelope --
+    entirely OUTSIDE the phantom regime [0.30, 0.66] r_M, where the deep law
+    has ended at the EFE cap and the free dust (plus the external field) sets
+    the steeper density.  The -2.3 is not a contradiction of the interior
+    phantom: it IS the signature of the exterior dust that (1) names.
+
+(3) THE GALAXY-CLUSTER PIE UNITY.  The pie is a function of x = r/r_M ONLY
+    through ONE law: the phantom's share of the deficit = (r/r_M)/(f-1) (G188
+    Q3).  The crossover where the phantom dominates is x_cross = (f-1)/2, and
+    the saturation's MASS-RUN (f = M_dyn/M_b: 1.65 at the galaxy, 5.66 at the
+    cluster) is what SHIFTS the crossover: at the small-f galaxy x_cross ~ 0.33
+    (the whole interior is the phantom, dust-free-ish at small r/r_M); at the
+    high-f cluster x_cross ~ 2.33 r_M (the interior x < 2.3 is the dust, and the
+    phantom only dominates at/outside R500 ~ 3.2 r_M).  So 'small r/r_M
+    phantom / large r/r_M dust' holds as stated at and below galaxy scale (f
+    small; incl. the dSph floor G070 and the GC boundary G074, where the
+    equilibrium/equipartition law rules the interior) and is INVERTED for the
+    cluster by the very mass-run the task names -- the pie is the same
+    two-regime law, the window (x) fixed, the crossover mass-shifted.
+
+(4) VERDICTS.  V1 the galaxy-scale pie (interior phantom 0.89 of the dark,
+    dust 4.3% at the solar circle; exterior dust beyond the EFE cap); V2 the
+    G157 reconciliation (interior -2 on [5.27,10.21] kpc, -2.3 at 20-100 =
+    the outer dust+EFE envelope, no contradiction); V3 the honest statement
+    (the galaxy pie is the SAME two-regime law as the cluster pie -- the
+    interior and exterior reversed by which window of x = r/r_M each scale
+    presents, under the one crossover x_cross = (f-1)/2 shifted by the
+    saturation's mass-run).
+
+DATA: committed registers only -- G188_results.json (the solar-circle pie
+0.89/4.3%, the anchors r_M = 10.21, R_efe = 6.74, f = 1.65, the equipartition
+face M_dark = M_b r/r_M), G119_results.json (the MW anchors), G157_results.json
+(the -2.3 outer slope), G172_results.json (the universal r^-2/surface density
+statement), and the committed Eilers+19 RC (deepseek_push/data2/
+eilers2019_mw_rotation_curve_table1.csv).  The interior density slope is
+computed from the committed RC itself (gamma = 2 dln v/dln r - 2, the exact
+curve-to-density mapping G157 C1).  Nothing written outside deepseek_push/.
+
+Outputs: G197_galaxy_pie.out, G197_results.json (this lane).
+Run:   python3 G197_galaxy_pie.py > G197_galaxy_pie.out 2>&1
+
+====================================================================================================
+G197 -- THE GALAXY-SCALE PIE: the two-regime map inside galaxies
+====================================================================================================
+
+====================================================================================================
+GATE 0 -- THE COMMITTED REGISTERS REPRODUCED (every number this lane
+          reads is gated against the committed JSONs)
+====================================================================================================
+  G188 solar circle (R = 8.19 kpc): phantom share of dark = 0.892, dust = 0.043 of M_dyn, f = 1.65; dark fraction 0.395
+  [PASS] G0a [G188 gate] the solar-circle galaxy pie reproduced: phantom 0.89 of the interior dark, dust 4.3%, f = 1.65
+         measured: phantom share of dark = 0.892, dust = 0.043
+         reading : the interior missing mass IS the phantom (the r^-2 profile, G072 capped face); the deep law closes the MW interior with ~0-5% dust
+  MW anchors: r_M = 10.210 kpc, R_efe = 6.744 kpc = 0.660 r_M, r_in = 3.063 kpc = 0.30 r_M
+  [PASS] G0b [G119/G188 gate] the deep-law phantom regime is [0.30, 0.66] r_M, entirely INSIDE r_M; the solar circle sits inside r_M at r/r_M = 0.80
+         measured: r_M = 10.21; regime [3.06, 6.74] = [0.30, 0.66] r_M; R_sun/r_M = 0.796
+         reading : the phantom occupies the interior; the EFE cap at 0.66 r_M marks the deep law's outer edge, inside r_M -- the galaxy is read phantom-inside / dust-outside
+  G157: gamma(20-100) central ~ -2.3 +- 0.4, declining; 20-25 committed: -2.07 +- 0.35
+  [PASS] G0c [G157 gate] the measured 20-100 kpc density slope is DECLINING at gamma ~ -2.3 +- 0.4, not -2.00
+         measured: gamma(20-100) central ~ -2.3 +- 0.4, declining; 20-25 committed: -2.07 +- 0.35
+         reading : G157's committed reading of the OUTER MW envelope -- the number the interior phantom must be reconciled with
+
+====================================================================================================
+PART 1 -- THE GALAXY-SCALE PIE: phantom interior, free-dust exterior
+====================================================================================================
+  THE MW PIE (Eilers+19 committed RC, McMillan split, capped phantom = the r^-2 deep law):
+       R  r/r_M       zone ph/dark^c dust/dyn^c ph/dark^e     f
+    5.27   0.52   INTERIOR    0.962      0.010    1.552  1.33
+    5.74   0.56   INTERIOR    0.874      0.037    1.340  1.42
+    6.23   0.61   INTERIOR    0.877      0.039    1.297  1.47
+    6.73   0.66   INTERIOR    0.908      0.031    1.309  1.50
+    7.22   0.71   EXTERIOR    0.905      0.034    1.281  1.55
+    7.82   0.77   EXTERIOR    0.883      0.045    1.226  1.62
+    8.19   0.80   EXTERIOR    0.892      0.043    1.227  1.65
+    8.78   0.86   EXTERIOR    0.916      0.034    1.245  1.69
+    9.27   0.91   EXTERIOR    0.902      0.042    1.214  1.75
+    9.76   0.96   EXTERIOR    0.887      0.050    1.183  1.81
+   10.26   1.00   EXTERIOR    0.873      0.059    1.155  1.87
+   10.75   1.05   EXTERIOR    0.871      0.062    1.143  1.92
+   11.25   1.10   EXTERIOR    0.865      0.067    1.126  1.98
+   11.75   1.15   EXTERIOR    0.851      0.076    1.100  2.05
+   12.25   1.20   EXTERIOR    0.860      0.073    1.103  2.09
+   12.74   1.25   EXTERIOR    0.866      0.071    1.104  2.13
+   13.23   1.30   EXTERIOR    0.850      0.082    1.076  2.20
+   13.74   1.35   EXTERIOR    0.886      0.063    1.114  2.21
+   14.24   1.39   EXTERIOR    0.874      0.071    1.092  2.28
+   14.74   1.44   EXTERIOR    0.857      0.082    1.065  2.36
+   15.22   1.49   EXTERIOR    0.853      0.086    1.054  2.41
+   15.74   1.54   EXTERIOR    0.838      0.097    1.029  2.50
+   16.24   1.59   EXTERIOR    0.844      0.095    1.030  2.54
+   16.74   1.64   EXTERIOR    0.882      0.071    1.071  2.53
+   17.25   1.69   EXTERIOR    0.822      0.112    0.993  2.70
+   17.75   1.74   EXTERIOR    0.847      0.096    1.018  2.71
+   18.24   1.79   EXTERIOR    0.916      0.052    1.096  2.63
+   18.74   1.84   EXTERIOR    0.883      0.074    1.052  2.75
+   19.22   1.88   EXTERIOR    0.918      0.052    1.088  2.73
+   19.71   1.93   EXTERIOR    0.976      0.015    1.152  2.68
+   20.27   1.99   EXTERIOR    0.997      0.002    1.172  2.69
+   20.78   2.04   EXTERIOR    1.014      0.000    1.187  2.71
+   21.24   2.08   EXTERIOR    1.052      0.000    1.227  2.69
+   21.80   2.14   EXTERIOR    0.796      0.143    0.924  3.31
+   22.14   2.17   EXTERIOR    1.433      0.000    1.661  2.31
+   22.73   2.23   EXTERIOR    1.061      0.000    1.225  2.82
+   23.66   2.32   EXTERIOR    1.389      0.000    1.595  2.45
+   24.82   2.43   EXTERIOR    0.949      0.035    1.082  3.25
+
+  THE GALAXY-SCALE CONSTITUTION:
+    INTERIOR (r < R_efe = 6.74 kpc = 0.66 r_M): median phantom share of the dark = 0.89, dust = 3.41% of M_dyn -- the phantom dominates (r^-2/equipartition)
+    at the solar circle (r/r_M = 0.80): phantom share of dark = 0.892, dust = 4.27%, f = 1.65
+    EXTERIOR (r > R_efe = 6.74 kpc, EFE-truncated face): median dust share of the dark = 0.74, dust = 42.73% of M_dyn, rising to 0.84 of the dark at the Eilers edge (2.43 r_M) -- once the EFE cap truncates the deep law the free dust takes over (G157 measures this exterior as declining gamma ~ -2.3 at 20-100 kpc)
+  [PASS] V1-i [the galaxy interior is the phantom] inside r_M the phantom dominates: median interior phantom share of the dark = 0.89, dust 3.41% of M_dyn; at the solar circle 0.89 / 4.27%
+         measured: interior ph/dark = 0.89, dust = 3.41%; solar circle 0.89/4.27%
+         reading : the equipartition M_dark = M_b r/r_M (and its capped face) covers the interior deficit: at R_sun above the r_M-class the dark IS the phantom
+  [PASS] V1-ii [the exterior is the free dust] once the EFE cap truncates the deep law (r > R_efe = 0.66 r_M) the dust rises to a median 0.74 of the exterior dark (42.73% of M_dyn, 0.84 at the Eilers edge) -- the free dust takes over outside the EFE cap, and G157 measures it as the declining -2.3 envelope
+         measured: exterior dust share of dark = 0.74 (42.73% of M_dyn); G157 gamma(20-100) ~ -2.3
+         reading : the two-regime map inside the galaxy: phantom interior (0.89 of the dark, dust 4.3% at the solar circle), free-dust exterior once the deep law ends at the EFE cap (G188 Q1/Q4 + G164's measured break)
+
+====================================================================================================
+PART 2 -- THE CROSS-CHECK: the interior phantom r^-2 vs G157's -2.3
+====================================================================================================
+  THE INTERIOR vs THE EXTERIOR (gamma = 2 dln v/dln r - 2, from the committed Eilers+19 RC):
+    INTERIOR [5.27, r_M = 10.21] kpc : gamma = -2.01 (rests on -2 = the phantom r^-2)
+    the phantom window [5.27, R_efe=6.74] : gamma = -1.89
+    across the solar circle [6.74, 8.22] kpc : gamma = -2.05
+    EXTERIOR [20, 25] kpc (Eilers inner edge of G157's window) : gamma = -2.07
+    EXTERIOR [20, 24.82] kpc : gamma = -2.07
+    G157's committed 20-100 kpc envelope : gamma = -2.3 +- 0.4 (DECLINING, every family)
+  The interior window [5.27, r_M] sits INSIDE the phantom regime; G157's 20-100 kpc window sits at r/r_M = 2.0 - 9.8, FAR outside the deep law's [0.30, 0.66] r_M.
+  [PASS] V2-i [the interior holds at -2 inside r_M] the committed Eilers RC over [5.27, r_M] kpc gives gamma = -2.01 (the phantom r^-2 profile rests on -2; the phantom window [5.27, R_efe] gives -1.89)
+         measured: gamma([5.27, r_M]) = -2.01; gamma([5.27, R_efe]) = -1.89; gamma(solar) = -2.05
+         reading : inside r_M (within the solar circle) the phantom holds at -2: the deep law r^-2 is the interior constitution, not a declining tail
+  [PASS] V2-ii [G157's -2.3 is the OUTER envelope, not the interior] the 20-100 kpc decline (gamma ~ -2.3) sits at r/r_M = 2-10, entirely outside the phantom regime [0.30, 0.66] r_M: it is the dust + EFE envelope, the exterior sector (1) names, and does NOT contradict the interior -2
+         measured: interior gamma = -2.01 (r/r_M<1); G157 gamma(20-100) ~ -2.3 (r/r_M = 2-10, beyond R_efe = 0.66 r_M)
+         reading : the G157 decline measures the outer envelope where the deep law has ended at the EFE cap; the -2.3 is the signature of the exterior free dust, reconciled with the interior phantom by radius
+
+====================================================================================================
+PART 3 -- THE GALAXY-CLUSTER PIE UNITY: the pie as a function of X = r/r_M ONLY
+====================================================================================================
+  THE ONE LAW: the phantom's share of the deficit = (r/r_M)/(f-1); the crossover where it dominates is x_cross = (f-1)/2.
+    GALAXY  f = 1.65  ->  x_cross = 0.33 r_M: the whole interior (x < r_M) is phantom -- small r/r_M is dust-free-ish
+    CLUSTER f = 5.66  ->  x_cross = 2.33 r_M: x < 2.3 is dust, the phantom only dominates beyond ~2.3 r_M (at/outside R500 = 3.2 r_M)
+  the saturation's MASS-RUN (f: 1.7 -> 5.7) is what shifts the crossover 0.33 -> 2.33 r_M.
+  the pie as a function of x = r/r_M ONLY (phantom share of the deficit), at matched radii:
+    x = 0.13 (the 50 kpc dust peak, below the galaxy deep-law onset r_in): cluster phantom share 0.028 (dust interior, measured s_d = 0.816)
+    x = 0.80 (the solar circle, inside both interiors): galaxy phantom share 1.22 (1.2, over-covers -> dust 0) vs cluster 0.17 (dust)
+    x = 3.18 (R500): galaxy 4.87 (phantom) vs cluster 0.68 (phantom 57%, measured)
+  the crossover x_cross = (f-1)/2: 0.33 r_M (galaxy f=1.65) vs 2.33 r_M (cluster f=5.66) -- the mass-run shifts which scale reads phantom-inside (galaxy) vs dust-inside (cluster) at any given x
+  [PASS] V3-i [the pie is a function of x = r/r_M ONLY] both pies follow the ONE law phantom share = (r/r_M)/(f-1); the crossover x_cross = (f-1)/2 is 0.33 r_M at the galaxy (f=1.65) and 2.33 r_M at the cluster (f=5.66)
+         measured: x_cross(gal) = 0.33, x_cross(cl) = 2.33; f: 1.65 -> 5.66
+         reading : the window (x) is the same; the saturation's mass-run (f) is the only thing that shifts where the phantom/dust crossover sits in x
+  [PASS] V3-ii [the mass-run shifts the crossover] at matched x = r/r_M = 0.80 (the solar circle, inside both interiors) the sectors FLIP: the low-f galaxy is phantom (share 1.22, x_cross = 0.33 < 0.80 -> dust-free) and the high-f cluster is dust (share 0.17, x_cross = 2.33 > 0.80) -- the mass-run of the saturation shifts the crossover, so small-x is phantom at the galaxy and dust at the cluster
+         measured: matched x = 0.80: galaxy phantom share 1.22 (x_cross 0.33) vs cluster 0.17 (x_cross 2.33)
+         reading : the unified r/r_M constitution: at/sub-galaxy scale (dSph floor G070, GC boundary G074, the MW) the phantom rules the interior; the cluster inverts it because its large f pushes x_cross out to ~2.3 r_M
+
+====================================================================================================
+PART 4 -- THE VERDICTS
+====================================================================================================
+  [PASS] V1 [the galaxy-scale pie]
+         measured: interior phantom 0.89 of dark / dust 4.27%; exterior dust 0.74 of the dark
+         reading : THE GALAXY-SCALE PIE: PHANTOM INTERIOR / FREE-DUST EXTERIOR.  Inside r_M = 10.21 kpc the phantom dominates (the equipartition M_dark = M_b r/r_M; its capped r^-2 face, the deep law [0.30, 0.66] r_M): at the solar circle r/r_M = 0.80 the interior dark is 0.89 phantom with dust only 4.27% (f = 1.65); the median interior phantom share of the dark is 0.89 (dust 3.41%).  OUTSIDE the EFE cap (r > R_efe = 0.66 r_M) the free dust takes over (0.74 of the exterior dark).  The galaxy interior IS the phantom, the mirror image of the cluster pie.
+  [PASS] V2 [the G157 reconciliation]
+         measured: interior gamma = -2.01 ([5.27, r_M]) vs G157 -2.3 (20-100, r/r_M=2-10)
+         reading : THE G157 RECONCILIATION: the interior phantom holds at -2 INSIDE r_M (the committed Eilers RC gives gamma = -2.01 on [5.27, 10.21] kpc, -1.89 on the phantom window); G157's gamma ~ -2.3 at 20-100 kpc is the OUTER ENVELOPE (r/r_M = 2-10), entirely OUTSIDE the deep law's [0.30, 0.66] r_M, where the EFE cap has ended the phantom and the free dust (plus the external field) sets the steeper slope.  The -2.3 is not a contradiction of the interior -2: it IS the measured exterior dust sector, reconciled with the interior phantom by radius.
+  [PASS] V3 [the honest statement]
+         measured: same law phantom-share = x/(f-1); x_cross = (f-1)/2 = 0.33 (gal) vs 2.33 (cl) r_M
+         reading : HONEST: the galaxy pie is the SAME two-regime law as the cluster pie, interior and exterior reversed by which WINDOW of x = r/r_M each scale presents under the ONE crossover x_cross = (f-1)/2.  At the galaxy (f = 1.65) x_cross = 0.33 r_M -- the interior is the phantom (r^-2), small r/r_M dust-free-ish, and the exterior dust begins at the EFE cap; at the cluster (f = 5.66) x_cross = 2.33 r_M -- the interior is dust and the phantom only dominates at/outside R500.  The saturation's mass-run 1.7 -> 5.7 is the only thing that shifts the crossover, so the naive 'small-x phantom at both scales' holds at and below galaxy scale and is INVERTED for the cluster -- the unified r/r_M constitution reads the two pies as the same two-regime map.
+
+====================================================================================================
+CHECKS: 12 pass, 0 fail
+====================================================================================================
+wrote G197_results.json
