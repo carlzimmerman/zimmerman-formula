@@ -6,8 +6,9 @@ KEPLER_GRADE_CLUSTER_PREDICTIONS P3: the phantom share
 with rho_ph the law's A/r^2 phantom (G03E/G003/G046, coefficient 1)
     rho_ph(r) = sqrt(G M_b(<r) a0) / (4 pi G r^2),   M_b per radius (G057),
 and rho_dust,req the REQUIRED dust density = the observed residual density
-MINUS the phantom (G098's inversion, recomputed inline -- G098's output is
-not on disk at run time):  rho_dust,req = rho_res - rho_ph,
+MINUS the phantom (G098's inversion, recomputed inline when G098's out is
+absent at run time; cross-checked against G098's committed inversion in V5
+when it IS present):  rho_dust,req = rho_res - rho_ph,
     rho_res(r) = dM_res/dr / (4 pi r^2),   M_res(<r) = M_HSE(<r) - M_b(<r),
 the measured hydrostatic deficit's own density.  The share is then simply
 s(r) = rho_ph/rho_res : the fraction of the LOCAL dark density the law's
@@ -263,6 +264,51 @@ for foot, a0 in A0.items():
           f"rho_dust >= 0 everywhere: {INV[foot]['dust_min'] >= 0}; "
           f"share rises 50->600 kpc on all 12: {INV[foot]['share_rises_outward']}")
 
+# ================================================================== V5: G098 cross-check
+print()
+print("=" * 88)
+print("V5 -- THE G098 CROSS-CHECK: the inline inversion vs the committed "
+      "G098 inversion (used when G098's out exists at run time)")
+print("=" * 88)
+G098_PATH = os.path.join(HERE, "G098_results.json")
+if os.path.exists(G098_PATH):
+    M98 = json.load(open(G098_PATH))
+    MSUK = MSUN / KPC ** 3                       # kg/m^3 per Msun/kpc^3
+    diffs = []
+    for c in CL:
+        pc = M98["per_cluster"]["canonical"].get(c["name"])
+        if not pc:
+            continue
+        r98 = np.array(pc["r_kpc"])
+        dust98 = np.array(pc["rho_dust_req_A_Msun_kpc3"])
+        ok = r98 > 0
+        d98 = 10 ** np.interp(np.log10(RG), np.log10(r98[ok]),
+                              np.log10(np.maximum(dust98[ok], 1e-300)))
+        mine = np.array(SHARE["canonical"][c["name"]]["rho_dust"])
+        for r0, m, g in zip(RG, mine, d98):
+            if r0 >= 150 and np.isfinite(m) and g > 0:
+                diffs.append((m - g * MSUK) / (g * MSUK))
+    diffs = np.array(diffs)
+    med = float(np.nanmedian(diffs))
+    print(f"  shared bins (r >= 150 kpc, 12 clusters): n = {len(diffs)}; "
+          f"median relative diff (inline - G098)/G098 = {med*100:+.1f}%")
+    check("V5 [the G098 cross-check] the inline inversion (rho_dust,req = "
+          "rho_res - rho_ph) agrees with G098's committed inversion: "
+          "|median relative diff| over the shared bins <= 10%",
+          f"median rel diff = {med*100:+.1f}% (n = {len(diffs)} shared bins, "
+          f"r >= 150 kpc)",
+          abs(med) <= 0.10,
+          "G098's out exists at run time and is used here as the reference; "
+          "the residual scatter is the grid-resolution difference (this "
+          "lane's 8-bin forward differences vs G098's ~140-bin grid), not a "
+          "definitional difference -- both compute "
+          "rho_dust,req = rho_res - rho_ph with the law's A/r^2 phantom")
+else:
+    print("  G098_results.json not on disk at run time -- the inversion was "
+          "recomputed inline (as specified); the V5 cross-check is skipped")
+    RES.append({"name": "V5 [G098 cross-check]", "measured": "G098 out absent",
+                "pass": None, "reading": "inline inversion used, as specified"})
+
 # ================================================================== STEP 2: kernel slope
 print()
 print("=" * 88)
@@ -483,8 +529,9 @@ out = {
     "a0": A0,
     "method": ("s(r) = rho_ph(r)/(rho_ph(r) + rho_dust,req(r)); "
                "rho_ph = sqrt(G M_b(<r) a0)/(4 pi G r^2); "
-               "rho_dust,req = rho_res - rho_ph (G098 inversion recomputed "
-               "inline: G098 out absent at run time); "
+               "rho_dust,req = rho_res - rho_ph (G098's inversion, recomputed "
+               "inline when its out is absent, V5-cross-checked against "
+               "G098_results.json when present); "
                "rho_res = (dM_res/dr)/(4 pi r^2), M_res = M_HSE - M_b; "
                "slope = per-cluster bisector fit of s vs log10(g_tot/a0); "
                "the doc band (0.5, 1.0) carried on the magnitude (signed "

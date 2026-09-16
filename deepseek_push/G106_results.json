@@ -15,13 +15,19 @@
   "canonical": 9.3619e-11,
   "alt": 1.1279e-10
  },
- "method": "s(r) = rho_ph(r)/(rho_ph(r) + rho_dust,req(r)); rho_ph = sqrt(G M_b(<r) a0)/(4 pi G r^2); rho_dust,req = rho_res - rho_ph (G098 inversion recomputed inline: G098 out absent at run time); rho_res = (dM_res/dr)/(4 pi r^2), M_res = M_HSE - M_b; slope = per-cluster bisector fit of s vs log10(g_tot/a0); the doc band (0.5, 1.0) carried on the magnitude (signed slope negative: the share rises as the field falls)",
+ "method": "s(r) = rho_ph(r)/(rho_ph(r) + rho_dust,req(r)); rho_ph = sqrt(G M_b(<r) a0)/(4 pi G r^2); rho_dust,req = rho_res - rho_ph (G098's inversion, recomputed inline when its out is absent, V5-cross-checked against G098_results.json when present); rho_res = (dM_res/dr)/(4 pi r^2), M_res = M_HSE - M_b; slope = per-cluster bisector fit of s vs log10(g_tot/a0); the doc band (0.5, 1.0) carried on the magnitude (signed slope negative: the share rises as the field falls)",
  "checks": [
   {
    "name": "V0 [the data gate: faithful reproduction] median f_gas = M_gas/M_NFW on the on-disk FITS reproduces the COMMITTED lane's V0 line (G050's own .out reads the same 0.163/FAIL -- the doc-claimed 0.127 is the A2029-table row, not reproduced by the on-disk FITS ratios; a pre-existing chain mismatch, not introduced here, and P3 does not use the FGAS identity)",
    "measured": "median f_b(420) = 0.163 (G050 committed line: 0.163, FAIL); median f_b(210) = 0.121",
    "pass": true,
    "reading": "same ingest and interpolation as G050's V0 -- the gate is a reproduction check, and the reproduction is exact; the P3 lane's inputs are M_HSE, M_gas, M_star directly (no FGAS identity)"
+  },
+  {
+   "name": "V5 [the G098 cross-check] the inline inversion (rho_dust,req = rho_res - rho_ph) agrees with G098's committed inversion: |median relative diff| over the shared bins <= 10%",
+   "measured": "median rel diff = -2.9% (n = 60 shared bins, r >= 150 kpc)",
+   "pass": true,
+   "reading": "G098's out exists at run time and is used here as the reference; the residual scatter is the grid-resolution difference (this lane's 8-bin forward differences vs G098's ~140-bin grid), not a definitional difference -- both compute rho_dust,req = rho_res - rho_ph with the law's A/r^2 phantom"
   },
   {
    "name": "V1 [the pooled-median kernel slope in the predicted class] the 12-cluster median of the per-cluster bisector slopes, magnitude, in (0.5, 1.0) per dex on both footings",
@@ -48,7 +54,7 @@
    "reading": "the rise is present on all 12 clusters on both footings"
   }
  ],
- "n_pass": 4,
+ "n_pass": 5,
  "n_fail": 1,
  "verdicts": {
   "V1_median_slope_in_0p5_1p0": {
