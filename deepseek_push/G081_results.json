@@ -1,0 +1,80 @@
+{
+ "conservative": {
+  "identity": "grad(C ln r) = C/r r_hat; -grad = 1/r force; curl = 0; Laplace = C/r^2 = 4 pi G (A/r^2)"
+ },
+ "mode_equations": {
+  "self_consistent": "sigma^2 xi'' - (2 sigma^2/r) xi' + (2 sigma^2/r^2 - w^2) xi = 0",
+  "fixed_well_probe": "sigma^2 xi'' - (2 sigma^2/r) xi' - w^2 xi = 0",
+  "reduction": "xi = r u => u'' = (w/sigma)^2 u (self-consistent, EXACT)",
+  "zero_modes": [
+   "xi = r",
+   "xi = r^2"
+  ],
+  "fundamental": "omega^2 = 0 exact (marginal), cap-invariant"
+ },
+ "criterion": {
+  "eta": 0.5,
+  "sigma2_over_C": 0.5,
+  "omega0_2": 0.0,
+  "zero_mode_residual": 1.8189894035458565e-12,
+  "neutral_families_w2": {
+   "0.0": 0.0,
+   "1.0": 0.0,
+   "-1.0": 0.0
+  },
+  "fixed_well_probe_scan": {
+   "min": 0.0009708328243447928,
+   "max": 0.13197346000438714,
+   "sign_changes": 0,
+   "F_at_zero": 0.0009708328243447928
+  },
+  "cap_bc_subfamilies": {
+   "free-surface": {
+    "ode_residual": 9.094947017729282e-13,
+    "bc_residual": 0.0
+   },
+   "stiff-wall": {
+    "ode_residual": 3.637978807091713e-12,
+    "bc_residual": 0.0
+   }
+  },
+  "verdict": "CRITICAL (marginal) -- no exponential radial mode; well-posed linear relaxation; not a strict attractor (neutral homology)"
+ },
+ "formation": "THE CAPPED ISOTHERMAL PHANTOM IS A CRITICAL (marginally stable) EQUILIBRIUM at the framework's own landing point (sigma^2 = C/2, rho = A/r^2, Phi = C ln r, cap at r_break = 0.62 r_M): the radial isothermal response carries NO exponentially growing mode -- the exact zero mode is pure homology (rearrangements ALONG the isothermal family at fixed sigma^2), so the equilibrium reading has a WELL-POSED linear relaxation problem -- nearby profiles neither collapse exponentially nor disperse exponentially; they sit ON the neutral family.  It is NOT a strict attractor (the homology direction is neutral, not attracting).  The Newtonian dust-attainment question is untouched: G035's KILL (dust relaxation does not land at (sigma^2_target, r_M)) stands -- that kill concerns the dust dynamics, not the fluid equilibrium's local stability; the relaxation gate for THIS reading is stated in V3 above (bounded neutral-family excursions, no radial runaway on >= 100 crossing times).",
+ "constants": {
+  "Mb_msun": 70000000000.0,
+  "a0": 9.3619e-11,
+  "alpha_break": 0.62,
+  "C": 29493938990.481823,
+  "sigma2": 14746969495.240911,
+  "r_M_kpc": 10.209823502119136,
+  "r_break_kpc": 6.330090571313864
+ },
+ "checks": [
+  {
+   "name": "V1 [conservative] the 1/r force derives from Phi = C ln r, curl-free (symbolic), and the log potential EXACTLY sources its own isothermal phantom rho = A/r^2 (the equilibrium reading is closed with zero freedom)",
+   "pass_": true,
+   "reading": "curl==0 identically; Laplace == 4 pi G rho0 symbolic + float 1e-14"
+  },
+  {
+   "name": "V2 [mode equations] the self-consistent (Antonov-type) radial mode equation derived and its w^2 = 0 sector verified: the general solution xi = c1 r + c2 r^2 (the double homology zero mode) satisfies the ODE IDENTICALLY on (0, r_break] (finite-difference residual 1.8e-12) -- fundamental marginal, cap-independent",
+   "pass_": true,
+   "reading": "analytic identity: residual == 0 identically (closed form)"
+  },
+  {
+   "name": "V3 [criterion] TRUNCATED (capped, alpha = 0.62) ISOTHERMAL PHANTOM: the radial fundamental mode is MARGINAL/CRITICAL -- omega^2 = 0.0000e+00 EXACT: the exact zero mode survives the EFE-cap truncation under EITHER cap BC (free-surface and stiff-wall 1-parameter subfamilies xi prop r - 3r^2/(4 r_break) / r - r^2/r_break, ODE residuals 9.1e-13/3.6e-12, BC residuals ~1e-16), cap-invariant; the radial spectrum is a neutral continuum in both readings (self-consistent family residuals {'0.0': 0.0, '1.0': 0.0, '-1.0': 0.0}; fixed-well probe fine scan d=0.1: {'min': 0.0009708328243447928, 'max': 0.13197346000438714, 'sign_changes': 0, 'F_at_zero': 0.0009708328243447928}) -- no discrete fundamental exists to be positive or negative: the number is omega0^2 = 0 EXACT",
+   "pass_": true,
+   "reading": "zero-mode residual 1.8e-12; eta = 0.5000000000"
+  },
+  {
+   "name": "V4 [formation] stable/critical fluid equilibrium => well-posed relaxation problem; attainment by the Newtonian dust remains G035's kill, consistently",
+   "pass_": true,
+   "reading": "THE CAPPED ISOTHERMAL PHANTOM IS A CRITICAL (marginally stable) EQUILIBRIUM at the framework's own landing point (sigma^2 = C/2, rho = A/r^2, Phi = C ln r, cap at r_break = 0.62 r_M): the radial isothermal response carries NO exponentially growing mode -- the exact zero mode is pure homology (rearrangements ALONG the isothermal family at fixed sigma^2), so the equilibrium reading has a WELL-POSED linear relaxation problem -- nearby profiles neither collapse exponentially nor disperse exponentially; they sit ON the neutral family.  It is NOT a strict attractor (the homology direction is neutral, not attracting).  The Newtonian dust-attainment question is untouched: G035's KILL (dust relaxation does not land at (sigma^2_target, r_M)) stands -- that kill concerns the dust dynamics, not the fluid equilibrium's local stability; the relaxation gate for THIS reading is stated in V3 above (bounded neutral-family excursions, no radial runaway on >= 100 crossing times)."
+  }
+ ],
+ "verdicts": {
+  "V1": "conservative check PASS (curl-free, self-source closed)",
+  "V2": "STABILITY: CRITICAL/marginal; omega^2 = 0 exact; cap-invariant",
+  "V3": "formation gate: bounded neutral-family excursions required of the relaxation N-body; G035 dust-attainment kill stands"
+ }
+}
