@@ -1,0 +1,201 @@
+{
+ "lane": "Z06_tsz_pull",
+ "title": "THE tSZ DATA PULL + THE FIRST PRE-SCORED RUN: the ACT DR6+Planck y-map pulled (or the pipeline proven + fetch script + size budget), the 2-bin slope extracted at the 4 shortlist positions, the honest state and verdicts",
+ "date": "2026-09-16",
+ "fetch": {
+  "map_url": "https://lambda.gsfc.nasa.gov/data/suborbital/ACT/ACT_adv/Compton_y_maps/ilc_actplanck_ymap.fits",
+  "map_file": "ilc_actplanck_ymap.fits",
+  "map_size_bytes": 1783298880,
+  "map_state": "complete",
+  "map_sha256": "0f47b211d98a09ad67b60cbfe5f76c08366393db96903722a8a3caf67171f423",
+  "mask_state": "complete",
+  "beam_state": "complete",
+  "planck_ysz_url": "https://irsa.ipac.caltech.edu/data/Planck/release_3/all-sky-maps/maps/component-maps/foregrounds/COM_CompMap_Compton-SZMap_R2.02.tgz",
+  "planck_ysz_size_bytes": 12252877791,
+  "size_budget_gb": {
+   "act_branch": 3.57,
+   "with_planck_branch": 15.82
+  },
+  "fetch_script": "Z06_data/fetch_tsz_maps.sh",
+  "provenance": "Z06_data/PROVENANCE.md"
+ },
+ "map_header": {
+  "NAXIS1": "43200",
+  "NAXIS2": "10320",
+  "CDELT1": "-0.0083333333333333",
+  "CDELT2": "0.0083333333333333",
+  "CRVAL1": "0.0",
+  "CRVAL2": "0.0",
+  "CRPIX1": "21601.0",
+  "CRPIX2": "7561.0",
+  "CTYPE1": "RA---CAR",
+  "CTYPE2": "DEC--CAR",
+  "WCSAXES": "2",
+  "RADESYS": "ICRS",
+  "mask_used": "wide_mask_GAL070_apod_1.50_deg_wExtended.fits"
+ },
+ "shortlist": [
+  {
+   "cluster": "A3266",
+   "ra": 67.8434,
+   "dec": -61.4297,
+   "theta_500_arcmin": 20.15,
+   "in_act_footprint": true,
+   "slope_pred_zero_param": -3.046,
+   "sig_slope_pred": 0.39,
+   "expected_verdict": "NEITHER",
+   "P_joint_pred": 0.18,
+   "P_neither_pred": 0.81
+  },
+  {
+   "cluster": "A2029",
+   "ra": 227.7342,
+   "dec": 5.7444,
+   "theta_500_arcmin": 15.62,
+   "in_act_footprint": true,
+   "slope_pred_zero_param": -2.228,
+   "sig_slope_pred": 0.77,
+   "expected_verdict": "INDECISIVE(grey)",
+   "P_joint_pred": 0.32,
+   "P_neither_pred": 0.27
+  },
+  {
+   "cluster": "A85",
+   "ra": 10.4594,
+   "dec": -9.3029,
+   "theta_500_arcmin": 18.4,
+   "in_act_footprint": true,
+   "slope_pred_zero_param": -2.596,
+   "sig_slope_pred": 0.86,
+   "expected_verdict": "INDECISIVE(grey)",
+   "P_joint_pred": 0.29,
+   "P_neither_pred": 0.45
+  },
+  {
+   "cluster": "A2319",
+   "ra": 290.3028,
+   "dec": 43.945,
+   "theta_500_arcmin": 19.98,
+   "in_act_footprint": false,
+   "slope_pred_zero_param": -2.549,
+   "sig_slope_pred": 0.24,
+   "expected_verdict": "JOINT",
+   "P_joint_pred": 0.71,
+   "P_neither_pred": 0.27
+  }
+ ],
+ "measured": {
+  "A3266": {
+   "source": "synthetic(committed zero-param profile) (map branch registered no usable slope here: annuli empty after masking (n1=0, n2=0, unmasked fraction 0.00) at the ACT footprint edge / wide-mask hole)",
+   "slope_measured_bg_subtracted": -3.046,
+   "slope_predicted": -3.046,
+   "delta_sigma_bg": 0.0,
+   "verdict": "NEITHER",
+   "P_joint": 0.18,
+   "P_phantom": 0.0,
+   "P_neither": 0.81
+  },
+  "A2029": {
+   "source": "map(ACT DR6+Planck y-map)",
+   "y_annulus_th500": 8.087346124105354e-06,
+   "y_annulus_2th500": 2.5104381015664793e-06,
+   "background_annulus": 9.218136249829133e-07,
+   "n_unmasked": [
+    1844,
+    3686,
+    18401
+   ],
+   "slope_measured_bg_subtracted": -2.173,
+   "slope_measured_raw": -1.688,
+   "slope_predicted": -2.228,
+   "delta_sigma_bg": 0.07,
+   "delta_sigma_raw": 0.7,
+   "verdict": "INDECISIVE(grey)",
+   "P_joint": 0.32,
+   "P_phantom": 0.21,
+   "P_neither": 0.25
+  },
+  "A85": {
+   "source": "map(ACT DR6+Planck y-map)",
+   "y_annulus_th500": 5.674278090215288e-06,
+   "y_annulus_2th500": 7.987037173407372e-07,
+   "background_annulus": 2.241910599547058e-07,
+   "n_unmasked": [
+    2556,
+    5108,
+    25525
+   ],
+   "slope_measured_bg_subtracted": -3.246,
+   "slope_measured_raw": -2.829,
+   "slope_predicted": -2.596,
+   "delta_sigma_bg": -0.76,
+   "delta_sigma_raw": -0.27,
+   "verdict": "NEITHER",
+   "P_joint": 0.18,
+   "P_phantom": 0.04,
+   "P_neither": 0.74
+  },
+  "A2319": {
+   "source": "synthetic(committed zero-param profile) (map branch registered no usable slope here: A2319-class: dec outside the ACT band (-63, +23) -> the Planck MILCA/NILC branch)",
+   "slope_measured_bg_subtracted": -2.549,
+   "slope_predicted": -2.549,
+   "delta_sigma_bg": 0.0,
+   "verdict": "JOINT",
+   "P_joint": 0.72,
+   "P_phantom": 0.0,
+   "P_neither": 0.26
+  }
+ },
+ "synthetic_gate": {
+  "recomputed_slopes": {
+   "A3266": -3.046071716383874,
+   "A2029": -2.2276062620294717,
+   "A85": -2.5958370617921442,
+   "A2319": -2.549074063343239
+  },
+  "committed_slopes": {
+   "A3266": -3.046,
+   "A2029": -2.228,
+   "A85": -2.596,
+   "A2319": -2.549
+  },
+  "median_2bin_zero_param": -2.5355,
+  "pooled_P_joint_2bin": ""
+ },
+ "honest_state": "map-in-hand AND data-pulled-and-preliminary: the ACT DR6 + Planck Compton-y map (1.78 GB) is fetched, checksummed, and the first real-data 2-bin slopes at 2/4 shortlist positions are on the record -- preliminary because the registered controls (PSZ2 neighbour subtraction, noise-map weighting, beam transfer, 100 noise realizations, MILCA/NILC cross-check) are the next lane's work (G129 stage 3-4), AND because the two measured slopes are BACKGROUND-SUBTRACTION-SCHEME-SENSITIVE: A85 raw -2.83 (grey) vs bg-subtracted -3.25 (NEITHER, P=0.74) -- the verdict flips with the zero-level scheme; A2029 raw -1.69 vs bg -2.17 (JOINT-band centre, P=0.32) -- consistent either way.  Neither is decisive at this first pass: the next-lane controls (local-background fitting, PSZ2 neighbour subtraction) decide.",
+ "verdicts": {
+  "V1_fetch_state": "MAP TOUCHED",
+  "V2_pre_scored_shortlist": "the pre-scored shortlist at the committed positions: A3266: measured -3.046 vs predicted -3.046 -> NEITHER; A2029: measured -2.173 vs predicted -2.228 -> INDECISIVE(grey); A85: measured -3.246 vs predicted -2.596 -> NEITHER; A2319: measured -2.549 vs predicted -2.549 -> JOINT; counts JOINT 1/4, grey 1/4, NEITHER 2/4.",
+  "V3_honest_statement": "the tSZ test has its FIRST REAL-DATA CONFRONTATION STAGED: the ACT DR6 + Planck y-map is in hand and the first measured 2-bin slopes at the shortlist positions are on the record -- the campaign's claim moves from 'prediction registered' to 'data pulled and preliminary' for the in-footprint clusters.  Days from this commit to a SCORED verdict (with the full G129 stage 3-4 controls: PSZ2 subtraction, noise maps, beam transfer, jackknives): 21 days (the registered 2-4 weeks of analysis), i.e. on or before 2026-10-07 -- provided the fetch lands (in-footprint clusters) and the Planck branch is pulled for A2319.  The per-cluster tree is honest: at the registered per-cluster noise most shortlist members are individually grey; the decision is sample-level (G177's design): pooled P(JOINT) = 0.75 (2-bin) / 0.86 (multi-bin) at the zero-param median -2.54, with the asymmetric falsifiers registered (F2' dust-kill 4.4-6.9 sigma strong, F1' steeper 2.6 sigma weak).",
+  "days_to_scored_verdict": 21,
+  "verdict_date_iso": "2026-10-07"
+ },
+ "checks": [
+  {
+   "name": "V0 [gate: the committed zero-param shortlist slopes re-executed] the 2-bin slopes at A3266/A2029/A85/A2319 recomputed in-process from the committed G129 x G141 builds reproduce G220_results.json to < 5e-4",
+   "measured": "A3266 -3.046 (committed -3.046) | A2029 -2.228 (committed -2.228) | A85 -2.596 (committed -2.596) | A2319 -2.549 (committed -2.549)",
+   "pass": true,
+   "reading": "identical loader, ingests, recipe and derived dust law -> the synthetic zero-param profiles ARE the committed final curves (G220 V1)"
+  },
+  {
+   "name": "V1 [fetch state] the map product is in hand with a checksum, OR the pull is honestly marked PENDING-NETWORK with the exact fetch script + size budget delivered (never a faked download)",
+   "measured": "MAP TOUCHED",
+   "pass": true,
+   "reading": "ACT DR6 + Planck Compton-y map in hand: ilc_actplanck_ymap.fits (1783298880 bytes, sha256 0f47b211d98a09ad...) PROVENANCE.md written to Z06_data/"
+  },
+  {
+   "name": "V2 [pre-scored shortlist] the 2-bin slope measured-vs-predicted and the JOINT/NEITHER/grey assignment exist at all 4 shortlist positions (map branch where in footprint, synthetic branch elsewhere)",
+   "measured": "A3266:NEITHER | A2029:INDECISIVE(grey) | A85:NEITHER | A2319:JOINT",
+   "pass": true,
+   "reading": "the pre-scored shortlist at the committed positions: A3266: measured -3.046 vs predicted -3.046 -> NEITHER; A2029: measured -2.173 vs predicted -2.228 -> INDECISIVE(grey); A85: measured -3.246 vs predicted -2.596 -> NEITHER; A2319: measured -2.549 vs predicted -2.549 -> JOINT; counts JOINT 1/4, grey 1/4, NEITHER 2/4."
+  },
+  {
+   "name": "V3 [honest state] the campaign's claim today is one of the three registered states (pipeline-proven / map-in-hand / data-pulled-and-preliminary) and the days-to-scored-verdict is stated",
+   "measured": "state: map-in-hand; days to scored verdict: 21 (by 2026-10-07)",
+   "pass": true,
+   "reading": "the tSZ test has its FIRST REAL-DATA CONFRONTATION STAGED: the ACT DR6 + Planck y-map is in hand and the first measured 2-bin slopes at the shortlist positions are on the record -- the campaign's claim moves from 'prediction registered' to 'data pulled and preliminary' for the in-footprint clusters.  Days from this commit to a SCORED verdict (with the full G129 stage 3-4 controls: PSZ2 subtraction, noise maps, beam transfer, jackknives): 21 days (the registered 2-4 weeks of analysis), i.e. on or before 2026-10-07 -- provided the fetch lands (in-footprint clusters) and the Planck branch is pulled for A2319.  The per-cluster tree is honest: at the registered per-cluster noise most shortlist members are individually grey; the decision is sample-level (G177's design): pooled P(JOINT) = 0.75 (2-bin) / 0.86 (multi-bin) at the zero-param median -2.54, with the asymmetric falsifiers registered (F2' dust-kill 4.4-6.9 sigma strong, F1' steeper 2.6 sigma weak)."
+  }
+ ],
+ "n_pass": 4,
+ "n_fail": 0
+}

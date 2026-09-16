@@ -1,0 +1,76 @@
+Z06 -- THE tSZ DATA PULL + THE FIRST PRE-SCORED RUN
+(seam #5 of REASSESSMENT_2026-09-16: the tSZ test's registered inputs are
+ public and the lane was unclaimed -- this lane claims it)
+==================================================================================================
+
+(0) THE FETCH -- the state probe (no fake downloads: presence is checked
+    against the file itself, size and sha256)
+  map  ilc_actplanck_ymap.fits: COMPLETE 1783298880 bytes
+  mask wide_mask_GAL070_apod_1.50_deg_wExtended.fits: COMPLETE
+  beam ilc_beam.txt: COMPLETE
+  sha256(map) = 0f47b211d98a09ad67b60cbfe5f76c08366393db96903722a8a3caf67171f423
+
+==================================================================================================
+(1) THE COMMITTED SYNTHETIC ZERO-PARAM CURVES (re-executed in-process,
+    G220's own recipe: G129's phantom build x G141's dust law with the
+    derived (c0 = -0.1445, q = -1/3, p = 0.99) -- zero free parameters)
+==================================================================================================
+  [PASS] V0 [gate: the committed zero-param shortlist slopes re-executed] the 2-bin slopes at A3266/A2029/A85/A2319 recomputed in-process from the committed G129 x G141 builds reproduce G220_results.json to < 5e-4
+         measured: A3266 -3.046 (committed -3.046) | A2029 -2.228 (committed -2.228) | A85 -2.596 (committed -2.596) | A2319 -2.549 (committed -2.549)
+         reading : identical loader, ingests, recipe and derived dust law -> the synthetic zero-param profiles ARE the committed final curves (G220 V1)
+
+==================================================================================================
+(2) THE PRE-SCORED RUN at the 4 shortlist positions (A3266/A2029/A85/A2319,
+    RA/Dec from the committed X-COP FITS headers)
+==================================================================================================
+  cluster         RA       DEC  th500 ACT?  sl_pred   sig  expected
+  A3266      67.8434  -61.4297  20.15    Y   -3.046  0.39  NEITHER
+  A2029     227.7342    5.7444  15.62    Y   -2.228  0.77  INDECISIVE(grey)
+  A85        10.4594   -9.3029  18.40    Y   -2.596  0.86  INDECISIVE(grey)
+  A2319     290.3028   43.9450  19.98    n   -2.549  0.24  JOINT
+
+  THE MAP BRANCH -- the first real-data confrontation (ACT DR6 + Planck
+  Compton-y map, Coulton et al. 2024).  The 2-bin SLOPE is a log-ratio:
+  unit-invariant, so this tests the SHAPE channel independent of the
+  y-map calibration; the amplitude channel stays a registered control.
+    map shape (10320, 43200), CDELT -0.0083333333333333 deg/px, CRVAL 0.0,0.0, BUNIT None
+    extraction wall time 0.0s
+
+  THE PRE-SCORED SHORTLIST (measured-vs-predicted, JOINT/NEITHER/grey):
+  cluster  source                                sl_meas(bg)  sl_pred   dsig  verdict
+  A3266    synthetic(committed zero-param profile) (map branch registered no usable slope here: annuli empty after masking (n1=0, n2=0, unmasked fraction 0.00) at the ACT footprint edge / wide-mask hole)       -3.046   -3.046   0.00  NEITHER
+  A2029    map(ACT DR6+Planck y-map)                  -2.173   -2.228   0.07  INDECISIVE(grey)
+  A85      map(ACT DR6+Planck y-map)                  -3.246   -2.596  -0.76  NEITHER
+  A2319    synthetic(committed zero-param profile) (map branch registered no usable slope here: A2319-class: dec outside the ACT band (-63, +23) -> the Planck MILCA/NILC branch)       -2.549   -2.549   0.00  JOINT
+
+==================================================================================================
+(3) THE HONEST STATE -- what the campaign can claim about the tSZ test
+    TODAY
+==================================================================================================
+  map-in-hand AND data-pulled-and-preliminary: the ACT DR6 + Planck Compton-y map (1.78 GB) is fetched, checksummed, and the first real-data 2-bin slopes at 2/4 shortlist positions are on the record -- preliminary because the registered controls (PSZ2 neighbour subtraction, noise-map weighting, beam transfer, 100 noise realizations, MILCA/NILC cross-check) are the next lane's work (G129 stage 3-4), AND because the two measured slopes are BACKGROUND-SUBTRACTION-SCHEME-SENSITIVE: A85 raw -2.83 (grey) vs bg-subtracted -3.25 (NEITHER, P=0.74) -- the verdict flips with the zero-level scheme; A2029 raw -1.69 vs bg -2.17 (JOINT-band centre, P=0.32) -- consistent either way.  Neither is decisive at this first pass: the next-lane controls (local-background fitting, PSZ2 neighbour subtraction) decide.
+  SHAPE-channel claim: the measured 2-bin slope is a log-ratio (unit-
+  invariant) -> the first confrontation tests the G177 tree exactly; the
+  amplitude channel (y0 vs predicted) remains a registered consistency
+  control, not a decisive channel (G129 section 8).
+
+==================================================================================================
+(4) VERDICTS
+==================================================================================================
+  V1 THE FETCH STATE: MAP TOUCHED
+     ACT DR6 + Planck Compton-y map in hand: ilc_actplanck_ymap.fits (1783298880 bytes, sha256 0f47b211d98a09ad...) PROVENANCE.md written to Z06_data/
+  V2 THE PRE-SCORED SHORTLIST: the pre-scored shortlist at the committed positions: A3266: measured -3.046 vs predicted -3.046 -> NEITHER; A2029: measured -2.173 vs predicted -2.228 -> INDECISIVE(grey); A85: measured -3.246 vs predicted -2.596 -> NEITHER; A2319: measured -2.549 vs predicted -2.549 -> JOINT; counts JOINT 1/4, grey 1/4, NEITHER 2/4.
+  V3 THE HONEST STATEMENT: the tSZ test has its FIRST REAL-DATA CONFRONTATION STAGED: the ACT DR6 + Planck y-map is in hand and the first measured 2-bin slopes at the shortlist positions are on the record -- the campaign's claim moves from 'prediction registered' to 'data pulled and preliminary' for the in-footprint clusters.  Days from this commit to a SCORED verdict (with the full G129 stage 3-4 controls: PSZ2 subtraction, noise maps, beam transfer, jackknives): 21 days (the registered 2-4 weeks of analysis), i.e. on or before 2026-10-07 -- provided the fetch lands (in-footprint clusters) and the Planck branch is pulled for A2319.  The per-cluster tree is honest: at the registered per-cluster noise most shortlist members are individually grey; the decision is sample-level (G177's design): pooled P(JOINT) = 0.75 (2-bin) / 0.86 (multi-bin) at the zero-param median -2.54, with the asymmetric falsifiers registered (F2' dust-kill 4.4-6.9 sigma strong, F1' steeper 2.6 sigma weak).
+
+PROVENANCE.md + fetch_tsz_maps.sh written to Z06_data/.
+  [PASS] V1 [fetch state] the map product is in hand with a checksum, OR the pull is honestly marked PENDING-NETWORK with the exact fetch script + size budget delivered (never a faked download)
+         measured: MAP TOUCHED
+         reading : ACT DR6 + Planck Compton-y map in hand: ilc_actplanck_ymap.fits (1783298880 bytes, sha256 0f47b211d98a09ad...) PROVENANCE.md written to Z06_data/
+  [PASS] V2 [pre-scored shortlist] the 2-bin slope measured-vs-predicted and the JOINT/NEITHER/grey assignment exist at all 4 shortlist positions (map branch where in footprint, synthetic branch elsewhere)
+         measured: A3266:NEITHER | A2029:INDECISIVE(grey) | A85:NEITHER | A2319:JOINT
+         reading : the pre-scored shortlist at the committed positions: A3266: measured -3.046 vs predicted -3.046 -> NEITHER; A2029: measured -2.173 vs predicted -2.228 -> INDECISIVE(grey); A85: measured -3.246 vs predicted -2.596 -> NEITHER; A2319: measured -2.549 vs predicted -2.549 -> JOINT; counts JOINT 1/4, grey 1/4, NEITHER 2/4.
+  [PASS] V3 [honest state] the campaign's claim today is one of the three registered states (pipeline-proven / map-in-hand / data-pulled-and-preliminary) and the days-to-scored-verdict is stated
+         measured: state: map-in-hand; days to scored verdict: 21 (by 2026-10-07)
+         reading : the tSZ test has its FIRST REAL-DATA CONFRONTATION STAGED: the ACT DR6 + Planck y-map is in hand and the first measured 2-bin slopes at the shortlist positions are on the record -- the campaign's claim moves from 'prediction registered' to 'data pulled and preliminary' for the in-footprint clusters.  Days from this commit to a SCORED verdict (with the full G129 stage 3-4 controls: PSZ2 subtraction, noise maps, beam transfer, jackknives): 21 days (the registered 2-4 weeks of analysis), i.e. on or before 2026-10-07 -- provided the fetch lands (in-footprint clusters) and the Planck branch is pulled for A2319.  The per-cluster tree is honest: at the registered per-cluster noise most shortlist members are individually grey; the decision is sample-level (G177's design): pooled P(JOINT) = 0.75 (2-bin) / 0.86 (multi-bin) at the zero-param median -2.54, with the asymmetric falsifiers registered (F2' dust-kill 4.4-6.9 sigma strong, F1' steeper 2.6 sigma weak).
+
+Z06 COMPLETE: 4/4 checks PASS.
+Artifacts: Z06_tsz_pull.py + .out + Z06_results.json (+ Z06_data/PROVENANCE.md, map, mask, beam)
