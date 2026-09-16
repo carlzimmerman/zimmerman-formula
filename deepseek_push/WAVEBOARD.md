@@ -790,6 +790,66 @@ F1b the flaring slopes +0.35 = the registered +1/3); THE CONTRACT (n_pass
 before the score; ready to run the moment DR4 drops -- the December
 verdict is PRE-COMPUTED.
 
+## WAVE 18 (landed 5/5 -- the ontology amended, the prize derived, the seesaw n demoted)
+G180 THE ONTOLOGY AMENDMENT: 10 substantive wording hits corrected in
+ONTOLOGY_AMENDMENT.md (the 6 already-amended + THEORY_STATUS diagnosed);
+WORDING-LEVEL ONLY -- Lean G028 (FRW comoving charge), G090, G03G all
+UNAFFECTED, the empirical record UNAFFECTED; the ontology: corrected in
+wording, assigned in substance (the Gauss-map charge M_ph(<r) = M_b r/r_M).
+G182 THE MISSING DISPERSION -- THE CLUSTER PRIZE FULLY DERIVED (dressed):
+the infall sets sigma_d(r_b) = v_ff/sqrt(3) = 140.2 km/s (energy
+equipartition of the infall KE over the 3 sheet dimensions; the literal
+v_ff/3 = 81 km/s REJECTED as a registered FAIL-as-finding), 11/12 closure
+within 30%; -> A_b = (sigma_ph/sigma_d)^3 = 0.650 vs measured 0.484
+(1.34x, within 2); sigma_d,req median 154.7 km/s reproduces G159's named
+number to 0.00%; THE AMPLITUDE CHAIN IS CLOSED (infall -> sigma_d -> A_b
+-> the boundary amplitude); the remaining freedom narrowed to ONE number
+(the cap->R500 envelope normalization, G143's c0/q).
+G183 THE n-FAMILY SEARCH -- THE WEDGE DOES NOT CLOSE INSIDE THE FRAMEWORK
+(10/10): the 3-model comparison (pooled 747 pts) picks the n-free fit
+decisively (Delta BIC +199 vs the zero-param n=2, a0_DE) BUT n* =
+3.161 +- 0.347 sits 3.3 sigma ABOVE the n <= 2.01 subluminal bound, the
+deep-window slope 12.3 sigma off, and even it leaves MIGHTEE open;
+the a0(z) reading DEAD (MIGHTEE's z=0.044 needs gamma = 12-32 vs G011's
+canonical 1; the z=0 deep components untouched); the environmental reading
+DEAD (G03D: EFE moves the fit DOWN; the lowest-EFE HI dwarfs are the deep
+HIGH reader); CONSEQUENCES: n = 2.000 DEMOTED to the full-curve CONVENTION
+reading, the empirical deep exponent n ~ 1.0-1.66 (slope 1.20 +- 0.06),
+and THE SEESAW n(a0) = s/a0 REJECTED at ~8 sigma.  The framework's n
+statement has changed: no n <= 2 member reconciles the deep end with the
+full curves.
+G184 THE KNEE'S DISCRIMINATOR 6/6: the outer profile ALREADY discriminates
+at the pooled level: pooled outer slope -2.169 +- 0.318 (inside the
+theory's [-2.4, -2.0] band, 2.6 sigma from NFW's -3); the X-ray beta-model
+tail -2.624 +- 0.176 + the tSZ joint -2.37 together give a THREE-
+INSTRUMENT MEAN -2.404 +- 0.078, 7.7 sigma from NFW -3, mutual agreement
+chi2 = 2.29/2 (p = 0.32); the position INSIDE R500 stays degenerate (G160).
+G185 THE AMPLITUDE DERIVATION 8/8: YES -- the derived jump and the law
+AGREE at the boundary (rho_ph(r_b)/rho_d(r_b) median 0.297 vs A_b = 0.273,
+R = 1.09, 12/12 inside the band, no mass trend); the jump PINS the
+c0-combination (c0 + q log(M500/8e14) at r_b); (c0, q) = ONE-PARAMETER
+EMPIRICAL, partially derived: c0 pinned by the jump, q measured (-0.414,
+consistent with the derived q_jump = -0.34 +- 0.27); G182's landing
+upgrades c0-direction to COMPUTED; THE LAST CLUSTER FREEDOM IS THE SINGLE
+NUMBER q.
+
+## THE TWO CLOSURES + THE ONE CRISIS (wave-18 headline)
+(1) THE CLUSTER THORN IS EFFECTIVELY CLOSED: the amplitude chain derived
+(infall -> sigma_d = v_ff/sqrt(3) -> A_b = 0.650), the boundary jump pins
+c0, q measured, the outer profile -2.4-class vs NFW -3 at 7.7 sigma
+(three instruments), the pie closed to three sectors, the phase diagram
+endpoint-measured.  What remains: the single number q + the 0.1-dex floor.
+(2) THE ONTOLOGY IS CORRECTED AND ASSIGNED (the Gauss-map charge; wording
+amended, physics survives, Lean intact).
+(3) THE FOOTING CRISIS HAS CLAIMED THE SEESAW'S n: G183's verdict that no
+in-family mu reconciles the deep end (a0 ~ 1.8e-10, n ~ 1-1.66) with the
+full curves (n = 2 at 9.36e-11) -- n = 2.000 is a convention reading and
+the seesaw n(a0) = s/a0 is rejected at 8 sigma.  THE DECISIVE QUESTION NOW:
+does a0 = Lambda^2/2M_Pl survive at all, or is the galactic equilibrium
+scale a DIFFERENT (composite/environmental) quantity from the vacuum
+scale?  Wave 20 (G189 the seesaw's fate, G190 the footing decision tree,
+G191 the kink-width project, G192 the thorn closeout).
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 CLAIMED (deepseek, in flight -- do NOT duplicate): G154 static-branch
 charge, G155 sourced equation, G156 dust charge-vs-relic decision,
