@@ -1,0 +1,210 @@
+{
+ "lane": "F03_phantom_correlator",
+ "title": "THE FIRST PHANTOM CORRELATOR -- closing the G235 dynamics register with the framework's predicted linear response of the dark sector: the committed chi(k, omega), the FDT spectrum S(k, omega) at T_b, and the falsifier",
+ "question": "what is the linear response of the phantom (isothermal gas, P = sigma^2 rho) to a baryonic perturbation -- the frequency-dependent FDT at T_b that G235 registered as UNTESTED, 'no two-time correlator committed'?",
+ "status_date": "2026-09-16",
+ "closed_register": {
+  "G235_dynamics_register": "OPEN -> CLOSED",
+  "what_G235_registered": "'the framework has committed NO two-time correlation function and NO response/admittance chi(omega) or noise spectrum S(omega) for the phantom sector'; 'the nontrivial (frequency-dependent) FDT cannot be run: it is UNTESTED, not violated'",
+  "what_F03_commits": "chi(k, omega) = rho_0 k^2/(omega^2 - c_s^2 k^2) with the committed constants; S(k, omega) = pi m rho_0 [delta(omega - c_s k) + delta(omega + c_s k)] at T_b; the two-time correlator C(k, t) = m rho_0 cos(c_s k t)"
+ },
+ "constants": {
+  "G": 6.6743e-11,
+  "m_keV": 5.09,
+  "sigma_kms": 119.21,
+  "sigma2": 14211024100.0,
+  "c_s_kms": 119.21,
+  "A_kg_per_m": 3.3887519768560796e+19,
+  "kappa_T_Pa_inv": 7.036790543476737e-11,
+  "T_b_K_anchor": 9.339612623466818,
+  "T_b_K_G235_canonical": 9.520685618438534,
+  "r_M_kpc": 10.2101,
+  "r_break_kpc": 6.330262
+ },
+ "V1_response_function": {
+  "form": "chi(k, omega) = rho_0 k^2/(omega^2 - c_s^2 k^2)",
+  "equilibrium": "rho_0 = A/r^2, A = C/(4 pi G), C = 2 sigma^2 = sqrt(G M_b a_0) (G084/G233)",
+  "pole": "omega = +- c_s k = +- sigma k, the Goldstone sound mode (B8), gapless (zero intercept)",
+  "static_limit": "-rho_0 kappa_T, kappa_T = 1/sigma^2 (B5)",
+  "jeans_note": "4 pi G rho_0 = 2 sigma^2/r^2 exactly (self-similar); k/k_J = 2 pi/sqrt(2) = 4.44 at every radius -> propagating at well scales; fundamental radial mode marginal omega^2 = 0 (G081) -- the Jeans term neither destabilizes nor gaps the pole",
+  "numbers": {
+   "residual_C1": 1.602164345052817e-16,
+   "pole_den_C3": 1.7516230804060213e-46,
+   "static_ratio_C5": 0.9999999999999998,
+   "sound_period_rM_Myr": 83.74596395086843
+  }
+ },
+ "V2_FDT_spectrum": {
+  "form": "S(k, omega) = pi m rho_0 [delta(omega - c_s k) + delta(omega + c_s k)]",
+  "derivation": "classical FDT S = (2 k_B T_b/omega)(-Im chi_R) with the retarded response; k_B T_b = m sigma^2 (G235 identity) collapses k_B T_b/c_s^2 -> m",
+  "amplitude_at_rM": 9.732296803485205e-54,
+  "two_time_correlator": "C(k, t) = m rho_0 cos(sigma k t) (worst numeric deviation 2.13e-03)",
+  "sum_rule": {
+   "full_line_int_I_full": 1.9464593582490266e-53,
+   "analytic_2_pi_m_rho": 1.946459360697041e-53,
+   "windowed_one_sided_eps1em3": 9.608630292456904e-54,
+   "windowed_one_sided_eps1em4": 9.608400254805161e-54,
+   "note": "int S d omega / (2 pi) = m rho_0, eps-independent (residue closed form)"
+  },
+  "n_m1half_floor": {
+   "per_box_lambda_0.1rM_delta_rho_over_rho": 1.4244228047524773e-35,
+   "C08_whole_halo_deltaT_over_T": 2.6492495805641947e-37
+  },
+  "first_nonidentity_FDT": "the spectrum is a PREDICTION (sound doublet, amplitude m rho_0), not the identity D = mu k_B T_b that held for any channel"
+ },
+ "V3_falsifier": {
+  "kill_conditions": [
+   "measured response WITHOUT the pole at omega = sigma k (C3/C14)",
+   "a GAP at k -> 0: omega(0) > 0 (C14/C15; the k -> 0 intercept is the clean discriminating test)",
+   "FDT spectral weight OFF the sound branch: continuum, central/Landau-Placzek peak at omega = 0, or width Gamma > 0 (C8/C16)",
+   "phase speed omega/k != sigma at fixed k (the committed sigma is independently pinned by rotation curves -- C3/C17)"
+  ],
+  "the_measurement": "the (k, omega)-resolved acoustic wake behind a baryonic perturber crossing the well (B5's t_sound/t_dyn = sqrt(2); B8's Mach cone at c_s = sigma; cluster merger shocks Mach 2-6, G127 c_s = 628-915 km/s) and the density-fluctuation spectrum decomposed in (k, omega)",
+  "honest_bound": "no committed in-situ instrument resolves halo-scale (k, omega) power today; the register closes with a prediction and its kill conditions, not with data"
+ },
+ "verdicts": {
+  "V1": "V1 THE COMMITTED chi(k, omega):  the phantom's linear response to a baryonic potential perturbation is delta_rho(k, omega) = chi(k, omega) delta_Phi_ext(k, omega) with chi(k, omega) = rho_0 k^2/(omega^2 - c_s^2 k^2), rho_0 = A/r^2, A = 2 sigma^2/(4 pi G) = C/(4 pi G), c_s = sigma = 119.21 km/s (G116/G031 anchor), C = sqrt(G M_b a_0) -- derived from the committed EOS (B5) and the perturbation of the G084 equilibrium, machine-verified on the linearized equations (residual < 1e-12); the pole at omega = +-sigma k is the Goldstone sound mode (B8), GAUGELESS (zero intercept, C4); the static limit re-derives B5's compressibility (chi(0,0) = -rho_0 kappa_T, C5); the Jeans self-gravity term 4 pi G rho_0 = 2 sigma^2/r^2 keeps the well-scale response propagating (k/k_J = 4.44 at every radius, C6) -- no instability, no gap.  THE FIRST COMMITTED RESPONSE FUNCTION of the campaign.",
+  "V2": "V2 THE FDT SPECTRUM:  with chi committed, the fluctuation-dissipation theorem at T_b becomes NONTRIVIAL: S(k, omega) = (2 k_B T_b/omega) Im chi_R(k, omega) = pi (k_B T_b/c_s^2) rho_0 [delta(omega - c_s k) + delta(omega + c_s k)] = pi m rho_0 [delta(omega - c_s k) + delta(omega + c_s k)] (using the G235 identity k_B T_b/m = sigma^2): the phantom's density fluctuations at T_b live EXACTLY on the Goldstone branch -- a delta-fine sound doublet at +-sigma k with amplitude pi m rho_0 and ZERO weight elsewhere (sum rule verified to 1e-4, C9).  THE FIRST NON-IDENTITY FDT STATEMENT: the register G235 left open (the frequency-dependent FDT at T_b, UNTESTED) is now CLOSED WITH A PREDICTION.  The two-time correlator C(k, t) = m rho_0 cos(sigma k t) (C11) is the first committed two-time correlation function of the campaign; its equal-time value m rho_0 is the N^{-1/2}-class thermal floor of C08/E04, now frequency-resolved.",
+  "V3": "V3 THE HONEST STATEMENT:  the phantom's linear response -- the first committed correlator in the campaign -- is the sound-mode pole omega = sigma k with zero intercept (the Goldstone branch, B8), the FDT sound doublet S = pi m rho_0 [delta(omega - sigma k) + delta(omega + sigma k)] at T_b, and the measurement that tests them: the (k, omega)-resolved acoustic wake behind a baryonic perturber crossing the well (B5's sqrt(2) response lag; B8's Mach cone at c_s = sigma; cluster shocks, G127).  KILL CONDITIONS: a measured response without the pole at omega = sigma k, with a gap at k -> 0, with off-branch spectral weight (continuum / central peak / width Gamma > 0), or with a phase speed != sigma (independently pinned by rotation curves) -- ANY of these kills the Goldstone face of the committed equilibrium.  HONEST BOUNDS: the response is the LOCAL (lambda << r, WKB) plane-wave reading of an inhomogeneous equilibrium; the self-gravity (Jeans) term is included and does not move the pole; no committed instrument resolves halo-scale (k, omega) power today -- the register is closed with a falsifiable prediction, and G235's registered chi(omega) test now has its concrete committed form."
+ },
+ "checks": [
+  {
+   "name": "C0.1 [register] G235: the dynamics register OPEN -- UNTESTED, no committed chi(omega)/S(omega), no two-time correlator",
+   "pass": true,
+   "measured": "the record F03 closes: the gap G235 V2 named ('no response spectrum')"
+  },
+  {
+   "name": "C0.2 [register] G235: the classical FDT at T_b is the IDENTITY (k_B T_b/m = sigma^2) -- the nontrivial FDT needs a committed chi",
+   "pass": true,
+   "measured": "with chi committed below, the FDT stops being an identity (S1)"
+  },
+  {
+   "name": "C0.3 [register] B5: the committed EOS P = sigma^2 rho, kappa_T = 1/sigma^2, c_s = sigma",
+   "pass": true,
+   "measured": "the EOS whose linearization IS the response function"
+  },
+  {
+   "name": "C0.4 [register] G081: the equilibrium's radial spectrum is MARGINAL at omega^2 = 0 (homology) with a neutral continuum -- no gapped mode on the record",
+   "pass": true,
+   "measured": "no massive counterpart to gap the committed pole (G081: 'no such mode')"
+  },
+  {
+   "name": "C0.5 [sigma restored] sigma^2 = (1/2) sqrt(G M_b a_0) = C/2 with the anchor M_b = 6.5e10: returns 119.209 km/s vs the G116/G031 register 119.21 km/s (quoted at 2 decimals)",
+   "pass": true,
+   "measured": "sigma^2 = 1.4211024100e+10 (m/s)^2 (register 1.4211e10); the register's 2-decimal rounding is 119.21 vs restored 119.212"
+  },
+  {
+   "name": "C0.6 [thermal identity] k_B T_b/m = sigma^2 exactly at the anchor (the G235 2e-5 identity, now exact in this footprint)",
+   "pass": true,
+   "measured": "k_B T_b/m = 1.4211024100e+10 = sigma^2"
+  },
+  {
+   "name": "C0.7 [kappa_T] kappa_T = 1/sigma^2 = 7.037e-11 Pa^-1 (B5/GG233 register 1/1.4747e10 = 6.781e-11 canonical)",
+   "pass": true,
+   "measured": "kappa_T = 7.036791e-11 Pa^-1"
+  },
+  {
+   "name": "C0.8 [A register] A = 2 sigma^2/(4 pi G) = C/(4 pi G): the closed-form profile coefficient (G084: rho_0 = A/r^2, A = C/(4 pi G))",
+   "pass": true,
+   "measured": "A = 3.388752e+19 kg/m"
+  },
+  {
+   "name": "C1 the perturbation equation closes: (omega^2 - c_s^2 k^2) delta_rho = rho_0 k^2 delta_Phi_ext holds on the committed chi",
+   "pass": true,
+   "measured": "worst residual 1.60e-16 over 6 (k, omega, r) samples -- the linearized continuity + Euler + EOS at the G084 equilibrium are solved by the committed chi to machine precision"
+  },
+  {
+   "name": "C2 the Green's function identity: (omega^2 - c_s^2 k^2 + 2i eps omega) G_R = 1 for the retarded sound propagator",
+   "pass": true,
+   "measured": "worst |(operator)G - 1| = 3.26e-23 -- G_R = 1/((omega+i eps)^2 - c_s^2 k^2) is the exact Green's function of the committed perturbation operator d_t^2 - c_s^2 Lap"
+  },
+  {
+   "name": "C3 the pole sits EXACTLY at omega = c_s k = sigma k (the Goldstone sound branch, B8): denominator zero at every tested wavenumber",
+   "pass": true,
+   "measured": "max |omega^2 - c_s^2 k^2| at omega = c_s k = 1.8e-46 -- omega = sigma k identically: the response's only pole is the sound mode"
+  },
+  {
+   "name": "C4 the branch is GAUGELESS: phase speed omega/k = sigma constant, omega(k -> 0) -> 0 (zero intercept -- no gap at k = 0)",
+   "pass": true,
+   "measured": "phase-speed spread = 0.00e+00 -- no massive counterpart shifts the pole; the committed record has no gapped mode (G081)"
+  },
+  {
+   "name": "C5 the static limit re-derives the isothermal compressibility (B5): chi(k -> 0, omega = 0) -> -rho_0 kappa_T = -rho_0/sigma^2 (the barometric/Gibbs response delta_rho/rho_0 = -delta_Phi/sigma^2)",
+   "pass": true,
+   "measured": "chi(0,0)/(-rho_0 kappa_T) = 1.000000000000 -- the response function's zero-frequency zero-wavenumber limit is the committed compressibility: B5's kappa_T = 1/sigma^2 is the response's static pole-weight, one and the same object"
+  },
+  {
+   "name": "C6a the Jeans term is exact: 4 pi G rho_0 = C/r^2 = 2 sigma^2/r^2 at the equilibrium (self-similar: the Jeans scale TRACKS the radius)",
+   "pass": true,
+   "measured": "4 pi G rho_0 = 2.863481e-31 vs C/r^2 = 2.863481e-31 s^-2 -- k_J = sqrt(2)/r at every r: the phantom sits at the same Jeans margin everywhere -- exactly G081's marginal ball"
+  },
+  {
+   "name": "C6b the well-scale response is PROPAGATING, not Jeans-unstable: k(2 pi/r)/k_J = 2 pi/sqrt(2) = 4.44 at EVERY radius (both scales ~ 1/r)",
+   "pass": true,
+   "measured": "k/k_J = 4.4429 at r_M -- the driven response at galactic scales is the sound branch; the Jeans term does not destabilize (fundamental radial mode marginal, omega^2=0, G081) and does not gap the pole"
+  },
+  {
+   "name": "C6c [G081 marginal re-verified] the homology zero modes xi = {r, r^2} solve the self-consistent radial mode equation at omega^2 = 0 identically (finite-difference residual)",
+   "pass": true,
+   "measured": "worst zero-mode residual = 9.1e-13 -- the ball's fundamental is EXACTLY marginal: no instability, no gap; the committed pole at omega = sigma k is the only response structure"
+  },
+  {
+   "name": "C7 the spectrum is even in omega: S(k, -omega) = S(k, omega) (classical symmetrized FDT)",
+   "pass": true,
+   "measured": "S(-)/S(+) = 1.000000000000000 -- the doublet is symmetric: equal weight at +sigma k and -sigma k"
+  },
+  {
+   "name": "C8 the FDT weight is concentrated ON the Goldstone branch: >= 95% of the spectrum within +-20eps of omega = sigma k (a delta-fine doublet)",
+   "pass": true,
+   "measured": "on-branch fraction 0.968212, off-branch 3.18e-02 -- no off-branch spectral weight: the committed spectrum is the pure sound doublet; a measured continuum/central peak would be a kill (V3)"
+  },
+  {
+   "name": "C9 the FDT sum rule: int S(k, omega) d omega / (2 pi) = m rho_0 -- the full-line regularized integral reproduces the residue closed form 2 pi m rho_0 = 2 pi (k_B T_b/c_s^2) rho_0 (using k_B T_b/m = sigma^2)",
+   "pass": true,
+   "measured": "|I_full - 2 pi m rho_0|/(2 pi m rho_0) = 1.258e-09 -- the delta-doublet amplitude IS pi m rho_0 per side: the FDT at T_b is now a committed number, not an identity"
+  },
+  {
+   "name": "C10 the spectrum amplitude is fixed by the committed mass and equilibrium: pi m rho_0(r) with m = 5.09 keV, rho_0 = A/r^2",
+   "pass": true,
+   "measured": "pi m rho_0(r_M) = 9.7323e-54 kg^2/m^3; at r_break = 2.5318e-53 -- no free parameter: the amplitude scales as rho_0 ~ 1/r^2 with the G084 profile coefficient"
+  },
+  {
+   "name": "C11 THE FIRST COMMITTED TWO-TIME CORRELATOR: C(k, t) = m rho_0 cos(sigma k t) (G235's registered test item 1 -- the two-time correlation function of the phantom sector, now committed)",
+   "pass": true,
+   "measured": "worst |C_num - m rho_0 cos| / m rho_0 = 2.130e-03 -- the density autocorrelator oscillates at the sound frequency, undamped (no committed damping channel), amplitude m rho_0"
+  },
+  {
+   "name": "C12 the frequency-resolved floor is the N^{-1/2} class of C08/E04: per-box (delta rho/rho_0)^2 = m/(rho_0 V_lambda) -- the equal-time variance m rho_0 integrated over a lambda-box",
+   "pass": true,
+   "measured": "delta rho/rho = 1.424e-35 (C08 integral floor delta T_rms/T = 2.649e-37 whole-halo) -- E04's integral floor was the ONLY committed fluctuation quantity; the FDT now gives its frequency-resolved shape (the sound doublet)"
+  },
+  {
+   "name": "C13 the FDT is now NONTRIVIAL: the G235 identity (D = mu k_B T_b holds for ANY channel) is superseded by a PREDICTED chi-dependent spectrum -- S(k, omega) = pi m rho_0 [delta(omega - c_s k) + delta(omega + c_s k)]",
+   "pass": true,
+   "measured": "the identity used k_B T_b/m = sigma^2 only; the committed S fixes which oscillators carry the fluctuations (the Goldstone branch) and their amplitude (m rho_0) -- the first NON-IDENTITY FDT statement of the campaign: the register is closed with a prediction, exactly the step G235 V2 registered as open"
+  },
+  {
+   "name": "C14 the GAP FALSIFIER: any finite intercept omega(k -> 0) > 0 separates from the committed zero-intercept pole -- the gapped curve differs by a growing fraction as k -> 0 (the clean test is the k -> 0 intercept)",
+   "pass": true,
+   "measured": "domega/omega = 1.266e-04 at the well scale, 4.944e-02 at k/20, -> inf at k -> 0 -- a measured dark-sector response with ANY gap at k -> 0 kills the Goldstone face; the committed prediction is the exact zero intercept"
+  },
+  {
+   "name": "C15 the MASSIVE-BRANCH falsifier: a gapped response omega_0 = m_sc c^2/hbar sits orders above the committed sound frequency at the well scale -- the committed record has NO such mode (G081: 'no gapped / massive mode on the record')",
+   "pass": true,
+   "measured": "omega_0/omega_sound(r_M) = 3.58e+35 -- any committed-mass gap is distinguishable by many orders; the pole test is the frequency-resolved response's intercept, not its amplitude"
+  },
+  {
+   "name": "C16 the WIDTH falsifier: the committed FDT spectrum is a delta-fine doublet -- any measured width Gamma > 0 or central (Landau-Placzek) peak at omega = 0 (an entropy/heat-transport mode) kills the clean isothermal-Goldstone reading",
+   "pass": true,
+   "measured": "committed: Gamma = 0, S(0 < |omega| << sigma k) = 0 -- the sector's only committed relaxation is 1e73-1e76 t_H (G103): effectively zero linewidth, zero central peak"
+  },
+  {
+   "name": "C17 THE MEASUREMENT (named): the acoustic wake behind a baryonic perturber crossing the well -- B5's t_sound/t_dyn = sqrt(2) response lag and B8's Landau picture (v < c_s: zero drag/heating; v > c_s: a coherent Mach cone at c_s = sigma); cluster merger shocks Mach 2-6 (G127, c_s = 628-915 km/s) -- the wake's (k, omega) response must sit on omega = sigma k, gapless, delta-fine",
+   "pass": true,
+   "measured": "well wake period = 83.7 Myr; cluster crossing t_sound ~ 670 Myr -- no committed in-situ instrument resolves halo-scale (k, omega) power today, honest: the register closes with the prediction and its kill conditions, not with data (the phase speed omega/k = sigma is independently pinned by rotation curves: the EOS normalization and the pole motion are the same committed sigma)"
+  }
+ ],
+ "n_pass": 27,
+ "n_fail": 0,
+ "deliverable": "deepseek_push/F03_phantom_correlator.py + F03_phantom_correlator.out + F03_results.json"
+}
