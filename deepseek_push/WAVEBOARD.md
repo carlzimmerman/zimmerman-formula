@@ -1877,6 +1877,102 @@ STATISTICAL-GEOMETRIC on the committed record (the kernel's 2 & 3 + Einstein's
 8 pi + the horizon closure's square), the strict kernel-normalization identity
 open (fails as stated, holds in its partial committed form).
 
+## WAVE 34 (F-series, landed 10/10 -- the product face certified, the FIRST phantom correlator committed, the Z-chain closed, the TOE graded)
+F01 THE PRODUCT FACE LEAN 7 theorems (6baeba263): m x T_X-ray = mu m_p
+T_0(1+z*) CERTIFIED -- the field identity (a/sigma^2)(b sigma^2) = ab; the
+a0-cancellation via the sqrt_pair technique (no rpow); product_a0_independent
+(no a0, no M_b, no G in the product) -- the E03 identity now LEAN; the a0-
+sweep over [0.5, 2.0] a0_H bit-identical at ratio 1 (worst 3.3e-16).
+F2 THE 97.5-NM TRANSITION 16/16 (777a28659): the crossover k_x = 2 m c_s/hbar
+= 2.0514e7 m-1, lambda_x = pi xi = 306.3 nm; THE PINNED IDENTITIES: the
+crossover phonon energy = 2 k_B T_b EXACTLY (C08), lambda_x = lambda_dB/2
+EXACTLY (612.6 nm); the mode at k_x runs 41% off the Goldstone line; the
+quantum floor S(k) = (k xi/2)/sqrt(1 + (k xi/2)^2) is FORMAL (N_xi = 3.5e-11
+< 1 particle per coherence volume at every radius); PROBEABILITY: in situ 28
+orders below any probe; THE COLLECTIVE ANALOG: identical Bogoliubov dispersion
+in lab BECs -- Rb xi = 371 nm / Sr 350 nm, and xi_fw = 97.5 nm sits INSIDE
+the lab window (8-mm/s Rb: 91 nm, within 6.7%): THE FRAMEWORK'S QUANTUM FACE
+IS THE BOSE-EINSTEIN UNIVERSALITY CLASS -- unobservable in situ, universal in
+class.
+F3 THE FIRST PHANTOM CORRELATOR 27/27 (b09e9ab15) -- THE G235 DYNAMICS
+REGISTER CLOSED: chi(k, omega) = rho_0 k^2/(omega^2 - c_s^2 k^2) derived
+from the committed EOS + the linearized continuity/Euler; the pole at
+omega = sigma k = the Goldstone sound mode, gapless, machine-verified; the
+static limit chi(0,0) = -rho_0 kappa_T re-derives B5; the Jeans term
+4 pi G rho_0 = 2 sigma^2/r^2 exact; THE FIRST NON-IDENTITY FDT: S(k, omega)
+= pi m rho_0 [delta(omega - sigma k) + delta(omega + sigma k)] (the G235
+thermal identity collapses the amplitude to m rho_0); the sum rule verified
+to 1.3e-9; THE TWO-TIME CORRELATOR C(k, t) = m rho_0 cos(sigma k t) --
+G235's registered test item, CLOSED with a prediction; the falsifier: any
+response without the pole, any gap at k -> 0 (a KG gap sits 1e35x above the
+sound frequency), off-branch FDT weight; the honest bound: no committed
+instrument resolves halo-scale (k, omega) power today.
+F4 THE PRODUCT FACE ACROSS ENVIRONMENTS 9/9 (5c5f7bfb9): the identity closes
+at 1.0000000000 at EVERY one of the 11 committed G213 rungs (freeze floor
+through superclusters; T_X-ray spans 3.1e5 -> 3.2e8 K): max |residual| =
+3.3e-16; the sigma-cancel spread 5.6e-16 over 1.5 decades of sigma, 3 of T,
+6+ of z*: ONE IDENTITY FROM EVERY ENVIRONMENT (the B3-class statement for
+the product face); the decouple watch: NOMINAL (worst group/EoR at 5.8e-15
+sigma); the honest limits: the 4/11 in-domain rungs vs the class-extrapolated
+rest, stated.
+F5 THE LAMBDA-1 = 3 SELECTION 12/12 (e4af0db9a): THE LOOP CLOSES
+(conditionally on the virial rung): sigma^2 = C/2 -> gamma = 2 -> n =
+2/(gamma-1) = 2 -> l1 = n+1 = 3 -> c = 1/(l1-1) = 1/2 -> form-free KKT
+returns l1* = 3.000000004 -- the variational determination agrees with the
+axis chain's exact 3 at 4e-9 (grid-limited); THE 3 IS THE LOOP'S OUTPUT, NOT
+AN ANCHOR; the double-3: each 3 separately mechanized (the kernel's via the
+loop, the Friedmann's via GR), their identification a registered consistency
+not a derived law; the compatibility identity c = (gamma-1)/2 with the
+order-1 sensitivity (|dl1/l1| = (2/3)|dc/c|): the 3 is a POINT, not a basin
+- max entropy alone leaves l1 free, the virial rung selects it.
+F6 THE UNIFICATION KILL PROPOSALS 12/12 (8d0fd0ada): KILL-A (T-law
+decoupling): the coupled null r_T = 2 r_R (T proportional v^2 from the shared
+sigma^2): power 0.8 at N = 17-25 (the existing 24 clusters sit at 0.77) --
+re-reduction TODAY on the data already on record; KILL-B (mass decoupling):
+the 2.55-keV line pins m_dir at the 4e-3-keV class, ~45x finer than the
+3-sig band separation needs; 1-Ms XRISM, verdict in 1-2 yr; KILL-C (gravity
+face): the existing 55 dwarfs at power 0.92, the z~2.5 funnel N = 4 for 5
+sig, MIGHTEE now, DR4 ridge 2026-12-02; all three armed, none fired, each a
+PI-ready program.
+F7 THE VACUUM TEMPERATURE ARITHMETIC 14/14: the ladder T_dS = 2.1977e-30 K
+(hbar H0 sqrt(Omega_L)/2 pi k_B -- zero framework freedom), T_CMB(0) =
+2.72548 K (observed), T_b = T_CMB(2.4) = 9.2666 K; the ratios T_b/T_dS =
+4.2165e30, T_CMB/T_dS = 1.2402e30, T_b/T_CMB(0) = 3.4000 = 1 + z* EXACT;
+the structure: NOT a fixed-ratio chain and NOT a coincidence field -- two
+derived rungs sharing the horizon root + one observed rung, with the
+composite T_b/T_dS = (1+z*) T_CMB(0)/T_dS exact to 0e0; ONE constructed
+coincidence (the freeze, G163) + ONE constructed coldness (the horizon, 30
+orders by geometry) = ZERO FREE COINCIDENCES.
+F8 THE Z-CHAIN 18/18 (571387e4e): THE CHAIN 2, 3, 8 pi -> Z with each link
+committed: lambda_1 = 3 (G228 KKT), coefficient 2 = the deep slope n = 2
+(H055), the Einstein measure 8 pi (via rho_c = 3H0^2/8 pi G), the generation
+count 3 = the Friedmann 3 = the phase-space dimension; assembly verified to
+30 digits: Z = (l1 - 1) sqrt(8 pi/l1) = 2 sqrt(8 pi/3) = 5.788810036466141;
+THE LOOP CLOSES: lambda_1 -> Z -> a0 -> the horizon -> Omega_L (C06's
+closure_iff_zSq), the loop has ZERO FREE CONSTANTS; the honest boundary: the
+chain does NOT derive 3D-ness (a D = 4 composition leaves the kernel intact
+but gives 2 sqrt(8 pi/4) = 5.0133 != Z and fails the closure).
+F9 THE TOE STATUS 28/28 (aa515e740): TOE_STATUS.md -- the definitive grading:
+HAS unified (gravity + the baryonic temperature + the dark mass via ONE
+scale; the product identity; 34 Lean theorems), LACKS (the SM sector -- dead
+by the null, B04; the quantum sector -- absent; 3D-ness -- not derived; the
+input floor {G, c, f_b}); THE HONEST PLACE: a PARTIAL TOE -- the dark sector
+and its scale unified and certified, the SM untouched, the quantum absent;
+the path's honest end (the SM bridge dead, the quantum transition
+unobservable except as the BEC analog, no lever for G).
+F10 THE INCOMPLETENESS REGISTRY 20/20 (2281e3f20): the five registers with
+probes and thresholds: (a) dynamics -- the correlator's pole at omega = c_s k;
+any response without it kills the Goldstone face; (b) coupling -- the
+environmental dependence of the 22% gap; the large-EFE split at > 3 sig;
+(c) quantum -- sub-xi at 97.5 nm, unobservable, the BEC analog the only lab
+face; (d) SM -- COMPLETE-without-the-SM or INCOMPLETE-because-of-it (the
+null, B04); (e) input -- G, c, f_b, the watch; ALL FOUR MEASUREMENT
+FALSIFIERS ARMED, NONE FIRED: the registry as the honest TOE-gap ledger.
+LEAN NOTE: F01 adds 7 theorems (product face), campaign total now 23
+certificates / 187+ theorems; a concurrent `git add -A` absorbed F07's files
+into F06's commit (8d0fd0ada) -- content hash-verified identical on origin,
+no history rewritten while other agents commit.
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 ## WAVE 26 (landed 10/10 -- THE MASS CONVERGED; the scale final; the dSph boundary explained; the census leans charge)
 G208 DEEP-STAIRCASE ORTHOGONALITY 14/14 -- TWO-LAYER: the top stair is the
