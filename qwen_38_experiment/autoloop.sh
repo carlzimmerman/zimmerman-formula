@@ -30,7 +30,7 @@ REPO="$(dirname "$DIR")"
 LOGDIR="$DIR/runs/loop_logs"
 mkdir -p "$LOGDIR"
 ITER_TIMEOUT="${ITER_TIMEOUT:-1500}"     # seconds per task session (25 min; normal sessions run 4-15)
-WORKER_MODEL="${WORKER_MODEL:-}"         # e.g. qwen3.8:27b-mlx; empty = default model
+WORKER_MODEL="${WORKER_MODEL:-qwen3.8:27b-mlx}"   # local Ollama model (the default Anthropic name fails against the Ollama endpoint)
 MAX_TURNS="${MAX_TURNS:-40}"
 COOLDOWN="${COOLDOWN:-15}"               # pause between sessions
 
