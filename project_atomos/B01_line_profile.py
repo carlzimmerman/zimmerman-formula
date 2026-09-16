@@ -407,7 +407,7 @@ print(f"  Sigma_NFW(R) = 2 rho_s r_s g(R/r_s);  g -> pi/2 - 1 = "
       f"{math.pi/2-1:.3f} (FLAT core) as R -> 0, g(1) = 1/3, g ~ x^-2 outside")
 for i, x in enumerate(xs):
     if i % 6 == 0 or xs[i] == xs[-1]:
-        print(f"      {float(x):7.3f}   g = {float(nfw_g(x)):.4f}   "
+        print(f"      {float(x):7.3f}   g = {float(nfw_g(x)[0]):.4f}   "
               f"slope -d lnS/d lnR = {sl_nfw[i]:8.3f}")
 print(f"  THE SIGNATURE CONTRAST (innermost bins):")
 print(f"    framework line I(b):  slope -> {slope[0]:.1f} (b^-1 CUSP, brightness "

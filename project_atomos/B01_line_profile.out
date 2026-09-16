@@ -98,8 +98,80 @@ PART 2  THE SPATIAL PROFILE -- I(b) of the 2.55-keV line vs impact parameter
 
 --- 2.2  the CDM comparison: the NFW projected surface density -------
   Sigma_NFW(R) = 2 rho_s r_s g(R/r_s);  g -> pi/2 - 1 = 0.571 (FLAT core) as R -> 0, g(1) = 1/3, g ~ x^-2 outside
-Traceback (most recent call last):
-  File "/Users/carlzimmerman/new_physics/zimmerman-formula/project_atomos/B01_line_profile.py", line 410, in <module>
-    print(f"      {float(x):7.3f}   g = {float(nfw_g(x)):.4f}   "
-                                         ~~~~~^^^^^^^^^^
-DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+        0.003   g = 0.5676   slope -d lnS/d lnR =    0.006
+        0.007   g = 0.5634   slope -d lnS/d lnR =    0.013
+        0.018   g = 0.5534   slope -d lnS/d lnR =    0.031
+        0.042   g = 0.5309   slope -d lnS/d lnR =    0.071
+        0.100   g = 0.4829   slope -d lnS/d lnR =    0.160
+        0.237   g = 0.3925   slope -d lnS/d lnR =    0.339
+        0.562   g = 0.2594   slope -d lnS/d lnR =    0.642
+        1.334   g = 0.1262   slope -d lnS/d lnR =    1.035
+        3.162   g = 0.0438   slope -d lnS/d lnR =    1.377
+  THE SIGNATURE CONTRAST (innermost bins):
+    framework line I(b):  slope -> 0.9 (b^-1 CUSP, brightness DIVERGES toward the center)
+    CDM/NFW line Sigma(R): slope -> 0.0 (FLAT core, brightness finite)
+  quantified: I_fw(0.1 r_M)/I_fw(r_M) = 6.37 vs Sigma_NFW(0.1 r_s)/Sigma_NFW(r_s) = 1.45
+  (the pure phantom alone would give 10x -- the dust softens the cusp by ~2x at 0.1 r_M)
+  [PASS] C9 [the cusp-vs-core separation] the framework's line surface brightness is a b^-1 cusp (d ln I/d ln b -> -1; brightness ratio ~6x from 1 to 0.1 r_M) while the CDM/NFW projects flat-cored (slope -> 0, ratio ~1.5x): the innermost bins separate the two
+         measured: fw d-ln-slope-> -0.90, ratio(0.1/1) = 6.37 | nfw slope-> 0.01, ratio(0.1/1) = 1.45
+         reading : the steepness signature is the framework's r^-2 phantom CUSP vs the NFW core: a flat-cored 2.55-keV line surface brightness kills the phantom face; a divergent b^-1 cusp confirms it.
+
+  PART 2: 4/4 PASS
+
+==========================================================================================================
+PART 3  THE ENVIRONMENTAL TEST -- absence in the never-froze class (G213)
+==========================================================================================================
+
+--- 3.1  the freeze ladder:  z* + 1 = m sigma^2/(k_B T_0) ------------
+  freeze floor: sigma_min = 65.0 km/s @ 5 keV (z* = 0);  T_CMB(0) = 2.72548 K
+  FROZEN class (z* >= 0):  galaxy 119.2 km/s -> z* = 2.37-2.49 (cosmic noon);
+    group 250 -> z* = 13.8 (EoR);  cluster 600-992 -> z* = 84-232 (the dark ages)
+    -> the equilibrium DECOUPLED: the 5.09-keV phase mass IS defined -> the 2.55-keV line is PRESENT (conditional on the decay existing)
+  NEVER-FROZE class (z* < 0):  the dSph/UFD class, sigma_obs 2.3-11.7 km/s << 65 km/s:
+    z*(pred) in [-0.9997, -0.9251], z*(obs) in [-0.9987, -0.9676] @ 5 keV (34 objects, G213 C4)
+    T_b = 3.4 mK - 0.088 K < T_CMB(0): NO decoupling epoch exists -- the phantom NEVER FROZE, it is STILL EQUILIBRATING
+    -> the 5.09-keV phase mass is UNDEFINED there -> NO 2.55-keV line
+
+--- 3.2  THE FALSIFIABLE ENVIRONMENTAL PREDICTION ---------------------
+  the 2.55-keV line (E = m/2 = 2.5443 keV) is PRESENT in the frozen class (galaxy / group / cluster)
+  and ABSENT in the never-froze dwarfs (dSph/UFD, z* < 0).
+  the environmental switch is INDEPENDENT of the (unpredicted) decay rate: if the species decays anywhere, it decays where the phase freeze defines m -- never in the still-forming equilibria.
+  [PASS] C10 [the freeze split] the committed freeze map places every member of the 34-object dSph class at z* < 0 (below the 65 km/s floor) and the galaxy/group/cluster class at z* >= 0 (2.37-2.49 / 13.8 / 84-232)
+         measured: dSph z*(pred) in [-0.9997, -0.9251] all < 0; floor = 65.0 km/s; frozen rungs 119.2/250/600-992 km/s
+         reading : G213 C1-C4 reproduced: the line's domain is stated with z* -- it exists only where the freeze epoch defines the 5.09-keV phase mass.
+  [PASS] C11 [the falsifier] a 2.55-keV line from a never-froze dwarf (z* < 0) kills the freeze-map face of the particle sector; a line in the frozen class with none in the UFDs confirms it
+         measured: present in frozen / absent in never-froze; UFD line -> kill
+         reading : the one environmental observable that would kill the particle face independently of the rate and the width.
+
+  PART 3: 2/2 PASS
+
+==========================================================================================================
+PART 4  VERDICTS  V1 line profile / V2 surface-brightness / V3 honest statement
+==========================================================================================================
+
+  V1  THE LINE PROFILE: a Gaussian in photon energy at E = m/2 = 2.5443 keV with sigma_E = E x sigma_v,los/c.  At the COMMITTED caustic/dust footing (G182 sigma_d = 140.2 km/s): sigma_E = 1.19 eV (FWHM 2.80 eV) -- the headline width.  The dark sector's own hotter footings widen it: the thermal width at T_dark = 334 K (Z7) is 6.05 eV (v_th = 713 km/s) and the core (beta-profile) width at sigma_r,core = 844 km/s (S04) is 7.16 eV (inner-bin sigma_los = 952 km/s caps the envelope at 8.08 eV).  THE FULL PREDICTED PROFILE: sigma_E in [1.19, 8.08] eV across the committed dark-sector velocity scales; the width is Doppler-dominated, never intrinsic (no rate predicted, A05).  HONEST READING: T_dark = m sigma_r^2/k_B by construction, so the thermal and kinematic widths are ONE velocity scale read two ways -- the committed 1.19 eV (cold dust/caustic) and the phantom's 6-7 eV are the two dark-sector faces of the same emitter.
+
+  V2  THE SURFACE-BRIGHTNESS SIGNATURE: the line flux follows the dark density rho_ph = A/r^2 + A_d r^-1.7 inside r_M (G098 phantom + G139 dust class); with a constant rate the Abel projection gives I(b) = pi A_ph/b + 2 A_d K(0.7) b^-0.7 -- the phantom b^-1 CUSP (exact, numerically verified) plus the shallower dust b^-0.7 (numerically verified).  The composite local slope -d ln I/d ln b runs in [0.7, 1.0] inside r_M, steepening INWARD to the phantom cusp: at b = 0.1 r_M the composite sits 6.4x above its r_M level (the pure phantom 10x).  THE SEPARATION FROM CDM: an NFW halo projects FLAT-CORED (slope -> 0, 1.4x from 1 to 0.1 r_s) then steepens to -2; the framework's line DIVERGES toward the center where the CDM's is flat -- the innermost bins separate the composite from a CDM halo.
+
+  V3  THE HONEST STATEMENT -- the three numbers that would confirm or kill the particle face: (1) THE ENERGY: E = m/2 = 2.5443 keV (band [2.50, 2.60]); a line at E != m/2 for the same m kills the m/2 relation (A05 kill band).  (2) THE WIDTH: sigma_E = 1.19 eV (envelope [1.19, 8.08] eV); a resolved width far outside E x sigma_v/c over the committed dark-sector velocity scales kills the kinematic reading.  (3) THE SPATIAL LAW: I(b) ~ b^-1 cusp (local slope -> 1 inward, in [0.7, 1.0] within r_M); a flat-cored (NFW-like) line surface brightness kills the phantom r^-2 face.  AND THE ENVIRONMENTAL SWITCH: the line is present in the frozen class (galaxy/group/cluster, z* >= 0) and absent in the never-froze dwarfs (dSph/UFD, z* < 0, G213) -- a 2.55-keV line from a UFD kills the freeze-map face independently of the rate.  The honest limits: the framework predicts the ENERGY, the WIDTH and the SPATIAL LAW, not the RATE -- non-observation everywhere kills only the radiative implementation, never the mass; the width is Doppler-dominated and the thermal/core footings are one velocity scale; the cusp-vs-core is a projected-density statement from the committed r^-2 phantom.
+
+==========================================================================================================
+GATES (a)-(f) AND THE VERDICTS  --  see B01_results.json
+==========================================================================================================
+
+  CHECKS: 11/11 PASS
+    [PASS] C1 [the line energy] E = m/2 = 2.5443 keV reproduces the A05 register (the fiducial band [2.50, 2.60])
+    [PASS] C2 [the committed velocity width] delta-E/E = 4.68e-4, delta-E = 1.19 eV at 2.54 keV from the G182 caustic dispersion
+    [PASS] C3 [the thermal width] the 5.09-keV species at T_dark = 334 K has v_th = 713 km/s -> delta-E = 6.05 eV; and the identity T_dark = m sigma_r^2/k_B is reproduced
+    [PASS] C4 [the core width] the committed core dispersion 844 km/s -> delta-E = 7.16 eV
+    [PASS] C5 [the full profile] the line is a Gaussian with sigma_E = 1.19 eV at the committed caustic footing and envelope [1.2, 8.1] eV across the committed velocity scales; the width is Doppler-dominated, never intrinsic (no rate predicted)
+    [PASS] C6 [the phantom projection] the r^-2 phantom projects to a b^-1 CUSP (I_ph = pi A_ph/b exact; numerically verified to < 1%)
+    [PASS] C7 [the dust projection] the r^-1.7 dust projects to b^-0.7 (I_dust = 2 A_d K(0.7) b^-0.7; numerically verified to < 1%)
+    [PASS] C8 [the composite slope] the composite surface-brightness slope lies in [0.7, 1.0) within r_M -- steepening inward toward the phantom b^-1 cusp, dust-dominated (-> 0.7) outward; no flat core anywhere
+    [PASS] C9 [the cusp-vs-core separation] the framework's line surface brightness is a b^-1 cusp (d ln I/d ln b -> -1; brightness ratio ~6x from 1 to 0.1 r_M) while the CDM/NFW projects flat-cored (slope -> 0, ratio ~1.5x): the innermost bins separate the two
+    [PASS] C10 [the freeze split] the committed freeze map places every member of the 34-object dSph class at z* < 0 (below the 65 km/s floor) and the galaxy/group/cluster class at z* >= 0 (2.37-2.49 / 13.8 / 84-232)
+    [PASS] C11 [the falsifier] a 2.55-keV line from a never-froze dwarf (z* < 0) kills the freeze-map face of the particle sector; a line in the frozen class with none in the UFDs confirms it
+
+  JSON written: /Users/carlzimmerman/new_physics/zimmerman-formula/project_atomos/B01_results.json
+  CHECKS 11/11 PASS
+  B01 DONE.
