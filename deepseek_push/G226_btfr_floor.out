@@ -1,0 +1,66 @@
+================================================================================================
+G226 -- THE BTFR FLOOR FORECAST: sigma_v(M_acc) with G162's IMF limit
+================================================================================================
+law: v^4 = G M_b a0;  r = log10(V/pred);  a0 = 9.3619e-11 (G087 canonical)
+committed (G087): sigma_obs = 0.1031 dex (26.79%); intr = E1_loocv = 0.0836 dex (21.23%); E1(in-sample) = 0.0713 dex
+                  M_acc_eff(SPARC) = 0.24 dex;  M/L lens = 0.1887 dex in M_b = 0.0472 dex in v;  errV floor = 0.0219 dex
+committed (G162): ATLAS3D 258 ETGs med|r| = 0.0831 dex; Kroupa IMF shift ~ +0.03-0.06 dex in M* -> <= 0.015 dex in r -> M_acc_floor = 0.06 dex in M*
+
+PART 1 -- THE RESOLVED-IMF PROSPECT: per-galaxy JWST M_acc (SPARC classes)
+  budget: gas dM_gas = 0.030 dex (21cm+TRGB), stellar dM* = 0.055 dex (JWST CMD+IMF), M_b = M_gas + 0.5 M_star weights
+  class    n M_acc median            range
+  GAS     48        0.028 [0.027-0.029]
+  MIX     65        0.026 [0.026-0.027]
+  STAR    58        0.029 [0.027-0.031]
+  ALL   171        0.027 [0.026-0.031]
+  -> JWST-resolved SPARC-class M_acc median = 0.027 dex; G087's registered forecast anchor = 0.05 dex (conservative: 0.055 dex stellar term); the floor band 0.03-0.07 dex is locked by TRGB + resolved-IMF.
+  ELT/IMF-principal floor (single-burst, ATLAS3D-class, G162): IMF residual <= 0.015 dex in v = 0.06 dex in M* -- the population side cannot do better than this on ANY resolved photometry.
+
+PART 2 -- THE FLOOR: sigma_v(M_acc) = sqrt(intr^2 + (M_acc/4)^2)
+  M_acc [dex M_b]   sigma_v [dex]   sigma_v [%]   sigma_Mb [dex]
+       0.24             0.1029       26.74           0.412
+       0.19             0.0962       24.78           0.385
+       0.15             0.0916       23.49           0.367
+       0.12             0.0888       22.69           0.355
+       0.10             0.0873       22.25           0.349
+       0.08             0.0860       21.89           0.344
+       0.07             0.0854       21.73           0.342
+       0.06             0.0849       21.60           0.340
+       0.05             0.0845       21.49           0.338
+       0.04             0.0842       21.39           0.337
+       0.03             0.0839       21.32           0.336
+       0.03             0.0838       21.29           0.335
+       0.02             0.0837       21.27           0.335
+       0.01             0.0837       21.25           0.335
+       0.01             0.0836       21.24           0.335
+       0.00             0.0836       21.23           0.334
+
+  ANCHORS:
+  (a) 2026-era accuracy      M_acc=0.24 -> sigma_v = 0.1029 dex (26.74%)   [self-check vs sigma_obs = 0.1031]
+  (b) JWST-resolved          M_acc=0.05   -> sigma_v = 0.0845 dex (21.49%)   [G087 V3 forecast identical]
+  (c) IMF-principal-limited  M_acc=0.06   -> sigma_v = 0.0849 dex (21.60%)   [ATLAS3D-class 0.015 dex in v]
+  (c') per-galaxy JWST estimate M_acc=0.027 -> sigma_v = 0.0839 dex (21.31%)  [the resolved-population optimistic floor -- indistinguishable from (c)]
+  (*) PERFECT masses         M_acc -> 0    -> sigma_v = 0.0836 dex (21.23%) = E1_loocv -- THE FLOOR
+  reading: the curve SATURATES at the intrinsic bound: between M_acc=0.10 and perfect masses sigma_v contracts by only 4.38% (0.0873 -> 0.0836 dex); below M_acc = 0.1 the floor is FLAT to within 5% -- the mass channel is exhausted, the intrinsic channel dominates.
+
+PART 2b -- THE INTRINSIC REMNANT AFTER THE IMF SIDE
+  the LOOCV penalty: sqrt(E1_loocv^2 - E1_in^2) = 0.0436 dex in v vs the M/L lens 0.0472 dex -- the lens is the coherent, non-
+  generalizing population systematic the proxies could NOT remove (G087's finding, now quantified).
+  resolving the IMF (ATLAS3D-class) removes that coherent piece (-lens^2) and replaces it with the 0.015-dex residual:
+  intr_remnant = sqrt(E1_loocv^2 - 0.047^2 + 0.015^2) = 0.0706 dex = 17.66%  [cross-check E1(in) = 0.0713 dex = 17.84% -- agree within 0.9%]
+  conservative bound (no lens subtraction allowed): intr <= 0.0836 dex = 21.23%.
+  the remnant sits ABOVE the RAR within-galaxy white-noise analogue 0.045-0.052 dex and ABOVE the errV noise floor 0.022 dex -> the residual is NOT yet at the galactic-disc noise floor: there is still a 1.4x gap to the floor-consistent regime.
+
+PART 3 -- THE VERDICTS
+  [PASS] V1 the floor curve sigma_v(M_acc) to 0.01 dex: monotone, saturating at the intrinsic bound; self-consistent at the SPARC point
+         measured: sigma_v(0.24) = 0.1029 vs sigma_obs = 0.1031 (delta 0.2e-4 dex); flatness at M_acc=0.10: 4.38%; curve N = 16 points to M_acc = 0.01
+         reading : the floor curve is delivered and quantified: sigma_v falls from 0.1029 dex (2026, 26.7%) to 0.0845 dex (JWST, 21.5%) to 0.0849 dex (IMF-limited, 21.6%) and SATURATES at E1_loocv = 0.0836 dex (21.2%) for perfect masses; between M_acc = 0.10 and M_acc = 0 sigma_v contracts by only 4.4% -- the mass channel is exhausted, the intrinsic channel dominates.
+  [PASS] V2 the intrinsic remnant after the IMF side: the M/L lens is the LOOCV penalty; resolving it to ATLAS3D-class leaves 0.071 dex
+         measured: intr_remnant = 0.0706 dex (17.66%) from sqrt(E1_loocv^2 - lens^2 + IMF^2) with lens = 0.0472 dex, IMF = 0.015 dex in v; E1(in) = 0.0713 dex; RAR floor = 0.045-0.052 dex
+         reading : the truly-intrinsic bound after the IMF side = 0.0706 dex (17.7%), agreeing with G087's in-sample E1 (0.0713) to within 1% -- the M/L lens IS the non-generalizing systematics; but even fully resolved masses leave the scatter 1.4x ABOVE the RAR within-galaxy noise floor 0.045-0.052 dex: the pure-mass side of the BTFR does NOT reach the noise floor -- zero intrinsic scatter is NOT demonstrable from mass resolution alone.
+  [PASS] V3 the honest statement: the resolved-mass era will pin the floor, not erase it -- THE NUMBER
+         measured: sigma_v: 2026 = 0.1029 (26.74%); JWST = 0.0845 (21.49%); IMF-limited = 0.0849 (21.60%); perfect-mass floor = 0.0836 (21.23%, 0.334 dex in M_b); post-IMF intrinsic remnant = 0.0706 (17.66%)
+         reading : THE STATEMENT: the zero-parameter law's scatter floor with PERFECT masses = E1_loocv = 0.0836 dex = 21.2% in v (0.334 dex in M_b) -- NOT zero.  The resolved-mass era (JWST + TRGB + ATLAS3D-class IMF) will achieve sigma_v = 0.0845 dex (21.5%) and pin the truly-intrinsic remnant at 0.0706-0.0836 dex (17.7%-21.2%): the 'zero intrinsic scatter' claim SURVIVES only as an upper bound, and the next discriminator is the RAR white-noise floor 0.045-0.052 dex (the remnant still sits 1.4x above it).
+
+G226 COMPLETE: 3/3 checks PASS.
+wrote G226_results.json
