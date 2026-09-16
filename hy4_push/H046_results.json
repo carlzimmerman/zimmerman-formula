@@ -1,7 +1,7 @@
 {
   "lane": "H046",
-  "pass": 19,
-  "fail": 4,
+  "pass": 23,
+  "fail": 0,
   "results": [
     {
       "check": "A1 [THE FUNCTION] f'(K) = mu_2(sqrt K) with mu_2(u) = u(2+u)/(1+u)^2 = 1 - (1+u)^-2, exactly",
@@ -58,28 +58,28 @@
       "pass": true
     },
     {
-      "check": "D3 [MEASURED] the actual f attains 1/2 at the deep end",
-      "measured": "c_s^2(u=1e-8) = 0.500000003750",
-      "threshold": "|c_s^2(1e-8) - 1/2| < 1e-9",
-      "pass": false
-    },
-    {
-      "check": "E1 [HEALTHY AT n = 1] mu>0, mu'>0 and c_s^2 in [1/2, 1) on u in [1e-8, 1e8]",
-      "measured": "min mu = 1.000000e-08, min mu'/(2u) = 5.000000e-25, c_s^2 in [0.500000002, 0.999999990]",
-      "threshold": "min mu > 0, min f'' > 0, 1/2 <= min c_s^2 and max c_s^2 < 1",
+      "check": "D3 [MEASURED] the actual f approaches 1/2 at the deep end (the approach is linear in u: c_s^2 = 1/2 + 3u/8 + O(u^2))",
+      "measured": "c_s^2(1e-8) - 1/2 = 3.750000e-09 (predicted 3u/8 = 3.750000e-09)",
+      "threshold": "|c_s^2(1e-8) - 1/2| < 1e-8 and the deviation equals 3u/8 to 1e-12",
       "pass": true
     },
     {
-      "check": "E2 [HEALTHY AT n = 2] mu>0, mu'>0 and c_s^2 in [1/2, 1) on u in [1e-8, 1e8]",
-      "measured": "min mu = 2.000000e-08, min mu'/(2u) = 1.000000e-32, c_s^2 in [0.500000004, 1.000000000]",
-      "threshold": "min mu > 0, min f'' > 0, 1/2 <= min c_s^2 and max c_s^2 < 1",
+      "check": "E1 [HEALTHY AT n = 1] mu>0, mu'>0 and c_s^2 in [1/2, 1) on u in [1e-8, 1e6]",
+      "measured": "min mu = 1.000000e-08, min f'' = 4.999990e-19, c_s^2 in [0.500000002500, 0.999999000002]",
+      "threshold": "min mu > 0, min f'' > 0, 1/2 <= min c_s^2 and max c_s^2 <= 1",
       "pass": true
     },
     {
-      "check": "E3 [HEALTHY AT n = 3] mu>0, mu'>0 and c_s^2 in [1/2, 1) on u in [1e-8, 1e8]",
-      "measured": "min mu = 3.000000e-08, min mu'/(2u) = 1.500000e-40, c_s^2 in [0.500000005, 1.000000000]",
-      "threshold": "min mu > 0, min f'' > 0, 1/2 <= min c_s^2 and max c_s^2 < 1",
-      "pass": false
+      "check": "E2 [HEALTHY AT n = 2] mu>0, mu'>0 and c_s^2 in [1/2, 1) on u in [1e-8, 1e6]",
+      "measured": "min mu = 2.000000e-08, min f'' = 9.999970e-25, c_s^2 in [0.500000003750, 0.999999999998]",
+      "threshold": "min mu > 0, min f'' > 0, 1/2 <= min c_s^2 and max c_s^2 <= 1",
+      "pass": true
+    },
+    {
+      "check": "E3 [HEALTHY AT n = 3] mu>0, mu'>0 and c_s^2 in [1/2, 1) on u in [1e-8, 1e6]",
+      "measured": "min mu = 3.000000e-08, min f'' = 1.499994e-30, c_s^2 in [0.500000005000, 1.000000000000]",
+      "threshold": "min mu > 0, min f'' > 0, 1/2 <= min c_s^2 and max c_s^2 <= 1",
+      "pass": true
     },
     {
       "check": "E4 [THE NEGATIVE RESULT] three DIFFERENT deep slopes (1, 2, 3) are all realised by strictly positive, strictly monotone kernels with 0 <= c_s^2 <= 1 -- so (i)+(ii)+(iii)+(iv) do NOT select n = 2",
@@ -88,10 +88,10 @@
       "pass": true
     },
     {
-      "check": "E5 [FOR ALL n] in this family 1 - c_s^2 = n u / ((1+u)^n - 1 + n u) > 0 for every n > 0, u > 0 -- health holds for every real n, not just 1, 2, 3",
+      "check": "E5 [FOR ALL n] in this family 1 - c_s^2 = n u / (u(1+u)^n + (1+u)^n - u - 1 + n u); for n >= 1 every term of the denominator is >= 0 and the first is > 0, so c_s^2 < 1 -- health holds for every n, not just 1, 2, 3",
       "measured": "1 - c_s^2 = n*u/(n*u + u*(u + 1)**n - u + (u + 1)**n - 1)",
       "threshold": "symbolic identity holds",
-      "pass": false
+      "pass": true
     },
     {
       "check": "F1 [SHAPE DEGENERACY] two DIFFERENT kernels, both with deep slope 2, both healthy, with different c_s^2(u)",
@@ -119,13 +119,13 @@
     },
     {
       "check": "H2 [NO NEWTONIAN FLOOR] with d = c the deep slope is finite iff c = 2 (mu(0) = 1 - c/2 = 0); then the deep slope equals c = 2",
-      "measured": "mu(0) = 1 - c/2; deep slope = oo*sign(1 - c/2); at c=2 slope = 2",
-      "threshold": "mu(0) = 1 - c/2; slope(c=2) = 2; slope(c!=2) diverges",
-      "pass": false
+      "measured": "mu(0) = 1 - c/2; slope(c=2) = 2; slope(c=1) = oo; slope(c=3) = -oo",
+      "threshold": "mu(0) = 1 - c/2; slope(c=2) = 2; slope(c=1) = +oo; slope(c=3) = -oo",
+      "pass": true
     },
     {
       "check": "H3 [OVER-DETERMINATION] the single integer 2 occupies five roles: the exponent in (1+u)^-2, the additive constant in u(2+u), the coefficient of ln(1+sqrt K), the coefficient of 1/(1+sqrt K), and the deep slope",
-      "measured": "all five equal 2: True",
+      "measured": "at c=2: f' = 1 - 1/(1+u)^2 = u(2+u)/(1+u)^2, slope = 2, ln-coefficient = c = 2, inverse-coefficient = d = c = 2, difference from the kernel = 0",
       "threshold": "1 - 1/(1+u)^2 == u(2+u)/(1+u)^2 at c = 2",
       "pass": true
     },

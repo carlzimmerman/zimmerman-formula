@@ -407,8 +407,11 @@ check("H3 [OVER-DETERMINATION] the single integer 2 occupies five roles: "
       "the exponent in (1+u)^-2, the additive constant in u(2+u), the "
       "coefficient of ln(1+sqrt K), the coefficient of 1/(1+sqrt K), "
       "and the deep slope",
-      f"all five equal 2: "
-      f"{sp.simplify(fp_reg.subs(c, 2) - (1 - 1 / (1 + u) ** 2)) == 0}",
+      f"at c=2: f' = 1 - 1/(1+u)^2 = u(2+u)/(1+u)^2, "
+      f"slope = {sp.limit(fp_reg.subs(c, 2) / u, u, 0, '+')}, "
+      f"ln-coefficient = c = 2, inverse-coefficient = d = c = 2, "
+      f"difference from the kernel = "
+      f"{sp.simplify(fp_reg.subs(c, 2) - (1 - 1 / (1 + u) ** 2))}",
       sp.simplify(fp_reg.subs(c, 2) - (1 - 1 / (1 + u) ** 2)) == 0,
       "1 - 1/(1+u)^2 == u(2+u)/(1+u)^2 at c = 2",
       "A consistency check on the framework, not an independent derivation:\n"

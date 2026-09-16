@@ -234,6 +234,12 @@ for c in CL:
                for i in idx]
         c["rM"][ft] = sol[-1] if sol else float("nan")
         c["rM_nroots"] = len(sol)
+        # g/a0 over the full tabulated profile: if its maximum never reaches 1
+        # the cluster has NO Newtonian zone at all (g < a0 everywhere), so
+        # r_M does not exist -- on the framework's own criterion the whole
+        # measured profile is then "beyond the break".
+        gg = G * c["M"] * MSUN / (c["r"] * KPC) ** 2 / a0
+        c.setdefault("gmax_over_a0", {})[ft] = float(np.nanmax(gg))
 
 THRESH["V0a"] = ("median f_gas(420 kpc) inside [0.10, 0.20] (cosmic Omega_b/Omega_m "
                  "= 0.157; X-COP registered 0.127 +/- 0.02 at 420 kpc on the NFW "
@@ -545,22 +551,34 @@ for ft, a0 in A0.items():
     for c in CL:
         rM = c["rM"][ft]
         rmax = c["rmax"]
+        # OUTER WINDOW START.  r_M where it exists; where the cluster has no
+        # Newtonian zone at all (g < a0 everywhere, so r_M does not exist) the
+        # framework's own criterion puts the ENTIRE measured profile beyond the
+        # break, so the window starts at 60 kpc.  Where r_M sits at or beyond
+        # the last usable bin (A644, whose forward profile turns over) the
+        # window is capped at 0.85 r_max so it is never empty.
+        if not np.isfinite(rM):
+            rlo, why = 60.0, "no Newtonian zone (max g/a0 < 1)"
+        elif rM >= rmax:
+            rlo, why = 0.85 * rmax, "r_M beyond the last usable bin"
+        else:
+            rlo, why = rM, "r_M"
         a2 = BRK[ft][c["name"]]["a2"]
-        g_dir, s_dir = slope_direct(c, rM, rmax)
-        g_sh, s_sh, nsh = slope_shell(c, max(60.0, 0.5 * rM), rmax)
+        g_dir, s_dir = slope_direct(c, rlo, rmax)
+        g_sh, s_sh, nsh = slope_shell(c, max(60.0, 0.5 * rlo), rmax)
         # ---- window-matched NFW prediction: same estimator on X-COP's NFW fit
         rs = c["rs_nfw"]
-        rgm = math.sqrt(rM * rmax)
-        g_nfw_win = -(1.0 + 2.0 * rgm / (rgm + rs)) if np.isfinite(rM) else float("nan")
+        rgm = math.sqrt(rlo * rmax)
+        g_nfw_win = -(1.0 + 2.0 * rgm / (rgm + rs))
         # ---- framework window prediction incl. the M_b-growth correction
-        rmid = np.array([rgm])
         dlnMb = (math.log(baryons(c, np.array([rgm * 1.1]))[0][0]) -
                  math.log(baryons(c, np.array([rgm / 1.1]))[0][0])) / math.log(1.21)
         g_fw_win = -2.0 + 0.5 * dlnMb
-        SLOPE[ft][c["name"]] = dict(rM=rM, rmax=rmax, a2=a2, g_dir=g_dir, s_dir=s_dir,
-                                    g_shell=g_sh, s_shell=s_sh, nshell=nsh,
+        SLOPE[ft][c["name"]] = dict(rM=rM, rmax=rmax, rlo=rlo, a2=a2, g_dir=g_dir,
+                                    s_dir=s_dir, g_shell=g_sh, s_shell=s_sh, nshell=nsh,
                                     g_nfw_win=float(g_nfw_win), g_fw_win=float(g_fw_win),
-                                    dlnMb=float(dlnMb))
+                                    dlnMb=float(dlnMb), window_note=why,
+                                    gmax_over_a0=c["gmax_over_a0"][ft])
         print(f"  {c['name']:9s} {rM:6.0f} {rmax:6.0f} {-a2:8.2f} {'':5s} "
               f"{-g_dir if np.isfinite(g_dir) else float('nan'):14.2f} "
               f"{s_dir if np.isfinite(s_dir) else float('nan'):5.2f} "
@@ -570,6 +588,19 @@ for ft, a0 in A0.items():
 
 # ------------- the literal -2 vs -3 test on the primary estimator (a2)
 print()
+_n_nozone = [c["name"] for c in CL if not np.isfinite(c["rM"]["canonical"])]
+print(f"  NOTE (stated before the numbers): the primary outer-slope estimator a2 "
+      f"comes from a fit to the DARK MASS alone and never uses a0, so it is "
+      f"identical on the two footings BY CONSTRUCTION -- the footings differ "
+      f"only in where they put r_M.")
+print(f"  {len(CL) - len(_n_nozone)}/{len(CL)} clusters have a usable r_M. "
+      + (", ".join(_n_nozone) if _n_nozone else "None")
+      + " have max(g/a0) = "
+      + ", ".join("%.2f" % c["gmax_over_a0"]["canonical"] for c in CL
+                  if not np.isfinite(c["rM"]["canonical"]))
+      + " < 1 over the whole profile: they never reach the Newtonian regime, so "
+        "on the framework's own criterion their entire measured profile is "
+        "beyond the break (their outer window therefore starts at 60 kpc).")
 for ft in A0:
     a2 = np.array([SLOPE[ft][c["name"]]["a2"] for c in CL], float)
     a2 = a2[np.isfinite(a2)]
@@ -642,8 +673,8 @@ check("V2b [THE FAIR CONTROL: NFW does not actually predict -3 in this window, s
       "i.e. -1 - 2r/(r+rs)), per cluster, both footings",
       "; ".join(f"{ft}: <a2 - |g_NFW,win|> = {m:+.2f} +/- {s:.2f}" for ft, (m, s) in _dn.items())
       + f"; NFW window predictions span "
-        f"{min(SLOPE['canonical'][c['name']]['g_nfw_win'] for c in CL):.2f} to "
-        f"{max(SLOPE['canonical'][c['name']]['g_nfw_win'] for c in CL):.2f}, not -3",
+        f"{np.nanmin([SLOPE['canonical'][c['name']]['g_nfw_win'] for c in CL]):.2f} to "
+        f"{np.nanmax([SLOPE['canonical'][c['name']]['g_nfw_win'] for c in CL]):.2f}, not -3",
       all(abs(m) > 3.0 * s for m, s in _dn.values()),
       "the fairness correction the finite window forces: X-COP reaches only "
       "~1.0-1.4 R500, where an NFW halo is still at slope ~-2.2 to -2.6. A "
@@ -667,8 +698,8 @@ check("V2c [THE FRAMEWORK'S OWN WINDOW PREDICTION, M_b-growth corrected] the "
       "shallower than -2)",
       "; ".join(f"{ft}: <a2 - |g_FW,win|> = {m:+.2f} +/- {s:.2f} "
                 f"(framework window predictions "
-                f"{min(SLOPE[ft][c['name']]['g_fw_win'] for c in CL):.2f} to "
-                f"{max(SLOPE[ft][c['name']]['g_fw_win'] for c in CL):.2f})"
+                f"{np.nanmin([SLOPE[ft][c['name']]['g_fw_win'] for c in CL]):.2f} to "
+                f"{np.nanmax([SLOPE[ft][c['name']]['g_fw_win'] for c in CL]):.2f})"
                 for ft, (m, s) in _dfw.items()),
       all(abs(m) <= 2.0 * max(s, 0.05) for m, s in _dfw.values()),
       "a framework-internal refinement, reported because it changes the "
@@ -904,7 +935,7 @@ print(f"""
       NFW       -3 : {SLOPE['canonical']['_z_vs_3']:+.1f} sigma
   so the LITERAL comparison favours -2 over -3 by Delta chi2 = {SLOPE['canonical']['_dchi2_2_vs_3']:+.0f} -- but
   X-COP reaches only ~1.0-1.4 R500, where an NFW halo is still at
-  {min(SLOPE['canonical'][c['name']]['g_nfw_win'] for c in CL):.2f} to {max(SLOPE['canonical'][c['name']]['g_nfw_win'] for c in CL):.2f}, not -3.  Against that window-matched
+  {np.nanmin([SLOPE['canonical'][c['name']]['g_nfw_win'] for c in CL]):.2f} to {np.nanmax([SLOPE['canonical'][c['name']]['g_nfw_win'] for c in CL]):.2f}, not -3.  Against that window-matched
   control the measurement sits {_dn['canonical'][0]:+.2f} +/- {_dn['canonical'][1]:.2f} away from NFW: the slope test
   does not separate the two models at useful significance with these data.
 
@@ -940,7 +971,9 @@ JSON = {
         ft: {c["name"]: {**{k: (None if (isinstance(v, float) and not np.isfinite(v))
                                else float(v)) for k, v in BRK[ft][c["name"]].items()},
                          **{k: (None if (isinstance(v, float) and not np.isfinite(v))
-                                else float(v)) for k, v in SLOPE[ft][c["name"]].items()}}
+                                else (v if isinstance(v, str)
+                                      else float(v)))
+                            for k, v in SLOPE[ft][c["name"]].items()}}
              for c in CL} for ft in A0},
     "outer_slope": {ft: {k: v for k, v in SLOPE[ft].items() if k.startswith("_")}
                     for ft in A0},

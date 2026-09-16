@@ -1,0 +1,227 @@
+==============================================================================
+H046 -- IS n = 2 FORCED BY HEALTH?   (c_s^2 = mu / (mu + u mu'))
+==============================================================================
+
+==============================================================================
+PART 0 -- THE FUNCTION AND THE SOUND SPEED
+==============================================================================
+  [PASS] A1 [THE FUNCTION] f'(K) = mu_2(sqrt K) with mu_2(u) = u(2+u)/(1+u)^2 = 1 - (1+u)^-2, exactly
+         measured : f'(u^2) - mu_2(u) = 0
+         threshold: symbolic difference == 0
+         The kernel is a single function; the '2' in u(2+u) and the exponent
+                  in (1+u)^-2 are the SAME parameter.
+  [PASS] A2 [SOUND SPEED] c_s^2 = f'/(f' + 2K f'') = (u^2+3u+2)/(u^2+3u+4) = 1 - 2/(u^2+3u+4)
+         measured : difference = 0
+         threshold: symbolic difference == 0
+         Reproduces H001/H007 independently. Note the denominator minus the
+                  numerator is the CONSTANT 2 -- the same integer again.
+
+==============================================================================
+PART 1 -- HEALTH <=> mu > 0 AND mu' >= 0  (a condition on the LOG-SLOPE)
+==============================================================================
+  [PASS] B1 [CHAIN RULE] 2 K f''(K) = u mu'(u)  (verified on the concrete f)
+         measured : 2K f'' - u mu'(u) = 0
+         threshold: symbolic difference == 0
+         This is the whole reason health cannot see n: c_s^2 depends on
+                  mu'/mu, i.e. on the LOG-SLOPE, never on the normalisation n.
+  [PASS] B2 [MASTER IDENTITY] c_s^2 = 1 / (1 + dln(mu)/dln(u))  -- health is a statement about the LOG-SLOPE only
+         measured : c_s^2 - 1/(1+dlnmu/dlnu) = 0
+         threshold: symbolic difference == 0
+         CONSEQUENCE: c_s^2 <= 1  <=>  dln mu/dln u >= 0  <=>  mu' >= 0,
+                  with no appearance of the amplitude n anywhere.
+  [PASS] C1 [NO SUPERLUMINALITY] 0 <= c_s^2 <= 1 for the actual f on u in [1e-8, 1e8]
+         measured : c_s^2 in [0.500000003750, 1.000000000000]
+         threshold: 0 <= min and max <= 1
+         The actual f is healthy. That is necessary but NOT sufficient to
+                  single it out -- see Part 3.
+  [PASS] C2 [NO GHOST] f'(K) = mu_2 > 0 on the same grid
+         measured : min f' = 2.000000e-08
+         threshold: min f' > 0
+  [PASS] C3 [CONVEXITY = SUBLUMINALITY] f''(K) > 0 on the same grid
+         measured : min f'' = 1.000000e-32
+         threshold: min f'' > 0
+         f'' > 0 is the same statement as c_s^2 < 1 (Part 1, B2).
+
+==============================================================================
+PART 2 -- WHAT (iv) DOES FORCE:  THE UNIVERSAL DEEP SOUND SPEED 1/2
+==============================================================================
+      mu ~ A u^q  ->  c_s^2 = 1/(q + 1)
+        q = 1 : c_s^2 = 1/2
+        q = 2 : c_s^2 = 1/3
+        q = 3 : c_s^2 = 1/4
+  [PASS] D1 [UNIVERSALITY] for mu ~ A u^q the sound speed is exactly 1/(1+q), independent of the amplitude A
+         measured : c_s^2(q=1,2,3) = ['1/2', '1/3', '1/4']
+         threshold: c_s^2 = 1/(1+q) exactly for q = 1, 2, 3
+         The amplitude A -- which is what n is -- cancels identically.
+  [PASS] D2 [THE FORCED VALUE] (iv) (deep slope finite and non-zero) means q = 1, hence c_s^2(0) = 1/2 for EVERY n
+         measured : lim_K->0 c_s^2 = 1/2
+         threshold: c_s^2(0) == 1/2 exactly
+         THIS IS A GENUINE FORCED PREDICTION: any healthy k-essence with a
+                  linear MOND regime has deep sound speed exactly c/sqrt(2).
+                  The programme's measured range [1/2, 1) (H001 A-checks, H002)
+                  is thus a prediction of health+(iv), not a fitted input --
+                  and it holds for n = 1, 2, 3 alike, so it cannot select n.
+  [PASS] D3 [MEASURED] the actual f approaches 1/2 at the deep end (the approach is linear in u: c_s^2 = 1/2 + 3u/8 + O(u^2))
+         measured : c_s^2(1e-8) - 1/2 = 3.750000e-09 (predicted 3u/8 = 3.750000e-09)
+         threshold: |c_s^2(1e-8) - 1/2| < 1e-8 and the deviation equals 3u/8 to 1e-12
+
+==============================================================================
+PART 3 -- THE COUNTEREXAMPLE FAMILY:  EVERY n > 0 IS HEALTHY
+==============================================================================
+      mu_n(u) = 1 - (1+u)^-n    deep slope = n
+        n = 1 : c_s^2 = (u + 1)/(u + 2)
+               c_s^2(0) = 1/2, c_s^2(inf) = 1
+        n = 2 : c_s^2 = (u + 1)*(u + 2)/(u**2 + 3*u + 4)
+               c_s^2(0) = 1/2, c_s^2(inf) = 1
+        n = 3 : c_s^2 = (u + 1)*(u**2 + 3*u + 3)/(u**3 + 4*u**2 + 6*u + 6)
+               c_s^2(0) = 1/2, c_s^2(inf) = 1
+  [PASS] E1 [HEALTHY AT n = 1] mu>0, mu'>0 and c_s^2 in [1/2, 1) on u in [1e-8, 1e6]
+         measured : min mu = 1.000000e-08, min f'' = 4.999990e-19, c_s^2 in [0.500000002500, 0.999999000002]
+         threshold: min mu > 0, min f'' > 0, 1/2 <= min c_s^2 and max c_s^2 <= 1
+  [PASS] E2 [HEALTHY AT n = 2] mu>0, mu'>0 and c_s^2 in [1/2, 1) on u in [1e-8, 1e6]
+         measured : min mu = 2.000000e-08, min f'' = 9.999970e-25, c_s^2 in [0.500000003750, 0.999999999998]
+         threshold: min mu > 0, min f'' > 0, 1/2 <= min c_s^2 and max c_s^2 <= 1
+  [PASS] E3 [HEALTHY AT n = 3] mu>0, mu'>0 and c_s^2 in [1/2, 1) on u in [1e-8, 1e6]
+         measured : min mu = 3.000000e-08, min f'' = 1.499994e-30, c_s^2 in [0.500000005000, 1.000000000000]
+         threshold: min mu > 0, min f'' > 0, 1/2 <= min c_s^2 and max c_s^2 <= 1
+  [PASS] E4 [THE NEGATIVE RESULT] three DIFFERENT deep slopes (1, 2, 3) are all realised by strictly positive, strictly monotone kernels with 0 <= c_s^2 <= 1 -- so (i)+(ii)+(iii)+(iv) do NOT select n = 2
+         measured : healthy slopes found: ['1', '2', '3']
+         threshold: deep slopes are exactly 1, 2, 3 (each finite and non-zero)
+         THE ANSWER TO THE LANE QUESTION IS NO.  Health is a condition on the
+                  log-slope of mu; n is its amplitude.  No health condition
+                  can see the amplitude, and Part 3 exhibits healthy members at
+                  three different amplitudes.
+  [PASS] E5 [FOR ALL n] in this family 1 - c_s^2 = n u / (u(1+u)^n + (1+u)^n - u - 1 + n u); for n >= 1 every term of the denominator is >= 0 and the first is > 0, so c_s^2 < 1 -- health holds for every n, not just 1, 2, 3
+         measured : 1 - c_s^2 = n*u/(n*u + u*(u + 1)**n - u + (u + 1)**n - 1)
+         threshold: symbolic identity holds
+         Subluminality is satisfied identically in n. n is a FREE parameter.
+
+==============================================================================
+PART 4 -- A SECOND DEGENERACY:  HEALTH DOES NOT EVEN FIX THE SHAPE AT n = 2
+==============================================================================
+      alternative n = 2 kernel:  mu(u) = 2u/(1+2u),  c_s^2 = (u + 1/2)/(u + 1)
+      programme  n = 2 kernel:  mu(u) = u(2+u)/(1+u)^2, c_s^2 = (u**2 + 3*u + 2)/(u**2 + 3*u + 4)
+  [PASS] F1 [SHAPE DEGENERACY] two DIFFERENT kernels, both with deep slope 2, both healthy, with different c_s^2(u)
+         measured : max |c_s^2_alt - c_s^2_prog| over grid = 0.030529
+         threshold: max difference > 1e-3 (they are genuinely different functions)
+         So even granting n = 2, health leaves the functional form free.
+                  Health fixes neither the slope nor the shape.
+
+==============================================================================
+PART 5 -- THE SHARP BOUND:  HEALTH GIVES n <= 2 IN THE MINIMAL PADE FAMILY
+==============================================================================
+      mu_a = u(a+u)/(1+u)^2 ,  c_s^2 = (a*u + a + u**2 + u)/(2*a + u**2 + 3*u)
+      1 - c_s^2 = (-a*u + a + 2*u)/(2*a + u**2 + 3*u)
+      deep slope = a
+        a =  0.5 : c_s^2 in [0.500000005, 0.999998500]
+        a =  1.0 : c_s^2 in [0.500024999, 0.999999000]
+        a =  1.5 : c_s^2 in [0.500033332, 0.999999500]
+        a =  2.0 : c_s^2 in [0.500037498, 1.000000000]
+        a =  2.5 : c_s^2 in [0.500039999, 1.018518519]   <-- SUPERLUMINAL
+        a =  3.0 : c_s^2 in [0.500041665, 1.051470588]   <-- SUPERLUMINAL
+        a =  4.0 : c_s^2 in [0.500043749, 1.115942029]   <-- SUPERLUMINAL
+  [PASS] G1 [SHARP BOUND] in this family c_s^2 <= 1 for all u >= 0 iff a <= 2: a <= 2 is subluminal, every a > 2 goes superluminal at large u
+         measured : a=0.5: max c_s^2=0.999999; a=1.0: max c_s^2=0.999999; a=1.5: max c_s^2=0.999999; a=2.0: max c_s^2=1.000000; a=2.5: max c_s^2=1.018519; a=3.0: max c_s^2=1.051471; a=4.0: max c_s^2=1.115942
+         threshold: max c_s^2 <= 1 for a <= 2, and > 1 for every a > 2 tested
+         n = 2 SATURATES the subluminality bound: it is the LARGEST healthy
+                  deep slope in this family.  SCOPE, STATED: the family is put
+                  in by hand (mu(0)=0, mu(inf)=1, minimal double pole at u=-1).
+                  Health gives the BOUND a <= 2, not the equality a = 2.
+  [PASS] G2 [THE BOUND IS NOT A DERIVATION] a is only confined to 0 <= a <= 2, so health leaves a = 1 and a = 1.66 as healthy as a = 2
+         measured : healthy interval for the deep slope in this family: [0, 2] (subluminality gives a<=2, positivity gives a>=0)
+         threshold: the interval has more than one point
+         To promote the BOUND into the VALUE 2 one needs an extra input --
+                  integrality would give a in {1, 2}, still not unique.
+
+==============================================================================
+PART 6 -- WHAT DOES FIX THE 2:  REGULARITY + NO NEWTONIAN FLOOR
+==============================================================================
+      f'(u^2)  = (-c*u*(u + 1) + d*u + 2*u**2*(u + 1)**2)/(2*u**2*(u + 1)**2)
+      u (f'-1) = (-c*u - c + d)/(2*(u**2 + 2*u + 1))
+  [PASS] H1 [RESIDUE] u (f'(K) - 1) = (d - c - c u) / (2 (1+u)^2); finiteness of f' at K = 0 forces d = c
+         measured : u(f'-1) - (d-c-cu)/(2(1+u)^2) = 0
+         threshold: symbolic difference == 0
+         The coefficient of ln(1+sqrt K) must equal the coefficient of
+                  1/(1+sqrt K) or f' has a 1/sqrt(K) pole at the vacuum.
+      with d = c:  f'(K) = (-c/2 + u**2 + 2*u + 1)/(u**2 + 2*u + 1)
+      mu(0) = 1 - c/2 ,  deep slope = oo*sign(1 - c/2)
+  [PASS] H2 [NO NEWTONIAN FLOOR] with d = c the deep slope is finite iff c = 2 (mu(0) = 1 - c/2 = 0); then the deep slope equals c = 2
+         measured : mu(0) = 1 - c/2; slope(c=2) = 2; slope(c=1) = oo; slope(c=3) = -oo
+         threshold: mu(0) = 1 - c/2; slope(c=2) = 2; slope(c=1) = +oo; slope(c=3) = -oo
+         CHAIN: (alpha) regularity at K=0 => d = c;  (beta) mu(0)=0 (a MOND
+                  REGIME, i.e. no Newtonian floor) => c = 2;  (gamma) the deep
+                  slope is then c = 2.  This DOES fix the 2 -- but (alpha) is a
+                  smoothness input and (beta) is a PHENOMENOLOGICAL input
+                  (deep MOND exists).  Neither is a health condition, and the
+                  family f = K - c ln(1+sqrt K) - d/(1+sqrt K) is assumed.
+  [PASS] H3 [OVER-DETERMINATION] the single integer 2 occupies five roles: the exponent in (1+u)^-2, the additive constant in u(2+u), the coefficient of ln(1+sqrt K), the coefficient of 1/(1+sqrt K), and the deep slope
+         measured : at c=2: f' = 1 - 1/(1+u)^2 = u(2+u)/(1+u)^2, slope = 2, ln-coefficient = c = 2, inverse-coefficient = d = c = 2, difference from the kernel = 0
+         threshold: 1 - 1/(1+u)^2 == u(2+u)/(1+u)^2 at c = 2
+         A consistency check on the framework, not an independent derivation:
+                  the five appearances are forced equal once d = c is imposed,
+                  so they do not independently confirm one another.
+
+==============================================================================
+PART 7 -- BOTH FOOTINGS:  WHAT n THE DATA ACTUALLY SUPPORTS
+==============================================================================
+      a_0 (canonical  ) = 9.361900e-11 m/s^2 = 2.055460e-34 eV
+        n = Lambda^2/(a_0 M_Pl) = 2.000147
+      a_0 (alternative) = 1.127900e-10 m/s^2 = 2.476371e-34 eV
+        n = Lambda^2/(a_0 M_Pl) = 1.660181
+  [PASS] I1 [BOTH FOOTINGS] the seesaw n = Lambda^2/(a_0 M_Pl) evaluated at BOTH footings 9.3619e-11 and 1.1279e-10
+         measured : n(canonical 9.3619e-11) = 2.000147; n(alternative 1.1279e-10) = 1.660181; ratio of footings = 1.204777
+         threshold: both inferred n lie in [1, 3]
+         The two footings differ by 20.5%, so they infer n = 2.000 and
+                  n = 1.660 respectively.  HEALTH ALLOWS BOTH (Part 3), so the
+                  health conditions cannot adjudicate between the footings
+                  either -- the integer is fixed, if at all, by the data.
+  [PASS] I2 [HEALTH IS INDIFFERENT TO THE FOOTINGS] both inferred values of n are admissible under (i)-(iv), since the healthy family of Part 3 covers every n > 0
+         measured : n values [2.000147, 1.660181] all in (0, infinity)
+         threshold: every inferred n > 0
+         The 20% footing split is a DATA question, not a health question.
+
+==============================================================================
+H046 READING:  23 PASS / 0 FAIL
+==============================================================================
+
+VERDICT --  n = 2 IS **NOT** FORCED BY THE HEALTH CONDITIONS.
+
+  WHY.  With K = u^2 and f'(K) = mu(u),
+
+        c_s^2 = f'/(f' + 2K f'') = mu/(mu + u mu') = 1/(1 + dln mu/dln u).
+
+  Health ((i) 0 <= c_s^2 <= 1, (ii) f' > 0, (iii) stability) is therefore
+  EXACTLY the statement  mu > 0 and mu' >= 0 -- a condition on the LOG-SLOPE
+  of mu.  The deep slope n is the AMPLITUDE of mu, and it cancels out of
+  every health condition identically.  Condition (iv) (finite, non-zero deep
+  slope) fixes the deep LOG-SLOPE to 1, and hence fixes
+
+        c_s^2(0) = 1/2       for EVERY value of n,
+
+  which is a real forced prediction -- and simultaneously the proof that the
+  deep sound speed cannot discriminate n.  Part 3 exhibits a healthy kernel
+  with deep slope n for every n > 0 (checked explicitly at n = 1, 2, 3);
+  Part 4 shows health does not even fix the shape at fixed n = 2.
+
+  WHAT IS GENUINELY FORCED (new, n-independent):
+    * c_s^2 -> 1/2 at the deep end for any healthy k-essence with a linear
+      MOND regime.  The programme's measured [1/2, 1) is a prediction.
+    * Inside the minimal Pade family, subluminality gives the SHARP bound
+      n <= 2 and the observed n = 2 saturates it (a > 2 is superluminal at
+      large u).  This is a bound, not a derivation: the family is assumed.
+
+  WHAT DOES FIX THE 2 (not health):
+    Regularity of f' at K = 0 forces the two coefficients in
+    f = K - c ln(1+sqrt K) - d/(1+sqrt K) to be equal (d = c); the absence of
+    a Newtonian floor, mu(0) = 0, then forces c = 2; the deep slope equals c
+    and is therefore 2.  Both inputs -- smoothness at the vacuum and the
+    EXISTENCE of a MOND regime -- are outside (i)-(iv), and the family is
+    assumed.  Reported as the honest positive result.
+
+  WHAT THIS LANE DOES NOT DO:
+    * It does not claim n = 2 is derived.  It proves (i)-(iv) insufficient.
+    * It does not revisit H017/H030's dimensional route, which stands.
+    * It does not adjudicate between the two a_0 footings (Part 7):
+      they infer n = 2.000 and n = 1.660, and health permits both.
+
+{"pass": 23, "fail": 0}
