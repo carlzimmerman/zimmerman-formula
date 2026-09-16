@@ -1,0 +1,115 @@
+========================================================================================================
+E01 -- THE INPUT REDUCTION CANDIDATES
+        can any of the 6 core inputs be DEMOTED from input to derived?
+========================================================================================================
+
+THE FRAME (D07): 6 core inputs -> 14 derived identities, density 2.333 per input; certified share 0.571
+DENSITY measures YIELD per input. E1 asks COMPRESSIBILITY: which of
+the 6 slots {G, c, Omega_L, f_b, a0, m} could leave the input set?
+
+(1a) G -- MEASURED (CODATA 6.674e-11).  QUESTION: any framework
+     relation that fixes G?  The phantom amplitude is G-NORMALIZED:
+     A = C/(4 pi G), C = sqrt(G M_b a0) -- the 1/(4 pi G) exactly
+     cancels G in the equipartition M_ph(<r_M) = 4 pi A r_M = M_b.
+  [PASS] G-normalization: M_ph(<r_M) = 4 pi A r_M = M_b EXACTLY (G cancels)   | M_ph(<r_M)/M_b = 1.000000000000000
+  [PASS] G-invariance of the equipartition at G = 6e-11: M_ph(<r_M) = M_b   | ratio 1.000000000000000
+  [PASS] G-invariance of the equipartition at G = 6.67e-11: M_ph(<r_M) = M_b   | ratio 1.000000000000000
+  [PASS] G-invariance of the equipartition at G = 7.5e-11: M_ph(<r_M) = M_b   | ratio 1.000000000000000
+  [PASS] deep RAR g^2 = a0 g_N at r_M (G cancels in M_ph(<r) = M_b r/r_M)   | g^2/(a0 g_N) = 1.000000000000000
+  [PASS] no G-fixing relation on the record: the only algebraic window (G = v^4/(M_b a0)) is the empirical zero point, fit with CODATA G inside, carrying the registered departure (S09/Z11 full-542 +0.2585 dex)   | honest NO -- irreducible measured input
+
+(1b) c -- MEASURED, EXACT BY SI DEFINITION (299792458 m/s).
+     QUESTION: never a candidate -- the c-scalings are DIMENSIONAL
+     identities (each law's c-exponent is fixed by its SI units),
+     not derivations.  Verify: scaling c -> 2c leaves every committed
+     dimensionless coefficient EXACTLY 1.
+  [PASS] c-invariance at c' = 299792458 m/s: BTFR coeff v^4/(G M_b a0) = 1, sigma^2/(sqrt(G M_b a0)/2) = 1, T-law coeff = 1, Omega-reconstruction = Omega_L   | BTFR 1.000000000000 sig2 1.000000000000 T 1.000000000000 Omega 0.685000
+  [PASS] c-invariance at c' = 599584916 m/s: BTFR coeff v^4/(G M_b a0) = 1, sigma^2/(sqrt(G M_b a0)/2) = 1, T-law coeff = 1, Omega-reconstruction = Omega_L   | BTFR 1.000000000000 sig2 1.000000000000 T 1.000000000000 Omega 0.685000
+
+(1c) Omega_L -- MEASURED (Planck 0.685/0.6847; committed 0.6857;
+     G058 Lean identity; D07 input #3).  QUESTION: does the C06 horizon
+     closure + Omega_L = 0.685 MEASURED make Omega_L DERIVED?
+     VERIFY the C06 tautology (Lean-certified `tautological_fixed_point`, `closure_iff_zSq`):
+  [PASS] G058 identity closes at the horizon: Omega(a0_H) = 32 pi a0_H^2/(3 H0^2 c^2) = 0.685 exactly (Z11 register)   | Omega = 0.685000000000 vs committed 0.685 (dev -1.11e-16)
+    Omega_in = 0.100 -> reconstruction 0.100000000000  (fixed point YES)
+    Omega_in = 0.200 -> reconstruction 0.200000000000  (fixed point YES)
+    Omega_in = 0.685 -> reconstruction 0.685000000000  (fixed point YES)
+    Omega_in = 0.900 -> reconstruction 0.900000000000  (fixed point YES)
+    Omega_in = 0.975 -> reconstruction 0.975000000000  (fixed point YES)
+  [PASS] THE TAUTOLOGY: at the germ Z^2 = 32 pi/3 EVERY Omega is a fixed point of the map (Lean theorem `tautological_fixed_point`) -- the closure SELECTS NO VALUE   | max |rec-om|/om = 5.55e-16
+  [PASS] closure_iff_zSq numeric: 32 pi/(3 Z'^2) = 1 ONLY at the germ Z = 2 sqrt(8 pi/3)   | Z' = 5.0000 -> 32 pi/(3 Z'^2) = 1.340413
+  [PASS] closure_iff_zSq numeric: 32 pi/(3 Z'^2) = 1 ONLY at the germ Z = 2 sqrt(8 pi/3)   | Z' = 5.7888 -> 32 pi/(3 Z'^2) = 1.000000
+  [PASS] closure_iff_zSq numeric: 32 pi/(3 Z'^2) = 1 ONLY at the germ Z = 2 sqrt(8 pi/3)   | Z' = 6.5000 -> 32 pi/(3 Z'^2) = 0.793144
+  [PASS] the naive inversion Omega_L = 3 Z^2/32 pi evaluates to 1 at the germ, NOT the measured 0.685 -- the germ alone produces NO value   | 3 Z^2/32 pi = 1.000000 vs 0.685 measured
+  [PASS] the measured value is Planck's: Omega_Lambda_committed 0.6857 / Planck 0.6847 on the S05 register (the framework's own identity, read at the INDEPENDENT galactic footing, evaluates to 1.21/1.13 -- G089 C3)   | committed 0.6857, Planck 0.6847
+    -> Omega_L = MEASURED-WITH-STRUCTURE, NOT derived: the value is
+       Planck's; the germ pins the STRUCTURE (G089: Z <-> Omega_L
+       one-to-one -- they name the same datum, the vacuum magnitude,
+       the theory's ONE free dimensionless parameter).
+
+(1d) f_b -- MEASURED, REMAINS AN INPUT (B09 14/14).
+     QUESTION: NOT pinned -- verified:
+  [PASS] the depletion chain closes arithmetically: f_b = <s_b>/0.54 = 0.1563 vs datum 0.1564 (+0.2%)   | f_b_pred = 0.15635, datum 0.1564
+  [PASS] BUT the 0.54 IS the measured ratio <s_b>/f_b (G187): dividing the measured share by the measured ratio restores the datum -- an IDENTITY on measured sides (G03C class), zero framework machinery in the chain   | 0.54 = 0.5411; classification: IDENTITY on measured sides (G03C class): the depletion factor 0.54 IS the measur
+  [PASS] registered band [0.150, 0.157] / envelope [0.139, 0.180] (B09 V2/V3)   | B09 V2
+  [PASS] D02 invariant core re-verified: v_flat = (G M_b a0)^(1/4) is bit-identical across the f_b sweep [0.01, 0.99] -- f_b never enters the per-object laws   | max |delta|/v = 0.0e+00 over 5 values
+
+(1e) a0 -- IDENTITY-PINNED (Z11 19/19): a0 = c^2/(Z R_dS) = kappa_dS/Z.
+     QUESTION: the horizon puts a0 in the GEOMETRIC INPUT CLASS --
+     the strongest DERIVED status of the six.
+  [PASS] a0 = kappa_dS/Z = c^2/(Z R_dS) at ratio 1.00005 vs a0_DE (Z11)   | ratio 1.000051; kappa_dS/Z = 9.362375e-11
+  [PASS] a0's identity is G-FREE and holds ZERO freedom: a0 = c H0 sqrt(Omega_L)/Z is a pure function of the measured (c, H0, Omega_L) and the germ Z -- the slot carries no parameter (falsifying it changes Z, not the slot: C06 no-slack)   | c H0 sqrt(Omega)/Z = 9.362375e-11
+
+(1f) m -- DERIVED (G212 9/9): m = 5.09 +- 0.10 keV, the ladder.
+  [PASS] G212 register: m = 5.089 +- 0.097 keV (5.09 +- 0.10)   | re-read peak/sigma
+  [PASS] the ladder's MW rung re-verified in-file: m = k_B T_0(1+z*)/sigma^2 = 5.0000 keV (z* = 2.3656, sigma = 119.2 km/s) -- inside [4.99, 5.19]   | m_MW = 5.0000 keV
+    m is the six's ONE derived row: the demotion PRECEDENT, already
+    executed -- D07 counts it as the '1 derived' of the ledger.
+
+(1g) THE 5 ANCILLARY measured datums + per-object M_b (D07/S05):
+    - H0 = 67.4 km/s/Mpc           enters R_dS = c/(H0 sqrt(Omega_L)); CANCELS in the C06 closure (Lean `num_horizon_omega_exact`: reconstruction independent of H0's numeric value)
+    - Omega_star = 0.0027          G079 pie; the equilibrium bound Omega_eq <= Omega_star(1 + f_gas) -- measured, ancillary
+    - n_s (spectral index)         S07 P(k) transfer; ancillary
+    - sigma_8 (amplitude)          S07 P(k) transfer; ancillary
+    - T_CMB = 2.72548 K            the freeze thermostat T_0 -- the ladder's T_0 (enters the DERIVED m); measured
+    - M_b per object: measured M/L + gas -- the baryon RULER that
+      normalizes the BTFR / equipartition / dust law / T-law at every
+      scale; 'zero-free-parameter' is true PER OBJECT given M_b (S05).
+    None is a reduction candidate: they are already ancillary, and
+    H0 notably cancels out of the framework's own cosmological
+    identity.
+
+(2) THE REDUCTION SCORECARD -- could the input count go BELOW 6?
+    EFFECTIVELY GEOMETRIC (a0 via the horizon):
+      a0 = c^2/(Z R_dS) -- and transitively the whole constant table:
+      r_M, Sigma, sigma^2, T_b, the dust law's (c0, q), s_Lambda = 2 a0
+      -- every one a function of (G, c, M_b, R_dS, Z) (Z11 V2: NO
+      framework constant retains an independent scale).
+    MEASURED-BUT-STRUCTURED (Omega_L via the germ):
+      the value is Planck's (0.685); the STRUCTURE is germ-pinned
+      (G089: Z <-> Omega_L one-to-one -- the theory's ONE free
+      dimensionless parameter); the C06 closure is the tautological
+      fixed point, Lean-certified, value-free.
+    IRREDUCIBLE ({G, c, f_b}):
+      G -- no lever (the phantom is G-normalized; the structural core
+           is G-invariant in the units where M_b is measured);
+      c -- exact by SI definition (a dimensional identity, never a
+           derivation; no value to derive);
+      f_b -- no framework mechanism anywhere in the chain (G03C
+             identity on measured sides; invisible to every fit).
+  [PASS] BELOW 6? NO -- both demotions are already used: m derived (the ledger's '1 derived') and a0 identity-pinned (the '1 identity-pinned'); the 4 measured slots {G, c, Omega_L, f_b} are structurally irreducibly measured   | 6 core = 4 measured + 1 identity-pinned + 1 derived
+  [PASS] the density 2.33 identities/input is YIELD per input, not input compressibility: the 14 derived identities are FUNCTIONS of the 6 inputs -- density does not reduce the count   | density = 2.333 = 14/6
+
+(3) VERDICTS
+    V1 -- per-input reduction status:
+      G        IRREDUCIBLE (measured, CODATA)             -> NO -- the phantom A = C/(4 pi G) is G-NORMALIZED; the structural
+      c        IRREDUCIBLE (definitional)                 -> NEVER -- exact by SI definition; the c-scalings are dimensional 
+      Omega_L  MEASURED-BUT-STRUCTURED                    -> NO -- MEASURED-WITH-STRUCTURE: the value is Planck's; the C06 cl
+      f_b      IRREDUCIBLE                                -> NO -- B09 14/14: the depletion chain closes arithmetically (0.15
+      a0       EFFECTIVELY GEOMETRIC (identity-pinned, not fitted) -> YES as an identity -- the strongest derived status of the six: a
+      m        DERIVED (already demoted)                  -> YES -- m = 5.09 +- 0.10 keV from the ladder (MW rung 4.9999 keV 
+    V2 -- THE IRREDUCIBLE FLOOR: {G, c, f_b} measured + the ONE free dimensionless datum Z <-> Omega_L (G089 -- the vacuum magnitude).  A deeper theory would have to derive: (i) G -- a coupling this framework i...
+    V3 -- THE HONEST STATEMENT: the input count is 6 TODAY = 4 measured (G, c, Omega_L, f_b) + 1 identity-pinned (a0) + 1 derived (m) -- already POST-reduction: m was demoted to derived and a0 to identity-pinne...
+
+CHECKS 25/25 PASS
+wrote /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/E01_results.json
