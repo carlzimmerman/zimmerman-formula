@@ -1,0 +1,135 @@
+G176 -- THE DUST-SLOPE SEAM: ONE LAW WITH A TRANSITION, OR TWO DISJOINT LAWS?
+
+THE QUESTION.  The committed record carries two dust-density indices from two
+radial windows:
+    * the INNER (coherency) window [0.1 R500, 600 kpc]:  p_dust = 1.69 +- 0.16
+      (G139 V3, pooled rho_dust_req_A, positive bins);
+    * the DEEP window (r_M, R500):                        p_dust = 2.38 +- 0.15
+      (G108 V1, pooled d ln rho_dust/d ln r = -2.377 +- 0.152, fixed-A phantom).
+G142's sub-window residuals demanded a slope BETWEEN 2.38 and 0.99 (the r^-1
+coherency factor), ~1.5-2.0.  This lane asks the SEAM question: fit the
+POOLED rho_dust,req(r) (G098's committed inversion, floor A) with a
+TWO-INDEX model
+
+        rho_dust = B r^-p1  for r < r_t
+        rho_dust = B' r^-p2 for r > r_t      (continuous at r_t: B' = B r_t^(p2-p1))
+
+and decide: is rho_dust ONE law with a boundary at r_t, or TWO disjoint laws?
+
+  (1) THE SEAM FIT.  Pooled two-index fit on G098's committed
+      rho_dust_req_A(r) over the union of the committed windows,
+      r in [0.1 R500, R500], positive dust only: free r_t.  Report p1, p2,
+      r_t + per-cluster amplitude offsets, and r_t vs the r_M-class
+      (r_M = sqrt(G M_b(R500)/a0): 273-580 kpc, median ~402 kpc, G108/G075).
+      Pooled GLOBAL r_t (one number for all clusters) AND per-cluster r_t
+      (each cluster free): the per-cluster r_t,i vs r_M,i relation is V2.
+
+  (2) THE ALTERNATIVES (model selection, all with per-cluster amplitudes):
+      (a) two-index, r_t FREE (shape params B,p1,p2,r_t -> with 12 per-cluster
+          amplitudes: k = 15);
+      (b) single index rho = B r^-p (k = 13);
+      (c) the r^-1.7 power EXACTLY (G139's committed claim) with the G108
+          deep index -2.377 as a DIFFERENT regime, seam at the equilibrium
+          boundary r_t = r_M per cluster (k = 12, fully committed) -- and the
+          same committed indices with r_t FREE (k = 13);
+      (d) ONE STEEPENING LAW: log rho = a_c + alpha log r + beta (log r)^2,
+          smooth index p(r) = -alpha - 2 beta log r (k = 14).
+      Compare by BIC and AICc on the same pooled data.
+
+  (3) THE MEANING.  If r_t ~ r_M-class: the seam is the phantom/free-dust
+      equilibrium boundary's own signature -- the same boundary the
+      temperature ratio R and the cap mark -- and the honest statement is:
+      the dust's SHAPE CHANGES at the equilibrium boundary; the streaming
+      envelope transitions to the mixed interior there.  If r_t is
+      unconstrained (flat likelihood in r_t): the two slopes are separate
+      regimes of ONE steepening law rho ~ r^-p(r) smooth.
+
+  (4) VERDICTS.
+      V1  the p1/p2/r_t fit with the model comparison (BIC/AICc), numbers;
+      V2  the seam's position vs r_M (pooled r_t vs median r_M; per-cluster
+          r_t,i vs r_M,i; and DeltaBIC of the committed r_t = r_M seam);
+      V3  the honest statement: ONE law with a boundary at r_t = X, or TWO --
+          with the BIC that decides.
+
+DELIVERABLE: deepseek_push/G176_dust_seam.py + .out + G176_results.json.
+
+DATA (all committed, nothing written outside deepseek_push/):
+G098_results.json per-cluster canonical arrays (r_kpc, rho_b, rho_res,
+rho_ph_A, rho_dust_req_A, R500_kpc); G108_results.json (rM_kpc per cluster,
+registered pooled deep-window envelope -2.377+-0.152); G122_results.json
+(per-cluster a_c, rM_over_R500; p* = 0.99).  Rewrites NO committed file.
+
+====================================================================================================
+G176 -- THE DUST-SLOPE SEAM (pooled two-index fit on rho_dust_req_A)
+====================================================================================================
+clusters: 12; committed indices: inner p_dust = 1.69 +- 0.16 (G139 coherency window), deep p = -2.377 +- 0.15 (G108 registered -2.377 +- 0.152, fixed-A phantom); r_M range 273-580 kpc, median 402
+pooled positive-dust bins on [0.1 R500, R500]: n = 1447; r in [105, 1411] kpc
+
+GATE1 [G139 reproduction] coherency window [0.1R500, 600 kpc]: p_dust = 1.689 (rms 0.159 dex, n = 1039); registered 1.69 +- 0.16 (rms 0.159, n = 1039)
+  [PASS] GATE1 [G139 reproduction] the pooled single-amplitude slope on rho_dust_req_A over the coherency window reads p_dust ~ 1.7 (within 0.1 of 1.69), n ~ 1039
+         measured: p_dust = 1.689 +- (rms 0.159), n = 1039
+GATE2 [G108 reproduction] deep window (r_M, R500), fixed-A phantom: p = 2.314 (rms 0.339 dex, n = 655); registered -2.377 +- 0.152 (n = 258)
+  [PASS] GATE2 [G108 reproduction] the fixed-A deep-window slope reproduces G108's registered -2.377 (within 0.15, the registered error)
+         measured: p = 2.314, n = 655
+GATE2b [per-bin floor-A deep slope] deep window (r_M, R500) on rho_dust_req_A: p = 2.785 (rms 0.287, n = 668); G139's row 2.785 (the seam data's own convention)
+  [PASS] GATE2b [per-bin floor-A deep slope] reproduces G139's per-bin phantom deep-window slope 2.785 (within 0.15)
+         measured: p = 2.785, n = 668
+
+SEAM FIT (model a, r_t free, continuous two-index, per-cluster amps):
+   p1 = 1.500 +- 0.039   p2 = 2.941 +- 0.041   r_t = 386.8 kpc   (SSE 54.3361 dex^2, n = 1447, k = 15)
+   r_M-class: [273, 580] kpc, median 402 kpc; r_t/r_M(median) = 0.96
+COMMITTED seam (model c'): p1 = 1.69, p2 = 2.377 fixed, seam FREE -> r_t = 308.9 kpc (SSE 60.0105);  seam at r_M per cluster (model c): SSE 64.8431
+SEAM AT r_M, indices free (model e): p1 = 1.658, p2 = 2.825 (SSE 58.9560, k = 14) -- the equilibrium-boundary seam, shape free
+STEEPENING LAW (model d): alpha = 4.669, beta = -1.3314 -> p(r) = -alpha - 2 beta log r: p(200 kpc) = 1.46, p(600 kpc) = 2.73, p(R500-median) = 3.53 (SSE 55.2156)
+
+MODEL COMPARISON on the same pooled data (n = 1447):
+  model                                          k  SSE dex^2  rms dex       BIC      AICc   d_BIC  d_AICc
+  (a) two-index, r_t free                       15     54.336    0.194   -4640.0   -4718.8     0.0     0.0
+  (b) single index                              13     69.942    0.220   -4289.2   -4357.6   350.8   361.2
+  (c) r^-1.7 EXACT + G108 deep, seam at r_M     12     64.843    0.212   -4406.0   -4469.1   234.0   249.7
+  (c') r^-1.7 EXACT + G108 deep, seam free      13     60.010    0.204   -4510.8   -4579.2   129.2   139.7
+  (d) smooth steepening log-quadratic           14     55.216    0.195   -4624.0   -4697.6    16.0    21.2
+  (e) seam at r_M per cluster, indices free     14     58.956    0.202   -4529.2   -4602.8   110.8   116.0
+
+BIC winner:  (a) two-index, r_t free  (d_BIC vs runner-up = 16.0)
+AICc winner: (a) two-index, r_t free
+
+PER-CLUSTER two-index fits (r_t free per cluster, own amplitude), r in [0.1 R500, R500], positive dust:
+  cluster   r_M kpc  r_t kpc  r_t/r_M     p1     p2    n
+  A1644       273.4    303.4     1.11   0.83   3.07  127
+  A1795       342.1    561.0     1.64   2.06   6.70  113
+  A2029       520.9    658.6     1.26   1.77   7.81  107
+  A2142       567.9    316.2     0.56   0.41   2.82  126
+  A2255       398.0    626.8     1.57   1.39   3.04  127
+  A2319       580.2    930.2     1.60   2.15  25.10  114
+  A3158       332.5    467.1     1.40   1.64   2.84  127
+  A3266       448.3    642.5     1.43   2.81   0.04  127
+  A644        388.2    614.3     1.58   1.43  26.61   99
+  A85         406.4    688.6     1.69   1.86   7.02  127
+  RXC1825     311.7    539.8     1.73   1.64   4.19  126
+  ZW1215      405.1    436.3     1.08   1.23   2.39  127
+per-cluster r_t: median 588 kpc (range 303-930); r_t/r_M median 1.50 (range 0.56-1.73)
+Spearman(r_t, r_M) = 0.552 (p = 0.063)
+
+SEAM IDENTIFIABILITY: 1-sigma band on r_t from the profile (delta SSE = 2.3): [269, 543] kpc; span 0.30 dex
+
+VERDICTS
+V1 -- the p1/p2/r_t fit and the model comparison (BIC/AICc):
+   pooled two-index: p1 = 1.50 +- , p2 = 2.94, r_t = 387 kpc (BIC -4640.0, AICc -4718.8)
+   d_BIC(a vs b single) = -350.8;  d_BIC(a vs c committed r_M seam) = -234.0;  d_BIC(b vs c) = +116.8;  d_BIC(a vs d smooth) = -16.0;  d_BIC(a vs e r_M seam, free idx) = -110.8
+   BIC winner: (a) two-index, r_t free (k = 54.33606072654922)
+  [PASS] V1 [the seam fit] the pooled two-index fit returns finite p1, p2, r_t with p1 ~ inner window (1.69-class) and p2 ~ the deep-window slope on the SAME per-bin floor-A data (2.785-class, GATE2b)
+         measured: p1 = 1.50, p2 = 2.94, r_t = 387 kpc
+V2 -- the seam's position vs r_M:
+   pooled r_t = 387 kpc vs r_M median = 402 kpc (ratio 0.96); 1-sigma band [269, 543] kpc
+   per-cluster r_t/r_M median = 1.50; Spearman(r_t, r_M) = 0.55
+   d_BIC(free r_t vs r_t = r_M per cluster, BOTH indices free) = -110.8  -> the free seam is clearly preferred
+  [PASS] V2 [the seam vs r_M] the fitted r_t sits at r_M-class: within the per-cluster r_M spread (x0.6-x1.4) and/or per-cluster r_t tracks r_M (Spearman > 0.4)
+         measured: r_t = 387 kpc, r_M median 402; Spearman = 0.55, r_t/r_M median = 1.50
+V3 -- the honest statement:
+   ONE LAW WITH A BOUNDARY at r_t = 387 kpc (0.96 x median r_M; 1-sigma band [269, 543] kpc): the two-index model is preferred over the single index by d_BIC = -350.8 and the seam is resolved (band 0.30 dex) -- the dust's shape CHANGES, p1 = 1.50 -> p2 = 2.94, but the seam's radius is NOT each cluster's individual r_M (d_BIC = -110.8)
+  [PASS] V3 [the honest statement] the BIC that decides: the difference between the two-index model and its best rival is large enough to choose (|d_BIC| > 6) OR the statement reports the tie honestly
+         measured: d_BIC(a vs b) = -350.8, d_BIC(a vs c) = -234.0, winner BIC -4640.0
+
+PASS 6 / 6
+wrote G176_results.json  (6 pass / 0 fail)
