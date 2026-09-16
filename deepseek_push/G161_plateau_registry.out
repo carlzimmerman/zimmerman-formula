@@ -1,0 +1,67 @@
+====================================================================================================
+G161 -- THE PLATEAU OBSERVING REGISTRY: T(r) -> 2 T_floor flat tail,
+pre-registered per-instrument decision rules (eROSITA / XRISM / G129 tSZ)
+====================================================================================================
+cluster   th500  win[arcmin]  eROreach R500  T_env@1.25  T_env@2.0  env-slope  env/claim  s_G130  R_A1@2R  tSZ_SNR  tSZ_slope_err
+A1644     18.24 [ 22.8, 36.5]   1.67       2.99     2.79     -0.94     3.1     -3.83     0.75     7.1    0.33
+A1795     15.45 [ 19.3, 30.9]   1.97       3.83     3.55     -1.35     4.5     -4.48     0.41     4.0    0.51
+A2029     15.62 [ 19.5, 31.2]   1.95       6.09     5.58     -2.54     8.5     -6.19     0.64    12.0    0.20
+A2142     13.50 [ 16.9, 27.0]   2.00*      6.78     6.16     -3.01    10.0     -8.19     0.40    13.7    0.16
+A2255     12.59 [ 15.7, 25.2]   2.00*      4.56     4.20     -1.76     5.9     -4.37     0.77     8.4    0.25
+A2319     19.98 [ 25.0, 40.0]   1.53       7.06     6.38     -3.33    11.1    -10.56     0.46    30.9    0.08
+A3158     15.63 [ 19.5, 31.3]   1.95       3.72     3.45     -1.31     4.4     -1.86     1.06     4.7    0.65
+A3266     20.15 [ 25.2, 40.3]   1.51       5.07     4.69     -1.87     6.2     -4.93     0.58     6.6    0.33
+A644      14.70 [ 18.4, 29.4]   2.00*      4.40     4.07     -1.63     5.4    -10.89     0.00     0.9    5.44
+A85       18.40 [ 23.0, 36.8]   1.66       4.64     4.28     -1.78     5.9     -3.93     0.75     7.4    0.32
+RXC1825   14.21 [ 17.8, 28.4]   2.00*      3.46     3.22     -1.17     3.9     -2.42     1.12     8.9    0.23
+ZW1215    15.03 [ 18.8, 30.1]   2.00*      4.54     4.21     -1.61     5.4     -2.89     1.14     4.6    0.46
+  * = full 1.25-2 R500 window inside the eROSITA 61-arcmin FoV
+
+SAMPLE-LEVEL (median over 12): window [19.5, 31.2] arcmin; envelope slope -1.63 keV/dex (at 2 R500 -1.28); envelope is -5.9x the 0.30 keV/dex flatness claim; G130 measured-window slope -4.37; A1 'keeps-falling' T(2R500)/2T_floor 0.75; eROSITA full window 5/12; tSZ annulus SNR 7.4; tSZ slope error 0.327 per cluster -> 0.094 pooled.
+
+PRECISION BUDGET (decision object = the SAMPLE-MEDIAN window slope, the G130 V2 convention; target sigma_med <= 0.10 keV/dex -> per-cluster sigma_slope <= 0.35 keV/dex):
+  eROSITA 3 bins (1.25-1.5-1.75-2.0 R500): per-bin sigma_T <= 1.0% of the window mean -> N ~ 84572 net ct/bin
+  XRISM 5 bins (1-2.5 R500): per-bin sigma_T <= 2.2% -> N ~ 19779 net ct/bin
+  PER-CLUSTER ceiling (claim certified per cluster, sigma_slope <= 0.10): sigma_T <= 0.3% / 0.6% (N ~ 1012459 / 236789 ct/bin) -- registered as the ceiling, not the baseline program
+  tSZ (G129): slope error 0.327 per cluster -> 0.094 pooled (log-slope units); annulus SNR median 7.4
+  FEASIBILITY LADDER (kappa_CCD = 3.0, N = (kappa/sigma_frac)^2):
+    eROSITA eRASS:1-8 survey stack, sigma_T ~ 6% (N~2.5e3/bin; the X-COP/XMM error class): per-cluster sigma_slope ~ 1.7 keV/dex -> sample-median ~ 0.5 keV/dex: flat accepted at 3sigma, envelope continuation excluded at ~3.3 sigma, the 0.3 keV/dex claim NOT yet certified
+    eROSITA legacy/deep (30-100 ks class), sigma_T ~ 2%: sample-median ~ 0.16 keV/dex -> claim certified at ~2 sigma, envelope excluded at ~10 sigma
+    XRISM 100-250 ks/cluster, sigma_T ~ 2.5-4% outer bins: per-cluster sigma_slope 0.34-0.55 -> sample (6-8 clusters) 0.13-0.2 keV/dex: per-cluster envelope exclusion >= 3 sigma, claim at 1.5-2.5 sigma sample-level; the per-cluster slope-BREAK test (A1 vs A2) lives here
+
+ALTERNATIVES IN THE WINDOW (per cluster, median over 12):
+  P  flat tail:      slope ~ 0 +- 0.1 keV/dex (claim |slope| <= 0.30 keV/dex), level = 2 T_floor
+  E  envelope cont.: slope -1.63 keV/dex (T_env at 1.25 R500 = 2.99-class, above 2 T_floor on the 1/r tail) -> FAILS the flat claim at -6x, distinguished at >3 sigma by XRISM/eROSITA + tSZ F2-band
+  A1 keeps falling:  slope -4.37 keV/dex (G130 rate); T(2R500) ~ 0.75 x 2 T_floor -> excluded in-window by G130's 11/12 kTvir rows + 1/r landing; re-test in the new window: slope below the envelope band at >=3 sigma
+  A2 cap fires:      slope breaks at r_cap in (1.2,1.5) R500 to the steep class (-2 .. -5 keV/dex); marker T(2R500) < T_env(2R500) - 3 sigma; tSZ arm = G129 F1 (slope < -2 over [theta_500, 2 theta_500] at >=3 sigma)
+  A3 cluster level:  flat slopes BUT |T_win - 2 T_floor| > 2 sigma in >= 5/12 with the residual ordered by G122's a_c (Spearman >= +0.5, p <= 0.05) -- the dust-normalization leak
+
+THE REGISTRY (the flat-tail decision; rules fixed before the maps/pointings are made):
+  PLATEAU DETECTED when, for the level-passing cluster set (window-mean within 2.0 sigma of 2 T_floor):
+    (i)  |median window slope| <= 0.30 keV/dex (the claim class) BENEFIT of the doubt none
+    (ii) |median window slope|/sigma <= 3.0 (consistent with 0 at 3 sigma)
+    (iii) >= 9/12 clusters each with |slope| <= min(0.30, 3*sigma_slope) and |T_win - 2 T_floor| <= 2.0 sigma_level
+  EACH INSTRUMENT'S ROW: see the deliverable MD; per-bin precision targets 1.0% (eROSITA sample) / 2.2% (XRISM) -> N ~ 84572 / 19779 net ct/bin (per-cluster ceiling 0.3% / 0.6%);
+  tSZ row: annulus SNR median 7.4 (Planck 143), slope error 0.327 -> 0.094 pooled (G129 machinery).
+
+  [V0a [gate: prediction rows reproduce G130's committed rows]]
+     measured: 12/12 clusters loaded from G130_results.json (R500, rM, Tfloor, Tinf); median Tinf = 3.67 keV (G130's 3.63-class)
+     pass: true
+
+  [V0b [gate: instrument window geometry from G129's committed targets]]
+     measured: theta_500 and slope_error_2bin read from G129_results.json targets (12/12)
+     pass: true
+
+  [V1 [the flat-tail claim is distinct from the envelope continuation]]
+     measured: envelope window slope -1.63 keV/dex (median) = -5.9x the 0.30 keV/dex claim -- the registered flat tail is the strong claim, falsifiable against its own envelope
+     pass: true
+
+  [V2 [the precision budget is computable and stated per instrument]]
+     measured: sample-median slope decision (sigma <= 0.10 keV/dex -> per-cluster 0.35): per-bin sigma_T targets 1.0% (eROSITA, N~84572) / 2.2% (XRISM, N~19779); tSZ slope error 0.094 pooled (G129)
+     pass: true
+
+  [V3 [the decision rule closes the loop]]
+     measured: PLATEAU DETECTED = |median slope| <= 0.30 keV/dex AND |median slope|/sigma <= 3 AND >= 9/12 per-cluster (slope <= min(0.30, 3 sigma) AND level within 2 sigma of 2 T_floor); alternatives A1/A2/A3 each fire on their own pre-declared lines
+     pass: true
+
+wrote deepseek_push/G161_results.json (5 pass / 0 fail)
