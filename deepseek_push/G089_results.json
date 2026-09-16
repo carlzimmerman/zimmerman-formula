@@ -1,0 +1,89 @@
+{
+ "task": "G089: the dimensionless inventory -- the theory's one number, stated correctly",
+ "statement": "The theory has exactly ONE free dimensionless parameter: Z (equivalently Omega_Lambda, equivalently a0/cH_Lambda) -- the vacuum scale in dimensionless form.  Everything else in the ledger is DERIVED (algebraic), EMPIRICAL (measured), CIRCULAR (ruled out by L260/G03C/L258, listed not recomputed), or OPEN (named, with its instrument).",
+ "verdicts": {
+  "V1": {
+   "pass": true,
+   "check": "the classification is complete and each entry is labeled",
+   "measured": "21 live entries in Tables A+B (17 DERIVED, 7 EMPIRICAL, 3 OPEN with the overlapping cluster entry) + 7 CIRCULAR entries listed as ruled out; every entry carries class, value, and lane registration.  The task-brief '5.2x lensing floor ratio' matches no committed artifact: the committed lensing-floor ratio is the +0.355 dex (2.26x) KiDS offset (G073; re-stack +0.419 dex = 2.62x), registered under A8 with the nearest '5.2' family named (Park-2026 Cassini ceiling 5.2e-27 s^-2, dimensionful; CLASH lensing-core undershoot 4.2-5.2x on the dead MI arm)."
+  },
+  "V2": {
+   "pass": true,
+   "check": "the count of truly-free parameters is 1",
+   "measured": "Z = sqrt(32 pi/3) = 5.7888 <-> Omega_Lambda = 32 pi a0^2/(3 H0^2 c^2) <-> a0/cH_Lambda: one datum.  kappa = 1/2 = 1/n is the one EMPIRICAL premise (n = 2, SPARC-selected, L232; G009/G019), never fitted; dust/astro normalisations are named inputs; the CIRCULAR identities add zero.  L260 Z5's omissions are exactly the EMPIRICAL and OPEN rows of the ledger."
+  },
+  "V3": {
+   "pass": true,
+   "check": "the statement (what a TOE needs next)",
+   "measured": "Next derivations, in order: (i) n = 2 / the mu_2 family from the dark sector's microphysics (G009/G019 closed every structural route); (ii) the 0.62-type empiricals - the EFE-line value (g_ext) and break ratios from the large-scale environment (the OPEN cluster amplitude); (iii) the footing itself: galactic fits at a0 ~ 1.2e-10 vs the DE-anchored 9.36e-11 (0.75-0.78 tension, G03C V3); (iv) Z itself - the vacuum scale from a UV completion."
+  }
+ },
+ "checks": [true, true, true],
+ "n_pass": 3,
+ "n_total": 3,
+ "free_parameters": {
+  "count": 1,
+  "name": "Z (equivalently Omega_Lambda, equivalently a0/cH_Lambda; canonical form f(0) = -1)",
+  "note": "the seesaw is an identity (L260 Z1), so Lambda and M_Pl pin a0's SI value but add no parameter"
+ },
+ "dimensional_input": {
+  "a0_only": true,
+  "a0_canonical_m_s2": 9.3619e-11,
+  "a0_alt_m_s2": 1.1279e-10,
+  "Lambda_meV": 2.2404,
+  "rho_Lambda_kg_m3": 5.8447e-27,
+  "seesaw": "a0 = (c/2) sqrt(G rho_Lambda) = Lambda^2/(2 M_Pl) -- one equation, two names; ratio 1.0000000 for every coefficient kappa (L260 Z1, G03C V1)"
+ },
+ "inventory": {
+  "DERIVED": [
+   {"A1": "Z = sqrt(32 pi/3) = 5.7888 (L260 Z6 registry; a0kit 5.78881)"},
+   {"A3": "triad equality sigma^2/v_flat^2 = kappa = c_s^2 = 1/2, exact (G03G V2; value inherits the empirical premise n = 2)"},
+   {"A4": "4: z* = 4 z_c, the saturation surface (G076 P2)"},
+   {"A9": "209.0 / 17.7 Msun/pc2 -- one law in two reading conventions (full-LOS total vs +/-1.1 kpc column, G076/g078)"},
+   {"A10": "Sigma_ph(<r_M) = a0/(pi G) = 213.75 Msun/pc2 (g078; Lean G083 interval (213,215))"},
+   {"A11": "geometric pi-content: 32pi/3, 16pi, 4pi, pi, pi/2 -- normalisations, never free"},
+   {"B1": "equipartition M_ph(<r_M)/M_b = 1 exactly (G03E V1, |ratio-1| <= 2.2e-16)"},
+   {"B2": "linear law M_dark(<r)/M_b = r/r_M, coefficient 1 (G03E V2)"},
+   {"B3": "coefficient-1 chain: rho_ph, g^2 = a0 g_N, v^4 = G M_b a0 (BTFR), c_deep = 1 (G003/G031, sympy-exact)"},
+   {"B4": "Omega_Lambda = 0.6857 vs Planck 0.6847 (+0.07%, canonical; alt 0.9953 FAIL on record) (G052/G058)"},
+   {"B5": "Omega_dm = 0.2650 flatness residual vs 0.2647 (G052 V4)"},
+   {"B6": "w(K=0) = -1; w -> +1 stiff; w crosses 0 at X = 1.4978 (G052/H011/G038)"},
+   {"B7": "coincidence epoch z(w=0) = 0.49 vs ~0.7 observed (G052 V5)"},
+   {"B8": "funnel: z_c(8.2) = 140.63 pc exact on rho_b(R0) = 0.095; z_c(15)/z_c(8.2) = e^2.2667 = 9.6472; z_c(25)/z_c(2) = 2136 = e^7.667 (G076)"},
+   {"B9": "GC boundary identity r_M/r_h = eta/2 = 3.39 at M_cross (G074; eta measured)"},
+   {"B10": "relation T_pred/T_obs = (sigma_pred/sigma_dyn)^2 = 0.53^2 (G075); the value 0.28 is the OPEN cluster amplitude"},
+   {"B14": "high-z discriminating ratio 0.33/0.13 dex = 20:1 (G080)"}
+  ],
+  "EMPIRICAL": [
+   {"A5": "n = 2 (mu_2 member) -- the one empirical premise (L232, G002; G009/G019)"},
+   {"A6": "kappa = 1/2 vs Milgrom's 1/(2pi): dchi2 63.9 vs 154.3, ~2.2 sigma (A13/L4-33); kappa pi-free (L4-34)"},
+   {"A7": "0.62 = r_break/r_M = 6.1 kpc / 9.84 kpc (G003 V6 at M_b = 6.5e10; cap 0.62 M_b, G03E/G050/G059); form sqrt(a0/g_ext) derived (H033)"},
+   {"B11": "RAR tightness floors 0.064 dex / 0.055 dex (G010/G013)"},
+   {"B12": "dSph floor median log10(pred/obs) = -0.00 dex, 7 dwarfs (G03G V3; G070 0.222 over 34)"},
+   {"B13": "r_in = 0.3 r_M declared (G071/G072)"},
+   {"B9n": "eta = 7.0 +/- 1.16 (G074)"}
+  ],
+  "CIRCULAR": [
+   {"C1": "seesaw singles out 1/2 -- ratio 1 for every kappa by construction (L260 Z1)"},
+   {"C2": "Lambda predicted from a0 to +0.0% -- the fed-back a0, the rung-9 circularity; independent a0s miss by +15% (L260 Z3, L258)"},
+   {"C3": "Omega_Lambda closure at +0.07% -- the inversion of the definition; independent fits give 1.21/1.13 (G03C V2, L258 A)"},
+   {"C4": "n = 2 from the graviton's polarisation count -- the slope is n by construction; two unrelated 2s (L260 Z2)"},
+   {"C5": "f(0) = -1 fixed by the theory -- it is the choice of integration constant matching Planck (L260 Z4; = the one free datum's canonical form)"},
+   {"C6": "epsilon_tot = 1/(32pi) framing is circular (L4-34)"},
+   {"C7": "'one input scale' count omits n, kappa, Omega_dm, dust normalisations, mu_n family (L260 Z5) -- the honest count is V2's"}
+  ],
+  "OPEN": [
+   {"A8": "lensing floor ratio absolute value: +0.355 dex (2.26x) KiDS / +0.419 (2.62x) re-stack, with the pi/2 ESD->g conversion-class envelope (0.196 dex); mass-independence 0.033 dex and shape -0.52 robust (G073).  The brief's '5.2x' is unregistered (see V1)"},
+   {"A12": "footing tension 0.754/0.783 (0.75-0.78, sample-dependent; proper-Y refit 0.748) -- a0_DE vs a0_galactic (G03C V3, G03E V3)"},
+   {"A13": "cluster amplitude: observed (M500-M_b)/M_b median 4.7x at r_500 (2.2-5.9x) vs delivered 0.21-0.68; T ratio 0.28 (G075; G012/G050 6.88x at 420 kpc)"}
+  ]
+ },
+ "counts": {
+  "derived": 17,
+  "empirical": 7,
+  "circular_ruled_out": 7,
+  "open": 3,
+  "truly_free_parameters": 1
+ },
+ "sources": ["G03C", "L260 Z1-Z6", "L258 A1-A3", "G03E", "G03G", "G052", "G058", "g078", "G083-lean", "G076", "G073", "G074", "G075", "G080", "G071", "G072", "G010", "G013", "EMPIRICAL_TESTS A13", "L4-33", "L4-34", "STATE.md", "THE_THEORY.md", "GRAVITY_EVERYWHERE.md"]
+}
