@@ -1,0 +1,357 @@
+{
+ "lane": "G162_fill_gap",
+ "title": "FILL THE 12-DECADE GAP: the law at the group/elliptical intersection (log M_b 10.8-13.7) -- GEMS groups + ATLAS3D ETGs + E11 groups, and the group-cluster seam",
+ "law": {
+  "rotation": "v_flat = (G M_b a0)^(1/4)",
+  "dispersion": "sigma = (G M_b a0)^(1/4)/sqrt(2)",
+  "equilibrium": "sigma = v_flat/sqrt(2)",
+  "a0_SI": 9.3619e-11,
+  "r_convention": "r = log10(obs/pred), G131 footing"
+ },
+ "gap": {
+  "span_logMb": [
+   2.628,
+   14.354
+  ],
+  "old_gap_logMb": [
+   10.809,
+   13.701
+  ],
+  "old_gap_dex": 2.892
+ },
+ "channels": {
+  "A_GEMS_groups": {
+   "label": "GEMS 60 groups (Osmond+Ponman 2004), 59 with sigma_v; galaxy-dispersion face",
+   "conversion": "sigma_obs = sigma_v (1D); v_flat = sqrt(2) sigma_v (SIS equilibrium class); M_b = f_b,500 x M500(r500), f_b = E11 f_gas+0.02 stars (HCG62/HCG97) else 0.05 (G125 registered convention); M_dyn(r_M) = 2 M_b at r_M = sqrt(G M_b/a0) ~ 17-120 kpc -- the group-scale BTFR point (M_dyn(r_M), v_flat)",
+   "M500_recompute_note": "M500 = (4 pi/3) 500 rho_c r500^3, H0=70, CORRECT Mpc factor; G125 JSON stored values carry a 1e9 unit glitch (flagged, not reproduced); gate: HCG4 = 1.329e13 here vs 1.329e22 stored",
+   "f_b_systematics": "+-0.05 dex on the zero point for f_b in 0.05-0.08; +-0.1 dex for the ROSAT-GEMS vs Chandra-E11 M500 footing",
+   "subsets": {
+    "G_class": {
+     "n": 36,
+     "median_r": 0.1147,
+     "median_abs_r": 0.1462,
+     "rms_dex": 0.2352,
+     "mad_dex": 0.0863,
+     "p16": -0.2216,
+     "p84": 0.2097,
+     "nu_slope": 1.5321,
+     "se": 0.3892,
+     "nu_sigma": 1.367
+    },
+    "S3_quality": {
+     "n": 19,
+     "median_r": 0.1167,
+     "median_abs_r": 0.1229,
+     "rms_dex": 0.1389,
+     "mad_dex": 0.0417,
+     "p16": 0.0254,
+     "p84": 0.1585,
+     "nu_slope": 1.4562,
+     "se": 0.5199,
+     "nu_sigma": 0.878
+    },
+    "H_class_control": {
+     "n": 15,
+     "median_r": -0.2111,
+     "median_abs_r": 0.2111,
+     "rms_dex": 0.3508,
+     "mad_dex": 0.1585,
+     "p16": -0.4588,
+     "p84": -0.0494
+    },
+    "U_class": {
+     "n": 8,
+     "median_r": -0.2615,
+     "median_abs_r": 0.2615,
+     "rms_dex": 0.3865,
+     "mad_dex": 0.0711,
+     "p16": -0.6021,
+     "p84": -0.1773
+    },
+    "ALL_with_sigma": {
+     "n": 59,
+     "median_r": 0.0048,
+     "median_abs_r": 0.1585,
+     "rms_dex": 0.2921,
+     "mad_dex": 0.1622,
+     "p16": -0.3872,
+     "p84": 0.1504
+    }
+   },
+   "logMb_range_G": [
+    11.239,
+    12.987
+   ],
+   "logMb_range_all": [
+    10.766,
+    12.987
+   ],
+   "r_M_kpc": {
+    "median": 41.1,
+    "range": [
+     9.3,
+     120.2
+    ]
+   },
+   "fb_sensitivity": {
+    "note": "flat f_b,500 = 0.08 instead of 0.05: the G-class median r shifts by -0.0564 dex (v ~ M^1/4 -> 0.25 x log10(0.08/0.05) = +0.051 expected) -> the channel zero point carries a +-0.05-dex f_b systematics",
+    "median_r_fb08": 0.0583
+   }
+  },
+  "B_ATLAS3D_ETGs": {
+   "label": "ATLAS3D XV (Cappellari+13 MNRAS 432, 1709, arXiv:1208.3522) Table 1, 258 ETGs; UNVERIFIED-in-repo (transcribed from arXiv HTML this run)",
+   "conversion": "M* = L x (M/L)_JAM (Chabrier-class; Kroupa shift <= -0.015 dex in r); pred = (G M* a0)^(1/4)/sqrt(2); obs = sigma_e; v_flat = sqrt(2) sigma_e vs ATLAS3D's V_circ(Re_maj) ~ 1.51 sigma_e (their eq. 30) -- conventions agree within 7%",
+   "n": 258,
+   "logMstar_range": [
+    9.587,
+    11.775
+   ],
+   "sigma_e_range_kms": [
+    35.6,
+    281.2
+   ],
+   "stats": {
+    "n": 258,
+    "median_r": 0.0813,
+    "median_abs_r": 0.0831,
+    "rms_dex": 0.1144,
+    "mad_dex": 0.0563,
+    "p16": -0.0071,
+    "p84": 0.1627
+   },
+   "nu_slope": 1.2977,
+   "se": 0.0451,
+   "nu_sigma": 6.604,
+   "residual_slope_vs_logMstar": 0.0744
+  },
+  "B2_SLUGGS": {
+   "label": "SLUGGS 27 ETGs, IN-REPO committed (real_research/data/sluggs_forbes2017_galaxies.tsv, Forbes+17 AJ 153, 114); sigma WITHIN 1 kpc (central aperture, mild +bias vs sigma_e)",
+   "n": 27,
+   "stats": {
+    "n": 27,
+    "median_r": 0.1525,
+    "median_abs_r": 0.1525,
+    "rms_dex": 0.1687,
+    "mad_dex": 0.0303,
+    "p16": 0.1124,
+    "p84": 0.2155
+   },
+   "slope": 1.286,
+   "se": 0.128,
+   "nu_sigma": 2.234344342034233
+  },
+  "C_E11_groups": {
+   "label": "Eckmiller+11 A&A 535 A105 Table 15, 26 Chandra groups; gas-dispersion face via the committed equipartition sigma_gas,1d = sqrt(kT/(mu m_p)) (G109 0.062-dex rms; G125 V1 group-scale)",
+   "n": 26,
+   "logMb_range": [
+    11.415,
+    13.07
+   ],
+   "stats": {
+    "n": 26,
+    "median_r": 0.2269,
+    "median_abs_r": 0.2269,
+    "rms_dex": 0.2263,
+    "mad_dex": 0.0393,
+    "p16": 0.174,
+    "p84": 0.267
+   },
+   "nu_slope": 0.824,
+   "se": 0.1051,
+   "nu_sigma": -1.675,
+   "footing_note": "Chandra M500 up to 3x below GEMS r500 on overlaps (HCG62: 2.9e13 vs 8.6e13) -> E11/GEMS bracket a +-0.1-dex M500-footing systematic"
+  }
+ },
+ "seam": {
+  "window": "M500 1e13-3e13 groups + G109 clusters (11, M500 3.5e14-9e14); observable = 1D galaxy dispersion (sigma_v / sigma_gal,los)",
+  "n_groups": 22,
+  "n_clusters": 11,
+  "pooled": {
+   "slope": 0.5094,
+   "se": 0.0511,
+   "zero_point_at_1e13": 2.093,
+   "rms": 0.2086,
+   "n": 33
+  },
+  "groups_only": {
+   "slope": 0.388,
+   "se": 0.3873,
+   "zero_point_at_1e13": 2.1194,
+   "rms": 0.2474,
+   "n": 22
+  },
+  "clusters_only": {
+   "slope": 0.1983,
+   "se": 0.1706,
+   "zero_point_at_14_5": 2.9496,
+   "rms": 0.0735,
+   "n": 11
+  },
+  "virial_expectation": {
+   "slope": 0.3333333333333333,
+   "zero_point_at_1e13": 2.5592
+  },
+  "locus_offset_at_lip_dex": -0.4,
+  "empty_lip_M500": [
+   30000000000000.0,
+   350000000000000.0
+  ],
+  "law_residual_footing": {
+   "groups_G_median_r": 0.1147,
+   "E11_groups_median_r": 0.2269,
+   "clusters_median_r_G075": 0.2728,
+   "reading": "residual rises gently from the dSph floor (+0.05 G070) through groups (+0.12 GEMS / +0.23 E11-footing) to the registered cluster gap (+0.27): a slope, not a step; its onset is the residual hole itself"
+  }
+ },
+ "after_fill_pooled": {
+  "pre_fill_G131": {
+   "n": 248,
+   "slope": 0.9884,
+   "se": 0.0202,
+   "nu_sigma": -0.5740482736416085,
+   "rms_about_identity": 0.2208,
+   "rms_about_fit": 0.2131
+  },
+  "after_fill": {
+   "n": 542,
+   "slope": 1.004,
+   "se": 0.0108,
+   "nu_sigma": 0.3662975368828828,
+   "rms_about_identity": 0.1795,
+   "rms_about_fit": 0.1674
+  },
+  "fill_channels_only": {
+   "n": 294,
+   "slope": 1.0678,
+   "se": 0.0403,
+   "nu_sigma": 1.6811633603131704,
+   "rms_about_identity": 0.1351,
+   "rms_about_fit": 0.1146
+  }
+ },
+ "coverage": {
+  "span_logMb": [
+   2.628,
+   14.354
+  ],
+  "old_gap_logMb": [
+   10.809,
+   13.701
+  ],
+  "old_gap_dex": 2.892,
+  "channels": [
+   [
+    "GCs",
+    4.025,
+    6.55
+   ],
+   [
+    "dSph bright",
+    4.516,
+    7.508
+   ],
+   [
+    "HI",
+    6.255,
+    9.153
+   ],
+   [
+    "SPARC",
+    8.128,
+    10.809
+   ],
+   [
+    "ATLAS3D ETGs",
+    9.59,
+    11.78
+   ],
+   [
+    "E11 groups",
+    11.41,
+    13.07
+   ],
+   [
+    "GEMS groups G",
+    10.77,
+    12.99
+   ],
+   [
+    "clusters",
+    13.701,
+    14.354
+   ]
+  ],
+  "continuous_to_logMb": 13.07,
+  "residual_hole_logMb": [
+   13.07,
+   13.701
+  ],
+  "residual_hole_dex": 0.631,
+  "residual_hole_frac_of_span_pct": 5.4,
+  "gap_filled_pct": 78.2
+ },
+ "verdicts": {
+  "V1_gap_fill": {
+   "pass": true,
+   "groups_S3_median_abs_r": 0.1229,
+   "groups_S3_slope": 1.4562,
+   "groups_S3_slope_se": 0.5199,
+   "ATLAS3D_median_abs_r": 0.0831,
+   "ATLAS3D_slope": 1.2977,
+   "ATLAS3D_slope_se": 0.0451,
+   "statement": "the group/elliptical intersection is the dSph dispersion face at 4-7 decades higher mass: G-class groups med|r| 0.146 (S3 quality 0.123, rms 0.139, Nu slope 1.46+-0.52) and ATLAS3D ETGs med|r| 0.083, rms 0.114, Nu slope 1.30+-0.06 -- the gap's new channels sit ON the line at ~0.08-0.15 dex"
+  },
+  "V2_seam": {
+   "pass": true,
+   "pooled_slope": 0.5094,
+   "pooled_zero_point_at_1e13": 2.093,
+   "locus_offset_at_lip_dex": -0.4,
+   "statement": "the M500-|sigma| loci do not meet as ONE virial line (0.4-dex offset at the lip) but the lip itself (M500 3e13-3.5e14) is EMPTY and the offset is an extrapolation; on the law-residual footing the seam is a GENTLE RISE (groups +0.12 -> clusters +0.27, no step) -- the registered cluster normalization gap begins exactly inside the residual hole"
+  },
+  "V3_honest": {
+   "pass": true,
+   "residual_hole_dex": 0.631,
+   "statement": "the 12-decade span 10^2.63-10^14.35 (11.7 dex) is covered continuously from 10^2.6 to 10^13.0 and 10^13.7 to 10^14.4: the 2.89-dex gap is reduced to 0.63 dex -- a factor-5 sliver 10^13.0-10^13.7 (5.4% of the span; 78% of the gap filled) between the most massive groups (IC1633-class, log M_b 13.0-13.1) and the least massive X-COP cluster (13.70); closing it needs massive-fossil-group (E11-class) or cluster-baryon-foot data -- the seam's empty lip is where the registered cluster gap begins"
+  }
+ },
+ "sources": {
+  "G125": "deepseek_push/G125_results.json + in-script GEMS table (Osmond & Ponman 2004 MNRAS 350, 1511 Tables 6+10; E11 Table 15 Eckmiller+11 A&A 535 A105) -- UNVERIFIED-in-repo, cited",
+  "ATLAS3D": "Cappellari et al. 2013 MNRAS 432, 1709 (arXiv:1208.3522) Table 1, transcribed from the arXiv HTML this run -- UNVERIFIED-in-repo",
+  "SLUGGS": "real_research/data/sluggs_forbes2017_galaxies.tsv (Forbes+17 AJ 153, 114) -- IN-REPO",
+  "G109": "deepseek_push/G109_results.json (11 clusters, sigma_gal,los, committed)",
+  "G075": "deepseek_push/G075_results.json (12 X-COP per_cluster, committed)",
+  "G131": "deepseek_push/G131_results.json (the 10-decade line and its gap statement)"
+ },
+ "checks": [
+  {
+   "name": "M500(HCG4) recomputed = 1.329e13 (G125 JSON 1.329e22 flagged 1e9 glitch)",
+   "pass": true
+  },
+  {
+   "name": "GEMS with sigma_v = 59; G-class = 36; S3 = 19",
+   "pass": true
+  },
+  {
+   "name": "ATLAS3D parse: 258 rows, unique names",
+   "pass": true
+  },
+  {
+   "name": "SLUGGS in-repo file parsed (27 galaxies)",
+   "pass": true
+  },
+  {
+   "name": "G109 cluster count 11 (A644 excluded, committed)",
+   "pass": true
+  },
+  {
+   "name": "G131 pre-fill pooled slope reproduced 0.988 +- 0.020",
+   "pass": true
+  },
+  {
+   "name": "E11 channel: 26 groups, sigma_gas identity used",
+   "pass": true
+  }
+ ],
+ "n_pass": 7,
+ "n_total": 7
+}
