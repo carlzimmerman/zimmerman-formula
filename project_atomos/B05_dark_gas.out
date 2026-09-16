@@ -1,0 +1,105 @@
+====================================================================================================
+B05 -- THE DARK GAS THERMODYNAMICS: the committed EOS P = sigma^2 rho
+        under compression, heating, and perturbation (gamma = 1 gas)
+====================================================================================================
+  committed inputs: G = 6.674e-11, a0 = 9.3619e-11 m/s^2, m = 5.0886 +- 0.0969 keV
+
+====================================================================================================
+(1) THE STATE FUNCTIONS -- the isothermal gas from P = sigma^2 rho
+====================================================================================================
+  EOS coefficient sigma^2 = (1/2) sqrt(G M_b a0) = C/2 = v_flat^2/2:
+    MW anchor (M_b = 6.5e10): sigma = 119.21 km/s, r_M = 9.838 kpc
+    MW canon  (M_b = 7.0e10): sigma = 121.44 km/s, r_M = 10.210 kpc
+    (G031 register 119.2 / G233 register 121.4 -- reproduced)
+  gamma = 1 (isothermal: P ~ rho^1; c_s^2 = dP/d rho = P/rho = sigma^2,
+          both sound-speed definitions coincide -- Q001 V3)
+  C_V  = N k_B: per particle k_B = 1.38065e-23 J/K = 86.173 ueV/K
+  C_p  = infinity at the isothermal limit (gamma = 1: any heat input at
+         fixed T does P dV work); C_p(gamma=1.0001) = 1.38e-19 J/K -> inf
+  kappa_T = (1/rho)(d rho/dP)_T = 1/sigma^2:
+    MW anchor: 7.037e-11 Pa^-1   MW canon: 6.7811e-11 Pa^-1  (G233 dS/dE = 1/sigma^2 = 6.7809e-11)
+    identity: rho kappa_T c_s^2 = 1 exactly (linear EOS); bulk modulus
+    K_T = rho dP/d rho = P = 5.225e-12 Pa at r_M (G233: a0^2/(8 pi G))
+  N(<r_M) = M_b/m (equipartition identity M_ph(<r_M) = C r_M/G = M_b):
+    MW anchor: N = 1.425e+73   MW canon: N = 1.535e+73   m = 9.0713e-33 kg
+  THE ENERGY TO HEAT THE HALO BY 1 K: Q = C_V dT = N k_B (1 K):
+    MW anchor: Q_1K = 1.968e+50 J = 1.968e+57 erg   (T = 9.337 K, a +10.7% rise)
+    MW canon : Q_1K = 2.119e+50 J   (T = 9.689 K)
+    per particle: k_B x 1 K = 1.3806e-23 J = 86.17 ueV (the ~k_B specific heat)
+
+====================================================================================================
+(2) THE SOUND SPEED AND THE RESPONSE TIMES -- c_s = sigma
+====================================================================================================
+  c_s^2 = dP/d rho = sigma^2 (G233/Q001): r-INDEPENDENT, exactly
+  isothermal (Q001 V2: d c_s^2/dr = 0).  c_s = 119.21 km/s (anchor) / 121.44 km/s (canonical) = 0.000398 c.
+  MW anchor: t_sound = r_M/c_s = 80.70 Myr;  t_dyn = r_M/v_flat = 57.06 Myr
+  MW canon : t_sound = 82.21 Myr;  t_dyn = 58.13 Myr
+  RESPONSE-LAG RATIO t_sound/t_dyn = v_flat/sigma = sqrt(2) = 1.414214 EXACTLY
+    (G127 C2 form: c_s t_ff/r = sigma/v_flat = 1/sqrt(2) = 0.707107 < 1: in
+     one dynamical time a sound wave crosses 70.7% of r_M -- the sector
+     re-arranges PROMPTLY, an order-unity lag, never delayed)
+    free-fall variant t_ff = (pi/4) t_sound: ratio = 4/pi = 1.27324
+    orbital variant  t_orb = 2 pi r_M/v_circ: ratio = 1/(pi sqrt2) = 0.22508
+  HECS CORE (S06: r_M(main) = 583 kpc, the merger-phase footing):
+    sigma = sqrt(a0 r_M/2) = 917.6 km/s = 0.00306 c;  M_b = a0 r_M^2/G = 2.282e+14 Msun
+    t_sound = r_M/c_s = 621.2 Myr  vs  t_dyn = 439.3 Myr (ratio 1.414214)
+    vs the LIGHT crossing R/c = 1.90 Myr (S06 register 1.90): the sound
+    response lags the light crossing by c/c_s = 326.7 -- the sector
+    re-arranges at the SOUND speed, not at c (NEW dynamical prediction)
+    N(<r_M) = 5.004e+76;  Q_1K = 6.909e+53 J = 6.909e+60 erg
+
+====================================================================================================
+(3) THE HEATING RESPONSE -- T = E/(N k_B), the fluctuation floor
+====================================================================================================
+  the dark gas temperature T = m sigma^2/k_B = 9.337 K (G151 anchor;
+    T/m = 1.8349 mK/eV; G151 band [9.17, 9.52] K)
+  THERMODYNAMIC FLUCTUATION (heat-capacity): dT_rms/T = N^{-1/2}:
+    MW anchor: dT/T = 2.65e-37  ->  dT = 2.47e-36 K   (N = 1.43e+73 particles)
+    HECS core: dT/T = 4.47e-39  ->  dT = 2.47e-36 K
+    CLOSED FORM: dT_rms = sqrt(G m^3 a0)/(2 k_B) = 2.47e-36 K -- SCALE-
+    INVARIANT across r_M at fixed (m, a0): T ~ a0 r_M and N ~ r_M^2
+    cancel, so the fluctuation floor is the SAME for every halo
+  THE G135 0.076-DEX TEMPERATURE-LAW SCATTER (31-system pooled rms) as
+  the fluctuation scale:
+    0.076 dex = fractional 0.1750 (x1.1912)  vs  the heat-capacity floor 2.65e-37
+    scatter/thermo-floor = 6.61e+35 -- the scatter is ~1e36 LARGER: it is
+    100% NON-thermal (HSE / mass-estimate quality, G135's own reading)
+    a thermal fluctuation of that size would need only N = 32.7 particles
+  FORMAL HEATING: an absorbed baryonic energy E raises T by dT = E/(N k_B):
+    E_fb = 1e60 erg = 1e53 J  ->  dT = 508.2 K (MW anchor, formal)
+    THE HONEST BLOCK: t_relax/t_Hubble ~ 1e73 (G103) -- the sector can
+    NEVER thermalize injected energy; and the EOS coefficient sigma^2 is
+    LOCKED to the equilibrium (G233: no free T; dS/dE = 1/sigma^2) -- so
+    the heating response is a formal bookkeeping with NO back-reaction on
+    P, rho, or c_s.  The dust (98% of the dark sector, G079) has P ~ 0,
+    w = 0 and no thermal register at all.
+
+====================================================================================================
+(4) VERDICTS
+====================================================================================================
+    V1 -- THE STATE FUNCTIONS.  The committed EOS P = sigma^2 rho is an EXACTLY ISOTHERMAL gas (gamma = 1: P ~ rho^1, c_s^2 = dP/d rho = P/rho = sigma^2, both sound-speed definitions coincide -- Q001 V3), with C_V = N k_B (the specific heat per particle is k_B = 1.38065e-23 J/K = 86.17 ueV/K), C_p = infinity at the isothermal limit, the isothermal compressibility kappa_T = 1/sigma^2 = 6.7811e-11 Pa^-1 (MW canon; = the G233 equilibrium slope dS/dE = 1/sigma^2, 6.7809e-11), and the equipartition particle count N(<r_M) = M_b/m = 1.43e+73 (MW anchor; M_ph(<r_M) = C r_M/G = M_b exactly).  THE ENERGY TO HEAT THE HALO BY 1 K: Q_1K = N k_B x (1 K) = 1.968e+50 J = 1.968e+57 erg (MW anchor), 6.909e+53 J (HeCS core), at a phase temperature T = m sigma^2/k_B = 9.337 K -- a +10.7% rise per Kelvin.  Compression at fixed sigma^2 raises P ~ rho linearly and NEVER heats the gas (gamma = 1: T independent of rho).
+
+    V2 -- THE RESPONSE-LAG RATIO.  c_s = sigma is r-independent (Q001 V2), and the perturbation response lag t_sound = r_M/c_s against the dynamical time t_dyn = r_M/v_flat (v_flat = sqrt(2) sigma, G127's t_ff = r/v_flat) is t_sound/t_dyn = sqrt(2) = 1.414214 EXACTLY (the isothermal identity; G127 C2's c_s t_ff/r = 1/sqrt(2) < 1 -- in one dynamical time a sound wave crosses 70.7% of r_M).  Numbers: MW anchor t_sound = 80.70 Myr vs t_dyn = 57.06 Myr; MW canon 82.21 vs 58.13 Myr; HeCS core (S06 r_M = 583 kpc, sigma = 917.6 km/s) t_sound = 621.2 Myr vs t_dyn = 439.3 Myr.  The sector re-arranges PROMPTLY (an order-unity lag, never a delayed-feedback regime); the genuinely NEW number is the FINITE, SUB-LUMINAL propagation: at the HeCS core the sound response (621 Myr) lags the light crossing R/c = 1.90 Myr (S06's registered '~2 Myr' re-settling line) by c/c_s ~ 327 -- the dark sector re-arranges at the SOUND speed, not at c.
+
+    V3 -- THE HONEST STATEMENT.  The framework's own EOS, taken as the thermodynamics of the 5.09-keV dark gas, is a MAXIMALLY-SOFT, isothermal ideal gas whose every thermal register -- the pressure P = sigma^2 rho, the sound speed c_s = sigma, the temperature T = m sigma^2/k_B ~ 9.3 K -- is LOCKED to the single equilibrium coefficient sigma^2.  Compressed, it obeys P ~ rho linearly and does not heat (gamma = 1); heated by baryonic energy (merger shocks, AGN feedback), T formally rises as E/(N k_B) with the heat capacity k_B/particle and a Q_1K ~ 2e+50 J = 2e+57 erg (MW) / 6.9e+53 J = 6.9e+60 erg (HeCS) cost per Kelvin, but the sector can never thermalize it (t_relax ~ 1e73 t_Hubble, G103) and the EOS coefficient is fixed (G233: no free T) -- heating produces NO back-reaction on P, rho, or c_s; the dust (98%, G079) has no thermal register at all.  Perturbed, it re-arranges at the sound speed on t_sound = sqrt(2) t_dyn (prompt, order-unity lag) -- the ONE testable dynamical signature, and it is a finite sub-luminal propagation: c_s = 119.2 km/s at galaxy scale (t_sound = 80.7 Myr across r_M), ~918 km/s at the HeCS core (t_sound = 621 Myr across r_M, 327x slower than S06's light crossing).  The G135 0.076-dex temperature-law scatter is NOT a thermal fluctuation: at N ~ 1e73 the heat-capacity floor is dT/T ~ 3e-37, so the observed 0.076-dex (17.5%) scatter is ~1e36 times larger -- it is the HSE/mass-estimate quality of the X-ray masses (G135's own reading), a measurement scatter, not the dark gas's thermodynamics.  FALSIFIER: a resolved dark-sector response to a baryonic perturbation propagating at a speed != sigma (the committed dispersion), or a response lag deviating from sqrt(2) x t_dyn, kills the isothermal-gas reading from the OUT-OF-EQUILIBRIUM class (G233 F1 propagation, F3 particle); any measured temperature response inconsistent with dT/T = N^{-1/2} at the fluctuation floor does likewise.
+
+====================================================================================================
+CHECKS
+====================================================================================================
+  [PASS] C1 [isothermal, gamma = 1] c_s^2 = dP/d rho = P/rho = sigma^2 (both sound-speed definitions coincide on the linear EOS, Q001 V3); P ~ rho^1   sigma^2 = 1.4210535e+10 vs P/rho = 1.4210535e+10 (m^2/s^2), rel 0.0e+00
+  [PASS] C2 [C_V per particle = k_B] the specific heat ~ k_B = 8.617e-5 eV/K   k_B = 86.17333 ueV/K (committed 86.173 ueV/K)
+  [PASS] C3 [C_p = infinity at the isothermal limit] C_p = gamma C_V/(gamma-1) diverges as gamma -> 1   C_p(gamma=1.0001) = 1.38e-19 J/K and diverges; C_p = inf at gamma = 1
+  [PASS] C4 [isothermal compressibility] kappa_T = 1/sigma^2, and rho kappa_T c_s^2 = 1 exactly   kappa_T(canon) = 6.7811e-11 Pa^-1 vs G233 1/sigma^2 = 6.7809e-11; rho kappa c_s^2 - 1 = 0.0e+00
+  [PASS] C5 [equipartition N] M_ph(<r_M) = C r_M/G = M_b exactly; N(<r_M) = M_b/m   N(anchor) = 1.425159e+73 particles
+  [PASS] C6 [Q_1K] the energy to heat the halo by 1 K = N k_B x (1 K)   Q_1K(MW anchor) = 1.9676e+50 J = 1.9676e+57 erg; per particle 86.17 ueV
+  [PASS] C7 [c_s = sigma anchors] reproduces G031 119.2 / G233 121.4 km/s to < 0.1%   anchor 119.21 (G031 119.2, dev 0.002%), canon 121.44 (G233 121.4, dev 0.002%)
+  [PASS] C8 [response-lag ratio] t_sound/t_dyn = v_flat/sigma = sqrt(2) EXACTLY; G127 C2 c_s t_ff/r = 1/sqrt(2) < 1   ratio = 1.4142135624 vs sqrt(2) = 1.4142135624; c_s t_ff/r = 0.707107
+  [PASS] C9 [HeCS sound vs light] t_sound(HeCS, 583 kpc) vs the S06 light crossing R/c = 1.90 Myr   t_sound = 621.2 Myr, t_lc = 1.90 Myr, c/c_s = 326.7
+  [PASS] C10 [fluctuation floor vs G135 scatter] dT/T = N^{-1/2} = 2.65e-37; the 0.076-dex scatter (0.1750 fractional) is ~1e36 larger -- non-thermal   dT/T = 2.65e-37; 0.076 dex = 0.1750; scatter/floor = 6.61e+35; thermal-equivalent N = 32.7
+  [PASS] C11 [formal heating + the honest block] dT = E/(N k_B) is finite but the sector cannot thermalize (G103 t_relax ~ 1e73 t_H) and sigma^2 is locked (G233 no free T)   E_fb = 1e60 erg -> dT = 508.2 K (MW anchor, formal); t_relax/t_H ~ 1e73 -> no thermalization; P, rho, c_s unchanged
+
+checks: 11/11 pass
+
+wrote B05_results.json
+checks: 11/11 pass
+B05 DONE.
