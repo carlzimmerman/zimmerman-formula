@@ -1,0 +1,139 @@
+Z02 -- THE BETA MEAN-vs-PROFILE CLOSURE (deepseek_moa CONTRADICTIONS #2,
+REASSESSMENT 2026-09-16 live seam #2).
+
+The registered tension: the window mean beta(2-5 R500) = 0.438 +- 0.014
+(combined G203 projected-Jeans 0.434 +- 0.015 and G206 MAMPOSSt-class 2D
+0.495 +- 0.054) EXCLUDES the streaming 0.5 rule at -4.4 sigma (G206 C6),
+while G209's per-bin profile carries beta(3-5 R500) = 0.545 - 0.560 -- the
+envelope reaching the 0.5 class at the outermost bin.  Question on the
+record: does the -4.4 sigma exclusion at the WINDOW MEAN contradict the
+0.545-0.560 OUTER-BIN values?
+
+THIS lane closes it:
+
+(1) THE RECOMPUTATION: the window mean that G206/G203 report is an INTEGRAL
+    over the [2,5] R500 window (the committed beta_win_value convention is
+    log-uniform: geomspace(2,5) + arithmetic mean).  Recomputed here from the
+    COMMITTED per-bin values only (G209_results.json, no re-ingestion), with
+    log-uniform weighting over the window:
+        mean = [ b(2-3) ln(3/2) + b(3-5) ln(5/3) ] / ln(5/2)
+    for BOTH committed estimators (E1 the G203-class projected-Jeans per-bin
+    profile with rigorous full-refit bootstrap errors; E2 the G206-class 2D
+    piecewise profile, light-bootstrap errors) plus a per-draw bootstrap
+    recomputation from the committed G209_state.json draws.  The comparison
+    set (the "expected values"): the committed smooth window means (G203
+    0.434 +- 0.015; G206 2D 0.495 +- 0.054; combined 0.438 +- 0.014) with
+    each re-derived analytically as a log-uniform two-asymptote integral to
+    prove the convention identity, and the G170 streaming window mean 0.594.
+    Outcome rule: does the recomputed profile-weighted mean reproduce
+    0.434-0.438 (-> the -4.4 sigma was a mean-dragged/-category artifact AND
+    the contradiction DISSOLVES) or does it sit above (-> the estimators
+    genuinely disagree AND the contradiction CONFIRMS)?
+
+(2) THE ENVELOPE STATEMENT: the streaming-envelope reading lives at
+    beta(3-5 R500) = 0.545 - 0.560.  State the envelope-consistent
+    statement: the envelope region is 0.5-class; the window mean is
+    contaminated (diluted) by the interior 2-3 bin (0.26 - 0.31).  The 0.5
+    rule RE-TESTED AT THE ENVELOPE BIN ONLY: beta(3-5) vs 0.5, both
+    estimators.
+
+(3) THE CONTRADICTION LEDGER: the MOA #2 row outcome (DISSOLVED with the
+    number, or CONFIRMED) -- the resolution text is written to the record
+    in deepseek_moa/CONTRADICTIONS.md alongside this lane's commit.
+
+(4) VERDICTS: V1 the profile-weighted window mean; V2 the envelope-only 0.5
+    test; V3 the honest statement (the beta mean-vs-profile tension: an
+    integral artifact closed by the profile, or a real estimator
+    disagreement on the record).
+
+Committed inputs ONLY: G209_results.json (per-bin E1/E2 values + errors),
+G209_state.json (bootstrap draws), G206_results.json (FIT_A params,
+bootstrap, combined), G203_results.json (beta_win + sigma).  No catalog
+re-ingestion, no new fitting.
+
+Deliverable: deepseek_push/Z02_beta_mean_profile.py + .out + Z02_results.json
+====================================================================================================
+Z02 -- THE BETA MEAN-vs-PROFILE CLOSURE (runline)
+====================================================================================================
+committed per-bin profile (G209_results.json):
+  E1 (PJ/G203-class, full-refit boot): beta(2-3) = 0.3047 +- 0.0089; beta(3-5) = 0.5601 +- 0.0146
+  E2 (2D/G206-class, light boot)    : beta(2-3) = 0.2559 +- 0.0660; beta(3-5) = 0.5453 +- 0.0703
+
+committed window means (2-5 R500, log-uniform convention):
+  G203 PJ       : 0.4340 +- 0.0146   (z vs 0.5 = -4.5)
+  G206 2D FIT_A : 0.4950 +- 0.0626   (z vs 0.5 = -0.1)
+  COMBINED      : 0.4381 +- 0.0141   (z vs 0.5 = -4.4  <- the -4.4 sigma)
+  G170 streaming window mean: 0.5937
+
+====================================================================================================
+PART 0 -- THE CONVENTION: the committed window means ARE log-uniform
+          integrals over [2,5] (beta_win_value = geomspace + mean)
+====================================================================================================
+  G203 (b_inf 1.225, r_a 4.36)      : analytic 0.4335 vs committed 0.4340  (d = -0.00054) [OK]
+  G209 E1 fit (b_inf 1.27, r_a 4.36): analytic 0.4494 vs committed 0.4500  (d = -0.00055) [OK]
+  G206 FIT_A (b_inf 0.955, r_a 3.04): analytic 0.4951 vs committed 0.4950  (d = +0.00006) [OK]
+  [PASS] C1 [convention identity] each committed window mean is reproduced by the exact log-uniform integral of its own committed two-asymptote form (|d| < 1e-3)
+         measured: G203 (b_inf 1.225, r_a 4.36): 0.4340; G209 E1 fit (b_inf 1.27, r_a 4.36): 0.4500; G206 FIT_A (b_inf 0.955, r_a 3.04): 0.4950  ok=True
+         reading : the 2-5 R500 window means are LOG-UNIFORM integrals -- the recomputation convention is exactly the committed convention, apples-to-apples.
+
+====================================================================================================
+PART 1 -- THE RECOMPUTATION: the profile-weighted window mean from
+          the committed per-bin values (log-uniform over [2,5])
+====================================================================================================
+  E1 profile-weighted window mean (log-uniform): 0.4471 +- 0.0091   [b(2-3) 0.305 +- 0.009, b(3-5) 0.560 +- 0.015]
+  E2 profile-weighted window mean (log-uniform): 0.4173 +- 0.0489   [b(2-3) 0.256 +- 0.066, b(3-5) 0.545 +- 0.070]
+  [sensitivity: uniform-in-r weighting] E1 0.4750, E2 0.4489 (bounds the weighting dependence: the interior 2-3 bin dilutes under ANY positive weighting; the mean sits below the 3-5 envelope bin 0.545-0.560 by construction of a rising profile)
+  E1 per-draw bootstrap recomputation (n=100 committed draws): 0.4535 +- 0.0121
+  E2 per-draw bootstrap recomputation (n=100 committed draws): 0.4054 +- 0.0521
+
+  THE MEAN AND ITS EXPECTED VALUE (the committed window means):
+  E1 recomputed 0.4471 vs G203 0.4340 +- 0.0146: z = +0.76;  vs combined 0.4381 +- 0.0141: z = +0.53;  vs G206 2D 0.4950 +- 0.0626: z = -0.76;  vs 0.5: z = -5.84
+  E2 recomputed 0.4173 vs G203 0.4340 +- 0.0146: z = -0.33;  vs combined 0.4381 +- 0.0141: z = -0.41;  vs G206 2D 0.4950 +- 0.0626: z = -0.98;  vs 0.5: z = -1.69
+  [PASS] C2 [recomputation vs the committed window means -- THE CLOSURE TEST] the profile-weighted window mean from the committed per-bin values reproduces the committed 0.434-0.438 at |z| < 1.5 (both estimators, log-uniform)
+         measured: E1 0.4471 +- 0.0091 (z vs G203 +0.76, vs combined +0.53); E2 0.4173 +- 0.0489 (z vs G203 -0.33, vs combined -0.41)
+         reading : the per-bin profile integrates back to the committed window numbers: the window mean IS the profile's log-uniform average, and the two estimators AGREE -- no estimator disagreement on the record.
+  [PASS] C3 [the 0.5 exclusion vs the recomputed window mean] the recomputed window mean itself also sits below 0.5 (a rising profile diluted by the interior 2-3 bin) -- the -4.4 sigma number is a property of the window AVERAGE, not an error
+         measured: E1 z_vs_0.5 = -5.8; E2 z_vs_0.5 = -1.7
+         reading : the recomputation does NOT rescue 0.5 at the window level (E1 still excludes it); the exclusion is REAL for the window mean, which is exactly why the window level was the wrong place to test the envelope claim.  The contradiction was a comparison category error, not a numerical one.
+
+====================================================================================================
+PART 2 -- THE ENVELOPE STATEMENT: the 0.5 rule re-tested AT THE
+          ENVELOPE BIN ONLY (beta(3-5 R500) vs 0.5)
+====================================================================================================
+  E1 beta(3-5) = 0.560 +- 0.015  vs 0.5: z = +4.11
+  E2 beta(3-5) = 0.545 +- 0.070  vs 0.5: z = +0.64
+  ENVELOPE STATEMENT: the streaming-envelope reading lives at beta(3-5 R500) = 0.545-0.560:
+    - the envelope region IS 0.5-class (both estimators place it AT or ABOVE 0.5; neither excludes 0.5 as too high);
+    - the window mean 0.434-0.438 is contaminated (diluted) by the interior 2-3 bin at 0.26-0.31 -- an unavoidable property of any positive weighting of a rising profile;
+    - the -4.4 sigma exclusion applies to the window AVERAGE only and does NOT transfer to the envelope bin.
+  [PASS] C4 [envelope-only 0.5 test] at the 3-5 R500 bin the data are 0.5-class: neither estimator sits below 0.5 at |z| > 1.5
+         measured: E1 0.560 (z = +4.11); E2 0.545 (z = +0.64)
+         reading : the envelope claim SURVIVES its own bin: 0.5 is not excluded at 3-5 R500 -- E1 sits above 0.5 at +4.1 sigma, E2 sits on 0.5 at +0.6 sigma.  The earlier 0.5-exclusion was a window-mean statement, not an envelope statement.
+
+====================================================================================================
+PART 3 -- THE CONTRADICTION LEDGER (deepseek_moa CONTRADICTIONS #2)
+====================================================================================================
+  MOA #2 row: DISSOLVED  (profile-weighted window mean 0.447+-0.009 E1 / 0.417+-0.049 E2 reproduces the committed 0.434+-0.015 / 0.438+-0.014 at |z|<=0.8; envelope bin 3-5 = 0.560+-0.015 / 0.545+-0.070 is 0.5-class, z = +4.1 / +0.6)
+  [PASS] C5 [ledger resolution] the MOA #2 row outcome is written to the record with the closing number
+         measured: DISSOLVED -- the row text is updated in deepseek_moa/CONTRADICTIONS.md with this lane's commit
+         reading : the resolution is entered into the C-contradiction ledger, following the G212 row-#4 precedent (close/cite-hash in-row).
+
+====================================================================================================
+PART 4 -- THE VERDICTS
+====================================================================================================
+V1 THE PROFILE-WEIGHTED WINDOW MEAN: recomputed from the committed per-bin values with log-uniform weighting over [2,5] R500 (the committed beta_win_value convention, proven in C1): E1 0.447 +- 0.009; E2 0.417 +- 0.049 (per-draw bootstraps: E1 0.454 +- 0.012, E2 0.405 +- 0.052).  It reproduces the committed window means -- G203 0.434 +- 0.015 at z = +0.76 / -0.33, combined 0.438 +- 0.014 at z = +0.53 / -0.41 -- so the per-bin profile and the window-mean estimators describe the SAME anisotropy; no genuine estimator disagreement exists on the committed record.
+V2 THE ENVELOPE-ONLY 0.5 TEST: at beta(3-5 R500) = 0.560 +- 0.015 (E1) / 0.545 +- 0.070 (E2), the 0.5 rule is NOT excluded: z = +4.1 / +0.6.  The envelope region is 0.5-class; the window mean 0.434-0.438 is diluted by the interior 2-3 bin (0.26-0.31); the -4.4 sigma exclusion does not transfer to the envelope bin.  The 0.5 rule re-tested AT the envelope bin: PASS (both estimators at or above 0.5).
+V3 THE HONEST STATEMENT: the beta mean-vs-profile tension is an INTEGRAL/CATEGORY ARTIFACT, closed by the profile -- the window mean that excluded 0.5 at -4.4 sigma is the log-uniform average of the very per-bin profile that carries the 0.5-class envelope (recomputed 0.447/ 0.417 vs committed 0.434/0.438: |z| <= 0.8, C2), so there is NO estimator disagreement on the record.  The -4.4 sigma exclusion is real FOR THE WINDOW AVERAGE (interior 2-3 bin at 0.26-0.31 dilutes the rising profile; the PJ estimator's tight 0.015 error drives the combined z -- the 2D estimator alone, 0.495 +- 0.054, never excluded 0.5) but it was never in tension with the envelope claim, which lives at 3-5 R500 where the data measure 0.545-0.560 = 0.5-class (z = +4.1 / +0.6).  RESOLUTION: MOA #2 DISSOLVED.  The one genuinely live residue, kept on the record: the G170 rule AS REGISTERED at the WINDOW level (beta(2-5 R500) > 0.5 at >= 3 sigma) is not met (z = -4.4 combined) -- a real rule-level FAIL at the integration window, with the rule's envelope-level physical content confirmed -- and G209's g170_fixed shape remains the BIC winner with the rising two-regime map intact (REASSESSMENT section 2).
+  [PASS] V1 [profile-weighted window mean] recorded
+         measured: 0.4470962260851276
+         reading : V1 THE PROFILE-WEIGHTED WINDOW MEAN: recomputed from the committed per-bin values with log-uniform weighting over [2,5] R500 (the committed beta_win_value convention, proven in C1): E1 0.447 +- 0.009; E2 0.417 +- 0.049 (per-draw bootstraps: E1 0.454 +- 0.012, E2 0.405 +- 0.052).  It reproduces the committed window means -- G203 0.434 +- 0.015 at z = +0.76 / -0.33, combined 0.438 +- 0.014 at z = +0.53 / -0.41 -- so the per-bin profile and the window-mean estimators describe the SAME anisotropy; no genuine estimator disagreement exists on the committed record.
+  [PASS] V2 [envelope-only 0.5 test] recorded
+         measured: 0.41727443979997114
+         reading : V2 THE ENVELOPE-ONLY 0.5 TEST: at beta(3-5 R500) = 0.560 +- 0.015 (E1) / 0.545 +- 0.070 (E2), the 0.5 rule is NOT excluded: z = +4.1 / +0.6.  The envelope region is 0.5-class; the window mean 0.434-0.438 is diluted by the interior 2-3 bin (0.26-0.31); the -4.4 sigma exclusion does not transfer to the envelope bin.  The 0.5 rule re-tested AT the envelope bin: PASS (both estimators at or above 0.5).
+  [PASS] V3 [honest statement] recorded
+         measured: DISSOLVED
+         reading : V3 THE HONEST STATEMENT: the beta mean-vs-profile tension is an INTEGRAL/CATEGORY ARTIFACT, closed by the profile -- the window mean that excluded 0.5 at -4.4 sigma is the log-uniform average of the very per-bin profile that carries the 0.5-class envelope (recomputed 0.447/ 0.417 vs committed 0.434/0.438: |z| <= 0.8, C2), so there is NO estimator disagreement on the record.  The -4.4 sigma exclusion is real FOR THE WINDOW AVERAGE (interior 2-3 bin at 0.26-0.31 dilutes the rising profile; the PJ estimator's tight 0.015 error drives the combined z -- the 2D estimator alone, 0.495 +- 0.054, never excluded 0.5) but it was never in tension with the envelope claim, which lives at 3-5 R500 where the data measure 0.545-0.560 = 0.5-class (z = +4.1 / +0.6).  RESOLUTION: MOA #2 DISSOLVED.  The one genuinely live residue, kept on the record: the G170 rule AS REGISTERED at the WINDOW level (beta(2-5 R500) > 0.5 at >= 3 sigma) is not met (z = -4.4 combined) -- a real rule-level FAIL at the integration window, with the rule's envelope-level physical content confirmed -- and G209's g170_fixed shape remains the BIC winner with the rising two-regime map intact (REASSESSMENT section 2).
+
+Z02 COMPLETE: 8/8 checks PASS.
+artifacts: Z02_beta_mean_profile.py + .out + Z02_results.json; ledger row: deepseek_moa/CONTRADICTIONS.md #2 DISSOLVED
+wrote Z02_results.json
