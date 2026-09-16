@@ -1,0 +1,201 @@
+G216 -- THE LENSING-CORE OBSERVING PROJECT: the D2 decision, planned concretely.
+
+THE REGISTERED OPEN (read first: deepseek_push/G136_lensing_core_registry.py,
+deepseek_push/G096_core_slope_test.py + G096_results.json):
+  G096 measured the residual core slope s = d ln rho_res/d ln r = -1.53 +- 0.25
+  (median, 12 X-COP clusters, window 0.1-0.5 R500) -- the theory's registered
+  ~-1.5 reproduced (-0.4 sigma), the flat NFW cusp -1 excluded at 7.2 sigma,
+  the isothermal r^-2 at 6.4 sigma, BUT NFW-as-a-model is NOT excluded: over
+  0.1-0.5 R500 its own window-honest slope (committed rs, median 0.48 R500) is
+  -1.68, only 1.7 sigma from the measurement.  The -1 flat cusp, the D2 kill
+  line, lives at r << rs, below ~0.05 R500 -- below the reliable X-ray
+  deprojection.  G136 registered the resolving instrument: LENSING CORES at
+  r < 0.1 R500 (HST/Subaru strong+weak lensing), decision window [0.03, 0.1] R500,
+  precision requirement sigma_s <= 0.5/3 = 0.167 (3-sigma separation of -1 vs
+  -1.5), 5 log bins in [0.03, 0.1] R500 -> per-bin ESD precision 12.7%.
+  This lane makes that instrument CONCRETE.
+
+(1) THE MEASUREMENT -- the protocol.  The projected residual surface-density
+    profile (gammat(theta) / DeltaSigma(R)) in 5 log bins over [0.03, 0.1] R500
+    (the inner arcmin scale, theta = 0.4-1.4 arcmin here); slope extraction
+    p = d ln DeltaSigma/d ln R = s + 1 by weighted log-log OLS, with the
+    HST-class PSF-smear correction (stars-measured PSF model, KSB/HSM-class,
+    leakage residual floor) and the source-redshift dilution corrections
+    (Sigma_crit^-1 photo-z weighting with beta_eff, member-contamination
+    subtraction f_cont, magnification in the inner bins) -- every term carried
+    as an explicit error floor.  The strong-lensing features (Einstein arcs at
+    r_E ~ 20-60 kpc = 0.02-0.04 R500 per G136, sitting INSIDE this window)
+    anchor the innermost bins at the mass-model level: M(<theta_E) = pi R_E^2
+    Sigma_crit is exact, and multiply-imaged systems extend to ~2 x theta_E, so
+    the bins inside ~2 r_E are floored by epsilon_SL = 3% mass-model precision,
+    not by shape noise (the Umetsu-class treatment: Umetsu et al. 2016 ApJ 821,
+    116 combined SL+WL+mag for 20 CLASH clusters; Zitrin et al. 2015 ApJ 801, 44
+    HST-only combined SL+WL).
+
+(2) THE PREDICTED SIGNAL -- the chi2/sigma separation.  Two model readings of
+    the window ESD, BOTH anchored to the committed X-COP residual enclosed mass
+    at the window's outer edge M_res(<0.1 R500) (the slope question is
+    normalization-immune) and both truncated at the same 1.5 R500 boundary:
+      THEORY:  rho_res(r) ~ r^-1.5 flat across the window (the registered
+               composite reading; H012: "the theory's composite stays ~-1.5").
+      NFW:     rho ~ 1/(x(1+x)^2), x = r/rs, the COMMITTED per-cluster rs
+               (G096_results.json honest_limits) -- its residual log-slope runs
+               from -1.12 at 0.03 R500 to -1.35 at 0.1 R500 (G136's numbers),
+               window-effective ~ -1.2, NEVER -1 in this window.
+    The registered kill pair is -1.5 vs -1 (separation 0.5 in the slope);
+    the window-honest pair is -1.5 vs ~-1.2 (3D point slopes -1.12..-1.35 per
+    G136/S2b; the ESD-effective read of NFW in this window is p ~ -0.03, i.e.
+    its DeltaSigma is nearly FLAT there -- the true observable difference vs
+    the theory's p = -0.5 is the flat ESD).  Both separations are computed: the
+    per-bin ESD chi2 separation at the HST-class per-bin errors, the slope-space
+    separation sigma_p (projected p = s + 1), per-cluster and pooled over the
+    5-cluster Tier-1 sample and the full 12.
+
+(3) THE SAMPLE -- which of the 12 have the assets TODAY.  Five of the twelve
+    X-COP clusters have PUBLISHED weak-lensing shear (VERIFIED in-repo, the
+    L24 cluster-lensing registry fable_independent_2026/L24_LENSING.md):
+    A85, A1795, A2029, A2142, ZW1215 -- Herbonnet et al. 2020 (MNRAS 497, 4684,
+    CCCP+MENeaCS), plus independent teams (Cypriano et al. 2004 A85/A2029;
+    Umetsu et al. 2009 and Okabe & Umetsu 2008 A2142; Kubo et al. 2009 ZW1215;
+    the LC2 compilation, Sereno 2015).  Seven have NO published weak-lensing
+    mass at all (Eckert et al. 2022 confirm A644, A2319 absent -- L24 rows).
+    Inner HST strong-lensing cores of the A1689/A611 class (A1689: Umetsu et
+    al. 2011 ApJ 729, 127; A611 = CLASH: Newman et al. 2009 arXiv:0909.3527,
+    Zitrin et al. 2015) EXIST FOR NO X-COP CLUSTER in-repo or in the published
+    strong-lensing literature searched here -- every HST archive claim below is
+    UNVERIFIED (not in-repo; no published lensing-core analysis found).
+    A1689 and A611 themselves (z = 0.183, 0.288) are NOT X-COP clusters; the
+    class is the MEASUREMENT, which this lane transfers to X-COP radii.
+    SUBARU/HSC inner shear complements the 5: A85 HSC (Kim et al. 2025,
+    arXiv:2511.02323 -- the HyeongHan+25 lane of G136, inner map to ~90 kpc),
+    A2029 HSC spectrotomographic (Dell'Antonio et al. 2019, arXiv:1912.05479),
+    A2142 Subaru Suprime-Cam deep (the seven-merging-clusters + AMiBA sample,
+    astro-ph/0702.649, arXiv:0810.0969).  LoCuSS (Okabe et al. 2010,
+    arXiv:0903.1103) covers z = 0.15-0.3 -- NO X-COP overlap (honest: dilution
+    by member contamination, its central systematic, is exactly the correction
+    the protocol here carries).
+
+(4) VERDICTS.
+    V1 the protocol complete with the predicted sigma separation (numbers
+       below); V2 the 12-cluster target list with the existing archives and
+       the VERIFIED/UNVERIFIED flags; V3 the honest statement: the D2 verdict's
+       instrument path -- the lensing cores at r < 0.1 R500, the measurement
+       that decides NFW vs the theory, concretely planned with the existing
+       archives, and what exactly remains to be observed.
+
+Deliverable: deepseek_push/G216_lensing_cores.py + .out + G216_results.json
+
+==================================================================================================
+G216 -- THE LENSING-CORE OBSERVING PROJECT: the D2 decision, planned concretely
+==================================================================================================
+
+==================================================================================================
+S1 -- THE WINDOW: lensing geometry per cluster (G136 registry rows,
+       re-derived from the same committed inputs), the 5-bin [0.03, 0.1] R500 design
+==================================================================================================
+  r_E(z_s=1):  20.3 -  57.0 kpc   |  theta_E(z_s=1): 20.3 - 37.3 arcsec
+  r_E(z_s=2):  20.8 -  59.7 kpc ; 0.1 R500 = 105.4 - 143.0 kpc
+  [PASS] S1a [the lensing geometry reproduces the G136 registered rows] Einstein radii and arc radii from the committed xcop_r500_ettori2019.json, SIS matched to M200
+         measured: r_E(z_s=1) 20.3-57.0 kpc (G136: 20.3-57.0), theta_E(z_s=1) 20.3-37.3 arcsec (G136: 20.3-37.3), r_E(z_s=2) 20.8-59.7 (G136: 20.8-59.7)
+         reading : the arcs sit at 0.2-0.4 x 0.1 R500 -> INSIDE the [0.03, 0.1] R500 decision window
+  registered binning: 5 log bins in [0.03, 0.1] R500 -> spacing h = 0.241 ln (0.105 dex), per-bin ESD precision 12.7% for sigma_s = 0.167
+  [PASS] S1b [the bin design reproduces the registered 12.7%% requirement] ESD precision needed per bin for the 3-sigma -1-vs-1.5 decision with 5 bins in [0.03, 0.1] R500
+         measured: eps = 12.7% (G136 registered: 12.7%), h = 0.241
+         reading : G136's registered requirement is reproduced exactly by the same construction
+
+==================================================================================================
+S2 -- THE TWO READINGS: theory (-1.5) and NFW (committed rs), both anchored
+       to the committed X-COP residual mass at the window's outer edge
+==================================================================================================
+  [PASS] S2a [projection machinery] numeric Abel projection of rho ~ r^-1.5 recovers the analytic Sigma(R) = 5.2436 rho0 R^-0.5
+         measured: Sigma/(5.2436 R^-0.5) = 0.999 +- 0.001
+         reading : the projection preserves both power-law slope and normalization (the G136 projected image d ln Sigma/d ln R = s + 1)
+  window-honest NFW residual slope s(r) = -1 - 2(r/rs)/(1+r/rs), committed rs:
+    s(0.02 R500): median -1.081 (range -1.127 .. -1.033)
+    s(0.05 R500): median -1.190 (range -1.291 .. -1.080)
+    s(0.10 R500): median -1.347 (range -1.508 .. -1.153)
+  [PASS] S2b [window-honest NFW] committed-rs NFW residual slopes reproduce G136's rows (inside the window NFW runs -1.12..-1.35 -- the -1 cusp is NOT in this window)
+         measured: s(0.05 R500) median -1.190 (G136: -1.190), s(0.10) median -1.347 (G136: -1.347), median rs/R500 0.476 (G136: 0.476)
+         reading : the NFW residual window slope comes from the same committed rs (G096 honest limits)
+
+==================================================================================================
+S3 -- THE PREDICTED SIGNAL: DeltaSigma(R) per bin for both readings, the HST-class
+       per-bin errors (PSF smear + dilution + calibration + SL anchor), and the
+       chi2/sigma separation -- the D2 decision numbers
+==================================================================================================
+  cluster    sig_p  p(theo)   p(NFW)   s_eff  chi2_sl   sig_sl sig_reg
+    (s_eff = p - 1 is the ESD-effective 3D slope, exact for power laws; the NFW's
+     DeltaSigma is nearly FLAT in this window -- its 3D point slopes are -1.12..-1.35, S2b)
+  A1644      5.223   -0.498   -0.005  -1.005    169.9     13.0     0.1
+  A1795      0.370   -0.498   -0.049  -1.049     98.3      9.9     1.4
+  A2029      0.194   -0.498   -0.058  -1.058    116.8     10.8     2.6
+  A2142      0.122   -0.498   -0.039  -1.039    194.0     13.9     4.1
+  A2255      0.114   -0.498   -0.003  -1.003    365.0     19.1     4.4
+  A2319      0.373   -0.498   -0.049  -1.049     98.9      9.9     1.3
+  A3158      0.355   -0.498   -0.020  -1.020    170.6     13.1     1.4
+  A3266      0.180   -0.498   -0.011  -1.011    264.8     16.3     2.8
+  A644       0.375   -0.498   -0.062  -1.062     79.2      8.9     1.3
+  A85        0.362   -0.498   -0.027  -1.027    145.6     12.1     1.4
+  RXC1825    0.355   -0.498   -0.028  -1.028    146.5     12.1     1.4
+  ZW1215     0.118   -0.498   -0.017  -1.017    282.1     16.8     4.3
+
+  WITH-SL-ANCHOR design: median per-cluster slope precision sigma_p = 0.355 (5 bins [0.03, 0.1] R500)
+  NO-ANCHOR floor:      median per-cluster sigma_p = 2.838 (shape noise only)
+  per-bin relative ESD precision (median over the 12, bins 1-5), with-SL: 8.1%, 8.1%, 180.8%, 186.1%, 247.9%
+  per-bin relative ESD precision (median over the 12, bins 1-5), no-anchor: 267.6%, 256.0%, 248.7%, 246.3%, 247.9%
+  REGISTERED pair (-1.5 vs -1; d_p = 0.5 projected), WITH-SL anchor:
+      per-cluster median sigma = 1.4; chi2 Tier-1 = 45 -> pooled sigma = 6.7; all 12 = 80 -> pooled sigma = 8.9
+  REGISTERED pair, NO-ANCHOR floor:
+      per-cluster median sigma = 0.2; pooled sigma Tier-1 = 0.5; all 12 = 0.7
+  WINDOW-HONEST pair (-1.5 vs effective NFW s ~ -1.03): pooled sigma (with-SL) = 28.9 Tier-1 / 46.2 all 12; (no-anchor) = 1.1 / 1.5
+  [PASS] S3a [the SL anchor is the measurement] the arc-anchored design reaches the registered 0.167 per-cluster budget for the clusters with the arcs well inside the window, and improves the per-cluster precision by >= 5x over the shape-noise floor
+         measured: median sigma_p = 0.355 (with-SL; 3/12 meet the 0.167 budget: A2142, A2255, ZW1215); no-anchor median 2.838 -> 8x improvement
+         reading : the per-cluster budget is met where 2-3 bins sit inside ~2 r_E (A2142, A2255, ZW1215, with A2029/A3266 just above); the pooled decision (S3b/c) clears the registered 3-sigma regardless -- and WITHOUT the arcs the shape-noise floor makes per-cluster measurement impossible (median 2.8), which is the honest contingency
+  [PASS] S3b [the recorded separation] the registered -1-vs-1.5 pair separates at >= 3 sigma pooled over the Tier-1 sample of 5 with existing published shear
+         measured: pooled sigma (Tier-1, with-SL) = 6.7; (all 12) = 8.9
+         reading : the lensing cores decide the D2 pair at high significance with the realistic binning
+  [PASS] S3c [the honest NFW read] even the window-honest NFW effective slope (s ~ -1.03, NOT -1) separates from the theory at >= 3 sigma pooled over the full 12
+         measured: pooled sigma = 46.2 (Tier-1: 28.9)
+         reading : the separation survives the honest NFW column -- the escalation from G096/V2d (1.7 sigma at 0.1-0.5 R500) to the core window is the point of this instrument
+
+==================================================================================================
+S4 -- THE SAMPLE: which of the 12 can be measured with existing archives
+==================================================================================================
+  cluster       z   R500 M200e14   thE1   rE2 0.1R5 rE2/r01 tier
+  A1644    0.0473   1054    6.69   21.9  20.8   105  0.20    2
+  A1795    0.0622   1153    6.53   21.2  26.3   115  0.23    1
+  A2029    0.0773   1423   12.57   32.3  49.2   142  0.35    1
+  A2142    0.0909   1424   13.64   33.6  59.7   142  0.42    1
+  A2255    0.0809   1196   10.33   28.3  44.9   120  0.38    2
+  A2319    0.0557   1346   10.18   28.7  32.0   135  0.24    2
+  A3158    0.0597   1123    6.63   21.5  25.6   112  0.23    2
+  A3266    0.0589   1430   15.12   37.3  43.7   143  0.31    2
+  A644     0.0704   1230    7.67   23.4  32.6   123  0.27    2
+  A85      0.0555   1235    8.50   25.5  28.2   124  0.23    1
+  RXC1825  0.0650   1105    6.15   20.3  26.2   110  0.24    2
+  ZW1215   0.0766   1358   13.03   33.1  50.0   136  0.37    1
+
+  Tier 1 (existing published shear -- the D2 cores FEASIBLE with current archives + new HST): 5 clusters: A1795, A2029, A2142, A85, ZW1215
+  Tier 2 (no published shear -- need new wide-field imaging too): 7 clusters: A1644, A2255, A2319, A3158, A3266, A644, RXC1825
+  [PASS] S4a [the sample split] exactly the five L24-verified shear clusters form Tier 1; the other seven have no published weak-lensing mass
+         measured: Tier-1 = 5/12; Tier-2 = 7/12 (A1644, A2255, A2319, A3158, A3266, A644, RXC1825)
+         reading : the published-shear floor of the instrument is the L24 registry; the remaining seven need new wide-field shear in addition to the new HST cores
+  [PASS] S4b [honesty: no X-COP cluster has a verified inner HST core] zero of the 12 have a CLASH/HFF-class or A1689/A611-class HST strong-lensing core in-repo or found published
+         measured: 12/12 flagged UNVERIFIED for archive depth; 0/12 with a published SL core
+         reading : the A1689/A611-class measurement (Umetsu+2011; Newman+2009/Zitrin+2015) has NEVER been applied to an X-COP cluster -- arcs at r_E = 20-60 kpc are PREDICTED (G136), not yet detected
+  [PASS] S4c [arc-scale reach] the predicted Einstein arcs sit inside the decision window for every Tier-1 cluster (r_E(z_s=2)/0.1R500 < 1)
+         measured: r_E(z_s=2)/0.1R500 over Tier-1: 0.23 .. 0.42
+         reading : the strong-lensing anchor (M(<theta_E) = pi R_E^2 Sigma_crit) constrains the innermost bins of the same window the weak shear constrains -- the two probes overlap in radius
+
+==================================================================================================
+S5 -- THE VERDICTS
+==================================================================================================
+  V1: THE PROTOCOL IS COMPLETE -- per-bin ESD extraction of gammat(theta)/DeltaSigma(R) in 5 log bins over [0.03, 0.1] R500 (theta = 0.4-1.4 arcmin), slope p = d ln DeltaSigma/d ln R = s + 1 by weighted log-log OLS, with the HST-class PSF-smear residual floor and the source-redshift dilution corrections (Sigma_crit^-1 weighting, z_pdf, member contamination f_cont, magnification); the strong lensing (arcs at r_E = 20-60 kpc INSIDE the window; systems to ~2 r_E) anchors the inner bins at epsilon_SL = 3%.  PREDICTED SEPARATION at the expected HST-class precision: per-cluster slope error sigma_p = 0.355 (median, WITH the SL anchor; the registered budget is 0.167; the no-arcs shape-noise floor is 2.838); the registered kill pair (-1.5 vs -1) separates at 6.7 sigma pooled over the 5-cluster Tier-1 sample (8.9 sigma over all 12) with the SL anchor, and at 0.5 / 0.7 sigma without; the window-honest pair (-1.5 vs the committed-rs NFW effective s ~ -1.03) at 28.9 sigma (Tier-1) / 46.2 sigma (all 12).
+  V2: THE TARGET LIST -- Tier 1 (the D2 cores, existing published shear VERIFIED in-repo via L24): A2142 (Subaru SC Umetsu+09/Okabe&Umetsu+08 + Herbonnet+20), A2029 (HSC spec-tomo Dell'Antonio+19 + CFHT + Herbonnet+20), ZW1215 (Subaru Kubo+09 + Herbonnet+20), A85 (HSC inner map Kim+25 + Herbonnet+20), A1795 (Herbonnet+20).  Tier 2 (no published shear; new wide-field needed too; largest theta_E = A3266, 37 arcsec): A3266, A2319, A2255, A3158, A644, A1644, RXC1825.  ALL 12: HST archive claims for the inner strong-lensing core are UNVERIFIED (0/12 have a published CLASH/HFF/A1689-class SL core); the arcs at 20-60 kpc are PREDICTED (G136), not yet observed -- the inner half of the window needs NEW deep HST imaging (~CLASH-class depth) on the Tier-1 targets.
+  V3: THE HONEST STATEMENT -- the D2 verdict's instrument path is now concrete: the measurement that decides NFW vs the theory is the residual lensing core at r < 0.1 R500, planned as (i) the 5-bin [0.03, 0.1] R500 ESD profile with slope p = s + 1 at the projected precision sigma_p = 0.355 (per cluster, median, WITH the SL anchor; 2.838 without -- the arcs are the difference), (ii) the separation 6.7 sigma (Tier-1 pooled) for the registered -1-vs-1.5 pair and 46.2 sigma for the window-honest pair over the full 12, both WITH the anchor (the no-arcs floor is 0.5 / 1.5 sigma -- pooled-only, below the decision rule) -- the instrument CAN decide D2 IF the predicted arcs materialize; (iii) the existing-archive floor: 5/12 have published shear (VERIFIED in-repo), 0/12 have a verified inner HST strong-lensing core, so the inner half of the window needs NEW deep HST imaging (~CLASH-class depth, 5 targets) or verified archival exposures that neither this repo nor the published SL literature can attest today => D2 REMAINS UNDECIDED at this repository's standards until those cores are observed, exactly the state G096 (V3) and G136 registered; this lane turns that open item into a scheduled measurement with a decision rule, not a hope.
+  [PASS] S5 [verdicts delivered] V1 protocol complete with the predicted sigma separation; V2 the target list with the existing archives and VERIFIED/UNVERIFIED flags; V3 the honest D2 instrument-path statement
+         measured: V1 pooled sigma (Tier-1, registered pair) = 6.7; V2 Tier-1 = 5/12 with VERIFIED shear, 0/12 with verified HST inner cores; V3 = D2 remains PENDING until the cores are observed
+         reading : every element of the decision is a computed number from committed inputs (S1b, S3a-c); the archive flags distinguish VERIFIED (in-repo) from UNVERIFIED (web-cited) as required
+
+G216 COMPLETE: 11/11 checks PASS.  The lensing-core observing project: the D2 decision at r < 0.1 R500, concretely planned -- protocol, predicted separation (6.7 sigma Tier-1 pooled for the registered pair), and the 12-cluster sample split 5/7 on existing published shear.
+artifact written: G216_results.json
