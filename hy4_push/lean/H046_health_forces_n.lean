@@ -1,5 +1,5 @@
 /-
-  H038 -- IS n = 2 FORCED BY THE HEALTH CONDITIONS?   (Agent J)
+  H046 -- IS n = 2 FORCED BY THE HEALTH CONDITIONS?   (Agent J)
 
   QUESTION.  The programme's last free integer is n = 2, the deep slope
       n = lim_{u -> 0} mu(u)/u ,     mu = f' ,   L = Lambda^4 f(K),  K = u^2.
@@ -57,7 +57,7 @@ open Set Filter Topology
 
 noncomputable section
 
-namespace H038
+namespace H046
 
 /-! ## 0. The master identity for the sound speed -/
 
@@ -149,9 +149,6 @@ theorem deep_cs2_universal_half (A u : ℝ) (hA : A ≠ 0) (hu : u ≠ 0) :
     cs2 (A * u) A u = (1 / 2 : ℝ) := by
   unfold cs2
   exact deep_cs2_q1 A u hA hu
-
-/-- The measured programme value: the deep sound speed is 1/2. -/
-theorem deep_cs2_is_one_half : (1 / 2 : ℝ) = 1 / 2 := by norm_num
 
 /-! ## 3. A healthy family with ARBITRARY deep slope:  the falsification of
        "health forces n = 2". -/
@@ -278,23 +275,46 @@ theorem cs2_3_bounds (u : ℝ) (hu : 0 ≤ u) :
 /-- The closed-form sound speeds ARE the sound speeds of these kernels:
     cs2 (mu_k u) (mu_k'(u)) u = cs2_k u.  (The identification of dmu_k with
     the derivative of mu_k is textbook calculus, checked symbolically in
-    H038_is_n_two_forced_by_health.py; here it is the algebraic identity.) -/
-theorem cs2_mu1_eq (u : ℝ) (hu : u ≠ 0) (hv : 1 + u ≠ 0) :
-    cs2 (mu1 u) (dmu1 u) u = cs2_1 u := by
-  unfold cs2 mu1 dmu1 cs2_1
-  field_simp [hu, hv]
+    H046_is_n_two_forced_by_health.py; here it is the algebraic identity.) -/
+theorem cs2_mu1_eq (u : ℝ) (hu : 0 < u) : cs2 (mu1 u) (dmu1 u) u = cs2_1 u := by
+  unfold cs2 cs2_1
+  have hd : mu1 u + u * dmu1 u ≠ 0 := by
+    have hm : 0 < mu1 u := mu1_pos u hu
+    have hdp : 0 < u * dmu1 u := by unfold dmu1; positivity
+    linarith
+  have h2 : u + 2 ≠ 0 := by linarith
+  rw [div_eq_div_iff hd h2]
+  unfold mu1 dmu1
+  have h1 : 1 + u ≠ 0 := by linarith
+  field_simp [h1]
   ring
 
-theorem cs2_mu2_eq (u : ℝ) (hu : u ≠ 0) (hv : 1 + u ≠ 0) :
-    cs2 (mu2 u) (dmu2 u) u = cs2_2 u := by
-  unfold cs2 mu2 dmu2 cs2_2
-  field_simp [hu, hv]
+theorem cs2_mu2_eq (u : ℝ) (hu : 0 < u) : cs2 (mu2 u) (dmu2 u) u = cs2_2 u := by
+  unfold cs2 cs2_2
+  have hd : mu2 u + u * dmu2 u ≠ 0 := by
+    have hm : 0 < mu2 u := mu2_pos u hu
+    have hdp : 0 < u * dmu2 u := by unfold dmu2; positivity
+    linarith
+  have h2 : u ^ 2 + 3 * u + 4 ≠ 0 := by nlinarith [sq_nonneg u]
+  rw [div_eq_div_iff hd h2]
+  unfold mu2 dmu2
+  have h1 : 1 + u ≠ 0 := by linarith
+  field_simp [h1]
   ring
 
-theorem cs2_mu3_eq (u : ℝ) (hu : u ≠ 0) (hv : 1 + u ≠ 0) :
-    cs2 (mu3 u) (dmu3 u) u = cs2_3 u := by
-  unfold cs2 mu3 dmu3 cs2_3
-  field_simp [hu, hv]
+theorem cs2_mu3_eq (u : ℝ) (hu : 0 < u) : cs2 (mu3 u) (dmu3 u) u = cs2_3 u := by
+  unfold cs2 cs2_3
+  have hd : mu3 u + u * dmu3 u ≠ 0 := by
+    have hm : 0 < mu3 u := mu3_pos u hu
+    have hdp : 0 < u * dmu3 u := by unfold dmu3; positivity
+    linarith
+  have h2 : u ^ 3 + 4 * u ^ 2 + 6 * u + 6 ≠ 0 := by
+    have h3 : 0 ≤ u ^ 3 := by positivity
+    nlinarith [sq_nonneg u, h3]
+  rw [div_eq_div_iff hd h2]
+  unfold mu3 dmu3
+  have h1 : 1 + u ≠ 0 := by linarith
+  field_simp [h1]
   ring
 
 /-- Monotonicity (the health content: mu' >= 0), proved without calculus. -/
@@ -361,17 +381,20 @@ theorem deep_slope_mu3 :
     the universal value, independent of n. -/
 theorem deep_cs2_mu2_is_half :
     Tendsto (fun u : ℝ => cs2 (mu2 u) (dmu2 u) u)
-      (nhdsWithin (0 : ℝ) (Ioi 0)) (𝓝 ((1 : ℝ) / 2)) := by
+      (nhdsWithin (0 : ℝ) (Ioi 0)) (𝓝 (cs2_2 0)) := by
   have hEq : (fun u : ℝ => cs2 (mu2 u) (dmu2 u) u) =ᶠ[nhdsWithin (0 : ℝ) (Ioi 0)]
       (fun u : ℝ => cs2_2 u) := by
     filter_upwards [self_mem_nhdsWithin] with u hu
     have hu_pos : 0 < u := hu
-    exact cs2_mu2_eq u (ne_of_gt hu_pos) (by linarith : 1 + u ≠ 0)
+    exact cs2_mu2_eq u hu_pos
   have hcont : ContinuousAt cs2_2 0 := by
     unfold cs2_2
     fun_prop (disch := norm_num)
-  have hlim := (hcont.tendsto.mono_left nhdsWithin_le_nhds).congr' hEq.symm
-  simpa [cs2_2] using hlim
+  exact (hcont.tendsto.mono_left nhdsWithin_le_nhds).congr' hEq.symm
+
+/-- The deep sound speed of the programme's own kernel is exactly 1/2. -/
+theorem cs2_2_at_zero : cs2_2 0 = (1 : ℝ) / 2 := by
+  norm_num [cs2_2]
 
 /-- THE NEGATIVE RESULT.  n = 1, n = 2 and n = 3 are all realized by
     strictly positive, strictly monotone kernels whose sound speed lies in
@@ -570,6 +593,6 @@ theorem n_two_not_forced_spine :
 #print axioms no_newtonian_floor_forces_c_two
 #print axioms n_two_not_forced_spine
 
-end H038
+end H046
 
 end

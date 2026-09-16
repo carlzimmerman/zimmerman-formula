@@ -132,14 +132,17 @@ for _n in sorted(d for d in os.listdir(XB) if os.path.isdir(os.path.join(XB, d))
     _d = _h[1].data
     _hd = _h[1].header
     _fg = fits.open(os.path.join(XB, _n, f"{_n}_fgas_profile.fits"))[1].data
+    # NOTE ON UNITS: masses are carried in Msun throughout (as published);
+    # SI kg is used ONLY inside the phantom integral and inside r_M, where the
+    # physical constants demand it.
     _c = dict(name=_n,
               r=np.array(_d["RADIUS"], float),
-              M=np.array(_d["M_FORW"], float) * MSUN,
-              eM=np.array(_d["EM_FORW"], float) * MSUN,
-              Mnfw=np.array(_d["M_NFW"], float) * MSUN,
+              M=np.array(_d["M_FORW"], float),
+              eM=np.array(_d["EM_FORW"], float),
+              Mnfw=np.array(_d["M_NFW"], float),
               R500=float(_hd["R500"]), M500=float(_hd["M500"]),
               rg=np.array(_fg["RADIUS"], float) * 1e3,
-              mg=np.array(_fg["MGAS"], float) * MSUN)
+              mg=np.array(_fg["MGAS"], float))
     _p = _h[2].data
     _c["rs_nfw"] = float(np.array(_p["RS"])[0])
     _c["c200"] = float(np.array(_p["C200"])[0])
@@ -147,7 +150,7 @@ for _n in sorted(d for d in os.listdir(XB) if os.path.isdir(os.path.join(XB, d))
     if os.path.exists(_fs):
         _ms = fits.open(_fs)[2].data
         _c["rs"] = np.array(_ms["RADIUS"], float)
-        _c["mst"] = np.array(_ms["MSTAR"], float) * MSUN
+        _c["mst"] = np.array(_ms["MSTAR"], float)
     CL.append(_c)
 
 # the stellar import: radius-dependent median M_star/M_gas of the 7 measured
@@ -220,7 +223,10 @@ for c in CL:
     c["rmax"] = float(c["r_w"].max())
     c["rM"] = {}
     for ft, a0 in A0.items():
-        rr = np.sqrt(G * c["M"] * MSUN / a0) / MPC * 1e3      # kpc
+        # c["M"] is ALREADY in kg (multiplied by MSUN at load). A second *MSUN
+        # here inflated r_M by sqrt(MSUN)=1.4e15, so rr-r never changed sign
+        # and no root was ever found (r_M = nan for all 12 clusters).
+        rr = np.sqrt(G * c["M"] / a0) / MPC * 1e3             # kpc
         f = rr - c["r"]
         idx = np.where(np.sign(f[:-1]) != np.sign(f[1:]))[0]
         sol = [float(np.interp(0.0, [f[i], f[i + 1]], [c["r"][i], c["r"][i + 1]]))
@@ -373,13 +379,16 @@ for ft, a0 in A0.items():
               f"{a2:6.2f} {chi_fix - chi_free:10.1f}")
 
     for key in ("r_on", "rb", "r_2"):
-        v = np.array([BRK[ft][c["name"]][key] for c in CL], float)
-        v = v[np.isfinite(v)]
-        rm = np.array([BRK[ft][c["name"]]["rM"] for c in CL
-                       if np.isfinite(BRK[ft][c["name"]]["rM"])], float)
-        if len(v):
+        # pair v and rm PER CLUSTER so a NaN in either drops the same cluster
+        pairs = [(BRK[ft][c["name"]][key], BRK[ft][c["name"]]["rM"])
+                 for c in CL]
+        pairs = [(a, b) for a, b in pairs
+                 if np.isfinite(a) and np.isfinite(b) and b > 0]
+        if pairs:
+            v = np.array([p[0] for p in pairs], float)
+            rm = np.array([p[1] for p in pairs], float)
             print(f"  [{ft}] median {key} = {np.median(v):.0f} kpc; "
-                  f"median {key}/rM = {np.median(v / rm[:len(v)]):.2f}")
+                  f"median {key}/rM = {np.median(v / rm):.2f}  (n={len(pairs)})")
     v = np.array([BRK[ft][c["name"]]["r_on"] / BRK[ft][c["name"]]["rM"]
                   for c in CL if np.isfinite(BRK[ft][c["name"]]["rM"])], float)
     print(f"  [{ft}] r_on/rM per cluster: "

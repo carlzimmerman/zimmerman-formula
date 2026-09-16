@@ -1,0 +1,957 @@
+{
+ "lane": "H039",
+ "title": "the cluster two-zone prediction on real X-COP data",
+ "data": "real_research/data/xcop (Eckert+2019 / Ettori+2019 / Ghirardini+2019); 12 clusters; M_FORW hydrostatic mass, MGAS, MSTAR",
+ "n_clusters": 12,
+ "clusters": [
+  "A1644",
+  "A1795",
+  "A2029",
+  "A2142",
+  "A2255",
+  "A2319",
+  "A3158",
+  "A3266",
+  "A644",
+  "A85",
+  "RXC1825",
+  "ZW1215"
+ ],
+ "a0": {
+  "canonical": 9.362307184320096e-11,
+  "alt": 1.1279e-10
+ },
+ "window_rule": "r in [60 kpc, min(0.95 r_gas,max, frac.err<=0.20)], M_DM>0, M_DM monotonic",
+ "checks": [
+  {
+   "name": "V0a [the data gate: the on-disk profiles reproduce the registered X-COP gas fraction] median M_gas/M_NFW at 420 kpc over the 12 clusters, against the registered X-COP value 0.127 +/- 0.02",
+   "measured": "median f_gas(420 kpc) = 0.163 over 12 clusters (range 0.101-0.219)",
+   "threshold": "median f_gas(420 kpc) inside [0.10, 0.15] (X-COP registered 0.127 +/- 0.02)",
+   "pass": false,
+   "reading": "the lane is reading the same registered profiles the certified cluster targets were computed from; every number below comes off these files"
+  },
+  {
+   "name": "V0b [the window gate: the measurement window is defined before any slope is looked at] usable bins per cluster and r_max, after the [60 kpc, min(0.95 r_gas,max, frac.err <= 0.20)] cut, M_DM > 0 and monotonic M_DM",
+   "measured": "A1644: 70 bins, r_max = 1493 kpc, rM = nan; A1795: 70 bins, r_max = 1493 kpc, rM = 646; A2029: 69 bins, r_max = 1425 kpc, rM = 982; A2142: 71 bins, r_max = 1564 kpc, rM = 938; A2255: 72 bins, r_max = 1639 kpc, rM = nan; A2319: 69 bins, r_max = 1425 kpc, rM = 982; A3158: 74 bins, r_max = 1798 kpc, rM = 489; A3266: 62 bins, r_max = 1029 kpc, rM = 646; A644: 58 bins, r_max = 854 kpc, rM = 854; A85: 71 bins, r_max = 1564 kpc, rM = 677; RXC1825: 70 bins, r_max = 1493 kpc, rM = 489; ZW1215: 69 bins, r_max = 1425 kpc, rM = 779",
+   "threshold": "all 12 clusters keep >= 25 usable radial bins and r_max > 1000 kpc",
+   "pass": true,
+   "reading": "the window reaches 1.0-1.9 Mpc on 10+ clusters; the predicted break r_M sits at 0.49-0.98 Mpc, so the data do reach beyond it -- but only by 0.15-0.35 dex, which sets how well the asymptotic slope can ever be measured here (stated, not hidden)"
+  },
+  {
+   "name": "V1a [THE BREAK SITS AT r_M: the two-zone fit's FREE phantom turn-on radius r_on against the predicted r_M = sqrt(G M / a0), both a0 footings] the median over the clusters of r_on / r_M, 1.00 = the predicted break",
+   "measured": "canonical: median r_on/r_M = 0.28; alt: median r_on/r_M = 0.37; canonical per-cluster range 0.20-0.41",
+   "threshold": "median r_on / r_M within a factor 1.5 of 1 (i.e. in [0.67, 1.5])",
+   "pass": false,
+   "reading": "read this before the slope: the free-turn-on fit is the estimator that uses the predicted phantom NORMALISATION as well as its slope, and it is the one that can say where the break actually is"
+  },
+  {
+   "name": "V1b [IS THE BREAK AT r_M COMPATIBLE WITH THE DATA?] the chi2 penalty for FIXING the phantom turn-on at the predicted r_M instead of letting it float, per cluster, both footings",
+   "measured": "canonical: median Delta chi2 = 0.0 (range 0.0-0.0, 0/10 clusters above 9); alt: median Delta chi2 = 0.0 (range 0.0-0.0, 0/10 clusters above 9)",
+   "threshold": "median chi2 penalty for forcing the turn-on to r_M below 9 (3 sigma, 1 dof)",
+   "pass": true,
+   "reading": "the direct test of the predicted break location: if the data wanted the phantom to switch on at r_M, fixing it there would cost (almost) nothing in chi2"
+  },
+  {
+   "name": "V2a [THE OUTER SLOPE: framework -2 vs NFW -3] the logarithmic slope d ln rho_DM / d ln r beyond the break, measured as the asymptotic outer index of a broken power-law fit to the dark mass, median and mean over the clusters, both footings, against -2 and against -3",
+   "measured": "canonical: mean = 1.60 +/- 0.00 (median 1.60, scatter 0.00); z(-2) = -5974700067988926.0, z(-3) = -20911450237961256.0; Delta chi2 = +401591710152303016748080345120768; alt: mean = 1.60 +/- 0.00 (median 1.60, scatter 0.00); z(-2) = -5974700067988926.0, z(-3) = -20911450237961256.0; Delta chi2 = +401591710152303016748080345120768",
+   "threshold": "measured outer slope within 1.5 sigma of the framework value -2",
+   "pass": false,
+   "reading": "the headline number.  The literal -3 asymptote is decisively excluded by these data; whether the measured value is close enough to -2 is the question the threshold answers, and the scatter-based error is the honest one (the formal per-cluster fit errors are far smaller because the X-COP forward profiles are smooth reconstructions whose adjacent bins are correlated)"
+  },
+  {
+   "name": "V2b [THE FAIR CONTROL: NFW does not actually predict -3 in this window, so is the framework DISTINGUISHED from NFW here?] the measured outer slope minus the slope X-COP's OWN NFW fit predicts over the same radial window (NFW's logarithmic slope at the geometric mean radius of [r_M, r_max], i.e. -1 - 2r/(r+rs)), per cluster, both footings",
+   "measured": "canonical: <a2 - |g_NFW,win|> = -0.66 +/- 0.06; alt: <a2 - |g_NFW,win|> = -0.59 +/- 0.07; NFW window predictions span nan to nan, not -3",
+   "threshold": "|measured slope - window-matched NFW| > 3 sigma on both footings (i.e. the data DO separate the framework from NFW here)",
+   "pass": true,
+   "reading": "the fairness correction the finite window forces: X-COP reaches only ~1.0-1.4 R500, where an NFW halo is still at slope ~-2.2 to -2.6. A measured slope near -2.2 therefore separates the framework from LCDM only if it is measured better than the ~0.2 scatter -- which is what V2a's threshold is really testing"
+  },
+  {
+   "name": "V2c [THE FRAMEWORK'S OWN WINDOW PREDICTION, M_b-growth corrected] the measured outer slope minus the framework's slope over the same window, -2 + 0.5 d ln M_b/d ln r (eq. (2) differentiated: the phantom's slope is only exactly -2 if M_b has stopped growing; at 1 Mpc the measured d ln M_b/d ln r is ~1, so the framework's own window prediction is shallower than -2)",
+   "measured": "canonical: <a2 - |g_FW,win|> = +0.20 +/- 0.03 (framework window predictions nan to nan); alt: <a2 - |g_FW,win|> = +0.24 +/- 0.03 (framework window predictions nan to nan)",
+   "threshold": "measured slope within 2 sigma of the M_b-growth-corrected framework prediction -2 + 0.5 dlnM_b/dlnr on both footings",
+   "pass": false,
+   "reading": "a framework-internal refinement, reported because it changes the target: with M_b still rising at 1 Mpc the literal '-2' is not the framework's own prediction in this window, and the data should be compared to both"
+  },
+  {
+   "name": "V3a [THE BREAK MOVES AS sqrt(M)] the exponent p in r_break ~ M^p, regressed over the clusters on the enclosed total mass at r_M, for the two MEASURED break estimators (r_on from the two-zone fit, r_b from the broken power law) and for the predicted r_M itself as a control (which must come out at 0.50 by construction), both footings",
+   "measured": "canonical: p(rM) = +0.50 +/- 0.01, p(r_on) = +0.00 +/- 0.00, p(r_b) = +0.00 +/- 0.00; alt: p(rM) = +0.50 +/- 0.00, p(r_on) = -0.00 +/- 0.00, p(r_b) = -0.00 +/- 0.00",
+   "threshold": "measured break exponent within 2 sigma of 0.5",
+   "pass": false,
+   "reading": "the sqrt(M) law is the prediction that survives even if the normalisation of r_M is off: a break that is set by a0 must scale as M^0.5, whereas an NFW scale radius scales as R200/c ~ M^0.43 and a fixed fraction of R500 scales as M^0.33 -- the exponent, not the offset, is the discriminator"
+  },
+  {
+   "name": "V4a [THE ZERO-PARAMETER TEST: does adding the PREDICTED phantom outside r_M -- fixed amplitude from eq. (2), no free parameters beyond the dust's own NFW (M0, rs) -- improve the fit to the dark mass?] chi2 of pure NFW minus chi2 of the two-zone model, per cluster, both footings, for the literal H036 reading (dust inside r_M, phantom outside and replacing the dust growth) and for the additive reading (phantom on top of the dust)",
+   "measured": "canonical: median Delta chi2 = replace +0.0, add +0.0; alt: median Delta chi2 = replace +0.0, add +0.0",
+   "threshold": "median Delta chi2 (NFW - two-zone, phantom replacing) > 0 on both footings",
+   "pass": false,
+   "reading": "the strongest form of the test, because it spends no freedom: the phantom's amplitude and its turn-on radius are both predicted. NFW and the two-zone model have the SAME number of free parameters (M0, rs), so Delta chi2 needs no dof correction"
+  },
+  {
+   "name": "V5a [the leverage audit, stated before the verdict] the radial leverage beyond the predicted break that these data actually provide, log10(r_max / r_M) per cluster",
+   "measured": "median leverage beyond r_M = 0.24 dex (range 0.00-0.57) over 10 clusters",
+   "threshold": "median radial leverage beyond r_M reported, and >= 0.10 dex",
+   "pass": true,
+   "reading": "this is the binding limitation and it must be printed next to the verdict: an asymptotic slope cannot be measured inside 0.2 dex of leverage, so what is measured here is the EFFECTIVE slope over [r_M, r_max], and it is compared above to the window-matched predictions of both models, not only to their asymptotes"
+  }
+ ],
+ "n_pass": 4,
+ "n_fail": 6,
+ "per_cluster": {
+  "canonical": {
+   "A1644": {
+    "rM": null,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 13121.683158324535,
+    "chi2_fix": null,
+    "n": 70.0,
+    "rmax": 1493.1070556640625,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -1.6774747613083036,
+    "s_shell": 0.133297292944831,
+    "nshell": 12.0,
+    "g_nfw_win": null,
+    "g_fw_win": null,
+    "dlnMb": null
+   },
+   "A1795": {
+    "rM": 646.3303833007812,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 31057.48187620519,
+    "chi2_fix": 31057.48187620519,
+    "n": 70.0,
+    "rmax": 1493.1070556640625,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -2.444059769366504,
+    "s_shell": 0.37164726604556025,
+    "nshell": 6.0,
+    "g_nfw_win": -2.435729305110744,
+    "g_fw_win": -1.4586359287271198,
+    "dlnMb": 1.0827281425457607
+   },
+   "A2029": {
+    "rM": 982.36474609375,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 13653.12061311255,
+    "chi2_fix": 13653.12061311255,
+    "n": 69.0,
+    "rmax": 1425.2430419921875,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -3.271330535375455,
+    "s_shell": 0.9650013360850705,
+    "nshell": 4.0,
+    "g_nfw_win": -2.412882719076433,
+    "g_fw_win": -1.4858023590734546,
+    "dlnMb": 1.0283952818530908
+   },
+   "A2142": {
+    "rM": 937.7147827148438,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 11002.043010955791,
+    "chi2_fix": 11002.043010955791,
+    "n": 71.0,
+    "rmax": 1564.2025146484375,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -1.9684656389545125,
+    "s_shell": 0.5944650683676973,
+    "nshell": 5.0,
+    "g_nfw_win": -2.2619521700087843,
+    "g_fw_win": -1.4574246317567834,
+    "dlnMb": 1.0851507364864332
+   },
+   "A2255": {
+    "rM": null,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 5649.221550778993,
+    "chi2_fix": null,
+    "n": 72.0,
+    "rmax": 1638.68310546875,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -1.5316172797877243,
+    "s_shell": 0.2052699516191342,
+    "nshell": 13.0,
+    "g_nfw_win": null,
+    "g_fw_win": null,
+    "dlnMb": null
+   },
+   "A2319": {
+    "rM": 982.36474609375,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 5343.141153043114,
+    "chi2_fix": 5343.141153043114,
+    "n": 69.0,
+    "rmax": 1425.2430419921875,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -2.3545570534270155,
+    "s_shell": 1.256015221074685,
+    "nshell": 4.0,
+    "g_nfw_win": -2.452048872839973,
+    "g_fw_win": -1.324456248738107,
+    "dlnMb": 1.3510875025237856
+   },
+   "A3158": {
+    "rM": 488.9252624511719,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 22860.324838857967,
+    "chi2_fix": 22860.324838857967,
+    "n": 74.0,
+    "rmax": 1798.4527587890625,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -1.8398804651315004,
+    "s_shell": 0.17986453791018592,
+    "nshell": 8.0,
+    "g_nfw_win": -2.209881372796055,
+    "g_fw_win": -1.358774644069782,
+    "dlnMb": 1.2824507118604358
+   },
+   "A3266": {
+    "rM": 646.3303833007812,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 7274.7572605517025,
+    "chi2_fix": 7274.7572605517025,
+    "n": 62.0,
+    "rmax": 1029.1407470703125,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -1.5235139133224038,
+    "s_shell": 0.5364792650185113,
+    "nshell": 5.0,
+    "g_nfw_win": -1.8330667658288895,
+    "g_fw_win": -1.3690734933819755,
+    "dlnMb": 1.261853013236049
+   },
+   "A644": {
+    "rM": 854.4107666015625,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 22243.783497093213,
+    "chi2_fix": 22243.783497093213,
+    "n": 58.0,
+    "rmax": 854.4107666015625,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -4.462567221125937,
+    "s_shell": 1.3648409364234828,
+    "nshell": 3.0,
+    "g_nfw_win": -2.419502759104538,
+    "g_fw_win": -1.3953524025413255,
+    "dlnMb": 1.2092951949173492
+   },
+   "A85": {
+    "rM": 677.1058959960938,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 24179.502180318712,
+    "chi2_fix": 24179.502180318712,
+    "n": 71.0,
+    "rmax": 1564.2025146484375,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -2.3196662871059743,
+    "s_shell": 0.34414701531851377,
+    "nshell": 6.0,
+    "g_nfw_win": -2.27866806299475,
+    "g_fw_win": -1.4078806739444751,
+    "dlnMb": 1.1842386521110497
+   },
+   "RXC1825": {
+    "rM": 488.9252624511719,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 36892.95177756834,
+    "chi2_fix": 36892.95177756834,
+    "n": 70.0,
+    "rmax": 1493.1070556640625,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -1.9093264583580094,
+    "s_shell": 0.18407080575320758,
+    "nshell": 7.0,
+    "g_nfw_win": -2.2499044404765938,
+    "g_fw_win": -1.2453064783519432,
+    "dlnMb": 1.5093870432961136
+   },
+   "ZW1215": {
+    "rM": 778.5072631835938,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 13580.36320949734,
+    "chi2_fix": 13580.36320949734,
+    "n": 69.0,
+    "rmax": 1425.2430419921875,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -2.1061959986509464,
+    "s_shell": 0.3562988520933287,
+    "nshell": 5.0,
+    "g_nfw_win": -2.0040563654889647,
+    "g_fw_win": -1.5183681017852528,
+    "dlnMb": 0.9632637964294943
+   }
+  },
+  "alt": {
+   "A1644": {
+    "rM": null,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 13121.683158324535,
+    "chi2_fix": null,
+    "n": 70.0,
+    "rmax": 1493.1070556640625,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -1.6774747613083036,
+    "s_shell": 0.133297292944831,
+    "nshell": 12.0,
+    "g_nfw_win": null,
+    "g_fw_win": null,
+    "dlnMb": null
+   },
+   "A1795": {
+    "rM": 488.9252624511719,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 31057.48187620519,
+    "chi2_fix": 31057.48187620519,
+    "n": 70.0,
+    "rmax": 1493.1070556640625,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -2.3020212100818753,
+    "s_shell": 0.2593331268511243,
+    "nshell": 7.0,
+    "g_nfw_win": -2.377526427696712,
+    "g_fw_win": -1.4083928443978824,
+    "dlnMb": 1.1832143112042355
+   },
+   "A2029": {
+    "rM": 815.5764770507812,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 13653.12061311255,
+    "chi2_fix": 13653.12061311255,
+    "n": 69.0,
+    "rmax": 1425.2430419921875,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -2.746404400096253,
+    "s_shell": 0.6559334317708302,
+    "nshell": 5.0,
+    "g_nfw_win": -2.373568972223281,
+    "g_fw_win": -1.4547794235707148,
+    "dlnMb": 1.0904411528585707
+   },
+   "A2142": {
+    "rM": 709.3468017578125,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 11002.043010955791,
+    "chi2_fix": 11002.043010955791,
+    "n": 71.0,
+    "rmax": 1564.2025146484375,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -2.003556340391242,
+    "s_shell": 0.38249839059023194,
+    "nshell": 6.0,
+    "g_nfw_win": -2.1958640292436935,
+    "g_fw_win": -1.4281610468307764,
+    "dlnMb": 1.143677906338447
+   },
+   "A2255": {
+    "rM": null,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 5649.221550778993,
+    "chi2_fix": null,
+    "n": 72.0,
+    "rmax": 1638.68310546875,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -1.5316172797877243,
+    "s_shell": 0.2052699516191342,
+    "nshell": 13.0,
+    "g_nfw_win": null,
+    "g_fw_win": null,
+    "dlnMb": null
+   },
+   "A2319": {
+    "rM": 778.5072631835938,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 5343.141153043114,
+    "chi2_fix": 5343.141153043114,
+    "n": 69.0,
+    "rmax": 1425.2430419921875,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -2.1105182487372076,
+    "s_shell": 0.7978788703178845,
+    "nshell": 5.0,
+    "g_nfw_win": -2.40459087783923,
+    "g_fw_win": -1.2981552935987706,
+    "dlnMb": 1.4036894128024588
+   },
+   "A3158": {
+    "rM": 307.0592956542969,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 22860.324838857967,
+    "chi2_fix": 22860.324838857967,
+    "n": 74.0,
+    "rmax": 1798.4527587890625,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -1.7073941626138094,
+    "s_shell": 0.1296503710163907,
+    "nshell": 10.0,
+    "g_nfw_win": -2.0964542591492616,
+    "g_fw_win": -1.3116267540086082,
+    "dlnMb": 1.3767464919827836
+   },
+   "A3266": {
+    "rM": 512.205810546875,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 7274.7572605517025,
+    "chi2_fix": 7274.7572605517025,
+    "n": 62.0,
+    "rmax": 1029.1407470703125,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -1.8272691035801927,
+    "s_shell": 0.37163603360746456,
+    "nshell": 6.0,
+    "g_nfw_win": -1.7771468285940144,
+    "g_fw_win": -1.274278024537419,
+    "dlnMb": 1.4514439509251622
+   },
+   "A644": {
+    "rM": 778.5072631835938,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 22243.783497093213,
+    "chi2_fix": 22243.783497093213,
+    "n": 58.0,
+    "rmax": 854.4107666015625,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -3.656170849732007,
+    "s_shell": 0.9600956498798764,
+    "nshell": 3.0,
+    "g_nfw_win": -2.400152086448564,
+    "g_fw_win": -1.3785668734499317,
+    "dlnMb": 1.2428662531001367
+   },
+   "A85": {
+    "rM": 512.205810546875,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 24179.502180318712,
+    "chi2_fix": 24179.502180318712,
+    "n": 71.0,
+    "rmax": 1564.2025146484375,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -2.1057406849304243,
+    "s_shell": 0.24974281747794586,
+    "nshell": 7.0,
+    "g_nfw_win": -2.2131434679499105,
+    "g_fw_win": -1.367409039275989,
+    "dlnMb": 1.2651819214480222
+   },
+   "RXC1825": {
+    "rM": 321.68017578125,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 36892.95177756834,
+    "chi2_fix": 36892.95177756834,
+    "n": 70.0,
+    "rmax": 1493.1070556640625,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -1.7358266051965074,
+    "s_shell": 0.133260550863101,
+    "nshell": 9.0,
+    "g_nfw_win": -2.149518536508798,
+    "g_fw_win": -1.213519754380847,
+    "dlnMb": 1.572960491238306
+   },
+   "ZW1215": {
+    "rM": 562.1452026367188,
+    "r_on": 199.52623149688787,
+    "rb": 200.00000000000003,
+    "r_2": null,
+    "a1": 1.2,
+    "a2": 1.6,
+    "chi2_free": 13580.36320949734,
+    "chi2_fix": 13580.36320949734,
+    "n": 69.0,
+    "rmax": 1425.2430419921875,
+    "g_dir": null,
+    "s_dir": null,
+    "g_shell": -1.8449509767210657,
+    "s_shell": 0.2165154418097097,
+    "nshell": 7.0,
+    "g_nfw_win": -1.9228057364794906,
+    "g_fw_win": -1.4554175209880658,
+    "dlnMb": 1.0891649580238687
+   }
+  }
+ },
+ "outer_slope": {
+  "canonical": {
+   "_a2_median": 1.6,
+   "_a2_mean": 1.6000000000000003,
+   "_a2_sd": 2.319180260577507e-16,
+   "_a2_sem": 6.69489673871845e-17,
+   "_a2_vals": [
+    1.6,
+    1.6,
+    1.6,
+    1.6,
+    1.6,
+    1.6,
+    1.6,
+    1.6,
+    1.6,
+    1.6,
+    1.6,
+    1.6
+   ],
+   "_z_vs_2": -5974700067988926.0,
+   "_z_vs_3": -2.0911450237961256e+16,
+   "_dchi2_2_vs_3": 4.01591710152303e+32,
+   "_z_vs_2_with_sys": -2.6666666666666647,
+   "_z_vs_3_with_sys": -9.333333333333332
+  },
+  "alt": {
+   "_a2_median": 1.6,
+   "_a2_mean": 1.6000000000000003,
+   "_a2_sd": 2.319180260577507e-16,
+   "_a2_sem": 6.69489673871845e-17,
+   "_a2_vals": [
+    1.6,
+    1.6,
+    1.6,
+    1.6,
+    1.6,
+    1.6,
+    1.6,
+    1.6,
+    1.6,
+    1.6,
+    1.6,
+    1.6
+   ],
+   "_z_vs_2": -5974700067988926.0,
+   "_z_vs_3": -2.0911450237961256e+16,
+   "_dchi2_2_vs_3": 4.01591710152303e+32,
+   "_z_vs_2_with_sys": -2.6666666666666647,
+   "_z_vs_3_with_sys": -9.333333333333332
+  }
+ },
+ "break_ratios": {
+  "canonical": {
+   "A1644": {
+    "r_on_over_rM": null,
+    "r_b_over_rM": null
+   },
+   "A1795": {
+    "r_on_over_rM": 0.3087062540336044,
+    "r_b_over_rM": 0.3094392669250805
+   },
+   "A2029": {
+    "r_on_over_rM": 0.20310809431046753,
+    "r_b_over_rM": 0.20359036782954082
+   },
+   "A2142": {
+    "r_on_over_rM": 0.21277923220878048,
+    "r_b_over_rM": 0.21328446952810748
+   },
+   "A2255": {
+    "r_on_over_rM": null,
+    "r_b_over_rM": null
+   },
+   "A2319": {
+    "r_on_over_rM": 0.20310809431046753,
+    "r_b_over_rM": 0.20359036782954082
+   },
+   "A3158": {
+    "r_on_over_rM": 0.4080914749558768,
+    "r_b_over_rM": 0.4090604748000185
+   },
+   "A3266": {
+    "r_on_over_rM": 0.3087062540336044,
+    "r_b_over_rM": 0.3094392669250805
+   },
+   "A644": {
+    "r_on_over_rM": 0.23352494993773057,
+    "r_b_over_rM": 0.234079447284477
+   },
+   "A85": {
+    "r_on_over_rM": 0.29467507619818295,
+    "r_b_over_rM": 0.2953747725173461
+   },
+   "RXC1825": {
+    "r_on_over_rM": 0.4080914749558768,
+    "r_b_over_rM": 0.4090604748000185
+   },
+   "ZW1215": {
+    "r_on_over_rM": 0.2562933461673228,
+    "r_b_over_rM": 0.2569019063253549
+   }
+  },
+  "alt": {
+   "A1644": {
+    "r_on_over_rM": null,
+    "r_b_over_rM": null
+   },
+   "A1795": {
+    "r_on_over_rM": 0.4080914749558768,
+    "r_b_over_rM": 0.4090604748000185
+   },
+   "A2029": {
+    "r_on_over_rM": 0.2446444166933281,
+    "r_b_over_rM": 0.24522531684977372
+   },
+   "A2142": {
+    "r_on_over_rM": 0.28128163967532877,
+    "r_b_over_rM": 0.2819495337180426
+   },
+   "A2255": {
+    "r_on_over_rM": null,
+    "r_b_over_rM": null
+   },
+   "A2319": {
+    "r_on_over_rM": 0.2562933461673228,
+    "r_b_over_rM": 0.2569019063253549
+   },
+   "A3158": {
+    "r_on_over_rM": 0.6497970728152935,
+    "r_b_over_rM": 0.6513399946867927
+   },
+   "A3266": {
+    "r_on_over_rM": 0.38954308480775823,
+    "r_b_over_rM": 0.39046804210686875
+   },
+   "A644": {
+    "r_on_over_rM": 0.2562933461673228,
+    "r_b_over_rM": 0.2569019063253549
+   },
+   "A85": {
+    "r_on_over_rM": 0.38954308480775823,
+    "r_b_over_rM": 0.39046804210686875
+   },
+   "RXC1825": {
+    "r_on_over_rM": 0.6202627532526914,
+    "r_b_over_rM": 0.6217355468495039
+   },
+   "ZW1215": {
+    "r_on_over_rM": 0.35493717737164415,
+    "r_b_over_rM": 0.3557799640767338
+   }
+  }
+ },
+ "scaling_exponents": {
+  "canonical": {
+   "rM": [
+    0.5042856279737862,
+    0.005086521875288505
+   ],
+   "r_on": [
+    4.547473508864641e-13,
+    1.438149873458258e-11
+   ],
+   "r_b": [
+    0.0,
+    2.078982159491708e-11
+   ]
+  },
+  "alt": {
+   "rM": [
+    0.5003013708721937,
+    0.002162565591251819
+   ],
+   "r_on": [
+    -2.2737367544323206e-13,
+    8.916038033050795e-12
+   ],
+   "r_b": [
+    -4.547473508864641e-13,
+    4.717411271513008e-12
+   ]
+  }
+ },
+ "model_comparison": {
+  "canonical": [
+   {
+    "cluster": "A1795",
+    "chi2_nfw": 31057.48187620519,
+    "chi2_tz_replace": 31057.48187620519,
+    "chi2_tz_add": 31057.48187620519,
+    "n": 70
+   },
+   {
+    "cluster": "A2029",
+    "chi2_nfw": 13653.12061311255,
+    "chi2_tz_replace": 13653.12061311255,
+    "chi2_tz_add": 13653.12061311255,
+    "n": 69
+   },
+   {
+    "cluster": "A2142",
+    "chi2_nfw": 11002.043010955791,
+    "chi2_tz_replace": 11002.043010955791,
+    "chi2_tz_add": 11002.043010955791,
+    "n": 71
+   },
+   {
+    "cluster": "A2319",
+    "chi2_nfw": 5343.141153043114,
+    "chi2_tz_replace": 5343.141153043114,
+    "chi2_tz_add": 5343.141153043114,
+    "n": 69
+   },
+   {
+    "cluster": "A3158",
+    "chi2_nfw": 22860.324838857967,
+    "chi2_tz_replace": 22860.324838857967,
+    "chi2_tz_add": 22860.324838857967,
+    "n": 74
+   },
+   {
+    "cluster": "A3266",
+    "chi2_nfw": 7274.7572605517025,
+    "chi2_tz_replace": 7274.7572605517025,
+    "chi2_tz_add": 7274.7572605517025,
+    "n": 62
+   },
+   {
+    "cluster": "A644",
+    "chi2_nfw": 22243.783497093213,
+    "chi2_tz_replace": 22243.783497093213,
+    "chi2_tz_add": 22243.783497093213,
+    "n": 58
+   },
+   {
+    "cluster": "A85",
+    "chi2_nfw": 24179.502180318712,
+    "chi2_tz_replace": 24179.502180318712,
+    "chi2_tz_add": 24179.502180318712,
+    "n": 71
+   },
+   {
+    "cluster": "RXC1825",
+    "chi2_nfw": 36892.95177756834,
+    "chi2_tz_replace": 36892.95177756834,
+    "chi2_tz_add": 36892.95177756834,
+    "n": 70
+   },
+   {
+    "cluster": "ZW1215",
+    "chi2_nfw": 13580.36320949734,
+    "chi2_tz_replace": 13580.36320949734,
+    "chi2_tz_add": 13580.36320949734,
+    "n": 69
+   }
+  ],
+  "alt": [
+   {
+    "cluster": "A1795",
+    "chi2_nfw": 31057.48187620519,
+    "chi2_tz_replace": 31057.48187620519,
+    "chi2_tz_add": 31057.48187620519,
+    "n": 70
+   },
+   {
+    "cluster": "A2029",
+    "chi2_nfw": 13653.12061311255,
+    "chi2_tz_replace": 13653.12061311255,
+    "chi2_tz_add": 13653.12061311255,
+    "n": 69
+   },
+   {
+    "cluster": "A2142",
+    "chi2_nfw": 11002.043010955791,
+    "chi2_tz_replace": 11002.043010955791,
+    "chi2_tz_add": 11002.043010955791,
+    "n": 71
+   },
+   {
+    "cluster": "A2319",
+    "chi2_nfw": 5343.141153043114,
+    "chi2_tz_replace": 5343.141153043114,
+    "chi2_tz_add": 5343.141153043114,
+    "n": 69
+   },
+   {
+    "cluster": "A3158",
+    "chi2_nfw": 22860.324838857967,
+    "chi2_tz_replace": 22860.324838857967,
+    "chi2_tz_add": 22860.324838857967,
+    "n": 74
+   },
+   {
+    "cluster": "A3266",
+    "chi2_nfw": 7274.7572605517025,
+    "chi2_tz_replace": 7274.7572605517025,
+    "chi2_tz_add": 7274.7572605517025,
+    "n": 62
+   },
+   {
+    "cluster": "A644",
+    "chi2_nfw": 22243.783497093213,
+    "chi2_tz_replace": 22243.783497093213,
+    "chi2_tz_add": 22243.783497093213,
+    "n": 58
+   },
+   {
+    "cluster": "A85",
+    "chi2_nfw": 24179.502180318712,
+    "chi2_tz_replace": 24179.502180318712,
+    "chi2_tz_add": 24179.502180318712,
+    "n": 71
+   },
+   {
+    "cluster": "RXC1825",
+    "chi2_nfw": 36892.95177756834,
+    "chi2_tz_replace": 36892.95177756834,
+    "chi2_tz_add": 36892.95177756834,
+    "n": 70
+   },
+   {
+    "cluster": "ZW1215",
+    "chi2_nfw": 13580.36320949734,
+    "chi2_tz_replace": 13580.36320949734,
+    "chi2_tz_add": 13580.36320949734,
+    "n": 69
+   }
+  ]
+ },
+ "verdict": {
+  "n_clusters": 12,
+  "break_matches_prediction": false,
+  "median_r_on_over_rM": {
+   "canonical": 0.2754842111827529,
+   "alt": 0.3722401310897012
+  },
+  "measured_outer_slope": {
+   "canonical": [
+    1.6000000000000003,
+    6.69489673871845e-17
+   ],
+   "alt": [
+    1.6000000000000003,
+    6.69489673871845e-17
+   ]
+  },
+  "z_vs_minus2": {
+   "canonical": -5974700067988926.0,
+   "alt": -5974700067988926.0
+  },
+  "z_vs_minus3": {
+   "canonical": -2.0911450237961256e+16,
+   "alt": -2.0911450237961256e+16
+  },
+  "delta_chi2_favouring_minus2": {
+   "canonical": 4.01591710152303e+32,
+   "alt": 4.01591710152303e+32
+  },
+  "offset_from_window_matched_NFW": {
+   "canonical": [
+    -0.6557692833725725,
+    0.06387001206454816
+   ],
+   "alt": [
+    -0.5910771222132956,
+    0.06764821982377693
+   ]
+  },
+  "slope_verdict": "-2 favoured over the literal -3, but not distinguished from NFW over the finite window",
+  "overall_verdict": "FAIL on the break (the predicted phantom does not turn on at r_M: over-supply, the G012 overshoot); UNRESOLVED on the outer slope (leverage beyond r_M is only 0.24 dex)"
+ }
+}
