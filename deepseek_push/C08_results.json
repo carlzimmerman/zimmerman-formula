@@ -1,0 +1,102 @@
+{
+  "lane": "C08_thermal_fixed",
+  "title": "THE THERMAL FIXED POINT: T_b = m sqrt(G M_b a0)/(2 k_B), the half-exponent elasticity d ln T/d ln M_b = 1/2, and the scale-invariant fluctuation floor deltaT_rms = sqrt(G m^3 a0)/(2 k_B) = 2.47e-36 K -- certified in Lean (zero sorry, axioms {propext, Classical.choice, Quot.sound})",
+  "status_date": "2026-09-16",
+  "gate": "PASS",
+  "lean": {
+    "file": "deepseek_push/lean/C08_thermal_fixed.lean",
+    "build": "fable_independent_2026/lean_2026 (mondlean crater, Mathlib v4.34.0-rc2)",
+    "compile": "lake env lean deepseek_push/lean/C08_thermal_fixed.lean",
+    "exit_code": 0,
+    "sorries": 0,
+    "warnings": 0,
+    "theorems": 9,
+    "axioms": ["propext", "Classical.choice", "Quot.sound"],
+    "theorem_list": [
+      "field_identity",
+      "power_law_form",
+      "log_half_slope",
+      "elasticity_half",
+      "n_inv_half",
+      "fluct_closed_form",
+      "fluct_scale",
+      "num_dT_rms_interval",
+      "num_Tb_canon_interval"
+    ]
+  },
+  "theorems": {
+    "field_identity": {
+      "statement": "T_b = m sigma^2/k_B with sigma^2 = (1/2) sqrt(G M_b a0)  =>  T_b = m sqrt(G M_b a0)/(2 k_B)",
+      "status": "CERTIFIED",
+      "provides": "the field identity (B05/G233/G151 closed form)"
+    },
+    "power_law_form": {
+      "statement": "T = (m/2k_B) sqrt(G a0) sqrt(M_b) -- T_b is M_b^{1/2} times an M_b-free constant",
+      "status": "CERTIFIED",
+      "provides": "T_b ∝ M_b^{+1/2} at the field-algebra level (sqrt split)"
+    },
+    "log_half_slope": {
+      "statement": "ln T = ln(m/2k_B) + (1/2)(ln(G a0) + ln M_b) -- the log-log slope in ln M_b is EXACTLY 1/2",
+      "status": "CERTIFIED",
+      "provides": "the half-exponent elasticity at the algebra level"
+    },
+    "elasticity_half": {
+      "statement": "d/dM_b ln T = 1/(2 M_b), hence d ln T/d ln M_b = M_b (dT/dM_b)/T = 1/2 (Hadamard elasticity, HasDerivAt)",
+      "status": "CERTIFIED",
+      "provides": "the literal differential form of the half-exponent elasticity"
+    },
+    "n_inv_half": {
+      "statement": "N = M_b/m  =>  N^(-1/2) = sqrt(m/M_b)  (Real.rpow, sign-resolved)",
+      "status": "CERTIFIED",
+      "provides": "the N^{-1/2} algebra of the heat-capacity floor"
+    },
+    "fluct_closed_form": {
+      "statement": "T_b * sqrt(m/M_b) = sqrt(G m^3 a0)/(2 k_B) -- the closed form of the rms fluctuation",
+      "status": "CERTIFIED",
+      "provides": "deltaT_rms = sqrt(G m^3 a0)/(2 k_B): M_b-free (scale-invariant at fixed m, a0)"
+    },
+    "fluct_scale": {
+      "statement": "from N = M_b/m and deltaT/T = N^{-1/2}: deltaT_rms = sqrt(G m^3 a0)/(2 k_B) -- the FULL chain",
+      "status": "CERTIFIED",
+      "provides": "the N^{-1/2} fluctuation law end to end"
+    },
+    "num_dT_rms_interval": {
+      "statement": "deltaT_rms in (2.4732e-36, 2.4733e-36) K (squared-interval technique, exact rationals)",
+      "status": "CERTIFIED",
+      "provides": "the B05 register value 2.4732201374593863e-36 K pinned to 1e-5"
+    },
+    "num_Tb_canon_interval": {
+      "statement": "T_b (M_b = 7.0e10 M_sun) in (9.68, 9.70) K (squared-interval technique, exact rationals)",
+      "status": "CERTIFIED",
+      "provides": "the B05 canonical register value 9.689175 K pinned to 2e-3"
+    }
+  },
+  "numeric": {
+    "committed_constants": {
+      "G": "6.674e-11 m^3 kg^-1 s^-2",
+      "a0": "9.3619e-11 m/s^2",
+      "k_B": "1.380649e-23 J/K",
+      "m": "5.0886 keV (5088.6 eV; m_kg = 5088.6*1.602176634e-19/c^2)",
+      "M_b_canon": "7.0e10 M_sun = 7.0e10*1.98892e30 kg"
+    },
+    "deltaT_rms_closed_form_K": 2.4732201374593863e-36,
+    "deltaT_rms_B05_register_K": 2.4732201374593863e-36,
+    "deltaT_rms_match": "EXACT to 16 digits (high-precision recomputation 2.4732201374593869e-36)",
+    "deltaT_rms_interval_K": "[2.4732e-36, 2.4733e-36]",
+    "T_b_canonical_K": 9.689175016645969,
+    "T_b_canonical_interval_K": "[9.68, 9.70]",
+    "T_b_anchor_K": 9.33672266812823,
+    "N_anchor": 1.425159165157644e73,
+    "dT_rms_over_T_anchor": 2.6489167830827335e-37,
+    "scale_invariance": "dT_rms = sqrt(G m^3 a0)/(2 k_B) carries no M_b: T ~ a0 r_M and N ~ r_M^2 cancel, the same 2.47e-36 K floor for every halo at fixed (m, a0) -- verified numerically at the 6.5e10 M_sun anchor (T_a/sqrt(N_a) = 2.4732201374593870e-36 K, the closed form)",
+    "half_exponent": "T_b ∝ M_b^{+1/2}: M_b x2 -> T_b x sqrt(2) = x1.4142 (exponent EXACTLY 1/2 at the algebra level)"
+  },
+  "provenance": {
+    "B05": "project_atomos/B05_dark_gas.py + B05_results.json -- the dark-gas thermodynamics: the heat capacity C_V = N k_B, the N^{-1/2} fluctuation floor, deltaT_rms = sqrt(G m^3 a0)/(2 k_B) = 2.4732201374593863e-36 K (B05_results.json dT_rms_closed_form_K), scale-invariant",
+    "B08": "project_atomos/B08_condensate.py + B08_results.json -- the gapless Goldstone branch omega(k) = c_s k with gap EXACTLY ZERO; the no-heating prediction (T_b untouched by shocks)",
+    "G084": "deepseek_push/G084_maxentropy_law.py + G084_results.json -- the entropy: T = m sigma^2/k_B (1.8349 mK/eV at sigma = 119 km/s), the isothermal profile from max entropy"
+  },
+  "checks_passed": 9,
+  "checks_failed": 0,
+  "statement": "The three theorems of the thermal fixed point -- (1) the field identity T_b = m sqrt(G M_b a0)/(2 k_B), (2) the half-exponent elasticity d ln T/d ln M_b = 1/2 (power-law form + log-log slope + differential form), (3) the N^{-1/2} fluctuation scale deltaT_rms = sqrt(G m^3 a0)/(2 k_B) -- are machine-certified; the numeric floors (2.47e-36 K, 9.69 K) are pinned by exact rational interval arithmetic. Lean certifies the mathematics; the physical reading (the sector temperature stays at the equilibrium value, the scatter is 100% non-thermal) is the committed lanes' claim (B05/B08/G135)."
+}

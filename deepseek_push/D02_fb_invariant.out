@@ -1,0 +1,155 @@
+==============================================================================
+D02 -- THE F_B-INVARIANT SECTOR
+==============================================================================
+Committed registers re-read from the committed JSONs:
+   A_keV_per_z          = 1.48561
+   Omega_b              = 0.0493
+   Omega_dm             = 0.264
+   Omega_dust           = 0.2619075
+   Omega_eq             = 0.0020925
+   Omega_m              = 0.3153
+   T1644_keV            = 2.473910245101815
+   b06_mad_dex          = 0.05305009681727604
+   envelope             = 0.1867424242424242
+   f_b                  = 0.1564
+   f_dark_band          = [6.0, 10.0]
+   f_dark_from_fb       = [5.451612903225806, 6.692307692307692]
+   ladder_m_rec_keV     = 5.000090645734298
+   ladder_sigma_kms     = 119.2
+   line_n               = 542
+   line_se              = 0.0108
+   line_slope           = 1.004
+   m_keV                = 5.0886
+   m_keV_band           = [4.9917, 5.1855]
+   retention            = 0.5411
+   s_b_halo_mean        = 0.0846
+   s_d_halo_mean        = 0.8048
+   s_ph_halo_mean       = 0.1106
+
+a0 identity: horizon 9.36238e-11 vs DE footing 9.3619e-11 (ratio 1.000051) -- a0 is f_b-FREE
+
+------------------------------------------------------------------------------
+PART 1 -- THE INVARIANCE AUDIT: every committed prediction tagged
+------------------------------------------------------------------------------
+PREDICTION                             TAG       f_b ROLE
+------------------------------------------------------------------------------
+The BTFR / 12-decade line              INVARIANT per-object M_b (the baryon ruler: measured M/L + gas); the M_dark/M_b ratio st
+                                                   (lanes: G131/G162/G080)
+The equipartition M_ph(<r) = M_b r/r_M INVARIANT a per-object ratio: the phantom mass in units of THAT object's baryonic mass. 
+                                                   (lanes: G03G/G090/G227/C07)
+The dust law c_dust(M, r)              INVARIANT per-object normalization by the baryon ruler; the dust-vs-phantom split of the
+                                                   (lanes: G093/G140/G179/G178)
+The temperature law T_X-ray            INVARIANT per-object: normalized by the baryon-particle scale mu m_p and the per-object 
+                                                   (lanes: B06/A02/G091/G095)
+The mass ladder m = k_B T_0(1+z*)/sigm INVARIANT per-object sigma: the mass is recovered from each object's own dispersion and 
+                                                   (lanes: B03/G212/G163/C02/C05)
+The pie's halo share <s_b> (G187)      f_b-DEPENDENT the baryon SHARE of the dark halo budget -- by construction proportional to th
+                                                   (lanes: G187/G178/G143)
+The cosmology budget (G079)            f_b-DEPENDENT the Omega_dm closure consumes Omega_b = 0.0493 = f_b x Omega_m as INPUT;  f_da
+                                                   (lanes: G079/G187)
+The phantom density profile            INVARIANT per-object amplitude in M_b units.  f_b never appears.
+                                                   (lanes: G031/G227/M01)
+The deep RAR g^2 = a0 g_N              INVARIANT per-object: the observed acceleration vs the baryonic Newtonian acceleration. 
+                                                   (lanes: G031/G201)
+The particle line E = m/2              INVARIANT the line ENERGY follows the per-object-derived mass m (invariant);  the per-ob
+                                                   (lanes: B01/B02/A05)
+The sqrt(2) identity                   INVARIANT scale-free -- no M_b, no f_b at all.  INVARIANT trivially.
+                                                   (lanes: B05/C01)
+The equilibrium bound Omega_eq <= Omeg INVARIANT (form) / f_b-free value baryon-NORMALIZED: dark mass in units of the MEASURED stellar density -- never
+                                                   (lanes: G079/S05)
+------------------------------------------------------------------------------
+AUDIT COUNT: 10 INVARIANT / 2 f_b-DEPENDENT of 12 rows
+THE INVARIANT SET = the per-object M_b-normalized laws (they test the
+  M_dark/M_b structure, not the cosmic abundance).
+
+------------------------------------------------------------------------------
+PART 2 -- THE f_b-SWEEP: vary the input fraction, watch the predictions
+------------------------------------------------------------------------------
+  Per-object examples (all f_b-free):
+    MW rung: sigma = 119.2 km/s -> M_b = 6.498e+10 Msun, v_flat = 168.6 km/s, m_ladder = 4.99997 keV
+    A1644:   M_b = 5.020e+13 Msun -> T_X-ray = 2.4738 keV (B06 identity 2.4739)
+    dSph floor rung: sigma = 65.0 km/s, z* = 0.0008 -> m = 5.00009 keV (B03)
+
+  INVARIANT predictions across the f_b-sweep [0.01, 0.05, 0.1564, 0.3, 0.99]:
+    v_flat(MW)  [km/s]                 values=168.574, 168.574, 168.574, 168.574, 168.574   max|delta| = 0
+  [PASS] INVARIANT (structural): v_flat(MW)  [km/s] is f_b-identical across the sweep   max|delta| = 0
+    sigma(MW)   [km/s]                 values=119.2, 119.2, 119.2, 119.2, 119.2   max|delta| = 0
+  [PASS] INVARIANT (structural): sigma(MW)   [km/s] is f_b-identical across the sweep   max|delta| = 0
+    m_ladder(MW rung) [keV]            values=4.99997, 4.99997, 4.99997, 4.99997, 4.99997   max|delta| = 0
+  [PASS] INVARIANT (structural): m_ladder(MW rung) [keV] is f_b-identical across the sweep   max|delta| = 0
+    m_ladder(dSph rung) [keV]          values=5.00009, 5.00009, 5.00009, 5.00009, 5.00009   max|delta| = 0
+  [PASS] INVARIANT (structural): m_ladder(dSph rung) [keV] is f_b-identical across the sweep   max|delta| = 0
+    T_X-ray(A1644) [keV]               values=2.47385, 2.47385, 2.47385, 2.47385, 2.47385   max|delta| = 0
+  [PASS] INVARIANT (structural): T_X-ray(A1644) [keV] is f_b-identical across the sweep   max|delta| = 0
+    equipartition M_ph(<r_M)/M_b       values=1, 1, 1, 1, 1   max|delta| = 0
+  [PASS] INVARIANT (structural): equipartition M_ph(<r_M)/M_b is f_b-identical across the sweep   max|delta| = 0
+    phantom column at r_M [kg/m^2]     values=0.0558133, 0.0558133, 0.0558133, 0.0558133, 0.0558133   max|delta| = 0
+  [PASS] INVARIANT (structural): phantom column at r_M [kg/m^2] is f_b-identical across the sweep   max|delta| = 0
+
+  f_b-DEPENDENT quantities across the same sweep (the registered rules):
+    <s_b> = 0.5411 f_b (G187 pie halo share) 0.005411, 0.02706, 0.08463, 0.1623, 0.5357
+    Omega_b = f_b Omega_m                  0.003153, 0.01577, 0.04931, 0.09459, 0.3121
+    envelope Omega_b/Omega_dm              0.01194, 0.05972, 0.1868, 0.3583, 1.182
+    f_dark = 1/f_b                         100, 20, 6.394, 3.333, 1.01
+  [PASS] DEPENDENT (registered): <s_b>, Omega_b, envelope all scale as f_b^{+1}   linear in f_b by construction (the symbol with exponent +1)
+  [PASS] DEPENDENT (registered): f_dark = 1/f_b moves the OTHER way (exponent -1)   f_dark(0.157) = 6.39 vs the G079 f_dark_from_baryon_fraction band [5.45, 6.69]
+  [PASS] RE-DERIVATION: m_ladder(MW rung) = 4.99997 keV and m_ladder(dSph floor) = 5.00009 keV land on the committed B03 11-rung recovery band [4.99997, 5.00009]   the two examples bracket the committed spread (0.00012 keV, B03 V1)
+  [PASS] RE-DERIVATION: T_X-ray(A1644) = 2.4738 keV = the B06 registered identity 2.4739 keV   rel. dev 2.54e-05 vs the B06 register (the mu/a0 constants carry ~1e-5)
+  [PASS] RE-DERIVATION: v_flat(MW) = 168.6 km/s = sqrt(2) x sigma (the B05/C01 identity)   v_flat/sigma = 1.414214 vs sqrt(2) = 1.414214
+
+  THE STRUCTURAL PROOF (symbol audit):
+    invariant laws contain ZERO occurrences of the symbol f_b;
+    the f_b-dependent ones exactly one (exponent +1: shares/Omega_b/envelope;
+    exponent -1: f_dark).  The sweep deltas of the invariant set are all
+    bit-identical (0.0), not 'small': the cosmic fraction never enters the
+    per-object arithmetic.
+
+------------------------------------------------------------------------------
+PART 3 -- THE COUNTERPOINT: the deciding observables that DO depend on f_b
+------------------------------------------------------------------------------
+
+  The cosmic pie (G187) and the Omega_dm closure (G079) are the framework's
+  f_b-carrying legs.  They are the honest boundary restated:
+
+  [A] THE COSMIC PIE'S BARYON SHARE
+      <s_b> = 0.0846 = 0.5411 x f_b  (G187/B09) -- the halo baryon share is
+      PROPORTIONAL to the input fraction: if a future cosmic measurement moved
+      f_b, this number rescales linearly (factor f_b'/f_b).  The pie's s_b(M)
+      nods (1e13: 0.081, 1.73e14: 0.068, 3.48e14: 0.1443, 8e14: 0.2025,
+      1e15: 0.2217) are MEASURED cluster baryon shares -- the curve
+      interpolates them; it does not produce them.
+
+  [B] THE Omega_dm CLOSURE (G079)
+      Omega_dm = 0.264 = Omega_eq 0.0021 + Omega_dust 0.2619 (99.2%).  The
+      budget consumes Omega_b = 0.0493 = f_b x Omega_m as a MEASURED input
+      (Planck, hardcoded into the EH98 transfer and the envelope 18.7% =
+      Omega_b/Omega_dm);  f_dark = 1/f_b ~ 6.4 (registered band 6-10);  the
+      saturation's baryon floor f_dust = 1 - f_b at the groups.  A different
+      f_b moves the envelope, f_dark and the pie's cosmic normalization.
+
+  [C] THE REGISTERED KILL SURFACES DO NOT TOUCH f_b (S05 C7, verbatim):
+      'the tests are all M_b-normalized, so a wrong f_b would be invisible to
+      every fit.'  None of the 20 FALSIFIER_MATRIX rows arbitrates the cosmic
+      baryon fraction -- the deciding observables for f_b itself are the
+      COSMIC SURVEY measurements (Planck-class Omega_b/Omega_m and the
+      cluster/group baryon census), not the framework's per-object tests.
+
+  [D] THE BOUNDARY NUANCE (the saturation's baryon floor, G178/G187):
+      the -8.1% saturation deviation was explained as exactly the baryon floor
+      f_dust = 1 - f_b = 0.919 with f_b = 0.081 -- the GROUP floor, a MEASURED
+      per-object share (E11 f_gas,500 + 0.02 stars), not the cosmic input.
+      The explanation stands for ANY cosmic f_b; only its INTERPRETATION as
+      0.52 x f_b (retention) imports the cosmic input.
+
+------------------------------------------------------------------------------
+PART 4 -- VERDICTS
+------------------------------------------------------------------------------
+  V1 THE INVARIANCE AUDIT: 12 committed predictions tagged -- 10 INVARIANT, 2 f_b-DEPENDENT.  INVARIANT: the BTFR/12-decade line (v_flat = (G M_b a0)^(1/4), slope 1 / Nu = 1, b = 1.004 +- 0.011 over n = 542 -- the M_dark/M_b ratio statement, per-object), the equipartition M_ph(<r) = M_b r/r_M (the 1:1 ratio at r_M, Lean-certified to 1e-16), the dust law c_dust(M, r) (per-object, q = -0.414 +- 0.157), the temperature law T_X-ray = mu m_p sqrt(G M_b a0)/(2 k_B) (the mu m_p proton rung, 0.053-dex MAD on 50 objects), the mass ladder m = k_B T_0(1+z*)/sigma^2 (per-object sigma, 5.09 +- 0.10 keV, environment-blind), plus the same-class extras (the phantom rho ~ M_b/r^2, the deep RAR g^2 = a0 g_N, the line E = m/2, the sqrt(2) identity, the Omega_eq <= Omega_star(1+f_gas) form).  f_b-DEPENDENT: the pie's halo share <s_b> = 0.0846 = 0.5411 x f_b (G187) and the cosmology budget (G079, Omega_b = f_b x Omega_m consumed as input, f_dark = 1/f_b, the envelope 18.7%).  The invariant set = the per-object M_b-normalized laws.  PROVEN structurally: across the f_b-sweep [0.01, 0.05, 0.1564, 0.30, 0.99] every invariant prediction is bit-identical (max |delta| = 0.0), while the dependent quantities scale by their registered rules (exponent +1 for the shares, -1 for f_dark).
+  V2 THE INVARIANT-CORE STATEMENT -- the predictions that survive ANY value of the input fraction (they test the M_b-normalized structure, not the cosmic normalization; the testable core independent of the cosmology input): (1) the BTFR quartic v_flat = (G M_b a0)^(1/4) and its dispersion face sigma = v_flat/sqrt(2) -- the 12-decade line slope Nu = 1 across 10^2.6-10^14.4, b = 1.004 +- 0.011, n = 542; (2) the equipartition M_ph(<r) = M_b r/r_M -> M_ph(<r_M) = M_b exactly (the phantom linear-in-r mass, rho = sqrt(G M_b a0)/(4 pi G r^2), the Gauss flux); (3) the deep RAR g^2 = a0 g_N; (4) the dust law c_dust(M, r) per object (q = -0.414 mass slope, the dust-vs-phantom split of the missing mass); (5) the X-ray temperature law T = mu m_p sqrt(G M_b a0)/(2 k_B) and its inverse mass estimator; (6) the mass ladder m = k_B T_0(1+z*)/sigma^2 = 5.09 +- 0.10 keV, environment-blind, hence the particle line E = m/2 = 2.5443 keV; (7) the scale-free identities (sqrt(2), the 2/3 law, the 1/b cusp shape).  Every one is a closed form in (per-object M_b, a0, G, c, mu m_p, k_B, T_0, z*) with zero occurrences of the cosmic baryon fraction.
+  V3 THE HONEST STATEMENT: the framework's robust core is the set of baryon-NORMALIZED laws -- they are INPUT-INDEPENDENT and stand for ANY f_b, because the symbol never enters their arithmetic (a wrong f_b would be invisible to every per-object fit, S05 C7 verbatim).  What WAITS on f_b is precisely the cosmic-facing pair: the pie's halo share <s_b> = 0.5411 f_b (G187) and the Omega_dm closure's baryon-carrying legs (Omega_b = f_b Omega_m input, f_dark = 1/f_b, the envelope) (G079).  The honest boundary restated: the framework fixes the DARK-INTERNAL split (M_sat, f_dust, the phantom share, the dark-to-baryon RATIO field 1:1 at r_M) and every M_b-normalized scaling law -- never the baryon ABUNDANCE.  f_b = 0.157 is the last measured input of the cosmic frame (S05/B09, 6 core = 4 measured + 1 identity-pinned + 1 derived), halo-ANCHORED at 4% (B09), NOT derived, and none of the 20 FALSIFIER_MATRIX rows arbitrates it: the deciding observables for the fraction are the cosmic-survey baryon measurements themselves, not the framework's tests.  THE ROBUST CORE IN ONE LINE: the baryon-normalized laws survive ANY f_b (they test M_dark/M_b structure); the cosmic pie and the Omega_dm closure wait on it (they are f_b-linear / f_b-inverse by construction).
+  [PASS] V1 the invariance audit (7 named items tagged; 10+ total rows; sweep deltas 0.0)   10 invariant rows, 2 dependent rows, max invariant-sweep delta = 0
+  [PASS] V2 the invariant-core statement (>= 6 M_b-normalized laws, each f_b-free)   7 demonstrated invariant predictions
+  [PASS] V3 the honest statement (core = per-object laws stand; pie + Omega_dm closure wait)   <s_b> = 0.5411 f_b and Omega_b = f_b Omega_m / f_dark = 1/f_b are the f_b-carrying legs
+
+D02 COMPLETE: 15/15 checks PASS.
+wrote /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/D02_results.json
