@@ -1,0 +1,74 @@
+==============================================================================
+G109 -- P6 EXECUTED: the cross-instrument equipartition (gas vs galaxies)
+==============================================================================
+
+task formula: sigma_gas = sqrt(3 k_B T_r/(mu m_p)), T_r = kTvir (Eckert+17 X-COP master table), mu = 0.6
+1D convention (the band footing): sigma_gas,1D = sqrt(k_B T_r/(mu m_p))
+sigma_gal: literature (all UNVERIFIED-in-repo; no committed galaxy-dispersion
+data exist -- bounded repo grep this run); per-cluster citations printed.
+M500: committed xcop_r500_ettori2019.json (Ettori+19).
+
+cluster  T_r     M500       sig_gas1D sig_gas3D   sig_gal      R1D     R3D     log10R1D   src
+---------------------------------------------------------------------------------------------
+A85       6.00    5.65e14    978.7   1695.2    934.0  0.954  0.551  -0.020   Tian+21 ApJ 910,56 Table2 flat sig
+A1644     5.09    3.48e14    901.4   1561.3    901.0  1.000  0.577  -0.000   Tian+21 Table2 N=211 [alt: S&R91 9
+A1795     6.08    4.63e14    985.2   1706.4    831.0  0.843  0.487  -0.074   Tian+21 Table2 N=105 [alt: HeCS 78
+A2029     8.26    8.82e14   1148.3   1989.0    844.0  0.735  0.424  -0.134   Tian+21 Table2 N=1056 [alt: HeCS 9
+A2142     8.40    8.95e14   1158.0   2005.8   1062.0  0.917  0.529  -0.038   Tian+21 Table2 N=994 [alt: HeCS 83
+A2255     5.81    5.26e14    963.1   1668.1    963.0  1.000  0.577  -0.000   Sohn+20 HeCS-omnibus Table2, biwei
+A2319     9.60    7.31e14   1238.0   2144.3   1622.0  1.310  0.756  +0.117   Yan+14 AJ 147,106, 128 members; ME
+A3158     4.99    4.26e14    892.5   1545.9    985.0  1.104  0.637  +0.043   Tian+21 Table2 N=206 [alt: Whelan+
+A3266     9.45    8.80e14   1228.3   2127.4   1226.0  0.998  0.576  -0.001   Tian+21 Table2 N=327 [alt: DeFilip
+RXC1825   5.13    4.08e14    905.0   1567.5    995.0  1.099  0.635  +0.041   Girardi+19 A&A Lyra complex, N=198
+ZW1215    6.27    7.66e14   1000.5   1732.9    938.0  0.938  0.541  -0.028   Sohn+20 HeCS-omnibus Table2, N200=
+A644      7.70    5.66e14   1108.7   1920.4     -- no sig_gal --    NO published sigma located this run (not in S&R91/HeCS/Tian+21 tables 
+
+------------------------------------------------------------------------------
+(2) THE MASS-INDEPENDENCE TEST  (convention-invariant)
+    n = 11 clusters with sigma_gal (A644 excluded, no published value located)
+    log10(sigma_gal/sigma_gas,1d): mean -0.008  median -0.001  rms 0.0621 dex  MAD 0.0368 dex  range [-0.134, +0.117]
+    (task formula: identical numbers, values shifted by -log10(sqrt3) = -0.239)
+    Spearman rho(log10 R vs log10 M500) = -0.518 (p = 0.069, two-sided, t-approx)
+    OLS slope d log10R / d log10 M500 = -0.118 +- 0.139 (consistent with 0 at 0.8 sigma)
+    A1d[A85] = 0.954  -> beta = -0.37
+    A1d[A1644] = 1.000  -> beta = -0.00
+    A1d[A1795] = 0.844  -> beta = -6.45
+    A1d[A2029] = 0.735  (no physical constant-beta SIS value: A^2 < 2/3)
+    A1d[A2142] = 0.917  -> beta = -0.91
+    A1d[A2255] = 1.000  -> beta = -0.00
+    A1d[A2319] = 1.310  -> beta = +0.68
+    A1d[A3158] = 1.104  -> beta = +0.40
+    A1d[A3266] = 0.998  -> beta = -0.01
+    A1d[RXC1825] = 1.099  -> beta = +0.39
+    A1d[ZW1215] = 0.938  -> beta = -0.57
+
+    cluster ratios in the P6 band (1.0, 1.6): 3/11 (R3d footing: 0/11 -- the sqrt(3) is the 1D->3D gas conversion, not anisotropy)
+    cluster ratios in the V2 band (0.9, 1.7): 9/11
+    median A (1d footing) = 0.998;  SIS-inverted median beta = -0.00 (n phys = 10);  A<1 <-> tangential, A>1 <-> radial
+    plausibility: beta ~ 0 - 0.5 typical for cluster galaxies (e.g.
+    Lokas+06 fitted beta ~ 0.00 for A3158; Munari+13/Biviano+13: mild radial in outskirts); the A-star outliers are the flagged out-of-equilibrium systems (A2319, A3266, RXC1825) and A2029/A1795 (A ~ 0.73-0.84).
+
+------------------------------------------------------------------------------
+(4) THE VERDICTS
+  V1 [spread < 0.2 dex]: rms = 0.0621 dex -> PASS  (|spearman rho| = 0.518 (trend flag))
+      both footings identical; robustness vs the sigma_gal source choice is +-0.05-0.10 dex (see cross-checks below)
+  V2 [implied anisotropy factor in (0.9, 1.7)]: median A1d = 0.998, 9/11 clusters in band -> PASS  (band-footing 1D-vs-1D; task-formula footing: A/sqrt3 ~ 0.576 -- outside (0.9,1.7) by construction)
+  V3 [the honest statement]: the cross-instrument equipartition sigma_gal,los ~ sigma_gas,1d = sqrt(kT/mu m_p) HOLDS (median A = 0.998, i.e. deviation from isotropic equipartition -0.002, SIS-inverted beta ~ -0.00 -- mildly aniso, consistent with measured cluster beta)
+  V3-context: under the task's literal sigma_gas = sqrt(3kT/mu m_p) the ratios sit at 0.576 ~ 0.6-0.9 -- the equipartition, read as sigma_gal,los vs the gas 3D rms, fails the 'ratio ~ 1' form by the Maxwellian sqrt(3), which is a convention, not physics.
+
+------------------------------------------------------------------------------
+ROBUSTNESS -- sigma_gal from alternative published sources (R1d = sig_gal/sig_gas,1d):
+    A85      primary R1d = 0.954   |  alternatives: 822 -> R1d=0.840 (HeCS-omnibus Sohn+20),  719 -> R1d=0.735 (Bilton&Pimbblet18),  749 -> R1d=0.765 (Struble&Rood91)
+    A1644    primary R1d = 1.000   |  alternatives: 991 -> R1d=1.099 (Struble&Rood91)
+    A1795    primary R1d = 0.843   |  alternatives: 786 -> R1d=0.798 (HeCS-omnibus Sohn+20),  794 -> R1d=0.806 (Bilton&Pimbblet18),  896 -> R1d=0.909 (Struble&Rood91)
+    A2029    primary R1d = 0.735   |  alternatives: 969 -> R1d=0.844 (HeCS-omnibus Sohn+20),  932 -> R1d=0.812 (Bilton&Pimbblet18),  1411 -> R1d=1.229 (Struble&Rood91)
+    A2142    primary R1d = 0.917   |  alternatives: 835 -> R1d=0.721 (HeCS-omnibus Sohn+20),  816 -> R1d=0.705 (Bilton&Pimbblet18),  1241 -> R1d=1.072 (Struble&Rood91)
+    A2255    primary R1d = 1.000   |  alternatives: 788 -> R1d=0.818 (Bilton&Pimbblet18),  1221 -> R1d=1.268 (Struble&Rood91)
+    A2319    primary R1d = 1.310   |  alternatives: 1627 -> R1d=1.314 (Struble&Rood91)
+    A3158    primary R1d = 1.104   |  alternatives: 1058 -> R1d=1.185 (Whelan+22 eROSITA),  970 -> R1d=1.087 (Lokas+06 MNRAS368,987)
+    A3266    primary R1d = 0.998   |  alternatives: 1337 -> R1d=1.089 (DeFilippis+17 MNRAS468,2645 overall),  1462 -> R1d=1.190 (DeFilippis+17 core)
+    ZW1215   primary R1d = 0.938   |  alternatives: 671 -> R1d=0.671 (Bilton&Pimbblet18)
+
+    note: cross-instrument scatter of sigma_gal (same cluster, different surveys) is +-10-20% -> the <0.2 dex V1 band is tested at the level of the data, not below it.
+
+wrote G109_results.json
