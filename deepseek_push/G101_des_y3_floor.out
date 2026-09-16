@@ -1,0 +1,84 @@
+==========================================================================================
+G101 -- THE Y3 LENSING EXTENSION: the law's floor at the DES-Y3 scales
+==========================================================================================
+
+--- (0) THE DATA VECTOR: bin structure of the DES-Y3 gammat ---
+    gammat rows: 400 = 5 (redMaGiC lens z-bins 0.15-0.9) x 4 (source z-bins) x 20 angular bins
+    theta bins: 20 log bins  2.50' -> 250' (edges from the file, arcmin)
+    VALUE = raw mean tangential shear (dimensionless);  median |VALUE| = 5.48e-05
+    lens mean z   : ['0.273', '0.432', '0.582', '0.726', '0.848']
+    source mean z : ['0.336', '0.521', '0.741', '0.936']
+    gammat precision: sigma median 1.44e-05, S/N = |gamma|/sigma median 3.2, max 27
+  [PASS] bin structure: gammat = 5 lens x 4 source x 20 angular bins, COVMAT gammat block [400:800]
+  [PASS] theta window 2.5'-250' (file edges log-spaced)
+
+--- (1) LENSING GEOMETRY: effective Sigma_crit per lens-source pair ---
+    Sigma_crit [Msun/pc^2] (lens x source):
+      lens 1:    6634    4861    3520    3167
+      lens 2:    7062    5989    4000    3183
+      lens 3:    5020    6612    5734    3789
+      lens 4:    2777    5582    8626    4977
+      lens 5:    2527    4990   12099    6684
+
+--- (2) THE LENS MASS ASSUMPTION (stated, not fitted) ---
+    lens bins 1..5 stellar masses log M*/Msun = [11.3, 11.7, 12.0, 12.48, 13.0]   (the brief's 2e11-1e13 band, geometric spread)
+    redMaGiC = constant luminosity threshold; halos roughly constant log Mh ~ 13.2-13.7 (Zacharegkas+21);
+    sensitivity variant M* = 2e11 (constant) quoted alongside; share ~ sqrt(M*).
+    ASSUMPTIONS: all baryons in the central point galaxy; no intra-halo gas;
+    g_N = G M*/R_phys^2; R_phys = theta*chi(<z_l>)/(1+<z_l>).
+
+--- (3) THE FLOOR'S FRACTIONAL SHARE PER BIN ---
+    bins used: 339/400 (guard: 61 rows with gamma_t <= 0 skipped)
+    share = floor/g_obs:  min 1.48e-01  median 0.882  max 3.12e+02
+    share > 1: 160 bins (the floor ALONE exceeds the measurement there)
+
+    V1 -- the floor's share per lens bin (median over the 4x20 sub-bins; 5-95 pct):
+      lens bin 1: median share  24.7%  (p5-p95  16.9- 47.5%)
+      lens bin 2: median share  56.6%  (p5-p95  27.1-286.6%)
+      lens bin 3: median share  98.5%  (p5-p95  46.1-1589.9%)
+      lens bin 4: median share 229.3%  (p5-p95  73.1-4127.5%)
+      lens bin 5: median share 709.7%  (p5-p95 228.7-12759.7%)
+
+--- (4) V2 -- WHERE THE FLOOR IS A TESTABLE FRACTION (> 10%) ---
+    bins with share > 10%:                       339 / 339
+      of which 10% < share < 100% (the REAL window): 179
+      of which share >= 100% (floor alone >= signal): 160
+    sub-dominant window with S/N >= 2:            178
+      ...with share > 2 sigma_share:              178
+    robustness (B21 factor-4 reading, shares/2, S/N>=2): 204
+    distribution of the 10-100% bins over angular scale:
+      10' < theta <= 100'     :  90 bins   (lens bins [1, 2, 3, 4]; R range 2.82-39.01 Mpc)
+      theta <= 10'            :  53 bins   (lens bins [1, 2, 3]; R range 0.71-3.55 Mpc)
+      theta > 100'            :  36 bins   (lens bins [1, 2, 3]; R range 28.24-89.08 Mpc)
+    floor <= signal out to (per lens bin, data-based):
+      lens bin 1: R <= 56.34 Mpc
+      lens bin 2: R <= 76.06 Mpc
+      lens bin 3: R <= 89.08 Mpc
+      lens bin 4: R <= 39.01 Mpc
+      lens bin 5: R <= 0.00 Mpc
+    inner-end shares (lens bin 1, source 4, the 4 innermost theta bins):
+      theta=  2.84'  R=0.71 Mpc  share  30.2%  S/N 19.6
+      theta=  3.57'  R=0.89 Mpc  share  28.9%  S/N 20.2
+      theta=  4.49'  R=1.12 Mpc  share  22.4%  S/N 25.6
+      theta=  5.66'  R=1.42 Mpc  share  22.7%  S/N 24.8
+
+--- (5) V3 -- THE STATEMENT ---
+    among S/N>=2 bins: share>10% in 100%, share>20% in 95%, 10-100% window 73%
+    sensitivity variant M* = 2e11 constant (the redMaGiC threshold reading):
+      lens bin 1: band-M* median   24.7%  ->  2e11 reading   24.7%  (x1.00)
+      lens bin 2: band-M* median   56.6%  ->  2e11 reading   35.7%  (x0.63)
+      lens bin 3: band-M* median   98.5%  ->  2e11 reading   44.0%  (x0.45)
+      lens bin 4: band-M* median  229.3%  ->  2e11 reading   59.0%  (x0.26)
+      lens bin 5: band-M* median  709.7%  ->  2e11 reading  100.4%  (x0.14)
+
+V3: THE Y3 LENSING EXTENSION, HONESTLY: at the DES-Y3 projected radii (R_phys = 0.71-103 Mpc, extra-galactic window 2.5'-250') the law's zero-parameter phantom floor g_lens = g_N(1+sqrt(a0/g_N)) is NOT a small contamination of the Y3 signal: the median floor share over the used bins is 88% and it exceeds 10% in 339 of 339 bins (100%) -- BUT a large part of that is the overprediction corner: in 160 bins the floor ALONE equals or exceeds the measured signal (share >= 100%; the high-lens-redshift bins 4-5 under the 10^12.5-10^13 Msun mass reading).  The window where the floor is a TESTABLE SUB-DOMINANT fraction (10% < share < 100%) spans 179 bins, 178 of them at S/N >= 2: the low-redshift lens bins (1-2, M* ~ 2-5e11) at R_phys ~ 0.7-3 Mpc (theta <= ~10'), where the share is 20-60% -- i.e. the Y3 signal there is 40-80% 'floor + dust' in the G073 decomposition and the share EXCEEDS the per-bin measurement error (median S/N 3.2 -> sigma(share)/share ~ 30%).  The honest verdict on sensitivity: at the Y3 radii the floor fraction is ~ 20-60% (low-z bins, S/N 2-25) rising to hundreds of percent at R > 20 Mpc where the signal is noise-dominated -- the Y3 lensing IS sensitive to the floor by construction of the deep branch, and the question is entirely SYSTEMATIC: (i) the ESD->g conversion class (2*pi vs B21's factor-4, the registered pi/2 = 0.196-dex band of G073): under factor-4 all shares halve (the inner-bin 20-60% drops to 10-30%) while the sub-dominant window at S/N>=2 REMAINS large (204 bins, more overprediction bins fall back below 100%); (ii) the M* ENVELOPE: the shares scale as sqrt(M*), and the 2e11-1e13 band spans a 7x share range -- the 'overprediction corner' of lens bins 4-5 (M* ~ 3e12-1e13) is entirely a M* assumption artifact (halo masses are only ~10^13.2-13.7 for ALL redMaGiC bins); (iii) the point-galaxy M* ignores satellites + intra-halo baryons, making the large-R floor a LOWER bound; (iv) no boost/RSD corrections on the released vector.  VERDICT V3: TODAY the raw Y3 gammat cannot VERIFY the law: the 20-60% shares in the high-S/N inner bins sit inside the conversion-class and M*-band systematics of comparable size; the decisive Y3 test is AFTER a re-analysis -- lens stellar masses from the actual catalog, the Mistele-exact ESD->g deprojection, boost/RSD/systematics corrections, and a covariance-combined floor+dust fit over the 178-bin window -- where the floor's 20-60% share at S/N ~ 2-25 becomes a 6-sigma-scale statement.
+
+--- VERDICTS ---
+    V1 floor share per bin: median 88% (p5-p95 22-2504%); per-lens-bin medians above -> the floor is a real fraction of the Y3 signal
+    V2 testable window: 179 bins at 10%<share<100%, 178 with S/N>=2 -> PASS
+  [PASS] V1: floor share is a real fraction (median > 5%) of the Y3 signal   median 88%
+  [PASS] V2: a testable 10-100% window exists with S/N >= 2   178 bins
+  [PASS] V3: statement asserts testability only after re-analysis while the raw release carries +-0.2-dex class and sqrt(M*) systematics
+
+wrote G101_results.json
+G101 COMPLETE: 5/5 checks PASS.
