@@ -1,0 +1,84 @@
+{
+ "lane": "G151_temperature_ladder",
+ "title": "THE TEMPERATURE LADDER -- one velocity scale (the triad's sigma), three temperatures (phase / free-dust / baryonic gas), stated with the numbers and the honest rung census",
+ "question": "G151: state the framework's three temperatures -- (a) the equilibrium phase T = m sigma^2/k_B (9.17 K at 5 keV, mass-free in T/m); (b) the free dust's kinetic T (2.04e-5 K at z = 3, falling as (1+z)^2); (c) the baryonic gas T = mu m_p sigma^2/k_B at the same sigma (the cluster 3.6 keV-class); the ladder's ratios; the bookkeeping statement; which rungs are observable; the verdicts.",
+ "references": {
+  "G116": "T/m = sigma^2/k_B mass-free (1.83-2.01 mK/eV); T_phase(5 keV) = 9.17 K; free dust T(z=3) = 2.0436e-5 K (1.2796e-6 K z=0); decoupling ratio 4.5e+05x; sigma = 119.209 km/s",
+  "G093": "the free-dust coldness: v_th(z=0) = 0.0548 km/s, v_th(z=3) = 0.219 km/s (3.3 keV), lambda_fs 0.50-0.82 Mpc, c_s^2(z=3) = 5.34e-13/1.79e-13 vs L194 1e-9 (1872x) / L224 1.1e-11 (61x); V4 non-claims (no direct-detection coupling, THEORY.md 8)",
+  "G095": "the cluster T is the virial T of the total mass: closed form 2 (M_dyn/M_b)(r_M/r); median 3.512 vs 3.572 (1.8%); log10 scatter T_pred/T_obs = 0.051 dex = HSE scatter 0.053 dex; hse median 0.989",
+  "G109": "cross-instrument sigma: sigma_gal/sigma_gas,1D median 0.998, log10 rms 0.0621 dex (11 clusters); kTvir median 6.17 keV <-> sigma_1d = 992 km/s; mu = 0.6",
+  "G008": "cluster sigma_pred registered 809 km/s from zero parameters (STATE.md line 91) -> T = mu m_p sigma^2/k_B = 4.10 keV; A85-class M_b(R500) = 1.109e14 Msun -> sigma_pred = 766.1 km/s -> 3.68 keV (the 3.6 keV-class)",
+  "G075": "clusters under the triad: T_X,pred = mu m_p sigma^2/(2 k_B) median T_pred/T_obs = 0.28 (canonical) / 0.31 (alt) -- the ICM ~3.6x hotter than the /2-convention baryon floor; kTvir per cluster (Eckert+17 Table 1), median 6.17 keV",
+  "G091/G03G": "the triad: sigma^2 = (1/2) sqrt(G M_b a0), kappa = sigma^2/v_flat^2 = 1/2, k_B T_thermo = m sigma^2 (the virial temperature IS the thermodynamic temperature)"
+ },
+ "checks": [
+  {
+   "name": "A1 [rung (a) reproduced] T_phase = m sigma^2/k_B at m = 5 keV, sigma = 119.209 km/s: direct recompute 9.1744 K vs the registered 9.17 K (band 9.17-10.07 K, G084); T/m = 1.8349 mK/eV vs registered 1.835 mK/eV (band 1.83-2.01)",
+   "measured": {"T_a_K": 9.1744, "T_a_registered_K": 9.1729, "T_per_eV_mK": 1.8349, "mass_free": "T/m = sigma^2/k_B; sigma^2 = (1/2) sqrt(G M_b a0) contains no particle mass"},
+   "pass": true,
+   "reading": "the phase temperature is the DYNAMICS-set number: the mass enters only as the linear factor that converts sigma^2/k_B (1.83-2.01 mK/eV) into kelvin"
+  },
+  {
+   "name": "A2 [rung (b) reproduced] T_kin,dust = m v_th^2/k_B: at z = 3, m = 5 keV, v_th = 0.1779 km/s: 2.0436e-5 K (registered 2.0436e-5 K); z = 0: 1.277e-6 K (registered 1.2796e-6); scaling T ~ (1+z)^2: T(z=3)/T(z=0) = 16 exactly",
+   "measured": {"T_b_z3_K": 2.0436e-05, "T_b_z0_K": 1.2772e-06, "ratio_z3_z0": 16.0, "scaling": "v_th ~ a^-1 -> T ~ (1+z)^2"},
+   "pass": true,
+   "reading": "the free dust never equilibrates: its kinetic temperature is set by the expansion, not by any well; it falls as (1+z)^2 from 2.04e-5 K at z = 3 to 1.28e-6 K today"
+  },
+  {
+   "name": "A3 [rung (c) at the SAME sigma as (a)] T_gas = mu m_p sigma^2/k_B (mu = 0.6) at sigma = 119.2 km/s: 89.0 eV = 1.033e6 K; the ratio c/a = 1.126e5 = mu m_p/m EXACTLY (5.63e8 eV / 5 keV) -- the coupling-to-mass identity, sigma-independent",
+   "measured": {"T_c_same_sigma_eV": 89.01, "T_c_same_sigma_K": 1.0330e6, "c_over_a": 1.126e5, "identity": "c/a = mu m_p/m = 1.126e5 at any equal sigma"},
+   "pass": true,
+   "reading": "at one velocity scale the phase sits at m sigma^2 and the gas at mu m_p sigma^2: the rung separation is the mass ratio mu m_p/m, an exact algebraic identity of the two formulas"
+  },
+  {
+   "name": "A4 [the cluster rung: the 3.6 keV-class] T_gas at the cluster triad sigma: sigma_pred = (G M_b a0)^(1/4)/sqrt(2) at M_b(R500; A85) = 1.109e14 Msun -> 766.1 km/s -> 3.68 keV; G008/STATE.md registered 809 km/s -> 4.10 keV; 3.6 keV <-> sigma = 758 km/s; observed X-COP kTvir median 6.17 keV <-> sigma_1d = 992 km/s (G109)",
+   "measured": {"sigma_A85_kms": 766.1, "T_c_A85_keV": 3.68, "registered_809_kms_T_keV": 4.10, "sigma_at_3p6keV_kms": 758, "kTvir_median_keV": 6.17, "sigma_obs_1d_kms": 992},
+   "pass": true,
+   "reading": "the baryonic gas at the cluster's zero-parameter sigma is 3.6-4.1 keV-class; the observed 6.17 keV median sits a factor 1.5-1.7 above the triad rung (the G075-registered 3.6x floor gap is the /2-convention T_pred reading, 0.28 = 1/3.6)"
+  },
+  {
+   "name": "B1 [THE LADDER's ratios, computed on the committed numbers] a/b(z=3) = 4.489e5 (the registered 4.5e5 decoupling ratio, G116 A2); c/a = 1.126e5 = mu m_p/m (exact); c/b(z=3) = 5.055e10 at equal sigma; cluster rung over a = 4.650e6, over b(z=3) = 2.088e12",
+   "measured": {"a_over_b_z3": 4.489e5, "c_over_a_equal_sigma": 1.126e5, "c_over_b_z3_equal_sigma": 5.055e10, "cA85_over_a": 4.650e6, "cA85_over_b_z3": 2.088e12},
+   "pass": true,
+   "reading": "the brief's order-of-magnitude glosses corrected against the committed numbers: c/a ~ 1e5 is right (exact mass ratio); a/b = 4.5e5, NOT 1e4 (it is the registered decoupling ratio); c/b ~ 5e10 (equal sigma), NOT 1e9 -- the ladder is stated with the computed values"
+  },
+  {
+   "name": "C1 [THE STATEMENT: one velocity scale, three temperatures] the triad's sigma is the single velocity scale: rung (a) at sigma = 119.2 km/s (galaxy) / 766-809 km/s (cluster triad); rung (c) in equipartition with the same sigma (G109: sigma_gal/sigma_gas = 0.998); rung (b) is the one non-equilibrium exception (v_th = 0.178 km/s, never sigma) -- that is what makes it dust. The mass sets the phase temperature; the coupling sets the gas temperature; the expansion sets the dust's kinetic temperature",
+   "measured": {"one_velocity_scale": "the triad's sigma (T/m = sigma^2/k_B registered constant; gas at equipartition)", "set_by": {"a": "the mass (linear, T/m mass-free)", "b": "the expansion (v_th ~ a^-1, T ~ (1+z)^2)", "c": "the coupling (mu m_p/m = 1.126e5 = c/a) + the dynamics (sigma)"}, "n_temperatures": 3},
+   "pass": true,
+   "reading": "the framework's thermodynamics in one table: no fourth temperature exists; every T in the theory is one of the three, and all three share one velocity scale (up to the dust's deliberate non-equilibrium)"
+  },
+  {
+   "name": "C2 [the inertness consequence] the equilibrium phase's 9.17 K is observationally inert: no radiation (no EM coupling by construction, THEORY.md 8 / G093 V4), no collisions (relaxation only via the scalar force inside the EFE line); phase-space-safe (TG floor 23.25 eV vs m > 3.3 keV: 141.9x margin, G084/G116) but not visible. The dust's 2.04e-5 K likewise: sensed only via c_s^2 = 5.3e-13 at z=3 (61-1872x under the L194/L224 residual budget) -- coldness inferred, never read",
+   "measured": {"inert_a": "no radiation, no collision -> invisible to every instrument", "inert_b": "c_s^2(z=3) = 5.3e-13-1.8e-13 vs 1e-9 (1872x) / 1.1e-11 (61x) margins, G093 C3", "phase_space": "TG 23.25 eV floor, 141.9x margin (G116 A1)"},
+   "pass": true,
+   "reading": "two of the three rungs are bookkeeping temperatures: the theory can state them, no instrument can read them"
+  },
+  {
+   "name": "C3 [the observable rung census] exactly ONE rung is observable: (c) -- kTvir (Eckert+17, X-COP), sigma_gal (Tian+21/Sohn+20), and their cross-instrument identity (G109: 0.998 median, rms 0.062 dex); plus the gas-vs-gas relations (G095 closed form 2 f (r_M/r), median within 1.8%, 0.05-dex scatter = HSE). NONE of the ladder's pair ratios is observable: c/a, a/b, c/b each contain an inert rung -- in particular c/a is NOT measurable via cluster T and phase T (the phase T is not measurable); c/a is the exact identity mu m_p/m, whose empirical content lives only in its inputs (m from the forest, G093; mu m_p known)",
+   "measured": {"observable": ["(c) T_gas = mu m_p sigma^2/k_B via kTvir/sigma_gal/lensing", "c/c' and sigma_gal <-> kT relations (G109/G095)"], "unobservable": ["(a) 9.17 K phase", "(b) 2.04e-5 K dust", "c/a, a/b, c/b (inert member in each)"]},
+   "pass": true,
+   "reading": "the honest answer to 'which ratio is measurable': none of the three ladder ratios; the measurable quantity is rung (c) itself, read against itself (T <-> sigma^2) or against the zero-parameter triad sigma (M_b -> sigma -> T)"
+  }
+ ],
+ "verdicts": {
+  "V1_the_ladder_complete": {
+   "pass": true,
+   "statement": "THE LADDER WITH THE NUMBERS: (a) T = m sigma^2/k_B = 9.17 K at m = 5 keV, sigma = 119.2 km/s (T/m = 1.835 mK/eV mass-free, band 1.83-2.01); (b) T = m v_th^2/k_B = 2.04e-5 K at z = 3 (1.28e-6 K at z = 0), falling as (1+z)^2 (ratio 16 exactly); (c) T = mu m_p sigma^2/k_B = 89.0 eV at the same sigma; 3.68 keV at the cluster triad sigma (A85 M_b(R500) = 1.109e14 Msun -> 766.1 km/s; 4.10 keV at the G008-registered 809 km/s; 3.6 keV <-> 758 km/s); observed kTvir median 6.17 keV. Ratios on the committed numbers: a/b = 4.49e5 (the registered 4.5e5 decoupling ratio), c/a = 1.126e5 = mu m_p/m exact, c/b = 5.06e10 (equal sigma) / 2.09e12 (cluster rung); c(A85)/a = 4.65e6. The brief's glosses corrected: c/a ~ 1e5 correct; a/b = 4.5e5 not 1e4; c/b ~ 5e10 not 1e9.",
+   "measured": {"T_a_K": 9.17, "T_b_z3_K": 2.0436e-05, "T_c_cluster_keV": [3.68, 4.10], "T_obs_median_keV": 6.17, "a_over_b": 4.489e5, "c_over_a": 1.126e5, "c_over_b": 5.055e10}
+  },
+  "V2_the_observable_rungs": {
+   "pass": true,
+   "statement": "EXACTLY ONE rung is instrument-reachable: (c), the baryonic gas T = mu m_p sigma^2/k_B -- X-ray/SZ kTvir, galaxy sigma, lensing M <-> T -- confirmed on the record at the 0.06-0.10 dex level (G109: sigma_gal/sigma_gas = 0.998 median, rms 0.062 dex; G095: closed-form T ratio within 1.8% at the median, 0.051-0.053 dex scatter = HSE; G075: kTvir vs the zero-parameter triad rung within a factor 1.5-1.7). Rungs (a) 9.17 K and (b) 2.04e-5 K are unobservable by the theory's own construction (no radiation, no collision, no direct-detection channel, G093 V4/THEORY.md 8); therefore NONE of the ladder's pair ratios (c/a, a/b, c/b) is measurable -- there is no instrument for 9.17 K or 2.04e-5 K, so no ratio containing them can be read.",
+   "measured": {"equipartition_median": 0.998, "equipartition_rms_dex": 0.0621, "g095_median_within": "1.8%", "hse_scatter_dex": 0.053, "n_observable_rungs": 1}
+  },
+  "V3_the_honest_statement": {
+   "pass": true,
+   "statement": "THE TEMPERATURE LADDER IS A BOOKKEEPING STATEMENT, NOT A NEW OBSERVABLE. One velocity scale (the triad's sigma; T/m = sigma^2/k_B registered constant; the gas at equipartition with the same sigma) and three temperatures -- set by the mass (phase: T/m mass-free), the coupling (gas: c/a = mu m_p/m = 1.126e5 exactly), and the expansion (dust: (1+z)^2) -- organize the framework's thermodynamic ledger and add nothing measurable to it. Two of the three rungs are inert by construction: the 9.17 K phase radiates nothing and collides with nothing; the 2.04e-5 K dust leaves only a c_s^2 = 1e-13 footprint 61-1872x under the tightest registered residuals. The one rung with empirical content is the baryonic gas T = mu m_p sigma^2/k_B -- the ordinary ICM virial relation -- already confirmed at 0.06-0.10 dex (G109 cross-instrument equipartition; G095 closed form + HSE scatter 0.053 dex), and the zero-parameter cluster rung (M_b -> sigma_pred = 766-809 km/s -> 3.68-4.10 keV) sits a factor 1.5-1.7 under the observed 6.17 keV median. The ladder's ratios are identities between bookkeeping temperatures; the honest claim is that the ladder adds no observable to the theory -- it states, in one table, what the theory's temperatures are and which one the data already measure.",
+   "measured": {"new_observable": "none", "empirical_rung": "T = mu m_p sigma^2/k_B (ICM virial relation)", "confirmation_dex": "0.06-0.10", "cluster_pred_vs_obs": "3.68-4.10 keV vs 6.17 keV (factor 1.5-1.7)"}
+  }
+ },
+ "n_pass": 8,
+ "n_total": 8,
+ "statement": "THE TEMPERATURE LADDER: one velocity scale (the triad's sigma), three temperatures -- (a) the equilibrium phase T = m sigma^2/k_B = 9.17 K at 5 keV (T/m = 1.835 mK/eV mass-free; set by the mass); (b) the free dust T = m v_th^2/k_B = 2.04e-5 K at z = 3 falling as (1+z)^2 (set by the expansion; never equilibrates); (c) the baryonic gas T = mu m_p sigma^2/k_B = 89 eV at the same sigma, 3.6-4.1 keV at the cluster triad sigma (set by the coupling: c/a = mu m_p/m = 1.126e5 exactly), observed at kTvir = 6.17 keV median. Ratios: a/b = 4.49e5 (the registered 4.5e5 decoupling ratio), c/a = 1.126e5, c/b = 5.06e10 (equal sigma). Two rungs are observationally inert (no radiation, no collision); no ladder ratio is measurable; the one rung with empirical content is the gas temperature T = mu m_p sigma^2/k_B, already confirmed at 0.06-0.10 dex -- the ladder is bookkeeping, not a new observable."
+}
