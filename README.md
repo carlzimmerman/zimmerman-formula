@@ -426,7 +426,8 @@ mechanisms inside Python scripts, or as references — is indexed below.
 **Click any name** for its dedicated citation page in [`citations/`](citations/),
 which links to every repo file where that person is cited (GitHub) plus their papers.
 The master growing list lives in [`CITATIONS.md`](CITATIONS.md) (append-only; add
-new names as work lands). Page indexes: **55 individuals indexed to date.**
+new names as work lands). Page indexes: **74 individuals indexed to date — full-repo
+sweep, every file and occurrence listed (no caps).**
 
 ## Paper citations
 
@@ -488,7 +489,21 @@ theories, tooling) — full per-person file lists on their pages:
 - [José Luis Sérsic](citations/sersic/index.md) — surface-brightness profiles
 - [Ivan King](citations/king/index.md) — star-cluster profiles
 - [Pierre Teyssandier](citations/teyssandier/index.md) · [L. Lombardelli](citations/lombardelli/index.md) · [Boufourou](citations/boufourou/index.md) — wide-binary / light-deflection analyses
+- [William Unruh](citations/unruh/index.md) · [Stephen Hawking](citations/hawking/index.md) — the de Sitter-Unruh / Hawking-temperature framework
+- [Erik Verlinde](citations/verlinde/index.md) · [Thanu Padmanabhan](citations/padmanabhan/index.md) · [Ted Jacobson](citations/jacobson/index.md) — entropic / thermodynamic gravity
+- [Paul Davies](citations/davies/index.md) · [Stephen Fulling](citations/fulling/index.md) — the Unruh effect / vacuum structure
+- [Willem de Sitter](citations/desitter/index.md) — the de Sitter horizon / cosmic constant
+- [James Schombert](citations/schombert/index.md) — SPARC / RAR co-author
+- [Deidre Hunter](citations/hunter/index.md) — LITTLE THINGS / dwarf-disc HI
+- [Renzo Sancisi](citations/sancisi/index.md) · [Filippo Fraternali](citations/fraternali/index.md) — HI rotation / extra-planar gas
+- [Ayesha Begum](citations/begum/index.md) — dwarf rotation curves
+- [HongSheng Zhao](citations/zhao/index.md) — MOND / wide-binary theory
+- [Jeremiah Ostriker](citations/ostriker/index.md) — disc stability / halos
+- [Donald Lynden-Bell](citations/lyndenbell/index.md) — dynamics / the "two-body" relaxation
+- [Daniel Eisenstein](citations/eisenstein/index.md) — BAO / dark-energy surveys
+- ClearPotential collaboration — neural ρ_DM,⊙ measurement
 
-> **Full living index:** [`CITATIONS.md`](CITATIONS.md) — 55 individuals, each with a
-> clickable citation page under [`citations/`](citations/). Append-only: every new
-> contribution gets added there as it lands; nothing is ever deleted.
+> **Full living index:** [`CITATIONS.md`](CITATIONS.md) — 74 individuals, each with a
+> clickable citation page under [`citations/`](citations/), every file and occurrence
+> listed (full-repo sweep, no caps). Append-only: every new contribution gets added
+> there as it lands; nothing is ever deleted.

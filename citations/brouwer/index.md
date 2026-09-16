@@ -1,71 +1,266 @@
 # Margot Brouwer
 
-**Papers (arXiv links):**
+**Cited in 245 file(s), 709 total occurrence(s) across the repo — full list:**
 
-- arXiv:2105.XXXXX — [abs](https://arxiv.org/abs/2105.XXXXX)
+**Data/config (5 files):**
 
-**Cited in 60 file(s) across the repo — click to view on GitHub:**
+- [`deepseek_push/G073_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G073_results.json) — 7×
+- [`qwen_claude_field_theory/papers_2026/PAPER29_equilibrium_reading_2026.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER29_equilibrium_reading_2026.zenodo.json) — 1×
+- [`real_research/papers/MI_LENSING_NOGO_2026.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_LENSING_NOGO_2026.zenodo.json) — 2×
+- [`real_research/papers/TRIANGLE_KIDS_2026.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/TRIANGLE_KIDS_2026.zenodo.json) — 1×
+- [`real_research/papers/WHICH_A0_POPULATION_SPLIT_2026.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/WHICH_A0_POPULATION_SPLIT_2026.zenodo.json) — 1×
 
-- `Paper` — [`paper/dark_universe_bridge.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/paper/dark_universe_bridge.tex)
-- `Markdown/notes` — [`hy4_push/H052_LEAN_MATH_50.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hy4_push/H052_LEAN_MATH_50.md)
-- `Markdown/notes` — [`predictions_2026/INVENTORY_4_lensing_clusters_environment_kappa.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/predictions_2026/INVENTORY_4_lensing_clusters_environment_kappa.md)
-- `Markdown/notes` — [`predictions_2026/SECOND_LAW_HUNT_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/predictions_2026/SECOND_LAW_HUNT_2026.md)
-- `Markdown/notes` — [`fable_independent_2026/L24_LENSING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L24_LENSING.md)
-- `Markdown/notes` — [`real_research/A0Z_KERNEL_STANDING_2026-06-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/A0Z_KERNEL_STANDING_2026-06-06.md)
-- `Python script` — [`real_research/a0z_multimethod_landing.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/a0z_multimethod_landing.py)
-- `Python script` — [`real_research/a0z_lensing_forecast.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/a0z_lensing_forecast.py)
-- `Markdown/notes` — [`fable_independent_2026/L68_DIPOLAR_DM.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L68_DIPOLAR_DM.md)
-- `Other` — [`opus_48_extended_research/reviews/_lit_sweep_2025_2026_workflow.js`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/_lit_sweep_2025_2026_workflow.js)
-- `Python script` — [`fable_independent_2026/L24_lensing_vs_dynamics.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L24_lensing_vs_dynamics.py)
-- `Python script` — [`real_research/web_search_relations.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/web_search_relations.py)
-- `Python script` — [`fable_independent_2026/L67_emergent_mond.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L67_emergent_mond.py)
-- `Markdown/notes` — [`real_research/VERLINDE_DEEP_DIVE_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/VERLINDE_DEEP_DIVE_2026-06.md)
-- `Markdown/notes` — [`CITATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/CITATIONS.md)
-- `Markdown/notes` — [`deepseek_push/data2/MANIFEST.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/data2/MANIFEST.md)
-- `Markdown/notes` — [`real_research/papers/TRIANGLE_KIDS_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/TRIANGLE_KIDS_2026.md)
-- `Data/config` — [`real_research/papers/WHICH_A0_POPULATION_SPLIT_2026.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/WHICH_A0_POPULATION_SPLIT_2026.zenodo.json)
-- `Markdown/notes` — [`real_research/papers/MI_LENSING_NOGO_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_LENSING_NOGO_2026.md)
-- `Markdown/notes` — [`RETRACTIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/RETRACTIONS.md)
-- `Python script` — [`deepseek_push/G086_relativistic_face.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G086_relativistic_face.py)
-- `Markdown/notes` — [`real_research/papers/WHITEPAPER_TOE_MAP_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/WHITEPAPER_TOE_MAP_2026.md)
-- `Markdown/notes` — [`real_research/papers/MI_FIELD_THEORY_RESULTS_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_FIELD_THEORY_RESULTS_2026.md)
-- `Paper` — [`real_research/papers/MI_LENSING_NOGO_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_LENSING_NOGO_2026.tex)
-- `Markdown/notes` — [`real_research/papers/MI_COMPLETION_WRITTEN_2026-07.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_COMPLETION_WRITTEN_2026-07.md)
-- `Paper` — [`real_research/papers/zimmerman_toe_map_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/zimmerman_toe_map_2026.tex)
-- `Paper` — [`real_research/papers/TRIANGLE_KIDS_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/TRIANGLE_KIDS_2026.tex)
-- `Data/config` — [`real_research/papers/TRIANGLE_KIDS_2026.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/TRIANGLE_KIDS_2026.zenodo.json)
-- `Markdown/notes` — [`real_research/papers/DESITTER_UNRUH_MODIFIED_INERTIA_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/DESITTER_UNRUH_MODIFIED_INERTIA_2026.md)
-- `Markdown/notes` — [`deepseek_push/MNRAS_METHODS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/MNRAS_METHODS.md)
-- `Markdown/notes` — [`real_research/papers/v12_TOE_HONEST_PATH.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/v12_TOE_HONEST_PATH.md)
-- `Python script` — [`real_research/reviews/mi_kappa_sensitivity_census_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_kappa_sensitivity_census_2026.py)
-- `Markdown/notes` — [`opus_48_extended_research/reviews/MORPHOLOGY_SPLIT_RELIVE_ROUTE4_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/MORPHOLOGY_SPLIT_RELIVE_ROUTE4_2026-06-15.md)
-- `Markdown/notes` — [`opus_48_extended_research/reviews/FABLE_A0_FOOTING_AUDIT_LEDGER_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/FABLE_A0_FOOTING_AUDIT_LEDGER_2026-06-14.md)
-- `Markdown/notes` — [`deepseek_push/DATASETS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/DATASETS.md)
-- `Markdown/notes` — [`real_research/papers/LENSING_TRILEMMA_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/LENSING_TRILEMMA_2026.md)
-- `Markdown/notes` — [`real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.md)
-- `Python script` — [`deepseek_push/G073_lensing_completion.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G073_lensing_completion.py)
-- `Markdown/notes` — [`real_research/papers/FLAGSHIP_DESITTER_UNRUH_MI_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/FLAGSHIP_DESITTER_UNRUH_MI_2026.md)
-- `Python script` — [`real_research/reviews/verify_lensing_independent.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/verify_lensing_independent.py)
-- `Python script` — [`deepseek_push/g03f_lensing_test.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/g03f_lensing_test.py)
-- `Paper` — [`real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.tex)
-- `Markdown/notes` — [`opus_48_extended_research/reviews/ROUTE2_LCDM_COLUMN_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/ROUTE2_LCDM_COLUMN_2026-06-14.md)
-- `Data/config` — [`deepseek_push/G073_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G073_results.json)
-- `Markdown/notes` — [`real_research/papers/WHICH_A0_POPULATION_SPLIT_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/WHICH_A0_POPULATION_SPLIT_2026.md)
-- `Python script` — [`nbody_2026/stage11_30_200kpc_confrontation_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage11_30_200kpc_confrontation_2026.py)
-- `Markdown/notes` — [`opus_48_extended_research/reviews/ROUTE1_REFRAME_LENSING_DM_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/ROUTE1_REFRAME_LENSING_DM_2026-06-15.md)
-- `Markdown/notes` — [`deepseek_push/LAW_VERIFIED.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/LAW_VERIFIED.md)
-- `Python script` — [`nbody_2026/stage12_lensing_stack_fit_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage12_lensing_stack_fit_2026.py)
-- `Python script` — [`nbody_2026/stage1_condensate_relaxation_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage1_condensate_relaxation_2026.py)
-- `Data/config` — [`real_research/papers/MI_LENSING_NOGO_2026.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_LENSING_NOGO_2026.zenodo.json)
-- `Python script` — [`fable_independent_2026/L68_dipolar_dm.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L68_dipolar_dm.py)
-- `Markdown/notes` — [`opus_48_extended_research/reviews/CLUSTER_MEASUREMENT_PLAYBOOK_SYNTHESIS_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/CLUSTER_MEASUREMENT_PLAYBOOK_SYNTHESIS_2026-06-14.md)
-- `Paper` — [`real_research/papers/MI_FIELD_THEORY_RESULTS_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_FIELD_THEORY_RESULTS_2026.tex)
-- `Markdown/notes` — [`real_research/papers/ELASTIC_MEDIUM_YC_Z2_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/ELASTIC_MEDIUM_YC_Z2_2026.md)
-- `Markdown/notes` — [`opus_48_extended_research/reviews/FRONT4_LENSING_COSMOLOGY_IF_AUDIT_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/FRONT4_LENSING_COSMOLOGY_IF_AUDIT_2026-06-14.md)
-- `Markdown/notes` — [`real_research/FRAMEWORK_EMPIRICAL_STANDING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/FRAMEWORK_EMPIRICAL_STANDING.md)
-- `Markdown/notes` — [`real_research/FALSIFICATION_MATRIX.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/FALSIFICATION_MATRIX.md)
-- `Python script` — [`glm53_push/G033_build_fluid_bundle.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G033_build_fluid_bundle.py)
-- `Markdown/notes` — [`real_research/data_watch/ROUTINE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data_watch/ROUTINE.md)
+**Markdown/notes (119 files):**
+
+- [`CITATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/CITATIONS.md) — 1×
+- [`README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/README.md) — 2×
+- [`RETRACTIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/RETRACTIONS.md) — 1×
+- [`ai_slop/office_hours_with_claude/math/07_index_theory.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/office_hours_with_claude/math/07_index_theory.md) — 1×
+- [`ai_slop/research/comprehensive_validation/COMPLETE_VALIDATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_validation/COMPLETE_VALIDATION.md) — 1×
+- [`citations/brouwer/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/brouwer/index.md) — 2×
+- [`citations/sersic/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/sersic/index.md) — 2×
+- [`deepseek_push/DATASETS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/DATASETS.md) — 2×
+- [`deepseek_push/LAW_VERIFIED.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/LAW_VERIFIED.md) — 1×
+- [`deepseek_push/MNRAS_METHODS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/MNRAS_METHODS.md) — 1×
+- [`deepseek_push/data2/MANIFEST.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/data2/MANIFEST.md) — 2×
+- [`fable_independent_2026/FINDINGS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/FINDINGS.md) — 2×
+- [`fable_independent_2026/L24_LENSING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L24_LENSING.md) — 2×
+- [`fable_independent_2026/L67_EMERGENT_MOND.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L67_EMERGENT_MOND.md) — 3×
+- [`fable_independent_2026/L68_DIPOLAR_DM.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L68_DIPOLAR_DM.md) — 1×
+- [`hunt_2026/FRIED_CHICKEN_HANDOFF_BRIEF.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/FRIED_CHICKEN_HANDOFF_BRIEF.md) — 1×
+- [`hy4_push/H052_LEAN_MATH_50.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hy4_push/H052_LEAN_MATH_50.md) — 1×
+- [`opus_48_extended_research/THE_HONEST_LCDM_STRESS_BRIEF.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/THE_HONEST_LCDM_STRESS_BRIEF.md) — 1×
+- [`opus_48_extended_research/papers/THE_MATCHING_THEOREM.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/THE_MATCHING_THEOREM.md) — 2×
+- [`opus_48_extended_research/papers/THE_SEARCH_WAS_NEVER_WASTED.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/THE_SEARCH_WAS_NEVER_WASTED.md) — 2×
+- [`opus_48_extended_research/reviews/CLUSTER_DENSITY_A0_SHAPE_RECONCILED_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/CLUSTER_DENSITY_A0_SHAPE_RECONCILED_2026-06-14.md) — 1×
+- [`opus_48_extended_research/reviews/CLUSTER_MEASUREMENT_PLAYBOOK_SYNTHESIS_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/CLUSTER_MEASUREMENT_PLAYBOOK_SYNTHESIS_2026-06-14.md) — 1×
+- [`opus_48_extended_research/reviews/CMB_APEX_ANISOTROPY_FRONT_2026-06-21.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/CMB_APEX_ANISOTROPY_FRONT_2026-06-21.md) — 2×
+- [`opus_48_extended_research/reviews/EXHAUSTED_PARAMETER_SPACE_VERDICT_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/EXHAUSTED_PARAMETER_SPACE_VERDICT_2026-06-15.md) — 1×
+- [`opus_48_extended_research/reviews/FABLE_A0_FOOTING_AUDIT_LEDGER_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/FABLE_A0_FOOTING_AUDIT_LEDGER_2026-06-14.md) — 2×
+- [`opus_48_extended_research/reviews/FRONT4_LENSING_COSMOLOGY_IF_AUDIT_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/FRONT4_LENSING_COSMOLOGY_IF_AUDIT_2026-06-14.md) — 6×
+- [`opus_48_extended_research/reviews/GRAVITATIONAL_LENSING_DEEP_REVIEW_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/GRAVITATIONAL_LENSING_DEEP_REVIEW_2026-06-15.md) — 4×
+- [`opus_48_extended_research/reviews/INTERPOLATION_FUNCTION_AUDIT_LEDGER_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/INTERPOLATION_FUNCTION_AUDIT_LEDGER_2026-06-14.md) — 1×
+- [`opus_48_extended_research/reviews/LENSING_FOOTING_AUDIT_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/LENSING_FOOTING_AUDIT_2026-06-14.md) — 4×
+- [`opus_48_extended_research/reviews/LENSING_MODALITY_LATEST_AND_MEASUREMENT_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/LENSING_MODALITY_LATEST_AND_MEASUREMENT_2026-06-14.md) — 3×
+- [`opus_48_extended_research/reviews/MORPHOLOGY_SPLIT_RELIVE_ROUTE4_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/MORPHOLOGY_SPLIT_RELIVE_ROUTE4_2026-06-15.md) — 7×
+- [`opus_48_extended_research/reviews/PIN9_PREDICTION_MATRIX_SPINE_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/PIN9_PREDICTION_MATRIX_SPINE_2026-06-14.md) — 1×
+- [`opus_48_extended_research/reviews/PIN9_REGRADE_HOSTILE_VERIFY_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/PIN9_REGRADE_HOSTILE_VERIFY_2026-06-14.md) — 1×
+- [`opus_48_extended_research/reviews/RAR_SHAPE_LENSING_2026-06-20.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/RAR_SHAPE_LENSING_2026-06-20.md) — 4×
+- [`opus_48_extended_research/reviews/RIVALS_ROUTE4_AND_2026_RELEASE_SCHEDULE_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/RIVALS_ROUTE4_AND_2026_RELEASE_SCHEDULE_2026-06-14.md) — 2×
+- [`opus_48_extended_research/reviews/ROUTE1_REFRAME_LENSING_DM_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/ROUTE1_REFRAME_LENSING_DM_2026-06-15.md) — 2×
+- [`opus_48_extended_research/reviews/ROUTE2_LCDM_COLUMN_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/ROUTE2_LCDM_COLUMN_2026-06-14.md) — 2×
+- [`opus_48_extended_research/reviews/ROUTE2_LENSING_DM_FOOTING_AUDIT_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/ROUTE2_LENSING_DM_FOOTING_AUDIT_2026-06-15.md) — 7×
+- [`opus_48_extended_research/reviews/ROUTE5_UNIFICATION_COST_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/ROUTE5_UNIFICATION_COST_2026-06-15.md) — 1×
+- [`opus_48_extended_research/reviews/SWEEP4_HOSTILE_REGRADE_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/SWEEP4_HOSTILE_REGRADE_2026-06-15.md) — 1×
+- [`opus_48_extended_research/reviews/bridge_scout/SCOUT_mond_phenomenology_data_2026-06-19.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/bridge_scout/SCOUT_mond_phenomenology_data_2026-06-19.md) — 1×
+- [`opus_48_extended_research/reviews/cosmic_density_a0/ROUTE2_COSMIC_WEB_A0_MEMBER_BLADE_VERDICT_2026-06-20.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/cosmic_density_a0/ROUTE2_COSMIC_WEB_A0_MEMBER_BLADE_VERDICT_2026-06-20.md) — 1×
+- [`opus_48_extended_research/reviews/lensing_a0_footing_HOSTILE_RECHECK_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/lensing_a0_footing_HOSTILE_RECHECK_2026-06-14.md) — 4×
+- [`opus_48_extended_research/reviews/toe_law/agentZZ_routePathology.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/toe_law/agentZZ_routePathology.md) — 2×
+- [`predictions_2026/INVENTORY_4_lensing_clusters_environment_kappa.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/predictions_2026/INVENTORY_4_lensing_clusters_environment_kappa.md) — 2×
+- [`predictions_2026/SECOND_LAW_HUNT_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/predictions_2026/SECOND_LAW_HUNT_2026.md) — 2×
+- [`prep_2026/SALVAGE_SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/SALVAGE_SYNTHESIS.md) — 1×
+- [`prep_2026/concordance_ledger/LEDGER_ROWS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/concordance_ledger/LEDGER_ROWS.md) — 1×
+- [`prep_2026/concordance_ledger/VERIFY_ledger.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/concordance_ledger/VERIFY_ledger.md) — 3×
+- [`prep_2026/e13_photon_a0/RESULT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/e13_photon_a0/RESULT.md) — 6×
+- [`prep_2026/e13_photon_a0/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/e13_photon_a0/VERIFY.md) — 4×
+- [`prep_2026/journal_submissions/SUBMIT_PRD.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/journal_submissions/SUBMIT_PRD.md) — 1×
+- [`prep_2026/kids_rar/TRIANGLE_KIDS_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/kids_rar/TRIANGLE_KIDS_2026.md) — 12×
+- [`prep_2026/mi_lensing_completion/C2.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_completion/C2.md) — 1×
+- [`prep_2026/mi_lensing_completion/C3.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_completion/C3.md) — 1×
+- [`prep_2026/mi_lensing_completion/MI_LENSING_NOGO_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_completion/MI_LENSING_NOGO_2026.md) — 3×
+- [`prep_2026/mi_lensing_completion/NOGO.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_completion/NOGO.md) — 1×
+- [`prep_2026/mi_lensing_completion/SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_completion/SYNTHESIS.md) — 1×
+- [`prep_2026/mi_lensing_final/CONFRONT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_final/CONFRONT.md) — 5×
+- [`prep_2026/mi_lensing_final/SOLVE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_final/SOLVE.md) — 5×
+- [`prep_2026/mi_lensing_final/SYNTHESIS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_final/SYNTHESIS.md) — 3×
+- [`prep_2026/mi_lensing_final/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_final/VERIFY.md) — 3×
+- [`qwen_38_experiment/DUST_TASKS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_38_experiment/DUST_TASKS.md) — 1×
+- [`qwen_claude_field_theory/closure_2026/condensate_pincer_2026/AEST_BOUNDARY_CONDITION_CLOSURE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/condensate_pincer_2026/AEST_BOUNDARY_CONDITION_CLOSURE.md) — 2×
+- [`qwen_claude_field_theory/closure_2026/condensate_pincer_2026/CONDENSATE_NOGO_THEOREM.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/condensate_pincer_2026/CONDENSATE_NOGO_THEOREM.md) — 1×
+- [`qwen_claude_field_theory/papers_2026/PAPER29_equilibrium_reading_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER29_equilibrium_reading_2026.md) — 2×
+- [`qwen_claude_field_theory/papers_2026/PAPER3_aest_collapse.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER3_aest_collapse.md) — 1×
+- [`real_research/A0Z_KERNEL_STANDING_2026-06-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/A0Z_KERNEL_STANDING_2026-06-06.md) — 1×
+- [`real_research/A0Z_OPEN_DOORS_AND_LENSING_FORECAST_2026-06-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/A0Z_OPEN_DOORS_AND_LENSING_FORECAST_2026-06-06.md) — 5×
+- [`real_research/CLEANUP_SQUADRON_2026-07.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/CLEANUP_SQUADRON_2026-07.md) — 1×
+- [`real_research/DATA_GATE_PREREGISTRATION_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/DATA_GATE_PREREGISTRATION_2026.md) — 7×
+- [`real_research/FALSIFICATION_MATRIX.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/FALSIFICATION_MATRIX.md) — 1×
+- [`real_research/FRAMEWORK_EMPIRICAL_STANDING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/FRAMEWORK_EMPIRICAL_STANDING.md) — 2×
+- [`real_research/LENSING_RAR_FIRSTLOOK_2026-07.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/LENSING_RAR_FIRSTLOOK_2026-07.md) — 21×
+- [`real_research/MASTER_PREDICTIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/MASTER_PREDICTIONS.md) — 1×
+- [`real_research/TOP20_EMPIRICAL_PHYSICISTS_DOORS_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/TOP20_EMPIRICAL_PHYSICISTS_DOORS_2026-06.md) — 1×
+- [`real_research/VERLINDE_DEEP_DIVE_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/VERLINDE_DEEP_DIVE_2026-06.md) — 2×
+- [`real_research/WAVE1_SUMMARY_AUDIT_2026-09-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/WAVE1_SUMMARY_AUDIT_2026-09-15.md) — 3×
+- [`real_research/data/lensing_rar/brouwer2021_rar/README.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/lensing_rar/brouwer2021_rar/README.txt) — 3×
+- [`real_research/data/lensing_rar/brouwer2021_rar_README.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/lensing_rar/brouwer2021_rar_README.txt) — 3×
+- [`real_research/data_watch/ROUTINE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data_watch/ROUTINE.md) — 1×
+- [`real_research/data_watch/log/2026-06-24.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data_watch/log/2026-06-24.md) — 1×
+- [`real_research/data_watch/log/2026-08-03.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data_watch/log/2026-08-03.md) — 1×
+- [`real_research/papers/DESITTER_UNRUH_MODIFIED_INERTIA_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/DESITTER_UNRUH_MODIFIED_INERTIA_2026.md) — 2×
+- [`real_research/papers/ELASTIC_MEDIUM_YC_Z2_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/ELASTIC_MEDIUM_YC_Z2_2026.md) — 1×
+- [`real_research/papers/FLAGSHIP_DESITTER_UNRUH_MI_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/FLAGSHIP_DESITTER_UNRUH_MI_2026.md) — 2×
+- [`real_research/papers/LENSING_TRILEMMA_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/LENSING_TRILEMMA_2026.md) — 2×
+- [`real_research/papers/MI_COMPLETION_WRITTEN_2026-07.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_COMPLETION_WRITTEN_2026-07.md) — 2×
+- [`real_research/papers/MI_FIELD_THEORY_RESULTS_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_FIELD_THEORY_RESULTS_2026.md) — 1×
+- [`real_research/papers/MI_LENSING_NOGO_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_LENSING_NOGO_2026.md) — 3×
+- [`real_research/papers/TRIANGLE_KIDS_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/TRIANGLE_KIDS_2026.md) — 12×
+- [`real_research/papers/WHICH_A0_POPULATION_SPLIT_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/WHICH_A0_POPULATION_SPLIT_2026.md) — 2×
+- [`real_research/papers/WHITEPAPER_TOE_MAP_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/WHITEPAPER_TOE_MAP_2026.md) — 7×
+- [`real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.md) — 1×
+- [`real_research/papers/v12_TOE_HONEST_PATH.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/v12_TOE_HONEST_PATH.md) — 1×
+- [`real_research/predictions/README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/predictions/README.md) — 1×
+- [`real_research/reviews/lensing_rar/A0Z_LENSING_ZBIN_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/A0Z_LENSING_ZBIN_2026.md) — 2×
+- [`real_research/reviews/lensing_rar/agentH_perclass_C.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/agentH_perclass_C.md) — 5×
+- [`real_research/reviews/lensing_rar/agentK_remeasure_errors.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/agentK_remeasure_errors.md) — 1×
+- [`real_research/reviews/lensing_rar/lr_battery_results.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/lr_battery_results.md) — 8×
+- [`real_research/reviews/lensing_rar/lr_data_acquisition.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/lr_data_acquisition.md) — 5×
+- [`real_research/reviews/lensing_rar/lr_preregistration.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/lr_preregistration.md) — 4×
+- [`real_research/reviews/lensing_rar/lr_published_pipeline.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/lr_published_pipeline.md) — 2×
+- [`real_research/reviews/no_dm_roads_2026/lane3_landscape.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/no_dm_roads_2026/lane3_landscape.md) — 2×
+- [`real_research/reviews/public_data/OBSERVATIONAL_PROGRAM.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/public_data/OBSERVATIONAL_PROGRAM.md) — 2×
+- [`real_research/reviews/toe_law/TOE_STATUS_AND_DOORS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/TOE_STATUS_AND_DOORS.md) — 1×
+- [`real_research/reviews/toe_law/UNIFIED_ACTION_ASSEMBLY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/UNIFIED_ACTION_ASSEMBLY.md) — 1×
+- [`real_research/reviews/toe_law/agentC_covariance_memo.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentC_covariance_memo.md) — 1×
+- [`real_research/reviews/toe_law/agentH1_candidate_matrix.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentH1_candidate_matrix.md) — 6×
+- [`real_research/reviews/toe_law/agentH3_gauntlet.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentH3_gauntlet.md) — 3×
+- [`real_research/reviews/toe_law/agentH4_hostile_walls.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentH4_hostile_walls.md) — 1×
+- [`real_research/reviews/toe_law/agentII_cmb_slip_audit.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentII_cmb_slip_audit.md) — 4×
+- [`real_research/reviews/toe_law/agentI_fraction_amplitude.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentI_fraction_amplitude.md) — 1×
+- [`real_research/reviews/toe_law/agentJ_massbin_phase.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentJ_massbin_phase.md) — 1×
+- [`real_research/reviews/toe_law/agentKK_nonlocal_slip.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentKK_nonlocal_slip.md) — 4×
+- [`real_research/reviews/toe_law/agentP_verlinde_coefficient.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentP_verlinde_coefficient.md) — 2×
+- [`real_research/reviews/toe_law/agentW_partner_uniqueness.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentW_partner_uniqueness.md) — 7×
+- [`real_research/reviews/toe_law/agentY_psislip_construction.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentY_psislip_construction.md) — 1×
+- [`real_research/reviews/verlinde_foundation_stress_test.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/verlinde_foundation_stress_test.md) — 2×
+
+**Other (25 files):**
+
+- [`deepseek_push/G073_lensing_completion.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G073_lensing_completion.out) — 2×
+- [`deepseek_push/G086_relativistic_face.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G086_relativistic_face.out) — 1×
+- [`fable_independent_2026/L24_lensing_vs_dynamics.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L24_lensing_vs_dynamics.out) — 1×
+- [`fable_independent_2026/L67_emergent_mond.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L67_emergent_mond.out) — 4×
+- [`fable_independent_2026/L68_dipolar_dm.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L68_dipolar_dm.out) — 2×
+- [`hunt_2026/h123_h125_the_ladder.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h123_h125_the_ladder.out) — 1×
+- [`hunt_2026/h55_group_lensing_eta.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h55_group_lensing_eta.out) — 1×
+- [`hunt_2026/k_ml-free_lensing_collapse.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_ml-free_lensing_collapse.out) — 6×
+- [`opus_48_extended_research/reviews/_lit_sweep_2025_2026_workflow.js`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/_lit_sweep_2025_2026_workflow.js) — 1×
+- [`opus_48_extended_research/reviews/_rar_shape_lensing_workflow.js`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/_rar_shape_lensing_workflow.js) — 8×
+- [`prep_2026/concordance_ledger/p2_run.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/concordance_ledger/p2_run.out) — 1×
+- [`prep_2026/rar_origin_2026/dark_charge_kids_lensing_gate_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/rar_origin_2026/dark_charge_kids_lensing_gate_2026.out) — 3×
+- [`qwen_claude_field_theory/closure_2026/TWO_CHANNEL/results/cmyg.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/TWO_CHANNEL/results/cmyg.out) — 1×
+- [`qwen_claude_field_theory/closure_2026/condensate_pincer_2026/aest_boundary_condition_closure_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/condensate_pincer_2026/aest_boundary_condition_closure_2026.out) — 1×
+- [`qwen_claude_field_theory/closure_2026/condensate_pincer_2026/elliptic_auxiliary_coupling_theorem_2026.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/condensate_pincer_2026/elliptic_auxiliary_coupling_theorem_2026.out) — 1×
+- [`qwen_claude_field_theory/papers_2026/PAPER9_references.bib`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER9_references.bib) — 3×
+- [`real_research/reviews/lensing_rar/agentK_jackknife_stack.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/agentK_jackknife_stack.out) — 3×
+- [`real_research/reviews/lensing_rar/lr_battery.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/lr_battery.out) — 4×
+- [`real_research/reviews/lensing_rar/lr_lens_stage.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/lr_lens_stage.out) — 1×
+- [`real_research/reviews/lensing_rar/lr_stack_stage.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/lr_stack_stage.out) — 2×
+- [`real_research/reviews/lensing_rar/lr_stack_v4.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/lr_stack_v4.out) — 2×
+- [`real_research/reviews/toe_law/agentH3_typesplit.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentH3_typesplit.out) — 1×
+- [`real_research/reviews/toe_law/agentII_cmb_slip_audit.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentII_cmb_slip_audit.out) — 2×
+- [`real_research/reviews/toe_law/agentI_fraction_amplitude.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentI_fraction_amplitude.out) — 3×
+- [`real_research/reviews/toe_law/agentW_partner_uniqueness.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentW_partner_uniqueness.out) — 3×
+
+**Paper (11 files):**
+
+- [`opus_48_extended_research/papers/lensing_no_slip_paper.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/lensing_no_slip_paper.tex) — 4×
+- [`opus_48_extended_research/papers/zimmerman_framework_for_physicists.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/zimmerman_framework_for_physicists.tex) — 3×
+- [`paper/dark_universe_bridge.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/paper/dark_universe_bridge.tex) — 2×
+- [`prep_2026/journal_submissions/kit_prd/manuscript.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/journal_submissions/kit_prd/manuscript.tex) — 4×
+- [`qwen_claude_field_theory/papers_2026/PAPER29_equilibrium_reading_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER29_equilibrium_reading_2026.tex) — 2×
+- [`qwen_claude_field_theory/papers_2026/PAPER9_foliation_theorem_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER9_foliation_theorem_2026.tex) — 2×
+- [`real_research/papers/MI_FIELD_THEORY_RESULTS_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_FIELD_THEORY_RESULTS_2026.tex) — 1×
+- [`real_research/papers/MI_LENSING_NOGO_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/MI_LENSING_NOGO_2026.tex) — 3×
+- [`real_research/papers/TRIANGLE_KIDS_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/TRIANGLE_KIDS_2026.tex) — 16×
+- [`real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.tex) — 1×
+- [`real_research/papers/zimmerman_toe_map_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/zimmerman_toe_map_2026.tex) — 7×
+
+**Python script (85 files):**
+
+- [`ai_slop/research/applied_z2/GAME_THEORY_ECONOMICS_FORMULAS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/applied_z2/GAME_THEORY_ECONOMICS_FORMULAS.py) — 1×
+- [`ai_slop/research/comprehensive_validation/data_backed_problems.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_validation/data_backed_problems.py) — 1×
+- [`ai_slop/research/comprehensive_validation/validate_all_problems.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_validation/validate_all_problems.py) — 1×
+- [`deepseek_push/G073_lensing_completion.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G073_lensing_completion.py) — 11×
+- [`deepseek_push/G086_relativistic_face.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G086_relativistic_face.py) — 4×
+- [`deepseek_push/g03f_lensing_test.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/g03f_lensing_test.py) — 3×
+- [`fable_independent_2026/L248_lensing_mass_budget.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L248_lensing_mass_budget.py) — 5×
+- [`fable_independent_2026/L24_lensing_vs_dynamics.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L24_lensing_vs_dynamics.py) — 2×
+- [`fable_independent_2026/L257_lensing_rar_degeneracy.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L257_lensing_rar_degeneracy.py) — 3×
+- [`fable_independent_2026/L67_emergent_mond.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L67_emergent_mond.py) — 5×
+- [`fable_independent_2026/L68_dipolar_dm.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L68_dipolar_dm.py) — 3×
+- [`glm53_push/G033_build_fluid_bundle.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G033_build_fluid_bundle.py) — 5×
+- [`hunt_2026/h111_h112_kids_ml_machine.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h111_h112_kids_ml_machine.py) — 3×
+- [`hunt_2026/h123_h125_the_ladder.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h123_h125_the_ladder.py) — 1×
+- [`hunt_2026/h1_h66_h2_h65_lensing.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h1_h66_h2_h65_lensing.py) — 1×
+- [`hunt_2026/h55_group_lensing_eta.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h55_group_lensing_eta.py) — 2×
+- [`hunt_2026/h72_where_the_boost_ends.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h72_where_the_boost_ends.py) — 1×
+- [`hunt_2026/h83_lensing_quadrupole_gext.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h83_lensing_quadrupole_gext.py) — 1×
+- [`hunt_2026/h84_eg_1to5Mpc.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h84_eg_1to5Mpc.py) — 2×
+- [`hunt_2026/h_kids_halo_bound_CORRECTION.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h_kids_halo_bound_CORRECTION.py) — 1×
+- [`hunt_2026/hunt_lib.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/hunt_lib.py) — 4×
+- [`hunt_2026/k03_efe_ending_radius.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k03_efe_ending_radius.py) — 1×
+- [`hunt_2026/k07c_lensing_degeneracy_theorem.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k07c_lensing_degeneracy_theorem.py) — 3×
+- [`hunt_2026/k_anomaly-mining_efe_total_mass.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_anomaly-mining_efe_total_mass.py) — 1×
+- [`hunt_2026/k_dimensional_efe_break.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_dimensional_efe_break.py) — 2×
+- [`hunt_2026/k_ml-free_lensing_collapse.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_ml-free_lensing_collapse.py) — 10×
+- [`hunt_2026/u02_measurement_method_organiser.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/u02_measurement_method_organiser.py) — 2×
+- [`hunt_2026/u03_efe_keepers_and_binaries.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/u03_efe_keepers_and_binaries.py) — 1×
+- [`nbody_2026/stage11_30_200kpc_confrontation_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage11_30_200kpc_confrontation_2026.py) — 1×
+- [`nbody_2026/stage12_lensing_stack_fit_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage12_lensing_stack_fit_2026.py) — 2×
+- [`nbody_2026/stage1_condensate_relaxation_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/nbody_2026/stage1_condensate_relaxation_2026.py) — 1×
+- [`opus_48_extended_research/reviews/rar_shape/deep_mond_asymptote_sympy.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/rar_shape/deep_mond_asymptote_sympy.py) — 3×
+- [`opus_48_extended_research/reviews/rar_shape/lensing_dsunruh_shape.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/rar_shape/lensing_dsunruh_shape.py) — 6×
+- [`prep_2026/concordance_ledger/concordance.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/concordance_ledger/concordance.py) — 1×
+- [`prep_2026/concordance_ledger/p2_lensing_a0_band.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/concordance_ledger/p2_lensing_a0_band.py) — 4×
+- [`prep_2026/e13_photon_a0/e13_fit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/e13_photon_a0/e13_fit.py) — 6×
+- [`prep_2026/kids_rar/kids_rar_lambda.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/kids_rar/kids_rar_lambda.py) — 11×
+- [`prep_2026/mi_lensing_completion/c3_carrier.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_completion/c3_carrier.py) — 1×
+- [`prep_2026/mi_lensing_final/confront.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_final/confront.py) — 8×
+- [`prep_2026/mi_lensing_final/lensing_solve.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_final/lensing_solve.py) — 4×
+- [`prep_2026/mi_lensing_final/verify_independent.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/mi_lensing_final/verify_independent.py) — 3×
+- [`prep_2026/rar_origin_2026/dark_charge_kids_lensing_gate_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/rar_origin_2026/dark_charge_kids_lensing_gate_2026.py) — 6×
+- [`qwen_claude_field_theory/closure_2026/FC_AEST/scripts/fc_lensing_rar_mu10_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/FC_AEST/scripts/fc_lensing_rar_mu10_2026.py) — 2×
+- [`qwen_claude_field_theory/closure_2026/TWO_CHANNEL/scripts/cmyg_conformal_lensing.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/TWO_CHANNEL/scripts/cmyg_conformal_lensing.py) — 1×
+- [`qwen_claude_field_theory/closure_2026/candidate_ccnl_2026/ccnl_clock_fix_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/candidate_ccnl_2026/ccnl_clock_fix_2026.py) — 1×
+- [`qwen_claude_field_theory/closure_2026/condensate_pincer_2026/aest_boundary_condition_closure_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/condensate_pincer_2026/aest_boundary_condition_closure_2026.py) — 4×
+- [`qwen_claude_field_theory/closure_2026/condensate_pincer_2026/dark_sector_debug_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/condensate_pincer_2026/dark_sector_debug_2026.py) — 2×
+- [`qwen_claude_field_theory/closure_2026/condensate_pincer_2026/elliptic_auxiliary_coupling_theorem_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/condensate_pincer_2026/elliptic_auxiliary_coupling_theorem_2026.py) — 1×
+- [`qwen_claude_field_theory/closure_2026/mechA_aqual_conformal_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/mechA_aqual_conformal_2026.py) — 2×
+- [`qwen_claude_field_theory/closure_2026/route3_entropic_gravity_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/route3_entropic_gravity_2026.py) — 1×
+- [`qwen_claude_field_theory/closure_2026/route6A_maxent_thermo_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/route6A_maxent_thermo_2026.py) — 1×
+- [`qwen_claude_field_theory/closure_2026/sf38_lensing_tolerance_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/sf38_lensing_tolerance_2026.py) — 8×
+- [`qwen_claude_field_theory/closure_2026/sf39_mechanism_c_two_field_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/closure_2026/sf39_mechanism_c_two_field_2026.py) — 1×
+- [`real_research/a0z_lensing_forecast.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/a0z_lensing_forecast.py) — 5×
+- [`real_research/a0z_multimethod_landing.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/a0z_multimethod_landing.py) — 1×
+- [`real_research/predictions/door1_gravitational_lensing.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/predictions/door1_gravitational_lensing.py) — 4×
+- [`real_research/reviews/a0_census_ensemble.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/a0_census_ensemble.py) — 2×
+- [`real_research/reviews/branchB_q2_gate_2026/decider_sparc_pointlevel.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/branchB_q2_gate_2026/decider_sparc_pointlevel.py) — 1×
+- [`real_research/reviews/confront_lensing_rar.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/confront_lensing_rar.py) — 8×
+- [`real_research/reviews/fork_observability_2026/door3_deficit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/fork_observability_2026/door3_deficit.py) — 3×
+- [`real_research/reviews/lensing_rar/agentH_perclass_C.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/agentH_perclass_C.py) — 6×
+- [`real_research/reviews/lensing_rar/agentK_jackknife_stack.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/agentK_jackknife_stack.py) — 6×
+- [`real_research/reviews/lensing_rar/agentZ_second_variable.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/agentZ_second_variable.py) — 2×
+- [`real_research/reviews/lensing_rar/esd_conversion.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/esd_conversion.py) — 2×
+- [`real_research/reviews/lensing_rar/lr_a0z_zbin_measure.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/lr_a0z_zbin_measure.py) — 4×
+- [`real_research/reviews/lensing_rar/lr_battery.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/lr_battery.py) — 9×
+- [`real_research/reviews/lensing_rar/lr_esd_remeasure.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/lr_esd_remeasure.py) — 14×
+- [`real_research/reviews/lensing_rar/lr_sersic_crosscheck.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_rar/lr_sersic_crosscheck.py) — 2×
+- [`real_research/reviews/lensing_source_fork_2026/lane3_displacement.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/lensing_source_fork_2026/lane3_displacement.py) — 1×
+- [`real_research/reviews/mi_formal_completion_2026/mi_disformal_gw170817_robustness.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_formal_completion_2026/mi_disformal_gw170817_robustness.py) — 1×
+- [`real_research/reviews/mi_ic_route_1mpc_confrontation_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_ic_route_1mpc_confrontation_2026.py) — 2×
+- [`real_research/reviews/mi_kappa_sensitivity_census_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_kappa_sensitivity_census_2026.py) — 5×
+- [`real_research/reviews/mi_lensing_2026/lensing_confront.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_lensing_2026/lensing_confront.py) — 2×
+- [`real_research/reviews/mi_lensing_2026/lensing_consistency.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_lensing_2026/lensing_consistency.py) — 4×
+- [`real_research/reviews/mi_lensing_2026/mi_lensing_prescription.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_lensing_2026/mi_lensing_prescription.py) — 4×
+- [`real_research/reviews/mi_lensing_2026/observed_offset_budget.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_lensing_2026/observed_offset_budget.py) — 7×
+- [`real_research/reviews/route_B_disformal/B3_lensing_GW_cone.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/route_B_disformal/B3_lensing_GW_cone.py) — 1×
+- [`real_research/reviews/shear_linearity_2026/lane2_gates.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/shear_linearity_2026/lane2_gates.py) — 1×
+- [`real_research/reviews/toe_law/agentH3_typesplit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentH3_typesplit.py) — 5×
+- [`real_research/reviews/toe_law/agentII_cmb_slip_audit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentII_cmb_slip_audit.py) — 2×
+- [`real_research/reviews/toe_law/agentI_fraction_amplitude.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentI_fraction_amplitude.py) — 3×
+- [`real_research/reviews/toe_law/agentJ_massbin_phase.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentJ_massbin_phase.py) — 6×
+- [`real_research/reviews/toe_law/agentW_partner_uniqueness.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentW_partner_uniqueness.py) — 7×
+- [`real_research/reviews/verify_lensing_independent.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/verify_lensing_independent.py) — 1×
+- [`real_research/web_search_relations.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/web_search_relations.py) — 1×
 
 ---
-*Living citation page for Margot Brouwer · index: [CITATIONS.md](../CITATIONS.md) · auto-generated, append-only.*
+*Living citation page for Margot Brouwer · index: [CITATIONS.md](../CITATIONS.md) · auto-generated full-repo sweep, append-only.*
