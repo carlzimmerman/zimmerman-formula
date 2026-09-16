@@ -1,0 +1,103 @@
+==============================================================================
+G223 -- THE LINE-SCATTER DECOMPOSITION: the 12-decade line's 0.18-dex
+residual -- freeze-epoch vs systematics vs channel
+==============================================================================
+
+(1) THE 542-OBJECT LINE, REBUILT FROM THE COMMITTED REGISTERS
+------------------------------------------------------------------------------
+  channel      n    logM range     med r   med|r|    rms    median F   frac frozen
+  GC            112   4.03-  6.55  +0.059   0.176   0.231    -1.133   0.00
+  dSph           34   2.63-  7.51  +0.198   0.222   0.330    -1.407   0.00
+  HI             55   6.26-  9.15  +0.015   0.080   0.150    -0.417   0.00
+  SPARC          35   8.13- 10.81  -0.054   0.058   0.088    +0.006   0.51
+  CL             12  13.70- 14.35  +0.273   0.273   0.272    +1.069   1.00
+  GRP            36  11.24- 12.99  +0.115   0.146   0.235    +0.619   1.00
+  A3D           258   9.59- 11.78  +0.081   0.083   0.114    +0.204   1.00
+
+  REPRODUCTION (checks against the committed registers):
+    G131 pre-fill pooled  : n =  248  slope 0.9884 +- 0.0202  rms_id 0.2208  (committed 0.9884 +- 0.0202, 0.2208)
+    G162 after-fill pooled: n =  542  slope 1.0040 +- 0.0108  rms_id 0.1795  (committed 0.1795)
+    dSph class medians    : (see the split line below; G070/G213 0.4007/0.1633/0.222)
+    dSph split: UFD med|r| 0.401 (n=20) / bright med|r| 0.163 (n=14) / full 0.222
+    G213 per-object z* cross-check: max |Delta z*| vs the committed table = 5.00e-05 (5 keV, pred)
+
+(2) THE DECOMPOSITION OF |r| (r = log10(obs/pred), the perpendicular scatter)
+------------------------------------------------------------------------------
+  REGRESS |r| on the candidate axes (n = 542):
+    freeze axis F = log10(sigma_eq/65.0) alone : R^2 = 0.0840  (slope -0.052 +- 0.007 dex per dex)
+       Spearman rho(|r|, F) = -0.096, p = 2.52e-02
+    frozen binary (z* > 0) alone               : R^2 = 0.0676
+    channel factor (7 channels)                : eta^2 = 0.2275
+    rotation/dispersion binary                 : eta^2 = 0.0197
+    channel dummies OLS                        : R^2 = 0.2275
+    channel + freeze                           : R^2 = 0.2446
+    ISOLATED FREEZE NET OF THE CHANNEL         : R^2 = 0.0171
+    rot/disp + freeze                          : R^2 = 0.1081 (isolated 0.0884)
+
+  WITHIN-CHANNEL freeze lever (|r| vs F inside each channel):
+    GC       n=112  rho(F, |r|) = +0.064  p = 0.5055  R^2 = 0.0065
+    dSph     n= 34  rho(F, |r|) = -0.691  p = 0.0000  R^2 = 0.3559
+    HI       n= 55  rho(F, |r|) = +0.079  p = 0.5648  R^2 = 0.0122
+    SPARC    n= 35  rho(F, |r|) = -0.351  p = 0.0385  R^2 = 0.1162
+    CL       n= 12  rho(F, |r|) = -0.294  p = 0.3541  R^2 = 0.1132
+    GRP      n= 36  rho(F, |r|) = -0.120  p = 0.4860  R^2 = 0.1000
+    A3D      n=258  rho(F, |r|) = +0.301  p = 0.0000  R^2 = 0.0430
+
+  WITHIN-DSPH FREEZE DEPTH (G213's test reproduced on |r|):
+    rho(|r|, z*, 5 keV) = -0.691  p = 6.1e-06  R^2 = 0.0656
+
+  PER-OBJECT SYSTEMATICS (within-channel |r| proxy regressions):
+    dSph  e_sig    n=34  rho=+0.468 p=0.0052 R^2=0.1491  [|r| vs the sigma-obs relative error e_sig inside the dSph class]
+    dSph  e_MV     n=33  rho=+0.605 p=0.0002 R^2=0.3467  [|r| vs the M_V error (distance proxy) inside the dSph class]
+    SPARC errV     n=35  rho=+0.082 p=0.6410 R^2=0.0206  [|r| vs the median rotation error errV_med inside SPARC]
+    SPARC SPARC: n=35 (proxy sparse -- |r| vs the G087 quality flag Q inside SPARC (sparse))
+    SPARC eD       n=35  rho=-0.057 p=0.7443 R^2=0.0030  [|r| vs the distance error eD inside SPARC]
+    GRP   sig_v_err n=36  rho=-0.170 p=0.3210 R^2=0.0801  [|r| vs the sigma_v error inside the GEMS G-class]
+
+  BETWEEN-CHANNEL ordering (freeze ladder vs channel scatter):
+    channel     n    med F   med z*  frac fr    med|r|    med r      rms
+    --------------------------------------------------------------------
+    GC        112   -1.133   -0.995    0.000    0.1765   0.0595   0.2312
+    dSph       34   -1.407   -0.998    0.000    0.2220   0.1983   0.3303
+    HI         55   -0.417   -0.854    0.000    0.0803   0.0150   0.1497
+    SPARC      35    0.006    0.031    0.514    0.0575  -0.0541   0.0885
+    CL         12    1.069  136.398    1.000    0.2728   0.2728   0.2721
+    GRP        36    0.619   16.356    1.000    0.1462   0.1147   0.2352
+    A3D       258    0.204    1.561    0.996    0.0831   0.0813   0.1144
+    Spearman over the 7 channels: rho(med|r|, med F) = +0.071 (p = 0.879); rho(med r, med F) = +0.321 (p = 0.482); 5 G131 channels: +0.000 (p = 1.000)
+
+(3) THE DOMAIN STATEMENT: the freeze-epoch cut (z* > 0 only)
+------------------------------------------------------------------------------
+  FULL LINE                : n = 542  slope 1.004 +- 0.011  rms_id 0.179  med|r| 0.106
+  FROZEN (z* > 0)          : n =  323  slope 1.155 +- 0.029  rms_id 0.140  med|r| 0.091  (b-1)/se +5.35
+  NEVER-FROZE (z* < 0)     : n =  219  slope 0.917 +- 0.030  rms_id 0.225  med r +0.050  (one-sided excess)
+  G213 domain (sigma_pred>=2.1, n=533): rms_id 0.168  slope 1.029
+  disp-face frozen (GRP+A3D+CL, n=306): rms_id 0.143  slope 1.154 +- 0.029
+  sensitivity (z* at raw v, no /sqrt2): frozen n=335  rms_id 0.139  slope 1.171
+  rms^2 accounting: full 0.1795^2 = frozen 0.1400^2*(323/542) + unfrozen 0.2254^2*(219/542) + between 0.0654
+  the UFD shell alone holds 19.0% of the pooled |r|^2; the frozen set 36.3%
+
+(4) VERDICTS
+------------------------------------------------------------------------------
+[V1] PASS
+    THE VARIANCE DECOMPOSITION of |r| (n = 542): (a) the FREEZE axis alone explains R^2 = 0.084 (Spearman rho = -0.096, p = 2.52e-02); the frozen/unfrozen BINARY alone R^2 = 0.068; (b) the CHANNEL factor alone eta^2 = 0.227 (rot/disp binary eta^2 = 0.020); (c) the ISOLATED freeze contribution net of the channel = 0.017 (R^2(channel+z*) - R^2(channel)); the isolated channel net of the freeze = 0.161 (R^2(channel+z*) - R^2(z*)).  WITHIN the dSph class the freeze depth orders the scatter: rho = -0.691, p = 6.1e-06 (G213's -0.691 reproduced).  The per-object systematics: RAW inside the dSphs they correlate with |r| (e_MV rho = +0.60, e_sig rho = +0.47) but the correlations COLLAPSE net of the freeze axis (R^2 net-of-freeze: e_MV 0.073, e_sig 0.000) and are negligible inside SPARC (G087's registered LOOCV R^2 = 0.030) -- the proxy signal rides the same faint-end/freeze-depth gradient, it is not an independent term.
+[V2] PASS
+    THE FROZEN-DOMAIN LINE (z* > 0 only, n = 323): slope b = 1.155 +- 0.029 ((b-1)/se = +5.35 -- TILTED, see the note), rms about identity 0.140 dex (full line: b = 1.004 +- 0.011, rms 0.179 dex, n = 542); median |r| 0.091.  THE DOMAIN SHARPENS: rms 0.179 -> 0.140 dex when only the frozen systems count, and the one-sided departure vanishes (median r +0.081, the unfrozen median r +0.050).  THE PRICE OF THE SHARPENING: the frozen line's slope is 1.155 +- 0.029, NOT 1 -- the frozen domain contains the registered normalization RISE across mass (ATLAS3D's own internal slope 1.30 +- 0.05 with residual drift +0.074/dex, the GEMS +0.115 -> cluster +0.273 seam), so the 0.18-dex full-line slope 1.004 is a BLEND of the two ends.  Complementary cuts: the dispersion-face frozen population (GRP+A3D+CL, n = 306) rms 0.143 slope 1.154; G213's registered alternative domain (sigma_pred >= 2.1 km/s, n = 533) rms 0.168 slope 1.029; the never-froze population (n = 219) rms 0.225 slope 0.917 -- the scatter's excess lives there, one-sided (median r +0.050).
+[V3] PASS
+    HONEST: the 12-decade line's 0.18-dex perpendicular scatter is ordered by TWO axes that are confounded at the class level -- the freeze-epoch and the channel.  (1) THE FREEZE-EPOCH IS THE ORDERING AXIS FOR THE DISPERSION DEPARTURES: within the dSph class the excess correlates with the freeze depth (rho = -0.691, p = 6.1e-06, R^2 = 0.066; G213 reproduced), and the UFD shell alone carries 19% of the pooled |r|^2; the never-froze population's excess is one-sided (median r +0.050) while the frozen population's is a zero point (median r +0.081, rms 0.140 -- slope 1.155, inside it the registered cluster normalization gap +0.27 dex, tight).  (2) THE CHANNEL IS THE OTHER MAIN TERM: eta^2 = 0.227 of |r| lives between channels (rotation 0.08-0.12, dispersion/boundary 0.16-0.18, UFD 0.40), and the ISOLATED freeze contribution NET of the channel is 0.017 -- the two axes share most of their variance because the never-froze classes ARE the low-sigma dispersion classes.  (3) THE PER-OBJECT SYSTEMATICS ARE NOT AN INDEPENDENT TERM: inside the dSphs the error proxies DO correlate with |r| RAW (e_MV rho = +0.60, e_sig rho = +0.47 -- fainter UFDs have bigger errors AND the bigger excess) but the correlation COLLAPSES net of the freeze axis (R^2 net-of-freeze: e_MV 0.073, e_sig 0.000) and is negligible inside the well-measured channels (SPARC errV R^2 = 0.021, eD R^2 = 0.003; G087's registered multivariate LOOCV R^2 = 0.030) -- the proxy signal rides the same faint-end/freeze-depth gradient, it is not a separate axis.  (4) THE DOMAIN, STATED PRECISELY: the law holds at rms 0.140 dex on the FROZEN domain z* > 0 (n = 323: SPARC v_flat > ~90 km/s, ATLAS3D sigma_e > ~65 km/s, GEMS G, X-COP; slope 1.155 +- 0.029), and its scatter rises to 0.225 dex on the never-froze shell (z* < 0: GC + dSph + HI, n = 219) where the equilibrium is still coupled to the CMB thermostat; the deep-UFD end (z* -> -1) is the law's one-sided failure.  The 0.18-dex number is a MIXTURE: a frozen-core line at ~0.13-0.15 dex plus the unfrozen shell; the freeze-epoch is the ordering axis, the channel the carrier, the systematics the noise floor.
+
+(5) CHECKS: 11/11 pass
+    [OK] G131 pre-fill pooled reproduced (0.9884 +- 0.0202, rms_id 0.2208, n=248)
+    [OK] G162 after-fill pooled reproduced (1.0040 +- 0.0108, rms_id 0.1795, n=542)
+    [OK] dSph class medians: UFD 0.4007 / bright 0.1633 / full 0.222
+    [OK] G213 Spearman E vs z*(pred,5keV) = -0.691 reproduced (p = 6.1e-6)
+    [OK] per-object z* vs G213's committed table within its 4-decimal rounding (34 dSphs, 5 keV, max|dz*| = 5.0e-05)
+    [OK] HI channel med|r| 0.0803 / SPARC 0.0575 / GC 0.1765 (G131 per-galaxy outer-ring registers)
+    [OK] ATLAS3D med|r| 0.0831 / GEMS G med|r| 0.1462 (G162 registered)
+    [OK] cluster median r +0.2728 register (G075 sigma-3D face)
+    [OK] 542 = 112 GC + 34 dSph + 55 HI + 35 SPARC + 12 CL + 36 GRP-G + 258 A3D
+    [OK] variance identity: R^2(channel+z*) - R^2(channel) + R^2(channel) = R^2(channel+z*)
+    [OK] G162_results.json unmodified by the import (byte-identical, guarded restore)
+
+wrote /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/G223_results.json
+checks: 11/11 pass

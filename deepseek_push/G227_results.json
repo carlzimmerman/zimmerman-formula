@@ -1,0 +1,70 @@
+{
+  "lane": "G227",
+  "title": "THE ONTOLOGY LEAN ROADMAP: the next certificates that complete the spine",
+  "status_date": "2026-09-16",
+  "gate": "PASS",
+  "checks_passed": 14,
+  "checks_failed": 0,
+  "inventory": {
+    "task_list_sum": 105,
+    "full_repo_ledger_theorems": 126,
+    "full_repo_ledger_certificates": 16,
+    "spine_subset_theorems": 79,
+    "spine_subset_certificates": 10,
+    "per_certificate": {
+      "G03G": 4, "G083": 5, "G090": 5, "G201": 8, "G058": 6, "G055": 12,
+      "G031": 13, "G039_horn": 6, "G039_radial": 8, "G036": 9, "G047": 6,
+      "G007": 11, "G001": 8, "G002_G003": 4, "EQUILIBRIUM_THEORY": 12,
+      "G024": 9
+    },
+    "recount_note": "Every inventory count confirmed exact by comment-stripped theorem scan; only 'sorry' strings in any file are in comments. All 16 certificates re-compiled today: exit 0, axioms {propext, Classical.choice, Quot.sound}."
+  },
+  "gap": {
+    "a_gauss_map_charge": {
+      "status": "CERTIFIED TODAY (G227 prototype)",
+      "theorem": "for the isothermal well: ∮_{S(r)} g dA = 4π sqrt(G M_b a0) r;  M_ph(<r) = (1/4πG)∮ g dA = sqrt(G M_b a0) r / G = M_b r / r_M;  M_ph(<r_M) = M_b exactly",
+      "lean_file": "deepseek_push/lean/G227_gauss_map_prototype.lean",
+      "theorems": ["sqrt_pair", "isothermal_flux", "gauss_map_charge", "gauss_map_linear_law", "gauss_map_equipartition"],
+      "check": "5 theorems, exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}; algebra sympy-exact: flux identity exactly 4π√(GM_ba0)r, mass identity needs sqrt_pair product"
+    },
+    "b_entropy_jump_exponent_3": {
+      "status": "ALREADY LEAN (G201)",
+      "read": "dS/k_B = 3 ln(σ_ph/σ_d), the 3 the phase-space dimension count; A_b = exp(dS/k_B) = (σ_ph/σ_d)^3",
+      "lean_theorems": ["entropy_jump_log", "entropy_jump_cube", "entropy_jump_additivity", "jump_cube"],
+      "check": "exponent-3 algebra certified (re-verified today); the dimension reading is a definitional statement on top; a definitional theorem (phase_space_volume Ω ∝ σ³) is cosmetic-complete, not gap-closing"
+    },
+    "c_zstar_inversion": {
+      "status": "NOT YET LEAN — EASY",
+      "theorem": "z* = m σ²/(k_B T_0) − 1  ⇔  m(z*) = k_B T_0 (1+z*)/σ²",
+      "check": "algebra verified sympy-exact both directions; one field_simp, no sqrt no rpow — strictly easier than any existing certificate; physics premises (triad σ = 119.2 km/s, T_0 = 2.7255 K) stay inputs"
+    },
+    "d_alpha_2_3": {
+      "status": "NOT YET LEAN — three candidates",
+      "candidates": {
+        "d1_arithmetic": "2/3 = 1 − 1/3 (norm_num) — trivial, states structure",
+        "d2_log10_face": "log10(2 f r_M/R500) = (2/3) log10 f + log10(2 r_M/R500^b) given R500 = f^{1/3} R500^b — MEDIUM, needs Real.log_rpow — the cleanest law-carrying pick",
+        "d3_rpow": "2 f r_M/(f^{1/3} R500b) = 2 (r_M/R500b) f^{2/3} — HARD, rpow-log injectivity (G03G's named synthesis gap)"
+      },
+      "pick": "d2 (G214's C3 twothirds_law at the log level), d1 as opening line, d3 registered"
+    }
+  },
+  "roadmap": [
+    {"id": "C4", "name": "gauss_map_charge", "difficulty": "DONE TODAY", "dependencies": "G03G/G090 sqrt_pair technique (re-derived in-file)", "closes": "GAP (a) — the G154 charge"},
+    {"id": "C5", "name": "mass_inversion — m(z*) = k_B T_0 (1+z*)/σ²", "difficulty": "EASY", "dependencies": "none; standalone (one field_simp)", "closes": "GAP (c) — the mass from z*"},
+    {"id": "C6", "name": "jump_dimension3 — Ω ∝ σ³ ⇒ ΔS/k_B = 3 ln ratio", "difficulty": "EASY", "dependencies": "G201 entropy_jump_cube", "closes": "GAP (b) — definitional reading"},
+    {"id": "C3", "name": "twothirds_law — log10 face (2/3) log10 f + const", "difficulty": "MEDIUM", "dependencies": "G095/G135 identity; Mathlib Real.log_rpow", "closes": "GAP (d) — the 2/3 exponent"},
+    {"id": "C3p", "name": "twothirds at rpow level f^{2/3}", "difficulty": "HARD", "dependencies": "rpow-log injectivity on v4.34.0-rc2", "closes": "same, full form — register, don't lead"},
+    {"id": "C1", "name": "virial_rung4 — σ² = C/2 from the G091 shell-energy integrals", "difficulty": "HARD", "dependencies": "G031 integrand_const machinery; closed virial chain", "closes": "the spine's non-Lean entrance E2"},
+    {"id": "C2", "name": "maxentropy_phantom — EL iff γ = C/σ² + strict concavity ⇒ ρ = A/r²", "difficulty": "MEDIUM-HARD", "dependencies": "Mathlib concavity; G084 exact-residual", "closes": "the spine's non-Lean entrance E2"}
+  ],
+  "verdicts": {
+    "V1": "Inventory recounted and verified: task list sums to 105 (every count exact), full repo ledger 126 theorems / 16 certificates (adds EQUILIBRIUM_THEORY 12, G024 9), spine subset 79/10 unchanged from G214. All re-verified today: exit 0, zero real sorry, axioms {propext, Classical.choice, Quot.sound}. PASS.",
+    "V2": "Seven candidates ranked with dependencies: C4 DONE today, C5 EASY, C6 EASY, C3 MEDIUM, C3' HARD registered, C1 HARD (entrance E2), C2 MEDIUM-HARD (entrance E2). No ontology-set theorem blocks another; C1+C2 remain the deep-spine rungs. PASS.",
+    "V3": "The Lean spine's next step is 2-4 theorems that move charge/entropy/mass inversions from algebra-on-record to Lean-certified: C4 (the G154 Gauss-map charge — CERTIFIED TODAY, 5 theorems exit 0), C5 (m(z*), one field_simp), C6 (jump dimension 3, cosmetic over G201), C3 (2/3 via log_rpow). The deep spine's virial and max-entropy entrances (C1, C2) stay the HARD pair as G214 registered. Honest single line: the ontology's Lean-future is four easy-to-medium theorems plus two hard entrance rungs — and one of the four landed with this document."
+  },
+  "files": [
+    "deepseek_push/G227_lean_roadmap.md",
+    "deepseek_push/G227_results.json",
+    "deepseek_push/lean/G227_gauss_map_prototype.lean"
+  ]
+}
