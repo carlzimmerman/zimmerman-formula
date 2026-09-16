@@ -416,3 +416,79 @@ cite individual papers by their Zenodo DOIs above.
 **Code: [AGPL-3.0](LICENSE). Prose, papers, figures, and scientific content: CC-BY-4.0.**
 Details: [LICENSE.md](LICENSE.md). Author: Carl P. Zimmerman (Briar Creek Tech),
 ORCID [0009-0008-3508-7982](https://orcid.org/0009-0008-3508-7982).
+
+---
+
+# Individuals Cited
+
+Every individual whose work is used anywhere in this repository — in papers, as
+mechanisms inside Python scripts, or as references — is indexed below.
+**Click any name** for its dedicated citation page in [`citations/`](citations/),
+which links to every repo file where that person is cited (GitHub) plus their papers.
+The master growing list lives in [`CITATIONS.md`](CITATIONS.md) (append-only; add
+new names as work lands). Page indexes: **55 individuals indexed to date.**
+
+## Paper citations
+
+Direct citations in the paper(s) — [`paper/dark_universe_bridge.tex`](paper/dark_universe_bridge.tex):
+
+- [Mordehai Milgrom](citations/milgrom/index.md) — MOND (1983, 1999, 2009, 2017)
+- [Jacob Bekenstein](citations/bekenstein/index.md) — AQUAL / MOND covariant realisations (1984, with Milgrom)
+- [Luc Blanchet](citations/blanchet/index.md) — relativistic MOND
+- [C. Skordis](citations/skordis/index.md) & [T. Zlosnik](citations/zlosnik/index.md) — AeST (2021)
+- [Stacy McGaugh](citations/mcgaug/index.md) — the radial acceleration relation (2016)
+- [Kyu-Hyun Chae](citations/chae/index.md) — wide binaries (2020)
+- [M. Brouwer](citations/brouwer/index.md) — lensing RAR (2021)
+- [S. Limbach](citations/limbach/index.md) — planetary systems / EFE
+- [T. P. Singh](citations/singh/index.md) — (2026)
+- [S. Marongwe](citations/marongwe/index.md) & [S. Kauffman](citations/kauffman/index.md) — (2025)
+- [M. Li](citations/li/index.md) — (2004)
+- DESI Collaboration (2024/2025) — cosmology data
+
+## Mechanisms used in Python scripts
+
+Authors whose data or methods are used inside the repository's Python lanes
+(mapping to the numbered experiment lanes G001…Z10 in [`glm53_push/`](glm53_push/),
+[`deepseek_push/`](deepseek_push/), and the sibling tracks):
+
+- [Indranil Banik](citations/banik/index.md) — wide-binary / DR3 Newtonian analyses (G006, G014)
+- [Federico Lelli](citations/lelli/index.md) — SPARC rotation curves (G036, G044, G071, G114)
+- [M. Brouwer](citations/brouwer/index.md) — KiDS lensing RAR (G073)
+- [Vittorio Ghirardini](citations/ghirardini/index.md) — X-COP cluster profiles (G008, G050, G057b)
+- [Kenneth Rines](citations/rines/index.md) — HeCS cluster members (G203, G206, G209)
+- [Anna-Christina Eilers](citations/eilers/index.md) — MW rotation curve (G197)
+- [Joshua Simon](citations/simon/index.md) — dSph compendium (G070, G213)
+- [A. Dainelli](citations/dainelli/index.md) — BTFR at z≈2.5 (G011, G080)
+- [Michele Cappellari](citations/cappellari/index.md) — ATLAS3D ellipticals (G162)
+- [Dominique Eckert](citations/eckert/index.md) — cluster gas fraction (G126)
+- [Bode](citations/bode/index.md) & [Anosova](citations/anosova/index.md) — slab equilibrium methods (G003)
+- Navarro–Frenk–White ([Navarro](citations/navarro/index.md), [Frenk](citations/frenk/index.md), [White](citations/white/index.md)) — NFW halo profile (G096, G184, G207)
+- [H. C. Plummer](citations/plummer/index.md) — potential models
+- [James Jeans](citations/jeans/index.md) — Jean's equations / collapse
+- [V. A. Antonov](citations/antonov/index.md) — stability analysis
+- [Tremaine](citations/tremaine/index.md) & [Gunn](citations/gunn/index.md) — phase-space bound
+- [Bondi](citations/bondi/index.md) & [Hoyle](citations/hoyle/index.md) — accretion (G200, G210)
+- [Pais](citations/pais/index.md) & [Uhlenbeck](citations/uhlenbeck/index.md) — fourth-order operators (G030)
+- [Boulware](citations/boulware/index.md) & [Deser](citations/deser/index.md) — ghost analysis (G007)
+- [Bertschinger](citations/bertschinger/index.md) — infall / envelope models
+
+## Referenced
+
+All other persons referenced across the repo (research notes, referee documents,
+theories, tooling) — full per-person file lists on their pages:
+
+- [Robert H. Sanders](citations/sanders/index.md) · [Benoît Famaey](citations/famaey/index.md) — MOND reviews
+- [Pavel Kroupa](citations/kroupa/index.md) · [Marcel Pawlowski](citations/pawlowski/index.md) — satellite planes
+- [Pieter van Dokkum](citations/vandokkum/index.md) · [Avi Loeb](citations/loeb/index.md) — dwarf galaxies
+- [R. Brent Tully](citations/tully/index.md) · [J. Richard Fisher](citations/fisher/index.md) — the Tully–Fisher relation
+- [Sandra Faber](citations/faber/index.md) · [Ray Jackson](citations/jackson/index.md) — the Faber–Jackson relation
+- [Jaan Einasto](citations/einasto/index.md) — halo families · [Lars Hernquist](citations/hernquist/index.md) — bulge profiles
+- [James Binney](citations/binney/index.md) — stellar dynamics
+- [Edwin Salpeter](citations/salpeter/index.md) — IMF
+- [José Luis Sérsic](citations/sersic/index.md) — surface-brightness profiles
+- [Ivan King](citations/king/index.md) — star-cluster profiles
+- [Pierre Teyssandier](citations/teyssandier/index.md) · [L. Lombardelli](citations/lombardelli/index.md) · [Boufourou](citations/boufourou/index.md) — wide-binary / light-deflection analyses
+
+> **Full living index:** [`CITATIONS.md`](CITATIONS.md) — 55 individuals, each with a
+> clickable citation page under [`citations/`](citations/). Append-only: every new
+> contribution gets added there as it lands; nothing is ever deleted.

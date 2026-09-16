@@ -1,0 +1,41 @@
+# James Binney
+
+**Cited in 34 file(s) across the repo — click to view on GitHub:**
+
+- `Python script` — [`glm53_push/G062_mw_test.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G062_mw_test.py)
+- `Markdown/notes` — [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt)
+- `Python script` — [`fable_independent_2026/L96_no_halo_dynamical_friction.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L96_no_halo_dynamical_friction.py)
+- `Python script` — [`kimik3_push/scripts/K005_formation_spherical_infall.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/kimik3_push/scripts/K005_formation_spherical_infall.py)
+- `HTML` — [`opus_48_extended_research/GRAVITY_LEDGER.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/GRAVITY_LEDGER.html)
+- `Markdown/notes` — [`opus_48_extended_research/reviews/WB_EFE_DERIVATION_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/WB_EFE_DERIVATION_2026-06-14.md)
+- `Python script` — [`fable_independent_2026/L53_saturated_cores.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L53_saturated_cores.py)
+- `Python script` — [`hunt_2026/k_exact-relations_bernoulli_c2.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_exact-relations_bernoulli_c2.py)
+- `Python script` — [`hunt_2026/g03v2_anisotropy_definition_audit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g03v2_anisotropy_definition_audit.py)
+- `Python script` — [`opus_48_extended_research/reviews/bullet_mond/route3_collision_velocity.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/bullet_mond/route3_collision_velocity.py)
+- `Python script` — [`real_research/reviews/mi_vertical_literature_spread_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_vertical_literature_spread_2026.py)
+- `Python script` — [`hunt_2026/k_cross-scale_mwmass.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_cross-scale_mwmass.py)
+- `Python script` — [`hunt_2026/g03v_adversarial_partial_audit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g03v_adversarial_partial_audit.py)
+- `Markdown/notes` — [`real_research/PUMP_HUNT_AND_TRIGGERS_2026-07.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/PUMP_HUNT_AND_TRIGGERS_2026-07.md)
+- `Markdown/notes` — [`fable_independent_2026/FINDINGS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/FINDINGS.md)
+- `Python script` — [`prep_2026/manga_anisotropy/fire_anisotropy.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/fire_anisotropy.py)
+- `Markdown/notes` — [`prep_2026/manga_anisotropy/FIRING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/FIRING.md)
+- `Markdown/notes` — [`prep_2026/manga_anisotropy/STAGE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/STAGE.md)
+- `Markdown/notes` — [`prep_2026/manga_anisotropy/FROZEN.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/FROZEN.md)
+- `Python script` — [`real_research/reviews/clusters_eta_audit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/clusters_eta_audit.py)
+- `Python script` — [`real_research/reviews/mi_aqual_constraint_width_audit_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_aqual_constraint_width_audit_2026.py)
+- `Python script` — [`fable_independent_2026/L114_btfr_lift_kernel_discriminator.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L114_btfr_lift_kernel_discriminator.py)
+- `Python script` — [`real_research/reviews/mi_joint_overdetermination_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_joint_overdetermination_2026.py)
+- `HTML` — [`gext_vectors_2026/data/raw/chae21_ar5iv.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_ar5iv.html)
+- `Markdown/notes` — [`gext_vectors_2026/data/raw/chae21_fulltext.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_fulltext.txt)
+- `Data/config` — [`ai_slop/TruthFlow/fetched_papers/mond_20260503_182815.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/fetched_papers/mond_20260503_182815.json)
+- `Data/config` — [`deepseek_push/Z10_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/Z10_results.json)
+- `Paper` — [`qwen_claude_field_theory/papers_2026/PAPER27_parameter_free_rar_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/papers_2026/PAPER27_parameter_free_rar_2026.tex)
+- `Python script` — [`deepseek_push/G195_sdss_anisotropy.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G195_sdss_anisotropy.py)
+- `Python script` — [`deepseek_push/G206_wojtak_2d.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G206_wojtak_2d.py)
+- `Data/config` — [`deepseek_push/G206_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G206_results.json)
+- `Paper` — [`deepseek_push/G114_data/bell2003/bell2003.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/bell2003/bell2003.tex)
+- `Markdown/notes` — [`deepseek_push/MNRAS_METHODS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/MNRAS_METHODS.md)
+- `Paper` — [`deepseek_push/G070_data/simon_ufds_v8.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G070_data/simon_ufds_v8.tex)
+
+---
+*Living citation page for James Binney · index: [CITATIONS.md](../CITATIONS.md) · auto-generated, append-only.*
