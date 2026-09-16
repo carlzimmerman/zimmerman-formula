@@ -1,0 +1,64 @@
+================================================================================================
+G133 -- THE MIGHTEE FOOTING FIT: the deep end's own a0 (80 rings, a0 free)
+        form: g_obs^2 = g_N^2 + a0 g_N  |  a0 FREE (no other freedom)
+================================================================================================
+
+--- (0) THE RINGS + REGISTER CROSS-CHECK ---
+    rings = 80 (paper's own DPL sample size: 80; 18 colour groups = per-galaxy proxies, >= 18 of the 19 galaxies)
+    register cross-check at a0 = 9.3619e-11: mean offset -0.1372 (G099 -0.1372), deep median -0.1509 (G099 -0.1509), rms 0.1901 (G099 0.1901)
+  [PASS] register: digitized CSV reproduces the G099 anchor numbers (mean, deep median, rms)
+    the 0.137-dex offset at stake: mean -0.1372 dex; deep-subset median -0.1509 (n = 72)
+
+--- (1) THE FIT: a0 FREE on the 80 rings (quadratic RAR) ---
+    best-fit a0* = 1.8433e-10 m/s^2   (log10 = -9.7344)
+    rms at a0* = 0.1288 dex; residual mean -0.0017, deep median +0.0082
+    error: curvature-OLS +- 1.276e-11; ring bootstrap +- 1.260e-11;
+    galaxy-group bootstrap +- 2.420e-11  ->  headline sigma +- 2.420e-11 (13.1%)
+    deep-only refit (g_N < 0.2 a0*, n = 77): a0 = 1.8746e-10 (1.017 x the full-sample fit)
+  [PASS] V1 [the free-a0 fit] a0* = 1.8433e-10 +- 2.420e-11; deep-only refit within 1.5 sigma and 15%
+
+--- (2) THE COMPARISON: a0* vs the committed scales ---
+    a0 error: +- 2.420e-11 (linear, 13.1%), +- 0.0570 dex (log; the ratio metric)
+    G03D committed band: a0_DE/a0_RAR = 0.752-0.780 with the exact 9.3619e-11 (the register's 0.754-0.783 uses the rounded 9.4e-11) => RAR band 1.2000e-10-1.2457e-10
+    DE-anchored (G052 committed): a0*/scale = 1.969  deep-end +0.147 dex   +3.7 sigma (lin) / +5.2 (log)  -> prefers a HIGHER a0 scale
+    SPARC RAR-fit LOW (McGaugh+16): a0*/scale = 1.536  deep-end +0.093 dex   +2.7 sigma (lin) / +3.3 (log)  -> prefers a HIGHER a0 scale
+    SPARC RAR-fit HI (L232)     : a0*/scale = 1.480  deep-end +0.085 dex   +2.5 sigma (lin) / +3.0 (log)  -> prefers a HIGHER a0 scale
+    MIGHTEE paper's own (Table 3): a0*/scale = 1.091  deep-end +0.019 dex   +0.6 sigma (lin) / +0.6 (log)  -> indifferent
+    vs the committed RAR BAND [1.200, 1.2457]e-10 (centre 1.2229e-10): +3.1 sigma (log) above band centre; +3.0 sigma (log) above band TOP
+  [PASS] V2 [the deep end's preference] a0* = 1.8433e-10 rejects the DE anchor at > 2.6 sigma (log) and sits above the RAR band
+  [PASS] V3 [cross-check] a0* agrees with the paper's own MLS fit 1.69 +- 0.13e-10 at <= 1.5 sigma (log)
+
+--- (3) THE SYSTEMATICS: what can move the 0.137-dex offset? ---
+    (target: the G099 mean offset 0.1372 dex at the DE anchor; closing =
+     lower the data at fixed a0, or raise the prediction)
+      (a) fiducial varying (committed)      : paper's a0 = 1.69e-10  -> deep-end move +0.000 dex
+      (a) radial-average Ystar              : paper's a0 = 1.47e-10  -> deep-end move +0.030 dex
+      (a) fixed Ystar_K = 0.6 (SPARC-class) : paper's a0 = 1.08e-10  -> deep-end move +0.097 dex
+      (a) no molecular gas                  : paper's a0 = 2.06e-10  -> deep-end move -0.043 dex
+      (a) the MIGHTEE-only refits of the paper itself (its Table 3) bracket the Ystar/IMF move: closure +0.097 dex at the most aggressive (SPARC-class fixed M/L); +0.030 at radial-average; 0.000 under the committed fiducial; 'no mol' actually OPENS -0.043 dex (the fiducial molecular-gas term is already a closing move)
+      (a) direct rescale (f_star in [0.25,0.50], Ystar 0.36 -> SPARC 3.6um 0.5): closure +0.018 .. +0.036 dex  (brackets the paper's own rows)
+      (a) direct rescale (f_star in [0.25,0.50], Ystar 0.36 -> 0.6 high-M/L): closure +0.028 .. +0.055 dex  (brackets the paper's own rows)
+      (b) pressure: the paper does NOT correct -- 'negligible for the high rotational velocities of our sample' (Iorio+17, Pavel+21).
+          direction: v_c > v_rot boosts g_obs -> WORSE (data-above-law); generic magnitude 0.003-0.02 dex
+      (c) inclination: sample median i = 48 deg (range 39-76); g_obs ~ 1/sin^2(i) => |d log g_obs| = 0.782 x d i_radian, i HIGHER -> g_obs LOWER (closing direction):
+          +5 deg assumed-higher i moves g_obs DOWN 0.068 dex.  Closing the FULL 0.137 needs a coherent i OVERestimate of ~10 deg at the median i; the committed checks (q0 0 vs 0.2: negligible; G/R axis ratios consistent; 3D Barolo i within uncertainties) exclude any such coherent bias -> scatter, not closure
+      (d) beam smearing: corrected in 3D Barolo (beam-convolved model) + inner rings < 5 arcsec discarded.
+          residual beam smearing LOWERS v_rot (inner rise) -> masks a data-above-law offset; vanishes at the outer deep-end rings -> closure 0
+    ERROR BUDGET (closing power toward closing the 0.137-dex gap):
+      max HONEST single closure: 0.097 dex (the SPARC-class fixed-M/L abscissa, paper's own refit);
+      committed-fiducial closure: 0.000 dex (+ 0.030 radial-average)
+      pressure: -0.003..-0.02; inclination: 0 (scatter); beam: 0 -> SUM of all other items cannot close; the residual after the most aggressive (a) = +0.040 dex, i.e. a0 ~ 1.08e-10, AT/ABOVE the SPARC band and 15% above the DE anchor (+0.031 dex deep-end)
+  [PASS] V4 [systematic closure] NO committed systematic choice closes the 0.137-dex offset (max honest closure 0.097 dex)
+    (the rows of the paper's Table 3 are ALTERNATIVE conventions, not stackable effects; even so, no
+     combination of the listed committed-systematic choices reaches the DE anchor -- the fixed-0.6 move
+     (closing, +0.097) and the no-mol move (opening, -0.043) are the ends of the same budget and
+     partially cancel; the committed fiducial closes 0.000.)
+
+--- (4) VERDICTS ---
+  V1 a0_MIGHTEE = (1.843e-10 +- 2.42e-11) m/s^2 (quadratic RAR, a0 free, 80 rings; log10 scale -9.734 +- 0.057 dex); the same rings under the paper's own MLS form with full MNR errors give 1.69 +- 0.13e-10 (within 0.6 sigma of this fit) -- the deep end's scale is interpolator-insensitive at ~1.7-1.9e-10, and with a0 FREE the rms drops from the DE-anchored 0.190 to 0.129 dex (the SPARC benchmark 0.13-0.15): the MIGHTEE amplitude excess was normalization, not shape.
+  V2 systematics: (a) Ystar/IMF abscissa is the ONLY real closer (0 -> +0.097 dex by the paper's own refits; the SPARC-class fixed-M/L point lands a0 at ~1.08e-10, i.e. the MIGHTEE deep end CAN be marched onto/just under the SPARC band but NOT onto the DE anchor); (b) pressure wrong sign, negligible (the paper applies NO correction: 'negligible for the high rotational velocities'); (c) inclination scatter only -- closure would need a coherent ~10-deg i overestimate the committed q0/G-R checks exclude; (d) beam smearing already corrected (3D Barolo beam-convolution) and any residual acts anti-directional.  CHECK: NO committed systematic closes the 0.137-dex offset (max honest closure 0.097); the offset's systematic FLOOR is the RAR scale, its fiducial size is a full a0-scale step above the DE anchor.
+  V3 honest: the deep end PREFERS a0 = 1.843e-10 +- 2.42e-11 (paper MLS 1.69e-10 +- 1.30e-11), i.e. 1.97x the DE anchor (+5.2 sigma, log; deep-end +0.147 dex) and 1.48x the top of the committed RAR band (+3.0 sigma, log; deep-end +0.085 dex).  The footing tension's third data point: DE-anchored 0.936e-10 < SPARC-RAR 1.20-1.246e-10 < MIGHTEE-deep 1.69-1.84e-10 -- a MONOTONE staircase, MIGHTEE the top step, and the MIGHTEE-vs-SPARC gap (1.48x) is itself a mass-to-light-normalisation question (a fixed-0.6 M/L marches it onto/below the SPARC band), while the MIGHTEE-and-SPARC vs DE gap (1.28-1.97x) survives every committed systematic.  The deep end says: the a0 scale is RAR-class, not DE-class; the 0.137-dex offset is a real a0-scale difference, not an observational artifact.
+  [PASS] V5 [statement]   V3 honest: the deep end PREFERS a0 = 1.843e-10 +- 2.42e-11 (paper MLS 1.69e-10 +- 1.30e-11), i.e. 1.97x the DE anchor (+5.2 sigma, log; deep-end +0.147 dex) and 1.48x the top of the committed RAR band (+3.0 sigma, log; deep-end +0.085 dex).  The footing tension's third data point: DE-anchored 0.936e-10 < SPARC-RAR 1.20-1.246e-10 < MIGHTEE-deep 1.69-1.84e-10 -- a MONOTONE staircase, MIGHTEE the top step, and the MIGHTEE-vs-SPARC gap (1.48x) is itself a mass-to-light-normalisation question (a fixed-0.6 M/L marches it onto/below the SPARC band), while the MIGHTEE-and-SPARC vs DE gap (1.28-1.97x) survives every committed systematic.  The deep end says: the a0 scale is RAR-class, not DE-class; the 0.137-dex offset is a real a0-scale difference, not an observational artifact.
+
+G133 COMPLETE: 6/6 checks PASS.
+wrote G133_results.json

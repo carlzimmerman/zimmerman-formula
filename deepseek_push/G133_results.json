@@ -1,0 +1,132 @@
+{
+ "checks": [
+  true,
+  true,
+  true,
+  true,
+  true,
+  true
+ ],
+ "n_pass": 6,
+ "n_total": 6,
+ "data": {
+  "n_rings": 80,
+  "n_groups": 18,
+  "source": "data2/mightee2025_rar_digitized_points.csv (G099 vector extraction, validated vs the paper's residual panel, rms 0.036 dex)",
+  "paper": "Varasteanu et al. 2025, MNRAS 541, 2366, arXiv:2504.20857v2"
+ },
+ "fit": {
+  "form": "g_obs^2 = g_N^2 + a0 g_N, a0 free (unweighted OLS, dex)",
+  "a0_best": 1.843278164611428e-10,
+  "log10_a0_best": -9.734409121514446,
+  "sigma_curv": 1.2759322754413721e-11,
+  "sigma_ring_bs": 1.2599999999999988e-11,
+  "sigma_group_bs": 2.4200000000000004e-11,
+  "sigma_headline": 2.4200000000000004e-11,
+  "sigma_log_dex": 0.057017582391175554,
+  "rms_at_best_dex": 0.12878271146476297,
+  "rms_at_DE_anchor_dex": 0.19012899336743008,
+  "resid_mean_dex": -0.0017426682360895506,
+  "deep_median_dex": 0.008163171662981306,
+  "deep_only_refit_a0": 1.8746e-10,
+  "a0_paper_MLS": 1.69e-10,
+  "a0_paper_err": 1.3e-11
+ },
+ "comparison": {
+  "DE-anchored (G052 committed)": {
+   "a0": 9.3619e-11,
+   "ratio_fit_over_scale": 1.9689146055944071,
+   "deep_dex": 0.1471134403129992,
+   "sigma_lin": 3.748298200873669,
+   "sigma_log": 5.160283342205246
+  },
+  "SPARC RAR-fit LOW (McGaugh+16)": {
+   "a0": 1.2e-10,
+   "ratio_fit_over_scale": 1.53606513717619,
+   "deep_dex": 0.09320481621896502,
+   "sigma_lin": 2.65817423393152,
+   "sigma_log": 3.2693359595474556
+  },
+  "SPARC RAR-fit HI (L232)": {
+   "a0": 1.2457e-10,
+   "ratio_fit_over_scale": 1.479712743526875,
+   "deep_dex": 0.0850887070185543,
+   "sigma_lin": 2.4693312587249094,
+   "sigma_log": 2.9846480138282128
+  },
+  "MIGHTEE paper's own (Table 3)": {
+   "a0": 1.69e-10,
+   "ratio_fit_over_scale": 1.0906971388233302,
+   "deep_dex": 0.018852086935940676,
+   "sigma_lin": 0.5579693981641943,
+   "sigma_log": 0.5705521353210717
+  }
+ },
+ "committed_band": {
+  "a0_de": 9.3619e-11,
+  "band_low": 1.2e-10,
+  "band_hi": 1.2457e-10,
+  "g03d_ratio_band_exact_a0de": [
+   0.7515372882716546,
+   0.7801583333333333
+  ],
+  "g03d_ratio_band_registered": [
+   0.754,
+   0.783
+  ]
+ },
+ "systematics": {
+  "offset_reference_dex": 0.1372,
+  "a_ystar_imf": {
+   "paper_refits": [
+    {
+     "label": "fiducial varying (committed)",
+     "a0": 1.69e-10,
+     "close_dex": 0.0
+    },
+    {
+     "label": "radial-average Ystar",
+     "a0": 1.47e-10,
+     "close_dex": 0.03028468493274871
+    },
+    {
+     "label": "fixed Ystar_K = 0.6 (SPARC-class)",
+     "a0": 1.08e-10,
+     "close_dex": 0.09723147456336192
+    },
+    {
+     "label": "no molecular gas",
+     "a0": 2.06e-10,
+     "close_dex": -0.04299025787773994
+    }
+   ],
+   "direct_rescale_fstar": [
+    0.25,
+    0.5
+   ],
+   "max_honest_closure_dex": 0.09723147456336192
+  },
+  "b_pressure": "not applied (paper: negligible, Iorio+17/Pavel+21); direction anti-closing, 0.003-0.02 dex",
+  "c_inclination": {
+   "median_i_deg": 48.0,
+   "deg_high_i_overestimate_to_close": 10.051363976292267,
+   "closure_dex": 0.0,
+   "note": "committed q0/G-R checks exclude a coherent bias; scatter only"
+  },
+  "d_beam_smearing": {
+   "closure_dex": 0.0,
+   "note": "3D Barolo beam-convolved + <5 arcsec discarded; residual anti-directional"
+  },
+  "closure_check": {
+   "closed_by_any_commit": false,
+   "max_honest_closure_dex": 0.09723147456336192,
+   "residual_after_max_dex": 0.039968525436638064
+  }
+ },
+ "verdicts": {
+  "V1": "V1 a0_MIGHTEE = (1.843e-10 +- 2.42e-11) m/s^2 (quadratic RAR, a0 free, 80 rings; log10 scale -9.734 +- 0.057 dex); the same rings under the paper's own MLS form with full MNR errors give 1.69 +- 0.13e-10 (within 0.6 sigma of this fit) -- the deep end's scale is interpolator-insensitive at ~1.7-1.9e-10, and with a0 FREE the rms drops from the DE-anchored 0.190 to 0.129 dex (the SPARC benchmark 0.13-0.15): the MIGHTEE amplitude excess was normalization, not shape.",
+  "V2": "V2 systematics: (a) Ystar/IMF abscissa is the ONLY real closer (0 -> +0.097 dex by the paper's own refits; the SPARC-class fixed-M/L point lands a0 at ~1.08e-10, i.e. the MIGHTEE deep end CAN be marched onto/just under the SPARC band but NOT onto the DE anchor); (b) pressure wrong sign, negligible (the paper applies NO correction: 'negligible for the high rotational velocities'); (c) inclination scatter only -- closure would need a coherent ~10-deg i overestimate the committed q0/G-R checks exclude; (d) beam smearing already corrected (3D Barolo beam-convolution) and any residual acts anti-directional.  CHECK: NO committed systematic closes the 0.137-dex offset (max honest closure 0.097); the offset's systematic FLOOR is the RAR scale, its fiducial size is a full a0-scale step above the DE anchor.",
+  "V3": "V3 honest: the deep end PREFERS a0 = 1.843e-10 +- 2.42e-11 (paper MLS 1.69e-10 +- 1.30e-11), i.e. 1.97x the DE anchor (+5.2 sigma, log; deep-end +0.147 dex) and 1.48x the top of the committed RAR band (+3.0 sigma, log; deep-end +0.085 dex).  The footing tension's third data point: DE-anchored 0.936e-10 < SPARC-RAR 1.20-1.246e-10 < MIGHTEE-deep 1.69-1.84e-10 -- a MONOTONE staircase, MIGHTEE the top step, and the MIGHTEE-vs-SPARC gap (1.48x) is itself a mass-to-light-normalisation question (a fixed-0.6 M/L marches it onto/below the SPARC band), while the MIGHTEE-and-SPARC vs DE gap (1.28-1.97x) survives every committed systematic.  The deep end says: the a0 scale is RAR-class, not DE-class; the 0.137-dex offset is a real a0-scale difference, not an observational artifact."
+ },
+ "statement": "V3 honest: the deep end PREFERS a0 = 1.843e-10 +- 2.42e-11 (paper MLS 1.69e-10 +- 1.30e-11), i.e. 1.97x the DE anchor (+5.2 sigma, log; deep-end +0.147 dex) and 1.48x the top of the committed RAR band (+3.0 sigma, log; deep-end +0.085 dex).  The footing tension's third data point: DE-anchored 0.936e-10 < SPARC-RAR 1.20-1.246e-10 < MIGHTEE-deep 1.69-1.84e-10 -- a MONOTONE staircase, MIGHTEE the top step, and the MIGHTEE-vs-SPARC gap (1.48x) is itself a mass-to-light-normalisation question (a fixed-0.6 M/L marches it onto/below the SPARC band), while the MIGHTEE-and-SPARC vs DE gap (1.28-1.97x) survives every committed systematic.  The deep end says: the a0 scale is RAR-class, not DE-class; the 0.137-dex offset is a real a0-scale difference, not an observational artifact."
+}
