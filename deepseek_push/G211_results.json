@@ -1,0 +1,282 @@
+{
+ "lane": "G211_scale_final",
+ "title": "THE SCALE'S FINAL WORD: the pooled significance of a0_eff > a0_DE across every channel",
+ "question": "the combined significance of the a0_eff preference pooled over every independent a0-sensitive channel, and the 3-sigma materiality verdict",
+ "constants": {
+  "a0_de": 9.3619e-11,
+  "a0_eff_band": [
+   1.08e-10,
+   1.1e-10
+  ],
+  "deep_dex_vs_de": [
+   0.0620597576273932,
+   0.07002868729866857
+  ],
+  "dex_per_sigma": 0.028508791195587777,
+  "sigma_ML_floor_dex": 0.02,
+  "sigma_deep_budgeted": 0.03482457717523105
+ },
+ "channels": [
+  {
+   "key": "CH1_deep_end",
+   "name": "CH1 deep end a0_eff",
+   "delta_dex": 0.06606250008106719,
+   "sigma_stat_dex": 0.028508791195587777,
+   "sigma_total_dex": 0.03482457717523105,
+   "z": 1.8970079593113938,
+   "weight": 824.5714539443317,
+   "sources": "G167/G193/G133",
+   "note": "G167 matched-M/L deep end 1.08-1.10e-10; G193 budgeted 1.78-2.01 sigma (mid 1.89)"
+  },
+  {
+   "key": "CH2_dsph_floor",
+   "name": "CH2 dSph floor zero point",
+   "delta_dex": 0.19732471476920946,
+   "sigma_stat_dex": 0.18,
+   "sigma_total_dex": 0.37,
+   "z": 0.5374481070716319,
+   "weight": 7.304601899196494,
+   "sources": "G070/G166",
+   "note": "dSph bright zero point +0.0493 dex obs/pred at DE footing -> delta = 4x; floor statistic 0.222 at DE (G070 V1); sigma_tot 0.37 dex with the UFD +0.40 non-a0 departure and the M/L/IMF band carried as systematics"
+  },
+  {
+   "key": "CH3_12decade",
+   "name": "CH3 12-decade line zero point",
+   "delta_dex": 0.0,
+   "sigma_stat_dex": 0.06,
+   "sigma_total_dex": 0.06,
+   "z": 0.0,
+   "weight": 277.77777777777777,
+   "sources": "G131/G162/G166",
+   "note": "12-decade line zero point ~0.000 (TRIO median -0.010 / pooled +0.047, ends = registered non-a0 departures; footing-invariant slope; dln obs/dln a0 = 1/4)"
+  },
+  {
+   "key": "CH4_MW_break",
+   "name": "CH4 MW break",
+   "delta_dex": 0.0,
+   "sigma_stat_dex": 0.09,
+   "sigma_total_dex": 0.09,
+   "z": 0.0,
+   "weight": 123.4567901234568,
+   "sources": "G072/G119",
+   "note": "MW break 6.1 kpc vs DE-footing kernel 6.13 (0.5%) / deep-form 6.50-6.74 (6-10%): 0-10% at DE; r_cut = 0.623 r_M ~ a0^-1/2"
+  },
+  {
+   "key": "CH5_cluster_T",
+   "name": "CH5 cluster T-law amplitude",
+   "delta_dex": 0.0148,
+   "sigma_stat_dex": 0.03,
+   "sigma_total_dex": 0.05,
+   "z": 0.296,
+   "weight": 399.99999999999994,
+   "sources": "G095/G135",
+   "note": "cluster T-law amplitude median obs 3.57 vs G095 closed form 3.51 (+0.0074 dex) -> delta = 2x amplitude; pooled 31-system rms 0.076 dex"
+  }
+ ],
+ "pool": {
+  "delta_dex": 0.03786309961508691,
+  "sigma_dex": 0.024745270066327454,
+  "z_sigma": 1.5301146244756392,
+  "a0eff_over_a0de": 1.091096341623481,
+  "a0eff_over_a0de_1sigma": [
+   1.030665715067357,
+   1.1550701738694604
+  ],
+  "Q": 1.6294240323325908,
+  "I2_pct": 0.0,
+  "tau2_dex": 0.0,
+  "z_RE": 1.5301146244756392,
+  "weight_sum": 1633.1106237447627,
+  "method": "fixed-effects inverse variance (Cochrane); random-effects D-L reported when Q > df"
+ },
+ "sensitivity": {
+  "sigma_ML_prior_grid": [
+   0.0,
+   0.015,
+   0.02,
+   0.03,
+   0.04
+  ],
+  "z_vs_ml_prior": [
+   1.9631257426044715,
+   1.687070044164959,
+   1.5301146244756392,
+   1.2309418706785764,
+   0.9934368335440875
+  ],
+  "leave_one_out": [
+   {
+    "dropped": "CH1_deep_end",
+    "z": 0.25888602989662457
+   },
+   {
+    "dropped": "CH2_dsph_floor",
+    "z": 1.4978007715778288
+   },
+   {
+    "dropped": "CH3_12decade",
+    "z": 1.679611294383975
+   },
+   {
+    "dropped": "CH4_MW_break",
+    "z": 1.591450301960324
+   },
+   {
+    "dropped": "CH5_cluster_T",
+    "z": 1.5922983222484732
+   }
+  ],
+  "channel_variants": {
+   "CH2 dSph sigma 0.25 / 0.37 / 0.50": {
+    "z_lo": 1.5684030881184579,
+    "z_hi": 1.5155128357471979,
+    "z_all": [
+     1.5684030881184579,
+     1.5301146244756392,
+     1.5155128357471979
+    ]
+   },
+   "CH3 line sigma 0.05 / 0.06 / 0.09": {
+    "z_lo": 1.4758833329665528,
+    "z_hi": 1.607972321902309,
+    "z_all": [
+     1.4758833329665528,
+     1.5301146244756392,
+     1.607972321902309
+    ]
+   },
+   "CH4 MW sigma 0.06 / 0.09 / 0.12": {
+    "z_lo": 1.462571313026295,
+    "z_hi": 1.55606304254322,
+    "z_all": [
+     1.462571313026295,
+     1.5301146244756392,
+     1.55606304254322
+    ]
+   },
+   "CH5 T sigma 0.03 / 0.05 / 0.06": {
+    "z_lo": 1.4944922262093636,
+    "z_hi": 1.5442632587933027,
+    "z_all": [
+     1.4944922262093636,
+     1.5301146244756392,
+     1.5442632587933027
+    ]
+   },
+   "CH3 delta 0.000 / +0.020 / +0.047": {
+    "z_lo": 1.5301146244756392,
+    "z_hi": 1.8531778725638033,
+    "z_all": [
+     1.5301146244756392,
+     1.6675883470663475,
+     1.8531778725638033
+    ]
+   },
+   "CH4 delta 0.000 / +0.042 / +0.083": {
+    "z_lo": 1.5301146244756392,
+    "z_hi": 1.7836772683651676,
+    "z_all": [
+     1.5301146244756392,
+     1.6584234322269669,
+     1.7836772683651676
+    ]
+   },
+   "CH5 delta 0.000 / +0.015 / +0.030": {
+    "z_lo": 1.383622625682981,
+    "z_hi": 1.6805658664789105,
+    "z_all": [
+     1.383622625682981,
+     1.5320942460809455,
+     1.6805658664789105
+    ]
+   }
+  },
+  "corners": {
+   "generous_stat_only_tight": 1.8319876194086087,
+   "generous_hi_edge": 2.103273293219541,
+   "pessimistic": 1.0261148130679065,
+   "pessimistic_negative_corners": 0.5401261239610813
+  },
+  "robust_range_z": [
+   0.25888602989662457,
+   2.103273293219541
+  ],
+  "note": "min/max over the studied priors: M/L prior, per-channel sigmas/deltas, leave-one-out, generous and pessimistic corners"
+ },
+ "consequence_gate": {
+  "bar_sigma": 3.0,
+  "max_z_over_grid": 2.103273293219541,
+  "crossing": false,
+  "branch": "BELOW -> the preference stays COSMETIC; a0_eff ~ 1.15-1.18x a0_DE (G193-corrected; pooled central 1.09x) is NOT a material finding; the z~2.5 BTFR keeps its registered decisive role (G080 flat 0.00/rising +0.33, floor +-0.13, 20:1 per clean point, 4 objects = 5 sigma; G190 priority 2)"
+ },
+ "verdicts": {
+  "V1": "V1 THE COMBINED SIGNIFICANCE.  Pooled over the five independent a0-sensitive channels (deep end +0.0661, dSph floor +0.197, 12-decade line 0.000, MW break 0.000, cluster T amplitude +0.015 dex), fixed-effects inverse-variance: delta_pool = +0.0379 +- 0.0247 dex  ->  a0_eff/a0_DE = 1.091 (1-sigma [1.031, 1.155]) and z = 1.53 sigma (random-effects 1.53).  ROBUST RANGE: z in [0.26, 2.10] sigma over the studied priors (M/L prior sigma_ML 0.00-0.04 on CH1; per-channel sigma/delta variants; leave-one-out; generous/pessimistic corners).  The combined data give the RAR-class scale about 1.5-2.1 sigma above a0_DE -- carried by the deep end (1.89 sigma budgeted alone) and diluted toward DE by the DE-anchored channels (MW break, 12-decade zero point) and the T-law amplitude.",
+  "V2": "V2 THE 3-SIGMA CROSSING.  NO.  The maximum combined z over the entire scanned configuration space is 2.10 sigma < 3.00, and no single channel reaches 3 sigma either (deep-end max 2.46 statistical / 2.01 budgeted).  The baseline pool sits at 1.53 sigma.  Consequence branch: BELOW - the framework's a0_eff = 1.2-1.3x a0_DE (G193-corrected to 1.15-1.18x; pooled central 1.09x) is NOT a material finding; the equilibrium scale is NOT established different from the vacuum scale; the preference stays COSMETIC.  The z~2.5 BTFR test's role does NOT sharpen to 'deciding composite vs one-scale-RAR' -- it stays the REGISTERED final arbiter (G080 flat 0.00 / rising +0.33, floor +-0.13, 20:1 per clean point, 4 objects = 5 sigma; G190 priority 2) whose reading will promote or demote the composite at its own threshold.",
+  "V3": "V3 THE HONEST STATEMENT.  The scale question's current statistical status across EVERY channel: the combined preference for a0_eff > a0_DE is z = 1.53 sigma (robust [0.26, 2.10]), delta_pool = +0.0379 dex = a0_eff/a0_DE = 1.091 -- a real, unanimous-direction (all five channels put a0_eff >= a0_DE, none below) but sub-materiality preference.  Per channel: CH1 deep end +0.0661 dex (1.89 sigma budgeted, the driver); CH2 dSph floor zero point +0.197 dex at ~0.5 sigma (consumed by the M/L/IMF band and the UFD +0.40 non-a0 departure, G070); CH3 12-decade line zero point 0.000 +- 0.06 dex (footing-invariant; dln obs/dln a0 = 1/4, G166); CH4 MW break 0.000 at 0-10% DE (kernel 6.13 vs measured 6.1 kpc, G119); CH5 cluster T-law amplitude +0.015 dex with the 31-system 0.076-dex HSE scatter (G135).  Pool: delta_pool = +0.0379 +- 0.0247 dex, z = 1.53 sigma, below the 3-sigma materiality bar under every studied prior.  The honest status: the two-scale reading is a PREFERENCE, not a finding -- the equilibrium scale may be the vacuum scale; the decisive instruments remain registered (z~2.5 BTFR first, then DR4-K1 / MIGHTEE-K2 per G190), and the composite a0_eff = sqrt(a0_Lambda x a0_c) with a0_c ~ 1.25-1.29e-10 stays a candidate, not a required constant."
+ },
+ "gates": [
+  {
+   "name": "G193 deep-end dex band [+0.062, +0.070] reproduced (a0_eff 1.08-1.10e-10 vs 9.3619e-11)",
+   "pass": true,
+   "measured": "dex = [0.0621, 0.0700], mid 0.0661; G193 budgeted mid 1.78-2.01 sigma"
+  },
+  {
+   "name": "G193 sigma_stat = G133 deep_dex/sigma_log 0.02851 (three registers to 5 decimals)",
+   "pass": true,
+   "measured": "0.028509; sigma_budgeted (M/L 0.020 floor folded) = 0.0348 dex"
+  },
+  {
+   "name": "G167 MIGHTEE at SPARC-class Ystar 0.6 -> 1.08e-10 (ratio_matched 0.9546)",
+   "pass": true,
+   "measured": "mightee@0.6 = 1.080e-10; ratio 0.9546"
+  },
+  {
+   "name": "G070 dSph floor at the DE footing 0.222 (0.22194 V1) with the bright zero point +0.0493 dex (obs over pred)",
+   "pass": true,
+   "measured": "floor median|log10(pred/obs)| = 0.2219 (V1 vs 0.30); bright median log10(pred/obs) = -0.04933"
+  },
+  {
+   "name": "G166 dSph footing map: bright zero point +0.0493 (DE) -> +0.022/+0.018 (RAR); floor 0.222 -> 0.195",
+   "pass": true,
+   "measured": "bright r DE 0.0493 -> RAR 0.0224/0.0183; floor_de 0.2219"
+  },
+  {
+   "name": "G119 MW break full-kernel r_cut = 6.13 kpc = 0.6232 r_M (registered 6.1 / 0.62); deep-form 6.50-6.74 kpc (6-10% at DE)",
+   "pass": true,
+   "measured": "kernel r_cut = 6.1315 kpc = 0.6232 r_M; deep-form Mb70 6.744 kpc"
+  },
+  {
+   "name": "G135 cluster T-law amplitude: median obs 3.57 vs closed form 3.51 (3.3547/3.5718); pooled 31-system rms 0.076 dex",
+   "pass": true,
+   "measured": "median pred 3.355 vs obs 3.572; rms pooled 0.0760 dex"
+  },
+  {
+   "name": "G080 z~2.5 discriminator registered: flat 0.00 vs rising +0.33 by z = 2.5, +-0.13-dex floor (20:1 per clean point, 4 objects = 5 sigma)",
+   "pass": true,
+   "measured": "flat 0.00 dex vs rising 0.33 dex, floor 0.13 dex"
+  },
+  {
+   "name": "G162 pooled 12-decade line b = 1.004 +- 0.011 on n = 542 (G202 register)",
+   "pass": true,
+   "measured": "b = 1.004 +- 0.011, n = 542"
+  },
+  {
+   "name": "meta-analysis self-consistency: the pooled z recomputes from the weight table (closed form vs the loop)",
+   "pass": true,
+   "measured": "d_pool = +0.03786 +- 0.0247 dex, z = 1.53 sigma, robust [0.26, 2.10]"
+  }
+ ],
+ "n_gates": 10,
+ "n_gates_total": 10,
+ "sources": {
+  "G193": "deepseek_push/G193_composite_reconsidered.py + results (corrected composite; residual tension 1.78-2.01 sigma budgeted, mid 1.89)",
+  "G167": "deepseek_push/G167_pipeline_split.py + results (M/L collapse: MIGHTEE@0.6 = 1.08e-10; dwarf lane 1.1176e-10)",
+  "G070": "deepseek_push/G070_dsph_compendium.py + results (dSph floor 0.222 at DE footing; bright zero point +0.0493; UFD +0.40 non-a0 departure; S2-S4)",
+  "G131": "deepseek_push/G131_ten_decade.py + results (10-decade line b = 0.988 +- 0.020, n = 248)",
+  "G162": "G162_results.json + MNRAS_RESULTS_SKELETON.md (pooled n = 542, b = 1.004 +- 0.011)",
+  "G166": "deepseek_push/G166_footing_map.py + results (footing invariance of the 12-decade line; dSph zero point +0.0493 -> +0.022/+0.018; floor 0.222 -> 0.195)",
+  "G119": "deepseek_push/G119_break_factor.py + results (full-kernel r_cut 6.13 kpc = 0.6232 r_M; deep-form 6.50-6.74 kpc; registered MW break 6.1 kpc)",
+  "G135": "deepseek_push/G135_twothirds_law.py + results (T-law amplitude 3.3547 pred / 3.5718 obs median; pooled 31-system rms 0.07596 dex)",
+  "G080": "deepseek_push/G080_highz_law.py + results (z~2.5 discriminator flat 0.00 vs rising +0.33 dex, floor +-0.13; 20:1 per clean point; 4 objects = 5 sigma)"
+ }
+}
