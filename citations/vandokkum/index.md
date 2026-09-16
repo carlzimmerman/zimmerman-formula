@@ -1,41 +1,18 @@
 # Pieter van Dokkum
 
-**Cited in 32 file(s), 63 occurrence(s) across the repo:**
+**Affiliation:** Yale University
 
-**Markdown/notes (32 files):**
+**Cited in 4 file(s), 4 occurrence(s) across the repo:**
 
-- [`CITATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/CITATIONS.md) — 2×
-- [`README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/README.md) — 1×
-- [`citations/car/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/car/index.md) — 2×
-- [`citations/claude/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/claude/index.md) — 2×
-- [`citations/closure/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/closure/index.md) — 2×
-- [`citations/deepseek/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/deepseek/index.md) — 2×
-- [`citations/dokkum/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/dokkum/index.md) — 2×
-- [`citations/efe/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/efe/index.md) — 2×
-- [`citations/era/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/era/index.md) — 2×
-- [`citations/fixed/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/fixed/index.md) — 2×
-- [`citations/formula/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/formula/index.md) — 2×
-- [`citations/full/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/full/index.md) — 2×
-- [`citations/gen/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/gen/index.md) — 2×
-- [`citations/git/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/git/index.md) — 2×
-- [`citations/index/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/index/index.md) — 2×
-- [`citations/inputs/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/inputs/index.md) — 2×
-- [`citations/lau/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lau/index.md) — 2×
-- [`citations/leisman/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/leisman/index.md) — 2×
-- [`citations/list/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/list/index.md) — 2×
-- [`citations/mar/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/mar/index.md) — 2×
-- [`citations/not/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/not/index.md) — 2×
-- [`citations/only/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/only/index.md) — 2×
-- [`citations/page/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/page/index.md) — 2×
-- [`citations/python/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/python/index.md) — 2×
-- [`citations/qwen/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/qwen/index.md) — 2×
-- [`citations/real/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/real/index.md) — 2×
-- [`citations/ren/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ren/index.md) — 2×
-- [`citations/research/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/research/index.md) — 2×
-- [`citations/route/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/route/index.md) — 2×
-- [`citations/sys/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/sys/index.md) — 2×
-- [`citations/ten/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ten/index.md) — 2×
-- [`citations/ter/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ter/index.md) — 2×
+**Markdown/notes (1 files):**
+
+- [`opus_48_extended_research/reviews/CLUSTER_MEASUREMENT_SYSTEMATICS_2026-06-20.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/CLUSTER_MEASUREMENT_SYSTEMATICS_2026-06-20.md) — 1×
+
+**Python script (3 files):**
+
+- [`real_research/reviews/mi_ngc1052_df2_efe_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_ngc1052_df2_efe_2026.py) — 1×
+- [`opus_48_extended_research/reviews/cluster_measurement/route_a_baryon_census.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/cluster_measurement/route_a_baryon_census.py) — 1×
+- [`opus_48_extended_research/reviews/cluster_measurement/routeC_eta_footing_radial.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/cluster_measurement/routeC_eta_footing_radial.py) — 1×
 
 ---
 *Living citation page for Pieter van Dokkum · index: [CITATIONS.md](../CITATIONS.md) · append-only.*

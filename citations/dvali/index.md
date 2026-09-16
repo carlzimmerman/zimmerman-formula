@@ -1,34 +1,27 @@
-# Dvali
+# Gia Dvali
 
-**Cited in 25 file(s), 306 occurrence(s).**
+**Affiliation:** NYU / CERN / LMU
 
-**Files (GitHub links):**
+**Cited in 13 file(s), 16 occurrence(s) across the repo:**
 
-- `Other` — [`fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/python/classy.cpp`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/build/lib.macosx-12.1-arm64-cpython-313/classy/python/classy.cpp) — 63×
-- `Other` — [`fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/python/classy.cpp`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/src/classy-3.3.4.0/python/classy.cpp) — 63×
-- `Other` — [`fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/python/classy.cpp`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L152_class_running_cs2/src/classy-3.3.4.0/python/classy.cpp) — 63×
-- `Other` — [`fable_independent_2026/L183_class_mond_kernel/site/classy/python/classy.cpp`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/fable_independent_2026/L183_class_mond_kernel/site/classy/python/classy.cpp) — 63×
-- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pcsk9_cholesterol_z2/msas/fold_pcsk9_cholesterol_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pcsk9_cholesterol_z2/msas/fold_pcsk9_cholesterol_z2_paired_msa_chains_a.a3m) — 23×
-- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pcsk9_cholesterol_z2/msas/fold_pcsk9_cholesterol_z2_unpaired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pcsk9_cholesterol_z2/msas/fold_pcsk9_cholesterol_z2_unpaired_msa_chains_a.a3m) — 9×
-- `Python script` — [`real_research/reviews/attack6_machian_spectrum.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/attack6_machian_spectrum.py) — 4×
-- `Python script` — [`opus_46_gemini_experiment/phase_07_linear_response/retarded_susceptibility_deSitter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_46_gemini_experiment/phase_07_linear_response/retarded_susceptibility_deSitter.py) — 1×
-- `Python script` — [`qwen_36_experiment/03_kubo_program/tn02_phase34_passivity_theorem.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/03_kubo_program/tn02_phase34_passivity_theorem.py) — 1×
-- `Python script` — [`qwen_36_experiment/03_kubo_program/tn01_phase12_context.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/03_kubo_program/tn01_phase12_context.py) — 1×
-- `Python script` — [`qwen_36_experiment/retarded_susceptibility_deSitter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/retarded_susceptibility_deSitter.py) — 1×
-- `Python script` — [`real_research/reviews/posit_cascade.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/posit_cascade.py) — 1×
-- `Markdown/notes` — [`real_research/FULL_MACH_REST_MASS_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/FULL_MACH_REST_MASS_2026-06.md) — 1×
-- `Python script` — [`ai_slop/research/rigorous_proofs/dgp_brane_world_honest.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/rigorous_proofs/dgp_brane_world_honest.py) — 1×
-- `Python script` — [`ai_slop/research/geometric_closure/GRAVITY_WEAKNESS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/GRAVITY_WEAKNESS.py) — 1×
-- `Markdown/notes` — [`ai_slop/core_theory/TOPOLOGICAL_IR_FIXED_POINTS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/core_theory/TOPOLOGICAL_IR_FIXED_POINTS.md) — 1×
-- `Python script` — [`ai_slop/research/foundations/Z2_HIERARCHY_AND_QUANTUM_GRAVITY.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_HIERARCHY_AND_QUANTUM_GRAVITY.py) — 1×
-- `Python script` — [`ai_slop/research/anomaly_vertex_derivation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/anomaly_vertex_derivation.py) — 1×
-- `Python script` — [`ai_slop/extended_research/biotech/validation/val_10_cern_graviton_search.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/val_10_cern_graviton_search.py) — 1×
-- `Python script` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/tools/test_homeassistant_tool.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/tests/tools/test_homeassistant_tool.py) — 1×
-- `Python script` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/tools/test_homeassistant_tool.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/tests/tools/test_homeassistant_tool.py) — 1×
-- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_unpaired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_unpaired_msa_chains_a.a3m) — 1×
-- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_paired_msa_chains_a.a3m) — 1×
-- `Python script` — [`ai_slop/HermesFlow/hermes_agent/tests/tools/test_homeassistant_tool.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/tests/tools/test_homeassistant_tool.py) — 1×
-- `Python script` — [`ai_slop/TruthFlow/hermes_agent/tests/tools/test_homeassistant_tool.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/tests/tools/test_homeassistant_tool.py) — 1×
+**Markdown/notes (2 files):**
+
+- [`real_research/FULL_MACH_REST_MASS_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/FULL_MACH_REST_MASS_2026-06.md) — 1×
+- [`ai_slop/core_theory/TOPOLOGICAL_IR_FIXED_POINTS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/core_theory/TOPOLOGICAL_IR_FIXED_POINTS.md) — 1×
+
+**Python script (11 files):**
+
+- [`real_research/reviews/attack6_machian_spectrum.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/attack6_machian_spectrum.py) — 4×
+- [`real_research/reviews/posit_cascade.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/posit_cascade.py) — 1×
+- [`qwen_36_experiment/03_kubo_program/tn02_phase34_passivity_theorem.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/03_kubo_program/tn02_phase34_passivity_theorem.py) — 1×
+- [`opus_46_gemini_experiment/phase_07_linear_response/retarded_susceptibility_deSitter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_46_gemini_experiment/phase_07_linear_response/retarded_susceptibility_deSitter.py) — 1×
+- [`qwen_36_experiment/03_kubo_program/tn01_phase12_context.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/03_kubo_program/tn01_phase12_context.py) — 1×
+- [`qwen_36_experiment/retarded_susceptibility_deSitter.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_36_experiment/retarded_susceptibility_deSitter.py) — 1×
+- [`ai_slop/extended_research/biotech/validation/val_10_cern_graviton_search.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/val_10_cern_graviton_search.py) — 1×
+- [`ai_slop/research/anomaly_vertex_derivation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/anomaly_vertex_derivation.py) — 1×
+- [`ai_slop/research/rigorous_proofs/dgp_brane_world_honest.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/rigorous_proofs/dgp_brane_world_honest.py) — 1×
+- [`ai_slop/research/geometric_closure/GRAVITY_WEAKNESS.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/geometric_closure/GRAVITY_WEAKNESS.py) — 1×
+- [`ai_slop/research/foundations/Z2_HIERARCHY_AND_QUANTUM_GRAVITY.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/foundations/Z2_HIERARCHY_AND_QUANTUM_GRAVITY.py) — 1×
 
 ---
-*Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*
+*Living citation page for Gia Dvali · index: [CITATIONS.md](../CITATIONS.md) · append-only.*

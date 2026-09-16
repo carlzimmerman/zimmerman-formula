@@ -1,155 +1,96 @@
 # Lee Smolin
 
-**Cited in 146 file(s), 580 occurrence(s) across the repo:**
+**Affiliation:** Perimeter Institute
 
-**Markdown/notes (146 files):**
+**Cited in 70 file(s), 160 occurrence(s) across the repo:**
 
-- [`CITATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/CITATIONS.md) — 2×
-- [`citations/anthropic/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/anthropic/index.md) — 2×
-- [`citations/author/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/author/index.md) — 2×
-- [`citations/both/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/both/index.md) — 6×
-- [`citations/bound/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/bound/index.md) — 6×
-- [`citations/car/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/car/index.md) — 6×
-- [`citations/cha/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/cha/index.md) — 6×
-- [`citations/cho/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/cho/index.md) — 2×
-- [`citations/cite/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/cite/index.md) — 2×
-- [`citations/community/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/community/index.md) — 2×
-- [`citations/comparison/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/comparison/index.md) — 4×
-- [`citations/complete/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/complete/index.md) — 4×
-- [`citations/conditions/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/conditions/index.md) — 4×
-- [`citations/constraints/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/constraints/index.md) — 2×
-- [`citations/cosmological/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/cosmological/index.md) — 6×
-- [`citations/cover/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/cover/index.md) — 4×
-- [`citations/criterion/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/criterion/index.md) — 2×
-- [`citations/critical/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/critical/index.md) — 2×
-- [`citations/cube/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/cube/index.md) — 4×
-- [`citations/cubic/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/cubic/index.md) — 6×
-- [`citations/current/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/current/index.md) — 4×
-- [`citations/dam/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/dam/index.md) — 6×
-- [`citations/dec/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/dec/index.md) — 6×
-- [`citations/des/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/des/index.md) — 4×
-- [`citations/different/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/different/index.md) — 2×
-- [`citations/direct/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/direct/index.md) — 4×
-- [`citations/discrete/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/discrete/index.md) — 6×
-- [`citations/document/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/document/index.md) — 6×
-- [`citations/dof/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/dof/index.md) — 2×
-- [`citations/efe/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/efe/index.md) — 2×
-- [`citations/effect/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/effect/index.md) — 4×
-- [`citations/entropy/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/entropy/index.md) — 6×
-- [`citations/era/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/era/index.md) — 6×
-- [`citations/exact/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/exact/index.md) — 2×
-- [`citations/experiment/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/experiment/index.md) — 4×
-- [`citations/final/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/final/index.md) — 4×
-- [`citations/first/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/first/index.md) — 4×
-- [`citations/fit/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/fit/index.md) — 2×
-- [`citations/fixed/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/fixed/index.md) — 6×
-- [`citations/formula/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/formula/index.md) — 2×
-- [`citations/full/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/full/index.md) — 4×
-- [`citations/fund/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/fund/index.md) — 6×
-- [`citations/gen/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/gen/index.md) — 6×
-- [`citations/geometric/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/geometric/index.md) — 6×
-- [`citations/geometry/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/geometry/index.md) — 6×
-- [`citations/gravity/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/gravity/index.md) — 2×
-- [`citations/gue/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/gue/index.md) — 2×
-- [`citations/gyr/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/gyr/index.md) — 2×
-- [`citations/han/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/han/index.md) — 6×
-- [`citations/hand/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/hand/index.md) — 2×
-- [`citations/here/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/here/index.md) — 6×
-- [`citations/hou/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/hou/index.md) — 4×
-- [`citations/ian/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ian/index.md) — 6×
-- [`citations/ida/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ida/index.md) — 2×
-- [`citations/identified/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/identified/index.md) — 4×
-- [`citations/ids/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ids/index.md) — 4×
-- [`citations/iii/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/iii/index.md) — 4×
-- [`citations/independent/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/independent/index.md) — 6×
-- [`citations/inputs/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/inputs/index.md) — 2×
-- [`citations/insight/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/insight/index.md) — 2×
-- [`citations/key/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/key/index.md) — 2×
-- [`citations/known/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/known/index.md) — 2×
-- [`citations/lam/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lam/index.md) — 2×
-- [`citations/land/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/land/index.md) — 6×
-- [`citations/lattice/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lattice/index.md) — 6×
-- [`citations/law/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/law/index.md) — 6×
-- [`citations/lee/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lee/index.md) — 2×
-- [`citations/lie/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lie/index.md) — 4×
-- [`citations/lim/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lim/index.md) — 6×
-- [`citations/limit/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/limit/index.md) — 4×
-- [`citations/lin/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lin/index.md) — 6×
-- [`citations/list/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/list/index.md) — 2×
-- [`citations/mar/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/mar/index.md) — 4×
-- [`citations/mathematics/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/mathematics/index.md) — 2×
-- [`citations/matter/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/matter/index.md) — 6×
-- [`citations/may/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/may/index.md) — 4×
-- [`citations/measured/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/measured/index.md) — 4×
-- [`citations/measurements/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/measurements/index.md) — 2×
-- [`citations/meta/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/meta/index.md) — 6×
-- [`citations/mmu/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/mmu/index.md) — 2×
-- [`citations/mode/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/mode/index.md) — 6×
-- [`citations/nature/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/nature/index.md) — 4×
-- [`citations/neither/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/neither/index.md) — 4×
-- [`citations/none/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/none/index.md) — 2×
-- [`citations/not/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/not/index.md) — 6×
-- [`citations/observation/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/observation/index.md) — 4×
-- [`citations/old/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/old/index.md) — 2×
-- [`citations/omega/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/omega/index.md) — 2×
-- [`citations/only/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/only/index.md) — 4×
-- [`citations/pac/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/pac/index.md) — 6×
-- [`citations/parameters/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/parameters/index.md) — 2×
-- [`citations/part/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/part/index.md) — 6×
-- [`citations/pat/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/pat/index.md) — 2×
-- [`citations/phi/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/phi/index.md) — 6×
-- [`citations/phys/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/phys/index.md) — 6×
-- [`citations/physics/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/physics/index.md) — 6×
-- [`citations/point/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/point/index.md) — 2×
-- [`citations/pos/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/pos/index.md) — 6×
-- [`citations/principle/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/principle/index.md) — 4×
-- [`citations/problem/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/problem/index.md) — 6×
-- [`citations/proof/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/proof/index.md) — 2×
-- [`citations/proposal/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/proposal/index.md) — 2×
-- [`citations/proven/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/proven/index.md) — 2×
-- [`citations/pure/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/pure/index.md) — 2×
-- [`citations/quantum/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/quantum/index.md) — 2×
-- [`citations/ratio/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ratio/index.md) — 4×
-- [`citations/real/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/real/index.md) — 6×
-- [`citations/ren/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ren/index.md) — 6×
-- [`citations/research/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/research/index.md) — 4×
-- [`citations/resolution/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/resolution/index.md) — 2×
-- [`citations/resolved/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/resolved/index.md) — 2×
-- [`citations/review/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/review/index.md) — 8×
-- [`citations/revision/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/revision/index.md) — 2×
-- [`citations/ruth/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ruth/index.md) — 2×
-- [`citations/sec/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/sec/index.md) — 4×
-- [`citations/sha/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/sha/index.md) — 4×
-- [`citations/shi/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/shi/index.md) — 2×
-- [`citations/sign/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/sign/index.md) — 2×
-- [`citations/sme/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/sme/index.md) — 6×
-- [`citations/some/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/some/index.md) — 4×
-- [`citations/spatial/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/spatial/index.md) — 2×
-- [`citations/spin/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/spin/index.md) — 6×
-- [`citations/spite/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/spite/index.md) — 2×
-- [`citations/sse/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/sse/index.md) — 6×
-- [`citations/standard/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/standard/index.md) — 6×
-- [`citations/state/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/state/index.md) — 6×
-- [`citations/status/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/status/index.md) — 6×
-- [`citations/tan/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/tan/index.md) — 6×
-- [`citations/ten/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ten/index.md) — 6×
-- [`citations/ter/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ter/index.md) — 6×
-- [`citations/testa/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/testa/index.md) — 2×
-- [`citations/that's/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/that's/index.md) — 2×
-- [`citations/theorem/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/theorem/index.md) — 6×
-- [`citations/theory/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/theory/index.md) — 6×
-- [`citations/topology/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/topology/index.md) — 4×
-- [`citations/true/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/true/index.md) — 4×
-- [`citations/tuning/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/tuning/index.md) — 4×
-- [`citations/universe/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/universe/index.md) — 6×
-- [`citations/voids/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/voids/index.md) — 2×
-- [`citations/way/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/way/index.md) — 2×
-- [`citations/wel/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/wel/index.md) — 2×
-- [`citations/will/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/will/index.md) — 4×
-- [`citations/work/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/work/index.md) — 6×
-- [`citations/year/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/year/index.md) — 2×
-- [`citations/yin/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/yin/index.md) — 2×
-- [`citations/zero/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/zero/index.md) — 4×
+**Data/config (3 files):**
+
+- [`opus_48_extended_research/papers/WB_CUBIC_GATE_LAW.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/WB_CUBIC_GATE_LAW.zenodo.json) — 1×
+- [`real_research/papers/INVERTED_BH_ADDENDUM_2026.zenodo.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/INVERTED_BH_ADDENDUM_2026.zenodo.json) — 1×
+- [`real_research/COMMIT_LEDGER.csv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/COMMIT_LEDGER.csv) — 1×
+
+**HTML (11 files):**
+
+- [`ai_slop/papers/Horizon_Calculation.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Horizon_Calculation.html) — 2×
+- [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.0.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.0.html) — 2×
+- [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.1.1.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.1.1.html) — 2×
+- [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY.html) — 2×
+- [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.4.0.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.4.0.html) — 2×
+- [`ai_slop/core_theory/Z2_COMPLETE_DERIVATION_UPDATED.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/core_theory/Z2_COMPLETE_DERIVATION_UPDATED.html) — 1×
+- [`ai_slop/papers/Z2_FRAMEWORK_COMPREHENSIVE.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_FRAMEWORK_COMPREHENSIVE.html) — 1×
+- [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.2.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.2.html) — 1×
+- [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v2.1.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v2.1.html) — 1×
+- [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v3.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v3.html) — 1×
+- [`ai_slop/papers/Z2_FRAMEWORK_v2.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_FRAMEWORK_v2.html) — 1×
+
+**Markdown/notes (37 files):**
+
+- [`ai_slop/non-peer-review/smolin/Smolin_Cross_Review.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/smolin/Smolin_Cross_Review.md) — 29×
+- [`ai_slop/non-peer-review/smolin/KEY_FINDINGS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/smolin/KEY_FINDINGS.md) — 21×
+- [`ai_slop/non-peer-review/smolin/HONESTY_ASSESSMENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/smolin/HONESTY_ASSESSMENT.md) — 9×
+- [`ai_slop/archive/THEORETICAL_DERIVATION_PATHS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/archive/THEORETICAL_DERIVATION_PATHS.md) — 6×
+- [`real_research/ROUTES_TO_THE_DEEPMOND_SIGN.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/ROUTES_TO_THE_DEEPMOND_SIGN.md) — 4×
+- [`real_research/THEORY_DOOR_MAP.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/THEORY_DOOR_MAP.md) — 3×
+- [`ai_slop/papers/DERIVING_MOND_SCALE_FROM_HORIZON_PHYSICS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/DERIVING_MOND_SCALE_FROM_HORIZON_PHYSICS.md) — 3×
+- [`ai_slop/non-peer-review/WHAT_WE_LEARNED.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/WHAT_WE_LEARNED.md) — 3×
+- [`opus_48_extended_research/papers/WB_CUBIC_GATE_LAW.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/WB_CUBIC_GATE_LAW.md) — 2×
+- [`real_research/reviews/toe_law/agentB_door1_mechanism_notes.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentB_door1_mechanism_notes.md) — 2×
+- [`ai_slop/core_theory/HORIZON_CALCULATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/core_theory/HORIZON_CALCULATION.md) — 2×
+- [`ai_slop/papers/HORIZON_CALCULATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/HORIZON_CALCULATION.md) — 2×
+- [`ai_slop/papers/README_FULL.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/README_FULL.md) — 2×
+- [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY.md) — 2×
+- [`real_research/FORCING_THE_COEFFICIENT.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/FORCING_THE_COEFFICIENT.md) — 1×
+- [`real_research/INVERTED_BH_NOVELTY_CHECK_2026-06.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/INVERTED_BH_NOVELTY_CHECK_2026-06.md) — 1×
+- [`opus_48_extended_research/reviews/LCDM_TENSIONS_REGRADE_2026-06-14.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/LCDM_TENSIONS_REGRADE_2026-06-14.md) — 1×
+- [`opus_48_extended_research/reviews/FRAMEWORK_VS_STRING_LANDSCAPE_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/FRAMEWORK_VS_STRING_LANDSCAPE_2026-06-15.md) — 1×
+- [`opus_48_extended_research/papers/A0_HALF_THE_DARK_ENERGY_RATE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/A0_HALF_THE_DARK_ENERGY_RATE.md) — 1×
+- [`opus_48_extended_research/reviews/KAPPA_CLASS3_DISPERSION_RELATION_VERDICT_2026-06-26.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/KAPPA_CLASS3_DISPERSION_RELATION_VERDICT_2026-06-26.md) — 1×
+- [`real_research/reviews/toe_law/agentP_verlinde_coefficient.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentP_verlinde_coefficient.md) — 1×
+- [`real_research/papers/INVERTED_BH_ADDENDUM_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/INVERTED_BH_ADDENDUM_2026.md) — 1×
+- [`reviews/outputs_kappa_session_2026-07-29/02_spectral_weight_swing.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/reviews/outputs_kappa_session_2026-07-29/02_spectral_weight_swing.txt) — 1×
+- [`real_research/papers/WHITEPAPER_TOE_MAP_2026.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/WHITEPAPER_TOE_MAP_2026.md) — 1×
+- [`real_research/RESPONSE_POSIT_DERIVATION_2026-06-09.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/RESPONSE_POSIT_DERIVATION_2026-06-09.md) — 1×
+- [`real_research/PROGRAM_20_FINDINGS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/PROGRAM_20_FINDINGS.md) — 1×
+- [`ai_slop/core_theory/Z2_COMPLETE_DERIVATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/core_theory/Z2_COMPLETE_DERIVATION.md) — 1×
+- [`real_research/reviews/toe_law/agentN4_tail_literature.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/toe_law/agentN4_tail_literature.md) — 1×
+- [`ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v6.0.0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v6.0.0.md) — 1×
+- [`ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_PUBLICATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_PUBLICATION.md) — 1×
+- [`ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v7.0.0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v7.0.0.md) — 1×
+- [`ai_slop/papers/Z2_UNIFIED_ACTION_PUBLICATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_PUBLICATION.md) — 1×
+- [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.0.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.0.md) — 1×
+- [`ai_slop/papers/Z2_COMPLETE_DERIVATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_COMPLETE_DERIVATION.md) — 1×
+- [`ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.2.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/LAGRANGIAN_FROM_GEOMETRY_v1.5.2.md) — 1×
+- [`ai_slop/non-peer-review/rovelli/Rovelli_Cross_Review.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/rovelli/Rovelli_Cross_Review.md) — 1×
+- [`ai_slop/non-peer-review/penrose/Penrose_Cross_Review.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/non-peer-review/penrose/Penrose_Cross_Review.md) — 1×
+
+**Other (2 files):**
+
+- [`ai_slop/TruthFlow/legomena_training/z2_training_expanded.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/legomena_training/z2_training_expanded.jsonl) — 1×
+- [`ai_slop/HermesFlow/legomena_training/z2_training_expanded.jsonl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/legomena_training/z2_training_expanded.jsonl) — 1×
+
+**Paper (10 files):**
+
+- [`ai_slop/papers/deriving_mond_scale.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/deriving_mond_scale.tex) — 2×
+- [`opus_48_extended_research/papers/theory_comparison_paper.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/papers/theory_comparison_paper.tex) — 1×
+- [`real_research/papers/zimmerman_toe_map_2026.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/papers/zimmerman_toe_map_2026.tex) — 1×
+- [`ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v7.2.0.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v7.2.0.tex) — 1×
+- [`ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v6.0.2.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v6.0.2.tex) — 1×
+- [`ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v6.0.1.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v6.0.1.tex) — 1×
+- [`ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v8.0.0.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v8.0.0.tex) — 1×
+- [`ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v5.7.9.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v5.7.9.tex) — 1×
+- [`ai_slop/papers/Z2_UNIFIED_ACTION_v5.7.9.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_v5.7.9.tex) — 1×
+- [`ai_slop/papers/Z2_UNIFIED_ACTION_v10.0.0.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/papers/Z2_UNIFIED_ACTION_v10.0.0.tex) — 1×
+
+**Python script (7 files):**
+
+- [`real_research/reviews/project_smolin_psr_relational.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project_smolin_psr_relational.py) — 6×
+- [`real_research/reviews/project_forcing_the_coefficient.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project_forcing_the_coefficient.py) — 2×
+- [`reviews/mi_spectral_weight_swing_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/reviews/mi_spectral_weight_swing_2026.py) — 2×
+- [`real_research/reviews/project_routes_to_sign.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project_routes_to_sign.py) — 2×
+- [`real_research/reviews/Z_provenance_audit_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/Z_provenance_audit_2026.py) — 1×
+- [`real_research/reviews/mi_milgrom1994_home_test_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mi_milgrom1994_home_test_2026.py) — 1×
+- [`real_research/reviews/project_the_ball_in_Z.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/project_the_ball_in_Z.py) — 1×
 
 ---
 *Living citation page for Lee Smolin · index: [CITATIONS.md](../CITATIONS.md) · append-only.*

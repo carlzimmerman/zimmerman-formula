@@ -1,10 +1,12 @@
-# Ciardullo
+# Robin Ciardullo
 
-**Cited in 1 file(s), 2 occurrence(s) across the repo:**
+**Affiliation:** Penn State
 
-**Markdown/notes (1 files):**
+**Cited in 1 file(s), 3 occurrence(s) across the repo:**
 
-- [`citations/formula/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/formula/index.md) — 2×
+**Data/config (1 files):**
+
+- [`real_research/data/pn_ngc3379_3384_sluis2006.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/pn_ngc3379_3384_sluis2006.tsv) — 3×
 
 ---
-*Living citation page for Ciardullo · index: [CITATIONS.md](../CITATIONS.md) · append-only.*
+*Living citation page for Robin Ciardullo · index: [CITATIONS.md](../CITATIONS.md) · append-only.*

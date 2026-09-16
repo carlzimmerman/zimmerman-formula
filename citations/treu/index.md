@@ -1,33 +1,24 @@
-# Treu
+# Tommaso Treu
 
-**Cited in 24 file(s), 100 occurrence(s).**
+**Affiliation:** UCLA
 
-**Files (GitHub links):**
+**Cited in 7 file(s), 7 occurrence(s) across the repo:**
 
-- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pcsk9_cholesterol_z2/msas/fold_pcsk9_cholesterol_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/pcsk9_cholesterol_z2/msas/fold_pcsk9_cholesterol_z2_paired_msa_chains_a.a3m) — 66×
-- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_paired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_paired_msa_chains_a.a3m) — 7×
-- `Data/config` — [`ai_slop/HermesFlow/glacier_test_output/volumechange_raw.csv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/glacier_test_output/volumechange_raw.csv) — 5×
-- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (collider template).ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (collider template).ipynb) — 2×
-- `Markdown/notes` — [`prep_2026/a0z_crossscale/archive_inventory_d2_2026_results.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/archive_inventory_d2_2026_results.txt) — 1×
-- `Python script` — [`prep_2026/a0z_crossscale/archive_inventory_d2_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/archive_inventory_d2_2026.py) — 1×
-- `Python script` — [`prep_2026/manga_anisotropy/verify_independent.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/verify_independent.py) — 1×
-- `Other` — [`prep_2026/manga_anisotropy/verify_independent.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/verify_independent.out) — 1×
-- `Markdown/notes` — [`prep_2026/manga_anisotropy/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/VERIFY.md) — 1×
-- `Markdown/notes` — [`prep_2026/manga_anisotropy/FROZEN.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/FROZEN.md) — 1×
-- `Other` — [`ai_slop/extended_research/biotech/validation/pdb_cache/8afb.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/8afb.pdb) — 1×
-- `Other` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd) — 1×
-- `Other` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd) — 1×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/popular-web-designs/templates/nvidia.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/hermes_agent/skills/creative/popular-web-designs/templates/nvidia.md) — 1×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/popular-web-designs/templates/nvidia.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/hermes_agent/skills/creative/popular-web-designs/templates/nvidia.md) — 1×
-- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (CS template).ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (CS template).ipynb) — 1×
-- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/Nseries Odd-Parity 4PCF.ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/Nseries Odd-Parity 4PCF.ipynb) — 1×
-- `Python script` — [`ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (ghost template).ipynb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/offensive_campaign/Parity-Odd-4PCF/BOSS Odd-Parity 4PCF (ghost template).ipynb) — 1×
-- `Other` — [`ai_slop/HermesFlow/hermes_agent/skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd) — 1×
-- `Markdown/notes` — [`ai_slop/HermesFlow/hermes_agent/skills/creative/popular-web-designs/templates/nvidia.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/HermesFlow/hermes_agent/skills/creative/popular-web-designs/templates/nvidia.md) — 1×
-- `Other` — [`ai_slop/TruthFlow/hermes_agent/skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/productivity/powerpoint/scripts/office/schemas/ISO-IEC29500-4_2016/dml-main.xsd) — 1×
-- `Markdown/notes` — [`ai_slop/TruthFlow/hermes_agent/skills/creative/popular-web-designs/templates/nvidia.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/TruthFlow/hermes_agent/skills/creative/popular-web-designs/templates/nvidia.md) — 1×
-- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/8AXJ.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/data/massive_pdb_set/8AXJ.pdb) — 1×
-- `Other` — [`ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_unpaired_msa_chains_a.a3m`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/dpp4_diabetes_z2/msas/fold_dpp4_diabetes_z2_unpaired_msa_chains_a.a3m) — 1×
+**Markdown/notes (3 files):**
+
+- [`prep_2026/a0z_crossscale/archive_inventory_d2_2026_results.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/archive_inventory_d2_2026_results.txt) — 1×
+- [`prep_2026/manga_anisotropy/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/VERIFY.md) — 1×
+- [`prep_2026/manga_anisotropy/FROZEN.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/FROZEN.md) — 1×
+
+**Other (2 files):**
+
+- [`prep_2026/manga_anisotropy/verify_independent.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/verify_independent.out) — 1×
+- [`ai_slop/extended_research/biotech/validation/pdb_cache/8afb.pdb`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/extended_research/biotech/validation/pdb_cache/8afb.pdb) — 1×
+
+**Python script (2 files):**
+
+- [`prep_2026/a0z_crossscale/archive_inventory_d2_2026.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/a0z_crossscale/archive_inventory_d2_2026.py) — 1×
+- [`prep_2026/manga_anisotropy/verify_independent.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/verify_independent.py) — 1×
 
 ---
-*Living citation page · [CITATIONS.md](../CITATIONS.md) · append-only.*
+*Living citation page for Tommaso Treu · index: [CITATIONS.md](../CITATIONS.md) · append-only.*

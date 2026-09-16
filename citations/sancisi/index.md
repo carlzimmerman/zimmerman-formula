@@ -1,39 +1,43 @@
 # Renzo Sancisi
 
-**Cited in 30 file(s), 59 occurrence(s) across the repo:**
+**Affiliation:** Kapteyn Institute, Groningen
 
-**Markdown/notes (30 files):**
+**Cited in 17 file(s), 37 occurrence(s) across the repo:**
 
-- [`CITATIONS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/CITATIONS.md) — 2×
-- [`README.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/README.md) — 1×
-- [`citations/bosma/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/bosma/index.md) — 2×
-- [`citations/car/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/car/index.md) — 2×
-- [`citations/cha/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/cha/index.md) — 2×
-- [`citations/claude/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/claude/index.md) — 2×
-- [`citations/companions/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/companions/index.md) — 2×
-- [`citations/deepseek/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/deepseek/index.md) — 2×
-- [`citations/era/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/era/index.md) — 2×
-- [`citations/formula/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/formula/index.md) — 2×
-- [`citations/full/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/full/index.md) — 2×
-- [`citations/gen/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/gen/index.md) — 2×
-- [`citations/git/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/git/index.md) — 2×
-- [`citations/index/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/index/index.md) — 2×
-- [`citations/lau/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/lau/index.md) — 2×
-- [`citations/leisman/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/leisman/index.md) — 2×
-- [`citations/list/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/list/index.md) — 2×
-- [`citations/mar/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/mar/index.md) — 2×
-- [`citations/not/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/not/index.md) — 2×
-- [`citations/only/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/only/index.md) — 2×
-- [`citations/page/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/page/index.md) — 2×
-- [`citations/python/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/python/index.md) — 2×
-- [`citations/qwen/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/qwen/index.md) — 2×
-- [`citations/ratio/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ratio/index.md) — 2×
-- [`citations/real/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/real/index.md) — 2×
-- [`citations/ren/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/ren/index.md) — 2×
-- [`citations/research/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/research/index.md) — 2×
-- [`citations/text/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/text/index.md) — 2×
-- [`citations/vectors/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/vectors/index.md) — 2×
-- [`citations/warps/index.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/citations/warps/index.md) — 2×
+**Data/config (2 files):**
+
+- [`real_research/data/warps/whisp_edgeon_companions.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/warps/whisp_edgeon_companions.tsv) — 1×
+- [`real_research/data/warps/whisp_edgeon_warps.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/warps/whisp_edgeon_warps.tsv) — 1×
+
+**HTML (1 files):**
+
+- [`gext_vectors_2026/data/raw/chae21_ar5iv.html`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_ar5iv.html) — 4×
+
+**Markdown/notes (2 files):**
+
+- [`gext_vectors_2026/data/raw/chae21_fulltext.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/gext_vectors_2026/data/raw/chae21_fulltext.txt) — 4×
+- [`qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/qwen_claude_field_theory/gates_2026/dhf/dhf2024.txt) — 1×
+
+**Other (4 files):**
+
+- [`hunt_2026/k_unexplained-regularities_bosma.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_unexplained-regularities_bosma.out) — 3×
+- [`deepseek_push/G114_data/leisman/d6.bbl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/leisman/d6.bbl) — 2×
+- [`real_research/data/SPARC_Lelli2016c.mrt`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/SPARC_Lelli2016c.mrt) — 2×
+- [`hunt_2026/k01_bosma_factor.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k01_bosma_factor.out) — 1×
+
+**Paper (2 files):**
+
+- [`deepseek_push/G114_data/figgs/FIGGS_BTF.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/figgs/FIGGS_BTF.tex) — 5×
+- [`deepseek_push/G114_data/bdj2001/ms.tex`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/bdj2001/ms.tex) — 3×
+
+**Python script (6 files):**
+
+- [`hunt_2026/k01_bosma_factor.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k01_bosma_factor.py) — 3×
+- [`hunt_2026/k_unexplained-regularities_bosma.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_unexplained-regularities_bosma.py) — 3×
+- [`real_research/reviews/mine5_feature_rar_renzo.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/reviews/mine5_feature_rar_renzo.py) — 1×
+- [`hunt_2026/k_unexplained-regularities_hisize.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k_unexplained-regularities_hisize.py) — 1×
+- [`hunt_2026/k03_hi_edge_acceleration.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/k03_hi_edge_acceleration.py) — 1×
+- [`hunt_2026/h30_warp_onset.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h30_warp_onset.py) — 1×
 
 ---
 *Living citation page for Renzo Sancisi · index: [CITATIONS.md](../CITATIONS.md) · append-only.*
