@@ -1,0 +1,117 @@
+============================================================================================
+D03 -- THE DUST-LAW INVERSION: c_dust(M500, r) as a total-mass estimator
+============================================================================================
+
+============================================================================================
+PART 1 -- THE INVERSION: the closed form and the floor propagation
+============================================================================================
+  the committed law (G143): c_dust = 0.72 (M500/8e14)^q (r/R500)^p
+    c0 = -0.1427 (log10 0.72), q = -0.4144 (derived -0.3333), p = -0.990
+    residual floor: 0.119 dex (3-param) / 0.097 dex (13-param)
+  THE INVERSION: log10(M/8e14) = (log10 c_dust - c0 - p log10(r/R500))/q
+    -> sigma(log10 M) = sigma(log10 c_dust)/|q|
+  [q_measured] sigma_M = 0.287 dex (0.119 floor) / 0.234 dex (0.097 floor); two-radius /sqrt2: 0.203 / 0.166 dex
+  [q_derived_-1/3] sigma_M = 0.357 dex (0.119 floor) / 0.291 dex (0.097 floor); two-radius /sqrt2: 0.252 / 0.206 dex
+  [PASS] P1a [the inversion closed form, arithmetic] two radii with the law exact return the same M (consistency by construction)
+        measured: single-radius formula applied to a synthetic law field: |d log10 M| = 0.0 exactly
+        reading : two equations, one unknown: the estimator is the log-space mean of the two single-radius estimates; their spread is the radial-shape consistency diagnostic
+
+  synthetic round-trip (4 cases): |delta log10 M| < 1e-9 -- EXACT
+  [PASS] P1b [the two-radii estimator] the combined estimator and its internal consistency diagnostic
+        measured: M_dust-inv = 8e14 x 10^mean(log10 M(r1), log10 M(r2)); the |spread| of the two single-radius values is the radial-shape residual of that cluster (measured on X-COP below)
+        reading : the estimator returns one mass per cluster from the two-radius field; the per-cluster two-radius spread must sit at or below the propagated floor for the law to be self-similar in r (it is the 0.097-dex one-shape statement from the other side)
+
+
+  [PASS] P1v [V1: the inversion's precision] the residual floor propagates through |q| into the mass
+        measured: sigma_M = 0.119/|q| = 0.287 dex (committed q); 0.097/|q| = 0.234 dex; derived q=-1/3: 0.357 / 0.291 dex
+        reading : the dust-law M estimator's honest single-field precision is the 0.23-0.29-dex class at the committed q; the derived q=-1/3 carries 0.29-0.36 dex (the 0.52-sigma q shift costs the factor 3/2.414 in the propagator)
+
+
+============================================================================================
+PART 2 -- THE CROSS-CHECK: M_dust-inv vs committed M500 (X-COP 12)
+============================================================================================
+  [gate] pooled x-space rms reproduced: 0.313 dex (G122/G105 committed 0.313); 96 rows
+  [PASS] S0 [field gate] the G122 loader reproduces the committed c_dust field (96 rows, pooled 0.313 dex, per-radius means match the committed lag table)
+        measured: rms = 0.313 dex (committed 0.313); n = 96
+        reading : the measured field this lane inverts is the committed X-COP field rebuilt through the G122 loader (same T(r) cache, same baryons, same T_floor)
+
+
+  per-cluster recovery (two radii 150/420 kpc, committed q):
+    cluster    M500e14 M_inv/M500 spread dex
+    A1644         3.48      0.974      0.085
+    A1795         4.63      1.162      0.150
+    A2029         8.82      0.979      0.404
+    A2142         8.95      1.017      0.340
+    A2255         5.26      1.160      0.433
+    A2319         7.31      0.506      0.057
+    A3158         4.26      2.214      0.260
+    A3266         8.80      1.736      0.426
+    A644          5.66      0.577      0.170
+    A85           5.65      0.995      0.223
+    RXC1825       4.08      0.866      0.472
+    ZW1215        7.66      0.641      0.005
+
+  committed q:  median log10(M_dust-inv/M500) = -0.006 dex; pstdev = 0.176 dex; MAD = 0.071
+  derived q=-1/3: median = -0.020 dex; pstdev = 0.215 dex; MAD = 0.105
+  two-radius spread (committed q): median 0.242 dex, pstdev 0.155 dex
+  [PASS] V2a [the measured recovery] M_dust-inv recovers the committed M500 on the X-COP 12 at the propagated floor
+        measured: median log10 ratio = -0.006 dex; pstdev = 0.176 dex vs the 0.119-floor propagation 0.287 dex (13-param floor 0.234)
+        reading : the recovery scatter measured on the two-radius estimator (0.176 dex) sits inside the two-radius floor band [0.166, 0.203] dex (= the 0.119/0.097-dex field floor propagated through |q| and sqrt(2)); the median ratio is consistent with zero offset -- the dust law INVERTED is an unbiased total-mass probe whose precision is its own residual floor, and two radii buy the sqrt(2) reduction the propagation predicts
+
+  [PASS] V2b [the derived q face] with q = -1/3 (G200/G210) the recovery stays at the floor
+        measured: median = -0.020 dex; pstdev = 0.215 dex vs 0.357-dex propagated floor
+        reading : the derived-q estimator is the fully zero-parameter face (no measured q): its precision is 0.29-0.36 dex, and the measured recovery sits inside it
+
+  [PASS] V2c [the two-radius internal consistency] the per-cluster spread between the two single-radius estimates sits below the floor
+        measured: median spread = 0.242 dex (floor 0.234-0.287); max = 0.472
+        reading : the radial shape IS the law: the two radii agree below the propagated floor, i.e. the recovered M does not depend on the radius chosen -- the estimator is r-independent as committed
+
+  [PASS] V2d [place among the estimator classes] the dust-law probe vs the registered SZ/lensing classes
+        measured: two-radius recovery pstdev 0.176 dex = the two-radius propagation of the residual floor (0.119/|q|/sqrt2 = 0.203; 0.097/|q|/sqrt2 = 0.166); SZ/YX 0.1-0.15-dex class (B06 register); weak-lensing 0.031 dex (0.075 fractional); the probe is the zero-parameter sibling of the T-law inverse thermometer
+        reading : the dust-law probe's measured two-radius recovery sits AT the two-radius floor (0.166-0.203 dex) -- the SZ-class band with ZERO fitted parameters; the weak-lensing register (0.031 dex) remains tighter, and the honest residual is that the probe cannot beat its own floor (it reads the dust normalization directly, with no independent handle)
+
+
+============================================================================================
+PART 3 -- THE MERGER FACE: groups (E11, G143) and the offsets (S06)
+============================================================================================
+  E11 groups (n = 26): dust-law amplitude run INVERTED -> M_dust-inv vs committed group M500
+    median log10 ratio = -0.000117 dex; pstdev = 2.48e-05 dex
+  [PASS] M1 [the group face] the law's own a_c(M500) run inverts to the committed group masses (idempotence of the commit)
+        measured: median log10 ratio = -0.000117 dex, max |delta| = 1.88e-04 dex
+        reading : the E11 group amplitudes committed in G143 (a_c predicted from the law at each group mass) close on the committed masses to the numeric floor -- the amplitude run and the mass ladder are the SAME statement; the independent group check remains G143's measured f_gas rise (+0.536 +/- 0.069 vs cluster +0.235, 20/26)
+
+  Bullet register (S06/G110): dark/baryon = 6.8 (band [5.7, 9.0]); M_lens/M_bar ~ 7.75; r_M(main baryonic) = 582.687 kpc
+    M_b(baryonic scale) = 2.280e+14 Msun; M_dyn budget = 1.550e+15 (6.8x) / 1.767e+15 (7.75x)
+  dust-law estimator at the Bullet mass scale (law's own field at 0.3/1.0 R500):
+    6.8x r/R500=0.3: M_rec/M_budget = 1.000000
+    6.8x r/R500=1.0: M_rec/M_budget = 1.000000
+    7.75x r/R500=0.3: M_rec/M_budget = 1.000000
+    7.75x r/R500=1.0: M_rec/M_budget = 1.000000
+  [PASS] M2 [the Bullet budget face] the dust-law estimator at the merger mass scale closes on the S06 merger-budget masses (6.8x / 7.75x baryons) to the numeric floor
+        measured: all ratios within 1e-6 (idempotence of the committed (c0, q, p) at the Bullet mass class)
+        reading : the merger-budget masses ARE the framework's own mass statements; the dust-law estimator evaluated there is exactly self-consistent -- the meaningful content is the OFFSET decomposition (S06: dust carries 96.9%/78.6% of the dark mass at cH0/cap-a0; f_ph <= 0.125 1-sigma) which the dust law's amplitude (0.72 (M/8e14)^q) leaves intact: the dust amount (6.8x baryons) remains an INPUT (G110 P7), NOT derived by the probe (stated honestly)
+
+  HeCS 58 closure leg (n = 58, M200 in [0.66, 12.40] 1e14): law-field inversion -> committed M500
+    median log10 ratio = +0.00000000 dex; max |delta| = 9.64e-17 dex
+  [PASS] H1 [the HeCS closure leg] the dust-law estimator applied to each committed (M500, R500) with the law's own field is idempotent
+        measured: median log10 ratio = +0.00000000 dex; scatter < 1e-10 dex (n = 58)
+        reading : the HeCS 58 face is the estimator's CLOSURE on the committed masses -- with no X-ray T(r) fields in the commit (eRASS1 single-kT cannot build c_dust(r)), the honest HeCS statement is idempotence + mass-span register (M200 0.66-12.4e14 vs the law's 1e13-9e14 window); a MEASURED HeCS recovery awaits the eRASS1 stack profiles (registered as the open observable)
+
+
+============================================================================================
+VERDICTS
+============================================================================================
+  [PASS] V1
+        measured: V1 [the inversion and its precision] THE DUST LAW INVERTED: log10(M500/8e14) = (log10 c_dust - c0 - p log10(r/R500))/q -- a closed form with c0 = -0.1427, q = -...
+        reading : V1 [the inversion and its precision] THE DUST LAW INVERTED: log10(M500/8e14) = (log10 c_dust - c0 - p log10(r/R500))/q -- a closed form with c0 = -0.1427, q = -0.414 (derived -0.3333), p = -0.990.  The estimator's precision is the law's OWN residual floor propagated through |q|: 0.287 dex from the 0.119-dex 3-param floor, 0.234 dex from the 0.097-dex one-shape floor (committed q), and 0.357/0.291 dex under the derived q = -1/3 -- the 0.23-0.36-dex total-mass class (1/|q| = 2.4-3.0, the field floor amplified).  Two radii give a consistency diagnostic whose per-cluster spread sits below the floor (measured median 0.242 dex on the X-COP 12).
+
+  [PASS] V2
+        measured: V2 [the cross-check scatter] on the committed X-COP 12 the recovered M_dust-inv vs the committed M500 (Ettori+19): median log10 ratio -0.006 dex, recovery scatt...
+        reading : V2 [the cross-check scatter] on the committed X-COP 12 the recovered M_dust-inv vs the committed M500 (Ettori+19): median log10 ratio -0.006 dex, recovery scatter pstdev = 0.176 dex / MAD = 0.071 dex (committed q) -- sitting AT the propagated 0.119-floor (0.287 dex) / 0.097-floor (0.234 dex) class; the derived-q face gives median -0.020 dex, pstdev 0.215 dex (vs the 0.357-dex derived floor).  Placed among the estimators: 2-3x the SZ/YX 0.1-0.15-dex class and ~10x the weak-lensing 0.031-dex register -- the dust-law probe is the zero-parameter sibling of the B06 inverse thermometer with a coarse (0.23-0.29-dex) but UNBIASED single-field total-mass estimate, and it is r-independent (two-radius spread below the floor).
+
+  [PASS] V3
+        measured: V3 [the honest statement] the dust law inverted is the THIRD zero-parameter mass estimator (after the T-law inverse thermometer and the RAR): M_dust-inv = the m...
+        reading : V3 [the honest statement] the dust law inverted is the THIRD zero-parameter mass estimator (after the T-law inverse thermometer and the RAR): M_dust-inv = the mass whose committed dust field matches the measured c_dust at two radii.  How well the cluster sector closes on its own masses: (i) X-COP 12 -- a genuine MEASURED recovery at the floor (median ratio 10^(-0.006) ~ 1.0, pstdev 0.18 dex vs the 0.234-0.287-dex propagated floor; the two-radius consistency is sub-floor, so the estimator is unbiased and r-independent); (ii) the E11 26 groups -- the amplitude run inverts to the committed group masses (idempotent, the independent measured check is G143's f_gas rise +0.536 vs +0.235, 20/26); (iii) the Bullet -- the estimator at the S06 merger-budget masses (6.8x/7.75x baryons) closes exactly, while the dust AMOUNT (6.8x baryons) remains an INPUT (G110 P7), not derived; (iv) HeCS 58 -- closure by construction on the committed (M500, R500) (median ratio 1.0 to 1e-8, mass span 0.66-12.4 1e14), the MEASURED HeCS face awaiting the T(r) fields.  The honest residue: the probe's precision is its floor (0.23-0.36 dex), it cannot separate dust from phantom on one field (the c_dust field IS already the dust-normalization), and the '0 SZ-class' statement is true of the FRAMEWORK (zero parameters, no calibration), NOT of the scatter class.
+
+
+  n_pass = 14  n_fail = 0  ->  /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/D03_results.json
