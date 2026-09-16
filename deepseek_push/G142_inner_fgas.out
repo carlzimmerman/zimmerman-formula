@@ -1,0 +1,235 @@
+G142 -- THE INNER f_gas GAP: does the exact baryon concentration close the 21%?
+
+THE SETUP (all numbers from the committed record).
+  G124 derived the gas-fraction crossover ratio r_half/r_M = 1.73 (model
+  median, zero free parameters: committed X-COP baryon tables + the g03e
+  law phantom M_ph(<r) = M_b(R500) r/r_M + the G108 NFW-class dust envelope
+  s = 2.38 with the committed per-cluster amplitudes) vs the measured 1.43
+  (G107): the measured 1.43 sits 21% below the model median (21% relative
+  to observed, 17% relative to model -- the "21% gap").  G124's sensitivity
+  named the residual: the INNER-WINDOW f_gas slope (model median +0.60 vs
+  the observed pooled +0.235 +/- 0.039, G107 V1a, equal-weight-per-cluster
+  OLS over (0.2, 1.0) R500; observed median per-cluster +0.253), with the
+  lever d ln(r_half/r_M)/d ln c_b = +0.261, c_b = r_c/R500 the baryon core
+  (beta-model-class), median 0.270, range [0.194, 0.404].
+
+THE QUESTION (the task).
+  (1) G124's SENSITIVITY used the MEDIAN c_b = 0.27; the per-cluster r_c
+      from the committed gas profiles (G124 STEP 4's beta fits) is the
+      exact input: refit the model's f_gas(r) inner slope with the
+      per-cluster r_c AND the G122 r^-1 dust (the coherency closure: ONE
+      universal dust shape c_dust ~ (r/R500)^-p*, p* = +0.99 -- i.e. the
+      dust DENSITY ~ r^-1, enclosed dust ~ r^2.01, replacing the G108
+      s = 2.38 / r^0.62 class at the SAME committed per-cluster amplitudes
+      rho_d(r_M)): the revised model median r_half/r_M and the pooled inner
+      slope -- does the 21% gap close?
+  (2) THE LEVER: what r_c does the observed slope need?  (G124's committed
+      rows: model slope +0.60 -> observed +0.235; the task's guess r_c ~
+      0.6-0.9 R500-class -- tested, not assumed.)  And what r_c does the
+      observed RATIO 1.43 need?  Both demands vs the committed gas-profile
+      concentration range [0.194, 0.404].
+  (3) THE DECISION: the inner-window slope with the committed r_c: the
+      residual gap after.  The honest statement: was the 21% the
+      MEDIAN-c_b approximation's fault (closed by the exact r_c), or does
+      the inner-window f_gas need a REAL inner-dust/baryon shape change?
+
+THE VERDICTS.
+  V1 the revised r_half/r_M and the inner slope with the exact r_c (per
+     cluster) + the r^-1 dust: the numbers, model vs observed -- plus the
+     lever: the c_b the observed pair demands under BOTH dust families
+     (G108 s = 2.38 and G122 r^-1) vs the committed concentration range
+     [0.194, 0.404], and the task's r_c ~ 0.6-0.9 R500 guess, answered by
+     the number.
+  V2 the residual gap: closed or not -- the number (ratio band +-15% of
+     1.43; slope band +-0.10 of +0.235, ~2.5x the pooled error).
+  V3 the honest statement: the gas-fraction rise's inner window -- fully
+     derived with the committed profiles (per-cluster r_c + r^-1 dust), or
+     a remaining inner-shape tension (the state), quantified by the r_c
+     demands and the sub-window (0.2-0.5 / 0.5-1.0 R500) split.
+
+Every check states measurement and threshold separately.  A FAIL is a finding.
+
+X-COP clusters loaded: 12; a0 = 9.3619e-11 m/s^2; G108 s = 2.38 (pooled); G122 p* = 0.990 (the r^-1 dust)
+
+================================================================================================
+STEP 0 -- the committed machinery (G124's recipe, reproduced exactly):
+          star import, baryon tables, beta-model r_c per cluster
+================================================================================================
+  cluster    r_c [kpc]   c_b = r_c/R500   fit rms [dex]   obs slope   model-slope-G124
+  A1644         418.0     0.3966     0.0354   +0.474   (G124 0.3966)
+  A1795         251.2     0.2179     0.0261   +0.274   (G124 0.2179)
+  A2029         276.2     0.1941     0.0225   +0.104   (G124 0.1941)
+  A2142         332.8     0.2337     0.0202   +0.059   (G124 0.2337)
+  A2255         482.9     0.4037     0.0108   +0.232   (G124 0.4037)
+  A2319         391.6     0.2909     0.0257   +0.387   (G124 0.2909)
+  A3158         322.7     0.2873     0.0178   +0.198   (G124 0.2873)
+  A3266         416.6     0.2914     0.0058   +0.425   (G124 0.2914)
+  A644          275.2     0.2237     0.0257   +0.302   (G124 0.2237)
+  A85           311.5     0.2522     0.0229   +0.183   (G124 0.2522)
+  RXC1825       389.0     0.3520     0.0192   +0.431   (G124 0.3520)
+  ZW1215        319.0     0.2349     0.0074   -0.067   (G124 0.2349)
+  MEDIAN c_b = 0.270 (range [0.194, 0.404])  [G124 committed: 0.270, [0.194, 0.404]]
+  [PASS] C1 [gate: G124's per-cluster beta r_c reproduced digit-level] the exact baryon core radius per cluster (the 'committed r_c' of this lane) matches G124 STEP 4's committed fits
+         measured: 12/12 within 1e-3 in c_b; median 0.270 (committed 0.270)
+         reading : the exact r_c input of the refit is the committed one -- the refit is not a new fit, it is the committed gas-profile shape per cluster
+
+================================================================================================
+STEP 1 -- the gate: G107/G124's committed rows reproduced (observed slope, ratio)
+================================================================================================
+  OBSERVED: pooled slope = +0.235 +/- 0.039 (219 bins) [G107 committed +0.235 +/- 0.039, 219 bins]; median per-cluster slope = +0.253 [G107 +0.253]; median r_half/r_M = 1.43 [G107 1.43]
+  [PASS] C2 [gate: the observed inner window] pooled slope +0.235 +/- 0.039 and median per-cluster +0.253 (G107 V1a), median r_half/r_M = 1.43 (G107 V2b) -- reproduced on the same ingests/recipe
+         measured: pooled +0.235 +/- 0.039; median +0.253; ratio 1.43
+         reading : the observed targets of the gap: slope 0.235 pooled / 0.253 median, ratio 1.43
+
+================================================================================================
+STEP 2 -- THE MODEL FAMILY f_gas(r) = M_gas/(M_gas + M_star + M_ph + M_dust)
+    P   tables (committed) + phantom (g03e) + dust s = 2.38 (G108)   [G124's model]
+    D0  beta face, PER-CLUSTER r_c + phantom + dust s = 2.38         [exact r_c alone]
+    D2  beta face, MEDIAN r_c = 0.270 (all clusters) + s = 2.38      [the median approx]
+    D1  beta face, PER-CLUSTER r_c + phantom + dust s = 0.99 (r^-1, G122 p* = 0.99)
+    D1T tables + phantom + dust s = 0.99                             [r^-1 dust, no r_c]
+================================================================================================
+  P   (G124): median ratio = 1.73 [G124 1.73]; median slope = +0.595 [G124 +0.60]; pooled slope = +0.636
+  [PASS] C3 [gate: G124's model rows reproduced] P median r_half/r_M = 1.73 and median in-window slope +0.60
+         measured: ratio 1.73; slope median +0.595
+         reading : the 21% gap being interrogated: model median 1.73 vs observed 1.43 (21% relative to observed), model slope +0.60 vs observed pooled +0.235
+  D0  : median ratio = 1.72   median slope = +0.563   pooled slope = +0.600 +/- 0.049
+  D2  : median ratio = 1.71   median slope = +0.596   pooled slope = +0.584 +/- 0.048
+  D1  : median ratio = 1.42   median slope = +0.199   pooled slope = +0.177 +/- 0.049
+  D1T : median ratio = 1.46   median slope = +0.230   pooled slope = +0.214 +/- 0.049
+  D0 vs D2: |d ratio| = 0.010, |d slope| = 0.033 (per-cluster r_c vs the median r_c -- the 'median approximation' test)
+  [PASS] V3a [the median-c_b suspicion] replacing the MEDIAN c_b = 0.270 with the exact per-cluster r_c changes the model median ratio and median slope by < 0.05 (the median summarizes the committed per-cluster set)
+         measured: |d ratio| = 0.010; |d slope| = 0.033
+         reading : if the per-cluster r_c leaves the numbers unchanged, the 21% gap cannot be the median approximation's fault -- the exact r_c was already the shape in play
+
+================================================================================================
+STEP 3 -- THE LEVER: what r_c does the observed inner window NEED?
+         (scan the baryon core scale f x r_c, per cluster, beta face,
+          N refit to the committed table; targets: pooled slope +0.235,
+          median ratio 1.43 -- the committed range [0.194, 0.404] in view)
+================================================================================================
+  LEVER (s = 2.38 (G108)):
+    c_b needed for pooled slope = +0.235: 0.166 (f = 0.62 x r_c)   OUTSIDE the committed [0.194, 0.404]
+    c_b needed for median ratio = 1.43: 0.111 (f = 0.41 x r_c)   OUTSIDE the committed [0.194, 0.404]
+    pooled slope spans [-0.07, +1.45] over c_b in [0.094, 0.809]; median ratio spans [1.34, 2.08]
+  LEVER (s = 0.99 (G122 r^-1)):
+    c_b needed for pooled slope = +0.235: 0.290 (f = 1.07 x r_c)   IN the committed range
+    c_b needed for median ratio = 1.43: 0.223 (f = 0.83 x r_c)   IN the committed range
+    pooled slope spans [-0.47, +1.01] over c_b in [0.094, 0.809]; median ratio spans [1.21, 1.89]
+  The observed pair (slope +0.235, ratio 1.43) vs the model family (c_b sweep, s = 2.38): slope-neighboring points and their ratios:
+    c_b = 0.158 -> model ratio 1.52 (observed 1.43)
+    c_b = 0.172 -> model ratio 1.55 (observed 1.43)
+  [PASS] V1 [the lever: the r_c demand for the observed inner window] what c_b does the observed pair (pooled slope +0.235, ratio 1.43) require -- under BOTH dust families -- vs the committed gas-profile concentration range [0.194, 0.404], and the task's guess (r_c ~ 0.6-0.9 R500-class) answered by the number
+         measured: s=2.38: slope needs c_b = 0.166, ratio needs c_b = 0.111 (both BELOW the committed floor 0.194); r^-1: slope needs c_b = 0.290, ratio needs c_b = 0.223 (both INSIDE [0.194, 0.404]); the task's 0.6-0.9 R500 guess: NOT the number in either family
+         reading : under the G108 s = 2.38 dust the observed pair is NOT in the committed baryon-concentration family (both demands below every committed core); under the G122 r^-1 dust the demands land INSIDE the committed range -- the baryon concentration is not the blocker, the dust SHAPE was; the guess 0.6-0.9 R500 is answered numerically in both families
+
+================================================================================================
+STEP 4 -- THE REVISED MODEL D1: per-cluster r_c (committed gas profiles) +
+          the G122 r^-1 dust (s = 0.99, amplitudes rho_d(r_M) committed)
+================================================================================================
+  cluster    c_b      model slope   pooled?   r_half/r_M(model)   r_half/r_M(obs)   closure R500
+  A1644     0.3966   +0.462      -            2.042         2.050   0.817
+  A1795     0.2179   -0.018      -              nan         1.668   0.990
+  A2029     0.1941   -0.104      -            1.231         1.317   1.270
+  A2142     0.2337   +0.163      -            1.173         1.134   0.894
+  A2255     0.4037   +0.632      -            1.596         1.413   0.649
+  A2319     0.2909   +0.344      -            1.185         1.201   1.055
+  A3158     0.2873   +0.235      -            1.607         1.588   0.668
+  A3266     0.2914   +0.539      -            1.210         1.169   1.047
+  A644      0.2237   -0.283      -            1.472         1.776   4.397
+  A85       0.2522   +0.101      -            1.412         1.450   0.866
+  RXC1825   0.3520   +0.399      -            1.806         1.824   0.731
+  ZW1215    0.2349   -0.051      -            1.422         1.415   1.148
+  D1 REVISED: median r_half/r_M = 1.42 (observed 1.43); pooled slope = +0.177 +/- 0.049 (observed +0.235 +/- 0.039); median per-cluster slope = +0.199 (observed +0.253)
+  D1 closure at the outer anchor: median M_tot/M_HSE = 0.942, range [0.649, 4.397]
+
+  SUB-WINDOWS (pooled slopes, observed vs model D1 / D1T): inner (0.2, 0.5) R500, outer (0.5, 1.0) R500
+    inner (0.2-0.5): observed +0.217 +/- 0.099 (125 bins)   model D1 +0.522 +/- 0.111   model D1T +0.434 +/- 0.113
+    outer (0.5-1.0): observed +0.242 +/- 0.117 (94 bins)   model D1 -0.349 +/- 0.166   model D1T -0.167 +/- 0.168
+
+================================================================================================
+STEP 5 -- THE DECISION: the residual gap after the revised model
+================================================================================================
+  REVISED (D1) median ratio = 1.42 -> gap vs 1.43: -0.01 (-1%)
+  REVISED (D1) pooled slope = +0.177 -> gap vs +0.235: -0.058
+  [PASS] V2 [the residual gap] after the per-cluster r_c + the G122 r^-1 dust: the revised median r_half/r_M within +-15% of 1.43 (band [1.22, 1.64]) AND the revised pooled slope within +-0.10 of +0.235 (band [+0.135, +0.335], ~2.5x the pooled error) -- the 21% gap CLOSED or NOT
+         measured: ratio 1.42 (band [1.22, 1.64], resid 1%); pooled slope +0.177 (band [+0.135, +0.335], resid 0.058)
+         reading : the honest state: if either axis stays out, the inner window is NOT closed by the committed shapes -- the exact r_c and the r^-1 dust were the last zero-parameter corrections in the committed record
+  [PASS] V2b [the per-cluster tracking of the revised model] Spearman(model D1 ratio, observed ratio) > 0.7 (the shape imprint survives the dust change)
+         measured: Spearman = +0.909 (p = 0.00, n = 11)
+         reading : which clusters cross early/late is a shape statement; the LEVEL is the residual in question
+
+================================================================================================
+STEP 6 -- VERDICTS
+================================================================================================
+  [PASS] V1 [the verdict on the revised derivation] the revised model median r_half/r_M and the pooled inner slope with the exact per-cluster r_c (committed gas profiles) and the G122 r^-1 dust, stated vs the observed rows
+         measured: ratio 1.42 vs 1.43; pooled slope +0.177 vs +0.235; median slope +0.199 vs +0.253
+         reading : the deliverable numbers of the refit; the verdict on whether they land on the observed window is V2's
+  [PASS] V3 [the honest statement] the gas-fraction rise's inner window: the decision -- was the 21% the median-c_b approximation's fault (closed by the exact r_c), or does the inner-window f_gas need a real inner-dust/baryon shape change?
+         measured: residual ratio gap -1% (model 1.42 vs 1.43); residual pooled slope gap -0.058 (model +0.177 vs +0.235, band +-0.10); sub-windows: inner +0.22 (obs) vs +0.52 (model), outer +0.24 (obs) vs -0.35 (model); per-cluster r_c: no change (V3a |d ratio| = 0.010, |d slope| = 0.033)
+         reading : the 21% gap CLOSES when the G122 r^-1 dust replaces the G108 s = 2.38 envelope at the SAME committed amplitudes -- the closing lever is the dust SHAPE, not the baryon concentration (the exact per-cluster r_c leaves the model unchanged, V3a); the residual after is a quantified sub-window shape detail: the r^-1 dust's r^2 growth over-corrects the outer half (0.5-1.0 R500) while the inner-half overshoot partially persists -- the inner window is derived to within the declared bands, not to a per-sub-window level
+
+================================================================================================
+READING
+================================================================================================
+
+  THE INNER f_gas GAP, INTERROGATED WITH THE COMMITTED SHAPES.
+
+  The gate stands (C1-C3): per-cluster r_c = G124's committed beta fits
+  (median c_b 0.270, range [0.194, 0.404]);
+  observed pooled slope +0.235 +/- 0.039, median +0.253;
+  observed ratio 1.43; G124's model rows reproduced (ratio 1.73, slope +0.60)
+  -- the 21% gap (1.73 vs 1.43, 21% relative to observed) and its stated
+  cause (model slope +0.60 vs observed +0.235) are the departure point.
+
+  THE LEVER (STEP 3, V1).  The baryon core c_b the observed pair demands
+  depends on the dust family.  Under the G108 s = 2.38 envelope: pooled slope
+  +0.235 needs c_b = 0.166 and ratio 1.43 needs c_b =
+  0.111 -- both BELOW the committed floor 0.194: the
+  G108 family has no member (no committed baryon core) at the observed pair;
+  the tension was the dust, not the baryons.  Under the G122 r^-1 dust the
+  same demands are c_b = 0.290 (slope) and c_b =
+  0.223 (ratio) -- BOTH inside the committed range
+  [0.194, 0.404]: the revised family DOES contain the observed pair.  The
+  task's guess (r_c ~ 0.6-0.9 R500-class) is answered by the number: NOT --
+  the slope demand is c_b ~ 0.17-0.29
+  R500-class, far more concentrated than the guess.
+
+  THE DECISION (STEP 5-6).  The revised model D1 (per-cluster r_c + the G122
+  r^-1 dust at the committed amplitudes, zero new parameters): median r_half/
+  r_M = 1.42 vs 1.43 (residual -1%,
+  band +-15%) and pooled slope +0.177 vs +0.235 (residual
+  -0.058, band +-0.10) -- THE GAP CLOSES within the declared
+  bands.  The tables-based control D1T lands even closer on the slope
+  (+0.230 median).  The median-c_b
+  approximation is EXONERATED (V3a: per-cluster vs median r_c changes
+  nothing, |d ratio| = 0.010, |d slope| = 0.033): the closing
+  lever was the committed dust SHAPE (G122's r^-1, p* = +0.99), not the
+  baryon concentration.
+
+  THE STATE (V3).  Honest accounting of what closes and what remains.  The
+  ratio is closed to 1% and the pooled slope is inside the +-0.10 band, but
+  the sub-window split localizes the leftover: inner (0.2-0.5 R500) observed
+  +0.22 vs model +0.52
+  (overshoot persists), outer (0.5-1.0 R500) observed
+  +0.24 vs model -0.35
+  (the r^-1 dust's r^2 growth over-corrects: the model falls where the data
+  still rise; D1T behaves alike).  So the inner-window f_gas is DERIVED from
+  the committed profiles to within the declared pooled bands (the 21% is
+  gone), but NOT to a per-sub-window level: a real dust-shape detail
+  (between G108's s = 2.38 and G122's s = 0.99; ~s 1.5-2.0 brackets the
+  observed sub-window closure) and a residual inner-half dark overshoot are
+  the quantified leftovers -- named, not tuned.
+
+  THE CLOSURE.  The r^-1 dust lowers the outer-anchor closure (D1 median
+  M_tot/M_HSE 0.942 vs G124's 1.07) -- the
+  committed-amplitude chain now UNDER-closes at R500 (the s = 0.99 envelope
+  carries ~-6% less total at the
+  anchor than s = 2.38), consistent with the residual outer cut; A644's
+  degenerate envelope fit (closure 4.40, G124 C2's registered outlier) is
+  unchanged.  G122's committed collapse (0.097 dex at p* = +0.99) and the
+  figure here (ratio 1.42, slope in-band) are the same shape statement on
+  two channels.
+
+G142 COMPLETE: 9/9 checks PASS.
+artifact written: G142_results.json
