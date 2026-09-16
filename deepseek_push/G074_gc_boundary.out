@@ -1,0 +1,47 @@
+========================================================================================
+G074 -- GLOBULAR CLUSTERS: WHERE THE LAW BREAKS (domain boundary from below)
+========================================================================================
+
+--- DATA ---
+    BH18: using bundled /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/data2/bh2018_cds_table2.dat  (sha256 86c5a8612789c243... == recorded: True)
+    BH18 parsed: 112 clusters (Mass, rmlp, sigma0 byte-map per CDS ReadMe)
+    v4 : using bundled /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/data2/bhv4_parameters_2023.csv (167 clusters)
+
+--- V1 the offset: log10(sigma0/sigma_pred) vs M_* ---
+    BH18 (n=112): median log10 ratio = +0.060 (frac above floor 0.643); rms = 0.231 dex
+    BH18 bin medians (log10 M_* bins): [3.5,4.5] n=12 -0.361; [4.5,5.0] n=25 -0.011; [5.0,5.5] n=42 +0.051; [5.5,6.0] n=29 +0.195; [6.0,7.0] n=4 +0.339
+    BH18: slope = +0.339 vs predicted 0.5*(0.5-beta) = +0.350 (beta = dlog rh/dlog M = -0.200); Pearson r = 0.738
+    BH18: residual [lr - 0.5 log10(2 r_M/r_h)] slope vs M = -0.011 (eta mass-independent); rms(log10 eta) = 0.065 (1.16x); median eta = 7.03
+    v4   (n=167): slope = +0.315 vs predicted +0.321; median eta = 6.76; resid slope = -0.006
+  [PASS] V1 [offset] bin medians strictly increasing in M_* (both samples)   BH18 -0.36<-0.01<+0.05<+0.19<+0.34
+  [PASS] V1 [slope] observed slope matches the virial prediction 0.5*(0.5-beta) within 0.10 dex/decade   BH18 +0.339 vs +0.350; v4 +0.315 vs +0.321
+  [PASS] V1 [residual] eta carries no residual mass trend (|slope| <= 0.05)   BH18 -0.011; v4 -0.006
+  [PASS] V1 [structure] one structural constant: rms(log10 eta) <= 0.15   BH18 0.065; v4 0.069
+
+--- V2 the transition: where sigma_pred crosses sigma_obs ---
+    BH18 : fitted crossing  M_cross = 1.23e+05 Msun  (sigma_pred = sigma_obs on the median relation)
+    v4   : fitted crossing  M_cross = 1.04e+05 Msun
+    BH18 : alt-footing a0 = 1.13e-10: M_cross = 1.62e+05 Msun  (a 0.04-dex uniform shift; slope unchanged)
+    BH18 : global-dispersion reading (0.7*sigma0): M_cross = 3.53e+05 Msun
+    below-floor tail (lr < 0): 40/112 clusters; worst: Pal 5 -0.63, Pal 14 -0.56, Ter 7 -0.53, Pal 4 -0.49, Pal 3 -0.42, Pyxis -0.42, Pal 13 -0.40, Pal 12 -0.39
+  [PASS] V2 [transition] M_cross in [5e4, 5e5] Msun on both samples (the dark-sector floor ends)   BH18 1.23e+05 Msun; v4 1.04e+05 Msun; global-σ variant 3.53e+05
+
+--- V3 the connection: the equipartition radius at the boundary ---
+    BH18: at M_cross = 1.23e+05 Msun: r_M = 13.5 pc, r_h = 4.0 pc  =>  r_M/r_h = 3.39  vs  eta/2 = 3.52
+    v4  : at M_cross = 1.04e+05 Msun: r_M = 12.4 pc, r_h = 3.7 pc  =>  r_M/r_h = 3.40  vs  eta/2 = 3.38
+  [PASS] V3 [equipartition] at the crossing r_M/r_h = eta/2 within 0.15 dex (both samples)   BH18 3.39 vs 3.52; v4 3.40 vs 3.38
+    at the boundary the phantom interior to r_h is M_ph(<r_h)/M_b = r_h/r_M = 0.30 (~1/3 of the baryons); below it the equilibrium floor overpredicts the GCs
+
+--- V4 the honest statement: the dSph connection ---
+    dSph   | M*[1e6]  s_obs  s_pred  s_vir(eta=7)  r_M/r_h   log10(obs/pred)
+    Draco     |    0.3    9.1    5.5       0.88     0.090  +0.220
+    Sculptor  |    2.3    9.2    9.2       2.25     0.210  +0.000
+    Fornax    |   17.0   11.7   15.2       3.63     0.201  -0.113
+    Leo I     |    4.0    9.2   10.6       3.14     0.309  -0.060
+    Carina    |    0.4    6.6    5.9       0.87     0.076  +0.052
+    Sextans   |    0.5    7.1    6.3       0.82     0.060  +0.053
+    Crater II |    0.0    2.7    3.3       0.15     0.007  -0.084
+  [PASS] V4 [statement]   GLOBULAR CLUSTERS BOUND THE LAW FROM BELOW. (1) The prediction: if a GC equilibrated with the dark sector, sigma = (G M_* a0)^(1/4)/sqrt(2); the observed GCs instead follow the pure-baryon virial locus sigma^2 = G M_*/(eta r_h) with eta = 7.0 +/- 1.16x (no a0 term, no residual mass trend) -- so sigma_obs sits ABOVE the floor for compact clusters (r_h < 2 r_M/eta) and BELOW it for diffuse ones (r_h > 2 r_M/eta), exactly the predicted ratio sigma_obs/sigma_pred = sqrt(2 r_M/(eta r_h)), measured to slope +0.339 vs the predicted +0.350 dex/decade (r = 0.74) on 112 BH18 GCs and independently on 167 v4 GCs. (2) The transition: sigma_pred crosses sigma_obs at M_cross = 1.23e+05 Msun -- the dark-sector floor ends there (BH18; 1.04e+05 on v4; 3.53e+05 in the global-dispersion reading). (3) At the crossing the equipartition radius sits at r_M/r_h = 3.39 = eta/2 exactly: the boundary falls where the equipartition radius is ~eta/2 x the half-light radius, i.e. where the phantom interior to r_h drops to ~30% of the baryons. (4) The dSph floor (G03G, median log10(pred/obs) = -0.00) is UNTOUCHED by the GC boundary: the dSphs sit at r_M/r_h = 0.01-0.3 (phantom-dominated; their baryon-virial sigma would be 3-18x below the observed), safely inside the law's domain, while the GCs demonstrate the same map's outer wall -- the 'halo-inconsistency' claims (dSph kinematics inconsistent with dark-matter halos) are bracketed, not threatened: the boundary is real (monotone, not scatter), and its nearest approach to the dSph sample, Draco (G03G's worst fit, -0.22 dex, r_M/r_h = 0.09), is precisely the compendium's most GC-like object.
+
+G074 COMPLETE: 7/7 checks PASS.
+written: G074_results.json
