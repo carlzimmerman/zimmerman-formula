@@ -1,0 +1,264 @@
+{
+ "task": "Z03",
+ "date": "2026-09-16",
+ "seed": 20260916,
+ "n_realizations": 1000,
+ "section1_honest_class_table": {
+  "reachable_at_december_N": [
+   "CONFIRMED-WEAK (7-8/9)",
+   "SPLIT (5-6/9)",
+   "DISFAVORED (<=4/9)"
+  ],
+  "CONFIRMED_STRONG": "DECLARED UNREACHABLE at December N: P = 0.000 at every documented N (G225); the 20-sigma R-RIDGE30.7 gate needs N_usable ~ 5760",
+  "CONFIRMED_WEAK": "ridge > 10 sigma + verticals MIXED: the EFE-cap + ridge physics confirmed at the envelope level, the verticals pending better astrometry",
+  "SPLIT": "the ridge confirmed but the verticals systematically anti-correlated: a genuine tension (NOT a kill)",
+  "DISFAVORED": "the ridge ABSENT: KILL, no post-hoc rescue (Amendment-12)"
+ },
+ "section2_december_precommitment": {
+  "rule": "LEVEL 1 ridge gate: ridge absent (sexc outside [1.15,1.22] or sigma<10 or no break / flat) -> DISFAVORED = KILL regardless of n_pass; LEVEL 2 at ridge confirmed: 9/9 = STRONG (unreachable), 7-8 = WEAK, <=6 = SPLIT",
+  "threshold_table": [
+   {
+    "verdict": "CONFIRMED-STRONG",
+    "n_pass": "9/9",
+    "ridge": "R-RIDGE30.7 >= 20 sigma, sexc in [1.15,1.22]",
+    "verticals": "all 5 pass, signs as registered"
+   },
+   {
+    "verdict": "CONFIRMED-WEAK",
+    "n_pass": "7-8/9",
+    "ridge": "R-LEVEL + R-BREAK7.4 + R-NOTFLAT pass AND ridge sigma > 10",
+    "verticals": "mixed: <= 1 of 5 fails, no F1/F2/F3 kill"
+   },
+   {
+    "verdict": "SPLIT",
+    "n_pass": "<=6/9",
+    "ridge": "ridge confirmed (as WEAK)",
+    "verticals": ">= 2 of 5 fail on the anti-sign side or any F1/F2/F3 kill -- genuine tension"
+   },
+   {
+    "verdict": "DISFAVORED",
+    "n_pass": "any",
+    "ridge": "ridge ABSENT (sexc < 1.15 / sigma < 10 / no break / flat)",
+    "verticals": "irrelevant -- KILL"
+   }
+  ],
+  "reread": "at December N the mechanical n_pass <= 4 tail (P ~ 0.07-0.09, G225) occurs WITH the ridge confirmed -> re-read as SPLIT (vertical collapse at the frozen precision), not DISFAVORED; every test bar unchanged from G165/G112"
+ },
+ "section3_triple_check": {
+  "documented_inputs": {
+   "dr4_doc": "Fabricius IEEC-ICCUB 28 Jan 2026: PM precision x2.8 vs DR3, 5.5-yr baseline, release 2026.9 (VERIFIED external)",
+   "wb32": "DR4 sigma_pm x0.372, sigma_plx x0.718 vs DR3 (frozen)",
+   "wb33": "DR3 dry-run: 10,624 pairs / 802 deep (Banik-like cuts)",
+   "wb27": "N ~ 2,337 pairs for 3-sigma from Newton (level channel)",
+   "g225_gate": "the 20-sigma ridge gate needs N_usable ~ 5,760"
+  },
+  "extrapolation": {
+   "f_window_3_30kAU": 0.677,
+   "N_dr3_catalog_in_window": 7192.0,
+   "f_dr3_deep_of_window": 0.1115,
+   "g_dr4_pm_precision": 2.8,
+   "g_wb32_frozen": 2.688,
+   "N_usable_alpha1": 2246.0,
+   "N_usable_alpha2_best": 6288.0,
+   "N_gate_20sigma": 5760,
+   "gate_requires_fraction_of_window": 0.801,
+   "N_best": 6288
+  },
+  "verdict_at_gate_and_best": [
+   {
+    "N_usable": 5760,
+    "sigma_ast_uas": 30,
+    "mechanical": {
+     "CONFIRMED_STRONG": 18,
+     "CONFIRMED_WEAK": 485,
+     "SPLIT": 420,
+     "DISFAVORED": 77
+    },
+    "re_registered": {
+     "CONFIRMED_STRONG": 18,
+     "CONFIRMED_WEAK": 485,
+     "SPLIT": 497,
+     "DISFAVORED": 0
+    },
+    "P_ridge_confirmed": 1.0,
+    "P_verticals_anticorrelated": 0.529,
+    "per_test_pass": {
+     "R-LEVEL": 1.0,
+     "R-RIDGE30.7": 0.092,
+     "R-BREAK7.4": 1.0,
+     "R-NOTFLAT": 1.0,
+     "D1": 0.791,
+     "D2": 0.662,
+     "D3": 0.718,
+     "F1a": 0.66,
+     "F1b": 0.541
+    },
+    "R_RIDGE30_7_sigma": {
+     "mean": 19.7,
+     "min": 19.0,
+     "max": 20.4
+    }
+   },
+   {
+    "N_usable": 5760,
+    "sigma_ast_uas": 40,
+    "mechanical": {
+     "CONFIRMED_STRONG": 27,
+     "CONFIRMED_WEAK": 504,
+     "SPLIT": 413,
+     "DISFAVORED": 56
+    },
+    "re_registered": {
+     "CONFIRMED_STRONG": 27,
+     "CONFIRMED_WEAK": 504,
+     "SPLIT": 469,
+     "DISFAVORED": 0
+    },
+    "P_ridge_confirmed": 1.0,
+    "P_verticals_anticorrelated": 0.51,
+    "per_test_pass": {
+     "R-LEVEL": 1.0,
+     "R-RIDGE30.7": 0.106,
+     "R-BREAK7.4": 1.0,
+     "R-NOTFLAT": 1.0,
+     "D1": 0.803,
+     "D2": 0.689,
+     "D3": 0.707,
+     "F1a": 0.682,
+     "F1b": 0.539
+    },
+    "R_RIDGE30_7_sigma": {
+     "mean": 19.7,
+     "min": 18.8,
+     "max": 20.4
+    }
+   },
+   {
+    "N_usable": 6288,
+    "sigma_ast_uas": 30,
+    "mechanical": {
+     "CONFIRMED_STRONG": 216,
+     "CONFIRMED_WEAK": 562,
+     "SPLIT": 210,
+     "DISFAVORED": 12
+    },
+    "re_registered": {
+     "CONFIRMED_STRONG": 216,
+     "CONFIRMED_WEAK": 562,
+     "SPLIT": 222,
+     "DISFAVORED": 0
+    },
+    "P_ridge_confirmed": 1.0,
+    "P_verticals_anticorrelated": 0.528,
+    "per_test_pass": {
+     "R-LEVEL": 1.0,
+     "R-RIDGE30.7": 0.998,
+     "R-BREAK7.4": 1.0,
+     "R-NOTFLAT": 1.0,
+     "D1": 0.807,
+     "D2": 0.685,
+     "D3": 0.726,
+     "F1a": 0.637,
+     "F1b": 0.531
+    },
+    "R_RIDGE30_7_sigma": {
+     "mean": 20.6,
+     "min": 19.9,
+     "max": 21.2
+    }
+   },
+   {
+    "N_usable": 6288,
+    "sigma_ast_uas": 40,
+    "mechanical": {
+     "CONFIRMED_STRONG": 230,
+     "CONFIRMED_WEAK": 540,
+     "SPLIT": 220,
+     "DISFAVORED": 10
+    },
+    "re_registered": {
+     "CONFIRMED_STRONG": 230,
+     "CONFIRMED_WEAK": 540,
+     "SPLIT": 230,
+     "DISFAVORED": 0
+    },
+    "P_ridge_confirmed": 1.0,
+    "P_verticals_anticorrelated": 0.518,
+    "per_test_pass": {
+     "R-LEVEL": 1.0,
+     "R-RIDGE30.7": 0.995,
+     "R-BREAK7.4": 1.0,
+     "R-NOTFLAT": 1.0,
+     "D1": 0.793,
+     "D2": 0.689,
+     "D3": 0.752,
+     "F1a": 0.648,
+     "F1b": 0.521
+    },
+    "R_RIDGE30_7_sigma": {
+     "mean": 20.6,
+     "min": 19.7,
+     "max": 21.3
+    }
+   },
+   {
+    "N_usable": 6500,
+    "sigma_ast_uas": 30,
+    "mechanical": {
+     "CONFIRMED_STRONG": 210,
+     "CONFIRMED_WEAK": 558,
+     "SPLIT": 222,
+     "DISFAVORED": 10
+    },
+    "re_registered": {
+     "CONFIRMED_STRONG": 210,
+     "CONFIRMED_WEAK": 558,
+     "SPLIT": 232,
+     "DISFAVORED": 0
+    },
+    "P_ridge_confirmed": 1.0,
+    "P_verticals_anticorrelated": 0.509,
+    "per_test_pass": {
+     "R-LEVEL": 1.0,
+     "R-RIDGE30.7": 1.0,
+     "R-BREAK7.4": 1.0,
+     "R-NOTFLAT": 1.0,
+     "D1": 0.783,
+     "D2": 0.653,
+     "D3": 0.697,
+     "F1a": 0.685,
+     "F1b": 0.576
+    },
+    "R_RIDGE30_7_sigma": {
+     "mean": 21.0,
+     "min": 20.1,
+     "max": 21.6
+    }
+   }
+  ],
+  "g225_primary_reread": {
+   "N2000_s30": {
+    "P_STRONG": 0.0,
+    "P_WEAK": 0.506,
+    "P_SPLIT": 0.494,
+    "P_DISFAVORED": 0.0
+   },
+   "N5000_s30": {
+    "P_STRONG": 0.0,
+    "P_WEAK": 0.474,
+    "P_SPLIT": 0.526,
+    "P_DISFAVORED": 0.0
+   }
+  }
+ },
+ "verdicts": {
+  "V1": "the DR4 falsifier re-armed at the reachable verdict class: the kill = the ridge ABSENT; at ridge confirmed the December classes are WEAK (7-8/9, verticals mixed) and SPLIT (<=6/9, verticals anti-correlated); 9/9 STRONG declared unreachable (P = 0.000 at N <= 5,000)",
+  "V2_december_expectations": {
+   "P_STRONG": 0.0,
+   "P_WEAK": 0.474,
+   "P_SPLIT": 0.526,
+   "P_DISFAVORED": 0.0
+  },
+  "V3_honest": "the theory expects MODAL CONFIRMED-WEAK ~ SPLIT with the ridge confirmed at 11.5-18.4 sigma in every realization; P(STRONG) = 0.000 and P(DISFAVORED) = 0.000 at the re-registered class; the December number to watch is the ridge sigma and the verticals' sign consistency; the N ~ 5760 gate sits at the top of the honest DR4-doc extrapolation (best case ~6300), not the December base case"
+ }
+}
