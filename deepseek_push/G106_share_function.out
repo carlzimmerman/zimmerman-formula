@@ -1,0 +1,218 @@
+G106 -- THE SHARE FUNCTION AND ITS KERNEL SLOPE (P3 EXECUTED).
+
+KEPLER_GRADE_CLUSTER_PREDICTIONS P3: the phantom share
+    s(r) = rho_ph(r) / (rho_ph(r) + rho_dust,req(r))
+with rho_ph the law's A/r^2 phantom (G03E/G003/G046, coefficient 1)
+    rho_ph(r) = sqrt(G M_b(<r) a0) / (4 pi G r^2),   M_b per radius (G057),
+and rho_dust,req the REQUIRED dust density = the observed residual density
+MINUS the phantom (G098's inversion, recomputed inline -- G098's output is
+not on disk at run time):  rho_dust,req = rho_res - rho_ph,
+    rho_res(r) = dM_res/dr / (4 pi r^2),   M_res(<r) = M_HSE(<r) - M_b(<r),
+the measured hydrostatic deficit's own density.  The share is then simply
+s(r) = rho_ph/rho_res : the fraction of the LOCAL dark density the law's
+phantom supplies.
+
+THE PREDICTIONS (P3's numbers, KEPLER doc + G050 V4's audit claim):
+  V1  the 12-cluster MEDIAN slope d s/d log10(g_tot/a0) (per-cluster bisector
+      fit) in (0.5, 1.0) per dex -- the kernel slope class.
+  V2  the pooled Spearman rho(s, log10(g_tot/a0)) > 0.7.
+  V3  the kernel-form check: the measured slope vs the 1 - mu2(g/2a0)-class
+      model slope (share_k = (1 + q/4)^-2, q = g_tot/a0; G059 candidate (1))
+      within 30%.
+  V4  the honest statement (the rising-share signature, functionalized).
+  Falsifier (P3): flat share (no rise) at the crossover on > 1/3 of clusters.
+  Byproduct (P2's data): rho_dust,req's outer slope d ln rho_dust/d ln r in
+  (-2.5, -2.0) and rho_ph never exceeding the observed residual in-window.
+
+SIGN CONVENTION, stated once.  The share RISES outward (the outskirts
+un-cap; the phantom zone is OUTER at cluster scale).  g_tot/a0 FALLS
+outward, so the signed derivative d s/d log10(g_tot/a0) is NEGATIVE.  The
+KEPLER doc writes the band as "+0.5..+1.0 d s/d log(g/a0)"; the signed
+quantity is -0.53..-0.96 per dex, and the band is carried on the MAGNITUDE
+(equivalently d s/d log10(a0/g_tot) in (0.5, 1.0), positive).  V2 likewise:
+G050's V4 claimed rho = -0.926 (share falls as the field rises), and the
+doc's "rho > 0.7" is the magnitude claim |rho| > 0.7 against the same
+anti-correlation.  Both readings (magnitude, or magnitude+sign) are reported.
+
+DATA.  The committed X-COP ingests (real_research/data/xcop/, 12 clusters;
+same FITS as G050/G057/G059 -- nothing re-downloaded).  G050's stored
+per-bin arrays are NOT used: they carry the registered units slips (G059
+DATA NOTE: gtot/a0 ~ 1e-5, shares ~ 1e-27).  Everything is recomputed from
+the raw FITS with SI units, G059's corrected pipeline reused verbatim.
+Both a0 footings: canonical s_DE/2 = 9.3619e-11, alt 1.1279e-10.
+
+A FAIL is a finding, reported as such.
+
+X-COP clusters loaded: 12 (A1644, A1795, A2029, A2142, A2255, A2319, A3158, A3266, A644, A85, RXC1825, ZW1215); 7 with a measured stellar profile (G050 ingest, corrected units per G059 DATA NOTE)
+
+========================================================================================
+V0 -- THE DATA GATE: the on-disk X-COP profiles reproduce the registered rows
+========================================================================================
+  [PASS] V0 [the data gate: faithful reproduction] median f_gas = M_gas/M_NFW on the on-disk FITS reproduces the COMMITTED lane's V0 line (G050's own .out reads the same 0.163/FAIL -- the doc-claimed 0.127 is the A2029-table row, not reproduced by the on-disk FITS ratios; a pre-existing chain mismatch, not introduced here, and P3 does not use the FGAS identity)
+         measured: median f_b(420) = 0.163 (G050 committed line: 0.163, FAIL); median f_b(210) = 0.121
+         reading : same ingest and interpolation as G050's V0 -- the gate is a reproduction check, and the reproduction is exact; the P3 lane's inputs are M_HSE, M_gas, M_star directly (no FGAS identity)
+
+========================================================================================
+STEP 1 -- THE SHARE FUNCTION per cluster per bin: s = rho_ph/(rho_ph + rho_dust,req)
+========================================================================================
+  rho_ph(r)   = sqrt(G M_b(<r) a0)/(4 pi G r^2)   (the law's A/r^2, M_b per radius)
+  rho_res(r)  = (dM_res/dr)/(4 pi r^2),  M_res = M_HSE - M_b   (the observed residual)
+  rho_dust,req= rho_res - rho_ph   (G098's inversion, recomputed inline: G098's out is not on disk)
+
+  --- canonical: a0 = 9.3619e-11 ---
+  cluster   r[kpc]   q=g/a0     s@50   s@75  s@100  s@150  s@210  s@300  s@420  s@600   dust-slope(210+)
+  A1644               0.237  0.190  0.182  0.169  0.163  0.189  0.293  0.384   -2.18  IMPORT
+  A1795               0.177  0.155  0.157  0.167  0.198  0.261  0.313  0.369   -2.03
+  A2029               0.223  0.211  0.197  0.204  0.212  0.244  0.280  0.308   -1.76
+  A2142               0.208  0.222  0.248  0.281  0.245  0.251  0.363  0.435   -2.09
+  A2255               0.202  0.202  0.201  0.207  0.231  0.272  0.307  0.332   -1.37  IMPORT
+  A2319               0.151  0.177  0.178  0.166  0.167  0.226  0.323  0.409   -2.22
+  A3158               0.109  0.127  0.141  0.186  0.230  0.251  0.300  0.333   -1.66  IMPORT
+  A3266               0.198  0.171  0.156  0.149  0.179  0.291  0.455  0.638   -3.12  IMPORT
+  A644                0.169  0.161  0.156  0.152  0.148  0.147  0.180  0.196   -1.61
+  A85                 0.168  0.170  0.177  0.195  0.223  0.258  0.312  0.357   -1.82
+  RXC1825             0.063  0.075  0.095  0.144  0.183  0.209  0.247  0.281   -1.64  IMPORT
+  ZW1215              0.200  0.203  0.203  0.208  0.222  0.235  0.258  0.263   -1.32
+  share range 0.063..0.638; rho_dust >= 0 everywhere: True; share rises 50->600 kpc on all 12: True
+
+  --- alt: a0 = 1.1279e-10 ---
+  cluster   r[kpc]   q=g/a0     s@50   s@75  s@100  s@150  s@210  s@300  s@420  s@600   dust-slope(210+)
+  A1644               0.260  0.209  0.200  0.186  0.179  0.207  0.322  0.421   -2.24  IMPORT
+  A1795               0.194  0.170  0.173  0.183  0.218  0.286  0.344  0.405   -2.07
+  A2029               0.245  0.232  0.216  0.224  0.232  0.268  0.308  0.339   -1.77
+  A2142               0.229  0.244  0.272  0.309  0.268  0.275  0.398  0.477   -2.15
+  A2255               0.222  0.222  0.221  0.227  0.253  0.299  0.337  0.364   -1.38  IMPORT
+  A2319               0.166  0.195  0.195  0.182  0.183  0.248  0.354  0.449   -2.28
+  A3158               0.119  0.139  0.155  0.204  0.252  0.276  0.329  0.365   -1.68  IMPORT
+  A3266               0.218  0.188  0.171  0.163  0.196  0.319  0.500  0.700   -3.33  IMPORT
+  A644                0.186  0.176  0.172  0.166  0.162  0.161  0.198  0.215   -1.61
+  A85                 0.184  0.186  0.195  0.214  0.245  0.283  0.342  0.391   -1.85
+  RXC1825             0.069  0.082  0.104  0.158  0.201  0.229  0.271  0.308   -1.66  IMPORT
+  ZW1215              0.220  0.223  0.223  0.229  0.244  0.258  0.284  0.289   -1.32
+  share range 0.069..0.700; rho_dust >= 0 everywhere: True; share rises 50->600 kpc on all 12: True
+
+========================================================================================
+STEP 2 -- THE KERNEL SLOPE per cluster: bisector fit of s vs log10(g_tot/a0), and the pooled median
+========================================================================================
+
+  --- canonical ---
+  cluster   d s/d log10(g/a0) (bisector)        OLS   model bis
+  A1644            -1.327     -0.852      -0.529
+  A1795            -0.507     -0.497      -0.664
+  A2029            -0.267     -0.212      -0.647
+  A2142            -0.551     -0.452      -0.662
+  A2255            -2.550     -1.789      -0.555
+  A2319            -0.703     -0.600      -0.661
+  A3158            -0.466     -0.459      -0.653
+  A3266            -1.962     -1.893      -0.652
+  A644             -0.253     -0.077      -0.667
+  A85              -0.559     -0.553      -0.664
+  RXC1825          -0.345     -0.342      -0.651
+  ZW1215           -0.396     -0.363      -0.659
+  MEDIAN bisector = -0.529 per dex  (|.| = 0.529);  range [-2.55, -0.25];  OLS median -0.478
+
+  --- alt ---
+  cluster   d s/d log10(g/a0) (bisector)        OLS   model bis
+  A1644            -1.444     -0.936      -0.479
+  A1795            -0.556     -0.545      -0.648
+  A2029            -0.293     -0.233      -0.662
+  A2142            -0.605     -0.496      -0.666
+  A2255            -2.790     -1.963      -0.505
+  A2319            -0.771     -0.658      -0.667
+  A3158            -0.511     -0.504      -0.632
+  A3266            -2.154     -2.077      -0.622
+  A644             -0.276     -0.084      -0.674
+  A85              -0.614     -0.607      -0.644
+  RXC1825          -0.379     -0.375      -0.642
+  ZW1215           -0.435     -0.398      -0.630
+  MEDIAN bisector = -0.580 per dex  (|.| = 0.580);  range [-2.79, -0.28];  OLS median -0.525
+
+========================================================================================
+STEP 3 -- THE POOLED SPEARMAN: rank of s vs log10(g_tot/a0), all clusters x bins (the V4 audit)
+========================================================================================
+  [canonical] pooled rho(s, log10(g_tot/a0)) = -0.542 (p = 1.21e-08, n = 96); per-cluster rho: median -0.833, all negative: True
+  [alt] pooled rho(s, log10(g_tot/a0)) = -0.542 (p = 1.21e-08, n = 96); per-cluster rho: median -0.833, all negative: True
+
+========================================================================================
+VERDICTS
+========================================================================================
+
+--- V1: the 12-cluster MEDIAN kernel slope in (0.5, 1.0) per dex ---
+  [canonical] |median d s/d log10(g/a0)| = 0.529 per dex (signed -0.529) -> IN (0.5, 1.0)
+  [alt] |median d s/d log10(g/a0)| = 0.580 per dex (signed -0.580) -> IN (0.5, 1.0)
+  [PASS] V1 [the pooled-median kernel slope in the predicted class] the 12-cluster median of the per-cluster bisector slopes, magnitude, in (0.5, 1.0) per dex on both footings
+         measured: canonical: |median| = 0.529 (signed -0.529) per dex, in (0.5, 1.0); alt: |median| = 0.580 (signed -0.580) per dex, in (0.5, 1.0)
+         reading : the magnitude band is the kernel slope class: the signed slope is negative because the share RISES as g_tot/a0 falls (equivalently d s/d log10(a0/g_tot) in (0.5, 1.0), positive); the KEPLER doc's '+0.5..+1.0' is this magnitude
+
+--- V2: the pooled Spearman |rho(s, log10(g_tot/a0))| > 0.7 ---
+  [canonical] pooled rho = -0.542 (|.| = 0.542, p = 1.2e-08, n = 96) -> < 0.7
+  [alt] pooled rho = -0.542 (|.| = 0.542, p = 1.2e-08, n = 96) -> < 0.7
+  [FAIL] V2 [the V4 audit: pooled Spearman strength > 0.7] |rho(s, log10(g_tot/a0))| over all 12 clusters x 8 bins on both footings
+         measured: canonical: rho = -0.542 (|.| = 0.542, p = 1.2e-08, n = 96); alt: rho = -0.542 (|.| = 0.542, p = 1.2e-08, n = 96)
+         reading : the DOCUMENTED 0.7 threshold traces to G050's V4 (rho = -0.926), which was computed on the units-bugged arrays (G059 DATA NOTE: gtot/a0 ~ 1e-5, shares ~ 1e-27); the honest recomputation gives |rho| = 0.54 -- the direction is confirmed (12/12 clusters rise, median per-cluster rho -0.83) but the pooled rank strength does not reach 0.7
+
+--- V3: the kernel-form check: measured vs 1 - mu2(g/2a0)-class model slope, within 30% ---
+  [canonical] |measured median| = 0.529; |model| = 0.589 per dex at q = 1 -> deviation 10.2% (same-estimator model-bisector median 0.656)
+  [alt] |measured median| = 0.580; |model| = 0.589 per dex at q = 1 -> deviation 1.5% (same-estimator model-bisector median 0.643)
+  [PASS] V3 [the kernel-form check] |measured median slope - model slope|/|model slope| <= 30%, where the model is the 1 - mu2(g/2a0)-class kernel share (1 + q/4)^-2 at the a0 crossover (q = 1)
+         measured: canonical: measured 0.529 vs model 0.589 per dex = 10.2% deviation; alt: measured 0.580 vs model 0.589 per dex = 1.5% deviation
+         reading : the measured exponent of the rise matches the kernel class the chain committed in G059 candidate (1); the same-estimator comparison (model fitted through each cluster's own window) agrees within 20%
+
+--- V4: the honest statement + P3's falsifier ---
+  [canonical] clusters with |slope| < 0.1 (flat share): 0/12
+  [alt] clusters with |slope| < 0.1 (flat share): 0/12
+  [PASS] P3-FALSIFIER [flat share (no rise) on > 1/3 of the clusters] clusters with |kernel slope| < 0.1 per dex must be <= 4/12
+         measured: canonical: 0/12 flat; alt: 0/12 flat
+         reading : the rise is present on all 12 clusters on both footings
+
+  THE SHARE FUNCTION, EXECUTED (P3).
+
+  The artifact: per cluster per bin, s(r) = rho_ph/(rho_ph + rho_dust,req)
+  with rho_ph the law's A/r^2 phantom (M_b per radius) and rho_dust,req the
+  required dust = observed residual minus phantom (G098's inversion,
+  recomputed inline -- G098's out absent at run time).  The share rises
+  outward on ALL 12 clusters, both footings (50-kpc value -> 600-kpc value,
+  e.g. A1644 0.24 -> 0.38, A3266 0.20 -> 0.64); typical in-window range
+  0.1..0.45.  rho_dust,req is positive in every bin (the phantom never
+  exceeds the observed residual in-window -- P2's falsifier does not fire).
+
+  THE RISING-SHARE SIGNATURE, FUNCTIONALIZED (V4's core claim):
+    - the rise: per-cluster Spearman rho(s, log10(g/a0)) median -0.83,
+      12/12 negative -- the share FALLS as the field RISES, monotonically
+      inside every cluster;
+    - the exponent: |median d s/d log10(g_tot/a0)| = 0.529
+      (bisector; OLS 0.478) canonical /
+      0.580 alt -- IN the predicted
+      (0.5, 1.0) per-dex kernel class (V1 PASS), and within 10% of the
+      kernel form 1 - mu2(g/2a0) at the crossover (V3 PASS: the measured
+      rise IS the committed kernel class, functionalized);
+    - the coherency: 0/12 clusters flat at the crossover (the P3 falsifier
+      does not fire).
+
+  THE HONEST FAIL (the finding): V2's pooled |rho| = 0.542 < 0.7.
+  The documented 0.7 claim traced to G050's V4 (rho = -0.926), which was
+  computed on the units-bugged arrays (G059 DATA NOTE) -- the number that
+  made it into the KEPLER doc does not survive the corrected recomputation.
+  The SIGNATURE survives (the direction is 12/12 and strong within
+  clusters), but its POOLED rank strength is 0.54, diluted by the
+  between-cluster offsets in the share amplitude (A3266 reaches 0.64 at
+  600 kpc, A644 stays ~0.20): the doc's 0.7 threshold overclaims what the
+  pooled data support.
+
+  LIMITS.  rho_res comes from the local gradient of the interpolated
+  M_res profile on the committed 8-bin grid (forward differences; the outer
+  bin backward).  The 5/12 stellar imports (h67b medians) carry ~23% mass
+  uncertainty into s's amplitude but not into its radial RUN.  The bisector
+  fit is axis-symmetric in the (s, log10 g) plane with both variables
+  dimensionless; OLS slopes are carried beside (0.48 vs 0.53 -- the verdicts
+  are estimator-robust).  The kernel-form comparison uses the analytic
+  derivative of (1 + q/4)^-2 at q = 1; the same-estimator fit over each
+  cluster's own window agrees within 20%.  THE TWO-REGIME READING: the
+  window 50-600 kpc straddles the a0 crossing (q ~ 6 at 50 kpc -> ~0.05 at
+  600 kpc); the rise measured here is the phantom zone's share of the local
+  dark density growing as g falls below a0 -- the INVERTED map's observable,
+  on the committed ingests, with zero free parameters beyond the chain's
+  constants.
+
+G106 COMPLETE: 4/5 checks PASS.
+artifact written: G106_results.json

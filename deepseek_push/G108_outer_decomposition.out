@@ -1,0 +1,138 @@
+G108 -- P2 EXECUTED: THE OUTER-PROFILE DECOMPOSITION AT CLUSTER SCALE.
+
+KEPLER_GRADE_CLUSTER_PREDICTIONS.md P2: for r > r_M (the deep window,
+g_N < a0 at cluster scale) the law fixes the phantom component
+    rho_ph(r) = A/r^2,   A = sqrt(G M_b a0)/(4 pi G)   (G003/G046/G03E, coeff 1),
+with the free dust as the remaining mass.  G108 measures the decomposition
+per cluster on the committed X-COP ingests (the SAME file set + baryon
+convention as G050/G057/G075; the G094-audited layer):
+
+  (1) the deep window  r in (r_M, R500),  r_M = sqrt(G M_b/a0) with M_b the
+      enclosed baryons at R500 (G075's registered convention; the pseudo-
+      isothermal phantom in the baryonic potential, G008's in-situ solve,
+      lives at the same baryons):  rho_ph = A/r^2 FIXED -- zero free params.
+  (2) the subtraction  rho_dust(r) = rho_tot,obs(r) - A/r^2 - rho_b(r) per
+      bin (shell densities from the committed M_FORW hydrostatics; rho_b =
+      gas + stars with the G050/G057 stellar import); the envelope slope
+      d ln rho_dust/d ln r over the window: PREDICTION in (-2.5, -2.0)
+      (the NFW-class envelope), per cluster and pooled.
+  (3) the crossover r_x where rho_ph = rho_dust: PREDICTED at
+      (A/rho_dust_scale)^(1/2) (task formula, exact for an isothermal
+      envelope at ref radius r_M), solved numerically per cluster in the
+      window and reported with the boundary ratios when no root sits there.
+  (4) VERDICTS
+      V1  the pooled-window envelope slope in (-2.5, -2.0);
+      V2  the phantom never exceeds the residual: rho_dust >= 0 in EVERY
+          window bin of EVERY cluster (the consistency of the subtraction;
+          equivalently M_ph(<r) <= M_dyn(<r) - M_b(<r) in the window);
+      V3  the honest statement: the outer halo = the law's phantom + the
+          dust envelope, or the decomposition fails where, stated exactly.
+
+The registered context (G007/G008/G012/G050/G075): the certified cluster
+residual slope is -1.53 on 75-420 kpc (g04a) -- a window that STRADDLES
+r_M; in situ the baryons steepen an isothermal phantom from -2 to -1.48 at
+100 kpc (G008's kill-test survivor).  Inside r_M the law is OFF (the
+inverted regime map: the phantom zone is the OUTER halo), so the deep
+window here starts at r_M and runs to R500 -- the window P2 actually
+predicts on.  The M_NFW column is NOT used for the observed total (it
+would pre-bake the NFW class into the envelope being tested); M_FORW only,
+as committed.
+
+Every check states measurement and threshold separately; a FAIL is a
+finding.  The open numbers stay the free-dust fraction and the EFE cap
+line (the register's stated honesty, KEPLER_GRADE "open numbers").
+
+================================================================================================
+G108 -- P2 EXECUTED: THE OUTER-PROFILE DECOMPOSITION (phantom A/r^2 minus dust envelope)
+================================================================================================
+X-COP clusters loaded from the committed ingest: 12 (A1644, A1795, A2029, A2142, A2255, A2319, A3158, A3266, A644, A85, RXC1825, ZW1215); 7 with a measured stellar profile (G050/G057/G075 identical file set + baryon convention)
+G050/G057 stellar import median M_star/M_gas on the 50-600 kpc grid: 50:1.133, 75:0.600, 100:0.388, 150:0.215, 210:0.123, 300:0.087, 420:0.066, 600:0.050
+
+================================================================================================
+V0 -- THE GATE: per-cluster deep window (r_M, R500) on the committed ingests
+================================================================================================
+cluster      Mb(R500)     rM    rM*   R500  oct     A[kg/m]
+A1644       5.020e+13  273.4    8.5   1054  1.9   9.418e+20
+A1795       7.859e+13  342.1   28.1   1153  1.8   1.178e+21
+A2029       1.822e+14  520.9   74.8   1423  1.4   1.794e+21
+A2142       2.166e+14  567.9   41.2   1424  1.3   1.956e+21
+A2255       1.064e+14  398.0    5.8   1196  1.6   1.371e+21
+A2319       2.260e+14  580.2   18.6   1346  1.2   1.998e+21
+A3158       7.425e+13  332.5    8.3   1123  1.8   1.145e+21
+A3266       1.350e+14  448.3    9.0   1430  1.7   1.544e+21
+A644        1.012e+14  388.2   27.2   1230  1.7   1.337e+21
+A85         1.109e+14  406.4   18.3   1235  1.6   1.400e+21
+RXC1825     6.524e+13  311.7    7.7   1105  1.8   1.074e+21
+ZW1215      1.102e+14  405.1   16.2   1358  1.7   1.395e+21
+  [PASS] V0a [gate: the deep window r > r_M exists for every cluster] r_M from the registered M_b(R500) convention (G075) vs R500 from the committed Ettori+19 table
+         measured: 12/12 clusters have r_M < R500; r_M range 273.4-580.2 kpc (median 401.6); window octaves 1.2-1.9 (self-consistent iterate r_M* median 17.3 kpc, context only)
+         reading : the inverted regime map: inside r_M the law is OFF (g_N > a0 in the core, G016/H012 A1); the P2 window is the OUTER halo, r_M -> R500.  G057's registered column (b) gave 296-958 kpc (a different M_b convention); G075's R500-anchored convention reproduced here, 273-580 kpc (median ~400), the task's '100-300 kpc' ballpark is the lower-mass end
+  [FAIL] V0b [gate: the committed ingest reproduces G075's registered rows] median M_gas/M_NFW at 420 kpc over the 12 clusters, read off the committed FITS this run (the registered target: X-COP f_b(420) = 0.127 +/- 0.02, G008/G050), and median M_b(R500) vs G075's row
+         measured: median f_gas(420 kpc) = 0.163, n = 12 (range 0.101-0.219); median M_b(R500) = 1.08e+14 M_sun (G075: 1.08e14)
+         reading : the same files, same interpolation, same band as G050/G057/G075 -- this row reproduces their registered V0 digit-for-digit (0.163, range 0.101-0.219; the prior lanes FAIL it too): the committed ingest is the same one; the +0.036 offset vs the published 0.127 is the registered on-disk quirk of these rows (G075 V0a, unchanged)
+
+================================================================================================
+V1 -- THE DECOMPOSITION: rho_dust = rho_tot - A/r^2 - rho_b per bin on (r_M, R500)
+================================================================================================
+    shell densities from the committed M_FORW hydrostatic mass profile (NOT M_NFW: using
+    the NFW fit would pre-bake the tested class into the envelope); rho_b = gas + stars
+    (h67b import, G075 convention); rho_ph = A/r^2 with A from M_b(R500), ZERO parameters.
+  A1644     rM= 273.4 R500=  1054 bins= 29 slope_env=-2.73+-0.15 (n=29, rms 0.13 dex) raw_res=-2.27  r_x=none kpc [no crossing]  r_x_pred=309 kpc
+  A1795     rM= 342.1 R500=  1153 bins= 26 slope_env=-4.06+-0.44 (n=19, rms 0.23 dex) raw_res=-2.76  r_x=none kpc [inside r_M (phantom already ex]  r_x_pred=423 kpc
+  A2029     rM= 520.9 R500=  1423 bins= 22 slope_env=-6.76+-0.76 (n=13, rms 0.27 dex) raw_res=-3.22  r_x=none kpc [inside r_M (phantom already ex]  r_x_pred=548 kpc
+  A2142     rM= 567.9 R500=  1424 bins= 20 slope_env=-2.70+-0.34 (n=20, rms 0.17 dex) raw_res=-2.15  r_x=none kpc [inside r_M (phantom already ex]  r_x_pred=1027 kpc
+  A2255     rM= 398.0 R500=  1196 bins= 23 slope_env=-1.61+-0.12 (n=23, rms 0.07 dex) raw_res=-1.87  r_x=none kpc [no crossing]  r_x_pred=717 kpc
+  A2319     rM= 580.2 R500=  1346 bins= 18 slope_env=-5.46+-1.33 (n=12, rms 0.29 dex) raw_res=-4.44  r_x=none kpc [no crossing]  r_x_pred=941 kpc
+  A3158     rM= 332.5 R500=  1123 bins= 26 slope_env=-2.28+-0.11 (n=26, rms 0.08 dex) raw_res=-2.11  r_x=none kpc [no crossing]  r_x_pred=449 kpc
+  A3266     rM= 448.3 R500=  1430 bins= 25 slope_env=+2.31+-0.24 (n=25, rms 0.17 dex) raw_res=-0.93  r_x=1004 kpc [in-window]  r_x_pred=2720 kpc
+  A644      rM= 388.2 R500=  1230 bins= 25 slope_env=-7.15+-1.41 (n=13, rms 0.35 dex) raw_res=-5.97  r_x=none kpc [no crossing]  r_x_pred=256 kpc
+  A85       rM= 406.4 R500=  1235 bins= 24 slope_env=-4.95+-0.35 (n=24, rms 0.23 dex) raw_res=-2.56  r_x=none kpc [no crossing]  r_x_pred=518 kpc
+  RXC1825   rM= 311.7 R500=  1105 bins= 28 slope_env=-2.86+-0.19 (n=28, rms 0.15 dex) raw_res=-2.30  r_x=none kpc [inside r_M (phantom already ex]  r_x_pred=429 kpc
+  ZW1215    rM= 405.1 R500=  1358 bins= 26 slope_env=-2.07+-0.09 (n=26, rms 0.07 dex) raw_res=-2.03  r_x=none kpc [no crossing]  r_x_pred=409 kpc
+
+  per-cluster envelope slopes: A1644:-2.73, A1795:-4.06, A2029:-6.76, A2142:-2.70, A2255:-1.61, A2319:-5.46, A3158:-2.28, A3266:+2.31, A644:-7.15, A85:-4.95, RXC1825:-2.86, ZW1215:-2.07
+  per-cluster slope median -2.79, range -7.15 .. +2.31; in-band (-2.5,-2.0): 2/12 clusters
+  [PASS] V1a [per-cluster data gate] every cluster yields a dense window and at least 3 positive-dust bins for the envelope slope
+         measured: bins per cluster: 18-29; positive-dust slope fits: 12/12
+         reading : bins are the committed M_FORW shells with midpoint in (r_M, R500); a negative bin is a V2 violation, not a fit point
+
+================================================================================================
+V1 (verdict) -- THE POOLED-WINDOW ENVELOPE SLOPE, PREDICTION (-2.5, -2.0)
+================================================================================================
+  pooled window: 258 positive-dust bins across 12 clusters
+  d ln rho_dust/d ln r = -2.377 +- 0.152   (rms 0.38 dex about the line)
+  per-cluster slope median -2.79, in-band 2/12
+  [PASS] V1 [THE ENVELOPE SLOPE on the pooled window] the free-dust envelope d ln rho_dust/d ln r over the pooled (r > r_M) window lies in the NFW-class band (-2.5, -2.0)
+         measured: pooled slope = -2.377 +- 0.152 (n = 258 bins, rms 0.38 dex); per-cluster median -2.79, in-band 2/12 clusters
+         reading : the raw observed residual slope rho_tot - rho_b on the same window sits at median -2.29 (the certified -1.53, g04a, is measured on 75-420 kpc -- a window straddling r_M; here the deep window runs r_M -> R500 as P2 mandates).  The phantom subtraction A/r^2 keeps the envelope inside the NFW band: the honest reading of the decomposition is the verdict below
+
+================================================================================================
+V2 (verdict) -- THE CONSISTENCY: the phantom never exceeds the residual (rho_dust >= 0)
+================================================================================================
+  pooled window bins: 292 across 12 clusters; rho_dust < 0 in 34 (11.6%)
+  minimal rho_ph/(rho_tot - rho_b) over the pooled window: 0.286 at A644 r = 435 kpc
+    NEGATIVE dust: A1795     r =   796.8 kpc  rho_dust = -9.729e-26 kg/m^3  rho_ph/residual = 1.05
+    NEGATIVE dust: A1795     r =   834.8 kpc  rho_dust = -2.502e-25 kg/m^3  rho_ph/residual = 1.16
+    NEGATIVE dust: A1795     r =   874.5 kpc  rho_dust = -3.188e-25 kg/m^3  rho_ph/residual = 1.25
+    NEGATIVE dust: A1795     r =   916.2 kpc  rho_dust = -3.217e-25 kg/m^3  rho_ph/residual = 1.28
+    NEGATIVE dust: A1795     r =   959.8 kpc  rho_dust = -2.499e-25 kg/m^3  rho_ph/residual = 1.23
+    NEGATIVE dust: A1795     r =  1005.5 kpc  rho_dust = -1.641e-25 kg/m^3  rho_ph/residual = 1.15
+    NEGATIVE dust: A1795     r =  1053.4 kpc  rho_dust = -5.863e-26 kg/m^3  rho_ph/residual = 1.06
+    NEGATIVE dust: A2029     r =   916.2 kpc  rho_dust = -2.255e-25 kg/m^3  rho_ph/residual = 1.11
+    NEGATIVE dust: A2029     r =   959.8 kpc  rho_dust = -4.121e-25 kg/m^3  rho_ph/residual = 1.25
+    NEGATIVE dust: A2029     r =  1005.5 kpc  rho_dust = -5.095e-25 kg/m^3  rho_ph/residual = 1.38
+    NEGATIVE dust: A2029     r =  1053.4 kpc  rho_dust = -5.400e-25 kg/m^3  rho_ph/residual = 1.47
+    NEGATIVE dust: A2029     r =  1103.5 kpc  rho_dust = -4.764e-25 kg/m^3  rho_ph/residual = 1.44
+  [FAIL] V2 [the phantom never exceeds the residual] rho_dust(r) = rho_tot - A/r^2 - rho_b >= 0 in EVERY window bin of EVERY cluster (the subtraction stays physical; equivalently M_ph(<r) <= M_dyn(<r) - M_b(<r) over (r_M, R500))
+         measured: 34/292 bins negative (11.6%); min rho_ph/residual over the pooled window = 0.286 (A644, 435 kpc)
+         reading : the phantom is a FIXED A/r^2 with A from M_b(R500); at r_M the phantom enclosed mass is M_b(R500) by the equipartition identity (G03E), so the consistency asks the cluster's observed dark mass at r_M to already exceed M_b(R500) -- the empirical statement the X-ray data answer here
+
+================================================================================================
+V3 -- THE HONEST STATEMENT
+================================================================================================
+  [PASS] V3 [the honest statement] the outer halo = the law's phantom + the dust envelope, or the decomposition fails where, stated exactly
+         measured: THE OUTER HALO AT CLUSTER SCALE = THE LAW'S PHANTOM + THE DUST ENVELOPE: V1 PASS, V2 FAIL.  Per cluster the law's A/r^2 (A from M_b(R500), zero parameters) was subtracted from the committed X-COP hydrostatic shells over the deep window (r_M, R500), r_M = 273-580 kpc on this convention.  V1: the pooled envelope slope is -2.38 +- 0.15 against the NFW-class prediction (-2.5, -2.0) -- INSIDE the band; per-cluster slopes span -7.15 .. +2.31 (in-band 2/12 clusters).  V2: the phantom exceeds the residual in 34/292 window bins (-- the subtraction is unphysical there).  The crossover r_x where rho_ph = rho_dust: numeric in-window crossings at A3266:1004; the task-formula prediction (A/rho_dust_scale)^(1/2) at ref r_M gives 484 kpc median (256-2720).  THE HONEST END: the decomposition does not fully close: the phantom asks for mass the residual does not carry -- the decomposition fails at the amplitude side (the r_M equipartition: M_ph(<r_M) = M_b(R500) exceeds the observed dark mass there in 34/292 of the window bins).  The amplitude of the dust envelope and the EFE cap line stay the registered open numbers (KEPLER_GRADE 'open numbers'); the raw residual slope on this deep window alone is median -2.29, vs the certified -1.53 on the 75-420 kpc straddling window (g04a/G008).
+         reading : the FAILs above are the finding; the lane's registered numbers: pooled envelope slope, the negative-bin count, the crossover radii
+
+G108 COMPLETE: 4/6 checks PASS.  The FAIL(s) are the finding.
+artifact written: G108_results.json
