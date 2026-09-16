@@ -293,14 +293,56 @@ recovery, G135 the 2/3 exponent's cross-sample law, G136 the lensing-core
 D2 registry, G137 the free-dust envelope derivation attempt, G138 the
 cap-firing-radius reconciliation.
 
-## WAVES 7-10 (in flight/landing: G116-G138)
-wave 7 (G116 sector mass, G117 BTFR correction, G118 merger registry, G119
-the 0.62 attempt, G120 theory refresh, G121 pair-merger forecast) + wave 8
-(G122 coherency-systematic decomposition, G123 phantom over-demand vs M500,
-G124 the 1.43 closed form, G125 group-scale equipartition, G126 ZW1215 case)
-+ wave 9 (G127 the cap's origin, G128 pooled deep-end, G129 tSZ proposal,
-G130 the T-profile asymptote test, G131 the 10-decade line, G132 the cap's
-thermodynamics) + wave 10 (G133-G138 above).
+## WAVE 8 (landed 5/5 -- the thorn's shape DERIVED)
+G122 THE COHERENCY CLOSED: the 0.313-dex curve-scatter is a MISSING RADIAL
+SHAPE (residual monotone in r/R500, Spearman -1.000); the closed form R =
+[2x/(x-1)] a_c (r/R500)^-p with ONE universal p* = +0.99 (the framework's
+own r^-1!) + one amplitude per cluster -> COLLAPSE 0.097 dex, 12/12
+clusters below 0.15 (was 0.313; G105's FAIL is CLOSED); even without
+per-cluster freedom: 0.119 dex.  THE FREE-DUST NORMALIZATION IS ONE PROFILE
+SHAPE (r^-1) WITH PER-CLUSTER AMPLITUDE; remaining freedom: the amplitude's
+mass-ordering (rho(amp, M500) = -0.59, p = 0.045) and its residual floor.
+G123 THE OVER-DEMAND REFINED: does NOT robustly scale with M500 (pooled
+rho +0.10, p = 0.097; the fitted M* unconstrained): the over-demand is
+RADIUS-SELECTED (every negative bin at x >= 0.59 R500), not mass-selected;
+f_dust flat in M500 (no mass-dependent fraction detected at cluster scale);
+the r_M-equipartition consistent in-window for 11/12 (sole A2319 in its
+last shells).  The mass-limit hypothesis FAILS; the equilibrium does not.
+G124 THE 1.43 DERIVED: model median r_half/r_M = 1.73 (12/12 within
+[1/3, 3]) vs the measured 1.43 -- within the derived band, Spearman(model,
+obs) = +0.958; the ratio is a SHAPE FUNCTIONAL: phantom and dust AMPLITUDES
+CANCEL (d ln/d ln A_ph = -0.008, d ln/d ln A_dust = +0.03), set only by the
+baryon concentration c_b (lever +0.26/dex) and the envelope slope (+0.25/
+dex); the 21% gap = the inner-window f_gas slope mismatch (model ~0.6 vs
+observed ~0.24) = G108's registered amplitude overshoot, named not tuned.
+THE GAS-FRACTION CROSSOVER IS DERIVED, not empirical.
+G125 GROUP-SCALE EQUIPARTITION -- P6 SURVIVES 100x DOWN IN MASS: G-class
+(n = 19 groups, GEMS Osmond-Ponman 04, Rasmussen-Ponman 07, Eckmiller+11):
+rms 0.1008 dex (cluster 0.062); POOLED clusters + groups: 0.0900 dex,
+mass-independent (slope +0.057 +- 0.125); the Chandra outer-T footing rms
+0.0489 dex == the cluster value (the cool-core bias is the dominant group
+scatter, exactly the predicted divergence); onset at kT ~ 0.5 keV as
+predicted; H-class (ISM T) and U-class (no hot phase) break down by
+construction.  THE IDENTITY HOLDS OVER 1e13-9e14 Msun, 0.06-0.12 dex.
+G126 THE ZW1215 CASE RESOLVED: the one P4-falsifier fire is a HYDROSTATIC-
+BIAS case, NOT a breakdown of the rise: the fall is carried ENTIRELY by the
+M_FORW denominator (the SAME cluster is FLAT on the M_NFW footing: +0.027;
+the DECIDING NUMBER: footing contrast delta = -0.093); published disturbance
+flags cited (Lagana+19 NCC-disturbed; Lovisari+17 state M; Ghirardini+19
+flat T(r); Eckert+19 the sample's LOWEST f_gas; Sereno+24 HSE-high direction);
+gas-concentration inversion REFUTED; phantom-share edge REFUTED.  The
+rise survives 11/12 + 1 explained; P(most extreme of 12 slopes) = 0.29
+carried as the honest fluke caveat.
+
+## WAVES 9-10 (in flight/landing: G127-G143)
+wave 9 (G127 the cap's origin, G128 pooled deep-end, G129 tSZ proposal,
+G130 the T-profile asymptote, G131 the 10-decade line, G132 the cap's
+thermodynamics) + wave 10 (G133 the MIGHTEE footing, G134 the V4 partial,
+G135 the 2/3 law cross-sample, G136 the lensing-core registry, G137 the
+dust-envelope derivation, G138 the cap-firing reconciliation) + wave 11
+(G139 the r^-1 dust law test, G140 the amplitude's mass-ordering prediction,
+G141 the tSZ+dust joint, G142 the inner f_gas gap with exact r_c, G143 the
+group-scale amplitude test).
 
 ## THE CLUSTER THORN, CURRENT STATE (after wave 5)
 STRUCTURE: the framework's cluster face is mostly CONFIRMED -- the
