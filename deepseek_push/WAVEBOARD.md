@@ -973,6 +973,51 @@ phantom sub-a0 zone outside).  The cluster thorn is closed; what remains
 is the single number q + the 0.1-dex floor + the cosmic pie's ontology
 (G196-G198).
 
+## WAVE 20 (landed 4/4 -- the seesaw's fate, the decision tree, the kink contract, the closeout)
+G189 THE SEESAW'S FATE 13/13: the exact separation -- DIED: only the
+tracking n(a0) = s/a0 (global; ~8 sigma); SURVIVED: the vacuum identity
+rho_Lambda = 4 a0^2/G c^2 (G058 Lean, n-free) + a0_DE as its unique
+cosmological reading + the whole ratio structure (G172-invariant).  THE
+TWO-SCALE ANSWER: THE DEEP END IS THE SEESAW'S OWN CONSTANT: s_Lambda =
+2 a0_DE = 1.87238e-10 reproduces MIGHTEE's deep fit 1.8433e-10 at 0.12
+sigma and the deep-only refit 1.8746e-10 at 0.12%; the other clean
+composites (sqrt(2) a0_DE, 4/3 a0_DE = L232's 1.2457e-10 at 0.2%,
+sqrt(a0_DE cH0/4), a0_DE/Omega_Lambda) are all in band but NO single one
+covers the staircase (empirical).  THE SEE SAW IS DEMOTED TO A VACUUM-TO-
+SUM IDENTITY; the galactic scale is a separate empirical quantity; the one
+surviving parameter is a0_eff, pinned by the registered pair (the z ~ 2.5
+BTFR zero point + the DR4 ridge [1.047, 1.11], 30.7 sigma).
+G190 THE FOOTING DECISION TREE: the exhaustive branches -- (a) ONE-SCALE-DE
+(landed by a MIGHTEE-class resolved deep z~0 read with rms < 0.13 dex at
+a0_DE, 100+ rings); (b) ONE-SCALE-RAR (landed by the z~2.5 BTFR flat at
+RAR + the DR4 ridge at RAR); (c) TWO-SCALE (landed by a0* RUNNING with M_b
+at > 3 sigma); PRIORITY: MIGHTEE (free, fires K2) -> z~2.5 JWST BTFR (4
+galaxies, 20:1, THE discriminator) -> DR4 ridge (Dec, free, fires K1) ->
+tSZ (shape-confirming, doesn't pick) -> WALLABY pair-break (catalog-
+limited); KILLS: K1 ridge-at-RAR kills a0_DE-alone; K2 clean-MIGHTEE-
+0.13-dex-at-a0_DE kills RAR-alone; both firing = two-scale forced.
+G191 THE KINK-WIDTH PROJECT 16/16: the prediction w90 < 0.3 kpc (first-
+order step) vs ~1-2 kpc (smooth kernel), the boundary w* = 0.5 kpc at
+3 sigma pre-registered; the HONEST KEY RESULT: the SIGN of the width
+separates the two readings at >= 95% in ~1 YEAR with in-hand catalogs
+(H3/APOGEE/streams, no new telescope time; step -> w90 ~ 0.2 kpc at
+97.5%, kernel -> 1.5 kpc at 100%); the strict 3-sigma-on-the-boundary
+needs the SDSS-V/WEAVE/4MOST frontier ~2-3 years; Eilers-resolution
+reproduces G164's PENDING; the r_c-w degeneracy handled by fixing r_c at
+the already-detected 6.33 kpc kink.
+G192 THE THORN CLOSEOUT 3/3: CLUSTER_CLOSEOUT.md -- the one-page sector
+accounting (M_dyn = M_b + M_ph(Gauss-map, derived) + M_dust 0.72
+(M500/8e14)^-0.414 (r/R500)^-0.990 with c0 pinned by the infall-jump
+A_b = 0.650, R = 1.09, 12/12; seam 0.96 r_M; M_sat 3.09e14; the pie
+17.7/56.9/24.6; the 2/3 law 0.076 over 31; the outer slope -2.404 at
+7.7 sigma vs NFW); the OPEN ITEMS honest (the single number q, the 0.63
+sliver, the inside-R500 degeneracy, the tSZ verdict pending); the
+paper-ready referee-checkable page with provenance on every number.
+THE CLUSTER THORN IS CLOSED: DERIVED (the phantom as Gauss-map charge,
+the amplitude chain, the seam, c0) / MEASURED (q, the outer slope, the
+phase diagram endpoints) / PENDING (the tSZ 3-way, XRISM plateau, DR4,
+z~2.5 BTFR).
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 CLAIMED (deepseek, in flight -- do NOT duplicate): G154 static-branch
 charge, G155 sourced equation, G156 dust charge-vs-relic decision,
