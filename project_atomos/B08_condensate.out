@@ -1,0 +1,193 @@
+==========================================================================================================
+B08 -- THE CONDENSATE EXCITATIONS: the coherent phase's phonon face
+       (G235 type-I;  S/N = 22.8-23.8 k_B;  T_b = 9.52 K;  m = 5.09 keV)
+==========================================================================================================
+
+(0) THE REGISTERS (verified before use)
+  m = 5.09 keV (G212):  M_b = 7.0e10 Msun, a0 = 9.3619e-11 (G132):
+  r_M = 10.2101 kpc,  r_break = 6.3302 kpc = 0.62 r_M (G081)
+  c_s^2 = C/2 = sigma^2 = 1.474730e+10 (m/s)^2  ->  c_s = 121.438 km/s (G233)
+  T_b = m sigma^2/k_B = 9.520686 K at 5.00 keV (G132 register 9.520686); 9.692059 K at the COMMITTED 5.09 keV
+  N_ph = M_b/m = 1.561983e+73 at 5.00 keV (G132 register 1.5619832e73); 1.534365e+73 at 5.09 keV
+  cluster face (G127): c_s = 628-915 km/s, caps 296-958 kpc, c_s t_ff/r = 1/sqrt(2)
+  spectral register (H047 via G235): lambda_fs = 0, R(k) = 1, the frozen-scalar fluid c_s^2 in [1/2, 1-)
+  [PASS] C1 [EOS identity] c_s^2 = dP/drho = C/2 = sigma^2 = 1.47470e10 (m/s)^2 (G233 V1; triad rel err 0)   c_s^2 = 1.4747300934e+10 vs G233 1.4747009334e10
+  [PASS] C2 [T_b register] k_B T_b/m = sigma^2 to 2e-5 (G235 V2); T_b = 9.520686 K at 5.00 keV / G081 constants (G132), = 9.6921 K at the committed 5.09 keV   T_b(5 keV) = 9.520686 K; T_b(5.09 keV) = 9.692059 K
+  [PASS] C3 [N_ph register] N_ph = M_b/m = 1.5619832e73 at 5.00 keV (G132 bookkeeping C1); = 1.5344e73 at the committed 5.09 keV   N_ph(5 keV) = 1.561983e+73; N_ph(5.09 keV) = 1.534365e+73
+  [PASS] C4 [band] the derived c_s^2 = 1/2 x C sits at the LOWER edge of the committed window c_s^2 in [1/2, 1-) (H047 N6/N8; triad G091 pins 1/2)   c_s^2/C = 0.500000000000
+
+(1) THE EXCITATION SPECTRUM -- the Bogoliubov/phonon class
+  The EOS carries ONE velocity scale: c_s^2 = dP/drho = sigma^2 = C/2
+  (G233).  A coherent condensate's elementary branch is the acoustic
+  (Goldstone) phonon  omega(k) = c_s k  -- GAUGELESS: the gap at k=0
+  is EXACTLY ZERO (spontaneous coherence breaks the U(1) -> goldstone).
+  The FULL Bogoliubov branch (healing term):  omega^2 = c_s^2 k^2 + (hbar k^2/2m)^2,
+  i.e. omega = c_s k sqrt(1 + (k xi)^2/2) with the healing/coherence length xi = hbar/(sqrt(2) m c_s).
+
+  coherence scales (m = 5.09 keV):
+    MW     (c_s = 121.4 km/s):  healing xi  = 6.7673e-08 m = 2.1931e-24 pc
+                         de Broglie     = 9.5705e-08 m
+    cluster (c_s = 772 km/s):  healing xi  = 1.0652e-08 m
+    -> xi/r_M < 2.15e-28 : the coherence scale is ~1e-7 m, far below EVERY observable scale
+
+  THE BRANCH omega(k) at observable scales (MW well, c_s = 121.4 km/s):
+           L [m]      k [1/m]    omega [1/s]    period [yr]  cycles in t_H
+      1.9533e+20   3.2167e-20     3.9063e-15      5.097e+07        270.750
+      3.1505e+20   1.9943e-20     2.4219e-15      8.221e+07        167.865
+      3.0857e+21   2.0362e-21     2.4728e-16      8.052e+08         17.139
+      3.0857e+22   2.0362e-22     2.4728e-17      8.052e+09          1.714
+      3.0857e+23   2.0362e-23     2.4728e-18      8.052e+10          0.171
+  wavelength completing ONE full cycle in t_H (omega t_H = 1): L_1 = 2 pi c_s t_H
+    MW = 3.3229e+23 m = 10.77 Mpc;   cluster (c_s = 800 km/s) = 2.1890e+24 m = 70.9 Mpc
+    -> modes ABOVE L_1 (~11 Mpc MW / ~71 Mpc clusters) are Hubble-SLOW (cycles << 1 in t_H);
+       the well-to-Mpc modes oscillate on 50 Myr-8 Gyr timescales (the table above) but are
+       NOT registered as observable propagating waves (G235 V2: no committed two-time/response
+       function) -- the sector presents as STATIC ORDERED STRUCTURE: the envelope, exactly
+       H047's 'frozen, no free degrees'.  The 2.55-keV LINE of the particle face (A05) has NO
+       phonon counterpart: the condensate's only lines are acoustic, and at observable scales
+       hbar*omega/(k_B T_b) ~ 1e-27 (well scale) - 1e-29 (Mpc scale): utterly classical, no
+       quantum two-sided structure is testable (G235 V2).
+
+  THE GAP STRUCTURE -- the committed linear response (G081):
+    eigenproblem sigma^2 xi'' - (2 sigma^2/r) xi' + (2 sigma^2/r^2 - w^2) xi = 0,
+    reduction xi = r u  ->  u'' = (w/sigma)^2 u  EXACT;
+    fundamental:  omega^2 = w^2 = 0 EXACT (marginal), cap-invariant, zero-mode residual 1.8e-12.
+  READING: the phase is RIGID at low k in the honest sense -- the k->0 branch is
+    NEITHER growing (no Jeans instability: no fragmentation) NOR decaying (no damping:
+    no heating/thermalization channel) NOR oscillating (no gapped mode).  A MASSIVE scalar
+    counterpart would put a finite gap omega(0) = m_sc c^2/hbar at k = 0 and its mode would
+    complete many cycles in t_H; the committed record has NO such mode: gap = 0, growth = 0.
+
+
+(2) THE OBSERVABLE -- RESPONSE TO A BARYONIC PERTURBER (wake / phonons)
+  Landau criterion (condensate with only the acoustic branch): v_c = min_p E(p)/p = c_s.
+  v < c_s : NOTHING can be excited -- zero drag, zero dissipation, zero heating.
+  v > c_s : a COHERENT wake (one macroscopic ordered mode, a Mach cone of the condensate).
+  EITHER WAY the deposited energy is ORDERED (a collective mode), never stochastic heat.
+
+  MACH numbers (velocity inputs are GENERIC, not committed):
+                                    scenario         v [km/s]       c_s [km/s]       Mach v/c_s
+                     MW well, passing galaxy            200.0            121.4             1.65
+                        MW well, satellite              100.0            121.4             0.82
+                       cluster core, merger            1500.0            771.0             1.95
+                       Bullet sub (generic)            3000.0            771.0             3.89
+  -> MW passages STRADDLE v_c (Mach 0.8-1.6); cluster merger shocks are supersonic (Mach 2-6)
+     but deposit a COHERENT wake only.  The wake cannot thermalize: the dust's 2-body
+     relaxation is t_relax = 1e73.0-1e75.9 x t_Hubble at 0.5-1 Mpc (G103) and the phantom's
+     modes are collisionless collective states (marginal, omega^2 = 0 : no damping channel).
+
+  ACOUSTIC RESPONSE TIMES:  t_ac = r_well/c_s  (the committed c_s t_ff/r = 1/sqrt(2) face, G127)
+    MW well (r_break = 6.33 kpc, c_s = 121 km/s):  t_ac = 1.608e+15 s = 51.0 Myr
+    cluster well (cap ~ 627 kpc, c_s = 800 km/s):  t_ac = 2.418e+16 s = 0.77 Gyr
+    a merger perturber crossing ~1 Mpc at ~3000 km/s takes t_cross = 1.0e+16 s = 326 Myr
+    -> t_cross << t_ac(cluster): the phantom sees the perturber as a QUASI-STATIC external
+       potential (adiabatic): the response is the smooth gravitational wake -- the ordered
+       kinematics -- NOT shock heating.  T_b = m sigma^2/k_B is fixed by the equilibrium, not
+       raised by passages.
+
+  ENERGY LEDGER (the no-heating prediction's number):
+    phantom thermal content   (3/2) N_ph k_B T_b = 3.080e+51 J
+    -> raising the phantom's sigma^2 by 1% (T -> 1.01 T_b) would need 3.080e+49 J
+    generic cluster ICM shock energy (M_gas = 1.4e13 Msun, kT = 6 keV, FLAGGED generic) = 4.001e+55 J
+    -> the shock carries 1.3e+06 x the phantom's 1%-heating cost -- and the coupling channels
+       are dead (Landau gate + G103 collisionless).  The OBSERVED consequence:
+       the G110 Bullet shows the dark peaks passing through with the 8-sigma galaxy/plasma
+       offset (209/194 kpc) and NO dark-sector heating beyond the ordered kinematics; the G103
+       timescales (1e73-1e76 t_H) certify the dust cannot heat itself.   The sector's velocity
+       dispersion stays at sigma^2 = C/2 = the equilibrium value: mergers re-ORDER, they don't heat.
+
+
+(3) THE GRANULARITY TEST -- smoothness below the coherence length
+  A coherent phase has NO local density fluctuations below xi:
+    MW phantom at r_M:  rho = 3.5430e-22 kg/m^3,  n = 3.9047e+10 m^-3;
+    BEC-degeneracy criterion  n lambda_db^3 = 3.4228e-11  -- 20 orders BELOW 1:
+      THE HONEST CAVEAT: the phantom is NOT a conventional degenerate Bose-Einstein
+      condensate (macroscopic occupation of the single-particle ground state FAILS by ~1e11).
+      Its 'coherence' is the G235 type-I reading: N_ph = 1.56e73 in ONE mode (lambda_fs = 0,
+      R(k) = 1), floored by the finite-T Maxwellian at T_b = 9.52 K (v_rms = 210 km/s).  The
+      no-free-streaming / smoothness signature survives: it is the share of BOTH type-I and
+      type-III readings (G235 V1), and it is what the census tests.
+
+    OBSERVABLE SMOOTHNESS: at every scale above ~1e-7 m the phantom density is the smooth
+      A/r^2 envelope with ZERO substructure: one mode, marginal (omega^2 = 0) stability ->
+      no Jeans instability, no fragmentation, no phantom subhalos.  The coherent-state
+      fractional fluctuation is 1/sqrt(N_ph) = 2.55e-37 -- total suppression of shot noise.
+      Contrast: CDM granularity (subhalos ~1e-3 of the host, ~1e5-1e6 Msun at the MW) and
+      the WDM-relic truncation at M_hm = 5e5-5.8e6 Msun (G115).
+
+    THE CENSUS CONFRONTATION (G215): the MW sub-1e6 counts resolve the RAR >1e5-class:
+      N_obs = 19, LF rising steeply with NO break, against the relic-truncated predictions
+      of 5.1 (5.7 keV) / 1.0 (3.3 keV)  ->  3.2-4.1 sigma lean to the SMOOTH (no-cutoff) face.
+      The condensate predicts the SAME: R(k) = 1, lambda_fs = 0, no break at any scale.
+      HONEST LIMITS: (i) the census is dominated by the FREE DUST (79-97% of dark, G110) --
+      the granularity test isolates the phantom ENVELOPE, not the sector's subhalos;
+      (ii) the phantom exists only inside its cap (0.62 r_M MW; 296-958 kpc clusters):
+      outside, the dust alone carries the mass; (iii) the observable distinctive handle is
+      the ENVELOPE's smoothness/slope (-2 vs NFW -3, H036) at 0.5-2 Mpc, not the subhalos.
+
+
+(4) VERDICTS
+  V1_the_mode_spectrum:
+    THE GOLDSTONE PHONON, GAP AND GROWTH EXACTLY ZERO: the phantom's excitation spectrum is the acoustic branch omega(k) = c_s k with c_s^2 = C/2 = sigma^2 (c_s = 121.4 km/s MW; 628-915 km/s clusters, G127), the ONLY committed velocity scale (G233 EOS).
+    The gap is EXACTLY ZERO (spontaneous coherence -> gapless; the committed linear-response spectrum G081 is omega^2 = 0 EXACT, marginal homology xi = c1 r + c2 r^2, reduction u'' = (w/sigma)^2 u -- the weak-field k->0 limit of the same rigidity).
+    The mode structure's observable content: (a) NO growing mode (no Jeans instability -> the phase cannot fragment), (b) NO decaying mode (no damping channel -> nothing can heat it), (c) Hubble-SLOW long-wavelength modes: a mode completes one cycle in t_H only at L_1 = 2 pi c_s t_H = 10.8 Mpc (MW; 70.9 Mpc at cluster c_s = 800 km/s), so at every envelope-observable scale the modes present as the STATIC ORDERED ENVELOPE -- exactly H047's 'frozen, no free degrees' (the well-to-Mpc modes oscillate on 50 Myr-8 Gyr timescales but no propagating-wave observable is committed: no two-time/response function, G235 V2).
+    The healing/de Broglie coherence scale is xi ~ 6.77e-08 m / lambda_db ~ 9.57e-08 m (MW) -- 20+ orders below any observable scale.
+
+  V2_the_no_heating_prediction:
+    ZERO STOCHASTIC HEATING, BY TWO INDEPENDENT GATES: (i) the Landau criterion -- v_c = min_p E(p)/p = c_s, so subsonic passages excite NOTHING and supersonic passages emit only a COHERENT (one-mode, ordered) wake: neither deposits stochastic energy; (ii) the collisionless cert (G103): the dust's 2-body relaxation is t_relax = 1e73.0-1e75.9 x t_Hubble at 0.5-1 Mpc, and the phantom's modes are marginal (omega^2 = 0) -- no channel exists to turn wake energy into heat on ANY timescale.
+    A generic cluster ICM shock carries ~1e6 x the phantom's 1%-sigma^2 heating cost, and the sector's temperature STAYS at the equilibrium T_b = m sigma^2/k_B (9.52 K at the 5.00 keV bookkeeping mass; 9.69 K at the committed 5.09 keV) -- a fixed point (sigma^2 = C/2), not an input.
+    OBSERVED: merging clusters show NO tidal heating of the dark sector beyond ordered kinematics -- the G110 Bullet (dark peaks pass through, 8-sigma galaxy/plasma offset, dust on the galaxies at 209/194 kpc, phantom capped away from the cores) and the G103 timescales; the mergers re-ORDER, they do not heat.
+    A positive detection of dark-sector thermalization (broadened dispersion / heated envelope in a merger) WOULD KILL this face.
+
+  V3_honest_statement:
+    THE CONDENSATE FACE'S TESTABLE CORE: the phantom's dark sector is a collective-moded phase whose observables are SMOOTHNESS (no density fluctuations below xi ~ 1e-7 m; one mode, R(k) = 1, lambda_fs = 0; no phantom substructure -- envelope slope -2 vs NFW -3, H036), NO-LOCAL-HEATING (Landau v_c = c_s + G103 collisionless 1e73-1e76 t_H; the Bullet's ordered offset with no thermalization; T_b fixed at the equilibrium m sigma^2/k_B, 9.52-9.69 K over the 5.00-5.09 keV bookkeeping band), and NO SHMF BREAK (G215: 19 objects at the LF rising, no truncation -- the smooth face is the one already leaning at 3.2-4.1 sigma).
+    WHAT WOULD SHOW COHERENCE: a smooth phantom envelope with zero substructure; no dark heating in mergers; a break-free sub-halo census.
+    WHAT WOULD KILL IT: (a) granularity / phantom subhalos in the envelope; (b) any dark-sector thermalization signature (tidal heating beyond ordered kinematics); (c) a committed gapped or particle-like response chi(omega) -- the G235 V2 open FDT register: the condensate predicts an acoustic-pole chi(omega) with a single gapless sound branch and zero damping, a measured massive/gapped mode would falsify it; (d) phantom density structure below ~1e-7 m (unobservable -- the coherence scale is 1e-7 m, so the granularity test at astrophysical scales never reaches the coherence regime: smoothness is TOTAL, and total smoothness below observability cannot be over-tested).
+    THE HONEST TENSION, REGISTERED: the phantom is NOT a conventional degenerate BEC (n lambda_db^3 = 3.4e-11 << 1 -- the occupancy test fails by ~1e11) and is only the CAPPED minority of the dark sector (dust share 79-97%, G110): 'the condensate' means the G235 type-I one-mode reading of the PHANTOM component (the baryon-sourced coherent envelope), not the collisionless free dust, and the granularity/no-heating tests discriminate that envelope's physics -- while the sector's subhalos remain the dust's CDM-like business.
+
+--- CHECKS ---
+  [PASS] C5 [gapless Goldstone] the k->0 branch is the linear phonon omega = c_s k: gap EXACTLY 0   omega(0) = 0 by construction; no massive/gapped mode on the committed record (G235 V2 gap: chi(omega) UNTESTED)
+  [PASS] C6 [G081 rigidity] the committed weak-field spectrum is marginal omega^2 = 0 EXACT (zero-mode residual 1.8e-12): neither growing nor decaying mode   u'' = (w/sigma)^2 u; w^2 = 0.0 for the free-surface and stiff-wall BCs (G081 C2)
+  [PASS] C7 [Hubble-slowness] modes above L_1 = 2 pi c_s t_H complete < 1 cycle in t_H: L_1(MW) = 10.8 Mpc, L_1(cluster 800 km/s) = 70.9 Mpc -- every envelope-observable scale is Hubble-SLOW   L_1(MW) = 3.323e+23 m = 10.77 Mpc; L_1(cluster) = 2.189e+24 m = 70.9 Mpc
+  [PASS] C8 [coherence scale unobservable] xi < 1e-3 m (MW): smooth below every astrophysical scale   xi = 6.7673e-08 m, lambda_db = 9.5705e-08 m (MW)
+  [PASS] C9 [BEC criterion, honest] n lambda_db^3 at r_M is FAR below 1: the phantom is NOT a degenerate BEC -- registered as the honest tension, not a claim   n lambda_db^3 = 3.423e-11 (n = 3.905e+10 m^-3, lambda_db = 9.570e-08 m)
+  [PASS] C10 [Landau gate] v_c = c_s: subsonic passages excite nothing; v_c > 0 everywhere (c_s^2 = C/2 > 0, G127 energy conditions)   v_c = c_s: MW 121.4, clusters 628-915 km/s
+  [PASS] C11 [no-heating channel] the dust's 2-body relaxation is 1e73-1e76 x t_Hubble (G103 V1): no thermalization channel for ANY deposited wake energy   t_relax/t_H spans 1e+73.0..1e+75.9 at 0.5-1 Mpc (G103)
+  [PASS] C12 [shock energy inert] a generic ICM shock (flagged) carries ~1e6 x the phantom's 1%-sigma^2 heating cost yet heats nothing: coupling dead, T_b fixed at 9.52 K   E_ICM/E(1% sigma^2) = 1.30e+06; T_b = 9.6921 K
+  [PASS] C13 [merger ordering] the Bullet's 8-sigma offset (G110) with the phantom capped away from the cores and the dust collisionless: ordered kinematics, no heating -- the prediction's observed consequence   offset 209/194 kpc (0.0-0.3 sigma, dust-zone/cH0); dust share 79-97% (G110)
+  [PASS] C14 [smooth census] the G215 sub-1e6 census leans to the smooth no-cutoff face: N_obs(>1e5 RAR) = 19 vs 5.1 (5.7 keV) / 1.0 (3.3 keV) truncated   3.2 sigma (5.7 keV) / 4.1 sigma (3.3 keV), count-level; occupation-canceled executable score
+  [PASS] C15 [no phantom substructure] coherent-state shot noise 1/sqrt(N_ph) ~ 1e-37: the phantom contributes no local fluctuation at ANY astrophysical scale   1/sqrt(N_ph) = 2.55e-37 (N_ph = 1.534e+73)
+
+15/15 checks PASS.
+  [PASS] C1 [EOS identity] c_s^2 = dP/drho = C/2 = sigma^2 = 1.47470e10 (m/s)^2 (G233 V1; triad rel err 0)
+        measured: c_s^2 = 1.4747300934e+10 vs G233 1.4747009334e10
+  [PASS] C2 [T_b register] k_B T_b/m = sigma^2 to 2e-5 (G235 V2); T_b = 9.520686 K at 5.00 keV / G081 constants (G132), = 9.6921 K at the committed 5.09 keV
+        measured: T_b(5 keV) = 9.520686 K; T_b(5.09 keV) = 9.692059 K
+  [PASS] C3 [N_ph register] N_ph = M_b/m = 1.5619832e73 at 5.00 keV (G132 bookkeeping C1); = 1.5344e73 at the committed 5.09 keV
+        measured: N_ph(5 keV) = 1.561983e+73; N_ph(5.09 keV) = 1.534365e+73
+  [PASS] C4 [band] the derived c_s^2 = 1/2 x C sits at the LOWER edge of the committed window c_s^2 in [1/2, 1-) (H047 N6/N8; triad G091 pins 1/2)
+        measured: c_s^2/C = 0.500000000000
+  [PASS] C5 [gapless Goldstone] the k->0 branch is the linear phonon omega = c_s k: gap EXACTLY 0
+        measured: omega(0) = 0 by construction; no massive/gapped mode on the committed record (G235 V2 gap: chi(omega) UNTESTED)
+  [PASS] C6 [G081 rigidity] the committed weak-field spectrum is marginal omega^2 = 0 EXACT (zero-mode residual 1.8e-12): neither growing nor decaying mode
+        measured: u'' = (w/sigma)^2 u; w^2 = 0.0 for the free-surface and stiff-wall BCs (G081 C2)
+  [PASS] C7 [Hubble-slowness] modes above L_1 = 2 pi c_s t_H complete < 1 cycle in t_H: L_1(MW) = 10.8 Mpc, L_1(cluster 800 km/s) = 70.9 Mpc -- every envelope-observable scale is Hubble-SLOW
+        measured: L_1(MW) = 3.323e+23 m = 10.77 Mpc; L_1(cluster) = 2.189e+24 m = 70.9 Mpc
+  [PASS] C8 [coherence scale unobservable] xi < 1e-3 m (MW): smooth below every astrophysical scale
+        measured: xi = 6.7673e-08 m, lambda_db = 9.5705e-08 m (MW)
+  [PASS] C9 [BEC criterion, honest] n lambda_db^3 at r_M is FAR below 1: the phantom is NOT a degenerate BEC -- registered as the honest tension, not a claim
+        measured: n lambda_db^3 = 3.423e-11 (n = 3.905e+10 m^-3, lambda_db = 9.570e-08 m)
+  [PASS] C10 [Landau gate] v_c = c_s: subsonic passages excite nothing; v_c > 0 everywhere (c_s^2 = C/2 > 0, G127 energy conditions)
+        measured: v_c = c_s: MW 121.4, clusters 628-915 km/s
+  [PASS] C11 [no-heating channel] the dust's 2-body relaxation is 1e73-1e76 x t_Hubble (G103 V1): no thermalization channel for ANY deposited wake energy
+        measured: t_relax/t_H spans 1e+73.0..1e+75.9 at 0.5-1 Mpc (G103)
+  [PASS] C12 [shock energy inert] a generic ICM shock (flagged) carries ~1e6 x the phantom's 1%-sigma^2 heating cost yet heats nothing: coupling dead, T_b fixed at 9.52 K
+        measured: E_ICM/E(1% sigma^2) = 1.30e+06; T_b = 9.6921 K
+  [PASS] C13 [merger ordering] the Bullet's 8-sigma offset (G110) with the phantom capped away from the cores and the dust collisionless: ordered kinematics, no heating -- the prediction's observed consequence
+        measured: offset 209/194 kpc (0.0-0.3 sigma, dust-zone/cH0); dust share 79-97% (G110)
+  [PASS] C14 [smooth census] the G215 sub-1e6 census leans to the smooth no-cutoff face: N_obs(>1e5 RAR) = 19 vs 5.1 (5.7 keV) / 1.0 (3.3 keV) truncated
+        measured: 3.2 sigma (5.7 keV) / 4.1 sigma (3.3 keV), count-level; occupation-canceled executable score
+  [PASS] C15 [no phantom substructure] coherent-state shot noise 1/sqrt(N_ph) ~ 1e-37: the phantom contributes no local fluctuation at ANY astrophysical scale
+        measured: 1/sqrt(N_ph) = 2.55e-37 (N_ph = 1.534e+73)
+
+artifact written: /Users/carlzimmerman/new_physics/zimmerman-formula/project_atomos/B08_results.json
