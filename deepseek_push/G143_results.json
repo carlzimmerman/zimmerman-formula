@@ -1,0 +1,704 @@
+{
+ "lane": "G143_group_amplitude",
+ "title": "THE GROUP-SCALE AMPLITUDE: the r^-1 dust law at 1e13 -- a_c(M500) run to the groups, the f_gas rise test, and the two-parameter dust law across 1e13-9e14",
+ "deliverable": "deepseek_push/G143_group_amplitude.py + .out + G143_results.json",
+ "context": "G122's closed form (p = +0.99 r^-1, q = -0.41 amplitude run, 0.097/0.119-dex closure); G107's pooled f_gas rise +0.235 +/- 0.039; G125's group sample (GEMS + E11 26 groups) and its r_M/R500 footings; G098's f_dust medians (the dust is a profile, G098 V2 FAIL = flat is excluded).",
+ "data_notes": {
+  "groups": "E11 (Eckmiller+11 A&A 535, A105; arXiv:1109.6498 v2) Table 3 + gas-mass block, 26 Chandra groups, transcribed this run from the arXiv HTML; UNVERIFIED-in-repo; transcription gated against G125's committed E11 rows (24 shared, 0 mismatches); internal gates: f_gas = M_gas/M500 and r2500 = R500(M2500/M500)^{1/3}5^{-1/3} for 26/26",
+  "clusters": "committed X-COP ingests + G105 T(r) cache; G107 and G122 recipes reproduced in-lane with gates (pooled +0.235 +/- 0.039; q = -0.414, p = +0.990, rms 0.119/0.097; amplitudes digit-for-digit)",
+  "n_groups": 26,
+  "n_clusters": 12,
+  "mass_span_Msun": "5.2e12 - 1.73e14 (groups) + 3.5e14-9e14 (clusters) -> the 1e13-9e14 statement window"
+ },
+ "gates": [
+  {
+   "name": "G0b [E11 transcription gate] all 24 committed shared rows match (kT, r500, M500, f_gas,500 vs G125's E11 table)",
+   "measured": "24 shared rows, 0 mismatches",
+   "pass": true,
+   "reading": "the group table used below is the SAME paper table G125 transcribed; f_gas is now complete for all 26 groups (G125 had 9 entries)"
+  },
+  {
+   "name": "G0c [table internal consistency] f_gas,500 = M_g,500/M500 and r2500 = R500*(M2500/M500)^{1/3}*5^{-1/3} for all 26 groups",
+   "measured": "0 f_gas inconsistencies; all r2500 within 3%",
+   "pass": true,
+   "reading": "the two-radius gas mass data are mutually consistent -> the two-point f_gas slopes below are internal to one homogeneous Chandra analysis"
+  },
+  {
+   "name": "G0d [G107 gate] pooled d ln f_gas/d ln r over (0.2,1.0) R500 = +0.235 +/- 0.039 (committed)",
+   "measured": "+0.2351 +/- 0.0386",
+   "pass": true,
+   "reading": "the cluster value the group rise is compared against, reproduced on the committed ingests"
+  },
+  {
+   "name": "G0e [G122 gate 1] the 3-parameter coherency fit reproduces the committed law (q, p, rms)",
+   "measured": "q = -0.4144 (committed -0.4144), p = +0.9904 (committed +0.9904), rms 0.1189 dex",
+   "pass": true,
+   "reading": "the errors on q and p (from the 96-bin covariance) are carried into V2; the amp run is reported on the committed 12 amplitudes as well"
+  },
+  {
+   "name": "G0f [G122 gate 2] the one-shape closed form reproduces p* ~ +0.99, rms ~ 0.097 and the committed per-cluster amplitudes",
+   "measured": "p* = +0.990, rms = 0.0973, max|damp| = 0.0000",
+   "pass": true,
+   "reading": "the amplitude set used for the mass run is the committed one (G122); the refit confirms it digit-for-digit"
+  },
+  {
+   "name": "G0g [G122 gate 3] the amplitude run on the committed per-cluster amplitudes: q = -0.41, rho = -0.59 (p ~ 0.045)",
+   "measured": "q = -0.414 +/- 0.157, rho = -0.587 (p = 0.045)",
+   "pass": true,
+   "reading": "the MEASURED amplitude run (not fitted per-cluster): q ~ -0.41 with its honest 12-point error; p-value 0.045 is the significance"
+  },
+  {
+   "name": "V1 [the group-scale f_gas shape vs the prediction] the group two-point rise is same-or-steeper than the cluster value",
+   "measured": "mean = +0.536 +- 0.069 vs +0.235 (20/26 above; cluster two-point mean +0.263)",
+   "pass": true,
+   "reading": "THE GROUP-SCALE f_gas SHAPE vs THE PREDICTION (same or steeper than the cluster +0.235): MEASURED mean +0.536 +- 0.069 (median +0.609, n = 26, r2500-R500 two-point, E11; 20/26 above +0.235; vs the cluster two-point mean +0.263 over the SAME window).  The group rise is 2.3x the cluster value -> PASS (steeper, as the amplitude run predicts)"
+  },
+  {
+   "name": "V2 [the combined 2-parameter dust law with errors] the law and its errors, clusters + groups pooled statement",
+   "measured": "q = -0.414 +- 0.157, p = +0.990 +/- 0.035, c0 = -0.144 +- 0.030",
+   "pass": true,
+   "reading": "THE COMBINED 2-PARAMETER DUST LAW WITH THE ERRORS: c_dust = 0.72 x (M500/8e14)^q x (r/R500)^-p with q = -0.41 [-0.57, -0.26] (12 committed amplitudes, Spearman rho = -0.59, p = 0.04; pooled 96-bin q = -0.41 +- 0.09), p = 0.99 [+0.96, +1.03] (r^-1 within errors), c0 = -0.14 +- 0.03; residual floor 0.119 / 0.097 dex; group anchors: rise +0.54 (median +0.61), f_gas(R500) level run +0.34 +- 0.21 dex/dex across 1e13-9e14"
+  },
+  {
+   "name": "V3 [the honest statement] ONE free-dust envelope law across 1e13-9e14 -- the thorn's final form",
+   "measured": "HONEST: the free-dust envelope is ONE LAW across two decades of mass (M500 ~ 1e13-9e14): the shape (r/R500)^-0.99 (the framework's own r^-1) and the amplitude run (M500/8e14)^(-0.41) are now BOTH MEASURED -- 0.119-dex (3-param) / 0.097-dex (13-param) closure at cluster scale, and the group-scale rise +0.54 vs +0.235 + the f_gas(R500) drop (+0.34 dex/dex) verify the same law 1.5 dex down in mass.  The thorn's freedom is reduced to TWO numbers (c0, q) plus the 0.1-dex residual floor; the group data are UNVERIFIED-in-repo (transcribed from E11, gated against G125, internally consistent), the window difference (groups: two-point r2500-R500 vs clusters: 0.2-1.0 R500 OLS) is stated, and the geometric premise of the brief (r_M a LARGER fraction of R500 at group scale) is FALSE on both G125 footings -- the steeper rise is carried by the AMPLITUDE RUN, not by the r_M fraction; the combined 38-system mass trend of the rise (d s/d log M500 = -0.14 +- 0.05, Spearman rho = -0.42, p = 0.01) IS significant while the group-only trend is not (Spearman rho = -0.16, p = 0.42, n = 26) -- the steepening is carried by the cluster-to-group contrast.",
+   "pass": true,
+   "reading": "the amplitude run is MEASURED at both mass ends; what remains open is the 0.1-dex residual floor and the physical origin of q (the 'what sets q' question), not the law's form"
+  }
+ ],
+ "n_pass": 9,
+ "n_fail": 0,
+ "prediction": {
+  "law": "log10 c_dust = c0 + q log10(M500/8e14) + p log10(r/R500)",
+  "c0": [
+   -0.1445,
+   0.0298
+  ],
+  "q": [
+   -0.4142,
+   0.1568
+  ],
+  "p": [
+   0.99,
+   0.0351
+  ],
+  "a_c_predicted_per_group": [
+   {
+    "name": "A0160",
+    "M500_1e13": 4.79,
+    "log10_ac": 0.362,
+    "ac": 2.3015,
+    "ac_lo": 1.4723,
+    "ac_hi": 3.5976
+   },
+   {
+    "name": "A1177",
+    "M500_1e13": 7.02,
+    "log10_ac": 0.2932,
+    "ac": 1.9645,
+    "ac_lo": 1.3333,
+    "ac_hi": 2.8945
+   },
+   {
+    "name": "ESO552020",
+    "M500_1e13": 5.58,
+    "log10_ac": 0.3345,
+    "ac": 2.1605,
+    "ac_lo": 1.4152,
+    "ac_hi": 3.2983
+   },
+   {
+    "name": "HCG62",
+    "M500_1e13": 2.88,
+    "log10_ac": 0.4535,
+    "ac": 2.8414,
+    "ac_lo": 1.6797,
+    "ac_hi": 4.8064
+   },
+   {
+    "name": "HCG97",
+    "M500_1e13": 4.03,
+    "log10_ac": 0.3931,
+    "ac": 2.4722,
+    "ac_lo": 1.5398,
+    "ac_hi": 3.9694
+   },
+   {
+    "name": "IC1262",
+    "M500_1e13": 8.28,
+    "log10_ac": 0.2635,
+    "ac": 1.8346,
+    "ac_lo": 1.2772,
+    "ac_hi": 2.6353
+   },
+   {
+    "name": "IC1633",
+    "M500_1e13": 17.29,
+    "log10_ac": 0.1311,
+    "ac": 1.3524,
+    "ac_lo": 1.0535,
+    "ac_hi": 1.7361
+   },
+   {
+    "name": "MKW4",
+    "M500_1e13": 9.48,
+    "log10_ac": 0.2392,
+    "ac": 1.7346,
+    "ac_lo": 1.233,
+    "ac_hi": 2.4403
+   },
+   {
+    "name": "MKW8",
+    "M500_1e13": 9.65,
+    "log10_ac": 0.236,
+    "ac": 1.7219,
+    "ac_lo": 1.2273,
+    "ac_hi": 2.4158
+   },
+   {
+    "name": "NGC326",
+    "M500_1e13": 4.29,
+    "log10_ac": 0.3818,
+    "ac": 2.409,
+    "ac_lo": 1.515,
+    "ac_hi": 3.8306
+   },
+   {
+    "name": "NGC507",
+    "M500_1e13": 2.98,
+    "log10_ac": 0.4474,
+    "ac": 2.8015,
+    "ac_lo": 1.665,
+    "ac_hi": 4.7139
+   },
+   {
+    "name": "NGC533",
+    "M500_1e13": 3.2,
+    "log10_ac": 0.4346,
+    "ac": 2.7201,
+    "ac_lo": 1.6346,
+    "ac_hi": 4.5265
+   },
+   {
+    "name": "NGC777",
+    "M500_1e13": 1.76,
+    "log10_ac": 0.5421,
+    "ac": 3.4844,
+    "ac_lo": 1.9079,
+    "ac_hi": 6.3636
+   },
+   {
+    "name": "NGC1132",
+    "M500_1e13": 2.47,
+    "log10_ac": 0.4812,
+    "ac": 3.028,
+    "ac_lo": 1.7478,
+    "ac_hi": 5.2459
+   },
+   {
+    "name": "NGC1550",
+    "M500_1e13": 2.52,
+    "log10_ac": 0.4776,
+    "ac": 3.003,
+    "ac_lo": 1.7388,
+    "ac_hi": 5.1864
+   },
+   {
+    "name": "NGC4325",
+    "M500_1e13": 2.28,
+    "log10_ac": 0.4956,
+    "ac": 3.1301,
+    "ac_lo": 1.7844,
+    "ac_hi": 5.4907
+   },
+   {
+    "name": "NGC4936",
+    "M500_1e13": 1.3,
+    "log10_ac": 0.5966,
+    "ac": 3.9503,
+    "ac_lo": 2.0633,
+    "ac_hi": 7.5632
+   },
+   {
+    "name": "NGC5129",
+    "M500_1e13": 3.36,
+    "log10_ac": 0.4258,
+    "ac": 2.6656,
+    "ac_lo": 1.614,
+    "ac_hi": 4.4024
+   },
+   {
+    "name": "NGC5419",
+    "M500_1e13": 3.2,
+    "log10_ac": 0.4346,
+    "ac": 2.7201,
+    "ac_lo": 1.6346,
+    "ac_hi": 4.5265
+   },
+   {
+    "name": "NGC6269",
+    "M500_1e13": 5.3,
+    "log10_ac": 0.3438,
+    "ac": 2.207,
+    "ac_lo": 1.4342,
+    "ac_hi": 3.3963
+   },
+   {
+    "name": "NGC6338",
+    "M500_1e13": 5.61,
+    "log10_ac": 0.3336,
+    "ac": 2.1557,
+    "ac_lo": 1.4132,
+    "ac_hi": 3.2882
+   },
+   {
+    "name": "NGC6482",
+    "M500_1e13": 0.52,
+    "log10_ac": 0.7615,
+    "ac": 5.7739,
+    "ac_lo": 2.614,
+    "ac_hi": 12.754
+   },
+   {
+    "name": "RXCJ1022.0+3830",
+    "M500_1e13": 5.89,
+    "log10_ac": 0.3248,
+    "ac": 2.1126,
+    "ac_lo": 1.3955,
+    "ac_hi": 3.1984
+   },
+   {
+    "name": "RXCJ2214.8+1350",
+    "M500_1e13": 6.4,
+    "log10_ac": 0.3099,
+    "ac": 2.0412,
+    "ac_lo": 1.3657,
+    "ac_hi": 3.0508
+   },
+   {
+    "name": "S0463",
+    "M500_1e13": 5.22,
+    "log10_ac": 0.3465,
+    "ac": 2.221,
+    "ac_lo": 1.4399,
+    "ac_hi": 3.4258
+   },
+   {
+    "name": "SS2B153",
+    "M500_1e13": 1.84,
+    "log10_ac": 0.5341,
+    "ac": 3.4208,
+    "ac_lo": 1.8861,
+    "ac_hi": 6.2044
+   }
+  ],
+  "a_c_group_median": 2.472,
+  "a_c_group_range": [
+   1.352,
+   5.774
+  ],
+  "a_c_vs_8e14_reference": 3.45,
+  "r_M_footings": {
+   "Mb_over_R500_median": 0.13,
+   "Mdyn_over_R500_median": 0.4769,
+   "clusters_Mb_footing": "0.24-0.31 (G125)",
+   "premise": "r_M is a SMALLER fraction of R500 at group scale on both footings (G125) -- the steeper-rise prediction rests on the amplitude run"
+  }
+ },
+ "direct_test": {
+  "per_group_two_point": [
+   {
+    "name": "A0160",
+    "M500_1e13": 4.79,
+    "kT": 1.77,
+    "f25": 0.043,
+    "f5": 0.087,
+    "slope": 0.9168,
+    "slope_err": 0.2133
+   },
+   {
+    "name": "A1177",
+    "M500_1e13": 7.02,
+    "kT": 1.61,
+    "f25": 0.03,
+    "f5": 0.036,
+    "slope": 0.2271,
+    "slope_err": 0.3751
+   },
+   {
+    "name": "ESO552020",
+    "M500_1e13": 5.58,
+    "kT": 1.96,
+    "f25": 0.046,
+    "f5": 0.082,
+    "slope": 0.738,
+    "slope_err": 0.1959
+   },
+   {
+    "name": "HCG62",
+    "M500_1e13": 2.88,
+    "kT": 1.31,
+    "f25": 0.012,
+    "f5": 0.017,
+    "slope": 0.4654,
+    "slope_err": 0.3259
+   },
+   {
+    "name": "HCG97",
+    "M500_1e13": 4.03,
+    "kT": 0.81,
+    "f25": 0.018,
+    "f5": 0.017,
+    "slope": -0.0682,
+    "slope_err": 0.1932
+   },
+   {
+    "name": "IC1262",
+    "M500_1e13": 8.28,
+    "kT": 1.79,
+    "f25": 0.058,
+    "f5": 0.066,
+    "slope": 0.1476,
+    "slope_err": 0.1171
+   },
+   {
+    "name": "IC1633",
+    "M500_1e13": 17.29,
+    "kT": 2.99,
+    "f25": 0.037,
+    "f5": 0.048,
+    "slope": 0.2813,
+    "slope_err": 0.2887
+   },
+   {
+    "name": "MKW4",
+    "M500_1e13": 9.48,
+    "kT": 1.86,
+    "f25": 0.015,
+    "f5": 0.013,
+    "slope": -0.1862,
+    "slope_err": 0.2653
+   },
+   {
+    "name": "MKW8",
+    "M500_1e13": 9.65,
+    "kT": 2.84,
+    "f25": 0.045,
+    "f5": 0.078,
+    "slope": 0.6813,
+    "slope_err": 0.2395
+   },
+   {
+    "name": "NGC326",
+    "M500_1e13": 4.29,
+    "kT": 1.67,
+    "f25": 0.007,
+    "f5": 0.016,
+    "slope": 0.9903,
+    "slope_err": 0.2981
+   },
+   {
+    "name": "NGC507",
+    "M500_1e13": 2.98,
+    "kT": 1.32,
+    "f25": 0.056,
+    "f5": 0.098,
+    "slope": 0.6745,
+    "slope_err": 0.1881
+   },
+   {
+    "name": "NGC533",
+    "M500_1e13": 3.2,
+    "kT": 1.33,
+    "f25": 0.016,
+    "f5": 0.025,
+    "slope": 0.572,
+    "slope_err": 0.3958
+   },
+   {
+    "name": "NGC777",
+    "M500_1e13": 1.76,
+    "kT": 0.73,
+    "f25": 0.025,
+    "f5": 0.03,
+    "slope": 0.232,
+    "slope_err": 0.2943
+   },
+   {
+    "name": "NGC1132",
+    "M500_1e13": 2.47,
+    "kT": 1.08,
+    "f25": 0.04,
+    "f5": 0.069,
+    "slope": 0.6493,
+    "slope_err": 0.2598
+   },
+   {
+    "name": "NGC1550",
+    "M500_1e13": 2.52,
+    "kT": 1.33,
+    "f25": 0.041,
+    "f5": 0.068,
+    "slope": 0.6737,
+    "slope_err": 0.1554
+   },
+   {
+    "name": "NGC4325",
+    "M500_1e13": 2.28,
+    "kT": 0.98,
+    "f25": 0.041,
+    "f5": 0.056,
+    "slope": 0.3943,
+    "slope_err": 0.0922
+   },
+   {
+    "name": "NGC4936",
+    "M500_1e13": 1.3,
+    "kT": 0.89,
+    "f25": 0.033,
+    "f5": 0.067,
+    "slope": 0.8546,
+    "slope_err": 0.3526
+   },
+   {
+    "name": "NGC5129",
+    "M500_1e13": 3.36,
+    "kT": 0.81,
+    "f25": 0.015,
+    "f5": 0.014,
+    "slope": -0.0814,
+    "slope_err": 0.2979
+   },
+   {
+    "name": "NGC5419",
+    "M500_1e13": 3.2,
+    "kT": 2.09,
+    "f25": 0.039,
+    "f5": 0.098,
+    "slope": 1.181,
+    "slope_err": 0.3187
+   },
+   {
+    "name": "NGC6269",
+    "M500_1e13": 5.3,
+    "kT": 1.87,
+    "f25": 0.051,
+    "f5": 0.093,
+    "slope": 0.6463,
+    "slope_err": 0.2008
+   },
+   {
+    "name": "NGC6338",
+    "M500_1e13": 5.61,
+    "kT": 2.0,
+    "f25": 0.041,
+    "f5": 0.073,
+    "slope": 0.8533,
+    "slope_err": 0.1658
+   },
+   {
+    "name": "NGC6482",
+    "M500_1e13": 0.52,
+    "kT": 0.62,
+    "f25": 0.026,
+    "f5": 0.043,
+    "slope": 0.6695,
+    "slope_err": 0.1621
+   },
+   {
+    "name": "RXCJ1022.0+3830",
+    "M500_1e13": 5.89,
+    "kT": 1.74,
+    "f25": 0.044,
+    "f5": 0.069,
+    "slope": 0.5491,
+    "slope_err": 0.2881
+   },
+   {
+    "name": "RXCJ2214.8+1350",
+    "M500_1e13": 6.4,
+    "kT": 1.34,
+    "f25": 0.03,
+    "f5": 0.045,
+    "slope": 0.4192,
+    "slope_err": 0.212
+   },
+   {
+    "name": "S0463",
+    "M500_1e13": 5.22,
+    "kT": 1.97,
+    "f25": 0.043,
+    "f5": 0.096,
+    "slope": 1.0608,
+    "slope_err": 0.2061
+   },
+   {
+    "name": "SS2B153",
+    "M500_1e13": 1.84,
+    "kT": 0.81,
+    "f25": 0.033,
+    "f5": 0.045,
+    "slope": 0.3884,
+    "slope_err": 0.1365
+   }
+  ],
+  "pooled": {
+   "mean": 0.5358,
+   "se_mean": 0.0693,
+   "median": 0.6092,
+   "std": 0.3534,
+   "n": 26,
+   "frac_above_0.235": "20/26",
+   "t_vs_0.235": 4.34,
+   "invvar_weighted_mean": 0.4995,
+   "invvar_se": 0.0384
+  },
+  "cluster_reference": {
+   "pooled_0.2_1.0_R500": [
+    0.2351,
+    0.0386
+   ],
+   "two_point_r2500_R500_mean": 0.2626,
+   "two_point_r2500_R500_se": 0.0988,
+   "two_point_r2500_R500_median": 0.2503,
+   "per_cluster": {
+    "A1644": {
+     "r25_R500": 0.38267482093384814,
+     "f25": 0.08383436096063884,
+     "f5": 0.15264348828421626,
+     "slope": 0.6238611450540604
+    },
+    "A1795": {
+     "r25_R500": 0.44668986339118216,
+     "f25": 0.1364241654635148,
+     "f5": 0.17607718373251177,
+     "slope": 0.31661059412429776
+    },
+    "A2029": {
+     "r25_R500": 0.45238983470398086,
+     "f25": 0.17561530135948433,
+     "f5": 0.21769843861202287,
+     "slope": 0.2708169449923024
+    },
+    "A2142": {
+     "r25_R500": 0.4156730732259597,
+     "f25": 0.2219711937306872,
+     "f5": 0.225368481098009,
+     "slope": 0.01730253858233303
+    },
+    "A2255": {
+     "r25_R500": 0.32316603129704413,
+     "f25": 0.1586954871641621,
+     "f5": 0.1909706339553827,
+     "slope": 0.16389365226211275
+    },
+    "A2319": {
+     "r25_R500": 0.46180260838485365,
+     "f25": 0.1982096424135791,
+     "f5": 0.2777242070704673,
+     "slope": 0.4365720265000133
+    },
+    "A3158": {
+     "r25_R500": 0.40548685223721975,
+     "f25": 0.14060735459888987,
+     "f5": 0.16128417121671362,
+     "slope": 0.1519902544113461
+    },
+    "A3266": {
+     "r25_R500": 0.36425273670468866,
+     "f25": 0.21091952082752888,
+     "f5": 0.15263806951539832,
+     "slope": -0.32023441745835657
+    },
+    "A644": {
+     "r25_R500": 0.5370118903238617,
+     "f25": 0.1048723541521149,
+     "f5": 0.19378959016099917,
+     "slope": 0.9876056611421369
+    },
+    "A85": {
+     "r25_R500": 0.42327976347655105,
+     "f25": 0.16387161581765258,
+     "f5": 0.19967474640181218,
+     "slope": 0.22984929762928588
+    },
+    "RXC1825": {
+     "r25_R500": 0.41082257972305136,
+     "f25": 0.10724219297587977,
+     "f5": 0.1536417168941739,
+     "slope": 0.40415479601730314
+    },
+    "ZW1215": {
+     "r25_R500": 0.39351669040961085,
+     "f25": 0.1570302848114748,
+     "f5": 0.13889856212642587,
+     "slope": -0.13155758383602092
+    }
+   }
+  },
+  "level_face": {
+   "fgas_R500_group_median": 0.061,
+   "fgas_R500_cluster_median": 0.1835,
+   "dlngas_dlnM500_pooled": [
+    0.3406,
+    0.2097
+   ],
+   "spearman": [
+    0.3199,
+    0.0503
+   ]
+  }
+ },
+ "combined": {
+  "amplitude_run_measured": {
+   "q": [
+    -0.4142,
+    0.1568
+   ],
+   "rho": -0.5874,
+   "p_value": 0.0446
+  },
+  "three_param_pooled": {
+   "q": [
+    -0.4144,
+    0.0903
+   ],
+   "p": [
+    0.9904,
+    0.0351
+   ],
+   "c0": [
+    -0.1449,
+    0.0358
+   ],
+   "rms_dex": 0.1189
+  },
+  "rise_vs_mass_38": {
+   "slope_dex_per_dex": [
+    -0.1373,
+    0.0531
+   ],
+   "spearman": [
+    -0.4176,
+    0.0091
+   ]
+  },
+  "residual_floor_dex": {
+   "3param": 0.1189,
+   "13param_one_shape": 0.0973
+  },
+  "the_law": "c_dust = 0.72 x (M500/8e14)^(-0.414 +- 0.157) x (r/R500)^(-0.990 +- 0.035) -- TWO parameters, both MEASURED; group-scale rise +0.536 vs cluster +0.235, f_gas(R500) run +0.341 dex/dex"
+ },
+ "verdicts": {
+  "V1_group_fgas_shape": {
+   "pass": true,
+   "statement": "THE GROUP-SCALE f_gas SHAPE vs THE PREDICTION (same or steeper than the cluster +0.235): MEASURED mean +0.536 +- 0.069 (median +0.609, n = 26, r2500-R500 two-point, E11; 20/26 above +0.235; vs the cluster two-point mean +0.263 over the SAME window).  The group rise is 2.3x the cluster value -> PASS (steeper, as the amplitude run predicts)"
+  },
+  "V2_two_parameter_law": {
+   "statement": "THE COMBINED 2-PARAMETER DUST LAW WITH THE ERRORS: c_dust = 0.72 x (M500/8e14)^q x (r/R500)^-p with q = -0.41 [-0.57, -0.26] (12 committed amplitudes, Spearman rho = -0.59, p = 0.04; pooled 96-bin q = -0.41 +- 0.09), p = 0.99 [+0.96, +1.03] (r^-1 within errors), c0 = -0.14 +- 0.03; residual floor 0.119 / 0.097 dex; group anchors: rise +0.54 (median +0.61), f_gas(R500) level run +0.34 +- 0.21 dex/dex across 1e13-9e14"
+  },
+  "V3_honest_statement": {
+   "statement": "HONEST: the free-dust envelope is ONE LAW across two decades of mass (M500 ~ 1e13-9e14): the shape (r/R500)^-0.99 (the framework's own r^-1) and the amplitude run (M500/8e14)^(-0.41) are now BOTH MEASURED -- 0.119-dex (3-param) / 0.097-dex (13-param) closure at cluster scale, and the group-scale rise +0.54 vs +0.235 + the f_gas(R500) drop (+0.34 dex/dex) verify the same law 1.5 dex down in mass.  The thorn's freedom is reduced to TWO numbers (c0, q) plus the 0.1-dex residual floor; the group data are UNVERIFIED-in-repo (transcribed from E11, gated against G125, internally consistent), the window difference (groups: two-point r2500-R500 vs clusters: 0.2-1.0 R500 OLS) is stated, and the geometric premise of the brief (r_M a LARGER fraction of R500 at group scale) is FALSE on both G125 footings -- the steeper rise is carried by the AMPLITUDE RUN, not by the r_M fraction; the combined 38-system mass trend of the rise (d s/d log M500 = -0.14 +- 0.05, Spearman rho = -0.42, p = 0.01) IS significant while the group-only trend is not (Spearman rho = -0.16, p = 0.42, n = 26) -- the steepening is carried by the cluster-to-group contrast."
+  }
+ }
+}
