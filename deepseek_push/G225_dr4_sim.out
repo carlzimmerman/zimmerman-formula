@@ -1,0 +1,119 @@
+================================================================================================
+G225 -- THE DR4 VERDICT SIMULATION: the scorer's expected outcome distribution at the real N and systematics
+================================================================================================
+G225 -- THE DR4 VERDICT SIMULATION: the scorer's expected outcome distribution
+at the real N and systematics.
+
+THE QUESTION (the December-2026 expectation).  The G165 scorer freezes the
+CONTRACT: n_pass of 9 scored tests -> the theory's DR4 verdict (9/9 =
+CONFIRMED-STRONG, 7-8 = CONFIRMED-WEAK, 5-6 = SPLIT, <= 4 = DISFAVORED).  On
+the G088/G092 mocks the scorer is 9/9 by construction -- but at G088's N_sel =
+2500 bright pairs PER log bin (~20k total), 3-4x the DR4-documented usable
+sample.  This lane asks: at the REAL N (2,000-5,000 usable pairs at 3-30 kAU)
+and the REAL error model (sigma_mu 30-40 uas for the bright pairs, optimistic
+10 uas), WHAT is the distribution of the December verdict?
+
+THE SIMULATION.  1,000 DR4 realizations per (N, sigma) cell.  Per realization:
+  (1) the wide-binary mock -- the G088 machinery EXACTLY (solar equal-mass
+      pairs, log-uniform 1-30 kAU, the linear cloud m_ph = C min(s, s_cap),
+      the EFE cap 7.4 kAU, the period-separation ridge sexc = s/s_N carrying
+      the FULL registered cloud, the weak-coupled E6 level F_COMP = 0.25, the
+      Banik+24 projected-velocity Newton-inverse estimator, DR4 astrometry
+      sigma_ast uas over T = 5.25 yr) -- at the realistic N (2,000-5,000 usable
+      pairs at 3-30 kAU);
+  (2) the vertical-z mock -- G092's two-scale R0 map + the funnel, at the
+      DECLARED DR4 precision (sigma_col = +-6 Msun/pc2, +-0.10 dex per density
+      bin, +-0.10 dex per funnel z_c);
+  (3) the G165 scorer on each mock: the 4 ridge tests + the 5 vertical tests,
+      one PASS/FAIL row per pre-registered test;
+  (4) n_pass -> verdict per the frozen CONTRACT.
+
+THE DELIVERABLE VERDICTS:
+  V1 the verdict distribution (P(CONFIRMED-STRONG/WEAK/SPLIT/DISFAVORED)) and
+     the n_pass distribution at the DR4-documented N and sigma_mu;
+  V2 P(CONFIRMED-STRONG | conservative) at the fully conservative corner
+     (N = 2,000, sigma_ast = 40 uas);
+  V3 the honest statement: the December "number to watch".
+------------------------------------------------------------------------------------------------
+THE INPUTS (the DR4 expectations, cited; UNVERIFIED where not in-repo):
+  [VERIFIED, external] Gaia DR4 doc (Fabricius, IEEC-ICCUB, 28 Jan 2026):
+      DR4 = the nominal 5-year mission (5.5-yr time range), release 2026.9,
+      proper-motion precision ~x2.8 vs DR3  (indico.icc.ub.edu, event 675/4979)
+  [VERIFIED, in-repo]  G088: sigma_ast 30 uas (conservative) / 10 uas (optimistic),
+      T = 5.25 yr -> sigma_mu,rel = 28.0 / 9.3 uas/yr; N_sel = 2500 bright pairs per log bin
+      WB-32: frozen pipeline error model -- DR4 sigma_pm x0.372, sigma_plx x0.718 vs DR3
+      WB-33: the DR3 dry-run catalog = 10,624 pairs / 802 deep (Banik-like cuts)
+      WB-27: N ~ 2,337 pairs for 3-sigma from Newton (level channel)
+  [UNVERIFIED, task-specified] N ~ 2,000-5,000 usable pairs at 3-30 kAU;
+      sigma_mu 30-40 uas for the bright pairs  (consistent with WB-33 / G088)
+------------------------------------------------------------------------------------------------
+THE CONTRACT (G165, frozen): n_pass of 9 -> 9 CONFIRMED-STRONG | 7-8 CONFIRMED-WEAK |
+  5-6 SPLIT | <= 4 DISFAVORED; F1/F2/F3 kill their structure regardless.
+  SIMULATION: 1000 realizations per (N, sigma) cell; G088 mock machinery; seed 20260916
+------------------------------------------------------------------------------------------------
+TABLE 1 -- THE PRIMARY VERDICT GRID (the DR4-documented N x error budget):
+  P(S)=P(CONFIRMED-STRONG)  P(W)=P(CONFIRMED-WEAK)  P(SP)=P(SPLIT)  P(D)=P(DISFAVORED)
+  N_usable=  2000  sigma_ast= 10 uas (sigma_mu,rel=  9.3 uas/yr)  n_pass=6.40+-1.23  P(S)=0.000 P(W)=0.486 P(SP)=0.441 P(D)=0.073  ridge-sigma 11.5 (10.6-12.1)
+  N_usable=  2000  sigma_ast= 30 uas (sigma_mu,rel= 28.0 uas/yr)  n_pass=6.44+-1.23  P(S)=0.000 P(W)=0.506 P(SP)=0.412 P(D)=0.082  ridge-sigma 11.5 (10.9-12.1)
+  N_usable=  2000  sigma_ast= 40 uas (sigma_mu,rel= 37.3 uas/yr)  n_pass=6.34+-1.24  P(S)=0.000 P(W)=0.466 P(SP)=0.443 P(D)=0.091  ridge-sigma 11.5 (10.8-12.2)
+  N_usable=  5000  sigma_ast= 10 uas (sigma_mu,rel=  9.3 uas/yr)  n_pass=6.33+-1.24  P(S)=0.000 P(W)=0.449 P(SP)=0.476 P(D)=0.075  ridge-sigma 18.4 (17.6-18.9)
+  N_usable=  5000  sigma_ast= 30 uas (sigma_mu,rel= 28.0 uas/yr)  n_pass=6.39+-1.21  P(S)=0.000 P(W)=0.474 P(SP)=0.450 P(D)=0.076  ridge-sigma 18.4 (17.6-18.9)
+  N_usable=  5000  sigma_ast= 40 uas (sigma_mu,rel= 37.3 uas/yr)  n_pass=6.36+-1.23  P(S)=0.000 P(W)=0.457 P(SP)=0.471 P(D)=0.072  ridge-sigma 18.4 (17.4-19.0)
+
+  THE n_pass histogram (the full 9..0 axis), per primary cell:
+  N=2000 s=10: 3:  10  4:  63  5: 156  6: 285  7: 257  8: 229
+  N=2000 s=30: 3:  12  4:  70  5: 121  6: 291  7: 271  8: 235
+  N=2000 s=40: 3:   7  4:  84  5: 147  6: 296  7: 252  8: 214
+  N=5000 s=10: 3:  15  4:  60  5: 173  6: 303  7: 234  8: 215
+  N=5000 s=30: 3:   8  4:  68  5: 142  6: 308  7: 251  8: 223
+  N=5000 s=40: 3:  16  4:  56  5: 159  6: 312  7: 233  8: 224
+
+  The per-test PASS probability over the 1,000 realizations (which tests drive the tails):
+  test              N2000s10      N2000s30      N2000s40      N5000s10      N5000s30      N5000s40
+  R-LEVEL            1.000         1.000         1.000         1.000         1.000         1.000
+  R-RIDGE30.7         0.000         0.000         0.000         0.000         0.000         0.000
+  R-BREAK7.4         1.000         1.000         1.000         1.000         1.000         1.000
+  R-NOTFLAT          1.000         1.000         1.000         1.000         1.000         1.000
+  D1                 0.799         0.800         0.782         0.793         0.788         0.808
+  D2                 0.707         0.688         0.662         0.656         0.697         0.648
+  D3                 0.711         0.724         0.707         0.697         0.720         0.697
+  F1a                0.645         0.666         0.664         0.650         0.636         0.669
+  F1b                0.541         0.566         0.529         0.530         0.554         0.540
+
+TABLE 2 -- THE GATE-CROSSING EXTENSION (beyond the DR4-documented N; the R-RIDGE30.7
+  20-sigma gate location -- where the 9/9 outcome becomes reachable):
+  N_usable=  8000  sigma_ast= 10 uas (sigma_mu,rel=  9.3 uas/yr)  n_pass=7.37+-1.25  P(S)=0.218 P(W)=0.560 P(SP)=0.206 P(D)=0.016  ridge-sigma 23.3 (22.5-23.9)
+  N_usable=  8000  sigma_ast= 40 uas (sigma_mu,rel= 37.3 uas/yr)  n_pass=7.39+-1.23  P(S)=0.228 P(W)=0.544 P(SP)=0.219 P(D)=0.009  ridge-sigma 23.3 (22.5-23.9)
+  N_usable= 20000  sigma_ast= 40 uas (sigma_mu,rel= 37.3 uas/yr)  n_pass=7.36+-1.21  P(S)=0.200 P(W)=0.572 P(SP)=0.217 P(D)=0.011  ridge-sigma 37.0 (36.0-37.6)
+
+================================================================================================
+VERDICTS
+================================================================================================
+  V1 [the verdict distribution at the real N and systematics]:
+     at the DR4-documented N (2,000-5,000 usable pairs at 3-30 kAU) and sigma_mu 30-40 uas,
+     P(CONFIRMED-STRONG) = 0.000 at EVERY documented cell.  The 9/9 outcome is structurally
+     unreachable: R-RIDGE30.7's frozen 20-sigma gate needs N_usable ~ 5,760 (the ridge lands
+     at 12 sigma at N=2000 and 18 sigma at
+     N=5000 -- still >10 sigma, decisive vs triples, but below the frozen gate).  The
+        N=2000, 40 uas (conservative): P(W)=0.466 P(SP)=0.443 P(D)=0.091  n_pass=6.34
+        N=5000, 40 uas:                P(W)=0.457 P(SP)=0.471 P(D)=0.072  n_pass=6.36
+        N=5000, 30 uas (G088 mid):     P(W)=0.474 P(SP)=0.450 P(D)=0.076  n_pass=6.39
+        N=5000, 10 uas (optimistic):   P(W)=0.449 P(SP)=0.476 P(D)=0.075  n_pass=6.33
+     sigma_mu has ~NO effect on the verdict (the P-s ridge is noise-free in the G088 mock;
+     the vertical channel carries its own declared precision).  N sets the R-RIDGE30.7 gate.
+  V2 [P(CONFIRMED-STRONG | conservative)]: N=2000, 40 uas -> 0.000;
+     at N=5000, 40 uas -> 0.000.  P(STRONG|optimistic 10 uas) = 0.000.
+     P(STRONG) turns on only past the gate: N=8000 -> 0.218 (10 uas) / 0.228 (40 uas).
+  V3 [the honest statement -- the December number to watch]:
+     THE THEORY'S OWN DR4 FORECAST (the mocks ARE the registered prediction) lands at
+     P(CONFIRMED-STRONG) = 0.000 and a MODAL verdict of CONFIRMED-WEAK ~ SPLIT at the
+     DR4-documented N: n_pass ~ 5-7 (mean 6.39 at N=5000).  The December
+     outcome is capped at 8/9 (WEAK) unless the usable sample exceeds ~5,800 pairs; the
+     tail to watch is P(WEAK) vs P(SPLIT) vs P(DISFAVORED), not P(STRONG).  The soft tests
+     are the funnel (F1a 0.64, F1b 0.55) and the
+     double-map (D2 0.70, D3 0.72) at the declared
+     DR4 precision -- their pass bars sit ~1 sigma from the forecast central values, so the
+     theory's OWN forecast is a coin-flip per vertical test at the frozen precision.  This
+     is the pre-registered honesty floor, not a re-tuning: every bar is frozen (G165/G112).
+================================================================================================
+WROTE G225_results.json
