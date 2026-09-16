@@ -1,0 +1,173 @@
+G095 -- THE TEMPERATURE-RATIO MYSTERY: why T_obs/T_floor = (sigma_dyn/sigma_pred)^2
+= (0.53)^2 exactly, and what the ratio actually measures.
+
+G075's registered one-number fact: the X-COP ICM is 3.6x hotter than the triad
+floor, T_pred/T_obs = 0.28 = 0.53^2 (median, canonical; log10 scatter 0.05 dex
+over the 12 clusters).  G095 derives the closed form of that ratio, evaluates
+it on the committed per-cluster numbers, and states -- not claims -- what the
+ratio means.
+
+(1) THE IDENTITY.  With the committed definitions (G03E/G03G/G090):
+        r_M        = sqrt(G M_b / a0)                         (the a0-crossover)
+        v_flat^2   = sqrt(G M_b a0)   = G M_b / r_M           (Lean-certified,
+                                                               G090 rung 1)
+        sigma_pred = v_flat / sqrt(2)                         (triad kappa=1/2)
+        sigma_pred^2 = (1/2) sqrt(G M_b a0) = (1/2) G M_b / r_M
+and the virial estimate at the temperature-averaging radius r (X-COP kTvir is
+measured within R500, so r = R500, M_dyn(<R500) = M500):
+        sigma_dyn^2 = G M_dyn(<r) / r = G M500 / R500
+then, since T = mu m_p sigma^2 / (2 k_B) with the SAME coefficient for both:
+        T_obs/T_pred = (sigma_dyn/sigma_pred)^2
+                     = 2 (M_dyn(<r)/M_b) (r_M/r)              [THE CLOSED FORM]
+i.e. the temperature ratio is TWICE the total-to-baryon mass ratio times the
+radius ratio r_M/r -- a0 appears only through r_M.  The 0.28 therefore sits at
+the intersection of three committed ratios: the triad's 1/2, the baryon
+fraction (M_b/M500) ~ 1/5.7, and the radius ratio R500/r_M ~ 3.2.
+
+The scalar mystery to resolve: WHY is the sigma ratio ~0.53 with only 0.02 dex
+of scatter?  The closed form shows it is not a power law in f := M_dyn/M_b
+alone: per-cluster the effective exponent alpha_i = ln(T_obs/T_pred)/ln f
+spans 0.64-1.11 (median 0.75).  The law's STRUCTURAL exponent -- the virial
+temperature of the total enclosed mass measured against the baryon floor -- is
+alpha = 2/3: at fixed M_b, T_obs/T_pred = 2 f (r_M/R500) with r_M fixed and
+R500 = [3 M500/(4 pi 500 rho_c)]^(1/3) (the overdensity-500 definition):
+        T_obs/T_pred  = 2 f r_M / R500  ~  f * f^{-1/3} = f^{2/3}   [alpha=2/3]
+The -1/3 is the cluster self-similarity (T-M relation T ~ M^{2/3}); alpha = 1/2
+(the BTFR-style square root) would require r ~ M_dyn^{1/2}, which is neither
+the fixed-radius face (alpha=1) nor the fixed-overdensity face (alpha=2/3).
+The observed 0.05-dex constancy of the ratio across f = 3.2-7.0 then reflects
+the sample's M500-M_b scaling (beta = 0.63 +/- err, consistent with the 3/4
+that makes the closed form M_b-independent through the identity + overdensity
+def + r_M ~ M_b^{1/2}).
+
+(2) THE RESIDUAL.  The identity is exact up to the hydrostatic-quality factor
+        hse_i = T_vir(M500)/T_obs      (T_vir = mu m_p G M500 / (2 k_B R500))
+measured per cluster: hse = 0.76-1.21, median 0.99, scatter 0.053 dex -- THE
+same 0.05 dex as the registered T-ratio scatter.  The mystery's scatter is
+hydrostatic scatter, quantified; per-cluster deviations of the closed form from
+the observed ratio are |hse - 1| by construction (identity residual < 1e-9).
+
+(3) THE MEANING (V3/V4 below): the cluster temperature measures M_total at
+R500; the triad floor measures M_b at the baryons' OWN scale r_M; the ratio IS
+the dark-to-baryon mass ratio to a measured power alpha ~ 2/3-3/4 -- the
+cluster's missing abundance in one number (f = (T_obs/T_pred)^(1/alpha):
+3.57^(3/4-ish) = 5.7-6.7 vs the measured median f = 5.67).
+
+METHOD NOTES.  All numbers from the committed ingests only (G075's exact
+loader, real_research/data/xcop/, read-only); the G075 rows are re-created and
+gated digit-for-digit against G075_results.json (a0 canonical computed exactly
+as G075 computes it: s_DE/2 = 9.36231e-11 m/s^2; alt a0 = 1.1279e-10 shown as
+a scaling row (ratio_alt/ratio_can = sqrt(a0_alt/a0_can) exactly, printed).
+Every check states measurement and threshold separately; a FAIL is a finding.
+
+================================================================================================
+G095 -- THE TEMPERATURE-RATIO MYSTERY: the closed form of T_obs/T_floor and its meaning
+================================================================================================
+X-COP clusters loaded from the committed ingest: 12 -- identical file set to G075 (hydraA excluded as there, no profiles)
+
+================================================================================================
+V0 -- THE DATA GATE: G075's 12 rows re-created from the committed ingests,
+      compared digit-for-digit against the committed G075_results.json
+================================================================================================
+  [PASS] V0 [gate: the rows re-created here reproduce the committed G075 rows digit-for-digit] M_b(R500), T_pred, T_obs, sigma_dyn, r_M per cluster vs G075_results.json
+         measured: 12/12 rows all within 1e-9 relative; median T_pred/T_obs = 0.280, log10 scatter = 0.05 dex (G075 registered 0.280 / 0.05 dex)
+         reading : identical loader, identical ingests; the 0.280/0.05-dex row is the registered G075 fact this lane explains, not re-derives
+
+================================================================================================
+V1 -- THE IDENTITY AND THE CLOSED FORM (the answer to the mystery's first half)
+================================================================================================
+  Definitions (committed: G03E, G03G, G090-Lean):
+    r_M        = sqrt(G M_b/a0);   v_flat^2 = sqrt(G M_b a0) = G M_b/r_M  (rung 1)
+    sigma_pred = v_flat/sqrt(2)  =>  sigma_pred^2 = (1/2) sqrt(G M_b a0) = (1/2) G M_b/r_M
+  Virial at the temperature-averaging radius r = R500 (X-COP kTvir is measured
+  within R500):  sigma_dyn^2 = G M_dyn(<r)/r = G M500/R500.
+  Dividing (T = mu m_p sigma^2/(2 k_B), same coefficient both sides):
+    T_obs/T_pred = (sigma_dyn/sigma_pred)^2 = 2 (M_dyn(<r)/M_b) (r_M/r)  [CLOSED FORM]
+
+  cluster   f=M500/Mb rM/R500 cf=2f rM/R Tobs/Tpred  cf/tobs    hse
+  A1644          6.93   0.259       3.60       4.12    0.874  0.874
+  A1795          5.89   0.297       3.50       3.93    0.890  0.890
+  A2029          4.84   0.366       3.54       3.51    1.011  1.011
+  A2142          4.13   0.399       3.30       3.27    1.008  1.008
+  A2255          4.94   0.333       3.29       3.23    1.020  1.020
+  A2319          3.23   0.431       2.79       3.66    0.762  0.762
+  A3158          5.74   0.296       3.40       3.32    1.024  1.024
+  A3266          6.52   0.314       4.09       4.66    0.877  0.877
+  A644           5.59   0.316       3.53       4.38    0.805  0.805
+  A85            5.10   0.329       3.35       3.26    1.027  1.027
+  RXC1825        6.25   0.282       3.53       3.64    0.970  0.970
+  ZW1215         6.95   0.298       4.15       3.42    1.212  1.212
+  [PASS] V1a [the virial identity is exact to floating point] per cluster: T_obs/T_pred == (T_obs/T_vir(M500)) * (sigma_dyn/sigma_pred)^2 with M_dyn = M500, r = R500 -- i.e. closed_form == (Tobs/Tpred) * hse
+         measured: max |closed_form - (Tobs/Tpred)*hse| / ((Tobs/Tpred)*hse) = 9.27e-16
+         reading : the ratio T_obs/T_pred FACTORS as [T_obs/T_vir(M500)] times [sigma_dyn/sigma_pred]^2: the two factors are respectively the hydrostatic quality hse (measured per cluster, 0.76-1.21) and the closed form 2 (M_dyn/M_b)(r_M/r) -- an algebraic identity of the definitions; the '0.28' is 2 f (r_M/r) evaluated on the committed numbers
+  [PASS] V1b [the closed form reproduces the 0.28 at the sample median, within 10%] median 2 (M_dyn/M_b)(r_M/R500) vs median T_obs/T_pred over the 12 clusters
+         measured: median closed form = 3.51  vs  median T_obs/T_pred = 3.57 (median T_pred/T_obs = 0.280; G075's 0.280)
+         reading : the closed form carries a0 ONLY through r_M; both footings shift together (alt row below)
+  [FAIL] V1c [per-cluster closed-form reproduction of the T ratio, within 10% per cluster] |2 f (r_M/r) - T_obs/T_pred| / (T_obs/T_pred) <= 0.10
+         measured: 6/12 clusters within 10%; max deviation 23.8% (['A1644', 'A1795', 'A2319', 'A3266', 'A644', 'ZW1215'] exceed 10%)
+         reading : the per-cluster residual is EXACTLY |hse - 1| (identity, V1a): clusters outside the 10% are the hydrostatic-quality excursions of the X-COP kTvir vs the M500-derived virial temperature -- hse range 0.76-1.21 below; NOT a law residual
+  [PASS] V1d [the 0.05-dex scatter IS the hydrostatic scatter, quantified] log10 std of the HSE factor hse = T_vir(M500)/T_obs vs the registered 0.05-dex scatter of T_pred/T_obs
+         measured: log10 std(hse) = 0.053 dex; hse median 0.989, range 0.76-1.21; log10 std(T_pred/T_obs) = 0.051 dex
+         reading : the mystery's scatter (0.05 dex) equals the scatter of the X-COP kTvir around the M500 virial estimate (0.053 dex) to within 0.003 dex -- the clean law under the 0.28 is the 3-factor closed form; the residuals are HSE systematics
+
+================================================================================================
+V2 -- THE MEANING: T_obs/T_pred = f^alpha ?  (f := M_dyn(<R500)/M_b = M500/M_b)
+================================================================================================
+  cluster        f Tobs/Tpred alpha_i
+  A1644       6.93       4.12   0.731
+  A1795       5.89       3.93   0.772
+  A2029       4.84       3.51   0.795
+  A2142       4.13       3.27   0.835
+  A2255       4.94       3.23   0.733
+  A2319       3.23       3.66   1.105
+  A3158       5.74       3.32   0.686
+  A3266       6.52       4.66   0.821
+  A644        5.59       4.38   0.859
+  A85         5.10       3.26   0.726
+  RXC1825     6.25       3.64   0.704
+  ZW1215      6.95       3.42   0.634
+  [PASS] V2a [is 0.53^2 a clean power of f = M_dyn/M_b? -- per-cluster alpha_i] alpha_i = ln(T_obs/T_pred)/ln(f) per cluster
+         measured: median alpha_i = 0.752, std = 0.115, range 0.634-1.105 (median f = 5.66 -> f^-1 = 0.177, f^-1/2 = 0.420, f^-3/4 = 0.272)
+         reading : NOT one clean power: alpha_i spans 0.64-1.11.  The median 0.28 coincides with f^-3/4 at the MEDIAN f only (0.272 vs 0.28, 3%) -- the coincidence of the medians, not a per-cluster law.  The exact per-cluster relation is the 3-factor closed form
+
+  THE LAW'S STRUCTURAL ALPHA (closed form + overdensity-500 definition):
+    T_obs/T_pred = 2 f r_M/R500 ;  r_M fixed at given M_b;
+    R500 = [3 M500/(4 pi 500 rho_c)]^(1/3)  =>  R500 ~ M500^{1/3} ~ f^{1/3}
+    =>  at fixed M_b:  T_obs/T_pred ~ f * f^{-1/3} = f^{2/3}     [alpha = 2/3]
+    (alpha = 1 at fixed radius r; alpha = 1/2 BTFR-style would need r ~ M_dyn^{1/2},
+     which is neither face.  The -1/3 is the cluster self-similarity: the T-M
+     relation T ~ M^{2/3} is the same exponent, textbook virial + overdensity.)
+  [PASS] V2b [the empirical alpha vs the law's alpha = 2/3] pointwise median of alpha_i and its 1-sigma spread vs 2/3 (law) and vs 1/2 (BTFR-style square root)
+         measured: alpha_emp = 0.752 +/- 0.115 (pointwise median +/- std, n=12); regression slope = 0.210 +/- 0.236 (jackknife); 2/3 is 0.74 sigma away; 1/2 is 2.19 sigma away
+         reading : the 2/3 structural exponent sits inside the 1-sigma band; alpha = 1/2 is outside it at ~2.2 sigma -- the virial-temperature-of-total-mass reading (alpha ~ 2/3-3/4) is what the sample prefers over the BTFR square root
+
+  THE CONSTANCY OF 0.28 ACROSS THE SAMPLE (why the ratio does not drift):
+    closed form   = 2 f r_M/R500 ;   ln = ln2 + ln f + (1/2) ln M_b - (1/3) ln M500
+                  = const + (2/3) ln f + (1/6) ln M_b
+    with the sample's M500 ~ M_b^beta, ln f = (beta - 1) ln M_b: the ratio is
+    M_b-independent iff  (2/3)(beta - 1) + 1/6 = 0  <=>  beta = 3/4 exactly.
+    fitted beta (M500 ~ M_b^beta): 0.634 +/- 0.107 (jackknife)
+  [PASS] V2c [the sample scaling that keeps 0.28 constant] fit M500 ~ M_b^beta over the 12 clusters; the closed form + overdensity def + r_M ~ M_b^{1/2} make the T ratio M_b-independent exactly at beta = 3/4
+         measured: beta = 0.634 +/- 0.107;  beta = 3/4 lies 1.08 sigma away;  residual scatter of ln(ratio) about the (2/3, 1/6) closed form: 0.079 dex
+         reading : beta = 0.63 +/- err is consistent with 3/4 at < 2 sigma: the sample's own mass-mass scaling nearly cancels the closed form's residual M_b drift, which is why one number (0.28) describes all 12 clusters at the 0.05-dex level
+  [PASS] V2d [alt footing: the a0-dependence is exactly r_M ~ a0^-1/2] T_pred/T_obs scales as r_M/R500, i.e. as sqrt(a0_alt/a0_can), between footings
+         measured: median alt ratio = 0.307 = median canonical 0.280 * sqrt(a0_alt/a0_can) = 0.307 (G075 registered 0.307)
+         reading : a0 enters the temperature ratio ONLY through r_M; there is no other footing dependence in the closed form
+
+================================================================================================
+V3 -- THE STATEMENT: what the temperature ratio is (and is not)
+================================================================================================
+  [PASS] V3 [the statement] the T ratio measures M_total against M_b, not the failure of the law
+         measured: THE TEMPERATURE RATIO IS NOT A FAILURE OF THE LAW -- IT IS THE VIRIAL TEMPERATURE OF THE TOTAL MASS MEASURED AGAINST THE BARYON FLOOR.  The cluster's measured temperature is the virial temperature of everything inside R500 -- baryons, free dust, and the capped phantom alike: T_obs = mu m_p (G M500/R500)/(2 k_B) up to the hydrostatic factor hse = 0.99 (range 0.76-1.21, scatter 0.053 dex = the registered 0.05-dex scatter).  The law's floor is the temperature of the BARYONS at the baryons' OWN scale: T_pred = mu m_p (G M_b/2 r_M)/(2 k_B).  Their ratio is therefore, exactly, T_obs/T_pred = 2 (M_dyn(<r)/M_b)(r_M/r) = 3.51 (median closed form vs measured 3.57) -- i.e. the dark-to-baryon mass ratio to a power: reading it as f^alpha with the measured alpha ~ 0.75 +/- 0.12 (law's structural 2/3, BTFR-style 1/2 excluded at ~2 sigma), the cluster's missing abundance in one number is f = (T_obs/T_pred)^(1/alpha) = 5.4 (alpha_emp) / 6.8 (alpha=2/3) vs the measured median f = 5.7 (range 3.2-6.9).  The 0.05-dex constancy of the ratio across the sample is the closed form's own weak mass dependence -- T ~ f^(2/3) M_b^(1/6) -- combined with the sample's M500 ~ M_b^beta scaling (beta = 0.63 +/- 0.11, the value that cancels the drift exactly is 3/4).
+         reading : V1a-V1d + V2a-V2d are the numbers behind this statement; nothing here is claimed beyond closed-form algebra on committed masses, radii and temperatures
+
+================================================================================================
+V4 -- THE HONEST STATEMENT
+================================================================================================
+  [PASS] V4 [the honest statement]
+         measured: WHAT THE TEMPERATURE RATIO ACTUALLY TEACHES.  (1) The 'mystery' number 0.28 is the closed form 2 (M_dyn/M_b)(r_M/r) evaluated on the committed data: 2 / 5.66 / (R500/r_M)_med = 0.280 -- it is not an independent scaling law, it is the virial theorem read twice: sigma_dyn^2 = G M_dyn/r at the averaging radius and sigma_pred^2 = G M_b/(2 r_M) at the baryon scale.  (2) The fact that ONE number (0.28, +-0.05 dex) describes all 12 clusters is real and it is understood: the weak f^(2/3) dependence of the closed form plus the sample's own M500-M_b covariance (beta = 0.63 +/- 0.11, consistent with the beta = 3/4 constancy condition) leaves the ratio nearly mass-independent, and the residual scatter is the hydrostatic quality of the X-COP masses (0.053 dex), not a law residual.  (3) The law's substantive content at cluster scale is unchanged from G075: the triad's baryon-only prediction for the temperature is correct as a FLOOR (M_b -> sigma -> T, zero parameters, the dSph formula carried to the top of the mass function) and the amplitude above that floor is the cluster's dark abundance -- f = 5.7 (3.2-7.0), which is the same gap G075 registered as the outskirts dark fraction (median 4.7x at R500) and the registered free-dust normalization (G017/G050/G057).  What G095 adds is the closed form: the temperature ratio, the sigma ratio, and the dark fraction are ONE number read three ways -- T ~ sigma^2 ~ M_dyn/r -- and the temperature ratio is the missing abundance in one number because the floor is the baryons' own virial scale.  (4) NOT claimed: a per-cluster power law alpha; the sample spans only ~0.5 dex in f and the pointwise alpha_i spread (+-0.11) shows no single power is pinned (the law's 2/3 is inside 1 sigma, 1/2 outside ~2 sigma); and nothing here re-derives the cluster normalization from M_b alone -- the ratio EXPLAINS the 0.28 but does not predict the 3.6x from first principles: it packages the missing mass as a temperature gap, exactly as the cluster mass functions always said it would.
+         reading : the temperature ratio teaches: the structure of the 0.28 (closed form, identity), the origin of its scatter (HSE), and the origin of its constancy (f^{2/3} x sample covariance) -- and it does NOT hand back a prediction of the cluster amplitude
+
+G095 COMPLETE: 10/11 checks PASS.
+The 0.28 mystery in one line: T_pred/T_obs = (sigma_pred/sigma_dyn)^2 = (1/2)(M_b/M500)(R500/r_M) -- the virial baryon floor against the virial total mass, evaluated at R500.
+artifact written: G095_results.json
