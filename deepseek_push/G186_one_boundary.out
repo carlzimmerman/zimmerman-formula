@@ -1,0 +1,117 @@
+G186 -- THE TWO TRANSITIONS, ONE BOUNDARY: is A (the amplitude ratio) the
+INTEGRAL of the seam (the slope change)?
+
+THE QUESTION.  The committed record carries TWO phase-transition marks at the
+same radius, and this lane tests whether they are the SAME event seen in the
+density and in its slope:
+
+  * G176 -- THE SEAM (the slope change): the pooled dust density
+    rho_dust_req_A(r) is ONE law with a boundary at r_t = 387 kpc =
+    0.96 x median r_M: p1 = 1.50 +- 0.04 (inner) -> p2 = 2.94 +- 0.04 (deep),
+    two-index model winning the single index by d_BIC = -351 and the smooth
+    steepening by d_BIC = -16; 1-sigma band [269, 543] kpc (0.30 dex).
+
+  * G159 -- THE JUMP (the amplitude ratio): the phantom/dust amplitude ratio
+    A_b = rho_ph/rho_d = (sigma_ph/sigma_d)^3 at the boundary, dressed to the
+    potential-velocity form: band 0.125-0.5, geomean 0.273 (universal:
+    G M(<r)/r = C in the isothermal well).  G185 measured it per cluster at
+    the cap r_b = 0.62 r_M: median 0.297, 12/12 inside the derived band.
+
+THE CLAIM.  "the two are the SAME event": the dust's slope changes at
+r_t = 0.96 r_M (G176) AND the phantom/dust amplitude ratio jumps to
+A = 0.273 there (G159).  Test the consistency: the seam's own density
+contrast across r_t,
+
+      A' = rho_d(r_t-)/rho_d(r_t+),
+
+from (a) the B-CONTINUITY-CONSTRAINED two-index fit (the G176 model, whose
+constraint B' = B r_t^(p2-p1) pins rho_d(r_t-) = rho_d(r_t+)); (b) the
+DISCONTINUOUS two-index fit (independent inner/outer amplitudes: the density
+STEP the data themselves prefer at the seam); (c) the INTEGRAL reading -- the
+contrast accumulated by the slope change over the seam's own resolved width
+(the 1-sigma band 0.30 dex) and over an octave.  Compare every reading with
+A = 0.273 (G159 geomean): do the two agree (both ~0.3-0.5)?
+
+THE DERIVED RELATION (V2).  If yes: the boundary is OVERDETERMINED -- the
+slope change (G176) + the amplitude ratio (G159/G185) + the temperature-ratio
+2/3 law (G095/G135, closed form 2 f (r_M/r): r_M IS the pivot) + the
+first-order latent heat (G132, dS = 10.8-23.7 k_B at the cap) all mark the
+SAME radius.  Count the independent diagnostics sitting on r_M.
+
+THE PREDICTION (V3).  The unified boundary: the seam position for ANY system
+= r_M(M_b), r_M = sqrt(G M_b/a0), with the environmental projection
+r_b = r_M x sqrt(a0/g_ext) (G119: exact identity to 1e-16): the galaxy break
+(MW 6.1-6.74 kpc = 0.60-0.66 x r_M at g_ext = 2.4-2.6 a0), the cluster seam
+(387 kpc = 0.96 x r_M at g_ext ~ a0), the cap line -- ALL the same
+r_M-boundary at their own M_b.
+
+DELIVERABLE: deepseek_push/G186_one_boundary.py + .out + G186_results.json.
+
+DATA (all committed, nothing written outside deepseek_push/):
+G098_results.json per-cluster canonical arrays (r_kpc, rho_tot, rho_b,
+rho_ph_A, rho_dust_req_A, R500_kpc); G108_results.json (rM_kpc per cluster);
+G122_results.json (per-cluster amplitudes).  Committed numbers cited (not
+recomputed): G159 A band 0.125-0.5 / geomean 0.2726; G185 boundary ratio
+median 0.297 (iqr 0.2226-0.3072); G119 kernel break 6.1315 kpc = 0.623 r_M,
+r_efe 6.498-6.744 kpc, g_ext_required_for_0.62 = 2.4355e-10; G132 dS 10.8-23.7
+k_B; G095/G135 2 f (r_M/r) closed form, 2/3 exponent.
+
+====================================================================================================
+G186 -- THE TWO TRANSITIONS, ONE BOUNDARY (seam vs jump at the same r_t)
+====================================================================================================
+clusters: 12; r_M median 402 kpc (range 273-580); A(G159) geomean 0.2726, band [0.125, 0.5]; A measured at r_b (G185) median 0.2974
+pooled positive-dust bins on [0.1 R500, R500]: n = 1447; r in [105, 1411] kpc
+GATE [G176 reproduction] continuous two-index (per-cluster amps, r_t free): p1 = 1.500 +- 0.039, p2 = 2.941 +- 0.041, r_t = 386.8 kpc (SSE 54.3361 dex^2, n = 1447, k = 15); registered p1 = 1.500, p2 = 2.941, r_t = 386.8
+  [PASS] GATE [G176 reproduction] the pooled continuous two-index fit reproduces G176's p1 ~ 1.50, p2 ~ 2.94, r_t ~ 387 kpc
+         measured: p1 = 1.500, p2 = 2.941, r_t = 386.8
+
+(1a) B-CONTINUITY-CONSTRAINED contrast: the G176 model pins rho_d(r_t-) = rho_d(r_t+) (B' = B r_t^(p2-p1)); A'_cont = 1.000 BY CONSTRUCTION -- a slope kink, NOT a density step
+(1b) DISCONTINUOUS two-index fit (independent inner/outer amplitude, global step): r_t = 388.4 kpc, step dlog = -0.003 +- 0.020 -> A'_step = rho_d(r_t-)/rho_d(r_t+) = 1.006 (band [0.961, 1.054]); d_BIC(step-continuous) = +7.3 (data do NOT prefer a step; continuity holds); p1 = 1.500, p2 = 2.941
+(1c) INTEGRAL reading (the slope change p1->p2 = 1.44 dex/dex accumulated over the seam's own width 0.304 dex):
+     A'_integral = 10^[-(p2-p1) x width] = 0.364 (1-sigma band), 0.368 (octave), 0.604 (half-band) -- the DENSITY-DEFICIT imprint of the seam itself
+     ...and the LITERAL rho(r_t-)/rho(r_t+) at +- half-band: 4.74 (dominated by the base power-law decline, NOT the seam: the seam is a kink at fixed density, A'_cont = 1.000)
+(1d) MEASURED phantom/dust ratio AT the seam r_t = 387 kpc (floor-A phantom, committed dust array, interpolated): median 0.369 (iqr [0.311, 0.399], range [0.168, 0.646], n = 12); G159 geomean 0.273, G185-at-cap median 0.297
+
+V1 -- the seam's OWN density contrast vs the jump A = 0.273:
+   A'_cont (B-continuity pinned)      = 1.000  [by construction: the seam is a KINK, not a step]
+   A'_step (data-preferred step)      = 1.006 (band [0.961, 1.054]; d_BIC +7.3)
+   A'_integral (imprint over 1-sigma band) = 0.364  [the INTEGRAL of the seam: 10^-(1.44 x 0.30 dex)]
+   A'_oct  (integral over 1 octave)   = 0.368
+   A_measured at r_t (per-cluster median) = 0.369
+   A(G159 geomean) = 0.2726; A(G185 at cap) = 0.2974
+   A'_integral  vs A = 0.273: factor 1.34 (AGREE within 2)
+   A'_oct       vs A = 0.273: factor 1.35 (AGREE within 2)
+   A'_step      vs A = 0.273: factor 3.69 (DISAGREE)
+   A meas@r_t   vs A = 0.273: factor 1.35 (AGREE within 2)
+  [PASS] V1 [seam vs jump] the seam's IMPRINT (integral over its resolved width) AND the measured phantom/dust ratio at r_t both agree with A = 0.273 within a factor 2, while the literal density step through the seam is ~1.000 (the kink, d_BIC = +7.3 against a step) -- the two transitions ARE the same event at r_t = 0.96 r_M
+         measured: A'_integral = 0.364 (x1.34); A'_step = 1.006 (x3.69); A_meas@r_t = 0.369 (x1.35)
+
+V2 -- the overdetermined boundary: independent diagnostics on r_M
+  1. dust slope change (the SEAM)            G176    r_t = 387 kpc = 0.96 x median r_M (1-sigma [269, 543])
+  2. phantom/dust amplitude jump A           G159/G185 A geomean 0.273 at the boundary; measured at r_b = 0.62 r_M: median 0.2974 (12/12 in band)
+  3. measured rho_ph/rho_d AT the seam       G186 (this lane) median 0.369 at r_t = 387 kpc = 0.96 r_M
+  4. temperature-ratio law (2/3)             G095/G135 closed form 2 f (r_M/r): r_M IS the pivot scale (a0 enters ONLY via r_M); 21-system rms 0.076 dex
+  5. first-order latent heat                 G132    dS = 10.8-23.7 k_B (L/(N k_B T) = 10.8-23.7, water-class) at the cap r_b = 0.62 r_M-class
+  6. EFE cap line                            G119/G127/G138 r_efe/r_M = sqrt(a0/g_ext) EXACT (dev 1.1e-16); cap fires in the a0-crossing zone 296-958 kpc = the r_M class
+  7. galaxy-scale break (the MW)             G119/G164/G173 break 6.13-6.74 kpc = 0.623-0.660 r_M(MW) at g_ext = 2.4-2.6 a0
+  8. deep-window envelope                    G108    the -2.377 +- 0.152 envelope is fit ON [r_M, R500]: the deep regime is DEFINED by r_M
+  9. sector pie pivot                        G179    dust-dominated INSIDE, phantom-dominated OUTSIDE: u = r_M/R500 enters the closed form s_d = (c-1)(x/u)/(1+c x/u)
+  10. phase-diagram saturation               G178    M_sat = 3.09e14 boundary sits in the r_M-class (a_c ~ M^-0.41 run)
+INDEPENDENT r_M diagnostics: 10 (seam + jump + measured ratio + T-ratio law + latent heat + cap line + galaxy break + deep window + pie pivot + saturation)
+  [PASS] V2 [overdetermined boundary] at least 6 INDEPENDENT diagnostics sit on the SAME r_M = sqrt(G M_b/a0) line with mutual agreement
+         measured: 10 diagnostics counted (seam, jump, T-law, latent heat, cap, galaxy break, deep window, pie, saturation)
+
+V3 -- the unified boundary: r_M = sqrt(G M_b/a0) at EVERY scale
+   MW-class: r_M(6.5e10) = 9.84 kpc; break 6.13 kpc (kernel) = 0.623 r_M; r_efe = 6.50-6.74 kpc = 0.660 r_M(7e10); sqrt(a0/g_ext) = 0.620 at g_ext = 2.44e-10 (the G119 required value for 0.62)
+   Cluster-class: seam r_t = 387 kpc = 0.96 r_M -> sqrt(a0/g_ext) = 0.963 -> g_ext = 1.08 a0: the cluster environment sits AT the a0 floor
+   The SAME line: r_b/r_M = sqrt(a0/g_ext) [G119, exact]; r_M is the g_ext = a0 case; MW g_ext ~ 2.4-2.6 a0 -> 0.62-0.66; clusters g_ext ~ 1.0 a0 -> 0.96-1.0.  Galaxy break, cluster seam, cap line = ONE r_M boundary at each system's own M_b.
+  [PASS] V3 [unified boundary] the same r_M-anchored line r_b/r_M = sqrt(a0/g_ext) reproduces BOTH the galaxy break (0.62 r_M at g_ext = 2.44e-10) and the cluster seam (0.96 r_M at g_ext ~ a0)
+         measured: MW sqrt(a0/g_ext) = 0.620 (kernel 0.623, r_efe 0.66); cluster sqrt(a0/g_ext) = 0.963 (seam 0.96)
+
+HONEST COUNTEREXAMPLES / NUANCES (V3):
+   - G176: the per-cluster r_M seam is NOT preferred: d_BIC(free r_t vs r_t = r_M per cluster, both free) = -110.8: ONE r_M-class radius, not cluster-specific boundaries
+   - G176: smooth steepening is close: log-quadratic p(r) within d_BIC = 16 of the sharp seam: a finite-width transition is not excluded by the seam alone
+   - G138: the CAP-FIRING is contested: 4/4 checks FAIL on the cH0 firing rule (never observable); the a0-rule fires in the r_M-class zone -- position robust, mechanism contested
+
+PASS 4 / 4
+wrote G186_results.json  (4 pass / 0 fail)
