@@ -1,0 +1,187 @@
+G134 -- THE V4 PARTIAL-RECOVERY: the rising-share test done right.
+
+CONTEXT (all from the committed record):
+  * G094 corrected the V4 Spearman: on the units-fixed field the pooled
+    rho(s_ph, log10(g_tot/a0)) = -0.2975 (p = 3.24e-3, n = 96, 12 clusters x
+    8 radii) -- NOT the registered -0.926 / 1.43e-41, which is reproduced
+    only on G050's broken g_tot (the 1e9*MSUN floor made the field a
+    function of radius alone: the registered rank correlation measured
+    share-vs-radius, not share-vs-field).
+  * The remaining problem, addressed here: the CORRECTED rho = -0.298 still
+    pools ALL radii, and the share s(r) has a strong RADIAL trend (it rises
+    with r by construction).  Since the field g_tot/a0 also falls steeply
+    with r in the pooled sample, the pooled rank correlation can be (and
+    largely is) the radius trend masquerading as field dependence.
+
+THIS LANE (the honest tests, all re-derived from the same committed ingests
+with G094's exact pipeline -- baryons(), dlnM_dlnr(), the units-fixed g_tot):
+  (1) PARTIAL CORRELATION of s vs log10(g_tot/a0) CONTROLLING for log10 r
+      (and separately for r/R500, and both): per cluster (n = 8) and pooled
+      (n = 96), with p-values.  The honest test of 'the share rises as the
+      field falls' NET of the radius.
+  (2) FIXED-RADIUS TEST: within narrow radius shells -- the share vs the
+      field at FIXED radius, the cluster-to-cluster variation at the same
+      radius.  8 shells x 12 clusters (one per grid radius), plus the
+      task's 5-shell coarser grouping; pooled shell-wise Spearman
+      (Fisher-z fixed effects) with p; a cluster-jackknife; and a
+      decomposition of the share into its two factors (the local mass-
+      profile slope dlnM and the baryon-vs-deficit ratio mb/M_res) to
+      state WHAT carries any fixed-radius signal.
+  (2b) ROBUSTNESS LANE: the PHYSICAL share (G106's s = rho_ph/rho_res,
+      computed with the corrected Mres floor) through the same battery --
+      the G050/G094 'share' = dlnM*M_b/1.99e39 ~ 1e-27 (the G059-registered
+      units slip: the 1e9*MSUN floor mixes units and is a constant, so all
+      rank statistics of the committed share -- incl. G094's -0.2975 and
+      G050's -0.926 -- measure dlnM*M_b vs the field, not a density share);
+      the physical-share lane tells whether the fixed-radius verdict is a
+      property of the share itself.
+  (3) THE DECISION: does the rising-share signature survive the
+      partial/fixed-radius tests at rho > 0.3-class (state the number and
+      the p), or is the V4 claim reduced to 'the share rises with radius'
+      (a restatement of the profile, not the field)?
+  (4) VERDICTS: V1 the partial correlation (with the p); V2 the fixed-shell
+      correlation; V3 the honest statement -- field-driven, radius-driven,
+      or both, with the numbers that decide.
+
+SIGN CONVENTION (G106, carried): the share RISES outward, g_tot/a0 FALLS
+outward, so the V4 claim is a NEGATIVE rho (share falls as the field
+rises).  The decision is DIRECTION-AWARE: a 0.3-class significant positive
+rho net of radius is NOT a survival of the claim -- it is an inversion.
+
+Gate: the pipeline must reproduce G094's pooled rho = -0.2975 (p = 3.24e-3,
+n = 96) on the units-fixed field before any partial/shell statistic counts.
+
+====================================================================================================
+G134 -- THE V4 PARTIAL-RECOVERY
+====================================================================================================
+X-COP clusters loaded: 12 (A1644, A1795, A2029, A2142, A2255, A2319, A3158, A3266, A644, A85, RXC1825, ZW1215); 7 with a measured stellar profile
+pooled points: 96 = 12 clusters x 8 radii
+
+GATE (G094 replication on the units-fixed field; both footings identical -- rank-invariant under the a0 scaling):
+  pooled Spearman rho(s, log10(g_tot/a0)) = -0.2975, p = 3.242e-03, n = 96  (registered -0.2975 / 3.24e-3 / 96)
+  [PASS] V0 gate: G094's corrected pooled Spearman -0.2975 (p = 3.24e-3, n = 96)
+         registered: -0.2975 / 3.24e-3 / 96
+         recomputed: -0.2975 / 3.242e-03 / 96
+         note      : the pipeline below is the same arrays G094's corrected rho was read from; every partial/shell statistic inherits the gate
+  cross-check: rho(s, log10 r) = +0.926 (p = 1.43e-41); on G050's broken radius-only field the rho is by construction rho(s, -log r) = -0.926 (p = 1.43e-41) -- the registered -0.926 / 1.43e-41 IS the radius trend with the sign flipped
+  [PASS] V0b: the registered -0.926 is exactly -rho(s, log r) (broken field = radius alone)
+         registered: -0.926 / 1.43e-41
+         recomputed: -0.926 / 1.43e-41
+         note      : closes G094's identification: the broken 1e9*MSUN floor makes g_tot a pure function of r
+
+THE CONFOUNDING TREND (what the raw pooled rho actually rides on):
+  rho(s, log10 r)          = +0.926 (p = 1.4e-41) -- the share's own radial rise
+  rho(log10(g/a0), log10 r)= -0.537 (p = 1.7e-08) -- the field's radial fall
+  raw pooled rho(s, g/a0)  = -0.298 (p = 3.242e-03)
+
+THE COMMITTED SHARE'S NUMERICAL LEVEL (a units caveat, G059 DATA NOTE carried forward):
+  share values: min 1.17e-28, median 4.72e-27, max 4.94e-26 (Msun/Msun, expected O(0.1-1))
+  the G050/G094 Mres floor '1e9*MSUN' mixes units (Mh, mb are Msun COUNTS): max(Mh - mb, 1e9*MSUN) = 1.99e39 always, so the committed 'share' = dlnM*M_b/1.99e39 ~ 1e-27 -- the G059-registered slip persists in the DENOMINATOR; G094 corrected g_tot only.
+  rank-invariance: Spearman(share, dlnM*M_b) = +1.000000 -- the committed share is rank-IDENTICAL to dlnM*M_b (the floor is a constant), so every rank statistic below (incl. G094's -0.2975 and G050's -0.926) is a statistic of dlnM*M_b vs the field, NOT of a density share
+  [PASS] V0c: the committed V4 share is rank-identical to dlnM*M_b and its values are the registered 1e-27 level
+         registered: rank identity = 1, values ~1e-27
+         recomputed: rank rho = +1.0000, median value 4.72e-27
+         note      : the 1e9*MSUN floor (mixed units) makes Mres a constant 1.99e39; the physical share is G106's s = rho_ph/rho_res (computed in section 2b with the corrected floor max(Mh - mb, 1e9))
+  raw per-cluster rho(s, log g): median -1.000, 11/12 negative (the within-cluster radial run is radius-dominated inside a cluster; the sole exception A1644 has a ~constant committed share (its field is non-monotone in r) -- its raw rho is a tie artifact, not a signal)
+
+====================================================================================================
+(1) THE PARTIAL CORRELATION: s vs log10(g_tot/a0), CONTROLLING for
+    log10 r and for r/R500 -- 'the share rises as the field falls'
+    net of the radius.
+====================================================================================================
+  A1644     partial | log r = -0.240 (p = 0.603) 
+  A1795     partial | log r = -1.000 (p = 0.000) DEGENERATE
+  A2029     partial | log r = -1.000 (p = 0.000) DEGENERATE
+  A2142     partial | log r = -1.000 (p = 0.000) DEGENERATE
+  A2255     partial | log r = -0.176 (p = 0.706) 
+  A2319     partial | log r = -1.000 (p = 0.000) DEGENERATE
+  A3158     partial | log r = -1.000 (p = 0.000) DEGENERATE
+  A3266     partial | log r = -0.065 (p = 0.891) 
+  A644      partial | log r = -0.156 (p = 0.738) 
+  A85       partial | log r = -1.000 (p = 0.000) DEGENERATE
+  RXC1825   partial | log r = -1.000 (p = 0.000) DEGENERATE
+  ZW1215    partial | log r = -1.000 (p = 0.000) DEGENERATE
+  NOTE: within a cluster both s and log g are smooth functions of r on the 8-bin grid, so the net-of-radius residual is curvature noise: 8/12 per-cluster partials are degenerate (|rho| > 0.99) -- the per-cluster partial is not the informative reading; the pooled/fixed-radius rows are.
+  non-degenerate per-cluster partials (4/12): values -0.240, -0.176, -0.065, -0.156, median -0.166
+  per-cluster partials (log r control, degenerate rows excluded): pooled rho = -0.160 (z = -0.16, p = 4.704e-01, k = 4 groups, n = 32); median rho -0.166; 4/4 negative; Q = 0.1 (I^2 = 0%)
+  (per cluster, r/R500 is a monotone function of r -- the r/R500 and 'both' rows are rank-identical to the log-r row up to rounding)
+  pooled (n = 96) partials:
+    control log10 r                               rho_partial = +0.626 (p = 1.227e-11, df = 93)
+    control r/R500                                rho_partial = +0.382 (p = 1.313e-04, df = 93)
+    control log10 r + r/R500                      rho_partial = +0.591 (p = 3.570e-10, df = 92)
+    control log10 r + cluster dummies (fixed effects) rho_partial = +0.117 (p = 2.906e-01, df = 81)
+
+====================================================================================================
+(2) THE FIXED-RADIUS TEST: the share vs the field at FIXED radius --
+    the cluster-to-cluster variation at the same radius (8 shells x
+    12 clusters, one per grid radius), pooled shell-wise Spearman.
+    (at fixed r, log g = log(G M_HSE/r^2) = log M_HSE + const, so the
+    shell test is rank-identical to share-vs-cluster-mass at fixed r)
+====================================================================================================
+  r =    50 kpc: rho = +0.399 (p = 0.199, n = 12), field range across the 12 clusters = 0.84 dex
+  r =    75 kpc: rho = +0.538 (p = 0.071, n = 12), field range across the 12 clusters = 0.66 dex
+  r =   100 kpc: rho = +0.580 (p = 0.048, n = 12), field range across the 12 clusters = 0.58 dex
+  r =   150 kpc: rho = +0.720 (p = 0.008, n = 12), field range across the 12 clusters = 0.53 dex
+  r =   210 kpc: rho = +0.811 (p = 0.001, n = 12), field range across the 12 clusters = 0.46 dex
+  r =   300 kpc: rho = +0.860 (p = 0.000, n = 12), field range across the 12 clusters = 0.40 dex
+  r =   420 kpc: rho = +0.706 (p = 0.010, n = 12), field range across the 12 clusters = 0.37 dex
+  r =   600 kpc: rho = +0.545 (p = 0.067, n = 12), field range across the 12 clusters = 0.39 dex
+  median shell rho = +0.643; 0/8 shells negative
+  pooled shell-wise Spearman (8 shells x 12): pooled rho = +0.672 (z = +0.81, p = 4.975e-12, k = 8 groups, n = 96); median rho +0.643; 0/8 negative; Q = 5.5 (I^2 = 0%)
+  jackknife (drop-one-cluster, re-pooled shell rho): min +0.595, max +0.806, mean +0.672; dropping RXC1825 moves it most (+0.806)
+  decomposition at fixed radius (what the share's fixed-radius signal is made of):
+    rho(dlnM, log g) (8 shells x 12): pooled rho = -0.516 (z = -0.57, p = 1.258e-06, k = 8 groups, n = 96); median rho -0.479; 7/8 negative; Q = 15.2 (I^2 = 54%)
+    rho(mb/Mres, log g) (8 shells x 12): pooled rho = +0.784 (z = +1.05, p = 3.545e-19, k = 8 groups, n = 96); median rho +0.787; 0/8 negative; Q = 7.1 (I^2 = 1%)
+  (s = dlnM * mb/M_res exactly; whichever factor tracks the field at fixed radius carries the share's fixed-radius correlation)
+  5-shell grouping, band 50-50 kpc: rho = +0.399 (p = 0.199, n = 12)
+  5-shell grouping, band 75-100 kpc: rho = +0.477 (p = 0.018, n = 24)
+  5-shell grouping, band 150-210 kpc: rho = +0.610 (p = 0.002, n = 24)
+  5-shell grouping, band 300-420 kpc: rho = +0.577 (p = 0.003, n = 24)
+  5-shell grouping, band 600-600 kpc: rho = +0.545 (p = 0.067, n = 12)
+  pooled 5-band shell-wise Spearman: pooled rho = +0.540 (z = +0.60, p = 5.369e-08, k = 5 groups, n = 96); median rho +0.545; 0/5 negative; Q = 0.7 (I^2 = 0%)
+
+====================================================================================================
+(2b) ROBUSTNESS LANE -- the PHYSICAL share (G106's s = rho_ph/rho_res,
+     with the CORRECTED Mres floor max(M_hse - M_b, 1e9) Msun), run
+     through the same battery: is the fixed-radius INversion a property
+     of the degenerate committed share, or of the share itself?
+====================================================================================================
+  physical share points: 96 (12 x 8); values 0.063 .. 0.638 (O(0.1-1) -- the corrected floor)
+  G106 gate: pooled rho = -0.542 (p = 1.2e-08, n = 96) vs registered -0.542 / 1.2e-8; per-cluster median -0.833 vs registered -0.83
+  [PASS] V2b gate: the physical share reproduces G106's pooled -0.542 and per-cluster median -0.83
+         registered: -0.542 / 1.2e-8; median -0.83
+         recomputed: -0.542 / 1.2e-08; median -0.833
+         note      : G106's arrays recomputed inline from the same FITS with the corrected floor; the lane inherits the gate
+  pooled partial (control log10 r): rho = -0.283 (p = 5.529e-03, df = 93)
+    r =    50 kpc: rho = -0.357 (p = 0.255, n = 12)
+    r =    75 kpc: rho = -0.091 (p = 0.779, n = 12)
+    r =   100 kpc: rho = -0.168 (p = 0.602, n = 12)
+    r =   150 kpc: rho = -0.224 (p = 0.484, n = 12)
+    r =   210 kpc: rho = -0.259 (p = 0.417, n = 12)
+    r =   300 kpc: rho = -0.154 (p = 0.633, n = 12)
+    r =   420 kpc: rho = +0.091 (p = 0.779, n = 12)
+    r =   600 kpc: rho = -0.182 (p = 0.572, n = 12)
+  physical share: pooled shell-wise Spearman (8 x 12): pooled rho = -0.170 (z = -0.17, p = 1.451e-01, k = 8 groups, n = 96); median rho -0.175; 7/8 negative; Q = 1.2 (I^2 = 0%)
+  median shell rho = -0.175; 7/8 negative
+
+====================================================================================================
+(3) THE DECISION: does the rising-share signature (NEGATIVE rho --
+    share falls as the field rises) survive the partial/fixed-radius
+    tests at rho > 0.3-class?
+====================================================================================================
+  bar: |rho| >= 0.25 (0.3-class) AND p < 0.05.
+  pooled partial (control log10 r): rho = +0.626, p = 1.227e-11
+  pooled partial (log r + cluster dummies): rho = +0.117, p = 2.906e-01
+  pooled shell-wise Spearman (8 x 12): rho = +0.672, p = 4.975e-12; 5-band: rho = +0.540, p = 5.369e-08
+  raw (G094) pooled rho for reference: -0.298 (p = 3.242e-03); the radius trend rho(s, log r) = +0.926
+  DECISION (committed V4 share): INVERTED: net of radius the share-vs-field relation is significant at 0.3-class but POSITIVE -- at fixed radius the share is HIGHER where the field (and the cluster mass) is higher, the OPPOSITE of the V4 claim; the claimed negative signature was the radius confound, and the surviving field-driven component runs the other way
+  DECISION (physical share, G106's s = rho_ph/rho_res): PARTIALLY SURVIVES on the PHYSICAL share: one reading stays 0.3-class significant, sign negative (claimed direction); the other collapses
+
+====================================================================================================
+(4) THE VERDICTS
+====================================================================================================
+  V1 the partial correlation: pooled rho(s, g/a0 | log10 r) = +0.626, p = 1.227e-11, n = 96, df = 93 (| r/R500 = +0.382, p = 1.313e-04; | both = +0.591, p = 3.570e-10; | log r + cluster dummies (within-cluster) = +0.117, p = 2.906e-01); per-cluster partials: 8/12 degenerate (curvature noise at n = 8); non-degenerate median -0.166, Fisher-pooled -0.160 (p = 4.704e-01)
+  V2 the fixed-shell correlation: pooled shell-wise Spearman = +0.672, p = 4.975e-12 (8 shells x 12, Fisher-z, Q = 5.5, I^2 = 0%); median shell rho = +0.643 (0/8 negative); jackknife range [+0.595, +0.806]; share factors: dlnM piece -0.516 (p = 1.3e-06), mb/Mres piece +0.784 (p = 3.5e-19); 5-band grouping +0.540 (p = 5.369e-08)
+  V3 the honest statement: INVERTED: net of radius the share-vs-field relation is significant at 0.3-class but POSITIVE -- at fixed radius the share is HIGHER where the field (and the cluster mass) is higher, the OPPOSITE of the V4 claim; the claimed negative signature was the radius confound, and the surviving field-driven component runs the other way.  The numbers that decide: raw pooled rho = -0.298 (p = 3.242e-03) riding on rho(s, log r) = +0.926 (p = 1.4e-41) and rho(log g, log r) = -0.537; with log10 r controlled, rho_partial = +0.626 (p = 1.227e-11); at fixed radius, pooled shell rho = +0.672 (p = 4.975e-12).  Physical-share lane (G106's s = rho_ph/rho_res): PARTIALLY SURVIVES on the PHYSICAL share: one reading stays 0.3-class significant, sign negative (claimed direction); the other collapses (pooled partial -0.283, p = 5.529e-03; pooled shell rho -0.170, p = 1.451e-01).
+
+G134 COMPLETE: artifact written: G134_results.json
