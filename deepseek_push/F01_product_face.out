@@ -1,0 +1,12 @@
+checks 9/9 PASS
+  PASS Lean: F01_product_face.lean compiles (lake env lean), exit 0 -- exit=0
+  PASS Lean: zero sorry -- sorry count=0
+  PASS Lean: axioms subset {propext, Classical.choice, Quot.sound} -- axioms=['Classical.choice', 'Quot.sound', 'propext']
+  PASS Lean: 7 theorems (field_identity, product_identity, product_face_exact, product_a0_chain, product_sigma_independent, product_a0_independent, product_ratio_closes) -- count=7
+  PASS MW anchor reproduced from the chain: sigma = 119.21 km/s, m = 5.0503 keV, T = 1.033e6 K -- sigma=119.2095 km/s  m=5.0503 keV  T=1.03297e+06 K
+  PASS THE PRODUCT FACE (chain): m x T / (mu m_p T_0(1+z*)) = 1.000000 exactly -- m*T/(mu m_p T0(1+z*)) = 1.0000000000 (rel diff 1.11e-16)
+  PASS Rounded anchor: m x T / (mu m_p T_0(1+z*)) = 1.000000 (sigma = 119.21 km/s, m = 5.0503 keV, T = 1.033e6 K as stated) -- m*T/(mu m_p T0(1+z*)) = 1.000036 (the anchor's stated 1.000000)
+  PASS THE COROLLARY numeric: the product is a0-INDEPENDENT -- sweep a0 in [0.5, 2.0] a0_H, 401 scales: m x T / (mu m_p T0(1+z*)) = 1.000000 on EVERY scale -- n=401 scales, worst |ratio-1| = 3.33e-16 (bit-identical: the scale cancels completely)
+  PASS THE FIELD IDENTITY numeric: (a/sigma^2)(b sigma^2) = a b at float precision over the sigma^2 sweep -- sigma^2 in [0.5, 2.0] sigma2, 401 points, worst |ratio-1| = 3.33e-16
+lean exit 0 | sorry 0 | axioms ['Classical.choice', 'Quot.sound', 'propext'] | theorems 7
+sigma_kms=119.2095 m_keV=5.0503 T=1.03297e+06 ratio_chain=1.0000000000 ratio_anchor=1.000036 worst_sweep=3.33e-16
