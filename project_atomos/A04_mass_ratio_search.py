@@ -426,7 +426,7 @@ def interlock_leg(reports, seed=20260729, nperm=300):
     cpos = None
     # planted positive / negative controls exactly as INTERLOCK_SEARCH.selftest
     sk, tg, ns = ILS.synth(2000, 0, n_tgt, np.random.default_rng(seed + 1))
-    _s, _t, _n, nm, _x = ILS.calibrate(sk, tg, ns, nperm, np.random.default_rng(seed + 2))
+    _s, _t, nm, _n, _x = ILS.calibrate(sk, tg, ns, nperm, np.random.default_rng(seed + 2))  # null_max is the 3rd return
     ceiling = nm.mean() + 3 * nm.std()
     k_pos = min(n_tgt, int(math.ceil(ceiling)) + 4)
     sk, tg, ns = ILS.synth(2000, k_pos, n_tgt, np.random.default_rng(seed + 3))
