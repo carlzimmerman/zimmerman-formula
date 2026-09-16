@@ -1,0 +1,105 @@
+==========================================================================================================
+B01 -- THE 2.55-KEV LINE PROFILE: width, spatial law, environmental absence
+         the framework's one derived X-ray observable, fully specified
+==========================================================================================================
+
+==========================================================================================================
+PART 1  THE WIDTH -- the full predicted line profile (Gaussian sigma in eV)
+==========================================================================================================
+
+--- 1.1  the line energy:  E = m/2 = 2.5443 keV ----------------
+  m (G212 joint peak) = 5.0886 +- 0.0969 keV;  E_line = m/2 = 2.5443 keV  (A05 register 2.5443)
+  [PASS] C1 [the line energy] E = m/2 = 2.5443 keV reproduces the A05 register (the fiducial band [2.50, 2.60])
+         measured: E_line = 2.5443 keV
+         reading : A05's line_energy_keV = 2.5443; the kill band for a line NOT at m/2 for the same m is registered (A05 gate f).
+
+--- 1.2  the velocity-broadened width (the committed caustic footing) ---
+  sigma_d (G182 caustic dispersion, v_ff/sqrt(3) infall) = 140.2 km/s
+  delta-E/E = sigma_d/c = 4.6766e-04   (register 4.68e-4)
+  delta-E   = E_line x sigma_d/c = 1.19 eV at 2.544 keV (register 1.19 eV)
+  [PASS] C2 [the committed velocity width] delta-E/E = 4.68e-4, delta-E = 1.19 eV at 2.54 keV from the G182 caustic dispersion
+         measured: delta-E/E = 4.677e-04 (4.68e-4); delta-E = 1.19 eV
+         reading : the committed dark-sector kinematic scale: the infall sheet's phase-mixed dispersion sigma_d = v_ff/sqrt(3) = 140.2 km/s.
+
+--- 1.3  the thermal width (T_dark = 334 K class, Z7) ----------------
+  T_dark (Z7 cluster-class window mean, 2-5 R500) = 333.9 K
+  m (species) = 9.0713e-33 kg;  v_th = sqrt(k_B T/m) = 712.9 km/s
+  delta-E_thermal = E_line x v_th/c = 6.05 eV
+  HONEST NOTE: Z7 DEFINES T_dark = m sigma_r^2/k_B, so the thermal width IS the species' kinematic width
+  (the window-mean sigma_r = sqrt(k_B T/m) = 712.9 km/s is the same velocity scale as the dispersion itself) --
+  the thermal and velocity footings are ONE physical velocity scale read two ways, not two independent broadenings.
+  [PASS] C3 [the thermal width] the 5.09-keV species at T_dark = 334 K has v_th = 713 km/s -> delta-E = 6.05 eV; and the identity T_dark = m sigma_r^2/k_B is reproduced
+         measured: v_th = 712.9 km/s; delta-E = 6.05 eV; implied T(844 km/s) = 468 K
+         reading : the thermal width at the committed dark temperature is 5x the caustic width -- the same species, the phantom's own (hotter) velocity scale.
+
+--- 1.4  the core (beta-profile) width --------------------------------
+  sigma_r,core = 844.0 km/s (Z7/S04 committed core dispersion, E2-primary inner bins 859/829 -> 844)
+  delta-E_core = E_line x sigma_r,core/c = 7.16 eV
+  (the inner-bin sigma_los = 952.0 km/s caps the envelope at delta-E = 8.08 eV)
+  [PASS] C4 [the core width] the committed core dispersion 844 km/s -> delta-E = 7.16 eV
+         measured: delta-E = 7.16 eV (envelope cap 8.08 eV at sigma_los = 952 km/s)
+
+--- 1.5  THE FULL PREDICTED LINE PROFILE ------------------------------
+    caustic_dust_G182        sigma_v =   140.2 km/s -> sigma_E =   1.19 eV (FWHM   2.80 eV)
+    phantom_window_Z7        sigma_v =   712.9 km/s -> sigma_E =   6.05 eV (FWHM  14.25 eV)
+    phantom_core_S04         sigma_v =   844.0 km/s -> sigma_E =   7.16 eV (FWHM  16.87 eV)
+    inner_los_G203           sigma_v =   952.0 km/s -> sigma_E =   8.08 eV (FWHM  19.03 eV)
+  THE PROFILE:  dN/dE ~ exp[-(E - 2.5443 keV)^2/(2 sigma_E^2)]
+    committed Gaussian sigma_E = 1.19 eV (the caustic/dust footing)
+    phantom footings: 6.05 - 7.16 eV (T_dark = 334 K / core 844 km/s)
+    PREDICTED ENVELOPE: sigma_E in [1.19, 8.08] eV over the committed dark-sector velocity scales
+    conservative quadrature upper bound (double-counts thermal+core): 9.45 eV -- labeled non-physical-as-single-scale
+  [PASS] C5 [the full profile] the line is a Gaussian with sigma_E = 1.19 eV at the committed caustic footing and envelope [1.2, 8.1] eV across the committed velocity scales; the width is Doppler-dominated, never intrinsic (no rate predicted)
+         measured: sigma_E = 1.19 eV (env [1.19, 8.08] eV; FWHM 2.80 eV)
+         reading : the three footings bracket one physical statement: the width is E x sigma_v/c of the dark emitter -- a cold dust/caustic footing at 1.19 eV, the phantom's own hotter footings at 6-7 eV.
+
+  PART 1: 5/5 PASS
+
+==========================================================================================================
+PART 2  THE SPATIAL PROFILE -- I(b) of the 2.55-keV line vs impact parameter
+==========================================================================================================
+
+--- 2.1  the density law:  rho_ph = A_ph/r^2 + rho_dust = A_d r^-1.7 --
+  phantom: rho_ph = A_ph/r^2 (the isothermal equilibrium, G233/G098) inside r_M
+  dust:    rho_d = A_d r^-1.7 (G139 coherency class, pooled p_dust = 1.69, mapped 1.55)
+  dark share at r_M (G098 floor-A): dust 0.674, phantom 0.326 -> rho_d/rho_ph at r_M = f/(1-f) = 2.067
+  emissivity j(r) = (Gamma/m) rho_dark(r) (Gamma constant: the rate drops out of the SHAPE -- A05 does not predict it)
+  surface brightness I(b) = 2 int_b^inf j(r) r dr/sqrt(r^2 - b^2)  [Abel]
+
+  Abel kernels:  K(r^-2) = pi/2 (exact);  K(r^-1.7) = int_0^inf cosh(t)^-0.7 dt = 2.0283
+  I_ph(b)   = pi A_ph / b                      ->  I ~ b^-1  (CUSP)
+  I_dust(b) = 2 A_d K(0.7) b^-0.7              ->  I ~ b^-0.7
+
+  numerical Abel cross-check (exact closed-form ratios):
+    phantom: median I_ph*b/(pi A_ph) = 0.9904 (spread 0.0025)
+    dust:    median I_d*b^0.7/(2 A_d K) = 0.9916 (spread 0.0056)
+    fitted slopes on b in (0.3, 1.0): phantom -1.000 (theory -1), dust -0.701 (theory -0.7)
+  [PASS] C6 [the phantom projection] the r^-2 phantom projects to a b^-1 CUSP (I_ph = pi A_ph/b exact; numerically verified to < 1%)
+         measured: median I_ph*b/(pi A_ph) = 0.9904, spread 0.0025; fitted slope -1.000
+  [PASS] C7 [the dust projection] the r^-1.7 dust projects to b^-0.7 (I_dust = 2 A_d K(0.7) b^-0.7; numerically verified to < 1%)
+         measured: median I_d*b^0.7/(2 A_d K) = 0.9916, spread 0.0056; K(0.7) = 2.0283; fitted slope -0.701
+
+  THE COMPOSITE I(b) (A_ph = 1, A_d = 2.07, r_M = 1; normalized to I(1)):
+      b/r_M    I_ph/I(1)   I_dust/I(1)  I_tot/I(1)   local slope -d lnI/d lnb
+        0.003       86.173       40.910      127.084      0.902
+        0.007       36.339       22.353       58.692      0.886
+        0.018       15.324       12.213       27.537      0.867
+        0.042        6.462        6.673       13.135      0.848
+        0.100        2.725        3.646        6.371      0.828
+        0.237        1.149        1.992        3.141      0.810
+        0.562        0.485        1.089        1.573      0.792
+        1.000        0.273        0.727        1.000      0.782
+        1.334        0.204        0.595        0.799      0.777
+        3.162        0.086        0.325        0.411      0.764
+  the local slope runs from 0.76 (outer, dust-dominated) to 0.90 (inner, phantom cusp):
+  the composite NEVER flattens: -d ln I/d ln b in [0.7, 1.0) inside r_M, steepening INWARD toward the phantom b^-1 cusp (approaching 1.0 only at depth where the r^-2 phantom wins; the pure phantom alone is EXACTLY 1.0 at every b).
+  [PASS] C8 [the composite slope] the composite surface-brightness slope lies in [0.7, 1.0) within r_M -- steepening inward toward the phantom b^-1 cusp, dust-dominated (-> 0.7) outward; no flat core anywhere
+         measured: slope range [0.76, 0.90] on b/r_M in [0.003, 3.16]
+
+--- 2.2  the CDM comparison: the NFW projected surface density -------
+  Sigma_NFW(R) = 2 rho_s r_s g(R/r_s);  g -> pi/2 - 1 = 0.571 (FLAT core) as R -> 0, g(1) = 1/3, g ~ x^-2 outside
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/project_atomos/B01_line_profile.py", line 410, in <module>
+    print(f"      {float(x):7.3f}   g = {float(nfw_g(x)):.4f}   "
+                                         ~~~~~^^^^^^^^^^
+DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
