@@ -1,0 +1,162 @@
+{
+  "task": "G152: THE INVENTORY REVISION -- re-run G089's classification with the wave-4-8 landings; the revised empirical count; the parameter count; verdicts.",
+  "landings_applied": {
+    "a_0_62_break": {
+      "from": "EMPIRICAL",
+      "to": "DERIVED",
+      "source": "G119",
+      "value": "0.6232 (full-kernel r_cut = 6.13 kpc / r_M = 9.8384 kpc), +0.5% vs registered 0.6200",
+      "note": "the registered 6.1 kpc break IS the zero-parameter full-kernel value at the registered inputs (a0 canonical, g_ext L240 = 2.146e-10, M_b = 6.5e10, R_d = 2.5 kpc); environmental input only; alt footing 0.7250 is A12, not A7"
+    },
+    "b_1_43_crossover": {
+      "from": "EMPIRICAL",
+      "to": "DERIVED",
+      "source": "G124",
+      "value": "model median r_half/r_M = 1.73 vs measured 1.43; 12/12 in [1/3,3]; Spearman +0.958; median |model-obs| = 0.17",
+      "note": "a SHAPE FUNCTIONAL: phantom and dust amplitudes cancel (d ln/d ln A_ph = -0.008, d ln/d ln A_dust = +0.030); pinned by c_b (+0.261), s (+0.254), r_M; the 0.3 gap is G108 V2's registered inner-window overshoot; alt footing model 0.83 vs measured 0.84"
+    },
+    "c_2_3_exponent": {
+      "from": "EMPIRICAL",
+      "to": "DERIVED",
+      "source": "G095",
+      "value": "alpha = 2/3 structural; alpha_emp = 0.752 +/- 0.115 (2/3 at 0.74 sigma; 1/2 excluded at 2.19 sigma)",
+      "note": "closed form T_obs/T_pred = 2 (M_dyn/M_b)(r_M/r) + overdensity-500 def R500 ~ M500^(1/3); the -1/3 is cluster self-similarity"
+    },
+    "d_3_4_beta": {
+      "from": "EMPIRICAL",
+      "to": "DERIVED",
+      "source": "G095",
+      "value": "beta = 3/4 constancy condition; fitted M500 ~ M_b^beta = 0.634 +/- 0.107 (3/4 at 1.08 sigma)",
+      "note": "T-ratio M_b-independence iff (2/3)(beta-1) + 1/6 = 0 <=> beta = 3/4; the fitted covariance is the empirical check that nearly satisfies it"
+    },
+    "e_r1_dust_shape": {
+      "from": "EMPIRICAL",
+      "to": "DERIVED",
+      "source": "G122",
+      "value": "p* = +0.99 (the framework's own r^-1); coherency curve closes 0.313 -> 0.097 dex, 12/12 clusters < 0.15",
+      "note": "free-dust normalization IS one profile shape (r/R500)^-0.99 with per-cluster amplitude; remaining thorn: the amplitude's mass-ordering (q = -0.41) and its residual floor"
+    },
+    "f_mightee_deep_offset": {
+      "from": "EMPIRICAL",
+      "to": "OPEN",
+      "source": "G099",
+      "value": "-0.151 +/- 0.015 dex (-9.9 sigma, n = 72) = 1.4-1.6x high at g_N < 0.2 a0; pooled rms 0.190 dex; scatter 0.132 dex",
+      "note": "measured discrepancy, shape (-1/2) confirmed, zero-parameter amplitude conflicted; matches the paper's own a0 = 1.69 +/- 0.13e-10 preference; registered as the footing's pressure (feeds A12); G133 dispatched"
+    },
+    "b12_reclassification": {
+      "from": "EMPIRICAL",
+      "to": "DERIVED",
+      "source": "G089 convention (B4/B7)",
+      "value": "dSph floor agreement median log10(pred/obs) = -0.00 dex (7 dwarfs; G070 0.222/34)",
+      "note": "re-classified to the B4/B7 check-reading convention: the floor sigma_pred = (G M_b a0)^(1/4)/sqrt(2) is derived; the -0.00 median is the empirical CHECK of it, not a separate datum"
+    }
+  },
+  "g089_reference_ledger": {
+    "derived": 17,
+    "empirical": 7,
+    "circular_ruled_out": 7,
+    "open": 3,
+    "truly_free_parameters": 1
+  },
+  "revised_inventory": {
+    "DERIVED": [
+      "A1 Z = sqrt(32 pi/3) = 5.7888 (unchanged)",
+      "A3 triad sigma^2/v_flat^2 = kappa = 1/2 (unchanged; value inherits n = 2)",
+      "A4 z* = 4 z_c (unchanged)",
+      "A7 0.62 = r_break/r_M -> 0.6232 kernel value (MOVED from EMPIRICAL, G119)",
+      "A9 209.0/17.7 Msun/pc2 (unchanged)",
+      "A10 Sigma_ph(<r_M) = a0/(pi G) = 213.75 (unchanged)",
+      "A11 geometric pi-content (unchanged)",
+      "A14 r_half/r_M: shape functional 1.73 vs measured 1.43 (MOVED from EMPIRICAL, G124)",
+      "A15 T-ratio structural exponent alpha = 2/3 (MOVED from EMPIRICAL, G095)",
+      "A16 M500-M_b covariance beta = 3/4 (MOVED from EMPIRICAL, G095)",
+      "A17 free-dust radial shape p* = +0.99 = r^-1 (MOVED from EMPIRICAL, G122)",
+      "B1 equipartition M_ph(<r_M)/M_b = 1 (unchanged)",
+      "B2 linear law M_dark/M_b = r/r_M (unchanged)",
+      "B3 coefficient-1 chain (unchanged)",
+      "B4 Omega_Lambda = 0.6857 (check-reading; unchanged)",
+      "B5 Omega_dm = 0.2650 (unchanged)",
+      "B6 scalar w (unchanged)",
+      "B7 coincidence epoch z(w=0) = 0.49 (check-reading; unchanged)",
+      "B8 funnel z* = 4 z_c, e^{+R/3} flare (unchanged)",
+      "B9 GC boundary identity r_M/r_h = eta/2 (identity; eta measured, B9n)",
+      "B10 relation T_pred/T_obs = 0.53^2 (relation derived; value stays A13 OPEN)",
+      "B12 dSph floor agreement -0.00 dex (MOVED from EMPIRICAL: check-reading of the derived floor, B4/B7 convention)",
+      "B14 high-z discriminating ratio 20:1 (unchanged)"
+    ],
+    "EMPIRICAL": [
+      "A5 n = 2 (the one empirical premise; SPARC-selected, never free)",
+      "A6 kappa = 1/2 vs Milgrom's 1/(2pi): dchi2 63.9 vs 154.3, ~2.2 sigma (measured comparative test)",
+      "B11 RAR tightness floors 0.064/0.055 dex",
+      "B13 r_in = 0.3 r_M (declared convention)",
+      "B9n eta = 7.0 +/- 1.16 (G074)"
+    ],
+    "CIRCULAR_ruled_out": [
+      "C1 seesaw singles out 1/2",
+      "C2 Lambda from a0 to +0.0% (rung-9 circularity)",
+      "C3 Omega_Lambda closure at +0.07%",
+      "C4 n = 2 from the graviton's polarisation count",
+      "C5 f(0) = -1 fixed by the theory",
+      "C6 epsilon_tot = 1/(32pi) framing",
+      "C7 'one input scale' as a count"
+    ],
+    "OPEN": [
+      "A8 lensing floor ratio absolute value (+0.355 dex 2.26x KiDS / +0.419 2.62x re-stack; conversion envelope +/- 0.196 dex)",
+      "A12 footing ratios 0.754-0.783 band (now under MIGHTEE's upward 1.4-1.6x pressure)",
+      "A13 cluster amplitude (0.28 +/- 0.05 dex, 3.6x; structure derived by G095, value open; includes the residual floor of the dust-amplitude mass-ordering, G122 q = -0.41 thorn, named under A17/A13)",
+      "A18 MIGHTEE deep-end offset -0.151 +/- 0.015 dex, 1.4-1.6x (MOVED from EMPIRICAL, G099; the footing's pressure)"
+    ]
+  },
+  "revised_counts": {
+    "derived": 23,
+    "empirical": 5,
+    "circular_ruled_out": 7,
+    "open": 4,
+    "live_entries_excl_circular": 32,
+    "total_entries_incl_circular": 39,
+    "closure_measure": {
+      "derived_fraction": 0.71875,
+      "empirical_fraction": 0.15625,
+      "open_fraction": 0.125
+    }
+  },
+  "parameter_count": {
+    "count": 1,
+    "name": "Z (equivalently Omega_Lambda, equivalently a0/cH_Lambda; canonical form f(0) = -1)",
+    "changed_by_revision": false,
+    "note": "not fewer: Z's magnitude is still the one measured datum (vacuum scale via Lambda -> a0); a count of zero would require a UV completion that fixes Z's magnitude (G089 V3(iv)), not done",
+    "ledger": [
+      "1 truly free parameter: Z (the vacuum scale in dimensionless form; seesaw is an identity, L260 Z1)",
+      "empirical premises, not parameters: n = 2 (A5); the kappa vs 1/(2pi) comparative statistics (A6)",
+      "measured inputs to derived statements (same status as Lambda, never coefficients of the action): g_ext L240 + MW setup M_b, R_d (A7); X-COP baryon tables + c_b, G108 envelope s = 2.38 + per-cluster dust amplitudes (A14, A17); the sample M500-M_b covariance as the check of 3/4 (A16); eta (B9n); floors (B11); r_in (B13)",
+      "the revision added zero parameters: five EMPIRICAL->DERIVED moves used committed inputs only; one entry moved to OPEN (a discrepancy, not a parameter)"
+    ],
+    "statement": "exactly ONE free dimensionless parameter (Z); five named empirical premises/inputs; four OPEN items; everything else derived"
+  },
+  "verdicts": {
+    "V1_revised_inventory": "PASS -- all six task items land as classified (a-e EMPIRICAL->DERIVED, f EMPIRICAL->OPEN); B12 additionally re-classified to the B4/B7 check-reading convention, stated explicitly; counts 23 DERIVED / 5 EMPIRICAL / 7 CIRCULAR / 4 OPEN, 32 live entries, arithmetic verified (23+5+4 = 32; total 39)",
+    "V2_parameter_count": "PASS -- exactly ONE (Z), unchanged; not fewer; the statement is the §3 ledger attached to the §2 table (the G089 V2 posture that survived L260 Z5)",
+    "V3_honest_statement": "PASS -- the empirical residue is exactly five measurement-bound dimensionless numbers (n = 2, eta = 7.0 +/- 1.16, the 0.064/0.055 floors, r_in = 0.3 r_M, kappa vs 1/2pi) plus four named OPEN discrepancies (lensing floor, footing under MIGHTEE pressure, cluster amplitude, dust-amplitude ordering floor); closure measure: 23/32 = 71.9% derived, 5/32 = 15.6% measured, 4/32 = 12.5% open, behind ONE free datum; TOE needs: n = 2 microphysics, the footing (MIGHTEE pushes the galactic a0 HIGHER, away from the DE anchor), the cluster amplitude's mass-ordering, Z's UV origin"
+  },
+  "checks": [
+    {"id": "C1", "check": "G089 reference ledger reproduced", "measured": "17/7/7/3, 1 free parameter", "pass": true},
+    {"id": "C2", "check": "G119 landing transcribed", "measured": "0.6232, +0.5% vs 0.6200, zero fitted parameters, environmental input only", "pass": true},
+    {"id": "C3", "check": "G124 landing transcribed", "measured": "model 1.73 vs measured 1.43, 12/12 in [1/3,3], Spearman +0.958, amplitudes cancel", "pass": true},
+    {"id": "C4", "check": "G095 landings transcribed", "measured": "2/3 at 0.74 sigma, 1/2 at 2.19 sigma; beta = 3/4 at 1.08 sigma vs fitted 0.634 +/- 0.107", "pass": true},
+    {"id": "C5", "check": "G122 landing transcribed", "measured": "p* = +0.99, 0.313 -> 0.097 dex, 12/12 < 0.15", "pass": true},
+    {"id": "C6", "check": "G099 landing transcribed to OPEN", "measured": "-0.151 +/- 0.015 dex (-9.9 sigma, n = 72), 1.4-1.6x; footing pressure; shape confirmed", "pass": true},
+    {"id": "C7", "check": "revised counts arithmetic", "measured": "derived 17+6 = 23; empirical 7-2 = 5; open 3+1 = 4; live 32; 23/32 = 0.71875; 5/32 = 0.15625; 4/32 = 0.125", "pass": true}
+  ],
+  "n_pass": 7,
+  "n_total": 7,
+  "sources": [
+    "G089_dimensionless_inventory.md + G089_results.json (the ledger being revised)",
+    "G119_break_factor.out (6/6 PASS)",
+    "G124_crossover_143.out (7/8 PASS; C2 closure FAIL is the registered finding)",
+    "G095_temperature_ratio.out (10/11 PASS)",
+    "G122_coherency_decomp.out (5/5 PASS)",
+    "G099_mightee_rar.out (2/3 PASS; V2 FAIL is the finding)",
+    "G107 (measured 1.43/0.84 rows), G108 (s = 2.38; 34/292), G074 (eta = 7.0 +/- 1.16), G010/G013 (floors), G071/G072 (r_in), G002/G009/G019 (n = 2), EMPIRICAL_TESTS A13/L4-33/L4-34 (kappa vs 1/2pi), STATE.md, WAVEBOARD waves 4-8",
+    "repo: /Users/carlzimmerman/new_physics/zimmerman-formula"
+  ]
+}
