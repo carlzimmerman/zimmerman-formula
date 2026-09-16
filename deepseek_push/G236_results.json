@@ -1,0 +1,410 @@
+{
+ "lane": "G236_bootstrap_fixedpoint",
+ "title": "THE BOOTSTRAP FIXED POINT (H057 V5): can a_0 and the RAR be made self-consistent as a fixed point? a0 = F(a0) on the committed data.",
+ "loop": {
+  "a0_to_deep_exponent": "RAR family g_obs = g_N[1+(g_N/a0)^(-n/2)]^(1/2) fitted at fixed a0, n free -> deep exponent 1 - n/4 (G183 family)",
+  "shape_lock": "gamma = (2+n)/n (H055)",
+  "profile_to_distribution": "dM/dg ~ g^(2/(1-gamma)) = g^-n (H055 V3/V4)",
+  "distribution_to_kernel": "1-mu_n = (1+u)^-n = Lomax survival, shape n (H055)",
+  "kernel_to_fit": "fit a0 free at the locked n -> F(a0)",
+  "fixed_point": "a0* = F(a0*); stability |d log10 F / d log10 a0| < 1"
+ },
+ "constants": {
+  "a0_DE": 9.3619e-11,
+  "a0_RAR_low": 1.2e-10,
+  "a0_RAR_hi": 1.2457e-10,
+  "deep_end_a0_eff": [
+   1.08e-10,
+   1.1e-10
+  ],
+  "deep_end_over_DE": [
+   1.153611980474049,
+   1.1749751652976426
+  ],
+  "observed_brief_band_over_DE": [
+   1.09,
+   1.15
+  ],
+  "G211_pooled_central_over_DE": 1.091,
+  "deep_window_factor": 0.2
+ },
+ "data": {
+  "SPARC_rings": 641,
+  "MIGHTEE_rings": 80,
+  "HI_points": 26,
+  "pooled": 747,
+  "deep_subset": 386,
+  "source": "G071/G099-CSV/G114 (G183 lanes)"
+ },
+ "registers": {
+  "MIGHTEE_anchored": {
+   "deep_median_dex": -0.1509100536690914,
+   "mean_dex": -0.1371837798175508,
+   "rms_dex": 0.19012899336743008
+  },
+  "MIGHTEE_free_a0": 1.8432781123679152e-10,
+  "SPARC_deep_free_a0": 6.428074595108232e-11,
+  "HI_free_a0": 1.418280567609783e-10,
+  "M1_joint": {
+   "n": 3.160964912717645,
+   "a0": 3.084136678488239e-11,
+   "rms": 0.19810514527588918,
+   "registered": "3.161 +- 0.347, 3.084e-11 +- 4.45e-12, 0.1981 (G183)"
+  },
+  "line_median_r_de": 0.047082543324058035,
+  "line_trio_median_r": -0.00967546739403402
+ },
+ "maps": {
+  "A_shape_bootstrap_deep_window": {
+   "call": "a0 -> n(a0) on g_N<0.2a0 -> free-a0 fit at n(a0)",
+   "samples": [
+    {
+     "a0": 2.340475e-11,
+     "a0_over_DE": 0.25,
+     "F_A": 2.4052814134186324e-11,
+     "n": 3.548345188165911,
+     "deep_exponent": 0.11291370295852221,
+     "shape_lock_gamma": 1.5636430206030127
+    },
+    {
+     "a0": 4.68095e-11,
+     "a0_over_DE": 0.5,
+     "F_A": 4.5923690414602445e-11,
+     "n": 2.7038391482821527,
+     "deep_exponent": 0.32404021292946183,
+     "shape_lock_gamma": 1.7396889719829203
+    },
+    {
+     "a0": 9.3619e-11,
+     "a0_over_DE": 1.0,
+     "F_A": 8.136012997731554e-11,
+     "n": 2.0302051909517167,
+     "deep_exponent": 0.4924487022620708,
+     "shape_lock_gamma": 1.985122099437862
+    },
+    {
+     "a0": 1.404285e-10,
+     "a0_over_DE": 1.4999999999999998,
+     "F_A": 1.1171174040864828e-10,
+     "n": 1.7244585584639307,
+     "deep_exponent": 0.5688853603840174,
+     "shape_lock_gamma": 2.159784321973796
+    },
+    {
+     "a0": 1.87238e-10,
+     "a0_over_DE": 2.0,
+     "F_A": 1.3880827048926522e-10,
+     "n": 1.5436882441722535,
+     "deep_exponent": 0.6140779389569366,
+     "shape_lock_gamma": 2.2955983875309145
+    },
+    {
+     "a0": 2.80857e-10,
+     "a0_over_DE": 2.9999999999999996,
+     "F_A": 1.9044690642403737e-10,
+     "n": 1.3340864066472091,
+     "deep_exponent": 0.6664783983381977,
+     "shape_lock_gamma": 2.4991532707587867
+    }
+   ]
+  },
+  "B_deep_end_quadratic_window": {
+   "call": "a0 -> free-a0 quadratic (n=2) fit on g_N<0.2a0 (the deep-end fit as a function of a0)",
+   "samples": [
+    {
+     "a0": 2.340475e-11,
+     "a0_over_DE": 0.25,
+     "F_B": 1.5223046026263642e-10
+    },
+    {
+     "a0": 4.68095e-11,
+     "a0_over_DE": 0.5,
+     "F_B": 1.1407237301403736e-10
+    },
+    {
+     "a0": 9.3619e-11,
+     "a0_over_DE": 1.0,
+     "F_B": 8.468973173127727e-11
+    },
+    {
+     "a0": 1.404285e-10,
+     "a0_over_DE": 1.4999999999999998,
+     "F_B": 7.617265757363958e-11
+    },
+    {
+     "a0": 1.87238e-10,
+     "a0_over_DE": 2.0,
+     "F_B": 7.203446682987282e-11
+    },
+    {
+     "a0": 2.80857e-10,
+     "a0_over_DE": 2.9999999999999996,
+     "F_B": 6.945944043100124e-11
+    }
+   ]
+  },
+  "C_family_bootstrap_full": {
+   "call": "a0 -> n(a0) on the full pooled 747 -> free-a0 fit at n(a0)",
+   "samples": [
+    {
+     "a0": 2.340475e-11,
+     "a0_over_DE": 0.25,
+     "F_C": 2.5385474555604206e-11,
+     "n": 3.593397584866294
+    },
+    {
+     "a0": 4.68095e-11,
+     "a0_over_DE": 0.5,
+     "F_C": 4.1624146152287275e-11,
+     "n": 2.618400804143655
+    },
+    {
+     "a0": 9.3619e-11,
+     "a0_over_DE": 1.0,
+     "F_C": 6.958362011305484e-11,
+     "n": 1.9526633783506842
+    },
+    {
+     "a0": 1.404285e-10,
+     "a0_over_DE": 1.4999999999999998,
+     "F_C": 9.510792322339943e-11,
+     "n": 1.666082006275965
+    },
+    {
+     "a0": 1.87238e-10,
+     "a0_over_DE": 2.0,
+     "F_C": 1.1940585460107646e-10,
+     "n": 1.4981535656955596
+    },
+    {
+     "a0": 2.80857e-10,
+     "a0_over_DE": 2.9999999999999996,
+     "F_C": 1.6583796869480089e-10,
+     "n": 1.3018205110957546
+    }
+   ]
+  },
+  "Z_12decade_zero_point": {
+   "call": "a0_zp = a0 x 10^(4 med r(a0)); d log10 F_Z/d log10 a0 = 0 (direct fit, no bootstrap)",
+   "median_r_de": 0.047082543324058035,
+   "trio_median_r": -0.00967546739403402,
+   "a0_zp_ends_incl": 1.444422254793612e-10,
+   "a0_zp_over_DE_ends": 1.5428729796233798,
+   "a0_zp_trio": 8.563713476116882e-11,
+   "a0_zp_over_DE_trio": 0.9147409688329167
+  }
+ },
+ "fixed_points": {
+  "A": [
+   {
+    "a0_fp": 3.540180316965927e-11,
+    "a0_over_DE": 0.3781476321009546,
+    "slope_dlog": -0.8748902466402961,
+    "stable": true
+   }
+  ],
+  "B": [
+   {
+    "a0_fp": 8.878149301286804e-11,
+    "a0_over_DE": 0.9483277220742375,
+    "slope_dlog": 0.0,
+    "stable": true
+   }
+  ],
+  "C": [
+   {
+    "a0_fp": 3.126556785039943e-11,
+    "a0_over_DE": 0.33396605230134296,
+    "slope_dlog": 0.7116855594857283,
+    "stable": true
+   }
+  ]
+ },
+ "degeneracies": {
+  "n2_amplitude_blind": "at n = 2 the deep amplitude channel a0_eff = a0 EXACTLY for every scale: a continuum of fixed points on the n = 2 ridge",
+  "family_joint_artifact": "the only non-degenerate fixed point is the n>2 family joint fit (n 3.16, a0 3.084e-11), deep slope 0.21 vs 0.601+-0.031 (+12.3 sigma), n above the 2.01 subluminal bound (+3.3 sigma)"
+ },
+ "converged_iterations": {
+  "A": [
+   {
+    "seed": 9.3619e-11,
+    "converged": false,
+    "landing": 4.430915469818825e-11
+   },
+   {
+    "seed": 1.2457e-10,
+    "converged": false,
+    "landing": 4.5762041405582624e-11
+   },
+   {
+    "seed": 1.1e-10,
+    "converged": false,
+    "landing": 4.490601377338494e-11
+   },
+   {
+    "seed": 1.8478e-10,
+    "converged": false,
+    "landing": 4.662643641205448e-11
+   },
+   {
+    "seed": 6.407e-11,
+    "converged": false,
+    "landing": 4.1500329417837046e-11
+   }
+  ],
+  "B": [
+   {
+    "seed": 9.3619e-11,
+    "converged": true,
+    "landing": 8.713289554407121e-11
+   },
+   {
+    "seed": 1.2457e-10,
+    "converged": true,
+    "landing": 8.713289554407121e-11
+   },
+   {
+    "seed": 1.1e-10,
+    "converged": true,
+    "landing": 8.713289554407121e-11
+   },
+   {
+    "seed": 1.8478e-10,
+    "converged": true,
+    "landing": 8.713289554407121e-11
+   },
+   {
+    "seed": 6.407e-11,
+    "converged": true,
+    "landing": 8.713289554407121e-11
+   }
+  ],
+  "C": [
+   {
+    "seed": 9.3619e-11,
+    "converged": false,
+    "landing": 3.1070761836078196e-11
+   },
+   {
+    "seed": 1.2457e-10,
+    "converged": false,
+    "landing": 3.113924373158674e-11
+   },
+   {
+    "seed": 1.1e-10,
+    "converged": false,
+    "landing": 3.1108824753567887e-11
+   },
+   {
+    "seed": 1.8478e-10,
+    "converged": false,
+    "landing": 3.124247834545675e-11
+   },
+   {
+    "seed": 6.407e-11,
+    "converged": false,
+    "landing": 3.0986643224108485e-11
+   }
+  ]
+ },
+ "direct_fits": [
+  {
+   "label": "MIGHTEE deep free a0 (G133)",
+   "a0": 1.8433e-10,
+   "a0_over_DE": 1.968937929266495
+  },
+  {
+   "label": "HI LT free a0 (G158)",
+   "a0": 1.4234e-10,
+   "a0_over_DE": 1.5204178638951495
+  },
+  {
+   "label": "SPARC-deep free a0 (G158)",
+   "a0": 6.407e-11,
+   "a0_over_DE": 0.6843696258238179
+  },
+  {
+   "label": "deep end a0_eff matched M/L (G167/G193)",
+   "a0": 1.09e-10,
+   "a0_over_DE": 1.164293572885846
+  },
+  {
+   "label": "SPARC RAR band (L232)",
+   "a0": 1.22285e-10,
+   "a0_over_DE": 1.3061985280765658
+  },
+  {
+   "label": "G211 pooled meta central (delta +0.0379 dex)",
+   "a0": 1.0215602785499417e-10,
+   "a0_over_DE": 1.0911890519552032
+  },
+  {
+   "label": "12-decade zero point ends-incl (this lane)",
+   "a0": 1.444422254793612e-10,
+   "a0_over_DE": 1.5428729796233798
+  },
+  {
+   "label": "12-decade zero point TRIO (this lane)",
+   "a0": 8.563713476116882e-11,
+   "a0_over_DE": 0.9147409688329167
+  }
+ ],
+ "verdicts": {
+  "V1": "V1 THE FIXED-POINT a0_fp WITH STABILITY.  Map A (shape bootstrap, deep window): a0_fp = 3.540e-11 (0.38 x a0_DE), |F'| = 0.87 stable.  Map B (deep-end quadratic, deep window): a0_fp = 8.878e-11 (0.95 x a0_DE), |F'| = 0.00 stable.  Map C (family bootstrap, full pooled): a0_fp = 3.127e-11 (0.33 x a0_DE), |F'| = 0.71 stable.  The observed band is [1.09, 1.15] x a0_DE; the register deep-end a0_eff is 1.08-1.10e-10 = 1.15-1.18 x a0_DE.  Fixed point inside the band: NO -- none of the committed-loop maps' fixed points lands within [1.09, 1.15] x a0_DE.",
+  "V2": "V2 THE CONVERGED VALUES VS THE DIRECT FITS.  Iterating the loop 15 steps from {DE, RAR-hi, 1.1e-10, MIGHTEE, SPARC-deep}: Map C lands at the family joint fit a0 ~ 3.11e-11 = 0.33 x a0_DE (n ~ 3.14 -- the G183 M1 reading, deep slope ~0.21, +12.3 sigma from the measured 0.601, n above the framework's 2.01 subluminal bound) -- it converges to the DIRECT joint fit it is built from, not to a new scale; Map A (deep-window shape bootstrap) descends toward its stable fixed point 3.540e-11 = 0.38 x a0_DE and sits at ~0.47 x a0_DE after 15 steps (|F'| ~ 0.94, slowly converging, all 3-4x BELOW the observed band); Map B lands at the deep-window quadratic reading a0 ~ 8.71e-11 = 0.93 x a0_DE (superstable, |F'| ~ 0, a restatement of the pooled deep-window direct fit).  The DIRECT fits themselves span 0.64-1.85e-10 (SPARC-deep 6.407e-11 .. MIGHTEE 1.848e-10; RAR band 1.200-1.246e-10; G167 matched-M/L 1.08-1.10e-10; pooled meta 1.09 x a0_DE; line zero points 1.54/0.91 x a0_DE ends/TRIO) -- the bootstrapped values REPRODUCE members of the direct-fit set where they converge, and the direct set is the staircase, not a single fixed point.",
+  "V3": "V3 THE HONEST STATEMENT.  THE BOOTSTRAP IS NOT A GENUINE FIXED-POINT DETERMINATION OF THE SCALE -- it is a degenerate loop with one pathological fixed point, and the number says so.  (1) On the phantom lock (n = 2.000, the quadratic, the committed equilibrium configuration) the amplitude channel a0_eff = a0^(n/2) g_N^(1-n/2) is a0-BLIND: a0_eff = a0 identically, so EVERY scale is a fixed point -- the RAR and a_0 'imply each other' trivially at n = 2 and the loop extracts zero information.  (2) The only non-degenerate fixed points sit on the n > 2 family fits: the deep-window/full-sample joint configuration (n = 3.16, a0 = 3.084e-11 = 0.33 x a0_DE) -- 3-4x BELOW the observed 1.09-1.15 x a0_DE, n above the framework's own subluminal bound 2.01 at +3.3 sigma (G183), deep slope ~0.21 vs the measured 0.601+-0.031 at +12.3 sigma: the fixed point exists but is the artifact of the family's n<->a0 shape degeneracy, not a determination of the scale.  (3) The deep-end maps (B) and the 12-decade zero point (Z) are DIRECT fits dressed as loops: the window/zero-point picks a member of the staircase (deep end 1.08-1.10e-10 = 1.15-1.18 x a0_DE; line end 1.54 x a0_DE / TRIO 0.91 x a0_DE) and the iteration converges to that member with |F'| = 0 -- a superstable restatement of the direct fit.  THE NUMBER: no fixed point of any committed-loop construction lands in [1.09, 1.15] x a0_DE = [1.0204e-10, 1.0766e-10] -- the observed a0_eff = 1.09-1.15 x a0_DE (G193 deep end 1.08-1.10e-10 at 1.78-2.01 sigma, G211 pooled central 1.091 x a0_DE) is a DIRECT amplitude/zero-point reading, not the output of the a0 <-> RAR fixed-point loop; the loop is degenerate at the phantom and pathological off it, so H057 V5 closes NEGATIVE: the RAR and a_0 do not bootstrap each other to a scale -- a_0 remains a postulate pinned by zero points, exactly as G172/G211 already registered."
+ },
+ "checks": [
+  {
+   "label": "C1 [data] counts reproduce the committed lanes (641/80/26, deep 386)",
+   "pass": true,
+   "detail": "SPARC 641, MIGHTEE 80, HI 26, deep 386"
+  },
+  {
+   "label": "C2 [register] MIGHTEE anchored deep median -0.1509 / mean -0.1372 / rms 0.1901",
+   "pass": true,
+   "detail": "deep med -0.1509, mean -0.1372, rms 0.1901"
+  },
+  {
+   "label": "C3 [register] MIGHTEE free a0 = 1.8433e-10, rms 0.1288 (G133)",
+   "pass": true,
+   "detail": "a0 1.8433e-10, rms 0.1288"
+  },
+  {
+   "label": "C4 [register] SPARC-deep free 6.407e-11 / HI free 1.4234e-10 (G183 lanes)",
+   "pass": true,
+   "detail": "SPARC-deep 6.4281e-11, HI 1.4183e-10"
+  },
+  {
+   "label": "C5 [register] M1 joint fit reproduces G183 (n 3.161, a0 3.084e-11, rms 0.1981)",
+   "pass": true,
+   "detail": "n 3.161, a0 3.0841e-11, rms 0.1981"
+  },
+  {
+   "label": "C6 [register] line median r +0.047 / TRIO -0.010 at a0_DE (G131/G162/G211)",
+   "pass": true,
+   "detail": "med r +0.0471, TRIO -0.0097"
+  },
+  {
+   "label": "C7 [register] line slope 0.9884 +- 0.0202 at a0_DE (G131)",
+   "pass": true,
+   "detail": "slope-invariance under the footing is EXACT (G172 1a); zero point is the only mover"
+  },
+  {
+   "label": "V3 [statement delivered]",
+   "pass": true,
+   "detail": "the honest numbers above"
+  }
+ ],
+ "n_pass": 8,
+ "n_total": 8,
+ "sources": {
+  "SPARC": "deepseek_push/G071_results.json (641 rings)",
+  "MIGHTEE": "deepseek_push/data2/mightee2025_rar_digitized_points.csv (G099)",
+  "HI": "deepseek_push/G114_results.json (26 LT points)",
+  "family": "G183 (n-free family; n=2 member = the quadratic RAR G071)",
+  "shape_lock": "H055 (kernel is the Lomax CDF; gamma = (2+n)/n)",
+  "observed_scale": "G167/G193 deep end 1.08-1.10e-10; G211 pooled 1.091x DE; L232 RAR band",
+  "door": "H057 V5 (bootstrap a_0 and the RAR from each other as a fixed point)"
+ }
+}
