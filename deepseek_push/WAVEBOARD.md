@@ -77,15 +77,66 @@ sets the phase; the separating observable: d ln M/d ln r = 1 inner vs 2
 cluster); the 11 eV kill reproduced at 103-190 Mpc. The dark sector at
 particle level: a cold species m > 3.3-5.7 keV carrying the shift charge.
 
-## WAVES 4-7 (in flight: G094-G121, 33 lanes)
-the cluster attack (G094 audit, G095 the 0.53^2 mystery, G096 D2 core-slope,
-G097 chi2 decomposition, G098 free-dust inversion, G103 phase timescale) +
-the Kepler P1-P6 executions (G104-G109) + wave 6 (G110 Bullet audit, G111
-relaxation N-body spec, G112 DR4 Amendment 12, G113 tSZ P7, G114 deep-end
-HI, G115 low-mass floor) + wave 7 (G116 sector-mass synthesis, G117 BTFR
-correction amendment, G118 merger-rate registry, G119 the 0.62 derivation
-candidate sqrt(a0/g_ext) = 0.635 vs 0.62, G120 theory-doc refresh, G121
-pair-merger forecast).
+## WAVE 5 (landed 6/6 -- the Kepler executions: STRUCTURE HOLDS, AMPLITUDE FAILS)
+G104 P1 temp-ratio 9/10: the universality CONFIRMED (scatter 0.052 dex,
+remeasurement-invariant, both M_b conventions); the exponent alpha = +0.210
++- 0.161 -- NOT {1/2, 1}: G095's closed form gives the 2/3-family
+structurally, cross-check (4 beta - 3)/(6(beta - 1)) = +0.212 vs +0.210
+(0.0 sigma): the small pooled slope IS the closed form's own value.  The
+0.53^2 mystery's shape is DERIVED; the amplitude (3.6x) stays the free-dust
+input.
+G105 P5 coherency 10/14: ARE THEY CLUSTERS? -- STRUCTURALLY SINGLE, NOT
+superpositions: radius-space scatter 0.063-0.159 dex (median 0.079,
+Ghirardini-class min-scatter window), 0/12 outliers; the framework's curve-
+COLLAPSE fails (0.313 dex, AT the 0.3 falsifier line, 2.1x the prediction)
+-- sample-wide systematic, no mixture marker; profile-level clean subset
+EMPTY, aperture-level all 12.  DATA VERIFICATION: the committed ingests had
+no T(r); the official X-COP release fetched, md5 12/12 byte-identical.
+G106 P3 share 5/6: the rising share CONFIRMED 12/12 (median per-cluster
+rho -0.83); kernel slope -0.529/-0.580 vs the 1-mu2(g/2a0) model 0.589/dex
+-- within 10.2%/1.5% (the kernel-form PASS); V2 honest FAIL: pooled
+Spearman -0.542, NOT -0.7 -- the registered V4 (G050, -0.926) sits on the
+units-bugged arrays (G059 DATA NOTE confirmed: 0.7 overclaims).
+G107 P4 gas fraction 8/11: the rise CONFIRMED (+0.235 +- 0.039 pooled,
+11/12), but BELOW the (+0.3, +0.7) band; the crossover IS the r_M-class:
+r_half = 590 kpc vs the a0-crossing 703 kpc, r_half/r_M = 1.43, 12/12
+(V2 PASS); the f_gas = 0.5 crossing extrapolates to 62 Mpc (never);
+ZW1215 is the 1/12 genuine fall (the P4 falsifier fires).  G050's
+committed share JSON found degenerate (1e-26, the 1e9*MSUN floor bug) --
+recomputed honestly in-lane.
+G108 P2 outer decomposition 4/6: the envelope slope CONFIRMED pooled
+-2.38 +- 0.15 (the NFW-class band; caveat: median per-cluster -2.79, 2/12
+in band); the AMPLITUDE FAIL: 34/292 bins rho_dust < 0, peak
+rho_ph/residual = 1.47 (A2029) -- the fixed A/r^2 asks for mass the HSE
+residual doesn't carry; r_M window 273-580 kpc (median 402), 12/12 windows.
+G109 P6 cross-instrument 3/3: THE EQUIPARTITION HOLDS AT CLUSTER SCALE:
+sigma_gal/sigma_gas rms = 0.062 dex (11 clusters, 4 independent optical
+instruments + X-ray), median anisotropy A = 0.998 (9/11 in (0.9,1.7));
+kT ~= mu m_p sigma_gal^2 within ~10% -- the dark equilibrium temperature
+cross-instrumentally confirmed.  A644 excluded (no published sigma, honest).
+
+## WAVES 4, 6-8 (in flight/landing: G094-G103, G110-G126)
+wave 4 (the cluster audit G094, G095 the 0.53^2 closed form 2f r_M/R500,
+G096 D2 core-slope, G097 chi2, G098 inversion, G103 phase timescale
+-- G095/G096/G098 landed; G094/G097/G103 still flying) + wave 6 (G110
+Bullet audit, G111 relaxation spec, G112 DR4 Amendment 12, G113 tSZ, G114
+deep-end HI, G115 low-mass floor) + wave 7 (G116 sector mass, G117 BTFR
+correction, G118 merger registry, G119 the 0.62 attempt, G120 theory
+refresh, G121 pair-merger forecast) + wave 8 (G122 coherency-systematic
+decomposition, G123 the phantom over-demand vs M500, G124 the 1.43
+closed form, G125 group-scale equipartition, G126 ZW1215 case study).
+
+## THE CLUSTER THORN, CURRENT STATE (after wave 5)
+STRUCTURE: the framework's cluster face is mostly CONFIRMED -- the
+temperature-curve universality (0.052 dex), the kernel-form share slope
+(within 10%), the NFW-class outer envelope (-2.38 pooled), the gas-
+fraction rise with the r_M-class crossover (1.43), the cross-instrument
+equipartition (0.062 dex), single-structure coherency.  AMPLITUDE: the
+phantom's absolute normalization over-demands the HSE residual in the
+massive clusters (A2029 1.47x; 11.6% negative bins) -- the free-dust
+normalization is now knife-sharp as a MASS-DEPENDENT systematic, and the
+registered V4/0.7 + G050 share-JSON carry the 1e9*MSUN bug (honest
+corrections committed with the lanes).
 
 ## THE STANDING THEORY (one paragraph; wave-3 additions in parens)
 GR + one shift-symmetric scalar; its Noether charge is the dark sector (the
