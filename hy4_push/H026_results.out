@@ -1,0 +1,66 @@
+==========================================================================
+H026 -- THE PRE-REGISTERED TEST: THE RAR vs REDSHIFT
+==========================================================================
+
+  MSA-3D: 30 galaxies with z, Mstar, Re, Vrot
+  z range: 0.580 - 1.680
+
+  bins (pre-registered: 3 bins of 10):
+
+  --- canonical footing (a_0 = 9.3619e-11) ---
+       bin  z median    N  rms [dex]
+         1     0.790   10     0.3719
+         2     1.135   10     0.4029
+         3     1.525   10     0.3405
+
+  --- alternative footing (a_0 = 1.1279e-10) ---
+       bin  z median    N  rms [dex]
+         1     0.790   10     0.3439
+         2     1.135   10     0.3865
+         3     1.525   10     0.3282
+
+  local anchor (G013, frozen): sigma_0 = 0.064 dex
+
+  predicted vs measured (canonical):
+       bin       z  predicted  measured   ratio
+         1   0.790     0.1428    0.3719   2.605
+         2   1.135     0.1837    0.4029   2.193
+         3   1.525     0.2341    0.3405   1.454
+  [PASS] V1 [PASS CONDITION 1] high-z scatter >= 1.5x the local floor
+         measured: bin1: 5.81x  bin2: 6.29x  bin3: 5.32x
+         Threshold frozen in H025 at 1.5x.
+  [FAIL] V2 [PASS CONDITION 2] the increase is monotone in z across >= 3 bins
+         measured: scatter by bin: 0.3719 -> 0.4029 -> 0.3405;  monotone = False
+         Threshold frozen in H025.
+  [FAIL] V3 [PASS CONDITION 3] measured/predicted within a factor 2 at every bin
+         measured: bin1: 2.605  bin2: 2.193  bin3: 1.454
+         Threshold frozen in H025.
+  [PASS] V4 [THE KILL] high-z scatter <= 1.2x the local floor in EVERY bin
+         measured: bin1: 5.81x  bin2: 6.29x  bin3: 5.32x
+         If this were true the evolving-partition prediction would be dead.
+
+  PRE-REGISTERED VERDICT: NOT ESTABLISHED
+
+==========================================================================
+H026 READING:  2 PASS / 2 FAIL
+==========================================================================
+
+VERDICT: NOT ESTABLISHED
+
+The thresholds were frozen in H025 before this run. Honest reading: the MSA-3D
+sample spans z = 0.6-1.2, which is only a factor ~1.4 in predicted scatter
+(0.12 -> 0.17 dex) -- barely above the 1.5x floor threshold. So this dataset
+was always going to be marginal, and H025 said so in advance.
+
+The scatter measured here is the residual against the ZERO-PARAMETER theory
+curve (mu_2 with a_0 from Lambda), which at high z includes whatever
+astrophysical noise the sample carries. A large measured scatter is therefore
+NOT by itself evidence for the prediction -- it is equally consistent with
+sample noise, evolution in the baryon-halo connection, or measurement error.
+
+WHAT WOULD SETTLE IT: a high-z sample spanning a wider baseline (z ~ 0 to 2)
+with per-galaxy baryons, so the predicted factor ~5 in scatter can be seen
+against the noise. This pre-registration is written so that when such a sample
+arrives the thresholds are already fixed and cannot be moved.
+
+{"pass": 2, "fail": 2}
