@@ -1,0 +1,98 @@
+{
+  "lane": "G190",
+  "title": "THE FOOTING DECISION TREE",
+  "question": "the pre-registered set of measurements that picks the a0 scale, given the staircase (G133) + the n-wedge (G183)",
+  "date": "2026-09-16",
+  "basis": {
+    "G133_staircase": "DE 9.3619e-11 < RAR 1.200-1.2457e-10 < MIGHTEE 1.69-1.8433e-10; a0_MIGHTEE free = 1.843e-10 +- 2.42e-11, rms 0.190 -> 0.129 dex; rejects a0_DE at 5.2 sigma log; max honest systematic closure 0.097 dex",
+    "G183_n_wedge": "deep n ~ 1.0-1.66 amplitude / 1.20+-0.06 slope vs full-curve n=2.000; pooled n-free fit n*=3.161+-0.347 a0*=3.084e-11 (outside n<=2 bound +3.3sigma); a0(z) G011 closes 1-2% d_BIC+150.1; environmental/EFE rejected G03D 0.692->0.534; seesaw n(a0)=s/a0 rejected 8 sigma; no n<=2 family reconciles",
+    "G080_btfr": "z~2.5 discriminator: flat 0.00 dex vs rising +0.33 dex (Lambda-CDM-native), +-0.13-dex floor, 1 clean point = 20:1, 4 objects = 5 sigma",
+    "G166/G172": "shape is footing-invariant (slope 0.988+-0.020, deep exponent 1/2, 2/3 law, p*=0.99, -2.218 envelope; four exact); only the normalization (a0) differs; DE anchor CMB-consistent Omega(9.3619e-11)=0.6849 in (0.68,0.69) 0.03% from Planck"
+  },
+  "branches": {
+    "exhaustive_true": true,
+    "a_ONE_SCALE_DE": {
+      "a0": "9.3619e-11 everywhere",
+      "meaning": "deep-end offsets are unresolved systematics",
+      "decisive_measurement_it_lands": "MIGHTEE-class resolved deep z~0 sample, pressure-corrected rotation: rms < 0.13 dex at a0_DE with 100+ deep rings",
+      "killed_by": "K1: DR4 ridge at the RAR scale"
+    },
+    "b_ONE_SCALE_RAR": {
+      "a0": "1.20-1.8e-10 everywhere",
+      "meaning": "DE-anchored cosmology wrong / the Omega_Lambda Lean algebra misread",
+      "decisive_measurement_it_lands": "z~2.5 BTFR zero point FLAT at the RAR level + DR4 ridge at the RAR scale",
+      "killed_by": "K2: a clean MIGHTEE 0.13-dex read at a0_DE"
+    },
+    "c_TWO_SCALE_EFFECTIVE": {
+      "a0": "a0_DE for the vacuum (Lean+CMB), a0_eff for the galactic equilibrium",
+      "meaning": "absorb the n-wedge without a single physical a0; a0_eff = sqrt(a0_Lambda x a0_c), a0_c = 1.538-1.658e-10 (SPARC-end, 1.64-1.77x a0_L), 3.05-3.63e-10 (MIGHTEE-end)",
+      "decisive_measurement_it_lands": "a0* runs with M_b at > 3 sigma in the deep dwarfs (G183/G167 mass-binned: SPARC-deep 6.407e-11, HI 1.423-1.447e-10, MIGHTEE 1.843-1.848e-10)",
+      "killed_by": "K2 (deep closes at a0_DE) or K1 (ridge at a0_DE)"
+    }
+  },
+  "priority_order_power_per_cost": [
+    {
+      "rank": 1,
+      "instrument": "MIGHTEE deep re-analysis (80 rings, catalytic M/L)",
+      "cost": "free (re-analysis of public data)",
+      "power": "directly fires kill-rule K2; the +0.137-dex offset either closes as systematics (rms<0.13 at a0_DE -> branch a wins now) or survives (branch a dead)",
+      "decision_rule_after": "rms < 0.13 dex at a0_DE with 100+ deep rings -> branch (a) wins NOW; offset survives every committed systematic -> branch (a) dead, proceed 2 & 3 for (b) vs (c)"
+    },
+    {
+      "rank": 2,
+      "instrument": "z~2.5 JWST BTFR (~4 galaxies)",
+      "cost": "modest allocated JWST time",
+      "power": "the registered zero-point discriminator; only measurement separating the normalizations beyond systematics; 1 clean point = 20:1, 4 = 5 sigma",
+      "decision_rule_after": "flat@DE 0.00 -> confirm (a) or reframe; flat@RAR -> favor (b); rising toward +0.33 by z=2.5 -> kill both one-scale -> (c)/time-resolved"
+    },
+    {
+      "rank": 3,
+      "instrument": "DR4 ridge (December 2026)",
+      "cost": "free (dr4_scorer.py pre-built, 9/9 on mocks)",
+      "power": "fires kill-rule K1 on the local Milky-Way dark structure (E6/E7 band gamma_v 10-30 kAU, vertical slab, funnel)",
+      "decision_rule_after": "ridge at the RAR scale -> kill a0_DE-alone (a), narrow to (b)/(c); ridge at a0_DE -> confirm (a), kill (b)/(c)"
+    },
+    {
+      "rank": 4,
+      "instrument": "tSZ phantom zone",
+      "cost": "Planck/ACT archival + G177/G141 pipeline",
+      "power": "joint -2.37 vs phantom-only -1.44 at 2 R500, 47.8-sigma-pooled shape; confirmation of the footing-INVARIANT outer-slope shape, NOT a scale-picker",
+      "decision_rule_after": "confirms the -2.37-class joint slope under the winning scale's normalization; does not itself pick the footing"
+    },
+    {
+      "rank": 5,
+      "instrument": "WALLABY pair-break",
+      "cost": "30-60 h VLA-B/MeerKAT on J132029-214845 (e_N=0.189) + WALLABY-DR3; decisive turn set (e_N 0.5-3) has 0 committed pairs, catalog-limited 6-18 months",
+      "power": "F(e_N) break-shape test, footing-INVARIANT form (F = r_cut/r_M pure function of e_N); MW anchor F(2.29)=0.6232-0.6273 in band at edge",
+      "decision_rule_after": "pair breaks on F(e_N) curve (F1 band, F2 no-root at e_N>8.1, F3 MW) confirm the break shape; 3-sigma band violation = shape kill; not a scale-picker"
+    }
+  ],
+  "kill_rules": {
+    "K1": {
+      "fires": "DR4 ridge at the RAR scale (E6/E7 gamma_v 10-30 kAU; vertical slab; funnel) at pre-registered sigma, Dec 2026",
+      "kills": "a0_DE-alone (branch a)",
+      "lands": "(b) or (c)"
+    },
+    "K2": {
+      "fires": "a clean MIGHTEE 0.13-dex read at a0_DE (pressure-corrected rotation, honest M/L, 100+ deep rings)",
+      "kills": "RAR-alone (branch b)",
+      "lands": "(a)"
+    },
+    "K3": {
+      "fires": "a0* runs with M_b at > 3 sigma in the deep dwarfs",
+      "kills": "both one-scale branches",
+      "lands": "(c) two-scale/effective"
+    },
+    "note": "K1 and K2 are mutually exclusive singles that PICK a branch; firing together (ridge at RAR AND deep clean at a0_DE) FORCE the two-scale/effective reading (c)"
+  },
+  "verdicts": {
+    "V1_branch_table": "three exhaustive mutually-exclusive branches with the decisive measurement each (see branches above)",
+    "V2_priority_order": "1 MIGHTEE (free, K2) -> 2 z~2.5 BTFR (20:1, discriminator) -> 3 DR4 ridge (Dec, K1) -> 4 tSZ phantom zone (shape confirm) -> 5 WALLABY pair-break (shape, catalog-limited)",
+    "V3_honest_statement": "the footing is resolvable by the registered tests; the first to fire wins the scale. A clean MIGHTEE 0.13-dex read at a0_DE wins ONE-scale-DE (K2); the DR4 ridge at the RAR scale wins/forecloses (K1); the z~2.5 BTFR zero point (flat@DE / flat@RAR / rising +0.33, 20:1 per point, 4 for 5 sigma) picks one- vs two-scale; a >3-sigma M_b run of a0* forces two-scale and hands the framework its open task (deriving a0_c = 1.54-1.66e-10 SPARC-end / 3.05-3.63e-10 MIGHTEE-end)."
+  },
+  "checks": {
+    "n_pass": 11,
+    "n_total": 11,
+    "note": "all branch measurements and kill-rules reference the committed G133/G166/G172/G183/G080/G173/G100 numbers; no new data fit, pre-registered decision structure only"
+  }
+}
