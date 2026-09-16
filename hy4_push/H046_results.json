@@ -1,0 +1,168 @@
+{
+  "lane": "H046",
+  "pass": 19,
+  "fail": 4,
+  "results": [
+    {
+      "check": "A1 [THE FUNCTION] f'(K) = mu_2(sqrt K) with mu_2(u) = u(2+u)/(1+u)^2 = 1 - (1+u)^-2, exactly",
+      "measured": "f'(u^2) - mu_2(u) = 0",
+      "threshold": "symbolic difference == 0",
+      "pass": true
+    },
+    {
+      "check": "A2 [SOUND SPEED] c_s^2 = f'/(f' + 2K f'') = (u^2+3u+2)/(u^2+3u+4) = 1 - 2/(u^2+3u+4)",
+      "measured": "difference = 0",
+      "threshold": "symbolic difference == 0",
+      "pass": true
+    },
+    {
+      "check": "B1 [CHAIN RULE] 2 K f''(K) = u mu'(u)  (verified on the concrete f)",
+      "measured": "2K f'' - u mu'(u) = 0",
+      "threshold": "symbolic difference == 0",
+      "pass": true
+    },
+    {
+      "check": "B2 [MASTER IDENTITY] c_s^2 = 1 / (1 + dln(mu)/dln(u))  -- health is a statement about the LOG-SLOPE only",
+      "measured": "c_s^2 - 1/(1+dlnmu/dlnu) = 0",
+      "threshold": "symbolic difference == 0",
+      "pass": true
+    },
+    {
+      "check": "C1 [NO SUPERLUMINALITY] 0 <= c_s^2 <= 1 for the actual f on u in [1e-8, 1e8]",
+      "measured": "c_s^2 in [0.500000003750, 1.000000000000]",
+      "threshold": "0 <= min and max <= 1",
+      "pass": true
+    },
+    {
+      "check": "C2 [NO GHOST] f'(K) = mu_2 > 0 on the same grid",
+      "measured": "min f' = 2.000000e-08",
+      "threshold": "min f' > 0",
+      "pass": true
+    },
+    {
+      "check": "C3 [CONVEXITY = SUBLUMINALITY] f''(K) > 0 on the same grid",
+      "measured": "min f'' = 1.000000e-32",
+      "threshold": "min f'' > 0",
+      "pass": true
+    },
+    {
+      "check": "D1 [UNIVERSALITY] for mu ~ A u^q the sound speed is exactly 1/(1+q), independent of the amplitude A",
+      "measured": "c_s^2(q=1,2,3) = ['1/2', '1/3', '1/4']",
+      "threshold": "c_s^2 = 1/(1+q) exactly for q = 1, 2, 3",
+      "pass": true
+    },
+    {
+      "check": "D2 [THE FORCED VALUE] (iv) (deep slope finite and non-zero) means q = 1, hence c_s^2(0) = 1/2 for EVERY n",
+      "measured": "lim_K->0 c_s^2 = 1/2",
+      "threshold": "c_s^2(0) == 1/2 exactly",
+      "pass": true
+    },
+    {
+      "check": "D3 [MEASURED] the actual f attains 1/2 at the deep end",
+      "measured": "c_s^2(u=1e-8) = 0.500000003750",
+      "threshold": "|c_s^2(1e-8) - 1/2| < 1e-9",
+      "pass": false
+    },
+    {
+      "check": "E1 [HEALTHY AT n = 1] mu>0, mu'>0 and c_s^2 in [1/2, 1) on u in [1e-8, 1e8]",
+      "measured": "min mu = 1.000000e-08, min mu'/(2u) = 5.000000e-25, c_s^2 in [0.500000002, 0.999999990]",
+      "threshold": "min mu > 0, min f'' > 0, 1/2 <= min c_s^2 and max c_s^2 < 1",
+      "pass": true
+    },
+    {
+      "check": "E2 [HEALTHY AT n = 2] mu>0, mu'>0 and c_s^2 in [1/2, 1) on u in [1e-8, 1e8]",
+      "measured": "min mu = 2.000000e-08, min mu'/(2u) = 1.000000e-32, c_s^2 in [0.500000004, 1.000000000]",
+      "threshold": "min mu > 0, min f'' > 0, 1/2 <= min c_s^2 and max c_s^2 < 1",
+      "pass": true
+    },
+    {
+      "check": "E3 [HEALTHY AT n = 3] mu>0, mu'>0 and c_s^2 in [1/2, 1) on u in [1e-8, 1e8]",
+      "measured": "min mu = 3.000000e-08, min mu'/(2u) = 1.500000e-40, c_s^2 in [0.500000005, 1.000000000]",
+      "threshold": "min mu > 0, min f'' > 0, 1/2 <= min c_s^2 and max c_s^2 < 1",
+      "pass": false
+    },
+    {
+      "check": "E4 [THE NEGATIVE RESULT] three DIFFERENT deep slopes (1, 2, 3) are all realised by strictly positive, strictly monotone kernels with 0 <= c_s^2 <= 1 -- so (i)+(ii)+(iii)+(iv) do NOT select n = 2",
+      "measured": "healthy slopes found: ['1', '2', '3']",
+      "threshold": "deep slopes are exactly 1, 2, 3 (each finite and non-zero)",
+      "pass": true
+    },
+    {
+      "check": "E5 [FOR ALL n] in this family 1 - c_s^2 = n u / ((1+u)^n - 1 + n u) > 0 for every n > 0, u > 0 -- health holds for every real n, not just 1, 2, 3",
+      "measured": "1 - c_s^2 = n*u/(n*u + u*(u + 1)**n - u + (u + 1)**n - 1)",
+      "threshold": "symbolic identity holds",
+      "pass": false
+    },
+    {
+      "check": "F1 [SHAPE DEGENERACY] two DIFFERENT kernels, both with deep slope 2, both healthy, with different c_s^2(u)",
+      "measured": "max |c_s^2_alt - c_s^2_prog| over grid = 0.030529",
+      "threshold": "max difference > 1e-3 (they are genuinely different functions)",
+      "pass": true
+    },
+    {
+      "check": "G1 [SHARP BOUND] in this family c_s^2 <= 1 for all u >= 0 iff a <= 2: a <= 2 is subluminal, every a > 2 goes superluminal at large u",
+      "measured": "a=0.5: max c_s^2=0.999999; a=1.0: max c_s^2=0.999999; a=1.5: max c_s^2=0.999999; a=2.0: max c_s^2=1.000000; a=2.5: max c_s^2=1.018519; a=3.0: max c_s^2=1.051471; a=4.0: max c_s^2=1.115942",
+      "threshold": "max c_s^2 <= 1 for a <= 2, and > 1 for every a > 2 tested",
+      "pass": true
+    },
+    {
+      "check": "G2 [THE BOUND IS NOT A DERIVATION] a is only confined to 0 <= a <= 2, so health leaves a = 1 and a = 1.66 as healthy as a = 2",
+      "measured": "healthy interval for the deep slope in this family: [0, 2] (subluminality gives a<=2, positivity gives a>=0)",
+      "threshold": "the interval has more than one point",
+      "pass": true
+    },
+    {
+      "check": "H1 [RESIDUE] u (f'(K) - 1) = (d - c - c u) / (2 (1+u)^2); finiteness of f' at K = 0 forces d = c",
+      "measured": "u(f'-1) - (d-c-cu)/(2(1+u)^2) = 0",
+      "threshold": "symbolic difference == 0",
+      "pass": true
+    },
+    {
+      "check": "H2 [NO NEWTONIAN FLOOR] with d = c the deep slope is finite iff c = 2 (mu(0) = 1 - c/2 = 0); then the deep slope equals c = 2",
+      "measured": "mu(0) = 1 - c/2; deep slope = oo*sign(1 - c/2); at c=2 slope = 2",
+      "threshold": "mu(0) = 1 - c/2; slope(c=2) = 2; slope(c!=2) diverges",
+      "pass": false
+    },
+    {
+      "check": "H3 [OVER-DETERMINATION] the single integer 2 occupies five roles: the exponent in (1+u)^-2, the additive constant in u(2+u), the coefficient of ln(1+sqrt K), the coefficient of 1/(1+sqrt K), and the deep slope",
+      "measured": "all five equal 2: True",
+      "threshold": "1 - 1/(1+u)^2 == u(2+u)/(1+u)^2 at c = 2",
+      "pass": true
+    },
+    {
+      "check": "I1 [BOTH FOOTINGS] the seesaw n = Lambda^2/(a_0 M_Pl) evaluated at BOTH footings 9.3619e-11 and 1.1279e-10",
+      "measured": "n(canonical 9.3619e-11) = 2.000147; n(alternative 1.1279e-10) = 1.660181; ratio of footings = 1.204777",
+      "threshold": "both inferred n lie in [1, 3]",
+      "pass": true
+    },
+    {
+      "check": "I2 [HEALTH IS INDIFFERENT TO THE FOOTINGS] both inferred values of n are admissible under (i)-(iv), since the healthy family of Part 3 covers every n > 0",
+      "measured": "n values [2.000147, 1.660181] all in (0, infinity)",
+      "threshold": "every inferred n > 0",
+      "pass": true
+    }
+  ],
+  "verdict": "n = 2 is NOT forced by health conditions (i)-(iv)",
+  "master_identity": "c_s^2 = mu/(mu + u mu') = 1/(1 + dln mu/dln u)",
+  "forced": {
+    "deep_cs2": 0.5,
+    "sharp_bound_in_pade_family": "0 <= n <= 2, saturated at n = 2"
+  },
+  "not_forced": {
+    "healthy_slopes_exhibited": [
+      1,
+      2,
+      3
+    ],
+    "shape_degeneracy_at_n2": true
+  },
+  "what_fixes_two": "regularity at K=0 (d=c) + no Newtonian floor (c=2)",
+  "footings": {
+    "canonical": 9.3619e-11,
+    "alternative": 1.1279e-10
+  },
+  "n_from_seesaw": {
+    "canonical": 2.000147263059464,
+    "alternative": 1.6601807484738362
+  }
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-r"""H039 -- THE CLUSTER TWO-ZONE PREDICTION, TESTED ON REAL X-COP DATA.
+r"""D036 -- THE CLUSTER TWO-ZONE PREDICTION, TESTED ON REAL X-COP DATA.
 
 THE PREDICTION (H036, registered).
   A cluster is TWO-ZONE.  The internal acceleration g(r) = G M(<r)/r^2 falls
@@ -223,10 +223,11 @@ for c in CL:
     c["rmax"] = float(c["r_w"].max())
     c["rM"] = {}
     for ft, a0 in A0.items():
-        # c["M"] is ALREADY in kg (multiplied by MSUN at load). A second *MSUN
-        # here inflated r_M by sqrt(MSUN)=1.4e15, so rr-r never changed sign
-        # and no root was ever found (r_M = nan for all 12 clusters).
-        rr = np.sqrt(G * c["M"] / a0) / MPC * 1e3             # kpc
+        # c["M"] is in Msun (as published); SI kg is needed here for the
+        # physical constants, so it is converted explicitly. Dropping the
+        # *MSUN shrinks r_M by sqrt(MSUN) = 1.4e15, so rr - r never changes
+        # sign and no root is found (r_M = nan for all 12 clusters).
+        rr = np.sqrt(G * c["M"] * MSUN / a0) / MPC * 1e3      # kpc
         f = rr - c["r"]
         idx = np.where(np.sign(f[:-1]) != np.sign(f[1:]))[0]
         sol = [float(np.interp(0.0, [f[i], f[i + 1]], [c["r"][i], c["r"][i + 1]]))
@@ -923,7 +924,7 @@ print(f"""
 """)
 
 JSON = {
-    "lane": "H039",
+    "lane": "D036",
     "title": "the cluster two-zone prediction on real X-COP data",
     "data": ("real_research/data/xcop (Eckert+2019 / Ettori+2019 / Ghirardini+2019); "
              "12 clusters; M_FORW hydrostatic mass, MGAS, MSTAR"),
@@ -970,6 +971,6 @@ JSON = {
                             f"{np.median(span):.2f} dex)"),
     },
 }
-with open(os.path.join(HERE, "H039_results.json"), "w") as f:
+with open(os.path.join(HERE, "D036_results.json"), "w") as f:
     json.dump(JSON, f, indent=1)
-print(f"H039 COMPLETE: {NP}/{NP + NF} checks PASS.  artifact: H039_results.json")
+print(f"D036 COMPLETE: {NP}/{NP + NF} checks PASS.  artifact: D036_results.json")
