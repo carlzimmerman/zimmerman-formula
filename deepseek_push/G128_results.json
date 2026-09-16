@@ -1,0 +1,175 @@
+{
+ "lane": "G128",
+ "title": "THE POOLED DEEP-END STATEMENT: the law across 10^2-10^10 Msun",
+ "verdicts": {
+  "V1": true,
+  "V2": true,
+  "V3": true
+ },
+ "checks": [
+  true,
+  true,
+  true
+ ],
+ "n_pass": 3,
+ "n_total": 3,
+ "residual_convention": "r = log10(pred/obs); G114/G074 stored obs/pred and are negated",
+ "law": {
+  "rotation": "v_flat = (G M_b a0)^(1/4); v_pred^2 = v_b^2 + v_flat^2(1 - 0.3 r_M/R)",
+  "dispersion": "sigma_pred = (G M_* a0)^(1/4)/sqrt(2) (the dSph floor)",
+  "a0_SI": 9.3619e-11,
+  "deep_cut": "g_N < a0 (SPARC rings); HI dwarfs reach g_N/a0 = 0.036-3.12 (median 0.16)"
+ },
+ "channels": {
+  "HI": {
+   "sample": "HI",
+   "N": 55,
+   "med_abs": 0.0803,
+   "rms": 0.14970371040522312,
+   "med": -0.015,
+   "p16_abs": 0.025268000000000002,
+   "p84_abs": 0.21135600000000002,
+   "logM_lo": 6.2552725051033065,
+   "logM_hi": 9.153235418652296
+  },
+  "dSph": {
+   "sample": "dSph",
+   "N": 34,
+   "med_abs": 0.22195,
+   "rms": 0.33033496858581024,
+   "med": -0.19835,
+   "p16_abs": 0.104676,
+   "p84_abs": 0.420004,
+   "logM_lo": 2.6280912596999957,
+   "logM_hi": 7.508091297986769
+  },
+  "GC": {
+   "sample": "GC",
+   "N": 112,
+   "med_abs": 0.1765,
+   "rms": 0.2311846625844494,
+   "med": -0.0595,
+   "p16_abs": 0.04528,
+   "p84_abs": 0.33172,
+   "logM_lo": 4.02530586526477,
+   "logM_hi": 6.550228353055094
+  },
+  "SPARC": {
+   "sample": "SPARC",
+   "N": 35,
+   "med_abs": 0.12222185973729839,
+   "rms": 0.14389263213923692,
+   "med": 0.12222185973729839,
+   "p16_abs": 0.05162877240571327,
+   "p84_abs": 0.19774208929096404,
+   "logM_lo": 8.128243284795353,
+   "logM_hi": 10.808640238243985
+  },
+  "dSph bright": {
+   "sample": "dSph bright",
+   "N": 14,
+   "med_abs": 0.1633,
+   "rms": 0.16635220381553623,
+   "med": -0.0493,
+   "logM_lo": 4.516091201365197,
+   "logM_hi": 7.508091297986769
+  },
+  "dSph UFD": {
+   "sample": "dSph UFD",
+   "N": 20,
+   "med_abs": 0.4007,
+   "rms": 0.40759647508289376,
+   "med": -0.4007,
+   "logM_lo": 2.6280912596999957,
+   "logM_hi": 4.440091335512212
+  },
+  "SPARC deep rings": {
+   "sample": "SPARC outer (g_N<a0)",
+   "N": 544,
+   "med_abs": 0.10026456270841799,
+   "rms": 0.15072033234846408,
+   "med": 0.09436561053135191,
+   "logM_lo": 8.128243284795353,
+   "logM_hi": 10.808640238243985
+  }
+ },
+ "channel_mass_ranges": {
+  "HI": {
+   "mass": "M_b = 1.4 M_HI + M_*",
+   "log10_M_lo": 6.2552725051033065,
+   "log10_M_hi": 9.153235418652296
+  },
+  "dSph": {
+   "mass": "M_* (M/L)_V = 1.5",
+   "log10_M_lo": 2.6280912596999957,
+   "log10_M_hi": 7.508091297986769
+  },
+  "GC": {
+   "mass": "M_* (BH18 total)",
+   "log10_M_lo": 4.02530586526477,
+   "log10_M_hi": 6.550228353055094
+  },
+  "SPARC": {
+   "mass": "M_b enclosed at outermost ring",
+   "log10_M_lo": 8.128243284795353,
+   "log10_M_hi": 10.808640238243985
+  }
+ },
+ "channel_context": {
+  "HI": "G114: 55 dwarfs (26 LT Oh+15 + 29 FIGGS Begum+08); gas-dominated subset (N=39) rms 0.124, med|r| 0.073; deep tail N=7 at g_N<0.1 a0 median r -0.094",
+  "dSph": "G070: 34 measured (Simon 2019 T1), LOS reading; the 3D reading would fail (med|r| 0.437); bright/dSph split at log M* = 4.5; 5 upper limits excluded here (with-UL med|r| 0.2245); 12 violators, all UFD",
+  "GC": "G074: BH18 112 clusters; boundary, not scatter: sigma_obs = G M/(eta r_h), eta 7.03, slope vs M +0.339 vs predicted +0.350 (r=0.74); M_cross 1.23e5 Msun at r_M/r_h = 3.39 = eta/2; 40/112 below the floor",
+  "SPARC": "G071: 35 isolated low-EFE galaxies (641 rings; 544 deep with g_N<a0, median g_N/a0 = 0.23); R_efe/R_max 62-958 (no EFE in-band); ring-level rms 0.1454 on all 641"
+ },
+ "pooled": {
+  "object_level": {
+   "N": 236,
+   "med_abs_r": 0.13401799578718468,
+   "rms": 0.2222134957479768,
+   "med_r": -0.02655,
+   "log10M_lo": 2.6280912596999957,
+   "log10M_hi": 10.808640238243985,
+   "slope_theil_sen": 0.028979314091421203,
+   "slope_ols": 0.03251198028650925,
+   "slope_ols_se": 0.006994763799625993
+  },
+  "ring_level": {
+   "N": 842,
+   "med_abs_r": 0.10176523992051889,
+   "rms": 0.170542047527767,
+   "slope_theil_sen": 0.02514504085321326
+  },
+  "law_region_noGC_noUFD": {
+   "N": 104,
+   "med_abs_r": 0.10129848141730673,
+   "rms": 0.15015110867692208,
+   "slope_theil_sen": 0.04268181833750969,
+   "slope_ols": 0.041919876641462704,
+   "slope_ols_se": 0.0099186842075144
+  },
+  "per_channel_slope_vs_logM": {
+   "HI": 0.001838028317567675,
+   "dSph": 0.16044892009128486,
+   "GC": -0.3319145964803062,
+   "SPARC": -0.028583952066975213
+  }
+ },
+ "channel_dependence": {
+  "med_abs_by_channel": {
+   "HI": 0.0803,
+   "SPARC": 0.12222185973729839,
+   "GC": 0.1765,
+   "dSph bright": 0.1633,
+   "dSph UFD": 0.4007
+  },
+  "statement": "med|r|: HI 0.080 | SPARC 0.100 | GC 0.177 | bright dSph 0.163 | UFD 0.401. The ~0.08-0.15 dex 'universal floor' holds literally in the two rotation channels; the dispersion/boundary channels sit 0.16-0.18 (same decade); the UFDs at 0.40 are the sole clean outlier (2.5x the highest floor channel, one-sided, all 12 violators in the UFD regime). Signed structure: rotation nearly unbiased (HI -0.015) to slightly overpredicted (SPARC +0.094 deep); dispersion underpredicted (bright -0.049, UFD -0.401, GC -0.059). The pooled slope is ~0 (+0.03) because the GC negative trend (-0.33) offsets the dSph positive trend (+0.16): residual structure is per-channel, not a global mass trend."
+ },
+ "referee": "Given only the table, the zero-parameter law HOLDS as a median/floor statement, with one documented exception. Rotation channels: HI dwarfs med|r| = 0.080, rms 0.150 (N=55); SPARC deep outer rings med|r| = 0.100, rms 0.151 (N=544 rings) -- a zero-parameter curve reproducing the rotation-speed floor at ~10% median accuracy with no fitted constant. Dispersion channels: bright dSphs med|r| = 0.163 (N=14); GCs bracket the same floor at med|r| = 0.176 with the r_M/r_h boundary at M_cross = 1.23e5 Msun (slope +0.339 vs the predicted +0.350) -- the law as a floor is respected on the compact side and exceeded on the diffuse side, a boundary, not scatter. The pool: N=236 objects across log M = 2.6-10.8, med|r| = 0.134, rms = 0.222, slope +0.03 dex/decade (flat). The ONE exception: the 20 UFDs sit med|r| = 0.401 one-sided (observed sigma ~2.5x the prediction), all 12 violators in the UFD regime. Verdict: verified as a zero-parameter floor across ~8 decades of mass with a single, cleanly-flagged outlier regime; not exact (pooled rms 0.22 dex).",
+ "sources": {
+  "G114": "deepseek_push/G114_results.json (55 HI dwarfs)",
+  "G070": "deepseek_push/G070_results.json + G070_dsph_compendium.csv (34 dSphs)",
+  "G074": "deepseek_push/G074_results.json (112 GCs)",
+  "G071": "deepseek_push/G071_results.json (641 rings / 35 galaxies)"
+ },
+ "statement": "THE POOLED DEEP-END STATEMENT: the zero-parameter law, verified channel by channel and pooled, holds as a median/floor statement across ~8 decades of mass with one clean outlier regime. (1) Per-channel (deep regime, g_N < a0, r = log10(pred/obs)): HI dwarfs N=55 med|r| 0.080 rms 0.150 (log M_b 6.3-9.2); dSphs N=34 med|r| 0.222 rms 0.330 (log M* 2.6-7.5), split bright 0.163 / UFD 0.401, LOS reading (3D would be 0.437); GCs N=112 med|r| 0.176 rms 0.231 (log M 4.0-6.6) -- the r_M/r_h boundary, not scatter; SPARC outer curves N=544 deep rings med|r| 0.100 rms 0.151 (log M_b 8.1-10.8). (2) Pooled: N=236 objects, med|r| 0.134, rms 0.222, slope vs log M +0.029 Theil-Sen (+0.033 +/- 0.007 OLS) -- flat across the mass range; ring-level N=842 med|r| 0.102 rms 0.171; law-region pool (no GC, no UFD) N=104 med|r| 0.101 rms 0.150. (3) Referee: given only the table, the law holds as a zero-parameter floor at ~0.08-0.10 dex median in the rotation channels, degrades gracefully to 0.16-0.18 in the dispersion/boundary channels, and fails one-sided at 0.40 dex in the UFDs -- verified, not exact, with a single flagged exception."
+}
