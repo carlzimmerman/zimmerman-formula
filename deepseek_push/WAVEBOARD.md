@@ -621,6 +621,89 @@ parameters): c_dust = 0.72 (M500/8e14)^(-0.414 +- 0.157) (r/R500)^(-0.990
 +- 0.035), residual floor 0.097-0.119 dex, ONE envelope across 1e13-9e14;
 THE THORN'S FREEDOM IS NOW (c0, q) + the 0.1-dex floor.
 
+## WAVE 13 (landed 7/7 -- the H048 blockers settled: 2 architectural closures + the cluster prize)
+G154 THE STATIC-BRANCH CHARGE SETTLED (18/18): hy4's DOOR 3 is EXACT -- J^0
+= 0 identically on the static branch (the shift-Noether charge is empty
+there).  BUT the dark mass is ASSIGNED via the GAUSS-MAP charge of the
+sourced field: M_ph(<r) = (1/4 pi G) oint g.dA = r sqrt(G M_b a0)/G =
+M_b(r/r_M) DERIVED; M_ph(<r_M) = M_b exactly; the capped share 0.660 M_b
+(G119's gap unchanged).  G028's Lean cert stated exactly: the comoving
+FRW Noether charge (Q = a^3 P_X phidot on the homogeneous family),
+SILENT on the static branch.  ONTOLOGY: ASSIGNED, carrier = the Gauss-map
+charge of the sourced field / the dust fluid, NOT the shift-Noether
+current; the STATUS wording must amend 'dark matter is the conserved
+Noether charge' -> 'Gauss-map charge of the sourced field / charge of the
+dust fluid' (G180 dispatched).
+G155 THE SOURCED EQUATION: THE FORCE-LAW READING IS CLOSED (12/12).  The
+conformal coupling sources div[mu2 grad phi] = 4 pi G rho EXACTLY with
+M_MOND = sqrt(2) M_pl -- but the SAME 1/M sets the fifth force: F5/FN =
+1/mu2 (order one, UNSREENED) and gamma = 1/2 (Cassini fails 2.2e4x);
+MICROSCOPE forces M_WEP in [3.8e4, 3.8e5] M_pl which suppresses the MOND
+source by 7e8+ -- the flat curve DIES.  The variable-mass and self-source
+candidates killed (Newtonian-Poisson not MOND; the charge broken; u* =
+1.2239 no phantom).  THE AVAILABLE READING: G031's equilibrium/EOS reading
+of the SOURCELESS equation (phantom = Noether dust at the Zimmerman
+temperature) -- which needs no coupling.  THE CASSINI NULL IS NOT AN
+ACCIDENT: the theory is architecturally NOT a fifth-force theory.
+G156 THE ONTOLOGY DECISION PRE-REGISTERED (8/8): RELIC when the SHMF slope
+1e5-1e8 INVERTS <= 0.5 at 95% at M_hm in [5e5, 5.8e6]; CHARGE when
+1e6-1e7 within [0.5, 1.5]x CDM (m_hm < 1.6e6); N_req 9-22 at 3.3 keV
+(reachable), ~1e4 at 5.7 keV (the dark-halo slope carries the decision);
+CURRENT DATA: undecided, LEANING CHARGE on normalization -- the 95% WDM
+bounds (6.2-6.5 / 9.7 / 3.6-6.2 keV) already exclude the relic's lower
+window 3.3-5.3 keV; the stream peaks 0.4x CDM (mildly pro-truncation) vs
+GD-1 2-3 sigma above CDM (pro-charge); the forest non-discriminating.
+G157 THE SLOPE-FLOOR TEST: FAIL-by-TENDENCY / KILL-PENDING (7/7): the
+measured gamma(20-100 kpc) = -2.3 +- 0.4 DECLINING, NOT -2.00 +- 0.02;
+the constancy FAIL (central spread 1.19 vs predicted 0.12 / NFW 0.56);
+but NO single measurement reaches 3 sigma (max 1.58 sigma with the
+Jeans-beta + 20% mass systematics; stat-only Deason 4.2): the data run
+the wrong way for hy4's P-A (NFW-like steepening outward); the flip = a
+Gaia-PM halo-tracer sample at 30-100 kpc with beta measured directly.
+G158 THE n-FOOTING: THE DEEP END EXCLUDES n = 2.000 AT 12.7 SIGMA (slope
+channel; 1.660 also excluded at 7.3) -- AND THE WEDGE IS REAL: the deep
+end wants a0 ~ 1.2-1.9e-10 (n ~ 1.0-1.66) while the full-curve mode count
+wants n = 2.000 at 9.36e-11: jointly inconsistent at ~5 sigma; at the
+deep end's own scale (1.843e-10) the seesaw gives n = 1.016: 2.000
+excluded at 7 sigma.  The superluminality kill does NOT fire (n sits 12.9
+sigma BELOW the n = 2.01 line -- the danger is the opposite: n <= 1.7
+everywhere deep).  THE FOOTING CRISIS DEEPENS: the deep end refuses the
+DE anchor AND n = 2 simultaneously.
+G159 THE CLUSTER PRIZE: TAKEN in the DRESSED form (6/7; the FAIL is the
+finding): the jump condition A_b = rho_ph/rho_d = (sigma_ph/sigma_d)^3 =
+exp(L/N k_B T_b) = exp(dS/k_B): the literal-cold-dust junction fails by
+4-11 ORDERS (blocked: a collisionless phase cannot sit in diffusive
+equilibrium); DRESSED AT THE POTENTIAL SCALE (sigma_d = the infall
+velocity at the cap: v_circ = sqrt(2) sigma-class): A = 0.125-0.5, geomean
+0.273 vs measured 0.484 => factor 1.77 (WITHIN 2); the amplitude is a
+UNIVERSAL pure number of the isothermal field (no r_b/g_ext dependence);
+the named missing piece: sigma_d(r_b) -- the infall solution's local
+radial dispersion at the cap (G182 dispatched).
+G160 THE CAP-BREAK RE-PREDICTION: THE PREMISE COLLAPSES AND THE
+RE-PREDICTION FAILS TOO (4/7): D036's r_M WAS the total-field a0-crossing
+(r_M/R_cap = 1.001-1.046 -- the 'wrong radius' reframing is itself wrong);
+r_knee/R_cap = 0.44 median (canonical), 0.27-1.26 -- a factor ~2 INSIDE
+the prediction, NOT ~1; the split-vs-floor at the R_cap-class rule
+reproduces G138 (+51235 in-window, penalty 29.1-91.7 same order as the old
+r_M failure); hy4's break failure STANDS and the operative-cap reframing
+resolves nothing on the committed data -- the knee sits interior to both
+the a0-crossing and NFW's own -2 crossing (r_b/rs = 0.54) (G184
+dispatched: the discriminating outer-profile test).
+
+## THE TWO ARCHITECTURAL CLOSURES (wave-13 headline)
+(1) THE ONTOLOGY IS ASSIGNED: the dark mass = the Gauss-map charge of the
+sourced field (M_ph(<r) = M_b r/r_M derived from the surface integral),
+not the shift-Noether current (which is empty on the static branch -- hy4
+was right, the wording is corrected, the physics survives).
+(2) THE FORCE-LAW READING IS CLOSED: no shift-symmetric completion can
+source the deep equation without an unscreened O(1) fifth force + gamma =
+1/2 (Cassini 2.2e4x) -- THE THEORY IS AN EQUILIBRIUM/EOS THEORY, NOT A
+FIFTH-FORCE THEORY.  The Cassini null is architecturally forced; the
+equilibrium reading of the sourceless equation (G031) is the surviving
+completion.  This is the strongest architectural result of the campaign:
+the entire empirical edifice (Cassini null, lensing = GR x mass, the
+RAR as hydrostatics) is CONSISTENT with only this one reading.
+
 ## SIBLING COORDINATION (for qwen38 / hy4 / other tracks; read this first)
 CLAIMED (deepseek, in flight -- do NOT duplicate): G154 static-branch
 charge, G155 sourced equation, G156 dust charge-vs-relic decision,
