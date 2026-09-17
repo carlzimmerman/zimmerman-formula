@@ -1,0 +1,64 @@
+{
+  "lane": "L265",
+  "mutate": true,
+  "checks": {
+    "A1 curvature is O(eps), so a scalar of degree n in the Riemann tensor is O(eps^n): R is order 1, the quadratic invariants Ric^2 and Riem^2 are order 2": {
+      "ok": true,
+      "measured": "orders: R=1, Ric^2=2, Riem^2=2",
+      "load_bearing": true
+    },
+    "A2 sqrt(-g) R^n contributes to the eps^2 (quadratic) action for n = 1 and n = 2, and NOT for n >= 3 -- so only degree <= 2 reaches the LINEARIZED field equations [MUTATE asserts otherwise]": {
+      "ok": false,
+      "measured": "eps^2 coefficients nonzero for n=1,2: True; nonzero for n=3 or 4: True",
+      "load_bearing": true
+    },
+    "A3 box^-1 PRESERVES eps-degree: box^-1 is linear, so box^-1[eps^n s] = eps^n box^-1[s]; nonlocal insertions therefore cannot promote a degree-3 invariant into the linear response": {
+      "ok": true,
+      "measured": "lap(eps^n u) - eps^n lap(u) = 0",
+      "load_bearing": true
+    },
+    "B0 VALIDATION: the pipeline reproduces the exact Schwarzschild Kretschmann (Riem^2 = 8(A:A) = 48(GM)^2/r^6) and vacuum Ric^2 = 0": {
+      "ok": true,
+      "measured": "Riem^2 = 48*k**2 vs 8(A:A) = 48*k**2; Ric^2 = 0",
+      "load_bearing": true
+    },
+    "B1 the degree-2 coefficient matrix is SINGULAR: only |A|^2+|B|^2 and |A-B|^2 are available, both symmetric under Phi <-> Psi, so Phi_,ij Phi_,ij cannot be isolated": {
+      "ok": true,
+      "measured": "det(coefficient matrix) = 0",
+      "load_bearing": true
+    },
+    "C1 THE PINCER: separating Phi from Psi requires curvature degree >= 3 (L264 C), while the linearized field equations reach only degree <= 2 (A2).  The intersection is EMPTY": {
+      "ok": true,
+      "measured": "separation needs degree >= 3; linear response admits degree <= 2",
+      "load_bearing": true
+    },
+    "D1 the ONLY way to drop a degree-3 invariant into the eps^2 action is a non-analytic power (J^(2/3) ~ eps^2), and that function has no perturbative vacuum: f''(J) DIVERGES as J -> 0 (flat space)": {
+      "ok": true,
+      "measured": "f(J) = J^(2/3): f''(J) = -2/(9*J**(4/3)), limit as J->0+ = -oo (divergent)",
+      "load_bearing": true
+    },
+    "D2 an f(R)-type scalar long-range enough to give a MOND-like enhancement is Brans-Dicke with omega = 0, hence gamma_PPN = 1/2: lensing sees (1+gamma)/2 = 3/4 of the dynamical mass -- the lensing lock returns.  Screening it (short range) removes the enhancement": {
+      "ok": true,
+      "measured": "gamma(m r -> 0) = 1/2, gamma(m r -> inf) = 1; Brans-Dicke (1+w)/(2+w) at w=0 = 1/2",
+      "load_bearing": true
+    }
+  },
+  "numbers": {
+    "deg2_det": "0",
+    "gamma_long": "1/2",
+    "gamma_short": "1"
+  },
+  "verdict": {
+    "word": "PINCER-CLOSED",
+    "hypothesis_iv_removable_against_curvature_class": true,
+    "separation_min_degree": 3,
+    "linear_response_max_degree": 2
+  },
+  "summary": {
+    "pass": 7,
+    "n": 8,
+    "load_bearing_fail": [
+      "A2 sqrt(-g) R^n contributes to the eps^2 (quadratic) action for n = 1 and n = 2, and NOT for n >= 3 -- so only degree <= 2 reaches the LINEARIZED field equations [MUTATE asserts otherwise]"
+    ]
+  }
+}

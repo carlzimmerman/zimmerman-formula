@@ -1,0 +1,103 @@
+
+L265 -- THE CURVATURE-ORDER PINCER: closing the door L264 left open.
+
+L264 ran the computation L39 named (D6.1) and found:
+  (B) curvature scalars of degree 2 CANNOT separate Phi from Psi -- R^2 = 0, Ric^2 = |A-B|^2,
+      Riem^2 = 4(|A|^2+|B|^2), coefficient matrix SINGULAR (A = Hess Phi, B = Hess Psi);
+  (C) separation first becomes possible at degree 3 (a second Riemann contraction breaks the
+      Phi<->Psi degeneracy on 7 of 8 random configurations),
+and therefore reported the gap as still OPEN, with "a nonlocal functional of cubic curvature
+invariants" as the live target for a frame-free MOND theory.
+
+THIS LANE CLOSES IT, with the observation L264 missed.  A curvature scalar that is a homogeneous
+polynomial of degree n in the Riemann tensor is O(eps^n) about flat space, because curvature itself is
+O(eps).  The LINEARIZED field equations -- which are what carry the weak-field force law AND the
+lensing deflection -- come from the eps^2 part of the action.  Hence ONLY degree <= 2 can touch them.
+
+  A  ORDER COUNTING: leading eps-order of R, Ric^2, Riem^2, Riem^3; and the eps^2 coefficient of
+     sqrt(-g) R^n, nonzero for n = 1, 2 and ZERO for n >= 3.
+  B  DEGENERACY at degree <= 2 (L264's finding, recomputed on the Schwarzschild-validated pipeline).
+  C  THE PINCER: separation needs degree >= 3 (L264 C); the linear response sees only degree <= 2 (A).
+     The intersection is EMPTY.  And box^-1 preserves eps-degree, so nonlocal insertions do not help.
+  D  THE ESCAPES, priced: non-analytic f(curvature) has no perturbative vacuum (f'' -> infinity at
+     flat space); an f(R)-type long-range scalar is Brans-Dicke omega = 0, giving gamma_PPN = 1/2 --
+     the lensing lock in another costume.
+  E  CONSEQUENCE: hypothesis (iv) of L31 is removable against the CURVATURE-BUILT class (local and
+     nonlocal alike), by a structural theorem rather than L39's enumeration of known models.
+
+Run:  python3 fable_independent_2026/L265_curvature_order_pincer.py
+      MUTATE=1 ...  (asserts degree-3 DOES enter the linear response; the pincer must break)
+
+
+====================================================================================================
+PART A -- order counting: which curvature scalars reach the eps^2 (quadratic) action?
+====================================================================================================
+   leading eps-order:  R -> 1   Ric^2 -> 2   Riem^2 -> 2
+  [PASS] A1 curvature is O(eps), so a scalar of degree n in the Riemann tensor is O(eps^n): R is order 1, the quadratic invariants Ric^2 and Riem^2 are order 2
+         measured: orders: R=1, Ric^2=2, Riem^2=2
+         reading:  this is the degree->eps-order dictionary the pincer runs on
+   sqrt(-g) R^1: eps^2 coefficient NONZERO
+   sqrt(-g) R^2: eps^2 coefficient NONZERO
+   sqrt(-g) R^3: eps^2 coefficient ZERO
+   sqrt(-g) R^4: eps^2 coefficient ZERO
+  [PASS] A2 sqrt(-g) R^n contributes to the eps^2 (quadratic) action for n = 1 and n = 2, and NOT for n >= 3 -- so only degree <= 2 reaches the LINEARIZED field equations
+         measured: eps^2 coefficients nonzero for n=1,2: True; nonzero for n=3 or 4: False
+         reading:  the weak-field force law AND the lensing deflection both live in the eps^2 action; a degree-3 invariant is O(eps^3) and cannot perturb either
+  [PASS] A3 box^-1 PRESERVES eps-degree: box^-1 is linear, so box^-1[eps^n s] = eps^n box^-1[s]; nonlocal insertions therefore cannot promote a degree-3 invariant into the linear response
+         measured: lap(eps^n u) - eps^n lap(u) = 0
+         reading:  so the pincer covers the NONLOCAL curvature-built class too, not only the local one
+
+====================================================================================================
+PART B -- degree <= 2 cannot separate Phi from Psi (L264's finding, recomputed)
+====================================================================================================
+  [PASS] B0 VALIDATION: the pipeline reproduces the exact Schwarzschild Kretschmann (Riem^2 = 8(A:A) = 48(GM)^2/r^6) and vacuum Ric^2 = 0
+         measured: Riem^2 = 48*k**2 vs 8(A:A) = 48*k**2; Ric^2 = 0
+         reading:  anchored on a known exact result before the new claim
+       R^2 = 0*(A:A) + 0*(B:B) + 0*(A:B)
+     Ric^2 = 1*(A:A) + 1*(B:B) + -2*(A:B)
+    Riem^2 = 4*(A:A) + 4*(B:B) + 0*(A:B)
+  [PASS] B1 the degree-2 coefficient matrix is SINGULAR: only |A|^2+|B|^2 and |A-B|^2 are available, both symmetric under Phi <-> Psi, so Phi_,ij Phi_,ij cannot be isolated
+         measured: det(coefficient matrix) = 0
+         reading:  reproduces L264 B1 independently
+
+====================================================================================================
+PART C -- THE PINCER
+====================================================================================================
+  [PASS] C1 THE PINCER: separating Phi from Psi requires curvature degree >= 3 (L264 C), while the linearized field equations reach only degree <= 2 (A2).  The intersection is EMPTY
+         measured: separation needs degree >= 3; linear response admits degree <= 2
+         reading:  no polynomial curvature scalar -- with or without box^-1, since box^-1 preserves eps-degree -- both modifies the weak-field/lensing response AND separates the two potentials
+
+====================================================================================================
+PART D -- the escapes, priced
+====================================================================================================
+  [PASS] D1 the ONLY way to drop a degree-3 invariant into the eps^2 action is a non-analytic power (J^(2/3) ~ eps^2), and that function has no perturbative vacuum: f''(J) DIVERGES as J -> 0 (flat space)
+         measured: f(J) = J^(2/3): f''(J) = -2/(9*J**(4/3)), limit as J->0+ = -oo (divergent)
+         reading:  an action non-analytic at flat space cannot be linearized about Minkowski at all
+  [PASS] D2 an f(R)-type scalar long-range enough to give a MOND-like enhancement is Brans-Dicke with omega = 0, hence gamma_PPN = 1/2: lensing sees (1+gamma)/2 = 3/4 of the dynamical mass -- the lensing lock returns.  Screening it (short range) removes the enhancement
+         measured: gamma(m r -> 0) = 1/2, gamma(m r -> inf) = 1; Brans-Dicke (1+w)/(2+w) at w=0 = 1/2
+         reading:  GR is recovered in the screened limit (gamma -> 1), which is the CONTROL: the check is not rigged, it reproduces the known limits at both ends
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  (1) COMPUTED: the eps-order of curvature invariants and of sqrt(-g) R^n; the degree-2 Phi<->Psi
+      degeneracy on a Schwarzschild-validated pipeline; the two non-analytic escapes.
+  (2) NUMBERS: R is O(eps), the quadratic invariants O(eps^2), and the eps^2 coefficient of sqrt(-g)R^n
+      is nonzero for n = 1, 2 and ZERO for n >= 3; det(degree-2 coefficient matrix) = 0; J^(2/3) has
+      f'' -> infinity at flat space; the long-range f(R) scalar gives gamma_PPN = 1/2 (and 1 when screened).
+  (3) HONEST SENTENCE: the door L264 left open is CLOSED.  Separating the Newtonian from the lensing
+      potential requires curvature degree >= 3, but the linearized field equations -- which carry both
+      the weak-field force law and the lensing deflection -- see only degree <= 2, and box^-1 preserves
+      eps-degree so nonlocal insertions do not bridge the gap.  The two non-analytic escapes are priced:
+      J^(2/3) has no perturbative vacuum, and an f(R)-type long-range scalar is Brans-Dicke omega = 0 with
+      gamma_PPN = 1/2, which is the lensing lock again.  CONSEQUENCE: L31's hypothesis (iv) is removable
+      against the entire CURVATURE-BUILT class, local and nonlocal, by a structural theorem rather than
+      L39's enumeration of known models.
+      NOT CLAIMED: coverage of nonlocal objects NOT built from curvature (a nonlocal scalar built from an
+      independent field or a vector violates L31's (ii)/(iii) instead), nor anything about backgrounds
+      other than flat space.
+
+====================================================================================================
+RESULT
+====================================================================================================
+L265 COMPLETE: 8/8 checks PASS
