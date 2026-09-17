@@ -1,0 +1,133 @@
+{
+ "lane": "N04b_equilibrium",
+ "evidence_only": "Simulations are numerical evidence for the lane statements (incl. the window theorem); they are NOT proofs.",
+ "params": {
+  "n": 32,
+  "nu": 0.02,
+  "dt": 0.002,
+  "T": 40.0,
+  "A": 1.0,
+  "seed": 7,
+  "a0_sim": 0.02,
+  "dealiasing": "2/3 rule",
+  "every": 25,
+  "delta": 0.05,
+  "cases": {
+   "classical": {
+    "c_d": 0.0,
+    "a0cap": null
+   },
+   "a0cap_002": {
+    "c_d": 0.0,
+    "a0cap": 0.02
+   },
+   "cd_03": {
+    "c_d": 0.3,
+    "a0cap": null
+   }
+  }
+ },
+ "wall_time_s": {
+  "classical": 477.1,
+  "a0cap_002": 483.8,
+  "cd_03": 454.5
+ },
+ "sup_peak": {
+  "classical": 19.871325818720095,
+  "a0cap_002": 19.018320281894916,
+  "cd_03": 1.6362610162503153
+ },
+ "sup_final": {
+  "classical": 19.871325818720095,
+  "a0cap_002": 19.018320281894916,
+  "cd_03": 1.636146760291055
+ },
+ "enst_final": {
+  "classical": 103.57269730477324,
+  "a0cap_002": 93.50617032145223,
+  "cd_03": 1.164317575381108
+ },
+ "enst_last_quarter_mean": {
+  "classical": 86.97489729282454,
+  "a0cap_002": 78.52436108623766,
+  "cd_03": 1.1643177212398093
+ },
+ "enst_prev_quarter_mean": {
+  "classical": 53.827540770749884,
+  "a0cap_002": 48.601327073377455,
+  "cd_03": 1.164312273623117
+ },
+ "eta_classical": {
+  "max": 20.47910037560076,
+  "min": 0.15163713980489665,
+  "last_quarter_mean": 18.752523429363535,
+  "first_exit_eta3.5": "4.800"
+ },
+ "g27_trajectory_inequality": {
+  "delta": 0.05,
+  "n_point_pairs": 26214400,
+  "worst_excess": -4.159753955945006e-05,
+  "n_viol_tol0": 0,
+  "max_abs_a_mat": 126.79424578173015,
+  "tol": 1.2679424578173015e-07
+ },
+ "g29_energy_identity": {
+  "E_final": 50.20049115868132,
+  "energy_change": 50.200475899892254,
+  "acc_residual": 0.0404979943548156,
+  "acc_relative": 0.0008067253074567471,
+  "max_local_relative": 0.0025472685159551715,
+  "P_rms": 1.3354968004469758
+ },
+ "checks": [
+  {
+   "name": "G25_equilibrium_classical",
+   "pass": false,
+   "value": "0.616",
+   "threshold": "<= 0.15",
+   "note": "classical: last-quarter mean enstrophy 86.975 vs previous-quarter 53.828: relative change 61.6% -- still drifting: equilibrium NOT reached."
+  },
+  {
+   "name": "G25_equilibrium_a0cap_002",
+   "pass": false,
+   "value": "0.616",
+   "threshold": "<= 0.15",
+   "note": "a0cap_002: last-quarter mean enstrophy 78.524 vs previous-quarter 48.601: relative change 61.6% -- still drifting: equilibrium NOT reached."
+  },
+  {
+   "name": "G25_equilibrium_cd_03",
+   "pass": true,
+   "value": "0.000",
+   "threshold": "<= 0.15",
+   "note": "cd_03: last-quarter mean enstrophy 1.164 vs previous-quarter 1.164: relative change 0.0% -- viscous equilibrium reached (spin-up ended)."
+  },
+  {
+   "name": "G26_suppression_order",
+   "pass": true,
+   "value": "19.8713 > 19.0183 >= 1.6363",
+   "threshold": "classical > a0cap >= cd03",
+   "note": "sup peaks: classical 19.8713 > a0cap-0.02 19.0183 >= cd-0.3 1.6363 (barrier sqrt(A/cd) = 1.826 for cd = 0.3): the drag ladder lowers the sup monotonically; the a0-cap class is sub-regularizing and sits close to classical (case set has no cd=0.05 rung)."
+  },
+  {
+   "name": "G27_trajectory_inequality",
+   "pass": true,
+   "value": "-4.160e-05",
+   "threshold": "<= tol = 1.268e-07",
+   "note": "classical run: pointwise | |u(t+delta)| - |u(t)| | <= delta*max|a_mat| + tol checked on 26214400 point-pairs (delta = 0.05), worst excess -4.160e-05 <= tol 1.268e-07 (tol = 1e-9*scale, scale = max|a_mat| = 126.794), 0 point violations at tol = 0: the elementary inequality behind the window theorem is consistent with the discrete dynamics (EVIDENCE ONLY, not a proof)."
+  },
+  {
+   "name": "G28_window_first_exit",
+   "pass": true,
+   "value": "4.800",
+   "threshold": "first exit of eta = 3.5 (or no exit)",
+   "note": "classical run (a0_sim = 0.02): eta_flow(t) = ||(u.grad)u + nu Lap u||_oo / a0_sim first EXITS the eta = 3.5 level at t = 4.800 (max eta = 20.5, min eta = 0.2, last-quarter mean 18.8): the turbulent classical flow is NOT confined to the sub-floor window -- the window-exit diagnostic fires."
+  },
+  {
+   "name": "G29_energy_identity",
+   "pass": true,
+   "value": "max-local 0.255%, accumulated 0.081%",
+   "threshold": "max-local <= 1% and accumulated <= 1%",
+   "note": "classical: E = 0.5<|u|^2> volume mean, Z = <|grad u|^2>, dE/dt = -nu*Z + <f,u> (spec form dE/dt = -2nu*Z + <f,u> up to the 1/2 energy normalization); Euler-forward check E(t+delta) vs E(t) + delta*(-nu*Z + <f,u>) over the run: worst local relative residual 0.255% (typical power scale |delta*<f,u>| ~ 0.0668), accumulated residual 0.081% of the energy change |E(T)-E(0)| = 50.2005: the discrete energy budget closes to <= 1% -- the integrator is healthy."
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "lane": "N04_galerkin",
+ "n": 24,
+ "nu": 0.01,
+ "T": 6.0,
+ "A": 1.0,
+ "sup_peak": {
+  "classical": 4.214875408226058,
+  "a0cap_002": 4.062465018145259,
+  "cd_005": 3.1450369993141623,
+  "cd_03": 1.6271993974400616
+ },
+ "enst_final_RELATIVE_ONLY": {
+  "classical": 53263.16250649119,
+  "a0cap_002": 48057.920742737064,
+  "cd_005": 34887.202651469,
+  "cd_03": 12071.987743169513
+ },
+ "eta_classical_max": 2.231884541080165,
+ "checks": [
+  {
+   "name": "G17_N2_class_no_sup_cap",
+   "pass": true,
+   "value": "4.062465018145259",
+   "threshold": "|M-M_c|/M_c < 0.10",
+   "note": "a0-capped drag sup peak 4.062 vs classical 4.215: the capped class does NOT cap the sup (sub-regularizing, as certified: the cap has no |u|-dependence)"
+  },
+  {
+   "name": "G18_N3_class_caps_sup",
+   "pass": true,
+   "value": "1.6271993974400616",
+   "threshold": "< 2.008 and ordered",
+   "note": "sup peaks: classical 4.215 > weak 3.145 > strong 1.627 <= 1.1*barrier 2.008: the |u|-drag orders the sup and respects the barrier"
+  },
+  {
+   "name": "G20_window_class_flow",
+   "pass": true,
+   "value": "2.231884541080165",
+   "threshold": "[0.5, 4]",
+   "note": "classical run extreme acceleration content eta = 2.23 (a0_sim = 0.02 scale-labelled): the simulated flow is a WINDOW-CLASS flow (within a factor ~3 of the floor 3.5) -- the runs exercise exactly the regime where the modification is O(1)-relevant, which is the regime the drag doors are about; lab-scale face flows (eta ~ 1e10) are covered by the certified numbers, not by this sim"
+  }
+ ]
+}

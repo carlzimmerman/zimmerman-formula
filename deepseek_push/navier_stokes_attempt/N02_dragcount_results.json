@@ -1,0 +1,57 @@
+{
+ "lane": "N02_dragcount",
+ "a0_m_s2": 9.3619e-11,
+ "phantom_cap": "a0/2",
+ "cap_numeric": 4.68095e-11,
+ "sup_ode": "M'(t) <= A - a0: M(T) <= M0 + (A+a0)*T (linear, no global bound)",
+ "lab_face_relative_deviation": 4.68095e-11,
+ "face_orders_below_1": 11,
+ "window_x_range_m_s2": [
+  2.621332e-12,
+  1.9004657000000002e-11
+ ],
+ "checks": [
+  {
+   "name": "G6_a0_over_2_cap_exact",
+   "pass": true,
+   "value": "a0/2 (x -> oo)",
+   "threshold": "a0/2",
+   "note": "max phantom extra acceleration = a0/2 EXACTLY, monotone in x: a universal cap for every regime (Lean: NSE_a0line.lean)"
+  },
+  {
+   "name": "G7_cap_monotone",
+   "pass": true,
+   "value": "d f/d x > 0 (exact + grid)",
+   "threshold": "> 0",
+   "note": "cap bound holds in ALL regimes, strongest at x >> a0"
+  },
+  {
+   "name": "G8_K2_no_global_sup_bound",
+   "pass": true,
+   "value": "M(T) <= M0 + (A + a0)*T",
+   "threshold": "globally bounded M",
+   "note": "sup-ODE at the a0-only drag: linear-in-T growth; the two-constant class cannot close the Clay gap (K2 fires)"
+  },
+  {
+   "name": "G9_lab_face_1e-11_level",
+   "pass": true,
+   "value": "4.68095e-11",
+   "threshold": "1e-10",
+   "note": "force-law deviation at 1 m/s^2 = 4.681e-11 (11 orders below measurement): the Newtonian face is exact"
+  },
+  {
+   "name": "G10_face_impulse_unmeasurable",
+   "pass": true,
+   "value": "2.765871267599736e-13",
+   "threshold": "1e-08",
+   "note": "drag impulse over one year at 1 m/s with the face factor = 2.766e-13 m/s -- unmeasurable"
+  },
+  {
+   "name": "G11_scaling_unchanged",
+   "pass": true,
+   "value": "critical norm unchanged",
+   "threshold": "H^{1/2}-class",
+   "note": "bounded perturbation |d| <= a0 preserves the NSE scaling: no subcriticality gained, difficulty class preserved"
+  }
+ ]
+}

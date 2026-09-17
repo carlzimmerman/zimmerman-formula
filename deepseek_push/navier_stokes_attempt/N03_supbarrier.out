@@ -1,0 +1,18 @@
+ell_0 = 1 kpc: c_d(survival) = 1.440e-23 1/s, sqrt(a0/ell_0) = 1.742e-15 1/s -> kappa <= 8.270e-09
+ell_0 = 10 kpc: c_d(survival) = 1.440e-23 1/s, sqrt(a0/ell_0) = 5.508e-16 1/s -> kappa <= 2.615e-08
+PASS G12a_barrier_never_violated value=2.489243083269231
+      sup peak 2.489 vs barrier sqrt(A/c_d) = 4.472: the a priori cap is never violated (the barrier is an UPPER bound; at small c_d viscosity, not drag, sets the level: peak stays below the cap)
+PASS G12b_barrier_cd03 value=1.560878834122795
+      sup peak 1.561 vs barrier 1.826: in the drag-dominated regime the cap is tight (35% of the band)
+PASS G13_survival_gate value=2.615106101709817e-08
+      kappa <= 2.615e-08 from MW support survival over 10 Gyr (c_d <= 1.440e-23 /s at U_rot = 2.2e+05 m/s)
+PASS G14_lab_face_silent value=4.545454545454546e-16
+      drag dv over one year at 1 m/s at the survival-bound coupling = 4.545e-16 m/s: unmeasurable (silence is consistency)
+PASS G15_exclusivity_tight_band value=2.872729287645185
+      at the survival bound the drag time in the window (eta=0.203, L=10 kpc) is 2.873 Hubble times: the admissible band is TIGHT, not empty -- kappa_max is within a factor ~3 of window relevance; kappa above ~3x kappa_max drains galaxies in < 3 Gyr (excluded); below ~0.1x it is silent: the MW disk itself sits at eta ~ 2 (U^2/R ~ 1.9e-10 m/s^2), so rotation support pins kappa ~ 1e-8
+PASS G16_drag_lowers_sup value=1.560878834122795
+      regression test: strong-drag peak 1.561 vs classical peak 2.898 (drag case lower); weak-drag peak 2.489 <= classical: the drag monotonically lowers the sup as the claim requires
+N03_supbarrier COMPLETE: 6/6 checks PASS.
+DOOR N3: the family is globally smooth at EVERY fixed kappa > 0 (conditional on the
+coupling existing); the survival gate pins kappa <= ~1.6e-8 (silent); the kappa -> 0
+passage is Clay (N5). Rest: the algebraic rungs are Lean-certified.

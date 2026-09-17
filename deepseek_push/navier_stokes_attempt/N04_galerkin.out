@@ -1,0 +1,15 @@
+Galerkin runs: n = 24, nu = 0.01, dt = 0.001, T = 6.0, A = 1.0
+--- enstrophy diagnostics (RELATIVE normalization only: numpy rfftn is unnormalized; per-volume enst/ene values carry a ~2x + plane-pairing factor -- see N04b finding. No gate here: T = 6 is spin-up; equilibrium run = N04b) ---
+  DIAG classical: Z(t=1)=1569.7  Z_final=53263.2  last-quarter-mean=41561.6  prev-quarter=21739.9  growth-ratio=1.91 (finite at all samples: True)
+  DIAG a0cap_002: Z(t=1)=1417.9  Z_final=48057.9  last-quarter-mean=37502.4  prev-quarter=19620.5  growth-ratio=1.91 (finite at all samples: True)
+  DIAG cd_005: Z(t=1)=1547.2  Z_final=34887.2  last-quarter-mean=29379.3  prev-quarter=17854.0  growth-ratio=1.65 (finite at all samples: True)
+  DIAG cd_03: Z(t=1)=1442.8  Z_final=12072.0  last-quarter-mean=11442.1  prev-quarter=9286.4  growth-ratio=1.23 (finite at all samples: True)
+PNG saved: N04_galerkin.png
+PASS G17_N2_class_no_sup_cap value=4.062465018145259
+      a0-capped drag sup peak 4.062 vs classical 4.215: the capped class does NOT cap the sup (sub-regularizing, as certified: the cap has no |u|-dependence)
+PASS G18_N3_class_caps_sup value=1.6271993974400616
+      sup peaks: classical 4.215 > weak 3.145 > strong 1.627 <= 1.1*barrier 2.008: the |u|-drag orders the sup and respects the barrier
+PASS G20_window_class_flow value=2.231884541080165
+      classical run extreme acceleration content eta = 2.23 (a0_sim = 0.02 scale-labelled): the simulated flow is a WINDOW-CLASS flow (within a factor ~3 of the floor 3.5) -- the runs exercise exactly the regime where the modification is O(1)-relevant, which is the regime the drag doors are about; lab-scale face flows (eta ~ 1e10) are covered by the certified numbers, not by this sim
+N04_galerkin COMPLETE: 3/3 checks PASS (plus enstrophy DIAGNOSTICS above; equilibrium verification runs in N04b_equilibrium).
+EVIDENCE ONLY: the Galerkin runs support the lane theorems; they are not proofs.

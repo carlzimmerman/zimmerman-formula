@@ -1,0 +1,55 @@
+{
+ "lane": "N01_rheology",
+ "slope_formula": "(a0/2 + x)/(a0 + x)",
+ "p_eff_formula": "(3*a0/2 + 2*x)/(a0 + x)",
+ "p_eff_deep": 1.5,
+ "p_eff_newtonian": 2.0,
+ "p_eff_at_gN_1e-6_a0": 1.5000004999995,
+ "cross_9over5_at_gN_over_a0": 1.5,
+ "rar_deep_slope": 0.5,
+ "mu2_viscosity_deep": 0.0,
+ "checks": [
+  {
+   "name": "G1_p_eff_deep_below_9/5",
+   "pass": true,
+   "value": 1.5000004999995,
+   "threshold": 1.8,
+   "note": "deep regime: exponent 1.5000004999995 < 9/5 -> the rheology door cannot borrow the thinning regularity theorems"
+  },
+  {
+   "name": "G1b_p_eff_below_gate_in_window",
+   "pass": true,
+   "value": 1.5843725204467773,
+   "threshold": 1.8,
+   "note": "p_eff across the window [0.028, 0.203] is 1.58437 < 9/5 (crossing at g_N = 1.5000 a0 lies beyond the S-suppressed band): the O(1)-modification regime NEVER has a regularizing exponent"
+  },
+  {
+   "name": "G2_p_eff_newtonian_face_exact_2",
+   "pass": true,
+   "value": 2.0,
+   "threshold": 2.0,
+   "note": "high-shear face: exponent exactly 2 (classical Newtonian rheology), matching the law's Newtonian limit"
+  },
+  {
+   "name": "G3_p_eff_never_reaches_11/5",
+   "pass": true,
+   "value": 2.0,
+   "threshold": 2.2,
+   "note": "max exponent 2 < 11/5: the thickening regularity class is unreachable"
+  },
+  {
+   "name": "G4_RAR_deep_slope_equals_1/2",
+   "pass": true,
+   "value": 0.5,
+   "threshold": 0.5,
+   "note": "data-selected RAR kernel: d ln g_obs/d ln g_N -> 1/2 exactly at deep (same exponent)"
+  },
+  {
+   "name": "G5_mu2_viscosity_shear_thinning",
+   "pass": true,
+   "value": 1.0,
+   "threshold": 1.0,
+   "note": "mu2 kernel: effective viscosity -> 0 at small shear (shear-thinning, no regularization floor)"
+  }
+ ]
+}

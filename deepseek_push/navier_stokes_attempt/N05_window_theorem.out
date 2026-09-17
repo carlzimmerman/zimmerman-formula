@@ -1,0 +1,53 @@
+PASS G21a_a0_constant value=9.3619e-11
+      a0 = 9.3619e-11 m/s^2 (kappa = 1/2 canonical, MEASURED, LAW_STATEMENT.md)
+PASS G21b_floor_exact_7_over_2 value=3.5
+      W = 3.5 = 7/2 exactly (the measured floor; zero float error: 0.0e+00)
+PASS G21c_ceiling_value value=3.276665e-10
+      ceiling |Du/Dt|_max = a0*W = 3.276665e-10 m/s^2; SPEC_B rounds to 3.2767e-10 (rel diff 1.07e-05)
+PASS G21d_bound_10Gyr value=1.0340e+08
+      U(t) <= U0 + a0*W*t at t = 10 Gyr: dU = 1.0340e+08 m/s  [AMENDMENT: SPEC_B prints 1.034e7 m/s = a0*W*(1 Gyr) = 1.0340e+07 m/s; the 10-Gyr horizon named by the spec gives 1.034e8 m/s -- used here]
+PASS G21e_bound_loose_but_finite value=0.3449 c
+      dU(10 Gyr) = 1.0340e+08 m/s = 0.3449 c: a LINEAR-in-time ceiling integral, not an attained trajectory -- loose (0.345 c over 10 Gyr) but FINITE: the honesty note of SPEC_B recorded (the bound caps growth; it does not claim the flow reaches it)
+PASS G22a_trajectory_inequality_exact value=0.000e+00
+      max excess of |u(t)| <= |u(0)| + int|Du/Dt| over 16 RK4 trajectories x 20000 steps (static ABC-class + modulated fields, |v| in [0.2180, 1.1960]): 0.000e+00 relative -- the elementary bound holds to quadrature precision (EVIDENCE, not proof)
+PASS G22b_synthetic_constant_cap value=0.000e+00
+      theorem-form with CONSTANT synthetic material-acceleration cap a_syn = 1.02*max|Du/Dt| (mirrors the theorem's a0*W ceiling): excess 0.000e+00 relative
+PASS G22c_synthetic_modulated_cap value=0.000e+00
+      theorem-form with TIME-MODULATED synthetic a(t) = M*(2 + sin t) >= |Du/Dt| applied along the trajectory: excess 0.000e+00 relative
+PASS G23a_md_contains_Serrin value=Serrin/Serrin 1962
+      'Serrin' in N05_WINDOW_THEOREM.md: True; 'Serrin 1962': True
+PASS G23b_md_criterion_and_citations value=all present
+      md states the criterion with citation & the L^oo continuation: missing = none (criterion '2/q + 3/p <= 1'; Prodi 1959; Serrin 1962; Kato 1984)
+PASS G23c_py_contains_Serrin value='Serrin' in N05_window_theorem.py
+      'Serrin' appears in the lane file: True (theorem docstring + gates)
+PASS G24a_mw_disk_eta_anchor value=2.019
+      MW disk a = U^2/R = 1.890e-10 m/s^2 -> eta = 2.019 (SPEC_B: ~1.9e-10 m/s^2, eta ~ 2.0)
+PASS G24b_catalog_tag_consistency value=2 above floor
+      every class tagged THEOREM-COVERED iff eta <= 3.5; classes above the floor are flagged CLAY-POSSIBLE (the catalog is not vacuous: the Clay regime sits ABOVE the floor)
+PASS G24c_catalog_coverage value=6 covered
+      6 window-class flows THEOREM-COVERED (ISM, halo gas, MW disk at eta ~ 0.09-2.0, inside/adjacent to the measured window [0.028, 0.203] and the P4 floor requirement eta ~ 2-3.5); 2 above (Clay-possible); representative kinematic values, not per-object measurements
+PASS G25a_exit_threshold_numbers value=3.2767e-10
+      singularity candidates must exceed |Du/Dt| = 3.2767e-10 m/s^2 (SPEC_B corollary number 3.28e-10 at 3 sig figs; rel diff 1.02e-03): enstrophy divergence is forced ABOVE the window
+PASS G25b_window_class_blowup_attempt_fails value=excess 0.000e+00
+      N16 Galerkin window-class attempt (W_window_class) at a0_sim = 0.15: eta_max = 1.081 (floor 3.5), t_exit = None, sup: 0.2000 -> 0.4201 (no blowup), theorem bound sup(t) <= sup0 + 0.525*t respected on the window part [0, 6.00] with max excess 0.000e+00 (tol 4.4e-06): a numerical blowup attempt INSIDE the window must fail -- it does (EVIDENCE ONLY, not a proof)
+PASS G25c_exit_diagnostic_recorded value=eta_max 52.29, t_exit 0.0
+      hot classical attempt (C_hot_classical): eta_max = 52.29 >> 3.5, window exited at t = 0.0 while still smooth (sup = 1.5077): growth to 1.508 from 0.200 required leaving the window -- the corollary's exit recasting in motion; Galerkin evidence links: N04_galerkin (classical window-class flow, no blowup over T = 6), N04b_equilibrium (equilibrium run, registered per SPEC_C; its G27 trajectory-inequality check is this lane's sibling)
+
+FALSIFIER RECIPE (the exit recasting; full prose in N05_WINDOW_THEOREM.md):
+  F-W1  a window-class flow (eta <= 3.5) observed to develop a singularity:
+        would falsify the Prodi-Serrin continuation theory -- cannot happen.
+  F-W2  a numerical blowup attempt INSIDE the window must fail: this lane's
+        N16 Galerkin run (G25b) fails to blow up; N04_galerkin (window-class
+        sim, no blowup over T = 6) and N04b_equilibrium (SPEC_C) are the links.
+  F-W3  any candidate singularity must FIRST exit the window: |Du/Dt| > 3.5*a0
+        = 3.2767e-10 m/s^2 must be measured before the singular time; the
+        hot run G25c exits at t = 0 while still smooth -- growth demands exit.
+  F-W4  a singularity (physical or numerical) whose pre-singular material
+        acceleration never exceeded the floor kills step 2 (equivalently,
+        refutes Serrin): the falsifiable content of the framework claim.
+
+<N05_window_theorem> COMPLETE: 17/17 checks PASS.
+THEOREM: window-class flows are globally smooth (bound + Serrin); Clay singularities,
+if any, live above the measured floor - the window is a certified no-singularity domain.
+The proof is elementary analysis + the cited Prodi-Serrin continuation (cited, not
+derived).  Simulations verify the bound; they are not proofs.

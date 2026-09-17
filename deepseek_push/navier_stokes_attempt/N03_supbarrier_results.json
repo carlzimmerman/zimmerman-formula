@@ -1,0 +1,57 @@
+{
+ "lane": "N03_supbarrier",
+ "theorem": "ZNS[kappa,ell_0] globally smooth for all smooth data at every fixed kappa>0 (sup barrier + Prodi-Serrin + continuation)",
+ "cd_survival": 1.4403676279104068e-23,
+ "kappa_max_10kpc": 2.615106101709817e-08,
+ "barrier_cd005": 4.47213595499958,
+ "barrier_cd03": 1.8257418583505538,
+ "sup_peaks": {
+  "classical": 2.8978728852536544,
+  "cd005": 2.489243083269231,
+  "cd03": 1.560878834122795
+ },
+ "checks": [
+  {
+   "name": "G12a_barrier_never_violated",
+   "pass": true,
+   "value": "2.489243083269231",
+   "threshold": "<= 4.696",
+   "note": "sup peak 2.489 vs barrier sqrt(A/c_d) = 4.472: the a priori cap is never violated (the barrier is an UPPER bound; at small c_d viscosity, not drag, sets the level: peak stays below the cap)"
+  },
+  {
+   "name": "G12b_barrier_cd03",
+   "pass": true,
+   "value": "1.560878834122795",
+   "threshold": "[1.278, 2.373]",
+   "note": "sup peak 1.561 vs barrier 1.826: in the drag-dominated regime the cap is tight (35% of the band)"
+  },
+  {
+   "name": "G13_survival_gate",
+   "pass": true,
+   "value": "2.615106101709817e-08",
+   "threshold": "1.0",
+   "note": "kappa <= 2.615e-08 from MW support survival over 10 Gyr (c_d <= 1.440e-23 /s at U_rot = 2.2e+05 m/s)"
+  },
+  {
+   "name": "G14_lab_face_silent",
+   "pass": true,
+   "value": "4.545454545454546e-16",
+   "threshold": "1e-06",
+   "note": "drag dv over one year at 1 m/s at the survival-bound coupling = 4.545e-16 m/s: unmeasurable (silence is consistency)"
+  },
+  {
+   "name": "G15_exclusivity_tight_band",
+   "pass": true,
+   "value": "2.872729287645185",
+   "threshold": "[0.3, 10]",
+   "note": "at the survival bound the drag time in the window (eta=0.203, L=10 kpc) is 2.873 Hubble times: the admissible band is TIGHT, not empty -- kappa_max is within a factor ~3 of window relevance; kappa above ~3x kappa_max drains galaxies in < 3 Gyr (excluded); below ~0.1x it is silent: the MW disk itself sits at eta ~ 2 (U^2/R ~ 1.9e-10 m/s^2), so rotation support pins kappa ~ 1e-8"
+  },
+  {
+   "name": "G16_drag_lowers_sup",
+   "pass": true,
+   "value": "1.560878834122795",
+   "threshold": "< 2.753",
+   "note": "regression test: strong-drag peak 1.561 vs classical peak 2.898 (drag case lower); weak-drag peak 2.489 <= classical: the drag monotonically lowers the sup as the claim requires"
+  }
+ ]
+}

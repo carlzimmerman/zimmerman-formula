@@ -1,0 +1,21 @@
+slope formula      : (a0/2 + x)/(a0 + x)
+p_eff formula      : (3*a0/2 + 2*x)/(a0 + x)
+p_eff deep (x->0)  : 3/2   p_eff Newtonian (x->oo): 2
+p_eff at g_N=1e-6 a0: 1500002/1000001
+p_eff = 9/5 crossing at g_N = 1.5000 * a0
+RAR deep slope     : 1/2   mu2 viscosity at u->0: 0
+PASS G1_p_eff_deep_below_9/5 value=1.5000004999995 threshold=1.8
+      deep regime: exponent 1.5000004999995 < 9/5 -> the rheology door cannot borrow the thinning regularity theorems
+PASS G1b_p_eff_below_gate_in_window value=1.58437 threshold=1.8
+      p_eff across the window [0.028, 0.203] is 1.58437 < 9/5 (crossing at g_N = 1.5000 a0 lies beyond the S-suppressed band): the O(1)-modification regime NEVER has a regularizing exponent
+PASS G2_p_eff_newtonian_face_exact_2 value=2.0 threshold=2
+      high-shear face: exponent exactly 2 (classical Newtonian rheology), matching the law's Newtonian limit
+PASS G3_p_eff_never_reaches_11/5 value=2.0 threshold=2.2
+      max exponent 2 < 11/5: the thickening regularity class is unreachable
+PASS G4_RAR_deep_slope_equals_1/2 value=0.5 threshold=1/2
+      data-selected RAR kernel: d ln g_obs/d ln g_N -> 1/2 exactly at deep (same exponent)
+PASS G5_mu2_viscosity_shear_thinning value=1.0 threshold=1
+      mu2 kernel: effective viscosity -> 0 at small shear (shear-thinning, no regularization floor)
+N01_rheology COMPLETE: 6/6 checks PASS.
+DOOR N1: DEAD -- the measured law is shear-thinning (p_eff -> 3/2) exactly where it acts;
+the power-law regularity class (9/5, 11/5 gates) is unreachable. FAIL = the finding.

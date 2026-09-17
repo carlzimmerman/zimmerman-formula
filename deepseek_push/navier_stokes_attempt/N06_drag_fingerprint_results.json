@@ -1,0 +1,137 @@
+{
+ "lane": "N06_drag_fingerprint",
+ "kappa_refined": 2.615106101709817e-09,
+ "kappa_naive": 2.615106101709817e-08,
+ "ladder": [
+  {
+   "M_b": 1000000000.0,
+   "v_km_s": 59.37399148106231,
+   "dv_v_z1": {
+    "hi": 0.016062506454898706,
+    "lo": 0.0016179803329795517
+   },
+   "dv_v_z2": {
+    "hi": 0.008866556899796652,
+    "lo": 0.0008902133969540538
+   },
+   "dv_v_z3": {
+    "hi": 0.004308798845776285,
+    "lo": 0.00043171763024896226
+   },
+   "dv_v_z4": {
+    "hi": 0.0018873890931345727,
+    "lo": 0.00018889940188238086
+   }
+  },
+  {
+   "M_b": 3000000000.0,
+   "v_km_s": 78.14056723348877,
+   "dv_v_z1": {
+    "hi": 0.02108558762379531,
+    "lo": 0.0021288371841471365
+   },
+   "dv_v_z2": {
+    "hi": 0.011652660763919132,
+    "lo": 0.0011714218576270863
+   },
+   "dv_v_z3": {
+    "hi": 0.0056668329278919405,
+    "lo": 0.0005681335853873204
+   },
+   "dv_v_z4": {
+    "hi": 0.0024832025146690473,
+    "lo": 0.0002485981719133612
+   }
+  },
+  {
+   "M_b": 10000000000.0,
+   "v_km_s": 105.5835465425995,
+   "dv_v_z1": {
+    "hi": 0.028384872885722112,
+    "lo": 0.0028754093381754275
+   },
+   "dv_v_z2": {
+    "hi": 0.01571277773981994,
+    "lo": 0.001582499722861841
+   },
+   "dv_v_z3": {
+    "hi": 0.007649396691749466,
+    "lo": 0.0007675855938321652
+   },
+   "dv_v_z4": {
+    "hi": 0.003353839753705623,
+    "lo": 0.00033589122399768634
+   }
+  },
+  {
+   "M_b": 30000000000.0,
+   "v_km_s": 138.95576180007518,
+   "dv_v_z1": {
+    "hi": 0.03718791954961964,
+    "lo": 0.0037825307342694847
+   },
+   "dv_v_z2": {
+    "hi": 0.020627642740131846,
+    "lo": 0.002082165706263406
+   },
+   "dv_v_z3": {
+    "hi": 0.010054980827869597,
+    "lo": 0.0010100768871145194
+   },
+   "dv_v_z4": {
+    "hi": 0.004411560048523722,
+    "lo": 0.0004420342434278135
+   }
+  },
+  {
+   "M_b": 100000000000.0,
+   "v_km_s": 187.757046855591,
+   "dv_v_z1": {
+    "hi": 0.04991751070876682,
+    "lo": 0.0051075585704269955
+   },
+   "dv_v_z2": {
+    "hi": 0.02777066114499449,
+    "lo": 0.0028123934936477024
+   },
+   "dv_v_z3": {
+    "hi": 0.013562250559648548,
+    "lo": 0.0013645739164851456
+   },
+   "dv_v_z4": {
+    "hi": 0.005956278474232413,
+    "lo": 0.0005972303723513761
+   }
+  }
+ ],
+ "checks": [
+  {
+   "name": "G30_refined_survival",
+   "pass": true,
+   "value": "2.615106101709817e-09",
+   "threshold": "2.615106101709817e-08",
+   "note": "naive bound kappa <= 2.62e-08 (tau>=10 Gyr) is REFINED to kappa <= 2.62e-09 (tau_drag >= 100 Gyr): at the naive bound the MW would already have lost e^-1 of its support (observed: 220 km/s today) -- the allowed drag band shifts down by a decade"
+  },
+  {
+   "name": "G31_fingerprint_visible",
+   "pass": true,
+   "value": "0.020627642740131846",
+   "threshold": "[0.01, 0.3]",
+   "note": "at kappa = kappa_ref the ladder decays 2.1% by z = 1.0 for M_b = 3e10: inside the measurable band (percent-level): the fingerprint EXISTS at the allowed coupling"
+  },
+  {
+   "name": "G32_ladder_tilts_with_lookback",
+   "pass": true,
+   "value": "[{'z': 1.0, 'decay_1e9': 0.008866556899796652, 'decay_1e11': 0.02777066114499449, 'tilt': 0.01890410424519784}, {'z': 1.5, 'decay_1e9': 0.004308798845776285, 'decay_1e11': 0.013562250559648548, 'tilt': 0.009253451713872263}]",
+   "threshold": "decay(1e11) > decay(1e9)",
+   "note": "the eBTFR ladder TILTS: v ~ M_b^(1/4) => tau_drag ~ v^-1: high-mass disks decay FASTER (tilt = 1.0: 1.89%; 1.5: 0.93%) -- the tilt direction is the signature"
+  },
+  {
+   "name": "G33_falsifier_recipe_filed",
+   "pass": true,
+   "value": "present",
+   "threshold": "present",
+   "note": "F: high-z (z in [1,2]) disk kinematics at fixed M_b: if the BTFR zero point matches the local ladder within 0.5% (percent-level null), then kappa <= 2.6e-10 (silence); if it sags >10% at M_b = 1e11, then kappa > kappa_ref and the MW bound is violated (dead theory). The tilt direction (sag at the top FIRST) is the signature that separates this drag from any mass-dependent systematic."
+  }
+ ]
+}

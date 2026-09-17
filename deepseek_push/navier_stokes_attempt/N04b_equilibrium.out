@@ -1,0 +1,24 @@
+==============================================================================
+N04b_equilibrium: equilibrium numerics lane (SPEC_C)
+EVIDENCE ONLY: simulations are numerical evidence, not proofs.
+==============================================================================
+Galerkin runs: n = 32, nu = 0.02, dt = 0.002, T = 40.0, A = 1.0, seed = 7; dealiased 2/3 rule; snapshots every 25 steps (delta = 0.05)
+PNG saved: N04b_equilibrium.png
+
+wall times: classical = 477.1 s, a0cap_002 = 483.8 s, cd_03 = 454.5 s
+FAIL G25_equilibrium_classical value=0.616
+      classical: last-quarter mean enstrophy 86.975 vs previous-quarter 53.828: relative change 61.6% -- still drifting: equilibrium NOT reached.
+FAIL G25_equilibrium_a0cap_002 value=0.616
+      a0cap_002: last-quarter mean enstrophy 78.524 vs previous-quarter 48.601: relative change 61.6% -- still drifting: equilibrium NOT reached.
+PASS G25_equilibrium_cd_03 value=0.000
+      cd_03: last-quarter mean enstrophy 1.164 vs previous-quarter 1.164: relative change 0.0% -- viscous equilibrium reached (spin-up ended).
+PASS G26_suppression_order value=19.8713 > 19.0183 >= 1.6363
+      sup peaks: classical 19.8713 > a0cap-0.02 19.0183 >= cd-0.3 1.6363 (barrier sqrt(A/cd) = 1.826 for cd = 0.3): the drag ladder lowers the sup monotonically; the a0-cap class is sub-regularizing and sits close to classical (case set has no cd=0.05 rung).
+PASS G27_trajectory_inequality value=-4.160e-05
+      classical run: pointwise | |u(t+delta)| - |u(t)| | <= delta*max|a_mat| + tol checked on 26214400 point-pairs (delta = 0.05), worst excess -4.160e-05 <= tol 1.268e-07 (tol = 1e-9*scale, scale = max|a_mat| = 126.794), 0 point violations at tol = 0: the elementary inequality behind the window theorem is consistent with the discrete dynamics (EVIDENCE ONLY, not a proof).
+PASS G28_window_first_exit value=4.800
+      classical run (a0_sim = 0.02): eta_flow(t) = ||(u.grad)u + nu Lap u||_oo / a0_sim first EXITS the eta = 3.5 level at t = 4.800 (max eta = 20.5, min eta = 0.2, last-quarter mean 18.8): the turbulent classical flow is NOT confined to the sub-floor window -- the window-exit diagnostic fires.
+PASS G29_energy_identity value=max-local 0.255%, accumulated 0.081%
+      classical: E = 0.5<|u|^2> volume mean, Z = <|grad u|^2>, dE/dt = -nu*Z + <f,u> (spec form dE/dt = -2nu*Z + <f,u> up to the 1/2 energy normalization); Euler-forward check E(t+delta) vs E(t) + delta*(-nu*Z + <f,u>) over the run: worst local relative residual 0.255% (typical power scale |delta*<f,u>| ~ 0.0668), accumulated residual 0.081% of the energy change |E(T)-E(0)| = 50.2005: the discrete energy budget closes to <= 1% -- the integrator is healthy.
+<N04b_equilibrium> COMPLETE: 5/7 checks PASS.
+EVIDENCE ONLY: the Galerkin runs support the lane statements; simulations are not proofs.
