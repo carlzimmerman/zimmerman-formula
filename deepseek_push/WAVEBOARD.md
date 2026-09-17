@@ -2134,3 +2134,10 @@ DE09 dSph ALIGNMENT 3/3 -- the direction test, FIRST EXECUTION: 59 MW dwarfs (LV
 DE10 LOPSIDED HI specced OPEN (no WHISP data in-repo): the m=1 phase alignment, same statistic as DE09 on the density; the kit is ready.
 
 THE FINGERPRINT, FROZEN: AQUAL = direction-yes (7-15% downstream depression + the directional r_cap); the framework = direction-no (A = 0 at all shells); the environmental SPARC channel the plan bet on is un-runnable (DE04); the two scoreable direction channels both came out direction-blind (DE07 wide binaries ABSENT, DE09 dSph SURVIVES); the extreme-eta rotator registers the first all-dust-phase candidate with the cap reading retired as a phase misassignment (DE08/DE08b); the Lean spine extended (DE02F floor theorem).  The named executables: LMC approaching/receding HI, the VIVA Virgo HI, WHISP m=1, DR4 wide binaries.
+
+WAVE 37 -- THE RIEMANN LANE (deepseek_push/riemann_attemp/, NOV 26)
+RH01L_log_moment.lean -- THE LOMAX MELLIN-REFLECTION, FULL LEAN CERTIFICATE (exit 0, ZERO sorry, axioms clean):
+  (1) reflection_shape  (v != 0):  (1 + 1/v)^3 = (1+v)^3 / v^3
+  (2) reflection_power  (v > 0):   v^{s-2} * v^{-2} * v^3 = v^{s-1}
+  (3) reflection_key    (v > 0):   v^{s-2} * v^{-2} * ((1+1/v)^{-3} * (1+v)^3) = v^{s-1}
+The kernel of the framework's equilibrium (Lomax f = 2(1+u)^{-3} from the max-entropy log-moment E[ln(1+u)] = 1/2) has Mellin transform M(s) = 2 B(s, 3-s); the composed substitution u = 1/v maps M(3-s) onto M(s): M(s) = M(3-s), axis 3/2 -- the SAME algebraic reflection class as the Riemann functional equation xi(s) = xi(1-s) (axis 1/2).  sympy exact: M(s) = 2 Gamma(s)Gamma(3-s)/Gamma(3).  THE HONEST WALL (in the .lean header): the reflection of the framework kernel does NOT prove RH; what is claimed is the class-level symmetry + the registered 1/2 coincidence, with falsifiers F1 (E[ln(1+s)] dev > 3 sigma from 1/2) and F2 (KS p < 0.01 vs Lomax plateau) armed.  Empirical lane RH01_log_moment_zeros.py (30k zeros, mpmath) computing E[ln(1+s)] on unfolded spacings.
