@@ -1,0 +1,12 @@
+# RH04 -- Li's Criterion Through the Max-Entropy Ladder (2026-09-17)
+
+**VERDICT: Li's positivity is REAL at every level this lane can sample — true λₙ > 0 (n = 1..50, exact over ALL zeros), partial sums positive and monotonically converging — and it is a statistic the framework's ladder can TRACK. What Li gives the framework is a positivity observable, NOT a proof: no computation over finitely many zeros or numerically extracted coefficients controls all of RH.**
+
+- Exact Li constants (Hadamard power sums of ξ, no RH input): λ₁ = 0.02309570896612103381 (matches the closed form 1+γ/2−log(4π)/2 to 1e-81), λ₂ = 0.092346, λ₅₀ = 43.531 — all > 0.
+- True partial sums (first 500/1000/2000 zeros, mpmath zetazero; γ₂₀₀₀ = 2515.29): λ₁: 0.021947→0.022653, monotone up to the exact values (pair terms ≥ 0 on Re = 1/2). K1 PASS — λ₂(N) > 0 everywhere. Unfolding sanity E[ln(1+s)] = 0.6746 reproduces RH01 exactly.
+- Tail controlled two ways: exact tail = λₙ − partial (n = 50: 1.106) and a Nielandt-type zero-counting envelope (Rosser |S(T)| ≤ 0.137 ln T + …, von Mangoldt main density) that COVERS the exact tail at ratio ≥ 1.0059 → [PASS]. Numerical control, both legs — not a proof.
+- Framework synthetic Li (Lomax λ = 1+1/0.6746 = 2.4824 spacing law, seed 20260917): positive, tracks the true path at mean rel. dev 0.017 → K3 TRIGGERED at the pre-registered 10% level; robustness across 20 realizations: median 0.184, only 7/20 within 10% → realization-dependent cancellation (low-γ cluster excess vs high-γ sparse tail), recorded, not over-sold.
+- K2 PASS by construction (synthetic points sit on Re = 1/2: term-wise positivity) — pre-registered caveat confirmed; the ladder pins SPACINGS, Li positivity is about ARGUMENTS.
+- What the Li route gives the framework: a positivity statistic it can track (exact λₙ via ξ's power sums; a synthetic-law variant that is positive and order-correct).
+- What it cannot give: a proof of RH — Li's criterion needs ALL n and the full zero set; Oesterlé-type bounds (Maślanka 2004) show verified zeros only certify positivity up to bounded n; the tail here is numerically, not rigorously, controlled.
+- No proof of RH is claimed. Files: RH04_li_criterion.py / .out / _results.json (kill conditions registered before computation; all numbers computed in-lane).

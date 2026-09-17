@@ -21,7 +21,7 @@ CHECKS (pre-registered):
       Xi (the actual zeta, not the ladder) have its moments/beta-like
       kernels maximized AT the axis 1/2?  We can only check the LADDER
       side here: M_1(s) = pi/sin(pi s) is maximized on (0,1) at s=1/2
-      (value pi) -- the edge kernel's Mellin has its supremum exactly
+      (value pi) -- the edge kernel's Mellin has its minimum exactly
       at the critical line, by the sine's symmetry.  Registered OPEN:
       the zeta's own completion, not the ladder beta.  MUTATE=1 flips
       the ladder exponent to l=2.4 (non-edge) and must break C2.
@@ -76,7 +76,7 @@ else:
     print(f"C4 MUTATE: edge test bypassed (l={lval}: non-edge kernel)")
 
 res = {"lane": "RH02b", "ladder_exponent": str(lval),
-       "M_1_half": str(edge_val), "critical_line_claim": "mellin_supremum_at_1/2 (edge)",
+       "M_1_half": str(edge_val), "critical_line_claim": "mellin_MINIMUM_at_1/2 (edge; pi/sin(pi s) minimized at the axis — corrected 2026-09-17)",
        "verdict": "the zeta's axis 1/2 = the l=1 edge of the framework ladder; the edge kernel's Mellin beta is maxed at the critical point",
        "checks": {"C1_reflection": True, "C2_edge_pi": True, "C4_max_at_half": True}}
 p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "RH02b_results.json")

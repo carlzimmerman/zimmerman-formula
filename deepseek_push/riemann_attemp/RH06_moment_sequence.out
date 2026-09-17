@@ -1,0 +1,57 @@
+==============================================================================
+RH06 -- THE LOG-MOMENT SEQUENCE kappa_2..4: zeros vs framework-ladder
+        vs exact-GUE (second-order falsification of the spacing role)
+==============================================================================
+
+--- PRE-REGISTRATION (written before computing) ---
+  PREDICTION (framework, exact, pinned by kappa_1 = 0.6746):
+    kappa_2 = 2!*0.6746^2 = 0.910170;   kappa_3 = 6*0.6746^3 = 1.842003;
+    kappa_4 = 24*0.6746^4 = 4.970460
+  BRANCH A (STRONG POSITIVE LAW): framework PASSES kappa_2 AND kappa_3 AND kappa_4
+     -> 'the ladder's full log-moment spine is realized in the zeros'
+  BRANCH B (HONEST FAIL): GUE PASSES all three AND framework FAILS >=1 AND
+     no moment sides with the framework
+     -> 'GUE is the spacing law; the framework's single-moment pin was a coincidence of one number'
+  BRANCH C (MIXED): otherwise; report which moments side with which law
+  KILLS: K1 <80%% zeros produced -> ABORT; K2 time budget -> N=800 fallback;
+         K3 raw unfolded mean off >5%% -> ABORT; K4 <100 spacings -> ABORT
+  HONESTY: every number below is from a computation run in this lane;
+           no RH claim is ever made.
+
+--- C1 the ladder's exact log-moment identity (sympy) ---
+  n=1: E[ln(1+u)^1] = n!/(l-1)^1 (sympy exact residual 0; numeric at l=2,5/2,3: PASS)
+  n=2: E[ln(1+u)^2] = n!/(l-1)^2 (sympy exact residual 0; numeric at l=2,5/2,3: PASS)
+  n=3: E[ln(1+u)^3] = n!/(l-1)^3 (sympy exact residual 0; numeric at l=2,5/2,3: PASS)
+  n=4: E[ln(1+u)^4] = n!/(l-1)^4 (sympy exact residual 0; numeric at l=2,5/2,3: PASS)
+  [PASS] C1: kappa_n = n!/(l-1)^n = n!*kappa_1^n exact for n=1..4 (sympy residual 0 on a=l-1>0; numeric PASS at l=2, 5/2, 3)
+
+--- C2 the empirical log-moment sequence on the real zeros ---
+  computing first 1500 zeta zeros (mpmath zetazero, dps=15)...
+  zeros computed: 1500/1500 in 151 s
+  unfolded raw mean = 0.999299 (expect ~1)
+  [PASS] K3: raw unfolded mean 0.9993 within 5% of 1
+  unit-mean normalized: n_spacings = 1499, mean = 1.000000
+  kappa_1 (zeros) = 0.67504 +- 0.00492   bootstrap95 [0.66655, 0.68393]   lag-1 autocorr -0.405
+  kappa_2 (zeros) = 0.49191 +- 0.00676   bootstrap95 [0.47990, 0.50622]   lag-1 autocorr -0.390
+  kappa_3 (zeros) = 0.38104 +- 0.00763   bootstrap95 [0.36629, 0.39592]   lag-1 autocorr -0.355
+  kappa_4 (zeros) = 0.31042 +- 0.00818   bootstrap95 [0.29581, 0.32609]   lag-1 autocorr -0.312
+
+--- C3 exact-GUE log-moment sequence (MC, RH01b recipe: 24 x 500, within-matrix spacings) ---
+  [PASS] K4: GUE spacings n = 7282
+  kappa_1 (GUE MC) = 0.67056 +- 0.00249
+  kappa_2 (GUE MC) = 0.49492 +- 0.00341
+  kappa_3 (GUE MC) = 0.39243 +- 0.00392
+  kappa_4 (GUE MC) = 0.32946 +- 0.00437
+
+--- C4 the verdict (strict sigma = empirical se) ---
+  kappa_2: meas 0.49191+-0.00676 | framework 0.91017 (pin-err 0.00944, z=61.90) -> FAIL | GUE 0.49492+-0.00341 (z=0.45) -> PASS
+  kappa_3: meas 0.38104+-0.00763 | framework 1.84200 (pin-err 0.02867, z=191.57) -> FAIL | GUE 0.39243+-0.00392 (z=1.49) -> PASS
+  kappa_4: meas 0.31042+-0.00818 | framework 4.97046 (pin-err 0.10315, z=569.41) -> FAIL | GUE 0.32946+-0.00437 (z=2.33) -> FAIL
+
+VERDICT [branch C]: MIXED: kappa_2 sides with GUE, kappa_3 with GUE, kappa_4 with neither
+  (note: framework prediction errors from the kappa_1 pin are [0.0094444, 0.028670365080000003, 0.103152150842496])
+  checks: 3/3 PASS
+
+=== WRITTEN /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/riemann_attemp/RH06_results.json ===
+runtime 152 s total
+DONE
