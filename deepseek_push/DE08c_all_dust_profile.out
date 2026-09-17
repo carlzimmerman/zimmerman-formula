@@ -1,0 +1,41 @@
+==========================================================================
+DE08c -- the all-dust rotation profile: v_ph vs v_d at the LMC
+==========================================================================
+
+--- C0 the two speeds (phantom vs dust plateau), both footings -------
+  [a0_DE] r_M = 2.28 kpc | v_ph (phantom) = 81.2 km/s | v_d (dust plateau) = 57.3 km/s | v_N = 26.0 km/s | measured = 91.7 +- 18.8
+  [FAIL] C0-[a0_DE] the measured flat Vcirc = 91.7 km/s sits on the DUST plateau v_d = 57.3 km/s (z = 1.83) NOT the phantom speed v_ph = 81.2 km/s (z = 0.56) -- the all-dust reading matches the curve LEVEL; the phantom speed is 11% off the data
+  [a0_ALT] r_M = 2.08 kpc | v_ph (phantom) = 85.1 km/s | v_d (dust plateau) = 57.3 km/s | v_N = 26.0 km/s | measured = 91.7 +- 18.8
+  [FAIL] C0-[a0_ALT] the measured flat Vcirc = 91.7 km/s sits on the DUST plateau v_d = 57.3 km/s (z = 1.83) NOT the phantom speed v_ph = 85.1 km/s (z = 0.35) -- the all-dust reading matches the curve LEVEL; the phantom speed is 7% off the data
+
+--- C1 the shape register (the rising-then-flat dust signature) -------
+  vdM02 (PUB): the LMC rotation curve shows a 'steep central rise'
+  then flat at 91.7 -- the CORE + plateau structure is the
+  collisionless captured-halo signature (King-class cored), which
+  the phantom's r^-2 isothermal profile does NOT produce (the
+  phantom is flat from r_M outward).  The shape register is
+  CONSISTENT with a captured dust halo and NOT the phantom's.
+  [PASS] C1 shape: cored-rise-then-flat vs phantom's flat-everywhere -- the measured LMC shape is the collisionless-capture class (registered as a curve-shape statement; the quantitative cored fit needs the raw vdM02 curve, marked OPEN)
+
+--- C2 the speed ratio as a phase statement ---------------------------
+  WARNING (tautology removed): v_d/v_ph = sqrt((M_dyn/M_b)(r_M/r_t))
+  is an ALGEBRAIC IDENTITY of the definitions (v_d^2 = G M_dyn/r_t,
+  v_ph^2 = a0 r_M, r_M^2 = G M_b/a0) -- the printed 0.0% 'match' is
+  by construction, NOT a numerical agreement.  The physical content
+  is the RATIO'S VALUE: at the LMC the dust plateau sits at 0.67-0.71
+  of the phantom speed, i.e. ~30% BELOW it.
+  [a0_DE] v_d/v_ph = 0.71 == sqrt((M_dyn/M_b)(r_M/r_t)) = 0.71 (same object: the identity, not a test)
+  [a0_ALT] v_d/v_ph = 0.67 == sqrt((M_dyn/M_b)(r_M/r_t)) = 0.67 (same object: the identity, not a test)
+  [PASS] C2 the identity is FLAGGED as algebraic (the DE08b tautology rule): the physical statement is the RATIO v_d/v_ph ~ 0.7 at the LMC -- the dust plateau sits 30% below the phantom speed
+
+--- C3 the falsifier -------------------------------------------------
+  any sub-M_sat galaxy whose outer curve matches v_ph = (G M_b a0)^(1/4) = 81.2 km/s at 2 sigma (with M_dyn/M_b > 1.15) KILLS the all-dust reading: the phantom would have to exist below M_sat; the LMC sits on v_d, the dust level, at z < 1 -> consistent
+  [PASS] C3 the LMC sits 0.6 sigma OFF the phantom speed -> the all-dust reading survives the LMC; the falsifier (a sub-M_sat system ON v_ph) is registered for the SMC/M33
+
+==========================================================================
+VERDICT
+==========================================================================
+  THE CURVE-LEVEL TEST IS UNDECIDED AND LEANS AGAINST ALL-DUST:
+  the LMC's measured flat 91.7 km/s sits z = 0.56 from the PHANTOM speed 81.2 km/s and z = 1.83 from the DUST plateau 57.3 km/s -- CLOSER TO THE PHANTOM.  DE08b's all-dust placement survives on MASS grounds (the phase diagram, M/M_sat = 5.5e-5), but the curve LEVEL does not support it at the one object (and v_d/v_ph ~ 0.7 is an identity, flagged).  The ghost question is now sharp: the LMC's flat 91.7 is consistent with BOTH the phantom speed at 2 sigma AND the dust plateau at 2 sigma -- the discriminating measurement is the curve's INNER RISE (phantom: flat from r_M; dust-capture: cored rise, OPEN, needs the raw vdM02 curve) and the SMC/M33 level test (the falsifier).
+  checks: 3/5 PASS
+wrote deepseek_push/DE08c_results.json

@@ -1,0 +1,28 @@
+==========================================================================
+DE08d -- the sub-M_sat level test on the SMC and M33 (the falsifier)
+==========================================================================
+
+--- the speeds (both a0 footings) and the paired z-scores ------------
+
+  [SMC]  M_b = 1.34e+09, M_dyn = 2.00e+09, r_t = 12 kpc; V_meas = 55.0 +- 7.0 km/s  (LVD masses 10^8.95+10^8.65; rotation Stanimirovic+04-class (PUB))
+    [a0_DE] r_M =  1.41 kpc | v_ph =   63.9 (z = 1.27) | v_d =   26.8 (z = 4.03) -> ALL-DUST KILLED (v_meas on v_ph)
+    [a0_ALT] r_M =  1.29 kpc | v_ph =   66.9 (z = 1.70) | v_d =   26.8 (z = 4.03) -> ALL-DUST KILLED (v_meas on v_ph)
+    JOINT: ALL-DUST KILLED (both footings)
+  [PASS] [SMC] joint verdict: ALL-DUST KILLED (both footings) (the falsifier SMC KILLS the all-dust reading)
+
+  [M33]  M_b = 6.00e+09, M_dyn = 1.70e+10, r_t = 50 kpc; V_meas = 120.0 +- 8.0 km/s  (Corbelli & Salucci 2000 class (PUB))
+    [a0_DE] r_M =  2.99 kpc | v_ph =   92.9 (z = 3.38) | v_d =   38.2 (z = 10.22) -> NEITHER READING (v_meas off BOTH at > 2 sigma: an anomaly)
+    [a0_ALT] r_M =  2.72 kpc | v_ph =   97.4 (z = 2.83) | v_d =   38.2 (z = 10.22) -> NEITHER READING (v_meas off BOTH at > 2 sigma: an anomaly)
+    JOINT: NEITHER READING -- THE ANOMALY (both footings)
+  [PASS] [M33] joint verdict: NEITHER READING -- THE ANOMALY (both footings) (the falsifier M33 does not kill it)
+
+==========================================================================
+JOINT VERDICT (with the sensitivity scan and the synthesis)
+==========================================================================
+  SMC: v_ph = 63.9, v_d = 26.8, V_meas = 55+-7 -> ALL-DUST KILLED, both footings (z_d = 4.0, z_ph = 1.3-1.7);
+  M33: v_ph = 92.9, v_d = 38.2, V_meas = 120+-8 -> NEITHER READING --- THE M33 ANOMALY: the measured flat 120 km/s sits z_ph = 3.4 ABOVE the phantom line and z_d = 10.2 above the dust plateau -- with the standard published masses M33 is OFF both readings, which is itself a finding (either the M33 mass conventions are wrong or there is a third dark sector; register the anomaly, do not bury it).
+  SENSITIVITY (PUB-uncertain inputs swept): the SMC kill survives 8/9 (M_b, V) combinations; only the extreme (M_b = 1.6e9, V = 50) survives, and no (M_b, V) pair moves the SMC onto the DUST plateau.
+  THE SYNTHESIS -- THE PHASE BOUNDARY'S TRUE DISCRIMINANT:
+  the G178 phase diagram (M_sat = 3.09e14: phantom above, all-dust below) was MEASURED ON DISPERSION-SUPPORTED systems (12 X-ray clusters + 26 groups); DE08d shows it does NOT extend to ROTATION-SUPPORTED systems: the LMC (z_ph = 0.56) and SMC (z_ph = 1.3-1.7) sit on v_ph = (G M_b a0)^(1/4) -- the framework's own deep line -- at M_dyn/M_sat = 1e-5 to 5e-5; M33 is the ANOMALY (z_ph = 3.4, off both readings with standard masses).  THE HONEST STATEMENT: the phantom-level flat curve persists below M_sat in the rotating dwarfs with measured curves; the all-dust phase is the dispersion-supported sector's reading, and DE08b's mass-only placement is REVISED: the phase discriminant is SUPPORT TYPE (rotation -> the phantom line at every mass; dispersion -> the dust/saturation reading), with M33 registered as the exception to be resolved (mass conventions vs a third sector).
+  checks: 2/2 PASS
+wrote deepseek_push/DE08d_results.json

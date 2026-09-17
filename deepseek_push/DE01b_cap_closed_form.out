@@ -1,0 +1,46 @@
+==========================================================================
+DE01b -- the downstream cap closed form, scored on the solver caps
+==========================================================================
+
+--- C0 the inverted kernel mu_meas(eta) from each solver cap ---------
+
+  [mu2]  r_cap/r_EFE (solver) -> mu_meas = 1/(eta * ratio^2)
+    eta=0.2: ratio  1.809 | mu_meas =  1.527 | mu2_std(eta) =  0.196 (dev   679%) | mu2_reg(eta/2) =  0.174 (dev   780%)
+    eta=0.3: ratio  1.533 | mu_meas =  1.419 | mu2_std(eta) =  0.287 (dev   394%) | mu2_reg(eta/2) =  0.244 (dev   482%)
+    eta=0.5: ratio  1.285 | mu_meas =  1.212 | mu2_std(eta) =  0.447 (dev   171%) | mu2_reg(eta/2) =  0.360 (dev   237%)
+    eta=1.0: ratio  1.101 | mu_meas =  0.825 | mu2_std(eta) =  0.707 (dev    17%) | mu2_reg(eta/2) =  0.556 (dev    49%)
+    eta=2.0: ratio  1.028 | mu_meas =  0.473 | mu2_std(eta) =  0.894 (dev    47%) | mu2_reg(eta/2) =  0.750 (dev    37%)
+
+  [mu1]  r_cap/r_EFE (solver) -> mu_meas = 1/(eta * ratio^2)
+    eta=0.2: ratio  2.020 | mu_meas =  1.225 | mu1(eta) =  0.167 (dev   635%)
+    eta=0.3: ratio  1.751 | mu_meas =  1.087 | mu1(eta) =  0.231 (dev   371%)
+    eta=0.5: ratio  1.501 | mu_meas =  0.888 | mu1(eta) =  0.333 (dev   166%)
+    eta=1.0: ratio  1.277 | mu_meas =  0.613 | mu1(eta) =  0.500 (dev    23%)
+    eta=2.0: ratio  1.147 | mu_meas =  0.380 | mu1(eta) =  0.667 (dev    43%)
+  [FAIL] C0-[mu2] the inverted kernel from the solver caps matches mu2_std(eta) at median 32% dev at eta >= 1 (mu2_std 32% vs mu2_reg 43%) -- the cap radius IS a kernel diagnostic
+  [FAIL] C0-[mu1] the inverted kernel matches mu1(eta) at median 33% dev at eta >= 1 -- the closed form holds for the simple kernel too
+
+--- C1 the regime (strong vs weak field) -----------------------------
+  [mu2] strong-field (eta>=1) mean best dev: 27% | weak-field (eta<1): 415%
+  [mu1] strong-field (eta>=1) mean best dev: 33% | weak-field (eta<1): 391%
+  [PASS] C1 the closed form is a STRONG-FIELD statement (its premise is EFE dominance); the weak-field degradation is registered, and the decision rule is stated for eta >= 1
+
+--- C2 the signature: no cap under the direction-blind rule -----------
+  DE01 C15b (committed): A_RAR = 0.0000 at all 60 shells; the direction-blind rule has no downstream v^2 -> 0 crossing at any eta
+  [PASS] C2 the cap EXISTS only for AQUAL: the existence AND radius of the downstream cutoff is the analytic direction fingerprint
+
+--- C3 the Lean-ready identity ----------------------------------------
+  r_cap^2 = G M_b/(mu(eta) g_ext); r_EFE^2 = r_M^2/eta = (G M_b/a0)/eta
+  -> r_cap/r_EFE = 1/sqrt(mu(eta)) -- algebra of the definitions;
+     certified in DE02F-style Lean if the lane passes C0
+  [PASS] C3 the ratio identity is pure algebra (Lean target listed for the DE02F extension)
+
+==========================================================================
+VERDICT
+==========================================================================
+  THE CAP IS REAL AND THE CLOSED FORM IS AN APPROXIMATE GUIDE:
+  (1) the downstream cap EXISTS for AQUAL (10/10 solver solves) and is ABSENT for the direction-blind rule (A_RAR = 0 at all 60 shells) -- the existence of the cutoff is the analytic direction signature, committed in DE01.
+  (2) the closed form r_cap/r_EFE = 1/sqrt(mu(eta)) reproduces the solver's cap radii at eta >= 1 only to 27-33% (mu2 median 32% best convention, mu1 33%), FAILING the lane's own 30% kill gate by a hair -- per K1 the SOLVER TABLE remains the sole quantitative decision rule, and the closed form is registered as an order-of-magnitude analytic guide (the phantom's own field at r_cap is not negligible; the balance GM/(mu r^2) = g_ext neglects it).
+  (3) ROBUST OBSERVABLE: the cap radius DECREASES with eta in both kernels (mu2 ratio: 1.81->1.03; mu1: 2.02->1.15 over eta 0.2->2) -- the cutoff closes inward as the field strengthens; the inverted mu_meas is NOT a clean kernel readout (it decreases while both input kernels increase: the phantom's self-field and the factor-eta dominate the inversion), so only the EXISTENCE, the radius, and its eta-trend are claimed -- DE05's re-pointed channel measures the cutoff and its upstream absence.
+  checks: 3/5 PASS
+wrote deepseek_push/DE01b_results.json
