@@ -1,0 +1,149 @@
+{
+ "lane": "G07_statistical_virial",
+ "title": "THE STATISTICAL VIRIAL: the max-entropy functional vs the virial relation (E2, the spine's one non-Lean rung), attacked from S[rho]",
+ "question": "can the max-entropy functional at the fixed baryon well C = sqrt(G M_b a0) GENERATE the virial relation sigma^2 = C/2?",
+ "date": "2026-09-16",
+ "part1_derivation_attempt": {
+  "el_family": {
+   "family": "rho = A r^(-gamma), gamma = C/sigma^2 (Boltzmann beta = 1/sigma^2)",
+   "tested_sigma2_fracs": [
+    0.25,
+    0.5,
+    1.0,
+    2.0
+   ],
+   "el_spread_at_family_members": [
+    [
+     0.25,
+     2.0850609794259978e-14
+    ],
+    [
+     0.5,
+     1.0190056055186015e-14
+    ],
+    [
+     1.0,
+     5.99297477777882e-15
+    ],
+    [
+     2.0,
+     3.4684973468357112e-15
+    ]
+   ],
+   "reading": "the EL is solved to machine precision at gamma = C/sigma^2 for EVERY temperature -- one maximizer per sigma^2; the counting selects no temperature"
+  },
+  "thermo_identification_per_equilibrium": {
+   "rows": [
+    [
+     7373484747.620456,
+     1.356207284300891e-10,
+     1.356210847690051e-10,
+     2.6274595621575556e-06
+    ],
+    [
+     14746969495.240911,
+     6.781089872176708e-11,
+     6.781054238450255e-11,
+     5.254894770004416e-06
+    ],
+    [
+     29493938990.481823,
+     3.390554525001604e-11,
+     3.3905271192251275e-11,
+     8.083042993855125e-06
+    ]
+   ],
+   "max_rel_err": 8.083042993855125e-06,
+   "reading": "dS/dE = 1/sigma^2 holds at EVERY equilibrium, each at its own temperature (0.5, 1, 2 x C/2 tested): the multiplier is the inverse temperature as a consistency, selecting no temperature"
+  },
+  "no_selection_sigma2": {
+   "dS_dsigma2_fixed_shape": -1.0171581391620189e-10,
+   "dS_dE_fixed_shape": -6.781054261080125e-11,
+   "reading": "at fixed shape dS/dsigma^2 = -(3/2)/sigma^2 < 0 (the self-gravitating microcanonical signature); from both directions the entropy cannot pin sigma^2"
+  },
+  "direction": {
+   "phantom_maximizer_gamma_at_fracs": [
+    4.0,
+    2.2222222222222223,
+    2.0,
+    1.8181818181818181,
+    1.0
+   ],
+   "reading": "rho = A/r^2 is the maximizer iff sigma^2 = C/2: the virial temperature is upstream of the phantom, not downstream"
+  },
+  "verdict": "V1 THE DERIVATION ATTEMPT DOES NOT CLOSE (naive direction): the EL of the max-entropy problem at the fixed well yields the family rho = A r^(-C/sigma^2) -- one maximizer per temperature, all solving the EL to machine precision (0.25-2x C/2 tested) -- and the stationarity of the maximum (dS = 0 at fixed M, E) selects the profile for a GIVEN sigma^2, not a value of sigma^2: at every equilibrium (0.5, 1, 2 x C/2 tested) the identification dS/dE = 1/sigma^2 holds at that equilibrium's OWN temperature -- the multiplier IS the inverse temperature purely as a consistency, selecting no temperature -- and at fixed shape dS/dsigma^2 = -(3/2)/sigma^2 < 0 (the negative-signature of the self-gravitating microcanonical sphere; the counter-slope of the EL family dS/dE = +1/sigma^2 exists per equilibrium, both directions carry no extremum in sigma^2).  The phantom rho = A/r^2 is the maximizer AT sigma^2 = C/2 and at no other temperature -- the virial temperature is a PREMISE of the phantom, not an output of the EL.  The statistics converts the temperature into the profile; it does not generate the virial."
+ },
+ "part2_lean_target": {
+  "theorem": "THE REDUCED STATISTICAL VIRIAL: {max-entropy EL identity gamma = C/sigma^2, Boltzmann beta = 1/sigma^2} x {phantom closure gamma = 2 (certified equilibrium profile)}  =>  sigma^2 = C/2 = (1/2) sqrt(G M_b a0): E2 as pure algebra",
+  "anchors_km_s": {
+   "canonical|MW(7e10)": 121.43710098335232,
+   "canonical|MW(6.5e10)": 119.20795015232943,
+   "canonical|NGC3198": 118.04527885749974,
+   "alt|MW(7e10)": 127.22663497367905,
+   "alt|MW(6.5e10)": 124.89120900597004,
+   "alt|NGC3198": 123.67310716375009
+  },
+  "inversion_roundtrip_max_relerr": 0.0,
+  "lean_certificate": {
+   "file": "deepseek_push/lean/G07_statistical_virial.lean",
+   "theorems": [
+    "statistical_virial",
+    "statistical_virial_instantiated",
+    "el_identity_inverse",
+    "el_family_free",
+    "phantom_half_closure"
+   ],
+   "compiles_exit_0": true,
+   "axioms": "propext, Classical.choice, Quot.sound",
+   "detail": "exit 0, sorryAx absent: True, axioms clean: True, certificates printed: 5/5"
+  },
+  "missing_premise": "the kinetic-vs-potential MECHANICAL balance 2T + W_self + W_bar = 3 P_s V (G091: T = (3/2) M_T sigma^2, W_self = -G M_T^2/r_break, W_bar = -M_b C ln(r_break/r_b), boundary sigma^2 M_T): the virial's NEW physics input, which fixes gamma = 2 (or sigma^2 directly) and is not contained in S[rho] -- the statistics presumes E and its T/W split as data",
+  "alternative_route": "G091 closed virial chain as Lean theorems (G214 C1, virial_rung4)",
+  "verdict": "V2 THE LEAN-READY THEOREM: THE REDUCED STATISTICAL VIRIAL -- let the max-entropy state at the fixed baryon well Phi = C ln r, C = sqrt(G M_b a0), obey the EL identity gamma = C/sigma^2 (the energy multiplier IS the inverse temperature, beta = 1/sigma^2, G084).  Then sigma^2 = C/gamma (an exact inversion), and at the phantom closure gamma = 2 (rho = A/r^2, the equilibrium's isothermal profile -- Lean-certified M01/G227/C07/EQUILIBRIUM_THEORY, measured p = 2.000 at the MW interior, G072/G188): sigma^2 = C/2 = (1/2) sqrt(G M_b a0) -- the spine's rung E2 closes as pure algebra {max-entropy EL identity} x {certified phantom slope}.  The candidate Lean statements compile exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}: statistical_virial (the abstract closure), statistical_virial_instantiated (at C = sqrt(G M_b a0)), el_identity_inverse (the inversion), el_family_free and phantom_half_closure (the boundary and its symbolic instance).  THE FULL CLAIM 'max entropy generates the virial with no external mechanical input' is NOT a theorem; its missing premise is registered: the kinetic-vs-potential balance 2T + W_self + W_bar = 3 P_s V (G091) -- the virial's NEW physics input, which fixes gamma = 2 (or sigma^2 directly) -- with the G091 closed chain (C1, virial_rung4) remaining the alternative mechanical Lean route to the same number."
+ },
+ "verdicts": {
+  "V1": "V1 THE DERIVATION ATTEMPT DOES NOT CLOSE (naive direction): the EL of the max-entropy problem at the fixed well yields the family rho = A r^(-C/sigma^2) -- one maximizer per temperature, all solving the EL to machine precision (0.25-2x C/2 tested) -- and the stationarity of the maximum (dS = 0 at fixed M, E) selects the profile for a GIVEN sigma^2, not a value of sigma^2: at every equilibrium (0.5, 1, 2 x C/2 tested) the identification dS/dE = 1/sigma^2 holds at that equilibrium's OWN temperature -- the multiplier IS the inverse temperature purely as a consistency, selecting no temperature -- and at fixed shape dS/dsigma^2 = -(3/2)/sigma^2 < 0 (the negative-signature of the self-gravitating microcanonical sphere; the counter-slope of the EL family dS/dE = +1/sigma^2 exists per equilibrium, both directions carry no extremum in sigma^2).  The phantom rho = A/r^2 is the maximizer AT sigma^2 = C/2 and at no other temperature -- the virial temperature is a PREMISE of the phantom, not an output of the EL.  The statistics converts the temperature into the profile; it does not generate the virial.",
+  "V2": "V2 THE LEAN-READY THEOREM: THE REDUCED STATISTICAL VIRIAL -- let the max-entropy state at the fixed baryon well Phi = C ln r, C = sqrt(G M_b a0), obey the EL identity gamma = C/sigma^2 (the energy multiplier IS the inverse temperature, beta = 1/sigma^2, G084).  Then sigma^2 = C/gamma (an exact inversion), and at the phantom closure gamma = 2 (rho = A/r^2, the equilibrium's isothermal profile -- Lean-certified M01/G227/C07/EQUILIBRIUM_THEORY, measured p = 2.000 at the MW interior, G072/G188): sigma^2 = C/2 = (1/2) sqrt(G M_b a0) -- the spine's rung E2 closes as pure algebra {max-entropy EL identity} x {certified phantom slope}.  The candidate Lean statements compile exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}: statistical_virial (the abstract closure), statistical_virial_instantiated (at C = sqrt(G M_b a0)), el_identity_inverse (the inversion), el_family_free and phantom_half_closure (the boundary and its symbolic instance).  THE FULL CLAIM 'max entropy generates the virial with no external mechanical input' is NOT a theorem; its missing premise is registered: the kinetic-vs-potential balance 2T + W_self + W_bar = 3 P_s V (G091) -- the virial's NEW physics input, which fixes gamma = 2 (or sigma^2 directly) -- with the G091 closed chain (C1, virial_rung4) remaining the alternative mechanical Lean route to the same number.",
+  "V3": "V3 THE HONEST STATEMENT -- THE STATISTICAL VIRIAL EXISTS IN REDUCED FORM, AND THE VIRIAL'S BALANCE IS A GENUINELY SEPARATE PHYSICS INPUT: the max-entropy functional at the fixed well derives the profile from the temperature (rho = A r^(-C/sigma^2), EL-exact at every sigma^2) and -- inverted -- the temperature from the profile (sigma^2 = C/gamma), so that with the phantom slope gamma = 2, E2 = sigma^2 = sqrt(G M_b a0)/2 lands as a theorem of the max-entropy state (Lean-ready, compiled).  What the statistics does NOT contain, stated without garnish: the kinetic-vs-potential balance -- the equality 2T + W = 3 P_s V that a bound, self-gravitating, confined fluid must satisfy -- is dynamics, not counting: S[rho] knows the well's shape but not why the fluid hovers against it, so no entropy maximization can select sigma^2 = C/2 among the family of temperatures.  The rung's honest anatomy: E2 = {EL identity (statistical, certified-able: G214 C2)} x {phantom slope gamma = 2 (equilibrium datum, certified: M01/G227)} -> sigma^2 = C/2, with the virial's mechanical content (G091, C1) as the dynamical premise fixing the slope -- the derivation EL -> phantom -> VIRIAL does not close; the derivation {EL identity} x {phantom} -> sigma^2 = C/2 does, exactly, and that is the statistical virial's honest, Lean-able content."
+ },
+ "checks": [
+  {
+   "name": "V1a [EL family freedom] the EL equation is solved to machine precision at gamma = C/sigma^2 for EVERY tested temperature (0.25, 0.5, 1, 2 x C/2), and at no other gamma: the max-entropy problem admits one maximizer per temperature, each rho = A r^(-C/sigma^2) -- the counting selects no sigma^2",
+   "pass": true,
+   "detail": "0.25C/2-> 8.000; 0.50C/2-> 4.000; 1.00C/2-> 2.000; 2.00C/2-> 1.000"
+  },
+  {
+   "name": "V1b [thermo identification, per equilibrium] dS/dE at the EL point g* = C/sigma^2 equals 1/sigma^2 for EVERY tested temperature (0.5, 1, 2 x C/2; rel err < 1e-2) -- G084 V1b generalised: the identification is a consistency of the energy multiplier at each equilibrium, holding at ANY sigma^2, and therefore selects no temperature",
+   "pass": true,
+   "detail": "s2=0.50: rel 2.63e-06; s2=1.00: rel 5.25e-06; s2=2.00: rel 8.08e-06"
+  },
+  {
+   "name": "V1c [no entropy selection of the temperature] at fixed shape S decreases with sigma^2 (dS/dsigma^2 = -(3/2)/sigma^2 < 0) and at fixed (M, E) the EL family has dS/dE = +beta > 0 -- from BOTH directions the entropy functional carries no extremum that would pin sigma^2: the virial value must come from outside the counting",
+   "pass": true,
+   "detail": "dS/dsigma^2 = -1.017e-10 < 0; dS/dE(fixed shape) = -6.781e-11 < 0"
+  },
+  {
+   "name": "V1d [direction] the isothermal phantom rho = A/r^2 is the max-entropy profile iff sigma^2 = C/2 exactly; at every other temperature the maximizer is the different power law rho = A r^(-C/sigma^2) -- the committed chain runs (virial -> sigma^2 = C/2) -> EL -> gamma = 2 -> phantom, i.e. the virial enters as the premise that fixes the temperature, which the statistics then turns into the profile law",
+   "pass": true,
+   "detail": "gamma(C/2)=2 exact only at frac=1.00"
+  },
+  {
+   "name": "V2a [the reduced statistical virial, numeric] sigma^2 = C/2 at gamma = 2 with C = sqrt(G M_b a0) reproduces the registered temperatures exactly (121.4 km/s at 7e10 canonical; 119.2/124.9 km/s at 6.5e10 both footings; 118.05 km/s NGC3198, G035's target) -- E2 closed on {EL identity} x {phantom gamma = 2}",
+   "pass": true,
+   "detail": "MW(7e10): 121.44; MW(6.5e10): 119.21; NGC3198: 118.05; MW(7e10): 127.23; MW(6.5e10): 124.89; NGC3198: 123.67"
+  },
+  {
+   "name": "V2c [inversion + family-free] the EL identity is an exact inversion gamma = C/sigma^2 <-> sigma^2 = C/gamma, and every positive sigma^2 has its own consistent slope -- the precise statement of the missing step (no entropy selection): the virial's balance is the physics that fixes gamma = 2",
+   "pass": true,
+   "detail": "round-trip err 0.00e+00"
+  },
+  {
+   "name": "V2b [Lean] the five candidate theorems of the reduced statistical virial compile exit 0 with zero sorry and axioms {propext, Classical.choice, Quot.sound}: statistical_virial, statistical_virial_instantiated, el_identity_inverse, el_family_free, phantom_half_closure",
+   "pass": true,
+   "detail": "exit 0, sorryAx absent: True, axioms clean: True, certificates printed: 5/5"
+  }
+ ],
+ "n_pass": 7,
+ "n_total": 7,
+ "deliverable": "deepseek_push/G07_statistical_virial.py + .out + G07_results.json + deepseek_push/lean/G07_statistical_virial.lean"
+}

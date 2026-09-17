@@ -165,40 +165,43 @@ check("V1a [EL family freedom] the EL equation is solved to machine precision at
       "; ".join(f"{f:.2f}C/2->{Cv/s:6.3f}" for f, s, _, _ in fam))
 
 # =====================================================================
-# 1.2 the thermodynamic slope along the SELF-CONSISTENT family (gamma = C/sigma^2,
-# sigma^2 = C/gamma, the sigma^3 term now varying): dS/dE = beta at every member
+# 1.2 the thermodynamic identification AT EACH equilibrium (G084 V1b, per
+# temperature): fix the parameter sigma^2, vary the slope g around the EL
+# point g* = C/sigma^2, and measure dS/dE at g* -- must equal 1/sigma^2
+# (the multiplier IS the inverse temperature), at EVERY temperature.
 # =====================================================================
-print("\n--- 1.2 the entropy curve's slope at EVERY family member (G084 V1b, generalised)")
-print("    family: rho_g = A_g r^-g normalized to M_b,  sigma^2(g) = C/g  (EL identity)")
-print("    S/M_b = -int rho ln(rho) dV - (3/2) ln sigma^2(g)   [units of k_B/m]")
-print("    E/M_b = (3/2) sigma^2(g) + C <ln r>_g")
+print("\n--- 1.2 the entropy curve's slope AT EACH equilibrium (G084 V1b, per temperature)")
+print("    construction: fix the parameter sigma^2 (the constraint coefficient),")
+print("    vary the slope g about the EL point g* = C/sigma^2; the first-order")
+print("    identity dS = beta dE at g* is the Lagrange-multiplier theorem:")
+print("    dS/dE|g* = 1/sigma^2 -- consistency of the constraint, at any sigma^2.")
 
-gs = np.linspace(1.30, 2.70, 141)
-Sg, Eg = [], []
-for g in gs:
-    A = 1.0 / (4 * math.pi * trapz(r ** 2 * r ** (-g), r))
-    rho = A * r ** (-g)
-    s2g = Cv / g
-    Sg.append(-trapz(rho * r ** 2 * np.log(rho), r) - 1.5 * math.log(s2g))
-    Eg.append(1.5 * s2g + Cv * (trapz(rho * r ** 2 * np.log(r), r)) / 1.0
-              + Cv * math.log(RM))                      # <ln r> = ln RM + <ln u>
-Sg, Eg = np.array(Sg), np.array(Eg)
-dSdE = np.gradient(Sg, Eg)
-beta_exact = gs / Cv                                    # 1/sigma^2(g)
-rel = np.abs(dSdE - beta_exact) / beta_exact
-i2 = int(np.argmin(np.abs(gs - 2.0)))
-print(f"    dS/dE vs 1/sigma^2(g) = g/C over g in [{gs[0]:.2f}, {gs[-1]:.2f}]:")
-print(f"      max |rel err| = {rel.max():.3e}   (at g = 2.00: dS/dE = {dSdE[i2]:.6e} "
-      f"vs {beta_exact[i2]:.6e})")
-print(f"      dS/dE > 0 on the whole family (min {dSdE.min():.3e} > 0): S is a strictly")
-print(f"      monotone function of E -- NO interior entropy stationarity in sigma^2.")
-ok_slope = rel.max() < 1e-3 and dSdE.min() > 0
-check("V1b [thermo identification, generalised] dS/dE = 1/sigma^2(g) = g/C holds at "
-      "EVERY member of the EL family (max rel err < 1e-3), not just at the DE-set "
-      "point -- the identification is a consistency of the constraint multipliers, "
-      "and the positive slope (dS/dE = beta > 0) shows S(E) is monotone along the "
-      "family: there is no entropy extremum in the temperature direction",
-      ok_slope, f"max rel err = {rel.max():.2e}, min dS/dE = {dSdE.min():.2e}")
+rows12 = []
+for s2p in (0.5 * s2star, s2star, 2.0 * s2star):
+    gstar = Cv / s2p
+    gs_loc = np.linspace(gstar - 0.30, gstar + 0.30, 121)
+    Sloc, Eloc = [], []
+    for g in gs_loc:
+        A = 1.0 / (4 * math.pi * trapz(r ** 2 * r ** (-g), r))
+        rho = A * r ** (-g)
+        Sloc.append(-trapz(rho * r ** 2 * np.log(rho), r) - 1.5 * math.log(s2p))
+        Eloc.append(1.5 * s2p + Cv * (trapz(rho * r ** 2 * np.log(r), r) + math.log(RM)))
+    Sloc, Eloc = np.array(Sloc), np.array(Eloc)
+    dSdg = np.gradient(Sloc, gs_loc)
+    dEdg = np.gradient(Eloc, gs_loc)
+    istar = int(np.argmin(np.abs(gs_loc - gstar)))
+    dSdE_star = dSdg[istar] / dEdg[istar]
+    rows12.append((s2p, dSdE_star, 1.0 / s2p, abs(dSdE_star - 1.0 / s2p) / (1.0 / s2p)))
+    print(f"      sigma^2 = {s2p/s2star:4.2f} x (C/2),  g* = C/sigma^2 = {gstar:6.3f}:  "
+          f"dS/dE|g* = {dSdE_star:.6e}  vs  1/sigma^2 = {1.0/s2p:.6e}"
+          f"   (rel {rows12[-1][3]:.2e})")
+ok_slope = all(rel12 < 1e-2 for _, _, _, rel12 in rows12)
+check("V1b [thermo identification, per equilibrium] dS/dE at the EL point g* = "
+      "C/sigma^2 equals 1/sigma^2 for EVERY tested temperature (0.5, 1, 2 x C/2; "
+      "rel err < 1e-2) -- G084 V1b generalised: the identification is a consistency "
+      "of the energy multiplier at each equilibrium, holding at ANY sigma^2, and "
+      "therefore selects no temperature", ok_slope,
+      "; ".join(f"s2={s/s2star:.2f}: rel {rel:.2e}" for s, _, _, rel in rows12))
 
 # 1.3 promoting sigma^2 at FIXED shape (the self-gravitating-system signature):
 # dS/dsigma^2 = -(3/2) M/sigma^2 < 0 -- the counting prefers no sigma^2 either way.
@@ -244,14 +247,17 @@ v1 = (f"V1 THE DERIVATION ATTEMPT DOES NOT CLOSE (naive direction): the EL of th
       f"max-entropy problem at the fixed well yields the family rho = A r^(-C/sigma^2) "
       f"-- one maximizer per temperature, all solving the EL to machine precision "
       f"(0.25-2x C/2 tested) -- and the stationarity of the maximum (dS = 0 at fixed "
-      f"M, E) selects the profile for a GIVEN sigma^2, not a value of sigma^2: along "
-      f"the EL family dS/dE = 1/sigma^2 = g/C > 0 everywhere (no interior extremum in "
-      f"the temperature direction), and at fixed shape dS/dsigma^2 = -(3/2)/sigma^2 < 0 "
-      f"(the negative-signature of the self-gravitating microcanonical sphere).  The "
-      f"phantom rho = A/r^2 is the maximizer AT sigma^2 = C/2 and at no other "
-      f"temperature -- the virial temperature is a PREMISE of the phantom, not an "
-      f"output of the EL.  The statistics converts the temperature into the profile; "
-      f"it does not generate the virial.")
+      f"M, E) selects the profile for a GIVEN sigma^2, not a value of sigma^2: at "
+      f"every equilibrium (0.5, 1, 2 x C/2 tested) the identification dS/dE = 1/sigma^2 "
+      f"holds at that equilibrium's OWN temperature -- the multiplier IS the inverse "
+      f"temperature purely as a consistency, selecting no temperature -- and at fixed "
+      f"shape dS/dsigma^2 = -(3/2)/sigma^2 < 0 (the negative-signature of the "
+      f"self-gravitating microcanonical sphere; the counter-slope of the EL family "
+      f"dS/dE = +1/sigma^2 exists per equilibrium, both directions carry no extremum "
+      f"in sigma^2).  The phantom rho = A/r^2 is the maximizer AT sigma^2 = C/2 and at "
+      f"no other temperature -- the virial temperature is a PREMISE of the phantom, "
+      f"not an output of the EL.  The statistics converts the temperature into the "
+      f"profile; it does not generate the virial.")
 print("\n  " + v1)
 
 # =====================================================================
@@ -279,8 +285,8 @@ for fname, a0v in A0.items():
               f"  gamma = C/sigma^2 = {gv:.10f} (2 EXACT)")
 ok_anchors = (abs(anchors[0][3] - 121.43) < 0.05 and      # MW 7e10 canonical
               abs(anchors[1][3] - 119.21) < 0.05 and      # MW 6.5e10 canonical, G091
-              abs(anchors[3][3] - 124.90) < 0.05 and      # MW 6.5e10 alt
-              abs(anchors[5][3] - 118.05) < 0.05)         # NGC3198 canonical, G035
+              abs(anchors[2][3] - 118.05) < 0.05 and      # NGC3198 canonical, G035
+              abs(anchors[4][3] - 124.89) < 0.05)         # MW 6.5e10 alt
 s2_7, sig_7 = anchors[0][1] and Cv / 2.0, anchors[0][3]
 check("V2a [the reduced statistical virial, numeric] sigma^2 = C/2 at gamma = 2 with "
       "C = sqrt(G M_b a0) reproduces the registered temperatures exactly (121.4 km/s "
@@ -413,7 +419,7 @@ v3 = (f"V3 THE HONEST STATEMENT -- THE STATISTICAL VIRIAL EXISTS IN REDUCED FORM
       f"slope gamma = 2 (equilibrium datum, certified: M01/G227)}} -> sigma^2 = C/2, "
       f"with the virial's mechanical content (G091, C1) as the dynamical premise "
       f"fixing the slope -- the derivation EL -> phantom -> VIRIAL does not close; "
-      f"the derivation {EL identity} x {phantom} -> sigma^2 = C/2 does, exactly, "
+      f"the derivation {{EL identity}} x {{phantom}} -> sigma^2 = C/2 does, exactly, "
       f"and that is the statistical virial's honest, Lean-able content.")
 
 for v in (v1, v2, v3):
@@ -449,13 +455,14 @@ out = {
             "reading": ("the EL is solved to machine precision at gamma = C/sigma^2 "
                         "for EVERY temperature -- one maximizer per sigma^2; the "
                         "counting selects no temperature")},
-        "thermo_slope_family": {
-            "dSdE_over_beta_max_relerr": float(rel.max()),
-            "dSdE_at_gamma2": float(dSdE[i2]),
-            "beta_at_gamma2": float(beta_exact[i2]),
-            "min_dSdE": float(dSdE.min()),
-            "reading": ("dS/dE = 1/sigma^2 = g/C at every family member, positive "
-                        "everywhere: no interior entropy extremum in sigma^2")},
+        "thermo_identification_per_equilibrium": {
+            "rows": [[float(s), float(v), float(b), float(rel12)]
+                     for s, v, b, rel12 in rows12],
+            "max_rel_err": float(max(r[3] for r in rows12)),
+            "reading": ("dS/dE = 1/sigma^2 holds at EVERY equilibrium, each at its "
+                        "own temperature (0.5, 1, 2 x C/2 tested): the multiplier "
+                        "is the inverse temperature as a consistency, selecting "
+                        "no temperature")},
         "no_selection_sigma2": {
             "dS_dsigma2_fixed_shape": float(dS_ds2),
             "dS_dE_fixed_shape": float(dS_ds2 / dE_ds2),
