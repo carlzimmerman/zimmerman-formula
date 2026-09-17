@@ -36,7 +36,32 @@ structure is the open lane, and a derivation of it is ANSWER-B material under th
 measured constraints simultaneously; the survivors must carry a scalar environmental
 suppression with S(η_⊙) ≤ 0.02 and S(η_LSS) ≥ 0.9.*
 
-## Numerology control (KS04-style, logged once)
+## Kill #3 (2026-09-17, SW07) — and the mandatory synthesis (fired)
 
-1.92/0.015 = 128 = 2⁷, and the √127 inside η_c, are EMPIRICAL RATIOS of measured quantities.
-They are coincidence-flagged and must never be reported as structure by this or any lane.
+SW07 (the η_c derivation attack, one script, every kill pre-registered before the numbers):
+H1 coherence volume (no independent l_coh — category III), H2 sub-a₀ stiffness width (no
+dynamical scale below a₀ exists in the class's inputs — the width would be a fit), H3 kernel
+reuse (fable SW02 priced it: Pal 14 boost 4.64 at every l — Yukawa averaging pushes small
+systems DEEPER into MOND), H4 tidal/self at the phantom scale (**1.66e-05 canonical /
+1.26e-05 alt** — four orders below the pre-registered window [0.05, 0.4] AND lethal to the
+field-galaxy RAR itself: S(η_LSS = 0.009) ≈ 0 at such an η_c), H5 the S-form is an ANSATZ
+(the structure forces only the limits — S(0)=1, monotone, S→0, conformal shape — the
+1-parameter family carries kernel-level uncertainty exactly like ν_RAR), H6 numerology
+control: 1/√(8π) = 0.1995 vs 0.2034 (1.9%) but 1/(2π) = 0.1592 vs alt 0.1688 (5.7%) — the
+pairing SWAPS under the footing change → CONVENTION (rule 5), coincidence-flagged like
+128 = 2⁷ and √127.
+
+**The sharpened synthesis (third lane kill: SW01-A, SW02, SW07):** the allowed window is
+η_c ∈ [0.028, 0.203] (LSS floor to Oort ceiling; Fornax tightens to ≤ 0.145). NO mechanism in
+the remaining class lands in it: every a₀-scale critical field gives η_c = 1 (stress balance,
+GL, flux-fraction — the same physics: the sector's only scale is a₀; factor ~5 above the
+window); every sub-a₀ scale gives η_c ~ 1e-5 (factor ~1e4 below, RAR-lethal). **η_c is
+therefore the law's SECOND MEASURED CONSTANT** (the first is κ = ½, KS01), bounded by two
+independent determinations (Oort ≤ 0.203 from above, Fornax-implied ≤ 0.145 from below) and
+constrained by the LSS floor (≥ 0.028). The empirical law is complete with two measured
+constants, a data-selected kernel, and certified algebra (SW06_lemmas.lean); its derivation
+door is the G03 action — structure OUTSIDE the closed class (an AeST-type completion on the
+sourced sector with the ambient added linearly, the target SW06 names). Until that action
+exists and passes the ghost/α₂ gates, the honest status is CLOSURE_MAP's own: rung 1 =
+measured constants, rung 2 = data-selected kernel with a declared scalar environment
+response, rung 3 = OPEN (the named door), rung 4 = G111 OPEN spec.

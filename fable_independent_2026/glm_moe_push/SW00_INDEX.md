@@ -150,6 +150,55 @@ kernel. Consequences, all computed:
   OPEN: G111 spec (>10 CPU-min), per-object Jeans, DE04's η≥2 sample count, the covariant
   action (ghost theorem + α₂ its kill gates), the rung-6 fork (0.3-dex systematic).
 
+## Swing 5/6 (SW06/SW07) — the μ-language statement, the η_c door, Lean, and the law statement
+
+**SW06 — the μ_S reformulation, verified 8/8 (MUTATE 7/8).** The law restated in one line:
+g_obs = g_free + [(1−S) + S·ν(Γ/a₀)]·g_src — a weighted Newton–MOND interpolation with
+μ_S = 1/[1+S(ν_src−1)]: Newton at S=0, the RAR at S=1, a rescaled curve between. Checked:
+- **B1 well-posedness (the non-trivial check)**: μ_S is SINGLE-VALUED — g→g_obs is monotone
+  for every S (ν decreases in g while g grows; analytically (1−S) + S(ν+yν′) > 0 for ν_RAR;
+  min slope 3.70e-09 a₀ on the grid). Had this failed, the reformulation would be invalid.
+- **C1 equivalence**: the μ-inversion reproduces the direct law to **2.22e-16**.
+- **D2 the gate restated in the μ-language**: internal 0.2590 vs external 0.00085 (dilution
+  reading) → **ratio 304.1 canonical / 220.3 alt**, consistent with SW01b's S-language
+  **152.1/220.3** — two methodologically distinct computations of the same gate (the 08-09
+  near-miss rule, satisfied).
+- **E1+E2 the falsifiable pair**: the μ-CURVE moves with the environment (spread **0.9216**;
+  field μ at y_obs = 0.05 is 0.0476 vs the MW curve's 0.9693 — in AQUAL μ is universal) while
+  the RAR SHAPE is preserved (**2.62e-14**).
+- MUTATE flips E1 (the spread collapses). Noted defect: D2's S25 bypasses the MUTATE switch,
+  so its flip didn't fire — recorded, not hidden.
+
+**SW07 — the η_c derivation attack, verified 1/6 (all six FAILs are the findings):**
+H1 coherence volume (no sub-r_M scale in the class's inputs → category III), H2 stiffness
+width (no sub-a₀ dynamical scale → a fit), H3 kernel reuse (fable SW02: Pal 14 boost 4.64 at
+every l — cited), H4 tidal/self at the phantom scale (**1.66e-05 canonical / 1.26e-05 alt** —
+four orders below the pre-registered window [0.05, 0.4] AND lethal to the field-galaxy RAR
+itself), H5 the S-form is an ANSATZ (only the limits are structural — the family carries
+kernel-level uncertainty exactly like ν_RAR), H6 numerology control: 1/√(8π) = 0.1995 vs
+0.2034 (1.9%) but 1/(2π) = 0.1592 vs alt 0.1688 (5.7%) — the pairing SWAPS under the footing
+change → CONVENTION (KS04-flagged, like 128 = 2⁷ and √127).
+**Kill #3 fired → the mandatory synthesis (SW01-A, SW02, SW07):** the allowed window is
+**η_c ∈ [0.028, 0.203]** (LSS floor to Oort ceiling; Fornax tightens to ≤ 0.145). No mechanism
+in the remaining class lands in it: every a₀-scale critical field gives η_c = 1 (factor ~5
+above — the sector's only scale is a₀); every sub-a₀ scale gives η_c ~ 1e-5 (factor ~1e4
+below, RAR-lethal). **η_c is the law's SECOND MEASURED CONSTANT** (κ = ½ the first, KS01);
+the derivation door is the G03 action — the sourced-sector AeST-type completion SW06 names.
+
+**Lean: SW06_lemmas.lean — compiled, exit 0** (algebra only, per the brief). Five theorems:
+`eBTFR` (v⁴ = S²GM_ba₀), `conformal_BR` (S cancels in the boost ratio), `newton_limit`,
+`mond_limit`, `mu_S_equiv`. Mutation comments name the load-bearing hypotheses (hS/hQ1 in
+conformal_BR; hr in eBTFR). Two unused-variable warnings, cosmetic. Lean certifies ALGEBRA
+only — never cited as physics.
+
+**LAW_STATEMENT.md written** — the empirical law statement: two measured constants (κ = ½,
+η_c bounded [0.028, 0.203] by two independent determinations agreeing in direction), the
+data-selected kernel and ansatz S-family stated as such, the certified algebra, the frozen
+P1–P9 with dates, the kill conditions, and the honest non-supplied list (no action, no ghost
+theorem, α₂ open, the rung-6 fork carried — fork-independent for this class). NOT "law of
+nature": the rung-1-style empirical statement CLOSURE_MAP's decision rule names a legitimate,
+publishable end state. Word-ban honored.
+
 ## Status
 
 Two candidates killed in this lane (SW01-A, SW02), one standing (SW01-B, declared constant,

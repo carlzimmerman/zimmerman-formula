@@ -53,6 +53,21 @@ hypotheses (coherence volume, sub-a₀ stiffness, (1−l²∇²)⁻¹ reuse) rem
 KILLS_SYNTHESIS. Next lanes, ranked: per-object Jeans (the η_c sharpener, data in hand), DE04's
 η≥2 sample assembly (the P4 window), the covariant action (ghost theorem + α₂ its kill gates).
 
+**Swing 5/6 (SW06/SW07): the μ-language + the η_c door + Lean.** The law restated: g_obs =
+g_free + [(1−S)+S·ν(Γ/a₀)]g_src — a weighted Newton–MOND interpolation with
+μ_S = 1/[1+S(ν_src−1)]: Newton at S=0, the RAR at S=1, rescaled between (SW06 8/8: μ_S
+single-VALUED — the non-trivial monotonicity, since ν decreases in g while g grows; round
+trip 2.22e-16; the gate restated 304.1 canonical / 220.3 alt, consistent with SW01b's
+152.1/220.3 — two methodologically distinct computations of the same gate; the μ-curve moves
+0.92 across environments while the RAR shape holds to 2.6e-14). Lean-certified algebra:
+SW06_lemmas.lean (exit 0). SW07 attacked the η_c door: every remaining-class mechanism
+killed (tidal/self 1.66e-05 — RAR-lethal; coherence volume, stiffness width, kernel reuse,
+ansatz, convention) → **kill #3, the three-kill synthesis fired: η_c is the SECOND MEASURED
+CONSTANT** (κ first), window [0.028, 0.203], Fornax ≤ 0.145. LAW_STATEMENT.md now states the
+empirical law honestly: two measured constants, data-selected kernel + ansatz S-family,
+certified algebra, P1–P9 with dates; NOT derived; the derivation door is G03 — the
+sourced-sector action whose ghost theorem and α₂ gates do not exist yet.
+
 ## What the kills established (pointer: KILLS_SYNTHESIS.md)
 
 No construction with (i) no suppression, (ii) stress-balanced suppression, (iii) direction-
