@@ -1,47 +1,88 @@
-# SW00_INDEX — glm_moe_push (the nonlocal-door lane, 2026-09-17)
+# SW00_INDEX — glm_moe_push (the nonlocal-door lane)
 
-Swing per the 2026-09-17 swarm brief: find a nonlocal construction with an internal/external
-asymmetry ≥ 6.4× at x = 2.5. Committed and pushed at the owner's request on 2026-09-17, overriding
-brief stop rule (iii) ("no commits; leave files for review") — the lane script and outputs are
-versioned as-is; SW01-B remains OPEN, not accepted. Lane script mirrors the
-kappa_slot_2026 SW convention (check() with computed booleans only, both a₀ footings, sympy
-identities, MUTATE=1 switch, FAILs recorded as findings).
+Swing 1 per the 2026-09-17 swarm brief; swing 2 per the AUTORESEARCH brief (instructions_1452.txt).
+Committed and pushed at the owner's request, overriding brief stop rule (iii) ("no commits; leave
+files for review"). Lane script mirrors the kappa_slot_2026 convention: check() with computed
+booleans only, both a₀ footings, sympy for identities, MUTATE=1 switch, FAILs recorded as
+findings. Deviation from the AUTORESEARCH brief's file conventions, at the owner's instruction:
+lanes live here (glm_moe_push/), not in kappa_slot_2026/; numbering stays SWnn. No AR00_LOG —
+this index is the loop log.
 
-## Candidates
+## Swing 1 (SW01) — record
 
-**SW01 — the environmental-scalar response** (`PROPOSER_SW01_envscalar.md`, `SW01_envscalar_response.py`)
-Replace μ(|g|/a₀) with a response to two nonlocal functionals of the Newtonian field on the Gauss
-sphere: Γ (angular variance — the field's own structure) and η (the sphere's l=1 component — the
-environment); g_obs = g_N + S(η)(ν_RAR(Γ/a₀)−1)g_N,enc, S(η) = 1/(1+(η/η_c)²). A uniform external
-field is pure l=1 — it enters η, never Γ — so it cannot trigger the response by itself: the system
-is defined by the flux structure, no hand-drawn boundary.
+- **SW01 — the environmental-scalar response** (`PROPOSER_SW01_envscalar.md`): the a₀ response
+  acts on two nonlocal functionals of the Newtonian field on barycentered Gauss spheres — Γ
+  (angular variance, the field's structure) and η (the l=1 component, the environment);
+  g_obs = g_N + S(η)(ν_RAR(Γ/a₀)−1)g_N,enc, S = [1+(η/η_c)²]⁻¹. A uniform field is pure l=1 —
+  it enters η, never Γ — so the system is defined by the flux structure, no hand-drawn boundary.
+- First gate PASS (7.25 / 128.0 vs 6.4); quadrupole gate PASS; BTFR slope PASS (4.0 exact).
+- **SW01-A (η_c = 1, no-knob stress balance): KILLED** — Oort 17.7× the budget.
+- **SW01-B: OPEN** — declared η_c, three pre-registered falsifiers.
 
-- **First gate (fixed computation): PASS both variants.** (a) isolated point mass at x = 2.5:
-  departure 0.2590; (b) same mass in a 2.5a₀ uniform field: 0.0357 (SW01-A) / 0.0020 (SW01-B).
-  Ratios 7.25 and 128.0 vs the 6.4 gate. [MUTATE=1 verified: break S → ratio = 1.00, gate FAILs.]
-- **Quadrupole gate: PASS** — scalar capping has no l=2 moment at leading order; the residual from
-  the η-gradient across r_M is ≤ 6.0e-5 ceilings (both footings), vs L243's 6.44 for vector capping.
-- **BTFR slope: PASS** — v = (GMa₀)^¼ exact (sympy), slope 4.0 vs measured 3.98 ± 0.06.
-- **KILL — SW01-A (η_c = 1, the no-free-number stress-balance variant):** KILLED by the Oort
-  budget: ρ_dark = 1.92·S(2.5) = 0.265 M☉/pc³ = 17.7× the 0.015 budget (L263 C1). One-line kill:
-  *stress balance caps the stellar phantom ~20× too weakly for the solar-neighbourhood budget; the
-  environmental stress needed is η_c ≈ 0.22, and no force balance supplies it.*
-- **SW01-B (η_c = 0.222, Oort-calibrated): OPEN**, with declared calibration (G2 FAIL is the
-  finding: no second independent derivation — the 08-09 near-miss rule) and three pre-registered
-  falsifiers: (1) γ_v(DR4) = 1.0010 vs the registered 1.16–1.23 band, 2026-12-02; (2) any
-  AQUAL-level EFE quadrupole detection kills the whole class; (3) satellites at η ≳ 1 showing
-  deep-MOND dispersions (per-object Jeans per L263 E decides).
+## Swing 2 (SW01b / SW02) — 2026-09-17, after the AUTORESEARCH brief
 
-## Audit finding incidental to this lane
+- **CRITIC_SW01.md landed** (the role skipped in swing 1): C1 real bug — SW01-B calibrated η_c
+  on the gate's x = 2.5 instead of the true solar environment η_⊙ = (v_c²/R₀)/a₀; C2 the first
+  gate was the ansatz evaluating itself; C3 the sphere center was unspecified; C4 the quadrupole
+  check was a ceiling-ratio heuristic, not the P₂ computation; C5 the LSS gate was missing.
+  All fixed in SW01b.
+- **SW01b — orthogonality by quadrature (18/18 PASS; MUTATE 16/18, hinge verified):**
+  - η_⊙ computed from v_c = 233 km/s, R₀ = 8.2 kpc: **2.292 canonical / 1.902 alt**; η_c
+    recalibrated on it: **0.203/0.169, DECLARED** (loudly — inherits v_c, R₀, a₀ systematics).
+  - Oort pass robust across the v_c/R₀ systematic band: **0.85–1.26×** the budget (E2).
+  - Orthogonality theorems now COMPUTED, not asserted: isolated η ≡ 0, Γ = g_N; superposition
+    cross term vanishes by quadrature (Γ = g_N, η = g_ext exactly, C1/C2); offset-center hinge
+    shows the mixing the centering prevents (C3) — the barycenter is part of the law, fixed by
+    the enclosed flux, not drawn.
+  - Gate ratios improve to **152.1/220.3** vs 6.4 (D). RAR/LSS gate added: **S(η_LSS) = 0.9979
+    ≥ 0.9**, cluster vicinity 0.972 (F) — the gate that would have killed the class had the LSS
+    field been a few tenths of a₀.
+  - P₂ coefficient of the response field on the phantom shell (r = 2r_M): **−6.1e-14 a₀** →
+    tidal 3.4e-39 s⁻², zero by structure — Γ and η are scalars, no direction to align with, no
+    l ≥ 2 at any order in η (G). MUTATE (trigger = |g_total|): c₂ = **−4.5e-2 a₀** → tidal
+    2.5e-27 s⁻² = 0.48 ceiling — the vector coupling is genuinely Cassini-exposed; full
+    axisymmetric propagation is fable's DE01 solver, OPEN, not claimed.
+  - Wide binaries: **γ_v = 1.0010** — the three-way DR4 separation: 1.00 (this class /
+    mesoscopic / cold) vs 1.09–1.12 (isotropic cap) vs 1.16–1.23 (AQUAL), 2026-12-02.
+  - L265 dodge stated in writing: the curvature-order pincer closes curvature-BUILT actions
+    (degree ≤ 2 cannot separate Φ from Ψ; degree ≥ 3 cannot reach the linear response; box⁻¹
+    preserves ε-degree); Γ/η are matter-framed surface functionals of the Newtonian field,
+    outside that class.
+  - H₀ audit finding (A2, FAIL is the finding): the record's alt-footing a₀ = 1.1279e-10 implies
+    H₀ ≈ 67.2, not 67.4 — README-rule-5 convention item.
+- **SW02 — the barycenter Gauss projector (Helmholtz split, no suppression): KILLED as
+  pre-registered** — Oort **130.3×/143.1×** the budget (canonical/alt), Cassini-safe (the free
+  piece is never modified), so it dies on the Oort horn only. Kill line: *Helmholtz projector
+  alone: Cassini-safe, Oort-dead; the sourced deep response needs the declared scalar
+  suppression S(η) — which is SW01-B.* Not fixed (re-inserting S(η) is SW01 again).
+- **KILLS_SYNTHESIS.md written** (two lane kills + the record's ancestors): the sourced deep
+  response must be suppressed ~130× at η_⊙ ≈ 2 while field galaxies at η_LSS ≈ 0.01 keep ≥ 90% —
+  a >4-order dynamic range; the suppression must be scalar (L243 kills direction) and no
+  closed-space mechanism supplies it (force balance 7.25×, structure 1×, curvature order dead by
+  L265). S(η_⊙) ≈ 0.008 is an independent measured input; deriving it is the open theorem lane
+  (ANSWER-B material). Numerology control: 1.92/0.015 = 128 = 2⁷ and √127 are empirical ratios,
+  KS04-flagged, never structure.
+- **Attack-stage rejections (logged, no scripts — the anti-theatre gate working as intended):**
+  - BTFR-intersection κ = ½ derivation: kernel-independence of the deep-limit crossing IS the
+    deep limit (all kernels converge to g² = a₀g_N; the crossing point is rung 5's Lean-certified
+    identity); a₀ sits on the input side through the deep law; a₀ = v⁴/(GM) is the BTFR
+    zero-point MEASUREMENT R8 already carries. L261-class relabelling.
+  - Rung-4 Jeans shortcut (σ² = C/2 from the phantom profile): L258 B closed it — σ² = C/2 ⟺
+    γ = 2 ⟺ the dust profile is assumed to be the phantom's r⁻². Cited, not re-run.
+- **FINAL_FRAMEWORK.md** — the coherence ledger: rungs with CLOSURE_MAP status words, numbers on
+  record, and the single falsifier per row; G1–G9 scored for SW01-B; the three-way DR4
+  separation; the closing statement is the programme's own decision rule. No SW03 enumeration
+  script: every ledger number already has a computed home (.out/.json); a re-enumeration would
+  be check(True)-theatre.
 
-The record's alt-footing a₀ = 1.1279e-10 does not reproduce from its stated recipe
-(a₀ = ½c√(Gρ_crit) at H₀ = 67.4): the recipe gives 1.1312e-10 (+0.27%), implying H₀ ≈ 67.2 —
-a README-rule-5 convention audit item (check A2, FAIL is the finding). The canonical footing
-rebuilds to 4.4e-5 and all gate ratios are footing-independent.
+## STATE: OPEN (of the three terminal states). SIDE: universal-scale (L266 T3: emergent scatter
+2.24× on gas dwarfs vs G114's 0.150). Next per the brief's priority: (1) full ΛCDM population
+model vs G114 (OPEN spec, > 10 CPU-min); (2) the covariant action for the Γ/η law (ghost theorem
++ α₂ are its kill gates); (3) the globular-cluster anomaly under the live readings.
 
 ## Status
 
-One candidate killed (SW01-A), one standing (SW01-B). Stop rule (ii) (three kills → synthesis) not
-triggered. Deferred, stated openly: R3 ghost theorem and the action formulation (G03-class);
-R6 cluster residual; the dSph/η ≳ 1 tension. The words "derived", "closed", "breakthrough" appear
-nowhere above because nothing here has earned them yet.
+Two candidates killed in this lane (SW01-A, SW02), one standing (SW01-B, declared constant,
+dated falsifiers). The words "derived", "closed", "breakthrough" appear nowhere above because
+nothing here has earned them yet. Deferred, stated openly: R3 ghost theorem and the action
+formulation (G03-class); R6 cluster residual; the dSph/η ≳ 1 tension.

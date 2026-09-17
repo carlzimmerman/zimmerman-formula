@@ -1,0 +1,47 @@
+{
+ "lane": "SW02_helmholtz_kill",
+ "mutate": false,
+ "n_pass": 2,
+ "n_total": 4,
+ "checks": [
+  {
+   "name": "A[canonical] M_ph(<1.08 pc) = 19.54 Msun -> rho_dark = 1.954 = 130.3x the budget",
+   "ok": false,
+   "measured": "g_src = 5.976e-14 (y = 6.38e-04), nu = 40.08; need < 3x",
+   "reading": "the uncapped deep force sqrt(GMa0)/r: the L263 C1 phantom reproduced by the rule"
+  },
+  {
+   "name": "A[alt] M_ph(<1.08 pc) = 21.47 Msun -> rho_dark = 2.147 = 143.1x the budget",
+   "ok": false,
+   "measured": "g_src = 5.976e-14 (y = 5.30e-04), nu = 43.94; need < 3x",
+   "reading": "the uncapped deep force sqrt(GMa0)/r: the L263 C1 phantom reproduced by the rule"
+  },
+  {
+   "name": "B1 solar modification at 9.5 AU: nu(3.51e+05) - 1 = 0.00e+00",
+   "ok": true,
+   "measured": "the Helmholtz free piece is never modified: no quadrupole at any order",
+   "reading": "Cassini-safe -- the pincer horn this construction dies on is the OORT horn, not Cassini"
+  },
+  {
+   "name": "B2 sympy: the rule's deep force g = sqrt(GMa0)/r implies M_dyn = M r / r_M (L263 B1)",
+   "ok": true,
+   "measured": "M_dyn/M - r/r_M = 0",
+   "reading": "the phantom grows linearly in r with no environment term anywhere in the rule"
+  }
+ ],
+ "verdict": "SW02 (barycenter Gauss projector, no environmental suppression) -- KILLED as pre-registered: Oort 130.3x/143.1x the budget (canonical/alt); Cassini-safe, so it dies on the OORT horn only.  Re-inserting S(eta) is SW01 again -- not written.",
+ "constants": {
+  "a0": {
+   "canonical": 9.3619e-11,
+   "alt": 1.1279e-10
+  },
+  "over_budget": {
+   "canonical": 130.27009120864315,
+   "alt": 143.1488775186277
+  },
+  "rho_dark": {
+   "canonical": 1.9540513681296472,
+   "alt": 2.1472331627794152
+  }
+ }
+}

@@ -1,0 +1,138 @@
+{
+ "lane": "SW01b_envscalar_orthogonality",
+ "mutate": true,
+ "n_pass": 16,
+ "n_total": 18,
+ "checks": [
+  {
+   "name": "A1 sympy deep limit: nu(y) sqrt(y) -> 1 (g^2 = a0 g_N)",
+   "ok": true,
+   "measured": "limit = 1",
+   "reading": "threshold: exact"
+  },
+  {
+   "name": "A2 control: nu_RAR(2.5) - 1 vs the L264 record 0.259",
+   "ok": true,
+   "measured": "computed 0.2590",
+   "reading": "threshold |diff| < 0.002"
+  },
+  {
+   "name": "B1 eta_sun from vc^2/R0",
+   "ok": true,
+   "measured": "g = 2.1456e-10 m/s^2; eta = 2.292 (canonical), 1.902 (alt)",
+   "reading": "v_c = 233 km/s, R0 = 8.2 kpc; the L243 window eta = 2.48 sits inside the systematic band"
+  },
+  {
+   "name": "B2 eta_c DECLARED from the Oort budget at eta_sun (not at x = 2.5 -- critic fix C1)",
+   "ok": true,
+   "measured": "eta_c = 0.2034 (canonical), 0.1688 (alt); inherits vc, R0, a0 systematics",
+   "reading": "S(eta_sun) = S_oort = 0.0078 by construction; the Oort pass is a calibration, not a prediction"
+  },
+  {
+   "name": "C1 isolated point mass, centered sphere: eta = 0, Gamma = g_N (quadrature)",
+   "ok": true,
+   "measured": "eta = 5.55e-17, Gamma = 1.0000000000 vs g_N = 1",
+   "reading": "int rhat dOmega = 0 exactly; an isolated system has eta == 0 identically"
+  },
+  {
+   "name": "C2 superposition: cross term vanishes -- Gamma = g_N, eta = g_ext exactly (quadrature)",
+   "ok": true,
+   "measured": "Gamma = 1.0000000000 (vs g_N = 1), eta = 2.500000 (vs g_ext = 2.5)",
+   "reading": "2 g_N g_ext <mu> = 0 by quadrature: the trigger never sees the environment"
+  },
+  {
+   "name": "C3 offset-center hinge: Gamma and eta MIX when the sphere is not barycentered",
+   "ok": true,
+   "measured": "Gamma = 1.3333 (vs 1.0 centered); the center is part of the law",
+   "reading": "the barycenter is fixed by the enclosed flux (Gauss), not drawn: no hand-drawn boundary, but the centering is load-bearing and now stated in the law"
+  },
+  {
+   "name": "D[canonical] gate ratio = 1.0 (internal 0.2590 vs external 0.25903)",
+   "ok": false,
+   "measured": "S(2.5) = 1.00000 at eta_c = 0.2034; ratio vs gate 6.4",
+   "reading": "the recalibration IMPROVED the gate (was 128 with the conflated calibration)"
+  },
+  {
+   "name": "D[alt] gate ratio = 1.0 (internal 0.2590 vs external 0.25903)",
+   "ok": false,
+   "measured": "S(2.5) = 1.00000 at eta_c = 0.1688; ratio vs gate 6.4",
+   "reading": "the recalibration IMPROVED the gate (was 128 with the conflated calibration)"
+  },
+  {
+   "name": "E1[canonical] rho_dark = 0.0150 Msun/pc^3 = 1.00x budget",
+   "ok": true,
+   "measured": "1.00x vs < 3 (L263 C1)",
+   "reading": "BY CONSTRUCTION (eta_c declared here); the prediction content is in D, F, G, H"
+  },
+  {
+   "name": "E1[alt] rho_dark = 0.0150 Msun/pc^3 = 1.00x budget",
+   "ok": true,
+   "measured": "1.00x vs < 3 (L263 C1)",
+   "reading": "BY CONSTRUCTION (eta_c declared here); the prediction content is in D, F, G, H"
+  },
+  {
+   "name": "E2[canonical] Oort pass survives the vc/R0 band: over-budget 0.85-1.26 across eta in [2.04, 2.49]",
+   "ok": true,
+   "measured": "band edges of vc in [220,240] km/s and R0 in [8.0,8.2] kpc",
+   "reading": "the calibration is robust to the solar-environment systematics"
+  },
+  {
+   "name": "E2[alt] Oort pass survives the vc/R0 band: over-budget 0.85-1.26 across eta in [1.70, 2.07]",
+   "ok": true,
+   "measured": "band edges of vc in [220,240] km/s and R0 in [8.0,8.2] kpc",
+   "reading": "the calibration is robust to the solar-environment systematics"
+  },
+  {
+   "name": "F[canonical] S(eta_LSS) = 0.9979 >= 0.9 (eta_LSS = 0.0093); S(eta_cluster-vicinity) = 0.9718",
+   "ok": true,
+   "measured": "LSS field 8.74e-13 m/s^2 = v_pec H0; cluster vicinity 3.24e-12 = sigma^2/R",
+   "reading": "the gate that would have killed the class had the LSS field been a few tenths of a0"
+  },
+  {
+   "name": "F[alt] S(eta_LSS) = 0.9979 >= 0.9 (eta_LSS = 0.0077); S(eta_cluster-vicinity) = 0.9718",
+   "ok": true,
+   "measured": "LSS field 8.74e-13 m/s^2 = v_pec H0; cluster vicinity 3.24e-12 = sigma^2/R",
+   "reading": "the gate that would have killed the class had the LSS field been a few tenths of a0"
+  },
+  {
+   "name": "G[MUTATED] P2 coefficient c2 = -4.514e-02 a0 -> tidal 2.51e-27 s^-2 vs ceiling 5.2e-27",
+   "ok": true,
+   "measured": "c2/a0 = -4.514e-02 (quadrature, 400 nodes)",
+   "reading": "structural: Gamma and eta are scalars -- no direction to align with, no l>=2 at ANY order in eta; mutated: nonzero at first order in the kernel's curvature; whether it reaches the Cassini ceiling needs the axisymmetric propagation (fable DE01, OPEN)"
+  },
+  {
+   "name": "H[canonical] gamma_v = 1.0010 (prediction)",
+   "ok": true,
+   "measured": "vs the three-way DR4 separation: 1.00 mesoscopic/cold, 1.09-1.12 isotropic cap, 1.16-1.23 AQUAL",
+   "reading": "this class sits at the 1.00 prediction -- DR4 2026-12-02 separates it from the isotropic cap AND from AQUAL"
+  },
+  {
+   "name": "H[alt] gamma_v = 1.0010 (prediction)",
+   "ok": true,
+   "measured": "vs the three-way DR4 separation: 1.00 mesoscopic/cold, 1.09-1.12 isotropic cap, 1.16-1.23 AQUAL",
+   "reading": "this class sits at the 1.00 prediction -- DR4 2026-12-02 separates it from the isotropic cap AND from AQUAL"
+  }
+ ],
+ "verdict": "SW01-B standing with the critic's fixes: eta_c = 0.203/0.169 (canonical/alt) DECLARED on the true solar environment and robust across the vc/R0 band; gate ratios 152/220; RAR/LSS gate passed with S = 0.998; the P2 coefficient of the response field is 0 by structure (direction-blind at every order); gamma_v(DR4) = 1.0010.  Kills survived: L264 (nonlocal, scalar response), L263 (field response, not mass), L265 (the curvature-order pincer covers curvature-built actions; Gamma/eta are matter-framed surface functionals of the Newtonian field -- outside that class, stated in writing).  Dies by: any AQUAL-level EFE detection; DR4 inside 1.16-1.23 or above 1.05; satellites at eta >~ 1 with deep-MOND dispersions.",
+ "constants": {
+  "a0": {
+   "canonical": 9.3619e-11,
+   "alt": 1.1279e-10
+  },
+  "eta_sun": {
+   "canonical": 2.2918188719641974,
+   "alt": 1.9022767175673039
+  },
+  "eta_c": {
+   "canonical": 0.20336603944401258,
+   "alt": 0.16879976280440653
+  },
+  "S_oort": 0.0078125,
+  "gate_ratio_canonical": 152.12042131429035,
+  "gate_ratio_alt": 220.34935075851095,
+  "gamma_v": {
+   "canonical": 1.0010113425531317,
+   "alt": 1.0010113425531317
+  }
+ }
+}

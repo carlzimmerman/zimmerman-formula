@@ -1,0 +1,60 @@
+========================================================================
+SW01b -- orthogonality by quadrature, recalibrated eta_c, LSS gate
+========================================================================
+
+A. controls
+  [PASS] A1 sympy deep limit: nu(y) sqrt(y) -> 1 (g^2 = a0 g_N)
+           (limit = 1; threshold: exact)
+  [PASS] A2 control: nu_RAR(2.5) - 1 vs the L264 record 0.259
+           (computed 0.2590; threshold |diff| < 0.002)
+
+B. the solar environment eta_sun = (vc^2/R0)/a0, both footings (critic fix C1)
+  [PASS] B1 eta_sun from vc^2/R0
+           (g = 2.1456e-10 m/s^2; eta = 2.292 (canonical), 1.902 (alt); v_c = 233 km/s, R0 = 8.2 kpc; the L243 window eta = 2.48 sits inside the systematic band)
+  [PASS] B2 eta_c DECLARED from the Oort budget at eta_sun (not at x = 2.5 -- critic fix C1)
+           (eta_c = 0.2034 (canonical), 0.1688 (alt); inherits vc, R0, a0 systematics; S(eta_sun) = S_oort = 0.0078 by construction; the Oort pass is a calibration, not a prediction)
+
+C. the orthogonality theorems, computed (critic fix C2/C3)
+  [PASS] C1 isolated point mass, centered sphere: eta = 0, Gamma = g_N (quadrature)
+           (eta = 5.55e-17, Gamma = 1.0000000000 vs g_N = 1; int rhat dOmega = 0 exactly; an isolated system has eta == 0 identically)
+  [PASS] C2 superposition: cross term vanishes -- Gamma = g_N, eta = g_ext exactly (quadrature)
+           (Gamma = 1.0000000000 (vs g_N = 1), eta = 2.500000 (vs g_ext = 2.5); 2 g_N g_ext <mu> = 0 by quadrature: the trigger never sees the environment)
+  [PASS] C3 offset-center hinge: Gamma and eta MIX when the sphere is not barycentered
+           (Gamma = 1.3333 (vs 1.0 centered); the center is part of the law; the barycenter is fixed by the enclosed flux (Gauss), not drawn: no hand-drawn boundary, but the centering is load-bearing and now stated in the law)
+
+D. the L264 first gate: departure at x = 2.5, isolated vs externally fielded
+  [PASS] D[canonical] gate ratio = 152.1 (internal 0.2590 vs external 0.00170)
+           (S(2.5) = 0.00657 at eta_c = 0.2034; ratio vs gate 6.4; the recalibration IMPROVED the gate (was 128 with the conflated calibration))
+  [PASS] D[alt] gate ratio = 220.3 (internal 0.2590 vs external 0.00118)
+           (S(2.5) = 0.00454 at eta_c = 0.1688; ratio vs gate 6.4; the recalibration IMPROVED the gate (was 128 with the conflated calibration))
+
+E. the local dark budget at eta_sun (the calibration point)
+  [PASS] E1[canonical] rho_dark = 0.0150 Msun/pc^3 = 1.00x budget
+           (1.00x vs < 3 (L263 C1); BY CONSTRUCTION (eta_c declared here); the prediction content is in D, F, G, H)
+  [PASS] E1[alt] rho_dark = 0.0150 Msun/pc^3 = 1.00x budget
+           (1.00x vs < 3 (L263 C1); BY CONSTRUCTION (eta_c declared here); the prediction content is in D, F, G, H)
+  [PASS] E2[canonical] Oort pass survives the vc/R0 band: over-budget 0.85-1.26 across eta in [2.04, 2.49]
+           (band edges of vc in [220,240] km/s and R0 in [8.0,8.2] kpc; the calibration is robust to the solar-environment systematics)
+  [PASS] E2[alt] Oort pass survives the vc/R0 band: over-budget 0.85-1.26 across eta in [1.70, 2.07]
+           (band edges of vc in [220,240] km/s and R0 in [8.0,8.2] kpc; the calibration is robust to the solar-environment systematics)
+
+F. the RAR/LSS gate: field galaxies must keep their boost
+  [PASS] F[canonical] S(eta_LSS) = 0.9979 >= 0.9 (eta_LSS = 0.0093); S(eta_cluster-vicinity) = 0.9718
+           (LSS field 8.74e-13 m/s^2 = v_pec H0; cluster vicinity 3.24e-12 = sigma^2/R; the gate that would have killed the class had the LSS field been a few tenths of a0)
+  [PASS] F[alt] S(eta_LSS) = 0.9979 >= 0.9 (eta_LSS = 0.0077); S(eta_cluster-vicinity) = 0.9718
+           (LSS field 8.74e-13 m/s^2 = v_pec H0; cluster vicinity 3.24e-12 = sigma^2/R; the gate that would have killed the class had the LSS field been a few tenths of a0)
+
+G. the quadrupole, computed: P2 coefficient of the response field at r = 2 r_M
+  [PASS] G[structural] P2 coefficient c2 = -6.074e-14 a0 -> tidal 3.38e-39 s^-2 vs ceiling 5.2e-27
+           (c2/a0 = -6.074e-14 (quadrature, 400 nodes); structural: Gamma and eta are scalars -- no direction to align with, no l>=2 at ANY order in eta; mutated: nonzero at first order in the kernel's curvature; whether it reaches the Cassini ceiling needs the axisymmetric propagation (fable DE01, OPEN))
+
+H. wide binaries at the true environment
+  [PASS] H[canonical] gamma_v = 1.0010 (prediction)
+           (vs the three-way DR4 separation: 1.00 mesoscopic/cold, 1.09-1.12 isotropic cap, 1.16-1.23 AQUAL; this class sits at the 1.00 prediction -- DR4 2026-12-02 separates it from the isotropic cap AND from AQUAL)
+  [PASS] H[alt] gamma_v = 1.0010 (prediction)
+           (vs the three-way DR4 separation: 1.00 mesoscopic/cold, 1.09-1.12 isotropic cap, 1.16-1.23 AQUAL; this class sits at the 1.00 prediction -- DR4 2026-12-02 separates it from the isotropic cap AND from AQUAL)
+
+SW01b COMPLETE: 18/18 checks PASS.
+SW01-B standing with the critic's fixes: eta_c = 0.203/0.169 (canonical/alt) DECLARED on the true solar environment and robust across the vc/R0 band; gate ratios 152/220; RAR/LSS gate passed with S = 0.998; the P2 coefficient of the response field is 0 by structure (direction-blind at every order); gamma_v(DR4) = 1.0010.  Kills survived: L264 (nonlocal, scalar response), L263 (field response, not mass), L265 (the curvature-order pincer covers curvature-built actions; Gamma/eta are matter-framed surface functionals of the Newtonian field -- outside that class, stated in writing).  Dies by: any AQUAL-level EFE detection; DR4 inside 1.16-1.23 or above 1.05; satellites at eta >~ 1 with deep-MOND dispersions.
+
+(json written: SW01b_envscalar_orthogonality.json)
