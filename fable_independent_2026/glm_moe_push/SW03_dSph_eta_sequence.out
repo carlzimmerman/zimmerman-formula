@@ -1,0 +1,52 @@
+========================================================================
+SW03 -- the satellite eta-sequence: second determination of eta_c
+========================================================================
+
+A. controls (the record's own numbers, reproduced)
+  [PASS] A1 sympy, L263 B1: M_dyn(<r) = M r / r_M for the deep-MOND force
+           (M_dyn/M - r/r_M = 0; threshold: exact)
+  [PASS] A2 control: nu_RAR(2.5) - 1 = 0.259 (L264)
+           (computed 0.2590; threshold |diff| < 0.002)
+  [PASS] A3 control: eta_sun = 2.292 / 1.902 (SW01b B1)
+           (v_c(233 km/s)^2/R_0(8.2 kpc)/a0: 2.292 / 1.902; threshold |diff| < 0.01 -- the same numbers SW01b computed (8.2 kpc = 8.2 x 3.0857e19 m))
+  [PASS] A4 estimator anchor: Fornax isolated (M/L=2) sigma = 11.74 km/s vs observed 11.7
+           (|residual| = 0.002 dex; abort-threshold 0.05 dex: the L263-E estimator must reproduce the famous anchor)
+
+B. per-object prediction at the frozen eta_c (screening; per-object Jeans is the
+   registered confirmatory step per L263 E2 -- the same estimator sits on both sides,
+   so the virial constant cancels in S_req)
+  Draco        D= 82 kpc eta= 0.169 S=0.592 x= 0.01600 nu=  8.42 
+               sigma_pred= 3.49 vs  9.10 km/s -> -0.416 dex | S_req=[4.26,2.06] eta_c_inv=n/a (no suppression demanded)
+  Ursa Minor   D= 66 kpc eta= 0.210 S=0.485 x= 0.00670 nu= 12.72 
+               sigma_pred= 3.13 vs  9.50 km/s -> -0.483 dex | S_req=[4.59,2.25] eta_c_inv=n/a (no suppression demanded)
+  Sculptor     D= 79 kpc eta= 0.175 S=0.574 x= 0.05319 nu=  4.86 
+               sigma_pred= 5.54 vs  9.20 km/s -> -0.220 dex | S_req=[1.78,0.76] eta_c_inv=n/a (no suppression demanded)
+  Sextans      D= 86 kpc eta= 0.161 S=0.615 x= 0.00304 nu= 18.64 
+               sigma_pred= 4.02 vs  7.90 km/s -> -0.293 dex | S_req=[2.25,1.09] eta_c_inv=n/a (no suppression demanded)
+  Carina       D=101 kpc eta= 0.137 S=0.688 x= 0.01558 nu=  8.52 
+               sigma_pred= 4.23 vs  6.60 km/s -> -0.193 dex | S_req=[1.64,0.75] eta_c_inv=n/a (no suppression demanded)
+  Fornax       D=138 kpc eta= 0.100 S=0.804 x= 0.09158 nu=  3.83 
+               sigma_pred=11.69 vs 11.70 km/s -> -0.000 dex | S_req=[0.68,0.16] eta_c_inv=0.145
+  Leo II       D=205 kpc eta= 0.068 S=0.901 x= 0.07997 nu=  4.06 
+               sigma_pred= 5.89 vs  6.60 km/s -> -0.049 dex | S_req=[1.04,0.36] eta_c_inv=n/a (no suppression demanded)
+  Leo I        D=250 kpc eta= 0.055 S=0.931 x= 0.26210 nu=  2.50 
+               sigma_pred=10.03 vs  9.20 km/s -> +0.038 dex | S_req=[0.53,-0.07] eta_c_inv=n/a (no suppression demanded)
+
+C. the pre-registered gates
+  [PASS] C1[KILL-A] median residual across the eight dSphs (frozen eta_c, M/L=2)
+           (median = -0.207 dex vs threshold 0.3; predicted vs Walker+09 observed; M/L band moves sigma_pred by only +-0.04 dex)
+  [PASS] C2[KILL-B] eta_c implied by the suppression-demanding objects (Fornax)
+           (median implied eta_c = 0.145 vs Oort eta_c = 0.203 (ratio 0.71); FAIL if > 3x; the two-sided squeeze: Oort demands eta_c <= 0.203; the dwarfs' implied value must not EXCEED it by > 3x (more suppression than Oort needs is safe, less is dead))
+  [PASS] C3a[HINGE] Oort consistency of the DECLARED eta_c
+           (S(eta_sun) = 0.0078 -> rho_dark = 0.0150 Msun/pc^3 (1.0x budget); under MUTATE (eta_c = 0.5) this FAILS: 5.8x budget -- the hinge, mirroring the SW01-A kill; the implied-eta_c check below is mutation-invariant BY DESIGN (it is data-side))
+  [PASS] C3b Oort+LSS consistency at the implied eta_c
+           (S(eta_sun) = 0.0040 -> rho_dark = 0.0077 Msun/pc^3 (0.5x budget); S(eta_LSS) = 0.9959 >= 0.9; the tightened eta_c must keep BOTH standing gates alive (SW01b E1/F))
+  [PASS] C4 objects with S_req >= 1 (the MOND-wide dwarf residual, kimik3's standing cost)
+           (7 of 8: Draco, Ursa Minor, Sculptor, Sextans, Carina, Leo II, Leo I; these carry the pre-existing MOND-wide underprediction (kimik3: median -0.13 dex at M/L_V=2 isolated) and cannot measure suppression; excluded from the squeeze, counted in the residuals)
+  [FAIL] C5[distinctiveness] median residual, isolated S=1: -0.146 dex; SW01-B: -0.207 dex; delta = 0.061 dex (DISTINCTIVE required for any new prediction)
+           (delta >= 0.1 dex required; below it the dSph data cannot distinguish this class's suppression from none at all (the radial sigma(D) trend is MOND-generic EFE); if NOT DISTINCTIVE: status stays OPEN, no new prediction claimed (grok rule iii); distinctive content remains direction-blindness (gamma_v = 1.0010) and the squeeze)
+
+SW03 COMPLETE: 9/10 checks PASS.
+SW03 satellite eta-sequence: median residual -0.207 dex (gate A: PASS); implied eta_c from the suppression-demanding subset = 0.145 (gate B: PASS); NOT-DISTINCTIVE gate: delta vs isolated = 0.061 dex -> NOT DISTINCTIVE (OPEN, no new prediction). Standing cost reproduced: isolated median -0.146 dex vs kimik3's -0.13 dex. eta_c stays Oort-declared; the dwarfs tighten it from above if the subset is trusted; per-object Jeans (L263 E2) is the registered confirmatory step. Dated falsifier unchanged: gamma_v(DR4) = 1.0010, 2026-12-02.
+
+(json written: SW03_dSph_eta_sequence.json)

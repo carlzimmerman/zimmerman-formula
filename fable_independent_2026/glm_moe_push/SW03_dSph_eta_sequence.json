@@ -1,0 +1,289 @@
+{
+ "lane": "SW03_dSph_eta_sequence",
+ "mutate": true,
+ "n_pass": 8,
+ "n_total": 10,
+ "checks": [
+  {
+   "name": "A1 sympy, L263 B1: M_dyn(<r) = M r / r_M for the deep-MOND force",
+   "ok": true,
+   "measured": "M_dyn/M - r/r_M = 0",
+   "reading": "threshold: exact"
+  },
+  {
+   "name": "A2 control: nu_RAR(2.5) - 1 = 0.259 (L264)",
+   "ok": true,
+   "measured": "computed 0.2590",
+   "reading": "threshold |diff| < 0.002"
+  },
+  {
+   "name": "A3 control: eta_sun = 2.292 / 1.902 (SW01b B1)",
+   "ok": true,
+   "measured": "v_c(233 km/s)^2/R_0(8.2 kpc)/a0: 2.292 / 1.902",
+   "reading": "threshold |diff| < 0.01 -- the same numbers SW01b computed (8.2 kpc = 8.2 x 3.0857e19 m)"
+  },
+  {
+   "name": "A4 estimator anchor: Fornax isolated (M/L=2) sigma = 11.74 km/s vs observed 11.7",
+   "ok": true,
+   "measured": "|residual| = 0.002 dex",
+   "reading": "abort-threshold 0.05 dex: the L263-E estimator must reproduce the famous anchor"
+  },
+  {
+   "name": "C1[KILL-A] median residual across the eight dSphs (frozen eta_c, M/L=2)",
+   "ok": true,
+   "measured": "median = -0.144 dex vs threshold 0.3",
+   "reading": "predicted vs Walker+09 observed; M/L band moves sigma_pred by only +-0.04 dex"
+  },
+  {
+   "name": "C2[KILL-B] eta_c implied by the suppression-demanding objects (Fornax)",
+   "ok": true,
+   "measured": "median implied eta_c = 0.145 vs Oort eta_c = 0.203 (ratio 0.71); FAIL if > 3x",
+   "reading": "the two-sided squeeze: Oort demands eta_c <= 0.203; the dwarfs' implied value must not EXCEED it by > 3x (more suppression than Oort needs is safe, less is dead)"
+  },
+  {
+   "name": "C3a[HINGE] Oort consistency of the DECLARED eta_c",
+   "ok": false,
+   "measured": "S(eta_sun) = 0.0454 -> rho_dark = 0.0872 Msun/pc^3 (5.8x budget)",
+   "reading": "under MUTATE (eta_c = 0.5) this FAILS: 5.8x budget -- the hinge, mirroring the SW01-A kill; the implied-eta_c check below is mutation-invariant BY DESIGN (it is data-side)"
+  },
+  {
+   "name": "C3b Oort+LSS consistency at the implied eta_c",
+   "ok": true,
+   "measured": "S(eta_sun) = 0.0040 -> rho_dark = 0.0077 Msun/pc^3 (0.5x budget); S(eta_LSS) = 0.9959 >= 0.9",
+   "reading": "the tightened eta_c must keep BOTH standing gates alive (SW01b E1/F)"
+  },
+  {
+   "name": "C4 objects with S_req >= 1 (the MOND-wide dwarf residual, kimik3's standing cost)",
+   "ok": true,
+   "measured": "7 of 8: Draco, Ursa Minor, Sculptor, Sextans, Carina, Leo II, Leo I",
+   "reading": "these carry the pre-existing MOND-wide underprediction (kimik3: median -0.13 dex at M/L_V=2 isolated) and cannot measure suppression; excluded from the squeeze, counted in the residuals"
+  },
+  {
+   "name": "C5[distinctiveness] median residual, isolated S=1: -0.146 dex; SW01-B: -0.144 dex; delta = 0.002 dex (DISTINCTIVE required for any new prediction)",
+   "ok": false,
+   "measured": "delta >= 0.1 dex required; below it the dSph data cannot distinguish this class's suppression from none at all (the radial sigma(D) trend is MOND-generic EFE)",
+   "reading": "if NOT DISTINCTIVE: status stays OPEN, no new prediction claimed (grok rule iii); distinctive content remains direction-blindness (gamma_v = 1.0010) and the squeeze"
+  }
+ ],
+ "verdict": "SW03 satellite eta-sequence: median residual -0.144 dex (gate A: PASS); implied eta_c from the suppression-demanding subset = 0.145 (gate B: PASS); NOT-DISTINCTIVE gate: delta vs isolated = 0.002 dex -> NOT DISTINCTIVE (OPEN, no new prediction). Standing cost reproduced: isolated median -0.146 dex vs kimik3's -0.13 dex. eta_c stays Oort-declared; the dwarfs tighten it from above if the subset is trusted; per-object Jeans (L263 E2) is the registered confirmatory step. Dated falsifier unchanged: gamma_v(DR4) = 1.0010, 2026-12-02.",
+ "rows": [
+  {
+   "name": "Draco",
+   "D": 82,
+   "eta": 0.16886064373734622,
+   "eta_alt": 0.14015927481201007,
+   "eta_band": [
+    0.13677712142725043,
+    0.22331820134264038
+   ],
+   "S": 0.8976212129354966,
+   "S_alt": 0.9271462484691451,
+   "x": 0.01599954265416429,
+   "nu": 8.416345106636252,
+   "D_pred": 7.657068690167066,
+   "sig_pred": 4.159575279642207,
+   "sig_obs": 9.1,
+   "resid": -0.3399924037915617,
+   "Sreq": [
+    4.257593182770304,
+    2.061377938017391
+   ],
+   "etac_inv": null,
+   "deep_ok": true
+  },
+  {
+   "name": "Ursa Minor",
+   "D": 66,
+   "eta": 0.2097965573706423,
+   "eta_alt": 0.17413728082704283,
+   "eta_band": [
+    0.16993521147022025,
+    0.27745594712267446
+   ],
+   "S": 0.8502979234346119,
+   "S_alt": 0.891825833635405,
+   "x": 0.006698770453819651,
+   "nu": 12.724885322315863,
+   "D_pred": 10.969645642074138,
+   "sig_pred": 4.004846714894229,
+   "sig_obs": 9.5,
+   "resid": -0.3751377071281606,
+   "Sreq": [
+    4.594291432479135,
+    2.254501375910852
+   ],
+   "etac_inv": null,
+   "deep_ok": true
+  },
+  {
+   "name": "Sculptor",
+   "D": 79,
+   "eta": 0.17527307324635938,
+   "eta_alt": 0.14548177891879524,
+   "eta_band": [
+    0.14197118932955108,
+    0.23179863936831027
+   ],
+   "S": 0.8905650504059285,
+   "S_alt": 0.9219480683116096,
+   "x": 0.05318529288884284,
+   "nu": 4.855350518815486,
+   "D_pred": 4.433440429121436,
+   "sig_pred": 6.510252368934182,
+   "sig_obs": 9.2,
+   "resid": -0.15019000309208974,
+   "Sreq": [
+    1.781909196393719,
+    0.7612647042274729
+   ],
+   "etac_inv": null,
+   "deep_ok": true
+  },
+  {
+   "name": "Sextans",
+   "D": 86,
+   "eta": 0.16100666030770222,
+   "eta_alt": 0.13364023877424216,
+   "eta_band": [
+    0.1304153948492388,
+    0.2129313082569362
+   ],
+   "S": 0.9060494012017012,
+   "S_alt": 0.9333243764370908,
+   "x": 0.003039159593648162,
+   "nu": 18.64400755669874,
+   "D_pred": 16.986342481545183,
+   "sig_pred": 4.816463834651312,
+   "sig_obs": 7.9,
+   "resid": -0.21489878763998788,
+   "Sreq": [
+    2.2455481532918125,
+    1.0944358434869565
+   ],
+   "etac_inv": null,
+   "deep_ok": true
+  },
+  {
+   "name": "Carina",
+   "D": 101,
+   "eta": 0.13709478006398407,
+   "eta_alt": 0.11379267856024579,
+   "eta_band": [
+    0.1110467718518271,
+    0.18130784663461894
+   ],
+   "S": 0.9300768979754074,
+   "S_alt": 0.9507555273523032,
+   "x": 0.015582468689430294,
+   "nu": 8.521310073261034,
+   "D_pred": 7.995396741649807,
+   "sig_pred": 4.816036083256002,
+   "sig_obs": 6.6,
+   "resid": -0.13685420340915505,
+   "Sreq": [
+    1.6416523367456872,
+    0.7543483878891554
+   ],
+   "etac_inv": null,
+   "deep_ok": true
+  },
+  {
+   "name": "Fornax",
+   "D": 138,
+   "eta": 0.10033748395987241,
+   "eta_alt": 0.08328304735206396,
+   "eta_band": [
+    0.08127336200749664,
+    0.13269632253693125
+   ],
+   "S": 0.9612884870177126,
+   "S_alt": 0.9730047008002085,
+   "x": 0.09157872292702952,
+   "nu": 3.829656717133418,
+   "D_pred": 3.720116424392691,
+   "sig_pred": 12.461127050610049,
+   "sig_obs": 11.7,
+   "resid": 0.027371462256353795,
+   "Sreq": [
+    0.6768139702122543,
+    0.16170710593968018
+   ],
+   "etac_inv": 0.14520165754078235,
+   "deep_ok": true
+  },
+  {
+   "name": "Leo II",
+   "D": 205,
+   "eta": 0.0675442574949385,
+   "eta_alt": 0.05606370992480403,
+   "eta_band": [
+    0.05471084857090018,
+    0.08932728053705616
+   ],
+   "S": 0.9820781473382106,
+   "S_alt": 0.987583548280767,
+   "x": 0.07997492189951923,
+   "nu": 4.059623368117762,
+   "D_pred": 4.004789248913788,
+   "sig_pred": 6.083529107790841,
+   "sig_obs": 6.6,
+   "resid": -0.03538834518435253,
+   "Sreq": [
+    1.0425798599407474,
+    0.35787112319495246
+   ],
+   "etac_inv": null,
+   "deep_ok": true
+  },
+  {
+   "name": "Leo I",
+   "D": 250,
+   "eta": 0.055386291145849566,
+   "eta_alt": 0.04597224213833931,
+   "eta_band": [
+    0.04486289582813815,
+    0.07324837004038605
+   ],
+   "S": 0.9878781766338115,
+   "S_alt": 0.9916170792475413,
+   "x": 0.26209712335621754,
+   "nu": 2.4957772960977125,
+   "D_pred": 2.477645747919261,
+   "sig_pred": 10.208767886178778,
+   "sig_obs": 9.2,
+   "resid": 0.04518550215336091,
+   "Sreq": [
+    0.5272242905914181,
+    -0.07066221580365692
+   ],
+   "etac_inv": null,
+   "deep_ok": true
+  }
+ ],
+ "constants": {
+  "a0": {
+   "canonical": 9.3619e-11,
+   "alt": 1.1279e-10
+  },
+  "eta_c": {
+   "canonical": 0.2034,
+   "alt": 0.1688
+  },
+  "eta_c_used": {
+   "canonical": 0.5,
+   "alt": 0.5
+  },
+  "median_residual": -0.1435221032506224,
+  "median_residual_isolated": -0.1457208045691438,
+  "eta_c_implied_median": 0.14520165754078235,
+  "no_suppression_objects": [
+   "Draco",
+   "Ursa Minor",
+   "Sculptor",
+   "Sextans",
+   "Carina",
+   "Leo II",
+   "Leo I"
+  ]
+ }
+}

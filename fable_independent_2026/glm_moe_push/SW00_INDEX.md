@@ -80,9 +80,46 @@ this index is the loop log.
 model vs G114 (OPEN spec, > 10 CPU-min); (2) the covariant action for the Γ/η law (ghost theorem
 + α₂ are its kill gates); (3) the globular-cluster anomaly under the live readings.
 
+## Swing 3 (SW03) — the satellite η-sequence: second determination of η_c
+
+The classical dSphs straddle η_c: η(D) = v_c²/(D a₀) spans **0.055–0.210** over D = 66–250 kpc
+against the declared η_c = 0.203/0.169 — so their dispersions test the constant from data in
+hand (Walker+09 σ; McConnachie-2012 D, r_h, L_V; embedded with provenance; Sgr excluded as
+tidally disrupted). Estimator = the record's own L263-E deep-MOND virial σ⁴ = (4/81)GM_b a₀_eff,
+same estimator both sides so the virial constant cancels in S_req. M/L_V band [1.5, 3], v_c band
+[180, 230] km/s bracketed; η_c frozen from SW01b — NOT tuned to the dwarfs.
+
+- **Gate A PASS**: median residual at frozen η_c = **−0.207 dex** (≤ 0.3 threshold).
+- **Gate B PASS**: implied η_c from the suppression-demanding subset (Fornax, the only object
+  whose S_req band sits inside (0,1)) = **0.145** vs Oort 0.203 — ratio 0.71, tightening from
+  above; Oort and LSS gates both hold at the implied value (ρ = 0.5× budget; S(η_LSS) = 0.996).
+- **C5 NOT DISTINCTIVE**: median residual vs isolated S≡1 differs by only **0.061 dex** — the
+  σ(D) trend is MOND-generic EFE (inner more suppressed, η ∝ 1/D). The dSph data cannot
+  distinguish this class's suppression from none at all at screening level. **Status stays OPEN;
+  no new prediction claimed from the dwarfs.** Distinctive content remains direction-blindness
+  (γ_v = 1.0010; P₂ = 0) and the squeeze.
+- Standing cost reproduced: isolated median **−0.146 dex** vs kimik3's −0.13 dex (the MOND-wide
+  dwarf residual; 7 of 8 objects have S_req ≥ 1 and cannot measure suppression).
+- MUTATE hinge verified: η_c = 0.5 → Oort 5.8× budget → C3a flips (the only flipped gate; the
+  implied-η_c check is mutation-invariant by design — it is data-side).
+- Per-object Jeans (L263 E2) remains the registered confirmatory step; a PASS here buys the
+  Jeans run, it does not replace it.
+
+## PAPER_DELTA.md — the published paper vs the record
+
+`paper/dark_universe_bridge.tex` (June 2026) maps ~100% onto the repo (bridge framing =
+THE_IRREDUCIBLE_FRAMEWORK_2026-06-05 verbatim; CPL numbers = a0kit + EB-E9; five channels =
+a0z_crossscale). Zero revelations from it; three maintenance flags FROM the record: (1) the June
+CPL-dressed declining prediction is WITHDRAWN in RETRACTIONS.md, superseded by the stage-17
+derived flat law; (2) the AeST realization is on the stop-defending list (Cassini quadrupole
+~15–25σ); (3) MUSE-DARK III omitted against the "name it, never omit it" rule. Plus F4: the
+promised AeST verification scripts are not found in the repo (integrity flag).
+
 ## Status
 
 Two candidates killed in this lane (SW01-A, SW02), one standing (SW01-B, declared constant,
-dated falsifiers). The words "derived", "closed", "breakthrough" appear nowhere above because
-nothing here has earned them yet. Deferred, stated openly: R3 ghost theorem and the action
-formulation (G03-class); R6 cluster residual; the dSph/η ≳ 1 tension.
+dated falsifiers); SW03 is a consistency pass — NOT DISTINCTIVE, no kill, no new prediction.
+Stop rule (ii) (three kills → synthesis) not triggered. The words "derived", "closed",
+"breakthrough" appear nowhere above because nothing here has earned them yet. Deferred, stated
+openly: R3 ghost theorem and the action formulation (G03-class); R6 cluster residual; the
+dSph/η ≳ 1 tension (now quantified: NOT DISTINCTIVE at screening level).
