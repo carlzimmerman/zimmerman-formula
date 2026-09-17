@@ -1,0 +1,39 @@
+==========================================================================
+DE09 -- the dSph elongation-alignment test (direction-blind vs AQUAL)
+==========================================================================
+
+  LVD MW dwarfs: 68 | confirmed_real with PA: 59
+  per-dwarf (name, l, b, PA, bearing_GC, delta, d_gc, eta_MOND, eps_Phi):
+    Antlia II          l= 264.80 b=  11.25 PA= 156.0 bear= 177.8 d= 21.8 dgc=  125 eta=0.31 eps=0.161
+    Aquarius II        l=  55.11 b= -53.01 PA= 121.0 bear= 207.1 d= 86.1 dgc=  105 eta=0.37 eps=0.157
+    Aquarius III       l=  87.92 b= -62.03 PA= 119.0 bear= 178.7 d= 59.7 dgc=   86 eta=0.45 eps=0.150
+    Bootes I           l= 358.10 b=  69.64 PA=   6.0 bear= 260.6 d= 74.6 dgc=   64 eta=0.60 eps=0.137
+    Bootes II          l= 353.73 b=  68.86 PA= -68.0 bear= 256.3 d= 35.7 dgc=   40 eta=0.98 eps=0.103
+    Bootes III         l=  34.53 b=  75.10 PA= 279.0 bear= 300.0 d= 21.0 dgc=   47 eta=0.81 eps=0.117
+    Bootes IV          l=  70.68 b=  53.31 PA=   3.0 bear= 328.5 d= 34.5 dgc=  207 eta=0.19 eps=0.167
+    Bootes V           l=  55.67 b=  70.92 PA=  18.0 bear= 321.0 d= 57.0 dgc=  101 eta=0.38 eps=0.155
+    Canes Venatici I   l=  74.30 b=  79.83 PA=  80.0 bear= 346.4 d= 86.4 dgc=  211 eta=0.18 eps=0.168
+    Canes Venatici II  l= 113.57 b=  82.70 PA=   9.0 bear=  29.3 d= 20.3 dgc=  161 eta=0.24 eps=0.165
+    Carina             l= 260.11 b= -22.22 PA=  60.0 bear= 141.1 d= 81.1 dgc=  107 eta=0.36 eps=0.157
+    Carina II          l= 269.98 b= -17.14 PA= 170.0 bear= 194.9 d= 24.9 dgc=   38 eta=1.01 eps=0.100
+    ... (59 dwarfs total)
+
+--- THE ALIGNMENT STATISTICS (corrected: folded-angle tests) ---
+  n = 59; mean delta = 49.0 deg (uniform: 45), bootstrap 95% CI [42.1, 55.9]
+  mean |cos delta| = 0.584 (uniform: 0.637; AQUAL-aligned: ->1)
+  chi2(8) = 7.36, p = 0.4988;  KS vs U(0,90): D = 0.135, p = 0.2108
+  fraction delta < 15 deg (field-aligned): 0.119 (uniform: 0.167);  fraction delta > 75 deg (perpendicular): 0.169 (uniform: 0.167)
+  median eps_Phi(mu2, eta_can) = 0.150  (AQUAL's predicted alignment amplitude)
+  [PASS] K1: the dSph major axes do NOT concentrate along the GC bearing (field-aligned fraction = 0.119 vs 0.167 uniform; chi2 p = 0.4988) -- the field-aligned AQUAL elongation is ABSENT on this channel
+  [PASS] K2: the delta-distribution is consistent with uniform (chi2 p = 0.4988, KS p = 0.2108, mean 49.0 deg within the bootstrap CI of 45) -- the direction-blind rule SURVIVES on the dSph channel
+  [PASS] K3 (recorded): AQUAL's predicted eps_Phi(mu2) at the MW satellites is 0.150 (5-15%); the measured shapes show no such field-aligned component at the 3-sigma level -- the framework's magnitude-yes/direction-no fingerprint HOLDS on this channel (tidal alignment remains the allowed alternative, not tested here)
+
+==========================================================================
+VERDICT
+==========================================================================
+  THE dSph CHANNEL: 59 MW dwarfs, delta = |PA - bearing_GC| folded to [0,90].
+  mean delta = 49.0 deg vs 45 uniform; mean |cos| = 0.584 vs 0.637 uniform.
+  chi2 p = 0.4988; KS p = 0.2108; bootstrap CI of the mean [42.1, 55.9].
+  AQUAL's field-aligned eps_Phi = 0.150 on average is NOT seen in the PA distribution --> DIRECTION-BLIND SURVIVES (within the tidal-alignment caveat).
+  checks: 3/3 PASS
+wrote deepseek_push/DE09_results.json

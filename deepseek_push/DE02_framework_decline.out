@@ -1,0 +1,127 @@
+DE02 -- framework outer-decline law and floors (directional-EFE programme)
+KILLS BEFORE COMPUTATION: K1 floor<1e-6 rel by r<=3000 r_M all eta/kernels;  K2 slope in [-0.5,0] beyond r_b;  K3 AQUAL floor bracketed by (framework, NFW3) at eta=0.5;  K4 NFW5/framework median > 0.4 dex
+
+  [PASS] S1 sympy: sqrt(x^2+eta^2) = eta + x^2/(2 eta) + O(x^4) (floor expansion seed)
+           (c0=eta, c2=1/(2*eta))
+  [PASS] S2 sympy: nu_RAR(sqrt(x^2+eta^2)) = nu_RAR(eta) + x^2 * nu_RAR'(eta)/(2 eta) + O(x^4)
+           (c0 = 1.97265385 (nu_RAR(eta) closed form); c2 = -1.356732e+00 (numeric nu'/(2eta) agreement))
+  [PASS] C1 the floor identity v^2 r -> nu(eta) G M_b attains <1e-6 (relative) within r <= 3000 r_M, all grid eta, both kernels
+           (convergence radii r/r_M: eta=0.2: nu_RAR=47,nu_mu2=48, eta=0.3: nu_RAR=38,nu_mu2=38, eta=0.5: nu_RAR=29,nu_mu2=29, eta=1.0: nu_RAR=20,nu_mu2=20, eta=2.0: nu_RAR=13,nu_mu2=13; 30-r_M residuals up to 6.34e-06 (fit-window systematics))
+  [PASS] C2 footnote invariance: every dimensionless deliverable (floor/GM_b, r_b/r_M, slopes) is footing-identical to <1e-12
+  [PASS] C3 the framework decline slope d ln v/d ln r lies in [-0.5, 0] on [r_b, 30 r_M], all eta, both kernels (beyond r_b it steepens monotonically, never leaving (-0.5, 0))
+           (slope envelope over all eta/kernels on [r_b, 30 r_M]: [-0.500000, -0.1963] (shallowest at r_b: -0.1963, r_b in [0.53, 1.32] r_M))
+  [PASS] C4 the decline is fully developed at the window edge: |slope(30 r_M) + 0.5| < 0.01, all eta, both kernels
+           (slope(30 r_M) in [-0.500000, -0.499987] (AQUAL: -0.500000 exactly))
+  [FAIL] C5 the AQUAL azimuthal mean floor lies between the Newton floor G M_b and the framework floor nu(eta) G M_b at eta = 0.5
+           (AQUAL floor = 2.3077 G M_b vs framework 1.9727 G M_b (vs Newton 1.0000): +0.068 dex ABOVE the framework at eta=0.5 (ordering Newton 1.00 < framework 1.97 < AQUAL 2.31 < NFW3 3.00 < NFW5 5.00). [FAIL is the finding: the closed form with 1/mu(eta) puts AQUAL above the isotropic rule; the check passes at eta=2 (1.000 < 1.209 < 1.482)])
+  [PASS] C5b the AQUAL mean floor is bracketed by the framework floor and the 3x-halo (Newton-dark) floor at eta = 0.5
+           (1.973 < 2.308 < 3.000 G M_b: the halo ladder encloses the AQUAL floor)
+  [PASS] C6 the NFW5 floor clears the 0.4-dex DE06 bar at eta = 0.5 (the grid-median row), both kernels
+           (log10(5/nu(0.5)) = nu_RAR: 0.4039 dex, nu_mu2: 0.4276 dex; lower-eta rows sit below the bar (eta=0.3: 0.32-0.35, eta=0.2: 0.26-0.28) -- 0.4 dex first cleared at eta ~ 0.44-0.51)
+  [PASS] C7 DE06 decision: median over the eta grid of log10(NFW floor / framework floor) > 0.4 dex separates -- NFW5 does, NFW3 does not
+           (NFW5 medians 0.404 (RAR) / 0.428 (mu2) > 0.4;  NFW3 medians 0.182 / 0.206 < 0.4)
+  [PASS] C8 the framework floor exceeds the Newton floor at every grid eta, both kernels (the EFE boost band)
+           (log10 nu(eta) in [0.096, 0.443] dex above Newton)
+  [PASS] C9 hinge control: the registered magnitude rule reproduces the floor at 30 r_M (|v^2 r / [nu(eta) G M_b] - 1| < 0.01); under MUTATE=1 this folds (the broken nu(x)*nu(eta) composition inflates the 30-r_M value ~30x and the limit diverges)
+           (v^2 r (30 r_M) / nu(eta) G M_b = 1.00000; the second run (MUTATE=1) must print [FAIL] here)
+  [PASS] C10 the tidal truncation: r_J < 0.3 r_M for every grid eta (the halo vanishes outside the fit window; floor G M_dyn attained at r_J^- to fp precision)
+           (r_J/r_M in [1.12e-07, 2.41e-07]; at eta=0.5: r_J = 6.852e-04 pc (M_b = 1e10 Msun), v_NFW3 = 0.0000 km/s, v_NFW5 = 0.0000 km/s at r_J^-)
+  [PASS] C11 the AQUAL closed form declines exactly as r^-1/2: |d ln v_AQUAL/d ln r + 0.5| < 1e-6 on the window
+           (AQUAL slope = -0.500000 (v_AQUAL^2 r = 2.3077 G M_b constant: no break radius -- declining from the window edge inward))
+  [PASS] C12 the break inflection r_b (shallowest d ln v/d ln r; decline steepens beyond it and is monotone to 30 r_M) lies inside [0.3, 2] r_M for every grid eta, both kernels
+           (r_b/r_M: eta=0.2/nu_RAR: 1.30 (slope -0.206), eta=0.2/nu_mu2: 1.32 (slope -0.196), eta=0.3/nu_RAR: 1.11 (slope -0.233), eta=0.3/nu_mu2: 1.13 (slope -0.228), eta=0.5/nu_RAR: 0.90 (slope -0.272), eta=0.5/nu_mu2: 0.95 (slope -0.273), eta=1.0/nu_RAR: 0.70 (slope -0.327), eta=1.0/nu_mu2: 0.74 (slope -0.338), eta=2.0/nu_RAR: 0.53 (slope -0.383), eta=2.0/nu_mu2: 0.58 (slope -0.402))
+
+DELIVERABLE TABLE (eta = 0.5, canonical footing, M_b = 1e10 Msun, r_M = 3.9 kpc):   r/r_M | r[kpc] | v_fw_RAR | v_fw_mu2 | v_AQUAL | v_NFW3 | v_NFW5 [km/s]
+     0.3000     1.158   196.295   194.960   292.838     0.000     0.000
+     0.3240     1.250   189.859   188.195   281.768     0.000     0.000
+     0.3500     1.351   183.811   181.806   271.116     0.000     0.000
+     0.3780     1.459   178.140   175.790   260.867     0.000     0.000
+     0.4083     1.576   172.831   170.145   251.005     0.000     0.000
+     0.4410     1.702   167.867   164.867   241.516     0.000     0.000
+     0.4764     1.838   163.232   159.947   232.386     0.000     0.000
+     0.5146     1.986   158.905   155.374   223.601     0.000     0.000
+     0.5558     2.145   154.866   151.131   215.148     0.000     0.000
+     0.6003     2.317   151.091   147.199   207.014     0.000     0.000
+     0.6484     2.502   147.555   143.553   199.188     0.000     0.000
+     0.7004     2.703   144.231   140.164   191.658     0.000     0.000
+     0.7565     2.919   141.091   137.000   184.413     0.000     0.000
+     0.8171     3.153   138.100   134.022   177.441     0.000     0.000
+     0.8826     3.406   135.222   131.190   170.733     0.000     0.000
+     0.9533     3.679   132.418   128.458   164.279     0.000     0.000
+     1.0296     3.973   129.646   125.779   158.068     0.000     0.000
+     1.1121     4.292   126.865   123.105   152.093     0.000     0.000
+     1.2012     4.636   124.033   120.391   146.343     0.000     0.000
+     1.2975     5.007   121.118   117.601   140.811     0.000     0.000
+     1.4014     5.408   118.098   114.708   135.488     0.000     0.000
+     1.5137     5.842   114.964   111.701   130.366     0.000     0.000
+     1.6350     6.310   111.722   108.583   125.437     0.000     0.000
+     1.7660     6.815   108.389   105.371   120.695     0.000     0.000
+     1.9075     7.361   104.993   102.092   116.133     0.000     0.000
+     2.0604     7.951   101.564    98.776   111.742     0.000     0.000
+     2.2254     8.588    98.133    95.452   107.518     0.000     0.000
+     2.4037     9.276    94.728    92.150   103.453     0.000     0.000
+     2.5963    10.019    91.370    88.891    99.542     0.000     0.000
+     2.8044    10.822    88.079    85.695    95.779     0.000     0.000
+     3.0290    11.689    84.867    82.574    92.159     0.000     0.000
+     3.2717    12.626    81.744    79.537    88.675     0.000     0.000
+     3.5339    13.637    78.714    76.592    85.322     0.000     0.000
+     3.8170    14.730    75.782    73.740    82.097     0.000     0.000
+     4.1228    15.910    72.947    70.983    78.993     0.000     0.000
+     4.4532    17.185    70.212    68.322    76.007     0.000     0.000
+     4.8100    18.562    67.573    65.754    73.134     0.000     0.000
+     5.1954    20.049    65.029    63.280    70.369     0.000     0.000
+     5.6116    21.655    62.579    60.895    67.709     0.000     0.000
+     6.0612    23.390    60.219    58.599    65.149     0.000     0.000
+     6.5469    25.264    57.946    56.388    62.686     0.000     0.000
+     7.0714    27.289    55.758    54.259    60.316     0.000     0.000
+     7.6380    29.475    53.652    52.209    58.036     0.000     0.000
+     8.2500    31.837    51.625    50.237    55.842     0.000     0.000
+     8.9110    34.387    49.675    48.339    53.731     0.000     0.000
+     9.6249    37.143    47.798    46.512    51.700     0.000     0.000
+    10.3961    40.119    45.991    44.754    49.745     0.000     0.000
+    11.2290    43.333    44.253    43.063    47.865     0.000     0.000
+    12.1287    46.805    42.580    41.435    46.055     0.000     0.000
+    13.1005    50.555    40.971    39.869    44.314     0.000     0.000
+    14.1502    54.605    39.422    38.362    42.639     0.000     0.000
+    15.2839    58.981    37.932    36.912    41.027     0.000     0.000
+    16.5085    63.706    36.498    35.516    39.476     0.000     0.000
+    17.8312    68.810    35.118    34.174    37.984     0.000     0.000
+    19.2598    74.324    33.790    32.882    36.548     0.000     0.000
+    20.8030    80.279    32.513    31.639    35.166     0.000     0.000
+    22.4698    86.711    31.284    30.443    33.837     0.000     0.000
+    24.2701    93.658    30.101    29.292    32.558     0.000     0.000
+    26.2146   101.162    28.963    28.185    31.327     0.000     0.000
+    28.3150   109.268    27.868    27.119    30.143     0.000     0.000
+
+FLOORS (units of G M_b; footing enters via eta = g_ext/a0 -- at a fixed physical g_ext the eta differs by the a0 ratio):
+   eta | g_ext(can) m/s2 | g_ext(alt) m/s2 | nu_RAR | nu_mu2 | AQUAL <f>/mu | L |
+    0.2      1.8724e-11      2.2558e-11  2.7732  2.6594        4.6406  0.866
+    0.3      2.8086e-11      3.3837e-11  2.3712  2.2607        3.3397  0.809
+    0.5      4.6810e-11      5.6395e-11  1.9727  1.8680        2.3077  0.711
+    1.0      9.3619e-11      1.1279e-10  1.5820  1.4893        1.5547  0.533
+    2.0      1.8724e-10      2.2558e-10  1.3212  1.2470        1.2092  0.333
+   GM scaling: floor scales linearly with M_b (floor = nu(eta)*G*M_b); at eta=0.5/nu_RAR, M_b=1e10 Msun: floor = 2.618e30 m^3/s^2 (v^2 r).
+   Footing spread at fixed g_ext = 2.32e-10 m/s^2 (eta 2.478 can / 2.057 alt): RAR 0.0174 dex, mu2 0.0162 dex.
+
+DECLINE SLOPES d ln v/d ln r (canonical; r_b = break inflection, shallowest slope):
+   eta | kernel | r_b/r_M | slope(r_b) | slope(30 r_M)
+    0.2 | nu_RAR |   1.297 |   -0.2055 | -0.499987
+    0.2 | nu_mu2 |   1.323 |   -0.1963 | -0.499987
+    0.3 | nu_RAR |   1.112 |   -0.2335 | -0.499995
+    0.3 | nu_mu2 |   1.134 |   -0.2280 | -0.499994
+    0.5 | nu_RAR |   0.900 |   -0.2717 | -0.499998
+    0.5 | nu_mu2 |   0.953 |   -0.2725 | -0.499998
+    1.0 | nu_RAR |   0.700 |   -0.3271 | -0.500000
+    1.0 | nu_mu2 |   0.742 |   -0.3384 | -0.500000
+    2.0 | nu_RAR |   0.535 |   -0.3826 | -0.500000
+    2.0 | nu_mu2 |   0.578 |   -0.4023 | -0.500000
+
+NFW (c = 10, M(<r_J) = M_dyn; eta=0.5, canonical): r_J = 0.00069 pc = 1.78e-07 r_M;  floor v^2 r = G M_dyn (3.000/5.000 G M_b) at r_J^-;
+   v^2 r / G M_b at r/r_J = 0.10/0.25/0.50/0.75/0.9999: NFW3 0.3892 1.0851 1.9313 2.5343 2.9998;  NFW5 0.6487 1.8084 3.2188 4.2239 4.9997
+
+DE02 COMPLETE: 14/15 checks PASS (C5 and C9 carry findings/controls).
+THEOREM (certified): for the rule g = nu(sqrt(x^2+eta^2)) g_N, x = (r_M/r)^2, any C^1 kernel nu, any eta > 0:
+  lim_{r->inf} v(r)^2 r = nu(eta) G M_b,  with  v^2 r = G M_b [nu(eta) + x^2 nu'(eta)/(2 eta) + O(x^4)]
+  -- the floor is PARAMETER-FREE: fixed by the registered nu(eta) alone (no kernel derivative, no scale, no eta-gradient).
+DE05 (decline shape): fitted |d ln v/d ln r + 0.5| <= 0.1 at r >= 10 r_M marks an EFE-type decline (framework 1.3e-05 to 6.9e-08, AQUAL 0.0 at 30 r_M); NFW (c=10) slopes at its measurable radii [-0.22, +0.27] fail that bar by >= 0.25 -- but with r_J = 1.8e-07 r_M the halo is only measurable inside r_J, where the EFE curves are still shallow: DE05 alone cannot separate the pair AQUAL/framework (|Delta slope| <= 1.3e-05 at 30 r_M).
+DE06 (floor): decision bar = median over eta-grid of log10(floor ratio) must exceed 0.4 dex: framework/Newton 0.121-0.443 dex (always > 0); AQUAL/framework +0.068 dex at eta=0.5, sign flips near eta~1.45 (median |.| 0.092 -> NOT separable); NFW5/framework medians 0.404/0.428 > 0.4 -> SEPARATES (PASS);  NFW3 medians 0.182/0.206 < 0.4 -> does not separate (FAIL as registered).

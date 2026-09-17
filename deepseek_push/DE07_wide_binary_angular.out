@@ -1,0 +1,47 @@
+====================================================================================================================
+DE07 -- the wide-binary ANGULAR statistic on Gaia EDR3: re-run of the registered directional-EFE test
+====================================================================================================================
+  registered prior:  A-hat = +2.95 at p = 0.029 with the AQUAL-class sign
+                     (old corpus first firing of the directional-EFE test on ROTATION CURVES; a different
+                      statistic than the wide-binary split -- see the prior status report below)
+  AQUAL-class amplitude: L = 0.27 -> ~6% velocity modulation -> A_PRED = 0.060 in split units (r ~= dv/v)
+  PRE-REGISTERED KILL CONDITIONS (written before any measurement):
+    K1  widest-bin s/r_M > 1.96 split PARALLEL-dominant at >= 3 sigma on the RANDOM-AXIS null
+        -> direction-blind rule ABSENT (modulation PRESENT)
+    K2  widest-bin split |r|/e_axis <= 2 sigma on the random-axis null -> direction-blind SURVIVES (ABSENT)
+    K3  anything else, or the two a0 footings disagree -> UNDECIDED
+  MUTATE = 0 (1 breaks the RUWE-clean-cut hinge)
+  El-Badry+2021 Gaia EDR3 catalogue: 1817594 pairs loaded
+  clean sample (R_chance_align < 0.01, RUWE < 1.4 both, d < 250 pc, parallax S/N > 50 both, 4 < M_G < 11 both, |dmu|/sigma > 5): 39702 pairs
+  pairs with a well-defined sky orientation: 39702; <cos^2 phi>_GC = 0.4894 (isotropic 0.5)
+
+--------------------------------------------------------------------------------------------------------------------
+MEASUREMENTS
+  SAMPLE-LEVEL (2-30 kAU): N = 8146 (4078 perp, 4068 par); b_perp/b_par - 1 = +0.0068 +- 0.0106 (random-axis 1000 axes, seed 2001), p = 0.522; bootstrap would say +- 0.0134
+  WIDEST BIN s/r_M > 1.96 (canonical footing, r_M(1 Msun) = 7959 AU): N = 372 (177 perp, 195 par); b_perp/b_par - 1 = -0.1530 +- 0.0926 (random-axis, seed 3196), p = 0.093; bootstrap would say +- 0.0408  PAR-dominant
+  WIDEST BIN s/r_M > 1.96 (alt       footing, r_M(1 Msun) = 7251 AU): N = 453 (217 perp, 236 par); b_perp/b_par - 1 = -0.1081 +- 0.0734 (random-axis, seed 3196), p = 0.176; bootstrap would say +- 0.0396  PAR-dominant
+  
+  POWER at the AQUAL-class amplitude: 3 sigma needs N = 8.0e+03 (21x this widest bin, canonical) and 6.1e+03 (13x, alt) at the measured random-axis errors
+  context: a UNIFORM 6% split over the whole 2-30 kAU sample is excluded at 5.0 sigma -- the modulation can only live in the EFE-transition band, hence the widest-bin framing
+
+====================================================================================================================
+CHECKS
+  [PASS] DE07-1 catalogue reproduction: the on-disk El-Badry+2021 file loads with 1,817,594 pairs and the h15 clean selection (R_chance_align < 0.01, RUWE < 1.4 both, d < 250 pc, parallax S/N > 50 both, 4 < M_G < 11 both, |dmu|/sigma > 5) reproduces the committed clean-sample size ~39.7 k   (rows = 1817594, N_clean = 39702 (RUWE < 1.4))
+  [PASS] DE07-2 sky coverage is close to isotropic about the Galactic-centre axis, so the split is not one hemisphere vs the other   (<cos^2 phi>_GC = 0.4894 vs isotropic 0.5)
+  [PASS] DE07-3 the sample-level split is consistent with zero at DR3 N and the registered prior is NOT reproduced: |r|/e < 3 on the correct null and p > 0.029   (r = +0.0068 +- 0.0106 (0.6 sigma, p = 0.522) at 2-30 kAU, N = 8146)
+  [PASS] DE07-4 the widest bin (canonical footing) does not fire the pre-registered kill: not a >= 3 sigma parallel-dominant split on the correct null   (r = -0.1530 +- 0.0926 (-1.7 sigma, p = 0.093))
+  [PASS] DE07-5 the widest bin (alt footing) does not fire the pre-registered kill either   (r = -0.1081 +- 0.0734 (-1.5 sigma, p = 0.176))
+  [PASS] DE07-6 the kill rule is exhaustive and mutually exclusive: PRESENT at <= -3 sigma, ABSENT at <= 2 sigma, else UNDECIDED   (rule(-4,1)=PRESENT, rule(0.5,1)=ABSENT, rule(2.5,1)=UNDECIDED)
+  [PASS] DE07-7 the correct null beats the bootstrap exactly where it matters: they AGREE at the sample level and the random-axis spread EXCEEDS the bootstrap in the sparse widest bin (the sky-coherence term h15 documented)   (sample-level axis/boot = 0.80; widest-bin axis/boot = 2.27)
+  [PASS] DE07-8 DR3 is underpowered for the AQUAL-class amplitude in the widest bin: 3 sigma at A_PRED = 0.06 needs more than 10x the current widest-bin sample on the canonical footing   (N_need = 8.0e+03 vs N = 372)
+  [PASS] DE07-9 verdict assigned by the pre-registered rule on both footings (disagreement -> UNDECIDED)   (canonical rule -> ABSENT, alt rule -> ABSENT, combined -> ABSENT)
+
+====================================================================================================================
+VERDICT (direction-blind rule: ZERO angular modulation; AQUAL-class: ~6% modulation)
+  sample-level split (2-30 kAU, N = 8146):  b_perp/b_par - 1 = +0.0068 +- 0.0106 (p = 0.522); bootstrap +- 0.0134
+  widest bin s/r_M > 1.96, canonical:  b_perp/b_par - 1 = -0.1530 +- 0.0926 (-1.7 sigma, p = 0.093)
+  widest bin s/r_M > 1.96, alt:       b_perp/b_par - 1 = -0.1081 +- 0.0734 (-1.5 sigma, p = 0.176)
+  VERDICT: ABSENT
+  prior status: the registered A-hat = +2.95, p = 0.029 is the old corpus firing of the directional-EFE test on rotation curves -- a different quantity from b_perp/b_par - 1; like-for-like comparison is not derivable at DR3 N. The DR3 wide-binary sample-level split (+0.0068 +- 0.0106, 0.6 sigma, p = 0.522) does not reproduce it and is consistent with zero; the AQUAL-class-sign hint is not confirmed by the wide-binary channel at DR3 N, which is underpowered for the ~6% modulation in the transition band (N_need ~ 7975 widest-bin pairs).  The hint's status rests on the rotation-curve channel where it originally fired, not on this re-run.
+  wrote DE07_wide_binary_angular.json
+RESULT: 9 checks, 0 FAIL   rc=0
