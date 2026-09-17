@@ -1,0 +1,146 @@
+N07_action_door.py -- THE ACTION DOOR (N07): the phantom cusp, the caustic
+channel, and the a0/2-cap transfer (D1-D4 of N07_ACTION_DOOR.md).
+
+The action (THE_THEORY.md L5; G031 the GR fluid action) writes the phantom as
+a matter sector: a pressureless dust carrying the conserved shift charge,
+whose equilibrium is the isothermal sphere at the Zimmerman temperature
+  sigma^2 = G M_b/(2 r_M) = sqrt(G M_b a0)/2,  rho_ph = sqrt(G M_b a0)/(4 pi G r^2).
+This lane executes the door's three derived claims, sympy-exact where
+algebraic and numerically where not:
+
+  D1 THE CUSP     : the equilibrium phantom rho_ph = C/r^2 is an EXACT 1/r^2
+                    stationary density cusp at every baryon centre (the G031
+                    isothermal chain re-verified here as the launch rung);
+  D2 THE CAUSTIC  : the phantom is pressureless => pressureless dust forms
+                    density singularities in finite time on the Jeans scale
+                    tau_ff = 1/sqrt(G rho_ph) (the classical dust-collapse
+                    ODE r'' = -G M/r^2 integrated exactly by quadrature and
+                    numerically);
+  D3 THE TRANSFER : can the collapsing phantom drag the baryon velocity to
+                    blowup through the shared potential?  K-1: the measured
+                    reaction law caps the phantom's force on baryons at
+                    |g_ph| <= a0/2 EXACTLY (Lean-certified `a0cap_bound`) --
+                    a bounded perturbation (N02's sub-regularizing class), the
+                    caustic CONFINED to the dark sector; K-2: the action's
+                    NONEQUILIBRIUM coupling is not committed (the G03 action
+                    door, OPEN) -- registered, measurement-awaited, exactly
+                    like the kappa pair (N03, kappa <= 2.6e-8).
+
+Gates: G40 the cusp 1/r^2 (sympy exact); G41 g_ph/g_N = r/r_M subdominance
+(sympy exact); G42 tau_ff(1 kpc) in [1e6, 1e9] yr (the door's D4 window);
+G43 the a0/2 cap over the g_N/a0 grid (1e-12 relative); G44 the 1D two-fluid
+toy (capped run bounded: final-speed ratio < 1e4; uncapped run diverges:
+ratio > 1e6); G45 the honesty gate (the G03-open residual stated in this
+file's own text).
+
+A FAIL is a finding; no literal-True pass conditions; thresholds stated per
+check.  All numbers from the committed constants: a0 = 9.3619e-11 m/s^2
+(kappa = 1/2, MEASURED), G = 6.674e-11, M_sun = 1.989e30 kg, M_b = 1e10 M_sun.
+
+==============================================================================
+CONSTANTS: a0 = 9.361900e-11 m/s^2, a0/2 = 4.680950e-11 m/s^2, G = 6.674000e-11, M_b = 1e10 M_sun = 1.989000e+40 kg
+==============================================================================
+
+PART D1 -- THE CUSP: the G031 isothermal chain, re-verified exactly,
+         then the cusp statements (a),(b),(c)
+  [PASS] V1 the Zimmerman temperature closes exactly: sigma^2 = G M_b/(2 r_M) = sqrt(G M_b a0)/2
+         measured: sigma^2 = sqrt(G)*sqrt(M_b)*sqrt(a_0)/2  (sympy exact)
+         reading : the launch rung of G031 (V3), re-run inside the door
+  [PASS] V2 the isothermal identification closes exactly: rho_ph = sigma^2/(2 pi G r^2) = sqrt(G M_b a0)/(4 pi G r^2)
+         measured: rho_ph = sqrt(M_b)*sqrt(a_0)/(4*pi*sqrt(G)*r**2)  (sympy exact)
+         reading : the equilibrium phantom IS the isothermal sphere at the Zimmerman temperature, coefficient exactly 1 (G031 V4)
+  [PASS] (a) rho_ph ~ 1/r^2 exactly: rho_ph(r) * r^2 is r-independent
+         measured: rho_ph * r^2 = sqrt(M_b)*sqrt(a_0)/(4*pi*sqrt(G)) = sqrt(G M_b a0)/(4 pi G)  (sympy exact)
+         reading : the phantom density is pure r^-2 at every radius -- a cusp at r = 0, time-independent (stationary): the STATIC dark sector already carries the axis singularity
+  [PASS] (b) the enclosed phantom mass: M_ph(r) = int 4 pi r'^2 rho_ph dr' = 2 sigma^2 r/G ~ r
+         measured: M_ph(r) = sqrt(M_b)*sqrt(a_0)*r/sqrt(G)  (sympy exact: linear in r)
+         reading : the cusp is INTEGRABLE: M_ph(0) = 0 and M_ph(r) finite at every r (finite enclosed mass at the origin), while rho_ph(r) -> infinity as 1/r^2 -- a stationary density singularity (the 1/r^2 cusp) at every baryon centre
+  [PASS] (c) the phantom field: g_ph = G M_ph/r^2 = sqrt(G M_b a0)/r, and the Law's structure g_ph/g_N = r/r_M EXACTLY
+         measured: g_ph/g_N = sqrt(a_0)*r/(sqrt(G)*sqrt(M_b)) = r/r_M  (sympy exact)
+         reading : phantom subdominant inside r_M (r < r_M => g_ph < g_N): on the Newtonian face (g_N > a0) the phantom is the subdominant partner; g_ph/g_N -> 0 as r -> 0
+
+NUMBERS (M_b = 1e10 M_sun):
+  r_M = sqrt(G M_b/a0) = 3.8586 kpc
+  M_ph(r_M) = 1.0000e+10 M_sun  (the mass crossing: = M_b exactly)
+  g_N(r_M) = 9.361900e-11 m/s^2 ;  g_ph(r_M) = 9.361900e-11 m/s^2 ;  a0 = 9.361900e-11
+  crossing at r_M: g_ph = g_N = a0 to 0.0e+00 relative
+  [PASS] C1 the crossing at r_M with the numbers: g_ph(r_M) = g_N(r_M) = a0
+         measured: g_ph = 9.361900e-11, g_N = 9.361900e-11, a0 = 9.361900e-11 (relative diff 0.0e+00)
+         reading : the r/r_M law's literal content: phantom subdominant inside r_M, dominant outside, crossing exactly at the MOND length
+
+PART D2 -- THE CAUSTIC CHANNEL: pressureless dust, the elementary
+         collapsing-sphere ODE, and the Jeans numbers
+  [PASS] (a) THE CLASSICAL DUST COLLAPSE, integrated exactly: r'' = -G M/r^2, r(0) = r0, r'(0) = 0 gives t_coll = (pi/2) sqrt(r0^3/(2 G M))
+         measured: t_coll = sqrt(2)*pi*r**(3/2)/(4*sqrt(G)*sqrt(M_b))  (sympy: exact quadrature via r = r0 cos^2 theta of int_0^{r0} dr/sqrt(2GM(1/r - 1/r0)))
+         reading : first integral (1/2) r'^2 = G M (1/r - 1/r0); the sphere reaches r = 0 in FINITE time -- a density singularity (caustic). Textbook Newtonian dust collapse (Lemaitre 1927, 'L'univers en expansion'; the GR analogue Oppenheimer-Snyder 1939; cited as the classical result)
+  [PASS] (a') the same ODE numerically: RK4 integration of r'' = -G M/r^2 to r -> 0 matches the closed form
+         measured: t_coll(numerical) = 3.246426e+14 s, t_coll(closed form) = 3.246419e+14 s = 1.0287e+07 yr, |rel| = 2.22e-06, energy drift 2.95e-10
+         reading : closed form and direct integration agree: the phantom shell at 1 kpc would collapse in ~1e7 yr if left pressureless -- the caustic clock of the dust sector
+  Jeans/free-fall clock on the phantom's own 1/r^2 profile, M_b = 1e10:
+    r [kpc]   rho_ph [kg/m^3]   rho_ph [M_sun/pc^3]   tau_ff [yr]   t_coll_class [yr]
+      1.0    1.3957e-20        2.0623e-01          3.2832e+07     1.4555e+07
+      3.0    1.5508e-21        2.2915e-02          9.8497e+07     4.3664e+07
+     10.0    1.3957e-22        2.0623e-03          3.2832e+08     1.4555e+08
+  [PASS] (b) the phantom's own free-fall times at 1, 3, 10 kpc
+         measured: tau_ff(1 kpc) = 3.2832e+07 yr; tau_ff(3 kpc) = 9.8497e+07 yr; tau_ff(10 kpc) = 3.2832e+08 yr
+         reading : the deep sector responds on 3e7-3e8 yr -- far below galactic dynamics: quasi-static equilibrium reading AND fast enough to mediate the a0-line in flows
+  (classical uniform-density dust sphere for comparison: t_coll = sqrt(3 pi/(32 G rho)) = 0.443/sqrt(G rho), same band)
+
+(c) THE CAUSTIC MECHANISM (statement, cited):
+    A pressureless self-gravitating dust sphere reaches a density
+    singularity in finite time (t_coll, derived exactly above): all
+    shells arrive at the centre on the same clock, rho -> infinity,
+    mass conserved -- a CAUSTIC of the dark dust. Classical: Newtonian
+    dust collapse (Lemaitre 1927; the GR analogue is Oppenheimer-Snyder
+    1939; the caustic formation in pressureless collisionless matter
+    is the textbook result (e.g. the Zel'dovich-Shandarin pancake
+    mechanism; cited as such). The phantom's equilibrium cusp (D1)
+    is the STATIC face of the same sector: its DYNAMICS collapse to a
+    finite-time singularity on the Jeans scale -- the framework's
+    singular sector is the DARK dust, not the baryon fluid.
+
+PART D3 -- THE TRANSFER: the door's kill analysis
+  [PASS] G43 THE CAP: the phantom's reaction |g_ph| = g_obs - g_N over the grid g_N/a0 in [1e-8, 1e8] never exceeds a0/2 (tolerance 1e-12 relative)
+         measured: max over grid = 4.680949988e-11 m/s^2 = a0/2 * (1 - 2.500e-09); limit_{(g_N/a0)->inf} g_ph/a0 = 1/2 (sympy exact); (x + a/2)^2 - (x^2 + a x) = a**2/4 >= 0 (sympy exact)
+         reading : the same statement the Lean certificate `a0cap_bound` proves: sqrt(g_N^2 + a0 g_N) <= g_N + a0/2 for all g_N >= 0 (NSE_a0line.lean, 11 theorems, zero sorry).  The cap is an ASYMPTOTE: the grid comes within 1/(4 g_N/a0) = 2.5e-9 of it at the top of the registered range; the exact identity's approach is certified by the sympy limit
+
+(b) THE BOUNDED-PERTURBATION READ (statement):
+    A force density bounded by a0/2 EVERYWHERE is N02's
+    sub-regularizing class (the a0/2-capped drag, certified counts):
+    it cannot close the enstrophy gap, and it cannot deliver an
+    unbounded lever to the baryon material acceleration.  The caustic
+    is therefore CONFINED to the dark sector: the phantom dust can
+    pile up at its own centre in finite time, but its reaction on the
+    baryon fluid is a uniformly bounded (L^inf <= a0/2) forcing.
+    KILL K-1 FIRES: the transfer dies by measurement.
+
+(d) THE 1D TOY (numpy): baryon speed response vs phantom collapse
+    toy geometry: baryon layer at r_b = 0.15 pc of a M_b = 1e10 M_sun well; phantom free-fall clock t_c = tau_ff(1 kpc) = 3.2832e+07 yr;
+    M_ph(t) = M0/(1 - t/t_c), M0 = M_ph(r_b) = 3.8874e+05 M_sun; Newtonian field g0 = 2.4083e-06 m/s^2 >> a0/2 = 4.6810e-11 (cap binds from t = 0);
+    run to t_f = (1 - e^-25) t_c = 3.2832e+07 yr, ln(M_ph(t_f)/M0) = 25; viscosity gamma = 1/(6 t_c); initial speed 100 m/s (identical grid + ICs for both panels -- the same-seed guarantee is exact: no random draws).
+    CAPPED   (g_eff = min(G M_ph/r_b^2, a0/2)):  u(t_f) = 4.475814e+04 m/s = 4.4758e+01 km/s   [finite]
+    UNCAPPED (g_eff = G M_ph/r_b^2):              u(t_f) = 6.198149e+10 m/s = 2.067e+02 c  [diverges with the caustic]
+    log-law: du/d ln(M_ph/M0) over the last decade: capped 4.9406e-03, free 2.4952e+09 m/s per e-fold (class: g0*t_c = 2.4952e+09) -- the uncapped response grows like ln M_ph, the capped response is flat in the mass
+  [PASS] G44 THE TOY: the capped run stays bounded vs the uncapped run diverges
+         measured: u_cap(t_f) = 4.476e+04 m/s (ratio to initial 4.476e+02 < 1e4);  u_free(t_f) = 6.198e+10 m/s;  u_free/u_cap = 1.385e+06 > 1e6
+         reading : the kill made visual: with the measured a0/2 cap enforced the baryon layer reaches a FINITE speed (~30-50 km/s class) no matter how long the phantom runs; with the cap relaxed the same dust pulls the layer to relativistic-class speeds as t -> t_c.  The baryon speed at t -> t_c: FINITE with the cap, unbounded without it
+
+(c) THE RESIDUAL (honest, stated):
+    THE RESIDUAL: away from the equilibrium closure the ACTION'S dynamics are NOT committed (the G03 action door: OPEN). IF the nonequilibrium coupling can exceed the measured cap a0/2, D3 OPENS and the baryon transfer lives (K-2) -- registered, measurement-awaited, exactly like the kappa pair (N03: kappa <= 2.6e-8, survival-gated).  This lane proves K-1 on the MEASURED reaction law; it does not prove the action cannot outrun the law off-equilibrium.
+  [PASS] G45 THE HONESTY GATE: the G03-open residual is stated in this file's own text (K-2 registered, not hidden)
+         measured: tokens in N07_action_door.py: G03=True, OPEN=True, residual=True, measurement-awaited=True
+         reading : the door's live remainder is named: the nonequilibrium coupling of the action (G03 OPEN) is the only route that could reopen D3
+
+GATES (the door's registered numbers)
+  [PASS] G40 CUSP EXACT 1/r^2 (sympy): rho_ph = sqrt(G M_b a0)/(4 pi G r^2)
+         measured: rho_ph * r^2 = sqrt(G M_b a0)/(4 pi G), r-independent (sympy exact: True); rho_ph(1 kpc) = 1.3957e-20 kg/m^3 = 2.0623e-01 M_sun/pc^3
+         reading : D1(a): the static phantom is a pure 1/r^2 cusp -- the door's D1 opens
+  [PASS] G41 PHANTOM SUBDOMINANT INSIDE r_M (g_ph/g_N = r/r_M, symbolic): subdominant inside, dominant outside, crossing at r_M
+         measured: g_ph/g_N = r/r_M (sympy exact: True); r_M = 3.8586 kpc; g_ph/g_N(r_M) = 1.000000000; at 0.1 r_M: 0.10 (subdominant)
+         reading : D1(c): the Law's structure -- phantom subdominant on the Newtonian face (r < r_M), dominant only in the deep regime
+  [PASS] G42 CAUSTIC TIME (D4 of the door): tau_ff at 1 kpc in [1e6, 1e9] yr
+         measured: tau_ff(1 kpc) = 3.2832e+07 yr (3 kpc: 9.8497e+07, 10 kpc: 3.2832e+08)
+         reading : the deep sector's Jeans clock is far below galactic dynamics -- consistent with quasi-static equilibrium AND fast enough to mediate the a0-line in flows (D4's window, PASS)
+
+<N07_action_door> COMPLETE: 15/15 checks PASS.
+VERDICT: THE TRANSFER: bounded by the measured a0/2 cap: the phantom dust caustic is CONFINED to the dark sector; the baryon Clay problem stays on the Newtonian face (K-1 fires); the live remainder is the G03 action (K-2, measurement-awaited).

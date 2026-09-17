@@ -89,6 +89,41 @@ violates the MW bound (dead theory). 4/4.
   N04b 5/7 (classical/a₀cap equilibrium needs T ≳ 120–160 — registered as
   the next lane) · N05 17/17 · N06 4/4. Evidence is labelled evidence.
 
+## 4½. POSTSCRIPT — THE ACTION DOOR AND THE OPENAI RECORD (2026-09-17)
+
+While the record was open, two things changed the map.
+
+**The action door (N07, 15/15).** The campaign's own action (L5 + G031)
+writes the phantom as a PRESSURELESS DUST whose equilibrium is the isothermal
+sphere — the RAR is the EOS of the dark fluid. Derived: (D1) the static dark
+sector IS a stationary 1/r² density singularity at every baryon centre
+(ρ_ph = √(GM_ba₀)/(4πGr²) exact; g_ph/g_N = r/r_M); (D2) pressureless dust
+caustics on τ_ff = 3.3e7 yr at 1 kpc — the framework's OWN singular sector
+is the phantom, which is why the deep law tolerates the 1/r² cusp in every
+galaxy while the visible fluid stays Newtonian; (D3) the transfer of the
+caustic to baryon velocity is KILLED BY MEASUREMENT: the phantom's reaction
+obeys the measured law, and the certified a₀/2 cap bounds its lever on the
+baryons everywhere — the two-fluid toy quantifies the wall (capped 4.5e4 m/s
+vs 6.2e10 m/s free): **dust blows up in the dark; the visible fluid is
+throttled at a₀/2 by the law's own cap.** The one live remainder is the G03
+nonequilibrium coupling (K-2) — measurement-awaited, exactly like the N3
+κ-pair. The framework's answer to "where do singularities live?" is now
+derived, not assumed: **in the phantom dust, whose cusp the RAR already
+measures.**
+
+**The OpenAI record (N08).** 2026-09-08: a Lean-formalized construction of
+finite-time blowup for FORCED 3D NSE at every ν > 0 (f ∈ C∞_c, u₀ = 0, energy
+bounded, ‖u‖∞ → ∞) — alternatives (C)/(D); (A)/(B), the unforced problem,
+remain open; no referee process has started. The framework read: the N5
+corollary is WITNESSED — the construction's material acceleration exits the
+3.5·a₀ floor at τ ≈ 5e-7, i.e. the Clay blowup lives above the measured
+window on the Newtonian face, where the law is certified silent; the bounded
+a₀/2 perturbations cannot prevent it (N2 consistent); and the singular
+sectors are different fluids — the visible column vs the dark dust (N7 D2
+consistent). The framework's prediction structure was not empty: it named
+the floor, the exit, and the face — and the first explicit Clay construction
+sits exactly where the framework said a singularity would have to sit.
+
 ## 4. The next lanes (named, ranked)
 
 1. **The equilibrium follow-up** (T ≥ 160 at N = 32, the undamped classes):

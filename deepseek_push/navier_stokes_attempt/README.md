@@ -22,7 +22,9 @@ Lean-certified algebra, Galerkin evidence, honest Clay-scope verdict.
 | lean/NSE_a0line.lean | the two faces certified: a₀/2 cap, deep sandwich, Newtonian face, window suppression | compiled exit 0 — 11 theorems, axioms clean |
 | lean/NSE_vector_core.lean | the sup-argument algebra: u·((u·∇)u)-swap, (ω×u) ⊥ u | compiled exit 0 — 3 theorems, axioms clean |
 | lean/NSE_barrier.lean | the invariant-set rungs: barrier pull-down, crossing, stretch-vs-drag count (+ the honest c=0 disproof) | compiled exit 0 — 4 theorems, axioms clean |
-| N05_VERDICT.md | the synthesis: doors dead, theorem standing, the κ → 0 face, Clay clause | final |
+| N07_ACTION_DOOR.md + N07_action_door.py/.out/_results.json + N07_ACTION_DOOR_DERIVATION.md | **the missing door — the phantom as the action's fluid sector**: cusp D1 (1/r² exact), caustic channel D2 (τ_ff = 3.3e7 yr at 1 kpc), transfer D3 KILLED by the a₀/2 cap (toy: 45 km/s capped vs 207·c free), G03 residual named | 15/15 — the door closes by measurement |
+| N08_openai_analysis.md + N08_openai.md | the OpenAI blowup record: theorem (C)/(D), construction anatomy, Lean inventory (2,659 files, same rc2 toolchain), controversy state; N5 floor-exit WITNESSED at τ ≈ 5e-7 | digest + verdict card |
+| N09_* | the deep-sector clock table (τ_ff at 1–10 kpc) — folded into N07 D2 | via N07 |
 | SPEC_A/B/C_*.md | the parallel-attack specs (Lean, window theorem, equilibrium numerics) | filed |
 
 ## The answer the framework gives (see N05_VERDICT.md)

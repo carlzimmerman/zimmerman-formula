@@ -140,4 +140,41 @@ the Clay core is identified as the κ → 0 face of that family (N5).
 | N05_VERDICT.md | the synthesis: doors dead, theorem standing, the κ → 0 face, Clay clause |
 | README.md | folder index + how to run |
 
-STATUS: doors pre-registered 2026-09-17. Lanes begin at N01.
+### N6 — THE ACTION DOOR (registered 2026-09-17 — the missing door, see N07_ACTION_DOOR.md)
+The record's own action writes the phantom as a MATTER sector: the GR fluid
+action (G031) — a pressureless Noether-charge dust whose equilibrium is the
+isothermal sphere at the Zimmerman temperature, i.e. THE RAR IS THE EOS OF
+THE DARK FLUID. The door: the two-fluid system (baryon NSE + phantom dust +
+shared Newtonian potential), and its singular sector:
+- D1 (the cusp — DERIVED, 15/15): ρ_ph = √(GM_ba₀)/(4πGr²) exactly:
+  the static dark sector IS a stationary 1/r² density singularity at every
+  baryon centre; g_ph/g_N = r/r_M exactly (crossing at r_M, M_ph(r_M) = M_b).
+- D2 (the caustic channel — DERIVED): pressureless dust collapses on
+  τ_ff = 1/√(Gρ_ph) = 3.28e7 yr at 1 kpc: the framework's singular sector is
+  the DARK dust, not the baryon fluid.
+- D3 (the transfer — KILLED BY MEASUREMENT): the phantom's reaction follows
+  the measured law, so its force on baryons is |g_ph| ≤ a₀/2 EXACTLY
+  (Lean-certified); the 1D two-fluid toy: capped baryon response 4.5e4 m/s
+  vs 6.2e10 m/s uncapped (2e2·c): the dust caustic is CONFINED to the dark
+  sector. K-1 fires. Live remainder: the G03 nonequilibrium coupling (K-2,
+  measurement-awaited — the same status as the N3 κ-pair).
+- D4 (the deep clock): τ_ff at 1–10 kpc ∈ [3.3e7, 3.3e8] yr — the dark
+  sector responds far below galactic timescales: quasi-static by the numbers.
+
+### N7 — THE OPENAI RECORD (external register, 2026-09-08; see N08_openai.md)
+OpenAI announced + Lean-formalized (2,659 .lean files, Lean 4.34.0-rc2 — the
+SAME toolchain as this repo; 0 sorry per their audit; NOT yet under referee
+review; CMI "deliberately unhurried") a **finite-time blowup for forced 3D
+NSE at every ν > 0**: f ∈ C∞_c, u₀ = 0, ‖u‖_L∞ → ∞ with bounded energy —
+alternatives (C)/(D) of Fefferman's statement; **(A)/(B) (unforced) remain
+untouched**. Construction: self-similar slender vortex core
+(ℓ_r ≍ τ^½, ℓ_z ≍ τ^{½−h}, |u| ≍ τ^{−½−h}, Re_θ → ∞ vs Re_r = O(1)) +
+annular oscillatory pulses realizing the stress (Daneri–Székelyhidi class) +
+smooth-residual ladder. FRAMEWORK CONSISTENCY (N08): the N5 corollary is
+WITNESSED — the construction's |Du/Dt| ≍ τ^{−3/2−2h} exits the 3.5·a₀ floor
+at τ ≈ 5e-7 (η ~ 1e10–3.5e11) while still smooth: Clay singularities live
+ABOVE the floor, exactly where the law is silent; bounded a₀/2 perturbations
+cannot prevent it (N2 consistent); the singular sectors are different fluids
+(hydrodynamical column vs phantom dust — N7 D2 consistent).
+
+STATUS: doors N1–N6 executed, verdict pending the final synthesis.

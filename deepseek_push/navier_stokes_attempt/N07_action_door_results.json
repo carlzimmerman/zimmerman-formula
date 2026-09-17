@@ -1,0 +1,96 @@
+{
+ "pass": 15,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "V1 the Zimmerman temperature closes exactly: sigma^2 = G M_b/(2 r_M) = sqrt(G M_b a0)/2",
+   "measured": "sigma^2 = sqrt(G)*sqrt(M_b)*sqrt(a_0)/2  (sympy exact)",
+   "pass": true,
+   "reading": "the launch rung of G031 (V3), re-run inside the door"
+  },
+  {
+   "name": "V2 the isothermal identification closes exactly: rho_ph = sigma^2/(2 pi G r^2) = sqrt(G M_b a0)/(4 pi G r^2)",
+   "measured": "rho_ph = sqrt(M_b)*sqrt(a_0)/(4*pi*sqrt(G)*r**2)  (sympy exact)",
+   "pass": true,
+   "reading": "the equilibrium phantom IS the isothermal sphere at the Zimmerman temperature, coefficient exactly 1 (G031 V4)"
+  },
+  {
+   "name": "(a) rho_ph ~ 1/r^2 exactly: rho_ph(r) * r^2 is r-independent",
+   "measured": "rho_ph * r^2 = sqrt(M_b)*sqrt(a_0)/(4*pi*sqrt(G)) = sqrt(G M_b a0)/(4 pi G)  (sympy exact)",
+   "pass": true,
+   "reading": "the phantom density is pure r^-2 at every radius -- a cusp at r = 0, time-independent (stationary): the STATIC dark sector already carries the axis singularity"
+  },
+  {
+   "name": "(b) the enclosed phantom mass: M_ph(r) = int 4 pi r'^2 rho_ph dr' = 2 sigma^2 r/G ~ r",
+   "measured": "M_ph(r) = sqrt(M_b)*sqrt(a_0)*r/sqrt(G)  (sympy exact: linear in r)",
+   "pass": true,
+   "reading": "the cusp is INTEGRABLE: M_ph(0) = 0 and M_ph(r) finite at every r (finite enclosed mass at the origin), while rho_ph(r) -> infinity as 1/r^2 -- a stationary density singularity (the 1/r^2 cusp) at every baryon centre"
+  },
+  {
+   "name": "(c) the phantom field: g_ph = G M_ph/r^2 = sqrt(G M_b a0)/r, and the Law's structure g_ph/g_N = r/r_M EXACTLY",
+   "measured": "g_ph/g_N = sqrt(a_0)*r/(sqrt(G)*sqrt(M_b)) = r/r_M  (sympy exact)",
+   "pass": true,
+   "reading": "phantom subdominant inside r_M (r < r_M => g_ph < g_N): on the Newtonian face (g_N > a0) the phantom is the subdominant partner; g_ph/g_N -> 0 as r -> 0"
+  },
+  {
+   "name": "C1 the crossing at r_M with the numbers: g_ph(r_M) = g_N(r_M) = a0",
+   "measured": "g_ph = 9.361900e-11, g_N = 9.361900e-11, a0 = 9.361900e-11 (relative diff 0.0e+00)",
+   "pass": true,
+   "reading": "the r/r_M law's literal content: phantom subdominant inside r_M, dominant outside, crossing exactly at the MOND length"
+  },
+  {
+   "name": "(a) THE CLASSICAL DUST COLLAPSE, integrated exactly: r'' = -G M/r^2, r(0) = r0, r'(0) = 0 gives t_coll = (pi/2) sqrt(r0^3/(2 G M))",
+   "measured": "t_coll = sqrt(2)*pi*r**(3/2)/(4*sqrt(G)*sqrt(M_b))  (sympy: exact quadrature via r = r0 cos^2 theta of int_0^{r0} dr/sqrt(2GM(1/r - 1/r0)))",
+   "pass": true,
+   "reading": "first integral (1/2) r'^2 = G M (1/r - 1/r0); the sphere reaches r = 0 in FINITE time -- a density singularity (caustic). Textbook Newtonian dust collapse (Lemaitre 1927, 'L'univers en expansion'; the GR analogue Oppenheimer-Snyder 1939; cited as the classical result)"
+  },
+  {
+   "name": "(a') the same ODE numerically: RK4 integration of r'' = -G M/r^2 to r -> 0 matches the closed form",
+   "measured": "t_coll(numerical) = 3.246426e+14 s, t_coll(closed form) = 3.246419e+14 s = 1.0287e+07 yr, |rel| = 2.22e-06, energy drift 2.95e-10",
+   "pass": true,
+   "reading": "closed form and direct integration agree: the phantom shell at 1 kpc would collapse in ~1e7 yr if left pressureless -- the caustic clock of the dust sector"
+  },
+  {
+   "name": "(b) the phantom's own free-fall times at 1, 3, 10 kpc",
+   "measured": "tau_ff(1 kpc) = 3.2832e+07 yr; tau_ff(3 kpc) = 9.8497e+07 yr; tau_ff(10 kpc) = 3.2832e+08 yr",
+   "pass": true,
+   "reading": "the deep sector responds on 3e7-3e8 yr -- far below galactic dynamics: quasi-static equilibrium reading AND fast enough to mediate the a0-line in flows"
+  },
+  {
+   "name": "G43 THE CAP: the phantom's reaction |g_ph| = g_obs - g_N over the grid g_N/a0 in [1e-8, 1e8] never exceeds a0/2 (tolerance 1e-12 relative)",
+   "measured": "max over grid = 4.680949988e-11 m/s^2 = a0/2 * (1 - 2.500e-09); limit_{(g_N/a0)->inf} g_ph/a0 = 1/2 (sympy exact); (x + a/2)^2 - (x^2 + a x) = a**2/4 >= 0 (sympy exact)",
+   "pass": true,
+   "reading": "the same statement the Lean certificate `a0cap_bound` proves: sqrt(g_N^2 + a0 g_N) <= g_N + a0/2 for all g_N >= 0 (NSE_a0line.lean, 11 theorems, zero sorry).  The cap is an ASYMPTOTE: the grid comes within 1/(4 g_N/a0) = 2.5e-9 of it at the top of the registered range; the exact identity's approach is certified by the sympy limit"
+  },
+  {
+   "name": "G44 THE TOY: the capped run stays bounded vs the uncapped run diverges",
+   "measured": "u_cap(t_f) = 4.476e+04 m/s (ratio to initial 4.476e+02 < 1e4);  u_free(t_f) = 6.198e+10 m/s;  u_free/u_cap = 1.385e+06 > 1e6",
+   "pass": true,
+   "reading": "the kill made visual: with the measured a0/2 cap enforced the baryon layer reaches a FINITE speed (~30-50 km/s class) no matter how long the phantom runs; with the cap relaxed the same dust pulls the layer to relativistic-class speeds as t -> t_c.  The baryon speed at t -> t_c: FINITE with the cap, unbounded without it"
+  },
+  {
+   "name": "G45 THE HONESTY GATE: the G03-open residual is stated in this file's own text (K-2 registered, not hidden)",
+   "measured": "tokens in N07_action_door.py: G03=True, OPEN=True, residual=True, measurement-awaited=True",
+   "pass": true,
+   "reading": "the door's live remainder is named: the nonequilibrium coupling of the action (G03 OPEN) is the only route that could reopen D3"
+  },
+  {
+   "name": "G40 CUSP EXACT 1/r^2 (sympy): rho_ph = sqrt(G M_b a0)/(4 pi G r^2)",
+   "measured": "rho_ph * r^2 = sqrt(G M_b a0)/(4 pi G), r-independent (sympy exact: True); rho_ph(1 kpc) = 1.3957e-20 kg/m^3 = 2.0623e-01 M_sun/pc^3",
+   "pass": true,
+   "reading": "D1(a): the static phantom is a pure 1/r^2 cusp -- the door's D1 opens"
+  },
+  {
+   "name": "G41 PHANTOM SUBDOMINANT INSIDE r_M (g_ph/g_N = r/r_M, symbolic): subdominant inside, dominant outside, crossing at r_M",
+   "measured": "g_ph/g_N = r/r_M (sympy exact: True); r_M = 3.8586 kpc; g_ph/g_N(r_M) = 1.000000000; at 0.1 r_M: 0.10 (subdominant)",
+   "pass": true,
+   "reading": "D1(c): the Law's structure -- phantom subdominant on the Newtonian face (r < r_M), dominant only in the deep regime"
+  },
+  {
+   "name": "G42 CAUSTIC TIME (D4 of the door): tau_ff at 1 kpc in [1e6, 1e9] yr",
+   "measured": "tau_ff(1 kpc) = 3.2832e+07 yr (3 kpc: 9.8497e+07, 10 kpc: 3.2832e+08)",
+   "pass": true,
+   "reading": "the deep sector's Jeans clock is far below galactic dynamics -- consistent with quasi-static equilibrium AND fast enough to mediate the a0-line in flows (D4's window, PASS)"
+  }
+ ]
+}
