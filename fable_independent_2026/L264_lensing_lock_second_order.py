@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-L263 -- THE MISSING COMPUTATION L39 NAMED (D6.1), RUN.
+L264 -- THE MISSING COMPUTATION L39 NAMED (D6.1), RUN.
 
 L39 closed L31's locality hypothesis against the known nonlocal class using the "lensing lock": every
 covariant scalar whose flat-space expansion BEGINS AT FIRST ORDER in h_mn carries the one combination
@@ -35,17 +35,17 @@ Christoffels (no hand-written Riemann) and VALIDATED against the exact Schwarzsc
   L31 stays "proved under locality".  The compensating gain is that the obstruction L39 CONJECTURED
   (nearest-star domination) is wrong, and the live target is now explicit.
 
-Run:  python3 fable_independent_2026/L263_lensing_lock_second_order.py
+Run:  python3 fable_independent_2026/L264_lensing_lock_second_order.py
       MUTATE=1 ...  (breaks the vacuum condition; the identity of Part A must fail)
 """
 import os, sys, json, math, random
 import sympy as sp
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SLUG = "L263_lensing_lock_second_order"
+SLUG = "L264_lensing_lock_second_order"
 MUTATE = os.environ.get("MUTATE", "0") == "1"
 P = lambda *a: print(*a, flush=True)
-CH, OUT = [], {"lane": "L263", "mutate": MUTATE, "checks": {}, "numbers": {}}
+CH, OUT = [], {"lane": "L264", "mutate": MUTATE, "checks": {}, "numbers": {}}
 
 
 def check(name, measured, ok, reading="", load_bearing=True):
@@ -306,7 +306,7 @@ OUT["verdict"] = {"word": "GENERICALLY-YES-GAP-STAYS-OPEN",
 banner("RESULT")
 npass = sum(1 for _, ok, _ in CH if ok); n = len(CH)
 lb = [nm for nm, ok, l in CH if l and not ok]
-P(f"L263 COMPLETE: {npass}/{n} checks PASS")
+P(f"L264 COMPLETE: {npass}/{n} checks PASS")
 for nm in lb: P(f"    load-bearing FAIL: {nm}")
 OUT["summary"] = {"pass": npass, "n": n, "load_bearing_fail": lb}
 with open(os.path.join(HERE, SLUG + ".json"), "w") as fh:
