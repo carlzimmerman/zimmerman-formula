@@ -1,0 +1,112 @@
+
+KS02_normalisation_table.py -- pin every O(1) in eps_tot and report whether 1/(32 pi) occurs under any
+STANDARD convention set.
+
+*** OPENING SENTENCE, per the work order: KS01 returned SLOT-NOT-LIVE.  The horizon entropy DIVIDES;
+the 08-09 pure number is a double count of the thermal variance; the multiplicative structure
+eps_tot = S_dS * eps_1 holds only under a NAMED holographic-coherence postulate (category III).  This
+lane runs conditional on GRANTING that S_dS multiplication, to ask: even if the enhancement is granted,
+does any fully-standard convention set land on eps_tot = 1/(32 pi)? ***
+
+eps_tot = N * c_pol * c_2pt * c_proj * c_norm * (G T^2 / 8), each factor a named symbol.
+  N     in {S_dS = A/4G, A/G, N_field ~ S_dS^{3/2}, 1 (Way-1 physical, no enhancement)}
+  c_pol in {1, 2}
+  c_2pt in {1 (loose A), 1/12 (thermal massless scalar), 1/6 (two-component), c_TT (derived)}
+  c_proj: h_uu projection for a static / accelerated worldline (derived; the static value is 0 in TT gauge)
+  c_norm in {32 pi G (canonical), 16 pi G, 8 pi G}
+
+  C1  is there a set with NO "loose" entry giving eps_tot = 1/(32 pi) to <1%?
+  C2  how many grid cells land inside the measured 2sigma kappa band (KS04's physics-grid prior)?
+  C3  the 08-09 near-miss reproduced: A -> 1/2, B -> 1.447, B x 2 -> 2.047
+  second way: recompute the closest-to-1/2 set from the thermal graviton-gas energy density / rho_Lambda
+
+Run:  python3 fable_independent_2026/kappa_slot_2026/KS02_normalisation_table.py
+
+
+====================================================================================================
+SETUP -- symbolic eps_tot with named O(1) factors, N = S_dS granted (conditional)
+====================================================================================================
+  [PASS] SETUP-c_proj the static-observer projection h_uu = h_00 = 0 in TT gauge (the coupling needs worldline motion, giving an extra O(v^2/c^2) suppression)
+         measured: c_proj(static) = 0
+         reading:  an additional reason the drift is small; folded into the grid as c_proj in {1 (loose), v^2 (physical)}
+
+====================================================================================================
+THE GRID
+====================================================================================================
+  64 dimensionless cells.  Showing the standard-normalisation ones and the loose near-miss:
+  N              polc2pt              norm                     eps_tot     kappa  loose
+  --------------------------------------------------------------------------------------------
+  S_dS (A/4G)      1 1 (loose A)      G (loose, no 32pi)      0.009947    0.5000  yes
+  S_dS (A/4G)      1 1/12 (massless)  8piG                    0.020833    0.7236  no
+  S_dS (A/4G)      1 c_TT=1/12 (derived)8piG                    0.020833    0.7236  no
+  S_dS (A/4G)      1 1/12 (massless)  16piG                   0.041667    1.0233  no
+  S_dS (A/4G)      1 1/6 (2-comp)     8piG                    0.041667    1.0233  no
+  S_dS (A/4G)      1 c_TT=1/12 (derived)16piG                   0.041667    1.0233  no
+  S_dS (A/4G)      2 1/12 (massless)  8piG                    0.041667    1.0233  no
+  S_dS (A/4G)      2 c_TT=1/12 (derived)8piG                    0.041667    1.0233  no
+  S_dS (A/4G)      1 1/12 (massless)  32piG (canon)           0.083333    1.4472  no
+  S_dS (A/4G)      1 1/6 (2-comp)     16piG                   0.083333    1.4472  no
+  S_dS (A/4G)      1 c_TT=1/12 (derived)32piG (canon)           0.083333    1.4472  no
+  S_dS (A/4G)      2 1/12 (massless)  16piG                   0.083333    1.4472  no
+  S_dS (A/4G)      2 1/6 (2-comp)     8piG                    0.083333    1.4472  no
+  S_dS (A/4G)      2 c_TT=1/12 (derived)16piG                   0.083333    1.4472  no
+  A/G (=4 S_dS)    1 1/12 (massless)  8piG                    0.083333    1.4472  no
+  A/G (=4 S_dS)    1 c_TT=1/12 (derived)8piG                    0.083333    1.4472  no
+  S_dS (A/4G)      1 1/6 (2-comp)     32piG (canon)           0.166667    2.0467  no
+  S_dS (A/4G)      2 1/12 (massless)  32piG (canon)           0.166667    2.0467  no
+  S_dS (A/4G)      2 1/6 (2-comp)     16piG                   0.166667    2.0467  no
+  S_dS (A/4G)      2 c_TT=1/12 (derived)32piG (canon)           0.166667    2.0467  no
+  A/G (=4 S_dS)    1 1/12 (massless)  16piG                   0.166667    2.0467  no
+  A/G (=4 S_dS)    1 1/6 (2-comp)     8piG                    0.166667    2.0467  no
+  A/G (=4 S_dS)    1 c_TT=1/12 (derived)16piG                   0.166667    2.0467  no
+  A/G (=4 S_dS)    2 1/12 (massless)  8piG                    0.166667    2.0467  no
+  A/G (=4 S_dS)    2 c_TT=1/12 (derived)8piG                    0.166667    2.0467  no
+  S_dS (A/4G)      2 1/6 (2-comp)     32piG (canon)           0.333333    2.8944  no
+  A/G (=4 S_dS)    1 1/12 (massless)  32piG (canon)           0.333333    2.8944  no
+  A/G (=4 S_dS)    1 1/6 (2-comp)     16piG                   0.333333    2.8944  no
+  A/G (=4 S_dS)    1 c_TT=1/12 (derived)32piG (canon)           0.333333    2.8944  no
+  A/G (=4 S_dS)    2 1/12 (massless)  16piG                   0.333333    2.8944  no
+  A/G (=4 S_dS)    2 1/6 (2-comp)     8piG                    0.333333    2.8944  no
+  A/G (=4 S_dS)    2 c_TT=1/12 (derived)16piG                   0.333333    2.8944  no
+  A/G (=4 S_dS)    1 1/6 (2-comp)     32piG (canon)           0.666667    4.0933  no
+  A/G (=4 S_dS)    2 1/12 (massless)  32piG (canon)           0.666667    4.0933  no
+  A/G (=4 S_dS)    2 1/6 (2-comp)     16piG                   0.666667    4.0933  no
+  A/G (=4 S_dS)    2 c_TT=1/12 (derived)32piG (canon)           0.666667    4.0933  no
+  A/G (=4 S_dS)    2 1/6 (2-comp)     32piG (canon)           1.333333    5.7888  no
+  [PASS] C1 NO fully-standard convention set (no loose entry) gives eps_tot = 1/(32 pi) to 1%
+         measured: non-loose cells within 1% of 1/(32pi): 0
+         reading:  the standard set (S_dS, 1 pol, c_TT=1/12, 32piG) gives eps_tot = 0.08333 = 1/12, kappa = 1.4472; 1/(32pi) needs dropping the 8pi/3 Friedmann factor (the loose choice)
+  [PASS] C1b the standard eps_tot = 1/12 exceeds 1/(32 pi) by exactly the Friedmann factor 8 pi/3
+         measured: (1/12)/(1/32pi) = 8.377580, 8pi/3 = 8.377580
+         reading:  so 'A gives 1/2' is 'B divided by the Friedmann 8pi/3' -- a convention slip of exactly that factor
+  [PASS] C2 the ONLY physics-grid cells reaching the measured 2sigma band include the loose-A kappa=1/2 cell, and they are a small minority of the grid: the S_dS-enhanced grid mostly overshoots the band
+         measured: 5/64 = 0.078 in band; loose-A (kappa=1/2) present & in band: True
+         reading:  the physics-motivated grid does land 1/2 in band (via the loose cell) but the standard cells sit high; this is KS04's structured prior, distinct from KS04's blind alphabet
+  [PASS] C3 the 08-09 near-miss reproduced exactly: A -> 1/2, B -> 1.447, B x 2 -> 2.047
+         measured: kappa: A=0.5000, B=1.4472, C=2.0467  (eps: 0.00995, 0.08333, 0.16667)
+         reading:  the value that hits 1/2 is the loose A; the standard B gives 1.447, a factor 2.894 = sqrt(8pi/3) higher
+
+====================================================================================================
+SECOND WAY -- thermal graviton-gas energy density, an independent route
+====================================================================================================
+  eps_ed = S_dS * rho_grav/rho_Lambda = 1/90 = 0.011111  ->  kappa = 0.5284
+  [PASS] SECOND-WAY the energy-density route gives yet a THIRD O(1) value (eps = 1/90, kappa ~ 0.53), not the variance-loose 1/(32 pi): the SAME S_dS enhancement lands on a different number by route
+         measured: eps_ed = 0.011111 (=1/90), kappa_ed = 0.5284; variance-loose kappa = 0.500, variance-standard kappa = 1.447
+         reading:  across defensible routes kappa spans ~0.50 (variance-loose) to 1.447 (variance-standard) with 0.53 (energy density) between: the target 1/2 is NOT route-selected -- it is one convention among several
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  (1) COMPUTED: eps_tot over the full O(1) grid with the S_dS enhancement granted (conditional on the
+      KS01 postulate), and a second route via the thermal graviton-gas energy density.
+  (2) NUMBERS: standard set (S_dS, 1 pol, 1/12, 32 pi G) -> eps_tot = 1/12, kappa = 1.447.  The value
+      1/(32 pi) (kappa = 1/2) is reached ONLY by the loose choice <h^2> = G T^2, which drops the Friedmann
+      factor 8 pi/3 = 8.3776.  Near-miss reproduced: A=0.500, B=1.447, C=2.047.  The energy-density
+      route does not reproduce any of them (T^4 vs T^2).
+  (3) HONEST SENTENCE: under standard conventions eps_tot = 1/12; 1/(32 pi) is reached only with the loose
+      choice X = 'omit the 8pi/3 Friedmann factor from the graviton variance'.  The number is CONVENTION.
+
+====================================================================================================
+RESULT
+====================================================================================================
+KS02 COMPLETE: 6/6 checks PASS

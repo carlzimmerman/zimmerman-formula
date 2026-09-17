@@ -1,0 +1,67 @@
+{
+  "lane": "KS01",
+  "mutate": false,
+  "checks": {
+    "SETUP-1 the quadratic worldline coupling g_2 = -1/8 (the forced nonlinearity, second order in h)": {
+      "ok": true,
+      "measured": "coeff(X^2) of sqrt(1+X) = -1/8",
+      "load_bearing": true
+    },
+    "C1a Way 2 (explicit mode-sum integral) reproduces Way 1: INT x/(e^x-1)dx = Gamma(2)zeta(2) = pi^2/6 gives coefficient 1/12, so the mode sum EQUALS the coincidence variance (no leftover N)": {
+      "ok": true,
+      "measured": "integral = pi**2/6 = 1.644934; mpmath quad = 1.644934; coeff = 1/12; <h^2>_2-<h^2>_1 = 0",
+      "load_bearing": true
+    },
+    "C1 the physical <h_uu^2> is O(hbar^1) (~ G hbar H^2) -- fixed assertion, MUTATE must break it": {
+      "ok": true,
+      "measured": "hbar-power of <h^2> = 1",
+      "load_bearing": true
+    },
+    "C1b the graviton FIELD-mode count between horizon and Planck length scales as S_dS^{3/2} (a VOLUME); S_dS is the horizon AREA-cell count -- they are different counts": {
+      "ok": true,
+      "measured": "N_field/S_dS = 1.3681e+61 vs predicted (4/3 sqrt pi) sqrt(S_dS) = 1.3681e+61",
+      "load_bearing": true
+    },
+    "C1c the 08-09 extra factor is the horizon entropy S_dS = pi/(G hbar H^2), which carries hbar-power -1 (a classical/hbar-free enhancement) -- so re-multiplying the already-summed variance by it is a double count that a quantum mode sum cannot supply": {
+      "ok": true,
+      "measured": "hbar-power of S_dS = -1",
+      "load_bearing": true
+    },
+    "C1c-pure the 08-09 result is a pure number (hbar^0) ONLY because S_dS carries 1/hbar and eps_1 carries hbar: contingent on T_GH ~ hbar -- fixed assertion, MUTATE must break it": {
+      "ok": true,
+      "measured": "hbar-power of eps_0809 = 0",
+      "load_bearing": true
+    },
+    "C2 the rectified drift vanishes at r=0 and is LINEAR in r near the origin (a Lambda renormalisation), not a constant acceleration": {
+      "ok": true,
+      "measured": "a_drift(0) = 0, leading = G*H**4*hbar*r/(3*pi)",
+      "load_bearing": true
+    },
+    "C3 with f(T) = T^2 the inertia functional I(a) = f(T(a)) - f(T_GH) is PURELY quadratic in a (the H^2 pieces cancel): no Newtonian (linear) regime": {
+      "ok": true,
+      "measured": "I(a) = a**2/(4*pi**2)",
+      "load_bearing": true
+    },
+    "C3b f = T^2 has c1p = lim f/T = infinity, so it is NOT in the q = 2 c1p/f'(T_GH) temperature family (which needs c1p finite): the mechanism supplies no interpolation function": {
+      "ok": true,
+      "measured": "c1p = oo",
+      "load_bearing": true
+    }
+  },
+  "numbers": {
+    "S_dS": 3.307410194202272e+122,
+    "lP": 1.6162186993734714e-35,
+    "HL": 1.8078045776945872e-18,
+    "N_field": 4.524763570762852e+183
+  },
+  "verdict": {
+    "multiplies": false,
+    "word": "SLOT-NOT-LIVE",
+    "postulate": "holographic coherence: enhancement of exactly S_dS (category III)"
+  },
+  "summary": {
+    "pass": 9,
+    "n": 9,
+    "load_bearing_fail": []
+  }
+}

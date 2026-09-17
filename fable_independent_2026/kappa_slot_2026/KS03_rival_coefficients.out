@@ -1,0 +1,105 @@
+
+KS03_rival_coefficients.py -- every published a_0-Lambda coefficient as (kappa, eps_tot), on both
+footings, and what measurement separates them.
+
+kappa == a_0/(c sqrt(G rho_Lambda)), eps_tot == kappa^2/(8 pi).  Rate-form proposals a_0 = X * cH are
+converted with cH_Lambda = sqrt(8 pi/3) c sqrt(G rho_Lambda) (canonical footing) and
+cH0 = sqrt(8 pi/3) c sqrt(G rho_Lambda)/sqrt(Om_Lambda) (alt footing).
+
+  C1  which candidates are inside 2 sigma of each measurement (BTFR, distance-free, MLS16 g-dagger)
+  C2  the minimum precision on kappa to separate 1/2 from its nearest DISTINCT surviving rival at 3 sigma
+  C3  the H0-tension degeneracy: kappa = 1/2 on Planck H0 and kappa = 0.461 on SH0ES H0 predict the same a_0
+
+Run:  python3 fable_independent_2026/kappa_slot_2026/KS03_rival_coefficients.py
+
+  kUNIT = c sqrt(G rho_L) = 1.8725e-10 m/s^2;  sqrt(8pi/3) = 2.8944;  /sqrt(Om) = 3.4971
+  MLS16 g-dagger -> kappa = 0.6409 +- 0.0107(rand) +- 0.1282(syst)
+
+====================================================================================================
+THE TABLE -- every proposal as kappa (both footings) and eps_tot
+====================================================================================================
+  CKN/seesaw a0 = Lambda_DE^2/(2 M_Pl) = 9.3623e-11 m/s^2  ->  kappa = 0.5000 (non-reduced M_Pl; reduced gives sqrt(8pi)/2 = 2.507)
+  proposal                                     kappa(HL) kappa(H0/alt)    eps_tot
+  --------------------------------------------------------------------------------
+  Framework, kappa = 1/2                          0.5000        0.5000    0.00995
+  Milgrom 1983, a0 ~ cH0/2pi                      0.4607        0.5566    0.00844
+  Milgrom 2020, a0 = c^2/(2pi L_dS)=cHL/2pi       0.4607        0.4607    0.00844
+  Deser-Levin/Unruh, a0 = 2 cH_Lambda             5.7888        5.7888    1.33333
+  Verlinde 2016, a0 = cH0/6                       0.4824        0.5829    0.00926
+  graviton norm B (eps=1/12)                      1.4472        1.4472    0.08333
+  graviton norm B x 2 pol (eps=1/6)               2.0467        2.0467    0.16667
+  CKN/seesaw a0 = Lambda_DE^2/(2 M_Pl)            0.5000        0.5000    0.00995
+
+====================================================================================================
+C1 -- which candidates are inside 2 sigma of each measurement
+====================================================================================================
+  BTFR (0.465 +- 0.076), 2sigma [0.313,0.617]:
+       - Framework, kappa = 1/2
+       - Milgrom 1983, a0 ~ cH0/2pi
+       - Milgrom 2020, a0 = c^2/(2pi L_dS)=cHL/2pi
+       - Verlinde 2016, a0 = cH0/6
+       - CKN/seesaw a0 = Lambda_DE^2/(2 M_Pl)
+  distance-free (0.551 +- 0.043), 2sigma [0.465,0.637]:
+       - Framework, kappa = 1/2
+       - Milgrom 1983, a0 ~ cH0/2pi
+       - Verlinde 2016, a0 = cH0/6
+       - CKN/seesaw a0 = Lambda_DE^2/(2 M_Pl)
+  MLS16 g-dagger (syst-dom) (0.641 +- 0.129), 2sigma [0.384,0.898]:
+       - Framework, kappa = 1/2
+       - Milgrom 1983, a0 ~ cH0/2pi
+       - Milgrom 2020, a0 = c^2/(2pi L_dS)=cHL/2pi
+       - Verlinde 2016, a0 = cH0/6
+       - CKN/seesaw a0 = Lambda_DE^2/(2 M_Pl)
+  [PASS] C1 multiple distinct candidates sit inside 2 sigma of the BTFR band (the coefficient is NOT isolated by the data): count them
+         measured: 5 candidates in the BTFR 2sigma band (of 8 listed)
+         reading:  1/2, Milgrom 2020 (0.461), Milgrom 1983 (0.557), Verlinde (0.583/0.482), CKN (0.500) all fit; Deser-Levin (5.79) and the graviton norms (1.45/2.05) do not
+
+====================================================================================================
+C2 -- precision on kappa to separate 1/2 from its nearest DISTINCT surviving rival at 3 sigma
+====================================================================================================
+  nearest distinct rival to 1/2: Verlinde 2016, a0 = cH0/6 at kappa = 0.4824, Delta = 0.0176
+  3-sigma separation needs sigma(kappa) <= 0.0059 = 1.17% of kappa
+  [PASS] C2 the nearest DISTINCT rival to 1/2 is closer than today's kappa error, so the data do not separate them at 3 sigma
+         measured: Delta = 0.0176, needs 1.17% (sigma<= 0.0059); best band sigma ~ 0.043 gives 0.41 sigma
+         reading:  reproduces k03: ~2.8% on a_0 needed for 3 sigma vs a 9.47% mass-budget floor; here 1.2% needed
+  [PASS] C2b the CKN/seesaw a0 = Lambda_DE^2/(2 M_Pl) is EXACTLY kappa = 1/2 (a restatement of the density identity), so it can never be separated from the framework -- it carries no independent content
+         measured: kappa_seesaw = 0.5000 (= 1/2 by construction)
+         reading:  consistent with L260: a0 = Lambda_DE^2/(2 M_Pl) is the density identity in seesaw notation
+
+====================================================================================================
+C3 -- the H0-tension degeneracy (kappa = 1/2 on Planck vs 0.461 on SH0ES predict one a_0)
+====================================================================================================
+  [PASS] C3 kappa = 1/2 with Planck H0 and kappa = 0.461 with SH0ES H0 predict the SAME a_0: the coefficient is degenerate with the H0 tension at fixed Om_Lambda
+         measured: (1/2 * 67.4)/(0.461 * 73.0) = 1.0020 (agree to 0.20%)
+         reading:  so 'deriving kappa = 0.461 vs 1/2' trades against a 8% cosmological systematic, not against data
+
+====================================================================================================
+THE DECIDING MEASUREMENT
+====================================================================================================
+  Two observations bear on the coefficient:
+   (a) a homogeneous kappa measurement to +-1.2% (sigma(kappa) <= 0.0059) separates 1/2 from
+       its nearest DISTINCT rival (Verlinde 2016, a0 = cH0/6, 0.482) at 3 sigma.  +-5% is NOT enough
+       (0.7 sigma).  This KILLS the graviton norms (1.45, 2.05) and Deser-Levin (5.79)
+       already; it would decide 1/2 vs 0.461 only at the ~1% level.
+   (b) the deep-MOND Tully-Fisher zero point at z ~ 2.5 to +-0.13 dex (already registered) tests the a_0(z)
+       LAW (flat vs rising), FLAT 0.00 vs LCDM +0.33 dex -- it separates the framework from LCDM but NOT
+       1/2 from 0.461 (both are flat-law, same z-dependence).  So (b) does not decide the coefficient.
+  => the coefficient question is a precision problem, gated by the stellar M/L zero point, the absolute
+     gas scale and H0; no registered measurement decides 1/2 vs 0.461, and CKN/seesaw is degenerate with
+     1/2 by construction.
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  (1) COMPUTED: 8 published a_0-Lambda coefficients as (kappa, eps_tot) on both footings.
+  (2) NUMBERS: 5 candidates inside the BTFR 2 sigma band; nearest distinct rival to 1/2 is
+      Verlinde 2016, a0 = cH0/6 at 0.482 (Delta = 0.018); 3 sigma separation needs 1.2% on kappa;
+      today ~0.4 sigma; kappa=1/2 (Planck) and 0.461 (SH0ES) agree on a_0 to 0.2%.
+  (3) HONEST SENTENCE: 5 candidates inside 2 sigma; 1/2 separated from its nearest distinct rival at
+      0.4 sigma today; needs +-1.2% on kappa; degenerate with the H0 tension: YES.  CANDIDATE,
+      not selected.
+
+====================================================================================================
+RESULT
+====================================================================================================
+KS03 COMPLETE: 4/4 checks PASS

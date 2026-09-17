@@ -1,0 +1,51 @@
+{
+  "lane": "KS06",
+  "mutate": false,
+  "checks": {
+    "C1 kappa^2 = 8 pi eps_tot exactly (from a0^2 = 3 eps c^2 H_Lambda^2 and Friedmann) -- fixed assertion, MUTATE must break it": {
+      "ok": true,
+      "measured": "kappa^2 = 8*pi*epsilon",
+      "load_bearing": true
+    },
+    "C1b 1/(32 pi) decomposes as pi(S_dS) x (1/8)(coupling) x 1/(4 pi^2)(T_GH)": {
+      "ok": true,
+      "measured": "pi * (1/8) * 1/(4 pi^2) = 1/(32*pi) = 1/(32 pi)",
+      "load_bearing": true
+    },
+    "C1c the SPECIFIC value 1/(32 pi) is convention-dependent: the graviton-normalisation choice moves it to 1/12 (KS02), so it is not a convention-free number": {
+      "ok": true,
+      "measured": "2 of 6 listed factors are conventions; the load-bearing one is the graviton normalisation",
+      "load_bearing": true
+    },
+    "C2 the rectified drift per unit rest mass is m-INDEPENDENT (a = F/m with F \u221d m): universality holds for the gravitational bath (equivalence principle)": {
+      "ok": true,
+      "measured": "drift term = m/8, drift/m = 1/8 (d/dm = 0)",
+      "load_bearing": true
+    },
+    "C3a a RATE output (a0 = X cH_Lambda) makes kappa = X sqrt(8pi/3) carry sqrt(pi): irrational unless X supplies a compensating 1/sqrt(pi)": {
+      "ok": true,
+      "measured": "kappa(rate, X=1/2pi) = sqrt(6)/(3*sqrt(pi)) = 0.4607 (has sqrt(pi): True)",
+      "load_bearing": true
+    },
+    "C3b the graviton-bath route is a DENSITY mechanism (its variance carries G => output c sqrt(G rho)); in kappa^2 = 8 pi eps_tot the 8 pi cancels eps_tot's 1/pi, so a RATIONAL kappa IS available": {
+      "ok": true,
+      "measured": "kappa = sqrt(8 pi * 1/(32 pi)) = 1/2 (rational: True)",
+      "load_bearing": true
+    }
+  },
+  "numbers": {
+    "n_convention_factors": 2,
+    "kappa_rational": "1/2"
+  },
+  "verdict": {
+    "word": "RATIONAL-AVAILABLE-NOT-SELECTED",
+    "mechanism": "density",
+    "kappa_rational": true,
+    "value_rides_on": "graviton normalisation convention"
+  },
+  "summary": {
+    "pass": 6,
+    "n": 6,
+    "load_bearing_fail": []
+  }
+}

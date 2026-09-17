@@ -1,0 +1,97 @@
+
+KS01_sds_adjudication.py -- THE GATE.  Does the de Sitter horizon entropy MULTIPLY or DIVIDE?
+
+The two committed lanes disagree on exactly one factor of S_dS:
+  * 08-09 (real_research/reviews/mi_graviton_bath_ctp_2026.py): eps_tot = N * eps_1, N = S_dS,
+    eps_1 ~ G T^2/8; the S_dS cancels the Planck suppression => eps_tot = 1/(32 pi), kappa = 1/2.
+  * 09-01 (qwen_claude_field_theory/.../graviton_bath_ctp_drift_2026.py): the thermal coincidence
+    variance <h_uu^2> is O(hbar) and ~ G hbar H^2 with NO extra S_dS => the drift is ~1/S_dS,
+    r-proportional, shapeless. Slot NOT live unless a NEW postulate supplies "an enhancement of
+    exactly S_dS" (category III).
+
+This lane adjudicates by computing <h_uu^2> two independent ways and comparing the hbar- and
+S_dS-scaling, and by counting the graviton field modes explicitly.
+
+  C1a  Way 1 (thermal coincidence) and Way 2 (explicit mode sum) give the SAME <h_uu^2>
+  C1   the physical <h_uu^2> is O(hbar^1); the 08-09 "pure number" needs an extra 1/hbar (= S_dS)
+  C1b  the field-mode count between horizon and Planck length is ~ S_dS^{3/2} (VOLUME), not S_dS (AREA)
+  C1c  the 08-09 recipe multiplies the already-mode-summed variance by the area-cell count S_dS: a
+       double count; algebraically it is a pure number ONLY because S_dS carries 1/hbar (holographic
+       coincidence, contingent on T_GH proportional to hbar -- the mutation hinge)
+  C2   r-proportionality: the drift is proportional to r (a Lambda renormalisation), not a constant a_0
+  C3   shape: f(T) = T^2 gives I(a) purely quadratic (c1p = inf), outside the q = 2/r family
+  MUTATE=1 makes T_GH hbar-free; the holographic cancellation (C1c-pure) must break.
+
+Run:  python3 fable_independent_2026/kappa_slot_2026/KS01_sds_adjudication.py
+      MUTATE=1 python3 .../KS01_sds_adjudication.py   (the hbar-cancellation hinge must break)
+
+  S_dS = 3.3074e+122   l_P = 1.6162e-35 m   H_Lambda = 1.8078e-18 /s   (both footings carried below)
+
+====================================================================================================
+SETUP -- static-patch worldline, canonically normalised graviton, two TT polarisations
+====================================================================================================
+  [PASS] SETUP-1 the quadratic worldline coupling g_2 = -1/8 (the forced nonlinearity, second order in h)
+         measured: coeff(X^2) of sqrt(1+X) = -1/8
+         reading:  the rectified drift is g_2 <X^2> = -(1/8) <h_uu^2>, through the graviton TWO-point function
+  graviton: h_mn = sqrt(32 pi G/c^4) phi_mn (canonical); 2 TT polarisations.
+
+====================================================================================================
+C1 -- <h_uu^2> two ways: thermal coincidence (Way 1) vs explicit mode sum (Way 2)
+====================================================================================================
+  Way 1 (thermal coincidence): <h^2>_T = 4*G*hbar*(H**2 + a**2)/(3*pi)
+  [PASS] C1a Way 2 (explicit mode-sum integral) reproduces Way 1: INT x/(e^x-1)dx = Gamma(2)zeta(2) = pi^2/6 gives coefficient 1/12, so the mode sum EQUALS the coincidence variance (no leftover N)
+         measured: integral = pi**2/6 = 1.644934; mpmath quad = 1.644934; coeff = 1/12; <h^2>_2-<h^2>_1 = 0
+         reading:  summing the per-mode variances IS the coincidence variance; you cannot then multiply by N again
+  [PASS] C1 the physical <h_uu^2> is O(hbar^1) (~ G hbar H^2) -- fixed assertion, MUTATE must break it
+         measured: hbar-power of <h^2> = 1
+         reading:  an O(1) eps_tot then needs an extra 1/hbar; 1/hbar ~ S_dS -- so 'O(1)' demands one extra S_dS
+  [PASS] C1b the graviton FIELD-mode count between horizon and Planck length scales as S_dS^{3/2} (a VOLUME); S_dS is the horizon AREA-cell count -- they are different counts
+         measured: N_field/S_dS = 1.3681e+61 vs predicted (4/3 sqrt pi) sqrt(S_dS) = 1.3681e+61
+         reading:  the 08-09 N = S_dS is neither Way-1's mode sum nor the field-mode count (S_dS^{3/2}); it is the holographic area-cell count
+  [PASS] C1c the 08-09 extra factor is the horizon entropy S_dS = pi/(G hbar H^2), which carries hbar-power -1 (a classical/hbar-free enhancement) -- so re-multiplying the already-summed variance by it is a double count that a quantum mode sum cannot supply
+         measured: hbar-power of S_dS = -1
+         reading:  eps_1 already contains the mode sum (C1a); S_dS ~ 1/hbar is not a further quantum sum but a classical coherence factor
+  [PASS] C1c-pure the 08-09 result is a pure number (hbar^0) ONLY because S_dS carries 1/hbar and eps_1 carries hbar: contingent on T_GH ~ hbar -- fixed assertion, MUTATE must break it
+         measured: hbar-power of eps_0809 = 0
+         reading:  at baseline eps_0809 is hbar^0; with an hbar-free T_GH (MUTATE) it is hbar^-2 -- so eps_tot=1/(32pi) is not an hbar-robust theorem, it is the granted S_dS coherence
+
+====================================================================================================
+C2 -- r-proportionality: the drift renormalises Lambda, it is not a constant a_0
+====================================================================================================
+  [PASS] C2 the rectified drift vanishes at r=0 and is LINEAR in r near the origin (a Lambda renormalisation), not a constant acceleration
+         measured: a_drift(0) = 0, leading = G*H**4*hbar*r/(3*pi)
+         reading:  a constant a_0 needs an r-independent drift at large r; this one is proportional to r
+  canonical H_Lambda: drift/(H^2 r) = 1/(6 S_dS) = 5.039e-124;  1 kpc drift = 5.082e-140 m/s^2 vs a_0 = 9.362e-11
+  alt cH0: drift/(H^2 r) = 1/(6 S_dS) = 7.356e-124;  1 kpc drift = 1.083e-139 m/s^2 vs a_0 = 1.128e-10
+
+====================================================================================================
+C3 -- shape: f(T) = T^2 is outside the interpolation family (no MOND transition)
+====================================================================================================
+  [PASS] C3 with f(T) = T^2 the inertia functional I(a) = f(T(a)) - f(T_GH) is PURELY quadratic in a (the H^2 pieces cancel): no Newtonian (linear) regime
+         measured: I(a) = a**2/(4*pi**2)
+         reading:  a MOND kernel needs I ~ a (Newton) and I ~ a^2 (deep); f = T^2 gives only a^2
+  [PASS] C3b f = T^2 has c1p = lim f/T = infinity, so it is NOT in the q = 2 c1p/f'(T_GH) temperature family (which needs c1p finite): the mechanism supplies no interpolation function
+         measured: c1p = oo
+         reading:  reproduces the 09-01 D-part conclusion: shapeless
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  (1) COMPUTED: <h_uu^2> two ways (thermal coincidence, explicit mode sum), the field-mode count,
+      the drift's r-dependence and shape.
+  (2) NUMBERS: the physical variance is O(hbar), ~ G hbar H^2 (eps_1 ~ 1/S_dS); the field-mode count is
+      ~S_dS^{3/2} (volume), while S_dS is the horizon AREA-cell count; the 08-09 recipe multiplies the
+      already-mode-summed thermal variance by S_dS = 1/hbar (an hbar-free enhancement).
+  (3) HONEST SENTENCE: the horizon entropy DIVIDES.  The 08-09 pure number is a DOUBLE COUNT of the
+      thermal variance -- the coincidence limit already sums the modes, and re-multiplying by the
+      area-cell count adds a factor 1/hbar with no dynamical origin.  The slot is NOT LIVE as standard
+      field theory.  It is LIVE only under a NAMED postulate: 'holographic coherence -- the rectified
+      drift accumulates coherently across the S_dS horizon area-cells, an enhancement of exactly S_dS'
+      (category III; a classical/coherent input, not the incoherent Gaussian mode sum).  What would
+      change it: a first-principles derivation of that S_dS coherence factor from the graviton influence
+      functional in de Sitter -- which the 09-01 CTP evaluation did not find.
+
+====================================================================================================
+RESULT
+====================================================================================================
+KS01 COMPLETE: 9/9 checks PASS

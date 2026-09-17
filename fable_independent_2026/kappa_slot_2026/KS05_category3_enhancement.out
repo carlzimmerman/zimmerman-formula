@@ -1,0 +1,82 @@
+
+KS05_category3_enhancement.py -- price the category-III enhancement the slot needs.
+
+*** OPENING SENTENCE, per the work order: KS01 returned SLOT-NOT-LIVE.  The graviton-bath drift is
+short by exactly one factor of S_dS; the 09-01 lane names the only rescue as "holographic coherence:
+an enhancement of exactly S_dS -- a new postulate, category III".  This lane examines the known
+structures that could supply that S_dS factor and asks, for each: does it reach 1/(32 pi) within a
+factor 2, does it introduce a free parameter, is it excluded by an existing bound? ***
+
+Structures examined:
+  1. Verlinde 2016 emergent gravity (a0 = cH0/6): the entropy-displacement term ∝ horizon entropy
+  2. de Sitter IR secular growth (stochastic inflation): <phi^2> ~ H^3 t/(4 pi^2)
+  3. a primordial tensor background (tensor-to-scalar ceiling r < 0.036)
+  4. the CKN UV-IR holographic bound (a0 = Lambda_DE^2/M_Pl seesaw)
+
+Run:  python3 fable_independent_2026/kappa_slot_2026/KS05_category3_enhancement.py
+
+  target eps_tot = 1/(32 pi) = 0.009947 (kappa = 1/2);  S_dS = 3.307e+122
+
+====================================================================================================
+STRUCTURE 1 -- Verlinde 2016 emergent gravity, a0 = cH0/6
+====================================================================================================
+  kappa_Verlinde = 0.4824 (H_Lambda) / 0.5829 (H0);  eps = 0.009259 / 0.013517
+  [PASS] STRUCT1 Verlinde's a0=cH0/6 lands eps within a factor 2 of 1/(32 pi), WITHOUT a free parameter, but via its OWN postulated entropy-displacement law (a distinct category-III postulate)
+         measured: eps_V/target = 0.931 (HL), 1.359 (H0); within factor 2: True
+         reading:  the S_dS-type enhancement is PRESENT in Verlinde but it rests on his entropy split (large critical literature); it does not DERIVE the graviton-drift coherence, it substitutes another postulate that also carries the horizon entropy
+
+====================================================================================================
+STRUCTURE 2 -- de Sitter IR secular growth (stochastic inflation)
+====================================================================================================
+  (l_P H/c)^2 = 9.499e-123;  e-folds for <h^2> ~ O(1): N ~ 4.134e+121 (~ S_dS)
+  [PASS] STRUCT2 dS IR secular growth reaches O(1) only after ~S_dS (~1e122) e-folds; the static patch's finite age (Ht ~ O(1) today) forbids it -- EXCLUDED, no new parameter
+         measured: N_needed = 4.13e+121 e-folds vs Ht ~ O(1) today
+         reading:  the growth IS the right order per S_dS e-folds but the age is short by ~122 decades; matches 09-01 E3
+
+====================================================================================================
+STRUCTURE 3 -- a primordial tensor background
+====================================================================================================
+  <h^2>_prim <= r A_s = 7.56e-11;  eps_prim <= 9.45e-12
+  [PASS] STRUCT3 a primordial tensor background is capped at <h^2> <= r A_s ~ 7.6e-11 (Planck+BK), so eps is ~8 orders below 1/(32 pi); and r is an INITIAL CONDITION (a free parameter), not Lambda
+         measured: eps_prim/target = 9.50e-10 (8 orders low); within factor 2: False
+         reading:  off by ~8 decades and it is a tuned initial condition, not a derivation; matches 09-01 E4
+
+====================================================================================================
+STRUCTURE 4 -- the CKN UV-IR holographic bound (a0 = Lambda_DE^2/M_Pl seesaw)
+====================================================================================================
+  [PASS] STRUCT4 the CKN holographic bound reaches eps = 1/(32 pi) EXACTLY (kappa=1/2) with no free parameter -- but as the seesaw IDENTITY (KS03 C2b), assuming the area entropy bound; it supplies no DYNAMICS for the graviton drift, so it is a restatement, not a derivation
+         measured: eps_CKN = 0.009947 = target; within factor 2: True
+         reading:  'exactly S_dS' is the holographic area bound itself, adopted as a postulate; it does not compute the graviton influence functional's coherence
+
+====================================================================================================
+TALLY -- C1..C4
+====================================================================================================
+  structure                        eps  within2  new param                      excluded
+  ------------------------------------------------------------------------------------------
+  Verlinde 2016                0.00926      yes         nono (value in band); mechanism has critical lit
+  dS IR secular growth             n/a       no         noyes: finite de Sitter age (Ht~1)
+  primordial tensors           0.00000       no        yes        yes: r < 0.036 ceiling
+  CKN seesaw                   0.00995      yes         no                 no (identity)
+  [PASS] C-TALLY count how many structures reach the needed factor, and how many without a new parameter
+         measured: reach within factor 2: 2/4; of those without a new parameter: 2
+         reading:  Verlinde and CKN reach it without a new parameter, but neither DERIVES the graviton-drift S_dS coherence: Verlinde substitutes its own entropy postulate, CKN is the kappa=1/2 identity
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  (1) COMPUTED: four enhancement structures priced against 1/(32 pi).
+  (2) NUMBERS: Verlinde eps = 0.00926 (within factor 2); dS IR growth needs ~4.1e+121 e-folds
+      (finite age forbids); primordial tensors eps <= 9.5e-12 (~8 orders low); CKN eps = 0.00995
+      (=target, by identity).  Reach within factor 2: 2/4; without a new parameter: 2.
+  (3) HONEST SENTENCE: of the structures examined, 2 reach the needed factor and 2 do so without a
+      new parameter -- but NONE derives the S_dS coherence the graviton-bath drift needs.  Verlinde
+      substitutes a postulated entropy-displacement law (category III, critical literature); CKN is the
+      kappa=1/2 seesaw identity (no dynamics); dS IR growth and primordial tensors are excluded by the
+      finite age and the r ceiling.  The slot is OPEN only under postulate X = 'holographic coherence /
+      an emergent-gravity entropy displacement of exactly S_dS', priced at: adopting a postulated entropy
+      law or a kinematic holographic bound, NOT a graviton-influence-functional derivation.
+
+====================================================================================================
+RESULT
+====================================================================================================
+KS05 COMPLETE: 5/5 checks PASS

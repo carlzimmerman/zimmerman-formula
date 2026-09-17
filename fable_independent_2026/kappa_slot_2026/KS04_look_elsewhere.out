@@ -1,0 +1,59 @@
+
+KS04_look_elsewhere.py -- price any future landing on 1/2 (or 1/(32 pi)) BEFORE it is reported.
+
+Enumerate dimensionless expressions from the alphabet {1,2,3,4,6,8,pi,sqrt(pi),sqrt2,sqrt3,e,ln2} with
+at most k binary operations {+,-,*,/} (sqrt is folded into the atoms).  Deduplicate numerically at 1e-9.
+For each k, count how many DISTINCT values land inside the measured kappa band and the eps_tot band, and
+report the fraction against the O(1) reference window (0, 10].  This is a CONTROL, not a search:
+report the numbers, do not interpret.
+
+  C1  the fraction of k=3 expressions inside the 2 sigma kappa band
+  C2  the same at the +-5% precision KS03 says is needed to separate 1/2 from its nearest rival
+  C3  the complexity rank of 1/2 (in the kappa band) and 1/(32 pi) (in the eps_tot band)
+
+Run:  python3 fable_independent_2026/kappa_slot_2026/KS04_look_elsewhere.py
+
+  alphabet: ['1', '2', '3', '4', '6', '8', 'pi', 'sqrtpi', 'sqrt2', 'sqrt3', 'e', 'ln2']  (12 atoms)
+  enumerated to k=4: 18947031 distinct finite values in (1e-9, 1e6)
+
+====================================================================================================
+COUNTS BY k -- distinct values, kappa-band hits, eps-band hits
+====================================================================================================
+    k  distinct(<=k)  in win(0,10]  kappa 2sig   eps 2sig  frac_kappa2sig
+    0             12            12           0          0          0.0000
+    1            331           249          30          0          0.1205
+    2          11872          6843         742         13          0.1084
+    3         451197        225483       24275        769          0.1077
+    4       18947031       8589517      916346      46151          0.1067
+  [PASS] C1 the 2 sigma kappa-band fraction has CONVERGED by k=3 (stable to k=4), so it is a real property of the alphabet, not an enumeration-depth artefact
+         measured: frac(k=3) = 0.1077, frac(k=4) = 0.1067, |diff| = 0.0010
+         reading:  a landing on 1/2 at 2 sigma is what a fraction ~10.8% of simple O(1) natural numbers already do
+  [PASS] C2 at the +-5% precision KS03 needs, the fraction of <=3-op natural numbers in the kappa=0.5+-0.025 band drops (a tighter target is harder to hit by chance)
+         measured: k=3, +-5%: 3713/225483 = 0.0165  vs 2sigma fraction 0.1077
+         reading:  the look-elsewhere penalty shrinks with precision: at 5% a chance landing is ~1.6%
+
+====================================================================================================
+C3 -- complexity rank of 1/2 (kappa band) and 1/(32 pi) (eps band)
+====================================================================================================
+  1/2: op-count 1; 0 in-band values are simpler, 30 equally simple, 916346 in the kappa 2sigma band total
+  1/(32pi) = 0.009947: op-count 3; 13 in-band values are simpler, 756 equally simple, 46151 in the eps 2sigma band total
+  [PASS] C3 1/2 is among the SIMPLEST expressions in the kappa band (few or no simpler in-band values), so on complexity it is a strong candidate -- but it is not unique in the band (C1)
+         measured: 1/2 op-count 1, simpler-in-band 0; 1/(32pi) op-count 3, simpler-in-band 13
+         reading:  the control's two-sided reading: 1/2 is complexity-favoured, yet the band is not empty of rivals
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  (1) COMPUTED: an enumeration of <=4-op dimensionless expressions over a 12-symbol alphabet
+      (18947031 distinct values), with in-band counts by complexity.
+  (2) NUMBERS: at k=3, a fraction 0.108 of O(1) natural numbers fall in the 2 sigma kappa band; at
+      +-5% the fraction is 0.016.  1/2 has op-count 1 with 0 simpler in-band rivals;
+      1/(32 pi) has op-count 3 with 13 simpler in-band rivals.
+  (3) HONEST SENTENCE: at today's precision a fraction 0.108 of <=3-operation natural numbers land in the
+      band; at +-5% the fraction is 0.016.  1/2 is complexity-favoured but not alone in the band.
+      Reported as a control; no claim that 1/2 is or is not selected follows from this lane alone.
+
+====================================================================================================
+RESULT
+====================================================================================================
+KS04 COMPLETE: 3/3 checks PASS

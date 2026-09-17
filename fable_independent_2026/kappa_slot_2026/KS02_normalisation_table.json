@@ -1,0 +1,58 @@
+{
+  "lane": "KS02",
+  "checks": {
+    "SETUP-c_proj the static-observer projection h_uu = h_00 = 0 in TT gauge (the coupling needs worldline motion, giving an extra O(v^2/c^2) suppression)": {
+      "ok": true,
+      "measured": "c_proj(static) = 0",
+      "load_bearing": true
+    },
+    "C1 NO fully-standard convention set (no loose entry) gives eps_tot = 1/(32 pi) to 1%": {
+      "ok": true,
+      "measured": "non-loose cells within 1% of 1/(32pi): 0",
+      "load_bearing": true
+    },
+    "C1b the standard eps_tot = 1/12 exceeds 1/(32 pi) by exactly the Friedmann factor 8 pi/3": {
+      "ok": true,
+      "measured": "(1/12)/(1/32pi) = 8.377580, 8pi/3 = 8.377580",
+      "load_bearing": true
+    },
+    "C2 the ONLY physics-grid cells reaching the measured 2sigma band include the loose-A kappa=1/2 cell, and they are a small minority of the grid: the S_dS-enhanced grid mostly overshoots the band": {
+      "ok": true,
+      "measured": "5/64 = 0.078 in band; loose-A (kappa=1/2) present & in band: True",
+      "load_bearing": true
+    },
+    "C3 the 08-09 near-miss reproduced exactly: A -> 1/2, B -> 1.447, B x 2 -> 2.047": {
+      "ok": true,
+      "measured": "kappa: A=0.5000, B=1.4472, C=2.0467  (eps: 0.00995, 0.08333, 0.16667)",
+      "load_bearing": true
+    },
+    "SECOND-WAY the energy-density route gives yet a THIRD O(1) value (eps = 1/90, kappa ~ 0.53), not the variance-loose 1/(32 pi): the SAME S_dS enhancement lands on a different number by route": {
+      "ok": true,
+      "measured": "eps_ed = 0.011111 (=1/90), kappa_ed = 0.5284; variance-loose kappa = 0.500, variance-standard kappa = 1.447",
+      "load_bearing": true
+    }
+  },
+  "numbers": {
+    "grid_in_band_fraction": 0.078125,
+    "kappaA": 0.5,
+    "kappaB": 1.4472025091165353,
+    "kappaC": 2.046653415892977,
+    "epsA": 0.009947183943243459,
+    "epsB": 0.08333333333333333,
+    "epsC": 0.16666666666666666,
+    "eps_energy_density": 0.011111111111111112,
+    "kappa_energy_density": 0.5284436396808014
+  },
+  "conditional_on": "KS01 = SLOT-NOT-LIVE",
+  "verdict": {
+    "word": "CONVENTION",
+    "standard_eps": 0.08333333333333333,
+    "standard_kappa": 1.4472025091165353,
+    "target": 0.009947183943243459
+  },
+  "summary": {
+    "pass": 6,
+    "n": 6,
+    "load_bearing_fail": []
+  }
+}
