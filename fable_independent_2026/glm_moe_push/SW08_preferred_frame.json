@@ -1,0 +1,92 @@
+{
+ "lane": "SW08_preferred_frame",
+ "mutate": true,
+ "n_pass": 9,
+ "n_total": 11,
+ "checks": [
+  {
+   "name": "A1 eta_sun rebuilt = 2.292 (SW01b B1)",
+   "ok": true,
+   "measured": "threshold |diff| < 0.01",
+   "reading": "8.2 kpc = 8.2 x 3.0857e19 m -- the unit audit"
+  },
+  {
+   "name": "A2 S(eta_sun) = 0.00781 (SW01b E1)",
+   "ok": true,
+   "measured": "threshold |diff| < 1e-4",
+   "reading": "the declared scalar response at the Solar environment"
+  },
+  {
+   "name": "B1 the boost parameter (v/c)^2 with v = 370 km/s (CMB): 1.523e-06",
+   "ok": true,
+   "measured": "the Solar-System speed vs the cosmic rest frame",
+   "reading": "threshold sanity: the CMB-frame speed is ~1.2e-3 c"
+  },
+  {
+   "name": "B2 the trigger's boost anisotropy: |<g>| varies by 4(v/c)^2 = 6.093e-06 fractionally (the gravitomagnetic P2-type amplitude)",
+   "ok": true,
+   "measured": "computed from |g + 4 w x g/c^2|^2 = g^2(1 + 16(w/c)^2 sin^2 theta): the amplitude is half the peak-to-peak = 4(w/c)^2",
+   "reading": "threshold sanity: the amplitude is O((v/c)^2)"
+  },
+  {
+   "name": "B3 |dS/dln eta| at eta_sun = 0.01551 (computed from the declared S-form)",
+   "ok": true,
+   "measured": "S = 1/(1+u), u = (eta/eta_c)^2: dS/dln eta = -2u/(1+u)^2 = -0.01551",
+   "reading": "threshold: the chain-rule value (an earlier draft expected 1.98 = 2u/(1+u), which drops a factor (1+u) -- fixed here)"
+  },
+  {
+   "name": "B4[MUTATED] the decentered preferred-frame estimate = 0.76 -- PPN-dead",
+   "ok": false,
+   "measured": "mix_frac 0.33 x eta_sun 2.29: the dropped-centering trigger anisotropy is order-unity",
+   "reading": "FAIL IS THE FINDING: without the barycenter condition the construction is PPN-dead by ~1.9e+06x (tight) / ~1.9e+04x (conservative) -- the condition is load-bearing, not a fudge"
+  },
+  {
+   "name": "C1 wide binaries: crossing/orbital = 1.94e-07 (s = 1e4 AU)",
+   "ok": true,
+   "measured": "t_cross = 57.8 days; P_orb = 8.16e+05 yr",
+   "reading": "the instantaneous functional is observationally silent: the light-crossing time is 5 orders below the orbital period"
+  },
+  {
+   "name": "C2 classical dSphs: crossing/dynamical = 3.34e-05 (r = 300 pc, sigma = 10 km/s)",
+   "ok": true,
+   "measured": "t_cross = 978.4 yr; t_dyn = 2.93e+07 yr",
+   "reading": "observationally silent: the crossing time is 5 orders below the dynamical time"
+  },
+  {
+   "name": "C3 the retardation observable is O(v_orb/c) = 1.22e-06 (WB) -- NOT O(1)",
+   "ok": true,
+   "measured": "the NR functional inherits Newton's instantaneity; the RELATIVISTIC retardation is suppressed by the orbital speed, which is 1e-6 c for wide binaries",
+   "reading": "no observational acausality on either channel; the retarded completion is G03's job and is OPEN"
+  },
+  {
+   "name": "C4[KILL-B] FAIL-as-finding: no causal (retarded) completion exists in this swing",
+   "ok": false,
+   "measured": "the Gamma/eta functionals are instantaneous by construction; no retarded kernel with the same limits is exhibited here",
+   "reading": "the honest output per the pre-registration: the deep limit g^2 = a0 g_N and the Newton limit are causality-ROBUST (any prescription reducing to the instantaneous static limit preserves them), but the causal completion is G03's -- now with TWO named kills (preferred frame coupling + acausality) instead of a slogan"
+  },
+  {
+   "name": "D1 the trigger anisotropy under the dropped centering = 0.33 (order-unity)",
+   "ok": true,
+   "measured": "SW01b C3 computed Gamma = 1.33 at offset d = 0.5 r vs 1.00 centered",
+   "reading": "with the centering dropped, the trigger carries the external field's DIRECTION at O(eta): the response becomes direction-carrying -- the AQUAL-like class"
+  }
+ ],
+ "verdict": "SW08 -- preferred frame + causality, the computable half of G03. KILL-A: the class's NR structure gives NO anisotropic preferred-frame coupling (direction-blind, P2 = 0 by quadrature) and the planetary anisotropy is DOUBLY SUPPRESSED (trigger 6.1e-6 x response ~ 0 in the deep-Newton regime) -> alpha2 ~ 0 structurally; the completion's matter-frame coupling c_S is UNDETERMINED (the missing input, named) and G03 must keep c_S x 6.1e-6 x 1.98 under the PPN ceiling. KILL-B: no causal completion in this swing -- FAIL-as-finding; the limits are causality-robust; crossing/orbital 1.9e-7 (WB) and 3.4e-5 (dSph) -- observationally silent at NR. MUTATE: dropping the barycenter condition revives an O(1) preferred-frame anisotropy -- PPN-dead by ~6 orders; the barycenter condition is load-bearing. G03's gates are now TWO NAMED KILLS (preferred-frame coupling + causal completion) instead of a slogan.",
+ "constants": {
+  "a0": {
+   "canonical": 9.3619e-11,
+   "alt": 1.1279e-10
+  },
+  "eta_c": 0.2034,
+  "eta_sun": 2.292,
+  "S_sun": 0.00781,
+  "vc2": 1.5232179267374037e-06,
+  "boost_aniso": 6.092871706949615e-06,
+  "dS_dlneta": 0.015505614242445329,
+  "c_S_bound_tight": 4.233981758389402,
+  "c_S_bound_llr": 423.39817583894023,
+  "crossing_orbital_wb": 1.9368221992032666e-07,
+  "crossing_dynamical_dsph": 3.3356409519815205e-05,
+  "mix_fraction_mutate": 0.33000000000000007
+ }
+}

@@ -160,23 +160,29 @@ D_int = float(nu_rar(2.5)) - 1.0
 # (b) same mass in a uniform 2.5 a0 external field: the external field is pure l=1,
 #     it NEVER enters Gamma (SW01b C2), so the sourced-sector boost is unchanged and
 #     the ambient passes through linearly:
-g_ext = 2.5 * A0_USE
-g_src_25 = 2.5 * A0_USE                            # the sourced field at the x = 2.5 point
-S25 = S_env(2.5, ETA_C)                            # eta = 2.5: the brief's gate environment
-g_tot = g_ext + g_obs_direct(g_src_25, S25, A0_USE)
-D_ext = g_tot / (g_src_25 + g_ext) - 1.0           # departure of the TOTAL from Newton
-ratio = D_int / D_ext
-check("D2[GATE] internal %.4f vs external %.5f departure -> ratio %.1f (canonical)"
-      % (D_int, D_ext, ratio),
-      "the external field never reaches the trigger: same 0.2590 internal, ambient linear "
-      "-> ratio = 1/S(eta at the x=2.5 point... here the environment IS the 2.5 a0 field, "
-      "so S = S(2.5) = %.5f" % S_env(2.5, ETA_C),
-      ratio >= 6.4,
-      "the brief's first-gate rule: ratio < 6.4 -> stop. Computed in the S-language in "
-      "SW01b D (152.1/220.3 both footings) and here in the mu-language; consistent")
-ratio_alt = D_int / (S_env(2.5, 0.1688) * D_int)
-print("  (alt footing: S(2.5) = %.5f -> ratio %.1f; the gate is footing-independent in "
-      "structure, both on record)" % (S_env(2.5, 0.1688), ratio_alt))
+print("\n  CONVENTION (GATE_CONVENTION.md): the departure at x = 2.5 has TWO readings.\n"
+      "  (i) PER-FIELD (the sourced sector's response vs Newton): ratio = 1/S.\n"
+      "  (ii) DILUTION-INCLUSIVE (the total field vs the total Newtonian field): the\n"
+      "       external field passes through unmodified, so ratio = (1/S)*(g_src+g_ext)/g_src,\n"
+      "       which is exactly 2/S at the gate where g_src = g_ext = 2.5 a0.\n"
+      "  Both readings are printed below on both footings. Reading (i) is the lane's default\n"
+      "  (it is the one L264's 26%-vs-4% statement uses); they must never be mixed again.")
+for f in ("canonical", "alt"):
+    ec = ETA_C if f == "canonical" else 0.1688
+    s = S_env(2.5, ec)
+    print("  %-10s S(2.5) = %.6f | (i) per-field 1/S = %.1f | (ii) dilution 2/S = %.1f"
+          % (f, s, 1.0 / s, 2.0 / s))
+ratio = 1.0 / S_env(2.5, ETA_C)                    # DEFAULT = reading (i), per-field
+ratio_alt = 1.0 / S_env(2.5, 0.1688)
+ratio_dil = 2.0 / S_env(2.5, ETA_C)
+ratio_dil_alt = 2.0 / S_env(2.5, 0.1688)
+check("D2[GATE] the x = 2.5 response ratio, both readings on both footings",
+      "(i) per-field: %.1f canonical / %.1f alt; (ii) dilution-inclusive: %.1f / %.1f; "
+      "internal departure 0.2590" % (ratio, ratio_alt, ratio_dil, ratio_dil_alt),
+      min(ratio, ratio_alt, ratio_dil, ratio_dil_alt) >= 6.4,
+      "the brief's first-gate rule: ratio < 6.4 -> stop. Cleared under BOTH readings on "
+      "BOTH footings (24x to 69x). SW01b reported reading (i): 152.1/220.3; SW06's 304.1 "
+      "was reading (ii) on canonical only -- the mixing is resolved in GATE_CONVENTION.md")
 
 # ------------------------------------------------------------------ E. the prediction
 print("\nE. THE PREDICTION: the mu_S curve by environment (a specific, falsifiable curve)")

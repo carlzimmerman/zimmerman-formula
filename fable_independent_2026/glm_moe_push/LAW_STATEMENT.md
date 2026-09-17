@@ -65,7 +65,8 @@ dies → this class dies with it. P9: BTFR zero point not tracking S²(η) → d
 
 - **No action**: the G03 door is named and OPEN — an AeST-type completion on the SOURCED
   sector with the ambient added linearly (where L243's Cassini quadrupole arises in AQUAL).
-  The ghost quadratic-form theorem and α₂ are its kill gates; neither exists yet.
+  The ghost quadratic-form theorem is its remaining kill gate (α₂ now priced, SW08); it does
+  not exist yet.
 - **No derivation of κ** (KS01: slot NOT LIVE), **of η_c** (SW07: every remaining-class
   mechanism killed — the third lane kill), **or of the ν_RAR/S families** (data-selected /
   ansatz).
@@ -76,8 +77,12 @@ dies → this class dies with it. P9: BTFR zero point not tracking S²(η) → d
   RAR-family profile (the L263 B1 identity M_dyn = M·r/r_M, sympy-verified); the 0.489 value
   belongs to the μ₂/AQUAL rival kernel. The fork therefore lives at the kernel-selection
   level (f25, OPEN) — queued as the rung-6 computation, not resolved here.
-- **α₂**: the matter-framed sphere picks the source rest frame — an α₂-level PPN effect is
-  the named risk, open.
+- **α₂**: NOW PRICED (SW08): the class's planetary preferred-frame anisotropy is doubly
+  suppressed (trigger 6.09e-6 × response exactly 0 at planetary x) → structurally ≈ 0; the
+  completion's matter-frame coupling must satisfy c_S ≤ 4.23 (Nordtvedt 4e-7) / ≤ 423
+  (LLR-scale 4e-5), stated in terms of S(η_⊙) — with c_S the named missing input. The
+  barycenter condition is load-bearing: the decentered estimate 0.76 is PPN-dead by ~1.9e6×
+  tight. The completion must preserve the double suppression.
 
 ## The verification set
 

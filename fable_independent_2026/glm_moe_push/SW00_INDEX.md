@@ -201,9 +201,18 @@ publishable end state. Word-ban honored.
 
 ## Status
 
-Two candidates killed in this lane (SW01-A, SW02), one standing (SW01-B, declared constant,
-dated falsifiers); SW03 is a consistency pass — NOT DISTINCTIVE, no kill, no new prediction.
-Stop rule (ii) (three kills → synthesis) not triggered. The words "derived", "closed",
-"breakthrough" appear nowhere above because nothing here has earned them yet. Deferred, stated
-openly: R3 ghost theorem and the action formulation (G03-class); R6 cluster residual; the
-dSph/η ≳ 1 tension (now quantified: NOT DISTINCTIVE at screening level).
+**Status (2026-09-17, after swing 8):** three candidates killed in this lane (SW01-A, SW02,
+SW07 — the third fired the mandatory synthesis, see KILLS_SYNTHESIS); one standing (SW01-B,
+declared constant, dated falsifiers); SW03 is a consistency pass — NOT DISTINCTIVE, no kill.
+**Stop rule (ii) IS MET and the synthesis was fired; the owner's standing override to keep
+swinging is recorded, not silent.** Swing 8 added GATE_CONVENTION.md (the gate's two readings:
+per-field 152.1/220.3, dilution 304.1/440.7 — the apparent 2× was convention, the factor is
+exactly g_src/(g_src+g_ext) = ½ at equal fields; both readings clear 6.4; two independent
+derivations of the note agree) and SW08 (10/11 clean, 9/11 MUTATE; the hinge is B4 — the only
+flipped gate; α₂ structurally ~0, doubly suppressed; the G03 bound c_S ≤ 4.23 (Nordtvedt) /
+≤ 423 (LLR-scale) stated in terms of S(η_⊙) with the coupling the named missing input;
+causality observationally silent at NR; C4 the honest FAIL-as-finding). The words "derived",
+"closed", "breakthrough" appear nowhere as claims. Deferred, stated openly: the G03 action
+(the ghost theorem is the remaining kill gate; α₂ now priced), per-object Jeans (needs real
+Walker likelihoods — absent in-repo, OPEN spec), DE04's η≥2 sample assembly, G111, the
+rung-6 fork.
