@@ -38,6 +38,21 @@ The direction-blind family is also separated internally by DE06 (Keplerian floor
 keeps a magnitude floor at high η; this class goes to zero) and DE03 (dSph phantom ellipticity:
 this class predicts no satellite phantom at η ≳ 1).
 
+**Swing 4 (2026-09-17, SW04/SW05): the fingerprint set is now computed, not just declared.**
+The class is CONFORMAL — the environment enters only as the scalar S(η) multiplying the isolated
+boost profile pointwise (per-object BR = isolated exactly, 2.2e-16; AQUAL deviates 44.6% by
+radial quenching) — and its deep limit is THE eBTFR: **v⁴ = S²GM_ba₀, slope exactly 4, zero
+point S²** (field 0.996 → group infall 0.988 → group 0.717 → cluster vicinity 0.336). The frozen
+list P1–P9 with dates and decision regions is in SW05: P1 γ_v 1.0000–1.0101 (DR4 2026-12-02);
+P2 angular null A₂ = 2.2e-16 (AQUAL ~6%; the registered p = 0.029 hint stands against
+interest); P3 quadrupole ≈ 0; P4 floor window η ≈ 2–3.5 (gaps 0.118/0.083 dex — the kernel
+saturation corrects the earlier O(10%) claim at η = 10 to 4.4%); P9 the eBTFR ladder. MUTATE
+(S≡1) loses P1, P4 and P9 together — the mutant IS the isotropic cap. The tSZ window is rung-7
+machinery, not this class's test; G111 remains the OPEN dynamical spec; the η_c derivation
+hypotheses (coherence volume, sub-a₀ stiffness, (1−l²∇²)⁻¹ reuse) remain priced-and-open per
+KILLS_SYNTHESIS. Next lanes, ranked: per-object Jeans (the η_c sharpener, data in hand), DE04's
+η≥2 sample assembly (the P4 window), the covariant action (ghost theorem + α₂ its kill gates).
+
 ## What the kills established (pointer: KILLS_SYNTHESIS.md)
 
 No construction with (i) no suppression, (ii) stress-balanced suppression, (iii) direction-

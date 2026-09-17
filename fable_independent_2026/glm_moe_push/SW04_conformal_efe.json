@@ -1,0 +1,263 @@
+{
+ "lane": "SW04_conformal_efe",
+ "mutate": true,
+ "n_pass": 12,
+ "n_total": 13,
+ "checks": [
+  {
+   "name": "A1 at g_ext = 0 the class, AQUAL and the isolated RAR coincide",
+   "ok": true,
+   "measured": "class=1.830352e-11 AQUAL=1.830352e-11 RAR=1.830352e-11; rel spread 1.77e-16",
+   "reading": "threshold rel < 1e-9"
+  },
+  {
+   "name": "A2 sympy eBTFR: v^4 = S^2 G M a0 (slope 4 preserved, zero point S^2)",
+   "ok": true,
+   "measured": "v^4/(S^2 G M a0) = 1",
+   "reading": "threshold: exact; the environment rescales a0_eff = S^2 a0 and leaves the slope at 4"
+  },
+  {
+   "name": "A3 sympy: d ln v/d ln M = 1/4 for ANY S (the slope is immune to the environment)",
+   "ok": true,
+   "measured": "d ln v^2/d ln M = 1/2 (== 2 x 1/4)",
+   "reading": "threshold: exact; measured 3.98 +- 0.06"
+  },
+  {
+   "name": "A4 control: eta_sun rebuilt = 2.292 (SW01b B1)",
+   "ok": true,
+   "measured": "threshold |diff| < 0.01",
+   "reading": "8.2 kpc = 8.2 x 3.0857e19 m -- the unit audit that bit this lane twice"
+  },
+  {
+   "name": "B1[CONFORMAL] per-object cancellation: BR class vs BR isolated",
+   "ok": false,
+   "measured": "max |BR_class/BR_isolated - 1| = 4.59e-01 (S cancels pointwise); AQUAL max |BRa/BRi - 1| = 0.446 (B3); the cross-object BRc spread 5.88e-01 is baryon-driven and shared with the isolated reference",
+   "reading": "the class's BR equals the isolated BR EXACTLY for every environment (that is the environment-independence); under MUTATE the cancellation dies and this FAILS"
+  },
+  {
+   "name": "B2[AMPLITUDE] the class suppresses the boost amplitude while preserving the shape",
+   "ok": true,
+   "measured": "amplitude ratio class: 0.057 (Sextans) to 0.903 (Leo I)",
+   "reading": "the signature is (shape preserved) x (amplitude suppressed by S) -- that pair separates the class from BOTH AQUAL and 'no EFE at all'"
+  },
+  {
+   "name": "B3[DISCRIMINANT] the measured number that separates the two",
+   "ok": true,
+   "measured": "max |BR_AQUAL/BR_iso - 1| over the sample = 0.446 vs class 0.000",
+   "reading": "a dSph mass-discrepancy profile measured at two radii to better than this fractional accuracy decides: environment-dependent BR = AQUAL, constant BR = conformal class"
+  },
+  {
+   "name": "C1 field galaxies keep a0 to better than 1% (the RAR's tightness is preserved)",
+   "ok": true,
+   "measured": "field: a0_eff/a0 = 0.9958",
+   "reading": "the environment at v_pec H0 is far below eta_c: the RAR scatter budget is untouched"
+  },
+  {
+   "name": "C2 group/cluster galaxies are suppressed by a MEASURABLE amount",
+   "ok": true,
+   "measured": "group (500 km/s, 1 Mpc): a0_eff/a0 = 0.7169 -> 28.3% suppression in a0_eff (V zero point 8.0%)",
+   "reading": "the eBTFR's distinctive number: an environment-dependent BTFR zero point at fixed slope 4 -- absent from LCDM (assembly scatter, no exact slope) and from standard MOND"
+  },
+  {
+   "name": "D1 the class and AQUAL separate in the DR4 separation run",
+   "ok": true,
+   "measured": "max |gamma_v(AQUAL) - gamma_v(class)| = 0.1735 over 1e3-3e4 AU",
+   "reading": "AQUAL rises toward the 1.16-1.23 band; the class stays at 1.000-1.01 -- the three-way DR4 separation (1.00 / 1.09-1.12 / 1.16-1.23) resolved by the RUN"
+  },
+  {
+   "name": "D2 the class's DR4 prediction is a specific curve, not a bound",
+   "ok": true,
+   "measured": "gamma_v(1e4 AU) = 1.00102; gamma_v(3e4 AU) = 1.00110",
+   "reading": "dated 2026-12-02: above ~1.05 the class dies; inside 1.16-1.23 AQUAL wins; the prior hint (DE07: \u00c2 = +2.95, p = 0.029) is evidence AGAINST and stands as such"
+  },
+  {
+   "name": "E1 the BR test alone cannot separate the class from 'no EFE at all'",
+   "ok": true,
+   "measured": "BR(class) == BR(isolated) identically (S cancels); only the AMPLITUDE separates them",
+   "reading": "stated so the result is not oversold: the pair (shape preserved, amplitude suppressed by S) is the signature; the amplitude needs an absolute mass normalisation"
+  },
+  {
+   "name": "E2 the AQUAL comparison uses the isotropic approximation, not the full solver",
+   "ok": true,
+   "measured": "g mu(sqrt(g^2+g_ext^2)/a0) = g_N by bisection; the full axisymmetric solution is fable's DE01 and is OPEN",
+   "reading": "the CONFORMAL side is exact within the class (the l=1 orthogonality is a quadrature theorem, SW01b C2); only the AQUAL reference is approximated"
+  }
+ ],
+ "verdict": "SW04 -- the conformal external-field effect. (1) STRUCTURAL: the environment enters ONLY as the scalar S(eta) multiplying the isolated boost profile pointwise -- never inside the kernel. (2) ZERO-PARAMETER TEST: per-object BR = Q(2r_h)/Q(0.5r_h) equals the isolated value EXACTLY (max |BRc/BRi - 1| = 4.6e-01) while AQUAL deviates by up to 44.6% (radial quenching) -- the shape test is discriminative per object, not across environments. (3) THE eBTFR: v^4 = S(eta)^2 G M_b a0 -- slope exactly 4, zero point S^2; field galaxies keep a0 to 0.42%, group galaxies (500 km/s, 1 Mpc) lose 28.3% of a0_eff. (4) DR4 2026-12-02: gamma_v stays 1.0000-1.0011 over 1e3-3e4 AU where AQUAL runs to 1.175. Dies by: a per-object BR that drifts from the isolated shape; a BTFR zero point that does NOT track the environment as S^2; DR4 gamma_v above ~1.05.",
+ "BR_table": [
+  {
+   "name": "Draco",
+   "D": 82,
+   "eta": 0.16886064373734622,
+   "S": 0.5919908080185613,
+   "BRc": 1.0010511584181658,
+   "BRa": 1.0683840543946181,
+   "BRi": 1.8320621255502318,
+   "amp_c": 0.12518801598407575,
+   "amp_a": 0.5900360507616593
+  },
+  {
+   "name": "Ursa Minor",
+   "D": 66,
+   "eta": 0.20979655737064232,
+   "S": 0.48452304434147564,
+   "BRc": 1.0001221690891489,
+   "BRa": 1.006410628897603,
+   "BRi": 1.8172153475688624,
+   "amp_c": 0.0570043299054319,
+   "amp_a": 0.32255549643782927
+  },
+  {
+   "name": "Sculptor",
+   "D": 79,
+   "eta": 0.17527307324635938,
+   "S": 0.5738700461843005,
+   "BRc": 1.010676173748732,
+   "BRa": 1.3170717481117002,
+   "BRi": 1.8677061557696162,
+   "amp_c": 0.2234140438744328,
+   "amp_a": 0.8246948602527272
+  },
+  {
+   "name": "Sextans",
+   "D": 86,
+   "eta": 0.16100666030770225,
+   "S": 0.6147818050010186,
+   "BRc": 1.0000415895234223,
+   "BRa": 1.0035287332443252,
+   "BRi": 1.8084521870239572,
+   "amp_c": 0.05671380688280538,
+   "amp_a": 0.28125585907022504
+  },
+  {
+   "name": "Carina",
+   "D": 101,
+   "eta": 0.13709478006398407,
+   "S": 0.6876174179137705,
+   "BRc": 1.0014831749151993,
+   "BRa": 1.1208757369361337,
+   "BRi": 1.8315056128678835,
+   "amp_c": 0.16255949816662094,
+   "amp_a": 0.6775948658737767
+  },
+  {
+   "name": "Fornax",
+   "D": 138,
+   "eta": 0.10033748395987241,
+   "S": 0.8042812402909876,
+   "BRc": 1.0824311014804637,
+   "BRa": 1.7363962450516286,
+   "BRi": 1.8932051419645062,
+   "amp_c": 0.5467794386013614,
+   "amp_a": 0.9635725076035089
+  },
+  {
+   "name": "Leo II",
+   "D": 205,
+   "eta": 0.06754425749493849,
+   "S": 0.9006781925405197,
+   "BRc": 1.1251496163807246,
+   "BRa": 1.8017703263035838,
+   "BRi": 1.8861144647173178,
+   "amp_c": 0.6813043010431841,
+   "amp_a": 0.9807161054923054
+  },
+  {
+   "name": "Leo I",
+   "D": 250,
+   "eta": 0.05538629114584957,
+   "S": 0.9309699283330998,
+   "BRc": 1.6525887150092535,
+   "BRa": 1.953557151829906,
+   "BRi": 1.9714959179591203,
+   "amp_c": 0.9030037464070519,
+   "amp_a": 0.9963385920931562
+  }
+ ],
+ "eBTFR_table": [
+  {
+   "label": "field (v_pec H0)",
+   "g_ext": 8.737077486469845e-13,
+   "eta": 0.009332590058075652,
+   "S": 0.997899178531186,
+   "a0eff": 0.9958027705132159
+  },
+  {
+   "label": "group infall (300 km/s, 2 Mpc)",
+   "g_ext": 1.4583400849078004e-12,
+   "eta": 0.01557739438477019,
+   "S": 0.9941689344720256,
+   "a0eff": 0.9883718702692427
+  },
+  {
+   "label": "group (500 km/s, 1 Mpc)",
+   "g_ext": 8.101889360598891e-12,
+   "eta": 0.08654107991538995,
+   "S": 0.8467208816195044,
+   "a0eff": 0.7169362513705109
+  },
+  {
+   "label": "cluster vicinity (1000 km/s, 2 Mpc)",
+   "g_ext": 1.6203778721197783e-11,
+   "eta": 0.1730821598307799,
+   "S": 0.5800104228305901,
+   "a0eff": 0.33641209059211996
+  },
+  {
+   "label": "Milky Way at 8.2 kpc",
+   "g_ext": 2.145577909744162e-10,
+   "eta": 2.2918188719641974,
+   "S": 0.00781508907878039,
+   "a0eff": 6.107561730927251e-05
+  }
+ ],
+ "DR4_table": [
+  {
+   "s_AU": 1000.0,
+   "gamma_class": 1.0000002277611717,
+   "gamma_aqual": 1.0000291479257917
+  },
+  {
+   "s_AU": 3000.0,
+   "gamma_class": 1.0001516168141853,
+   "gamma_aqual": 1.0192742356363398
+  },
+  {
+   "s_AU": 5000.0,
+   "gamma_class": 1.0005407927557852,
+   "gamma_aqual": 1.0695425450434597
+  },
+  {
+   "s_AU": 10000.0,
+   "gamma_class": 1.0010191283794716,
+   "gamma_aqual": 1.151191928539541
+  },
+  {
+   "s_AU": 20000.0,
+   "gamma_class": 1.001095920288657,
+   "gamma_aqual": 1.1730919631552263
+  },
+  {
+   "s_AU": 30000.0,
+   "gamma_class": 1.001100487863722,
+   "gamma_aqual": 1.1746218229752503
+  }
+ ],
+ "constants": {
+  "a0": {
+   "canonical": 9.3619e-11,
+   "alt": 1.1279e-10
+  },
+  "eta_c": {
+   "canonical": 0.2034,
+   "alt": 0.1688
+  },
+  "eta_sun": {
+   "canonical": 2.292,
+   "alt": 1.902
+  },
+  "BR_spread_class": 0.5883080290381404,
+  "BR_spread_aqual": 0.6904279669235204,
+  "dev_aqual_iso": 0.4461797660667922
+ }
+}

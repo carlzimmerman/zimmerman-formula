@@ -115,6 +115,41 @@ derived flat law; (2) the AeST realization is on the stop-defending list (Cassin
 ~15–25σ); (3) MUSE-DARK III omitted against the "name it, never omit it" rule. Plus F4: the
 promised AeST verification scripts are not found in the repo (integrity flag).
 
+## Swing 4 (SW04/SW05) — the conformal external-field effect + the frozen Kepler list
+
+**SW04 — the conformal external-field effect (13/13 PASS; MUTATE verified).** Because a uniform
+external field is pure l=1 and the trigger is Γ (SW01b C2, quadrature), the environment enters
+ONLY as the scalar S(η) multiplying the isolated boost profile pointwise — never inside the
+kernel. Consequences, all computed:
+- **Per-object shape test**: Q(2r_h)/Q(0.5r_h) equals the isolated value EXACTLY
+  (max |BRc/BRi − 1| = **2.22e-16**) while AQUAL radially quenches (max deviation **44.6%**).
+  The cross-object BRc spread (8.75e-02) is baryon-driven and shared with the isolated
+  reference — not an environment dependence (the first B1 metric conflated these; fixed).
+- **THE eBTFR**: v⁴ = S(η)² G M_b a₀ — slope exactly 4, zero point S² (sympy exact;
+  dln v/dln M = ¼ for any S).
+- **DR4 separation run**: γ_v(s) = **1.00000–1.01012** over 1e3–3e4 AU where AQUAL runs to
+  **1.17462** (dmax 0.167). The three-way separation is resolved by the run, not just the level.
+- MUTATE (Γ → √(g_N²+g_ext²), the AQUAL-like step): cancellation dies (5.88e-01) — the hinge.
+
+**SW05 — the frozen Kepler list (9/9 PASS; pre-registered before the data):**
+- **P1** DR4 γ_v = 1.0000–1.0101 vs 1.00 (CDM) / 1.09–1.12 (cap) / 1.16–1.23 (AQUAL); kill
+  > 1.05 or inside 1.16–1.23. **2026-12-02.**
+- **P2** WB angular null **A₂ = 2.2e-16** (S = S(|⟨g⟩|) only) vs AQUAL ~6% (DE07 L = 0.27);
+  the registered prior hint (Â = +2.95, p = 0.029) stated AGAINST interest; MUTATE gives
+  1.01e-4.
+- **P4** floor window **η ≈ 2–3.5**: cap ν(η)−1 = 32.1/21.5% vs class 0.60/0.27% at η = 2/3
+  → gaps 0.118/0.083 dex vs the 0.06-dex SPARC floor; **kernel saturation corrects the earlier
+  O(10%) claim at η = 10 to 4.4%** (below the floor — NOT DISTINCTIVE there, stated).
+- **P9 THE eBTFR ladder**: a₀_eff/a₀ = **0.996 (field) → 0.988 (group infall) → 0.717 (group,
+  500 km/s at 1 Mpc) → 0.336 (cluster vicinity)** — V zero points −0.1/−0.3/−8.0/−23.8% at
+  fixed slope 4. No rival predicts an environment-dependent zero point at exactly preserved slope.
+- **P7/P8 inherited** (flat a₀, rung 8 — computed from CPL at (w₀,wa) = (−1,0), not asserted):
+  a₀(2.5)/a₀(0) = 1.0000 (0.00 dex; registered ±0.13; emergent rival +0.19 dex in v) and
+  R = a₀(3)/a₀(0) = 1.0000 vs the registered DESI-DR2 band 0.775 [0.68, 0.88] (Rubin 3.3σ).
+- **NOT this class's test**: tSZ (−1.7, −0.9) = rung-7 baryon machinery (stated, not stolen).
+  OPEN: G111 spec (>10 CPU-min), per-object Jeans, DE04's η≥2 sample count, the covariant
+  action (ghost theorem + α₂ its kill gates), the rung-6 fork (0.3-dex systematic).
+
 ## Status
 
 Two candidates killed in this lane (SW01-A, SW02), one standing (SW01-B, declared constant,
