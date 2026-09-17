@@ -1,0 +1,31 @@
+# CLOSURE MAP — what a first-principles derivation of the framework must supply, rung by rung, and the order to attack it (2026-09-16)
+
+Status words: **MEASURED** (an input from data), **FITTED** (a number set by the data with no mechanism), **POSTULATED** (assumed, no dynamics), **IDENTITY** (algebra of the definitions, machine-checked), **DATA-SELECTED** (a function chosen by fit), **DEAD** (excluded on the record; do not reopen), **OPEN** (a runnable lane exists and has not been run), **PENDING** (a registered measurement with a date).
+
+| Rung | Statement | Status today | What "derived from first principles" would have to supply | The gate that tests it (committed) |
+|---|---|---|---|---|
+| 0 | ρ_Λ, G, c, H₀ | MEASURED | nothing; inputs | Planck 2018 |
+| 1 | a₀ = κ c√(Gρ_Λ), κ = ½ | **FITTED** (0.465 ± 0.076 / 0.551 ± 0.043; four candidates inside 2σ) | a pure number from a mechanism with no a₀/Ω_Λ on the input side; π-consistent; flat for w = −1 | `WORK_ORDER.md` KS01–KS06; decisive measurement: deep-MOND Tully–Fisher zero point at z ≈ 2.5 to ±0.13 dex (registered) |
+| 2 | the interpolation function (ν_RAR / μ₂) | **DATA-SELECTED**; the max-entropy "derivation" inserts its exponent (= κ) | a mechanism that outputs the shape with the deep limit g² = a₀g_N; Deser–Levin gives Milgrom's ν = √(1+1/y) but forces a₀ = 2cH_Λ (excluded 15.6σ) | exp-vs-RAR profiled on SPARC (undecided, `hunt_2026/f25`); any kernel realised as modified gravity fails Cassini 4–9× (`hunt_2026/f24`, L243); as modified inertia it is lensing-dead (21σ) |
+| 3 | the relativistic completion (an action) | **DEAD for every named candidate**: AeST PPN, khronometric, frozen scalar (ghost, H045), bimetric (BD ghost), k⁴ family; local no-go theorem | an action with (i) PPN = GR incl. the external-field quadrupole below the Cassini ceiling, (ii) lensing = dynamics, (iii) no ghost, (iv) the deep-MOND limit; the only structure that passed the k⁴ PPN gate is coherent stiffening of the whole sector (G02) | the roadmap gates G00–G14 (lead track); G03 = "write the action that realises coherent stiffening" — **OPEN** |
+| 4 | the equilibrium temperature σ² = ½√(GM_b a₀) | **POSTULATED**; not an attractor nor an equilibrium of Newtonian dust (G035); every "route" inputs the r⁻² profile | a dynamical mechanism (a mediator that relaxes dust to that temperature) or a constitutive law (L247 p = P(a)) that also fixes the amplitude | G111 relaxation N-body with the scalar mediator — spec complete, **never run**; the vertical-force/Eilers channel |
+| 5 | the identification ρ = √(GM_b a₀)/(4πGr²), M_ph(<r) = M_b r/r_M, deep RAR, BTFR | **IDENTITY** (Lean, 848 theorems) | nothing; consequences of rung 4 | `L261_lean_inventory.py` |
+| 6 | the one boundary r_M | inconsistent by a factor 2: kernel 0.489 M_b vs equipartition 1.000 (Σ 106.9 vs 213.7; H037 retracted the lemma on SPARC at 7σ) | one statement of the dark mass inside r_M, consistent between rungs 2 and 5 | `L261` part I3; H033_P1 |
+| 7 | clusters | the MOND residual (2.1× in T, ~2× in mass) intact; "dust" = a fitted, CDM-like component; only cold DM satisfies the four shape/mass constraints (g04a) | a mechanism supplying the cluster deficit with the measured r⁻¹·⁵ shape, or an honest CDM component declared as such | tSZ 3-way under the ORIGINAL registered window; lensing cores (needs HST) — PENDING |
+| 8 | a₀(z) | the framework's own law is FLAT (w = −1); MUSE reads a₀ rising (1.9–3.0σ folded; 15σ face value) | flatness (or the DESI-evolving-DE decline) at z ≈ 2.5 | z ≈ 2.5 BTFR zero point — PENDING, target-gated ~2027 |
+| 9 | the solar neighbourhood | wide-binary γ_v band 1.16–1.23 pre-registered, frozen, hash-stamped; Cassini forbids any modified-gravity realisation | DR4 inside the band AND a completion (rung 3) that survives Cassini | Gaia DR4, 2026-12-02 — PENDING |
+| 10 | cosmology | Ω_Λ "from a₀" is the identity (circular); CMB/LSS constrain a fluid, satisfied only by a CDM-like dust component | a dark sector whose CMB/LSS behaviour follows from rungs 3–4, not from an added dust | `L258` part A; GDM degeneracy theorem |
+
+**The dependency graph.** 1 and 3 are independent of each other and both independent of 4. 2 depends on 3 (a kernel needs a realisation) or on 4 (the equilibrium reading). 5 is free. 6 is a consistency condition on 2 and 5. 7 depends on 4 (what supplies the deficit). 8, 9 are measurements that cut regardless. 10 depends on 3 and 7.
+
+## Next steps, in the order that decides most for least
+
+1. **KS01 (κ slot adjudication)** — one script, days, no data. Outcome NOT LIVE closes the last named derivation route for κ and turns rung 1 into "a measured constant of nature", which is a legitimate end state; outcome LIVE names the postulate and hands KS02–KS06 their conditional.
+2. **G111 (rung 4 dynamics)** — the one runnable, unrun spec in the repository: dust + baryons + the scalar mediator, does the sector relax to σ² = ½√(GM_b a₀) from generic initial conditions? A FAIL retires the equilibrium reading's only dynamical claim; a PASS is the first non-identity result of the programme.
+3. **G03 (rung 3, the lead track's gate)** — the action that realises coherent stiffening and clears Cassini, lensing and the ghost bound simultaneously. Every local construction is dead by theorem; this is the only architectural door left. Do not start rung 2 work before this returns.
+4. **Rung 6 first, before any paper** — pick one dark mass inside r_M (0.489 M_b from the kernel or 1.000 from equipartition) and propagate it; today the record carries both.
+5. **Score the registered tests under their ORIGINAL rules when the data arrive** — tSZ (window (−1.7, −0.9)), Gaia DR4 (γ_v band, 2026-12-02), the z ≈ 2.5 zero point. No rule is re-registered after the data are fetched.
+
+## The decision rule at the end of the list
+
+If KS01 returns NOT LIVE and G03 returns no action, the programme's honest closing statement is: **"a₀ = κ c√(Gρ_Λ) with κ = ½ measured; the deep-MOND phenomenology it organises is exact as algebra and successful as a galaxy-scale description; no first-principles derivation of κ, the kernel or the completion exists, and every named candidate is excluded."** That is a finished, publishable status, not a failure to finish. If either returns positive, the next map is written from that result and nothing else.
