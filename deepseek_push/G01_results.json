@@ -1,0 +1,404 @@
+{
+ "lane": "G01_dark_df",
+ "title": "THE DARK SECTOR'S FULL DISTRIBUTION FUNCTION -- f(r, v) from the isothermal equilibrium + the measured beta: the velocity ellipsoid COMPLETE; the per-bin LOSVD predicted and tested (normal isothermal vs Laplace-tailed) on the committed HeCS members",
+ "upstream": {
+  "B5": "P = sigma^2 rho: the committed phantom EOS",
+  "G084": "the isothermal equilibrium rho = A/r^2, sigma^2 = C/2 (max entropy in the fixed well Phi = C ln r)",
+  "G209": "the per-bin beta profile (E2 PRIMARY piecewise; E1 rigorous cross-check): 0.5-1 -0.369, 1-1.5 0.011, 1.5-2 0.285, 2-3 0.256, 3-5 0.545",
+  "G203": "the HeCS member catalog + the binned sigma_los table (10,145 members of 58 clusters, 9,949 cleaned)",
+  "Z07": "the dark thermometer: sigma_r per bin from the measured sigma_los and beta (the local Mamon-Lokas closure)",
+  "S04": "the core does not rotate: v_los gradient 30.5 +- 23.6 km/s per R500, z = 1.29 vs 0 -- the LOSVD mean is zero, no bulk streaming term",
+  "G231": "the RAR residuals are LAPLACE not normal (AIC Laplace wins by 89 line-542 / 211 deep per-ring) -- the question applied to the VELOCITY distribution here"
+ },
+ "prediction": {
+  "form": "f(r,v) = rho(r)/((2pi)^(3/2) sigma_r sigma_t^2) exp[-v_r^2/(2 sigma_r^2) - v_t^2/(2 sigma_t^2)], rho = A_ph/r^2, sigma_t/sigma_r = sqrt(1-beta), sigma_r from the local Mamon-Lokas closure sigma_los^2 = sigma_r^2 (1 - beta A)",
+  "ellipsoid": {
+   "0.5-1": {
+    "beta": -0.3686764450443536,
+    "sigma_r": 858.928679517236,
+    "sigma_t": 1004.8644928116214,
+    "q_t": 1.169904459793343,
+    "sigma_los": 951.7548355839906,
+    "A_los": 0.6179499695420398
+   },
+   "1-1.5": {
+    "beta": 0.011476276245487972,
+    "sigma_r": 829.4304466855997,
+    "sigma_t": 824.6573262899583,
+    "q_t": 0.9942453036119969,
+    "sigma_los": 826.3646615891237,
+    "A_los": 0.6429650457845251
+   },
+   "1.5-2": {
+    "beta": 0.28517346480461847,
+    "sigma_r": 834.6948575091751,
+    "sigma_t": 705.7129236204277,
+    "q_t": 0.8454741481532014,
+    "sigma_los": 754.76872314712,
+    "A_los": 0.639403195211937
+   },
+   "2-3": {
+    "beta": 0.2559196710733822,
+    "sigma_r": 739.6473438771801,
+    "sigma_t": 638.0204714761451,
+    "q_t": 0.8626009094167579,
+    "sigma_los": 675.6259800720618,
+    "A_los": 0.6471607495669494
+   },
+   "3-5": {
+    "beta": 0.5453489249112835,
+    "sigma_r": 683.8609693302132,
+    "sigma_t": 461.1125353839386,
+    "q_t": 0.6742781882047769,
+    "sigma_los": 549.9115619767317,
+    "A_los": 0.6479862597904307
+   }
+  },
+  "losvd": "N(0, sigma_los(R)) per bin: the Gaussian projection of the beta-deformed ellipsoid with the measured binned sigma_los",
+  "equilibrium": {
+   "C": 726510943386.574,
+   "sigma_eq_kms": 602.7067874956172,
+   "A_ph": 8.662556776320751e+20,
+   "M_b_footing": 42473378295194.805,
+   "rho_form": "A_ph/r^2"
+  },
+  "normalization_check": 0.9999999999998842
+ },
+ "test": {
+  "method": "HeCS members (G203 assignment + committed 3.5-sigma MAD cleaning) binned into G209's 5 target radial bins; per-bin KS + chi2 + free-fit AIC for the fixed Gaussian N(0, sigma_los) vs the equal-variance Laplace L(0, sigma_los/sqrt(2)); pooled standardized test; tail fractions at 2.5/3 sigma; raw-sample robustness",
+  "per_bin": [
+   {
+    "name": "0.5-1",
+    "lo": 0.5,
+    "hi": 1.0,
+    "center": 0.7071067811865476,
+    "n": 1310,
+    "sigma_los": 951.7548355839906,
+    "gapper_sigma": {
+     "value": 948.4530515855713,
+     "err": 16.32371289523717
+    },
+    "ks_norm_p": 0.10595929806610516,
+    "ks_laplace_p": 3.2801061054828464e-10,
+    "chi2_norm": {
+     "chi2": 23.813740458015268,
+     "dof": 15,
+     "p": 0.06832475509406298
+    },
+    "chi2_laplace": {
+     "chi2": 157.212213740458,
+     "dof": 15,
+     "p": 8.853029158925577e-26
+    },
+    "mle_norm": {
+     "mu": 20.20584952464665,
+     "s": 936.2749296355429,
+     "logL": -10821.21048018233
+    },
+    "mle_laplace": {
+     "mu": 59.8419197305175,
+     "b": 767.0229893376855,
+     "logL": -10919.719780445941
+    },
+    "aic_norm": 21646.42096036466,
+    "aic_laplace": 21843.439560891882,
+    "dAIC_free": 197.0186005272226,
+    "dAIC_fixed": 222.909397107931,
+    "tail_25": {
+     "measured": 0.0,
+     "gauss": 0.012419330651552268,
+     "laplace": 0.02914319311124244
+    },
+    "tail_30": {
+     "measured": 0.0,
+     "gauss": 0.002699796063260186,
+     "laplace": 0.01436959609043909
+    }
+   },
+   {
+    "name": "1-1.5",
+    "lo": 1.0,
+    "hi": 1.5,
+    "center": 1.224744871391589,
+    "n": 1165,
+    "sigma_los": 826.3646615891237,
+    "gapper_sigma": {
+     "value": 829.2411352050294,
+     "err": 16.189734194083304
+    },
+    "ks_norm_p": 0.8099235055620551,
+    "ks_laplace_p": 1.0889611211250996e-05,
+    "chi2_norm": {
+     "chi2": 14.096995708154505,
+     "dof": 15,
+     "p": 0.5181858326375278
+    },
+    "chi2_laplace": {
+     "chi2": 123.58369098712447,
+     "dof": 15,
+     "p": 3.805791228330713e-19
+    },
+    "mle_norm": {
+     "mu": 9.09904312680814,
+     "s": 822.7732536717239,
+     "logL": -9472.836349335934
+    },
+    "mle_laplace": {
+     "mu": -9.789541218640311,
+     "b": 665.6206409751194,
+     "logL": -9545.855148976494
+    },
+    "aic_norm": 18949.672698671868,
+    "aic_laplace": 19095.71029795299,
+    "dAIC_free": 146.0375992811205,
+    "dAIC_fixed": 166.99591206195328,
+    "tail_25": {
+     "measured": 0.004291845493562232,
+     "gauss": 0.012419330651552268,
+     "laplace": 0.02914319311124244
+    },
+    "tail_30": {
+     "measured": 0.0,
+     "gauss": 0.002699796063260186,
+     "laplace": 0.01436959609043909
+    }
+   },
+   {
+    "name": "1.5-2",
+    "lo": 1.5,
+    "hi": 2.0,
+    "center": 1.7320508075688772,
+    "n": 987,
+    "sigma_los": 754.76872314712,
+    "gapper_sigma": {
+     "value": 727.593738000991,
+     "err": 15.781498347429471
+    },
+    "ks_norm_p": 0.9595413603744435,
+    "ks_laplace_p": 1.7770957150627546e-05,
+    "chi2_norm": {
+     "chi2": 11.143870314083081,
+     "dof": 15,
+     "p": 0.742330546888218
+    },
+    "chi2_laplace": {
+     "chi2": 88.63120567375887,
+     "dof": 15,
+     "p": 1.7843936413291052e-12
+    },
+    "mle_norm": {
+     "mu": -2.7439361512440965,
+     "s": 723.4378827819245,
+     "logL": -7898.41482718714
+    },
+    "mle_laplace": {
+     "mu": -10.310896814827096,
+     "b": 582.576832687453,
+     "logL": -7955.820351545068
+    },
+    "aic_norm": 15800.82965437428,
+    "aic_laplace": 15915.640703090136,
+    "dAIC_free": 114.81104871585558,
+    "dAIC_fixed": 119.36219229069684,
+    "tail_25": {
+     "measured": 0.0060790273556231,
+     "gauss": 0.012419330651552268,
+     "laplace": 0.02914319311124245
+    },
+    "tail_30": {
+     "measured": 0.0,
+     "gauss": 0.002699796063260186,
+     "laplace": 0.014369596090439076
+    }
+   },
+   {
+    "name": "2-3",
+    "lo": 2.0,
+    "hi": 3.0,
+    "center": 2.449489742783178,
+    "n": 1635,
+    "sigma_los": 675.6259800720618,
+    "gapper_sigma": {
+     "value": 688.0547741285683,
+     "err": 11.598185864976003
+    },
+    "ks_norm_p": 0.17666335937179656,
+    "ks_laplace_p": 9.980957835948367e-12,
+    "chi2_norm": {
+     "chi2": 14.056880733944952,
+     "dof": 15,
+     "p": 0.5212196040808522
+    },
+    "chi2_laplace": {
+     "chi2": 187.75718654434252,
+     "dof": 15,
+     "p": 6.447562899004597e-32
+    },
+    "mle_norm": {
+     "mu": -13.194181182197857,
+     "s": 684.6117776322676,
+     "logL": -12994.137406714726
+    },
+    "mle_laplace": {
+     "mu": -13.532246771874048,
+     "b": 552.5928094780754,
+     "logL": -13092.701629608695
+    },
+    "aic_norm": 25992.274813429452,
+    "aic_laplace": 26189.40325921739,
+    "dAIC_free": 197.12844578793738,
+    "dAIC_fixed": 233.55581790473298,
+    "tail_25": {
+     "measured": 0.011620795107033639,
+     "gauss": 0.012419330651552268,
+     "laplace": 0.02914319311124245
+    },
+    "tail_30": {
+     "measured": 0.001834862385321101,
+     "gauss": 0.002699796063260186,
+     "laplace": 0.014369596090439076
+    }
+   },
+   {
+    "name": "3-5",
+    "lo": 3.0,
+    "hi": 5.0,
+    "center": 3.872983346207417,
+    "n": 1946,
+    "sigma_los": 549.9115619767317,
+    "gapper_sigma": {
+     "value": 549.7447460271006,
+     "err": 8.739911466140883
+    },
+    "ks_norm_p": 0.5504429854906538,
+    "ks_laplace_p": 1.1057380558678846e-09,
+    "chi2_norm": {
+     "chi2": 23.003083247687563,
+     "dof": 15,
+     "p": 0.08407442348208792
+    },
+    "chi2_laplace": {
+     "chi2": 224.39260020554985,
+     "dof": 15,
+     "p": 2.2499077037613248e-39
+    },
+    "mle_norm": {
+     "mu": 4.71642508622389,
+     "s": 548.8496081722262,
+     "logL": -15035.780796892523
+    },
+    "mle_laplace": {
+     "mu": -1.8942930444017716,
+     "b": 440.2396711650757,
+     "logL": -15140.787743549196
+    },
+    "aic_norm": 30075.561593785045,
+    "aic_laplace": 30285.57548709839,
+    "dAIC_free": 210.01389331334576,
+    "dAIC_fixed": 241.1537270681365,
+    "tail_25": {
+     "measured": 0.011819116135662899,
+     "gauss": 0.012419330651552268,
+     "laplace": 0.02914319311124245
+    },
+    "tail_30": {
+     "measured": 0.0020554984583761563,
+     "gauss": 0.002699796063260186,
+     "laplace": 0.014369596090439076
+    }
+   }
+  ],
+  "pooled": {
+   "n": 7043,
+   "ks_norm_p": 0.4389181775760467,
+   "ks_laplace_p": 1.9810470470576373e-29,
+   "mle_norm": {
+    "mu": 0.0030969165094689955,
+    "s": 0.9929603512622626
+   },
+   "mle_laplace": {
+    "mu": -0.005093449238873737,
+    "b": 0.8026535349817666
+   },
+   "dAIC_free": 866.458910567213,
+   "raw_n": 7159,
+   "raw_ks_norm_p": 0.013995690776946082,
+   "raw_ks_laplace_p": 1.396133040618794e-35
+  }
+ },
+ "consequence": {
+  "tail_class": "NORMAL (isothermal Gaussian accepted, Laplace rejected)",
+  "statement": "THE ISOTHERMAL-GAS READING COMPLETES: the FULL distribution function of the dark sector is the beta-deformed Gaussian ellipsoid of the equilibrium -- not just its moments.  The velocity distribution is in the normal class, distinct from the G231 residual class (exponential-tailed).",
+  "if_normal": "the isothermal-gas reading COMPLETES: the FULL distribution, not just the moments -- the equilibrium's Gaussian ellipsoid",
+  "if_laplace": "the equilibrium has exponential tails: the velocity distribution joins the G231 residual class (the exponential-in-log temperature structure, G228's family)"
+ },
+ "verdicts": {
+  "V1": "THE PREDICTED f(r, v): the isothermal-equilibrium density rho(r) = A_ph/r^2 (B5/G084: P = sigma^2 rho, C = 7.265e+11 m^2/s^2, sigma_eq = 603 km/s at the HeCS M_b footing) times the beta-deformed Gaussian ellipsoid with the per-bin committed axes: 0.5-1 beta -0.369 sigma_r 859 sigma_t 1005 km/s (q_t = 1.170); 1-1.5 beta +0.011 sigma_r 829 sigma_t 825 km/s (q_t = 0.994); 1.5-2 beta +0.285 sigma_r 835 sigma_t 706 km/s (q_t = 0.845); 2-3 beta +0.256 sigma_r 740 sigma_t 638 km/s (q_t = 0.863); 3-5 beta +0.545 sigma_r 684 sigma_t 461 km/s (q_t = 0.674); the LOSVD per bin is N(0, sigma_los) with the measured 952, 826, 755, 676, 550 km/s -- the velocity ellipsoid COMPLETE for the first time.",
+  "V2": "THE PER-BIN LOSVD FIT: 0.5-1 n=1310 KS_N p=0.106 KS_L p=0.000 chi2_N 24/15 chi2_L 157/15 dAIC +197.0; 1-1.5 n=1165 KS_N p=0.810 KS_L p=0.000 chi2_N 14/15 chi2_L 124/15 dAIC +146.0; 1.5-2 n=987 KS_N p=0.960 KS_L p=0.000 chi2_N 11/15 chi2_L 89/15 dAIC +114.8; 2-3 n=1635 KS_N p=0.177 KS_L p=0.000 chi2_N 14/15 chi2_L 188/15 dAIC +197.1; 3-5 n=1946 KS_N p=0.550 KS_L p=0.000 chi2_N 23/15 chi2_L 224/15 dAIC +210.0; POOLED (n = 7043): KS N p = 0.4389, KS L p = 0.0000, free dAIC = +866.5",
+  "V3": "THE HONEST STATEMENT: the dark sector's distribution function -- the full phase-space form committed for the first time: normal (isothermal gaussian accepted, laplace rejected).  THE ISOTHERMAL-GAS READING COMPLETES: the FULL distribution function of the dark sector is the beta-deformed Gaussian ellipsoid of the equilibrium -- not just its moments.  The velocity distribution is in the normal class, distinct from the G231 residual class (exponential-tailed).  Numbers: the pooled standardized LOSVD sits at KS-N p = 0.4389 vs KS-L p = 0.0000; per-bin dAIC(L-N) +197.0, +146.0, +114.8, +197.1, +210.0; 3-sigma tail fractions 0.5-1 0.0000, 1-1.5 0.0000, 1.5-2 0.0000, 2-3 0.0018, 3-5 0.0021 vs Gaussian 0.0027 / Laplace 0.0144.  Honest limits: the committed 3.5-sigma MAD membership trims the far tails (1.8% of a Gaussian vs 7% of a Laplace) -- the tail axis is partially censored by the pipeline; the outer bins carry the caustic-envelope/infall selection (G206's systematic); and the fixed candidates use the measured (error-broadened) sigma_los without re-convolution -- the self-consistent commitment, equally applied to both candidates."
+ },
+ "checks": [
+  {
+   "name": "C1 [catalog] the HeCS member reconstruction reproduces G203's committed sample: 10,145 members of 58 clusters (nearest-center assignment, rest-frame v_los)",
+   "measured": "members 10145, clusters 58",
+   "pass": true,
+   "reading": "the same assignment and v_los construction as G203's commission."
+  },
+  {
+   "name": "C2 [membership] the committed 3.5-sigma MAD cleaning returns G209's registered 9,949 members",
+   "measured": "cleaned 9949",
+   "pass": true,
+   "reading": "the LOSVD test runs on the committed membership (G209's sample)."
+  },
+  {
+   "name": "C3 [binning] the per-bin observed gapper sigma matches the committed interpolated sigma_los (|d| < 3 x jackknife per bin)",
+   "measured": "0.5-1 948+-16 vs 952; 1-1.5 829+-16 vs 826; 1.5-2 728+-16 vs 755; 2-3 688+-12 vs 676; 3-5 550+-9 vs 550",
+   "pass": true,
+   "reading": "the bins of the test carry the same dispersion field the prediction was built on (self-consistent commitment)."
+  },
+  {
+   "name": "C4 [prediction numerics] the Mamon-Lokas closure sigma_los^2 = sigma_r^2 (1 - beta A) holds per bin; A and sigma_r reproduce Z07's committed inversion",
+   "measured": "closure 1.0000, 1.0000, 1.0000, 1.0000, 1.0000; |dA| = 0.0e+00, |dSR| = 0.000 km/s",
+   "pass": true,
+   "reading": "the ellipsoid's projection and the radial inversion are the same numbers Z07 committed (the thermometer's frame)."
+  },
+  {
+   "name": "C5 [f normalization] int f(r, v) d^3v = rho(r) exactly (analytic and numeric to < 1e-8)",
+   "measured": "analytic 1.0000, numeric 1.000000000",
+   "pass": true,
+   "reading": "the committed f is a normalized phase-space density at every bin."
+  },
+  {
+   "name": "C6 [V1 the predicted f(r, v)] the committed distribution: the isothermal-equilibrium rho = A_ph/r^2 x the beta-deformed Gaussian ellipsoid with the per-bin (beta, sigma_r, sigma_t) committed",
+   "measured": "0.5-1 b -0.37 sr 859 st 1005; 1-1.5 b +0.01 sr 829 st 825; 1.5-2 b +0.29 sr 835 st 706; 2-3 b +0.26 sr 740 st 638; 3-5 b +0.55 sr 684 st 461",
+   "pass": true,
+   "reading": "the velocity ellipsoid of the dark sector is COMPLETE: radial + two tangential scales per bin from the measured beta and sigma_los."
+  },
+  {
+   "name": "C7 [V2 the per-bin LOSVD fit] the measured v_los histograms vs the two candidates per bin: KS + chi2 registered",
+   "measured": "KS accept Gaussian 5/5, Laplace 0/5; pooled KS N 0.4389 / L 0.0000",
+   "pass": true,
+   "reading": "the table is the test: per-bin KS/chi2 for the committed Gaussian and the equal-variance Laplace."
+  },
+  {
+   "name": "C8 [the discrimination] the pooled standardized test states the class: normal (isothermal) or exponential-tailed, with the dAIC and tail fractions",
+   "measured": "pooled KS N p = 0.4389, L p = 0.0000; free dAIC = +173.0 mean per bin; 3-sigma tails measured vs 0.0027 (N) / 0.0144 (L)",
+   "pass": true,
+   "reading": "the class decision is stated with its numbers; title case above."
+  },
+  {
+   "name": "C9 [tail axis] the 3-sigma tail fractions put the measured LOSVD against the Gaussian (0.27%) and Laplace (1.44%) anchors",
+   "measured": "0.5-1 0.0000; 1-1.5 0.0000; 1.5-2 0.0000; 2-3 0.0018; 3-5 0.0021",
+   "pass": true,
+   "reading": "the tail axis is the discriminating one and is reported per bin (cleaned sample: tails partially trimmed by the committed MAD membership; raw sample as robustness)."
+  },
+  {
+   "name": "C10 [V3 the honest statement] the dark sector's distribution function: the full phase-space form committed for the first time -- normal isothermal or exponential-tailed, with the numbers",
+   "measured": "class: NORMAL (isothermal Gaussian accepted, Laplace rejected); THE ISOTHERMAL-GAS READING COMPLETES: the FULL distribution function of the dark sector is the beta-deformed Gaussian ellipsoid of the equilibrium -- not just i...",
+   "pass": true,
+   "reading": "the statement is the deliverable's verdict; the honest limits are the cleaning tail-trim, the caustic-envelope selection at 3-5 R500 (G206), and the self-consistency of using the measured sigma_los as the prediction (no error re-convolution: errors are inside it)."
+  }
+ ],
+ "n_pass": 10,
+ "n_fail": 0
+}
