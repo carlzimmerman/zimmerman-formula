@@ -60,6 +60,17 @@ zeros lie on Re(s)=1/2.  What is claimed, certified, and novel:
        F3  M(s) = M(3−s) NOT certified → the framework carries no
            zeta-structure.  (NOT FIRED: certified.)
 
+## VERDICT (landed, RH02_FINAL.md)
+
+**F1 FIRED**: E[ln(1+s)] on the unfolded spacings of 3000 real zeros
+= 0.6746 ± 0.0035 — 50σ from the framework's 1/2.  The exact-GUE
+benchmark by direct Monte Carlo (40×600 GUE matrices, per-matrix
+spacings) = 0.6711 ± 0.0017, matching the measurement at 1.0σ: **the
+zeros follow GUE, not the kernel's Lomax spacing law**.  The Mellin
+reflection (F3) survives, Lean-certified, as the repo's real
+RH-adjacent structure; the ladder-edge theorem (RH02L, zeta's axis =
+the l→1 edge of the framework ladder) is the new open door.
+
 ## ARTIFACTS
   RH01L_log_moment.lean   -- the Lean certificate (exit 0, zero sorry)
   RH01_log_moment_zeros.py -- the empirical lane (30k zeros, buffered)
