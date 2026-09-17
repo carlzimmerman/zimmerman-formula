@@ -1,0 +1,56 @@
+========================================================================
+SW01 -- the environmental-scalar response: the L264 first gate
+========================================================================
+
+A. controls (both a0 footings; the record's numbers reproduced)
+  [PASS] A1 a0 canonical rebuilt from (c, H0, Omega_L) at kappa = 1/2
+           (rebuilt 9.36231e-11 vs record 9.3619e-11; rel = 4.35e-05; sympy identity c*H*sqrt(3*Omega_L/8pi)/2; threshold rel < 1e-3)
+  [FAIL] A2 a0 alt footing rebuilt from (c, H0, rho_crit)
+           (rebuilt 1.13120e-10 vs record 1.1279e-10; rel = 2.92e-03; [FAIL is the finding] the record's alt number implies H0 = 67.2, not 67.4 -- a convention/rounding audit item (README rule 5); the gates below are footing-independent ratios, and the canonical footing rebuilds to 4.3e-05)
+  [PASS] A3 sympy: the kernel's deep limit nu(y)*sqrt(y) -> 1 and high limit nu -> 1
+           (deep = 1, high = 0; g^2 = a0 g_N in the deep limit; Newton-safe at high field)
+  [PASS] A4 control: nu_RAR(2.5) - 1 against the L264 record value 0.259
+           (computed 0.2590 vs record 0.259; threshold |diff| < 0.002)
+
+B. the brief's fixed first computation: response at x = 2.5, isolated vs externally fielded
+  [PASS] B[SW01-A] the gate: internal 0.2590 vs external 0.0357 departure at x = 2.5; ratio = 7.25
+           (S(2.5) = 0.13793; ratio 7.25 vs gate 6.4; (a) isolated point mass: g = nu(2.5) g_N, departure 0.2590; (b) same mass in 2.5 a0 uniform field: departure 0.0357 -- ratio = 1/S(2.5))
+  [PASS] B[SW01-B] the gate: internal 0.2590 vs external 0.0020 departure at x = 2.5; ratio = 128.00
+           (S(2.5) = 0.00781; ratio 128.00 vs gate 6.4; (a) isolated point mass: g = nu(2.5) g_N, departure 0.2590; (b) same mass in 2.5 a0 uniform field: departure 0.0020 -- ratio = 1/S(2.5))
+
+C. the point-mass quadrupole versus the 5.2e-27 s^-2 ceiling
+  [PASS] C[canonical] solar modification at 10 AU is nu(6.34e+05) - 1 = 0.0e+00; quadrupole bound <= 6.01e-05 ceilings
+           (Q_bound/Q_ceiling ~ 6.01e-05 (eta varies by 4.71e-06 across r_M = 7960 AU); scalar capping: no l=2 moment at leading order; residual = gradient of eta across the phantom's scale; a0_foot = 9.3619e-11)
+  [PASS] C[alt] solar modification at 10 AU is nu(5.26e+05) - 1 = 0.0e+00; quadrupole bound <= 5.48e-05 ceilings
+           (Q_bound/Q_ceiling ~ 5.48e-05 (eta varies by 4.29e-06 across r_M = 7252 AU); scalar capping: no l=2 moment at leading order; residual = gradient of eta across the phantom's scale; a0_foot = 1.1279e-10)
+
+D. the local dark budget: rho_dark = 1.92 * S(2.5) vs 0.015 Msun/pc^3 (L263 C1)
+  [FAIL] D[SW01-A] rho_dark = 0.2648 Msun/pc^3 = 17.7x the Oort budget
+           (17.7x vs budget (need < 3 per L263 C1); SW01-A dies here if over; SW01-B is calibrated to the budget by declaration)
+  [PASS] D[SW01-B] rho_dark = 0.0150 Msun/pc^3 = 1.0x the Oort budget
+           (1.0x vs budget (need < 3 per L263 C1); SW01-A dies here if over; SW01-B is calibrated to the budget by declaration)
+
+E. wide binaries: the stated alternative gamma_v = sqrt(1 + S(2.5)*(nu(2.5)-1))
+  [PASS] E[SW01-A] gamma_v = 1.0177 vs registered band 1.16-1.23
+           (outside the band below (stated alternative); killed at Gaia DR4 if the band confirms; the class's registered alternative; DR4 2026-12-02 decides)
+  [PASS] E[SW01-B] gamma_v = 1.0010 vs registered band 1.16-1.23
+           (outside the band below (stated alternative); killed at Gaia DR4 if the band confirms; the class's registered alternative; DR4 2026-12-02 decides)
+
+F. the BTFR slope from the deep limit
+  [PASS] F1 v = (GMa0)^(1/4) exactly => d ln v / d ln M = 1/4 (BTFR slope 4.0)
+           (v^4/(GMa0)^2 = 1; measured 3.98 +- 0.06: the internal branch is untouched by S)
+
+G. ghost and honesty findings
+  [FAIL] G1 ghost: Hamiltonian bounded below as a quadratic-form theorem
+           (OPEN -- no new propagating dof (algebraic nonlocal law), but the theorem is not written; deferred finding, not a kill; the action formulation is the open lane (G03-class))
+  [FAIL] G2 honesty: eta_c(SW01-B) has a second independent derivation
+           (declared measured from the Oort budget; no second derivation exists; the 08-09 near-miss rule (README rule 4): reported as declared, not derived)
+
+SW01 COMPLETE: 11/15 checks PASS.
+SW01-A (stress balance, eta_c = 1) -- KILLED by the Oort budget (rho_dark = 0.26 Msun/pc^3, 17.7x over)
+SW01-B (Oort-calibrated) -- standing, with declared calibration and pre-registered falsifiers
+KILLS SURVIVED: L264 local no-go (the response is nonlocal in the l=1 projection); L263 real-mass pincer (the phantom is a field response, scalar-capped); L243's quadrupole does not apply to scalar capping (it bounds vector capping).
+THE KILL IT WOULD DIE BY: an external-field effect detected at the AQUAL level -- a real Solar-System EFE quadrupole, or Gaia DR4 wide-binary gamma_v inside 1.16-1.23 -- kills every candidate in this class. Second door: satellites at eta >~ 1 showing deep-MOND dispersions (per-object Jeans per L263 E decides).
+STATUS: SW01-A KILLED; SW01-B OPEN with falsifiers: (1) gamma_v(DR4) = 1.0010 vs band 1.16-1.23, 2026-12-02; (2) any AQUAL-level EFE detection; (3) satellites at eta >~ 1 with deep-MOND sigma.
+
+(json written: SW01_envscalar_response.json)

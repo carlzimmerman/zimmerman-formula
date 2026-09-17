@@ -106,6 +106,26 @@ check("A1 curvature is O(eps), so a scalar of degree n in the Riemann tensor is 
       ord_R == 1 and ord_ric2 == 2 and ord_riem2 == 2,
       "this is the degree->eps-order dictionary the pincer runs on")
 
+# A1b -- the dictionary extends to EVERY tensor invariant, not just powers of R: every nonzero
+# Riemann COMPONENT has leading eps-order >= 1, so any degree-n contraction of them is O(eps^n).
+# This is what lets A2's R^n result stand for Riem^3, R*Ric^2, etc. without expanding them.
+_ords = []
+for a in range(4):
+    for b in range(4):
+        for c in range(4):
+            for d in range(4):
+                comp = Rmix[a][b][c][d]
+                if sp.simplify(comp) == 0:
+                    continue
+                _ords.append(leading_order(comp, nmax=3))
+_minord = min(_ords) if _ords else None
+check("A1b every NONZERO Riemann component has leading eps-order >= 1, so any degree-n contraction of "
+      "them is O(eps^n): the A2 result for R^n therefore extends to every degree-n tensor invariant "
+      "(Riem^3, R*Ric^2, ...) without expanding them",
+      f"{len(_ords)} nonzero components, minimum leading eps-order = {_minord}",
+      _minord is not None and _minord >= 1,
+      "closes the gap between 'verified on the R^n family' and the general degree-n claim")
+
 # the eps^2 coefficient of sqrt(-g) R^n : nonzero for n<=2, zero for n>=3
 res = {}
 for n in (1, 2, 3, 4):

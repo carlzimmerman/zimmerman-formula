@@ -2,7 +2,7 @@
 
 **Status:** drop-in amendment, not yet integrated. PAPER9 (`qwen_claude_field_theory/papers_2026/PAPER9_foliation_theorem_2026.tex`) is the lead track's file and is **not edited here**; this document supplies the replacement text and the supporting lane so the lead can integrate it.
 
-**Supporting lane:** `fable_independent_2026/L265_curvature_order_pincer.py` / `.out` / `.json` — 8/8 checks PASS, rc = 0; `MUTATE=1` asserts that degree-3 invariants reach the linear response and the pincer breaks (A2 FAIL, rc = 1), so the hinge is load-bearing. The curvature pipeline is validated against the exact Schwarzschild Kretschmann (Riem² = 8(A:A) = 48(GM)²/r⁶) and vacuum Ric² = 0 **before** any new claim is made.
+**Supporting lane:** `fable_independent_2026/L265_curvature_order_pincer.py` / `.out` / `.json` — 9/9 checks PASS, rc = 0; `MUTATE=1` asserts that degree-3 invariants reach the linear response and the pincer breaks (A2 FAIL, rc = 1), so the hinge is load-bearing. The curvature pipeline is validated against the exact Schwarzschild Kretschmann (Riem² = 8(A:A) = 48(GM)²/r⁶) and vacuum Ric² = 0 **before** any new claim is made.
 
 ---
 
@@ -30,9 +30,11 @@ enumeration.} The Riemann tensor is $O(h)$ about flat space, so a curvature scal
 homogeneous polynomial of degree $n$ is $O(h^{n})$, while the linearised field equations --- which
 carry both the weak-field force law and the lensing deflection --- come from the $O(h^{2})$ part of
 the action. Only degree $\le 2$ can therefore touch them: computed, the order-$h^{2}$ coefficient
-of $\sqrt{-g}\,R^{n}$ is non-zero for $n=1,2$ and \emph{exactly zero} for $n=3,4$
-(\texttt{L265\_curvature\_order\_pincer.py}, on a pipeline first validated against the exact
-Schwarzschild Kretschmann $48(GM)^{2}/r^{6}$ and vacuum $R_{\mu\nu}R^{\mu\nu}=0$). Because
+of $\sqrt{-g}\,R^{n}$ is non-zero for $n=1,2$ and \emph{exactly zero} for $n=3,4$, and every
+non-zero Riemann component carries leading order $h^{1}$, so the result extends to every degree-$n$
+tensor invariant ($R_{\mu\nu\rho\sigma}^{\ \ 3}$, $R\,R_{\mu\nu}R^{\mu\nu}$, \ldots) without
+expanding them (\texttt{L265\_curvature\_order\_pincer.py}, on a pipeline first validated against the
+exact Schwarzschild Kretschmann $48(GM)^{2}/r^{6}$ and vacuum $R_{\mu\nu}R^{\mu\nu}=0$). Because
 $\dal^{-1}$ is \emph{linear} it preserves $h$-degree, so the $\dal^{-1}$ dressing that makes the
 quadratic invariant coherent-dominated cannot promote a cubic invariant into the linear response ---
 which is precisely why L59's mechanism does not extend upward. The separation itself is real and was
