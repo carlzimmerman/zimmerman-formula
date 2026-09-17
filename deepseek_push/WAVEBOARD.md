@@ -2151,3 +2151,17 @@ RH05 GENERAL LADDER, Lean exit 0 ZERO sorry, 16 theorems: E[ln(1+u)]_l = 1/(l-1)
 RH06 MOMENT SPINE (second falsifier landet): k_n = n!/(l-1)^n sympy-exact; empirical k2=0.49191 k3=0.38104 k4=0.31042 (1500 true zeros, unfolded); framework spine n!*0.6746^n dies at 62/192/570 sigma; GUE wins k2 (z=0.45) and k3 (z=1.49), k4 marginal (z=2.05-2.33).  THE single-moment pin (k1) was a coincidence of ONE number; the class-level claim is dead, not just the member.
 RH07 REFEREE: independent re-measurement 0.674564+/-0.003501 (z vs 1/2 = 49.9) confirms the flagship; every claim classified (certified/measured/coincidence/unproven); costs admitted: RH03 max-entropy self-test over-sold (GUE entropy < Lomax at same kappa => zeros NOT max-entropy at their own kappa), RH02b 'supremum' is a MINIMUM (fixed+re-verified), the 'wrong member not wrong class' spin was not earned (k2..4 kill the class too).
 INTEGRATED LEDGER (RH08): PROVEN = reflection M(s)=M(3-s) + general ladder + moment identity + axis census pi/pi/8/pi/4 + exact Li constants; MEASURED = zeros' spacings = GUE (0.6746 vs 0.6711, 1.0 sigma), spine k2 k3 = GUE; KILLED = F1 (50 sigma), F2 (62-570 sigma), the change-of-class spin; NOT PROVEN = RH, nothing in the lane touches a single zero's location.  KEEP the kill discipline + .lean walls + measurement pipeline; BURN any 'closer to RH' presentation not in the ledger.
+
+WAVE 40 -- THE THIRD FALSIFIER: THE REPULSION CHANNEL (RH09, pushed 567fbfb10)
+The framework ladder f_l = (l-1)(1+u)^-l has p(0) -> (l-1) > 0 at EVERY rung:
+ZERO level repulsion.  The zeros: measured small-s CDF vs exact-GUE MC vs the
+ladder at its own measured pin l=2.4824 (N=3000 true zeros, unfolded):
+  F_emp/F_GUE = 0.703  (zeros repel MORE than GUE at N=3000 -- the documented
+  finite-N early-convergence direction, opposite to the ladder)
+  F_emp/F_LADDER = 0.070 (the ladder over-predicts small spacings ~14x at every bin)
+K1 FIRES: no Lomax rung has p(0) -> 0; the ENTIRE spacing class is excluded at
+the repulsion channel, independently of F1 (log-moment, 50 sigma) and F2
+(moment spine, 62-570 sigma).  v1 of the lane FAILED honestly (the 0.004-0.06
+fit band came back empty -- which IS the repulsion signal; the CDF-slope method
+is the correct fix), and the 0.80-0.90 ratio text was corrected in-file to the
+computed 0.703.  Pair correlation registered OPEN (N-limited; needs 5e4+ cache).
