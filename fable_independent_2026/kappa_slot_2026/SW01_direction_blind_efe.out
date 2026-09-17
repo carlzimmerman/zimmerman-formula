@@ -1,0 +1,44 @@
+SW01 -- the direction-blind external-field rule: three numbers
+
+====================================================================================================
+N1. internal response at x = 2.5 versus the anisotropic external response (shell theorem + tidal residual)
+====================================================================================================
+  [PASS] N1a (shell theorem) the interior potential of a spherical phantom shell is r-independent: d phi/dr = d^2 phi/dr^2 = 0 exactly
+           (a direction-blind cap gives a spherical phantom around a point mass: Q2 = 0 at leading order)
+    canonical nu_RAR: eta = 2.48; internal nu(2.5)-1 = 0.259; capped nu(sqrt(2.5^2+eta^2))-1 = 0.181; tidal l=2 modulation eps2 = 4.2e-10; anisotropic external response = 6.5e-12; anisotropic/internal = 2.5e-11
+    canonical mu_2  : eta = 2.48; internal nu(2.5)-1 = 0.192; capped nu(sqrt(2.5^2+eta^2))-1 = 0.127; tidal l=2 modulation eps2 = 4.2e-10; anisotropic external response = 3.8e-12; anisotropic/internal = 2.0e-11
+    alt       nu_RAR: eta = 2.06; internal nu(2.5)-1 = 0.259; capped nu(sqrt(2.5^2+eta^2))-1 = 0.198; tidal l=2 modulation eps2 = 3.5e-10; anisotropic external response = 5.0e-12; anisotropic/internal = 1.9e-11
+    alt       mu_2  : eta = 2.06; internal nu(2.5)-1 = 0.192; capped nu(sqrt(2.5^2+eta^2))-1 = 0.141; tidal l=2 modulation eps2 = 3.5e-10; anisotropic external response = 3.1e-12; anisotropic/internal = 1.6e-11
+  [PASS] N1b the anisotropic external response at x = 2.5 is <= 1/6.4 of the internal response on both footings and both kernels (the L264 gate)
+           (max ratio 2.5e-11 (AQUAL: order 1))
+
+====================================================================================================
+N2. the Sun's external-field quadrupole under the rule, versus Cassini and versus AQUAL (L243)
+====================================================================================================
+    canonical nu_RAR: M_ph,max = 0.261 M_sun (the cap: nu(eta) - 1); Q2 = 1.8e-36 s^-2  vs ceiling 5.2e-27 (3.5e-10x)  vs AQUAL 3.35e-26 (5.4e-11x)
+    canonical mu_2  : M_ph,max = 0.194 M_sun (the cap: nu(eta) - 1); Q2 = 1.2e-36 s^-2  vs ceiling 5.2e-27 (2.3e-10x)  vs AQUAL 3.35e-26 (3.6e-11x)
+    alt       nu_RAR: M_ph,max = 0.313 M_sun (the cap: nu(eta) - 1); Q2 = 2.6e-36 s^-2  vs ceiling 5.2e-27 (4.9e-10x)  vs AQUAL 3.35e-26 (7.7e-11x)
+    alt       mu_2  : M_ph,max = 0.240 M_sun (the cap: nu(eta) - 1); Q2 = 1.9e-36 s^-2  vs ceiling 5.2e-27 (3.6e-10x)  vs AQUAL 3.35e-26 (5.5e-11x)
+  [PASS] N2 the rule's solar quadrupole is below the Cassini ceiling on both footings and both kernels
+           (max Q2/ceiling = 4.9e-10; the vector-sum (AQUAL) anisotropy is replaced by the Galaxy's tide, (T r_M/g_ext)^2 ~ 1e-9)
+  [FAIL] N2 control: AQUAL's own quadrupole (L243, the vector-sum rule) is below the ceiling
+           (6.44x: the difference between the two rules is the whole result. [FAIL is the control])
+
+====================================================================================================
+N3. the outer decline the rule predicts, the wide-binary ratio at the solar eta, the local dark budget
+====================================================================================================
+    canonical nu_RAR: d ln g/d ln g_N at x = 0.05: isolated 0.55 (deep-MOND 0.5) -> in eta = 0.5: 1.00 (toward Keplerian 1.0: the decline);  wide binaries gamma_v = sqrt(nu(eta)) = 1.123 [1.116, 1.132];  phantom per star 0.261 M_* -> 0.0105 M_sun/pc^3 (Oort dark budget 0.010-0.015)
+    canonical mu_2  : d ln g/d ln g_N at x = 0.05: isolated 0.54 (deep-MOND 0.5) -> in eta = 0.5: 1.00 (toward Keplerian 1.0: the decline);  wide binaries gamma_v = sqrt(nu(eta)) = 1.093 [1.086, 1.100];  phantom per star 0.194 M_* -> 0.0078 M_sun/pc^3 (Oort dark budget 0.010-0.015)
+    alt       nu_RAR: d ln g/d ln g_N at x = 0.05: isolated 0.55 (deep-MOND 0.5) -> in eta = 0.5: 1.00 (toward Keplerian 1.0: the decline);  wide binaries gamma_v = sqrt(nu(eta)) = 1.146 [1.137, 1.155];  phantom per star 0.313 M_* -> 0.0125 M_sun/pc^3 (Oort dark budget 0.010-0.015)
+    alt       mu_2  : d ln g/d ln g_N at x = 0.05: isolated 0.54 (deep-MOND 0.5) -> in eta = 0.5: 1.00 (toward Keplerian 1.0: the decline);  wide binaries gamma_v = sqrt(nu(eta)) = 1.113 [1.106, 1.122];  phantom per star 0.240 M_* -> 0.0096 M_sun/pc^3 (Oort dark budget 0.010-0.015)
+  [PASS] N3a the rule reproduces the tested external-field phenomenology: the outer log-slope moves from the deep-MOND 0.5 toward Keplerian as eta rises (s_env - s_iso > 0.1)
+  [FAIL] N3b the rule's wide-binary ratio lies INSIDE the registered AQUAL-type band [1.16, 1.23] (if it does, DR4 cannot separate the rules)
+           (no: gamma_v = 1.09-1.12 (canonical) / 1.10-1.14 (alt), below the band -- Gaia DR4 separates the isotropic and anisotropic external-field rules. [FAIL is the finding: a NEW discriminating prediction])
+  [PASS] N3c the phantom the rule puts around ordinary stars fits the Oort-limit dark budget (<= 0.015 M_sun/pc^3)
+
+SW01 COMPLETE: 5/7 checks PASS (N2-control and N3b are designed to FAIL).
+RESULT: a direction-blind external-field rule keeps the RAR (26% at x = 2.5), keeps the tested EFE phenomenology (the declines, the cap, the
+local budget), and reduces the solar quadrupole from 6.4x the Cassini ceiling to ~1e-9 of it, because the anisotropy source changes from the
+vector sum g_own + g_ext to the Galactic tide.  It predicts gamma_v = sqrt(nu(eta_sun)) = 1.09-1.12 for wide binaries, below the AQUAL-type
+band 1.16-1.23: Gaia DR4 decides between the two realisations of the external-field effect.  OPEN: the covariant theory whose EFE is
+magnitude-only does not exist on the record; this lane specifies what it must do.  Nothing here derives kappa.
