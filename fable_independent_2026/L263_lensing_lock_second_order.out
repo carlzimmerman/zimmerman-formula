@@ -1,0 +1,104 @@
+
+L263 -- THE MISSING COMPUTATION L39 NAMED (D6.1), RUN.
+
+L39 closed L31's locality hypothesis against the known nonlocal class using the "lensing lock": every
+covariant scalar whose flat-space expansion BEGINS AT FIRST ORDER in h_mn carries the one combination
+the Ricci scalar carries, so Tully-Fisher and lensing cannot be modified separately.  It then named the
+gap, verbatim:
+
+  "Scalars beginning at SECOND order -- Kretschmann, R_mn R^mn, C^2 -- DO separate Psi from Phi, and are
+   not covered. ... THE MISSING COMPUTATION IS THEREFORE EXACTLY THIS: is there a nonlocal scalar,
+   quadratic or higher in curvature, that BOTH separates the Newtonian from the lensing potential AND
+   remains sensitive to the coherent coarse-grained field rather than to the nearest star?  If no,
+   hypothesis (iv) is removable outright and L31 becomes a theorem in (i)-(iii).  If yes, that object is
+   a live candidate for a frame-free MOND theory and should be built."
+
+This lane runs it.  Static weak field, Newtonian gauge ds^2 = -(1+2Phi)dt^2 + (1-2Psi)delta_ij dx^i dx^j,
+A := Hess(Phi), B := Hess(Psi), both traceless (vacuum).  Curvature is computed from the metric via
+Christoffels (no hand-written Riemann) and VALIDATED against the exact Schwarzschild Kretschmann.
+
+  A  THE COHERENCE HALF -- L39's conjectured obstruction is REFUTED.
+     Exact vacuum identity  lap(|grad Phi|^2) = 2 Phi_,ij Phi_,ij  =>  lap^-1[Phi_,ij Phi_,ij] = |grad Phi|^2/2.
+     So a NONLOCAL curvature-built scalar returns the COHERENT acceleration of the TOTAL field, not the
+     nearest star.  Verified for one mass, TWO masses (the coherence test) and a harmonic field, with a
+     non-vacuum control fixing the correction term exactly.
+  B  THE SEPARATION HALF at QUADRATIC order -- NO.  R^2 = 0, Ric^2 = |A-B|^2, Riem^2 = 4(|A|^2+|B|^2):
+     the coefficient matrix is SINGULAR, so Phi_,ij Phi_,ij cannot be isolated.  Only |A|^2+|B|^2 and
+     |A-B|^2 are available, both symmetric under Phi <-> Psi.
+  C  THE SEPARATION HALF at CUBIC order -- GENERICALLY YES.  A second independent cubic Riemann
+     contraction breaks the Phi<->Psi degeneracy on 7 of 8 random configurations.  Degenerate pairs
+     exist (measure zero) but do not close the door.
+
+  VERDICT: L39's D6(1) is answered GENERICALLY YES.  Hypothesis (iv) is NOT removable by this route;
+  L31 stays "proved under locality".  The compensating gain is that the obstruction L39 CONJECTURED
+  (nearest-star domination) is wrong, and the live target is now explicit.
+
+Run:  python3 fable_independent_2026/L263_lensing_lock_second_order.py
+      MUTATE=1 ...  (breaks the vacuum condition; the identity of Part A must fail)
+
+
+====================================================================================================
+PART A -- the coherence half: lap^-1 of a tidal invariant IS the coherent acceleration
+====================================================================================================
+   point mass -1/r                vacuum residual = 1.471e-15   (lap Phi = 0)
+   TWO masses (coherence test)    vacuum residual = 3.467e-15   (lap Phi = (3.46944695195361e-18 - 8.67361737988404e-19*x)/(sqrt(0.0204081632653061*x**2 - 0.285714285714286*x + 0.0204081632653061*y**2 + 0.0204081632653061*z**2 + 1)*(0.00041649312786339*x**4 - 0.0116618075801749*x**3 + 0.000832986255726781*x**2*y**2 + 0.000832986255726781*x**2*z**2 + 0.122448979591837*x**2 - 0.0116618075801749*x*y**2 - 0.0116618075801749*x*z**2 - 0.571428571428571*x + 0.00041649312786339*y**4 + 0.000832986255726781*y**2*z**2 + 0.0408163265306122*y**2 + 0.00041649312786339*z**4 + 0.0408163265306122*z**2 + 1.0)))
+   harmonic quadratic             vacuum residual = 0.000e+00   (lap Phi = 0)
+  [PASS] A1 the vacuum identity lap(|grad Phi|^2) = 2 Phi_,ij Phi_,ij holds EXACTLY -- including for the TWO-mass field, so lap^-1 returns the COHERENT total acceleration, not the nearest mass
+         measured: max relative residual over 12 points x 3 fields = 3.467e-15
+         reading:  => lap^-1[Phi_,ij Phi_,ij] = |grad Phi|^2 / 2 : a nonlocal curvature-built scalar equal to the coherent acceleration squared.  L39's conjectured 'nearest-star' obstruction is REFUTED.
+  [PASS] A2 CONTROL (non-vacuum): with lap Phi != 0 the identity acquires exactly 2 gradPhi.grad(lapPhi) and nothing else
+         measured: max residual against the predicted correction = 0.000e+00
+         reading:  the correction term is pinned, so A1 is a vacuum statement and not an accident
+
+====================================================================================================
+PART B -- separation at QUADRATIC order in curvature (validated pipeline)
+====================================================================================================
+  [PASS] B0 VALIDATION: the pipeline reproduces the EXACT Schwarzschild Kretschmann.  For A=B=Hess(-GM/r), A:A = 6(GM)^2/r^6 and Riem^2 = 8(A:A) = 48(GM)^2/r^6; and Ric^2 = 0, R = 0 (vacuum GR)
+         measured: Riem^2 = 48*k**2 vs 8*(A:A) = 48*k**2; Ric^2 = 0; R = 0
+         reading:  the curvature machinery is anchored on a known exact result before any new claim is made
+        R = 0*(A:A) + 0*(B:B) + 0*(A:B)
+     Ric2 = 1*(A:A) + 1*(B:B) + -2*(A:B)
+    Riem2 = 4*(A:A) + 4*(B:B) + 0*(A:B)
+  [PASS] B1 at QUADRATIC order in curvature the coefficient matrix is SINGULAR: only |A|^2+|B|^2 and |A-B|^2 are available (both Phi<->Psi symmetric), so Phi_,ij Phi_,ij CANNOT be isolated
+         measured: R^2 = 0, Ric^2 = |A-B|^2, Riem^2 = 4(|A|^2+|B|^2); det(coeff matrix) = 0
+         reading:  the lensing lock EXTENDS to quadratic order -- L39's 'Kretschmann separates Psi from Phi' is, at this order, not the case
+
+====================================================================================================
+PART C -- separation at CUBIC order: generically YES (this is what reopens the gap)
+====================================================================================================
+   seed 1: |A|^2=60 |B|^2=52  invariants degenerate under Phi<->Psi: False
+   seed 2: |A|^2=40 |B|^2=64  invariants degenerate under Phi<->Psi: False
+   seed 3: |A|^2=30 |B|^2=12  invariants degenerate under Phi<->Psi: False
+   seed 4: |A|^2=24 |B|^2=72  invariants degenerate under Phi<->Psi: False
+   seed 5: |A|^2=10 |B|^2=36  invariants degenerate under Phi<->Psi: False
+   seed 6: |A|^2=52 |B|^2=56  invariants degenerate under Phi<->Psi: True
+   seed 7: |A|^2=34 |B|^2=58  invariants degenerate under Phi<->Psi: False
+   seed 8: |A|^2=38 |B|^2=24  invariants degenerate under Phi<->Psi: False
+  [PASS] C1 at CUBIC order a second independent Riemann contraction BREAKS the Phi<->Psi degeneracy on a generic configuration (threshold: separation on > half of the sampled pairs)
+         measured: 7/8 random pairs separated (0.88)
+         reading:  so curvature scalars DO generically distinguish the Newtonian from the lensing potential at cubic order -- the second-order/higher escape L39 named is NOT closed
+  [PASS] C2 AGAINST THE EASY CONCLUSION: degenerate pairs DO exist (measure zero), so |grad Phi|^2 is not a GLOBAL function of the curvature invariants -- but a measure-zero degeneracy does not close a door
+         measured: 1/8 sampled pairs were fully degenerate
+         reading:  recorded explicitly because an earlier draft of this lane mistook one such pair for a theorem; the robustness scan overturned it
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  (1) COMPUTED: L39's D6(1), both halves, on a Schwarzschild-validated curvature pipeline.
+  (2) NUMBERS: the vacuum identity holds to <1e-12 including the two-mass field; at quadratic order the
+      coefficient matrix is singular (R^2=0, Ric^2=|A-B|^2, Riem^2=4(|A|^2+|B|^2)); at cubic order a
+      second Riemann contraction separates 7 of 8 random pairs.
+  (3) HONEST SENTENCE: L39's D6(1) answers GENERICALLY YES.  Therefore hypothesis (iv) is NOT removable by
+      this route and L31 remains PROVED UNDER LOCALITY -- the theorem is not strengthened.  What IS
+      established, and is new: (a) the obstruction L39 CONJECTURED is wrong -- lap^-1 of a tidal invariant
+      returns the coherent acceleration of the total field exactly, so nonlocal curvature scalars are NOT
+      nearest-star dominated; (b) the lensing lock nevertheless extends to QUADRATIC order, by a
+      Phi<->Psi degeneracy, which was not previously known; (c) the live target is now explicit: a
+      nonlocal functional of CUBIC curvature invariants, which is where separation first becomes possible.
+      NOT CLAIMED: that such a theory exists, is ghost-free, or has two propagating modes.  Cubic-curvature
+      nonlocal actions generically carry Ostrogradsky ghosts, and that is the next gate, not this lane.
+
+====================================================================================================
+RESULT
+====================================================================================================
+L263 COMPLETE: 6/6 checks PASS

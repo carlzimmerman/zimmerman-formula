@@ -1,0 +1,59 @@
+{
+  "lane": "L263",
+  "mutate": true,
+  "checks": {
+    "A1 the vacuum identity lap(|grad Phi|^2) = 2 Phi_,ij Phi_,ij holds EXACTLY -- including for the TWO-mass field, so lap^-1 returns the COHERENT total acceleration, not the nearest mass [MUTATE must break this]": {
+      "ok": false,
+      "measured": "max relative residual over 12 points x 3 fields = 1.024e+00",
+      "load_bearing": true
+    },
+    "A2 CONTROL (non-vacuum): with lap Phi != 0 the identity acquires exactly 2 gradPhi.grad(lapPhi) and nothing else": {
+      "ok": true,
+      "measured": "max residual against the predicted correction = 0.000e+00",
+      "load_bearing": true
+    },
+    "B0 VALIDATION: the pipeline reproduces the EXACT Schwarzschild Kretschmann.  For A=B=Hess(-GM/r), A:A = 6(GM)^2/r^6 and Riem^2 = 8(A:A) = 48(GM)^2/r^6; and Ric^2 = 0, R = 0 (vacuum GR)": {
+      "ok": true,
+      "measured": "Riem^2 = 48*k**2 vs 8*(A:A) = 48*k**2; Ric^2 = 0; R = 0",
+      "load_bearing": true
+    },
+    "B1 at QUADRATIC order in curvature the coefficient matrix is SINGULAR: only |A|^2+|B|^2 and |A-B|^2 are available (both Phi<->Psi symmetric), so Phi_,ij Phi_,ij CANNOT be isolated": {
+      "ok": true,
+      "measured": "R^2 = 0, Ric^2 = |A-B|^2, Riem^2 = 4(|A|^2+|B|^2); det(coeff matrix) = 0",
+      "load_bearing": true
+    },
+    "C1 at CUBIC order a second independent Riemann contraction BREAKS the Phi<->Psi degeneracy on a generic configuration (threshold: separation on > half of the sampled pairs)": {
+      "ok": true,
+      "measured": "7/8 random pairs separated (0.88)",
+      "load_bearing": true
+    },
+    "C2 AGAINST THE EASY CONCLUSION: degenerate pairs DO exist (measure zero), so |grad Phi|^2 is not a GLOBAL function of the curvature invariants -- but a measure-zero degeneracy does not close a door": {
+      "ok": true,
+      "measured": "1/8 sampled pairs were fully degenerate",
+      "load_bearing": true
+    }
+  },
+  "numbers": {
+    "A_vacuum_residual": 1.0244283741074536,
+    "quadratic_det": "0",
+    "cubic_separated": 7,
+    "cubic_total": 8,
+    "cubic_fraction": 0.875
+  },
+  "verdict": {
+    "word": "GENERICALLY-YES-GAP-STAYS-OPEN",
+    "hypothesis_iv_removable": false,
+    "new": [
+      "nearest-star obstruction refuted by the vacuum identity",
+      "lensing lock extends to quadratic order via a Phi<->Psi degeneracy",
+      "live target: nonlocal functional of cubic curvature invariants"
+    ]
+  },
+  "summary": {
+    "pass": 5,
+    "n": 6,
+    "load_bearing_fail": [
+      "A1 the vacuum identity lap(|grad Phi|^2) = 2 Phi_,ij Phi_,ij holds EXACTLY -- including for the TWO-mass field, so lap^-1 returns the COHERENT total acceleration, not the nearest mass [MUTATE must break this]"
+    ]
+  }
+}
