@@ -1,0 +1,85 @@
+==============================================================================
+RH10 -- THE RAR OF THE RIEMANN ZEROS (pre-registered above)
+==============================================================================
+
+--- computing N = 500 zeta zeros (mpmath zetazero, dps=15) ---
+  [PASS] zero sanity: gamma_1 = 14.134725 (14.1347...), gamma_100 = 236.524230 (236.5242...)
+  zeros computed in 31.4s; gamma_500 = 811.184 (data reach t ~ 811, truncating the nominal [100,2000] range)
+
+--- window analysis: L = 25 (primary): 28 non-overlapping windows, t in [112.5, 787.5] ---
+  mean counts/window 16.5 (range 11-20); mean rho_bar 0.6596
+  t= 112.5  m= 12  rho_obs=0.4800  rho_bar=0.4592  q=+1.9559e-02
+  t= 162.5  m= 14  rho_obs=0.5600  rho_bar=0.5177  q=+4.5587e-02
+  t= 212.5  m= 15  rho_obs=0.6000  rho_bar=0.5604  q=+4.5958e-02
+  t= 262.5  m= 14  rho_obs=0.5600  rho_bar=0.5940  q=-3.9267e-02
+  t= 312.5  m= 16  rho_obs=0.6400  rho_bar=0.6218  q=+2.2996e-02
+  t= 362.5  m= 16  rho_obs=0.6400  rho_bar=0.6454  q=-6.9370e-03
+  t= 412.5  m= 16  rho_obs=0.6400  rho_bar=0.6660  q=-3.3905e-02
+  t= 462.5  m= 17  rho_obs=0.6800  rho_bar=0.6842  q=-5.6892e-03
+  t= 512.5  m= 18  rho_obs=0.7200  rho_bar=0.7005  q=+2.7688e-02
+  t= 562.5  m= 17  rho_obs=0.6800  rho_bar=0.7153  q=-4.9289e-02
+  t= 612.5  m= 18  rho_obs=0.7200  rho_bar=0.7289  q=-1.2862e-02
+  t= 662.5  m= 19  rho_obs=0.7600  rho_bar=0.7414  q=+2.7976e-02
+  t= 712.5  m= 20  rho_obs=0.8000  rho_bar=0.7529  q=+7.3071e-02
+  t= 762.5  m= 19  rho_obs=0.7600  rho_bar=0.7637  q=-5.7001e-03
+  [D3] OLS on 13/28 windows (q>0; excluded fraction 0.54 -- intercept/A biased upward by that selection):
+       gamma = +0.482 +- 1.218 (OLS SE); bootstrap 95% CI [-1.860, +2.320] (half-width 2.090)
+       A = 3.764e-02 (ln A = -3.280 +- 0.562); bootstrap 95% [1.06e-02, 8.78e-02]
+  [D6] GUE null E[q] = ln(L rho)/pi^2/L^2 (bins of mean q, negatives included):
+       rho~0.561: E_GUE[q]=4.28e-04  mean q=+2.27e-04 (z=-0.0)
+       rho~0.683: E_GUE[q]=4.60e-04  mean q=-3.33e-03 (z=-0.4)
+       rho~0.747: E_GUE[q]=4.74e-04  mean q=+7.59e-03 (z=+0.5)
+
+--- window analysis: L = 50 (robustness): 14 non-overlapping windows, t in [125.0, 775.0] ---
+  mean counts/window 33.0 (range 23-39); mean rho_bar 0.6597
+  t= 125.0  m= 23  rho_obs=0.4600  rho_bar=0.4759  q=-1.4922e-02
+  t= 175.0  m= 27  rho_obs=0.5400  rho_bar=0.5295  q=+1.1236e-02
+  t= 225.0  m= 29  rho_obs=0.5800  rho_bar=0.5695  q=+1.2079e-02
+  t= 275.0  m= 30  rho_obs=0.6000  rho_bar=0.6014  q=-1.7176e-03
+  t= 325.0  m= 31  rho_obs=0.6200  rho_bar=0.6280  q=-1.0006e-02
+  t= 375.0  m= 33  rho_obs=0.6600  rho_bar=0.6508  q=+1.2069e-02
+  t= 425.0  m= 33  rho_obs=0.6600  rho_bar=0.6707  q=-1.4256e-02
+  t= 475.0  m= 34  rho_obs=0.6800  rho_bar=0.6884  q=-1.1515e-02
+  t= 525.0  m= 36  rho_obs=0.7200  rho_bar=0.7043  q=+2.2300e-02
+  t= 575.0  m= 36  rho_obs=0.7200  rho_bar=0.7188  q=+1.6947e-03
+  t= 625.0  m= 36  rho_obs=0.7200  rho_bar=0.7321  q=-1.7560e-02
+  t= 675.0  m= 37  rho_obs=0.7400  rho_bar=0.7443  q=-6.4443e-03
+  t= 725.0  m= 38  rho_obs=0.7600  rho_bar=0.7557  q=+6.4955e-03
+  t= 775.0  m= 39  rho_obs=0.7800  rho_bar=0.7663  q=+2.1140e-02
+  [D3] OLS on 7/14 windows (q>0; excluded fraction 0.50 -- intercept/A biased upward by that selection):
+       gamma = -0.826 +- 2.725 (OLS SE); bootstrap 95% CI [-5.958, +2.345] (half-width 4.152)
+       A = 6.977e-03 (ln A = -4.965 +- 1.168); bootstrap 95% [4.94e-04, 4.25e-02]
+  [D6] GUE null E[q] = ln(L rho)/pi^2/L^2 (bins of mean q, negatives included):
+       rho~0.561: E_GUE[q]=1.35e-04  mean q=-6.66e-04 (z=-0.1)
+       rho~0.687: E_GUE[q]=1.43e-04  mean q=+2.06e-03 (z=+0.3)
+       rho~0.750: E_GUE[q]=1.47e-04  mean q=+9.08e-04 (z=+0.1)
+
+--- D5 universality of A (must be window-length independent) ---
+  A(L=50)/A(L=25) = 0.19  (ln ratio -1.69 +- 1.34, z = -1.3)
+  [PASS] D5 universality of A: ln[A(L=50)/A(L=25)] = -1.69 +- 1.34 (|z| = 1.3 < 2) -> L-dependence NOT refuted, but per-leg SE of ln A ~ 0.6 means A is only determined to ~e^0.6: LOW POWER -- universality is unconstrained, not established
+
+--- 2b Milgrom check: nu = sqrt(1 + 1/y), y = rho_bar/A ---
+  A fixed = 3.764e-02; y = rho_bar/A in [12, 20] (huge -> nu_model-1 = 1/2y in [2.45e-02, 4.10e-02])
+  chi2 = 68.7 on df = 28 -> chi2/df = 2.45, p = 2.86e-05
+  (sigma_nu uses the bare GUE asymptotic number-variance ln(L rho)/pi^2; the
+   standard form adds ln(2pi)+const terms (~1.7x at these L rho), which would
+   bring chi2/df toward ~1 -- i.e. the deviations are ordinary GUE noise,
+   not a RAR signal, under either reading)
+  signal/noise = median|nu_model-1| / median sigma_nu = 8.66e-01
+  [FAIL] D7 informativeness gate: S = 8.66e-01 <= 1 -> UNINFORMATIVE: the Milgrom form is indistinguishable from nu = 1 at these y (chi2/df ~ 1 would then be the NULL, not a RAR validation)
+
+--- diagnostic (not gated): the S-shift delta_n = gamma_n - N^-1(n) ---
+  rms(delta_n * rho) = 0.5008 (S-fluctuation amplitude scale; GUE expectation ~ (1/pi) sqrt(ln n) scale ~ 0.1-0.3)
+
+==============================================================================
+VERDICT (pre-registered branches; power gate D4 applies)
+==============================================================================
+  primary (L=25): gamma = +0.482 +- 2.090 (95% CI half-width), A = 3.764e-02, 13/28 windows used
+  L=50 leg      : gamma = -0.826 +- 4.152, A = 6.977e-03
+  autocorr of count deviations: r1 = -0.61 -> N_eff = 28 of 28 windows
+  universality: A consistent across L (within 2 sigma); Milgrom leg: uninformative (signal below noise floor)
+  VERDICT: [INCONCLUSIVE] power gate: bootstrap 95% CI half-width of gamma 2.09 > 0.30 -> the ~500-zero budget cannot resolve gamma to +-0.15; gamma = +0.48 (+-2.09), A = 3.76e-02; no claim.
+  HONESTY: real mpmath zeros (dps=15), N=500; no RH claim; runtime 32s; checks 2/3
+
+=== WRITTEN /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/riemann_attemp/RH10_results.json ===
+DONE

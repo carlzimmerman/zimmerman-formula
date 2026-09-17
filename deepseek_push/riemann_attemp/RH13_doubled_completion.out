@@ -1,0 +1,228 @@
+==============================================================================
+RH13 PRE-REGISTRATION (before any computation)
+K1: doubled-symmetry identities fail numerically (residual > 1e-22 at 30 dps) -> error in my algebra -> [FAIL] and re-derivation
+K2: honest conclusion: NO new zero control follows from the doubled symmetry; two reflection axes, no zero placement (certified h0 counterexample in Lean RH13L)
+==============================================================================
+
+V0 -- SANITY: Xi(s) = Xi(1-s) (classical FE), 10 s-values
+[PASS]   V0 s=0.55: |residual| = 0.0 (thresh 9.94e-21, scale 0.994)
+[PASS]   V0 s=0.6: |residual| = 9.86076e-32 (thresh 9.94e-21, scale 0.994)
+[PASS]   V0 s=0.65: |residual| = 1.97215e-31 (thresh 9.95e-21, scale 0.995)
+[PASS]   V0 s=0.7: |residual| = 9.86076e-32 (thresh 9.95e-21, scale 0.995)
+[PASS]   V0 s=0.75: |residual| = 2.95823e-31 (thresh 9.96e-21, scale 0.996)
+[PASS]   V0 s=0.8: |residual| = 1.97215e-31 (thresh 9.96e-21, scale 0.996)
+[PASS]   V0 s=0.85: |residual| = 9.86076e-32 (thresh 9.97e-21, scale 0.997)
+[PASS]   V0 s=0.9: |residual| = 1.97215e-31 (thresh 9.98e-21, scale 0.998)
+[PASS]   V0 s=0.95: |residual| = 2.95823e-31 (thresh 9.99e-21, scale 0.999)
+[PASS]   V0 s=0.99: |residual| = 1.97215e-31 (thresh 1.0e-20, scale 1.0)
+
+V1 -- MELLIN: ∫ u^(s-1)(1+u)^(-l) du  =  Gamma(s)Gamma(l-s)/Gamma(l)
+[PASS]   V1 l=2.0 s=0.6: ∫ vs B_l: |residual| = 5.46011e-21 (thresh 1.32e-13, scale 1.32)
+[PASS]   V1 l=2.0 s=0.7: ∫ vs B_l: |residual| = 1.70247e-24 (thresh 1.16e-13, scale 1.16)
+[PASS]   V1 l=2.0 s=0.8: ∫ vs B_l: |residual| = 5.35045e-28 (thresh 1.07e-13, scale 1.07)
+[PASS]   V1 l=2.0 s=0.9: ∫ vs B_l: |residual| = 1.97215e-31 (thresh 1.02e-13, scale 1.02)
+[PASS]   V1 l=2.5 s=0.6: ∫ vs B_l: |residual| = 5.46011e-21 (thresh 1.08e-13, scale 1.08)
+[PASS]   V1 l=2.5 s=0.7: ∫ vs B_l: |residual| = 1.70247e-24 (thresh 1.0e-13, scale 1.0)
+[PASS]   V1 l=2.5 s=0.8: ∫ vs B_l: |residual| = 5.34946e-28 (thresh 1.0e-13, scale 1.0)
+[PASS]   V1 l=2.5 s=0.9: ∫ vs B_l: |residual| = 9.86076e-32 (thresh 1.0e-13, scale 1.0)
+[PASS]   V1 l=3.0 s=0.6: ∫ vs B_l: |residual| = 5.46011e-21 (thresh 1.0e-13, scale 1.0)
+[PASS]   V1 l=3.0 s=0.7: ∫ vs B_l: |residual| = 1.70247e-24 (thresh 1.0e-13, scale 1.0)
+[PASS]   V1 l=3.0 s=0.8: ∫ vs B_l: |residual| = 5.34946e-28 (thresh 1.0e-13, scale 1.0)
+[PASS]   V1 l=3.0 s=0.9: ∫ vs B_l: |residual| = 1.97215e-31 (thresh 1.0e-13, scale 1.0)
+
+V2 -- AXIS A (s -> 1-s): P_l(s) = P_l(1-s) * R_l(s),  R_l = B_l(s)/B_l(1-s)
+[PASS]   AXIS A l=2.0 s=0.55: P(s) - P(1-s)R(s): |residual| = 0.0 (thresh 1.42e-20, scale 1.42)
+[PASS]   AXIS A-cancel l=2.0 s=0.55: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.0 s=0.6: P(s) - P(1-s)R(s): |residual| = 0.0 (thresh 1.31e-20, scale 1.31)
+[PASS]   AXIS A-cancel l=2.0 s=0.6: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.0 s=0.65: P(s) - P(1-s)R(s): |residual| = 3.9443e-31 (thresh 1.23e-20, scale 1.23)
+[PASS]   AXIS A-cancel l=2.0 s=0.65: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.0 s=0.7: P(s) - P(1-s)R(s): |residual| = 1.97215e-31 (thresh 1.16e-20, scale 1.16)
+[PASS]   AXIS A-cancel l=2.0 s=0.7: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.0 s=0.75: P(s) - P(1-s)R(s): |residual| = 3.9443e-31 (thresh 1.11e-20, scale 1.11)
+[PASS]   AXIS A-cancel l=2.0 s=0.75: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.0 s=0.8: P(s) - P(1-s)R(s): |residual| = 1.97215e-31 (thresh 1.07e-20, scale 1.07)
+[PASS]   AXIS A-cancel l=2.0 s=0.8: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.0 s=0.85: P(s) - P(1-s)R(s): |residual| = 0.0 (thresh 1.03e-20, scale 1.03)
+[PASS]   AXIS A-cancel l=2.0 s=0.85: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.0 s=0.9: P(s) - P(1-s)R(s): |residual| = 1.97215e-31 (thresh 1.01e-20, scale 1.01)
+[PASS]   AXIS A-cancel l=2.0 s=0.9: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.0 s=0.95: P(s) - P(1-s)R(s): |residual| = 3.9443e-31 (thresh 1.0e-20, scale 1.0)
+[PASS]   AXIS A-cancel l=2.0 s=0.95: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.0 s=0.99: P(s) - P(1-s)R(s): |residual| = 1.97215e-31 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=2.0 s=0.99: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.5 s=0.55: P(s) - P(1-s)R(s): |residual| = 0.0 (thresh 1.18e-20, scale 1.18)
+[PASS]   AXIS A-cancel l=2.5 s=0.55: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.5 s=0.6: P(s) - P(1-s)R(s): |residual| = 1.97215e-31 (thresh 1.07e-20, scale 1.07)
+[PASS]   AXIS A-cancel l=2.5 s=0.6: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.5 s=0.65: P(s) - P(1-s)R(s): |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=2.5 s=0.65: R_l(s) vs Gamma-ratio: |residual| = 4.93038e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.5 s=0.7: P(s) - P(1-s)R(s): |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=2.5 s=0.7: R_l(s) vs Gamma-ratio: |residual| = 4.93038e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.5 s=0.75: P(s) - P(1-s)R(s): |residual| = 2.95823e-31 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=2.5 s=0.75: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.5 s=0.8: P(s) - P(1-s)R(s): |residual| = 2.95823e-31 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=2.5 s=0.8: R_l(s) vs Gamma-ratio: |residual| = 2.46519e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.5 s=0.85: P(s) - P(1-s)R(s): |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=2.5 s=0.85: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.5 s=0.9: P(s) - P(1-s)R(s): |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=2.5 s=0.9: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.5 s=0.95: P(s) - P(1-s)R(s): |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=2.5 s=0.95: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=2.5 s=0.99: P(s) - P(1-s)R(s): |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=2.5 s=0.99: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=3.0 s=0.55: P(s) - P(1-s)R(s): |residual| = 1.97215e-31 (thresh 1.03e-20, scale 1.03)
+[PASS]   AXIS A-cancel l=3.0 s=0.55: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=3.0 s=0.6: P(s) - P(1-s)R(s): |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=3.0 s=0.6: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=3.0 s=0.65: P(s) - P(1-s)R(s): |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=3.0 s=0.65: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=3.0 s=0.7: P(s) - P(1-s)R(s): |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=3.0 s=0.7: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=3.0 s=0.75: P(s) - P(1-s)R(s): |residual| = 1.97215e-31 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=3.0 s=0.75: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=3.0 s=0.8: P(s) - P(1-s)R(s): |residual| = 1.97215e-31 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=3.0 s=0.8: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=3.0 s=0.85: P(s) - P(1-s)R(s): |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=3.0 s=0.85: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=3.0 s=0.9: P(s) - P(1-s)R(s): |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=3.0 s=0.9: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=3.0 s=0.95: P(s) - P(1-s)R(s): |residual| = 1.97215e-31 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=3.0 s=0.95: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A l=3.0 s=0.99: P(s) - P(1-s)R(s): |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS A-cancel l=3.0 s=0.99: R_l(s) vs Gamma-ratio: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+
+V3 -- AXIS B (s -> l-s): P_l(s)*Xi(l-s) = P_l(l-s)*Xi(s)
+[PASS]   AXIS B l=2.0 s=0.55: |residual| = 0.0 (thresh 1.44e-20, scale 1.44)
+[PASS]   AXIS B l=2.0 s=0.6: |residual| = 1.97215e-31 (thresh 1.33e-20, scale 1.33)
+[PASS]   AXIS B l=2.0 s=0.65: |residual| = 0.0 (thresh 1.24e-20, scale 1.24)
+[PASS]   AXIS B l=2.0 s=0.7: |residual| = 1.97215e-31 (thresh 1.17e-20, scale 1.17)
+[PASS]   AXIS B l=2.0 s=0.75: |residual| = 0.0 (thresh 1.11e-20, scale 1.11)
+[PASS]   AXIS B l=2.0 s=0.8: |residual| = 0.0 (thresh 1.07e-20, scale 1.07)
+[PASS]   AXIS B l=2.0 s=0.85: |residual| = 0.0 (thresh 1.04e-20, scale 1.04)
+[PASS]   AXIS B l=2.0 s=0.9: |residual| = 0.0 (thresh 1.02e-20, scale 1.02)
+[PASS]   AXIS B l=2.0 s=0.95: |residual| = 0.0 (thresh 1.0e-20, scale 1.0)
+[PASS]   AXIS B l=2.0 s=0.99: |residual| = 0.0 (thresh 1.0e-20, scale 1.0)
+[PASS]   AXIS B l=2.5 s=0.55: |residual| = 1.97215e-31 (thresh 1.24e-20, scale 1.24)
+[PASS]   AXIS B l=2.5 s=0.6: |residual| = 1.97215e-31 (thresh 1.11e-20, scale 1.11)
+[PASS]   AXIS B l=2.5 s=0.65: |residual| = 1.97215e-31 (thresh 1.02e-20, scale 1.02)
+[PASS]   AXIS B l=2.5 s=0.7: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS B l=2.5 s=0.75: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS B l=2.5 s=0.8: |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS B l=2.5 s=0.85: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS B l=2.5 s=0.9: |residual| = 1.97215e-31 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS B l=2.5 s=0.95: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS B l=2.5 s=0.99: |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS B l=3.0 s=0.55: |residual| = 3.9443e-31 (thresh 1.12e-20, scale 1.12)
+[PASS]   AXIS B l=3.0 s=0.6: |residual| = 1.97215e-31 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS B l=3.0 s=0.65: |residual| = 1.97215e-31 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS B l=3.0 s=0.7: |residual| = 2.95823e-31 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS B l=3.0 s=0.75: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS B l=3.0 s=0.8: |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS B l=3.0 s=0.85: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS B l=3.0 s=0.9: |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS B l=3.0 s=0.95: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   AXIS B l=3.0 s=0.99: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+
+V4 -- INVOLUTION: R_l(s)*R_l(1-s) = 1 (the doubled symmetry is an involution)
+[PASS]   INVOL l=2.0 s=0.55: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.0 s=0.6: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.0 s=0.65: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.0 s=0.7: |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.0 s=0.75: |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.0 s=0.8: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.0 s=0.85: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.0 s=0.9: |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.0 s=0.95: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.0 s=0.99: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.5 s=0.55: |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.5 s=0.6: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.5 s=0.65: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.5 s=0.7: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.5 s=0.75: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.5 s=0.8: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.5 s=0.85: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.5 s=0.9: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.5 s=0.95: |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=2.5 s=0.99: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=3.0 s=0.55: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=3.0 s=0.6: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=3.0 s=0.65: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=3.0 s=0.7: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=3.0 s=0.75: |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=3.0 s=0.8: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=3.0 s=0.85: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=3.0 s=0.9: |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=3.0 s=0.95: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+[PASS]   INVOL l=3.0 s=0.99: |residual| = 9.86076e-32 (thresh 1.0e-20, scale 1)
+
+V5 -- ZERO STRUCTURE of P_l (numeric census)
+  rho1 = (0.5 + 14.1347251417347j), rho2 = (0.5 + 21.0220396387716j)
+[PASS]   P_l(rho1) l=2.0 (~0 since Xi(rho1)=0): |residual| = 9.97571e-51 (thresh 1.0e-6, scale 1)
+[PASS]   P_l(rho1) - P_l(1-rho1)*R_l(rho1) l=2.0  (identity at a zero): |residual| = 4.69628e-57 (thresh 1.0e-20, scale 1)
+[PASS]   classical pairing already: P_l(rho1) - P_l(1-rho1)/1  l=2.0: |residual| = 1.99389e-50 (thresh 1.0e-6, scale 1)
+[PASS]   P_l(rho1) l=2.5 (~0 since Xi(rho1)=0): |residual| = 2.8266e-50 (thresh 1.0e-6, scale 1)
+[PASS]   P_l(rho1) - P_l(1-rho1)*R_l(rho1) l=2.5  (identity at a zero): |residual| = 1.33068e-56 (thresh 1.0e-20, scale 1)
+[PASS]   classical pairing already: P_l(rho1) - P_l(1-rho1)/1  l=2.5: |residual| = 4.30216e-50 (thresh 1.0e-6, scale 1)
+[PASS]   P_l(rho1) l=3.0 (~0 since Xi(rho1)=0): |residual| = 7.08978e-50 (thresh 1.0e-6, scale 1)
+[PASS]   P_l(rho1) - P_l(1-rho1)*R_l(rho1) l=3.0  (identity at a zero): |residual| = 3.33767e-56 (thresh 1.0e-20, scale 1)
+[PASS]   classical pairing already: P_l(rho1) - P_l(1-rho1)/1  l=3.0: |residual| = 1.9939e-50 (thresh 1.0e-6, scale 1)
+  B_l on (0,l) grid: min = 0.392699, max = 19.0784 (positive -> zero-free factor)
+  -> P_l's zeros = Xi's zeros everywhere B_l is finite; B_l adds POLES at s in Z<=0 and l+Z>=0, no zeros.
+
+V6 -- EULER-PRODUCT SIDE:  ln zeta(s) = -SUM_p ln(1 - p^{-s})  (Re s > 1, classical)
+  primes up to 4194304: 295947
+  sigma = 1/2 (framework edge axis, ladder rung l=1): NUMERIC -- partial sums diverge
+    zeta(1/2) = -1.46035450880959 < 0  =>  ln zeta(1/2) NOT a real number (principal value (0.378679220498777 + 3.14159265358979j) has imaginary part pi)
+    x=     1000: SUM_p ln(1-p^-1/2) = -14.271988,  SUM_p ln(1+p^-1/2) = 11.758253
+    x=    10000: SUM_p ln(1-p^-1/2) = -30.906462,  SUM_p ln(1+p^-1/2) = 28.107688
+    x=   100000: SUM_p ln(1-p^-1/2) = -71.924832,  SUM_p ln(1+p^-1/2) = 68.903842
+    x=  4194304: SUM_p ln(1-p^-1/2) = -321.85254,  SUM_p ln(1+p^-1/2) = 318.55077
+    -> diverges to -inf / +inf: the literal identity 'SUM_p ln(1±p^-1/2) = ln zeta(1/2)' is FALSE (divergence, and log of a negative number is not real). Honest: no Euler identity at sigma=1/2.
+  sigma = 1 (ladder rung l=2 axis): EXACT finite identity (Lean-certified, RH13L)
+    prod_{2,3,5,7,11,13} (1 - 1/p) = 192/1001  (= 192/1001 -- exact rational, Lean: thirteen_prime_product_exact)
+[PASS]     EXACT identity | ln(prod) - SUM_p ln(1-1/p) |: |residual| = 0.0 (thresh 1.0e-20, scale 1)
+    x=     1000: SUM_p ln(1-1/p) = -2.5137351;  prod*(ln x) = 0.559288  (e^-gamma = 0.561459)
+    x=    10000: SUM_p ln(1-1/p) = -2.7987735;  prod*(ln x) = 0.560769  (e^-gamma = 0.561459)
+    x=   100000: SUM_p ln(1-1/p) = -3.0209902;  prod*(ln x) = 0.561289  (e^-gamma = 0.561459)
+    x=  4194304: SUM_p ln(1-1/p) = -3.3017774;  prod*(ln x) = 0.561441  (e^-gamma = 0.561459)
+    -> diverges to -inf as x->inf (Mertens, e^-gamma ~ 0.5615): the literal '= ln(1/zeta(1))' is a divergence-to-divergence statement (zeta(1) = pole): the ONLY exact certified content is the FINITE log-product identity above.
+  sigma = 3/2 (ladder rung l=3 axis): Euler product CONVERGES -> numeric verification
+    -SUM_p ln(1-p^-3/2) = 0.9602026516,  ln zeta(3/2) = 0.9602599027
+    |ln zeta - partial| = 5.72511e-5  (predicted tail ~ 6.40401e-5)
+[PASS]     Euler-product convergence at sigma=3/2 (|res| < 1e-3): |residual| = 5.72511e-5 (thresh 0.001, scale 1)
+[PASS]     SUM_p ln(1+p^-3/2) = ln zeta(3/2) - ln zeta(3): |residual| = 5.72511e-5 (thresh 0.001, scale 1)
+
+V7 -- HONEST DISPATCH: off-axis zeros inside the doubled class
+    h0(a0) = 2.775557561563e-17   h0(1-a0) = 2.775557561563e-17   a0 off axis: True  (a0 = 0.853553)
+    h0(b0) = -2.775557561563e-17   h0(1-b0) = 2.775557561563e-17   b0 off axis: True  (b0 = 0.146447)
+    P_{h0,l=3}(0.8536) = h0*B_l = 1.649e-17  (a zero of the completed product, off axis)
+    P_{h0,l=3}(0.1464) = h0*B_l = -1.553e-16  (a zero of the completed product, off axis)
+    -> the doubled-symmetry class contains members with zeros OFF the axis (Lean-certified for h0, a0, b0 in RH13L). The doubled symmetry constrains NOTHING about zero location.
+
+==============================================================================
+[PASS] K1 NOT triggered: doubled-symmetry identities hold at 10 s-values x 3 rungs, 30 dps
+[PASS] K2 confirmed -- the honest conclusion is: NO NEW ZERO CONTROL.
+------------------------------------------------------------------------------
+CHECK SUMMARY:
+  [PASS] V0 Xi FE sanity
+  [PASS] V1 Mellin identity (quadrature, 1e-13 relative)
+  [PASS] V2 AXIS A doubled symmetry + Gamma(l)-cancellation
+  [PASS] V3 AXIS B doubled symmetry
+  [PASS] V4 ratio involution
+  [PASS] V5 zero census: no structure beyond Xi
+  [PASS] V6 Euler-product side: sigma=1/2 numeric divergence (documented), sigma=1 exact finite (Lean), sigma=3/2 convergent
+  [PASS] V7 no-zero-control counterexample in the doubled class
+------------------------------------------------------------------------------
+HONEST DISPATCH (RH13):
+  * P_l(s) = Xi(s)*B_l(s) satisfies AXIS A (s->1-s, Xi cancels) and AXIS B (s->l-s, B cancels);
+  * both are tautologies of the construction: AXIS A holds for any completion h, h(1-s)=h(s);
+  * P_l's zeros = Xi's zeros (B_l zero-free); the s<->1-s zero pairing is the CLASSICAL FE
+    pairing -- the doubled symmetry adds nothing to it;
+  * zero placement does NOT follow from two reflection axes: certified counterexample h0
+    (RH05L principle (s-2)(s+1) extended into the doubled class itself);
+  * B_l adds POLES (s in Z<=0 or s-l in Z>=0), not zeros, to the completed product.
+  * NO RH claim, in whole or in part.
+==============================================================================
+
+wrote RH13_doubled_completion_results.json

@@ -1,0 +1,82 @@
+{
+  "pre_registration": {
+    "K1": "doubled-symmetry identities fail numerically (residual > 1e-22 at 30 dps) -> error in my algebra -> [FAIL] and re-derivation",
+    "K2": "honest conclusion: NO new zero control follows from the doubled symmetry; two reflection axes, no zero placement (certified h0 counterexample in Lean RH13L)",
+    "tolerance_30dps": "1e-22 absolute"
+  },
+  "status": "completed",
+  "pre_registration_outcome": {
+    "K1_triggered": false,
+    "K1": "[PASS] K1 NOT triggered: doubled-symmetry identities hold at 10 s-values x 3 rungs, 30 dps",
+    "K2": "[PASS] K2 confirmed -- the honest conclusion is: NO NEW ZERO CONTROL."
+  },
+  "checks": {
+    "V0 Xi FE sanity": true,
+    "V1 Mellin identity (quadrature, 1e-13 relative)": true,
+    "V2 AXIS A doubled symmetry + Gamma(l)-cancellation": true,
+    "V3 AXIS B doubled symmetry": true,
+    "V4 ratio involution": true,
+    "V5 zero census: no structure beyond Xi": true,
+    "V6 Euler-product side: sigma=1/2 numeric divergence (documented), sigma=1 exact finite (Lean), sigma=3/2 convergent": true,
+    "V7 no-zero-control counterexample in the doubled class": true
+  },
+  "all_checks_pass": true,
+  "exact_vs_numeric": {
+    "exact_Lean_certified": [
+      "B_l(s) = Gamma(s)Gamma(l-s)/Gamma(l) (definition, RH13L)",
+      "beta symmetry B_l(s) = B_l(l-s) (RH13L theorem)",
+      "Gamma(l)-cancellation ratio R_l(s) = Gamma(s)Gamma(l-s)/(Gamma(1-s)Gamma(l-1+s)) (RH13L)",
+      "AXIS A identity for any symmetric h (Xi cancels) (RH13L)",
+      "AXIS B identity for any h (B cancels) (RH13L)",
+      "involution R_l(s)R_l(1-s) = 1 (RH13L)",
+      "finite Euler-log identity at sigma=1: ln prod_{p in {2..13}} (1-p^-1) = SUM ln(1-p^-1), exact value 192/1001 (RH13L)",
+      "h0 = s(1-s)-1/8 symmetric, roots a0,b0 off axis, P_{h0,l} zero there (RH13L)"
+    ],
+    "numeric_mpmath_30dps": [
+      "Xi(s) = Xi(1-s) at 10 s-values",
+      "Mellin integral of (1+u)^-l equals B_l(s) (10 quadratures)",
+      "AXIS A and AXIS B identities at 10 s-values x l in {2, 5/2, 3}",
+      "Euler product at sigma=3/2 (l=3 axis) converges to ln zeta(3/2); SUM ln(1+p^-s) = ln zeta(s) - ln zeta(2s)",
+      "sigma=1/2: partial sums diverge; zeta(1/2) = -1.46035... < 0, ln not real"
+    ],
+    "classical_known_not_certified": [
+      "Euler product identity for Re s > 1",
+      "zeta zero-free Re s > 1; no zeros on Re s = 1 (Hadamard-de la Vallee Poussin)",
+      "nontrivial zeros in 0 < Re s < 1, s <-> 1-s pairing (Riemann)",
+      "Mertens: prod_{p<=x}(1-1/p) ~ e^-gamma/ln x ; zeta(1) = pole",
+      "RH itself: open, unproved, NOT claimed"
+    ]
+  },
+  "honest_dispatch": "P_l has two reflection axes (1-s inherited from Xi, l-s from B); the doubled symmetry does NOT constrain the zeros -- it is a tautology (any symmetric completion satisfies it), the certified h0 counterexample puts zeros off the axis inside the class, and P_l's zeros are exactly Xi's. The completed class yields a function with two reflection axes and no new zero control. No RH claim.",
+  "lean": {
+    "file": "lean/RH13L_doubled.lean",
+    "status": "compiled exit 0, zero warnings, ZERO sorry",
+    "theorems_certified": 17,
+    "names": [
+      "beta_axis_symmetry",
+      "gamma_cancellation_ratio",
+      "doubled_symmetry_axis12",
+      "doubled_symmetry_axis_ls",
+      "doubled_ratio_involution",
+      "axes_coincide_at_edge",
+      "h0_axis12_symmetry",
+      "h0_root_a0",
+      "h0_root_b0",
+      "a0_ne_half",
+      "b0_ne_half",
+      "doubled_class_zero_a0",
+      "doubled_class_zero_b0",
+      "doubled_symmetry_holds_for_h0",
+      "doubled_class_off_axis_zeros",
+      "log_product_six_primes",
+      "thirteen_prime_product_exact"
+    ],
+    "not_certified_classical": [
+      "Xi(s)=Xi(1-s) (theta transformation, Riemann 1859)",
+      "Euler product for Re s > 1",
+      "zeta zero-free Re s > 1, no zeros on Re s = 1 (Hadamard-de la Vallee Poussin)",
+      "Mertens theorem at sigma=1",
+      "RH (open)"
+    ]
+  }
+}

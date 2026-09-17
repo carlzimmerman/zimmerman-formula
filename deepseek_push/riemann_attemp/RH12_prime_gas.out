@@ -1,0 +1,132 @@
+=== RH12 PRIME-GAS SELF-DUALITY CHECK ===
+K1 REGISTERED BEFORE COMPUTING: no normalized prime-gas log-moment
+  curve crosses 1/2 at or below sigma = 1 (M diverges there; R = M/ln zeta
+  undefined for sigma <= 1); predicted R(sigma) in (0.80, 1) for sigma > 1
+  -> the prime-gas moment does NOT single out the critical line.
+MUTATE = 0 (exponent distortion 1.0)
+
+sieve: 78498 primes < 1000000
+
+--- (1) EXACT STATEMENT xi(s) = xi(1-s) (numeric check, 40 dps) ---
+  xi(0.5) - xi(0.5)  |res| = 0.0
+  xi((1+2j)) - xi(-2j)  |res| = 1.1485e-41
+  xi((0.5 + 5.0j)) - xi((0.5 - 5.0j))  |res| = 3.00211e-42
+  xi((0.5 + 14.134725j)) - xi((0.5 - 14.134725j))  |res| = 4.50635e-50
+  xi((0.5 + 21.0j)) - xi((0.5 - 21.0j))  |res| = 1.76772e-48
+  xi((2.5+0j)) - xi((-1.5+0j))  |res| = 0.0
+  xi((3.7+0j)) - xi((-2.7+0j))  |res| = 2.29589e-41
+  xi((-1.5+0j)) - xi((2.5+0j))  |res| = 0.0
+  xi((-10.5+0j)) - xi((11.5+0j))  |res| = 0.0
+  xi((0.25+30j)) - xi((0.75-30j))  |res| = 3.82495e-49
+  max |xi(s)-xi(1-s)| over 10 points = 2.29589e-41
+  exact statement: xi(s) = xi(1-s) for ALL s in C (Riemann FE, a theorem);
+  s = 1/2 is the fixed point of the involution s -> 1-s; AT s = 1/2 the
+  identity is tautological (both sides are xi(1/2)).
+  xi(1/2) = 0.49712077818831410991   (zeta(1/2) = -1.46035450881)
+  ln zeta(2) = 0.49770030247074534747;  |xi(1/2) - ln zeta(2)| = 0.000579524
+    -> agree through 3 significant digits (0.497), differ in the 4th;
+    registered COINCIDENCE (no mechanism, no claim).
+  prime-gas facts at s = 1/2: sum_p p^{-1/2} diverges (PNT) -> the Euler
+  product prod (1-p^{-1/2})^{-1} DIVERGES: the prime-gas partition function
+  does not exist at the self-dual temperature T = 1/s = 2; zeta(1/2) is
+  analytic continuation of the product, which converges only for Re s > 1.
+
+--- (2) M(sigma) = sum_{p<10^6} ln(1+p^-sigma), sigma in [0.5, 2.0] ---
+  cutoff M_cut(sigma):
+    sigma= 0.500  M_cut=    175.114124   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 0.550  M_cut=    100.383552   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 0.600  M_cut=     58.655128   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 0.650  M_cut=     35.094761   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 0.700  M_cut=     21.613251   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 0.750  M_cut=     13.774659   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 0.800  M_cut=      9.129756   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 0.850  M_cut=      6.315341   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 0.900  M_cut=      4.565572   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 0.950  M_cut=      3.445572   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.000  M_cut=      2.705346   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.001  M_cut=      2.693293   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.010  M_cut=      2.588802   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.050  M_cut=      2.199166   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.100  M_cut=      1.840731   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.150  M_cut=      1.578027   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.200  M_cut=      1.379084   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.250  M_cut=      1.223835   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.300  M_cut=      1.099393   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.350  M_cut=      0.997285   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.400  M_cut=      0.911802   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.450  M_cut=      0.839002   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.500  M_cut=      0.776098   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.550  M_cut=      0.721071   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.600  M_cut=      0.672432   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.650  M_cut=      0.629053   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.700  M_cut=      0.590068   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.750  M_cut=      0.554802   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.800  M_cut=      0.522715   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.850  M_cut=      0.493374   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.900  M_cut=      0.466426   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 1.950  M_cut=      0.441579   (sigma<=1: M -> inf as cutoff -> inf)
+    sigma= 2.000  M_cut=      0.418590   (sigma<=1: M -> inf as cutoff -> inf)
+
+  EXACT all-prime handling (the (sigma-1)-handling):
+    identity: prod_p (1+p^-sigma) = prod_p (1-p^-2sigma)/(1-p^-sigma)
+             = zeta(sigma)/zeta(2sigma)   (sigma > 1)   [exact]
+    -> M_full(sigma) = ln zeta(sigma) - ln zeta(2sigma)  (exact, all primes)
+    -> as sigma -> 1+:  M_full(sigma) = -ln(sigma-1) - ln zeta(2) + o(1)
+       residue EXACT: C = -ln zeta(2) = -0.49770030247074534747
+    sigma=1.001: M_full=    6.411770   M_cut(10^6)=    2.693293   (missing tail +3.718477)
+    sigma=1.010: M_full=    4.124458   M_cut(10^6)=    2.588802   (missing tail +1.535656)
+    sigma=1.050: M_full=    2.579536   M_cut(10^6)=    2.199166   (missing tail +0.380370)
+    sigma=1.100: M_full=    1.960245   M_cut(10^6)=    1.840731   (missing tail +0.119514)
+    sigma=1.500: M_full=    0.776226   M_cut(10^6)=    0.776098   (missing tail +0.000128)
+    sigma=2.000: M_full=    0.418590   M_cut(10^6)=    0.418590   (missing tail +0.000000)
+    -> the cutoff sum is exact for sigma >= ~1.5 (tail < 2e-4) and misses
+       the logarithmically divergent tail for sigma -> 1+; R below uses M_full.
+
+  normalized R(sigma) = M(sigma)/ln zeta(sigma) -- EXACT curve R = 1 - ln zeta(2s)/ln zeta(s):
+    sigma=1.001: R = 0.928121   (ln zeta(2s)/ln zeta(s) = 0.071879)
+    sigma=1.010: R = 0.894495   (ln zeta(2s)/ln zeta(s) = 0.105505)
+    sigma=1.050: R = 0.852919   (ln zeta(2s)/ln zeta(s) = 0.147081)
+    sigma=1.100: R = 0.830829   (ln zeta(2s)/ln zeta(s) = 0.169171)
+    sigma=1.250: R = 0.807357   (ln zeta(2s)/ln zeta(s) = 0.192643)
+    sigma=1.500: R = 0.808350   (ln zeta(2s)/ln zeta(s) = 0.191650)
+    sigma=1.750: R = 0.822996   (ln zeta(2s)/ln zeta(s) = 0.177004)
+    sigma=2.000: R = 0.841049   (ln zeta(2s)/ln zeta(s) = 0.158951)
+    R -> 1 as sigma -> 1+ (ln zeta(2s) finite while ln zeta(s) diverges)
+    R -> 1 as sigma -> inf (ratio ~ 2^-sigma); R stays in (0.805, 1), max deficit 0.195
+    min R = 0.804706 at sigma = 1.351;  max ln zeta(2s)/ln zeta(s) = 0.195294 at sigma = 1.351  (< 1/2 = 0.5 by 0.305)
+    sigma_c with R = 1/2 in (1,2]: NONE  -> K1 CONFIRMED: no crossing at 1/2,
+    the prime-gas moment does not single out the critical line.
+  raw crossing with kappa=1/2: M(sigma_star) = 1/2 at sigma_star = 1.838323
+    (exists on the RAW curve -- but sigma_star ~ 1.84 is NOT 1/2, NOT 3/2,
+     NOT 2: at no framework axis; the framework axis 3/2 gives
+     M(3/2) = 0.776098 vs pi/4 = 0.785398 -- near-miss 1.18% off, COINCIDENCE at the framework axis)
+    M(2) = 0.418590 < 1/2;  dM/dsigma(3/2) = -1.173590 (derivative at framework axis, data)
+  secondary normalization M(sigma)/sum_p p^-sigma (cutoff): min 0.9138 (never 1/2)
+
+--- (3) CRITICAL-LINE LOG-MOMENT OF THE PRIMES (sigma = 1/2) ---
+  S_half = sum over p<10^6 of ln(1 + p^-1/2) = 175.1141240275
+    cutoff x=1000     : S(1/2;x) =    11.758253   (PNT leading 2*sqrt(x)/ln x =     9.1557)
+    cutoff x=10000    : S(1/2;x) =    28.107688   (PNT leading 2*sqrt(x)/ln x =    21.7147)
+    cutoff x=100000   : S(1/2;x) =    68.903842   (PNT leading 2*sqrt(x)/ln x =    54.9344)
+    cutoff x=1000000  : S(1/2;x) =   175.114124   (PNT leading 2*sqrt(x)/ln x =   144.7648)
+    -> S_half grows without bound (like ~2*sqrt(x)/ln(x), PNT; the data above
+       are monotone unbounded): the TOTAL over all primes is +infinity, so the
+       share of ANY finite prime set -> 0.
+  ratio to the (finite) framework-axis moment: S_half / M(3/2) = 225.6342
+  ratio to the (divergent) total: S_half / infinity = 0 (share of the p<10^6 block)
+  share of first Euler factor p=2 at sigma=1/2: 0.3054% of S_half
+  share of p in {2,3,5}  at sigma=1/2: 0.7767% of S_half
+    at sigma=1.0: p=2 share = 14.99%, p in {2,3,5} share = 32.36% of M(1.0)
+    at sigma=1.5: p=2 share = 39.01%, p in {2,3,5} share = 72.72% of M(1.5)
+    at sigma=2.0: p=2 share = 53.31%, p in {2,3,5} share = 87.85% of M(2.0)
+
+--- (4) VERDICT ---
+K1 CONFIRMED (registered pre-computation, matches data): R(sigma) never equals 1/2,
+R_min = 0.805 > 1/2; the prime-gas log-moment M(sigma) singles out NO point at or
+below the critical line -- it DIVERGES there (no partition function at T = 2).
+The zeta's own self-duality xi(s) = xi(1-s) holds exactly at ALL s (theorem); the
+framework's M(s) = M(3-s) (axis 3/2, Lean-certified) is a DIFFERENT object (zero-free
+beta, per RH07) and neither axis is a prime-gas temperature.  NO claim of RH.
+
+=== WRITTEN /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/riemann_attemp/RH12_prime_gas_results.json ===
+DONE

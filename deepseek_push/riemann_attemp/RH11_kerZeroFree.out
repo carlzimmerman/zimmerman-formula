@@ -1,0 +1,89 @@
+=== RH11 THE ZERO-FREE REGION ROUTE: 3-4-1 WITH FRAMEWORK (LOMAX) KERNELS ===
+c_class (Stechkin anchor) = 1/9.646 = 0.103669915
+grids: |G1|=256, |G2|=5000, total u-points=5255; theta coarse=2001 pts, fine=40001 pts
+l in [1.5, 2.0, 2.4824, 3.0], w in [(3, 4, 1), (1, 2, 1), (5, 6, 1)]
+scan done: 63060 candidates, 61678 pass (k>=0 for all theta AND B>0)
+closed-form vs grid-min: max |diff| = 2.821e-06 over all 63060 candidates
+
+per (l,w): passing u-subset and alpha=(A+C)/B at the u-edges:
+  l=1.5     w=(3, 4, 1): pass u in [0.02000, 10.00000], alpha in [1.01512, 2.11773]
+  l=1.5     w=(1, 2, 1): pass u in [0.35540, 10.00000], alpha in [1.08575, 1.59767]
+  l=1.5     w=(5, 6, 1): pass u in [0.20766, 10.00000], alpha in [1.19299, 2.29108]
+  l=2.0     w=(3, 4, 1): pass u in [0.02000, 10.00000], alpha in [1.02036, 2.84820]
+  l=2.0     w=(1, 2, 1): pass u in [0.23561, 10.00000], alpha in [1.08035, 2.05176]
+  l=2.0     w=(5, 6, 1): pass u in [0.15376, 10.00000], alpha in [1.20368, 3.11367]
+  l=2.4824  w=(3, 4, 1): pass u in [0.02000, 10.00000], alpha in [1.02549, 3.82917]
+  l=2.4824  w=(1, 2, 1): pass u in [0.17772, 10.00000], alpha in [1.07700, 2.67954]
+  l=2.4824  w=(5, 6, 1): pass u in [0.12581, 10.00000], alpha in [1.21539, 4.21238]
+  l=3.0     w=(3, 4, 1): pass u in [0.02000, 10.00000], alpha in [1.03110, 5.29616]
+  l=3.0     w=(1, 2, 1): pass u in [0.14178, 10.00000], alpha in [1.07549, 3.63440]
+  l=3.0     w=(5, 6, 1): pass u in [0.10385, 10.00000], alpha in [1.22148, 5.85008]
+  threshold u*(l=1.5,w=(3, 4, 1)): margin>0 on [0.02,10] (none in interior)
+  threshold u*(l=1.5,w=(1, 2, 1)) ~ 0.354345
+  threshold u*(l=1.5,w=(5, 6, 1)) ~ 0.206307
+  threshold u*(l=2.0,w=(3, 4, 1)): margin>0 on [0.02,10] (none in interior)
+  threshold u*(l=2.0,w=(1, 2, 1)) ~ 0.234509
+  threshold u*(l=2.0,w=(5, 6, 1)) ~ 0.153684
+  threshold u*(l=2.4824,w=(3, 4, 1)): margin>0 on [0.02,10] (none in interior)
+  threshold u*(l=2.4824,w=(1, 2, 1)) ~ 0.176794
+  threshold u*(l=2.4824,w=(5, 6, 1)) ~ 0.124041
+  threshold u*(l=3.0,w=(3, 4, 1)): margin>0 on [0.02,10] (none in interior)
+  threshold u*(l=3.0,w=(1, 2, 1)) ~ 0.139857
+  threshold u*(l=3.0,w=(5, 6, 1)) ~ 0.103131
+
+BEST candidate = passing (l,u,w) whose min_theta k is closest to 0:
+  l          = 1.5
+  u          = 0.35539507901580314
+  w          = [1, 2, 1]
+  A          = 0.6337254423357481
+  B          = 0.8937887438040786
+  C          = 0.3367023276723487
+  margin     = 0.00044871760122022764
+  min_closed = 0.00044871760122022764
+  min_grid   = 0.00044871824516589526
+  alpha = (A+C)/B = 1.085746242
+  c_scheme = c_class * B/(A+C) = 0.095482638  (c_class = 0.103669915)
+  c_scheme/c_class = 0.921025522
+  vertex regime B <= 4C: True  (B/4C = 0.6636)
+  family best on grid (min alpha among passing): alpha = 1.015124613 at (l,u,w) = (1.5, 0.02000, [3, 4, 1]) -> c = 0.102125309 (ratio 0.985101)
+  leading Fourier coeff a1 (FFT-verified) = 0.893822358  vs B = 0.893788744
+  min over fine theta-grid = 4.487e-04  vs margin 4.487e-04
+
+pipeline-sharpened region constant c_pipe(T) = c_class*B/(A+C) *exp(-alpha*E*delta*) at delta* = d0/log T (d0 = 2, E = 2):
+  T =      100: c_pipe = 3.718395e-02, c_pipe_classical = 4.349400e-02, ratio to classical-at-same-T = 0.854921
+  T =    10000: c_pipe = 5.958541e-02, c_pipe_classical = 6.714923e-02, ratio to classical-at-same-T = 0.887358
+  T =  1000000: c_pipe = 6.972707e-02, c_pipe_classical = 7.760891e-02, ratio to classical-at-same-T = 0.898442
+
+family alpha-min on grid: alpha = 1.000693754 at (l,u,w) = (1.5, 0.020000, [1, 2, 1]) [equality alpha=1 only at u->0/f=1]
+
+FAMILY A (literal reading k = sum_j w_j f_l(j*u(theta)), u=tan^2(theta/2)):
+  l=1.5     w=[3, 4, 1]: min over theta = 1.058e-48 (theta=pi, f(inf)=0), leading Fourier coeff a1 = 3.839958
+  l=1.5     w=[1, 2, 1]: min over theta = 4.361e-49 (theta=pi, f(inf)=0), leading Fourier coeff a1 = 1.882702
+  l=1.5     w=[5, 6, 1]: min over theta = 1.679e-48 (theta=pi, f(inf)=0), leading Fourier coeff a1 = 5.797215
+  l=2.0     w=[3, 4, 1]: min over theta = 5.779e-65 (theta=pi, f(inf)=0), leading Fourier coeff a1 = 3.676527
+  l=2.0     w=[1, 2, 1]: min over theta = 2.265e-65 (theta=pi, f(inf)=0), leading Fourier coeff a1 = 1.789225
+  l=2.0     w=[5, 6, 1]: min over theta = 9.294e-65 (theta=pi, f(inf)=0), leading Fourier coeff a1 = 5.563829
+  l=2.4824  w=[3, 4, 1]: min over theta = 1.211e-80 (theta=pi, f(inf)=0), leading Fourier coeff a1 = 3.506831
+  l=2.4824  w=[1, 2, 1]: min over theta = 4.559e-81 (theta=pi, f(inf)=0), leading Fourier coeff a1 = 1.697496
+  l=2.4824  w=[5, 6, 1]: min over theta = 1.967e-80 (theta=pi, f(inf)=0), leading Fourier coeff a1 = 5.316166
+  l=3.0     w=[3, 4, 1]: min over theta = 1.864e-97 (theta=pi, f(inf)=0), leading Fourier coeff a1 = 3.335062
+  l=3.0     w=[1, 2, 1]: min over theta = 6.784e-98 (theta=pi, f(inf)=0), leading Fourier coeff a1 = 1.607194
+  l=3.0     w=[5, 6, 1]: min over theta = 3.050e-97 (theta=pi, f(inf)=0), leading Fourier coeff a1 = 5.062930
+  -> Family A: k>=0 (trivial, sum of positive kernels) and a1 > 0, but k is NOT a trig polynomial, so the Euler-product identity FAILS: no (A,B,C) weights are realized; the 3-4-1 scheme refuses the literal substitution (no scheme constant exists).
+
+=== PRE-REGISTERED KILLS ===
+K1 (no (l,u,w) found): False   -> unfired: candidates exist
+K2 (c < c_class/10):   False   -> unfired: c_best/c_class = 0.9210
+VERDICT: [FAIL] as framework improvement: framework kernels DO enter the 3-4-1 scheme (K1 unfired, 61678 passing (l,u,w)) but EVERY framework kernel is STRICTLY weaker: alpha = (A+C)/B >= 1 with equality only at the classical point (u->0, f~1); best c_scheme = 0.095482638 < c_class = 0.103669915 (ratio 0.921026), K2 unfired (c >= c_class/10) but registered weaker-than-known; no RH claim.
+
+LEAN-EXACT BEST CANDIDATE (integer l, rational u on G2): l=3.0, u = 10.0000000000, w=[1, 2, 1], min_closed = 5.689226e-04
+  regime: corner (B>=4C): k(min) = A-B+C, certificate (1+c)(B-2C+2Cc)
+  EXACT: A = 1/1331
+  EXACT: B = 2/9261
+  EXACT: C = 1/29791
+  EXACT min_theta k = 208917200/367215514281 ~ 5.689226e-04;  > 0: True
+  4C <= B (corner): True;  C > 0: True
+  (overall grid best is l=1.5, min = 4.487e-4 -- algebra certified in Lean symbolically for all (A,B,C); exact instantiation at the best integer-l candidate)
+
+total wall time: 0.3s
+wrote RH11_kerZeroFree_results.json

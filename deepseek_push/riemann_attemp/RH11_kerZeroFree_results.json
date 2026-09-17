@@ -1,0 +1,253 @@
+{
+  "lane": "RH11_kerZeroFree",
+  "date": "2026-09-17",
+  "interpretation": "k(theta)=A+B*cos(theta)+C*cos(2*theta), A=w0*f_l(u), B=w1*f_l(2u), C=w2*f_l(3u), f_l(x)=(1+x)^-l; SOS: k = margin + 2C(cos+B/4C)^2, margin = A-C-B^2/8C = min_theta k (for B<=4C); scheme constant c = c_class*B/(A+C), alpha=(A+C)/B, region sigma>1-c/(alpha*log|t|)",
+  "classical_anchor": {
+    "c_class": 0.1036699149906697,
+    "source": "Stechkin 1970 c=1/9.646 (dVdP-type explicit; Ford survey Table 1/eq 1.4); modern explicit: Kadiri 1/5.69693, MTY 2022 1/5.558691",
+    "trig_identity": "3+4cos(t)+cos(2t) = 2(1+cos t)^2 >= 0"
+  },
+  "grids": {
+    "l": [
+      1.5,
+      2.0,
+      2.4824,
+      3.0
+    ],
+    "weights": [
+      [
+        3,
+        4,
+        1
+      ],
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        5,
+        6,
+        1
+      ]
+    ],
+    "u_log": "0.02*500**(j/256), j=0..255",
+    "u_linear_rational": "u_j=(4999+499*j)/249950, j=0..4999",
+    "theta": "coarse 2001 pts all candidates; fine 40001 pts best"
+  },
+  "scan": {
+    "n_candidates": 63060,
+    "n_pass": 61678,
+    "max_closed_vs_grid_min_diff": 2.8208775863514113e-06,
+    "alpha_min_on_grid": 1.0006937538873082,
+    "alpha_min_at": {
+      "l": 1.5,
+      "u": 0.02,
+      "w": [
+        1,
+        2,
+        1
+      ]
+    },
+    "family_optimality": "margin>=0 forces alpha=(A+C)/B>=1, equality iff (A,B,C)~(3,4,1) i.e. u->0, f=1: within the Lomax-modulated family the classical kernel is the unique optimum; every framework rung is strictly weaker (Lean-certified: theorem alpha_ge_one)"
+  },
+  "best_candidate": {
+    "l": 1.5,
+    "u": 0.35539507901580314,
+    "w": [
+      1,
+      2,
+      1
+    ],
+    "A": 0.6337254423357481,
+    "B": 0.8937887438040786,
+    "C": 0.3367023276723487,
+    "margin": 0.00044871760122022764,
+    "min_closed": 0.00044871760122022764,
+    "min_grid": 0.00044871824516589526,
+    "alpha": 1.0857462423142998,
+    "leading_fourier_coeff_B": 0.8937887438040786,
+    "a1_fft_verified": 5.062929916968653,
+    "c_scheme": 0.09548263760940517,
+    "c_scheme_over_c_class": 0.9210255223803224
+  },
+  "c_pipe": {
+    "note": "c_pipe(T) = c_class*B/(A+C) * exp(-alpha*E*delta*), delta*=2/log T, E=2 (explicit log zeta(1+delta) <= -log delta + E*delta)",
+    "values": {
+      "T=100": {
+        "c_pipe": 0.03718395021151182,
+        "ratio_vs_classical_at_same_T": 0.8549213767626521
+      },
+      "T=10000": {
+        "c_pipe": 0.05958541468288987,
+        "ratio_vs_classical_at_same_T": 0.8873581056298104
+      },
+      "T=1e+06": {
+        "c_pipe": 0.06972707489240285,
+        "ratio_vs_classical_at_same_T": 0.8984415646494482
+      }
+    }
+  },
+  "family_A_literal": {
+    "note": "k=sum_j w_j f_l(j*tan^2(theta/2)): nonneg (trivial) and a1>0, but NOT a trig polynomial -> Euler-product combination identity fails -> no scheme constant; min = 0 at theta=pi (degenerate): the 3-4-1 scheme refuses the literal substitution",
+    "rows": [
+      {
+        "l": 1.5,
+        "w": [
+          3,
+          4,
+          1
+        ],
+        "min": 1.0576185812135618e-48,
+        "a1": 3.839958295283751
+      },
+      {
+        "l": 1.5,
+        "w": [
+          1,
+          2,
+          1
+        ],
+        "min": 4.3610881854506045e-49,
+        "a1": 1.8827020571224222
+      },
+      {
+        "l": 1.5,
+        "w": [
+          5,
+          6,
+          1
+        ],
+        "min": 1.679128343882063e-48,
+        "a1": 5.79721453344508
+      },
+      {
+        "l": 2.0,
+        "w": [
+          3,
+          4,
+          1
+        ],
+        "min": 5.779398472953323e-65,
+        "a1": 3.6765270442305016
+      },
+      {
+        "l": 2.0,
+        "w": [
+          1,
+          2,
+          1
+        ],
+        "min": 2.264899401562789e-65,
+        "a1": 1.7892254164385928
+      },
+      {
+        "l": 2.0,
+        "w": [
+          5,
+          6,
+          1
+        ],
+        "min": 9.293897544343858e-65,
+        "a1": 5.563828672022411
+      },
+      {
+        "l": 2.4824,
+        "w": [
+          3,
+          4,
+          1
+        ],
+        "min": 1.2112418467549415e-80,
+        "a1": 3.5068311477155185
+      },
+      {
+        "l": 2.4824,
+        "w": [
+          1,
+          2,
+          1
+        ],
+        "min": 4.559294082764599e-81,
+        "a1": 1.6974964743061391
+      },
+      {
+        "l": 2.4824,
+        "w": [
+          5,
+          6,
+          1
+        ],
+        "min": 1.9665542852334234e-80,
+        "a1": 5.316165821124898
+      },
+      {
+        "l": 3.0,
+        "w": [
+          3,
+          4,
+          1
+        ],
+        "min": 1.8643383952287554e-97,
+        "a1": 3.3350620150968737
+      },
+      {
+        "l": 3.0,
+        "w": [
+          1,
+          2,
+          1
+        ],
+        "min": 6.783849134471124e-98,
+        "a1": 1.6071941132250946
+      },
+      {
+        "l": 3.0,
+        "w": [
+          5,
+          6,
+          1
+        ],
+        "min": 3.050291877010398e-97,
+        "a1": 5.062929916968653
+      }
+    ]
+  },
+  "kills": {
+    "K1": false,
+    "K1_statement": "no (l,u,w) with k>=0 for all theta AND leading Fourier coeff>0",
+    "K2": false,
+    "K2_statement": "c found but c < c_class/10 (weaker than known by order of magnitude)",
+    "K2_ratio_c_over_c_class": 0.9210255223803224,
+    "note": "K1 unfired; K2 unfired (c >= c_class/10) but c < c_class strictly: registered weaker-than-known"
+  },
+  "verdict": "[FAIL] as framework improvement: framework kernels DO enter the 3-4-1 scheme (K1 unfired, 61678 passing (l,u,w)) but EVERY framework kernel is STRICTLY weaker: alpha = (A+C)/B >= 1 with equality only at the classical point (u->0, f~1); best c_scheme = 0.095482638 < c_class = 0.103669915 (ratio 0.921026), K2 unfired (c >= c_class/10) but registered weaker-than-known; no RH claim.",
+  "rh_claim": false,
+  "lean": {
+    "l": 3,
+    "w": [
+      1,
+      2,
+      1
+    ],
+    "u_num": 10,
+    "u_den": 1,
+    "A_num": 1,
+    "A_den": 1331,
+    "B_num": 2,
+    "B_den": 9261,
+    "C_num": 1,
+    "C_den": 29791,
+    "min_num": 208917200,
+    "min_den": 367215514281,
+    "min_float": 0.0005689225859889262,
+    "regime": "corner"
+  },
+  "files": [
+    "RH11_kerZeroFree.py",
+    "RH11_kerZeroFree.out",
+    "RH11_kerZeroFree_results.json",
+    "lean/RH11L_ker34one.lean",
+    "RH11_SUMMARY.md"
+  ]
+}
