@@ -1,0 +1,85 @@
+
+KS07_sds_coherence_attempt.py -- THE DERIVATION ATTEMPT.  Can the S_dS coherence enhancement (the only
+door KS01 left open) be DERIVED, so that kappa = 1/2 follows?
+
+KS01 proved: the graviton-bath drift is short of an O(1) eps_tot by exactly one factor of S_dS, and an
+incoherent Gaussian mode sum cannot supply it (the coincidence variance already sums the modes).  The
+slot is live ONLY if some mechanism supplies "an enhancement of exactly S_dS" coherently.  This lane
+tries to DERIVE that factor three physical ways, set up so that if any works the script prints DERIVED.
+
+  C1  de Sitter IR secular growth: <h^2>_IR = (2/pi^2)(H/M_Pl)^2 * N reaches eps_tot = 1/(32 pi) at
+      N ~ S_dS/pi e-folds -- compute N_needed.
+  C2  the finite de Sitter age supplies N_avail e-folds; does N_avail reach N_needed?  (the obstruction)
+  C3  instantaneous COHERENT enhancement: the number of super-horizon graviton modes phase-correlated at
+      a point (one coherence/horizon volume) is O(1), not S_dS -- compute the coherent multiplicity.
+  C4  the STRUCTURAL fact: the worldline action S = -m INT sqrt(1 + h_uu(x)) couples to the LOCAL metric
+      h_mn(x); the coupling that would let all S_dS horizon d.o.f. add coherently is ABSENT from it.
+  C5  fair PRO test: even GRANTING the S_dS coupling, does the normalisation force kappa = 1/2?  (KS02
+      says no: standard normalisation gives 1.447.)
+
+  MUTATE=1 GRANTS the holographic postulate (N_avail = S_dS/pi) to prove the lane is not rigged: it then
+  reports DERIVED-UNDER-POSTULATE, isolating the exact obstruction (the finite age / the missing coupling).
+
+Run:  python3 fable_independent_2026/kappa_slot_2026/KS07_sds_coherence_attempt.py
+      MUTATE=1 python3 .../KS07_sds_coherence_attempt.py   (grants the postulate -> DERIVED-UNDER-POSTULATE)
+
+  S_dS = 3.307e+122   (l_P H/c)^2 = 9.499e-123 = pi/S_dS   target eps_tot = 1/(32 pi) = 0.009947
+
+====================================================================================================
+C1 -- de Sitter IR secular growth: e-folds needed to reach eps_tot = 1/(32 pi)
+====================================================================================================
+  [PASS] C1 secular growth needs N = S_dS/(32 pi) e-folds to reach eps_tot = 1/(32 pi), i.e. OF ORDER S_dS (the growth IS the right order per ~S_dS e-folds -- the mechanism is not absurd)
+         measured: eps per e-fold = 3.024e-123 (=1/S_dS); N_needed = 3.290e+120; S_dS/(32 pi) = 3.290e+120
+         reading:  so IF the de Sitter phase lasted ~S_dS e-folds the drift WOULD reach O(1) -- the honest sense in which the door is 'open'
+
+====================================================================================================
+C2 -- the finite de Sitter age: e-folds available (the obstruction)
+====================================================================================================
+  [FAIL] C2 the available e-folds reach N_needed
+         measured: N_avail = 1.400e+02, N_needed = 3.290e+120, reaches: False
+         reading:  baseline: the finite age (~140 e-folds) is short by ~120 decades -> secular route does NOT derive; MUTATE grants ~S_dS e-folds and it DOES -> the obstruction is the age, not the algebra
+
+====================================================================================================
+C3 -- instantaneous COHERENT enhancement: the coherent multiplicity is O(1), not S_dS
+====================================================================================================
+  [PASS] C3 the instantaneous coherent enhancement is O(1) (one horizon coherence volume), NOT S_dS: a squeezed vacuum has <h>=0, so there is no classical condensate to add S_dS modes in phase
+         measured: coherent multiplicity ~ 1 vs required S_dS = 3.3e+122
+         reading:  squeezing enhances each mode's variance (the C1 secular growth), it does not make S_dS modes add coherently at a point
+
+====================================================================================================
+C4 -- the STRUCTURAL fact: the S_dS-coherence coupling is absent from the action
+====================================================================================================
+  [PASS] C4 the worldline action couples to the LOCAL metric h_mn(x), whose variance is KS01's thermal O(hbar) value; the worldline-to-horizon-collective-mode coupling that would supply S_dS is ABSENT
+         measured: coupling to local h_mn(x): True; horizon-collective coupling present: False
+         reading:  so the S_dS factor is not derivable from THIS action -- it would require adding a new coupling (the emergent/entropic-gravity postulate), which is category III, not a derivation
+
+====================================================================================================
+C5 -- fair PRO test: even granting the S_dS coupling, is kappa = 1/2 FORCED?
+====================================================================================================
+  [PASS] C5 even GRANTING the S_dS coupling, the standard normalisation gives kappa = 1.447, not 1/2 (KS02): the postulate does not FORCE the coefficient either
+         measured: kappa(standard, S_dS granted) = 1.4472; forces 1/2: False
+         reading:  so two things are missing, not one: the S_dS coherence (C2-C4) AND the normalisation that lands 1/2
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  (1) COMPUTED: three routes to the S_dS enhancement (secular growth, coherent multiplicity, the
+      action's coupling structure) and the fair pro-test of the normalisation.
+  (2) NUMBERS: secular growth needs N ~ 3.3e+120 e-folds; the finite age gives ~140
+      (short by ~120 decades); the instantaneous coherent multiplicity is O(1) not S_dS (3.3e+122); the
+      S_dS-coherence coupling is absent from the worldline action; and even granted, the normalisation
+      gives kappa = 1.447 not 1/2.
+  (3) HONEST SENTENCE: kappa = 1/2 is NOT DERIVED.  The one open door -- an S_dS coherence enhancement --
+      is not supplied by de Sitter graviton physics: the incoherent mode sum gives the thermal variance
+      (KS01), the coherent sum gives O(1) not S_dS, and the secular growth needs ~S_dS e-folds the finite
+      age does not provide.  The factor can only be ASSUMED (emergent/entropic gravity, category III), and
+      even then the coefficient is not forced (KS02/C5).  kappa remains a MEASURED constant.
+      THE ONE-LINE UNLOCK (unchanged, and nothing in GR + QFT + the worldline action supplies it): a
+      forced, hbar-free, convention-independent coupling of a worldline to exactly S_dS horizon degrees of
+      freedom that ALSO fixes the graviton normalisation to land 1/2.
+
+====================================================================================================
+RESULT
+====================================================================================================
+KS07 COMPLETE: 4/5 checks PASS
+    load-bearing FAIL: C2 the available e-folds reach N_needed

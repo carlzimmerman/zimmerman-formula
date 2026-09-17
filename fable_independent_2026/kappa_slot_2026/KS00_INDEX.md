@@ -12,6 +12,7 @@ load-bearing check to FAIL (rc=1). Run any lane from the repository root.
 | KS04 | **CONTROL** | at k=3 a fraction 0.108 of O(1) natural numbers land in the 2 sigma kappa band; 0.016 at ±5%; 1/2 is op-count 1 (0 simpler in-band rivals), 1/(32 pi) op-count 3 (13 simpler) | `KS04_look_elsewhere.py` |
 | KS05 | **OPEN-UNDER-POSTULATE** | 2/4 enhancement structures (Verlinde, CKN) reach within a factor 2 without a new parameter, but NONE derives the S_dS coherence; dS IR growth needs ~1e122 e-folds, primordial tensors are ~8 decades low | `KS05_category3_enhancement.py` |
 | KS06 | **RATIONAL-AVAILABLE-NOT-SELECTED** | kappa^2 = 8 pi eps_tot (sympy exact); 1/(32 pi) = pi(S_dS)·(1/8)(coupling)·1/(4 pi^2)(T_GH); drift is m-independent; the graviton route is a DENSITY mechanism so kappa = 1/2 is rational and available — but its value rides on the normalisation convention (KS02) | `KS06_number_field.py` |
+| KS07 | **NOT-DERIVED** | the S_dS coherence (the one open door) is not supplied by de Sitter graviton physics: secular growth needs ~S_dS e-folds (finite age short by ~120 decades), the instantaneous coherent multiplicity is O(1) not S_dS, and the worldline-to-horizon-collective coupling is absent from the action; even granted, the normalisation gives 1.447 not 1/2. MUTATE grants the postulate and prints DERIVED-UNDER-POSTULATE, proving the lane is not rigged | `KS07_sds_coherence_attempt.py` |
 
 ## The one-paragraph result
 
@@ -35,3 +36,24 @@ rides on the normalisation convention.
 multiplicative structure legitimate under an independently motivated postulate — it does not), kappa = 1/2 is
 **a measured constant of the framework, not a derived one; the graviton-bath slot is closed with its
 mechanism.** The remaining lanes are context, not rescue.
+
+## KS07 — the derivation attempt (the follow-up swing)
+
+Asked to derive kappa, KS07 attacked the single door KS01 left open — an S_dS coherence enhancement — three
+physical ways: de Sitter IR secular growth, an instantaneous coherent sum, and the worldline action's coupling
+structure. All three say the same thing. Secular growth would reach eps_tot = 1/(32 pi) but only after
+N = S_dS/(32 pi) ~ 1e120 e-folds, which the finite de Sitter age (~140 e-folds) misses by ~120 decades. The
+instantaneous coherent multiplicity is O(1) (one horizon coherence volume), not S_dS, because a squeezed de
+Sitter vacuum still has <h> = 0 — no classical condensate to add modes in phase. And structurally the worldline
+couples to the LOCAL metric h_mn(x) (KS01's thermal variance), not to the horizon's S_dS collective degrees of
+freedom; the coupling that would supply the factor is simply absent from the action. Even if one GRANTS that
+coupling (the MUTATE control does exactly this, and the script then prints DERIVED-UNDER-POSTULATE, proving it
+is not rigged to fail), the graviton normalisation still gives kappa = 1.447, not 1/2 — so two things are
+missing, not one.
+
+**kappa = 1/2 is NOT DERIVED, and on the accumulated evidence it is not derivable from GR + QFT + the worldline
+action without a new postulate.** The one-line unlock is unchanged and nothing in the known physics supplies it:
+a forced, hbar-free, convention-independent coupling of a worldline to exactly S_dS horizon degrees of freedom
+that ALSO fixes the normalisation to land 1/2. The mechanism is real (the right FORM a0 = cH x pure number, and
+kappa = 1/2 is the right KIND of number — rational, density-mechanism), but the coefficient is measured, not
+derived.
