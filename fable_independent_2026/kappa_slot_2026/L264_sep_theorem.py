@@ -63,11 +63,15 @@ q_mu2 = re.search(r"canonical (\d+\.\d+)x ceiling", l243)
 f24 = "".join(rd(os.path.relpath(p, REPO)) for p in glob.glob(os.path.join(REPO, "hunt_2026", "f24_*.out")))
 q_rar = re.search(r"7\.70", f24) is not None
 f25 = "".join(rd(os.path.relpath(p, REPO)) for p in glob.glob(os.path.join(REPO, "hunt_2026", "f25_*.out")))
-sharp_lose = ("mu_10" in f25 or "mu10" in f25) and ("99.9" in f25)
+sharp_lose = ("mu_10 does NOT survive a_0 profiling" in f25) and ("fraction > 0: 1.000" in f25)   # f25 R2, verbatim
 print(f"    the RAR's transition at x = 2.5: nu_RAR(2.5) - 1 = {trans:.3f} (26%);  the EFE quadrupole for mu_2 at eta = 2.48: {q_mu2.group(1) if q_mu2 else '?'}x the Cassini ceiling (L243); nu_RAR 7.70x (f24) -> {q_rar}")
-print(f"    sharp kernels (mu_5, mu_10) lose to the RAR at >= 99.9% with a0 and Upsilon profiled (f25 on record) -> {sharp_lose}")
-check("T3 some kernel on the record is BOTH RAR-consistent at x = 2.5 AND below the Cassini ceiling at eta = 2.5",
-      False if (q_mu2 and float(q_mu2.group(1)) > 1 and q_rar and sharp_lose) else True,
+print(f"    sharp kernels (mu_5, mu_10) lose to nu_RAR in every bootstrap replicate with a0 (and Upsilon) profiled (f25 R2 on record) -> {sharp_lose}")
+records_read = bool(q_mu2) and q_rar and sharp_lose
+gradual_fail_cassini = bool(q_mu2) and float(q_mu2.group(1)) > 1 and q_rar
+check("T3 records located (L243 mu_2 quadrupole, f24 nu_RAR quadrupole, f25 sharp-kernel RAR loss) -- a check that cannot read its record must FAIL, not pass", records_read,
+      f"L243 {bool(q_mu2)}, f24 {q_rar}, f25 {sharp_lose}")
+check("T3' some kernel on the record is BOTH RAR-consistent at x = 2.5 AND below the Cassini ceiling at eta = 2.5",
+      records_read and not (gradual_fail_cassini and sharp_lose),
       "none: the gradual kernels pass the RAR and fail Cassini 4-9x; the sharp kernels pass Cassini and fail the RAR at >= 99.9%. One function, two ends, no local theory. [FAIL is the finding]")
 # the suppression a nonlocal internal/external asymmetry would need
 need = float(q_mu2.group(1)) if q_mu2 else 6.44
