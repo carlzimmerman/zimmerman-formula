@@ -1,7 +1,7 @@
 ---
 title: "What Survives Independent Verification: The Machine-Checked Identities, Reproduced Measurements and No-Go Results of a 440-Commit AI Agent-Swarm Campaign on the Equilibrium Reading of the Radial Acceleration Relation"
 author: "Carl P. Zimmerman (Briar Creek Tech) — AI-assisted research programme; not peer reviewed"
-date: "2026-09-16 (v1)"
+date: "2026-09-16 (v1) — DOI 10.5281/zenodo.22803511 (concept 10.5281/zenodo.22803510)"
 geometry: margin=1in
 mainfont: "STIX Two Text"
 fontsize: 11pt
