@@ -1,0 +1,134 @@
+==============================================================================
+YM04 -- THE VECTOR'S HALO BACKGROUND (the gap's first non-silent observable)
+==============================================================================
+
+  Lambda = 0.002240 eV ; C_f = 0.099735552 vs 1/(2 sqrt(8 pi)) = 0.099735570 ; m_d = 5088.9 eV (the pinned scale, C02 ladder)
+  Lambda^4 = 2.5190e-11 eV^4 = 5.2527e-10 J/m^3
+  u(3) = 0.622095 ; u(8.2) = 0.227596 ; u(40) = 0.046657
+  [PASS] C0 [the committed u-map] u(r) = C_f v_flat^2/(a0 r) reproduces the pinned registers u(3) = 0.6221, u(8.2) = 0.2276, u(40) = 0.0467 (C_f = 1/(2 sqrt(8 pi)))
+         measured: u(3.0) = 0.6221 (committed 0.6221); u(8.2) = 0.2276 (committed 0.2276); u(40.0) = 0.0467 (committed 0.0467)
+         reading : every number below lives on the committed map; no free parameters.
+
+==============================================================================
+PART 1 -- THE SOURCED SOLUTION (check 1): A_r = v/m, E_A = (1/2) mu_2 v^2, EXACT
+==============================================================================
+  [PASS] C1a [the sourced solution] the static radial solution of (Box + m_A^2) A = m j (magnitudes, Box A = 0 on the r^{-1}-class halo profile): A_r = m mu_2 v/m_A^2 = v/m EXACTLY -- the source's mu_2 and the mass face cancel
+         measured: A_r = m*mu_2*v/m_A^2 ; with m_A^2 = mu_2 m^2: residual 0
+         reading : the background amplitude is the phantom's own gradient per unit gauging scale -- no mu_2, no m left; the profile follows u(r) (m_A(r) = m_d sqrt(mu_2(u(r)))) while A_r(r) = v(r)/m follows u(r) directly.
+  [PASS] C1b [the energy] E_A = (1/2) m_A^2 A^2 = (1/2) mu_2 v^2 EXACTLY (sympy residual 0): the vector halo's energy density is the phantom's kinetic bracket times mu_2/2
+         measured: residual 0 ; E_A/Lambda^4 = (1/2) mu_2 v^2/Lambda^4 = mu_2 u^2 (v^2 = 2 u^2 Lambda^4)
+         reading : E_A = mu_2 u^2 Lambda^4 exactly -- the clean-face mass (the pinned gap) is the one that makes the amplitude and the energy cancel to these closed forms.
+
+==============================================================================
+PART 2 -- THE FRACTION eps = E_A/rho_ph (check 2): the exact closed form
+==============================================================================
+  E_A/Lambda^4    = u**3*(u + 2)/(u + 1)**2
+  rho_ph/Lambda^4 = (2*u**3*(u + 2) + 2*u + (u + 1)**2*(-u**2 + 2*log(u + 1) - 1) + 2)/(u + 1)**2   (2 u^2 mu_2 - f; rho_ph(0) = Lambda^4 already, f(0) = -1 -- the '+1' of the tasking would double-count the vacuum)
+  eps(u) = u**3*(u + 2)/(u**4 + 2*u**3 + 2*u**2*log(u + 1) - 2*u**2 + 4*u*log(u + 1) + 2*log(u + 1) + 1)
+  series: u**3*(69*u**4 - 31*u**3 + 12*u**2 - 9*u + 6)/3  ->  eps(0) = 0
+  candidate (tasking guess): u**3*(u + 2)/(2*u**4 + 4*u**3 + u**2 + 2*u + 1)  (exact only to O(u^3): -f = 1 - (4/3)u^3 + (3/2)u^4 - ...;  residual 1 + f = u**3*(48*u**2 - 45*u + 40)/30)
+  [PASS] C2a [the eps closed form, EXACT] eps = E_A/rho_ph = (mu_2 u^2)/(2 u^2 mu_2 - f(u)) = u^3 (u+2)/[u^4 + 2 u^3 - 2 u^2 + 2 (1+u)^2 ln(1+u) + 1] -- derived from the committed f (residual vs the definition 0); the tasking's candidate (mu_2 u^2)/(2 mu_2 u^2 + 1) is the f(0) = -1 truncation, exact to O(u^3) only -- CORRECTED (register)
+         measured: residual 0 ; candidate-exact: 1 + f = u**3*(48*u**2 - 45*u + 40)/30 -> candidate/exact = 0.98794 at u(8.2), 0.87391 at u(3)
+         reading : the lane's own closed form IS the deliverable (the tasking's candidate and its ~0.096 claim are guesses to be verified/corrected).
+  eps(3 kpc)  = 0.18551743   (candidate 0.16212567)
+  eps(8.2)    = 0.01704553   (candidate 0.01683991)
+  eps(40 kpc) = 0.00018971   (candidate 0.00018968)
+  the tasking's claims: ~0.096 / ~0.017 / ~2e-4 ; the '~0.096' matches NEITHER the candidate (0.16213) NOR the exact form (0.18552); closest reading: the candidate at u(4 kpc) = 0.4666 gives 0.0945 -- a radius slip (registered)
+  [PASS] C2b [the evaluation] the exact closed form at the MW radii: eps(8.2) = 0.01705 matches the tasking's 0.017 and eps(40) = 1.897e-4 matches 2e-4; eps(3) = 0.18552 -- the '~0.096' claim is registered as inconsistent (it matches neither exact 0.18552 nor candidate 0.16213; it equals the candidate at u(4 kpc) = 0.4666, a radius slip)
+         measured: eps(3) = 0.18552 (claim ~0.096) ; eps(8.2) = 0.01705 (claim ~0.017) ; eps(40) = 1.89706e-04 (claim ~2e-4)
+         reading : 'whatever the exact form gives' governs at 3 kpc -- the exact form gives 0.1855, the guess is superseded.
+  [PASS] C2c [the double closing] eps -> 0 as u -> 0: eps = 2 u^3 - 3 u^4 + 4 u^5 - (31/3) u^6 + O(u^7) (the 2u^3-class deep law, leading coefficient EXACTLY 2); the vector's mass closes (m_A(0) = 0, D4) AND its energy vanishes (E_A(0) = mu_2(0) v^2/2 = 0) -- the vacuum/cap is doubly silent
+         measured: series u**3*(69*u**4 - 31*u**3 + 12*u**2 - 9*u + 6)/3 ; eps(0) = 0 ; E_A(0) = 0 ; m_A(0) = 0
+         reading : deep halo (u << 1): eps ~ 2u^3 < 1e-5-class -- the vector's share of the phantom's stress vanishes with the gap itself.
+
+==============================================================================
+PART 3 -- THE ANISOTROPIC STRESS (check 3): exact tensor algebra
+==============================================================================
+  A^mu = (0, A_r, 0, 0), static + spherical -> F = 0 identically; T^mu_nu with E_A = (1/2) m_A^2 A^2:
+    T^0_0 = -A**2*m_A^2/2 = -E_A  (energy density rho = +E_A)
+    T^r_r = A**2*m_A^2/2 = +E_A = P_r
+    T^th_th = T^ph_ph = -A**2*m_A^2/2 = -E_A = P_t
+    P_r - P_t = 2 E_A   (tasking's -E_A corrected);  alpha_A = (P_r - P_t)/(-E_A) = -2
+    trace T^mu_mu = -A**2*m_A^2 = -m_A^2 A^2 = -2 E_A ; F-only trace: 0 (F cancels)
+  [PASS] C3a [the trace] T^mu_mu = -m_A^2 A^2 = -2 E_A EXACTLY, and the F-terms cancel identically (the trace of the Proca part alone, F-independent)
+         measured: trace = -A**2*m_A^2 ; residual vs -m_A^2 A^2: 0 ; F-only part 0
+         reading : with E_A = (1/2) m_A^2 A^2 the trace is -2 E_A -- this is the tasking's own committed trace identity, reproduced exactly (it fixes the frame convention used for the anisotropy reading).
+  [PASS] C3b [the anisotropy, CORRECTED] the exact algebra of the massive-vector tensor for the radial-aligned background gives P_r = +E_A, P_t = -E_A, so P_r - P_t = +2 E_A -- the tasking's 'P_r - P_t = -E_A' is NOT the algebra of the quoted T^mu_nu (it misses the m_A^2 A^r A_r support term); alpha_A := (P_r - P_t)/(-E_A) = -2  (|c_aniso| = 2)
+         measured: P_r - P_t = A**2*m_A^2 ; alpha_A = -2 ; residual vs -E_A: 3*A**2*m_A^2/2 (nonzero: the tasked value is corrected)
+         reading : the vector's halo is RADIALLY TENSIONED: radial pressure +E_A against tangential -E_A -- the pure-F part contributes nothing (static radial background), so the anisotropy is entirely the Proca term; the trace identity (C3a) is the convention cross-check that pins the signs.
+
+==============================================================================
+PART 4 -- THE PHANTOM'S ANISOTROPY FLOOR (checks 4, 7, 8)
+==============================================================================
+  beta_vec( 3.0 kpc) = 2.0 * eps = 0.371035
+  beta_vec( 8.2 kpc) = 2.0 * eps = 0.034091
+  beta_vec(40.0 kpc) = 2.0 * eps = 0.000379
+  [PASS] C4 [the velocity-anisotropy floor] beta_vec(r) = (P_r - P_t)/P ~ eps(r) * c_aniso with the exact coefficient c_aniso = |alpha_A| = 2 from (3): beta_vec = 2.0 eps -> 0.3710 / 0.0341 / 3.7941e-04 at 3 / 8.2 / 40 kpc
+         measured: 3.0 kpc: 0.37103; 8.2 kpc: 0.03409; 40.0 kpc: 0.00038
+         reading : the vector's radial-aligned pressure (P_r = +E_A, P_t = -E_A) drives the dispersion toward radial orbits; the floor is monotone inward-rising, locked to eps(u(r)).
+
+==============================================================================
+PART 5 -- THE DIRECTION-BLIND CONSISTENCY (check 5)
+==============================================================================
+  [PASS] C5 [the direction-blind consistency] the committed direction tests (DE07 wide-binary angular 9/9, DE09 dSph PA-uniform 3/3) live at x ~ 0.02-0.2 -> u ~ 2e-3-0.02, where eps ~ 2 u^3 <= 1.55e-5 < 1e-4: the vector's directional signature is ABSENT at the DE07/DE09 test level
+         measured: eps(u = 0.02) = 1.5532e-05 (2 u^3 = 1.6000e-05) ; gate < 1e-4
+         reading : direction-blind by six-plus orders: the halo background's share of the phantom's stress is below the committed direction tests' resolution; DE07 9/9 and DE09 3/3 survive untouched.
+
+==============================================================================
+PART 6 -- THE EXACT-VIRIAL ADJUDICATION (check 6)
+==============================================================================
+  P_r + 2 P_t (vector) = -A**2*m_A^2/2 = -E_A (residual 0) -- the virial's trace-free combination, EXACT
+  virial: 2K + W = int(P_r + P_t + P_ph) dV  gains  int(-E_A) dV : Delta(sigma^2)/sigma^2 = -(1/3) <eps>   [coefficient EXACTLY -1/3]
+  local: {'3.0': '-6.1839%', '8.2': '-0.5682%', '40.0': '-0.0063%'}
+  mass-weighted over [3, 40] kpc (rho ~ 1/r^2): <eps> = 0.010725 -> Delta(sigma^2)/sigma^2 = -0.3575%
+  [PASS] C6a [the virial coefficient, EXACT] the vector enters the virial through the trace-free combination P_r + 2 P_t = -E_A (residual 0); with the committed isotropic closure 3 sigma^2 M: Delta(sigma^2)/sigma^2 = -(1/3) * <eps> -- the coefficient is EXACTLY -1/3; MW values: -6.18% (3 kpc), -0.568% (8.2 kpc), -6.3e-5 (40 kpc); mass-weighted [3,40] kpc: -0.358%
+         measured: coefficient -(1/3) ; local -6.184% / -0.568% / -0.006% ; <eps>_MW = 0.010725 -> -0.3575%
+         reading : the exact frame-invariant statement is Delta(sigma^2)/sigma^2 = -(1/3) int(E_A)dV/(sigma^2 int(rho)dV); in the framework's O(eps) register (the closure scale P = sigma^2 rho, c = 1 footing) it reads -(1/3)<eps> -- the radial PATTERN (proportional to eps(u(r))) is the falsifiable content.
+  [PASS] C6b [the verdict] the committed sigma^2 = C/2 exactness (G091 12/12, residual 1e-16-class) SURVIVES at u << 1 -- the derivation regimes where eps -> 0 make the O(eps) virial amendment vanish -- and the O(eps) correction at inner radii is registered as a NEW falsifiable amendment (the anisotropy floor), NOT a refit
+         measured: exactness regime: eps(u <= 0.02) <= 1.55e-05 -> Virial shift <= 5.18e-04% ; inner amendment: -6.18% at 3 kpc (floor 37.1%)
+         reading : no committed datum moves: G091's exact sigma^2 = C/2 stands in the deep-halo regimes; the inner correction is a NEW claim with its own falsifier (check 8).
+
+==============================================================================
+PART 7 -- THE OBSERVABLE (check 7) AND THE FALSIFIER (check 8)
+==============================================================================
+  floor at 8.2 kpc (the data-class radius): 3.41% -- (a) > 0.5%: True ; (b) < 10% noise class: True
+  floor at 3 kpc: 37.1% -- the inner edge sits ABOVE the 10% class: registered as the falsifier's activation zone, not a noise-level effect
+  falsifier floor at r = 3.7 kpc (u = 0.5044): beta_vec = 0.2415
+  falsifier floor at r = 3.4 kpc (u = 0.5489): beta_vec = 0.2889
+  falsifier floor at r = 3.0 kpc (u = 0.6221): beta_vec = 0.3710
+  [PASS] C7 [the observable, gated] the MW inner-halo anisotropy floor at the committed data-class radii (DR4's vertical face, G157's BHB-Jeans family, both centered ~8 kpc): beta_vec(8.2) = 3.4% is (a) nonzero > 0.5% -- a real, falsifiable prediction -- AND (b) below the ~10% measurement-noise class, so no committed datum is contradicted; the 37% inner edge (3 kpc) is REGISTERED as the falsifier zone (G157's own Jeans beta-degeneracy sigma_gamma ~ 0.3-0.7 quoted against it)
+         measured: (a) floor = 3.41% > 0.5% (True) ; (b) floor = 3.41% < 10% (True) ; inner edge 3 kpc: 37.1% (falsifier zone)
+         reading : PASS at the radii the committed beta-noise classes actually cover; the 8.2-40 kpc floor (3.4% down to 0.04%) is a quiet, real prediction; the 3 kpc edge is the kill zone, stated plainly.
+  [PASS] C8 [the falsifier, registered] ANY measured beta(r) in the inner MW BELOW the floor at u ~ 0.5-0.62 (r ~ 3-3.7 kpc) kills the pin: the floor there is beta_vec = 0.24-0.37 (e.g. beta(3.7 kpc) = 0.2415, beta(3 kpc) = 0.3710); an isotropic or tangential inner halo breaks the vector-background picture at ten times its deep-halo silence
+         measured: kill if measured beta < 0.2415 (3.7 kpc, u = 0.504) .. 0.3710 (3 kpc, u = 0.622)
+         reading : registered: the pin's first observable, and its first kill line, are the same number -- the floor's inner edge.
+
+==============================================================================
+PART 8 -- THE SUMMARY NUMBERS TABLE (check 9)
+==============================================================================
+   r [kpc]        u       x    mu_2       eps  beta_vec d(sig2)/sig2  m_A [eV]
+     3.0  0.62210   6.237 0.61994   0.18552   0.37103     -6.1839%      4007
+     5.0  0.37326   3.742 0.46973   0.06047   0.12093     -2.0155%      3488
+     8.2  0.22760   2.282 0.33643   0.01705   0.03409     -0.5682%      2952
+    12.2  0.15297   1.534 0.24775   0.00575   0.01151     -0.1918%      2533
+    16.0  0.11664   1.170 0.19801   0.00268   0.00537     -0.0895%      2264
+    24.0  0.07776   0.780 0.13910   0.00084   0.00168     -0.0280%      1898
+    40.0  0.04666   0.468 0.08717   0.00019   0.00038     -0.0063%      1502
+  [PASS] C9 [the summary table] every row reproduces the exact closed forms: beta_vec = 2 eps (max residual 0.0e+00), eps from the closed form (residual 0.0e+00), m_A = m_d sqrt(mu_2) (max rel 0.0e+00)
+         measured: row residuals: beta-eps 0.0e+00 ; eps-closed-form 0.0e+00 ; m_A 0.0e+00 ; table: 3-40 kpc, eps 0.1855 -> 1.9e-4
+         reading : the table is a rendering of the lane's own closed forms -- nothing fitted, nothing independent.
+
+==============================================================================
+YM04 COMPLETE: 15/15 checks PASS.
+==============================================================================
+artifact written: YM04_results.json
+{
+ "complete_line": "YM04 COMPLETE: 15/15 checks PASS.",
+ "eps_closed_form": "eps(u) = mu_2(u) u^2 / (2 u^2 mu_2(u) - f(u)) = u^3 (u+2) / [u^4 + 2 u^3 - 2 u^2 + 2 (1+u)^2 ln(1+u) + 1], mu_2 = u(2+u)/(1+u)^2, f = u^2 - 2 ln(1+u) - 2/(1+u) + 1, deep law 2u^3 - 3u^4 + ... ; eps(3 kpc) = 0.18552, eps(8.2) = 0.01705, eps(40 kpc) = 1.8971e-04",
+ "virial_adjudication": "coefficient -(1/3) EXACT from P_r + 2 P_t = -E_A; Delta(sig2)/sig2 = -(1/3) eps(r): -6.184% (3), -0.568% (8.2), -6.3e-5 (40); mass-weighted [3,40] kpc: -0.357%; verdict: exactness survives at u << 1, O(eps) inner correction = the anisotropy floor (NEW falsifiable amendment, NOT a refit)",
+ "beta_floor": [
+  "3 kpc (u=0.6221): 0.3710",
+  "8.2 kpc (u=0.2276): 0.0341",
+  "40 kpc (u=0.0467): 3.7941e-04"
+ ]
+}

@@ -98,13 +98,24 @@ upgraded to "detected".
   answer: the sourced deep face would carry g² = √(8π)·a0·g_N (+0.3500 dex),
   excluded by G114's own deep end (2.33 rms / 4.38 median) — the sourced face
   dies BY ITS OWN CONSTANTS; the equilibrium face is map-free, RAR-exact.
-- **G1c — OPEN (new, from the audit):** the E02 vs B8 registers disagree on
-  n·λ_dB³ by ~250× (8.6e-9 vs 3.4e-11) — both ≥8 orders below 2.612 ("not a
-  condensate" survives either way) but the two committed registers should be
-  reconciled by the owning lanes.
-- **G1d — OPEN (the m-pin's falsifier, armed):** the identification
-  m_gauge = m_dust is an assumption with a kill switch: the G168 ladder band
-  (4, 6) keV firing, or any absolute pinning inconsistent with √μ₂·m.
+- **G1c — CLOSED (YM03_register_reconcile, 10/13; the FULL 20/26 record below):**
+  the E02 vs B8 n·λ_dB³ gap is a lambda-CONVENTION artifact: E02's 8.6e-9 =
+  the (2π)-free thermal h/(mσ) at r_M (STANDS, 0.6%-reproducible), B8's 3.4e-11
+  = the kinematic ħ/(m·c_s) mislabeled "thermal de Broglie" (missing 2π and
+  k_BT, 27.5× below physical). CORRECTION NOTE COMMITTED: the physical Sun
+  value n·λ_dB³ = 9.4e-10 (2π convention; band [8.89, 9.40]e-10); B8's 3.4e-11
+  superseded, never to be quoted.
+- **G1d — SHARPENED (YM03_selfinteraction, 10/10):** the pin's falsifier now
+  numeric: the virial-exactness band q_d/m_d ≤ 3.38e15 (the pin at 1 sits
+  15.5 orders inside); the self-interaction σ/m_d = 1.4e-178 cm²/g — 178
+  orders below the SIDM dwarf bound; W_vec/W_grav = 8.73e-48 — the EXACT
+  equilibrium σ² = C/2 untouched at the 1e-40-plus level.
+- **G1e — REGISTERED (YM04b, 6/6):** the YM04 k-essence-form energy fraction
+  (eps = 0.1855/0.0171 — the apparent 1-10% anisotropy) is SUPERSEDED by the
+  physical register eps_phys(u) = C·μ₂(u)·u (C = 3.0464e-6): the phantom is
+  dust-dominated (ρ_ph(R0) ≈ 1.7e5·Λ⁴); the vector's halo energy is 10⁻⁷-class,
+  the anisotropy floor β_vec ≤ 2.3e-5 — direction-blind tests survive by
+  4+ orders; the exact virial untouched at 8e-7.
 
 ## DELIVERABLES (this folder)
 

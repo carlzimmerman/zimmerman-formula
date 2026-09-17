@@ -5,9 +5,13 @@ evidence row below is machine-verified in this folder (lane exits and Lean
 compilations re-run by the coordinating agent after the parallel wave).**
 Companions: YM_REFEREE.md (the adversarial audit, ALIVE 3 / BOUNDARY-REGISTERED
 4 / KILLED 0), YM02_deep_face_kill.py/.out/_results.json (8/8), YM_NONABELIAN.md
-(the SU(3) obstruction), lean/YM01_gap.lean (19 theorems) + lean/YM02_pinned_gap.lean
-(17 theorems) = **36 Lean theorems, zero sorry, axioms ⊆ {propext,
-Classical.choice, Quot.sound}**.
+(the SU(3) obstruction), YM03_selfinteraction (10/10) + YM03_register_reconcile
+(10/13, G1c CLOSED), YM04_vector_halo (15/15, superseded register) +
+YM04b_vector_halo_physical (6/6, the physical register), and the Lean spine —
+lean/YM01_gap (19) + YM02_pinned_gap (17) + YM03_virial_consistency (9) +
+YM04_energy_fraction (11, superseded register, flagged) +
+YM04b_energy_fraction_physical (4) = **60 Lean theorems, zero sorry,
+axioms ⊆ {propext, Classical.choice, Quot.sound}**.
 
 ---
 
@@ -52,6 +56,9 @@ attained at k = 0.
 | P16 | THE NON-ABELIAN BOUNDARY | the eaten-Goldstone mechanism supplies ONE U(1)-class gap per gauged shift; the SU(3) mass matrix has rank N²−1 = 8 ≠ eaten-Goldstone-count ≤ 1; adjoint VEVs need a potential (impossible: f(K) shift-symmetric, no V(φ)); explicit adjoint constants are the G054-killed class; gradients are singlet sources — the mechanism cannot fake the non-abelian gap | **LANDED: YM_NONABELIAN.md (62 lines)** — the rank-counting trichotomy T1/T2/T3 |
 | P17 | THE REFEREE SCORECARD | survivability of the door vs the committed record: ALIVE 3 (B8 zero-gap as the m→0 face; G155 closure preserved — the gauged mass term adds no matter coupling; TOE_STATUS null untouched — no new SM ratio) / BOUNDARY-REGISTERED 4 (L5's letter — K3's pre-registered override; G054's scope — solution-generated gradient; the m = m_dust identification — assumption with falsifier, never derived; the Clay scope — K5) / KILLED 0; most vulnerable assumption: m = m_dust; door-killing falsifiers: a massless-vector signature inside the phantom, a gap failing to close in the Solar System / beyond the cap, α₁/α₂ ≠ 0 | **LANDED: YM_REFEREE.md (247 lines), read-in-full audit** |
 | P18 | THE PINNED SPINE (Lean) | the algebraic core re-certified at the PINNED level: ladder_mass_pos, ladder_roundtrip, capped_gap_pos, capped_gap_sq_clean, C_f_value, deep_coeff (1/(2C_f) = √(8π)), gap_dispersion, gap_tight_pinned, excitation_pinned, vacuum_zero, the numeric bands (5.088883 keV ∈ (4,6) G168 kill band ∧ (4.99, 5.19) G212 band by norm_num on cleared rationals) | **LANDED: lean/YM02_pinned_gap.lean — 17 theorems, exit 0, zero sorry (recompiled by the coordinator)** |
+| P19 | SELF-INTERACTION + VIRIAL CONSISTENCY (YM03) | the vector-mediated dust self-interaction: W_vec/W_grav = 2(m_d/M_pl)² = 8.73e-48 (the EXACT equilibrium σ² = C/2 is untouched at the 1e-40-plus level); σ/m_d = 1.4e-178 cm²/g — SILENT by 178 orders vs the SIDM dwarf bound; the derived constraint band q_d/m_d ≤ 3.38e15 (the pin sits 15.5 orders inside — G1d's falsifier sharpened to a number) | **LANDED: YM03_selfinteraction 10/10 + lean/YM03_virial_consistency 9 theorems, exit 0** |
+| P20 | THE REGISTER RECONCILIATION (G1c, YM03) | the E02 (8.6e-9) vs B8 (3.4e-11) n·λ_dB³ gap is a lambda-CONVENTION artifact, not physics: E02's = the (2π)-free thermal h/(mσ) at r_M (self-consistent, stands); B8's = the kinematic ħ/(m·c_s) mislabeled "thermal de Broglie" (missing 2π AND k_BT; 27.5× below the physical value); the physical degeneracy parameter at the Sun n·λ_dB³ = 9.4e-10 (T-band [8.89, 9.40]e-10); CORRECTION NOTE registered (additive rule: B8's 3.4e-11 superseded) | **LANDED: YM03_register_reconcile 10/13 (the 3 FAILs are the findings) — G1c CLOSED** |
+| P21 | THE VECTOR'S HALO ENERGY (YM04 + YM04b) | the massive vector is sourced by the phantom's own gradient and carries a halo background: the k-essence-form register (YM04 15/15: eps = 0.1855/0.0171/1.9e-4, the apparent 1-10% anisotropy) is SUPERSEDED — its denominator (Λ⁴(2u²μ₂−f+1)) misidentifies the phantom (dust-dominated, ρ_ph(R0) ≈ 1.7e5·Λ⁴); the PHYSICAL register (YM04b 6/6): eps_phys(u) = C·μ₂(u)·u with C constant across radii (3.0464e-6 in the lane's map): eps(3 kpc) = 1.16e-5, eps(8.2) = 9.3e-7, eps(40) = 2.9e-9; the anisotropy floor β_vec = 2ε ≤ 2.3e-5 — the direction-blind tests (DE07 9/9, DE09 3/3) survive by 4+ orders; the exact virial Δσ²/σ² = −(1/3)ε ≤ 8e-7 — untouched. THE VECTOR IS ENERGETICALLY SILENT WITH THE EXACT REASON: the halo's energy is dust-dominated | **LANDED: YM04_vector_halo 15/15 (superseded register, kept on record) + YM04b 6/6 (the physical register) + lean/YM04b_energy_fraction_physical 4 theorems, exit 0** |
 
 **THE NUMBERS (pinned, zero free parameters):**
 

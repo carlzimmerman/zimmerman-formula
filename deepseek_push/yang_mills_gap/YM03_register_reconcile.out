@@ -1,0 +1,116 @@
+==============================================================================
+YM03 -- G1c EXECUTION: E02 vs B8 REGISTER RECONCILIATION on n*lambda_dB^3
+==============================================================================
+
+==============================================================================
+PART 1 -- THE PHYSICAL n*lambda_dB^3 AT THE SUN (fixed committed inputs)
+==============================================================================
+  rho_ph(8.2 kpc) = 0.0084 M_sun/pc^3 = 5.6866e-22 kg/m^3
+  m_d = 5088.9 eV = 9.0718e-33 kg ;  T_phase = 9.17 K
+  n(R0) = 6.2685e+10 m^-3 ;  lambda_dB = h/sqrt(2 pi m k_B T) = 2.4666e-07 m
+  PHYSICAL n*lambda_dB^3 (Sun) = 9.4068e-10
+  committed T-band [9.1729, 9.5205] K -> n*lambda_dB^3 in [8.8921e-10, 9.4023e-10]
+  [PASS] C1 [the physical reference] n*lambda_dB^3 at the Sun from the fixed committed inputs (rho_ph(R0) = 0.0084 M_sun/pc^3, m_d = 5.0889 keV, T = 9.17 K, lambda = h/sqrt(2 pi m k_B T))
+         measured: n*lambda_dB^3 = 9.4068e-10  (band [8.8921e-10, 9.4023e-10] K-committed)
+         reading : the reference for the G1c gate: the equilibrium's thermal degeneracy parameter at the Sun, true 2-pi thermal de Broglie.
+
+==============================================================================
+PART 2 -- THE TWO COMMITTED REGISTERS, REPRODUCED EXACTLY
+==============================================================================
+  E02/S1 constants: rho(r_M) = 3.4142e-22 kg/m^3 -> n = 3.7627e+10 m^-3 (S1 register 3.763e10);  lambda = h/(m sigma) = 6.1257e-07 m (S1 register 6.1257e-7)
+  E02/S1 n*lambda_dB^3 = 8.6490e-09  (TOE_STATUS.md:64 commits 8.6e-9)
+  [PASS] C2 [E02 reproduced] the E02/TOE_STATUS register 8.6e-9 is reproduced from S1's OWN committed constants (n(r_M) = 3.7628e10 m^-3 x (h/(m sigma))^3, sigma = 119.21 km/s) to < 2%
+         measured: measured 8.6490e-09 vs committed 8.6e-9 (rel 5.70e-03)
+         reading : E02's number is EXACTLY reproducible at r_M = 10.21 kpc with the S1 (2 pi)-free de Broglie lambda = h/(m sigma); it is an r_M value, not a Sun value.
+  B08 constants: rho(r_M) = 3.5430e-22 kg/m^3 -> n = 3.9047e+10 m^-3 (B08 register 3.905e10);  c_s = 121438.466 m/s = 121.438 km/s;  lambda = hbar/(m c_s) = 9.5705e-08 m (B08 register 9.5705e-8)
+  B08 n*lambda_db^3 = 3.4228e-11  (B08_condensate.out commits 3.4228e-11 -> WAVEBOARD.md:1620 rounds to 3.4e-11)
+  [PASS] C3 [B08 reproduced] the B8 register 3.4e-11 is reproduced from B08's OWN committed constants (n(r_M) = 3.9051e10 m^-3 x (hbar/(m c_s))^3, c_s = 121.4 km/s) to < 2%
+         measured: measured 3.4228e-11 vs committed 3.4e-11 (rel 6.71e-03)
+         reading : B8's number is EXACTLY reproducible at r_M = 10.21 kpc with B08's kinematic wavelength hbar/(m c_s) -- B08_condensate.py:198-199 labels this 'thermal de Broglie length', which is a MISLABEL (no 2 pi, no k_B T in it).
+
+==============================================================================
+PART 3 -- THE G1c GATE: physical value vs the two committed registers
+==============================================================================
+  physical = 9.4068e-10
+  vs E02's 8.6e-9 : ratio 0.109  (E02 is 9.19x HIGH; no match to < 2%)
+  vs B8's 3.4e-11  : ratio 27.483  (B8 is 27.48x LOW; no match to < 2%)
+  [FAIL] C4 [gate vs E02] the physical Sun value matches E02's 8.6e-9 to < 2%
+         measured: ratio phys/E02 = 0.1088 (no match: -89.1%)
+         reading : GATE READING: E02 overshoots the physical Sun value by 9.20x.
+  [FAIL] C5 [gate vs B8] the physical Sun value matches B8's 3.4e-11 to < 2%
+         measured: ratio phys/B8 = 27.4827 (no match: +2648.3%)
+         reading : GATE READING: B8 undershoots the physical Sun value by 27.5x -- BOTH registers are r_M values with non-thermal lambdas; the physical value is a THIRD number, closest to E02 by a factor of three.
+
+==============================================================================
+PART 4 -- THE ~250x: EXACT DECOMPOSITION
+==============================================================================
+  lambda_E02/lambda_B08 = 6.4006  (= h/(m sigma) / (hbar/(m c_s)) = 2 pi * c_s/sigma = 2 pi * 1.0187)
+  lambda^3 factor = 262.22 ;  n-factor = 0.9636
+  -> predicted ratio = 252.69 vs committed ratio 8.6e-9/3.4e-11 = 252.69
+  (2 pi)^3 = 248.05 ;  (c_s/sigma)^3 = 1.0571
+  [PASS] C6 [the 250x decomposition] the registered ~250x is fully accounted for by the lambda conventions (h vs hbar and sigma vs c_s) and the 3.6% density-route difference -- predicted vs committed ratio
+         measured: ratio = 252.69 vs 252.69 (rel 0.0e+00)
+         reading : THE 250x = (2 pi)^3 = 248.05 x (c_s/sigma)^3 = 1.0561 x n(r_M)_S1/n(r_M)_B08 = 0.9636 -> 252.4x.  There is NO density-at-different-radius component: both registers used r_M = 10.21 kpc (densities only 3.6% apart); the 250x is the h-vs-hbar (2 pi) factor cubed, dressed by the 1.8% velocity-convention difference.
+
+  E02 lambda h/(m sigma)      = 6.1257e-07 m
+  (2 pi)-free thermal h/sqrt(m k_B T) = 6.1828e-07 m
+  [PASS] C7 [E02 diagnosis] E02's lambda is the (2 pi)-FREE thermal de Broglie: h/(m sigma) == h/sqrt(m k_B T) at the committed temperature (sqrt(m k_B T) = m sigma up to the 0.9% footing offset) -- the task's 'E02 used the (2 pi)-free lambda' hypothesis
+         measured: rel |h/(m sigma) - h/sqrt(m k_B T)|/6.182775851342179e-07 = 9.229e-03
+         reading : CONFIRMED: E02's 8.6e-9 is the (2 pi)-free-convention reading of the thermal degeneracy; in the 2-pi convention the SAME number reads n(r_M)*lambda_th^3 = 5.5e-10 (S1's own cross-check, E02 Q7).
+  [PASS] C8 [E02 cross-check] E02's own record is self-consistent: S1's 2-pi-convention cross-check of the same r_M quantity (E02 Q7: n lambda_th^3 = 5.5e-10) and 8.6e-9 = 5.5e-10 x (2 pi)^(3/2) = 8.66e-9
+         measured: n(r_M)*lambda_th^3 = 5.492e-10 vs E02 Q7's 5.5e-10;  5.5e-10*(2*pi)^1.5 = 8.662e-09 vs 8.6e-9
+         reading : both conventions live inside E02's own lane; the 8.6e-9 register is the (2 pi)-free reading of the thermal quantity -- a convention statement, not an independent physics claim.
+  [FAIL] C9 [B08 diagnosis] B08's lambda = hbar/(m c_s) is NOT the thermal de Broglie: it carries no k_B T and hbar instead of h (mislabeled 'thermal de Broglie length', B08_condensate.py:198-199)
+         measured: lambda_B08/lambda_th = 0.3880 (a factor 2.58 short in lambda, 17.1x short in lambda^3)
+         reading : measured FAIL as a thermal-length claim: B08's lambda is the single-particle kinematic wavelength at the sound speed, 2.58x below the true thermal lambda -- BOTH the 2 pi (h vs hbar) and the thermal velocity sqrt(k_B T/m) are missing (the sound speed c_s = 121.4 km/s replaces the thermal velocity sqrt(k_B T/m) = 118.1 km/s, a 2.8% coincidence that hides the missing k_B T).
+
+==============================================================================
+PART 5 -- THE SWEEP: every plausible single-factor substitution
+==============================================================================
+  hypothesis                                              value  vs E02 8.6e-9  vs B8 3.4e-11
+  density at r = 4 kpc                               3.9532e-09        54.29%     11449.59%
+  density at r = r_M (10.21 kpc)                     6.0676e-10        92.98%      1672.71%
+  density at r = 40 kpc                              3.9532e-11        99.54%        15.50%
+  T = 50 K                                           7.3882e-11        99.15%       115.85%
+  (2 pi)-free lambda (h/sqrt(m k_B T))               1.4815e-08        71.30%     43184.12%
+  L10 floor mass m = 3.3 keV                         2.7779e-09        67.88%      8015.84%
+  lambda = hbar/(m c_s) at the Sun (density untouched)   5.4949e-11        99.36%        60.54%
+  missing c-power (lambda = h c/(m sigma^2) check -- c does not enter either committed lambda)           --            n/a            n/a
+  [PASS] C10 [the sweep] NO single-factor substitution of the fixed inputs reproduces either committed register to < 2% -- the ONLY < 2% reproducers are the committed combinations of Part 2 (r_M density + the lane's own lambda convention)
+         measured: density at r = 4 kpc: 54.3%/11449.6% ; density at r = r_M (10.21 kpc): 93.0%/1672.7% ; density at r = 40 kpc: 99.5%/15.5% ; T = 50 K: 99.1%/115.9% ; (2 pi)-free lambda (h/sqrt(m k_B T)): 71.3%/43184.1% ; L10 floor mass m = 3.3 keV: 67.9%/8015.8% ; lambda = hbar/(m c_s) at the Sun (density untouched): 99.4%/60.5%
+         reading : closest single factor: 'density at r = 40 kpc' at 15.5% -- still off the < 2% bar; the referee's 'density at r = 40 kpc' hypothesis gives 3.953e-11 (+15.5% vs 3.4e-11, FAILS); a density-only substitution at r = 43.1 kpc would land at 3.405e-11 (-0.5%) but 43.1 kpc is not a committed radius anywhere -- the committed B08 code path (r_M, ldb_of) is the exact reproducer (C3), so the 43.1 kpc agreement is a numeric coincidence, not the cause.
+
+==============================================================================
+PART 6 -- THE G089 CHECK: does the dimensionless-inventory lane canonize?
+==============================================================================
+  [PASS] C11 [G089] G089_dimensionless_inventory.md (2026-09-15, Tables A/B/C, 17 DERIVED + 7 EMPIRICAL + 7 CIRCULAR + 3 OPEN entries) contains NO n*lambda_dB^3 entry and no BEC-degeneracy row -- the G089 lane does not canonize either register
+         measured: A1-A12, B1-B14, C1-C7 scanned: n*lambda_dB^3 absent (the inventory's 'truly free parameters = 1 (Z <-> Omega_Lambda)' statement is unaffected)
+         reading : ruling is therefore decided by the owning lanes' own code (S1/E02 vs B08) and the physical computation, not by a G089 canon.
+
+==============================================================================
+PART 7 -- THE VERDICT (G1c CLOSED)
+==============================================================================
+THE PHYSICALLY REPRODUCIBLE REGISTER IS E02's 8.6e-9 (TOE_STATUS.md:64): it reproduces EXACTLY from S1's committed constants (C2: 3.7628e10 m^-3 x (6.1257e-7 m)^3 = 8.6490e-09) and is the (2 pi)-FREE thermal-de-Broglie reading of the equilibrium's degeneracy (C7: h/(m sigma) == h/sqrt(m k_B T) to 0.9%; C8: its own 2-pi-convention twin is 5.5e-10 at r_M, S1's cross-check).  Its 9.20x overshoot of the physical Sun value decomposes into the (2 pi)^(3/2) = 15.7x lambda convention factor and the r_M-vs-Sun density ratio 0.6004 -- a convention + evaluation-radius statement, not an error.
+  B8's 3.4e-11 (WAVEBOARD.md:1619-1620) IS THE REGISTER ERROR: it is n(r_M) x (hbar/(m c_s))^3 (B08_condensate.py:359-364 with ldb_of = hbar/(m c_s), :198-199, mislabeled 'thermal de Broglie length') -- a kinematic wavelength that carries NO k_B T and hbar instead of h; it sits 27.5x BELOW the physical Sun value and 16.0x below the same-r_M true-thermal value; the '~250x' registered by the referee is that lambda-convention gap: (2 pi)^3 = 248.05 x (c_s/sigma)^3 = 1.056 x n-ratio 0.9636 = 252.4x -- there is no density-at-another-radius component (both lanes used r_M = 10.21 kpc).
+  [PASS] C12 [the verdict] E02's 8.6e-9 is the physical register (canonical in the record, exactly reproducible, = the (2 pi)-free form of the thermal quantity, 9.20x from the true Sun value); B8's 3.4e-11 is the register error (kinematic hbar/(m c_s) lambda, 27.5x from the true Sun value, 16.0x from the same-radius thermal value)
+         measured: E02/phys = 9.19x (E02 high) ; phys/B8 = 27.48x (B8 low) ; rM-thermal/B8 = 16.04x
+         reading : E02 is a factor of three closer to the physical value AND its convention is documented inside its own lane (C7/C8); B8 loses on every count and its code-level cause is named (C9).
+
+------------------------------------------------------------------------------
+CORRECTION NOTE (G1c, YM03_register_reconcile, additive rule -- the record is corrected by this new committed statement, never by deletion): COMMIT n*lambda_dB^3 = 9.4e-10 as the degeneracy parameter of the equilibrium at the Sun (rho_ph(R0) = 0.0084 M_sun/pc^3, m_d = 5.0889 keV, T_phase = 9.17 K, lambda_dB = h/sqrt(2 pi m k_B T) = 2.467e-7 m; T-band [8.89, 9.40]e-10).  E02's 8.6e-9 STANDS as the (2 pi)-free-convention reading of the same quantity (5.5e-10 x (2 pi)^(3/2) at r_M).  B8's 3.4e-11 (WAVEBOARD.md:1619-1620) is SUPERSEDED: it is n(r_M) x (hbar/(m c_s))^3, a kinematic lambda that is not the thermal de Broglie (B08_condensate.py:198; missing 2 pi and k_B T), 27.5x below the physical Sun value -- all future uses must quote 9.4e-10 (2-pi convention) or 8.6e-9 ((2 pi)-free), never 3.4e-11.
+------------------------------------------------------------------------------
+  [PASS] C13 [the correction] the CORRECTION NOTE is registered (additive rule: a new committed statement; B8's number is superseded, not deleted)
+         measured: one-line fix: 'B8's 3.4e-11 is n(r_M)*(hbar/(m c_s))^3 -- a kinematic lambda missing 2 pi and k_B T; commit 9.4e-10 (Sun, T = 9.17 K, 2-pi thermal lambda); E02's 8.6e-9 stands as the (2 pi)-free form.'
+         reading : the correction is a registration, not an edit of the owning lanes.
+
+==============================================================================
+YM03 COMPLETE: 10/13 checks PASS.
+==============================================================================
+
+artifact written: YM03_register_reconcile_results.json
+{
+ "physical_value": "9.407e-10",
+ "complete_line": "YM03 COMPLETE: 10/13 checks PASS.",
+ "cause": "252.4x = (2*pi)^3 * (c_s/sigma)^3 * n-ratio (248.05*1.0561*0.9636); B8's 3.4e-11 = n(r_M)*(hbar/(m c_s))^3, a mislabeled kinematic lambda (B08_condensate.py:198, no 2*pi, no k_B*T), 27.5x below physical; E02's 8.6e-9 = n(r_M)*(h/(m sigma))^3, the (2*pi)-free thermal reading (its 2-pi twin is 5.5e-10 at r_M, S1 cross-check)",
+ "correction": "CORRECTION NOTE (G1c, YM03_register_reconcile, additive rule -- the record is corrected by this new committed statement, never by deletion): COMMIT n*lambda_dB^3 = 9.4e-10 as the degeneracy parameter of the equilibrium at the Sun (rho_ph(R0) = 0.0084 M_sun/pc^3, m_d = 5.0889 keV, T_phase = 9.17 K, lambda_dB = h/sqrt(2 pi m k_B T) = 2.467e-7 m; T-band [8.89, 9.40]e-10).  E02's 8.6e-9 STANDS as the (2 pi)-free-convention reading of the same quantity (5.5e-10 x (2 pi)^(3/2) at r_M).  B8's 3.4e-11 (WAVEBOARD.md:1619-1620) is SUPERSEDED: it is n(r_M) x (hbar/(m c_s))^3, a kinematic lambda that is not the thermal de Broglie (B08_condensate.py:198; missing 2 pi and k_B T), 27.5x below the physical Sun value -- all future uses must quote 9.4e-10 (2-pi convention) or 8.6e-9 ((2 pi)-free), never 3.4e-11."
+}

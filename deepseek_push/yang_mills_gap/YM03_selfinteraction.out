@@ -1,0 +1,62 @@
+==============================================================================
+YM03 -- SELF-INTERACTION AND VIRIAL CONSISTENCY (the pinned 5.09 keV dust)
+==============================================================================
+
+  M_pl(reduced) = 2.4353e+27 eV (committed 2.4356e+27 eV used)
+  m_d = 5088.9 eV ; sigma_thermal = 1.19e+05 m/s -> v_nat = v/c = 3.9694e-04
+  1 eV^-1 = 1.973270e-05 cm ; 1 eV^-2 = 3.893796e-10 cm^2 ; 1 cm^2 = 2.5682e+09 eV^-2
+  u(8.2 kpc) = 0.2276 ; m_A(Sun, exact face) = 3883.9 eV (tasking 3.88e3 eV)
+
+==============================================================================
+CHECK 1 -- THE VIRIAL CONSISTENCY RATIO W_vec/W_grav (symbolic + numeric)
+==============================================================================
+  [PASS] C1 [the virial ratio, symbolic] W_vec/W_grav = 2 (m q_d/(M_pl m_d))^2 EXACTLY under the register g_eff = m q_d/M_pl^2, G = 1/(8 pi M_pl^2)
+         measured: residual 0 ; closed form 2*m**2*q**2/(M_pl**2*m_d**2)
+         reading : the committed potential V = -g_eff^2/(4 pi r) e^{-m_A r} (energy mass^1) forces the register, and the register yields the pre-registered ratio form exactly -- no free constant.
+  [PASS] C2 [the virial ratio, numeric] with m = q_d = m_d: W_vec/W_grav = 2 (m_d/M_pl)^2 = 8.73e-48 ; gate: < 1e-40
+         measured: ratio = 8.7310e-48 (2 x (m_d/M_pl)^2, (m_d/M_pl)^2 = 4.3655e-48) vs gate 1e-40
+         reading : the HONEST reading: the vector contribution sits 8 orders below the 1e-40 gate and ~48 orders below unity -- the vector CANNOT move the committed EXACT equilibrium sigma^2 = sqrt(G M_b a0)/2 (G091, residual 9.3e-16 class) at any resolvable level; the equilibrium remains gravity-dominated to 1e-40-plus.
+
+==============================================================================
+CHECK 2 -- THE SELF-INTERACTION CROSS SECTION (Born face, dimensional analysis)
+==============================================================================
+  [PASS] C3 [the regime] m_A/(m_d v) -- the mediator vs the momentum-transfer scale of the scattering
+         measured: m_A/(m_d v) = 1922.7 (m_A = 3883.9 eV, m_d v = 2.0200 eV)
+         reading : the mediator is ~1920x HEAVIER than the characteristic momentum transfer: this is the constant (s-wave-like) Born face, NOT the 1/v^4 Rutherford face -- the tasking's v^4-class formula is the light-mediator face; here v drops out of sigma.
+  [PASS] C4 [the cross section, dimensional analysis stated plainly] Yukawa exchange: |f| = m_d g^2/(4 pi (q^2 + m_A^2)) -> sigma = g^4 m_d^2/(4 pi m_A^4) [eV^-2] in the verified regime; the tasking class formula g^4/(16 pi m_d^2 m_A^4 v^4) completes EXACTLY to it via 4 (m_d v)^4
+         measured: sympy residual 0 ; class-completion factor = 4*m_d**4*v**4 = 4 (m_d v)^4 = 66.5979 ; sigma_class x [that] = 3.2895e-198 eV^-2 = sigma_Born
+         reading : with the dimensionless register g_eff = (m_d/M_pl)^2, the cross section is determined: sigma = g_eff^4 m_d^2/(4 pi m_A^4); the v^4 in the class formula is exactly cancelled by the (m_d v)^4 momentum-transfer completion in this regime (66.6x here).
+  [PASS] C5 [the SIDM gate] sigma/m_d in cm^2/g vs the dwarf bound sigma/m < 1 cm^2/g (Elbert+18-class; the framework's own G118 merger lane's 8/8)
+         measured: sigma = 3.2895e-198 eV^-2 = 1.2809e-207 cm^2 ; m_d = 9.0718e-30 g ; sigma/m_d = 1.4119e-178 cm^2/g vs 1 cm^2/g
+         reading : the HONEST number: sigma/m_d = 1.4e-178 cm^2/g -- 178 orders below every SIDM bound class; the dust self-interaction is unobservably silent at every framework scale. (SIDM bounds begin to bite only above ~1 cm^2/g; nothing here approaches it.)
+
+==============================================================================
+CHECK 3 -- THE DERIVED CONSTRAINT BAND (the falsifier's sharpened form, G1d)
+==============================================================================
+  [PASS] C6 [the band] from the committed 1e-16 virial-exactness level, W_vec/W_grav <= 1e-16 bounds q_d m <= M_pl m_d sqrt(1e-16/2); with m = m_d: q_d/m_d <= sqrt(1e-16/2) M_pl/m_d
+         measured: band q_d/m_d <= 3.3843e+15 (= 7.071e-9 x M_pl/m_d, M_pl/m_d = 4.7861e+23)
+         reading : band formula registered as the falsifier's sharpened form (G1d): any future charge-convention claim with q_d/m_d above this band (at the committed 1e-16 virial-exactness level and pinned m = m_d) is excluded by the EXACT equilibrium.
+  [PASS] C7 [the pin vs the band] the pinned convention q_d = m_d sits at q_d/m_d = 1 -- inside the band by orders
+         measured: pin q_d/m_d = 1 ; band edge = 3.3843e+15 ; headroom = 3.3843e+15 (log10 15.53 orders)
+         reading : PASS: the pinned convention satisfies the virial-exactness band by ~15.5 orders of magnitude (the committed 1e-16 level is untouched); with m = m_d the band q_d <= 7.07e-9 M_pl is enormous -- the pin is far inside, so the exact equilibrium selects the register, not vice versa.
+
+==============================================================================
+CHECK 4 -- THE SELF-CONSISTENCY NUMBER m_A/m_d = sqrt(mu_2(u)) in [0, 1]
+==============================================================================
+  [PASS] C8 [the ratio at the Sun, exact face] m_A/m_d = sqrt(u(u^2+3u+4)/(1+u)^3) at u(8.2 kpc) = 0.2276 -- in [0, 1] (clean face 0.5800 for reference)
+         measured: m_A/m_d = 0.76320 (tasking 0.7632) ; clean face = 0.5800 ; m_A = 3883.9 eV
+         reading : at the Sun the mediator is lighter than the carrier; note the exact face can exceed 1 only for u > 1 (28/27 at u = 2) -- the Sun sits at u = 0.228, deep in the mu_2 regime.
+  [PASS] C9 [the regime statement] lambda_A = 1/m_A vs lambda_C = 1/m_d: long-range Yukawa vs contact
+         measured: lambda_A = 50.81 pm > lambda_C = 38.78 pm (ratio 1.310)
+         reading : the mediator is lighter than the carrier, so the exchange range (50.8 pm) exceeds the carrier's Compton wavelength (38.8 pm): long-range-Yukawa regime -- consistent with the Yukawa potential (not a contact interaction) used in checks 1-2, and with the constant Born face verified in C3 (m_A >> m_d v). The regime statement is self-consistent: PASS.
+
+==============================================================================
+CHECK 5 -- THE OBSERVABLE STATEMENT (pin + virial band -> verdict + N)
+==============================================================================
+  [PASS] C10 [the verdict] with the pin (q_d = m_d, m = m_d) and the virial band (q_d/m_d <= 3.38e15), the self-interaction is SILENT at framework scales -- compute N (orders below the SIDM dwarf bound)
+         measured: sigma/m_d = 1.4119e-178 cm^2/g vs 1 cm^2/g -> N = -log10(sigma/m) = 177.85 ~ 178 orders
+         reading : the HONEST verdict: SILENT -- the vector-mediated self-interaction of the pinned dust sits 178 orders of magnitude below the SIDM dwarf bound (Elbert+18-class, G118's 8/8); no constraint bites, and the constraint band (G1d) leaves the pin 15.5 orders inside. The vector cannot be probed by any self-interaction observable at any framework scale; it remains a structural prediction (profile D2/D3), not an amplitude one.
+
+==============================================================================
+YM03 COMPLETE: 10/10 checks PASS.
+==============================================================================
