@@ -1,0 +1,96 @@
+
+KS08_emergent_gravity_forcing.py -- can EMERGENT/ENTROPIC gravity FORCE the S_dS coherence, and does it
+force kappa = 1/2?
+
+KS01 showed the S_dS factor is a double count in STANDARD graviton field theory (the fundamental d.o.f.
+are bulk field modes, whose coincidence variance already sums the modes).  But in EMERGENT gravity the
+fundamental d.o.f. ARE the horizon bits, so the force couples to their number N ~ S_dS BY CONSTRUCTION --
+the double-count objection does not apply there.  This lane asks the honest two-part question:
+  (PRO) does emergent gravity legitimately SUPPLY the S_dS factor?  and
+  (the wall) does it FORCE the coefficient to exactly 1/2, or only to some O(1) value near it?
+
+Method: derive the emergent a_0 from holographic equipartition of the de Sitter horizon two ways from
+scratch (cell count N = A/l_P^2; entropy count N = A/4 l_P^2), and place them beside the published
+emergent coefficients (Verlinde 2016 a_0 = cH/6; de Sitter KMS a_0 = cH/2pi).  The framework needs
+a_0 = 1/2 c sqrt(G rho_L) = sqrt(3/32pi) cH = 0.1727 cH.
+
+  C1  (PRO) emergent gravity supplies S_dS legitimately: the force scales with the horizon bit count N,
+      so KS01's double count does not apply -- state and check the structure
+  C2  derive the equipartition a_0 coefficients from scratch (sympy): cell count -> cH; entropy -> cH/4
+  C3  the spread of principled emergent coefficients brackets 1/2 but NONE lands on it; 1/2 (=0.1727 cH)
+      sits BETWEEN Verlinde's 1/6 and the entropy-count 1/4
+  C4  the holographic input S = A/4G is ASSUMED (the derivation is postulate-relative)
+  C5  the closest clean count (Verlinde 0.48) != 1/2 and Verlinde's own theory fails independently
+
+Run:  python3 fable_independent_2026/kappa_slot_2026/KS08_emergent_gravity_forcing.py
+
+  framework: a0 = 1/2 c sqrt(G rho_L) = 0.17275 cH_Lambda (= sqrt(3/32pi)); kappa = 0.5
+
+====================================================================================================
+C1 -- (PRO) emergent gravity supplies the S_dS factor legitimately
+====================================================================================================
+  [PASS] C1 emergent gravity's force scales with the horizon bit count N = A/l_P^2 = 4 S_dS, which carries hbar^-1 -- so it genuinely feels the horizon d.o.f., and KS01's double-count (bulk-mode variance, O(hbar)) does not apply here
+         measured: N_bits/S_dS = 4; hbar-power of N_bits = -1
+         reading:  GENUINE ADVANCE: the S_dS coherence has a home -- the horizon d.o.f. themselves (N ~ 1/hbar), not a bulk mode sum
+
+====================================================================================================
+C2 -- derive the emergent a_0 from holographic equipartition (sympy, from scratch)
+====================================================================================================
+  equipartition, cell count N = A/l_P^2:   a_0/cH = 1
+  equipartition, entropy count N = A/4l_P^2: a_0/cH = 1/4
+  [PASS] C2 holographic equipartition DERIVES a_0 ~ cH from scratch: the cell count gives a_0 = cH, the entropy count (with the BH 1/4) gives a_0 = cH/4 -- both hbar-free, the right FORM
+         measured: cell -> a_0/cH = 1 (=1); entropy -> a_0/cH = 1/4 (=1/4)
+         reading:  so the SCALE a_0 ~ cH and the S_dS factor are genuinely emergent; hbar cancels (N ~ 1/hbar, T ~ hbar)
+
+====================================================================================================
+C3 -- the spread of principled emergent coefficients; is 1/2 among them?
+====================================================================================================
+  emergent coefficient (a0/cH)         a0/cH  kappa(HL)  kappa(H0)
+  ----------------------------------------------------------------
+  de Sitter KMS a0=cH/2pi            0.15915     0.4607     0.5566
+  Verlinde 2016 a0=cH/6              0.16667     0.4824     0.5829
+  FRAMEWORK kappa=1/2                0.17275     0.5000     0.6041
+  equipartition entropy 1/4          0.25000     0.7236     0.8743
+  Unruh-dS balance a=cH              1.00000     2.8944     3.4971
+  equipartition cell count           1.00000     2.8944     3.4971
+  [PASS] C3 kappa=1/2 (a0/cH = 0.1727) is NOT among the clean emergent counts: it sits BETWEEN the entropy-count 1/4 (0.25) and Verlinde's 1/6 (0.167); nearest clean count is off by a few %
+         measured: framework coeff = 0.17275; nearest clean count = Verlinde 1/6 at 0.16667 (3.5% away); clean counts: [0.1592, 0.1667, 0.25, 1.0]
+         reading:  so emergent gravity forces a_0 ~ cH x (a counting coefficient) but NOT the exact 0.1727 that gives 1/2 -- 1/2 is bracketed by the principled counts, not selected by one
+
+====================================================================================================
+C4 -- the holographic input is ASSUMED (postulate-relative)
+====================================================================================================
+  [PASS] C4 the coefficient is not convention-free: the cell count and the entropy count (the BH 1/4) give a_0 differing by exactly 4 (kappa by 2), so the result rides on the postulated holographic 1/4
+         measured: a_0(cell)/a_0(entropy) = 4.0000 (= 4); kappa spread from this choice alone = 2x
+         reading:  'emergent gravity forces S_dS' is TRUE relative to holography, but WHICH coefficient depends on the bit-count convention -- holography is the standing assumption and does not fix the 1/4-vs-1 choice
+
+====================================================================================================
+C5 -- the closest clean count (Verlinde) != 1/2 and fails independently
+====================================================================================================
+  [PASS] C5 Verlinde 2016 (the closest full emergent-gravity implementation) gives kappa = 0.48, not 1/2, and fails independently (galaxy-cluster lensing, structure formation -- the critical literature)
+         measured: kappa_Verlinde = 0.4824 vs 1/2 (2.4% low in a0 on HL footing); != 1/2
+         reading:  so even the best-developed emergent-gravity theory neither lands on 1/2 nor survives as a complete theory; it is a home for the SCALE and the S_dS factor, not a derivation of the exact coefficient
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  (1) COMPUTED: the emergent-gravity a_0 from holographic equipartition (sympy, from scratch, two bit
+      counts) and the spread of published emergent coefficients, converted to kappa on both footings.
+  (2) NUMBERS: cell count -> a_0 = cH (kappa 2.89); entropy count -> cH/4 (kappa 0.72); Verlinde -> cH/6
+      (kappa 0.48); dS-KMS -> cH/2pi (kappa 0.46).  The framework needs a_0/cH = 0.1727 (kappa 1/2), which
+      sits BETWEEN 1/4 and 1/6 and equals NONE of the clean counts.
+  (3) HONEST SENTENCE: emergent gravity FORCES the S_dS coherence -- this is a genuine advance, because the
+      horizon bits ARE the d.o.f. and KS01's double-count objection does not apply there -- and it forces
+      the FORM a_0 ~ cH and a coefficient of ORDER 1/2 (the principled counts bracket it, 0.46 to 0.72).
+      But it does NOT force EXACTLY 1/2: the framework's 0.1727 cH lies between the entropy-count 1/4 and
+      Verlinde's 1/6, matching no single principled count, and the whole construction assumes holography.
+      So the S_dS coherence is now DERIVED (postulate-relative to holography); kappa = 1/2 EXACTLY is still
+      MEASURED, bracketed by emergent-gravity counts but not selected by one.
+      THE UNLOCK is now sharper: a principled reason the emergent bit-count coefficient is exactly
+      sqrt(3/32pi) = 0.1727 (equivalently the 1/4 in a_0^2 = 1/4 c^2 G rho_L) -- a value between the two
+      natural counts, which no counting rule yet supplies.
+
+====================================================================================================
+RESULT
+====================================================================================================
+KS08 COMPLETE: 5/5 checks PASS

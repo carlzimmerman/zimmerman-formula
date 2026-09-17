@@ -13,6 +13,7 @@ load-bearing check to FAIL (rc=1). Run any lane from the repository root.
 | KS05 | **OPEN-UNDER-POSTULATE** | 2/4 enhancement structures (Verlinde, CKN) reach within a factor 2 without a new parameter, but NONE derives the S_dS coherence; dS IR growth needs ~1e122 e-folds, primordial tensors are ~8 decades low | `KS05_category3_enhancement.py` |
 | KS06 | **RATIONAL-AVAILABLE-NOT-SELECTED** | kappa^2 = 8 pi eps_tot (sympy exact); 1/(32 pi) = pi(S_dS)·(1/8)(coupling)·1/(4 pi^2)(T_GH); drift is m-independent; the graviton route is a DENSITY mechanism so kappa = 1/2 is rational and available — but its value rides on the normalisation convention (KS02) | `KS06_number_field.py` |
 | KS07 | **NOT-DERIVED** | the S_dS coherence (the one open door) is not supplied by de Sitter graviton physics: secular growth needs ~S_dS e-folds (finite age short by ~120 decades), the instantaneous coherent multiplicity is O(1) not S_dS, and the worldline-to-horizon-collective coupling is absent from the action; even granted, the normalisation gives 1.447 not 1/2. MUTATE grants the postulate and prints DERIVED-UNDER-POSTULATE, proving the lane is not rigged | `KS07_sds_coherence_attempt.py` |
+| KS08 | **S_dS-FORCED-BUT-COEFFICIENT-NOT** | in EMERGENT gravity the horizon bits ARE the d.o.f., so the force scales with N ~ S_dS by construction — KS01's double count does not apply, and the S_dS coherence is legitimately FORCED (postulate-relative to holography). Holographic equipartition derives a_0 ~ cH from scratch (cell count → cH, entropy count → cH/4); the emergent coefficients bracket 1/2 (kappa 0.46–0.72) but NONE lands on it: the framework's 0.1727 cH sits between the entropy-count 1/4 and Verlinde's 1/6 | `KS08_emergent_gravity_forcing.py` |
 
 ## The one-paragraph result
 
@@ -57,3 +58,26 @@ a forced, hbar-free, convention-independent coupling of a worldline to exactly S
 that ALSO fixes the normalisation to land 1/2. The mechanism is real (the right FORM a0 = cH x pure number, and
 kappa = 1/2 is the right KIND of number — rational, density-mechanism), but the coefficient is measured, not
 derived.
+
+## KS08 — emergent gravity: the S_dS coherence IS forced (the advance), the exact 1/2 is NOT
+
+KS07 said the S_dS factor cannot come from bulk graviton field theory. KS08 asks the next question: emergent /
+entropic gravity is the framework where the fundamental degrees of freedom ARE the horizon bits, so the force
+scales with N ~ S_dS BY CONSTRUCTION — KS01's double-count objection (which was specific to a bulk-mode
+variance) does not apply. Holographic equipartition of the de Sitter horizon then DERIVES a_0 ~ cH from scratch
+(sympy: cell count N = A/l_P^2 → a_0 = cH; entropy count N = A/4l_P^2 → a_0 = cH/4), hbar-free, the right form.
+**So the S_dS coherence — the thing KS01/KS07 could not supply — is genuinely forced here, postulate-relative to
+holography. That is the real gain of this whole swing.**
+
+What it does NOT do is force the exact coefficient. The principled emergent counts give a_0/cH ∈ {1 (Unruh
+balance / cell), 1/4 (entropy), 1/6 (Verlinde 2016), 1/2pi (dS-KMS)} → kappa ∈ {2.89, 0.72, 0.48, 0.46}, which
+BRACKET 1/2 but land on neither side of it. The framework needs a_0/cH = sqrt(3/32pi) = 0.1727 (kappa = 1/2),
+which sits BETWEEN the entropy-count 1/4 and Verlinde's 1/6 and equals no single clean count; and the whole
+construction assumes the holographic S = A/4G. So:
+
+**The S_dS coherence is derived (given holography); kappa = 1/2 EXACTLY is still measured — bracketed by
+emergent-gravity counts (0.46–0.72), not selected by one.** The unlock is now sharper and smaller than before:
+a principled reason the emergent bit-count coefficient is exactly sqrt(3/32pi) — equivalently the 1/4 in
+a_0^2 = 1/4 c^2 G rho_Lambda — a value sitting between the two natural horizon counts, which no counting rule in
+hand supplies. That is the whole remaining content of "why kappa = 1/2", reduced to one number between 1/6 and
+1/4.
