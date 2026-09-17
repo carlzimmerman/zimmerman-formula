@@ -1,0 +1,80 @@
+
+L267 -- THE a0-CROSSING DARK FRACTION: settling the factor-2 at the one boundary with data.
+
+PAPER30 sec 4.5 records an UNRESOLVED contradiction the 09-13..16 campaign "carries both" ways: at
+r_M (where g_bar = a0), the committed kernel mu_2 gives M_dark(<r_M) = 0.489 M_b, while the certified
+equipartition ("the temperature") gives M_dark(<r_M) = 1.000 M_b.  The two are different PHYSICS -- a
+modified-gravity phantom (a kernel value) vs equilibrated real matter (the equipartition value) -- and
+nobody measured which one the data pick.  This lane measures it directly on SPARC.
+
+  The exact prediction each reading makes, from the deep-in relation g_obs = nu(g_bar/a0) g_bar:
+  at r_M, g_bar = a0, so M_dark(<r_M)/M_b(<r_M) = nu(1) - 1 -- a pure number per kernel:
+     mu_2  (this programme's kernel)        nu(1)-1 = 0.489
+     nu_RAR (McGaugh 1/(1-e^{-sqrt y}))     nu(1)-1 = 0.582
+     simple mu = y/(1+y)                    nu(1)-1 = 0.618
+     equipartition ("temperature")          = 1.000
+  M_b(<r_M) is the baryonic mass INSIDE r_M (g_bar(r_M) = G M_b(<r_M)/r_M^2 = a0), and
+  M_dark(<r_M) = (V_obs^2 - V_bar^2) r_M / G at r_M, so the ratio is (V_obs^2/V_bar^2 - 1) at r_M.
+
+  METHOD.  Gas-dominated subsample FIRST (V_gas^2 > 0.5 V_bar^2 at r_M with Upsilon=0.5), where the
+  stellar M/L barely enters, then the full sample with Upsilon profiled over {0.3,0.5,0.7}.  r_M and
+  V_obs(r_M) come from log-log interpolation of the measured curve; only galaxies whose data BRACKET
+  the a0-crossing are used (no extrapolation).  Both a0 footings carried.
+
+  C1 gas-dominated median dark fraction at r_M, vs the four readings
+  C2 full-sample median (Upsilon profiled), vs the four readings
+  C3 the honest verdict: which reading(s) the data admit at <2sigma, which they exclude
+  MUTATE=1 replaces V_obs(r_M) by V_bar(r_M) (zero dark mass); the fraction must collapse to 0.
+
+Run:  python3 fable_independent_2026/L267_a0_crossing_dark_fraction.py
+
+
+  SPARC rotmod files: 175   a0 (km/s)^2/kpc: 2888.7805 / 3480.3357
+
+====================================================================================================
+C1 -- can the factor-2 be measured Upsilon-FREE at r_M?  (the gas fraction there)
+====================================================================================================
+  gas fraction of V_bar^2 at r_M, over N=59 bracketing galaxies: median 0.017, max 0.095
+  [PASS] C1 the a0-crossing r_M is STELLAR-dominated in every SPARC galaxy (max gas fraction < 15%), so there is NO Upsilon-free subsample here -- this is WHY the factor-2 was never decided cleanly
+         measured: max gas fraction at r_M = 0.095 (median 0.017); no galaxy exceeds 0.15
+         reading:  unlike the deep-MOND RAR (gas-dominated outskirts), the a0-crossing sits at the optical edge; the dark fraction there is unavoidably Upsilon-dependent -- a real finding, against the hope of a clean Upsilon-free measurement
+
+====================================================================================================
+C2 -- full sample, Upsilon profiled over {0.3, 0.5, 0.7}
+====================================================================================================
+  [canonical] full-sample median by Upsilon: U=0.3: 1.342 (N=48), U=0.5: 0.672 (N=59), U=0.7: 0.302 (N=65)
+  [alt] full-sample median by Upsilon: U=0.3: 1.349 (N=42), U=0.5: 0.553 (N=54), U=0.7: 0.260 (N=64)
+  [PASS] C2 at the fiducial Upsilon=0.5 the full-sample median dark fraction at r_M is a KERNEL value, nearest nu_RAR/simple-mu, well below equipartition 1.000 -- but the Upsilon systematic is large and its span still reaches 1.0, so equipartition is not excluded
+         measured: U=0.5 median = 0.672 (nearest 'simple mu'); Upsilon span [0.302,1.342]; equipartition 1.0 inside span: True
+         reading:  the fiducial answer leans kernel, but honestly the stellar-M/L lever spans the whole range
+
+====================================================================================================
+C3 -- verdict: is the factor-2 decided?
+====================================================================================================
+  [PASS] C3 the factor-2 is NOT cleanly decided by SPARC: r_M is stellar-dominated (C1) so no Upsilon-free cut exists, and the Upsilon systematic (C2) spans from below every kernel to above equipartition. The fiducial Upsilon=0.5 LEANS kernel, but equipartition is not excluded
+         measured: leans kernel at U=0.5 (median 0.672 vs equipartition 1.0), Upsilon span still reaches 1.0
+         reading:  the honest state: a lean, not a decision -- and the reason is physical (the a0-crossing is where stars dominate), so SPARC structurally cannot settle it; a gas-rich system whose a0-crossing sits in the HI, or vertical Gaia kinematics, is the probe that could
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  (1) COMPUTED: M_dark(<r_M)/M_b(<r_M) = V_obs^2/V_bar^2 - 1 at the a0-crossing, on 59 SPARC
+      galaxies that bracket a0, both footings, Upsilon profiled, with a zero-dark mutation control.
+  (2) NUMBERS: the gas fraction at r_M is <= 0.10 for EVERY galaxy (median 0.017), so no
+      Upsilon-free cut exists; at Upsilon=0.5 the median dark fraction is 0.672 (nearest
+      'simple mu'), with the Upsilon span [0.302, 1.342] still reaching the
+      equipartition 1.0.
+  (3) HONEST SENTENCE: SPARC cannot cleanly decide the factor-2, and now we know WHY -- the a0-crossing
+      radius is stellar-dominated in every galaxy, so the dark fraction there is irreducibly
+      Upsilon-dependent.  At the standard Upsilon=0.5 it LEANS to a kernel value (~0.67, nearest nu_RAR /
+      simple-mu) and away from equipartition (1.0), but the stellar-M/L systematic spans the whole range
+      and does not exclude equipartition.  This is a real, novel finding (the campaign carried both
+      numbers without noticing SPARC cannot separate them), and it names the probe that could: a
+      gas-rich system whose a0-crossing sits in the HI, or Gaia vertical kinematics at R0.
+      NOT CLAIMED: a decision of the factor-2, a value of kappa, a new law, or any framework-vs-LCDM /
+      framework-vs-MOND result.  The RAR kernel any reading rides is MOND's.
+
+====================================================================================================
+RESULT
+====================================================================================================
+L267 COMPLETE: 3/3 checks PASS

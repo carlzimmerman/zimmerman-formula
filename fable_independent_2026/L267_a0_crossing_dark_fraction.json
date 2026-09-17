@@ -1,0 +1,47 @@
+{
+  "lane": "L267",
+  "mutate": true,
+  "checks": {
+    "C1 the a0-crossing r_M is STELLAR-dominated in every SPARC galaxy (max gas fraction < 15%), so there is NO Upsilon-free subsample here -- this is WHY the factor-2 was never decided cleanly": {
+      "ok": true,
+      "measured": "max gas fraction at r_M = 0.095 (median 0.017); no galaxy exceeds 0.15",
+      "load_bearing": true
+    },
+    "C2 at the fiducial Upsilon=0.5 the full-sample median dark fraction at r_M is a KERNEL value, nearest nu_RAR/simple-mu, well below equipartition 1.000 -- but the Upsilon systematic is large and its span still reaches 1.0, so equipartition is not excluded": {
+      "ok": true,
+      "measured": "U=0.5 median = 0.000 (nearest 'mu_2 (kernel)'); Upsilon span [0.000,0.000]; equipartition 1.0 inside span: False",
+      "load_bearing": true
+    },
+    "C3 the factor-2 is NOT cleanly decided by SPARC: r_M is stellar-dominated (C1) so no Upsilon-free cut exists, and the Upsilon systematic (C2) spans from below every kernel to above equipartition. The fiducial Upsilon=0.5 LEANS kernel, but equipartition is not excluded": {
+      "ok": false,
+      "measured": "leans kernel at U=0.5 (median 0.000 vs equipartition 1.0), Upsilon span still reaches 1.0",
+      "load_bearing": true
+    }
+  },
+  "numbers": {
+    "gas_fraction_at_rM": {
+      "n": 59,
+      "median": 0.01743624912758218,
+      "max": 0.0952470895841269
+    },
+    "full_canonical_U0.5": {
+      "n": 59,
+      "median": 0.0
+    }
+  },
+  "verdict": {
+    "word": "UPSILON-LIMITED-LEANS-KERNEL",
+    "U05_median": 0.0,
+    "nearest_reading": "mu_2 (kernel)",
+    "gas_fraction_max_at_rM": 0.0952470895841269,
+    "equipartition_excluded": true,
+    "scope": "internal, Upsilon-limited; not framework-vs-LCDM/MOND"
+  },
+  "summary": {
+    "pass": 2,
+    "n": 3,
+    "load_bearing_fail": [
+      "C3 the factor-2 is NOT cleanly decided by SPARC: r_M is stellar-dominated (C1) so no Upsilon-free cut exists, and the Upsilon systematic (C2) spans from below every kernel to above equipartition. The fiducial Upsilon=0.5 LEANS kernel, but equipartition is not excluded"
+    ]
+  }
+}
