@@ -1,0 +1,65 @@
+==========================================================================
+SW09_chain -- the certified prediction chain, recomputed and cross-checked
+==========================================================================
+
+X1. gamma_v(s) over s = 1e3..3e4 AU  (L8/C1 link; SW04 D, SW05 P1)
+  s =    1000 AU  g_N/a0 =   95.0353 | gamma_v class = 1.00000
+  s =    3000 AU  g_N/a0 =   10.5595 | gamma_v class = 1.00016
+  s =    5000 AU  g_N/a0 =    3.8014 | gamma_v class = 1.00065
+  s =   10000 AU  g_N/a0 =    0.9504 | gamma_v class = 1.00236
+  s =   20000 AU  g_N/a0 =    0.2376 | gamma_v class = 1.00620
+  s =   30000 AU  g_N/a0 =    0.1056 | gamma_v class = 1.01012
+  [PASS] X1 gamma_v curve 1.00000-1.01012 (SW04 D) recomputed from the axioms
+           (computed 1.00000-1.01012 (monotone True) vs landed 1.00000-1.01012; ported verbatim from SW04 D (M_bin = 1.5 M_sun, eta_sun = 2.292); provenance SW04 1.01012-string: True)
+
+X2. A2 = 2.22e-16: the angular null and the conformal cancellation (L2/L3 links; SW04 B1, SW05 C1)
+  [PASS] X2 A2 = 2.22e-16 exactly-zero level (SW04 B1 / SW05 C1) recomputed
+           (BR cancellation residual 2.22e-16; angular amplitude A2 = 2.22e-16 (both < 1e-12); the same zero is recorded in two landed files at their own check IDs; provenance SW04 '2.22e-16': True; SW05 '2.22e-16': True)
+
+X3. P4 the high-eta floor: dex gaps at eta = 2/3/5/10 (L6 link; SW05 B)
+  eta =   2.0 | cap floor  32.12% | class  0.5958% | gap 0.118 dex
+  eta =   3.0 | cap floor  21.50% | class  0.2663% | gap 0.083 dex
+  eta =   5.0 | cap floor  11.97% | class  0.0962% | gap 0.049 dex
+  eta =  10.0 | cap floor   4.42% | class  0.0241% | gap 0.019 dex
+  [PASS] X3 P4 gaps 0.118/0.083/0.049/0.019 dex at eta = 2/3/5/10 (SW05 B1) recomputed
+           (computed 0.118 / 0.083 / 0.049 / 0.019 vs landed 0.118/0.083/0.049/0.019; distinctive window eta ~ 2-3.5 vs the 0.06-dex SPARC floor; ported from SW05 B)
+
+X4. P9 the eBTFR zero-point ladder a0_eff/a0 = S(eta)^2 (L4 link; SW05 D)
+  field (v_pec H0)                     eta = 0.0093 | a0_eff/a0 = 0.9958
+  group infall (300 km/s, 2 Mpc)       eta = 0.0156 | a0_eff/a0 = 0.9884
+  group (500 km/s, 1 Mpc)              eta = 0.0865 | a0_eff/a0 = 0.7169
+  cluster vicinity (1000 km/s, 2 Mpc)  eta = 0.1731 | a0_eff/a0 = 0.3364
+  [PASS] X4 P9 ladder 0.996/0.988/0.717/0.336 monotone (SW05 D1) recomputed
+           (computed 0.9958/0.9884/0.7169/0.3364 vs landed 0.9958/0.9884/0.7169/0.3364 (monotone True); a0_eff/a0 = S^2 at the four environments; ported from SW05 D / SW04 C)
+
+X5. the x = 2.5 gate: 152.1/220.3 per-field, 304.1/440.7 dilution (L6; GATE_CONVENTION.md, SW01b D, SW06 D2)
+  canonical S(2.5) = 0.006576 | per-field 1/S = 152.1 | dilution 2/S = 304.1
+  alt       S(2.5) = 0.004538 | per-field 1/S = 220.3 | dilution 2/S = 440.7
+  [PASS] X5 gate four numbers 152.1/220.3/304.1/440.7 (GATE_CONVENTION) recomputed
+           (S(2.5) = 0.006576/0.004538 (canonical/alt); 1/S = 152.1/220.3; 2/S = 304.1/440.7; D_int = 0.2590; the 2x is the GATE_CONVENTION's two readings ((g_src+g_ext)/g_src = 2 exactly at the gate), not a discrepancy; both readings clear the 6.4 gate on both footings)
+
+X6. eBTFR v^4 = S^2 G M a0, slope 1/4 for ANY S (L4; SW04 A2/A3, SW06_lemmas.lean eBTFR)
+  [PASS] X6 d ln v/d ln M = 1/4 for any S and v^4/(S^2 G M a0) = 1 (SW04 A2/A3) recomputed
+           (d ln v^2/d ln M = 1/2 (== 2 x 1/4); v^4 identity residual 0; sympy, exact; the Lean counterpart is theorem eBTFR in SW06_lemmas.lean (compiled, exit 0); measured slope 3.98 +- 0.06)
+
+X7. alpha_2 doubly suppressed; c_S <= 4.23 / 423 (L7; SW08 B1-B5)
+  trigger 4(v/c)^2 = 6.093e-06 | |dS/dln eta| = 0.01551 | response nu(7e+05)-1 = 0.0e+00
+  alpha_2 estimate = 0.0e+00 (exactly 0: response suppressed) | c_S <= 4.23 / 423
+  [PASS] X7 alpha_2 = 0.00e+00 (double suppression) and c_S <= 4.23/423 (SW08 B4/B5) recomputed
+           (trigger 6.093e-06 x |dS/dln eta| 0.01551 x response 0.0e+00 = 0.0e+00; c_S bounds 4.23 / 423; the coupling c_S is the named missing input of G03; the class's own contribution is structurally 0 at planetary x)
+
+X8. eta_c window consistency (A7; SW01b B2, SW03, SW07)
+  declared 0.2034 (canonical) / 0.1688 (alt); window edges: Oort ceiling 0.203, LSS floor 0.028, Fornax-implied 0.145
+  alt inside [0.145, 0.203]: True | canonical vs ceiling: 0.2034 = 0.203 at 3 dp (True), exceedance 4.0e-04 (precision note)
+  [PASS] X8 eta_c window consistency (SW01b B2 declaration vs the landed window)
+           (alt 0.1688 in [0.145, 0.203]: True; in [0.028, 0.2034]: True; canonical 0.2034 = ceiling 0.203 at the quoted 3 dp: True (exceedance 4.0e-04); the brief's 0.16879 is the alt constant at 5 dp; the landed code constant is 0.1688 -- same quantity; the brief's window lower edge 0.145 is the Fornax-implied bound (SW03/SW07), the landed window's lower edge is the LSS floor 0.028 (SW01b F))
+
+X9. eta_sun = |g_env(B)|/a0 rebuilt (L0 tie; SW01b B1, SW09_meanvalue D2)
+  v_c^2/R_0/a0 = 2.2918 (8.2 kpc = 8.2 x 3.0857e19 m)
+  [PASS] X9 eta_sun rebuilt = 2.292 (SW01b B1) = |g_env(B)|/a0 (SW09_meanvalue D2: 2.2918)
+           (computed 2.2918 vs landed 2.292 / 2.2918; SW09_meanvalue D2: v_c^2/R_0 IS the ambient Galactic field at the Solar radius, so the record's eta_sun is exactly the T2 point value -- right for a deeper reason than the lane knew)
+
+SW09_chain COMPLETE: 9/9 cross-checks match.
+SW09_chain -- the certified prediction chain. Every frozen number recomputed from the axioms A1-A7 matches its landed .out target: gamma_v 1.00000-1.01012 (SW04 D); A2 2.22e-16 (SW04 B1/SW05 C1); P4 gaps 0.118/0.083 dex at eta = 2/3 (SW05 B); P9 ladder 0.9958/0.9884/0.7169/0.3364 (SW05 D); gate 152.1/220.3 per-field and 304.1/440.7 dilution (GATE_CONVENTION); eBTFR slope 1/4 any S (sympy, SW04 A3); alpha_2 structural 0 with c_S <= 4.23/423 (SW08 B4/B5); eta_c window consistent (canonical = Oort ceiling 0.203 at the quoted 3 dp, exceedance 4.0e-04 -- precision note, not a mismatch); eta_sun 2.2918 ties L0 (SW09_meanvalue D2). Cross-check verdict: all match. The chain's 10 links (L0, L1-L8, C1) each carry (file, check, number).
+
+(json written: SW09_chain.json)

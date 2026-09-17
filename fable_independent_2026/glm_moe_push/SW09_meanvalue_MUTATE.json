@@ -1,0 +1,77 @@
+{
+  "lane": "SW09_meanvalue",
+  "n_pass": 10,
+  "n_checks": 11,
+  "checks": [
+    {
+      "name": "A1 quadrature normalisation sum(W) = 1",
+      "detail": "sum(W) - 1 = 0.00e+00",
+      "ok": true,
+      "why": ""
+    },
+    {
+      "name": "A2 <rhat> = 0 (the identity every orthogonality result rests on)",
+      "detail": "|<rhat>| = 3.38e-17",
+      "ok": true,
+      "why": ""
+    },
+    {
+      "name": "B1 enclosed baryons (incl. OFF-CENTRE) contribute ZERO to the sphere mean",
+      "detail": "|<g_enclosed>| / (G M/r^2) = 3.91e-16",
+      "ok": true,
+      "why": "every exterior-multipole term of an interior source carries l >= 1 angular dependence (or is radial ~ rhat), and <Y_lm> = <rhat> = 0 -- so the mean vanishes for ANY interior configuration, centred or not"
+    },
+    {
+      "name": "B2 environment: <g_env> = g_env(B) (the mean-value property)",
+      "detail": "|<g_env> - g_env(B)| / |g_env(B)| = 2.03e-15",
+      "ok": true,
+      "why": "each Cartesian component of the exterior field is harmonic inside the ball, so its sphere average equals its centre value -- exactly"
+    },
+    {
+      "name": "B3 (T1) full field: <g_N> = g_env(B)",
+      "detail": "|<g_N> - g_env(B)| / |g_env(B)| = 6.93e-15",
+      "ok": true,
+      "why": ""
+    },
+    {
+      "name": "B4 (T3) Gamma^2 = <|g_N|^2> - |<g_N>|^2  ==  <|g_N - g_env(B)|^2>",
+      "detail": "variance 2.875142036829e+00 vs deviation 2.875142036829e+00 (rel 1.54e-16)",
+      "ok": true,
+      "why": "the variance identity <|X|^2> = |<X>|^2 + <|X-<X>|^2> with <X> = g_env(B)"
+    },
+    {
+      "name": "C1 UNIFORM environment: eta absorbs it, Gamma INVARIANT",
+      "detail": "eta = 0.300000 (= |U| = 0.300000); Gamma 1.688593599329 vs isolated 1.688593599329 (rel 1.31e-16)",
+      "ok": true,
+      "why": "a uniform field has zero fluctuation -> it cannot move Gamma; this is the orthogonality the lane has used since SW01b, now the (T1)-(T3) corollary"
+    },
+    {
+      "name": "C2 TIDAL environment (g_env(B) = 0): eta stays EXACTLY 0, Gamma moves",
+      "detail": "|g_env(B)| = 0.00e+00 -> eta = 4.30e-16 (S = 1, no suppression); Gamma 1.718313 vs isolated 1.688594 (ratio 1.0176)",
+      "ok": true,
+      "why": "the symmetric external pair cancels at the centre (pure AC) -> it cannot reach eta at all but adds structure to Gamma: UNIFORM SUPPRESSES (amplitude, conformal); TIDAL DISTORTS (shape, S = 1). This is the DC/AC split, P10"
+    },
+    {
+      "name": "C3 consequence: the tidal channel changes the boost with S pinned at 1",
+      "detail": "S = 1 (eta = 0); nu: iso 1.374909 -> tidal 1.369098 (nu-1: 0.374909 -> 0.369098)",
+      "ok": true,
+      "why": "shape distortion with no suppression -- NOT conformal, unlike the uniform channel (SW04 B1: Q(R) = S*Q_iso(R) exactly, 2.22e-16)"
+    },
+    {
+      "name": "D1[HINGE-MUTANT] (T1) does NOT localise at the field point P",
+      "detail": "|<g_N> - g_env(P)| / |g_env(B)| = 1.85e+00 -- the tidal variation (1.85e+00) breaks it",
+      "ok": false,
+      "why": "FAIL IS THE FINDING: the ambient value that enters eta is the field at the BARYCENTRE; evaluating it at the field point differs by the environment's tidal variation -- the centre is load-bearing"
+    },
+    {
+      "name": "D2 (T2) retro-justifies the record's calibration: eta_sun = |g_env(B)|/a0",
+      "detail": "v_c^2/R_0/a0 = 2.2918 vs the record's 2.292 (SW01b B1)",
+      "ok": true,
+      "why": "v_c^2/R_0 IS the ambient Galactic field at the Solar radius, so SW01b's eta_sun is exactly |g_env(B)|/a0 -- right for a deeper reason than the lane knew"
+    }
+  ],
+  "eta_sun": 2.291818871964198,
+  "gamma_iso": 1.6885935993289571,
+  "gamma_tidal": 1.718312644338835,
+  "gamma_uniform": 1.688593599328957
+}

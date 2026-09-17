@@ -1,0 +1,120 @@
+{
+ "lane": "SW09_chain",
+ "mutate": false,
+ "n_pass": 9,
+ "n_total": 9,
+ "verdict": "all match",
+ "checks": [
+  {
+   "name": "X1 gamma_v curve 1.00000-1.01012 (SW04 D) recomputed from the axioms",
+   "ok": true,
+   "measured": "computed 1.00000-1.01012 (monotone True) vs landed 1.00000-1.01012",
+   "reading": "ported verbatim from SW04 D (M_bin = 1.5 M_sun, eta_sun = 2.292); provenance SW04 1.01012-string: True"
+  },
+  {
+   "name": "X2 A2 = 2.22e-16 exactly-zero level (SW04 B1 / SW05 C1) recomputed",
+   "ok": true,
+   "measured": "BR cancellation residual 2.22e-16; angular amplitude A2 = 2.22e-16 (both < 1e-12)",
+   "reading": "the same zero is recorded in two landed files at their own check IDs; provenance SW04 '2.22e-16': True; SW05 '2.22e-16': True"
+  },
+  {
+   "name": "X3 P4 gaps 0.118/0.083/0.049/0.019 dex at eta = 2/3/5/10 (SW05 B1) recomputed",
+   "ok": true,
+   "measured": "computed 0.118 / 0.083 / 0.049 / 0.019 vs landed 0.118/0.083/0.049/0.019",
+   "reading": "distinctive window eta ~ 2-3.5 vs the 0.06-dex SPARC floor; ported from SW05 B"
+  },
+  {
+   "name": "X4 P9 ladder 0.996/0.988/0.717/0.336 monotone (SW05 D1) recomputed",
+   "ok": true,
+   "measured": "computed 0.9958/0.9884/0.7169/0.3364 vs landed 0.9958/0.9884/0.7169/0.3364 (monotone True)",
+   "reading": "a0_eff/a0 = S^2 at the four environments; ported from SW05 D / SW04 C"
+  },
+  {
+   "name": "X5 gate four numbers 152.1/220.3/304.1/440.7 (GATE_CONVENTION) recomputed",
+   "ok": true,
+   "measured": "S(2.5) = 0.006576/0.004538 (canonical/alt); 1/S = 152.1/220.3; 2/S = 304.1/440.7; D_int = 0.2590",
+   "reading": "the 2x is the GATE_CONVENTION's two readings ((g_src+g_ext)/g_src = 2 exactly at the gate), not a discrepancy; both readings clear the 6.4 gate on both footings"
+  },
+  {
+   "name": "X6 d ln v/d ln M = 1/4 for any S and v^4/(S^2 G M a0) = 1 (SW04 A2/A3) recomputed",
+   "ok": true,
+   "measured": "d ln v^2/d ln M = 1/2 (== 2 x 1/4); v^4 identity residual 0",
+   "reading": "sympy, exact; the Lean counterpart is theorem eBTFR in SW06_lemmas.lean (compiled, exit 0); measured slope 3.98 +- 0.06"
+  },
+  {
+   "name": "X7 alpha_2 = 0.00e+00 (double suppression) and c_S <= 4.23/423 (SW08 B4/B5) recomputed",
+   "ok": true,
+   "measured": "trigger 6.093e-06 x |dS/dln eta| 0.01551 x response 0.0e+00 = 0.0e+00; c_S bounds 4.23 / 423",
+   "reading": "the coupling c_S is the named missing input of G03; the class's own contribution is structurally 0 at planetary x"
+  },
+  {
+   "name": "X8 eta_c window consistency (SW01b B2 declaration vs the landed window)",
+   "ok": true,
+   "measured": "alt 0.1688 in [0.145, 0.203]: True; in [0.028, 0.2034]: True; canonical 0.2034 = ceiling 0.203 at the quoted 3 dp: True (exceedance 4.0e-04)",
+   "reading": "the brief's 0.16879 is the alt constant at 5 dp; the landed code constant is 0.1688 -- same quantity; the brief's window lower edge 0.145 is the Fornax-implied bound (SW03/SW07), the landed window's lower edge is the LSS floor 0.028 (SW01b F)"
+  },
+  {
+   "name": "X9 eta_sun rebuilt = 2.292 (SW01b B1) = |g_env(B)|/a0 (SW09_meanvalue D2: 2.2918)",
+   "ok": true,
+   "measured": "computed 2.2918 vs landed 2.292 / 2.2918",
+   "reading": "SW09_meanvalue D2: v_c^2/R_0 IS the ambient Galactic field at the Solar radius, so the record's eta_sun is exactly the T2 point value -- right for a deeper reason than the lane knew"
+  }
+ ],
+ "verdict_line": "SW09_chain -- the certified prediction chain. Every frozen number recomputed from the axioms A1-A7 matches its landed .out target: gamma_v 1.00000-1.01012 (SW04 D); A2 2.22e-16 (SW04 B1/SW05 C1); P4 gaps 0.118/0.083 dex at eta = 2/3 (SW05 B); P9 ladder 0.9958/0.9884/0.7169/0.3364 (SW05 D); gate 152.1/220.3 per-field and 304.1/440.7 dilution (GATE_CONVENTION); eBTFR slope 1/4 any S (sympy, SW04 A3); alpha_2 structural 0 with c_S <= 4.23/423 (SW08 B4/B5); eta_c window consistent (canonical = Oort ceiling 0.203 at the quoted 3 dp, exceedance 4.0e-04 -- precision note, not a mismatch); eta_sun 2.2918 ties L0 (SW09_meanvalue D2). Cross-check verdict: all match. The chain's 10 links (L0, L1-L8, C1) each carry (file, check, number).",
+ "constants": {
+  "a0": {
+   "canonical": 9.3619e-11,
+   "alt": 1.1279e-10
+  },
+  "eta_c": {
+   "canonical": 0.2034,
+   "alt": 0.1688
+  },
+  "eta_sun": {
+   "canonical": 2.292,
+   "alt": 1.902
+  },
+  "H0_s^-1": 2.1842693716174612e-18,
+  "c_light": 299800000.0
+ },
+ "computed": {
+  "gamma_min": 1.0000002280842142,
+  "gamma_max": 1.0101239461056988,
+  "BR_cancellation": 2.220446049250313e-16,
+  "A2_clean": 2.220446049250313e-16,
+  "P4_gaps": {
+   "2.0": 0.11839137699162379,
+   "3.0": 0.08340359322833178,
+   "5.0": 0.04867180289111023,
+   "10.0": 0.01867925269764444
+  },
+  "P9_ladder": {
+   "field (v_pec H0)": 0.9958027705132159,
+   "group infall (300 km/s, 2 Mpc)": 0.9883718702692427,
+   "group (500 km/s, 1 Mpc)": 0.7169362513705109,
+   "cluster vicinity (1000 km/s, 2 Mpc)": 0.33641209059211996
+  },
+  "S25": {
+   "canonical": 0.006575920624850203,
+   "alt": 0.00453826069459109
+  },
+  "gate_per_field": {
+   "canonical": 152.0699620705625,
+   "alt": 220.34873430515935
+  },
+  "gate_dilution": {
+   "canonical": 304.139924141125,
+   "alt": 440.6974686103187
+  },
+  "D_int": 0.25903461376300574,
+  "alpha2_est": 0.0,
+  "cS_bounds": {
+   "nordtvedt": 4.2341947930488235,
+   "llr": 423.41947930488243
+  },
+  "eta_sun_rebuilt": 2.291818871964198,
+  "eta_c_exceedance_vs_0.203": 0.0003999999999999837
+ },
+ "chain_edges": 10,
+ "edge_convention": "edge = one numbered chain link (L0, L1-L8, C1); the axioms A1-A7 are the input block, not edges"
+}
