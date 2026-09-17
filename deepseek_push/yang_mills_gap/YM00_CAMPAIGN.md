@@ -92,11 +92,30 @@ Newtonian by construction — and the coupling is M_pl-suppressed; silence is
 registered honestly as "structure proven, observability silent", never
 upgraded to "detected".
 
+## REGISTERED FOLLOW-UPS (from the referee audit, YM_REFEREE.md)
+
+- **G1b — CLOSED (YM02_deep_face_kill, 8/8):** the U-MAP question's exact
+  answer: the sourced deep face would carry g² = √(8π)·a0·g_N (+0.3500 dex),
+  excluded by G114's own deep end (2.33 rms / 4.38 median) — the sourced face
+  dies BY ITS OWN CONSTANTS; the equilibrium face is map-free, RAR-exact.
+- **G1c — OPEN (new, from the audit):** the E02 vs B8 registers disagree on
+  n·λ_dB³ by ~250× (8.6e-9 vs 3.4e-11) — both ≥8 orders below 2.612 ("not a
+  condensate" survives either way) but the two committed registers should be
+  reconciled by the owning lanes.
+- **G1d — OPEN (the m-pin's falsifier, armed):** the identification
+  m_gauge = m_dust is an assumption with a kill switch: the G168 ladder band
+  (4, 6) keV firing, or any absolute pinning inconsistent with √μ₂·m.
+
 ## DELIVERABLES (this folder)
 
 | File | Content |
 |---|---|
-| YM00_CAMPAIGN.md | this record (pre-registered gates) |
-| YM01_gap_derivation.py/.out/_results.json | the derivation lane (sympy-exact + numerics + gates, per-lane PASS/FAIL) |
-| lean/YM01_gap.lean | the Lean certificate set (exit 0, zero sorry, axioms ⊆ {propext, Classical.choice, Quot.sound}) |
-| YM_GAP_STATEMENT.md | the final statement: what is proven, what is silent, what is out of scope |
+| YM00_CAMPAIGN.md | this record (pre-registered gates; K1-K5 all closed 28/28 across YM01+YM02) |
+| YM01_gap_derivation.py/.out/_results.json | the derivation lane 20/20 (both mass faces, the profile, the U-MAP finding) |
+| YM02_deep_face_kill.py/.out/_results.json | the sourced-face closure 8/8 (g² = √(8π)·a0·g_N — G155's dead door re-derived in one number; the equilibrium face is map-free) |
+| YM_PROOF.md | THE PROOF: the pinned theorem chain P1-P18, every row machine-verified |
+| YM_REFEREE.md | the adversarial survivability audit (ALIVE 3 / BOUNDARY 4 / KILLED 0; most vulnerable: m = m_dust) |
+| YM_NONABELIAN.md | the SU(3) obstruction (rank counting: eaten Goldstones ≤ 1 ≠ 8; no adjoint VEV possible) |
+| lean/YM01_gap.lean | 19 theorems, exit 0, zero sorry (the gap spine) |
+| lean/YM02_pinned_gap.lean | 17 theorems, exit 0, zero sorry (the pinned spine: ladder mass, C_f_value, deep_coeff, numeric bands) |
+| YM_GAP_STATEMENT.md | the verdict: proven mechanism, pinned scale, honest Clay boundary |

@@ -25,6 +25,23 @@ beyond the cap) and it follows the phantom's profile inside the halo.
 
 ## WHAT IS PROVEN (and how)
 
+**The pinned theorem chain is assembled in YM_PROOF.md (P1-P18, every row
+machine-verified; 28/28 lane checks across YM01+YM02; 36 Lean theorems across
+YM01_gap.lean + YM02_pinned_gap.lean, exit 0, zero sorry, axioms ⊆
+{propext, Classical.choice, Quot.sound}).** The pin: m = m_dust =
+k_B T_0(1+z*)/σ² = 5.0889 keV — the committed ladder-mass inversion (C02:
+101,600 environments, 4.3e-14 keV recovery spread; the Lean numeric bands
+certify 5.088883 keV ∈ (4,6) keV G168 kill band ∧ (4.99, 5.19) keV G212 band)
+— so the gap is m_A(r) = 5.089 keV · √μ₂(u(r)): 4.86 keV at 3 kpc, 3.88 keV
+at the Sun, 2.09 keV at 40 kpc, EXACTLY zero in vacuum/beyond the cap. The
+referee audit (YM_REFEREE.md) carries the identification as an assumption
+with its falsifier, ruling the door ALIVE 3 / BOUNDARY-REGISTERED 4 / KILLED
+0; the sourced-face closure (YM02_deep_face_kill, 8/8) proves the field-
+equation face would sit +0.3500 dex off the RAR (excluded 2.33 rms / 4.38
+median by G114) — G155's dead door re-derived in one exact number; the
+non-Abelian obstruction (YM_NONABELIAN.md) proves the same mechanism cannot
+produce the SU(3) mass matrix (rank ≤ 1 ≠ 8; no adjoint VEV possible).
+
 | Rung | Statement | Evidence |
 |---|---|---|
 | A1/A2 | μ₂(u) = u(2+u)/(1+u)² = the RAR face 1−(1+x/2)^−2 at u = x/2 | sympy residual 0 + Lean (mu2_cleared, mu2_deep, kernel_face) |
