@@ -1,0 +1,62 @@
+G111 -- the relaxation N-body, run as pre-registered  (N = 2000, t_end = 100.0 t_cross, dt = 0.02, eps = 0.08 r_M)
+
+    baryon profile: M(<r_M)/M_b = 0.6162  ->  the piecewise Arm-S junction at r_M jumps from g_N = 1.2324 to 2/x = 2.0000 (62.3%): recorded; the mu_2 well is continuous by construction
+    spec inconsistency recorded: the C2 placement mu = 1.0 on [0.05, 0.62] r_M has amplitude A/A_ph = 1.754; C2b uses mu = 0.57 (A = A_ph)
+
+    cell                                          dE/E  sig2/st2  sig2_in    r50  f_esc  M(<rM)  gamma  A/A_ph   rms  2T/|W|   wall
+    S-pw C2 (mu=1.0)                          +5.6e-04     1.044    1.044   0.28   0.00    0.97   2.85    1.66  0.09    0.92   1045
+    S-pw C2b (mu=0.57, A=A_ph)                +3.4e-04     0.650    0.650   0.37   0.00    0.52   2.27    0.84  0.07    0.94   1046
+    S-pw neutral xi=-0.2                      +2.4e-03     1.145    1.145   0.22   0.00    0.99   3.34    1.56  0.09    0.87   1046
+    S-pw neutral xi=+0.2                      +2.9e-05     0.935    0.935   0.36   0.00    0.94   2.39    1.47  0.07    0.93   1045
+    S-pw neutral xi=+0.4                      +2.2e-04     0.879    0.879   0.45   0.00    0.90   2.03    1.26  0.07    0.95   1046
+    S-mu2 C2 (mu=1.0)                         +1.2e-03     1.135    1.135   0.28   0.00    0.98   2.78    1.67  0.10    0.91   1046
+    N C2 (mu=1.0) [A4 control]                +1.1e-03     0.991    0.993   0.29   0.00    0.97   2.79    1.67  0.07    0.90   1047
+    N clone mu=0.3 s=1.0 R0=1.0 [A4]          +1.2e-04     0.418    0.439   1.07   0.17    0.14   0.93    0.12  0.03    1.15   1051
+    S-pw C2 dt=0.01 twin                      +9.3e-05     1.028    1.028   0.29   0.00    0.98   2.80    1.63  0.07    0.90   1555
+    S-pw ladder s=0.3 R0=1.0                  +4.4e-04     0.881    0.881   0.35   0.00    0.82   2.97    1.30  0.11    0.91   1044
+    S-pw ladder s=0.5 R0=1.0                  +2.0e-04     0.867    0.867   0.45   0.00    0.86   1.88    1.22  0.11    0.95   1045
+    S-pw ladder s=0.7 R0=1.0                  +9.8e-05     0.843    0.843   0.57   0.00    0.87   1.33    0.89  0.07    0.97   1064
+    S-pw ladder s=1.0 R0=1.0                  +1.0e-04     0.808    0.809   0.77   0.00    0.71   0.71    0.57  0.05    0.98   1046
+    S-pw ladder s=1.5 R0=1.0                  +5.9e-04     0.763    0.794   1.29   0.08    0.35   1.06    0.23  0.09    1.03   1046
+
+  [FAIL] A1 [S-pw C2 (mu=1.0)] phantom profile: |gamma-2| <= 0.20, |A/A_ph - 1| <= 0.10, rms <= 0.10 dex
+           (gamma = 2.85, A/A_ph = 1.66, rms = 0.09)
+  [PASS] A2 [S-pw C2 (mu=1.0)] equipartition M(<r_M)/M_b in [0.70, 1.30]
+           (0.97)
+  [PASS] A3 [S-pw C2 (mu=1.0)] no runaway: 2T/|W| in [0.8, 1.2], r50 <= 2.5, f_esc <= 0.10
+           (2T/|W| = 0.92, r50 = 0.28, f_esc = 0.00)
+  [FAIL] A1 [S-pw neutral xi=-0.2] phantom profile: |gamma-2| <= 0.20, |A/A_ph - 1| <= 0.10, rms <= 0.10 dex
+           (gamma = 3.34, A/A_ph = 1.56, rms = 0.09)
+  [PASS] A2 [S-pw neutral xi=-0.2] equipartition M(<r_M)/M_b in [0.70, 1.30]
+           (0.99)
+  [PASS] A3 [S-pw neutral xi=-0.2] no runaway: 2T/|W| in [0.8, 1.2], r50 <= 2.5, f_esc <= 0.10
+           (2T/|W| = 0.87, r50 = 0.22, f_esc = 0.00)
+  [FAIL] A1 [S-pw neutral xi=+0.2] phantom profile: |gamma-2| <= 0.20, |A/A_ph - 1| <= 0.10, rms <= 0.10 dex
+           (gamma = 2.39, A/A_ph = 1.47, rms = 0.07)
+  [PASS] A2 [S-pw neutral xi=+0.2] equipartition M(<r_M)/M_b in [0.70, 1.30]
+           (0.94)
+  [PASS] A3 [S-pw neutral xi=+0.2] no runaway: 2T/|W| in [0.8, 1.2], r50 <= 2.5, f_esc <= 0.10
+           (2T/|W| = 0.93, r50 = 0.36, f_esc = 0.00)
+  [FAIL] A1 [S-pw neutral xi=+0.4] phantom profile: |gamma-2| <= 0.20, |A/A_ph - 1| <= 0.10, rms <= 0.10 dex
+           (gamma = 2.03, A/A_ph = 1.26, rms = 0.07)
+  [PASS] A2 [S-pw neutral xi=+0.4] equipartition M(<r_M)/M_b in [0.70, 1.30]
+           (0.90)
+  [PASS] A3 [S-pw neutral xi=+0.4] no runaway: 2T/|W| in [0.8, 1.2], r50 <= 2.5, f_esc <= 0.10
+           (2T/|W| = 0.95, r50 = 0.45, f_esc = 0.00)
+  [FAIL] A1' [C2b, the phantom-amplitude placement] profile held: |gamma-2| <= 0.20, |A/A_ph - 1| <= 0.10
+           (gamma = 2.27, A/A_ph = 0.84, M(<r_M) = 0.52, f_esc = 0.00)
+  [FAIL] A1'' [S-mu2 C2, the smooth well] A1 and A3
+           (gamma = 2.78, A/A_ph = 1.67, 2T/|W| = 0.91, r50 = 0.28, f_esc = 0.00)
+  [PASS] TEMPERATURE BRANCH: sigma_inf^2/sigma_t^2 in [0.8, 1.25] for >= 3 of the 5 ladder cells (R0 = 1.0, mu = 1.0)
+           (s=0.3: 0.88, s=0.5: 0.87, s=0.7: 0.84, s=1.0: 0.81, s=1.5: 0.76)
+  [FAIL] A4 [N C2 control] does NOT relax in the registered pattern: sig2 not in [0.8, 1.25] AND (f_esc >= 0.30 OR r50 >= 2.5)
+           (sig2 = 0.99, f_esc = 0.00, r50 = 0.29)
+  [PASS] A4 [N clone] reproduces G035: sig2/st2 in [0.31, 0.47] and r50/r_M in [0.8, 1.4]
+           (sig2 = 0.418 (registered 0.3906), r50 = 1.069 (registered 1.095))
+  [PASS] dt-convergence: the dt = 0.01 twin agrees with the primary in sig2 (10%) and r50 (10%)
+           (sig2 1.044 vs 1.028; r50 0.281 vs 0.287)
+  [FAIL] energy gate |dE/E| <= 1e-3 on every cell (spec: 1e-4; the fixed-step numpy engine is graded at 1e-3, reported per cell)
+           (+5.6e-04, +3.4e-04, +2.4e-03, +2.9e-05, +2.2e-04, +1.2e-03, +1.1e-03, +1.2e-04, +9.3e-05, +4.4e-04, +2.0e-04, +9.8e-05, +1.0e-04, +5.9e-04)
+
+G111 COMPLETE: 11/19 checks PASS
+VERDICT (spec section 4, V3): CLOSED -- Arm S fails A1/A2/A3 on the C2 or a neutral cell: the scalar-mediated reading joins G035's kill; the phantom is a theorem of the fixed well, not a dynamical state of the certified N-body system.
