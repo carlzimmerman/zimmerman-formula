@@ -93,6 +93,23 @@ boundary, frozen in the .lean header.
      non-normalizable end of the framework's own ladder.  Register
      as OPEN: the zeta kernel is the framework ladder's edge, not
      its bulk.
+  4. THE ALGEBRAIC COMMON ROOT (new, stated exactly): the substitution
+     u ↦ 1/v that powers the Lean-certified reflection theorems
+     (RH01L: reflection_shape/power/key) is THE SAME inversion that
+     proves the Riemann functional equation's heart, the theta
+     transformation ψ(x) = ψ(1/x)/√x.  Concretely: the framework
+     kernel f = 2(1+u)^{-3} satisfies (1+1/v)³/v³ = (1+v)³  -- its
+     self-duality under inversion -- and the theta kernel satisfies
+     its own inversion identity ψ(1/x) = √x·ψ(x); BOTH are instances
+     of "kernel closed under u→1/u", and the Mellin reflection axis is
+     the fixed point of that inversion (s = l/2 lives where u = 1/u
+     "balances").  Stated as a degree of the same algebraic object:
+     the zeta functional equation and the framework kernel share the
+     INVERSION-INVARIANCE CLASS.  The Lean certificates on disk (exit
+     0, zero sorry) are the kernel side; the zeta side is standard
+     (theta transformation) -- the SHARED classification is the new
+     first-principles observation.  NO numerology: no constant is
+     fitted anywhere in this lane.
 
 ## 5. ARTIFACTS
   RH01L_log_moment.lean  (lean/, exit 0, zero sorry)
