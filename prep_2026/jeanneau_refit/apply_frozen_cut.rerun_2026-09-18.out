@@ -1,0 +1,48 @@
+[OK] banked fork anchors reproduced (canonical -0.033 / ALT +0.164 at z=3)
+[OK] LCDM halo anchor reproduced (-0.34 dex at z=1, Jeanneau Eq.9 quote)
+[OK] catalog loaded: N=95, Mbar bookkeeping verified (max dev 0.0000 dex)
+
+[GATE] full-95 median offset vs Lelli+19(3.14, 3.54): -0.037 dex (their fit 0.00+-0.06) -> PASS
+
+========================================================================================
+FROZEN CUT APPLIED: g_bar < 0.5*a0_canon = 4.68e-11 (g_obs < 8.11e-11 m/s^2)
+========================================================================================
+  subsample N = 61 of 95  (parent forecast: 'roughly a third')
+  z range: 0.55 - 1.45 (median 1.06)
+  logM* range: 7.6 - 10.1;  median gas fraction 0.83 (full 95: 0.70)
+  g_bar/a0_canon: 0.00 - 0.49 (median 0.16)
+  dilution (canonical a0): median 0.76 (range 0.51-1.00)
+  dilution (ALT own a0)  : median 0.82 (range 0.58-1.00)
+  cut-boundary stress: N=47 (Re-0.14dex) / 61 (frozen) / 71 (Re+0.14dex); N=61 (Planck conversion)
+
+ZERO-POINT (mass axis, vs Lelli+19 slope 3.14, b_ref 3.54 -- their line):
+  PRIMARY  median offset  : +0.140 dex  (bootstrap 68%: +0.102 .. +0.242; stat +-0.070; MAD 0.309)
+  weighted mean (check)   : +0.217 dex
+  free-slope TLS (check)  : slope 6.08 (vs 3.14), centroid offset +0.217 dex
+  full-95 median (gate)   : -0.037 dex (reproduces their 0.00+-0.06)
+  HONEST BAND = sqrt(0.070^2 + 0.20^2 + 0.16^2 + 0.06^2) = +-0.272 dex
+  gas stress (HI x0.5 / x2): median -> +0.089 / +0.320 dex
+
+FORK PREDICTIONS on this subsample (exact per-galaxy, framework nu, own a0):
+  canonical pure-Lambda : +0.000 dex (identically 0)
+  canonical DESI-CPL    : -0.000 dex (median; range -0.020..+0.022)
+  ALT rho_tot/cH0       : -0.243 dex (median; range -0.341..-0.106)
+  size-term residual (canonical, vdW14 a=0.75): subsample median -0.035 dex (full-95 -0.059) -> deep-regime cancellation check
+  LCDM halo term at subsample median z: -0.363 dex (does NOT cancel; ALT remains LCDM-degenerate on the negative side)
+
+DECISION RULE (mechanical, FROZEN_CUTS.md section 5):
+  Delta_b = +0.140, honest band B = 0.272, fork separation |Delta_ALT| = 0.243
+  distance from canonical(0): 0.51 sigma;  from ALT(-0.243): 1.41 sigma
+  VERDICT: STILL-UNDERPOWERED: honest band (0.272) exceeds the fork separation (0.243). The deep cut did not deliver the forecast power.
+  [stat-only, DO-NOT-CLAIM alone] distance from ALT: 5.48 sigma; from canonical: 2.00 sigma
+
+DIAGNOSTICS (flags raised by the frozen checks):
+  free-slope TLS bootstrap: 5.96 (68%: 4.60..8.52) -> 1.4 sigma from 3.14 [ok]
+  magnification mu: subsample median 2.4 (range 1.3-43.7) vs full-95 median 2.3
+  Re-0.14dex sel (N=47)   : median +0.322 (68% +0.160..+0.377), ALT pred -0.260
+  Re+0.14dex sel (N=71)   : median +0.102 (68% +0.079..+0.160), ALT pred -0.228
+  Planck-conv sel (N=61)  : median +0.140 (68% +0.102..+0.242), ALT pred -0.243
+  rule collision note: B(0.272) > |Delta_ALT|(0.243) [STILL-UNDERPOWERED] AND |Delta_b-Delta_ALT|(0.383) > B with |Delta_b|<B [ALT-side, 1.41 sigma] fire together because Delta_b landed POSITIVE (away from BOTH footings); the structural verdict (UNDERPOWERED) is the headline, the 1.41 sigma ALT-side distance is reported as a lean, not a constraint.
+
+Wrote /Users/carlzimmerman/new_physics/zimmerman-formula/prep_2026/jeanneau_refit/subsample.csv (N=61 rows)
+EXIT 0

@@ -24,7 +24,8 @@ Exit 0 iff all hard assertions pass; findings printed either way.
 import csv
 import numpy as np
 
-DIR = "/Users/carlzimmerman/new_physics/prep_2026/jeanneau_refit"
+import os
+DIR = os.path.dirname(os.path.abspath(__file__))   # 2026-09-18: was a hard-coded path outside the repository; the lane now runs from wherever it lives
 A0C, A0A = 9.36e-11, 1.13e-10
 SLOPE, BREF = 3.14, 3.54
 KPC = 3.0857e19

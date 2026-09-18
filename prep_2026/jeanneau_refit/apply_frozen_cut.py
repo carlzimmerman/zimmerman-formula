@@ -24,7 +24,8 @@ Exit 0.
 import csv
 import numpy as np
 
-DIR = "/Users/carlzimmerman/new_physics/prep_2026/jeanneau_refit"
+import os
+DIR = os.path.dirname(os.path.abspath(__file__))   # 2026-09-18: was a hard-coded path outside the repository; the lane now runs from wherever it lives
 
 # ------------- frozen constants (FROZEN_CUTS.md section 7) -------------
 A0_CANON = 9.36e-11          # m/s^2

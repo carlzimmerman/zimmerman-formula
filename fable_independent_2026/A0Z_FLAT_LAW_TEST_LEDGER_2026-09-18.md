@@ -23,7 +23,7 @@ Nothing published has all three.
 |---|---|---|---|---|
 | one strongly lensed, rotationally supported galaxy, JWST/NIRSpec IFU + ALMA, deep-MOND BTFR zero point | 2.3–2.9 | deep MOND | 0.00 (flat) vs +0.33 (ΛCDM) at ±0.13 dex: 2.5σ, single object | **pre-registered** in PAPER7 (v3 DOI 10.5281/zenodo.22833314): gate, funnel, statistic frozen; 21 candidate objects on the ledger, none yet passes the rotation, lens-quality and g_bar < 0.3 a₀ gates simultaneously |
 | outer-disc CO / [C II] rotation at 2–3 r_M = √(GM_b/a₀) (25–35 kpc for 10¹¹ M☉) in ordinary discs, ALMA / ngVLA | 2–2.5 | outer disc | the same lever; a sample of ~10 at ±0.03 dex in velocity reaches ±0.13 on the zero point | no such sample exists; this is the question for radio observers |
-| the lensed-dwarf sample of Jeanneau+26 refit at g_bar < 0.5 a₀ | 0.9 | near deep MOND | sharpens the best point in hand (0.00 ± 0.06 stat ± 0.27 sys) but the lever at z = 0.9 is only 0.09 dex | data in hand; refit not done (`FORK_RESULTS.md` §5 item 1) |
+| the lensed-dwarf sample of Jeanneau+26 refit at g_bar < 0.5 a₀ | 1.06 (median) | deep MOND: g_bar/a₀ median 0.16, 76% of the a₀ lever survives | **DONE 2026-07-16** (`prep_2026/jeanneau_refit/`, frozen cuts, adversarially verified; re-run 2026-09-18, identical): N = 61 of 95; Δb = **+0.140 dex**, ±0.070 stat, **±0.272 honest** (coherent gas term ±0.20 dominates: 83% scaling-relation gas). Predictions for this subsample: flat law **0.000 → 0.51σ, compatible**; ALT a₀ ∝ H(z) −0.243 → 1.41σ lean against it (≈1.0–1.3σ after the verified +0.02…+0.11 selection bias); ΛCDM halo term −0.363 (degeneracy not broken, escapes via gas); framework with DESI at face value through the pressure law: −0.05 … −0.11 (0.76 × the z = 1 shift of +0.06/+0.10/+0.14 for Pantheon+/DESY5/Union3, L275) → 0.7–0.9σ, compatible. **Still underpowered**: the band exceeds every separation. Upgrade path: direct gas masses (ALMA CO or dust continuum) for a subset, bringing the coherent term to ≲ 0.10 and B to ≈ 0.15 |
 | Euclid galaxy–galaxy lensing RAR around z ≈ 0.5–1 lenses | 0.5–1 | deep MOND at 100s of kpc | a direct a₀, but needs ±0.03 dex and control of the 2-halo term | future; the 2-halo term is the record's known obstacle (L248: inside 1 Mpc the lensing mass is 1.5–8.7× the galaxies' own budget) |
 
 ## What already leans flat but cannot decide
@@ -48,5 +48,6 @@ with each other by 0.44 dex).
 ## Standing
 
 The flat law is **untested, not unsupported**: one method-dependent tension (MUSE, non-diagnostic), several neutral results,
-zero confirmations, zero clean refutations. The two things that can be done now with existing resources are the Jeanneau refit and
-the search for the lensed rotator; the decisive datum is the pre-registered measurement. Nothing here derives κ.
+zero confirmations, zero clean refutations. The Jeanneau refit is done and compatible with the flat law at 0.5σ but underpowered by its gas term; the two things that can be
+done now are direct gas masses for that subsample and the search for the lensed rotator; the decisive datum is the pre-registered
+measurement. Nothing here derives κ.

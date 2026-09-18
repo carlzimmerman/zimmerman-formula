@@ -1,0 +1,45 @@
+[OK] banked anchors: canonical dlogV(3)=-0.033, ALT +0.164, LCDM halo(z=1)=-0.35
+[GATE] full-95 median -0.037 dex -> reproduces their 0.00+-0.06 (PASS)
+
+(1) SUBSAMPLE ZERO-POINT (frozen estimator: median vs Lelli+19 3.14x+3.54)
+    N = 61 of 95 | z median 1.06 | g_bar/a0_canon median 0.16 (range 0.00-0.49)
+    Delta_b = +0.140 dex  (bootstrap 68%: +0.102..+0.242, stat +-0.070, MAD 0.309)
+    HONEST BAND = sqrt(0.070^2 + 0.20^2 + 0.16^2 + 0.06^2) = +-0.272 dex
+    gas stress HI x0.5/x2: +0.089 / +0.320 (coherent; NOT /sqrt(N))
+
+(2) FORK PREDICTIONS for this subsample (exact per-galaxy, own nu, OWN a0)
+    dilution: median 0.76 canonical / 0.82 ALT-own-a0 (parent forecast: >0.6)
+    canonical pure-Lambda : +0.000 (identically 0: a0 exactly constant under w=-1)
+    canonical DESI-CPL    : -0.000 (range -0.020..+0.022)
+    ALT rho_tot/cH0       : -0.243 (range -0.341..-0.106)
+    [cross-footing-bug check] ALT diluted with canonical a0 would read -0.225 (understated) -- NOT used
+    size-term residual (canonical + vdW14): -0.035 subsample vs -0.059 full-95 -> cancels in the deep regime as forecast
+
+(3) LCDM HALO-SCALING DRIFT for the same subsample (Jeanneau Eq.9 first term)
+    per-galaxy halo term: median -0.363 dex at z_med=1.06 (does NOT pass through nu
+    -> NOT a0-diluted, unlike the fork; the size term cancelled but this does not)
+    ALT-vs-LCDM gap, undiluted (parent regime) : median 0.095 dex (parent max 0.118)
+    ALT-vs-LCDM gap, WITH the deep-cut dilution: median 0.120 dex (range 0.073..0.183)
+    gap 0.120 vs honest band 0.272 -> degeneracy NOT broken: ALT and the LCDM halo edge remain indistinguishable here
+    (the deep cut WIDENS the gap slightly -- dilution shrinks ALT to -0.243 while
+     the halo term stays -0.363 -- but 0.12 dex is far inside the 0.27 band;
+     the test stays FOOTING-INTERNAL, exactly as the parent banked)
+
+(4) VERDICT (mechanical, FROZEN_CUTS.md section 5)
+    Delta_b=+0.140, band B=0.272, |Delta_ALT|=0.243
+    sigma from canonical(0): 0.51 | from ALT(-0.243): 1.41
+    rule (i)  B > |Delta_ALT|  -> STILL-UNDERPOWERED fires (0.272 > 0.243)
+    rule (ii) |Db|<B and |Db-D_ALT|>B -> nominal ALT-side distance 1.41 sigma fires
+    COLLISION (Delta_b landed POSITIVE, away from BOTH footings -- unanticipated):
+    HEADLINE = STILL-UNDERPOWERED with a 1.41-sigma ALT-side LEAN (not a constraint).
+    Why the structural rule wins: a measurement AT the ALT point (-0.243) would sit
+    only 0.89 sigma from canonical -- the band cannot separate the fork; and the
+    central value is gas-suspect (83 percent scaling-relation gas by median; HI x0.5/x2
+    alone moves it +0.089/+0.320).
+    [stat-only, DO-NOT-CLAIM] 5.5 sigma from ALT / 2.0 sigma from canonical
+    NOT a canonical win either: 0.51 sigma compatible only, offset positive.
+
+(5) FIGURE written: /Users/carlzimmerman/new_physics/zimmerman-formula/prep_2026/jeanneau_refit/deep_refit.png
+    degeneracy table: /Users/carlzimmerman/new_physics/zimmerman-formula/prep_2026/jeanneau_refit/deep_refit_degeneracy.csv (N=61)
+
+EXIT 0
