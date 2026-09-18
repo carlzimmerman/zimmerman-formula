@@ -1,0 +1,55 @@
+{
+  "lane": "M03",
+  "checks": {
+    "S1 fetched per-galaxy sigma0 (GalPak velocity_dispersion) + combined catalogues for the bulk of the sample": {
+      "ok": true,
+      "measured": "125 galaxies with sigma0 + z + masses + halo"
+    },
+    "S3 assembled the per-galaxy table with z, sigma0, V_c, AD fraction A, and DM-domination for the Mstar>10^8.8 sample": {
+      "ok": true,
+      "measured": "N=88, z 0.33-1.44, sigma0 1-79 km/s"
+    },
+    "D1 [DIAGNOSIS -- reconstruction fails] the halo-based BTFR a0 proxy does NOT reproduce Ciocan's a0(z) RISE (it slopes the WRONG way, because V_c=halo V_max FALLS with z as halos get less massive) -- so the released SUMMARY products (halo fit + one sigma0 + masses) CANNOT reconstruct the per-galaxy RAR a0, and the AD-contribution test is NOT cleanly runnable on them": {
+      "ok": true,
+      "measured": "a0-proxy slope -0.263 dex/z (Ciocan observed +0.43) -- wrong sign => proxy invalid"
+    },
+    "C1 [REAL RESULT] sigma0 rises with z at >3 sigma in Ciocan's OWN sample -- the confounder M01 requires (a z-growing pressure-support correction) IS present in the data": {
+      "ok": true,
+      "measured": "sigma0~z rho=+0.379 (3.8sig); A=(sigma0/V_c)^2~z rho=+0.352 (3.5sig)"
+    }
+  },
+  "numbers": {
+    "N": 88,
+    "a0_proxy_median_SI": 9.808436490583237e-11,
+    "slope_log_a0_corrected_per_z": -0.2634534724965231,
+    "slope_log_a0_raw_per_z": -0.40822372765341863,
+    "n_dispersion_dominated": 0,
+    "AD_fraction_of_a0z_slope": -0.5495097627107803,
+    "a0proxy~z (validation)": {
+      "rho": -0.11024620478320594,
+      "z_sig": 1.0286515865323813
+    },
+    "sigma0~z (confounder)": {
+      "rho": 0.3785706738050791,
+      "z_sig": 3.7930258605140437
+    },
+    "A=(sig/Vc)^2~z": {
+      "rho": 0.35155507026874716,
+      "z_sig": 3.482484315060914
+    }
+  },
+  "verdict": {
+    "N": 88,
+    "rho_sigma_z": 0.3785706738050791,
+    "rho_A_z": 0.35155507026874716,
+    "a0_proxy_slope_dex_per_z": -0.2634534724965231,
+    "a0_proxy_reproduces_rise": false,
+    "circular_diagnostic_partial_Dm_A_z": -0.42789642948061246,
+    "conclusion": "confounder (sigma0 up with z, 3.8 sigma) REAL and confirmed on Ciocan's data; per-galaxy RAR a0 NOT reconstructible from released summary products; clean AD-contribution falsifier INCONCLUSIVE (needs resolved RCs / per-galaxy a0); M01 neither confirmed nor refuted"
+  },
+  "summary": {
+    "pass": 4,
+    "n": 4,
+    "fail": []
+  }
+}
