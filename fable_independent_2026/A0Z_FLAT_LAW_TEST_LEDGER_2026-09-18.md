@@ -51,3 +51,8 @@ The flat law is **untested, not unsupported**: one method-dependent tension (MUS
 zero confirmations, zero clean refutations. The Jeanneau refit is done and compatible with the flat law at 0.5σ but underpowered by its gas term; the two things that can be
 done now are direct gas masses for that subsample and the search for the lensed rotator; the decisive datum is the pre-registered
 measurement. Nothing here derives κ.
+
+## Revisions
+
+- **v1, 2026-09-18 (a57f4ff33):** first version; listed the Jeanneau+26 low-acceleration refit as "not done".
+- **v2, 2026-09-18 (4fe18a55f):** corrected — the refit exists (`prep_2026/jeanneau_refit/`, 2026-07-16, frozen cuts, verified) and was re-run with identical numbers; its row now carries the result (Δb = +0.140 ± 0.070 stat ± 0.272 honest; flat law 0.51σ compatible; ALT 1.41σ lean against; ΛCDM halo term degenerate; still underpowered) and the framework's DESI-at-face-value prediction for that subsample; the standing paragraph names the two actions that remain: direct gas masses for the subsample, and the lensed-rotator search.
