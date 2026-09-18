@@ -1,0 +1,35 @@
+L280 -- alpha_2 reconciliation for the clock host
+
+  [PASS] 1a Foster-Jacobson under the pipeline's map (c1 = -c3 = K_B, c4 = c14 - K_B, i.e. c13 = 0): alpha_1 = -4 c14 EXACTLY, K_B drops out
+           (alpha_1 = -4*c_14)
+  [PASS] 1b and alpha_2 = c14 [c14 (1 + 2 c2) - c2] / [c2 (2 - c14)] EXACTLY (K_B drops out; the record's '-c14/2 + c14^2/(2 c2) + O(c14^2)' is its expansion)
+           (alpha_2 = -c_14*(2*c_14*c_2 + c_14 - c_2)/(c_2*(c_14 - 2)); series: -c_14/2 + c_14**2*(3/4 + 1/(2*c_2)) + O(c_14**3))
+  [PASS] 1c CONTROL: with c13 != 0 the identity alpha_1 = -4 c14 fails (the map, not an accident, is what makes alpha_1 K_B-free)
+           (alpha_1(c13) + 4 c14 = 4*c_13*(2*K_B*c_14 - 4*K_B - c_13*c_14 + 2*c_13)/(2*K_B*c_13 - 2*K_B - c_13**2))
+  [PASS] 2a the khronometric (BPS 2011, eq. 5.34) alpha_1 = -4 alpha equals the record's alpha_1 = -4 c14 identically, and the BPS alpha_2 = (c14/2)(c14/c2 - 1) equals the record's aether-formula alpha_2 to O(c14^2): |difference| < 1e-9 over c14 in [1e-7, 2.5e-5], c2 in [1e-5, 1] -- the record's method is validated for the clock at c13 = 0
+           (alpha_2(FJ) - alpha_2(BPS) = c_14**2*(-c_14 - 3*c_2)/(2*c_2*(c_14 - 2)); worst |diff| = 8.6e-10)
+  [PASS] 3a alpha_2 vanishes on the equal-speed locus: FJ exactly at c2 = c14/(1 - 2 c14) (the pipeline's c2*, g03v), BPS at lambda' = alpha, i.e. c2 = c14 -- the same locus to O(c14^2), where every mode propagates at c
+           (FJ zero: c2 = -c_14/(2*c_14 - 1); BPS zero: c2 = [c_14])
+    rigid branch (c2 = 1): |alpha_2| < 4e-07 needs c14 <= 8.000e-07
+    rigid branch (c2 = 1): |alpha_2| < 1e-07 needs c14 <= 2.000e-07
+  [PASS] 4a RIGID branch (c2 >> c14): |alpha_2| < 4e-7 needs c14 <= 8.0e-7, and < 1e-7 needs c14 <= 2.0e-7; both satisfy |alpha_1| = 4 c14 < 1e-4, Cherenkov c2 >= c14 for any c2 in the locus window, and leave the dark-sector window |K2| = (2-K_B)^2/c2 in [5e4, 3.24e5] untouched (c2 in [1e-5, 6.5e-5] at K_B = 0.2)
+           (c14_max = {'Nordtvedt 4e-7': 8.0000160000704e-07, 'BPS 1e-7': 2.0000010000011e-07})
+    equal-speed branch c14 = 1.0e-06: c2* = 1.0000e-06, alpha_2 = 0.0e+00, alpha_1 = -4.0e-06, |K2| on the locus = 3.24e+06 (OUTSIDE the window)
+    equal-speed branch c14 = 1.0e-05: c2* = 1.0000e-05, alpha_2 = 0.0e+00, alpha_1 = -4.0e-05, |K2| on the locus = 3.24e+05 (inside the window)
+    equal-speed branch c14 = 1.5e-05: c2* = 1.5000e-05, alpha_2 = 0.0e+00, alpha_1 = -6.0e-05, |K2| on the locus = 2.16e+05 (inside the window)
+    equal-speed branch c14 = 2.5e-05: c2* = 2.5001e-05, alpha_2 = 0.0e+00, alpha_1 = -1.0e-04, |K2| on the locus = 1.30e+05 (inside the window)
+  [PASS] 4b EQUAL-SPEED branch (c2 = c14/(1 - 2 c14)): alpha_2 = 0 to machine precision for every c14; with the dark-sector window it requires c14 in [1.0e-5, 2.5e-5] (lower edge from |K2| <= 3.24e5, upper edge from alpha_1), i.e. |K2| in [1.3e5, 3.24e5] -- g03v's fast-clock branch, now with alpha_2 settled
+           (c14 window [1.00e-05, 2.5e-5]; |K2|(1e-5) = 3.24e+05, |K2|(2.5e-5) = 1.30e+05)
+  [PASS] 5 the record's f33 corner (c14 = 1e-5, c2 = 1) FAILS the alpha_2 bound: |alpha_2| = 5.0e-6 = 12x the Nordtvedt bound, 50x BPS's -- the candidate scorecard's 'PPN derived: PASS' was not a pass on alpha_2 [FAIL-as-finding of the record, PASS = verified]
+           (alpha_2(f33 corner) = -5.00e-06)
+    rigid c14 = 8e-7: alpha1 = -3.20e-06, GN_over_G_minus1 = 4.00e-07, Lambda_sc_GeV = 1.09e+16
+    equal-speed c14 = 1e-5: alpha1 = -4.00e-05, GN_over_G_minus1 = 5.00e-06, Lambda_sc_GeV = 3.86e+16, K2 = 3.24e+05
+
+L280 COMPLETE: 8/8 checks PASS.
+VERDICT.  alpha_2 is not a wall for the clock host, but the corner the record used is not a pass: at c14 = 1e-5, c2 = 1 the clock's own
+alpha_2 = -5e-6 is 12x over the 4e-7 bound.  Two corners satisfy every preferred-frame bound together with the record's own constraints:
+RIGID, c14 <= 8e-7 (2e-7 at the 1e-7 limit) with c2 anywhere in the dark-sector locus window; or EQUAL-SPEED, c2 = c14/(1 - 2 c14) with
+c14 in [1e-5, 2.5e-5], where alpha_2 vanishes identically and every mode runs at c.  The khronometric formulas of BPS 2011 coincide with the
+record's aether-formula closed form at c13 = 0, validating f33's method.  Either corner costs nothing elsewhere on the record (G_N/G - 1 <=
+5e-6, strong-coupling scale sqrt(c14) M_P ~ 1e16 GeV, Cherenkov satisfied).  CK10 is settled; the scorecard's row 4 should read PASS AT
+c14 <= 8e-7 OR ON THE EQUAL-SPEED LOCUS, not 'alpha_2 = -6e-6'.  Nothing here derives kappa.
