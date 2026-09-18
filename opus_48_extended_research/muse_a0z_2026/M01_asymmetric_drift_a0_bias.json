@@ -1,0 +1,50 @@
+{
+  "lane": "M01",
+  "checks": {
+    "C1 AD-bias formula dln a0 = 2 eps eta sigma^2/v_c^2: vanishes at sigma=0 and increases with sigma^2 (so it grows with z as sigma0(z) rises) -- the bias is in the a0-RISING direction": {
+      "ok": true,
+      "measured": "bias(sigma=0) = 0.0000 (=0); bias rises with sigma: True"
+    },
+    "C2 the AD correction fraction A(z) grows from ~6% (z=0) to ~30% (z~1), a factor ~5, tracking sigma^2(z) -- so the AD correction is a LARGE and steeply z-growing part of g_obs for MUSE's DM-dominated disks": {
+      "ok": true,
+      "measured": "A(0)=0.060, A(1)=0.261, ratio=4.35 (~sigma^2 growth)"
+    },
+    "C3 the two z-growing systematics SUM to ~MUSE's rise: LambdaCDM apparent-halo-drift (+0.28, the dominant part) + AD-correction bias (+0.10, the EXCESS over LambdaCDM's x3) ~ +0.38 = MUSE, with NO fundamental a0 change": {
+      "ok": true,
+      "measured": "LCDM 0.250 + AD 0.100 = 0.350 dex vs MUSE 0.377 dex (agree to 0.026 dex)"
+    },
+    "C4 the AD bias at z~1 spans ~0.01-0.50 dex across plausible eps/eta/v_c; the MUSE-minus-LambdaCDM excess (+0.13 dex) sits inside this range.  The MAGNITUDE is uncertain; the STRUCTURE (sigma^2(z) growth, a0-rising direction, amplified by DM-dominated selection) is robust": {
+      "ok": true,
+      "measured": "AD bias range [0.014,0.502] dex; MUSE-LCDM excess = 0.127 dex (inside)"
+    }
+  },
+  "numbers": {
+    "muse_a0_z1": 2.38,
+    "z_eff": 0.8679245283018867,
+    "muse_rise_dex": 0.37657695705651195,
+    "sigma0_z0": 20.0,
+    "sigma0_z1": 41.698113207547166,
+    "A_z0": 0.06,
+    "A_z1": 0.2608098967604129,
+    "lcdm_apparent_dex_z1": 0.2496968580108498,
+    "ad_bias_dex_z1": 0.10040494838020644,
+    "ad_bias_range_dex": [
+      0.013660537194585914,
+      0.5020247419010323
+    ]
+  },
+  "verdict": {
+    "word": "MUSE-HIGH-a0-IS-APPARENT-not-fundamental",
+    "muse_rise_dex": 0.37657695705651195,
+    "lcdm_apparent_dex": 0.2496968580108498,
+    "ad_bias_dex": 0.10040494838020644,
+    "sum_dex": 0.35010180639105626,
+    "novel": "the AD-correction bias on the fitted a0 scales as sigma^2(z) -- quantified here",
+    "answer": "fitted a0 != fundamental a0: LambdaCDM halo drift + AD-correction systematic, both z-growing, amplified by MUSE-DARK's DM-dominated selection"
+  },
+  "summary": {
+    "pass": 4,
+    "n": 4,
+    "fail": []
+  }
+}
