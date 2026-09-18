@@ -1,6 +1,6 @@
 # SW03 — a covariant action for the mesoscopic switch (proposal, 2026-09-17)
 
-**Status: PROPOSAL.** The action below reduces to SW02's equations in the static weak-field limit (verified in
+**Status: PROPOSAL — KILLED ON PPN BY SW04 (2026-09-17): α₁ = [α₁^æ − 8(ν(η_gal) − 1)]/ν(η_gal) = −1.4 to −2.1 with a healthy æther, four orders above |α₁| < 1e-4; see SW04_ppn_full.out. The action stays on the record as the specification of the class and of why it fails.** The action below reduces to SW02's equations in the static weak-field limit (verified in
 `SW03_covariant_action.py`, sympy). Which gates it passes by structure, which it inherits from published results, and
 which are unverified are listed in §4. Nothing here derives κ; a₀ = ½ c√(Gρ_Λ) enters through u₀ as before.
 
@@ -39,15 +39,16 @@ Static æther u^μ = (1,0,0,0) in the rest frame: a_i = ∂_iΦ_E, Θ = 0. Then
 Point mass, ℓ → 0: ψ = y²/(1+y²) with y = g_N/a₀, so μ_s = 1/(ν(y) − 1) and the scalar force is g_N/μ_s = (ν − 1) g_N:
     g_total = g_N + (ν(y) − 1) g_N = ν(y) g_N          — QUMOND exactly, with the RAR kernel.
 Finite ℓ: ψ is the Yukawa-smoothed |∇Φ_E|²/(8πG u₀), which is SW02 with the Einstein-frame field as the switch variable.
-Strong field (y ≫ 1): ψ → 1, μ_s → ∞, φ → const: the scalar switches OFF, g̃ → e^{−2φ₀} g up to a constant, and the
-theory is Einstein-æther + Λ in the solar system. Uniform external field: ψ depends on |g_ext| only (the cross term
+Strong field (y ≫ 1): ψ → 1, μ_s → ∞ for the LOCAL switch; but for ℓ ≫ r_M(Sun) = 0.03 pc the switch at the Sun is the Galactic
+value ψ = H(η_gal²) = 0.78–0.83 and the scalar stays 19–34% active as a uniform G renormalisation (SW04): the solar system is NOT
+Einstein-æther + Λ alone. Uniform external field: ψ depends on |g_ext| only (the cross term
 averages out over ℓ), so the external-field effect is isotropic — the framework's cap law from an equation.
 
 ## 3. The cosmological background
 
 On FRW the æther is comoving: a_μ = 0, Θ = 3H, so 𝒮 = κ_Θ (cH)²/(8πG u₀) = κ_Θ (cH/a₀)² = 48.9 κ_Θ today, and
-ψ_FRW = H(48.9 κ_Θ). With κ_Θ ≥ 1/48.9 the switch is ≥ half-on in the Hubble flow and μ_s ≥ 1/(ν(y_FRW) − 1) is large:
-the MOND scalar is switched OFF on the background, the cosmology is GR + æther + Λ, and the deep-MOND strong-coupling
+ψ_FRW = H(48.9 κ_Θ). With κ_Θ ≥ 1/48.9 the switch is ≥ half-on in the Hubble flow; but ψ_FRW = 0.5–0.98 leaves the scalar 7.6% (κ_Θ = 1) to 50% (κ_Θ = 1/Z²)
+active on the background (ν(y_FRW) − 1 with y_FRW = 1.2–7): it is REDUCED, not switched off (corrected 2026-09-17), the cosmology is GR + æther + Λ, and the deep-MOND strong-coupling
 problem of TeVeS-class theories (μ_s → 0 at zero gradient) does not arise on FRW. Inside a virialised region the æther is
 static, Θ = 0, and the switch reads the local acceleration alone. Consequence, new and testable: the modification turns
 off where the æther congruence is still expanding — beyond turnaround, in the infall regions of clusters (2–5 R500) and in
@@ -60,7 +61,7 @@ keeps the background switched off; the framework's Deser–Levin reading suggest
 |---|---|---|
 | deep limit g² = a₀ g_N, RAR transition | PASS by structure | §2, sympy |
 | external field: isotropic, no vector-sum anisotropy | PASS by structure | §2; SW01/SW02 numbers |
-| solar system: PPN = Einstein-æther's | PASS by structure, æther c_i on the Foster–Jacobson α₁ = α₂ = 0 subspace | the scalar is OFF (μ_s → ∞); the ψ-æther coupling energy ≤ u₀ ≈ ρ_Λc²/32π, negligible; NOT re-derived here |
+| solar system PPN (all couplings) | **FAIL (SW04)** | the scalar is NOT off in the solar system: the smoothed switch is the Galactic one, ν(η_gal) − 1 = 0.19–0.34 uniform; γ̃ = β̃ = 1 but the disformal coupling turns the missing gravitomagnetic share into α̃₁ = [α₁^æ − 8(ν−1)]/ν = −1.4 to −2.1 (α̃₂ = α₂^æ/ν); cancellation needs c₁₄ < 0 (unstable æther) tuned to the Sun's η |
 | lensing = dynamics | INHERITED (Bekenstein 2004 static weak-field result for g̃) | not re-derived here |
 | c_T = c | PASS by structure | the tensor sector is Einstein–æther's (c_T set by c₁₃; take c₁₃ → 0 to 1e-15) |
 | no ghost in the scalar sectors | PASS by structure | μ_s(ψ) > 0; ψ has a standard-sign kinetic term; the æther health conditions on c_i (0 < c₁₄ < 2 etc.) as published |
