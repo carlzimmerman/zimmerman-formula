@@ -217,6 +217,14 @@ dispatched and pending: Lean certification of T1-T3 (SW09_meanvalue.lean), G03_C
 (the completion checklist), SW11_dc_ac (P10 on the LMC). L8 in PROOF_CHAIN.md upgrades from
 pending to verified.
 
+**Swing 11 (2026-09-17, the Lean attempt):** Theorem 2's Lean formalization (SW10_pair.lean)
+written — A_const + the four pinned theorems; three compile fixes landed (A_const's mul-form,
+the isolated_centered_Gamma chain, uniform_field_eta's hsplit + hone); one residual
+`unsolved goals` remains at the hsplit lemma (Pi.add_apply; the fix is documented:
+`simp only [Pi.add_apply]` before ring). LEFT UNTRACKED per the no-broken-Lean rule —
+Theorem 2 stands numerically (SW10_pair.out 10/10 clean, 9/10 MUTATE); the certified Lean
+surface remains SW06_lemmas (5) + SW09_meanvalue (4), exit 0, no sorry.
+
 **Status (2026-09-17, after swing 8):** three candidates killed in this lane (SW01-A, SW02,
 SW07 — the third fired the mandatory synthesis, see KILLS_SYNTHESIS); one standing (SW01-B,
 declared constant, dated falsifiers); SW03 is a consistency pass — NOT DISTINCTIVE, no kill.
