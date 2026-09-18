@@ -4,7 +4,7 @@ Reads ZENODO_ACCESS_TOKEN from ~/new_physics/.env -- never printed.  Same guards
 import os, sys, json, re, urllib.request
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")); ENV = os.path.expanduser("~/new_physics/.env"); BASE = "https://zenodo.org/api"
 DEP = dict(stem="PAPER7_a0z_decisive_measurement_2026", meta="qwen_claude_field_theory/papers_2026/PAPER7_a0z_decisive_measurement_2026.zenodo.json",
-           files=["qwen_claude_field_theory/papers_2026/PAPER7_a0z_decisive_measurement_2026.pdf", "qwen_claude_field_theory/papers_2026/PAPER7_a0z_decisive_measurement_2026.tex"])
+           files=["qwen_claude_field_theory/papers_2026/PAPER7_a0z_decisive_measurement_2026.pdf", "qwen_claude_field_theory/papers_2026/PAPER7_a0z_decisive_measurement_2026.tex", "qwen_claude_field_theory/papers_2026/PAPER7_fig_a0z_theories.png"])
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]{2,}"); PHONE_RE = re.compile(r"(?<!\d)(?:\+?1[-.\s]?)?\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4}(?!\d)")
 def token():
     for line in open(ENV):
