@@ -1,0 +1,47 @@
+==========================================================================
+SW10 -- Theorem 2: the pair obstruction (clean run)
+==========================================================================
+
+A. the l = 4 harmonic and the order trap (sympy, exact)
+  [PASS] A1 H4 = r^4 P4(z/r) is harmonic (a valid source-free ambient)
+           (Delta H4 = 0)
+  [PASS] A2 all derivatives of H4 through order 3 vanish at the argument origin
+           (vanishing: True (H4 is pure quartic -- no terms of degree < 4))
+  [PASS] A3 the analytic gradient of H4 matches sympy
+           (match: True)
+
+B. the shared machinery (units: GM = 1, R = 1, a0 = 1)
+  [PASS] B1 quadrature normalisation sum(W) = 1
+           (sum(W) - 1 = 0.00e+00)
+
+C. PAIR 1 -- the 2-jet kill (H4 centered at the field point P)
+  [PASS] C1 Pair 1 shared jets at P: |g| 0.00e+00, |J| 0.00e+00, |T| 0.00e+00 (exact by A2)
+           (the H4 ambient contributes NOTHING to the 0/1/2-jet of g at P)
+  [PASS] C2 every 2-jet invariant at P is IDENTICAL on the pair (max rel dev 0.00e+00)
+           (g^2: 1.690000 vs 1.690000; g.grad g: 3.380000 vs 3.380000; |grad g|^2: 6.000000 vs 6.000000; tr(J)^2: 0.000000 vs 0.000000; |J|^2 (Frobenius): 6.000000 vs 6.000000; g^T J g: 3.380000 vs 3.380000)
+  [PASS] C3 Pair 1 (Gamma, eta) DIFFER while the 2-jet is identical
+           (Gamma 11.180340 -> 13.400000 (1.2x move); eta 3.7000 -> 4.5000 (1.2x move))
+
+D. PAIR 2 -- the equal-|g| kill (mu(|g|) dies separately)
+  [PASS] D1 the l >= 2 harmonics centered at B are harmonic with zero value and gradient at B
+           (Delta H2 = 0; grad H2(0) = [0.0, 0.0, 0.0] (and H4(0) = (0,0,0) by A2))
+  [PASS] D2 PAIR 2: |g(P)| matched to 0.00e+00, eta matched to 0.00e+00, Gamma moves 0.9x
+           (|g(P)| 1.700000000000 vs 1.700000000000; eta 0.300000 vs 0.300000; Gamma 1.077033 vs 1.019804)
+
+E. MUTATE -- the local trigger cannot see the obstruction
+  [FAIL] E1[HINGE-MUTANT] the local trigger mu(|g_N(P)|) separates the pair by 0.00e+00 -- CANNOT distinguish the configurations
+           (|g_N(P)| identical across the pair (the 2-jet is shared): the local trigger is blind to exactly what the sphere functionals see)
+
+SW10 COMPLETE: 9/10 checks PASS.
+SW10 -- Theorem 2 (the obstruction), by explicit pair construction. Pair 1: two
+configurations sharing the EXACT 2-jet of g at the field point P (the l = 4
+harmonic centered at P vanishes through 3rd order there -- the order trap dodged)
+with Gamma moving %.1fx and eta moving %.1fx: no function of the 2-jet at P can
+reproduce the framework's variables. Pair 2: |g(P)| and eta tuned IDENTICAL with
+Gamma moving %.1fx: mu(|g|) and every function of |g| are dead separately. The
+MUTATE hinge: the local trigger mu(|g_N(P)|) separates the pairs by %.2e -- it is
+blind to exactly what the sphere functionals see. CONCLUSION: any covariant
+completion reproducing the framework's (Gamma, eta) is auxiliary-field-with-
+SW10 -- Theorem 2 (the obstruction), by explicit pair construction. Pair 1: configurations sharing the EXACT 2-jet of g at the field point P (the l = 4 harmonic centered at P vanishes through 3rd order there -- the order trap dodged) with Gamma moving 1.2x and eta moving 1.2x: no function of the 2-jet at P can reproduce the framework's variables. Pair 2: |g(P)| and eta tuned IDENTICAL with Gamma moving 0.9x: mu(|g|) and every function of |g| are dead separately. The MUTATE hinge: the local trigger mu(|g_N(P)|) separates the pairs by 1.00e-300 -- blind to exactly what the sphere functionals see. CONCLUSION: any covariant completion reproducing (Gamma, eta) is auxiliary-field-with-constraint or explicitly nonlocal (G03-class).
+
+(json written: SW10_pair_MUTATE.json)

@@ -1,0 +1,48 @@
+==============================================================================
+SW11_dc_ac -- P10 DC/AC split scored on the LMC (class numbers only)
+==============================================================================
+PRE-REGISTERED FAIL: if tide > g_int (tide/g_int > 1; the AC dominates),
+  the DC/AC split collapses -- record FAIL-as-finding. Declared before output.
+  (Literal wording 'tidal ratio exceeds g_int' is a unit mismatch;
+   the blind numeric comparison is recorded for audit only.)
+
+A. MW ambient (DC channel input):
+  [ok] g_env = v_c^2/D = 3.518747771980e-11 m/s^2
+  [ok] eta_LMC = g_env/a0 = 3.758582950021e-01
+  [ok] S_LMC = 1/(1+(eta_LMC/eta_c)^2) = 2.265184484336e-01
+  [ok] sanity: 0 < S_LMC <= 1 (a suppression) = S_LMC in (0,1]: True
+
+B. LMC internal (the boosted source):
+  [ok] g_int = G*M_st/r_st^2 = 7.745350565494e-11 m/s^2
+  [ok] x_LMC = g_int/a0 = 8.273267782709e-01
+  [ok] nu_RAR(x_LMC) (unsuppressed RAR boost) = 1.674187427913e+00
+  [ok] D_int = 1 + S_LMC*(nu_RAR(x_LMC)-1) (SUPPRESSED, the DC prediction) = 1.152715890124e+00
+  [ok] ordering: nu_RAR > D_int > 1 (suppression actually bites) = nu=1.674187 > D_int=1.152716 > 1: True
+
+C. Tidal AC channel:
+  [ok] tide = 2*g_env*r_st/D = 4.222497326377e-12 m/s^2
+  [ok] tide/g_int (AC channel size vs internal field) = 5.451654241692e-02
+
+D. Pre-registered FAIL gate:
+  [ok] FAIL (physical): tide > g_int i.e. tide/g_int > 1 = fired = False
+  [ok] audit-only (unit mismatch): (tide/g_int) > g_int as typed numerics = blind = True (artifact of comparing ratio to acceleration)
+
+  >>> FAIL did not fire: tide/g_int = 0.054517 << 1, so the tidal AC distortion
+      is sub-dominant and the DC suppression (D_int) is the observable.
+
+E. Falsifier framing (P10 on the LMC):
+  Prediction : LMC internal kinematics sit at the SUPPRESSED boost
+               D_int = 1.152716, NOT the unsuppressed RAR nu_RAR = 1.674187.
+               The gap D_int/nu_RAR = 0.688523 is the discriminating size.
+  Discriminator: the LMC's rotation curve / stellar dispersion measured
+               against BOTH values above (one number settles it).
+  Rival side : AQUAL's tidal response of the LMC's internal field to the MW
+               gradient -- OPEN. No DE solver exists in this lane; no AQUAL
+               number is claimed, computed, or implied here.
+
+Provenance: every number above computed in-file from the stated inputs
+(v_c=233e3 m/s, D=50 kpc, a0=9.3619e-11 MEASURED, eta_c=0.2034 DECLARED SW01b B2,
+M_st=5e9 M_sun literature value, r_st=3 kpc, G=6.674e-11, M_sun=1.989e30, PC=3.0857e16 m);
+kernels nu_RAR and S(eta) are the class's own (SW01/SW03/SW05, SW01b B2). No invented data.
+Checks passed: 13/13
+json written: /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/glm_moe_push/SW11_dc_ac.json

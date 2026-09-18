@@ -1,0 +1,80 @@
+{
+  "lane": "SW10_pair",
+  "n_pass": 9,
+  "n_checks": 10,
+  "checks": [
+    {
+      "name": "A1 H4 = r^4 P4(z/r) is harmonic (a valid source-free ambient)",
+      "detail": "Delta H4 = 0",
+      "ok": true,
+      "why": "deepseek's l = 4 construction; harmonicity makes it a valid environment everywhere in the ball"
+    },
+    {
+      "name": "A2 all derivatives of H4 through order 3 vanish at the argument origin",
+      "detail": "vanishing: True (H4 is pure quartic -- no terms of degree < 4)",
+      "ok": true,
+      "why": "this is WHY the 2-jet of g at P is untouched: the (n+1)-jet of Phi is the n-jet of g, and an l-harmonic centered at P perturbs the n-jet of g only when l <= n+1; l = 4 > 3 = safe -- the order trap, dodged"
+    },
+    {
+      "name": "A3 the analytic gradient of H4 matches sympy",
+      "detail": "match: True",
+      "ok": true,
+      "why": ""
+    },
+    {
+      "name": "B1 quadrature normalisation sum(W) = 1",
+      "detail": "sum(W) - 1 = 0.00e+00",
+      "ok": true,
+      "why": ""
+    },
+    {
+      "name": "C1 Pair 1 shared jets at P: |g| 0.00e+00, |J| 0.00e+00, |T| 0.00e+00 (exact by A2)",
+      "detail": "the H4 ambient contributes NOTHING to the 0/1/2-jet of g at P",
+      "ok": true,
+      "why": "jet equality is EXACT (symbolic, A2) -- the numerical FD corroboration sits at FD precision and is not the primary evidence"
+    },
+    {
+      "name": "C2 every 2-jet invariant at P is IDENTICAL on the pair (max rel dev 0.00e+00)",
+      "detail": "g^2: 1.690000 vs 1.690000; g.grad g: 3.380000 vs 3.380000; |grad g|^2: 6.000000 vs 6.000000; tr(J)^2: 0.000000 vs 0.000000; |J|^2 (Frobenius): 6.000000 vs 6.000000; g^T J g: 3.380000 vs 3.380000",
+      "ok": true,
+      "why": "identical invariants + differing (Gamma, eta) => NO function of the 2-jet reproduces the framework's variables -- the obstruction, by counterexample"
+    },
+    {
+      "name": "C3 Pair 1 (Gamma, eta) DIFFER while the 2-jet is identical",
+      "detail": "Gamma 11.180340 -> 13.400000 (1.2x move); eta 3.7000 -> 4.5000 (1.2x move)",
+      "ok": true,
+      "why": "the pre-registered criterion (grok): jet equality < 1e-12 AND the separation > 1e3 x the quadrature floor -- the 10x bar was the wrong theorem and could false-kill a true lemma; do not patch amplitudes to chase it"
+    },
+    {
+      "name": "D1 the l >= 2 harmonics centered at B are harmonic with zero value and gradient at B",
+      "detail": "Delta H2 = 0; grad H2(0) = [0.0, 0.0, 0.0] (and H4(0) = (0,0,0) by A2)",
+      "ok": true,
+      "why": "so eta = |g_env(B)|/a0 = alpha/a0 is IDENTICAL across any two such ambients -- the amplitude channel is pinned; only the SHAPE channel can move"
+    },
+    {
+      "name": "D2 PAIR 2: |g(P)| matched to 0.00e+00, eta matched to 0.00e+00, Gamma moves 0.9x",
+      "detail": "|g(P)| 1.700000000000 vs 1.700000000000; eta 0.300000 vs 0.300000; Gamma 1.077033 vs 1.019804",
+      "ok": true,
+      "why": "equal |g(P)| + equal eta + differing Gamma: mu(|g|) and every function of |g| are DEAD -- the scalar escape is closed separately from the 2-jet kill"
+    },
+    {
+      "name": "E1[HINGE-MUTANT] the local trigger mu(|g_N(P)|) separates the pair by 0.00e+00 -- CANNOT distinguish the configurations",
+      "detail": "|g_N(P)| identical across the pair (the 2-jet is shared): the local trigger is blind to exactly what the sphere functionals see",
+      "ok": false,
+      "why": "FAIL IS THE FINDING: the mutant (a local mu(|g|) trigger) cannot carry the obstruction -- the gate flips"
+    }
+  ],
+  "gamma_pair1": [
+    11.180339887498977,
+    13.400000000000036
+  ],
+  "eta_pair1": [
+    3.7,
+    4.5
+  ],
+  "gamma_pair2": [
+    1.077032961426903,
+    1.019803902718558
+  ],
+  "sep_mut": 0.0
+}

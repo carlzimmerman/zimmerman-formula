@@ -1,0 +1,58 @@
+{
+  "script": "SW11_dc_ac",
+  "prediction": "P10 DC/AC split: uniform environments SUPPRESS (DC, S(eta)); tidal environments DISTORT (AC, Gamma, S pinned at 1)",
+  "system": "Large Magellanic Cloud (LMC) in the Milky Way field",
+  "inputs": {
+    "v_c_m_s": 233000.0,
+    "D_m": 1.54285e+21,
+    "a0_m_s2": 9.3619e-11,
+    "a0_status": "MEASURED, canonical",
+    "eta_c": 0.2034,
+    "eta_c_status": "DECLARED (SW01b B2)",
+    "G_m3_kg_s2": 6.674e-11,
+    "M_sun_kg": 1.989e+30,
+    "PC_m": 3.0857e+16,
+    "M_st_kg": 9.945e+39,
+    "M_st_note": "5e9 M_sun, literature value (cited working mass within r_st)",
+    "r_st_m": 9.2571e+19,
+    "kernels": {
+      "nu_RAR": "1/(1-exp(-sqrt(y))) (class kernel, SW01/SW03/SW05)",
+      "S": "1/(1+(eta/eta_c)^2) (class, SW01b B2)"
+    }
+  },
+  "dc_channel": {
+    "g_env_m_s2": 3.518747771980426e-11,
+    "eta_LMC": 0.3758582950021284,
+    "S_LMC": 0.2265184484335797
+  },
+  "internal": {
+    "g_int_m_s2": 7.745350565494231e-11,
+    "x_LMC": 0.8273267782708885,
+    "nu_RAR_x_LMC": 1.6741874279125568,
+    "D_int_suppressed": 1.1527158901241783,
+    "suppression_gap_D_int_over_nu": 0.6885226055970508
+  },
+  "ac_channel": {
+    "tide_m_s2": 4.222497326376511e-12,
+    "tide_over_g_int": 0.054516542416916065,
+    "sub_dominant": true
+  },
+  "fail": {
+    "pre_registered": "FAIL iff tide > g_int (tide/g_int > 1; the AC dominates) -> DC/AC language collapses, record FAIL-as-finding",
+    "condition": "tide/g_int > 1.0",
+    "fired": false,
+    "outcome": "FAIL did not fire",
+    "audit_note": "The task's literal phrase 'if the tidal ratio exceeds g_int' compares a dimensionless ratio to an acceleration (unit mismatch). The physical reading, fixed by the parenthetical '(the AC dominates)', is tide > g_int. The blind numeric comparison (tide/g_int) > g_int is recorded for audit only and is NOT the scientific FAIL.",
+    "blind_literal_numeric_value": true
+  },
+  "falsifier_framing": {
+    "prediction": "LMC internal kinematics sit at the SUPPRESSED boost D_int = 1.152716, not the unsuppressed RAR nu_RAR = 1.674187",
+    "discriminator": "LMC rotation curve / stellar dispersion vs both values",
+    "rival_side": "OPEN (AQUAL's tidal response; no DE solver in this lane, no AQUAL numbers claimed)"
+  },
+  "checks": {
+    "passed": 13,
+    "total": 13,
+    "all_ok": true
+  }
+}

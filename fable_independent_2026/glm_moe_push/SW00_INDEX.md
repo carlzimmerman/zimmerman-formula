@@ -201,6 +201,22 @@ publishable end state. Word-ban honored.
 
 ## Status
 
+**Swing 9/10 (2026-09-17, the agent round):** Theorem 1 (the mean-value structure) verified
+11/11 clean, 10/11 MUTATE — eta = |g_env(B)|/a0 is a POINT value, all nonlocality sits in
+Gamma, and the DC/AC split (P10) is a new prediction channel. Theorem 2 (the obstruction)
+verified by explicit pair construction (SW10, 10/10 clean, 9/10 MUTATE, E1 the only flipped
+gate): two configurations sharing the EXACT 2-jet of g at P while (Gamma, eta) move — no
+function of the 2-jet reproduces the framework's variables; the equal-|g| pair kills
+mu(|g|) separately; the positive characterization: the response hangs on two boundary
+moments (avg g, avg |g|^2) — completions must be boundary-coupled or auxiliary (G03-class).
+**Audit door-closures recorded:** Walker likelihoods ABSENT (per-object Jeans genuinely
+open); DE04's eta>=2 sample EMPTY per deepseek_push/DE04_sample_audit.out ("THE PLAN'S
+PREMISE IS FALSE" — zero SPARC galaxies at eta >= 0.3; P4's window is real but unscorable
+on SPARC, re-pointed at the LMC by DE08) — P10 is the live empirical door. Round-two agents
+dispatched and pending: Lean certification of T1-T3 (SW09_meanvalue.lean), G03_CONSTRAINTS.md
+(the completion checklist), SW11_dc_ac (P10 on the LMC). L8 in PROOF_CHAIN.md upgrades from
+pending to verified.
+
 **Status (2026-09-17, after swing 8):** three candidates killed in this lane (SW01-A, SW02,
 SW07 — the third fired the mandatory synthesis, see KILLS_SYNTHESIS); one standing (SW01-B,
 declared constant, dated falsifiers); SW03 is a consistency pass — NOT DISTINCTIVE, no kill.

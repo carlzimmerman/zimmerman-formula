@@ -37,23 +37,36 @@ distortion with S pinned at 1 — a symmetric external pair gives η = 0 exactly
 
 ---
 
-## Theorem 2 — the obstruction (specific pair form; verification in flight)
+## Theorem 2 — the obstruction (VERIFIED: SW10 10/10 clean, 9/10 MUTATE)
 
-Γ and η, as the framework defines them, are **not functions of any finite jet** of the
-Newtonian field at the field point: there exist configurations A, B whose 2-jet at the field
-point agrees to ≤ 1e-12 relative while (Γ,η)_A ≠ (Γ,η)_B. Consequently **no local trigger** —
-μ(|g|), any jet-polynomial, or any function of the finite jet — can realize (Γ,η) while
-preserving: (i) uniform ⇒ Γ ≡ 0; (ii) isolated ⇒ Γ = |g_N|; (iii) conformal S.
+Γ and η, as the framework defines them, are **not functions of any finite 2-jet** of the
+Newtonian field at the field point P. Consequently **no local trigger** — μ(|g|), any
+jet-polynomial, or any function of the finite 2-jet — can realize (Γ,η) while preserving:
+(i) uniform ⇒ Γ ≡ 0; (ii) isolated ⇒ Γ = |g_N|; (iii) conformal S.
 
-**NOTE (the Weyl-tensor trap, pre-addressed):** the naive universal negative over ALL local
-invariants is FALSE (Weyl-like invariants evade it). The theorem is the SPECIFIC statement about
-the framework's own (Γ,η) — and its content is: **any covariant completion is
-auxiliary-field-with-constraint or explicitly nonlocal (G03-class).**
+**Verified by explicit pair construction (SW10_pair.out, 10/10 clean):**
+- **Pair 1 (the 2-jet kill):** two configurations sharing the **EXACT 2-jet of g at P**
+  (|g|, |J|, |T| deviations all 0.00e+00 — the ℓ=4 harmonic centered at P vanishes through
+  3rd order there; the order trap dodged) while **Γ moves 1.2×** and **η moves 1.2×**.
+  Every 2-jet invariant at P (g², g·∇g, |∇g|², tr(J)², |J|²_F, gᵀJg) is identical on the
+  pair → no function of the 2-jet can reproduce the framework's variables.
+- **Pair 2 (the equal-|g| kill):** |g(P)| matched to **0.00e+00** and η matched to
+  **0.00e+00** exactly (both ambient harmonics ℓ ≥ 2 centered at B have zero value and
+  gradient at B) while **Γ moves 0.9×** — μ(|g|) and every function of |g| are dead
+  separately from the 2-jet kill.
+- **The hinge (E1, the only flipped gate):** clean — the sphere functionals separate the
+  pair 1.2×/1.2× while the local trigger μ(|g_N(P)|) separates by **0.00e+00** (blind);
+  MUTATE — E1[HINGE-MUTANT] FAILs (9/10). Non-vacuous.
 
-Status: identities (i),(ii) verified by quadrature (SW01b C1/C2; SW09_meanvalue C1); the pair
-construction + the Lean formalization are the in-flight computation (Agent B, deleg task 1).
-Pre-registered kill: if any 2-jet invariant reproduces (Γ,η) on both members, the obstruction
-dies — recorded as such, never patched.
+**The positive characterization (why this *forces* G03-class):** by Theorem 1, the entire
+response hangs on exactly **two boundary moments of the sphere data** — ⟨g_N⟩ (= g_env(B),
+the point value η reads) and ⟨|g_N|²⟩ (the RMS Γ reads). No finite jet at any point can see
+those moments while the sphere is nontrivial — so **any covariant completion reproducing the
+framework's (Γ,η) must couple to the sphere boundary or introduce auxiliary fields with the
+constraint** (G03-class). Status: identities (i),(ii) verified by quadrature (SW01b C1/C2;
+SW09_meanvalue C1); the Lean formalization of the pair argument in flight (Agent B, deleg
+b67470ca). Pre-registered kill: if any 2-jet invariant reproduces (Γ,η) on both members, the
+obstruction dies — recorded as such, never patched.
 
 ---
 
