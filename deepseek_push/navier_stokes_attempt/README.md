@@ -24,8 +24,9 @@ Lean-certified algebra, Galerkin evidence, honest Clay-scope verdict.
 | lean/NSE_barrier.lean | the invariant-set rungs: barrier pull-down, crossing, stretch-vs-drag count (+ the honest c=0 disproof) | compiled exit 0 — 4 theorems, axioms clean |
 | N07_ACTION_DOOR.md + N07_action_door.py/.out/_results.json + N07_ACTION_DOOR_DERIVATION.md | **the missing door — the phantom as the action's fluid sector**: cusp D1 (1/r² exact), caustic channel D2 (τ_ff = 3.3e7 yr at 1 kpc), transfer D3 KILLED by the a₀/2 cap (toy: 45 km/s capped vs 207·c free), G03 residual named | 15/15 — the door closes by measurement |
 | N08_openai_analysis.md + N08_openai.md | the OpenAI blowup record: theorem (C)/(D), construction anatomy, Lean inventory (2,659 files, same rc2 toolchain), controversy state; N5 floor-exit WITNESSED at τ ≈ 5e-7 | digest + verdict card |
-| N09_* | the deep-sector clock table (τ_ff at 1–10 kpc) — folded into N07 D2 | via N07 |
-| SPEC_A/B/C_*.md | the parallel-attack specs (Lean, window theorem, equilibrium numerics) | filed |
+| N09_* | the deep-sector clock table (τ_ff at 1–10 kpc) + the two-fluid Galerkin + the T=200 equilibrium runs | (subagent lanes, in flight) |
+| N03b_beta_family.py/.out/_results.json | THE AMENDMENT: β-family status — β ≥ 3 certified (Zhou 2012, global strong, cited); β = 2 demoted to candidate (pressure-gap named); cubic fingerprint table 0.05–4.3% | 4/4 — the record corrected, additively |
+| N11_NOVELTY_AUDIT.md | the honest novelty ledger: [A] framework-new vs [B] cited-placement vs [C] elementary; the β=2 overreach named and amended | filed |
 
 ## The answer the framework gives (see N05_VERDICT.md)
 

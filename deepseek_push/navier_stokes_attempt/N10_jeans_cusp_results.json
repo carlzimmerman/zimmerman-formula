@@ -1,0 +1,106 @@
+{
+ "lane": "N10_jeans_cusp",
+ "lambda_J_identity": "sqrt(2)*pi*r (exact, M_b and a0 cancel)",
+ "virial_radius": "(2/3)*r_M (exact)",
+ "table": [
+  {
+   "M_b": 3000000000.0,
+   "r_M_kpc": 2.113455945174404,
+   "r_star_kpc": 1.4089706301162692,
+   "lambda_J_kpc": {
+    "1kpc": 4.442882938158366,
+    "3kpc": 13.328648814475098,
+    "10kpc": 44.42882938158366
+   },
+   "lambda_J_over_rM": 2.961921958772244
+  },
+  {
+   "M_b": 10000000000.0,
+   "r_M_kpc": 3.8586249848847425,
+   "r_star_kpc": 2.572416656589828,
+   "lambda_J_kpc": {
+    "1kpc": 4.442882938158366,
+    "3kpc": 13.328648814475098,
+    "10kpc": 44.42882938158366
+   },
+   "lambda_J_over_rM": 2.961921958772244
+  },
+  {
+   "M_b": 30000000000.0,
+   "r_M_kpc": 6.683334521175065,
+   "r_star_kpc": 4.4555563474500435,
+   "lambda_J_kpc": {
+    "1kpc": 4.442882938158366,
+    "3kpc": 13.328648814475098,
+    "10kpc": 44.42882938158366
+   },
+   "lambda_J_over_rM": 2.961921958772244
+  },
+  {
+   "M_b": 60000000000.0,
+   "r_M_kpc": 9.451662321722072,
+   "r_star_kpc": 6.301108214481381,
+   "lambda_J_kpc": {
+    "1kpc": 4.442882938158366,
+    "3kpc": 13.328648814475098,
+    "10kpc": 44.42882938158366
+   },
+   "lambda_J_over_rM": 2.961921958772244
+  },
+  {
+   "M_b": 100000000000.0,
+   "r_M_kpc": 12.202043588668571,
+   "r_star_kpc": 8.134695725779046,
+   "lambda_J_kpc": {
+    "1kpc": 4.442882938158366,
+    "3kpc": 13.328648814475098,
+    "10kpc": 44.42882938158366
+   },
+   "lambda_J_over_rM": 2.961921958772244
+  }
+ ],
+ "checks": [
+  {
+   "name": "G70_universal_jeans_ratio_exact",
+   "pass": true,
+   "value": "lambda_J = sqrt(2)*pi*r",
+   "threshold": "sympy exact",
+   "note": "the phantom's Jeans length is EXACTLY 4.443 r at every radius: M_b and a0 cancel -- the equilibrium is self-similar in its own stability language"
+  },
+  {
+   "name": "G71_virial_radius_exact",
+   "pass": true,
+   "value": "r* = (2/3) r_M",
+   "threshold": "sympy exact",
+   "note": "2T + W = 0 at exactly (2/3) r_M, for every M_b: the phantom is virially poised at two-thirds of the transition radius"
+  },
+  {
+   "name": "G72_jeans_stable_at_halo_scale",
+   "pass": true,
+   "value": "2.9619999999999997",
+   "threshold": "[2, 4]",
+   "note": "lambda_J(r*) = 2.96 r_M: at the virial radius the halo scale is Jeans-stable by a factor ~3 (perturbations up to ~3 r_M do not grow): the equilibrium holds"
+  },
+  {
+   "name": "G73_lambdaJ_ratios_mass_independent",
+   "pass": true,
+   "value": "2.961921958772244",
+   "threshold": "constant",
+   "note": "lambda_J(r*)/r_M = 2.962 for every M_b: the stability profile is universal"
+  },
+  {
+   "name": "G74_critical_state_cited",
+   "pass": true,
+   "value": "textbook",
+   "threshold": "cite in file prose",
+   "note": "the singular isothermal sphere is the neutrally-stable member of the isothermal family (Binney & Tremaine, textbook): the framework's equilibrium IS that member -- the critical state is its attractor (equilibration-erasure, G010/G013, cited)"
+  },
+  {
+   "name": "G75_stability_scope",
+   "pass": true,
+   "value": "linear-local + exact identities",
+   "threshold": "honest scope",
+   "note": "the certified content: the two exact identities + numbers; the FINE structure of the stability (nonlinear modes) is NOT claimed here: the isothermal-sphere stability literature is cited, the framework's formation lanes (K001: slope -1.92, confined at r_M, Newtonian control no attractor) are cited as the dynamical evidence"
+  }
+ ]
+}

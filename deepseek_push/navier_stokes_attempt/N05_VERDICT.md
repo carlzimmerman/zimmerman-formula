@@ -26,19 +26,22 @@ Read the doors N00, and the lane files for the numbers. Here is the verdict.
   growth, no global bound (`drag_beats_stretching_never`: a norm-linear drag
   can never dominate the cubic stretching — Lean). The difficulty class is
   unchanged: no de-obstruction exists with the measured constants alone. 6/6.
-- **N3 standing — the forward theorem.** The minimal completion
-  ZNS[κ, ℓ₀]: ∂_t u + (u·∇)u = −∇p + νΔu − κ√(a₀/ℓ₀)|u|u + f is globally
-  smooth for EVERY smooth divergence-free datum and every fixed κ > 0:
-  (i) the |u|²-drag caps ‖u‖_{L∞} ≤ max(M₀, √(A/c_d)) by the pointwise
-  maximum principle — transport preserves sup, (ω×u) ⊥ u (Lean:
-  `inner_cross_zero_fix`), Δ ≤ 0 at the sup point, the drag strictly
-  dissipative, and the two barrier rungs certified (`barrier_pull_down`,
-  `barrier_eq_at_crossing`); (ii) the cap is a Prodi–Serrin class ⇒
-  regularity (cited: Prodi 1959, Serrin 1962, Kato 1984); (iii) local
-  existence + cap + (ii) ⇒ global smoothness. Galerkin verification: sup
+- **N3 standing — the forward theorem (amended 2026-09-17, N03b).** The
+  modification family |u|^{β−1}u: the β = 3 (cubic) member is globally smooth
+  for EVERY smooth divergence-free datum at every fixed κ > 0 — the literature
+  certificate (Zhou 2012: "the strong solution exists globally for β ≥ 3";
+  Cai–Jiu class) + the sup-barrier picture + Galerkin verification (peak
+  1.421 vs barrier (A/c)^{1/3} = 1.494). The ORIGINAL β = 2 (quadratic)
+  "theorem" in N03 was OVERSTATED: the sup-barrier's pressure term is the
+  classical max-principle obstruction, and Zhou 2012 gives β ∈ [1, 3) only
+  conditional criteria — demoted to CANDIDATE with Galerkin evidence (peak
+  1.558 ≤ barrier 1.826), the amendment filed in N03b (4/4). N03's numerics
+  remain on the record (additive). The coupling reason (the deep √-law),
+  the survival pin (κ ≤ 2.6e-9; cubic κ₃ ≤ 1.2e-14) and the fingerprint
+  machinery are the framework-new content. Galerkin verification: sup
   peaks 4.215 → 3.145 → 1.627 down the drag ladder, never violating the
-  predicted cap (1.826 for c_d = 0.3: 11% margin); the a₀-capped class
-  (4.062 ≈ classical 4.215) shows why N2 dies. 6/6.
+  predicted caps; the a₀-capped class (4.062 ≈ classical 4.215) shows why
+  N2 dies. 6/6 + N03b 4/4.
 - **N5 standing — the window theorem.** ANY classical flow with
   |Du/Dt| ≤ 3.5·a₀ = 3.2767e-10 m/s² on its lifespan is globally smooth
   (trajectory bound sup|u(t)| ≤ U₀ + 3.5·a₀·t + Serrin continuation).
