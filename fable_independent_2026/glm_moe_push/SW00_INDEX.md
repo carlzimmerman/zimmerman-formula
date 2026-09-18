@@ -217,13 +217,26 @@ dispatched and pending: Lean certification of T1-T3 (SW09_meanvalue.lean), G03_C
 (the completion checklist), SW11_dc_ac (P10 on the LMC). L8 in PROOF_CHAIN.md upgrades from
 pending to verified.
 
-**Swing 11 (2026-09-17, the Lean attempt):** Theorem 2's Lean formalization (SW10_pair.lean)
-written — A_const + the four pinned theorems; three compile fixes landed (A_const's mul-form,
-the isolated_centered_Gamma chain, uniform_field_eta's hsplit + hone); one residual
-`unsolved goals` remains at the hsplit lemma (Pi.add_apply; the fix is documented:
-`simp only [Pi.add_apply]` before ring). LEFT UNTRACKED per the no-broken-Lean rule —
-Theorem 2 stands numerically (SW10_pair.out 10/10 clean, 9/10 MUTATE); the certified Lean
-surface remains SW06_lemmas (5) + SW09_meanvalue (4), exit 0, no sorry.
+**Swing 11 (2026-09-17, the Lean land):** Theorem 2's Lean formalization (SW10_pair.lean)
+written — A_const + the four pinned theorems; four compile fixes landed (A_const's mul-form,
+the isolated_centered_Gamma chain, uniform_field_eta's hsplit + hone, the Pi.add_apply simp
++ the redundant-ring removal) — **COMPILED: exit 0, zero sorry, 5 theorems. LANDED.**
+Theorem 2 now carries both numerics (SW10_pair.out 10/10 clean, 9/10 MUTATE) and its
+algebra; the lane's certified Lean surface: SW06_lemmas (5) + SW09_meanvalue (4) +
+SW10_pair (5) = 14, plus the fable lane's SW06_local_nogo (2, exit 0, propext/Classical/
+Quot.sound axioms only) = 16 on record.
+
+**Swing 12 (2026-09-17, the fable-lane integration):** the fable SW06 lensing trilemma (7/7)
+and SW04 PPN (8/11, the alpha_1 theorem) absorbed as G03_CONSTRAINTS G11 (the photon-cone
+constraint — the GW170817 differential Shapiro delay >= 1e5 x the observed 1.7 s kills any
+photon/graviton metric split) and G12 (alpha_1 = -8(nu_S-1)/nu_S — the completion must give
+gravitomagnetism or the deep-Newton suppression the class supplies structurally). The DR4
+three-way (kappa_slot_2026/SW07_program_ledger.out R2): the candidate's window (1.000 +
+O(1e-4), ceiling 1.045) holds this class's gamma_v 1.0000-1.01012; the cap-law/L268 band
+1.086-1.155 (NOT registered — the owner's call) and AQUAL 1.1614-1.2267 are both excluded
+by P1; same-footing gaps >= 0.029, the cross-footing corner gap 0.006 — the footing must be
+fixed first. The repaired L268 quadrature (their SW05, window open 1.2e4) is a rival with a
+DISTINCT sub-l fingerprint (1.09-1.15) — DR4 separates all four.
 
 **Status (2026-09-17, after swing 8):** three candidates killed in this lane (SW01-A, SW02,
 SW07 — the third fired the mandatory synthesis, see KILLS_SYNTHESIS); one standing (SW01-B,

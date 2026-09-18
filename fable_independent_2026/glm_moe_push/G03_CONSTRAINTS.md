@@ -66,6 +66,16 @@ Status: **HARD**
 Citation: `LAW_STATEMENT.md` (the two measured constants: kappa = 0.5, KS01 slot NOT LIVE; eta_c bounded Oort <= 0.203 / Fornax <= 0.145, window is the measurement); `SW07_eta_c_attack.out` (every priced mechanism KILLED; eta_c = the SECOND MEASURED CONSTANT; the derivation door is the G03 sourced-sector action).
 Status: **HARD**
 
+**G11 — Photon cone ⇒ the metric split must be screened or absent.**
+Any completion that splits photon and graviton metrics (photons on g~ = e^{2 phi} g, gravitons on g) is killed by the GW170817 differential Shapiro delay along the NGC 4993 sightline: the photon-graviton arrival difference is >= 1e5 x the observed 1.7 s (>= 1e4 x a 10 s emission budget), on both footings and kernels, eta_ext 0.01-0.1 — and the local cone mismatch at the Sun, |c_gamma - c|/c = 2|phi(Sun)|, exceeds 1e-15 by >= 8 orders. The conformal factor drops out of the null cone (the photon dispersion g~^{mu nu} k_mu k_nu = 0 is e^{-2 phi} x (g^{mu nu} k_mu k_nu) = 0): the photon cone must be g's — light bending by the baryons only — or the split must be screened.
+Citation: `kappa_slot_2026/SW06_lensing_trilemma_quadrature.out` checks 1a/1b/1c/2a (7/7 PASS; the record's horn-B kill, sign as observed — the kill is on magnitude alone, 5-7 orders).
+Status: **HARD**
+
+**G12 — alpha_1 ⇒ gravitomagnetism or deep-Newton suppression.**
+The fable SW04 theorem: gamma = 1 without gravitomagnetism gives alpha_1 = -8(nu_S - 1)/nu_S. The completion must supply gravitomagnetism (a gamma != 1 structure) or keep nu_S - 1 ≈ 0 at planetary x. The class supplies the latter structurally: S(eta_sun) = 0.0078 → nu_S - 1 ≈ 0 at planetary x (the double suppression, SW08 B4). The smoothed-total-switch action (the fable SW03) fails it: alpha_1~ = -1.4 to -2.1, 1e4-2e4 x the bound; cancellation needs c14 < 0 tuned to the Sun's eta.
+Citation: `kappa_slot_2026/SW04_ppn_full.out` (the symbolic PPN, the alpha_1 theorem, the l-scan no-window); `SW08_preferred_frame.out` B4 (the double suppression at planetary x).
+Status: **HARD**
+
 ---
 
 ## What G03 must DELIVER
