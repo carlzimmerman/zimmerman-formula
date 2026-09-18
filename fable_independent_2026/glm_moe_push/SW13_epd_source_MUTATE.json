@@ -1,0 +1,42 @@
+{
+ "mode": "MUTATE",
+ "n_pass": 3,
+ "n_total": 7,
+ "checks": [
+  {
+   "name": "K1a symbolic-numeric: nabla^2|grad Phi|^2 == 2|Hess|^2 - 8 pi g.grad(rho)",
+   "ok": true,
+   "detail": "sympy residual 0; numeric max-rel at 20 radii: 3.32e-15"
+  },
+  {
+   "name": "K1b FD identity at 200 points (FULL source incl. -8pi g.grad(rho))",
+   "ok": true,
+   "detail": "median rel 1.96e-07, p95 6.97e-07 (FD h = 5e-4)"
+  },
+  {
+   "name": "C1 EPD ODE on the profile: (r^2 M')'/r^2 == <S>_r",
+   "ok": false,
+   "detail": "max rel 1.001e+00 over 14 radii (FD-of-profile tol 0.03)"
+  },
+  {
+   "name": "D1 M(r) - <chi>_r(r) CONSTANT (ODE-integrated chi)",
+   "ok": false,
+   "detail": "std/mean 4.570e-01 over the profile (tol 0.02)"
+  },
+  {
+   "name": "D2 M(r) - <chi^FFT>_r + Sbar r^2/6 CONSTANT (independent 3D solve)",
+   "ok": false,
+   "detail": "std/mean 5.312e-01 (solver+boundary tol 0.05, box 4, 64^3)"
+  },
+  {
+   "name": "K3/E M non-decreasing on the vacuum profile",
+   "ok": false,
+   "detail": "min slope -4.216e+01 (x = 0.95)"
+  },
+  {
+   "name": "K5/F S(eta_ext = 0.1) = 0.805 >= 0.8 -- the fable GW170817 kill transfers",
+   "ok": true,
+   "detail": "phantom suppressed <= 20%% at the worst corner: the delay stays >= ~1e4-1e5 x the observed 1.7 s -> H2 dead at CLASS level (kappa_slot_2026/SW06 1a-1c arithmetic)"
+  }
+ ]
+}

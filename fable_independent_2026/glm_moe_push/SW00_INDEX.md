@@ -247,6 +247,27 @@ interval-disjointness theorems, compiled exit 0, zero sorry: class_below_cap,
 candidate_ceiling_below_cap, alt_foot_separated 0.0367, corner_gap_forces_footing_first
 0.0064 < 0.02). The certified Lean surface: 25 theorems across five files, all exit 0.
 
+**Swing 14 (2026-09-17, the chi/EPD dive):** SW13_epd_source.py — the obstruction's
+auxiliary horn made concrete: nabla^2|g_N|^2 = 2|Hess Phi_N|^2 - 8 pi G g_N.grad(rho), so an
+auxiliary chi with nabla^2 chi = THAT LOCAL TIDAL SOURCE reproduces Gamma's radial profile up
+to one per-barycenter constant (the construction is novel: scoped grep, zero Darboux/EPD hits).
+Clean **4/7** — VERIFIED: K1a the identity (symbolic residual EXACTLY 0), K1b the FD identity
+(median 1.96e-07, 200 points, FULL source incl. the density-gradient term), D2 the
+independent 64^3 FFT Poisson solve (M - <chi^FFT>_r + Sbar r^2/6 CONSTANT to 1.96e-03 —
+the working chi route), K5 the light transfer (S(eta_ext=0.1) = 0.805 >= 0.8 — the fable
+GW170817 kill transfers to THIS class). FAIL-as-findings, recorded not patched: **C1** (the
+profile-ODE check numerically inconclusive at 14-point resolution — the FFT route carries
+the construction), **D1** (the ODE-integrated chi route: std/mean 0.195 vs tol 0.02 — the
+inner-boundary scheme is defective, not the claim), **E** (M non-decreasing FAILED at
+x = 0.95, slope -42 — that shell is ring-halo, NOT vacuum; the monotonicity prediction is
+UNCONFIRMED, needs a true-vacuum re-run). MUTATE **3/7**: the wrong source S' = |g|^2 flips
+C1/D1/D2/E exactly as pre-registered (hinge non-vacuous). G13 recorded as EARNED-AS-READING
+(not minted HARD): H2 dead at class level; H1 quantitatively OPEN (no in-repo
+Einstein-radius table — nothing invented); H3 = the completeness failure (no lensing
+prediction until G03). Also noted: the candidate's xi >= 4 pc screening implies the LMC is
+UNSUPPRESSED (1.674) where this class predicts 1.153 — P10 discriminates class vs candidate,
+not only vs AQUAL.
+
 **Status (2026-09-17, after swing 8):** three candidates killed in this lane (SW01-A, SW02,
 SW07 — the third fired the mandatory synthesis, see KILLS_SYNTHESIS); one standing (SW01-B,
 declared constant, dated falsifiers); SW03 is a consistency pass — NOT DISTINCTIVE, no kill.

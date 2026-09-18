@@ -1,0 +1,48 @@
+==========================================================================
+SW13 -- the chi/EPD construction (clean run)
+==========================================================================
+
+A. symbolic identity, Plummer sphere (spherical reduction), G = 1
+  [PASS] K1a symbolic-numeric: nabla^2|grad Phi|^2 == 2|Hess|^2 - 8 pi g.grad(rho)
+        (sympy residual 0; numeric max-rel at 20 radii: 3.32e-15)
+
+B. finite-difference identity on the 7-mass configuration (vacuum points)
+  [PASS] K1b FD identity at 200 points (FULL source incl. -8pi g.grad(rho))
+        (median rel 1.96e-07, p95 6.97e-07 (FD h = 5e-4))
+
+C. radial profile M(r) and the EPD ODE
+  [FAIL] C1 EPD ODE on the profile: (r^2 M')'/r^2 == <S>_r
+        (max rel 1.001e+00 over 14 radii (FD-of-profile tol 0.03))
+
+D. the chi construction
+  [FAIL] D1 M(r) - <chi>_r(r) CONSTANT (ODE-integrated chi)
+        (std/mean 1.949e-01 over the profile (tol 0.02))
+  [PASS] D2 M(r) - <chi^FFT>_r + Sbar r^2/6 CONSTANT (independent 3D solve)
+        (std/mean 1.960e-03 (solver+boundary tol 0.05, box 4, 64^3))
+
+E. the structural prediction: M'(r) >= 0 in vacuum
+  [FAIL] K3/E M non-decreasing on the vacuum profile
+        (min slope -4.216e+01 (x = 0.95))
+
+F. light: the GW170817 transfer to THIS class (grok's H2)
+        S(eta_ext = 0.01) = 0.9976
+        S(eta_ext = 0.05) = 0.9430
+        S(eta_ext = 0.10) = 0.8053
+  [PASS] K5/F S(eta_ext = 0.1) = 0.805 >= 0.8 -- the fable GW170817 kill transfers
+        (phantom suppressed <= 20%% at the worst corner: the delay stays >= ~1e4-1e5 x the observed 1.7 s -> H2 dead at CLASS level (kappa_slot_2026/SW06 1a-1c arithmetic))
+
+G. readings (not PASSes) -- the light trichotomy
+  H1 photons-on-g (baryons-only lensing): INCONSISTENT with the cluster record
+     (missing-mass lensing is the original evidence); QUANTITATIVE cell OPEN --
+     no in-repo Einstein-radius table; do not invent one.
+  H3 deferred-to-completion: FAIL-as-finding on completeness -- until G03 exists
+     the law has NO lensing prediction. Recorded, not scored.
+  => G13 earned: the completion must supply an auxiliary Weyl-sector route that is
+     neither a metric split (G11) nor a local 2-jet (G9).
+
+==========================================================================
+SW13 COMPLETE: 4/7 checks PASS. HONEST READING (not a clean sweep):
+  VERIFIED: the source identity nabla^2|g_N|^2 = 2|Hess Phi_N|^2 - 8 pi G g_N.grad(rho) (K1a symbolic residual exactly 0; K1b FD median 1.96e-07 with the FULL source); the light transfer (K5: S(eta_ext=0.1) = 0.805 >= 0.8 -> the fable GW170817 kill transfers to THIS class); and the independent 3D FFT route (D2 constancy std/mean 1.96e-03).
+  FAIL-AS-FINDINGS (recorded, not patched): C1 -- the profile-ODE check is numerically inconclusive at 14-point resolution (the FFT route carries the construction); D1 -- the ODE-integrated chi route does NOT show constancy (std/mean 0.195 vs tol 0.02); E -- M non-decreasing FAILED at the innermost profile radius (min slope -42 at x = 0.95), i.e. that shell is ring-halo, not vacuum -- the monotonicity prediction is UNCONFIRMED here.
+  So: the Poisson-auxiliary picture is CONCRETE and its source identity is certified, but chi-constancy closes only on the FFT route on this configuration -- the auxiliary horn of G9 is sharpened, not yet a theorem.
+json written
