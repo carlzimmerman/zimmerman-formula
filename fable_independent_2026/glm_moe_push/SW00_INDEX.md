@@ -238,6 +238,15 @@ by P1; same-footing gaps >= 0.029, the cross-footing corner gap 0.006 — the fo
 fixed first. The repaired L268 quadrature (their SW05, window open 1.2e4) is a rival with a
 DISTINCT sub-l fingerprint (1.09-1.15) — DR4 separates all four.
 
+**Swing 13 (2026-09-17, the closure map):** CLOSURE_MAP.md (the exhaustive ledger: 8
+constructions KILLED with gates+citations, 4 STANDING with bands, the live split {class U
+candidate} vs cap vs AQUAL stated explicitly, every empirical verdict with its decision
+date) + SW12_dr4_closure (11/11 clean, 9/11 MUTATE — the hinge flips exactly X1/X2 by
+swapping the class band with the cap band's endpoints) + SW12_dr4_disjoint.lean (4
+interval-disjointness theorems, compiled exit 0, zero sorry: class_below_cap,
+candidate_ceiling_below_cap, alt_foot_separated 0.0367, corner_gap_forces_footing_first
+0.0064 < 0.02). The certified Lean surface: 25 theorems across five files, all exit 0.
+
 **Status (2026-09-17, after swing 8):** three candidates killed in this lane (SW01-A, SW02,
 SW07 — the third fired the mandatory synthesis, see KILLS_SYNTHESIS); one standing (SW01-B,
 declared constant, dated falsifiers); SW03 is a consistency pass — NOT DISTINCTIVE, no kill.
