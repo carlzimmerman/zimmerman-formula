@@ -10,7 +10,7 @@ Companions: YM_REFEREE.md (the adversarial audit, ALIVE 3 / BOUNDARY-REGISTERED
 YM04b_vector_halo_physical (6/6, the physical register), and the Lean spine —
 lean/YM01_gap (19) + YM02_pinned_gap (17) + YM03_virial_consistency (9) +
 YM04_energy_fraction (11, superseded register, flagged) +
-YM04b_energy_fraction_physical (4) + YM05_lattice_gap (9) = **69 Lean theorems, zero sorry,
+YM04b_energy_fraction_physical (4) + YM05_lattice_gap (9) + YM06_capped_gap (3) = **72 Lean theorems, zero sorry,
 axioms ⊆ {propext, Classical.choice, Quot.sound}**.
 
 ---
