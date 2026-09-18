@@ -7169,3 +7169,8 @@ L273's first Part 4 normalised the pressure mapping at w(0) = −1 and reported 
 ## PAPER7 v3 deposited (2026-09-18)
 
 On the user's explicit go: **PAPER7 v3 DOI 10.5281/zenodo.22833314** (concept 22563138; v1 22563139 stays). Adds the version note (the framework's law is the pressure law and is flat; v1's −0.09 dex for DESI was the rejected density mapping; DESI at face value through the pressure law gives +0.007/+0.030/+0.058 dex at z = 2.5 with its bands; the decision rule 0.00 vs +0.33 at ±0.13 is unchanged; the discriminating window is z ≥ 2) and the L274 figure, shipped as `PAPER7_fig_a0z_theories.png`. **v2 (DOI 10.5281/zenodo.22833277, same day) carried the note in its TeX but its PDF was the v1 build**: a compile error (graphicx not added because the preamble replacement missed PAPER7's 0.95in geometry line) dropped the figure, and the deposit was not gated on the build — my error; v3 supersedes it and says so in its description.
+
+
+## DESI DR2 inputs verified against the paper (2026-09-18)
+
+The three (w₀, wₐ) pairs used in L273/L274 were checked against the text of arXiv:2503.14738v2 (the w₀waCDM table and eqs. 26–28): DESI+CMB+Pantheon+ w₀ = −0.838 ± 0.055, wₐ = −0.62 +0.22/−0.19 (Ω_m = 0.3114 ± 0.0057, H₀ = 67.51 ± 0.59); DESI+CMB+Union3 w₀ = −0.667 ± 0.088, wₐ = −1.09 +0.31/−0.27 (Ω_m = 0.3275 ± 0.0086, H₀ = 65.91 ± 0.84); DESI+CMB+DESY5 w₀ = −0.752 ± 0.057, wₐ = −0.86 +0.23/−0.20 (Ω_m = 0.3191 ± 0.0056, H₀ = 66.74 ± 0.56); preference over ΛCDM 2.8σ / 3.8σ / 4.2σ, 3.1σ for DESI+CMB alone. All match what the lanes use; the "quoted, not verified" caveat is withdrawn. The lanes use the DESI+CMB ΛCDM Ω_m = 0.3027 in E(z) rather than the per-combination values, a 0.01 dex effect on the H(z) law at z = 2.5. Nothing changes on the chart.

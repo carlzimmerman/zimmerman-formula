@@ -5,7 +5,7 @@ Laws: (1) the framework's own law (stage-17 pressure law: flat; the excitation's
 range: the union of the three SNe combinations' 68% bands at rho(w0,wa) = -0.9); (3) the density mapping a0 ∝ sqrt(rho_DE(z)) -- the naive
 promotion stage-17 rejects, PAPER7's DESI sentence, an UPPER BOUND on the effect (same range recipe); (4) the H(z) law a0 ∝ H(z) (the alt footing;
 range: DESI CPL vs Lambda and Omega_m +/- 0.0036); (5) the LambdaCDM-native emergent scale a_s(z)/a_s(0) = E(z)^{4/3} [c^2/f(c)](z)/[c^2/f(c)](0)
-(PAPER7) with Dutton-Maccio 2014 c(M, z) at 1e12 h^-1 Msun (range: halo mass 1e11-1e13 and the 0.11 dex concentration scatter).  Marker: the
+(PAPER7) with Dutton-Maccio 2014 c(M, z) at 1e12 h^-1 Msun (range: halo mass 1e11-1e13 and the 0.11 dex concentration scatter).  DESI inputs verified against arXiv:2503.14738v2 (w0waCDM table, eqs. 26-28) on 2026-09-18.  Marker: the
 pre-registered single-rotator precision +/-0.13 dex at z = 2.5 (PAPER7).  Delta log v_flat at fixed M_b = 1/4 of the plotted axis.  A FAIL is a finding."""
 import os, json, math
 import numpy as np

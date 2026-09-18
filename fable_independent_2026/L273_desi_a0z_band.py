@@ -9,7 +9,9 @@ combinations; (2) the full profile z = 0.5-5 on BOTH footings (canonical: a0 tra
 separations at z = 2.5 in units of the pre-registered +/-0.13 dex.  CPL: rho_DE(z)/rho_DE(0) = (1+z)^{3(1+w0+wa)} exp(-3 wa z/(1+z)).
 Inputs: DESI DR2 BAO (arXiv:2503.14738) w0waCDM fits -- DESI+CMB+DESY5 w0 = -0.752 +/- 0.057, wa = -0.86 (+0.23/-0.20) [the pair BANKED in
 prep_2026/btfr_forecast_audit/btfr_forecast_check.py]; DESI+CMB+Pantheon+ w0 = -0.838 +/- 0.055, wa = -0.62 (+0.22/-0.19);
-DESI+CMB+Union3 w0 = -0.667 +/- 0.088, wa = -1.09 (+0.31/-0.27) [quoted from the paper's table; not banked before this lane].  The
+DESI+CMB+Union3 w0 = -0.667 +/- 0.088, wa = -1.09 (+0.31/-0.27).  ALL THREE VERIFIED 2026-09-18 against the paper's own w0waCDM table and
+eqs. 26-28 (arXiv:2503.14738v2; the table also gives per-combination Omega_m = 0.3114 / 0.3275 / 0.3191 and H0 = 67.51 / 65.91 / 66.74 for
+Pantheon+ / Union3 / DESY5; this lane uses the DESI+CMB LambdaCDM Omega_m = 0.3027 for E(z), a 0.01 dex effect on the H(z) law at z = 2.5).  The
 w0-wa correlation is not quoted in the abstract; it is scanned over rho in {0, -0.8, -0.9, -0.95} and the band is reported at each.
 Omega_m = 0.3027 (DESI DR2 BAO + CMB, banked in nbody_2026/routeB_dust_to_dark_energy_2026.py).  A FAIL is a finding; no literal-True checks."""
 import os, re, json, math
