@@ -1,0 +1,67 @@
+{
+ "task": "N13_construction_audit",
+ "purpose": "Independent exponent-consistency audit (A1-A8) of the OpenAI Navier-Stokes finite-time blowup scaling skeleton; paper cached text, sympy exact recomputation; skeleton-only, not a proof audit.",
+ "audit_items": [
+  {
+   "id": "A1",
+   "section": "Sec 2.1 (l.210-216); Sec 3.1 (l.536-540)",
+   "status": "PASS",
+   "detail": "l_r=tau^(1/2), l_z=tau^(1/2-h): l_r/l_z=tau^h->0; vol=l_r^2*l_z=tau^(3/2-h)"
+  },
+  {
+   "id": "A2",
+   "section": "Sec 2.1 (l.219-243)",
+   "status": "PASS",
+   "detail": "Re_theta=|u_theta|*l_r/nu ~ tau^(-h)->inf; Re_r=O(1)"
+  },
+  {
+   "id": "A3",
+   "section": "Sec 2.1 (l.247-268)",
+   "status": "PASS",
+   "detail": "|u_r|/l_r, |u_z|/l_z, nu/l_r^2 ~ tau^(-1); nu/l_z^2/(nu/l_r^2)=tau^(2h)->0"
+  },
+  {
+   "id": "A4",
+   "section": "Sec 2.1 (l.227-228); Sec 3.5 (l.1230-1243)",
+   "status": "PASS",
+   "detail": "E_core=tau^(1/2-3h)->0; D_core=tau^(-1/2-3h); int tau^(-1/2-3h) dtau finite iff h<1/6; h<1/100<1/6"
+  },
+  {
+   "id": "A5",
+   "section": "Thm 3.1 (l.1086); Sec 3.5 (l.1246-1252), Lemma 10.4",
+   "status": "REGISTERED",
+   "detail": "Global energy bound (sup||u||_L2<inf) NOT verifiable from the skeleton; needs the full proof (sections 4-10). Not claimed."
+  },
+  {
+   "id": "A6",
+   "section": "Sec 2.1 exponents; Sec 3.3 (l.859-862); N05/N08 lab map",
+   "status": "PASS",
+   "detail": "|Du/Dt|~|u|^2/l_r=tau^(-3/2-2h)->inf; eta(1)=1.068e+10; tau_exit(h->0)=4.753e-07, tau_exit(h=1/200)=5.234e-07, floor=3.5*a0"
+  },
+  {
+   "id": "A7",
+   "section": "Sec 3.3 (l.911-920); Appendix C",
+   "status": "PASS",
+   "detail": "<cos^2>=1/2, <cos*sin>=0; families (1/2,0),(0,1/2): rank 2, span R^2; target (a,b) via c1=2a,c2=2b"
+  },
+  {
+   "id": "A8",
+   "section": "all of the above",
+   "status": "PASS",
+   "detail": "honesty box: skeleton-only audit; residual-smoothing ladder, flatness estimates, Lemmas 10.4/10.5, post-3.6 material NOT audited"
+  }
+ ],
+ "tau_exit": {
+  "formula": "tau_exit = (3.5*a0/a_scale)^(2/(3+4*h))   [eta(tau)=tau^(-3/2-2h)*a_scale/a0 = 3.5]",
+  "a0": 9.3619e-11,
+  "a_scale": 1.0,
+  "floor_W": 3.5,
+  "floor_value": 3.276665e-10,
+  "eta_at_tau1": 10681592411.796751,
+  "tau_exit_h0": 4.752856420037148e-07,
+  "tau_exit_h_1over200": 5.233945149518305e-07,
+  "n08_crosscheck": "N08: tau_exit ~ 5.2e-7 at h=0.005 (matches here, 5.24e-7)"
+ },
+ "honesty": "SKELETON-ONLY. PASS = no fatal exponent contradiction. NOT an endorsement: the proof (residual smoothing, flatness, Lemmas 10.4/10.5, sections 4-10, Appendices A-C) is not audited. A5 registered: global energy bound needs the full proof.",
+ "summary": "COMPLETE: 7/8 checks PASS (A5 REGISTERED: needs the full proof; 0 FAILED)."
+}

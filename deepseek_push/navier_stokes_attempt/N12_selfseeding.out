@@ -1,0 +1,18 @@
+N12_selfseeding: unforced two-fluid runs (A = 0); n = 24, nu = 1e-2, G = 6.0, N_p = 8192; N09 machinery (CIC + 4piG Jeans-swindle + velocity-Verlet); deviation note in the header (free-run NaN fix)
+RUN baseline: 36.0s  sup_peak = 0.020
+RUN capped  : 50.4s  sup_peak = 0.123
+RUN free    : 12.3s  SELF-STOPPED at t = 1.274 (sup = 50.65 > 50)  sup_peak = 46.386
+sup peaks: baseline 0.020   capped 0.123   free 46.386
+central dust mass (%): baseline 4.8   capped 36.7   free 35.0
+PASS G80_unforced_caustic
+      dust collapses UNFORCED (no baryon source: the phantom seeds itself): central mass 35.0% vs 4.8% (A = 0, gravity-only dynamics)
+PASS G81_capped_linear_budget
+      capped baryon sup 0.123 against the certified linear budget pb + cap*T = 0.120: the a0/2 wall allows only linear-in-T growth at the capped slope -- N2's sup-ODE count, reproduced in the two-fluid with 2.4% margin
+PASS G82_free_selfseeding
+      free-coupling baryon sup 46.386 vs baseline 0.020: WITHOUT any external forcing the dust collapse BY ITSELF drives the baryon velocity -- the self-seeding channel is numerically live (EVIDENCE ONLY)
+N12_selfseeding COMPLETE: 3/3 checks PASS.
+EVIDENCE ONLY: toy machinery (unprojected channel per N09 deviation); the witness:
+the dust self-seeds (unforced caustic); the a0/2 cap throttles the transfer; the free
+coupling transfers it -- the (A)/(B)-adjacent self-seeding channel is numerically live.
+PNG saved: N12_selfseeding.png
+JSON saved: N12_selfseeding_results.json

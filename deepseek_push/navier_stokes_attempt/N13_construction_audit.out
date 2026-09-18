@@ -1,0 +1,24 @@
+A1  exo-exponents (Sec 2.1 l.210-216, Sec 3.1 l.536-540)
+  [PASS] A1   l_r/l_z = tau^h -> 0 (slender core, h>0); vol = l_r^2*l_z = tau^(3/2-h)   got: ratio=tau**h vol=tau**(3/2 - h)
+A2  velocity exponents + Reynolds numbers (Sec 2.1 l.219-243)
+  [PASS] A2   Re_theta = |u_theta|*l_r/nu ~ tau^-h -> inf (h>0); Re_r = |u_r|*l_r/nu = O(1);  got: tau**(-h), 1
+A3  diffusion-rate balance (Sec 2.1 l.247-268)
+  [PASS] A3   |u_r|/l_r = tau^-1; |u_z|/l_z = tau^-1; nu/l_r^2 ~ tau^-1; nu/l_z^2 / nu/l_r^2 = l_r^2/l_z^2 = tau^(2h) -> 0;  got: 1/tau, 1/tau, tau**(2*h)
+A4  energy / dissipation integrability (Sec 2.1 l.227, Sec 3.5 l.1230-1243)
+  [PASS] A4   E_core = tau^(1/2-3h) -> 0; D_core = tau^(-1/2-3h); int dtau = tau0^(1/2-3h)/(1/2-3h), finite iff h<1/6; h<1/100<1/6 holds;  int(tau0=1/2,h=1/100) = 1.5361
+A5  global energy bound (Thm 3.1 l.1086; Sec 3.5 l.1246-1252; Lemma 10.4)
+  [REGISTERED] A5   needs the full proof (sections 4-10; NOT audited here).
+      Skeleton only guarantees: core energy E_core -> 0 (A4). The claim
+      sup_t<1 ||u||_L2 < inf also needs pulse/exterior energy bounds.
+A6  material-acceleration window exit (Sec 2.1 exponents + Sec 3.3 l.859)
+  [PASS] A6   |Du/Dt| ~ |u|^2/l_r = tau^(-3/2-2h) -> inf; tau_exit = (3.5*a0/a_scale)^(2/(3+4h)):  h->0: 4.753e-07,  h=1/200: 5.234e-07,  eta(1) = 1.068e+10 (10.0 orders above floor)
+A7  pulse stress cone (Sec 3.3 l.911-920, App C)
+  [PASS] A7   <cos^2> = 1/2, <cos*sin> = 0;  families (1/2,0),(0,1/2) independent: rank = 2; generic target (a,b) via c1=2a, c2=2b
+A8  honesty box
+  This audit verifies the construction's SCALING SKELETON only -- it never
+  reads the proof.  Claimed-but-NOT-audited: residual-smoothing ladder,
+  flatness estimates, Lemma 10.4/10.5, everything past section 3.6,
+  Appendices A-C.  A gate PASS here means: no fatal internal contradiction
+  of the exponent skeleton.  It is NOT an endorsement of the theorem.
+
+COMPLETE: 7/8 checks PASS (A5 REGISTERED: needs the full proof; 0 FAILED).

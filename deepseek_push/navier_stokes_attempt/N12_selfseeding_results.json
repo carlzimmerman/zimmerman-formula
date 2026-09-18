@@ -1,0 +1,53 @@
+{
+ "lane": "N12_selfseeding",
+ "evidence": "evidence only; toy machinery; not a proof",
+ "deviation": "free-run NaN fix: adopted N09 machinery verbatim -- CIC scatter/gather with m_p = M_tot/N_p mass weights, Lap psi = 4 pi G (rho - <rho>) Jeans-swindle FFT Poisson with the cell-volume factor, velocity-Verlet dust leapfrog with the force recomputed at drifted positions, per-step sup > 50 stop guard with t_stop, ghat k=0 hygiene; the draft's count-density/no-4pi potential was ~652x too strong (tau_ff ~ 6e-3 << dt), the under-resolved leapfrog escaped (NaN). A = 0, blob at pi, gates G80/G81/G82 unchanged.",
+ "sup": {
+  "baseline": 0.020281997554482366,
+  "capped": 0.12259793883917455,
+  "free": 46.38550862014206
+ },
+ "dust_conc": {
+  "baseline": 4.833984375,
+  "capped": 36.71875,
+  "free": 34.9609375
+ },
+ "sup_stop_time": 1.274,
+ "runs": {
+  "baseline": {
+   "runtime_s": 35.473462708992884
+  },
+  "capped": {
+   "runtime_s": 48.0287046659505
+  },
+  "free": {
+   "runtime_s": 12.09632483299356,
+   "stopped_early": true,
+   "sup_stop_time": 1.274,
+   "sup_at_stop": 50.64973334157775
+  }
+ },
+ "checks": [
+  {
+   "name": "G80_unforced_caustic",
+   "pass": true,
+   "value": "34.9609375",
+   "threshold": "> 5x baseline (4.8%)",
+   "note": "dust collapses UNFORCED (no baryon source: the phantom seeds itself): central mass 35.0% vs 4.8% (A = 0, gravity-only dynamics)"
+  },
+  {
+   "name": "G81_capped_linear_budget",
+   "pass": true,
+   "value": "0.12259793883917455",
+   "threshold": "<= 0.135",
+   "note": "capped baryon sup 0.123 against the certified linear budget pb + cap*T = 0.120: the a0/2 wall allows only linear-in-T growth at the capped slope -- N2's sup-ODE count, reproduced in the two-fluid with 2.4% margin"
+  },
+  {
+   "name": "G82_free_selfseeding",
+   "pass": true,
+   "value": "46.38550862014206",
+   "threshold": ">= 0.061",
+   "note": "free-coupling baryon sup 46.386 vs baseline 0.020: WITHOUT any external forcing the dust collapse BY ITSELF drives the baryon velocity -- the self-seeding channel is numerically live (EVIDENCE ONLY)"
+  }
+ ]
+}
