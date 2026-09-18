@@ -1,6 +1,6 @@
 # SW03 — a covariant action for the mesoscopic switch (proposal, 2026-09-17)
 
-**Status: PROPOSAL — KILLED ON PPN BY SW04 (2026-09-17): α₁ = [α₁^æ − 8(ν(η_gal) − 1)]/ν(η_gal) = −1.4 to −2.1 with a healthy æther, four orders above |α₁| < 1e-4; see SW04_ppn_full.out. The action stays on the record as the specification of the class and of why it fails.** The action below reduces to SW02's equations in the static weak-field limit (verified in
+**Status: PROPOSAL — KILLED TWICE: on GW170817's differential Shapiro delay by the record (horn B, an omission in this ledger's first version, SW06) and on PPN by SW04 (2026-09-17): α₁ = [α₁^æ − 8(ν(η_gal) − 1)]/ν(η_gal) = −1.4 to −2.1 with a healthy æther, four orders above |α₁| < 1e-4; see SW04_ppn_full.out. The action stays on the record as the specification of the class and of why it fails.** The action below reduces to SW02's equations in the static weak-field limit (verified in
 `SW03_covariant_action.py`, sympy). Which gates it passes by structure, which it inherits from published results, and
 which are unverified are listed in §4. Nothing here derives κ; a₀ = ½ c√(Gρ_Λ) enters through u₀ as before.
 
@@ -62,8 +62,8 @@ keeps the background switched off; the framework's Deser–Levin reading suggest
 | deep limit g² = a₀ g_N, RAR transition | PASS by structure | §2, sympy |
 | external field: isotropic, no vector-sum anisotropy | PASS by structure | §2; SW01/SW02 numbers |
 | solar system PPN (all couplings) | **FAIL (SW04)** | the scalar is NOT off in the solar system: the smoothed switch is the Galactic one, ν(η_gal) − 1 = 0.19–0.34 uniform; γ̃ = β̃ = 1 but the disformal coupling turns the missing gravitomagnetic share into α̃₁ = [α₁^æ − 8(ν−1)]/ν = −1.4 to −2.1 (α̃₂ = α₂^æ/ν); cancellation needs c₁₄ < 0 (unstable æther) tuned to the Sun's η |
-| lensing = dynamics | INHERITED (Bekenstein 2004 static weak-field result for g̃) | not re-derived here |
-| c_T = c | PASS by structure | the tensor sector is Einstein–æther's (c_T set by c₁₃; take c₁₃ → 0 to 1e-15) |
+| lensing = dynamics | **FAIL on the record (omitted in this ledger's first version; SW06)** | the disformal photon metric puts photons on g̃ (c_γ = e^{2φ}c) and gravitons on g: the GW170817 differential Shapiro delay along the NGC 4993 sightline is 3e7–1e8 s vs 1.7 s with the framework's own cap (SW06; record prep_2026/gw170817_check 3.5e7 s), and the local cone mismatch at the Sun is 2|φ| ≈ 1e-6 vs 1e-15 — horn B of LENSING_TRILEMMA_2026 |
+| c_T = c | PASS by structure — but IRRELEVANT to GW170817 here | the tensor speed is c; the PHOTON speed on g̃ is not (see the lensing row): GW170817 bounds the photon–graviton difference |
 | no ghost in the scalar sectors | PASS by structure | μ_s(ψ) > 0; ψ has a standard-sign kinetic term; the æther health conditions on c_i (0 < c₁₄ < 2 etc.) as published |
 | scalar sound speed | PASS by structure | principal symbol μ_s g^{μν}k_μk_ν: null cone of g (sympy) |
 | deep-MOND strong coupling (μ_s → 0 as y → 0) | PRESENT inside galaxies' far outskirts, as in every TeVeS-class theory; ABSENT on FRW | §3 |
