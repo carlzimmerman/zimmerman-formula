@@ -74,17 +74,27 @@ gap_c = laws[names[4]]["c"][i25] - laws[names[1]]["c"][i25]; gap_e = laws[names[
 check("C3 at z = 2.5 the framework's face-value-DESI curve is 2.1-2.5 sigma (+/-0.13 dex, centre-to-centre) below the LambdaCDM emergent curve, but the two RANGES nearly touch edge to edge (gap < 0.13 dex): a single rotator separates the central predictions, not the bands; the framework's own law (0.00) is 2.5 sigma from +0.33",
       2.0 < gap_c / 0.13 < 2.6 and 0.0 < gap_e < 0.13 and abs(0.334 / 0.13 - 2.57) < 0.1, f"centre gap {gap_c:+.3f} dex = {gap_c/0.13:.1f} sigma; edge gap {gap_e:+.3f} dex")
 # ------------------------------------------------------------------ chart
-cols = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4"]; labels = ["framework, own law (flat; ±<1%)", "framework, DESI w(z) at face value (pressure)", "density mapping (rejected promotion)", "H(z) law (alt footing)", "ΛCDM-native emergent (DM14)"]
-fig, ax = plt.subplots(figsize=(9, 5.6), dpi=160); fig.patch.set_facecolor("#fcfcfb"); ax.set_facecolor("#fcfcfb")
-for nm, col, lab in zip(names, cols, labels):
+cols = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4"]
+labels = [r"framework, own law:  $a_0^2=\kappa^2 G(-p_Q)$,  vacuum $w=-1$ exact  $\Rightarrow$  $a_0(z)=a_0(0)$",
+          r"framework, DESI $w(z)$ at face value:  $a_0(z)/a_0(0)=\sqrt{\,w(z)\,\rho_{DE}(z)\,/\,[w_0\,\rho_{DE}(0)]\,}$",
+          r"density mapping (rejected by the derivation):  $a_0(z)/a_0(0)=\sqrt{\rho_{DE}(z)/\rho_{DE}(0)}$",
+          r"$H(z)$ law (the alt footing):  $a_0(z)/a_0(0)=H(z)/H_0=\sqrt{\Omega_m(1+z)^3+\Omega_\Lambda}$",
+          r"$\Lambda$CDM emergent scale:  $a_s(z)/a_s(0)=E(z)^{4/3}\,[c^2/f(c)](z)\,/\,[c^2/f(c)](0)$"]
+short = ["own law", "DESI, face value", "density (rejected)", "H(z) law", "ΛCDM emergent"]
+fig, ax = plt.subplots(figsize=(11.5, 6.4), dpi=160); fig.patch.set_facecolor("#fcfcfb"); ax.set_facecolor("#fcfcfb")
+for nm, col, lab, sh in zip(names, cols, labels, short):
     L = laws[nm]; ax.fill_between(zg, L["lo"], L["hi"], color=col, alpha=0.18, linewidth=0); ax.plot(zg, L["c"], color=col, linewidth=2, label=lab)
-    ax.annotate(lab.split(" (")[0], xy=(5.0, L["c"][-1]), xytext=(6, 0), textcoords="offset points", va="center", fontsize=8.5, color="#52514e")
-ax.errorbar([2.5], [0.0], yerr=[[0.13], [0.13]], fmt="o", color="#0b0b0b", ms=5, capsize=4, elinewidth=1.2, label="one lensed rotator at z ≈ 2.5, ±0.13 dex (PAPER7)")
-ax.axhline(0, color="#52514e", linewidth=0.8, alpha=0.6); ax.set_xlim(0, 5); ax.set_ylim(-0.35, 1.0)
-ax.set_xlabel("redshift z"); ax.set_ylabel("Δ log₁₀ a₀(z) / a₀(0)  [dex]   (Δ log v_flat at fixed M_b = ¼ of this)")
-ax.set_title("The acceleration scale versus redshift: every law on the table, with its range", fontsize=11, color="#0b0b0b")
+    ax.annotate(sh, xy=(5.0, L["c"][-1]), xytext=(6, 0), textcoords="offset points", va="center", fontsize=8.5, color="#52514e")
+ax.errorbar([2.5], [0.0], yerr=[[0.13], [0.13]], fmt="o", color="#0b0b0b", ms=5, capsize=4, elinewidth=1.2, label=r"one lensed rotator at $z\simeq2.5$:  $\pm0.13$ dex (pre-registered)")
+ax.axhline(0, color="#52514e", linewidth=0.8, alpha=0.6); ax.set_xlim(0, 5); ax.set_ylim(-0.48, 1.0)
+ax.set_xlabel("redshift  z"); ax.set_ylabel(r"$\Delta\log_{10}\,a_0(z)/a_0(0)$  [dex]     ($\Delta\log V_{flat}$ at fixed $M_b$ = 1/4 of this)")
+ax.set_title("The acceleration scale versus redshift: each law, its equation, and its range", fontsize=11, color="#0b0b0b")
 ax.grid(True, color="#e6e5e1", linewidth=0.6); ax.spines[["top", "right"]].set_visible(False); ax.tick_params(colors="#52514e")
-ax.legend(loc="upper left", fontsize=8, frameon=False); plt.subplots_adjust(right=0.78)
+ax.legend(loc="upper left", fontsize=8.2, frameon=False, handlelength=1.6)
+ax.text(0.08, -0.465, r"$w(z)=w_0+w_a\,z/(1+z)$,   $\rho_{DE}(z)/\rho_{DE}(0)=(1+z)^{3(1+w_0+w_a)}\,e^{-3w_a z/(1+z)}$,   $f(c)=\ln(1+c)-c/(1+c)$,   $E(z)=H(z)/H_0$" "\n"
+        r"central: DESI DR2 + CMB + DESY5  $w_0=-0.752$, $w_a=-0.86$;  bands: three SNe samples with the $w_0$-$w_a$ anti-correlation  |  $\Lambda$CDM band: halo mass $10^{11}$-$10^{13}\,M_\odot$ and 0.11 dex in $c$  |  today: $a_0=\kappa c\sqrt{G\rho_\Lambda}$",
+        fontsize=7.6, color="#52514e", va="bottom", ha="left")
+plt.subplots_adjust(right=0.82)
 png = os.path.join(HERE, "L274_a0z_theories.png"); fig.savefig(png, bbox_inches="tight", facecolor=fig.get_facecolor()); print(f"\n    chart written: {png}")
 json.dump(dict(pass_=sum(CH), n=len(CH), z=list(map(float, ZT)), laws=names, table={str(k): v for k, v in table.items()}), open(os.path.join(HERE, "L274_results.json"), "w"), indent=1)
 print(f"\nL274 COMPLETE: {sum(CH)}/{len(CH)} checks PASS.")
