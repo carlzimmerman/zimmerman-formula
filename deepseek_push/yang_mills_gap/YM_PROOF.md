@@ -10,7 +10,7 @@ Companions: YM_REFEREE.md (the adversarial audit, ALIVE 3 / BOUNDARY-REGISTERED
 YM04b_vector_halo_physical (6/6, the physical register), and the Lean spine —
 lean/YM01_gap (19) + YM02_pinned_gap (17) + YM03_virial_consistency (9) +
 YM04_energy_fraction (11, superseded register, flagged) +
-YM04b_energy_fraction_physical (4) + YM05_lattice_gap (9) + YM06_capped_gap (3) = **72 Lean theorems, zero sorry,
+YM04b_energy_fraction_physical (4) + YM05_lattice_gap (9) + YM06_capped_gap (3) + YM07_uniform_gap (5) = **77 Lean theorems, zero sorry,
 axioms ⊆ {propext, Classical.choice, Quot.sound}**.
 
 ---
@@ -86,3 +86,4 @@ profile set by the SPARC kernel. Every mathematical rung is machine-checked
 physical premise is a committed result, and the single identification (P9,
 m = m_dust) carries its own falsifier (a committed deviation of the ladder
 mass, or a measured profile violating P13's ratio law).
+| P24 | THE THERMODYNAMIC-LIMIT RUNG (YM07) | the strong-coupling gap is VOLUME-UNIFORM: the magnetic deficit localizes PER LOOP (influence zone n_influence = 13 counted from the cubic drawing, 8d−11; delocalized superpositions do no better — measured 0.000 vs the per-branch average); the vacuum's extensive magnetic shift CANCELS in the gap (G_V = H_V − ⟨vac|H_V|vac⟩ forms an exactly coherent net over the nested boxes, D1 machine-zero); therefore Δ_V(x) ≥ 3x/2 − 52/x (SU(2)), 8x/3 − 78/x (SU(3)) with NO volume symbol: thresholds √(104/3) ≈ 5.888 / √(117/4) ≈ 5.408, both < 8; the bound transfers to the inductive-limit Hilbert space: **spec(G) ∩ (0, 11/2) = ∅ (SU(2) at x = 8) — THE INFINITE-LATTICE HAMILTONIAN HAS A POSITIVE SPECTRAL GAP ≥ 11/2 (SU(2)), 139/12 (SU(3)) at fixed a, strong coupling**; the ‖H_B‖ objection (norm extensive — measured 3.33× growth) is answered honestly: the gap is expectation-localized, not norm-based. Continuum limit still the open rung (KKN 2+1D physics-level: hep-th/9602155, hep-th/9705087; 3+1D open) | **LANDED: YM07_uniform_gap 15/15 (re-run exit 0) + lean/YM07_uniform_gap 5 theorems (worst-case κ = 72/108 AND the counted κ = 52 anchors: 11/2 at x = 8), exit 0, zero sorry** |
