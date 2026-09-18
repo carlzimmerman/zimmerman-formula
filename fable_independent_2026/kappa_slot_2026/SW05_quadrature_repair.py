@@ -143,4 +143,4 @@ khronon); the FRW background (X = 0 there: the TeVeS strong-coupling problem, no
 fix); the scalar has no time-kinetic term (X is purely spatial): an instantaneous constraint field in a preferred foliation, the
 record's req-9 uniform-ellipticity question; ghost-freedom of khronon + phi on the alpha1 = alpha2 = 0 family (L270 P4); the
 cluster residual (unaddressed).  Nothing here derives kappa.""")
-json.dump(dict(pass_=n_pass, n=n, **OUT), open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "SW05_results.json"), "w"), indent=1, default=str)
+json.dump(dict(pass_=n_pass, n=n, **OUT), open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "SW05_results_MUTATE.json" if MUT else "SW05_results.json"), "w"), indent=1, default=str)   # the control run must never overwrite the main results
