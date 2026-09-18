@@ -1,0 +1,66 @@
+L273 -- a0(z) under DESI DR2 dark energy: the band, both footings, the rivals
+
+  [PASS] 0a the DESY5 pair used here equals the pair banked in the repository (prep_2026/btfr_forecast_audit) and reproduces PAPER7's 0.82 at z = 2.5 within 0.01
+           (banked (-0.752, -0.86); a0(2.5)/a0(0) = 0.796 = -0.099 dex)
+====================================================================================================
+1. a0(z)/a0(0) in dex -- canonical footing sqrt(rho_DE(z)/rho_DE(0)); alt footing H(z)/H0; Lambda (w = -1) for reference
+====================================================================================================
+       z   Lambda      DESY5  Pantheon+     Union3 | alt:Lambda alt:  DESY5 alt:Pantheon+ alt: Union3
+     0.5   +0.000     +0.025     +0.014     +0.037 |     +0.118      +0.128      +0.123      +0.133
+     1.0   +0.000     +0.004     -0.005     +0.013 |     +0.247      +0.248      +0.246      +0.250
+     1.5   +0.000     -0.029     -0.031     -0.026 |     +0.367      +0.364      +0.364      +0.364
+     2.0   +0.000     -0.065     -0.059     -0.068 |     +0.474      +0.470      +0.470      +0.469
+     2.5   +0.000     -0.099     -0.085     -0.111 |     +0.568      +0.564      +0.564      +0.564
+     3.0   +0.000     -0.133     -0.111     -0.151 |     +0.651      +0.648      +0.648      +0.647
+     5.0   +0.000     -0.247     -0.198     -0.292 |     +0.910      +0.908      +0.909      +0.908
+  [PASS] 1a at z = 2.5 all three DESI combinations put the canonical-footing law between -0.08 and -0.12 dex: the framework's prediction under DESI dark energy is a small DECLINE, the opposite sign to both rivals
+           (z = 2.5: [-0.099, -0.085, -0.111] dex)
+  [PASS] 1b on the alt footing (a0 ∝ H(z)) the same law RISES by +0.55 to +0.57 dex at z = 2.5 with or without DESI evolution: the footing fork is itself a redshift test, 0.65 dex apart at z = 2.5
+           (alt at 2.5: Lambda +0.568, DESI [0.564, 0.564, 0.564])
+/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/L273_desi_a0z_band.py:54: RuntimeWarning: divide by zero encountered in matmul
+  s = rng.multivariate_normal([d["w0"], d["wa"]], cov, size=200000, method="cholesky"); assert np.isfinite(s).all()
+/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/L273_desi_a0z_band.py:54: RuntimeWarning: overflow encountered in matmul
+  s = rng.multivariate_normal([d["w0"], d["wa"]], cov, size=200000, method="cholesky"); assert np.isfinite(s).all()
+/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/L273_desi_a0z_band.py:54: RuntimeWarning: invalid value encountered in matmul
+  s = rng.multivariate_normal([d["w0"], d["wa"]], cov, size=200000, method="cholesky"); assert np.isfinite(s).all()
+
+====================================================================================================
+2. the 68% band at z = 2.5 (canonical) from a bivariate Gaussian in (w0, wa) with correlation rho; 200k samples
+====================================================================================================
+    DESY5      rho =  0.00: -0.099 dex  [-0.187, -0.011]  half-width 0.088
+    DESY5      rho = -0.80: -0.099 dex  [-0.147, -0.052]  half-width 0.047
+    DESY5      rho = -0.90: -0.099 dex  [-0.138, -0.061]  half-width 0.039
+    DESY5      rho = -0.95: -0.099 dex  [-0.134, -0.065]  half-width 0.034
+    Pantheon+  rho =  0.00: -0.085 dex  [-0.170, -0.001]  half-width 0.084
+    Pantheon+  rho = -0.80: -0.085 dex  [-0.130, -0.041]  half-width 0.045
+    Pantheon+  rho = -0.90: -0.085 dex  [-0.122, -0.048]  half-width 0.037
+    Pantheon+  rho = -0.95: -0.085 dex  [-0.117, -0.053]  half-width 0.032
+    Union3     rho =  0.00: -0.110 dex  [-0.235, +0.014]  half-width 0.124
+    Union3     rho = -0.80: -0.111 dex  [-0.172, -0.049]  half-width 0.062
+    Union3     rho = -0.90: -0.111 dex  [-0.159, -0.062]  half-width 0.048
+    Union3     rho = -0.95: -0.111 dex  [-0.151, -0.071]  half-width 0.040
+  [PASS] 2a with the strongly negative w0-wa correlation DESI's posteriors have (rho <= -0.8), the 68% half-width of the framework's z = 2.5 prediction is at most HALF the pre-registered +/-0.13 dex (<= 0.065) on every combination, so the prediction is a usable band; uncorrelated errors would make it 0.09-0.13
+           (half-widths at rho <= -0.8: [0.047, 0.039, 0.034, 0.045, 0.037, 0.032, 0.062, 0.048, 0.04]; uncorrelated (rho = 0): [0.088, 0.084, 0.124])
+  [PASS] 2b the band's upper edge stays below 0.00 dex at z = 2.5 for rho <= -0.8 on every combination: DESI dark energy moves the framework AWAY from the rivals, never toward them
+           (upper edges: [-0.052, -0.061, -0.065, -0.041, -0.048, -0.053, -0.049, -0.062, -0.071])
+
+====================================================================================================
+3. separations at z = 2.5 in units of the pre-registered +/-0.13 dex (PAPER7)
+====================================================================================================
+    framework (canonical, DESI band, rho = -0.9): [-0.159, -0.048] dex;  LambdaCDM-emergent +0.33;  H(z)-law +0.568;  true Lambda 0.000
+    separation (band edge to rival): LambdaCDM-emergent 2.9 sigma (centre-to-centre 3.3); H(z)-law 4.7 sigma; true-Lambda flat 0.4 sigma; PAPER7's flat-law separation was 2.5 sigma
+  [PASS] 3a the framework's DESI band is FARTHER from the LambdaCDM-emergent +0.33 dex than PAPER7's flat law was (2.5 sigma): 2.9 sigma edge-to-edge and 3.3 sigma centre-to-centre in units of the pre-registered +/-0.13 dex -- the statistic is strengthened, not weakened, by DESI
+           (edge 2.9 sigma, centre 3.3 sigma, flat law 2.5 sigma)
+  [PASS] 3b a single z = 2.5 point at +/-0.13 dex CANNOT separate the framework's DESI band from a true-Lambda flat law (< 1 sigma): whether dark energy evolves is not what the rotator measures; whether a0 is set by dark energy is
+           (0.4 sigma)
+
+L273 COMPLETE: 7/7 checks PASS.
+VERDICT.  Under DESI DR2's evolving dark energy the framework's canonical law does not stay flat: it declines by 0.08-0.12 dex at z = 2.5
+(all three SNe combinations), with a 68% band of half-width 0.03-0.06 dex once the w0-wa anti-correlation is carried (at most half the pre-registered
++/-0.13 dex) -- a usable prediction band, entirely below zero.  That moves the framework AWAY from both rivals (LambdaCDM-emergent
++0.33, H(z)-law +0.57): the separation from +0.33 goes from 2.5 sigma (flat law, PAPER7) to 2.9 sigma edge-to-edge / 3.3 sigma
+centre-to-centre.  The alt
+footing (a0 ∝ H) is the H(z)-law itself (+0.55 to +0.57 dex), so the footing fork is also a redshift test, 0.65 dex wide.  What the
+single rotator cannot do: tell DESI's -0.09 from a true Lambda's 0.00.  Reading fork stated, not decided: (a) a0 tracks rho_DE(z)
+(this lane); (b) a0 is tied to a true cosmological constant while an extra evolving component explains DESI (flat).  Nothing here
+derives kappa.
