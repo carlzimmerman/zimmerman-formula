@@ -77,7 +77,7 @@ print("\n" + "=" * 100); print("4. the framework's own law is a0^2 = kappa^2 G (
 st17 = open(os.path.join(ROOT, "nbody_2026", "stage17_a0z_from_the_action_2026.py")).read()
 p7 = open(os.path.join(ROOT, "qwen_claude_field_theory", "papers_2026", "PAPER7_a0z_decisive_measurement_2026.tex")).read()
 w_of_z = lambda z, w0, wa: w0 + wa * z / (1 + z)
-a0_press = lambda z, w0, wa: np.sqrt(-w_of_z(z, w0, wa) * f_DE(z, w0, wa))          # -p_DE(z)/rho_DE(0) = -w(z) f_DE(z); today -p = rho_Lambda
+a0_press = lambda z, w0, wa: np.sqrt(w_of_z(z, w0, wa) * f_DE(z, w0, wa) / w0)      # a0(z)/a0(0) = sqrt(-p_DE(z)/-p_DE(0)) = sqrt(w(z) f_DE(z)/w0): normalised at z = 0 (w(0) = w0, NOT -1, at face value)
 press25 = {k: dex(a0_press(2.5, d["w0"], d["wa"])) for k, d in DESI.items()}
 print(f"    {'z':>4s} " + " ".join(f"press:{k:>10s}" for k in DESI) + "   (density mapping of Part 1 for comparison: DESY5)")
 prof = {}
@@ -93,8 +93,8 @@ for name, d in DESI.items():
 OUT["pressure_band_z2p5_rho-0.9"] = bands_p
 check("4a the records: stage-17 states the operative law a_0^2 propto -K(Q) (the pressure) with 'the TOTAL PRESSURE that evolves, not the dark energy', while PAPER7's DESI sentence used the density mapping sqrt(rho_DE(z)/rho_DE(0)) -- the inconsistency is located in the files [PASS = verified]",
       "a_0^2 propto -K(Q)" in st17 and "TOTAL PRESSURE that evolves, not the dark energy" in st17 and "rho_{\\rm DE}(z)/\\rho_{\\rm DE}(0)" in p7.replace(" ", "").replace("\\sqrt{", "").replace("}", "") or ("rho_{\\rm DE}(z)" in p7 and "a_0^2 propto -K(Q)" in st17))
-check("4b under the framework's own (pressure) law, DESI's face-value w(z) moves a0 by only -0.03 dex at z = 2.5 on all three combinations (68% half-width 0.02-0.03 dex at rho = -0.9), one third of the density mapping's -0.09: the framework's prediction is flat to within 0.03 dex even if DESI is taken at face value",
-      all(-0.04 <= v <= -0.02 for v in press25.values()) and all(abs(v) <= abs(dex(a0_canon(2.5, d["w0"], d["wa"]))) / 2.5 for v, d in zip(press25.values(), DESI.values())), f"z = 2.5 pressure mapping: {[round(v, 3) for v in press25.values()]} dex vs density {[round(v, 3) for v in c25]}")
+check("4b under the framework's own (pressure) law, DESI's face-value w(z) moves a0 UP by +0.01 to +0.06 dex at z = 2.5 (Pantheon+ / DESY5 / Union3; CPL's phantom-like past makes |p| larger), the OPPOSITE sign to the density mapping's -0.09 and at most two thirds of its size: the two mappings are different physics, and only the pressure one is the framework's",
+      all(0.0 <= v <= 0.07 for v in press25.values()) and all(abs(v) <= 0.67 * abs(dex(a0_canon(2.5, d["w0"], d["wa"]))) for v, d in zip(press25.values(), DESI.values())), f"z = 2.5 pressure mapping: {[round(v, 3) for v in press25.values()]} dex vs density {[round(v, 3) for v in c25]}")
 check("4c and the framework's own statement is stronger than any mapping: its vacuum is w = -1 EXACT (stage-17), so it predicts that a DESI-type w(z) != -1 at z <= 2 is NOT the vacuum evolving; the excitation's pressure shifts a0 by < 1% for z <= 5 [records: the stage-17 strings 'w = -1 stays EXACT' and 'rho_DE = M^4 = const throughout' located]",
       "w = -1 stays EXACT" in st17 and "rho_DE = M^4 = const throughout" in st17)
 n, n_pass = len(CH), sum(CH)
@@ -104,7 +104,8 @@ a0 = kappa c sqrt(G rho_Lambda) its z = 0 value, a vacuum that is w = -1 EXACT, 
 the framework's prediction is FLAT, and it predicts that a DESI-type w(z) != -1 is not the vacuum evolving.  The density-tracking mapping of
 Parts 1-3 (a0 ∝ sqrt rho_DE(z)) is the 'naive density promotion' stage-17 rejects; PAPER7's DESI sentence (-0.09 dex, 0.82 at z = 2.5) used
 it and should be read as an upper bound on the effect, not the framework's law.  Taking DESI's w(z) at face value and mapping it through
-the framework's own pressure gives -0.03 dex at z = 2.5 (all three combinations, 68% half-width 0.02-0.03 dex), one third of the density figure.  On the
-pre-registered axis nothing important moves: framework 0.00 (own law) to -0.03 (face-value DESI) vs LambdaCDM-emergent +0.33 (2.5-2.8
-sigma at +/-0.13 dex) vs the H(z) law +0.57 (= the alt footing).  Nothing here derives kappa.""")
+the framework's own pressure, normalised at z = 0, gives a slight RISE, +0.01 to +0.06 dex at z = 2.5 (Pantheon+/DESY5/Union3; CPL's phantom-like
+past makes |p| larger), the opposite sign to the density figure.  On the pre-registered axis: framework 0.00 (own law, 2.5 sigma from the
+LambdaCDM-emergent +0.33 at +/-0.13 dex) to +0.01..+0.06 (face-value DESI, 2.1-2.5 sigma centre-to-centre; the bands nearly touch edge to
+edge) vs the H(z) law +0.57 (= the alt footing).  A first version of this Part normalised the pressure at w(0) = -1 and reported -0.03: corrected.  Nothing here derives kappa.""")
 json.dump(dict(pass_=n_pass, n=n, **OUT), open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "L273_results.json"), "w"), indent=1, default=str)
