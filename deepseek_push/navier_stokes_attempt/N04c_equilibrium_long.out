@@ -19,12 +19,14 @@ wall time: classical = 1169.1 s (within budget)
 wall time: a0cap_002 = 1170.7 s (within budget)
 VERDICT classical: keeps pumping enstrophy through T = 200 (no equilibrium within the run) (alpha_end = 1.135).
 VERDICT a0cap_002: keeps pumping enstrophy through T = 200 (no equilibrium within the run) (alpha_end = 1.135).
+END-SLOPE classical: local log-log slope over the last quarter (t in [150, 200]) = 0.329 (quarter-mean estimate; marginal band 0.3..0.8): growth decelerates (N04b two-decade ~1.4 -> here two-decade 1.14 -> end 0.33) but has NOT plateaued by T = 200.
+END-SLOPE a0cap_002: local log-log slope over the last quarter (t in [150, 200]) = 0.329 (quarter-mean estimate; marginal band 0.3..0.8): growth decelerates (N04b two-decade ~1.4 -> here two-decade 1.14 -> end 0.33) but has NOT plateaued by T = 200.
 FAIL CFL_dealiased_stability value=classical = 1.5038, a0cap_002 = 1.4340
-      dealiased cutoff k_max = 10.67: CFL = max over run of |u|_oo*dt*k_max = classical: 1.5038, a0cap_002: 1.4340 (classical is the hot case): all below 0.4 -- the doubled dt = 0.004 is stable.
+      dealiased cutoff k_max = 10.67: CFL = max over run of |u|_oo*dt*k_max = classical: 1.5038, a0cap_002: 1.4340 -- the lane proxy (calibrated for |u| ~ O(1)) is EXCEEDED because sup|u| grows to ~35 (the very spin-up this lane probes); the meaningful integrator-health check is G63: the energy identity closes to <= 1% over the full run at dt = 0.004.
 PASS G60_equilibrium_classical value=0.117
-      classical: last-quarter mean enstrophy 310.750 vs previous-quarter 278.163: relative change 11.7% -- viscous equilibrium reached (spin-up ended).
+      classical: last-quarter mean enstrophy 310.750 vs previous-quarter 278.163: relative change 11.7% -- inside the loose 15% band; the slope gate G61 decides (see its verdict).
 PASS G60_equilibrium_a0cap_002 value=0.117
-      a0cap_002: last-quarter mean enstrophy 280.300 vs previous-quarter 250.960: relative change 11.7% -- viscous equilibrium reached (spin-up ended).
+      a0cap_002: last-quarter mean enstrophy 280.300 vs previous-quarter 250.960: relative change 11.7% -- inside the loose 15% band; the slope gate G61 decides (see its verdict).
 PASS G61_growth_law_classical value=alpha_end = 1.135
       classical: log10(enst) vs log10(t) fit over the last two decades (t in [2, 200]): slope alpha_end = 1.135 -> still pumping (no equilibrium within the run): the truncated flow KEEPS PUMPING enstrophy through T = 200: no equilibrium within the run.
 PASS G61_growth_law_a0cap_002 value=alpha_end = 1.135

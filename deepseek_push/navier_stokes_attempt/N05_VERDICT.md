@@ -20,12 +20,19 @@ Read the doors N00, and the lane files for the numbers. Here is the verdict.
   law cannot borrow the power-law regularity theorems. The crossing to the
   9/5 gate at g_N = 1.5·a₀ lies beyond the S-suppressed band (S(3.5) ≤ 1/256,
   Lean-certified): the gate and the O(1)-regime never overlap. 6/6.
-- **N2 dead — the two-constant drag.** The law caps any phantom contribution
+- **N2 dead — the two-constant drag (UPGRADED 2026-09-17 by N09's deviation log).** The law caps any phantom contribution
   at |g_obs − g_N| ≤ a₀/2 EXACTLY (Lean: `a0cap_bound`), so the only
   a₀-only drag is dry-friction-weak: the sup-ODE count gives linear-in-T
   growth, no global bound (`drag_beats_stretching_never`: a norm-linear drag
   can never dominate the cubic stretching — Lean). The difficulty class is
-  unchanged: no de-obstruction exists with the measured constants alone. 6/6.
+  unchanged: no de-obstruction exists with the measured constants alone.
+  EXACT upgrade: for a pure gradient coupling P(−∇ψ) = 0 in the projected
+  dynamics — the conservative channel is precisely pressure-gauge-inert (it
+  only redefines p): a gradient force cannot change the divergence-free
+  velocity dynamics AT ALL; the only live channel is the dust's
+  density-modulated stress P(−ρ∇ψ) ≠ 0. N09's toy overstates the coupling
+  (unprojected) and even so the a₀/2 wall holds (1.84 vs 1.76 baseline;
+  free: 50). 6/6 + the exact-inertness upgrade.
 - **N3 standing — the forward theorem (amended 2026-09-17, N03b).** The
   modification family |u|^{β−1}u: the β = 3 (cubic) member is globally smooth
   for EVERY smooth divergence-free datum at every fixed κ > 0 — the literature

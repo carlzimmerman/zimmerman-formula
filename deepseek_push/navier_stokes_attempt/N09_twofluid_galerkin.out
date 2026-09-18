@@ -72,7 +72,7 @@ Gates (PASS/FAIL prints + JSON):
       the mass within r < 0.3 at t = 0, so 20x would demand > 100% --
       deviation registered; the factor-20 class is carried by the density
       contrast (b)); (b) the PEAK central density contrast over the run
-      (max grid density over initial) > 20x.  Measured: ~37x.
+      (max grid density over initial) > 20x.  Measured: ~40x.
   G51 the transfer, CAPPED: max baryon sup |u| in the capped run <= 2.0x
       the no-gravity baseline run's max sup (same forcing, same seed).
   G52 the transfer, FREE: the free run's final sup >= 10x the capped run's
@@ -99,20 +99,20 @@ No git.  No absolute paths in committed content.
 TWO-FLUID GALERKIN SETUP: n = 24, nu = 0.01, dt = 0.001, T = 5.0, A = 0.5, G = 6.0, N_p = 8192, M_tot = 1.0, box (2pi)^3, cap = 0.02 (a0_sim = 0.04, the a0/2 analog), seed_f = 7, seed_p = 107, every = 25, sup-stop = 50.0
 blob rho_0 = exp(-|x|^2/0.5): Gaussian per-axis sigma = 0.5 centred at x = 3.141592653589793 (box centre)
 ==============================================================================
-RUN baseline (no gravity): 38.9s  sup(T=5.0) = 1.764  sup_peak = 1.764
-RUN capped    (|a_ph| <= 0.02 on baryons): 52.7s  sup(T=5.0) = 1.837  sup_peak = 1.837
-RUN free      (uncapped): 13.2s  STOPPED EARLY at t = 1.282 (sup = 50.04 > 50)  sup_final = 50.04
-total wall time: 104.8s (per-run budget 12 min; no degradation needed)
+RUN baseline (no gravity): 36.0s  sup(T=5.0) = 1.764  sup_peak = 1.764
+RUN capped    (|a_ph| <= 0.02 on baryons): 47.1s  sup(T=5.0) = 1.837  sup_peak = 1.837
+RUN free      (uncapped): 12.2s  STOPPED EARLY at t = 1.282 (sup = 50.04 > 50)  sup_final = 50.04
+total wall time: 95.3s (per-run budget 12 min; no degradation needed)
 
 PHANTOM COLLAPSE: initial mass within r < 0.3: 4.83% (analytic Gaussian CDF 5.00%)
   capped run final (t = 5.0): m(r<0.3) = 36.72%  ratio = 7.60x   peak density contrast = 40.9x
   free run final  (t = 1.282): m(r<0.3) = 35.93%  ratio = 7.43x   peak density contrast = 40.9x
-  NOTE (registered deviation): 20x on the MASS ratio is arithmetically unattainable for this blob (5.26% initial in r < 0.3 => 20x needs > 100%); the factor-20 class is carried by the central DENSITY contrast (> 20x measured; 37x peak), and the mass fraction statement (>= 30% of the phantom mass at t = T).
+  NOTE (registered deviation): 20x on the MASS ratio is arithmetically unattainable for this blob (5.26% initial in r < 0.3 => 20x needs > 100%); the factor-20 class is carried by the central DENSITY contrast (> 20x measured; 41x peak), and the mass fraction statement (>= 30% of the phantom mass at t = T).
   max |grad psi_ph| on the grid over the runs: 54.7 (capped run) / 54.7 (free run)  [dust sector identical]
 
 ENSTROPHY footprints (real-space <|grad u|^2>, per-volume):
-  capped: quarter-ratio 1.918 (<= 2 required); free: quarter-ratio 0.000 over its span, stopped early = True at t = 1.282
-  divergence footprint (mean |div u|^2, the material-channel fingerprint): capped final 1.845e-02, free final 0.000e+00
+  capped: quarter-ratio 1.918 (<= 2 required); free: quarter-ratio 3.630 over its span, stopped early = True at t = 1.282
+  divergence footprint (mean |div u|^2, the material-channel fingerprint): capped final 1.845e-02, free final 4.336e+01
 
 ==============================================================================
 GATE TABLE
@@ -131,7 +131,7 @@ GATE TABLE
   [PASS] G50b_collapse_density_free
          measured : 40.9x
          threshold: > 20
-         note     : peak central grid-density contrast over the free run (identical dust sector, same 37x-class caustic)
+         note     : peak central grid-density contrast over the free run (identical dust sector, same caustic)
   [PASS] G51_transfer_capped
          measured : 1.837 vs baseline 1.764 (ratio 1.04)
          threshold: <= 2.0 x baseline
@@ -145,9 +145,9 @@ GATE TABLE
          threshold: <= 2
          note     : capped-run enstrophy growth over the last half decelerates (quarter-ratio): the bounded potential leaves the forced-flow footprint
   [PASS] G53_enstrophy_free_accel
-         measured : 0.000 (stopped early: True)
+         measured : 3.630 (stopped early: True)
          threshold: >= 2.5 OR early stop
-         note     : free-run enstrophy accelerates (or the run is stopped by the sup > 50 guard, which it is: the caustic transfer pumps the gradient content
+         note     : free-run enstrophy accelerates (or the run is stopped by the sup > 50 guard, which it is: the caustic transfer pumps the gradient content)
   [PASS] G54_cap_measured_capped
          measured : max |a_ph| on baryons = 0.020000
          threshold: ~= 0.02 (within 1e-9)
@@ -156,10 +156,10 @@ GATE TABLE
          measured : max |a_ph| on baryons = 54.73
          threshold: > 10 x 0.02
          note     : free run: the same dust delivers ~50+ acceleration to the baryons (>= 10x cap)
-  [FAIL] G54_cap_only_difference
-         measured : max |x_free - x_capped| = 4.7e+00
+  [PASS] G54_cap_only_difference
+         measured : max |x_free(t) - x_capped(t)| over 52 common samples = 0.0e+00
          threshold: == 0 (bit-identical dust)
-         note     : the two runs differ ONLY in the baryon-coupling cap: the dust trajectories are bit-identical (same seed, same leapfrog, same grid force) -- the contrast is attributed to the cap alone
+         note     : the two runs differ ONLY in the baryon-coupling cap: the dust trajectories at every common sample time are bit-identical (same seed, same leapfrog, same grid force) -- the contrast is attributed to the cap alone
   [PASS] G55_evidence_labelling
          measured : tokens in N09_twofluid_galerkin.py: evidence-only=True, not-a-proof=True, footprint=True, a0cap_bound=True, G03=True, OPEN=True
          threshold: phrase + D3/a0cap_bound + G03-OPEN residual in the file text
@@ -188,7 +188,7 @@ PNG saved: N09_twofluid_galerkin.png
          measured : 1.918
          threshold: <= 2
   [PASS] G53_enstrophy_free_accel
-         measured : 0.000 (stopped early: True)
+         measured : 3.630 (stopped early: True)
          threshold: >= 2.5 OR early stop
   [PASS] G54_cap_measured_capped
          measured : max |a_ph| on baryons = 0.020000
@@ -196,8 +196,8 @@ PNG saved: N09_twofluid_galerkin.png
   [PASS] G54_free_raw_field
          measured : max |a_ph| on baryons = 54.73
          threshold: > 10 x 0.02
-  [FAIL] G54_cap_only_difference
-         measured : max |x_free - x_capped| = 4.7e+00
+  [PASS] G54_cap_only_difference
+         measured : max |x_free(t) - x_capped(t)| over 52 common samples = 0.0e+00
          threshold: == 0 (bit-identical dust)
   [PASS] G55_evidence_labelling
          measured : tokens in N09_twofluid_galerkin.py: evidence-only=True, not-a-proof=True, footprint=True, a0cap_bound=True, G03=True, OPEN=True
@@ -206,6 +206,6 @@ PNG saved: N09_twofluid_galerkin.png
          measured : tokens in N09_twofluid_galerkin_results.json: evidence-only=True, not-a-proof=True, footprint=True
          threshold: the phrase lives in the JSON too
 ==============================================================================
-<N09_twofluid_galerkin> COMPLETE: 12/13 checks PASS.
-REPORT: runtimes: baseline 38.9s, capped 52.7s, free 13.2s; sup(T): no-gravity 1.764, capped 1.837, free 50.04 (stopped at t = 1.28); phantom peak density contrast 40.9x, mass-in-0.3 4.83% -> 36.72%.
+<N09_twofluid_galerkin> COMPLETE: 13/13 checks PASS.
+REPORT: runtimes: baseline 36.0s, capped 47.1s, free 12.2s; sup(T): no-gravity 1.764, capped 1.837, free 50.04 (stopped at t = 1.28); phantom peak density contrast 40.9x, mass-in-0.3 4.83% -> 36.72%.
 EVIDENCE ONLY; 3D Galerkin + Lagrangian dust toy; not a proof; the D3 theorem (Lean a0cap_bound) is the theorem, this lane is its numerical footprint.

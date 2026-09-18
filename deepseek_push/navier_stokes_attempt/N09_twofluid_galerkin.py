@@ -73,7 +73,7 @@ Gates (PASS/FAIL prints + JSON):
       the mass within r < 0.3 at t = 0, so 20x would demand > 100% --
       deviation registered; the factor-20 class is carried by the density
       contrast (b)); (b) the PEAK central density contrast over the run
-      (max grid density over initial) > 20x.  Measured: ~37x.
+      (max grid density over initial) > 20x.  Measured: ~40x.
   G51 the transfer, CAPPED: max baryon sup |u| in the capped run <= 2.0x
       the no-gravity baseline run's max sup (same forcing, same seed).
   G52 the transfer, FREE: the free run's final sup >= 10x the capped run's
@@ -393,7 +393,7 @@ print(f'  free run final  (t = {run_free["t_stop"]:.3f}): '
 print('  NOTE (registered deviation): 20x on the MASS ratio is '
       'arithmetically unattainable for this blob (5.26% initial in '
       'r < 0.3 => 20x needs > 100%); the factor-20 class is carried by the '
-      'central DENSITY contrast (> 20x measured; 37x peak), and the mass '
+      'central DENSITY contrast (> 20x measured; 41x peak), and the mass '
       'fraction statement (>= 30% of the phantom mass at t = T).')
 print(f'  max |grad psi_ph| on the grid over the runs: '
       f'{run_cap["gmax_peak"]:.1f} (capped run) / '
@@ -452,7 +452,7 @@ gate('G50b_collapse_density_capped',
 gate('G50b_collapse_density_free',
      c50b_free, f'{run_free["rpk_peak_ratio"]:.1f}x',
      '> 20', 'peak central grid-density contrast over the free run '
-     '(identical dust sector, same 37x-class caustic)')
+     '(identical dust sector, same caustic)')
 
 # G51 capped transfer bounded vs no-gravity baseline
 M_base = float(run_base['hist']['sup'].max())
@@ -489,7 +489,7 @@ gate('G53_enstrophy_free_accel', c53b,
      f'{Qz_free:.3f} (stopped early: {run_free["stopped"]})', '>= 2.5 OR early stop',
      'free-run enstrophy accelerates (or the run is stopped by the '
      'sup > 50 guard, which it is: the caustic transfer pumps the '
-     'gradient content')
+     'gradient content)')
 
 # G54 the cap is the only difference
 ns = run_free['nsam']
@@ -547,16 +547,16 @@ if HAVE_MPL:
     labels = {'capped': 'capped (|a_ph|<=0.02)', 'free': 'free (uncapped)',
               'baseline': 'no gravity'}
     cols = {'capped': '#d97706', 'free': '#dc2626', 'baseline': '#666666'}
-    for key, run in (('capped', run_cap), ('free', run_free),
-                     ('baseline', run_base)):
-        tt = run['hist']['t'][:len(run['hist']['sup'])]
-        ax[0].plot(tt, run['hist']['sup'], color=cols[key], lw=1.2,
+    for key, rr in (('capped', run_cap), ('free', run_free),
+                    ('baseline', run_base)):
+        tt = rr['hist']['t'][:len(rr['hist']['sup'])]
+        ax[0].plot(tt, rr['hist']['sup'], color=cols[key], lw=1.2,
                    label=labels[key])
-        ax[1].plot(tt, run['hist']['enst'], color=cols[key], lw=1.2,
+        ax[1].plot(tt, rr['hist']['enst'], color=cols[key], lw=1.2,
                    label=labels[key])
-    for key, run in (('capped', run_cap), ('free', run_free)):
-        tt = run['hist']['t'][:len(run['hist']['m03'])]
-        ax[2].plot(tt, run['hist']['m03'], color=cols[key], lw=1.2,
+    for key, rr in (('capped', run_cap), ('free', run_free)):
+        tt = rr['hist']['t'][:len(rr['hist']['m03'])]
+        ax[2].plot(tt, rr['hist']['m03'], color=cols[key], lw=1.2,
                    label=labels[key])
     ax[0].set_title('baryon sup ||u||_oo(t)')
     ax[1].set_title('enstrophy <|grad u|^2>(t)')
@@ -631,7 +631,7 @@ res = {
     'checks': checks,
 }
 with open('N09_twofluid_galerkin_results.json', 'w') as f:
-    json.dump(res, f, indent=1)
+    json.dump(res, f, indent=1)          # draft JSON with the 12 pre-G55 gates
 jtext = open('N09_twofluid_galerkin_results.json').read()
 c55j = ('evidence only' in jtext and 'not a proof' in jtext
         and 'footprint' in jtext)
@@ -641,7 +641,9 @@ gate('G55_json_evidence_label', c55j,
      str('not a proof' in jtext) + ', footprint=' + str('footprint' in jtext),
      'the phrase lives in the JSON too',
      'machines reading the results file see the same evidence-only label')
-checks = res['checks'] = checks
+checks = res['checks'] = checks          # all 13 gates (G55_json included)
+with open('N09_twofluid_galerkin_results.json', 'w') as f:
+    json.dump(res, f, indent=1)          # final JSON with the complete table
 for n, c, v, t, e in [(c['name'], c['pass'], c['value'], c['threshold'],
                        c['note']) for c in checks]:
     print(f"  [{'PASS' if c else 'FAIL'}] {n}")

@@ -259,6 +259,10 @@ def gate(name, cnd, val, thresh, note):
 
 
 # ----------------------------- CFL check (reported diagnostic)
+Sf_c = float(runs['classical']['sup'][-1])
+Sf_a = float(runs['a0cap_002']['sup'][-1])
+Sp_c = float(np.max(runs['classical']['sup']))
+Sp_a = float(np.max(runs['a0cap_002']['sup']))
 CFL = {k: r['cfl'] for k, r in runs.items()}
 c_cfl = all(CFL[k] < 0.4 for k in runs)
 gate('CFL_dealiased_stability', c_cfl,
@@ -266,8 +270,11 @@ gate('CFL_dealiased_stability', c_cfl,
      'max |u|*dt*k_max < 0.4 per run',
      f'dealiased cutoff k_max = {runs["classical"]["kmax_dealias"]:.2f}:'
      f' CFL = max over run of |u|_oo*dt*k_max = '
-     f'{", ".join(f"{k}: {CFL[k]:.4f}" for k in runs)} (classical is the'
-     f' hot case): all below 0.4 -- the doubled dt = {DT} is stable.')
+     f'{", ".join(f"{k}: {CFL[k]:.4f}" for k in runs)} -- the lane proxy'
+     f' (calibrated for |u| ~ O(1)) is EXCEEDED because sup|u| grows to'
+     f' ~{Sf_c:.0f} (the very spin-up this lane probes); the meaningful'
+     f' integrator-health check is G63: the energy identity closes to'
+     f' <= 1% over the full run at dt = {DT}.')
 
 # ----------------------------- G60: equilibrium reached (per run)
 Q = len(runs['classical']['t']) // 4          # quarter = 50 time units
@@ -314,11 +321,15 @@ for name in ('classical', 'a0cap_002'):
             if alpha_end[name] >= 0.8 else
             'growth-law classification indeterminate within the run.'))
 
+# extra diagnostic (NOT a gate): local log-log slope over the LAST QUARTER
+end_slope = {}
+for name in ('classical', 'a0cap_002'):
+    r = runs[name]
+    m = r['t'] >= TOT - Q * DELTA            # last quarter: t in [150, 200]
+    p = np.polyfit(np.log10(r['t'][m]), np.log10(r['enst'][m]), 1)
+    end_slope[name] = float(p[0])
+
 # ----------------------------- G62: sup ordering (final), gate a0cap <= 1.05*classical
-Sf_c = float(runs['classical']['sup'][-1])
-Sf_a = float(runs['a0cap_002']['sup'][-1])
-Sp_c = float(np.max(runs['classical']['sup']))
-Sp_a = float(np.max(runs['a0cap_002']['sup']))
 c62 = Sf_a <= 1.05 * Sf_c
 gate('G62_sup_ordering', c62,
      f'a0cap final {Sf_a:.4f} <= {1.05 * Sf_c:.4f} (classical {Sf_c:.4f})',
@@ -421,6 +432,7 @@ res = {
     'enst_prev_quarter_mean': {k: float(np.mean(r['enst'][-2 * Q:-Q]))
                                for k, r in runs.items()},
     'alpha_end_last_two_decades': alpha_end,
+    'end_slope_last_quarter': end_slope,
     'verdict': {k: (f'the truncated flow settles toward viscous equilibrium'
                     f' by T = {TOT:.0f}' if verdicts[k] == 'settles'
                     else f'keeps pumping enstrophy through T = {TOT:.0f}'
@@ -456,6 +468,12 @@ for k, r in runs.items():
 for k in runs:
     print(f'VERDICT {k}: {res["verdict"][k]}'
           f' (alpha_end = {alpha_end[k]:.3f}).')
+for k in runs:
+    print(f'END-SLOPE {k}: local log-log slope over the last quarter'
+          f' (t in [{TOT - Q * DELTA:.0f}, {TOT:.0f}]) = {end_slope[k]:.3f}'
+          f' (marginal band 0.3..0.8): growth decelerates (N04b two-decade'
+          f' ~1.4 -> here two-decade {alpha_end[k]:.2f} -> end'
+          f' {end_slope[k]:.2f}) but has NOT plateaued by T = {TOT:.0f}.')
 reduced = any(r['wall_time'] > 1500.0 for r in runs.values())
 if reduced:
     print('REPORT: a run exceeded 25 min -- the plan says reduce T to 140'

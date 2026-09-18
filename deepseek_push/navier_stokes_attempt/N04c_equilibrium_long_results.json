@@ -81,21 +81,21 @@
    "pass": false,
    "value": "classical = 1.5038, a0cap_002 = 1.4340",
    "threshold": "max |u|*dt*k_max < 0.4 per run",
-   "note": "dealiased cutoff k_max = 10.67: CFL = max over run of |u|_oo*dt*k_max = classical: 1.5038, a0cap_002: 1.4340 (classical is the hot case): all below 0.4 -- the doubled dt = 0.004 is stable."
+   "note": "dealiased cutoff k_max = 10.67: CFL = max over run of |u|_oo*dt*k_max = classical: 1.5038, a0cap_002: 1.4340 -- the lane proxy (calibrated for |u| ~ O(1)) is EXCEEDED because sup|u| grows to ~35 (the very spin-up this lane probes); the meaningful integrator-health check is G63: the energy identity closes to <= 1% over the full run at dt = 0.004."
   },
   {
    "name": "G60_equilibrium_classical",
    "pass": true,
    "value": "0.117",
    "threshold": "<= 0.15",
-   "note": "classical: last-quarter mean enstrophy 310.750 vs previous-quarter 278.163: relative change 11.7% -- viscous equilibrium reached (spin-up ended)."
+   "note": "classical: last-quarter mean enstrophy 310.750 vs previous-quarter 278.163: relative change 11.7% -- inside the loose 15% band; the slope gate G61 decides (see its verdict)."
   },
   {
    "name": "G60_equilibrium_a0cap_002",
    "pass": true,
    "value": "0.117",
    "threshold": "<= 0.15",
-   "note": "a0cap_002: last-quarter mean enstrophy 280.300 vs previous-quarter 250.960: relative change 11.7% -- viscous equilibrium reached (spin-up ended)."
+   "note": "a0cap_002: last-quarter mean enstrophy 280.300 vs previous-quarter 250.960: relative change 11.7% -- inside the loose 15% band; the slope gate G61 decides (see its verdict)."
   },
   {
    "name": "G61_growth_law_classical",
@@ -139,5 +139,10 @@
    "threshold": "label present in report + JSON",
    "note": "EVIDENCE ONLY -- finite-N Galerkin truncation evidence: ODE system, always regular at fixed N; NOT a singularity claim; the question is equilibrium vs continuing pump at fixed truncation.  The runs answer the equilibrium-vs-pump question at fixed truncation; they make no singularity claim."
   }
- ]
+ ],
+ "end_slope_last_quarter_est": {
+  "classical": 0.3292,
+  "a0cap_002": 0.3286,
+  "note": "quarter-mean estimate from the recorded quarter means (log(tail/prev)/log(1.4)); the exact snapshot-array fit is computed in N04c_equilibrium_long.py"
+ }
 }

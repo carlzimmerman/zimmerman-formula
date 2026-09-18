@@ -28,7 +28,7 @@
    "sup_final": 1.7636601364885531,
    "sup_peak": 1.7636601364885531,
    "enst_final": 0.8476623615231593,
-   "runtime_s": 38.89034191600513
+   "runtime_s": 36.01632808300201
   },
   "capped": {
    "sup_final": 1.8371777606493622,
@@ -39,25 +39,25 @@
    "m03_final": 0.3671875,
    "m03_ratio": 7.595959595959596,
    "rpk_peak_ratio": 40.91019693928974,
-   "runtime_s": 52.74386774993036
+   "runtime_s": 47.086504374979995
   },
   "free": {
    "t_stop": 1.282,
    "stopped_early": true,
    "sup_final": 50.03764647917428,
    "sup_peak": 50.03764647917428,
-   "enstr_quarter_ratio": 0.0,
+   "enstr_quarter_ratio": 3.6304602002084625,
    "max_a_ph_on_baryons": 54.734724978838535,
    "m03_final": 0.3592529296875,
    "m03_ratio": 7.431818181818182,
    "rpk_peak_ratio": 40.91019693928974,
-   "runtime_s": 13.201832499937154
+   "runtime_s": 12.151583625003695
   }
  },
  "phantom": {
   "m03_initial": 0.04833984375,
   "m03_initial_analytic_gaussian": 0.05,
-  "dust_identical_across_runs": false,
+  "dust_identical_across_runs": true,
   "gmax_peak": 54.734724978838535
  },
  "deviations_registered": [
@@ -92,7 +92,7 @@
    "pass": true,
    "value": "40.9x",
    "threshold": "> 20",
-   "note": "peak central grid-density contrast over the free run (identical dust sector, same 37x-class caustic)"
+   "note": "peak central grid-density contrast over the free run (identical dust sector, same caustic)"
   },
   {
    "name": "G51_transfer_capped",
@@ -118,9 +118,9 @@
   {
    "name": "G53_enstrophy_free_accel",
    "pass": true,
-   "value": "0.000 (stopped early: True)",
+   "value": "3.630 (stopped early: True)",
    "threshold": ">= 2.5 OR early stop",
-   "note": "free-run enstrophy accelerates (or the run is stopped by the sup > 50 guard, which it is: the caustic transfer pumps the gradient content"
+   "note": "free-run enstrophy accelerates (or the run is stopped by the sup > 50 guard, which it is: the caustic transfer pumps the gradient content)"
   },
   {
    "name": "G54_cap_measured_capped",
@@ -138,10 +138,10 @@
   },
   {
    "name": "G54_cap_only_difference",
-   "pass": false,
-   "value": "max |x_free - x_capped| = 4.7e+00",
+   "pass": true,
+   "value": "max |x_free(t) - x_capped(t)| over 52 common samples = 0.0e+00",
    "threshold": "== 0 (bit-identical dust)",
-   "note": "the two runs differ ONLY in the baryon-coupling cap: the dust trajectories are bit-identical (same seed, same leapfrog, same grid force) -- the contrast is attributed to the cap alone"
+   "note": "the two runs differ ONLY in the baryon-coupling cap: the dust trajectories at every common sample time are bit-identical (same seed, same leapfrog, same grid force) -- the contrast is attributed to the cap alone"
   },
   {
    "name": "G55_evidence_labelling",
@@ -149,6 +149,13 @@
    "value": "tokens in N09_twofluid_galerkin.py: evidence-only=True, not-a-proof=True, footprint=True, a0cap_bound=True, G03=True, OPEN=True",
    "threshold": "phrase + D3/a0cap_bound + G03-OPEN residual in the file text",
    "note": "the lane is labelled evidence-only and its numerical-footprint status vs the D3 theorem (Lean a0cap_bound) is stated; the G03 action door (OPEN, K-2 measurement-awaited, from N07) is registered in this file's header"
+  },
+  {
+   "name": "G55_json_evidence_label",
+   "pass": true,
+   "value": "tokens in N09_twofluid_galerkin_results.json: evidence-only=True, not-a-proof=True, footprint=True",
+   "threshold": "the phrase lives in the JSON too",
+   "note": "machines reading the results file see the same evidence-only label"
   }
  ]
 }
