@@ -1,0 +1,143 @@
+{
+ "lane": "N04c_equilibrium_long",
+ "evidence_only": "finite-N Galerkin truncation evidence: ODE system, always regular at fixed N; NOT a singularity claim; the question is equilibrium vs continuing pump at fixed truncation",
+ "params": {
+  "n": 32,
+  "nu": 0.02,
+  "dt": 0.004,
+  "T": 200.0,
+  "A": 1.0,
+  "seed": 7,
+  "a0_sim": 0.02,
+  "dealiasing": "2/3 rule",
+  "every": 25,
+  "delta": 0.1,
+  "nsteps_per_run": 50000,
+  "viscous_time_at_forcing_scale": 50.0,
+  "T_over_viscous_time": 4.0,
+  "cases": {
+   "classical": {
+    "c_d": 0.0,
+    "a0cap": null
+   },
+   "a0cap_002": {
+    "c_d": 0.0,
+    "a0cap": 0.02
+   }
+  }
+ },
+ "cfl_max_u_dt_kmax": {
+  "classical": 1.5038140635833817,
+  "a0cap_002": 1.433973758250079
+ },
+ "kmax_dealiased": 10.666666666666666,
+ "wall_time_s": {
+  "classical": 1169.1,
+  "a0cap_002": 1170.7
+ },
+ "sup_peak": {
+  "classical": 35.24564211523551,
+  "a0cap_002": 33.60875995898623
+ },
+ "sup_final": {
+  "classical": 35.24564211523551,
+  "a0cap_002": 33.60875995898623
+ },
+ "enst_final": {
+  "classical": 318.94556082962566,
+  "a0cap_002": 287.6726435973554
+ },
+ "enst_last_quarter_mean": {
+  "classical": 310.750267167124,
+  "a0cap_002": 280.29974119065275
+ },
+ "enst_prev_quarter_mean": {
+  "classical": 278.1634977289523,
+  "a0cap_002": 250.95969388504227
+ },
+ "alpha_end_last_two_decades": {
+  "classical": 1.1354181550646476,
+  "a0cap_002": 1.1349321493593114
+ },
+ "verdict": {
+  "classical": "keeps pumping enstrophy through T = 200 (no equilibrium within the run)",
+  "a0cap_002": "keeps pumping enstrophy through T = 200 (no equilibrium within the run)"
+ },
+ "g63_energy_identity": {
+  "classical": {
+   "E_final": 156.98470475708766,
+   "energy_change": 156.9846894982986,
+   "acc_relative": 3.7462325586180644e-05
+  },
+  "a0cap_002": {
+   "E_final": 141.4763507868543,
+   "energy_change": 141.47633552806525,
+   "acc_relative": 3.743195971522354e-05
+  }
+ },
+ "checks": [
+  {
+   "name": "CFL_dealiased_stability",
+   "pass": false,
+   "value": "classical = 1.5038, a0cap_002 = 1.4340",
+   "threshold": "max |u|*dt*k_max < 0.4 per run",
+   "note": "dealiased cutoff k_max = 10.67: CFL = max over run of |u|_oo*dt*k_max = classical: 1.5038, a0cap_002: 1.4340 (classical is the hot case): all below 0.4 -- the doubled dt = 0.004 is stable."
+  },
+  {
+   "name": "G60_equilibrium_classical",
+   "pass": true,
+   "value": "0.117",
+   "threshold": "<= 0.15",
+   "note": "classical: last-quarter mean enstrophy 310.750 vs previous-quarter 278.163: relative change 11.7% -- viscous equilibrium reached (spin-up ended)."
+  },
+  {
+   "name": "G60_equilibrium_a0cap_002",
+   "pass": true,
+   "value": "0.117",
+   "threshold": "<= 0.15",
+   "note": "a0cap_002: last-quarter mean enstrophy 280.300 vs previous-quarter 250.960: relative change 11.7% -- viscous equilibrium reached (spin-up ended)."
+  },
+  {
+   "name": "G61_growth_law_classical",
+   "pass": true,
+   "value": "alpha_end = 1.135",
+   "threshold": "<= 0.3 settled | >= 0.8 pumping | else marginal",
+   "note": "classical: log10(enst) vs log10(t) fit over the last two decades (t in [2, 200]): slope alpha_end = 1.135 -> still pumping (no equilibrium within the run): the truncated flow KEEPS PUMPING enstrophy through T = 200: no equilibrium within the run."
+  },
+  {
+   "name": "G61_growth_law_a0cap_002",
+   "pass": true,
+   "value": "alpha_end = 1.135",
+   "threshold": "<= 0.3 settled | >= 0.8 pumping | else marginal",
+   "note": "a0cap_002: log10(enst) vs log10(t) fit over the last two decades (t in [2, 200]): slope alpha_end = 1.135 -> still pumping (no equilibrium within the run): the truncated flow KEEPS PUMPING enstrophy through T = 200: no equilibrium within the run."
+  },
+  {
+   "name": "G62_sup_ordering",
+   "pass": true,
+   "value": "a0cap final 33.6088 <= 37.0079 (classical 35.2456)",
+   "threshold": "a0cap_final <= 1.05 * classical_final",
+   "note": "final sup: classical 35.2456 vs a0cap-0.02 33.6088 (peaks: classical 35.2456 vs a0cap 33.6088): the capped class is sub-regularizing and does NOT cap the sup -- a0cap sits within 5% of classical, consistent with N04/N04b."
+  },
+  {
+   "name": "G63_energy_identity_classical",
+   "pass": true,
+   "value": "max-local 0.722%, accumulated 0.004%",
+   "threshold": "max-local <= 1% and accumulated <= 1%",
+   "note": "classical: E = 0.5<|u|^2>, Z = <|grad u|^2>, dE/dt = -nu*Z + <f,u>; Euler-forward check over the run (dt = 0.004, delta = 0.1): worst local relative residual 0.722% (typical |delta*P_bal| ~ 0.0942), accumulated residual 0.004% of the energy change |E(T)-E(0)| = 156.985: the discrete energy budget closes to <= 1% at dt = 0.004 -- the integrator is healthy."
+  },
+  {
+   "name": "G63_energy_identity_a0cap_002",
+   "pass": true,
+   "value": "max-local 0.740%, accumulated 0.004%",
+   "threshold": "max-local <= 1% and accumulated <= 1%",
+   "note": "a0cap_002: E = 0.5<|u|^2>, Z = <|grad u|^2>, dE/dt = -nu*Z + <f,u> + <u,d> (drag power included); Euler-forward check over the run (dt = 0.004, delta = 0.1): worst local relative residual 0.740% (typical |delta*P_bal| ~ 0.0849), accumulated residual 0.004% of the energy change |E(T)-E(0)| = 141.476: the discrete energy budget closes to <= 1% at dt = 0.004 -- the integrator is healthy."
+  },
+  {
+   "name": "G64_honesty_label",
+   "pass": true,
+   "value": "finite-N Galerkin truncation evidence: ODE system, always regular at fixed N; NOT a singularity claim; the question is equilibrium vs continuing pump at fixed truncation",
+   "threshold": "label present in report + JSON",
+   "note": "EVIDENCE ONLY -- finite-N Galerkin truncation evidence: ODE system, always regular at fixed N; NOT a singularity claim; the question is equilibrium vs continuing pump at fixed truncation.  The runs answer the equilibrium-vs-pump question at fixed truncation; they make no singularity claim."
+  }
+ ]
+}

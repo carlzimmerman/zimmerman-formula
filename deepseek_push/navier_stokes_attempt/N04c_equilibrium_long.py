@@ -279,7 +279,7 @@ for name in ('classical', 'a0cap_002'):
     gate(f'G60_equilibrium_{name}', ratio <= 0.15, f'{ratio:.3f}', '<= 0.15',
          f'{name}: last-quarter mean enstrophy {tail:.3f} vs previous-quarter'
          f' {prev:.3f}: relative change {ratio:.1%}' +
-         (' -- viscous equilibrium reached (spin-up ended).'
+         (' -- inside the loose 15% band; the slope gate G61 decides (see its verdict).'
           if ratio <= 0.15 else ' -- still drifting: equilibrium NOT reached.'))
 
 # ----------------------------- G61: growth law (last two decades)

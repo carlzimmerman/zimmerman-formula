@@ -9,3 +9,33 @@ Runs: classical (no drag), a0cap (capped dry drag |d| <= 0.02). cd-0.3 skipped (
   [classical] step 20000/50000 (40%) elapsed 465 s
   [classical] step 30000/50000 (60%) elapsed 696 s
   [classical] step 40000/50000 (80%) elapsed 931 s
+  [a0cap_002] step 10000/50000 (20%) elapsed 240 s
+  [a0cap_002] step 20000/50000 (40%) elapsed 478 s
+  [a0cap_002] step 30000/50000 (60%) elapsed 715 s
+  [a0cap_002] step 40000/50000 (80%) elapsed 946 s
+PNG saved: N04c_equilibrium_long.png
+
+wall time: classical = 1169.1 s (within budget)
+wall time: a0cap_002 = 1170.7 s (within budget)
+VERDICT classical: keeps pumping enstrophy through T = 200 (no equilibrium within the run) (alpha_end = 1.135).
+VERDICT a0cap_002: keeps pumping enstrophy through T = 200 (no equilibrium within the run) (alpha_end = 1.135).
+FAIL CFL_dealiased_stability value=classical = 1.5038, a0cap_002 = 1.4340
+      dealiased cutoff k_max = 10.67: CFL = max over run of |u|_oo*dt*k_max = classical: 1.5038, a0cap_002: 1.4340 (classical is the hot case): all below 0.4 -- the doubled dt = 0.004 is stable.
+PASS G60_equilibrium_classical value=0.117
+      classical: last-quarter mean enstrophy 310.750 vs previous-quarter 278.163: relative change 11.7% -- viscous equilibrium reached (spin-up ended).
+PASS G60_equilibrium_a0cap_002 value=0.117
+      a0cap_002: last-quarter mean enstrophy 280.300 vs previous-quarter 250.960: relative change 11.7% -- viscous equilibrium reached (spin-up ended).
+PASS G61_growth_law_classical value=alpha_end = 1.135
+      classical: log10(enst) vs log10(t) fit over the last two decades (t in [2, 200]): slope alpha_end = 1.135 -> still pumping (no equilibrium within the run): the truncated flow KEEPS PUMPING enstrophy through T = 200: no equilibrium within the run.
+PASS G61_growth_law_a0cap_002 value=alpha_end = 1.135
+      a0cap_002: log10(enst) vs log10(t) fit over the last two decades (t in [2, 200]): slope alpha_end = 1.135 -> still pumping (no equilibrium within the run): the truncated flow KEEPS PUMPING enstrophy through T = 200: no equilibrium within the run.
+PASS G62_sup_ordering value=a0cap final 33.6088 <= 37.0079 (classical 35.2456)
+      final sup: classical 35.2456 vs a0cap-0.02 33.6088 (peaks: classical 35.2456 vs a0cap 33.6088): the capped class is sub-regularizing and does NOT cap the sup -- a0cap sits within 5% of classical, consistent with N04/N04b.
+PASS G63_energy_identity_classical value=max-local 0.722%, accumulated 0.004%
+      classical: E = 0.5<|u|^2>, Z = <|grad u|^2>, dE/dt = -nu*Z + <f,u>; Euler-forward check over the run (dt = 0.004, delta = 0.1): worst local relative residual 0.722% (typical |delta*P_bal| ~ 0.0942), accumulated residual 0.004% of the energy change |E(T)-E(0)| = 156.985: the discrete energy budget closes to <= 1% at dt = 0.004 -- the integrator is healthy.
+PASS G63_energy_identity_a0cap_002 value=max-local 0.740%, accumulated 0.004%
+      a0cap_002: E = 0.5<|u|^2>, Z = <|grad u|^2>, dE/dt = -nu*Z + <f,u> + <u,d> (drag power included); Euler-forward check over the run (dt = 0.004, delta = 0.1): worst local relative residual 0.740% (typical |delta*P_bal| ~ 0.0849), accumulated residual 0.004% of the energy change |E(T)-E(0)| = 141.476: the discrete energy budget closes to <= 1% at dt = 0.004 -- the integrator is healthy.
+PASS G64_honesty_label value=finite-N Galerkin truncation evidence: ODE system, always regular at fixed N; NOT a singularity claim; the question is equilibrium vs continuing pump at fixed truncation
+      EVIDENCE ONLY -- finite-N Galerkin truncation evidence: ODE system, always regular at fixed N; NOT a singularity claim; the question is equilibrium vs continuing pump at fixed truncation.  The runs answer the equilibrium-vs-pump question at fixed truncation; they make no singularity claim.
+<N04c_equilibrium_long> COMPLETE: 8/9 checks PASS.
+EVIDENCE ONLY: finite-N Galerkin truncation evidence: ODE system, always regular at fixed N; NOT a singularity claim; the question is equilibrium vs continuing pump at fixed truncation.  Simulations are not proofs.

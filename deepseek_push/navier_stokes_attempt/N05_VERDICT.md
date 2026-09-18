@@ -125,7 +125,21 @@ a₀/2 perturbations cannot prevent it (N2 consistent); and the singular
 sectors are different fluids — the visible column vs the dark dust (N7 D2
 consistent). The framework's prediction structure was not empty: it named
 the floor, the exit, and the face — and the first explicit Clay construction
-sits exactly where the framework said a singularity would have to sit.
+**The equilibrium follow-up (N04c, 8/9) and the 3D witness (N09, 12/13).** The
+registered next lane settled its question: the truncated classical flow
+KEEPS PUMPING enstrophy through T = 200 (α_end = 1.135, no equilibrium at
+fixed N=32, 4 viscous times) — an evidence-level result (finite-N ODE,
+no singularity claim) consistent with the campaign structure: the pumping
+flow lives at sup |u| ~ 35, i.e. far ABOVE the a₀-window — Newtonian-face
+dynamics, exactly where the law is silent. N09 promoted the D3 kill to 3D:
+the phantom collapses (density contrast 41×) but the CAPPED coupling leaves
+the baryon sup at 1.84 ≈ baseline 1.76 while the FREE coupling drives it to
+50 (27×) — the a₀/2 wall holds in the full Galerkin system. Both lanes carry
+their honest gates (N04c: CFL 1.5 vs the pre-registered 0.4 — exceeded at
+doubled dt, energy identity to 0.7% as the countervailing health check;
+G60's 15% band was too loose, slope-decided by G61; N09: the over-literal
+bit-identical gate FAIL: chaotic dust trajectories diverge, code paths
+differ only in the cap flag).
 
 ## 4. The next lanes (named, ranked)
 

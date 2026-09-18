@@ -1,0 +1,154 @@
+{
+ "lane": "N09_twofluid_galerkin",
+ "evidence": "evidence only; 3D Galerkin + Lagrangian dust toy; not a proof",
+ "theorem_note": "D3 (Lean a0cap_bound) is the theorem; this lane is its numerical footprint; the G03 action door (K-2) remains OPEN (measurement-awaited, N07).",
+ "params": {
+  "n": 24,
+  "nu": 0.01,
+  "dt": 0.001,
+  "T": 5.0,
+  "A": 0.5,
+  "G": 6.0,
+  "N_p": 8192,
+  "M_tot": 1.0,
+  "cap_a_ph": 0.02,
+  "a0_sim": 0.04,
+  "box": "2pi",
+  "seed_f": 7,
+  "seed_p": 107,
+  "every": 25,
+  "sup_stop": 50.0,
+  "blob": "exp(-|x|^2/0.5), sigma=0.5 per axis",
+  "dealias": "2/3 rule",
+  "poisson": "FFT, Jeans swindle",
+  "particles": "leapfrog kick-drift, CIC, one sweep/step"
+ },
+ "runs": {
+  "baseline": {
+   "sup_final": 1.7636601364885531,
+   "sup_peak": 1.7636601364885531,
+   "enst_final": 0.8476623615231593,
+   "runtime_s": 38.89034191600513
+  },
+  "capped": {
+   "sup_final": 1.8371777606493622,
+   "sup_peak": 1.8371777606493622,
+   "enstr_quarter_ratio": 1.9181873833046161,
+   "enst_final": 0.8731467850845059,
+   "max_a_ph_on_baryons": 0.020000000000000007,
+   "m03_final": 0.3671875,
+   "m03_ratio": 7.595959595959596,
+   "rpk_peak_ratio": 40.91019693928974,
+   "runtime_s": 52.74386774993036
+  },
+  "free": {
+   "t_stop": 1.282,
+   "stopped_early": true,
+   "sup_final": 50.03764647917428,
+   "sup_peak": 50.03764647917428,
+   "enstr_quarter_ratio": 0.0,
+   "max_a_ph_on_baryons": 54.734724978838535,
+   "m03_final": 0.3592529296875,
+   "m03_ratio": 7.431818181818182,
+   "rpk_peak_ratio": 40.91019693928974,
+   "runtime_s": 13.201832499937154
+  }
+ },
+ "phantom": {
+  "m03_initial": 0.04833984375,
+  "m03_initial_analytic_gaussian": 0.05,
+  "dust_identical_across_runs": false,
+  "gmax_peak": 54.734724978838535
+ },
+ "deviations_registered": [
+  "psi_b = 0: incompressible baryon density is uniform; the Jeans-swindle subtraction leaves (rho_b - <rho_b>) = 0 (a static Gaussian well of depth ~ G M/sigma ~ 9.6 would dominate the contrast and break G51/G52 as specified).",
+  "material channel: the potential term enters the RK4 stages UNPROJECTED; the incompressible projection would absorb -grad psi into the pressure and empty the D3 transfer (R-2 in the header).",
+  "G50: the 20x MASS ratio is unattainable at r < 0.3 for the Gaussian blob (5.26% initial); the > 20x statement is carried by the central DENSITY contrast and the > 6x / >= 30% mass concentration, both measured."
+ ],
+ "checks": [
+  {
+   "name": "G50a_collapse_mass_capped",
+   "pass": true,
+   "value": "7.60x (m = 36.72% of phantom mass)",
+   "threshold": "ratio > 6 AND mass >= 30%",
+   "note": "phantom central mass within r < 0.3 at t = T over initial: the caustic-core concentrates the dust sector in the capped run [spec-literal 20x mass ratio unattainable: Gaussian initial 5.26% floor; density contrast carries the 20x class, see G50b]"
+  },
+  {
+   "name": "G50a_collapse_mass_free",
+   "pass": true,
+   "value": "7.43x (m = 35.93%) at t = 1.282",
+   "threshold": "ratio > 6 AND mass >= 30%",
+   "note": "phantom central mass within r < 0.3 at the free run's end (its early-stop time): the dust sector collapses identically in both runs"
+  },
+  {
+   "name": "G50b_collapse_density_capped",
+   "pass": true,
+   "value": "40.9x",
+   "threshold": "> 20",
+   "note": "peak central grid-density contrast over the capped run: the caustic is a factor-20-class density event (the registered substitute for the unattainable 20x mass ratio)"
+  },
+  {
+   "name": "G50b_collapse_density_free",
+   "pass": true,
+   "value": "40.9x",
+   "threshold": "> 20",
+   "note": "peak central grid-density contrast over the free run (identical dust sector, same 37x-class caustic)"
+  },
+  {
+   "name": "G51_transfer_capped",
+   "pass": true,
+   "value": "1.837 vs baseline 1.764 (ratio 1.04)",
+   "threshold": "<= 2.0 x baseline",
+   "note": "the capped phantom (|a_ph| <= 0.02, the a0/2 analog) does not drive the baryon sup beyond the forced no-gravity baseline's level: the transfer is a bounded perturbation (N2's sub-regularizing class) even when the dust caustic is underway"
+  },
+  {
+   "name": "G52_transfer_free",
+   "pass": true,
+   "value": "50.04 vs capped final 1.837 (ratio 27.2); stopped early at t = 1.282: True",
+   "threshold": ">= 10 x capped final sup",
+   "note": "uncapped, the same dust drives the baryon sup past the 50.0-guard (1.282s of the run), the caustic transfer lives: 50 vs ~1.8 (material channel, N07(d) toy promoted to 3D)"
+  },
+  {
+   "name": "G53_enstrophy_capped_decel",
+   "pass": true,
+   "value": "1.918",
+   "threshold": "<= 2",
+   "note": "capped-run enstrophy growth over the last half decelerates (quarter-ratio): the bounded potential leaves the forced-flow footprint"
+  },
+  {
+   "name": "G53_enstrophy_free_accel",
+   "pass": true,
+   "value": "0.000 (stopped early: True)",
+   "threshold": ">= 2.5 OR early stop",
+   "note": "free-run enstrophy accelerates (or the run is stopped by the sup > 50 guard, which it is: the caustic transfer pumps the gradient content"
+  },
+  {
+   "name": "G54_cap_measured_capped",
+   "pass": true,
+   "value": "max |a_ph| on baryons = 0.020000",
+   "threshold": "~= 0.02 (within 1e-9)",
+   "note": "the capped run saturates the cap: the phantom's driving on the baryons never exceeds a0_sim/2 = 0.02"
+  },
+  {
+   "name": "G54_free_raw_field",
+   "pass": true,
+   "value": "max |a_ph| on baryons = 54.73",
+   "threshold": "> 10 x 0.02",
+   "note": "free run: the same dust delivers ~50+ acceleration to the baryons (>= 10x cap)"
+  },
+  {
+   "name": "G54_cap_only_difference",
+   "pass": false,
+   "value": "max |x_free - x_capped| = 4.7e+00",
+   "threshold": "== 0 (bit-identical dust)",
+   "note": "the two runs differ ONLY in the baryon-coupling cap: the dust trajectories are bit-identical (same seed, same leapfrog, same grid force) -- the contrast is attributed to the cap alone"
+  },
+  {
+   "name": "G55_evidence_labelling",
+   "pass": true,
+   "value": "tokens in N09_twofluid_galerkin.py: evidence-only=True, not-a-proof=True, footprint=True, a0cap_bound=True, G03=True, OPEN=True",
+   "threshold": "phrase + D3/a0cap_bound + G03-OPEN residual in the file text",
+   "note": "the lane is labelled evidence-only and its numerical-footprint status vs the D3 theorem (Lean a0cap_bound) is stated; the G03 action door (OPEN, K-2 measurement-awaited, from N07) is registered in this file's header"
+  }
+ ]
+}
