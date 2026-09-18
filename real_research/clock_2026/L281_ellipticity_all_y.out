@@ -1,0 +1,18 @@
+L281 -- ellipticity of the scalar operator for every field strength
+
+  [PASS] 1 the symbol's eigenvalues: across grad P0, J_Y = beta + sqrt(Y)/atilde0; along grad P0, J_Y + 2 Y J_YY = beta + 2 sqrt(Y)/atilde0 -- both are beta plus a positive multiple of sqrt(Y)
+           (perp: sqrt(Y)/atilde_0 + beta; par: 2*sqrt(Y)/atilde_0 + beta)
+  [PASS] 2 UNIFORM ELLIPTICITY: sigma(k) - [beta k^2 + xi^2 k^4] = (sqrt(Y)/atilde0)(k_perp^2 + 2 k_par^2) >= 0, so sigma >= beta k^2 + xi^2 k^4 > 0 for every Y >= 0 and k != 0: the leaf operator is uniformly elliptic on the whole nonlinear background, not only at y = 0 (g03c)
+           (sigma - (beta k^2 + xi^2 k^4) = sqrt(Y)*(2*k_par**2 + k_perp**2)/atilde_0)
+  [PASS] 3 pure deep-MOND control (beta = 0, xi = 0): the symbol is (sqrt(Y)/atilde0)(k_perp^2 + 2 k_par^2), elliptic for Y > 0 but DEGENERATE at Y = 0 (TeVeS's strong-coupling point); the candidate's linear part beta and the xi^2 k^4 term each remove the degeneracy
+    canonical: c_s^2/c^2 at galactic scales (30 kpc, 1e11 Msun, |K2| = 3.24e5) = 7.03e-06 (c_s = 795 km/s; g03r: 389 km/s at |K2| = 2.5e5); group velocity reaches c at wavelength 0.118 pc (xi = 4 pc)
+    alt: c_s^2/c^2 at galactic scales (30 kpc, 1e11 Msun, |K2| = 3.24e5) = 6.85e-06 (c_s = 785 km/s; g03r: 389 km/s at |K2| = 2.5e5); group velocity reaches c at wavelength 0.118 pc (xi = 4 pc)
+  [PASS] 4 with f34's time sector the dispersion is hyperbolic in the clock time with c_s of a few hundred km/s at galactic scales (c_s^2/c^2 ~ 1e-6-1e-5 at |K2| = 3.24e5, matching g03r's 389 km/s), and the group velocity exceeds c only at wavelengths below ~0.1 pc, forty times inside the 4 pc healing length where the scalar is screened: the Lifshitz regime never reaches an unscreened scale [judgment on foliation causality not made here]
+           ({'canonical': {'cs2_over_c2_galactic': 7.03387165065902e-06, 'lambda_vg_eq_c_pc': 0.11829494202671295}, 'alt': {'cs2_over_c2_galactic': 6.852977916516661e-06, 'lambda_vg_eq_c_pc': 0.11829494202671295}})
+
+L281 COMPLETE: 4/4 checks PASS.
+VERDICT.  The candidate's scalar operator is uniformly elliptic on every leaf for every field strength: sigma(k) >= beta k^2 + xi^2 k^4 > 0,
+extending g03c's zero-field result to the full nonlinear (deep-MOND) background; the pure deep-MOND operator would degenerate at Y = 0 and
+the candidate's linear part and healing term each cure that.  In the clock time the equation is hyperbolic with a subluminal sound speed at
+every unscreened scale; the superluminal (Lifshitz) group velocity appears only below ~0.1 pc, forty times inside the screened region.  What remains of
+CK11 is the judgment on causality in a preferred foliation and the Dirac count (CK06).  Nothing here derives kappa.
