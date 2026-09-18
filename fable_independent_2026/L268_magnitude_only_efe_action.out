@@ -1,0 +1,107 @@
+
+L268 -- THE COVARIANT MAGNITUDE-ONLY EFE ACTION: written, its weak-field limit verified, its costs priced.
+
+The day's framework-internal lanes converge on one open object: a MOND theory whose external-field
+effect depends on the MAGNITUDE of the external field but NOT its direction.  The direction-blind rule
+(SW01) g_obs = nu(sqrt(x^2 + eta^2)) g_own, x = g_own/a0, eta = g_ext/a0, evades L243's Cassini
+quadrupole (which bounds the VECTOR/directional EFE at 6.44x) because a scalar magnitude sources no
+preferred direction.  This lane WRITES a covariant action that reduces to that rule, checks the
+reduction symbolically, and states the price -- which PAPER9's foliation theorem makes unavoidable.
+
+THE ACTION.
+  S = (c^4/16 pi G) INT sqrt(-g) R              [Einstein-Hilbert]
+    + S_ae[g, u]                                [khronon/aether fixing u_mu -- the preferred frame]
+    - (a0^2/8 pi G) INT sqrt(-g) F(X)           [the MOND scalar phi]
+    + S_matter[g, psi]                          [matter couples to g_mu-nu ONLY]
+  with
+    u_mu = d_mu T / sqrt(-g^ab d_a T d_b T)      (khronon; foliation normal -- PAPER9 forces this)
+    h_mn = g_mn + u_mu u_nu                       (spatial projector on the leaves)
+    X = X_loc + X_env,   X_loc = h^mn d_m phi d_n phi / a0^2         (LOCAL spatial gradient magnitude^2)
+                          X_env = h^mn d_m phibar d_n phibar / a0^2   (ENVIRONMENTAL magnitude^2)
+    phibar = (1 - l^2 Delta_h)^{-1} phi,  Delta_h = h^mn D_m D_n     (leaf-smoothed field; l >> system,
+                                                                       << external-gradient scale)
+  X_loc and X_env are SEPARATE scalars that ADD -- there is no cross term, so the external field enters
+  in QUADRATURE (magnitude-only), not as the vector sum |grad phi_own + grad phi_ext| of local AQUAL.
+
+  A1  the quadrature IS the magnitude-only rule: F(X_loc+X_env) gives mu(sqrt(x^2+eta^2)); the vector
+      Lagrangian F(|g_own+g_ext|^2/a0^2) differs by exactly the cross term 2 x eta cos(theta) (sympy)
+  A2  deep-MOND F = (2/3) X^{3/2} => mu = sqrt(X) = sqrt(x^2+eta^2): the SW01 rule reproduced
+  B1  THE CASSINI PAYOFF + MUTATION: the external-field-induced ANISOTROPY of mu (the source of the
+      Solar-System quadrupole L243 bounds) is ZERO for the magnitude-only action and NONZERO for the
+      vector one; MUTATE=1 replaces the spatial projector by the vector sum and the quadrupole returns
+  C1  THE PRICE (honest, not cleared): the action CARRIES u_mu, so by PAPER9 it has a preferred frame
+      and faces the alpha_3 dichotomy (pay alpha_3 ~ O(1), 2.5-7.5e19 over the pulsar bound, OR let the
+      frame propagate to 4 DOF); ghost-freedom, c_T=c and full PPN are OPEN gates, not claimed here
+  C2  the leaf-smoothing Delta_h^{-1} is SPATIAL (instantaneous on the leaves) = exactly PAPER9's
+      foliation corollary -- the theory realises the predicted instantaneous constraint, not evades it
+
+Run:  python3 fable_independent_2026/L268_magnitude_only_efe_action.py
+      MUTATE=1 ...  (vector EFE: the Cassini quadrupole reappears; B1 flips)
+
+
+====================================================================================================
+A1 -- the quadrature is magnitude-only; the vector Lagrangian differs by exactly the cross term
+====================================================================================================
+  [PASS] A1a the magnitude-only argument X_loc+X_env and the vector argument |g_own+g_ext|^2 differ by EXACTLY the cross term 2 x eta cos(theta)
+         measured: arg_vec - arg_mag = 2*eta*x*cos(theta)
+         reading:  the whole content of 'magnitude-only' is dropping this cross term -- the action does it by making X_loc and X_env separate additive scalars
+  [PASS] A1b the magnitude-only argument is direction-INDEPENDENT (d/dtheta = 0) while the vector one is not
+         measured: d arg_mag/dtheta = 0, d arg_vec/dtheta = -2*eta*x*sin(theta)
+         reading:  direction-blindness is exact and structural, not approximate
+
+====================================================================================================
+A2 -- deep-MOND limit reproduces the SW01 rule g = nu(sqrt(x^2+eta^2)) g_own
+====================================================================================================
+  [PASS] A2 with F = (2/3) X^{3/2}, mu(X) = F'(X) = sqrt(X); on the magnitude-only argument mu = sqrt(x^2+eta^2), i.e. the effective coupling is nu(sqrt(x^2+eta^2)) -- the SW01 direction-blind rule
+         measured: mu(X) = sqrt(X), mu(X_loc+X_env) = sqrt(eta**2 + x**2)
+         reading:  the action's weak-field scalar equation D.[mu grad phi]=4piG rho carries this mu; deep-MOND EFE is the quadrature, isolated MOND (eta->0) is mu=x=deep-MOND, Newtonian (x,eta large) is mu->1
+
+====================================================================================================
+B1 -- THE CASSINI PAYOFF: the external-field anisotropy of mu (source of the L243 quadrupole)
+====================================================================================================
+  MAGNITUDE-ONLY: d mu/d theta = 0
+  [PASS] B1 the external-field-induced anisotropy d(mu)/d(theta) is EXACTLY ZERO -- no Solar-System quadrupole; this is the structural Cassini escape.  Fixed assertion; MUTATE (vector EFE) breaks it
+         measured: d mu/d theta = 0
+         reading:  L243 kills the VECTOR EFE at 6.44x the Cassini ceiling precisely because its mu is direction-dependent; the magnitude-only mu depends on eta only through eta^2 (a scalar), so the quadrupole is identically absent -- not a tuned cancellation
+  [PASS] B1b the magnitude EFE is nonetheless REAL: mu still depends on eta (the external MAGNITUDE), it just does so isotropically -- d(mu)/d(eta) != 0 while d(mu)/d(theta) = 0
+         measured: d mu/d eta = eta/sqrt(eta**2 + x**2) (nonzero: the EFE is present); d mu/d theta = 0 (isotropic: no quadrupole)
+         reading:  so systems in strong external fields still have suppressed MOND (Crater II, DF2), but with no directional signature -- the EFE without the Cassini quadrupole
+
+====================================================================================================
+C1 -- THE PRICE (honest): the action carries a preferred frame; the alpha_3 cost is real and large
+====================================================================================================
+  [PASS] C1 the preferred-frame price is REAL and LARGE: with alpha_3 = O(1) (as computed for the khronometric chassis) against the pulsar bound |alpha_3| < 4e-20, the exceedance is ~2.5e19 -- so the frame is not a free decoration, it is the wall
+         measured: alpha_3/bound = 2.50e+19 (>> 1)
+         reading:  this is a documented COST, not a pass: the theory must either pay it or take PAPER9's other horn (let the frame propagate => 4 DOF, failing the 2-DOF requirement). Ghost, c_T=c, full PPN for THIS action are all still UNCOMPUTED -- writing the action does not make it viable
+
+====================================================================================================
+C2 -- the projector is spatial: the leaf-smoothing is instantaneous (PAPER9's foliation corollary)
+====================================================================================================
+  [PASS] C2 the projector is purely SPATIAL: h_mn u^n = 0 exactly, so Delta_h = h^mn D_m D_n has no time derivative and the leaf-smoothing (1 - l^2 Delta_h)^{-1} is INSTANTANEOUS on each slice -- exactly the non-dynamical foliation PAPER9's corollary predicts for any 2-DOF single-metric MOND theory
+         measured: h_mn u^n = [0, 0, 0, 0]
+         reading:  consistency: the action is a concrete instance of PAPER9's class, so it MUST carry the instantaneous constraint -- and it does, transparently, rather than hiding it
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  (1) WRITTEN: a covariant action -- Einstein-Hilbert + khronon/aether + a MOND scalar whose free
+      function depends on X_loc + X_env, two SEPARATE spatial-magnitude scalars built with the foliation
+      projector h_mn = g_mn + u_mu u_nu.
+  (2) VERIFIED: the quadrature X_loc + X_env is the magnitude-only rule (differs from local AQUAL by
+      exactly the dropped cross term 2 x eta cos theta); deep-MOND gives mu = sqrt(x^2+eta^2) = the SW01
+      rule; and the external-field anisotropy of mu is IDENTICALLY ZERO, so the Solar-System quadrupole
+      L243 bounds (6.44x for the vector EFE) is structurally absent -- confirmed by the mutation, which
+      restores it.
+  (3) HONEST SENTENCE: the covariant magnitude-only EFE action EXISTS and reproduces the direction-blind
+      phenomenology while evading the Cassini QUADRUPOLE by construction -- but it is NOT a viable theory.
+      It carries a khronon, so by PAPER9 it has a preferred frame and the alpha_3 dichotomy (pay ~O(1),
+      2.5-7.5e19 over the pulsar bound, or propagate a 4th mode), and its ghost-freedom, c_T=c and full
+      PPN sector are UNCOMPUTED.  What this lane delivers is the correct covariant OBJECT and the exact
+      remaining gates -- the alpha_1/2/3 computation for this specific action is the next lane, and it is
+      where the theory lives or dies, on the same wall every single-metric MOND theory has hit.
+      NOT CLAIMED: viability, ghost-freedom, a PPN pass, or that the frame's price is payable.
+
+====================================================================================================
+RESULT
+====================================================================================================
+L268 COMPLETE: 7/7 checks PASS

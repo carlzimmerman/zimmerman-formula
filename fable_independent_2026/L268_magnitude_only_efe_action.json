@@ -1,0 +1,63 @@
+{
+  "lane": "L268",
+  "mutate": true,
+  "checks": {
+    "A1a the magnitude-only argument X_loc+X_env and the vector argument |g_own+g_ext|^2 differ by EXACTLY the cross term 2 x eta cos(theta)": {
+      "ok": true,
+      "measured": "arg_vec - arg_mag = 2*eta*x*cos(theta)",
+      "load_bearing": true
+    },
+    "A1b the magnitude-only argument is direction-INDEPENDENT (d/dtheta = 0) while the vector one is not": {
+      "ok": true,
+      "measured": "d arg_mag/dtheta = 0, d arg_vec/dtheta = -2*eta*x*sin(theta)",
+      "load_bearing": true
+    },
+    "A2 with F = (2/3) X^{3/2}, mu(X) = F'(X) = sqrt(X); on the magnitude-only argument mu = sqrt(x^2+eta^2), i.e. the effective coupling is nu(sqrt(x^2+eta^2)) -- the SW01 direction-blind rule": {
+      "ok": true,
+      "measured": "mu(X) = sqrt(X), mu(X_loc+X_env) = sqrt(eta**2 + x**2)",
+      "load_bearing": true
+    },
+    "B1 the external-field-induced anisotropy d(mu)/d(theta) is EXACTLY ZERO -- no Solar-System quadrupole; this is the structural Cassini escape.  Fixed assertion; MUTATE (vector EFE) breaks it": {
+      "ok": false,
+      "measured": "d mu/d theta = -eta*x*sin(theta)/sqrt(eta**2 + 2*eta*x*cos(theta) + x**2)",
+      "load_bearing": true
+    },
+    "B1b the magnitude EFE is nonetheless REAL: mu still depends on eta (the external MAGNITUDE), it just does so isotropically -- d(mu)/d(eta) != 0 while d(mu)/d(theta) = 0": {
+      "ok": true,
+      "measured": "d mu/d eta = eta/sqrt(eta**2 + x**2) (nonzero: the EFE is present); d mu/d theta = 0 (isotropic: no quadrupole)",
+      "load_bearing": true
+    },
+    "C1 the preferred-frame price is REAL and LARGE: with alpha_3 = O(1) (as computed for the khronometric chassis) against the pulsar bound |alpha_3| < 4e-20, the exceedance is ~2.5e19 -- so the frame is not a free decoration, it is the wall": {
+      "ok": true,
+      "measured": "alpha_3/bound = 2.50e+19 (>> 1)",
+      "load_bearing": true
+    },
+    "C2 the projector is purely SPATIAL: h_mn u^n = 0 exactly, so Delta_h = h^mn D_m D_n has no time derivative and the leaf-smoothing (1 - l^2 Delta_h)^{-1} is INSTANTANEOUS on each slice -- exactly the non-dynamical foliation PAPER9's corollary predicts for any 2-DOF single-metric MOND theory": {
+      "ok": true,
+      "measured": "h_mn u^n = [0, 0, 0, 0]",
+      "load_bearing": false
+    }
+  },
+  "numbers": {
+    "alpha3_over_bound": 2.5e+19
+  },
+  "verdict": {
+    "word": "ACTION-WRITTEN-CASSINI-QUADRUPOLE-EVADED-FRAME-PRICE-OPEN",
+    "reproduces_sw01_rule": true,
+    "quadrupole_anisotropy": "zero (magnitude-only)",
+    "open_gates": [
+      "alpha_1/2/3 for this action",
+      "ghost/bounded Hamiltonian",
+      "c_T=c",
+      "full PPN"
+    ],
+    "inherits": "PAPER9 preferred-frame dichotomy"
+  },
+  "summary": {
+    "pass": 6,
+    "n": 7,
+    "load_bearing_fail": [
+      "B1 the external-field-induced anisotropy d(mu)/d(theta) is EXACTLY ZERO -- no Solar-System quadrupole; this is the structural Cassini escape.  Fixed assertion; MUTATE (vector EFE) breaks it"
+    ]
+  }
+}
