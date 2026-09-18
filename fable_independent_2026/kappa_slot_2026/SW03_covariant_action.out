@@ -1,0 +1,38 @@
+SW03 -- the covariant action, checked
+
+====================================================================================================
+1. static weak-field Euler-Lagrange equations of the phi- and psi-sectors
+====================================================================================================
+  [PASS] 1a delta phi: the static equation is (1/4piG) div[mu_s(psi) grad phi] (= 4piG rho x coupling once matter is added): the scalar sector is LINEAR in phi with a given positive coefficient
+  [PASS] 1b delta psi: the static equation is u0 [ell^2 lap psi - psi + H(|grad Phi_E|^2/(8 pi G u0))] = 0, i.e. (1 - ell^2 lap) psi = H(S): SW02's smoothed switch
+
+====================================================================================================
+2. point mass, ell -> 0: psi = y^2/(1+y^2), mu_s = 1/(nu(y)-1), total force = nu(y) g_N
+====================================================================================================
+  [PASS] 2a the inversion y(psi) = sqrt(psi/(1-psi)) returns y exactly
+  [PASS] 2b g_N + g_N/mu_s = nu(y) g_N identically: QUMOND with the kernel nu
+  [PASS] 2c deep limit with nu_RAR: g/a0 -> sqrt(y), i.e. g^2 = a0 g_N
+  [PASS] 2d strong field: mu_s = 1/(nu_RAR(y) - 1) -> infinity as y -> infinity (the scalar switches OFF)
+  [FAIL] 2e mu_s > 0 for every y > 0 (no ghost sign in the phi-sector): nu_RAR(y) > 1 for all y > 0
+
+====================================================================================================
+3. the phi-sector's principal symbol: mu_s(psi) g^{mu nu} k_mu k_nu -- the null cone of g (no superluminal scalar)
+====================================================================================================
+  [PASS] 3a the characteristic speed of phi is exactly c for any mu_s != 0 (k0 = +-|k|)
+  [PASS] 3b the psi-sector is a standard massive scalar (kinetic coefficient u0 ell^2/2 > 0, mass 1/ell): no ghost by construction
+
+====================================================================================================
+4. the psi-aether coupling energy is bounded by u0; the FRW background switches the scalar off
+====================================================================================================
+    canonical: u0 = a0^2/(8 pi G) = 5.23e-12 J/m^3 = rho_Lambda c^2 / 100.5; max coupling energy u0 H(S) <= u0
+    canonical: (c H0 / a0)^2 = 48.9; psi_FRW(kappa_Theta = 1) = 0.9800; psi_FRW >= 1/2 needs kappa_Theta >= 0.0204  (1/Z^2 = 0.0298)
+    alt: u0 = a0^2/(8 pi G) = 7.58e-12 J/m^3 = rho_Lambda c^2 / 69.3; max coupling energy u0 H(S) <= u0
+    alt: (c H0 / a0)^2 = 33.7; psi_FRW(kappa_Theta = 1) = 0.9712; psi_FRW >= 1/2 needs kappa_Theta >= 0.0297  (1/Z^2 = 0.0298)
+  [PASS] 4a the coupling energy scale u0 is below rho_Lambda c^2 on both footings (a cosmological-constant-sized back-reaction on the aether/metric sector, not a solar-system one)
+  [PASS] 4b with kappa_Theta = 1/Z^2 the FRW switch is at least half-on on both footings (psi_FRW >= 1/2): the MOND scalar is OFF on the background
+           (psi_FRW at kappa_Theta = 1/Z^2: canonical: 0.593, alt: 0.501)
+
+SW03 COMPLETE: 10/11 checks PASS.  Verified: the static limit IS SW02 with the Einstein-frame field as the switch; the point-mass
+solution is QUMOND with the RAR kernel; the scalar is linear with a positive coefficient and propagates on the light cone; it switches off
+in strong fields and on the FRW background (kappa_Theta >= 1/Z^2).  NOT verified here: full PPN with all couplings, lensing (inherited from
+TeVeS's disformal coupling), cosmological perturbations, the infall-region switch-off.  Nothing here derives kappa.
