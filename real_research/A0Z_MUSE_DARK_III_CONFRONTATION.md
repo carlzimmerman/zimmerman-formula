@@ -170,3 +170,23 @@ deflates the evolution significance to ~2σ — i.e. it is treated skeptically, 
 canonical** and on the **"MUSE confirms the rise"** claim. Consistent with — and sharpens —
 `project_a0z_reconciled.py` (the rise is real but ΛCDM-degenerate) and `DESI_AND_THE_A0Z_TEST.md` (the
 declining √ρ_DE signal is too small for current data to test).*
+
+---
+
+## 7. Method audit (2026-09-18, from the letter's own text, arXiv:2604.22613 / A&A 709 L16)
+
+**How the data were taken.** MUSE, the VLT integral-field spectrograph (1′×1′ field, 4750–9350 Å, R ≈ 3000), on the MUSE Hubble Ultra Deep Field survey: ESO programmes 094.A-0289, 095.A-0010, 096.A-0045 (the 3′×3′ mosaic and UDF-10, seeing-limited, ~0.6″) and 1101.A-0127 (the MXDF, the 140-h field taken with GALACSI ground-layer adaptive optics; the letter itself does not spell out which galaxies come from which field or quote a PSF). 79 star-forming galaxies, complete above M* > 10^8.8 M☉, 0.33 < z < 1.44, kinematics from whichever of [O II] λ3727, Hβ, [O III] λ5007, Hα is in the band, S/N 10 to >100. At z ≈ 1, 0.6″ is ≈ 5 kpc, comparable to the galaxies' sizes: the rotation curves are marginally resolved and everything rests on 3D forward modelling.
+
+**How the accelerations were obtained.** GalPaK3D fits a 3D disc model, convolved with the PSF and line-spread function, directly to the cube (beam smearing handled by construction). The model is a disc–halo decomposition: stellar disc (+ bulge where present), a neutral-gas disc from a parametric constant-Σ_HI law (v ∝ √(Σ_HI r); HI is not observed at these redshifts), and a dark-matter halo (DC14 as baseline; NFW and Burkert tested). Stellar masses are *dynamically inferred inside that decomposition*, not fixed from photometry. Pressure support is corrected with Dalcanton & Stilp (2010), v_c² = v_⊥² + v_AD², with no error budget quoted. Both a_tot and a_bar are therefore outputs of one model fit.
+
+**How a₀ was fitted.** RAR a_tot = a_bar/(1 − e^{−√(a_bar/a₀)}) with a₀ free; per quantile bin (four bins) and globally with a₀(z) = a₀(0) + a₁z: a₀(0) = 1.0 ± 0.04, a₁ = 1.59 ± 0.10 (×10⁻¹⁰). The local SPARC value 1.2 ± 0.26 enters only as a comparison, never as a prior. Appendix E repeats the exercise with MOND in the forward model and reports "similar results".
+
+**What is wrong with reading it as a fundamental a₀ (in order of weight).**
+1. *Circularity of the baryonic acceleration.* a_bar comes from a decomposition in which the stellar mass is a fitted dynamical parameter and the halo is a ΛCDM feedback profile (DC14) whose structure is tied to ΛCDM assembly. A rising fitted a₀ is exactly what Mayer et al. 2023 obtain by fitting the RAR to ΛCDM simulations with no a₀ at all (×3 by z = 2). The measurement is consistent with ΛCDM's *expectation for the apparent scale*; it does not isolate a fundamental one. In a MOND-type model a₀ and M* set the same amplitude and are degenerate, which is why the authors can say +0.2 to +0.45 dex in M* would flatten the trend.
+2. *Gas is modelled, not measured.* At z ≈ 1 gas fractions are ~50%; a parametric constant-Σ_HI disc with no direct HI or CO measurement is a large, unquantified term in a_bar.
+3. *Pressure support is corrected but not budgeted.* σ/v ≈ 0.3–0.5 at these redshifts makes v_AD² 10–25% of v_c²; the intrinsic scatter grows 0.13 → 0.19 dex with z, the signature of an unbudgeted term.
+4. *Regime.* Compact star-forming discs at z ≈ 1 are probed at g ≳ a₀, where the fitted a₀ is set by the transition and is most sensitive to M*/L and gas systematics; the deep-MOND regime that would pin a fundamental scale is not sampled.
+5. *Resolution.* Marginal (5 kpc at 0.6″ for the seeing-limited fields); the r < 2 kpc exclusion test (< 10% change) bounds but does not remove the dependence on the forward model.
+6. *The z = 0 intercept is 1.0, below SPARC's 1.2 (0.08 dex),* an inter-method offset present already at z → 0.
+
+**Net (unchanged from §5):** real data, honestly analysed, and *not diagnostic* of a fundamental a₀(z): the same method applied to a ΛCDM universe returns the same rise. It is not a confirmation of anything and not a refutation of the flat law; a robust rise in the deep-MOND, outer-disc regime (the BTFR arm, which currently reads flat) would be.
