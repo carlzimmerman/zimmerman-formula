@@ -21,3 +21,7 @@ So the slot exists only if the horizon entropy MULTIPLIES (08-09) rather than DI
 8. Prior kills you must not re-propose: the de Sitter–Unruh route forces a₀ = 2cH_Λ (excluded 15.6σ; `real_research/reviews/mi_deser_levin_interpolation_2026.py`); the candidate scalar action cannot fix κ (zero-mode theorem, `kappa_closure/k01`); the sequestering-type global constraint falls 1e-5 short (`kappa_closure/k02`); the "cubic noise drift" is evaluated and closed (09-01); Z = 2√(8π/3), a₀ = c²/(Z R_dS), a₀ = Λ²/(2M_Pl) are all κ = ½ restated, not derivations.
 
 **Lanes.** KS01 adjudication (× vs ÷ S_dS) · KS02 normalisation table (conditional) · KS03 rival coefficients and discrimination · KS04 look-elsewhere control · KS05 the category-III enhancement priced · KS06 number field and form.
+
+## 2026-09-18 — the clock hand-off
+
+The covariant-action work moved to `../clock_swarm_2026/CLOCK_WORK_ORDER.md` (status of the four clock constructions, the two theorems every action must respect, how to run every existing lane, and CK02–CK23 in granular detail). Read it before touching any covariant action; the direction-blind programme of this directory is closed (SW07).
