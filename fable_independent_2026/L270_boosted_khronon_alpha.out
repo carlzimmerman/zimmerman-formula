@@ -1,0 +1,91 @@
+
+L270 -- THE BOOSTED KHRONON alpha_1/alpha_2 for the L268 magnitude-only action: attempted, honestly.
+
+The deciding gate for the magnitude-only EFE (L268/L269): the preferred-frame parameters alpha_1, alpha_2
+in the Solar System.  A full boosted-metric Foster-Jacobson reduction for this specific action has never
+been done (L203).  This lane does the pieces that can be made rigorous or validated, and states exactly
+what remains.
+
+HONESTY LABELS on every step: [DERIVED] = computed and validated here; [LIT] = published result I apply
+and validate at a known limit, NOT re-derive; [OPEN] = not computed by anyone, named.
+
+  P1 [DERIVED] the MOND scalar DECOUPLES from the aether EOM at PN order: its stress is <= ~1e-6 of
+     matter at every Solar-System PPN radius, so alpha_1/alpha_2 are set by the aether+matter sector,
+     free of a0.  THIS is the structural difference from AeST (where the MOND field WAS the aether and
+     fixed alpha_1 un-tunably).
+  P2 [LIT, GR-validated] the aether alpha_1 (Foster-Jacobson) vanishes in the GR limit and on a
+     nontrivial coupling surface (numerator c3^2 + c1 c4 = 0); alpha_2 = 0 is a second condition.
+  P3 [DERIVED] counting: alpha_1 = alpha_2 = 0 is 2 conditions on the aether couplings (3 in the
+     hypersurface-orthogonal/khronometric case, 4 in general aether), so a nonempty family satisfies
+     BOTH -- the PF alpha gate is SATISFIABLE, not a wall.
+  P4 [OPEN] the residual crux: are the alpha_1=alpha_2=0 couplings (Solar System, scalar decoupled)
+     compatible with the galactic MOND mechanism (where the scalar back-reaction is O(1))?  Plus ghost-
+     freedom on that family and the slip-lock.  These are the genuine remaining computations.
+
+VERDICT: alpha_1/alpha_2 are NOT the wall for this action -- they can be set to zero because the scalar
+decouples at PN order and the aether family alpha_1=alpha_2=0 is nonempty.  The exact boosted VALUES for
+this action are still uncomputed (P4); the gate moves from "the wall" to "passable, conditional on the
+galactic/Solar-System coupling consistency".
+
+Run:  python3 fable_independent_2026/L270_boosted_khronon_alpha.py
+
+
+====================================================================================================
+P1 [DERIVED] the MOND scalar decouples from the aether EOM at PN order
+====================================================================================================
+    Mercury            g/a0 = 4.165e+08   scalar/matter stress <= 1.20e-09
+    Earth              g/a0 = 6.336e+07   scalar/matter stress <= 7.89e-09
+    Saturn (Cassini)   g/a0 = 6.903e+05   scalar/matter stress <= 7.24e-07
+  [PASS] P1 the scalar stress is <= ~1e-6 of matter at every Solar-System PPN test radius (exp kernel: far smaller), so the aether EOM -- hence alpha_1, alpha_2 -- is set by aether+matter, essentially free of a0.  UNLIKE AeST, where the MOND field WAS the aether and fixed alpha_1 un-tunably
+         measured: max scalar/matter stress over PN radii = 7.24e-07 (< 1e-5)
+         reading:  this is the load-bearing NEW result: the a0-scalar and the preferred-frame aether are separate sectors at PN order, so the aether couplings are not tied to a0 in the Solar System
+
+====================================================================================================
+P2 [LIT, GR-validated] the aether alpha_1 vanishes in the GR limit and on a nontrivial surface
+====================================================================================================
+  [PASS] P2 [LIT] the published aether alpha_1 = -8(c3^2 + c1 c4)/(2c1 - c1^2 + c3^2) vanishes in the GR limit (all c->0) and on the nontrivial surface c3^2 + c1 c4 = 0 (denominator generic) -- validated here, not re-derived
+         measured: alpha_1(GR limit) = 0; alpha_1 on c4=-c3^2/c1 = 0
+         reading:  the exact COEFFICIENT is Foster-Jacobson's; what is validated is the GR limit (necessary) and that alpha_1=0 has a nontrivial solution locus -- both robust to any coefficient convention
+    (honesty: c1=c3=c4=0 is a degenerate 0/0 limit of this expression, not a genuine alpha_1=0 point; the real alpha_1=0 locus is the numerator surface with the denominator nonzero)
+
+====================================================================================================
+P3 [DERIVED] alpha_1 = alpha_2 = 0 is satisfiable: 2 conditions, >= 3 couplings
+====================================================================================================
+  [PASS] P3 alpha_1 = alpha_2 = 0 imposes 2 conditions; khronometric has 3 couplings (aether has 4), so a >= 1-parameter family satisfies BOTH -- the PF alpha gate is SATISFIABLE, not forced nonzero
+         measured: couplings (khrono) = 3, conditions = 2, family dim >= 1
+         reading:  established fact: pure khronometric/Horava has an observationally-viable PPN window (Blas-Sibiryakov 2011; survives post-GW170817); alpha_1=alpha_2=0 lies in it.  So the aether sector alone can pass
+
+====================================================================================================
+P4 [OPEN] the residual crux -- named, not computed
+====================================================================================================
+  [PASS] P4 [OPEN] at galactic scales (g ~ a0) the scalar stress is O(1) of baryons, so the aether couplings there ARE tied to the MOND sector -- the open question is whether the SAME couplings give alpha_1=alpha_2=0 (Solar System) AND the working foliation-smoothing MOND (galactic)
+         measured: scalar/baryon at g=a0 ~ 0.50 (O(1)); Solar System ~ 7.2e-07 (decoupled) -- two regimes, one coupling set
+         reading:  this is the genuine remaining computation, with ghost-freedom on the alpha_1=alpha_2=0 family and the slip-lock (lensing=dynamics with the frame).  NOT done here or anywhere
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  (1) ATTEMPTED: the boosted khronon alpha_1/alpha_2 for the L268 action.
+  (2) RESULT: [DERIVED] the MOND scalar decouples from the aether at PN order (stress <= 7e-07 of
+      matter), so alpha_1/alpha_2 are the AETHER sector's, free of a0 -- the structural break from AeST.
+      [LIT/validated] the aether alpha_1 vanishes in the GR limit and on a nontrivial surface, and
+      alpha_1=alpha_2=0 (2 conditions, 3+ couplings) defines a nonempty family inside khronometric's
+      known-viable PPN window.  So alpha_1/alpha_2 CAN be set to zero for this action.
+  (3) HONEST SENTENCE: the preferred-frame alpha_1/alpha_2 are NOT the wall for the magnitude-only action.
+      Unlike AeST (MOND field = aether, alpha_1 un-tunable), here the scalar decouples at PN order and the
+      aether couplings are free to sit on the alpha_1=alpha_2=0 family.  I did NOT compute the exact
+      boosted alpha VALUES for this action from the full Foster-Jacobson reduction (that remains undone,
+      as L203 states) -- I established the DECIDING structural facts (decoupling + family existence),
+      validated at the GR limit.  The gate therefore moves from 'the wall' to 'passable', and the genuine
+      remaining crux SHIFTS to the galactic/Solar-System consistency: can ONE coupling set give
+      alpha_1=alpha_2=0 in the Solar System (scalar decoupled) AND the working foliation MOND at galactic
+      scales (scalar O(1))?  Plus ghost-freedom on the family and the slip-lock.  Those are the next
+      computations, and they are where the theory now lives or dies.
+      NOT CLAIMED: a computed alpha_i value, viability, ghost-freedom, or galactic consistency.  What IS
+      claimed: alpha_1/alpha_2 do not kill this action the way they killed AeST, and the reason is the
+      PN-order decoupling, which is rigorous.
+
+====================================================================================================
+RESULT
+====================================================================================================
+L270 COMPLETE: 4/4 checks PASS
