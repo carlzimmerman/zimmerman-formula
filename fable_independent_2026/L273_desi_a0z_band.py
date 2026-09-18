@@ -12,7 +12,8 @@ prep_2026/btfr_forecast_audit/btfr_forecast_check.py]; DESI+CMB+Pantheon+ w0 = -
 DESI+CMB+Union3 w0 = -0.667 +/- 0.088, wa = -1.09 (+0.31/-0.27).  ALL THREE VERIFIED 2026-09-18 against the paper's own w0waCDM table and
 eqs. 26-28 (arXiv:2503.14738v2; the table also gives per-combination Omega_m = 0.3114 / 0.3275 / 0.3191 and H0 = 67.51 / 65.91 / 66.74 for
 Pantheon+ / Union3 / DESY5; this lane uses the DESI+CMB LambdaCDM Omega_m = 0.3027 for E(z), a 0.01 dex effect on the H(z) law at z = 2.5).  The
-w0-wa correlation is not quoted in the abstract; it is scanned over rho in {0, -0.8, -0.9, -0.95} and the band is reported at each.
+w0-wa correlation is scanned over rho in {0, -0.8, -0.9, -0.95} here; L275 measured it from the DESI DR2 public chains: -0.895 (Pantheon+),
+-0.933 (Union3), -0.907 (DESY5), and its sample-propagated bands agree with this lane's rho = -0.9 bands to 0.01 dex.
 Omega_m = 0.3027 (DESI DR2 BAO + CMB, banked in nbody_2026/routeB_dust_to_dark_energy_2026.py).  A FAIL is a finding; no literal-True checks."""
 import os, re, json, math
 import numpy as np

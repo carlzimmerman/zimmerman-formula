@@ -2,7 +2,7 @@
 """L274 -- a0(z)/a0(0) for every law on the table, z = 0-5, WITH its +/- range: the chart and the table behind PAPER7 v2.
 Laws: (1) the framework's own law (stage-17 pressure law: flat; the excitation's pressure moves it by < 1% for z <= 5, drawn as +/-0.004 dex);
 (2) the framework with DESI DR2's w(z) taken at face value and mapped through the pressure, a0(z)/a0(0) = sqrt(w(z) rho_DE(z)/(w0 rho_DE(0))) (central: DESI+CMB+DESY5;
-range: the union of the three SNe combinations' 68% bands at rho(w0,wa) = -0.9); (3) the density mapping a0 ∝ sqrt(rho_DE(z)) -- the naive
+range: the union of the three SNe combinations' 68% bands, taken from the DESI chains themselves via L275 when present, else Gaussian at rho = -0.9); (3) the density mapping a0 ∝ sqrt(rho_DE(z)) -- the naive
 promotion stage-17 rejects, PAPER7's DESI sentence, an UPPER BOUND on the effect (same range recipe); (4) the H(z) law a0 ∝ H(z) (the alt footing;
 range: DESI CPL vs Lambda and Omega_m +/- 0.0036); (5) the LambdaCDM-native emergent scale a_s(z)/a_s(0) = E(z)^{4/3} [c^2/f(c)](z)/[c^2/f(c)](0)
 (PAPER7) with Dutton-Maccio 2014 c(M, z) at 1e12 h^-1 Msun (range: halo mass 1e11-1e13 and the 0.11 dex concentration scatter).  DESI inputs verified against arXiv:2503.14738v2 (w0waCDM table, eqs. 26-28) on 2026-09-18.  Marker: the
@@ -50,6 +50,17 @@ hcurves = [dex(E(zg)), dex(E(zg, om=OM - SOM)), dex(E(zg, om=OM + SOM))] + [dex(
 laws["H(z) law a0 ∝ H (the alt footing)"] = dict(c=dex(E(zg)), lo=np.min(hcurves, axis=0), hi=np.max(hcurves, axis=0))
 lc = [dex(lcdm_emergent(zg, M, dl)) for M in (1e11, 1e12, 1e13) for dl in (-0.11, 0.0, 0.11)]
 laws["LambdaCDM-native emergent scale (DM14 c-M, PAPER7)"] = dict(c=dex(lcdm_emergent(zg)), lo=np.min(lc, axis=0), hi=np.max(lc, axis=0))
+# ------------------------------------------------------------------ bands from the DESI chains (L275) replace the Gaussian ones where available
+L275 = os.path.join(HERE, "L275_results.json")
+if os.path.exists(L275):
+    names = list(laws)
+    Bc = json.load(open(L275))["bands"]
+    def unionband(key):
+        lo = np.min([Bc[key][sn]["grid"]["lo"] for sn in Bc[key]], axis=0); hi = np.max([Bc[key][sn]["grid"]["hi"] for sn in Bc[key]], axis=0)
+        return lo, hi, np.array(Bc[key]["desy5sn"]["grid"]["med"])
+    for nm, key in ((names[1], "pressure"), (names[2], "density"), (names[3], "hz")):
+        lo, hi, med = unionband(key); laws[nm]["lo"], laws[nm]["hi"], laws[nm]["c"] = lo, hi, med
+    print("    DESI-dependent bands taken from the chains (L275: weighted 16/84 percentiles, union of the three SNe samples; central = DESY5 median)")
 # ------------------------------------------------------------------ table
 print("    Delta log10 a0(z)/a0(0) [dex], central and range")
 names = list(laws); short = ["own law", "DESI/pressure", "density (rejected)", "H(z) law", "LCDM emergent"]
@@ -92,7 +103,7 @@ ax.set_title("The acceleration scale versus redshift: each law, its equation, an
 ax.grid(True, color="#e6e5e1", linewidth=0.6); ax.spines[["top", "right"]].set_visible(False); ax.tick_params(colors="#52514e")
 ax.legend(loc="upper left", fontsize=8.2, frameon=False, handlelength=1.6)
 ax.text(0.08, -0.465, r"$w(z)=w_0+w_a\,z/(1+z)$,   $\rho_{DE}(z)/\rho_{DE}(0)=(1+z)^{3(1+w_0+w_a)}\,e^{-3w_a z/(1+z)}$,   $f(c)=\ln(1+c)-c/(1+c)$,   $E(z)=H(z)/H_0$" "\n"
-        r"central: DESI DR2 + CMB + DESY5  $w_0=-0.752$, $w_a=-0.86$;  bands: three SNe samples with the $w_0$-$w_a$ anti-correlation  |  $\Lambda$CDM band: halo mass $10^{11}$-$10^{13}\,M_\odot$ and 0.11 dex in $c$  |  today: $a_0=\kappa c\sqrt{G\rho_\Lambda}$",
+        r"central: DESI DR2 + CMB + DESY5  $w_0=-0.752$, $w_a=-0.86$;  bands: the DESI chains, three SNe samples ($\rho_{w_0w_a}=-0.90/-0.93/-0.91$)  |  $\Lambda$CDM band: halo mass $10^{11}$-$10^{13}\,M_\odot$ and 0.11 dex in $c$  |  today: $a_0=\kappa c\sqrt{G\rho_\Lambda}$",
         fontsize=7.6, color="#52514e", va="bottom", ha="left")
 plt.subplots_adjust(right=0.82)
 png = os.path.join(HERE, "L274_a0z_theories.png"); fig.savefig(png, bbox_inches="tight", facecolor=fig.get_facecolor()); print(f"\n    chart written: {png}")
