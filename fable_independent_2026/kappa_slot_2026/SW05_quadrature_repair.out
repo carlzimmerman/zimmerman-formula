@@ -1,0 +1,70 @@
+SW05 -- the quadrature action (L268), as written and repaired; the l-window for THIS structure
+
+====================================================================================================
+1. Yukawa smoothing phibar = (1 - l^2 lap)^{-1} phi for phi = -GM/r - g_ext z; the two X's, exactly
+====================================================================================================
+  [PASS] 1a (1 - l^2 lap) phibar_own = phi_own for r > 0 (the delta functions at the origin cancel: phibar_own -> -GM/l, finite) and a linear phi_ext = -g_ext z is its own smoothing (lap z = 0)
+  [PASS] 1b L268 AS WRITTEN: X_loc = h^{mn} d_m phi d_n phi is the TOTAL local gradient, so X_loc + X_env carries AQUAL's cross term PLUS the smoothed-own x external one: cross = (1 + f(r/l)) x AQUAL's, >= AQUAL's at every l -- the action as written is NOT direction-blind (its B1 check assigned x^2 + eta^2 by hand)
+           (cross_written / cross_AQUAL = 2 - exp(-r/ell) - r*exp(-r/ell)/ell)
+  [PASS] 1b2 the written action's quadrupole is AQUAL's times mu'(x^2 + 2 eta^2)/mu'(x^2 + eta^2) ~ 0.7 at the r_M shell (l >> r_M, mu = sqrt X, first order in the cross term): 6.44 x 0.7 ~ 4.8 x the Cassini ceiling -- still dead
+           (ratio = 0.74; written-action quadrupole ~ 4.8 x ceiling (mu_2, canonical))
+  [PASS] 1c REPAIRED (X_loc = |grad(phi - phibar)|^2): the cross term is AQUAL's times f(r/l), f(s) = 1 - e^{-s}(1 + s) = s^2/2 - s^3/3 + ... EXACTLY (sympy); the subtraction removes the own-external cross term to O((r/l)^2)
+           (cross / cross_AQUAL = (ell*exp(r/ell) - ell - r)*exp(-r/ell)/ell)
+  [PASS] 1d the repaired action interpolates: l >> r gives X -> x^2 + eta^2 (SW01's direction-blind rule, the framework's cap law); l << r gives X -> |g_own + g_ext|^2/a0^2 (AQUAL's vector rule): the EFE is direction-blind INSIDE l and directional OUTSIDE it
+           (l->inf: eta**2 + x**2;  l->0: eta**2 - 2*eta*x*cos(theta) + x**2)
+
+====================================================================================================
+2. the l-window: the Cassini quadrupole (needs l >> r_M) against the Sun's Galactic eta through X_env (needs l << R_0)
+====================================================================================================
+    canonical mu_2  : r_M = 0.0386 pc; quadrupole needs f(r_M/l) < 0.155 -> l > 0.0552 pc (shell to 3 r_M: l > 0.166 pc); Galactic eta needs f(R_0/l) > 0.9 -> l < 2.11e+03 pc = 2.11 kpc
+    canonical nu_RAR: r_M = 0.0386 pc; quadrupole needs f(r_M/l) < 0.161 -> l > 0.0541 pc (shell to 3 r_M: l > 0.162 pc); Galactic eta needs f(R_0/l) > 0.9 -> l < 2.11e+03 pc = 2.11 kpc
+    alt       mu_2  : r_M = 0.0352 pc; quadrupole needs f(r_M/l) < 0.131 -> l > 0.056 pc (shell to 3 r_M: l > 0.168 pc); Galactic eta needs f(R_0/l) > 0.9 -> l < 2.11e+03 pc = 2.11 kpc
+    alt       nu_RAR: r_M = 0.0352 pc; quadrupole needs f(r_M/l) < 0.147 -> l > 0.0522 pc (shell to 3 r_M: l > 0.157 pc); Galactic eta needs f(R_0/l) > 0.9 -> l < 2.11e+03 pc = 2.11 kpc
+  [PASS] 2a the quadrupole condition: for the REPAIRED action the L243 overshoot (6.2-7.6x) is beaten by f(r_M/l) < 1/overshoot at a finite l_min of order a few r_M on every footing and kernel
+           (l_min = [0.055, 0.054, 0.056, 0.052] pc (r_M = 0.035-0.039 pc); MUTATE: no l passes)
+  [PASS] 2b the eta condition: the Sun still reads >= 90% of the Galactic field through X_env for l below ~2 kpc (point-source proxy at R_0 = 8.2 kpc; an extended disc is milder)
+           (l_max = 2.11 kpc)
+  [PASS] 2c THE WINDOW IS OPEN for the quadrature structure: l_max/l_min(conservative) > 1 on every footing and kernel -- unlike SW03's smoothed-total-switch, where SW04 found none (PPN l <= 0.001 pc vs quadrupole l >= 0.1 pc)
+           (min l_max/l_min3 = 1.25e+04 (about four orders of magnitude: l in [~0.2 pc, ~2 kpc]); MUTATE: closed)
+
+====================================================================================================
+3. SW04's theorem alpha1~ = -8(nu - 1)/nu at Saturn: the argument is the LOCAL x here, the Galactic eta there
+====================================================================================================
+    canonical nu_RAR: x_Saturn = 7.02e+05, eta_gal = 2.23; quadrature: nu - 1 = 0.0e+00 -> alpha1~ = -0.0e+00;   SW03's smoothed switch: nu(eta) - 1 = 0.289 -> alpha1~ = -1.795
+    canonical mu_2  : x_Saturn = 7.02e+05, eta_gal = 2.23; quadrature: nu - 1 = 8.1e-12 -> alpha1~ = -6.5e-11;   SW03's smoothed switch: nu(eta) - 1 = 0.219 -> alpha1~ = -1.435
+    alt       nu_RAR: x_Saturn = 5.83e+05, eta_gal = 1.85; quadrature: nu - 1 = 0.0e+00 -> alpha1~ = -0.0e+00;   SW03's smoothed switch: nu(eta) - 1 = 0.345 -> alpha1~ = -2.050
+    alt       mu_2  : x_Saturn = 5.83e+05, eta_gal = 1.85; quadrature: nu - 1 = 1.2e-11 -> alpha1~ = -9.4e-11;   SW03's smoothed switch: nu(eta) - 1 = 0.268 -> alpha1~ = -1.691
+  [PASS] 3a the repaired quadrature action passes SW04's alpha1 gate: |alpha1~| = 8(nu(sqrt(x_Sat^2 + eta^2)) - 1)/nu < 1e-4 on both footings and kernels, because the LOCAL x_Saturn ~ 7e5 sits unsmoothed in the argument and switches the scalar off (mu_2: 4/x^2 ~ 1e-11; nu_RAR: e^{-sqrt x})
+           (max |alpha1~| = 9.4e-11 (bound 1e-4); the khronon's own alpha1, alpha2 remain, tunable to 0 on the Blas-Sibiryakov family (L270 P3))
+  [PASS] 3b the same formula with SW03's argument (the smoothed switch reads eta_gal only) reproduces SW04's kill, |alpha1~| >= 1.4: the entire difference between the two structures is the unsmoothed local magnitude in the argument
+           (SW03 values: [-1.8, -1.44, -2.05, -1.69])
+
+====================================================================================================
+4. direction-blind below l, AQUAL above it: f(R/l) for the systems on the record
+====================================================================================================
+    system                  l = 0.2 pc   l = 10 pc   l = 1 kpc   l = 2 kpc
+    wide binary (10 kAU)         0.026       0.000       0.000       0.000
+    globular cluster             1.000       0.264       0.000       0.000
+    classical dSph               1.000       1.000       0.090       0.026
+    SPARC disc                   1.000       1.000       1.000       0.960
+  [PASS] 4a at every l in the window (l <= l_max ~ 2 kpc) a SPARC-scale disc (R ~ 10 kpc) has f > 0.9: its external-field effect is AQUAL's DIRECTIONAL one, so the GAME_PLAN's DE05 fingerprint ('direction-NO for galaxies') is NOT this action's prediction; the direction-blind regime is sub-l (wide binaries, the Oort cloud, star clusters)
+           (f(10 kpc / l_max) = 0.950)
+  [PASS] 4b at every l in the window a wide binary (0.05 pc) is direction-blind (f < 1/6.2), so SW01's gamma_v = 1.09-1.15 (below the AQUAL band 1.16-1.23) stays the DR4 prediction of this structure
+           (f(0.05 pc / l_min) = 0.036)
+
+SW05 COMPLETE: 12/12 checks PASS.
+VERDICT.  (1) L268's action AS WRITTEN is not direction-blind: X_loc is the total local gradient and carries the full AQUAL
+cross term (its B1 check defined x^2 + eta^2 by hand).  (2) The one-substitution repair X_loc = |grad(phi - phibar)|^2 makes it
+direction-blind to f(r/l) = 1 - e^{-r/l}(1 + r/l) ~ (r/l)^2/2 inside l and AQUAL outside l.  (3) SW04's alpha1 theorem does NOT
+reach the repaired action: the unsmoothed local x_Saturn ~ 7e5 switches the scalar off (|alpha1~| ~ 1e-11), whereas SW03's
+smoothed switch read eta_gal and gave |alpha1~| = 1.4-2.1.  The l-window for THIS structure is OPEN: l in [~0.2 pc, ~2 kpc].
+SW04's 'no window' is a theorem about the smoothed-total-switch structure only; the FINDINGS/memory sentence 'the isotropic-EFE
++ preferred-frame-lensing class is dead' was too broad and is corrected to 'the smoothed-total-switch realisation is dead'.
+(4) The price of the open window: the repaired action is AQUAL at galaxy scale (directional EFE for discs and most dSphs), so
+DE05 cannot be its fingerprint; its fingerprints are sub-l: DR4 gamma_v below the AQUAL band and NO field-aligned Oort/comet
+anisotropy inside l.  OPEN GATES, named not computed: the matter-phi coupling (with matter on g only phi has no source; the
+disformal coupling through the khronon's u gives lensing = dynamics and, with the scalar off locally, leaves alpha1 to the
+khronon); the FRW background (X = 0 there: the TeVeS strong-coupling problem, no Theta-term in L268 -- SW03's is the available
+fix); the scalar has no time-kinetic term (X is purely spatial): an instantaneous constraint field in a preferred foliation, the
+record's req-9 uniform-ellipticity question; ghost-freedom of khronon + phi on the alpha1 = alpha2 = 0 family (L270 P4); the
+cluster residual (unaddressed).  Nothing here derives kappa.

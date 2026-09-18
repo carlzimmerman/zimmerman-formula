@@ -89,3 +89,13 @@ returns median > 0.4 dex, external fields do not strip the excess and the emerge
 
 Order: DE01 and DE02 first (they set every decision rule), then DE04 → DE05 → DE06, then DE07 on DR3 now, DE08–DE10 as the
 independent channels. Expected cost: DE01–DE02 two days of compute; DE04–DE06 one week of data assembly; the rest in parallel.
+
+## Addendum (2026-09-17, after SW04/SW05)
+
+The pure direction-blind rule at ALL scales is what DE05 fingerprints. The two covariant realisations on the record split it:
+SW03 (smoothed total switch) is killed by the preferred-frame parameter α₁ (SW04); the repaired L268 quadrature action
+(SW05: X_loc = |∇(φ − φ̄)|², X_env = |∇φ̄|²) survives α₁ and the Cassini quadrupole with ℓ ∈ [~0.2 pc, ~2 kpc], but is then
+AQUAL (directional EFE) for every system larger than ℓ — i.e. for SPARC discs and most dSphs. So for that action DE05 is
+expected to return direction-YES (AQUAL's amplitude), and the discriminating lanes are the sub-ℓ ones: DE07 (wide binaries,
+γ_v = 1.09–1.15 vs the AQUAL band 1.16–1.23) and the Oort/comet anisotropy front (no field alignment inside ℓ; the outer
+Oort cloud at 0.5–1 pc measures ℓ). DE01–DE06 remain the test of the pure rule.
