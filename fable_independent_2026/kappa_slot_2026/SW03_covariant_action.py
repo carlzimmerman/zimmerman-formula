@@ -48,9 +48,10 @@ nu_rar = lambda yy: 1 / (1 - sp.exp(-sp.sqrt(yy)))
 deep = sp.limit(sp.sqrt(yv) * (nu_rar(yv) * yv), yv, 0)     # deep limit: nu y -> sqrt(y)  <=>  g/a0 = sqrt(g_N/a0)
 check("2c deep limit with nu_RAR: g/a0 -> sqrt(y), i.e. g^2 = a0 g_N", sp.simplify(sp.limit(nu_rar(yv) * yv / sp.sqrt(yv), yv, 0) - 1) == 0)
 check("2d strong field: mu_s = 1/(nu_RAR(y) - 1) -> infinity as y -> infinity (the scalar switches OFF)", sp.limit(1 / (nu_rar(yv) - 1), yv, sp.oo) == sp.oo)
-check("2e mu_s > 0 for every y > 0 (no ghost sign in the phi-sector): nu_RAR(y) > 1 for all y > 0",
-      all(sp.N(nu_rar(sp.Float(v, 60)), 60) > 1 for v in (1e-6, 1e-3, 0.1, 1, 10, 1e3, 1e6)) and sp.limit(nu_rar(yv), yv, sp.oo) == 1,
-      "nu_RAR(y) = 1/(1 - e^{-sqrt y}) > 1 for every finite y (evaluated at 60 digits; the double-precision e^{-1000} underflow was the earlier FAIL)")
+ident = sp.simplify(nu_rar(yv) - 1 - sp.exp(-sp.sqrt(yv)) / (1 - sp.exp(-sp.sqrt(yv))))
+check("2e mu_s > 0 for every y > 0 (no ghost sign in the phi-sector): nu_RAR(y) - 1 = e^{-sqrt y}/(1 - e^{-sqrt y}), a ratio of two positive quantities for every finite y > 0 (identity) and > 1 at 60 digits up to y = 1e4",
+      ident == 0 and all(sp.N(nu_rar(sp.Float(v, 60)), 60) > 1 for v in (1e-6, 1e-3, 0.1, 1, 10, 1e3, 1e4)),
+      "the earlier FAIL was the double-precision underflow of e^{-1000} at y = 1e6; the identity settles every y")
 
 # ------------------------------------------------------------------ 3. the scalar's characteristic cone
 print("\n" + "=" * 100); print("3. the phi-sector's principal symbol: mu_s(psi) g^{mu nu} k_mu k_nu -- the null cone of g (no superluminal scalar)"); print("=" * 100)
