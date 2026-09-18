@@ -122,20 +122,28 @@ check("B1b the magnitude EFE is nonetheless REAL: mu still depends on eta (the e
       "directional signature -- the EFE without the Cassini quadrupole")
 
 # =================================================================================================
-banner("C1 -- THE PRICE (honest): the action carries a preferred frame; the alpha_3 cost is real and large")
-# By PAPER9, single metric + MOND + 2 DOF => a preferred frame; where computed, alpha_3 = O(1).
-# Verify the cost is real and large against the pulsar bound (a genuine inequality, not a fake FAIL).
-alpha3 = 1.0                          # O(1), as computed for the khronometric chassis (PAPER9 / DC-019)
-pulsar_bound = 4e-20                  # |alpha_3| < 4e-20 (binary-pulsar)
-price = alpha3 / pulsar_bound
-OUT["numbers"]["alpha3_over_bound"] = price
-check("C1 the preferred-frame price is REAL and LARGE: with alpha_3 = O(1) (as computed for the "
-      "khronometric chassis) against the pulsar bound |alpha_3| < 4e-20, the exceedance is ~2.5e19 -- "
-      "so the frame is not a free decoration, it is the wall",
-      f"alpha_3/bound = {price:.2e} (>> 1)", price > 1e19,
-      "this is a documented COST, not a pass: the theory must either pay it or take PAPER9's other horn "
-      "(let the frame propagate => 4 DOF, failing the 2-DOF requirement). Ghost, c_T=c, full PPN for THIS "
-      "action are all still UNCOMPUTED -- writing the action does not make it viable")
+banner("C1 -- THE PRICE (honest, CORRECTED): the preferred-frame alpha's are UNCOMPUTED and OPEN, not a wall")
+# CORRECTION (2026-09-17): an earlier version of this check asserted alpha_3 = O(1) (2.5e19 over the
+# pulsar bound), imported from DC-019.  DC-019 is the DIRECTIONAL/vector EFE (AeST's clock-matter
+# coupling).  The MAGNITUDE-ONLY action here has NO directional clock-matter coupling (the external
+# field enters as a scalar magnitude, B1), so that kill mechanism is ABSENT.  The corpus's own
+# preferred-frame gate (L203) records this class as OPEN: "no alpha_1 has been computed for this action
+# ... the full boosted metric expansion has not been done", with the residual sector stress inside the
+# solar system 6e-16 of the Sun -- ~11 orders below the alpha_1 bound (~1e-4).  So there is no computed
+# alpha to report and no established wall; the honest status is OPEN.
+sector_in_solar = 5.89e-16           # L203 V2: sector mass inside Saturn's orbit / Msun
+alpha1_bound = 1e-4                  # |alpha_1| observational bound (LLR/pulsar class)
+scaling_below = alpha1_bound / sector_in_solar
+OUT["numbers"]["sector_stress_below_alpha1_bound_by"] = scaling_below
+check("C1 the preferred-frame alpha_1/2/3 for THIS action are NOT computed (the full boosted metric "
+      "expansion is not done -- L203); the AeST kill mechanism (directional clock-matter coupling) is "
+      "ABSENT because the external field enters as a scalar magnitude, and the residual sector stress in "
+      "the solar system sits ~11 orders below the alpha_1 bound -- so the gate is OPEN, not a wall",
+      f"sector stress in solar system = {sector_in_solar:.1e} Msun-frac, {scaling_below:.1e}x below the "
+      f"alpha_1 bound; full alpha_i UNCOMPUTED (L203)", scaling_below > 1e9,
+      "CORRECTS this lane's earlier alpha_3 = O(1) claim, which was the DIRECTIONAL (DC-019) number and "
+      "does NOT apply to the magnitude-only action; the boosted-expansion alpha_i is the genuine next "
+      "computation, and on the scaling estimate the class is plausibly survivable, not killed")
 
 # =================================================================================================
 banner("C2 -- the projector is spatial: the leaf-smoothing is instantaneous (PAPER9's foliation corollary)")
@@ -162,17 +170,21 @@ P(f"""  (1) WRITTEN: a covariant action -- Einstein-Hilbert + khronon/aether + a
       rule; and the external-field anisotropy of mu is IDENTICALLY ZERO, so the Solar-System quadrupole
       L243 bounds (6.44x for the vector EFE) is structurally absent -- confirmed by the mutation, which
       restores it.
-  (3) HONEST SENTENCE: the covariant magnitude-only EFE action EXISTS and reproduces the direction-blind
-      phenomenology while evading the Cassini QUADRUPOLE by construction -- but it is NOT a viable theory.
-      It carries a khronon, so by PAPER9 it has a preferred frame and the alpha_3 dichotomy (pay ~O(1),
-      2.5-7.5e19 over the pulsar bound, or propagate a 4th mode), and its ghost-freedom, c_T=c and full
-      PPN sector are UNCOMPUTED.  What this lane delivers is the correct covariant OBJECT and the exact
-      remaining gates -- the alpha_1/2/3 computation for this specific action is the next lane, and it is
-      where the theory lives or dies, on the same wall every single-metric MOND theory has hit.
-      NOT CLAIMED: viability, ghost-freedom, a PPN pass, or that the frame's price is payable.""")
-OUT["verdict"] = {"word": "ACTION-WRITTEN-CASSINI-QUADRUPOLE-EVADED-FRAME-PRICE-OPEN",
+  (3) HONEST SENTENCE (CORRECTED): the covariant magnitude-only EFE action EXISTS, reproduces the
+      direction-blind phenomenology, and evades the Cassini QUADRUPOLE by construction.  It carries a
+      khronon, so by PAPER9 it has a preferred frame -- but the alpha_3 = O(1) kill is the DIRECTIONAL
+      EFE's (DC-019) and does NOT apply here: with no directional clock-matter coupling that mechanism is
+      absent, and the corpus's preferred-frame gate (L203) records this class OPEN, the residual sector
+      stress ~11 orders below the alpha_1 bound.  So the alpha_1/2/3 are UNCOMPUTED (the boosted metric
+      expansion is not done) and, on the scaling estimate, plausibly survivable rather than a wall.  The
+      genuine next computation is the boosted alpha_i for this action; ghost-freedom and c_T=c remain open.
+      NOT CLAIMED: viability, ghost-freedom, a PPN pass, or a computed alpha_i (this is neither a pass nor
+      a kill -- it is honestly OPEN).""")
+OUT["verdict"] = {"word": "ACTION-WRITTEN-CASSINI-QUADRUPOLE-EVADED-ALPHA-UNCOMPUTED-OPEN",
                   "reproduces_sw01_rule": True, "quadrupole_anisotropy": "zero (magnitude-only)",
-                  "open_gates": ["alpha_1/2/3 for this action", "ghost/bounded Hamiltonian", "c_T=c",
+                  "alpha_status": "UNCOMPUTED; directional-EFE (DC-019) kill mechanism absent; L203 "
+                  "scaling ~11 orders below alpha_1 bound => OPEN/plausibly-survivable, not alpha_3=O(1)",
+                  "open_gates": ["boosted alpha_1/2/3 for this action", "ghost/bounded Hamiltonian", "c_T=c",
                                  "full PPN"], "inherits": "PAPER9 preferred-frame dichotomy"}
 
 banner("RESULT")

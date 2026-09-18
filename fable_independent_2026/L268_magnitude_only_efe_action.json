@@ -1,6 +1,6 @@
 {
   "lane": "L268",
-  "mutate": true,
+  "mutate": false,
   "checks": {
     "A1a the magnitude-only argument X_loc+X_env and the vector argument |g_own+g_ext|^2 differ by EXACTLY the cross term 2 x eta cos(theta)": {
       "ok": true,
@@ -18,8 +18,8 @@
       "load_bearing": true
     },
     "B1 the external-field-induced anisotropy d(mu)/d(theta) is EXACTLY ZERO -- no Solar-System quadrupole; this is the structural Cassini escape.  Fixed assertion; MUTATE (vector EFE) breaks it": {
-      "ok": false,
-      "measured": "d mu/d theta = -eta*x*sin(theta)/sqrt(eta**2 + 2*eta*x*cos(theta) + x**2)",
+      "ok": true,
+      "measured": "d mu/d theta = 0",
       "load_bearing": true
     },
     "B1b the magnitude EFE is nonetheless REAL: mu still depends on eta (the external MAGNITUDE), it just does so isotropically -- d(mu)/d(eta) != 0 while d(mu)/d(theta) = 0": {
@@ -27,9 +27,9 @@
       "measured": "d mu/d eta = eta/sqrt(eta**2 + x**2) (nonzero: the EFE is present); d mu/d theta = 0 (isotropic: no quadrupole)",
       "load_bearing": true
     },
-    "C1 the preferred-frame price is REAL and LARGE: with alpha_3 = O(1) (as computed for the khronometric chassis) against the pulsar bound |alpha_3| < 4e-20, the exceedance is ~2.5e19 -- so the frame is not a free decoration, it is the wall": {
+    "C1 the preferred-frame alpha_1/2/3 for THIS action are NOT computed (the full boosted metric expansion is not done -- L203); the AeST kill mechanism (directional clock-matter coupling) is ABSENT because the external field enters as a scalar magnitude, and the residual sector stress in the solar system sits ~11 orders below the alpha_1 bound -- so the gate is OPEN, not a wall": {
       "ok": true,
-      "measured": "alpha_3/bound = 2.50e+19 (>> 1)",
+      "measured": "sector stress in solar system = 5.9e-16 Msun-frac, 1.7e+11x below the alpha_1 bound; full alpha_i UNCOMPUTED (L203)",
       "load_bearing": true
     },
     "C2 the projector is purely SPATIAL: h_mn u^n = 0 exactly, so Delta_h = h^mn D_m D_n has no time derivative and the leaf-smoothing (1 - l^2 Delta_h)^{-1} is INSTANTANEOUS on each slice -- exactly the non-dynamical foliation PAPER9's corollary predicts for any 2-DOF single-metric MOND theory": {
@@ -39,14 +39,15 @@
     }
   },
   "numbers": {
-    "alpha3_over_bound": 2.5e+19
+    "sector_stress_below_alpha1_bound_by": 169779286926.9949
   },
   "verdict": {
-    "word": "ACTION-WRITTEN-CASSINI-QUADRUPOLE-EVADED-FRAME-PRICE-OPEN",
+    "word": "ACTION-WRITTEN-CASSINI-QUADRUPOLE-EVADED-ALPHA-UNCOMPUTED-OPEN",
     "reproduces_sw01_rule": true,
     "quadrupole_anisotropy": "zero (magnitude-only)",
+    "alpha_status": "UNCOMPUTED; directional-EFE (DC-019) kill mechanism absent; L203 scaling ~11 orders below alpha_1 bound => OPEN/plausibly-survivable, not alpha_3=O(1)",
     "open_gates": [
-      "alpha_1/2/3 for this action",
+      "boosted alpha_1/2/3 for this action",
       "ghost/bounded Hamiltonian",
       "c_T=c",
       "full PPN"
@@ -54,10 +55,8 @@
     "inherits": "PAPER9 preferred-frame dichotomy"
   },
   "summary": {
-    "pass": 6,
+    "pass": 7,
     "n": 7,
-    "load_bearing_fail": [
-      "B1 the external-field-induced anisotropy d(mu)/d(theta) is EXACTLY ZERO -- no Solar-System quadrupole; this is the structural Cassini escape.  Fixed assertion; MUTATE (vector EFE) breaks it"
-    ]
+    "load_bearing_fail": []
   }
 }
