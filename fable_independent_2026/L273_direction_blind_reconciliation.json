@@ -1,0 +1,45 @@
+{
+  "lane": "L273",
+  "checks": {
+    "C1 L268 as written (X_loc from the TOTAL field) gives argument x^2 + 2 eta^2 + 2 x eta cos(theta), which is DIRECTION-DEPENDENT -- my B1 'quadrupole evaded' was a tautology (I posited x^2+eta^2)": {
+      "ok": true,
+      "measured": "arg = 2*eta**2 + 2*eta*x*cos(theta) + x**2, d/dtheta = -2*eta*x*sin(theta) (!= 0)",
+      "load_bearing": true
+    },
+    "C2 SW04's theorem gamma=1 without gravitomagnetism => alpha_1 = -8(nu(eta_gal)-1)/nu; at the Sun's galactic eta ~ 1.5-2.1 this is -1.4 to -2.4, i.e. ~2e4x the |alpha_1|<1e-4 bound -- reproduced": {
+      "ok": true,
+      "measured": "alpha_1(eta) = {1.5:-2.35, 1.8:-2.09, 2.1:-1.88}",
+      "load_bearing": true
+    },
+    "C3 the REPAIR X_loc = |grad(phi - phibar)|^2 gives x^2 + eta^2 (direction-blind); the internal field at Saturn x ~ 7e5 switches the scalar off, so |alpha_1| <= 9e-11 (SW05, PASSES PPN). My L270-L272 'passable' matches this REPAIR -- but I analysed the flawed L268, not the repair": {
+      "ok": true,
+      "measured": "repaired arg = eta**2 + x**2, d/dtheta = 0; x_Saturn = 6.90e+05 (scalar off)",
+      "load_bearing": true
+    },
+    "C4 across L268-L272 I checked alpha_1 and NEVER checked lensing; SW06 shows the repaired action's lensing is dead on all 5 routes except A4 = the standing candidate -- so it passes PPN but cannot give lensing=dynamics except by BECOMING the pre-existing candidate": {
+      "ok": true,
+      "measured": "5/6 lensing routes DEAD; the only live one (A4) IS the standing candidate's structure",
+      "load_bearing": true
+    }
+  },
+  "numbers": {
+    "alpha1_smoothed_total": {
+      "1.5": -2.3506612470245845,
+      "1.8": -2.091331104139627,
+      "2.1": -1.8781812099661095
+    }
+  },
+  "verdict": {
+    "word": "L268-FLAWED-L269-272-SUPERSEDED-PROGRAMME-CLOSED",
+    "my_error": "L268 not direction-blind (B1 tautology); lensing gate never checked",
+    "repair_passes_ppn": true,
+    "repair_lensing_dead": true,
+    "live_construction": "standing single-metric candidate (clock host + xi-screened scalar, 09-05/L223)",
+    "credit": "glm_moe/astra swarm SW03-SW07, CK01"
+  },
+  "summary": {
+    "pass": 4,
+    "n": 4,
+    "load_bearing_fail": []
+  }
+}

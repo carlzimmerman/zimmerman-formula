@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
+*** CORRECTED 2026-09-18 (see L273): THIS LANE IS FLAWED. X_loc uses the TOTAL field, so the action
+as written is NOT direction-blind (argument x^2 + 2 eta^2 + 2 x eta cos theta; ~4.8x Cassini quadrupole).
+The B1 "quadrupole evaded" check assigned x^2+eta^2 BY HAND and is a tautology (swarm SW05). L269-L272
+inherited this false premise. The swarms repair X_loc = |grad(phi-phibar)|^2 IS direction-blind and
+passes PPN, but its lensing is dead on every route except the standing candidate (SW06). Read L273. ***
+
 L268 -- THE COVARIANT MAGNITUDE-ONLY EFE ACTION: written, its weak-field limit verified, its costs priced.
 
 The day's framework-internal lanes converge on one open object: a MOND theory whose external-field
