@@ -183,7 +183,7 @@ def build_frw_perturbation_odes():
 
 
 def build_frw_perturbation_odes_shift():
-    """[EL operator corrected 2026-09-19 after L287; the healing term below is still the non-covariant (d_x^2 P)^2 form -- replace by the covariant (D^2 phi)^2 of L287 before use at Q0 != 0]
+    """[EL operator general-order and healing term covariant, 2026-09-19 after L287]
     Scalar-sector perturbations on FRW from THE_ACTION (+ Lambda), fields Psi, Phi, T, P of (t, x), Newtonian gauge
     ds^2 = -(1 + 2 eps Psi) dt^2 + a(t)^2 (1 - 2 eps Phi) dx^2, clock tau = t + eps T, scalar phi = phibar(t) + eps P with phibar' = Qb(t),
     Q-well expanded about the rolling background: F = F0(t) + F1(t) dQ + F2(t) dQ^2/2 (F0, F1, F2 given functions of time).
@@ -224,9 +224,12 @@ def build_frw_perturbation_odes_shift():
     Lbr = R - 2 * Lam - c1 * T1 - c2 * T2 - c3 * T3 + c4 * T4 + 2 * (2 - KB) * Jdphi - (2 - KB) * beta * Y - Fexp
     L = sqrtg * Lbr
     L = L.subs(sp.Derivative(phibar, t), Qb).subs(sp.Derivative(phibar, (t, 2)), sp.Derivative(Qb, t))
-    L2 = sp.diff(L, eps, 2).subs(eps, 0) / 2
-    L2 = L2 - (2 - KB) * xi ** 2 * sp.diff(P, x, 2) ** 2 / a           # healing term: -(2-K_B) xi^2 (D^2 phi)^2 sqrt(-g), D^2 = lap/a^2
-    L2 = sp.expand(L2)
+    # covariant healing term (L287): -(2-K_B) xi^2 (D^2 phi)^2 with D^2 phi = h^{mu nu}(d_mu d_nu phi - Gamma^l_{mu nu} d_l phi)
+    Hess = [[sp.diff(phi, X[m], X[n]) - sum(Gam[l][m][n] * dphi[l] for l in range(4)) for n in range(4)] for m in range(4)]
+    D2phi = sum((ginv[m, n] + n_up[m] * n_up[n]) * Hess[m][n] for m in range(4) for n in range(4))
+    L = L - sqrtg * (2 - KB) * xi ** 2 * D2phi ** 2
+    L = L.subs(sp.Derivative(phibar, t), Qb).subs(sp.Derivative(phibar, (t, 2)), sp.Derivative(Qb, t))
+    L2 = sp.expand(sp.diff(L, eps, 2).subs(eps, 0) / 2)
     fields = [Psi, Bs, Phi, Tf, P]
     def EL(Lag, f):                  # Euler-Lagrange operator for derivatives of EVERY order (L287: the shift enters the curvature with third derivatives)
         e = sp.diff(Lag, f)

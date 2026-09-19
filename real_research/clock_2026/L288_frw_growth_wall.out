@@ -1,0 +1,33 @@
+L288 -- FRW growth at the exponential-wall point, corrected operator + covariant healing
+
+    FRW ODEs loaded from cache (0 s)
+    lapse equation contains second time derivatives: False; any equation contains psi'': False
+  [PASS] V1a the lapse equation (varying Psi) is a constraint: no second time derivative of any field; and no equation contains Psi'' (Psi is algebraic)
+    lapse equation contains: ['psi', 'phi', "phi'", 'T', "T'", 'P', "P'"]
+    momentum equation contains: ['psi', "phi'", 'T', 'P', "P'"]
+    trace equation contains: ['psi', "psi'", 'phi', "phi'", "phi''", 'T', "T'", 'P', "P'", "P''"]
+    clock equation contains: ['psi', "psi'", "phi'", 'T', "T'", "T''", 'P', "P'"]
+    scalar equation contains: ['psi', "psi'", 'phi', "phi'", "phi''", 'T', "T'", 'P', "P'", "P''"]
+    reduced matrices loaded (1 s)
+  [PASS] V1b with the general-order operator the lapse and momentum constraints are algebraic for (Psi, Phi') on the state (Phi, T, T', P, D): no Psi', Phi'', T'' or D' in them (L286's obstruction is gone)
+           ([])
+    linear coefficient matrix lambdified (1 s)
+    k = 0.01 /Mpc: max Re(eigenvalue) per e-fold at a = 1, 0.5, 0.3, 0.2, 0.15, 0.1, 0.03, 0.01, 1e-3, 1e-4: 0.373, 266, 326, 339, 342, 344, 344, 341, 305, 175
+    k = 0.1 /Mpc: max Re(eigenvalue) per e-fold at a = 1, 0.5, 0.3, 0.2, 0.15, 0.1, 0.03, 0.01, 1e-3, 1e-4: 0.817, 0.208, 0.742, 10.9, 155, 237, 316, 332, 304, 175
+    k = 1.0 /Mpc: max Re(eigenvalue) per e-fold at a = 1, 0.5, 0.3, 0.2, 0.15, 0.1, 0.03, 0.01, 1e-3, 1e-4: 0.899, 0.504, 0.245, 0.0887, 0.00631, 0.00956, 0.0334, 0.116, 209, 170
+    largest scale factor at which a mode grows faster than 10 per e-fold: {0.01: 0.5, 0.1: 0.2, 1.0: 0.001}
+  [PASS] V2 [FINDING, measured] the linear system has a real growing eigenvalue of hundreds per e-fold (1e2 .. 1e8 H0) up to a scale-dependent epoch a*(k): the larger the scale the later it persists (printed: a* = 0.5 at k = 0.01/Mpc, 0.2 at 0.1/Mpc, 1e-3 at 1/Mpc) -- a long-wavelength instability of the dust-loaded clock sector; at a = 1 the growing mode is the dust's and scale-dependent (+0.37/+0.82/+0.90 per e-fold at k = 0.01/0.1/1 vs LambdaCDM's 0.52)
+           ({0.01: 0.5, 0.1: 0.2, 1.0: 0.001})
+    a = 1: exact Minkowski growth rate 8.7620e-01 H0 vs FRW reduced 8.1702e-01 H0
+    a = 0.01: exact Minkowski growth rate 1.8767e+05 H0 vs FRW reduced 1.8769e+05 H0
+    a = 0.001: exact Minkowski growth rate 6.0829e+06 H0 vs FRW reduced 6.0828e+06 H0
+  [PASS] V3 the FRW reduction is faithful: the maximal growth rate of the reduced FRW system agrees with the exact Minkowski dispersion (L285's machinery, all four fields, no reduction) at the parameters of a = 0.01 and 0.001 to < 0.1% (k >> aH), and at a = 1 within 10% (Hubble friction) -- the instability is physics, not formulation
+           ({1.0: (0.8761968557525219, 0.8170214491750113), 0.01: (187673.85249217268, 187685.80659056906), 0.001: (6082939.590806321, 6082833.329254818)})
+    late growth k = 0.01 /Mpc, a = 0.3 -> 1 from generic initial data: delta_d(1)/delta_d(0.3) relative to LambdaCDM = 412849364091575642705514317183473294637926553447097556744724807680.0000; f(z = 0) = 3.2447 (LambdaCDM 0.5223)
+    late growth k = 0.1 /Mpc, a = 0.3 -> 1 from generic initial data: delta_d(1)/delta_d(0.3) relative to LambdaCDM = 42.7793; f(z = 0) = -1.1099 (LambdaCDM 0.5223)
+    late growth k = 1.0 /Mpc, a = 0.3 -> 1 from generic initial data: delta_d(1)/delta_d(0.3) relative to LambdaCDM = 2.7701; f(z = 0) = -1.3229 (LambdaCDM 0.5223)
+  [PASS] V4 [measured, for the record only] the a = 0.3 -> 1 integration from generic initial data: k = 0.01/Mpc is still inside its unstable epoch (blows up), k = 0.1 and 1 are dominated by transients (ratios and f printed); the physical late-time statement is the eigenvalue at a = 1 in V2
+           ({0.01: {'growth_ratio_to_lcdm_0p3_to_1': 4.1284936409157564e+65, 'f0': 3.2446835662409006, 'f_lcdm': 0.5223232434809975}, 0.1: {'growth_ratio_to_lcdm_0p3_to_1': 42.77928885586588, 'f0': -1.1098691477583902, 'f_lcdm': 0.5223232434809975}, 1.0: {'growth_ratio_to_lcdm_0p3_to_1': 2.770142602166993, 'f0': -1.322946550246321, 'f_lcdm': 0.5223232434809975}})
+
+L288 COMPLETE: 5/5 checks PASS  (67 s).
+exit 0
