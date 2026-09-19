@@ -1,0 +1,59 @@
+"""Shared covariant build of the candidate's action (THE_ACTION with the AeST coupling), used by L283+.
+build_fourier_matrix(): Minkowski, tau = t, phi = Q0 t, Newtonian-gauge scalar perturbations Psi, Phi, clock T, scalar P of (t, x);
+quadratic Lagrangian by machine (as L282), Euler-Lagrange equations, plane-wave matrix M(omega, k) with an optional matter source
+column for the lapse equation.  The scalar's Q-potential enters only through its curvature F_QQ at the background: K2 := F_QQ/2."""
+import sympy as sp
+
+def build_fourier_matrix():
+    t, x, y, z = sp.symbols('t x y z', real=True); X = [t, x, y, z]
+    eps = sp.symbols('epsilon', positive=True)
+    KB, c1, c2, c3, c4, K2, Q0, beta, xi = sp.symbols('K_B c_1 c_2 c_3 c_4 K_2 Q_0 beta xi', real=True)
+    Psi, Phi, Tf, P = [sp.Function(n)(t, x) for n in ("Psi", "Phi", "T", "P")]
+    N = 1 + eps * Psi; a = 1 - eps * Phi
+    g = sp.diag(-N ** 2, a ** 2, a ** 2, a ** 2); ginv = g.inv(); sqrtg = N * a ** 3
+    Gam = [[[sp.simplify(sum(ginv[l, s] * (sp.diff(g[s, m], X[n]) + sp.diff(g[s, n], X[m]) - sp.diff(g[m, n], X[s])) for s in range(4)) / 2) for n in range(4)] for m in range(4)] for l in range(4)]
+    Ric = sp.zeros(4, 4)
+    for m in range(4):
+        for n in range(4):
+            Ric[m, n] = sum(sp.diff(Gam[l][m][n], X[l]) - sp.diff(Gam[l][m][l], X[n]) + sum(Gam[l][l][s] * Gam[s][m][n] - Gam[l][n][s] * Gam[s][m][l] for s in range(4)) for l in range(4))
+    R = sum(ginv[m, n] * Ric[m, n] for m in range(4) for n in range(4))
+    tau = t + eps * Tf; dtau = [sp.diff(tau, v) for v in X]
+    Xinv = -sum(ginv[m, n] * dtau[m] * dtau[n] for m in range(4) for n in range(4))
+    n_dn = [-dtau[m] / sp.sqrt(Xinv) for m in range(4)]; n_up = [sum(ginv[m, n] * n_dn[n] for n in range(4)) for m in range(4)]
+    Dn = [[sp.diff(n_dn[n], X[m]) - sum(Gam[l][m][n] * n_dn[l] for l in range(4)) for n in range(4)] for m in range(4)]
+    Dn_up = [[sum(ginv[m, a_] * ginv[n, b_] * Dn[a_][b_] for a_ in range(4) for b_ in range(4)) for n in range(4)] for m in range(4)]
+    T1 = sum(Dn[m][n] * Dn_up[m][n] for m in range(4) for n in range(4))
+    divn = sum(ginv[m, n] * Dn[m][n] for m in range(4) for n in range(4)); T2 = divn ** 2
+    T3 = sum(Dn[m][n] * Dn_up[n][m] for m in range(4) for n in range(4))
+    J_dn = [sum(n_up[nu] * Dn[nu][m] for nu in range(4)) for m in range(4)]
+    J_up = [sum(ginv[m, n] * J_dn[n] for n in range(4)) for m in range(4)]
+    T4 = sum(J_dn[m] * J_up[m] for m in range(4))
+    phi = Q0 * t + eps * P; dphi = [sp.diff(phi, v) for v in X]
+    Jdphi = sum(J_up[m] * dphi[m] for m in range(4))
+    Q = sum(n_up[m] * dphi[m] for m in range(4))
+    Y = sum((ginv[m, n] + n_up[m] * n_up[n]) * dphi[m] * dphi[n] for m in range(4) for n in range(4))
+    Lbr = R - c1 * T1 - c2 * T2 - c3 * T3 + c4 * T4 + 2 * (2 - KB) * Jdphi - (2 - KB) * beta * Y - K2 * (Q - Q0) ** 2
+    L = sqrtg * Lbr
+    L2 = sp.simplify(sp.diff(L, eps, 2).subs(eps, 0) / 2) - (2 - KB) * xi ** 2 * sp.diff(P, x, 2) ** 2
+    fields = [Psi, Phi, Tf, P]
+    def EL(Lag, f):
+        e = sp.diff(Lag, f)
+        for v in (t, x):
+            e -= sp.diff(sp.diff(Lag, sp.diff(f, v)), v)
+        for v1, v2 in ((t, t), (t, x), (x, x)):
+            d2 = sp.diff(f, v1, v2)
+            if Lag.has(d2): e += sp.diff(sp.diff(Lag, d2), v1, v2)
+        return sp.expand(e)
+    E = [EL(L2, f) for f in fields]
+    w, k = sp.symbols('omega k', positive=True)
+    amps = sp.symbols('A_Psi A_Phi A_T A_P'); ex = sp.exp(sp.I * (k * x - w * t))
+    sub = {f: A * ex for f, A in zip(fields, amps)}
+    M = sp.zeros(4, 4)
+    for i, e in enumerate(E):
+        ee = sp.expand(sp.simplify(e.subs(sub).doit() / ex))
+        for j, A in enumerate(amps):
+            M[i, j] = sp.simplify(ee.coeff(A))
+    c14 = sp.Symbol('c14')
+    M = M.subs({c1: KB, c3: -KB, c4: c14 - KB})
+    syms = dict(w=w, k=k, KB=KB, c2=c2, c14=c14, K2=K2, Q0=Q0, beta=beta, xi=xi, amps=amps)
+    return M, syms
