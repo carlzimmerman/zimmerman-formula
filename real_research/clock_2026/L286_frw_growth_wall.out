@@ -1,0 +1,38 @@
+L286 -- FRW growth at the exponential-wall point
+
+    FRW ODEs loaded from cache (0 s)
+    lapse equation contains second time derivatives: False; any equation contains psi'': False
+  [PASS] V1a the lapse equation (varying Psi) is a constraint: no second time derivative of any field; and no equation contains Psi'' (Psi is algebraic)
+    lapse equation contains: ['psi', 'phi', "phi'", 'T', "T'", 'P', "P'"]
+    momentum equation contains: ['psi', "psi'", 'phi', "phi'", 'T', 'P']
+    trace equation contains: ['psi', "psi'", 'phi', "phi'", "phi''", 'T', "T'", "P'"]
+    clock equation contains: ['psi', "psi'", "phi'", 'T', "T'", "T''", 'P', "P'"]
+    scalar equation contains: ['psi', "psi'", "phi'", 'T', "T'", 'P', "P''"]
+    linear solve done (0 s)
+    linear coefficient matrix lambdified (1 s)
+    eigenvalues of the linear system (per e-fold) at a = 0.0001, k = 0.1/Mpc: [-175.06029106+0.j   -7.87249188+0.j   -0.52867415+0.j    0.49540539+0.j
+  174.06029102+0.j]
+    eigenvalues of the linear system (per e-fold) at a = 0.01, k = 0.1/Mpc: [-2.06925384e+03+0.j -3.32538677e+02+0.j -1.24027742e+00+0.j
+  1.23953516e+00+0.j  3.31538715e+02+0.j]
+    eigenvalues of the linear system (per e-fold) at a = 1, k = 0.1/Mpc: [-6.59457443e+04  +0.j         -8.33322469e-01  +0.j
+ -4.99976541e-01-545.39571853j -4.99976541e-01+545.39571853j
+  8.33227562e-01  +0.j        ]
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/integrate/_ivp/radau.py:108: RuntimeWarning: overflow encountered in multiply
+  f_real = F.T.dot(TI_REAL) - M_real * W[0]
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/integrate/_ivp/radau.py:108: RuntimeWarning: invalid value encountered in subtract
+  f_real = F.T.dot(TI_REAL) - M_real * W[0]
+    k = 0.1: integrator raised array must not contain infs or NaNs
+      trace / momentum residuals at a = 0.1: 5.07e-03 / 9.32e-01 (relative to the largest term)
+      trace / momentum residuals at a = 1.0: 9.25e-15 / 5.28e-01 (relative to the largest term)
+    k = 1.0 /Mpc: integrated to a = 1.0000, 3106712 rhs evaluations (44 s); delta_d at a = 0.02, 0.1, 1: ['2.159e+247', '7.686e+246', '1.450e+248']
+    k = 0.01: integrator raised array must not contain infs or NaNs
+    k = 1.0 /Mpc: delta_d(1)/delta_d(0.02) x 0.02 = 0.1343  (LambdaCDM 0.7692, ratio 0.1746);  f(z=0) = 4.4460 (LambdaCDM 0.5223);  Phi/Psi at a = 1: 1.000000
+  [FAIL] V2 growth within the work order's 3% of LambdaCDM's D(a)/a from a = 0.02 to 1 at k = 0.01, 0.1, 1 /Mpc (measured; a FAIL is the finding)
+           ({1.0: 0.1746})
+  [FAIL] V3 scale-independence: the three k agree on the growth suppression to < 1% (CDM-like)
+           ([0.13434609793767302])
+  [FAIL] V4 growth rate f(z = 0) within 0.03 of LambdaCDM's and the slip Phi/Psi within 1e-3 of 1 at a = 1 (L279's Psi = Phi)
+           ({1.0: (4.446, 1.0)})
+
+L286 COMPLETE: 1/4 checks PASS  (46 s).
+exit 1
