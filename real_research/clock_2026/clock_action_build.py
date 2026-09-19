@@ -183,7 +183,8 @@ def build_frw_perturbation_odes():
 
 
 def build_frw_perturbation_odes_shift():
-    """Scalar-sector perturbations on FRW from THE_ACTION (+ Lambda), fields Psi, Phi, T, P of (t, x), Newtonian gauge
+    """[EL operator corrected 2026-09-19 after L287; the healing term below is still the non-covariant (d_x^2 P)^2 form -- replace by the covariant (D^2 phi)^2 of L287 before use at Q0 != 0]
+    Scalar-sector perturbations on FRW from THE_ACTION (+ Lambda), fields Psi, Phi, T, P of (t, x), Newtonian gauge
     ds^2 = -(1 + 2 eps Psi) dt^2 + a(t)^2 (1 - 2 eps Phi) dx^2, clock tau = t + eps T, scalar phi = phibar(t) + eps P with phibar' = Qb(t),
     Q-well expanded about the rolling background: F = F0(t) + F1(t) dQ + F2(t) dQ^2/2 (F0, F1, F2 given functions of time).
     Returns the four Euler-Lagrange equations after the plane-wave substitution field(t, x) = f(t) e^{i k x} (linear ODEs in t with
@@ -227,13 +228,13 @@ def build_frw_perturbation_odes_shift():
     L2 = L2 - (2 - KB) * xi ** 2 * sp.diff(P, x, 2) ** 2 / a           # healing term: -(2-K_B) xi^2 (D^2 phi)^2 sqrt(-g), D^2 = lap/a^2
     L2 = sp.expand(L2)
     fields = [Psi, Bs, Phi, Tf, P]
-    def EL(Lag, f):
+    def EL(Lag, f):                  # Euler-Lagrange operator for derivatives of EVERY order (L287: the shift enters the curvature with third derivatives)
         e = sp.diff(Lag, f)
-        for v in (t, x):
-            e -= sp.diff(sp.diff(Lag, sp.diff(f, v)), v)
-        for v1, v2 in ((t, t), (t, x), (x, x)):
-            d2 = sp.diff(f, v1, v2)
-            if Lag.has(d2): e += sp.diff(sp.diff(Lag, d2), v1, v2)
+        for d_ in Lag.atoms(sp.Derivative):
+            if d_.expr == f:
+                vars_ = []
+                for v_, cnt in d_.variable_count: vars_ += [v_] * cnt
+                e += (-1) ** len(vars_) * sp.diff(sp.diff(Lag, d_), *vars_)
         return sp.expand(e)
     E = [EL(L2, f).subs(Bs, 0).doit() for f in fields]                   # Newtonian gauge after the variation: B = 0
     E = [sp.expand(e.subs(Bs, 0)) for e in E]

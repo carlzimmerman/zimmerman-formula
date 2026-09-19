@@ -1,4 +1,9 @@
-"""STATUS 2026-09-19: INCOMPLETE -- no physical growth number obtained. The FRW linearised equations (lapse, momentum, trace, clock,
+"""RETRACTION 2026-09-19 (L287): the diagnosis below -- "the momentum constraint contains Psi'" -- was a BUG of the second-order
+Euler-Lagrange operator, which dropped the shift's third derivatives; with the general-order operator (L287) Psi does not enter the
+momentum constraint at all and the scalar sector has exactly two propagating degrees of freedom in Newtonian gauge. The FRW growth
+integration is not blocked by a Dirac problem; it must be redone with the corrected operator (and the covariant healing term).
+
+STATUS 2026-09-19: INCOMPLETE -- no physical growth number obtained. The FRW linearised equations (lapse, momentum, trace, clock,
 scalar) are built from the action (build_frw_perturbation_odes_shift, cached) and their derivative structure is certified (V1a), but every
 plain-ODE formulation tried (trace equation as Phi's evolution; both constraints as first-order evolution equations; Psi = Phi with the
 lapse as evolution) excites a growing constraint-violating mode (momentum residual O(1); a +/-331 per e-fold pair at a = 0.01 that the
