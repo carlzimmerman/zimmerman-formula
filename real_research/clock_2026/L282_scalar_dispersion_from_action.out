@@ -1,0 +1,71 @@
+L282 -- the candidate's scalar dispersion from its action (time-dependent, metric + clock eliminated)
+
+    Ricci scalar built (0 s)
+    quadratic Lagrangian built (24 s); linear term (must vanish on the background): -6*Derivative(Phi(t, x), (t, 2)) + 4*Derivative(Phi(t, x), (x, 2)) - 2*Derivative(Psi(t, x), (x, 2))
+  [PASS] V0 Minkowski with tau = t, phi = Q0 t is an exact background: the O(eps) Lagrangian is a pure total derivative (its Euler-Lagrange variation vanishes for every field: no tadpole, no Jeans swindle)
+           (L1 = -6*Derivative(Phi(t, x), (t, 2)) + 4*Derivative(Phi(t, x), (x, 2)) - 2*Derivative(Psi(t, x), (x, 2)))
+    Euler-Lagrange equations derived (24 s)
+    Fourier matrix M(omega, k) built (24 s)
+    det M built: 78 terms (24 s)
+  [PASS] V1 CONTROL (scalar off): the clock's only spin-0 mode has omega^2/k^2 = c2(2-c14)/(c14(2+3c2)) -- Blas-Pujolas-Sibiryakov's khronometric speed at c13 = 0 (validates metric + clock build)
+           (roots = [-c_2*(c14 - 2)/(c14*(3*c_2 + 2))])
+    det at Q0 = 0, xi = 0 is k^10 x [32] x polynomial in v
+    polynomial in v (degree 2): coefficients (high to low) = [K_2*c14*(3*c_2 + 2), K_2*c14*c_2 - 2*K_2*c_2 + 3*K_B**2*c_2 + 2*K_B**2 - 3*K_B*beta*c14*c_2 - 2*K_B*beta*c14 - 12*K_B*c_2 - 8*K_B + 6*beta*c14*c_2 + 4*beta*c14 + 12*c_2 + 8, -c_2*(K_B - 2)*(-K_B + beta*c14 - 2*beta + 2)]
+    at f34's point: roots v = [0.0038085149966917047, 41095.784887137175]   (f34: MOND scalar 4.1899e-02, khronon 4.1096e+04)
+  [PASS] V2 f34 (its numerical point): the FAST branch is reproduced to < 0.1% (the clock-metric sector agrees); the SLOW branch is NOT: f34's 0.0419 is 11.0x this build's, exactly the ratio (J_Y + K_B/2)/(J_Y - beta0) = 1.1/0.1 -- f34's scalar saw a backreaction shift of +K_B/2 where the action gives -(2-K_B)/2 (f34 ran no BPS control; V1 here is exact)
+           (slow 0.0038085 vs f34 0.041899 (ratio 11.001); fast 41095.8 vs 41096)
+    product of the two branches = -c_2*(K_B - 2)*(-K_B + beta*c14 - 2*beta + 2)/(K_2*c14*(3*c_2 + 2))
+    sum of the two branches = -(K_2*c14*c_2 - 2*K_2*c_2 + 3*K_B**2*c_2 + 2*K_B**2 - 3*K_B*beta*c14*c_2 - 2*K_B*beta*c14 - 12*K_B*c_2 - 8*K_B + 6*beta*c14*c_2 + 4*beta*c14 + 12*c_2 + 8)/(K_2*c14*(3*c_2 + 2))
+  [PASS] V3 THE FORMULA: at Q0 = 0, xi = 0 the sector is a quadratic A v^2 - B v + C = 0 whose constant term C is proportional to (J_Y - beta0), beta0 = (2-K_B)/(2-c14) (L279's beta0): the slow (MOND) branch has c_s^2 -> 0 exactly when J_Y = beta0 -- COLD-DUST THEOREM: at L279's deep-MOND condition the cosmological scalar (Y0 = 0) has NO sound speed at quadratic order
+           (C = -c_2*(K_B - 2)*(-K_B + beta*c14 - 2*beta + 2) = (J_Y - beta0) x -c_2*(K_B - 2)*(c14 - 2))
+    slow branch to first order in (J_Y - beta0): c_s^2 = C/B = c_2*(K_B - 2)*(-K_B + beta*c14 - 2*beta + 2)/(K_2*c14*c_2 - 2*K_2*c_2 + 3*K_B**2*c_2 + 2*K_B**2 - 3*K_B*beta*c14*c_2 - 2*K_B*beta*c14 - 12*K_B*c_2 - 8*K_B + 6*beta*c14*c_2 + 4*beta*c14 + 12*c_2 + 8)
+    at f34's point: bare (2-K_B)J_Y/|K2| = 0.1800; metric-shifted (2-K_B)(J_Y-beta0)/|K2| = 0.0180; C/B = 0.0038; exact 0.0038
+    cold case (J_Y = beta0): leading equation for alpha^2 at order K^6: 32*(K_2*alpha2*c14**2*c_2 - 4*K_2*alpha2*c14*c_2 + 4*K_2*alpha2*c_2 - 6*K_B**2*alpha2*c_2 - 4*K_B**2*alpha2 + 24*K_B*alpha2*c_2 + 16*K_B*alpha2 - K_B*c14**2*c_2*xi**2 + 4*K_B*c14*c_2*xi**2 - 4*K_B*c_2*xi**2 - 24*alpha2*c_2 - 16*alpha2 + 2*c14**2*c_2*xi**2 - 8*c14*c_2*xi**2 + 8*c_2*xi**2)/(c14 - 2) -> alpha^2 = [c_2*xi**2*(-K_B*c14**2 + 4*K_B*c14 - 4*K_B + 2*c14**2 - 8*c14 + 8)/(-K_2*c14**2*c_2 + 4*K_2*c14*c_2 - 4*K_2*c_2 + 6*K_B**2*c_2 + 4*K_B**2 - 24*K_B*c_2 - 16*K_B + 24*c_2 + 16)]
+  [PASS] V4 with the healing term the cold branch is omega^2 = alpha^2 k^4 (the fuzzy-dark-matter form, hbar/(2 m_eff) = alpha c): alpha^2 exhibited; its ratio to the bare (2-K_B) xi^2/|K2| is the same inertia renormalisation as V3's
+           (alpha^2 = c_2*xi**2*(-K_B*c14**2 + 4*K_B*c14 - 4*K_B + 2*c14**2 - 8*c14 + 8)/(-K_2*c14**2*c_2 + 4*K_2*c14*c_2 - 4*K_2*c_2 + 6*K_B**2*c_2 + 4*K_B**2 - 24*K_B*c_2 - 16*K_B + 24*c_2 + 16); alpha^2 / [(2-K_B) xi^2/|K2|] = K_2*c_2*(c14 - 2)**2/(K_2*c14**2*c_2 - 4*K_2*c14*c_2 + 4*K_2*c_2 - 6*K_B**2*c_2 - 4*K_B**2 + 24*K_B*c_2 + 16*K_B - 24*c_2 - 16))
+    rigid (c14 = 8e-7, c2 = 1, |K2| = 3.24e5): alpha^2/xi^2 = 5.5554e-06; m_eff(eV) at xi = 0.045/0.1/0.8/4/50/140 pc: 3.01e-20, 1.36e-20, 1.70e-21, 3.39e-22, 2.71e-23, 9.69e-24
+    equal-speed (c14 = 1e-5, c2 = c14/(1-2c14), |K2| = 1.3e5): alpha^2/xi^2 = 3.9647e-06; m_eff(eV) at xi = 0.045/0.1/0.8/4/50/140 pc: 3.57e-20, 1.61e-20, 2.01e-21, 4.01e-22, 3.21e-23, 1.15e-23
+    equal-speed (c14 = 2.5e-5, c2 = c14/(1-2c14), |K2| = 3.24e5): alpha^2/xi^2 = 3.9682e-06; m_eff(eV) at xi = 0.045/0.1/0.8/4/50/140 pc: 3.57e-20, 1.61e-20, 2.01e-21, 4.01e-22, 3.21e-23, 1.15e-23
+    (for orientation only: FDM Lyman-alpha bounds m > 2e-21 eV [Irsic+17] / 2e-20 eV [Rogers-Peiris 21] would apply IF the linear k^4 branch governed the small-scale power; in the candidate the K2 inertia and the cubic MOND response of the perturbations do -- CK12 -- so these are characterisations, not bounds)
+    det with Q0 = k^6 x [...]; the k -> 0 remainder in omega^2: 32*K_2*omega**2*(3*c_2 + 2)*(K_B*Q_0**2*beta - 2*Q_0**2*beta + c14*omega**2)
+  [PASS] V5 the cosmological roll Q0 gives one branch a MASS: the k -> 0 remainder has omega^2 in {0, m^2} with m^2 = (2-K_B) J_Y Q0^2/c14 (NOT proportional to K2: the gap is set by the clock's inertia c14), and m^2 -> 0 as Q0 -> 0
+           (m^2 = [-Q_0**2*beta*(K_B - 2)/c14])
+      k = 1000 m: omega^2/m^2 (re, im) = [('1.85', '0'), ('5e+11', '0')]
+      k = 100 m: omega^2/m^2 (re, im) = [('0.0185', '0'), ('5e+09', '0')]
+      k = 10 m: omega^2/m^2 (re, im) = [('0.0001846', '0'), ('5e+07', '0')]
+      k = 1 m: omega^2/m^2 (re, im) = [('1.45e-06', '0'), ('5e+05', '0')]
+      k = 0.1 m: omega^2/m^2 (re, im) = [('-3.814e-07', '0'), ('5001', '0')]
+      k = 0.01 m: omega^2/m^2 (re, im) = [('-3.92e-07', '0'), ('51', '0')]
+      k = 0.001 m: omega^2/m^2 (re, im) = [('-1.333e-07', '0'), ('1.5', '0')]
+    slow branch at k << m with the roll: omega^2 -> [-c_2/(3*c_2 + 2)] x k^2   (k -> 0 limit of the k^2 coefficient)
+    rigid (c14 = 8e-7, c2 = 1, |K2| = 3.24e5): m = 1666 Q0; Gamma_max = 6.31e-04 m = 1.05 Q0 (at k = 0.024 m); branch stable for k >~ 0.5623413251903491 m
+    equal-speed (c14 = 1e-5, c2 = c14/(1-2c14), |K2| = 1.3e5): m = 471 Q0; Gamma_max = 7.30e-04 m = 0.34 Q0 (at k = 0.56 m); branch stable for k >~ 1.333521432163324 m
+    equal-speed (c14 = 2.5e-5, c2 = c14/(1-2c14), |K2| = 3.24e5): m = 298 Q0; Gamma_max = 2.17e-03 m = 0.65 Q0 (at k = 1.3 m); branch stable for k >~ 3.1622776601683795 m
+  [PASS] V5b with the roll the MASSLESS branch turns UNSTABLE at long wavelength (exact k -> 0 coefficient omega^2 -> -c2/(2+3c2) k^2, all scalar parameters drop out) while the clock branch is gapped at m: this is the ghost-condensate Jeans mode of the rolling K2 sector (Arkani-Hamed et al. 2004 structure: negative k^2 below a cutoff, maximal rate bounded, stable above ~0.5 m); the maximal growth rate is Gamma_max = O(1) x Q0 at every corner -- of order H0 for Q0 = H0, i.e. a Hubble-rate clustering mode of the dark sector on scales 1/m to 1000/m, NOT a fast instability; its FRW fate (delta ~ a?) is CK12's
+           (omega^2/m^2 at k = 1e-3 m: small -1.333e-07, big 1.5000; Gamma_max/H0 at Q0 = H0 per corner: 1.05, 0.34, 0.65)
+    rigid (c14 = 8e-7, c2 = 1, |K2| = 3.24e5): at Q0 = H0 and J_Y - beta0 = 0.37 (30 kpc, 1e11 Msun): 1/m = 2.63 Mpc
+    equal-speed (c14 = 1e-5, c2 = c14/(1-2c14), |K2| = 1.3e5): at Q0 = H0 and J_Y - beta0 = 0.37 (30 kpc, 1e11 Msun): 1/m = 9.30 Mpc
+    equal-speed (c14 = 2.5e-5, c2 = c14/(1-2c14), |K2| = 3.24e5): at Q0 = H0 and J_Y - beta0 = 0.37 (30 kpc, 1e11 Msun): 1/m = 14.71 Mpc
+    canonical, rigid (c14 = 8e-7, c2 = 1, |K2| = 3.24e5): c_s (30 kpc, 1e11 Msun) perp 428 km/s, along grad P0 605 km/s   [L281 quoted 790 km/s from the bare formula]
+    canonical, equal-speed (c14 = 1e-5, c2 = c14/(1-2c14), |K2| = 1.3e5): c_s (30 kpc, 1e11 Msun) perp 361 km/s, along grad P0 511 km/s   [L281 quoted 790 km/s from the bare formula]
+    canonical, equal-speed (c14 = 2.5e-5, c2 = c14/(1-2c14), |K2| = 3.24e5): c_s (30 kpc, 1e11 Msun) perp 361 km/s, along grad P0 511 km/s   [L281 quoted 790 km/s from the bare formula]
+    alt, rigid (c14 = 8e-7, c2 = 1, |K2| = 3.24e5): c_s (30 kpc, 1e11 Msun) perp 408 km/s, along grad P0 577 km/s   [L281 quoted 790 km/s from the bare formula]
+    alt, equal-speed (c14 = 1e-5, c2 = c14/(1-2c14), |K2| = 1.3e5): c_s (30 kpc, 1e11 Msun) perp 345 km/s, along grad P0 488 km/s   [L281 quoted 790 km/s from the bare formula]
+    alt, equal-speed (c14 = 2.5e-5, c2 = c14/(1-2c14), |K2| = 3.24e5): c_s (30 kpc, 1e11 Msun) perp 345 km/s, along grad P0 488 km/s   [L281 quoted 790 km/s from the bare formula]
+  [PASS] V6 the galactic sound speed of the MOND branch, metric and clock eliminated: c_s^2 = (2-K_B)(J_Y - beta0) / [|K2| + (2+3c2)(2-K_B)((2-K_B) + J_Y c14)/(c2(2-c14))] (closed form of the slow root to first order in J_Y - beta0) agrees with the exact root within 1% at the rigid corner; the record's bare-sector 790 km/s (L281) / 389 km/s (g03r) are superseded by these numbers
+           (rigid perp exact 427.5 km/s vs closed form 427.5 km/s; bare formula 795 km/s)
+    rigid (c14 = 8e-7, c2 = 1, |K2| = 3.24e5): branches v = ['1.8500e-06', '5.0001e+05'] (all real, positive: True)
+    equal-speed (c14 = 1e-5, c2 = c14/(1-2c14), |K2| = 1.3e5): branches v = ['1.3203e-06', '3.4923e+00'] (all real, positive: True)
+    equal-speed (c14 = 2.5e-5, c2 = c14/(1-2c14), |K2| = 3.24e5): branches v = ['1.3214e-06', '1.4000e+00'] (all real, positive: True)
+  [PASS] V7 both branches have real, positive omega^2/k^2 at both L280 corners for a galactic field (no gradient instability; K2 < 0 as f34 found)
+           ({'rigid (c14 = 8e-7, c2 = 1, |K2| = 3.24e5)': [1.8499544911010208e-06, 500012.3000050001], 'equal-speed (c14 = 1e-5, c2 = c14/(1-2c14), |K2| = 1.3e5)': [1.320264963452024e-06, 3.4923234444357827], 'equal-speed (c14 = 2.5e-5, c2 = c14/(1-2c14), |K2| = 3.24e5)': [1.3214398710829521e-06, 1.400005528645755]})
+
+L282 COMPLETE: 9/9 checks PASS  (25 s).
+VERDICT.  The candidate's MOND scalar, with the metric and the clock kept and eliminated by machine, has a sound speed proportional to
+(J_Y - beta0), beta0 = (2-K_B)/(2-c14) -- the same backreaction coefficient that fixes the deep-MOND normalisation in L279 -- with an
+inertia renormalised by the clock mixing.  Consequence: at the deep-MOND condition J_Y(0) = beta0 the cosmological scalar is exactly cold at
+quadratic order (its only linear pressure is the healing k^4 term, fuzzy-dark-matter form), and the galactic sound speed of the record
+(bare-sector formula) is corrected.  The roll Q0 gaps the CLOCK branch (m^2 = (2-K_B) J_Y Q0^2/c14, not an AeST Yukawa mass for the
+static MOND law) and turns the massless branch into the ghost-condensate Jeans mode with a Hubble-rate maximal growth for Q0 ~ H0: the
+candidate's dark sector clusters at rate ~ Q0 on 1/m .. 1000/m -- the FRW growth history (CK12) must show delta ~ a from it.  What this does
+not do: the nonlinear (cubic) MOND response of cosmological perturbations, the FRW background with Qbar != Q0 (the dust amount), the Dirac count.
