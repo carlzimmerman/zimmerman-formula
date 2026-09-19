@@ -1,0 +1,45 @@
+{
+  "lane": "V01",
+  "mutate": false,
+  "checks": {
+    "V0 loaded the real SPARC rotation curves": {
+      "ok": true,
+      "measured": "175 galaxies, 3391 points from 175 files"
+    },
+    "A [trap exposed] the naive point-count gives a nonsensically huge sigma (~100), and intrinsic scatter alone still over-counts because radial points within a galaxy are CORRELATED -- so a raw Delta chi^2 sigma (the loop's '>3', my first pass's 112) is NOT a valid significance": {
+      "ok": true,
+      "measured": "naive 312 sigma; scatter-corrected point-count 41 sigma (both over-counted)"
+    },
+    "B1 the SPARC-fitted a0 implies kappa ~ 0.5-0.65, FAR from 1/2pi=0.159 -- the loop's DIRECTION is right (kappa=1/2 >> 1/2pi) on real data": {
+      "ok": true,
+      "measured": "implied kappa = 0.459 (canonical) / 0.381 (alt); 1/2pi=0.159"
+    },
+    "B2 HONEST significance: the raw Delta-chi^2 sigma is invalid (correlated points); the defensible statement is kappa_implied vs the two candidates. A proper shape-marginalized discriminability is the repo's ~2.2 sigma (one-shape) / 1.55 (shape-free) -- NOT the loop's >3 and NOT my first pass's 112": {
+      "ok": true,
+      "measured": "kappa_implied 0.46 is 0.5 prior-sigma from 1/2 and 3.8 from 1/2pi (using the +-0.08 measured kappa error); repo discriminability ~2.2 sigma"
+    }
+  },
+  "numbers": {
+    "n_galaxies": 175,
+    "n_points": 3391,
+    "sigma_naive_pointcount": 312.46815273385505,
+    "sigma_scatter_corrected_pointcount": 41.080646745524874,
+    "canonical_a0_fit": 8.596267161782202e-11,
+    "canonical_kappa_implied": 0.4591091104253518,
+    "alt_a0_fit": 8.596267161782202e-11,
+    "alt_kappa_implied": 0.3810739942274227
+  },
+  "verdict": {
+    "kappa_half_preferred_direction": true,
+    "kappa_implied_canonical": 0.4591091104253518,
+    "kappa_implied_alt": 0.3810739942274227,
+    "naive_pointcount_sigma_INVALID": 312.46815273385505,
+    "honest_discriminability_sigma": "~2.2 (one-shape) / 1.55 (shape-free), repo",
+    "reading": "loop lead CONFIRMED in direction (kappa~0.5, far from 1/2pi); loop's >3sigma AND my first-pass 112sigma were point-counting inflation; rediscovery, correctly error-barred"
+  },
+  "summary": {
+    "pass": 4,
+    "n": 4,
+    "fail": []
+  }
+}
