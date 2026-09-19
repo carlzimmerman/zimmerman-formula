@@ -57,3 +57,64 @@ def build_fourier_matrix():
     M = M.subs({c1: KB, c3: -KB, c4: c14 - KB})
     syms = dict(w=w, k=k, KB=KB, c2=c2, c14=c14, K2=K2, Q0=Q0, beta=beta, xi=xi, amps=amps)
     return M, syms
+
+
+def build_fourier_matrix_generalF():
+    """Same build with a GENERIC Q-well F(Q) about a background Qbar (symbol Q_0 reused as Qbar): the quadratic action carries
+    F0 = F(Qbar), F1 = F_Q(Qbar), F2 = F_QQ(Qbar).  With F1 != 0 the background carries dust (16 pi G rho_d = F0 - Qbar F1) and
+    Minkowski is not an exact solution: the O(eps) tadpole is dropped (Jeans swindle), which is exact to O((aH/k)^2) sub-horizon."""
+    t, x, y, z = sp.symbols('t x y z', real=True); X = [t, x, y, z]
+    eps = sp.symbols('epsilon', positive=True)
+    KB, c1, c2, c3, c4, Q0, beta, xi = sp.symbols('K_B c_1 c_2 c_3 c_4 Q_0 beta xi', real=True)
+    F0, F1, F2 = sp.symbols('F_0 F_1 F_2', real=True)
+    Psi, Phi, Tf, P = [sp.Function(n)(t, x) for n in ("Psi", "Phi", "T", "P")]
+    N = 1 + eps * Psi; a = 1 - eps * Phi
+    g = sp.diag(-N ** 2, a ** 2, a ** 2, a ** 2); ginv = g.inv(); sqrtg = N * a ** 3
+    Gam = [[[sp.simplify(sum(ginv[l, s] * (sp.diff(g[s, m], X[n]) + sp.diff(g[s, n], X[m]) - sp.diff(g[m, n], X[s])) for s in range(4)) / 2) for n in range(4)] for m in range(4)] for l in range(4)]
+    Ric = sp.zeros(4, 4)
+    for m in range(4):
+        for n in range(4):
+            Ric[m, n] = sum(sp.diff(Gam[l][m][n], X[l]) - sp.diff(Gam[l][m][l], X[n]) + sum(Gam[l][l][s] * Gam[s][m][n] - Gam[l][n][s] * Gam[s][m][l] for s in range(4)) for l in range(4))
+    R = sum(ginv[m, n] * Ric[m, n] for m in range(4) for n in range(4))
+    tau = t + eps * Tf; dtau = [sp.diff(tau, v) for v in X]
+    Xinv = -sum(ginv[m, n] * dtau[m] * dtau[n] for m in range(4) for n in range(4))
+    n_dn = [-dtau[m] / sp.sqrt(Xinv) for m in range(4)]; n_up = [sum(ginv[m, n] * n_dn[n] for n in range(4)) for m in range(4)]
+    Dn = [[sp.diff(n_dn[n], X[m]) - sum(Gam[l][m][n] * n_dn[l] for l in range(4)) for n in range(4)] for m in range(4)]
+    Dn_up = [[sum(ginv[m, a_] * ginv[n, b_] * Dn[a_][b_] for a_ in range(4) for b_ in range(4)) for n in range(4)] for m in range(4)]
+    T1 = sum(Dn[m][n] * Dn_up[m][n] for m in range(4) for n in range(4))
+    divn = sum(ginv[m, n] * Dn[m][n] for m in range(4) for n in range(4)); T2 = divn ** 2
+    T3 = sum(Dn[m][n] * Dn_up[n][m] for m in range(4) for n in range(4))
+    J_dn = [sum(n_up[nu] * Dn[nu][m] for nu in range(4)) for m in range(4)]
+    J_up = [sum(ginv[m, n] * J_dn[n] for n in range(4)) for m in range(4)]
+    T4 = sum(J_dn[m] * J_up[m] for m in range(4))
+    phi = Q0 * t + eps * P; dphi = [sp.diff(phi, v) for v in X]
+    Jdphi = sum(J_up[m] * dphi[m] for m in range(4))
+    Q = sum(n_up[m] * dphi[m] for m in range(4))
+    Y = sum((ginv[m, n] + n_up[m] * n_up[n]) * dphi[m] * dphi[n] for m in range(4) for n in range(4))
+    dQ = Q - Q0
+    Fexp = F0 + F1 * dQ + F2 * dQ ** 2 / 2                     # F(Q) to the order that survives at eps^2 (dQ = O(eps))
+    Lbr = R - c1 * T1 - c2 * T2 - c3 * T3 + c4 * T4 + 2 * (2 - KB) * Jdphi - (2 - KB) * beta * Y - Fexp
+    L = sqrtg * Lbr
+    L2 = sp.simplify(sp.diff(L, eps, 2).subs(eps, 0) / 2) - (2 - KB) * xi ** 2 * sp.diff(P, x, 2) ** 2
+    fields = [Psi, Phi, Tf, P]
+    def EL(Lag, f):
+        e = sp.diff(Lag, f)
+        for v in (t, x):
+            e -= sp.diff(sp.diff(Lag, sp.diff(f, v)), v)
+        for v1, v2 in ((t, t), (t, x), (x, x)):
+            d2 = sp.diff(f, v1, v2)
+            if Lag.has(d2): e += sp.diff(sp.diff(Lag, d2), v1, v2)
+        return sp.expand(e)
+    E = [EL(L2, f) for f in fields]
+    w, k = sp.symbols('omega k', positive=True)
+    amps = sp.symbols('A_Psi A_Phi A_T A_P'); ex = sp.exp(sp.I * (k * x - w * t))
+    sub = {f: A * ex for f, A in zip(fields, amps)}
+    M = sp.zeros(4, 4)
+    for i, e in enumerate(E):
+        ee = sp.expand(sp.simplify(e.subs(sub).doit() / ex))
+        for j, A in enumerate(amps):
+            M[i, j] = sp.simplify(ee.coeff(A))
+    c14 = sp.Symbol('c14')
+    M = M.subs({c1: KB, c3: -KB, c4: c14 - KB})
+    syms = dict(w=w, k=k, KB=KB, c2=c2, c14=c14, Q0=Q0, beta=beta, xi=xi, F0=F0, F1=F1, F2=F2, amps=amps)
+    return M, syms
