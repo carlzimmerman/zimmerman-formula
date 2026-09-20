@@ -136,3 +136,37 @@ normalisation, L237's exact identification of the data-selected family, and
 the data's dichotomy landing (C1) — but not derived from a mechanism. The
 full shape (the completion) stays empirical, exactly as rung 2 already treats
 it. G089 A5 and G152's inventory row should be re-graded at the next wave.
+
+---
+
+## 2026-09-19 — PD02: the count is DIMENSION-INVARIANT (unconditional) + the
+Lean core IN-FLIGHT
+
+`PD02_polarization_count.py` (6/6 PASS) answers the question PD01 left — is
+the binary {½, 1} a 3+1-dimensional accident? — and finds **no**: the
+linearised Einstein channels computed in every spatial dimension d ≥ 2 are
+
+    G^(1)_00 = (d-1) lap(Psi)                                  (the 00 sector)
+    G^(1)_kk = (d-1) lap(Phi-Psi) + (d-1)(3-d) lap(Psi)        (the trace)
+
+— triangular in (lap Ψ, lap(Φ−Ψ)) with nonzero diagonal (d−1) for EVERY d ≥ 2:
+**the metric presents exactly two static Poisson channels in every spatial
+dimension**. L239's "dimensionally inert" is overturned into "dimensionally
+INVARIANT": the count does no dimensional work because it does not depend on
+d — the binary {½, 1} is dimension-proof, so no future d-aware generalisation
+can move κ off the two values. Computed sharpening: the trace channel is PURE
+anisotropic exactly at d = 3 — our dimension is the unique decoupling one
+((d−1)(3−d) = 0), which is why PD01's B1 saw the clean 2∇²(Φ−Ψ).
+
+The closed forms were NOT assumed: the first draft's ((d+1)/2) forms were the
+d=3 specialisation over-generalised, and the lane's own residuals caught it
+(committed in the .out). The result this adds is UNCONDITIONAL — pure
+linearised-Einstein algebra, no interpretation. The derivation of κ itself
+stays conditional on PD01's premise, stated as such.
+
+**Lean:** `lean/PD02_channel_count.lean` (T1–T5: the master difference-
+quotient lemma, the family's slope = its mode count, COMPLETION INDEPENDENCE
+of the OR class, the deep matching κ = 1/n, the landing) is committed marked
+**IN-FLIGHT** — four error sites in the filter bookkeeping; not a certificate
+until it compiles. The algebra it states is the sympy-verified content of
+PD01 Part A.
