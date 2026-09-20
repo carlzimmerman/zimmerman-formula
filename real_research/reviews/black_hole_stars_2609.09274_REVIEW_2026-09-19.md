@@ -458,3 +458,34 @@ independently: xi_1 = 6.89685, u = 2.01826 — matching literature to 5 decimals
 - the unit traps caught and fixed IN THE LANES before landing: KPC e16/e19, erg/W
   Gamma, Eddington-W/erg (the P1 7-dex slip), cm/m (the P1 U-route), 1e10.5 literals,
   the n=2.5/n=3 Lane-Emden column
+
+## 17. Wave R — the wind-kinematic radius test (2026-09-20)
+
+**ONE MORE DERIVATION + ONE HONEST FAILURE.** The measured P-Cygni terminal velocity
+(495 km/s) inverts to a launch radius — pure kinematics, no f_ion assumption:
+
+  r_launch = 2GM/v_inf^2 = 72 au  (M = 1e4, no CAK factor)
+  with the standard line-driven CAK factor (v_inf = 2.6-3 v_esc):
+  r_launch = 490-652 au  — the band BRACKETS r* = 100 au.
+
+And the in-situ CAK factor is MEASURED: v_inf/v_esc(R_phot) = 495/137 = 3.6 (the
+standard 2.6-3). **R1 lane (6/6)** — including one honest failure: the first draft
+claimed the 30-yr lensed variability as a second kinematic hit; the check FAILED
+(t_dyn(r*) = 1.6 yr, not 50 — a (1.5e16)^3 vs (1.5e13)^3 hand-cube slip), and the
+re-frame taught the real lesson: **the 30-yr variability is the PHOTOSPHERE's
+dynamical time (R_phot/v_esc(R_phot) = 32.5 yr, PASS)** — it does NOT test the
+Balmer layer. The r*-test rests on the wind route and the direct radius alone.
+
+**Lean I09** `I09_bhstar_kinematic.lean` — exit 0, zero sorry, axioms clean:
+`launch_ratio` (r*/r_launch = r* v_inf^2/(2GM) — the coincidence test in kinematic
+form) and `timescale_forms` ((R/v_esc)^2 = R^3/(2GM)).
+
+**The standing after Wave R (upgraded from P1's DISFAVORED-OPEN):**
+- FOR: the wind route — r* inside the CAK uncertainty band [72, 650] au; the CAK
+  factor measured in-situ (3.6).
+- AGAIN: the spherical U-route — r_in ~ 2e3-2e4 au (model-dependent: geometry +
+  f_ion); the variability does NOT test the layer.
+- VERDICT: **CONSISTENT-OPEN** — the balance tilted by the wind route; the decisive
+  measurement remains the direct radius (reverberation/lensing/RT), now with a
+  sharpened falsifier: per-object r_launch/v* within the CAK band [1/3, 3], or the
+  no-CAK value [1/sqrt2, sqrt2] once reverberation pins the wind law.
