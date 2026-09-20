@@ -319,3 +319,35 @@ Corollary (`bhstar_a0blind`): √(1+a0/g) − 1 ≤ a0/(2g) < 10⁻⁶ at the BH
   and the accretion-built density structure. The framework INHERITS the ceiling if its 1PN
   dynamical sector is GR-identical (its GR-limit record: Cassini γ, r = 3M/2 photon
   sphere). No dark matter particle anywhere in the chain.
+
+## 13. Wave M — the quartic-beta correction: the real thermodynamics (2026-09-19)
+
+**THE ERROR CARL CAUGHT, CORRECTED.** The G2/H1/J1 chain computed the SMS structure beta
+from the GAS-VIRIAL temperature — but a radiation-dominated star's thermodynamics is set by
+the RADIATION-virial / Eddington standard model. The correct structure is the n = 3
+polytrope with the Eddington quartic (1−β)/β⁴ = (M/M_E)², and the certified correction is:
+
+- **M1** `bhstar_m1_quartic_beta.py` — **6/6 PASS.** β_*(M) solved numerically from the
+  quartic: **β_*(10⁵) = 0.0232 — 500× the gas-virial value (4.6×10⁻⁸)**; the gap
+  Γ₁ − 4/3 = 3.88×10⁻³ at 10⁵ (was 7.7×10⁻⁹). The calibration cross-check:
+  **M_E = β²·M = 53.8 M_sun at the anchor — matching the classical Eddington
+  standard-model constant (~55 M_sun, Kippenhahn & Weigert ch. 13) to ~1%** — independent
+  literature confirmation of the calibration.
+- **The two-scale discrimination (the discrete new statement):** with the quartic gap
+  g(M) ≈ √(M_E/M)/6 and the absorbed K-criterion (κ_GR = 2K(3) = 2.249, n=3-class):
+  **M_glob = √(M_E·10⁵/(36κ²a5²)) = 6.2×10⁷ M_sun** — the GLOBAL (equilibrium-structure,
+  homologous) GR ceiling, **1.8–2.8 dex above the literature PULSATIONAL ceiling 10⁵–⁶**
+  (Saio+24/Nandal+24, MESA accreting structures). Two distinct GR instability scales:
+  the LRD engines at 10^3.4–4.3 sit below both — pre-instability SMS descendants.
+  Falsifier: a bona-fide equilibrium SMS at ~10⁷ M_sun with envelope attached confirms
+  the global ceiling; the accreting ones die at 10⁵–⁶ from the pulsational mode.
+- **Lean I05** `I05_bhstar_quartic.lean` — the quartic two-sided band as exact algebra:
+  β ≤ (M_E/M)^{1/2} (upper, any M) and β⁴ ≥ (1/2)(M_E/M)² (lower, M ≥ 4·M_E — the
+  quartic itself forces β ≤ 1/2 there): **β ∝ M^{−1/2} with a certified 19% band.**
+  Certificate status: in verification (compile loop delegated, zero-sorry rule in force).
+- **The honest accounting:** the gas-virial beta chain (G2 central-gap → H1 band → J1
+  central-β closed form) is superseded — the correction lane M1 supersedes the stability
+  numbers; L1/L2's kills remain valid for the hypotheses they tested (the K-table stands
+  on its own absorbed provenance; the census arithmetic is corrected BY M1's quartic).
+  The regime coincidence (K1) and the a0-blind theorem are untouched — different layers,
+  different physics.
