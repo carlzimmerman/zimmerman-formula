@@ -75,3 +75,24 @@ instruments decide the rest of the story.
 - `lean/` — 6 verified certificates (all compile, exit 0)
 - `lanes/` — G031/G032/G036/G040/G052
 - Live site: https://abeautifullygeometricuniverse.web.app/simulate
+
+---
+
+## ADDENDUM 2026-09-19 — PD01 lands on rung 9's open item
+
+Rung 9 ("n = 2 is a measurement; no derivation exists; G009 killed the last
+route") is **superseded conditionally** by `PD01_polarization_count.py`
+(17/17 PASS): the deep-MOND slope is the response's CHANNEL COUNT,
+completion-independently (the corpus's own μ(∞)=1 normalisation forces the
+OR structure, and every OR completion has slope = count); the count is
+INHERITED from the carrier — the metric's static response presents exactly
+two Poisson channels (G⁽¹⁾₀₀ = 2∇²Ψ, G⁽¹⁾ₖₖ = 2∇²(Φ−Ψ), symbolic + numeric),
+every rank≤1 carrier one — so κ is binary {½, 1}; the corpus's own zero
+points exclude κ = 1 at 7.0σ/10.4σ and hold κ = ½ at 0.46σ/1.19σ. **n = 2 is
+the metric's channel count; κ = ½ follows.** Falls with it: the 2π horizon
+form dies structurally (needs count √(3π/2) = 2.17); G009's kill stands; the
+L231 kernel tension resolves. The one premise (the OR-identification) is
+stated as a premise with three supports; the completion stays empirical.
+Registered falsifier (row 21): any measured κ strictly inside (0.5, 1) kills.
+The n=2 board row reads **CONDITIONALLY DERIVED (PD01)** from today; the
+G089 A5 and G152 inventory rows should be re-graded at the next wave.

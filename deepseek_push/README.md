@@ -91,3 +91,48 @@ tests. Complete pincer proving every force-law alternative dead.
 https://abeautifullygeometricuniverse.web.app/simulate
 — 9 simulations with real SPARC/KiDS/DESI/MSA-3D data, the Evolution Race, the
 RAR Explorer, the BTFR Lab, The Fluid, the z-slider discriminator.
+
+---
+
+## 2026-09-19 — PD01: the channel-count derivation of κ = ½ (conditional)
+
+The theory's ONE empirical premise — n = 2 (G089 A5; rung 9: "EMPIRICAL, all
+derivation routes closed") — now carries a derivation under stated premises
+(`PD01_polarization_count.py`, 17/17 PASS, `.out` + `_results.json`):
+
+1. **The slope is the channel count, completion-independently.** The corpus
+   normalisation μ(∞) = 1 forces the OR structure over channel-shares (the
+   SUM saturates at n, not 1); in the OR class the deep-MOND slope is the
+   number of equal independent channels for EVERY per-channel completion
+   (verified at n = 1, 2, 3 for three completions). So κ = 1/(count) never
+   waits on the unknown shape.
+2. **The count is inherited from the carrier, and it is computed.** The
+   static response of the linearised metric presents exactly TWO Poisson
+   channels — G⁽¹⁾₀₀ = 2∇²Ψ (the 00 sector) and G⁽¹⁾ₖₖ = 2∇²(Φ−Ψ) (the
+   spatial-trace sector), verified symbolically for generic radial
+   potentials and by finite differences to 2e-14 — while a scalar presents
+   one and a static vector one. κ is therefore BINARY: {½, 1}. This is the
+   corpus's own L237 candidate reading ("the graviton's two polarisations")
+   landed in its static form — G007's two levers — where it is computable.
+3. **The data select the metric's count.** κ = 1 sits 7.0σ (BTFR) and
+   10.4σ (distance-free) out; κ = ½ sits at 0.46σ and 1.19σ; the SPARC
+   selection is n = 2 on both density conventions (L232, committed). Hence
+   n = 2 = the metric's channel count and κ = ½.
+
+**Falls with it:** the 2π horizon form (k03's "one principle-shaped
+coefficient not excluded", 0.461) dies STRUCTURALLY — under κ = 1/n it needs
+a count of √(3π/2) = 2.17, which does not exist; G009's mechanism kill
+stands untouched (nothing stochastic is claimed; predicted shot noise zero);
+the L231 kernel tension (n=1 fits the framework kernel 1.44× better in rms)
+resolves as a completion preference, not a count signal.
+
+**Registered falsifier (row 21, FALSIFIER_MATRIX):** κ is two-valued — any
+measured κ strictly inside (0.5, 1) at any epoch or footing kills the
+channel-count structure.
+
+**Status, honestly:** a CONDITIONAL derivation. One premise (the
+OR-identification of the response) is supported three ways — the corpus's own
+normalisation, L237's exact identification of the data-selected family, and
+the data's dichotomy landing (C1) — but not derived from a mechanism. The
+full shape (the completion) stays empirical, exactly as rung 2 already treats
+it. G089 A5 and G152's inventory row should be re-graded at the next wave.

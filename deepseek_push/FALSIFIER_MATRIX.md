@@ -68,3 +68,32 @@
 
 **V3 — The honest statement: the falsification ledger. PASS.**
 > The theory carries **20 registered falsifiers** — 12 **armed** and waiting on their instruments (Gaia DR4, Dec 2026 — the ridge, the double-map, the funnel; WALLABY-DR3 pair breaks; the tSZ 3-way on public maps; the XRISM plateau; the MIGHTEE/BTFR footing; the kink width in ~1 year; the ontology census; the cosmic-pie 2–3e14 gap), 3 **pending** a final reading (the anisotropy's first real confrontation measured at β_win = 0.434 ± 0.015, gated on the 2D phase-space fit; the D2 core slope capped on the lensing precision step; the slope floor at 1.58σ short of its 3 r_M kill line) — and **3 fired, all explained, with zero unexplained fires**: the ZW1215 falsifier fired and is read as a hydrostatic-bias case; the DE-anchored n = 2 deep reading fired and is absorbed by the two-scale/effective reading; the EFE split fired and was refused as a detection. Two further tests ran and resolved without firing (the saturation's 8.1% miss is exactly the baryon floor; the 2/3 law is universal). No falsifier in the record has fired without a registered explanation — that is the ledger's honest score.
+
+---
+
+## 5. REGISTERED 2026-09-19 — row 21 (PD01): the two-valued κ kill rule
+
+**Prediction.** Under the L230 principle (κ = 1/n, the response's argument in
+dark-energy units, normalised to one at high acceleration) plus the channel
+algebra (the deep-MOND slope equals the count of equal independent channels
+for EVERY completion of the OR class — PD01 A1-A3), the coefficient is fixed
+by the response's carrier: the metric's static response presents exactly two
+Poisson channels (G⁽¹⁾₀₀ = 2∇²Ψ, G⁽¹⁾ₖₖ = 2∇²(Φ−Ψ); PD01 B1-B2) so a
+metric-carried response has κ = ½, and every rank≤1 carrier (scalar, static
+vector) presents one, so a one-channel response has κ = 1. No third value
+exists for any carrier in this theory.
+
+**Kill rule.** ANY measured κ strictly inside the open interval (0.5, 1) at
+any epoch, footing, or density convention fires this row: a confirmed
+zero point at the Jeans value (0.564), the thermal value (0.461 is outside
+the interval and dies structurally instead — it would need a channel count
+of √(3π/2) = 2.17), or any cosmic drift that parks κ between one half and
+one, kills the channel-count structure (and with it the PD01 reading of the
+integer; n = 2 would then be back to purely empirical).
+
+**Instruments.** The registered z ≈ 2.5 BTFR zero point (the 0.00-dex arm =
+count 2 confirmed; a rising arm whose effective κ drifts through the
+interior fires) and Gaia DR4 (the two-footing zero points).
+
+**Status: ARMED.** Committed: `PD01_polarization_count.py` 17/17 PASS,
+`PD01_polarization_count.out`, `PD01_results.json`.
