@@ -248,3 +248,79 @@ def build_frw_perturbation_odes_shift():
     c14 = sp.Symbol('c14'); ODE = [o.subs({c1: KB, c3: -KB, c4: c14 - KB}) for o in ODE]
     syms = dict(t=t, k=k, KB=KB, c2=c2, c14=c14, beta=beta, xi=xi, Lam=Lam, a=a, Qb=Qb, F0=F0, F1=F1, F2=F2, amps=amps)
     return ODE, syms
+
+
+def build_frw_perturbation_odes_chi():
+    """[2026-09-19, L291] The L290 Y-modulated carrier on FRW: the same sector as build_frw_perturbation_odes_shift
+    (Psi, B, Phi, T, P; general-order EL; covariant healing) PLUS the chi-dust field Xc, L_chi = -(G1 dX + (G2/2) dX^2),
+    dX = X_chi - Cc^2, X_chi = -g^{mu nu} d_mu chi d_nu chi, background chi = Cc t (chi' = Cc const: the shift-symmetric
+    charge a^3 P_X chi' = const), G1 = -p1 < 0 (positive dust density 16 pi G rho = 2 Cc^2 p1), G2 = -g2 (the Y = 0 state of
+    the L290 modulation: c_s^2 = p1/(p1 + 2 Cc^2 g2) = 1/A = 1e-10, the forest-cold value).  At the homogeneous background
+    dY = 0 exactly, so the modulation's Y-dependence does not enter the linear system (L290 V3): the chi-dust is the
+    carrier's cosmological state.  Returns the six Euler-Lagrange equations after the plane-wave substitution
+    field(t, x) = f(t) e^{i k x}."""
+
+    t, x, y, z = sp.symbols('t x y z', real=True); X = [t, x, y, z]
+    eps = sp.symbols('epsilon', positive=True)
+    KB, c1, c2, c3, c4, beta, xi, Lam, Cc, G1, G2 = sp.symbols('K_B c_1 c_2 c_3 c_4 beta xi Lambda C G_1 G_2', real=True)
+    a = sp.Function('a')(t); Qb = sp.Function('Qb')(t); F0 = sp.Function('F0')(t); F1 = sp.Function('F1')(t); F2 = sp.Function('F2')(t)
+    Psi, Bs, Phi, Tf, P, Xc = [sp.Function(n)(t, x) for n in ("Psi", "B", "Phi", "T", "P", "chi")]
+    N = 1 + eps * Psi; A = a * (1 - eps * Phi)
+    g = sp.diag(-N ** 2, A ** 2, A ** 2, A ** 2); g[0, 1] = eps * a * sp.diff(Bs, x); g[1, 0] = g[0, 1]
+    ginv = g.inv(); sqrtg = sp.sqrt(-g.det())
+    Gam = [[[sum(ginv[l, s] * (sp.diff(g[s, m], X[n]) + sp.diff(g[s, n], X[m]) - sp.diff(g[m, n], X[s])) for s in range(4)) / 2 for n in range(4)] for m in range(4)] for l in range(4)]
+    Ric = sp.zeros(4, 4)
+    for m in range(4):
+        for n in range(4):
+            Ric[m, n] = sum(sp.diff(Gam[l][m][n], X[l]) - sp.diff(Gam[l][m][l], X[n]) + sum(Gam[l][l][s] * Gam[s][m][n] - Gam[l][n][s] * Gam[s][m][l] for s in range(4)) for l in range(4))
+    R = sum(ginv[m, n] * Ric[m, n] for m in range(4) for n in range(4))
+    tau = t + eps * Tf; dtau = [sp.diff(tau, v) for v in X]
+    Xinv = -sum(ginv[m, n] * dtau[m] * dtau[n] for m in range(4) for n in range(4))
+    n_dn = [-dtau[m] / sp.sqrt(Xinv) for m in range(4)]; n_up = [sum(ginv[m, n] * n_dn[n] for n in range(4)) for m in range(4)]
+    Dn = [[sp.diff(n_dn[n], X[m]) - sum(Gam[l][m][n] * n_dn[l] for l in range(4)) for n in range(4)] for m in range(4)]
+    Dn_up = [[sum(ginv[m, a_] * ginv[n, b_] * Dn[a_][b_] for a_ in range(4) for b_ in range(4)) for n in range(4)] for m in range(4)]
+    T1 = sum(Dn[m][n] * Dn_up[m][n] for m in range(4) for n in range(4))
+    divn = sum(ginv[m, n] * Dn[m][n] for m in range(4) for n in range(4)); T2 = divn ** 2
+    T3 = sum(Dn[m][n] * Dn_up[n][m] for m in range(4) for n in range(4))
+    J_dn = [sum(n_up[nu] * Dn[nu][m] for nu in range(4)) for m in range(4)]
+    J_up = [sum(ginv[m, n] * J_dn[n] for n in range(4)) for m in range(4)]
+    T4 = sum(J_dn[m] * J_up[m] for m in range(4))
+    phibar = sp.Function('phibar')(t)
+    phi = phibar + eps * P; dphi = [sp.diff(phi, v) for v in X]
+    Jdphi = sum(J_up[m] * dphi[m] for m in range(4))
+    Q = sum(n_up[m] * dphi[m] for m in range(4))
+    Y = sum((ginv[m, n] + n_up[m] * n_up[n]) * dphi[m] * dphi[n] for m in range(4) for n in range(4))
+    dQ = Q - Qb
+    Fexp = F0 + F1 * dQ + F2 * dQ ** 2 / 2
+    chibar = sp.Function('chibar')(t)
+    chi = chibar + eps * Xc; dchi = [sp.diff(chi, v) for v in X]
+    Xchi = -sum(ginv[m, n] * dchi[m] * dchi[n] for m in range(4) for n in range(4)); dX2 = Xchi - Cc ** 2
+    Lbr = R - 2 * Lam - c1 * T1 - c2 * T2 - c3 * T3 + c4 * T4 + 2 * (2 - KB) * Jdphi - (2 - KB) * beta * Y - Fexp - (G1 * dX2 + G2 * dX2 ** 2 / 2)
+    L = sqrtg * Lbr
+    L = L.subs(sp.Derivative(phibar, t), Qb).subs(sp.Derivative(phibar, (t, 2)), sp.Derivative(Qb, t))
+    L = L.subs(sp.Derivative(chibar, t), Cc).subs(sp.Derivative(chibar, (t, 2)), 0)
+    # covariant healing term (L287): -(2-K_B) xi^2 (D^2 phi)^2 with D^2 phi = h^{mu nu}(d_mu d_nu phi - Gamma^l_{mu nu} d_l phi)
+    Hess = [[sp.diff(phi, X[m], X[n]) - sum(Gam[l][m][n] * dphi[l] for l in range(4)) for n in range(4)] for m in range(4)]
+    D2phi = sum((ginv[m, n] + n_up[m] * n_up[n]) * Hess[m][n] for m in range(4) for n in range(4))
+    L = L - sqrtg * (2 - KB) * xi ** 2 * D2phi ** 2
+    L = L.subs(sp.Derivative(phibar, t), Qb).subs(sp.Derivative(phibar, (t, 2)), sp.Derivative(Qb, t))
+    L2 = sp.expand(sp.diff(L, eps, 2).subs(eps, 0) / 2)
+    fields = [Psi, Bs, Phi, Tf, P, Xc]
+    def EL(Lag, f):
+        e = sp.diff(Lag, f)
+        for d_ in Lag.atoms(sp.Derivative):
+            if d_.expr == f:
+                vars_ = []
+                for v_, cnt in d_.variable_count: vars_ += [v_] * cnt
+                e += (-1) ** len(vars_) * sp.diff(sp.diff(Lag, d_), *vars_)
+        return sp.expand(e)
+    E = [EL(L2, f).subs(Bs, 0).doit() for f in fields]
+    E = [sp.expand(e.subs(Bs, 0)) for e in E]
+    k = sp.symbols('k', positive=True)
+    amps = [sp.Function(n)(t) for n in ("psi", "bb", "phi", "tt", "pp", "cc")]; ex = sp.exp(sp.I * k * x)
+    sub = {f: A_ * ex for f, A_ in zip(fields, amps)}
+    ODE = [sp.expand(e.subs(sub).doit().subs(amps[1], 0) / ex) for e in E]
+    c14 = sp.Symbol('c14'); ODE = [o.subs({c1: KB, c3: -KB, c4: c14 - KB}) for o in ODE]
+    syms = dict(t=t, k=k, KB=KB, c2=c2, c14=c14, beta=beta, xi=xi, Lam=Lam, a=a, Qb=Qb, F0=F0, F1=F1, F2=F2,
+                Cc=Cc, G1=G1, G2=G2, amps=amps)
+    return ODE, syms
