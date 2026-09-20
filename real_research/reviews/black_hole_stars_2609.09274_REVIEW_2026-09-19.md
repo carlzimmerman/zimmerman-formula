@@ -355,3 +355,40 @@ polytrope with the Eddington quartic (1−β)/β⁴ = (M/M_E)², and the certifi
   on its own absorbed provenance; the census arithmetic is corrected BY M1's quartic).
   The regime coincidence (K1) and the a0-blind theorem are untouched — different layers,
   different physics.
+
+## 14. Wave N — the certified two-sided bracket on the global GR ceiling (2026-09-20)
+
+**THE REAL THING, CLOSED-FORM AND BRACKETED.** The chain — T4 envelope (Lean I01), the
+quartic band (Lean I05), the absorbed K-criterion (Chandrasekhar 1965), the compactness
+(M1) — gives TWO certified mass edges on the GLOBAL (equilibrium-structure, homologous)
+GR instability of the Eddington-standard SMS:
+
+- **NECESSARY for instability** (gap >= beta/6 edge, beta >= 2^{-1/4} sqrt(M_E/M)):
+  M >= 2^{-1/4} sqrt(M_E M0)/(6 kappa a5) = **5.18e7 Msun** (kappa = 2.249, n=3)
+- **SUFFICIENT for instability** (gap <= beta/3 edge, beta <= sqrt(M_E/M)):
+  M >= sqrt(M_E M0)/(3 kappa a5) = **1.23e8 Msun**
+- **THE CERTIFIED BRACKET: the global ceiling lies in [5.18e7, 1.23e8] Msun** — edge
+  ratio exactly 2^{5/4}. K-band transport: kappa(n=2.5) -> [6.5e7, 1.54e8]; the
+  homogeneous n=0 edge (kappa = 19/21) -> [1.29e8, 3.07e8].
+
+**N1** `bhstar_n1_ceiling_bracket.py` — **5/5 PASS** (one own-slip caught: the
+necessary-edge formula initially dropped the 2^{-1/4} factor and the 6 — fixed, ratio
+2^{5/4} exact). **Lean I06** `I06_bhstar_bracket.lean` — **exit 0, zero sorry, axioms
+clean**: `stable_band` (stability => 9k^2 a5^2 S^2 <= U^2, the upper-edge modus tollens)
+and `unstable_band` (instability => (sqrt 2)^{-1} U^2 <= 36 k^2 a5^2 S^2, the lower-edge
+survival) — the S,U-atom firewall maintained.
+
+**THE TWO-SCALE DISCRIMINATION (the discrete new statement):**
+- GLOBAL ceiling: [5.2e7, 1.23e8] Msun — certified here, equilibrium structure.
+- PULSATIONAL ceiling: [1e5, 1e6] Msun — Saio+24/Nandal+24, accreting MESA structures.
+- Separation: **1.7-3.1 dex.** The LRD engines (10^3.4-4.3) sit below BOTH —
+  pre-instability SMS descendants, consistent with the paper's picture.
+- **Falsifier (discrete, observational):** a bona-fide equilibrium SMS above 1.2e8 Msun
+  falsifies the bracket; an accreting SMS unstable below 5.2e7 confirms the
+  pulsational-mode attribution of the published ceiling.
+
+**The framework reading:** both ceilings are 1PN GR-structure physics; the framework's
+GR-limit record (Cassini gamma, r = 3M/2) covers 1PN statics, so the framework INHERITS
+the bracket if its 1PN dynamical sector is GR-identical — the same certification shape
+as the whole GR-limit chain. No dark matter particle anywhere: the chain is baryons +
+GR + the certified thermodynamics.
