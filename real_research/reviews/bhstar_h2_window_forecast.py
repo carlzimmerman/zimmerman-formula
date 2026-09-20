@@ -71,9 +71,12 @@ for lgM in (math.log10(3e7), math.log10(5e7), math.log10(8e7)):
            for (y_t, a0) in ((2.2727, A0_FW), (0.8, A0_FW), (2.2727, a10), (0.8, a10))]
     locus[lgM] = row
     print(f"    1e{lgM:<7.1f} {row[0]:10.2f} {row[1]:12.2f} {row[2]:16.2f} {row[3]:19.2f}")
-check("UHZ1-mass hosts (M*=5e7) enter the 20% window at R_e <= 0.31 kpc (z=0 fw) / "
-      "0.31 kpc (z=10 fw+DESI)", locus[math.log10(5e7)][0] <= 0.35 and locus[math.log10(5e7)][2] <= 0.35,
-      f"{locus[math.log10(5e7)][0]:.2f} / {locus[math.log10(5e7)][2]:.2f} kpc")
+check("UHZ1-mass hosts (M*=5e7): the >=20% window OPENS at R_e >= 0.18 kpc (z=0 fw) / "
+      ">= 0.30 kpc (z=10 fw+DESI) -- an OUTER window on the deep-MOND side: B grows with R_e "
+      "(weak gravity), compact => degenerate [direction corrected 2026-09-19]",
+      locus[math.log10(5e7)][0] <= 0.35 and locus[math.log10(5e7)][2] <= 0.35,
+      f"locus crossing R_e(20%) = {locus[math.log10(5e7)][0]:.2f} / "
+      f"{locus[math.log10(5e7)][2]:.2f} kpc; B rises monotonically for R_e beyond it")
 
 print("\n[C] The boost map over the plausible UHZ1-host size bracket (M* = 5e7 Msun)")
 print("     R_e[kpc]   B(z=0,fw)   B(z=0,canon)   B(z=10,fw+DESI)")
@@ -106,8 +109,8 @@ check("compactness switch SORTS the populations: UHZ1-class boost / LRD-host boo
       f"monotone growth with size, quantified at two sizes]")
 
 print("\n[E] Pre-registered falsifiers (both edges, as in G1)")
-print("    (i)  UHZ1-class host (M* ~ 5e7, R_e ~ 0.3-0.8 kpc) measured NEWTONIAN (|B| < 20%)")
-print("         at g_bar < 0.5 a0_eff  => the a0-line premise dies at z ~ 10")
+print("    (i)  UHZ1-class host (M* ~ 5e7, R_e >= 0.65 kpc where g_bar < 0.5 a0_eff) measured")
+print("         NEWTONIAN (|B| < 20%)  => the a0-line premise dies at z ~ 10")
 print("         (shared with all constant-a0 MOND; the a0(z) DESI branch would be wounded")
 print("         specifically, since a0_eff(10) = 0.36 a0(0) makes the boost SMALLER, not larger)")
 print("    (ii) an LRD-class compact host (M* >= 1e8.5, R_e <= 0.2 kpc) measured > 20% off")

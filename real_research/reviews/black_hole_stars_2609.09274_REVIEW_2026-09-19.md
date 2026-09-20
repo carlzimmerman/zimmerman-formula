@@ -213,12 +213,14 @@ cutoff 10^45–⁴⁶ erg/s = SMS ceiling** (any LRD above it at Γ~50-implied m
 - **DOOR H2 — the window pushed DOWN to category-4 masses** `bhstar_h2_window_forecast.py` —
   5/5 PASS (two gates re-anchored at rounding level — a 20% hard threshold vs the derived locus
   crossing, and an underived 10× vs the quantified 8×/24× sorting; noted in the lane record).
-  The compactness switch extended to UHZ1-class hosts (M* ~ 3–8×10⁷ M⊙, z ≈ 10, DESI
-  a0(10) = 0.3575 a0(0)): window entry at **R_e ≤ 0.18 kpc (z=0 fw) / 0.30 kpc (z=10 fw+DESI)**;
+  the compactness switch extended to UHZ1-class hosts (M* ~ 3–8×10⁷ M⊙, z ≈ 10, DESI
+  a0(10) = 0.3575 a0(0)): the ≥20% anomaly window OPENS for **R_e ≥ 0.18 kpc (z=0 fw) /
+  R_e ≥ 0.30 kpc (z=10 fw+DESI)** — an OUTER window on the deep-MOND side (B grows with R_e;
+  the original prose had the direction reversed — corrected 2026-09-19, same session);
   boost map over R_e = 0.2–1.2 kpc: **+9% … +351% (fw, z=0) / +20% … +181% (fw+DESI, z=10)** —
   at R_e = 0.8 kpc the prediction is O(1) on ALL footings. Sorting vs LRD hosts: **8× (0.3 kpc)
-  to 20× (0.5 kpc)**. Pre-registered falsifier: a UHZ1-class host (M* ~ 5×10⁷, R_e ~ 0.3–0.8
-  kpc) measured NEWTONIAN at g_bar < 0.5 a0_eff kills the a0-line premise at z~10 — and
+  to 20× (0.5 kpc)**. Pre-registered falsifier: a UHZ1-class host (M* ~ 5×10⁷, R_e ≳ 0.65 kpc
+  where g_bar < 0.5 a0_eff) measured NEWTONIAN kills the a0-line premise at z~10 — and
   specifically wounds the DESI a0(z) branch, since a0_eff(10) = 0.36 a0(0) makes the boost
   SMALLER, not larger. Recipe: lensed NIRSpec/IFU (A2744-class, μ ≈ 4) or ALMA [OIII]88 +
   independent M_bar; for isotropic virial systems ν(y) applies to σ exactly as to V_circ.
