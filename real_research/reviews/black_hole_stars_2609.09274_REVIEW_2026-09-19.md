@@ -392,3 +392,38 @@ GR-limit record (Cassini gamma, r = 3M/2) covers 1PN statics, so the framework I
 the bracket if its 1PN dynamical sector is GR-identical — the same certification shape
 as the whole GR-limit chain. No dark matter particle anywhere: the chain is baryons +
 GR + the certified thermodynamics.
+
+## 15. Wave P — the empirical-rigor audit: K1 honestly downgraded (2026-09-20)
+
+**THE AUDIT CARL DEMANDED.** The regime coincidence (§11, K1: g_B/a0(rho_B) = 1.00 at
+the Balmer layer) rested on r_B = 100 au — which the absorbed paper's OWN text (line
+249) identifies as the layer THICKNESS (N_H/n_H), not its radius: "the dense gas layer
+is likely a part of a much larger envelope." K1 is hereby DOWNGRADED:
+
+- **What is empirically robust** (four independent CLOUDY studies): n_H = 1e9-1e11
+  cm^-3; the layer thickness N_H/n_H ~ 2-100 au; T_eff pinned 4200-4800 K (the
+  recombination-tracking band, Owocki16).
+- **What is NOT measured**: the layer RADIUS. The U-route (r = sqrt(Q/(4 pi U n c)),
+  spherical geometry, fitted U = -3, observed L = 1e43.8, ionizing fraction
+  f_ion = 1e-3-1e-2) gives r_in ~ 2e3-2e4 au — **20-200x ABOVE r*** (50-282 au across
+  the published mass band): ratio (r*/r_in)^2 ~ 1e-4-1e-2.
+- **P1 verdict (8/8): the coincidence is DISFAVORED-OPEN.** The spherical U-route
+  leans against it by 2-4 dex; the plane-parallel caveat (CLOUDY fits are slabs — the
+  radius is model-dependent and unmeasured) keeps it formally alive.
+- **Lean I07** `I07_bhstar_conditional.lean` — exit 0, zero sorry, axioms clean:
+  `ratio_identity` (g_B/a0 = (r*/r_B)^2 EXACTLY — the coincidence ratio IS the squared
+  radius ratio), `tol_upper`/`tol_lower` (the ±2 tolerance band iff r_B^2 in
+  [r*^2/2, 2 r*^2]). The prediction is now sharp: **r_B = r* = 100 au sqrt(M/1e4)
+  (1e10/n)^{1/4}**, falsifiable by reverberation mapping, lensing, or self-consistent
+  RT — the field's own named open item (2609.09274 line 420).
+- **The estimator-independence audit (also P1):** the four mass estimators share the
+  Eddington-R assumption and one dial (Gamma_es = 5-50); variability is n=1 lensed
+  object; escape carries the /9 wind-model factor; the paper itself flags the
+  g_dyn-vs-g split as unresolved. The honest mass chain: one dynamical measurement,
+  one wind-model bound, one Eddington-coupled chain.
+
+**The standing after Wave P:** the certified core (T2 invariant, T3 Eddington closure,
+T4 envelope, a0-blind, the quartic band, the ceiling bracket [5.2e7, 1.23e8]) is
+untouched. The regime coincidence is no longer claimed as a discovery — it is a
+sharp, Lean-certified conditional prediction, currently disfavored 2-4 dex by the
+spherical U-route and awaiting the one measurement that settles it.
