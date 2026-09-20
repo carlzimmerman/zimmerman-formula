@@ -341,10 +341,14 @@ polytrope with the Eddington quartic (1−β)/β⁴ = (M/M_E)², and the certifi
   the LRD engines at 10^3.4–4.3 sit below both — pre-instability SMS descendants.
   Falsifier: a bona-fide equilibrium SMS at ~10⁷ M_sun with envelope attached confirms
   the global ceiling; the accreting ones die at 10⁵–⁶ from the pulsational mode.
-- **Lean I05** `I05_bhstar_quartic.lean` — the quartic two-sided band as exact algebra:
-  β ≤ (M_E/M)^{1/2} (upper, any M) and β⁴ ≥ (1/2)(M_E/M)² (lower, M ≥ 4·M_E — the
-  quartic itself forces β ≤ 1/2 there): **β ∝ M^{−1/2} with a certified 19% band.**
-  Certificate status: in verification (compile loop delegated, zero-sorry rule in force).
+- **Lean I05** `I05_bhstar_quartic.lean` — **exit 0, zero sorry, axioms clean**
+  (parent-verified): the quartic two-sided band as exact algebra —
+  `quartic_beta_upper`: **β ≤ √(M_E/M)** (any M > 0) and `quartic_beta4_lower`:
+  **β⁴ ≥ (1/2)(M_E/M)²** (M ≥ 4·M_E, where the quartic forces β ≤ 1/2) —
+  **β ∝ M^{−1/2} with a certified 19% band.** Build note: the exponent literal (1/2)
+  elaborates at ℕ in this Mathlib (binop%), trivializing `(M/M_E)^(1/2)` to 1 — the
+  certified statements use Real.sqrt explicitly; the first specialist pass proved the
+  trivialized form (caught by parent statement review, fixed by parent).
 - **The honest accounting:** the gas-virial beta chain (G2 central-gap → H1 band → J1
   central-β closed form) is superseded — the correction lane M1 supersedes the stability
   numbers; L1/L2's kills remain valid for the hypotheses they tested (the K-table stands
