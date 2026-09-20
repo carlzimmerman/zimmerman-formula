@@ -427,3 +427,34 @@ T4 envelope, a0-blind, the quartic band, the ceiling bracket [5.2e7, 1.23e8]) is
 untouched. The regime coincidence is no longer claimed as a discovery — it is a
 sharp, Lean-certified conditional prediction, currently disfavored 2-4 dex by the
 spherical U-route and awaiting the one measurement that settles it.
+
+## 16. Wave Q — the quartic constant from first principles + the full double-check (2026-09-20)
+
+**THE DERIVATION CARL ASKED FOR.** The Eddington standard-model mass constant — until
+now a CALIBRATED anchor in M1 — is derived from first principles:
+
+  (1-beta)/beta^4 = M^2 / M_E^2,  M_E = sqrt(48 k^4 u^2 / (a mu^4 m_p^4 pi G^3)),
+  u = (-xi_1^2 theta'_1)|_{n=3} = 2.01824 (the Lane-Emden n=3 moment),
+
+from G, k_B, a (the radiation constant), m_p, pi and the Lane-Emden zero — ZERO fitted
+anchors. **Q1 lane (5/5): M_E = 51.8 Msun (mu = 0.59, primordial particles) / 48.4
+(mu = 0.61, solar) — confirming the M1 calibrated anchor (53.8) to 3.8%**, bracket
+re-anchored [5.09e7, 1.21e8] (a 1.9% shift). **Lean I08** `I08_bhstar_quartic_fp.lean`
+— exit 0, zero sorry, axioms clean: `quartic_constant` (the EoS x polytropic-mass
+substitution, pure field algebra).
+
+**The double-check the hand-derivation caught:** u = 3.8147 is the n=2.5 column; the
+n=3 value is 2.01824 — caught BEFORE contaminating anything (M1/N1 were calibrated,
+never xi-derived; the numeric Lane-Emden integration in Q1 now supplies the moment
+independently: xi_1 = 6.89685, u = 2.01826 — matching literature to 5 decimals).
+
+**The full double-check ledger (every certified number re-verified this session):**
+- absorption lane 18/18 (the paper's own equations) — reproduced <1%
+- G1 9/9, G2 13/13, H1 6/6, H2 5/5, J1 7/7, K1 5/5 — re-run canonical
+- L1 5/5 (the K-table kill), L2 4/4 (the census kill), M1 6/6 (the quartic), N1 5/5
+  (the bracket), P1 8/8 (the empirical rigor audit), Q1 5/5 (first principles)
+- Lean I01-I08: 27 theorems, every file recompiled exit 0, axioms
+  ⊆ {propext, Classical.choice, Quot.sound}, zero sorry, all parent-verified
+- the unit traps caught and fixed IN THE LANES before landing: KPC e16/e19, erg/W
+  Gamma, Eddington-W/erg (the P1 7-dex slip), cm/m (the P1 U-route), 1e10.5 literals,
+  the n=2.5/n=3 Lane-Emden column
