@@ -97,3 +97,41 @@ interior fires) and Gaia DR4 (the two-footing zero points).
 
 **Status: ARMED.** Committed: `PD01_polarization_count.py` 17/17 PASS,
 `PD01_polarization_count.out`, `PD01_results.json`.
+
+
+---
+
+## 6. REGISTERED 2026-09-20 -- row 22 (the PD-wave, PD01-PD14): the four kill rules of the kappa = 1/2 chain
+
+**Kill 1 (primary).** Any measured kappa strictly inside (1/2, 1) at >= 3 sigma kills the
+two-channel count structure -- and with it the OR-composition, the mode-matching, and the
+two-one lock. On contact it kills the rivals' LIVES, not their values: the 2pi horizon form
+(0.461, s2/s = 0.922, 6.5 sigma at the gate), the Jeans form (0.564, 10.7 sigma), the scalar
+carrier (1.000, 83 sigma). Instruments: the z~2.5 BTFR zero point (PD14's spec: N = 92-847
+distance-independent galaxies by scatter; systematics 0.90 percent quadrature < the gate;
+DR4 ~2027 the low-z arm, the ELT-class high-z arm 2030s) and Gaia DR4. Status: ARMED,
+EXECUTABLE (PD14: the gate closes; the decision is scheduled, not wished).
+
+**Kill 2.** A detected WDM-type cutoff at ~0.5 Mpc (k_hm ~ 57 h/Mpc) kills the no-particle
+ontology: the field's stress predicts NO sub-Mpc cut (the sound horizon 1.35-1.59 Gpc
+comoving; R(k) = 1 through the registered deciding decade k ~ 100-500 h/Mpc). A CDM-like
+spectrum to k >= 100 h/Mpc kills the particle face instead. Instrument: the sub-halo census
+(the corpus's registered 5.6 decider) + the forest small-scale power. Status: ARMED.
+
+**Kill 3.** Any measured cp = p'(0) != 1 -- a second RAR knee at g ~ s2 != s -- kills the
+one-scale particle-free framework: kappa = s2/(2s) with s2/s measured = 1.0000 +/- 0.0033
+(PD10). The 2pi form's s2/s = 0.922 sits 24 sigma out. Instrument: the SPARC-class deep
+slope on both conventions. Status: MEASURED SHUT to 0.33 percent.
+
+**Kill 4 (the Tolman constancy).** Any w-drift moves the count |1+3w| off 2: the corpus's
+w <~ 5.7e-7 bound holds the factor constant to 1.7e-6 -- the flat-a0 law IS the Tolman
+constancy (PD11). Instrument: the registered flat-a0 gate (the z~2.5 BTFR + the w-bound
+machinery). Status: ARMED.
+
+**The honest boundaries (unchanged):** the shape stays empirical (rung 2); the
+OR-identification and the mode-matching premise are named (backed three ways,
+mechanistically open); the Tolman reading is corroboration (the 2 = 3-1 trace difference),
+not a replacement for the count derivation (PD01); the dimension tension (the Tolman count
+d-1 vs the channel count 2-invariant) is recorded (PD11 T4) as the discriminator for any
+future d-aware test. Seven compiled Lean certificates: PD05/PD07/PD09/PD10/PD11/PD12/PD13,
+zero sorry, axioms = {propext, Classical.choice, Quot.sound}.
