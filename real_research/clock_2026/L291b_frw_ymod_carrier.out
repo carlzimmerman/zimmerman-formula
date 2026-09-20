@@ -1,0 +1,31 @@
+L291b -- the Y-modulated carrier on FRW: growth layer, numeric linearization (build 2)
+
+    lapse: second-time-derivatives: [] (empty = algebraic)
+    momentum: second-time-derivatives: [] (empty = algebraic)
+    scalar: second-time-derivatives: [] (empty = algebraic)
+  [PASS] V1a the constraint structure (build 1, retained): the lapse and momentum equations carry NO second time derivative of any field (algebraic in (Psi, Phi')); the cold scalar carries no P'' (P slaved, D0 a pure gauge: the MOND scalar has NO dynamical mode at the deep-MOND point; khronon + carrier are the propagating DOF per L287 at the roll = 0)
+           (lapse/momentum algebraic; cold scalar P-slaved, D0-gauge)
+    k = 0.01 /Mpc: max Re per e-fold at a = 1, 0.5, 0.3, 0.2, 0.15, 0.1, 0.03, 0.01, 1e-3, 1e-4: 166, 430, 486, 392, 310, 214, 67, 0.0106, 1.94e-10, 5.9e-10
+    k = 0.1 /Mpc: max Re per e-fold at a = 1, 0.5, 0.3, 0.2, 0.15, 0.1, 0.03, 0.01, 1e-3, 1e-4: 1.65e+04, 4.27e+04, 4.83e+04, 3.88e+04, 3.06e+04, 2.1e+04, 5.88e+03, 0.00972, 1.95e-10, 5.9e-10
+    k = 1.0 /Mpc: max Re per e-fold at a = 1, 0.5, 0.3, 0.2, 0.15, 0.1, 0.03, 0.01, 1e-3, 1e-4: 1.65e+06, 4.27e+06, 4.83e+06, 3.88e+06, 3.06e+06, 2.1e+06, 6.32e+05, 0.0446, 0.0193, 4.95e-18
+    [L288 roll-dust at these states: 1.9e5 H0 (a = 0.01), 6.1e6 H0 (a = 1e-3)]
+  [PASS] V2 [FINDING] THE KILLER-CHECK: at the a = 0.01 and 1e-3 CMB/forest states that killed the roll-dust (1.9e5, 6.1e6 H0), the carrier-loaded FRW system grows at most at 10 H(a) per e-fold at k = 0.01/0.1/1 per Mpc -- the Y-modulated carrier does NOT load the clock sector on FRW (exact tangent, numeric linearization)
+           ({0.01: {0.01: 0.010578941747759089, 0.1: 0.00971627825826533, 1.0: 0.044595466868883535}, 0.001: {0.01: 1.94043929119973e-10, 0.1: 1.9468157237981373e-10, 1.0: 0.0193352049084988}})
+    a = 1: max Re per e-fold at k = 0.01/0.1/1: 166.094 / 16488.476 / 1648677.166 (LambdaCDM 0.52; the L288 roll-dust at a = 1: +0.37/+0.82/+0.90 -- the dust's own scale-dependence)
+  [FAIL] V3 [FINDING, THE A=1 ARBITER] at a = 1 the carrier's fastest per-e-fold growth is the dust's own ordinary rate (within 0.3 of LambdaCDM's 0.52 at every k): the L290 Minkowski '131 H0' extraction regret is resolved as an artifact of the conditioning-limited polynomial roots -- on FRW the exact tangent says the carrier grows like CDM at z ~ 0
+           ({0.01: 166.09352733580062, 0.1: 16488.4757357044, 1.0: 1648677.1662826915})
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/numpy/linalg/linalg.py:2582: RuntimeWarning: overflow encountered in multiply
+  s = (x.conj() * x).real
+    late growth k = 0.01 /Mpc, a = 0.3 -> 1: state-norm growth vs LambdaCDM = inf; f(z = 0) = nan (LambdaCDM 0.522)
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/integrate/_ivp/radau.py:108: RuntimeWarning: overflow encountered in multiply
+  f_real = F.T.dot(TI_REAL) - M_real * W[0]
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/integrate/_ivp/radau.py:108: RuntimeWarning: invalid value encountered in subtract
+  f_real = F.T.dot(TI_REAL) - M_real * W[0]
+    k = 0.1: integration issue: array must not contain infs or NaNs
+    k = 1.0: integration issue: array must not contain infs or NaNs
+  [FAIL] V4 the late-time growth (a = 0.3 -> 1): the carrier's density-direction growth tracks LambdaCDM's D(a) to within a factor of a few at every k -- the linear-growth (delta ~ a) requirement of the brief is met at CDM order
+           ({0.01: {'growth_ratio_to_lcdm': inf, 'f0': nan, 'f_lcdm': 0.5223232434809975}, 0.1: {'error': 'array must not contain infs or NaNs'}, 1.0: {'error': 'array must not contain infs or NaNs'}})
+  [FAIL] V5 no L288-class clock-dust instability at ANY epoch: every frozen eigenvalue is finite and bounded by 1e4 per e-fold across the scan -- the roll-dust's hundreds-per-e-fold family is absent for the Y-modulated carrier
+           (max |Re| = 4.83e+06)
+
+L291b COMPLETE: 2/5 checks PASS  (217 s).
