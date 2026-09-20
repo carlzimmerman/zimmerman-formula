@@ -1,0 +1,67 @@
+{
+ "lane": "bhstar_h1_kappa_localization",
+ "door": "resolve G2's kappa_GR conditional via Saio+24's ceiling configurations",
+ "absorbed": "Saio+24 A&A 689 A169 (2406.18040): M_inst 8e4..1e6, GR linear adiabatic radial pulsations; Shibata+24 (2408.11577): fundamental homologous mode",
+ "kappa_band": {
+  "M_inst": {
+   "80000.00000000003": [
+    0.004843465823261206,
+    0.00030998176282496376,
+    3.874769809251627e-05
+   ],
+   "130000.00000000006": [
+    0.0014388742664352312,
+    9.208798210971212e-05,
+    1.1511032689023306e-05
+   ],
+   "300000.0000000001": [
+    0.00017785992310176887,
+    1.1383040228419516e-05,
+    1.4228455425727042e-06
+   ],
+   "1000000.0": [
+    8.767628409506632e-06,
+    5.611217708487594e-07,
+    7.014022135609493e-08
+   ]
+  }
+ },
+ "gamma_map": {
+  "80000.0": 316.22776601683796,
+  "300000.0": 84.3274042711568,
+  "1000000.0": 25.298221281347036,
+  "3000000.0": 8.432740427115679
+ },
+ "checks": [
+  {
+   "check": "absorbed M_inst bracket = [8e4, 1e6] Msun (Saio+24 abstract values)",
+   "ok": true,
+   "detail": "provenance: arXiv:2406.18040 abstract"
+  },
+  {
+   "check": "kappa_req(M_inst) monotone declining (larger ceiling <=> smaller kappa_GR)",
+   "ok": true,
+   "detail": "4.84e-03 -> 8.77e-06"
+  },
+  {
+   "check": "the kappa_GR band spans ~500x across the Saio+24 accretion histories",
+   "ok": true,
+   "detail": "552x"
+  },
+  {
+   "check": "H1 DELIVERABLE: kappa_GR(band) = 9e-6 .. 5e-3 (q=0.4) / 7e-8 .. 4e-4 (q=2) -- 2-3 dex BELOW the homogeneous-star O(1) value",
+   "ok": true,
+   "detail": "[8.8e-06, 4.8e-03] (q=0.4)"
+  },
+  {
+   "check": "Gamma_req(1e6) = 25 <= 50 < Gamma_req(3e5) = 84: only the HIGH-accretion channel closes with the paper's dial",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "FALSIFIER MAP: any Gamma-free mass bound M_f >= 3e5 Msun on a cutoff-luminosity LRD forces Gamma >= 84, 1.7x ABOVE the paper's assumed dial",
+   "ok": true,
+   "detail": "the dial is over-determined by (LF cutoff, ceiling, Gamma-free mass)"
+  }
+ ]
+}

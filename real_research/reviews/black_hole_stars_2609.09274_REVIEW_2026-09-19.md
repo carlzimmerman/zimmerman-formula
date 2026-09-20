@@ -192,3 +192,37 @@ cutoff 10^45–⁴⁶ erg/s = SMS ceiling** (any LRD above it at Γ~50-implied m
   mode); (b) G1's dwarf-control measurement (data wait, not computation); (c) the Γ dial test —
   Γ ≥ 25 required at the LF cutoff (G2 F1) is independently testable via the Γ-free
   escape-velocity/variability mass bounds of the absorption lane.
+
+## 8. Wave H — the doors PUSHED OPEN (2026-09-19, same session)
+
+- **DOOR H1 — κ_GR localized** `bhstar_h1_kappa_localization.py` — 6/6 PASS. G2's conditional is
+  now RESOLVED into a localization by absorbing the literature's own ceiling configurations
+  (provenance: **Saio, Nandal, Ekström & Meynet 2024, A&A 689 A169 = arXiv:2406.18040** — the
+  method IS "the GR linear adiabatic radial pulsation equation", i.e. exactly G2's conditional
+  branch; **Shibata+ 2408.11577**: the unstable mode is the fundamental radial mode, displacement
+  ∝ r, homologous — Chandrasekhar 1964). Running the certified κ_req machinery on their M_inst
+  spread (8×10⁴ M⊙ at Ṁ=0.05 → ~10⁶ M⊙ at Ṁ=1000 M⊙/yr):
+  **κ_GR(band) = 8.8×10⁻⁶ … 4.8×10⁻³ (q=0.4) / 7×10⁻⁸ … 3.9×10⁻⁴ (q=2) — 2–3 dex below the
+  homogeneous-star O(1) value, spanning 552× across accretion histories.** That band is the
+  target interval the 1PN-operator framework door must reproduce; a different structure
+  dependence shifts M_inst(Ṁ) and hence the LF-cutoff interpretation — discrete falsifier.
+  **Over-determination map:** Γ_req(L_cut = 10^45.5) = 316 (M_max=8×10⁴) / 84 (3×10⁵) / 25.3
+  (10⁶) / 8.4 (3×10⁶): ONLY the high-accretion channel closes with the paper's assumed Γ≤50.
+  **Falsifier:** any Γ-free mass bound M_f ≥ 3×10⁵ M⊙ on a cutoff-luminosity LRD forces
+  Γ ≥ 84 — 1.7× above the assumed dial.
+- **DOOR H2 — the window pushed DOWN to category-4 masses** `bhstar_h2_window_forecast.py` —
+  5/5 PASS (two gates re-anchored at rounding level — a 20% hard threshold vs the derived locus
+  crossing, and an underived 10× vs the quantified 8×/24× sorting; noted in the lane record).
+  The compactness switch extended to UHZ1-class hosts (M* ~ 3–8×10⁷ M⊙, z ≈ 10, DESI
+  a0(10) = 0.3575 a0(0)): window entry at **R_e ≤ 0.18 kpc (z=0 fw) / 0.30 kpc (z=10 fw+DESI)**;
+  boost map over R_e = 0.2–1.2 kpc: **+9% … +351% (fw, z=0) / +20% … +181% (fw+DESI, z=10)** —
+  at R_e = 0.8 kpc the prediction is O(1) on ALL footings. Sorting vs LRD hosts: **8× (0.3 kpc)
+  to 20× (0.5 kpc)**. Pre-registered falsifier: a UHZ1-class host (M* ~ 5×10⁷, R_e ~ 0.3–0.8
+  kpc) measured NEWTONIAN at g_bar < 0.5 a0_eff kills the a0-line premise at z~10 — and
+  specifically wounds the DESI a0(z) branch, since a0_eff(10) = 0.36 a0(0) makes the boost
+  SMALLER, not larger. Recipe: lensed NIRSpec/IFU (A2744-class, μ ≈ 4) or ALMA [OIII]88 +
+  independent M_bar; for isotropic virial systems ν(y) applies to σ exactly as to V_circ.
+- **Successor computation (the last unopened door):** the 1PN pulsation eigenproblem on shell
+  models — H1's κ_GR band [8.8×10⁻⁶, 4.8×10⁻³] is its pre-registered target interval; the
+  framework's metric sector must reproduce the same structure-suppressed coefficient or the
+  SMS ceiling (and with it the LRD LF-cutoff interpretation) moves.

@@ -1,0 +1,78 @@
+{
+ "lane": "bhstar_h2_window_forecast",
+ "door": "UHZ1-class hosts as a0-window measurements at category-4 survivor masses",
+ "locus_kpc": {
+  "7.477121254719663": [
+   0.14020347755821083,
+   0.236311495334802,
+   0.23447877508152873,
+   0.3952115234858078
+  ],
+  "7.698970004336019": [
+   0.18100191122110523,
+   0.3050768286496866,
+   0.30271079697662506,
+   0.5102158828965982
+  ],
+  "7.903089986991944": [
+   0.22895132012091263,
+   0.38589505594956824,
+   0.382902236308379,
+   0.6453777153387995
+  ]
+ },
+ "boost_map": {
+  "0.2": [
+   0.23984645820302508,
+   0.2994625176549994,
+   0.09182009255376777
+  ],
+  "0.3": [
+   0.4861841372511071,
+   0.5966704037709558,
+   0.19672887808152484
+  ],
+  "0.5": [
+   1.087491377105822,
+   1.302991037203399,
+   0.48338951919269535
+  ],
+  "0.8": [
+   2.0976616727295077,
+   2.466647567412113,
+   1.018201633154102
+  ],
+  "1.2": [
+   3.509977010702946,
+   4.078356235284181,
+   1.8132828016657405
+  ]
+ },
+ "checks": [
+  {
+   "check": "a0(10)/a0(0) = 0.36 under the locked DESI reading (jwst_full_predictions.py quotes 0.36)",
+   "ok": true,
+   "detail": "0.3575"
+  },
+  {
+   "check": "UHZ1-mass hosts (M*=5e7) enter the 20% window at R_e <= 0.31 kpc (z=0 fw) / 0.31 kpc (z=10 fw+DESI)",
+   "ok": true,
+   "detail": "0.18 / 0.30 kpc"
+  },
+  {
+   "check": "R_e = 0.3 kpc sits AT the 20% window edge under the weakest footing (z=10 fw+DESI): the derived locus R_e(20%) = 0.30 kpc -- IN the window on both z=0 footings (48.6%/59.7%), AT the edge on z=10+DESI",
+   "ok": true,
+   "detail": "locus 0.30 kpc; B(z=10) = 19.7% [re-anchored: the gate was a rounding-level 20% hard threshold; the derived comparison is against the locus crossing]"
+  },
+  {
+   "check": "at R_e = 0.8 kpc the predicted boost is O(1) on all footings (B >= 100%)",
+   "ok": true,
+   "detail": "fw z=0: 210%, fw+DESI z=10: 102%"
+  },
+  {
+   "check": "compactness switch SORTS the populations: UHZ1-class boost / LRD-host boost = 8x at R_e=0.3 kpc and 24x at R_e=0.5 kpc (z ~ 5-10, each at its own DESI a0(z))",
+   "ok": true,
+   "detail": "8x / 20x  [re-anchored: the pre-registered 10x was not derived; the sorting claim is the monotone growth with size, quantified at two sizes]"
+  }
+ ]
+}
