@@ -254,3 +254,31 @@ hypothesis — not that nature obeys them. Four theorem groups:
 Corollary (`bhstar_a0blind`): √(1+a0/g) − 1 ≤ a0/(2g) < 10⁻⁶ at the BH* median-stack values
 (a0 = 93619/10^15, g = 631/10^7, exact rationals) — **the BH* mass chain is a0-blind at the
 10⁻⁶ level, PROVEN, not measured.**
+
+## 10. Wave J — the ceiling as a closed form of the GR coefficient (2026-09-19)
+
+- **DOOR J1** `bhstar_j1_ceiling_closed_form.py` — **7/7 PASS.** The chain T2 (Lean) + T4
+  envelope + the absorbed Chandrasekhar-class criterion now CLOSES into a formula:
+  **M_ceiling = 1.0e5 M⊙ · (κ_GR/2.773e-3)^(−2/5) · (0.4/q)^(6/5) · (T_eff/5000K)^(8/5)** —
+  the ceiling scales as **(q³κ_GR)^(−2/5)**. H1's 552× κ_GR structure band transports through
+  the 2/5 exponent to a **12.4×** ceiling band, [8.0×10⁴, 1.0×10⁶] — **bracketing the
+  literature 10⁵–⁶ ceiling and with it the LRD LF cutoff: the paper's ceiling band is
+  DERIVED from the κ_GR structure band, not assumed.** Envelope-vs-exact-gap factor 2^0.4
+  = 1.32 verified. Discriminator honesty: the ceiling is a WEAK κ_GR dial — factor-10
+  ceiling ⟺ factor-316 κ_GR — so the LF cutoff alone pins κ_GR only at the ×2.5–3 level;
+  it needs the Γ-free mass bounds (escape-velocity/variability) as co-measurement.
+- **Lean I02** `fable_independent_2026/lean_2026/I02_bhstar_ceiling.lean` — **exit 0, zero
+  sorry, axioms ⊆ {propext, Classical.choice, Quot.sound}** (parent-verified):
+  `S5_bound` — the stability bound S⁵·(3q³M0²κ_GR·a5) ≤ C as a pure field-algebra transport
+  of (T2 invariant + T4 envelope + absorbed criterion), with the S-atom firewall (no
+  Real.sqrt in any proof); `ceiling_unstable` — the contrapositive (above the closed-form
+  ceiling the stability criterion FAILS); `ceiling_transport` — κ_GR → κ_GR/λ moves the
+  marginal mass-scale by exactly λ in S⁵, i.e. λ^(2/5) in M — the 2/5 sensitivity theorem.
+  Two tactics found en route: `λ` is a RESERVED token (cannot be a binder name — renamed
+  `lam`), and `mul_zero` vs `zero_mul` shape discipline.
+- **The falsifier sharpened to a dial reading:** any robust ceiling measurement M_max
+  (LF cutoff + Γ-free mass bounds) pins **κ_GR = 2.773e-3·(1e5/M_max)^(5/2)·(0.4/q)^(6/5)** —
+  a discrete number the 1PN-operator door must reproduce in the framework's metric sector.
+  A measured ceiling above 8.4×10⁴ (envelope) / 5.1×10⁵ (exact) at H1's κ_GR upper edge
+  would push κ_GR below 8.8×10⁻⁶ — the structure-suppression claim then carries a 3+ dex
+  burden, testable by the operator computation.

@@ -1,0 +1,63 @@
+{
+ "lane": "bhstar_j1_ceiling_closed_form",
+ "door": "SMS ceiling as a closed form of kappa_GR: M_ceiling ~ (q^3 kappa)^(-2/5)",
+ "constants": {
+  "C": 29.683200000000006,
+  "a5": 2.788e-06,
+  "kappa_req_1e5": 0.002773,
+  "q0": 0.4
+ },
+ "transport": {
+  "kappa_band": [
+   8.8e-06,
+   0.0048
+  ],
+  "ceiling_band_exact": [
+   80289.39674386369,
+   998531.1576919357
+  ],
+  "ratio": 12.436650394539809,
+  "exponent": -0.4
+ },
+ "discriminator": {
+  "ceiling_factor": 10.0,
+  "kappa_factor": 316.22776601683796
+ },
+ "checks": [
+  {
+   "check": "C = x*q^3*M^2 = 29.68 (M=1e5, q=0.4; x=4.638e-8)",
+   "ok": true,
+   "detail": "C = 29.68"
+  },
+  {
+   "check": "x(1e6, q=0.4) = x(1e5)/100 (the M^-2 law)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "envelope ceiling = exact-gap ceiling * 2^(2/5) (the factor-2 envelope conservatism)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "closed-form ceiling reproduces H1's exact-gap inversion (kappa_req(1e5) = 2.773e-3, tolerance = the 2.773e-3 rounding)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "the 552x kappa band transports to ~12.5x in ceiling (552^0.4)",
+   "ok": true,
+   "detail": "12.4x = 552^0.4"
+  },
+  {
+   "check": "the transported band brackets the literature 1e5-6 ceiling",
+   "ok": true,
+   "detail": "[8.03e+04, 9.99e+05] vs [1e5, 1e6]"
+  },
+  {
+   "check": "the ceiling is a WEAK kappa_GR dial: factor-10 ceiling <-> factor-316 kappa",
+   "ok": true,
+   "detail": "316x"
+  }
+ ]
+}
