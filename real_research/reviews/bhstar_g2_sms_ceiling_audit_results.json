@@ -1,0 +1,107 @@
+{
+ "lane": "bhstar_g2_sms_ceiling_audit",
+ "door": "SMS GR ceiling: certified Gamma_1(beta), structure family, LF discriminator; kappa_GR registered as the open door",
+ "gamma1_closed": "b + (4-3b)^2/(12-10.5b)",
+ "beta_ref_1e5_q04": 4.638120605363582e-08,
+ "alpha_edd_1e5": 2.788035458384384e-06,
+ "kappa_req": {
+  "4.0": [
+   0.8767842625550003,
+   0.056114162418322795,
+   0.007014269955996618
+  ],
+  "4.5": [
+   0.0493051766777406,
+   0.003155531203138916,
+   0.0003944414712051922
+  ],
+  "5.0": [
+   0.0027726337276717515,
+   0.00017744849613169646,
+   2.218108192695174e-05
+  ],
+  "5.5": [
+   0.00015591669277600722,
+   9.978671203966197e-06,
+   1.2473786864603898e-06
+  ],
+  "6.0": [
+   8.767829889496164e-06,
+   5.61146955847451e-07,
+   7.016540635478652e-08
+  ],
+  "7.0": [
+   2.7731330031110542e-08,
+   1.783979875637209e-09,
+   2.1503328858127072e-10
+  ]
+ },
+ "gamma_req_at_cutoff_1e6": 25.29617640072454,
+ "checks": [
+  {
+   "check": "Gamma_1(beta=1) = 5/3 exact",
+   "ok": true,
+   "detail": "1.6666666667"
+  },
+  {
+   "check": "Gamma_1(beta=1e-4) -> 4/3 (within 1e-3)",
+   "ok": true,
+   "detail": "1.3333500"
+  },
+  {
+   "check": "closed form Gamma_1 = b + (4-3b)^2/(12-10.5b) matches the first-law derivation at 1e-12 (10 beta points)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "Gamma_1 monotone increasing in beta",
+   "ok": true,
+   "detail": "1.33500 < 1.34172 < 1.38588"
+  },
+  {
+   "check": "R_Edd(1e5 Msun, 5000 K) ~ 350 au (SMS literature scale 1e3-1e4 R_sun)",
+   "ok": true,
+   "detail": "R = 354 au = 76155 R_sun"
+  },
+  {
+   "check": "compactness alpha(1e5) = 2.8e-6 (NOT relativistic at the Eddington structure)",
+   "ok": true,
+   "detail": "alpha = 2.788e-06"
+  },
+  {
+   "check": "beta(M=1e5, q=0.4) from virial structure ~ 5e-8 (super radiation-dominated)",
+   "ok": true,
+   "detail": "beta = 4.638e-08 (T_c = 7.23e+06 K)"
+  },
+  {
+   "check": "beta(M) scaling is exactly M^-2 (independent of R; closed form)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "L_Edd unit = 1.25e38 erg/s per Msun",
+   "ok": true,
+   "detail": "1.250e+38"
+  },
+  {
+   "check": "F1: the paper's dial Gamma<=50 closes ONLY at M_max ~ 1e6 (Gamma_req = 25.3 <= 50)",
+   "ok": true,
+   "detail": "at M_max = 3.16e5: Gamma_req = 80 > 50"
+  },
+  {
+   "check": "maximal SMS at Gamma=50: L(1e5) = 1e44.8, L(1e6) = 1e45.8 (paper's quoted band)",
+   "ok": true,
+   "detail": "log L = 44.80 / 45.80"
+  },
+  {
+   "check": "kappa_req declines monotonically with M (margin (Gamma_1-4/3)/alpha \u221d M^-2.5)",
+   "ok": true,
+   "detail": "kappa_req(1e4) = 0.88 -> kappa_req(1e5) = 2.77e-03"
+  },
+  {
+   "check": "RE-ANCHORED: with the CENTRAL beta the global adiabatic criterion binds at M ~ 1e4, 1-2 dex BELOW the quoted 1e5-6 ceiling",
+   "ok": true,
+   "detail": "kappa_req(1e4, q=0.4) = 0.88; so for kappa_GR = O(1) (homogeneous-star value) the family is unstable by ~1e5 -- the ceiling's driver is either a structure-suppressed kappa_GR or the NON-adiabatic pulsations (Nandal/Saio's subject)"
+  }
+ ]
+}

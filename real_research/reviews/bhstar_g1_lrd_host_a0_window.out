@@ -1,0 +1,52 @@
+==============================================================================
+DOOR G1 -- THE COMPACTNESS SWITCH (LRD hosts = control, matched dwarfs = test)
+==============================================================================
+
+[A] Exact inversion of the a0-line boost locus
+    B = 0.20  ->  y* = 2.272727  (round-trip residual 5.55e-17)
+    B = 0.50  ->  y* = 0.800000  (round-trip residual 0.00e+00)
+    B = 1.00  ->  y* = 0.333333  (round-trip residual 0.00e+00)
+  [PASS] B(y) round-trip exact to 1e-12 at B = 0.2/0.5/1.0
+    locus: B=20% at g_bar = 2.2727 a0 ; B=50% at g_bar = 0.8000 a0
+
+[B] a0(z) DESI reading reproduced independently (locked values: 0.737 @ z=3, 0.506 @ z=6)
+  [PASS] a0(3)/a0(0) = 0.7370 vs locked 0.737
+  [PASS] a0(6)/a0(0) = 0.5063 vs locked 0.506
+
+[C] The locus in the mass-size plane (fw footing; R_e in kpc where the boost crosses)
+    M*[Msun]   R_e(20%) z=0   R_e(50%) z=0   R_e(20%) z=5   R_e(50%) z=5
+    1e7             0.08        0.14         0.11          0.18
+    1e8             0.26        0.43         0.34          0.57
+    1e8             0.46        0.77         0.61          1.02
+    1e9             0.81        1.36         1.08          1.81
+    1e10            2.56        4.31         3.40          5.74
+
+[D] LRD-host grid (paper's own host masses; R_e bracket until JWST sizes land)
+    M* = 1e8.5 Msun, z=0 and z=5 (fw footing, M_bar = M*):
+     R_e[kpc]   B(z=0)     B(z=5,DESI)
+       0.10       1.06%       0.60%
+       0.20       4.16%       2.37%
+       0.30       9.14%       5.27%
+       0.50      23.73%      14.03%
+       1.00      76.74%      48.36%
+  [PASS] median LRD host (M*=1e8.5, Re=0.2 kpc) is DEGENERATE: B(z=0) < 5%  (B = 4.16%)
+  [PASS] same host under DESI a0(z=5) stays degenerate: B(z=5) < 5%  (B = 2.37%)
+  [PASS] extended R_e=1 kpc at same mass CROSSES the window: B(z=0) > 50%  (B = 76.7%)
+
+[E] The matched-mass control: extended z~5 dwarf (R_e = 1.5 kpc, M* = 1e8.5)
+    g_bar = 1.959e-11 m/s^2 = 0.37 x a0_eff(z=5) [0.21 x a0(0)]
+    predicted V/V_Newton (point-mass floor): M_bar=M*: 1.92  |  M_bar=3M*: 3.02
+  [PASS] dwarf floor (M_bar=M*, z=5, fw+DESI): B >= 40%  (B = 92.4%)
+  [PASS] dwarf floor survives the gas-rich budget (M_bar=3M*): B >= 100%  (B = 201.8%)
+  [PASS] CONTRAST at matched M*, z=5: dwarf boost / LRD-host boost >= 10x  (39x  (dwarf 92% vs LRD host 2.4%))
+    r_MOND(M*=1e8.5, a0_eff(z=5)) = 0.91 kpc  ->  the recipe needs the rotation curve out to >= 2 R_e ~ 3 kpc ~ 3.3 x r_MOND (agentGG's own co-requirement)
+
+[F] Falsifier registration (pre-registered, both edges)
+    (i)  extended dwarf measured NEWTONIAN at >= 2 R_e  => a0-line premise dies at z~5
+         (shared with all constant-a0 MOND: S3-17-style shared tension, not distinctive)
+    (ii) compact LRD host measured >20% off Newtonian          => 'compact => degenerate'
+         dies; would demand a0(z=5) ~ 30x BOTH footings -- kills the a0(z) program
+    Recipe: NIRSpec/IFU Halpha or ALMA [OIII]88; independent M_bar; EFE modelled /
+    underdense-field selection; the committed EFE machinery re-enters at analysis time.
+
+<BHSTAR-G1> COMPLETE: 9/9 checks PASS.

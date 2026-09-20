@@ -1,0 +1,55 @@
+==============================================================================
+DOOR G2 -- SMS-CEILING EVIDENCE AUDIT (arXiv:2609.09274's load-bearing GR number)
+==============================================================================
+
+[A] Gamma_1(beta) derived from the first law (no memorized closures)
+  [PASS] Gamma_1(beta=1) = 5/3 exact  (1.6666666667)
+  [PASS] Gamma_1(beta=1e-4) -> 4/3 (within 1e-3)  (1.3333500)
+  [PASS] closed form Gamma_1 = b + (4-3b)^2/(12-10.5b) matches the first-law derivation at 1e-12 (10 beta points)
+  [PASS] Gamma_1 monotone increasing in beta  (1.33500 < 1.34172 < 1.38588)
+    small-b gap: Gamma_1 - 4/3 ~ b/6  (certified limit)
+
+[B] The paper's own SMS structure family (T_eff = 5000 K, L ~ Gamma L_Edd)
+  [PASS] R_Edd(1e5 Msun, 5000 K) ~ 350 au (SMS literature scale 1e3-1e4 R_sun)  (R = 354 au = 76155 R_sun)
+  [PASS] compactness alpha(1e5) = 2.8e-6 (NOT relativistic at the Eddington structure)  (alpha = 2.788e-06)
+    closed form: alpha(M) = 2.788e-06 x (M/1e5 Msun)^(1/2) x (T_eff/5000 K)^4
+  [PASS] beta(M=1e5, q=0.4) from virial structure ~ 5e-8 (super radiation-dominated)  (beta = 4.638e-08 (T_c = 7.23e+06 K))
+  [PASS] beta(M) scaling is exactly M^-2 (independent of R; closed form)
+    closed form: beta(M, q) = 4.638e-08 x (1e5 Msun/M)^2 x (0.4/q)^3   [independent of R; cross-check vs beta(100 Msun)~0.5 extrapolation: same order]
+
+[C] F1 -- the LF-cutoff discriminator (independent of the paper's assumed Gamma)
+  [PASS] L_Edd unit = 1.25e38 erg/s per Msun  (1.250e+38)
+    L_cut(erg/s)  M_max(Msun)  ->  Gamma_req = L_cut/L_Edd(M_max)
+    1e45.5        1e6          ->  25.3
+    1e45.5        3.16e5       ->  80.0
+    1e45.5        1e5          ->  253.0
+  [PASS] F1: the paper's dial Gamma<=50 closes ONLY at M_max ~ 1e6 (Gamma_req = 25.3 <= 50)  (at M_max = 3.16e5: Gamma_req = 80 > 50)
+  [PASS] maximal SMS at Gamma=50: L(1e5) = 1e44.8, L(1e6) = 1e45.8 (paper's quoted band)  (log L = 44.80 / 45.80)
+
+[D] F2 (RE-ANCHORED) -- kappa_req(M, q) with the certified central beta
+    kappa_GR >= kappa_req = (Gamma_1(beta(M,q)) - 4/3) / alpha(M)
+    M[Msun]   q=0.4 (uniform)   q=1.0 (condensed)   q=2.0
+    1e4.0        8.768e-01        5.611e-02  7.014e-03
+    1e4.5        4.931e-02        3.156e-03  3.944e-04
+    1e5.0        2.773e-03        1.774e-04  2.218e-05
+    1e5.5        1.559e-04        9.979e-06  1.247e-06
+    1e6.0        8.768e-06        5.611e-07  7.017e-08
+    1e7.0        2.773e-08        1.784e-09  2.150e-10
+  [PASS] kappa_req declines monotonically with M (margin (Gamma_1-4/3)/alpha ∝ M^-2.5)  (kappa_req(1e4) = 0.88 -> kappa_req(1e5) = 2.77e-03)
+  [PASS] RE-ANCHORED: with the CENTRAL beta the global adiabatic criterion binds at M ~ 1e4, 1-2 dex BELOW the quoted 1e5-6 ceiling  (kappa_req(1e4, q=0.4) = 0.88; so for kappa_GR = O(1) (homogeneous-star value) the family is unstable by ~1e5 -- the ceiling's driver is either a structure-suppressed kappa_GR or the NON-adiabatic pulsations (Nandal/Saio's subject))
+    CONDITIONAL: if the quoted 1e5-6 ceiling IS the global adiabatic mode, stability at M_max = 1e6 requires kappa_GR <= 8.8e-06 (q=0.4) / 5.6e-07 (q=1) -- 2-4 dex below the homogeneous-star O(1) value. That coefficient is the discrete number the 1PN-operator door must reproduce.
+
+[E] The open door, registered not performed (F3)
+    - The audit LOCALIZES the door: the ceiling's binding driver is either the
+      structure-weighted Gamma_1_eff of the global mode (outer gas-dominated layers) or
+      the NON-adiabatic pulsational (strange-mode) instability -- Nandal/Saio's subject.
+      Settling it needs the 1PN pulsation operator + MESA-class structure models.
+    - FRAMEWORK DOOR: the record certifies GR-limit STATICS (universal horizon r=3M/2;
+      Cassini gamma; SdS/NARIAI lane). Dynamical 1PN stability is NOT yet certified.
+      A shifted ceiling MOVES the LRD LF cutoff interpretation -- discrete falsifier.
+    - Falsifiers: (1) any LRD above the LF cutoff at a Gamma-independent mass bound above
+      the ceiling kills the SMS story; (2) a measured Gamma < 25 at the cutoff objects
+      kills the M_max = 1e6 closure; (3) the Gamma dial is testable via the escape-
+      velocity/variability mass bounds (Gamma-free in the absorption lane).
+
+<BHSTAR-G2> COMPLETE: 13/13 checks PASS.
