@@ -282,3 +282,40 @@ Corollary (`bhstar_a0blind`): √(1+a0/g) − 1 ≤ a0/(2g) < 10⁻⁶ at the BH
   A measured ceiling above 8.4×10⁴ (envelope) / 5.1×10⁵ (exact) at H1's κ_GR upper edge
   would push κ_GR below 8.8×10⁻⁶ — the structure-suppression claim then carries a 3+ dex
   burden, testable by the operator computation.
+
+## 12. Wave L — the K-table falsification and the pressure census (2026-09-19)
+
+**THE HONEST KILL OF MY OWN CHAIN, twice over.**
+
+- **L1** `bhstar_l1_ktable_falsification.py` — **5/5 PASS.** Absorbed with provenance:
+  Chandrasekhar 1965, ApJ 142, 1519, **Table 1** (the 1PN radial-instability constant
+  K(n): 0.452381 = 19/42 at n = 0 — matching the 1964 PRL erratum eq. 22' asymptotic form
+  R/R_s ≈ 19/[42(γ−4/3)] — up to 1.4995 at n = 3.5). The GR coefficients κ_GR = 2K are
+  **O(1) and monotone INCREASING with concentration** (0.905 → 2.999). Every tabulated
+  polytrope exceeds the central-β requirement (κ_GR ≤ 2.773×10⁻³ at M = 10⁵) by
+  **2.5–3.3 dex** — with any tabulated K, the central-β chain puts the ceiling at
+  **≤ 9.9×10³ M⊙, one dex below the observed SMS ceiling.** Since 10⁵–⁶ M⊙ SMSs exist
+  (Saio+24), modus tollens: **the central-β-only stability reading is FALSIFIED.** H1's
+  κ_GR band [8.8×10⁻⁶, 4.8×10⁻³] dies as a structure-suppression hypothesis; J1's closed
+  form survives only AMENDED (gap → gap_PROFILE(M), unknown until the eigenproblem).
+- **L2** `bhstar_l2_pressure_census.py` — **4/4 PASS.** The natural rescue hypothesis —
+  "the envelope's gas-dominated layers stabilize the mode" — ALSO falsified by census:
+  at the CLOUDY densities (n_H = 10¹⁰ cm⁻³, T = 5000 K), P_gas = 6.9×10⁻⁴ Pa vs
+  P_rad = 0.158 Pa → **β_env = 4.4×10⁻³: the layer is still radiation-dominated.**
+  The amplitude requirement (div ξ_env/div ξ_c)² ≥ 4.6×10⁷ → ratio ≥ 6800, far beyond
+  the O(10²) standard. Gas-domination would need n_H ≈ 2.3×10¹² cm⁻³ (230× CLOUDY), and
+  even there the requirement is ratio ≥ 427. DOUBLE KILL registered.
+- **Lean I04** `I04_bhstar_ktable.lean` — **exit 0, zero sorry, axioms clean**
+  (parent-verified): the absorption theorem (`kappa_min_tabulated`, κ_GR ≥ 19/21 across the
+  tabulated polytropes, provenance in-docstring) and the numeric falsification at the
+  anchor (`central_beta_unstable_at_anchor`: C = 37104/1250 < S⁵·K ≈ 4.84×10³ — the
+  M = 10⁵ central-β configuration is unstable).
+- **WHAT SURVIVES**: T2 invariant, T4 envelope (both per-layer, Lean-certified), the K-table
+  (absorbed), the ceiling 10⁵–⁶ (observational, Saio+24). **WHAT DIES**: the
+  κ-suppression hypothesis (H1 band, J1's central-β stability reading), the
+  envelope-stabilization hypothesis (L2).
+- **THE REDEFINED OPERATOR DOOR (final form)**: the full Saio+24-type eigenproblem with
+  MESA Γ₁(r) profiles — including the H/He ionization zones (classical driving physics)
+  and the accretion-built density structure. The framework INHERITS the ceiling if its 1PN
+  dynamical sector is GR-identical (its GR-limit record: Cassini γ, r = 3M/2 photon
+  sphere). No dark matter particle anywhere in the chain.

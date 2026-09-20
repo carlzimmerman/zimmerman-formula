@@ -1,0 +1,43 @@
+{
+ "lane": "bhstar_l1_ktable_falsification",
+ "absorbed": "Chandrasekhar 1965 ApJ 142 1519 Table 1: K(n) for n=0..3.5; kappa_GR = 2K",
+ "k_table": {
+  "0.0": 0.452381,
+  "1.0": 0.5654,
+  "1.5": 0.6451,
+  "2.0": 0.7513,
+  "2.5": 0.9003,
+  "3.0": 1.1245,
+  "3.25": 1.285,
+  "3.5": 1.4995
+ },
+ "central_beta_ceiling_max": 9875.661761515608,
+ "verdict": "central-beta-only stability reading FALSIFIED; the Gamma1-profile eigenproblem is the redefined operator door",
+ "checks": [
+  {
+   "check": "n = 0 gives K = 19/42 exactly (the erratum's asymptotic form)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "kappa_GR monotone INCREASING with concentration (0.905 -> 2.999 over n = 0 -> 3.5)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "EVERY tabulated polytrope kappa_GR exceeds the central-beta requirement by 2.5-3.3 dex",
+   "ok": true,
+   "detail": "2.51 dex (even the LEAST concentrated, n = 0)"
+  },
+  {
+   "check": "central-beta ceiling with ANY tabulated K: <= 1e4 Msun (one dex below the observed ceiling)",
+   "ok": true,
+   "detail": "max = 9.876e+03 Msun"
+  },
+  {
+   "check": "the required profile gap at M = 1e5 exceeds the central gap by ~800x",
+   "ok": true,
+   "detail": "kappa*alpha = 6.27e-06 vs central gap 7.73e-9"
+  }
+ ]
+}
