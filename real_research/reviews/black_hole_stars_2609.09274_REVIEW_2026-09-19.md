@@ -228,3 +228,29 @@ cutoff 10^45–⁴⁶ erg/s = SMS ceiling** (any LRD above it at Γ~50-implied m
   models — H1's κ_GR band [8.8×10⁻⁶, 4.8×10⁻³] is its pre-registered target interval; the
   framework's metric sector must reproduce the same structure-suppressed coefficient or the
   SMS ceiling (and with it the LRD LF-cutoff interpretation) moves.
+
+## 9. Wave I — the Lean certification (2026-09-19)
+
+`fable_independent_2026/lean_2026/I01_bhstar_wave.lean` — **compiles exit 0, zero `sorry`,
+all 10 headline theorems' axioms ⊆ {propext, Classical.choice, Quot.sound}** (verified by
+parent recompile). Scope: the ALGEBRA of the wave's structures over ℝ given each law as a
+hypothesis — not that nature obeys them. Four theorem groups:
+
+1. **T1 — the compactness switch, exactly.** B(R) = √(1+a0R²/(GM))−1 is strictly increasing
+   in R (`boost_strictMono`); its level sets are OUTER rays (`boost_lt_iff`/`boost_ge_iff`):
+   B ≥ B* ⟺ a0R² ≥ GM((1+B*)²−1). This is the machine-checked correction of the H2 prose
+   direction error. Exact edges certified: B* = 1/5 at y* = 25/11 (ν = 6/5 exactly),
+   B* = 1/2 at y* = 4/5, B* = 1 at y* = 1/3 → R_crit = (√11/5, 2/√5, 1/√3)·r_M.
+2. **T2 — the radiation-domination invariant** (`xpr_invariant`): x·q³M² =
+   9k/(4πμ m_p a_r t0³) along the recombination-pinned Eddington-limited family — independent
+   of M, of the radius normalization, AND of the structure factor q. The Fowler Γ₁ → 4/3
+   approach is exactly mass-driven.
+3. **T3 — the a0-posit's Eddington closure** (`eddington_a0_closure`): a0 = c²/(2R_Z) with
+   M_Z = c²R_Z/(2G) ⟹ L_Edd(M_Z) = πc⁵/(κ a0) exactly — the Eddington scale of the cosmic
+   free-fall black hole is a0-determined (the Schwarzschild-2 × Friedmann structure of Z).
+4. **T4 — the Γ₁ envelope** (`gap_lower`/`gap_upper`): β/6 ≤ Γ₁(β) − 4/3 ≤ β/3 for
+   0 < β ≤ 1, with the exact slacks β²/2 and 4β(1−β) over the common denominator (24−21β) —
+   the two-sided certificate behind G2's "gap ≈ β/6".
+Corollary (`bhstar_a0blind`): √(1+a0/g) − 1 ≤ a0/(2g) < 10⁻⁶ at the BH* median-stack values
+(a0 = 93619/10^15, g = 631/10^7, exact rationals) — **the BH* mass chain is a0-blind at the
+10⁻⁶ level, PROVEN, not measured.**
