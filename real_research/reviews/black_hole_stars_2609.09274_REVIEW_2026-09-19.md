@@ -560,3 +560,15 @@ reading is certified.
 constrainable with published spectroscopy; reverberation mapping of the z = 7.04
 lensed LRD closes it in one object. If KP1+KP2+KP3 hold across the population, the
 density-form transition g = (c/2)sqrt(G rho) is a MEASURED astrophysical law.
+
+## 21. CORRECTION (append-only, 2026-09-20): the I10/I11 claim in the Wave S+T commit
+
+The Wave S+T commit message (8d791425d) stated "Lean I10/I11" without the verified
+status — the background compile then returned exit 1 with sorryAx in BOTH files (the
+parent's premature claim, caught by the parent's own verification step). Fixed and
+parent-verified by recompile: I10 `void_theorem` (the mul_le_mul' → nlinarith +
+the 1e2 literal ascription + the mul_assoc) and I11 `kepler_law` (the set-atom
+sqrt elimination + the ring-proved expansion + the mul_left_cancel₀ calc through
+h3) — BOTH exit 0, zero sorry, axioms ⊆ {propext, Classical.choice, Quot.sound}.
+The lesson stands in the skill: no Lean file is claimed clean until the parent has
+read the axiom output.
