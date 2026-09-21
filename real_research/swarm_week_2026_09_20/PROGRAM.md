@@ -1,5 +1,7 @@
 # Particle-free research: a week of decisive work
 
+**Latest follow-up:** [20 concrete execution cards](FOLLOWUP.md) refine the priorities after the source/Lean audit. Use them alongside the original graph, with one owner per underlying obligation.
+
 Date: 2026-09-20. Scientific baseline: `be1e8c6326230c3c917b984516a6c67d3b17b1b3`.
 
 **The objective is one defensible new result: an independently selected coefficient, a missing action-to-observable derivation, a discriminating measurement, or a precise obstruction that changes the theory.** This is a work order for the existing swarm, not a claim that those results have been obtained.

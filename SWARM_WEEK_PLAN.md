@@ -1,5 +1,7 @@
 # Next week: particle-free breakthrough program
 
+**Latest dispatch:** [20 audit-driven follow-up cards](real_research/swarm_week_2026_09_20/FOLLOWUP.md), with exact theorem targets and instructions after success, refutation or inconclusive results. These refine the existing packets; coordinate with the parent owner to avoid duplicate work.
+
 **32 actionable work packets, eight physics lanes, seven-day dispatch plan.**
 
 Read the [program and priorities](real_research/swarm_week_2026_09_20/PROGRAM.md), then take an assigned ready task from the [detailed packets](real_research/swarm_week_2026_09_20/PACKETS.md) / [machine-readable registry](real_research/swarm_week_2026_09_20/TASKS.json).
