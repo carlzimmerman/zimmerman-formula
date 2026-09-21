@@ -1,0 +1,88 @@
+{
+  "claim_id": "BHSTAR_DENSITY_FREE_LAG_WIDTH_02",
+  "mathematics": {
+    "assertion_tested": "Exact radial mean-delay identity and uniform-sphere density-free spectral-variance lag band, checked against continuous photon flights, with negative controls for a density gradient and distributed source",
+    "coefficient_domain": "Exact symbolic polynomials and IEEE-754 doubles with Monte Carlo uncertainty",
+    "conventions": "R=c=k_B*T_e/m_e=1 in simulations; unpolarized Thomson, zero bulk, no absorption; full photon ensemble including unscattered; mean observer excess delay not residence time; numerical SI examples with AU and km/s conversions",
+    "inputs": [
+      "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py",
+      "real_research/reviews/bhstar_scattering_clock_2026_09_21/PROOF.md",
+      "real_research/reviews/bhstar_scattering_clock_2026_09_21/density_free/verify.py",
+      "real_research/reviews/bhstar_scattering_clock_2026_09_21/density_free/THEOREM.md",
+      "real_research/reviews/bhstar_scattering_clock_2026_09_21/density_free/AUDIT.md",
+      "real_research/reviews/bhstar_scattering_clock_2026_09_21/density_free/SOURCES.md"
+    ],
+    "bounds": {
+      "models": 10,
+      "photons_per_model": 60000,
+      "uniform_radial_tau": [
+        0.03,
+        0.1,
+        0.3,
+        1,
+        3,
+        10,
+        30
+      ],
+      "radial_gradient_models": [
+        [
+          1,
+          3
+        ],
+        [
+          0.29411764705882354,
+          99
+        ]
+      ],
+      "distributed_source_tau": 1,
+      "iteration_cap": 10000,
+      "paired_z_acceptance_limit": 6
+    },
+    "non_claims": [
+      "Finite sampling is not proof; written proof is separately audited",
+      "No observed LRD confirmation or exclusion",
+      "No global novelty",
+      "No identification of scattering radius with continuum photospheric radius",
+      "Lag-width band does not apply to general density gradients or distributed sources",
+      "No full relativistic or absorbing radiation transfer"
+    ]
+  },
+  "execution_artifacts": [
+    "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py",
+    "real_research/reviews/bhstar_scattering_clock_2026_09_21/PROOF.md",
+    "real_research/reviews/bhstar_scattering_clock_2026_09_21/density_free/verify.py",
+    "real_research/reviews/bhstar_scattering_clock_2026_09_21/density_free/THEOREM.md",
+    "real_research/reviews/bhstar_scattering_clock_2026_09_21/density_free/AUDIT.md",
+    "real_research/reviews/bhstar_scattering_clock_2026_09_21/density_free/SOURCES.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SymPy",
+      "version": "1.14.0"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "NumPy default_rng PCG64",
+    "seed": 9212700,
+    "additional_seeds": [
+      9212701,
+      9212702,
+      9212703,
+      9212704,
+      9212705,
+      9212706,
+      9212707,
+      9212708,
+      9212709
+    ]
+  }
+}
