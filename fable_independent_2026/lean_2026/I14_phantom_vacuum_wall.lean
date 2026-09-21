@@ -38,10 +38,12 @@ The certified content:
   4. the pure face: at kappa^2 = 1/4 WITHOUT confinement the spectrum is
      gapless: the slab modes (0,1,1,...,1,0) have E = 3 exactly and
      E/sum u^2 = 3/(N-1) --> 0 -- the boundary zero mode lives at infinity;
-  5. the wall: kappa^2 > 1/4 (kappa > 1/2) is the classically-registered
-     unstable side (the Knopp complement of the discrete Hardy inequality:
-     the form is unbounded below on the infinite lattice) -- registered in the
-     docstring, standard result, not re-certified here.
+  5. the wall: kappa^2 > 1/4 (kappa > 1/2) is the classical unstable side ---
+     NOW CERTIFIED as `beyond_the_wall` below: for every kappa^2 > 1/4 there
+     exist explicit negative modes (the flat slab at box size
+     N > 1 + 3/(kappa^2 - 1/4)): the vacuum form is not positive beyond the
+     boundary. The trichotomy is complete and machine-checked: gapped stable
+     sector (kappa < 1/2), marginal (kappa = 1/2), explosive (kappa > 1/2).
 
 Every identity below is checked: exit 0, zero sorry, axioms = the standard
 three. Compiled against the repo's Mathlib build (Lean 4.34.0-rc2).
@@ -364,9 +366,49 @@ theorem stability_boundary (N : ℕ) (u : ℕ → ℝ) (hu0 : u 0 = 0) (huN : u 
   have hmul : 0 ≤ (1 / 4 - kappa2) * U N u := mul_nonneg hk hU
   nlinarith [hgap, hmul]
 
+/-- BEYOND THE WALL: for every kappa^2 > 1/4 there EXIST explicit negative
+    modes -- the flat slab u = 1 on [1, N-2] at box size N > 1 + 3/(kappa^2-1/4)
+    has E = 3 - (kappa^2 - 1/4)*(N-1) < 0. At the committed kappa = 1/2 the
+    vacuum is exactly marginal; any stronger coupling makes it explode. -/
+theorem beyond_the_wall (kappa2 : ℝ) (hk : 1 / 4 < kappa2) :
+    ∃ N : ℕ, ∃ u : ℕ → ℝ, u 0 = 0 ∧ u N = 0 ∧ A N u - kappa2 * U N u < 0 := by
+  let eps : ℝ := kappa2 - 1 / 4
+  have heps : 0 < eps := by
+    dsimp [eps]
+    linarith
+  rcases exists_nat_gt (1 + 3 / eps) with ⟨N, hN⟩
+  refine ⟨N, slab N, slab_bc0, slab_bcN, ?_⟩
+  have hk2 : 1 / 4 + eps = kappa2 := by
+    dsimp [eps]
+    ring
+  have hE : A N (slab N) - (1 / 4 + eps) * U N (slab N) = 3 - eps * ((N : ℝ) - 1) := by
+    rw [hardy_identity N (slab N) slab_bc0 slab_bcN]
+    have hd : D N (slab N) = 2 := slab_diff N (by
+      have he3 : 0 < 3 / eps := by positivity
+      have h1 : (1 : ℝ) < (N : ℝ) := by nlinarith [hN, he3]
+      have h1n : 1 < N := by exact_mod_cast h1
+      omega)
+    have hu : U N (slab N) = (N : ℝ) - 1 := slab_norm N (by
+      have he3 : 0 < 3 / eps := by positivity
+      have h1 : (1 : ℝ) < (N : ℝ) := by nlinarith [hN, he3]
+      have h1n : 1 < N := by exact_mod_cast h1
+      exact le_of_lt h1n)
+    rw [hd, hu]
+    ring
+  have hlt : 3 - eps * ((N : ℝ) - 1) < 0 := by
+    have hN1 : 3 / eps < (N : ℝ) - 1 := by nlinarith [hN]
+    have hm : 3 < eps * ((N : ℝ) - 1) := by
+      have h := mul_lt_mul_of_pos_left hN1 heps
+      have hcancel : eps * (3 / eps) = 3 := by field_simp [ne_of_gt heps]
+      rwa [hcancel] at h
+    linarith
+  rw [← hk2, hE]
+  exact hlt
+
 /-! ## 7. the certificate record -/
 
 #print axioms delta_dot_u
+#print axioms beyond_the_wall
 #print axioms hardy_identity
 #print axioms vacuum_gap
 #print axioms vacuum_gap_free
