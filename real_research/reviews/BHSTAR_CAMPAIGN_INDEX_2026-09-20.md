@@ -63,9 +63,28 @@ Plus the CFJC paper: real_research/papers/CFJC_RFC0001_bhstar_regime_coincidence
 
 ## THE OPEN ITEMS (the next session's work)
 
-1. **MESA**: the Gamma_1(beta(r))-profile eigenproblem on accreting SMS structures
-   (the pulsational ceiling 1e5-6 from first principles) — the framework inherits
-   it via 1PN GR-identity if its dynamical sector is GR-identical (Cassini, r=3M/2).
+0. **MESA — ALGEBRAIC SPINE LANDED (opus_49, I13)**: the Gamma_1(beta)-kernel
+   eigenproblem spine is now Lean-certified (fable_independent_2026/lean_2026/
+   I13_bhstar_pulsation.lean, exit 0, zero sorry, axioms = the standard three):
+   (i) the exact kernel identity 3*Gamma_1(beta) - 4 = beta(4-3*beta)/(8-7*beta);
+   (ii) the pure-radiation envelope (beta = 0) is the EXACT zero mode — the
+   restoring term vanishes identically, any gas content opens the gap, the
+   kernel never exceeds 1; (iii) the crossing identity: the fundamental mode's
+   square frequency is linear in the compactness x = 2GM/(Rc^2),
+   omega0^2 = (C_gr*W_gr/I)*(x* - x) with x* = W_beta/(C_gr*W_gr): a stable
+   oscillator BELOW the ceiling, a zero mode AT it, a runaway ABOVE it — the
+   pulsation gap closes exactly at the pulsational ceiling; (iv) the ceiling
+   bracket 0 < x* <= 1/C_gr, uniform in the envelope profile (beta <= 1
+   pointwise), and the pure-radiation face: unstable at EVERY compactness.
+   REMAINING for the numeric landing: the MESA Gamma_1(beta(r)) profile import
+   (fixes x* and the ceiling M_puls = (Rc^2/2G)*x*) and the n ~ 3 virial
+   Coulomb factor C_gr (Chandrasekhar-Ledoux; band [2.25, 3.35] as registered
+   literature values, n = 0 -> 3 homology). Pre-registered kill: a
+   pulsationally stable SMS above the ceiling, or the LF cutoff 1e5.7 off the
+   crossing, kills the face.
+1. **MESA — profile import** (supersedes the open definition): the numeric
+   completion of item 0 — the Gamma_1(beta(r)) profile from MESA runs against
+   the certified spine.
 2. **Reverberation/lensing**: the direct r_B on the z=7.04 lensed LRD closes KP1 in
    one object (the paper's own program).
 3. **Per-object KP2/KP3**: the 117-LRD P-Cygni terminal velocities + the CLOUDY
