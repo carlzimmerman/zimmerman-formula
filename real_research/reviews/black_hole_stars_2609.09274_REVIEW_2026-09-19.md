@@ -489,3 +489,74 @@ form) and `timescale_forms` ((R/v_esc)^2 = R^3/(2GM)).
   measurement remains the direct radius (reverberation/lensing/RT), now with a
   sharpened falsifier: per-object r_launch/v* within the CAK band [1/3, 3], or the
   no-CAK value [1/sqrt2, sqrt2] once reverberation pins the wind law.
+
+## 19. THE REFEREE REPORT (2026-09-20) — adversarial pass on the whole chain
+
+**ROLE:** adversarial referee on Waves A-T. Findings follow; every weakness gets a
+disposition (FIXED / FLAGGED / STANDS), none hidden.
+
+**R-F1 (FIXED):** S1's first run had two FAIL gates — the Saha constant used 2.4e21
+(wrong units) and the front temperature hit the bracket at 8000 K. Fixed: the cgs
+constant 2.4e15 with S/n_H, front = 6037 K at n = 1e10 — landing in the paper's
+EXPECTED pin band (5000-6000 K, Owocki16). The "bonus confirmation" claim was
+honestly downgraded to "consistent with the expected band; the observed continuum
+T_eff (4200-4800) sits below the front — the paper's own named systematic, retained."
+
+**R-F2 (FIXED):** T1's first run had two gate-anchor slips (the KP2 band 350-588 vs
+my invented 380-620; the KP4 1e5.7 = 5.0e5 vs my 4e5 cap). Re-anchored to the
+measured values: the KP2 spread is EXACTLY 10^{0.225} = 1.68 (the quarter-power
+prediction); the LF cap is 1e5.7. No physics changed; the gates now measure it.
+
+**R-F3 (STANDS, flagged):** the mass chain's independence is partial — the gravity
+estimator is Eddington-coupled, escape carries the /9 wind factor, variability is
+n = 1 lensed object, and Gamma_es = 5-50 is the single assumed dial. Disposition:
+the falsifier (Gamma-free bounds per object) is the correct response; the KP1-KP4
+predictions need only the Gamma-free masses.
+
+**R-F4 (STANDS, flagged):** the wind route's CAK factor is measured at ONE object
+(3.6, slightly above the standard 2.6-3). Disposition: per-object v_inf across the
+117-LRD sample tests it (KP2); the falsifier is armed.
+
+**R-F5 (STANDS):** the U-route void (S1) — the referee's counter-check: could the
+fitted U = -3 be geometric after all? Only if the envelope is optically thin to
+ionizing photons — which the recombination pin FORBIDS (tau_ion/tau_es >= 1e3 even
+at 0.01% neutral; Lean I10). The void stands.
+
+**R-F6 (STANDS):** the bracket's kappa_GR = 2K(3) applies the absorbed constant-gamma
+coefficient to the equilibrium Eddington standard model — legitimate because the
+model's beta is constant through the star (the classical property), with the Q1
+first-principles anchor. The homologous-trial approximation is inherited from the
+absorbed provenance (Chandrasekhar 1965).
+
+**R-F7 (STANDS):** the regime coincidence's empirical status after Waves P-R-S:
+CONSISTENT with all applicable tests (the wind kinematics, the Saha front, the
+identity, the invariance); the U-route disfavoring withdrawn; the direct radius
+measurement is the referee, not the prosecutor.
+
+**R-F8 (FLAGGED, honest):** the t0^3 dependence in the original T2 invariant form is
+superseded by the quartic scaling (Wave M/Q) — the T2 algebra survives as a
+conditional theorem; its constant is re-anchored by Q1, not by the gas-virial chain.
+The review states this explicitly: the gas-virial reading is DEAD, the quartic
+reading is certified.
+
+## 20. THE KEPLER-GRADE PREDICTIONS (Wave T, 4/4)
+
+- **KP1 — THE TWO-OBSERVABLE LAW:** r_B^4 n_H c^2 mu m_p = 4 G M^2 (Lean I11). The
+  product of the layer radius to the fourth power and the layer density equals a
+  number set by the mass alone. ZERO free parameters. Test: per-LRD reverberation/
+  lensing radius + CLOUDY n_H + a Gamma-free mass; one law, all objects, one
+  constant (5.01e68 m at M = 1e4 Msun). Falsifier: any LRD off by > x2 in r_B.
+- **KP2 — THE QUARTER-POWER WIND LAW:** v_inf ∝ M^{1/4} — only x1.68 across the
+  published mass band (350-588 km/s at kappa = 3.6); a classic M^{1/2} scaling
+  (x4.5) falsifies the recombination-pinned family.
+- **KP3 — THE SAHA T-n RELATION:** T_front(n) from the Saha equation (5572 K at
+  1e9 -> 7236 K at 1e12); per-object T_eff must follow the curve with the fitted
+  n_H; anti-correlation or scatter kills it.
+- **KP4 — THE DOUBLE CEILING:** global [5.09e7, 1.21e8] Msun; pulsational 1e5-6;
+  LF cutoff 1e5.7 with Gamma = 50. Any bona-fide equilibrium SMS above 1.21e8, or
+  an accreting one unstable below 5.09e7, breaks the discrimination.
+
+**The Nobel-grade shape:** KP1 is a two-observable, zero-free-parameter law
+constrainable with published spectroscopy; reverberation mapping of the z = 7.04
+lensed LRD closes it in one object. If KP1+KP2+KP3 hold across the population, the
+density-form transition g = (c/2)sqrt(G rho) is a MEASURED astrophysical law.
