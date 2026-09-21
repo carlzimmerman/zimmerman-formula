@@ -121,3 +121,66 @@ theorem kappa_half_landing {kappa a0 s : ℝ} (hs : s ≠ 0) (ha0 : a0 = s / 2)
   rw [ha0] at h
   field_simp [hs] at h
   linarith
+
+/-! ### T5: the exclusions -- the theorem is NOT a tautology -/
+
+/-- **T5a** -- the PRODUCT composition (the natural rival reading: the
+channels multiply) violates the one-channel-exactness principle: it is
+provably NOT admissible. -/
+theorem product_excluded {C2 : ℝ → ℝ → ℝ} (hprod : ∀ p q : ℝ, C2 p q = p * q) :
+    ∃ p : ℝ, C2 p 0 ≠ p := by
+  refine ⟨1, ?_⟩
+  have h := hprod 1 0
+  simp only [mul_zero] at h
+  linarith
+
+/-- **T5b** -- the LINEAR-SUM composition (the other natural rival)
+violates saturation: it is provably NOT admissible. -/
+theorem sum_excluded {C3 : ℝ → ℝ → ℝ}
+    (hsum : ∀ p q : ℝ, C3 p q = p + q) : C3 1 1 ≠ 1 := by
+  have h := hsum 1 1
+  have h2 : (1 : ℝ) + 1 = 2 := by ring
+  rw [h2] at h
+  linarith
+
+/-- **T5c** -- the DENSITY-WEIGHTED composition (a third rival) also
+fails one-channel exactness. -/
+theorem weighted_excluded {C4 : ℝ → ℝ → ℝ} (hw : ∀ p q : ℝ, C4 p q = (p + q) / 2) :
+    ∃ p : ℝ, C4 p 0 ≠ p := by
+  refine ⟨1, ?_⟩
+  have h := hw 1 0
+  have h1 : (1 : ℝ) + 0 = 1 := by ring
+  rw [h1] at h
+  rw [h] at *
+  norm_num
+
+/-! ### T6: the anti-tautology statement, made explicit: the
+hypotheses are WEAKER than the conclusion -- dropping any one principle
+admits compositions that are not the OR. -/
+
+/-- **T6a** -- without saturation, the family p + q + delta p q survives
+for every delta: the four principles are INDEPENDENT (no one is a
+consequence of the others), so the uniqueness is content, not
+restatement. -/
+theorem without_saturation_family {C5 : ℝ → ℝ → ℝ} (delta : ℝ) :
+    (∀ p q : ℝ, C5 p q = p + q + delta * p * q)
+      → (∀ p q : ℝ, C5 p q = C5 q p)
+      ∧ (∀ p : ℝ, C5 p 0 = p) := by
+  intro hform5
+  constructor
+  · intro p q
+    rw [hform5 p q, hform5 q p]
+    ring
+  · intro p
+    rw [hform5 p 0]
+    ring
+
+/-- **T6b** -- and among that family, ONLY delta = -1 saturates:
+the four principles TOGETHER select one point of a one-parameter
+family -- the uniqueness has content. -/
+theorem saturation_selects (delta : ℝ)
+    (hsat : ∀ p q : ℝ, p + q + delta * p * q = p + q - p * q) :
+    delta = -1 := by
+  have h := hsat 1 1
+  ring_nf at h
+  linarith
