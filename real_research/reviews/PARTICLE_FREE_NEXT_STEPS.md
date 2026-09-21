@@ -10,3 +10,5 @@ The first deliverable is an orbital-sample admissibility and geometry report.
 The roadmap supplies exact claim boundaries, numerical precision targets,
 failure conditions, source locations and the separation between mathematical,
 empirical and novelty claims.
+
+For the broader repo-wide campaign, use the [seven-day swarm program](../swarm_week_2026_09_20/PROGRAM.md): 32 work packets spanning normalization, action consistency, cosmology, clusters, orbital tests, binaries and BH-star physics, with a machine-readable dispatch registry.

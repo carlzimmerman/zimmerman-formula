@@ -1,0 +1,14 @@
+# Concurrent commits reconciled before integration
+
+The scientific input manifest is pinned to `be1e8c6326230c3c917b984516a6c67d3b17b1b3`. An additional read-only inspection covered new work through `c5528cdde6af51d12314564e512e6544613381ed`. This supplement preserves the original base and records the actual later ancestry instead of silently redefining it.
+
+| New work | Status observed | Work-order consequence |
+| --- | --- | --- |
+| PD20, commit `4c3d1f98c` | The previously local-only two-body Lean file is now committed. It retains the separate per-body test-law premises. | G1 audits that premise; it does not redo the conditional algebra. |
+| PD21, commit `c839e1b24` | A synthesis of conditional force-law/normalization certificates, now in `deepseek_push/lean/PD21_law_of_nature.lean`. Its introductory full transition law differs from the rational action used by the orbital package. | B1/Q2 must compare the full laws and theorem premises. A shared deep limit does not establish that the finite-field completions are identical. A1 selection and G1 conservation obligations remain. |
+| BH wave U, commit `123bec0ee` | U1/I12, previously provisional, are committed. The script computes Gamma from T and fitted g, then substitutes it back to recover g. | H1/H2 audit whether the fitted gravity is gravitational or effective/dynamical. The round trip is not an independent measurement check. Read `bhstar_u1_decircularization.py` and `I12_bhstar_dial.lean` at this commit before interpreting the dial-removal claim. |
+| L310, commit `a46fe292a` | An instrument inventory now exists. | Reuse its candidate list when running Q3/F/G; inspect each number's assumptions rather than duplicate a list or inherit its verdict. |
+| L311, commit `ac70fb86a` | The script explicitly assigns `K_act=1.05*M_b/sqrt(30*KPC)` and `M_act=K_act*sqrt(r)`; its pedigree check is literal true. | E1/B2 still need the absolute source/asymptotic derivation. E2 must solve the coupled profile instead of interpreting the assigned shape as its result. |
+| L312, commit `c5528cdde` | Additional halo/cosmic implications are computed from the same anchored square-root profile; several qualitative comparison gates are literal true. | C4 checks abundance independently; E1/B2/E2 check the source first. Q3 compares actual model families rather than treating a generic competing halo as having one universal scatter or slope. |
+
+This is a source-level delta assessment, not a fresh compile or full rerun of these new files. Their existence does not complete the specified missing implications. If later work supplies the actual derivation, Q1 should retire or narrow the corresponding packet after checking it. The L292 wrapper remains separately marked unavailable in the original pinned tree; no other agent's files were added by this work-order commit.
