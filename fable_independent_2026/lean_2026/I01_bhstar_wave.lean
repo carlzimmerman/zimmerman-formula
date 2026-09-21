@@ -1,5 +1,7 @@
 import Mathlib
 
+open Real
+
 /-!
 # I01 — Wave I: exact certificates for the BH* absorption (arXiv:2609.09274)
 

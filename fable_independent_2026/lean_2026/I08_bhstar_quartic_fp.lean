@@ -1,5 +1,7 @@
 import Mathlib
 
+open Real
+
 /-!
 # I08 — Wave Q: the Eddington quartic constant from first principles
 

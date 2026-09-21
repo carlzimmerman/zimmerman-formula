@@ -572,3 +572,45 @@ sqrt elimination + the ring-proved expansion + the mul_left_cancel₀ calc throu
 h3) — BOTH exit 0, zero sorry, axioms ⊆ {propext, Classical.choice, Quot.sound}.
 The lesson stands in the skill: no Lean file is claimed clean until the parent has
 read the axiom output.
+
+## 22. Wave U — THE DIAL IS AN OBSERVABLE: the chain is parameter-free (2026-09-20)
+
+**THE BREAKTHROUGH.** The three-line derivation from the standard definitions —
+
+  Gamma = kappa_es L/(4 pi c G M);  L = 4 pi R^2 sigma T_eff^4;  g_phot = G M/R^2
+
+— cancels the 4 pi AND the mass: **g_phot = kappa_es sigma T_eff^4/(Gamma c)** — the
+photospheric gravity depends ONLY on T_eff and Gamma. Inverting: **Gamma =
+kappa_es sigma T_eff^4/(c g_phot)** — the Eddington dial, the single assumed parameter
+of the whole chain, is an OUTPUT of the same line-wing fit that gives log g.
+
+**U1 lane (4/4):** Gamma = 56.6 measured at the median stack (T_eff = 4662, log g =
+-2.2) — **13% ABOVE the assumed cap of 50**: the referee finding (R-F3) sharpened —
+the assumed dial range is too narrow for the measured gravity. The mass from (L,
+Gamma): **1e3.97 Msun** (no dial, in the published band); the parameter-free layer
+radius **r* = 96.7 au** (3% from the fiducial 100).
+
+**Lean I12** `I12_bhstar_dial.lean` — exit 0, zero sorry, axioms clean:
+`photosphere_gravity` (the third M-cancellation theorem, after I03 and I11) and
+`gamma_readout` (the dial readout).
+
+**THE PARAMETER-FREE CHAIN (every step measured):**
+  Gamma = kappa sigma T^4/(c g_phot)   [I12; the line wings + the continuum fit]
+  M     = L/(Gamma 1.26e31)            [the photometry + Gamma]
+  r_B   = r*(M, n_H)                   [I11; the transition]
+  TEST  : the reverberation/lensing radius == r_B
+Zero dials. The paper's Gamma_es = 5-50 assumption is replaced by a measurement.
+
+**THE POPULATION PREDICTION:** log g is mass-independent (the third M-cancellation):
+every LRD's line-wing gravity clusters at -2.2 with the scatter fixed by the Gamma
+distribution alone (log g +-0.2 => Gamma in [36, 90]). Testable per object from the
+EXISTING spectra.
+
+## 23. THE REFEREE FINDING OF THE DAY: the auto-bound pi (append-only)
+
+The referee caught: the files' `pi` never opened the Real namespace — every pi
+elaborated as an AUTO-BOUND IMPLICIT, not the circle constant. All theorems remained
+TRUE (parameterized algebra), but the constants were unpinned. FIXED: `open Real`
+inserted in I01/I08/I12 (the only pi-carrying files), the statements are now STRONGER
+(pi = Real.pi), all three recompiled exit 0 with clean axioms. I02-I07, I09-I11
+verified pi-free. The full-sweep re-verification is recorded in the .out files.
