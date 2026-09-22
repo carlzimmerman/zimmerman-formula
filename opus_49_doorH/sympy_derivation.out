@@ -1,0 +1,106 @@
+============================================================================================
+PART 1 -- THE INTERPOLANT AND THE EXACT HESSIAN (every coefficient)
+============================================================================================
+  [PASS] C0 [interpolant] framework convention K = u^2 (dK/du = 2u, G155 line 101):  d(f)/dK = mu_2(u) = u(2+u)/(1+u)^2
+         measured: df/dK - mu_2 = 0
+         reading : G155's own C0 identity, reproduced.  (With the OTHER convention K = u^2/2 one gets 2*mu -- a pure normalization shift; the operator built below is identical, C1b.)
+  [PASS] C1 [Hessian coefficient] a_r := f'(K0) + 2 K0 f''(K0) = mu_2 + u dmu_2/du = u(u^2+3u+4)/(1+u)^3  (= 1 + (u-1)/(1+u)^3)
+         measured: a_r = u*(u**2 + 3*u + 4)/(u + 1)**3 ;  1 + (u-1)/(1+u)^3: 0
+         reading : radial coefficient carries BOTH Hessian terms; the angular coefficient is mu_2(u0) alone (C3).  Note the exact closed form a_r = 1 + (u-1)/(1+u)^3: a_r(1) = 1, a_r exceeds 1 on a window (max ~1.04), decays to 1 from above.
+  [PASS] C1b [convention invariance] with K = u^2/2 (dK/du = u) the same operator coefficients result: a_r = mu + 2K0 f''(K0) is unchanged; only the overall Hessian scale (x1/2) differs
+         measured: a_r(K=u^2/2) - a_r(K=u^2) = 0
+         reading : f'(K) differs by 2 between conventions but 2K0 f''(K0) differs by the reciprocal; the physical operator (a_r, mu) -- and everything in Parts 2-6 -- is convention-invariant.
+  [PASS] C2 [direct expansion] eps^2 coefficient of f(K(eps)) equals eta_r^2 * a_r(u0)/Lambda^4
+         measured: series coeff - a_r |ge|^2/Lambda^4 = 0
+         reading : independent check of the radial coefficient by direct Taylor expansion of the FULL interpolant f (no kinetic-function approximation); uses the framework's K = u^2 convention.
+  [PASS] C3 [radial mode operator] the Hessian decouples in spherical modes eta = u_L(r) Y_Lm ; the L-mode operator is
+         measured: Q_L[eta] = (1/2) int 4 pi r^2 [ a_r(u0) eta'^2 + mu_2(u0) L(L+1) eta^2/r^2 ] dr ;   O_L = -(1/r^2) d/dr [ r^2 a_r(u0(r)) d/dr ] + mu_2(u0(r)) L(L+1)/r^2
+         reading : ALL coefficients: radial weight a_r (with the 2K0 f''(K0) piece), angular (centripetal) weight mu_2(u0) -- positive, a REPULSIVE barrier; I14's lattice form has NO such term: the I14 comparison is the L = 0 sector only (O_0 = -(1/r^2) D_r [ r^2 a_r(u0) D_r ]).
+============================================================================================
+PART 2 -- LOG COORDINATE (r = e^t): WEIGHT w, SHIFT s, POTENTIAL V
+============================================================================================
+  [PASS] C4 [weight] w(t) = r a_r(b/r) :  deep corner (u->0, r->oo): w -> 4b CONSTANT ;  near corner (u->oo, r->0): w -> r = e^t (canonical) ;  w is never e^t at finite r
+         measured: w(u->0) = 4*b = 4 C/Lambda^2 ;  a_r(u->oo) = 1
+         reading : deep-corner log weight constant (the free form); canonical weight only at the ideal inner boundary.  (SOURCE_BRIDGE's 'x = sqrt(K)': same, 4 C/Lambda^2 here vs its 4 ell with ell = C/(sqrt(2) Lambda^2) -- the u- vs x-relabeling.)
+  [PASS] C5 [shift] s(u) = (1/2) d ln w/d ln r = (1/2)(1 - u a_r'/a_r) = u(u^2+4u+9)/[2(1+u)(u^2+3u+4)] ;  s(0) = 0, s(oo) = 1/2
+         measured: s = u*(u**2 + 4*u + 9)/(2*(u + 1)*(u**2 + 3*u + 4)) ;  s(0) = 0 ;  s(oo) = 1/2
+         reading : the dressing shift interpolates 0 (deep, free) -> 1/2 (near, the I14 shift value); 1/2 is never attained at finite radius.
+  [PASS] C6 [dressed potential] V = s^2 + s' = s^2 - u ds/du = u(u^5+8u^4+42u^3+64u^2+17u-72)/[4(1+u)^2(u^2+3u+4)^2] ;  V(0) = 0, V(oo) = 1/4
+         measured: V = u*(u**5 + 8*u**4 + 42*u**3 + 64*u**2 + 17*u - 72)/(4*(u + 1)**2*(u**2 + 3*u + 4)**2) ;  V(0) = 0 ;  V(oo) = 1/4
+         reading : the canonical (dressed) radial operator is -d^2/dt^2 + V(u(t)): a RUNNING potential, NOT the constant 1/4 - kappa^2 of I14.
+  [PASS] C7 [V - 1/4 EXACT] V - 1/4 = (3u^4 - 16u^2 - 32u - 4)/[(1+u)^2 (u^2+3u+4)^2]; the quartic has derivative 12u^3 - 32u - 32 = 4(u-2)(3u^2+6u+4) with its only positive stationarity at u = 2, where the quartic is -84 < 0, so exactly ONE positive crossing u* = 3.005083;  V < 1/4 on (0, u*), V > 1/4 on (u*, oo) with V - 1/4 ~ 3/u^2 -> 0^+
+         measured: V - 1/4 = (3*u**4 - 16*u**2 - 32*u - 4)/((u + 1)**2*(u**2 + 3*u + 4)**2) ;  quartic' = 4*(u - 2)*(3*u**2 + 6*u + 4) ;  quartic(2) = -84 ;  positive stationary points of the quartic: ['2.0000']
+         reading : 'V tends to 1/4' is a limit FROM ABOVE; the constant-1/4 reading is not even a bound: V(u) = 1/4 at exactly one isolated radius per member (u = u* ~ 3.00), never identically.
+  [PASS] C8 [V extrema/zero] V < 0 near the deep corner: min V = -0.108918 at u = 0.25193; V = 0 at u = 0.76371; max V = 0.269125 at u = 5.49953
+         measured: V' = -2*(3*u**6 - 53*u**4 - 168*u**3 - 204*u**2 - 80*u + 36)/((u + 1)**3*(u**2 + 3*u + 4)**3) ;  u_crit = ['0.25193', '5.49953'] -> V = ['-0.108918', '0.269125']
+         reading : the dressed potential has a NEGATIVE dip in the deep corner (the audit's caution: no physical negative mode follows -- the original form is an integral of positive weighted squares; the dressed and physical operators live in different norms).
+============================================================================================
+PART 3 -- THE EXACT ALGEBRAIC CONDITION: V == 1/4 IDENTICALLY
+============================================================================================
+  [PASS] C9 [Riccati] V == 1/4 identically   <=>   2w w'' - (w')^2 = w^2 
+         measured: V - 1/4 = s^2 + s' - 1/4 ;  s = (1/2)(ln w)' ;  s' = 1/4 - s^2  <=>  2w w'' - w'^2 = w^2
+         reading : the general solution of s' = 1/4 - s^2 is s = (1/2) tanh((t-c)/2) plus the fixed points s = +-1/2, i.e.  w = C1 e^t,  w = C2 e^{-t},  w = C3 cosh^2((t-c)/2).
+  [PASS]     verify w = e^t satisfies the Riccati ODE
+         measured: 2ww''-w'^2-w^2 = 0
+  [PASS]     verify w = e^{-t} satisfies the Riccati ODE
+         measured: 2ww''-w'^2-w^2 = 0
+  [PASS]     verify w = cosh^2((t-c)/2) satisfies the Riccati ODE
+         measured: 2ww''-w'^2-w^2 = 0
+  [PASS] C10 [log family fails] w(t) = e^t a_r(b e^{-t}) does NOT satisfy the Riccati ODE
+         measured: 2ww''-w'^2-w^2 = 4 b^2 (3u^4 - 16u^2 - 32u - 4)/(1+u)^8 != 0
+         reading : V(u(t)) is NEVER identically 1/4 along the log family: the exact Hardy-marginal operator is not realized at any finite radius.  Beautifully, the same quartic 3u^4-16u^2-32u-4 (C7) controls the Riccati defect.
+  [PASS] C11 [exact background] sourceless equation div[mu_2 grad phi] = 0, radial:  r^2 mu_2(u) phi' = J (const)  <=>  h(u0) = c/r^2,  h(u) = u^2(2+u)/(1+u)^2 ;  h' = a_r(u) = u(u^2+3u+4)/(1+u)^3 > 0
+         measured: h' = u*(u**2 + 3*u + 4)/(u + 1)**3 (= a_r, C1) ;  h(0) = 0 ;  h(oo) = oo
+         reading : h bijects (0,oo) -> (0,oo), so the ACTUAL background of the full interpolant is the 1-parameter family u0(r) = h^{-1}(c/r^2) (phi0' = Lambda^2 u0);  the committed log profile is its DEEP-corner asymptotic only.
+  [PASS] C12 [exact family asymptotics] u0 ~ sqrt(c/2)/r (deep), u0 ~ c/r^2 (near):  weight w = r a_r CONSTANT in the deep corner, canonical r = e^t only as r -> 0
+         measured: w_deep -> 2*sqrt(2)*sqrt(c) as r -> oo ;  w_near/r -> 1 as r -> 0
+         reading : identical two-corner behavior to the log family: constant weight (V -> 0) exactly where the equation is solved; canonical e^t (V -> 1/4) only at the ideal r -> 0 boundary (off-shell there for the log profile; the degenerate endpoint of the exact family).
+  [PASS] C13 [realization] NO framework profile realizes V == 1/4 identically: the Riccati solution families grow like e^t (or e^{-t}, e^{2t}) at t -> oo, while every member of both framework families has w(t) -> const > 0 as t -> oo (deep corner)
+         measured: log: w ~ 4b ;  exact: w ~ 4 sqrt(c/2) ;  Riccati families: C1 e^t, C2 e^{-t}, C3 cosh^2((t-c)/2) ~ (C3/4) e^{2t}
+         reading : the only matching asymptote is the near-corner e^t, attained only in the limit u -> oo -- where the committed background is NOT a solution (C14) and the physical halo is EFE-capped at r_break = 0.62 r_M with u(r_break) ~ 1e-19 << 1 (deep corner).  The I14 Hardy-marginal operator is realized at NO admissible point of the framework's parameter space.
+============================================================================================
+PART 4 -- OFF-SHELLNESS OF THE COMMITTED LOG BACKGROUND
+============================================================================================
+  [PASS] C14 [flux] log background: J = r^2 mu_2(u) phi' = C b (u+2)/(1+u)^2 ; dJ/dr = C (mu - u mu') = C u^2 (u+3)/(1+u)^3
+         measured: dJ/dr = C*u**2*(u + 3)/(u + 1)**3
+         reading : flux NON-conserved for every u > 0: the log profile solves the sourceless equation only in the deep-corner limit u -> 0 (dJ/dr = C u^2 (u+3)/(1+u)^3 -> 0).  This is SOURCE_BRIDGE (iii), re-derived exactly.
+  [PASS] C15 [off-shell] the first variation of F at phi0 = C ln r does not vanish on the full interpolant:  dF[eta] = -Lambda^4 int d^3x eta div[mu_2 grad phi0] != 0
+         measured: residue = div[mu_2 grad phi0] = (1/r^2) dJ/dr = Lambda^2 C u^2 (u+3) r /[(1+u)^3 r^3]  ->  zero only at u = 0
+         reading : the Hessian at the committed background is the second derivative at a NON-critical point of the full interpolant; the exact fluctuation operator must be taken about the C11 solution family.  Both operators share the weight form w = r a_r(u0(r)) and hence all conclusions of C10-C13, C16.
+============================================================================================
+PART 5 -- THE STABILITY BOUNDARY OF THE REAL OPERATOR
+============================================================================================
+  [PASS] C16 [real marginality] I14-type uniform threshold of the REAL operator (L = 0):  kappa^2_crit = 0, NOT 1/4.  For any kappa^2 > 0 the far-field slab on [R, 2R] gives E = -kappa^2 4 pi (7/3) R^3 -> -oo; at kappa^2 = 0 the form is a positive weighted gradient square with no uniform gap
+         measured: slab norm = 7*R**3/3 = 7 R^3/3 ;  inf Rayleigh quotient at kappa^2 = 0 is 0, unattained
+         reading : I14's marginality is about the constant-potential operator (1/4 - kappa^2).  The real operator's V(u(t)) is running with liminf 0 (deep corner): the uniform stability boundary is kappa_real = 0.  The framework's kappa = 1/2 (kappa^2 = 1/4) lies DEEPLY in the unstable region of the real operator.
+  [PASS] C17 [finite box] on any fixed capped halo (0, r_break] the operator -D_r[r^2 a_r D_r]/r^2 has strictly positive bottom (compact weighted Dirichlet); finite-box kappa_crit^2(R) = lambda_1(R) ~ O(1/R^2) -> 0: the I14 finite-vs-uniform distinction survives, with the uniform threshold moved from 1/4 to 0
+         measured: lambda_1(R) > 0 for every R < oo ;  inf_R lambda_1(R) = 0
+         reading : matches I14's own 'finite box strictness vs uniform gap' structure (I14:499-533) but with the physical coupling shifted by -1/4 relative to the model's b = 1/4 - kappa^2.
+============================================================================================
+PART 6 -- DEEP CORNER EXACTLY; WHAT THE FULL CASE ADDS
+============================================================================================
+  [PASS] C18 [deep corner, exact]  mu_2 = 2u - 3u^2 + 4u^3 - ... ;  a_r = 4u - 9u^2 + 16u^3 + ... ;  f(K) = (4 sqrt(2)/3) K^{3/2} + ... ;  s = (9/8)u + ... ;  V = -(9/8)u + ...  (V < 0 to first order)
+         measured: mu = 2*u - 3*u**2 + 4*u**3 - 5*u**4 + 6*u**5 + O(u**6) ;  a_r = 4*u - 9*u**2 + 16*u**3 + O(u**4) ;  s = 9*u/8 - 47*u**2/32 + 201*u**3/128 + O(u**4) ;  V = -9*u/8 + 269*u**2/64 - 513*u**3/64 + O(u**4)
+         reading : deep-corner leading order: w = 4b + O(u^2),  Q = 8 pi b int eta_t^2 dt = the FREE form (V = 0, s = 0): the I14 1/4 is absent to ALL orders in the corner where the background is ON-shell.  This is SOURCE_BRIDGE's deep-corner statement, now with the exact leading coefficients (4b = 4C/Lambda^2) and the complete subleading series.
+  [PASS] C19 [full case adds] relative corrections at finite u: a_r = 4u (1 - (9/4)u + 4u^2 + ...) ;  w = 4b (1 - (9/4)u + ...) ;  the dressed potential starts negative (V ~ -9u/8), crosses zero at u ~ 0.7637, exceeds 1/4 for u > u* ~ 3.00 (max 0.2691), and returns to 1/4 from above;  the angular kinetic coefficient mu_2(u0) L(L+1)/r^2 adds the I14-absent centripetal barrier
+         measured: V = 0 at u = 0.7637 ;  min V = -0.1089 at u = 0.2519 ;  V = 1/4 once at u = 3.0051 ;  max V = 0.2691 at u = 5.4995
+         reading : the exact Hessian at the committed background is therefore not I14's form plus small corrections: the potential is QUALITATIVELY different (running, negative dip, single 1/4 crossing, overshoot, decay from above), and the Hardy identity A = (3/2)D + (1/4)U has no continuum analogue (its 1/4 is s^2 at s = 1/2, i.e. w = e^t, which never holds at finite r).
+============================================================================================
+PART 7 -- NUMERICAL CONFIRMATION (finite-difference checks)
+============================================================================================
+  [PASS] N1 [dressing identity, full interpolant] for test modes, int w eta_t^2 dt = int (v_t - s v)^2 dt with the closed-form shift s; rel. deviations {'gauss': '6.8e-10', 'bump': '7.3e-10'}
+         measured: gauss 6.77e-10 ;  bump 7.31e-10
+         reading : the dressing algebra (SOURCE_BRIDGE lines 84-92) holds on the FULL interpolant: Q = int(v_t - s v)^2 dt with s the exact shift of C5.
+  [PASS] N2 [exact family numeric] exact background u0 = h^{-1}(c/r^2): deep weight -> 4 sqrt(c/2) = 4.8990 (rel. dev 2.7e-04);  near weight/e^t -> 1 (dev 2.9e-09)
+         measured: w(t->oo) = 4.897677 ;  w(t->-oo)/e^t = 1.000000
+         reading : confirms C12: both framework families have IDENTICAL weight asymptotics (const deep / e^t near).
+  [PASS] N3 [stability numeric] physical operator on L^2(r^2 dr), exact Galerkin: bottom(kappa^2 = 0) -> 0^+ as R grows (no uniform gap); bottom(kappa^2 = 1/4) -> -1/4 (the I14 marginal coupling is DEEPLY unstable); slab Rayleigh quotients E/U at kappa^2 = 0 -> 0 while E(slab) at kappa^2 = 1/4 < 0 already at R = 5
+         measured: bottoms k2=0: {'R=1.0': '18165.3239', 'R=10.0': '7.1445', 'R=100.0': '0.0009'} ;  k2=1/4: {'R=1.0': '18165.0739', 'R=10.0': '6.8945', 'R=100.0': '-0.2491'} ;  slab Q/U(k2=0): {'R=5.0': '0.0049', 'R=20.0': '0.0001', 'R=80.0': '0.0000'} ;  slab E(k2=1/4): {'R=5.0': '-398.6678', 'R=20.0': '-26017.2583', 'R=80.0': '-1665717.8085'}
+         reading : quantitative confirmation that the real operator's I14-type uniform threshold is kappa^2 = 0, with the I14 marginal coupling kappa^2 = 1/4 far inside the unstable region.
+
+============================================================================================
+VERDICT
+============================================================================================
+I14's kappa = 1/2 marginality is NOT realized by the framework's actual second variation.  (i) The exact Hessian of L = Lambda^4 f(K) at phi0 = C ln r for the FULL interpolant is a positive weighted gradient form; its angular-mode operators carry every coefficient (a_r = mu_2 + u mu_2' radial, mu_2 L(L+1)/r^2 centripetal) and its canonical (dressed) L=0 form is -d^2/dt^2 + V(u(t)) with running potential V, V(0) = 0, V(oo) = 1/4, negative dip ~ -0.109, a SINGLE exact 1/4 crossing at u* ~ 3.00, overshoot ~0.269, decay from above.  (ii) V == 1/4 identically requires the Riccati 2w w'' - w'^2 = w^2, i.e. w = C e^{+-t} or C cosh^2((t-c)/2); no member of the log family (symbolic: defect 4b^2(3u^4-16u^2-32u-4)/(1+u)^8 != 0) NOR of the exact sourceless family u0 = h^{-1}(c/r^2) (asymptotic crossing) realizes it at any finite radius -- only the ideal boundary r -> 0 (u -> oo), where the committed background is off-shell and the halo is EFE-capped.  (iii) The real operator's uniform-over-boxes stability boundary is kappa^2 = 0 (deep-corner free form), NOT 1/4; kappa^2 = 1/4 is deep in its unstable region.  VERDICT: the spectral-rigidity route to kappa = 1/2 does NOT survive.  I14 is a model theorem -- an exact certificate for a DEFINED t-lattice Dirichlet form, exactly as its own docstring disclaims any physical identification (I14:30-35) -- with the framework connexion dead: the actual operator never degenerates to the Hardy-marginal family at any framework-compatible background.
+
+doorH COMPLETE: 27/27 checks PASS -> opus_49_doorH/results.json
