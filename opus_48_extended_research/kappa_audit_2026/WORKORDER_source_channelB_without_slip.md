@@ -1,5 +1,16 @@
 # WORK ORDER — source channel B without breaking Φ=Ψ (the joint that decides κ=1/2)
 
+## ⚠️ RESULT: closed by NO-GO (K_AUDIT_channelB_nogo.py), modulo 3 stated loopholes.
+No single-metric, GW170817-safe, α₁-safe extra field (scalar/vector/tensor) can engage
+channel B while preserving universal lensing=dynamics: the field supplying the second
+channel IS the slip; cancelling it in the observed metric needs an anisotropic (disformal/
+bimetric) coupling GW170817 kills, or a vector α₁ kills. So κ=1/2 is EMPIRICALLY ANCHORED,
+not derived, via this route. The open task below is now: either break a stated loophole to
+reopen it, or accept the no-go and record κ=1/2 as measured-with-structure.
+
+---
+
+
 This is the single open task that would turn κ=1/2 from "empirically anchored" into "derived."
 Basis: `K_AUDIT_two_channel_dust_obstruction.py` (the count fails for dust) +
 `K_AUDIT_slope_is_degree2_independent.py` (κ needs only the slope = channel count).
