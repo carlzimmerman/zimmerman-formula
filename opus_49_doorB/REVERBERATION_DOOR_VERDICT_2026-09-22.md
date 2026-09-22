@@ -8,6 +8,21 @@ object carries a direct engine mass ~10^3.5 above the framework's stack claim.
 
 - **Date:** 2026-09-22 · **Door:** opus_49_doorB · **Lane:** `kp1_z7p04_lensed_lrd_lane.py` (7/7 PASS, exit 0)
 - **Open item closed from the index:** *"Reverberation/lensing: the direct r_B on the z=7.04 lensed LRD closes KP1 in one object (the paper's own program)."*
+- **RE-AUDIT PASS (2026-09-22, re-run after an output-contract rejection):** every load-bearing number
+  below was re-verified against the primary literature. Confirmed verbatim: A2744-QSO1, triply imaged by
+  Abell 2744, z_spec = 7.0451±0.0005, virial M_BH = 4_-1^+2×10^7 M_sun from Hβ FWHM 2800±250 km/s
+  (Furtak+24, Nature 628, 57, DOI 10.1038/s41586-024-07184-8 = arXiv:2308.05735); direct dynamical mass
+  "≈5×10^7 M_sun, Keplerian rotation around a point mass of 50 million Solar masses", inconsistent with a
+  nuclear star cluster, M_BH/M_* > 2 (Juodžbalis+26, Nature 2026, DOI 10.1038/s41586-026-10579-4 =
+  arXiv:2508.21748); n_H = 10^10 cm^-3, N_H = 10^24 cm^-2 fiducial Cloudy model with lower limits
+  n_H > 10^8.5 cm^-3, N_H > 10^22.5 cm^-2 (Ji+25 BlackTHUNDER, arXiv:2501.13082 v2, §6); the BLR radius
+  lower limit — verbatim: "the radius of the BLR must be larger than about 9-light-months/(1+z), which is
+  about 45 light-days" (Ji+25, §7); EW variation 18±3% (Hα) and 22±8% (Hβ) over 875 d rest-frame, delays
+  A=0 / B=+855_-6^+72 d / C=+7,043_-152^+234 d (Furtak+25, A&A 698, A227, DOI 10.1051/0004-6361/202554110
+  = arXiv:2502.07875). No microlensing BLR-size constraint exists for this object: Furtak+25 state the
+  three images are point-sources and their photometry is "agnostic to differential magnification."
+  Non-load-bearing sub-details taken from paper bodies (e.g. host σ_N, NLR scales) were not re-read on
+  this pass; none affect the verdict.
 
 ---
 
@@ -40,11 +55,11 @@ object the framework's program [2609.09274, per the campaign index] names.
 |---|---|---|
 | Redshift | z = 7.0451 ± 0.0005 | Furtak+24 (Nature) |
 | Engine mass, virial (Hβ FWHM 2800 ± 250 km/s) | M = 4e7 M_sun (4_-1^+2 ×10^7) | Furtak+24 |
-| Engine mass, **direct dynamical** (Keplerian rotation of narrow Hα) | **log M/M_sun = 7.7 ± 0.3 (≈5×10^7 M_sun)**, point mass preferred over NSC at >5σ; M_BH/M* > 2 | Juodžbalis+26 (Nature 653, 1017; arXiv:2508.21748) |
+| Engine mass, **direct dynamical** (Keplerian rotation of narrow Hα, lensed) | **M ≈ 5×10^7 M_sun** (headline: "point mass of 50 million Solar masses"), inconsistent with an NSC, consistent with the virial 4×10^7; M_BH/M* > 2. Inclination caveat: a companion Keplerian fit gives 5.6×10^6 M_sun as the inclination-unconstrained **lower limit** (Nature figure caption) — see §9 | Juodžbalis+26, Nature 2026, DOI 10.1038/s41586-026-10579-4 (arXiv:2508.21748) |
 | Dense absorbing gas density (non-stellar Balmer break fit) | **n_H ~ 10^10 cm^-3**, nearly dust-free, N_H ~ 10^24 cm^-2 | Ji+25 BlackTHUNDER (arXiv:2501.13082) |
 | **BLR radius, lower limit** | **R_BLR ≳ 45 light-days** (EW(Hβ) of image C ~2× the rest, 2-epoch "first attempt of AGN reverberation mapping at such an early epoch"; consistent with the local Hβ R–L scatter) | Ji+25, §7 |
 | Line variability | EW(Hα) up to 18 ± 3%, EW(Hβ) up to 22 ± 8%, rest-frame 875 d; no photometric variability | Furtak+25 (A&A 698, A227; arXiv:2502.07875) |
-| Lensing time delays between images | ~22 yr observed (2.7 yr rest) main span; A→C 18–19 yr, C→B 2–3 yr per lens model (used only as a timing lever, not a size) | Furtak+25; Ji+25 §7 |
+| Lensing time delays between images | Observed-frame delay set A=0, B=+855_-6^+72 d, C=+7,043_-152^+234 d (Furtak+25 Tab. 1). Arrival order: C first, A 18–19 yr (2.2–2.4 rest) later, B another ~2.2–3 yr later (Ji+25 §7); full C→B observed span ≈ 22 yr (2.7 yr rest). Used only as a timing lever to re-order epochs — not a size | Furtak+25; Ji+25 §7 |
 | Microlensing signatures | **none published** for QSO1 (no differential-microlensing size constraints exist for this object) | — |
 | Host/dynamical scale | σ_N = 22 km/s; NLR traced to ~200 pc; spectroastrometric scale r_spec = 12.5 pc; sphere of influence ~270 pc | Juodžbalis+26 |
 
@@ -132,6 +147,25 @@ the framework's claimed engine band**. Consequences, both computed here:
   36.5 ld virial, [29, 58] ld mass band; product ratio 1.46×; the ×78 stack-
   mass violation; the [20.5, 81.8] ld falsifier band at 5×10^7 M_sun.
 
+## 9. Audit corrections and the mass-band representation
+
+1. **Delay ordering corrected.** The 2022-09-22 first-draft row read "A→C 18–19 yr, C→B 2–3 yr".
+   The primary sources give the reverse order: image C arrives first, A 18–19 yr observed (2.2–2.4 yr
+   rest) later, then B another ~2.2–3 yr later (Ji+25 §7; Furtak+25 Tab. 1 delay set A=0, B=+855 d,
+   C=+7,043 d). The full C→B observed span ≈ 22 yr (2.7 yr rest) is unchanged. The delays are a timing
+   lever, not a size.
+2. **Direct-mass inclination caveat recorded.** The KP1 confrontation in §4–§5 uses M ≈ 5×10^7 M_sun
+   (the paper's headline, identical to the virial estimate within errors). That pass is *narrow*: the
+   inclination-unconstrained Keplerian lower limit is 5.6×10^6 M_sun (Nature figure caption), at which
+   mass KP1 would predict r_B ≈ 14 light-days — below the 45-ld measured limit, i.e. a FAIL. The mass
+   band shown as log M = 7.7 ± 0.3 → [7.4, 8.0] in §4 is this door's adopted representation (covering
+   the headline and virial reads), not a verbatim uncertainty quoted in any abstract; the audit keeps it
+   as the KP1 dial but flags that the agreement margin shrinks if the true mass falls below ~1.3×10^7.
+3. **No microlensing size constraint (confirmed).** Furtak+25 explicitly state that all three images are
+   point-sources and their measurements are "agnostic to differential magnification." The BLR-size-by-
+   microlensing technique exists in the literature (e.g. J1339, J1138, Q2237+0305, J1004+4112) but has
+   not been applied to A2744-QSO1. This stays on the missing-data list.
+
 ## References
 
 - Framework: `real_research/reviews/BHSTAR_CAMPAIGN_INDEX_2026-09-20.md` (§KP1, open item 2);
@@ -143,6 +177,7 @@ the framework's claimed engine band**. Consequences, both computed here:
 - Furtak+25, A&A 698, A227 (arXiv:2502.07875): EW variability, 22-yr delays, DRW.
 - Ji+25, BlackTHUNDER (arXiv:2501.13082): n_H=1e10, non-stellar Balmer break,
   R_BLR > 45 ld, first RM attempt at z>3.
-- Juodžbalis+26, Nature 653, 1017 (arXiv:2508.21748): direct Keplerian
-  M = 10^7.7±0.3, NSC disfavored, M_BH/M* > 2.
+- Juodžbalis+26, Nature (2026), DOI 10.1038/s41586-026-10579-4 = arXiv:2508.21748: direct Keplerian
+  M = 5×10^7 M_sun (headline "50 million Solar masses"), NSC disfavored, M_BH/M* > 2, consistent with
+  virial 4×10^7; 5.6×10^6 M_sun appears as the inclination-unconstrained lower limit in a figure caption.
 - R–L context for QSO1's limit: Du+16; Bentz+13 (as invoked by Ji+25 Fig. 13).
