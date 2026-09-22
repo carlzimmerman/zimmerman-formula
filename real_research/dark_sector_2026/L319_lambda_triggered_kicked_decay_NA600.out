@@ -1,0 +1,87 @@
+
+L319 -- THE LAMBDA-TRIGGERED KICKED DECAY: the one dark-sector door the record left untested, through the forest and S8.
+
+WHY.  The record's dark-sector ledger (hermes_push/CONTEXT_DIGEST.md; L166 certified necessity) needs a real cold component
+whose retained fraction RISES WITH HOST MASS: the CMB >= 0.988 of a cold budget; clusters ~0.58 of a CDM-like halo at R500;
+disc galaxies <= 0.2 (dwarfs) to <= 0.5 (massive discs) by the SPARC dynamics bound (hunt_2026/h_kids_halo_bound_CORRECTION,
+which withdrew the old KiDS 6-14%).  Kicked two-body decay gives exactly that mass trend (daughters escape shallow wells,
+stay in deep ones).  It was closed ONLY for a UNIVERSAL lifetime -- the "lifetime pincer" of L167/L168: the Lyman-alpha
+forest needs tau >= 41 Gyr (few decays by z = 3) while galaxies need tau <= 20 Gyr -- and the record's open-door statement
+explicitly excludes only "a decay/kick with a universal lifetime".  A decay rate that SWITCHES ON WHEN THE VACUUM DOMINATES
+evades the pincer by construction: nothing decays at z >= 2 (the forest, recombination), most of it decays at z < 1.  It
+also ties the dark sector to the same rho_Lambda that sets a0 in this framework.  This lane tests it on the two quantitative
+gates that killed the universal version, with the SAME validated exact linear-response solver (L168, copied, not edited).
+
+THE MODEL.  X -> Y + (light), isotropic kick v_k to the daughter, which inherits the mother's position and bulk velocity;
+energy to the light product (~v_k/c) neglected.  Rate
+      Gamma(a) = Gamma_0 [Omega_Lambda(a)/Omega_Lambda,0]^p ,   Omega_Lambda(a) = OL/(Om a^-3 + Or a^-4 + OL),
+p in {1, 2}, Gamma_0 set by the decayed fraction today f_d(0).  Survival S(t) = exp(-int Gamma dt); everything else is L168.
+
+GATES (thresholds from L168, not re-chosen):
+  F  the forest: T^2(k = 5 h/Mpc) at z = 3 AND z = 2 no lower than the ALLOWED 5.3 keV thermal relic's (Irsic+2017,
+     the strict WDM-calibrated reading); the loose 10% reading also reported.
+  S  S_8 at z = 0 within 3 sigma of KiDS-Legacy (>= 0.767, as L168 used); DES-Y3 and Planck also printed.
+  G  galaxies: the decayed fraction today must deplete the halo to the dynamics bound (f_d(0) >= 0.8 for dwarfs, with full
+     escape), and the kick must escape a disc: v_k >~ 2-3 v_flat (L167's N-body: eta(3R_d) = 0.58 at v_k = 1.8-2.2 v_flat).
+     Recorded as a requirement on (f_d(0), v_k), not re-simulated here.
+CONTROLS: C1 LCDM growth vs CLASS; C2 v_k = 0 reproduces LCDM (cohort bookkeeping); C3 the universal tau = 5 Gyr, 600 km/s
+cell reproduces L168's S_8 = 0.787 and its forest failure; MUTATE=1 replaces the trigger by the universal lifetime with the
+same f_d(0): the forest gate must then FAIL (rc = 1).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L319_lambda_triggered_kicked_decay.py
+
+  CLASS LCDM: sigma8 = 0.8228, age = 13.81 Gyr
+
+==============================================================================================================
+CONTROLS
+==============================================================================================================
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/dark_sector_2026/L319_lambda_triggered_kicked_decay.py:149: RuntimeWarning: divide by zero encountered in matmul
+  Vmat = (w[None, :] * J * lower * Dji) @ Dm
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/dark_sector_2026/L319_lambda_triggered_kicked_decay.py:149: RuntimeWarning: overflow encountered in matmul
+  Vmat = (w[None, :] * J * lower * Dji) @ Dm
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/dark_sector_2026/L319_lambda_triggered_kicked_decay.py:149: RuntimeWarning: invalid value encountered in matmul
+  Vmat = (w[None, :] * J * lower * Dji) @ Dm
+  [PASS] C1 LCDM control reproduces CLASS's growth P(z=3)/P(z=100) to 2% on 0.1-10 h/Mpc
+         measured: max dev 0.0113
+  [PASS] C2 the triggered decay with v_k = 0 reproduces LCDM at z = 0 to 2e-3 in delta (0.4% in P, 5x below the smallest S_8 effect reported); the residual is FIRST-ORDER DISCRETISATION: 1.56e-3 / 1.11e-3 / 7.7e-4 at N_A = 300 / 420 / 600 (L319_c2_convergence.py)
+         measured: max |ratio - 1| = 7.71e-04 at N_A = 600
+  [PASS] C3 the universal tau = 5 Gyr, v_k = 600 km/s cell reproduces L168: S_8 = 0.787 +/- 0.01, and fails the forest
+         measured: S_8 = 0.7861; T^2(k=5, z=3) = 0.468 vs the allowed 5.3 keV 0.995
+
+==============================================================================================================
+THE SCAN: Gamma ~ Omega_Lambda(a)^p, f_d(0) and v_k; the forest (z = 3 and 2) and S_8 (z = 0)
+==============================================================================================================
+    p=1 f_d(0)=0.8 v_k=  400: f_d(z=3,2,1) = 0.0092/0.0315/0.159; T^2(k=5): z=3 0.9900, z=2 0.9631; S_8 = 0.8303  [forest loose, S8 OK]
+    p=1 f_d(0)=0.8 v_k=  600: f_d(z=3,2,1) = 0.0092/0.0315/0.159; T^2(k=5): z=3 0.9880, z=2 0.9571; S_8 = 0.8172  [forest loose, S8 OK]
+    p=1 f_d(0)=0.8 v_k=  800: f_d(z=3,2,1) = 0.0092/0.0315/0.159; T^2(k=5): z=3 0.9870, z=2 0.9540; S_8 = 0.8008  [forest loose, S8 OK]
+    p=1 f_d(0)=0.8 v_k= 1000: f_d(z=3,2,1) = 0.0092/0.0315/0.159; T^2(k=5): z=3 0.9863, z=2 0.9521; S_8 = 0.7818  [forest loose, S8 OK]
+    p=1 f_d(0)=0.9 v_k=  400: f_d(z=3,2,1) = 0.0131/0.0447/0.219; T^2(k=5): z=3 0.9857, z=2 0.9476; S_8 = 0.8272  [forest loose, S8 OK]
+    p=1 f_d(0)=0.9 v_k=  600: f_d(z=3,2,1) = 0.0131/0.0447/0.219; T^2(k=5): z=3 0.9829, z=2 0.9393; S_8 = 0.8107  [forest loose, S8 OK]
+    p=1 f_d(0)=0.9 v_k=  800: f_d(z=3,2,1) = 0.0131/0.0447/0.219; T^2(k=5): z=3 0.9814, z=2 0.9349; S_8 = 0.7899  [forest loose, S8 OK]
+    p=1 f_d(0)=0.9 v_k= 1000: f_d(z=3,2,1) = 0.0131/0.0447/0.219; T^2(k=5): z=3 0.9805, z=2 0.9323; S_8 = 0.7663  [forest loose, S8 FAIL]
+    p=2 f_d(0)=0.8 v_k=  400: f_d(z=3,2,1) = 0.0004/0.0031/0.048; T^2(k=5): z=3 0.9997, z=2 0.9973; S_8 = 0.8345  [forest OK, S8 OK]
+    p=2 f_d(0)=0.8 v_k=  600: f_d(z=3,2,1) = 0.0004/0.0031/0.048; T^2(k=5): z=3 0.9996, z=2 0.9965; S_8 = 0.8262  [forest OK, S8 OK]
+    p=2 f_d(0)=0.8 v_k=  800: f_d(z=3,2,1) = 0.0004/0.0031/0.048; T^2(k=5): z=3 0.9995, z=2 0.9961; S_8 = 0.8154  [forest OK, S8 OK]
+    p=2 f_d(0)=0.8 v_k= 1000: f_d(z=3,2,1) = 0.0004/0.0031/0.048; T^2(k=5): z=3 0.9995, z=2 0.9958; S_8 = 0.8027  [forest OK, S8 OK]
+    p=2 f_d(0)=0.9 v_k=  400: f_d(z=3,2,1) = 0.0006/0.0044/0.068; T^2(k=5): z=3 0.9996, z=2 0.9961; S_8 = 0.8325  [forest OK, S8 OK]
+    p=2 f_d(0)=0.9 v_k=  600: f_d(z=3,2,1) = 0.0006/0.0044/0.068; T^2(k=5): z=3 0.9994, z=2 0.9950; S_8 = 0.8218  [forest loose, S8 OK]
+    p=2 f_d(0)=0.9 v_k=  800: f_d(z=3,2,1) = 0.0006/0.0044/0.068; T^2(k=5): z=3 0.9993, z=2 0.9944; S_8 = 0.8080  [forest loose, S8 OK]
+    p=2 f_d(0)=0.9 v_k= 1000: f_d(z=3,2,1) = 0.0006/0.0044/0.068; T^2(k=5): z=3 0.9993, z=2 0.9940; S_8 = 0.7918  [forest loose, S8 OK]
+  [PASS] F+S there are Lambda-triggered cells that pass the STRICT forest (5.3 keV-equivalent at z = 3 and z = 2) AND S_8 within 3 sigma of KiDS-Legacy, with f_d(0) >= 0.8 and v_k >= 600 km/s (the galaxy-depletion requirement)
+         measured: 3 of 16 cells: p=2 fd0=0.8 vk=600 S8=0.826; p=2 fd0=0.8 vk=800 S8=0.815; p=2 fd0=0.8 vk=1000 S8=0.803
+         reading:  the lifetime pincer that closed kicked decay is evaded by the vacuum trigger; S_8 is the binding gate for the kick
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  THE DOOR IS OPEN AT THE LINEAR LEVEL.  A decay rate proportional to the vacuum's share, Gamma ~ Omega_Lambda(a)^p, leaves
+  the Lyman-alpha forest untouched (f_d(z=3) = 0.0004, f_d(z=2) = 0.0031) while depleting 80% of the
+  cold component by today, with S_8 = 0.826 at v_k = 600 km/s (KiDS-Legacy 0.815 +/- 0.016; Planck 0.834).
+  The universal-lifetime pincer (tau_forest >= 41 Gyr vs tau_galaxy <= 20 Gyr) does not apply to a triggered rate.
+  NOT YET SHOWN (the next gates, in the record's kill order): galaxy retention for LATE decays in MOND wells (L167 N-body,
+  re-run with the triggered history); clusters (retention and the r^-1.5 residual shape at R500); CMB lensing and fsigma8 at
+  z < 1; the microphysics of a vacuum-triggered rate (a mass-varying parent crossing a kinematic threshold is one candidate,
+  not derived).  This is a CANDIDATE carrier that survives the two gates that killed its universal-lifetime version.
+
+  4/4 checks pass; load-bearing failures: 0; wrote L319_lambda_triggered_kicked_decay_results_NA600.json   [434s]
+NA600 rc=0

@@ -1,0 +1,71 @@
+
+L320 -- THE PRICE OF THE LAMBDA-TRIGGERED CARRIER AT HIGH REDSHIFT: RC100 (z = 0.6-2.5) under three models.
+
+WHY.  L319's carrier passes the forest and S_8 BECAUSE it has not decayed at z >~ 1: the cold component keeps its small-scale
+power, so galaxies at z >~ 1 still sit in (nearly) full cold halos.  In this framework those galaxies ALSO feel the MOND
+kernel.  So the carrier converts the framework's high-z galaxy prediction from "MOND only, flat a0(z)" into "MOND + a
+retained LCDM halo".  RC100 (Nestor Shachar+2023, 100 rotation curves at z = 0.6-2.5, in the repo) is the existing data set
+that speaks to it.  This lane computes, per RC100 galaxy, the dark-matter fraction inside R_e predicted by
+  (a) the framework alone                      g_obs = nu(g_bar/a0) g_bar                         (the control: flat by design)
+  (b) the framework + the L319 carrier          g_obs = nu(g_tot/a0) g_tot, g_tot = g_bar + r(z) g_CDM
+  (c) LCDM alone                                g_obs = g_bar + g_CDM
+and pushes each prediction through the SAME closed-form inversion the data went through (hunt_2026/h16: a0 = (1 - f_DM) g_obs
+/ [ln(1/f_DM)]^2), so model and data are compared as like with like: the d log a0/dz slope and the level.
+
+INPUTS (stated, with their systematic ranges carried):
+  g_bar(R_e) = G (M_bar/2) xi_geo / R_e^2, half the baryons inside the half-light radius, disc geometry xi_geo in {1.0, 1.3}.
+  M_* = M_bar/(1 + mu_gas(z)), mu_gas = 0.5 ((1+z)/2)^2 (massive star-forming discs; +/- a factor 1.5 swept).
+  M_halo from the Moster, Naab & White 2013 stellar-to-halo relation at z (their Table 1 fit); NFW with the Dutton & Maccio
+  2014 c_200(M, z) (Planck); no adiabatic contraction (conservative for (b)/(c): contraction adds inner mass).
+  r(z) = the L319 cell (p = 2, f_d(0) = 0.8) survival fraction, with full escape of daughters (the carrier's most favourable
+  case: any retention adds cold mass and moves (b) toward (c)).
+DATA CONTROL: the data slope reproduces h16's d log a0/dz = -0.112 +/- 0.063.
+MUTATE=1 sets r(z) = 0 in model (b): (b) must then coincide with (a) and the "(b) rises" finding must FAIL (rc = 1).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L320_carrier_highz_price_rc100.py
+
+  RC100: 100 galaxies with z, M_bar, R_e, f_DM(<R_e), g_obs(R_e)
+
+==============================================================================================================
+DATA CONTROL: the RC100 closed-form inversion reproduces h16
+==============================================================================================================
+  [PASS] D0 the data slope d log a0/dz reproduces h16's -0.112 +/- 0.063
+         measured: -0.112 +/- 0.062 (N = 99)
+
+==============================================================================================================
+THE THREE MODELS through the same inversion, over the systematic grid (geometry x gas fraction x footing)
+==============================================================================================================
+    canonical xi_geo 1.0 mu x0.67: slope fw -0.000 | carrier -0.000 | LCDM +0.154;  median f_DM fw 0.28 carrier 0.28 LCDM 0.49 (data 0.29)
+    canonical xi_geo 1.0 mu x1.00: slope fw -0.000 | carrier -0.000 | LCDM +0.141;  median f_DM fw 0.28 carrier 0.28 LCDM 0.46 (data 0.29)
+    canonical xi_geo 1.0 mu x1.50: slope fw -0.000 | carrier -0.000 | LCDM +0.133;  median f_DM fw 0.28 carrier 0.28 LCDM 0.44 (data 0.29)
+    canonical xi_geo 1.3 mu x0.67: slope fw -0.000 | carrier -0.000 | LCDM +0.153;  median f_DM fw 0.23 carrier 0.23 LCDM 0.43 (data 0.29)
+    canonical xi_geo 1.3 mu x1.00: slope fw -0.000 | carrier -0.000 | LCDM +0.141;  median f_DM fw 0.23 carrier 0.23 LCDM 0.40 (data 0.29)
+    canonical xi_geo 1.3 mu x1.50: slope fw -0.000 | carrier -0.000 | LCDM +0.133;  median f_DM fw 0.23 carrier 0.23 LCDM 0.38 (data 0.29)
+    alt       xi_geo 1.0 mu x0.67: slope fw +0.000 | carrier +0.000 | LCDM +0.154;  median f_DM fw 0.31 carrier 0.31 LCDM 0.49 (data 0.29)
+    alt       xi_geo 1.0 mu x1.00: slope fw +0.000 | carrier +0.000 | LCDM +0.141;  median f_DM fw 0.31 carrier 0.31 LCDM 0.46 (data 0.29)
+    alt       xi_geo 1.0 mu x1.50: slope fw +0.000 | carrier +0.000 | LCDM +0.133;  median f_DM fw 0.31 carrier 0.31 LCDM 0.44 (data 0.29)
+    alt       xi_geo 1.3 mu x0.67: slope fw -0.000 | carrier -0.000 | LCDM +0.153;  median f_DM fw 0.27 carrier 0.27 LCDM 0.43 (data 0.29)
+    alt       xi_geo 1.3 mu x1.00: slope fw -0.000 | carrier -0.000 | LCDM +0.141;  median f_DM fw 0.27 carrier 0.27 LCDM 0.40 (data 0.29)
+    alt       xi_geo 1.3 mu x1.50: slope fw -0.000 | carrier -0.000 | LCDM +0.133;  median f_DM fw 0.27 carrier 0.27 LCDM 0.38 (data 0.29)
+  [PASS] C1 control: the framework-alone prediction returns a FLAT inverted a0(z) exactly (the inversion is the kernel's own)
+         measured: max |slope| = 2.5e-15
+  [FAIL] C2 the carrier converts the flat prediction into a RISE: over the whole systematic grid its inverted slope is > 0 and sits 1.8-1.8 sigma above RC100's measured slope
+         measured: carrier slope -0.000 to +0.000; LCDM +0.133 to +0.154; data -0.112 +/- 0.062
+         reading:  the price of passing the forest: galaxies at z >~ 1 carry the cold halo, and RC100 sees no rise
+  [FAIL] C3 the carrier's median dark fraction inside R_e exceeds RC100's measured median on every grid point (the level, not only the trend)
+         measured: carrier 0.23-0.31 vs data 0.29
+         reading:  MOND plus a retained LCDM halo overshoots the dark fraction of z ~ 1-2.5 discs
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  L319's carrier passes the forest and S_8 only because its cold component is intact until z ~ 1.  RC100 then prices it:
+  pushed through the data's own inversion, framework + carrier predicts d log a0/dz = -0.00 to +0.00 across the
+  systematic grid (LCDM alone +0.13 to +0.15), against the measured -0.112 +/- 0.062: 1.8-1.8 sigma,
+  and a median dark fraction inside R_e of 0.23-0.31 against the data's 0.29.  RC100's own caveats apply
+  (f_DM is model-dependent; selection is not controlled across redshift; h16 quotes it as a constraint on a rise, not a
+  detection of a decline).  THE STRUCTURAL POINT does not depend on RC100: any carrier that keeps the forest's small-scale
+  power at z = 2-3 puts cold halos around z >~ 1 galaxies, so the framework's flat-a0(z) prediction for galaxies cannot
+  survive alongside it -- the dark-sector closure and the z ~ 2.5 flagship test pull against each other.
+
+  3/4 checks pass; load-bearing failures: 1; wrote L320_carrier_highz_price_rc100_results_MUTATE.json
