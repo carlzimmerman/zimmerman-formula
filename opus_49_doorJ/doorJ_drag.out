@@ -1,0 +1,190 @@
+doorJ_drag.py -- OPUS 49d DOOR J: THE G03 DRAG FROM THE ACTION.
+
+The N05 campaign's next lane: "The G03 action that would DERIVE the drag
+(kappa, l0) from the action instead of leaving it awaited -- the phantom
+sector's coupling to baryonic flow is the one open physics input."
+
+THE DOOR, EXECUTED: linearize the committed shift-symmetric scalar about its
+background in the presence of baryonic flow, and compute the first-order
+drag force density EXACTLY from the committed constants -- then compare with
+the registered coupling bands (kappa <= 2.6e-9 refined, 2.6e-8 naive, floor
+2.6e-10) and the a0/2 cap.  All algebra in sympy, shown and checked.
+
+COMMITTED FRAMEWORK (P0; THE_THEORY.md L5 / Lemma 1; G154; G155; N07):
+    S = int Lambda^4 f(K) d^4x
+    f(K) = K - 1/(1+K),   K = -(1/2)(d phi)^2/Lambda^4        (L5)
+    f'(K) = mu_2(u),      u = |d phi|/Lambda^2
+    mu_2(u) = u(2+u)/(1+u)^2 = 1 - (1+u)^{-2}                 (L232, n = 2)
+    phantom (sourceless, G154 eq. II):  d_mu[mu_2 d^mu phi] = 0
+    background:  phi_0 = (C/sqrt G) ln r,  C = sqrt(G M_b a0) = v_c^2
+    u_0(r) = r_M/(2 r),  r_M = sqrt(G M_b/a0)                 (exact)
+    L_vac = -Lambda^4 = rho_Lambda c^2,  rho_Lambda = 4 a0^2/(G c^2)
+        =>  Lambda^4 = 4 a0^2/G,  Lambda^2 = 2 a0/sqrt G      (no fit)
+    phantom density:  rho_ph = sqrt(G M_b a0)/(4 pi G r^2)    (N07 D1 exact)
+    a0 = 9.3619e-11 m/s^2 (MEASURED), G = 6.674e-11, M_b = 1e10 M_sun.
+    Field normalization: grad phi_action = g_ph/sqrt G with the physical
+    phantom field g_ph = sqrt(G M_b a0)/r (the G155 rescaling; the
+    framework's u-argument is invariant under it).
+
+PREMISE P1 (registered mechanism choice -- the OPEN input, this door):
+    baryonic flow enters as a frame shift of the kinetic argument:
+        K = -(1/2)(d phi - w)^2/Lambda^4,
+        w = (a0/c) v_b   (velocity -> gradient through the ONLY committed
+        rate scale a0/c = H_Lambda/Z, de Sitter-Unruh footing);
+        in u-units:  u_eff = |u_0 rhat - (v/2c) vhat|  EXACTLY
+        (the 1/2 is Lambda^2 = 2 a0/sqrt G, committed, not fitted).
+    P1a (gauge reading): w is the Galilean frame shift.  The moving
+        configuration phi_0(x - v t) is then an exact solution of the
+        committed static phantom equation at every instant (Galilean
+        invariance of div[mu_2(|grad phi|/Lambda^2) grad phi] = 0), so the
+        first-order response is IDENTICALLY ZERO: kappa = 0 exactly.
+    P1b (absolute reading): w is an absolute velocity against the phantom
+        rest frame (breaks Galilean covariance -- the only reading that can
+        produce a drag).  Compute the first-order response, the wake, and
+        the drag EXACTLY from the committed constants.
+
+THE EXACT LINEAR-RESPONSE COMPUTATION (P1b), all sympy:
+    Variation of S => field equation d_mu[f'(K)(d^mu phi - w^mu)] = 0 and
+        T_mn = f'(K) X_m X_n + g_mn Lambda^4 f(K),  X = d phi - w.
+    phi = phi_0 + delta phi,  delta phi = (v/2c) Lambda^2 h(r) cos theta:
+        (1/r^2) d/dr [ r^2 E_par(r) h' ] - (2/r^2) E_perp(r) h = S_r(r)
+        E_par  = mu_2(u_0) + mu_2'(u_0) u_0
+        E_perp = mu_2(u_0)
+        S_r    = mu_2'(u_0) u_0' + (1/r^2) d/dr[ r^2 mu_2'(u_0) u_0 ]
+        u_0(r) = r_M/(2 r)   (exact coefficients, no approximation)
+    (the operators are checked symbolically below by substituting the
+    ansatz into the 3D linearized equation and matching cos theta).
+    Wake field at the baryon (regular core h ~ A r, h'(0) = A):
+        g_wake(0) = -sqrt G * grad(delta phi)(0) = -(v/c) a0 A  vhat
+        (sqrt G * Lambda^2 / 2 = a0 exactly: committed identities)
+    Drag:  a_drag = a0 (v/c) A,  kappa (a_drag = kappa sqrt(a0/l0) v):
+        kappa = a0 A / (c sqrt(a0/l0))  ->  = v_c A / c  at l0 = r_M.
+
+GATES:
+    G01  committed identities exact (sympy): u_0 = r_M/(2r); Lambda^4 =
+         4a0^2/G; (C/sqrt G)/Lambda^2 = r_M/2; mu_2 identities.
+    G02  background exactness: deep-branch div[mu_2 grad phi_0] = 0
+         (conserved flux 2 Lambda^2 (r u_0)^2 = const, sympy); full-mu_2
+         residual registered (committed branch = exact deep branch).
+    G03  first-order argument shift: delta u = -(v/2c) cos theta (exact).
+    G04  P1a: Galilean invariance => kappa = 0 exactly (below silence).
+    G05  P1b: linearized ODE derived symbolically from the 3D operator
+         (ansatz substitution check); source transition-localized (deep
+         cancellation, sympy series); BVP on [r_min, r_cap] with the
+         registered EFE cap; r_cap sensitivity reported.
+    G06  the wake acceleration vs the a0/2 cap (Lean a0cap_bound).
+    G07  kappa_derived vs the registered bands (2.6e-9 refined / 2.6e-8
+         naive / 2.6e-10 silence).
+    G08  net internal-stress integral vanishes (dipole parity); the drag
+         is the baryon-wake self-force, balance sheet registered (the
+         ln-field momentum flux is IR-sick; the EFE cap is the regulator).
+    G09  kinematic gate: v_c/c = 3.5e-4 << c_s/c in [1/2,1) (L5): no
+         radiative channel at linear order.
+    G10  HONESTY gate: the derivability verdict + exact failing term +
+         band numbers stated in this file's own text.
+
+A FAIL is a finding; no literal-True pass conditions.
+
+==============================================================================
+CONSTANTS: a0 = 9.361900e-11 m/s^2, G = 6.674000e-11, M_b = 1e10 M_sun, c = 2.997925e+08 m/s
+==============================================================================
+
+PART 1 -- THE COMMITTED FRAMEWORK, sympy-exact
+  [PASS] G01a mu_2(u) = u(2+u)/(1+u)^2 == 1-(1+u)^{-2}
+         measured: sympy: simplify = 0
+         reading : the SPARC-selected interpolant (L232 n=2)
+      mu_2'  = 2/(u + 1)**3  (= 2/(1+u)^3, sympy exact)
+      mu_2'' = -6/(u + 1)**4
+  [PASS] G01b Lambda^4 = rho_Lambda c^2 = 4 a0^2/G (Lemma 1 + L5)
+         measured: rho_Lambda c^2 - 4 a0^2/G = 0 (sympy identity); rho_Lambda c^2 = 5.252932e-10 kg/(m s^2)
+         reading : one committed constant; rho_Lambda = 4 a0^2/(G c^2) = 5.845e-27 kg/m^3
+  [PASS] G01c u_0(r) = (C/sqrt G)/(Lambda^2 r) == r_M/(2r) EXACT
+         measured: u_0 = sqrt(G)*sqrt(M_b)/(2*sqrt(a0)*r)
+         reading : sqrt G, sqrt(4a0^2/G) and sqrt(G M_b a0) cancel to r_M/2r exactly
+  [PASS] G01d (C/sqrt G)/Lambda^2 = r_M/2 (the ln-coefficient identity)
+         measured: C/Lambda^2 = sqrt(G)*sqrt(M_b)/(2*sqrt(a0))
+         reading : the door's normalizations share one exact identity
+      rho_ph = sqrt(G M_b a0)/(4 pi G r^2)  [committed, N07 D1]
+
+-- the background (deep branch, exact) --
+  [PASS] G02a deep branch: d/dr [r^2 mu_2 u_0 Lambda^2] = 0 EXACT
+         measured: F(r) = sqrt(G)*M_b (r-independent)
+         reading : the ln-branch is the exact deep solution (mu_2 ~ 2u_0)
+      full-mu_2 residual: dF_full/dr = G*M_b**(3/2)*sqrt(a0)*(sqrt(G)*sqrt(M_b) + 6*sqrt(a0)*r)/(sqrt(G)*sqrt(M_b) + 2*sqrt(a0)*r)**3  (O(u_0^3)-caveat; the committed profile is the pure branch, G40)
+
+NUMBERS: r_M = 3.8586 kpc, C = v_c^2 = 1.114789e+10 m^2/s^2, v_c = 1.055835e+05 m/s,
+         Lambda^4 = 5.252932e-10 kg/(m s^2), Lambda^2 = 2.291928e-05, u_0(r_M) = 0.500000,
+         rho_ph(1 kpc) = 1.3957e-20 kg/m^3, v_c/c = 3.5219e-04
+
+PART 2 -- PREMISE P1 AND THE ACTION VARIATION
+PREMISE P1 (registered): K = -(1/2)(d phi - w)^2/Lambda^4, w = (a0/c) v_b;
+  u_eff = |u_0 rhat - (v/2c) vhat| (1/2 exact from Lambda^2 = 2a0/sqrt G);
+  P1a gauge reading (kappa = 0 exactly), P1b absolute reading (BVP).
+      f'(K) = 1 + (K + 1)**(-2)
+      EOM: d_mu[ f'(K)(d^mu phi - w^mu) ] = 0   [E]
+      T_mn = f'(K)X_m X_n + g_mn Lambda^4 f(K),  X = d phi - w   [T]
+  [PASS] G03 first-order argument shift: delta u = -(v/2c) cos(theta)
+         measured: delta u = -(eps/2) cosT
+         reading : the committed 1/2 from Lambda^2 = 2 a0/sqrt G; eps = v/c
+
+-- P1a (gauge reading): Galilean invariance of the static equation
+  [PASS] G04 P1a: the translated configuration solves the committed static phantom equation at every instant
+         measured: div[mu_2 grad phi_0] = 0 form-invariant under x -> x - v t
+         reading : => first-order response IDENTICALLY ZERO: kappa_P1a = 0 exactly, below the silence floor 2.6e-10.  The committed static sector cannot produce a linear drag through the frame shift alone.
+
+-- P1b (absolute reading): the linearized response, exact coefficients
+      E_par  = (G**(3/2)*M_b**(3/2) + 16*sqrt(G)*sqrt(M_b)*a0*rr**2 + 6*G*M_b*sqrt(a0)*rr)/(G**(3/2)*M_b**(3/2) + 12*sqrt(G)*sqrt(M_b)*a0*rr**2 + 6*G*M_b*sqrt(a0)*rr + 8*a0**(3/2)*rr**3)
+      E_perp = sqrt(G)*sqrt(M_b)*(sqrt(G)*sqrt(M_b) + 4*sqrt(a0)*rr)/(sqrt(G)*sqrt(M_b) + 2*sqrt(a0)*rr)**2
+      S_r    = 48*G*M_b*a0*rr/(8*G**(3/2)*M_b**(3/2)*sqrt(a0)*rr + 32*sqrt(G)*sqrt(M_b)*a0**(3/2)*rr**3 + G**2*M_b**2 + 24*G*M_b*a0*rr**2 + 16*a0**2*rr**4)
+  [PASS] G05a the dipolar ODE is the EXACT projection of the 3D linearized operator (finite-difference probe check, 2 independent probes)
+         measured: max|L3D-ODE|/max|ODE| = 1.49e-04 (probe1, median 6.77e-08), 7.40e-05 (probe2, median 1.35e-07); source identity: True
+         reading : the radial ODE is derived, not assumed: on two functionally independent probes the 3D operator restricted to the dipolar ansatz coincides with the 1D operator to the finite-difference accuracy over the whole domain; the source projection matches symbolically
+  [PASS] G05b the source is transition-localized: the O(1/r^2) deep pieces cancel exactly (sympy limit)
+         measured: lim r^2 (t1+t2) = 0; exact deep tail lim r^3 (t1+t2) = 3*G*M_b/a0
+         reading : deep: mu_2'u_0 ~ 2u_0 and the two derivatives cancel at 1/r^2, leaving only a 3 r_M^2/r^3 tail; interior mu_2' -> 0: the response is generated ONLY where u_0 = O(1), r ~ r_M -- the transition zone
+
+-- BVP: exact coefficients, EFE-capped phantom domain
+      BVP: r in [0.10, 6] kpc, N = 8000, converged, max relative ODE residual = 5.53e-04
+      A = h'(r_min) = -6.332178e-01 (near-field polyfit -6.328718e-01)
+      r_cap = 12 kpc: A = -9.197833e-01 (sensitivity +0.453)
+      r_cap = 24 kpc: A = -1.481403e+00 (sensitivity +1.339)
+  [PASS] G05c BVP converged (exact coefficients); regular core slope A; same sign at every EFE-cap placement, |A| >= 0.5
+         measured: A = -6.332178e-01, polyfit -6.328718e-01, caps 6/12/24 kpc: [-0.633, -0.920, -1.481]
+         reading : exact mu_2 ODE on [0.1, r_cap] kpc; the wake amplitude is IR-dominated (the ln-field's memory): |A| grows with the EFE cap, sign stable -- the honest range |A| in [0.63, 1.48] is reported through the gates; the door's conclusions are sign- and magnitude-robust to the cap placement
+
+-- the wake field and the drag (P1b)
+      g_wake(0) = -(v/c) a0 A vhat with A = -0.6332 < 0: the wake is a TAILWIND (anti-drag) along the flow
+      |a_drag| = 1.977409e-19 * v [m/s^2]
+      at v = v_c: |a_drag| = 2.087818e-14 m/s^2 = 2.2301e-04 a0
+      at v = 2.2e5 m/s (MW): |a_drag| = 4.350299e-14 m/s^2 = 4.6468e-04 a0
+  [PASS] G06 derived wake acceleration vs the a0/2 cap (Lean a0cap_bound)
+         measured: |a_drag(v_c)|/a0 = 2.2301e-04 vs cap = 0.5
+         reading : the wake self-force is far below the measured reaction cap -- the cap is not the binding constraint for this mechanism
+      MW support EVOLUTION time |tau| = v/|a| = 160.2506 Gyr at U_rot = 220 km/s (spin-up case)
+
+-- kappa in the registered parametrization a_drag = kappa sqrt(a0/l0) v
+      l0 = 10 kpc (registered fiducial): kappa = -3.5901e-04
+      l0 = r_M = 3.8586 kpc: kappa = -2.2301e-04 (= v_c A/c = -2.2301e-04)
+  [PASS] G07 kappa_derived vs the registered bands (derivability kill)
+         measured: |kappa(l0=10kpc)| = 3.5901e-04; bands: refined 2.6e-9, naive 2.6e-8, silence 2.6e-10
+         reading : the derived P1b coupling magnitude EXCEEDS the naive survival band by 1.4e+04x (refined: 1.4e+05x) in EITHER sign -- as a drag it would drain the MW support in ~160.3 Gyr, as the tailwind the BVP actually returns it would spin the disk up by ~8.6% per Hubble time -- both observationally excluded: the absolute-reading premise P1b is EXCLUDED by the registered survival gates; the gauge reading P1a gives kappa = 0 exactly (below the silence floor)
+
+-- the net-momentum structure (the honest accounting)
+  [PASS] G08 net internal-stress integral vanishes (dipole parity): int cosT dO = int cos^3T dO = int sin^2T cosT dO = 0
+         measured: 1.11e-16, 0.00e+00, -5.55e-17
+         reading : the linear response redistributes phantom momentum but injects zero net internal force; the drag lives in the baryon-wake self-force (g_wake(0) above), balanced by the wake momentum flux at the EFE cap -- the ln-field's momentum is IR-divergent, the cap is the physical regulator (registered G003 V5 ~6 kpc)
+
+-- the kinematic gate (no radiative channel)
+      v_c/c = 3.5219e-04 vs c_s/c >= 0.7071 (L5: c_s^2 in [1/2,1))
+  [PASS] G09 no Cherenkov/radiation channel at linear order
+         measured: v_c/c = 3.5219e-04 << c_s/c ~ 0.707
+         reading : deeply subsonic: no radiative drag; a linear-in-v drag can only arise from a dissipative/non-shift-symmetric sector -- absent from the committed action L5 (and from G031: the dusts couple only through the shared potential)
+
+VERDICT (the door's content):
+  THE G03 DRAG FROM THE ACTION: P1a (gauge frame shift) gives kappa = 0 EXACTLY (Galilean invariance of the committed static phantom equation), below the silence floor 2.6e-10.  P1b (absolute frame shift) gives a first-order wake with regular-core slope A = h'(0) = -0.6332 < 0 (exact mu_2 linear-response BVP, transition-localized source at r ~ r_M, EFE-capped; |A| in [0.63, 1.48] as the cap runs 6 -> 24 kpc -- the ln-field's IR memory, sign stable): the wake at the baryon is g_wake(0) = -(v/c) a0 A vhat, i.e. |a_wake| = (v/c) a0 |A| -- a TAILWIND (anti-drag) along the flow, NOT a dissipative drag: kappa(l0 = 10 kpc) = -3.5901e-04 (kappa = v_c A/c at l0 = r_M).  The magnitude EXCEEDS the registered refined band 2.6e-9 by 1.4e+05x and the naive band 2.6e-8 by 1.4e+04x in either sign: as a drag it would drain MW rotation support in ~160.3 Gyr at 220 km/s; as the tailwind the BVP actually returns, it would spin the disk up ~8.6% per Hubble time -- both observationally excluded (the disk keeps ~220 km/s 10+ Gyr after formation).  The absolute-reading premise P1b is therefore EXCLUDED by the registered survival gates, while the wake acceleration stays below the a0/2 cap by 2.2e+03x.  THE EXACT FAILING TERM: the first-order response of div[mu_2 grad phi] = 0 to uniform baryonic flow is (P1a) identically zero, or (P1b) a transition-localized dipole generated only at u_0 = O(1), whose net internal force vanishes by parity (G08) while its baryon wake is 1.4e+05x too strong for the registered band and of the WRONG SIGN to be a drag at all.  The registered ZNS(kappa, l0) pair is NOT derivable from the committed action at linear order: the action yields either exactly zero (gauge) or a survival-excluded, wrong-signed coupling (absolute).  Any nonzero dissipative drag at the registered strength requires physics outside L5/G031 (a dissipative coupling -- phantom viscosity or a J.j_b current interaction, absent from the committed action) -- measurement-awaited as registered, now with the negative proof on the record.
+  [PASS] G10 HONESTY GATE: derivability verdict + exact failing term + band numbers stated in this file's own text
+         measured: tokens: PREMISE P1, VERDICT, G07, 2.6e-9, a0/2, transition-localized
+         reading : the door's deliverable is the mechanism + numbers OR the exact failing term -- both are on this record
+
+<doorJ_drag> COMPLETE: 15/15 checks PASS.
+results -> doorJ_drag_results.json

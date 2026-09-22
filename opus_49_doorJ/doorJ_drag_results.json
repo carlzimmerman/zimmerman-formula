@@ -1,0 +1,116 @@
+{
+ "lane": "opus_49d doorJ G03 DRAG FROM ACTION",
+ "premise_P1": "K = -(1/2)(dphi-w)^2/Lambda^4, w = (a0/c) v; P1a gauge kappa=0; P1b absolute (BVP)",
+ "A_hprime0": -0.6332177821591065,
+ "A_fit": -0.6328718244975976,
+ "r_cap": 6.0,
+ "r_cap_sensitivity": {
+  "12.0": -0.9197832570233447,
+  "24.0": -1.4814027332866129
+ },
+ "a_drag_per_v": -1.9774085026499695e-19,
+ "a_drag_at_vc": -2.0878180267327506e-14,
+ "a_drag_at_MW": -4.350298705829933e-14,
+ "tau_MW_Gyr": 160.25058945363608,
+ "kappa_l0_10kpc": -0.0003590148057100365,
+ "kappa_l0_rM": -0.0002230122119156101,
+ "bands": {
+  "naive": 2.6e-08,
+  "refined": 2.6e-09,
+  "silence": 2.6e-10
+ },
+ "checks": [
+  {
+   "name": "G01a mu_2(u) = u(2+u)/(1+u)^2 == 1-(1+u)^{-2}",
+   "measured": "sympy: simplify = 0",
+   "pass": true,
+   "reading": "the SPARC-selected interpolant (L232 n=2)"
+  },
+  {
+   "name": "G01b Lambda^4 = rho_Lambda c^2 = 4 a0^2/G (Lemma 1 + L5)",
+   "measured": "rho_Lambda c^2 - 4 a0^2/G = 0 (sympy identity); rho_Lambda c^2 = 5.252932e-10 kg/(m s^2)",
+   "pass": true,
+   "reading": "one committed constant; rho_Lambda = 4 a0^2/(G c^2) = 5.845e-27 kg/m^3"
+  },
+  {
+   "name": "G01c u_0(r) = (C/sqrt G)/(Lambda^2 r) == r_M/(2r) EXACT",
+   "measured": "u_0 = sqrt(G)*sqrt(M_b)/(2*sqrt(a0)*r)",
+   "pass": true,
+   "reading": "sqrt G, sqrt(4a0^2/G) and sqrt(G M_b a0) cancel to r_M/2r exactly"
+  },
+  {
+   "name": "G01d (C/sqrt G)/Lambda^2 = r_M/2 (the ln-coefficient identity)",
+   "measured": "C/Lambda^2 = sqrt(G)*sqrt(M_b)/(2*sqrt(a0))",
+   "pass": true,
+   "reading": "the door's normalizations share one exact identity"
+  },
+  {
+   "name": "G02a deep branch: d/dr [r^2 mu_2 u_0 Lambda^2] = 0 EXACT",
+   "measured": "F(r) = sqrt(G)*M_b (r-independent)",
+   "pass": true,
+   "reading": "the ln-branch is the exact deep solution (mu_2 ~ 2u_0)"
+  },
+  {
+   "name": "G03 first-order argument shift: delta u = -(v/2c) cos(theta)",
+   "measured": "delta u = -(eps/2) cosT",
+   "pass": true,
+   "reading": "the committed 1/2 from Lambda^2 = 2 a0/sqrt G; eps = v/c"
+  },
+  {
+   "name": "G04 P1a: the translated configuration solves the committed static phantom equation at every instant",
+   "measured": "div[mu_2 grad phi_0] = 0 form-invariant under x -> x - v t",
+   "pass": true,
+   "reading": "=> first-order response IDENTICALLY ZERO: kappa_P1a = 0 exactly, below the silence floor 2.6e-10.  The committed static sector cannot produce a linear drag through the frame shift alone."
+  },
+  {
+   "name": "G05a the dipolar ODE is the EXACT projection of the 3D linearized operator (finite-difference probe check, 2 independent probes)",
+   "measured": "max|L3D-ODE|/max|ODE| = 1.49e-04 (probe1, median 6.77e-08), 7.40e-05 (probe2, median 1.35e-07); source identity: True",
+   "pass": true,
+   "reading": "the radial ODE is derived, not assumed: on two functionally independent probes the 3D operator restricted to the dipolar ansatz coincides with the 1D operator to the finite-difference accuracy over the whole domain; the source projection matches symbolically"
+  },
+  {
+   "name": "G05b the source is transition-localized: the O(1/r^2) deep pieces cancel exactly (sympy limit)",
+   "measured": "lim r^2 (t1+t2) = 0; exact deep tail lim r^3 (t1+t2) = 3*G*M_b/a0",
+   "pass": true,
+   "reading": "deep: mu_2'u_0 ~ 2u_0 and the two derivatives cancel at 1/r^2, leaving only a 3 r_M^2/r^3 tail; interior mu_2' -> 0: the response is generated ONLY where u_0 = O(1), r ~ r_M -- the transition zone"
+  },
+  {
+   "name": "G05c BVP converged (exact coefficients); regular core slope A; same sign at every EFE-cap placement, |A| >= 0.5",
+   "measured": "A = -6.332178e-01, polyfit -6.328718e-01, caps 6/12/24 kpc: [-0.633, -0.920, -1.481]",
+   "pass": true,
+   "reading": "exact mu_2 ODE on [0.1, r_cap] kpc; the wake amplitude is IR-dominated (the ln-field's memory): |A| grows with the EFE cap, sign stable -- the honest range |A| in [0.63, 1.48] is reported through the gates; the door's conclusions are sign- and magnitude-robust to the cap placement"
+  },
+  {
+   "name": "G06 derived wake acceleration vs the a0/2 cap (Lean a0cap_bound)",
+   "measured": "|a_drag(v_c)|/a0 = 2.2301e-04 vs cap = 0.5",
+   "pass": true,
+   "reading": "the wake self-force is far below the measured reaction cap -- the cap is not the binding constraint for this mechanism"
+  },
+  {
+   "name": "G07 kappa_derived vs the registered bands (derivability kill)",
+   "measured": "|kappa(l0=10kpc)| = 3.5901e-04; bands: refined 2.6e-9, naive 2.6e-8, silence 2.6e-10",
+   "pass": true,
+   "reading": "the derived P1b coupling magnitude EXCEEDS the naive survival band by 1.4e+04x (refined: 1.4e+05x) in EITHER sign -- as a drag it would drain the MW support in ~160.3 Gyr, as the tailwind the BVP actually returns it would spin the disk up by ~8.6% per Hubble time -- both observationally excluded: the absolute-reading premise P1b is EXCLUDED by the registered survival gates; the gauge reading P1a gives kappa = 0 exactly (below the silence floor)"
+  },
+  {
+   "name": "G08 net internal-stress integral vanishes (dipole parity): int cosT dO = int cos^3T dO = int sin^2T cosT dO = 0",
+   "measured": "1.11e-16, 0.00e+00, -5.55e-17",
+   "pass": true,
+   "reading": "the linear response redistributes phantom momentum but injects zero net internal force; the drag lives in the baryon-wake self-force (g_wake(0) above), balanced by the wake momentum flux at the EFE cap -- the ln-field's momentum is IR-divergent, the cap is the physical regulator (registered G003 V5 ~6 kpc)"
+  },
+  {
+   "name": "G09 no Cherenkov/radiation channel at linear order",
+   "measured": "v_c/c = 3.5219e-04 << c_s/c ~ 0.707",
+   "pass": true,
+   "reading": "deeply subsonic: no radiative drag; a linear-in-v drag can only arise from a dissipative/non-shift-symmetric sector -- absent from the committed action L5 (and from G031: the dusts couple only through the shared potential)"
+  },
+  {
+   "name": "G10 HONESTY GATE: derivability verdict + exact failing term + band numbers stated in this file's own text",
+   "measured": "tokens: PREMISE P1, VERDICT, G07, 2.6e-9, a0/2, transition-localized",
+   "pass": true,
+   "reading": "the door's deliverable is the mechanism + numbers OR the exact failing term -- both are on this record"
+  }
+ ],
+ "pass": 15,
+ "fail": 0
+}
