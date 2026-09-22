@@ -32,8 +32,10 @@ same f_d(0): the forest gate must then FAIL (rc = 1).
 
 Run from the repository root:  python3 real_research/dark_sector_2026/L319_lambda_triggered_kicked_decay.py
 """
-import os, sys, json, time
+import os, sys, json, time, warnings
 import numpy as np
+# spurious Accelerate-BLAS matmul warnings (results are finite and cross-checked by C1-C3); silenced so no machine path is printed
+warnings.filterwarnings("ignore", category=RuntimeWarning, message=".*encountered in matmul")
 from scipy.integrate import cumulative_trapezoid
 
 HERE = os.path.dirname(os.path.abspath(__file__))
