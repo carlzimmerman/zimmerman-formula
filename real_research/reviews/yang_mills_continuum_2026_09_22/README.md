@@ -2,7 +2,14 @@
 
 **The Yang–Mills existence and mass-gap problem is not solved here.**
 
-The latest focused attempt is
+The latest attempt is [YM-C3: whole-layer coercivity](layer/PROOF.md).
+It proves a volume-uniform discarded-sector bound for a specified covariant
+quadratic model. It also gives exact counterexamples to preserving the
+quadratic class under normalized quantum Schur elimination and to an
+all-background positive Wilson-Hessian comparison. The nonlinear multiscale
+estimate remains unproved. See [review and checks](layer/REVIEW.md).
+
+The preceding result is
 [YM-C2: actual-vacuum finite-block coercivity](one_shot/PROOF.md).
 For a block of m links in the actual finite-lattice interacting vacuum it
 derives a positive discarded-sector lower bound independent of the size of
@@ -25,7 +32,10 @@ not a formal proof certificate or independent peer review.
 The preceding [YM-C1 report](REPORT.md) contains the exact Schur bridge,
 continuum transfer lemmas and counterexamples to insufficient shortcuts.
 [CHECKPOINT.json](CHECKPOINT.json) and its hashed files are preserved as the
-prior checkpoint. The newer checkpoint is `one_shot/CHECKPOINT.json`.
+prior checkpoint. The latest checkpoint is `layer/CHECKPOINT.json`.
+The YM-C2 checkpoint remains in `one_shot/CHECKPOINT.json`; its root README
+hash refers to the historical version in commit `01b05ecab`, before this
+entrypoint update. Its mathematical proof and source files remain unchanged.
 
 The user subsequently authorized committing and pushing both checkpoints;
 this supersedes the earlier session's no-commit scope in `CONTRACT.md`.
