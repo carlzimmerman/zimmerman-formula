@@ -1,0 +1,142 @@
+
+L313 -- STOCHASTIC-METRIC RECTIFICATION AS THE PHANTOM: postquantum classical gravity priced on the
+framework's own gates (the coefficient, the shape, and lensing = dynamics derived from the Einstein tensor).
+
+WHY THIS LANE.  The repository never engaged the one external theory that claims the framework's central
+tie.  Oppenheim & Russo 2024 (arXiv:2402.19459; "OR24") argue that in postquantum classical gravity
+(Oppenheim, PRX 13, 041040, 2023) the metric must diffuse, and that the diffusion produces a MOND-scale
+term with a0 ~ sqrt(Lambda).  Hertzberg & Loeb 2024 (JCAP 09, 046; arXiv:2404.13037) reply that the
+Gaussian mean equation is only del^4 Phi = 4 pi G del^2 rho, so the linear term is not a free solution and
+is not MONDian.  The corpus's own no-gos bracket this exactly: 2026-08-09 (rectification needs a
+NONLINEARITY -- linear EOMs pass only the first cumulant) and 2026-09-01 / KS01 (quantum graviton noise is
+O(hbar), ~1e-124 of what is needed).  Classical metric noise is NOT hbar-suppressed, so it is the one
+escape of the hbar-counting theorem.  This lane asks the honest question the swarm never asked:
+
+    If the phantom IS the rectified variance of a stochastic metric, what coefficient does the published
+    theory give, and does the rectified source lens the way it attracts?
+
+METHOD (derive the observable from the equations -- the L268/L274 discipline).
+  Metric ds^2 = -(1+2 Phi)dt^2 + (1-2 Psi)dx^2 with Phi = Phibar + phi, Psi = Psibar + psi, (phi, psi)
+  zero-mean random fields.  Averaging the exact field equations in the short-wavelength limit (the Isaacson /
+  Green-Wald regime: correlation length << the scale on which the variance varies), the mean metric obeys
+  the LINEAR equations with an effective source 8 pi G T^eff = -<G^(2)[phi,psi]>.  Then, for the static mean,
+      dynamics  (lapse)     : lap Phibar          = 4 pi G (rho + rho_eff + (p_r + 2 p_t))
+      lensing  (Phi+Psi)/2  : lap (Phibar+Psibar)/2 = 4 pi G (rho + rho_eff + (p_r + 2 p_t)/2)
+  so the phantom's lensing/dynamics ratio is set by eps = (p_r+2p_t)/rho_eff alone (sf38 PART A: the only
+  weak-field-observable piece of the stress).  The corpus's gate: |eps| < 0.0489 at 1 sigma (sf38, from the
+  Brouwer+2021 KiDS-1000 full covariance, sigma(amplitude) = 2.36%).
+
+  The averaged tensors are computed symbolically for one Fourier mode (phase-averaged) and are scalars under
+  rotations, so every result holds for ANY directional distribution of the noise, and a mixture of modes
+  can never beat the best single mode (ratio of sums >= min ratio when every trace term has one sign).
+
+CONTROLS (must pass before any finding is read):
+  C0a Isaacson: a TT plane wave gives -<G^(2)_00> = A^2 k^2/4 = 8 pi G t_00, t_zz = t_00, t_xx = t_yy = 0.
+  C0b exact isotropic Schwarzschild: G_mu_nu = 0 numerically (the Einstein routine itself).
+  C0c first order: G^(1)_00 = 2 lap psi, trace G^(1)_ij = 2 lap(phi - psi) (static).
+  C0d rotation-scalars: the static mode along x and along z give identical <G00> and trace.
+  MUTATE=1 drops the Gamma*Gamma terms of the Ricci tensor: C0a/C0b must FAIL (rc != 0); its JSON is
+  written to a separate file (feedback: mutation runs write separate outputs).
+
+Run from the repository root:  python3 real_research/cq_gravity_2026/L313_cq_rectification_lensing.py
+
+
+========================================================================================================
+0  CONTROLS -- the Einstein routine and the averaging reproduce known results
+========================================================================================================
+  [PASS] C0a Isaacson: TT wave gives 8 pi G t_00 = 8 pi G t_zz = A^2 k^2/4, t_xx = t_yy = 0
+         measured: {(0, 0): '-A**2*k**2/4', (1, 1): '0', (2, 2): '0', (3, 3): '-A**2*k**2/4'}
+         reading:  the second-order Einstein tensor + phase averaging reproduces the standard GW stress (w = 1/3 isotropised)
+  [PASS] C0b exact isotropic Schwarzschild satisfies G_mu_nu = 0 (the routine itself)
+         measured: max |G| over 3 points = 2.37e-16
+  [PASS] C0c first order: G(1)_00 = 2 lap psi and trace G(1)_ij = 2 lap(phi - psi)
+         measured: residuals 0, 0
+  [PASS] C0d rho_eff and p_r+2p_t are rotation scalars (mode along x == mode along z)
+         measured: x: (b*kk**2*(4*a*cos(delta) + 5*b)/2, -kk**2*(a**2 - a*b*cos(delta) + b**2/2)); z: (b*kk**2*(4*a*cos(delta) + 5*b)/2, -kk**2*(a**2 - a*b*cos(delta) + b**2/2))
+         reading:  => every bound below holds for ANY directional structure of the noise
+
+========================================================================================================
+A  THE PUBLISHED COEFFICIENT -- OR24's conditional mean, in the framework's kappa
+========================================================================================================
+  [PASS] A1 OR24 read as a0 := |gamma1| c^2/2 (r_max = de Sitter radius), completely positive beta < 0: kappa lies in (1.3025, 1.4472)
+         measured: kappa range 1.3025..1.4472 vs measured A 0.465+/-0.076 (>= 11.0 sigma), B 0.55+/-0.17 (>= 4.4 sigma)
+         reading:  the published CQ route lands a factor 2.8-3.1 above the measured coefficient
+  [PASS] A2 kappa = 1/2 requires beta = 0.2353: inside OR24's positivity (beta <= 1/3) but OUTSIDE complete positivity (beta < 0)
+         measured: beta = (-36*pi + sqrt(6)*sqrt(pi) + 15)/(54 - 144*pi) = 0.23534
+         reading:  the framework's number is reachable only by giving up the condition OR24 need for positive correlations
+  [PASS] A3 BTFR-matched reading: v^4 at the flattest point = 4 G M a_g exactly; at beta -> -inf the matched a0 = 2 c H_Lambda, i.e. kappa = Z = sqrt(32 pi/3) (Milgrom 1999 / Deser-Levin, excluded 15.6 sigma)
+         measured: v^4_min = 4*G*M*a_g; kappa_BTFR(beta->-inf) = 4*sqrt(6)*sqrt(pi)/3 = 5.78881
+  [PASS] A4 r_max = c/H0 (OR24's 'Hubble radius') instead of the de Sitter radius: kappa in (1.078, 1.198)
+         measured: still 8.1 sigma above estimator A
+  [PASS] A5 SHAPE: a constant extra acceleration gives a lensing-RAR slope d ln g_obs/d ln g_bar -> 0 at g_bar << a_g, vs the committed KiDS slope 0.537 +/- 0.026 (L248)
+         measured: 20.4 sigma
+         reading:  independently of the coefficient, a gamma_1 r term is not the deep-MOND law (Hertzberg-Loeb's point, measured)
+  [PASS] A6 Hertzberg-Loeb: lap r = 2/r and the flux of grad(2/r) is -8 pi, so del^4 r = -8 pi delta^3: the linear term needs a point source in del^2 rho -- it is not a free homogeneous solution
+         measured: lap r = 2/R; flux = -8*pi
+
+========================================================================================================
+B  DOES A RECTIFIED PHANTOM LENS AS IT ATTRACTS?  (derived from <G^(2)>, gate |eps| < 0.0489 @ 1 sigma)
+========================================================================================================
+  [PASS] B0 the gate is read from the committed sf38 source (sigma_amp = 2.36%, |eps| < 0.0489 at 1 sigma)
+         measured: sf38 present: True; numbers found: True
+  [PASS] B1 GR-COMPLIANT noise (vacuum fluctuations can only be TT waves; Isaacson, Green-Wald): eps = +1, lensing/dynamics = 0.750 -> excluded at 10.6 sigma (convention-independent: <delta g . G(1)> = 0 in vacuum)
+         measured: L/D = 0.7500
+         reading:  any phantom carried by propagating gravitational-wave energy is dead on KiDS -- incl. every quantum-graviton bath route, independently of its 1e-124 size
+    lower (Einstein-Langevin <G_mn>)    8piG rho_eff = 4*c*u + 5   8piG(p_r+2p_t) = 2*c*u - 2*u**2 - 1
+    mixed <G^m_n>                       8piG rho_eff = 5   8piG(p_r+2p_t) = 6*c*u - 2*u**2 - 5
+    densitized <sqrt(-g) G^m_n>         8piG rho_eff = 2*c*u - 1   8piG(p_r+2p_t) = -2*c*u + 1
+    upper <G^mn>                        8piG rho_eff = -4*c*u + 5   8piG(p_r+2p_t) = 10*c*u - 2*u**2 - 9
+  [PASS] B2a lower-index (Einstein-Langevin): -(p_r+2p_t) 8piG = S_phiphi + <|grad(phi-psi)|^2> >= 0 -- the rectified stress is NEVER positive
+         measured: residual of the identity = 0
+         reading:  static scalar noise always has negative isotropic pressure
+  [PASS] B2b lower-index static scalar noise: min |eps| = 0.07003 (exact at phi = u* psi, u* = (sqrt 53 - 5)/4 = 0.5700, perfectly correlated); grid confirms 0.07003
+         measured: min |eps| = -7/4 + sqrt(53)/4 = 0.07003; L/D = 1.0377 -> 1.60 sigma (first-order sf38 mapping 1.43)
+         reading:  a static-noise phantom must LENS >= 3.8% MORE than it attracts -- a registered sign and floor, but only 1.6 sigma on KiDS today: NOT excluded
+  [PASS] B2c OR24's single-potential ansatz (phi = psi): eps = -0.1111 = -1/9, lensing excess 6.25% (2.6 sigma)
+         measured: eps = -1/9
+  [PASS] B2d pure LAPSE noise (psi = 0): rho_eff = 0 and the active source rho + (p_r+2p_t) = -2 S_phiphi < 0 -- REPULSIVE: noise in the Newtonian potential alone rectifies to ANTI-MOND
+         measured: per S_phiphi: 8piG rho = 0, 8piG(rho+p_r+2p_t) = -2
+    convention systematic (static scalar noise):
+      lower (Einstein-Langevin <G_mn>)   min|eps| = 0.07002747252747253   no-active-mass identity: False
+      mixed <G^m_n>                      min|eps| = 0.1   no-active-mass identity: False
+      densitized <sqrt(-g) G^m_n>        min|eps| = None   no-active-mass identity: True
+      upper <G^mn>                       min|eps| = 0.0   no-active-mass identity: False
+  [PASS] B3 CONVENTION SYSTEMATIC: for noise that violates the linear constraint (the CQ case), <G_mn>, <G^m_n>, <sqrt(-g)G^m_n>, <G^mn> differ at the SAME order as the effect
+         measured: min|eps| across conventions = [0.07, 0.1, 0.0]; densitized: rho + (p_r+2p_t) == 0 identically = True
+         reading:  the lensing of a CQ phantom is NOT fixed by GR averaging: CQ gravity must say which density its noise is unbiased in (lower: min|eps| 0.0700; mixed: min|eps| 0.1000; densitized: no active mass; upper: min|eps| 0.0000) -- the missing theory input, named
+  [PASS] B4 OR24's Newtonian limit is white in time (no d/dt in the action): phi = psi with omega >> c k gives an active source -> -6 b^2 omega^2 < 0 -- REPULSIVE
+         measured: 8piG rho = 3*b**2*(3*kk**2 - omega**2)/2; 8piG(p_r+2p_t) = b**2*(-kk**2 - 9*omega**2)/2
+         reading:  taken literally through the full averaged tensor, the published noise pushes the wrong way; the attractive reading needs quasi-static noise (omega << c k)
+  [PASS] B5 MIXTURE: the static optimum plus a fast anti-correlated (phi = -psi) component nulls p_r+2p_t with rho > 0 -- lensing = dynamics is REACHABLE, at weight w0 = 0.170 (1-sigma window [0.063, 0.276])
+         measured: per unit S_psipsi: static (rho, trace) = (7.280, -0.510); fast per D_psipsi = (-3.0, 3.0)
+         reading:  so lensing does NOT close the CQ class: it constrains the noise spectrum (a two-component structure)
+
+========================================================================================================
+C  WHAT THE CLASS STILL HAS TO SUPPLY -- the amplitude (the variance must BE the phantom)
+========================================================================================================
+    canonical r_M = 9.45 kpc, v_f = 165 km/s: required delta g_rms / g_obs at 1 r_M = 1135, 3 r_M = 1135, 10 r_M = 1135
+    alt       r_M = 8.61 kpc, v_f = 173 km/s: required delta g_rms / g_obs at 1 r_M = 1083, 3 r_M = 1083, 10 r_M = 1083
+  [PASS] C1 to BE the deep-MOND phantom the metric's rms acceleration must exceed the mean field by sqrt(2/C_act) c/v_f (~1135 x at r_M): the amplitude law (FRIED_CHICKEN req. 10) moves into the noise kernel, underived
+         measured: 1135x at r_M (canonical); identity delta g/g = sqrt(2/C_act) c/v_f with C_act = 5.1099
+         reading:  classical noise escapes the 09-01 hbar-counting theorem, but nothing in CQ fixes D0(x) to track sqrt(G M_b a0)/r^2, so kappa and the BTFR stay inputs, exactly as in every other route
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  1. THE PUBLISHED NUMBER: OR24's a0 ~ sqrt(Lambda) holds as a SCALING, but its coefficient is
+     kappa = 1.30-1.45 (completely positive beta), >= 11 sigma above the measured 0.465 +/- 0.076;
+     kappa = 1/2 needs beta = 0.2353, which gives up complete positivity. As a Tully-Fisher
+     normaliser it tends to 2 c H_Lambda (Milgrom 1999) at beta -> -inf. Its gamma_1 r term is a constant
+     acceleration: lensing-RAR slope 0 vs 0.537 +/- 0.026 measured (L248), 20 sigma.
+  2. THE CLASS: a phantom made of GR-COMPLIANT fluctuation energy (waves; every quantum graviton bath) is dead
+     on lensing at 11 sigma, convention-free. A phantom made of CONSTRAINT-VIOLATING static scalar noise
+     (what CQ gravity uniquely allows) is NOT excluded: under the Einstein-Langevin convention it must lens
+     >= 3.8% MORE than it attracts (1.6 sigma today; OR24's own ansatz
+     6.2%, 2.6 sigma); a two-component spectrum can null the difference. Pure lapse
+     noise and OR24's white-in-time limit rectify to REPULSION.
+  3. THE MISSING INPUT, named: CQ gravity does not say which tensor density its noise is unbiased in, and the
+     lensing prediction moves at O(1) with that choice. Until it does, the class is open-but-unpriced.
+  4. NOTHING HERE DERIVES kappa OR THE AMPLITUDE: the noise must track the phantom (rms ~1135 x the mean
+     field at r_M) and D0 is free. A door opened with a price tag and a falsifier, not a closure.
+
+  20/20 checks pass; load-bearing failures: 0; wrote L313_cq_rectification_lensing_results.json
