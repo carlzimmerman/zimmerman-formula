@@ -1,6 +1,33 @@
 # WORK ORDER — close the degree-2 joint of the κ = 1/2 derivation
 
-Status: **OPEN.** This is the one unproven, load-bearing joint in the κ = 1/2 derivation chain
+## ⚠️ STATUS UPDATE (supersedes the priority below): the degree-2 joint is OFF κ's critical path.
+
+`K_AUDIT_slope_is_degree2_independent.py` proves (sympy, 3 ways + analytic) that the deep-MOND
+slope μ'(0) = 2·cp is **independent of P3 (saturation) and P4 (degree-2)** and of the completion
+shape: for the OR, the degree-4 tower (any k), an exotic non-polynomial composition, and a cubic,
+μ'(0) = 2cp identically — because C(p,0)=p ⇒ ∂₁C(0,0)=1 and symmetry ⇒ ∂₂C(0,0)=1, so
+μ'(0) = [∂₁C+∂₂C](0,0)·cp = 2cp. Since κ = a0/s = 1/(2cp) needs only the slope, **κ = 1/2 does
+NOT depend on the degree-2 premise or its circularity.** Degree-2 bears only on the full μ-shape
+(the completion), which the framework already treats as empirical (PD10).
+
+**So closing the degree-2 joint is now a COMPLETION question, not a κ question — lower priority.**
+κ = 1/2's real dependency chain is: (1) the source excites TWO channels [premise 1], (2) symmetry
++ one-channel exactness, (3) cp = 1 MEASURED (k01 zero mode, underivable). The genuinely open,
+higher-value problem is therefore relocated:
+
+### NEW PRIORITY OPEN PROBLEM — is the TWO-CHANNEL count unconditional for a MOND-regime source?
+Premise 1 rests on the metric's two static Poisson sectors (G_00 → Ψ, G_kk → Φ−Ψ). But GR
+degenerates Φ=Ψ for a pressureless (dust) source — and galaxies in the deep-MOND regime are
+~pressureless. The second sector (Φ−Ψ) is sourced by anisotropic stress/pressure, which vanishes
+for dust. So: does the framework's *modified* response genuinely excite BOTH channels for a
+pressureless source, or does the count collapse to 1 (κ→1) in exactly the regime MOND applies?
+Closing THIS — showing the deep-MOND response is genuinely two-channel for dust — is what would
+make the "2" (hence κ=1/2) structural. This is the swing that matters now.
+
+---
+(original degree-2 work order retained below for the completion question; no longer κ-critical)
+
+Status (degree-2, completion only): **OPEN, downgraded.** This is the one unproven, load-bearing joint in the κ = 1/2 derivation chain
 (PD01/PD05/PD08/PD10/PD22). Closing it non-circularly would upgrade κ = 1/2 from
 "structurally two-valued {1/2, 1}, selected empirically" to a genuine derivation. Leaving it open
 is not fatal — κ = 1/(2·cp) with cp measured to 0.33% still stands — but it is the difference
