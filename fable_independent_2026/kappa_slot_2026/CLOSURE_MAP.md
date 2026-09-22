@@ -29,3 +29,22 @@ Status words: **MEASURED** (an input from data), **FITTED** (a number set by the
 ## The decision rule at the end of the list
 
 If KS01 returns NOT LIVE and G03 returns no action, the programme's honest closing statement is: **"a₀ = κ c√(Gρ_Λ) with κ = ½ measured; the deep-MOND phenomenology it organises is exact as algebra and successful as a galaxy-scale description; no first-principles derivation of κ, the kernel or the completion exists, and every named candidate is excluded."** That is a finished, publishable status, not a failure to finish. If either returns positive, the next map is written from that result and nothing else.
+
+---
+
+## STATUS 2026-09-22 (append-only; every line names a committed script)
+
+| Rung | Status on 09-16 | Status on 09-22 | What moved it |
+|---|---|---|---|
+| 1 κ | FITTED; KS01 pending | **MEASURED**: 0.465 ± 0.076 (estimator A) and 0.55 ± 0.17 (estimator B, corrected); no derivation route left on the record | KS01 NOT LIVE (09-17); `opus_48_extended_research/kappa_audit_2026` capstone: the channel-count derivation of ½ is closed by no-go (09-22); `real_research/cq_gravity_2026/L313–L314`: the one external first-principles claim of a₀ ∝ √Λ (Oppenheim–Russo postquantum gravity) gives κ = 1.30–1.45, ≥ 11σ off, and its noise is exactly matter-independent, so it is closed as a source |
+| 3 action | DEAD for every named candidate; G03 open | **OPEN, and genuinely so.** Astra's explicit clock/metric action C-H (`qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/`) reproduces the T-B static functional exactly. Its causal feasibility is OPEN, with one adverse result: the conserved-source criterion fails on an exact electrovacuum cylinder. deepseek's `g03_verdict.md` (09-15, "the whole force-law class fails Cassini ≥ 6.18×") does **not** close it. Its smooth-shell lemma is true of the exterior l=2 moment and false of the interior tidal coefficient that Saturn feels, which is suppressed once ξ ≳ r_M, the order of G02's committed floors of 0.02–0.03 pc. Its divergence filter is not T-B (`real_research/g03_audit_2026/L316`). The drag coefficient is not derivable from the action (`opus_49_doorJ`, 09-22) | G03 is the one live theory door, and it is astra's lane |
+| 4 temperature | G111 never run | **CLOSED**: no attractor; the mediator heats the ladder 10–20% but lands 15% below C/2 | G111 run 09-17 (`kappa_slot_2026/G111_*`) |
+| 6 boundary factor 2 | carried both ways | **STRUCTURALLY UNDECIDABLE ON SPARC**: r_M is star-dominated in every galaxy (gas fraction ≤ 0.10). At Υ = 0.5 it leans towards the kernel (0.67) over equipartition (1.0); decidable only in an HI-dominated a₀ crossing or from Gaia vertical kinematics at R₀ | `fable_independent_2026/L267` |
+| 10 cosmology | a CDM-like dust is required | no viable carrier (L288 rolled-dust wall dead; L289 requirements). The phantom-active-mass route (L304–L312, the "phantom law") is **disfavoured by SPARC at about 4σ on its own terms** and its active mass is not needed (A → 0.00 with a₀ or M/L free). A phantom made of gravitational-wave energy is dead on lensing at 11σ | `real_research/cq_gravity_2026/L315` and `L313` |
+| 7, 8, 9 | PENDING | PENDING, unchanged: tSZ 3-way under the original window; z ≈ 2.5 deep-MOND Tully–Fisher zero point (PAPER7 registered; MNRAS v2 built, not submitted); Gaia DR4 on **2026-12-02** | — |
+
+**Against the decision rule above.** KS01 returned NOT LIVE. G03 has returned an action (C-H) but not a viable one: its static limit passes and its causal feasibility is open. The rule's second condition is therefore neither met nor failed. Rungs 1, 2, 4, 5, 6 and 10 now sit at the closing statement:
+
+> a₀ = κ c√(Gρ_Λ) with κ measured and consistent with ½; the deep-MOND phenomenology it organises is exact as algebra and successful as a galaxy-scale description; no first-principles derivation of κ, of the kernel or of a cosmological completion exists, and every named candidate, including the one external first-principles claim, is excluded or disfavoured.
+
+What is left is one theory door (G03) and three dated measurements (rungs 7–9). None of the three can be moved by more computation here. DR4 is the first to arrive.

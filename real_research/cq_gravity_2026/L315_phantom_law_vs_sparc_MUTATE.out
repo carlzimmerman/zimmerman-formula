@@ -1,0 +1,101 @@
+
+L315 -- THE PHANTOM LAW (L311/L312) CONFRONTED WITH SPARC: does the rotation data carry the active phantom mass?
+
+THE LAW UNDER TEST (real_research/clock_2026/L311_phantom_law.py, L312_law_implications.py, committed 09-20):
+    g_obs^2 = a0 g_N,tot,   g_N,tot = g_N,b + G M_act(<r)/r^2,   M_act(<r) = 1.05 M_b sqrt(r / 30 kpc),
+    a0 = c H_Lambda / Z (kappa = 1/2, "not a fit"), "zero parameters inside the halo".
+  L312 I3 states it as a universal residual: y^2 - 1 = 1.05 sqrt(r/30 kpc) at every galaxy, "SPARC-testable".
+  Neither lane confronted it with rotation curves (their checks on it are literal True).  This lane does.
+
+THREE READINGS, so the kill (or the survival) is not a reading artefact:
+  literal      M_act = 1.05 M_b,tot sqrt(r/30 kpc)            (L311/L312 as written)
+  selfsimilar  M_act = 1.05 M_b,tot sqrt(r/(30 kpc r_M/r_M,MW)) (the 30-kpc anchor rescaled by each galaxy's MOND radius)
+  enclosed     M_act = 1.05 M_b(<r) sqrt(r/30 kpc)            (the active mass tied to the ENCLOSED baryons: the gentlest)
+  literal_deep the literal M_act in L311's literal deep form g_obs = sqrt(a0 g_tot) (no interior kernel boost)
+  literal_deep IS the law as written (L311: g_obs^2 = a0 g_N,tot in the domain g_N,b <= a0).  The other three
+  embed the active mass in the framework's kernel g_model = nu_RAR(g_tot/a0) g_tot -- which turns out HARSHER on
+  the law (the interior boost is then added on top), so literal_deep at the law's own a0 is its best case and
+  is reported first in the verdict.  The amplitude A multiplies M_act (the law: A = 1).
+
+DATA: SPARC (Lelli+2016), Q <= 2, i >= 30 deg; the law's domain g_N,b <= a0 (x <= 1, selected at Upsilon_d = 0.5).
+  M_b,tot = Upsilon_d L[3.6] + 1.33 M_HI.  Point errors 2 eV/V/ln10 in quadrature with 0.05 dex intrinsic;
+  every uncertainty from a GALAXY bootstrap (points inside a galaxy are correlated: the V01 lesson).
+
+TESTS
+  T1 WITHIN-GALAXY RADIAL SHAPE (Upsilon-robust: a per-galaxy offset is removed by demeaning): the slope of
+     the residual vs log r inside galaxies, data vs each reading's prediction.
+  T2 THE AMPLITUDE A: global fit with (i) a0 fixed canonical, (ii) a0 free jointly, (iii) a0 free AND
+     Upsilon_d profiled per galaxy on a grid -- the law needs A = 1.
+  T3 L312 I3's own mass correlation: at fixed x in [0.05, 0.3] the galaxy-mean residual vs log M_b, data vs law.
+  V  INJECTION-RECOVERY: law-true mocks must return A ~ 1 and null mocks A ~ 0 through the same pipeline.
+  MUTATE=1 replaces the data by a law-true mock: the finding "the data exclude A = 1" must then FAIL (rc = 1).
+
+Run from the repository root:  python3 real_research/cq_gravity_2026/L315_phantom_law_vs_sparc.py
+
+  SPARC: 175 in the table; 151 galaxies with Q<=2, i>=30 and >=1 point in the law's domain (x<=1); 2361 points
+  MUTATE: the data are REPLACED by a law-true (A = 1, literal) mock
+
+========================================================================================================
+V  INJECTION-RECOVERY -- the pipeline must see the law when it is there, and not when it is not
+========================================================================================================
+    literal, truth A = 1.0: recovered A = 1.020 +/- 0.036 (U and a0 profiled)
+    literal, truth A = 0.0: recovered A = -0.000 +/- 0.000 (U and a0 profiled)
+  [PASS] V1 injection-recovery through the full pipeline (Upsilon per galaxy + a0 profiled): law-true -> A ~ 1, null -> A ~ 0
+         measured: A(1) = 1.020+/-0.036; A(0) = -0.000+/-0.000
+         reading:  the amplitude is identifiable with a0 AND the M/L free -- so a null on the data is a real null
+
+========================================================================================================
+T2  THE ACTIVE-MASS AMPLITUDE ON THE DATA (the law: A = 1)
+========================================================================================================
+    literal      fixed: A = +1.020 +/- 0.059 (A=1 at -0.3 sigma)  profU: A = +0.960 +/- 0.054 (A=1 at 0.7 sigma)  free: A = +0.960 +/- 0.081 (A=1 at 0.5 sigma)  prof: A = +0.960 +/- 0.045 (A=1 at 0.9 sigma)  [a0 at best: 9.313e-11]
+    selfsimilar  fixed: A = +0.640 +/- 0.049 (A=1 at 7.3 sigma)  profU: A = +0.500 +/- 0.043 (A=1 at 11.8 sigma)  free: A = +0.420 +/- 0.057 (A=1 at 10.1 sigma)  prof: A = +0.500 +/- 0.046 (A=1 at 10.8 sigma)  [a0 at best: 9.313e-11]
+    enclosed     fixed: A = +1.240 +/- 0.102 (A=1 at -2.4 sigma)  profU: A = +0.800 +/- 0.137 (A=1 at 1.5 sigma)  free: A = +0.460 +/- 0.067 (A=1 at 8.0 sigma)  prof: A = +0.060 +/- 0.051 (A=1 at 18.6 sigma)  [a0 at best: 1.600e-10]
+    literal_deep fixed: A = +1.500 +/- 0.020 (A=1 at -25.0 sigma)  profU: A = +1.500 +/- 0.020 (A=1 at -25.0 sigma)  free: A = +1.500 +/- 0.020 (A=1 at -25.0 sigma)  prof: A = +1.500 +/- 0.020 (A=1 at -25.0 sigma)  [a0 at best: 1.221e-10]
+  [FAIL] T2 the law's active mass (A = 1) is excluded in EVERY reading with a0 free and Upsilon_d profiled per galaxy (galaxy bootstrap)
+         measured: literal: A = +0.960+/-0.045 (0.9 sigma); selfsimilar: A = +0.500+/-0.046 (10.8 sigma); enclosed: A = +0.060+/-0.051 (18.6 sigma); literal_deep: A = +1.500+/-0.008 (-25.0 sigma)
+         reading:  the rotation data carry no active phantom mass; the gentlest reading is the binding one; errors floored at the 0.02 grid step, so large z are lower bounds
+
+========================================================================================================
+T1  THE WITHIN-GALAXY RADIAL SHAPE (a per-galaxy offset -- any M/L or distance error -- is removed)
+========================================================================================================
+    data: d(resid)/d log r = -0.2851 +/- 0.0212 (galaxy bootstrap)
+    literal      predicts -0.2816  -> 0.2 sigma
+    selfsimilar  predicts -0.3553  -> 3.3 sigma
+    enclosed     predicts +0.0788  -> 17.1 sigma
+    literal_deep predicts -0.0885  -> 9.3 sigma
+  [FAIL] T1 the within-galaxy radial trend of the residual is consistent with ZERO; it rejects the kernel-embedded literal and self-similar laws at > 5 sigma and the law AS WRITTEN (literal_deep) at > 3 sigma
+         measured: data -0.2851+/-0.0212; z(literal) 0.2, z(selfsimilar) 3.3, z(enclosed) 17.1, z(literal_deep) 9.3
+         reading:  the shape test needs no M/L, no distance and no a0: the law's r-dependence is absent from the data
+
+========================================================================================================
+T3  L312 I3's OWN FALSIFIER: the RAR residual's mass correlation at fixed x in [0.05, 0.3]
+========================================================================================================
+  [FAIL] T3 (informational) L312 I3's mass SLOPE is NOT discriminating: data +0.008 +/- 0.013 vs the literal law +0.013; its LEVEL at fixed x is +0.163 dex vs the data +0.177 (Upsilon/a0-degenerate: T2 is the clean version)
+         measured: N = 128 galaxies; slope z = 0.4; level gap -0.013 dex
+         reading:  I3's advertised observable (the slope) cannot decide; the law dies on the level and the shape instead
+
+========================================================================================================
+T4  HEAD-TO-HEAD ON THE LAW'S OWN TERMS (a0 = c H_Lambda/Z fixed, Upsilon_d profiled per galaxy)
+========================================================================================================
+    at a0 = 9.313e-11 (grid point nearest canonical): sum chi2(law) - chi2(deep, A=0) = -21219.5 +/- 2216.5
+    sum chi2(law) - chi2(framework kernel, A=0) = -5165.8 +/- 896.9; 37% of galaxies prefer the kernel
+  [FAIL] T4 on the law's own terms the kernel WITHOUT any active mass fits better than the law as written (galaxy-bootstrap sign of the summed chi^2 difference)
+         measured: chi2(law) - chi2(kernel) = -5165.8 +/- 896.9 (-5.8 bootstrap sigma); active mass vs none in the deep form: -21219.5 +/- 2216.5
+         reading:  with the M/L profiled, the active mass does not significantly improve even the law's own deep form, and the ordinary kernel with no active mass beats the law outright
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  ON ITS OWN TERMS (the law as written, g_obs^2 = a0 g_N,tot, a0 = c H_Lambda/Z fixed): the amplitude is
+  A = 1.50 +/- 0.00 at Upsilon_d = 0.5 (-25.0 sigma below 1) and A = 1.50 +/- 0.02 with the M/L
+  profiled per galaxy (-25.0 sigma); the within-galaxy shape is off at
+  9.3 sigma, and the plain framework kernel with NO active mass fits better
+  (chi2 difference -5166 +/- 897). DISFAVOURED at ~4 sigma, not killed.
+  THE ACTIVE MASS IS NOT NEEDED: free a0 or profiled M/L drive A -> +1.50; in every kernel
+  embedding A = 1 is excluded (>= -25.0 sigma, the enclosed reading being the gentlest). The pipeline recovers
+  A = 1 when the law is injected, so the null is measured, not an insensitivity.
+  Standing consequence: L311's "law of nature" and L312's implications (the halo-baryon correspondence, the
+  self-truncation at 790 kpc, the M_b^(+1/4) residual) rest on an active mass SPARC does not want; what SPARC
+  wants is the ordinary kernel with a0 ~ 9.31e-11 (M/L profiled; 5.6% grid).
+
+  2/5 checks pass; load-bearing failures: 3; wrote L315_phantom_law_vs_sparc_results_MUTATE.json

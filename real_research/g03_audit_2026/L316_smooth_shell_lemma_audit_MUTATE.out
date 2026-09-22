@@ -1,0 +1,83 @@
+
+L316 -- AUDIT OF THE "SMOOTH-SHELL LEMMA": deepseek's g03_verdict (09-15) does not close G03.
+
+THE CLAIM AUDITED (deepseek_push/g03_verdict.md): "an isotropic local screen -- Helmholtz or Gaussian, single or
+double, 0.005-0.1 pc -- preserves the l=2 moment of the mu-transition shell ... the transition shell's l=2 moment
+is the Cassini quadrupole; nothing local and isotropic can remove it", hence every G03 candidate fails Cassini
+(>= 6.18x) and "the force-law class is closed WITH PROOF".  That verdict contradicts the lead track's G02
+(qwen_claude_field_theory/closure_2026/g02_filtered_efe.py, 14/14 + the 09-04 correction): the T-B double
+filter (QUMOND parent, output filter on the PHANTOM) survives Cassini statically for xi >= 0.02-0.03 pc.
+Both cannot be right.  This lane finds which half of the lemma is true.
+
+  A1 THE TRUE HALF: isotropic smoothing preserves the EXTERIOR l=2 moment int rho_2 r^4 dr EXACTLY (r^2 Y_2 is
+     a harmonic polynomial; its average over any radial kernel is itself).  Verified numerically with the
+     exact l=2-projected Gaussian kernel (it is also the kernel's normalisation check).
+  A2 THE FALSE HALF: the Cassini quadrupole at Saturn is NOT that moment.  Saturn sits deep INSIDE the phantom
+     shell (r_Saturn / r_M ~ 3e-4), so it feels the INTERIOR tidal coefficient int rho_2 r^-1 dr, whose weight
+     r^-3 Y_2 is singular at the Sun.  Once xi >~ r_M the smoothing ball covers the singularity and the
+     coefficient is suppressed.  Computed on a phantom-like l=2 shell centred on r_M vs xi/r_M.
+  A3 WHERE THE SUPPRESSION REACHES THE CEILING: the bare kernel is 6.44x (canonical) / 7.63x (alt) above the
+     Park ceiling (L243); the xi/r_M at which the toy shell's interior coefficient falls by that factor, in pc,
+     against G02's committed floors 0.02/0.03 pc.  (A toy shell, so an order-of-magnitude cross-check of G02,
+     not a replacement for it.)
+  A4 THE AQUAL-DIVERGENCE CAVEAT (sympy): a filter (1 - xi^2 lap) applied to div[mu grad Phi] acts on the
+     SOURCE, whose vacuum value is zero.  With a point Sun it replaces the Sun by a Yukawa cloud
+     e^{-r/xi}/(4 pi xi^2 r): the enclosed mass at Saturn is ~(r/xi)^2/2 ~ 1e-6.  That is not T-B, whose output
+     filter acts on the phantom only.
+  MUTATE=1 uses the exterior weight r^2 in place of the interior r^-3 in A2: the "suppression" then disappears
+     and A2 must FAIL (rc = 1).
+
+Run from the repository root:  python3 real_research/g03_audit_2026/L316_smooth_shell_lemma_audit.py
+
+
+========================================================================================================
+A1  THE TRUE HALF: the exterior l=2 moment is preserved exactly by isotropic smoothing
+========================================================================================================
+    xi/r_M = 0.3: smoothed/unsmoothed exterior moment = 1.000000
+    xi/r_M = 1.0: smoothed/unsmoothed exterior moment = 1.000000
+    xi/r_M = 3.0: smoothed/unsmoothed exterior moment = 1.000000
+  [PASS] A1 isotropic Gaussian smoothing preserves int rho_2 r^4 dr to < 1e-3 at every xi (r^2 Y_2 is harmonic)
+         measured: [1.0, 1.0, 1.0]
+         reading:  this is the half of the smooth-shell lemma that is TRUE -- and it also validates the l=2 kernel
+
+========================================================================================================
+A2  THE FALSE HALF: the interior tidal coefficient (what Saturn feels) IS suppressed once xi >~ r_M
+========================================================================================================
+    xi/r_M = 0.05: interior coefficient ratio = 1.0000
+    xi/r_M = 0.10: interior coefficient ratio = 1.0000
+    xi/r_M = 0.20: interior coefficient ratio = 1.0000
+    xi/r_M = 0.30: interior coefficient ratio = 1.0000
+    xi/r_M = 0.50: interior coefficient ratio = 1.0000
+    xi/r_M = 0.70: interior coefficient ratio = 1.0000
+    xi/r_M = 1.00: interior coefficient ratio = 1.0000
+    xi/r_M = 1.50: interior coefficient ratio = 1.0000
+    xi/r_M = 2.00: interior coefficient ratio = 1.0000
+    xi/r_M = 3.00: interior coefficient ratio = 1.0000
+  [FAIL] A2 the interior l=2 tidal coefficient is unchanged for xi << r_M and suppressed by > 10x at xi = 3 r_M
+         measured: ratio 1.0000 at xi = 0.05 r_M; 1.0000 at xi = 3 r_M
+         reading:  the lemma conflates the exterior moment (preserved) with the interior coefficient (not preserved): Saturn is at 3e-4 r_M, deep inside the shell, and feels the latter
+
+========================================================================================================
+A3  WHERE THE TOY SUPPRESSION REACHES THE CEILING, in pc, against G02's committed floors
+========================================================================================================
+  [FAIL] A3 the toy shell's ceiling-crossing screen length lands at O(r_M) ~ 0.01-0.1 pc on both footings, the same order as G02's committed floors (0.02/0.03 pc)
+         measured: {'canonical': None, 'alt': None}
+         reading:  an order-of-magnitude cross-check: the mechanism G02 used is real; deepseek's null at xi <= 0.1 pc is not a property of isotropic screens
+
+========================================================================================================
+A4  THE AQUAL-DIVERGENCE CAVEAT: a filter on div[mu grad Phi] acts on the source, not on the phantom
+========================================================================================================
+  [PASS] A4 (1 - xi^2 lap) G = 0 for r > 0 with int G = 1: filtering the AQUAL divergence replaces a point Sun by a Yukawa cloud; enclosed at Saturn: 0.02 pc -> 2.7e-06, 0.03 pc -> 1.2e-06, 0.1 pc -> 1.1e-07
+         measured: residual 0; normalisation 1
+         reading:  so a divergence filter is either this (Newton destroyed at Saturn) or, with the Sun imposed as an inner boundary condition as in g03_candidate1_gates.py, it acts only through boundary rows -- in neither case is it T-B, whose output filter acts on the phantom (QUMOND form)
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  The smooth-shell lemma is true of the EXTERIOR l=2 moment and false of the INTERIOR tidal coefficient, which
+  is what Saturn measures.  Isotropic smoothing on a scale >~ r_M suppresses the Cassini quadrupole, at the order
+  of G02's committed floors.  deepseek's g03_verdict therefore does not close G03 and should not be cited as a
+  proof that the force-law class fails Cassini; G02's static T-B survival stands, and G03 remains astra's open
+  lane (the C-H action exists; its causal feasibility is OPEN with one adverse electrovacuum-cylinder result).
+
+  3/4 checks pass; load-bearing failures: 1; wrote L316_smooth_shell_lemma_audit_results_MUTATE.json

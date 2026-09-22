@@ -1,0 +1,76 @@
+
+L314 -- THE HOMOGENEOUS-NOISE PINCER: the published postquantum classical-gravity theory cannot rectify into
+the phantom, because its noise does not know where the matter is.
+
+L313 left one live corner: constraint-violating quasi-static scalar noise can carry a phantom that passes
+the KiDS lensing gate at 1.6 sigma.  L313 also recorded that the noise would have to TRACK the phantom
+(rms ~1e3 x the mean field at r_M) and that nothing supplies that.  This lane asks whether the PUBLISHED
+theory -- constant couplings D0, beta (OR24 eq. 4; the covariant D_{mn rs} of the CQ path integral) --
+can supply it.
+
+  S1 EXACT: the Newtonian CQ action  I = -c0 int (lap Phi - 4 pi G m)^2  with Phi = Phi_cl + dPhi and
+     lap Phi_cl = 4 pi G m is  -c0 int (lap dPhi)^2: the fluctuation action has NO m(x) in it.  The noise is
+     translation-invariant whatever the matter does, so <|grad dPhi|^2> is UNIFORM, and so is the rectified
+     rho_eff in every averaging convention (L313's forms are linear in the variances with constant
+     coefficients).
+  S2 SHAPE: a uniform rho_eff added to baryons gives v^2 = GM/r + (4 pi/3) G rho r^2, i.e. a lensing-RAR slope
+     d ln g_obs/d ln g_bar -> -1/2 at low g_bar, vs the committed KiDS +0.537 +/- 0.026 (L248).
+  S3 MAGNITUDE: to supply the phantom at the MOND radius of a galaxy of baryonic mass M_b the uniform density
+     must be rho_ph(r_M) = a0^{3/2}/(4 pi G sqrt(G M_b)); being uniform, it is ALSO the cosmic mean density of
+     that component today.  Compared with the whole cosmic dark-matter density Omega_dm rho_crit.
+  S4 RELATIVISTIC LEAK: the covariant weight sqrt(-g) D(g) modulates the variance only at O(Phi/c^2) ~ (v/c)^2;
+     the phantom's own contrast across a galaxy is ~1e4.
+  MUTATE=1 uses a background with lap Phi_cl = 1.1 x 4 pi G m: the cross term survives and S1 must FAIL.
+
+Run from the repository root:  python3 real_research/cq_gravity_2026/L314_cq_homogeneous_noise_pincer.py
+
+
+========================================================================================================
+S1  THE FLUCTUATION ACTION IS SOURCE-FREE (exact)
+========================================================================================================
+  [PASS] S1 around the saddle the OR24 action is -c0(1-beta)/G^2 (lap dPhi)^2 with NO m(x): the noise statistics are translation-invariant for ANY matter distribution
+         measured: residual after removing (lap dPhi)^2: 0
+         reading:  <|grad dPhi|^2> is the same in a galaxy, in a void and in the lab -- the rectified rho_eff is UNIFORM
+
+========================================================================================================
+S2  SHAPE: a uniform rectified density is not the deep-MOND law
+========================================================================================================
+  [PASS] S2 uniform rho_eff: d ln g_obs/d ln g_bar -> -1/2 at low g_bar vs the committed KiDS 0.537 +/- 0.026 (L248)
+         measured: 39.4 sigma
+         reading:  rotation rises as v ~ r instead of flattening; the lensing RAR would turn DOWN, it measures +0.54
+
+========================================================================================================
+S3  MAGNITUDE: the uniform density a galaxy's phantom needs, vs the whole cosmic dark matter
+========================================================================================================
+    canonical M_b = 1e 8: r_M =    0.39 kpc  rho_ph(r_M) = 9.37e-21 kg/m^3 =   4145516 x Omega_dm rho_crit   (at 10 r_M: 41455.2 x)
+    canonical M_b = 1e 9: r_M =    1.22 kpc  rho_ph(r_M) = 2.96e-21 kg/m^3 =   1310927 x Omega_dm rho_crit   (at 10 r_M: 13109.3 x)
+    canonical M_b = 1e10: r_M =    3.86 kpc  rho_ph(r_M) = 9.37e-22 kg/m^3 =    414552 x Omega_dm rho_crit   (at 10 r_M:  4145.5 x)
+    canonical M_b = 1e11: r_M =   12.20 kpc  rho_ph(r_M) = 2.96e-22 kg/m^3 =    131093 x Omega_dm rho_crit   (at 10 r_M:  1310.9 x)
+    canonical M_b = 1e12: r_M =   38.59 kpc  rho_ph(r_M) = 9.37e-23 kg/m^3 =     41455 x Omega_dm rho_crit   (at 10 r_M:   414.6 x)
+    alt       M_b = 1e 8: r_M =    0.35 kpc  rho_ph(r_M) = 1.24e-20 kg/m^3 =   5481994 x Omega_dm rho_crit   (at 10 r_M: 54819.9 x)
+    alt       M_b = 1e 9: r_M =    1.11 kpc  rho_ph(r_M) = 3.92e-21 kg/m^3 =   1733559 x Omega_dm rho_crit   (at 10 r_M: 17335.6 x)
+    alt       M_b = 1e10: r_M =    3.52 kpc  rho_ph(r_M) = 1.24e-21 kg/m^3 =    548199 x Omega_dm rho_crit   (at 10 r_M:  5482.0 x)
+    alt       M_b = 1e11: r_M =   11.12 kpc  rho_ph(r_M) = 3.92e-22 kg/m^3 =    173356 x Omega_dm rho_crit   (at 10 r_M:  1733.6 x)
+    alt       M_b = 1e12: r_M =   35.16 kpc  rho_ph(r_M) = 1.24e-22 kg/m^3 =     54820 x Omega_dm rho_crit   (at 10 r_M:   548.2 x)
+  [PASS] S3 even for the most massive galaxy on the most favourable footing, a UNIFORM density large enough to be the phantom at r_M exceeds the entire cosmic dark-matter density by >= 1e3, and still exceeds it at 10 r_M
+         measured: min over M_b and footings: 41455 x at r_M, 414.6 x at 10 r_M; it would raise H0 by >= 105 x
+         reading:  the pincer: strong enough for galaxies => overcloses the universe; capped by cosmology => <= 1e-3 of the phantom
+
+========================================================================================================
+S4  THE RELATIVISTIC LEAK: how much source-dependence the covariant weight can add
+========================================================================================================
+  [PASS] S4 the covariant weight sqrt(-g) D(g) makes the variance source-dependent only at O(Phi/c^2) ~ (v/c)^2 = 3.9e-07; the phantom must vary by ~1e+04 across a galaxy
+         measured: shortfall ~3e+10
+         reading:  no relativistic correction of a constant-coupling theory turns uniform noise into a halo-shaped one
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  The published classical-quantum theory (constant D0, beta) produces metric noise whose statistics are
+  exactly independent of the matter (S1), so whatever it rectifies into is uniform: the wrong shape
+  (39 sigma on the KiDS slope) and, if large enough to matter in galaxies, >= 1e3 x the cosmic dark matter.
+  L313's live corner therefore survives ONLY for a diffusion kernel D0(x) that is made to track the phantom,
+  i.e. with the MOND law written into the noise by hand -- a reparametrisation, not a derivation.
+  CQ gravity: CLOSED as a source of the phantom and of kappa; OPEN only as a host that would need the law as input.
+
+  4/4 checks pass; load-bearing failures: 0; wrote L314_cq_homogeneous_noise_pincer_results.json
