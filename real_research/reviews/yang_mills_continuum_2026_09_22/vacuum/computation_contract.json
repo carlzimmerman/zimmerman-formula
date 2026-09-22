@@ -1,0 +1,33 @@
+{
+  "claim_id": "YM_C1_VACUUM_NORMALIZATION",
+  "mathematics": {
+    "assertion_tested": "Bounded numerical consistency of the single-plaquette SU(2) radial and character operators, their weak-coupling gap and negative curvature trace, and explicit Gaussian-chain conditional-variance formulas",
+    "coefficient_domain": "IEEE float64, with explicit tolerance checks and no interval enclosure",
+    "conventions": "x=g^2; tr(t_a t_b)=delta_ab/2; four-link SU(2) plaquette b=2; Dirichlet oscillator chain K diagonal 2 and neighboring -1",
+    "inputs": ["vacuum/PROOF.md Lemmas 2-4", "vacuum/verify.py"],
+    "bounds": {
+      "plaquette_x": [1.0, 0.25, 0.1, 0.04, 0.01, 0.002],
+      "character_basis_sizes": [200, 400],
+      "radial_grid_size": 8192,
+      "lowest_eigenvalues_count": 3,
+      "chain_lengths": [1, 2, 4, 8, 16, 32, 64, 128],
+      "chain_x": 0.1,
+      "chain_adjoint_dimension": 3
+    },
+    "non_claims": [
+      "Not a certified eigenvalue enclosure or infinite-matrix lower gap bound",
+      "Not a calculation of the many-plaquette interacting SU(N) vacuum",
+      "Not a continuum construction or mass-gap proof"
+    ]
+  },
+  "execution_artifacts": [
+    "real_research/reviews/yang_mills_continuum_2026_09_22/vacuum/verify.py",
+    "real_research/reviews/yang_mills_continuum_2026_09_22/vacuum/PROOF.md"
+  ],
+  "software": [
+    {"name": "Python", "version": "3.9.6"},
+    {"name": "numpy", "version": "1.26.2"},
+    {"name": "scipy", "version": "1.11.4"}
+  ],
+  "randomness": {"used": false, "generator": "", "seed": null}
+}

@@ -1,0 +1,154 @@
+{
+  "schema_version": 2,
+  "claim_id": "YM_C1_VACUUM_NORMALIZATION",
+  "repository": {
+    "commit": "a0dc7c516f7a5c33ae9db03a9af6340ffdc74d2c",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "real_research/reviews/yang_mills_continuum_2026_09_22/vacuum/verify.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Bounded numerical consistency of the single-plaquette SU(2) radial and character operators, their weak-coupling gap and negative curvature trace, and explicit Gaussian-chain conditional-variance formulas",
+    "coefficient_domain": "IEEE float64, with explicit tolerance checks and no interval enclosure",
+    "conventions": "x=g^2; tr(t_a t_b)=delta_ab/2; four-link SU(2) plaquette b=2; Dirichlet oscillator chain K diagonal 2 and neighboring -1",
+    "inputs": [
+      "vacuum/PROOF.md Lemmas 2-4",
+      "vacuum/verify.py"
+    ],
+    "bounds": {
+      "plaquette_x": [
+        1.0,
+        0.25,
+        0.1,
+        0.04,
+        0.01,
+        0.002
+      ],
+      "character_basis_sizes": [
+        200,
+        400
+      ],
+      "radial_grid_size": 8192,
+      "lowest_eigenvalues_count": 3,
+      "chain_lengths": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128
+      ],
+      "chain_x": 0.1,
+      "chain_adjoint_dimension": 3
+    },
+    "non_claims": [
+      "Not a certified eigenvalue enclosure or infinite-matrix lower gap bound",
+      "Not a calculation of the many-plaquette interacting SU(N) vacuum",
+      "Not a continuum construction or mass-gap proof"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-22T13:18:28.954499+00:00",
+    "runtime_seconds": 0.24343,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 40.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/yang_mills_continuum_2026_09_22/vacuum/verify.py",
+    "real_research/reviews/yang_mills_continuum_2026_09_22/vacuum/PROOF.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/yang_mills_continuum_2026_09_22/vacuum/verify.py",
+      "sha256": "96059ed7a6c48b607d883be9a960ad37f7d44e6fb4db06f8ccfe46cd9aa5ee5f",
+      "sha256_after": "96059ed7a6c48b607d883be9a960ad37f7d44e6fb4db06f8ccfe46cd9aa5ee5f"
+    },
+    {
+      "path": "real_research/reviews/yang_mills_continuum_2026_09_22/vacuum/PROOF.md",
+      "sha256": "ba71467ee6d6d52c2a0eab7c0964eca7a68f43f523c205f64422468f4ba359b0",
+      "sha256_after": "ba71467ee6d6d52c2a0eab7c0964eca7a68f43f523c205f64422468f4ba359b0"
+    }
+  ],
+  "output_directory": "real_research/reviews/yang_mills_continuum_2026_09_22/vacuum/run",
+  "declared_results": [
+    "real_research/reviews/yang_mills_continuum_2026_09_22/vacuum/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/yang_mills_continuum_2026_09_22/vacuum/run/stdout.txt",
+      "sha256": "5010c01bdbe520e957a46dac65de5f65cdfe10d7c2a35003631a0dd8948a5e3b",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/yang_mills_continuum_2026_09_22/vacuum/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/yang_mills_continuum_2026_09_22/vacuum/run/results.json",
+      "sha256": "1c0d71aeaf4e8bc1de1d1df7ef74d4302c40e019e05733aa0f529491f0a887ee",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
