@@ -1,0 +1,74 @@
+{
+ "lane": "L318",
+ "mutate": true,
+ "checks": {
+  "K1 the phantom density (hence the Ricci/Einstein curvature it sources) at P = 0.1 pc oscillates at 2 Omega as a function of the binary's INSTANTANEOUS phase -- no retardation -- while GR's vacuum Ricci at P is zero": {
+   "ok": false,
+   "measured": "canonical: modulation 0.00e+00; alt: modulation 0.00e+00",
+   "load_bearing": true
+  },
+  "K2 outside a spherical, mass-conserving redistribution g_N = G M_total/r^2 is unchanged, so the exterior QUMOND phantom (a local functional of g_N) is unchanged: a spherical test cannot see the elliptic field": {
+   "ok": true,
+   "measured": "g_N(r > R0) = 6.6743e-11*M_total/r**2 for every interior profile",
+   "load_bearing": false
+  },
+  "K3 a propagating AQUAL scalar is superluminal along its gradient in the whole MOND regime (v^2 > 1, -> 2 in deep MOND) for mu_2 and for the RAR kernel": {
+   "ok": true,
+   "measured": "deep-MOND limit 2; min v^2 on the grid 1.0476",
+   "load_bearing": true
+  },
+  "K4 the record's two criteria give opposite rung-3 verdicts on the same computation, and L120 (cuscuton certified causal) is incompatible with the G03 P2 criterion": {
+   "ok": false,
+   "measured": "criterion (A) -> rung 3 closed; (B) -> G03 continues on well-posedness",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "K1": {
+   "res": {
+    "canonical": {
+     "rho_mean": 0.0,
+     "rel_modulation": 0.0,
+     "fit_resid": 0.0,
+     "x_at_P": 0.2978486265663625
+    },
+    "alt": {
+     "rho_mean": 0.0,
+     "rel_modulation": 0.0,
+     "fit_resid": 0.0,
+     "x_at_P": 0.24722307447926492
+    }
+   },
+   "light_delay_yr": 0.3261563777167434,
+   "orbital_period_yr": 707.0294472578656,
+   "expected_quadrupole_order": 2.3504430539097884e-05
+  },
+  "K3": {
+   "v2": {
+    "mu2 x=0.01": 1.9925435168298158,
+    "mu2 x=0.1": 1.9291521486643441,
+    "mu2 x=1.0": 1.5333333333333332,
+    "mu2 x=10.0": 1.0476190476190474,
+    "RAR y=0.01": 1.906274568993803,
+    "RAR y=0.1": 1.7394414082187177,
+    "RAR y=1.0": 1.4104140670245648,
+    "RAR y=10.0": 1.0751377415329197
+   },
+   "deep_limit": "2"
+  },
+  "K4": [
+   [
+    "(A) metric cone, 'no instantaneous signal'",
+    "every scalar MOND completion fails: propagating -> superluminal (K3); non-propagating -> instantaneous (K1)",
+    "rung 3 CLOSES; the CLOSURE_MAP decision rule's G03 condition is met; the closing statement applies"
+   ],
+   [
+    "(B) global time (ACDG 2007; BMV 2008; Bruneton 2007; used by L120)",
+    "C-H's leafwise-instantaneous response is tau-simultaneous: no signal runs backward in tau on the slab (X > 0)",
+    "C-H's cylinder result is NOT a failure; G03's causal gate reduces to well-posedness of the mixed elliptic-hyperbolic Cauchy problem (OPEN), then P1 PPN, P3 mode count, S4/S5, C1"
+   ]
+  ]
+ },
+ "n_checks": 4,
+ "n_fail_load_bearing": 2
+}
