@@ -1,0 +1,69 @@
+
+L317 -- THE REGISTERED tSZ TEST SCORED UNDER ITS ORIGINAL RULES, on the published Planck-SZ pressure of the
+same 12 X-COP clusters.
+
+THE REGISTRATION (deepseek_push/G129_tsz_proposal.py + TSZ_PROPOSAL.md sec. 5, commit fe4ea03a3, 2026-09-16
+00:30 -0400).  Statistic: the log-slope of the Compton-y profile over theta in [theta_500, 2 theta_500].
+    PASS  sample-median slope in (-1.7, -0.9)          (G113 V2a: phantom zone isothermal at T_inf = 2 T_floor,
+                                                         so y ~ b^-(q-1) with the gas envelope q in (2.0, 2.5))
+    F1    slope steeper than -2.0 at >= 3 sigma          (kills the G095 virial-T extension outside R500)
+  Nine hours later (G177, commit 1af573473, 02:52) the pass window was REWRITTEN to (-2.94, -2.14) before any map
+  was read, putting the old kill line inside the new pass band (PAPER30 sec. 4.9; the CLOSURE_MAP rule: score the
+  ORIGINAL rules).  Both are scored here; only the original is the registered test.
+
+THE DATA (published, not re-derived here): Ghirardini et al. 2019, A&A 621, A41 (arXiv:1805.00042) -- XMM + Planck
+  SZ (MILCA) pressure of the X-COP sample out to ~2.5 R500.  Read from the paper's own tables:
+    Table 3 GNFW "ALL":  P0 = 5.68 +/- 1.77, c500 = 1.49 +/- 0.30, gamma = 0.43 +/- 0.10, alpha = 1.33 (fixed),
+                         beta = 4.40 +/- 0.41
+    Table 2 piecewise:   pressure slope B = -3.21 +/- 0.40 over x in [1.29, 2.65];
+                         temperature slope B = -0.31 +/- 0.11 over x in [0.88, 1.90]
+  Cross-checks (standard literature GNFW, not X-COP): Arnaud et al. 2010 (P0 8.403, c500 1.177, gamma 0.3081,
+  alpha 1.0510, beta 5.4905); Planck 2013 Int. V (P0 6.41, c500 1.81, gamma 0.31, alpha 1.33, beta 4.13).
+  HONEST CAVEAT: these data were PUBLIC (2019) before the window was registered (2026), so this is a
+  confrontation with pre-existing data, not a blind outcome.
+
+  S1 the projected Compton slope of the X-COP GNFW over [R500, 2 R500] (two area-averaged annuli, line of sight
+     to 5 R500 and to infinity), Monte-Carlo over the published parameter errors (independent sampling -- wider
+     than the true posterior, i.e. conservative for any exclusion).
+  S2 the model-independent route: the piecewise 3D pressure slope projects to y ~ b^(B+1).
+  S3 the temperature channel: the phantom-zone isotherm predicts d ln T/d ln r = 0 beyond R500.
+  S4 THE SCORE under the original rules, and under the rewritten ones.
+  MUTATE=1 replaces the measured pressure by the framework's own phantom-zone prediction (P ~ rho_gas ~ r^-2.25,
+     isothermal): the "original window is missed" finding must then FAIL (rc = 1).
+
+Run from the repository root:  python3 real_research/tsz_score_2026/L317_tsz_original_window_score.py
+
+
+========================================================================================================
+S1  THE PROJECTED COMPTON SLOPE OF THE MEASURED X-COP PRESSURE, [R500, 2 R500]
+========================================================================================================
+    X-COP GNFW best fit: 2-bin slope = -1.381 (LOS to 5 R500), -1.226 (LOS to 50 R500)
+    Arnaud+2010       : 2-bin slope = -1.381
+    Planck 2013 Int.V : 2-bin slope = -1.381
+    Monte Carlo over the published errors: median -1.381, 16-84% [-1.381, -1.381] (N = 20)
+  [FAIL] S1 the measured X-COP pressure projects to a Compton slope over [theta_500, 2 theta_500] that lies OUTSIDE the original pass window (-1.7, -0.9)
+         measured: -1.381 (+0.000/-0.000); best fit -1.381; literature Arnaud+2010 -1.38, Planck 2013 Int.V -1.38
+         reading:  the outer pressure falls as the ordinary universal profile does, not as the phantom-zone isotherm
+
+========================================================================================================
+S2  MODEL-INDEPENDENT ROUTE: the piecewise 3D pressure slope over [1.29, 2.65] R500
+========================================================================================================
+  [FAIL] S2 the piecewise pressure slope -2.25 +/- 0.00 projects to y ~ b^(-1.25 +/- 0.00): below the original window's steep edge by inf sigma
+         measured: y-slope -1.25 +/- 0.00
+         reading:  a pure power law projects exactly as B + 1; the piecewise fit is independent of the GNFW form
+
+========================================================================================================
+S3  THE TEMPERATURE CHANNEL: the phantom zone is predicted ISOTHERMAL beyond R500
+========================================================================================================
+  [FAIL] S3 measured d ln T/d ln r = 0.00 +/- 0.11 over [0.88, 1.90] R500 vs the registered isotherm (0): 0.0 sigma
+         measured: 0.0 sigma
+         reading:  the gas cools outward where the framework's T_inf = 2 T_floor reading holds it flat
+
+========================================================================================================
+S4  THE SCORE -- original rules (the registered test) and the rewritten rules (recorded only)
+========================================================================================================
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/tsz_score_2026/L317_tsz_original_window_score.py", line 149, in <module>
+    f1_sig = (F1_LINE - med) / sig
+             ~~~~~~~~~~~~~~~~^~~~~
+ZeroDivisionError: float division by zero
