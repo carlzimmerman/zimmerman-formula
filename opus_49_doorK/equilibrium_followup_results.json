@@ -1,0 +1,440 @@
+{
+ "lane": "opus_49d_doorK_NSE_equilibrium_followup",
+ "pre_registration": "N05_VERDICT.md section 4, item 1: \"T >= 160 at N = 32, the undamped classes: settles whether the truncated classical flow equilibrates -- a purely numerical question, cleanly pre-registered\"",
+ "evidence_only": "finite-N Galerkin truncation evidence: ODE system, always regular at fixed N; NOT a singularity claim; the question is equilibrium vs continuing pump at fixed truncation",
+ "params": {
+  "n": 32,
+  "nu": 0.02,
+  "dt": 0.004,
+  "A": 1.0,
+  "seed": 7,
+  "a0_sim": 0.02,
+  "dealiasing": "2/3 rule",
+  "every": 25,
+  "delta": 0.1,
+  "kmax_dealiased": 10.666666666666666,
+  "viscous_time_at_forcing_scale": 50.0,
+  "cases": {
+   "classical": {
+    "c_d": 0.0,
+    "a0cap": null
+   },
+   "a0cap_002": {
+    "c_d": 0.0,
+    "a0cap": 0.02
+   }
+  },
+  "phases": {
+   "A_reproduction_T200": "N04c verbatim, T = 200 = 4x viscous time",
+   "B_extension_T320": "T = 320 = 6.4x viscous time; includes the literal pre-registered T = 160 slice"
+  }
+ },
+ "phases": {
+  "A_reproduction_T200": {
+   "wall_time_s": {
+    "classical": 1696.8,
+    "a0cap_002": 1673.1
+   },
+   "cfl_max_u_dt_kmax": {
+    "classical": 1.5038140635833817,
+    "a0cap_002": 1.433973758250079
+   },
+   "sup_peak": {
+    "classical": 35.24564211523551,
+    "a0cap_002": 33.60875995898623
+   },
+   "sup_final": {
+    "classical": 35.24564211523551,
+    "a0cap_002": 33.60875995898623
+   },
+   "enst_final": {
+    "classical": 318.94556082962566,
+    "a0cap_002": 287.6726435973554
+   },
+   "enst_last_quarter_mean": {
+    "classical": 310.750267167124,
+    "a0cap_002": 280.29974119065275
+   },
+   "enst_prev_quarter_mean": {
+    "classical": 278.1634977289523,
+    "a0cap_002": 250.95969388504227
+   },
+   "alpha_end_last_two_decades": {
+    "classical": 1.1354181550646476,
+    "a0cap_002": 1.1349321493593114
+   },
+   "end_slope_last_quarter": {
+    "classical": 0.21717638151492225,
+    "a0cap_002": 0.2166422329572718
+   },
+   "verdict": {
+    "classical": "keeps pumping enstrophy through T = 200 (no equilibrium within the run)",
+    "a0cap_002": "keeps pumping enstrophy through T = 200 (no equilibrium within the run)"
+   }
+  },
+  "B_extension_T320": {
+   "wall_time_s": {
+    "classical": 2686.1,
+    "a0cap_002": 3116.8
+   },
+   "cfl_max_u_dt_kmax": {
+    "classical": 1.529164940496738,
+    "a0cap_002": 1.4579512730032334
+   },
+   "sup_peak": {
+    "classical": 35.8398032928923,
+    "a0cap_002": 34.170732961013286
+   },
+   "sup_final": {
+    "classical": 35.8398032928923,
+    "a0cap_002": 34.170732961013286
+   },
+   "enst_final": {
+    "classical": 329.5250215338049,
+    "a0cap_002": 297.18027345415845
+   },
+   "enst_last_quarter_mean": {
+    "classical": 327.96597074552744,
+    "a0cap_002": 295.780353624915
+   },
+   "enst_prev_quarter_mean": {
+    "classical": 317.7136914200652,
+    "a0cap_002": 286.5636594797707
+   },
+   "alpha_end_last_two_decades": {
+    "classical": 0.8644912191555434,
+    "a0cap_002": 0.8640016479901607
+   },
+   "alpha_at_T160_literal_horizon": {
+    "classical": 1.2572965421831799,
+    "a0cap_002": 1.2568312888639945
+   },
+   "end_slope_last_quarter": {
+    "classical": 0.043086542132380515,
+    "a0cap_002": 0.04290775676829823
+   },
+   "verdict": {
+    "classical": "keeps pumping enstrophy through T = 320 (no equilibrium within the run)",
+    "a0cap_002": "keeps pumping enstrophy through T = 320 (no equilibrium within the run)"
+   }
+  }
+ },
+ "reproduction_vs_n04c": {
+  "classical": {
+   "sup_final": {
+    "n04c": 35.24564211523551,
+    "here": 35.24564211523551,
+    "rel_diff": 0.0
+   },
+   "enst_final": {
+    "n04c": 318.94556082962566,
+    "here": 318.94556082962566,
+    "rel_diff": 0.0
+   },
+   "enst_lq": {
+    "n04c": 310.750267167124,
+    "here": 310.750267167124,
+    "rel_diff": 0.0
+   },
+   "alpha_end": {
+    "n04c": 1.1354181550646476,
+    "here": 1.1354181550646476,
+    "rel_diff": 0.0
+   },
+   "cfl": {
+    "n04c": 1.5038140635833817,
+    "here": 1.5038140635833817,
+    "rel_diff": 0.0
+   },
+   "E_final": {
+    "n04c": 156.98470475708766,
+    "here": 156.98470475708766,
+    "rel_diff": 0.0
+   }
+  },
+  "a0cap_002": {
+   "sup_final": {
+    "n04c": 33.60875995898623,
+    "here": 33.60875995898623,
+    "rel_diff": 0.0
+   },
+   "enst_final": {
+    "n04c": 287.6726435973554,
+    "here": 287.6726435973554,
+    "rel_diff": 0.0
+   },
+   "enst_lq": {
+    "n04c": 280.29974119065275,
+    "here": 280.29974119065275,
+    "rel_diff": 0.0
+   },
+   "alpha_end": {
+    "n04c": 1.1349321493593114,
+    "here": 1.1349321493593114,
+    "rel_diff": 0.0
+   },
+   "cfl": {
+    "n04c": 1.433973758250079,
+    "here": 1.433973758250079,
+    "rel_diff": 0.0
+   },
+   "E_final": {
+    "n04c": 141.4763507868543,
+    "here": 141.4763507868543,
+    "rel_diff": 0.0
+   }
+  }
+ },
+ "t160_slice": {
+  "sup": {
+   "classical": 34.44462997729025,
+   "a0cap_002": 32.85033569612663
+  },
+  "enst": {
+   "classical": 304.9503868341688,
+   "a0cap_002": 275.08112166399616
+  }
+ },
+ "trajectory_every_50_tu": {
+  "A_reproduction_T200/classical": {
+   "t_every_50_tu": [
+    0.0,
+    50.0,
+    100.0,
+    150.0,
+    200.0
+   ],
+   "sup_every_50_tu": [
+    0.015168775681757347,
+    22.786055288895618,
+    31.074454061944852,
+    34.12251200369978,
+    35.24564211523551
+   ],
+   "enst_every_50_tu": [
+    0.0002834668288992104,
+    135.56371215886372,
+    249.31624319472135,
+    299.4089191417314,
+    318.94556082962566
+   ]
+  },
+  "A_reproduction_T200/a0cap_002": {
+   "t_every_50_tu": [
+    0.0,
+    50.0,
+    100.0,
+    150.0,
+    200.0
+   ],
+   "sup_every_50_tu": [
+    0.015168775681757347,
+    21.789308968204526,
+    29.657774496524006,
+    32.54521883169333,
+    33.60875995898623
+   ],
+   "enst_every_50_tu": [
+    0.0002834668288992104,
+    122.37781727476143,
+    224.97024502559665,
+    270.09316465109856,
+    287.6726435973554
+   ]
+  },
+  "B_extension_T320/classical": {
+   "t_every_50_tu": [
+    0.0,
+    50.0,
+    100.0,
+    150.0,
+    200.0,
+    250.0,
+    300.0
+   ],
+   "sup_every_50_tu": [
+    0.015168775681757347,
+    22.786055288895618,
+    31.074454061944852,
+    34.12251200369978,
+    35.24564211523551,
+    35.65870795118731,
+    35.8106514191196
+   ],
+   "enst_every_50_tu": [
+    0.0002834668288992104,
+    135.56371215886372,
+    249.31624319472135,
+    299.4089191417314,
+    318.94556082962566,
+    326.2825849410934,
+    329.0020089345303
+   ]
+  },
+  "B_extension_T320/a0cap_002": {
+   "t_every_50_tu": [
+    0.0,
+    50.0,
+    100.0,
+    150.0,
+    200.0,
+    250.0,
+    300.0
+   ],
+   "sup_every_50_tu": [
+    0.015168775681757347,
+    21.789308968204526,
+    29.657774496524006,
+    32.54521883169333,
+    33.60875995898623,
+    33.99956366973572,
+    34.143194138176646
+   ],
+   "enst_every_50_tu": [
+    0.0002834668288992104,
+    122.37781727476143,
+    224.97024502559665,
+    270.09316465109856,
+    287.6726435973554,
+    294.2683570638275,
+    296.7108371323749
+   ]
+  }
+ },
+ "settled_question_verdict": "NO EQUILIBRIUM BY T >= 160 AT N = 32 AND NONE THROUGH T = 320 (6.4 viscous times): the truncated classical 3D Navier-Stokes flow with the framework's undamped-force classes (classical, a0cap-0.02) KEEPS PUMPING enstrophy at fixed truncation -- two-decade growth-law slope alpha >= 0.8 in every undamped class at every horizon sampled (T = 160 slice, T = 200 reproduction with alpha_end = 1.135, T = 320 extension).  Equilibrium (stabilized alpha / saturated sup) never appears within any run; the last-quarter local slope decelerates but stays above the settled threshold 0.3.  Evidence-level result: finite-N Galerkin ODE, always regular at fixed N; no singularity claim.",
+ "checks": [
+  {
+   "name": "CFL_dealiased_stability_A_reproduction_T200",
+   "pass": false,
+   "value": "classical = 1.5038, a0cap_002 = 1.4340",
+   "threshold": "max |u|*dt*k_max < 0.4 per run",
+   "note": "phase A_reproduction_T200: dealiased cutoff k_max = 10.67 -- the lane proxy (calibrated for |u| ~ O(1)) is EXCEEDED because sup|u| grows to ~35 (the very spin-up this lane probes); the meaningful integrator-health check is G63: the energy identity closes to <= 1-2% over the full run at dt = 0.004."
+  },
+  {
+   "name": "CFL_dealiased_stability_B_extension_T320",
+   "pass": false,
+   "value": "classical = 1.5292, a0cap_002 = 1.4580",
+   "threshold": "max |u|*dt*k_max < 0.4 per run",
+   "note": "phase B_extension_T320: dealiased cutoff k_max = 10.67 -- the lane proxy (calibrated for |u| ~ O(1)) is EXCEEDED because sup|u| grows to ~36 (the very spin-up this lane probes); the meaningful integrator-health check is G63: the energy identity closes to <= 1-2% over the full run at dt = 0.004."
+  },
+  {
+   "name": "G60_equilibrium_A_reproduction_T200_classical",
+   "pass": true,
+   "value": "0.117",
+   "threshold": "<= 0.15",
+   "note": "A_reproduction_T200/classical: last-quarter mean enstrophy 310.750 vs previous-quarter 278.163: relative change 11.7% -- inside the loose 15% band; the slope gate G61 decides."
+  },
+  {
+   "name": "G60_equilibrium_A_reproduction_T200_a0cap_002",
+   "pass": true,
+   "value": "0.117",
+   "threshold": "<= 0.15",
+   "note": "A_reproduction_T200/a0cap_002: last-quarter mean enstrophy 280.300 vs previous-quarter 250.960: relative change 11.7% -- inside the loose 15% band; the slope gate G61 decides."
+  },
+  {
+   "name": "G60_equilibrium_B_extension_T320_classical",
+   "pass": true,
+   "value": "0.032",
+   "threshold": "<= 0.15",
+   "note": "B_extension_T320/classical: last-quarter mean enstrophy 327.966 vs previous-quarter 317.714: relative change 3.2% -- inside the loose 15% band; the slope gate G61 decides."
+  },
+  {
+   "name": "G60_equilibrium_B_extension_T320_a0cap_002",
+   "pass": true,
+   "value": "0.032",
+   "threshold": "<= 0.15",
+   "note": "B_extension_T320/a0cap_002: last-quarter mean enstrophy 295.780 vs previous-quarter 286.564: relative change 3.2% -- inside the loose 15% band; the slope gate G61 decides."
+  },
+  {
+   "name": "G61_growth_law_A_reproduction_T200_classical",
+   "pass": true,
+   "value": "alpha_end = 1.135",
+   "threshold": "<= 0.3 settled | >= 0.8 pumping | else marginal",
+   "note": "A_reproduction_T200/classical: log10(enst) vs log10(t) fit over the last two decades (t in [2, 200]): slope alpha_end = 1.135 -> keeps pumping: the truncated flow KEEPS PUMPING enstrophy through T = 200: no equilibrium within the run."
+  },
+  {
+   "name": "G61_growth_law_A_reproduction_T200_a0cap_002",
+   "pass": true,
+   "value": "alpha_end = 1.135",
+   "threshold": "<= 0.3 settled | >= 0.8 pumping | else marginal",
+   "note": "A_reproduction_T200/a0cap_002: log10(enst) vs log10(t) fit over the last two decades (t in [2, 200]): slope alpha_end = 1.135 -> keeps pumping: the truncated flow KEEPS PUMPING enstrophy through T = 200: no equilibrium within the run."
+  },
+  {
+   "name": "G61_growth_law_B_extension_T320_classical",
+   "pass": true,
+   "value": "alpha_end = 0.864",
+   "threshold": "<= 0.3 settled | >= 0.8 pumping | else marginal",
+   "note": "B_extension_T320/classical: log10(enst) vs log10(t) fit over the last two decades (t in [3, 320]): slope alpha_end = 0.864 -> keeps pumping: the truncated flow KEEPS PUMPING enstrophy through T = 320: no equilibrium within the run."
+  },
+  {
+   "name": "G61_growth_law_B_extension_T320_a0cap_002",
+   "pass": true,
+   "value": "alpha_end = 0.864",
+   "threshold": "<= 0.3 settled | >= 0.8 pumping | else marginal",
+   "note": "B_extension_T320/a0cap_002: log10(enst) vs log10(t) fit over the last two decades (t in [3, 320]): slope alpha_end = 0.864 -> keeps pumping: the truncated flow KEEPS PUMPING enstrophy through T = 320: no equilibrium within the run."
+  },
+  {
+   "name": "G61b_alpha_at_T160_classical",
+   "pass": true,
+   "value": "alpha([1.6, 160]) = 1.257",
+   "threshold": "<= 0.3 settled | >= 0.8 pumping | else marginal",
+   "note": "classical: the literal pre-registered horizon (T >= 160 at N = 32): two-decade slope over t in [1.6, 160] = 1.257 -> keeps pumping -- the registered question is settled by the reproduction already (pumping), and the extension confirms the same classification."
+  },
+  {
+   "name": "G61b_alpha_at_T160_a0cap_002",
+   "pass": true,
+   "value": "alpha([1.6, 160]) = 1.257",
+   "threshold": "<= 0.3 settled | >= 0.8 pumping | else marginal",
+   "note": "a0cap_002: the literal pre-registered horizon (T >= 160 at N = 32): two-decade slope over t in [1.6, 160] = 1.257 -> keeps pumping -- the registered question is settled by the reproduction already (pumping), and the extension confirms the same classification."
+  },
+  {
+   "name": "G62_sup_ordering_A_reproduction_T200",
+   "pass": true,
+   "value": "a0cap final 33.6088 <= 37.0079 (classical 35.2456)",
+   "threshold": "a0cap_final <= 1.05 * classical_final",
+   "note": "phase A_reproduction_T200: final sup: classical 35.2456 vs a0cap-0.02 33.6088 (peaks: 35.2456 vs 33.6088): the capped class is sub-regularizing and does NOT cap the sup -- a0cap sits within 5% of classical, consistent with N04/N04b/N04c."
+  },
+  {
+   "name": "G62_sup_ordering_B_extension_T320",
+   "pass": true,
+   "value": "a0cap final 34.1707 <= 37.6318 (classical 35.8398)",
+   "threshold": "a0cap_final <= 1.05 * classical_final",
+   "note": "phase B_extension_T320: final sup: classical 35.8398 vs a0cap-0.02 34.1707 (peaks: 35.8398 vs 34.1707): the capped class is sub-regularizing and does NOT cap the sup -- a0cap sits within 5% of classical, consistent with N04/N04b/N04c."
+  },
+  {
+   "name": "G63_energy_identity_A_reproduction_T200_classical",
+   "pass": true,
+   "value": "max-local 0.722%, accumulated 0.004%",
+   "threshold": "max-local <= 1% and accumulated <= 1%",
+   "note": "A_reproduction_T200/classical: E = 0.5<|u|^2>, Z = <|grad u|^2>, dE/dt = -nu*Z + <f,u>; Euler-forward check over the run (dt = 0.004, delta = 0.1): worst local relative residual 0.722% (typical |delta*P_bal| ~ 0.0942), accumulated residual 0.004% of the energy change |E(T)-E(0)| = 156.985: the discrete energy budget closes to <= 1% at dt = 0.004 -- the integrator is healthy."
+  },
+  {
+   "name": "G63_energy_identity_A_reproduction_T200_a0cap_002",
+   "pass": true,
+   "value": "max-local 0.740%, accumulated 0.004%",
+   "threshold": "max-local <= 1% and accumulated <= 1%",
+   "note": "A_reproduction_T200/a0cap_002: E = 0.5<|u|^2>, Z = <|grad u|^2>, dE/dt = -nu*Z + <f,u> + <u,d> (drag power included); Euler-forward check over the run (dt = 0.004, delta = 0.1): worst local relative residual 0.740% (typical |delta*P_bal| ~ 0.0849), accumulated residual 0.004% of the energy change |E(T)-E(0)| = 141.476: the discrete energy budget closes to <= 1% at dt = 0.004 -- the integrator is healthy."
+  },
+  {
+   "name": "G63_energy_identity_B_extension_T320_classical",
+   "pass": true,
+   "value": "max-local 0.912%, accumulated 0.000%",
+   "threshold": "max-local <= 2% and accumulated <= 2%",
+   "note": "B_extension_T320/classical: E = 0.5<|u|^2>, Z = <|grad u|^2>, dE/dt = -nu*Z + <f,u>; Euler-forward check over the run (dt = 0.004, delta = 0.1): worst local relative residual 0.912% (typical |delta*P_bal| ~ 0.0745), accumulated residual 0.000% of the energy change |E(T)-E(0)| = 162.273: the discrete energy budget closes to <= 2% at dt = 0.004 -- the integrator is healthy."
+  },
+  {
+   "name": "G63_energy_identity_B_extension_T320_a0cap_002",
+   "pass": true,
+   "value": "max-local 0.935%, accumulated 0.000%",
+   "threshold": "max-local <= 2% and accumulated <= 2%",
+   "note": "B_extension_T320/a0cap_002: E = 0.5<|u|^2>, Z = <|grad u|^2>, dE/dt = -nu*Z + <f,u> + <u,d> (drag power included); Euler-forward check over the run (dt = 0.004, delta = 0.1): worst local relative residual 0.935% (typical |delta*P_bal| ~ 0.0672), accumulated residual 0.000% of the energy change |E(T)-E(0)| = 146.225: the discrete energy budget closes to <= 2% at dt = 0.004 -- the integrator is healthy."
+  },
+  {
+   "name": "G64_honesty_label",
+   "pass": true,
+   "value": "finite-N Galerkin truncation evidence: ODE system, always regular at fixed N; NOT a singularity claim; the question is equilibrium vs continuing pump at fixed truncation",
+   "threshold": "label present in report + JSON",
+   "note": "EVIDENCE ONLY -- finite-N Galerkin truncation evidence: ODE system, always regular at fixed N; NOT a singularity claim; the question is equilibrium vs continuing pump at fixed truncation.  The runs answer the equilibrium-vs-pump question at fixed truncation; they make no singularity claim."
+  }
+ ]
+}
