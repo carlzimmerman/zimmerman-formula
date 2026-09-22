@@ -1,0 +1,153 @@
+{
+  "schema_version": 2,
+  "claim_id": "I13_RADIAL_OPERATOR_BRIDGE_2026_09_22",
+  "repository": {
+    "commit": "c5f8887cd91425608d5fc74be8de1f420aa1796a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "real_research/reviews/spectral_spine_closure_2026_09_22/i13/radial_bridge.py",
+    "--output",
+    "real_research/reviews/spectral_spine_closure_2026_09_22/i13/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The specified radial variational assembly reproduces analytic uniform-density modes, Newtonian n=3 zero mode, n=3 PN coefficient and convergent Ritz values on the declared grids.",
+    "coefficient_domain": "IEEE754 binary64; exact Fraction arithmetic only for the uniform PN coefficient",
+    "conventions": "G=rho_c=alpha=1; n=3 Pc=pi; c²=pi/s; Omega² dimensional in these units; rho enters TOV without an added internal-energy term",
+    "inputs": [
+      "Synthetic uniform-density hydrostatic equilibrium",
+      "Synthetic n=3 Lane-Emden/TOV equilibria",
+      "Saio et al arxiv:2406.18040v1 equation (2), independently transformed to a symmetric form"
+    ],
+    "bounds": {
+      "cells": [
+        32,
+        64,
+        96,
+        128,
+        256
+      ],
+      "gauss_order": 8,
+      "ODE_rtol": 2e-12,
+      "ODE_atol": 2e-14,
+      "ODE_max_step": 0.02,
+      "s": [
+        0,
+        0.001,
+        0.0003,
+        0.0001,
+        3e-05
+      ],
+      "uniform_Gamma": [
+        1.2,
+        1.3333333333333333,
+        1.6666666666666667
+      ],
+      "Newtonian_n3_Gamma": [
+        1.3333333333333333,
+        1.5
+      ]
+    },
+    "non_claims": [
+      "No MESA/GENEC data or physical mass ceiling",
+      "No rigorous interval eigenvalue enclosures",
+      "No theorem for arbitrary profiles",
+      "No error bound for finite-compactness PN truncation",
+      "Positive single trial value does not establish stability"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-22T10:19:46.203665+00:00",
+    "runtime_seconds": 0.49207,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/spectral_spine_closure_2026_09_22/i13/radial_bridge.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/spectral_spine_closure_2026_09_22/i13/radial_bridge.py",
+      "sha256": "4616da327b7c01a36bd6c1669bb44a4656855b5811e60fd8c58519822c1ff8a2",
+      "sha256_after": "4616da327b7c01a36bd6c1669bb44a4656855b5811e60fd8c58519822c1ff8a2"
+    }
+  ],
+  "output_directory": "real_research/reviews/spectral_spine_closure_2026_09_22/i13/run",
+  "declared_results": [
+    "real_research/reviews/spectral_spine_closure_2026_09_22/i13/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/spectral_spine_closure_2026_09_22/i13/run/stdout.txt",
+      "sha256": "cb6f2a059803c0c399fe9463a3a63db8c062931aa05236aaa39c9b7484ac04a3",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/spectral_spine_closure_2026_09_22/i13/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/spectral_spine_closure_2026_09_22/i13/run/results.json",
+      "sha256": "cb6f2a059803c0c399fe9463a3a63db8c062931aa05236aaa39c9b7484ac04a3",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

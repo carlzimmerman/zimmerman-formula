@@ -1,0 +1,71 @@
+{
+  "claim_id": "I13_RADIAL_OPERATOR_BRIDGE_2026_09_22",
+  "mathematics": {
+    "assertion_tested": "The specified radial variational assembly reproduces analytic uniform-density modes, Newtonian n=3 zero mode, n=3 PN coefficient and convergent Ritz values on the declared grids.",
+    "coefficient_domain": "IEEE754 binary64; exact Fraction arithmetic only for the uniform PN coefficient",
+    "conventions": "G=rho_c=alpha=1; n=3 Pc=pi; c\u00b2=pi/s; Omega\u00b2 dimensional in these units; rho enters TOV without an added internal-energy term",
+    "inputs": [
+      "Synthetic uniform-density hydrostatic equilibrium",
+      "Synthetic n=3 Lane-Emden/TOV equilibria",
+      "Saio et al arxiv:2406.18040v1 equation (2), independently transformed to a symmetric form"
+    ],
+    "bounds": {
+      "cells": [
+        32,
+        64,
+        96,
+        128,
+        256
+      ],
+      "gauss_order": 8,
+      "ODE_rtol": 2e-12,
+      "ODE_atol": 2e-14,
+      "ODE_max_step": 0.02,
+      "s": [
+        0,
+        0.001,
+        0.0003,
+        0.0001,
+        3e-05
+      ],
+      "uniform_Gamma": [
+        1.2,
+        1.3333333333333333,
+        1.6666666666666667
+      ],
+      "Newtonian_n3_Gamma": [
+        1.3333333333333333,
+        1.5
+      ]
+    },
+    "non_claims": [
+      "No MESA/GENEC data or physical mass ceiling",
+      "No rigorous interval eigenvalue enclosures",
+      "No theorem for arbitrary profiles",
+      "No error bound for finite-compactness PN truncation",
+      "Positive single trial value does not establish stability"
+    ]
+  },
+  "execution_artifacts": [
+    "real_research/reviews/spectral_spine_closure_2026_09_22/i13/radial_bridge.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

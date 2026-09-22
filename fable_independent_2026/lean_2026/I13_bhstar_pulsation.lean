@@ -1,41 +1,37 @@
 import Mathlib
 
 /-!
-# I13 -- THE GAMMA-1(beta) EIGENPROBLEM SPINE: the pulsational ceiling as a spectral-gap closing
+# I13 -- GAS-PRESSURE KERNEL AND HOMOLOGOUS TRIAL-QUOTIENT ALGEBRA
 
-**Scope statement (as every certificate in this repo reads):** Lean certifies
-the MATHEMATICS. The physical premises -- the envelope equation of state (ideal
-gas plus radiation, beta = P_gas/P), the adiabatic index Gamma_1(beta) of that
-mixture, the Chandrasekhar-Ledoux work-integral form of the fundamental radial
-mode, and the general-relativistic destabilizing term at compactness
-x = 2GM/(R c^2) -- are the committed lanes' claims: the BH* index's open MESA
-item (the Gamma_1(beta(r))-profile eigenproblem on accreting SMS structures;
-the pulsational ceiling 1e5-6 Msun from first principles), inherited by the
-framework as GR-identical (Cassini, r = 3M/2).
+Scope correction, 2026-09-22: the original narrative called `omega2` the
+fundamental radial eigenvalue. That identification is not proved here and is
+false for general nonuniform stellar profiles. This file proves algebraic
+signs of a DEFINED scalar quotient, not an ODE spectral theorem.
 
-This file certifies the algebraic spine of that eigenproblem:
+The exact Newtonian homogeneous-displacement Rayleigh value is 3*Wbeta/J,
+where J = integral rho*r^4 dr. Thus the normalization here requires I=J/3.
+The lowest eigenvalue is at most that trial value. Negative trial work is a
+sufficient instability certificate; positive trial work alone does not prove
+stability. Equality requires the homogeneous displacement to be an eigenmode.
 
-  1. the exact kernel identity  3*Gamma_1(beta) - 4 = beta*(4-3*beta)/(8-7*beta)
-     -- the gas+radiation adiabatic index, one line of algebra;
-  2. the marginal wall: the pure-radiation envelope (beta = 0) sits EXACTLY on
-     the zero mode (3*Gamma_1 - 4 = 0); any gas content (beta > 0) opens the
-     gap; the kernel never exceeds 1 (the gap term cannot out-weigh the
-     pressure moment);
-  3. the crossing identity: the fundamental mode's square frequency is linear
-     in the compactness and vanishes exactly at the ceiling
+The leading post-Newtonian comparison further requires a structure-dependent
+Cgr and controlled approximation error. On an n=3 Lane-Emden background the
+I13-normalized coefficient is approximately 3.37342294, not a universal value.
+Neither an actual stellar profile, the differential operator, its boundary
+domain, nor a physical mass ceiling is formalized in this file.
 
-        omega0^2 = (C_gr*W_gr/I) * (x* - x),   x* = W_beta/(C_gr*W_gr)
+The exact work identities, spectral comparison, PN integral, benchmarks and
+remaining assumptions are recorded in:
+real_research/reviews/spectral_spine_closure_2026_09_22/i13/REPORT.md
 
-     -- a stable oscillator BELOW the ceiling, a zero mode AT it, a runaway
-     ABOVE it: the pulsation gap closes exactly at the pulsational ceiling;
-  4. the ceiling bracket, uniform in the envelope: 0 < x* <= 1/C_gr, and the
-     pure-radiation face: the gap is closed at EVERY compactness.
+The existing theorem names are retained for compatibility. Read "stable",
+"mode", "gap", and "ceiling" in those historical identifiers only as names
+for the algebraic sign statements explicitly shown in their types.
 
-Nothing here claims the SU(3) Clay gap: the framework's own non-abelian
-obstruction is on record (deepseek_push/yang_mills_gap/YM_NONABELIAN.md), and
-the Clay continuum-limit wall is named on the record (YM_ROADMAP R5/R6).
-
-Compiled against the repo's Mathlib build (Lean 4.34.0-rc2).
+The certified results remain: the exact gas+radiation kernel identity;
+its bounds and pure-radiation zero; profile moment bounds; and signs of the
+defined scalar quotient about its algebraic crossing. No physical spectral
+equality is among those Lean statements.
 -/
 noncomputable section
 open scoped Real
@@ -97,7 +93,7 @@ theorem kernel_half : 3 * g1 (1 / 2) - 4 = 5 / 18 := by
   rw [kernel_identity (1 / 2) (by norm_num)]
   norm_num
 
-/-! ## 2. the eigenproblem spine: profile-weighted moments of the fundamental mode -/
+/-! ## 2. profile moments and the algebraic trial-quotient spine -/
 
 /-- the beta-gap pressure moment of the envelope -/
 noncomputable def Wbeta (R : ℝ) (g p : ℝ → ℝ) : ℝ :=
@@ -107,8 +103,8 @@ noncomputable def Wbeta (R : ℝ) (g p : ℝ → ℝ) : ℝ :=
 noncomputable def Wgr (R : ℝ) (p : ℝ → ℝ) : ℝ :=
   ∫ r in 0..R, p r * r^2
 
-/-- the fundamental-mode square frequency (Chandrasekhar-Ledoux work form):
-    pressure work minus the GR destabilizer, over the modal inertia -/
+/-- A defined scalar quotient. Its identification with a physical trial value
+    requires normalization and PN hypotheses; it is not defined as an eigenvalue. -/
 noncomputable def omega2 (Wb Wg I Cgr x : ℝ) : ℝ :=
   (Wb - Cgr * x * Wg) / I
 
@@ -152,7 +148,7 @@ theorem cross_alg (Wb Wg Cgr x xstar : ℝ) (hC : Cgr ≠ 0) (hWg : Wg ≠ 0)
   subst hxstar
   field_simp [hC, hWg]
 
-/-- BELOW the ceiling the fundamental mode is a stable oscillator: the pulsation gap -/
+/-- The defined quotient is positive below its algebraic crossing. -/
 theorem stable_below_ceiling (Wb Wg I Cgr x xstar : ℝ) (hI : 0 < I)
     (hC : 0 < Cgr) (hWg : 0 < Wg) (hxstar : xstar = Wb / (Cgr * Wg))
     (hx : x < xstar) : 0 < omega2 Wb Wg I Cgr x := by
@@ -162,7 +158,7 @@ theorem stable_below_ceiling (Wb Wg I Cgr x xstar : ℝ) (hI : 0 < I)
   rw [hlin]
   exact div_pos (mul_pos (mul_pos hC hWg) (sub_pos.mpr hx)) hI
 
-/-- AT the ceiling the mode is the zero mode: the gap closes exactly -/
+/-- The defined quotient vanishes at its algebraic crossing. -/
 theorem zero_mode_at_ceiling (Wb Wg Cgr x xstar : ℝ)
     (hC : Cgr ≠ 0) (hWg : Wg ≠ 0) (hxstar : xstar = Wb / (Cgr * Wg))
     (hx : x = xstar) : omega2 Wb Wg 1 Cgr x = 0 := by
@@ -172,7 +168,7 @@ theorem zero_mode_at_ceiling (Wb Wg Cgr x xstar : ℝ)
   rw [hlin, hx]
   simp
 
-/-- ABOVE the ceiling the mode is a runaway: the gap has closed -/
+/-- The defined quotient is negative above its algebraic crossing. -/
 theorem runaway_above_ceiling (Wb Wg I Cgr x xstar : ℝ) (hI : 0 < I)
     (hC : 0 < Cgr) (hWg : 0 < Wg) (hxstar : xstar = Wb / (Cgr * Wg))
     (hx : xstar < x) : omega2 Wb Wg I Cgr x < 0 := by
@@ -216,8 +212,8 @@ theorem cross_ceiling_pos (Wb Wg Cgr : ℝ) (hWb : 0 < Wb) (hC : 0 < Cgr)
     (hWg : 0 < Wg) : 0 < Wb / (Cgr * Wg) :=
   div_pos hWb (mul_pos hC hWg)
 
-/-- the pure-radiation face: with the gap term EXACTLY zero the mode is unstable
-    at every compactness -- the zero-gap envelope -/
+/-- On the pure-radiation face the defined quotient is nonpositive for x >= 0.
+    At x=0 it is zero, which is neutrality rather than strict instability. -/
 theorem radiation_unstable (R : ℝ) (g p : ℝ → ℝ) (I Cgr x : ℝ) (hR : 0 ≤ R)
     (hg : ∀ r ∈ Set.Icc 0 R, g r = 0)
     (hI : 0 < I) (hC : 0 < Cgr) (hWg : 0 < Wgr R p) (hx : 0 ≤ x) :
@@ -233,7 +229,7 @@ theorem radiation_unstable (R : ℝ) (g p : ℝ → ℝ) (I Cgr x : ℝ) (hR : 0
       linarith
     exact le_of_lt (div_neg_of_neg_of_pos hnum hI)
 
-/-- the gap-closes condition: compactness at or above 1/C_gr kills the mode -/
+/-- The defined quotient is nonpositive at or above the uniform algebraic bound. -/
 theorem gap_closes_at_ceiling (Wb Wg I Cgr x : ℝ) (hI : 0 < I) (hC : 0 < Cgr)
     (hWg : 0 < Wg) (hmean : Wb ≤ Wg) (hx : 1 / Cgr ≤ x) :
     omega2 Wb Wg I Cgr x ≤ 0 := by

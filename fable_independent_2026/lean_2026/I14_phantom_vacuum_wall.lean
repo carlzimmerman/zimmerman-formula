@@ -1,52 +1,38 @@
 import Mathlib
 
 /-!
-# I14 -- THE PHANTOM-VACUUM SPECTRAL WALL: the t-lattice Hardy identity, the confinement gap, and the kappa = 1/2 marginal boundary
+# I14: exact statements for a specified Dirichlet difference form
 
-**Scope statement (as every certificate in this repo reads):** Lean certifies
-the MATHEMATICS. The physical premises -- the log-radial (t-) lattice as the
-discrete coordinate system of the phantom halo's radial fluctuation modes
-(the committed equilibrium profile phi_0 = C ln r; the t-lattice spacing
-h = 1 in lattice units), the mode dressing u_n ~ sqrt(r_n) * phi_n, the
-confinement profile q(n) from the scalar's self-coupling / the rho_Lambda sea,
-and the coupling kappa in the framework's a0 = kappa * c * sqrt(G * rho_Lambda)
-with kappa = 1/2 -- are the committed lanes' claims (G155, WAVEBOARD B8/G081,
-THE_THEORY L5). This file certifies the algebraic spine of the phantom-vacuum
-stability problem: the Yang-Mills mass-gap theorem's VACUUM side (the analog of
-YM_ROADMAP item 3, "the uniqueness/stability of the vacuum", which the
-yang_mills_gap campaign's R1 did not touch -- R1 proved the gapless
-Goldstone's lift, i.e., the EXCITATION side).
+The model is defined below, with lattice spacing one and real parameters
+`kappa2`, `mu2` (their names do not impose nonnegativity). Under u 0 = u N = 0,
+A = (3/2) D + (1/4) U. The factor 3/2 belongs to this forward-difference
+prescription; it is not the continuum coefficient of the derivative term.
 
-The certified content:
+For constant q = q0 put b = 1/4 - kappa2 + mu2*q0. The energy is exactly
+(3/2)D + b U. The new certificates prove that b is the best lower bound
+uniformly over all finite boxes and nonzero Dirichlet modes. Thus positivity
+on every box is equivalent to b >= 0. Negative b supplies negative modes in
+sufficiently large boxes; b = 0 gives no positive uniform gap. Every fixed
+finite box still has a strictly positive kinetic eigenvalue.
 
-  1. the t-lattice Hardy identity (the marginal-rigidity identity):
-       sum (Delta u_n - u_n/2)^2 = (3/2) * sum (Delta u_n)^2 + (1/4) * sum u_n^2
-     with Dirichlet boundary conditions u_0 = u_N = 0 -- the (u' - u/2)^2
-     discretization of the log-radial kinetic term. The (1/4)-coefficient is
-     the Hardy constant of the half-line: the radial 1/r^2-potential is
-     EXACTLY marginal at kappa^2 = 1/4;
-  2. the stability gap: for 0 <= kappa^2 <= 1/4,
-       E[u] := sum (Delta u - u/2)^2 - kappa^2 * sum u^2 + mu^2 * sum q u^2
-              >= (1/4 - kappa^2 + mu^2 * q_0) * sum u^2
-     -- the vacuum's fluctuation spectrum is bounded below, with a strictly
-     positive gap when the confinement is on: the framework's kappa = 1/2 sits
-     EXACTLY on the boundary;
-  3. the marginal identity: at kappa^2 = 1/4 the radial term cancels
-     identically: E = (3/2) * sum Delta^2 + mu^2 * sum q u^2 -- the vacuum is
-     stable at exactly the marginal coupling, and the gap is then carried
-     ENTIRELY by the confinement: E >= mu^2 * q_0 * sum u^2;
-  4. the pure face: at kappa^2 = 1/4 WITHOUT confinement the spectrum is
-     gapless: the slab modes (0,1,1,...,1,0) have E = 3 exactly and
-     E/sum u^2 = 3/(N-1) --> 0 -- the boundary zero mode lives at infinity;
-  5. the wall: kappa^2 > 1/4 (kappa > 1/2) is the classical unstable side ---
-     NOW CERTIFIED as `beyond_the_wall` below: for every kappa^2 > 1/4 there
-     exist explicit negative modes (the flat slab at box size
-     N > 1 + 3/(kappa^2 - 1/4)): the vacuum form is not positive beyond the
-     boundary. The trichotomy is complete and machine-checked: gapped stable
-     sector (kappa < 1/2), marginal (kappa = 1/2), explosive (kappa > 1/2).
+The elementary full diagonalization, with eigenvalues
+6 sin^2(j*pi/(2N)) + b, 1 <= j < N, and its proof are recorded in
+real_research/reviews/spectral_spine_closure_2026_09_22/i14/DERIVATION.md.
+The Lean claims are exactly the declarations below; prose diagonalization
+is not silently promoted to a full Lean spectral theorem.
 
-Every identity below is checked: exit 0, zero sorry, axioms = the standard
-three. Compiled against the repo's Mathlib build (Lean 4.34.0-rc2).
+With variable confinement q >= q0 and mu2 >= 0 the same b is a lower bound,
+but need not be sharp for that fixed profile. In the unconfined case the
+uniform threshold is kappa2 = 1/4. Positive confinement can move the threshold:
+`confined_counterexample_to_universal_wall` certifies stability at
+kappa2 = mu2 = q0 = 1. Stability alone never selects a unique coupling.
+
+These are certificates for the defined quadratic form. Identifying this form
+with a physical action's Hessian, identifying its parameter with the kappa in
+a0 = kappa*c*sqrt(G*rho_Lambda), and supplying a confinement potential require
+separate derivations. G155/G081/WAVEBOARD B8/THE_THEORY L5 do not supply those
+identifications; the source-level obstruction is documented with the proof.
+No Yang--Mills vacuum or quantum mass-gap assertion follows from this file.
 -/
 noncomputable section
 open scoped Real
@@ -111,8 +97,8 @@ theorem delta_dot_u (N : ℕ) (u : ℕ → ℝ) (hu0 : u 0 = 0) (huN : u N = 0) 
   have h2 : 2 * C N u = -(D N u) := by linarith [hmain]
   exact (eq_div_iff (by norm_num : (2 : ℝ) ≠ 0)).2 (by nlinarith)
 
-/-- THE HARDY-MARGINAL IDENTITY: the (1/4)-coefficient of the log-radial
-    lattice. The radial term is exactly marginal at kappa^2 = 1/4. -/
+/-- Exact square expansion for this forward-difference prescription.
+    Its scalar shift cancels at kappa2 = 1/4. -/
 theorem hardy_identity (N : ℕ) (u : ℕ → ℝ) (hu0 : u 0 = 0) (huN : u N = 0) :
     A N u = (3 / 2) * D N u + (1 / 4) * U N u := by
   have hpt : ∀ n ∈ Finset.range N,
@@ -156,10 +142,8 @@ theorem qsum_lower (N : ℕ) (u : ℕ → ℝ) (q : ℕ → ℝ) (q0 : ℝ)
     Finset.sum_le_sum hpt
   simpa [U, Finset.mul_sum] using hsum
 
-/-- THE STABILITY GAP: for 0 <= kappa^2 <= 1/4 the confined vacuum's
-    fluctuation form is bounded below by the gap (1/4 - kappa^2 + mu^2*q0)
-    times the mode norm. The framework's kappa = 1/2 sits exactly on the
-    stable boundary; the gap survives there through the confinement alone. -/
+/-- Uniform lower bound for every real kappa2. It is a positive gap only
+    when the displayed coefficient is positive. -/
 theorem vacuum_gap (N : ℕ) (u : ℕ → ℝ) (hu0 : u 0 = 0) (huN : u N = 0)
     (kappa2 mu2 q0 : ℝ) (hm2 : 0 ≤ mu2)
     (q : ℕ → ℝ) (hq : ∀ n ∈ Finset.range N, q0 ≤ q n) :
@@ -196,8 +180,8 @@ theorem marginal_identity (N : ℕ) (u : ℕ → ℝ) (hu0 : u 0 = 0) (huN : u N
   rw [hardy_identity N u hu0 huN]
   ring
 
-/-- THE MARGINAL GAP: at kappa = 1/2 the gap is carried entirely by the
-    confinement: E >= mu^2 * q0 * sum u^2 -/
+/-- At kappa2 = 1/4 the confinement supplies this uniform lower bound;
+    the finite-box kinetic term also contributes positive energy. -/
 theorem marginal_gap (N : ℕ) (u : ℕ → ℝ) (hu0 : u 0 = 0) (huN : u N = 0)
     (mu2 q0 : ℝ) (hm2 : 0 ≤ mu2)
     (q : ℕ → ℝ) (hq : ∀ n ∈ Finset.range N, q0 ≤ q n) :
@@ -324,9 +308,8 @@ theorem free_marginal_energy (N : ℕ) (hN : 2 ≤ N) :
   rw [hd] at hmi
   simpa [one_div] using hmi
 
-/-- THE PURE FACE: at the marginal coupling WITHOUT confinement the spectrum is
-    gapless -- the ratio E/sum u^2 = 3/(N-1) reaches 0. The boundary zero mode
-    lives at infinity: the gap is a confinement phenomenon. -/
+/-- At the unconfined critical coupling slab Rayleigh quotients approach
+    zero as box size grows. This does not exhibit a zero mode on a fixed box. -/
 theorem free_gap_closes (eps : ℝ) (heps : 0 < eps) :
     ∃ N : ℕ, ∃ u : ℕ → ℝ, u 0 = 0 ∧ u N = 0 ∧
       E N u (1 / 4) 0 (fun _ => 0) = 3 ∧ 3 / (((N : ℝ)) - 1) < eps := by
@@ -353,10 +336,7 @@ theorem free_gap_closes (eps : ℝ) (heps : 0 < eps) :
 
 /-! ## 6. the wall -/
 
-/-- THE STABILITY WALL: kappa^2 <= 1/4 (kappa <= 1/2) is the stable sector.
-    The framework's kappa = 1/2 sits exactly on the boundary; the
-    classical complement (kappa^2 > 1/4: unbounded below, the Knopp
-    sharpness of discrete Hardy) is registered in the docstring. -/
+/-- Nonnegativity for the unconfined form on every finite Dirichlet box. -/
 theorem stability_boundary (N : ℕ) (u : ℕ → ℝ) (hu0 : u 0 = 0) (huN : u N = 0)
     (kappa2 : ℝ) (hk1 : kappa2 ≤ 1 / 4) :
     0 ≤ A N u - kappa2 * U N u := by
@@ -366,10 +346,10 @@ theorem stability_boundary (N : ℕ) (u : ℕ → ℝ) (hu0 : u 0 = 0) (huN : u 
   have hmul : 0 ≤ (1 / 4 - kappa2) * U N u := mul_nonneg hk hU
   nlinarith [hgap, hmul]
 
-/-- BEYOND THE WALL: for every kappa^2 > 1/4 there EXIST explicit negative
-    modes -- the flat slab u = 1 on [1, N-2] at box size N > 1 + 3/(kappa^2-1/4)
-    has E = 3 - (kappa^2 - 1/4)*(N-1) < 0. At the committed kappa = 1/2 the
-    vacuum is exactly marginal; any stronger coupling makes it explode. -/
+/-- For the unconfined form and every kappa2 > 1/4 there exists a negative
+    mode in a sufficiently large box. The slab is one at indices 1,...,N-1.
+    This is an existential box statement, not instability of every finite
+    box or of a positively confined form. -/
 theorem beyond_the_wall (kappa2 : ℝ) (hk : 1 / 4 < kappa2) :
     ∃ N : ℕ, ∃ u : ℕ → ℝ, u 0 = 0 ∧ u N = 0 ∧ A N u - kappa2 * U N u < 0 := by
   let eps : ℝ := kappa2 - 1 / 4
@@ -405,7 +385,255 @@ theorem beyond_the_wall (kappa2 : ℝ) (hk : 1 / 4 < kappa2) :
   rw [← hk2, hE]
   exact hlt
 
-/-! ## 7. the certificate record -/
+/-! ## 7. Sharp uniform threshold with constant confinement -/
+
+/-- Exact constant-confinement reduction, with no sign restrictions. -/
+theorem constant_confinement_identity (N : ℕ) (u : ℕ → ℝ)
+    (hu0 : u 0 = 0) (huN : u N = 0) (kappa2 mu2 q0 : ℝ) :
+    E N u kappa2 mu2 (fun _ => q0) =
+      (3 / 2) * D N u + (1 / 4 - kappa2 + mu2 * q0) * U N u := by
+  unfold E
+  rw [hardy_identity N u hu0 huN, ← Finset.mul_sum]
+  unfold U
+  ring
+
+/-- The constant-confinement floor holds for arbitrary real parameters. -/
+theorem constant_confinement_floor (N : ℕ) (u : ℕ → ℝ)
+    (hu0 : u 0 = 0) (huN : u N = 0) (kappa2 mu2 q0 : ℝ) :
+    (1 / 4 - kappa2 + mu2 * q0) * U N u ≤
+      E N u kappa2 mu2 (fun _ => q0) := by
+  rw [constant_confinement_identity N u hu0 huN]
+  nlinarith [kinetic_nonneg N u]
+
+/-- The slab's exact confined energy. -/
+theorem constant_slab_energy (N : ℕ) (hN : 2 ≤ N) (kappa2 mu2 q0 : ℝ) :
+    E N (slab N) kappa2 mu2 (fun _ => q0) =
+      3 + (1 / 4 - kappa2 + mu2 * q0) * ((N : ℝ) - 1) := by
+  rw [constant_confinement_identity N (slab N) slab_bc0 slab_bcN,
+    slab_diff N hN, slab_norm N (by omega)]
+  ring
+
+/-- Sharpness of the uniform floor: nonzero Dirichlet slabs approach it
+    within any positive epsilon, expressed without a quotient. -/
+theorem constant_floor_sharp (kappa2 mu2 q0 eps : ℝ) (heps : 0 < eps) :
+    ∃ N : ℕ, ∃ u : ℕ → ℝ, u 0 = 0 ∧ u N = 0 ∧ 0 < U N u ∧
+      E N u kappa2 mu2 (fun _ => q0) <
+        (1 / 4 - kappa2 + mu2 * q0 + eps) * U N u := by
+  rcases exists_nat_gt (1 + 3 / eps) with ⟨N, hN⟩
+  have he3 : 0 < 3 / eps := by positivity
+  have hreal : (1 : ℝ) < N := by linarith
+  have hnat : 2 ≤ N := by exact_mod_cast hreal
+  have hnorm : U N (slab N) = (N : ℝ) - 1 := slab_norm N (by omega)
+  refine ⟨N, slab N, slab_bc0, slab_bcN, ?_, ?_⟩
+  · rw [hnorm]
+    linarith
+  · rw [constant_slab_energy N hnat, hnorm]
+    have hlarge : 3 / eps < (N : ℝ) - 1 := by linarith
+    have hmul := (div_lt_iff₀ heps).mp hlarge
+    nlinarith
+
+/-- Exact best uniform lower bound over all finite Dirichlet boxes.
+    This pins every quantifier needed for the infinite-box threshold. -/
+theorem constant_uniform_floor_iff (kappa2 mu2 q0 gamma : ℝ) :
+    (∀ (N : ℕ) (u : ℕ → ℝ), u 0 = 0 → u N = 0 →
+      gamma * U N u ≤ E N u kappa2 mu2 (fun _ => q0)) ↔
+        gamma ≤ 1 / 4 - kappa2 + mu2 * q0 := by
+  constructor
+  · intro h
+    by_contra hnot
+    have hgt : 0 < gamma - (1 / 4 - kappa2 + mu2 * q0) := by linarith
+    obtain ⟨N, u, hu0, huN, _, hlt⟩ :=
+      constant_floor_sharp kappa2 mu2 q0 _ hgt
+    have hlo := h N u hu0 huN
+    nlinarith
+  · intro h N u hu0 huN
+    exact le_trans (mul_le_mul_of_nonneg_right h (unorm_nonneg N u))
+      (constant_confinement_floor N u hu0 huN kappa2 mu2 q0)
+
+/-- Positivity on every box is equivalent to the shifted wall. -/
+theorem constant_all_boxes_nonneg_iff (kappa2 mu2 q0 : ℝ) :
+    (∀ (N : ℕ) (u : ℕ → ℝ), u 0 = 0 → u N = 0 →
+      0 ≤ E N u kappa2 mu2 (fun _ => q0)) ↔
+        kappa2 ≤ 1 / 4 + mu2 * q0 := by
+  have h := constant_uniform_floor_iff kappa2 mu2 q0 0
+  simp only [zero_mul] at h
+  constructor
+  · intro hn
+    have hb := h.mp hn
+    linarith
+  · intro hk
+    apply h.mpr
+    linarith
+
+/-- Explicit existential instability beyond the confined wall. -/
+theorem confined_beyond_wall (kappa2 mu2 q0 : ℝ)
+    (hk : 1 / 4 + mu2 * q0 < kappa2) :
+    ∃ N : ℕ, ∃ u : ℕ → ℝ, u 0 = 0 ∧ u N = 0 ∧ 0 < U N u ∧
+      E N u kappa2 mu2 (fun _ => q0) < 0 := by
+  have heps : 0 < kappa2 - (1 / 4 + mu2 * q0) := by linarith
+  obtain ⟨N, u, hu0, huN, hnorm, hlt⟩ :=
+    constant_floor_sharp kappa2 mu2 q0 _ heps
+  refine ⟨N, u, hu0, huN, hnorm, ?_⟩
+  nlinarith
+
+/-- At the shifted critical coupling there is no positive gap uniform
+    in box size, including when confinement is nonzero. -/
+theorem confined_critical_gap_closes (mu2 q0 eps : ℝ) (heps : 0 < eps) :
+    ∃ N : ℕ, ∃ u : ℕ → ℝ, u 0 = 0 ∧ u N = 0 ∧ 0 < U N u ∧
+      0 ≤ E N u (1 / 4 + mu2 * q0) mu2 (fun _ => q0) ∧
+      E N u (1 / 4 + mu2 * q0) mu2 (fun _ => q0) < eps * U N u := by
+  obtain ⟨N, u, hu0, huN, hnorm, hlt⟩ :=
+    constant_floor_sharp (1 / 4 + mu2 * q0) mu2 q0 eps heps
+  have hlo := constant_confinement_floor N u hu0 huN (1 / 4 + mu2 * q0) mu2 q0
+  refine ⟨N, u, hu0, huN, hnorm, ?_, ?_⟩ <;> nlinarith
+
+/-- A uniform positive gap at kappa2 = 1 > 1/4 refutes any universal
+    claim that confinement cannot stabilize couplings beyond 1/2. -/
+theorem confined_counterexample_to_universal_wall (N : ℕ) (u : ℕ → ℝ)
+    (hu0 : u 0 = 0) (huN : u N = 0) :
+    (1 / 4) * U N u ≤ E N u 1 1 (fun _ => 1) := by
+  have h := constant_confinement_floor N u hu0 huN 1 1 1
+  norm_num at h ⊢
+  exact h
+
+/-! ## 8. Finite-box strictness and the sine eigenmode equation -/
+
+/-- A nonzero mode with a zero left endpoint has positive kinetic energy
+    on its finite box. Thus a vanishing uniform gap is not a finite-box
+    zero eigenvalue. -/
+theorem kinetic_pos_of_norm_pos (N : ℕ) (u : ℕ → ℝ)
+    (hu0 : u 0 = 0) (hnorm : 0 < U N u) : 0 < D N u := by
+  by_contra hnot
+  have hzero : D N u = 0 := le_antisymm (le_of_not_gt hnot) (kinetic_nonneg N u)
+  have hdiff : ∀ n ∈ Finset.range N, (u (n + 1) - u n)^2 = 0 :=
+    (Finset.sum_eq_zero_iff_of_nonneg (fun n _ => sq_nonneg (u (n + 1) - u n))).mp hzero
+  have hvanish : ∀ n, n ≤ N → u n = 0 := by
+    intro n
+    induction n with
+    | zero => intro _; exact hu0
+    | succ n ih =>
+      intro hn
+      have heq := hdiff n (Finset.mem_range.mpr (by omega))
+      have hi := ih (by omega)
+      nlinarith [sq_nonneg (u (n + 1) - u n)]
+  have hnzero : U N u = 0 := by
+    unfold U
+    apply Finset.sum_eq_zero
+    intro n hn
+    rw [hvanish n (by have := Finset.mem_range.mp hn; omega)]
+    norm_num
+  linarith
+
+/-- At the shifted critical coupling every nonzero finite-box mode has
+    strictly positive energy, despite the lack of a uniform box-size gap. -/
+theorem confined_critical_finite_pos (N : ℕ) (u : ℕ → ℝ)
+    (hu0 : u 0 = 0) (huN : u N = 0) (hnorm : 0 < U N u) (mu2 q0 : ℝ) :
+    0 < E N u (1 / 4 + mu2 * q0) mu2 (fun _ => q0) := by
+  rw [constant_confinement_identity N u hu0 huN]
+  nlinarith [kinetic_pos_of_norm_pos N u hu0 hnorm]
+
+/-- Sine eigenmode on the box, extended by the same formula outside it. -/
+noncomputable def sine_mode (N j n : ℕ) : ℝ :=
+  Real.sin ((n : ℝ) * ((j : ℝ) * Real.pi / N))
+
+theorem sine_mode_left (N j : ℕ) : sine_mode N j 0 = 0 := by
+  simp [sine_mode]
+
+theorem sine_mode_right (N j : ℕ) (hN : 0 < N) : sine_mode N j N = 0 := by
+  have hN0 : (N : ℝ) ≠ 0 := by exact_mod_cast (ne_of_gt hN)
+  unfold sine_mode
+  have ha : (N : ℝ) * ((j : ℝ) * Real.pi / N) = (j : ℝ) * Real.pi := by
+    field_simp
+  rw [ha, Real.sin_nat_mul_pi]
+
+/-- Exact local eigenmode recurrence of the Dirichlet second difference. -/
+theorem sine_mode_recurrence (N j n : ℕ) :
+    2 * sine_mode N j (n + 1) - sine_mode N j n - sine_mode N j (n + 2) =
+      4 * Real.sin (((j : ℝ) * Real.pi / N) / 2)^2 * sine_mode N j (n + 1) := by
+  let t : ℝ := (j : ℝ) * Real.pi / N
+  have hm : (n : ℝ) * t = ((n : ℝ) + 1) * t - t := by ring
+  have hp : ((n : ℝ) + 2) * t = ((n : ℝ) + 1) * t + t := by ring
+  change 2 * Real.sin (((n + 1 : ℕ) : ℝ) * t) - Real.sin ((n : ℝ) * t) -
+    Real.sin (((n + 2 : ℕ) : ℝ) * t) =
+      4 * Real.sin (t / 2)^2 * Real.sin (((n + 1 : ℕ) : ℝ) * t)
+  push_cast
+  rw [hm, hp, Real.sin_sub, Real.sin_add]
+  have hs := Real.sin_sq_eq_half_sub (t / 2)
+  have ht : 2 * (t / 2) = t := by ring
+  rw [ht] at hs
+  rw [hs]
+  ring
+
+/-- Discrete summation by parts with both boundary contributions zero. -/
+theorem dirichlet_green_identity (N : ℕ) (u : ℕ → ℝ)
+    (hu0 : u 0 = 0) (huN : u N = 0) :
+    D N u = ∑ n ∈ Finset.range N, u n * (2 * u n - u (n - 1) - u (n + 1)) := by
+  let f : ℕ → ℝ := fun n => u n * (u n - u (n - 1))
+  have hs := Finset.sum_range_succ' f N
+  rw [Finset.sum_range_succ] at hs
+  have hshift : (∑ n ∈ Finset.range N, u (n + 1) * (u (n + 1) - u n)) =
+      ∑ n ∈ Finset.range N, u n * (u n - u (n - 1)) := by
+    simpa [f, hu0, huN] using hs.symm
+  calc
+    D N u = ∑ n ∈ Finset.range N,
+        (u (n + 1) * (u (n + 1) - u n) - u n * (u (n + 1) - u n)) := by
+      unfold D
+      apply Finset.sum_congr rfl
+      intro n _
+      ring
+    _ = (∑ n ∈ Finset.range N, u n * (u n - u (n - 1))) -
+        ∑ n ∈ Finset.range N, u n * (u (n + 1) - u n) := by
+      rw [Finset.sum_sub_distrib, hshift]
+    _ = _ := by
+      rw [← Finset.sum_sub_distrib]
+      apply Finset.sum_congr rfl
+      intro n _
+      ring
+
+/-- The sine mode has the exact quadratic-form eigenvalue. Completeness
+    of these modes is proved separately in the accompanying derivation. -/
+theorem sine_mode_energy (N j : ℕ) (hN : 0 < N) (kappa2 mu2 q0 : ℝ) :
+    E N (sine_mode N j) kappa2 mu2 (fun _ => q0) =
+      (6 * Real.sin (((j : ℝ) * Real.pi / N) / 2)^2 +
+        1 / 4 - kappa2 + mu2 * q0) * U N (sine_mode N j) := by
+  have hD : D N (sine_mode N j) =
+      (4 * Real.sin (((j : ℝ) * Real.pi / N) / 2)^2) * U N (sine_mode N j) := by
+    rw [dirichlet_green_identity N (sine_mode N j) (sine_mode_left N j)
+      (sine_mode_right N j hN)]
+    unfold U
+    rw [Finset.mul_sum]
+    apply Finset.sum_congr rfl
+    intro n _
+    by_cases hn : n = 0
+    · subst n
+      simp [sine_mode_left]
+    · obtain ⟨k, rfl⟩ := Nat.exists_eq_succ_of_ne_zero hn
+      have hr := sine_mode_recurrence N j k
+      simp only [Nat.succ_eq_add_one, Nat.add_sub_cancel] at *
+      rw [show k + 1 + 1 = k + 2 by omega]
+      rw [hr]
+      ring
+  rw [constant_confinement_identity N (sine_mode N j) (sine_mode_left N j)
+    (sine_mode_right N j hN), hD]
+  ring
+
+/-- Exactly the indices 1 <= j < N are needed for these nonzero modes. -/
+theorem sine_mode_norm_pos (N j : ℕ) (hj0 : 0 < j) (hjN : j < N) :
+    0 < U N (sine_mode N j) := by
+  have hN : 0 < (N : ℝ) := by exact_mod_cast (lt_trans hj0 hjN)
+  have hj : 0 < (j : ℝ) := by exact_mod_cast hj0
+  have hjlt : (j : ℝ) < N := by exact_mod_cast hjN
+  have ht0 : 0 < (j : ℝ) * Real.pi / N := by positivity
+  have htpi : (j : ℝ) * Real.pi / N < Real.pi := by
+    apply (div_lt_iff₀ hN).mpr
+    nlinarith [Real.pi_pos]
+  unfold U
+  apply Finset.sum_pos' (fun n _ => sq_nonneg _)
+  refine ⟨1, Finset.mem_range.mpr (by omega), ?_⟩
+  have hsin := Real.sin_pos_of_pos_of_lt_pi ht0 htpi
+  simpa [sine_mode] using sq_pos_of_pos hsin
+
+/-! ## 9. the certificate record -/
 
 #print axioms delta_dot_u
 #print axioms beyond_the_wall
@@ -419,3 +647,20 @@ theorem beyond_the_wall (kappa2 : ℝ) (hk : 1 / 4 < kappa2) :
 #print axioms free_marginal_energy
 #print axioms free_gap_closes
 #print axioms stability_boundary
+#print axioms constant_confinement_identity
+#print axioms constant_confinement_floor
+#print axioms constant_slab_energy
+#print axioms constant_floor_sharp
+#print axioms constant_uniform_floor_iff
+#print axioms constant_all_boxes_nonneg_iff
+#print axioms confined_beyond_wall
+#print axioms confined_critical_gap_closes
+#print axioms confined_counterexample_to_universal_wall
+#print axioms kinetic_pos_of_norm_pos
+#print axioms confined_critical_finite_pos
+#print axioms sine_mode_left
+#print axioms sine_mode_right
+#print axioms sine_mode_recurrence
+#print axioms dirichlet_green_identity
+#print axioms sine_mode_energy
+#print axioms sine_mode_norm_pos

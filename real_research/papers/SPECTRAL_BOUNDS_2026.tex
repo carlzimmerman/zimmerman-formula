@@ -1,0 +1,1154 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs,array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,
+  urlcolor=blue!45!black,pdftitle={From Scalar Certificates to Spectral Bounds},
+  pdfauthor={Carl P. Zimmerman}}
+\urlstyle{same}
+\setlength{\emergencystretch}{2em}
+\newcommand{\paperdoi}{\href{https://doi.org/10.5281/zenodo.22895866}{doi:10.5281/zenodo.22895866}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\SU}{\operatorname{SU}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\essinf}{\operatorname*{ess\,inf}}
+\newcommand{\gap}{\operatorname{gap}}
+\newcommand{\dd}{\,\mathrm d}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+
+\title{From Scalar Certificates to Spectral Bounds:\\
+Radial Pulsations, Discrete Hardy Forms,\\
+and $\SU(N)$ Lattice Gauge Theory}
+\author{Carl P. Zimmerman\\[2pt]\small Briar Creek Tech}
+\date{September 22, 2026\\\small Version 1.0\quad---\quad\paperdoi}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A scalar inequality becomes a spectral statement only after its operator,
+norm, domain, and comparison direction have been identified. We carry out
+that identification for three families of certificates in a public research
+repository. For adiabatic radial pulsations, an exact Newtonian work identity
+and a relativistic positive-function comparison distinguish a homologous
+trial quotient from the fundamental eigenvalue. The first post-Newtonian
+correction is a positive structure integral; for an $n=3$ polytrope its
+coefficient in the repository normalization is approximately $3.37342294$.
+For a specified finite Dirichlet difference form, we obtain the complete
+sine spectrum and the sharp lower bound uniform in box size, including the
+shift caused by constant confinement. Direct variation of the proposed
+scalar source action reveals an obstruction to identifying that form with
+the physical fluctuation operator. For a normalized $\SU(N)$ lattice
+Hamiltonian, min--max gives an untruncated single-plaquette gap bound.
+An application of Yarotsky's weak-interaction theorem then gives a gap
+at least $3g^2/16$, uniformly in $N$ and open volume, at sufficiently large
+$g^2$ for each fixed spatial dimension. We state precisely which steps are
+analytic, externally supplied, numerically checked, or Lean-certified.
+No stellar mass cutoff, unique physical coupling, or continuum Yang--Mills
+gap is inferred.
+\end{abstract}
+
+\section{Introduction and scope}
+
+An algebraic expression can be positive without being an eigenvalue or a
+lower bound on one. A positive Rayleigh quotient, for example, need not
+exclude a negative eigenvalue. Similarly, a finite matrix calculation does
+not by itself bound the spectrum of an untruncated operator, and a sharp
+inequality for a chosen quadratic form does not identify that form with a
+physical second variation. These distinctions motivate the present work.
+
+The starting objects are three repository certificates labelled I13, I14,
+and I15. Their scalar statements concern, respectively, pressure and
+relativistic work, a Dirichlet difference energy, and an $N$-dependent
+strong-coupling expression. The labels are provenance identifiers, not
+additional assumptions. The purpose here is to give the operator statements
+that can be supported, and to locate the physical identifications that
+remain missing. The accompanying derivations and executable records are
+collected in the source archive described in Section~\ref{sec:reproduce}.
+
+The methods are established ones: radial variational principles,
+completion of squares, finite Dirichlet diagonalization, compact-group
+representation theory, and stability of gapped product systems. We claim
+no novelty for those methods or for the existence of strong-coupling lattice
+gaps. The specific contribution is an explicit normalization and domain
+analysis connecting them to the stated certificates, together with
+counterarguments to stronger identifications.
+
+For radial pulsations, the differential equation and density convention
+are tied to the versioned source of Saio et al.~\cite{saio}. For lattice
+gauge theory, the character description is consistent with the
+Hamiltonian treatment of Ligterink, Walet, and Bishop~\cite{ligterink};
+the volume-uniform result uses Yarotsky's theorem~\cite{yarotsky} as an
+external input. The discrete form and the scalar source-action comparison
+are specified directly below.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{@{}p{0.13\linewidth}p{0.40\linewidth}p{0.40\linewidth}@{}}
+\toprule
+Certificate & Supported spectral statement & Additional input still required\\
+\midrule
+I13 & Upper trial and lower positive-function comparisons for a specified
+radial operator & Stellar profiles, equation of state, relevant inner
+boundary, and controlled relativistic evaluation for a mass cutoff\\[4pt]
+I14 & Complete constant-confinement finite spectrum and sharp bound uniform
+in box size & Physical action-to-form map and an independent marginality
+condition for selecting a coupling\\[4pt]
+I15 & Single-plaquette gap for $g^2\ge2$; open-volume and canonical GNS gap
+for $g^2\ge X_d$ & Numerical $X_d$, any extension to the claimed smaller
+window, and a separate continuum analysis\\
+\bottomrule
+\end{tabular}
+\caption{Scope of the three operator comparisons. The constant $X_d$ is
+finite but is not numerically evaluated in this work.}
+\label{tab:scope}
+\end{table}
+
+We use different symbols where the original certificates reused a
+parameter: $\chi=2GM/(Rc^2)$ denotes stellar compactness, $L$ the number of
+edges in a one-dimensional Dirichlet box, and $x=g^2$ the lattice gauge
+coupling. All finite-dimensional eigenvalues are relative to the explicitly
+specified norm. In an infinite-dimensional problem, a statement about the
+bottom of the spectrum does not imply that the bottom is attained unless
+this is separately assumed or proved.
+
+\section{Radial pulsations: trial values and spectral comparisons}
+\label{sec:radial}
+
+\subsection{Equilibrium and domain conventions}
+
+Let $P(r)$, $\rho(r)$, $m(r)$, and $\Gamma(r)$ denote pressure, density,
+enclosed mass, and adiabatic exponent in a spherical equilibrium of radius
+$R$. Write a radial displacement as $\xi(r)e^{i\Omega t}$ and put
+$\eta=\xi/r$. Assume $P,\rho,\Gamma>0$ in the interior, sufficient local
+regularity for the equations below, a regular center, and a vacuum surface
+with the natural pressure boundary condition. Integrations by parts are
+used only for functions for which the displayed endpoint terms vanish.
+One may first work on admissible smooth test functions and then take the
+closure in the radial form norm. Whenever the homologous displacement
+$\eta=1$ is used, its membership in that domain is required.
+
+We assume the resulting form has a lower-bounded self-adjoint realization.
+The notation $\lambda_0$ initially means its spectral infimum; statements
+requiring a lowest eigenfunction additionally assume attainment. These
+conditions matter at singular endpoints. In particular, a star containing
+a central black hole has an inner-boundary problem that is not covered by
+the regular-center hypothesis. Rotation, nonadiabatic driving, accretion,
+and dissipative boundary terms are also outside this model.
+
+\subsection{The exact Newtonian work identity}
+
+Set $K=3\Gamma-4$. The Newtonian radial equation in fractional displacement
+is
+\begin{equation}
+ (\Gamma P r^4\eta')'+r^3(KP)'\eta
+       +\Omega^2\rho r^4\eta=0.
+ \label{eq:newton-ode}
+\end{equation}
+Define
+\begin{align}
+ J[\eta]&=\int_0^R\rho r^4\eta^2\dd r,\label{eq:inertia}\\
+ \mathcal N_N[\eta]&=\int_0^R
+       \bigl(\Gamma P r^4\eta'^2-r^3(KP)'\eta^2\bigr)\dd r.
+ \label{eq:newton-work}
+\end{align}
+Multiplying~\eqref{eq:newton-ode} by $\eta$ shows that an eigenfunction has
+$\Omega^2=\mathcal N_N[\eta]/J[\eta]$. For a general admissible nonzero
+$\eta$, this ratio is a trial quotient.
+
+\begin{proposition}[Newtonian square identity]
+Suppose the boundary terms in~\eqref{eq:newton-work} and
+$[r^3KP\eta^2]_0^R$ vanish. With $\delta=\Gamma-4/3$,
+\begin{equation}
+ \mathcal N_N[\eta]
+ =\int_0^R P\left\{\frac43r^4\eta'^2
+       +\delta r^2(r\eta'+3\eta)^2\right\}\dd r.
+ \label{eq:newton-square}
+\end{equation}
+This identity permits spatially varying $\Gamma$.
+\end{proposition}
+\begin{proof}
+Integration of the differentiated pressure factor gives
+\[
+ \mathcal N_N[\eta]=\int_0^R P
+  \bigl(\Gamma r^4\eta'^2+2Kr^3\eta\eta'+3Kr^2\eta^2\bigr)\dd r.
+\]
+Insert $K=3\delta$ and $\Gamma=4/3+\delta$, and complete the square.
+No derivative of $\Gamma$ is discarded in this operation.
+\end{proof}
+
+Consequently, $\Gamma\ge4/3$ pointwise implies nonnegativity of this
+Newtonian form. If $\Gamma>4/3$ on a set of positive measure, a zero-energy
+function must have $\eta'=0$ and then $\eta=0$. When the spectral bottom
+is attained, this rules out a zero lowest eigenvalue and gives
+$\lambda_0>0$. Without attainment, positivity on each nonzero vector alone
+would not imply a positive uniform lower bound. If $\Gamma=4/3$
+identically, admissible homology is an exact zero mode.
+
+Let
+\begin{equation}
+ W_\beta=\int_0^R KP r^2\dd r,\qquad
+ W_{\rm gr}=\int_0^R P r^2\dd r,\qquad
+ J=\int_0^R\rho r^4\dd r.
+ \label{eq:moments}
+\end{equation}
+The homologous trial has
+\begin{equation}
+ Q_N[1]=\frac{3W_\beta}{J},\qquad
+ \lambda_0\le\frac{3W_\beta}{J}.
+ \label{eq:homology}
+\end{equation}
+The I13 scalar expression has Newtonian part $W_\beta/I$. Its equality
+with this trial quotient therefore requires $I=J/3$. If instead an angular
+factor is included in a conventional modal inertia, the numerator must
+carry the corresponding factor as well. The factor three in
+\eqref{eq:homology} cannot be removed by terminology.
+
+There is also a direct test for when homology is an eigenmode. Acting on
+$1$ with the differential operator in~\eqref{eq:newton-work} gives
+$-r^3(KP)'$. Thus the quotient can be an eigenvalue of that constant
+function only if
+\begin{equation}
+ -\frac{(KP)'}{\rho r}\quad\hbox{is constant almost everywhere.}
+ \label{eq:homology-residual}
+\end{equation}
+For constant $\Gamma\ne4/3$, hydrostatic balance
+$P'=-Gm\rho/r^2$ turns this into constancy of $m/r^3$. A nonuniform-density
+polytrope therefore generally violates the required condition. This is an
+exact obstruction to a universal identification of the scalar trial
+formula with the fundamental eigenvalue.
+
+For constant $K>0$, the same equation supplies a genuine enclosure:
+\begin{equation}
+ K\essinf_{0<r<R}\frac{Gm(r)}{r^3}
+ \ \le\lambda_0\le\frac{3K W_{\rm gr}}{J}.
+ \label{eq:newton-enclosure}
+\end{equation}
+Indeed, the gradient part of~\eqref{eq:newton-work} is nonnegative and the
+remaining part is the weighted integral of $KGm/r^3$. For decreasing
+density, the mean interior density decreases with $r$, giving the lower
+endpoint $KGM/R^3$.
+
+\subsection{The relativistic operator and a lower comparison}
+
+Adopt the metric convention
+\begin{equation}
+ ds^2=-e^{2a(r)}c^2dt^2+e^{2b(r)}dr^2+r^2d\Omega_{\mathbb S^2}^2,
+ \qquad e^{-2b}=1-\frac{2Gm}{rc^2}.
+\end{equation}
+The density convention is the one in Saio et al.~\cite{saio}, equations
+(2)--(5), without an additional internal-energy correction. This is a
+specified operator convention, not an assertion that it supplies a complete
+equation of state for every stellar application. We require $2Gm/(rc^2)<1$
+throughout the equilibrium. The equilibrium identities used below are
+\begin{equation}
+ P'=-(P+\rho c^2)a',\qquad
+ a'+b'=\frac{4\pi G r e^{2b}(P+\rho c^2)}{c^4}.
+ \label{eq:tov-identities}
+\end{equation}
+
+Set $z=e^{-a}r^2\xi=e^{-a}r^3\eta$ and $\Omega=c\sigma$. Rearrangement
+of the radial equation gives
+\begin{equation}
+ -(\Pi z')'+Vz=\sigma^2Wz,
+ \label{eq:gr-sl}
+\end{equation}
+where
+\begin{align}
+ \Pi&=\frac{e^{3a+b}\Gamma P}{r^2},
+ &W&=\frac{e^{a+3b}(P+\rho c^2)}{r^2},\label{eq:gr-coeff}\\
+ V&=\frac{e^{3a+b}}{r^2}
+ \left(\frac{4P'}r+
+ \frac{8\pi G e^{2b}P(P+\rho c^2)}{c^4}
+ -\frac{P'^2}{P+\rho c^2}\right).
+ \label{eq:gr-potential}
+\end{align}
+In particular, the dimensional variational quotient is
+\begin{equation}
+ Q_{\rm GR}[z]
+ =c^2\frac{\int_0^R(\Pi z'^2+Vz^2)\dd r}
+               {\int_0^R Wz^2\dd r},\qquad
+ \lambda_0\le Q_{\rm GR}[z].
+ \label{eq:gr-rayleigh}
+\end{equation}
+
+\begin{proposition}[Positive-function comparison]
+Let $u>0$ in the interior, with enough regularity for
+$-(\Pi u')'+Vu$ to be defined, and suppose
+$[\Pi u'z^2/u]_0^R=0$ for the test functions considered. Put
+\[
+ q_u=\frac{c^2[-(\Pi u')'+Vu]}{Wu}.
+\]
+Then $\lambda_0\ge\essinf q_u$. If $u$ is also an admissible trial
+function, then
+\begin{equation}
+ \essinf q_u\le\lambda_0\le Q_{\rm GR}[u].
+ \label{eq:gr-enclosure}
+\end{equation}
+\end{proposition}
+\begin{proof}
+Write $z=u v$, expand its derivative, and integrate the cross term. This
+gives the exact identity
+\begin{equation}
+ \int_0^R(\Pi z'^2+Vz^2)\dd r
+ -\int_0^R\frac{-(\Pi u')'+Vu}{u}z^2\dd r
+ =\int_0^R\Pi u^2\bigl((z/u)'\bigr)^2\dd r.
+ \label{eq:ground-transform}
+\end{equation}
+The right side is nonnegative. Divide by $\int Wz^2$ and take the
+variational infimum. The upper inequality is~\eqref{eq:gr-rayleigh}.
+\end{proof}
+
+Thus a negative trial value proves a negative spectral bottom, and a
+positive lower endpoint proves positivity. A positive upper endpoint
+alone proves neither. If $q_u$ is constant, the two endpoints coincide.
+Endpoint compatibility in~\eqref{eq:ground-transform} is a hypothesis of
+this conclusion, not a formal consequence of choosing $u>0$.
+
+\subsection{A form suitable for computation and expansion}
+
+Substituting $z=e^{-a}r^3\eta$ in~\eqref{eq:gr-rayleigh}, using
+\eqref{eq:tov-identities}, and integrating the derivative
+$4(e^{a+b}Pr^3\eta^2)'$ yields $Q_{\rm GR}=\mathcal N_{\rm GR}/\mathcal D_{\rm GR}$,
+with
+\begin{align}
+ \mathcal N_{\rm GR}[\eta]
+ ={}&\int_0^R e^{a+b}\Bigl\{\Gamma P r^4\eta'^2
+       +2Pr^3(K-\Gamma r a')\eta\eta'\notag\\
+ &\quad+\bigl[3KPr^2-(6\Gamma+2)Pr^3a'-2Pr^3b'
+       +((\Gamma-1)P-\rho c^2)r^4a'^2\bigr]\eta^2\Bigr\}\dd r,
+ \label{eq:stable-gr-form}\\
+ \mathcal D_{\rm GR}[\eta]
+ ={}&\int_0^R e^{-a+3b}(\rho+P/c^2)r^4\eta^2\dd r.
+ \label{eq:stable-gr-mass}
+\end{align}
+The removed endpoint term vanishes under the regular-center and vacuum
+surface conditions. The derivative form~\eqref{eq:gr-rayleigh} and the
+expanded form~\eqref{eq:stable-gr-form} provide separate assembly routes
+for a numerical implementation.
+
+Consider a weak-field sequence about a Newtonian equilibrium with
+$\Gamma-4/3=O(\varepsilon)$ and $Gm/(rc^2)=O(\varepsilon)$. At first
+order, evaluate the leading integrals on the Newtonian background. For
+homology, the result is
+\begin{align}
+ \mathcal N_{\rm GR}[1]&=3W_\beta-\frac{\mathcal H}{c^2}
+                       +O(\varepsilon^2),\label{eq:pn-work}\\
+ \mathcal H&=\int_0^R
+   \left(8GPmr+8\pi GP\rho r^4+G^2\rho m^2\right)\dd r>0.
+ \label{eq:structure-integral}
+\end{align}
+The order term in~\eqref{eq:pn-work} is measured in the pressure-work
+scale; it is not a supplied numerical error bound. To see the coefficients,
+use
+\[
+ a'=\frac{Gm}{r^2c^2}+O(\varepsilon^2/r),\qquad
+ b'=\frac{G(4\pi r\rho-m/r^2)}{c^2}+O(\varepsilon^2/r)
+\]
+in~\eqref{eq:stable-gr-form}. At $\Gamma=4/3$, the terms linear in
+$a',b'$ combine as $-8GPmr/c^2-8\pi GP\rho r^4/c^2$. The factor
+$-\rho c^2r^4a'^2$ supplies the remaining term
+$-G^2\rho m^2/c^2$. The other products enter at the next order under the
+stated scaling. Since the numerator starts at first order and
+$\mathcal D_{\rm GR}[1]=J+O(\varepsilon)$ in the inertia scale, its
+denominator correction affects the quotient only at second order.
+
+Define the profile-dependent coefficient
+\begin{equation}
+ C_{\rm gr}=\frac{\mathcal H R}{6GM W_{\rm gr}},\qquad I=J/3,
+ \qquad \chi=\frac{2GM}{Rc^2}.
+ \label{eq:cgr}
+\end{equation}
+Then the first-order homologous quotient takes exactly the scalar form
+\begin{equation}
+ Q_{\rm PN}[1]=\frac{W_\beta-C_{\rm gr}\chi W_{\rm gr}}{I}.
+ \label{eq:pn-scalar}
+\end{equation}
+This identification concerns a trial quotient and a controlled-order
+expansion. It is not exact linear dependence of a physical eigenvalue on
+compactness. A varying equilibrium sequence also changes its moments and
+its structure coefficient.
+
+If an explicit bound
+$|\mathcal N_{\rm GR}[1]-(3W_\beta-\mathcal H/c^2)|\le E$ is available,
+then $3W_\beta-\mathcal H/c^2+E<0$ suffices for full-model instability.
+Otherwise one must evaluate the exact numerator to make such a conclusion
+at finite compactness. An asymptotic order symbol alone is insufficient
+near a sign change.
+
+For a uniform-density Newtonian star with $G=\rho=R=1$,
+$m=4\pi r^3/3$ and $P=2\pi(1-r^2)/3$. Direct integration gives
+$W_{\rm gr}=4\pi/45$ and $\mathcal H=304\pi^2/315$, hence
+\begin{equation}
+ \frac{\mathcal H R}{18GM W_{\rm gr}}=\frac{19}{42},
+ \qquad C_{\rm gr}=\frac{19}{14}.
+ \label{eq:uniform-cgr}
+\end{equation}
+For the generated $n=3$ polytrope, the corresponding numerical values are
+\begin{equation}
+ \frac{\mathcal H R}{18GM W_{\rm gr}}\simeq1.124474311979,
+ \qquad C_{\rm gr}\simeq3.373422935937.
+ \label{eq:n3-cgr}
+\end{equation}
+The first value agrees, after rounding, with the $1.1245$ benchmark in
+Saio et al.~\cite{saio}. The factor-three distinction follows from
+$K=3\Gamma-4$. In this normalization the previously used upper endpoint
+$3.35$ is too low for that polytrope, and no profile-independent coefficient
+band is justified by these two examples.
+
+\section{A complete discrete Dirichlet spectrum}
+\label{sec:discrete}
+
+Let $L\ge2$, let $u=(u_1,\ldots,u_{L-1})\in\R^{L-1}$, and set
+$u_0=u_L=0$. Define
+\begin{align}
+ U[u]&=\sum_{n=0}^{L-1}u_n^2,&
+ D[u]&=\sum_{n=0}^{L-1}(u_{n+1}-u_n)^2,\notag\\
+ A[u]&=\sum_{n=0}^{L-1}(u_{n+1}-\tfrac32u_n)^2,&
+ E[u]&=A[u]-\alpha U[u]+\beta\sum_{n=0}^{L-1}q_nu_n^2.
+ \label{eq:discrete-form}
+\end{align}
+Here $\alpha,\beta$ are real parameters. The interpretation
+$\alpha=\kappa^2$, $\beta=\mu^2$ is an additional restriction. We study
+the matrix $H$ defined by $E[u]=u^THu$ relative to the norm $U$.
+The ordinary coordinate Hessian of $E$ is $2H$; this convention has no
+effect on signs but does affect quoted eigenvalues.
+
+\begin{theorem}[Constant-confinement spectrum]
+If $q_n=q_0$ and $b_0=1/4-\alpha+\beta q_0$, the eigenvalues of $H$ are
+simple and equal to
+\begin{equation}
+ \lambda_j=6\sin^2\left(\frac{j\pi}{2L}\right)+b_0,
+ \qquad 1\le j<L.
+ \label{eq:sine-spectrum}
+\end{equation}
+The corresponding eigenvectors are $v_j(n)=\sin(j\pi n/L)$. In
+particular,
+\begin{equation}
+ \min_{u\ne0}\frac{E[u]}{U[u]}
+ =6\sin^2\left(\frac{\pi}{2L}\right)+b_0.
+ \label{eq:finite-min}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Telescoping the endpoint values gives
+\[
+ 2\sum_{n=0}^{L-1}(u_{n+1}-u_n)u_n=-D[u].
+\]
+Expanding $u_{n+1}-\tfrac32u_n=(u_{n+1}-u_n)-\tfrac12u_n$
+therefore yields
+\begin{equation}
+ A[u]=\frac32D[u]+\frac14U[u],\qquad
+ E[u]=\frac32D[u]+b_0U[u].
+ \label{eq:hardy-identity}
+\end{equation}
+The matrix of $D$ has diagonal $2$ and nearest off-diagonal entries $-1$.
+For $\theta_j=j\pi/L$, the addition formula gives
+\[
+ 2v_j(n)-v_j(n-1)-v_j(n+1)
+ =\bigl(2-2\cos\theta_j\bigr)v_j(n).
+\]
+The boundary values vanish, and $v_j(1)>0$ for $1\le j<L$, so these
+vectors are nonzero. Their eigenvalues increase strictly because
+$0<j\pi/(2L)<\pi/2$. Symmetry of the matrix makes eigenvectors at distinct
+eigenvalues orthogonal. There are $L-1$ of them in a space of dimension
+$L-1$, proving completeness. Expanding any $u$ in this basis makes its
+Rayleigh quotient a weighted average of the eigenvalues, proving
+\eqref{eq:finite-min}.
+\end{proof}
+
+Thus the form on one fixed box is nonnegative precisely when
+\begin{equation}
+ \alpha\le\frac14+\beta q_0+
+             6\sin^2\left(\frac{\pi}{2L}\right).
+ \label{eq:finite-wall}
+\end{equation}
+Strict inequality gives positive definiteness; equality gives the
+one-dimensional kernel spanned by $v_1$. If the inequality is reversed,
+amplitude scaling makes the unrestricted quadratic energy unbounded
+below, although its unit-norm Rayleigh quotient still has a finite minimum.
+The boxes $L=0,1$ have no nonzero interior modes and are excluded from the
+eigenvalue assertion.
+
+\begin{theorem}[Sharp bound uniform in box size]
+For constant confinement,
+\begin{equation}
+ \inf_{L\ge2}\ \inf_{u\ne0}\frac{E[u]}{U[u]}=b_0.
+ \label{eq:uniform-floor}
+\end{equation}
+No nonzero finite-box vector attains this infimum. A lower bound
+$E\ge\gamma U$ holds on every finite box if and only if $\gamma\le b_0$.
+\end{theorem}
+\begin{proof}
+Equation~\eqref{eq:hardy-identity} gives $E\ge b_0U$. Equality on a
+nonzero vector would require $D=0$, hence a constant vector with zero
+endpoints, a contradiction. For sharpness take $u_n=1$ at all interior
+sites. Then $U=L-1$, $D=2$, and
+\begin{equation}
+ \frac{E[u]}{U[u]}=b_0+\frac3{L-1}.
+ \label{eq:slab}
+\end{equation}
+For every $\epsilon>0$, an integer $L>1+3/\epsilon$ gives a quotient
+below $b_0+\epsilon$. No larger uniform bound can hold.
+\end{proof}
+
+There are three distinct regimes. If $b_0>0$, a positive lower bound is
+uniform in all boxes. If $b_0=0$, every fixed finite box is positive but
+there is no positive bound uniform in box size. If $b_0<0$, sufficiently
+large boxes have negative modes: the explicit slab is negative whenever
+$L>1+3/(-b_0)$. Slabs establish sharpness; they are generally not the
+lowest sine eigenvectors on a fixed box.
+
+In the square-parameter convention without confinement, all-box
+nonnegativity is $|\kappa|\le1/2$. Restricting $\kappa\ge0$ changes this
+to $0\le\kappa\le1/2$, not to the single selected value $1/2$.
+With constant confinement it becomes
+$\kappa^2\le1/4+\mu^2q_0$. For example, taking
+$\kappa^2=\mu^2=q_0=1$ gives
+$E=(3/2)D+U/4\ge U/4$ despite $\kappa=1$. Positive confinement therefore
+rules out a confinement-independent wall at $\kappa=1/2$.
+
+For variable $q_n\ge q_0$ and $\beta\ge0$, the same identity gives
+$E\ge b_0U$. This is optimal uniformly over the entire class
+$q\ge q_0$, because the class contains the constant profile. It need
+not be sharp for a specified nonconstant profile, and a sign assumption
+on $\beta$ is essential for this comparison.
+
+\section{Why the scalar source action does not identify the discrete form}
+\label{sec:source-bridge}
+
+The exact discrete theorem does not establish that its energy is a
+physical fluctuation energy. We can test the proposed identification
+directly against the repository kinetic action, rather than assume that
+the repeated occurrence of $1/4$ supplies it. The source paths and their
+pinned hashes are recorded with the I14 computations~\cite{archive}.
+
+On a fixed flat spatial background consider the radial functional
+\begin{equation}
+ \mathcal F[\phi]=4\pi\int r^2\Lambda^4f(K)\dd r,
+ \qquad K=\frac{\phi_r^2}{2\Lambda^4},
+ \label{eq:scalar-action}
+\end{equation}
+with $\Lambda>0$ a scale. The G155 source specifies, for $y=\sqrt K>0$,
+\begin{equation}
+ f(K)=y^2-2\log(1+y)-\frac2{1+y}+1,
+ \qquad f_K=\mu(y)=\frac{y(y+2)}{(1+y)^2}.
+ \label{eq:interpolant}
+\end{equation}
+The symbol $\mu(y)$ here is the source's interpolation function; it is
+unrelated to the confinement parameter in Section~\ref{sec:discrete}.
+
+For $\phi=\phi_0+\epsilon h$, direct Taylor expansion shows that the
+coefficient of $\epsilon^2$ is
+\begin{equation}
+ \mathcal Q[h]=2\pi\int r^2a_r(r)h_r^2\dd r,
+ \qquad a_r=f_K+2Kf_{KK}.
+ \label{eq:source-second}
+\end{equation}
+Indeed, the first and second perturbations of $K$ are
+$\phi_{0,r}h_r/\Lambda^4$ and $h_r^2/(2\Lambda^4)$, respectively.
+Substitution in $f$ gives~\eqref{eq:source-second}; the full second
+variation is twice $\mathcal Q$. In this fixed-background calculation,
+shift symmetry produces a derivative-only quadratic form in $h$.
+
+For~\eqref{eq:interpolant},
+\begin{equation}
+ a_r(y)=\mu(y)+y\mu'(y)
+       =\frac{y(y^2+3y+4)}{(1+y)^3}>0.
+ \label{eq:radial-coeff}
+\end{equation}
+Take the proposed logarithmic profile $\phi_0=C\log r$, with $C>0$, and
+write $\ell=C/(\sqrt2\Lambda^2)$, so $y=\ell/r$. With $r=e^t$,
+\begin{equation}
+ \frac{\mathcal Q[h]}{2\pi}=\int w(t)h_t^2\dd t,
+ \qquad w(t)=r a_r(\ell/r)
+       =\ell\frac{y^2+3y+4}{(1+y)^3}.
+ \label{eq:log-weight}
+\end{equation}
+In the deep regime $y\to0$, this weight tends to the constant $4\ell$.
+It does not tend to the canonical radial weight proportional to $e^t$.
+
+For any positive weight, the unit-weight variable $v=\sqrt w\,h$ gives
+\begin{equation}
+ \frac{\mathcal Q[h]}{2\pi}=\int(v_t-sv)^2\dd t
+ =\int\bigl(v_t^2+(s^2+s')v^2\bigr)\dd t,
+ \qquad s=\tfrac12(\log w)',
+ \label{eq:weight-potential}
+\end{equation}
+under compact support or vanishing endpoint terms. A constant radial
+$a_r$ has $w\propto e^t$, $s=1/2$, and potential $1/4$; by contrast,
+$a_r\propto r^{-1}$ has constant $w$ and potential zero. More generally,
+$a_r\propto r^{-p}$ gives potential $(1-p)^2/4$. The weight, rather
+than the mere appearance of a logarithmic profile, determines this number.
+
+The exact interpolant gives
+\begin{align}
+ s(y)&=\frac{y(y^2+4y+9)}{2(1+y)(y^2+3y+4)},\notag\\
+ V_{\rm dress}(y)&=s(y)^2-y\frac{ds}{dy}\notag\\
+ &=\frac{y(y^5+8y^4+42y^3+64y^2+17y-72)}
+              {4(1+y)^2(y^2+3y+4)^2}.
+ \label{eq:dressed-source}
+\end{align}
+It tends to zero as $y\to0$ and to $1/4$ as $y\to\infty$. It is not a
+constant $1/4-\kappa^2$. A locally negative value of this dressed
+potential also does not imply a negative mode, since the original form
+is an integral of positive weighted squares.
+
+There is a second obstruction: the proposed logarithmic profile is not
+an exact source-free background for the full interpolant. Its radial flux
+is
+\begin{equation}
+ r^2\mu(y)\phi_{0,r}=C\ell\frac{y+2}{(1+y)^2},\qquad
+ r\frac{d}{dr}\bigl(r^2\mu(y)\phi_{0,r}\bigr)
+ =C\ell\frac{y(y+3)}{(1+y)^3}>0.
+ \label{eq:flux-obstruction}
+\end{equation}
+Source-free equilibrium requires constant flux. The leading approximation
+$\mu(y)=2y$ does give constant flux $2C\ell$, so the profile is compatible
+with that approximate equation, but the exact and approximate backgrounds
+must be distinguished.
+
+Finally, another cited repository source uses $f(K)=K-1/(1+K)$ with a
+different invariant convention. Its derivative at zero is $2$, whereas
+the derivative in~\eqref{eq:interpolant} tends to zero. A sign convention
+alone cannot identify these two functions. The related isothermal-fluid
+calculations also involve a different displacement, norm, and endpoint
+problem; local solutions of an ordinary differential equation do not
+determine the spectrum of a fixed self-adjoint domain.
+
+These calculations concern a spatial functional on a fixed background.
+They do not decide the time kinetic sign or the stability of a fully
+coupled matter--gravity theory. What they do establish is the failure of
+the proposed direct map to~\eqref{eq:discrete-form}. A physical application
+requires a specified action, its actual background, the constrained
+quadratic dynamics, its Hilbert norm and endpoints, and a mesh and parameter
+map. Selection of a unique coupling further requires a physical saturation
+condition beyond nonnegativity.
+
+\section{Spectral bounds for the \texorpdfstring{$\SU(N)$}{SU(N)} lattice Hamiltonian}
+\label{sec:gauge}
+
+\subsection{Hamiltonian, normalization, and Casimir minimum}
+
+Fix $d\ge2$, $N\ge2$, $x=g^2>0$, and $0\le b_N\le2N$, at lattice
+spacing one. Each positive lattice link has Hilbert space
+$L^2(\SU(N))$ with normalized Haar measure. Reverse links are inverses,
+not independent factors. Let $C_l$ be the positive Casimir with generator
+normalization $\Tr(t_at_b)=\delta_{ab}/2$, and put
+\begin{equation}
+ H_N(x)=\frac x2\sum_l C_l+\frac{b_N}{x}\sum_p(1-T_p),
+ \qquad T_p=\frac{\operatorname{Re}\Tr U_p}{N}.
+ \label{eq:lattice-H}
+\end{equation}
+The trace is a real multiplication operator with $-1\le T_p\le1$.
+The physical space consists of vectors invariant under all vertex gauge
+transformations, with no external charges. The repository normalization
+$b_N=2$, as well as $b_N=N$ and $b_N=2N$, is covered by the assumptions.
+For finitely many links the electric Casimir sum has compact resolvent;
+bounded magnetic multiplication preserves self-adjointness on its domain
+and compact resolvent.
+
+\begin{lemma}[Minimum nonzero Casimir]
+The least nonzero Casimir eigenvalue in $L^2(\SU(N))$ is
+\begin{equation}
+ C_F=\frac{N^2-1}{2N}\ge\frac34.
+ \label{eq:casimir-floor}
+\end{equation}
+\end{lemma}
+\begin{proof}
+With roots of squared length two, the fundamental weights have Gram matrix
+\[
+ (\omega_i,\omega_j)=\frac{\min(i,j)(N-\max(i,j))}{N}>0.
+\]
+This follows by writing
+$\omega_i=\sum_{k\le i}e_k-(i/N)\sum_{k\le N}e_k$ in the hyperplane of
+zero coordinate sum. An irreducible representation has highest weight
+$\lambda=\sum_i a_i\omega_i$, with $a_i$ nonnegative integers, and
+$C_2(\lambda)=(\lambda,\lambda+2\varrho)/2$, where
+$\varrho=\sum_i\omega_i$. If $\lambda\ne0$, choose $a_i\ge1$ and
+write $\lambda=\omega_i+\nu$ with $\nu$ dominant. Then
+\[
+ C_2(\lambda)-C_2(\omega_i)
+ =\tfrac12(\nu,\nu)+(\nu,\omega_i+\varrho)\ge0.
+\]
+Moreover,
+\[
+ C_2(\omega_i)=\frac{i(N-i)(N+1)}{2N}\ge C_F,
+\]
+because $i(N-i)-(N-1)=(i-1)(N-i-1)\ge0$. The fundamental representation
+attains equality. Peter--Weyl decomposition supplies all these sectors,
+so no representation cutoff is involved.
+\end{proof}
+
+\subsection{An untruncated single-plaquette bound}
+
+On an open four-edge square, gauge fixing a spanning tree leaves one
+holonomy modulo conjugation. The physical Hilbert space is therefore the
+space of class functions on $\SU(N)$, with irreducible characters as an
+orthonormal basis. This standard reduction is also described in
+\cite{ligterink}. Each of the four link Casimirs acts on a character
+$\chi_R$ by $C_2(R)$, so
+\begin{equation}
+ H_E\chi_R=2xC_2(R)\chi_R,
+ \qquad E_0(H_E)=0,\quad E_1(H_E)=2xC_F.
+ \label{eq:one-loop-electric}
+\end{equation}
+Eigenvalues here and below are ordered with multiplicity.
+
+\begin{theorem}[Single plaquette]
+For the open square with Hamiltonian~\eqref{eq:lattice-H},
+\begin{equation}
+ E_1(H)-E_0(H)\ge2xC_F-\frac{b_N}{x}
+ \ge x\frac{N^2-1}{N}-\frac{2N}{x}.
+ \label{eq:one-plaquette-bound}
+\end{equation}
+In particular, for every $N\ge2$ and $x\ge2$ this gap is at least one.
+\end{theorem}
+\begin{proof}
+The magnetic operator is nonnegative. The full min--max principle and
+\eqref{eq:one-loop-electric} give $E_1(H)\ge2xC_F$. The normalized
+constant function is an admissible trial vector. Haar integration of the
+nontrivial fundamental character vanishes, so its expectation is
+$\langle1,H1\rangle=b_N/x$, giving $E_0(H)\le b_N/x$. Subtract the two
+inequalities. Finally, for $x\ge2$,
+\[
+ x\frac{N^2-1}{N}-\frac{2N}{x}
+ \ge\frac{N^2-2}{N}=N-\frac2N\ge1.
+\]
+\end{proof}
+
+The proof acts on the full physical character space. The constant electric
+vacuum is used only as a trial vector: when $b_N>0$,
+$H1=(b_N/x)(1-T)$ is nonconstant. In particular, subtracting its expectation
+does not subtract the interacting ground energy. At $x=2$, the bound using
+$b_N=2$ is $2N-2/N-1$, giving $2$ for $\SU(2)$ and $13/3$ for $\SU(3)$.
+These values, and the weaker values $1$ and $7/3$ obtained from $b_N\le2N$,
+are lower bounds, not exact gaps.
+
+\subsection{A common strong-coupling window for all $N$ and open volumes}
+
+We use the following external input from Yarotsky~\cite{yarotsky},
+Theorems 1--3, pp.~2--4. At each site of $\Z^d$ allow an arbitrary,
+possibly infinite-dimensional Hilbert space with a nonnegative
+self-adjoint onsite operator, simple zero vacuum, and gap at least one.
+Add bounded self-adjoint interactions $\phi_z$ supported in translates of
+one fixed finite set $S$. There are positive $c_1(S),c_2(S)$ such that,
+if $\epsilon_*:=\sup_z\|\phi_z\|<c_1$, finite empty-boundary restrictions
+have a unique ground vector and gap at least $1-c_2\epsilon_*$. The
+canonical thermodynamic state and its GNS Hamiltonian exist, with the same
+gap estimate. The constants depend only on $S$, not on site dimension or
+the upper onsite spectrum. The cited paper reviews the proof in Section~2;
+its cluster expansion is an external theorem, not reproduced or
+Lean-formalized here.
+
+\begin{theorem}[Uniform open-lattice strong-coupling bound]
+For each fixed $d\ge2$ there exists a finite $X_d$, independent of $N$,
+$b_N$, and finite open volume, such that for $N\ge2$, $0\le b_N\le2N$,
+and $x\ge X_d$, the following statements hold.
+\begin{enumerate}
+\item Every finite open subgraph of the cubic lattice, with selected
+elementary plaquettes, has a unique physical ground vector and
+\begin{equation}
+ H-E_0\ge\frac{3x}{16}\quad\hbox{on its physical vacuum complement}.
+ \label{eq:finite-many-gap}
+\end{equation}
+If that complement is zero, the spectral-exclusion statement is vacuous.
+\item The canonical GNS Hamiltonian for the homogeneous infinite
+interaction has a simple zero eigenvalue and
+\begin{equation}
+ \Spec(H_\infty)\subset\{0\}\cup[3x/16,\infty).
+ \label{eq:infinite-gap}
+\end{equation}
+The same conclusions hold on the cyclic space generated by local
+gauge-invariant observables.
+\end{enumerate}
+\label{thm:uniform-gap}
+\end{theorem}
+\begin{proof}
+Group the $d$ positive outgoing links at $z$ into the site space
+\[
+ \mathcal H_z=L^2(\SU(N)^d),\qquad
+ h_z=C_F^{-1}\sum_{i=1}^d C_{(z,i)}.
+\]
+The product of constant functions is its unique vacuum, and
+\eqref{eq:casimir-floor} makes the onsite gap exactly one. Divide energies
+by $s=xC_F/2$ and remove the scalar magnetic constant. With
+$m_d=\binom d2$, group plaquettes at their lower anchor:
+\begin{equation}
+ \phi_z=-\frac{2b_N}{x^2C_F}\sum_{i<j}T_{(z,ij)}.
+ \label{eq:site-interaction}
+\end{equation}
+The four link factors lie in the site blocks $z,z+e_i,z+e_j$, so all
+these interactions have the same allowed support
+$S=\{0,e_1,\ldots,e_d\}$. Since $\|T_p\|\le1$,
+\begin{equation}
+ \epsilon_*\le\frac{2b_Nm_d}{x^2C_F}
+ \le\frac{A_d}{x^2},\qquad A_d=\frac{32}{3}\binom d2.
+ \label{eq:small-parameter}
+\end{equation}
+Indeed, $b_N/C_F\le4N^2/(N^2-1)\le16/3$. Thus the small parameter is
+uniform in $N$, despite the growing representation content of each site.
+
+Choose
+\begin{equation}
+ X_d=\max\left\{1,\sqrt{\frac{2A_d}{c_1(S)}},
+                       \sqrt{2c_2(S)A_d}\right\}.
+ \label{eq:threshold}
+\end{equation}
+For $x\ge X_d$, we have $\epsilon_*\le c_1/2<c_1$ and
+$c_2\epsilon_*\le1/2$. The external theorem gives a normalized gap at
+least $1/2$. Restoring units yields $xC_F/4\ge3x/16$ and subtracts the
+actual interacting ground energy. We next verify the boundary and gauge
+statements needed to apply this estimate in the announced spaces.
+
+For a finite open subgraph, retain $L^2(\SU(N))$ only on its actual
+positive links and replace each absent factor by $\C$. An empty site has
+$h_z=0$ on a one-dimensional space; the gap condition on its zero-dimensional
+vacuum complement holds vacuously. Let~\eqref{eq:site-interaction} include
+only selected elementary plaquettes. Pad the finite site set so that it
+contains $z+S$ for every active anchor. The resulting inhomogeneous model
+is exactly an allowed finite restriction with the same interaction range
+and norm bound. Dummy factors introduce neither link degrees of freedom
+nor boundary charges.
+
+Every term of~\eqref{eq:lattice-H} commutes with the finite product of
+vertex gauge groups, including all endpoints of present links. The unique
+unconstrained ground vector spans a continuous one-dimensional
+representation of that product. A finite product of $\SU(N)$ groups has
+no nontrivial continuous characters, so this vector is gauge invariant.
+The physical space reduces the Hamiltonian and contains its ground vector.
+Restricting the excited-space quadratic-form inequality proves
+\eqref{eq:finite-many-gap}.
+
+For the infinite system, use the source's fixed homogeneous
+empty-boundary exhaustion: retain a grouped interaction when all of its
+declared support lies inside the site volume. This need not coincide with
+retaining every individual boundary plaquette of a conventional finite
+box, but it exhausts the homogeneous interaction. The external theorem
+gives its canonical state $\omega_\infty$ and GNS triple
+$(\mathcal H_\infty,\pi,\Omega)$, with~\eqref{eq:infinite-gap}.
+Changing padded finite models is not used to assert this thermodynamic
+existence.
+
+It remains to justify the physical cyclic restriction. For a finite
+vertex set $F$, let $\mathcal E_F$ be Haar averaging on local operator
+algebras over the gauge transformations at $F$. It is a normal conditional
+expectation in the underlying finite tensor product. Gauge-invariant
+finite-volume vacua satisfy
+\[
+ \omega_\Lambda(B^*\mathcal E_F(A))
+ =\omega_\Lambda(\mathcal E_F(B)^*A),\qquad
+ \|\mathcal E_F(A)\Omega_\Lambda\|\le\|A\Omega_\Lambda\|.
+\]
+For fixed local $A,B,F$ these identities pass to the thermodynamic state.
+Consequently
+\[
+ P_F\pi(A)\Omega=\pi(\mathcal E_F(A))\Omega
+\]
+defines an orthogonal projection on the GNS space. For increasing finite
+sets $F$ exhausting all vertices the projections decrease and converge
+strongly to a projection $P$. Averaging any local operator over all
+vertices incident to its links already makes it globally gauge invariant.
+It follows, by applying the projections to the dense set of local GNS
+vectors, that
+\begin{equation}
+ \operatorname{Ran}P=
+ \overline{\{\pi(A)\Omega:A\text{ local and gauge invariant}\}}.
+ \label{eq:physical-gns}
+\end{equation}
+Finite-volume resolvents commute with gauge averaging. The weak resolvent
+matrix-element convergence in Yarotsky's Theorem~3 passes this identity
+to $P_F$ and the limiting resolvent, and then to $P$. Thus
+\eqref{eq:physical-gns} reduces $H_\infty$, contains $\Omega$, and
+inherits its simple vacuum and its gap. This argument does not require
+assuming norm continuity of the gauge action on every local bounded
+operator.
+\end{proof}
+
+The constant~\eqref{eq:threshold} is an existence threshold. No numerical
+values for $c_1,c_2$ have been extracted, so the theorem does not establish
+$X_d\le2$, or any other proposed numerical onset. It is also a
+fixed-spacing, fixed-$d$ assertion. A limit with fixed 't~Hooft coupling
+$Nx$ and growing $N$ eventually leaves the assumed window. Periodic tori
+are not included by the open-subgraph argument. The simple vacuum in the
+canonical GNS representation does not assert uniqueness among all
+infinite-volume ground-state representations. No continuum scaling,
+confinement observable, or relation to the scalar theory in
+Section~\ref{sec:source-bridge} is supplied by this theorem.
+
+\section{Benchmarks, reproducibility, and certification limits}
+\label{sec:reproduce}
+
+\subsection{Numerical checks}
+
+The radial implementation generates equilibria rather than importing
+stellar evolution profiles. For the $n=3$ models it uses
+$G=\rho_c=\text{Lane--Emden length scale}=1$, $P_c=\pi$, and
+$c^2=\pi/s$ when $s=P_c/(\rho_cc^2)>0$. It integrates the TOV or
+Lane--Emden equations adaptively and assembles continuous piecewise-linear
+Rayleigh--Ritz forms on a uniform radial mesh with eight-point Gaussian
+quadrature per cell. Endpoints are not quadrature nodes, and no artificial
+zero-displacement condition is imposed at the surface. Calculations use
+binary64 arithmetic, not interval enclosures.
+
+The generated Newtonian $n=3$ solution has radius approximately
+$6.89684861937$ and Lane--Emden mass moment $2.01823595097$. At
+$\Gamma=4/3$ it reproduces the homologous zero mode. At $\Gamma=1.5$,
+the 256-cell value in Table~\ref{tab:benchmarks} is below the homologous
+quotient; the latter exceeds it by approximately $20.43\%$. Nested
+32-, 64-, 128-, and 256-cell trial spaces give decreasing computed Ritz
+values. In exact arithmetic, nested Rayleigh--Ritz spaces provide upper
+bounds and monotonicity; the floating calculation checks their numerical
+realization and does not produce a certified lower bound.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{@{}p{0.45\linewidth}rr@{}}
+\toprule
+Benchmark & Comparison value & Computed value\\
+\midrule
+$n=3$, Newtonian, $\Gamma=1.5$
+ & $Q_N[1]=0.5129469320$ & Ritz $0.4259235109$\\[3pt]
+$n=3$, TOV, $s=0.001$, selected $\Gamma$
+ & Homology $+2.41886\!\times\!10^{-7}$
+ & Ritz $-2.42086\!\times\!10^{-7}$\\[3pt]
+Single $\SU(2)$ plaquette, $x=2$, $b_N=2$
+ & Lower bound $2$ & Ritz gap $3.1138638115$\\[3pt]
+Single $\SU(3)$ plaquette, $x=2$, $b_N=2$
+ & Lower bound $13/3$ & Ritz gap $5.1762835133$\\
+\bottomrule
+\end{tabular}
+\caption{Selected checks, in the code's stated units. The TOV row uses
+$\Gamma=1.335967888598$ and compactness $0.002325278673$. Radial Ritz
+values use 256 cells. Character-matrix gaps are differences of finite
+Ritz levels and are not certified lower bounds on the full gap. The
+analytic bounds are proved independently of these computations.}
+\label{tab:benchmarks}
+\end{table}
+
+The TOV row is a numerical illustration of a positive homologous value
+coexisting with negative work on another admissible trial space.
+Its small sign difference has not been interval-certified. The analytic
+comparison direction and the residual obstruction
+\eqref{eq:homology-residual} do not rely on that numerical sign.
+Independent assembly of~\eqref{eq:gr-rayleigh} and
+\eqref{eq:stable-gr-form} agrees in the tested model to about
+$2.36\times10^{-12}$ in the largest matrix-entry difference.
+
+For I14 the numerical check constructs the original rectangular
+first-difference operator $B u=(u_{n+1}-3u_n/2)_n$, then forms
+$B^TB$ and the scalar shifts. Thirty matrices, using
+$L\in\{2,3,4,8,31,128\}$ and five parameter triples, agree with
+\eqref{eq:sine-spectrum} to at most $6.22\times10^{-15}$. Exact symbolic
+checks separately verify the source-action derivatives and flux
+obstruction. These tests check constants and indexing; completeness and
+sharpness follow from the proofs in Section~\ref{sec:discrete}.
+
+The I15 script performs exact rational Casimir checks over a declared
+finite family and constructs $\SU(2)$ and $\SU(3)$ character truncations
+at multiple cutoffs. Its 159 recorded assertions cover normalization,
+the displayed inequalities, cutoff comparisons, and failure of bare-vacuum
+subtraction. Finite diagonalizations are not used to infer a universal
+Casimir minimum or an infinite-space lower gap bound.
+
+\subsection{Formal coverage}
+
+The three Lean sources compile in the recorded project environment.
+Their printed theorem dependencies contain only \texttt{propext},
+\texttt{Classical.choice}, and \texttt{Quot.sound}; no custom axioms or
+proof placeholders were introduced in these certificates. This describes
+the checked declarations, not a formal verification of the complete
+manuscript.
+
+For I13, the existing scalar proof bodies were retained and their
+interpretation corrected. The radial differential operator, domain
+analysis, and post-Newtonian expansion remain analytic arguments in
+prose. For I14, seventeen added declarations cover sharp uniform
+inequalities, confinement, finite positivity, sine recurrence and energy
+identities, and nonzero norms. The completeness argument and exact
+finite spectral minimum are supplied in Section~\ref{sec:discrete}, not
+claimed as fully formalized declarations. For I15, six added declarations
+cover scalar comparisons, the Casimir floor expression, local perturbation
+normalization, and energy rescaling. Peter--Weyl theory, min--max, the
+external stability theorem, and the gauge/GNS transfer are not claimed
+as Lean-formalized.
+
+\subsection{Archive layout and reproduction}
+
+Repository-relative source paths are used throughout the archive. The
+consolidated directory is
+\begin{center}\small
+\path{real_research/reviews/spectral_spine_closure_2026_09_22/}.
+\end{center}
+Its \path{REPORT.md} records the combined scope; the principal derivations
+are \path{i13/REPORT.md}, \path{i14/DERIVATION.md},
+\path{i14/SOURCE_BRIDGE.md}, and \path{i15/PROOF.md}. The audit baseline
+is commit \texttt{e3af62a453ca6625db8428f6d32957b27a7f1331}.
+This baseline identifies the starting inputs, not a claim that it already
+contains the later results. Final file hashes and executed verification
+records identify the checked artifacts. The publication archive should be
+used with its matching source files rather than an unpinned future branch.
+
+The numerical and symbolic entry points are
+\path{i13/radial_bridge.py}, \path{i13/symbolic_identities.py},
+\path{i14/verify.py}, and \path{i15/verify.py}, relative to that
+directory. Their adjacent contracts, results, manifests, and preserved
+standard output specify commands, dependencies, parameter ranges,
+resource limits, input hashes, and exit status. For example, from the
+repository root the radial checks can be repeated as
+\begin{quote}\small\ttfamily
+python3 real\_research/reviews/spectral\_spine\_closure\_2026\_09\_22/\\
+\hspace*{1em}i13/radial\_bridge.py --output /tmp/i13\_results.json
+\end{quote}
+where the displayed line break is typographical and the script path is a
+single shell argument. The symbolic script accepts its output JSON path
+as a positional argument. For all checks, the stored manifest is the
+authoritative command record; paths can be redirected to a local output
+directory without changing the mathematical inputs.
+
+The Lean files are in \path{fable_independent_2026/lean_2026/}:
+\begin{quote}\small
+\path{I13_bhstar_pulsation.lean}\\
+\path{I14_phantom_vacuum_wall.lean}\\
+\path{I15_suN_lattice_gap.lean}
+\end{quote}
+From that directory each is checked with
+\texttt{lake env lean} followed by its filename. The archive records
+successful runs, with 17 numerical assertions and four symbolic identities
+for I13, the I14 matrix and symbolic checks, and the I15 assertion suite.
+The verification directory preserves combined compiler and manifest
+summaries. Successful execution and matching hashes establish provenance
+and the recorded checks; they do not independently prove every analytic
+step.
+
+The source records pin Saio et al. to version \path{2406.18040v1} and
+Yarotsky to \path{math-ph/0411042v1}. They specify theorem and equation
+locations and the application boundaries. Those
+records do not claim that complete source PDFs were retained or hashed
+locally. The mathematical claims use the pinned source versions listed
+in the bibliography. Public repository links are provided in
+References~\cite{archive,leanrepo,sources}.
+
+\section{Consequences and remaining mathematical tasks}
+
+The radial calculation supplies the missing variational comparison and
+fixes the inertia and relativistic coefficient conventions. A stellar
+mass cutoff still requires an actual equilibrium sequence, appropriate
+equation of state, relevant inner and outer boundaries, and either the
+exact relativistic test or a bounded post-Newtonian remainder. The
+generated polytropes are useful benchmarks, not MESA or GENEC profile
+data and not a black-hole-envelope mass sequence.
+
+The discrete calculation closes the spectrum of the specified
+constant-confinement model, including the distinction between a finite
+box and a bound uniform in box size. The action calculation then identifies
+why that theorem cannot presently select a physical acceleration
+coupling: the cited source gives a different radial weight, no independently
+derived negative $\kappa^2$ potential, and a logarithmic profile that is
+only an approximate background for its full interpolant. Replacing an
+algebraic coefficient does not resolve those operator-identification
+requirements.
+
+The lattice results provide two actual gap comparisons, one elementary
+and one using an established external theorem. Both refer to the shifted
+interacting ground state. The open-volume theorem is uniform in gauge
+rank because the local Casimir normalization controls the interaction
+norm independently of $N$. Evaluating a useful explicit $X_d$, reaching
+$x=2$ uniformly in arbitrary open volume, and analyzing any continuum
+limit are separate tasks. None is established by the positivity of the
+single-plaquette scalar expression.
+
+Together the examples show the practical role of a certificate's
+interface: one must say which quadratic form is represented, in which
+norm and domain, and whether the certified expression is an upper trial
+value, a lower bound, or an exact eigenvalue. Those distinctions determine
+which physical conclusions the mathematics can support.
+
+\section*{License}
+
+This manuscript is licensed under the Creative Commons Attribution 4.0
+International license (\href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}).
+The accompanying software supplement retains its stated GNU Affero General
+Public License, version 3 or later (AGPL-3.0-or-later); the manuscript
+license does not relicense that software.
+
+\section*{AI assistance and review status}
+
+OpenAI Codex assisted with drafting, symbolic and numerical code, source
+inspection, and mathematical consistency checks for this manuscript and
+its accompanying artifacts. Separate AI-assisted checks were used for
+some operator and source mappings. Such checks are not independent human
+peer review, and the disclosure does not imply that every computation or
+derivation has been manually reviewed by the author. The executable
+records and stated limits identify the evidence being presented. No AI
+system is listed as an author.
+
+\begin{thebibliography}{9}
+
+\bibitem{saio}
+H.~Saio, D.~Nandal, S.~Ekstr\"om, and G.~Meynet,
+\emph{Linear adiabatic analysis for general relativistic instability in
+primordial accreting supermassive stars},
+arXiv:2406.18040v1 (26 June 2024).
+\url{https://arxiv.org/abs/2406.18040v1}.
+Equations (2)--(5) specify the radial source operator; equation (11)
+provides the quoted $n=3$ benchmark.
+
+\bibitem{yarotsky}
+D.~A.~Yarotsky,
+\emph{Quasi-particles in weak perturbations of non-interacting quantum
+lattice systems}, arXiv:math-ph/0411042v1 (11 November 2004).
+\url{https://arxiv.org/abs/math-ph/0411042v1}.
+Theorems 1--3 and equations (1)--(6), pp.~2--4; proof review in Section~2.
+
+\bibitem{ligterink}
+N.~E.~Ligterink, N.~R.~Walet, and R.~F.~Bishop,
+\emph{Towards a Many-Body Treatment of Hamiltonian Lattice SU(N) Gauge
+Theory}, arXiv:hep-lat/0001028v1 (25 January 2000);
+\emph{Annals of Physics} \textbf{284} (2000), 215--262.
+\url{https://arxiv.org/abs/hep-lat/0001028v1}.
+\href{https://doi.org/10.1006/aphy.2000.6070}{doi:10.1006/aphy.2000.6070}.
+
+\bibitem{archive}
+C.~P.~Zimmerman,
+\emph{Spectral spine closure: derivations, computational contracts,
+source records, and verification outputs}, accompanying research archive
+(22 September 2026).
+Repository directory
+\path{real_research/reviews/spectral_spine_closure_2026_09_22/}.
+\href{https://github.com/carlzimmerman/zimmerman-formula/tree/main/real_research/reviews/spectral_spine_closure_2026_09_22}{Public repository: spectral derivations and verification}.
+Use the matching publication archive and its file hashes for reproduction.
+
+\bibitem{leanrepo}
+C.~P.~Zimmerman,
+\emph{I13, I14, and I15 Lean certificates},
+\path{fable_independent_2026/lean_2026/}, accompanying repository sources.
+\href{https://github.com/carlzimmerman/zimmerman-formula/tree/main/fable_independent_2026/lean_2026}{Public repository: Lean source directory}.
+Compilation records and final source hashes appear in Reference~\cite{archive}.
+
+\bibitem{sources}
+C.~P.~Zimmerman,
+\emph{Project source actions and prior spectral calculations},
+\path{deepseek_push/G155_sourced_eq.py},
+\path{deepseek_push/G081_equilibrium_stability.py},
+\path{deepseek_push/WAVEBOARD.md}, and
+\path{deepseek_push/THE_THEORY.md}.
+\href{https://github.com/carlzimmerman/zimmerman-formula/tree/main/deepseek_push}{Public repository: inspected project sources}.
+These are provenance sources for the proposed physical identification;
+the limitations established in Section~\ref{sec:source-bridge} apply.
+
+\end{thebibliography}
+\end{document}
