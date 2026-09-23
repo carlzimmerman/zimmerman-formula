@@ -1,0 +1,81 @@
+== S1 INPUTS ==
+  repo Hamiltonian (i15/PROOF.md s.1):  H = (x/2) sum_l C_l + (b_N/x) sum_p (1 - T_p),
+    T_p = Re Tr U_p / N  (||T_p|| <= 1),  C_F = (N^2-1)/(2N) >= 3/4,  0 <= b_N <= 2N
+  normalised (E1): H/(x C_F/2) = sum_l h_l + eps sum_p V_p,  h_l = C_l/C_F (Delta = 1),
+    V_p = -T_p (J = 1),  eps = 2 b_N/(x^2 C_F)  <=  32/(3 x^2)  for all N >= 2, b_N <= 2N
+  groupings: LINK sites  s = 4, D = 2(d-1)       (plaquettes per link)
+             VERTEX sites s = 3, D = 3d(d-1)/2   (plaquettes touching a vertex group)
+  gap fraction targeted: Delta/2 (BDL Thm 1; repo uses normalized gap >= 1/2)
+  [PASS] d=2: every link lies in 2 plaquettes; every vertex-site meets 3 
+  [PASS] d=3: every link lies in 4 plaquettes; every vertex-site meets 9 
+  [PASS] d=4: every link lies in 6 plaquettes; every vertex-site meets 18 
+
+== S2 sector constants (E3)-(E5) ==
+  s=2: gamma0^2 = 5/4 = 1.250000 (gamma0 = 1.118034);  gammaS^2 = 29/2 = 14.500000 (gammaS = 3.807887)
+        beta_k, k=0..4: 1.118 12.09 78.81 437.1 2236
+  s=3: gamma0^2 = 29/18 = 1.611111 (gamma0 = 1.269296);  gammaS^2 = 103/3 = 34.333333 (gammaS = 5.859465)
+        beta_k, k=0..6: 1.269 19.33 186.3 1540 1.177e+04 8.581e+04 6.06e+05
+  s=4: gamma0^2 = 103/48 = 2.145833 (gamma0 = 1.464866);  gammaS^2 = 887/12 = 73.916667 (gammaS = 8.597480)
+        beta_k, k=0..8: 1.465 28.91 368.9 4051 4.122e+04 4.002e+05 3.765e+06 3.462e+07 3.131e+08
+  [PASS] s=2: type-j sector sum is maximal at n'=1 (E4) 
+  [PASS] s=3: type-j sector sum is maximal at n'=1 (E4) 
+  [PASS] s=4: type-j sector sum is maximal at n'=1 (E4) 
+
+== S3 cross-checks against BDL (qubits, two-body, max degree d) ==
+  [PASS] BDL Lemma 3 constant 2^13 survives the corrected |M_j|<=3|M| (corrected max over k<=4: 7168 <= 8192)
+  [PASS] exact majorant with BDL's constants reproduces BDL Thm 1 (lam >= 2^-17) (lam_gap = 6.1020e-05 vs 2^-17 = 7.6294e-06; ~2^-14 = 6.1035e-05)
+  [PASS] sector/Cauchy-Schwarz beta_k(s=2) <= 2^13 for all k<=4 (beta_4(s=2) = 2235.9)
+  (byproduct: s=2 constants give lam_gap = 0.0290, i.e. BDL's qubit threshold improves by 3799x -- same proof, sharper bookkeeping)
+
+== S4 certified lambda_gap (E7)-(E9), exact rational arithmetic ==
+  [PASS] s=3: mu_c >= lam_c q(mu_c)  [so ||C||_1 <= mu_c] 
+  [PASS] s=3: 2 lam_c q'(mu_c) < 1   [gap >= Delta/2] (= 0.999999000)
+  s=3: lam_gap(float) = 0.01790404;  CERTIFIED lam_c = 0.01790402, mu_c = 3.911425e-02
+  [PASS] s=4: mu_c >= lam_c q(mu_c)  [so ||C||_1 <= mu_c] 
+  [PASS] s=4: 2 lam_c q'(mu_c) < 1   [gap >= Delta/2] (= 0.999999000)
+  s=4: lam_gap(float) = 0.01190830;  CERTIFIED lam_c = 0.01190829, mu_c = 2.996979e-02
+
+== S5 comparison: BDL-style COUNTING constants for s = 4 (no Cauchy-Schwarz) ==
+  16 sets, |M_j|<=5|M| (correct), factor 4, depth 8:   lam_gap = 0.00136
+  16 sets, |M_j|<=4|M| (prior reader; INVALID, see C4): lam_gap = 0.00151
+  sector Cauchy-Schwarz (used, S4):                     lam_gap = 0.01191
+
+== S6 gauge-model thresholds (E10)-(E12);  gap >= x C_F/4 >= 3x/16 for x >= X_d ==
+  d  grouping  s  D     eps_c=2eps_0   eps_0(BDL conv.)   X_d(uniform)  theta_equiv   doorE-formula X_d
+  2  link      4   2.0  5.954146e-03   2.977073e-03        42.326      1.190829e-02    42.326
+  [PASS] d=2 link: door-E formula with theta_equiv reproduces X_d 
+  2  vertex    3   3.0  5.968006e-03   2.984003e-03        42.277      1.193601e-02    42.277
+  [PASS] d=2 vertex: door-E formula with theta_equiv reproduces X_d 
+  3  link      4   4.0  2.977073e-03   1.488536e-03        59.858      1.786244e-02    59.858
+  [PASS] d=3 link: door-E formula with theta_equiv reproduces X_d 
+  3  vertex    3   9.0  1.989335e-03   9.946677e-04        73.225      1.193601e-02    73.225
+  [PASS] d=3 vertex: door-E formula with theta_equiv reproduces X_d 
+  4  link      4   6.0  1.984715e-03   9.923576e-04        73.310      2.381658e-02    73.310
+  [PASS] d=4 link: door-E formula with theta_equiv reproduces X_d 
+  4  vertex    3  18.0  9.946677e-04   4.973339e-04       103.556      1.193601e-02   103.556
+  [PASS] d=4 vertex: door-E formula with theta_equiv reproduces X_d 
+  BEST (min over the two rigorous groupings), N-uniform, all 0 <= b_N <= 2N:
+    X_2 = 42.28   (gap >= 3x/16 >= 7.93 at threshold)
+    X_3 = 59.86   (gap >= 3x/16 >= 11.22 at threshold)
+    X_4 = 73.31   (gap >= 3x/16 >= 13.75 at threshold)
+
+  N- and b_N-dependent thresholds X_d(N) = sqrt((2 b_N/C_F) D / lam_c), link grouping:
+   d   b_N    N=2      N=3      N=4      N=5      N=10     N->inf
+   2   2      29.93    22.45    18.93    16.73    11.65     0.00
+   2   N      29.93    27.49    26.77    26.45    26.05    25.92
+   2   2N     42.33    38.88    37.86    37.41    36.84    36.66
+   3   2      42.33    31.74    26.77    23.66    16.48     0.00
+   3   N      42.33    38.88    37.86    37.41    36.84    36.66
+   3   2N     59.86    54.98    53.54    52.91    52.10    51.84
+   4   2      51.84    38.88    32.79    28.98    20.18     0.00
+   4   N      51.84    47.62    46.37    45.82    45.12    44.89
+   4   2N     73.31    67.34    65.57    64.80    63.81    63.49
+  [PASS] sup_N 8N^2/(N^2-1) = 32/3 attained at N=2 (uniform constant) 
+
+  comparison with registered expectations:
+   i15/PROOF.md s.4: 'No numerical value of X_d, particularly X_d<=2 or X_d<=8, is established'
+     -> this route: X_2=42.3, X_3=59.9, X_4=73.3; x>=2 / x>=8 windows NOT reached
+   door E hypothetical theta=1e-2 row: X_2~46.2, X_3~80, X_4~113 (labelled hypothetical there)
+   door G CONDITIONAL (on unproved (D)): X_2~53, X_3~274, X_4~1318
+
+ALL CHECKS PASSED

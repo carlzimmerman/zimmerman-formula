@@ -123,3 +123,19 @@ Swarm swings are cheap; keys are not. The register stands.
 - **D-YM3: CLOSED for every single-scalar f(K) action**, not just μ₂. The 1/4 is the
   Laplacian's Hardy constant ((n−2)/2)², and V → 0 in every deep-MOND corner.
 - **D-YM4: not swung.** No MESA/GENEC runs exist here.
+- **D-YM1: SWUNG — X_d EVALUATED** (lane `real_research/ym1_bdl_extension_2026/`, L326; Lean I19, 10 theorems, zero sorry).
+  - **Method:** BDL's Kirkwood–Thomas argument (arXiv:0707.1894, "Polynomial-time algorithm for simulation of
+    weakly interacting quantum spin systems", CMP 284 (2008) 481) is carried to Kogut–Susskind SU(N):
+    - sector-valued creation operators (no on-site-dimension factor);
+    - four-body plaquettes: depth 8, 16 sectors, |M_j| ≤ 5|M|;
+    - unbounded Casimir H₀ handled by compression plus the Ritz min–max limit;
+    - an exact majorant.
+  - **Result:** explicit **X₂ ≈ 42.3, X₃ ≈ 59.9, X₄ ≈ 73.3**, with gap ≥ 3x/16, uniform in N ≥ 2 and 0 ≤ b_N ≤ 2N,
+    and in every FINITE volume.
+  - **Review:** an independent adversarial referee found no mathematical error. It confirmed an erratum in BDL
+    App. A (|M_j| ≤ 2|M| is false; the correct bound is 3|M|; BDL's 2^13 survives because 7168 ≤ 8192).
+  - **Scope:**
+    - finite volume only (i15's infinite-volume GNS bullet still rests on Yarotsky Th. 3);
+    - unreviewed outside this repo;
+    - misses i15's hoped-for x ≥ 2 / x ≥ 8 window by ~5–37×;
+    - nothing about the continuum limit (D-YM2 unchanged).

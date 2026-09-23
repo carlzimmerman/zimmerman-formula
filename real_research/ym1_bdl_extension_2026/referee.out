@@ -1,0 +1,34 @@
+== R1: BDL App. A '|M_j| <= 2|M|' -- qubit counterexample, rebuilt from scratch ==
+  y = <Om| a_u [a+_uvw, X_v X_w] |Om> = -1.000;  Claim-3 (i),(ii) satisfied: True
+  |M_j|/|M| = 3/1;  BDL needs E0(M) >= (Delta/2)|M_j|: 1 >= 1.5? -> False
+  M_j subset M u {w}: False;  M_j subset M u {v}: False  (both False => line is false)
+  corrected Lemma-3 constant max_k<=4 = 7168 (<= 8192: True)
+
+== R1b: s=4 analogue, |M_j| = 5|M| realised ==
+  sector {u} amplitude = -1.000  (|M_j|=5, |M|=1)
+
+== R2: constants re-derived independently ==
+  s=2: gamma0=1.118034 gammaS=3.807887 beta1=12.088 beta_2s=2236  lam_c=0.02898163  at 0.9 lam_c: sum m_p lam^p=4.606341603e-02 vs root of mu=lam q(mu) 4.606341603e-02 (last term 1.8e-27; mu_c=5.599944e-02)  2 lam q'(series)=0.846072 < 1
+  s=3: gamma0=1.269296 gammaS=5.859465 beta1=19.335 beta_2s=6.06e+05  lam_c=0.01790404  at 0.9 lam_c: sum m_p lam^p=3.217989526e-02 vs root of mu=lam q(mu) 3.217989526e-02 (last term 2.5e-27; mu_c=3.911425e-02)  2 lam q'(series)=0.844263 < 1
+  s=4: gamma0=1.464866 gammaS=8.597480 beta1=28.914 beta_2s=3.131e+08  lam_c=0.01190830  at 0.9 lam_c: sum m_p lam^p=2.465848302e-02 vs root of mu=lam q(mu) 2.465848302e-02 (last term 2.4e-27; mu_c=2.996979e-02)  2 lam q'(series)=0.843484 < 1
+
+  gauge dictionary: X_d = sqrt((32/3) D / lam_c)
+   s=3 d=2 D=3: X_d = 42.277
+   s=3 d=3 D=9: X_d = 73.225
+   s=3 d=4 D=18: X_d = 103.556
+   s=4 d=2 D=2: X_d = 42.326
+   s=4 d=3 D=4: X_d = 59.858
+   s=4 d=4 D=6: X_d = 73.310
+   N=2: eps(b=2N) * x^2 = 10.66667   (32/3 = 10.66667)
+   N=3: eps(b=2N) * x^2 = 9.00000   (32/3 = 10.66667)
+   N=4: eps(b=2N) * x^2 = 8.53333   (32/3 = 10.66667)
+   N=10: eps(b=2N) * x^2 = 8.08081   (32/3 = 10.66667)
+
+== R3: Lemma 3' / Lemma 4' stress test at FULL depth (k up to 8), qutrits, s=4 ==
+  worst lhs/rhs per k: {1: '1.66e-02', 2: '4.15e-05', 3: '4.64e-06', 4: '9.56e-10', 5: '6.54e-11', 6: '4.35e-16', 7: '0.00e+00', 8: '0.00e+00'}
+
+== R4: per-tuple sector inequality  sum_{M∋u} ||Pi_M X Om||/|M| <= gamma * ||X Om|| ==
+  type-0 worst ratio 0.790 (<=1),  type-j worst ratio (x|M_j|) 0.588 (<=1)
+
+== R5: truncation compresses V_p -- does V_p preserve the Casimir cutoff? (SU(2), one link, j<=jmax) ==
+  chi_{1/2} * chi_j = chi_{j-1/2} + chi_{j+1/2}  -> cutoff space not invariant; S1 uses compression (Ritz), OK
