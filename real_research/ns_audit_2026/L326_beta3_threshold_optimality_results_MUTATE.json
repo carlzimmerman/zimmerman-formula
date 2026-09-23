@@ -1,0 +1,59 @@
+{
+ "lane": "L326",
+ "mutate": true,
+ "checks": {
+  "G1 the trilinear term is independent of lam (grad(|u|^2/2) is L2-orthogonal to the solenoidal Lap u)": {
+   "ok": false,
+   "measured": "relative spread over lam in {-1, 0.5, 2}: 4.2e-02; max|div u| 1.7e-14",
+   "load_bearing": true
+  },
+  "G2 the damping dissipates c int (|u|^2 |A|^2 + 2 |A^T u|^2): the usually dropped term is 2c||A^T u||^2": {
+   "ok": true,
+   "measured": "rel 0.0e+00, 1.7e-16",
+   "load_bearing": true
+  },
+  "G3 |A u|^2 <= |A|^2 |u|^2 <= denominator, so M(0) <= 1; sampling never exceeds 1": {
+   "ok": true,
+   "measured": "max sampled ratio 0.976427",
+   "load_bearing": true
+  },
+  "G4 a traceless A with A^T u = 0 and |A u| = |A||u| gives ratio 1 for every lam: the pointwise H^1 closure needs 4 c nu >= 1 exactly, whatever gauge is used and with the full damping dissipation": {
+   "ok": true,
+   "measured": "tr A = 0; A^T u = [0, 0, 0]; ratio(lam) = 1",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "G1": {
+   "lam0": -0.4878466266785007,
+   "by_lam": {
+    "-1.0": -0.49810363370626254,
+    "0.5": -0.48271812316461993,
+    "2.0": -0.4673326126229769
+   },
+   "rel_spread": 0.04205012996644726,
+   "max_div_u": 1.72637093893648e-14
+  },
+  "G2": {
+   "rel_density": 0.0,
+   "rel_full": 1.7050506286202805e-16
+  },
+  "G3": {
+   "max_ratio_lam0": 0.9764271278043246,
+   "sampled_max_by_lam": {
+    "-1.0": 1.3038620397544012,
+    "-0.5": 1.0548975115450245,
+    "0.0": 0.9764271278043246,
+    "0.5": 1.055416058026025,
+    "1.0": 1.3134049068564788
+   }
+  },
+  "G4": {
+   "trace": "0",
+   "ATu": "[0, 0, 0]",
+   "ratio": "1"
+  }
+ },
+ "n_checks": 4,
+ "n_fail_load_bearing": 1
+}

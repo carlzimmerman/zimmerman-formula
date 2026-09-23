@@ -1,0 +1,46 @@
+
+========================================================================================================
+G1  GAUGE FREEDOM: int (u.grad)u . Lap u = int ((A + lam A^T) u) . Lap u FOR EVERY lam
+========================================================================================================
+    lam = -1.0: int ((A + lam A^T)u).Lap u = -5.732822573907e-01   (lam = 0: -5.732822573907e-01)
+    lam = +0.5: int ((A + lam A^T)u).Lap u = -5.732822573907e-01   (lam = 0: -5.732822573907e-01)
+    lam = +2.0: int ((A + lam A^T)u).Lap u = -5.732822573907e-01   (lam = 0: -5.732822573907e-01)
+  [PASS] G1 the trilinear term is independent of lam (grad(|u|^2/2) is L2-orthogonal to the solenoidal Lap u)
+         measured: relative spread over lam in {-1, 0.5, 2}: 3.9e-16; max|div u| 1.7e-14
+         reading:  one free parameter in how the nonlinearity is split before Cauchy-Schwarz
+
+========================================================================================================
+G2  THE FULL DAMPING DISSIPATION DENSITY
+========================================================================================================
+    (1/2) int |grad|u|^2|^2 = 3.2242959723e+01;  2 int |A^T u|^2 = 3.2242959723e+01;  rel 0.0e+00
+    int |u|^2 u.(-Lap u) = 8.3345646614e+01;  int (|u|^2|A|^2 + 2|A^T u|^2) = 8.3345646614e+01;  rel 1.7e-16
+  [PASS] G2 the damping dissipates c int (|u|^2 |A|^2 + 2 |A^T u|^2): the usually dropped term is 2c||A^T u||^2
+         measured: rel 0.0e+00, 1.7e-16
+         reading:  the denominator of M(lam) is the whole dissipation
+
+========================================================================================================
+G3  M(0) = 1: NO RANDOM (u, traceless A) EXCEEDS IT
+========================================================================================================
+    sampled max ratio at lam = 0: 0.976427 (bound 1);  sampled max by lam: -1.0: 1.3039, -0.5: 1.0549, +0.0: 0.9764, +0.5: 1.0554, +1.0: 1.3134
+  [PASS] G3 |A u|^2 <= |A|^2 |u|^2 <= denominator, so M(0) <= 1; sampling never exceeds 1
+         measured: max sampled ratio 0.976427
+         reading:  random sampling alone does not find the worst case (see G4); the upper bound is the inequality itself
+
+========================================================================================================
+G4  THE WITNESS: RATIO EXACTLY 1 FOR EVERY lam  =>  min_lam M(lam) = 1
+========================================================================================================
+    A = a b^T, a = (0, alpha, 0), b = (beta, 0, 0), u = e1:  tr A = 0;  A^T u = [0, 0, 0];  ratio = 1
+  [PASS] G4 a traceless A with A^T u = 0 and |A u| = |A||u| gives ratio 1 for every lam: the pointwise H^1 closure needs 4 c nu >= 1 exactly, whatever gauge is used and with the full damping dissipation
+         measured: tr A = 0; A^T u = [0, 0, 0]; ratio(lam) = 1
+         reading:  the 4 c nu = 1 wall of the literature is the optimum of this method, not a lost constant
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  The beta = 3 door below 4 c nu = 1 is swung and does not open with the standard tools.  Keeping the whole
+  damping dissipation and using the gauge freedom in splitting (u.grad)u, the pointwise H^1 closure still needs
+  4 c nu >= 1 exactly; the extremal configuration (A^T u = 0, |A u| = |A||u|) is realisable at any point by a
+  divergence-free field, so only a genuinely nonlocal estimate could go lower.  The PDE question for 4 c nu < 1
+  remains open; it is a critical problem, a small critical perturbation of Navier-Stokes itself.
+
+  4/4 checks pass; load-bearing failures: 0; wrote L326_beta3_threshold_optimality_results.json
