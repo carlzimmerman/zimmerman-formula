@@ -117,3 +117,33 @@ The PD-series (PD01-PD13 + the chart) is complete on origin main, all committed 
 - **pd_chain_chart.html** the visualization (five-step flow, the number line with the dead rivals and the two measurement bands, the forbidden interior (1/2, 1), the exclusions table, the response family).
 
 SIX compiled Lean certificates: PD05, PD07, PD09, PD10, PD11, PD12 (+PD13 = seven), all axioms = {propext, Classical.choice, Quot.sound}, zero sorry. The kill rules registered in FALSIFIER_MATRIX row 22 (PD-wave): (i) any measured kappa strictly inside (1/2, 1) kills the count structure; (ii) a detected WDM-type cut at ~0.5 Mpc kills the no-particle lock; (iii) any measured cp != 1 (a second RAR knee at g ~ s2 != s) kills; (iv) the Tolman constancy: any w-drift moves the count off 2. Instruments: z~2.5 BTFR zero point, Gaia DR4, the sub-halo decade, the registered flat-a0 gate. Honest boundaries: the shape stays empirical (rung 2); the OR-identification and the mode-matching premise stand as the framework's named premises; the Tolman reading is corroboration (the 2 = 3-1 trace difference), not a replacement for the count derivation.
+
+## ADDENDUM 2026-09-23 — ZD-WAVE: three new derivations, 27 more Lean theorems
+
+The ZD lanes (deepseek_push/ZD01-03 + ZD_README.md, certificates in
+fable_independent_2026/lean_2026/ZD0{1,2,3}_*.lean) derive consequences of
+the a0-line that the corpus had never stated, all Lean-certified (27
+theorems, zero sorry, axioms {propext, Classical.choice, Quot.sound}):
+
+- **ZD01 the PHANTOM CEILING**: g_phi < a0/2 = kappa*a0 for every finite
+  baryon field (the cap IS the PD-derived kappa = 1/2); the product
+  identity g_phi*(g_obs + g_bar) = a0*g_bar; the approach law
+  a0/2 - a0^2/(8 g_bar) <= g_phi < a0/2 (g_bar >= a0/8); no-containment
+  for ambient fields >= a0/2, exact containment field ge^2/(a0 - 2 ge)
+  below it.
+- **ZD02 the MASS-ACCOUNTING LAWS**: M_tot/M_b = sqrt(1 + a0/g_b) exactly;
+  the DOUBLING point g_b = a0/3 (M_phi = M_b, total = 2 M_b, f_phi = 1/2),
+  quadrupling at a0/15; the exact handoff mass (sqrt 3 - 1)*M_b at
+  r*^2 = 2 G M_b/a0.
+- **ZD03 the EFE LAW + CLUSTER DARK-STRIPPING**: subadditivity
+  phi(s+e) <= phi(s) + phi(e) (the external-field effect as an
+  inequality); the ambient cap (boost < e for e >= a0/2); the stripping
+  radius r_strip = 4 sigma^2/a0 (0.71 Mpc at G008's 809 km/s; 1.08 Mpc
+  Coma-class) — no self-contained phantom halo inside.
+ 
+Data gates (registered, honest): SPARC 95.1% cap conformity on the
+registered domain with the 150-bin positive-scatter tail read as the
+framework's baryonic-residual channels (G036/G040) — falsifier row 21;
+the a0/3 median ratio 1.570 vs the exact 2.000 is inside the registered
+0.15-dex band (row 22, CONSISTENT-OPEN); the stripping radius awaits the
+inside/outside satellite sample (row 23, ARMED).

@@ -1,0 +1,80 @@
+{
+ "lane": "ZD02_mass_accounting",
+ "checks": [
+  {
+   "name": "C1 ratio law: M_tot/M_b = sqrt(1+1/x) = g_obs/g_bar exactly",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "C2 DOUBLING: M_tot/M_b = 2 exactly at g_b = a0/3",
+   "pass": true,
+   "detail": "r_eq = sqrt(3 G M_b/a0): MW ~ 15.0 kpc (M_b = 6.5e10 Msun)"
+  },
+  {
+   "name": "C3 quadrupling: M_tot/M_b = 4 exactly at g_b = a0/15",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "C4 fraction at doubling: f_phi = 1/2 exactly at x = 1/3",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "C5 deep band: sqrt(a0 g) - g <= g_phi <= sqrt(a0 g)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "C6 strong-field band: a0/2 - a0^2/(8 g_bar) <= g_phi < a0/2",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "C7 HANDOFF MASS: M_phi(r*)/M_b = sqrt 3 - 1 exactly (pure number)",
+   "pass": true,
+   "detail": "= 0.73205081; g_b(r*) = a0/2; independent of a0, G, M"
+  },
+  {
+   "name": "C8 handoff share exceeds half: (sqrt 3 - 1) >= 1/2",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "C9 MW radii (M_b = 6.5e10 Msun): r_eq ~ 15 kpc, r* ~ 12 kpc",
+   "pass": true,
+   "detail": "r_eq = 15.1 kpc (g_bar = a0/3), r* = 12.3 kpc (g_b = a0/2)"
+  },
+  {
+   "name": "C10 SPARC doubling law: median M_tot/M_b at g_bar = a0/3 within the registered RAR band of the exact value 2.0",
+   "pass": true,
+   "detail": "median = 1.570 (exact law: 2.000 at a0/3; residual 0.105 dex <= registered RAR band 0.15 dex) over 74 galaxies; disk-geometry correction O(0.1 dex) applies to the spherical mapping"
+  }
+ ],
+ "summary": "10/10 PASS",
+ "handoff_share": 0.7320508075688772,
+ "sparc": {
+  "n_crossing": 74,
+  "median_ratio_at_a0_3": 1.570253467436356,
+  "expected": 2.0
+ },
+ "lean": {
+  "file": "fable_independent_2026/lean_2026/ZD02_mass_accounting.lean",
+  "theorems": [
+   "rat_form",
+   "doubling_iff",
+   "quadrupling_iff",
+   "ratio_antitone",
+   "fraction_doubling_exact",
+   "deep_band",
+   "strong_field_band",
+   "handoff_root_value",
+   "mphi_handoff_exact",
+   "mphi_handoff_lower"
+  ],
+  "exit_code": 0,
+  "sorry": 0,
+  "axioms": "propext, Classical.choice, Quot.sound"
+ }
+}

@@ -1,0 +1,60 @@
+{
+ "lane": "ZD03_efe_suppression",
+ "checks": [
+  {
+   "name": "C1 SUBADDITIVITY (the exact EFE law): phi(s+e) <= phi(s) + phi(e)",
+   "pass": true,
+   "detail": "7x8 grid; strict inequality wherever both fields are nonzero"
+  },
+  {
+   "name": "C2 SUPPRESSION: internal boost <= isolated phantom phi(s)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "C3 THE AMBIENT CAP: for e >= a0/2 the internal boost is strictly below the ambient field",
+   "pass": true,
+   "detail": "no self-contained dark halo at or inside a0/2"
+  },
+  {
+   "name": "C4 stripping radius (G008 cluster, sigma = 809 km/s): ~0.71 Mpc",
+   "pass": true,
+   "detail": "r_strip = 0.707 Mpc = 4 sigma^2/a0"
+  },
+  {
+   "name": "C5 stripping radius (Coma-class, sigma = 1000 km/s): ~1.08 Mpc",
+   "pass": true,
+   "detail": "r_strip = 1.080 Mpc"
+  },
+  {
+   "name": "C6 dark-stripped zone: strictly inside r_strip the cluster field exceeds a0/2",
+   "pass": true,
+   "detail": "g_ext(f*r_strip) = a0/(2f) > a0/2 for every f < 1"
+  },
+  {
+   "name": "C7 EFE asymptotics: boost -> 0 in very strong ambient fields",
+   "pass": true,
+   "detail": "phi(0.1+1000)-phi(1000) = 1.25e-08"
+  }
+ ],
+ "summary": "7/7 PASS",
+ "r_strip_Mpc": {
+  "G008_sigma809": 0.707009490044946,
+  "Coma_class_1000": 1.0802597631481217
+ },
+ "lean": {
+  "file": "fable_independent_2026/lean_2026/ZD03_efe_suppression.lean",
+  "theorems": [
+   "phantom_ceiling_strict",
+   "phantom_subadditive",
+   "efe_boost_left",
+   "efe_ambient_cap",
+   "strip_radius_iff",
+   "strip_inside_supersaturates",
+   "strip_no_self_contained_phantom"
+  ],
+  "exit_code": 0,
+  "sorry": 0,
+  "axioms": "propext, Classical.choice, Quot.sound"
+ }
+}
