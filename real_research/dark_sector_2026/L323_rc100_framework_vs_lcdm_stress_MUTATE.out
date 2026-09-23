@@ -1,0 +1,95 @@
+
+L323 -- STRESS TEST OF TODAY'S CLEANEST FRAMEWORK WIN: does "the framework alone predicts RC100's high-z dark fractions and
+LCDM does not" (L320) survive when LCDM is given EVERY fair chance?
+
+THE CLAIM UNDER TEST (L320, committed): on RC100 (Nestor Shachar+2023; 100 rotation curves, z = 0.6-2.5), the framework with
+ZERO free parameters (nu_RAR, a0 = c H_Lambda/Z) predicts a median dark fraction inside R_e of 0.23-0.31 against the measured
+0.29, while LCDM (Moster+13 halo masses, Dutton-Maccio NFW) predicts 0.38-0.49.  A win counts only after the rival's best
+version has been tried.  This lane gives LCDM, one at a time and then all together in its own favour:
+  H  halo mass shifted by -0.2 dex (the SHMR's scatter/systematic floor, in LCDM's favour)
+  C  concentration lowered by 0.1 dex (scatter, in LCDM's favour)
+  K  a MAXIMAL feedback core: Read+2016 coreNFW, M(<r) = M_NFW(<r) tanh(r/r_c)^n with n = 1 and r_c = 1.75 R_e -- the
+     most generous inner-halo reduction at fixed halo mass (DC14 predicts almost no coring at these M_*/M_h ~ 0.02-0.04)
+  A  Blumenthal adiabatic contraction (the standard direction; makes LCDM WORSE; reported for completeness)
+  ALL  H + C + K together: LCDM's most favourable combination.
+The framework gets nothing: both footings, disc geometry xi_geo in {1.0, 1.3}, and the gas-fraction sweep of L320.
+
+STATISTICS (RC100 tabulates no f_DM errors, so no chi^2 is pretended):
+  S1 the median of (f_pred - f_obs) per model with a galaxy-bootstrap 68% interval;
+  S2 the fraction of galaxies each model predicts within 0.15 of the observed f_DM;
+  S3 BOTH-WAYS on the framework: its per-galaxy residuals (f_obs - f_fw) must not correlate with g_bar (a kernel error would)
+     -- Spearman rho with a permutation p-value; and the z-trend of its residuals.
+CONTROLS: C1 the coreNFW with n = 0 reproduces NFW exactly; C2 the Blumenthal solution with f_b -> 0 returns the input NFW.
+  S4 THE TREND: each model pushed through the data's own inversion (h16: a0 = (1 - f) g_obs/[ln(1/f)]^2); d log a0/dz per
+     LCDM variant against the data's -0.112 +/- 0.063 -- the part of L320 that may still discriminate.
+RESULT OF THE FIRST RUN (kept, and why the checks are phrased as they are): the claim "the framework beats LCDM on the LEVEL"
+FAILED the stress test -- LCDM's single-knob variants (halo mass -0.2 dex, or concentration -0.1 dex) reach RC100's median.
+The load-bearing checks therefore state the FINDING: (S1) the level is a TIE; (S4) the trend, tested variant by variant.
+MUTATE=1 shifts the observed f_DM by +0.25 (a dark-matter-rich universe): the framework then misses, the tie breaks, and S1
+must FAIL (rc = 1).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L323_rc100_framework_vs_lcdm_stress.py
+
+  RC100: 100 galaxies with z, M_bar, R_e, f_DM
+
+==============================================================================================================
+CONTROLS
+==============================================================================================================
+  [PASS] C1 coreNFW with n = 0 reproduces NFW exactly
+         measured: 1.000000000000
+  [PASS] C2 Blumenthal contraction with vanishing baryons returns the input NFW
+         measured: ratio 1.000000
+
+==============================================================================================================
+S1/S2  MEDIAN (f_pred - f_obs) AND THE FRACTION WITHIN 0.15, over the systematic grid
+==============================================================================================================
+  MUTATE: observed f_DM shifted by +0.25 (a dark-matter-rich universe)
+    framework: median offset -0.317 .. -0.257  (best cell -0.257 [-0.272, -0.241]); within 0.15: 0.14-0.23; median f_pred 0.23-0.31
+    NFW      : median offset -0.229 .. -0.135  (best cell -0.135 [-0.186, -0.124]); within 0.15: 0.32-0.49; median f_pred 0.34-0.45
+    H        : median offset -0.260 .. -0.180  (best cell -0.180 [-0.216, -0.163]); within 0.15: 0.26-0.40; median f_pred 0.30-0.40
+    C        : median offset -0.268 .. -0.194  (best cell -0.194 [-0.224, -0.173]); within 0.15: 0.24-0.37; median f_pred 0.29-0.39
+    K        : median offset -0.343 .. -0.278  (best cell -0.278 [-0.290, -0.261]); within 0.15: 0.09-0.27; median f_pred 0.21-0.29
+    A        : median offset -0.079 .. +0.002  (best cell +0.002 [-0.024, +0.016]); within 0.15: 0.53-0.61; median f_pred 0.48-0.58
+    ALL      : median offset -0.401 .. -0.347  (best cell -0.347 [-0.360, -0.329]); within 0.15: 0.02-0.11; median f_pred 0.15-0.22
+  [FAIL] S1 THE LEVEL IS A TIE: the framework's best systematic cell AND at least one LCDM variant's best cell both contain zero offset in their 68% bootstrap intervals -- L320's 'framework beats LCDM on the dark fractions' is WITHDRAWN as a robust win
+         measured: framework best [-0.272, -0.241]; LCDM variants containing 0: ['A']
+         reading:  the median dark fraction at z ~ 1-2 cannot separate the two within the halo-model and baryon systematics
+  [PASS] S2 (informational) galaxies within 0.15 of their observed f_DM: framework worst cell vs LCDM best cells
+         measured: framework >= 0.14; LCDM <= NFW 0.49, H 0.40, C 0.37, K 0.27, A 0.61, ALL 0.11
+         reading:  no discrimination at the per-galaxy level either
+
+==============================================================================================================
+S4  THE TREND: d log a0/dz through the data's own inversion, per model and variant
+==============================================================================================================
+    framework: d log a0/dz -0.000 .. +0.000  -> +1.6 .. +1.6 sigma from the data -0.178 +/- 0.111
+    NFW      : d log a0/dz +0.133 .. +0.153  -> +2.8 .. +3.0 sigma from the data -0.178 +/- 0.111
+    H        : d log a0/dz +0.134 .. +0.154  -> +2.8 .. +3.0 sigma from the data -0.178 +/- 0.111
+    C        : d log a0/dz +0.142 .. +0.161  -> +2.9 .. +3.1 sigma from the data -0.178 +/- 0.111
+    K        : d log a0/dz +0.135 .. +0.152  -> +2.8 .. +3.0 sigma from the data -0.178 +/- 0.111
+    A        : d log a0/dz +0.137 .. +0.151  -> +2.8 .. +3.0 sigma from the data -0.178 +/- 0.111
+    ALL      : d log a0/dz +0.143 .. +0.158  -> +2.9 .. +3.0 sigma from the data -0.178 +/- 0.111
+  [PASS] S4 THE TREND, variant by variant: every LCDM variant's inverted a0 rises with z, and the LEAST-rising LCDM cell sits 2.8 sigma above RC100's trend; the framework is flat by construction
+         measured: framework -0.000..+0.000; NFW +0.133..+0.153; H +0.134..+0.154; C +0.142..+0.161; K +0.135..+0.152; A +0.137..+0.151; ALL +0.143..+0.158
+         reading:  the trend is the part that still separates them -- with RC100's own caveat: it restates RC100's falling f_DM(z)
+
+==============================================================================================================
+S3  BOTH WAYS ON THE FRAMEWORK: do its residuals track g_bar or z?
+==============================================================================================================
+    framework residuals f_obs - f_fw: median +0.283, scatter 0.160; Spearman vs log g_bar +0.126 (p 0.222); vs z -0.122 (p 0.216)
+  [PASS] S3 the framework's residuals show no significant trend with g_bar (p > 0.01): no sign of a wrong kernel shape at z ~ 1-2
+         measured: rho = +0.126, p = 0.222
+         reading:  reported either way; a trend would be a kernel failure at high z
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  With no free parameter, the framework puts RC100's median dark fraction within 0.32 on its worst systematic cell.
+  LCDM's best cell per variant misses by: NFW 0.14, H 0.18, C 0.19, K 0.28, A 0.00, ALL 0.35 (ALL = halo mass -0.2 dex,
+  concentration -0.1 dex, and a maximal feedback core together).  THE LEVEL IS A TIE (no): L320's "framework
+  beats LCDM on the dark fractions" is WITHDRAWN.  THE TREND: LCDM's least-rising cell sits 2.8 sigma above RC100's
+  d log a0/dz; the framework is flat, 1.6 sigma from it.
+  Caveats that no model choice here removes: RC100's f_DM comes from its own mass models (stellar M/L, gas from scaling
+  relations, pressure support), and its selection across redshift is not controlled.  This is a relative statement --
+  same baryons, same radii, two gravity models -- and it is quoted as such.
+
+  5/6 checks pass; load-bearing failures: 1; wrote L323_rc100_framework_vs_lcdm_stress_results_MUTATE.json

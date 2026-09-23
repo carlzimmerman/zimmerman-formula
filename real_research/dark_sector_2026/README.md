@@ -32,7 +32,7 @@ For comparison, KiDS-Legacy measures 0.815 ± 0.016 and Planck 0.834. **This is 
 
 **Two results:**
 
-1. **On RC100 the framework alone beats ΛCDM on both the level and the trend of high-z dark fractions.** This depends on RC100's model-dependent f_DM and its uncontrolled selection, the same caveats that h16 records.
+1. ~~On RC100 the framework alone beats ΛCDM on both the level and the trend.~~ **Corrected by L323: the LEVEL is a tie.** Given its fair systematic range (NFW, a −0.2 dex lighter halo, or −0.1 dex lower concentration), ΛCDM also matches RC100's median f_DM. **The TREND is robust:** every ΛCDM variant, including a maximal feedback core and the combination most favourable to ΛCDM, predicts a₀ rising at +0.13 to +0.16 dex/z, 3.7–4.1σ above RC100's trend, while the framework is flat (1.6σ). RC100's caveats apply: its f_DM is model-dependent and its selection is uncontrolled.
 2. **The forest–RC100 pincer applies to any carrier.** The forest needs a cold component clustered in the intergalactic medium on 0.1–1 Mpc scales at z = 2–3. RC100 says galaxies at that same epoch carry no cold halo. Kicks remove matter from shallow wells first, so they deplete the intergalactic medium before galaxy halos, which is the wrong order. A carrier would have to be absent from galaxy halos while present in the intergalactic medium at z ≈ 2, and also present in clusters today: a switch that is non-monotonic in potential depth. The record has found no such switch (f22).
 
 **Standing:** the Λ-triggered carrier passes the forest and S8 but is disfavoured at about 3σ by RC100. The structural conflict between closing the dark sector and the framework's flat-a₀(z) galaxies is now explicit.
@@ -68,3 +68,11 @@ For comparison, KiDS-Legacy measures 0.815 ± 0.016 and Planck 0.834. **This is 
 - Its rate has no natural scale.
 
 The dark-sector door is now stated as precisely as the record allows: cold in the intergalactic medium at z = 2–3, absent from galaxy halos at z ≲ 2.5, about half-present in clusters at z = 0, and not sourcing the MOND field.
+
+## L323 — stress test of the RC100 comparison, with ΛCDM given every fair chance
+
+`L323_rc100_framework_vs_lcdm_stress.py` (6/6; `MUTATE` +0.25 in f_DM breaks the level tie, rc = 1). ΛCDM variants tried: NFW (Moster+13 halo masses, Dutton–Macciò concentrations), a halo 0.2 dex lighter, concentration 0.1 dex lower, a maximal Read+2016 core (n = 1, r_c = 1.75 R_e), Blumenthal contraction, and all of the favourable ones together.
+
+- **Level (median f_DM inside R_e): tie.** The framework's best cell and the NFW, lighter-halo and lower-concentration cells all contain zero offset at 68%. **The L320 level claim is withdrawn.**
+- **Trend (inverted a₀ against z): every ΛCDM variant rises by +0.13 to +0.16 dex/z, 3.7–4.1σ above RC100.** The framework is flat at 1.6σ. No halo knob removes the rise, because it comes from how ΛCDM halos evolve with redshift.
+- **Framework residuals** show no trend with g_bar (Spearman p = 0.29), so there is no sign of a wrong kernel at z ~ 1–2.
