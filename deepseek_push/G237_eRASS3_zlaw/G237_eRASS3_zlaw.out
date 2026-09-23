@@ -1,0 +1,26 @@
+==============================================================================
+G237 z-extension of the cluster closed form: u(z), share invariance, T-ratios
+==============================================================================
+PASS | L1 r_M = sqrt(G M_b/a0) derived from G154 + Q003 (sympy) | measured sympy: r_M = sqrt(G)*sqrt(Mb)/sqrt(a0)
+  u(z) framework   : 0.1850 / 0.1850 / 0.1850
+  u(z) M-RISE      : 0.1710 / 0.1360 / 0.1126
+  u(z) (1+z)^{3/2} : 0.1722 / 0.1365 / 0.1100
+PASS | L2 u(z) = u(0)[a0(0)/a0(z)]^{1/2} derived (fixed observed M500) | thresh |u(z)/u(0) - 1| > 0.10 at z~0.5 | measured u(0.1)/u(0.5)/u(1.0): framework 0.1850/0.1850/0.1850; M-RISE 0.1710/0.1360/0.1126; (1+z)^1.5 0.1722/0.1365/0.1100
+
+  G179 constitution row at R500 (u-form, (c/u)_0 = 4.6506 pinned by the pie):
+  framework    z=0.0 : s_b 0.177 s_ph 0.569 s_d 0.254
+  framework    z=0.5 : s_b 0.177 s_ph 0.569 s_d 0.254
+  framework    z=1.0 : s_b 0.177 s_ph 0.569 s_d 0.254
+  M-RISE       z=0.0 : s_b 0.177 s_ph 0.569 s_d 0.254
+  M-RISE       z=0.5 : s_b 0.137 s_ph 0.597 s_d 0.266
+  M-RISE       z=1.0 : s_b 0.116 s_ph 0.611 s_d 0.273
+PASS | L3 sector-share z-invariance derived (framework) + M-RISE drift | thresh |s_b(z) - 0.177| > 0.020 at 0.2<z<0.6 | measured s_b: framework 0.177 -> 0.177 (z=1); M-RISE -> 0.137 (z=0.5), 0.116 (z=1); s_d: 0.254 / 0.273
+PASS | L4 derived R500 (r_M via pie M_b, u-chain) vs self-similar R500 @ 8e14 | thresh 0.5-1.8 (closure-offset band) | measured r_M(derived) = 459 kpc; R500(derived) = 1303 kpc vs self-sim 1411 kpc; ratio 0.92
+
+  virial-T ratios z1=0.1 -> z2=0.5, Delta log10 T_X (dex):
+  Case A (fixed M_b, exact):        framework 0.0000; M-RISE +0.0996; (1+z)^1.5 +0.1014
+  Case B (fixed M500, k0=4.65):    framework -0.0000; M-RISE +0.1557 (k0=3.0: +0.1514)
+PASS | L5 virial-T ratio laws derived (both selection cases) | thresh |Delta log10 T| > 0.010 dex at >= 2 sigma in any z-bin [0.2, 1.0] | measured Case A: framework -0.0000 / M-RISE +0.0994 dex; Case B (k0 = 4.65): framework -0.0000 / M-RISE +0.1557
+------------------------------------------------------------------------------
+G237 COMPLETE: 5/5 checks PASS.
+results -> /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/G237_eRASS3_zlaw/G237_results.json
