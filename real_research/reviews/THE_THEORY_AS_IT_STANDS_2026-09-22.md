@@ -74,7 +74,7 @@ $$S=e^{(\xi^2/2)\nabla^2},\qquad \nu(y)=\big[1-e^{-\sqrt y}\big]^{-1}.$$
 | Local k⁴ operators | PPN |
 | PAPER24/25 disformal clock | GW170817: a 1.8–2.3 yr delay against the observed 1.7 s (CK01; errata deposited) |
 | L297 "complete action" (clock chain) | not standing: 3 of 4 checks are literal `True`, the dust is CDM by hand, L306's σ₈ = 1.000000 calls the same function twice, and L294's galaxy exclusion integrates a grid that starts at 30 kpc. Its khronon has one momentum channel (c₂K², λ − 1 ≈ 2.5×10⁻⁵), **not computed** |
-| **C-H (astra, G03)** | static T-B ✓. Causality depends on the criterion (L318). **Moving-source gate ✗ (L330)** |
+| **C-H (astra, G03)** | static T-B ✓. Causality depends on the criterion (L318). **Moving-source gate ✗ (L330)**. α₁, α₂ and c_T have never been computed for C-H. The structural reading is c_T = c, with α's negligible where the filter suppresses the modification. A scratch calculation of the clock's principal symbol (frozen coefficients, O(λ₀), not committed) finds a pole near kξ ≈ 5–7, i.e. linearised Hadamard ill-posedness, wherever sign(C₀) ≠ sign(ρ_ph). That covers negative-phantom lobes, and y > 1 regions for the ν_RAR kernel, including the Sun's neighbourhood. **Scratch lead, needs a committed lane** |
 
 **New today: the momentum pincer (L330).** Every term of C-H's modification is independent of the shift and of every time derivative in the preferred frame. This was verified symbolically for an arbitrary lapse and shift, and astra's FULL_VARIATION states the same thing as G_ni = 8πG T_m,ni. The momentum constraint is therefore GR's with matter momentum alone. Its divergence is ½ ∂_t R⁽³⁾ with every shift term cancelled, so
 
@@ -161,6 +161,10 @@ The same shift-independence is what gives α₁ = α₂ = 0 on the record. The e
 - Wide binaries have three incompatible predictions on the record: γ_v = 1.000 (grok K005, L307), ≥ 2^{1/4} (deepseek PD18/PD20), and the registered Arm A band 1.16–1.23. Only the registered arms (Amendment 11) count.
 - L306's σ₈ claim has never been retracted.
 - The cluster kernel removes either 48% or 74–89% of the dark mass, depending on which lane you read. This is definitional, but it should be reconciled before either number is quoted.
+
+**Record attributions to fix:**
+- L279 (lensing = dynamics), L280 (α₂) and L287 (DOF count) were computed for the khronon + φ host of `THE_ACTION_2026-09-05`, not for C-H, and `CLOCK_WORK_ORDER.md` row C2 conflates the two.
+- doorJ's drag result is for the shift-symmetric f(K) scalar, not for C-H.
 
 Items marked *scratch* were checked by this audit in scripts that are not committed. Do not cite them until a lane commits them.
 
