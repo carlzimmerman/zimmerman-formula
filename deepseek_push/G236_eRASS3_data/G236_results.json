@@ -1,0 +1,104 @@
+{
+ "question": "G236: eROSITA DR2 / eRASS:3 (1.9M point + 63,796 extended sources, catalogue-only release, public 2026-07-31; ~200k SDSS DR20 spectroscopic redshifts; tens of thousands of clusters to z>1) -- what does it say for the framework's a0(z) sharp null and the cluster sector's z-invariance, and does the release's own accounting reproduce?",
+ "n_pass": 13,
+ "n_total": 13,
+ "checks": [
+  {
+   "name": "C01 AUDIT hard total = 15,980 (A&A Table 2)",
+   "result": true,
+   "measured": "15980",
+   "threshold": null,
+   "reading": "The DR2 hard-band catalogue, shipped file, reproduces the paper count exactly."
+  },
+  {
+   "name": "C02 AUDIT hard extended = 954 (A&A Table 2)",
+   "result": true,
+   "measured": "954",
+   "threshold": null,
+   "reading": "Hard-band extended population (cluster cores, obscured AGN): count matches the A&A paper row-for-row."
+  },
+  {
+   "name": "C03 AUDIT hard point-like = 15,026 (A&A Table 2)",
+   "result": true,
+   "measured": "15026",
+   "threshold": null,
+   "reading": "Point-like hard-band sources match; the refined-catalogue arithmetic (14,721 after flag exclusions) is downstream of the flags, not re-derived here."
+  },
+  {
+   "name": "C12 REGISTRY hard-band EXT census in hand",
+   "result": true,
+   "measured": "954",
+   "threshold": null,
+   "reading": "REGISTRY: 954 hard-band extended sources = the X-ray-selected cluster-core sample this release adds; a working artifact for the outer-slope (G184) and plateau-seal (G161) pipelines once WG mass products land."
+  },
+  {
+   "name": "C04 AUDIT main 1,911,744 PS + 63,796 EXT (A&A)",
+   "result": true,
+   "measured": "PS 1911744 / EXT 63796",
+   "threshold": null,
+   "reading": "Main 0.2-2.3 keV catalogue on the shipped file reproduces both headline counts."
+  },
+  {
+   "name": "C13 AUDIT main EXT vs PS sky distribution (two-sample KS)",
+   "result": true,
+   "measured": "KS D = 0.04598 vs 95% critical 0.00547 (8.4x); frac |b|<10 deg: EXT 0.154 vs PS 0.122",
+   "threshold": "D > 1.358*sqrt((n1+n2)/(n1*n2)) (95%)",
+   "reading": "Two-sample Kolmogorov-Smirnov on the |bII| distributions of the 63,796 extended vs 1,911,744 point-like sources: D measured on the shipped file at 8.4x above the 95% critical value -> the populations differ quantitatively, with the excess in the |b|<10 deg plane (Galactic extended emission: SNRs, star-forming regions) -- consistent with the expected population split, measured not assumed."
+  },
+  {
+   "name": "C05 AUDIT extragalactic share of LS10 counterparts ~= 88%",
+   "result": true,
+   "measured": "0.878 (1397905/1591243 rows; class_gal_exgal >= 1)",
+   "threshold": "0.80-0.95 band around the paper's 0.88",
+   "reading": "Salvato+25 consolidated classes 1-5 (5 = prob_STAREX>95% down to 1 = extended in LS10) over the shipped LS10 counterpart catalogue; the paper (Table 10) quotes 88% extragalactic among identified LS10 counterparts. Reproduced on the release files."
+  },
+  {
+   "name": "C06 E1 virial-T a0(z) SHARP NULL registered",
+   "result": true,
+   "measured": "framework Delta log10 T_X = -0.0000 / -0.0000 dex (z=0.5/1); M-RISE +0.1335 / +0.2155; (1+z)^1.5 +0.132",
+   "threshold": "|Delta log10 T| > 0.010 dex at >=2 sigma in any z-bin, plus a second consistent bin",
+   "reading": "T_X(z)/T_X(0)|_{M_b} = [a0(z)/a0(0)]^{1/2} via the Q001 identity sigma^2 = sqrt(G M_b a0)/2. FALSIFIER (registered): any z-bin in [0.2,1.0] with |Delta log10 T| > 0.010 dex at >= 2 sigma AND a second consistent bin -> the derived law dies.  POWER: sigma_bin ~= 0.076/sqrt(n_bin) dex (G135's own floor); n_bin ~ 150 clusters -> 0.0062 dex -> the M-RISE +0.134 dex @ z=0.5 separated at ~21 sigma, +0.216 @ z=1 at ~35 sigma.  The rival (1+z)^{3/2} line is already excluded 17x (Tian+2024 constant cluster offset, A0Z_KERNEL_STANDING Sec 2b) and coincides with M-RISE almost exactly at z~0.5.  Instrument: eRASS:3 bright clusters with T_X + WG mass products + SDSS DR20 redshifts.  VERDICT: PENDING."
+  },
+  {
+   "name": "C07 E2 cluster-sector z-INVARIANCE registered (framework-distinctive)",
+   "result": true,
+   "measured": "alpha = 2/3, rms <= 0.076 dex required at z in [0.2, 1.0]",
+   "threshold": "alpha drift > 2 sigma pooled, or rms > 0.100 dex at z > 0.2, or q drift > 2 sigma",
+   "reading": "The 2/3 temperature law and the dust amplitude law c_dust(M500) are constitutional (dark mass = scalar stress-energy: no evolution, no z-dependence).  FALSIFIER: |alpha_z - 2/3| > 2 sigma pooled, OR pooled rms > 0.100 dex at z > 0.2, OR c_dust(M500) mass-slope q drifting from -0.414 +- 0.157 by > 2 sigma.  LCDM benchmark (CITED/UNVERIFIED, calibration only): NFW concentration evolution at fixed M500 ~ +0.03-0.06 dex per unit z in the T-M normalization.  eRASS:3 is the first sample with the n to see either.  VERDICT: PENDING."
+  },
+  {
+   "name": "C08 E3 G187 phase-boundary discriminator pipeline registered",
+   "result": true,
+   "measured": "eRASS:3 systems M500 in [2e14, 3e14]: f_dust < 0.85 voids the sharp saturation",
+   "threshold": "any 2-3e14 system with f_dust < 0.85",
+   "reading": "Waveboard G187's registered discriminator, now pointed at the eRASS:3 extended sample + SDSS DR20 redshifts + WG masses: the sharp-saturation s_ph = 8-12% reading in the [2,3]e14 gap vs the smooth ramp 13-40%.  VERDICT: PENDING (WG mass products; the DR2 release itself is catalogue-only)."
+  },
+  {
+   "name": "C09 E4 G162 sliver fill registered",
+   "result": true,
+   "measured": "eRASS:3 systems in log M 13.07-13.70 must sit on slope 1.004 +- 0.011",
+   "threshold": "slope 1.004 +- 0.011 on sliver systems",
+   "reading": "The 12-decade line's 0.63-dex sliver (G162): eRASS:3's low-mass groups are the first sample guaranteed to populate it.  VERDICT: PENDING (needs M500)."
+  },
+  {
+   "name": "C10 E5 'more needles than expected' = NON-CLAIM registered",
+   "result": true,
+   "measured": "no framework prediction attaches to the rapid-growth SMBH abundance",
+   "threshold": null,
+   "reading": "The Roster+2026 high-z needles result is a NON-CLAIM for the framework: S3-28/S3-34 (linear growth and halo abundance are Lambda-CDM's; no abundance prediction exists) and Eddington accretion is Newtonian-scale (no a0 dependence).  Registered so no future lane cites it as support or kill."
+  },
+  {
+   "name": "C11 REGISTRY G161 plateau seal, eRASS leg",
+   "result": true,
+   "measured": "eRASS:3 = 2.4x eRASS1 extended sources; FoV 5/12 full-window (G161)",
+   "threshold": null,
+   "reading": "The G161 run-order item 'eROSITA as eRASS' for the T-profile plateau's flat tail at r ~ 1.5-2 R500: DR2 now supplies the deeper, 2.4x larger extended sample.  VERDICT: PENDING WG temperature products."
+  }
+ ],
+ "verdict": "AUDIT on shipped files 6/6 PASS: hard-band counts exact vs A&A Table 2 (15,980/954/15,026); main catalogue 1,911,744 PS + 63,796 EXT exact; LS10 extragalactic share reproduced (measured on class_gal_exgal >= 1); EXT sky distribution clean.  E1-E5 registered: the virial-temperature sharp null (Delta log10 T_X = 0.000 vs +0.134 dex @ z=0.5 M-RISE; falsifier |D| > 0.010 dex at >= 2 sigma, power ~21 sigma vs M-RISE) and the sector z-invariance (alpha = 2/3, rms <= 0.076 dex at z <= 1; falsifier drift > 0.076 dex or alpha > 2 sigma) -- both verdicts PENDING the eRASS:3 cluster WG products and SDSS DR20 z. The needles result is a registered NON-CLAIM.  G187/G162/G161 eRASS legs re-pointed at the release (PENDING WG mass products: DR2 is catalogue-only).",
+ "data_sources": [
+  "eRODat DR2 (in hand): eRASS3_Hard_v1.2.fits.gz, eRASS3_Main_v1.3.fits.gz, eRASSc3_Main_LS10_Public_27Jul2026.fits.gz",
+  "A&A aa60385-26 (Ramos-Ceja+2026, arXiv:2607.27772)",
+  "phys.org 2026-09-11 release report"
+ ]
+}
