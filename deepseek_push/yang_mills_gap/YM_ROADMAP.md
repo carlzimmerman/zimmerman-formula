@@ -5,6 +5,8 @@ Every item below is either machine-verified HERE or registered as open with
 its exact obstruction. Nothing claimed beyond its proof; nothing open
 declared closed.
 
+**2026-09-23:** the sharpest explicit threshold is L326's X_3 ≈ 59.9 (BDL route, [ym1_bdl_extension_2026](../../real_research/ym1_bdl_extension_2026/DERIVATION.md)); the 185.3 below is an independent second method.
+
 **2026-09-22 update to R4 (explicit threshold):** the finite, numerically unspecified strong-coupling
 threshold X_d below is now explicit. X_3 = 185.3 works for every N ≥ 2 (98.3 for SU(3) with b = 2),
 with gap ≥ 3x/16, uniform in volume, proved by a cluster expansion with tracked constants and

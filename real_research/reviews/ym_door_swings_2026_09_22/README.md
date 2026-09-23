@@ -15,3 +15,8 @@ is made.**
 Each folder has a runnable script (exit 0, `ALL CHECKS PASSED`) and its
 `results.json`. The two new proofs were independently reviewed before this
 commit, and every flagged gap was fixed; see `ym1_hamiltonian/REVIEW.md`.
+
+**2026-09-23 note:** the sharper D-YM1 thresholds are those of the independent L326 lane
+(`real_research/ym1_bdl_extension_2026/`: X₂ ≈ 42.3, X₃ ≈ 59.9, X₄ ≈ 73.3, BDL route). The
+`ym1_hamiltonian/` result here (131/185/227) is a second, independent method reaching the same
+statement.

@@ -526,3 +526,15 @@ contains Ω (F3) and is invariant under H, so its gap is at least that of
   grid-optimum rows sit on κ_B ≈ K*, where the Γ_{0t} step needs strict
   inequality, so they are reference only and are not to be quoted.
 - `REVIEW.md` holds the independent adversarial review and its resolution.
+
+
+---
+
+**Addendum 2026-09-23 (append-only).** A parallel, independent swing of the same door,
+`real_research/ym1_bdl_extension_2026/` (lane L326, Lean I19, refereed in-repo), follows a different
+route. It carries Bravyi–DiVincenzo–Loss (CMP 284 (2008) 481, arXiv:0707.1894), a tracked-constant
+Kirkwood–Thomas proof, to Kogut–Susskind SU(N). It gets the sharper thresholds **X₂ ≈ 42.3, X₃ ≈ 59.9,
+X₄ ≈ 73.3**, with the same gap form ≥ 3x/16, uniform in N and in finite volume. **Those are the repo's
+best explicit thresholds.** This file remains an independent confirmation by a different method, a
+space-time polymer expansion on Ueltschi 2004. Its constants are weaker (131/185/227), and it shares none
+of its combinatorics with L326. Two independent routes to the same statement is the point of keeping it.
