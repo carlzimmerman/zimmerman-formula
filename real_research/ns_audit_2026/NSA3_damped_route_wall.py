@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-L324 -- SWING 2: THE DAMPED ROUTE TO CLAY, CARRIED TO THE WALL.  d_t u - nu Lap u + (u.grad)u + c|u|^(b-1)u + grad p
+NSA3 -- SWING 2: THE DAMPED ROUTE TO CLAY, CARRIED TO THE WALL.  d_t u - nu Lap u + (u.grad)u + c|u|^(b-1)u + grad p
 = 0 with c -> 0 (the campaign's ZNS family, N03/N03b), step by step, until a step fails.
 
 THE ROUTE
@@ -29,7 +29,7 @@ WHAT THIS LANE SHOWS
      literature it cites at the framework's own coupling; N03b's Galerkin evidence run (c = 0.3, nu = 5e-3,
      c nu = 1.5e-3) is also outside the certified regime (evidence, not certificate).
   W5 EVERY DOOR HITS THE SAME HALF.  For each quantity X the energy class gives a space; excess over critical,
-     per power of u, is 1/2 for u, grad u, p, grad p and the gradient part of Du/Dt (L323's route).  Symbolic table.
+     per power of u, is 1/2 for u, grad u, p, grad p and the gradient part of Du/Dt (NSA2's route).  Symbolic table.
   W6 THE PASSAGE c -> 0 IS THE CLAY ESTIMATE.  The b = 3 closure needs c >= 1/(4 nu); the b >= 4 bound diverges
      ~ c^(-1/(b+1)); what survives c -> 0 is W1's Leray-Hopf class with gap 1/2.  Crossing it requires a c-uniform
      critical bound, i.e. an a priori estimate for NSE itself.  Tao 2016 (JAMS 29:601) builds an averaged NSE that
@@ -38,7 +38,7 @@ WHAT THIS LANE SHOWS
   MUTATE=1 replaces the +1/2 in the integration-by-parts identity by -1/2: the numerical check must fail and W3 must
   FAIL (rc = 1).
 
-Run from the repository root:  python3 real_research/ns_audit_2026/L324_damped_route_wall.py
+Run from the repository root:  python3 real_research/ns_audit_2026/NSA3_damped_route_wall.py
 """
 import os, sys, json
 import numpy as np
@@ -46,9 +46,9 @@ import sympy as sp
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MUTATE = os.environ.get("MUTATE", "0") == "1"
-SLUG = "L324_damped_route_wall"
+SLUG = "NSA3_damped_route_wall"
 P = lambda *a: print(*a, flush=True)
-CH, OUT = [], {"lane": "L324", "mutate": MUTATE, "checks": {}, "numbers": {}}
+CH, OUT = [], {"lane": "NSA3", "mutate": MUTATE, "checks": {}, "numbers": {}}
 
 
 def check(name, measured, ok, reading="", load_bearing=True):
@@ -166,7 +166,7 @@ R = sp.Rational
 rows = [("u", 1, 1, (R(10, 3), R(10, 3))),
         ("grad u (and vorticity)", 2, 1, (2, 2)),
         ("p = RR(u u)", 2, 2, (R(5, 3), R(5, 3))),
-        ("grad p = -Q(Du/Dt)  [L323 route]", 3, 2, (R(5, 4), R(5, 4)))]
+        ("grad p = -Q(Du/Dt)  [NSA2 route]", 3, 2, (R(5, 4), R(5, 4)))]
 table = {}
 for name, wgt, deg, (q, p) in rows:
     idx = 2 / sp.S(q) + 3 / sp.S(p)

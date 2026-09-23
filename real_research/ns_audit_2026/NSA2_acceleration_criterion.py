@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-L323 -- SWING 1: THE SCALE-INVARIANT WINDOW THEOREM.  A material-acceleration regularity criterion for 3D NSE,
+NSA2 -- SWING 1: THE SCALE-INVARIANT WINDOW THEOREM.  A material-acceleration regularity criterion for 3D NSE,
 and why a0 cannot appear in it.
 
 THE UPGRADE
-  N05's hypothesis sup|Du/Dt| <= 3.5 a0 is a dimensional ceiling: true for any constant (L322 K1) and not invariant
+  N05's hypothesis sup|Du/Dt| <= 3.5 a0 is a dimensional ceiling: true for any constant (NSA1 K1) and not invariant
   under the NSE scaling.  The natural theorem puts the material acceleration a := Du/Dt = d_t u + (u.grad)u in a
   scale-invariant (critical) space.
 
@@ -35,7 +35,7 @@ WHAT THIS LANE CHECKS
      nu^{2-1/s}.  The scale-invariant theorem has no slot for a0 -- only nu.
   MUTATE=1 projects with P instead of Q: the identity must fail on the flow and T3 must FAIL (rc = 1).
 
-Run from the repository root:  python3 real_research/ns_audit_2026/L323_acceleration_criterion.py
+Run from the repository root:  python3 real_research/ns_audit_2026/NSA2_acceleration_criterion.py
 """
 import os, sys, json
 import numpy as np
@@ -43,9 +43,9 @@ import sympy as sp
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MUTATE = os.environ.get("MUTATE", "0") == "1"
-SLUG = "L323_acceleration_criterion"
+SLUG = "NSA2_acceleration_criterion"
 P = lambda *a: print(*a, flush=True)
-CH, OUT = [], {"lane": "L323", "mutate": MUTATE, "checks": {}, "numbers": {}}
+CH, OUT = [], {"lane": "NSA2", "mutate": MUTATE, "checks": {}, "numbers": {}}
 
 
 def check(name, measured, ok, reading="", load_bearing=True):
@@ -219,7 +219,7 @@ P("""  Swing 1 lands as a correct conditional theorem, not a Clay result: if the
   exact identity (grad p = -Q Du/Dt, checked symbolically and on an evolved flow) plus the cited pressure-gradient
   criterion.  It strictly generalises N05's hypothesis and, being scale-invariant, contains no a0: the only scale
   it admits is nu.  It does not prove that any solution satisfies the hypothesis -- that a priori bound is the
-  Clay problem (L324 maps why every route to it stops at the same half-derivative).""")
+  Clay problem (NSA3 maps why every route to it stops at the same half-derivative).""")
 
 n_fail = sum(1 for _, ok, lb in CH if lb and not ok)
 OUT["n_checks"], OUT["n_fail_load_bearing"] = len(CH), n_fail

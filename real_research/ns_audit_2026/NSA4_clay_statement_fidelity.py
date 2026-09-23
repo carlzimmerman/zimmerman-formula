@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-L325 -- IS THE PRIZE QUESTION ALREADY ANSWERED?  Statement fidelity of the OpenAI Navier-Stokes breakdown theorem
+NSA4 -- IS THE PRIZE QUESTION ALREADY ANSWERED?  Statement fidelity of the OpenAI Navier-Stokes breakdown theorem
 against Fefferman's official Clay text, checked by the Lean kernel on this machine.
 
 WHY THIS DOOR
   The Clay problem asks "for a proof of one of the following four statements" (A)-(D) (Fefferman, official problem
   description, p.2).  N08/N14 record an OpenAI Lean construction of (C)/(D) (forced breakdown), rebuilt here with clean
   axioms, and name ONE open verification item: statement drift.  If the proved theorem says what (C) says, the
-  prize question is answered in the breakdown direction and no further swing can win it.
+  LETTER of the prize problem is met in the breakdown direction; whether that resolves the prize is the Clay
+  Institute's decision (amended 2026-09-22: see the verdict's status note).
 
 THE CHAIN, LINK BY LINK
   F0 BUILD INPUTS.  The clone and every lake package (Mathlib included) are clean at the manifest revisions, so the
@@ -36,7 +37,7 @@ WHAT THIS DOES NOT CHECK
   The informal paper, the Lean kernel's own soundness, Mathlib's definitions beyond F4, and the Clay prize rules
   (refereed publication + two years).  The OpenAI clone is untracked; the runner records its commit.
 
-Run from the repository root:  python3 real_research/ns_audit_2026/L325_clay_statement_fidelity.py
+Run from the repository root:  python3 real_research/ns_audit_2026/NSA4_clay_statement_fidelity.py
 """
 import os, re, sys, json, subprocess
 
@@ -44,9 +45,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 CLONE = os.path.join(ROOT, "deepseek_push", "navier_stokes_attempt", "openai_NS_lean")
 MUTATE = os.environ.get("MUTATE", "0") == "1"
-SLUG = "L325_clay_statement_fidelity"
+SLUG = "NSA4_clay_statement_fidelity"
 P = lambda *a: print(*a, flush=True)
-CH, OUT = [], {"lane": "L325", "mutate": MUTATE, "checks": {}, "numbers": {}}
+CH, OUT = [], {"lane": "NSA4", "mutate": MUTATE, "checks": {}, "numbers": {}}
 
 
 def check(name, measured, ok, reading="", load_bearing=True):
@@ -154,7 +155,7 @@ banner("F3/F4  THE KERNEL BRIDGE: PROVE THE CHALLENGE STATEMENTS FROM THE SUBMIT
 src = CHAL
 assert src.count("import Mathlib") == 1 and src.count("namespace NavierStokes.Comparator") == 1
 src = src.replace("import Mathlib", "import NavierStokes.ComparatorSolution")
-src = src.replace("namespace NavierStokes.Comparator", "namespace L325Challenge")
+src = src.replace("namespace NavierStokes.Comparator", "namespace NSA4Challenge")
 src = src.replace("end NavierStokes.Comparator", "")
 BR_R3 = """by
   obtain ⟨u₀, f, hu, hf, hno⟩ := NavierStokes.Comparator.navier_stokes_breakdown_R3 nu hnu
@@ -175,14 +176,14 @@ if MUTATE:
     src, k = re.subn(r"  /-- The kinetic energy.*?-/\n  globally_bounded_energy : [^\n]*\n", "", src, flags=re.S)
     assert k == 1
 SANITY = r"""
-/-! ## F4 non-vacuity checks (L325) -/
+/-! ## F4 non-vacuity checks (NSA4) -/
 
 /-- `∞` in these statements is C^∞ smoothness (`(⊤ : ℕ∞)`), not analyticity `ω`. -/
-theorem l325_infty_is_smooth : (∞ : WithTop ℕ∞) = ((⊤ : ℕ∞) : WithTop ℕ∞) ∧ (∞ : WithTop ℕ∞) ≠ ω :=
+theorem nsa4_infty_is_smooth : (∞ : WithTop ℕ∞) = ((⊤ : ℕ∞) : WithTop ℕ∞) ∧ (∞ : WithTop ℕ∞) ≠ ω :=
   ⟨rfl, WithTop.coe_ne_top⟩
 
 /-- The zero field solves the ℝ³ class with zero force: the class is not empty by a junk encoding. -/
-theorem l325_zero_solution_R3 (nu : ℝ) :
+theorem nsa4_zero_solution_R3 (nu : ℝ) :
     NavierStokesExistenceAndSmoothnessRn (n := 3) nu 0 0 (fun _ _ => 0) (fun _ _ => 0) := by
   refine ⟨⟨?_, ?_, ?_, ?_, ?_⟩, ?_, ?_⟩
   · intro x t _
@@ -198,7 +199,7 @@ theorem l325_zero_solution_R3 (nu : ℝ) :
   · exact ⟨1, fun t _ => by simp⟩
 
 /-- v = t • c with f = c solves the base class: the time-derivative term is live. -/
-theorem l325_linear_in_time (nu : ℝ) (c : EuclideanSpace ℝ (Fin 3)) :
+theorem nsa4_linear_in_time (nu : ℝ) (c : EuclideanSpace ℝ (Fin 3)) :
     NavierStokesExistenceAndSmoothness nu (fun _ => 0) (fun _ _ => c) (fun _ t => t • c) (fun _ _ => 0) := by
   refine ⟨?_, ?_, ?_, ?_, ?_⟩
   · intro x t ht
@@ -213,13 +214,13 @@ theorem l325_linear_in_time (nu : ℝ) (c : EuclideanSpace ℝ (Fin 3)) :
   · exact (contDiff_snd.smul contDiff_const).contDiffOn
   · exact contDiffOn_const
 
-end L325Challenge
+end NSA4Challenge
 
-#print axioms L325Challenge.navier_stokes_breakdown_R3
-#print axioms L325Challenge.navier_stokes_breakdown_periodic
-#print axioms L325Challenge.l325_zero_solution_R3
-#print axioms L325Challenge.l325_linear_in_time
-#print axioms L325Challenge.l325_infty_is_smooth
+#print axioms NSA4Challenge.navier_stokes_breakdown_R3
+#print axioms NSA4Challenge.navier_stokes_breakdown_periodic
+#print axioms NSA4Challenge.nsa4_zero_solution_R3
+#print axioms NSA4Challenge.nsa4_linear_in_time
+#print axioms NSA4Challenge.nsa4_infty_is_smooth
 """
 src = src.rstrip() + "\n" + SANITY
 lean_name = f"{SLUG}{'_MUTATE' if MUTATE else ''}.lean"
@@ -237,13 +238,13 @@ for k in re.findall(r"'([\w.]+)' does not depend on any axioms", out):
     axsets[k] = set()
 OUT["numbers"]["F3"] = {"lean_file": lean_name, "exit": res.returncode, "axioms": {k: sorted(v) for k, v in axsets.items()},
                         "output_head": out.splitlines()[:40]}
-br = ["L325Challenge.navier_stokes_breakdown_R3", "L325Challenge.navier_stokes_breakdown_periodic"]
+br = ["NSA4Challenge.navier_stokes_breakdown_R3", "NSA4Challenge.navier_stokes_breakdown_periodic"]
 check("F3 the Lean kernel derives the challenge statements (C) and (D), verbatim, from the submitted theorems; axioms "
       "exactly {propext, Classical.choice, Quot.sound}",
       f"exit {res.returncode}; " + "; ".join(f"{k.split('.')[-1]}: {sorted(axsets.get(k, []))}" for k in br),
       res.returncode == 0 and all(axsets.get(k) == std for k in br),
       "the theorem proved IS the challenge statement: no drift between what was proved and what was asked")
-san = ["L325Challenge.l325_zero_solution_R3", "L325Challenge.l325_linear_in_time", "L325Challenge.l325_infty_is_smooth"]
+san = ["NSA4Challenge.nsa4_zero_solution_R3", "NSA4Challenge.nsa4_linear_in_time", "NSA4Challenge.nsa4_infty_is_smooth"]
 check("F4 non-vacuity: ∞ is C^inf (≠ ω); the zero field solves the R^3 class; v = t c, f = c solves the base class",
       "; ".join(f"{k.split('.')[-1]}: {'ok' if k in axsets and 'sorryAx' not in axsets[k] else 'missing'}" for k in san),
       res.returncode == 0 and all(k in axsets and "sorryAx" not in axsets[k] for k in san),
@@ -268,10 +269,13 @@ elif n_fail:
 else:
     P("""  On this machine the Lean kernel proves Fefferman's (C) and (D), as encoded by DeepMind's Formal Conjectures and
   checked here clause by clause against the official text, from the OpenAI construction -- no statement drift at
-  any link.  What remains outside this check: the kernel's and Mathlib's soundness, and the Clay rules (refereed
-  publication, two years).  If those hold, the Millennium question is answered in the BREAKDOWN direction by a
-  construction that uses no framework input; (A)/(B), unforced global regularity, stay open as mathematics but
-  are no longer a route to the prize.""")
+  any link, by a construction that uses no framework input.  What remains outside this check: the kernel's and
+  Mathlib's soundness.
+  STATUS (amended 2026-09-22 from public reporting): the Clay Institute has NOT ruled -- it still lists the problem
+  as unsolved and calls its evaluation 'deliberately unhurried'; OpenAI says it will not claim the prize;
+  mathematicians quoted publicly do not dispute correctness but regard the forced alternative as not the main
+  question.  So: the letter of (C) is proved; whether that resolves the prize is pending with the Clay Institute;
+  the unforced problem (A)/(B) is open either way.""")
 
 n_fail = sum(1 for _, ok, lb in CH if lb and not ok)
 OUT["n_checks"], OUT["n_fail_load_bearing"] = len(CH), n_fail

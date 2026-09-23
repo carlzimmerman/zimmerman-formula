@@ -1,0 +1,171 @@
+{
+ "lane": "NSA7",
+ "mutate": true,
+ "checks": {
+  "D1 both kernels have F(y) = sqrt(y) + O(y): the force is exactly Holder-1/2 at a null and nu_eff ~ 1/(2 sqrt y)": {
+   "ok": false,
+   "measured": "leading coefficients 1, 1; 2 sqrt(y) nu_eff -> [0.0002, 0.0002]",
+   "load_bearing": true
+  },
+  "D2 the first crossing time falls as N^(-1/4) for both kernels (T* -> 0 in the continuum): no classical solution exists for any t > 0": {
+   "ok": false,
+   "measured": "slopes {'nu_RAR': -9.194862393903999e-12, 'mu_2': -9.194862393903999e-12}",
+   "load_bearing": true
+  },
+  "D3 the multi-stream region grows as t^4 with the deep-MOND coefficient (pi/4) G rho a0": {
+   "ok": false,
+   "measured": "{'nu_RAR': (nan, nan), 'mu_2': (nan, nan)}",
+   "load_bearing": true
+  },
+  "D4 at t = t_N the caustic front is at nu_eff = 1 (y1 = 2.540 nu_RAR, 3/2 mu_2); beyond y1 nu_eff < 1 (negative planar phantom density), the only regime where the framework delays collapse, by a few percent": {
+   "ok": false,
+   "measured": "{'nu_RAR': (20.0, 2.54, 1.66), 'mu_2': (20.0, 1.5, 1.84)}",
+   "load_bearing": true
+  },
+  "D5 in 3D the deep-MOND centre has t_arrival ~ r0^(1/4) (inner shells first -> instant crossing) and a phantom density ~ r^(-1/2); the collapsed region grows as r_c = (16/(3 pi)) G rho a0 t^4": {
+   "ok": true,
+   "measured": "exponents 1/4, -1/2; r_c coefficient 16/(3*pi)",
+   "load_bearing": true
+  },
+  "D6 numbers (documentary): real nulls are galaxy centres; the deep zone is kpc-scale in cored dwarfs and pc-scale in bulges, and it is crossed on the Newtonian free-fall time": {
+   "ok": true,
+   "measured": "{'cored dwarf centre / canonical': 1602.8, 'cored dwarf centre / alt': 1935.0, 'bulge centre / canonical': 1.6, 'bulge centre / alt': 1.9}",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "D1": {
+   "series_rar": "s**3/12 + s**2/2 + s",
+   "series_mu2": "13*s**3/128 + 3*s**2/8 + s",
+   "2sqrt(y)nu_eff": {
+    "nu_RAR": [
+     0.0002,
+     0.002,
+     0.02
+    ],
+    "mu_2": [
+     0.0002,
+     0.002,
+     0.02
+    ]
+   }
+  },
+  "D2": {
+   "N": [
+    2000,
+    20000,
+    200000,
+    2000000
+   ],
+   "Tstar": {
+    "nu_RAR": [
+     0.999999999999944,
+     0.9999999999989448,
+     0.9999999999967244,
+     0.999999999930111
+    ],
+    "mu_2": [
+     0.999999999999944,
+     0.9999999999989448,
+     0.9999999999967244,
+     0.999999999930111
+    ]
+   },
+   "slopes": {
+    "nu_RAR": -9.194862393903999e-12,
+    "mu_2": -9.194862393903999e-12
+   }
+  },
+  "D3": {
+   "nu_RAR": {
+    "tau": [
+     0.1,
+     0.12,
+     0.15,
+     0.18,
+     0.22
+    ],
+    "x_c": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "slope": NaN,
+    "coef_over_deep": NaN
+   },
+   "mu_2": {
+    "tau": [
+     0.1,
+     0.12,
+     0.15,
+     0.18,
+     0.22
+    ],
+    "x_c": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "slope": NaN,
+    "coef_over_deep": NaN
+   }
+  },
+  "D4": {
+   "nu_RAR": {
+    "y1": 2.5396382821881653,
+    "nu_eff(y1)": 1.0,
+    "front_at_tN": 19.999900000000004,
+    "min_nu_eff": 0.9675525520420931,
+    "y_at_min": 6.637430704019089,
+    "max_delay_pct": 1.6629525611600249
+   },
+   "mu_2": {
+    "y1": 1.5,
+    "nu_eff(y1)": 1.0,
+    "front_at_tN": 19.999900000000004,
+    "min_nu_eff": 0.9642857439973463,
+    "y_at_min": 3.5522211848231953,
+    "max_delay_pct": 1.8350138745897082
+   }
+  },
+  "D5": {
+   "t_arrival": "3**(1/4)*pi**(1/4)*r0**(1/4)/(2*G**(1/4)*a0**(1/4)*rho**(1/4))",
+   "exponent": "1/4",
+   "r_c": "16*G*a0*rho*t**4/(3*pi)",
+   "r_c_coef": "16/(3*pi)",
+   "phantom_exponent": "-1/2"
+  },
+  "D6": {
+   "cored dwarf centre / canonical": {
+    "rho_c_Msun_pc3": 0.1,
+    "r_D_pc": 1602.7790422389605,
+    "t_arrival_rD_Myr": 28.866803595721702,
+    "t_ff_newton_Myr": 25.582538598285065
+   },
+   "cored dwarf centre / alt": {
+    "rho_c_Msun_pc3": 0.1,
+    "r_D_pc": 1934.9789719337875,
+    "t_arrival_rD_Myr": 28.866803595721702,
+    "t_ff_newton_Myr": 25.582538598285065
+   },
+   "bulge centre / canonical": {
+    "rho_c_Msun_pc3": 100.0,
+    "r_D_pc": 1.6027790422389603,
+    "t_arrival_rD_Myr": 0.9128484813121899,
+    "t_ff_newton_Myr": 0.8089909029975214
+   },
+   "bulge centre / alt": {
+    "rho_c_Msun_pc3": 100.0,
+    "r_D_pc": 1.9349789719337875,
+    "t_arrival_rD_Myr": 0.9128484813121897,
+    "t_ff_newton_Myr": 0.8089909029975214
+   }
+  }
+ },
+ "n_checks": 6,
+ "n_fail_load_bearing": 4
+}

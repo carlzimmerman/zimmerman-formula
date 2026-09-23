@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-L326 -- SWINGING THE beta = 3 DOOR BELOW 4 c nu = 1: the standard H^1 closure cannot go lower, even with every term
-the literature drops.  (Follow-up to L324 W3/W4.)
+NSA5 -- SWINGING THE beta = 3 DOOR BELOW 4 c nu = 1: the standard H^1 closure cannot go lower, even with every term
+the literature drops.  (Follow-up to NSA3 W3/W4.)
 
 THE DOOR
   d_t u - nu Lap u + (u.grad)u + c|u|^2 u + grad p = 0 on T^3 (critical damping, the convective Brinkman-Forchheimer
   equations with r = 3).  Global regularity is known for 4 c nu >= 1 (Hajduk-Robinson 2017, JDE 263:7141; also
   Zhang-Wu-Lu 2011, Kim-Li 2017).  Mohan 2024 (arXiv:2412.20940) records monotonicity at 2 c nu >= 1 and no
-  regularity result below 4 c nu = 1; a second, harder search found none either, so L324 W3/W4 stand.  This door
+  regularity result below 4 c nu = 1; a second, harder search found none either, so NSA3 W3/W4 stand.  This door
   sits strictly between the known theory and Clay: c nu is the only dimensionless parameter and the damping is
   scale-critical.
 
@@ -31,7 +31,7 @@ THE SWING
   Label [C]: an optimality statement about a METHOD, not about the PDE.  The PDE question below 1/4 stays open.
   MUTATE=1 replaces Lap u by Lap u + grad phi (not solenoidal) in G1: the gauge freedom must break and G1 must FAIL.
 
-Run from the repository root:  python3 real_research/ns_audit_2026/L326_beta3_threshold_optimality.py
+Run from the repository root:  python3 real_research/ns_audit_2026/NSA5_beta3_threshold_optimality.py
 """
 import os, sys, json
 import numpy as np
@@ -39,9 +39,9 @@ import sympy as sp
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MUTATE = os.environ.get("MUTATE", "0") == "1"
-SLUG = "L326_beta3_threshold_optimality"
+SLUG = "NSA5_beta3_threshold_optimality"
 P = lambda *a: print(*a, flush=True)
-CH, OUT = [], {"lane": "L326", "mutate": MUTATE, "checks": {}, "numbers": {}}
+CH, OUT = [], {"lane": "NSA5", "mutate": MUTATE, "checks": {}, "numbers": {}}
 
 
 def check(name, measured, ok, reading="", load_bearing=True):

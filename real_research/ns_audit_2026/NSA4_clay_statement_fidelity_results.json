@@ -1,6 +1,6 @@
 {
- "lane": "L325",
- "mutate": true,
+ "lane": "NSA4",
+ "mutate": false,
  "checks": {
   "F0 the clone and every package are clean at the manifest revisions: Mathlib's definitions (ContDiffOn, laplacian, gradient, integral) are the published ones": {
    "ok": true,
@@ -18,13 +18,13 @@
    "load_bearing": true
   },
   "F3 the Lean kernel derives the challenge statements (C) and (D), verbatim, from the submitted theorems; axioms exactly {propext, Classical.choice, Quot.sound}": {
-   "ok": false,
-   "measured": "exit 1; navier_stokes_breakdown_R3: ['Classical.choice', 'Quot.sound', 'propext', 'sorryAx']; navier_stokes_breakdown_periodic: ['Classical.choice', 'Quot.sound', 'propext']",
+   "ok": true,
+   "measured": "exit 0; navier_stokes_breakdown_R3: ['Classical.choice', 'Quot.sound', 'propext']; navier_stokes_breakdown_periodic: ['Classical.choice', 'Quot.sound', 'propext']",
    "load_bearing": true
   },
   "F4 non-vacuity: \u221e is C^inf (\u2260 \u03c9); the zero field solves the R^3 class; v = t c, f = c solves the base class": {
-   "ok": false,
-   "measured": "l325_zero_solution_R3: missing; l325_linear_in_time: ok; l325_infty_is_smooth: ok",
+   "ok": true,
+   "measured": "nsa4_zero_solution_R3: ok; nsa4_linear_in_time: ok; nsa4_infty_is_smooth: ok",
    "load_bearing": true
   },
   "F5 the challenge matches the upstream Formal Conjectures statement (transcribed, not byte-compared)": {
@@ -168,52 +168,40 @@
    "added": []
   },
   "F3": {
-   "lean_file": "L325_clay_statement_fidelity_MUTATE.lean",
-   "exit": 1,
+   "lean_file": "NSA4_clay_statement_fidelity.lean",
+   "exit": 0,
    "axioms": {
-    "L325Challenge.navier_stokes_breakdown_R3": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext",
-     "sorryAx"
-    ],
-    "L325Challenge.navier_stokes_breakdown_periodic": [
+    "NSA4Challenge.navier_stokes_breakdown_R3": [
      "Classical.choice",
      "Quot.sound",
      "propext"
     ],
-    "L325Challenge.l325_zero_solution_R3": [
-     "Classical.choice",
-     "Quot.sound",
-     "propext",
-     "sorryAx"
-    ],
-    "L325Challenge.l325_linear_in_time": [
+    "NSA4Challenge.navier_stokes_breakdown_periodic": [
      "Classical.choice",
      "Quot.sound",
      "propext"
     ],
-    "L325Challenge.l325_infty_is_smooth": []
+    "NSA4Challenge.nsa4_zero_solution_R3": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "NSA4Challenge.nsa4_linear_in_time": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "NSA4Challenge.nsa4_infty_is_smooth": []
    },
    "output_head": [
-    "real_research/ns_audit_2026/L325_clay_statement_fidelity_MUTATE.lean:278:40: error(lean.invalidField): Invalid field `globally_bounded_energy`: The environment does not contain `L325Challenge.NavierStokesExistenceAndSmoothnessRn.globally_bounded_energy`, so it is not possible to project the field `globally_bounded_energy` from an expression",
-    "  h",
-    "of type",
-    "  NavierStokesExistenceAndSmoothnessRn nu u\u2080 f v p",
-    "real_research/ns_audit_2026/L325_clay_statement_fidelity_MUTATE.lean:300:9: error: Invalid `\u27e8...\u27e9` notation: The expected type",
-    "  \u2200 t \u2265 0, MemLp (fun x => \u20160\u2016) 2 volume",
-    "is not an inductive type",
-    "",
-    "Note: This notation can only be used when the expected type is an inductive type with a single constructor",
-    "real_research/ns_audit_2026/L325_clay_statement_fidelity_MUTATE.lean:309:2: error: No goals to be solved",
-    "'L325Challenge.navier_stokes_breakdown_R3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
-    "'L325Challenge.navier_stokes_breakdown_periodic' depends on axioms: [propext, Classical.choice, Quot.sound]",
-    "'L325Challenge.l325_zero_solution_R3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
-    "'L325Challenge.l325_linear_in_time' depends on axioms: [propext, Classical.choice, Quot.sound]",
-    "'L325Challenge.l325_infty_is_smooth' does not depend on any axioms"
+    "'NSA4Challenge.navier_stokes_breakdown_R3' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'NSA4Challenge.navier_stokes_breakdown_periodic' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'NSA4Challenge.nsa4_zero_solution_R3' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'NSA4Challenge.nsa4_linear_in_time' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'NSA4Challenge.nsa4_infty_is_smooth' does not depend on any axioms"
    ]
   }
  },
  "n_checks": 6,
- "n_fail_load_bearing": 2
+ "n_fail_load_bearing": 0
 }

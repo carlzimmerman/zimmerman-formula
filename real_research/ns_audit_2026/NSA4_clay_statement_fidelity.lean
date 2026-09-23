@@ -60,7 +60,7 @@ the time derivative is encoded with `derivWithin` relative to `Set.Ici 0`.
 open ContDiff Set InnerProductSpace MeasureTheory
 open scoped Laplacian
 
-namespace L325Challenge
+namespace NSA4Challenge
 
 -- Inlined notation from FormalConjecturesForMathlib.Geometry.Euclidean and Geometry.«3d».
 local notation "ℝ^" n:65 => EuclideanSpace ℝ (Fin n)
@@ -248,6 +248,9 @@ structure NavierStokesExistenceAndSmoothnessRn
   extends NavierStokesExistenceAndSmoothness nu u₀ f v p where
   /-- The velocity is square-integrable at each time $t \ge 0$ (condition 7). -/
   integrable : ∀ t ≥ 0, MemLp (‖v · t‖) 2
+  /-- The kinetic energy $\int \lVert v(x,t) \rVert^2\,dx$ remains uniformly bounded
+  for all time (condition 7), where the integral is the Lebesgue integral. -/
+  globally_bounded_energy : ∃ E, ∀ t ≥ 0, (∫ x : ℝ^n, ‖v x t‖ ^ 2) < E
 
 /--
 A solution to the Navier-Stokes equations on the $n$-torus $\mathbb{R}^n/\mathbb{Z}^n$.
@@ -288,14 +291,14 @@ theorem navier_stokes_breakdown_periodic (nu : ℝ) (hnu : nu > 0) :
   exact hno ⟨v, p, ⟨⟨h.navier_stokes, h.div_free, h.initial_condition, h.velocity_smooth,
     h.pressure_smooth⟩, h.isOnePeriodic_velocity, h.isOnePeriodic_pressure⟩⟩
 
-/-! ## F4 non-vacuity checks (L325) -/
+/-! ## F4 non-vacuity checks (NSA4) -/
 
 /-- `∞` in these statements is C^∞ smoothness (`(⊤ : ℕ∞)`), not analyticity `ω`. -/
-theorem l325_infty_is_smooth : (∞ : WithTop ℕ∞) = ((⊤ : ℕ∞) : WithTop ℕ∞) ∧ (∞ : WithTop ℕ∞) ≠ ω :=
+theorem nsa4_infty_is_smooth : (∞ : WithTop ℕ∞) = ((⊤ : ℕ∞) : WithTop ℕ∞) ∧ (∞ : WithTop ℕ∞) ≠ ω :=
   ⟨rfl, WithTop.coe_ne_top⟩
 
 /-- The zero field solves the ℝ³ class with zero force: the class is not empty by a junk encoding. -/
-theorem l325_zero_solution_R3 (nu : ℝ) :
+theorem nsa4_zero_solution_R3 (nu : ℝ) :
     NavierStokesExistenceAndSmoothnessRn (n := 3) nu 0 0 (fun _ _ => 0) (fun _ _ => 0) := by
   refine ⟨⟨?_, ?_, ?_, ?_, ?_⟩, ?_, ?_⟩
   · intro x t _
@@ -311,7 +314,7 @@ theorem l325_zero_solution_R3 (nu : ℝ) :
   · exact ⟨1, fun t _ => by simp⟩
 
 /-- v = t • c with f = c solves the base class: the time-derivative term is live. -/
-theorem l325_linear_in_time (nu : ℝ) (c : EuclideanSpace ℝ (Fin 3)) :
+theorem nsa4_linear_in_time (nu : ℝ) (c : EuclideanSpace ℝ (Fin 3)) :
     NavierStokesExistenceAndSmoothness nu (fun _ => 0) (fun _ _ => c) (fun _ t => t • c) (fun _ _ => 0) := by
   refine ⟨?_, ?_, ?_, ?_, ?_⟩
   · intro x t ht
@@ -326,10 +329,10 @@ theorem l325_linear_in_time (nu : ℝ) (c : EuclideanSpace ℝ (Fin 3)) :
   · exact (contDiff_snd.smul contDiff_const).contDiffOn
   · exact contDiffOn_const
 
-end L325Challenge
+end NSA4Challenge
 
-#print axioms L325Challenge.navier_stokes_breakdown_R3
-#print axioms L325Challenge.navier_stokes_breakdown_periodic
-#print axioms L325Challenge.l325_zero_solution_R3
-#print axioms L325Challenge.l325_linear_in_time
-#print axioms L325Challenge.l325_infty_is_smooth
+#print axioms NSA4Challenge.navier_stokes_breakdown_R3
+#print axioms NSA4Challenge.navier_stokes_breakdown_periodic
+#print axioms NSA4Challenge.nsa4_zero_solution_R3
+#print axioms NSA4Challenge.nsa4_linear_in_time
+#print axioms NSA4Challenge.nsa4_infty_is_smooth

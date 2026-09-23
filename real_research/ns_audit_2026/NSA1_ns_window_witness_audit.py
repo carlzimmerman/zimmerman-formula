@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-L322 -- THE NAVIER-STOKES WINDOW "WITNESS" IS AUTOMATIC: what the framework's constants can and cannot say about
+NSA1 -- THE NAVIER-STOKES WINDOW "WITNESS" IS AUTOMATIC: what the framework's constants can and cannot say about
 Clay-NSE (audit of deepseek_push/navier_stokes_attempt N05 / N08 / N13).
 
 THE CLAIMS AUDITED
@@ -36,7 +36,7 @@ WHAT THIS LANE SHOWS
   MUTATE=1 gives the construction BOUNDED material acceleration (exponent p = 0): no singularity, so the exit
   sweep must fail for C above the bound and K1 must FAIL (rc = 1).
 
-Run from the repository root:  python3 real_research/ns_audit_2026/L322_ns_window_witness_audit.py
+Run from the repository root:  python3 real_research/ns_audit_2026/NSA1_ns_window_witness_audit.py
 """
 import os, sys, json
 import numpy as np
@@ -44,9 +44,9 @@ import sympy as sp
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MUTATE = os.environ.get("MUTATE", "0") == "1"
-SLUG = "L322_ns_window_witness_audit"
+SLUG = "NSA1_ns_window_witness_audit"
 P = lambda *a: print(*a, flush=True)
-CH, OUT = [], {"lane": "L322", "mutate": MUTATE, "checks": {}, "numbers": {}}
+CH, OUT = [], {"lane": "NSA1", "mutate": MUTATE, "checks": {}, "numbers": {}}
 
 A0_CANON, A0_ALT = 9.36e-11, 1.13e-10     # both footings (m/s^2)
 A0_N05 = 9.3619e-11                       # the value N05/N13 use

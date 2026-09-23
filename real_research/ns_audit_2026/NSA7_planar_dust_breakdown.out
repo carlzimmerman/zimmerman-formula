@@ -1,0 +1,72 @@
+
+========================================================================================================
+D1  THE FRAMEWORK FORCE IS HOLDER-1/2 AT A FIELD NULL: F(y) = sqrt(y)(1 + O(sqrt y))
+========================================================================================================
+    nu_RAR: y nu(y) = s**3/12 + s**2/2 + s + ...   (s = sqrt y)
+    mu_2  : g/a0    = 13*s**3/128 + 3*s**2/8 + s + ...
+    2 sqrt(y) nu_eff(y) at y = 1e-8, 1e-6, 1e-4: nu_RAR: [1.0001, 1.001, 1.01002]; mu_2: [1.00008, 1.00075, 1.00753]
+  [PASS] D1 both kernels have F(y) = sqrt(y) + O(y): the force is exactly Holder-1/2 at a null and nu_eff ~ 1/(2 sqrt y)
+         measured: leading coefficients 1, 1; 2 sqrt(y) nu_eff -> [1.0001000025, 1.0000750030489725]
+         reading:  continuous but not Lipschitz: no C^2 solution at the null, with or without pressure
+
+========================================================================================================
+D2  INSTANT BREAKDOWN: THE FIRST SHEET CROSSING TIME vs N (units: t_N = 1, y = 1 at x = 1)
+========================================================================================================
+    nu_RAR  T*(N) for N = [2000, 20000, 200000, 2000000]: ['0.14870', '0.08394', '0.04726', '0.02659']
+    mu_2    T*(N) for N = [2000, 20000, 200000, 2000000]: ['0.14891', '0.08398', '0.04727', '0.02659']
+    log-log slope d ln T* / d ln N: {'nu_RAR': -0.24924359913122812, 'mu_2': -0.2494306082002153}   (MOND prediction -1/4; Newton 0 with T* = 1 exactly)
+  [PASS] D2 the first crossing time falls as N^(-1/4) for both kernels (T* -> 0 in the continuum): no classical solution exists for any t > 0
+         measured: slopes {'nu_RAR': -0.24924359913122812, 'mu_2': -0.2494306082002153}
+         reading:  Newton gives T* = t_N for every N (MUTATE); the framework's null makes the fluid ill-posed at t = 0+
+
+========================================================================================================
+D3  THE CAUSTIC GROWS AS t^4: x_c = (pi/4) G rho a0 t^4  (y_c = tau^4/4 in these units)
+========================================================================================================
+    nu_RAR  x_c(tau) = ['2.500e-05', '5.250e-05', '1.275e-04', '2.700e-04', '6.150e-04']  slope 4.057  x_c / (tau^4/4) = 1.013
+    mu_2    x_c(tau) = ['2.500e-05', '5.000e-05', '1.275e-04', '2.675e-04', '6.075e-04']  slope 4.066  x_c / (tau^4/4) = 1.007
+  [PASS] D3 the multi-stream region grows as t^4 with the deep-MOND coefficient (pi/4) G rho a0
+         measured: {'nu_RAR': (4.057, 1.013), 'mu_2': (4.066, 1.007)}
+         reading:  a0 sets the caustic rate: x_c/l = tau^4/4 with l = a0/(4 pi G rho)
+
+========================================================================================================
+D4  AT t = t_N THE FRONT SITS EXACTLY WHERE nu_eff = 1; BEYOND IT THE FRAMEWORK IS WEAKER THAN NEWTON
+========================================================================================================
+    nu_RAR  nu_eff = 1 at y1 = 2.5396 (check 1.000000000000); sheet front at tau = 1: y = 2.5396; min nu_eff 0.9676 at y = 6.64 -> collapse delayed at most 1.66%
+    mu_2    nu_eff = 1 at y1 = 1.5000 (check 1.000000000000); sheet front at tau = 1: y = 1.5000; min nu_eff 0.9643 at y = 3.55 -> collapse delayed at most 1.84%
+  [PASS] D4 at t = t_N the caustic front is at nu_eff = 1 (y1 = 2.540 nu_RAR, 3/2 mu_2); beyond y1 nu_eff < 1 (negative planar phantom density), the only regime where the framework delays collapse, by a few percent
+         measured: {'nu_RAR': (2.54, 2.54, 1.66), 'mu_2': (1.5, 1.5, 1.84)}
+         reading:  an exact identity: the MOND caustic keeps Newtonian time at the nu_eff = 1 surface
+
+========================================================================================================
+D5  3D COROLLARY: EVERY CORED CENTRE BREAKS AT t = 0
+========================================================================================================
+    shell arrival time from rest: t = 3**(1/4)*pi**(1/4)*r0**(1/4)/(2*G**(1/4)*a0**(1/4)*rho**(1/4))   ->  d ln t / d ln r0 = 1/4
+    region that has reached the centre by t: r_c = 16*G*a0*rho*t**4/(3*pi)  (coefficient of G rho a0 t^4: 16/(3*pi))
+    phantom density ~ (1/r^2) d(r^2 g)/dr with g ~ sqrt(r): exponent -1/2
+  [PASS] D5 in 3D the deep-MOND centre has t_arrival ~ r0^(1/4) (inner shells first -> instant crossing) and a phantom density ~ r^(-1/2); the collapsed region grows as r_c = (16/(3 pi)) G rho a0 t^4
+         measured: exponents 1/4, -1/2; r_c coefficient 16/(3*pi)
+         reading:  every galaxy centre with rho > 0 is a Newtonian null: the framework fluid is ill-posed there too
+
+========================================================================================================
+D6  WHERE THE NULLS ARE, AND THE NUMBERS (BOTH FOOTINGS)
+========================================================================================================
+    cored dwarf centre  rho_c =    0.1 Msun/pc^3, canonical: deep zone r <   1602.8 pc; a shell from its edge reaches the centre in  28.87 Myr (deep formula) vs Newtonian free fall  25.58 Myr
+    cored dwarf centre  rho_c =    0.1 Msun/pc^3, alt      : deep zone r <   1935.0 pc; a shell from its edge reaches the centre in  28.87 Myr (deep formula) vs Newtonian free fall  25.58 Myr
+    bulge centre        rho_c =  100.0 Msun/pc^3, canonical: deep zone r <      1.6 pc; a shell from its edge reaches the centre in   0.91 Myr (deep formula) vs Newtonian free fall   0.81 Myr
+    bulge centre        rho_c =  100.0 Msun/pc^3, alt      : deep zone r <      1.9 pc; a shell from its edge reaches the centre in   0.91 Myr (deep formula) vs Newtonian free fall   0.81 Myr
+  [PASS] D6 numbers (documentary): real nulls are galaxy centres; the deep zone is kpc-scale in cored dwarfs and pc-scale in bulges, and it is crossed on the Newtonian free-fall time
+         measured: {'cored dwarf centre / canonical': 1602.8, 'cored dwarf centre / alt': 1935.0, 'bulge centre / canonical': 1.6, 'bulge centre / alt': 1.9}
+         reading:  disk midplanes are NOT nulls (the radial field survives); the slab of D2-D4 is an idealisation
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  The Navier-Stokes question, asked of the framework's own equations, has a definite answer: no.  Under the
+  framework's law the force is exactly Holder-1/2 wherever the Newtonian field vanishes inside matter -- in
+  practice every cored galaxy centre -- so the self-gravitating fluid has no smooth (not even C^2) solution for
+  any positive time there, and in the pressureless limit not even a C^1 one: the density goes singular at t = 0+
+  with a multi-stream region growing as (pi/4) G rho a0 t^4.  Newtonian gravity keeps T* > 0; the framework does not.  Physically this
+  is benign (collisionless matter multi-streams; hydrodynamics must be posed in a Holder/weak class), but it is a
+  structural fact about the equations: the framework makes regularity WORSE, not better, at field nulls.
+
+  6/6 checks pass; load-bearing failures: 0; wrote NSA7_planar_dust_breakdown_results.json
