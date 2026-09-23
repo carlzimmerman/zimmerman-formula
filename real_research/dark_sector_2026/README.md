@@ -36,3 +36,35 @@ For comparison, KiDS-Legacy measures 0.815 ± 0.016 and Planck 0.834. **This is 
 2. **The forest–RC100 pincer applies to any carrier.** The forest needs a cold component clustered in the intergalactic medium on 0.1–1 Mpc scales at z = 2–3. RC100 says galaxies at that same epoch carry no cold halo. Kicks remove matter from shallow wells first, so they deplete the intergalactic medium before galaxy halos, which is the wrong order. A carrier would have to be absent from galaxy halos while present in the intergalactic medium at z ≈ 2, and also present in clusters today: a switch that is non-monotonic in potential depth. The record has found no such switch (f22).
 
 **Standing:** the Λ-triggered carrier passes the forest and S8 but is disfavoured at about 3σ by RC100. The structural conflict between closing the dark sector and the framework's flat-a₀(z) galaxies is now explicit.
+
+## L321 — the z = 0 gates on the real X-COP sample, with both couplings
+
+`L321_carrier_z0_retention_gate.py` (4/4; `MUTATE` v_k = 0 fails G1, rc = 1). Retention is computed by exact phase-mixing in the framework's gravity (ν_RAR plus the SW01 magnitude-based external-field rule), relative to a no-decay control drawn with identical random numbers. C2 reproduces the record's 0.576 by an independent route: the additive median over 12 X-COP clusters is 0.476.
+
+- **Universal coupling** (the carrier sources the MOND field) is **dead at z = 0 on clusters**. Retained daughters are MOND-boosted, and X-COP overshoots by 1.56–1.84× at every kick S8 allows. ⚠️ Correction from L322's mutation run: the *galaxy* failure (+0.08–0.10 dex) holds at f_d(0) = 0.8 only; at f_d = 0.9 universal galaxies pass (+0.042 dex).
+- **Additive coupling** (a metric-coupled carrier) passes every galaxy host. X-COP overshoots by 1.34 at the kicks S8 allows.
+- ⇒ **A dark carrier in this framework must not source the MOND field.** The binding reason is the clusters, not the galaxies.
+
+## L322 — the additive window, RC100, and a coincidence test
+
+`L322_additive_window_and_coincidence_test.py`. All thresholds were declared before the scan.
+
+| Threshold set | Window |
+|---|---|
+| Strict: S8 ≥ 0.767 (KiDS-Legacy 3σ); X-COP within 20% | **none** |
+| Alternative: S8 ≥ 0.748 (DES × KiDS 3σ); X-COP corrected for the measured 6% non-thermal support | v_k 1400–1700 (f_d 0.8), 1300–1400 (f_d 0.9) |
+
+- RC100 under additive coupling is **3.5–3.7σ against the carrier**, with f_DM 0.49–0.56 against 0.29.
+- **Coincidence test, with pre-declared candidates and a look-elsewhere count:**
+  - For the decay rate, Γ₀ = 5.5–8.4 H₀ and none of the 28 framework-rate candidates falls in it (chance of at least one: 0.93).
+  - For the kick, 1 of 27 candidates falls in the window: √(a₀ × 1 Mpc), which uses an arbitrary length, with a chance rate of 0.84.
+  - **No coincidence.**
+
+**Standing of the carrier:**
+- It passes the forest and S8.
+- It must be metric-coupled.
+- It survives z = 0 only in a threshold-dependent sliver.
+- It is disfavoured at about 3.5σ by RC100.
+- Its rate has no natural scale.
+
+The dark-sector door is now stated as precisely as the record allows: cold in the intergalactic medium at z = 2–3, absent from galaxy halos at z ≲ 2.5, about half-present in clusters at z = 0, and not sourcing the MOND field.
