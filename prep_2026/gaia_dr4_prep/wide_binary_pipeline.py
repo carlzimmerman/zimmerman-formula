@@ -118,6 +118,21 @@ GAMMA_B_CEIL = 1.0450          # *** Amdt 11 (2026-09-06): ARM B, the covariant 
                                # the candidate predicts 1.000 < gamma_v <= 1.0450 (gamma_v falls
                                # as xi grows).  Arm A (band above) and Arm B are mutually exclusive.
 GAMMA_B_CEIL_ALT = 1.0300      # Amdt 11: Arm B ceiling, alt footing (xi = 0.15 pc)
+# *** AMENDMENT 12 (2026-09-09) SUPERSEDES THE TWO CEILINGS ABOVE (kept as the record only). ***
+# The registered structure's coherence length is xi >= 4.00 pc (Saturn gate) / >= 1.38 pc
+# (sunward gate alone), identical on both footings; Arm B's corrected prediction with the SAME
+# frozen estimator is 1.0000 +- 0.0025 (1.0025 +- 0.0037 on the sunward gate only), so the
+# Amdt 11 ceilings are VACUOUS (320x too loose), not falsified.  Amdt 12(d): Arm B's kill-from-
+# above threshold moves 1.129 -> 1.084.  Amdt 12(g): Arm B is NOT a testable arm of this
+# preregistration (indistinguishable from Newton by this estimator).  ARM A IS UNTOUCHED.
+# NOTHING FROZEN IS TOUCHED BY THIS EDIT (cut table, estimator, error model, NSS screen, bin
+# edges, kappa anchor, N = 30,000 unchanged); this is the pipeline catching up to a filed amendment.
+GAMMA_B_PRED = 1.0000          # Amdt 12(c): corrected Arm B, Saturn gate, both footings
+GAMMA_B_PRED_SIG = 0.0025      # Amdt 12(c)
+GAMMA_B_PRED_SUNWARD = 1.0025  # Amdt 12(c): sunward gate only
+GAMMA_B_PRED_SUNWARD_SIG = 0.0037
+GAMMA_B_KILL = 1.084           # Amdt 12(d): Arm B killed from above at gamma_hat >= 1.084
+GAMMA_A_FALSIFIED_BELOW = 1.056  # Amdt 11(d), unchanged by Amdt 12: Arm A falsified below 1.056
 GAMMA_MI  = 1.1582       # SUPERSEDED by Amdt 9.  Kept for the record; Amdt 10 WITHDREW the
                          #     "2.68-sigma arm separation" claim -- the Amdt-10 band sits
                          #     0.003-0.023 above this, INSIDE the MI magnitude range: DR4
@@ -371,12 +386,19 @@ def report_7e(g, sg, kap, label):
           f"{d_tgt:+.2f} / top {GAMMA_TARGET_TOP:.4f} = {d_top:+.2f}; alt "
           f"{GAMMA_TARGET_ALT:.4f} = {d_alt:+.2f} / top {GAMMA_TARGET_ALT_TOP:.4f} = "
           f"{d_alt_top:+.2f} sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))")
-    d_b = (g - GAMMA_B_CEIL) / sg if sg > 0 else float("nan")
-    d_b_alt = (g - GAMMA_B_CEIL_ALT) / sg if sg > 0 else float("nan")
-    print(f"    [7(e)] IN FORCE (Amdt 11, ARM B = covariant candidate, CEILINGS): canonical "
-          f"{GAMMA_B_CEIL:.4f} = {d_b:+.2f}; alt {GAMMA_B_CEIL_ALT:.4f} = {d_b_alt:+.2f} sigma_fit "
-          f"(Arm B predicts 1.000 < gamma_v <= ceiling; Arms A and B are mutually exclusive; "
-          f"B is killed from above only -- Amdt 11(d)/(e))")
+    d_b = (g - GAMMA_B_PRED) / sg if sg > 0 else float("nan")
+    d_b_kill = (g - GAMMA_B_KILL) / sg if sg > 0 else float("nan")
+    d_a_fal = (g - GAMMA_A_FALSIFIED_BELOW) / sg if sg > 0 else float("nan")
+    print(f"    [7(e)] IN FORCE (Amdt 12, ARM B corrected, CARRIER reading): prediction "
+          f"{GAMMA_B_PRED:.4f} +- {GAMMA_B_PRED_SIG} (both footings) = {d_b:+.2f} sigma_fit; "
+          f"sunward-gate-only {GAMMA_B_PRED_SUNWARD:.4f} +- {GAMMA_B_PRED_SUNWARD_SIG}.  "
+          f"Arm B is NOT a testable arm (Amdt 12(g)) -- reported, not scored")
+    print(f"    [7(e)] registered thresholds (quoted, not applied as a verdict): Arm B killed from "
+          f"above at >= {GAMMA_B_KILL} (Amdt 12(d); gamma_hat - {GAMMA_B_KILL} = {d_b_kill:+.2f} "
+          f"sigma_fit); Arm A falsified below {GAMMA_A_FALSIFIED_BELOW} (Amdt 11(d); "
+          f"gamma_hat - {GAMMA_A_FALSIFIED_BELOW} = {d_a_fal:+.2f} sigma_fit)")
+    print(f"    [7(e)] superseded record only: Amdt 11 Arm B ceilings {GAMMA_B_CEIL:.4f} / "
+          f"{GAMMA_B_CEIL_ALT:.4f} (VACUOUS per Amdt 12(c), not falsified)")
     print(f"    [7(e)] superseded record only: MI {GAMMA_MI:.4f} = {d_mi:+.2f} sigma_fit; "
           f"MI ranges radial {GAMMA_MI_RANGE_RAD}, magnitude {GAMMA_MI_RANGE_MAG}.  "
           f"No verdict word is emitted by design.")
@@ -591,9 +613,11 @@ def main():
           f"alt {A0_ALT:.3e} (y_extN={y_extN(A0_ALT):.4f})")
     print(f"targets IN FORCE -- ARM A (Amdt 10 band, modified-GRAVITY arm): canonical {GAMMA_TARGET}-{GAMMA_TARGET_TOP} / "
           f"alt {GAMMA_TARGET_ALT}-{GAMMA_TARGET_ALT_TOP};  no-verdict edge {NOVERDICT_EDGE}")
-    print(f"                  -- ARM B (Amdt 11, covariant candidate, CEILINGS): canonical <= {GAMMA_B_CEIL} / alt <= {GAMMA_B_CEIL_ALT}; "
-          f"the arms are mutually exclusive (Amdt 11(c)); B is killed from above only (Amdt 11(e))")
-    print(f"  ladder: Newton 1.00 < Arm B ceilings {GAMMA_B_CEIL}/{GAMMA_B_CEIL_ALT} < [superseded MI {GAMMA_MI}] < Arm A canonical {GAMMA_TARGET} "
+    print(f"                  -- ARM B (Amdt 12, corrected, CARRIER): {GAMMA_B_PRED} +- {GAMMA_B_PRED_SIG} both footings; "
+          f"killed from above at >= {GAMMA_B_KILL}; NOT a testable arm (Amdt 12(g)); Amdt 11 ceilings "
+          f"{GAMMA_B_CEIL}/{GAMMA_B_CEIL_ALT} are VACUOUS (record only)")
+    print(f"  ladder: Newton 1.00 = Arm B {GAMMA_B_PRED} < [Arm A falsified below {GAMMA_A_FALSIFIED_BELOW}] < [B killed at {GAMMA_B_KILL}] "
+          f"< [superseded MI {GAMMA_MI}] < Arm A canonical {GAMMA_TARGET} "
           f"< alt {GAMMA_TARGET_ALT} < edge {NOVERDICT_EDGE} < MOND benchmark {GAMMA_MOND}")
     print(f"  NOTE: alt footing {GAMMA_TARGET_ALT} sits only "
           f"{NOVERDICT_EDGE - GAMMA_TARGET_ALT:.4f} below the no-verdict edge -- "

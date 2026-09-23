@@ -342,6 +342,53 @@ check(not any("PREREGISTRATION" in s or "HASH" in s for s in todo),
 # =============================================================================================
 print()
 print("=" * 100)
+print("PART F -- AMENDMENT 12 (2026-09-09) regression guard, added 2026-09-22")
+print("=" * 100)
+# Added after a 2026-09-22 re-check found the pipeline still printing Amendment 11's Arm B
+# ceilings (1.0450 / 1.0300) as IN FORCE three days after Amendment 12 declared them vacuous and
+# moved Arm B's kill threshold 1.129 -> 1.084.  Values are PARSED out of the registration text,
+# not typed from memory.
+import hashlib
+PREREG = os.path.join(PREP, "PREREGISTRATION_DR4.md")
+prereg = open(PREREG, encoding="utf-8").read()
+m_kill = re.search(r"\*\*\u2265 1\.129 \u2192 \u2265 ([0-9.]+)\.\*\*", prereg)
+m_pred = re.search(r"corrected, at \u03be \u2265 4\.00 pc \(Saturn gate\)\*\* \| "
+                   r"\*\*([0-9.]+) \u00b1 ([0-9.]+)\*\*", prereg)
+check(m_kill is not None and m_pred is not None,
+      "F1  Amendment 12's kill threshold and corrected Arm B prediction are parsed from the "
+      "registration text",
+      f"kill {m_kill.group(1) if m_kill else 'NOT FOUND'}; prediction "
+      f"{m_pred.group(1) + ' +- ' + m_pred.group(2) if m_pred else 'NOT FOUND'}")
+def _const(name):
+    mm = re.search(rf"^{name}\s*=\s*([0-9.]+)", src, re.M)
+    return mp.mpf(mm.group(1)) if mm else None
+kill_pipe, pred_pipe, sig_pipe12 = _const("GAMMA_B_KILL"), _const("GAMMA_B_PRED"), _const("GAMMA_B_PRED_SIG")
+check(m_kill is not None and kill_pipe == mp.mpf(m_kill.group(1))
+      and m_pred is not None and pred_pipe == mp.mpf(m_pred.group(1))
+      and sig_pipe12 == mp.mpf(m_pred.group(2)),
+      "F2  the pipeline encodes Amendment 12: GAMMA_B_KILL, GAMMA_B_PRED, GAMMA_B_PRED_SIG equal the "
+      "registered values",
+      f"pipeline kill {kill_pipe}, pred {pred_pipe} +- {sig_pipe12}")
+_i = src.find("def report_7e(")
+_body = src[_i:_i + 6000] if _i >= 0 else ""
+check("GAMMA_B_PRED" in _body and "GAMMA_B_KILL" in _body and "IN FORCE (Amdt 11" not in _body,
+      "F3  report_7e scores Arm B against the Amendment 12 values and no longer labels the Amendment "
+      "11 ceilings IN FORCE (they are printed as superseded record only)")
+m_after = re.search(r"after Amendment 12: ([0-9a-f]{64})",
+                    open(os.path.join(PREP, "AMENDMENT12_HASH.txt"), encoding="utf-8").read())
+sha_now = hashlib.sha256(open(PREREG, "rb").read()).hexdigest()
+check(m_after is not None and sha_now == m_after.group(1),
+      "F4  the freeze is intact: sha256(PREREGISTRATION_DR4.md) equals the 'after Amendment 12' hash "
+      "recorded in AMENDMENT12_HASH.txt",
+      f"now {sha_now[:16]}...")
+check(kill_pipe is not None and kill_pipe != mp.mpf("1.129"),
+      "NC6  CONTROL: the superseded Amendment 11 kill threshold 1.129 is NOT what the pipeline "
+      "carries, so F2 is a real read of the in-force value")
+
+
+# =============================================================================================
+print()
+print("=" * 100)
 print("NEGATIVE CONTROLS -- these must trip")
 print("=" * 100)
 check(mp.mpf("1.0310") not in (in_force,) and abs(mp.mpf("1.0310") - in_force) > mp.mpf("0.1"),
@@ -383,6 +430,11 @@ if FAIL:
         print("  -", f_)
     sys.exit(1)
 print("""
+CURRENT STATUS (2026-09-22): every check above holds, all seven checklist items are DONE (E1), and
+the pipeline carries Amendment 12 (PART F).  The VERDICT text below is this audit's ORIGINAL
+2026-08-08 finding, kept verbatim as the record of what was found and fixed; it is NOT the
+current state.
+
 VERDICT -- THE DR4 PIPELINE IS NOT READY, AND ONE OF TODAY'S PAPERS NEEDS A CORRECTION.
   1.  *** The pipeline hard-codes GAMMA_MI = 1.09, the ORIGINAL frozen target, and is STALE BY FOUR
       AMENDMENTS.  In force after Amendment 8 is 1.1582 (Route A, exponential kernel).  The signal
