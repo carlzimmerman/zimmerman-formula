@@ -1,0 +1,981 @@
+# L03 — DETERMINISTIC 2D TRANSFER FUNCTION Ψ(τ, v) + NOISE-RECOVERY PIPELINE
+
+**2026-09-23 · the N4 observational door (synthetic) · pre-registered protocol.**
+
+This file states the construction, the verification protocol, the recovery
+estimator, and the pre-registered JWST-reach rule **before** any pipeline
+output is produced.  The machine runs end after the "── RESULTS ──" line
+below; the pre-registered text above it was written before the heavy legs ran.
+
+---
+
+## 1. The object
+
+The transfer function of the Thomson-sphere model (J02 engine, central
+source, uniform temperature) is the joint law of the photon detour
+`D = τ − Q` (τ = total path, Q = projection of the displacement on the final
+direction) and the velocity-width variable `v` accumulated by thermal kicks:
+
+> Ψ(τ, y) = E[ χ_D(τ) χ_V(y) ],   y = v²,
+
+with the atom mass `A = P(D = 0, v = 0)` (ballistic photons, exact:
+`A = exp(−t0(1+q/3))`, two-component law, J09-C verified).
+
+## 2. The conditional-Gaussian spine (exact, the deterministic content)
+
+J08/J09 theorem (35/35 + all-order verification): conditional on the whole
+path geometry,
+
+> V := v²/(2·ang) | (D, ang) ~ χ²₁,   V independent of (D, ang),   ang := Σ T(1−μ).
+
+Therefore the row law (fixed D-bin i) is the χ²₁ CDF averaged over the
+within-bin angular exposure:
+
+> Ψ(i, y) = p_i · E[ F_χ₁(y/(2·ang)) | D ∈ bin_i ],   F_χ₁(x) = erf(√(x/2)).
+
+**Slice construction** (the only MC-informed input, explicitly allowed by
+the task as "MC cross-bins"): the within-bin law of `ang|D∈bin` enters the
+expectation through its cross-bin quantile slice: 16 points
+`q_k = P⁻¹(0.005 + k·0.99/15)`, trapezoid weights `1/15` (interior) and
+`1/30` (ends) — a layer-cake quadrature of `E[h(ang)]` over the empirical
+cross-bin CDF at 4 M photons:
+
+> Ψ(i, y) = p_i · Σ_k w_k F_χ₁(y/(2 q_{k,i})).
+
+The pure conditional-mean slice `E[ang|τ]` was tested and **fails** the row
+tolerance (21/40 rows at p>0.01; within-bin ang dispersion is O(1), CV
+0.5–1.3): reported honestly in §Results, replaced by the quadrature slice.
+
+**Deterministic anchors** (no MC): the K05 ray-solver moment hierarchy,
+here extended to kappa(r) = t0(1+qr²) (exact ray attenuation ∫κ ds closed
+form; the κ=1 case re-solves K05's E[D]=0.500000, E[v²]=2.80674,
+E[Dv²]=3.70900 as a validity gate):
+
+| anchor | cloud q=0 (t0=1) | cloud q=2 (t0=1) |
+|---|---|---|
+| E[D] | 0.5 (solver + analytic) | 1.0 = t0(1/2+q/4) (solver) |
+| E[ang] = E[v²]/2 | 1.40337 (F^02 field) | solver E[v²]/2 |
+| E[D·ang] = E[Dv²]/2 | 1.85450 (F^12 field) | solver E[Dv²]/2 |
+| A (atom) | e^{−1} = 0.36788 | e^{−5/3} = 0.18888 |
+
+The row masses p_i (leg A cross-bin) and the slices are renormalized so that
+the constructed Ψ reproduces these anchors **exactly** (global rescale of the
+continuous row masses to pin E[D]; the ang-slice rescale to pin E[ang]).
+The construction is then fully specified, deterministic, and reproducible.
+
+**Grid (pre-registered):** 40×40, τ ∈ [0,12] (Δτ=0.3), v² ∈ [0,120]
+(Δy=3).  The atom sits in cell (0,0); the deterministic row CDF is the
+continuous spine CDF and is evaluated at the MC photon positions (no
+binning loss in the KS).  The grid was chosen so the truncation audit is
+clean: P(D > 12) < 3·10⁻⁵ and P(v² > 120) < 5·10⁻⁴ in both clouds (the
+v²-tail is a χ²₁-mixture tail) — the discarded mass contributes < 0.1% of
+the first moment, verified directly in the results section.
+
+**First-moment slice (pre-registered):** the estimator's d̄ uses the
+cross-bin conditional centroids τ̄_i^{cb} = E[D | row i, continuous] (the
+same class of cross-bin slice as E[ang|τ]); the atom mass is assigned to
+its exact location τ = 0.  With the E[D]-pin below, the noise-free
+estimator returns d̄ = E[D] exactly (no cell-centroid or truncation bias;
+a naive cell-center assignment would bias d̄ by ~1–5%).
+
+## 3. Verification protocol (pre-registered)
+
+- Leg A (cross-bins): n = 4·10⁶ per cloud, independent legs for the two
+  clouds.  Leg B (verification): n = 4·10⁶ per cloud, **independent seeds**
+  (per-cloud total 8·10⁶ ≤ cap).
+- Per-row one-sample KS: for each τ-row, `kstest(v² | D∈row, cdf=Ψ_row)`;
+  tolerance **p > 0.01 in ≥ 36 of the 40 rows**; kill condition:
+  >3 rows with p < 10⁻³ ⇒ pipeline broken (reported, not hidden).
+- Spine verification (slice-free deterministic content): `kstest(W | row,
+  cdf=χ²₁)`, W = v²/(2ang), continuous photons only, same per-row tolerance.
+- Marginal D-CDF KS and the moment panel (solver vs MC ± SE) are reported
+  as informative checks (not gates).
+
+## 4. Recovery protocol (pre-registered)
+
+Synthetic observation: `Ψ̂_ij = Ψ_ij + ε_ij`, ε_ij ~ N(0, σ_ij),
+`σ_ij = Ψ_ij / S`, S ∈ {50, 20, 10, 5} (per-bin S/N), 500 independent reals
+per S/N per cloud, independent RNG streams.  No renormalization after
+injection.
+
+**Estimator (pre-registered):**
+- Atom spike: weighted least squares on row 0,
+  `min_{A,c} Σ_j (Ψ̂_0j − A δ_{j0} − c φ_0j)² / σ²_0j`, where φ_0 is the
+  deterministic **continuous** row-0 template (spine law, atom excluded);
+  `Â = max(A_lsq, 10⁻⁶)` (spike-loss counted, not silent).
+- First moment: `d̄ = Σ_i τ̄_i^{cb} r̂_i`, with the atom mass assigned to its
+  exact location τ=0 and τ̄_i^{cb} the construction's cross-bin conditional
+  centroids; the observed grid row sums are **calibrated to the constructed
+  row masses** (deterministic tail calibration: the mass dropped by the
+  v² > 120 grid edge is restored at its conditional centroids), so the
+  estimator is exactly unbiased against E[D] for any grid.
+- Inversion (two-component law, exact):
+  `τ0̂ = −3 ln Â − 4 d̄`,   `q̂ = 4 d̄/τ0̂ − 2`.
+- Per-real 3σ error bars by exact linear error propagation from the **known
+  injected** σ_ij (full Jacobian of (Â, d̄) → (τ0̂, q̂) over all cells;
+  binary coverage flags `|τ0̂−τ0| ≤ 3σ̂_τ0`, `|q̂−q0| ≤ 3σ̂_q`).
+- Per-S/N report: median bias, empirical spread (std and MAD/1.4826) of
+  (τ0̂, q̂), coverage fractions, spike-loss counts.
+
+**PRE-REGISTERED JWST-REACH RULE (the N4 statement):**
+the reach is the smallest S ∈ {50, 20, 10, 5} at which **all four** hold:
+(i) coverage(τ0) ≥ 0.95;  (ii) coverage(q) ≥ 0.95;  (iii) median 3σ̂_τ0
+≤ 0.3·τ0 (τ0 pinned to 30% at 3σ);  (iv) median 3σ̂_q ≤ 0.5·(1+|q0|).
+If the pair-bar is attained at no tested S, the τ0-only reach
+(criteria i+iii) is reported, with the q curve given explicitly.
+
+---
+
+── RESULTS (appended by the pipeline run) ──
+```
+{
+ "verification": {
+  "q0": {
+   "tag": "q0",
+   "rows": [
+    {
+     "row": 0,
+     "n": 2288072,
+     "p_v2": 0.0,
+     "p_W": 0.22875597634713313,
+     "Dn": 0.6430436620653053,
+     "n_cont": 816891
+    },
+    {
+     "row": 1,
+     "n": 480395,
+     "p_v2": 0.8307605886726921,
+     "p_W": 0.7572030975671706,
+     "Dn": 0.0009005356859703717,
+     "n_cont": 480395
+    },
+    {
+     "row": 2,
+     "n": 362907,
+     "p_v2": 0.3759591653875413,
+     "p_W": 0.18250704295948447,
+     "Dn": 0.0015144154226988116,
+     "n_cont": 362907
+    },
+    {
+     "row": 3,
+     "n": 277882,
+     "p_v2": 0.7128414679567228,
+     "p_W": 0.451807888931801,
+     "Dn": 0.0013260764444140705,
+     "n_cont": 277882
+    },
+    {
+     "row": 4,
+     "n": 201260,
+     "p_v2": 0.14239796678077657,
+     "p_W": 0.20313296722530974,
+     "Dn": 0.002561920904566639,
+     "n_cont": 201260
+    },
+    {
+     "row": 5,
+     "n": 138468,
+     "p_v2": 0.5877459663818938,
+     "p_W": 0.42117058285972675,
+     "Dn": 0.002078749105909272,
+     "n_cont": 138468
+    },
+    {
+     "row": 6,
+     "n": 88238,
+     "p_v2": 0.7375219923635336,
+     "p_W": 0.7305250534397887,
+     "Dn": 0.002302975040850086,
+     "n_cont": 88238
+    },
+    {
+     "row": 7,
+     "n": 56228,
+     "p_v2": 0.7359203282966187,
+     "p_W": 0.8106500060566164,
+     "Dn": 0.00288908443759045,
+     "n_cont": 56228
+    },
+    {
+     "row": 8,
+     "n": 36953,
+     "p_v2": 0.49036313320017405,
+     "p_W": 0.17356767435215842,
+     "Dn": 0.004337106347534814,
+     "n_cont": 36953
+    },
+    {
+     "row": 9,
+     "n": 24271,
+     "p_v2": 0.6895984754986637,
+     "p_W": 0.9586370623286296,
+     "Dn": 0.004576249647422759,
+     "n_cont": 24271
+    },
+    {
+     "row": 10,
+     "n": 15802,
+     "p_v2": 0.9765953389173224,
+     "p_W": 0.9924183470036422,
+     "Dn": 0.0037977218439161353,
+     "n_cont": 15802
+    },
+    {
+     "row": 11,
+     "n": 10299,
+     "p_v2": 0.7084386007459265,
+     "p_W": 0.31043497892959054,
+     "Dn": 0.006914182657179246,
+     "n_cont": 10299
+    },
+    {
+     "row": 12,
+     "n": 6665,
+     "p_v2": 0.6009971936559972,
+     "p_W": 0.4844185383600527,
+     "Dn": 0.009377688362487813,
+     "n_cont": 6665
+    },
+    {
+     "row": 13,
+     "n": 4448,
+     "p_v2": 0.15416903136866233,
+     "p_W": 0.11953687549393084,
+     "Dn": 0.016971708896891535,
+     "n_cont": 4448
+    },
+    {
+     "row": 14,
+     "n": 2827,
+     "p_v2": 0.12371049524220705,
+     "p_W": 0.40210675453358213,
+     "Dn": 0.022184874087215256,
+     "n_cont": 2827
+    },
+    {
+     "row": 15,
+     "n": 1873,
+     "p_v2": 0.9445546107238589,
+     "p_W": 0.8769590468854002,
+     "Dn": 0.012162014441595259,
+     "n_cont": 1873
+    },
+    {
+     "row": 16,
+     "n": 1190,
+     "p_v2": 0.18805169416666628,
+     "p_W": 0.18707084136540506,
+     "Dn": 0.03151198166983693,
+     "n_cont": 1190
+    },
+    {
+     "row": 17,
+     "n": 753,
+     "p_v2": 0.2975899984422044,
+     "p_W": 0.2631936380060892,
+     "Dn": 0.03553660970344685,
+     "n_cont": 753
+    },
+    {
+     "row": 18,
+     "n": 502,
+     "p_v2": 0.6059553774464874,
+     "p_W": 0.2653083114822186,
+     "Dn": 0.03403773575314584,
+     "n_cont": 502
+    },
+    {
+     "row": 19,
+     "n": 353,
+     "p_v2": 0.5392623651057324,
+     "p_W": 0.8096994182750248,
+     "Dn": 0.04273960064976201,
+     "n_cont": 353
+    },
+    {
+     "row": 20,
+     "n": 225,
+     "p_v2": 0.43420152744853047,
+     "p_W": 0.3918017638866053,
+     "Dn": 0.058057046426632786,
+     "n_cont": 225
+    },
+    {
+     "row": 21,
+     "n": 158,
+     "p_v2": 0.05920497820337974,
+     "p_W": 0.0480110651626406,
+     "Dn": 0.10554066476896029,
+     "n_cont": 158
+    },
+    {
+     "row": 22,
+     "n": 66,
+     "p_v2": 0.46693329907021636,
+     "p_W": 0.5006005960316707,
+     "Dn": 0.1044971032676617,
+     "n_cont": 66
+    },
+    {
+     "row": 23,
+     "n": 51,
+     "p_v2": 0.9017062085509283,
+     "p_W": 0.8492230429313626,
+     "Dn": 0.0797714422680631,
+     "n_cont": 51
+    },
+    {
+     "row": 24,
+     "n": 36,
+     "p_v2": 0.575275679702141,
+     "p_W": 0.7297666489811164,
+     "Dn": 0.13017331400093662,
+     "n_cont": 36
+    },
+    {
+     "row": 25,
+     "n": 22,
+     "p_v2": NaN,
+     "p_W": NaN,
+     "Dn": NaN
+    },
+    {
+     "row": 26,
+     "n": 24,
+     "p_v2": NaN,
+     "p_W": NaN,
+     "Dn": NaN
+    },
+    {
+     "row": 27,
+     "n": 7,
+     "p_v2": NaN,
+     "p_W": NaN,
+     "Dn": NaN
+    },
+    {
+     "row": 28,
+     "n": 13,
+     "p_v2": NaN,
+     "p_W": NaN,
+     "Dn": NaN
+    },
+    {
+     "row": 29,
+     "n": 4,
+     "p_v2": NaN,
+     "p_W": NaN,
+     "Dn": NaN
+    },
+    {
+     "row": 30,
+     "n": 4,
+     "p_v2": NaN,
+     "p_W": NaN,
+     "Dn": NaN
+    },
+    {
+     "row": 31,
+     "n": 1,
+     "p_v2": NaN,
+     "p_W": NaN,
+     "Dn": NaN
+    },
+    {
+     "row": 32,
+     "n": 0,
+     "p_v2": NaN,
+     "p_W": NaN,
+     "Dn": NaN
+    },
+    {
+     "row": 33,
+     "n": 0,
+     "p_v2": NaN,
+     "p_W": NaN,
+     "Dn": NaN
+    },
+    {
+     "row": 34,
+     "n": 1,
+     "p_v2": NaN,
+     "p_W": NaN,
+     "Dn": NaN
+    },
+    {
+     "row": 35,
+     "n": 2,
+     "p_v2": NaN,
+     "p_W": NaN,
+     "Dn": NaN
+    },
+    {
+     "row": 36,
+     "n": 0,
+     "p_v2": NaN,
+     "p_W": NaN,
+     "Dn": NaN
+    },
+    {
+     "row": 37,
+     "n": 0,
+     "p_v2": NaN,
+     "p_W": NaN,
+     "Dn": NaN
+    },
+    {
+     "row": 38,
+     "n": 0,
+     "p_v2": NaN,
+     "p_W": NaN,
+     "Dn": NaN
+    },
+    {
+     "row": 39,
+     "n": 0,
+     "p_v2": NaN,
+     "p_W": NaN,
+     "Dn": NaN
+    }
+   ],
+   "n_pass_v2": 24.0,
+   "n_below_1e-3": 1.0,
+   "n_pass_W": 25.0,
+   "marginal_D_ks_p": 0.0,
+   "moments": {
+    "E_D_det": 0.49999999948523804,
+    "E_D_mc": 0.49981926002718813,
+    "E_D_se": 0.0003582166237529207,
+    "E_v2_det": 2.8067476271807736,
+    "E_v2_mc": 2.8040602478057877,
+    "E_v2_se": 0.0038448189042399176,
+    "E_Dv2_det": 3.708963558910413,
+    "E_Dv2_mc": 3.6956982124667777,
+    "E_Dv2_se": 0.00866964873646351
+   }
+  },
+  "q2": {
+   "tag": "q2",
+   "rows": [
+    {
+     "row": 0,
+     "n": 1402887,
+     "p_v2": 0.0,
+     "p_W": 0.19431779113909634,
+     "Dn": 0.5390948855994426,
+     "n_cont": 647127
+    },
+    {
+     "row": 1,
+     "n": 501990,
+     "p_v2": 0.15857067396176328,
+     "p_W": 0.5987178302718686,
+     "Dn": 0.0015887594716631481,
+     "n_cont": 501990
+    },
+    {
+     "row": 2,
+     "n": 442753,
+     "p_v2": 0.7561956512909609,
+     "p_W": 0.4983769777989295,
+     "Dn": 0.0010108562121297626,
+     "n_cont": 442753
+    },
+    {
+     "row": 3,
+     "n": 374969,
+     "p_v2": 0.2957681482360553,
+     "p_W": 0.15009738132529457,
+     "Dn": 0.0015950812542649406,
+     "n_cont": 374969
+    },
+    {
+     "row": 4,
+     "n": 297351,
+     "p_v2": 0.39712211721755314,
+     "p_W": 0.8616264083725145,
+     "Dn": 0.0016446577800610651,
+     "n_cont": 297351
+    },
+    {
+     "row": 5,
+     "n": 231232,
+     "p_v2": 0.5067447020322162,
+     "p_W": 0.8338911878715932,
+     "Dn": 0.0017121137979035361,
+     "n_cont": 231232
+    },
+    {
+     "row": 6,
+     "n": 177134,
+     "p_v2": 0.04171688953051034,
+     "p_W": 0.037364895653620084,
+     "Dn": 0.0033051319914454425,
+     "n_cont": 177134
+    },
+    {
+     "row": 7,
+     "n": 134728,
+     "p_v2": 0.5991275515561696,
+     "p_W": 0.5447986248744474,
+     "Dn": 0.0020888184628701234,
+     "n_cont": 134728
+    },
+    {
+     "row": 8,
+     "n": 103536,
+     "p_v2": 0.06339066277195064,
+     "p_W": 0.485329986413131,
+     "Dn": 0.004082692298836843,
+     "n_cont": 103536
+    },
+    {
+     "row": 9,
+     "n": 78553,
+     "p_v2": 0.966087877422783,
+     "p_W": 0.8431962724007064,
+     "Dn": 0.0017717872273650959,
+     "n_cont": 78553
+    },
+    {
+     "row": 10,
+     "n": 60074,
+     "p_v2": 0.4617368816620894,
+     "p_W": 0.42354116717462453,
+     "Dn": 0.0034776122932758113,
+     "n_cont": 60074
+    },
+    {
+     "row": 11,
+     "n": 45883,
+     "p_v2": 0.12476382266975732,
+     "p_W": 0.0877021528824472,
+     "Dn": 0.005498330939330581,
+     "n_cont": 45883
+    },
+    {
+     "row": 12,
+     "n": 35265,
+     "p_v2": 0.8435491445487371,
+     "p_W": 0.7817238361887857,
+     "Dn": 0.0032759658879069065,
+     "n_cont": 35265
+    },
+    {
+     "row": 13,
+     "n": 26757,
+     "p_v2": 0.34745151772727406,
+     "p_W": 0.3318780182075748,
+     "Dn": 0.005710262287598494,
+     "n_cont": 26757
+    },
+    {
+     "row": 14,
+     "n": 20465,
+     "p_v2": 0.49126175727770394,
+     "p_W": 0.1954793816425724,
+     "Dn": 0.005823964688219441,
+     "n_cont": 20465
+    },
+    {
+     "row": 15,
+     "n": 15783,
+     "p_v2": 0.21667141651928928,
+     "p_W": 0.45372409381147977,
+     "Dn": 0.008388576865688613,
+     "n_cont": 15783
+    },
+    {
+     "row": 16,
+     "n": 11807,
+     "p_v2": 0.5322509333688195,
+     "p_W": 0.3587585736673552,
+     "Dn": 0.007429945064016119,
+     "n_cont": 11807
+    },
+    {
+     "row": 17,
+     "n": 9280,
+     "p_v2": 0.9509661315199689,
+     "p_W": 0.9698011833168264,
+     "Dn": 0.005381030348834914,
+     "n_cont": 9280
+    },
+    {
+     "row": 18,
+     "n": 6957,
+     "p_v2": 0.7870762782094355,
+     "p_W": 0.856389331511827,
+     "Dn": 0.007831044866588255,
+     "n_cont": 6957
+    },
+    {
+     "row": 19,
+     "n": 5498,
+     "p_v2": 0.36115127029605076,
+     "p_W": 0.47241641495834896,
+     "Dn": 0.012454330583867912,
+     "n_cont": 5498
+    },
+    {
+     "row": 20,
+     "n": 4132,
+     "p_v2": 0.5624414932859632,
+     "p_W": 0.5614401158131046,
+     "Dn": 0.01227144224936172,
+     "n_cont": 4132
+    },
+    {
+     "row": 21,
+     "n": 2986,
+     "p_v2": 0.7350997961176813,
+     "p_W": 0.667469688500977,
+     "Dn": 0.012546090215024258,
+     "n_cont": 2986
+    },
+    {
+     "row": 22,
+     "n": 2306,
+     "p_v2": 0.28815125643536177,
+     "p_W": 0.21799286283592803,
+     "Dn": 0.020479902668452454,
+     "n_cont": 2306
+    },
+    {
+     "row": 23,
+     "n": 1830,
+     "p_v2": 0.054380030962087184,
+     "p_W": 0.2134809162264248,
+     "Dn": 0.0313837752975934,
+     "n_cont": 1830
+    },
+    {
+     "row": 24,
+     "n": 1402,
+     "p_v2": 0.9931777358467501,
+     "p_W": 0.9888333361760032,
+     "Dn": 0.01141199180401714,
+     "n_cont": 1402
+    },
+    {
+     "row": 25,
+     "n": 1034,
+     "p_v2": 0.6119892576893147,
+     "p_W": 0.26959227898268295,
+     "Dn": 0.023604681370982372,
+     "n_cont": 1034
+    },
+    {
+     "row": 26,
+     "n": 790,
+     "p_v2": 0.929327031760363,
+     "p_W": 0.9682275975813888,
+     "Dn": 0.01933193661828525,
+     "n_cont": 790
+    },
+    {
+     "row": 27,
+     "n": 585,
+     "p_v2": 0.00392231592037983,
+     "p_W": 0.00518187679642724,
+     "Dn": 0.07299584449378871,
+     "n_cont": 585
+    },
+    {
+     "row": 28,
+     "n": 487,
+     "p_v2": 0.356501970504275,
+     "p_W": 0.38338981009788864,
+     "Dn": 0.04200792461259395,
+     "n_cont": 487
+    },
+    {
+     "row": 29,
+     "n": 347,
+     "p_v2": 0.4227273496882803,
+     "p_W": 0.4313730921093095,
+     "Dn": 0.04717385335957158,
+     "n_cont": 347
+    },
+    {
+     "row": 30,
+     "n": 273,
+     "p_v2": 0.9689859585964646,
+     "p_W": 0.9269767493340205,
+     "Dn": 0.029761200952874545,
+     "n_cont": 273
+    },
+    {
+     "row": 31,
+     "n": 237,
+     "p_v2": 0.7705462159406522,
+     "p_W": 0.618887884530303,
+     "Dn": 0.04310988447324676,
+     "n_cont": 237
+    },
+    {
+     "row": 32,
+     "n": 147,
+     "p_v2": 0.949954063934136,
+     "p_W": 0.832592797672589,
+     "Dn": 0.04286157822364245,
+     "n_cont": 147
+    },
+    {
+     "row": 33,
+     "n": 147,
+     "p_v2": 0.5083371400769202,
+     "p_W": 0.8243514295586094,
+     "Dn": 0.06782142584799256,
+     "n_cont": 147
+    },
+    {
+     "row": 34,
+     "n": 108,
+     "p_v2": 0.7957878472542439,
+     "p_W": 0.7974094225386903,
+     "Dn": 0.062311102398380336,
+     "n_cont": 108
+    },
+    {
+     "row": 35,
+     "n": 76,
+     "p_v2": 0.37361121454853774,
+     "p_W": 0.39070902335917046,
+     "Dn": 0.10485000204886563,
+     "n_cont": 76
+    },
+    {
+     "row": 36,
+     "n": 51,
+     "p_v2": 0.417649962152295,
+     "p_W": 0.40284778007506505,
+     "Dn": 0.12354452653648629,
+     "n_cont": 51
+    },
+    {
+     "row": 37,
+     "n": 42,
+     "p_v2": 0.43971372343698395,
+     "p_W": 0.36585543764880746,
+     "Dn": 0.13379705350965676,
+     "n_cont": 42
+    },
+    {
+     "row": 38,
+     "n": 32,
+     "p_v2": 0.7090792523309333,
+     "p_W": 0.6762865867220589,
+     "Dn": 0.12397251167829926,
+     "n_cont": 32
+    },
+    {
+     "row": 39,
+     "n": 86,
+     "p_v2": 0.08377998429384191,
+     "p_W": 0.07763786797652751,
+     "Dn": 0.13581439980040666,
+     "n_cont": 86
+    }
+   ],
+   "n_pass_v2": 38.0,
+   "n_below_1e-3": 1.0,
+   "n_pass_W": 39.0,
+   "marginal_D_ks_p": 0.0,
+   "moments": {
+    "E_D_det": 1.0000002361988327,
+    "E_D_mc": 0.9990576320447894,
+    "E_D_se": 0.0005723103905111303,
+    "E_v2_det": 6.341347466915564,
+    "E_v2_mc": 6.33822376484221,
+    "E_v2_se": 0.007665473107711229,
+    "E_Dv2_det": 13.567130762703627,
+    "E_Dv2_mc": 13.562935499325334,
+    "E_Dv2_se": 0.028739481856423374
+   }
+  }
+ },
+ "recovery": {
+  "q0": {
+   "reals": 500,
+   "curve": [
+    {
+     "S": 50,
+     "bias_tau0": 0.0020252347800049364,
+     "spread_tau0": 0.08821962598830113,
+     "mad_tau0": 0.08875131802422666,
+     "bias_q": -0.0034162387367202562,
+     "spread_q": 0.17977376575987591,
+     "mad_q": 0.17599113056125495,
+     "coverage_tau0": 0.998,
+     "coverage_q": 0.99,
+     "med_3sig_tau0": 0.2678346222985511,
+     "med_3sig_q": 0.5362131056037078,
+     "spike_lost": 0,
+     "broken": 0
+    },
+    {
+     "S": 20,
+     "bias_tau0": 0.0001979129498268506,
+     "spread_tau0": 0.21681562627968934,
+     "mad_tau0": 0.21722520398626316,
+     "bias_q": -0.0008364278223822463,
+     "spread_q": 0.47577939116156237,
+     "mad_q": 0.4279842886080006,
+     "coverage_tau0": 1.0,
+     "coverage_q": 0.986,
+     "med_3sig_tau0": 0.6697413077957222,
+     "med_3sig_q": 1.3433535397222245,
+     "spike_lost": 0,
+     "broken": 0
+    },
+    {
+     "S": 10,
+     "bias_tau0": 0.014861087997991795,
+     "spread_tau0": 0.4600993638354753,
+     "mad_tau0": 0.4655795409908851,
+     "bias_q": -0.0202670145788858,
+     "spread_q": 90017852.76206714,
+     "mad_q": 0.839414409372684,
+     "coverage_tau0": 0.996,
+     "coverage_q": 0.962,
+     "med_3sig_tau0": 1.3429147684709593,
+     "med_3sig_q": 2.643442487621402,
+     "spike_lost": 0,
+     "broken": 1
+    },
+    {
+     "S": 5,
+     "bias_tau0": -0.04598849026512297,
+     "spread_tau0": 1.0320298943568529,
+     "mad_tau0": 0.83999412096402,
+     "bias_q": 0.05605433306942431,
+     "spread_q": 626199959.5866866,
+     "mad_q": 1.5880678118614087,
+     "coverage_tau0": 1.0,
+     "coverage_q": 0.834,
+     "med_3sig_tau0": 2.619934434709565,
+     "med_3sig_q": 5.554941315362884,
+     "spike_lost": 0,
+     "broken": 54
+    }
+   ],
+   "jwst_reach": {
+    "pair_reach": null,
+    "tau0_only_reach": "50",
+    "per_S": {
+     "50": {
+      "pair": false,
+      "tau0_only": true
+     },
+     "20": {
+      "pair": false,
+      "tau0_only": false
+     },
+     "10": {
+      "pair": false,
+      "tau0_only": false
+     },
+     "5": {
+      "pair": false,
+      "tau0_only": false
+     }
+    }
+   }
+  },
+  "q2": {
+   "reals": 500,
+   "curve": [
+    {
+     "S": 50,
+     "bias_tau0": -0.004491593901721158,
+     "spread_tau0": 0.10314691047573064,
+     "mad_tau0": 0.10169728173446503,
+     "bias_q": 0.02098812913318371,
+     "spread_q": 0.42760934773735076,
+     "mad_q": 0.40079217733919653,
+     "coverage_tau0": 0.998,
+     "coverage_q": 0.998,
+     "med_3sig_tau0": 0.31493801407039645,
+     "med_3sig_q": 1.2766080391085384,
+     "spike_lost": 0,
+     "broken": 0
+    },
+    {
+     "S": 20,
+     "bias_tau0": -0.032945432839402766,
+     "spread_tau0": 0.26054669281120457,
+     "mad_tau0": 0.24973625767837143,
+     "bias_q": 0.11895614501281271,
+     "spread_q": 1.3078029685759318,
+     "mad_q": 1.0617522622951694,
+     "coverage_tau0": 0.998,
+     "coverage_q": 0.986,
+     "med_3sig_tau0": 0.7797550050990166,
+     "med_3sig_q": 3.326370639018406,
+     "spike_lost": 0,
+     "broken": 0
+    },
+    {
+     "S": 10,
+     "bias_tau0": 0.06604161843162215,
+     "spread_tau0": 0.5614553045891377,
+     "mad_tau0": 0.5414140296139703,
+     "bias_q": -0.26000316420523517,
+     "spread_q": 397238847.8748278,
+     "mad_q": 1.7849768040018354,
+     "coverage_tau0": 1.0,
+     "coverage_q": 0.94,
+     "med_3sig_tau0": 1.6108468339890187,
+     "med_3sig_q": 5.645041475765356,
+     "spike_lost": 0,
+     "broken": 5
+    },
+    {
+     "S": 5,
+     "bias_tau0": 0.029943139396590546,
+     "spread_tau0": 1.182580099921336,
+     "mad_tau0": 1.0008667030345535,
+     "bias_q": -0.06172628584825679,
+     "spread_q": 1220564361.59994,
+     "mad_q": 3.229413206709531,
+     "coverage_tau0": 1.0,
+     "coverage_q": 0.822,
+     "med_3sig_tau0": 3.180037642219852,
+     "med_3sig_q": 12.079383599665713,
+     "spike_lost": 0,
+     "broken": 51
+    }
+   ],
+   "jwst_reach": {
+    "pair_reach": null,
+    "tau0_only_reach": null,
+    "per_S": {
+     "50": {
+      "pair": false,
+      "tau0_only": false
+     },
+     "20": {
+      "pair": false,
+      "tau0_only": false
+     },
+     "10": {
+      "pair": false,
+      "tau0_only": false
+     },
+     "5": {
+      "pair": false,
+      "tau0_only": false
+     }
+    }
+   }
+  }
+ },
+ "jwst_reach": {
+  "q0": "50",
+  "q2": null
+ },
+ "verdict": "BROKEN"
+}
+```

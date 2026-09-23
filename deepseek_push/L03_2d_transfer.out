@@ -1,0 +1,130 @@
+============================================================================
+L03 deterministic 2D transfer function + recovery pipeline
+pre-registered: deepseek_push/L03_2D_TRANSFER.md (written first)
+============================================================================
+
+[1] extended ray solver (kappa(r)=t0(1+q r^2))
+  V2(kappa(r)) closed form F=r mu: {'V2k_t01.0_q0_160': {'max_field_err': 5.551115123125783e-16, 'E_D': -5.551115123125783e-17}, 'V2k_t01.0_q2_160': {'max_field_err': 1.2212453270876722e-15, 'E_D': -1.1102230246251565e-16}}
+  cloud t0=1 q=0: E[D]=0.50000 E[v2]=2.80675 E[Dv2]=3.70896  iters=[30, 33, 33]
+  cloud t0=1 q=2: E[D]=1.00000 E[v2]=6.34135 E[Dv2]=13.56713  iters=[59, 66, 67]
+
+[2] cloud t0=1 q=0.0  (leg A cross-bins n=4e6, leg B verification n=4e6)
+  atom=0.367879  Psi[0,0]=0.544566  E[D]=0.500000 E[ang]=1.403374 E[D ang]=1.817760  mass=0.9996
+  per-row v2-KS : pass>0.01 24/40, p<1e-3 in 1 rows, min p=0.0000
+  per-row W-spine: pass>0.01 25/40, min p=0.0480
+  marginal D-KS p=0.000   moments MC: E[D]=0.4998 E[v2]=2.8041 E[Dv2]=3.6957
+   row  0 n=2288072 p_v2=  0.0000 p_W=  0.2288
+   row  1 n= 480395 p_v2=  0.8308 p_W=  0.7572
+   row  2 n= 362907 p_v2=  0.3760 p_W=  0.1825
+   row  3 n= 277882 p_v2=  0.7128 p_W=  0.4518
+   row  4 n= 201260 p_v2=  0.1424 p_W=  0.2031
+   row  5 n= 138468 p_v2=  0.5877 p_W=  0.4212
+   row  6 n=  88238 p_v2=  0.7375 p_W=  0.7305
+   row  7 n=  56228 p_v2=  0.7359 p_W=  0.8107
+   row  8 n=  36953 p_v2=  0.4904 p_W=  0.1736
+   row  9 n=  24271 p_v2=  0.6896 p_W=  0.9586
+   row 10 n=  15802 p_v2=  0.9766 p_W=  0.9924
+   row 11 n=  10299 p_v2=  0.7084 p_W=  0.3104
+   row 12 n=   6665 p_v2=  0.6010 p_W=  0.4844
+   row 13 n=   4448 p_v2=  0.1542 p_W=  0.1195
+   row 14 n=   2827 p_v2=  0.1237 p_W=  0.4021
+   row 15 n=   1873 p_v2=  0.9446 p_W=  0.8770
+   row 16 n=   1190 p_v2=  0.1881 p_W=  0.1871
+   row 17 n=    753 p_v2=  0.2976 p_W=  0.2632
+   row 18 n=    502 p_v2=  0.6060 p_W=  0.2653
+   row 19 n=    353 p_v2=  0.5393 p_W=  0.8097
+   row 20 n=    225 p_v2=  0.4342 p_W=  0.3918
+   row 21 n=    158 p_v2=  0.0592 p_W=  0.0480
+   row 22 n=     66 p_v2=  0.4669 p_W=  0.5006
+   row 23 n=     51 p_v2=  0.9017 p_W=  0.8492
+   row 24 n=     36 p_v2=  0.5753 p_W=  0.7298
+   row 25 n=     22 p_v2=     nan p_W=     nan
+   row 26 n=     24 p_v2=     nan p_W=     nan
+   row 27 n=      7 p_v2=     nan p_W=     nan
+   row 28 n=     13 p_v2=     nan p_W=     nan
+   row 29 n=      4 p_v2=     nan p_W=     nan
+   row 30 n=      4 p_v2=     nan p_W=     nan
+   row 31 n=      1 p_v2=     nan p_W=     nan
+   row 32 n=      0 p_v2=     nan p_W=     nan
+   row 33 n=      0 p_v2=     nan p_W=     nan
+   row 34 n=      1 p_v2=     nan p_W=     nan
+   row 35 n=      2 p_v2=     nan p_W=     nan
+   row 36 n=      0 p_v2=     nan p_W=     nan
+   row 37 n=      0 p_v2=     nan p_W=     nan
+   row 38 n=      0 p_v2=     nan p_W=     nan
+   row 39 n=      0 p_v2=     nan p_W=     nan
+  [3] recovery (500 reals x S/N in {50,20,10,5})
+   S/N= 50: bias(t0)=+0.0020 spread=0.088 3sig/t0=0.268 cov(t0)=0.998 | bias(q)=-0.0034 spread=0.180 3sig_q=0.536 cov(q)=0.990 lost=0
+   S/N= 20: bias(t0)=+0.0002 spread=0.217 3sig/t0=0.670 cov(t0)=1.000 | bias(q)=-0.0008 spread=0.476 3sig_q=1.343 cov(q)=0.986 lost=0
+   S/N= 10: bias(t0)=+0.0149 spread=0.460 3sig/t0=1.343 cov(t0)=0.996 | bias(q)=-0.0203 spread=90017852.762 3sig_q=2.643 cov(q)=0.962 lost=0
+   S/N=  5: bias(t0)=-0.0460 spread=1.032 3sig/t0=2.620 cov(t0)=1.000 | bias(q)=+0.0561 spread=626199959.587 3sig_q=5.555 cov(q)=0.834 lost=0
+  JWST reach (pair / tau0-only): None / 50
+  leg time 37s
+
+[2] cloud t0=1 q=2.0  (leg A cross-bins n=4e6, leg B verification n=4e6)
+  atom=0.188876  Psi[0,0]=0.328350  E[D]=1.000000 E[ang]=3.170674 E[D ang]=6.683985  mass=0.9976
+  per-row v2-KS : pass>0.01 38/40, p<1e-3 in 1 rows, min p=0.0000
+  per-row W-spine: pass>0.01 39/40, min p=0.0052
+  marginal D-KS p=0.000   moments MC: E[D]=0.9991 E[v2]=6.3382 E[Dv2]=13.5629
+   row  0 n=1402887 p_v2=  0.0000 p_W=  0.1943
+   row  1 n= 501990 p_v2=  0.1586 p_W=  0.5987
+   row  2 n= 442753 p_v2=  0.7562 p_W=  0.4984
+   row  3 n= 374969 p_v2=  0.2958 p_W=  0.1501
+   row  4 n= 297351 p_v2=  0.3971 p_W=  0.8616
+   row  5 n= 231232 p_v2=  0.5067 p_W=  0.8339
+   row  6 n= 177134 p_v2=  0.0417 p_W=  0.0374
+   row  7 n= 134728 p_v2=  0.5991 p_W=  0.5448
+   row  8 n= 103536 p_v2=  0.0634 p_W=  0.4853
+   row  9 n=  78553 p_v2=  0.9661 p_W=  0.8432
+   row 10 n=  60074 p_v2=  0.4617 p_W=  0.4235
+   row 11 n=  45883 p_v2=  0.1248 p_W=  0.0877
+   row 12 n=  35265 p_v2=  0.8435 p_W=  0.7817
+   row 13 n=  26757 p_v2=  0.3475 p_W=  0.3319
+   row 14 n=  20465 p_v2=  0.4913 p_W=  0.1955
+   row 15 n=  15783 p_v2=  0.2167 p_W=  0.4537
+   row 16 n=  11807 p_v2=  0.5323 p_W=  0.3588
+   row 17 n=   9280 p_v2=  0.9510 p_W=  0.9698
+   row 18 n=   6957 p_v2=  0.7871 p_W=  0.8564
+   row 19 n=   5498 p_v2=  0.3612 p_W=  0.4724
+   row 20 n=   4132 p_v2=  0.5624 p_W=  0.5614
+   row 21 n=   2986 p_v2=  0.7351 p_W=  0.6675
+   row 22 n=   2306 p_v2=  0.2882 p_W=  0.2180
+   row 23 n=   1830 p_v2=  0.0544 p_W=  0.2135
+   row 24 n=   1402 p_v2=  0.9932 p_W=  0.9888
+   row 25 n=   1034 p_v2=  0.6120 p_W=  0.2696
+   row 26 n=    790 p_v2=  0.9293 p_W=  0.9682
+   row 27 n=    585 p_v2=  0.0039 p_W=  0.0052
+   row 28 n=    487 p_v2=  0.3565 p_W=  0.3834
+   row 29 n=    347 p_v2=  0.4227 p_W=  0.4314
+   row 30 n=    273 p_v2=  0.9690 p_W=  0.9270
+   row 31 n=    237 p_v2=  0.7705 p_W=  0.6189
+   row 32 n=    147 p_v2=  0.9500 p_W=  0.8326
+   row 33 n=    147 p_v2=  0.5083 p_W=  0.8244
+   row 34 n=    108 p_v2=  0.7958 p_W=  0.7974
+   row 35 n=     76 p_v2=  0.3736 p_W=  0.3907
+   row 36 n=     51 p_v2=  0.4176 p_W=  0.4028
+   row 37 n=     42 p_v2=  0.4397 p_W=  0.3659
+   row 38 n=     32 p_v2=  0.7091 p_W=  0.6763
+   row 39 n=     86 p_v2=  0.0838 p_W=  0.0776
+  [3] recovery (500 reals x S/N in {50,20,10,5})
+   S/N= 50: bias(t0)=-0.0045 spread=0.103 3sig/t0=0.315 cov(t0)=0.998 | bias(q)=+0.0210 spread=0.428 3sig_q=1.277 cov(q)=0.998 lost=0
+   S/N= 20: bias(t0)=-0.0329 spread=0.261 3sig/t0=0.780 cov(t0)=0.998 | bias(q)=+0.1190 spread=1.308 3sig_q=3.326 cov(q)=0.986 lost=0
+   S/N= 10: bias(t0)=+0.0660 spread=0.561 3sig/t0=1.611 cov(t0)=1.000 | bias(q)=-0.2600 spread=397238847.875 3sig_q=5.645 cov(q)=0.940 lost=0
+   S/N=  5: bias(t0)=+0.0299 spread=1.183 3sig/t0=3.180 cov(t0)=1.000 | bias(q)=-0.0617 spread=1220564361.600 3sig_q=12.079 cov(q)=0.822 lost=0
+  JWST reach (pair / tau0-only): None / None
+  leg time 61s
+============================================================================
+verdict: BROKEN
+jwst_snr_reach: q0: pair=None tau0only=50; q2: pair=None tau0only=None
+  check: L03.q0: per-row v2-KS p>0.01 in 24/40 rows
+  check: L03.q0: p<1e-3 rows = 1 (kill >3)
+  check: L03.q0: W-spine p>0.01 in 25/40 rows (slice-free deterministic content)
+  check: L03.q0: marginal D-KS p=0.000
+  check: L03.q2: per-row v2-KS p>0.01 in 38/40 rows
+  check: L03.q2: p<1e-3 rows = 1 (kill >3)
+  check: L03.q2: W-spine p>0.01 in 39/40 rows (slice-free deterministic content)
+  check: L03.q2: marginal D-KS p=0.000
+  check: L03.gate: kappa=1 re-solve vs K05 ladder: E[D]=0.50000 E[v2]=2.80675 E[Dv2]=3.70896 (K05 0.5/2.80674/3.70900)
+  check: L03.recovery.q0: pair-reach S/N=None, tau0-only reach S/N=50
+  check: L03.recovery.q2: pair-reach S/N=None, tau0-only reach S/N=None
+total 140s

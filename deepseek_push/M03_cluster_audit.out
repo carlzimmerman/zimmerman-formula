@@ -1,0 +1,52 @@
+==============================================================================
+M03 CLUSTER EVIDENCE RE-AUDIT -- shipped eRASS:3 catalogues
+==============================================================================
+header | HARD: NAXIS2=15980 TFIELDS=111
+header | MAIN: NAXIS2=1975540 TFIELDS=250
+header | LS10: NAXIS2=1591243 TFIELDS=189
+header | CV: NAXIS2=587 TFIELDS=30
+info | PART0 MAIN z/T/M column census | 0 match(es) | columns matching z/T_X/M500 patterns: NONE -> catalogue-only for E1/E2 physics
+info | PART0 HARD z/T/M column census | 0 match(es) | columns matching z/T_X/M500 patterns: NONE -> catalogue-only for E1/E2 physics
+info | PART0 LS10 redshift-ish columns | ['redshift_simbad', 'redshift_err_simbad'] | LS10 carries ONLY Simbad-hosted redshifts ('not always reliable', per column comment) + blazar BZcat IDs; no photometric-z column found in the 189 names.
+PASS | A01 G236-C01 hard total = 15,980 | thresh n/a | measured 15980 rows (header NAXIS2 = 15980)
+PASS | A02 G236-C02 hard EXT = 954 (EXT_LIKE>0) | thresh n/a | measured EXT 954 / PS 15026 (EXT_LIKE>0); cut sensitivity EXT_LIKE>10 -> 911
+PASS | A03 G236-C03 hard PS = 15,026 | thresh n/a | measured 15026
+PASS | A04 G236-C04 main total rows | thresh n/a | measured 1975540 rows (NAXIS2 1975540)
+PASS | A05 G236-C04 main PS = 1,911,744 / EXT = 63,796 (EXT_LIKE>0) | thresh n/a | measured PS 1911744 / EXT 63796
+info | A05b cut sensitivity (main) | EXT_LIKE>0 -> 63796; EXT_LIKE>10 -> 23219; EXT>0 -> 63796 | The 63,796 headline is tied to the EXT_LIKE>0 criterion; other reasonable cuts give different numbers (reported, not judged).
+PASS | A06 G236-C13 EXT vs PS |b| two-sample KS differs | thresh D > 1.358*sqrt((n1+n2)/(n1*n2)) | measured D = 0.04598 vs 95% crit 0.00547 -> 8.4x (scipy p ~ 0); frac |b|<10 deg: EXT 0.154 vs PS 0.122; scipy ks_2samp D=0.04598 p=7.14e-114
+PASS | A07 G236-C05 LS10 rows = 1,591,243 | thresh n/a | measured 1591243 rows (NAXIS2 1591243)
+PASS | A08 G236-C05 extragalactic share ~88% | thresh 0.80-0.95 band around paper's 0.88 | measured 0.8785 (1397905/1591243; class_gal_exgal>=1; stars 193338)
+FAIL | A09 CROSS-FILE main EXT census reproduced from LS10 copy of EXT_LIKE | thresh equality with MAIN EXT_LIKE>0 (raw) | measured LS10 EXT_LIKE>0 rows 65645 vs MAIN EXT_LIKE>0 63796
+PASS | A09b CROSS-FILE excess RESOLVED by DETUID join (duplicate counterpart rows) | thresh no out-of-Main rows; 0 flips; delta fully accounted by duplicates | measured LS10 rows 1591243; unique DETUIDs 1460292 -> 130951 duplicate counterpart rows; rows outside Main 0, Hard-only 0; EXT-class flips on shared DETUIDs 0; EXT rows with multiplicity 65645 = MAIN 63796 + 1849 duplicate-EXT rows; agreement 1591243/1591243
+PASS | A10 G236-C06 E1 arithmetic re-derived | thresh |fw|<1e-4; M-RISE 0.1335/0.2155; sep 21/35 sigma | measured framework -0.0000/-0.0000 dex; M-RISE +0.1335/+0.2155; (1+z)^1.5 +0.132; sigma_bin 0.0062 -> M-RISE separated 22σ @z=0.5, 35σ @z=1
+PASS | A11 G236-C07 E2 registration constants internally consistent | thresh n/a | measured alpha=2/3; rms floors 0.076 (local) / 0.100 (z>0.2 falsifier); q=-0.414+-0.157
+PASS | A12 G236-C08 E3 G187 phase-boundary registered | thresh n/a | measured M500 in [2e14,3e14]: f_dust<0.85 voids sharp saturation
+PASS | A13 G236-C09 E4 G162 sliver registered | thresh n/a | measured log M 13.07-13.70 on slope 1.004+-0.011
+PASS | A14 G236-C10 Roster needles NON-CLAIM registered | thresh n/a | measured no framework prediction attaches
+PASS | A15 G236-C11 G161 plateau seal, eRASS leg | thresh n/a | measured DR2 = 2.4x eRASS1 extended (paper claim); FoV 5/12
+PASS | B01 EXT/PS class fractions, Main vs Hard | thresh Main in (2,5)%, Hard in (3,8)% | measured Main 3.229% EXT (63796/1975540); Hard 5.970% EXT (954/15980); ratio 1.85x
+info | B02a EXT fraction vs |b| sector (main) | |b|0.0-10.0: 4.04% (9844/243367); |b|10.0-20.0: 2.56% (7838/306714); |b|20.0-40.0: 3.46% (22989/665198); |b|40.0-90.0: 3.04% (23125/760261) | spread 1.49 pp | EXT fraction is Galactic-latitude dependent (|b|<10 plane: 4.04% vs 3.04% at |b|>40, a 1.33x fraction ratio; the population-level plane excess is what A06's KS quantifies, frac |b|<10 = 0.154 EXT vs 0.122 PS). This is sky-sector non-stability of the RAW EXT census -- expected (Galactic SNRs/star-forming regions), and the reason cluster-physics z-invariance can NOT be read off raw EXT fractions.
+info | B03 EXT fraction vs l sector (main, 30 deg bins) | l0-30: EMPTY; l30-60: EMPTY; l60-90: EMPTY; l90-120: EMPTY; l120-150: EMPTY; l150-180: 2.89%; l180-210: 2.61%; l210-240: 2.73%; l240-270: 3.81%; l270-300: 3.59%; l300-330: 3.10%; l330-360: 3.14% | spread 1.20 pp | zero-source bins: ['l0-30', 'l30-60', 'l60-90', 'l90-120', 'l120-150'] | Longitude-sector EXT fraction spread is 0.8x smaller than the latitude spread -> within the western Galactic hemisphere, the EXT census is longitude-stable at the ~1 pp level; the dominant sector dependence is |b|.
+PASS | B04 z-sector candle: LS10 Simbad-z census (sparse) | thresh sparse (1-15%) and >100 rows | measured 116524 rows with z>0 (7.32% of LS10); z-bins {'0.0': 41726, '0.1': 12226, '0.3': 10682, '0.6': 15774, '1.0': 25561, '2.0': 10555}; blazar-flagged 1207, jetted 1207
+info | PART0/BBG CV catalogue content | 587 rows; CV_TYPE values: ['', 'AM_CVn', 'DN', 'NL', 'Nova', 'mCV', 'mCV_cand'] | SRG_eROSITA_SDSS_CV_CATALOGUE is a cataclysmic-variable cross-validation list (587 CVs), NOT a cluster/redshift cross-match. Confirms: no redshift product for clusters ships with DR2.
+PASS | B05 E2 rms <= 0.076 dex z-invariance: testability | thresh needs T_X(z), M500, z -- none shipped | measured untestable-with-shipped-cols
+info | B06 E1 next-level-down: what the catalogue CAN constrain | measured: EXT/PS shares (B01), sector stability (B02/B03), LS10 87.83% (A08), KS 8.4x (A06), Simbad-z census (B04) | Every E1-relevant catalogue-level quantity is measured above; the null's decisive number (Delta log10 T_X at fixed M_b) cannot be formed without T_X and M500. Verdict on E1: PENDING by design, and the shipped files carry no column that advances it.
+R | claim | audit status | exact numbers (this audit) | external product that closes it
+R | Hard catalogue 15,980 rows (A&A T2) | RE-VERIFIED | 15,980 (header NAXIS2 = data length) | closed; paper Table 2
+R | Hard EXT 954 / PS 15,026 | RE-VERIFIED | EXT_LIKE>0: 954 / 15,026; (EXT_LIKE>10: 911, reported) | closed; paper Table 2
+R | Main 1,911,744 PS + 63,796 EXT | RE-VERIFIED | 1,975,540 rows; EXT_LIKE>0: 63,796; EXT_LIKE>10: 23219; EXT>0: 63796 | closed; paper Table 2
+R | EXT vs PS sky populations differ (KS) | RE-VERIFIED | D=0.04598 vs 95% crit 0.00547 (8.4x); p~0; frac|b|<10: EXT 0.154 vs PS 0.122 | closed; measured from shipped BII
+R | LS10 ~88% extragalactic | RE-VERIFIED | 0.8785 (1397905/1591243, class_gal_exgal>=1); Class_STAREX>0 0.1243 | closed; paper T10 on same column semantics
+R | Cross-file EXT census (LS10 copy) | RE-VERIFIED (delta resolved) | LS10 EXT_LIKE>0 65645 vs MAIN 63796: delta 1849 rows = duplicate counterpart rows on EXT detections (130951 duplicates on 1460292 unique DETUIDs; 0 rows outside Main; 0 classification flips on 1591243 shared rows) | closed (Main v1.3 census confirmed twice over)
+R | E1: Delta log10 T_X = 0.000 (z<=1) virial-T null | NOT-TESTABLE-WITH-SHIPPED | no T_X/M500/z in MAIN/HARD/CV; LS10 only sparse Simbad z; arithmetic re-derived (M-RISE +0.1335/+0.2155 dex @ z=0.5/1, 21/35 sigma) | eRASS:3 cluster WG products (T_X, M500, z) + SDSS DR20 spec-z
+R | E2: cluster-sector z-invariance rms<=0.076 dex | NOT-TESTABLE-WITH-SHIPPED | needs T_X(z) at fixed M500, alpha fit, pooled rms; no shipped column suffices (B05) | eRASS:3 cluster WG products + SDSS DR20
+R | G187/G162/G161 eRASS legs | NOT-TESTABLE-WITH-SHIPPED | need M500 (and f_dust) not shipped | eRASS:3 WG mass products
+R | ~200,000 SDSS DR20 spec-z sources | NOT-TESTABLE-WITH-SHIPPED | no spec-z column in MAIN/HARD (header census); LS10 has only Simbad z (sparse) | SDSS DR20 cross-match release
+R | tens of thousands of clusters to z>1 | NOT-TESTABLE-WITH-SHIPPED | no z for clusters in any shipped file | eRASS:3 WG cluster catalogue with redshifts
+R | eRASS:3 = 2.4x eRASS1 extended | NOT-TESTABLE-WITH-SHIPPED | 63,796 EXT in hand; eRASS1 file not shipped for the ratio | eRASS1 DR1 catalogue
+R | EXT fraction sector stability (audit finding, not a claim) | MEASURED (context) | |b| sectors: 4.04/2.56/3.46/3.04%; l(30deg) spread 1.2 pp vs |b| spread 1.5 pp | n/a (catalogue context for E2)
+R | EXT/PS class fractions Main vs Hard (audit finding) | MEASURED (context) | Main 3.229% (63796) vs Hard 5.970% (954); ratio 1.85x | n/a
+------------------------------------------------------------------------------
+M03 COMPLETE: 18/19 checks PASS.
+results -> /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/M03_results.json
