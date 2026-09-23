@@ -30,6 +30,7 @@ The same shift-independence is what gives α₁ = α₂ = 0. That is the **momen
 - **Window:** α_c in (10⁻¹³, 3.2×10⁻⁹), c₂ in (7.3×10⁻³, 0.067).
 - **New prediction:** the phantom lags sources faster than c_s ~ 10³–10⁴ km/s.
 - **Status:** a candidate, not a theory. Nonlinear well-posedness, the full 1PN metric, FRW perturbations and the dark sector remain.
+- **09-23, the FRW gate FAILS as built** ([`L341`](real_research/g03_audit_2026/L341_chk_frw_gate.py)). σ₈ = 18–27 with the CMB's cold fluid, and finite tracking cannot fix it. The clock's own expansion K would give the record's dS-Unruh floor (healthy in quartic form, σ₈ back to 0.81). But the foliation is CMC-stiff (δK = 0 for static sources), so the floor also kills galaxies (SPARC Δχ² > +6500). What is missing is a switch that tells bound matter from matter still in the Hubble flow; KiDS allows it only at ≳ 1 Mpc from a galaxy.
 
 **Other candidates:**
 - **The clock chain's L297 "complete action" is not standing.** Three of its four checks are literal `True`, its dust is CDM by hand, its S8 "closure" is an identity, and its galaxy pass comes from a grid artefact.

@@ -77,3 +77,10 @@ What it passes:
 - **Window:** α_c in (10⁻¹³, 3.2×10⁻⁹), c₂ in (7.3×10⁻³, 0.067), c_T = 1.
 
 **Candidate, not closure.** Not yet computed: nonlinear well-posedness, the full 1PN metric, FRW perturbations, and the dark sector. Hand-off to the lead track (astra), whose C-H files are not edited.
+
+**09-23: the FRW gate for C-H/K fails.** [`real_research/g03_audit_2026/L341`](../../real_research/g03_audit_2026/L341_chk_frw_gate.py) (7/7; `MUTATE` = MOND off, fails F2/F3/F4/F6, rc = 1).
+- **Growth:** with the cold fluid the CMB requires, the MOND boost on the linear field gives σ₈ = 18–27 across L340's c₂ window, and finite tracking cannot fix it.
+- **The K-floor:** the clock's own expansion K would supply the record's dS-Unruh floor, κ = cH/a₀. The quadratic form is unhealthy; the quartic form is healthy and gives σ₈ = 0.81.
+- **Why the K-floor fails:** the foliation is CMC-stiff (δK = 0 for static sources, symbolic), so galaxies keep K = 3H₀ and the floor erases MOND from the RAR (Δχ² > +6500).
+
+**Rung 10 requirement, sharpened:** a bound-vs-expanding switch that C-H/K does not contain. KiDS allows it only at ≳ 1 Mpc from galaxies (0.3 / 0.5 Mpc: Δχ² +256 / +105; 1 Mpc: −11, a lead).

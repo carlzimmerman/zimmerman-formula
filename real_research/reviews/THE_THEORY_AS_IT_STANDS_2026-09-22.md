@@ -2,6 +2,12 @@
 
 **What this is.** About 630 commits from roughly ten agent tracks landed in this repository between 09-14 and 09-22. On 09-22 they were audited against their committed scripts, re-running the load-bearing ones. This page assembles the most coherent theory the record supports. For each part it says whether it is measured, derived, fitted or missing. It also names the gates that would have to fall for this to become a theory of gravity, rather than a law plus an unfinished completion.
 
+**Update, 09-23: C-H/K fails the FRW gate, [L341](../g03_audit_2026/L341_chk_frw_gate.py).** With the cold fluid the CMB requires, C-H/K's MOND sector boosts the linear field and σ₈ comes out 18–27. Finite tracking does not rescue it.
+- **The floor it could use:** the only floor made of its own fields is the clock's expansion K, and κ = K/(3α) = cH/a₀ is exactly the record's dS-Unruh floor. It is healthy in quartic form and returns σ₈ = 0.81.
+- **Why that floor fails:** the foliation is CMC-stiff. δK = 0 for every static source, so a galaxy keeps K = 3H₀, and the floor removes MOND from the RAR (SPARC Δχ² > +6500).
+- **What is missing:** a variable that knows whether matter has decoupled from the Hubble flow. KiDS-1000 says such a switch cannot sit inside ~0.5 Mpc of a galaxy (Δχ² +105 to +256) and is allowed near ~1 Mpc (Δχ² −11, a lead).
+- **Status:** C-H/K stays the only candidate passing the linear gravity gates. It is not a cosmology.
+
 **Update, late 09-22: a candidate completion, [L340](../g03_audit_2026/L340_filtered_khronon_completion.py).** C-H/K is astra's C-H plus the khronon's α-term α_c a² and λ-term −c₂K² (the Blas–Pujolas–Sibiryakov terms, β = 0), with a monotone phantom law. It is the first construction on the record to pass the moving-source gate and the health gates at the orders computed (11/11; see §1, Layer 3). **It is a candidate, not a theory:** nonlinear well-posedness, the full 1PN metric, cosmological perturbations and the dark sector are not computed.
 
 **Verdict on the week itself.** No breakthrough landed in the week's commits. What they leave is:
@@ -116,6 +122,8 @@ with C-H's kernel built from a **monotone** phantom law ν_mono: ν_RAR below it
 | Window | α_c between 10⁻¹³ and 3.2×10⁻⁹ (α₁ = −4α_c, α₂ ≈ −α_c/2); c₂ between 7.3×10⁻³ (tracking) and 0.067 (BBN); c_T = 1 exactly |
 | New prediction | the phantom follows sources slower than c_s = c√(c₂/(C(2+3c₂))), about 10³–10⁴ km/s in halos, and lags faster ones by ~(v/c_s)² |
 
+**FRW gate (L341, 09-23): FAILED as built.** σ₈ = 18–27 with the cold fluid; the K-floor fixes growth but is CMC-stiff and kills galaxies. See the update at the top.
+
 **Not computed:**
 - nonlinear well-posedness;
 - the full 1PN metric (β_PPN, ζ's);
@@ -226,6 +234,7 @@ The one momentum channel already on the record is L297's khronon (λ − 1 = c�
 **κ.** Settled as a measured constant of nature. Its precision is limited by the M/L zero point, the absolute gas scale and H₀.
 
 **Gravity, after L340.** C-H/K meets these requirements at the orders computed. The next computations, in order of what they decide:
+0. **(L341: FAILED)** FRW linear growth. What is needed now is a bound-vs-expanding switch that is absent from the theory; KiDS puts it at ≳ 1 Mpc;
 1. nonlinear well-posedness of the clock + U/W system with the khronon terms;
 2. the full 1PN metric;
 3. FRW perturbations, with the zero-gradient singularity of C regularised;
