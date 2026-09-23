@@ -1,0 +1,219 @@
+{
+ "lane": "L325",
+ "mutate": true,
+ "checks": {
+  "F0 the clone and every package are clean at the manifest revisions: Mathlib's definitions (ContDiffOn, laplacian, gradient, integral) are the published ones": {
+   "ok": true,
+   "measured": "clone f9e8bc5b38b6 clean=True; 11/11 packages match",
+   "load_bearing": true
+  },
+  "F1 every clause of Fefferman's (C) (and (D) per the errata) appears in the challenge statement with the reading given": {
+   "ok": true,
+   "measured": "11/11 clauses present; missing []",
+   "load_bearing": true
+  },
+  "F2 the submission's definitions are the challenge definitions verbatim; the only difference is the two `sorry` challenge theorems": {
+   "ok": true,
+   "measured": "10 challenge-only lines (the theorems), 0 added",
+   "load_bearing": true
+  },
+  "F3 the Lean kernel derives the challenge statements (C) and (D), verbatim, from the submitted theorems; axioms exactly {propext, Classical.choice, Quot.sound}": {
+   "ok": false,
+   "measured": "exit 1; navier_stokes_breakdown_R3: ['Classical.choice', 'Quot.sound', 'propext', 'sorryAx']; navier_stokes_breakdown_periodic: ['Classical.choice', 'Quot.sound', 'propext']",
+   "load_bearing": true
+  },
+  "F4 non-vacuity: \u221e is C^inf (\u2260 \u03c9); the zero field solves the R^3 class; v = t c, f = c solves the base class": {
+   "ok": false,
+   "measured": "l325_zero_solution_R3: missing; l325_linear_in_time: ok; l325_infty_is_smooth: ok",
+   "load_bearing": true
+  },
+  "F5 the challenge matches the upstream Formal Conjectures statement (transcribed, not byte-compared)": {
+   "ok": true,
+   "measured": "WebFetch transcription 2026-09-22",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "clone": {
+   "commit": "f9e8bc5b38b6e212696e8a30e3e91517af887bbd",
+   "clean": true
+  },
+  "F0": {
+   "Comparator": {
+    "pinned": "19e111e2141cf333c7daff0f64c5f24acc91dd2e",
+    "head": "19e111e2141cf333c7daff0f64c5f24acc91dd2e",
+    "clean": true
+   },
+   "mathlib": {
+    "pinned": "85e3a25e006c35636f0e53b0e9296caca2685bc0",
+    "head": "85e3a25e006c35636f0e53b0e9296caca2685bc0",
+    "clean": true
+   },
+   "lean4export": {
+    "pinned": "cacf989bd75f608700820f6afc595f32e7a99a4d",
+    "head": "cacf989bd75f608700820f6afc595f32e7a99a4d",
+    "clean": true
+   },
+   "plausible": {
+    "pinned": "d9598f07b1bc701f1e3aae163d2681c1fd978793",
+    "head": "d9598f07b1bc701f1e3aae163d2681c1fd978793",
+    "clean": true
+   },
+   "LeanSearchClient": {
+    "pinned": "ba67e212be1197b84c1f1f6299488a10a3002713",
+    "head": "ba67e212be1197b84c1f1f6299488a10a3002713",
+    "clean": true
+   },
+   "importGraph": {
+    "pinned": "d8823026ac7ef130c253089d95685f9877b95323",
+    "head": "d8823026ac7ef130c253089d95685f9877b95323",
+    "clean": true
+   },
+   "proofwidgets": {
+    "pinned": "a8acbfd87375ff4abe14ce09db5b7664d383bc7f",
+    "head": "a8acbfd87375ff4abe14ce09db5b7664d383bc7f",
+    "clean": true
+   },
+   "aesop": {
+    "pinned": "18889deb9e83ea7420ef51c160d6f88552e744e3",
+    "head": "18889deb9e83ea7420ef51c160d6f88552e744e3",
+    "clean": true
+   },
+   "Qq": {
+    "pinned": "507746ab8f4b643ccdacb2ec4cdb5853fa9f8ab3",
+    "head": "507746ab8f4b643ccdacb2ec4cdb5853fa9f8ab3",
+    "clean": true
+   },
+   "batteries": {
+    "pinned": "d54dddc581e08be364c278052863524bff7a99a9",
+    "head": "d54dddc581e08be364c278052863524bff7a99a9",
+    "clean": true
+   },
+   "Cli": {
+    "pinned": "ab3a82db9fea14cf0fd7f5a2de650f4b534640af",
+    "head": "ab3a82db9fea14cf0fd7f5a2de650f4b534640af",
+    "clean": true
+   }
+  },
+  "F1": [
+   {
+    "fefferman": "(1) d_t u + (u.grad)u = nu Lap u - grad p + f, x in R^n, t >= 0",
+    "lean": "derivWithin (v x \u00b7) (Set.Ici 0) t + fderiv \u211d (v \u00b7 t) x (v x t) =\n      nu \u2022 \u0394 (v \u00b7 t) x - gradient (p \u00b7 t) x + f x t",
+    "verdict": "faithful: one-sided time derivative at t = 0, (u.grad)u = Du[u]"
+   },
+   {
+    "fefferman": "(2) div u = 0 for t >= 0",
+    "lean": "div_free : \u2200 x, \u2200 t \u2265 0, \u2207\u2b1d (v \u00b7 t) x = 0",
+    "verdict": "faithful"
+   },
+   {
+    "fefferman": "(3) u(x,0) = u0(x)",
+    "lean": "initial_condition : \u2200 x, v x 0 = u\u2080 x",
+    "verdict": "faithful"
+   },
+   {
+    "fefferman": "u0 smooth, divergence-free",
+    "lean": "smooth : ContDiff \u211d \u221e u\u2080",
+    "verdict": "faithful (\u221e = C^inf, F4a)"
+   },
+   {
+    "fefferman": "(4) |d^a u0| <= C_aK (1+|x|)^-K",
+    "lean": "\u2016iteratedFDeriv \u211d m u\u2080 x\u2016 \u2264 C / (1 + \u2016x\u2016) ^ K",
+    "verdict": "equivalent: full m-th derivative norm bounds every order-m partial and conversely up to constants"
+   },
+   {
+    "fefferman": "f smooth on R^3 x [0,inf)",
+    "lean": "smooth : ContDiffOn \u211d \u221e (\u21bff) (Set.univ \u00d7\u02e2 Set.Ici 0)",
+    "verdict": "faithful"
+   },
+   {
+    "fefferman": "(5) |d^a_x d^m_t f| <= C (1+|x|+t)^-K",
+    "lean": "C / (1 + \u2016x\u2016 + t) ^ K",
+    "verdict": "equivalent (mixed partials inside the full derivative)"
+   },
+   {
+    "fefferman": "(6) p, u in C^inf(R^n x [0,inf))",
+    "lean": "velocity_smooth : ContDiffOn \u211d \u221e (\u21bfv) (Set.univ \u00d7\u02e2 Set.Ici 0)",
+    "verdict": "faithful; pressure_smooth likewise; no extra decay imposed on p (none in Fefferman either)"
+   },
+   {
+    "fefferman": "(7) int |u(x,t)|^2 dx < C for all t >= 0",
+    "lean": "globally_bounded_energy : \u2203 E, \u2200 t \u2265 0, (\u222b x : \u211d^n, \u2016v x t\u2016 ^ 2) < E",
+    "verdict": "faithful; the added `integrable : MemLp 2` field only blocks Lean's junk value 0 for non-integrable functions and is implied by (7) for continuous u"
+   },
+   {
+    "fefferman": "(C) take nu > 0, n = 3; exist u0 (4), f (5) with NO solution of (1)(2)(3)(6)(7)",
+    "lean": "theorem navier_stokes_breakdown_R3 (nu : \u211d) (hnu : nu > 0) :",
+    "verdict": "faithful and quantified over every nu > 0"
+   },
+   {
+    "fefferman": "(D) periodic u0, f (8),(9); no solution of (1)(2)(3)(10)(11)",
+    "lean": "isOnePeriodic_pressure : \u2200 t \u2265 0, IsOnePeriodic (p \u00b7 t)",
+    "verdict": "follows the Clay errata (pressure periodic too); the original (10)-(11) text omits it"
+   }
+  ],
+  "F2": {
+   "removed": [
+    "theorem navier_stokes_breakdown_R3 (nu : \u211d) (hnu : nu > 0) :",
+    "\u2203 (u\u2080 : \u211d\u00b3 \u2192 \u211d\u00b3) (f : \u211d\u00b3 \u2192 \u211d \u2192 \u211d\u00b3),",
+    "InitialVelocityConditionDecay u\u2080 \u2227 ForceConditionDecay f \u2227",
+    "\u00ac (\u2203 v p, NavierStokesExistenceAndSmoothnessRn nu u\u2080 f v p) := by",
+    "sorry",
+    "theorem navier_stokes_breakdown_periodic (nu : \u211d) (hnu : nu > 0) :",
+    "\u2203 (u\u2080 : \u211d\u00b3 \u2192 \u211d\u00b3) (f : \u211d\u00b3 \u2192 \u211d \u2192 \u211d\u00b3),",
+    "InitialVelocityConditionPeriodic u\u2080 \u2227 ForceConditionPeriodic f \u2227",
+    "\u00ac (\u2203 v p, NavierStokesExistenceAndSmoothnessPeriodic nu u\u2080 f v p) := by",
+    "sorry"
+   ],
+   "added": []
+  },
+  "F3": {
+   "lean_file": "L325_clay_statement_fidelity_MUTATE.lean",
+   "exit": 1,
+   "axioms": {
+    "L325Challenge.navier_stokes_breakdown_R3": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext",
+     "sorryAx"
+    ],
+    "L325Challenge.navier_stokes_breakdown_periodic": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "L325Challenge.l325_zero_solution_R3": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext",
+     "sorryAx"
+    ],
+    "L325Challenge.l325_linear_in_time": [
+     "Classical.choice",
+     "Quot.sound",
+     "propext"
+    ],
+    "L325Challenge.l325_infty_is_smooth": []
+   },
+   "output_head": [
+    "real_research/ns_audit_2026/L325_clay_statement_fidelity_MUTATE.lean:278:40: error(lean.invalidField): Invalid field `globally_bounded_energy`: The environment does not contain `L325Challenge.NavierStokesExistenceAndSmoothnessRn.globally_bounded_energy`, so it is not possible to project the field `globally_bounded_energy` from an expression",
+    "  h",
+    "of type",
+    "  NavierStokesExistenceAndSmoothnessRn nu u\u2080 f v p",
+    "real_research/ns_audit_2026/L325_clay_statement_fidelity_MUTATE.lean:300:9: error: Invalid `\u27e8...\u27e9` notation: The expected type",
+    "  \u2200 t \u2265 0, MemLp (fun x => \u20160\u2016) 2 volume",
+    "is not an inductive type",
+    "",
+    "Note: This notation can only be used when the expected type is an inductive type with a single constructor",
+    "real_research/ns_audit_2026/L325_clay_statement_fidelity_MUTATE.lean:309:2: error: No goals to be solved",
+    "'L325Challenge.navier_stokes_breakdown_R3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+    "'L325Challenge.navier_stokes_breakdown_periodic' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'L325Challenge.l325_zero_solution_R3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]",
+    "'L325Challenge.l325_linear_in_time' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'L325Challenge.l325_infty_is_smooth' does not depend on any axioms"
+   ]
+  }
+ },
+ "n_checks": 6,
+ "n_fail_load_bearing": 2
+}

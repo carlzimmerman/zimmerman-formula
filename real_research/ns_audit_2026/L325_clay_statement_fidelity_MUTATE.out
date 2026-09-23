@@ -1,0 +1,98 @@
+OpenAI clone commit f9e8bc5b38b6e212696e8a30e3e91517af887bbd  (working tree clean)
+
+========================================================================================================
+F0  THE BUILD INPUTS: CLONE AND EVERY LAKE PACKAGE (MATHLIB INCLUDED) CLEAN AT THE PINNED REVISION
+========================================================================================================
+    Comparator         pinned 19e111e2141c  head 19e111e2141c  clean
+    mathlib            pinned 85e3a25e006c  head 85e3a25e006c  clean
+    lean4export        pinned cacf989bd75f  head cacf989bd75f  clean
+    plausible          pinned d9598f07b1bc  head d9598f07b1bc  clean
+    LeanSearchClient   pinned ba67e212be11  head ba67e212be11  clean
+    importGraph        pinned d8823026ac7e  head d8823026ac7e  clean
+    proofwidgets       pinned a8acbfd87375  head a8acbfd87375  clean
+    aesop              pinned 18889deb9e83  head 18889deb9e83  clean
+    Qq                 pinned 507746ab8f4b  head 507746ab8f4b  clean
+    batteries          pinned d54dddc581e0  head d54dddc581e0  clean
+    Cli                pinned ab3a82db9fea  head ab3a82db9fea  clean
+  [PASS] F0 the clone and every package are clean at the manifest revisions: Mathlib's definitions (ContDiffOn, laplacian, gradient, integral) are the published ones
+         measured: clone f9e8bc5b38b6 clean=True; 11/11 packages match
+         reading:  a modified Mathlib could change a statement's meaning without touching #print axioms; it is not modified
+
+========================================================================================================
+F1  FEFFERMAN'S OFFICIAL TEXT -> THE CHALLENGE STATEMENT, CLAUSE BY CLAUSE
+========================================================================================================
+    (1) d_t u + (u.grad)u = nu Lap u - grad p + f, x in R^n, t >= 0            -> present; faithful: one-sided time derivative at t = 0, (u.grad)u = Du[u]
+    (2) div u = 0 for t >= 0                                                   -> present; faithful
+    (3) u(x,0) = u0(x)                                                         -> present; faithful
+    u0 smooth, divergence-free                                                 -> present; faithful (∞ = C^inf, F4a)
+    (4) |d^a u0| <= C_aK (1+|x|)^-K                                            -> present; equivalent: full m-th derivative norm bounds every order-m partial and conversely up to constants
+    f smooth on R^3 x [0,inf)                                                  -> present; faithful
+    (5) |d^a_x d^m_t f| <= C (1+|x|+t)^-K                                      -> present; equivalent (mixed partials inside the full derivative)
+    (6) p, u in C^inf(R^n x [0,inf))                                           -> present; faithful; pressure_smooth likewise; no extra decay imposed on p (none in Fefferman either)
+    (7) int |u(x,t)|^2 dx < C for all t >= 0                                   -> present; faithful; the added `integrable : MemLp 2` field only blocks Lean's junk value 0 for non-integrable functions and is implied by (7) for continuous u
+    (C) take nu > 0, n = 3; exist u0 (4), f (5) with NO solution of (1)(2)(3)(6)(7) -> present; faithful and quantified over every nu > 0
+    (D) periodic u0, f (8),(9); no solution of (1)(2)(3)(10)(11)               -> present; follows the Clay errata (pressure periodic too); the original (10)-(11) text omits it
+  [PASS] F1 every clause of Fefferman's (C) (and (D) per the errata) appears in the challenge statement with the reading given
+         measured: 11/11 clauses present; missing []
+         reading:  no statement drift found between the official text and the Lean challenge
+
+========================================================================================================
+F2  CHALLENGE FILE vs THE SUBMISSION'S OWN DEFINITIONS COPY
+========================================================================================================
+    comment-stripped diff: 10 lines only in the challenge, 0 only in the definitions copy
+      - theorem navier_stokes_breakdown_R3 (nu : ℝ) (hnu : nu > 0) :
+      - ∃ (u₀ : ℝ³ → ℝ³) (f : ℝ³ → ℝ → ℝ³),
+      - InitialVelocityConditionDecay u₀ ∧ ForceConditionDecay f ∧
+      - ¬ (∃ v p, NavierStokesExistenceAndSmoothnessRn nu u₀ f v p) := by
+      - sorry
+      - theorem navier_stokes_breakdown_periodic (nu : ℝ) (hnu : nu > 0) :
+      - ∃ (u₀ : ℝ³ → ℝ³) (f : ℝ³ → ℝ → ℝ³),
+      - InitialVelocityConditionPeriodic u₀ ∧ ForceConditionPeriodic f ∧
+      - ¬ (∃ v p, NavierStokesExistenceAndSmoothnessPeriodic nu u₀ f v p) := by
+      - sorry
+  [PASS] F2 the submission's definitions are the challenge definitions verbatim; the only difference is the two `sorry` challenge theorems
+         measured: 10 challenge-only lines (the theorems), 0 added
+         reading:  the proof elaborates against the same text the challenge states
+
+========================================================================================================
+F3/F4  THE KERNEL BRIDGE: PROVE THE CHALLENGE STATEMENTS FROM THE SUBMITTED THEOREMS
+========================================================================================================
+    lake env lean L325_clay_statement_fidelity_MUTATE.lean: exit 1
+      real_research/ns_audit_2026/L325_clay_statement_fidelity_MUTATE.lean:278:40: error(lean.invalidField): Invalid field `globally_bounded_energy`: The environment does not contain `L325Challenge.NavierStokesExistenceAndSmoothnessRn.globally_bounded_energy`, so it is not possible to project the field `globally_bounded_energy` from an expression
+        h
+      of type
+        NavierStokesExistenceAndSmoothnessRn nu u₀ f v p
+      real_research/ns_audit_2026/L325_clay_statement_fidelity_MUTATE.lean:300:9: error: Invalid `⟨...⟩` notation: The expected type
+        ∀ t ≥ 0, MemLp (fun x => ‖0‖) 2 volume
+      is not an inductive type
+      
+      Note: This notation can only be used when the expected type is an inductive type with a single constructor
+      real_research/ns_audit_2026/L325_clay_statement_fidelity_MUTATE.lean:309:2: error: No goals to be solved
+      'L325Challenge.navier_stokes_breakdown_R3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+      'L325Challenge.navier_stokes_breakdown_periodic' depends on axioms: [propext, Classical.choice, Quot.sound]
+      'L325Challenge.l325_zero_solution_R3' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+      'L325Challenge.l325_linear_in_time' depends on axioms: [propext, Classical.choice, Quot.sound]
+      'L325Challenge.l325_infty_is_smooth' does not depend on any axioms
+  [FAIL] F3 the Lean kernel derives the challenge statements (C) and (D), verbatim, from the submitted theorems; axioms exactly {propext, Classical.choice, Quot.sound}
+         measured: exit 1; navier_stokes_breakdown_R3: ['Classical.choice', 'Quot.sound', 'propext', 'sorryAx']; navier_stokes_breakdown_periodic: ['Classical.choice', 'Quot.sound', 'propext']
+         reading:  the theorem proved IS the challenge statement: no drift between what was proved and what was asked
+  [FAIL] F4 non-vacuity: ∞ is C^inf (≠ ω); the zero field solves the R^3 class; v = t c, f = c solves the base class
+         measured: l325_zero_solution_R3: missing; l325_linear_in_time: ok; l325_infty_is_smooth: ok
+         reading:  the solution class is inhabited and its time derivative is live: nonexistence is not a vacuous encoding
+
+========================================================================================================
+F5  UPSTREAM DEEPMIND STATEMENT (documentary)
+========================================================================================================
+    google-deepmind/formal-conjectures @ 8bf45ed FormalConjectures/Millenium/NavierStokes.lean, read via WebFetch on
+    2026-09-22: same eight structures, same fields, same (C)/(D) statements (namespace NavierStokes, tagged
+    `@[category research open, AMS 35]`); the challenge's edits are imports, namespace and inlined notation.
+  [PASS] F5 the challenge matches the upstream Formal Conjectures statement (transcribed, not byte-compared)
+         measured: WebFetch transcription 2026-09-22
+         reading:  recorded as documentary
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  MUTATE: energy clause removed from the challenge copy (a stronger statement than was proved): the bridge FAILED to compile, as required -- the check detects drift.
+
+  4/6 checks pass; load-bearing failures: 2; wrote L325_clay_statement_fidelity_results_MUTATE.json
