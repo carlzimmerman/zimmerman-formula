@@ -1,0 +1,76 @@
+
+========================================================================================================
+C1  THE QUADRATIC ACTION IN UNITARY GAUGE (1D reduction along the wavevector) AND ITS EQUATIONS
+========================================================================================================
+    R3[exp(2 zeta(x)) delta] = 2*(-Derivative(zeta(x), x)**2 - 2*Derivative(zeta(x), (x, 2)))*exp(-2*zeta(x));  matches -e^(-2 zeta)(4 zeta'' + 2 zeta'^2): True
+    d/d phi  : -16*pi*G*(rho_m(t, x) + rho_ph(t, x)) - 2*alpha*Derivative(phi(t, x), (x, 2)) + 4*xi*Derivative(psi(t, x), (x, 2)) = 0
+    d/d sigma: -16*pi*G*Derivative(J(t, x), x) - 2*lambda*(Derivative(sigma(t, x), (x, 4)) + 3*Derivative(psi(t, x), t, (x, 2))) + 2*Derivative(sigma(t, x), (x, 4)) + 2*Derivative(psi(t, x), t, (x, 2)) = 0
+    d/d psi  : 6*lambda*(3*Derivative(psi(t, x), (t, 2)) + Derivative(sigma(t, x), t, (x, 2))) + 4*xi*(Derivative(phi(t, x), (x, 2)) - Derivative(psi(t, x), (x, 2))) - 6*Derivative(psi(t, x), (t, 2)) - 2*Derivative(sigma(t, x), t, (x, 2)) = 0
+  [PASS] C1 the quadratic action's equations derived symbolically (R3 from Christoffels); Phi_B = phi + sigma_dot is invariant under the time reparametrisation
+         measured: R3 ok True; gauge ok True
+         reading:  E enters only through sigma = B - E_dot, so the E-equation is the time derivative of the sigma-equation
+
+========================================================================================================
+C2-C4  A GALAXY (MATTER + PHANTOM) MOVING AT w THROUGH THE PREFERRED FRAME: ONE FOURIER MODE
+========================================================================================================
+    lambda = 1: psi_hat = -4*pi*G*rho_m_hat/k**2  (d psi/d rho_ph = 0: the leaf curvature does not see the moving phantom)
+    lambda = 1: phi_hat = 8*pi*G*rho_ph_hat/(alpha*k**2)  (rho_ph coefficient x alpha k^2 = 8*pi*G: the lapse carries it, x 1/alpha)
+    lambda = 1: gauge-invariant Phi_B = phi + sigma_dot = 4*pi*G*rho_m_hat*(-k**2 + 3*omega**2)/k**4  (d Phi_B/d rho_ph = 0)
+    lambda = 1 and alpha = 0: solutions []
+  [PASS] C2 CONTROL (L330): at lambda = 1 a moving phantom with no momentum does not gravitate at all -- it is absent from both gauge-invariant potentials (the 1/alpha lapse is cancelled by the shift); at alpha = 0 there is no solution
+         measured: d Psi_B/d rho_ph = 0; d Phi_B/d rho_ph = 0; lapse coefficient 8*pi*G/(alpha k^2) (gauge); alpha = 0: []
+         reading:  L330's frozen phantom, reproduced exactly: a phantom that moves without momentum is left out of gravity
+    sigma_hat x eps -> 8*I*pi*G*omega*rho_ph_hat/(k**2*(k**2 - omega**2*r))   (prediction -(8 pi G) rho_ph_dot/k^4 = 8*I*pi*G*omega*rho_ph_hat/k**4)
+    phi_hat   x eps -> 8*pi*G*omega**2*rho_ph_hat/(k**2*(-k**2 + omega**2*r))
+  [PASS] C3 at lambda = 1 + eps the moving galaxy is solvable; the shift carries a 1/eps piece equal to -(8 pi G/eps) rho_ph_dot/k^4 x 1/(1 - r w^2/c^2), and the lapse an exactly equal and opposite one
+         measured: eps*sigma / prediction = k**2/(k**2 - omega**2*r) (-> 1 as w -> 0); eps*(phi + sigma_dot) = 0
+         reading:  the constraint mismatch that froze the phantom at lambda = 1 is absorbed by the shift; the factor 1/(1 - r w^2/c^2) is the khronon's own propagation speed (c on the equal-speed locus)
+    (Phi_B - target)/target: 1/eps coefficient = 0;  eps -> 0 limit, to O(w^2): omega**2*(r*rho_ph_hat - 3*rho_m_hat)/(k**2*(rho_m_hat + rho_ph_hat))
+    (Psi_B - target)/target: 1/eps coefficient = 0;  eps -> 0 limit, to O(w^2): omega**2*r*rho_ph_hat/(k**2*(rho_m_hat + rho_ph_hat))
+  [PASS] C4 the gauge-invariant potentials carry NO 1/eps term: the enhanced shift and lapse cancel in Phi_B, and Psi_B is untouched; both equal the boosted static potential up to O(w^2/c^2)
+         measured: 1/eps coefficients: Phi_B 0, Psi_B 0; (Phi_B - target)/target, (Psi_B - target)/target at w -> 0: 0, 0; (Phi_B - Psi_B)/target: 0
+         reading:  matter feels -grad Phi_B, light Phi_B + Psi_B: no velocity-dependent effect of order w^2/(eps c^2)
+
+========================================================================================================
+C5  WHAT THE CARRYING COSTS: THE DEFORMED FOLIATION, IN NUMBERS
+========================================================================================================
+    canonical c14 = 1.0e-05 dwarf           v_f =   59.4 km/s, w =   150 km/s: K =   14.30 H0, aether flow     1.18 km/s, nonlinear ratio 9.82e-05
+    canonical c14 = 1.0e-05 Milky Way       v_f =  165.2 km/s, w =   370 km/s: K =   35.28 H0, aether flow    22.48 km/s, nonlinear ratio 4.63e-03
+    canonical c14 = 1.0e-05 massive spiral  v_f =  247.1 km/s, w =   600 km/s: K =   57.21 H0, aether flow    81.51 km/s, nonlinear ratio 2.72e-02
+    canonical c14 = 1.0e-05 cluster         v_f = 1055.8 km/s, w =   600 km/s: K =   57.21 H0, aether flow  1488.19 km/s, nonlinear ratio 4.97e-01
+    canonical c14 = 2.5e-05 dwarf           v_f =   59.4 km/s, w =   150 km/s: K =    5.72 H0, aether flow     0.47 km/s, nonlinear ratio 1.57e-05
+    canonical c14 = 2.5e-05 Milky Way       v_f =  165.2 km/s, w =   370 km/s: K =   14.11 H0, aether flow     8.99 km/s, nonlinear ratio 7.40e-04
+    canonical c14 = 2.5e-05 massive spiral  v_f =  247.1 km/s, w =   600 km/s: K =   22.88 H0, aether flow    32.60 km/s, nonlinear ratio 4.35e-03
+    canonical c14 = 2.5e-05 cluster         v_f = 1055.8 km/s, w =   600 km/s: K =   22.88 H0, aether flow   595.26 km/s, nonlinear ratio 7.95e-02
+    alt       c14 = 1.0e-05 cluster         v_f = 1106.7 km/s, w =   600 km/s: K =   69.07 H0, aether flow  1635.16 km/s, nonlinear ratio 5.46e-01
+    alt       c14 = 2.5e-05 cluster         v_f = 1106.7 km/s, w =   600 km/s: K =   27.63 H0, aether flow   654.04 km/s, nonlinear ratio 8.73e-02
+    nonlinear onset w v_f = eps c^2  ->  sqrt(eps) c = {'c14=1e-05': 948.0603231691153, 'c14=2.5e-05': 1499.0374764053713} km/s
+  [PASS] C5 galaxies stay linear (nonlinear khronon energy <= 3% of the phantom at both ends of the c14 window); CLUSTERS DO NOT: 8-55% of the phantom, with aether flows comparable to w -- the linear result does not cover clusters
+         measured: galaxy max 3.0e-02; clusters {'canonical/c14=1e-05/cluster': '0.50', 'canonical/c14=2.5e-05/cluster': '0.08', 'alt/c14=1e-05/cluster': '0.55', 'alt/c14=2.5e-05/cluster': '0.09'}; cluster aether flow / w {'canonical/c14=1e-05/cluster': '2.48', 'canonical/c14=2.5e-05/cluster': '0.99', 'alt/c14=1e-05/cluster': '2.73', 'alt/c14=2.5e-05/cluster': '1.09'}
+         reading:  the onset w v_f = eps c^2 = (0.95-1.5e3 km/s)^2: every massive cluster is at or past it; the khronon is dragged along with the cluster there, and this lane says nothing about it
+
+========================================================================================================
+C6  PPN: THE SAME COEFFICIENTS, UNCHANGED BOUNDS
+========================================================================================================
+    c14 = 1.0e-05, c2 = 1.000020e-05: alpha_1 = -4.0e-05 (LLR |alpha_1| < 1e-4), alpha_2 = 0.0e+00 (bound 4e-7)
+    c14 = 2.5e-05, c2 = 2.500125e-05: alpha_1 = -1.0e-04 (LLR |alpha_1| < 1e-4), alpha_2 = 0.0e+00 (bound 4e-7)
+    the MW's own carried-phantom aether flow ~ 9.0 km/s against w ~ 370-630 km/s: alpha-type effects shift by ~4.9% of already-bounded values
+  [PASS] C6 alpha_1 = -4 c14 inside the LLR bound and alpha_2 = 0 on the equal-speed locus (L280): the momentum channel is the same coefficient set, so the bounds are unchanged
+         measured: {'c14=1e-05': {'c2': 1.000020000400008e-05, 'alpha1': -4e-05, 'alpha2': 0.0}, 'c14=2.5e-05': {'c2': 2.5001250062503128e-05, 'alpha1': -0.0001, 'alpha2': 0.0}}
+         reading:  the channel needs no Solar-System screening: its large part is gauge
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  The first computation on the breakthrough list has a definite linear-order answer: YES.  L297's khronon
+  (lambda - 1 = eps ~ 2.5e-5) carries a moving galaxy's phantom at any velocity w << c.  The 1/eps-large shift it
+  needs is a deformation of the preferred slicing (K ~ 6-60 H0 near a moving galaxy, aether flows of km/s) that
+  cancels exactly from Phi_B and Psi_B at leading order, so matter and light see the boosted static field: no
+  velocity-dependent potential, lensing = dynamics for moving sources, alpha_1 and alpha_2 unchanged.  At lambda = 1
+  the same moving phantom does not gravitate at all (C2): the channel is what makes a moving phantom real.
+  The price is nonlinear: the khronon's pointwise energy relative to the phantom is (w v_f / eps c^2)^2 -- at most
+  3% in galaxies but 8-55% in clusters, whose aether flow is dragged to ~w.  Clusters are outside this lane's
+  validity; that regime is new, uncomputed, and where this construction makes (or loses) its next prediction.  Not shown: the MOND scalar's own
+  moving-frame equations, the Cassini leafwise filter, ghost-freedom, the nonlinear khronon.
+
+  6/6 checks pass; load-bearing failures: 0; wrote KM1_khronon_carries_phantom_results.json
