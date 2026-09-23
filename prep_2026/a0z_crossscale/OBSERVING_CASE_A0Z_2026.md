@@ -97,3 +97,34 @@ deep-MOND population at z ≈ 2.5. The pipeline, the frozen constant, the estima
 
 ---
 **Correction pending (2026-09-12, L189).** The framework's own necessity certificate (L166) and its Lyman-α gate require a clustering cold component whose halos persist around z ≈ 2.5 galaxies (the forest's k = 5 h/Mpc structures are those halos). A 3e11 M☉ halo at z = 2.5 contributes a dark fraction ≈ 0.38 inside R_e = 3 kpc of a 1e10 M☉-baryon rotator, shifting the framework's BTFR zero-point at z ≈ 2.5 by ≈ +0.05 dex in velocity (+0.2 dex in mass). The "0.00 dex vs +0.33 dex" gap stated above assumed baryons-only galaxies and shrinks to ≈ 0.1 dex in mass zero-point, below the ±0.13 dex resolution of the funnel. The decision rule must be recomputed with the retained halo included before any observing time is requested; a v2 of the published case (DOI 10.5281/zenodo.22700993) is pending.
+
+---
+
+## CORRECTION NOTICE, 2026-09-23 (append-only; the published PAPER14 v1 text above is unchanged)
+
+The candidate ledger this observing case cites (`highz_deepmond_target_list_2026*`) carried
+literature values that contradict their own cited sources. Its own 2026-07-25 adversarial pass had
+already flagged this ("target-table BLOCKER"), but the correction was never made. Every row has now
+been re-read from its primary paper, and **`highz_target_ledger_verified_2026.py` supersedes the old
+ledger.** Corrections that change this document:
+
+- **A68-HLS115 is at z = 1.5869, not 2.49.** It has μ = 15, M★ = 8.1×10⁹ M☉ and
+  M_gas = 2.4×10¹⁰ M☉ (Dessauges-Zavadsky+2015, arXiv:1408.0816, Tables 1 and 3). It lies outside the
+  window and is not deep-MOND. Delete it from the in-window list.
+- **Abell 68 C4** (z = 2.622, μ ≈ 46) is real and low-mass. Its two published stellar masses differ by
+  0.7 dex: log M★ = 8.7 (Richard+2007) and 8.0 (Richard+2011). It passes the deep-MOND bracket only at
+  the lower value. It has no kinematics and no gas mass, and [OIII] was not detected from the ground.
+- **Abell 68 C20b** has μ ≈ 158 (83–302), i.e. ±0.28 dex. That fails this document's own lens gate,
+  δ log μ < 0.08.
+- **A1689B11** (control): Hα is detected only to about 1.7 kpc, not 3.9 kpc (Yuan+2017, Sec. 3.2). Its
+  V/σ is 9–13 in the paper; the 8.7 quoted here is a derived value.
+- **zC-400569** (control): V_rot = 254 ± 41 km/s, not 300. V/σ ≳ 17; the 20–22 quoted here belongs to
+  a different galaxy (Lelli+2023).
+- **SL2S 0217:** log M★ = 8.26, i.e. 1.8×10⁸ M☉, not ≲10⁹ (Berg+2018). No gas mass is published, only
+  upper limits of ≤0.8–2.1×10⁹ M☉ (Rybak+2021). The arc is 2.5″ long, not 25″.
+- **OLAS M0717-02064** (z = 2.07, μ = 6.48, log M★ = 8.08) is rotation-supported: σ_local = 42.9,
+  v/σ = 1.64, class 1 (Hirtenstein+2019, Table 2). With verified values it is the only deep-MOND-plausible
+  object inside the z ≥ 2 window, and it has never been observed with JWST spectroscopy.
+
+The frozen statistic (0.00 vs +0.33 dex at ±0.13 dex), the gate, and the funnel are unchanged. The
+target list changes, and "no object passes the gate today" still holds. A Zenodo PAPER14 v2 is owed.
