@@ -138,5 +138,5 @@ n_fail = sum(1 for _, ok, lb in CH if lb and not ok)
 OUT["n_checks"], OUT["n_fail_load_bearing"] = len(CH), n_fail
 outname = f"{SLUG}_results{'_MUTATE' if MUTATE else ''}.json"
 json.dump(OUT, open(os.path.join(HERE, outname), "w"), indent=1, default=str)
-P(f"\n  {len(CH) - n_fail}/{len(CH)} checks pass; load-bearing failures: {n_fail}; wrote {outname}")
+P(f"\n  {sum(1 for _, ok, _ in CH if ok)}/{len(CH)} checks pass; load-bearing failures: {n_fail}; wrote {outname}")
 sys.exit(0 if n_fail == 0 else 1)

@@ -256,5 +256,5 @@ OUT["n_checks"], OUT["n_fail_load_bearing"] = len(CH), n_fail
 OUT["runtime_s"] = time.time() - T0
 outname = f"{SLUG}_results{'_MUTATE' if MUTATE else ''}{'' if N_A == 420 else f'_NA{N_A}'}.json"
 json.dump(OUT, open(os.path.join(HERE, outname), "w"), indent=1, default=str)
-P(f"\n  {len(CH) - n_fail}/{len(CH)} checks pass; load-bearing failures: {n_fail}; wrote {outname}   [{time.time()-T0:.0f}s]")
+P(f"\n  {sum(1 for _, ok, _ in CH if ok)}/{len(CH)} checks pass; load-bearing failures: {n_fail}; wrote {outname}   [{time.time()-T0:.0f}s]")
 sys.exit(0 if n_fail == 0 else 1)

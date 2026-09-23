@@ -114,7 +114,7 @@ for _ in range(600 if not MUTATE else 20):
     mc.append(two_bin_slope((c, g, 1.33, bta), 5.0))
 mc = np.array(mc)
 med, lo, hi = float(np.median(mc)), float(np.percentile(mc, 16)), float(np.percentile(mc, 84))
-sig = 0.5 * (hi - lo)
+sig = max(0.5 * (hi - lo), 1e-6)          # guard: a parameter-free (mutated) profile has zero MC spread
 OUT["numbers"]["S1"] = dict(best_L5=s_best[5.0], best_L50=s_best[50.0], mc_median=med, mc_16=lo, mc_84=hi,
                             lit={k: two_bin_slope(v, 5.0) for k, v in LIT.items()})
 P(f"    Monte Carlo over the published errors: median {med:+.3f}, 16-84% [{lo:+.3f}, {hi:+.3f}] (N = {len(mc)})")
@@ -175,5 +175,5 @@ n_fail = sum(1 for _, ok, lb in CH if lb and not ok)
 OUT["n_checks"], OUT["n_fail_load_bearing"] = len(CH), n_fail
 outname = f"{SLUG}_results{'_MUTATE' if MUTATE else ''}.json"
 json.dump(OUT, open(os.path.join(HERE, outname), "w"), indent=1, default=str)
-P(f"\n  {len(CH) - n_fail}/{len(CH)} checks pass; load-bearing failures: {n_fail}; wrote {outname}")
+P(f"\n  {sum(1 for _, ok, _ in CH if ok)}/{len(CH)} checks pass; load-bearing failures: {n_fail}; wrote {outname}")
 sys.exit(0 if n_fail == 0 else 1)
