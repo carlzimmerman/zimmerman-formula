@@ -1,0 +1,90 @@
+{
+ "lane": "L322",
+ "mutate": true,
+ "checks": {
+  "K1 every window C in 1e-300..1e300 m/s^2 is exited by the construction; the corollary contains no a0 (Bayes factor of the 'witness' = 1)": {
+   "ok": false,
+   "measured": "fraction exited = 0.499 (p = 0)",
+   "load_bearing": true
+  },
+  "K2 N13's tau_exit misses eta = 3.5 by >15 decades; the correct root is tau* > 1, so under N13's own lab mapping the flow is above the floor throughout tau in (0,1] -- no in-regime exit": {
+   "ok": true,
+   "measured": "eta at N13 tau_exit exceeds 3.5 by >= 10^19.0; tau* = 1.91e+06",
+   "load_bearing": true
+  },
+  "K3 Du/Dt scales as l^3 under the NSE symmetry, so the exit time of a dimensionless blowup against a dimensional window is set by the unit choice (tau* spans both sides of 1)": {
+   "ok": true,
+   "measured": "power 3; tau* in [2.6e-14, 1.4e+26]",
+   "load_bearing": true
+  },
+  "K4 the a0/2-capped class vanishes at blowup scales (l^-3); damping with b < 3 vanishes, b = 3 is critical, b > 3 dominates": {
+   "ok": true,
+   "measured": "cap -> 0; b=2 -> 0, b=3 -> kappa, b=4 -> oo",
+   "load_bearing": true
+  },
+  "K5 the damped family's regularity constant diverges as kappa -> 0; transferring it to NSE needs a kappa-uniform sup bound, which is the Clay (A)/(B) estimate itself": {
+   "ok": true,
+   "measured": "limits {2: oo, 3: oo}",
+   "load_bearing": true
+  },
+  "N6 as recorded, the OpenAI construction targets Fefferman (C)/(D) with no framework input (unrefereed)": {
+   "ok": true,
+   "measured": "per N08/N14; not re-verified here",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "K1": {
+   "exponent_p": 0,
+   "decades_swept": 600,
+   "fraction_of_C_exited": 0.49916805324459235,
+   "bayes_factor_framework_vs_any_C": null
+  },
+  "K2": {
+   "h=0.0000": {
+    "tau_exit_N13": 4.752856420037148e-07,
+    "eta_at_N13_tau": 3.2598976129072513e+19,
+    "tau_star_correct": 2103997.9154097484,
+    "eta_at_tau_star": 3.5000000000000044,
+    "eta_at_tau_1": 10681592411.796751
+   },
+   "h=0.0050": {
+    "tau_exit_N13": 5.233945149518305e-07,
+    "eta_at_N13_tau": 3.259897612907261e+19,
+    "tau_star_correct": 1910604.6613653048,
+    "eta_at_tau_star": 3.4999999999999933,
+    "eta_at_tau_1": 10681592411.796751
+   }
+  },
+  "K3": {
+   "accel_scaling_power": "3",
+   "a_scale_range": [
+    1e-30,
+    1e+30
+   ],
+   "tau_star_range": [
+    2.5919174412216674e-14,
+    1.4083821166426725e+26
+   ]
+  },
+  "K4": {
+   "cap_rel_limit": "0",
+   "damping_limits": {
+    "2": "0",
+    "5/2": "0",
+    "3": "kappa",
+    "4": "oo"
+   }
+  },
+  "K5": {
+   "barrier_limits": {
+    "2": "oo",
+    "3": "oo"
+   },
+   "kappa_pin_N06": 2.6e-09,
+   "barrier_b3_at_pin_over_A13": 727.2363035371388
+  }
+ },
+ "n_checks": 6,
+ "n_fail_load_bearing": 1
+}

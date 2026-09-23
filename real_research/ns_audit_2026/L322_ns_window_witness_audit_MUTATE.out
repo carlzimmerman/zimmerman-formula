@@ -1,0 +1,75 @@
+
+========================================================================================================
+K1  THE WINDOW CONSTANT IS INERT: the corollary holds for every C > 0
+========================================================================================================
+    N05 trajectory bound: sup|u| <= C*t + U0; finite for every C > 0, t < inf: True
+    canonical: window 3.5*a0 = 3.2760e-10 m/s^2 -> exited: True
+    alt      : window 3.5*a0 = 3.9550e-10 m/s^2 -> exited: True
+  [FAIL] K1 every window C in 1e-300..1e300 m/s^2 is exited by the construction; the corollary contains no a0 (Bayes factor of the 'witness' = 1)
+         measured: fraction exited = 0.499 (p = 0)
+         reading:  'singularity => window exit' is 'singularity => unbounded Du/Dt' with a0 written in; any blowup witnesses it
+
+========================================================================================================
+K2  THE RECORDED tau_exit (N13 4.75e-7, N08 5.2e-7) SOLVES THE INVERTED EQUATION
+========================================================================================================
+    h = 0.0000: N13 tau_exit = 4.753e-07 -> eta there = 3.260e+19  (should be 3.5)
+              correct root tau* = 2.104e+06 -> eta(tau*) = 3.5000;  eta(tau=1) = 1.068e+10
+    h = 0.0050: N13 tau_exit = 5.234e-07 -> eta there = 3.260e+19  (should be 3.5)
+              correct root tau* = 1.911e+06 -> eta(tau*) = 3.5000;  eta(tau=1) = 1.068e+10
+  [PASS] K2 N13's tau_exit misses eta = 3.5 by >15 decades; the correct root is tau* > 1, so under N13's own lab mapping the flow is above the floor throughout tau in (0,1] -- no in-regime exit
+         measured: eta at N13 tau_exit exceeds 3.5 by >= 10^19.0; tau* = 1.91e+06
+         reading:  the N08/N13 '3 s.f. match' is two copies of one inversion: tau^p = 3.5 a0/a_scale instead of a_scale/(3.5 a0)
+
+========================================================================================================
+K3  THE LAB MAPPING IS A GAUGE OF THE NSE SCALING SYMMETRY
+========================================================================================================
+    term ratios under u_l: {'u_t': lambda**3, 'u u_x': lambda**3, 'nu u_xx': lambda**3}
+    d/dt[l u(l x, l^2 t)] carries l^3; a_scale = U0^2/L0 takes any positive value along the orbit
+    a_scale 1e-30..1e30 m/s^2 -> tau* from 2.59e-14 to 1.41e+26
+  [PASS] K3 Du/Dt scales as l^3 under the NSE symmetry, so the exit time of a dimensionless blowup against a dimensional window is set by the unit choice (tau* spans both sides of 1)
+         measured: power 3; tau* in [2.6e-14, 1.4e+26]
+         reading:  'exit at tau ~ 5e-7' has no invariant meaning even with the algebra corrected
+
+========================================================================================================
+K4  a0-BOUNDED TERMS ARE SCALING-IRRELEVANT AT A SINGULARITY; ONLY DAMPING b >= 3 REACHES IT
+========================================================================================================
+    a0/2-capped force, relative weight l^0/l^3 -> 0
+    damping kappa|u|^(b-1)u, b = 2: relative weight kappa l^(b-3) -> 0
+    damping kappa|u|^(b-1)u, b = 5/2: relative weight kappa l^(b-3) -> 0
+    damping kappa|u|^(b-1)u, b = 3: relative weight kappa l^(b-3) -> kappa
+    damping kappa|u|^(b-1)u, b = 4: relative weight kappa l^(b-3) -> oo
+  [PASS] K4 the a0/2-capped class vanishes at blowup scales (l^-3); damping with b < 3 vanishes, b = 3 is critical, b > 3 dominates
+         measured: cap -> 0; b=2 -> 0, b=3 -> kappa, b=4 -> oo
+         reading:  the only regularising member is the damped NSE of Zhou 2012 (cited in N03b); a0 supplies no exponent
+
+========================================================================================================
+K5  kappa -> 0 IS THE CLAY GAP
+========================================================================================================
+    sup barrier (A/kappa)^(1/b) as kappa -> 0: b=2 -> oo, b=3 -> oo
+    framework survival pin kappa <= 2.6e-09 (N06): barrier/A^(1/3) >= 7.272e+02 at b = 3
+  [PASS] K5 the damped family's regularity constant diverges as kappa -> 0; transferring it to NSE needs a kappa-uniform sup bound, which is the Clay (A)/(B) estimate itself
+         measured: limits {2: oo, 3: oo}
+         reading:  the framework does not fix kappa (G03 open) and its own survival pin drives kappa toward the singular limit
+
+========================================================================================================
+N6  (documentary) FEFFERMAN (C) vs THE OPENAI CONSTRUCTION AS RECORDED IN N08/N14
+========================================================================================================
+    u0 smooth, div-free, decay (4)                                 <- u0 = 0
+    f smooth with decay (5): |d^a_x d^m_t f| <= C (1+|x|+t)^-K     <- f in C_c^inf(R^3 x (0,inf)) -- compact support
+    no solution with (1),(2),(3),(6),(7)                           <- no global finite-energy smooth solution (Lean: breakdownStatement)
+  [PASS] N6 as recorded, the OpenAI construction targets Fefferman (C)/(D) with no framework input (unrefereed)
+         measured: per N08/N14; not re-verified here
+         reading:  if it survives review, the prize question is answered by (C); (A)/(B) stay open either way
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  The framework's constants cannot finish Clay-NSE.  The window theorem is true for every constant, so the
+  'witnessed exit' holds for any blowup and carries no evidence for a0 (K1); the recorded exit time solves an
+  inverted equation (K2) and in any case depends on an arbitrary unit choice (K3).  At a singularity every
+  a0-bounded term is scaled away (K4), and the one regularising completion is the literature damped NSE, whose
+  constant diverges in exactly the kappa -> 0 limit that is the Clay problem (K5).  What stays on the record as
+  framework physics (N06's eBTFR fingerprint, conditional on a G03-derived kappa; N07's dust sector) is not a
+  statement about Clay-NSE.
+
+  5/6 checks pass; load-bearing failures: 1; wrote L322_ns_window_witness_audit_results_MUTATE.json
