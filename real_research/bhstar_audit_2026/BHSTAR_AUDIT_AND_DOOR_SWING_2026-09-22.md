@@ -133,3 +133,41 @@ Docstring-vs-theorem corrections, recorded here and not edited in place:
 | D-YM1 X_d constant | lawful-source search | **Unlock re-specified.** Bravyi–DiVincenzo–Loss, CMP 284 (2008) 481, arXiv:0707.1894 (open) says Yarotsky 2004 never stated ε₀ explicitly. BDL re-derive it with tracked constants (2⁻¹⁷Δ/(dJ), two-body qubits). The key is extending that derivation to four-body plaquettes on L²(SU(N)) links, which is swarm-addressable. The JMP paper is not the key. |
 | D-YM2 / D-N5 Clay walls | — | Not swung: no data or constant moves them. |
 | D-YM3 / D-N6 | — | Killed with proof; reopening needs a new action or coupling premise. |
+
+## 5. The QSO1 cube refit — "find out the truth" (L327 7/7; MUTATE swaps law labels, fails C1; Lean I20)
+
+The public narrow-Hα cube (Zenodo 19402518, 86 MB, SHA-256 checked; gitignored) was refit with independent code
+(`qso1_refit/`). The model:
+* a thin rotating Sérsic disk in the source plane;
+* a local lens map (μ = 6.2, stretch and angle free);
+* PSF + LSF;
+* a uniform outflow line as a nuisance;
+* a core mask r ≤ 0.16″.
+
+Kepler, the framework (both footings) and the a0 ∝ H(z) rival were each fit with 24 starts, every nuisance free.
+
+* **Noise:** ERR underestimates the line-free scatter ×1.60. The 0.02″ resampling correlates pixels (summed
+  autocorrelation 28 within ±4 px) and channels (lag-1 0.31). Naive χ² is therefore overconfident by ~O(50–100), so
+  significance is taken only from **real-noise injection** (30 line-free blocks of the same cube).
+* **The laws are indistinguishable:** every law lies within naive Δχ² ≤ 8.8 (PSF free) and ≤ 1.3 (PSF ≥ 0.16″).
+* **Real-noise calibration:** Δχ²(Kepler − framework) is +5.5 ± 6.2 under a Kepler truth and +1.1 ± 10.0 under a
+  framework truth. The observed +3.8 sits inside both (likelihood ratio 1.6). **The cube has no power to separate
+  the laws inside ~0.16″.**
+* **The kinematic mass is PSF-limited:** log M (Kepler) is 6.67 with the PSF free (the data prefer a sub-diffraction
+  0.08″, a resampling artifact) and 7.69 with PSF ≥ 0.16″. That ~1 dex swing is exactly the gap that flips L324's
+  sub-dominance verdict, so **that verdict cannot be settled from these data**.
+* **The extended gas:**
+  - It is blueshifted −12.1 ± 5.2 km/s relative to the core (2.3σ).
+  - No rotation is detected: the dipole is 8.4 km/s, with a 95% upper limit of 21.7 km/s.
+  - It is hot: σ = 74 (median) / 91 (flux-weighted) km/s.
+  - If it is outflow, as the paper says, there is no test.
+  - If it is bound, it needs 0.8–2.3 × 10⁹ Msun within 0.3–0.9 kpc. ΛCDM supplies a halo. The framework needs
+    ~10⁹ Msun of **cold gas**, which ALMA [CII]/dust can test (registered conditional).
+* **Certified velocity floor (Lean I20):**
+  - The theorem: around an isolated point mass, v_c(r) ≥ (G M a0)^{1/4} at every radius, for the RAR kernel and any
+    μ(x) ≤ x. Newton has no floor.
+  - For QSO1 at 10^7.7 the floor is 28.1 km/s (canonical) / 29.4 km/s (alt).
+  - A PSF-controlled rotation curve below it beyond r_M ≈ 250–270 pc falsifies the framework.
+
+**Truth, as far as public data go: UNDECIDABLE.** Nothing here favours or disfavours the framework. What would decide
+it is a source-plane, PSF-controlled rotation curve beyond ~300 pc, confronted with the floor and the L324 K6 bands.

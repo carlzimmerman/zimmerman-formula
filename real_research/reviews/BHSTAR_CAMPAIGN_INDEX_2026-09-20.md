@@ -147,3 +147,9 @@ the auto-bound pi (open Real!), the cgs Saha constant 2.4e15.
   - The registered 375 pc bands widen with the lower published masses: framework 1.15–2.24,
     Newton 1.00, rival 1.94–4.08. They overlap across the full mass range, so the refit must
     weigh M jointly (at fixed M the rival sits ≥ 1.5× above the framework).
+- **QSO1 cube refit (L327, Lean I20): UNDECIDABLE on the public data.**
+  - Kepler, the framework and the rival fit the core equally well.
+  - Real-noise injection shows zero power to separate them (a true framework gives Δχ² = 1.1 ± 10).
+  - The kinematic mass swings 6.67 → 7.69 dex with the PSF assumption, so L324's verdict cannot be settled.
+  - The extended gas is hot and blueshifted (outflow-like), with no rotation (< 21.7 km/s, 95%).
+  - New certified law: v_c ≥ (G M a0)^{1/4} at every radius around an isolated point mass (28.1 km/s for QSO1).

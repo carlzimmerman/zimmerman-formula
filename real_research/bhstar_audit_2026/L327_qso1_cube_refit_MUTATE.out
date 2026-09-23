@@ -1,0 +1,111 @@
+
+L327 -- THE A2744-QSO1 CUBE REFIT: the framework's zero-parameter law against the public JWST narrow-Halpha cube.
+
+WHY.  L324 turned the published "extended mass sub-dominant within 200 pc" into a bound a0 < G M/(r ln2)^2 whose verdict
+flips between the published masses 10^6.9 and 10^7.7.  The decisive swing is a refit of the public data with the law
+itself.  The cube is public (Zenodo 19402518, Juodzbalis+26, CC-BY-4.0; fetched + SHA-256-checked on first run into the
+gitignored real_research/data/qso1/).  Independent code (qso1_refit/): a thin rotating disk in the source plane
+(Sersic light), a local linear lens map (magnification 6.2, stretch and angle free), Gaussian PSF + LSF (R ~ 3700),
+a spatially uniform outflow line as a nuisance, the core mask r <= 0.16", linear amplitudes solved exactly; laws
+kepler / framework (RAR kernel, canonical and alt footing) / rival (a0 x E(z)), every nuisance free, 24 starts each.
+
+WHAT IS CHECKED (both directions):
+  N1-N3  the noise: ERR underestimates the line-free scatter; the 0.02" resampling correlates pixels (sum of the spatial
+         autocorrelation within +/-4 px) and channels -- so naive chi^2 is overconfident and significance must come from
+         REAL-noise injection (30 line-free blocks of the same cube).
+  C1     every stored best fit re-evaluates to its stored chi^2 on the data (MUTATE=1 swaps the law labels: must FAIL).
+  C2     the laws are indistinguishable on the data: max |Delta chi^2| across the five laws, PSF free and PSF >= 0.16".
+  C3     the real-noise calibration: Delta chi^2 (kepler - framework) under a KEPLER truth and under a FRAMEWORK truth;
+         the data's value sits inside both; the framework-truth distribution is centred within 1 sd of zero (NO POWER).
+  C4     the kinematic mass is PSF-systematic-limited: log M (Kepler) moves by >= 0.5 dex between PSF free and PSF >= 0.16".
+  E1-E3  the extended gas (0.1" bins, real-noise centroid errors): blueshift relative to the core; the rotation-dipole
+         upper limit; the dispersion and the mass it would need if bound (Jeans, isotropic).
+  F1     the certified velocity floor (Lean I20): v_c >= (G M a0)^{1/4} at every radius around an isolated point mass.
+
+Run from the repository root:  python3 real_research/bhstar_audit_2026/L327_qso1_cube_refit.py      (verifies, ~1 min)
+FULL=1 re-runs every fit and the calibration (~20 min, 8 cores) before verifying.
+
+
+==============================================================================================================
+N1-N3 -- THE NOISE OF THE PUBLIC CUBE (line-free channels)
+==============================================================================================================
+  [PASS] N1 the ERR array underestimates the line-free scatter (std(data/ERR) > 1.3)
+         measured: 1.596
+  [PASS] N2 resampled pixels are strongly correlated (sum of spatial autocorrelation within +/-4 px > 10)
+         measured: 28.1
+         reading:  naive chi^2 differences are inflated ~O(50-100): only real-noise calibration counts
+  [PASS] N3 adjacent channels correlated (lag-1 > 0.1)
+         measured: 0.31
+
+==============================================================================================================
+C1 -- EVERY STORED BEST FIT RE-EVALUATES TO ITS STORED CHI^2 ON THE DATA
+==============================================================================================================
+  [FAIL] C1 max |chi2(re-evaluated) - chi2(stored)| < 0.01 over the 10 stored fits
+         measured: 13.3856
+         reading:  the stored numbers ARE the data's; MUTATE (law labels swapped) must break this
+
+==============================================================================================================
+C2 -- THE LAWS ON THE DATA (core, all nuisances free)
+==============================================================================================================
+   PSF free   kepler_canonical       chi2 =   6175.74   kepler - this =  +0.00   log M = 6.67   psf = 0.080"   cos i = 0.92
+   PSF free   framework_canonical    chi2 =   6171.95   kepler - this =  +3.79   log M = 6.71   psf = 0.081"   cos i = 0.95
+   PSF free   framework_alt          chi2 =   6174.27   kepler - this =  +1.47   log M = 6.87   psf = 0.083"   cos i = 0.96
+   PSF free   rival_canonical        chi2 =   6166.94   kepler - this =  +8.80   log M = 6.04   psf = 0.080"   cos i = 0.92
+   PSF free   rival_alt              chi2 =   6170.61   kepler - this =  +5.13   log M = 6.32   psf = 0.082"   cos i = 0.96
+   PSF>=0.16  kepler_canonical       chi2 =   6498.50   kepler - this =  +0.00   log M = 7.69   psf = 0.160"   cos i = 0.97
+   PSF>=0.16  framework_canonical    chi2 =   6498.22   kepler - this =  +0.28   log M = 7.99   psf = 0.160"   cos i = 0.98
+   PSF>=0.16  framework_alt          chi2 =   6498.28   kepler - this =  +0.22   log M = 7.77   psf = 0.160"   cos i = 0.97
+   PSF>=0.16  rival_canonical        chi2 =   6497.96   kepler - this =  +0.53   log M = 7.45   psf = 0.160"   cos i = 0.95
+   PSF>=0.16  rival_alt              chi2 =   6497.21   kepler - this =  +1.29   log M = 8.10   psf = 0.160"   cos i = 0.99
+  [PASS] C2 all five laws within naive Delta chi^2 < 10 (PSF free) and < 2 (PSF >= 0.16")
+         measured: span 8.80 / 1.29
+         reading:  naive units; with N2's correlation the effective Delta chi^2 is < ~0.1-0.2
+
+==============================================================================================================
+C3 -- REAL-NOISE CALIBRATION: what Delta chi^2 (kepler - framework) each TRUTH produces
+==============================================================================================================
+   Kepler truth    : Delta chi2 = +5.46 +/- 6.21  (N = 16)
+   framework truth : Delta chi2 = +1.14 +/- 9.99  (N = 16)
+   observed        : Delta chi2 = +3.79   (z = -0.27 under Kepler, +0.27 under framework; LR = 1.61)
+  [PASS] C3 NO POWER: the observed value sits inside both truths (|z| < 1.5) and the framework-truth distribution is centred within 1 sd of zero
+         measured: z_K = -0.27, z_F = +0.27, framework-truth mean/sd = +0.11, likelihood ratio 1.61
+         reading:  UNDECIDABLE: the public cube cannot tell the framework from Kepler inside ~0.16" -- a null here is not evidence
+
+==============================================================================================================
+C4 -- THE KINEMATIC MASS IS PSF-SYSTEMATIC-LIMITED
+==============================================================================================================
+  [PASS] C4 log M (Kepler) moves by >= 0.5 dex between the PSF-free and PSF >= 0.16" fits
+         measured: 6.67 -> 7.69 (+1.03 dex)
+         reading:  the ~1 dex spread is exactly the 10^6.9-vs-10^7.7 gap that flips L324's sub-dominance verdict; the data favour a PSF sharper than JWST's ~0.17" diffraction limit at 5.28 um (a resampling artifact), so neither mass is secure
+
+==============================================================================================================
+E1-E3 -- THE EXTENDED GAS (0.1" bins, real-noise centroid errors)
+==============================================================================================================
+  [PASS] E1 the extended gas is blueshifted relative to the core
+         measured: -12.1 +/- 5.2 km/s (-2.3 sigma)
+         reading:  outflow-like (the paper also identifies an outflow at 300-450 pc)
+  [PASS] E2 no rotation detected in the extended gas: dipole 95% upper limit (projected)
+         measured: 8.4 km/s, 95% < 21.7 km/s
+         reading:  the 300-450 pc rotation that would decide the law is NOT in the current data
+  [PASS] E3 the extended gas is hot: if bound it needs >= 10x the black-hole mass
+         measured: sigma = 74 (median) / 91 (flux-wtd) km/s; M_dyn(alpha=2) = 300 pc: 7.7e+08, 500 pc: 1.3e+09, 900 pc: 2.3e+09 Msun
+         reading:  outflow (no test) OR bound: LCDM supplies a halo; the framework would need ~1e9 Msun of COLD GAS at 0.2-0.9 kpc (ALMA [CII]/dust testable) -- a registered conditional prediction
+
+==============================================================================================================
+F1 -- THE CERTIFIED VELOCITY FLOOR (Lean I20)
+==============================================================================================================
+  [PASS] F1 v_flat = (G M a0)^{1/4} at 10^7.7: the floor below which no circular orbit may fall (isolated, no EFE)
+         measured: canonical 28.1 km/s, alt 29.4 km/s
+         reading:  a PSF-controlled rotation curve that falls below this beyond r_M ~ 250-270 pc falsifies the framework (Newton has no floor)
+
+==============================================================================================================
+VERDICT  (6/7 load-bearing PASS  -- MUTATE RUN)
+==============================================================================================================
+  * THE TRUTH, as far as the public cube goes: UNDECIDABLE.  Kepler, the framework (both footings) and the a0 ~ H(z) rival
+    fit the core equally well; real-noise injection shows the cube has NO power to separate them inside ~0.16"; the
+    kinematic mass itself moves ~1 dex with the PSF assumption, so L324's mass-dependent sub-dominance verdict cannot
+    be settled from these data either.
+  * The extended gas is hot and blueshifted (outflow-like), with no detectable rotation: the decisive 300-450 pc
+    rotation is not in the data.  IF it is bound, the framework needs ~1e9 Msun of cold gas there (ALMA-testable).
+  * What would decide it: a PSF-controlled (source-plane) rotation curve beyond r_M ~ 250-270 pc, confronted with the
+    certified floor v_c >= (G M a0)^{1/4} and the L324 K6 bands.
