@@ -106,3 +106,20 @@ Swarm swings are cheap; keys are not. The register stands.
   its own "9 light-months/(1+z)". KP1 is equivalent to its defining transition (Lean I17), so a
   PASS here would not test the framework.
 - **D-YM2 / D-N5 / D-YM3 / D-N6:** unchanged.
+
+
+## 2026-09-22 (later): YM door swings (`real_research/reviews/ym_door_swings_2026_09_22/`)
+- **D-YM1: OPENED by its second key**, a cluster expansion with tracked constants for this
+  model. The space-time polymer expansion rests on Ueltschi 2004, Thm 1 (open access); the
+  Yarotsky JMP paper is not used. Result: X_3 = 185.3 for every N ≥ 2 and b_N ≤ 2N (X_2 = 131.1,
+  X_4 = 227.0; SU(3) with b = 2: 98.3), with gap ≥ 3x/16, volume-uniform, finite volume. Two
+  independent adversarial reviews found nothing fatal, and every flagged gap was fixed
+  (`ym1_hamiltonian/REVIEW.md`). A Euclidean companion (Dobrushin) gives an explicit
+  threshold and rate for Wilson SU(N).
+- **D-YM2: NOT unlocked.** The wall is quantified: the rigorous windows end at g² ≈ 32; the
+  scaling window is g² ≈ 0.87–1.05; the continuum is g² → 0. Strong-coupling bounds have the
+  wrong shape for a continuum limit. The framework has no gauge sector: its coupling is
+  ~(m_G/M_Pl)² = 2e-38 and its scales are ~1e42 below the glueball mass. No prize claim.
+- **D-YM3: CLOSED for every single-scalar f(K) action**, not just μ₂. The 1/4 is the
+  Laplacian's Hardy constant ((n−2)/2)², and V → 0 in every deep-MOND corner.
+- **D-YM4: not swung.** No MESA/GENEC runs exist here.

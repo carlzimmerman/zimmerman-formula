@@ -277,3 +277,11 @@ Open: a useful explicit X_d; the claimed x>=2 many-plaquette window; any
 continuum limit; any claimed physical connection between this Yang–Mills
 model and the repository's scalar/phantom sector. None is assumed by the
 theorems above.
+
+
+**Addendum 2026-09-22 (append-only).** §4's "no numerical value of X_d" and §6's "Open: a useful
+explicit X_d" are now answered for the finite-volume, volume-uniform statement. X_3 = 185.3 for
+all N ≥ 2 and b_N ≤ 2N, with the same gap bound x C_F/4 ≥ 3x/16. See
+`real_research/reviews/ym_door_swings_2026_09_22/ym1_hamiltonian/PROOF.md`, which was
+independently reviewed. The infinite-volume GNS statement above keeps its non-explicit
+Yarotsky threshold. The x ≥ 2 many-plaquette window and every continuum question remain open.

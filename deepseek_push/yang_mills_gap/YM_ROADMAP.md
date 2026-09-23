@@ -5,6 +5,13 @@ Every item below is either machine-verified HERE or registered as open with
 its exact obstruction. Nothing claimed beyond its proof; nothing open
 declared closed.
 
+**2026-09-22 update to R4 (explicit threshold):** the finite, numerically unspecified strong-coupling
+threshold X_d below is now explicit. X_3 = 185.3 works for every N ≥ 2 (98.3 for SU(3) with b = 2),
+with gap ≥ 3x/16, uniform in volume, proved by a cluster expansion with tracked constants and
+independently reviewed ([ym1_hamiltonian](../../real_research/reviews/ym_door_swings_2026_09_22/ym1_hamiltonian/PROOF.md)).
+R5 and R6 are unchanged and open; the wall is quantified in
+[ym2_continuum](../../real_research/reviews/ym_door_swings_2026_09_22/ym2_continuum/REPORT.md).
+
 **2026-09-22 correction to R4:** the original Lean certificates prove scalar
 inequalities. The operator comparison is now supplied separately in
 [I15 operator proof](../../real_research/reviews/spectral_spine_closure_2026_09_22/i15/PROOF.md).

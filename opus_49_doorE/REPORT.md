@@ -144,3 +144,15 @@ is unknown in the accessible record, so X_d is determined only up to an arbitrar
   the source-condition re-check at the threshold, and the explicitly-labelled hypothetical sensitivity table.
   `python3 verify.py` → "ALL CHECKS PASSED".
 - Commit `opus_49d doorE EXPLICIT X_d HUNT`, new folder only.
+
+
+---
+
+**2026-09-22 addendum (append-only).**
+- Lane (c)'s "no numeric X_d" is superseded by an independent route. A cluster expansion
+  with tracked constants gives X_3 = 185.3, uniform in N
+  (`real_research/reviews/ym_door_swings_2026_09_22/ym1_hamiltonian/`). Yarotsky's c1 and c2
+  are still unknown and are no longer needed.
+- Lane (b) is refined: Shen–Zhu–Zhu 2023 does give an explicit strong-coupling threshold for a
+  strictly positive mass gap (β_W < N²/(16(D−1))). Its rate is not explicit and degrades with
+  N. An explicit-rate Dobrushin bound is in `.../ym1_euclidean/`.
