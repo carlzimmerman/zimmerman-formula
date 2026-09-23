@@ -1,0 +1,127 @@
+L340 -- C-H/K, THE FILTERED-KHRONON COMPLETION: the first construction on the record that carries the phantom's
+momentum and is healthy at the orders computed.  A candidate, not a theory: the gates run here pass; the open list
+at the end is what stands between it and one.
+
+THE CONSTRUCTION (one line on top of astra's C-H, ACTION.md, whose fields, filter and endpoint terms are unchanged)
+    I_CHK = I_CH + c^3/(16 pi G) Int d^4x sqrt(-g) [ alpha_c a_mu a^mu - c_2 K^2 ]
+            with the C-H kernel q built from a MONOTONE phantom law nu_mono (below).
+  * a_mu = D_mu ln N and K = nabla_mu n^mu are C-H's own clock quantities: the two added terms are the Blas-Pujolas-
+    Sibiryakov khronometric alpha- and lambda-terms (lambda_BPS = c_2, beta = 0 so c_T = c exactly).
+  * alpha_c a^2 is NOT inside C-H's |DU - a|^2, so the auxiliary U cannot cancel it.
+  * On static slices K = 0 and the c_2-term and its first variation vanish: every static result of C-H/T-B (the
+    Cassini and ephemeris floors, the deep-MOND limit, lensing = dynamics at leading static order) is inherited;
+    alpha_c renormalises G by 1 - alpha_c (1+C)/2 ~ 1e-9.
+
+========================================================================================================
+A1  THE KERNEL: a monotone phantom law, and why nu_RAR is not one
+========================================================================================================
+    nu_RAR phantom peak: y_p = 2.5396, h_p = 0.6476 a0; nu_mono follows nu_RAR below it, then h' = 0.05 h_p/(y+y_p)
+    kernel used: nu_mono;  min C_T = 8.939e-05;  min C_L = +3.237e-06 (nu_RAR's min C_L = -0.0324)
+    nu_mono vs nu_RAR: max |d log g_obs| = 0.0104 dex at y = 14.3
+  [PASS] A1 the kernel in use has positive constitutive coefficients in both directions at every y in 1e-3..1e4 (phantom acceleration non-decreasing in g_N)
+         measured: nu_mono: min C_T 8.94e-05, min C_L +3.24e-06
+         reading:  nu_mono differs from nu_RAR by <= 0.01 dex; nu_RAR itself fails this at y > 2.54 (the phantom turns over)
+
+========================================================================================================
+H1  TRACKING: astra's scalar block + the khronon terms (unitary gauge, principal order, symbolic)
+========================================================================================================
+    M(omega) Hermitian: True;  det M(0) = -64*c_2*k**10*(C*alpha_c + alpha_c - 2)
+    omega -> 0:  psi/psi_N = -2*(C + 1)/(C*alpha_c + alpha_c - 2),  phi/psi_N = -2*(C + 1)/(C*alpha_c + alpha_c - 2),  U/psi_N = -2/(C*alpha_c + alpha_c - 2),  beta = 0
+    static MOND solution of the same block: psi = phi = -2*(C + 1)/(C*alpha_c + alpha_c - 2) psi_N  (alpha_c renormalises G, BPS-like)
+    control c_2 = 0 (C-H alone): det M(0) = 0;  omega -> 0+ of psi/psi_N = 1  (Newtonian: frozen phantom)
+  [PASS] H1 with the khronon's c_2 channel the omega -> 0 response is the static MOND solution and there is no frozen mode; without it (control) the response is Newtonian and det M(0) = 0
+         measured: psi -> -2*(C + 1)/(C*alpha_c + alpha_c - 2) psi_N; det M(0) = -64*c_2*k**10*(C*alpha_c + alpha_c - 2); control: 1 psi_N, det 0
+         reading:  the phantom forms and follows sources that move slowly compared with c_s (T1); L330's gate is passed
+
+========================================================================================================
+H2  NO TACHYON, NO GHOST at leading order (Krein signs of the block modes, both constitutive directions)
+========================================================================================================
+    kernel nu_mono, c_2 = 0.01, alpha_c = 1e-09: unhealthy (y, direction) cells: 0  []
+    control nu_RAR C_L at y = 10 (-0.0288): ['TACHYON']
+    mode speed^2 c_s^2/c^2 = c_2/(C(2+3c_2)), transverse, at y = 0.01 / 1 / 100: 5.18e-04, 8.46e-03, 6.61e-01
+  [PASS] H2 every (y, direction) cell of the kernel gives exactly healthy modes (omega^2 > 0, positive energy); the control C < 0 (nu_RAR, longitudinal, y = 10) gives a ghost or tachyon
+         measured: 0 unhealthy cells; control ['TACHYON']
+
+========================================================================================================
+H3  THE KERNEL CONDITION IS NECESSARY: every momentum channel scanned is unhealthy where C < 0
+========================================================================================================
+    C < 0 cells scanned (c_2 channel x polarisation current x Udot^2 x psidot Udot): 243; unhealthy: 243
+    exact polarisation current (g = -C, c_2 = 0, speed^2 1e-2): C = -0.1 -> ['GHOST', 'zero'], C = +0.3 -> ['zero', 'ok']
+  [PASS] H3 no momentum channel in the scanned families makes a C < 0 direction healthy (C is the clock's inertia; momentum couplings change only its restoring term)
+         measured: 243/243 unhealthy
+         reading:  the record's non-monotone kernels (nu_RAR, mu_exp) cannot be completed this way; a monotone phantom law is required
+
+========================================================================================================
+D1-D4  THE CLOCK'S O(Phi/c^2) SYMBOL (G03 audit derivation, re-run in full)
+========================================================================================================
+    D1 ln N_clock 2nd order: residual 0;  D2 tilted leaf Laplacian: residual 0
+    D3 local sector: O(eps^0) EL = 0 (clock pure gauge on a Newtonian background); O(eps^1) vs -(N0 lambda0/2)(pi_t^2+|grad pi|^2): 0
+    D4 heat boundary layer - lambda0(1 - e^(-b k^2))<pi_t^2> = 0
+  [PASS] D1-D4 the clock's O(Phi/c^2) terms: inertia 2k^2 C/(1+C) + lambda0 (1/2 - e^{-b k^2}), restoring (lambda0/2) k^2, lambda0 = 16 pi G rho_ph/c^2 -- every ingredient verified symbolically
+         measured: residuals 0, 0, 0, 0, 0
+         reading:  metric mixing dropped (it enters at O(lambda0^2/k^2)), frozen coefficients -- the audit's stated approximations
+
+========================================================================================================
+H4  NEGATIVE-PHANTOM LOBES at O(Phi/c^2): the alpha_c a^2 term removes the audit's pole
+========================================================================================================
+    Solar nbhd lobe              rho_ph -1e-02 Msun/pc^3, xi 0.045 pc: lambda0 = -2.53e-47 m^-2, alpha_min ~ 2.4e-18;  (inertia>0, omega^2>0) alpha_c=0: (False, False), alpha_c=1e-9: (True, True)
+    galaxy-in-group lobe         rho_ph -5e-02 Msun/pc^3, xi 4.0 pc: lambda0 = -1.26e-46 m^-2, alpha_min ~ 9.6e-14;  (inertia>0, omega^2>0) alpha_c=0: (False, False), alpha_c=1e-9: (True, True)
+    cluster-outskirt lobe        rho_ph -1e-04 Msun/pc^3, xi 50.0 pc: lambda0 = -2.53e-49 m^-2, alpha_min ~ 3.0e-14;  (inertia>0, omega^2>0) alpha_c=0: (False, False), alpha_c=1e-9: (True, True)
+    galaxy transition (rho > 0)  rho_ph +5e-02 Msun/pc^3, xi 4.0 pc: lambda0 = +1.26e-46 m^-2, alpha_min ~ 0.0e+00;  (inertia>0, omega^2>0) alpha_c=0: (True, True), alpha_c=1e-9: (True, True)
+  [PASS] H4 in every negative-phantom lobe the clock inertia stays positive and omega^2 > 0 at all k that fit inside the lobe once alpha_c = 1e-9 (>> alpha_min); with alpha_c = 0 the inertia crosses zero (the audit's pole, control)
+         measured: Solar nbhd lobe: (False, False) -> (True, True); galaxy-in-group lobe: (False, False) -> (True, True); cluster-outskirt lobe: (False, False) -> (True, True); galaxy transition (rho > 0): (True, True) -> (True, True)
+         reading:  alpha_min ~ G |rho_ph| xi^2 / c^2 is the phantom potential across xi -- 1e-19..1e-11, far below alpha_2's 3.2e-9
+
+========================================================================================================
+H5  THE STATIC LIMIT IS UNTOUCHED: K = 0 on a static slicing
+========================================================================================================
+    K = nabla_mu n^mu for a static lapse N(x) and static leaves, zero shift: 0
+  [PASS] H5 on static configurations K = 0, so -c_2 K^2 and its first variation (proportional to K) vanish: C-H's static solutions, Cassini/ephemeris floors and deep-MOND limit carry over; alpha_c only renormalises G by O(1e-9)
+         measured: K_static = 0
+
+========================================================================================================
+K2  SPARC: the monotone kernel against nu_RAR on f21's binned statistic
+========================================================================================================
+    canonical: 18 bins, chi^2 nu_RAR = 38.8, nu_mono = 38.0, Delta = -0.8
+    alt      : 18 bins, chi^2 nu_RAR = 18.7, nu_mono = 19.3, Delta = +0.5
+  [PASS] K2 on SPARC the monotone kernel is indistinguishable from nu_RAR (|Delta chi^2| <= 2 on 18 bins, both footings; nu_RAR's chi^2 reproduces f21's 38.8)
+         measured: canonical: -0.8; alt: +0.5
+
+========================================================================================================
+S1  THE SOLAR SYSTEM with the monotone kernel (f29's phantom quadrature, both footings)
+========================================================================================================
+    canonical nu_RAR  : quadrupole floor 0.031 pc, Saturn-monopole floor 0.045 pc;  at xi = 1e-4 pc: Q2/ceil 2.09e+02, M/bound -7.31e-03
+    canonical nu_mono : quadrupole floor 0.031 pc, Saturn-monopole floor 0.045 pc;  at xi = 1e-4 pc: Q2/ceil 3.15e+03, M/bound 1.89e+04
+    alt       nu_RAR  : quadrupole floor 0.033 pc, Saturn-monopole floor 0.049 pc;  at xi = 1e-4 pc: Q2/ceil 5.21e+02, M/bound -1.29e-02
+    alt       nu_mono : quadrupole floor 0.033 pc, Saturn-monopole floor 0.049 pc;  at xi = 1e-4 pc: Q2/ceil 3.28e+03, M/bound 2.29e+04
+  [PASS] S1 with the filter the monotone kernel's Solar-System floors equal nu_RAR's; without it (xi = 1e-4 pc) its constant phantom tail is ephemeris-excluded by > 1e4 x -- the 08-31 Cassini-vs-ghost pincer, reproduced, and broken by the filter
+         measured: canonical/nu_RAR: 0.031/0.045 pc; canonical/nu_mono: 0.031/0.045 pc; alt/nu_RAR: 0.033/0.049 pc; alt/nu_mono: 0.033/0.049 pc; unfiltered monotone tail 1.9e+04 x bound
+         reading:  the filtered field inside the Solar System stays at y < 2.54, where the two kernels coincide
+
+========================================================================================================
+P1  THE PARAMETER WINDOW, and T1 the tracking speed
+========================================================================================================
+    alpha_c window: alpha_min 9.6e-14 < alpha_c < 3.2e-09   (|alpha_2| < 1.6e-09, |alpha_1| < 1.1e-05; alpha_1 = -4 alpha_c, alpha_2 ~ -alpha_c/2)
+    c_2 window:     7.29e-03 < c_2 < 0.067   (tracking c_s >= 3 x 600 km/s where C <= 100; BBN 1.5 c_2 < 0.1)
+    c_T = 1 exactly (beta = 0; the K^2 term is trace-only, invisible to transverse-traceless modes)
+  [PASS] P1 a non-empty window satisfies the preferred-frame, GW170817, BBN, tracking and negative-lobe conditions at once
+         measured: alpha_c in (9.6e-14, 3.2e-09); c_2 in (7.3e-03, 0.067)
+         reading:  PPN from the khronometric formulas with the C-H sector filtered off at Solar-System wavenumbers (e^{-xi^2 k^2}, xi/AU ~ 1e4)
+    c_s [km/s] (C = 1 / 10 / 100):  c_2 = 0.00729: 18000, 5692, 1800 | c_2 = 0.03: 35918, 11358, 3592 | c_2 = 0.0667: 52187, 16503, 5219
+  [PASS] T1 (a prediction, not a test) the phantom follows sources slower than c_s ~ 1e3-1e4 km/s in halos and lags faster ones (fractional lag ~ (v/c_s)^2); merging clusters at 3000-4700 km/s sit near the edge for c_2 near its floor
+         measured: c_2=0.0073, C=1: 18000 km/s; c_2=0.0073, C=10: 5692 km/s; c_2=0.0073, C=100: 1800 km/s
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  C-H/K -- astra's C-H plus the khronon's alpha- and lambda-terms, with a monotone phantom law -- passes every gate run
+  here: the phantom forms and follows matter (H1, the L330 gate), no tachyon and no ghost at leading order (H2), the
+  negative-lobe pole removed at O(Phi/c^2) (H4), the static C-H results inherited exactly (H5), galaxies unchanged
+  (K2), the Solar System unchanged at the committed floors (S1), and a non-empty window for the preferred-frame,
+  GW170817, BBN and tracking conditions (P1).  Two record no-goes are evaded by named mechanisms: the frozen phantom
+  (L330) by the lambda-channel, the 08-31 Cassini-vs-ghost pincer by the heat filter.  The price is a kernel change of
+  <= 0.01 dex (the phantom acceleration must never decrease) and a new prediction (T1).  NOT computed and required
+  before this is a theory: nonlinear well-posedness; the full 1PN metric; cosmological perturbations; the dark sector.
+  Time 8 s.
+
+  11/11 checks pass; load-bearing failures: 0; wrote L340_filtered_khronon_completion_results.json

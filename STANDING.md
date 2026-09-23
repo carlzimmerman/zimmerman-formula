@@ -21,7 +21,15 @@ conflicts with this file, this file is newer unless it says otherwise.
 - The phantom in the leaf curvature is fixed initial data, a Mukohyama-type integration-constant dust. It does not form as a galaxy assembles and does not follow a galaxy that moves.
 - Either no MOND is generated, or lensing sees about half the phantom (−0.19 to −0.30 dex at KiDS accelerations).
 
-The same shift-independence is what gives α₁ = α₂ = 0. That is the **momentum pincer**. What is still open is a construction that carries the phantom's momentum through a shift-coupling that vanishes where ν → 1 and has no wrong-sign dynamical auxiliary. The one such channel on the record is L297's khronon, and it has not been computed.
+The same shift-independence is what gives α₁ = α₂ = 0. That is the **momentum pincer**.
+
+**Later on 09-22: a candidate that passes its linear gates, C-H/K** ([`L340`](real_research/g03_audit_2026/L340_filtered_khronon_completion.py), 11/11). It is C-H plus the khronon terms α_c a² − c₂K² (β = 0, c_T = 1), with a monotone phantom law ν_mono (≤ 0.01 dex from ν_RAR; SPARC Δχ² −0.8).
+- **What it passes:** the phantom now tracks moving sources, and there is no ghost or tachyon at leading order.
+- **What it requires:** the kernel must be monotone, since any direction with C < 0 is unhealthy. It also needs α_c above a floor, which removes the O(Φ/c²) pole in negative-phantom lobes.
+- **What carries over:** the static C-H results and the Solar-System floors are unchanged. The 08-31 Cassini-vs-ghost pincer is broken by the heat filter.
+- **Window:** α_c in (10⁻¹³, 3.2×10⁻⁹), c₂ in (7.3×10⁻³, 0.067).
+- **New prediction:** the phantom lags sources faster than c_s ~ 10³–10⁴ km/s.
+- **Status:** a candidate, not a theory. Nonlinear well-posedness, the full 1PN metric, FRW perturbations and the dark sector remain.
 
 **Other candidates:**
 - **The clock chain's L297 "complete action" is not standing.** Three of its four checks are literal `True`, its dust is CDM by hand, its S8 "closure" is an identity, and its galaxy pass comes from a grid artefact.

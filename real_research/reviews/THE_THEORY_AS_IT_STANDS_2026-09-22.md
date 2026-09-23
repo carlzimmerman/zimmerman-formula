@@ -2,7 +2,9 @@
 
 **What this is.** About 630 commits from roughly ten agent tracks landed in this repository between 09-14 and 09-22. On 09-22 they were audited against their committed scripts, re-running the load-bearing ones. This page assembles the most coherent theory the record supports. For each part it says whether it is measured, derived, fitted or missing. It also names the gates that would have to fall for this to become a theory of gravity, rather than a law plus an unfinished completion.
 
-**Verdict.** No breakthrough landed this week. What exists is:
+**Update, late 09-22: a candidate completion, [L340](../g03_audit_2026/L340_filtered_khronon_completion.py).** C-H/K is astra's C-H plus the khronon's α-term α_c a² and λ-term −c₂K² (the Blas–Pujolas–Sibiryakov terms, β = 0), with a monotone phantom law. It is the first construction on the record to pass the moving-source gate and the health gates at the orders computed (11/11; see §1, Layer 3). **It is a candidate, not a theory:** nonlinear well-posedness, the full 1PN metric, cosmological perturbations and the dark sector are not computed.
+
+**Verdict on the week itself.** No breakthrough landed in the week's commits. What they leave is:
 
 - a measured law;
 - a non-relativistic field theory that works as a description of galaxies;
@@ -95,6 +97,32 @@ The same shift-independence is what gives α₁ = α₂ = 0 on the record. The e
 | A dynamical QUMOND auxiliary | a ghost (Theorem 8, H045) |
 | A vector, or a second metric | the α₁ of AeST, or the c_T of the disformal clock |
 | Coupling that vanishes where ν → 1 | **open, and nothing on the record does this** |
+
+**The candidate that passes: C-H/K ([L340](../g03_audit_2026/L340_filtered_khronon_completion.py), 11/11; `MUTATE` = ν_RAR kernel fails A1/H2, rc = 1).**
+
+$$I_{\rm CHK}=I_{\rm CH}+\frac{c^3}{16\pi G}\int d^4x\sqrt{-g}\,\big[\alpha_c\,a_\mu a^\mu-c_2K^2\big],$$
+
+with C-H's kernel built from a **monotone** phantom law ν_mono: ν_RAR below its phantom peak (y = 2.54), then a phantom acceleration that keeps rising slowly.
+
+| Gate | Result |
+|---|---|
+| Moving source (L330) | **passes**: the λ-channel puts the shift into the momentum constraint. The ω → 0 response is the static MOND solution, and there is no frozen mode. The control c₂ = 0 gives back the Newtonian, frozen answer |
+| Tachyon / ghost at leading order | **none**: one extra mode, ω² > 0, positive energy, in both constitutive directions at every y |
+| Why the kernel must be monotone | in every momentum channel scanned (243/243 cells), a direction with C < 0 is a ghost or a tachyon. C is the clock's inertia, so momentum couplings cannot fix its sign. This is the record's 08-31 condition (yq)′ ≥ 0, found independently. ν_RAR and μ_exp both violate it |
+| Negative-phantom lobes, O(Φ/c²) | the G03 audit's pole is re-derived (D1–D4) and removed by α_c ≥ α_min ~ G\|ρ_ph\|ξ²/c² (10⁻¹⁸ to 10⁻¹³) |
+| Static limit | untouched: K = 0 on static slices, so the Cassini floors, the deep-MOND limit and static lensing = dynamics carry over |
+| SPARC | Δχ² = −0.8 / +0.5 against ν_RAR (18 bins); the kernel change is ≤ 0.01 dex |
+| Solar System | floors equal to ν_RAR's (0.031/0.045 pc canonical). Without the filter the monotone tail is excluded 2×10⁴× over the ephemeris bound: the 08-31 Cassini-vs-ghost pincer, reproduced **and broken by the filter** |
+| Window | α_c between 10⁻¹³ and 3.2×10⁻⁹ (α₁ = −4α_c, α₂ ≈ −α_c/2); c₂ between 7.3×10⁻³ (tracking) and 0.067 (BBN); c_T = 1 exactly |
+| New prediction | the phantom follows sources slower than c_s = c√(c₂/(C(2+3c₂))), about 10³–10⁴ km/s in halos, and lags faster ones by ~(v/c_s)² |
+
+**Not computed:**
+- nonlinear well-posedness;
+- the full 1PN metric (β_PPN, ζ's);
+- cosmological perturbations, where C is singular at zero gradient;
+- the dark sector and clusters, which are unchanged and still missing.
+
+Scope: linear, frozen-coefficient, principal order, plus the audit's O(Φ/c²) clock terms with metric mixing dropped.
 
 **Causality (L318).** Under the metric-cone criterion every scalar completion fails. Under the global-time criterion, standard in Lorentz-violating gravity (Babichev–Mukhanov–Vikman 2008; Bruneton 2007; Afshordi–Chung–Geshnizjani 2007), C-H survives causality. It still fails L330.
 
@@ -197,4 +225,10 @@ The one momentum channel already on the record is L297's khronon (λ − 1 = c�
 
 **κ.** Settled as a measured constant of nature. Its precision is limited by the M/L zero point, the absolute gas scale and H₀.
 
-The closure map's closing statement already applies to rungs 1, 2, 4, 5, 6 and 10. For C-H it now applies to rung 3 as well. Rung 3 stays open only for momentum-carrying constructions, and none is on the record yet. As it stands, the programme is a galaxy-scale law with a measured constant. It is not yet a theory of gravity, and this week did not change that.
+**Gravity, after L340.** C-H/K meets these requirements at the orders computed. The next computations, in order of what they decide:
+1. nonlinear well-posedness of the clock + U/W system with the khronon terms;
+2. the full 1PN metric;
+3. FRW perturbations, with the zero-gradient singularity of C regularised;
+4. a moving-source N-body test of the (v/c_s)² lag.
+
+The closure map's closing statement already applies to rungs 1, 2, 4, 5, 6 and 10. For C-H as written it now applies to rung 3 as well. Rung 3 is open again, for C-H/K (L340), with the four computations above left to run. As it stands, the programme is a galaxy-scale law with a measured constant and, as of L340, one relativistic candidate that survives its linear gates. It is not yet a theory of gravity.
