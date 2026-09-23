@@ -1,0 +1,52 @@
+{
+ "synthesis": "K11_SCATTERING_CLOCK_SYNTHESIS.md",
+ "title": "THE SCATTERING-CLOCK CHANNEL AND THE ONE-BOUNDARY STATEMENT",
+ "consolidated_tests": 5,
+ "tests": [
+  "T1 J05/J06 width bound: E[D^2] >= B1 = 3E[Dv^2]^2/E[v^4] (density-free, source-agnostic); kill: measured E[D^2] < B1 at >=3sigma with model conditions verified -> Thomson reading dead for ANY density",
+  "T2 J07 coherence envelope: |H(w)| >= max(0, 1 - w^2 L/2), L = 3E[Dv^2]^2/E[v^4], w E[D] < 1.5; kill: measured |H| below floor at >=3sigma -> conservative Thomson reading dead",
+  "T3 J09-D central window: -lnA/dbar = (1+q/3)/(1/2+q/4) in [4/3,2], tau0-free, = inversion domain d/a in [1/2,3/4]; kill: >=3sigma outside [4/3,2] kills central quadratic-family reading (NOT any-geometry; general-p limit (p+2)/(p+1), J09p 21/21)",
+  "T4 J11 geometry discrimination: volume window ~[1.3,1.9] tau0-CROSSING (2.049/1.894/1.629/1.423 at tau0 0.5-3 q=0; 1.897/1.710/1.314 at q=0/3/10 tau0=1; <chord>_vol=0.750000) vs central FLAT at 2.0022; shell TBD (K07); kill: curve missed at >=3sigma kills that geometry; single-window violation is a discriminator, NOT a framework kill",
+  "T5 J10-I a0-radius: J10-I = (r_B/R)*window in [4/3,2], r_B = sqrt(G M_b / a0(rho_B)), a0 = (c/2)sqrt(G rho_B); kill: >=3sigma outside with M_b,rho_B independent -> framework BLR-radius assignment fails; sharp: R > (3/2)r_B kills q=0, R > 2 r_B kills all q"
+ ],
+ "references": [
+  "J05_TRANSFER_FUNCTION_READING.md / J05_results.json (E[D^2] bound, 4 clouds, slack 1.25-1.06)",
+  "J06_BOUND_SHARPENING.md / J06_results.json (B1 tightest of exact family C_m=(4m-1)!!/((2m-1)!!)^2, C2=35/3, slack=1/rho0^2, 86/86)",
+  "J07_SPECTRAL_ENVELOPE.md / J07_results.json (T3'/T3'' envelopes, 20/20, slope 3.99, w*=1.308)",
+  "J09_two_component_law.py / J09_two_component_law.out (27/27: atom A=exp(-tau0(1+q/3)), window 2.0022/1.4413/1.5980 in [4/3,2])",
+  "J09p_general_p.out (21/21: general-p window (1+q/(p+1))/(1/2+q/(p+2)) -> (p+2)/(p+1))",
+  "J10_A0_RADIUS_READING.md / J10_verify.py (J10-I = (r_B/R)*window, 6/6; A2744-QSO1 1.818, doorB 40.9 vs 45 ld; kill floors R>(3/2)r_B q=0, R>2 r_B all q)",
+  "J11_VOLUME_WINDOW_VERDICT.md / J11_volume_atom.py/.out (volume window 1.8970/1.7104/1.3142, tau0-scan 2.049-1.423, <chord>_vol=0.750000, J10 volume port 1.719)",
+  "J01_MIXED_MOMENT.md / J02_MOMENT_HIERARCHY.md (Gaussian spine A-class; closure ratios R_m=2.635/3.574/4.563, R1(q)=2.6446/2.0235/1.6971; volume Dynkin E[Q]=0.59715)",
+  "K01_TAUTOLOGY_AUDIT.md / K01_results.json (classification A/B/C; GO 6: J01-C3, J02-B, J02-C, J05-F2, J05-F3, J07-E; NO-GO fixes F3/F4, J09-B, J08 absent)",
+  "K02_ENGINE3_VERDICT.md (third independent motor 28/28; window 2.00207/1.59782/1.44414)",
+  "K03_TGRADIENT_PROVISOS.md (isothermality/T-gradient conditions for firing kills)",
+  "K05_RAY_SOLVER_VERDICT.md (deterministic moments E[D]=0.500000, E[v^2]=2.80674, E[Dv^2]=3.70900; half-range exact; J04 closure)",
+  "K06_METHODS_NOTES.md (observer battery F1-F7, closed inversion (A,dbar)->(tau0,q), physical scale R/c=5.4348 d, lag band 11.78-14.24 d)"
+ ],
+ "standing_claims": [
+  {"claim": "Window geometry discrimination: central [4/3,2] tau0-FLAT vs volume ~[1.3,1.9] tau0-CROSSING vs shell TBD", "class": "NOVEL-C", "verification": ["J09_two_component_law.out (27/27)", "J11_volume_atom.out", "K02_ENGINE3_VERDICT.md (28/28)"]},
+  {"claim": "tau0-dependence of -lnA/dbar under volume emission (2.049/1.894/1.629/1.423 at tau0 0.5-3 q=0; 1.3142 < 4/3 at q=10)", "class": "NOVEL-C", "verification": ["J11_volume_atom.out", "J11_VOLUME_WINDOW_VERDICT.md"]},
+  {"claim": "<chord>_vol = 0.750000 exactly (central 1.0, shell 4/3)", "class": "NOVEL-C", "verification": ["J11_volume_atom.py (quadrature ng=80)"]},
+  {"claim": "Radius reading J10-I: (A,dbar) -> (tau0,q) geometry-free (K06-inv closed) then r_B = sqrt(GM_b/a0(rho_B)) tested via (r_B/R)*window in [4/3,2]", "class": "NOVEL-C", "verification": ["J10_A0_RADIUS_READING.md", "J10_verify.py (6/6)", "K06_METHODS_NOTES.md (inversion)"]},
+  {"claim": "Density-free width bound E[D^2] >= 3E[Dv^2]^2/E[v^4] and line-moment envelope T3''", "class": "NOVEL-C", "verification": ["J05_TRANSFER_FUNCTION_READING.md", "J06_bound_sharpen.out (86/86)", "J07_SPECTRAL_ENVELOPE.md (20/20)"]},
+  {"claim": "Closure failure R_m = 2.635/3.574/4.563 growing with m; R1(q) = 2.6446/2.0235/1.6971", "class": "REAL-CONTENT-B", "verification": ["J01_results.json", "J02_MOMENT_HIERARCHY.md", "K01_results.json"]},
+  {"claim": "Volume Dynkin compensation E[D]_vol = E[tau]_vol - E[Q] neq int r kappa dr; Q = 0.59715 exact to 7e-16", "class": "REAL-CONTENT-B", "verification": ["J02_MOMENT_HIERARCHY.md", "K02_ENGINE3_VERDICT.md (0.597353, z=+0.35)"]},
+  {"claim": "Deterministic closure E[D]=0.500000, E[v^2]=2.80674, E[Dv^2]=3.70900 (no RNG)", "class": "REAL-CONTENT-B", "verification": ["K05_RAY_SOLVER_VERDICT.md"]},
+  {"claim": "Gaussian spine v|traj ~ N(0, 2 ang), even-moment hierarchy, W-independence, atom formula A = exp(-tau0(1+q/3))", "class": "CONSISTENCY-A (label-only; model input restated)", "verification": ["J01_MIXED_MOMENT.md", "J02_MOMENT_HIERARCHY.md", "K01_results.json (circular list)"]},
+  {"claim": "Per-bin kurtosis >= 3 scale-mixture law (headline '= 3' refuted and fixed)", "class": "CONSISTENCY-A", "verification": ["K01_TAUTOLOGY_AUDIT.md (F2, re-run 3.35-4.33)"]}
+ ],
+ "pending": [
+  "K07 shell-emission window -lnA_s/dbar_s vs tau0 (leaf 3 of the tree; <chord>_shell = 4/3 anchor exact) - NO FILE ON DISK",
+  "K08 oblateness/geometry-aware corrections to (A, dbar, width) - NO FILE ON DISK",
+  "K09 JWST error budget se(A)/A, se(d)/d, se(width) - NO FILE ON DISK; K11 uses a flagged provisional budget (sigma_ln J = 0.293 absolute, 0.045 differential)",
+  "K10 geometry-aware J10-I integration (tree x radius) - NO FILE ON DISK",
+  "J08 spine record (referenced by J09, no files exist) - K01 F",
+  "K04 E[N](tau0,q) for q>0 (E[v^2] prediction branch)"
+ ],
+ "verdict": "K11 LANDED: the J/K series consolidates as ONE observable door on the framework core - velocity-resolved RM reads (A, dbar_phys, width) off the 2D transfer function; (A,dbar) inverts closed-form to (tau0,q) (K06-inv); the opacity-free window [4/3,2] tests the a0-radius r_B = sqrt(GM_b/a0(rho_B)) through J10-I = (r_B/R)*window. Geometry is an observable discrimination tree: central FLAT, volume CROSSING (1.8970/1.7104/1.3142 at q=0/3/10, tau0=1, <chord>_vol = 0.750000 exact), shell TBD (K07). Error chain (provisional, K09 pending): absolute J10-I sigma_ln J = 0.293 -> systematics-dominated (r_B via M_b, rho_B); the differential 2-epoch tau0-curvature test cancels r_B and reaches +3.4sigma/-6.4sigma vs the flat central null at JWST photometric grade - the 3-sigma door. Five consolidated falsifiers (T1-T5) with strict kill conditions; NOVEL vs CONSISTENCY ledger per K01 (novel: window geometry discrimination, tau0-dependence, <chord>=3/4, radius reading; consistency: Gaussian spine + hierarchy); no fit to real LRD data, no gravity statement beyond the radius. No git commit.",
+ "files_written": [
+  "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/K11_SCATTERING_CLOCK_SYNTHESIS.md",
+  "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/K11_results.json"
+ ]
+}

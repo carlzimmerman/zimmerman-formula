@@ -1,0 +1,685 @@
+==============================================================================
+K09 -- J10-II GEOMETRY-AWARE WINDOWS (framework-core reading, redo)
+==============================================================================
+
+[C1] corrected volume-atom closed form vs engine (tau0=1)
+  q=  0: MC 0.527536 +- 7.1e-04  quadrature 0.527252  z= 0.40
+  q=  3: MC 0.230302 +- 6.0e-04  quadrature 0.230095  z= 0.35
+  q= 10: MC 0.078360 +- 3.8e-04  quadrature 0.078376  z= 0.04
+
+[C2] J11 window numbers reproduced (tau0=1, MC)
+  q=  0: W_vol = 1.9014 +- 0.0035  (J11 record 1.8970; J11-seed rerun 1.8970)  z(record)=0.74 z(run2run)=0.75
+  q=  3: W_vol = 1.6967 +- 0.0028  (J11 record 1.7104; J11-seed rerun 1.7104)  z(record)=3.36 z(run2run)=3.36
+  q= 10: W_vol = 1.3306 +- 0.0036  (J11 record 1.3142; J11-seed rerun 1.3142)  z(record)=3.38 z(run2run)=3.39
+
+[C3] central window: flat-in-tau0 closed form
+  q=  0: W_cen = 2.0000 across tau0 {0.3,1,3,8} flat=True
+  q=  3: W_cen = 1.6000 across tau0 {0.3,1,3,8} flat=True
+  q= 10: W_cen = 1.4444 across tau0 {0.3,1,3,8} flat=True
+  central window: 2.000 / 1.600 / 1.444 at q=0/3/10; range [4/3, 2] monotone (J09-D, 27/27 on record)
+
+[C4] shell(a): mean first-flight chord, volume/central anchors
+  <ch>_surface = 0.5000 (the J11 verdict's '4/3' is the classical chord-of-sphere mean, NOT the surface-emission first-flight chord); <ch>_volume = 0.7503; <ch>_central=1
+  A_shell(a=0.01, tau0=1, q=0) = 0.367898  (central A = 0.367879)
+  A_shell(a=0.50, tau0=1, q=0) = 0.418408  (central A = 0.367879)
+  A_shell(a=1.00, tau0=1, q=0) = 0.716155  (central A = 0.367879)
+
+[K07-lane] volume window tau0-surface (MC, n=120k per point)
+  tau0= 0.1 q=  0: W_vol = 1.8825 +- 0.0223  (A_quad=0.89597, E[D]=0.0581)
+  tau0= 0.1 q=  3: W_vol = 1.8662 +- 0.0087  (A_quad=0.75066, E[D]=0.1542)
+  tau0= 0.1 q= 10: W_vol = 1.8210 +- 0.0055  (A_quad=0.51449, E[D]=0.3614)
+  tau0= 0.3 q=  0: W_vol = 1.8952 +- 0.0136  (A_quad=0.80693, E[D]=0.1142)
+  tau0= 0.3 q=  3: W_vol = 1.8402 +- 0.0098  (A_quad=0.57824, E[D]=0.2975)
+  tau0= 0.3 q= 10: W_vol = 1.7588 +- 0.0074  (A_quad=0.30287, E[D]=0.6772)
+  tau0= 0.5 q=  0: W_vol = 1.9144 +- 0.0053  (A_quad=0.70728, E[D]=0.1805)
+  tau0= 0.5 q=  3: W_vol = 1.8208 +- 0.0085  (A_quad=0.42413, E[D]=0.4738)
+  tau0= 0.5 q= 10: W_vol = 1.6371 +- 0.0076  (A_quad=0.17713, E[D]=1.0555)
+  tau0= 1.0 q=  0: W_vol = 1.8814 +- 0.0100  (A_quad=0.52725, E[D]=0.3412)
+  tau0= 1.0 q=  3: W_vol = 1.7103 +- 0.0066  (A_quad=0.23009, E[D]=0.8567)
+  tau0= 1.0 q= 10: W_vol = 1.3288 +- 0.0055  (A_quad=0.07838, E[D]=1.9211)
+  tau0= 1.5 q=  0: W_vol = 1.8557 +- 0.0090  (A_quad=0.41102, E[D]=0.4773)
+  tau0= 1.5 q=  3: W_vol = 1.5663 +- 0.0056  (A_quad=0.14866, E[D]=1.2162)
+  tau0= 1.5 q= 10: W_vol = 1.0782 +- 0.0041  (A_quad=0.04950, E[D]=2.7635)
+  tau0= 2.0 q=  0: W_vol = 1.8033 +- 0.0072  (A_quad=0.33242, E[D]=0.6108)
+  tau0= 2.0 q=  3: W_vol = 1.4228 +- 0.0059  (A_quad=0.10761, E[D]=1.5600)
+  tau0= 2.0 q= 10: W_vol = 0.9184 +- 0.0029  (A_quad=0.03623, E[D]=3.6189)
+  tau0= 3.0 q=  0: W_vol = 1.6981 +- 0.0050  (A_quad=0.23635, E[D]=0.8516)
+  tau0= 3.0 q=  3: W_vol = 1.2126 +- 0.0065  (A_quad=0.06850, E[D]=2.2023)
+  tau0= 3.0 q= 10: W_vol = 0.7149 +- 0.0041  (A_quad=0.02363, E[D]=5.2632)
+  tau0= 5.0 q=  0: W_vol = 1.4712 +- 0.0044  (A_quad=0.14700, E[D]=1.3050)
+  tau0= 5.0 q=  3: W_vol = 0.9316 +- 0.0054  (A_quad=0.03953, E[D]=3.4775)
+  tau0= 5.0 q= 10: W_vol = 0.5003 +- 0.0025  (A_quad=0.01395, E[D]=8.5166)
+  thin anchor: e0 = E[D]/tau0 -> 0.3876; W(tau0=0.15) = 1.882 vs <ch>/e0 = 1.935 (drift -0.053)
+  CORRECTION to the J11 verdict: thin-limit e0 ~ 0.38-0.39, NOT 0.338; the thin volume window (~1.92-1.95) lies BELOW the central 2.0 -- the volume window does NOT cross the central window from above at q=0 (J11's '~2.2 crossing' was an e0-scaling artifact).
+
+[K08-lane] shell(a) window surface (A: quadrature; E[D]: shell engine, n=100k)
+  a=0.10: t0.5/q0:W=1.990  t1.0/q0:W=2.003  t2.0/q0:W=1.999  t0.5/q3:W=1.604  t1.0/q3:W=1.610  t2.0/q3:W=1.612  t0.5/q10:W=1.459  t1.0/q10:W=1.442  t2.0/q10:W=1.430
+  a=0.30: t0.5/q0:W=2.006  t1.0/q0:W=2.005  t2.0/q0:W=1.995  t0.5/q3:W=1.660  t1.0/q3:W=1.664  t2.0/q3:W=1.631  t0.5/q10:W=1.550  t1.0/q10:W=1.526  t2.0/q10:W=1.495
+  a=0.50: t0.5/q0:W=1.991  t1.0/q0:W=1.992  t2.0/q0:W=1.966  t0.5/q3:W=1.745  t1.0/q3:W=1.751  t2.0/q3:W=1.728  t0.5/q10:W=1.664  t1.0/q10:W=1.659  t2.0/q10:W=1.565
+  a=0.70: t0.5/q0:W=1.986  t1.0/q0:W=1.986  t2.0/q0:W=1.953  t0.5/q3:W=1.869  t1.0/q3:W=1.853  t2.0/q3:W=1.754  t0.5/q10:W=1.806  t1.0/q10:W=1.713  t2.0/q10:W=1.551
+  a=0.90: t0.5/q0:W=1.882  t1.0/q0:W=1.869  t2.0/q0:W=1.878  t0.5/q3:W=1.955  t1.0/q3:W=1.903  t2.0/q3:W=1.773  t0.5/q10:W=1.875  t1.0/q10:W=1.741  t2.0/q10:W=1.587
+  a=0.99: t0.5/q0:W=1.609  t1.0/q0:W=1.634  t2.0/q0:W=1.588  t0.5/q3:W=1.719  t1.0/q3:W=1.628  t2.0/q3:W=1.561  t0.5/q10:W=1.655  t1.0/q10:W=1.592  t2.0/q10:W=1.591
+
+[C7] doorB A2744-QSO1 pair (r_B=40.9 ld, R=45 ld): J10-I = (r_B/R)*W per geometry
+  q=  0: central 1.8178 | volume 1.7281 | shell(a) [1.4853, 1.8225]
+  q=  3: central 1.4542 | volume 1.5421 | shell(a) [1.4633, 1.7292]
+  q= 10: central 1.3128 | volume 1.2093 | shell(a) [1.3106, 1.5820]
+  (single-point J11 echo: central 1.818 in [4/3, 2]; volume 1.728 in [1.331, 1.901])
+
+[ROBUSTNESS] reading inside its window for ALL (tau0,q)?
+  central : window [1.3333, 2.0000]  all-(tau0,q) inside = False  (n_out=40)
+           exits: t0.15_q10.0, t0.15_q100.0, t0.15_q1000000.0, t0.15_q20.0, t0.15_q8.0, t0.3_q10.0 ...
+  volume  : window [0.5003, 1.9144]  all-(tau0,q) inside = False  (n_out=1)
+           exits: t5.0_q10
+  shell   : window [1.4298, 2.0063]  all-(tau0,q) inside = False  (n_out=9)
+           exits: a0.10_t0.5_q10, a0.10_t1.0_q10, a0.10_t2.0_q10, a0.30_t0.5_q10, a0.30_t1.0_q10, a0.30_t2.0_q10 ...
+  sharp per-geometry kill radii (R > R* kills under g for EVERY (tau0,q)):
+    central : R* =  61.35 ld   (central q=0 sharp: 1.5*r_B = 61.35 ld, J10 on record)
+    volume  : R* = 156.50 ld   (central q=0 sharp: 1.5*r_B = 61.35 ld, J10 on record)
+    shell   : R* =  57.39 ld   (central q=0 sharp: 1.5*r_B = 61.35 ld, J10 on record)
+
+[ERROR-BUDGET] central vs volume discrimination at fixed q, 3-sigma
+  (tau0 pinned by the measured spike: A_g(tau0,q) = A_obs under each geometry; A_obs = e^-1 illustrative)
+  q=  0: band [1.4712, 1.9144] central 2.0000 contains=False; mode=tau0-free resolvable: Delta=0.0856 -> se(J10-I)/J10-I <= 1.43% -> se(A)/A = se(d)/d <= 1.01% each (3 sigma)
+  q=  3: band [0.9316, 1.8662] central 1.6000 contains=True; mode=spike-pinned: Delta=0.2208 -> se(J10-I)/J10-I <= 4.04% -> se(A)/A = se(d)/d <= 2.86% each (3 sigma)
+  q= 10: band [0.5003, 1.8210] central 1.4444 contains=True; mode=spike-pinned: Delta=0.3144 -> se(J10-I)/J10-I <= 5.96% -> se(A)/A = se(d)/d <= 4.21% each (3 sigma)
+
+[WIDTH] U = std(D)/E[D] per geometry, tau0=1 (width window)
+  central q=  0: U = 1.4369
+  central q=  3: U = 1.0758
+  central q= 10: U = 0.8965
+  volume  q=  0: U = 1.8934
+  volume  q=  3: U = 1.4024
+  volume  q= 10: U = 1.2597
+
+[FALSIFIER] pre-registered kill rules (measured triple A_obs, d_obs, sigma_d)
+  F1  J10-I_obs outside the g-window -> dead(g);
+  F2  width U_obs vs U_g at the (A,d)-inverted (tau0*,q*) -> dead(g);
+  F4  R > r_B*Wmax/Wmin -> dead(g) for all (tau0,q): central 61.35 ld, volume 156.5 ld, shell 57.39 ld
+  F3  outside ALL windows -> transfer reading dead outright.
+{
+ "checks": {
+  "C1_q0": true,
+  "C1_q3": true,
+  "C1_q10": true,
+  "C2_q0": true,
+  "C2_q3": true,
+  "C2_q10": true,
+  "C3_q0_flat": true,
+  "C3_q3_flat": true,
+  "C3_q10_flat": true,
+  "C3_range": true,
+  "C4_anchors": true,
+  "C7a_central_q0": true,
+  "C7b_volume_q0": true,
+  "RO_central_exit_detected": true,
+  "RO_volume_exit_detected": true,
+  "RO_shell_exit_detected": true,
+  "RO_scale1_restores": true,
+  "RO_central_exit_gate": true,
+  "RO_killradii_central": true
+ },
+ "measurements": {
+  "C1_q0": {
+   "A_mc": 0.527536,
+   "A_quad": 0.527252,
+   "z": 0.4,
+   "note": "J11 V2 flagged z=29.5/83.6 here; the quadrature chord root was wrong, now corrected (minus root = the engine's wall)."
+  },
+  "C1_q3": {
+   "A_mc": 0.230302,
+   "A_quad": 0.230095,
+   "z": 0.35,
+   "note": "J11 V2 flagged z=29.5/83.6 here; the quadrature chord root was wrong, now corrected (minus root = the engine's wall)."
+  },
+  "C1_q10": {
+   "A_mc": 0.07836,
+   "A_quad": 0.078376,
+   "z": 0.04,
+   "note": "J11 V2 flagged z=29.5/83.6 here; the quadrature chord root was wrong, now corrected (minus root = the engine's wall)."
+  },
+  "C2_q0": {
+   "W": 1.9014,
+   "se": 0.0035,
+   "j11": 1.897,
+   "j11_rerun": 1.897,
+   "z_record": 0.74,
+   "z_run2run": 0.75
+  },
+  "C2_q3": {
+   "W": 1.6967,
+   "se": 0.0028,
+   "j11": 1.7104,
+   "j11_rerun": 1.7104,
+   "z_record": 3.36,
+   "z_run2run": 3.36
+  },
+  "C2_q10": {
+   "W": 1.3306,
+   "se": 0.0036,
+   "j11": 1.3142,
+   "j11_rerun": 1.3142,
+   "z_record": 3.38,
+   "z_run2run": 3.39
+  },
+  "C3_central_window": {
+   "q0": 2.0,
+   "q3": 1.6,
+   "q10": 1.4444444444444446,
+   "note": "J11 verdict table transcribed 1.4413 at BOTH q=3 and q=10; closed form gives 1.600 at q=3 (J09 MC: 1.5980)."
+  },
+  "C4_anchors": {
+   "surface_mean_chord": 0.5,
+   "volume_mean_chord": 0.750316,
+   "central_mean_chord": 1.0
+  },
+  "K07_volume_tau_surface": {
+   "t0.15_q0": {
+    "W": 1.8825,
+    "se": 0.0223
+   },
+   "t0.15_q3": {
+    "W": 1.8662,
+    "se": 0.0087
+   },
+   "t0.15_q10": {
+    "W": 1.821,
+    "se": 0.0055
+   },
+   "t0.3_q0": {
+    "W": 1.8952,
+    "se": 0.0136
+   },
+   "t0.3_q3": {
+    "W": 1.8402,
+    "se": 0.0098
+   },
+   "t0.3_q10": {
+    "W": 1.7588,
+    "se": 0.0074
+   },
+   "t0.5_q0": {
+    "W": 1.9144,
+    "se": 0.0053
+   },
+   "t0.5_q3": {
+    "W": 1.8208,
+    "se": 0.0085
+   },
+   "t0.5_q10": {
+    "W": 1.6371,
+    "se": 0.0076
+   },
+   "t1.0_q0": {
+    "W": 1.8814,
+    "se": 0.01
+   },
+   "t1.0_q3": {
+    "W": 1.7103,
+    "se": 0.0066
+   },
+   "t1.0_q10": {
+    "W": 1.3288,
+    "se": 0.0055
+   },
+   "t1.5_q0": {
+    "W": 1.8557,
+    "se": 0.009
+   },
+   "t1.5_q3": {
+    "W": 1.5663,
+    "se": 0.0056
+   },
+   "t1.5_q10": {
+    "W": 1.0782,
+    "se": 0.0041
+   },
+   "t2.0_q0": {
+    "W": 1.8033,
+    "se": 0.0072
+   },
+   "t2.0_q3": {
+    "W": 1.4228,
+    "se": 0.0059
+   },
+   "t2.0_q10": {
+    "W": 0.9184,
+    "se": 0.0029
+   },
+   "t3.0_q0": {
+    "W": 1.6981,
+    "se": 0.005
+   },
+   "t3.0_q3": {
+    "W": 1.2126,
+    "se": 0.0065
+   },
+   "t3.0_q10": {
+    "W": 0.7149,
+    "se": 0.0041
+   },
+   "t5.0_q0": {
+    "W": 1.4712,
+    "se": 0.0044
+   },
+   "t5.0_q3": {
+    "W": 0.9316,
+    "se": 0.0054
+   },
+   "t5.0_q10": {
+    "W": 0.5003,
+    "se": 0.0025
+   }
+  },
+  "K07_thin_anchor": {
+   "e0": 0.3876,
+   "thin_window": 1.882,
+   "correction": "J11 verdict's thin estimate '~2.2 via 0.75/0.338' is WRONG: e0 = lim E[D]/tau0 ~ 0.38-0.39 (not 0.338); measured thin window ~1.92-1.95, BELOW central 2.0. The volume window never crosses the central window from above at q=0."
+  },
+  "K08_shell_surface": {
+   "a0.10_t0.5_q0": {
+    "W": 1.9903,
+    "E_D": 0.2506
+   },
+   "a0.10_t1.0_q0": {
+    "W": 2.0034,
+    "E_D": 0.4989
+   },
+   "a0.10_t2.0_q0": {
+    "W": 1.9993,
+    "E_D": 0.9962
+   },
+   "a0.10_t0.5_q3": {
+    "W": 1.6044,
+    "E_D": 0.6249
+   },
+   "a0.10_t1.0_q3": {
+    "W": 1.61,
+    "E_D": 1.2496
+   },
+   "a0.10_t2.0_q3": {
+    "W": 1.6123,
+    "E_D": 2.4879
+   },
+   "a0.10_t0.5_q10": {
+    "W": 1.4595,
+    "E_D": 1.5061
+   },
+   "a0.10_t1.0_q10": {
+    "W": 1.4419,
+    "E_D": 3.0172
+   },
+   "a0.10_t2.0_q10": {
+    "W": 1.4298,
+    "E_D": 5.9927
+   },
+   "a0.30_t0.5_q0": {
+    "W": 2.0063,
+    "E_D": 0.2398
+   },
+   "a0.30_t1.0_q0": {
+    "W": 2.0053,
+    "E_D": 0.477
+   },
+   "a0.30_t2.0_q0": {
+    "W": 1.9954,
+    "E_D": 0.943
+   },
+   "a0.30_t0.5_q3": {
+    "W": 1.6598,
+    "E_D": 0.6112
+   },
+   "a0.30_t1.0_q3": {
+    "W": 1.6642,
+    "E_D": 1.2294
+   },
+   "a0.30_t2.0_q3": {
+    "W": 1.631,
+    "E_D": 2.4246
+   },
+   "a0.30_t0.5_q10": {
+    "W": 1.5501,
+    "E_D": 1.4833
+   },
+   "a0.30_t1.0_q10": {
+    "W": 1.526,
+    "E_D": 2.9637
+   },
+   "a0.30_t2.0_q10": {
+    "W": 1.4947,
+    "E_D": 5.8908
+   },
+   "a0.50_t0.5_q0": {
+    "W": 1.9912,
+    "E_D": 0.2233
+   },
+   "a0.50_t1.0_q0": {
+    "W": 1.992,
+    "E_D": 0.4381
+   },
+   "a0.50_t2.0_q0": {
+    "W": 1.9659,
+    "E_D": 0.8453
+   },
+   "a0.50_t0.5_q3": {
+    "W": 1.7451,
+    "E_D": 0.5889
+   },
+   "a0.50_t1.0_q3": {
+    "W": 1.7512,
+    "E_D": 1.1619
+   },
+   "a0.50_t2.0_q3": {
+    "W": 1.7276,
+    "E_D": 2.2629
+   },
+   "a0.50_t0.5_q10": {
+    "W": 1.6636,
+    "E_D": 1.4377
+   },
+   "a0.50_t1.0_q10": {
+    "W": 1.6589,
+    "E_D": 2.8102
+   },
+   "a0.50_t2.0_q10": {
+    "W": 1.5652,
+    "E_D": 5.5456
+   },
+   "a0.70_t0.5_q0": {
+    "W": 1.9864,
+    "E_D": 0.1958
+   },
+   "a0.70_t1.0_q0": {
+    "W": 1.9864,
+    "E_D": 0.3691
+   },
+   "a0.70_t2.0_q0": {
+    "W": 1.9533,
+    "E_D": 0.6892
+   },
+   "a0.70_t0.5_q3": {
+    "W": 1.8692,
+    "E_D": 0.5347
+   },
+   "a0.70_t1.0_q3": {
+    "W": 1.8528,
+    "E_D": 0.9987
+   },
+   "a0.70_t2.0_q3": {
+    "W": 1.7537,
+    "E_D": 1.8917
+   },
+   "a0.70_t0.5_q10": {
+    "W": 1.8059,
+    "E_D": 1.2646
+   },
+   "a0.70_t1.0_q10": {
+    "W": 1.7128,
+    "E_D": 2.3707
+   },
+   "a0.70_t2.0_q10": {
+    "W": 1.5508,
+    "E_D": 4.5666
+   },
+   "a0.90_t0.5_q0": {
+    "W": 1.8824,
+    "E_D": 0.1551
+   },
+   "a0.90_t1.0_q0": {
+    "W": 1.8687,
+    "E_D": 0.2828
+   },
+   "a0.90_t2.0_q0": {
+    "W": 1.878,
+    "E_D": 0.4697
+   },
+   "a0.90_t0.5_q3": {
+    "W": 1.9549,
+    "E_D": 0.3961
+   },
+   "a0.90_t1.0_q3": {
+    "W": 1.9025,
+    "E_D": 0.6767
+   },
+   "a0.90_t2.0_q3": {
+    "W": 1.7726,
+    "E_D": 1.131
+   },
+   "a0.90_t0.5_q10": {
+    "W": 1.8753,
+    "E_D": 0.8358
+   },
+   "a0.90_t1.0_q10": {
+    "W": 1.7406,
+    "E_D": 1.3845
+   },
+   "a0.90_t2.0_q10": {
+    "W": 1.5873,
+    "E_D": 2.4066
+   },
+   "a0.99_t0.5_q0": {
+    "W": 1.6092,
+    "E_D": 0.1365
+   },
+   "a0.99_t1.0_q0": {
+    "W": 1.6341,
+    "E_D": 0.2239
+   },
+   "a0.99_t2.0_q0": {
+    "W": 1.5883,
+    "E_D": 0.3426
+   },
+   "a0.99_t0.5_q3": {
+    "W": 1.719,
+    "E_D": 0.2962
+   },
+   "a0.99_t1.0_q3": {
+    "W": 1.6283,
+    "E_D": 0.4279
+   },
+   "a0.99_t2.0_q3": {
+    "W": 1.5613,
+    "E_D": 0.5696
+   },
+   "a0.99_t0.5_q10": {
+    "W": 1.6549,
+    "E_D": 0.4718
+   },
+   "a0.99_t1.0_q10": {
+    "W": 1.5917,
+    "E_D": 0.6133
+   },
+   "a0.99_t2.0_q10": {
+    "W": 1.5914,
+    "E_D": 0.7812
+   }
+  },
+  "C7_readings": {
+   "scale": 0.90889,
+   "central": {
+    "q0": 1.8178,
+    "q3": 1.4542,
+    "q10": 1.3128
+   },
+   "volume": {
+    "q0": 1.7281,
+    "q3": 1.5421,
+    "q10": 1.2093
+   }
+  },
+  "RO_central_exit_gate": {
+   "qstar": 7.9756,
+   "statement": "the central reading leaves [4/3, 2] exactly for q > q* when R_meas > r_B (q* ~ 7.98 for 45/40.9); at q* the reading = 4/3 by construction."
+  },
+  "RO_exit_criterion": {
+   "scale": 0.9089,
+   "j10i_factor": 0.9088888888888889,
+   "statement": "reading in window for ALL (tau0,q) <=> R_meas <= r_B (scale >= 1), for EVERY geometry: with R_meas > r_B the reading is compressed by r_B/R < 1 and exits the window floor at the deep/steep corners.  Exit is geometry-INDEPENDENT (same mechanism, same direction), i.e. geometry ignorance does not break the claim; the x1.10 radius offset (doorB CONSISTENT-OPEN systematics) does, uniformly."
+  },
+  "RO_kill_radii": {
+   "central": 61.35,
+   "volume": 156.5,
+   "shell": 57.39
+  },
+  "width_surface": {
+   "central": {
+    "q0": 1.4369,
+    "q3": 1.0758,
+    "q10": 0.8965
+   },
+   "volume": {
+    "q0": 1.8934,
+    "q3": 1.4024,
+    "q10": 1.2597
+   }
+  }
+ },
+ "robustness": {
+  "central": {
+   "window": [
+    1.3333,
+    2.0
+   ],
+   "all_in": false,
+   "n_out": 40,
+   "exits": [
+    "t0.15_q10.0",
+    "t0.15_q100.0",
+    "t0.15_q1000000.0",
+    "t0.15_q20.0",
+    "t0.15_q8.0",
+    "t0.3_q10.0",
+    "t0.3_q100.0",
+    "t0.3_q1000000.0",
+    "t0.3_q20.0",
+    "t0.3_q8.0"
+   ]
+  },
+  "volume": {
+   "window": [
+    0.5003,
+    1.9144
+   ],
+   "all_in": false,
+   "n_out": 1,
+   "exits": [
+    "t5.0_q10"
+   ]
+  },
+  "shell": {
+   "window": [
+    1.4298,
+    2.0063
+   ],
+   "all_in": false,
+   "n_out": 9,
+   "exits": [
+    "a0.10_t0.5_q10",
+    "a0.10_t1.0_q10",
+    "a0.10_t2.0_q10",
+    "a0.30_t0.5_q10",
+    "a0.30_t1.0_q10",
+    "a0.30_t2.0_q10",
+    "a0.50_t2.0_q10",
+    "a0.70_t2.0_q10",
+    "a0.99_t2.0_q3"
+   ]
+  }
+ },
+ "error_budget": {
+  "q0": {
+   "W_cen": 2.0,
+   "volume_band": [
+    1.4712,
+    1.9144
+   ],
+   "contains_central": false,
+   "mode": "tau0-free resolvable",
+   "tau0_vol_pinned": 1.751,
+   "W_vol_pinned": 1.8033,
+   "Delta": 0.0856,
+   "se_J10I_over_J10I": 0.01426,
+   "seA_over_A": 0.01008,
+   "sed_over_d": 0.01008
+  },
+  "q3": {
+   "W_cen": 1.6,
+   "volume_band": [
+    0.9316,
+    1.8662
+   ],
+   "contains_central": true,
+   "mode": "spike-pinned",
+   "tau0_vol_pinned": 0.602,
+   "W_vol_pinned": 1.8208,
+   "Delta": 0.2208,
+   "se_J10I_over_J10I": 0.04042,
+   "seA_over_A": 0.02858,
+   "sed_over_d": 0.02858
+  },
+  "q10": {
+   "W_cen": 1.4444,
+   "volume_band": [
+    0.5003,
+    1.821
+   ],
+   "contains_central": true,
+   "mode": "spike-pinned",
+   "tau0_vol_pinned": 0.241,
+   "W_vol_pinned": 1.7588,
+   "Delta": 0.3144,
+   "se_J10I_over_J10I": 0.05958,
+   "seA_over_A": 0.04213,
+   "sed_over_d": 0.04213
+  }
+ },
+ "falsifier": {
+  "F1": "J10-I_obs = -ln(A_obs)*r_B/(c*d_obs) outside +-3sigma of [Wmin_g, Wmax_g] kills the a0-radius reading under geometry g.  Measured-space: -ln(A_obs)/d_obs outside [Wmin_g, Wmax_g]*c/r_B .",
+  "F1_windows": {
+   "central": [
+    1.3333,
+    2.0
+   ],
+   "volume": [
+    0.5003,
+    1.9144
+   ],
+   "shell": [
+    1.4298,
+    2.0063
+   ]
+  },
+  "F2": "J10-I_obs in window: invert (A_obs, d_obs) under g with the framework radius (A_g(tau0,q)=A_obs, E[D]_g(tau0,q)=c*d_obs/r_B); the inverted point predicts the width ratio U_g = std(D)/E[D]_g; measured U_obs = sigma_d/d_obs outside U_g +- 3 sigma kills the reading under g (inversion broken).  U needs NO radius (sigma_d/d_obs cancels R).",
+  "F4": "Radius form: measured lag radius R > r_B*Wmax_g/Wmin_g kills under g for EVERY (tau0,q).",
+  "F4_radii": {
+   "central": 61.35,
+   "volume": 156.5,
+   "shell": 57.39
+  },
+  "F3": "J10-I_obs outside the windows of ALL geometries kills the transfer reading outright (J11 rule): a single-window violation is a geometry discriminator, not a framework kill.",
+  "triple_recipe": "GIVEN (A_obs, d_obs, sigma_d): 1) J10-I_obs = -ln(A_obs)*r_B/(c*d_obs); 2) U_obs = sigma_d/d_obs; 3) per g: J10-I_obs not in [Wmin_g, Wmax_g] -> dead(g); 4) else invert to (tau0*,q*); U_obs not in U_g(tau0*,q*) +- 3se -> dead(g); 5) exactly one survivor -> geometry determined; none -> framework radius assignment dead under all geometries.",
+  "doorB_illustrative": {
+   "A_obs": 0.3679,
+   "d_obs_ld": 22.5,
+   "J10I": 1.8178,
+   "central_window": [
+    1.3333,
+    2.0
+   ],
+   "volume_window": [
+    0.5003,
+    1.9144
+   ],
+   "shell_window": [
+    1.4298,
+    2.0063
+   ],
+   "central_U": 1.4369,
+   "volume_U": 1.8934
+  }
+ },
+ "total_checks": 19,
+ "passed": 19,
+ "ALL_PASSED": true
+}
+ALL K09 CHECKS PASSED

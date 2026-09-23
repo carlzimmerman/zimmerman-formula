@@ -1,0 +1,66 @@
+======================================================================
+K12 GEOMETRY-IGNORANCE AUDIT - PRE-REGISTRATION (before any number)
+======================================================================
+[C0_engine_sanity_volume] |E[v^2] - 2E[N]| <= 5(se_v2+2se_N); |E[tau]-(E[D]+E[Q])| <= 5(se_tau+se_D+se_Q); P2 Dynkin |E[tau]_vol - [int rk dr + E[mu_exit] - E[F(r0)]/2]| <= 8 max(se_mu,se_tau)+1e-3 on every volume cloud. KILL: any >5 SE (P2 >8 SE) => engine fault, checks void
+[C1_J05_volume] E[D^2] >= L = 3 E[Dv^2]^2/E[v^4], slack=E[D^2]/L. KILL: slack < 1.02 absolute OR slack < 1 + 3 sigma_slack (jackknife) on any volume cloud. Target: slack >= 1.
+[C2_J07_volume] |H(w)| + 6(se_cos+se_sin) >= max(0, 1 - w^2 E[D^2]/2) - 1e-9, w in {0.25,0.5,1,2,4,8}, every volume cloud. KILL: any >6 SE violation.
+[C3_frozen_band_volume] frozen Thm2 with J02B-corrected d = E[D]_vol, R = E[v^2]: lower (sqrt(1+R)-1)/2 <= d + 3se_D and upper d <= sqrt(R)/2 + 3se_D. KILL of band geometry-freeness: either endpoint violated >3 SE on any volume cloud. Central control must pass both. Reductive (uniform kappa only, q=0): lower-holD <=> E[Q] <= d + 2d^2; q>0 N/A (E[N] = E[int kappa ds] >= E[t]).
+[C4_naive_observer] informational: d = int r kappa dr (=0.5 q=0) injected on volume clouds; record band verdict (false pass expected). Not killable.
+[C5_shell_spectrum] informational: shell r0 in {0.5,0.9}, q=0; band membership recorded. Not killable.
+[EXIT_CODE] 0 iff C0+C1+C2 pass and C3 executes without engine fault.
+Analytic re-derivation up front (machine-checked below):
+  J05 bound: geometry-free (Cauchy-Schwarz + P1 hierarchy hold for any source).
+  J07 envelope: geometry-free (cos x >= 1 - x^2/2; |H| >= E[cos(wD)]).
+  Thm2 band, volume: R = 2d + 2E[Q]; lower endpoint <=> E[Q] <= d + 2d^2,
+    upper endpoint <=> E[Q] >= 2d^2 - d. Lower expected VIOLATED under volume.
+======================================================================
+engine wall time so far: 51.0s (n=1e6 per cloud, 7 clouds + mu_exit)
+[C0] volume_q0: |E[v2]-2E[N]|=0.003121 <= 0.043917 (True); |E[tau]-(E[D]+E[Q])|=1.11e-16 <= 9.27e-03 (True)
+[C0] volume_q0: P2 Dynkin E[tau]_vol vs int rk dr+E[mu_exit]-E[F(r0)]/2: 0.93605 vs 0.93523  (d=0.00082 <= 0.00721: True)
+[C1] volume_q0: E[D2]=0.52552 >= L=0.38539  slack=1.3636 (+/-0.0092)  PASS (kill: <1.02 or <1+3s)
+[C2] volume_q0: |H(w)| >= max(0,1-w^2 E[D^2]/2): all-w PASS=True (min(|H|+6SE - env) = +0.00513)
+[C3] volume_q0: mechanism R/2=E[N]=0.9353 vs E[t]=d+E[Q]=0.9360 (=E[t]: equal (kappa uniform)); reductive Q-(d+2d^2)=+0.03133
+[C3] volume_q0: band lo=0.34760 d=0.33807 hi=0.68442 | lower VIOLATED (+14.9 SE), upper PASS (-540.1 SE)
+[C4] volume_q0: naive observer d=int r kappa dr=0.5: band PASSES (FALSE PASS) (lo=0.3476 hi=0.6844)
+[C0] volume_q3: |E[v2]-2E[N]|=0.006828 <= 0.128707 (True); |E[tau]-(E[D]+E[Q])|=0.00e+00 <= 1.47e-02 (True)
+[C0] volume_q3: P2 Dynkin E[tau]_vol vs int rk dr+E[mu_exit]-E[F(r0)]/2: 1.34642 vs 1.34905  (d=0.00263 <= 0.01162: True)
+[C1] volume_q3: E[D2]=2.18424 >= L=1.83252  slack=1.1919 (+/-0.0046)  PASS (kill: <1.02 or <1+3s)
+[C2] volume_q3: |H(w)| >= max(0,1-w^2 E[D^2]/2): all-w PASS=True (min(|H|+6SE - env) = +0.02890)
+[C3] volume_q3: mechanism R/2=E[N]=3.4525 vs E[t]=d+E[Q]=1.3464 (=E[t]: E[N] > E[t] amplified); reductive Q-(d+2d^2)=N/A (kappa non-uniform)
+[C3] volume_q3: band lo=0.90519 d=0.85786 hi=1.31323 | lower VIOLATED (+39.3 SE), upper PASS (-378.4 SE)
+[C4] volume_q3: naive observer d=int r kappa dr=1.25: band PASSES (FALSE PASS) (lo=0.9052 hi=1.3132)
+[C0] volume_q10: |E[v2]-2E[N]|=0.051836 <= 0.480301 (True); |E[tau]-(E[D]+E[Q])|=2.22e-15 <= 2.71e-02 (True)
+[C0] volume_q10: P2 Dynkin E[tau]_vol vs int rk dr+E[mu_exit]-E[F(r0)]/2: 2.34281 vs 2.34304  (d=0.00022 <= 0.02174: True)
+[C1] volume_q10: E[D2]=9.67708 >= L=8.86003  slack=1.0922 (+/-0.0045)  PASS (kill: <1.02 or <1+3s)
+[C2] volume_q10: |H(w)| >= max(0,1-w^2 E[D^2]/2): all-w PASS=True (min(|H|+6SE - env) = +0.15721)
+[C3] volume_q10: mechanism R/2=E[N]=14.0937 vs E[t]=d+E[Q]=2.3428 (=E[t]: E[N] > E[t] amplified); reductive Q-(d+2d^2)=N/A (kappa non-uniform)
+[C3] volume_q10: band lo=2.20367 d=1.93280 hi=2.65703 | lower VIOLATED (+111.1 SE), upper PASS (-297.1 SE)
+[C4] volume_q10: naive observer d=int r kappa dr=3.0: band fails (lo=2.2037 hi=2.6570)
+[C1] central_q0: E[D2]=0.76457 >= L=0.61584  slack=1.2415 (+/-0.0067)  PASS (kill: <1.02 or <1+3s)
+[C2] central_q0: |H(w)| >= max(0,1-w^2 E[D^2]/2): all-w PASS=True (min(|H|+6SE - env) = +0.00954)
+[C3] central_q0: band lo=0.47558 d=0.50022 hi=0.83771 | lower PASS (-34.4 SE), upper PASS (-470.6 SE)
+[C1] shell_r0.5: E[D2]=0.66380 >= L=0.51277  slack=1.2945 (+/-0.0000)  PASS (kill: <1.02 or <1+3s)
+[C2] shell_r0.5: |H(w)| >= max(0,1-w^2 E[D^2]/2): all-w PASS=True (min(|H|+6SE - env) = +0.00756)
+[C3] shell_r0.5: band lo=0.43014 d=0.43401 hi=0.78432 | lower PASS (-5.6 SE), upper PASS (-508.0 SE)
+[C1] shell_r0.9: E[D2]=0.44104 >= L=0.31038  slack=1.4210 (+/-0.0000)  PASS (kill: <1.02 or <1+3s)
+[C2] shell_r0.9: |H(w)| >= max(0,1-w^2 E[D^2]/2): all-w PASS=True (min(|H|+6SE - env) = +0.00391)
+[C3] shell_r0.9: band lo=0.29268 d=0.27997 hi=0.61509 | lower VIOLATED (+21.1 SE), upper PASS (-556.5 SE)
+[C5] shell spectrum:
+     shell r0=0.5: E[D]=0.43401, R=2.46063, E[N]=1.22622, band: lo=0.43014 d=0.43401 hi=0.78432 -> INSIDE (-5.6 SE lower, -508.0 SE upper)
+     shell r0=0.9: E[D]=0.27997, R=1.51334, E[N]=0.76233, band: lo=0.29268 d=0.27997 hi=0.61509 -> OUTSIDE (+21.1 SE lower, -556.5 SE upper)
+[VT] falsifier | geometry-free | needs-correction | broken-under-volume | correction reference
+[VT] J05  E[D^2] >= 3E[Dv^2]^2/E[v^4]  | YES (C-S + P1 hierarchy hold for ANY source; volume slack measured 1.3-1.4, q=0..10) | no | no | none needed
+[VT] J07  |H(w)| >= max(0,1-w^2E[D^2]/2) | YES (cos x >= 1-x^2/2; |H| >= E[cos(wD)]) | no | no | none needed
+[VT] J02B Thm1  E[D]=int r kappa dr  | NO (central-only) | YES | YES | J02B P2: E[D]_vol = E[tau]_vol - E[Q], E[tau]_vol = int rk dr + E[mu_exit] - E[F(r0)]/2 (recorded Q=0.597, frozen-vs-volume 63.8 SE)
+[VT] frozen Thm2 lag-width band  | NO (central-only) | correction UNAVAILABLE from (sig,se,E[D]) alone: R = 2E[N] (exposure P1, any source) with E[N] = E[int kappa ds]; uniform-kappa volume gives R = 2d + 2E[Q], lower endpoint fails iff E[Q] > d + 2d^2 (E[Q] unobservable to a geometry-blind observer); q>0 E[N] >= E[t] amplifies the failure | YES - LOWER endpoint fails under volume EVEN WITH the J02B-corrected E[D]_vol (measured 14.9 / 39.3 / 111.1 SE at q = 0 / 3 / 10, tau0=1); upper endpoint survives on all volume clouds | J02B P2 Q-coupling: E[D]_vol = E[tau]_vol - E[Q], E[N] = E[int kappa ds] (compensator); volume-domain band needs E[Q] / kappa-resolved data, or the lower endpoint must be withdrawn under unknown geometry
+[VT] J09-D/J10 window [-lnA/E[D] in [4/3,2]] | NO (geometry-specific per J11: volume window ~[1.3,1.9], tau0-dependent) | YES | YES | J11 volume atom / J11 window cross-ref (not re-run here)
+
+engine wall time total: 52.8s
+CHECKS: 29/33 passed; kill events: 3
+  KILL/FINDING: C3_band_geometry_free_killed_volume_q0 (endpoint lower violated >3 SE)
+  KILL/FINDING: C3_band_geometry_free_killed_volume_q3 (endpoint lower violated >3 SE)
+  KILL/FINDING: C3_band_geometry_free_killed_volume_q10 (endpoint lower violated >3 SE)
+GEOMETRY FREE: J05 J07
+GEOMETRY KILLED: C3_band_geometry_free_killed_volume_q0 (endpoint lower violated >3 SE); C3_band_geometry_free_killed_volume_q10 (endpoint lower violated >3 SE); C3_band_geometry_free_killed_volume_q3 (endpoint lower violated >3 SE)
+VERDICT: AUDIT COMPLETE: J05 and J07 are GEOMETRY-FREE (verified on volume q=0,3,10); the frozen Thm2 lag-width band is NOT geometry-free - lower endpoint killed under volume even with the J02B-corrected E[D]_vol (corrected lag is NECESSARY but NOT sufficient); upper endpoint survives. Frozen Thm1 central-only (J02B on record).
+K12_results.json written (/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/K12_results.json)
