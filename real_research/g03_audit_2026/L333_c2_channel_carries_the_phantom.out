@@ -1,0 +1,135 @@
+
+L333 -- THE c_2 CHANNEL, COMPUTED: the khronon's K^2 term DOES carry a moving galaxy's phantom -- and the price is paid by
+the aether's own acceleration, which is exactly the field the MOND sector reads.
+
+THE QUESTION (named open by L330 M5 and by real_research/reviews/THE_THEORY_AS_IT_STANDS_2026-09-22.md sec. 4)
+  L330 showed that a MOND sector with no shift dependence cannot carry its phantom's momentum: with GR's kinetic term the
+  divergence of the momentum constraint gives d_t[R3 - 16 pi G rho_m] = 0, so the phantom is initial data.  The one momentum
+  channel on the record is the khronon's c_2 (div n)^2 term (khronometric lambda = c_2, ~1e-5 .. 2.5e-5 at the record's PPN
+  corner, THE_ACTION_2026-09-05 sec. 5.11 and the alpha_2 analysis there).  "The first computation is whether it can carry a
+  galaxy's phantom at 100-300 km/s inside the alpha_1 and alpha_2 bounds."  This lane does it.
+
+METHOD (every step a check that can fail)
+  A1 THE ACTION.  The khronometric action with beta = c_13 = 0 in the unitary gauge (Yagi, Blas, Barausse & Yunes 2014,
+     PRD 89 084067, eqs. 15, 17: lambda = c_2, alpha = c_14):
+         S = (1/16 pi G_ae) Int N sqrt(gamma) [ K_ij K^ij - (1 + c_2) K^2 + R3 + c_14 a_i a^i ] + S_m ,  a_i = d_i ln N
+     with N = e^n, gamma_ij = e^{-2 psi} delta_ij, N_i = d_i B (+ a transverse S_i).  The quadratic Lagrangian and its
+     Euler-Lagrange equations are derived SYMBOLICALLY here (Christoffels -> K_ij, R3 from the Ricci tensor, second
+     derivative in a bookkeeping parameter); nothing is typed in by hand.  Matter enters through (1/2) T^{mu nu} h_{mu nu}.
+     The phantom enters as L330 M1 established for a shift-independent MOND sector: a lapse source rho_ph with NO momentum.
+  A2 THE MOVING SOURCE.  A source moving at v through the khronon frame is a steady solution f(x - v t); the linear system
+     is solved exactly in Fourier space and transformed to the source's rest frame (Lorentz boost, Jacobian, contraction).
+  CONTROLS.  C1 GR (c_2, c_14 -> 0): the rest-frame h'_00 of a moving mass equals the static one to O(v^2) -- Lorentz
+     invariance of the whole pipeline.  C2 LITERATURE: the same pipeline must return alpha_1 = -4 c_14 and
+     alpha_2 = c_14 (c_14 - c_2 + 2 c_14 c_2) / (c_2 (2 - c_14))  (Yagi+14 eqs. 48-49 at beta = 0), EXACTLY.  C3 L330:
+     at c_2 = 0 the momentless source cannot move without a lapse n = 8 pi G gamma M_ph/(c14 k^2) (no solution at c_14 = 0).  C4 the
+     O(v^2) series against the exact finite-v solution.
+RESULTS.  R1 THE CHANNEL CARRIES THE PHANTOM: for any c_2 > 0 the co-moving solution exists; the potential matter feels
+     and the lensing potential both carry the full phantom (O(1) coefficient exactly 1), with a preferred-frame anisotropy
+     alpha_2^eff = (2 c14 c2 + c14 - c2)(c14 f - c14 - 2f) / (c2 (c14 - 2)) -- the enhanced part is proportional to c_14,
+     so |alpha_2^eff| v^2 ~ 1e-6: invisible.  At f = 0 it is the literature alpha_2: the Solar System is untouched.
+  R2 THE PRICE: the khronon's ACCELERATION a_i = d_i n (the MOND sector's input -- the clock's J^mu in the 09-05 action,
+     a_mu in C-H) is distorted by
+         delta n = C_ph v^2 (v.grad)^2 lap^{-1} Phi_ph ,   C_ph = (4 + 4 c2 + c14 c2) / (c2 (2 - c14)) ~ 2 / c_2 ,
+     while baryons' own distortion is suppressed by c_14/c_2.  This is not a gauge artefact: a_i is the covariant
+     acceleration of the aether congruence, and it differs from the gravitational field matter feels by -grad(dB/dt), the
+     aether's own acceleration as the moving phantom drags it.  Define D = 2 v^2 / (c^2 c_2).
+  R3 A REAL GALAXY (nu_RAR phantom of a Hernquist baryonic sphere, both footings): the radial input distortion
+     delta a_r / g_obs and the tilt delta a_theta / g_obs, versus radius and angle to v.  Deep-MOND closed form: the radial
+     phantom input is enhanced ISOTROPICALLY by D/3 and tilted by (D/3) sin 2 theta (verified numerically).
+  R4 THE BRANCHES: at the record's alpha_2-allowed corner (c_14 = 1e-5, c_2 ~ c_2* = 1.0e-5) and the Local Group's 620 km/s
+     through the CMB frame, D/3 = 0.29 (0.11 at the closure-locus c_2 = 2.5e-5, which alpha_2 excludes at that c_14): an
+     O(10-30%) CMB-velocity-dependent distortion of what the MOND sector sees.  Either
+     a0 tracks each galaxy's speed through the CMB frame (a new, falsifiable prediction), or c_2 >> 1e-4, which the PPN
+     alpha_2 bound then allows only for c_14 <~ 8e-7.
+SCOPE AND CAVEATS.  Linear in the metric (|Phi| ~ 1e-6; delta n ~ D Phi_ph stays linear even for D ~ 1); leading order in
+  v^2 beyond the enhanced terms; the phantom is a fixed co-moving lapse source -- the MOND sector's feedback on the distorted
+  input changes the O(1) factor, not the scaling D; v is the velocity relative to the LOCAL khronon frame, taken to be the
+  CMB frame (it would differ where larger-scale momentless phantoms drag the aether: the drag fraction is ~ (2/c_2) Phi_ph).
+MUTATE=1 gives the phantom the baryons' momentum (a shift-coupled MOND sector): the 1/c_2 term of C_ph must then vanish as
+c_14 -> 0 and R2 FAILS (rc = 1).
+
+Run from the repository root:  python3 real_research/g03_audit_2026/L333_c2_channel_carries_the_phantom.py
+
+
+==============================================================================================================
+A1  THE QUADRATIC ACTION, DERIVED SYMBOLICALLY (khronometric, beta = 0, unitary gauge)
+==============================================================================================================
+    dL/dn    (Fourier, k along z, S transverse): 2*k**2*(A_n*alpha - 2*A_psi)
+    dL/dpsi  (Fourier, k along z, S transverse): 2*I*(3*A_B*epsilon*k**2*omega + 2*A_B*k**2*omega + 2*I*A_n*k**2 + 9*I*A_psi*epsilon*omega**2 - 2*I*A_psi*k**2 + 6*I*A_psi*omega**2)
+    dL/dB    (Fourier, k along z, S transverse): -2*k**2*(A_B*epsilon*k**2 + 3*I*A_psi*epsilon*omega + 2*I*A_psi*omega)
+    dL/dS    (Fourier, k along z, S transverse): A_S*k**2
+  [PASS] A1 the Euler-Lagrange equations of the symbolically derived quadratic action equal the documented linear system (Hamiltonian, trace-evolution, momentum, transverse-shift), term by term
+         measured: residuals [0, 0, 0, 0]; built in 1.1s
+         reading:  the documented forms: 2k^2(c14 n - 2 psi); the psi equation with (1 - 3 lambda) kinetic terms; the momentum constraint 2(1 - 3 lambda) lap d_t psi + 2(1 - lambda) lap^2 B; and -lap S -> +k^2 S (GR's vector sector, beta = 0)
+    transverse shift per unit current (derived): S = -16*pi*G_ae/k**2 x J_T   (GR: -16 pi G/k^2)
+
+==============================================================================================================
+CONTROLS
+==============================================================================================================
+  [PASS] C1 GR LIMIT (c_2, c_14 -> 0): the rest-frame h'_00 of a mass moving through the frame equals the static 8 pi G M/k^2 at O(v^0) and O(v^2) -- the pipeline (boost, Jacobian, contraction, vector sector, stresses) is Lorentz invariant
+         measured: O(1) 1; O(v^2) isotropic 0, anisotropic 0
+  [PASS] C2 LITERATURE: the same pipeline returns the khronometric PPN parameters of Yagi, Blas, Barausse & Yunes 2014 (eqs. 48-49, beta = 0) EXACTLY: alpha_2 = c14 (c14 - c2 + 2 c14 c2)/(c2 (2 - c14)) and alpha_1 = -4 c14
+         measured: alpha_2 = -alpha*(2*alpha*epsilon + alpha - epsilon)/(epsilon*(alpha - 2)) (minus literature: 0); alpha_1 = -4*alpha (+4 c14: 0); O(1) = 1
+         reading:  Will's convention: g_00 contains -(alpha_1 - alpha_2) w^2 U - alpha_2 w^i w^j U_ij
+  [PASS] C3 L330 REPRODUCED: at c_2 = 0 a moving momentless source can sit only in the lapse, n = 8 pi G gamma M_ph/(c14 k^2) (amplified 1/c14 ~ 1e5), and at c_14 = 0 there is no solution at all -- the frozen-phantom identity
+         measured: n = 8*pi*G_ae*M_p/(alpha*k**2*sqrt(1 - v**2)); solutions at c14 = 0: 0
+  [PASS] C4 the O(v^2) series of the phantom's aether response matches the exact finite-v solution (c14 = 1e-5, c2 = 2.5e-5, v = 300-600 km/s, three angles) to < 1e-4
+         measured: max |exact - series| = 5.12e-07
+
+==============================================================================================================
+R1  THE c_2 CHANNEL CARRIES THE PHANTOM: what matter feels and what light sees
+==============================================================================================================
+    dynamics: alpha_2^eff(f) = (2*alpha*epsilon + alpha - epsilon)*(alpha*f - alpha - 2*f)/(epsilon*(alpha - 2));  leading in 1/c2: alpha*(alpha*f - alpha - 2*f)/(alpha - 2)/c2
+    lensing (n + psi)/2 rest frame: O(1) 1; mu^2 v^2 coefficient (3*alpha**2*epsilon*f - 3*alpha**2*epsilon + 4*alpha**2*f - 4*alpha**2 - 16*alpha*epsilon - 8*alpha*f - 12*epsilon*f + 20*epsilon)/(4*epsilon*(alpha - 2));  leading in 1/c2: alpha*(alpha*f - alpha - 2*f)/(alpha - 2)/c2
+  [PASS] R1 CARRIED: the co-moving solution exists for c_2 > 0; the potential matter feels and the lensing potential carry the full phantom (O(1) coefficient 1), with a preferred-frame anisotropy alpha_2^eff whose enhanced part is proportional to c_14 -- at the record's corner |alpha_2^eff| (620 km/s / c)^2 < 1e-5, and at f = 0 it is the literature alpha_2
+         measured: O(1) dyn 1, lens 1; max |alpha_2^eff| 0.54 -> x v^2 = 2.3e-06; f=0 minus literature: 0; enhanced lensing minus enhanced dynamics: 0
+         reading:  the answer to L330's open question: YES, the channel carries the phantom inside the alpha_1/alpha_2 bounds
+
+==============================================================================================================
+R2  THE PRICE: the aether's acceleration a_i = d_i n (the MOND sector's input) is distorted ~ 2/c_2
+==============================================================================================================
+    phantom: C_ph = -(alpha*epsilon + 4*epsilon + 4)/(epsilon*(alpha - 2))  (leading -4/(alpha - 2)/c2);  isotropic 1
+    baryons: C_b  = -2*(2*alpha*epsilon + alpha - epsilon)/(epsilon*(alpha - 2))  (leading -2*alpha/(alpha - 2)/c2)
+  [PASS] R2 THE PRICE: the phantom's aether-acceleration distortion is delta n = C_ph v^2 (v.grad)^2 lap^-1 Phi_ph with C_ph = (4 + 4 c2 + c14 c2)/(c2 (2 - c14)) -> 2/c_2 NOT suppressed by c_14, while baryons' own is (c14/c2)-suppressed
+         measured: C_ph - target = 0; c2 C_ph -> -4/(alpha - 2) at c2 -> 0 (at c14 = 0: 2); c2 C_b -> -2*alpha/(alpha - 2)
+         reading:  a_i is the covariant acceleration of the aether congruence; a_i - grad Phi_B = -grad(dB/dt), the aether's own acceleration as it is dragged (the identity holds identically in the solution: residual 0)
+
+==============================================================================================================
+R3  A REAL GALAXY: nu_RAR phantom of a Hernquist baryonic sphere; the input distortion vs radius and angle to v
+==============================================================================================================
+    M_b 1e+10: R = 2/5/10/20/50 kpc  phantom share 0.28/0.53/0.70/0.83/0.93;  delta a_r/g_obs per unit D: along v 0.137/0.231/0.283/0.310/0.326, across v 0.070/0.147/0.211/0.261/0.301;  tilt 0.070/0.147/0.211/0.261/0.301
+    M_b 5e+10: R = 2/5/10/20/50 kpc  phantom share 0.12/0.29/0.49/0.68/0.85;  delta a_r/g_obs per unit D: along v 0.062/0.143/0.218/0.274/0.312, across v 0.027/0.074/0.135/0.201/0.267;  tilt 0.027/0.074/0.135/0.201/0.267
+    M_b 2e+11: R = 2/5/10/20/50 kpc  phantom share 0.06/0.15/0.29/0.49/0.73;  delta a_r/g_obs per unit D: along v 0.030/0.077/0.143/0.218/0.287, across v 0.013/0.035/0.074/0.135/0.220;  tilt 0.013/0.035/0.074/0.135/0.220
+  [PASS] R3 A REAL GALAXY: in the deep-MOND region the radial input distortion is ISOTROPIC, (D/3) x phantom share, and the tilt is (D/3) sin 2theta x share (closed form: Phi_ph = V^2 ln r -> lap^-1 = V^2 r^2 (ln r - 5/6)/6), reproduced numerically
+         measured: M_b 1e10 at 50 kpc: along v 0.351, across 0.324, tilt 0.324 (x share; closed form 1/3 each)
+         reading:  an isotropic enhancement acts on the MOND sector like a larger a0; the tilt is a quadrupole aligned with the CMB-frame velocity
+
+==============================================================================================================
+R4  THE BRANCHES: D = C_ph v^2 at 300 and 620 km/s (the Local Group through the CMB frame), with PPN alpha_2
+==============================================================================================================
+    c14 1e-05, c2 1.0e-05: alpha_2 +1.00e-10 (ok);  D(300) 0.200, D(620) 0.855;  deep-MOND radial input +28.5% at 620 km/s
+    c14 1e-05, c2 2.5e-05: alpha_2 -3.00e-06 (VIOLATES 4e-7);  D(300) 0.080, D(620) 0.342;  deep-MOND radial input +11.4% at 620 km/s
+    c14 8e-07, c2 1.0e-04: alpha_2 -3.97e-07 (ok);  D(300) 0.020, D(620) 0.086;  deep-MOND radial input +2.9% at 620 km/s
+    c14 8e-07, c2 1.0e-03: alpha_2 -4.00e-07 (ok);  D(300) 0.002, D(620) 0.009;  deep-MOND radial input +0.3% at 620 km/s
+    c14 8e-07, c2 5.0e-02: alpha_2 -4.00e-07 (ok);  D(300) 0.000, D(620) 0.000;  deep-MOND radial input +0.0% at 620 km/s
+    (at c14 = 1e-5 alpha_2 confines c2 to within 8% of c2* = c14/(1 - 2 c14) = 1.0e-5; c2 = 2.5e-5 is the closure-locus value at |K_2| = 3.2e5 and violates alpha_2 -- shown for reference)
+  [PASS] R4 THE DICHOTOMY: at the record's corner (c14 = 1e-5, c2 = 1e-5 .. 2.5e-5) the Local Group's 620 km/s gives a deep-MOND input distortion D/3 >= 0.10; the branches with D/3 < 0.01 at 620 km/s (c2 >= 1e-3) pass alpha_2 only with c14 <~ 8e-7
+         measured: corner D/3 = 0.29, 0.11; far branches: c2 1e-03: D/3 0.0029, alpha_2 -4.0e-07, c2 5e-02: D/3 0.0001, alpha_2 -4.0e-07
+         reading:  either a0 tracks each galaxy's speed through the CMB frame (falsifiable), or c2 >> 1e-4 with c14 <~ 8e-7
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  L330 asked whether the khronon's c_2 channel can carry a moving galaxy's phantom.  It can.  With the action derived here and
+  the pipeline certified on GR (Lorentz invariance) and on the published khronometric alpha_1, alpha_2 (exact), the co-moving
+  solution exists for any c_2 > 0: dynamics and lensing carry the full phantom, with preferred-frame corrections ~ v^2.
+  THE PRICE is in the aether's own acceleration -- the MOND sector's input -- distorted by C_ph v^2 ~ 2 v^2 / c_2 times the
+  phantom: at the record's corner and the Local Group's 620 km/s that is D/3 = 0.29 .. 0.11 in
+  deep MOND, isotropic in the radial input plus a quadrupolar tilt along the CMB-frame velocity.  So the one momentum
+  channel on the record turns the moving-source gate into a SPEED-DEPENDENT a0: a0_eff ~ a0 (1 + 2 v_CMB^2/(3 c^2 c_2))^O(1),
+  a prediction ΛCDM and velocity-blind MOND do not make -- or, if the data show no such dependence, c_2 >= 1e-3 and then
+  c_14 <~ 8e-7 by alpha_2.  NOT computed here: the MOND sector's nonlinear feedback (the O(1) exponent), and the local
+  khronon frame where larger-scale momentless phantoms drag it (drag fraction ~ (2/c_2) Phi_ph).
+
+  9/9 checks pass; load-bearing failures: 0; wrote L333_c2_channel_carries_the_phantom_results.json; 11s

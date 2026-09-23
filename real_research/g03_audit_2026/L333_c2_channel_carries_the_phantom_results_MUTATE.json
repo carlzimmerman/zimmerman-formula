@@ -1,0 +1,378 @@
+{
+ "lane": "L333",
+ "mutate": true,
+ "checks": {
+  "A1 the Euler-Lagrange equations of the symbolically derived quadratic action equal the documented linear system (Hamiltonian, trace-evolution, momentum, transverse-shift), term by term": {
+   "ok": true,
+   "measured": "residuals [0, 0, 0, 0]; built in 1.1s",
+   "load_bearing": true
+  },
+  "C1 GR LIMIT (c_2, c_14 -> 0): the rest-frame h'_00 of a mass moving through the frame equals the static 8 pi G M/k^2 at O(v^0) and O(v^2) -- the pipeline (boost, Jacobian, contraction, vector sector, stresses) is Lorentz invariant": {
+   "ok": true,
+   "measured": "O(1) 1; O(v^2) isotropic 0, anisotropic 0",
+   "load_bearing": true
+  },
+  "C2 LITERATURE: the same pipeline returns the khronometric PPN parameters of Yagi, Blas, Barausse & Yunes 2014 (eqs. 48-49, beta = 0) EXACTLY: alpha_2 = c14 (c14 - c2 + 2 c14 c2)/(c2 (2 - c14)) and alpha_1 = -4 c14": {
+   "ok": true,
+   "measured": "alpha_2 = -alpha*(2*alpha*epsilon + alpha - epsilon)/(epsilon*(alpha - 2)) (minus literature: 0); alpha_1 = -4*alpha (+4 c14: 0); O(1) = 1",
+   "load_bearing": true
+  },
+  "C3 L330 REPRODUCED: at c_2 = 0 a moving momentless source can sit only in the lapse, n = 8 pi G gamma M_ph/(c14 k^2) (amplified 1/c14 ~ 1e5), and at c_14 = 0 there is no solution at all -- the frozen-phantom identity": {
+   "ok": true,
+   "measured": "n = 8*pi*G_ae*M_p/(alpha*k**2*sqrt(1 - v**2)); solutions at c14 = 0: 0",
+   "load_bearing": true
+  },
+  "C4 the O(v^2) series of the phantom's aether response matches the exact finite-v solution (c14 = 1e-5, c2 = 2.5e-5, v = 300-600 km/s, three angles) to < 1e-4": {
+   "ok": true,
+   "measured": "max |exact - series| = 3.20e-11",
+   "load_bearing": true
+  },
+  "R1 CARRIED: the co-moving solution exists for c_2 > 0; the potential matter feels and the lensing potential carry the full phantom (O(1) coefficient 1), with a preferred-frame anisotropy alpha_2^eff whose enhanced part is proportional to c_14 -- at the record's corner |alpha_2^eff| (620 km/s / c)^2 < 1e-5, and at f = 0 it is the literature alpha_2": {
+   "ok": true,
+   "measured": "O(1) dyn 1, lens 1; max |alpha_2^eff| 0.00 -> x v^2 = 1.3e-11; f=0 minus literature: 0; enhanced lensing minus enhanced dynamics: 0",
+   "load_bearing": true
+  },
+  "R2 THE PRICE: the phantom's aether-acceleration distortion is delta n = C_ph v^2 (v.grad)^2 lap^-1 Phi_ph with C_ph = (4 + 4 c2 + c14 c2)/(c2 (2 - c14)) -> 2/c_2 NOT suppressed by c_14, while baryons' own is (c14/c2)-suppressed": {
+   "ok": false,
+   "measured": "C_ph - target = -3 - 2/epsilon; c2 C_ph -> -2*alpha/(alpha - 2) at c2 -> 0 (at c14 = 0: 0); c2 C_b -> -2*alpha/(alpha - 2)",
+   "load_bearing": true
+  },
+  "R3 A REAL GALAXY: in the deep-MOND region the radial input distortion is ISOTROPIC, (D/3) x phantom share, and the tilt is (D/3) sin 2theta x share (closed form: Phi_ph = V^2 ln r -> lap^-1 = V^2 r^2 (ln r - 5/6)/6), reproduced numerically": {
+   "ok": true,
+   "measured": "M_b 1e10 at 50 kpc: along v 0.351, across 0.324, tilt 0.324 (x share; closed form 1/3 each)",
+   "load_bearing": true
+  },
+  "R4 THE DICHOTOMY: at the record's corner (c14 = 1e-5, c2 = 1e-5 .. 2.5e-5) the Local Group's 620 km/s gives a deep-MOND input distortion D/3 >= 0.10; the branches with D/3 < 0.01 at 620 km/s (c2 >= 1e-3) pass alpha_2 only with c14 <~ 8e-7": {
+   "ok": false,
+   "measured": "corner D/3 = 0.00, -0.00; far branches: c2 1e-03: D/3 -0.0000, alpha_2 -4.0e-07, c2 5e-02: D/3 -0.0000, alpha_2 -4.0e-07",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "C2": {
+   "alpha2": "-alpha*(2*alpha*epsilon + alpha - epsilon)/(epsilon*(alpha - 2))",
+   "alpha1": "-4*alpha"
+  },
+  "R1": {
+   "alpha2_eff": "-alpha*(2*alpha*epsilon + alpha - epsilon)/(epsilon*(alpha - 2))",
+   "leading": "-alpha**2/(alpha - 2)",
+   "max_alpha2eff": 2.999914999574998e-06
+  },
+  "R2": {
+   "C_ph": "-2*(2*alpha*epsilon + alpha - epsilon)/(epsilon*(alpha - 2))",
+   "C_b": "-2*(2*alpha*epsilon + alpha - epsilon)/(epsilon*(alpha - 2))",
+   "leading_ph": "-2*alpha/(alpha - 2)",
+   "leading_b": "-2*alpha/(alpha - 2)"
+  },
+  "R3": {
+   "canonical_1e+10": {
+    "R": [
+     2,
+     5,
+     10,
+     20,
+     50
+    ],
+    "f_ph": [
+     0.27628433488095516,
+     0.5256313572075187,
+     0.7041176981910984,
+     0.8321384075925367,
+     0.9271279311678341
+    ],
+    "par": [
+     0.13655127018694546,
+     0.23128137380087557,
+     0.2826753546846865,
+     0.31047266884612157,
+     0.32555162279411887
+    ],
+    "perp": [
+     0.06986653234700486,
+     0.14717499170332166,
+     0.2107211717532057,
+     0.2608328693732078,
+     0.3007881541868579
+    ],
+    "avg": [
+     0.09209477829365173,
+     0.1752104524025063,
+     0.23470589939703265,
+     0.2773794691975124,
+     0.30904264372261153
+    ],
+    "tang": [
+     0.06986653234700486,
+     0.14717499170332163,
+     0.21072117175320576,
+     0.2608328693732078,
+     0.3007881541868578
+    ]
+   },
+   "canonical_5e+10": {
+    "R": [
+     2,
+     5,
+     10,
+     20,
+     50
+    ],
+    "f_ph": [
+     0.11564374355286275,
+     0.29150587470673606,
+     0.48720664010962217,
+     0.6755583093709232,
+     0.8471006739822254
+    ],
+    "par": [
+     0.06153478940925518,
+     0.14321694753931655,
+     0.21786943093996392,
+     0.27446782741157155,
+     0.31235349330324697
+    ],
+    "perp": [
+     0.027054477071803782,
+     0.07414446358370974,
+     0.13466860458482915,
+     0.2005452409796758,
+     0.2673735903394892
+    ],
+    "avg": [
+     0.03854791451762092,
+     0.09716862490224536,
+     0.16240221336987407,
+     0.22518610312364107,
+     0.28236689132740844
+    ],
+    "tang": [
+     0.027054477071803786,
+     0.07414446358370973,
+     0.13466860458482913,
+     0.20054524097967583,
+     0.26737359033948915
+    ]
+   },
+   "canonical_2e+11": {
+    "R": [
+     2,
+     5,
+     10,
+     20,
+     50
+    ],
+    "f_ph": [
+     0.056340982976038914,
+     0.14696867508403497,
+     0.2915068977478397,
+     0.4872078037466441,
+     0.7264537257485477
+    ],
+    "par": [
+     0.030406429849823627,
+     0.07719693382429249,
+     0.14321738020523436,
+     0.21786982676223482,
+     0.28712997882835617
+    ],
+    "perp": [
+     0.012967276563107647,
+     0.034885870629871245,
+     0.07414475877130267,
+     0.13466898849220463,
+     0.21966187346009583
+    ],
+    "avg": [
+     0.01878032765867964,
+     0.048989558361345,
+     0.09716896591594658,
+     0.16240260124888137,
+     0.2421512419161826
+    ],
+    "tang": [
+     0.01296727656310765,
+     0.034885870629871245,
+     0.07414475877130267,
+     0.13466898849220466,
+     0.21966187346009589
+    ]
+   },
+   "alt_1e+10": {
+    "R": [
+     2,
+     5,
+     10,
+     20,
+     50
+    ],
+    "f_ph": [
+     0.3097721444713217,
+     0.5565754387093373,
+     0.7264333602020707,
+     0.8458501299512914,
+     0.9333881490483684
+    ],
+    "par": [
+     0.15080596784483144,
+     0.24187069014215415,
+     0.2889830217781199,
+     0.31372353962250205,
+     0.326802144824025
+    ],
+    "perp": [
+     0.07948308831324513,
+     0.15735237428359158,
+     0.2187251692119754,
+     0.2660632951643947,
+     0.3032930021121716
+    ],
+    "avg": [
+     0.10325738149044056,
+     0.18552514623644578,
+     0.2421444534006902,
+     0.28195004331709717,
+     0.3111293830161227
+    ],
+    "tang": [
+     0.07948308831324515,
+     0.1573523742835916,
+     0.2187251692119754,
+     0.2660632951643947,
+     0.3032930021121716
+    ]
+   },
+   "alt_5e+10": {
+    "R": [
+     2,
+     5,
+     10,
+     20,
+     50
+    ],
+    "f_ph": [
+     0.14010337800330305,
+     0.32528339399121703,
+     0.5193835248017477,
+     0.6995402804470069,
+     0.8596952518358909
+    ],
+    "par": [
+     0.07335571875703782,
+     0.15726674567126095,
+     0.2291209183329013,
+     0.2813701967049117,
+     0.31523123821488297
+    ],
+    "perp": [
+     0.033373829623132616,
+     0.08400832415997803,
+     0.14513130323442328,
+     0.20908504187104754,
+     0.27223200681050386
+    ],
+    "avg": [
+     0.046701126001101025,
+     0.10842779799707233,
+     0.17312784160058262,
+     0.23318009348233565,
+     0.2865650839452969
+    ],
+    "tang": [
+     0.03337382962313261,
+     0.08400832415997801,
+     0.14513130323442322,
+     0.20908504187104754,
+     0.27223200681050397
+    ]
+   },
+   "alt_2e+11": {
+    "R": [
+     2,
+     5,
+     10,
+     20,
+     50
+    ],
+    "f_ph": [
+     0.07276571925643134,
+     0.1742979560437643,
+     0.3252844340414058,
+     0.5193846549597265,
+     0.7473984641665472
+    ],
+    "par": [
+     0.03873315604656703,
+     0.0900546646826061,
+     0.15726717291990538,
+     0.22912129012209695,
+     0.29280050560422904
+    ],
+    "perp": [
+     0.01701628160493215,
+     0.04212164568057909,
+     0.08400863056075027,
+     0.14513168241881474,
+     0.22729897928115894
+    ],
+    "avg": [
+     0.02425523975214378,
+     0.05809931868125476,
+     0.10842814468046864,
+     0.17312821831990882,
+     0.24913282138884896
+    ],
+    "tang": [
+     0.01701628160493215,
+     0.04212164568057909,
+     0.08400863056075025,
+     0.1451316824188148,
+     0.227298979281159
+    ]
+   }
+  },
+  "R4": [
+   {
+    "c14": 1e-05,
+    "c2": 1e-05,
+    "alpha2": 1.0000050000250003e-10,
+    "alpha2_ok": true,
+    "D300": 2.0027801148014786e-11,
+    "D620": 8.554096401440982e-11
+   },
+   {
+    "c14": 1e-05,
+    "c2": 2.5e-05,
+    "alpha2": -2.9999149995749987e-06,
+    "alpha2_ok": false,
+    "D300": -6.008140066379782e-07,
+    "D620": -2.566143379462654e-06
+   },
+   {
+    "c14": 8e-07,
+    "c2": 0.0001,
+    "alpha2": -3.967995187198075e-07,
+    "alpha2_ok": true,
+    "D300": -9.93372765177696e-07,
+    "D620": -4.242805454825626e-06
+   },
+   {
+    "c14": 8e-07,
+    "c2": 0.001,
+    "alpha2": -3.996795198718079e-07,
+    "alpha2_ok": true,
+    "D300": -1.0005827404249135e-06,
+    "D620": -4.273600060214852e-06
+   },
+   {
+    "c14": 8e-07,
+    "c2": 0.05,
+    "alpha2": -3.99993119997248e-07,
+    "alpha2_ok": true,
+    "D300": -1.0013678266184995e-06,
+    "D620": -4.276953250579457e-06
+   }
+  ]
+ },
+ "n_checks": 9,
+ "n_fail_load_bearing": 2
+}
