@@ -100,3 +100,37 @@ re-derive, never silently retcon (M1's re-anchor, R1's re-frame) · the parent r
 the axiom output before claiming clean · in-lane unit traps: KPC e16/e19, erg/W,
 Eddington-W/erg (7 dex), cm/m, 1e10.5 literals, the n=2.5/n=3 Lane-Emden column,
 the auto-bound pi (open Real!), the cgs Saha constant 2.4e15.
+
+## 2026-09-22 AUDIT + DOOR SWING (append-only; full record: `real_research/bhstar_audit_2026/BHSTAR_AUDIT_AND_DOOR_SWING_2026-09-22.md`)
+
+- **Verdict 5 (regime coincidence) is DEMOTED, not killed:** it is not a framework result.
+  - L323 9/9; Lean I17.
+  - a0 is evaluated at the gas's own density; the framework's law is flat, and the local-density
+    branch is SPARC-excluded as a law.
+  - The ratio is exactly 2(v_c/c)(t_ff/t_dyn).
+  - A unique crossing is guaranteed in every ρ ∝ r^−p envelope with p < 4.
+  - P(chance within ×2 of the Balmer layer) = 0.31, and the honest error bar is ±0.47 dex, not ±0.02.
+  - The same classifier labels the Earth's surface air "strong-a0".
+  - KP1 ⟺ its own definition; KP2's M^{1/4} comes from the published family alone.
+  - The framework's own BH* prediction is a NULL: every layer sits at ≥ 5.6e5 a0.
+- **Verdict 2 ("the dial is dead / Γ = 56.6") is corrected.**
+  - Γ = 48.1 at κ_es = 0.34, below the cap.
+  - The cap sits inside log g ± 0.2.
+  - Stacks span Γ 30–123 and the one per-object fit (the Egg) gives 226, so [36, 90] is too narrow (L325).
+- **Lean I01–I13 docstring corrections** (I10 947 < 1e3; I05/m1 "500×" → 5×10⁵; I01 R_crit
+  inversion; I02 direction; I04 vacuous `kappa_min_tabulated`; I11 κ = ½ enters, so it is not
+  parameter-free; I12 κ_es unstated) are listed in the audit record §3.
+- **Open items:**
+  - Item 2 (reverberation): still shut. No firm LRD lag exists anywhere. Ji+25's 45 ld is
+    ≈ 34 ld from its own stated arithmetic.
+  - Item 3: KP2 undecided (slope 0.32 ± 0.12, N = 11), the ×1.68 clustering clause fails
+    (×7.8), and KP3 cannot run (no per-object n_H).
+  - Item 1 (MESA): profiles are on request only.
+- **NEW live framework test: A2744-QSO1, the naked BH at z = 7.04** (L324 6/6; Lean I18).
+  - The RAR phantom fraction is exactly e^{−r_M/r}, so "extended mass sub-dominant at r" is
+    equivalent to a0 < GM/(r ln 2)².
+  - The flat framework passes.
+  - The a0 ∝ H(z) rival is disfavoured at 0.9–2.0σ on the headline mass: a HINT only, and
+    ΛCDM is not discriminated.
+  - Registered: v_c/v_Kepler at 375 pc is 1.15–1.93 for the framework, 1.00 for Newton and
+    1.94–3.45 for the rival.

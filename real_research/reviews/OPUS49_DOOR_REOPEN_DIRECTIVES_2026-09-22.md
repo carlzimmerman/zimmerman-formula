@@ -89,3 +89,20 @@ No door above is re-swung on this map without its key:
 - a new action / a new analytic idea      -> D-YM3 / D-YM2 / D-N5 (research
   papers, swarm-ready workers but a human-scale idea first)
 Swarm swings are cheap; keys are not. The register stands.
+## 2026-09-22 swing results (append-only; record: `real_research/bhstar_audit_2026/BHSTAR_AUDIT_AND_DOOR_SWING_2026-09-22.md`)
+
+- **D-YM1: the UNLOCK IS RE-SPECIFIED.** Bravyi–DiVincenzo–Loss, CMP 284 (2008) 481,
+  arXiv:0707.1894 (open access), cite JMP 2004 and state that its explicit ε₀ was never given.
+  They re-derive it with tracked constants (2⁻¹⁷Δ/(dJ) for two-body qubits). Unlock (a), the
+  closed paper, is therefore likely a dead key. The real key is extending BDL Lemmas 3–4 and
+  Appendix A to four-body plaquettes on L²(SU(N)) links, which IS swarm-addressable. Door G §5's
+  "far-field cancellation" is BDL's elementary support argument (their Claim 3), not a deep
+  obstruction.
+- **D-YM4: still shut.** Accreting-SMS profiles are "on request" only (Saio/Nandal GENEC,
+  Herrington MESA), and MESA is not installed. Saio+24 gives the structural reason n = 3 lands at
+  6.6e7: extended outer layers. Their Table 1 gives M_GRI = 0.82–10.6 × 10⁵ Msun for
+  Ṁ = 0.05–1000 Msun/yr.
+- **D-N7: still shut.** No firm lag for any LRD as of Sept 2026. Ji+25's "≳ 45 ld" is ≈ 34 ld by
+  its own "9 light-months/(1+z)". KP1 is equivalent to its defining transition (Lean I17), so a
+  PASS here would not test the framework.
+- **D-YM2 / D-N5 / D-YM3 / D-N6:** unchanged.

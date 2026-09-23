@@ -1,0 +1,464 @@
+{
+ "lane": "L324",
+ "mutate": true,
+ "checks": {
+  "K1 r_M(canonical, 10^7.7) in [250, 300] pc and E(7.0451) in [12.5, 13.0]": {
+   "ok": true,
+   "measured": "r_M = 273.2 pc, E = 12.840",
+   "load_bearing": true
+  },
+  "K2 max |f_ph - exp(-r_M/r)| < 1e-12 over 9 radii x 4 a0 values": {
+   "ok": true,
+   "measured": "1.41e-16",
+   "load_bearing": true
+  },
+  "K3 framework: max velocity boost at r_spec = 12.5 pc over masses x footings x kernels < 1%": {
+   "ok": false,
+   "measured": "6.217%",
+   "load_bearing": true
+  },
+  "K3b rival: its own 12.5 pc mass reading is inflated by nu, at most this many dex (reported, conservative)": {
+   "ok": true,
+   "measured": "0.052 dex",
+   "load_bearing": false
+  },
+  "K4 framework f_ph(150 pc) < 1/2 for both mass readings, both footings, all three kernels": {
+   "ok": false,
+   "measured": "at least one >= 0.5",
+   "load_bearing": true
+  },
+  "K4b (not load-bearing) margin at 200 pc: list every framework case with f_ph > 0.45": {
+   "ok": true,
+   "measured": "MOKA3D canonical rar=0.683 simple=0.685 exp_mu=0.656; MOKA3D alt rar=0.707 simple=0.708 exp_mu=0.683; spectroastrometric, canonical rar=0.807 simple=0.807 exp_mu=0.797; spectroastrometric, alt rar=0.823 simple=0.823 exp_mu=0.814",
+   "load_bearing": false
+  },
+  "K5 the rival fails sub-dominance at the headline central mass (10^7.7) at 150 and 200 pc, both footings": {
+   "ok": true,
+   "measured": "f_ph(150 pc) = 0.602/0.629, f_ph(200 pc) = 0.683/0.707",
+   "load_bearing": true
+  },
+  "K6 at 375 pc the framework band clears Newton by > 15% AND sits below the rival band, across 10^7.05-10^8.0": {
+   "ok": false,
+   "measured": "framework lower edge - 1 = +0.938; rival lower edge - framework upper edge = -1.515; at any FIXED weighed mass rival_min/framework_max >= 0.93",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "inputs": {
+   "mass_readings": {
+    "MOKA3D (headline)": [
+     7.7,
+     0.3
+    ],
+    "spectroastrometric, i-corrected": [
+     7.2,
+     0.15
+    ]
+   },
+   "r_spec_pc": [
+    12.5,
+    4.7
+   ],
+   "rotation_bins_pc": [
+    50.0,
+    100.0,
+    150.0
+   ],
+   "narrow_Halpha_extent_pc": 200.0,
+   "Mstar_max": 20000000.0,
+   "E(z=7.0451)": 12.839936387854701,
+   "a0_framework_used": {
+    "canonical": 1.2020620046945692e-09,
+    "alt": 1.4482164251861319e-09
+   },
+   "a0_rival": {
+    "canonical": 1.2020620046945692e-09,
+    "alt": 1.4482164251861319e-09
+   }
+  },
+  "rM_pc_headline": {
+   "canonical": 273.1989180885943,
+   "alt": 248.90044653033016
+  },
+  "vflat_kms_headline": {
+   "canonical": 28.09291202125396,
+   "alt": 29.432246275096244
+  },
+  "rival_rM_pc_headline": {
+   "canonical": 76.24257208992455,
+   "alt": 69.46151313691955
+  },
+  "K3": {
+   "framework_max_boost": 0.06217476095288621,
+   "rival_max_mass_inflation_dex": 0.05239195528633284
+  },
+  "framework_subdominance": [
+   {
+    "mass": "MOKA3D (headline)",
+    "logM": 7.7,
+    "footing": "canonical",
+    "r_pc": 150.0,
+    "fph_rar": 0.6015270257823205,
+    "fph_simple": 0.6047346759782914,
+    "fph_exp_mu": 0.5576430819273792,
+    "logM_needed_rar": 7.969438362065473
+   },
+   {
+    "mass": "MOKA3D (headline)",
+    "logM": 7.7,
+    "footing": "canonical",
+    "r_pc": 200.0,
+    "fph_rar": 0.6830324835432934,
+    "fph_simple": 0.6845856552393492,
+    "fph_exp_mu": 0.655688627314856,
+    "logM_needed_rar": 8.219315835282073
+   },
+   {
+    "mass": "MOKA3D (headline)",
+    "logM": 7.7,
+    "footing": "alt",
+    "r_pc": 150.0,
+    "fph_rar": 0.6293443258050307,
+    "fph_simple": 0.6318925558569245,
+    "fph_exp_mu": 0.5915498960223156,
+    "logM_needed_rar": 8.050344960862665
+   },
+   {
+    "mass": "MOKA3D (headline)",
+    "logM": 7.7,
+    "footing": "alt",
+    "r_pc": 200.0,
+    "fph_rar": 0.7065879726203677,
+    "fph_simple": 0.7078059608815495,
+    "fph_exp_mu": 0.6832805212983569,
+    "logM_needed_rar": 8.300222434079265
+   },
+   {
+    "mass": "spectroastrometric, i-corrected",
+    "logM": 7.2,
+    "footing": "canonical",
+    "r_pc": 150.0,
+    "fph_rar": 0.7513910977228722,
+    "fph_simple": 0.7521159028382324,
+    "fph_exp_mu": 0.734837373285607,
+    "logM_needed_rar": 7.969438362065473
+   },
+   {
+    "mass": "spectroastrometric, i-corrected",
+    "logM": 7.2,
+    "footing": "canonical",
+    "r_pc": 200.0,
+    "fph_rar": 0.8070483129751144,
+    "fph_simple": 0.8073779559352176,
+    "fph_exp_mu": 0.7972193594783221,
+    "logM_needed_rar": 8.219315835282073
+   },
+   {
+    "mass": "spectroastrometric, i-corrected",
+    "logM": 7.2,
+    "footing": "alt",
+    "r_pc": 150.0,
+    "fph_rar": 0.7707376808684397,
+    "fph_simple": 0.7713006963112958,
+    "fph_exp_mu": 0.7567288393665027,
+    "logM_needed_rar": 8.050344960862665
+   },
+   {
+    "mass": "spectroastrometric, i-corrected",
+    "logM": 7.2,
+    "footing": "alt",
+    "r_pc": 200.0,
+    "fph_rar": 0.8225834054052408,
+    "fph_simple": 0.8228376908157937,
+    "fph_exp_mu": 0.8143080517668553,
+    "logM_needed_rar": 8.300222434079265
+   }
+  ],
+  "rival_mass_needed": [
+   {
+    "footing": "canonical",
+    "r_pc": 150.0,
+    "mass": "MOKA3D (headline)",
+    "logM_needed": 7.969438362065473,
+    "sigma_above": 0.898127873551576
+   },
+   {
+    "footing": "canonical",
+    "r_pc": 150.0,
+    "mass": "spectroastrometric, i-corrected",
+    "logM_needed": 7.969438362065473,
+    "sigma_above": 5.129589080436485
+   },
+   {
+    "footing": "canonical",
+    "r_pc": 200.0,
+    "mass": "MOKA3D (headline)",
+    "logM_needed": 8.219315835282073,
+    "sigma_above": 1.7310527842735755
+   },
+   {
+    "footing": "canonical",
+    "r_pc": 200.0,
+    "mass": "spectroastrometric, i-corrected",
+    "logM_needed": 8.219315835282073,
+    "sigma_above": 6.795438901880484
+   },
+   {
+    "footing": "alt",
+    "r_pc": 150.0,
+    "mass": "MOKA3D (headline)",
+    "logM_needed": 8.050344960862665,
+    "sigma_above": 1.1678165362088826
+   },
+   {
+    "footing": "alt",
+    "r_pc": 150.0,
+    "mass": "spectroastrometric, i-corrected",
+    "logM_needed": 8.050344960862665,
+    "sigma_above": 5.668966405751099
+   },
+   {
+    "footing": "alt",
+    "r_pc": 200.0,
+    "mass": "MOKA3D (headline)",
+    "logM_needed": 8.300222434079265,
+    "sigma_above": 2.000741446930882
+   },
+   {
+    "footing": "alt",
+    "r_pc": 200.0,
+    "mass": "spectroastrometric, i-corrected",
+    "logM_needed": 8.300222434079265,
+    "sigma_above": 7.334816227195097
+   }
+  ],
+  "registered_prediction": {
+   "300.0": {
+    "framework_boost": [
+     1.750644571488845,
+     3.1051107724209275
+    ],
+    "rival_boost": [
+     1.750644571488845,
+     3.1051107724209275
+    ],
+    "newton_boost": [
+     1.0,
+     1.0
+    ],
+    "framework_vc_kms_rar": [
+     37.68446722800388,
+     71.69797751719832
+    ]
+   },
+   "375.0": {
+    "framework_boost": [
+     1.9377389280428499,
+     3.4526781438369665
+    ],
+    "rival_boost": [
+     1.9377389280428499,
+     3.4526781438369665
+    ],
+    "newton_boost": [
+     1.0,
+     1.0
+    ],
+    "framework_vc_kms_rar": [
+     37.4626353721877,
+     70.59157352477544
+    ]
+   },
+   "450.0": {
+    "framework_boost": [
+     2.1088309804387313,
+     3.768443971996743
+    ],
+    "rival_boost": [
+     2.1088309804387313,
+     3.768443971996743
+    ],
+    "newton_boost": [
+     1.0,
+     1.0
+    ],
+    "framework_vc_kms_rar": [
+     37.314974057334865,
+     69.85657844018098
+    ]
+   },
+   "1000.0": {
+    "framework_boost": [
+     3.08926215201364,
+     5.561552980293839
+    ],
+    "rival_boost": [
+     3.08926215201364,
+     5.561552980293839
+    ],
+    "newton_boost": [
+     1.0,
+     1.0
+    ],
+    "framework_vc_kms_rar": [
+     36.90986161204879,
+     67.84689054695455
+    ]
+   }
+  },
+  "K6_fixed_mass_375pc": [
+   {
+    "logM": 7.05,
+    "fw_min": 3.2638065371412024,
+    "fw_max": 3.4526781438369665,
+    "rival_min": 3.2638065371412024,
+    "rival_min_over_fw_max": 0.94529707119301
+   },
+   {
+    "logM": 7.1,
+    "fw_min": 3.1735427567788954,
+    "fw_max": 3.359072354172255,
+    "rival_min": 3.1735427567788954,
+    "rival_min_over_fw_max": 0.9447676090802523
+   },
+   {
+    "logM": 7.1499999999999995,
+    "fw_min": 3.085914839168139,
+    "fw_max": 3.268254915835008,
+    "rival_min": 3.085914839168139,
+    "rival_min_over_fw_max": 0.9442087348256055
+   },
+   {
+    "logM": 7.2,
+    "fw_min": 3.0008508178856816,
+    "fw_max": 3.180151049042647,
+    "rival_min": 3.0008508178856816,
+    "rival_min_over_fw_max": 0.9436189575929289
+   },
+   {
+    "logM": 7.25,
+    "fw_min": 2.918280912678962,
+    "fw_max": 3.0946882589764653,
+    "rival_min": 2.918280912678962,
+    "rival_min_over_fw_max": 0.9429967313231582
+   },
+   {
+    "logM": 7.3,
+    "fw_min": 2.8381374780779396,
+    "fw_max": 3.0117962782782337,
+    "rival_min": 2.8381374780779396,
+    "rival_min_over_fw_max": 0.942340455942269
+   },
+   {
+    "logM": 7.35,
+    "fw_min": 2.760354954492287,
+    "fw_max": 2.9314070114975204,
+    "rival_min": 2.760354954492287,
+    "rival_min_over_fw_max": 0.9416484792680322
+   },
+   {
+    "logM": 7.3999999999999995,
+    "fw_min": 2.6848698218413296,
+    "fw_max": 2.8534544814325122,
+    "rival_min": 2.6848698218413296,
+    "rival_min_over_fw_max": 0.9409190997479839
+   },
+   {
+    "logM": 7.45,
+    "fw_min": 2.61162055577837,
+    "fw_max": 2.777874777304352,
+    "rival_min": 2.61162055577837,
+    "rival_min_over_fw_max": 0.9401505701825352
+   },
+   {
+    "logM": 7.5,
+    "fw_min": 2.540547586586887,
+    "fw_max": 2.704606004701151,
+    "rival_min": 2.540547586586887,
+    "rival_min_over_fw_max": 0.9393411026119526
+   },
+   {
+    "logM": 7.55,
+    "fw_min": 2.47159326084433,
+    "fw_max": 2.633588237222897,
+    "rival_min": 2.47159326084433,
+    "rival_min_over_fw_max": 0.9384888745746414
+   },
+   {
+    "logM": 7.6,
+    "fw_min": 2.404701805969887,
+    "fw_max": 2.564763469752195,
+    "rival_min": 2.404701805969887,
+    "rival_min_over_fw_max": 0.9375920369772839
+   },
+   {
+    "logM": 7.65,
+    "fw_min": 2.3398192977962933,
+    "fw_max": 2.498075573267891,
+    "rival_min": 2.3398192977962933,
+    "rival_min_over_fw_max": 0.9366487238556307
+   },
+   {
+    "logM": 7.7,
+    "fw_min": 2.2768936313328543,
+    "fw_max": 2.433470251109015,
+    "rival_min": 2.2768936313328543,
+    "rival_min_over_fw_max": 0.935657064348823
+   },
+   {
+    "logM": 7.75,
+    "fw_min": 2.2158744949180647,
+    "fw_max": 2.3708949965847306,
+    "rival_min": 2.2158744949180647,
+    "rival_min_over_fw_max": 0.9346151972609615
+   },
+   {
+    "logM": 7.8,
+    "fw_min": 2.1567133479961513,
+    "fw_max": 2.310299051811934,
+    "rival_min": 2.1567133479961513,
+    "rival_min_over_fw_max": 0.9335212886421229
+   },
+   {
+    "logM": 7.85,
+    "fw_min": 2.0993634027932884,
+    "fw_max": 2.251633367645339,
+    "rival_min": 2.0993634027932884,
+    "rival_min_over_fw_max": 0.9323735528882804
+   },
+   {
+    "logM": 7.9,
+    "fw_min": 2.043779610217209,
+    "fw_max": 2.194850564545088,
+    "rival_min": 2.043779610217209,
+    "rival_min_over_fw_max": 0.9311702779368076
+   },
+   {
+    "logM": 7.95,
+    "fw_min": 1.9899186503593482,
+    "fw_max": 2.1399048942037195,
+    "rival_min": 1.9899186503593482,
+    "rival_min_over_fw_max": 0.9299098552227094
+   },
+   {
+    "logM": 8.0,
+    "fw_min": 1.9377389280428499,
+    "fw_max": 2.0867522017273195,
+    "rival_min": 1.9377389280428499,
+    "rival_min_over_fw_max": 0.9285908151618946
+   }
+  ],
+  "lcdm_nfw_cap_logM200": {
+   "c=2, logM_BH=7.2": 10.122345510154375,
+   "c=2, logM_BH=7.7": 11.584615951127265,
+   "c=3, logM_BH=7.2": 9.634785021070574,
+   "c=3, logM_BH=7.7": 11.055628767106194,
+   "c=5, logM_BH=7.2": 9.02267702247256,
+   "c=5, logM_BH=7.7": 10.334379747494866
+  }
+ },
+ "verdict": {
+  "load_bearing_pass": 3,
+  "load_bearing_total": 6
+ }
+}

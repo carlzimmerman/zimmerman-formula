@@ -1,0 +1,119 @@
+
+L323 -- AUDIT OF THE BH* "REGIME COINCIDENCE" (CFJC RFC-0001, waves K/P/T/U): what it is, what it is not.
+
+THE CLAIM AUDITED.  The Balmer layer of the little-red-dot "black hole stars" (M = 1e4 Msun, r_B = 100 au, n_H = 1e10 cm^-3)
+sits at g_B / a0(rho_B) = 1.00, with a0(rho) = (c/2) sqrt(G rho) evaluated at the GAS's own density; KP1
+r_B^4 n_H c^2 mu m_p = 4 G M^2 and KP2 v_inf ~ M^{1/4} were derived from it; wave U called Gamma = 56.6 "13% above the cap".
+
+WHAT THIS LANE CHECKS (both directions -- a demotion is verified as hard as a win):
+  R1  control: the fiducial ratio is reproduced (1.00).
+  R2  the ratio is a pure kinematic number: g / a0(rho) = 2 (v_c/c) (t_ff/t_dyn), t_ff = 1/sqrt(G rho), t_dyn = r/v_c
+      (Lean I17 ratio_is_freefall_kinematics) -- a0(rho_gas) is c times the gas free-fall rate, not the framework's scale.
+  R3  a crossing is GUARANTEED: for any envelope rho ~ r^-p with p < 4 the ratio ~ r^(p/2 - 2) is strictly decreasing and
+      crosses 1 exactly once (Lean I17 unique_crossing); across the paper's whole (n_H, M) band it lands inside the envelope.
+  R4  the chance probability that the guaranteed crossing lands within x2 of the Balmer layer (null: crossing log-uniform
+      over the envelope) and the propagated uncertainty of the "1.001 +/- 0.02" ratio from the paper's own input ranges.
+  R5  the same classifier labels the air at the Earth's surface "strong-a0" (g/a0(rho_air) << 1) where gravity is
+      Newtonian to high precision: the label carries no dynamics (the paper concedes "classifier, not mechanism").
+  R6  the framework's ACTUAL scale (flat a0, both footings): every BH* layer is deep-Newtonian => the framework's own
+      prediction for BH* envelopes is a NULL (no a0 signature), not a coincidence.
+  R7  KP2's exponent 1/4 follows from the published family scaling alone (r_B = f R_phot ~ sqrt M at fixed T_eff, Gamma):
+      it does not test the density form (Lean I17 kp2_from_family).
+  R8  wave U's Gamma: composition (kappa_es 0.40 vs 0.34 cm^2/g) and the published log g = -2.2 +/- 0.2.
+  R9  I10's "tau_ion >= 1e3 tau_es for f_n > 1e-4": 9.47e6 x 1e-4 = 947 < 1e3 (Lean I17 void_threshold).
+REFERENCE (not re-run here): the density form as an ENVIRONMENTAL law (a0 ~ sqrt(rho_local), slope +0.5) is excluded on the
+175 SPARC galaxies at 13.0 sigma (internal) / ~34 sigma (kNN) / 6.8 sigma (2M++ real-space field):
+real_research/A0_DENSITY_EMPIRICAL_EVIDENCE.md, real_research/reviews/A0_COSMICWEB_ENVIRONMENT_2026-06.md and
+real_research/reviews/project_sparc_a0_vs_cosmicweb.py.
+MUTATE=1 sets the envelope slope to p = 5 (steeper than the p < 4 theorem allows): R3's guaranteed-crossing check must FAIL.
+
+Run from the repository root:  python3 real_research/bhstar_audit_2026/L323_bhstar_regime_coincidence_audit.py
+
+
+==============================================================================================================
+R1 -- CONTROL: the fiducial regime ratio
+==============================================================================================================
+  [PASS] R1 g_B/a0(rho_B) at (1e4 Msun, 100 au, 1e10 cm^-3, mu = 1.4) within 1% of 1.00
+         measured: 1.0010
+         reading:  reproduced; the question is what it means
+
+==============================================================================================================
+R2 -- THE RATIO IS A KINEMATIC NUMBER: g/a0(rho) = 2 (v_c/c)(t_ff/t_dyn)
+==============================================================================================================
+   v_c/c = 9.936e-04   t_ff(gas) = 801 yr   t_dyn = 1.59 yr   t_ff/t_dyn = 504
+  [PASS] R2 |g/a0(rho) - 2(v_c/c)(t_ff/t_dyn)| / ratio < 1e-12
+         measured: 2.2e-16
+         reading:  '1.00' = (v_c/c ~ 1e-3) x (t_ff/t_dyn ~ 500) x 2: two unrelated ratios of THIS envelope; no cosmic density enters
+
+==============================================================================================================
+R3 -- THE CROSSING IS GUARANTEED (envelope rho ~ r^-5)
+==============================================================================================================
+  [FAIL] R3 ratio strictly decreasing outward AND crossing 1 between n = 1e12 and the photosphere, for all 12 (M, n) cases
+         measured: 0/12
+         reading:  a g = a0(rho) surface exists inside EVERY such envelope for every allowed parameter -- its existence is not a finding
+
+==============================================================================================================
+R4 -- CHANCE PROBABILITY AND THE HONEST ERROR BAR
+==============================================================================================================
+   envelope 10-941 au; P(crossing within x2 of r_B | log-uniform) = 0.31
+   propagated from the campaign's own input ranges: log10(g_B/a0) = 0.00 +/- 0.47 dex (ratio x/÷ 2.9)
+  [PASS] R4 the coincidence is NOT significant: P(chance) > 0.05 and the ratio's honest error bar exceeds 0.2 dex
+         measured: P = 0.31; sd = 0.47 dex (the paper quotes +/- 0.02, i.e. 0.009 dex)
+         reading:  '1.001 +/- 0.02' is the precision of round inputs, not of a measurement; one named layer in a 2-dex envelope catches a guaranteed crossing ~1/3 of the time
+
+==============================================================================================================
+R5 -- THE CLASSIFIER ON LABORATORY MATTER
+==============================================================================================================
+   Earth surface air (1.2 kg/m^3, g = 9.81)    : g/a0(rho) = 7.31e-03
+   Earth crust (2700 kg/m^3, g = 9.81)         : g/a0(rho) = 1.54e-04
+   solar photosphere (2e-4 kg/m^3, g = 274)    : g/a0(rho) = 1.58e+01
+  [PASS] R5 the Earth's surface air is 'strong-a0' by the same classifier (ratio < 0.1, deeper than the BH* photosphere's 0.10)
+         measured: 0.0073
+         reading:  every laboratory torsion balance sits on the 'strong' side; the label has no dynamical content, so the layer coinciding with it predicts nothing the framework can be held to
+
+==============================================================================================================
+R6 -- THE FRAMEWORK'S OWN SCALE (flat a0): every BH* layer is deep-Newtonian
+==============================================================================================================
+   canonical: g_B/a0 = 6.34e+07   g_phot/a0 = 6.74e+05   r_M = 3.86 pc (photosphere ~ 0.0046 pc)
+   alt      : g_B/a0 = 5.26e+07   g_phot/a0 = 5.59e+05   r_M = 3.52 pc (photosphere ~ 0.0046 pc)
+  [PASS] R6 g/a0_flat >= 1e5 at the Balmer layer and the photosphere, both footings
+         measured: min = 5.59e+05
+         reading:  on its own terms the framework predicts NO a0 signature in any BH* envelope (a null, consistent with CFJC Thm 3's 1e-6 a0-blindness of the mass chain); the only BH* object with an a0 lever is the naked-BH host (L324)
+
+==============================================================================================================
+R7 -- KP2's EXPONENT COMES FROM THE PUBLISHED FAMILY SCALING, NOT THE DENSITY FORM
+==============================================================================================================
+  [PASS] R7 d log v_esc(r_B) / d log M = 0.250 under the family scaling alone
+         measured: 0.250000
+         reading:  KP2 (v ~ M^1/4) tests the published recombination-pinned family, not the framework; KP1 at a common n likewise reduces to r_B ~ sqrt(M) plus one normalisation, and that normalisation is the fiducial chosen at r_B = 100 au
+
+==============================================================================================================
+R8 -- WAVE U's GAMMA: composition and the published log g error
+==============================================================================================================
+   kappa=0.4, logg=-2.4      : Gamma =   89.8
+   kappa=0.4, logg=-2.2      : Gamma =   56.6
+   kappa=0.4, logg=-2.0      : Gamma =   35.7
+   kappa=0.34, logg=-2.4     : Gamma =   76.3
+   kappa=0.34, logg=-2.2     : Gamma =   48.1
+   kappa=0.34, logg=-2.0     : Gamma =   30.4
+  [PASS] R8 the cap 50 lies inside the +/-0.2 dex band for both compositions, and X = 0.7 puts the central value below it
+         measured: Gamma = 56.6 (pure H) / 48.1 (X = 0.7); band [30, 90]
+         reading:  '13% above the cap' is inside the error and flips sign with solar composition; the identity itself is L/L_Edd with M from log g (standard), not a new observable
+
+==============================================================================================================
+R9 -- I10's '>= 1e3 at 0.01% neutral'
+==============================================================================================================
+  [PASS] R9 9.47e6 x 1e-4 < 1e3 (the docstring's claim is off; threshold f_n = 1.056e-4; theorem proves 1e2)
+         measured: 947; threshold 1.0560e-04
+         reading:  a 5% prose error; the void verdict (>= 2 dex) survives
+
+==============================================================================================================
+VERDICT  (8/9 load-bearing PASS  -- MUTATE RUN)
+==============================================================================================================
+  * The BH* 'regime coincidence' is NOT a framework result: it uses a0 at the gas's own density (a branch the framework does
+    not use and the SPARC environment test excludes as a law), its ratio is 2(v_c/c)(t_ff/t_dyn), a crossing is
+    guaranteed inside every envelope, and the chance that it lands within x2 of the one named layer is ~1/3.
+  * The framework's own (flat-a0) prediction for BH* envelopes is a NULL: every layer is >= 1e5 a0.
+  * KP2's exponent is the published family's; wave U's 'Gamma 13% above cap' is inside errors and composition-dependent.
+  * Nothing here refutes the framework and nothing here supports it: the BH* campaign's framework-facing claims carry no
+    evidential weight either way.  The one live framework test in the BH* sample is A2744-QSO1 (L324).

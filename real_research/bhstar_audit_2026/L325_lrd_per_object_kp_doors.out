@@ -1,0 +1,140 @@
+
+==============================================================================
+0. DATA INVENTORY + TRANSCRIPTION CHECK
+==============================================================================
+  transcribed table cells verified against the e-print TeX: 0/0
+  Zenodo 21977747 catalogue: 181 rows, 146 unique (use_dG26)
+   columns: pid, srcid, root, file, ra, dec, zspec, f444w_aper0.1, mu, Ndup, dup_filenames, use_dG26, lambda_v, beta_UV, M_UV, break_strength, beta_MBB, Teff, peak_wave, logL_MBB, logL_5100, L5100_LMBB, Ha_total_ew, Hb_total_ew, Balmer_dec_total, LHa_total, logLHa_total, OIII_5007_ew, LOIII_5007, logLOIII_5007, LOI_8446, logLOI_8446
+   -> no log g, no atmosphere T_eff, no n_H, no v_inf, no mass column.
+   MBB T per object exists for 47/146 (z<4.5 subset only)
+
+  MISSING (not public anywhere found):
+   - per-object atmosphere T_eff, log g, L_bol, R_phot, M for the 117 BH*s (2609.09274
+     fits 4 STACKS only; Sec.2: 'Individual BH* spectra are generally too noisy').
+   - per-object CLOUDY layer density n_H for ANY sample (only population ranges quoted:
+     n_H ~ 1e9-1e12 cm^-3).
+   - per-object Gamma-free engine masses (gravity mass needs per-object log g).
+   - v_inf for all 117: only 11 v_blue,95% (Naidu+ Table A1).
+
+==============================================================================
+1. KP2 -- log v_inf vs log M (per object; mass PROXIED by luminosity)
+==============================================================================
+  N = 11 v_blue,95% values: min 145, max 1130 km/s; max/min = 7.79 (0.89 dex); sd(log v) = 0.263 dex
+  registered band 350-588 km/s: 6/11 inside; above: ['JADES-GN-68797', 'RUBIES-EGS-42046', 'RUBIES-EGS-49140']; below: ['FRESCO-GN-15498', 'The Cliff']
+  registered spread across the stack mass band: x1.68 (M^1/4) vs x4.5 (M^1/2)
+
+  NO Gamma-free per-object mass exists.  Proxy: M ∝ L/Gamma with Gamma held constant
+  (this is the framework's own KP2 premise: T pinned + log g mass-independent => Gamma
+  fixed => L ∝ M, R_phot ∝ sqrt(M)).  Under that premise d log v/d log L = the KP2 slope.
+  L_Halpha tracks L_bol with ~0.2 dex scatter (de Graaff+ 2026) -> sigma_x = 0.2 dex used
+  for the attenuation correction.  If Gamma varies with L, these slopes are NOT M-slopes.
+
+  cross-match Naidu x Zenodo (<1", use_dG26): 8/11 matched (FRESCO-GN-9771, GN-15498, JADES-GN-38147 absent from the DJA PRISM catalogue)
+   FRESCO-GS-13971      pid 1286 src 204851  logL5100 43.54  logLHa 42.81  logL_MBB nan  (Matthee logLHa 43.08)
+   JADES-GN-68797       pid 1181 src  68797  logL5100 44.19  logLHa 43.77  logL_MBB nan  (Matthee logLHa 43.78)
+   RUBIES-EGS-42046     pid 4233 src  42046  logL5100 44.12  logLHa 43.62  logL_MBB nan  (Matthee logLHa 43.59)
+   RUBIES-EGS-55604     pid 4233 src  55604  logL5100 44.37  logLHa 43.84  logL_MBB nan  (Matthee logLHa 43.88)
+   RUBIES-EGS-49140     pid 6368 src  11585  logL5100 44.34  logLHa 43.68  logL_MBB nan  (Matthee logLHa 43.78)
+   RUBIES-UDS-182791    pid 4233 src 182791  logL5100 43.65  logLHa 43.20  logL_MBB nan  (Matthee logLHa 43.18)
+   The Cliff            pid 4233 src 154183  logL5100 43.90  logLHa 42.82  logL_MBB 44.19  (Matthee logLHa 41.85)
+   UNCOVER-A2744-45924  pid 2561 src  45924  logL5100 44.68  logLHa 44.06  logL_MBB 44.92  (Matthee logLHa 43.82)
+   NB The Cliff: Matthee L_Ha,tot = 7e41 vs Zenodo 10^42.82 (0.97 dex apart) -- a proxy
+      inconsistency on the highest-leverage point; P1b drops it, P1c swaps it.
+
+  [P1  Matthee L_Ha,tot, all]  N=11  x-range 2.03 dex
+    OLS(y|x) slope = 0.324 +- 0.121 (bootstrap; 68% [0.238,0.388], 95% [0.047,0.475])
+    attenuation-corrected (sigma_x=0.2) = 0.361;  inverse OLS(x|y) = 0.547
+    ML w/ intrinsic scatter: slope 0.305, 68% profile [0.210, 0.405]
+    Delta(-2lnL): slope 0.25 -> 0.32;  slope 0.50 -> 3.40;  0.50 vs 0.25 -> +3.08
+    intrinsic scatter in log v needed: 0.15 dex at slope 0.25, 0.16 dex at 0.50  (= object-to-object spread of v_inf/v_esc if the slope law held)
+    Pearson r = 0.77, permutation p = 0.006
+    0.25 sits +0.61 sd, 0.50 sits -1.46 sd from the OLS slope
+
+  [P1b Matthee L_Ha,tot, no Cliff]  N=10  x-range 1.13 dex
+    OLS(y|x) slope = 0.283 +- 0.243 (bootstrap; 68% [0.114,0.401], 95% [-0.064,0.535])
+    attenuation-corrected (sigma_x=0.2) = 0.374;  inverse OLS(x|y) = 0.946
+    ML w/ intrinsic scatter: slope 0.270, 68% profile [0.135, 0.410]
+    Delta(-2lnL): slope 0.25 -> 0.02;  slope 0.50 -> 2.38;  0.50 vs 0.25 -> +2.35
+    intrinsic scatter in log v needed: 0.16 dex at slope 0.25, 0.16 dex at 0.50  (= object-to-object spread of v_inf/v_esc if the slope law held)
+    Pearson r = 0.55, permutation p = 0.103
+    0.25 sits +0.14 sd, 0.50 sits -0.89 sd from the OLS slope
+
+  [P1c Matthee L_Ha, Cliff <- Zenodo]  N=11  x-range 1.13 dex
+    OLS(y|x) slope = 0.406 +- 0.174 (bootstrap; 68% [0.246,0.538], 95% [0.047,0.689])
+    attenuation-corrected (sigma_x=0.2) = 0.516;  inverse OLS(x|y) = 0.911
+    ML w/ intrinsic scatter: slope 0.350, 68% profile [0.220, 0.490]
+    Delta(-2lnL): slope 0.25 -> 0.56;  slope 0.50 -> 1.10;  0.50 vs 0.25 -> +0.54
+    intrinsic scatter in log v needed: 0.17 dex at slope 0.25, 0.16 dex at 0.50  (= object-to-object spread of v_inf/v_esc if the slope law held)
+    Pearson r = 0.67, permutation p = 0.027
+    0.25 sits +0.90 sd, 0.50 sits -0.54 sd from the OLS slope
+
+  [P2  Zenodo L_5100 (matched)]  N=8  x-range 1.13 dex
+    OLS(y|x) slope = 0.149 +- 0.337 (bootstrap; 68% [-0.022,0.435], 95% [-0.335,0.882])
+    attenuation-corrected (sigma_x=0.2) = 0.205;  inverse OLS(x|y) = 3.698
+    ML w/ intrinsic scatter: slope 0.100, 68% profile [-0.120, 0.335]
+    Delta(-2lnL): slope 0.25 -> 0.43;  slope 0.50 -> 2.51;  0.50 vs 0.25 -> +2.08
+    intrinsic scatter in log v needed: 0.22 dex at slope 0.25, 0.25 dex at 0.50  (= object-to-object spread of v_inf/v_esc if the slope law held)
+    Pearson r = 0.20, permutation p = 0.650
+    0.25 sits -0.30 sd, 0.50 sits -1.04 sd from the OLS slope
+
+  [P3  Zenodo L_Ha,tot (matched)]  N=8  x-range 1.24 dex
+    OLS(y|x) slope = 0.331 +- 0.311 (bootstrap; 68% [0.053,0.570], 95% [-0.357,0.819])
+    attenuation-corrected (sigma_x=0.2) = 0.403;  inverse OLS(x|y) = 1.098
+    ML w/ intrinsic scatter: slope 0.255, 68% profile [0.090, 0.440]
+    Delta(-2lnL): slope 0.25 -> 0.00;  slope 0.50 -> 1.60;  0.50 vs 0.25 -> +1.60
+    intrinsic scatter in log v needed: 0.19 dex at slope 0.25, 0.21 dex at 0.50  (= object-to-object spread of v_inf/v_esc if the slope law held)
+    Pearson r = 0.55, permutation p = 0.157
+    0.25 sits +0.26 sd, 0.50 sits -0.55 sd from the OLS slope
+
+  stack-level cross-check with Gamma-FREE gravity masses (Sun+ Tables 2+4):
+    Luminous: |v95| 523 [402,774] (8 absorbers), logM_grav 4.3;  Inter: 364 [179,559] (2 absorbers), logM_grav 4.2
+    two-point slope = 1.6 over Delta logM = 0.1 dex with >=0.2 dex v errors -> UNINFORMATIVE
+
+==============================================================================
+2. KP3 -- T_eff vs n_H against the repo's Saha front
+==============================================================================
+   Saha front: n_H = 1e+09 cm^-3 -> T_front = 5572 K
+   Saha front: n_H = 1e+10 cm^-3 -> T_front = 6037 K
+   Saha front: n_H = 1e+11 cm^-3 -> T_front = 6584 K
+   Saha front: n_H = 1e+12 cm^-3 -> T_front = 7236 K
+
+  per-object (T_eff, n_H) pairs: NONE PUBLISHED -> the KP3 correlation test CANNOT RUN.
+  stack-level T_eff (no n_H attached) vs the curve:
+   Median    T_eff 4662 K: below T_front by 910 K (n=1e9) .. 2574 K (n=1e12); Saha-equivalent n_H = 10^6.48 cm^-3
+   Luminous  T_eff 4757 K: below T_front by 815 K (n=1e9) .. 2479 K (n=1e12); Saha-equivalent n_H = 10^6.79 cm^-3
+   Inter     T_eff 4716 K: below T_front by 856 K (n=1e9) .. 2520 K (n=1e12); Saha-equivalent n_H = 10^6.66 cm^-3
+   Faint     T_eff 4233 K: below T_front by 1339 K (n=1e9) .. 3003 K (n=1e12); Saha-equivalent n_H = 10^4.93 cm^-3
+   Egg (Liu+26; PHOTOSPHERIC model density, not the CLOUDY layer n_H): rho_ph 7e-12 g/cc -> n_H = 3.0e+12; T_front = 7593 K vs T_eff 4506 K
+  (the absolute offset below the front was pre-conceded in R-F1; only the per-object SLOPE
+   T_eff(n_H) is a test, and it needs per-object n_H that do not exist.)
+
+==============================================================================
+3. R-F3 -- Gamma = kappa_es sigma T^4 / (c g)  (stacks + the one per-object fit)
+==============================================================================
+  repo reproduction (median stack, log g -2.2 +- 0.2, kappa 0.40): Gamma = 56.6 in [36, 90]
+
+  kappa_es = 0.40 cm^2/g
+   Median    T 4662 logg -2.2: Gamma =   56.6  [ 35.3,   91.9]   (L/L_Edd(M_grav) =   50.5)  in [36,90]: True
+   Luminous  T 4757 logg -2.5: Gamma =  122.5  [ 95.7,  159.1]   (L/L_Edd(M_grav) =  126.8)  in [36,90]: False
+   Inter     T 4716 logg -1.9: Gamma =   29.7  [  3.6,   77.1]   (L/L_Edd(M_grav) =   31.9)  in [36,90]: False
+   Faint     T 4233 logg -2.5: Gamma =   76.8  [ 37.7,  156.6]   (L/L_Edd(M_grav) =  100.7)  in [36,90]: True
+   Egg (1 obj) T 4506 logg -2.86: Gamma =  226.0  [156.7,  289.8]  sensitivity runs 188-272  in [36,90]: False
+
+  kappa_es = 0.34 cm^2/g
+   Median    T 4662 logg -2.2: Gamma =   48.1  [ 30.0,   78.1]   (L/L_Edd(M_grav) =   42.9)  in [36,90]: True
+   Luminous  T 4757 logg -2.5: Gamma =  104.1  [ 81.3,  135.2]   (L/L_Edd(M_grav) =  107.8)  in [36,90]: False
+   Inter     T 4716 logg -1.9: Gamma =   25.3  [  3.1,   65.5]   (L/L_Edd(M_grav) =   27.1)  in [36,90]: False
+   Faint     T 4233 logg -2.5: Gamma =   65.3  [ 32.1,  133.1]   (L/L_Edd(M_grav) =   85.6)  in [36,90]: True
+   Egg (1 obj) T 4506 logg -2.86: Gamma =  192.1  [133.2,  246.3]  sensitivity runs 160-231  in [36,90]: False
+
+  kappa 0.40: stack central Gamma span 29.7-122.5; 2/4 stacks inside [36,90]; median-stack Gamma 56.6 vs the paper's dial cap 50 (above); from Table-4 rounded mass: 50.5
+
+  kappa 0.34: stack central Gamma span 25.3-104.1; 2/4 stacks inside [36,90]; median-stack Gamma 48.1 vs the paper's dial cap 50 (below); from Table-4 rounded mass: 42.9
+
+  caveats: (i) g is the NET gravity g - g_dyn (Sun+ Sec.2.2), so this is a net-gravity
+  Gamma; an outflow inflates g and deflates Gamma.  (ii) stacks are medians of 15-85
+  objects -- the per-object spread is at least as wide and is NOT measurable from the
+  public data.  (iii) the Egg is a z~0.1 LRD outside the 117 and its fit includes host +
+  dust components.
+
+results -> L325_lrd_per_object_kp_doors_results.json

@@ -1,0 +1,140 @@
+
+L324 -- THE NAKED-BLACK-HOLE ROTATION LAW AT z = 7.04: A2744-QSO1 ON THE FRAMEWORK'S OWN (FLAT-a0) TERMS.
+
+WHY.  The BH* campaign (09-19..09-22) touched the framework only through the density-form a0(rho_gas), a branch the record
+already excludes as an environmental law (SPARC +0.5 fork null, 13-34 sigma) and which the framework does not use: its law is
+FLAT, a0 = kappa c sqrt(G rho_DE).  With the framework's actual a0, the one BH* object that carries a clean test is the one
+door B found: A2744-QSO1 (z = 7.0451), a "naked" black hole -- M_BH/M_* > 2, its mass measured DYNAMICALLY from Keplerian
+rotation of narrow H-alpha (Juodzbalis+26, Nature, arXiv:2508.21748).  A point mass with no M/L and no halo in the fit is the
+cleanest possible zero-parameter MOND-type rotation law:
+
+    v_c(r)^2 = (G M / r) nu(y),   y = G M /(r^2 a0) = (r_M / r)^2,   r_M = sqrt(G M / a0),   v_flat^4 = G M a0.
+
+For the framework's RAR kernel nu(y) = 1/(1 - exp(-sqrt y)) the PHANTOM FRACTION of the dynamical mass is EXACTLY
+
+    f_ph(r) = 1 - 1/nu = exp(-r_M / r)            (Lean I18 phantom_fraction_rar + sqrt_y_point_mass)
+
+so "any extended component is sub-dominant at radius r" (f_ph < 1/2) is EXACTLY  r ln2 < r_M,  i.e.
+
+    a0(z = 7.04)  <  G M / (r ln 2)^2            (Lean I18 subdominance_iff_a0_bound).
+
+INPUTS (published, cited; none from this repo):
+  Juodzbalis+26 (arXiv:2508.21748): MOKA3D point mass log M = 7.7 +/- 0.3 at i = 52 +/- 2 deg; spectroastrometric
+  inclination-corrected log M = 7.2 +/- 0.15 ("consistent within 2 sigma"); r_spec = 12.5 +/- 4.7 pc; rotation bins at 50, 100,
+  150 pc; narrow H-alpha extended to ~200 pc; NFW / NSC / Plummer extended components all collapse to a point: "any extended
+  mass component is sub-dominant at the < 200 pc scales probed"; M_* < 2e7 Msun; outflow annulus 300-450 pc.
+  a0 footings: canonical 9.3619e-11, alt 1.1279e-10 m/s^2 (the repo's two footings; alt/canonical = 1.2048).
+  Rival branch a0 proportional to H(z): a0(z) = a0_0 E(z), E(7.0451) = 12.7 (Planck 2018 Om = 0.3153).
+
+WHAT IS SCORED:
+  K2  the exact phantom-fraction identity (numeric mirror of the Lean theorem).
+  K3  the mass is measured where every branch is Newtonian to < 1% (no circularity in using the published M).
+  K4  the framework (flat a0, both footings, three kernels) satisfies sub-dominance at the outermost rotation bin (150 pc) for
+      BOTH published mass readings.
+  K5  the a0 ~ H(z) rival: the mass it needs to satisfy sub-dominance, in sigma of each published mass reading.
+  K6  the registered zero-parameter prediction at 300-1000 pc (the decisive window): the framework's boost over Keplerian is
+      separated from Newton and from the rival across the whole mass band.
+NOT SCORED (context): the LCDM NFW halo-mass cap from the same statement (a halo is a free parameter; this test does not
+discriminate the framework from LCDM and is not presented as doing so).
+
+HONEST SCOPE: "sub-dominant" is the paper's qualitative wording, and its extended-mass fits used NFW/NSC/Plummer shapes, not
+the MOND phantom profile (M_ph(<r) ~ r in deep MOND).  Reading it as f_ph < 1/2 is INTERPRETIVE.  The decisive version is a
+refit of the published kinematics with the zero-parameter curve above (one parameter M, like the Keplerian fit).
+MUTATE=1 replaces the framework's flat a0 by the rival's a0(z = 7.04): K4 must then FAIL (rc = 1).
+
+Run from the repository root:  python3 real_research/bhstar_audit_2026/L324_qso1_naked_bh_rotation_law.py
+
+
+==============================================================================================================
+K1 -- CONTROL: the framework's two scales for QSO1 at the headline mass (both footings)
+==============================================================================================================
+   canonical: a0 = 9.3619e-11   r_M =  273.2 pc   v_flat = 28.09 km/s   (rival a0(z) = 1.202e-09: r_M =  76.2 pc, v_flat =  53.2 km/s)
+   alt      : a0 = 1.1279e-10   r_M =  248.9 pc   v_flat = 29.43 km/s   (rival a0(z) = 1.448e-09: r_M =  69.5 pc, v_flat =  55.7 km/s)
+  [PASS] K1 r_M(canonical, 10^7.7) in [250, 300] pc and E(7.0451) in [12.5, 13.0]
+         measured: r_M = 273.2 pc, E = 12.840
+         reading:  the framework's Kepler->flat transition sits just outside the probed 200 pc; the rival's sits at ~77 pc, inside it
+
+==============================================================================================================
+K2 -- THE EXACT PHANTOM-FRACTION IDENTITY (RAR kernel): 1 - 1/nu(y) = exp(-r_M/r)
+==============================================================================================================
+  [PASS] K2 max |f_ph - exp(-r_M/r)| < 1e-12 over 9 radii x 4 a0 values
+         measured: 1.41e-16
+         reading:  Lean I18 certifies it symbolically; the numbers are the mirror
+
+==============================================================================================================
+K3 -- NO CIRCULARITY: the mass is measured where every branch is Newtonian
+==============================================================================================================
+  [FAIL] K3 framework: max velocity boost at r_spec = 12.5 pc over masses x footings x kernels < 1%
+         measured: 6.217%
+         reading:  the Keplerian/spectroastrometric mass IS the framework's baryonic point mass; M enters no framework check circularly
+  [PASS] K3b rival: its own 12.5 pc mass reading is inflated by nu, at most this many dex (reported, conservative)
+         measured: 0.052 dex
+         reading:  the rival is NOT Newtonian at 12.5 pc for low masses (up to ~6% in v); its baryonic M would be LOWER than the published M by <= this, which only strengthens K5 -- ignoring it is conservative for the rival
+
+==============================================================================================================
+K4 -- THE FRAMEWORK PASSES SUB-DOMINANCE AT THE OUTERMOST ROTATION BIN (150 pc), both mass readings
+==============================================================================================================
+   MOKA3D (headline)                canonical r =   150 pc:  f_ph rar 0.602  simple 0.605  exp_mu 0.558   (RAR passes for log M > 7.97)
+   MOKA3D (headline)                canonical r =   200 pc:  f_ph rar 0.683  simple 0.685  exp_mu 0.656   (RAR passes for log M > 8.22)
+   MOKA3D (headline)                alt       r =   150 pc:  f_ph rar 0.629  simple 0.632  exp_mu 0.592   (RAR passes for log M > 8.05)
+   MOKA3D (headline)                alt       r =   200 pc:  f_ph rar 0.707  simple 0.708  exp_mu 0.683   (RAR passes for log M > 8.30)
+   spectroastrometric, i-corrected  canonical r =   150 pc:  f_ph rar 0.751  simple 0.752  exp_mu 0.735   (RAR passes for log M > 7.97)
+   spectroastrometric, i-corrected  canonical r =   200 pc:  f_ph rar 0.807  simple 0.807  exp_mu 0.797   (RAR passes for log M > 8.22)
+   spectroastrometric, i-corrected  alt       r =   150 pc:  f_ph rar 0.771  simple 0.771  exp_mu 0.757   (RAR passes for log M > 8.05)
+   spectroastrometric, i-corrected  alt       r =   200 pc:  f_ph rar 0.823  simple 0.823  exp_mu 0.814   (RAR passes for log M > 8.30)
+  [FAIL] K4 framework f_ph(150 pc) < 1/2 for both mass readings, both footings, all three kernels
+         measured: at least one >= 0.5
+         reading:  the flat-a0 law is consistent with the published 'extended mass sub-dominant' statement at the outermost bin
+  [PASS] K4b (not load-bearing) margin at 200 pc: list every framework case with f_ph > 0.45
+         measured: MOKA3D canonical rar=0.683 simple=0.685 exp_mu=0.656; MOKA3D alt rar=0.707 simple=0.708 exp_mu=0.683; spectroastrometric, canonical rar=0.807 simple=0.807 exp_mu=0.797; spectroastrometric, alt rar=0.823 simple=0.823 exp_mu=0.814
+         reading:  TWO-SIDED: with the low (7.2) mass the framework sits AT the edge at 200 pc -- the test can bite the framework
+
+==============================================================================================================
+K5 -- THE a0 ~ H(z) RIVAL: the mass it needs, in sigma of each published reading (RAR kernel, exact)
+==============================================================================================================
+   rival canonical r =   150 pc: needs log M > 7.97   vs MOKA3D (headline)                7.7+/-0.3: +0.9 sigma
+   rival canonical r =   150 pc: needs log M > 7.97   vs spectroastrometric, i-corrected  7.2+/-0.15: +5.1 sigma
+   rival canonical r =   200 pc: needs log M > 8.22   vs MOKA3D (headline)                7.7+/-0.3: +1.7 sigma
+   rival canonical r =   200 pc: needs log M > 8.22   vs spectroastrometric, i-corrected  7.2+/-0.15: +6.8 sigma
+   rival alt       r =   150 pc: needs log M > 8.05   vs MOKA3D (headline)                7.7+/-0.3: +1.2 sigma
+   rival alt       r =   150 pc: needs log M > 8.05   vs spectroastrometric, i-corrected  7.2+/-0.15: +5.7 sigma
+   rival alt       r =   200 pc: needs log M > 8.30   vs MOKA3D (headline)                7.7+/-0.3: +2.0 sigma
+   rival alt       r =   200 pc: needs log M > 8.30   vs spectroastrometric, i-corrected  7.2+/-0.15: +7.3 sigma
+  [PASS] K5 the rival fails sub-dominance at the headline central mass (10^7.7) at 150 and 200 pc, both footings
+         measured: f_ph(150 pc) = 0.602/0.629, f_ph(200 pc) = 0.683/0.707
+         reading:  HINT-level against a0 ~ H(z): 0.9-2.0 sigma on the headline mass, >= 5 sigma only on the lower spectroastrometric mass; the rival is NOT the framework (FLAT is the framework's distinctive branch), so this is a flat-vs-rival discriminator
+
+==============================================================================================================
+K6 -- THE REGISTERED ZERO-PARAMETER PREDICTION: v_c / v_Kepler at 300-1000 pc (the decisive window)
+==============================================================================================================
+   r =    300 pc:  framework v_c/v_K in [1.751, 3.105]  (v_c 37.7-71.7 km/s)   rival [1.751, 3.105]   Newton 1.000
+   r =    375 pc:  framework v_c/v_K in [1.938, 3.453]  (v_c 37.5-70.6 km/s)   rival [1.938, 3.453]   Newton 1.000
+   r =    450 pc:  framework v_c/v_K in [2.109, 3.768]  (v_c 37.3-69.9 km/s)   rival [2.109, 3.768]   Newton 1.000
+   r =   1000 pc:  framework v_c/v_K in [3.089, 5.562]  (v_c 36.9-67.8 km/s)   rival [3.089, 5.562]   Newton 1.000
+  [FAIL] K6 at 375 pc the framework band clears Newton by > 15% AND sits below the rival band, across 10^7.05-10^8.0
+         measured: framework lower edge - 1 = +0.938; rival lower edge - framework upper edge = -1.515; at any FIXED weighed mass rival_min/framework_max >= 0.93
+         reading:  over the full mass band the three bands only just clear (the band is mostly mass + kernel spread); once M is weighed (the inner Keplerian fit does this) the rival sits >= the fixed-mass ratio above the framework: a 300-450 pc rotation measurement good to ~10% splits Newton / framework / rival
+
+==============================================================================================================
+CONTEXT (not scored) -- LCDM: the NFW halo-mass cap from the same 'sub-dominant at 150 pc' reading
+==============================================================================================================
+   c =   2, log M_BH = 7.2:  NFW sub-dominant at 150 pc for log M_200 < 10.12
+   c =   2, log M_BH = 7.7:  NFW sub-dominant at 150 pc for log M_200 < 11.58
+   c =   3, log M_BH = 7.2:  NFW sub-dominant at 150 pc for log M_200 < 9.63
+   c =   3, log M_BH = 7.7:  NFW sub-dominant at 150 pc for log M_200 < 11.06
+   c =   5, log M_BH = 7.2:  NFW sub-dominant at 150 pc for log M_200 < 9.02
+   c =   5, log M_BH = 7.7:  NFW sub-dominant at 150 pc for log M_200 < 10.33
+   (a z = 7 halo hosting M_* <~ 2e7 Msun is typically 1e9.5-1e10.5 Msun: LCDM is NOT discriminated by this test)
+
+==============================================================================================================
+VERDICT  (3/6 load-bearing PASS  -- MUTATE RUN)
+==============================================================================================================
+  * NEW (framework's own terms): for a naked BH the framework's rotation law has ZERO free parameters once M is weighed at
+    small radius, and under the RAR kernel its phantom fraction is exactly exp(-r_M/r).
+  * The published 'extended mass sub-dominant within the probed radii' becomes a DIRECT BOUND ON a0 AT z = 7.04:
+    a0 < G M/(r ln2)^2.  The flat framework passes at the outermost rotation bin for both mass readings; at 200 pc with the
+    low mass it sits at the edge (two-sided test).  The a0 ~ H(z) rival fails at the central headline mass -- a HINT
+    (0.9-2.0 sigma on 7.7 +/- 0.3), not a kill; it becomes >= 5 sigma only if the lower 7.2 +/- 0.15 mass is adopted.
+  * LCDM is NOT discriminated (a small halo passes).  NOT a breakthrough: the reading of 'sub-dominant' is interpretive.
+  * DECISIVE NEXT STEP: refit the public NIRSpec-IFU kinematics with v_c = sqrt(GM/r)/sqrt(1-exp(-r_M/r)) (one parameter,
+    like Kepler) and measure the 300-450 pc narrow-line rotation (outflow-separated): framework v_c/v_K in the K6 band.

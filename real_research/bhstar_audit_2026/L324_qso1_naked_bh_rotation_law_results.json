@@ -1,0 +1,464 @@
+{
+ "lane": "L324",
+ "mutate": false,
+ "checks": {
+  "K1 r_M(canonical, 10^7.7) in [250, 300] pc and E(7.0451) in [12.5, 13.0]": {
+   "ok": true,
+   "measured": "r_M = 273.2 pc, E = 12.840",
+   "load_bearing": true
+  },
+  "K2 max |f_ph - exp(-r_M/r)| < 1e-12 over 9 radii x 4 a0 values": {
+   "ok": true,
+   "measured": "1.41e-16",
+   "load_bearing": true
+  },
+  "K3 framework: max velocity boost at r_spec = 12.5 pc over masses x footings x kernels < 1%": {
+   "ok": true,
+   "measured": "0.556%",
+   "load_bearing": true
+  },
+  "K3b rival: its own 12.5 pc mass reading is inflated by nu, at most this many dex (reported, conservative)": {
+   "ok": true,
+   "measured": "0.052 dex",
+   "load_bearing": false
+  },
+  "K4 framework f_ph(150 pc) < 1/2 for both mass readings, both footings, all three kernels": {
+   "ok": true,
+   "measured": "all < 0.5",
+   "load_bearing": true
+  },
+  "K4b (not load-bearing) margin at 200 pc: list every framework case with f_ph > 0.45": {
+   "ok": true,
+   "measured": "spectroastrometric, canonical rar=0.464 simple=0.472 exp_mu=0.384; spectroastrometric, alt rar=0.497 simple=0.503 exp_mu=0.426",
+   "load_bearing": false
+  },
+  "K5 the rival fails sub-dominance at the headline central mass (10^7.7) at 150 and 200 pc, both footings": {
+   "ok": true,
+   "measured": "f_ph(150 pc) = 0.602/0.629, f_ph(200 pc) = 0.683/0.707",
+   "load_bearing": true
+  },
+  "K6 at 375 pc the framework band clears Newton by > 15% AND sits below the rival band, across 10^7.05-10^8.0": {
+   "ok": true,
+   "measured": "framework lower edge - 1 = +0.151; rival lower edge - framework upper edge = +0.008; at any FIXED weighed mass rival_min/framework_max >= 1.50",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "inputs": {
+   "mass_readings": {
+    "MOKA3D (headline)": [
+     7.7,
+     0.3
+    ],
+    "spectroastrometric, i-corrected": [
+     7.2,
+     0.15
+    ]
+   },
+   "r_spec_pc": [
+    12.5,
+    4.7
+   ],
+   "rotation_bins_pc": [
+    50.0,
+    100.0,
+    150.0
+   ],
+   "narrow_Halpha_extent_pc": 200.0,
+   "Mstar_max": 20000000.0,
+   "E(z=7.0451)": 12.839936387854701,
+   "a0_framework_used": {
+    "canonical": 9.3619e-11,
+    "alt": 1.1279e-10
+   },
+   "a0_rival": {
+    "canonical": 1.2020620046945692e-09,
+    "alt": 1.4482164251861319e-09
+   }
+  },
+  "rM_pc_headline": {
+   "canonical": 273.1989180885943,
+   "alt": 248.90044653033016
+  },
+  "vflat_kms_headline": {
+   "canonical": 28.09291202125396,
+   "alt": 29.432246275096244
+  },
+  "rival_rM_pc_headline": {
+   "canonical": 76.24257208992455,
+   "alt": 69.46151313691955
+  },
+  "K3": {
+   "framework_max_boost": 0.005555484181199999,
+   "rival_max_mass_inflation_dex": 0.05239195528633284
+  },
+  "framework_subdominance": [
+   {
+    "mass": "MOKA3D (headline)",
+    "logM": 7.7,
+    "footing": "canonical",
+    "r_pc": 150.0,
+    "fph_rar": 0.16181102765530342,
+    "fph_simple": 0.19523652902330912,
+    "fph_exp_mu": 0.032437537711856534,
+    "logM_needed_rar": 6.86087548992704
+   },
+   {
+    "mass": "MOKA3D (headline)",
+    "logM": 7.7,
+    "footing": "canonical",
+    "r_pc": 200.0,
+    "fph_rar": 0.2551268030791326,
+    "fph_simple": 0.27877129328032313,
+    "fph_exp_mu": 0.11998843783315882,
+    "logM_needed_rar": 7.11075296314364
+   },
+   {
+    "mass": "MOKA3D (headline)",
+    "logM": 7.7,
+    "footing": "alt",
+    "r_pc": 150.0,
+    "fph_rar": 0.19026521528864693,
+    "fph_simple": 0.220615069848347,
+    "fph_exp_mu": 0.054381005074798705,
+    "logM_needed_rar": 6.941782088724232
+   },
+   {
+    "mass": "MOKA3D (headline)",
+    "logM": 7.7,
+    "footing": "alt",
+    "r_pc": 200.0,
+    "fph_rar": 0.28808427139090664,
+    "fph_simple": 0.3086268321181135,
+    "fph_exp_mu": 0.15867598340005462,
+    "logM_needed_rar": 7.191659561940832
+   },
+   {
+    "mass": "spectroastrometric, i-corrected",
+    "logM": 7.2,
+    "footing": "canonical",
+    "r_pc": 150.0,
+    "fph_rar": 0.35908112386359914,
+    "fph_simple": 0.3738044714562021,
+    "fph_exp_mu": 0.247894681913024,
+    "logM_needed_rar": 6.86087548992704
+   },
+   {
+    "mass": "spectroastrometric, i-corrected",
+    "logM": 7.2,
+    "footing": "canonical",
+    "r_pc": 200.0,
+    "fph_rar": 0.46386801938729383,
+    "fph_simple": 0.4721668003291687,
+    "fph_exp_mu": 0.3838122739028582,
+    "logM_needed_rar": 7.11075296314364
+   },
+   {
+    "mass": "spectroastrometric, i-corrected",
+    "logM": 7.2,
+    "footing": "alt",
+    "r_pc": 150.0,
+    "fph_rar": 0.39332722514024865,
+    "fph_simple": 0.40567536329464415,
+    "fph_exp_mu": 0.29223220837336594,
+    "logM_needed_rar": 6.941782088724232
+   },
+   {
+    "mass": "spectroastrometric, i-corrected",
+    "logM": 7.2,
+    "footing": "alt",
+    "r_pc": 200.0,
+    "fph_rar": 0.49666722988652146,
+    "fph_simple": 0.5034416792065751,
+    "fph_exp_mu": 0.4260155723151877,
+    "logM_needed_rar": 7.191659561940832
+   }
+  ],
+  "rival_mass_needed": [
+   {
+    "footing": "canonical",
+    "r_pc": 150.0,
+    "mass": "MOKA3D (headline)",
+    "logM_needed": 7.969438362065473,
+    "sigma_above": 0.898127873551576
+   },
+   {
+    "footing": "canonical",
+    "r_pc": 150.0,
+    "mass": "spectroastrometric, i-corrected",
+    "logM_needed": 7.969438362065473,
+    "sigma_above": 5.129589080436485
+   },
+   {
+    "footing": "canonical",
+    "r_pc": 200.0,
+    "mass": "MOKA3D (headline)",
+    "logM_needed": 8.219315835282073,
+    "sigma_above": 1.7310527842735755
+   },
+   {
+    "footing": "canonical",
+    "r_pc": 200.0,
+    "mass": "spectroastrometric, i-corrected",
+    "logM_needed": 8.219315835282073,
+    "sigma_above": 6.795438901880484
+   },
+   {
+    "footing": "alt",
+    "r_pc": 150.0,
+    "mass": "MOKA3D (headline)",
+    "logM_needed": 8.050344960862665,
+    "sigma_above": 1.1678165362088826
+   },
+   {
+    "footing": "alt",
+    "r_pc": 150.0,
+    "mass": "spectroastrometric, i-corrected",
+    "logM_needed": 8.050344960862665,
+    "sigma_above": 5.668966405751099
+   },
+   {
+    "footing": "alt",
+    "r_pc": 200.0,
+    "mass": "MOKA3D (headline)",
+    "logM_needed": 8.300222434079265,
+    "sigma_above": 2.000741446930882
+   },
+   {
+    "footing": "alt",
+    "r_pc": 200.0,
+    "mass": "spectroastrometric, i-corrected",
+    "logM_needed": 8.300222434079265,
+    "sigma_above": 7.334816227195097
+   }
+  ],
+  "registered_prediction": {
+   "300.0": {
+    "framework_boost": [
+     1.0811808645108743,
+     1.759544518866414
+    ],
+    "rival_boost": [
+     1.750644571488845,
+     3.1051107724209275
+    ],
+    "newton_boost": [
+     1.0,
+     1.0
+    ],
+    "framework_vc_kms_rar": [
+     21.438870328371582,
+     45.58033492989522
+    ]
+   },
+   "375.0": {
+    "framework_boost": [
+     1.151365329995663,
+     1.9295738743120179
+    ],
+    "rival_boost": [
+     1.9377389280428499,
+     3.4526781438369665
+    ],
+    "newton_boost": [
+     1.0,
+     1.0
+    ],
+    "framework_vc_kms_rar": [
+     21.011092168780582,
+     43.42312144074885
+    ]
+   },
+   "450.0": {
+    "framework_boost": [
+     1.2238559480820377,
+     2.086542736357002
+    ],
+    "rival_boost": [
+     2.1088309804387313,
+     3.768443971996743
+    ],
+    "newton_boost": [
+     1.0,
+     1.0
+    ],
+    "framework_vc_kms_rar": [
+     20.72711830371066,
+     41.99097555898763
+    ]
+   },
+   "1000.0": {
+    "framework_boost": [
+     1.6949603272418188,
+     3.001001654678993
+    ],
+    "rival_boost": [
+     3.08926215201364,
+     5.561552980293839
+    ],
+    "newton_boost": [
+     1.0,
+     1.0
+    ],
+    "framework_vc_kms_rar": [
+     19.95171824052597,
+     38.09593281737933
+    ]
+   }
+  },
+  "K6_fixed_mass_375pc": [
+   {
+    "logM": 7.05,
+    "fw_min": 1.7829396064125362,
+    "fw_max": 1.9295738743120179,
+    "rival_min": 3.2638065371412024,
+    "rival_min_over_fw_max": 1.6914649294289912
+   },
+   {
+    "logM": 7.1,
+    "fw_min": 1.737362613150373,
+    "fw_max": 1.8834577879245387,
+    "rival_min": 3.1735427567788954,
+    "rival_min_over_fw_max": 1.6849556051245278
+   },
+   {
+    "logM": 7.1499999999999995,
+    "fw_min": 1.6932795853891827,
+    "fw_max": 1.8389303316647543,
+    "rival_min": 3.085914839168139,
+    "rival_min_over_fw_max": 1.6781031809804938
+   },
+   {
+    "logM": 7.2,
+    "fw_min": 1.6506598625482778,
+    "fw_max": 1.7959563423653406,
+    "rival_min": 3.0008508178856816,
+    "rival_min_over_fw_max": 1.6708929649890323
+   },
+   {
+    "logM": 7.25,
+    "fw_min": 1.6094746850167345,
+    "fw_max": 1.7545019685618934,
+    "rival_min": 2.918280912678962,
+    "rival_min_over_fw_max": 1.6633101387004878
+   },
+   {
+    "logM": 7.3,
+    "fw_min": 1.5696972601114159,
+    "fw_max": 1.7145346245286452,
+    "rival_min": 2.8381374780779396,
+    "rival_min_over_fw_max": 1.6553398441038727
+   },
+   {
+    "logM": 7.35,
+    "fw_min": 1.5313028424573576,
+    "fw_max": 1.6760229409713598,
+    "rival_min": 2.760354954492287,
+    "rival_min_over_fw_max": 1.6469672860757438
+   },
+   {
+    "logM": 7.3999999999999995,
+    "fw_min": 1.4942688307050598,
+    "fw_max": 1.63893671166864,
+    "rival_min": 2.6848698218413296,
+    "rival_min_over_fw_max": 1.638177851973186
+   },
+   {
+    "logM": 7.45,
+    "fw_min": 1.4585748827149685,
+    "fw_max": 1.603246835300513,
+    "rival_min": 2.61162055577837,
+    "rival_min_over_fw_max": 1.628957249922684
+   },
+   {
+    "logM": 7.5,
+    "fw_min": 1.4242030515308552,
+    "fw_max": 1.5689252516617689,
+    "rival_min": 2.540547586586887,
+    "rival_min_over_fw_max": 1.6192916672709543
+   },
+   {
+    "logM": 7.55,
+    "fw_min": 1.3911379445928798,
+    "fw_max": 1.5359448714335266,
+    "rival_min": 2.47159326084433,
+    "rival_min_over_fw_max": 1.609167950499125
+   },
+   {
+    "logM": 7.6,
+    "fw_min": 1.3593669086449953,
+    "fw_max": 1.5042794986875616,
+    "rival_min": 2.404701805969887,
+    "rival_min_over_fw_max": 1.598573807638751
+   },
+   {
+    "logM": 7.65,
+    "fw_min": 1.328880242567924,
+    "fw_max": 1.4739037453333161,
+    "rival_min": 2.3398192977962933,
+    "rival_min_over_fw_max": 1.5874980338469489
+   },
+   {
+    "logM": 7.7,
+    "fw_min": 1.2996714397555482,
+    "fw_max": 1.4447929367978676,
+    "rival_min": 2.2768936313328543,
+    "rival_min_over_fw_max": 1.5759307602784889
+   },
+   {
+    "logM": 7.75,
+    "fw_min": 1.271737460392977,
+    "fw_max": 1.4169230083660616,
+    "rival_min": 2.2158744949180647,
+    "rival_min_over_fw_max": 1.5638637257174062
+   },
+   {
+    "logM": 7.8,
+    "fw_min": 1.2450790316902463,
+    "fw_max": 1.3902703918136998,
+    "rival_min": 2.1567133479961513,
+    "rival_min_over_fw_max": 1.5512905695866657
+   },
+   {
+    "logM": 7.85,
+    "fw_min": 1.21970097016429,
+    "fw_max": 1.364811892252504,
+    "rival_min": 2.0993634027932884,
+    "rival_min_over_fw_max": 1.5382071439372282
+   },
+   {
+    "logM": 7.9,
+    "fw_min": 1.1956125135173523,
+    "fw_max": 1.3405245554811733,
+    "rival_min": 2.043779610217209,
+    "rival_min_over_fw_max": 1.5246118408354008
+   },
+   {
+    "logM": 7.95,
+    "fw_min": 1.1728276391598191,
+    "fw_max": 1.3173855266077792,
+    "rival_min": 1.9899186503593482,
+    "rival_min_over_fw_max": 1.5105059302445183
+   },
+   {
+    "logM": 8.0,
+    "fw_min": 1.151365329995663,
+    "fw_max": 1.2953719012744782,
+    "rival_min": 1.9377389280428499,
+    "rival_min_over_fw_max": 1.4958939020804494
+   }
+  ],
+  "lcdm_nfw_cap_logM200": {
+   "c=2, logM_BH=7.2": 10.122345510154375,
+   "c=2, logM_BH=7.7": 11.584615951127265,
+   "c=3, logM_BH=7.2": 9.634785021070574,
+   "c=3, logM_BH=7.7": 11.055628767106194,
+   "c=5, logM_BH=7.2": 9.02267702247256,
+   "c=5, logM_BH=7.7": 10.334379747494866
+  }
+ },
+ "verdict": {
+  "load_bearing_pass": 6,
+  "load_bearing_total": 6
+ }
+}
