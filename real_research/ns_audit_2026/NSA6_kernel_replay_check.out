@@ -1,0 +1,39 @@
+OpenAI clone commit f9e8bc5b38b6e212696e8a30e3e91517af887bbd
+
+========================================================================================================
+K1  SOURCE SCAN FOR ANYTHING THAT COULD BYPASS OR WEAKEN THE KERNEL
+========================================================================================================
+    sorry/admit                                  0 file(s)
+    axiom                                        0 file(s)
+    native_decide/ofReduceBool/trustCompiler     0 file(s)
+    implemented_by/extern/csimp                  0 file(s)
+    unsafe                                       0 file(s)
+    environment API                              0 file(s)
+    skipKernelTC                                 0 file(s)
+    custom syntax/elab/macro                     0 file(s)
+    run_cmd/#eval                                0 file(s)
+    set_option                                   0 file(s)
+    opaque                                       0 file(s)
+    Lean metaprogramming import                  0 file(s)
+  [PASS] K1 the project source contains no sorry, axiom, native_decide, unsafe code, environment API, skipKernelTC, custom elaborators, #eval, set_option or opaque
+         measured: 817 files scanned; 0 hits
+         reading:  plain Mathlib-style proofs: nothing in the source can route a declaration around the kernel
+
+========================================================================================================
+K2  leanchecker: REPLAY EVERY NavierStokes.* DECLARATION THROUGH THE KERNEL (one process per module)
+========================================================================================================
+    816 modules replayed, 6 at a time; failures 0; wall 37.3 min; slowest 105 s
+  [PASS] K2 every declaration in every one of the NavierStokes.* modules replays through the Lean kernel
+         measured: 816 modules; failures 0
+         reading:  no environment hacking: what the compiled files contain is what the kernel accepts
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  The OpenAI proof is what it appears to be at the machine level: plain Mathlib-style source with no
+  kernel-bypass constructs, and every project declaration re-accepted by the Lean kernel on replay.  Together with
+  NSA4 (the proved statement is Fefferman's (C)/(D), verbatim), the remaining trust is in the Lean kernel
+  implementation itself and in the Clay process -- not in OpenAI's code.
+
+  2/2 checks pass; load-bearing failures: 0; wrote NSA6_kernel_replay_check_results.json
+MAIN rc=0

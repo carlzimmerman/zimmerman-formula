@@ -1,0 +1,32 @@
+OpenAI clone commit f9e8bc5b38b6e212696e8a30e3e91517af887bbd
+
+========================================================================================================
+K1  SOURCE SCAN FOR ANYTHING THAT COULD BYPASS OR WEAKEN THE KERNEL
+========================================================================================================
+    sorry/admit                                  1 file(s)  SYNTHETIC_HOSTILE.lean
+    axiom                                        1 file(s)  SYNTHETIC_HOSTILE.lean
+    native_decide/ofReduceBool/trustCompiler     1 file(s)  SYNTHETIC_HOSTILE.lean
+    implemented_by/extern/csimp                  0 file(s)
+    unsafe                                       1 file(s)  SYNTHETIC_HOSTILE.lean
+    environment API                              0 file(s)
+    skipKernelTC                                 1 file(s)  SYNTHETIC_HOSTILE.lean
+    custom syntax/elab/macro                     0 file(s)
+    run_cmd/#eval                                0 file(s)
+    set_option                                   1 file(s)  SYNTHETIC_HOSTILE.lean
+    opaque                                       0 file(s)
+    Lean metaprogramming import                  0 file(s)
+  [FAIL] K1 the project source contains no sorry, axiom, native_decide, unsafe code, environment API, skipKernelTC, custom elaborators, #eval, set_option or opaque
+         measured: 818 files scanned; 6 hits
+         reading:  plain Mathlib-style proofs: nothing in the source can route a declaration around the kernel
+
+========================================================================================================
+K2  leanchecker: REPLAY EVERY NavierStokes.* DECLARATION THROUGH THE KERNEL (one process per module)
+========================================================================================================
+    (skipped under MUTATE)
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  MUTATE: the scanner flagged the hostile snippet, as required.
+
+  0/1 checks pass; load-bearing failures: 1; wrote NSA6_kernel_replay_check_results_MUTATE.json
