@@ -35,6 +35,8 @@ WHAT THIS LANE SHOWS
      from rest reaches the centre in t = r0 sqrt(pi/2) (G M a0)^(-1/4) ~ r0^(1/4): inner shells arrive first and
      cross the outer ones at once, so T* = 0 at every galaxy centre too; the collapsed region grows as
      r_c = (16/(3 pi)) G rho a0 t^4 (symbolic).
+  D8 THE EXTERNAL FIELD: a uniform external Newtonian field e_N a0 shifts the null to d = e_N r_D; isolated
+     galaxies keep a singular point inside their matter, strongly EFE-dominated satellites can lose it.
   D7 WITH VISCOSITY (the Navier-Stokes case): the inviscid statement of D1 does not carry over -- viscosity absorbs
      two derivatives, so u is C^(2,1/2) at the null (classical solutions can exist) but never C^3: the framework's
      Navier-Stokes has no smooth (C^infinity) solution through a field null.  Symbolic + viscous grid refinement.
@@ -44,9 +46,18 @@ WHAT THIS LANE SHOWS
   multi-streams through the caustic, and codes smooth the force; nothing unphysical happens.  But the answer to the
   Navier-Stokes-style question for the framework's own fluid is NO: its equations have no smooth (C^2) solution for
   any positive time at a Newtonian field null inside matter (no C^1 one in the dust limit), unlike Newtonian gravity (T* > 0 always) and unlike
-  Navier-Stokes (smooth locally, the open question is global).  Known in parts: the r^(-1/2) phantom cusp and
-  zero-field phantom singularities (Milgrom 1986, 2009).  Not found in one literature search: the Holder-1/2
-  well-posedness statement for the MOND Euler-Poisson system, the t^4 caustic law, the t_N / nu_eff = 1 identity.
+  Navier-Stokes (smooth locally, the open question is global).
+  PRIOR WORK (cite, do not re-claim).  The field behaviour of D1 is known: Frenkler, 'A mathematical foundation for
+  QUMOND', J. Math. Phys. 66, 012501 (2025; arXiv:2403.13498) proves that in spherical symmetry the second
+  derivatives of the MOND potential lie only in L^r, 1 < r < 2, 'due to the square root appearing ... in the basic
+  MOND paradigm' -- a term ~ r^(-1/2) where the Newtonian field vanishes -- and that this is optimal.  Frenkler,
+  'Stability of spherical models in MOND', Kinet. Relat. Models 18 (2025; arXiv:2402.11043) proves nonlinear
+  stability of spherical MOND equilibria for the Vlasov and Euler systems; those equilibria are consistent with this
+  lane (u = 0 is smooth, the density is only C^(1,1/2) at the centre, D1).  The r^(-1/2) phantom cusp is standard
+  (Milgrom 1986, 2009).  NOT found in the literature (three searches): the time-dependent consequences computed here
+  -- T* = 0 for smooth dust data (D2), the t^4 caustic laws in planar and spherical symmetry (D3, D5), the
+  front-at-nu_eff = 1-at-t_N identity and the nu_eff < 1 delay band of the framework's kernels (D4), and the viscous
+  C^(2,1/2) ceiling (D7).
   MUTATE=1 sets nu = 1 (Newton): T*(N) stays t_N, the t^4 law disappears, D2/D3 must FAIL (rc = 1).
 
 Run from the repository root:  python3 real_research/ns_audit_2026/NSA7_planar_dust_breakdown.py
@@ -323,6 +334,32 @@ check("D7 with viscosity the solution is C^(2,1/2) at the null but not C^3: u_xx
       u2_exp == sp.Rational(1, 2) and u3_exp == -sp.Rational(1, 2) and abs(sl3 + 0.5) < 0.1 and abs(a_fin - 1 / NUV) < 0.03,
       "viscosity rescues classical (C^2) solutions but not smoothness: the framework's Navier-Stokes has no C^infinity "
       "solution through a field null")
+
+# ============================================================================================ D8
+banner("D8  THE EXTERNAL FIELD MOVES THE NULL; IT REMOVES IT ONLY IF THE SHIFT LEAVES THE MATTER")
+# In a uniform core g_N,int = -(4 pi/3) G rho_c r; a uniform external Newtonian field e_N a0 shifts the null of the
+# TOTAL Newtonian field (where the framework's force is Holder-1/2) to d = 3 e_N a0/(4 pi G rho_c) = e_N r_D.
+ee = sp.symbols("e_N", positive=True)
+d_null = sp.solve(sp.Eq(sp.Rational(4, 3) * sp.pi * Gs * rho * r, ee * a0s), r)[0]
+d_over_rD = sp.simplify(d_null / (3 * a0s / (4 * sp.pi * Gs * rho)))
+P(f"    null displacement d = {d_null}  =  e_N x r_D  (check: d/r_D = {d_over_rD})")
+cases = [("isolated field dwarf", 0.1, 0.02, 1500.0), ("MW-satellite dSph", 0.01, 0.10, 300.0),
+         ("bulge of an isolated spiral", 100.0, 0.02, 500.0)]
+rows8 = {}
+for label, rho_msun, eN, size_pc in cases:
+    rho_c = rho_msun * MSUN / PC ** 3
+    for foot, a0 in A0.items():
+        rD = 3 * a0 / (4 * math.pi * G * rho_c)
+        d_pc = eN * rD / PC
+        rows8[f"{label} / {foot}"] = {"rho_c": rho_msun, "e_N": eN, "size_pc": size_pc, "d_pc": d_pc,
+                                     "null_inside_matter": bool(d_pc < size_pc)}
+        P(f"    {label:27s} rho_c = {rho_msun:6.2f}, e_N = {eN:.2f}, size ~ {size_pc:6.0f} pc, {foot:9s}: null shifted "
+          f"{d_pc:9.1f} pc -> {'STILL INSIDE the matter (singular point persists)' if d_pc < size_pc else 'outside the matter (regular)'}")
+OUT["numbers"]["D8"] = {"d_over_rD": str(d_over_rD), "cases": rows8}
+check("D8 the external field displaces the null by exactly e_N r_D: isolated galaxies keep a singular point inside "
+      "their matter; strongly external-field-dominated satellites can lose it (representative numbers)",
+      {k: round(v["d_pc"], 1) for k, v in rows8.items()}, sp.simplify(d_over_rD - ee) == 0,
+      "the framework's own EFE regularises only systems whose field null is pushed out of the matter")
 
 # ============================================================================================ verdict
 banner("VERDICT")

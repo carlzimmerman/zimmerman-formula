@@ -72,6 +72,20 @@ D7  WITH VISCOSITY (THE NAVIER-STOKES CASE): C^2 SURVIVES, C^3 DOES NOT
          reading:  viscosity rescues classical (C^2) solutions but not smoothness: the framework's Navier-Stokes has no C^infinity solution through a field null
 
 ========================================================================================================
+D8  THE EXTERNAL FIELD MOVES THE NULL; IT REMOVES IT ONLY IF THE SHIFT LEAVES THE MATTER
+========================================================================================================
+    null displacement d = 3*a0*e_N/(4*pi*G*rho)  =  e_N x r_D  (check: d/r_D = e_N)
+    isolated field dwarf        rho_c =   0.10, e_N = 0.02, size ~   1500 pc, canonical: null shifted      32.1 pc -> STILL INSIDE the matter (singular point persists)
+    isolated field dwarf        rho_c =   0.10, e_N = 0.02, size ~   1500 pc, alt      : null shifted      38.7 pc -> STILL INSIDE the matter (singular point persists)
+    MW-satellite dSph           rho_c =   0.01, e_N = 0.10, size ~    300 pc, canonical: null shifted    1602.8 pc -> outside the matter (regular)
+    MW-satellite dSph           rho_c =   0.01, e_N = 0.10, size ~    300 pc, alt      : null shifted    1935.0 pc -> outside the matter (regular)
+    bulge of an isolated spiral rho_c = 100.00, e_N = 0.02, size ~    500 pc, canonical: null shifted       0.0 pc -> STILL INSIDE the matter (singular point persists)
+    bulge of an isolated spiral rho_c = 100.00, e_N = 0.02, size ~    500 pc, alt      : null shifted       0.0 pc -> STILL INSIDE the matter (singular point persists)
+  [PASS] D8 the external field displaces the null by exactly e_N r_D: isolated galaxies keep a singular point inside their matter; strongly external-field-dominated satellites can lose it (representative numbers)
+         measured: {'isolated field dwarf / canonical': 32.1, 'isolated field dwarf / alt': 38.7, 'MW-satellite dSph / canonical': 1602.8, 'MW-satellite dSph / alt': 1935.0, 'bulge of an isolated spiral / canonical': 0.0, 'bulge of an isolated spiral / alt': 0.0}
+         reading:  the framework's own EFE regularises only systems whose field null is pushed out of the matter
+
+========================================================================================================
 VERDICT
 ========================================================================================================
   The Navier-Stokes question, asked of the framework's own equations, has a definite answer: no.  Under the
@@ -83,4 +97,4 @@ VERDICT
   is benign (collisionless matter multi-streams; hydrodynamics must be posed in a Holder/weak class), but it is a
   structural fact about the equations: the framework makes regularity WORSE, not better, at field nulls.
 
-  7/7 checks pass; load-bearing failures: 0; wrote NSA7_planar_dust_breakdown_results.json
+  8/8 checks pass; load-bearing failures: 0; wrote NSA7_planar_dust_breakdown_results.json
