@@ -76,3 +76,14 @@ The dark-sector door is now stated as precisely as the record allows: cold in th
 - **Level (median f_DM inside R_e): tie.** The framework's best cell and the NFW, lighter-halo and lower-concentration cells all contain zero offset at 68%. **The L320 level claim is withdrawn.**
 - **Trend (inverted a₀ against z): every ΛCDM variant rises by +0.13 to +0.16 dex/z, 3.7–4.1σ above RC100.** The framework is flat at 1.6σ. No halo knob removes the rise, because it comes from how ΛCDM halos evolve with redshift.
 - **Framework residuals** show no trend with g_bar (Spearman p = 0.29), so there is no sign of a wrong kernel at z ~ 1–2.
+
+## L332 — the independent replication on KMOS3D: it did not happen, and L323's trend becomes conditional
+
+`L332_kmos3d_trend_replication.py` (4/5; the fifth is the pre-declared T1, shown as FAIL; `MUTATE` replaces v_obs with the ΛCDM-NFW prediction, K1 and K2 fail, rc = 1). The data are Übler+2017 v_circ,max for 117 galaxies, cross-matched uniquely to the KMOS3D catalogue's H-band R_e. 93 of them are not in RC100.
+
+- **The pre-declared replication failed.** Every model's residuals fall with z, the framework included: −0.070 to −0.084 dex/z (5σ), against ΛCDM's −0.094 to −0.106.
+- **The cause is common-mode (K1).** Newtonian baryons alone fall at −0.11 dex/z. At z ≈ 2.3, 27–54% of galaxies (depending on geometry) rotate *slower than their own Newtonian baryons*; at z ≈ 0.9 the figure is 2–11% (Fisher p ≤ 3×10⁻⁴). Übler's gas-to-star ratio comes from scaling relations and rises from 0.46 to 1.19. No model that adds gravity can fit those galaxies.
+- **KMOS3D cannot decide the question (K2).** The framework and ΛCDM predicted trends differ by ≤ 0.031 dex/z, while the data sit ≥ 0.068 dex/z off both. L323's inverted-a₀ statistic does "replicate" at 4.4σ, but it drops 50% of the z > 1.9 galaxies and only 10% at z < 1.2, so it is conditioned on the outcome and is **not** quoted.
+- **R1: L323's trend is calibration-conditional.** A z-tilt of β = −0.05 dex/z in the baryonic masses, a factor 1.25 end to end over z = 0.6–2.5, brings ΛCDM's least-rising cell within 2σ of RC100. At β = −0.10 the framework is 2.7σ off. One galaxy sitting exactly at the inversion's f_DM = 0.02 edge moves RC100's slope by 0.41σ. KMOS3D shows the high-z inputs can carry a z-dependent baryon error, and its sign (baryons over-estimated at high z) moves RC100's data *toward* ΛCDM, if RC100's fitted masses share it.
+
+**Standing:** L323's result survives every halo knob but not a baryon-calibration tilt of ~0.05–0.1 dex/z. It should be quoted as *conditional on the high-z baryonic-mass calibration*. What would decide it is high-z dark fractions from kinematics with per-galaxy gas masses (CO or dust), not scaling relations.

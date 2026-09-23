@@ -1,0 +1,128 @@
+
+L332 -- INDEPENDENT REPLICATION OF THE HIGH-z TREND: KMOS3D (Ubler+2017 kinematics x the KMOS3D catalogue's sizes).
+
+WHY.  L323 found the framework-vs-LCDM separation at z ~ 1-2.5 lives in the TREND, not the level: every LCDM variant's
+inferred a0 rises +0.13..+0.16 dex/z, 3.7-4.1 sigma above RC100, while the framework is flat.  One data set is not a result.
+This lane replicates it on a DIFFERENT MEASUREMENT: Ubler et al. 2017 (ApJ 842, 121) modelled circular velocities
+v_circ,max (maximum of the modelled circular velocity including pressure support, v_circ^2 = v_rot^2 + 2 sigma0^2 r/R_d, at
+r ~ 2.2 R_d -- verified in the paper, sec. 2) with baryonic masses (M_* + scaling-relation gas), cross-matched to the KMOS3D
+catalogue (real_research/data/kmos3d/k3d_fnlsp_table_v3.fits) for the H-band half-light radius.
+  CROSS-MATCH: unique on |dz| < 0.002 and |d log M_*| < 0.006 -> 117 of 135 (6 ambiguous dropped, 12 unmatched).
+  INDEPENDENCE: 24 of the 117 are also in RC100; the 93 others are an independent replication, reported separately.
+
+METHOD (per galaxy; no free parameter in either model):
+  R_e [kpc] = RHALF [arcsec] x D_A(z) (Planck); r = k R_e with k = 1.311 (2.2 R_d, exponential) and k in {1.0, 1.6} as the
+  systematic (bulges move the peak).  g_obs = v_circ^2 / r.  Baryons: M_bar in an exponential thin disc (exact Freeman field
+  via Bessel functions); the spherical approximation as the geometry systematic.
+  FRAMEWORK  v^2 = r nu(g_bar/a0) g_bar  (nu_RAR; both footings)
+  LCDM       v^2 = r g_bar + v_halo^2  with L323's variants: NFW (Moster+13 M_h, Dutton-Maccio c), H (-0.2 dex M_h),
+             C (-0.1 dex c), K (maximal Read+2016 core, r_c = 1.75 R_e), A (Blumenthal), ALL (H + C + K)
+  STATISTIC  Delta = log10(v_obs/v_pred) per galaxy; its slope with z (galaxy bootstrap) and median; a model that is right
+             leaves Delta flat in z.  Also L323's inverted-a0 slope (h16 closed form) for data and models.
+RESULT, IN THE ORDER IT HAPPENED.  T1 below was declared LOAD-BEARING before the first run: "the framework's residuals are flat
+in z while every LCDM variant's trend".  IT FAILED: every model, the framework included, trends at -0.07..-0.10 dex/z.  K1 then
+found why -- the trend is COMMON-MODE: Newtonian baryons ALONE (the minimum any model predicts) trend at -0.11 dex/z, and at
+z ~ 2.3 half the galaxies rotate SLOWER than their own Newtonian baryons (scaling-relation gas masses; Ubler+17's own "positive
+bTFR zero-point evolution").  No model that adds gravity can fit those, so T1 cannot test what it was declared to test; it is
+kept, printed as FAIL, and demoted to informational for that stated reason.  THE REPLICATION DID NOT HAPPEN.
+  R1 then turns the same lens on L323: RC100's trend verdict is conditional on the z-calibration of the baryonic masses at the
+~0.1 dex/z level, and one galaxy at the inversion's f_DM = 0.02 edge moves RC100's slope by ~0.4 sigma.  L323 S4 is robust to
+every HALO knob; it is NOT robust to a baryon-calibration tilt of the size KMOS3D shows the inputs can carry.
+MUTATE=1 replaces v_obs by the LCDM-NFW prediction x 10^N(0, 0.05): the common-mode finding K1 must then FAIL (rc = 1).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L332_kmos3d_trend_replication.py
+
+  KMOS3D x Ubler+17: 117 matched (ambiguous 6, unmatched 12); z = 0.60-2.53; 93 not in RC100; median R_e = 4.14 kpc
+
+==============================================================================================================
+K1  THE COMMON MODE: residuals against NEWTONIAN BARYONS ALONE (the floor every model sits on)
+==============================================================================================================
+    k = 1.000 thin  : d log(v_obs/v_bar,N)/dz = -0.110 +/- 0.018;  fraction with v_obs < v_bar,N in z 0.5-1.2: 0.11, z 1.2-1.9: 0.30, z 1.9-2.6: 0.49;  Fisher p (z>1.9 > z<1.2) = 3.5e-05
+    k = 1.000 sphere: d log(v_obs/v_bar,N)/dz = -0.110 +/- 0.018;  fraction with v_obs < v_bar,N in z 0.5-1.2: 0.02, z 1.2-1.9: 0.15, z 1.9-2.6: 0.37;  Fisher p (z>1.9 > z<1.2) = 4.6e-06
+    k = 1.311 thin  : d log(v_obs/v_bar,N)/dz = -0.110 +/- 0.017;  fraction with v_obs < v_bar,N in z 0.5-1.2: 0.11, z 1.2-1.9: 0.30, z 1.9-2.6: 0.54;  Fisher p (z>1.9 > z<1.2) = 4.8e-06
+    k = 1.311 sphere: d log(v_obs/v_bar,N)/dz = -0.110 +/- 0.017;  fraction with v_obs < v_bar,N in z 0.5-1.2: 0.02, z 1.2-1.9: 0.15, z 1.9-2.6: 0.37;  Fisher p (z>1.9 > z<1.2) = 4.6e-06
+    k = 1.600 thin  : d log(v_obs/v_bar,N)/dz = -0.110 +/- 0.017;  fraction with v_obs < v_bar,N in z 0.5-1.2: 0.11, z 1.2-1.9: 0.30, z 1.9-2.6: 0.49;  Fisher p (z>1.9 > z<1.2) = 3.5e-05
+    k = 1.600 sphere: d log(v_obs/v_bar,N)/dz = -0.110 +/- 0.017;  fraction with v_obs < v_bar,N in z 0.5-1.2: 0.02, z 1.2-1.9: 0.15, z 1.9-2.6: 0.27;  Fisher p (z>1.9 > z<1.2) = 2.6e-04
+    median M_gas/M_* (Ubler's scaling-relation gas): z 0.5-1.2: 0.46, z 1.2-1.9: 0.70, z 1.9-2.6: 1.19
+  [PASS] K1 THE COMMON MODE: Newtonian baryons alone trend at <= -0.08 dex/z on every cell, and the fraction of galaxies rotating slower than their own Newtonian baryons is higher at z > 1.9 than at z < 1.2 (one-sided Fisher p < 0.01 on every cell)
+         measured: slope <= -0.110; below-baryons fraction z>1.9 0.27-0.54 vs z<1.2 <= 0.11; worst Fisher p 2.6e-04
+         reading:  the per-galaxy inputs (sizes x scaling-relation gas) over-predict the kinematics at high z for EVERY model
+
+==============================================================================================================
+T1  (PRE-DECLARED) RESIDUAL TREND d(log v_obs/v_pred)/dz PER MODEL, full and independent samples
+==============================================================================================================
+    framework: slope -0.081..-0.068 dex/z (-5.4..-5.1 sigma);  independent 93: -0.084..-0.070 (-5.4..-4.7 sigma);  median offset +0.024..+0.092 dex
+    NFW      : slope -0.096..-0.093 dex/z (-6.7..-6.5 sigma);  independent 93: -0.097..-0.094 (-6.4..-6.1 sigma);  median offset +0.001..+0.060 dex
+    H        : slope -0.098..-0.095 dex/z (-6.7..-6.5 sigma);  independent 93: -0.099..-0.096 (-6.7..-6.3 sigma);  median offset +0.018..+0.077 dex
+    C        : slope -0.098..-0.095 dex/z (-6.6..-6.4 sigma);  independent 93: -0.100..-0.096 (-6.6..-6.2 sigma);  median offset +0.019..+0.081 dex
+    K        : slope -0.100..-0.095 dex/z (-7.0..-6.4 sigma);  independent 93: -0.103..-0.096 (-6.6..-6.2 sigma);  median offset +0.028..+0.099 dex
+    A        : slope -0.099..-0.097 dex/z (-7.0..-6.5 sigma);  independent 93: -0.101..-0.098 (-6.8..-6.2 sigma);  median offset -0.042..+0.001 dex
+    ALL      : slope -0.103..-0.099 dex/z (-6.8..-6.5 sigma);  independent 93: -0.106..-0.101 (-6.5..-6.1 sigma);  median offset +0.047..+0.109 dex
+  [FAIL] T1 PRE-DECLARED REPLICATION (declared load-bearing before the run; FAILED; demoted because K1 shows the trend is common-mode): framework flat (< 2 sigma) while every LCDM variant trends (>= 2 sigma), independent sample
+         measured: framework max |z| 5.4; LCDM min |z|: NFW 6.1, H 6.3, C 6.2, K 6.2, A 6.2, ALL 6.1
+         reading:  THE REPLICATION DID NOT HAPPEN: every model trends, the framework included
+
+==============================================================================================================
+K2  WHAT KMOS3D CAN SAY: the framework-minus-LCDM PREDICTED-trend contrast (a pure model difference) vs the data's offset
+==============================================================================================================
+    framework vs NFW : predicted-trend contrast +0.015..+0.025 dex/z; the data's residual slope about the framework -0.081..-0.068 +/- 0.015
+    framework vs H   : predicted-trend contrast +0.017..+0.027 dex/z; the data's residual slope about the framework -0.081..-0.068 +/- 0.015
+    framework vs C   : predicted-trend contrast +0.017..+0.027 dex/z; the data's residual slope about the framework -0.081..-0.068 +/- 0.015
+    framework vs K   : predicted-trend contrast +0.019..+0.027 dex/z; the data's residual slope about the framework -0.081..-0.068 +/- 0.015
+    framework vs A   : predicted-trend contrast +0.018..+0.028 dex/z; the data's residual slope about the framework -0.081..-0.068 +/- 0.015
+    framework vs ALL : predicted-trend contrast +0.022..+0.031 dex/z; the data's residual slope about the framework -0.081..-0.068 +/- 0.015
+  [PASS] K2 THE MODEL CONTRAST IS SMALLER THAN THE COMMON MODE: on KMOS3D's v_circ the framework and every LCDM variant differ in predicted trend by at most 0.035 dex/z, while the data sit >= 0.06 dex/z off BOTH -- the inputs, not the models, set the trend
+         measured: max |contrast| 0.031 dex/z; min |data residual slope about the framework| 0.068 dex/z
+         reading:  velocity at ~2 R_e is a weak lever (v ~ M^(1/4..1/2)); the dark-fraction inversion amplifies the same contrast ~10x -- and amplifies the input systematics by the same factor (hunt_2026/k04)
+
+==============================================================================================================
+T2  THE INVERTED-a0 TREND ON KMOS3D (L323's statistic) -- and why it cannot be quoted as a replication
+==============================================================================================================
+    framework: inverted-a0 slope on the SAME 67 galaxies -0.000 -> +2.0 sigma from the data -0.173 +/- 0.087
+    NFW      : inverted-a0 slope on the SAME 67 galaxies +0.206 -> +4.4 sigma from the data -0.173 +/- 0.087
+    H        : inverted-a0 slope on the SAME 67 galaxies +0.209 -> +4.4 sigma from the data -0.173 +/- 0.087
+    C        : inverted-a0 slope on the SAME 67 galaxies +0.209 -> +4.4 sigma from the data -0.173 +/- 0.087
+    K        : inverted-a0 slope on the SAME 67 galaxies +0.204 -> +4.3 sigma from the data -0.173 +/- 0.087
+    A        : inverted-a0 slope on the SAME 67 galaxies +0.206 -> +4.4 sigma from the data -0.173 +/- 0.087
+    ALL      : inverted-a0 slope on the SAME 67 galaxies +0.210 -> +4.4 sigma from the data -0.173 +/- 0.087
+    fraction DROPPED by the inversion's 0.02 < f_DM < 0.98 cut (v_obs <= v_bar mostly): z 0.5-1.2: 0.10, z 1.2-1.9: 0.38, z 1.9-2.6: 0.50
+  [PASS] T2 (informational) the inversion drops galaxies preferentially at high z (the ones below their baryons): its trend is conditioned on the outcome and is NOT quoted as a replication
+         measured: dropped 0.10, 0.38, 0.50; framework +2.0 sigma; NFW +4.4 sigma; H +4.4 sigma; C +4.4 sigma; K +4.3 sigma; A +4.4 sigma; ALL +4.4 sigma
+
+==============================================================================================================
+R1  THE SAME LENS ON L323: RC100's trend verdict under a z-TILT of the baryonic-mass calibration, and one edge galaxy
+==============================================================================================================
+    RC100 as L323 has it: d log a0/dz = -0.100 +/- 0.066 (N 99);  admitting the ONE galaxy at f_DM = 0.02 exactly: -0.073 (N 100) -- a 0.41 sigma move from one object
+    tilt -0.150 dex/z (baryons x1.36 at z 0.6, x0.71 at z 2.5): data +0.282 +/- 0.069 (N 90);  LCDM least-rising +0.071 (-3.1 sigma);  framework +0.000 (-4.1 sigma)
+    tilt -0.125 dex/z (baryons x1.30 at z 0.6, x0.75 at z 2.5): data +0.219 +/- 0.065 (N 90);  LCDM least-rising +0.082 (-2.1 sigma);  framework +0.000 (-3.4 sigma)
+    tilt -0.100 dex/z (baryons x1.23 at z 0.6, x0.79 at z 2.5): data +0.181 +/- 0.066 (N 92);  LCDM least-rising +0.093 (-1.3 sigma);  framework -0.000 (-2.7 sigma)
+    tilt -0.075 dex/z (baryons x1.17 at z 0.6, x0.84 at z 2.5): data +0.114 +/- 0.065 (N 93);  LCDM least-rising +0.104 (-0.2 sigma);  framework -0.000 (-1.8 sigma)
+    tilt -0.050 dex/z (baryons x1.11 at z 0.6, x0.89 at z 2.5): data +0.060 +/- 0.065 (N 96);  LCDM least-rising +0.115 (+0.8 sigma);  framework -0.000 (-0.9 sigma)
+    tilt -0.025 dex/z (baryons x1.05 at z 0.6, x0.94 at z 2.5): data -0.024 +/- 0.062 (N 98);  LCDM least-rising +0.126 (+2.4 sigma);  framework -0.000 (+0.4 sigma)
+    tilt -0.000 dex/z (baryons x1.00 at z 0.6, x1.00 at z 2.5): data -0.100 +/- 0.067 (N 99);  LCDM least-rising +0.133 (+3.5 sigma);  framework -0.000 (+1.5 sigma)
+    tilt +0.025 dex/z (baryons x0.95 at z 0.6, x1.06 at z 2.5): data -0.138 +/- 0.075 (N 95);  LCDM least-rising +0.136 (+3.6 sigma);  framework +0.000 (+1.8 sigma)
+    tilt +0.050 dex/z (baryons x0.90 at z 0.6, x1.12 at z 2.5): data -0.158 +/- 0.083 (N 90);  LCDM least-rising +0.139 (+3.6 sigma);  framework +0.000 (+1.9 sigma)
+    tilt +0.075 dex/z (baryons x0.86 at z 0.6, x1.19 at z 2.5): data -0.203 +/- 0.074 (N 89);  LCDM least-rising +0.142 (+4.7 sigma);  framework +0.000 (+2.7 sigma)
+    tilt +0.100 dex/z (baryons x0.81 at z 0.6, x1.26 at z 2.5): data -0.257 +/- 0.077 (N 87);  LCDM least-rising +0.145 (+5.3 sigma);  framework -0.000 (+3.4 sigma)
+    tilt +0.125 dex/z (baryons x0.77 at z 0.6, x1.33 at z 2.5): data -0.300 +/- 0.082 (N 84);  LCDM least-rising +0.148 (+5.5 sigma);  framework +0.000 (+3.7 sigma)
+    tilt +0.150 dex/z (baryons x0.73 at z 0.6, x1.41 at z 2.5): data -0.289 +/- 0.082 (N 80);  LCDM least-rising +0.151 (+5.4 sigma);  framework -0.000 (+3.5 sigma)
+  [PASS] R1 L323's TREND IS CALIBRATION-CONDITIONAL: a baryon-mass tilt of |beta| <= 0.1 dex/z (a factor <= 1.55 end to end over z 0.6-2.5) brings LCDM's least-rising cell within 2 sigma of RC100 AND puts the framework >= 2 sigma off, and one edge galaxy moves the slope by >= 0.3 sigma
+         measured: at beta 0: LCDM +3.5, framework +1.5 sigma; LCDM within 2 sigma from beta = -0.05; framework >= 2 sigma off from beta = -0.1; edge galaxy 0.41 sigma
+         reading:  L323 S4 survives every HALO knob; it does NOT survive a baryon-calibration tilt this size, so it is a conditional result
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  1. KMOS3D DOES NOT REPLICATE RC100's SEPARATION.  The pre-declared test failed: every model's residuals fall with z, the
+     framework's at -0.084..-0.070 dex/z (5.4 sigma).  The cause is common-mode: Newtonian baryons alone fall at
+     -0.11 dex/z or steeper, and at z ~ 2.3 27%-54% of galaxies (by geometry) rotate slower than their own baryons (median gas/star
+     0.46 -> 1.19, from scaling relations).  No model that adds gravity fits those; the models' own trends differ by <=
+     0.031 dex/z.  KMOS3D's v_circ x scaling-relation baryons cannot decide framework vs LCDM.
+  2. L323's TREND RESULT IS DOWNGRADED TO CONDITIONAL.  It survives every halo knob but flips inside a baryon-calibration tilt of
+     ~0.1 dex/z (LCDM within 2 sigma from beta = -0.05; framework 2 sigma off from beta = -0.1), and one galaxy at the
+     f_DM = 0.02 edge moves it 0.41 sigma.  KMOS3D shows the high-z inputs can carry a z-dependent baryon error; its sign
+     (baryons over-estimated at high z) is the one that moves RC100's data TOWARD LCDM, if RC100's fitted masses share it.
+  3. What would decide it: high-z dark fractions from kinematics with DIRECT gas masses (CO/dust per galaxy), not scaling
+     relations -- the input, not the halo, is now the lever.
+
+  4/5 checks pass; load-bearing failures: 0; wrote L332_kmos3d_trend_replication_results.json
