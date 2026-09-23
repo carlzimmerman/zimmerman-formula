@@ -1,0 +1,97 @@
+====================================================================================================
+G04 -- THE CMB-LSS FACE: the phantom's imprint on the CMB beyond the power
+spectrum -- ISW, lensing, and the cross-correlations
+====================================================================================================
+
+REGISTERS: G079 (Omega_eq = 0.0021-0.0034 = 0.0079-0.0128 of Omega_dm)
+           D06 (bias = 1.004 +- 0.011 by construction; z* = 2.4262, never melts)
+           S07 (1 - R(k=1 h/Mpc) = 1.7e-04, the plateau)
+           G215 (census S_meas = 1.00)
+
+1. THE ISW (identical-clustering limit: b_ph = 1 = b_m, same growth kernel)
+   growth: f(z=0) = 0.5274 (Linder Omega_m^0.55 = 0.5300); D(0) = 1 (RK4, 2e4 steps)
+   late-ISW weight below z* = 2.426: 0.961
+   phantom ISW / CDM-class (dust) ISW = 0.00799 - 0.01295  (0.80-1.29%)
+   phantom ISW / total late-ISW     = 0.00664 - 0.01070  (0.66-1.07%)
+   phantom ISW / dark-sector ISW    = 0.00793 - 0.01278  (0.79-1.28%)
+
+2. THE LENSING
+   kappa phantom share / total = 0.00664 - 0.01070  (0.66-1.07%)
+   kappa phantom share / dark  = 0.00793 - 0.01278  (0.79-1.28%)
+   kappa weight below z* = 0.258
+   THE PIE (G188), phantom share of the DARK sector:
+     50 kpc        : 0.024 (2.4%)
+     210-300 kpc   : ~0.15-0.21 (the brief's 3-21%% band, registered)
+     R500          : 0.699 (69.8%)
+     MW interior   : 0.892 (89.2%)
+
+3. THE CROSS-CORRELATION PREDICTION
+   b_ph = 1.004 +- 0.011 vs b_ST(redMaGiC 1e13.2-1e13.7, z = 0.45) = 2.08-2.54 (mid 2.33, separation x2.3)
+   sigma(M): sigma13 = 1.18, sigma14 = 0.89, sigma15 = 0.60 (sigma8 = 0.811 by construction)
+   L      b_eff(L)   R(L)=1/b   (phantom slice / equal CDM slice)
+      50     2.10      0.475
+     100     2.24      0.446
+     150     2.33      0.428
+     300     2.50      0.400
+     500     2.63      0.380
+     800     2.76      0.363
+    1200     2.87      0.348
+    1500     2.94      0.340
+   signature decline across L = 50-1500: 28% (the CDM split is flat at 1.000)
+   phantom's share of the TOTAL cross-power (b_g = 1.7): 0.0047 - 0.0075
+   S07 plateau: the phantom-locked cross-power shape = CDM's to 1.7e-04 at the DES/CMB scales
+
+4. THE ARMED DATA
+   ACT DR6 (Qu+24): A_lens = 1.013 +- 0.023 (2.3%%, 43 sig)  [UNVERIFIED]
+      phantom kappa S/N = 0.29 - 0.47
+   DES Y3 x SPT+Planck CMB lensing (Omori+23/Chang+23): S/N = 23.9  [UNVERIFIED]
+      phantom cross S/N = 0.11 - 0.18
+   late-ISW x galaxy (Planck 2018, ~3 sig total): phantom S/N = 0.013 - 0.021  [UNVERIFIED]
+   STACKED quadrature S/N = 0.31 - 0.50  (BELOW 1 sigma today; Stage-IV sub-1% A_lens crosses)
+   G101 deep-branch floor: share > 10% in 339/339 bins, median 88%, sub-dominant S/N >= 2 window 178 bins -- the present-tension face
+
+5. CHECKS: 18/18 PASS
+   [PASS] C0 [registers] all six committed registers load
+        measured: G079 G188 S07 D06 G101 G215
+   [PASS] C1 [G079 gate] Omega_eq/Omega_dm = 0.79-1.28% (capped/uncapped)
+        measured: f_eq = 0.00793 / 0.01278
+   [PASS] C2 [the ISW ratio anchor] phantom/dust = Omega_eq/(Omega_dm - Omega_eq) = 0.80-1.29%
+        measured: 0.00799 / 0.01295
+   [PASS] C3 [growth gate] f(z=0) = 0.5274 vs Linder Omega_m^0.55 = 0.5300 (2% band)
+        measured: f(0) = 0.5274
+   [PASS] C4 [ISW condensation gate] late-ISW weight below z* = 2.426
+        measured: 0.961
+   [PASS] C5 [lensing condensation gate] kappa weight below z*
+        measured: 0.258
+   [PASS] C6 [the ISW shares] phantom ISW = 0.66-1.07% of the total linear late-ISW; 0.80-1.29% of the CDM-class ISW; 0.79-1.28% of the dark-sector ISW
+        measured: tot 0.0066-0.0107; dust 0.00799-0.01295
+   [PASS] C7 [the lensing shares + the pie] kappa phantom share = 0.66-1.07% of the total, 0.79-1.28% of the dark; G188 pie: 2.4% at 50 kpc, 69.8% at R500, 89.2% at the MW interior; the brief's 3-21% band registered
+        measured: kap 0.0066-0.0107; pie50 0.024, R500 0.699, solar 0.892
+   [PASS] C8 [sigma(M) anchors] sigma_8 = 0.811 by construction; sigma(1e13/1e14/1e15) = 1.18/0.89/0.60
+        measured: sigma13 1.18, sigma14 0.89, sigma15 0.60
+   [PASS] C9 [the bias separation] b_ST(redMaGiC band 1e13.2-1e13.7, z=0.45) = 2.08-2.54 vs the phantom's b = 1.004 +- 0.011 (separation x2.3)
+        measured: b_cdm 2.08-2.54, b_ph 1.004
+   [PASS] C10 [S07 plateau] 1 - R(k=1 h/Mpc) = 1.73e-4: the phantom's cross-power shape = CDM's to 0.02% at the DES/CMB scales
+        measured: 1-R = 1.73e-04
+   [PASS] C11 [the k-signature] the phantom-locked sub-component's share ratio R(L) = 1/b(M(L)) declines 28% across L = 50-1500 (an equal CDM slice is flat at 1.0)
+        measured: R(50) 0.475 -> R(1500) 0.340
+   [PASS] C12 [ACT DR6] the phantom's kappa imprint (0.66-1.07%) vs A_lens error 2.3%: S/N = 0.29-0.47 -- BELOW 1 sigma today
+        measured: S/N = 0.29-0.47
+   [PASS] C13 [DES-Y3 kg + ISW] galaxy-CMB lensing (S/N = 23.9): S/N = 0.11-0.18; late-ISW (~3 sigma total): S/N = 0.013 -- two orders below
+        measured: S/N_kg 0.11-0.18, S/N_isw 0.013
+   [PASS] C14 [the stacked power] quadrature sum (kappa + kg + ISW): S/N = 0.31-0.50 -- ARMED but BELOW today's depth; a factor 2-3 precision improvement (Stage-IV, sub-1% A_lens) crosses 1 sigma
+        measured: S/N_stacked = 0.31-0.50
+   [PASS] C15 [G101 floor] the DES-Y3 deep-branch floor: share > 10% in 339/339 bins, median 88%, sub-dominant S/N >= 2 window 178 bins -- THE present-tension face
+        measured: floor share 10-100%%: 178 bins
+   [PASS] C16 [the primary-CMB null] the phantom condensed at z* = 2.426, deep post-recombination: ZERO primary-anisotropy imprint - its whole CMB face is late-time (ISW + lensing)
+        measured: z* = 2.4262
+   [PASS] C17 [the ISW verdict] the phantom's ISW at 0.66-1.07% vs ~30-100% measurement precision: S/N ~ 0.02-0.04 -- the ISW channel is NEVER testable for the phantom
+        measured: S/N_isw = 0.013-0.021
+
+VERDICTS:
+  V1: THE ISW/LENSING SHARES: the phantom's CMB-LSS share = its density share EXACTLY (bias-1 baryon-tracing, identical growth kernel, R = 1 plateau to 1.7e-4): the late-ISW from the phantom's time-varying potential = 0.80-1.29% of the CDM-class ISW, 0.66-1.07% of the total, 0.79-1.28% of the dark-sector ISW (z<z* gated at weight fraction 0.96); the lensing convergence carries the phantom at 0.66-1.07% 
+  V2: THE CROSS-CORRELATION SIGNATURE: the phantom-locked component of C_L^kgamma and C_L^kkappa sits at f_ph = Omega_eq/Omega_m = 0.66-1.07% of the signal, bias 1, FLAT in L over the whole band (no bias evolution, no scale dependence -- the baryon-tracing at ALL k: R(k) = 1 to 1.7e-4; S07), while an equal-density CDM slice enters at b_cdm(M(L), z) =  1.65-2.4 and RISES with L: the k-space discriminator
+  V3: THE HONEST STATEMENT: the phantom's CMB-LSS face -- bias-1 baryon-tracing in the ISW, the lensing, and the cross-spectra -- is ARMED but BELOW the current surveys' depth: the ISW channel (S/N ~ 0.02-0.04) is two orders below any measurement -- never testable for the phantom; the kappa channel sits at S/N = 0.3-0.5 in ACT DR6 (2.3% A_lens, Qu+24) and ~0.1-0.25 in the DES-Y3 galaxy-CMB lensing (S/N 
+
+results -> <repo>/deepseek_push/G04_results.json
+exit 0

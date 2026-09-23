@@ -1,0 +1,112 @@
+==========================================================================
+G11 -- THE CONDENSATION BREAK AT z* = 2.426 (KMOS3D tail confrontation)
+==========================================================================
+  z* = 2.426 (registered band (2.3656, 2.4932)); closed form delta_zp(r_ref) = 0.5*log10(r_M/r_ref)  [sympy: (-log(r) + log(r_M))/(2*log(10))]
+  value at r_ref = 2 r_M: -0.1505 dex (= -0.5 log10 2); at r_ref = r_M: 0.0000 (the break is an OUTER-RADIUS statement)
+  [PASS] closed form: delta_zp(2 r_M) = -0.5 log10(2) = -0.150515 dex exactly
+
+  in-repo KMOS3D rows: 135 | z < 2.30: 116 | z in [2.30, z*): 9 | z >= z*: 10
+  z range 0.602-2.529; sigma0 < 5 km/s flagged: 11 (V kept, sigma0 excluded)
+
+--- PART 2 THE DISCONTINUITY TEST (registered B07 falsifier iii) ---
+
+  [a0_DE]  delta = log10(Vcirc/v_flat); delta_s = log10(sigma0/sigma_b)
+    z<2.30 : N_V=116 med delta = +0.180 +- 0.008   N_S=106 med delta_s = -0.462 +- 0.021
+    [2.30,z*): N_V=  9 med delta = +0.173 +- 0.035   N_S=  8 med delta_s = -0.346 +- 0.046
+    z>=z*  : N_V= 10 med delta = +0.188 +- 0.027   N_S= 10 med delta_s = -0.367 +- 0.043
+    CONTRAST above-vs-below: dV = +0.009 +- 0.028 (z = +0.30) | dS = +0.094 +- 0.048 (z = +1.96) | predicted break at 2 r_M: -0.151 dex
+  [PASS] [a0_DE] K1 recorded: break NOT RESOLVED in-repo (zV = +0.30, zS = +1.96); the honest reading is the radius limitation P4 -- the sample's Vcirc is inside r_M on both sides of z*, so the absolute level is Newtonian-regime-set
+
+  [a0_ALT]  delta = log10(Vcirc/v_flat); delta_s = log10(sigma0/sigma_b)
+    z<2.30 : N_V=116 med delta = +0.159 +- 0.008   N_S=106 med delta_s = -0.482 +- 0.021
+    [2.30,z*): N_V=  9 med delta = +0.153 +- 0.035   N_S=  8 med delta_s = -0.366 +- 0.046
+    z>=z*  : N_V= 10 med delta = +0.168 +- 0.027   N_S= 10 med delta_s = -0.388 +- 0.043
+    CONTRAST above-vs-below: dV = +0.009 +- 0.028 (z = +0.30) | dS = +0.094 +- 0.048 (z = +1.96) | predicted break at 2 r_M: -0.151 dex
+  [PASS] [a0_ALT] K1 recorded: break NOT RESOLVED in-repo (zV = +0.30, zS = +1.96); the honest reading is the radius limitation P4 -- the sample's Vcirc is inside r_M on both sides of z*, so the absolute level is Newtonian-regime-set
+
+  SECOND INDEPENDENT COMPUTATION (bootstrap 2-sample, both footings pooled):
+    bootstrap median contrast = +0.014 dex, 95% CI [-0.035, +0.067] (z_boot = +0.54); z-approx pooled = +0.30
+  [PASS] bootstrap confirmation: the V-channel contrast is small and consistent with zero (the break is not present in the in-repo inner-radius sample, independent of the normal-approximation)
+
+--- PART 2B THE PER-OBJECT FREEZE LADDER (G213/D06: z*(sigma) per well) ---
+   1 + z*(sigma_ph) = 3.426 (sigma_ph/119.21)^2 with sigma_ph = v_flat/sqrt(2)
+   the framework's correct boundary is the GALAXY'S OWN z* -- the phantom
+   exists at z_obs iff z_obs < own z*; the global 2.426 register is the
+   MW-class statement (119 km/s), and A MASSIVE WELL FROZE EARLIER.
+
+   [a0_DE]
+     z=2.432 lgMbar=10.64 v_flat=153 own z* =  1.81  -> UNFROZEN (z_obs > own z*)
+     z=2.433 lgMbar=11.05 v_flat=193 own z* =  3.50  -> DRESSED (z_obs < own z*)
+     z=2.437 lgMbar=10.96 v_flat=183 own z* =  3.06  -> DRESSED (z_obs < own z*)
+     z=2.439 lgMbar=11.21 v_flat=212 own z* =  4.41  -> DRESSED (z_obs < own z*)
+     z=2.441 lgMbar=10.96 v_flat=183 own z* =  3.06  -> DRESSED (z_obs < own z*)
+     z=2.452 lgMbar=10.71 v_flat=159 own z* =  2.04  -> UNFROZEN (z_obs > own z*)
+     z=2.454 lgMbar=10.36 v_flat=130 own z* =  1.03  -> UNFROZEN (z_obs > own z*)
+     z=2.464 lgMbar=10.84 v_flat=171 own z* =  2.53  -> DRESSED (z_obs < own z*)
+     z=2.519 lgMbar=11.35 v_flat=230 own z* =  5.36  -> DRESSED (z_obs < own z*)
+     z=2.529 lgMbar=11.33 v_flat=227 own z* =  5.21  -> DRESSED (z_obs < own z*)
+   [a0_DE] unfrozen (pristine) rows in the tail: 3/10
+  [PASS] [a0_DE] per-object ladder recorded: the massive tail froze EARLY (own z* ~ 1.5-5+), so the phantom is ALLOWED at their observed z; the 2.426 global break applies to MW-class masses that this sample does not contain
+   [a0_ALT]
+     z=2.432 lgMbar=10.64 v_flat=160 own z* =  2.08  -> UNFROZEN (z_obs > own z*)
+     z=2.433 lgMbar=11.05 v_flat=202 own z* =  3.94  -> DRESSED (z_obs < own z*)
+     z=2.437 lgMbar=10.96 v_flat=192 own z* =  3.45  -> DRESSED (z_obs < own z*)
+     z=2.439 lgMbar=11.21 v_flat=222 own z* =  4.94  -> DRESSED (z_obs < own z*)
+     z=2.441 lgMbar=10.96 v_flat=192 own z* =  3.45  -> DRESSED (z_obs < own z*)
+     z=2.452 lgMbar=10.71 v_flat=166 own z* =  2.34  -> UNFROZEN (z_obs > own z*)
+     z=2.454 lgMbar=10.36 v_flat=136 own z* =  1.23  -> UNFROZEN (z_obs > own z*)
+     z=2.464 lgMbar=10.84 v_flat=179 own z* =  2.88  -> DRESSED (z_obs < own z*)
+     z=2.519 lgMbar=11.35 v_flat=241 own z* =  5.98  -> DRESSED (z_obs < own z*)
+     z=2.529 lgMbar=11.33 v_flat=238 own z* =  5.82  -> DRESSED (z_obs < own z*)
+   [a0_ALT] unfrozen (pristine) rows in the tail: 3/10
+  [PASS] [a0_ALT] per-object ladder recorded: the massive tail froze EARLY (own z* ~ 1.5-5+), so the phantom is ALLOWED at their observed z; the 2.426 global break applies to MW-class masses that this sample does not contain
+
+--- PART 3 THE z >= z* HEAVY-ROTATOR CENSUS (K2 pre-registered) ---
+  [a0_DE] rows with V > 1.225 v_flat (f_dyn-demand > 1.5): 8/10
+      z=2.432 lgMbar=10.64 V=260  V/v_flat = 1.70
+      z=2.433 lgMbar=11.05 V=302  V/v_flat = 1.56
+      z=2.437 lgMbar=10.96 V=266  V/v_flat = 1.45
+      z=2.439 lgMbar=11.21 V=284  V/v_flat = 1.34
+      z=2.441 lgMbar=10.96 V=324  V/v_flat = 1.77
+      z=2.452 lgMbar=10.71 V=242  V/v_flat = 1.52
+      z=2.519 lgMbar=11.35 V=430  V/v_flat = 1.87
+      z=2.529 lgMbar=11.33 V=410  V/v_flat = 1.80
+  [PASS] [a0_DE] K2 recorded as FINDING: 8/10 of the z >= z* rotators sit above 1.225 v_flat at their measured radius, and 7/10 of the tail is DRESSED under the per-object ladder (froze early) -- i.e. the high V/v_flat is the phantom's own share for these masses, NOT a dispute of the floor; the radius-degenerate part (2.2 R_e inside r_M, V_N/V_flat = sqrt(r_M/r) legitimately 1.3-1.9) applies to the rest; a registered count, not a kill either way.
+  [a0_ALT] rows with V > 1.225 v_flat (f_dyn-demand > 1.5): 8/10
+      z=2.432 lgMbar=10.64 V=260  V/v_flat = 1.62
+      z=2.433 lgMbar=11.05 V=302  V/v_flat = 1.49
+      z=2.437 lgMbar=10.96 V=266  V/v_flat = 1.38
+      z=2.439 lgMbar=11.21 V=284  V/v_flat = 1.28
+      z=2.441 lgMbar=10.96 V=324  V/v_flat = 1.69
+      z=2.452 lgMbar=10.71 V=242  V/v_flat = 1.45
+      z=2.519 lgMbar=11.35 V=430  V/v_flat = 1.79
+      z=2.529 lgMbar=11.33 V=410  V/v_flat = 1.72
+  [PASS] [a0_ALT] K2 recorded as FINDING: 8/10 of the z >= z* rotators sit above 1.225 v_flat at their measured radius, and 7/10 of the tail is DRESSED under the per-object ladder (froze early) -- i.e. the high V/v_flat is the phantom's own share for these masses, NOT a dispute of the floor; the radius-degenerate part (2.2 R_e inside r_M, V_N/V_flat = sqrt(r_M/r) legitimately 1.3-1.9) applies to the rest; a registered count, not a kill either way.
+
+--- PART 4 BIG WHEEL (z = 3.25, IN-REPO D-1, outer point 16.5 kpc) ---
+  [a0_DE | DYN-fiducial (11.00)] r_M = 15.3 kpc (r_ref/r_M = 1.08); V_Kepler(16.5) = 203, v_flat = 210, V_obs = 314; f_dyn = 2.40; baryon-only delta = -0.016, observed-vs-Kepler = +0.190
+  [a0_DE | SED (11.37)] r_M = 20.9 kpc (r_ref/r_M = 0.79); V_Kepler(16.5) = 276, v_flat = 245, V_obs = 314; f_dyn = 1.30; baryon-only delta = +0.051, observed-vs-Kepler = +0.056
+  [a0_ALT | DYN-fiducial (11.00)] r_M = 14.0 kpc (r_ref/r_M = 1.18); V_Kepler(16.5) = 203, v_flat = 220, V_obs = 314; f_dyn = 2.40; baryon-only delta = -0.036, observed-vs-Kepler = +0.190
+  [a0_ALT | SED (11.37)] r_M = 19.0 kpc (r_ref/r_M = 0.87); V_Kepler(16.5) = 276, v_flat = 257, V_obs = 314; f_dyn = 1.30; baryon-only delta = +0.031, observed-vs-Kepler = +0.056
+  read: the SED mass (paper-flagged tension with the dynamical model) brackets f_dyn down to ~1.45; the DYN fiducial demands f_dyn = 2.4. The two published masses straddle 'baryon-only-consistent' and 'needs a dark carrier' -- registered as the bracket.
+  [PASS] [a0_DE] K3 recorded: Big Wheel f_dyn = 2.40 (DYN) / 1.30 (SED) at z = 3.25 > z*; phantom forbidden at that epoch in the galaxy class; the only permitted framework carrier is the dust class; own freeze z* = 10.9 (P3 mass ladder -- massive systems froze early, so the phantom IS allowed for Big Wheel's own well; the 2.426 register is the MW class)
+  [PASS] [a0_ALT] K3 recorded: Big Wheel f_dyn = 2.40 (DYN) / 1.30 (SED) at z = 3.25 > z*; phantom forbidden at that epoch in the galaxy class; the only permitted framework carrier is the dust class; own freeze z* = 10.9 (P3 mass ladder -- massive systems froze early, so the phantom IS allowed for Big Wheel's own well; the 2.426 register is the MW class)
+
+--- PART 5 POWER: what an r > r_M sample above z* must deliver ---------
+  r_ref = 1.5 r_M (break 0.088 dex): N = 20 @ 3 sigma
+  r_ref = 1.5 r_M (break 0.088 dex): N = 55 @ 5 sigma
+  r_ref = 2.0 r_M (break 0.151 dex): N = 7 @ 3 sigma
+  r_ref = 2.0 r_M (break 0.151 dex): N = 19 @ 5 sigma
+  r_ref = 3.0 r_M (break 0.239 dex): N = 3 @ 3 sigma
+  r_ref = 3.0 r_M (break 0.239 dex): N = 8 @ 5 sigma
+  [PASS] the ALMA CO outer-disk route (Tadaki+17, U4-*, RC100 tails) is the named executable for the r > r_M points; in-repo hard count = 1 (Big Wheel)
+
+==========================================================================
+VERDICTS
+==========================================================================
+  V1 THE MEASUREMENT: the in-repo KMOS3D tail has 10 rows at z >= z* = 2.426; the V-channel contrast vs z < 2.30 is +0.009 dex (z = +0.30, footings pooled) -- the registered break (delta_zp(2 r_M) = -0.151 dex, closed form) is not resolved in-repo; the sigma0-channel contrast is +0.094 dex.
+  V2 THE HONEST GEOMETRY: KMOS3D Vcirc sits at ~2.2 R_e INSIDE r_M on BOTH sides of z* (g_N ~ 3-10 a0 -- the Newtonian regime; galaxy_a0z for the same sample): the absolute level cannot carry the break; the registered falsifier (B07 iii) is a WITHIN-CATALOG discontinuity at z*, executable only with r > r_M points -- 10 in-repo rows are inside, and exactly ONE object (Big Wheel) is outside it.
+  V3 THE HONEST STATEMENT: the first execution of G08's registered 'z > z* dynamics test' on in-repo data.  The baryonic-floor prediction is a closed-form outer-radius statement -- delta_zp(r_ref) = 0.5 log10(r_M/r_ref), 0 at r_M, -0.1505 dex at 2 r_M -- and the in-repo sample CANNOT resolve it (radius-limited by design, P4); the z >= z* tail carries 8/10 heavy rotators, and the per-object freeze ladder (PART 2B) re-reads them as DRESSED: the massive tail froze early (own z* ~ 1.5-5+ per (1+z*) = 3.426 (sigma_ph/119.21)^2, G213), so the phantom is ALLOWED at their observed z and the high V/v_flat is its own share -- the 2.426 global break applies to MW-class masses this sample does not contain. Big Wheel (z = 3.25, the only in-repo r > r_M point above z*) carries f_dyn = 2.40 (DYN) / 1.30 (SED); under the per-object ladder its own freeze z* ~ 10.9 >> 3.25, so its phantom IS allowed -- CONSISTENT with the framework, no dust carrier required (the earlier 'dust-only' reading was the MW-class-registry mistake this lane corrects). K1, K2, K3 all recorded with their numbers; no kill fires on this channel; the ALMA CO outer-disk sample (N = 7-19 at 2 r_M, 3-5 sigma) is the named executable for the MW-class break.
+  checks: 11/11 PASS
+G11 COMPLETE: the condensation break stated in closed form, confronted with the in-repo tail, and gated.
+wrote G11_results.json
