@@ -1,0 +1,68 @@
+
+L321 -- THE LAMBDA-TRIGGERED CARRIER AT z = 0: galaxy and cluster retention, the two gates L319 left open.
+
+L319's carrier (Gamma ~ Omega_Lambda(a)^2, f_d(0) = 0.8) passes the forest and S_8; L320 prices it at ~3 sigma on RC100.
+The z = 0 gates were assumed (full escape), not computed.  This lane computes them, in the FRAMEWORK's own gravity:
+
+  TWO COUPLINGS, both run (verify a deficit as hard as a win):
+    UNIVERSAL  the carrier sources the MOND field:  g = nu(|g_N,b + g_N,c|/a0) (g_N,b + g_N,c)
+    ADDITIVE   a metric-coupled carrier (L289) that does not source it:  g = nu(g_N,b/a0) g_N,b + g_N,c
+  (the record's cluster number 0.576 is "source REQUIRED beyond the kernel" (L163/L172): the additive reading.)
+  GALAXY GATE (one physical criterion for every host, h_kids's): the retained carrier must not raise the framework's
+  predicted g_obs at r_gate by more than the RAR's 0.06 dex orthogonal scatter.  Hosts: dwarf (M_b 5e8, M200 3e10, 3 kpc),
+  SPARC disc (1.2e10, 3e11, 7.5 kpc), Milky Way (6e10, 1e12, 30 kpc).
+  CLUSTER GATE on the REAL X-COP sample (real_research/data/xcop: hydrostatic mass, gas, stars, R500): the predicted
+  dynamical mass at R500 (baryons + the retained carrier, under each coupling) against M_HSE, median within 20%.
+  The carrier's pre-decay halo in a cluster = (1 - f_b) x the cluster's own NFW fit (the LCDM-like cold halo).
+  eps = the retained carrier mass inside r_gate, RELATIVE to a no-decay control with identical random draws (this cancels
+  the local-Maxwellian sampling bias, ~15%, that a first version exposed).
+
+  METHOD.  Carrier halo = NFW(M200, c) with Dutton-Maccio c(M); baryons Hernquist (galaxies) or a beta-model gas (cluster).
+  Gravity is the framework's: g = nu(|g_N|_eff/a0) g_N with nu_RAR and a magnitude-based external field
+  |g_N|_eff = sqrt(g_N^2 + g_e^2) (the record's direction-blind EFE rule, SW01), g_e = 0.02 a0 (galaxies), 0.01 a0 (cluster).
+  Pre-decay: isotropic Jeans dispersion in the full potential (baryons + carrier).  At decay each daughter gets an isotropic
+  kick v_k; a fraction 1 - f_d stays as undecayed parents (no kick).  Post-decay potential: baryons + parents + the retained
+  daughters (iterated to self-consistency, 3 passes).  Unbound particles leave; bound ones are PHASE-MIXED on their new orbits
+  in the static spherical post-decay potential, so the time-averaged mass inside r_gate is exact given (E, L):
+      frac_in = int_{r_p}^{min(r_a, r_gate)} dr/v_r / int_{r_p}^{r_a} dr/v_r,   r = r_m - D cos(phi) removes the turning points.
+  S_8 at v_k = 1500, 2000 km/s from L319's validated solver (same cell p = 2, f_d(0) = 0.8), completing the S_8(v_k) curve.
+  CONTROL C1: the no-decay control's phase-mixed mass inside r_gate is within 25% of the NFW input (the size of the
+  Maxwellian bias that the ratio removes -- reported, so the reader sees it).
+  CONTROL C2: under the ADDITIVE reading, the X-COP clusters' required carrier fraction reproduces the record's 0.576 within
+  25% (independent route to the record's number); the universal reading's required fraction is reported beside it.
+  MUTATE=1 sets v_k = 0 (decay without a kick): the galaxy-depletion finding must FAIL (rc = 1).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L321_carrier_z0_retention_gate.py
+
+  X-COP clusters loaded: 12 (A85, A644, A1644, A1795, A2029, A2142, A2255, A2319, A3158, A3266, RXC1825, ZW1215)
+
+==============================================================================================================
+CONTROLS
+==============================================================================================================
+  [PASS] C1 the no-decay control reproduces the input cold mass inside each gate within 25% (the Maxwellian sampling bias the ratio method removes; reported so it is visible)
+         measured: {'dwarf': 1.164, 'SPARC disc': 1.173, 'Milky Way': 1.128}
+  [PASS] C2 under the ADDITIVE reading the X-COP clusters need a carrier fraction reproducing the record's 0.576 within 25%; the universal reading needs less (the kernel boosts the carrier too)
+         measured: additive median 0.476; universal median 0.249
+
+==============================================================================================================
+THE z = 0 GATE (f_d(0) = 0.8, the L319 cell): galaxies by the 0.06-dex criterion, X-COP by M_dyn/M_HSE
+==============================================================================================================
+    [universal] v_k      0: dwarf eps 1.00 (+0.445 dex); SPARC disc eps 1.00 (+0.287 dex); Milky Way eps 1.00 (+0.365 dex); X-COP eps 1.00 -> M_dyn/M_HSE 1.86; S_8 0.835  [gal FAIL, cl FAIL, S8 OK]
+    [additive ] v_k      0: dwarf eps 1.00 (+0.280 dex); SPARC disc eps 1.00 (+0.216 dex); Milky Way eps 1.00 (+0.246 dex); X-COP eps 1.00 -> M_dyn/M_HSE 1.40; S_8 0.835  [gal FAIL, cl FAIL, S8 OK]
+  [FAIL] G1 the kicks deplete every galaxy host below the RAR-scatter criterion for some v_k (either coupling)
+         measured: universal v_k 0: dwarf +0.445, SPARC disc +0.287, Milky Way +0.365; additive v_k 0: dwarf +0.280, SPARC disc +0.216, Milky Way +0.246
+         reading:  kicked late decay empties galaxy halos in the framework's gravity
+  [PASS] G2 THE WINDOW -- galaxies, X-COP clusters (within 20%) and S_8 (>= 0.767) at a single v_k, reported per coupling
+         measured: universal []; additive []
+         reading:  a finding, not a pass condition: it is stated either way below
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  [universal] NO WINDOW: v_k 0 fails galaxies, clusters
+  [additive] NO WINDOW: v_k 0 fails galaxies, clusters
+  Combined with L319 (forest and S_8 pass) and L320 (RC100 ~3 sigma, universal coupling), the carrier's standing is set
+  by the coupling: see the per-coupling window above.
+
+  3/4 checks pass; load-bearing failures: 1; wrote L321_carrier_z0_retention_gate_results_MUTATE.json   [163s]
+rc=1
