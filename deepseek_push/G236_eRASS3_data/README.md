@@ -67,8 +67,8 @@ LCDM's NFW concentration evolution at fixed M500 predicts a T-normalization drif
 
 - `G236_eRASS3_a0z.py` — the lane: 13 checks, PASS/FAIL per check, results.json. Rerunnable.
 - `G236_eRASS3_a0z.out`, `G236_results.json` — this run's output and machine verdict.
-- `eRASS3_Hard_v1.2.fits.gz`, `SRG_eROSITA_SDSS_CV_CATALOGUE.fits.gz` — shipped DR2 files (tracked;
-  small).
+- `eRASS3_Hard_v1.2.fits.gz`, `SRG_eROSITA_SDSS_CV_CATALOGUE.fits.gz` — shipped DR2 files
+  (downloaded; untracked with the main/LS10 catalogues — the repo tracks work+math only).
 - `eRASS3_Main_v1.3.fits.gz`, `eRASSc3_Main_LS10_Public_27Jul2026.fits.gz` — shipped DR2 main + LS10
   counterpart catalogues, present in this folder but **untracked by design** (GitHub caps packs at
   2 GiB and blobs at 100 MB; the repo's house style keeps multi-GB raw data out of history — cf.
