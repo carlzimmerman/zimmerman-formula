@@ -1,9 +1,59 @@
 # STANDING
 
 **de Sitter–Unruh modified inertia — where the programme actually stands**
-Last updated **2026-09-06** (rev. 8 block at the top, then rev. 7 of 2026-09-04 and rev. 6 of 2026-09-02; body below them is the rev. 5 record of 2026-08-03). Maintained as the single entry point: what is claimed, what is earned,
+Last updated **2026-09-22** (rev. 9 block at the top, then rev. 8 of 2026-09-06, rev. 7 of 2026-09-04 and rev. 6 of 2026-09-02; body below them is the rev. 5 record of 2026-08-03). Maintained as the single entry point: what is claimed, what is earned,
 what is postulated, what is live, and what is closed. If a statement anywhere in this repository
 conflicts with this file, this file is newer unless it says otherwise.
+
+---
+
+## ⚠⚠⚠ REVISION 9 BLOCK — 2026-09-22. Newer than everything below it; where they conflict, this block wins.
+
+**Full synthesis of 09-14 → 09-22** (about 630 commits, audited against their scripts): [`real_research/reviews/THE_THEORY_AS_IT_STANDS_2026-09-22.md`](real_research/reviews/THE_THEORY_AS_IT_STANDS_2026-09-22.md). Rung-by-rung status: [`CLOSURE_MAP.md`](fable_independent_2026/kappa_slot_2026/CLOSURE_MAP.md) (the dated blocks at the bottom).
+
+**The claim, unchanged.** $a_0=\kappa c\sqrt{G\rho_\Lambda}$, with both footings always (9.36e-11 / 1.13e-10). κ is **measured**: 0.465 ± 0.076 (BTFR) and 0.55 ± 0.17 (distance-free). The old ±0.043 held Υ_bul fixed and is superseded. κ is consistent with ½ and not derived. Every derivation route on the record is closed:
+- KS01;
+- the channel-count capstone;
+- Oppenheim–Russo postquantum gravity, which gives κ = 1.30–1.45 (L313–L314).
+
+**Relativistic completion: none.** The one open candidate, astra's C-H, reproduces T-B statically. Under the global-time causality criterion it also survives causality (L318). It **fails the moving-source gate** ([`L330`](real_research/g03_audit_2026/L330_moving_source_momentum_gate.py)):
+- Its MOND sector is independent of the shift and of every time derivative. The momentum constraint is therefore GR's with matter alone, and ∂_t[R⁽³⁾ − 16πGρ_m] = 0.
+- The phantom in the leaf curvature is fixed initial data, a Mukohyama-type integration-constant dust. It does not form as a galaxy assembles and does not follow a galaxy that moves.
+- Either no MOND is generated, or lensing sees about half the phantom (−0.19 to −0.30 dex at KiDS accelerations).
+
+The same shift-independence is what gives α₁ = α₂ = 0. That is the **momentum pincer**. What is still open is a construction that carries the phantom's momentum through a shift-coupling that vanishes where ν → 1 and has no wrong-sign dynamical auxiliary. The one such channel on the record is L297's khronon, and it has not been computed.
+
+**Other candidates:**
+- **The clock chain's L297 "complete action" is not standing.** Three of its four checks are literal `True`, its dust is CDM by hand, its S8 "closure" is an identity, and its galaxy pass comes from a grid artefact.
+- **The PAPER24/25 disformal clock is dead** on GW170817. Errata: [22830147](https://doi.org/10.5281/zenodo.22830147), [22830155](https://doi.org/10.5281/zenodo.22830155).
+
+**Dark sector: none.**
+- The CMB needs a cold fluid: baryons alone are excluded (L295).
+- The Λ-triggered kicked-decay carrier (L319) is the first on the record to pass both the forest and S8. RC100's trend disfavours it at 3.0–3.4σ (L320). At z = 0 its universal coupling is dead (L321).
+- The pincer: forest vs RC100 is the same epoch at different accelerations; forest vs KiDS is the same accelerations at different epochs. Any carrier needs a time trigger, a steep acceleration switch, and no sourcing of the MOND field.
+
+**RC100, corrected ([`L331`](real_research/rc100_audit_2026/L331_rc100_fairness_audit.py)).** The line "the framework alone beats ΛCDM" is **withdrawn**:
+- The level (0.29) is what any MOND on the z = 0 RAR gives.
+- A cored ΛCDM halo ties it.
+- What survives is a ~3σ trend against ΛCDM halos that do not evolve, from one survey.
+
+**Clusters.**
+- tSZ scored under the original rules: **NOT PASSED** (−2.48 ± 0.33 vs (−1.7, −0.9), L317).
+- The phantom active-mass law is disfavoured at ~4σ (L315).
+- The kernel leaves 1.65–2.0× the baryons at R500 on real X-COP.
+
+**Do not cite (additions):**
+- the MUSE a₀(z) "asymmetric-drift reconciliation" (opus48 M01/M02): a units slip, and the real per-galaxy data give ~0.01 dex. MUSE's rising a₀(z) remains a live threat;
+- deepseek PD01–PD22 ("κ = ½ derived") and PD20's wide-binary formula;
+- the BH* campaign's a₀(ρ_gas);
+- L297/L306 "linear cosmology closed";
+- "the framework alone beats ΛCDM on RC100".
+
+**Dated tests, unchanged:**
+- Gaia DR4 on **2026-12-02** under Amendment 11: Arm A 1.1614–1.1814 / 1.1917–1.2267; Arm B ceilings 1.0450 / 1.0300;
+- the z ≈ 2.5 deep-MOND BTFR zero point: 0.00 vs +0.33 dex, needing 2–4 clean rotators;
+- the blind map-level tSZ score;
+- cluster lensing cores.
 
 ---
 

@@ -1,0 +1,91 @@
+{
+ "lane": "L331",
+ "mutate": true,
+ "checks": {
+  "R1 the table reproduces the paper's medians (0.38 at z~1, 0.27 at z~2)": {
+   "ok": true,
+   "measured": "0.38 / 0.27",
+   "load_bearing": true
+  },
+  "R2 every MOND variant (both footings, two kernels, constant a0 = 1.2e-10) lands within 0.05 of the data's 0.29": {
+   "ok": true,
+   "measured": "0.28, 0.31, 0.30, 0.32",
+   "load_bearing": true
+  },
+  "R3 a cored LCDM halo (r_c = 2 R_e, one fitted choice) matches the level within 0.03 and the per-galaxy rms within 0.01 of the framework's": {
+   "ok": false,
+   "measured": "median 0.46 vs 0.29; rms 0.221 vs framework 0.162",
+   "load_bearing": true
+  },
+  "R4 the LCDM residual trend is >= 2.5 sigma for NFW and cored halos alike, the framework's is < 1.5 sigma": {
+   "ok": true,
+   "measured": "LCDM cored +3.0 sigma, NFW +3.0 sigma; framework +0.9 sigma",
+   "load_bearing": true
+  },
+  "R5 the framework's flat law sits 1.5-2 sigma from RC100's own inverted slope (reported, not hidden)": {
+   "ok": true,
+   "measured": "1.8 sigma",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "R1": {
+   "N": 100,
+   "median_all": 0.29000000000000004,
+   "median_lo": 0.38,
+   "median_hi": 0.27
+  },
+  "R2": {
+   "nu_RAR canonical": 0.2796015055133736,
+   "nu_RAR alt": 0.31315877615169596,
+   "simple nu canonical": 0.300919291096071,
+   "nu_RAR a0 = 1.2e-10": 0.32444963803478605
+  },
+  "R3": {
+   "L320 baseline: Moster+13, DM14 NFW, no cores": {
+    "median": 0.46117461919151415,
+    "rms": 0.22061549305906064,
+    "rank_corr": 0.5887548754875487
+   },
+   "halo mass -0.3 dex": {
+    "median": 0.4014554199473811,
+    "rms": 0.18956143301055112,
+    "rank_corr": 0.5886708670867087
+   },
+   "concentration x 0.7": {
+    "median": 0.375857846780883,
+    "rms": 0.1806178243259202,
+    "rank_corr": 0.5904350435043504
+   },
+   "coreNFW r_c = 1 R_e": {
+    "median": 0.394614957928508,
+    "rms": 0.1871850030720257,
+    "rank_corr": 0.5887548754875487
+   },
+   "coreNFW r_c = 2 R_e": {
+    "median": 0.28342282515481854,
+    "rms": 0.1682150055647142,
+    "rank_corr": 0.5887548754875487
+   }
+  },
+  "R4": {
+   "framework (nu_RAR, canonical)": {
+    "slope": 0.023036224989859865,
+    "err": 0.02561211771454335
+   },
+   "LCDM NFW baseline": {
+    "slope": 0.07731023171846778,
+    "err": 0.025958536814647944
+   },
+   "LCDM coreNFW 2 R_e": {
+    "slope": 0.07590918469919654,
+    "err": 0.025665074824264538
+   }
+  },
+  "R5": {
+   "sigma": 1.8064516129032258
+  }
+ },
+ "n_checks": 5,
+ "n_fail_load_bearing": 1
+}

@@ -1,0 +1,126 @@
+{
+ "lane": "L330",
+ "mutate": false,
+ "checks": {
+  "M1 every term of C-H's modification (2|DU-a|^2, 2 alpha^2 q(|DW_b|^2), the heat constraint with the intrinsic Delta_h, lambda_0(W_0-U), measure N sqrt h) is independent of the shift and of all time derivatives": {
+   "ok": true,
+   "measured": "leaf reduction True; shift-free True; time-derivative-free True; a = D ln N True",
+   "load_bearing": true
+  },
+  "M2 with GR's kinetic structure and a momentum-free extra sector the divergence of the momentum constraint is (1/2) d_t R3 with every shift term cancelled, so d_t[R3 - 16 pi G rho_m] = 0 for conserved matter (sign fixed by GR's Hamiltonian constraint, the C = 0 control of M3): the non-baryonic density seen by the leaf curvature is frozen": {
+   "ok": true,
+   "measured": "residual 0",
+   "load_bearing": true
+  },
+  "M3 in astra's block the lapse is set by the integration constant alone (phi = F(1+C)/C), the leaf potential is psi_N + F, and GR (C = 0) forces F = 0": {
+   "ok": true,
+   "measured": "phi = F + F/C; depends on the source: False; GR control -4*F*k**2",
+   "load_bearing": true
+  },
+  "M4 branch (b) -- dynamics responds through the lapse, the leaf curvature cannot -- puts the lensing RAR a factor ~2 below the dynamical RAR at KiDS accelerations; branch (a) generates no MOND at all": {
+   "ok": true,
+   "measured": "g_lens/g_dyn = [0.506, 0.518, 0.554, 0.65] (canonical); deepest offset -0.30 dex; a satellite leaves r_M in ~1 Myr",
+   "load_bearing": false
+  },
+  "M5 the preferred-frame safety the record certifies (alpha_1 = alpha_2 = 0 from shift-independence) and a co-moving phantom are exclusive for a momentum-free MOND sector": {
+   "ok": true,
+   "measured": "same fact (d L_extra/d N^i = 0) gives both; M1-M2 carry the frozen side",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "M1": {
+   "inverse": true,
+   "a_is_DlnN": true,
+   "measure": true,
+   "leaf_reduction": true,
+   "shift_free": true,
+   "time_derivative_free": true
+  },
+  "M2": {
+   "residual_lambda1": "0",
+   "lambda_used": "1",
+   "residual_used": "0"
+  },
+  "M3": {
+   "psi": "F - rho(t)/(4*k**2)",
+   "phi": "F + F/C",
+   "phi_depends_on_rho": false,
+   "GR_control": "-4*F*k**2"
+  },
+  "M4": {
+   "canonical": {
+    "r_M_kpc": {
+     "1e+07": 0.122,
+     "1e+09": 1.22,
+     "6e+10": 9.453
+    },
+    "kpc_per_Gyr": {
+     "100": 102.3,
+     "200": 204.6,
+     "370": 378.4
+    },
+    "g_lens_over_g_dyn": [
+     0.506,
+     0.518,
+     0.554,
+     0.65
+    ],
+    "offset_dex": [
+     -0.296,
+     -0.286,
+     -0.257,
+     -0.187
+    ]
+   },
+   "alt": {
+    "r_M_kpc": {
+     "1e+07": 0.111,
+     "1e+09": 1.112,
+     "6e+10": 8.612
+    },
+    "kpc_per_Gyr": {
+     "100": 102.3,
+     "200": 204.6,
+     "370": 378.4
+    },
+    "g_lens_over_g_dyn": [
+     0.505,
+     0.516,
+     0.549,
+     0.639
+    ],
+    "offset_dex": [
+     -0.297,
+     -0.287,
+     -0.26,
+     -0.194
+    ]
+   }
+  },
+  "M5": [
+   [
+    "C-H (astra, G03)",
+    "shift-free, no time derivatives (M1)",
+    "IN SCOPE: the phantom is initial data"
+   ],
+   [
+    "clock candidate MOND scalar (L279-L297)",
+    "leaf-projected Y = h dphi dphi; FINDINGS: T^phi_0i = 0",
+    "IN SCOPE for the scalar; khronon c_2 K^2 gives lambda - 1 = c_2 ~ 2.5e-5: a momentum channel, NOT computed (OPEN)"
+   ],
+   [
+    "AeST / v9 (vector)",
+    "shift-dependent aether kinetic terms",
+    "carries momentum; killed on alpha_1 = -2(K_B+2)"
+   ],
+   [
+    "dynamical QUMOND auxiliary",
+    "time derivative on the wrong-sign auxiliary",
+    "ghost (Theorem 8 / H045)"
+   ]
+  ]
+ },
+ "n_checks": 5,
+ "n_fail_load_bearing": 0
+}

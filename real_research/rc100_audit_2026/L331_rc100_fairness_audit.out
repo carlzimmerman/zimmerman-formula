@@ -1,0 +1,71 @@
+L331 -- THE RC100 FAIRNESS AUDIT: "the framework alone beats LCDM on RC100" does not survive a fair LCDM.
+What survives is a ~3 sigma lean in the REDSHIFT TREND against non-evolving LCDM halos, from one survey.
+
+THE CLAIM AUDITED
+  real_research/dark_sector_2026/L320 (README, and the CLOSURE_MAP 09-22 rung-10 line): on RC100 (Nestor Shachar
+  et al. 2023, ApJ 944, 78; 100 rotation curves, z = 0.6-2.5) the framework alone gives f_DM(<R_e) = 0.23-0.31
+  and a flat a0(z), matching the data's 0.29, while LCDM gives 0.38-0.49 and a rising trend -- "the framework
+  alone beats LCDM on both the level and the trend".  L320's LCDM is dark-matter-only NFW (Moster+13 halo masses,
+  Dutton-Maccio concentrations, no contraction, no cores) -- the baseline RC100's own authors say over-predicts
+  the inner dark matter and explain with cores.  The standing rule is never to say the data favour the framework
+  over LCDM without testing the claim as hard as a failure.
+
+========================================================================================================
+R1  THE DATA (Nestor Shachar+2023 table 3, as committed in real_research/data)
+========================================================================================================
+    N = 100;  median f_DM(<R_e): all 0.29;  z < 1.3: 0.38 (N=34);  z >= 1.3: 0.27 (N=66)
+  [PASS] R1 the table reproduces the paper's medians (0.38 at z~1, 0.27 at z~2)
+         measured: 0.38 / 0.27
+
+========================================================================================================
+R2  THE LEVEL IS NOT FRAMEWORK-SPECIFIC
+========================================================================================================
+    nu_RAR canonical       median f_DM 0.28
+    nu_RAR alt             median f_DM 0.31
+    simple nu canonical    median f_DM 0.30
+    nu_RAR a0 = 1.2e-10    median f_DM 0.32
+  [PASS] R2 every MOND variant (both footings, two kernels, constant a0 = 1.2e-10) lands within 0.05 of the data's 0.29
+         measured: 0.28, 0.31, 0.30, 0.32
+         reading:  the level match says RC100 sits on the z = 0 RAR; it does not single out a0 = kappa c sqrt(G rho_Lambda)
+
+========================================================================================================
+R3  LCDM VARIANTS: the L320 baseline and fairer halos
+========================================================================================================
+    L320 baseline: Moster+13, DM14 NFW, no cores  median 0.46  (z<1.3 0.50, z>=1.3 0.45);  rms 0.221;  rank corr +0.59
+    halo mass -0.3 dex                            median 0.40  (z<1.3 0.45, z>=1.3 0.40);  rms 0.190;  rank corr +0.59
+    concentration x 0.7                           median 0.38  (z<1.3 0.41, z>=1.3 0.37);  rms 0.181;  rank corr +0.59
+    coreNFW r_c = 1 R_e                           median 0.39  (z<1.3 0.44, z>=1.3 0.39);  rms 0.187;  rank corr +0.59
+    coreNFW r_c = 2 R_e                           median 0.28  (z<1.3 0.32, z>=1.3 0.28);  rms 0.168;  rank corr +0.59
+    framework (nu_RAR, canonical)                 median 0.28;  rms 0.162;  rank corr +0.62
+  [PASS] R3 a cored LCDM halo (r_c = 2 R_e, one fitted choice) matches the level within 0.03 and the per-galaxy rms within 0.01 of the framework's
+         measured: median 0.28 vs 0.29; rms 0.168 vs framework 0.162
+         reading:  on the level, RC100 is a tie once LCDM is given the cores its authors invoke
+
+========================================================================================================
+R4  WHAT SURVIVES: THE REDSHIFT TREND OF THE RESIDUAL (galaxy bootstrap)
+========================================================================================================
+    framework (nu_RAR, canonical)    d(f_model - f_data)/dz = +0.023 +/- 0.026  (+0.9 sigma)
+    LCDM NFW baseline                d(f_model - f_data)/dz = +0.077 +/- 0.026  (+3.0 sigma)
+    LCDM coreNFW 2 R_e               d(f_model - f_data)/dz = +0.076 +/- 0.026  (+3.0 sigma)
+  [PASS] R4 the LCDM residual trend is >= 2.5 sigma for NFW and cored halos alike, the framework's is < 1.5 sigma
+         measured: LCDM cored +3.0 sigma, NFW +3.0 sigma; framework +0.9 sigma
+         reading:  a ~3 sigma lean against NON-EVOLVING halos; cores whose size grows with z are one more free function, untested here
+
+========================================================================================================
+R5  THE FRAMEWORK'S OWN TENSION WITH THE DATA SLOPE
+========================================================================================================
+    flat a0(z) vs the data's inverted slope -0.112 +/- 0.062: 1.8 sigma
+  [PASS] R5 the framework's flat law sits 1.5-2 sigma from RC100's own inverted slope (reported, not hidden)
+         measured: 1.8 sigma
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  RC100's level of inner dark matter (0.29) is what any MOND on the z = 0 RAR predicts (R2), and a cored LCDM halo
+  matches it as well as the framework does (R3).  The claim "the framework alone beats LCDM on RC100" rests on a
+  dark-matter-only NFW baseline and does not survive.  What survives is the redshift trend: LCDM halos that do not
+  evolve leave a residual rising at ~3 sigma, cored or not, while the framework's residual is flat to 0.9 sigma
+  (R4) and the framework itself is 1.8 sigma from the data slope (R5).  Fair wording: RC100 is consistent with the
+  z = 0 RAR and disfavours non-evolving LCDM halos at ~3 sigma in the trend -- one survey, model-dependent f_DM.
+
+  5/5 checks pass; load-bearing failures: 0; wrote L331_rc100_fairness_audit_results.json

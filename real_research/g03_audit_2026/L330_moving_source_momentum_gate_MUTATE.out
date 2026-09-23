@@ -1,0 +1,85 @@
+L330 -- THE MOVING-SOURCE GATE: a MOND sector that carries no momentum cannot carry a phantom that follows
+matter.  astra's C-H realises the T-B static functional only as INITIAL DATA, under either causality criterion.
+
+THE QUESTION THE RECORD HAD NOT RUN
+  G03's candidate C-H (qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/ACTION.md) reproduces the
+  T-B static functional on a stationary branch with the shift set to zero.  Its static gates (Cassini via T-B,
+  lensing = dynamics at leading static order) are real.  L318 reduced its remaining causal question to a choice
+  of criterion.  Nobody asked whether the static MOND solution is REACHED: does the phantom form as a galaxy
+  assembles, and does it follow a galaxy that moves?  astra's ACTION.md (lines 248-274) found, in a truncated
+  constant-background block, that "the modified static branch depends on a spatial integration function F; it is
+  not selected by the instantaneous source", and FULL_VARIATION.md sec. 3 found a conserved datum
+  (partial_t delta C = 0) in the exact spherical equations.  Both were left as "initial-data content".  This lane
+  draws the physical consequence and shows it does not depend on the truncation.
+
+  *** MUTATE=1: the extra sector is given a momentum channel; the frozen-density checks must FAIL ***
+
+========================================================================================================
+M1  C-H's MODIFICATION IS SHIFT-INDEPENDENT AND FREE OF TIME DERIVATIVES (unitary gauge, symbolic)
+========================================================================================================
+    ADM inverse verified: True;  a_mu = D_mu ln N: True;  n.a = 0;  sqrt(-g) = N sqrt(gamma): True
+    h(DU - a)^2 and h dW dW reduce to the leaf forms: True;  shift absent: True;  dU/dt, dW/dt absent: True
+  [PASS] M1 every term of C-H's modification (2|DU-a|^2, 2 alpha^2 q(|DW_b|^2), the heat constraint with the intrinsic Delta_h, lambda_0(W_0-U), measure N sqrt h) is independent of the shift and of all time derivatives
+         measured: leaf reduction True; shift-free True; time-derivative-free True; a = D ln N True
+         reading:  the (n,i) equation is GR's momentum constraint with matter momentum only, on every background and to all orders in the MOND nonlinearity (astra's FULL_VARIATION sec. 2: G_ni = 8 pi G T_m,ni)
+
+========================================================================================================
+M2  THE FROZEN-DENSITY IDENTITY: div(momentum constraint) = (1/2) d_t R3, every shift term cancels
+========================================================================================================
+    GR kinetic structure (lambda = 1):   div MC - (1/2) d_t R3 = 0
+    control, lambda = 1 + 1e-5:          residual = (1 - lambda) lap K  (contains the shift: True)
+    used in this run (lambda = 100001/100000): residual zero: False; shift present: True
+  [FAIL] M2 with GR's kinetic structure and a momentum-free extra sector the divergence of the momentum constraint is (1/2) d_t R3 with every shift term cancelled, so d_t[R3 - 16 pi G rho_m] = 0 for conserved matter (sign fixed by GR's Hamiltonian constraint, the C = 0 control of M3): the non-baryonic density seen by the leaf curvature is frozen
+         measured: residual nonzero, contains the shift
+         reading:  rho_dark = R3/(16 pi G) - rho_m cannot change unless the extra sector carries momentum; the control (lambda != 1) shows the identity can fail
+
+========================================================================================================
+M3  astra's TRUNCATED BLOCK (ACTION.md L_2), REPRODUCED: the MOND lapse is the integration constant
+========================================================================================================
+    momentum constraint integrated: psi = F + (-C - 1)*rho(t)/(4*k**2)
+    U = phi(t)/(C + 1);   lapse phi = -C*rho(t)/(4*k**2) + F - rho(t)/(4*k**2) + F/C   (depends on rho: True)
+    GR control C = 0: lapse equation becomes -4*F*k**2 = 0  => F = 0
+  [FAIL] M3 in astra's block the lapse is set by the integration constant alone (phi = F(1+C)/C), the leaf potential is psi_N + F, and GR (C = 0) forces F = 0
+         measured: phi = -C*rho(t)/(4*k**2) + F - rho(t)/(4*k**2) + F/C; depends on the source: True; GR control -4*F*k**2
+         reading:  astra's 'integration function F' is the frozen rho_dark of M2, seen in one Fourier block; M1-M2 show it survives the background stresses and mixing the block omits, because none of them enters the momentum constraint
+
+========================================================================================================
+M4  WHAT THE FROZEN PHANTOM COSTS: formation, motion, and the lensing/dynamics dichotomy (both footings)
+========================================================================================================
+  canonical a0 = 9.3619e-11:  r_M = 0.12 / 1.22 / 9.5 kpc for M_b = 1e7 / 1e9 / 6e10 Msun
+            displacement at 100 / 200 / 370 km/s: 102 / 205 / 378 kpc per Gyr
+            branch (b), KiDS g_bar = 1.2e-14..1.2e-11: g_lens/g_dyn = 0.506, 0.518, 0.554, 0.650  (-0.30, -0.29, -0.26, -0.19 dex)
+  alt       a0 = 1.1279e-10:  r_M = 0.11 / 1.11 / 8.6 kpc for M_b = 1e7 / 1e9 / 6e10 Msun
+            displacement at 100 / 200 / 370 km/s: 102 / 205 / 378 kpc per Gyr
+            branch (b), KiDS g_bar = 1.2e-14..1.2e-11: g_lens/g_dyn = 0.505, 0.516, 0.549, 0.639  (-0.30, -0.29, -0.26, -0.19 dex)
+    a 1e7 Msun satellite at 150 km/s leaves its own r_M in 0.8 / 0.7 Myr (canonical / alt); a Milky-Way pair at 200 km/s relative leaves r_M = 9.5 kpc in 46 Myr
+  [FAIL] M4 branch (b) -- dynamics responds through the lapse, the leaf curvature cannot -- puts the lensing RAR a factor ~2 below the dynamical RAR at KiDS accelerations; branch (a) generates no MOND at all
+         measured: g_lens/g_dyn = [0.506, 0.518, 0.554, 0.65] (canonical); deepest offset -0.30 dex; a satellite leaves r_M in ~1 Myr
+         reading:  a consequence, not a data test: KiDS-1000 (Brouwer+2021) finds the lensing RAR on the dynamical one at a0 ~ 1.2e-10, and a 0.3 dex deficit is not what they report (a formal sigma needs the per-bin data, not in the repository).  The normals form one irrotational congruence; two members of a pair, a satellite and its host, or cluster members moving through one another cannot all be at rest in it, and they cross their own r_M in ~1-50 Myr, far inside a Hubble time
+
+========================================================================================================
+M5  THE PINCER AND ITS SCOPE
+========================================================================================================
+    C-H (astra, G03)                           | shift-free, no time derivatives (M1)                 | IN SCOPE: the phantom is initial data
+    clock candidate MOND scalar (L279-L297)    | leaf-projected Y = h dphi dphi; FINDINGS: T^phi_0i = 0 | IN SCOPE for the scalar; khronon c_2 K^2 gives lambda - 1 = c_2 ~ 2.5e-5: a momentum channel, NOT computed (OPEN)
+    AeST / v9 (vector)                         | shift-dependent aether kinetic terms                 | carries momentum; killed on alpha_1 = -2(K_B+2)
+    dynamical QUMOND auxiliary                 | time derivative on the wrong-sign auxiliary          | ghost (Theorem 8 / H045)
+  [FAIL] M5 the preferred-frame safety the record certifies (alpha_1 = alpha_2 = 0 from shift-independence) and a co-moving phantom are exclusive for a momentum-free MOND sector
+         measured: same fact (d L_extra/d N^i = 0) gives both; M1-M2 carry the frozen side
+         reading:  a G03 candidate must carry the phantom's momentum through a shift-dependence that vanishes in the Solar System (e.g. proportional to nu - 1) without the ghost of a dynamical QUMOND auxiliary
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  C-H's modification is independent of the shift and of every time derivative (M1), so its momentum constraint
+  is GR's with matter alone, and the non-baryonic density seen by the preferred leaves' curvature is conserved
+  (M2).  astra's integration function F is that density (M3).  The static MOND solution of C-H is therefore a
+  choice of initial data: a galaxy that assembles from near-uniform data forms no phantom in the leaf curvature,
+  and a phantom present at t0 cannot follow a source that moves relative to the normal congruence (M4).  Either
+  the dynamics is unmodified too (no MOND is ever generated), or lensing sees about half of what the dynamics
+  does; both fail gates the record already holds.  This is independent of the causality criterion L318 left to
+  decide: under (B) C-H survives causality and still fails here.  The shift-independence that fails this gate is
+  the same property that passes alpha_1 = alpha_2 (M5).  G03 stays open only for a construction that carries the
+  phantom's momentum; the L297 khronon channel is the one such channel on the record and is not computed here.
+
+  1/5 checks pass; load-bearing failures: 2; wrote L330_moving_source_momentum_gate_results_MUTATE.json
