@@ -1,0 +1,62 @@
+{
+  "artifact": "I21_ym1_polymer_threshold.lean",
+  "audit_date": "2026-09-23T19:52:46Z",
+  "status": "PASS",
+  "lane": "ym_door_swings_2026_09_22/ym1_hamiltonian (D-YM1)",
+  "lean_available": "yes",
+  "lean_version": "4.34.0-rc2 (arm64-apple-darwin), lake 5.0.0-src+6a10ac8",
+  "toolchain": "leanprover/lean4:v4.34.0-rc2 (matches lean-toolchain and lakefile mathlib rev)",
+  "compile_method": "lake env lean <file>.lean",
+  "compile_exit_code": 0,
+  "compile_seconds": 29,
+  "sorries": 0,
+  "axioms": ["propext", "Classical.choice", "Quot.sound"],
+  "axiom_check": "unfiltered #print axioms per theorem; exactly the standard three, no sorryAx",
+  "theorems": {
+    "count": 13,
+    "names": [
+      "I21.c_identity",
+      "I21.kappa_le_Kstar",
+      "I21.tree_supersolution",
+      "I21.KP_a2_identity",
+      "I21.kappaB_lt",
+      "I21.boundary_supersolution",
+      "I21.path_ratio",
+      "I21.exp_neg_a1_lower",
+      "I21.eps_uniform",
+      "I21.X2",
+      "I21.X3",
+      "I21.X4",
+      "I21.gap_conversion"
+    ]
+  },
+  "door_claims_checked": {
+    "X3_uniform_in_N": 185.3,
+    "X2": 131.1,
+    "X4": 227.0,
+    "X_d_sufficient_not_optimal": true,
+    "gap_lower_bound": "3x/16",
+    "uniformity_lemma": "eps_uniform: N>=2, b_N<=2N => lambda/C_F <= 32/(3x^2)",
+    "kp_criterion_formalized": "KP_a2_identity (2(d-1)R = a2 at lambda = lambda_*(d)); kappa <= K*; tree supersolution; kappaB <= 0.95 K*; g=3/25 supersolution; path step 7g/(1+g) < 1"
+  },
+  "scope_limit": "Analytic leaves NOT formalized (prose + two referee passes, REVIEW.md): Dyson expansion, polymer factorisation Lemma 4.1, section-5 tree bounds, Ueltschi 2004 Theorem 1 (Kotecky-Preiss theorem itself), section-7 boundary-component argument. I21 certifies the tracked-constant scalar/polymer-threshold arithmetic.",
+  "companions": {
+    "I21_ym1_combinatorics.lean": {"exit_code": 0, "sorries": 0, "axioms": ["propext", "Classical.choice", "Quot.sound"], "scope": "BDL-extension combinatorial skeleton (ym1_bdl_extension_2026 lane)"},
+    "I22_ym1_dobrushin.lean": {"exit_code": 0, "sorries": 0, "axioms": ["propext", "Classical.choice", "Quot.sound"], "scope": "Euclidean door (ym1_euclidean): Dobrushin mass-gap arithmetic"}
+  },
+  "verdict": "COMPILES CLEAN, zero sorry, standard three axioms only. I21 extends the ym1_hamiltonian PROOF.md result (x >= X_d => gap >= 3x/16, uniform in N, b_N <= 2N) by formalizing the polymer sum-of-weights/Kotecky-Preiss threshold algebra with tracked constants; the cluster-expansion theorem itself remains prose per the file's declared scope.",
+  "honest_edges": [
+    "PASS is for the scalar chain only; Ueltschi 2004 Theorem 1 and the analytic lemmas are cited prose, not formalized",
+    "Thresholds are PROOF.md's rounded-up sufficient values (131.02 -> 131.1); I21 certifies 1311/10, 1853/10, 227",
+    "File is uncommitted (untracked in git), as stated in the task",
+    "lean_2026 mathlib oleans were restored from the local mathlib cache (~/.cache/mathlib) before compiling",
+    "Fresh compile logs written alongside pre-existing .out artifacts: I21_ym1_polymer_threshold.audit.out, I21_ym1_combinatorics.audit.out, I22_ym1_dobrushin.audit.out"
+  ],
+  "files_written": [
+    "deepseek_push/I21_VERDICT.md",
+    "deepseek_push/I21_results.json",
+    "fable_independent_2026/lean_2026/I21_ym1_polymer_threshold.audit.out",
+    "fable_independent_2026/lean_2026/I21_ym1_combinatorics.audit.out",
+    "fable_independent_2026/lean_2026/I22_ym1_dobrushin.audit.out"
+  ]
+}

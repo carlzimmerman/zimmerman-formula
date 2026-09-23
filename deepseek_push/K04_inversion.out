@@ -1,0 +1,68 @@
+========================================================================================
+K04 OPACITY INVERSION + THREE-OBSERVABLE TEST  (family kappa = tau0(1+q r^2), T=1, central)
+========================================================================================
+
+[0] Surface validation -- closed-form O(tau0^2) coefficient c2
+  q=0.0: c2 analytic=+0.38145656  solver fit=+0.38149269  rel=3.61e-05  PASS
+  q=3.0: c2 analytic=+2.06895656  solver fit=+2.06960946  rel=3.16e-04  PASS
+
+[1] Surface grid certification (science 700x72 vs hi-res 1000x88)
+  tau0=1.0 q=3.0: E[N]science=4.369573 E[N]hires=4.369594 rel=4.74e-06 PASS
+  tau0=1.0 q=10.0: E[N]science=18.688512 E[N]hires=18.688942 rel=2.30e-05 PASS
+
+[2] Cloud C1: tau0=1.0 q=0.0 n=1000000 seed=101
+    engine run: 2.7s
+    B1_Ev2_2Eang: z= 0.08 PASS
+    B2_Eang_EN: z= 0.16 PASS
+    A_atom_law: z= 1.33 PASS
+    D_mean_law: z= 0.73 PASS
+    INVERSION: tau0_hat=1.00316 +/- 0.00487 (z= 0.65)  q_hat=-0.00423 +/- 0.01011 (z= 0.42)  PASS
+    surface@true: E[N]=1.403370 vs engine 1.403986+-0.00163 z= 0.36 PASS  (50it 13s)
+    THIRD OBSERVABLE: measured E[v^2]=2.8101+-0.0077 | predicted 2*E[N](tau0h,qh)=2.8125+-0.0159 | z= 0.11  PASS
+
+[2] Cloud C2: tau0=1.0 q=3.0 n=1000000 seed=102
+    engine run: 7.9s
+    B1_Ev2_2Eang: z= 0.57 PASS
+    B2_Eang_EN: z= 0.06 PASS
+    A_atom_law: z= 0.79 PASS
+    D_mean_law: z= 0.10 PASS
+    INVERSION: tau0_hat=1.00656 +/- 0.00930 (z= 0.71)  q_hat=+2.96687 +/- 0.04620 (z= 0.72)  PASS
+    surface@true: E[N]=4.369573 vs engine 4.371306+-0.00423 z= 0.38 PASS  (59it 14s)
+    THIRD OBSERVABLE: measured E[v^2]=8.7248+-0.0202 | predicted 2*E[N](tau0h,qh)=8.7430+-0.1250 | z= 0.12  PASS
+
+[2] Cloud C3: tau0=1.0 q=10.0 n=1000000 seed=103
+    engine run: 33.3s
+    B1_Ev2_2Eang: z= 1.24 PASS
+    B2_Eang_EN: z= 0.09 PASS
+    A_atom_law: z= 0.89 PASS
+    D_mean_law: z= 0.92 PASS
+    INVERSION: tau0_hat=1.03297 +/- 0.02823 (z= 1.17)  q_hat=+9.60748 +/- 0.31736 (z= 1.24)  PASS
+    surface@true: E[N]=18.688512 vs engine 18.675377+-0.01539 z= 0.79 PASS  (113it 25s)
+    THIRD OBSERVABLE: measured E[v^2]=37.2224+-0.0760 | predicted 2*E[N](tau0h,qh)=37.3424+-1.8276 | z= 0.06  PASS
+
+[2] Cloud C4: tau0=2.0 q=3.0 n=1000000 seed=104
+    engine run: 24.9s
+    B1_Ev2_2Eang: z= 0.21 PASS
+    B2_Eang_EN: z= 0.03 PASS
+    A_atom_law: z= 0.55 PASS
+    D_mean_law: z= 0.57 PASS
+    INVERSION: tau0_hat=1.98277 +/- 0.02367 (z= 0.73)  q_hat=+3.04600 +/- 0.06040 (z= 0.76)  PASS
+    surface@true: E[N]=13.960521 vs engine 13.970531+-0.01140 z= 0.81 PASS  (110it 25s)
+    THIRD OBSERVABLE: measured E[v^2]=27.9249+-0.0571 | predicted 2*E[N](tau0h,qh)=27.9277+-0.5753 | z= 0.00  PASS
+
+[2] Cloud C5: tau0=0.5 q=2.0 n=1000000 seed=105
+    engine run: 2.4s
+    B1_Ev2_2Eang: z= 0.26 PASS
+    B2_Eang_EN: z= 0.03 PASS
+    A_atom_law: z= 0.34 PASS
+    D_mean_law: z= 0.04 PASS
+    INVERSION: tau0_hat=0.50104 +/- 0.00457 (z= 0.23)  q_hat=+1.99195 +/- 0.03694 (z= 0.22)  PASS
+    surface@true: E[N]=1.192026 vs engine 1.191816+-0.00153 z= 0.13 PASS  (63it 16s)
+    THIRD OBSERVABLE: measured E[v^2]=2.3865+-0.0071 | predicted 2*E[N](tau0h,qh)=2.3850+-0.0272 | z= 0.04  PASS
+
+[3] Thin-cloud check: surface vs engine at tau0=0.05, q=0, n=4e6
+    surface E[N]=0.050957 engine 0.050942+-0.00011 z= 0.13 PASS  (leading 0.05, c2*tau0^2=0.000954)
+
+========================================================================================
+VERDICT: ALL CHECKS PASS
+========================================================================================

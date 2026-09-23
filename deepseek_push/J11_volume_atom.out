@@ -1,0 +1,99 @@
+==========================================================================
+J11 -- VOLUME ATOM: quadrature vs engine (q=0, volume src)
+==========================================================================
+  tau0=0.5: MC 0.70743 vs quadrature 0.70728  z=0.21
+  tau0=1.0: MC 0.52793 vs quadrature 0.52725  z=0.86
+  tau0=2.0: MC 0.33297 vs quadrature 0.33242  z=0.74
+  tau0=3.0: MC 0.23674 vs quadrature 0.23635  z=0.58
+--------------------------------------------------------------------------
+V2: q-dependence of the volume atom (tau0=1)
+  q=   0: MC 0.52684 vs quadrature 0.52725  z=0.52
+  q=   3: MC 0.23119 vs quadrature 0.23009  z=1.64
+  q=  10: MC 0.07794 vs quadrature 0.07838  z=1.02
+--------------------------------------------------------------------------
+V3: volume window -ln A_vol / E[D]_vol (tau0=1)
+  q=   0: A=0.52772  E[D]vol=0.3369  -lnA/E[D] = 1.8970
+  q=   3: A=0.22953  E[D]vol=0.8604  -lnA/E[D] = 1.7104
+  q=  10: A=0.07854  E[D]vol=1.9359  -lnA/E[D] = 1.3142
+  volume window shape: q=0 -> 1.897, q=10 -> 1.314 (central: 2.002 -> 1.441)
+--------------------------------------------------------------------------
+V4: J10-I with volume geometry (A2744-QSO1 numbers)
+  A_vol(q=0) = 0.52670
+  J10-I_vol(R=45 ld) = -1.719  (central value was 1.818; falsifier must use the volume window)
+  J10-I_vol(R=941 AU) = -14.233
+{
+ "checks": {
+  "V1_tau5": true,
+  "V1_tau10": true,
+  "V1_tau20": true,
+  "V1_tau30": true,
+  "V2_q0": true,
+  "V2_q3": true,
+  "V2_q10": true,
+  "V3_reported": true
+ },
+ "measurements": {
+  "V1_tau5": {
+   "A_mc": 0.70743,
+   "A_quad": 0.70728,
+   "z": 0.21
+  },
+  "V1_tau10": {
+   "A_mc": 0.52793,
+   "A_quad": 0.52725,
+   "z": 0.86
+  },
+  "V1_tau20": {
+   "A_mc": 0.33297,
+   "A_quad": 0.33242,
+   "z": 0.74
+  },
+  "V1_tau30": {
+   "A_mc": 0.23674,
+   "A_quad": 0.23635,
+   "z": 0.58
+  },
+  "V2_q0": {
+   "A_mc": 0.52684,
+   "A_quad": 0.52725,
+   "z": 0.52
+  },
+  "V2_q3": {
+   "A_mc": 0.23119,
+   "A_quad": 0.23009,
+   "z": 1.64
+  },
+  "V2_q10": {
+   "A_mc": 0.07794,
+   "A_quad": 0.07838,
+   "z": 1.02
+  },
+  "V3_window": {
+   "0.0": {
+    "A": 0.52772,
+    "d_bar": 0.3369,
+    "ratio": 1.897
+   },
+   "3.0": {
+    "A": 0.22953,
+    "d_bar": 0.8604,
+    "ratio": 1.7104
+   },
+   "10.0": {
+    "A": 0.07854,
+    "d_bar": 1.9359,
+    "ratio": 1.3142
+   }
+  },
+  "V4": {
+   "A_vol": 0.5267,
+   "J10I_vol_at_R45ld": -1.719,
+   "J10I_vol_at_R941AU": -14.233,
+   "note": "volume window differs from central [4/3,2]; central J10-I at 45 ld was 1.818"
+  }
+ },
+ "total_checks": 8,
+ "passed": 8,
+ "ALL_PASSED": true
+}
+ALL J11 CHECKS PASSED

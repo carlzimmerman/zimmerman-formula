@@ -1,0 +1,48 @@
+{
+ "lane": "K06_METHODS_NOTES",
+ "title": "The scattering transfer function and its exact moment structure (observer-facing methods notes, JWST-LRD)",
+ "classification": "PROVEN model-exact: A1 E[D]=int r kappa dr (THEOREM.md Thm1); A2 E[D v^{2m}]=(2m-1)!!2^m E[D ang^m] (J01/J02/J09, m=1..5); A3 marginal relations incl. exposure identity; A4 atom A=exp(-tau0(1+q/3)) and universal ratio window -ln A/dbar in [4/3,2] (J09, 6/6 C-checks); A5 E[D^2]>=3E[Dv^2]^2/E[v^4] (J05/J06); A6 coherence envelopes T3/T3'/T3'' (J07 20/20); A7 exact 2-way inversion. MODEL-INTERNAL: B1 lag-width band (uniform+isothermal; q=99 and volume fail adversarially at 96.8/63.8 sigma); B2 volume-source face E[D]_vol=E[tau]_vol-E[Q]; B3 MC moments with SE; B4 closure ratios R_m=2.64/3.57/4.56 (q=0); B5 slack 1.06-1.25 (toy attains 1.000); B6 E[N](tau0,q) map (K04 delegation for q>0). NEW-OBSERVABLE: C1-C3 (density-free width bound, joint hierarchy consistency family, line-moment-only coherence envelope).",
+ "headline_numbers": {
+  "atom_A_tau1_q0": "0.3679 (meas 0.3683, |resid| 4e-4)",
+  "ratio_window_measured": "2.002 / 1.441 / 1.598 vs exact 2.000 / 1.444 / 1.600",
+  "hierarchy_ratios_q0": "R1 2.635 (R1_J01 2.6446+-0.018), R2 3.574, R3 4.563",
+  "E_D2_bound": "E[D^2]=0.7651 vs 3E[Dv^2]^2/E[v^4]=0.6141, slack 1.25 (J05); J06 sharpened slack 1.2430+-0.0006; toy slack=1.00000 attained",
+  "coherence": "at w E[D]=0.25 (w=0.50 model): |H|_meas 0.9413 >= T3' 0.9045 >= T3'' 0.9235 >= T3 0.7501; w* = 2E[D]/E[D^2] = 1.31; asymp slope 3.99",
+  "inversion_recovery": "(1,0)->(1.000,0.000); (1,10)->(1.000,10.00); (2,3)->(2.000,3.000) from exact closed forms",
+  "q0_E_v2_band": "E[v^2]/s_e^2 in [tau0^2, tau0^2+2 tau0] = [1,3] at tau0=1 (measured 2.8061, b=E[mu_exit]=0.9031)",
+  "reference_MC": "E[D]=0.5008+-0.0007 (n=1e6), E[v^2]=2.8061, E[Dv^2]=3.7316+-0.027, E[v^4]=67.05 (J01/J02 n=5e5-1e6)"
+ },
+ "falsifiers": [
+  "F1 atom spike: A_meas vs exp(-tau0(1+q/3)); verified |resid|<=4e-4 (tol 5e-3); kill: >=3sigma with tau_rad from F2/F6 also violated",
+  "F2 lag: E[D]=(1/c)int r kappa dr, all orders; non-circular test = lag-width band F2b: cE[D]/R in [(sqrt(1+sigma_sc^2/s_e^2)-1)/2, sigma_sc/(2 s_e)] (uniform+isothermal); q=99 gradient fails band at 96.8 MC-sigma",
+  "F3 hierarchy ratios: R_m^{(obs)} = E[Dv^{2m}]/((2m-1)!!2^m E[D] E[ang^m]) must equal R_m(q_inv); at q=0 R = 2.64/3.57/4.56 (>=5sigma separations); kill: joint >=3sigma violation",
+  "F4 E[D^2] bound: E[D^2] >= 3E[Dv^2]^2/E[v^4], theorem-rigid Cauchy-Schwarz, density-free; slack 1.06-1.25; kill: E[D^2] below bound at >=3sigma kills Thomson reading for ANY density",
+  "F5 coherence envelope: |H(w)| >= max(0,1-w^2 E[D^2]/2) >= max(0,1-w^2 L/2), L=3E[Dv^2]^2/E[v^4]; verified 20/20 at w E[D] in [0.25,2]; kill: |H| below line-moment floor >=3sigma at w E[D] < 1.5",
+  "F6 ratio window: -ln A/dbar in [4/3,2] exactly (q>=0 central, opacity-free, endpoints q=0->2, q->inf->4/3); measured 2.002/1.441/1.598 within +-0.02; kill: outside [4/3,2] at >=3sigma kills for ANY opacity",
+  "F7 geometry guard: volume/thick-shell source must use B2 correction E[D]_vol=E[tau]_vol-E[Q]; central identity on shell emitter wrong by E[Q]+(1/2)E[F(r0)] (measured 0.3376 vs 0.5008, >8sigma)"
+ ],
+ "physical_scale_numbers": [
+  "R/c = 469563.5 s = 5.4348 d for R=941 AU",
+  "s_e = 389.31 km/s at T_e=10^4 K",
+  "sigma = W/(sqrt(2) ln 2) = 2040.3 km/s for W=2000 km/s full-Laplace FWHM (frozen conversion)",
+  "lag band cE[D]/R in [11.781, 14.241] days (result.json 11.7806/14.2411)",
+  "coherence floor at P=200 d: |H| >= 0.5526 (result.json)",
+  "radius needed to permit 10x suppression at 200 d: 1892.95 AU",
+  "worked (tau0=1,q=0): E[D]=2.72 d (=R/2c), A=0.368, RMS v=652 km/s, E[D^2]^1/2=4.75 d, sigma_D=3.90 d, E[Dv^2]=3.07e6 d (km/s)^2, bound 18.1 d^2 vs E[D^2] 22.6 d^2 (slack 1.25)",
+  "worked (tau0=1,q=10): E[D]=16.31 d, A=0.0131, RMS v=2380 km/s, E[D^2]^1/2=21.9 d, E[Dv^2]=1.59e8 d (km/s)^2, slack 1.06",
+  "worked (tau0=2,q=3): E[D]=13.59 d, A=0.0183, RMS v=2058 km/s, E[D^2]^1/2=18.2 d, E[Dv^2]=9.9e7 d (km/s)^2, slack 1.07"
+ ],
+ "inversion_recipe": "measure (A, E[D]) -> a=-ln A, d=c E[D]/R -> q=(6a-12d)/(4d-3a), tau0=a/(1+q/3) (exact, unique for q>=0; domain d/a in [1/2,3/4] = F6 window) -> E[v^2] = 2 s_e^2 E[N](tau0,q); q=0 closed: E[N]=tau0^2/2+tau0 b, b in [0,1] -> band; q>0 branch delegated to the K04 inversion ledger (not present in repo as of this writing)",
+ "verified": "35/35 three-engine MC (frozen transport.py, J01, J02) + J05 4-cloud bound + J06 n=1.2e6 sharpened + J07 20/20 envelopes + J09 19/20 (A5 volume m=5 chi2_1 tail check failed its budget; C-checks 6/6) + J04 S1 deterministic P_N (E[D] to 1.2%)",
+ "falsifier": "battery F1-F7 as listed; any >=3-sigma violation with model conditions verified (stationarity, conservatism, central-source geometry or B2 correction, isothermality where stated) kills the conservative Thomson-scattering interpretation; F4 and F6 are density- and opacity-independent respectively",
+ "status": "K06 LANDED: observer-facing methods notes + results JSON published; no git commit",
+ "files": [
+  "deepseek_push/K06_METHODS_NOTES.md",
+  "deepseek_push/K06_results.json"
+ ],
+ "files_written": [
+  "deepseek_push/K06_METHODS_NOTES.md",
+  "deepseek_push/K06_results.json"
+ ],
+ "verdict": "LANDED — all requested sections delivered with every number traceable to committed repo files (THEOREM.md, density_free/verify.py, certified/result.json, J01/J02/J05/J06/J07/J09); classification done in the K01 discipline since K01_TAUTOLOGY_AUDIT.md does not exist; K01-K05 K-series files absent; K04 cited as the designated-not-yet-committed inversion ledger"
+}

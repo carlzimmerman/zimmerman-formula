@@ -1,0 +1,170 @@
+{
+ "audit": "N05_AUDIT",
+ "date": "2026-09-23",
+ "auditor": "independent subagent (audit lane, not the author)",
+ "target": "N05_window_theorem_results.json (repo root, untracked)",
+ "generating_script": "deepseek_push/navier_stokes_attempt/N05_window_theorem.py (committed 2026-09-17, sha256 1c3f6301bafb434bfffbc8bba0a9c1fc5957526bbc778b9eb8b49ab1133cc471; unmodified since)",
+ "target_sha256": "67dba8442ee476bc0d1050ad56f159376aed52713578c0f7b96d00b0a3ae4463",
+ "claim": "if a smooth solution of classical 3D periodic NSE has sup|Du/Dt| <= a0*(7/2) on its maximal lifespan, then it is globally smooth (trajectory bound + Prodi-Serrin continuation); corollary: singularity requires leaving the window |Du/Dt| > 3.2767e-10 m/s^2. Honesty box: conditional, not the Clay problem; Serrin cited not derived; simulations are evidence not proofs.",
+ "rerun": {
+  "method": "exact committed script copied to /tmp, run twice with python3 + numpy 1.26.4 only: (A) with the lane's N05_WINDOW_THEOREM.md beside the script (lane-CWD condition); (B) without sibling md/py (simulating the repo-root CWD that produced the root artifact). Inputs are fully deterministic (rng seed 11 / galerkin seeds 3, 7; no RNG state from elsewhere).",
+  "run_A_withmd": {
+   "checks_pass": 17,
+   "n_checks": 17,
+   "diffs_vs_committed_lane_json": 0
+  },
+  "run_B_nomd": {
+   "checks_pass": 15,
+   "n_checks": 17,
+   "diffs_vs_root_json": 2,
+   "diff_paths": [
+    ".checks[10].note",
+    ".checks[10].pass"
+   ],
+   "explanation": "root artifact had G23a/G23b FAIL (md file unreadable at CWD) and G23c FAIL (py file unreadable at CWD): it was generated with the script run from a directory lacking the two sibling files. Every other field -- all constants, the 8-class catalog, both Galerkin runs, and G21/G22/G24/G25 check values -- is BIT-IDENTICAL to the root artifact."
+  }
+ },
+ "per_check": [
+  {
+   "name": "G21a_a0_constant",
+   "root_pass": true,
+   "canonical_pass": true,
+   "canonical_value": "9.3619e-11"
+  },
+  {
+   "name": "G21b_floor_exact_7_over_2",
+   "root_pass": true,
+   "canonical_pass": true,
+   "canonical_value": "3.5"
+  },
+  {
+   "name": "G21c_ceiling_value",
+   "root_pass": true,
+   "canonical_pass": true,
+   "canonical_value": "3.276665e-10"
+  },
+  {
+   "name": "G21d_bound_10Gyr",
+   "root_pass": true,
+   "canonical_pass": true,
+   "canonical_value": "1.0340e+08"
+  },
+  {
+   "name": "G21e_bound_loose_but_finite",
+   "root_pass": true,
+   "canonical_pass": true,
+   "canonical_value": "0.3449 c"
+  },
+  {
+   "name": "G22a_trajectory_inequality_exact",
+   "root_pass": true,
+   "canonical_pass": true,
+   "canonical_value": "0.000e+00"
+  },
+  {
+   "name": "G22b_synthetic_constant_cap",
+   "root_pass": true,
+   "canonical_pass": true,
+   "canonical_value": "0.000e+00"
+  },
+  {
+   "name": "G22c_synthetic_modulated_cap",
+   "root_pass": true,
+   "canonical_pass": true,
+   "canonical_value": "0.000e+00"
+  },
+  {
+   "name": "G23a_md_contains_Serrin",
+   "root_pass": false,
+   "canonical_pass": true,
+   "canonical_value": "Serrin/Serrin 1962"
+  },
+  {
+   "name": "G23b_md_criterion_and_citations",
+   "root_pass": false,
+   "canonical_pass": true,
+   "canonical_value": "all present"
+  },
+  {
+   "name": "G23c_py_contains_Serrin",
+   "root_pass": false,
+   "canonical_pass": true,
+   "canonical_value": "'Serrin' in N05_window_theorem.py"
+  },
+  {
+   "name": "G24a_mw_disk_eta_anchor",
+   "root_pass": true,
+   "canonical_pass": true,
+   "canonical_value": "2.019"
+  },
+  {
+   "name": "G24b_catalog_tag_consistency",
+   "root_pass": true,
+   "canonical_pass": true,
+   "canonical_value": "2 above floor"
+  },
+  {
+   "name": "G24c_catalog_coverage",
+   "root_pass": true,
+   "canonical_pass": true,
+   "canonical_value": "6 covered"
+  },
+  {
+   "name": "G25a_exit_threshold_numbers",
+   "root_pass": true,
+   "canonical_pass": true,
+   "canonical_value": "3.2767e-10"
+  },
+  {
+   "name": "G25b_window_class_blowup_attempt_fails",
+   "root_pass": true,
+   "canonical_pass": true,
+   "canonical_value": "excess 0.000e+00"
+  },
+  {
+   "name": "G25c_exit_diagnostic_recorded",
+   "root_pass": true,
+   "canonical_pass": true,
+   "canonical_value": "eta_max 52.29, t_exit 0.0"
+  }
+ ],
+ "load_bearing_numbers": [
+  "a0 = 9.3619e-11 m/s^2 (kappa = 1/2 canonical, MEASURED)",
+  "W = 7/2 = 3.5 exactly (measured floor; zero float error)",
+  "ceiling |Du/Dt|_max = a0*W = 3.276665e-10 m/s^2 (SPEC_B prints 3.2767e-10; rel diff 1.07e-05)",
+  "dU at 10 Gyr = a0*W*10 Gyr = 1.0340e8 m/s = 0.3449 c (G21d amendment: SPEC_B's 1.034e7 is the 1-Gyr value)",
+  "dU at 1 Gyr = 1.0340e7 m/s",
+  "measured window eta = [0.028, 0.203]",
+  "catalog etas (v^2/R/a0): 0.1557750756237723, 0.5538669355511904, 0.4984802419960714, 0.0865417086798735, 0.2596251260396205, 2.018611421737772 (window, THEOREM-COVERED); 31.15501512475446, 15.57750756237723 (above floor, CLAY-POSSIBLE); 6 covered / 2 above",
+  "MW disk anchor: a = 1.890e-10 m/s^2, eta = 2.019 in [1.8, 2.2]",
+  "G22 trajectory inequality |u(t)| <= |u(0)| + int|Du/Dt|: excess 0.000e+00 relative (16 RK4 trajectories x 20000 steps; constant and modulated synthetic caps also 0.000e+00)",
+  "galerkin W_window_class (n=16, nu=0.02, A=0.1, a0_sim=0.15, T=6.0, dt=1e-3, seed=3): sup0 0.20000000000000004, sup_max 0.4200910740917166, eta_max 1.081142934322879, t_exit None, ceiling_sim 0.525, bound_excess 0.0",
+  "galerkin C_hot_classical (n=16, nu=0.005, A=1.0, a0_sim=0.02, T=2.0, dt=1e-3, seed=7): sup0 0.19999999999999996, sup_max 1.507693723382814, eta_max 52.29171673638364, t_exit 0.0, ceiling_sim 0.07, bound_excess 0.0",
+  "G25a exit threshold |Du/Dt| > 3.2767e-10 m/s^2 (SPEC_B 3.28e-10 at 3 s.f.; rel diff 1.02e-03)",
+  "G25b in-window blowup attempt fails: bound excess 0.000e+00 <= tol 4.35e-06 over window part [0, 6.00]"
+ ],
+ "cross_check_window_witness_lane": {
+  "lane": "real_research/ns_audit_2026/NSA1_ns_window_witness_audit.py (+ NSA2_acceleration_criterion.py)",
+  "rerun_vs_committed": {
+   "NSA1_diffs": 0,
+   "NSA1": "6/6 checks, 0 load-bearing failures",
+   "NSA2_diffs": 0,
+   "NSA2": "4/4 checks, 0 load-bearing failures"
+  },
+  "K1_constant_inert": "the trajectory bound + Serrin step uses a0*W only as 'some finite C': the theorem holds for EVERY C > 0; 'singularity => window exit' == 'singularity => unbounded |Du/Dt|', so the exit 'witness' is automatic (Bayes factor 1)",
+  "K2_K3": "the recorded OpenAI-construction exit numbers (tau_exit ~ 4.75e-7 / 5.2e-7) are N13/N08 claims, NOT in this JSON; NSA1 K2 found them an algebraically inverted root (eta there ~ 3e19, not 3.5; correct root tau* ~ 2e6 > 1) and K3 a gauge choice (Du/Dt scales as l^3)",
+  "NSA2": "the scale-invariant upgrade: critical line 2/s + 3/r = 3 with N05's (s,r)=(inf,inf) at index 0; the identity grad p = -Q(Du/Dt) holds exactly (T2/T3); no dimensionless monomial in (a0, nu) (T4) -- the scale-invariant theorem has no slot for a0",
+  "reading": "no conflict with the JSON's recorded numbers; the audit lane limits the INTERPRETATION: the 'certified no-singularity domain' claim is true as a conditional for any finite C, and a0 / 3.2767e-10 are load-bearing only for the kinematic catalog and measurement framing, not for the PDE continuation argument. The N05 JSON's own honesty box already states the theorem is conditional."
+ },
+ "doorK_chain": "EQUILIBRIUM_FOLLOWUP.md (opus_49_doorK) cites N05_VERDICT.md section 4 item 1 (T >= 160 at N = 32, undamped classes) and answers NO: keeps pumping -- alpha[1.6,160] = 1.257, alpha_end = 1.135 at T = 200 (bit-exact vs N04c), alpha_end = 0.864 at T = 320 (6.4 viscous times), last-quarter slope 0.04, sup ~ 35 (above the a0-window); CFL 1.53 excess registered, energy identity closes (17/19 gates).",
+ "verdict": "VERIFIED",
+ "verdict_text": "All load-bearing numbers in N05_window_theorem_results.json reproduce bit-exactly from the exact committed generating script (python3 + numpy only; deterministic seeds). The artifact is the canonical lane run minus its three CWD-dependent G23 text gates: the root JSON shows 14/17 because the script was executed from a directory without the sibling N05_WINDOW_THEOREM.md / N05_window_theorem.py (G23a/b/c read their files relative to CWD); run with the siblings present it is 17/17 and matches the committed lane results json with 0 differences. NSA1 (6/6) and NSA2 (4/4) audit lanes re-run bit-exact and confirm the conditional statement while showing a0 is inert for the PDE continuation (any C works; scale-invariant form has no a0) -- a limitation the JSON's own honesty box already records, not a failure of any recorded number.",
+ "honest_edges": [
+  "the root artifact's 3 G23 FAILs (14/17) are an execution-context artifact (script run with CWD = repo root); the canonical in-lane run and rerun A are 17/17. The root JSON carries no aggregate pass warning.",
+  "NSA1 K1: the window theorem holds for every constant -- a0, W and 3.2767e-10 are NOT load-bearing for the NSE continuation argument itself; only for the kinematic window catalog and the corollary's framing (the N05 JSON's honesty box is consistent with this).",
+  "NSA2: N05's (s,r) = (inf,inf) hypothesis sits at critical index 0 (off the scale-invariant line 2/s+3/r=3); the upgraded statement contains no a0.",
+  "N08/N13 witness exit numbers (tau_exit ~ 4.75e-7 / 5.2e-7) are not part of this JSON; per NSA1 K2/K3 they are inverted/gauge-dependent -- do not read them into N05's verdict.",
+  "catalog etas are representative kinematic values (v, R per object class), not per-object measurements -- as labelled in the JSON itself.",
+  "NSA1 rerun required sympy (1.13.1, already installed); no new packages were installed."
+ ]
+}

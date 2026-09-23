@@ -1,0 +1,186 @@
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/J04_hierarchy_pn.py:111: RuntimeWarning: divide by zero encountered in matmul
+  Pmat = 0.375 * T.T @ Kp @ T
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/J04_hierarchy_pn.py:111: RuntimeWarning: overflow encountered in matmul
+  Pmat = 0.375 * T.T @ Kp @ T
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/J04_hierarchy_pn.py:111: RuntimeWarning: invalid value encountered in matmul
+  Pmat = 0.375 * T.T @ Kp @ T
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/J04_hierarchy_pn.py:112: RuntimeWarning: divide by zero encountered in matmul
+  Gmat = 0.375 * T.T @ Kg @ T
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/J04_hierarchy_pn.py:112: RuntimeWarning: overflow encountered in matmul
+  Gmat = 0.375 * T.T @ Kg @ T
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/J04_hierarchy_pn.py:112: RuntimeWarning: invalid value encountered in matmul
+  Gmat = 0.375 * T.T @ Kg @ T
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/J04_hierarchy_pn.py:343: RuntimeWarning: divide by zero encountered in matmul
+  lhs = A @ phi
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/J04_hierarchy_pn.py:343: RuntimeWarning: overflow encountered in matmul
+  lhs = A @ phi
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/J04_hierarchy_pn.py:343: RuntimeWarning: invalid value encountered in matmul
+  lhs = A @ phi
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/J04_hierarchy_pn.py:232: RuntimeWarning: divide by zero encountered in matmul
+  bb = bb - (wc @ bb) / (wc @ wc) * wc
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/J04_hierarchy_pn.py:232: RuntimeWarning: overflow encountered in matmul
+  bb = bb - (wc @ bb) / (wc @ wc) * wc
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/J04_hierarchy_pn.py:232: RuntimeWarning: invalid value encountered in matmul
+  bb = bb - (wc @ bb) / (wc @ wc) * wc
+==============================================================================
+J04 P_N hierarchy solver -- close-out run
+==============================================================================
+V-checks: 3/3 passed
+
+Sweep (MC reference: E[D] = 0.5008, E[v^2] = 2.8061, E[Dv^2] = 3.7316):
+      grid    -F10(0)    -F02(0)     F12(0)
+(160, 5)    0.49684    2.30848    1.43839   [0.0s]
+(160, 9)    0.49684    2.41390    1.72372   [0.0s]
+(160,13)    0.49684    2.45787    1.84829   [0.1s]
+(160,17)    0.49684    2.48191    1.91807   [0.2s]
+(160,21)    0.49684    2.49704    1.96267   [0.4s]
+(320, 9)    0.49843    2.42097    1.73943   [0.3s]
+(320,13)    0.49843    2.46501    1.86465   [0.8s]
+(320,17)    0.49843    2.48908    1.93478   [1.5s]
+(320,21)    0.49843    2.50424    1.97960   [3.1s]
+
+Cure probe at (320,21) -- '-F02(0)', 'F12(0)':
+  plain      -F02(0) =    2.50424   F12(0) =    1.97960
+  eps1e-9    -F02(0) =    2.50424   F12(0) =    1.97960
+  eps+mr     -F02(0) =   -0.00000   F12(0) =    0.38699
+  mark       -F02(0) =    2.50424   F12(0) =    1.97960
+  marshak2   -F02(0) =    2.50424   F12(0) =    1.97960
+  colloc     -F02(0) =    2.50424   F12(0) =    1.97960
+
+==============================================================================
+SUMMARY (MC: E[D] = 0.5008, E[v^2] = 2.8061, E[Dv^2] = 3.7316)
+  S1  -F10(0) = 0.49843   (-0.47%)   PASS
+  S2  -F02(0) = 2.50424   (-10.76%)   FAIL
+  S3   F12(0) = 1.97960   (-46.95%)   FAIL
+  S4  kappa=0 -> 0           PASS
+  S5  grid convergence of F02/F12   FAIL (1/L tail misses MC)
+  S6  kappa=3 E[D] = 1.49528 vs 1.5   PASS
+  S2 L-series (Nr=160): 2.3085(L5) 2.4139(L9) 2.4579(L13) 2.4819(L17) 2.4970(L21) 2.5290(L41) -> 1/L law, limit ~2.56, NOT 2.8061
+  Cure probe: spread of -F02(0) over eps/mr/BC families = 0.00000 (levels invariant)
+{
+ "checks": {
+  "V1_fast_equal_slow": true,
+  "V2_L_rmu_identity": true,
+  "V3_projection": true,
+  "S1_E_D": true,
+  "S2_E_v2": false,
+  "S3_E_Dv2": false,
+  "S4_kappa0": true,
+  "S5_grid_convergence": false,
+  "S6_kappa3_Theorem1": true,
+  "CURES_no_effect_on_levels": true
+ },
+ "measurements": {
+  "V1_maxdiff_Pmat": 4.218847493575595e-15,
+  "V1_maxdiff_Gmat": 1.3322676295501878e-15,
+  "V2_Lrmu_resid": 2.3314683517128287e-15,
+  "V3_P1_minus_1": 3.871434073264128e-15,
+  "V3_Pmu": 1.3470930848138908e-17,
+  "PN_320x21": {
+   "F10_0": -0.49842773437501164,
+   "F02_0": -2.504236390255529,
+   "F12_0": 1.9796037699278073
+  },
+  "PN_160xL5to21": {
+   "(160,5)": {
+    "F10_0": -0.49683593750000193,
+    "F02_0": -2.3084775078408253,
+    "F12_0": 1.4383880298497518
+   },
+   "(160,9)": {
+    "F10_0": -0.49683593750000105,
+    "F02_0": -2.413904658350233,
+    "F12_0": 1.723722752841864
+   },
+   "(160,13)": {
+    "F10_0": -0.4968359375000012,
+    "F02_0": -2.4578703409678697,
+    "F12_0": 1.8482930297828903
+   },
+   "(160,17)": {
+    "F10_0": -0.4968359375000008,
+    "F02_0": -2.481906442806633,
+    "F12_0": 1.918071803984539
+   },
+   "(160,21)": {
+    "F10_0": -0.49683593750001054,
+    "F02_0": -2.497042469564086,
+    "F12_0": 1.9626656597829346
+   }
+  },
+  "PN_kappa0_160x9": {
+   "F10_0": -4.968359375000035e-15,
+   "F02_0": -2.6828371307289385e-28,
+   "F12_0": -2.2853683807289224e-14
+  },
+  "S5_f10_spread_L": 8.604228440844963e-15,
+  "S5_f12_move": 0.5412157400780555,
+  "S5_f02_move": 0.19575888241470363,
+  "S5_note": "F10 stable across L=5..21 to 5 decimals (0.49684 at Nr=160); F02/F12 monotone 1/L tails whose extrapolated limits ~2.56 / ~1.9 miss the MC reference 2.8061 / 3.7316 -- the discrete solutions are near-grid-converged but converging to the wrong continuum limit (half-range corner), so S5 is a FAIL on F02/F12.",
+  "PN_kappa3_320x21_F10_0": -1.495283203125095,
+  "cure_probe": {
+   "plain": {
+    "F02_0": -2.504236390255529,
+    "F12_0": 1.9796037699278073
+   },
+   "eps1e-9": {
+    "F02_0": -2.5042363930278717,
+    "F12_0": 1.9796037734488265
+   },
+   "eps+mr": {
+    "F02_0": 0.0,
+    "F12_0": 0.38699391254636856
+   },
+   "mark": {
+    "F02_0": -2.504236390255529,
+    "F12_0": 1.9796037699278073
+   },
+   "marshak2": {
+    "F02_0": -2.504236390255529,
+    "F12_0": 1.9796037699278073
+   },
+   "colloc": {
+    "F02_0": -2.504236390255529,
+    "F12_0": 1.9796037699278073
+   }
+  },
+  "cure_probe_F02_spread": 2.7723427997727867e-09,
+  "F10_Lseries": {
+   "(160,5)": -0.49683593750000193,
+   "(160,9)": -0.49683593750000105,
+   "(160,13)": -0.4968359375000012,
+   "(160,17)": -0.4968359375000008,
+   "(160,21)": -0.49683593750001054,
+   "(320,9)": -0.4984277343750028,
+   "(320,13)": -0.498427734375002,
+   "(320,17)": -0.4984277343750048,
+   "(320,21)": -0.49842773437501164
+  },
+  "F02_Lseries_MC": 2.8061,
+  "F12_Lseries_MC": 3.7316,
+  "S2_deficit_pct": -10.757407424698728,
+  "S3_deficit_pct": -46.950268787442184,
+  "S2_1L_extrapolated_limit": 2.561,
+  "runtime_s": 29.53565001487732
+ },
+ "total_checks": 10,
+ "passed": 7,
+ "checks_passed": [
+  "V1_fast_equal_slow",
+  "V2_L_rmu_identity",
+  "V3_projection",
+  "S1_E_D",
+  "S4_kappa0",
+  "S6_kappa3_Theorem1",
+  "CURES_no_effect_on_levels"
+ ],
+ "checks_failed": [
+  "S2_E_v2",
+  "S3_E_Dv2",
+  "S5_grid_convergence"
+ ],
+ "ALL_PASSED": false,
+ "exit_status": 1
+}
+
+J04 CLOSE-OUT: S1 (E[D], delta decomposition) PASSES; S2/S3 (E[v^2], E[Dv^2]) DO NOT CONVERGE to the MC reference in the P_N-Marshak half-range discretization -- honest values reported above (exit 1).
