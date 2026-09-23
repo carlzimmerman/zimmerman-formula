@@ -42,7 +42,10 @@ Two-moment closure (5σ); J03 central-difference grid; J04 P_N S2/S3 algebraic r
 | M04 J10-I(z) cosmography | **LANDED 2026-09-23, 14/14**: framework z-curve FLAT/OPEN z<3; M-RISE closes high z_c=0.156; single object at z=1 resolves rival at 11σ; ratio chain excludes rival 3σ from z=0.617 | closed (L05 S/N assumed 30) |
 | L03 2D transfer + recovery | **CORRECTED 2026-09-23 (2nd run): PASS** — first run BROKEN-as-built (pair S/N=None); re-run rebuilt the estimator per pre-registered protocol (E[D]-pinned first moment + atom-exact assignment + tail-mass calibration): pair-recovery now attains **S/N=50 on both clouds** (bias τ₀ 0.0017, coverage 0.998/0.992, 500 reals, det_fail 0); per-row KS 0 rows at p<1e-3; marginal D-CDF KS p=0.000 printed as the registered informative-not-gated check; deterministic κ(r)=t₀(1+qr²) machinery + q=2 cloud exact (E[D]=1.0) | closed at S/N≥50 |
 | L01–L07 (wave-4 remainder) | IN FLIGHT | — |
-| K07–K12 (wave-3 remainder) | IN FLIGHT (K07: volume quadrature deep-τ₀ confirmed z≤1.25; window decreasing all q; thin limits 1.84–1.89) | — |
+| K07 volume window closure | **LANDED 2026-09-23, 34/34 + 10-run boundary supplement**: volume atom quadrature (corrected chord √−rμ) matches MC 18/18 within 4 SE (max z=2.53); R_v(τ₀) strictly decreasing all q; **kill-region boundary τ*(q) = 6.505±0.002 / 2.415±0.002 / 0.978±0.002** (q=0/3/10) — above it the volume window sits below 4/3; R>2 EMPTY everywhere (max 1.927±0.010); J11 'thin ~2.2 > 2' speculation REFUTED (thin ≈1.86); J11 anchor (τ₀=1,q=10) R=1.3221±0.0028 below 4/3 RE-VERIFIED; a/τ₀+b fit formally REJECTED (χ² huge) | closed; feeds L04 |
+| K08–K12 (wave-3 remainder) | IN FLIGHT (K08 shell, K09 J10-II, K10 oblateness, K11 synthesis, K12 geometry audit) | — |
+| c₀(q) closed form (thin-limit denominator) | OPEN — M05 gives thin limit (3/4+5q/12)/c₀(q) = 1.893/1.837/1.843 vs K07 'universal ≈1.86': q-dependence vs universality unresolved at ~2.5 SE; c₀ linearity (a+bq) is the decisive test | M05 numerics + thin MC |
+
 | G237 verdicts vs eRASS:3 WG products | PENDING | WG data (external) |
 | JWST observation design (L05/K09) | IN FLIGHT | — |
 
