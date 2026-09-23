@@ -180,7 +180,28 @@ check("E3 the extended gas is hot: if bound it needs >= 10x the black-hole mass"
       + ", ".join(f"{k} pc: {m:.1e}" for k, m in Mdyn.items()) + " Msun",
       min(Mdyn.values()) > 10 * 10 ** 7.7,
       "outflow (no test) OR bound: LCDM supplies a halo; the framework would need ~1e9 Msun of COLD GAS at 0.2-0.9 kpc "
-      "(ALMA [CII]/dust testable) -- a registered conditional prediction")
+      "(NOT sub-mm testable here: see E4) -- a registered conditional prediction")
+
+# ================================================================= E4
+banner("E4 -- CAN SUB-MM DATA TEST THE BOUND-GAS CONDITIONAL?  ALMA 1.2 mm limit x the near-pristine metallicity")
+from astropy.cosmology import Planck18
+import astropy.units as u
+hP, kB, cL = 6.62607015e-34, 1.380649e-23, 2.99792458e8
+zq = 7.0451; DL = Planck18.luminosity_distance(zq).to(u.m).value; nu = cL / 1.2e-3 * (1 + zq); beta = 1.8
+kap = 0.077 * (nu / 352.7e9) ** beta
+Tcmb = 2.7255 * (1 + zq)
+Bnu = lambda n, T: 2 * hP * n ** 3 / cL ** 2 / math.expm1(hP * n / (kB * T))
+Td = (25.0 ** (4 + beta) + 2.7255 ** (4 + beta) * ((1 + zq) ** (4 + beta) - 1)) ** (1 / (4 + beta))
+Md = (1e-30 / 6.2) * DL ** 2 / ((1 + zq) * kap * (Bnu(nu, Td) - Bnu(nu, Tcmb))) / model.MSUN
+GDR_min = 100 / 0.005                      # linear Z scaling from solar GDR 100 at Z < 0.005 Zsun (steeper scalings: larger)
+Mg_lim = Md * GDR_min
+OUT["numbers"]["alma"] = {"Mdust_lim_T25_mu6.2": Md, "GDR_min": GDR_min, "Mgas_lim": Mg_lim}
+check("E4 the ALMA dust limit cannot test ~1e9 Msun of cold gas in a near-pristine host",
+      f"3-sigma 0.1 mJy at 1.2 mm (Ma+25 citing Labbe+23/Fujimoto+23/Furtak+24), mu = 6.2, T_d = 25 K, CMB-corrected: "
+      f"M_dust < {Md:.1e} Msun; Z < 0.005 Zsun (Maiolino+25, arXiv:2505.22567) => GDR >= {GDR_min:.0e} => "
+      f"M_gas < {Mg_lim:.0e} Msun", Mg_lim > 1e10,
+      "the bound-gas branch is NOT sub-mm testable ([CII] fails for the same reason: almost no carbon) -- only kinematics "
+      "can decide", load_bearing=False)
 
 # ================================================================= F
 banner("F1 -- THE CERTIFIED VELOCITY FLOOR (Lean I20)")
@@ -199,7 +220,8 @@ P("""  * THE TRUTH, as far as the public cube goes: UNDECIDABLE.  Kepler, the fr
     kinematic mass itself moves ~1 dex with the PSF assumption, so L324's mass-dependent sub-dominance verdict cannot
     be settled from these data either.
   * The extended gas is hot and blueshifted (outflow-like), with no detectable rotation: the decisive 300-450 pc
-    rotation is not in the data.  IF it is bound, the framework needs ~1e9 Msun of cold gas there (ALMA-testable).
+    rotation is not in the data.  IF it is bound, the framework needs ~1e9 Msun of cold gas there -- which the ALMA
+    dust limit cannot test in this near-pristine (Z < 0.005 Zsun) host.
   * What would decide it: a PSF-controlled (source-plane) rotation curve beyond r_M ~ 250-270 pc, confronted with the
     certified floor v_c >= (G M a0)^{1/4} and the L324 K6 bands.""")
 OUT["verdict"] = {"load_bearing_pass": npass, "load_bearing_total": len(lb)}

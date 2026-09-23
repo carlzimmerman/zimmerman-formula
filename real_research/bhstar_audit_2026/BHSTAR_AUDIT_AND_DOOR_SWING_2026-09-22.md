@@ -171,3 +171,11 @@ Kepler, the framework (both footings) and the a0 ∝ H(z) rival were each fit wi
 
 **Truth, as far as public data go: UNDECIDABLE.** Nothing here favours or disfavours the framework. What would decide
 it is a source-plane, PSF-controlled rotation curve beyond ~300 pc, confronted with the floor and the L324 K6 bands.
+
+**Addendum (L327 E4): the bound-gas branch is not sub-mm testable.**
+* ALMA gives 3σ < 0.1 mJy at 1.2 mm (Ma+25, citing Labbé+23, Fujimoto+23 and Furtak+24).
+* With μ = 6.2, T_d = 25 K and the CMB correction (T_CMB(z) = 21.9 K), that is M_dust < 1.5 × 10⁷ Msun.
+* The host is near-pristine: Z < 0.005 Z☉ (Maiolino+25, MNRAS, arXiv:2505.22567). The gas-to-dust ratio is therefore
+  ≳ 2 × 10⁴, so M_gas < ~3 × 10¹¹ Msun, which does not constrain the ~10⁹ Msun the framework would need.
+* [CII] fails for the same reason: there is almost no carbon.
+* The correction to §5: the "ALMA-testable" wording there is superseded. Only kinematics can decide.
