@@ -1,0 +1,129 @@
+{
+  "schema_version": 2,
+  "claim_id": "COMPACT_CORE_FIXED_DIAGNOSTIC",
+  "repository": {
+    "commit": "b73311096299e2f1816be00036ccdb2922bc44d4",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "real_research/reviews/jwst_small_delay_leaf_2026_09_22/compact_check.py",
+    "real_research/reviews/jwst_small_delay_leaf_2026_09_22/compact_certified/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent correct statistics of compact-core weighted/rejection conditional moments with fixed seeds and real negative",
+    "coefficient_domain": "NumPy float64 Monte Carlo",
+    "conventions": "a=.05,tau1/4,beta4/16/64; stable E=T-1",
+    "inputs": [
+      "real_research/reviews/jwst_small_delay_leaf_2026_09_22/compact_check.py",
+      "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py"
+    ],
+    "bounds": {
+      "N": [
+        256000,
+        512000
+      ],
+      "threshold_SE": 5
+    },
+    "non_claims": [
+      "No continuous-profile counterexample",
+      "Shared physical solver",
+      "No observability or novelty"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy default_rng PCG64",
+    "seed": "main1700101/02,1700111/12,1700121/22;positive1700201/02,1700211/12,1700221/22;negative main paths half beta rejection only"
+  },
+  "run": {
+    "started_at": "2026-09-22T12:56:08.435365+00:00",
+    "runtime_seconds": 5.229528,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_small_delay_leaf_2026_09_22/compact_check.py",
+    "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/jwst_small_delay_leaf_2026_09_22/compact_check.py",
+      "sha256": "8c3cbf78267ae44a39c549fbe0c5169caee4722459f615224040740a11476e70",
+      "sha256_after": "8c3cbf78267ae44a39c549fbe0c5169caee4722459f615224040740a11476e70"
+    },
+    {
+      "path": "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py",
+      "sha256": "53f8b0c7e6208e428492814a8989c3462695db247b15470aa1f5d2adfc3c8ac2",
+      "sha256_after": "53f8b0c7e6208e428492814a8989c3462695db247b15470aa1f5d2adfc3c8ac2"
+    }
+  ],
+  "output_directory": "real_research/reviews/jwst_small_delay_leaf_2026_09_22/compact_certified",
+  "declared_results": [
+    "real_research/reviews/jwst_small_delay_leaf_2026_09_22/compact_certified/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/jwst_small_delay_leaf_2026_09_22/compact_certified/stdout.txt",
+      "sha256": "3154146455f6bc0f87ef88fa213ff8b1ce46cb17be0b4580f286a729b6ec8a84",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_small_delay_leaf_2026_09_22/compact_certified/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_small_delay_leaf_2026_09_22/compact_certified/result.json",
+      "sha256": "ed068c94bfd03ae46e9aa019ca361cef72501d30f07a65d8167bcf9be59106be",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

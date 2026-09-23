@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "claim_id": "COLLISION_RESOLVED_SMALL_DELAY_FINITE_AUDIT",
+  "repository": {
+    "commit": "60b013a079ecdb77d2775ab35771fd66a597c6a7",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "real_research/reviews/jwst_collision_tail_audit_2026_09_22/verify.py",
+    "real_research/reviews/jwst_collision_tail_audit_2026_09_22/certified/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Fixed v8 plan: real collision-resolved delay histograms, independent one-scatter quadrature calibration, atom and mean calibration; same-path wrong T-for-D negative",
+    "coefficient_domain": "float64 Monte Carlo and SciPy beta quantiles",
+    "conventions": "Unit uniform central scalar Thomson sphere; D=T-x_exit dot u_exit; count2 and count3plus decompose remainder",
+    "inputs": [
+      "real_research/reviews/jwst_collision_tail_audit_2026_09_22/verify.py",
+      "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py",
+      "real_research/reviews/jwst_small_delay_leaf_2026_09_22/certified/result.json"
+    ],
+    "bounds": {
+      "tau": [
+        1,
+        4
+      ],
+      "epsilon": [
+        0.01,
+        0.003,
+        0.001
+      ],
+      "N": [
+        1000000,
+        2000000
+      ],
+      "threshold_SE": 5,
+      "binomial_intervals": "separate marginal two-sided 95% Clopper-Pearson, no ratio CI"
+    },
+    "non_claims": [
+      "No proof of an asymptotic or collision-order exponent",
+      "Shared transport solver; independent statistics and analytic calibration only",
+      "No observational data or novelty"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy default_rng PCG64",
+    "seed": "main1800101/02;positive1800201/02;negative same main paths"
+  },
+  "run": {
+    "started_at": "2026-09-22T13:41:51.354468+00:00",
+    "runtime_seconds": 11.531277,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_collision_tail_audit_2026_09_22/verify.py",
+    "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py",
+    "real_research/reviews/jwst_small_delay_leaf_2026_09_22/certified/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/jwst_collision_tail_audit_2026_09_22/verify.py",
+      "sha256": "0f05c872986853d282bc1df92cc6cf9d68baa57e23ab888bfb3aff55865f7624",
+      "sha256_after": "0f05c872986853d282bc1df92cc6cf9d68baa57e23ab888bfb3aff55865f7624"
+    },
+    {
+      "path": "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py",
+      "sha256": "53f8b0c7e6208e428492814a8989c3462695db247b15470aa1f5d2adfc3c8ac2",
+      "sha256_after": "53f8b0c7e6208e428492814a8989c3462695db247b15470aa1f5d2adfc3c8ac2"
+    },
+    {
+      "path": "real_research/reviews/jwst_small_delay_leaf_2026_09_22/certified/result.json",
+      "sha256": "43389c1040ecd18a3ee16d54f82ff4ba7100f5cd3bcc70f1bedefd4cc31cca3f",
+      "sha256_after": "43389c1040ecd18a3ee16d54f82ff4ba7100f5cd3bcc70f1bedefd4cc31cca3f"
+    }
+  ],
+  "output_directory": "real_research/reviews/jwst_collision_tail_audit_2026_09_22/certified",
+  "declared_results": [
+    "real_research/reviews/jwst_collision_tail_audit_2026_09_22/certified/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/jwst_collision_tail_audit_2026_09_22/certified/stdout.txt",
+      "sha256": "afd6a4a4b604cef0c01bc3db142ee3422b0de81797fc5191b7b84992dc681b58",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_collision_tail_audit_2026_09_22/certified/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_collision_tail_audit_2026_09_22/certified/result.json",
+      "sha256": "2318b68c84079c9ef3c58e8184735bab2b737bf6386dc00c87dd99fb2c85de58",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

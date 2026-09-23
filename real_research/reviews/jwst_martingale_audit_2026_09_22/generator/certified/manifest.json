@@ -1,0 +1,119 @@
+{
+  "schema_version": 2,
+  "claim_id": "JWST_GENERATOR_REFUTATION_7376a647",
+  "repository": {
+    "commit": "c669f6e0de436f470f3602d08238ca28498efbf8",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "real_research/reviews/jwst_martingale_audit_2026_09_22/generator/verify.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.13.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact streaming-plus-scattering generator refutes Qwen's claimed second-moment solution",
+    "coefficient_domain": "Exact rational symbolic algebra",
+    "conventions": "s=r^2; z=x dot u; uniform scattering rate k; Kz=0, Kz^2=3s/10+z^2/10 from prior audited angular integral",
+    "inputs": [
+      "real_research/reviews/jwst_martingale_audit_2026_09_22/generator/verify.py"
+    ],
+    "bounds": {
+      "direction_degree": 2,
+      "physical_region": "0<=z^2<=s<=1",
+      "witnesses": "k=1,s=1/4,z=0 and k=1,s=z=1"
+    },
+    "non_claims": [
+      "No solved physical boundary problem",
+      "No novelty claim",
+      "No stochastic simulation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-22T03:57:20.545903+00:00",
+    "runtime_seconds": 0.200305,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_martingale_audit_2026_09_22/generator/verify.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/generator/verify.py",
+      "sha256": "e84baee25508af6be648e21887b6e920a4c131188e01ecac42ffcc626ba40dfb",
+      "sha256_after": "e84baee25508af6be648e21887b6e920a4c131188e01ecac42ffcc626ba40dfb"
+    }
+  ],
+  "output_directory": "real_research/reviews/jwst_martingale_audit_2026_09_22/generator/certified",
+  "declared_results": [
+    "real_research/reviews/jwst_martingale_audit_2026_09_22/generator/certified/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/generator/certified/stdout.txt",
+      "sha256": "9cb43993c7311cb4c67b72329d845e383424e9f6f4f2b9e34b48f6f29ea7c4d7",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/generator/certified/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/generator/certified/result.json",
+      "sha256": "9cb43993c7311cb4c67b72329d845e383424e9f6f4f2b9e34b48f6f29ea7c4d7",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

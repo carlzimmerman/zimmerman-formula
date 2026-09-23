@@ -1,0 +1,56 @@
+# Autoresearch tool review — 21 September 2026
+
+The orchestrator is a useful inexpensive experiment generator, but its current acceptance rules do not establish scientific closure. Repair evidence preservation and verification before increasing throughput. This review concerns the orchestrator, not a verdict on the particle-free theory.
+
+## Scope and evidence
+
+Read the executor, theory scorer, Lean certification stage, ledger, proposal/door loop, novelty filter, prompts, frontier reader and launcher. Queried the live ledger in SQLite read-only mode. At 12:37 local time it contained 1,534 rows, 518 distinct script paths and a historical maximum score of 0.92. These are attempts and plumbing scores, not discoveries.
+
+Repository HEAD was `44f1694720574d9f5a2d46ce6b5e1d215d142627`; the working tree was dirty, and this identifies the base checkout rather than authenticating the live orchestrator files. The successful symbolic fixture used the launcher's conda Python 3.13.9 with SymPy 1.13.1. The Lean project pins `leanprover/lean4:v4.34.0-rc2`. Tests were deterministic, with 15-second Python and 25-second Lean subprocess timeouts. Temporary fixtures were removed afterward; exact probe constructions and observed outcomes are recorded below.
+
+Ran small synthetic acceptance tests in temporary directories, without calling models, modifying the production ledger or restarting the service. The control-crash test initially could not run under the shell's Xcode Python because SymPy was absent; rerunning with the launcher's conda Python reproduced the defect below. The Lean probes used the existing project's `lake env lean` through the actual `_compile` function, extracted without importing the model wrapper. This was not a rebuild or audit of OpenAI's proof or all generated research scripts.
+
+## Findings, in repair order
+
+1. **P1 — Lean acceptance does not certify the intended theorem.** `lean_cert.py:21–33` asks the model to choose one core mathematical fragment, explicitly excluding the physics, from only the first 3,500 characters of the script. `_compile`, lines 46–60, checks compilation and absence of `sorry`, but neither requires a target declaration nor audits axioms. Actual probes accepted both `def unrelatedValue : Nat := 7` and `axiom review_assumption : False; theorem review_claim : False := review_assumption` (written as separate Lean declarations). Lean correctly reported the added axiom; the wrapper still returned success. Fix: freeze a reviewed theorem statement and definitions before proof generation, require the exact target, inspect its transitive axiom dependencies, and check the meaning and satisfiability of its premises. A valid algebraic lemma is an intermediate result, not certification of a physical hypothesis.
+
+2. **P1 — Crashed or absent controls can earn full theory credit.** `theory_executor.py:58–63` interprets a missing named control result as `False`. In an actual run, the main script proved `(x+y)^2 = x^2+2*x*y+y^2`; its mutation branch raised `RuntimeError` before emitting any check. Result: `score=1.0`, `mutate_flips=True`, `control.ran=False`, control exit 1 and no control checks. Require a completed, identified check whose mathematical outcome changes; missing, crashed and timed-out controls are separate inconclusive outcomes. A deliberately failed scientific assertion may have a nonzero exit, so process status and mathematical outcome need an explicit protocol.
+
+3. **P1 — A door can survive despite a failed claim.** `orchestrator.py:226–233` kills a candidate only when every emitted check fails. One passing diagnostic plus one failed target check, with a mutation control, gets raw score 0.75 and increments the survivor count. This was verified by evaluating the existing predicate and score formula, not by running a production door chain. Furthermore, `executor.py:116` sets `ran` by absence of traceback rather than successful completion: a test exiting 7 after printing a pass was classified `ran=True`. Require identified load-bearing obligations, make their failure decisive, and keep diagnostics out of the acceptance decision. Reject incomplete execution explicitly.
+
+4. **P1 — Historical evidence is overwritten and stale scores retain authority.** `_write_script`, `orchestrator.py:70–74`, writes generation/slot filenames with mode `w`; generation numbering restarts and door filenames can repeat within a generation. Ledger row 1152, the 0.92 PD17 closure identity, and row 1503, a SPARC environment test, reference the same `g0000_i002.py`. The current file is the latter. Row 1152's preserved output also explicitly says `reflexive=True`, which the revised gate rejects. `Ledger.top()` still ranks all historical scores together, and `maybe_lean_on_new_best` compares against the historical maximum. A credible new result can therefore be denied a proof attempt because it does not beat an obsolete score. Preserve unique run/attempt IDs, immutable code and data hashes, full main/control outputs, model and gate versions. Recover old source where possible; otherwise mark the affected evidence unreproducible. Revalidation must create a new evidence record. Schedule formalization by reviewed obligations rather than all-time score records.
+
+5. **P1 — Proposed hypotheses enter memory as established results prematurely.** `orchestrator.py:187` calls `add_known` before the first door. Later failure does not retract that entry. The theory prompt calls the corpus “ALREADY ESTABLISHED.” This confuses attempted, refuted, conditional and verified claims. Use separate states with source/evidence links, model/action versions and explicit supersession. A failed or repeated attempt should remain searchable without becoming a premise. Audit inherited blanket claims about either particle-free models or dark matter with the same standards.
+
+6. **P2 — Search optimizes word difference and pass counts.** `novelty.py:77–87` computes token-set dissimilarity, not mathematical or literature novelty. The theory lane is expressly restricted to symbolic re-verification. The loop mostly generates fresh proposals serially; with the manager enabled, generation-boundary aggregation is disabled. This gives little durable development of an unresolved proof obligation. Separate test validity, hypothesis outcome, novelty assessment and relevance to the target. A valid counterexample should earn research credit even when the proposed hypothesis fails. Retrieve exact statements, assumptions, evidence and failed approaches rather than recent headlines alone.
+
+The subprocess arrangement also does not enforce read-only data or network isolation: `executor.py:65–85` supplies environment variables and `no_proxy`, not an access-control boundary. The README acknowledges this. A trusted evaluator should recompute results from immutable inputs; generated stdout markers are not an authoritative measurement channel.
+
+## What OpenAI actually describes
+
+OpenAI's [Navier–Stokes account](https://openai.com/index/navier-stokes-solution/) describes groups pursuing different exact problem variants, including proof and disproof directions; progress on an easier Euler problem; reallocating effort after that result; and consolidation of useful intermediate findings between groups. It reports analytical discovery followed by Lean formalization. This is a public account, not access to the internal system or a guarantee that its scale or model capability can be reproduced here.
+
+The [published repository](https://github.com/openai/NavierStokesAndEuler/blob/main/README.md) states precise forced Navier–Stokes and unforced Euler results. It also provides [Comparator checks](https://github.com/openai/NavierStokesAndEuler/blob/main/ComparatorChallenges/README.md) against adapted external problem statements. The transferable lesson is precise targets, sustained distinct approaches, useful intermediate results and a formal link to the actual target. More agents alone cannot repair an unreliable acceptance rule.
+
+## Proposed redesign for this repository
+
+These are my recommendations informed by that workflow, not a claim that OpenAI would endorse this implementation.
+
+- Maintain a dependency graph of explicit research obligations. Each node records the same action/version, premises, desired conclusion, allowed inputs, falsifier and evidence. Rank work by which important uncertainty it can resolve per unit cost; do not rank scientific truth by pass fraction.
+- Assign persistent roles: constructive derivation, counterexample search, data replication and formal verification. These can run sequentially on the current machine while retaining separate state. Periodically share reviewed lemmas and counterexamples; preserve alternate routes.
+- Have a reviewer independent of the candidate's author freeze the test or theorem contract. Generated code cannot decide its own success condition. For empirical claims, freeze data provenance, nuisance treatment and evaluation before looking at confirmation data; track repeated searching and use independent confirmation where available.
+- Use Lean for the exact outstanding implication. Check target types, definitions, premise consistency and transitive axioms; allow only the documented trusted foundation. Add an independent proof-checking path where supported. Formal verification establishes consequences of premises, while empirical evidence tests their physical applicability.
+- Keep the local model for bounded coding, extraction and simple proof repairs. Escalate a compact packet of a precise blocked obligation, failed routes and verified dependencies to a stronger reasoner. Model selection needs an evaluation on representative tasks; no model swap guarantees a breakthrough.
+
+## Concrete first target: the physical normalization
+
+The existing week plan already identifies the obstruction: with independently fixed `s`, the current family permits `kappa = 1/(2 lambda)`. Re-proving `mu'(0)=2` after assuming unit channel slope does not select `lambda=1`.
+
+Give the constructive route a specific candidate selector derived from the particle-free action. Give the opposing route the same assumptions and ask for a member with `lambda != 1`. Give the formal route the fixed implication **admissible action + independently justified selector ⇒ lambda = 1**, including the existing admissibility definitions. The eventual theorem must state that selector precisely; this sentence is a research contract, not a completed theorem. A verified counterexample narrows the required extra physics. This directly advances closure without presupposing a dark-matter particle or assuming the desired coefficient.
+
+## Acceptance milestones
+
+1. Regression fixtures for the defects above are rejected for the correct reasons; a genuine expected mathematical control failure still works.
+2. Every new attempt can be replayed from immutable inputs, and historical scores cannot bypass the current verifier.
+3. One fixed research obligation is resolved by a proof, a counterexample or a precisely delimited failure; the exact result is independently reviewed.
+4. Only then increase search volume. Measure independently reproduced results and resolved obligations, including negative results, rather than ideas generated.

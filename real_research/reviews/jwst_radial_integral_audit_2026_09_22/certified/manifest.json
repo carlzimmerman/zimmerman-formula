@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "QUADRATIC_RADIAL_ONE_SCATTER_AUDIT",
+  "repository": {
+    "commit": "c725047b0e1bbadc66a1411e675e688318274ba9",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "real_research/reviews/jwst_radial_integral_audit_2026_09_22/verify.py",
+    "real_research/reviews/jwst_radial_integral_audit_2026_09_22/certified/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Two coordinates and tolerance refinement agree for exactly-one-scatter probabilities using full incoming/outgoing optical depth; normalized isotropic kernel perturbation fails same agreement test",
+    "coefficient_domain": "float64 SciPy adaptive quadrature",
+    "conventions": "Unit central scalar Thomson sphere, D=r(1-mu), kappa=k0+k2*r^2; no asymptotic formula generates probabilities",
+    "inputs": [
+      "real_research/reviews/jwst_radial_integral_audit_2026_09_22/verify.py",
+      "real_research/reviews/jwst_small_delay_leaf_2026_09_22/certified/result.json"
+    ],
+    "bounds": {
+      "profiles": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "epsilon": [
+        0.001,
+        0.0001
+      ],
+      "main_tolerance": 1e-09,
+      "positive_tolerance": 1e-11,
+      "agreement": "1e-10+1e-6*max(abs(joint),abs(density))"
+    },
+    "non_claims": [
+      "Finite quadrature is not a limit proof",
+      "Non-rigorous floating error estimates",
+      "No physical or novelty claim"
+    ]
+  },
+  "randomness": {
+    "used": false
+  },
+  "run": {
+    "started_at": "2026-09-22T14:23:48.750786+00:00",
+    "runtime_seconds": 0.339736,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_radial_integral_audit_2026_09_22/verify.py",
+    "real_research/reviews/jwst_small_delay_leaf_2026_09_22/certified/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/jwst_radial_integral_audit_2026_09_22/verify.py",
+      "sha256": "6537f6a5290d47e1fbb96cf4b630a3484c6abe8b0bf3c66a4a44c094457b6c3c",
+      "sha256_after": "6537f6a5290d47e1fbb96cf4b630a3484c6abe8b0bf3c66a4a44c094457b6c3c"
+    },
+    {
+      "path": "real_research/reviews/jwst_small_delay_leaf_2026_09_22/certified/result.json",
+      "sha256": "43389c1040ecd18a3ee16d54f82ff4ba7100f5cd3bcc70f1bedefd4cc31cca3f",
+      "sha256_after": "43389c1040ecd18a3ee16d54f82ff4ba7100f5cd3bcc70f1bedefd4cc31cca3f"
+    }
+  ],
+  "output_directory": "real_research/reviews/jwst_radial_integral_audit_2026_09_22/certified",
+  "declared_results": [
+    "real_research/reviews/jwst_radial_integral_audit_2026_09_22/certified/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/jwst_radial_integral_audit_2026_09_22/certified/stdout.txt",
+      "sha256": "08320f5dce4b0f653c4ff7dcec38095da47a0c625e3e056e75cf81712ca0de69",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_radial_integral_audit_2026_09_22/certified/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_radial_integral_audit_2026_09_22/certified/result.json",
+      "sha256": "0096418d6ea8b803de07bd86cad0dfa67cb179e223fc930d9b17208ff020874f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

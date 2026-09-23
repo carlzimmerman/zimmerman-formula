@@ -1,0 +1,145 @@
+{
+  "schema_version": 2,
+  "claim_id": "JWST_FROZEN_PAIR_STATIC_FOURTH_CHALLENGE",
+  "repository": {
+    "commit": "c669f6e0de436f470f3602d08238ca28498efbf8",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/fourth_moment/verify.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Test whether the already frozen equal-second-moment pair differs in static fourth moment and normalized kurtosis on independent samples",
+    "coefficient_domain": "float64 Monte Carlo",
+    "conventions": "R=c=T0=1, central conservative Thomson scattering, conditional Gaussian velocity moments, delta-method kurtosis SE",
+    "inputs": [
+      "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/fourth_moment/verify.py",
+      "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py"
+    ],
+    "bounds": {
+      "photons_per_cloud": 600000,
+      "independent_batches": 3,
+      "clouds": [
+        "A",
+        "B",
+        "A_null"
+      ],
+      "total_photons": 1800000,
+      "fixed_h": 0.4689264972650708,
+      "difference_SE_threshold": 5,
+      "null_SE_threshold": 4
+    },
+    "non_claims": [
+      "No new physical law",
+      "No observational feasibility",
+      "Shared transport implementation",
+      "Approximate normal SE estimates; not rigorous confidence bounds"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "NumPy default_rng PCG64",
+    "seed": 9224000,
+    "additional_seeds": [
+      9224001,
+      9224002,
+      9224010,
+      9224011,
+      9224012,
+      9224020,
+      9224021,
+      9224022
+    ]
+  },
+  "run": {
+    "started_at": "2026-09-22T02:08:52.521086+00:00",
+    "runtime_seconds": 2.17779,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/fourth_moment/verify.py",
+    "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/fourth_moment/verify.py",
+      "sha256": "cd703a67b27622d1bda169d4f458bf837d32b0150aa3326e324800520ac35c51",
+      "sha256_after": "cd703a67b27622d1bda169d4f458bf837d32b0150aa3326e324800520ac35c51"
+    },
+    {
+      "path": "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py",
+      "sha256": "53f8b0c7e6208e428492814a8989c3462695db247b15470aa1f5d2adfc3c8ac2",
+      "sha256_after": "53f8b0c7e6208e428492814a8989c3462695db247b15470aa1f5d2adfc3c8ac2"
+    }
+  ],
+  "output_directory": "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/fourth_moment/certified",
+  "declared_results": [
+    "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/fourth_moment/certified/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/fourth_moment/certified/stdout.txt",
+      "sha256": "2a2a96bc3170a5116469a7d0f236b74f38233b335fb7728624d377a2a947394b",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/fourth_moment/certified/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/fourth_moment/certified/result.json",
+      "sha256": "d7450b0e7a4ec7192e5216dcbaa5aba1fc6141e352b4f101113daa82c9743768",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

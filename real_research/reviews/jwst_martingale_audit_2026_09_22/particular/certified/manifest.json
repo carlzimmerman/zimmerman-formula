@@ -1,0 +1,126 @@
+{
+  "schema_version": 2,
+  "claim_id": "JWST_POLYNOMIAL_NONEXISTENCE_REFUTATION",
+  "repository": {
+    "commit": "c669f6e0de436f470f3602d08238ca28498efbf8",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "real_research/reviews/jwst_martingale_audit_2026_09_22/particular/verify.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.13.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Solve the full polynomial coefficient system, refuting Qwen's assertion that no such particular solution exists and its wrong explicit coefficients",
+    "coefficient_domain": "Exact rational functions in symbolic k>0",
+    "conventions": "s=r^2,z=x dot u; uniform conservative Thomson rate k; full streaming plus audited angular moments",
+    "inputs": [
+      "real_research/reviews/jwst_martingale_audit_2026_09_22/particular/verify.py"
+    ],
+    "bounds": {
+      "polynomial_basis": [
+        "1",
+        "s",
+        "s^2",
+        "z",
+        "s*z",
+        "z^2"
+      ],
+      "physical_region": "0<=z^2<=s<=1",
+      "rate": "k>0"
+    },
+    "non_claims": [
+      "Not a full boundary-value solution",
+      "No stochastic simulation",
+      "No novel physical law or observation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-22T04:32:17.988730+00:00",
+    "runtime_seconds": 0.257662,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_martingale_audit_2026_09_22/particular/verify.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/particular/verify.py",
+      "sha256": "eab54ee22d450257dcfde29ae9df272bdcc367a9565f6b84863123841305b943",
+      "sha256_after": "eab54ee22d450257dcfde29ae9df272bdcc367a9565f6b84863123841305b943"
+    }
+  ],
+  "output_directory": "real_research/reviews/jwst_martingale_audit_2026_09_22/particular/certified",
+  "declared_results": [
+    "real_research/reviews/jwst_martingale_audit_2026_09_22/particular/certified/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/particular/certified/stdout.txt",
+      "sha256": "aa2d4a3424e69fa4f4d20e54439ab1d85beb07970b69c80f628aa71eb638c94e",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/particular/certified/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/particular/certified/result.json",
+      "sha256": "aa2d4a3424e69fa4f4d20e54439ab1d85beb07970b69c80f628aa71eb638c94e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

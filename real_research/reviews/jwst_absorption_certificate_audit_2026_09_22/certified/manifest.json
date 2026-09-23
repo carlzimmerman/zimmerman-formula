@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "ABSORPTION_FIXED_CERTIFICATE_REPLAY",
+  "repository": {
+    "commit": "c5f8887cd91425608d5fc74be8de1f420aa1796a",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "real_research/reviews/jwst_absorption_certificate_audit_2026_09_22/replay.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Replay original prescribed killed/conservative mean and escape certificate, including half-alpha negative and disjoint positive.",
+    "coefficient_domain": "NumPy float64 Monte Carlo",
+    "conventions": "tau0=1; central unit sphere; D=T-Z",
+    "inputs": [
+      "real_research/reviews/jwst_absorption_certificate_audit_2026_09_22/candidate.py",
+      "real_research/reviews/jwst_absorption_certificate_audit_2026_09_22/replay.py",
+      "real_research/reviews/jwst_cap_attempt_audit_2026_09_22/f0773c84727d48feaac1155b82ebf844.py"
+    ],
+    "bounds": {
+      "main_N": 16000,
+      "positive_N": 32000,
+      "alpha": [
+        0.1,
+        0.5
+      ],
+      "threshold_SE": 5
+    },
+    "non_claims": [
+      "No new physics or novelty",
+      "No universal accuracy proof"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy default_rng PCG64",
+    "seed": "1200101,1200102,1200111,1200112,1200201,1200202,1200211,1200212"
+  },
+  "run": {
+    "started_at": "2026-09-22T10:20:54.565518+00:00",
+    "runtime_seconds": 0.381208,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_absorption_certificate_audit_2026_09_22/replay.py",
+    "real_research/reviews/jwst_absorption_certificate_audit_2026_09_22/candidate.py",
+    "real_research/reviews/jwst_cap_attempt_audit_2026_09_22/f0773c84727d48feaac1155b82ebf844.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/jwst_absorption_certificate_audit_2026_09_22/replay.py",
+      "sha256": "4d7668acff2b146dc544c8719a19efa25a3f8de3b7ffc7fea8522f223bad9666",
+      "sha256_after": "4d7668acff2b146dc544c8719a19efa25a3f8de3b7ffc7fea8522f223bad9666"
+    },
+    {
+      "path": "real_research/reviews/jwst_absorption_certificate_audit_2026_09_22/candidate.py",
+      "sha256": "ce1b502ed5a6f4b550f7a7fff884bbf176f7acfdb74cea8c62df5842a28a2679",
+      "sha256_after": "ce1b502ed5a6f4b550f7a7fff884bbf176f7acfdb74cea8c62df5842a28a2679"
+    },
+    {
+      "path": "real_research/reviews/jwst_cap_attempt_audit_2026_09_22/f0773c84727d48feaac1155b82ebf844.py",
+      "sha256": "efb1efdce14cb243f63f66c5d4b6222a0983f5291aee91a7bf2822f84f89a8fc",
+      "sha256_after": "efb1efdce14cb243f63f66c5d4b6222a0983f5291aee91a7bf2822f84f89a8fc"
+    }
+  ],
+  "output_directory": "real_research/reviews/jwst_absorption_certificate_audit_2026_09_22/certified",
+  "declared_results": [
+    "real_research/reviews/jwst_absorption_certificate_audit_2026_09_22/certified/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/jwst_absorption_certificate_audit_2026_09_22/certified/stdout.txt",
+      "sha256": "d5a26f05d545740566f2149f0a402698532c7cb38011eea486f27627f60aae4b",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_absorption_certificate_audit_2026_09_22/certified/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_absorption_certificate_audit_2026_09_22/certified/result.json",
+      "sha256": "d5a26f05d545740566f2149f0a402698532c7cb38011eea486f27627f60aae4b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

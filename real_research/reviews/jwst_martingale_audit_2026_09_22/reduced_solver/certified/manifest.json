@@ -1,0 +1,162 @@
+{
+  "schema_version": 2,
+  "claim_id": "JWST_QWEN_REDUCED_TRANSPORT_REPRODUCTION",
+  "repository": {
+    "commit": "c669f6e0de436f470f3602d08238ca28498efbf8",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "real_research/reviews/jwst_martingale_audit_2026_09_22/reduced_solver/verify.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Reproduce Qwen reduced-state transport; test variance identity and compare raw moments with the separate existing 3D solver on disjoint fresh seeds",
+    "coefficient_domain": "float64 Monte Carlo",
+    "conventions": "Central conservative uniform Thomson sphere; R=c=1; k in {1,2}; D=T-Z",
+    "inputs": [
+      "real_research/reviews/jwst_martingale_audit_2026_09_22/reduced_solver/qwen_candidate.py",
+      "real_research/reviews/jwst_martingale_audit_2026_09_22/reduced_solver/verify.py",
+      "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py"
+    ],
+    "bounds": {
+      "rates": [
+        1,
+        2
+      ],
+      "original_replay_photons": 20000,
+      "fresh_reduced_photons": 80000,
+      "fresh_vector_photons": 80000,
+      "se_threshold": 6,
+      "path_event_cap": 10000
+    },
+    "non_claims": [
+      "Finite samples do not prove a universal identity",
+      "Approximate SEs",
+      "Candidate broadly clamps negative square-root arguments; final geometry checked but internal clamp tolerance remains a limitation",
+      "No novelty or observational confirmation"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "NumPy default_rng PCG64; per-photon seeds in Qwen implementation",
+    "seed": 9225200,
+    "fresh_reduced_seed_ranges": [
+      [
+        9230000,
+        9249999
+      ],
+      [
+        9270000,
+        9289999
+      ],
+      [
+        9330000,
+        9349999
+      ],
+      [
+        9370000,
+        9389999
+      ]
+    ],
+    "vector_seeds": [
+      9250000,
+      9250001
+    ]
+  },
+  "run": {
+    "started_at": "2026-09-22T05:46:21.575492+00:00",
+    "runtime_seconds": 2.065714,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_martingale_audit_2026_09_22/reduced_solver/qwen_candidate.py",
+    "real_research/reviews/jwst_martingale_audit_2026_09_22/reduced_solver/verify.py",
+    "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/reduced_solver/qwen_candidate.py",
+      "sha256": "ca63db27b50c1ef27c27344f523b523a2d66a204f5dfd07b5412428148c74a0a",
+      "sha256_after": "ca63db27b50c1ef27c27344f523b523a2d66a204f5dfd07b5412428148c74a0a"
+    },
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/reduced_solver/verify.py",
+      "sha256": "fa1962529559d293f3b18dc8494b94e363ad5696d1b1af2784dac021ed465097",
+      "sha256_after": "fa1962529559d293f3b18dc8494b94e363ad5696d1b1af2784dac021ed465097"
+    },
+    {
+      "path": "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py",
+      "sha256": "53f8b0c7e6208e428492814a8989c3462695db247b15470aa1f5d2adfc3c8ac2",
+      "sha256_after": "53f8b0c7e6208e428492814a8989c3462695db247b15470aa1f5d2adfc3c8ac2"
+    }
+  ],
+  "output_directory": "real_research/reviews/jwst_martingale_audit_2026_09_22/reduced_solver/certified",
+  "declared_results": [
+    "real_research/reviews/jwst_martingale_audit_2026_09_22/reduced_solver/certified/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/reduced_solver/certified/stdout.txt",
+      "sha256": "aaad411e56c90ef10444eec6dfcd363dce8564dea607abb3255c076a171fca6f",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/reduced_solver/certified/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/reduced_solver/certified/result.json",
+      "sha256": "aaad411e56c90ef10444eec6dfcd363dce8564dea607abb3255c076a171fca6f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

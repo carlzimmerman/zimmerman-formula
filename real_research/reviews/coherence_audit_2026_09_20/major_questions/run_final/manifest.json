@@ -1,0 +1,194 @@
+{
+  "schema_version": 2,
+  "claim_id": "NS_ADVECTION_BRIDGE_2026_09_20",
+  "repository": {
+    "commit": "3aaed026d55f65b38733316cb63c432290a339e1",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "real_research/reviews/coherence_audit_2026_09_20/major_questions/check_advection.py",
+    "real_research/reviews/coherence_audit_2026_09_20/major_questions/run_final/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Eight actual source advection implementations use the transposed Jacobian contraction; manufactured field detects wrong advection, N05 frozen derivative, N12 projector defect; short N04c original-vs-corrected comparison and exact Stokes control",
+    "coefficient_domain": "Symbolic exact trig identities and float64 FFT arithmetic",
+    "conventions": "2pi-periodic box; D[i,j]=partial_j u_i; standard Leray projector; convection is subtracted in NSE RHS",
+    "inputs": [
+      "real_research/reviews/coherence_audit_2026_09_20/major_questions/check_advection.py",
+      "deepseek_push/navier_stokes_attempt/N03_supbarrier.py",
+      "deepseek_push/navier_stokes_attempt/N03b_beta_family.py",
+      "deepseek_push/navier_stokes_attempt/N04_galerkin.py",
+      "deepseek_push/navier_stokes_attempt/N04b_equilibrium.py",
+      "deepseek_push/navier_stokes_attempt/N04c_equilibrium_long.py",
+      "deepseek_push/navier_stokes_attempt/N05_window_theorem.py",
+      "deepseek_push/navier_stokes_attempt/N09_twofluid_galerkin.py",
+      "deepseek_push/navier_stokes_attempt/N12_selfseeding.py"
+    ],
+    "bounds": {
+      "manufactured_grid": 12,
+      "product_max_wave_number": 2,
+      "spectral_cutoff": 4,
+      "comparison_grid": 12,
+      "comparison_T": 2,
+      "dt": [
+        0.004,
+        0.002
+      ],
+      "seed": 7
+    },
+    "non_claims": [
+      "No continuum regularity proof",
+      "No original n=32 T=200 rerun",
+      "No corrected two-fluid run",
+      "No resolution of Clay or physical framework questions"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy.default_rng",
+    "seed": 7
+  },
+  "run": {
+    "started_at": "2026-09-20T15:49:45.037696+00:00",
+    "runtime_seconds": 5.444844,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/coherence_audit_2026_09_20/major_questions/check_advection.py",
+    "deepseek_push/navier_stokes_attempt/N03_supbarrier.py",
+    "deepseek_push/navier_stokes_attempt/N03b_beta_family.py",
+    "deepseek_push/navier_stokes_attempt/N04_galerkin.py",
+    "deepseek_push/navier_stokes_attempt/N04b_equilibrium.py",
+    "deepseek_push/navier_stokes_attempt/N04c_equilibrium_long.py",
+    "deepseek_push/navier_stokes_attempt/N05_window_theorem.py",
+    "deepseek_push/navier_stokes_attempt/N09_twofluid_galerkin.py",
+    "deepseek_push/navier_stokes_attempt/N12_selfseeding.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/coherence_audit_2026_09_20/major_questions/check_advection.py",
+      "sha256": "402eab1b144447eb380d43d4bdcfc7a4a4a58893667b9e5d9e8b815977936d79",
+      "sha256_after": "402eab1b144447eb380d43d4bdcfc7a4a4a58893667b9e5d9e8b815977936d79"
+    },
+    {
+      "path": "deepseek_push/navier_stokes_attempt/N03_supbarrier.py",
+      "sha256": "1f8c7869468d0856f9f84d70cd53e260cf48a764579419938ae06e22e264d0f5",
+      "sha256_after": "1f8c7869468d0856f9f84d70cd53e260cf48a764579419938ae06e22e264d0f5"
+    },
+    {
+      "path": "deepseek_push/navier_stokes_attempt/N03b_beta_family.py",
+      "sha256": "bf26215228e2008ceb526956d5ed0b4a3e18be4a79166a8180881dceddd89af5",
+      "sha256_after": "bf26215228e2008ceb526956d5ed0b4a3e18be4a79166a8180881dceddd89af5"
+    },
+    {
+      "path": "deepseek_push/navier_stokes_attempt/N04_galerkin.py",
+      "sha256": "b6fb5df743581fa8ffe42095c517404e11d063ec3c3b18569bed02642bad6b67",
+      "sha256_after": "b6fb5df743581fa8ffe42095c517404e11d063ec3c3b18569bed02642bad6b67"
+    },
+    {
+      "path": "deepseek_push/navier_stokes_attempt/N04b_equilibrium.py",
+      "sha256": "3463348625f7111e184ce2a60421ba8a79665a4e62b970fe8a7ee800c6ddf1d7",
+      "sha256_after": "3463348625f7111e184ce2a60421ba8a79665a4e62b970fe8a7ee800c6ddf1d7"
+    },
+    {
+      "path": "deepseek_push/navier_stokes_attempt/N04c_equilibrium_long.py",
+      "sha256": "348ee3b001219ec204a6056b4eb82879fcf6c41e67d869b4bafab337933336c5",
+      "sha256_after": "348ee3b001219ec204a6056b4eb82879fcf6c41e67d869b4bafab337933336c5"
+    },
+    {
+      "path": "deepseek_push/navier_stokes_attempt/N05_window_theorem.py",
+      "sha256": "1c3f6301bafb434bfffbc8bba0a9c1fc5957526bbc778b9eb8b49ab1133cc471",
+      "sha256_after": "1c3f6301bafb434bfffbc8bba0a9c1fc5957526bbc778b9eb8b49ab1133cc471"
+    },
+    {
+      "path": "deepseek_push/navier_stokes_attempt/N09_twofluid_galerkin.py",
+      "sha256": "d51333b71444907a4115fcbc446299dc999ce371db5ec299609fda212efbc70c",
+      "sha256_after": "d51333b71444907a4115fcbc446299dc999ce371db5ec299609fda212efbc70c"
+    },
+    {
+      "path": "deepseek_push/navier_stokes_attempt/N12_selfseeding.py",
+      "sha256": "5fab4893d4c7cc9b7f277f21c98f9019ee419b0a58240ea1adbb5b70ef85ec00",
+      "sha256_after": "5fab4893d4c7cc9b7f277f21c98f9019ee419b0a58240ea1adbb5b70ef85ec00"
+    }
+  ],
+  "output_directory": "real_research/reviews/coherence_audit_2026_09_20/major_questions/run_final",
+  "declared_results": [
+    "real_research/reviews/coherence_audit_2026_09_20/major_questions/run_final/results.json",
+    "real_research/reviews/coherence_audit_2026_09_20/major_questions/run_final/corrected_galerkin.py"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/coherence_audit_2026_09_20/major_questions/run_final/stdout.txt",
+      "sha256": "333286e255460aaf4f35ea6e1e196a88a1487ee57ccf2de18b4ba775234a5df1",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/coherence_audit_2026_09_20/major_questions/run_final/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/coherence_audit_2026_09_20/major_questions/run_final/results.json",
+      "sha256": "333286e255460aaf4f35ea6e1e196a88a1487ee57ccf2de18b4ba775234a5df1",
+      "kind": "result"
+    },
+    {
+      "path": "real_research/reviews/coherence_audit_2026_09_20/major_questions/run_final/corrected_galerkin.py",
+      "sha256": "574f980408c4c5434c3ac715f32de62171047d27a8f714d0acf406afabb674df",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

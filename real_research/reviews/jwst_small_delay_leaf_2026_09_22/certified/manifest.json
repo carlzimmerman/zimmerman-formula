@@ -1,0 +1,133 @@
+{
+  "schema_version": 2,
+  "claim_id": "ONE_SCATTER_DELAY_SANDWICH",
+  "repository": {
+    "commit": "b73311096299e2f1816be00036ccdb2922bc44d4",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "real_research/reviews/jwst_small_delay_leaf_2026_09_22/verify.py",
+    "real_research/reviews/jwst_small_delay_leaf_2026_09_22/certified/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Two coordinate quadratures, refinement, isotropic mismatch and separate analytic one-scatter CDF sandwich",
+    "coefficient_domain": "float64 quadrature; analytic real inequalities in proof",
+    "conventions": "Unnormalized probability of exactly one scattering and0<D<=epsilon",
+    "inputs": [
+      "real_research/reviews/jwst_small_delay_leaf_2026_09_22/verify.py",
+      "real_research/reviews/jwst_small_delay_leaf_2026_09_22/ONE_SCATTER.md"
+    ],
+    "bounds": {
+      "tau": [
+        1,
+        4
+      ],
+      "epsilon": [
+        0.01,
+        0.003,
+        0.001
+      ],
+      "eps_quad": [
+        1e-10,
+        1e-12
+      ],
+      "comparison_abs": 1e-08,
+      "comparison_rel": 1e-05
+    },
+    "non_claims": [
+      "No full multiple-scattering asymptotic",
+      "No novelty or physical validation",
+      "Quadrature estimates are not rigorous intervals"
+    ]
+  },
+  "randomness": {
+    "used": false
+  },
+  "run": {
+    "started_at": "2026-09-22T12:53:14.717241+00:00",
+    "runtime_seconds": 0.329921,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_small_delay_leaf_2026_09_22/verify.py",
+    "real_research/reviews/jwst_small_delay_leaf_2026_09_22/ONE_SCATTER.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/jwst_small_delay_leaf_2026_09_22/verify.py",
+      "sha256": "57db0dc69142708ec905286f9a3c84f5f6a77c19c1efb762b1b230cadf0825db",
+      "sha256_after": "57db0dc69142708ec905286f9a3c84f5f6a77c19c1efb762b1b230cadf0825db"
+    },
+    {
+      "path": "real_research/reviews/jwst_small_delay_leaf_2026_09_22/ONE_SCATTER.md",
+      "sha256": "66d32c8524fb9ecb42c9e823e175dd82f773c85ec0e59baf62970471d78343ce",
+      "sha256_after": "66d32c8524fb9ecb42c9e823e175dd82f773c85ec0e59baf62970471d78343ce"
+    }
+  ],
+  "output_directory": "real_research/reviews/jwst_small_delay_leaf_2026_09_22/certified",
+  "declared_results": [
+    "real_research/reviews/jwst_small_delay_leaf_2026_09_22/certified/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/jwst_small_delay_leaf_2026_09_22/certified/stdout.txt",
+      "sha256": "1810a6374abc8a64083efae6601ffb18da1adbbc1c4cf105fab166a6103ccdce",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_small_delay_leaf_2026_09_22/certified/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_small_delay_leaf_2026_09_22/certified/result.json",
+      "sha256": "43389c1040ecd18a3ee16d54f82ff4ba7100f5cd3bcc70f1bedefd4cc31cca3f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

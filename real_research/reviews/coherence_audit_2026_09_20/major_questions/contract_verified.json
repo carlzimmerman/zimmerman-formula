@@ -1,0 +1,67 @@
+{
+  "claim_id": "NS_ADVECTION_BRIDGE_2026_09_20",
+  "mathematics": {
+    "assertion_tested": "Eight actual source advection implementations use the transposed Jacobian contraction; manufactured field detects wrong advection, N05 frozen derivative, N12 projector defect; short N04c original-vs-corrected comparison and exact Stokes control",
+    "coefficient_domain": "Symbolic exact trig identities and float64 FFT arithmetic",
+    "conventions": "2pi-periodic box; D[i,j]=partial_j u_i; standard Leray projector; convection is subtracted in NSE RHS",
+    "inputs": [
+      "real_research/reviews/coherence_audit_2026_09_20/major_questions/check_advection.py",
+      "deepseek_push/navier_stokes_attempt/N03_supbarrier.py",
+      "deepseek_push/navier_stokes_attempt/N03b_beta_family.py",
+      "deepseek_push/navier_stokes_attempt/N04_galerkin.py",
+      "deepseek_push/navier_stokes_attempt/N04b_equilibrium.py",
+      "deepseek_push/navier_stokes_attempt/N04c_equilibrium_long.py",
+      "deepseek_push/navier_stokes_attempt/N05_window_theorem.py",
+      "deepseek_push/navier_stokes_attempt/N09_twofluid_galerkin.py",
+      "deepseek_push/navier_stokes_attempt/N12_selfseeding.py"
+    ],
+    "bounds": {
+      "manufactured_grid": 12,
+      "product_max_wave_number": 2,
+      "spectral_cutoff": 4,
+      "comparison_grid": 12,
+      "comparison_T": 2,
+      "dt": [
+        0.004,
+        0.002
+      ],
+      "seed": 7
+    },
+    "non_claims": [
+      "No continuum regularity proof",
+      "No original n=32 T=200 rerun",
+      "No corrected two-fluid run",
+      "No resolution of Clay or physical framework questions"
+    ]
+  },
+  "execution_artifacts": [
+    "real_research/reviews/coherence_audit_2026_09_20/major_questions/check_advection.py",
+    "deepseek_push/navier_stokes_attempt/N03_supbarrier.py",
+    "deepseek_push/navier_stokes_attempt/N03b_beta_family.py",
+    "deepseek_push/navier_stokes_attempt/N04_galerkin.py",
+    "deepseek_push/navier_stokes_attempt/N04b_equilibrium.py",
+    "deepseek_push/navier_stokes_attempt/N04c_equilibrium_long.py",
+    "deepseek_push/navier_stokes_attempt/N05_window_theorem.py",
+    "deepseek_push/navier_stokes_attempt/N09_twofluid_galerkin.py",
+    "deepseek_push/navier_stokes_attempt/N12_selfseeding.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SymPy",
+      "version": "1.14.0"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "numpy.default_rng",
+    "seed": 7
+  }
+}

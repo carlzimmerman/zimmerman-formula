@@ -1,0 +1,60 @@
+{
+  "claim_id": "JWST_FROZEN_PAIR_STATIC_FOURTH_CHALLENGE",
+  "mathematics": {
+    "assertion_tested": "Test whether the already frozen equal-second-moment pair differs in static fourth moment and normalized kurtosis on independent samples",
+    "coefficient_domain": "float64 Monte Carlo",
+    "conventions": "R=c=T0=1, central conservative Thomson scattering, conditional Gaussian velocity moments, delta-method kurtosis SE",
+    "inputs": [
+      "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/fourth_moment/verify.py",
+      "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py"
+    ],
+    "bounds": {
+      "photons_per_cloud": 600000,
+      "independent_batches": 3,
+      "clouds": [
+        "A",
+        "B",
+        "A_null"
+      ],
+      "total_photons": 1800000,
+      "fixed_h": 0.4689264972650708,
+      "difference_SE_threshold": 5,
+      "null_SE_threshold": 4
+    },
+    "non_claims": [
+      "No new physical law",
+      "No observational feasibility",
+      "Shared transport implementation",
+      "Approximate normal SE estimates; not rigorous confidence bounds"
+    ]
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/fourth_moment/verify.py",
+    "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.13.9"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.4"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "NumPy default_rng PCG64",
+    "seed": 9224000,
+    "additional_seeds": [
+      9224001,
+      9224002,
+      9224010,
+      9224011,
+      9224012,
+      9224020,
+      9224021,
+      9224022
+    ]
+  }
+}

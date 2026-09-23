@@ -1,0 +1,59 @@
+{
+  "claim_id": "COLLISION_RESOLVED_SMALL_DELAY_FINITE_AUDIT",
+  "mathematics": {
+    "assertion_tested": "Fixed v8 plan: real collision-resolved delay histograms, independent one-scatter quadrature calibration, atom and mean calibration; same-path wrong T-for-D negative",
+    "coefficient_domain": "float64 Monte Carlo and SciPy beta quantiles",
+    "conventions": "Unit uniform central scalar Thomson sphere; D=T-x_exit dot u_exit; count2 and count3plus decompose remainder",
+    "inputs": [
+      "real_research/reviews/jwst_collision_tail_audit_2026_09_22/verify.py",
+      "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py",
+      "real_research/reviews/jwst_small_delay_leaf_2026_09_22/certified/result.json"
+    ],
+    "bounds": {
+      "tau": [
+        1,
+        4
+      ],
+      "epsilon": [
+        0.01,
+        0.003,
+        0.001
+      ],
+      "N": [
+        1000000,
+        2000000
+      ],
+      "threshold_SE": 5,
+      "binomial_intervals": "separate marginal two-sided 95% Clopper-Pearson, no ratio CI"
+    },
+    "non_claims": [
+      "No proof of an asymptotic or collision-order exponent",
+      "Shared transport solver; independent statistics and analytic calibration only",
+      "No observational data or novelty"
+    ]
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_collision_tail_audit_2026_09_22/verify.py",
+    "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py",
+    "real_research/reviews/jwst_small_delay_leaf_2026_09_22/certified/result.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.13.9"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "numpy default_rng PCG64",
+    "seed": "main1800101/02;positive1800201/02;negative same main paths"
+  }
+}

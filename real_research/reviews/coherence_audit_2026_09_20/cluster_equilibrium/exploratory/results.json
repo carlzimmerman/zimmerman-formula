@@ -1,0 +1,48 @@
+{
+  "exact_checks": {
+    "boundary_normalization": true,
+    "hydrostatic_equation": true,
+    "density_log_slope": true,
+    "slope_error": true,
+    "wrong_density_residual": true,
+    "inverse_powerlaw_pressure": true,
+    "inverse_boundary": true,
+    "amplitude_preserves_slope": true
+  },
+  "hydrostatic_solution": "rho(r)/rho(R) = (1+h*r)/(1+h*R) * (R/r)^eta * exp(eta*h*(R-r))",
+  "correct_slope": "-eta*(h*r + 1) + h*r/(h*r + 1)",
+  "wrong_density_ODE_residual_divided_by_rho": "c2*(2*eta*h**2*r**2 + 4*eta*h*r + 2*eta - h*r)/(r*(h*r + 1)**2)",
+  "inverse_pressure": "C(r)=v^2/gamma+(C_R-v^2/gamma)*(r/R)^gamma",
+  "source_parameters": {
+    "Mb_solar": 200000000000000.0,
+    "AD": 400000.0,
+    "outer_kpc": 5000,
+    "inner_mass_kpc": 30,
+    "mass_radius_kpc": 1400
+  },
+  "source_formula_band_mean": -4.30047289385222,
+  "correct_formula_band_mean": -2.3004882147290857,
+  "correct_slope_at_75_200_420_kpc": {
+    "75": -0.23601648384427887,
+    "200": -2.295974043055589,
+    "420": -5.92151386392425
+  },
+  "density_1400_over_outer": 1.631499921208098e+25,
+  "annular_mass_30_1400_over_baryons": 2.201269224748443e+28,
+  "quadrature_relative_error_estimate": 1.1102343254635641e-14,
+  "independent_log_density_IVP_max_error": 9.947598300641403e-14,
+  "rM_kpc": 481.9879858074508,
+  "gN_over_a0_at_75_420": [
+    41.299985504484155,
+    1.3169638234848267
+  ],
+  "core200_fit_slope_40_750": -1.5734183285112933,
+  "AD_for_mean_slope_minus_1p53_in_same_surrogate": 306620.24263197684,
+  "non_claims": [
+    "No self-gravitating halo: the enormous mass invalidates the prescribed baryon-only potential.",
+    "P=rho*C(r) is a declared surrogate, not the EOS of L290.",
+    "Band mean or cored-profile mimicry is not an observational fit.",
+    "Deep-MOND point-source force is outside its asymptotic regime across the selected inner band.",
+    "No theory viability or universal exclusion."
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "schema_version": 2,
+  "claim_id": "JWST_RADIAL_VARIANCE_INDEPENDENT_TEST",
+  "repository": {
+    "commit": "c669f6e0de436f470f3602d08238ca28498efbf8",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "real_research/reviews/jwst_radial_variance_audit_2026_09_22/verify.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.13.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "At fixed epsilon=1/8,d=4,A=8/log(65), independently test whether Var(D)<2*d^2/5 using actual 3D null-collision paths and two fresh seeds, retaining original inconclusive scalar runs.",
+    "coefficient_domain": "float64 Monte Carlo; symbolic optical-depth derivative",
+    "conventions": "Unit-radius conservative central-source Thomson sphere; D=T-x_exit dot u_exit; radial A/(epsilon^2+r^2); uniform k=8 control",
+    "inputs": [
+      "real_research/reviews/jwst_radial_variance_audit_2026_09_22/verify.py",
+      "real_research/reviews/jwst_radial_variance_audit_2026_09_22/qwen_candidate.py",
+      "real_research/reviews/jwst_radial_variance_audit_2026_09_22/origin.json"
+    ],
+    "bounds": {
+      "original_photons": 16000,
+      "independent_photons_per_case": 32000,
+      "independent_radial_cases": 2,
+      "independent_uniform_cases": 1,
+      "threshold_SE": 6,
+      "physical_collision_cap": 10000,
+      "null_iteration_cap": 100000
+    },
+    "non_claims": [
+      "Approximate SEs are not a rigorous probability bound",
+      "No universal theorem, physical observation, or novelty certification",
+      "Original scalar numerical clamps remain a limitation"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "NumPy default_rng PCG64",
+    "seed": 9810001,
+    "independent_seeds": [
+      9810001,
+      9820001,
+      9830001
+    ],
+    "original_per_path_ranges": [
+      [
+        9500000,
+        9507999
+      ],
+      [
+        9600000,
+        9607999
+      ]
+    ]
+  },
+  "run": {
+    "started_at": "2026-09-22T06:28:53.382733+00:00",
+    "runtime_seconds": 20.933375,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_radial_variance_audit_2026_09_22/verify.py",
+    "real_research/reviews/jwst_radial_variance_audit_2026_09_22/qwen_candidate.py",
+    "real_research/reviews/jwst_radial_variance_audit_2026_09_22/origin.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/jwst_radial_variance_audit_2026_09_22/verify.py",
+      "sha256": "2f24be5570547217af5b69374dfeb5711e9bc6b112cf3752c2dcd2e9fa1cbc30",
+      "sha256_after": "2f24be5570547217af5b69374dfeb5711e9bc6b112cf3752c2dcd2e9fa1cbc30"
+    },
+    {
+      "path": "real_research/reviews/jwst_radial_variance_audit_2026_09_22/qwen_candidate.py",
+      "sha256": "715688f34b725296b968af739b5331a8c14bf5a580dad341cb93a064e4afa1b6",
+      "sha256_after": "715688f34b725296b968af739b5331a8c14bf5a580dad341cb93a064e4afa1b6"
+    },
+    {
+      "path": "real_research/reviews/jwst_radial_variance_audit_2026_09_22/origin.json",
+      "sha256": "4e07ecce6f7f9d5d298a5f9aa82c45b048176d1746f7ace60fe6e4a87a45af88",
+      "sha256_after": "4e07ecce6f7f9d5d298a5f9aa82c45b048176d1746f7ace60fe6e4a87a45af88"
+    }
+  ],
+  "output_directory": "real_research/reviews/jwst_radial_variance_audit_2026_09_22/certified",
+  "declared_results": [
+    "real_research/reviews/jwst_radial_variance_audit_2026_09_22/certified/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/jwst_radial_variance_audit_2026_09_22/certified/stdout.txt",
+      "sha256": "a38b1faeb6a40384743a1d6ae47f232f89d8cec0f837e8e9898aedb72c49cf1e",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_radial_variance_audit_2026_09_22/certified/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_radial_variance_audit_2026_09_22/certified/result.json",
+      "sha256": "538faf2ddab4c62808cadfcebf3fd672462f88887dcab3906ea3e4bc95df9ef2",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

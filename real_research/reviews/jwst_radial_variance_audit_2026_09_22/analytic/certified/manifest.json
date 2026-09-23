@@ -1,0 +1,126 @@
+{
+  "schema_version": 2,
+  "claim_id": "JWST_FIXED_RADIAL_ANALYTIC_COUNTEREXAMPLE",
+  "repository": {
+    "commit": "c669f6e0de436f470f3602d08238ca28498efbf8",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "real_research/reviews/jwst_radial_variance_audit_2026_09_22/analytic/verify.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.13.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact generator residual, boundary square, and rational central bound of the explicit fixed-profile supersolution. Separate stopping proof supplies the model-conditional E[D^2] upper bound.",
+    "coefficient_domain": "SymPy symbolic rationals; fractions.Fraction exact integer arithmetic",
+    "conventions": "a=1/64,A=8/log(65),central conservative Thomson sphere,R=c_light=1,D=T-Z",
+    "inputs": [
+      "real_research/reviews/jwst_radial_variance_audit_2026_09_22/analytic/verify.py",
+      "real_research/reviews/jwst_radial_variance_audit_2026_09_22/analytic/THEOREM.md"
+    ],
+    "bounds": {
+      "series_terms": [
+        16,
+        20
+      ],
+      "domain": "0<=s<=1,z^2<=s; outgoing boundary0<=z<=1",
+      "central_bound": "1073/50",
+      "variance_bound": "273/50"
+    },
+    "non_claims": [
+      "Symbolic checks do not themselves implement optional stopping",
+      "The accompanying proof is Codex self-review of the prior supplied candidate, not independent mathematical peer review",
+      "No novelty or physical observation certified"
+    ]
+  },
+  "randomness": {
+    "used": false
+  },
+  "run": {
+    "started_at": "2026-09-22T07:10:02.027874+00:00",
+    "runtime_seconds": 60.011416,
+    "exit_status": -9,
+    "status": "timeout",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "real_research/reviews/jwst_radial_variance_audit_2026_09_22/analytic/certified/result.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_radial_variance_audit_2026_09_22/analytic/verify.py",
+    "real_research/reviews/jwst_radial_variance_audit_2026_09_22/analytic/THEOREM.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/jwst_radial_variance_audit_2026_09_22/analytic/verify.py",
+      "sha256": "96f51ea49a5056dc0dd8196d7545dda5a56865ed3a5dfa42265ba0d3d85f6f3e",
+      "sha256_after": "96f51ea49a5056dc0dd8196d7545dda5a56865ed3a5dfa42265ba0d3d85f6f3e"
+    },
+    {
+      "path": "real_research/reviews/jwst_radial_variance_audit_2026_09_22/analytic/THEOREM.md",
+      "sha256": "43013f3548dbcad5094ab3ae63f11ff4592aaee8a6c9349f4da6ee38d2cf7fae",
+      "sha256_after": "43013f3548dbcad5094ab3ae63f11ff4592aaee8a6c9349f4da6ee38d2cf7fae"
+    }
+  ],
+  "output_directory": "real_research/reviews/jwst_radial_variance_audit_2026_09_22/analytic/certified",
+  "declared_results": [
+    "real_research/reviews/jwst_radial_variance_audit_2026_09_22/analytic/certified/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/jwst_radial_variance_audit_2026_09_22/analytic/certified/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_radial_variance_audit_2026_09_22/analytic/certified/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run timeout; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: real_research/reviews/jwst_radial_variance_audit_2026_09_22/analytic/certified/result.json"
+  ]
+}

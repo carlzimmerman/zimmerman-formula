@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "claim_id": "JWST_QWEN_MATCHED_PAIR_AUDIT_20260922",
+  "repository": {
+    "commit": "9d4ee025e7c483e7d3568bb1a7ed7cf3bbd77219",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/verify.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "At fixed R=c=T0=1 and exact mean delay 1, fit a nonnegative temperature gradient for q=10 to match a uniform reference spectral second moment, then test the frozen pair on held-out paths for distinct joint velocity-delay moment",
+    "coefficient_domain": "IEEE-754 float64 Monte Carlo",
+    "conventions": "Central emission, conservative Thomson kernel; full photons, leading-order Doppler; conditional spectral moments, actual geometric delays; independent fitting and validation",
+    "inputs": [
+      "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/verify.py",
+      "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py"
+    ],
+    "bounds": {
+      "training_photons_per_call": 1000000,
+      "training_calls": 3,
+      "validation_photons_per_call": 200000,
+      "validation_calls": 9,
+      "q": [
+        0,
+        10
+      ],
+      "tau0": [
+        2,
+        0.3333333333333333
+      ],
+      "validation_replicates": 3,
+      "width_delay_equivalence_tolerance": 0.01,
+      "approx_normal_interval_multiplier": 1.96,
+      "joint_se_threshold": 5
+    },
+    "non_claims": [
+      "No independent transport implementation",
+      "No universal uniqueness or inverse theorem",
+      "No observational applicability or global novelty",
+      "Normal Monte Carlo intervals are approximate; trained h is frozen, not a proven exact match"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "NumPy default_rng PCG64",
+    "seed": 9223100,
+    "additional_seeds": [
+      9223101,
+      9223200,
+      9223201,
+      9223202,
+      9223210,
+      9223211,
+      9223212,
+      9223220,
+      9223221,
+      9223222
+    ]
+  },
+  "run": {
+    "started_at": "2026-09-22T01:16:47.220378+00:00",
+    "runtime_seconds": 5.560688,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/verify.py",
+    "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/verify.py",
+      "sha256": "c1214891f5ba4b0fe04282b9bdab46f1e575fcdeaaf201e677858dc94500c5d5",
+      "sha256_after": "c1214891f5ba4b0fe04282b9bdab46f1e575fcdeaaf201e677858dc94500c5d5"
+    },
+    {
+      "path": "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py",
+      "sha256": "53f8b0c7e6208e428492814a8989c3462695db247b15470aa1f5d2adfc3c8ac2",
+      "sha256_after": "53f8b0c7e6208e428492814a8989c3462695db247b15470aa1f5d2adfc3c8ac2"
+    }
+  ],
+  "output_directory": "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/certified",
+  "declared_results": [
+    "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/certified/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/certified/stdout.txt",
+      "sha256": "d0b47cd55c1b3c2d2fce315208766882be896132c1cb0abe417668333c6fe650",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/certified/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_qwen_joint_audit_2026_09_22/certified/result.json",
+      "sha256": "f94016f14a7ee90872503f8c6fa67944fba3f11c64b65b86bcf37ce706981945",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "schema_version": 2,
+  "claim_id": "JWST_THOMSON_BRACKET_ANGULAR_AUDIT",
+  "repository": {
+    "commit": "c669f6e0de436f470f3602d08238ca28498efbf8",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "real_research/reviews/jwst_martingale_audit_2026_09_22/verify.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.13.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact angular integration of the squared directional jump refutes Qwen's 3/8,3/8 coefficients",
+    "coefficient_domain": "Exact rational polynomials using SymPy integration",
+    "conventions": "u=e_z; r2=|x|^2; z=x dot u; physical r2>=z^2; normalized density in mu is 3(1+mu^2)/8",
+    "inputs": [
+      "real_research/reviews/jwst_martingale_audit_2026_09_22/verify.py"
+    ],
+    "bounds": {
+      "mu": [
+        -1,
+        1
+      ],
+      "phi": "[0,2pi]",
+      "polynomial_degree": 2,
+      "kernels": [
+        "Thomson",
+        "isotropic"
+      ]
+    },
+    "non_claims": [
+      "Not a stochastic simulation",
+      "Does not certify optional stopping",
+      "No physical novelty or observational claim"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-22T03:21:55.748565+00:00",
+    "runtime_seconds": 0.32513,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_martingale_audit_2026_09_22/verify.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/verify.py",
+      "sha256": "9e40d87ee6be9d0a57c2b8f26b5acca7efdcfbd2485b5f04b84a0d9347c3c6e1",
+      "sha256_after": "9e40d87ee6be9d0a57c2b8f26b5acca7efdcfbd2485b5f04b84a0d9347c3c6e1"
+    }
+  ],
+  "output_directory": "real_research/reviews/jwst_martingale_audit_2026_09_22/certified_v2",
+  "declared_results": [
+    "real_research/reviews/jwst_martingale_audit_2026_09_22/certified_v2/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/certified_v2/stdout.txt",
+      "sha256": "a43efcbd93a64da6922efacd2de4de568d7b71e99c1cfe47fa00d027462adb11",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/certified_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_martingale_audit_2026_09_22/certified_v2/result.json",
+      "sha256": "a43efcbd93a64da6922efacd2de4de568d7b71e99c1cfe47fa00d027462adb11",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

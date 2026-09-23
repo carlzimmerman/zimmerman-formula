@@ -1,0 +1,66 @@
+{
+  "claim_id": "JWST_RADIAL_VARIANCE_INDEPENDENT_TEST",
+  "mathematics": {
+    "assertion_tested": "At fixed epsilon=1/8,d=4,A=8/log(65), independently test whether Var(D)<2*d^2/5 using actual 3D null-collision paths and two fresh seeds, retaining original inconclusive scalar runs.",
+    "coefficient_domain": "float64 Monte Carlo; symbolic optical-depth derivative",
+    "conventions": "Unit-radius conservative central-source Thomson sphere; D=T-x_exit dot u_exit; radial A/(epsilon^2+r^2); uniform k=8 control",
+    "inputs": [
+      "real_research/reviews/jwst_radial_variance_audit_2026_09_22/verify.py",
+      "real_research/reviews/jwst_radial_variance_audit_2026_09_22/qwen_candidate.py",
+      "real_research/reviews/jwst_radial_variance_audit_2026_09_22/origin.json"
+    ],
+    "bounds": {
+      "original_photons": 16000,
+      "independent_photons_per_case": 32000,
+      "independent_radial_cases": 2,
+      "independent_uniform_cases": 1,
+      "threshold_SE": 6,
+      "physical_collision_cap": 10000,
+      "null_iteration_cap": 100000
+    },
+    "non_claims": [
+      "Approximate SEs are not a rigorous probability bound",
+      "No universal theorem, physical observation, or novelty certification",
+      "Original scalar numerical clamps remain a limitation"
+    ]
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_radial_variance_audit_2026_09_22/verify.py",
+    "real_research/reviews/jwst_radial_variance_audit_2026_09_22/qwen_candidate.py",
+    "real_research/reviews/jwst_radial_variance_audit_2026_09_22/origin.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.13.9"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "SymPy",
+      "version": "1.13.1"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "NumPy default_rng PCG64",
+    "seed": 9810001,
+    "independent_seeds": [
+      9810001,
+      9820001,
+      9830001
+    ],
+    "original_per_path_ranges": [
+      [
+        9500000,
+        9507999
+      ],
+      [
+        9600000,
+        9607999
+      ]
+    ]
+  }
+}

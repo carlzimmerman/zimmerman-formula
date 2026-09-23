@@ -1,0 +1,43 @@
+{
+  "checks": {
+    "lapse_solution": true,
+    "kinetic_00": true,
+    "kinetic_01": true,
+    "kinetic_10": true,
+    "kinetic_11": true,
+    "kinetic_determinant": true,
+    "scalar_elimination": true,
+    "mond_alpha_eff": true,
+    "longitudinal_exponent_derivative": true,
+    "pressure_m_derivative": true,
+    "pressure_mm_derivative": true,
+    "exact_longitudinal_witness": true,
+    "exact_transverse_witness": true
+  },
+  "kinetic_matrix": "Matrix([\n[2*A*(B*C**2 + E)/(A*H**2 + B*C**2 + E),        2*A*B*C*H/(A*H**2 + B*C**2 + E)],\n[       2*A*B*C*H/(A*H**2 + B*C**2 + E), 2*B*(A*H**2 + E)/(A*H**2 + B*C**2 + E)]])",
+  "kinetic_determinant": "4*A*B*E/(A*H**2 + B*C**2 + E)",
+  "mapping": {
+    "A": "2(3b+2)/b after ADM shift elimination",
+    "B": "p_X+2X p_XX",
+    "E": "alpha_eff (k/a)^2",
+    "C": "sqrt(X)",
+    "domain": "b,B,alpha_eff,k,a>0; H real"
+  },
+  "mapping_scope": "Independent velocity-core argument using prior ADM geometry and newly verified scalar constraint; full action variation not repeated here.",
+  "alpha_eff": "alpha + d/(beta + ell2*k2)",
+  "finite_gradient": {
+    "definition": "y=Y/Yd, z=log(X/X0), Ac>1, p=rho0[exp(mz)-1]/(2m)",
+    "m": "(Ac - 1)/(2*(y**2 + 1)**(1/4)) + 1",
+    "m_y_plus_2y_m_yy": "y*(Ac - 1)*(2*y**2 - 3)/(4*(y**2 + 1)**(9/4))",
+    "exact_witness": "Ac=9, y=sqrt(15), z=1/3, rho0=Yd=1, m=3",
+    "carrier_transverse_pressure_curvature": "-sqrt(15)/288",
+    "carrier_longitudinal_pressure_curvature": "sqrt(15)*(7 + 10*E)/4608",
+    "longitudinal_numeric": 0.02873035719241606,
+    "necessary_fixed_clock_spatial_condition": "J_Y+2Y J_YY > p_Y+2Y p_YY for the scalar spatial block of -J(Y)+p(X,Y). This is necessary for positive fixed-clock scalar gradient energy, not sufficient for full coupled health."
+  },
+  "non_claims": [
+    "No full nonlinear or finite-wavelength coupled stability theorem.",
+    "No claim the local witness lies on a global halo solution.",
+    "Positive velocity Hessian does not control spatial principal coefficients."
+  ]
+}

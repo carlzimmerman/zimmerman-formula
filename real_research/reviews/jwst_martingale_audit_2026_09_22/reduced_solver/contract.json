@@ -1,0 +1,14 @@
+{
+ "claim_id":"JWST_QWEN_REDUCED_TRANSPORT_REPRODUCTION",
+ "mathematics":{
+  "assertion_tested":"Reproduce Qwen reduced-state transport; test variance identity and compare raw moments with the separate existing 3D solver on disjoint fresh seeds",
+  "coefficient_domain":"float64 Monte Carlo",
+  "conventions":"Central conservative uniform Thomson sphere; R=c=1; k in {1,2}; D=T-Z",
+  "inputs":["real_research/reviews/jwst_martingale_audit_2026_09_22/reduced_solver/qwen_candidate.py","real_research/reviews/jwst_martingale_audit_2026_09_22/reduced_solver/verify.py","real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py"],
+  "bounds":{"rates":[1,2],"original_replay_photons":20000,"fresh_reduced_photons":80000,"fresh_vector_photons":80000,"se_threshold":6,"path_event_cap":10000},
+  "non_claims":["Finite samples do not prove a universal identity","Approximate SEs","Candidate broadly clamps negative square-root arguments; final geometry checked but internal clamp tolerance remains a limitation","No novelty or observational confirmation"]
+ },
+ "execution_artifacts":["real_research/reviews/jwst_martingale_audit_2026_09_22/reduced_solver/qwen_candidate.py","real_research/reviews/jwst_martingale_audit_2026_09_22/reduced_solver/verify.py","real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py"],
+ "software":[{"name":"Python","version":"3.13.9"},{"name":"NumPy","version":"1.26.4"}],
+ "randomness":{"used":true,"generator":"NumPy default_rng PCG64; per-photon seeds in Qwen implementation","seed":9225200,"fresh_reduced_seed_ranges":[[9260000,9279999],[9300000,9319999],[9360000,9379999],[9400000,9419999]],"vector_seeds":[9250000,9250001]}
+}

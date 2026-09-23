@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "claim_id": "ABSORPTION_SELECTED_CAP_FINITE_AUDIT",
+  "repository": {
+    "commit": "b73311096299e2f1816be00036ccdb2922bc44d4",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "real_research/reviews/jwst_absorption_selection_audit_2026_09_22/verify.py",
+    "real_research/reviews/jwst_absorption_selection_audit_2026_09_22/certified/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Raw delay selection margins and weighted/killed agreement at alpha .5,2,4; half-alpha killed-only negative. Sign is result, never pass predicate.",
+    "coefficient_domain": "float64 Monte Carlo",
+    "conventions": "central unit sphere kappa=M=1, D=T-Z",
+    "inputs": [
+      "real_research/reviews/jwst_absorption_selection_audit_2026_09_22/verify.py",
+      "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py",
+      "real_research/reviews/jwst_cap_attempt_audit_2026_09_22/f0773c84727d48feaac1155b82ebf844.py"
+    ],
+    "bounds": {
+      "N": [
+        32000,
+        64000,
+        32000
+      ],
+      "alpha": [
+        0.5,
+        2,
+        4
+      ],
+      "threshold_SE": 5
+    },
+    "non_claims": [
+      "No universal selection bound",
+      "No new physics or novelty"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "NumPy default_rng PCG64 unchanged audited solvers",
+    "seed": "main1300101,1300111-113;positive1300201,1300211-213;fresh1400101,1400111-113;negative main seeds half alpha killed only"
+  },
+  "run": {
+    "started_at": "2026-09-22T11:36:55.925056+00:00",
+    "runtime_seconds": 0.26286,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_absorption_selection_audit_2026_09_22/verify.py",
+    "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py",
+    "real_research/reviews/jwst_cap_attempt_audit_2026_09_22/f0773c84727d48feaac1155b82ebf844.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/jwst_absorption_selection_audit_2026_09_22/verify.py",
+      "sha256": "d5ed1174dfb2ea47d85a9ffa9f2daa9906cc7ed4ba5ade061592c30d6a98ee11",
+      "sha256_after": "d5ed1174dfb2ea47d85a9ffa9f2daa9906cc7ed4ba5ade061592c30d6a98ee11"
+    },
+    {
+      "path": "real_research/reviews/bhstar_scattering_clock_2026_09_21/transport.py",
+      "sha256": "53f8b0c7e6208e428492814a8989c3462695db247b15470aa1f5d2adfc3c8ac2",
+      "sha256_after": "53f8b0c7e6208e428492814a8989c3462695db247b15470aa1f5d2adfc3c8ac2"
+    },
+    {
+      "path": "real_research/reviews/jwst_cap_attempt_audit_2026_09_22/f0773c84727d48feaac1155b82ebf844.py",
+      "sha256": "efb1efdce14cb243f63f66c5d4b6222a0983f5291aee91a7bf2822f84f89a8fc",
+      "sha256_after": "efb1efdce14cb243f63f66c5d4b6222a0983f5291aee91a7bf2822f84f89a8fc"
+    }
+  ],
+  "output_directory": "real_research/reviews/jwst_absorption_selection_audit_2026_09_22/certified",
+  "declared_results": [
+    "real_research/reviews/jwst_absorption_selection_audit_2026_09_22/certified/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/jwst_absorption_selection_audit_2026_09_22/certified/stdout.txt",
+      "sha256": "5356310cc759431e4196bc5545649ee8d4d4bba923c27110ff179859e19e5e3d",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_absorption_selection_audit_2026_09_22/certified/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_absorption_selection_audit_2026_09_22/certified/result.json",
+      "sha256": "3fc6227fe752288e58129994aceeb31351ad151ad7fcccc2f86b17b2de7e2527",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

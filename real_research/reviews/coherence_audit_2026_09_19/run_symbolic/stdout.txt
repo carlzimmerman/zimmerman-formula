@@ -1,0 +1,40 @@
+n_dn first: [-Psi(t, x), -Derivative(T(t, x), x), 0, 0]
+n_up first: [-Psi(t, x), -b(t, x) - Derivative(T(t, x), x), 0, 0]
+V first: [0, -Q0*Derivative(T(t, x), x) + Derivative(P(t, x), x), 0, 0]
+A spatial first: Matrix([[-Q0*Derivative(T(t, x), (x, 2)) + Derivative(P(t, x), (x, 2)), 0, 0], [0, 0, 0], [0, 0, 0]])
+Code C first: 3*Q0*Derivative(Phi(t, x), t) + Q0*Derivative(b(t, x), x) + Derivative(P(t, x), (x, 2))
+Direct geometric first-order assertions passed
+Independent quadratic reconstruction: all 25 entries match
+Correct time-gauge residual: [0, 0*I, 0*I, 0, 0]
+F1=0 correct gauge kernel: True
+Generic determinant skipped; nonzero symbolic null vector already proves singularity
+Projected-gradient trace identity: 0
+FRW V: [0, 0, 0, 0]
+FRW implemented C: -3*Derivative(a(t), t)*Derivative(ph(t), t)/(N(t)**2*a(t))
+Versions: 3.9.6 1.14.0
+sha256 3c393d06d3f4940cb0fb8f91ae555a0e223b6ecbb71db92cb0f2595c8a3bc262 qwen_claude_field_theory/closure_2026/THE_ACTION_2026-09-05.md
+sha256 e8c3aed2649d991bba6ceaa8808199ec8d5145f772cb4bcaa1abc96d2a11867f real_research/clock_2026/L287_dirac_count_clock_lapse.py
+sha256 e3ede3132b8692540ed63e92cfb155fcbb899366276604ce1f368203f68a84b0 real_research/clock_2026/clock_action_build.py
+sha256 2a46b7d76631467cc211bed001acfef2349b189813e0e6842f0129268e0d2302 real_research/clock_2026/L287_dirac_count_clock_lapse_results.json
+PASS projected_hessian_on_FRW : -3*Derivative(a(t), t)*Derivative(phi(t), t)/a(t)
+PASS written_spatial_hessian_on_FRW : Matrix([[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+PASS correct_gauge_vector : M*(i w, i k, 0, -1, -Q)=0
+PASS matrix_hermitian : True
+PASS corrected_gauge_vector : True
+PASS corrected_healing_relative_scalar : -k^2 (P-Q T)
+PASS exact_k4_factorization : -3*F_1*Q_0*(3*F_1**2 - 2*F_2*omega**2*(3*c_2 + 2))*(F_1*Q_0*(2 - c14) + 2*Q_0**2*(2 - K_B)**2 - 2*c14*omega**2*(2 - c14))/(c14 - 2)
+PASS k4_coefficient_independent_of_healing : True
+PASS clock_gap_root : (F_1*Q_0/2 + Q_0**2*(2 - K_B)**2/(2 - c14))/c14
+PASS gap_independent_of_well_curvature : True
+DIAGNOSTIC a= 1 gap/H0^2= 33600.810010125126
+DIAGNOSTIC a= 1/2 gap/H0^2= -184799.18998987487
+DIAGNOSTIC a= 1/100 gap/H0^2= -31199935199.18999
+PASS YM07_magnetic_bound_counterexample : {'ell': Fraction(1, 10001), 'DB': Fraction(-25, 10001), 'bound': Fraction(13, 20002), 'ratio': Fraction(50, 13)}
+PASS YM07_electric_vacuum_not_ground : -13/10001
+full force per rho: sig*Derivative(xi(r), (r, 2)) + 2*sig*xi(r)/r**2
+omitted term: 2*sig*Derivative(xi(r), r)/r
+mode r residual: 2*sig/r
+mode r**2 residual: 4*sig
+annulus [1,64] exact energy / sigma^2: -115605/64 + 1560*log(2)
+using log(2)<=1, energy <= -15765/64
+All exact audit assertions passed.

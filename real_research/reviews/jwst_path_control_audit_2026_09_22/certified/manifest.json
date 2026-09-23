@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "claim_id": "QWEN_PATH_CONTROL_AUDIT",
+  "repository": {
+    "commit": "c5f8887cd91425608d5fc74be8de1f420aa1796a",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "real_research/reviews/jwst_path_control_audit_2026_09_22/replay.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.13.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent residual evaluation of exact candidate paths with real T-for-D negative; original certificate remains rejected.",
+    "coefficient_domain": "float64 Monte Carlo",
+    "conventions": "Unit Thomson sphere central source, kappa=1 or1+r^2",
+    "inputs": [
+      "real_research/reviews/jwst_path_control_audit_2026_09_22/candidate.py",
+      "real_research/reviews/jwst_path_control_audit_2026_09_22/replay.py"
+    ],
+    "bounds": {
+      "main_N": 8000,
+      "positive_N": 16000,
+      "threshold_SE": 5
+    },
+    "non_claims": [
+      "No universal proof",
+      "No new physics or novelty",
+      "Not full contract acceptance"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "NumPy legacy MT19937, unchanged Qwen implementation",
+    "seed": "42 main,43 positive; same paths for true negative"
+  },
+  "run": {
+    "started_at": "2026-09-22T10:59:47.667142+00:00",
+    "runtime_seconds": 1.916704,
+    "exit_status": 0,
+    "status": "result-missing",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "real_research/reviews/jwst_path_control_audit_2026_09_22/certified/result.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_path_control_audit_2026_09_22/candidate.py",
+    "real_research/reviews/jwst_path_control_audit_2026_09_22/replay.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/reviews/jwst_path_control_audit_2026_09_22/candidate.py",
+      "sha256": "fd75f23c6185b65bcaa8844e36a2cbbd65418b7b04b6eaaf740e5d8b8d59f140",
+      "sha256_after": "fd75f23c6185b65bcaa8844e36a2cbbd65418b7b04b6eaaf740e5d8b8d59f140"
+    },
+    {
+      "path": "real_research/reviews/jwst_path_control_audit_2026_09_22/replay.py",
+      "sha256": "a40b00ce5d9aa0fbc933ac38e7dd04af166c64fe29c61484611eb85e1129e56f",
+      "sha256_after": "a40b00ce5d9aa0fbc933ac38e7dd04af166c64fe29c61484611eb85e1129e56f"
+    }
+  ],
+  "output_directory": "real_research/reviews/jwst_path_control_audit_2026_09_22/certified",
+  "declared_results": [
+    "real_research/reviews/jwst_path_control_audit_2026_09_22/certified/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/reviews/jwst_path_control_audit_2026_09_22/certified/stdout.txt",
+      "sha256": "cab68e531ecf337350f0fbdf80eb6bdc9957f39e93dedb2834877357b8448243",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/reviews/jwst_path_control_audit_2026_09_22/certified/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run result-missing; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: real_research/reviews/jwst_path_control_audit_2026_09_22/certified/result.json"
+  ]
+}

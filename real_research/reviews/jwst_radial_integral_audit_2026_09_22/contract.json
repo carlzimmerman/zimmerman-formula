@@ -1,0 +1,57 @@
+{
+  "claim_id": "QUADRATIC_RADIAL_ONE_SCATTER_AUDIT",
+  "mathematics": {
+    "assertion_tested": "Two coordinates and tolerance refinement agree for exactly-one-scatter probabilities using full incoming/outgoing optical depth; normalized isotropic kernel perturbation fails same agreement test",
+    "coefficient_domain": "float64 SciPy adaptive quadrature",
+    "conventions": "Unit central scalar Thomson sphere, D=r(1-mu), kappa=k0+k2*r^2; no asymptotic formula generates probabilities",
+    "inputs": [
+      "real_research/reviews/jwst_radial_integral_audit_2026_09_22/verify.py",
+      "real_research/reviews/jwst_small_delay_leaf_2026_09_22/certified/result.json"
+    ],
+    "bounds": {
+      "profiles": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "epsilon": [
+        0.001,
+        0.0001
+      ],
+      "main_tolerance": 1e-09,
+      "positive_tolerance": 1e-11,
+      "agreement": "1e-10+1e-6*max(abs(joint),abs(density))"
+    },
+    "non_claims": [
+      "Finite quadrature is not a limit proof",
+      "Non-rigorous floating error estimates",
+      "No physical or novelty claim"
+    ]
+  },
+  "execution_artifacts": [
+    "real_research/reviews/jwst_radial_integral_audit_2026_09_22/verify.py",
+    "real_research/reviews/jwst_small_delay_leaf_2026_09_22/certified/result.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false
+  }
+}
