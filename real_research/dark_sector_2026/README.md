@@ -87,3 +87,9 @@ The dark-sector door is now stated as precisely as the record allows: cold in th
 - **R1: L323's trend is calibration-conditional.** A z-tilt of β = −0.05 dex/z in the baryonic masses, a factor 1.25 end to end over z = 0.6–2.5, brings ΛCDM's least-rising cell within 2σ of RC100. At β = −0.10 the framework is 2.7σ off. One galaxy sitting exactly at the inversion's f_DM = 0.02 edge moves RC100's slope by 0.41σ. KMOS3D shows the high-z inputs can carry a z-dependent baryon error, and its sign (baryons over-estimated at high z) moves RC100's data *toward* ΛCDM, if RC100's fitted masses share it.
 
 **Standing:** L323's result survives every halo knob but not a baryon-calibration tilt of ~0.05–0.1 dex/z. It should be quoted as *conditional on the high-z baryonic-mass calibration*. What would decide it is high-z dark fractions from kinematics with per-galaxy gas masses (CO or dust), not scaling relations.
+
+**Lean certificate for L332:** `fable_independent_2026/lean_2026/I23_rar_inversion_below_baryons.lean` (exit 0, zero `sorry`, standard axioms). It proves:
+- the RAR kernel never weakens gravity (ν ≥ 1);
+- a galaxy measured below its own Newtonian baryons cannot be fitted by any model that adds gravity, framework or halo (the logic of K1);
+- the closed-form a₀ inversion of L320/L323 is exact;
+- the inversion is defined only for g_b < g_obs, which is the selection that conditions T2 on its outcome.
