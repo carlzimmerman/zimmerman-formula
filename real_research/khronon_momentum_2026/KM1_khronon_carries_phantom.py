@@ -37,9 +37,11 @@ WHAT THIS LANE SHOWS
      w v_f = eps c^2 = (0.95-1.5e3 km/s)^2, and the linear result does not cover them.
   C6 PPN: alpha_1 = -4 c14 and alpha_2 = 0 are properties of the same coefficients (L280) and are not changed by the
      channel; the MW's own carried-phantom aether flow at the Sun is a few km/s against w ~ 370-630 km/s.
+  C7 CORRECTION (L333 R2, reproduced): the 1/eps lapse is the aether's own acceleration, the MOND sector's input,
+     distorted by D cos^2(theta), D = 2 w^2/(eps c^2): D/3 = 0.11-0.28 at 620 km/s.  a0 would track CMB-frame speed.
   READING.  At linear order the L297 khronon DOES carry a moving galaxy's phantom, inside the preferred-frame bounds,
-  with no observable velocity-dependent potential: the 1/eps-large shift it needs is a deformation of the preferred
-  slicing that cancels from everything matter and light couple to.  This is a necessary condition, not the theory:
+  and the metric potentials matter and light feel are velocity-independent -- but the aether acceleration the MOND
+  sector reads is not (C7): the carrying costs an O(10-30%) CMB-velocity dependence of a0, or c2 >> 1e-4.  This is a necessary condition, not the theory:
   the MOND scalar's own equations in the moving frame, the leafwise Cassini filter, the absence of a wrong-sign
   auxiliary, and the nonlinear khronon regime (w v_f ~ eps c^2) are untouched here.
   MUTATE=1 sets eps = 0 (lambda = 1): the moving phantom no longer gravitates; C3 and C4 must FAIL and rc = 1.
@@ -275,18 +277,45 @@ check("C6 alpha_1 = -4 c14 inside the LLR bound and alpha_2 = 0 on the equal-spe
       all(abs(v["alpha1"]) <= 1e-4 and abs(v["alpha2"]) < 1e-12 for v in rows6.values()),
       "the channel needs no Solar-System screening: its large part is gauge")
 
+# ============================================================================================ C7
+banner("C7  CORRECTION (L333 R2): THE ENHANCED LAPSE IS THE AETHER'S OWN ACCELERATION -- THE MOND SECTOR'S INPUT")
+# The 1/eps lapse of C3 cancels from Phi_B (what matter and light feel), but a_i = d_i phi is the covariant acceleration
+# of the aether congruence, and in the L297/clock construction the MOND sector reads it.  From C3:
+#   phi_enh / Phi_ph = [-(8 pi G/eps) omega^2 rho_ph/(k^2 (k^2 - r omega^2))] / [-4 pi G rho_ph/k^2]
+#                    = 2 (omega/k)^2 / (eps (1 - r w^2)) -> D cos^2(theta),   D = 2 w^2/(eps c^2)
+if sol:
+    Phi_ph = -4 * sp.pi * G * rp / k ** 2
+    ratio_lapse = sp.simplify(sp.limit(phi_hat * eps, eps, 0) / eps / Phi_ph)
+    ratio_w0 = sp.simplify(sp.series(ratio_lapse * eps, om, 0, 3).removeO())
+    P(f"    phi_enh / Phi_ph = {ratio_lapse}  ->  eps x ratio to O(w^2): {ratio_w0}  (= 2 w_par^2 / c^2)")
+    rows7 = {}
+    for c14 in (1.0e-5, 2.5e-5):
+        e = c14 / (1 - 2 * c14)
+        for wv in (300e3, 620e3):
+            Dv = 2 * wv ** 2 / (e * c ** 2)
+            rows7[f"c14={c14:g}/w={wv / 1e3:.0f}"] = {"D": Dv, "D_over_3": Dv / 3}
+            P(f"    c14 = {c14:.1e} (eps = {e:.3e}), w = {wv / 1e3:.0f} km/s: D = {Dv:.3f}, sphere-averaged D/3 = {Dv / 3:.3f}")
+    OUT["numbers"]["C7"] = {"lapse_ratio": str(ratio_lapse), "rows": rows7,
+                            "L333": "D/3 = 0.29 at c14 = 1e-5, 620 km/s; 0.11 at eps = 2.5e-5"}
+    d3_lg = rows7["c14=1e-05/w=620"]["D_over_3"]; d3_hi = rows7["c14=2.5e-05/w=620"]["D_over_3"]
+    check("C7 the enhanced lapse, invisible to matter and light, distorts the aether acceleration the MOND sector reads "
+          "by D cos^2(theta), D = 2 w^2/(eps c^2): at the Local Group's 620 km/s through the CMB frame, D/3 = 0.28-0.11 "
+          "across the c14 window -- independently reproducing L333's 0.29 / 0.11", f"{ratio_w0}; D/3(620 km/s) = "
+          f"{d3_lg:.3f} (c14 = 1e-5), {d3_hi:.3f} (c14 = 2.5e-5)",
+          sp.simplify(ratio_w0 - 2 * om ** 2 / k ** 2) == 0 and abs(d3_lg - 0.29) < 0.02 and abs(d3_hi - 0.11) < 0.01,
+          "KM1's C4 'no velocity-dependent effect' holds for Phi_B and Psi_B only: a0 would track each galaxy's speed "
+          "through the CMB frame at 10-30%, unless c2 >> 1e-4 (then alpha_2 forces c14 <~ 8e-7, L280/L333)")
+
 # ============================================================================================ verdict
 banner("VERDICT")
-P("""  The first computation on the breakthrough list has a definite linear-order answer: YES.  L297's khronon
-  (lambda - 1 = eps ~ 2.5e-5) carries a moving galaxy's phantom at any velocity w << c.  The 1/eps-large shift it
-  needs is a deformation of the preferred slicing (K ~ 6-60 H0 near a moving galaxy, aether flows of km/s) that
-  cancels exactly from Phi_B and Psi_B at leading order, so matter and light see the boosted static field: no
-  velocity-dependent potential, lensing = dynamics for moving sources, alpha_1 and alpha_2 unchanged.  At lambda = 1
-  the same moving phantom does not gravitate at all (C2): the channel is what makes a moving phantom real.
-  The price is nonlinear: the khronon's pointwise energy relative to the phantom is (w v_f / eps c^2)^2 -- at most
-  3% in galaxies but 8-55% in clusters, whose aether flow is dragged to ~w.  Clusters are outside this lane's
-  validity; that regime is new, uncomputed, and where this construction makes (or loses) its next prediction.  Not shown: the MOND scalar's own
-  moving-frame equations, the Cassini leafwise filter, ghost-freedom, the nonlinear khronon.""")
+P("""  The first computation on the breakthrough list, at linear order: the L297 khronon DOES carry a moving galaxy's
+  phantom (C3-C4: matter and light see the boosted static field, lensing = dynamics, alpha_1/alpha_2 unchanged; at
+  lambda = 1 the moving phantom does not gravitate at all, C2).  The price is NOT invisible (C7, the parallel lane
+  L333's R2, reproduced here): the 1/eps lapse that cancels from the metric potentials is the aether's own
+  acceleration, which is what the MOND sector reads, and it is distorted by D cos^2(theta), D = 2 w^2/(eps c^2) --
+  10-30% at the Local Group's 620 km/s.  Either a0 tracks each galaxy's speed through the CMB frame (a falsifiable
+  prediction, likely under strain from the RAR's tightness) or c2 >> 1e-4 with c14 <~ 8e-7.  Clusters are nonlinear
+  (C5) and outside this lane.  This lane independently reproduces L333 (R1, R2); L333 is the fuller record.""")
 
 n_fail = sum(1 for _, ok, lb in CH if lb and not ok)
 OUT["n_checks"], OUT["n_fail_load_bearing"] = len(CH), n_fail
