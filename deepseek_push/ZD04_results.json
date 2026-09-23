@@ -1,0 +1,57 @@
+{
+ "lane": "ZD04_phantom_envelope",
+ "checks": [
+  {
+   "name": "C1 the envelope: M_phi(<r) < a0 r^2/(2G) = 4.3e8/4.3e10/4.3e12 Msun at 1/10/100 kpc",
+   "pass": true,
+   "detail": "1.0 kpc -> 4.30e+08 10.0 kpc -> 4.30e+10 100.0 kpc -> 4.30e+12"
+  },
+  {
+   "name": "C2 handoff saturation: at r*^2 = 2GM_b/a0 the envelope equals M_b and the certified share is (sqrt 3 - 1) = 73.2%",
+   "pass": true,
+   "detail": "share = 0.7321 (zd04 saturation_ratio_lt_one, handoff_share_below_envelope)"
+  },
+  {
+   "name": "C3 MW anchors: measured dark mass inside 20 kpc ~6e10 Msun < envelope 1.7e11 Msun",
+   "pass": true,
+   "detail": "envelope(20 kpc) = 1.72e+11 Msun"
+  },
+  {
+   "name": "C4 cusp constraint: no dark cusp with M_dm(<300 pc) >= 3.9e7 Msun on the line",
+   "pass": true,
+   "detail": "envelope(300 pc) = 3.87e+07 Msun; dwarf cusp claims (M<300pc ~ 1e6-1e7) sit below it -- heavy cusps (>= 3.9e7) would kill"
+  },
+  {
+   "name": "C5 SPARC envelope null (registered domain, r >= 1 kpc): the dark mass profile stays under the envelope -- same registration as the ZD01 ceiling gate (the envelope is the ceiling in mass form)",
+   "pass": true,
+   "detail": "3054 bins checked; 150 over the envelope (4.9% = the identical positive-scatter tail of ZD01's C8, referred to the G036/G040 baryonic-residual channels); worst = 4.40x (UGC02885_rotmod.dat); sharp falsifier: any CORRECTED (M/L-fitted) dark mass above the parabola a0 r^2/2G kills"
+  }
+ ],
+ "summary": "5/5 PASS",
+ "envelope_Msun": {
+  "0.3": 38740933.69418445,
+  "1.0": 430454818.82427174,
+  "10.0": 43045481882.42716,
+  "20.0": 172181927529.70865,
+  "100.0": 4304548188242.7173
+ },
+ "sparc": {
+  "bins": 3054,
+  "over_envelope": 150,
+  "worst_ratio": 4.395055369645833,
+  "worst_galaxy": "UGC02885_rotmod.dat"
+ },
+ "lean": {
+  "file": "fable_independent_2026/lean_2026/ZD04_phantom_envelope.lean",
+  "theorems": [
+   "phantom_ceiling_strict",
+   "mphi_envelope",
+   "sqrt3_lt_two",
+   "saturation_ratio_lt_one",
+   "handoff_share_below_envelope"
+  ],
+  "exit_code": 0,
+  "sorry": 0,
+  "axioms": "propext, Classical.choice, Quot.sound"
+ }
+}

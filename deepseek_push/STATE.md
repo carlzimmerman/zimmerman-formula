@@ -147,3 +147,8 @@ framework's baryonic-residual channels (G036/G040) — falsifier row 21;
 the a0/3 median ratio 1.570 vs the exact 2.000 is inside the registered
 0.15-dex band (row 22, CONSISTENT-OPEN); the stripping radius awaits the
 inside/outside satellite sample (row 23, ARMED).
+### ZD04-06 (same day): the envelope, the never-doubling class, the stripping map
+
+- **ZD04 the PHANTOM ENVELOPE** (5 more Lean theorems): M_phi(<r) < a0 r^2/(2G) — the dark-mass parabola (3.9e7 M☉ at 300 pc, 4.3e10 at 10 kpc); at the handoff the certified share (sqrt 3 - 1) = 73.2% of the ceiling. Heavy cusps >= 3.9e7 M☉ inside 300 pc impossible. SPARC: 95.1% under the parabola; the 4.9% over = the identical ceiling-tail registration (G036/G040).
+- **ZD05 the NEVER-DOUBLING CLASS**: the sqrt-2 velocity crossing exists in 103/175 SPARC galaxies; 72 galaxies (41%) never reach M_tot/M_b = 2 anywhere — a binary classification with no Lambda-CDM analogue. Registered: crossing field at 0.50 x (a0/3) (0.30 dex under the naive quadratic) = the velocity-domain face of the closed G158 n-kill (two-scale/effective reading G190c) — referred, not re-litigated.
+- **ZD06 the STRIPPING MAP**: row 23's instrument: r_strip = 4 sigma^2/a0 = 0.097..1.556 Mpc for 300..1200 km/s; 12.2 arcmin for G008 at z ~ 0.05, MUSE/IFU-friendly; inside r_strip dwarfs must be baryon-only, outside full a0-line.

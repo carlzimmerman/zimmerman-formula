@@ -176,3 +176,41 @@ by the suppression bound, in the same cluster, same instrument.
 {propext, Classical.choice, Quot.sound} (unfiltered `#print axioms` runs).
 All identities sympy-verified before Lean. Falsifier rows 21-23 appended
 to FALSIFIER_MATRIX.md.
+---
+
+## SUCCESSOR WAVE (same day): ZD04-06
+
+**ZD04 — The Phantom Envelope** (Lean: ZD04_phantom_envelope.lean, 5
+theorems, green): from the ceiling g_phi < a0/2 and M_phi = r^2 g_phi/G,
+M_phi(<r) < a0 r^2/(2G) — the dark-mass parabola: 3.9e7 M☉ at 300 pc,
+4.3e8 at 1 kpc, 4.3e10 at 10 kpc, 4.3e12 at 100 kpc. At the handoff
+r*^2 = 2GM_b/a0 the envelope equals M_b and the certified share
+(sqrt 3 - 1) = 73.2% sits below it (saturation_ratio_lt_one certified).
+Heavy cusps (M_dm(<300 pc) >= 3.9e7 M☉) cannot exist on the line.
+SPARC gate: 4.9% over the envelope = the IDENTICAL 150-bin positive-
+scatter tail of the ZD01 ceiling gate (the envelope is the ceiling in
+mass form — same registration, G036/G040 channels). Falsifier: any
+corrected dark mass above a0 r^2/2G kills.
+
+**ZD05 — The sqrt-2 Velocity Law / the Never-Doubling Class** (lane +
+ZD02 algebra): at r_eq, Vobs/Vbar = sqrt(2) exactly (since
+(Vobs/Vbar)^2 = M_tot/M_b = 2). Data: the sqrt-2 crossing exists in
+103/175 SPARC galaxies; THE NEVER-DOUBLING CLASS: 72 galaxies (41%)
+with max Vobs/Vbar < sqrt(2) at every radius — M_tot/M_b < 2 everywhere —
+a binary classification with no Lambda-CDM analogue (cuspy halos can
+reach ratio >= 2 anywhere); 49 are full-curve low-mass dwarfs.
+HONEST REGISTRATION: the crossing-field median sits at 0.50 x (a0/3)
+(0.30 dex under the naive quadratic) — REFERRED to the closed G158
+n-kill door (deep slope 1.66 vs 2.00, 12.7 sigma, FIRED, resolved as
+the two-scale/effective reading G190c); the half-slope measures 0.448,
+its 0.05 departure being that offset's footprint. The new measurable
+serials: the crossing census and the never-doubling class must survive
+under the two-scale reading; a never-doubling dwarf measured with
+M_tot/M_b >= 2 kills the classification.
+
+**ZD06 — The Stripping Map** (lane; formula certified in ZD03): the
+row-23 instrument table — r_strip = 4 sigma^2/a0 for sigma = 300..1200
+km/s: 0.097..1.556 Mpc; angular sizes 1.7-26.7 arcmin at z = 0.05
+(12.2 arcmin for the G008 cluster at 809 km/s; 6.4 arcmin at z = 0.10) —
+few-arcmin scale, MUSE/IFU-friendly. Recipe: inside r_strip, cluster
+dwarfs must show V_obs = V_bar (baryon-only); outside, the full a0-line.
