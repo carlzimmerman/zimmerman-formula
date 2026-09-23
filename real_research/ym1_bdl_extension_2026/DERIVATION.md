@@ -189,3 +189,23 @@ Comparison with the registered expectations:
 * `constants.py`: prints its inputs, implements (E3)–(E12), certifies λ_c in exact rationals, and prints tables.
   The saved run is `constants_output.txt`, ending "ALL CHECKS PASSED".
 * `checks.py`: toy checks C1–C6. The saved run is `checks_output.txt`, ending "ALL TOY CHECKS PASSED".
+
+## 7. Strengthening (2026-09-23)
+
+* **Lean I21** (`fable_independent_2026/lean_2026/I21_ym1_combinatorics.lean`, 6 theorems, zero sorry) certifies
+  the finite combinatorial skeleton the analytic lemmas rest on:
+  - the Claim 3′ sector structure, M = (N∖p) ∪ (M∩p);
+  - the ≤ 2^|p| sector count;
+  - the depth pigeonhole (pairwise-disjoint sets meeting p number ≤ |p|, hence depth ≤ 2s);
+  - |M_j| ≤ (s+1)|M|, with its two-body sharpness;
+  - the BDL counterexample matrix element computed by the kernel: ⟨Ω|a_u[a†_{uvw}, X_vX_w]|Ω⟩ = −1.
+* **An actual gauge-model instance** (`gauge_instance.py`): one SU(2) Kogut–Susskind plaquette in the FULL
+  (non-gauge-projected) truncated Hilbert space (j ≤ 1, 38,416 states), exactly diagonalized.
+  - Where the truncation has converged (x ≥ 5), the normalized gap is ≥ 0.998, far above the theorem's ½.
+  - This is CONSISTENT but NON-DISCRIMINATING: a single plaquette never approaches the bound.
+* **Second independent adversarial referee — interim** (final results to be appended):
+  - Lemma 3′ worst ratios on four toy families (qubit n = 8, 12; qubit 2×2 torus; qutrit two-plaquette) fall
+    from 0.15 (k = 1) to ~1.7e-4 (k = 6), all ≪ 1.
+  - The per-tuple sector Cauchy–Schwarz step (the source of the 3× sharpening over the second method) is
+    tight but holds: worst ratio 0.98 at k = 0, decreasing with k.
+  - k = 7–8 and the near-threshold KT-vs-ED gap scan are still running.
