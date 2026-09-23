@@ -18,9 +18,9 @@ WHAT THIS LANE SHOWS
   D1 THE FORCE IS HOLDER-1/2 AT EVERY FIELD NULL.  F(y) = sqrt(y)(1 + O(sqrt y)) for both kernels (series), so near
      a point where g_N = 0 inside matter (a symmetry plane of an isolated slab; every galaxy centre in 3D),
         g ~ -sign(x) sqrt(4 pi G rho_c a0 |x|),     nu_eff(y) ~ 1/(2 sqrt y) -> infinity.
-     The force is continuous but not Lipschitz: no C^2 (hence no smooth) solution of the momentum equation can exist
-     for t > 0 there, with or without pressure -- differentiating it once in x equates a continuous left side with
-     g_x ~ |x|^(-1/2).  In the pressureless limit even C^1 fails (D2).
+     The force is continuous but not Lipschitz: for an INVISCID fluid no C^2 (hence no smooth) solution of the
+     momentum equation can exist for t > 0 there, with or without pressure -- differentiating it once in x equates a
+     continuous left side with g_x ~ |x|^(-1/2).  In the pressureless limit even C^1 fails (D2); with viscosity see D7.
   D2 INSTANT BREAKDOWN, T* = 0 (theorem, exact, planar).  For a uniform region at rest t*(x0) = t_N / sqrt(nu_eff),
      t_N = 1/sqrt(2 pi G rho); since nu_eff -> infinity at the null, inf t* = 0.  Checked on an independent sheet
      model: the first crossing time of N sheets falls as N^(-1/4) (MOND) but stays exactly t_N (Newton).
@@ -35,6 +35,9 @@ WHAT THIS LANE SHOWS
      from rest reaches the centre in t = r0 sqrt(pi/2) (G M a0)^(-1/4) ~ r0^(1/4): inner shells arrive first and
      cross the outer ones at once, so T* = 0 at every galaxy centre too; the collapsed region grows as
      r_c = (16/(3 pi)) G rho a0 t^4 (symbolic).
+  D7 WITH VISCOSITY (the Navier-Stokes case): the inviscid statement of D1 does not carry over -- viscosity absorbs
+     two derivatives, so u is C^(2,1/2) at the null (classical solutions can exist) but never C^3: the framework's
+     Navier-Stokes has no smooth (C^infinity) solution through a field null.  Symbolic + viscous grid refinement.
   D6 WHERE THE NULLS ARE.  A disk midplane is NOT a null (the radial galactic field survives there); nulls with
      matter present are galaxy centres.  Numbers for a cored dwarf centre and a bulge centre, both footings.
   READING.  This is about the classical (single-stream, smooth) description.  Collisionless matter simply
@@ -262,13 +265,73 @@ check("D6 numbers (documentary): real nulls are galaxy centres; the deep zone is
       True, "disk midplanes are NOT nulls (the radial field survives); the slab of D2-D4 is an idealisation",
       load_bearing=False)
 
+# ============================================================================================ D7
+banner("D7  WITH VISCOSITY (THE NAVIER-STOKES CASE): C^2 SURVIVES, C^3 DOES NOT")
+# Viscosity absorbs two derivatives of the Holder-1/2 force: nu u_xx = -g gives u ~ |x|^(5/2), so u is C^(2,1/2) but
+# u_xxx ~ |x|^(-1/2).  Symbolic particular solution + a time-dependent viscous solve (Crank-Nicolson, u_t = nu u_xx + g,
+# u(x,0) = 0, Dirichlet 0 on [-1,1], to t = 0.1) under grid refinement: max|D^3 u| near the null grows ~ h^(-1/2), and
+# the local profile u_xx = a sqrt(x) + b x + ... has a = 1/nu (the particular solution's coefficient).
+xv, nuv = sp.symbols("x nu", positive=True)
+g_deep = -sp.sqrt(xv)                                   # x > 0 side of g = -sign(x) sqrt(|x|) (units: 4 pi G rho a0 = 1)
+up = sp.integrate(sp.integrate(-g_deep / nuv, xv), xv)  # nu u'' = -g on x > 0 (odd extension)
+u3 = sp.diff(up, xv, 3)
+u2_exp = sp.limit(sp.log(sp.diff(up, xv, 2)) / sp.log(xv), xv, 0, "+")
+u3_exp = sp.limit(sp.log(u3 * nuv) / sp.log(xv), xv, 0, "+")
+P(f"    particular solution (x > 0): u = {sp.simplify(up)};  u_xx ~ x^{u2_exp};  u_xxx ~ x^{u3_exp}")
+from scipy.sparse import diags
+from scipy.sparse.linalg import splu
+NUV, TEND = 1.0, 0.1
+gfun = (lambda x: -x) if MUTATE else (lambda x: -np.sign(x) * np.sqrt(np.abs(x)))
+rows7 = {}
+for M in (401, 801, 1601, 3201):
+    xg = np.linspace(-1, 1, M); h = xg[1] - xg[0]
+    n = M - 2
+    Lap = diags([1, -2, 1], [-1, 0, 1], shape=(n, n)) / h ** 2
+    dt = 1e-4
+    A = (diags([1.0], [0], shape=(n, n)) - 0.5 * dt * NUV * Lap).tocsc()
+    B = (diags([1.0], [0], shape=(n, n)) + 0.5 * dt * NUV * Lap).tocsr()
+    lu = splu(A)
+    uu = np.zeros(n); src = dt * gfun(xg[1:-1])
+    for _ in range(int(round(TEND / dt))):
+        uu = lu.solve(B @ uu + src)
+    ufull = np.concatenate([[0.0], uu, [0.0]])
+    c = slice(M // 2 - 20, M // 2 + 21)                  # a fixed number of cells around the null
+    d2 = np.diff(ufull, 2) / h ** 2
+    d3 = np.diff(ufull, 3) / h ** 3
+    rows7[M] = {"h": h, "max_d2": float(np.max(np.abs(d2[M // 2 - 20:M // 2 + 20]))),
+                "max_d3": float(np.max(np.abs(d3[M // 2 - 20:M // 2 + 20])))}
+    # local profile of u_xx on 0 < x <= 32 h: fit a sqrt(x) + b x + c x^2 (u_xx is odd, so no constant term);
+    # a Holder-1/2 force predicts a = 1/nu exactly (the particular solution), a Lipschitz force a = 0
+    k = np.arange(1, 33)
+    xs_ = xg[M // 2 + k]; d2s_ = d2[M // 2 + k - 1]            # d2[i] is centred on node i+1
+    Afit = np.vstack([np.sqrt(xs_), xs_, xs_ ** 2]).T
+    coef_fit = np.linalg.lstsq(Afit, d2s_, rcond=None)[0]
+    rows7[M]["fit_a_sqrt"] = float(coef_fit[0]); rows7[M]["fit_b_lin"] = float(coef_fit[1])
+    P(f"    M = {M:5d} (h = {h:.2e}): max|u_xxx| near null {rows7[M]['max_d3']:.3f}; u_xx ~ "
+      f"{rows7[M]['fit_a_sqrt']:.4f} sqrt(x) {rows7[M]['fit_b_lin']:+.3f} x near the null")
+hs = np.array([v["h"] for v in rows7.values()]); d3s = np.array([v["max_d3"] for v in rows7.values()])
+d2s = np.array([v["max_d2"] for v in rows7.values()])
+sl3 = float(np.polyfit(np.log(hs), np.log(d3s), 1)[0])
+a_fin = rows7[max(rows7)]["fit_a_sqrt"]
+P(f"    d ln max|u_xxx| / d ln h = {sl3:.3f} (Holder-1/2 force: -1/2; Lipschitz: 0);  finest-grid sqrt(x) coefficient "
+  f"of u_xx = {a_fin:.4f} (Holder-1/2 force: 1/nu = {1 / NUV:.1f}; Lipschitz: 0)")
+OUT["numbers"]["D7"] = {"particular": str(sp.simplify(up)), "u_xx_exponent": str(u2_exp), "u_xxx_exponent": str(u3_exp),
+                        "grid": {str(k): v for k, v in rows7.items()}, "slope_d3": sl3, "a_sqrt_finest": a_fin}
+check("D7 with viscosity the solution is C^(2,1/2) at the null but not C^3: u_xx ~ |x|^(1/2), u_xxx ~ |x|^(-1/2); a "
+      "viscous time-dependent solve reproduces both exponents under grid refinement",
+      f"exponents {u2_exp}, {u3_exp}; u_xxx grid slope {sl3:.3f}; u_xx sqrt(x) coefficient {a_fin:.4f} (1/nu = 1)",
+      u2_exp == sp.Rational(1, 2) and u3_exp == -sp.Rational(1, 2) and abs(sl3 + 0.5) < 0.1 and abs(a_fin - 1 / NUV) < 0.03,
+      "viscosity rescues classical (C^2) solutions but not smoothness: the framework's Navier-Stokes has no C^infinity "
+      "solution through a field null")
+
 # ============================================================================================ verdict
 banner("VERDICT")
 P("""  The Navier-Stokes question, asked of the framework's own equations, has a definite answer: no.  Under the
   framework's law the force is exactly Holder-1/2 wherever the Newtonian field vanishes inside matter -- in
-  practice every cored galaxy centre -- so the self-gravitating fluid has no smooth (not even C^2) solution for
-  any positive time there, and in the pressureless limit not even a C^1 one: the density goes singular at t = 0+
-  with a multi-stream region growing as (pi/4) G rho a0 t^4.  Newtonian gravity keeps T* > 0; the framework does not.  Physically this
+  practice every cored galaxy centre -- so the self-gravitating fluid has no smooth solution for any positive time
+  there: an inviscid one is not even C^2, a viscous (Navier-Stokes) one is at best C^(2,1/2), and in the
+  pressureless limit not even C^1 -- the density goes singular at t = 0+ with a multi-stream region growing as
+  (pi/4) G rho a0 t^4.  Newtonian gravity keeps T* > 0; the framework does not.  Physically this
   is benign (collisionless matter multi-streams; hydrodynamics must be posed in a Holder/weak class), but it is a
   structural fact about the equations: the framework makes regularity WORSE, not better, at field nulls.""")
 

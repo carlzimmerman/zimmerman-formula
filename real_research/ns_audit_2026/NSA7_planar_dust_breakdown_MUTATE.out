@@ -59,14 +59,28 @@ D6  WHERE THE NULLS ARE, AND THE NUMBERS (BOTH FOOTINGS)
          reading:  disk midplanes are NOT nulls (the radial field survives); the slab of D2-D4 is an idealisation
 
 ========================================================================================================
+D7  WITH VISCOSITY (THE NAVIER-STOKES CASE): C^2 SURVIVES, C^3 DOES NOT
+========================================================================================================
+    particular solution (x > 0): u = 4*x**(5/2)/(15*nu);  u_xx ~ x^1/2;  u_xxx ~ x^-1/2
+    M =   401 (h = 5.00e-03): max|u_xxx| near null 0.324; u_xx ~ 0.0036 sqrt(x) +0.264 x near the null
+    M =   801 (h = 2.50e-03): max|u_xxx| near null 0.301; u_xx ~ 0.0006 sqrt(x) +0.286 x near the null
+    M =  1601 (h = 1.25e-03): max|u_xxx| near null 0.295; u_xx ~ 0.0001 sqrt(x) +0.291 x near the null
+    M =  3201 (h = 6.25e-04): max|u_xxx| near null 0.293; u_xx ~ 0.0000 sqrt(x) +0.292 x near the null
+    d ln max|u_xxx| / d ln h = 0.045 (Holder-1/2 force: -1/2; Lipschitz: 0);  finest-grid sqrt(x) coefficient of u_xx = 0.0000 (Holder-1/2 force: 1/nu = 1.0; Lipschitz: 0)
+  [FAIL] D7 with viscosity the solution is C^(2,1/2) at the null but not C^3: u_xx ~ |x|^(1/2), u_xxx ~ |x|^(-1/2); a viscous time-dependent solve reproduces both exponents under grid refinement
+         measured: exponents 1/2, -1/2; u_xxx grid slope 0.045; u_xx sqrt(x) coefficient 0.0000 (1/nu = 1)
+         reading:  viscosity rescues classical (C^2) solutions but not smoothness: the framework's Navier-Stokes has no C^infinity solution through a field null
+
+========================================================================================================
 VERDICT
 ========================================================================================================
   The Navier-Stokes question, asked of the framework's own equations, has a definite answer: no.  Under the
   framework's law the force is exactly Holder-1/2 wherever the Newtonian field vanishes inside matter -- in
-  practice every cored galaxy centre -- so the self-gravitating fluid has no smooth (not even C^2) solution for
-  any positive time there, and in the pressureless limit not even a C^1 one: the density goes singular at t = 0+
-  with a multi-stream region growing as (pi/4) G rho a0 t^4.  Newtonian gravity keeps T* > 0; the framework does not.  Physically this
+  practice every cored galaxy centre -- so the self-gravitating fluid has no smooth solution for any positive time
+  there: an inviscid one is not even C^2, a viscous (Navier-Stokes) one is at best C^(2,1/2), and in the
+  pressureless limit not even C^1 -- the density goes singular at t = 0+ with a multi-stream region growing as
+  (pi/4) G rho a0 t^4.  Newtonian gravity keeps T* > 0; the framework does not.  Physically this
   is benign (collisionless matter multi-streams; hydrodynamics must be posed in a Holder/weak class), but it is a
   structural fact about the equations: the framework makes regularity WORSE, not better, at field nulls.
 
-  2/6 checks pass; load-bearing failures: 4; wrote NSA7_planar_dust_breakdown_results_MUTATE.json
+  2/7 checks pass; load-bearing failures: 5; wrote NSA7_planar_dust_breakdown_results_MUTATE.json
