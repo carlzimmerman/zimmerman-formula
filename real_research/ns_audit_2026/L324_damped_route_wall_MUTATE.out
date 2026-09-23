@@ -1,0 +1,71 @@
+
+========================================================================================================
+W1  THE c-UNIFORM INFORMATION IS LERAY-HOPF: SERRIN INDEX 3/2 FOR EVERY INTERPOLANT
+========================================================================================================
+    interpolant L^q L^p: 2/q + 3/p = 3/2 for every theta in [0,1]; Serrin threshold 1; gap = 1/2
+  [PASS] W1 every c-uniform (energy-class) bound sits at Serrin index 3/2: gap 1/2 above the regularity threshold
+         measured: index 3/2, gap 1/2
+         reading:  the damping adds nothing that survives c -> 0 beyond the Leray-Hopf class
+
+========================================================================================================
+W2  THE DAMPING'S OWN BOUND: L^(b+1)_{t,x}, INDEX 5/(b+1), CONSTANT ~ 1/c
+========================================================================================================
+    index(b) = 5/(beta + 1): b=2: 5/3, b=3: 5/4, b=4: 1, b=5: 5/6;  Serrin iff b >= 4
+    ||u||_(L^(b+1)) <= (1/(2c))^(1/(b+1)) -> oo as c -> 0
+  [PASS] W2 the damping bound is Serrin-class iff b >= 4 and its constant diverges as c -> 0; at b = 3 the index is 5/4 (gap 1/4, c-dependent)
+         measured: b_serrin = 4; b=3 index 5/4; c->0 limit oo
+         reading:  the better-than-Leray-Hopf information is paid for with 1/c
+
+========================================================================================================
+W3  b = 3: THE H^1 ESTIMATE CLOSES IFF 4 c nu >= 1
+========================================================================================================
+    form matrix det = (4*c*nu - 1)/4  =>  closes iff c >= 1/(4*nu)  (i.e. 4 c nu >= 1)
+    int |u|^2 u.(-Lap u) = 7.9804557122e+01;  int |u|^2|grad u|^2 + (-0.5) int |grad|u|^2|^2 = 1.4838684223e+01;  rel 8.1e-01
+    min of the form on the quadrant: c nu = 0.26 -> +7.99e-03;  c nu = 0.24 -> -8.01e-03
+  [FAIL] W3 at b = 3 the standard H^1 estimate closes iff 4 c nu >= 1 (symbolic + quadrant probe); the integration-by-parts identity holds on a random smooth field
+         measured: threshold c = 1/(4*nu); IBP rel err 8.1e-01; probe {(0.26, 1.0): 0.007987139016972011, (0.24, 1.0): -0.008012738402579489}
+         reading:  the critical member is certified only above c nu = 1/4; below it no closure is known
+
+========================================================================================================
+W4  THE FRAMEWORK'S OWN COUPLING vs THE CERTIFIED REGIME
+========================================================================================================
+    c_3 <= 6.547e-30 s/m^2 (N03b survival)  =>  certified regime needs nu >= 3.82e+28 m^2/s
+    water          nu = 1.0e-06 m^2/s  ->  c_3 nu = 6.55e-36  (threshold 0.25)
+    air            nu = 1.5e-05 m^2/s  ->  c_3 nu = 9.82e-35  (threshold 0.25)
+    generous_1e24  nu = 1.0e+24 m^2/s  ->  c_3 nu = 6.55e-06  (threshold 0.25)
+    N03b Galerkin evidence run: c nu = 0.3 * 5e-3 = 1.5e-03
+  [PASS] W4 at the framework's survival coupling every plausible fluid has c_3 nu << 1/4: N03b's 'b = 3 at every kappa > 0' is outside the certified regime, and so is its Galerkin evidence run
+         measured: nu_needed 3.8e+28 m^2/s; max c_3 nu 6.5e-06; Galerkin 1.5e-03
+         reading:  a second b-overreach in N03b (after the b = 2 one it already amended)
+
+========================================================================================================
+W5  EVERY DOOR HITS THE SAME HALF-DERIVATIVE
+========================================================================================================
+    u                                  energy class L^10/3_t L^10/3_x: index 3/2, critical 1, excess per power of u 1/2
+    grad u (and vorticity)             energy class L^2_t L^2_x: index 5/2, critical 2, excess per power of u 1/2
+    p = RR(u u)                        energy class L^5/3_t L^5/3_x: index 3, critical 2, excess per power of u 1/2
+    grad p = -Q(Du/Dt)  [L323 route]   energy class L^5/4_t L^5/4_x: index 4, critical 3, excess per power of u 1/2
+  [PASS] W5 u, grad u, p, grad p (= the gradient part of Du/Dt) all sit exactly 1/2 per power of u above critical
+         measured: {'u': '1/2', 'grad u (and vorticity)': '1/2', 'p = RR(u u)': '1/2', 'grad p = -Q(Du/Dt)  [L323 route]': '1/2'}
+         reading:  the pressure, acceleration and vorticity doors are the same wall in different currencies
+
+========================================================================================================
+W6  THE PASSAGE c -> 0
+========================================================================================================
+    b = 3 closure needs c >= 1/(4 nu); at nu = 1: c - 1/4 -> -1/4 < 0 as c -> 0 (closure lost)
+    b >= 4: constant (1/(2c))^(1/(b+1)) -> oo;  surviving c-uniform class: Leray-Hopf, gap 1/2
+  [PASS] W6 as c -> 0 the b = 3 closure is lost and the b >= 4 constants diverge; only the gap-1/2 class survives, so the route needs an NSE a priori estimate (the Clay problem) to finish
+         measured: c - 1/(4 nu) -> -1/4; W2 limit oo; gap 1/2
+         reading:  the break point, named: a c-uniform critical bound; Tao 2016 says it must use the exact form of (u.grad)u
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  Swing 2 breaks at a named step.  Damping at b >= 4 (any c) and b = 3 with 4 c nu >= 1 give smooth solutions,
+  but every closing constant degenerates as c -> 0; what survives is the Leray-Hopf class, a half-derivative
+  short of regularity, and the pressure, acceleration and vorticity routes sit on the same half (W5).  The
+  framework's own survival coupling puts c_3 nu below 1e-5, outside even the certified b = 3 regime, so N03b's
+  'b = 3 at every kappa > 0' needs amending.  Finishing the route requires a c-uniform critical estimate: that
+  estimate is the Clay problem, and Tao's averaged-NSE blowup says it must use the exact structure of (u.grad)u.
+
+  5/6 checks pass; load-bearing failures: 1; wrote L324_damped_route_wall_results_MUTATE.json

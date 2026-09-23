@@ -1,0 +1,49 @@
+
+========================================================================================================
+T1  SCALING: THE CRITICAL LINE FOR THE MATERIAL ACCELERATION
+========================================================================================================
+    ||a_l|| = l^(3 - 2/s - 3/r) ||a||;  critical: s = 2*r/(3*(r - 1));  s >= 1 <=> r <= 3;  s -> oo as r -> 1+
+    sample critical pairs (r: s): {3/2: 2, 2: 4/3, 3: 1}
+  [PASS] T1 a scales like grad p (weight 3): critical line 2/s + 3/r = 3, r in (1,3]; N05's L^inf ceiling sits at index 0, off the line
+         measured: s(r) = 2*r/(3*(r - 1)); r_max = 3
+         reading:  the critical-space hypothesis is invariant under the NSE symmetry; a dimensional ceiling is not
+
+========================================================================================================
+T2  THE EXACT IDENTITY grad p = -Q(Du/Dt), SYMBOLICALLY
+========================================================================================================
+    xi . u^ = 0;  Q^ a^ + (i xi p^) = [0, 0, 0]
+  [PASS] T2 Q(nu Lap u - grad p) = -grad p identically for divergence-free u (Fourier, generic xi)
+         measured: residual [0, 0, 0]
+         reading:  the pressure gradient IS the gradient part of the material acceleration; the viscous term is its solenoidal part
+
+========================================================================================================
+T3  THE IDENTITY ON A REAL 3D NSE FLOW (pseudo-spectral, periodic)
+========================================================================================================
+    dt = 4e-3: ||Q a + grad p|| / ||grad p|| = 1.103e+00;  Pythagoras defect -1.51e-05
+    dt = 2e-3: ||Q a + grad p|| / ||grad p|| = 1.103e+00;  Pythagoras defect -3.77e-06;  defect order 2.00
+    C_r = ||grad p||_r / ||a||_r at dt=2e-3: r=1.5: 0.907, r=2.0: 0.906, r=3.0: 0.906
+  [FAIL] T3 on an evolved 3D NSE flow Q(Du/Dt) = -grad p at rounding level for both dt; the solenoidal remainder is nu Lap u (Pythagoras defect falls ~dt^2); C_r finite at r = 3/2, 2, 3
+         measured: Q-residual 1.10e+00; Pythagoras defect -3.77e-06 (order 2.00); C_r [0.907, 0.906, 0.906]
+         reading:  the identity the proof uses holds on a real flow; the Riesz constants are O(1)
+
+========================================================================================================
+T4  DIMENSIONS: THE SCALE-INVARIANT THEOREM HAS NO SLOT FOR a0
+========================================================================================================
+    nullspace of [a0, nu] dimension matrix: []  (empty => no dimensionless a0-nu combination)
+    critical norm of a has units nu^2 - 1/s_: consistent = True
+    a0 with nu only makes a length (nu^2/a0)^(1/3): water 0.220 m, air 1.340 m  -- moved anywhere by the NSE scaling
+  [PASS] T4 no dimensionless monomial in (a0, nu); the critical acceleration norm is measured in powers of nu alone
+         measured: nullspace []; units nu^2 - 1/s_
+         reading:  upgrading N05 to a scale-invariant statement removes a0 entirely: the framework constant was never in the theorem
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  Swing 1 lands as a correct conditional theorem, not a Clay result: if the material acceleration of a Leray-Hopf
+  solution lies in a critical space L^s L^r (2/s + 3/r = 3, 1 < r <= 3), the solution is smooth.  The proof is one
+  exact identity (grad p = -Q Du/Dt, checked symbolically and on an evolved flow) plus the cited pressure-gradient
+  criterion.  It strictly generalises N05's hypothesis and, being scale-invariant, contains no a0: the only scale
+  it admits is nu.  It does not prove that any solution satisfies the hypothesis -- that a priori bound is the
+  Clay problem (L324 maps why every route to it stops at the same half-derivative).
+
+  3/4 checks pass; load-bearing failures: 1; wrote L323_acceleration_criterion_results_MUTATE.json

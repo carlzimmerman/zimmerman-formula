@@ -1,0 +1,102 @@
+{
+ "lane": "L324",
+ "mutate": false,
+ "checks": {
+  "W1 every c-uniform (energy-class) bound sits at Serrin index 3/2: gap 1/2 above the regularity threshold": {
+   "ok": true,
+   "measured": "index 3/2, gap 1/2",
+   "load_bearing": true
+  },
+  "W2 the damping bound is Serrin-class iff b >= 4 and its constant diverges as c -> 0; at b = 3 the index is 5/4 (gap 1/4, c-dependent)": {
+   "ok": true,
+   "measured": "b_serrin = 4; b=3 index 5/4; c->0 limit oo",
+   "load_bearing": true
+  },
+  "W3 at b = 3 the standard H^1 estimate closes iff 4 c nu >= 1 (symbolic + quadrant probe); the integration-by-parts identity holds on a random smooth field": {
+   "ok": true,
+   "measured": "threshold c = 1/(4*nu); IBP rel err 0.0e+00; probe {(0.26, 1.0): 0.007987139016972011, (0.24, 1.0): -0.008012738402579489}",
+   "load_bearing": true
+  },
+  "W4 at the framework's survival coupling every plausible fluid has c_3 nu << 1/4: N03b's 'b = 3 at every kappa > 0' is outside the certified regime, and so is its Galerkin evidence run": {
+   "ok": true,
+   "measured": "nu_needed 3.8e+28 m^2/s; max c_3 nu 6.5e-06; Galerkin 1.5e-03",
+   "load_bearing": true
+  },
+  "W5 u, grad u, p, grad p (= the gradient part of Du/Dt) all sit exactly 1/2 per power of u above critical": {
+   "ok": true,
+   "measured": "{'u': '1/2', 'grad u (and vorticity)': '1/2', 'p = RR(u u)': '1/2', 'grad p = -Q(Du/Dt)  [L323 route]': '1/2'}",
+   "load_bearing": true
+  },
+  "W6 as c -> 0 the b = 3 closure is lost and the b >= 4 constants diverge; only the gap-1/2 class survives, so the route needs an NSE a priori estimate (the Clay problem) to finish": {
+   "ok": true,
+   "measured": "c - 1/(4 nu) -> -1/4; W2 limit oo; gap 1/2",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "W1": {
+   "index": "3/2",
+   "gap": "1/2"
+  },
+  "W2": {
+   "index_of_b": "5/(beta + 1)",
+   "b_serrin": "4",
+   "table": {
+    "2": "5/3",
+    "3": "5/4",
+    "4": "1",
+    "5": "5/6"
+   },
+   "limit_c0": "oo"
+  },
+  "W3": {
+   "det": "(4*c*nu - 1)/4",
+   "threshold_c": "1/(4*nu)",
+   "ibp_rel_err": 0.0,
+   "probe": {
+    "(0.26, 1.0)": 0.007987139016972011,
+    "(0.24, 1.0)": -0.008012738402579489
+   },
+   "literature": [
+    "Zhang-Wu-Lu 2011 JMAA 377:414 (b=3 uniqueness, 4 c nu >= 1)",
+    "Kim-Li 2017 EJDE 2017/244 (b=3 strong, c nu > 1/4; via arXiv:2410.00457)",
+    "Liu-Gao arXiv:1608.07996 (stochastic, b=3 alpha >= 1/2)",
+    "Zhou 2012 AML 25:1822 (abstract: b >= 3; normalisation unread)"
+   ]
+  },
+  "W4": {
+   "c3": 6.54712558141094e-30,
+   "nu_needed": 3.8184696000000002e+28,
+   "c3_nu": {
+    "water": 6.547125581410939e-36,
+    "air": 9.82068837211641e-35,
+    "generous_1e24": 6.54712558141094e-06
+   },
+   "galerkin_cnu": 0.0015
+  },
+  "W5": {
+   "u": {
+    "index": "3/2",
+    "critical": 1,
+    "excess_per_u": "1/2"
+   },
+   "grad u (and vorticity)": {
+    "index": "5/2",
+    "critical": 2,
+    "excess_per_u": "1/2"
+   },
+   "p = RR(u u)": {
+    "index": "3",
+    "critical": 2,
+    "excess_per_u": "1/2"
+   },
+   "grad p = -Q(Du/Dt)  [L323 route]": {
+    "index": "4",
+    "critical": 3,
+    "excess_per_u": "1/2"
+   }
+  }
+ },
+ "n_checks": 6,
+ "n_fail_load_bearing": 0
+}
