@@ -20,19 +20,24 @@ so "any extended component is sub-dominant at radius r" (f_ph < 1/2) is EXACTLY 
 
     a0(z = 7.04)  <  G M / (r ln 2)^2            (Lean I18 subdominance_iff_a0_bound).
 
-INPUTS (published, cited; none from this repo):
-  Juodzbalis+26 (arXiv:2508.21748): MOKA3D point mass log M = 7.7 +/- 0.3 at i = 52 +/- 2 deg; spectroastrometric
-  inclination-corrected log M = 7.2 +/- 0.15 ("consistent within 2 sigma"); r_spec = 12.5 +/- 4.7 pc; rotation bins at 50, 100,
-  150 pc; narrow H-alpha extended to ~200 pc; NFW / NSC / Plummer extended components all collapse to a point: "any extended
-  mass component is sub-dominant at the < 200 pc scales probed"; M_* < 2e7 Msun; outflow annulus 300-450 pc.
+INPUTS (published, cited; none from this repo) -- the PUBLISHED Nature 2026 version (PMC13215880), which supersedes arXiv v1:
+  Juodzbalis+26 (Nature, arXiv:2508.21748): MOKA3D point mass log M = 7.7 +/- 0.3 at i = 52 +/- 2 deg (PSF-modelled, the
+  headline); spectroastrometric inclination-corrected log M = 6.9-7.2 ("consistent within 2 sigma"); 1-D rotation-curve fit
+  log M sin^2 i = 6.75 +/- 0.15 (lower limit); r_spec = 12.5 +/- 4.7 pc with <v sin i> = 51 +/- 4 km/s; rotation bins at 100 and
+  150 pc with <v sin i> ~ 10 km/s; narrow H-alpha extended to ~200 pc; NFW / NSC / Plummer extended components all collapse
+  to a point: "any extended mass component is sub-dominant at the < 200 pc scales probed"; M_* < 2e7 Msun; outflow 300-450 pc.
+  (arXiv v1 read 7.2 +/- 0.15 for the low mass, bins 50/100/150 pc, 61 +/- 6 and 20 +/- 6 km/s: this lane's first commit
+  used v1; corrected here.)
   a0 footings: canonical 9.3619e-11, alt 1.1279e-10 m/s^2 (the repo's two footings; alt/canonical = 1.2048).
   Rival branch a0 proportional to H(z): a0(z) = a0_0 E(z), E(7.0451) = 12.7 (Planck 2018 Om = 0.3153).
 
 WHAT IS SCORED:
   K2  the exact phantom-fraction identity (numeric mirror of the Lean theorem).
   K3  the mass is measured where every branch is Newtonian to < 1% (no circularity in using the published M).
-  K4  the framework (flat a0, both footings, three kernels) satisfies sub-dominance at the outermost rotation bin (150 pc) for
-      BOTH published mass readings.
+  K4  at the headline MOKA3D mass the framework (flat a0, both footings, three kernels) satisfies sub-dominance at 150 and
+      200 pc.
+  K4d THE DEFICIT, verified as hard as the pass: at the LOW end of the published range (10^6.9) the framework VIOLATES
+      sub-dominance at 200 pc on both footings and at 150 pc on the alt footing.  The test bites the framework.
   K5  the a0 ~ H(z) rival: the mass it needs to satisfy sub-dominance, in sigma of each published mass reading.
   K6  the registered zero-parameter prediction at 300-1000 pc (the decisive window): the framework's boost over Keplerian is
       separated from Newton and from the rival across the whole mass band.
@@ -122,9 +127,10 @@ def logM_needed(a0, r_pc):
 
 
 # ---------------------------------------------------------------- published data (Juodzbalis+26, arXiv:2508.21748)
-MASS = {"MOKA3D (headline)": (7.7, 0.3), "spectroastrometric, i-corrected": (7.2, 0.15)}
+MASS = {"MOKA3D (headline)": (7.7, 0.3), "spectroastrometric, i-corrected (low end)": (6.9, 0.15),
+        "spectroastrometric, i-corrected (high end)": (7.2, 0.15)}
 R_SPEC, R_SPEC_ERR = 12.5, 4.7
-R_BINS = (50.0, 100.0, 150.0)
+R_BINS = (100.0, 150.0)
 R_PROBED = 200.0
 M_STAR_MAX = 2e7
 OUT["numbers"]["inputs"] = {"mass_readings": MASS, "r_spec_pc": [R_SPEC, R_SPEC_ERR], "rotation_bins_pc": R_BINS,
@@ -165,9 +171,11 @@ for lbl, (lm, sl) in MASS.items():
                 worst_fw = max(worst_fw, boost(R_SPEC, 10 ** lmv, a0, k) - 1)
             for a0 in A0_RIVAL.values():
                 worst_rv = max(worst_rv, math.log10(KERNELS[k](y_of(R_SPEC, 10 ** lmv, a0))))
-check("K3 framework: max velocity boost at r_spec = 12.5 pc over masses x footings x kernels < 1%",
-      f"{100*worst_fw:.3f}%", worst_fw < 0.01,
-      "the Keplerian/spectroastrometric mass IS the framework's baryonic point mass; M enters no framework check circularly")
+check("K3 framework: its inflation of the 12.5 pc mass reading, 2 log10(boost), is < 0.02 dex (vs the +/-0.15-0.3 dex mass "
+      "errors) over masses x footings x kernels",
+      f"max boost {100*worst_fw:.3f}% = {2*math.log10(1+worst_fw):.4f} dex", 2 * math.log10(1 + worst_fw) < 0.02,
+      "the Keplerian/spectroastrometric mass IS the framework's baryonic point mass to far better than its error; "
+      "M enters no framework check circularly")
 check("K3b rival: its own 12.5 pc mass reading is inflated by nu, at most this many dex (reported, conservative)",
       f"{worst_rv:.3f} dex", worst_rv < 0.1,
       "the rival is NOT Newtonian at 12.5 pc for low masses (up to ~6% in v); its baryonic M would be LOWER than the "
@@ -175,7 +183,7 @@ check("K3b rival: its own 12.5 pc mass reading is inflated by nu, at most this m
 OUT["numbers"]["K3"] = {"framework_max_boost": worst_fw, "rival_max_mass_inflation_dex": worst_rv}
 
 # ================================================================= K4
-banner("K4 -- THE FRAMEWORK PASSES SUB-DOMINANCE AT THE OUTERMOST ROTATION BIN (150 pc), both mass readings")
+banner("K4 -- SUB-DOMINANCE AT 150 / 200 pc FOR EVERY PUBLISHED MASS READING (the pass AND the deficit)")
 rows, allpass150 = [], True
 for lbl, (lm, sl) in MASS.items():
     M = 10 ** lm
@@ -189,15 +197,20 @@ for lbl, (lm, sl) in MASS.items():
             P(f"   {lbl:32s} {fk:9s} r = {r:5.0f} pc:  f_ph rar {fs['rar']:.3f}  simple {fs['simple']:.3f}  "
               f"exp_mu {fs['exp_mu']:.3f}   (RAR passes for log M > {logM_needed(a0, r):.2f})")
 OUT["numbers"]["framework_subdominance"] = rows
-check("K4 framework f_ph(150 pc) < 1/2 for both mass readings, both footings, all three kernels",
-      "all < 0.5" if allpass150 else "at least one >= 0.5", allpass150,
-      "the flat-a0 law is consistent with the published 'extended mass sub-dominant' statement at the outermost bin")
-edge = [x for x in rows if x["r_pc"] == 200.0 and max(x[f"fph_{k}"] for k in KERNELS) > 0.45]
-check("K4b (not load-bearing) margin at 200 pc: list every framework case with f_ph > 0.45",
-      "; ".join(f"{x['mass'].split()[0]} {x['footing']} rar={x['fph_rar']:.3f} simple={x['fph_simple']:.3f} "
-                f"exp_mu={x['fph_exp_mu']:.3f}" for x in edge) or "none",
-      True, "TWO-SIDED: with the low (7.2) mass the framework sits AT the edge at 200 pc -- the test can bite the framework",
-      load_bearing=False)
+head = [x for x in rows if x["mass"].startswith("MOKA3D")]
+check("K4 at the headline MOKA3D mass the framework has f_ph < 1/2 at 150 AND 200 pc, both footings, all three kernels",
+      "; ".join(f"{x['footing']} {x['r_pc']:.0f}pc max f_ph={max(x[f'fph_{k}'] for k in KERNELS):.3f}" for x in head),
+      all(max(x[f"fph_{k}"] for k in KERNELS) < 0.5 for x in head),
+      "the flat-a0 law is consistent with 'extended mass sub-dominant' at the paper's PSF-modelled mass")
+low = [x for x in rows if "low end" in x["mass"]]
+viol = {(x["footing"], x["r_pc"]): x["fph_rar"] >= 0.5 for x in low}
+check("K4d DEFICIT (verified): at the published low mass 10^6.9 the framework VIOLATES sub-dominance (RAR) at 200 pc on BOTH "
+      "footings and at 150 pc on the ALT footing",
+      "; ".join(f"{k[0]} {k[1]:.0f}pc f_ph_rar={x['fph_rar']:.3f}" for k, x in zip(viol, low)),
+      viol[("canonical", 200.0)] and viol[("alt", 200.0)] and viol[("alt", 150.0)] and not viol[("canonical", 150.0)],
+      "TWO-SIDED, and it cuts against the framework: the verdict hinges on which published mass is right.  The low "
+      "readings come from spectroastrometry the paper itself calls lower limits before inclination correction; the "
+      "MOKA3D mass models PSF and inclination.  Not a kill of the framework, not a pass: mass-reading-limited")
 
 # ================================================================= K5
 banner("K5 -- THE a0 ~ H(z) RIVAL: the mass it needs, in sigma of each published reading (RAR kernel, exact)")
@@ -222,7 +235,7 @@ check("K5 the rival fails sub-dominance at the headline central mass (10^7.7) at
 
 # ================================================================= K6
 banner("K6 -- THE REGISTERED ZERO-PARAMETER PREDICTION: v_c / v_Kepler at 300-1000 pc (the decisive window)")
-logMs = [7.05 + 0.05 * i for i in range(20)]     # 10^7.05 .. 10^8.00: covers both readings at 1 sigma
+logMs = [6.75 + 0.05 * i for i in range(26)]     # 10^6.75 .. 10^8.00: every published reading at 1 sigma
 pred = {}
 for r in (300.0, 375.0, 450.0, 1000.0):
     fw = [boost(r, 10 ** lm, a0, k) for lm in logMs for a0 in A0_FW.values() for k in KERNELS]
@@ -244,13 +257,14 @@ for lm in logMs:
 worst_fixed = min(x[4] for x in fixed)
 OUT["numbers"]["K6_fixed_mass_375pc"] = [dict(zip(("logM", "fw_min", "fw_max", "rival_min", "rival_min_over_fw_max"), x))
                                          for x in fixed]
-check("K6 at 375 pc the framework band clears Newton by > 15% AND sits below the rival band, across 10^7.05-10^8.0",
-      f"framework lower edge - 1 = {sep_newton:+.3f}; rival lower edge - framework upper edge = {gap_rival:+.3f}; "
-      f"at any FIXED weighed mass rival_min/framework_max >= {worst_fixed:.2f}",
-      sep_newton > 0.15 and gap_rival > 0,
-      "over the full mass band the three bands only just clear (the band is mostly mass + kernel spread); once M is "
-      "weighed (the inner Keplerian fit does this) the rival sits >= the fixed-mass ratio above the framework: a "
-      "300-450 pc rotation measurement good to ~10% splits Newton / framework / rival")
+check("K6 at 375 pc the framework clears Newton by > 15% over 10^6.75-10^8.0, and at any FIXED weighed mass the rival sits "
+      ">= 1.3x above the framework",
+      f"framework lower edge - 1 = {sep_newton:+.3f}; full-band rival lower edge - framework upper edge = {gap_rival:+.3f} "
+      f"(bands overlap if < 0); at any FIXED weighed mass rival_min/framework_max >= {worst_fixed:.2f}",
+      sep_newton > 0.15 and worst_fixed > 1.3,
+      "over the full published mass range the framework and rival bands OVERLAP (the spread is mass + kernel); once M "
+      "is weighed jointly with the rotation curve the rival sits >= the fixed-mass ratio above the framework: a joint "
+      "refit with 300-450 pc rotation good to ~10% splits Newton / framework / rival")
 
 # ================================================================= context (not scored): LCDM NFW cap
 banner("CONTEXT (not scored) -- LCDM: the NFW halo-mass cap from the same 'sub-dominant at 150 pc' reading")
@@ -285,9 +299,10 @@ banner(f"VERDICT  ({npass}/{len(lb)} load-bearing PASS{'  -- MUTATE RUN' if MUTA
 P("""  * NEW (framework's own terms): for a naked BH the framework's rotation law has ZERO free parameters once M is weighed at
     small radius, and under the RAR kernel its phantom fraction is exactly exp(-r_M/r).
   * The published 'extended mass sub-dominant within the probed radii' becomes a DIRECT BOUND ON a0 AT z = 7.04:
-    a0 < G M/(r ln2)^2.  The flat framework passes at the outermost rotation bin for both mass readings; at 200 pc with the
-    low mass it sits at the edge (two-sided test).  The a0 ~ H(z) rival fails at the central headline mass -- a HINT
-    (0.9-2.0 sigma on 7.7 +/- 0.3), not a kill; it becomes >= 5 sigma only if the lower 7.2 +/- 0.15 mass is adopted.
+    a0 < G M/(r ln2)^2.  The flat framework passes at 150 and 200 pc at the PSF-modelled
+    headline mass; at the LOW end of the published range (10^6.9) it FAILS at 200 pc (both footings) -- the verdict is
+    mass-reading-limited, two-sided.  The a0 ~ H(z) rival fails at every published mass (0.9-2.0 sigma on the headline 7.7,
+    far more on the low readings) -- a HINT, not a kill.
   * LCDM is NOT discriminated (a small halo passes).  NOT a breakthrough: the reading of 'sub-dominant' is interpretive.
   * DECISIVE NEXT STEP: refit the public NIRSpec-IFU kinematics with v_c = sqrt(GM/r)/sqrt(1-exp(-r_M/r)) (one parameter,
     like Kepler) and measure the 300-450 pc narrow-line rotation (outflow-separated): framework v_c/v_K in the K6 band.""")

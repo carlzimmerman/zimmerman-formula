@@ -18,9 +18,13 @@ stated as such. Companion lane: `real_research/bhstar_audit_2026/L324_qso1_naked
 * `flat_speed_at_rM` — at r_M the Newtonian circular speed equals the flat speed (why tracers at r ≈ r_M
   cannot discriminate).
 * `naked_bh_envelope` — v⁴ = G M_b a0, M_BH ≤ M_b, α σ² = v² ⟹ M_BH ≤ α² σ⁴/(G a0).
-* `framework_passes_*`, `rival_fails_*` — the certified numbers: at M ≥ 5.01e7 Msun the flat a0 (both
-  footings, 9.3619e-11 and 1.1279e-10) satisfies the bound at 150 and 200 pc; at M ≤ 5.02e7 Msun the
-  a0 ∝ H(z) rival (a0 ≥ 12.8 × 9.3619e-11, since E(7.0451) ≥ 12.8) violates it at 150 and 200 pc.
+* `framework_passes_*`, `rival_fails_*` — the certified numbers: at M ≥ 5.01e7 Msun (the published MOKA3D
+  mass 10^7.7) the flat a0 (both footings, 9.3619e-11 and 1.1279e-10) satisfies the bound at 150 and 200 pc;
+  at M ≤ 5.02e7 Msun the a0 ∝ H(z) rival (a0 ≥ 12.8 × 9.3619e-11, since E(7.0451) ≥ 12.8) violates it.
+* `framework_fails_200_low`, `alt_fails_150_low`, `canonical_passes_150_low` — THE DEFICIT, certified as
+  hard as the pass: at the LOW end of the published range (10^6.9 ≤ M ≤ 10^7.0 Msun, inclination-corrected
+  spectroastrometry) the flat a0 VIOLATES the bound at 200 pc on both footings and at 150 pc on the alt
+  footing (the canonical footing still passes at 150 pc). The verdict is mass-reading-limited.
 
 Zero `sorry`; axioms ⊆ {propext, Classical.choice, Quot.sound}.
 -/
@@ -163,8 +167,39 @@ theorem rival_fails_200 :
       (by norm_num) hG ?_
     unfold K502 r200; norm_num
 
+/-- G·M for M = 1.0e7, 7.95e6 and 7.94e6 Msun (10^6.9 = 7.943e6). -/
+def K100 : ℝ := 6.6743e-11 * (1.0e7 * 1.98892e30)
+def K795 : ℝ := 6.6743e-11 * (7.95e6 * 1.98892e30)
+def K794 : ℝ := 6.6743e-11 * (7.94e6 * 1.98892e30)
+
+/-- The deficit at 200 pc: for M ≤ 1e7 Msun both flat footings violate sub-dominance. -/
+theorem framework_fails_200_low :
+    K100 / (r200 * Real.log 2) ^ 2 < 9.3619e-11 ∧ K100 / (r200 * Real.log 2) ^ 2 < 1.1279e-10 := by
+  have hG := Real.log_two_gt_d9
+  constructor <;>
+  · refine bound_upper (L := 0.6931471803) (by unfold K100; norm_num) (by unfold r200; norm_num)
+      (by norm_num) hG ?_
+    unfold K100 r200; norm_num
+
+/-- The deficit at 150 pc (alt footing) for M ≤ 7.95e6 Msun ⊇ 10^6.9. -/
+theorem alt_fails_150_low : K795 / (r150 * Real.log 2) ^ 2 < 1.1279e-10 := by
+  have hG := Real.log_two_gt_d9
+  refine bound_upper (L := 0.6931471803) (by unfold K795; norm_num) (by unfold r150; norm_num)
+    (by norm_num) hG ?_
+  unfold K795 r150; norm_num
+
+/-- ... while the canonical footing still passes at 150 pc for M ≥ 7.94e6 Msun. -/
+theorem canonical_passes_150_low : (9.3619e-11 : ℝ) < K794 / (r150 * Real.log 2) ^ 2 := by
+  have hL := Real.log_two_lt_d9
+  have hl := Real.log_pos (by norm_num : (1 : ℝ) < 2)
+  refine bound_lower (by unfold K794; norm_num) (by unfold r150; norm_num) hl hL ?_
+  unfold K794 r150; norm_num
+
 end
 
+#print axioms framework_fails_200_low
+#print axioms alt_fails_150_low
+#print axioms canonical_passes_150_low
 #print axioms phantom_fraction_rar
 #print axioms sqrt_y_point_mass
 #print axioms subdominance_iff

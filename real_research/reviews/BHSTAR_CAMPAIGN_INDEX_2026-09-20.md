@@ -134,3 +134,16 @@ the auto-bound pi (open Real!), the cgs Saha constant 2.4e15.
     ΛCDM is not discriminated.
   - Registered: v_c/v_Kepler at 375 pc is 1.15–1.93 for the framework, 1.00 for Newton and
     1.94–3.45 for the rival.
+- **CORRECTION (same day) to the QSO1 entry above:** L324 now uses the PUBLISHED Nature numbers
+  (PMC13215880), which supersede arXiv v1: spectroastrometric i-corrected mass 6.9–7.2, and 1-D
+  bins at 100 and 150 pc.
+  - At the low end (10^6.9) the flat framework **FAILS** the sub-dominance bound at 200 pc on both
+    footings and at 150 pc on the alt footing (Lean I18 `framework_fails_200_low`,
+    `alt_fails_150_low`).
+  - At the MOKA3D 10^7.7 it passes.
+  - The rival fails at every reading.
+  - The verdict is two-sided and mass-reading-limited.
+  - Data are public (Zenodo 19402518), so a joint (M, i, law) MOKA3D refit is the decisive swing.
+  - The registered 375 pc bands widen with the lower published masses: framework 1.15–2.24,
+    Newton 1.00, rival 1.94–4.08. They overlap across the full mass range, so the refit must
+    weigh M jointly (at fixed M the rival sits ≥ 1.5× above the framework).

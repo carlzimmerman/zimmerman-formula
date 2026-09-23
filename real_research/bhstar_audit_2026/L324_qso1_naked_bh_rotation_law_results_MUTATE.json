@@ -12,34 +12,34 @@
    "measured": "1.41e-16",
    "load_bearing": true
   },
-  "K3 framework: max velocity boost at r_spec = 12.5 pc over masses x footings x kernels < 1%": {
+  "K3 framework: its inflation of the 12.5 pc mass reading, 2 log10(boost), is < 0.02 dex (vs the +/-0.15-0.3 dex mass errors) over masses x footings x kernels": {
    "ok": false,
-   "measured": "6.217%",
+   "measured": "max boost 11.081% = 0.0913 dex",
    "load_bearing": true
   },
   "K3b rival: its own 12.5 pc mass reading is inflated by nu, at most this many dex (reported, conservative)": {
    "ok": true,
-   "measured": "0.052 dex",
+   "measured": "0.091 dex",
    "load_bearing": false
   },
-  "K4 framework f_ph(150 pc) < 1/2 for both mass readings, both footings, all three kernels": {
+  "K4 at the headline MOKA3D mass the framework has f_ph < 1/2 at 150 AND 200 pc, both footings, all three kernels": {
    "ok": false,
-   "measured": "at least one >= 0.5",
+   "measured": "canonical 150pc max f_ph=0.605; canonical 200pc max f_ph=0.685; alt 150pc max f_ph=0.632; alt 200pc max f_ph=0.708",
    "load_bearing": true
   },
-  "K4b (not load-bearing) margin at 200 pc: list every framework case with f_ph > 0.45": {
-   "ok": true,
-   "measured": "MOKA3D canonical rar=0.683 simple=0.685 exp_mu=0.656; MOKA3D alt rar=0.707 simple=0.708 exp_mu=0.683; spectroastrometric, canonical rar=0.807 simple=0.807 exp_mu=0.797; spectroastrometric, alt rar=0.823 simple=0.823 exp_mu=0.814",
-   "load_bearing": false
+  "K4d DEFICIT (verified): at the published low mass 10^6.9 the framework VIOLATES sub-dominance (RAR) at 200 pc on BOTH footings and at 150 pc on the ALT footing": {
+   "ok": false,
+   "measured": "canonical 150pc f_ph_rar=0.817; canonical 200pc f_ph_rar=0.859; alt 150pc f_ph_rar=0.832; alt 200pc f_ph_rar=0.871",
+   "load_bearing": true
   },
   "K5 the rival fails sub-dominance at the headline central mass (10^7.7) at 150 and 200 pc, both footings": {
    "ok": true,
    "measured": "f_ph(150 pc) = 0.602/0.629, f_ph(200 pc) = 0.683/0.707",
    "load_bearing": true
   },
-  "K6 at 375 pc the framework band clears Newton by > 15% AND sits below the rival band, across 10^7.05-10^8.0": {
+  "K6 at 375 pc the framework clears Newton by > 15% over 10^6.75-10^8.0, and at any FIXED weighed mass the rival sits >= 1.3x above the framework": {
    "ok": false,
-   "measured": "framework lower edge - 1 = +0.938; rival lower edge - framework upper edge = -1.515; at any FIXED weighed mass rival_min/framework_max >= 0.93",
+   "measured": "framework lower edge - 1 = +0.938; full-band rival lower edge - framework upper edge = -2.140 (bands overlap if < 0); at any FIXED weighed mass rival_min/framework_max >= 0.93",
    "load_bearing": true
   }
  },
@@ -50,7 +50,11 @@
      7.7,
      0.3
     ],
-    "spectroastrometric, i-corrected": [
+    "spectroastrometric, i-corrected (low end)": [
+     6.9,
+     0.15
+    ],
+    "spectroastrometric, i-corrected (high end)": [
      7.2,
      0.15
     ]
@@ -60,7 +64,6 @@
     4.7
    ],
    "rotation_bins_pc": [
-    50.0,
     100.0,
     150.0
    ],
@@ -89,8 +92,8 @@
    "alt": 69.46151313691955
   },
   "K3": {
-   "framework_max_boost": 0.06217476095288621,
-   "rival_max_mass_inflation_dex": 0.05239195528633284
+   "framework_max_boost": 0.11081486811049857,
+   "rival_max_mass_inflation_dex": 0.09128336818296444
   },
   "framework_subdominance": [
    {
@@ -134,7 +137,47 @@
     "logM_needed_rar": 8.300222434079265
    },
    {
-    "mass": "spectroastrometric, i-corrected",
+    "mass": "spectroastrometric, i-corrected (low end)",
+    "logM": 6.9,
+    "footing": "canonical",
+    "r_pc": 150.0,
+    "fph_rar": 0.8168078259034468,
+    "fph_simple": 0.8170885690106959,
+    "fph_exp_mu": 0.807971158698329,
+    "logM_needed_rar": 7.969438362065473
+   },
+   {
+    "mass": "spectroastrometric, i-corrected (low end)",
+    "logM": 6.9,
+    "footing": "canonical",
+    "r_pc": 200.0,
+    "fph_rar": 0.8591913925563204,
+    "fph_simple": 0.859316214210283,
+    "fph_exp_mu": 0.8540308271432252,
+    "logM_needed_rar": 8.219315835282073
+   },
+   {
+    "mass": "spectroastrometric, i-corrected (low end)",
+    "logM": 6.9,
+    "footing": "alt",
+    "r_pc": 150.0,
+    "fph_rar": 0.8316412039868283,
+    "fph_simple": 0.8318575181011945,
+    "fph_exp_mu": 0.8242075543237897,
+    "logM_needed_rar": 8.050344960862665
+   },
+   {
+    "mass": "spectroastrometric, i-corrected (low end)",
+    "logM": 6.9,
+    "footing": "alt",
+    "r_pc": 200.0,
+    "fph_rar": 0.8708673305383906,
+    "fph_simple": 0.8709630444274059,
+    "fph_exp_mu": 0.8665412132078671,
+    "logM_needed_rar": 8.300222434079265
+   },
+   {
+    "mass": "spectroastrometric, i-corrected (high end)",
     "logM": 7.2,
     "footing": "canonical",
     "r_pc": 150.0,
@@ -144,7 +187,7 @@
     "logM_needed_rar": 7.969438362065473
    },
    {
-    "mass": "spectroastrometric, i-corrected",
+    "mass": "spectroastrometric, i-corrected (high end)",
     "logM": 7.2,
     "footing": "canonical",
     "r_pc": 200.0,
@@ -154,7 +197,7 @@
     "logM_needed_rar": 8.219315835282073
    },
    {
-    "mass": "spectroastrometric, i-corrected",
+    "mass": "spectroastrometric, i-corrected (high end)",
     "logM": 7.2,
     "footing": "alt",
     "r_pc": 150.0,
@@ -164,7 +207,7 @@
     "logM_needed_rar": 8.050344960862665
    },
    {
-    "mass": "spectroastrometric, i-corrected",
+    "mass": "spectroastrometric, i-corrected (high end)",
     "logM": 7.2,
     "footing": "alt",
     "r_pc": 200.0,
@@ -185,7 +228,14 @@
    {
     "footing": "canonical",
     "r_pc": 150.0,
-    "mass": "spectroastrometric, i-corrected",
+    "mass": "spectroastrometric, i-corrected (low end)",
+    "logM_needed": 7.969438362065473,
+    "sigma_above": 7.129589080436484
+   },
+   {
+    "footing": "canonical",
+    "r_pc": 150.0,
+    "mass": "spectroastrometric, i-corrected (high end)",
     "logM_needed": 7.969438362065473,
     "sigma_above": 5.129589080436485
    },
@@ -199,7 +249,14 @@
    {
     "footing": "canonical",
     "r_pc": 200.0,
-    "mass": "spectroastrometric, i-corrected",
+    "mass": "spectroastrometric, i-corrected (low end)",
+    "logM_needed": 8.219315835282073,
+    "sigma_above": 8.795438901880484
+   },
+   {
+    "footing": "canonical",
+    "r_pc": 200.0,
+    "mass": "spectroastrometric, i-corrected (high end)",
     "logM_needed": 8.219315835282073,
     "sigma_above": 6.795438901880484
    },
@@ -213,7 +270,14 @@
    {
     "footing": "alt",
     "r_pc": 150.0,
-    "mass": "spectroastrometric, i-corrected",
+    "mass": "spectroastrometric, i-corrected (low end)",
+    "logM_needed": 8.050344960862665,
+    "sigma_above": 7.668966405751098
+   },
+   {
+    "footing": "alt",
+    "r_pc": 150.0,
+    "mass": "spectroastrometric, i-corrected (high end)",
     "logM_needed": 8.050344960862665,
     "sigma_above": 5.668966405751099
    },
@@ -227,7 +291,14 @@
    {
     "footing": "alt",
     "r_pc": 200.0,
-    "mass": "spectroastrometric, i-corrected",
+    "mass": "spectroastrometric, i-corrected (low end)",
+    "logM_needed": 8.300222434079265,
+    "sigma_above": 9.334816227195097
+   },
+   {
+    "footing": "alt",
+    "r_pc": 200.0,
+    "mass": "spectroastrometric, i-corrected (high end)",
     "logM_needed": 8.300222434079265,
     "sigma_above": 7.334816227195097
    }
@@ -236,77 +307,119 @@
    "300.0": {
     "framework_boost": [
      1.750644571488845,
-     3.1051107724209275
+     3.6610619788801255
     ],
     "rival_boost": [
      1.750644571488845,
-     3.1051107724209275
+     3.6610619788801255
     ],
     "newton_boost": [
      1.0,
      1.0
     ],
     "framework_vc_kms_rar": [
-     37.68446722800388,
+     31.435085775852983,
      71.69797751719832
     ]
    },
    "375.0": {
     "framework_boost": [
      1.9377389280428499,
-     3.4526781438369665
+     4.077359268273539
     ],
     "rival_boost": [
      1.9377389280428499,
-     3.4526781438369665
+     4.077359268273539
     ],
     "newton_boost": [
      1.0,
      1.0
     ],
     "framework_vc_kms_rar": [
-     37.4626353721877,
+     31.303269818557187,
      70.59157352477544
     ]
    },
    "450.0": {
     "framework_boost": [
      2.1088309804387313,
-     3.768443971996743
+     4.454995815049344
     ],
     "rival_boost": [
      2.1088309804387313,
-     3.768443971996743
+     4.454995815049344
     ],
     "newton_boost": [
      1.0,
      1.0
     ],
     "framework_vc_kms_rar": [
-     37.314974057334865,
+     31.21549032702848,
      69.85657844018098
     ]
    },
    "1000.0": {
     "framework_boost": [
      3.08926215201364,
-     5.561552980293839
+     6.594077210290822
     ],
     "rival_boost": [
      3.08926215201364,
-     5.561552980293839
+     6.594077210290822
     ],
     "newton_boost": [
      1.0,
      1.0
     ],
     "framework_vc_kms_rar": [
-     36.90986161204879,
+     30.974506602519508,
      67.84689054695455
     ]
    }
   },
   "K6_fixed_mass_375pc": [
+   {
+    "logM": 6.75,
+    "fw_min": 3.8650619899206484,
+    "fw_max": 4.077359268273539,
+    "rival_min": 3.8650619899206484,
+    "rival_min_over_fw_max": 0.9479326533708219
+   },
+   {
+    "logM": 6.8,
+    "fw_min": 3.757342224052773,
+    "fw_max": 3.9653172750482795,
+    "rival_min": 3.757342224052773,
+    "rival_min_over_fw_max": 0.9475514727902892
+   },
+   {
+    "logM": 6.85,
+    "fw_min": 3.6527392133437733,
+    "fw_max": 3.856563775779491,
+    "rival_min": 3.6527392133437733,
+    "rival_min_over_fw_max": 0.9471486602358805
+   },
+   {
+    "logM": 6.9,
+    "fw_min": 3.551166659111201,
+    "fw_max": 3.751008957247038,
+    "rival_min": 3.551166659111201,
+    "rival_min_over_fw_max": 0.9467230549397284
+   },
+   {
+    "logM": 6.95,
+    "fw_min": 3.452540808124584,
+    "fw_max": 3.648565680214048,
+    "rival_min": 3.452540808124584,
+    "rival_min_over_fw_max": 0.9462734429717149
+   },
+   {
+    "logM": 7.0,
+    "fw_min": 3.3567803866875177,
+    "fw_max": 3.549149409084885,
+    "rival_min": 3.3567803866875177,
+    "rival_min_over_fw_max": 0.9457985561540595
+   },
    {
     "logM": 7.05,
     "fw_min": 3.2638065371412024,
@@ -322,10 +435,10 @@
     "rival_min_over_fw_max": 0.9447676090802523
    },
    {
-    "logM": 7.1499999999999995,
-    "fw_min": 3.085914839168139,
-    "fw_max": 3.268254915835008,
-    "rival_min": 3.085914839168139,
+    "logM": 7.15,
+    "fw_min": 3.0859148391681375,
+    "fw_max": 3.2682549158350067,
+    "rival_min": 3.0859148391681375,
     "rival_min_over_fw_max": 0.9442087348256055
    },
    {
@@ -357,11 +470,11 @@
     "rival_min_over_fw_max": 0.9416484792680322
    },
    {
-    "logM": 7.3999999999999995,
-    "fw_min": 2.6848698218413296,
-    "fw_max": 2.8534544814325122,
-    "rival_min": 2.6848698218413296,
-    "rival_min_over_fw_max": 0.9409190997479839
+    "logM": 7.4,
+    "fw_min": 2.6848698218413287,
+    "fw_max": 2.8534544814325113,
+    "rival_min": 2.6848698218413287,
+    "rival_min_over_fw_max": 0.9409190997479838
    },
    {
     "logM": 7.45,
@@ -459,6 +572,6 @@
  },
  "verdict": {
   "load_bearing_pass": 3,
-  "load_bearing_total": 6
+  "load_bearing_total": 7
  }
 }
