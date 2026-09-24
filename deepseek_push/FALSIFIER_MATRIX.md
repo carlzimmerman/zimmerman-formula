@@ -147,3 +147,6 @@ not a replacement for the count derivation (PD01); the dimension tension (the To
 d-1 vs the channel count 2-invariant) is recorded (PD11 T4) as the discriminator for any
 future d-aware test. Seven compiled Lean certificates: PD05/PD07/PD09/PD10/PD11/PD12/PD13,
 zero sorry, axioms = {propext, Classical.choice, Quot.sound}.
+
+## Contact log (append-only)
+- **2026-09-23** [bilek_rar_absorption_2026_09_23]: rows 23/28 get FIRST-DATA-CONTACT via Bilek/Renaud/Samurovic 2026 (arXiv:2603.23591, A&A): central galaxies of clusters/subclusters/groups exhibit enhanced accelerations (their ranks 1-9), isolated + noncentral follow the standard RAR (ranks 10-17n). Framework strip census 15/15 decidable rows match with zero free parameters (paper's own virial masses + 1-Mpc Virgo geometry + r_strip = 4 sigma^2/a0); armed rows NGC1400/NGC4526 (offsets required, Tully15/Tempel16/Morgan25). The ZD01 a0/2 cap met its first independent-channel challenge: NGC3115 neg-model fit demands g_dark(22 kpc) = 1.28e-10 = 2.3x cap (K1) -- ARMED, partition unidentifiable, falsifier: priored g_dark(NGC3115, 15-25 kpc) > 1.1*a0/2 fires ZD01. Status: rows 23/28 remain ARMED; instrument extended to the paper's sample class.
