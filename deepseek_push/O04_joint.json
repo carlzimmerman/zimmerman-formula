@@ -1,0 +1,53 @@
+{
+  "lane": "O04_joint_deep_a0",
+  "date": "2026-09-23",
+  "a0_DE_m_s2": 9.3619e-11,
+  "channels": {
+    "SPARC_deep_L06": {
+      "status": "LANDED",
+      "a0eff_a0": 0.7241,
+      "se_a0eff_a0": 0.0662,
+      "a0eff_m_s2": 6.78e-11,
+      "z_vs_1": -4.1705,
+      "N_rings": 1152,
+      "N_gal": 135,
+      "systematics_channel": "HI rotation curves (SPARC rings, G071 conventions; galaxy-clustered bootstrap SE)",
+      "files": ["deepseek_push/L06_results.json", "deepseek_push/N05_results.json"]
+    },
+    "G114_dwarfs_O01": {
+      "status": "PENDING",
+      "a0eff_a0": "PENDING",
+      "se_a0eff_a0": "PENDING",
+      "z_vs_1": "PENDING",
+      "systematics_channel": "dwarf resolved kinematics (LT AD-corrected V_max; FIGGS pressure-corrected V_rot; M_star KIN/SED or diet-Salpeter)",
+      "data_layer_landed": "G114_results.json: N=55, rms 0.150 dex, median r +0.015; deep tail g_N<0.1 a0 N=7 median r=-0.094 dex rms 0.168 (on the (G M_b a0)^(1/4) line, -1.5 sigma vs a0=1)",
+      "files": ["deepseek_push/G114_results.json"]
+    },
+    "MW_O03": {
+      "status": "PENDING",
+      "a0eff_a0": "PENDING",
+      "se_a0eff_a0": "PENDING",
+      "z_vs_1": "PENDING",
+      "systematics_channel": "MW tracers (Eilers+19 38 pts 5.27-24.82 kpc; Ou+24 37 pts 6.3-27.3 kpc; tangent-point gas kinematics; G072/G157 landed context)",
+      "files": []
+    }
+  },
+  "joint": {
+    "method": "inverse-variance weighted: xbar=sum(x_i/sig_i^2)/sum(1/sig_i^2), SE=1/sqrt(sum(1/sig_i^2))",
+    "combined_a0eff_a0": 0.7241,
+    "combined_se": 0.0662,
+    "z_vs_1": -4.1705,
+    "n_landed_channels": 1,
+    "statement": "Deep regime jointly inconsistent with a0=9.3619e-11 at 4.2 sigma on the one landed channel (SPARC-deep); joint 3-channel value and chi2 PENDING O01/O03. On-record two-sided caution: MIGHTEE deep (N05_results.json) a0eff_a0=2.164 z=+6.58, opposite sign to SPARC-deep.",
+    "chi2_channel_means": "PENDING (needs >=2 landed a0_eff channels; n=1 landed)"
+  },
+  "verdict_explanation_a_density_locality": "SURVIVES-UNDECIDED: a0(rho)=(c/2)sqrt(G rho), rho<rho_Lambda=5.8e-27 kg/m^3 (G155 canonical 4a0^2/(Gc^2)); L06's 0.73 a0 is the law's predicted direction for outer-disk densities below rho_Lambda; N01 SPARC-side test RUNNING with pre-registered kills (flat a0_eff across >3x rho -> DEAD; cross-bin slope off 1/2 power at 5 SE -> wrong mapping); G114 f_gas-bins and MW annuli are the cross-check legs.",
+  "verdict_explanation_b_slope_change": "NOT-EXCLUDED-EMPIRICALLY-DISFAVORED-BY-FRAMEWORK, PENDING the O-lanes: N05 discriminator cannot attribute between H_A (slope 1/2, a0_eff=0.73) and H_B (slope 0.55, intercept 0) at kill N (crossing 0.0433 a0, LR 1.9 sigma; 5-sigma needs ~11699 SPARC-class deep rings or ~542 with resolved-SED recipe), but the PD-series derives deep slope 1/2 as the two-channel count, Lean-unique (PD07/PD13), and PD10 measures the SPARC deep index cp=1 +/- 0.0033.",
+  "next_doors": [
+    "UDG/low-SB sample from deepseek_push/G114_data/leisman figures (Leisman+17 HUDS: AGC 122966/219533/334315 in-repo, V_obs derived M_dyn(8 kpc) UNVERIFIED): fourth deep-a0_eff leg at the lowest surface densities where (a) vs (b) separate hardest",
+    "Deep-HI surveys: N05 program card MeerKAT L-band MIGHTEE-class, ~59 new deep-HI galaxies / ~177 rings (total ~1329 deep rings / 194 gals) for 5-SE M1 kill; MIGHTEE-HI sibling channel (resolved SEDs, sigma_int 0.045 dex); VLA-B outer rings on 16 residual never-doubling dwarfs (ZD08 C3)",
+    "PHANGS-ALMA/MUSE resolved kinematics as MW-class annulus cross-check (CO/star-formation tracer channel orthogonal to HI), completing O03's tracer coverage",
+    "O02 HeCS virial-T z-invariance, the cluster-scale deep channel: a0(z) sharp null (Delta log10 T = 0.000 at z<=1) vs virial-T anchor; eRASS3 catalogue-only release is the waiting gate (G236 registrations)"
+  ],
+  "provenance": "Values quoted only from lane files: L06_results.json, N05_results.json, G114_results.json, ZD08_results.json, G155_sourced_eq.py, N01_density_locality.py, G072_mw_law.out; combined SE/z are scripted arithmetic on those quoted values (ratio 0.724123, SE 0.066150, z -4.1705); O01/O02/O03 have no lane files at write time (2026-09-23 20:45 EDT) and are PENDING; N01 is RUNNING. No git commit; no invented numbers."
+}

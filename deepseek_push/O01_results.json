@@ -1,0 +1,186 @@
+{
+ "lane": "O01",
+ "title": "a0_eff on the G114 dwarf sample: deepest-regime cross-check of the SPARC-deep 4.2-sigma tension",
+ "a0_footing": {
+  "canonical_m_s2": 9.3619e-11,
+  "RAR_m_s2": 1.2e-10,
+  "note": "v_pred embeds A0 = 9.3619e-11 (G03E/G114); L06's 0.73 is relative to the RAR 1.2e-10 footing; translated to canonical footing L06 = 0.936"
+ },
+ "v_pred_semantics": "v_pred = (G M_b a0_canon)^(1/4), the zero-parameter deep-MOND prediction (G114_deepend_hi.py lines 179-214), NOT a Newtonian baryonic prediction; verified by recomputation (max |v_pred diff| = 5.422e-04 km/s = 1.65e-05 dex; CSV prints 0.001 km/s)",
+ "estimator": "log10(a0_eff/a0) = 4 * mean(log10(V_obs/v_pred)); V_obs^4 = G M_b a0_eff in the deep limit; cluster bootstrap over galaxies (resampled by name), B=10000",
+ "pre_registered": {
+  "L06": {
+   "a0_eff_over_a0": 0.73,
+   "z": 4.2,
+   "SE_linear": 0.0643,
+   "SE_dex": 0.0382,
+   "cut": "g_bar < 0.2 a0",
+   "note": "SE reconstructed from the 4.2-sigma statement; no repo lane recomputes the SPARC fit"
+  },
+  "KILL_1": "|log10(a0_eff/a0) - log10(0.73)| > 3 * sqrt(SE_d^2 + SE_L06^2) -> deep tension sample-dependent",
+  "KILL_2": "|log10(a0_eff/a0)| < 3 * SE_d -> consistent with 1.0 -> tension does not extend to deepest g_N; mechanical fires are NOT banked unless the estimate is closer to 1.0 than to 0.73 (power control MC-B)",
+  "primary_sample": "LT dwarfs with gN_a0 < 0.2 (same cut as the L06 SPARC-deep sample)"
+ },
+ "samples": {
+  "primary": {
+   "label": "PRIMARY LT-deep  gN<0.2 a0 (L06 deep cut)",
+   "N": 16,
+   "log10_a0eff_over_a0": -0.1955,
+   "SE_dex": 0.1107,
+   "CI95_dex": [
+    -0.4222,
+    0.0099
+   ],
+   "a0eff_over_a0": 0.6376,
+   "a0eff_over_a0_SE": 0.1625,
+   "z_vs_1": -1.77,
+   "median_log10": -0.1208
+  },
+  "deep_tail": {
+   "label": "deep tail       gN<0.1 a0",
+   "N": 7,
+   "log10_a0eff_over_a0": -0.5087,
+   "SE_dex": 0.1662,
+   "CI95_dex": [
+    -0.8361,
+    -0.1929
+   ],
+   "a0eff_over_a0": 0.31,
+   "a0eff_over_a0_SE": 0.1186,
+   "z_vs_1": -3.06,
+   "median_log10": -0.3764
+  },
+  "lt_all": {
+   "label": "LT all 26 (regime-mixed, CONTROL)",
+   "N": 26,
+   "log10_a0eff_over_a0": 0.1935,
+   "SE_dex": 0.1342,
+   "CI95_dex": [
+    -0.0688,
+    0.4574
+   ],
+   "a0eff_over_a0": 1.5614,
+   "a0eff_over_a0_SE": 0.4825,
+   "z_vs_1": 1.44,
+   "median_log10": 0.0814
+  },
+  "full": {
+   "label": "full 55 (FIGGS g_N unconstrained [EST], CONTROL)",
+   "N": 55,
+   "log10_a0eff_over_a0": 0.077,
+   "SE_dex": 0.083,
+   "CI95_dex": [
+    -0.0842,
+    0.2402
+   ],
+   "a0eff_over_a0": 1.1939,
+   "a0eff_over_a0_SE": 0.2283,
+   "z_vs_1": 0.93,
+   "median_log10": 0.06
+  },
+  "primary_min3": {
+   "label": "primary minus 3 deepest-gN (IC 1613, DDO 50, NGC 1569) [ROBUSTNESS, post-hoc, labeled]",
+   "N": 13,
+   "log10_a0eff_over_a0": -0.0124,
+   "SE_dex": 0.0671,
+   "CI95_dex": [
+    -0.141,
+    0.1208
+   ],
+   "a0eff_over_a0": 0.9719,
+   "a0eff_over_a0_SE": 0.1501,
+   "z_vs_1": -0.18,
+   "median_log10": -0.0824
+  },
+  "deep_tail_min3": {
+   "label": "deep tail minus 3 deepest-gN [ROBUSTNESS, post-hoc, labeled]",
+   "N": 4,
+   "log10_a0eff_over_a0": -0.1486,
+   "SE_dex": 0.0847,
+   "CI95_dex": [
+    -0.3151,
+    0.0297
+   ],
+   "a0eff_over_a0": 0.7102,
+   "a0eff_over_a0_SE": 0.1385,
+   "z_vs_1": -1.75,
+   "median_log10": -0.1604
+  }
+ },
+ "cross_check": {
+  "primary_vs_L06": {
+   "delta_dex_vs_0.73": -0.0588,
+   "combined_SE_dex": 0.1171,
+   "z": -0.5,
+   "KILL_1": false,
+   "KILL_2_mechanical": true,
+   "KILL_2_banked": false,
+   "VERDICT": "DEEP TENSION NOT WEAKENED -- directionally REPRODUCED on the independent deepest-regime sample.  a0_eff/a0 = 0.64 +- 0.16: 1.77 sigma below 1.0 and -0.50 sigma from the SPARC-deep 0.73 (the estimate sits 3.3x closer to 0.73 than to 1.0); the deep tail (gN<0.1, N=7) EXCLUDES 1.0 at 3.06 sigma (a0_eff/a0 = 0.31).  KILL-1 does not fire (within 3 combined SE of 0.73): the deep tension is NOT sample-dependent.  KILL-2's mechanical fire is a POWER ARTIFACT and is NOT banked: MC-B shows the 0.73-vs-1.0 split (0.137 dex) is sub-3-sigma at this sample size, so consistency-with-1.0 at < 3 SE cannot be evidence against the tension.  Caveat, stated plainly: the primary offset is driven by the 3 deepest-gN systems (IC 1613, DDO 50, NGC 1569); excluding them restores a0_eff/a0 = 0.97 +- 0.15 (N=13), still within 3 combined SE of 0.73 on that robustness subset.",
+   "footing_translated_L06_ratio": 0.9357,
+   "KILL_1_on_canonical_footing": false
+  }
+ },
+ "f_gas": {
+  "median_primary": 0.877,
+  "bins": {
+   "fg_hi": {
+    "label": "f_gas >= median (gas-richest half)",
+    "N": 8,
+    "log10_a0eff_over_a0": -0.1417,
+    "SE_dex": 0.144
+   },
+   "fg_lo": {
+    "label": "f_gas <  median",
+    "N": 8,
+    "log10_a0eff_over_a0": -0.2492,
+    "SE_dex": 0.1634
+   },
+   "fg_90": {
+    "label": "f_gas >= 0.9 (gas-dominant)",
+    "N": 6,
+    "log10_a0eff_over_a0": -0.1469,
+    "SE_dex": 0.1915
+   },
+   "fg_70": {
+    "label": "f_gas <  0.7 (stellar-bearing)",
+    "N": 2,
+    "log10_a0eff_over_a0": -0.5798,
+    "SE_dex": 0.1932
+   }
+  },
+  "theil_sen_per_unit_fgas": 0.65,
+  "spearman_rho_vs_fgas": 0.292,
+  "theil_sen_vs_logMb": -0.006,
+  "theil_sen_vs_loggN": 1.467,
+  "note": "N01 density-locality probe (in flight): positive slope = offset tracks f_gas"
+ },
+ "controls_synthetic": [
+  {
+   "label": "MC-A null recovery (a0_eff/a0=1.0 injected; real residual scatter resampled)",
+   "recovered_dex": 0.0017,
+   "SE_dex": 0.1106,
+   "expected": 0.0
+  },
+  {
+   "label": "MC-B 0.73 injection (detectability/power)",
+   "recovered_dex": -0.1355,
+   "SE_dex": 0.1095,
+   "expected_dex": -0.1367,
+   "resolvable": false
+  },
+  {
+   "label": "MC-C interpolation bias (true-MOND mu(y)=y/sqrt(1+y^2), a0_eff=a0)",
+   "primary_gN<0.2_dex": 0.0247,
+   "lt_all_gN_mixed_dex": 0.0691,
+   "note": "deep-limit estimator applied to true-MOND data with a0_eff=a0: ~0 bias inside the gN<0.2 cut, upward bias outside it"
+  }
+ ],
+ "regression_diagnostic": "log10 V_obs vs log10 v_pred slope on primary = 1.0 iff deep law holds with universal a0_eff",
+ "sources": {
+  "csv": "deepseek_push/G114_data/G114_combined_sample.csv",
+  "sha256": "2b3bbecf297a2c5573594a57a6411ba592ae05e4acf8f8d61e57067bf7914d0e",
+  "generating_lane": "deepseek_push/G114_deepend_hi.py (vpred lines 179-180)",
+  "L06_number": "task brief: SPARC-deep g_bar<0.2 a0, a0_eff = 0.73 a0 at 4.2 sigma, galaxy-clustered"
+ },
+ "statement": "DEEP TENSION NOT WEAKENED -- directionally REPRODUCED on the independent deepest-regime sample.  a0_eff/a0 = 0.64 +- 0.16: 1.77 sigma below 1.0 and -0.50 sigma from the SPARC-deep 0.73 (the estimate sits 3.3x closer to 0.73 than to 1.0); the deep tail (gN<0.1, N=7) EXCLUDES 1.0 at 3.06 sigma (a0_eff/a0 = 0.31).  KILL-1 does not fire (within 3 combined SE of 0.73): the deep tension is NOT sample-dependent.  KILL-2's mechanical fire is a POWER ARTIFACT and is NOT banked: MC-B shows the 0.73-vs-1.0 split (0.137 dex) is sub-3-sigma at this sample size, so consistency-with-1.0 at < 3 SE cannot be evidence against the tension.  Caveat, stated plainly: the primary offset is driven by the 3 deepest-gN systems (IC 1613, DDO 50, NGC 1569); excluding them restores a0_eff/a0 = 0.97 +- 0.15 (N=13), still within 3 combined SE of 0.73 on that robustness subset."
+}

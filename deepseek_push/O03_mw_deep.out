@@ -1,0 +1,135 @@
+======================================================================================================
+O03 -- MW ROTATION CURVE DEEP-A0 MEASUREMENT (third channel: Eilers+19 RC, Eilers' own baryons = Pouliasis+17 Model I + McMillan gas)
+======================================================================================================
+
+--- data: /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/data2/eilers2019_mw_rotation_curve_table1.csv
+    header: 'R_kpc,vc_kms,sigma_vc_minus_kms,sigma_vc_plus_kms'  -> 38 rows, R in [5.27, 24.82] kpc; NO baryonic columns (bulge/disc/gas absent) -- known-Eilers components used, stated above.
+  [PASS] C1 [table] 38 rows, R = 5.27..24.82 kpc as registered in MANIFEST   N=38
+  [PASS] C2 [table] v_c at R ~ 8.1-8.2 kpc = 229.0 +/- 0.2 (Manifest claim 228.86)   R=8.19 kpc  v_c=228.86 km/s
+
+--- baryonic model [primary]  component V at R = 5.27, 8.19, 12.74, 17.25, 24.82 kpc (km/s):
+    bulge :  93.11   74.79   60.00   51.58   43.00
+    thin  : 102.52  108.41  101.30   92.11   79.71
+    thick : 138.21  127.75  109.60   96.38   81.53
+    HI    :  38.15   45.91   50.70   50.83   46.95
+    H2    :  33.60   27.33   20.98   17.65   14.55
+    V_bar : 202.15  191.11  169.95  152.74  131.40
+
+--- baryonic model [varA]  component V at R = 5.27, 8.19, 12.74, 17.25, 24.82 kpc (km/s):
+    bulge :  93.11   74.79   60.00   51.58   43.00
+    thin  : 102.52  108.41  101.30   92.11   79.71
+    thick : 138.21  127.75  109.60   96.38   81.53
+    V_bar : 195.66  183.49  160.85  142.95  121.86
+
+--- baryonic model [varB]  component V at R = 5.27, 8.19, 12.74, 17.25, 24.82 kpc (km/s):
+    bulge :  75.24   62.99   51.96   45.27   38.20
+    thin  : 153.05  144.08  119.14   99.73   80.37
+    thick :  74.99   74.67   65.09   55.47   44.57
+    HI    :  38.15   45.91   50.70   50.83   46.95
+    H2    :  33.60   27.33   20.98   17.65   14.55
+    V_bar : 193.11  182.09  155.38  134.05  111.00
+    [verify] m_enc_mn[thin](100 kpc)/M = 0.8066 (must -> 1)
+    [verify] m_enc_mn[thick](100 kpc)/M = 0.9643 (must -> 1)
+
+--- model identity: V_bary(8.19 kpc) = 191.1 km/s (primary, with gas; anchor window 185-205), 183.5 (Eilers-strict, no gas), 182.1 (McMillan-class)
+  [PASS] C3 [model identity] primary V_bary(8.19) in the 185-205 km/s window (= 230*sqrt(0.67), the Eilers baryonic model anchor)   191.1 km/s; no-gas strict 183.5; McMillan-class 182.1 (NOT the Eilers model)
+  [PASS] C4 [model identity] Eilers-strict baryons + Eilers NFW halo reproduce v_c(8.19) = 228.86 measured   strict 183.5 + halo 137.4 = 229.3 km/s vs 228.86; with added gas 235.4 (2.9% high -- gas is my documented addition to Eilers' fixed model)
+
+--- g_bar conventions (primary leg): ratio gbar_enc/gbar_V2R at R = 5.27, 8.19, 12.74, 17.25, 24.82: 0.91 0.86 0.85 0.86 0.87
+
+--- per-point (R, V_obs, g_obs/a0, g_bar/a0 per model, deep flag g_bar<0.2a0)
+    R=  5.27  V= 226.83  g_obs= 3.380  g_bar/a0: P=2.684 A=2.515 B=2.450  d=...
+    R=  5.74  V= 230.80  g_obs= 3.213  g_bar/a0: P=2.437 A=2.278 B=2.233  d=...
+    R=  6.23  V= 231.20  g_obs= 2.970  g_bar/a0: P=2.211 A=2.061 B=2.030  d=...
+    R=  6.73  V= 229.88  g_obs= 2.718  g_bar/a0: P=2.008 A=1.867 B=1.843  d=...
+    R=  7.22  V= 229.61  g_obs= 2.528  g_bar/a0: P=1.833 A=1.700 B=1.679  d=...
+    R=  7.82  V= 229.91  g_obs= 2.340  g_bar/a0: P=1.646 A=1.521 B=1.500  d=...
+    R=  8.19  V= 228.86  g_obs= 2.214  g_bar/a0: P=1.544 A=1.423 B=1.401  d=...
+    R=  8.78  V= 226.50  g_obs= 2.023  g_bar/a0: P=1.398 A=1.284 B=1.259  d=...
+    R=  9.27  V= 226.20  g_obs= 1.911  g_bar/a0: P=1.291 A=1.182 B=1.154  d=...
+    R=  9.76  V= 225.94  g_obs= 1.811  g_bar/a0: P=1.195 A=1.091 B=1.060  d=...
+    R= 10.26  V= 225.68  g_obs= 1.718  g_bar/a0: P=1.108 A=1.008 B=0.973  d=...
+    R= 10.75  V= 224.73  g_obs= 1.626  g_bar/a0: P=1.030 A=0.934 B=0.897  d=...
+    R= 11.25  V= 224.02  g_obs= 1.544  g_bar/a0: P=0.959 A=0.867 B=0.827  d=...
+    R= 11.75  V= 223.86  g_obs= 1.476  g_bar/a0: P=0.895 A=0.807 B=0.763  d=...
+    R= 12.25  V= 222.23  g_obs= 1.396  g_bar/a0: P=0.837 A=0.752 B=0.706  d=...
+    R= 12.74  V= 220.77  g_obs= 1.324  g_bar/a0: P=0.785 A=0.703 B=0.656  d=...
+    R= 13.23  V= 220.92  g_obs= 1.277  g_bar/a0: P=0.737 A=0.659 B=0.610  d=...
+    R= 13.74  V= 217.47  g_obs= 1.192  g_bar/a0: P=0.692 A=0.617 B=0.567  d=...
+    R= 14.24  V= 217.31  g_obs= 1.148  g_bar/a0: P=0.652 A=0.579 B=0.529  d=...
+    R= 14.74  V= 217.60  g_obs= 1.112  g_bar/a0: P=0.615 A=0.545 B=0.494  d=...
+    R= 15.22  V= 217.07  g_obs= 1.072  g_bar/a0: P=0.582 A=0.514 B=0.464  d=...
+    R= 15.74  V= 217.38  g_obs= 1.039  g_bar/a0: P=0.549 A=0.484 B=0.434  d=...
+    R= 16.24  V= 216.14  g_obs= 0.996  g_bar/a0: P=0.520 A=0.458 B=0.407  d=...
+    R= 16.74  V= 212.52  g_obs= 0.934  g_bar/a0: P=0.494 A=0.433 B=0.383  d=...
+    R= 17.25  V= 216.41  g_obs= 0.940  g_bar/a0: P=0.468 A=0.410 B=0.361  d=...
+    R= 17.75  V= 213.70  g_obs= 0.891  g_bar/a0: P=0.445 A=0.389 B=0.340  d=...
+    R= 18.24  V= 207.89  g_obs= 0.820  g_bar/a0: P=0.424 A=0.370 B=0.322  d=...
+    R= 18.74  V= 209.60  g_obs= 0.812  g_bar/a0: P=0.404 A=0.352 B=0.305  d=...
+    R= 19.22  V= 206.45  g_obs= 0.768  g_bar/a0: P=0.386 A=0.336 B=0.290  d=...
+    R= 19.71  V= 201.91  g_obs= 0.716  g_bar/a0: P=0.369 A=0.320 B=0.275  d=...
+    R= 20.27  V= 199.84  g_obs= 0.682  g_bar/a0: P=0.351 A=0.304 B=0.260  d=...
+    R= 20.78  V= 198.14  g_obs= 0.654  g_bar/a0: P=0.335 A=0.290 B=0.247  d=...
+    R= 21.24  V= 195.30  g_obs= 0.622  g_bar/a0: P=0.322 A=0.278 B=0.236  d=...
+    R= 21.80  V= 213.67  g_obs= 0.725  g_bar/a0: P=0.307 A=0.265 B=0.224  d=...
+    R= 22.14  V= 176.97  g_obs= 0.490  g_bar/a0: P=0.298 A=0.257 B=0.217  d=...
+    R= 22.73  V= 193.11  g_obs= 0.568  g_bar/a0: P=0.284 A=0.245 B=0.206  d=...
+    R= 23.66  V= 176.63  g_obs= 0.456  g_bar/a0: P=0.263 A=0.227 B=0.189  d=..B
+    R= 24.82  V= 198.42  g_obs= 0.549  g_bar/a0: P=0.241 A=0.207 B=0.172  d=..B
+    deep counts (g_bar < 0.2 a0): primary=0, varA=0, varB=2
+  [FAIL] C5 [deep cut] the Eilers RC attains the L06-identical deep cut (g_bar < 0.2 a0) with N >= 10 under some baryonic modeling   N_deep = 0/0/2 (primary/varA/varB) -- REGISTERED: no >= 10-point deep sample exists in R <= 25 kpc under ANY of the three modelings; the MW channel rests on the deepest-probe annuli (g_bar ~ 0.17-0.35 a0)
+
+--- STRICT DEEP FIT (g_bar < 0.2 a0, varB leg, N = 2 -- DEGENERATE, reported for protocol completeness) ---
+    deep-line a0_eff/a0 = 1.389 +- 0.355 (SE_dex 0.121);  per-point: a0_eff/a0 = 1.10, a0_eff/a0 = 1.75
+
+--- DEEPEST-PROBE fits (full-line estimator; the pre-registered comparison points) ---
+    [primary | R22] g_bar in [0.241, 0.284] a0, N=3: a0_eff/a0 = 0.797 +- 0.236  (deep-limit reading 1.040)
+    [primary | R20] g_bar in [0.241, 0.351] a0, N=8: a0_eff/a0 = 0.887 +- 0.142  (deep-limit reading 1.154)
+    [varA | R22] g_bar in [0.207, 0.245] a0, N=3: a0_eff/a0 = 1.004 +- 0.274  (deep-limit reading 1.207)
+    [varA | R20] g_bar in [0.207, 0.304] a0, N=8: a0_eff/a0 = 1.115 +- 0.166  (deep-limit reading 1.336)
+    [varB | R22] g_bar in [0.172, 0.206] a0, N=3: a0_eff/a0 = 1.285 +- 0.328  (deep-limit reading 1.446)
+    [varB | R20] g_bar in [0.172, 0.260] a0, N=8: a0_eff/a0 = 1.410 +- 0.197  (deep-limit reading 1.585)
+
+--- CROSS-CHECK vs L06 (0.73 a0) and O01 dwarfs (landed: 0.638 +- 0.163) ---
+    L06 SPARC-deep 0.724 +- 0.066 (z = -4.17);  MIGHTEE-deep 2.164 (z = +6.58, N05, opposite sign);  O01 dwarfs 0.638 +- 0.163 / deep-tail 0.310 +- 0.117
+    O03 PRIMARY probe (R >= 22.5, g_bar ~ 0.24-0.30 a0): a0_eff/a0 = 0.797 +- 0.236;  z vs 0.73 (lin) = +0.27, (dex) = +0.26;  z vs 1.0 = -0.86
+    O03 STRICT deep fit (varB, N = 2): a0_eff/a0 = 1.39 +- 0.36; z vs 0.73 = +1.82
+  [FAIL] KILL-A [pre-registered] |a0_eff_MW - 0.73 a0| > 3 SE_comb -> MW DISAGREES with the extragalactic deep tension (sample-dependent finding, registered)   primary probe z_lin=+0.27 z_dex=+0.26; strict varB z=+1.82
+  [PASS] KILL-B [canonical] MW deepest probe consistent with a0 = 9.3619e-11 within 3 SE   z_dex=-0.70
+  [PASS] C8 [three channels agree] SPARC-deep, O01 dwarfs, MW all within 3 SE of 0.73   three channels agree
+
+--- DEEP-REGION FORM (g_bar < 0.4 a0; is the sqrt law the right form?) ---
+    [primary] N(g_bar<0.4a0) = 10:  free slope beta = 0.922 +- 0.448 (sqrt-law expects 0.5, z = +0.94);  chi2_red vs published errors = 4.2
+  [PASS] C6-primary [deep form] free slope consistent with 0.5 within 3 SE (sqrt law)   beta = 0.922 +- 0.448
+  [FAIL] C7-primary [scatter] probe scatter consistent with published V errors (chi2_red<3)   chi2_red = 4.2
+    [varB] N(g_bar<0.4a0) = 15:  free slope beta = 0.868 +- 0.205 (sqrt-law expects 0.5, z = +1.80);  chi2_red vs published errors = 17.0
+  [PASS] C6-varB [deep form] free slope consistent with 0.5 within 3 SE (sqrt law)   beta = 0.868 +- 0.205
+  [FAIL] C7-varB [scatter] probe scatter consistent with published V errors (chi2_red<3)   chi2_red = 17.0
+
+--- R-DEPENDENCE: a0_eff per annulus (7 bins; full-line estimator) ---
+    [primary] R in [ 5.0, 8.0)  N=6  Rmid= 6.48  <g_bar>= 2.110 a0  <g_obs>=2.844 a0  a0_eff/a0= 1.691 +- 0.050
+    [primary] R in [ 8.0,11.0)  N=6  Rmid= 9.52  <g_bar>= 1.243 a0  <g_obs>=1.861 a0  a0_eff/a0= 1.557 +- 0.019
+    [primary] R in [11.0,14.0)  N=6  Rmid=12.50  <g_bar>= 0.811 a0  <g_obs>=1.360 a0  a0_eff/a0= 1.473 +- 0.026
+    [primary] R in [14.0,17.0)  N=6  Rmid=15.48  <g_bar>= 0.566 a0  <g_obs>=1.055 a0  a0_eff/a0= 1.372 +- 0.024
+    [primary] R in [17.0,20.0)  N=6  Rmid=18.49  <g_bar>= 0.414 a0  <g_obs>=0.816 a0  a0_eff/a0= 1.218 +- 0.061
+    [primary] R in [20.0,22.5)  N=5  Rmid=21.24  <g_bar>= 0.322 a0  <g_obs>=0.654 a0  a0_eff/a0= 0.942 +- 0.175
+    [primary] R in [22.5,25.5)  N=3  Rmid=23.66  <g_bar>= 0.263 a0  <g_obs>=0.549 a0  a0_eff/a0= 0.797 +- 0.240
+    [varB] R in [ 5.0, 8.0)  N=6  Rmid= 6.48  <g_bar>= 1.936 a0  <g_obs>=2.844 a0  a0_eff/a0= 2.227 +- 0.058
+    [varB] R in [ 8.0,11.0)  N=6  Rmid= 9.52  <g_bar>= 1.107 a0  <g_obs>=1.861 a0  a0_eff/a0= 2.040 +- 0.020
+    [varB] R in [11.0,14.0)  N=6  Rmid=12.50  <g_bar>= 0.681 a0  <g_obs>=1.360 a0  a0_eff/a0= 2.036 +- 0.022
+    [varB] R in [14.0,17.0)  N=6  Rmid=15.48  <g_bar>= 0.449 a0  <g_obs>=1.055 a0  a0_eff/a0= 1.994 +- 0.029
+    [varB] R in [17.0,20.0)  N=6  Rmid=18.49  <g_bar>= 0.313 a0  <g_obs>=0.816 a0  a0_eff/a0= 1.839 +- 0.078
+    [varB] R in [20.0,22.5)  N=5  Rmid=21.24  <g_bar>= 0.236 a0  <g_obs>=0.654 a0  a0_eff/a0= 1.485 +- 0.242
+    [varB] R in [22.5,25.5)  N=3  Rmid=23.66  <g_bar>= 0.189 a0  <g_obs>=0.549 a0  a0_eff/a0= 1.285 +- 0.334
+    drift test (outer annuli, <g_bar> < 0.5 a0): primary dlog10(a0_eff)/dR = -0.0377 +- 0.7162 kpc^-1, z = -0.05 (n=3);  varB -0.0152 +- 0.3480, z = -0.04 (n=4)
+  [PASS] C9 [drift] no significant R-drift of a0_eff in the outer annuli (|z| < 3)   primary z=-0.05; varB z=-0.04
+  [PASS] C10 [convention] a0_eff(V^2/R) vs a0_eff(G M_enc/R^2) within 0.3 dex (primary, R>=22.5)   0.80 vs 1.00 (0.10 dex)
+    convention check (primary, R>=22.5): V^2/R -> 0.797; G M_enc/R^2 -> 0.996
+
+--- REGISTERED FINDING ---
+    MW deepest probe does not exceed 3 SE from 0.73 (z_lin = +0.3) -- the three independent channels AGREE within 3 SE of the extragalactic deep value (SPARC-deep 0.72, dwarfs 0.64, MW 0.80). Registered caveats: the MW probe lives at g_bar = 0.24-0.30 a0 (the strict 0.2-a0 cut is NEVER attained, N = 0/0/2), it is ALSO consistent with canonical a0 (z vs 1.0 = -0.9) and therefore does not independently discriminate 0.73 from 1.0 (drop-point central values 0.80 / 1.00 / 1.29 under the three baryonic modelings, all at-or-above the L06 value).
+    MW probe characterisation: DEEPLINE-CONSISTENT (a0_eff/a0 = 0.797 +- 0.236); all-model spread at R >= 22.5: 0.80 (primary), 1.00 (varA), 1.29 (varB)
+
+O03 COMPLETE: 10/14 checks PASS.
+
+[O03_results.json written]

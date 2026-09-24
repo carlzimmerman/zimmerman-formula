@@ -1,0 +1,14 @@
+==============================================================================
+O02 HeCS low-z lane of the G236/G237 virial-T a0(z) test (real clusters)
+==============================================================================
+PASS | C01 HeCS parse/join: 58 clusters, sigma_v = sig_p identified, 0.10<=z<=0.29 | measured 58 clusters; z in [0.1023,0.2894], median 0.1632; sig_p in [404.0,1261.0] km/s, Nm in [61,461]
+PASS | C02 PRE-REGISTRATION: K1/K2 kill rules + primary estimator + confounder axis | measured {'kill_K1': '|Delta log10 T_meas| > 3 * SE_jackknife from framework 0.000 -> z-invariance VIOLATED at low z (falsifier FIRES)', 'kill_K2': 'M-RISE excluded only if |Delta| < 2 SE from 0.000 AND > 3 SE from the M-RISE prediction scaled to the arm median z', 'primary': 'ANCOVA log10 T ~ log10 M200 + z-flag on the truncated M-overlap; SE = jackknife-over-cluster (delete one cluster from the pooled in-overlap sample, overlap re-derived per draw), plus bootstrap', 'confounder': "LX flux-limited selection at fixed mass (over-bright -> over-hot -> over-dispersed at higher z) is a KNOWN positive-bias axis; a positive Delta overshooting M-RISE's low-z prediction with mass-dependent structure is the selection signature -> verdict NOT adjudicative", 'framework': 'Delta = 0.5*log10[(1-3e-5 z_hi)/(1-3e-5 z_lo)] = 0.000 to 1e-5 over the HeCS gap', 'mrise': 'Delta = 0.5*log10[(1+1.6986 z_hi)/(1+1.6986 z_lo)] (+0.0996 dex at 0.1->0.5)'}
+PASS | C03 M-overlap: M200e14 in [0.74, 10.70], 55 of 58 clusters kept (dropped: ['Zw1478', 'Zw3179', 'A1763']) | measured window [0.74,10.70] x1e14 Msun; kept 27 low-z + 28 high-z = 55/58; dropped low-z ['Zw1478', 'Zw3179'], high-z ['A1763']
+PASS | C04 PRIMARY: Delta log10 T(hi-lo) at fixed M200 (ANCOVA) | measured Delta = +0.0620 dex; SE_jackknife = 0.0198, SE_bootstrap = 0.0197, 95% CI [+0.0160, +0.0927]; OLS SE 0.0194; pooled slope 0.715 (arm slopes 0.79/0.65)
+PASS | C05 K1 FIRED: |Delta| > 3 SE from framework 0.000 | measured Delta +0.0620 vs 3*SE = 0.0594 -> z = +3.13 SE; framework pred -0.000001 dex
+FAIL | C06 K2: M-RISE excluded at low z (|<2 SE from 0 AND >3 SE from M-RISE|) | measured |z_fw| = 3.13 (< 2 required), |z_mr| = 1.93 vs scaled M-RISE pred +0.0238 dex (> 3 required)
+PASS | C07 ROBUSTNESS: all 7 alternative estimators share the positive sign; SNR spread reported | measured NN k=1 +0.0556, NN k=3 +0.0418, M500-matched +0.0596 (SE 0.0247), Nm-weighted +0.0416, split 0.15 +0.0775 (4.3 SE), split 0.18 +0.0746 (3.9 SE), ANCOVA 3.1 SE
+PASS | C08 CONFOUNDER DIAGNOSTIC: excess is mass-dependent (selection signature), N_m-balanced; verdict NOT adjudicative | measured arm-line gap +0.147 (low edge) -> +0.068 (mid) -> -0.012 (high edge) dex; Nm medians 165/174
+------------------------------------------------------------------------------
+O02 COMPLETE: 7/8 checks PASS.
+results -> /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/O02_results.json
