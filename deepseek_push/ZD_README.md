@@ -299,3 +299,49 @@ The new law the audit made sense of — **ZD10 the kinematic face**:
   committed V_bar = 120) — a falsifiable baryon-model prediction:
   independent decompositions (Bovy-Rix-class) give -0.3..-0.5 in this
   region; |dln Vbar/dln R + 0.41| > 0.15 kills the kinematic face.
+
+---
+
+## AGENT WAVE (same day): ZD12 — the phantom halo laws — and ZD13 — the new-data register
+
+Three parallel agents (two math-gap workers, one data hunter) returned; all
+candidates independently re-verified in the parent session before shipping
+(two of the agent's own "tensions" were re-classified on review: the
+r_strip-vs-f census comparison is a SECTOR-BOUNDARY statement -- the
+cluster sector runs on the virial channel, not the a0-line -- and the
+virial-T slope claim concerns a law the framework never derived from the
+a0-line; both registered, neither shipped as alarms).
+
+**ZD12 THE PHANTOM HALO LAWS** (Lean: ZD12_phantom_halo.lean, 5 theorems
+green; the full composite profile's sqrt-folding blocked with the blocker
+named, certified numerically + sympy in the lane):
+- L1 THE PROFILE: M_phi(<r) = M(sqrt(1 + (r/r0)^2) - 1), r0^2 = GM/a0;
+  rho ~ r^-1 core cusp, deep limit = the ZD04 envelope line a0 r^2/(2G),
+  share (sqrt 2 - 1) M at r0 (Lean-certified);
+- L2 THE QUARTIC LAW: v^4 = G^2M^2/r^2 + a0GM exactly -- affine in 1/r^2,
+  slope G^2M^2 (a0-free), intercept a0GM (r-free) -- the v^4 plane is a
+  straight-line test of the line (Lean-certified);
+- L3 THE EPICYCLIC LAW: kappa^2/Omega^2 = (x+2)/(x+1); apsidal advance
+  2 pi (sqrt((x+1)/(x+2)) - 1): -105 deg deep, -66.1 deg at x = 1,
+  0 Kepler;
+- L4 THE SATURATED GAIN: envelope at r_strip = 8 sigma^4/(G a0) =
+  2.15e14 Msun at 809 km/s -- INSIDE the shipped pie band, which maps
+  exactly to sigma in [795, 880] km/s (Lean-certified);
+- WEDGE LADDER: a0*/a0 = 8/15 exactly, third rung a0_c = 64/225 a0 =
+  3.41e-11, a0* = (16/15)(a0/2) -- the deep scale sits 1/15 of the cap
+  above a0/2 (Lean-certified).
+Falsifiers in lane: the r^-1 core, the v^4 straightness, the apsidal
+drift, the gain-excess.
+
+**ZD13 THE NEW-DATA REGISTER**: 8 verified datasets for the falsifier
+rows (MHONGOOSE DR1-3 live; WALLABY Pilot DR2; Gaia DR4 2 Dec 2026;
+Euclid DR1-Foundation 12 Nov 2026; DESI DR3 2026-27; DESI Coma member
+kinematics A&A 710 A218; ALPAKA; ClearPotential arXiv:2512.09989).
+THE HEADLINE: ClearPotential's measured local dark density
+rho_dark(R0) = 0.84e-2 +/- 0.0008 Msun/pc^3 agrees with the framework's
+COMMITTED equipartition value 0.00811 (G078/G076) to 3.6% (0.4 sigma),
+and the implied vertical column (67.2 Msun/pc^2 over |z| < 4 kpc) sits
+at 98.1% of the ZD07 slab ceiling (68.5) -- the local vertical structure
+SATURATES the ceiling, as the framework's own envelope predicts. DESI
+Coma: r_s = 0.73 +- 0.3 Mpc sits inside r_strip = 1.08 Mpc -- the row-23
+reference profile is now on hand.

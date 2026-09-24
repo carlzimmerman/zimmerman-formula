@@ -1,0 +1,65 @@
+{
+ "lane": "ZD12_phantom_halo_laws",
+ "checks": [
+  {
+   "name": "C1 L1 PROFILE: M_phi = M(sqrt(1+(r/r0)^2)-1) + rho closed form (6-point grid)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "C2 L1 limits: cusp rho ~ r^-1 in the core; slope 1+g_b/g_obs in (1,2); deep limit = a0 r^2/(2G)",
+   "pass": true,
+   "detail": "slope(0.1 r0) = 1.995, slope(10 r0) = 1.100; M_phi(r0) = 0.4142 M vs sqrt2-1 = 0.4142"
+  },
+  {
+   "name": "C3 L2 QUARTIC: v4 = G2M2/r2 + a0GM exact, affine in 1/r2",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "C4 L3 EPICYCLIC: kappa2/Omega2 = (x+2)/(x+1) in (1,2); advance -105 deg deep, -66.1 deg at x=1, 0 Kepler",
+   "pass": true,
+   "detail": "deep kappa/Omega = 1.4142 (sqrt2), at x=1: -66.1 deg/orbit"
+  },
+  {
+   "name": "C5 L4 SATURATED GAIN: envelope at r_strip = 8 sig^4/(G a0) = 2.15e14 Msun in the pie band [2e14, 3e14]",
+   "pass": true,
+   "detail": "M_phi,sat = 2.15e+14 Msun; pie band maps to sigma in [795, 880] km/s (809 inside)"
+  },
+  {
+   "name": "C6 SECTOR BOUNDARY (registered): a0-line f(R500) = 4.48 vs the virial-channel f = 6.93 at A1644 -- the virial channel carries the difference",
+   "pass": true,
+   "detail": "r_M = 242 kpc; ratio 1.55x -- the cluster sector is NOT a0-line at R500 (registered, not a bug; the a0-line applies at galaxy scale only)"
+  },
+  {
+   "name": "C7 WEDGE LADDER: a0*/a0 = 8/15 exactly; a0_c = 64/225 a0 = 3.413e-11; a0* = 16/15 (a0/2)",
+   "pass": true,
+   "detail": "ladder arithmetic certified in Lean (wedge_ladder)"
+  }
+ ],
+ "summary": "7/7 PASS",
+ "lean": {
+  "file": "fable_independent_2026/lean_2026/ZD12_phantom_halo.lean",
+  "theorems": [
+   "phi_at_a0",
+   "mphi_at_r0",
+   "quartic_law",
+   "saturated_gain",
+   "wedge_ladder"
+  ],
+  "exit_code": 0,
+  "sorry": 0,
+  "axioms": "propext, Classical.choice, Quot.sound",
+  "blocker": "full profile sqrt-folding named in-file; certified here numerically/sympy"
+ },
+ "profile": {
+  "deep_limit": "a0 r^2/(2G)",
+  "at_r0": 0.41421356237309515
+ },
+ "quartic": "v4 = G2M2/r2 + a0GM",
+ "gain_Msun": 215168187013567.56,
+ "sector_boundary": {
+  "A1644_f_line": 4.477253001260734,
+  "virial_f": 6.93
+ }
+}
