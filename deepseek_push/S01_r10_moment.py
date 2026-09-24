@@ -245,6 +245,7 @@ result = {
  "checks": checks,
  "exit0": bool(all(c["pass"] for c in checks)),
 }
-with open(os.path.join(BASE, 'S01_r10_moment_results.json'), 'w')  # FIX-FORWARD (conductor 2026-09-24): original target S01_results.json is the COMMITTED S01_coherence_length lane's file (house rule 7: no lane touches another lane's files); reroute recorded here as f: json.dump(result, f, indent=1)
+# FIX-FORWARD (conductor 2026-09-24): original target S01_results.json is the COMMITTED S01_coherence_length lane's file (house rule 7); rerouted to S01_r10_moment_results.json
+with open(os.path.join(BASE, 'S01_r10_moment_results.json'), 'w') as f: json.dump(result, f, indent=1)
 print("S01 COMPLETE")
 print("EXIT", 0 if result["exit0"] else 1)
