@@ -1,0 +1,66 @@
+{
+ "lane": "P01_r6_moment",
+ "date": "2026-09-24",
+ "measure": "M05 first-flight measure (r uniform in ball, mu isotropic)",
+ "E_int_r6_40digit": "0.21285714285714285714",
+ "E_int_r6_float": 0.21285714285714286,
+ "M05_registered": 0.212857,
+ "route2_value": "0.21285714285714285714",
+ "convergents_top5": [
+  [
+   149,
+   700,
+   2.8698592549372254e-42
+  ],
+  [
+   53,
+   249,
+   5.737234652897303e-06
+  ],
+  [
+   43,
+   202,
+   1.4144271570014144e-05
+  ],
+  [
+   10,
+   47,
+   9.11854103343465e-05
+  ],
+  [
+   3,
+   14,
+   0.0014285714285714286
+  ]
+ ],
+ "closed_form_claim": {
+  "p_over_q": "149/700",
+  "abs_err": 2.8698592549372254e-42
+ },
+ "mc": {
+  "value": 0.2128603932314832,
+  "jackknife_se": 1.1002676873244795e-05,
+  "N": 100000000,
+  "seed": 20260924
+ },
+ "checks": [
+  {
+   "name": "G1 mpmath route reproduces 3/4, 5/12, 1/4 at 1e-12",
+   "pass": true,
+   "detail": "ch=0.75 I1=0.41666666666667 I2=0.25"
+  },
+  {
+   "name": "G2 route 2 (exact mu->t change of variables) reproduces 3/4, 5/12, 1/4, I3",
+   "pass": true,
+   "detail": "route2: ch=0.75 I1=0.4166666666666667 I2=0.25 I3=0.212857142857142857; diff vs route1 = 2.87e-42"
+  },
+  {
+   "name": "G3 MC (1e8 total, jackknife SE) agrees with the 40-digit value at 4 SE",
+   "pass": true,
+   "detail": "MC=0.212860393 +/- 1.10e-05 vs exact 0.212857142857 (z=0.30)"
+  }
+ ],
+ "verdict": "CLOSED FORM CLAIMED: E[int r^6 ds] = 149/700 (err 2.87e-42; pending Lean certification)",
+ "summary": "3/3 checks PASS",
+ "exit_ok": true
+}
