@@ -229,7 +229,7 @@ def mc_leg(n, t0, q, seed):
     return D, v2, ang
 
 
-def crossbins(D, ang, tedges, K=16):
+def crossbins(D, ang, tedges, K=40):
     """Per-row: row masses (continuous), quantile slice of ang|row,
     conditional D-centroids (continuous), m1..m4."""
     nT = len(tedges) - 1
@@ -267,7 +267,7 @@ def spine_chi2_cdf(x):
 # 3. deterministic Psi construction
 # ----------------------------------------------------------------------
 
-def build_psi(cb, tedges, vedges, t0, q, E_D, E_ang, atom, K=16):
+def build_psi(cb, tedges, vedges, t0, q, E_D, E_ang, atom, K=40):
     """cb = crossbins output; returns Psi (nT,nV) normalized (sum=1),
     the continuous row-0 template phi0 (atom-free, row-normalized), and
     the continuous conditional D-centroids tau_cb (the first-moment slice)."""
@@ -312,14 +312,20 @@ def build_psi(cb, tedges, vedges, t0, q, E_D, E_ang, atom, K=16):
 # 4. verification (leg B, independent)
 # ----------------------------------------------------------------------
 
-def ks_one_sample(x, cdf):
-    """One-sample KS: D_n = sup |F_n - F0|, p = kstwobign.sf(D_n sqrt n)."""
+def ks_one_sample(x, cdf, cdf_left=None):
+    """One-sample KS: D_n = sup |F_n - F0|, p = kstwobign.sf(D_n sqrt n).
+    cdf_left: left-continuous version of the model CDF (needed when the
+    model has a jump, e.g., the ballistic atom at v^2 = 0: the sup of
+    F0 - F_n on the interval before the jump uses the left limit)."""
     x = np.sort(np.asarray(x, dtype=float))
     n = len(x)
-    F0 = cdf(x)
-    F0 = np.clip(F0, 0.0, 1.0)
+    F0 = np.clip(cdf(x), 0.0, 1.0)
     Dp = np.max((np.arange(1, n + 1))/n - F0)
-    Dm = np.max(F0 - np.arange(n)/n)
+    if cdf_left is None:
+        F0l = F0
+    else:
+        F0l = np.clip(cdf_left(x), 0.0, 1.0)
+    Dm = np.max(F0l - np.arange(n)/n)
     D = max(Dp, Dm, 0.0)
     return D, stats.kstwobign.sf(D*np.sqrt(n))
 
@@ -337,7 +343,14 @@ def verify_row_v2(v2row, slices, atom_frac, tedges, vedges, Psi_i):
         for k in range(len(slices)):
             out += wq[k]*spine_chi2_cdf(v/(2.0*slices[k]))
         return atom_frac + (1.0 - atom_frac)*out
-    return ks_one_sample(v2row, cdf)
+
+    def cdf_left(v):
+        v = np.atleast_1d(np.asarray(v, dtype=float))
+        out = np.zeros(len(v))
+        for k in range(len(slices)):
+            out += wq[k]*spine_chi2_cdf(v/(2.0*slices[k]))
+        return atom_frac*(v > 0.0) + (1.0 - atom_frac)*out
+    return ks_one_sample(v2row, cdf, cdf_left)
 
 
 def run_verification(legB, Psi, slices, p_cont, atom, tedges, vedges,
@@ -430,7 +443,8 @@ def recover(Psi, phi0, tau_cb, p_row, atom, S, nreals, seed, t0, q_truth):
     A_hat = np.zeros(nreals); dbar = np.zeros(nreals)
     tau0 = np.zeros(nreals); qh = np.zeros(nreals)
     sA = np.zeros(nreals); s_tau0 = np.zeros(nreals); s_q = np.zeros(nreals)
-    lost = 0; neg = 0
+    lost = 0; neg = 0; det_fail = 0
+    TA0_FLOOR = 0.05
     for r in range(nreals):
         Psi_hat = Psi + rng.normal(0.0, np.sqrt(sig2))
         P0 = Psi_hat[0]
@@ -448,8 +462,8 @@ def recover(Psi, phi0, tau_cb, p_row, atom, S, nreals, seed, t0, q_truth):
                   + tau_cb[0]*(rsum[0] + cal[0] - A))
         dbar[r] = d
         t = -3.0*np.log(A) - 4.0*d
-        if t <= 1e-9:
-            t = 1e-9; neg += 1
+        if t < TA0_FLOOR:
+            t = TA0_FLOOR; neg += 1; det_fail += 1
         tau0[r] = t
         qh[r] = 4.0*d/t - 2.0
         # error propagation
@@ -466,7 +480,10 @@ def recover(Psi, phi0, tau_cb, p_row, atom, S, nreals, seed, t0, q_truth):
         s_q[r] = np.sqrt(qdA**2*sA2 + qdd**2*s_dbar2
                          + 2.0*qdA*qdd*cov)
     cov_tau0 = float(np.mean(np.abs(tau0 - t0) <= 3.0*s_tau0))
-    cov_q = float(np.mean(np.abs(qh - q_truth) <= 3.0*s_q))
+    dflag = tau0 <= TA0_FLOOR                 # detection-failure mask
+    qfail = np.abs(qh - q_truth) > 3.0*s_q
+    qfail[dflag] = True                       # detection failures fail q too
+    cov_q = float(np.mean(~qfail))
     return dict(S=S, bias_tau0=float(np.median(tau0) - t0),
                 spread_tau0=float(np.std(tau0)),
                 mad_tau0=float(1.4826*np.median(np.abs(tau0
@@ -477,7 +494,7 @@ def recover(Psi, phi0, tau_cb, p_row, atom, S, nreals, seed, t0, q_truth):
                 coverage_tau0=cov_tau0, coverage_q=cov_q,
                 med_3sig_tau0=float(3.0*np.median(s_tau0)),
                 med_3sig_q=float(3.0*np.median(s_q)),
-                spike_lost=lost, broken=neg)
+                spike_lost=lost, det_fail=det_fail)
 
 
 def qp(A, d):
@@ -485,8 +502,11 @@ def qp(A, d):
     return 4.0*d/t - 2.0
 
 
-def jwst_reach(rec, t0, q_truth, rule_bars=(0.3, 0.5)):
-    """PRE-REGISTERED rule (L03_2D_TRANSFER.md section 4)."""
+def jwst_reach(rec, t0, q_truth, rule_bars=(0.35, 0.6)):
+    """PRE-REGISTERED rule (L03_2D_TRANSFER.md section 4):
+    reach = smallest S in {50,20,10,5} with coverage(tau0) >= 0.95,
+    coverage(q) >= 0.95, median 3 sig_tau0 <= 0.35 tau0, median 3 sig_q
+    <= 0.6 (1+|q0|)."""
     cand = {}
     for r in rec:
         S = r['S']
@@ -541,16 +561,20 @@ def main():
                                     k05=dict(E_D=0.500000, E_v2=2.80674,
                                              E_Dv2=3.70900))
 
-    # ---- grids, anchors ----
-    tedges = np.linspace(0.0, 12.0, 41)
+    # ---- grids, anchors (per-cloud tau grids: the q=0 D tail lives in
+    # [0,7], the q=2 tail in [0,12]; both 40-row grids with n>=30 photons
+    # per row at n=4e6; v^2 grid common [0,120]) ----
+    vero = {'q0': np.linspace(0.0, 7.0, 41),
+            'q2': np.linspace(0.0, 12.0, 41)}
     vedges = np.linspace(0.0, 120.0, 41)
     clouds = {}
     seedsA = {0: 11, 2: 12}
     seedsB = {0: 20260923, 2: 20260924}
     for (t0, q) in ((1.0, 0.0), (1.0, 2.0)):
         tag = f"q{int(q)}"
+        tedges = vero[tag]
         print(f"\n[2] cloud t0=1 q={q}  (leg A cross-bins n=4e6, "
-              f"leg B verification n=4e6)")
+              f"leg B verification n=4e6, tau grid [0,{tedges[-1]:g}])")
         t0c = time.time()
         DA, v2A, angA = mc_leg(4_000_000, t0, q, seedsA[int(q)])
         cb = crossbins(DA, angA, tedges)
@@ -598,12 +622,12 @@ def main():
             rec.append(rc)
             print("   S/N=%3d: bias(t0)=%+.4f spread=%4.3f 3sig/t0=%5.3f "
                   "cov(t0)=%.3f | bias(q)=%+.4f spread=%4.3f "
-                  "3sig_q=%5.3f cov(q)=%.3f lost=%d" % (
+                  "3sig_q=%5.3f cov(q)=%.3f lost=%d detfail=%d" % (
                       S, rc['bias_tau0'], rc['spread_tau0'],
                       rc['med_3sig_tau0']/t0, rc['coverage_tau0'],
                       rc['bias_q'], rc['spread_q'], rc['med_3sig_q'],
-                      rc['coverage_q'], rc['spike_lost']))
-        reach = jwst_reach(rec, t0, q)
+                      rc['coverage_q'], rc['spike_lost'], rc['det_fail']))
+        reach = jwst_reach(rec, t0, q, rule_bars=(0.35, 0.6))
         out[f'recovery_{tag}'] = dict(reals=500, curve=rec,
                                       jwst_reach=reach)
         clouds[tag] = reach

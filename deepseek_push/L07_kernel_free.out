@@ -1,0 +1,261 @@
+================================================================================================
+L07 -- KERNEL-FREE WINDOW  (phase-function independence of window + inversion)
+================================================================================================
+
+[P] parity: copied Thomson transport vs imported J02 simulate
+  tau0=1.0 q=0.0: E[N] 1.400645 vs 1.400645  E[D] 0.499342 vs 0.499342  A 0.368700 vs 0.368700  E[v2] 2.812082 vs 2.812082  (identical seeds -> bitwise-identical)
+  tau0=1.0 q=3.0: E[N] 4.365600 vs 4.365600  E[D] 1.248588 vs 1.248588  A 0.136310 vs 0.136310  E[v2] 8.726225 vs 8.726225  (identical seeds -> bitwise-identical)
+
+[run] 12 specifications (pool of 6)
+[run] wall 106.8s
+
+[A] central source, tau0=1, ISOTROPIC kernel  (n=3e6, SEs from data)
+    q   A_hat      seA      E[D]_hat   seD     window   seW   W_pred   zW    tau0_hat  q_hat
+  q=    0 0.367706 2.78e-04 0.500226 4.05e-04 2.00004 8.77e-04 2.00000  0.04   1.001 -0.000   (zA=0.62 zD=0.56)
+  q=    3 0.135475 1.98e-04 1.249823 7.66e-04 1.59940 1.36e-03 1.60000  0.44   0.998  3.011   (zA=0.71 zD=0.23)
+  q=   10 0.013105 6.57e-05 2.999909 1.54e-03 1.44497 1.68e-03 1.44444  0.32   1.005  9.943   (zA=0.29 zD=0.06)
+
+[B] cross-kernel: ISOTROPIC vs THOMSON at the same (tau0=1, q, n=3e6)
+  q=    0 window iso 2.00004 vs thom 2.00128  z= 0.76   |   E[N] iso  1.3961 vs thom  1.4023  d=-0.0063 z=   4.7 (-0.4%)  |  E[v2] iso  2.7910 vs thom  2.8080  d=-0.0170 z=   2.7 (-0.6%)
+  q=    3 window iso 1.59940 vs thom 1.60181  z= 1.22   |   E[N] iso  4.3775 vs thom  4.3652  d=+0.0122 z=   3.5 (+0.3%)  |  E[v2] iso  8.7541 vs thom  8.7503  d=+0.0038 z=   0.2 (+0.0%)
+  q=   10 window iso 1.44497 vs thom 1.44527  z= 0.15   |   E[N] iso 18.7435 vs thom 18.6874  d=+0.0561 z=   4.5 (+0.3%)  |  E[v2] iso 37.5456 vs thom 37.3742  d=+0.1714 z=   2.7 (+0.5%)
+
+[C] volume source q=0, ISOTROPIC kernel  (n=2e6): J11 port
+    tau0  A_iso     A_quad    zA   E[D]v,iso   window_iso  J11 thom  central-flat
+  t= 0.5 0.70759  0.70728  0.97   0.18210   1.89941 +- 0.0029
+  t= 1.0 0.52660  0.52725  1.86   0.34092   1.88114 +- 0.0015
+  t= 2.0 0.33262  0.33242  0.60   0.61444   1.79149 +- 0.0023
+  t= 3.0 0.23597  0.23635  1.26   0.85943   1.68022 +- 0.0022
+  E[D]_vol(iso,t=1)=0.34092 vs thom 0.33817  z=4.31   window 1.88114 vs 1.89258  z=5.31
+  [bonus] volume q=10 tau0=1 iso: window = 1.31661 +- 0.0011  (4/3 - w)/se = 14.8   (J11 Thomson: 1.3142)
+{
+ "title": "L07 KERNEL-FREE WINDOW: phase-function independence of the window + inversion (atom A, lag E[D], ratio F6)",
+ "question": "Hold the optical-depth transport fixed and replace the Thomson kernel (3/8)(1+mu^2) by ISOTROPIC p(mu)=1/2: do A, E[D], the window and the inversion survive (phase-function-independent), while E[N], E[v^2] absorb the kernel (width channel)?",
+ "checks": {
+  "P_E[N]_q0": true,
+  "P_E[D]_q0": true,
+  "P_A_q0": true,
+  "P_E[v2]_q0": true,
+  "P_E[N]_q3": true,
+  "P_E[D]_q3": true,
+  "P_A_q3": true,
+  "P_E[v2]_q3": true,
+  "K1a_atom_q0": true,
+  "K1b_lag_q0": true,
+  "K1c_window_q0": true,
+  "K1e_inv_tau0_q0": true,
+  "K1e_inv_q_q0": true,
+  "K1a_atom_q3": true,
+  "K1b_lag_q3": true,
+  "K1c_window_q3": true,
+  "K1e_inv_tau0_q3": true,
+  "K1e_inv_q_q3": true,
+  "K1a_atom_q10": true,
+  "K1b_lag_q10": true,
+  "K1c_window_q10": true,
+  "K1e_inv_tau0_q10": true,
+  "K1e_inv_q_q10": true,
+  "K1c2_window_iso_vs_thom_q0": true,
+  "K1d_N_differs_q0": true,
+  "K1d_v2_tracks_2N_q0": true,
+  "K1d_spine_iso_q0": true,
+  "K1d_spine_thomson_q0": true,
+  "K1c2_window_iso_vs_thom_q3": true,
+  "K1d_N_differs_q3": true,
+  "K1d_v2_tracks_2N_q3": true,
+  "K1d_spine_iso_q3": true,
+  "K1d_spine_thomson_q3": true,
+  "K1c2_window_iso_vs_thom_q10": true,
+  "K1d_N_differs_q10": true,
+  "K1d_v2_tracks_2N_q10": true,
+  "K1d_spine_iso_q10": true,
+  "K1d_spine_thomson_q10": true,
+  "K4_vol_atom_quad_t5": true,
+  "K4_vol_atom_quad_t10": true,
+  "K4_vol_atom_quad_t20": true,
+  "K4_vol_atom_quad_t30": true,
+  "K4_vol_window_below_central_2": true,
+  "K4_crossing_monotone_down": true,
+  "K4_Edvol_kernel_shift_measured": true,
+  "K4_vol_q10_below_4over3": true
+ },
+ "measurements": {
+  "K1c_kill_q0": false,
+  "c_q0_iso": {
+   "A": 0.367706,
+   "A_pred": 0.367879,
+   "zA": 0.62,
+   "dbar": 0.500226,
+   "d_pred": 0.5,
+   "zD": 0.56,
+   "window": 2.000037,
+   "W_pred": 2.0,
+   "zW": 0.04,
+   "seW": 0.000877,
+   "tau0_hat": 1.000508,
+   "q_hat": -0.000111,
+   "seT": 0.00142,
+   "seQ": 0.00262,
+   "zT": 0.36,
+   "zQ": 0.04,
+   "meanN": 1.39607,
+   "seN": 0.00094,
+   "meanv2": 2.79101,
+   "sev2": 0.00434,
+   "secs": 8.6
+  },
+  "K1c_kill_q3": false,
+  "c_q3_iso": {
+   "A": 0.135475,
+   "A_pred": 0.135335,
+   "zA": 0.71,
+   "dbar": 1.249823,
+   "d_pred": 1.25,
+   "zD": 0.23,
+   "window": 1.599399,
+   "W_pred": 1.6,
+   "zW": 0.44,
+   "seW": 0.001357,
+   "tau0_hat": 0.997604,
+   "q_hat": 3.0113,
+   "seT": 0.00482,
+   "seQ": 0.02597,
+   "zT": 0.5,
+   "zQ": 0.44,
+   "meanN": 4.37747,
+   "seN": 0.00244,
+   "meanv2": 8.75411,
+   "sev2": 0.01161,
+   "secs": 25.4
+  },
+  "K1c_kill_q10": false,
+  "c_q10_iso": {
+   "A": 0.013105,
+   "A_pred": 0.013124,
+   "zA": 0.29,
+   "dbar": 2.999909,
+   "d_pred": 3.0,
+   "zD": 0.06,
+   "window": 1.444973,
+   "W_pred": 1.444444,
+   "zW": 0.32,
+   "seW": 0.001676,
+   "tau0_hat": 1.004725,
+   "q_hat": 9.943207,
+   "seT": 0.01522,
+   "seQ": 0.18074,
+   "zT": 0.31,
+   "zQ": 0.31,
+   "meanN": 18.74353,
+   "seN": 0.00889,
+   "meanv2": 37.54557,
+   "sev2": 0.04428,
+   "secs": 106.2
+  },
+  "width_channel": {
+   "q0": {
+    "window_iso": 2.000037,
+    "window_thom": 2.001279,
+    "zWx": 0.76,
+    "meanN_iso": 1.39607,
+    "meanN_thom": 1.40233,
+    "dN": -0.00626,
+    "zN": 4.71,
+    "relN": -0.0045,
+    "meanv2_iso": 2.79101,
+    "meanv2_thom": 2.80803,
+    "dV": -0.01702,
+    "zV": 2.73,
+    "relV": -0.0061
+   },
+   "q3": {
+    "window_iso": 1.599399,
+    "window_thom": 1.601813,
+    "zWx": 1.22,
+    "meanN_iso": 4.37747,
+    "meanN_thom": 4.36524,
+    "dN": 0.01222,
+    "zN": 3.54,
+    "relN": 0.0028,
+    "meanv2_iso": 8.75411,
+    "meanv2_thom": 8.75029,
+    "dV": 0.00382,
+    "zV": 0.23,
+    "relV": 0.0004
+   },
+   "q10": {
+    "window_iso": 1.444973,
+    "window_thom": 1.445273,
+    "zWx": 0.15,
+    "meanN_iso": 18.74353,
+    "meanN_thom": 18.6874,
+    "dN": 0.05613,
+    "zN": 4.46,
+    "relN": 0.003,
+    "meanv2_iso": 37.54557,
+    "meanv2_thom": 37.37417,
+    "dV": 0.17139,
+    "zV": 2.74,
+    "relV": 0.0046
+   }
+  },
+  "volume": {
+   "iso_seq": {
+    "t0.5": {
+     "A": 0.707589,
+     "dbar": 0.182104,
+     "window": 1.899415,
+     "seW": 0.002873
+    },
+    "t1": {
+     "A": 0.526595,
+     "dbar": 0.340923,
+     "window": 1.881139,
+     "seW": 0.001487
+    },
+    "t2": {
+     "A": 0.332618,
+     "dbar": 0.614437,
+     "window": 1.791493,
+     "seW": 0.002269
+    },
+    "t3": {
+     "A": 0.235975,
+     "dbar": 0.859426,
+     "window": 1.680225,
+     "seW": 0.0022
+    }
+   },
+   "thom_t1": {
+    "dbar": 0.33817,
+    "window": 1.892578
+   },
+   "iso_t1": {
+    "dbar": 0.340923,
+    "window": 1.881139
+   },
+   "z_Dvol_shift": 4.31,
+   "z_window_shift": 5.31,
+   "tau0_crossing_decrease_z": 60.57,
+   "J11_thom_record": [
+    2.049,
+    1.894,
+    1.629,
+    1.423
+   ],
+   "q10_iso_t1": {
+    "window": 1.316613,
+    "A": 0.078801,
+    "dbar": 1.929818,
+    "z43": 14.8,
+    "W_J11_thom": 1.3142
+   }
+  }
+ },
+ "total_checks": 46,
+ "passed": 46,
+ "ALL_PASSED": true,
+ "window_kernel_dependence_kill": false,
+ "verdict": "PHASE-FUNCTION-INDEPENDENT: window + inversion survive the kernel change; kernel enters only the width channel"
+}
+ALL L07 CHECKS PASSED
