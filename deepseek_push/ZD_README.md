@@ -214,3 +214,35 @@ km/s: 0.097..1.556 Mpc; angular sizes 1.7-26.7 arcmin at z = 0.05
 (12.2 arcmin for the G008 cluster at 809 km/s; 6.4 arcmin at z = 0.10) —
 few-arcmin scale, MUSE/IFU-friendly. Recipe: inside r_strip, cluster
 dwarfs must show V_obs = V_bar (baryon-only); outside, the full a0-line.
+
+---
+
+## LIVE-DOOR SWING (same day): ZD07-09
+
+**ZD07 — The Halo Saturation Law** (ceiling's disk face + slab ceiling):
+g_phi(R) = (V_obs^2 - V_bar^2)/R < a0/2; the MW's own committed
+constants (G03E: v_flat = 171.7 km/s, R0 = 8.2 kpc) put the solar circle
+at g_phi = 0.497 a0 = **99.4% of the cap** — the ceiling saturates at
+the solar circle. Vertical face: the total phantom column
+Sigma_phi,tot < a0/(4 pi G) = 68.5 M☉/pc^2; the registered double-map
+(G092: 27.8 M☉/pc^2 inside 300 pc, box to z* = 562.5 pc, ~30-35 total)
+uses 51% of the slab ceiling — DR4's vertical Jeans total column is the
+gate. Census: SPARC outermost points median 0.13 a0, 174/175 under the
+cap (NGC6789-class = the same registered deep-end scatter family).
+
+**ZD08 — The velocity-domain a0\* and the never-doubling scale ladder**:
+the sqrt-2 crossing gives a0\*(V-domain) = 6.015e-11, a 6% independent
+agreement with the registered SPARC-deep a0\* = 6.407e-11 (G183/G167,
+mass-binned) — the wedge confirmed in the velocity projection. The
+never-doubling class (46 full-curve dwarfs) measures the wedge SHAPE:
+one-scale a0 clashes 29/46 (63%), two-scale 16/46 (35%) — the outer
+edges are shallower than any single scale; branch c's n-wedge is
+required, not just a smaller scale. Live falsifier registered: deep-HI
+outer rings on the 16 residual dwarfs decide (registered instrument).
+
+**ZD09 — The per-cluster stripping map** (the framework's own census):
+r_strip = 4 G M500/(a0 R500) from G095's 12 committed clusters —
+r_strip = 1.53-2.92 Mpc, r_strip/R500 = 1.46-2.05, i.e. the a0/2 surface
+sits just beyond the virial boundary (median ~1.7 R500) for every
+cluster in the census; the dark-stripped zone is the region between
+~1.7 R500 inward. Row-23 targets now per-cluster.

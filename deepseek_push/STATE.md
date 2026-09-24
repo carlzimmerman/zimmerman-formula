@@ -152,3 +152,19 @@ inside/outside satellite sample (row 23, ARMED).
 - **ZD04 the PHANTOM ENVELOPE** (5 more Lean theorems): M_phi(<r) < a0 r^2/(2G) — the dark-mass parabola (3.9e7 M☉ at 300 pc, 4.3e10 at 10 kpc); at the handoff the certified share (sqrt 3 - 1) = 73.2% of the ceiling. Heavy cusps >= 3.9e7 M☉ inside 300 pc impossible. SPARC: 95.1% under the parabola; the 4.9% over = the identical ceiling-tail registration (G036/G040).
 - **ZD05 the NEVER-DOUBLING CLASS**: the sqrt-2 velocity crossing exists in 103/175 SPARC galaxies; 72 galaxies (41%) never reach M_tot/M_b = 2 anywhere — a binary classification with no Lambda-CDM analogue. Registered: crossing field at 0.50 x (a0/3) (0.30 dex under the naive quadratic) = the velocity-domain face of the closed G158 n-kill (two-scale/effective reading G190c) — referred, not re-litigated.
 - **ZD06 the STRIPPING MAP**: row 23's instrument: r_strip = 4 sigma^2/a0 = 0.097..1.556 Mpc for 300..1200 km/s; 12.2 arcmin for G008 at z ~ 0.05, MUSE/IFU-friendly; inside r_strip dwarfs must be baryon-only, outside full a0-line.
+### ZD07-09 (live-door swing, same day)
+
+- **ZD07 HALO SATURATION**: g_phi < a0/2 on the disk plane with the MW at
+  99.4% of the cap at the solar circle (committed G03E constants); the
+  slab ceiling Sigma_phi,tot < 68.5 Msun/pc^2 vs the double-map total
+  ~30-35 (51% used) -- DR4 vertical Jeans total column is the gate.
+- **ZD08 VELOCITY-DOMAIN a0***: the sqrt-2 crossing measures
+  a0*(V) = 6.015e-11, 6% agreement with the registered SPARC-deep
+  6.407e-11 -- the wedge confirmed independently; the never-doubling
+  class (46 dwarfs) measures the wedge SHAPE: 29/46 clash at one-scale,
+  16/46 at two-scale -- the n-wedge is required, deep-HI outer rings on
+  the 16 residual dwarfs decide (registered).
+- **ZD09 PER-CLUSTER STRIPPING MAP**: r_strip = 4 G M500/(a0 R500) =
+  1.53-2.92 Mpc (1.46-2.05 x R500) across the 12 committed G095 clusters
+  -- the a0/2 surface hugs the virial boundary; row-23 targets now
+  per-cluster.
