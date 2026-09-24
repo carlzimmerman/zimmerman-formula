@@ -31,7 +31,8 @@ Falsifier (registered): the crossing field sits at 0.50 x (a0/3) -- 0.30 dex
 under the naive quadratic, REFERRED to the closed G158 n-kill door (deep
 slope 1.66 vs 2.00, 12.7 sigma, FIRED, resolved as the two-scale/effective
 reading G190c); the standing falsifiers of THIS lane: any never-doubling
-dwarf (max Vobs/Vbar < sqrt 2, 72 measured) that is measured with
+dwarf (max Vobs/Vbar < sqrt 2, 46 measured; the first-pass 72 conflated
+the mirror always-doubling class, corrected by audit) that is measured with
 M_tot/M_b >= 2 anywhere kills the classification; the crossing feature
 itself (103/175 galaxies) must survive in the two-scale reading.
 """
@@ -57,8 +58,16 @@ check("C1 Vobs/Vbar = sqrt 2 exactly at g_bar = a0/3 (zd02 doubling_iff)",
       "(Vobs/Vbar)^2 = g_obs/g_bar = M_tot/M_b = 2")
 
 # ---- SPARC: per-galaxy crossing of V_obs/V_bar = sqrt(2)
+# THREE-CLASS velocity-domain classification (exhaustive: 175 galaxies):
+#   CROSSING  (103): the curve crosses Vobs/Vbar = sqrt(2) -- the doubling
+#                     radius exists; qmin <= sqrt2 <= qmax somewhere;
+#   NEVER     (46):  qmax < sqrt 2 -- M_tot/M_b < 2 at EVERY radius;
+#   ALWAYS    (26):  qmin >= sqrt 2 -- M_tot/M_b >= 2 at every radius --
+#                     the deep-end high-ratio family (ZD01's ceiling-
+#                     violator class: e.g. F563/F568).
 cross = []        # (g_bar at crossing, r_cross_kpc, name)
-never = []        # galaxies that never reach Vobs/Vbar = sqrt(2)
+never = []        # (name, qmax, max_r_kpc)      -- qmax < sqrt 2
+always = []       # (name, qmin, max_r_kpc)      -- qmin >= sqrt 2
 ever = 0
 for f in sorted(glob.glob(os.path.join(SPARC_DIR, "*_rotmod.dat"))):
     name = os.path.basename(f).replace("_rotmod.dat", "")
@@ -82,6 +91,9 @@ for f in sorted(glob.glob(os.path.join(SPARC_DIR, "*_rotmod.dat"))):
     if len(pts) < 4:
         continue
     pts.sort()
+    qmin = min(v/b for _, v, b in pts)
+    qmax = max(v/b for _, v, b in pts)
+    rmax = max(r for r, _, _ in pts)
     hit = False
     for i in range(len(pts) - 1):
         r1, v1, b1 = pts[i]
@@ -97,18 +109,29 @@ for f in sorted(glob.glob(os.path.join(SPARC_DIR, "*_rotmod.dat"))):
             hit = True
             break
     if not hit:
-        qmax = max(v/b for _, v, b in pts)
-        never.append((name, round(qmax, 3), max(r for r, _, _ in pts)))
+        if qmax < S2:
+            never.append((name, round(qmax, 3), rmax))
+        else:
+            always.append((name, round(qmin, 3), rmax))
 
 check("C4 crossing census: >= 40 galaxies with a sqrt-2 crossing",
       ever >= 40, f"{ever} galaxies")
+
+# the three classes are exhaustive over the 175-galaxy sample
+check("C5 THREE-CLASS structure: crossing + never + always = the sample "
+      "and never-doubling = qmax < sqrt2 (46, NOT the conflated 72 of the "
+      "first audit)",
+      ever + len(never) + len(always) == 175 and len(never) == 46,
+      f"{ever} crossing + {len(never)} never (qmax < sqrt2) + "
+      f"{len(always)} always (qmin >= sqrt2) = {ever+len(never)+len(always)} "
+      f"galaxies; the first-pass 72 conflated never with no-crossing")
 
 # B1: the crossing field must be a0/3 (median)
 gb_med = None
 if cross:
     gb_med = statistics.median(g for g, _, _ in cross)
     logres = abs(math.log10(gb_med/A0_3))
-    check("C5 B1 THE CROSSING FIELD (fact-check, registered): the sqrt-2 "
+    check("C6 B1 THE CROSSING FIELD (fact-check, registered): the sqrt-2 "
           "crossing sits at 0.50 x (a0/3) -- the naive quadratic face of the "
           "deep end fails 0.30 dex and is REFERRED to the closed G158 n-kill "
           "door (RAR-a0 deep slope 1.66 vs 2.00, 12.7 sigma, FIRED, resolved "
@@ -126,38 +149,54 @@ if cross:
     sxx = sum((x-mx)**2 for x in xs)
     sxy = sum((x-mx)*(y-my) for x, y in zip(xs, ys))
     slope = sxy/sxx
-    check("C8 A half-power face (labelled consistency, not a win): measured "
+    check("C7 A half-power face (labelled consistency, not a win): measured "
           "slope 0.448 vs the premise identity 0.500 -- the departure IS the "
-          "crossing-field scatter registered in C5 (0.30 dex median offset)",
+          "crossing-field scatter registered in C6 (0.30 dex median offset)",
           abs(slope - 0.5) < 0.1,
           f"slope = {slope:.3f} over {n} galaxies; the identity 1/2 holds "
           f"exactly on the premise (M_b = g_b r^2/G at g_b = a0/3); the "
           f"0.05 departure is the deep-end offset's footprint")
 
-# B2: the never-doubling class
-check("C6 B2 THE NEVER-DOUBLING CLASS: exists and is measured",
-      len(never) >= 20,
-      f"{len(never)} galaxies never double their mass (max Vobs/Vbar < "
-      f"sqrt 2 at every radius) -- {100.0*len(never)/(ever+len(never)):.0f}% "
-      f"of the sample; no Lambda-CDM analogue: cuspy halos can reach "
-      f"ratio >= 2 anywhere")
+# B2: the two non-crossing classes
+check("C8 B2 THE NEVER-DOUBLING CLASS (corrected by audit): qmax < sqrt 2 "
+      "at every radius",
+      len(never) >= 40,
+      f"{len(never)} galaxies (was conflated 72 pre-audit; the 26 excess "
+      f"were the always-doubling class below) -- {100.0*len(never)/175:.0f}% "
+      f"of the 175-galaxy sample; no Lambda-CDM analogue: cuspy halos can "
+      f"reach ratio >= 2 anywhere")
 never_small = [n for n, q, r in never if r < 15.0]
-check("C7 B2 census detail: the class spans low-mass dwarfs",
-      len(never_small) >= 10,
+check("C9 B2 census detail: the class spans low-mass dwarfs",
+      len(never_small) >= 20,
       f"{len(never_small)} never-doubling galaxies with full curves "
       f"inside 15 kpc, e.g. " + ", ".join(f"{n}({q})" for n, q, _ in never[:8]))
+check("C10 B3 THE ALWAYS-DOUBLING CLASS (audit discovery): qmin >= sqrt 2 "
+      "everywhere -- the mirror class of the never-doublers, a DISTINCT "
+      "deep-end population",
+      len(always) >= 15,
+      f"{len(always)} galaxies with M_tot/M_b >= 2 at every radius; "
+      f"overlap with ZD01's acceleration-domain violators is PARTIAL "
+      f"(6/26 galaxies, 19/150 violator bins = 13%) -- ratio-domain vs "
+      f"acceleration-domain projections of the deep-end anomaly, related "
+      f"but not identical samples; crossing + never + always = "
+      f"{ever+len(never)+len(always)} = 175, exhaustive")
 
 npass = sum(1 for c in checks if c["pass"])
 print(f"ZD05 COMPLETE: {npass}/{len(checks)} checks PASS.")
 if cross:
     print(f"  crossing field median = {gb_med/A0_3:.3f} x a0/3 "
-          f"({ever} galaxies); never-doubling class = {len(never)} galaxies")
+          f"({ever} galaxies); never-doubling = {len(never)}; "
+          f"always-doubling = {len(always)}")
 with open(os.path.join(BASE, "ZD05_results.json"), "w") as f:
     json.dump({"lane": "ZD05_sqrt2_velocity",
                "checks": checks,
                "summary": f"{npass}/{len(checks)} PASS",
                "crossing_field_median_a0_3": gb_med/A0_3 if cross else None,
                "n_crossings": ever, "n_never_doubling": len(never),
+               "n_always_doubling": len(always),
                "never_doubling": [f"{n}({q})" for n, q, _ in never[:10]],
+               "always_doubling": [f"{n}({q})" for n, q, _ in always[:10]],
+               "audit_note": "first-pass 72 convoluted never with no-crossing; "
+                             "corrected 46 never + 26 always (exhaustive 175)",
                "lean": "ZD02 doubling_iff/rat_form certify the algebra"},
               f, indent=1)

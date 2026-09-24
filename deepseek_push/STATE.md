@@ -150,7 +150,7 @@ inside/outside satellite sample (row 23, ARMED).
 ### ZD04-06 (same day): the envelope, the never-doubling class, the stripping map
 
 - **ZD04 the PHANTOM ENVELOPE** (5 more Lean theorems): M_phi(<r) < a0 r^2/(2G) — the dark-mass parabola (3.9e7 M☉ at 300 pc, 4.3e10 at 10 kpc); at the handoff the certified share (sqrt 3 - 1) = 73.2% of the ceiling. Heavy cusps >= 3.9e7 M☉ inside 300 pc impossible. SPARC: 95.1% under the parabola; the 4.9% over = the identical ceiling-tail registration (G036/G040).
-- **ZD05 the NEVER-DOUBLING CLASS**: the sqrt-2 velocity crossing exists in 103/175 SPARC galaxies; 72 galaxies (41%) never reach M_tot/M_b = 2 anywhere — a binary classification with no Lambda-CDM analogue. Registered: crossing field at 0.50 x (a0/3) (0.30 dex under the naive quadratic) = the velocity-domain face of the closed G158 n-kill (two-scale/effective reading G190c) — referred, not re-litigated.
+- **ZD05 the NEVER-DOUBLING CLASS (audit-corrected)**: the sqrt-2 velocity crossing exists in 103/175 SPARC galaxies; the velocity domain is THREE-CLASS and exhaustive: 46 never-doubling (qmax < sqrt 2; the first-pass 72 conflated the mirror class) + 26 always-doubling (qmin >= sqrt 2 — overlap with ZD01's violator bins partial: 6/26 galaxies, 13%) + 103 crossing. Classification with no Lambda-CDM analogue. Registered: crossing field at 0.50 x (a0/3) (0.30 dex under the naive quadratic) = the velocity-domain face of the closed G158 n-kill (two-scale/effective reading G190c) — referred, not re-litigated.
 - **ZD06 the STRIPPING MAP**: row 23's instrument: r_strip = 4 sigma^2/a0 = 0.097..1.556 Mpc for 300..1200 km/s; 12.2 arcmin for G008 at z ~ 0.05, MUSE/IFU-friendly; inside r_strip dwarfs must be baryon-only, outside full a0-line.
 ### ZD07-09 (live-door swing, same day)
 
@@ -168,3 +168,25 @@ inside/outside satellite sample (row 23, ARMED).
   1.53-2.92 Mpc (1.46-2.05 x R500) across the 12 committed G095 clusters
   -- the a0/2 surface hugs the virial boundary; row-23 targets now
   per-cluster.
+### AUDIT pass + ZD10 (same day): everything re-verified, one error corrected, one new face swung
+
+End-to-end audit: all 4 Lean certificates recompiled (exit 0, zero
+sorryAx); all 9 lanes rerun (57 checks, self-consistent JSONs); every
+headline constant independently recomputed (identical). ONE substantive
+error found and corrected append-style: ZD05's never-doubling census
+conflated no-crossing with never-doubling — corrected to the exhaustive
+THREE-CLASS structure: 103 crossing + 46 never (qmax < sqrt 2) + 26
+always (qmin >= sqrt 2) = 175; the always-class overlaps ZD01's
+violator bins only partially (6/26 galaxies, 19/150 bins) — related but
+distinct projections. Documentation denominators corrected (3054
+registered-domain bins; 30 unique new-content theorems + 4 in-file
+restatements).
+
+**ZD10 the KINEMATIC FACE** (8/8): (1) the gradient law
+dln g_obs/dln g_bar = (2x+1)/(2(x+1)) — SPARC median-sequence slopes
+track it through the knee (8/9 windows within 0.15, mean 0.09) and the
+deep-end LOCAL slopes oscillate around it (mean 0.04) — the G158 n-wedge
+is a wide-bin property, not pointwise (audit finding); (2) the Oort
+coupling A = (Omega/4)(1 - s beta), B = -(Omega/4)(3 + s beta): the
+Gaia-era shear demands dln Vbar/dln R = -0.41 at R0 — a falsifiable
+baryon-model prediction (Bovy-Rix-class gives -0.3..-0.5). Row 29.

@@ -195,10 +195,14 @@ corrected dark mass above a0 r^2/2G kills.
 **ZD05 — The sqrt-2 Velocity Law / the Never-Doubling Class** (lane +
 ZD02 algebra): at r_eq, Vobs/Vbar = sqrt(2) exactly (since
 (Vobs/Vbar)^2 = M_tot/M_b = 2). Data: the sqrt-2 crossing exists in
-103/175 SPARC galaxies; THE NEVER-DOUBLING CLASS: 72 galaxies (41%)
-with max Vobs/Vbar < sqrt(2) at every radius — M_tot/M_b < 2 everywhere —
-a binary classification with no Lambda-CDM analogue (cuspy halos can
-reach ratio >= 2 anywhere); 49 are full-curve low-mass dwarfs.
+AUDIT-CORRECTED: the velocity-domain classification is THREE-CLASS and
+exhaustive over the 175 galaxies: 103 CROSSING (the doubling radius
+exists) + 46 NEVER (qmax < sqrt 2: M_tot/M_b < 2 everywhere, 26% — the
+first-pass 72 conflated the mirror class) + 26 ALWAYS (qmin >= sqrt 2:
+M_tot/M_b >= 2 everywhere — the deep-end high-ratio family, ZD01's
+ceiling-violator class). The never-doubling class has no Lambda-CDM
+analogue (cuspy halos reach ratio >= 2 anywhere); 20+ are full-curve
+low-mass dwarfs.
 HONEST REGISTRATION: the crossing-field median sits at 0.50 x (a0/3)
 (0.30 dex under the naive quadratic) — REFERRED to the closed G158
 n-kill door (deep slope 1.66 vs 2.00, 12.7 sigma, FIRED, resolved as
@@ -246,3 +250,52 @@ r_strip = 1.53-2.92 Mpc, r_strip/R500 = 1.46-2.05, i.e. the a0/2 surface
 sits just beyond the virial boundary (median ~1.7 R500) for every
 cluster in the census; the dark-stripped zone is the region between
 ~1.7 R500 inward. Row-23 targets now per-cluster.
+
+
+---
+
+## AUDIT NOTE (2026-09-23): the ZD05 three-class correction
+
+End-to-end re-verification pass (recompiled all Lean certificates: exit 0,
+zero sorry everywhere; reran all 9 lanes; independently recomputed every
+headline constant) found ONE substantive error, corrected above: the
+first-pass never-doubling census (72) counted every galaxy WITHOUT a
+sqrt-2 crossing, which conflates two mirror classes. Corrected:
+**46 never-doubling (qmax < sqrt 2) + 26 always-doubling (qmin >= sqrt 2)
++ 103 crossing = 175, exhaustive.** The 26 always-doubling galaxies are
+the mirror deep-end population; their overlap with ZD01's ceiling-
+violator bins is partial (6/26 galaxies, 13% of the 150 violator bins) —
+related but distinct projections (ratio domain vs acceleration domain) of
+the deep-end anomaly. All other claims (theorem counts, constants,
+ratios, strip radii, wedge agreement) re-verified identical. Lean
+accounting: ZD01-03 carry 27 declared theorems (2 in-file restatements
+included), ZD04 +5 (1 restatement) — unique new-content theorems: 30.
+
+---
+
+## AUDIT-DRIVEN SWING (same day): ZD10 — the kinematic face
+
+The end-to-end audit (Lean recompiles, lane reruns, independent
+recomputation of every headline constant, cross-document claim checks)
+surfaced and corrected: (1) ZD05's never-doubling census conflated
+no-crossing with never-doubling (72 -> 46 never + 26 always, exhaustive
+103+46+26 = 175; overlap of always with ZD01's violators partial: 6/26
+galaxies, 19/150 bins); (2) two documentation denominators (3054
+registered-domain bins, not 3391; theorem accounting 30 unique
+new-content + 4 in-file restatements).
+
+The new law the audit made sense of — **ZD10 the kinematic face**:
+- THE GRADIENT LAW: dln g_obs/dln g_bar = (2x+1)/(2(x+1)), exact; s(1) =
+  3/4 at the knee, s(1/2) = 2/3. The SPARC median-sequence local-slope
+  census tracks the law through the knee: 8/9 windows within 0.15 in
+  x in [0.3, 5], mean |diff| = 0.09; at the deep end the LOCAL slopes
+  oscillate around the law (mean |diff| = 0.04 over x in [0.05, 0.3]) —
+  the registered n-wedge (G158) is a wide-bin/global-slope property, not
+  a pointwise one; only the x < 0.05 windows show a slight low bias
+  (noise-dominated, referred).
+- THE OORT COUPLING: A = (Omega/4)(1 - s beta), B = -(Omega/4)(3 + s
+  beta), A - B = Omega; the Gaia-era shear (A ~ 15.6) demands
+  d ln V_bar/d ln R = -0.41 at R0 (dV_bar/dR = -5.9 km/s/kpc with the
+  committed V_bar = 120) — a falsifiable baryon-model prediction:
+  independent decompositions (Bovy-Rix-class) give -0.3..-0.5 in this
+  region; |dln Vbar/dln R + 0.41| > 0.15 kills the kinematic face.
