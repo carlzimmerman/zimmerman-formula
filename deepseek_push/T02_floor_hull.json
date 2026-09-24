@@ -1,0 +1,83 @@
+{
+ "lane": "T02_floor_hull",
+ "c_registered": 0.2817733312220705,
+ "c_conservative": 0.2799667038685411,
+ "registered_assumption": "piecewise-linear interpolation of b_i = d_i + 3*se_i (assumption, not theorem)",
+ "hull_points": [
+  {
+   "cloud": "shell_r0.9",
+   "R": 1.513335950706991,
+   "d": 0.2799667038685411,
+   "se": 0.0006022091178431239,
+   "b": 0.2817733312220705
+  },
+  {
+   "cloud": "volume_q0",
+   "R": 1.8737310666852423,
+   "d": 0.33807033850724416,
+   "se": 0.0006412708758181392,
+   "b": 0.33999415113469855
+  },
+  {
+   "cloud": "shell_r0.5",
+   "R": 2.460630105449279,
+   "d": 0.434010209850758,
+   "se": 0.0006895207180325987,
+   "b": 0.4360787720048558
+  },
+  {
+   "cloud": "central_q0",
+   "R": 2.8070200748076233,
+   "d": 0.5002168629015582,
+   "se": 0.0007171820682242631,
+   "b": 0.502368409106231
+  },
+  {
+   "cloud": "volume_q3",
+   "R": 6.898252020113475,
+   "d": 0.8578557770534939,
+   "se": 0.0012034644027704437,
+   "b": 0.8614661702618053
+  },
+  {
+   "cloud": "volume_q10",
+   "R": 28.23926603392842,
+   "d": 1.932800126348383,
+   "se": 0.002437491577856008,
+   "b": 1.940112601081951
+  }
+ ],
+ "hull_range": [
+  1.513335950706991,
+  28.23926603392842
+ ],
+ "R1_inside_hull": false,
+ "min_margin_registered": 0.0,
+ "min_margin_R": 1.513335950706991,
+ "min_margin_conservative": 0.0018066273535293775,
+ "conservative_holds": true,
+ "verdict": "HULL-HOLDS (constant floor c* = 0.28177 valid on the interpolated hull over [1.5133, 28.2393]; R02 interior caveat CLOSED within the registered linear assumption)",
+ "checks": [
+  {
+   "name": "K3 six clouds runtime-read (Q03) + se chain from K12 + c* from R02",
+   "pass": true,
+   "detail": "n_clouds=6, c_reg=0.28177333, c_con=0.27996670"
+  },
+  {
+   "name": "K3b se chain consistent (margin/margin_in_se == K12 se_D where defined)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "K1 no interior hull violation (c* <= B(R) on 2000-pt grid)",
+   "pass": true,
+   "detail": "min margin = 0.000000 at R = 1.5133 -> hull HOLDS"
+  },
+  {
+   "name": "K2 hull R-coverage reported; R=1 certified only if inside hull",
+   "pass": true,
+   "detail": "hull = [1.5133, 28.2393] of [0,1]; R=1 OUTSIDE (no extrapolation claim; R02 family-choice caveat stands for R<1.51)"
+  }
+ ],
+ "exit0": true
+}
