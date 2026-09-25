@@ -1,0 +1,121 @@
+========================================================================================================
+S01 -- THE RUNNING-a0 SYNTHESIS:  Phi(x) = (g_obs^2 - g_bar^2)/(a0 g_bar)
+        a0 = 9.36190e-11 m/s^2 (committed footing);  x-window log10 x in [-1.5, +0.3]
+========================================================================================================
+PRE-REGISTERED VERDICT RULE (fixed before any Phi statistics):
+  COLLAPSE of a universal running-a0 law Phi(x)  <=>  BOTH
+    C1: in >= 2/3 of overlapping bin-survey comparisons,
+        |Phi_survey - Phi_SPARC_bin| < 3 * sqrt(SE_s^2 + SE_bin^2)  AND
+    C2: shared power-law exponent p (fit a, SPARC+dwarfs): |p|/SE_p > 5.
+  Comparison inventory (geometry-fixed): every in-window survey point whose x
+  lies in a SPARC bin with >= 5 rings from >= 2 galaxies.
+  Expected overlaps per the brief: SPARC-vs-O01 around x~0.08-0.11,
+  SPARC-vs-MW around x~0.26-0.32 (outermost two annuli) and x~0.4-1.24,
+  SPARC-vs-MIGHTEE at x~0.034 (deep-cut median).
+========================================================================================================
+
+--- (1) SPARC: 3389 rings from 175 galaxies (L06/G071 conventions) ---
+    log10 x = log10(g_bar/a0) in [-2.15, +1.83]
+    rings in the x-window: 2711
+
+    Phi(x) per bin (mean of ring Phi; SE = galaxy-clustered bootstrap, B=2000):
+    bin  log10 x       x     N Ngal  Phi_mean       SE  Phi_med
+      0   -1.50..-1.35   0.039    54   27     0.927    0.258    0.452
+      1   -1.35..-1.20   0.054   107   39     0.831    0.173    0.510
+      2   -1.20..-1.05   0.075   164   60     0.844    0.115    0.666
+      3   -1.05..-0.90   0.109   301   97     0.758    0.072    0.533
+      4   -0.90..-0.75   0.152   343  113     0.673    0.067    0.436
+      5   -0.75..-0.60   0.210   318  132     0.720    0.058    0.498
+      6   -0.60..-0.45   0.296   284  124     0.765    0.063    0.570
+      7   -0.45..-0.30   0.413   258  113     0.829    0.073    0.618
+      8   -0.30..-0.15   0.594   251  101     0.882    0.086    0.617
+      9   -0.15..-0.00   0.836   251   90     1.140    0.152    0.714
+     10   -0.00.. 0.15   1.179   195   73     1.071    0.150    0.695
+     11    0.15.. 0.30   1.670   185   54     0.955    0.166    0.586
+
+--- (2) survey points (conversions named) ---
+         survey label                                        x  log10 x     Phi      SE
+     O01_dwarfs O01 primary LT gN<0.2 (N=16)             0.109    -0.96   0.638   0.163
+     O01_dwarfs O01 deep tail gN<0.1 (N=7)               0.074    -1.13   0.310   0.119
+      MW_Eilers MW 5.0-8.0 kpc (N=6)                     2.110    +0.32   1.691   0.050
+      MW_Eilers MW 8.0-11.0 kpc (N=6)                    1.243    +0.09   1.557   0.019
+      MW_Eilers MW 11.0-14.0 kpc (N=6)                   0.811    -0.09   1.473   0.026
+      MW_Eilers MW 14.0-17.0 kpc (N=6)                   0.566    -0.25   1.372   0.024
+      MW_Eilers MW 17.0-20.0 kpc (N=6)                   0.414    -0.38   1.218   0.061
+      MW_Eilers MW 20.0-22.5 kpc (N=5)                   0.322    -0.49   0.942   0.175
+      MW_Eilers MW 22.5-25.5 kpc (N=3)                   0.263    -0.58   0.797   0.240
+        MIGHTEE MIGHTEE deep g_bar<0.2 a0 (N=72)         0.034    -1.46   2.164   0.160
+    MIGHTEE deep-cut median x = 0.0343 (log10 -1.46); CSV band-mean Phi cross-check = 2.393 +- 0.169 (ring-level) vs N05 registered 2.164
+    MIGHTEE SE: colour-group 0.160, ring-level 0.177
+
+--- (3) UNIVERSALITY TEST (per-bin survey-mean Phi; offsets in combined SE) ---
+    bin  0 [-1.50, -1.35): SPARC Phi=0.927 +- 0.258 vs MIGHTEE deep g_bar<0.2 a0 (N=72) Phi=2.164+-0.160
+          chi2 = 16.64 (ndof=1), weighted survey-mean Phi = 1.820
+    bin  2 [-1.20, -1.05): SPARC Phi=0.844 +- 0.115 vs O01 deep tail gN<0.1 (N=7) Phi=0.310+-0.119
+          chi2 = 10.40 (ndof=1), weighted survey-mean Phi = 0.584
+    bin  3 [-1.05, -0.90): SPARC Phi=0.758 +- 0.072 vs O01 primary LT gN<0.2 (N=16) Phi=0.638+-0.163
+          chi2 = 0.46 (ndof=1), weighted survey-mean Phi = 0.739
+    bin  6 [-0.60, -0.45): SPARC Phi=0.765 +- 0.063 vs MW 20.0-22.5 kpc (N=5) Phi=0.942+-0.175, MW 22.5-25.5 kpc (N=3) Phi=0.797+-0.240
+          chi2 = 0.90 (ndof=2), weighted survey-mean Phi = 0.786
+    bin  7 [-0.45, -0.30): SPARC Phi=0.829 +- 0.073 vs MW 17.0-20.0 kpc (N=6) Phi=1.218+-0.061
+          chi2 = 16.61 (ndof=1), weighted survey-mean Phi = 1.056
+    bin  8 [-0.30, -0.15): SPARC Phi=0.882 +- 0.086 vs MW 14.0-17.0 kpc (N=6) Phi=1.372+-0.024
+          chi2 = 30.08 (ndof=1), weighted survey-mean Phi = 1.336
+    bin  9 [-0.15, -0.00): SPARC Phi=1.140 +- 0.152 vs MW 11.0-14.0 kpc (N=6) Phi=1.473+-0.026
+          chi2 = 4.68 (ndof=1), weighted survey-mean Phi = 1.464
+    bin 10 [-0.00, +0.15): SPARC Phi=1.071 +- 0.150 vs MW 8.0-11.0 kpc (N=6) Phi=1.557+-0.019
+          chi2 = 10.28 (ndof=1), weighted survey-mean Phi = 1.549
+
+    pairwise comparisons: 9, within 3 combined SE: 4 (44.4%)
+      bin  0 MIGHTEE deep g_bar<0.2 a0 (N=72)       offset +1.237 +- 0.303  z = +4.08
+      bin  2 O01 deep tail gN<0.1 (N=7)             offset -0.534 +- 0.165  z = -3.22
+      bin  3 O01 primary LT gN<0.2 (N=16)           offset -0.121 +- 0.178  z = -0.68
+      bin  6 MW 20.0-22.5 kpc (N=5)                 offset +0.177 +- 0.186  z = +0.95
+      bin  6 MW 22.5-25.5 kpc (N=3)                 offset +0.032 +- 0.248  z = +0.13
+      bin  7 MW 17.0-20.0 kpc (N=6)                 offset +0.389 +- 0.095  z = +4.08
+      bin  8 MW 14.0-17.0 kpc (N=6)                 offset +0.490 +- 0.089  z = +5.48
+      bin  9 MW 11.0-14.0 kpc (N=6)                 offset +0.333 +- 0.154  z = +2.16
+      bin 10 MW 8.0-11.0 kpc (N=6)                  offset +0.486 +- 0.151  z = +3.21
+    total chi2 over overlapping bins = 90.06 (ndof = 9)
+    [r1 robustness] MW-vs-SPARC offsets with +15% baryonic-model systematic added in quadrature to MW SEs:
+      bin  6 MW 20.0-22.5 kpc (N=5)                 z = +0.84 (with model systematic)
+      bin  6 MW 22.5-25.5 kpc (N=3)                 z = +0.11 (with model systematic)
+      bin  7 MW 17.0-20.0 kpc (N=6)                 z = +3.83 (with model systematic)
+      bin  8 MW 14.0-17.0 kpc (N=6)                 z = +5.42 (with model systematic)
+      bin  9 MW 11.0-14.0 kpc (N=6)                 z = +2.15 (with model systematic)
+      bin 10 MW 8.0-11.0 kpc (N=6)                  z = +3.20 (with model systematic)
+      MW pairs within 3 SE under r1: 3/6
+    [r2 robustness] median-based offsets (SPARC bin MEDIAN Phi + median-boot SE):
+      bin  0 MIGHTEE deep g_bar<0.2 a0 (N=72)       z_med = +8.37
+      bin  2 O01 deep tail gN<0.1 (N=7)             z_med = -2.34
+      bin  3 O01 primary LT gN<0.2 (N=16)           z_med = +0.60
+      bin  6 MW 20.0-22.5 kpc (N=5)                 z_med = +1.91
+      bin  6 MW 22.5-25.5 kpc (N=3)                 z_med = +0.89
+      bin  7 MW 17.0-20.0 kpc (N=6)                 z_med = +5.67
+      bin  8 MW 14.0-17.0 kpc (N=6)                 z_med = +7.06
+      bin  9 MW 11.0-14.0 kpc (N=6)                 z_med = +6.94
+      bin 10 MW 8.0-11.0 kpc (N=6)                  z_med = +4.34
+      median-battery comparisons within 3 SE: 4/9
+    [fixed-x divide] deep window x ~ 0.03-0.11, three surveys at the SAME x:
+      O01 deep tail (x=0.074):  Phi = 0.310 +- 0.119
+      SPARC bin 2 (x~0.075):    Phi = 0.844 +- 0.115  (median 0.666 +- 0.095)
+      O01 primary (x=0.109):    Phi = 0.638 +- 0.163
+      SPARC bin 3 (x~0.109):    Phi = 0.758 +- 0.072
+      SPARC bin 0 (x~0.039):    Phi = 0.927 +- 0.258  (median 0.452)  vs MIGHTEE deep (x=0.034): Phi = 2.164 +- 0.160, z = +4.08 (mean), z_med = +8.37 (median)
+
+--- (4) CANDIDATE LAWS (weighted LS in linear Phi; weights 1/SE^2) ---
+    fit points: SPARC bins (non-empty, SE>0) + O01 primary + O01 deep tail, N = 14
+    (a) Phi = c x^p :            c = 0.957 +- 0.057,  p = +0.154 +- 0.039  (z_p = +3.92),  chi2 = 18.9/12 = 1.58
+    (b) Phi = 1 + alpha ln x :   c0 = 0.938 +- 0.053,  alpha = +0.115 +- 0.031  (z_alpha = +3.64),  chi2 = 19.7/12 = 1.64
+    (c) Phi = (1+x)/(1+x/b) :    b = 0.492 +- 0.043  (family implies Phi(1) = 0.660; the constraint Phi(1)=1 forces b=1, the constant Phi=1, degenerate), chi2 = 76.6/13 = 5.89
+    (c2) Phi = c_b(1+x)/(1+x/b), Phi(1)=1:  b = 3.391 +- 0.709  (deep Phi(0) = 0.647, Phi(inf) = 2.196),  chi2 = 18.1/13 = 1.39
+
+--- (5) VERDICT (pre-registered rule) ---
+    C1: 44.4% of 9 overlapping comparisons within 3 combined SE (need >= 2/3): FAIL
+    C2: power-law exponent p/SE_p = +3.92 (need |z| > 5): FAIL
+    VERDICT: The sign-mirror is a GENUINE SYSTEMATICS DIVIDE (registered finding): Phi(x) does NOT collapse across surveys at fixed x -- the same conclusion N05's arbitration program would reach, now data-side.
+    BEST FIT: form (a);  Phi(x) = 0.957 x^+0.154  [p = +0.154 +- 0.039, chi2/dof = 1.58; fit on SPARC bins + O01 dwarfs, inverse-variance weighted].  Falsifier: any survey with >= 3 rings in one x-bin whose mean Phi departs > 3 combined SE from this curve (e.g., a MIGHTEE-class measurement at x ~ 0.03-0.1 that does not sit on Phi(x)); or a flat fit p with |p|/SE_p < 5 on the pooled SPARC+dwarf dataset.
+
+========================================================================================================
+
+wrote S01_results.json
