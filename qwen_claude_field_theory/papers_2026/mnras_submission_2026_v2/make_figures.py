@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-make_figures.py -- the five figures of `mnras_a0_lambda_v2.tex`, built from the same functions and inputs as
+make_figures.py -- the six figures of `mnras_a0_lambda_v2.tex`, built from the same functions and inputs as
 paper_numbers.py (imported, so a figure cannot drift from a quoted number).  Vector PDF, MNRAS column widths
 (single 3.33 in, double 6.97 in), colour-blind-safe palette (Okabe & Ito).
     fig1_rar.pdf            the SPARC radial-acceleration relation and the three a0 values on it
@@ -10,6 +10,9 @@ paper_numbers.py (imported, so a figure cannot drift from a quoted number).  Vec
     fig3_laws.pdf           log10[a0(z)/a0(0)] for the constant, H(z) and halo-emergent laws, with the decision bar
     fig4_amplification.pdf  the error amplification of the kernel inversion against g_bar/a0
     fig5_rc100.pdf          the closed-form inversion of the RC100 dark-matter fractions
+    fig_deep.pdf            the deep regime in SPARC and MIGHTEE-HI: (a) the per-galaxy slope against the kernel's own slope,
+                            (b) the deep-regime kappa by survey and mass-to-light convention.  It is Figure 3 of the manuscript
+                            (it sits in Section 3); the older files keep their names, so fig3_laws.pdf is Figure 4, and so on.
 Run:  python3 make_figures.py     (prints one check line per figure; exit 1 on failure)
 """
 import os, sys, io, math, csv, contextlib
@@ -150,6 +153,57 @@ ax.set_xlabel("redshift $z$"); ax.set_ylabel(r"$\log_{10}\hat a_0$ [m s$^{-2}$]"
 ax.legend(loc="lower left", frameon=False, handlelength=2.2)
 fig.savefig(os.path.join(HERE, "fig5_rc100.pdf")); plt.close(fig)
 done("fig5: uses the same 99 inversions as paper_numbers.py", len(zz) == 99, f"N = {len(zz)}")
+
+# ---------------------------------------------------------------------------------------------------------------- fig deep
+S6 = pn.S6
+fig, axs = plt.subplots(1, 2, figsize=(W2, 2.5), gridspec_kw=dict(wspace=0.70, width_ratios=[1.0, 1.0]))
+ax = axs[0]
+yl = np.logspace(math.log10(3e-3), math.log10(0.25), 200)
+ax.plot(yl, pn.beta_of_y(yl), color=BLACK, lw=1.1, label=r"the kernel: $\beta(y)=1+n(y)$")
+for yref in (1.0, 0.75):
+    ax.axhline(yref, color=GREY, lw=0.7, ls=":")
+ax.text(0.24, 0.985, "Newtonian slope", fontsize=6.2, color="#555555", va="top", ha="right")
+ax.text(0.24, 0.738, r"$\beta=0.75$", fontsize=6.2, color="#555555", va="top", ha="right")
+pts = []
+for i, UD in enumerate((0.5, 0.6, 0.7)):
+    g1, g2, e1, _ = pn.load_sparc(UD=UD, UB=0.7); gi1 = pn.GAL_INDEX[0].copy(); grp1 = pn.groups_in_window(g1, gi1)
+    ymed = float(np.median(np.concatenate([g1[v] for v in grp1.values()]) / pn.a0_L)) * (1.0 + 0.10 * (i - 1))
+    d = S6["sparc"][UD]["slope_L"]
+    pts.append((ymed, d["beta"], d["se_beta"], d["beta_kernel"], [VERM, ORANGE, YELLOW][i], r"SPARC, $\Upsilon_{\rm disc}=" + f"{UD}" + r"$"))
+ym = float(np.median(np.concatenate([pn.mgb[v] for v in pn.mig_grp.values()]) / pn.a0_L)); d = S6["mightee"]["slope_L"]
+pts.append((ym, d["beta"], d["se_beta"], d["beta_kernel"], BLUE, "MIGHTEE-HI"))
+for yv, b, sb, bk, col, lab in pts:
+    ax.errorbar([yv], [b], yerr=[sb], fmt="o", ms=3.6, color=col, mec=BLACK, mew=0.4, capsize=2, lw=0.9, zorder=5, label=lab)
+    ax.plot([yv], [bk], marker="D", ms=3.4, mfc="white", mec=col, mew=1.0, ls="none", zorder=6)
+ax.plot([], [], marker="D", ms=3.4, mfc="white", mec=BLACK, mew=1.0, ls="none", label="the kernel at the same points")
+ax.set_xscale("log"); ax.set_xlim(3e-3, 0.25); ax.set_ylim(0.40, 1.03)
+ax.set_xlabel(r"$y=g_{\rm bar}/a_0$ (median of the window points)"); ax.set_ylabel(r"deep slope $\beta={\rm d}\ln g_{\rm obs}/{\rm d}\ln g_{\rm bar}$")
+ax.legend(loc="upper left", bbox_to_anchor=(0.0, 0.915), frameon=False, fontsize=5.6, handlelength=1.4, labelspacing=0.18); ax.set_title("(a)", loc="left", fontsize=8)
+ax = axs[1]
+t3 = S6["mightee"]["table3"]
+rows6 = [(r"SPARC, $\Upsilon_{\rm disc}=0.5$", S6["sparc"][0.5]["amp"], VERM), (r"SPARC, $\Upsilon_{\rm disc}=0.6$", S6["sparc"][0.6]["amp"], ORANGE),
+         (r"SPARC, $\Upsilon_{\rm disc}=0.7$", S6["sparc"][0.7]["amp"], YELLOW),
+         ("MIGHTEE-HI, our fit", S6["mightee"]["amp"], BLUE),
+         ("MIGHTEE-HI, fiducial", t3["fiducial (spatially varying SED ratio, median 0.35)"], SKY),
+         (r"MIGHTEE-HI, no H$_2$", t3["no molecular gas"], SKY), ("MIGHTEE-HI, radial mean", t3["radially averaged ratio"], SKY),
+         (r"MIGHTEE-HI, $\Upsilon_K=0.6$", t3["fixed Upsilon_K = 0.6"], SKY),
+         ("SPARC, fitted ratios", S6["kinematic_ratios"]["amp"], GREY)]
+ax.axvspan(0.465 - 0.076, 0.465 + 0.076, color=GREY, alpha=0.18, lw=0)
+ax.axvline(0.5, color=BLACK, lw=0.9); ax.axvline(0.5 / math.sqrt(pn.OL), color=BLACK, lw=0.9, ls="--")
+ax.text(0.49, len(rows6) - 0.25, r"$\kappa_\Lambda=\frac{1}{2}$", ha="right", va="center", fontsize=6.2)
+ax.text(0.5 / math.sqrt(pn.OL) + 0.01, len(rows6) - 0.25, r"$\kappa_{\rm crit}=\frac{1}{2}$", ha="left", va="center", fontsize=6.2)
+ax.text(0.465, -0.85, "estimator A", ha="center", va="bottom", fontsize=5.8, color="#444444")
+plotted = []
+for j, (lab, am, col) in enumerate(rows6):
+    yv = len(rows6) - 1 - j; k = am["kappa_L"]; e = k * am["se_ln"]; plotted.append(k)
+    ax.errorbar([k], [yv], xerr=[e], fmt="s" if col == SKY else "o", ms=3.4, color=col, mec=BLACK, mew=0.4, capsize=2, lw=0.9, zorder=5)
+ax.set_yticks(range(len(rows6))); ax.set_yticklabels([r_[0] for r_ in rows6][::-1], fontsize=6.0)
+ax.set_xlim(0.2, 1.25); ax.set_ylim(-1.0, len(rows6) + 0.2); ax.set_xlabel(r"$\kappa_\Lambda$ from $g_{\rm bar}<0.2a_0$")
+ax.set_title("(b)", loc="left", fontsize=8)
+fig.savefig(os.path.join(HERE, "fig_deep.pdf")); plt.close(fig)
+done("fig deep: the plotted slopes and amplitudes are paper_numbers S6's, and the kernel curve is 0.603 at y = 0.2",
+     abs(plotted[1] - S6["sparc"][0.6]["amp"]["kappa_L"]) < 1e-12 and abs(float(pn.beta_of_y(0.2)) - 0.6035) < 1e-3 and len(pts) == 4,
+     f"kappa_L(SPARC, 0.6) = {plotted[1]:.3f}; beta(0.2) = {float(pn.beta_of_y(0.2)):.4f}")
 
 print(f"FIGURES: {sum(OKS)}/{len(OKS)} checks passed", flush=True)
 sys.exit(0 if all(OKS) else 1)

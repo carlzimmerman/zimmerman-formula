@@ -27,8 +27,9 @@ All analysis code is public, and each script contains checks that can fail.
 
 Conflicts of interest: none. Funding: none.
 
-Data and code are public; the Data Availability statement gives the repository and the sources of the two public
-data sets used (SPARC; Nestor Shachar et al. 2023).
+Data and code are public; the Data Availability statement gives the repository and the sources of the public data
+used (SPARC; Nestor Shachar et al. 2023; and the MIGHTEE-HI radial acceleration points, digitised from the figure of
+Vărăşteanu et al. 2025, whose digitised values are in the repository).
 
 I have no request to exclude particular editors or referees.
 

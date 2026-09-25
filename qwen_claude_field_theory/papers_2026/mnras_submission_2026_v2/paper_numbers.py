@@ -15,6 +15,9 @@ Sections (each ends in checks that CAN fail; exit code 1 if any does):
     S4  the redshift laws: constant, H(z), the LambdaCDM emergent scale (NFW + concentration-mass relation),
         the density mapping under DESI DR2 w0-wa; the error amplification of the kernel inversion; the 20:1 rule
     S5  the closed-form inversion of the RC100 dark-matter fractions
+    S6  the deep regime (g_bar < 0.2 a0) in SPARC and MIGHTEE-HI: the per-galaxy slope against the kernel's own slope at the
+        same points, the amplitude and its dependence on the stellar mass-to-light convention, and the pitfall of ratios
+        fitted to the rotation curves themselves
 Both densities are carried throughout: rho_Lambda (a0 = 9.36e-11) and rho_crit (a0 = 1.13e-10).
 Run from anywhere:  python3 paper_numbers.py        Output: paper_numbers.json next to this file.
 """
@@ -531,6 +534,171 @@ check("S5b the RC100 trend is consistent with constant a0 within 2.5 sigma and m
 check("S5c no decline is claimed: the slope is within 2.5 sigma of zero under every treatment", abs(slope) < 2.5 * bs.std() and abs(sg) < 2.5 * eg and abs(sy) < 2.5 * ey)
 check("S5d AGAINST INTEREST: the 3.9 sigma does not survive every control -- the weakest exclusion of the halo-emergent slope is below 3 sigma, and that is the number to quote",
       min((s_halo - slope) / bs.std(), (s_halo - sg) / eg, (s_halo - sy) / ey) < 3.0, f"weakest {min((s_halo-slope)/bs.std(), (s_halo-sg)/eg, (s_halo-sy)/ey):.1f} sigma")
+
+# ================================================================================================================
+head("S6  THE DEEP REGIME IN TWO SURVEYS: SLOPE AND AMPLITUDE (SPARC and MIGHTEE-HI)")
+# Window g_bar < 0.2 a0 at the FIXED canonical a0 (1.87e-11 m s^-2): it keeps 17 of MIGHTEE-HI's 19 galaxies with >= 3 points.
+# Slope statistic: per-galaxy least-squares slope of log g_obs on log g_bar over the window (galaxies with >= 3 points), median
+# over galaxies.  The kernel's own expectation is the SAME statistic on g_bar nu(g_bar/a0) at the same points.
+MIGHTEE_CSV = os.path.join(ROOT, "deepseek_push", "data2", "mightee2025_rar_digitized_points.csv")
+CORPUS_V7 = os.path.join(ROOT, "glm53_push", "data", "rotation_curve_corpus_v7.json")
+WIN = 0.2 * a0_L
+SIG_DIG = 0.036                                    # digitisation error of the MIGHTEE-HI points (dex)
+# MIGHTEE-HI's own fits of the same kernel to all radii, Varasteanu et al. (2025), their Table 3, a0 [1e-10 m s^-2]
+MIG_T3 = {"fiducial (spatially varying SED ratio, median 0.35)": (1.69, 0.13), "no molecular gas": (2.06, 0.15),
+          "fixed Upsilon_K = 0.6": (1.08, 0.09), "radially averaged ratio": (1.47, 0.13)}
+beta_of_y = lambda y: 1.0 + n_slope(y)             # d ln g_obs / d ln g_bar = 1 + d ln nu / d ln y
+P("  the kernel's local slope beta(y) = 1 + n(y): " + ", ".join(f"y={y:g}: {float(beta_of_y(y)):.3f}" for y in (1e-6, 0.01, 0.05, 0.1, 0.2)))
+def ols_b(x, y):
+    xm = x.mean(); return float(np.sum((x - xm) * (y - y.mean())) / np.sum((x - xm)**2))
+def groups_in_window(gbar, gidx):
+    m = gbar < WIN
+    return {k_: np.where(m & (gidx == k_))[0] for k_ in np.unique(gidx[m]) if np.sum(m & (gidx == k_)) >= 3}
+def pg_median(gbar, gobs, grp):
+    return float(np.median([ols_b(np.log10(gbar[i]), np.log10(gobs[i])) for i in grp.values()]))
+def slope_test(gbar, gobs, grp, a0ref, draws=2000, seed=20260925):
+    """median per-galaxy slope of the data, of the kernel at a0ref at the same points, and a paired galaxy bootstrap"""
+    keys = list(grp); kern = gbar * nu(gbar / a0ref)
+    bd = np.array([ols_b(np.log10(gbar[grp[k_]]), np.log10(gobs[grp[k_]])) for k_ in keys])
+    bk = np.array([ols_b(np.log10(gbar[grp[k_]]), np.log10(kern[grp[k_]])) for k_ in keys])
+    rng_ = np.random.default_rng(seed); dd, db = [], []
+    for _ in range(draws):
+        p_ = rng_.integers(0, len(keys), len(keys)); dd.append(np.median(bd[p_]) - np.median(bk[p_])); db.append(np.median(bd[p_]))
+    return dict(n_gal=len(keys), n_pts=int(sum(len(v) for v in grp.values())), beta=float(np.median(bd)), beta_kernel=float(np.median(bk)),
+                delta=float(np.median(bd) - np.median(bk)), se_delta=float(np.std(dd)), se_beta=float(np.std(db)))
+def amp_fit(gbar, gobs, ew_, gidx, draws=300, seed=7):
+    """a0 of equation (4) fitted in the window (errors: quoted + 0.034 dex), galaxy bootstrap on ln a0"""
+    m = gbar < WIN; a0w = fit_a0(gbar[m], gobs[m], ew_[m])[0]
+    keys = np.unique(gidx[m]); sel_ = {k_: np.where(m & (gidx == k_))[0] for k_ in keys}
+    rng_ = np.random.default_rng(seed); la_ = []
+    for _ in range(draws):
+        idx = np.concatenate([sel_[k_] for k_ in rng_.choice(keys, len(keys))]); la_.append(math.log(fit_a0(gbar[idx], gobs[idx], ew_[idx])[0]))
+    return dict(a0=a0w, se_ln=float(np.std(la_)), kappa_L=a0w / A_L, kappa_C=a0w / A_C, n_pts=int(m.sum()), n_gal=int(len(keys)))
+# ---- MIGHTEE-HI (digitised; the marker colour encodes each galaxy's baryonic surface density, so one colour = one galaxy)
+import csv as _csv
+_rows = list(_csv.DictReader(open(MIGHTEE_CSV)))
+mgb = np.array([10**float(r["log10_gbar"]) for r in _rows]); mgo = np.array([10**float(r["log10_gobs"]) for r in _rows])
+_cols = {}; mgi = np.array([_cols.setdefault((r["color_r"], r["color_g"], r["color_b"]), len(_cols)) for r in _rows])
+mew = np.full(mgb.size, SIG_DIG)
+mig_grp = groups_in_window(mgb, mgi)
+S6 = dict(window=WIN, beta_of_y={str(y): float(beta_of_y(y)) for y in (1e-6, 0.01, 0.05, 0.1, 0.2)}, sparc={}, mightee={})
+S6["mightee"]["slope_L"] = slope_test(mgb, mgo, mig_grp, a0_L); S6["mightee"]["slope_C"] = slope_test(mgb, mgo, mig_grp, a0_C)
+S6["mightee"]["amp"] = amp_fit(mgb, mgo, mew, mgi)
+S6["mightee"]["n_points_total"] = int(mgb.size); S6["mightee"]["n_groups_total"] = len(_cols); S6["mightee"]["n_in_window"] = int((mgb < WIN).sum())
+S6["mightee"]["table3"] = {k_: dict(a0=v_[0] * 1e-10, err=v_[1] * 1e-10, kappa_L=v_[0] * 1e-10 / A_L, kappa_C=v_[0] * 1e-10 / A_C, se_ln=v_[1] / v_[0]) for k_, v_ in MIG_T3.items()}
+# ---- SPARC at three disc ratios (bulge 0.7, velocity errors < 10 per cent)
+for UD in (0.5, 0.6, 0.7):
+    g1, g2, e1, _ = load_sparc(UD=UD, UB=0.7); gi1 = GAL_INDEX[0].copy()
+    grp1 = groups_in_window(g1, gi1)
+    S6["sparc"][UD] = dict(slope_L=slope_test(g1, g2, grp1, a0_L), slope_C=slope_test(g1, g2, grp1, a0_C), amp=amp_fit(g1, g2, e1, gi1))
+# ---- pooled slope (inverse variance over SPARC at one disc ratio + MIGHTEE-HI), and the power against slopes the kernel does not have
+for UD in (0.5, 0.6, 0.7):
+    a_, b_ = S6["sparc"][UD]["slope_L"], S6["mightee"]["slope_L"]
+    w_ = np.array([1 / a_["se_delta"]**2, 1 / b_["se_delta"]**2]); d_ = np.array([a_["delta"], b_["delta"]])
+    wb_ = np.array([1 / a_["se_beta"]**2, 1 / b_["se_beta"]**2]); bb_ = np.array([a_["beta"], b_["beta"]])
+    pb, pse = float(np.sum(wb_ * bb_) / np.sum(wb_)), float(1 / math.sqrt(np.sum(wb_)))
+    S6["sparc"][UD]["pooled"] = dict(delta=float(np.sum(w_ * d_) / np.sum(w_)), se_delta=float(1 / math.sqrt(np.sum(w_))), beta=pb, se_beta=pse,
+                                     z_075=(0.75 - pb) / pse, z_1=(1.0 - pb) / pse)
+P(f"  window g_bar < {WIN:.3e} m s^-2 (0.2 a0 at the canonical value);  MIGHTEE-HI: {S6['mightee']['n_in_window']} of {mgb.size} digitised points, "
+  f"{len(mig_grp)} of {len(_cols)} galaxies with >= 3 points")
+P(f"  {'sample':22s} {'N_gal':>5s} {'N_pts':>5s} {'beta':>6s} {'+/-':>5s} {'kernel':>6s} {'delta':>7s} {'+/-':>5s} {'z':>6s} | {'kernel(crit)':>12s} {'z':>6s} | {'kappa_L':>7s} {'+/-':>5s} {'kappa_C':>7s}")
+def _row(lab, d):
+    sL, sC, am = d["slope_L"], d["slope_C"], d["amp"]
+    P(f"  {lab:22s} {sL['n_gal']:5d} {sL['n_pts']:5d} {sL['beta']:6.3f} {sL['se_beta']:5.3f} {sL['beta_kernel']:6.3f} {sL['delta']:+7.3f} {sL['se_delta']:5.3f} {sL['delta']/sL['se_delta']:+6.2f} | "
+      f"{sC['beta_kernel']:12.3f} {sC['delta']/sC['se_delta']:+6.2f} | {am['kappa_L']:7.3f} {am['kappa_L']*am['se_ln']:5.3f} {am['kappa_C']:7.3f}")
+for UD in (0.5, 0.6, 0.7): _row(f"SPARC Ups_disc = {UD}", S6["sparc"][UD])
+_row("MIGHTEE-HI (digitised)", S6["mightee"])
+for UD in (0.5, 0.6, 0.7):
+    p_ = S6["sparc"][UD]["pooled"]
+    P(f"  pooled with SPARC at {UD}: delta {p_['delta']:+.3f} +/- {p_['se_delta']:.3f} (z {p_['delta']/p_['se_delta']:+.2f});  beta {p_['beta']:.3f} +/- {p_['se_beta']:.3f}: "
+      f"{p_['z_075']:.1f} sigma from 0.75, {p_['z_1']:.1f} sigma from 1")
+P("  MIGHTEE-HI's own fits (Varasteanu et al. 2025, Table 3):  " + ";  ".join(f"{k_}: a0 = {v_['a0']/1e-10:.2f}e-10, kappa_L = {v_['kappa_L']:.3f} +/- {v_['kappa_L']*v_['se_ln']:.3f}" for k_, v_ in S6["mightee"]["table3"].items()))
+P(f"  our window fit to the digitised points: a0 = {S6['mightee']['amp']['a0']/1e-10:.3f}e-10 ({(S6['mightee']['amp']['a0']/1.69e-10-1)*100:+.1f}% from their fiducial)")
+def zamp(a, sa, b, sb):          # difference in ln a0, in combined standard errors
+    return (math.log(a) - math.log(b)) / math.sqrt(sa**2 + sb**2)
+for key_ in ("fiducial (spatially varying SED ratio, median 0.35)", "fixed Upsilon_K = 0.6"):
+    t_ = S6["mightee"]["table3"][key_]
+    zs = [zamp(t_["a0"], t_["se_ln"], S6["sparc"][UD]["amp"]["a0"], S6["sparc"][UD]["amp"]["se_ln"]) for UD in (0.5, 0.6, 0.7)]
+    S6["mightee"]["table3"][key_]["z_vs_sparc"] = zs
+    P(f"  MIGHTEE-HI [{key_}] minus SPARC (Ups_disc 0.5/0.6/0.7), in combined sigma of ln a0: " + ", ".join(f"{z_:+.1f}" for z_ in zs))
+# ---- injection: the slope statistic returns a known slope (kernel-consistent data; a pure power law of slope 0.75)
+g1, g2, e1, _ = load_sparc(UD=0.6, UB=0.7); gi1 = GAL_INDEX[0].copy(); grp1 = groups_in_window(g1, gi1)
+rng6 = np.random.default_rng(662607); sig1 = np.sqrt(e1**2 + SIG_INT**2); sigm = np.sqrt(SIG_DIG**2 + SIG_INT**2)
+inj6 = dict(kernel_sparc=[], kernel_mig=[], p075_sparc=[], p075_mig=[])
+bk_s = pg_median(g1, g1 * nu(g1 / a0_L), grp1); bk_m = pg_median(mgb, mgb * nu(mgb / a0_L), mig_grp)
+for _ in range(200):
+    inj6["kernel_sparc"].append(pg_median(g1, g1 * nu(g1 / a0_L) * 10**(rng6.normal(0, 1, g1.size) * sig1), grp1) - bk_s)
+    inj6["kernel_mig"].append(pg_median(mgb, mgb * nu(mgb / a0_L) * 10**(rng6.normal(0, 1, mgb.size) * sigm), mig_grp) - bk_m)
+    inj6["p075_sparc"].append(pg_median(g1, a0_L * (g1 / a0_L)**0.75 * 10**(rng6.normal(0, 1, g1.size) * sig1), grp1))
+    inj6["p075_mig"].append(pg_median(mgb, a0_L * (mgb / a0_L)**0.75 * 10**(rng6.normal(0, 1, mgb.size) * sigm), mig_grp))
+inj6s = {k_: (float(np.mean(v_)), float(np.std(v_))) for k_, v_ in inj6.items()}
+P("  injection (200 draws; quoted errors + 0.034 dex; digitisation 0.036 dex): returned minus kernel slope, SPARC "
+  f"{inj6s['kernel_sparc'][0]:+.4f} +/- {inj6s['kernel_sparc'][1]:.3f}, MIGHTEE {inj6s['kernel_mig'][0]:+.4f} +/- {inj6s['kernel_mig'][1]:.3f};  "
+  f"a slope-0.75 power law returns {inj6s['p075_sparc'][0]:.4f} (SPARC), {inj6s['p075_mig'][0]:.4f} (MIGHTEE)")
+S6["injection"] = inj6s
+# ---- the pitfall: per-galaxy disc ratios fitted to the rotation curves themselves (an earlier compilation), applied to disc and bulge
+_corp = json.load(open(CORPUS_V7)); _ml = {g_["galaxy"]: g_["m2l_disk"] for g_ in _corp["galaxies"] if g_.get("survey") == "SPARC" and g_.get("m2l_disk")}
+kb, ko, ke, ki, mlk, mln = [], [], [], [], [], []
+for f in sorted(glob.glob(os.path.join(SPARC, "*_rotmod.dat"))):
+    nm = os.path.basename(f).replace("_rotmod.dat", "")
+    d = _read(f)
+    if nm not in _ml or d.ndim != 2 or d.shape[1] < 6: continue
+    R, V, eV, Vg, Vd, Vb = (d[:, i] for i in range(6))
+    S_, T_ = Vd**2 + Vb**2, V**2 - np.sign(Vg) * Vg**2; okn = S_ > 0
+    if okn.sum() >= 3: mlk.append(_ml[nm]); mln.append(float(np.sum(T_[okn] * S_[okn]) / np.sum(S_[okn]**2)))
+    m = (R > 0) & (V > 0) & (eV > 0) & (eV / V < 0.10)
+    v2 = (np.sign(Vg) * Vg**2 + _ml[nm] * (Vd**2 + Vb**2))[m]; ok = v2 > 0
+    if ok.sum() == 0: continue
+    kb.append(v2[ok] / R[m][ok] * K); ko.append(V[m][ok]**2 / R[m][ok] * K); ke.append((2 * eV[m] / V[m] / math.log(10))[ok]); ki.append(np.full(ok.sum(), len(ki)))
+kb, ko, ke, ki = (np.concatenate(x_) for x_ in (kb, ko, ke, ki))
+r_kin = float(np.corrcoef(np.log10(mlk), np.log10(np.clip(mln, 1e-3, None)))[0, 1])
+amp_kin = amp_fit(kb, ko, ke, ki)
+fac_kin = [S6["sparc"][UD]["amp"]["a0"] / amp_kin["a0"] for UD in (0.5, 0.6, 0.7)]
+S6["kinematic_ratios"] = dict(n=len(mlk), median=float(np.median(mlk)), max=float(np.max(mlk)), r_log=r_kin, amp=amp_kin, factor_vs_population=fac_kin)
+P(f"  PITFALL: per-galaxy disc ratios fitted to the curves (median {np.median(mlk):.2f}, max {np.max(mlk):.1f}; log-correlation with the Newtonian no-dark-matter ratio r = {r_kin:.3f}, N = {len(mlk)}):")
+P(f"     window kappa_L = {amp_kin['kappa_L']:.3f} +/- {amp_kin['kappa_L']*amp_kin['se_ln']:.3f}, lower than the population-ratio values by a factor " + ", ".join(f"{x_:.2f}" for x_ in fac_kin))
+OUT["S6"] = S6
+check("S6a the kernel's local slope is 1/2 in the deep limit and 0.60 at y = 0.2 (beta = 1 + n(y))",
+      abs(float(beta_of_y(1e-6)) - 0.5) < 1e-3 and abs(float(beta_of_y(0.2)) - 0.603) < 0.002, f"{float(beta_of_y(1e-6)):.4f}, {float(beta_of_y(0.2)):.4f}", kind="identity")
+check("S6b the per-galaxy deep slope agrees with the kernel's own slope at the same points: |z| < 3 for SPARC at each disc ratio, for MIGHTEE-HI, and pooled",
+      all(abs(S6["sparc"][u]["slope_L"]["delta"] / S6["sparc"][u]["slope_L"]["se_delta"]) < 3 and abs(S6["sparc"][u]["pooled"]["delta"] / S6["sparc"][u]["pooled"]["se_delta"]) < 3 for u in (0.5, 0.6, 0.7))
+      and abs(S6["mightee"]["slope_L"]["delta"] / S6["mightee"]["slope_L"]["se_delta"]) < 3,
+      ", ".join(f"{S6['sparc'][u]['slope_L']['delta']/S6['sparc'][u]['slope_L']['se_delta']:+.2f}" for u in (0.5, 0.6, 0.7)) + f"; MIGHTEE {S6['mightee']['slope_L']['delta']/S6['mightee']['slope_L']['se_delta']:+.2f}")
+check("S6c the same data exclude the Newtonian slope (beta = 1) at more than 5 sigma, pooled, at every disc ratio",
+      all(S6["sparc"][u]["pooled"]["z_1"] > 5 for u in (0.5, 0.6, 0.7)), ", ".join(f"{S6['sparc'][u]['pooled']['z_1']:.1f}" for u in (0.5, 0.6, 0.7)))
+check("I6 the slope statistic measures: on kernel-consistent data it is unbiased to 0.01, and on a slope-0.75 power law it returns 0.75 to 0.01",
+      abs(inj6s["kernel_sparc"][0]) < 0.01 and abs(inj6s["kernel_mig"][0]) < 0.01 and abs(inj6s["p075_sparc"][0] - 0.75) < 0.01 and abs(inj6s["p075_mig"][0] - 0.75) < 0.01,
+      f"{inj6s['kernel_sparc'][0]:+.4f}, {inj6s['kernel_mig'][0]:+.4f}; {inj6s['p075_sparc'][0]:.4f}, {inj6s['p075_mig'][0]:.4f}", kind="injection")
+check("S6e the window fit to the digitised MIGHTEE-HI points reproduces the survey's own fiducial a0 (1.69e-10) within 5 per cent",
+      abs(S6["mightee"]["amp"]["a0"] / 1.69e-10 - 1) < 0.05, f"{S6['mightee']['amp']['a0']:.3e}")
+# ---- a straight line across ALL SPARC points in the window (exposed to galaxy-to-galaxy offsets), against the kernel at the same points
+pooled_all = {}
+for UD in (0.5, 0.6, 0.7):
+    g1, g2, e1, _ = load_sparc(UD=UD, UB=0.7); gi1 = GAL_INDEX[0].copy(); m = g1 < WIN
+    keys = np.unique(gi1[m]); sel_ = {k_: np.where(m & (gi1 == k_))[0] for k_ in keys}; rng_ = np.random.default_rng(5)
+    kern_ = lambda gg: np.log10(gg * nu(gg / a0_L))
+    bd_, bk_ = ols_b(np.log10(g1[m]), np.log10(g2[m])), ols_b(np.log10(g1[m]), kern_(g1[m]))
+    dd_ = []
+    for _ in range(1000):
+        idx = np.concatenate([sel_[k_] for k_ in rng_.choice(keys, len(keys))])
+        dd_.append(ols_b(np.log10(g1[idx]), np.log10(g2[idx])) - ols_b(np.log10(g1[idx]), kern_(g1[idx])))
+    pooled_all[UD] = dict(beta=bd_, beta_kernel=bk_, se=float(np.std(dd_)), z=float((bd_ - bk_) / np.std(dd_)))
+S6["sparc_all_points"] = pooled_all
+P("  one straight line across all SPARC points in the window: " + ";  ".join(f"Ups {u}: {v['beta']:.3f} vs kernel {v['beta_kernel']:.3f} (z {v['z']:+.2f})" for u, v in pooled_all.items()))
+OUT["S6"] = S6
+zf = S6["mightee"]["table3"]["fiducial (spatially varying SED ratio, median 0.35)"]["z_vs_sparc"]; z6 = S6["mightee"]["table3"]["fixed Upsilon_K = 0.6"]["z_vs_sparc"]
+kS = [S6["sparc"][u]["amp"]["kappa_L"] for u in (0.5, 0.6, 0.7)]
+check("S6d a straight line across all SPARC points in the window, exposed to galaxy-to-galaxy offsets, also agrees with the kernel's (|z| < 2 at every disc ratio)",
+      all(abs(v["z"]) < 2 for v in pooled_all.values()), ", ".join(f"{v['z']:+.2f}" for v in pooled_all.values()))
+check("S6f AGAINST INTEREST: at MIGHTEE-HI's own SED mass-to-light ratios the two surveys disagree on a0 by more than 3 sigma at every SPARC disc ratio",
+      all(z_ > 3 for z_ in zf), ", ".join(f"{z_:+.1f}" for z_ in zf))
+check("S6g at a fixed Upsilon_K = 0.6 (the survey's own refit) they agree within 2.5 sigma at every SPARC disc ratio",
+      all(abs(z_) < 2.5 for z_ in z6), ", ".join(f"{z_:+.1f}" for z_ in z6))
+check("S6h the SPARC window amplitude brackets kappa_Lambda = 1/2 across Upsilon_disc = 0.5-0.7", kS[0] > 0.5 > kS[2], ", ".join(f"{k_:.3f}" for k_ in kS))
+check("S6i PITFALL: per-galaxy ratios fitted to the curves (log-correlation > 0.8 with the Newtonian no-dark-matter ratio) lower the window kappa by a factor above 1.5 at every disc ratio",
+      r_kin > 0.8 and min(fac_kin) > 1.5, f"r = {r_kin:.3f}; factors " + ", ".join(f"{x_:.2f}" for x_ in fac_kin))
+check("S6j the pooled per-galaxy slope excludes a slope of 0.75 at more than 4 sigma at every disc ratio",
+      all(S6["sparc"][u]["pooled"]["z_075"] > 4 for u in (0.5, 0.6, 0.7)), ", ".join(f"{S6['sparc'][u]['pooled']['z_075']:.1f}" for u in (0.5, 0.6, 0.7)))
 
 # ----------------------------------------------------------------------------------------------------------------
 json.dump(OUT, open(os.path.join(HERE, "paper_numbers.json"), "w"), indent=1, default=float)
