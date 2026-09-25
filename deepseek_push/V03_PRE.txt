@@ -1,0 +1,48 @@
+PRE-REGISTRATION (locked before any V03 number): see V03_IGNORANCE_TRIO.md 0.1-0.7.
+[1] FALSIFIERS: R = -ln A / E[D] (A = P(N=0); kernel-free per L07 46/46);
+    U = std(D)/E[D] (radius-free; kernel-TAGGED per N04);
+    B: slack = E[D^2] E[v^4] / (3 E[Dv^2]^2) >= 1 (density-free, J05/J06 exact).
+[2] GRID: CORE 36 cells: (central|volume) x q{0,3,10} x tau0{0.5,1,2} x
+    kernel{thomson,iso}, n=8e5 each; SHELL-EXT 36 cells: shell a{0.3,0.5} x
+    same q x tau0 x kernel, n=2e5 each. Engine: J02 verbatim + L07 kernel
+    switch + K09 shell birth; P1 bitwise parity before science cells.
+[3] OBSERVER BANDS (from the RECORD; widened +-3 tol): W_C=[4/3,2] exact,
+    tol 0; W_V=[0.9184,1.9144], tol 0.010 (K09 table); W_S=[1.4298,2.0063],
+    tol 0.025 (K09 union); U_C=[0.804,1.982], U_V=[1.233,2.536] (N04 union
+    +-3 max se); U_S measured THIS run (flagged CIRCULAR); B=[1,inf),
+    violated iff slack < 1 - 3 se. Membership: g in vR iff R in W_g+3se;
+    g in vU iff U in band_g+3se; B-PASS iff slack >= 1 - 3se.
+[4] DISAGREEMENT CLASSES (locked): KILL-B (slack<1-3se => family kill,
+    expected 0 on-model); VOID-R / VOID-U (falsifier excludes ALL
+    geometries = K09-F3 outright-kill channel); MIRROR (vR and vU nonempty,
+    disjoint; exclusive contradiction); CROSS (intersection nonempty but
+    non-nested membership incl. S-agreement split); HIERARCHY (vR proper
+    subset of vU or vice versa); TRIO-AGREE (vR == vU).
+[5] CHECKS: P1 parity bitwise (max|dD|<1e-9, max|dN|=0); C1 U=1.437/1.074/
+    0.898 (central) & 1.893/1.400/1.258 (volume) at tau0=1, q=0/3/10 vs
+    K09 record (|z|<5); C2 central R = 2.000/1.600/1.4444 at q=0/3/10,
+    tau0-free (spread z<5, |z_form|<5); C3 |R_iso - R_thom| <= 5 combined
+    SE at every core cell (L07 re-grid, volume q=3/10 NEW); C4 slack
+    1.25/1.13/1.06 (J05) |z|<4; C5 slack >= 1 - 3se at ALL 72 cells; C6
+    doorB: 0.90889*R(central,q0,tau0=1) = 1.8178 +- 3se and CONSISTENT-OPEN
+    (reading in W_C, W_V, W_S; B-PASS; C in vU); C7 U kernel-tagged (z>=3)
+    at >= half of the 18 core cells.
+[6] DECISION TREE (locked): Node1 B gate (slack>=1-3se; fail: n too small
+    -> UNDET); Node2 R window [4/3,2]+-3se AND K06-inv (A,E[D]) -> (tau0h,
+    qh) pins operating point (valid iff central consistent; fails: R
+    outside all bands = outright kill; inverted (tau0h,qh) off-grid);
+    Node3 U readout at (tau0h,qh) vs resolved N04 atlas columns U_C,U_V
+    (+-3 combined se): C / V / AMBIG-CV / U-OUT; failure modes: U
+    kernel-tagged (unknown kernel => UNTRUSTED), inversion bias at
+    non-central truth, atlas off-grid. Min-n per falsifier per cell:
+    n_req = n (3 se / gap)^2, gap = distance to nearest competing band
+    edge (R, B) or resolved |U - U_other(tau0,q)| (U); infeasible if
+    inside a competitor band.
+[7] JOINT 3-SIGMA REGIONS (locked): per class (geometry, kernel): mu =
+    mean of its 9 cells in (R,U,slack); Sigma = Sigma_landscape +
+    Sigma_samp(operating cell tau0=1,q=0, class n); region = Mahalanobis
+    ellipsoid radius 3. Pairwise overlap = MC 2e6 Gaussian draws from A
+    inside B's ellipsoid, symmetric mean; residual degeneracy = pairs
+    with overlap >= 1%.
+[8] doorB CROSS-CHECK: (central, q=0, tau0=1) corner => reading 1.8178,
+    verdict CONSISTENT-OPEN (recorded A2744 interpretation, K09).
