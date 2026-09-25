@@ -379,3 +379,213 @@ end V01
 #print axioms V01.peel_v
 #print axioms V01.step2
 #print axioms V01.inner_eq
+
+/-! ## Stage C (W01, 2026-09-25, W-WAVE_BRIEF.md): the Fubini-flip assembly.
+Goal: chordMomentVol = 3/2 * Jtri (inner_eq + step2 + linearity), then the
+triangle flip Jtri = 1/2, hence chordMomentVol = 3/4 -- closing M01's single
+CONJECTURED item with the 2D change of variables still avoided. -/
+
+noncomputable section
+namespace V01
+
+/-- The flipped triangle integrand `r * sqrt(1 - r^2 + v^2)`. -/
+def tri (r v : ℝ) : ℝ := r * Real.sqrt (1 - r ^ 2 + v ^ 2)
+
+/-- The triangle moment J. -/
+def Jtri : ℝ := ∫ r in (0 : ℝ)..1, (∫ v in (-r : ℝ)..r, tri r v)
+
+/-- The 2-argument form of the r-peeled integrand. -/
+def G (r v : ℝ) : ℝ := Set.indicator (Set.Ioc (-r) r) (tri r) v
+
+theorem tri_cont1 (r : ℝ) : Continuous (tri r) := by
+  unfold tri
+  exact continuous_const.mul
+    (Real.continuous_sqrt.comp
+      (by fun_prop : Continuous (fun v : ℝ => 1 - r ^ 2 + v ^ 2)))
+
+theorem tri_cont2 (v : ℝ) : Continuous (fun x => tri x v) := by
+  unfold tri
+  fun_prop
+
+/-- pointwise bound: |G r v| <= 2 on the box (r in [0,1], |v| <= 1). -/
+theorem G_bound {r v : ℝ} (hr0 : 0 ≤ r) (hr1 : r ≤ 1) (hv : |v| ≤ 1) : |G r v| ≤ 2 := by
+  have hr2 : r ^ 2 ≤ 1 := by nlinarith [sq_nonneg (r - 1)]
+  have hv2 : v ^ 2 ≤ 1 := by
+    rcases abs_le.mp hv with ⟨h1, h2⟩
+    have h3 : 0 ≤ (1 - v) * (1 + v) :=
+      mul_nonneg (by linarith) (by linarith)
+    nlinarith [h3]
+  have htri : |tri r v| ≤ 2 := by
+    unfold tri
+    rw [abs_mul, abs_of_nonneg hr0, abs_of_nonneg (Real.sqrt_nonneg _)]
+    calc r * Real.sqrt (1 - r ^ 2 + v ^ 2) ≤ 1 * Real.sqrt (1 - r ^ 2 + v ^ 2) :=
+          mul_le_mul_of_nonneg_right hr1 (Real.sqrt_nonneg _)
+      _ = Real.sqrt (1 - r ^ 2 + v ^ 2) := (one_mul (Real.sqrt (1 - r ^ 2 + v ^ 2)))
+      _ ≤ Real.sqrt 2 := Real.sqrt_le_sqrt (by nlinarith [hr2, hv2])
+      _ ≤ 2 := by
+          have hsq : Real.sqrt 2 * Real.sqrt 2 = 2 := by
+            rw [← pow_two, Real.sq_sqrt (le_of_lt (by norm_num : (0:ℝ) < 2))]
+          have hpos : 0 ≤ Real.sqrt 2 := Real.sqrt_nonneg 2
+          by_contra hgt
+          push_neg at hgt
+          nlinarith [hsq, hpos, hgt]
+  unfold G
+  by_cases hmem : v ∈ Set.Ioc (-r) r
+  · rw [Set.indicator_of_mem hmem]
+    exact htri
+  · rw [Set.indicator_apply, if_neg hmem]
+    norm_num
+
+/-- `G.uncurry` is measurable. -/
+theorem G_measurable : Measurable (fun p : ℝ × ℝ => G p.1 p.2) := by
+  have hf : Measurable (fun p : ℝ × ℝ => -p.1) := measurable_fst.neg
+  have hs : MeasurableSet {p : ℝ × ℝ | -p.1 < p.2 ∧ p.2 ≤ p.1} :=
+    (measurableSet_lt hf measurable_snd).inter
+      (measurableSet_le measurable_snd measurable_fst)
+  have hfm : Measurable (fun q : ℝ × ℝ => tri q.1 q.2) := by
+    unfold tri
+    fun_prop
+  have heq : (fun p : ℝ × ℝ => G p.1 p.2)
+      = {p : ℝ × ℝ | -p.1 < p.2 ∧ p.2 ≤ p.1}.indicator
+          (fun q : ℝ × ℝ => tri q.1 q.2) := by
+    funext p
+    simp only [G, Set.indicator_apply, Set.mem_ofPred_eq, Set.mem_Ioc]
+  rw [heq]
+  exact hfm.indicator hs
+
+/-- integrability of the indicator integrand on the box. -/
+theorem G_integrable : MeasureTheory.IntegrableOn (fun p : ℝ × ℝ => G p.1 p.2)
+    (Set.uIoc (0 : ℝ) 1 ×ˢ Set.uIoc (-1 : ℝ) 1) := by
+  rw [Set.uIoc_of_le (by norm_num : (0 : ℝ) ≤ 1), Set.uIoc_of_le (by norm_num : (-1 : ℝ) ≤ 1)]
+  unfold MeasureTheory.IntegrableOn
+  refine ⟨G_measurable.aestronglyMeasurable, ?_⟩
+  refine MeasureTheory.HasFiniteIntegral.restrict_of_bounded 2 ?_ ?_
+  · have h1 : MeasureTheory.volume (Set.Ioc (0:ℝ) 1 ×ˢ Set.Ioc (-1:ℝ) 1)
+        = MeasureTheory.volume (Set.Ioc (0:ℝ) 1) * MeasureTheory.volume (Set.Ioc (-1:ℝ) 1) :=
+      MeasureTheory.Measure.prod_prod (s := Set.Ioc (0:ℝ) 1) (t := Set.Ioc (-1:ℝ) 1)
+    rw [h1, Real.volume_Ioc, Real.volume_Ioc]
+    norm_num
+  · refine (MeasureTheory.ae_restrict_iff' (measurableSet_Ioc.prod measurableSet_Ioc)).2 ?_
+    refine Filter.Eventually.of_forall (fun x hx => ?_)
+    obtain ⟨hx1, hx2⟩ := hx
+    have hr0 : (0 : ℝ) ≤ x.1 := le_of_lt hx1.1
+    have hr1 : x.1 ≤ 1 := hx1.2
+    have hneg : -(1 : ℝ) ≤ x.2 := le_of_lt hx2.1
+    have hv : |x.2| ≤ 1 := abs_le.2 ⟨hneg, hx2.2⟩
+    simpa [Real.norm_eq_abs] using G_bound hr0 hr1 hv
+
+/-- step 2 lifted through the outer integral: chordMomentVol = 3/2 * Jtri. -/
+theorem step2_all : chordMomentVol = 3 / 2 * Jtri := by
+  have hcong : ∀ r ∈ Set.uIcc (0 : ℝ) 1,
+      r ^ 2 * (1 / 2 * (∫ μ in (-1 : ℝ)..1, chord r μ))
+        = 1 / 2 * (∫ v in (-r : ℝ)..r, tri r v) := by
+    intro r hr
+    rw [Set.uIcc_of_le (by norm_num : (0 : ℝ) ≤ 1), Set.mem_Icc] at hr
+    rw [inner_eq r,
+      show r ^ 2 * (1 / 2 * (∫ μ in (-1 : ℝ)..1, Real.sqrt (1 - r ^ 2 + r ^ 2 * μ ^ 2)))
+        = 1 / 2 * (r ^ 2 * (∫ μ in (-1 : ℝ)..1, Real.sqrt (1 - r ^ 2 + r ^ 2 * μ ^ 2))) by ring,
+      step2 r hr.1 hr.2]
+    congr 1
+    simp only [tri]
+    rw [integral_const_mul]
+  show 3 * (∫ r in (0 : ℝ)..1, r ^ 2 * (1 / 2 * (∫ μ in (-1 : ℝ)..1, chord r μ))) = _
+  rw [integral_congr hcong]
+  simp only [Jtri]
+  rw [integral_const_mul]
+  ring
+
+/-- Peel the inner integral to the fixed rectangle [0,1] x [-1,1]. -/
+theorem J_as_G : Jtri = ∫ r in (0 : ℝ)..1,
+    (∫ v in (-1 : ℝ)..1, G r v) := by
+  show (∫ r in (0 : ℝ)..1, (∫ v in (-r : ℝ)..r, tri r v)) = _
+  refine integral_congr (fun r hr => ?_)
+  rw [Set.uIcc_of_le (by norm_num : (0 : ℝ) ≤ 1), Set.mem_Icc] at hr
+  exact peel_r r hr.1 hr.2 (tri r) (tri_cont1 r)
+
+/-- The per-point comparison lemma: G r v equals the v-side indicator unless
+    v < 0 and r = |v| (the measure-zero diagonal). -/
+theorem G_eq_or_edge {r v : ℝ} (hr0 : 0 ≤ r) (hr1 : r ≤ 1) :
+    G r v = Set.indicator (Set.Ici |v|) (fun x => tri x v) r ∨ (v < 0 ∧ r = |v|) := by
+  simp only [G, Set.indicator_apply, Set.mem_Ioc, Set.mem_Ici]
+  by_cases hL : (-r < v ∧ v ≤ r)
+  · rcases hL with ⟨h1, h2⟩
+    rcases abs_cases v with hv | hv
+    · left
+      rw [hv.1]
+      simp [h1, h2, tri]
+    · left
+      rw [hv.1]
+      have h3 : -v ≤ r := by linarith
+      simp [h1, h2, h3, tri]
+  · by_cases hR : |v| ≤ r
+    · rcases abs_cases v with hv | hv
+      · rcases eq_or_lt_of_le hr0 with rfl | hrp
+        · left
+          have hvz : v = 0 := le_antisymm (by rw [hv.1] at hR; linarith) hv.2
+          subst hvz
+          simp [tri]
+        · exfalso
+          have h2 : v ≤ r := by rw [hv.1] at hR; exact hR
+          exact hL ⟨by linarith, h2⟩
+      · right
+        refine ⟨hv.2, ?_⟩
+        rw [hv.1] at hR ⊢
+        have hnv : ¬(-r < v) := fun h => hL ⟨h, by linarith⟩
+        have h1 : r ≤ -v := by linarith
+        exact le_antisymm h1 hR
+    · left
+      simp [hL, hR]
+
+/-- Per fixed v, the r-integral of G over [0,1] is the flipped-ordered
+    integral over [|v|, 1] (peel_v; the diagonal r = |v| is null). -/
+theorem inner_flip (v : ℝ) (hv : |v| ≤ 1) :
+    (∫ r in (0 : ℝ)..1, G r v) = ∫ r in |v|..1, tri r v := by
+  have h1 : (∫ r in (0 : ℝ)..1, G r v)
+      = ∫ r in (0 : ℝ)..1, Set.indicator (Set.Ici |v|) (fun x => tri x v) r := by
+    refine integral_congr_ae ?_
+    rw [MeasureTheory.ae_iff]
+    refine le_antisymm
+      (le_trans (MeasureTheory.measure_mono (t := {r : ℝ | r = |v|}) ?_)
+        (by simp [Real.volume_singleton])) zero_le
+    intro r hr
+    simp only [not_imp] at hr
+    obtain ⟨hmem, hne⟩ := hr
+    rw [Set.uIoc_of_le (by norm_num : (0 : ℝ) ≤ 1), Set.mem_Ioc] at hmem
+    rcases G_eq_or_edge hmem.1.le hmem.2 with heq | hbad
+    · exact absurd heq hne
+    · exact hbad.2
+  rw [h1, peel_v v hv (fun x => tri x v) (tri_cont2 v)]
+
+/-- The Fubini flip over the rectangle (mathlib's interval-integral swap). -/
+theorem J_swap : (∫ r in (0 : ℝ)..1, (∫ v in (-1 : ℝ)..1, G r v))
+    = ∫ v in (-1 : ℝ)..1, (∫ r in (0 : ℝ)..1, G r v) :=
+  MeasureTheory.intervalIntegral_intervalIntegral_swap (F := G) G_integrable
+
+/-- Jtri = 1/2 (flip + step4 + final_half). -/
+theorem J_value : Jtri = 1 / 2 := by
+  rw [J_as_G, J_swap]
+  have houter : (∫ v in (-1 : ℝ)..1, (∫ r in (0 : ℝ)..1, G r v))
+      = ∫ v in (-1 : ℝ)..1, (1 - |v| ^ 3) / 3 := by
+    refine integral_congr (fun v hv => ?_)
+    rw [Set.uIcc_of_le (by norm_num : (-1 : ℝ) ≤ 1), Set.mem_Icc] at hv
+    have hv1 : |v| ≤ 1 := abs_le.2 ⟨by linarith, hv.2⟩
+    rw [inner_flip v hv1]
+    exact step4 v hv1
+  rw [houter, final_half]
+
+/-- MAIN: M01's conjectured volume-chord moment, certified. -/
+theorem chord_moment_main : chordMomentVol = 3 / 4 := by
+  rw [step2_all, J_value]
+  ring
+
+end V01
+
+#print axioms V01.step2_all
+#print axioms V01.J_as_G
+#print axioms V01.G_measurable
+#print axioms V01.G_integrable
+#print axioms V01.G_eq_or_edge
+#print axioms V01.inner_flip
+#print axioms V01.J_swap
+#print axioms V01.J_value
+#print axioms V01.chord_moment_main
