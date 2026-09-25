@@ -7,6 +7,27 @@ conflicts with this file, this file is newer unless it says otherwise.
 
 ---
 
+## ⚠⚠⚠ REVISION 10 BLOCK — 2026-09-25. Newer than everything below it; where they conflict, this block wins.
+
+**The khronon as FRW dust: the first leg of PAPER32's last open route is closed** ([`BSK2`](real_research/bs_khronon_2026/BSK2_frw_dust_sigma8.py), 8/8, commit 2ffe0fc39, MUTATE kills K3b/K4a/K4b).
+
+PAPER32 left exactly one route open: a khronon sector that itself behaves as dust on FRW (Blanchet–Skordis). BSK2 derived its growth law from the committed khronon-fluid response (BSK1 M4, deep-web limit f(0) = 0):
+
+    Gamma^2(k, a) = 4 pi G rho_bar_tau(a) * mu^2 a^2 / (k^2 + mu^2 a^2)
+
+Khronon dust self-clusters as ordinary dust only on comoving scales k < a·μ (physical λ > 1/μ); below the hold scale its own gravity is cancelled by the aether Euler force (M7) and it clusters under baryons only. The comoving activation edge k_c(a) = a·μ grows with the scale factor — a memory of the khronon mass in P(k) that no ΛCDM component has.
+
+**The σ₈ gate (pre-registered band [0.80, 1.20] vs 0.811):**
+- Khronon at BS24's published scale (μ ~ 1e-31 eV, hold 1/μ ~ 43 h⁻¹Mpc) **FAILS 26× under in amplitude** (ratio 0.037) — the khronon at its only published mass cannot be the dark matter in this footing.
+- The gate passes only above a **derived khronon-mass floor: μ ≥ 4.7×10⁻²⁷ eV** (μ ≥ 1.1×10³ h/Mpc) ⇔ hold scale ≤ 1.4 kpc — galactic, not cosmological. Registered tension (K5): khronon-as-DM needs a khronon ~5×10⁴ heavier than the BS24 scale.
+- Falsifier (K4): khronon-dust P(k) < P_ΛCDM(k) for k > μ at z = 0 with the activation memory k_c(z) = a(z)μ; for passing masses the edge is sub-linear and the measurable falsifier is the khronon-dust (phantom) profile below the hold scale.
+
+**Dark sector status change:** khronon dust at Ω_τ = Ω_dm with μ ≥ 4.7e-27 eV is now the standing cold-fluid candidate (rev 9's "Dark sector: none" is superseded on this point) — pending its second gate: BSK3, the KiDS-1000 isolated-lensing leg (in flight; data on disk at real_research/data/lensing_rar/brouwer2021_rar/). The khronon's c₂ window remains excluded by Planck-era Hořava fits; BSK3 tests the mass-route reading, not the c₂ window.
+
+**Unchanged:** κ measured 0.465 ± 0.076, consistent with ½, not derived; every derivation route closed. C-H/K has no cosmology as built; the khronon-dust route is the reading that might supply one.
+
+---
+
 ## ⚠⚠⚠ REVISION 9 BLOCK — 2026-09-22. Newer than everything below it; where they conflict, this block wins.
 
 **Full synthesis of 09-14 → 09-22** (about 630 commits, audited against their scripts): [`real_research/reviews/THE_THEORY_AS_IT_STANDS_2026-09-22.md`](real_research/reviews/THE_THEORY_AS_IT_STANDS_2026-09-22.md). Rung-by-rung status: [`CLOSURE_MAP.md`](fable_independent_2026/kappa_slot_2026/CLOSURE_MAP.md) (the dated blocks at the bottom).
