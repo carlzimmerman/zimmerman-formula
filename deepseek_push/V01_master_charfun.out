@@ -1,0 +1,115 @@
+============================================================================
+V01 -- MASTER CHARACTERISTIC FUNCTION H(w)=E[exp(i w D)], deterministic
+============================================================================
+
+[A] kappa=0 vacuum (H(w) = E[exp(i w D_0)], D_0 == 0)
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/V01_master_charfun.py:146: RuntimeWarning: divide by zero encountered in matmul
+  KM = Ptbl @ self.Pmat
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/V01_master_charfun.py:146: RuntimeWarning: overflow encountered in matmul
+  KM = Ptbl @ self.Pmat
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/V01_master_charfun.py:146: RuntimeWarning: invalid value encountered in matmul
+  KM = Ptbl @ self.Pmat
+  max |H(w) - 1| over 12 omegas = 0.00e+00
+
+[B] H(w) on the pre-registered 12-point grid, q=0, (160,64,16,32)
+  w= 0.25: H = 0.976854+0.120785i  iters=32  gap=6.3e-10  spread=0.0e+00
+  w= 0.50: H = 0.915410+0.219097i  iters=31  gap=9.1e-10  spread=0.0e+00
+  w= 1.00: H = 0.749830+0.314986i  iters=30  gap=5.6e-10  spread=0.0e+00
+  w= 1.50: H = 0.612316+0.311844i  iters=27  gap=9.1e-10  spread=0.0e+00
+  w= 2.00: H = 0.527403+0.271221i  iters=25  gap=5.3e-10  spread=0.0e+00
+  w= 3.00: H = 0.460810+0.191096i  iters=20  gap=5.6e-10  spread=0.0e+00
+  w= 4.00: H = 0.445496+0.150240i  iters=17  gap=3.0e-10  spread=0.0e+00
+  w= 6.00: H = 0.423074+0.116219i  iters=14  gap=5.6e-10  spread=0.0e+00
+  w= 8.00: H = 0.411203+0.095379i  iters=13  gap=2.0e-10  spread=0.0e+00
+  w=10.00: H = 0.402770+0.080818i  iters=12  gap=1.3e-10  spread=0.0e+00
+  w=15.00: H = 0.391878+0.060382i  iters=11  gap=1.2e-10  spread=0.0e+00
+  w=20.00: H = 0.386302+0.048547i  iters=10  gap=1.7e-10  spread=0.0e+00
+  H(0) = 0.999999999470 (exactly 1)
+
+[B2] 3 check values at the full grid (320,96,24,48)
+  w= 0.50: H_full = 0.915411+0.219098i  vs speed 0.915410+0.219097i  |dH|=6.66e-08
+  w= 4.00: H_full = 0.445496+0.150239i  vs speed 0.445496+0.150240i  |dH|=5.39e-07
+  w=15.00: H_full = 0.391877+0.060382i  vs speed 0.391878+0.060382i  |dH|=1.18e-06
+
+[C] J07 envelope |H| >= max(0,1-w^2 E[D^2]/2): True
+
+[D] moment extraction (Lagrange in w^2 from w=.25/.5/.75):
+  E[D]  = 0.499593 (0.081% vs 0.5)   E[D^2] = 0.764054 (0.267% vs 0.7661)
+  4-point variant: E[D] = 0.499866, E[D^2] = 0.764437
+
+[E] dense inversion grid: dw=0.125 to w=60 + tail {70..120} + Laplace
+  128/492 omegas done (131s)
+  256/492 omegas done (207s)
+  384/492 omegas done (286s)
+  dense grid done: 492 omegas in 450s
+  tail model (LSQ, w>=60): c = -1.4295, c2 = -59.889, c3 = -704, c4 = -138823, rel-resid at w=300: 2.75e-01
+  inversion sanity: F(0)=0.3679 (atom 0.3679), F(12)=1.0000, monotone=False, F<=1=False, E[D]_cdf=0.50000
+  Laplace G(lam): [1.399, 2.823, 5.215, 9.263, 42.883, 10812.439, 530795348.808]
+  lambda* (tail rate) = 1.5200
+  CDF-restored E[D] = 0.50000 (0.5), E[D^2] = 0.76461 (0.7661)
+  MC q=0 legs (n=4e6 each)...
+  MC done in 22s; numerical-atom strip: 278613/1191978 and 278725/1193268 photons (neg/pos sub-float tail, max|D|~6.7e-16); floored to 0 for the KS
+  KS leg1: D = 6.542e-04  p = 0.065191
+  KS leg2: D = 6.882e-04  p = 0.045257
+  KS argmax: Dp at D=4.3945 (5.97e-04), Dm at D=0.4883 (6.54e-04)
+  binned KS [0,4]+tail: D = 6.532e-04  p = 0.065873
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/V01_master_charfun.py:648: DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  F0 = float(cdf_xt(tau))
+  CDF spot z-scores: {'0.1': 0.1, '0.5': -0.8, '1.0': 0.3, '2.0': -0.9, '3.0': -2.6, '4.0': -6.2, '6.0': 1.4, '8.0': 29.5, '10.0': 660.8, '12.0': 40399078.8}
+
+[E3] q=3 cloud: same pipeline, cheap grid (80,48,12,24) (reported)
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/V01_master_charfun.py:146: RuntimeWarning: divide by zero encountered in matmul
+  KM = Ptbl @ self.Pmat
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/V01_master_charfun.py:146: RuntimeWarning: overflow encountered in matmul
+  KM = Ptbl @ self.Pmat
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/V01_master_charfun.py:146: RuntimeWarning: invalid value encountered in matmul
+  KM = Ptbl @ self.Pmat
+  q=3 omega=0.25 (2s)
+  q=3 omega=19.75 (20s)
+  q=3 omega=20.25 (20s)
+  q=3 omega=39.75 (28s)
+  q=3 omega=60.00 (28s)
+  q=3 omega=80.00 (28s)
+  q=3 Laplace G(lam): [1.625, 2.851, 4.598, 6.632, 11.878, 48.447, 4640.044], lambda* = 0.820
+  q=3 MC done in 36s; floored 102616 sub-float negatives
+  q=3 KS: D = 4.250e-02  p = 0.000000
+
+[F] spectral/Pade bootstrap: fitted delay-law representations
+  m=3: rms=2.07e-01  max|dH|=3.96e-01
+       p=[0.5675 0.2646 0.1679]  tau=[0.0245 0.557  2.0149]
+  m=4: rms=1.47e-01  max|dH|=3.67e-01
+       p=[0.5571 0.193  0.2121 0.0378]  tau=[0.0341 0.5939 1.1275 3.3554]
+  m=5: rms=1.14e-01  max|dH|=2.66e-01
+       p=[0.455  0.1968 0.1879 0.1129 0.0474]  tau=[0.0085 0.2764 0.7784 1.3498 3.0095]
+  m=6: rms=1.40e-01  max|dH|=2.03e-01
+       p=[ 0.4904  0.2026  0.2174  0.0578  0.0476 -0.0158]  tau=[0.0203 0.2837 0.7563 3.013  4.3085 7.0447]
+
+============================================================================
+  V01.A1 kappa=0 vacuum H(w)=1 at 12 omegas (max dev 0.0e+00)
+  V01.A2 MC vacuum per-photon D: max|D| = 6.7e-16 (D == 0 identically)
+  V01.B1 H(0) = 1 + 5.3e-10
+  V01.B2 full-grid check w=0.5: |dH|=6.7e-08
+  V01.B2 full-grid check w=4.0: |dH|=5.4e-07
+  V01.B2 full-grid check w=15.0: |dH|=1.2e-06
+  V01.C J07 envelope |H| >= max(0,1-w^2 E[D^2]/2) at 12/12 omegas: True
+  V01.D1 extracted E[D] = 0.499593 vs 0.500000 (0.081% < 1%): True
+  V01.D2 extracted E[D^2] = 0.764054 vs 0.7661 (0.267% < 1%): True
+  V01.Esanity inversion self-checks: F(0)=0.368 F(12)=1.000 monotone=False E[D]_cdf=0.5000
+  V01.E0 deterministic tail rate lambda* = 1.520
+  V01.E1q0 marginal D-KS leg1: D=6.54e-04 p=0.0652
+  V01.E2q0 marginal D-KS leg2 (repro): D=6.88e-04 p=0.0453
+  V01.Egate q=0 marginal KS p > 0.01 (L03 closure): True
+  V01.E4q0 binned marginal KS: D=6.53e-04 p=0.0659
+  V01.E5q3 marginal D-KS (reported): p=0.0000
+  V01.F multiexp fits m=3..6, constraint-exact: m3 rms=2.1e-01; m4 rms=1.5e-01; m5 rms=1.1e-01; m6 rms=1.4e-01
+  VERDICT: PASS  (wall 920s)
+============================================================================
+V01_results.json written
+EXIT=0
+
+[E3 supplement] q=3 re-run at full dw=1/8 resolution (cheap grid 80,48,12,24);
+  q=3 grid: 324 omegas (0.125..40 @1/8 + {45,50,60,80}) in 223s
+  q=3 tail model: c1=-0.7551 c2=-10.60 c3=-284.1 c4=-9922.8
+  q=3 Laplace: lambda* = 0.8200
+  q=3 KS: D = 5.975e-04  p = 0.1150  (merged into V01_results.json as ks_q3)
+  q=3 atom strip floored: 102616 photons

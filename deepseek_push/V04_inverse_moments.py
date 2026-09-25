@@ -10,47 +10,47 @@ flight structure (V01 chordMomentVol = 3/4, X01 ladder, K05 hierarchy)?
 
 (1) MEASURE  E[D^m], m = 1..8, SEs, on the J02 engine, central, tau0 = 1,
     q = 0 AND q = 3, n = 1e7 each (E[D^3], E[D^4] never on record).
-(2) RECONSTRUCT p_D from the moments via  (a) maximum-entropy (MaxEnt) with
-    the truncated-exponential reference (standard dual iterative scheme:
-    Newton on the convex dual, shifted-Legendre moment basis; convergence,
-    chi2, entropy)  and  (b) the shifted-Jacobi polynomial series with the
-    same moments (classical moment-inversion on the bounded interval).
+(2) RECONSTRUCT p_D from the moments via
+    (a) maximum-entropy (MaxEnt) with the truncated-exponential reference:
+        the standard dual iterative scheme (BFGS on the convex dual in the
+        q0-orthonormal polynomial basis -- exact reparametrisation, well
+        conditioned; convergence, chi2, entropy reported);
+    (b) shifted-Jacobi (Legendre) polynomial series with the same moments
+        (classical moment-inversion on the bounded interval).
     Both compared against the MC histogram (n = 4e6) with a KS test.
-    The reconstruction domain [0, T_q] is taken FROM THE DATA: the support
-    budget T >= max_m mu_m^(1/m) is itself a moment-derived observer bound.
-(3) Reconstruction quality vs NUMBER of moments (2,4,6,8): at what order does
-    the KS pass p > 0.01?  Atom-blind (moments alone) AND atom-aware (the
-    delta-atom at D = 0 is EXACTLY invisible in the m >= 1 moments).
-(4) THE ANALYTIC CONNECTION.  D|N=1 = s_1 (1 - mu) exactly.  Two closed
-    objects:
-      (i)  the FIRST-FLIGHT CONTRIBUTION moments
-           E[D1^m] = E[s_1^m (1-mu)^m 1_{N>=1}] = W_m * E[s_1^m 1_{N>=1}],
-           W_m = (3/8) int (1-mu)^m (1+mu^2) dmu closed rationals.
-           Central q=0: E[s_1^m 1_{N>=1}] = gamma(m+1,1) closed;
-           central q=3: single quadrature of an elementary integrand;
-           volume q=0:  tau0 W_m sum_k (-tau0)^k/k! E[c^{m+k+1}]/(m+k+1),
-           a closed rational series on the X01 chord moments
-           (E[c^p] from P(c>s) = 1-3s/4+s^3/16; N02 anchors reproduced).
-           f_m = E[D1^m]/E[D^m]: the first-flight share of the m-th moment.
-      (ii) the exact N=1 SECTOR moments
-           E[D^m 1_{N=1}] = tau0 int_0^1 ds s^m e^{-tau0 s}
-                            (3/8) int dmu (1+mu^2)(1-mu)^m e^{-tau0 c2(s,mu)}
-           with c2(s,mu) = -s mu + sqrt(1 - s^2(1-mu^2)) the chord function
-           of the V01 route -- the second-flight survival couples s and mu
-           (the naive product formula is the thin limit and is wrong at
-           tau0 = 1, verified on record).  Verified vs the MC N=1 sector.
-           Residuals of the 1-sector-only prediction vs measured E[D^m] at
-           each m (where the multi-scatter tail begins in SE terms) and the
-           recursion test R_m = E[D^m]/E[D^m 1_{N=1}].
+    The domain [0, T_q] is taken FROM THE DATA: the support budget
+    T >= max_m mu_m^(1/m) is itself a moment-derived observer quantity;
+    at q=3 the tail is heavy (P(D>4) = 4.7%, max D ~ 21) so T_q = 12.8.
+(3) Reconstruction quality vs NUMBER of moments (2,4,6,8): at what order
+    does the KS pass p > 0.01?  Atom-blind (moments alone; the delta atom
+    at D=0 is EXACTLY invisible in the m>=1 moments) AND atom-aware
+    (observer who resolves the prompt spike: A is measurable).
+(4) THE ANALYTIC CONNECTION.  D|N=1 = s_1 (1-mu) exactly.  Two closed
+    objects, VERIFIED against the MC N=1 sectors (all z <= 1.93):
+      (i) the FIRST-FLIGHT CONTRIBUTION moments E[D1^m] = W_m E[s_1^m 1_{N>=1}],
+          W_m = (3/8) int (1-mu)^m (1+mu^2) dmu closed rationals
+          (1, 7/5, 11/5, 128/35, ...); central q=0 closed via the lower
+          incomplete gamma; central q=3 one elementary quadrature; volume
+          q=0 a closed rational series on the X01 chord moments
+          (E[c^p] from P(c>s) = 1-3s/4+s^3/16; N02 anchors 4/5,1,48/35
+          reproduced; E[c^1] = 3/4 = V01's chordMomentVol).  f_m = share.
+      (ii) the exact N=1 SECTOR moments with the second-flight survival
+           e^{-int kappa}: central = 2D coupled integral in the V01 chord
+           function c2 = -s mu + sqrt(1-s^2(1-mu^2)); volume = tensor
+           Gauss-Legendre with |p1-perp| = r sin(alpha).  P(N=1) analytic
+           matches MC to z <= 1.16.  Residuals of the 1-sector-only law vs
+           measured E[D^m] at each m; recursion R_m = E[D^m]/E[D^m 1_{N=1}].
 (5) Observer statement: moments measured; reconstruction quality vs order;
-    the moment-order budget for a 3-sigma density (one-SE moment
-    sensitivities -> sigma_p(tau) -> n_req(3 sigma)).
+    the moment-order budget for a 3-sigma density (one-SE sensitivities ->
+    sigma_p(tau) -> n_req(3 sigma)); the 8-moment MaxEnt degeneracy:
+    the measured 8th-moment vector sits ~0.7% from the boundary of the
+    moment cone on [0,T_q] (nnls floor), so the 8-constraint dual does not
+    converge -- registered, the Jacobi order-8 series still closes exactly.
 
 Cross-checks: MC at n=4e6 (KS reference); K05 deterministic hierarchy
-(E[D] = 0.500000, E[v^2] = 2.80674, E[Dv^2] = 3.70900, on record); V01's
-landed chordMomentVol = 3/4; the X01 ladder values; the deterministic
-first-flight transfer function H_1(omega) verified against the MC N=1 sector
-and compared with the reconstruction's characteristic function.
+(E[D] = 0.500000, E[v^2] = 2.80674, E[Dv^2] = 3.70900, on record); the X01
+ladder; the deterministic first-flight transfer function H_1(omega) verified
+vs the MC N=1 sector and compared with the reconstruction cf.
 
 No git commit.  SEs at n = 1e7.
 Deliverables: V04_INVERSE_MOMENTS.md, V04_inverse_moments.py,
@@ -66,10 +66,11 @@ import scipy.special as sps
 import scipy.stats as spst
 import sympy as spy
 from mpmath import mp, mpf, quad as mp_quad, exp as mp_exp, sqrt as mp_sqrt
+from scipy.optimize import minimize
 
 from J02_moment_hierarchy import simulate
 
-mp.dps = 40
+mp.dps = 30
 
 TAU0 = 1.0
 ORDERS = [2, 4, 6, 8]
@@ -118,27 +119,6 @@ def moment_table(D, mmax=N_MOM, w=None, blocks=NB):
     return np.array(mus), np.array(ses)
 
 
-def poly_shift(c, a, b):
-    n = len(c)
-    out = np.zeros(n)
-    for j in range(n):
-        if c[j] == 0:
-            continue
-        for i in range(j + 1):
-            out[i] += c[j] * math.comb(j, i) * b ** i * a ** (j - i)
-    return out
-
-
-def leg_basis(M):
-    A = np.zeros((M, M))
-    for k in range(M):
-        e = np.zeros(k + 1)
-        e[k] = 1.0
-        px = np.polynomial.legendre.leg2poly(e)
-        A[k, :len(px)] = poly_shift(px, -1.0, 2.0)
-    return A
-
-
 # ===========================================================================
 print("=" * 78)
 print("(1) DELAY MOMENT MEASUREMENT  E[D^m], m = 1..8   (n = 1e7, central)")
@@ -163,9 +143,7 @@ for q in (0, 3):
     Dmax = float(D.max())
     tail4 = float(np.mean(D > 4.0))
     T_feas = float(np.max(mus ** (1.0 / np.arange(1, N_MOM + 1)))) * 1.05
-    T_q = float(max(T_feas, 4.0))
-    # observer support budget: tail quantiles
-    T_q = max(T_q, float(np.quantile(D, 1.0 - 1e-9)) * 1.02)
+    T_q = max(T_feas, 4.0, float(np.quantile(D, 1.0 - 1e-4)) * 1.05)
     moment_data[q] = dict(D=D, N=N, mu=mus, se=ses,
                           mu_cond=mu_cond, se_cond=se_cond,
                           atom=float(A_hat), atom_se=float(A_se),
@@ -182,8 +160,8 @@ for q in (0, 3):
     for m in range(1, N_MOM + 1):
         print("   E[D^%d] = %.6f +/- %.6f   (cond %.6f +/- %.6f)"
               % (m, mus[m - 1], ses[m - 1], mu_cond[m - 1], se_cond[m - 1]))
-    print("   max D = %.3f   P(D > 4) = %.2e   support budget T_q = %.3f "
-          "(feasibility %.3f, quantile 1-1e-9)" % (Dmax, tail4, T_q, T_feas))
+    print("   max D = %.3f   P(D > 4) = %.2e   support budget T_q = %.3f"
+          % (Dmax, tail4, T_q))
     print("   wall %.1f s" % (time.time() - t0))
 
 for q in (0, 3):
@@ -240,8 +218,7 @@ for m in range(1, N_MOM + 1):
         (1 - u) ** m * (1 + u ** 2), (u, -1, 1))
     W_sym.append(w)
     W.append(float(w))
-print("W_m = (3/8) int_{-1}^{1} (1-mu)^m (1+mu^2) dmu:  "
-      + ", ".join("%s" % w for w in W_sym))
+print("W_m: " + ", ".join("%s" % w for w in W_sym))
 res["measurements"]["W_m"] = [str(w) for w in W_sym]
 
 s = spy.Symbol("s", positive=True)
@@ -255,7 +232,7 @@ print("E[c^1] = 3/4 = V01's landed chordMomentVol = X01 M_0.")
 
 
 def s1_central_moment(m, q):
-    """E[s_1^m 1_{N>=1}], central source, tau0 = 1 (exact)."""
+    """E[s_1^m 1_{N>=1}], central, tau0 = 1 (exact)."""
     if q == 0:
         return float(mp_quad(lambda t: t ** m * mp_exp(-TAU0 * t), [0, 1]) * TAU0)
     return float(mp_quad(
@@ -283,66 +260,71 @@ def s1_volume_moment(m):
     return TAU0 * tot
 
 
-def E_D1_m(m, q, volume=False):
-    """E[D1^m] = E[s_1^m (1-mu)^m 1_{N>=1}]."""
-    return (s1_volume_moment(m) if volume else s1_central_moment(m, q)) * W[m - 1]
-
-
 def N1_central_moment(m, q):
-    """EXACT E[D^m 1_{N=1}], central: coupled integrand with the second-flight
-    survival e^{-tau0 c2}, c2(s,mu) = -s mu + sqrt(1 - s^2 (1-mu^2)) (the chord
-    function of the V01 route)."""
+    """EXACT E[D^m 1_{N=1}], central: coupled integrand in the V01 chord
+    function c2 = -s mu + sqrt(1 - s^2(1-mu^2)), with the FULL second-flight
+    survival e^{-int kappa} (q=0: e^{-c2}; q=3: kappa(r)=1+3r^2 structure)."""
     def core(t, mm):
         c2 = -t * mm + mp_sqrt(1 - t ** 2 * (1 - mm ** 2))
         if q == 0:
-            return t ** m * (1 + mm ** 2) * (1 - mm) ** m \
-                * mp_exp(-TAU0 * c2) * mp_exp(-TAU0 * t)
+            surv = mp_exp(-TAU0 * c2)
+        else:
+            p1u2 = t * mm
+            p1sq = t * t
+            surv = mp_exp(-TAU0 * (c2 + q * (p1sq * c2 + p1u2 * c2 ** 2
+                                             + c2 ** 3 / 3)))
         return t ** m * (1 + q * t ** 2) * (1 + mm ** 2) * (1 - mm) ** m \
-            * mp_exp(-TAU0 * c2) * mp_exp(-TAU0 * (t + q * t ** 3 / 3))
+            * surv * mp_exp(-TAU0 * (t + q * t ** 3 / 3))
     return float(TAU0 * (mpf(3) / 8) * mp_quad(
         lambda t: mp_quad(lambda mm: core(t, mm), [-1, 0, 1]), [0, 1]))
 
 
 def N1_volume_moment(m):
-    """EXACT E[D^m 1_{N=1}], volume q=0, via nquad over (r, alpha, s, mu,
-    phi) with the coupled survival e^{-tau0 c2}.  s runs only to the first-
-    flight chord c1(r,alpha); beta (azimuth of u1 about e_z) drops out by
-    symmetry; the phi weight is dphi/(2 pi)."""
-    def c1(r, al):
-        return -r * np.cos(al) + np.sqrt(max(1 - r * r * np.sin(al) ** 2, 0.0))
-
-    def integrand(rr, al, tt, mm, ph):
-        r2 = rr * rr + 2 * rr * tt * math.cos(al) + tt * tt
-        p1u1 = rr * math.cos(al) + tt
-        sin_al = math.sin(al)
-        rho = (rr - tt * math.cos(al)) / max(sin_al, 1e-12)
-        b = p1u1 * mm
-        kap = math.sqrt(max(1 - mm * mm, 0.0)) * rho * math.cos(ph)
-        p1u2 = b + kap
-        c2 = -p1u2 + math.sqrt(max(p1u2 * p1u2 - r2 + 1.0, 0.0))
-        jac = 3.0 * rr * rr * sin_al * tt * math.exp(-TAU0 * tt) * TAU0 \
-            * (1 / (2 * math.pi))
-        return jac * (1 + mm * mm) * (1 - mm) ** m * math.exp(-TAU0 * c2)
-    from scipy.integrate import nquad
-    val, abserr = nquad(
-        integrand,
-        [[0, 1], [0, math.pi],
-         lambda rr, al: [0.0, c1(rr, al)],
-         [-1, 1], [0, 2 * math.pi]],
-        opts=[dict(limit=14)] * 5)
-    return val * (mpf(3) / 8)
+    """EXACT E[D^m 1_{N=1}], volume q=0: tensor Gauss-Legendre over
+    (r, alpha, s in [0, c1(r,alpha)], mu, phi).  beta drops by symmetry;
+    |p1-perp| = r sin(alpha) (the s-dependence cancels); phi weight
+    dphi/(2 pi); u1 measure (1/4 pi) sin a da db -> global factor 1/2."""
+    n = 24
+    xg, wg = np.polynomial.legendre.leggauss(n)
+    tot = 0.0
+    for i in range(n):
+        r = 0.5 * (xg[i] + 1.0)
+        wr = wg[i] * 0.5 * 3.0 * r * r
+        for j in range(n):
+            al = 0.5 * (xg[j] + 1.0) * np.pi
+            wa = wg[j] * 0.5 * np.pi * np.sin(al)
+            c1 = -r * np.cos(al) + np.sqrt(
+                max(1 - r * r * np.sin(al) ** 2, 0.0))
+            if c1 <= 1e-14:
+                continue
+            S = 0.5 * (xg + 1.0) * c1
+            ws = wg * 0.5 * c1
+            MU = xg[None, :, None]
+            PH = ((xg + 1.0) * np.pi)[None, None, :]
+            SS = S[:, None, None]
+            r2 = r * r + 2 * r * SS * np.cos(al) + SS * SS
+            p1u1 = r * np.cos(al) + SS
+            rho = r * np.sin(al)
+            b = p1u1 * MU
+            kap = np.sqrt(np.maximum(1 - MU ** 2, 0.0)) * rho * np.cos(PH)
+            p1u2 = b + kap
+            c2 = -p1u2 + np.sqrt(np.maximum(p1u2 ** 2 - r2 + 1.0, 0.0))
+            f = (SS ** m) * (1 + MU ** 2) * (1 - MU) ** m \
+                * np.exp(-TAU0 * c2) * np.exp(-TAU0 * SS)
+            I = np.einsum("ijk,i,j,k->", f, ws, wg, wg * np.pi)
+            tot += wr * wa * I
+    return tot * TAU0 * (mpf(3) / 8) * (1 / (2 * np.pi)) * (1 / 2)
 
 
 analytic = {"D1": {}, "N1": {}}
 for q in (0, 3):
-    D1m = [E_D1_m(m, q) for m in range(1, N_MOM + 1)]
+    D1m = [s1_central_moment(m, q) * W[m - 1] for m in range(1, N_MOM + 1)]
     N1m = [N1_central_moment(m, q) for m in range(1, N_MOM + 1)]
     analytic["D1"][q] = D1m
     analytic["N1"][q] = N1m
-    print("[central q=%d] first-flight contribution moments E[D1^m]:" % q)
-    print("   " + " ".join("%.5f" % v for v in D1m))
-    print("[central q=%d] exact N=1 sector E[D^m 1_{N=1}]:" % q)
-    print("   " + " ".join("%.5f" % v for v in N1m))
+    print("[central q=%d] E[D1^m] = %s" % (q, " ".join("%.5f" % v for v in D1m)))
+    print("[central q=%d] E[D^m 1_{N=1}] = %s"
+          % (q, " ".join("%.5f" % v for v in N1m)))
     for m in range(1, N_MOM + 1):
         z = (moment_data[q]["mu_N1u"][m - 1] - N1m[m - 1]) \
             / max(moment_data[q]["se_N1u"][m - 1], 1e-300)
@@ -350,18 +332,21 @@ for q in (0, 3):
         print("     m=%d: analytic %.6f vs MC %.6f +/- %.6f  z = %+.2f"
               % (m, N1m[m - 1], moment_data[q]["mu_N1u"][m - 1],
                  moment_data[q]["se_N1u"][m - 1], z))
-    # P(N=1) analytic = m = 0 case (informational)
     P1_ana = N1_central_moment(0, q)
     zP = (moment_data[q]["P1"] - P1_ana) / moment_data[q]["P1_se"]
     res["checks"]["P1_analytic_q%d" % q] = float(zP)
     print("   P(N=1): analytic %.6f vs MC %.6f +/- %.6f  z = %+.2f"
           % (P1_ana, moment_data[q]["P1"], moment_data[q]["P1_se"], zP))
 
-D1v = [E_D1_m(m, 0, volume=True) for m in range(1, N_MOM + 1)]
-print("[volume q=0] first-flight contribution moments E[D1^m] (closed "
-      "chord-moment series):")
-print("   " + " ".join("%.5f" % v for v in D1v))
+D1v = [s1_volume_moment(m) * W[m - 1] for m in range(1, N_MOM + 1)]
+print("[volume q=0] E[D1^m] (closed chord-moment series): %s"
+      % " ".join("%.5f" % v for v in D1v))
 try:
+    P1v_ana = N1_volume_moment(0)
+    P1v_se = math.sqrt(P1v * (1 - P1v) / len(Dv))
+    res["checks"]["P1_analytic_volume"] = float((P1v - P1v_ana) / P1v_se)
+    print("[volume q=0] P(N=1): analytic %.6f vs MC %.6f +/- %.6f  z = %+.2f"
+          % (P1v_ana, P1v, P1v_se, (P1v - P1v_ana) / P1v_se))
     N1v = [N1_volume_moment(m) for m in (1, 2, 3)]
     for m in range(1, 4):
         z = (mu_v1[m - 1] - N1v[m - 1]) / max(se_v1[m - 1], 1e-300)
@@ -370,7 +355,7 @@ try:
               "%.6f +/- %.6f  z = %+.2f" % (m, N1v[m - 1], mu_v1[m - 1],
                                             se_v1[m - 1], z))
 except Exception as e:
-    print("[volume q=0] coupled 5D integral failed: %s" % e)
+    print("[volume q=0] coupled integral failed: %s" % e)
     res["kill_events"].append("volume N1 coupled integral: %s" % e)
 res["measurements"]["N1_analytic"] = dict(
     central_q0=list(analytic["N1"][0]), central_q3=list(analytic["N1"][3]),
@@ -382,40 +367,127 @@ print("1-sector-only prediction vs measured E[D^m]: share f_m, residual (SE)")
 for q in (0, 3):
     mu = moment_data[q]["mu"]
     se = moment_data[q]["se"]
-    pred1 = np.array(analytic["N1"][q])       # exact single-scatter sector
-    f = np.array(analytic["D1"][q]) / mu      # first-flight share of E[D^m]
-    r = (mu - pred1) / se                     # residual of the 1-sector-only law
+    pred1 = np.array(analytic["N1"][q])
+    f = np.array(analytic["D1"][q]) / mu
+    r = (mu - pred1) / se
     res["measurements"]["sector_recursion_q%d" % q] = dict(
         f=list(f), residual_SE=list(r))
     for m in range(1, N_MOM + 1):
         flag = "  <-- multi-scatter tail dominates (|z| > 3)" if abs(r[m - 1]) > 3 else ""
-        print("  q=%d m=%d: first-flight share f_m = %.3f   residual(1-sector) = %+.2f SE%s"
+        print("  q=%d m=%d: f_m = %.3f   residual(1-sector) = %+.2f SE%s"
               % (q, m, f[m - 1], r[m - 1], flag))
     Rm = mu / pred1
     slope, cov = np.polyfit(np.arange(1.0, 9.0), Rm, 1, cov=True)
     zslope = slope[0] / math.sqrt(cov[0][0])
     res["checks"]["recursion_Rm_flat_q%d_zslope" % q] = float(zslope)
-    print("  q=%d recursion R_m = E[D^m]/E[D^m 1_{N=1}]: slope vs m = %.4f (z_slope = %+.2f)"
-          % (q, slope[0], zslope))
-    print("  q=%d R_m: %s" % (q, " ".join("%.2f" % v for v in Rm)))
+    print("  q=%d R_m: %s   (slope z = %+.2f)"
+          % (q, " ".join("%.2f" % v for v in Rm), zslope))
 
 # ===========================================================================
 print("=" * 78)
-print("(2) RECONSTRUCTION: MaxEnt (dual Newton) + shifted-Jacobi series")
-print("    domain [0, T_q] taken from the data (support budget from moments)")
+print("(2) RECONSTRUCTION: MaxEnt dual (q0-orthonormal BFGS) + Jacobi series")
+print("    domain [0, T_q] from the data (support budget from the moments)")
 print("=" * 78)
 # ===========================================================================
 
-recon = {}
-for q in (0, 3):
-    T = moment_data[q]["T_q"]
-    x, wsim = simpson_weights(0.0, T, G := 4001)
+
+def make_machinery(T):
+    """Grid, weights, raw-moment -> constraints maps for the interval [0, T]."""
+    x, wsim = simpson_weights(0.0, T, 4001)
     y = x / T
-    recon[q] = {"T": float(T), "x": list(x), "wsim": list(wsim)}
+    yn = np.ones((4001, N_MOM + 1))
+    for j in range(1, N_MOM + 1):
+        yn[:, j] = yn[:, j - 1] * y
 
-    def truncated_exp_ref(mean, TT=T):
-        f = lambda la: (1 - np.exp(-la * TT) * (1 + la * TT)) \
-                       / (la * (1 - np.exp(-la * TT))) - mean
+    def raw_moments(p):
+        return np.array([(p * wsim) @ yn[:, m] * T ** m
+                         for m in range(1, N_MOM + 1)])
+
+    def ortho_basis(q0, M):
+        """Orthonormal polynomials p_k (degree k, mean-zero under q0),
+        k = 1..M: p_k = sum_j U[j-1,k-1] y^j.  Returns U and the grid matrix."""
+        qw = q0 * wsim
+        mon = np.ones((4001, M + 1))
+        for j in range(1, M + 1):
+            mon[:, j] = mon[:, j - 1] * y
+        U = np.zeros((M, M))
+        pk = None
+        for k in range(M):
+            v = mon[:, k + 1].copy()
+            for l in range(k):
+                v = v - (np.sum(qw * v * pk_list[l])) * pk_list[l]
+            n = np.sqrt(np.sum(qw * v * v))
+            pk = v / max(n, 1e-300)
+            pk_list.append(pk)
+            A = mon[:, 1:M + 1] * qw[:, None] ** 0.5
+            c = np.linalg.lstsq(A, pk * np.sqrt(qw), rcond=None)[0]
+            U[:, k] = c
+        return U
+
+    pk_list = []
+
+    def maxent_fit(mu, q0, M, maxit=8000):
+        """Standard dual MaxEnt, BFGS in the q0-orthonormal polynomial basis
+        (an exact reparametrisation of the exponential family)."""
+        U = ortho_basis(q0, M)
+        mon = np.ones((4001, M + 1))
+        for j in range(1, M + 1):
+            mon[:, j] = mon[:, j - 1] * y
+        phi = mon[:, 1:M + 1] @ U
+        lw = np.log(wsim)
+        lq = np.log(np.maximum(q0, 1e-300))
+        nu = np.array([sum(U[j, k] * mu[j] / T ** (j + 1)
+                           for j in range(M) if abs(U[j, k]) > 1e-15)
+                       for k in range(M)])
+
+        def obj(al):
+            lp = lq + phi @ al
+            lZ = log_sum_exp(lp + lw)
+            p = np.exp(lp - lZ)
+            g = (p * wsim) @ phi - nu
+            return lZ - al @ nu, g
+
+        r = minimize(lambda a: obj(a), np.zeros(M), jac=True, method="BFGS",
+                     options=dict(maxiter=maxit, gtol=1e-13))
+        lp = lq + phi @ r.x
+        lZ = log_sum_exp(lp + lw)
+        p = np.exp(lp - lZ)
+        mraw = raw_moments(p)
+        viol = float(np.max(np.abs((p * wsim) @ phi - nu)))
+        rel = float(np.max(np.abs((mraw[:len(mu)] - mu)
+                                  / np.maximum(mu, 1e-9))))
+        converged = viol < 1e-6 and rel < 1e-4
+        H = -float((p * wsim) @ np.log(np.maximum(p, 1e-300)))
+        Dkl = float(r.x @ nu - lZ)
+        return dict(p=p, mom=mraw, entropy=H, dkl=Dkl, iters=int(r.nit),
+                    viol=viol, rel=rel, converged=bool(converged))
+
+    def jacobi_fit(mu, M):
+        """Shifted-Jacobi (Legendre) partial sum; moments <= M reproduced
+        exactly by construction; positive-part renormalised."""
+        UJ = np.eye(N_MOM + 1)  # placeholder (unused)
+        Aall = leg_basis_global(M + 1)
+        P = np.ones((4001, M + 1))
+        for j in range(1, M + 1):
+            P[:, j] = P[:, j - 1] * y
+        P = P @ Aall
+        cs = np.zeros(M + 1)
+        for n in range(M + 1):
+            cs[n] = (2 * n + 1) * (Aall[n, 0]
+                                   + sum(Aall[n, k] * mu[k - 1] / T ** k
+                                         for k in range(1, n + 1)
+                                         if Aall[n, k] != 0))
+        g = P @ cs
+        pos = np.maximum(g, 0.0)
+        Z = float(np.sum(pos * wsim))
+        p = pos / Z / T
+        return dict(p=p, mom=raw_moments(p),
+                    entropy=-float((p * wsim) @ np.log(np.maximum(p, 1e-300))),
+                    neg_mass=1.0 - Z, cs=list(cs))
+
+    def truncated_exp_ref(mean):
+        f = lambda la: (1 - np.exp(-la * T) * (1 + la * T)) \
+                       / (la * (1 - np.exp(-la * T))) - mean
         lo, hi = 1e-6, 80.0
         if f(lo) <= 0 or f(hi) >= 0:
             raise ValueError("mean %.4f outside truncated-exp range" % mean)
@@ -426,120 +498,68 @@ for q in (0, 3):
             else:
                 hi = mid
         la = math.sqrt(lo * hi)
-        z = (1 - np.exp(-la * TT)) / la
-        return np.exp(-la * x) / z, la
+        q0 = np.exp(-la * x) * la / (1 - np.exp(-la * T))
+        return q0, la
 
-    def moments_to_leg(mu, M):
-        A = leg_basis(M + 1)
-        nu = np.zeros(M)
-        for k in range(1, M + 1):
-            nu[k - 1] = sum(A[k, j] * mu[j] / T ** (j + 1)
-                            for j in range(M) if A[k, j] != 0)
-        return nu
+    return dict(T=T, x=x, wsim=wsim, y=y, raw_moments=raw_moments,
+                maxent_fit=maxent_fit, jacobi_fit=jacobi_fit,
+                truncated_exp_ref=truncated_exp_ref)
 
-    def phi_grid(M):
-        A = leg_basis(M + 1)
-        yp = np.ones((G, M + 1))
-        for j in range(1, M + 1):
-            yp[:, j] = yp[:, j - 1] * y
-        return yp @ A.T
 
-    def grid_moments(p):
-        yy = np.ones((G, N_MOM + 1))
-        for j in range(1, N_MOM + 1):
-            yy[:, j] = yy[:, j - 1] * y
-        return np.array([(p * wsim) @ yy[:, m] * T ** m
-                         for m in range(1, N_MOM + 1)])
+def leg_basis_global(M):
+    def poly_shift(c, a, b):
+        n = len(c)
+        out = np.zeros(n)
+        for j in range(n):
+            if c[j] == 0:
+                continue
+            for i in range(j + 1):
+                out[i] += c[j] * math.comb(j, i) * b ** i * a ** (j - i)
+        return out
+    A = np.zeros((M, M))
+    for k in range(M):
+        e = np.zeros(k + 1)
+        e[k] = 1.0
+        px = np.polynomial.legendre.leg2poly(e)
+        A[k, :len(px)] = poly_shift(px, -1.0, 2.0)
+    return A
 
-    def maxent_fit(nu, q0, M, maxit=500, tol=1e-12, ridge=1e-10):
-        P = phi_grid(M)
-        phi = P[:, 1:M + 1]
-        lw = np.log(wsim)
-        lq = np.log(np.maximum(q0, 1e-300))
-        alpha = np.zeros(M)
-        info = dict(iters=0, grad_inf=9e99, viol_inf=9e99, cond=np.nan)
-        for it in range(maxit):
-            lp = lq + phi @ alpha
-            lZ = log_sum_exp(lp + lw)
-            p = np.exp(lp - lZ)
-            Ep = (p * wsim) @ phi
-            g = Ep - nu
-            Wm = (p * wsim)[:, None]
-            H = (phi * Wm).T @ phi - np.outer(Ep, Ep) + ridge * np.eye(M)
-            info["grad_inf"] = float(np.max(np.abs(g)))
-            info["cond"] = float(np.linalg.cond(H))
-            if info["grad_inf"] < tol:
-                break
-            step = -np.linalg.solve(H, g)
-            Phi0 = lZ - alpha @ nu
-            t = 1.0
-            for _ in range(80):
-                al = alpha + t * step
-                Phit = log_sum_exp(lq + phi @ al + lw) - al @ nu
-                if Phit <= Phi0 + 1e-14:
-                    break
-                t *= 0.5
-            if t < 1e-16:
-                break
-            alpha = alpha + t * step
-            info["iters"] = it + 1
-        lp = lq + phi @ alpha
-        lZ = log_sum_exp(lp + lw)
-        p = np.exp(lp - lZ)
-        Ep = (p * wsim) @ phi
-        Hp = -float((p * wsim) @ np.log(np.maximum(p, 1e-300)))
-        return dict(p=p, mom=grid_moments(p), entropy=Hp,
-                    dkl=float(alpha @ nu - lZ), iters=info["iters"],
-                    grad_inf=info["grad_inf"],
-                    viol_inf=float(np.max(np.abs(Ep - nu))),
-                    cond=info["cond"])
 
-    def jacobi_fit(nu, M):
-        N = M
-        Aall = leg_basis(N + 1)
-        P = phi_grid(N)
-        cs = np.zeros(N + 1)
-        for n in range(N + 1):
-            cs[n] = (2 * n + 1) * sum(Aall[n, k] * nu[k - 1]
-                                      for k in range(1, n + 1)
-                                      if Aall[n, k] != 0)
-        g = P @ cs
-        pos = np.maximum(g, 0.0)
-        Z = float(np.sum(pos * wsim))
-        p = pos / Z / T
-        return dict(p=p, mom=grid_moments(p),
-                    entropy=-float((p * wsim) @ np.log(np.maximum(p, 1e-300))),
-                    neg_mass=1.0 - Z, cs=list(cs))
-
+recon = {}
+for q in (0, 3):
+    T = moment_data[q]["T_q"]
+    mk = make_machinery(T)
     mu = moment_data[q]["mu"]
     se = moment_data[q]["se"]
+    mu_cond = moment_data[q]["mu_cond"]
     A_hat = moment_data[q]["atom"]
+    recon[q] = {"T": float(T)}
     print("[q=%d] T = %.3f   ref lambda: blind %.4f | aware %.4f"
-          % (q, T, truncated_exp_ref(float(mu[0]))[1],
-             truncated_exp_ref(float(mu_cond := moment_data[q]["mu_cond"][0]))[1]))
-    for mode, muuse in (("blind", mu), ("aware", moment_data[q]["mu_cond"])):
-        q0, lam = truncated_exp_ref(float(muuse[0]))
+          % (q, T, mk["truncated_exp_ref"](float(mu[0]))[1],
+             mk["truncated_exp_ref"](float(mu_cond[0]))[1]))
+    for mode, muuse in (("blind", mu), ("aware", mu_cond)):
+        q0, lam = mk["truncated_exp_ref"](float(muuse[0]))
         row = {"ref_lambda": float(lam)}
         for M in ORDERS:
-            nu = moments_to_leg(muuse[:M], M)
-            mf = maxent_fit(nu, q0, M)
-            jf = jacobi_fit(nu, M)
+            mf = mk["maxent_fit"](muuse[:M], q0, M)
+            jf = mk["jacobi_fit"](muuse[:M], M)
             chi2_me = float(np.sum(((mf["mom"][:M] - muuse[:M]) / se[:M]) ** 2))
             chi2_j = float(np.sum(((jf["mom"][:M] - muuse[:M]) / se[:M]) ** 2))
             row["M%d" % M] = dict(
                 maxent=dict(p=list(mf["p"]), mom=list(mf["mom"]),
                             entropy=float(mf["entropy"]), dkl=float(mf["dkl"]),
-                            iters=float(mf["iters"]),
-                            grad_inf=float(mf["grad_inf"]),
-                            viol_inf=float(mf["viol_inf"]),
-                            cond=float(mf["cond"]), chi2=float(chi2_me)),
+                            iters=float(mf["iters"]), viol=float(mf["viol"]),
+                            rel=float(mf["rel"]),
+                            converged=bool(mf["converged"]),
+                            chi2=float(chi2_me)),
                 jacobi=dict(p=list(jf["p"]), mom=list(jf["mom"]),
                             entropy=float(jf["entropy"]),
                             neg_mass=float(jf["neg_mass"]), chi2=float(chi2_j)))
-            print("  [q=%d %-5s M=%d] MaxEnt: iters=%d |grad|=%8.1e viol=%8.1e "
-                  "cond=%7.1e chi2=%.2f H=%.4f | Jacobi neg_mass=%.4f chi2=%.2f"
-                  % (q, mode, M, mf["iters"], mf["grad_inf"], mf["viol_inf"],
-                     mf["cond"], chi2_me, mf["entropy"], jf["neg_mass"], chi2_j))
+            print("  [q=%d %-5s M=%d] MaxEnt: iters=%d viol=%8.1e rel=%8.1e%s "
+                  "chi2=%.2f H=%.4f | Jacobi neg_mass=%.4f chi2=%.2f"
+                  % (q, mode, M, mf["iters"], mf["viol"], mf["rel"],
+                     "" if mf["converged"] else "  NOT-CONVERGED",
+                     chi2_me, mf["entropy"], jf["neg_mass"], chi2_j))
         recon[q][mode] = row
 
 print("-" * 70)
@@ -549,14 +569,21 @@ ks_tables = {}
 for q in (0, 3):
     D_mc = hist[q]
     A_hat = moment_data[q]["atom"]
-    T = moment_data[q]["T_q"]
-    wsim = np.array(recon[q]["wsim"])
-    edges = np.linspace(0.0, T, G := 4001 + 1)
+    mk = make_machinery(moment_data[q]["T_q"])
+    wsim = mk["wsim"]
+    T = mk["T"]
+    edges = np.linspace(0.0, T, 4001 + 1)
     ks_tables[q] = {}
     for mode in ("blind", "aware"):
         row = {}
         for M in ORDERS:
             for method in ("maxent", "jacobi"):
+                if method == "maxent" and not recon[q][mode]["M%d" % M][method]["converged"]:
+                    row["M%d_%s" % (M, method)] = dict(D_ks=None, lam=None,
+                                                       p=None, not_converged=True)
+                    print("[q=%d %-5s M=%d %-7s] NOT CONVERGED (registered)"
+                          % (q, mode, M, method))
+                    continue
                 p = np.array(recon[q][mode]["M%d" % M][method]["p"])
                 F_rec = np.concatenate(([0.0], np.cumsum(p * wsim)))
                 F_rec = F_rec / F_rec[-1]
@@ -576,14 +603,15 @@ for q in (0, 3):
         ks_tables[q][mode] = row
         for method in ("maxent", "jacobi"):
             first = next((M for M in ORDERS
-                          if row["M%d_%s" % (M, method)]["p"] > 0.01), None)
+                          if row["M%d_%s" % (M, method)].get("p") is not None
+                          and row["M%d_%s" % (M, method)]["p"] > 0.01), None)
             res["measurements"]["KS_first_pass_q%d_%s_%s" % (q, mode, method)] = first
             print("   [q=%d %s %s] first KS pass (p > 0.01) at M = %s"
                   % (q, mode, method, first))
 res["measurements"]["ks_tables"] = ks_tables
 
 T = moment_data[0]["T_q"]
-edges = np.linspace(0.0, T, G := 4001 + 1)
+edges = np.linspace(0.0, T, 4001 + 1)
 h1, h2 = hist[0][:len(hist[0]) // 2], hist[0][len(hist[0]) // 2:]
 F1 = np.searchsorted(np.sort(h1), edges, side="left") / len(h1)
 F2 = np.searchsorted(np.sort(h2), edges, side="left") / len(h2)
@@ -601,76 +629,18 @@ print("=" * 78)
 # ===========================================================================
 budget = {}
 for q in (0, 3):
-    T = moment_data[q]["T_q"]
-    x, wsim = simpson_weights(0.0, T, 4001)
-    y = x / T
+    mk = make_machinery(moment_data[q]["T_q"])
     mu = moment_data[q]["mu"]
     se = moment_data[q]["se"]
-
-    def truncated_exp_ref(mean, TT=T):
-        f = lambda la: (1 - np.exp(-la * TT) * (1 + la * TT)) \
-                       / (la * (1 - np.exp(-la * TT))) - mean
-        lo, hi = 1e-6, 80.0
-        for _ in range(300):
-            mid = math.sqrt(lo * hi)
-            if f(mid) > 0:
-                lo = mid
-            else:
-                hi = mid
-        la = math.sqrt(lo * hi)
-        z = (1 - np.exp(-la * TT)) / la
-        return np.exp(-la * x) / z, la
-
-    def m2leg(muuse, M):
-        A = leg_basis(M + 1)
-        nu = np.zeros(M)
-        for k in range(1, M + 1):
-            nu[k - 1] = sum(A[k, j] * muuse[j] / T ** (j + 1)
-                            for j in range(M) if A[k, j] != 0)
-        return nu
-
-    def pgrid(M):
-        A = leg_basis(M + 1)
-        yp = np.ones((G, M + 1))
-        for j in range(1, M + 1):
-            yp[:, j] = yp[:, j - 1] * y
-        return yp @ A.T
-
-    def fit(nu, M):
-        P = pgrid(M)
-        phi = P[:, 1:M + 1]
-        lw = np.log(wsim)
-        lq = np.log(np.maximum(q0, 1e-300))
-        alpha = np.zeros(M)
-        for it in range(400):
-            lp = lq + phi @ alpha
-            lZ = log_sum_exp(lp + lw)
-            p = np.exp(lp - lZ)
-            Ep = (p * wsim) @ phi
-            g = Ep - nu
-            if float(np.max(np.abs(g))) < 1e-12:
-                break
-            Wm = (p * wsim)[:, None]
-            H = (phi * Wm).T @ phi - np.outer(Ep, Ep) + 1e-10 * np.eye(M)
-            step = -np.linalg.solve(H, g)
-            Phi0 = lZ - alpha @ nu
-            t = 1.0
-            for _ in range(80):
-                al = alpha + t * step
-                if log_sum_exp(lq + phi @ al + lw) - al @ nu <= Phi0 + 1e-14:
-                    break
-                t *= 0.5
-            if t < 1e-16:
-                break
-            alpha = alpha + t * step
-        lp = lq + phi @ alpha
-        lZ = log_sum_exp(lp + lw)
-        return np.exp(lp - lZ)
-
-    q0, _ = truncated_exp_ref(float(mu[0]))
+    q0, _ = mk["truncated_exp_ref"](float(mu[0]))
     budget[q] = {}
-    for M in ORDERS:
-        p0 = fit(m2leg(mu[:M], M), M)
+    for M in (2, 4, 6):
+        mf = mk["maxent_fit"](mu[:M], q0, M)
+        if not mf["converged"]:
+            budget[q][M] = dict(max_sigma_rel=float("nan"),
+                                n_req_3sigma=float("nan"), note="not converged")
+            continue
+        p0 = mf["p"]
         sig2 = np.zeros_like(p0)
         for mm in range(M):
             mup = mu[:M].copy()
@@ -679,8 +649,8 @@ for q in (0, 3):
             mum[mm] -= se[mm]
             if mum[mm] <= 0:
                 mum[mm] = 0.0
-            pp = fit(m2leg(mup, M), M)
-            pm = fit(m2leg(mum, M), M)
+            pp = mk["maxent_fit"](mup, q0, M)["p"]
+            pm = mk["maxent_fit"](mum, q0, M)["p"]
             sig2 += ((pp - pm) / 2.0) ** 2
         sig = np.sqrt(sig2)
         rel = sig / np.maximum(p0, 1e-9)
@@ -700,16 +670,28 @@ print("=" * 78)
 
 
 def H1_det(q, omega):
-    sg = np.linspace(1e-9, 1.0, 4001)
+    """Deterministic N=1-sector transfer function (central source):
+    H_1(w) = int_0^1 ds wgt(s) int dmu (3/8)(1+mu^2) surv(c2(s,mu))
+             e^{-i w s (1-mu)},  surv = the FULL second-flight survival
+    (q=0: e^{-c2}; q=3: e^{-(c2 + q(s^2 c2 + s mu c2^2 + c2^3/3))})."""
+    sg = np.linspace(0.0, 1.0, 4001)
+    mg = np.linspace(-1.0, 1.0, 2001)
     wg = simpson_weights(0.0, 1.0, 4001)[1]
-    kappa = 1 + q * sg ** 2
-    wgt = TAU0 * sg * kappa * np.exp(-TAU0 * (sg + q * sg ** 3 / 3.0))
-    c = np.outer(omega, sg)
-    small = np.abs(c) < 1e-8
-    g = np.where(small, 1.0,
-                 (3 / 8) * (4 * np.sin(c) / c - 4 * np.sin(c) / c ** 3
-                            + 4 * np.cos(c) / c ** 2))
-    return (wgt[None, :] * wg[None, :] * np.exp(-1j * c) * g).sum(axis=1)
+    wm = simpson_weights(-1.0, 1.0, 2001)[1]
+    S, MU = np.meshgrid(sg, mg, indexing="ij")
+    c2 = -S * MU + np.sqrt(np.maximum(1 - S ** 2 * (1 - MU ** 2), 0))
+    if q == 0:
+        surv = np.exp(-TAU0 * c2)
+    else:
+        surv = np.exp(-TAU0 * (c2 + q * (S ** 2 * c2 + S * MU * c2 ** 2
+                                         + c2 ** 3 / 3)))
+    wgt = TAU0 * (1 + q * sg ** 2) * np.exp(-TAU0 * (sg + q * sg ** 3 / 3))
+    K = (3 / 8) * (1 + MU ** 2) * surv
+    out = np.empty(len(omega), dtype=complex)
+    for i, w in enumerate(omega):
+        G = (K * wm[None, :] * np.exp(1j * w * S * MU)).sum(axis=1)
+        out[i] = (wgt * wg * np.exp(-1j * w * sg) * G).sum()
+    return out
 
 
 wgrid = np.linspace(0.05, 20.0, 101)
@@ -719,17 +701,24 @@ for q in (0, 3):
     mask = Nn == 1
     Hmc1 = np.array([np.mean(np.exp(-1j * w * Dn[mask])) for w in wgrid])
     H1 = H1_det(q, wgrid)
-    err = float(np.max(np.abs(Hmc1 - H1)) / np.max(np.abs(Hmc1)))
-    detH[q] = dict(max_relerr=err)
+    P1a = N1_central_moment(0, q)
+    H1c = H1 / P1a
+    err = float(np.max(np.abs((Hmc1 - H1c) / np.maximum(abs(Hmc1), 1e-9))))
+    supdiff = float(np.max(np.abs(Hmc1 - H1c)))
+    detH[q] = dict(max_relerr=err, sup_absdiff=supdiff)
     res["checks"]["H1_det_vs_MC_q%d_maxrelerr" % q] = err
-    print("[q=%d] deterministic H_1 vs MC N=1 sector: max rel err = %.2e"
-          % (q, err))
+    print("[q=%d] deterministic H_1 (conditional) vs MC N=1 sector: "
+          "sup |diff| = %.2e   max rel err = %.2e"
+          % (q, supdiff, err))
     D_mc = hist[q]
     Hmc = np.array([np.mean(np.exp(-1j * w * D_mc)) for w in wgrid])
-    xx = np.array(recon[q]["x"])
-    ww = np.array(recon[q]["wsim"])
+    mk = make_machinery(moment_data[q]["T_q"])
+    xx = mk["x"]
+    ww = mk["wsim"]
     for mode in ("blind", "aware"):
-        for M in (4, 8):
+        for M in (4, 6):
+            if not recon[q][mode]["M%d" % M]["maxent"]["converged"]:
+                continue
             p = np.array(recon[q][mode]["M%d" % M]["maxent"]["p"])
             phirec = np.array([(p * ww * np.exp(1j * w * xx)).sum()
                                for w in wgrid])
