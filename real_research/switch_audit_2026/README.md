@@ -12,6 +12,18 @@ would show up as x_c drifting with mass.
 
 | BS2 | `BS2_efe_vs_switch.py` | 11/15 (E3b, E6, E9, E13 fail, recorded) | The external-field effect (EFE) the QUMOND-form model already contains, via an exact stacked-lens flux law (sphere-averaged enclosed mass M_b N(y, e), limits verified). **(1)** A weak field (e ~ 7e-5) does most of the switch's work (Δχ² −13.5 / −14.2); with it in, the switch adds only −4.9 / −5.6, and the data cannot reliably tell the two truncations apart (power 0.80 / 0.55). L342's KiDS preference is not specific evidence for the switch. **(2)** KiDS bounds the Newtonian external field: e ≤ 7.2e-5 / 5.2e-5 (stacked rms ≤ 6.7e-5 / 4.6e-5 a0). The switch keeps the linear web Newtonian and ΛCDM-like, so the construction's own field on a lens is σ_g,3D = 0.013 / 0.011 a0 (E-H P(k), σ_v,1D ≈ 265–300 km/s check), ~200× over the bound. C-H/K's kernel takes free-fall fields (L340 S1 runs it on the Sun with the Galaxy's field). Result: Δχ² +569 / +582 on all points, +40 / +45 inside 0.3 Mpc, where Brouwer+21 treat isolation as certain and no two-halo term can help. **Sensitivity:** at Brouwer+21's 4× weaker adopted field (e = 0.003; 1.6% of the Maxwell field is that quiet) it passes inside 0.3 Mpc and fails by +320 / +362 only at 0.3–3 Mpc. A baryons-only kernel fails on all points (+250) but passes inside 0.3 Mpc: not excluded here. Control: pure MOND (field MOND-level, e_N = e_M²) is not excluded by the same machinery. |
 
+| BS3 | `BS3_isolated_field_two_halo.py` | 6/7 (G1 fails, recorded) | Closes BS2's two gaps. **(i) The field an isolated lens feels**, from a linear ΛCDM mock (300 Mpc, 256³, fixed-amplitude, two phase sets): lognormal galaxies (n = 0.01 Mpc⁻³, bias 1.2), isolation = no galaxy within 3 Mpc (16% of galaxies), and long modes added back analytically. Isolated lenses feel rms 0.0150 a0 vs 0.0151 at random points. Isolation removes near neighbours' pull but not the long modes that dominate the field; only 1% of isolated lenses are as quiet as Brouwer+21's e = 0.003. This agrees with the analytic field from outside 3 Mpc (window j0(kR)) to 2%. **(ii) A 2-halo term** (projected linear ξ_mm, b free per bin, the same freedom for every model). At b ≤ 2 the construction fails by Δχ² +404 / +415 on all points and +47 / +52 inside 0.3 Mpc. Even with b up to 20 it fails by +364 / +375 (its best fit wants b ≈ 3.5). Injection: the gate passes in 10/10 draws when the construction is true, and fails in 10/10 under MUTATE. A baryons-only kernel fails by +145 / +152 (+133 even at b up to 20) but passes inside 0.3 Mpc. Pure MOND at its own MOND-level field: +17 / +16 at 0.3–3 Mpc, 0.0 inside 0.3 Mpc. |
+
+**Standing (BS3, supersedes BS2's "not yet clean"):** C-H/K + switch is **excluded** by KiDS-1000 isolated lensing
+through its own external-field effect. This holds when its kernel sees the total Newtonian field of the ΛCDM-like web
+the switch keeps, with the CMB frame as the preferred frame (KM1/L333). The failure is inside 0.3 Mpc, where isolation
+is certain and no 2-halo term acts, and on all points, with any plausible 2-halo term. Isolation does not quiet the
+field. A kernel sourced by baryons only is disfavoured (+133 to +152 at 0.3–3 Mpc) but survives inside 0.3 Mpc. The
+open door is a kernel blind to the large-scale field: one sourced only by the bound region's own matter, or an aether
+that co-falls with the large-scale flow. Either is a new ingredient that must still hand the Sun the Galaxy's field
+(L340 S1). Side result: pure QUMOND at a ΛCDM-sized MOND-level field is in a ~4σ tension at 0.3–3 Mpc on this point-mass
+base model.
+
 **Standing (BS2):** as built (the kernel's argument is the total filtered Newtonian field; the switch leaves the web
 Newtonian), C-H/K + switch fails KiDS-1000 isolated lensing through its own external-field effect. The failure is
 +570 in χ² on all points, and also inside the clean radius if isolated lenses feel the ΛCDM-typical field. Two things
@@ -27,4 +39,5 @@ field; chi^2 ~ 97/60 after the switch), so the absolute fit quality limits what 
 
 Controls: BS1 `MUTATE=1` replaces the data with a synthetic set whose true threshold drifts 2 -> 20 across the
 bins; S3 must then fail (rc = 1). BS2 `MUTATE=1` replaces the data with an EFE-only synthetic set (e = 1e-4, no
-switch); E3a must then fail (rc = 1). Outputs are written separately (`*_MUTATE.out`, `*_results_MUTATE.json`).
+switch); E3a must then fail (rc = 1). BS3 `MUTATE=1` injects the no-EFE switch model in place of the construction's
+own; the injection gate G3 must then fail (rc = 1). Outputs are written separately (`*_MUTATE.out`, `*_results_MUTATE.json`).
