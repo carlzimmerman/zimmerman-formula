@@ -112,3 +112,24 @@ The dark-sector door is now stated as precisely as the record allows: cold in th
 - a carrier coupled directly to U;
 - a kernel that does not read the carrier's field (not C-H/K);
 - a carrier absent from clusters at z = 0 but present at z = 2–3.
+
+## L365 — the virialization-triggered carrier: a narrow window, decided by clusters
+
+`L365_virialization_triggered_carrier.py` (4/4; `MUTATE`, in which the trigger never fires, fails T1 and T2, rc = 1). This lane builds spec item (3) of the 09-25 synthesis: a carrier that is cold in the web and the forest and leaves halos as they virialize.
+
+**The setup.** A two-species particle-mesh cosmology (baryons plus the carrier, Newtonian gravity, as the kernel-invisible spec requires). A cold carrier particle decays at Γ = 10H once the bound-region variable x̃ ≥ (3/2)Ω_m δ (Lean I26) exceeds x_c, and receives an isotropic kick v_k.
+
+**Result.** A window exists in S₈, the forest and halo clearing together. At x_c = 5 and v_k ≈ 700 km/s:
+- S₈ is 0.928 of ΛCDM (strict floor 0.922);
+- the flux power stays within 5.5%;
+- dense cells keep 19% of ΛCDM's carrier at z = 2.
+
+The window runs from about 560 to 720 km/s on the strict S₈ floor, or to about 800 km/s on the alternative:
+- at 550 km/s the dense cells keep 0.31 (not cleared);
+- at 850 km/s S₈ drops to 0.885.
+
+Faster kicks clear halos but cost S₈ (0.65–0.87). Higher thresholds keep S₈ but do not clear halos. My pre-run hypothesis ("no window") was falsified by the widened grid.
+
+**What decides it: clusters.** L354's cluster table scored the carrier decaying at z = 0 in the full-depth well, and needs v_k ≥ 1000–1200 km/s. For a local trigger that is a proxy of unknown sign: the carrier decays earlier in shallower progenitors, but the growing cluster (v_esc ≈ 2000–3000 km/s) can recapture daughters kicked at about 700 km/s. Cluster retention under the assembly history is the next computation.
+
+**Limits.** 50 Mpc/h box on a 0.39 Mpc/h mesh; the MOND boost of baryons inside halos is not modelled; one realisation.
