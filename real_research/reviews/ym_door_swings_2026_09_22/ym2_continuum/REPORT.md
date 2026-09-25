@@ -223,3 +223,64 @@ without saying how. The concrete schedule r_n = 1 − a/(n + n₀) was tested.
 
 The sharpest open question this repository can pose on the bridge is: *does a Tomboulis-type comparison
 inequality hold with margin ε_n = a/n, 0 < a ≤ 1?* Nothing here is progress toward the Clay prize.
+
+**Correction to §8 (2026-09-25, same day; the swing-3 script and output are left as committed).** Swing 3
+said the r = 0.9 separatrix (β = 2.399) matched Ito–Seiler's 4.8 "up to a factor-2 normalisation". Their
+detailed paper (arXiv:0803.3019, eq. 2.1a) uses the weight exp[(β/2)χ₁/₂(U)]. If χ₁/₂ = tr U = 2 cos θ,
+that is exactly this script's exp(β cos θ), so **their stated convention does not explain the factor 2**. It
+would be explained if their numerics used the normalised character tr U/2, but that is unverified, and the
+discrepancy stays open. The Gaussian estimate β* ≈ c·r/(1 − r), with this script's measured SU(2) drift
+c ≈ 0.27, gives 2.4 and supports this script's value. Their detailed paper also has the directions the
+normal way round (β ≥ 4.8 flows to weak coupling); the reversal was only in the conference version
+(arXiv:0901.4246). Check A2 of swing 3, which was post hoc, should therefore be read as "unexplained factor
+2", not as a normalisation match.
+
+---
+
+## 9. Swing 4 (2026-09-25): the vanishing-margin door
+
+Script: `swing4_vanishing_margin.py`. Output: `swing4_stdout.txt` and `swing4_results.json`. It runs nine
+checks, all of which pass. Question: does a Tomboulis-type comparison survive a margin ε_m = a/(m + n₀),
+0 < a ≤ 1?
+
+**Where the margin enters, from the sources.** Tomboulis's decimation upper bound (III.1, eq. 3.4) holds
+for every 0 < r ≤ 1, so the inequality itself needs no margin. The margin is used only in (3.30)–(3.32):
+it keeps the interpolation parameter at α ≤ 1 − δ, lattice-size independently, so that η₁, η₂ > 0.
+Appendix B (B.21–B.22) gives δ(ε) = εθ/2 at each step. The η's are used per step, in (5.7)–(5.9), to
+absorb O(1/|Λ|) mismatches that vanish as the volume grows at a fixed number of steps n. At any finite n,
+every margin is at least a/(n + n₀) > 0. **A margin shrinking like a/n therefore costs his argument
+nothing at finite n.** Uniformity in n is not claimed and, on this reading, not needed.
+
+**The tension Ito–Seiler identified ("choice 1") is removed.** Their point: with a fixed r < 1, the flow
+reaches strong coupling only if r is closer to 1 the larger β is. The schedule is one β-independent
+choice. The SU(2) weak-coupling drift under the decimation is a **constant, −0.250 per step, flat from
+β_eff = 30 to 250**, the decimation's one-loop coefficient. So for 0 < a ≤ 1 the scalar model guarantees
+that SU(2) turns around from every β. Under the least conservative schedule tested (a = 0.25, n₀ = 50),
+SU(2) confines from β₀ = 2.5–16 within one step of the scalar model. Larger β rests on the constant drift
+continuing beyond β_eff = 250, which is an extrapolation.
+
+**The U(1) objection is removed at the level of the flow.** The 4D Wilson U(1) theory deconfines at
+β_c = 1.011128 (Arnold et al., hep-lat/0011058). Every one of the 24 schedules tested (a = 0.25–1,
+n₀ = 2–50) puts U(1)'s separatrix at **β = 0.22–0.75**, below β_c. So no schedule "proves" U(1)
+confinement in its Coulomb phase. At fixed r = 1, by contrast, the decimation confines U(1) at every β.
+The escape criterion β_eff > 3 is justified by U(1)'s own drift there, measured at 5.5e-16 per step.
+
+**What is left, and why the door stays shut.**
+
+1. **Ito–Seiler Problems 1–3 are untouched by the margin:**
+   - the existence of t_m in (5.9);
+   - the existence of a common t* with α = α⁺;
+   - the *global* extension of the implicit-function branch from λ = 0 to λ = 1.
+
+   Problem 3 would follow from the global implicit-function theorem, given a uniform-in-t lower bound on
+   |∂Ψ/∂t| and an upper bound on |∂Ψ/∂λ|. But ∂Ψ/∂t = dh/dt + λ dΦ/dt adds a negative term (≤ −η₂) to a
+   positive one, so no sign argument supplies the bound, and it has to be proved.
+2. **Two inputs are taken from Tomboulis without independent check:** θ_m > 0 at each step (B.21), and the
+   claim that the η's are needed only per step.
+3. **Even with Problems 1–3 closed, the result is lattice confinement,** a nonzero 't Hooft string tension
+   at every bare coupling for SU(2). That would be a major lattice theorem. It is still not the continuum
+   Yang–Mills theory with a mass gap that the Clay problem asks for.
+
+**Net.** The vanishing margin reconciles Tomboulis's decimation bridge with both the SU(2) flow and the
+known U(1) phase diagram, and it pins the remaining gap down to Ito–Seiler's Problems 1–3. Nothing here
+is progress toward the Clay prize.
