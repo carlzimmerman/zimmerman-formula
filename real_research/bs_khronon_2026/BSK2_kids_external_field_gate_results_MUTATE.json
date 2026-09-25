@@ -1,0 +1,374 @@
+{
+ "lane": "BSK2",
+ "mutate": true,
+ "checks": {
+  "C1 the two-fluid integrator's LCDM run reproduces sigma_8 = 0.811 to 1%": {
+   "ok": true,
+   "measured": "0.8110",
+   "load_bearing": true
+  },
+  "C2 the LCDM Newtonian field at z = 0.25 agrees with BS3's isolated-lens mock (0.0150 a0) within 25%": {
+   "ok": true,
+   "measured": "0.0134 a0 vs 0.015",
+   "load_bearing": true
+  },
+  "C3 BS24's DBI background: eq. 89's w equals eq. 94a, and the late Jeans wavenumber is k_J = a mu (physical Jeans length 1/mu, independent of w)": {
+   "ok": true,
+   "measured": "{\"A (mu^-1 = 22.3 Mpc, lam_D = 1)\": 1.0, \"B (mu^-1 = 223 kpc, lam_D = 30)\": 1.0}",
+   "load_bearing": true
+  },
+  "G1 with their own k-dependent sound speed (eq. 71) both published benchmarks suppress linear sigma_8 below 0.9 x 0.811 (the late khronon does not self-gravitate below 1/mu, after the DBI turning point)": {
+   "ok": false,
+   "measured": "A: sigma_8 = 0.847; B: sigma_8 = 0.815",
+   "load_bearing": true
+  },
+  "E1 benchmark A's MOND-function external field at KiDS lenses exceeds KiDS-1000's bound on both footings (the gate C-H/K + switch failed); benchmark B's is recorded": {
+   "ok": false,
+   "measured": "A: e = 0.00e+00 (x0 canonical, x0 alt); B: e = 0.00e+00 (x0)",
+   "load_bearing": true
+  },
+  "S1 no mu in 0.03-100 Mpc (lam_D = 1 and 30) passes all three at once: e_web <= 7.2e-5 (KiDS), r_C >= 1 Mpc for a Milky-Way lens (MOND-like lensing to ~1 Mpc), sigma_8 within 10% of 0.811": {
+   "ok": false,
+   "measured": "6 of 20 grid points pass all three",
+   "load_bearing": false
+  },
+  "S2 KiDS alone leaves no mu: its external-field bound needs a short Jeans length (mu^-1 <~ 0.3 Mpc), a MOND-like lens profile to ~1 Mpc needs a long one (mu^-1 >~ 10 Mpc; BS24 eq. 38)": {
+   "ok": false,
+   "measured": "6 of 20 grid points pass both; external field ok for mu^-1 <= 100.0 Mpc, r_C ok for mu^-1 >= 22.3 Mpc",
+   "load_bearing": false
+  },
+  "C4 (documentary) with c_s^2 = c_ad^2 at every k (no cap from eq. 71) benchmark A's sigma_8 falls further: eq. 71 caps the pressure at the self-gravity level, so the suppression it gives is the cancellation, not more": {
+   "ok": false,
+   "measured": "eq. 71: 0.847; adiabatic: 1.994",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "controls": {
+   "sigma8_lcdm": 0.8110497935366277,
+   "g_lcdm_a0": 0.013404056881533306,
+   "benchmarks": {
+    "A (mu^-1 = 22.3 Mpc, lam_D = 1)": {
+     "I0": 4.0055402017930264e-08,
+     "w0": 4.979760677135575e-06,
+     "cad2_0": 9.95947624111148e-06,
+     "kJ_over_a_mu_today": 1.0000099596475882,
+     "z_turn(Z=1)": 45.4786021610278,
+     "w_max": 0.20706644802353624,
+     "w_eq89_vs_eq94_maxdiff": 3.8044384062887494e-12
+    },
+    "B (mu^-1 = 223 kpc, lam_D = 30)": {
+     "I0": 4.0055402017930264e-08,
+     "w0": 0.0,
+     "cad2_0": 9.959575424828959e-10,
+     "kJ_over_a_mu_today": 1.0000000004979788,
+     "z_turn(Z=1)": 1000.3511283990915,
+     "w_max": 0.05041679329923402,
+     "w_eq89_vs_eq94_maxdiff": 1.1602665394615907e-09
+    }
+   }
+  },
+  "benchmarks": {
+   "A (mu^-1 = 22.3 Mpc, lam_D = 1)": {
+    "sigma8": 0.8471658239320238,
+    "growth_ratio_k=0.01/0.1/1": [
+     1.0445,
+     1.0445,
+     1.0445
+    ],
+    "A_web_m_s2": 0.0,
+    "g_newton_model_m_s2": 1.3107525818735978e-12,
+    "footings": {
+     "canonical": {
+      "e_web": 0.0,
+      "e_bound": 7.2e-05,
+      "over_bound": 0.0
+     },
+     "alt": {
+      "e_web": 0.0,
+      "e_bound": 5.18e-05,
+      "over_bound": 0.0
+     }
+    },
+    "r_C_Mpc_by_Mb": {
+     "1e+10": 1.243,
+     "6e+10": 1.675,
+     "3e+11": 2.191
+    }
+   },
+   "B (mu^-1 = 223 kpc, lam_D = 30)": {
+    "sigma8": 0.8146143589858782,
+    "growth_ratio_k=0.01/0.1/1": [
+     1.0044,
+     1.0044,
+     1.0044
+    ],
+    "A_web_m_s2": 0.0,
+    "g_newton_model_m_s2": 1.2603896013549124e-12,
+    "footings": {
+     "canonical": {
+      "e_web": 0.0,
+      "e_bound": 7.2e-05,
+      "over_bound": 0.0
+     },
+     "alt": {
+      "e_web": 0.0,
+      "e_bound": 5.18e-05,
+      "over_bound": 0.0
+     }
+    },
+    "r_C_Mpc_by_Mb": {
+     "1e+10": 0.058,
+     "6e+10": 0.078,
+     "3e+11": 0.102
+    }
+   }
+  },
+  "scan": {
+   "lam=1,mu^-1=0.03Mpc": {
+    "sigma8": 0.8112,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 0.02,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": false,
+     "sigma8": true
+    },
+    "all": false
+   },
+   "lam=1,mu^-1=0.1Mpc": {
+    "sigma8": 0.8124,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 0.046,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": false,
+     "sigma8": true
+    },
+    "all": false
+   },
+   "lam=1,mu^-1=0.223Mpc": {
+    "sigma8": 0.8168,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 0.078,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": false,
+     "sigma8": true
+    },
+    "all": false
+   },
+   "lam=1,mu^-1=0.5Mpc": {
+    "sigma8": 0.8256,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 0.133,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": false,
+     "sigma8": true
+    },
+    "all": false
+   },
+   "lam=1,mu^-1=1Mpc": {
+    "sigma8": 0.8331,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 0.211,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": false,
+     "sigma8": true
+    },
+    "all": false
+   },
+   "lam=1,mu^-1=3Mpc": {
+    "sigma8": 0.8411,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 0.44,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": false,
+     "sigma8": true
+    },
+    "all": false
+   },
+   "lam=1,mu^-1=10Mpc": {
+    "sigma8": 0.8456,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 0.981,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": false,
+     "sigma8": true
+    },
+    "all": false
+   },
+   "lam=1,mu^-1=22.3Mpc": {
+    "sigma8": 0.8472,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 1.675,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": true,
+     "sigma8": true
+    },
+    "all": true
+   },
+   "lam=1,mu^-1=50Mpc": {
+    "sigma8": 0.8482,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 2.87,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": true,
+     "sigma8": true
+    },
+    "all": true
+   },
+   "lam=1,mu^-1=100Mpc": {
+    "sigma8": 0.849,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 4.555,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": true,
+     "sigma8": true
+    },
+    "all": true
+   },
+   "lam=30,mu^-1=0.03Mpc": {
+    "sigma8": 0.8112,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 0.02,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": false,
+     "sigma8": true
+    },
+    "all": false
+   },
+   "lam=30,mu^-1=0.1Mpc": {
+    "sigma8": 0.8123,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 0.046,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": false,
+     "sigma8": true
+    },
+    "all": false
+   },
+   "lam=30,mu^-1=0.223Mpc": {
+    "sigma8": 0.8146,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 0.078,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": false,
+     "sigma8": true
+    },
+    "all": false
+   },
+   "lam=30,mu^-1=0.5Mpc": {
+    "sigma8": 0.817,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 0.133,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": false,
+     "sigma8": true
+    },
+    "all": false
+   },
+   "lam=30,mu^-1=1Mpc": {
+    "sigma8": 0.8186,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 0.211,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": false,
+     "sigma8": true
+    },
+    "all": false
+   },
+   "lam=30,mu^-1=3Mpc": {
+    "sigma8": 0.8202,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 0.44,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": false,
+     "sigma8": true
+    },
+    "all": false
+   },
+   "lam=30,mu^-1=10Mpc": {
+    "sigma8": 0.821,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 0.981,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": false,
+     "sigma8": true
+    },
+    "all": false
+   },
+   "lam=30,mu^-1=22.3Mpc": {
+    "sigma8": 0.8213,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 1.675,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": true,
+     "sigma8": true
+    },
+    "all": true
+   },
+   "lam=30,mu^-1=50Mpc": {
+    "sigma8": 0.8216,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 2.87,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": true,
+     "sigma8": true
+    },
+    "all": true
+   },
+   "lam=30,mu^-1=100Mpc": {
+    "sigma8": 0.8219,
+    "e_web": 0.0,
+    "r_C_MW_Mpc": 4.555,
+    "passes": {
+     "efe": true,
+     "rC>=1Mpc": true,
+     "sigma8": true
+    },
+    "all": true
+   }
+  },
+  "kids_alone": {
+   "efe_ok_mu_inv": [
+    0.03,
+    0.1,
+    0.223,
+    0.5,
+    1.0,
+    3.0,
+    10.0,
+    22.3,
+    50.0,
+    100.0
+   ],
+   "rC_ok_mu_inv": [
+    22.3,
+    50.0,
+    100.0
+   ],
+   "both": 6
+  },
+  "C4": {
+   "sigma8_eq71": 0.8471658239320238,
+   "sigma8_adiabatic": 1.9944003906882433
+  }
+ }
+}
