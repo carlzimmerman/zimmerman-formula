@@ -2,6 +2,31 @@
 
 **What this is.** About 630 commits from roughly ten agent tracks landed in this repository between 09-14 and 09-22. On 09-22 they were audited against their committed scripts, re-running the load-bearing ones. This page assembles the most coherent theory the record supports. For each part it says whether it is measured, derived, fitted or missing. It also names the gates that would have to fall for this to become a theory of gravity, rather than a law plus an unfinished completion.
 
+**Update, 09-25: C-H/K's λ-channel and its switch against three more gates.** Three lanes from this session (L350–L352) and three committed by parallel lanes (KM3, L345, L346).
+
+- **Local gravity holds.** KM3 ([`KM3`](../khronon_momentum_2026/KM3_chk_one_pn.py)) finds C-H/K's Solar-System 1PN metric is GR's. [L351](../g03_audit_2026/L351_switch_gw170817_gate.py) W5 confirms c_T = 1 for C-H/K without the switch: the heat filter's TT terms carry at most one derivative of h.
+- **The λ-channel is capped by cosmology** ([L350](../g03_audit_2026/L350_chk_cosmological_G_gate.py), 5/5; `MUTATE` = WMAP-era bound, rc = 1).
+  - **Why it applies:** on FRW, C-H/K is low-energy Hořava gravity with λ − 1 = c₂, η = α_c, ξ = 1. The minisuperspace gives G_cos/G_N = (2 − α_c)/(2 + 3c₂), which is exactly Frusciante & Benetti 2020 eq. (9).
+  - **The cap:** their Planck 2018 fits put c₂ ≤ 0.6–2.9×10⁻³ (95%, every dataset combination). That is below L340's tracking floor of 7.3×10⁻³ by 2.5–12×.
+  - **What survives:** below the cap the phantom still tracks galaxy bodies. Deep-MOND outskirts moving at 300–620 km/s are amplified by up to ~40%, and at the tightest cap the Local Group's outskirts are left behind. KM2's T1 thereby moves into KiDS reach.
+  - **Repair (a construction):** −c₂(K − ⟨K⟩_Σ)², a λ-term acting only on the leaf-inhomogeneous part of K. It vanishes on FRW and is L340's term for every k ≠ 0 mode.
+- **The switch variable fails GW170817** ([L351](../g03_audit_2026/L351_switch_gw170817_gate.py), 5/5; `MUTATE` = no shear completion, rc = 1).
+  - **The mechanism:** x = 9R⁽³⁾/(4K²) puts R⁽³⁾ into the Lagrangian, so gravitational waves are superluminal wherever the switch is turning.
+  - **The size:** the integrated advance per switching shell is exactly G M_b/(6c³), whatever the threshold, the switch's shape or H. That is 13.7 h for the Milky Way. GW170817 would have beaten its γ-rays by ≥ 19 h, against 1.74 s observed.
+  - **Repair:** x̃ = 9(R⁽³⁾ + σ_ijσ^ij)/(4K²) takes L342's values on FRW, in the linear web and in static systems, and keeps c_T = 1 exactly.
+- **Gauss's law: the switch cancels the phantom** ([L352](../g03_audit_2026/L352_switch_gauss_compensation.py), 7/7; `MUTATE` = retained profile, rc = 1).
+  - **The theorem:** the phantom is a divergence, so a switch that turns the MOND flux off makes every isolated galaxy weigh exactly its baryons beyond its edge. A negative-mass shell sits at the edge, and it is singular as a static solution.
+  - **Withdrawn:** L341 F7 and L342 B4 scored KiDS with the phantom's mass retained beyond the edge, a profile the action cannot produce. BS1 is built on the same model. These are withdrawn as evidence for the switch.
+  - **Rescored:** with the realizable profile, L342's x_c = 5 is disfavoured (Δχ² +35/+36 with a free 2-halo term, +214/+225 without). Using the Hamiltonian-constraint switch variable of L346/Lean I26, x_c ≈ 2–3 fits KiDS better than no switch, but only with a bias-like 2-halo term (A ≈ 0.6–1.8).
+- **The switch is closed by the forest plus KiDS.** L346 ([`L346`](../g03_audit_2026/L346_switch_forest_gate.py), parallel lane) fails every threshold up to x_c = 7 against its pre-declared forest band. KiDS with the realizable profile accepts only x_c ≲ 3, and above x_c = 7 it gives Δχ² +101 to +173. No threshold serves both. Both sides are quantitative tensions (collisionless PM; linear 2-halo), so the closure holds at that precision.
+- **The dark sector** (L345, parallel lane): C-H/K boosts any minimally coupled carrier like baryons, and the Λ-triggered carrier has no window under its coupling. The one internal escape is a carrier–U coupling that tracks the kernel.
+- **Where this leaves it:** C-H/K, with the leaf-average λ-term, passes every local gravity gate computed (linear health, tracking, 1PN, c_T) and has no cosmology. The requirement is now sharp:
+  - (i) the linear web and the forest-scale IGM at z ≈ 2–3 must stay Newtonian;
+  - (ii) the lensing flux around isolated galaxies at 1–3 Mpc at z ≈ 0.25 must be supplied. By Gauss, that means either the MOND flux is on there or real mass is;
+  - (iii) whatever supplies (ii) must not be boosted by the kernel.
+
+  No local density switch does (i) and (ii) together. The doors left are a time-triggered threshold (the forest needs x_c > 7 at z ≈ 2, KiDS needs x_c ≲ 3 at z ≈ 0.25) and a dark component invisible to the kernel.
+
 **Update, 09-23 (later): the bound-region switch, [L342](../g03_audit_2026/L342_bound_region_switch.py) (6/6; `MUTATE` = no switch, fails B2).** One scalar of C-H/K's own foliation, x = 9R⁽³⁾/(4K²), turns the MOND sector on only where the preferred leaves curve faster than they expand.
 - **Where it is off:** on flat FRW, x = 0, and in the linear web x = (3/2)Ω_mδ. Linear growth returns to ΛCDM, with σ₈ = 0.810 against L341's 18–27.
 - **Where it is on:** in a static bound system x = 4πGρ_dyn/H², which is ≥ 600 at every SPARC point and 10⁶ in the Solar neighbourhood. Galaxies, the Solar System and wide binaries are untouched.
@@ -247,9 +272,9 @@ The one momentum channel already on the record is L297's khronon (λ − 1 = c�
 **κ.** Settled as a measured constant of nature. Its precision is limited by the M/L zero point, the absolute gas scale and H₀.
 
 **Gravity, after L340.** C-H/K meets these requirements at the orders computed. The next computations, in order of what they decide:
-0. **(L341: FAILED as built; L342: REPAIRED by the switch)** FRW linear growth. The bound-region switch x = 9R⁽³⁾/(4K²) ≥ x_c ≈ 5 restores ΛCDM growth, and KiDS prefers it. What remains open here is the switch's bistability and dynamics;
+0. **(L341: FAILED as built; L342: REPAIRED by the switch; 09-25: the switch CLOSED by L346 + L352, its R⁽³⁾ form also by GW170817, L351)** FRW linear growth. The bound-region switch x = 9R⁽³⁾/(4K²) ≥ x_c ≈ 5 restores ΛCDM growth, and KiDS prefers it. What remains open here is the switch's bistability and dynamics;
 1. nonlinear well-posedness of the clock + U/W system with the khronon terms;
-2. the full 1PN metric;
+2. the full 1PN metric (09-25: KM3, the Solar-System 1PN metric is GR's);
 3. FRW perturbations, with the zero-gradient singularity of C regularised;
 4. a moving-source N-body test of the (v/c_s)² lag.
 
