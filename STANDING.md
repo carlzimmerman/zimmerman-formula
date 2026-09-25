@@ -713,7 +713,7 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   fixed the **same Newtonian-vs-observed bug in its own first draft**, which had been understating the
   deficit by ~2×.
 - **⚠️⚠️ A FALSIFIABILITY TRAP IN THE FROZEN PRE-REGISTRATION — must be resolved BEFORE DR4, and it is
-  Carl's call.** The **gate branch** (knee 43–72 kAU, slope $p=3$) and the **frame branch** (knee
+  the author's call.** The **gate branch** (knee 43–72 kAU, slope $p=3$) and the **frame branch** (knee
   532–603 kAU, beyond any bound pair) between them **cover both outcomes** of the frozen >50 kAU shape
   test — and *both* predict Newton in the 2–30 kAU window at $\gamma_v-1 \approx 1.0$–$1.5\times10^{-6}$.
   A test that cannot fail is not a test. **Commit to one branch in the open before data lands, or strike
@@ -722,7 +722,7 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   analytic $1/(4y^2)$ asymptote at 50 dps — **17 883× below the frozen lower edge 1.0182**. The frozen
   Amendment-3 target belongs to the **undragged** reading. Reported, not amended.
 - **🚨🚨 THE α≥2 SWITCH DESTROYS THE s^TX FRONT — the most consequential finding of 2026-07-31, and an
-  AMENDMENT IS OWED (Carl's to file, NOT filed).** `mi_stx_alpha2_collapse_2026.py`, 10 checks, exit 0,
+  AMENDMENT IS OWED (the author's to file, NOT filed).** `mi_stx_alpha2_collapse_2026.py`, 10 checks, exit 0,
   author-verified from scratch because **every adversarial verifier and the critic died on a spend limit** —
   nothing here rests on an unrefuted subagent claim.
   **THE DEFECT.** §2 of the frozen pre-registration builds the s^TX amplitude from
@@ -742,7 +742,7 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   separate finding that a locally-dragged frame flips the s^TX sign, the s^TX front is now
   **doubly compromised**, and the α=2 one binds because α=2 is *in force*.
   **AMENDMENT 5 IS OWED AND HAS NOT BEEN FILED.** The numbers and wording are in the script's verdict;
-  filing is Carl's. Nothing frozen was edited — all five manifest hashes re-verified unchanged.
+  filing is the author's. Nothing frozen was edited — all five manifest hashes re-verified unchanged.
   ⚠️ Note what this is **not**: the Newtonian-vs-observed *argument* bug is **NOT** in §2 (inserting it
   moves the amplitude by O(10⁻⁷) relative). This is a **retired-kernel** defect, a different and larger
   problem.
@@ -853,7 +853,7 @@ which the prediction collapses by $a_0/g$ at Saturn to a margin of **1.03×10⁶
 | "Apparent phantom dark energy from modified inertia" | **closed 2026-07-30, seven channels.** Mechanism doubly occupied prior art (arXiv:2605.27301 review; arXiv:2012.03446 puts Milgrom's $a_0$ in a modified Friedmann equation). Background channel closed *structurally* — see below |
 | MI modifying the cosmological background | **structurally impossible** (Thm 4): comoving FRW makes $u$ an exact zero mode, $K(0^+)=0$, the term vanishes identically, and $K\sim\sqrt z$ leaves no perturbative expansion. $cH_0/a_0=7.00$ is a coincidence of **scales**, not a coupling |
 | Dissipative / secular-drift channel | **identically zero** (Thm 2). Independently, the alternative closure's universal drift is excluded at **8.5σ** by PSR J0737−3039 |
-| Local $a_0$ from dark-matter dynamics | same as row 1 — already closed by Carl's own SPARC test |
+| Local $a_0$ from dark-matter dynamics | same as row 1 — already closed by the author's own SPARC test |
 | `project_atomos` SM parameter search | null, published (DOI 10.5281/zenodo.21654272) after an audit withdrew two false claims |
 | **Deriving the law from an action — all four families** | **closed 2026-07-30.** (1) Nonlocal, $K$ as an operator on $u$ (the *published* action): on a circular orbit $K$ is evaluated at the eigenvalue $-(c\Omega/a_0)^2$, on the cut, $\|K\|=1$ exactly — amplitude-free, and variation-generated $\mathrm{d}K$ terms are 4–13 orders too small (Thm 8). (2) Local, $F$ of the scalar first moment: nondegenerate at every finite acceleration, so 4th-order EL equation — *and* the acceleration Hessian is **indefinite**, i.e. Ostrogradsky-unstable. (3) Local + degenerate ($F$ linear in $\|a\|$, the unique escape): deep-MOND branch only, diverges from the law by +9950% by $a/a_0=100$. (4) Nonlocal velocity-bilinear (Milgrom 1994's class): EL equation *is* second order — but $\tilde Q$ is diagonal in **frequency** while the law is diagonal in **acceleration**, and at fixed $\Omega$ the required kernel value spans **19.7×** across radii. **General obstruction:** a fixed potential-independent kernel is diagonal in frequency by time-translation invariance; the law is diagonal in acceleration; $A=\Omega^2R$ ties the labels, so no such action reproduces the law for all potentials |
 | Non-adiabatic relational σ-spread as a **near-term** discriminator | repriced **down 3–15×** on 2026-07-30 (1.45–2.21% max−min, 0.22–0.72% population RMS vs banked 6.2–14.1%). Still MG-impossible *in principle*; $N(3\sigma)$ at the ELT tier is ~2e5–2e7, past the whole CHANCES budget |
