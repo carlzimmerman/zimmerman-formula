@@ -1,0 +1,45 @@
+{
+ "lane": "P02_power_audit",
+ "date": "2026-09-24",
+ "registered": {
+  "per_ring_noise_a0E": 3.127787164937412,
+  "Delta_deep_a0E": 0.6456832613308765,
+  "N_req_ring_level": 586.6449535933015,
+  "N_new_galaxies_3rings": -68.94739888649234,
+  "N_new_rings": -206.842196659477
+ },
+ "rederived": {
+  "N_req_ring_level": 586.6449535933015,
+  "median_z_at_N_req": 5.017881312525883,
+  "power_gt5sigma_at_N_req": 0.50734,
+  "N_for_60pct_power": 647.6010199150686,
+  "N_for_90pct_power": 925.9108835741708
+ },
+ "trials": 50000,
+ "seed": 20260924,
+ "checks": [
+  {
+   "name": "C1 registered n_requirement block present",
+   "pass": true,
+   "detail": "noise=3.127787 a0E, Delta_deep=0.645683 a0E, N_req_reg=586.64"
+  },
+  {
+   "name": "K1 re-derived N_req matches registered within 1%",
+   "pass": true,
+   "detail": "derived 586.64 vs registered 586.64"
+  },
+  {
+   "name": "K2a MC null z standardized (mean ~0, sd ~ 1/sqrt(500) ring draws)",
+   "pass": true,
+   "detail": "null z: mean -0.00004 (SE 0.00063), sd 0.04446 vs expected 0.04472"
+  },
+  {
+   "name": "K2 median |z| at N=N_req sits at 5.00 within 2%",
+   "pass": true,
+   "detail": "median z at N=587: 5.0179 (Wald 5.0015); power(>5sig)=0.5073"
+  }
+ ],
+ "verdict": "REGISTERED CARD CONFIRMED at ring level: N_req=587 matches 587; at that N the 5-sigma kill has power 0.507 (median z 5.02); NOTE: card UNDERPOWERED for a decisive kill (under 60pct power at N_req); 60pct/90pct power need N=648/926 rings",
+ "summary": "4/4 checks PASS",
+ "exit_ok": true
+}

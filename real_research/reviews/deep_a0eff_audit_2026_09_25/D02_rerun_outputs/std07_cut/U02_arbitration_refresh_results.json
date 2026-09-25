@@ -1,0 +1,44 @@
+{
+ "lane": "U02_arbitration_refresh",
+ "f1": {
+  "sigma1_sparc": 2.635814727899365,
+  "sigma1_mightee": 1.5006512116633672
+ },
+ "f2": {
+  "N_sparc_5sig": 891,
+  "N_mightee_5sig": 42,
+  "recompute_sparc": 890.4399963828641,
+  "stored_N_req_ring": 890.4399963828638
+ },
+ "f3": {
+  "n_per_channel_5sig": 441,
+  "delta_sparc_a0E": 0.4416543934749451,
+  "delta_mightee_a0E": 1.1638213314465284
+ },
+ "f4": {
+  "slope_channel_N_stored": 7789.094692313596,
+  "conservative_bracket": [
+   7789.094692313596,
+   13779
+  ],
+  "note": "Q02/R03 banked: presence-based SEs 1.26-1.33x smaller than multinomial"
+ },
+ "checks": [
+  {
+   "name": "K1 all required keys present (runtime-read)",
+   "pass": true,
+   "detail": "N05{deep_sparc_L06,mightee_deep,n_requirement} Q02{main} S02{machinery,se_colourgroup}"
+  },
+  {
+   "name": "K2 F2-on-SPARC reproduces N05 N_req_ring_level (1%)",
+   "pass": true,
+   "detail": "recompute=890.44 stored=890.44"
+  },
+  {
+   "name": "K3 refreshed card recorded (both-ways)",
+   "pass": true,
+   "detail": "N_s=891 N_m=42 n_diff=441 bracket=[7789.094692313596, 13779]"
+  }
+ ],
+ "exit0": true
+}

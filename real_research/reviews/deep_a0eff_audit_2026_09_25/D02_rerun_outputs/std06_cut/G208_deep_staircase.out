@@ -1,0 +1,54 @@
+====================================================================================================
+G208 -- THE DEEP-STAIRCASE ORTHOGONALITY: what varies WITH the deep-limit normalization?
+        staircase (deep-limit a0_eff, x1e-10): SPARC 0.69 < HI 1.08 < MIGHTEE 1.87
+        registers: a0_DE = 9.36190e-11, s_Lambda = 1.87238e-10
+====================================================================================================
+
+--- PART 0: PER-GALAXY DEEP READINGS (committed registers; z0 pair N = 90) ---
+  HI: 55 dwarfs (LT 26 + FIGGS 29)  f_gas med 0.799  D med 1.04  a0e med 1.075 x1e-10, z=0
+  SPARC: 32 isolated z0 (G071, Y<0.1)  f_gas med 0.623 (n=32)  D med 2.27  a0e per-gal med 0.825 x1e-10, z=0
+  MIGHTEE: 18 colour groups; per-group deep-fit a0e med 1.87 x1e-10 (16-84% 1.1..2.6)  D-deepest med 7.3 (CIRCULAR proxy, flagged)
+  MIGHTEE Table 5: 19 galaxies, z 0.0058..0.079 (med 0.0443), log Mstar med 9.49 (7.48..10.92), in [8.5,9.5]: 7
+
+--- PART 1: THE STAIRCASE RECOMPUTED (deep-limit a0_eff, x1e-10) ---
+  SPARC  pooled deep fit (n=330 rings): 1.2570e-10 = 1.257 x1e-10 (G199 6.430e-11; the brief 0.69 = G03D 0.692 a0_DE) | per-gal med 0.825
+  HI    R-free med (N=55): 1.0751e-10 = 1.075 x1e-10 (G199 1.07514e-10; MAD 0.311 dex) | deep quad fit 1.4485e-10 (G183 1.447e-10)
+  MIGHTEE deep-90 fit 1.9000e-10; G133 deep refit 1.8745e-10 = 1.8746 x1e-10 (the 1.87 step)
+  SPREAD 1.49x (deep-fit); brief 0.69->1.87 = 2.71x; z0 pair HI/SPARC 1.30x
+
+--- PART 2: THE ORTHOGONAL DECOMPOSITION (rho / p per candidate, per-galaxy, z0 pair N=90) ---
+  (a) f_dark: POOLED rho +0.439 (p 1.5e-04) | within-SPARC rho +0.482 (p 5.1e-03, N=32, non-circular) | within-HI rho 1.00 (READING TAUTOLOGY (a0e=V^4/GMb and D=V/v_pred comonotone in the one measured V_obs) -- stated, not evidence)
+  BETWEEN-SAMPLE SIGN: HI D med 1.04 vs SPARC D med 2.27 (0.46x DOWN) while the a0e step is 1.30x UP -> the steps are ANTI-ordered in f_dark (C3)
+  (b) f_gas: SPARC med 0.623 vs HI med 0.799 | POOLED rho +0.015 (p 8.9e-01) | within-SPARC 0.203 (p 0.24 ns) | HI->MIGHTEE step rides f_gas DOWN (C4)
+  (c) mass: POOLED rho(log Mb) -0.078 (negative = massive -> lower a0e, anti-MIGHTEE); within flats G199 C7 (C5)
+  (d) z: G011 sqrt(1+z_med=0.044) = 1.0219 (+2.2%) vs the 1.5x staircase needs (C6); per-group z unavailable (colour->galaxy map unpublished)
+  (c2) OVERLAP CONTROL in [8.5, 9.5] (FIXED mass): HI n=11 med 1.075 vs SPARC n=15 med 0.963 x1e-10 -> 1.1x SPLIT AT THE SAME MASS | MIGHTEE 7/19 in-window (C5)
+
+--- PART 3: THE CANDIDATE LAW (fit on the non-circular within-SPARC set) ---
+  log10(a0e/a0_DE) = -0.498 + 1.265 log10 D; rms 0.234 dex
+  CLOSED FORM: a0_eff-deep = 0.317 a0_DE x D^1.27 = 0.30 x1e-10 x D^1.27
+  x_eq form (dust-dominated equilibration fraction x_eq = 1 - 1/D): a0_eff-deep = 0.317 a0_DE (1-x_eq)^(-1.27) [dust-quiet x_eq->0 reads 0.32 a0_DE = SUB-DE, NOT a0_DE]
+  bootstrap p = 1.27 +- 0.49 (0.80..1.78); total MAD 0.166 -> residual 0.164 dex (1% cut)
+  BRIDGE: at HI's D med 1.04 the SPARC law predicts 0.31 x1e-10 vs measured 1.08 = 3.5x SHORT (C8); self-check SPARC D med 2.27: 0.84 vs 0.82
+
+--- THE CHECKS
+  [FAIL] C0 [staircase registers] in-file SPARC deep fit == 6.43e-11 (2%), HI R-free med == 1.07510e-10 (1%), MIGHTEE refit == 1.8746e-10 (0.5%)   1.257e-10, 1.075e-10, 1.874e-10
+  [FAIL] C1 [f_dark orders WITHIN the RAR-class sample] within-SPARC rho(a0e, D(R_max)) >= 0.5, p < 0.01 (N=35 non-circular)   rho +0.482 p 5.1e-03
+  [PASS] C2 [HI degeneracy stated] within-HI rho(a0e,D) == 1.0 to 1e-3 (reading tautology, not a test)   rho 1.0000
+  [FAIL] C3 [f_dark does NOT order the STAIRCASE] HI D med < SPARC D med while HI a0e step is > 1.5x HIGHER: between-sample anti-ordered   D 0.46x down at a0e 1.30x up
+  [PASS] C4 [f_gas does not order] within-SPARC ns and the HI->MIGHTEE step needs f_gas UP while f_gas falls with mass (MIGHTEE med logMstar 9.5)   pooled rho +0.015 (p 8.9e-01)
+  [FAIL] C5 [OVERLAP CONTROL] same-mass window [8.5,9.5] split > 1.7x: mass does not order the staircase   1.075 vs 0.963 x1e-10 (1.12x)
+  [FAIL] C6 [z orders ~ nothing] G011 at z_med < 1.10 while needed > 1.5x; z0 pair no lever   +2.2% vs 1.49x
+  [FAIL] C7 [F cuts the best-ordered sample's spread] SPARC MAD -> residual after F (>= 25% cut)   0.166 -> 0.164 dex (1%)
+  [PASS] C8 [F fails to bridge the step] SPARC-law at HI's D >= 2x below the measured HI step: F is in-sample, not the staircase law   0.31 predicted vs 1.08 measured (3.5x)
+  [PASS] C9 [top stair is the registered M/L march] G133 fixed-Upsilon=0.6 refit -> a0 ~ 1.08e-10 = 1.005x the HI step (1.0751e-10)   1.08e-10 vs 1.0751e-10 (1.005x)
+  [PASS] V1..V3 stated   Part 5
+
+--- PART 5: THE VERDICTS
+  [PASS] V1 [ordering covariate] stated   V1 THE ORDERING COVARIATE (rho/p per candidate on the per-galaxy a0_eff-deep, z0 pair N=90; MIGHTEE groups circular-flagged). (a) f_dark: WITHIN the RAR-class sample it is a REAL per-galaxy secondary parameter -- within-SPARC rho(a0e, D(R_max)) = +0.482, p = 5.1e-03 (C1) -- but within-HI rho = 1.0 is the READING TAUTOLOGY (C2), and BETWEEN samples the steps are ANTI-ordered: HI D med 1.04 < SPARC 2.27 (0.46x) while the HI a0e step is 1.30x HIGHER (C3).  (b) f_gas: pooled rho +0.015 (p 8.9e-01), within-SPARC 0.203 ns, and the HI->MIGHTEE step would need f_gas UP while f_gas falls with mass (C4).  (c) mass: within flat (G199 C7), pooled anti (-0.08), and the OVERLAP CONTROL splits 1.08 vs 0.96 x1e-10 = 1.1x AT THE SAME MASS (C5).  (d) redshift: +2.2% vs 1.5x needed, zero lever on the z0 pair (C6).  NO single covariate of the four ORDERS the staircase; the strongest axis is f_dark WITHIN the RAR-class sample (rho +0.48, p 5.1e-03).  RESIDUAL SPREAD within the best-ordered sample (SPARC): MAD log10 a0e 0.166 dex -> residual after F 0.164 dex (1% cut, C7), the residual floor at the RAR benchmark scatter.
+  [PASS] V2 [derived F] stated   V2 THE DERIVED F (closed form, non-circular within-SPARC set, N=32):  a0_eff-deep = 0.317 x a0_DE x D^(1.27 +- 0.49) = 0.30 x1e-10 x D^1.27;  equivalently in the equilibration fraction x_eq = 1 - 1/D (dust-dominated share): a0_eff-deep = 0.317 a0_DE x (1 - x_eq)^(-1.27).  Constants: C0 = 0.317 a0_DE (log10 C -0.498), p = 1.27 (16-84% 0.80..1.78, galaxy bootstrap), rms 0.234 dex, residual MAD 0.164 dex.  PHYSICS: p = 1.27 > 0 -> dust-dominated systems read a HIGHER deep scale (the equilibration channel is real within the RAR class), BUT the dust-quiet limit is 0.32 a0_DE = SUB-DE, NOT the DE anchor.  HONEST CAVEAT: at HI's own f_dark the SPARC law predicts 0.31 x1e-10 vs the HI step 1.08 -- 3.5x SHORT (C8): the closed form is the IN-SAMPLE second parameter, not the cross-sample staircase law.
+  [PASS] V3 [honest statement] stated   V3 THE HONEST STATEMENT -- the deep staircase: an IN-SAMPLE hidden second parameter (f_dark, x_eq) EXPOSED, and a SAMPLE-SELECTION (M/L) LADDER between the samples; the number that discriminates:  (1) the MIGHTEE top step is a mass-to-light CONVENTION, registered closable at ~100% of the step value: G133's SPARC-class fixed-Upsilon_star=0.6 refit of the paper's own data lands a0 ~ 1.08e-10 = 1.005x the HI step's R-free median (C9) -- the 1.87 stair collapses onto the 1.08 stair exactly as G133's systematics budget (max honest closure 0.097 dex) declared;  (2) the surviving z0 residual HI 1.08 vs SPARC 0.82 x1e-10 = 1.3x is AT THE SAME MASS in the overlap window (C5), SAME z, comparable M/L class; it is NOT explained by f_dark across the samples (C3: HI higher a0e at LOWER boundary D), NOT by f_gas (C4), NOT by the G011 z-evolution (+2.2% vs 1.5x, C6): that 2-dimensional z0 split is the real open deep-limit structure;  (3) WITHIN it, f_dark is a genuine secondary parameter (C1: rho +0.48, p 5.1e-03; F cuts 1% of the in-sample spread, C7) while C8 shows the same F under-predicts the HI step at HI's own f_dark by 3.5x -- the single-power-law reading is internally inconsistent across samples.  THE NUMBER THAT DISCRIMINATES (hidden parameter vs selection artifact): the HI->MIGHTEE step ratio 1.743x at face value vs 1.005x after the registered M/L march -- the top stair is SELECTION (M/L) to within a few percent; the residual z0 1.3x split is NOT closable by any registered systematic (G133 max 1.25x) and is the candidate physical floor, whose within-sample driver is f_dark (V1/V2).  VERDICT: the deep-limit normalization is not one constant (G199), not a single covariate ladder (this lane), not a pure sample artifact: it is a two-layer object -- a registered M/L convention ladder (1.87 -> 1.08) for the top step plus a real per-galaxy secondary parameter (f_dark/x_eq, sub-DE dust-quiet floor C0 = 0.32 a0_DE) exposed by the z0 residual split.
+
+G208 COMPLETE: 8/14 checks PASS.
+written: G208_results.json
+done

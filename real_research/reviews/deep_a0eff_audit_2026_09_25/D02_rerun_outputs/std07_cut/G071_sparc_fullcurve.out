@@ -1,0 +1,79 @@
+============================================================================================
+G071 -- THE FULL-CURVE TEST OF THE EQUIPARTITION LAW ON SPARC
+        v_pred^2 = v_b^2 + v_flat^2 (1 - r_in/R),  v_flat = (G M_b a0)^(1/4),  zero free parameters
+============================================================================================
+
+--- SAMPLE: isolated, low-EFE SPARC galaxies (G044 corpus x env table) ---
+    SPARC corpus galaxies: 175; matched to the env table: 122 (excluded 19 with blank host-mass/distance fields in the env row)
+    LOW-EFE cut (declared): Y = g_ext/a0 < 0.1 with g_ext = G M_halo_host / D_Mpc^2 (the registered G03E proper-Y reading).
+      Y over the matched set: min 1.13e-07, max 6.48e-04  ->  the cut binds NOTHING: this table is a field/isolated catalog by construction (G03E's mean Y = 0.000).
+    ISOLATED cuts: Nm_host <= 1 (excludes 63 multi-host), usable_2mrs == 1 (excludes 4 more).
+    ISOLATED + LOW-EFE sample: 36 galaxies
+
+--- PREDICTION (per galaxy, zero parameters) ---
+    M_b = enclosed baryons at the outermost ring with v_b^2 > 0:
+          v_b^2 = sign(Vgas) Vgas^2 + m2l_disk (Vdisk^2 + Vbul^2),  m2l_disk from the corpus row
+    r_M = sqrt(G M_b/a0),  r_in = 0.3 r_M,  v_flat = (G M_b a0)^(1/4)  = the BTFR zero point
+    R_efe = sqrt(G M_b / g_ext)  (the law's domain boundary; rings beyond it are excluded from the comparison)
+    m2l_disk in corpus: n=36, median 0.70, range 0.70..0.70 (fallback 0.50 if absent)
+    galaxies with >= 5 usable rings: 32 (dropped 4 with fewer)
+
+--- THE COMPARISON: rms of log10(v_obs/v_pred), chi2/dof (dof = n) ---
+    pooled points: 505 (all within R_efe),  pooled rms = 0.0985 dex
+    benchmark: the registered SPARC RAR rms ~ 0.15 dex (STATE.md board, G002/L232)
+  [PASS] V1 [pooled rms] the law's zero-parameter curves reach 0.099 dex <= 0.18 dex   benchmark 0.15 dex
+
+--- THE SLOPE TEST log10(v_obs/v_pred) vs log10(R), out to the EFE line ---
+    pooled slope = +0.0185 +- 0.0093 dex/dex (+2.0 sigma)  over 505 points
+    per-galaxy slopes: median +0.1408, mean +0.1787 dex/dex
+  [FAIL] V2 [slope] no systematic slope: pooled +0.019, median-per-galaxy +0.141, both |.| <= 0.05 dex/dex   pooled slope +2.0 sigma of 505 points
+
+--- V3 the EFE-line truncation (without it the chi2 degrades > 10%?) ---
+    rings beyond the EFE line: 0  (R_efe/R_max over the sample: min 58.9, median 227.4, max 478.2)
+    chi2(with truncation) = 36246.3 on 505 pts; chi2(without) = 36246.3 on 505 pts; degradation = 0.00%
+  [FAIL] V3 [EFE truncation] chi2 degrades by 0.0% (> 10% required) without the EFE-line cut   0 rings beyond R_efe: the test is VACUOUS in the isolated sample
+
+--- ROBUSTNESS: the alternative a0 footing (1.1279e-10) ---
+    pooled rms with a0 = 1.1279e-10: 0.1104 dex (within the 0.18 dex bar)
+
+--- V4 THE HONEST STATEMENT ---
+  [PASS] V4 [statement]   THE EQUIPARTITION LAW AS A ZERO-PARAMETER CURVE PREDICTOR: v_pred^2 = v_b^2 + v_flat^2(1 - 0.3 r_M/R), v_flat = (G M_b a0)^(1/4), on 32 isolated low-EFE SPARC galaxies / 505 rings: pooled rms = 0.099 dex vs the 0.15-dex SPARC benchmark (COMPETITIVE); residual slope +0.019 dex/dex (TRENDING); EFE-line truncation: 0 rings beyond the boundary (vacuous in the isolated sample: the EFE boundary lies at 10^2-10^3 kpc, beyond every curve -- the truncation is the law's domain rule, and no ring tests it). The law FAILS as a zero-parameter curve predictor in this sample as it stands.
+
+G071 COMPLETE: 2/4 checks PASS.
+
+per-galaxy table:
+    name         M_b[Msun]   r_M  r_in v_flat   R_efe   Rmax   n    rms chi2/dof   slope
+    NGC3726       6.39e+10   9.8  2.93  167.9    5304   32.5  12  0.106     66.8 +0.093
+    NGC3198       5.07e+10   8.7  2.61  158.4    4548   44.1  37  0.062    143.3 -0.031
+    ESO079-G014    4.82e+10   8.5  2.54  156.5    5309   16.7  12  0.052     10.1 +0.090
+    NGC6015       3.32e+10   7.0  2.11  142.5    4115   29.2  44  0.053     30.6 -0.058
+    NGC4559       2.75e+10   6.4  1.92  136.0    1914   21.0  29  0.108     46.6 +0.058
+    UGC03580      1.72e+10   5.1  1.52  120.9    5241   27.1  39  0.129    174.1 +0.122
+    NGC1003       1.47e+10   4.7  1.40  116.2    3044   30.2  35  0.088     76.8 +0.130
+    NGC7793       7.49e+09   3.3  1.00   98.2     758    7.9  25  0.060      6.3 -0.017
+    UGC07125      7.24e+09   3.3  0.98   97.4    6744   18.7  12  0.232    285.5 +0.135
+    ESO116-G012    6.05e+09   3.0  0.90   93.1    2658    9.9  14  0.065     11.5 +0.049
+    UGC11820      5.35e+09   2.8  0.85   90.3    6542   15.8   5  0.109    554.1 +0.236
+    NGC0024       4.04e+09   2.5  0.74   84.2    1119   11.3  20  0.063      6.7 -0.004
+    UGC12632      3.68e+09   2.3  0.70   82.3    1409   10.7  13  0.112     32.7 +0.147
+    UGC04278      3.58e+09   2.3  0.69   81.7    2263    6.7  15  0.133     20.3 +0.490
+    NGC0100       3.47e+09   2.3  0.68   81.0    2060    9.3  16  0.100     14.5 +0.297
+    UGC04499      3.44e+09   2.3  0.68   80.9    2253    8.2   8  0.116     41.3 +0.182
+    UGC06399      3.33e+09   2.2  0.67   80.2    3220    7.8   7  0.049      3.1 +0.208
+    UGC10310      3.30e+09   2.2  0.67   80.0    2622    7.7   6  0.091      9.2 +0.075
+    UGC06446      3.10e+09   2.1  0.64   78.8    2498    9.5  14  0.028      1.4 +0.076
+    UGC07261      2.71e+09   2.0  0.60   76.1    1698    6.7   6  0.064      3.7 +0.087
+    UGC05716      2.66e+09   2.0  0.60   75.8    5916   12.4  11  0.076    320.6 +0.151
+    UGC05829      2.38e+09   1.9  0.57   73.8    1620    6.9   5  0.113     11.8 +0.425
+    UGC06667      1.83e+09   1.6  0.49   69.0    2493    7.8   8  0.064     10.3 +0.282
+    NGC2915       1.38e+09   1.4  0.43   64.3     839   10.0  21  0.091      5.4 -0.009
+    UGC05721      1.32e+09   1.4  0.42   63.7     955    6.7  20  0.068      5.9 +0.029
+    UGC05414      1.31e+09   1.4  0.42   63.5    1303    4.1   5  0.143     49.1 +0.353
+    D631-7        5.97e+08   0.9  0.28   52.2    1459    7.2  14  0.133     42.1 +0.491
+    UGCA442       5.29e+08   0.9  0.27   50.6     590    6.3   7  0.096     27.5 +0.366
+    UGC05764      3.98e+08   0.8  0.23   47.2    1005    3.6  10  0.059     28.7 +0.158
+    DDO154        3.74e+08   0.7  0.22   46.4     498    5.9  11  0.122    365.5 +0.365
+    NGC3741       3.09e+08   0.7  0.20   44.3     413    7.0  19  0.120     18.9 +0.319
+    D564-8        6.46e+07   0.3  0.09   29.9     904    3.1   5  0.183     38.7 +0.423
+
+wrote G071_results.json

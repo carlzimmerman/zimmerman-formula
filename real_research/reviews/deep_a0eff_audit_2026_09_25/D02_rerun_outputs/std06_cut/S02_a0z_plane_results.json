@@ -1,0 +1,214 @@
+{
+ "lane": "S02_A0Z_PLANE",
+ "question": "Place every on-record a0_eff-vs-epoch measurement on ONE (z, Delta log10 a0_eff) plane and derive what the framework can and cannot absorb: HeCS translate, the impossibility leg, plane verdict, and the M04 BLR future leg.",
+ "n_pass": 7,
+ "n_total": 8,
+ "checks": [
+  {
+   "name": "C1 HeCS translate: Delta log10 a0 = 2*Delta log10 T (Case A exact) with SE",
+   "result": true,
+   "measured": "dA0 = +0.1240 +- 0.0396 dex over Dz = 0.0837; alpha_HeCS = +1.4801 +- 0.4731 dex/unit z; z vs framework 0.000 = 3.13 SE (O02 3.13)",
+   "threshold": "|recomputed z - O02 z_vs_framework| < 1e-3",
+   "reading": "Case A: T_X(z2)/T_X(z1)|_{M_b} = [a0(z2)/a0(z1)]^{1/2} EXACT (G237) -> both Delta and SE double: Delta log10 a0 = +0.124 +- 0.040 dex over Dz = 0.084, i.e. alpha = 1.48 +/- 0.47 dex/unit z. The z-tension is UNCHANGED at 3.13 SE (factor-2 scales signal and SE jointly) -- re-stated from O02 C05 on the a0 translate."
+  },
+  {
+   "name": "C2 G237/M-RISE plane amplitudes recovered from commit files (1-3e-5 z; 1+1.6986 z)",
+   "result": true,
+   "measured": "G237: a0(z)/a0(0) = 1 - 3e-5 z -> d(log10 a0)/dz = -1.303e-05 dex/unit z; M-RISE: 1 + 1.6986 z (1.59e-10/9.362e-11) -> +0.4311 dex at z=1; HeCS/G237 slope ratio = 1.14e+05",
+   "threshold": "HeCS slope / G237 slope > 1e4",
+   "reading": "Exact amplitude FROM G237_eRASS3_zlaw.py/README L2 ('a0(z)/a0(0) = 1 - 3e-5 z, S3-05') and the committed Ciocan slope 1.59e-10 m/s^2 per z over a0 = 9.3619e-11. The '~1e-5/unit z' of the task = the dex-rate log10(1-3e-5) = -1.30e-5 dex/unit z. HeCS's translate is ~1.1e5x this rate."
+  },
+  {
+   "name": "C3 Restate: K1 FIRED (3.13 SE), selection-flagged, K2 NOT SATISFIED (M-RISE not excluded)",
+   "result": true,
+   "measured": "z_vs_G237 = 3.13 SE (>=3, K1 fires); z_vs_MRISE-scaled(++0.0477 dex a0) = 1.93 SE (<3, K2 not satisfied); C08 mass-dependent structure (low edge +0.15 dex -> high edge ~0) = pre-registered LX flux-selection signature -> VERDICT NOT ADJUDICATIVE",
+   "threshold": "z_G237 >= 3 AND z_MRISE < 3",
+   "reading": "The KILL-CANDIDATE fired on real low-z data (O02) stands on the a0 translate at the SAME 3.13 SE; its confounder (selection signature) is on record, so the plane registers it as KILL-CANDIDATE, NOT adjudication."
+  },
+  {
+   "name": "C4 IMPOSSIBILITY LEG: between-survey a0_eff spread cannot be a0(z) under G237",
+   "result": false,
+   "measured": "MIGHTEE at z=0.04426 with a0_eff/a0 = 2.164 -> alpha ~ 26.3/unit z (2.16 = 1+alpha*0.044) ; SPARC 1.646 at z~0 -> alpha ~ 14.6/unit z (ref. 0.044; 129/unit z at its own z=0.005) -- OPPOSITE sign; between-survey slope = 3.0 dex/unit z = 2.3e+05x G237's rate; G208 C6: +2.19% evolution available vs 49% needed (22x short, ~100x) -> the staircase/sign-mirror CANNOT be a redshift effect under G237's law; HeCS's candidate is ~1.1e5x G237's rate",
+   "threshold": "alpha_MIGHTEE > 25 AND alpha_SPARC < 0 AND between-slope > 10 dex/unit z AND G208 shortfall > 50x",
+   "reading": "REGISTERED CONSTRAINING STATEMENT: if a0(z) obeys G237, the survey-to-survey a0_eff spread is environmental/systematic, and HeCS's low-z candidate (if not selection) is also too large to be a0(z) at G237's rate. The 26.3/unit-z MIGHTEE and -6.2/unit-z SPARC readings are arithmetic from the on-record ratios (A3/A4 assumption: epoch scale 0.04426 for the SPARC sign-mirror; at SPARC's own z it is -55/unit z, worse)."
+  },
+  {
+   "name": "C5 Plane table: 6 on-record rows placed; HeCS pair centred (A1), values match sources to <1e-3 dex",
+   "result": true,
+   "measured": "SPARC +0.2163+-0.0382; MIGHTEE +0.3352+-0.0355; O01 -0.1955+-0.1107; HeCS pair +-0.0620 +-0.0198",
+   "threshold": "|table - source| < 1e-3 dex",
+   "reading": "Every Delta in the plane is log10(a0_eff/a0) of the cited on-record ratio (N05, O01) or the factor-2 Case-A translate of O02. Curve values printed for both laws at every row epoch."
+  },
+  {
+   "name": "C6 Consistency classes: only HeCS is a z-spaced >3SE tension and it is selection-flagged",
+   "result": true,
+   "measured": "SPARC 5.66/5.57 (NEITHER; z~0 -> environmental); O01 1.77/1.77 (BOTH within 3SE); MIGHTEE 9.44/8.56 (NEITHER); HeCS 3.13 vs G237, 1.93 vs M-RISE (selection-flagged (C08 mass-dependent structure = LX flux-limited signature))",
+   "threshold": "as stated per row",
+   "reading": "MW(0) and O01 are consistent with BOTH laws; SPARC and MIGHTEE are consistent with NEITHER as z-effects (and SPARC sits at z~0 where NO z-law normalized at a0(0)=1 can produce it); HeCS is the only z-spaced tension, 3.13 SE from G237-flat, within 2 SE of the M-RISE-scaled prediction but overshooting it (O02 K2)."
+  },
+  {
+   "name": "C7 FRAMEWORK VERDICT on this plane: G237 a0(z) law SURVIVES; HeCS is kill-CANDIDATE pending WG data",
+   "result": true,
+   "measured": "adjudicative z-spaced (z>=0.05) >3SE kills vs G237 = 0 []; HeCS kill-candidate = fired at 3.13 SE, selection-flagged (C08 mass-dependent structure = LX flux-limited signature); SPARC/MIGHTEE are z~0 environmental rows inconsistent with BOTH laws (MIGHTEE 8.6 SE from M-RISE too) -> they cannot adjudicate G237 vs rivals",
+   "threshold": "0 adjudicative kills",
+   "reading": "HONEST: the plane KILLS nothing adjudicatively. Every >3SE deviation is z=0-anchored environmental (SPARC/O01/MIGHTEE -- and MIGHTEE is >8 SE from M-RISE too, so no growth law absorbs it either) or the HeCS gradient, whose pre-registered selection signature forces NOT-ADJUDICATIVE. If the WG high-z leg (X-ray/SZ masses, matched T) confirms HeCS, amendment is required -- and even then the impossibility leg still bars a0(z) from carrying the between-survey staircase."
+  },
+  {
+   "name": "C8 FUTURE LEG: BLR cosmography distinguishes G237-flat from HeCS-extrapolated at 3 sigma, N=1",
+   "result": true,
+   "measured": "single S/N=30 object: 3-sigma sensitivity on Delta log10 a0 = 0.093 dex (C8: sigma_J10I = 0.0356); HeCS-extrapolated Delta log10 a0 (z=1) = 1.480 dex -> lag dev 50.2 d vs 6.1 d 3-sigma floor: 3-sigma reached at z ~ 0.062 (N=1); at z=1 one object = 24.5 sigma (M-RISE anchor: 24 d = 11.7 sigma); single pair (z1=0.3, z2=1.0) = 4.9 sigma (threshold 3*sqrt(2)/30)",
+   "threshold": "zstat(z=1) > 3 AND z_3sigma < 0.1 AND pair > 3",
+   "reading": "YES -- the probe is NOT the binding constraint: the HeCS translate is so steep (1.48 dex/unit z, ~1.1e5x G237's rate) that ONE S/N=30 object at z >= 0.06-0.1 settles it at 3 sigma, one object at z=1 at ~25 sigma, one pair at (0.3, 1.0) at ~5 sigma. The M04 anchor: one object at z=1 already resolves framework vs M-RISE at 11.7 sigma; the HeCS-extrapolated hypothesis is 2.1x that signal (A2, A5)."
+  }
+ ],
+ "hecs_translate": {
+  "Delta_log10_T_dex_ANCOVA": 0.06197859871792171,
+  "se_jackknife": 0.019812907076573905,
+  "Delta_log10_a0_dex": 0.12395719743584342,
+  "se_dex": 0.03962581415314781,
+  "Dz_arm_medians": 0.08374999999999999,
+  "z_lo_med": 0.1333,
+  "z_hi_med": 0.21705,
+  "alpha_hecs_dex_per_unit_z": 1.4800859395324588,
+  "se_alpha": 0.47314404958982464,
+  "z_vs_framework": 3.128193075270769,
+  "z_vs_MRISE_scaled_a0_dex": 1.9255288075079942,
+  "framework_pred_dex_T": -5.455853100634869e-07,
+  "MRISE_scaled_dex_T": 0.02382827538149966
+ },
+ "laws": {
+  "G237_a0_over_a0_0": "1 - 3e-5 z (S3-05, z<=3)",
+  "G237_dlog10a0_per_unit_z": -1.302902989351207e-05,
+  "MRISE_a0_over_a0_0": "1 + 1.6986 z (Ciocan 1.59e-10 m/s^2 per z)",
+  "MRISE_dlog10a0_at_z1": 0.43110201377875224,
+  "hecs_over_G237_slope_ratio": 113599.0900035836
+ },
+ "impossibility_leg": {
+  "alpha_lin_MIGHTEE_per_unit_z": 26.295104641810404,
+  "alpha_lin_SPARC_per_unit_z_ref_0.044": 14.588415303454056,
+  "alpha_lin_SPARC_own_z_0.005": 129.1366522661753,
+  "delta_log10_a0_between_dex": 0.11887514601264441,
+  "between_slope_dex_per_unit_z": 3.0278947023088234,
+  "between_over_G237_ratio": 232396.02081322973,
+  "G208_evol_pct_at_zmed": 2.1890405082658493,
+  "G208_needed_x": 1.4912490055688146,
+  "G208_shortfall_x_in_pct_terms": 22.44129351256183,
+  "statement": "if a0(z) obeys G237, the survey-to-survey a0_eff spread is environmental/systematic, and HeCS's low-z candidate (if not selection) is ALSO too large to be a0(z) at G237's rate"
+ },
+ "plane_rows": [
+  {
+   "row": "MW(0) anchor",
+   "z": 0.0,
+   "dA0": 0.0,
+   "se": 0.0,
+   "src": "definitional; G03C a0=9.3619e-11; G237 L2",
+   "z_vs_G237": 0.0,
+   "z_vs_MR": 0.0,
+   "class": "BOTH"
+  },
+  {
+   "row": "O01 dwarfs (N=16)",
+   "z": 0.0,
+   "dA0": -0.1955,
+   "se": 0.1107,
+   "src": "O01 primary gN<0.2; deep tail -0.509+-0.166",
+   "z_vs_G237": 1.7660343270099368,
+   "z_vs_MR": 1.7660343270099368,
+   "class": "BOTH"
+  },
+  {
+   "row": "SPARC deep (1152r)",
+   "z": 0.005,
+   "dA0": 0.21634625184041473,
+   "se": 0.0382,
+   "src": "N05 a0eff/a0=0.7241, z_cl=-4.17; O01 L06 SE_dex",
+   "z_vs_G237": 5.663516151429107,
+   "z_vs_MR": 5.567378327159939,
+   "class": "NEITHER (>3 both)"
+  },
+  {
+   "row": "MIGHTEE deep (72r)",
+   "z": 0.04426,
+   "dA0": 0.33522139785305916,
+   "se": 0.03549575584535052,
+   "src": "N05 a0eff/a0=2.1638, z=+6.58 2-sided; G208 z_med",
+   "z_vs_G237": 9.444001586278793,
+   "z_vs_MR": 8.557199407716936,
+   "class": "NEITHER (>3 both)"
+  },
+  {
+   "row": "HeCS-lo (N=27)",
+   "z": 0.1333,
+   "dA0": -0.06197859871792171,
+   "se": 0.019812907076573905,
+   "src": "O02 arm median 0.1333; pair difference ONLY (A1)",
+   "z_vs_G237": 3.128193075270769,
+   "z_vs_MR": 1.9255288075079942,
+   "class": "G237-inconsistent 3.13SE (sel-flagged); M-RISE 1.93SE"
+  },
+  {
+   "row": "HeCS-hi (N=28)",
+   "z": 0.21705,
+   "dA0": 0.06197859871792171,
+   "se": 0.019812907076573905,
+   "src": "O02 arm median 0.21705; pair difference ONLY (A1)",
+   "z_vs_G237": 3.128193075270769,
+   "z_vs_MR": 1.9255288075079942,
+   "class": "G237-inconsistent 3.13SE (sel-flagged); M-RISE 1.93SE"
+  }
+ ],
+ "consistency": {
+  "SPARC_vs_G237_MR": [
+   5.6635144460841556,
+   5.567378327159939
+  ],
+  "O01_vs_G237_MR": [
+   1.7660343270099368,
+   1.7726916753333126
+  ],
+  "MIGHTEE_vs_G237_MR": [
+   9.443985340488776,
+   8.557199407716936
+  ],
+  "HeCS_vs_G237_MR": [
+   3.128193075270769,
+   1.9255288075079942
+  ],
+  "classes": {
+   "MW(0) anchor": "BOTH",
+   "O01 dwarfs (N=16)": "BOTH",
+   "SPARC deep (1152r)": "NEITHER (>3 both)",
+   "MIGHTEE deep (72r)": "NEITHER (>3 both)",
+   "HeCS-lo (N=27)": "G237-inconsistent 3.13SE (sel-flagged); M-RISE 1.93SE",
+   "HeCS-hi (N=28)": "G237-inconsistent 3.13SE (sel-flagged); M-RISE 1.93SE"
+  }
+ },
+ "verdict": "G237's a0(z) law SURVIVES this plane -- as an UNCONFIRMED flatness: no adjudicative z-spaced kill on record; the only z-spaced >3-SE signal is the HeCS gradient (Delta log10 a0 = +0.124 +- 0.040 dex over Dz = 0.084, alpha = 1.48 +- 0.47 dex/unit z, 3.13 SE), which carries its pre-registered selection signature (mass-dependent structure, LX flux-limited) -> KILL-CANDIDATE, NOT adjudication, verdict pending the WG high-z leg. The large plane deviations (SPARC 0.72, MIGHTEE 2.16, O01 0.64) sit at z ~ 0-0.05 and violate BOTH laws at >3 SE (MIGHTEE 9.5 SE from G237, 8.6 SE from M-RISE): under G237 they are environmental/systematic by registration (G208 C6 z-evolution ~87x short; G133 M/L-convention collapse 1.87->1.08; O01 deep-tail systematics), and the impossibility leg makes them UNZ-ABLE: the required slopes (+26/unit z, -6/unit z, +12 dex/unit z between-survey) are ~1e5x G237's rate, opposite-signed, and spread over Dz ~ 0.04. If HeCS survives the WG leg, amendment is needed -- but even an amended a0(z) cannot carry the staircase (impossibility leg), so the amendment would absorb HeCS alone, at <= ~1.5 dex/unit z, and M04's BLR cosmography would then settle it with a SINGLE S/N=30 object (3 sigma at z >= 0.06; ~25 sigma at z=1; one pair (0.3,1.0) ~5 sigma).",
+ "future_leg": {
+  "per_object_3sigma_dex": 0.09276530133453459,
+  "floor3_days_lag_only": 6.14,
+  "hecs_dev_days_at_z1": 50.18805779571111,
+  "zstat_hecs_at_z1_single_object": 24.54183755291497,
+  "z3sigma_single_object": 0.06188293726638709,
+  "pair_zstat_z1_1p0": 4.9260056055120955,
+  "mrise_anchor_dev_days": 24.0,
+  "mrise_anchor_zstat_lag": 11.7359413202934,
+  "answer": "YES: distinguishable at 3 sigma with N=1 object at z >= 0.06-0.1 (or one pair at (0.3, >=0.4)); at z=1 one object reaches ~25 sigma -- the probe is not the binding constraint (assumption A2: linear extrapolation of the HeCS gradient, unphysical away from the band; sensitivity yardstick only)"
+ },
+ "assumptions": [
+  "A1 HeCS absolute placement: only the hi-lo DIFFERENCE is measured; pair displayed centred on the framework 0.000 (midpoint anchored), preserving the +0.1240-dex gradient and SE.",
+  "A2 HeCS future-leg extrapolation is linear in z, a DIAGNOSTIC sensitivity yardstick, not a committed law (implies a0~30x at z=1 if taken literally).",
+  "A3 MIGHTEE SE_dex = 0.0355 derived from N05 point estimate + reported two-sided z=6.58 (ring SE); colour-group SE in S02_results.json is smaller (7.34e-23 vs 8.12e-23) - not used.",
+  "A4 SPARC epoch z~0.005 (task band 0.001-0.01); O01 dwarfs z~0; MW(0) definitional anchor 0.000+-0.000.",
+  "A5 BLR sigma evaluated at the framework expectation d_fw = 61.351 d (M04's own convention)."
+ ],
+ "sources": [
+  "deepseek_push/O02_results.json (HeCS: dT +0.0620+-0.0198, arms 0.1333/0.21705, K1/K2, C08)",
+  "G237 commit a2e7c821e: G237_eRASS3_zlaw.py + README.md + G237_results.json (a0(z)/a0(0) = 1-3e-5 z; Case A identity; M-RISE 1.59e-10 m/s^2 per z)",
+  "deepseek_push/N05_results.json (SPARC deep a0eff/a0 = 0.7241, z_cl -4.17; MIGHTEE deep 2.1638, z +6.58)",
+  "deepseek_push/O01_results.json (L06 SE_dex 0.0382; dwarfs primary -0.1955+-0.1107)",
+  "deepseek_push/G208_results.json (MIGHTEE z_med 0.04426; z-evolution +2.19% vs needed 2.915x)",
+  "deepseek_push/M04_results.json + M04_J10Z_COSMOGRAPHY.md (sigma_d 2.045 d, floor 6.14 d, 11.7-sigma z=1 anchor, sigma_J10I 0.0356)"
+ ],
+ "note_on_filename": "S02_results.json is the on-record deliverable of sister lane S02_mightee_mirror (read by U02/U03) and is NOT overwritten (additive-only rule); this lane writes S02_a0z_plane_results.json."
+}

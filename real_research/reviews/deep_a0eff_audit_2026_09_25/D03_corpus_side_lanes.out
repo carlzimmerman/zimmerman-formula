@@ -1,0 +1,33 @@
+
+D03 -- THE OTHER THREE READERS OF THE CORPUS MASS-TO-LIGHT RATIOS: g03d (EFE refit), g03e (equipartition refit), G119 (break factor).
+=====================================================================================================================================
+Companion to D02 (same sandbox and variants; these lanes read only the corpus and run in under a second).  g03d's "bare deep-regime
+a0 = 0.692 a0_DE" is the "G03D register" that G208 quotes, and falsifier-matrix row 17 cites "G03D 0.692 -> 0.534" as the reason the
+EFE-boosted leg is rejected "on direction".  Both lanes fit a0 on a FIXED GRID (read from their source below), so a value on the
+edge of the grid is a bound, not a measurement; this script reports every edge hit.
+Checks can fail.  MUTATE=1 builds the "corrected" variants from the unchanged corpus: the change checks must then FAIL (rc = 1).
+Run from the repository root:  python3 real_research/reviews/deep_a0eff_audit_2026_09_25/D03_corpus_side_lanes.py
+
+  fit grids: g03d [5.00e-11, 1.50e-10] step 2.0e-13;  g03e [7.00e-11, 1.30e-10] step 1.0e-13
+  [PASS] B1 the sandbox reproduces the three committed result files with the committed corpus (every numeric field, rel. 1e-9)
+         measured: worst relative difference 0.0e+00; exits {'g03d_efe_refit.py': 0, 'g03e_equipartition.py': 0, 'G119_break_factor.py': 0}
+
+                  g03d bare a0       (ratio, grid)   g03d EFE a0       (ratio, grid)  g03e bare a0       (ratio, grid)  G119 rms G119 checks
+  committed          6.480e-11   (0.692, interior)     5.000e-11      (0.534, FLOOR)     7.000e-11      (0.748, FLOOR)    0.1454         6/6
+  std05_cut          1.324e-10   (1.414, interior)     5.120e-11   (0.547, interior)     1.296e-10   (1.384, interior)    0.0915         5/6
+  std06_cut          1.190e-10   (1.271, interior)     5.000e-11      (0.534, FLOOR)     1.172e-10   (1.252, interior)    0.0945         5/6
+  std07_cut          1.090e-10   (1.164, interior)     5.000e-11      (0.534, FLOOR)     1.078e-10   (1.151, interior)    0.0985         5/6
+  std05_nocut        1.218e-10   (1.301, interior)     5.000e-11      (0.534, FLOOR)     1.173e-10   (1.253, interior)    0.1258         5/6
+  [PASS] C1 [g03d, the 'G03D register'] the bare deep-regime a0 is ABOVE a0_DE in every corrected variant (committed 0.692 a0_DE)
+         measured: 1.414, 1.271, 1.164, 1.301
+         reading:  G208's staircase note 'brief 0.69 = G03D bare ratio 0.692' quotes the corpus artefact
+  [PASS] C2 [g03e] the equipartition refit's bare a0 is ABOVE a0_DE in every corrected variant (committed 0.748 a0_DE)
+         measured: 1.384 (interior), 1.252 (interior), 1.151 (interior), 1.253 (interior)
+         reading:  the grid matters: committed FLOOR; std05_cut interior; std06_cut interior; std07_cut interior; std05_nocut interior (g03e grid [7.00e-11, 1.30e-10]) -- the committed 0.748 is a bound on the floor, not a measurement
+  [PASS] S1 [g03d -> falsifier row 17] the committed EFE-boosted a0 (0.534 a0_DE) is the FLOOR of g03d's fit grid, not a fit minimum
+         measured: committed EFE-boosted a0 = 5.000e-11 = grid floor 5.00e-11 (FLOOR); corrected: 5.120e-11 (interior), 5.000e-11 (FLOOR), 5.000e-11 (FLOOR), 5.000e-11 (FLOOR)
+         reading:  the 'EFE leg rejected on direction (G03D 0.692 -> 0.534)' reading compares a corpus artefact with a grid bound; neither is a measurement
+  [PASS] S2 [G119] the algebraic results (r_efe/r_M = sqrt(a0/g_ext), the 0.62 derivation) do not depend on the corpus; only the sample-rms consistency check does
+         measured: verdict checks pass in every run: [True, True, True, True, True]; checks ['6/6', '5/6', '5/6', '5/6', '5/6']; sample rms [0.1454, 0.0915, 0.0945, 0.0985, 0.1258]
+
+  5/5 checks pass; load-bearing failures: 0

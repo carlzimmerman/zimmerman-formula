@@ -1,0 +1,76 @@
+====================================================================================================
+N05 -- THE DEEP-BAR KILL TEST (catalog-precision case for a dedicated deep-BAR program)
+        a0 = 9.36190e-11 m/s^2; deep cut g_bar < 0.2 a0; kill bar = 5.0 SE (one-sided M1)
+        L06 saved deep-SPARC record: N = 1288, Delta/(a0 E[g_bar]) = +0.873, z(clustered) = +9.14, SE(ring) = 3.830e-23, SE(clustered, used) = 7.142e-23
+====================================================================================================
+
+--- (1) DEEP-SPARC STRUCTURE REPRODUCED (rings only; SEs taken from L06) ---
+  deep rings 1288 (L06: 1288), galaxies carrying deep rings 142 (of 175), rings/gal 9.1, u-range [-2.05, -0.70], s_u = 0.271, mean u = -1.14 (crossing-sensitive)
+  [PASS] deep ring count matches L06
+  [PASS] deep E[g_bar] matches L06   7.986595e-12 vs 7.986595e-12
+
+--- (2c) MIGHTEE-HI DEEP SUB-SAMPLE (REAL): does MIGHTEE ALREADY close the tension? ---
+  full-sample rebuild check vs L06: Delta = +6.058e-22 (L06: +6.058e-22)
+  [PASS] MIGHTEE full-sample rebuild matches L06
+  MIGHTEE deep rings: 72/80, colour groups 18
+  M1 Delta = +5.343e-22 = +1.164 x a0E[g_bar];  SE(ring) = 8.119e-23, SE(colour-group) = 7.340e-23;  z = +6.58  (L06 full-sample z = +4.28)
+  mapped deep a0_eff/a0 = 1 + Delta/(a0E) = 2.164  (a0_eff = 2.026e-10; G199 quadratic-fit register: 1.9e-10 ~ 2.03 a0)
+  [FAIL] MIGHTEE deep deviation is NEGATIVE (would close the SPARC deficit)
+  => MIGHTEE deep sign: POSITIVE (mirror-image, does NOT close).
+  POOLED deep M1 = +6.466e-22 = +0.883 x a0E[g_bar] (1360 rings) -- a ring-weighted tug-of-war, NOT a verdict: the two deep catalogs disagree on the SIGN (SPARC deep +0.873, MIGHTEE deep +1.164), each >4-sigma one-sided.
+
+--- (2) THE N-REQUIREMENT CURVE (measured deficit f0 = 0.873 x a0E[g_bar] -> 5-SE kill) ---
+  current SE(Delta)/a0E[g_bar] = 0.0955 at N = 1288 -> per-ring noise = 3.428 in a0E[g_bar] units (clustered-equivalent)
+  f = 1.000: N_req(ring-level) =      294 deep rings | N_gal_total_req =     32 (new =      0)
+  f = 0.500: N_req(ring-level) =     1175 deep rings | N_gal_total_req =    130 (new =      0)
+  f = 0.873: N_req(ring-level) =      385 deep rings | N_gal_total_req =     42 (new =      0)
+  f = 0.150: N_req(ring-level) =    13057 deep rings | N_gal_total_req =   1439 (new =   1297)
+  (a) rings at current per-ring noise: N_req = 385 deep rings; SE(Delta)/a0E must fall from 0.0955 to 0.5469
+      NB: deepening EXISTING SPARC galaxies does NOT reduce the clustered SE (set by galaxies + shared systematics); the honest lever is NEW galaxies.
+  (b) new deep-HI galaxies (SPARC-style, ~3 deep rings each): -100 NEW galaxies -> ~-299 new deep rings; total deep ensemble ~989 rings / 42 galaxies  (at SPARC's own deep yield 9.1 rings/gal the same budget is -903 rings -- the clustered SE, not the ring count, is binding)
+  |z|(N= 1500, ring-level naive) =  9.87
+  |z|(N=  989, ring-level naive) =  8.01
+  |z|(N= 2500, ring-level naive) = 12.74
+  |z|(N= 3000, ring-level naive) = 13.95
+  galaxy-level |z| at target total 42 gals =  5.00 (>=5 -> kill)
+
+--- (3) THE DISCRIMINATOR: a0_eff = 0.73 a0 (deep slope 1/2, int -0.068 dex) vs slope 0.55 (int 0) ---
+  H_A: ydev = -0.0682 dex (a0_eff = 0.73 a0);  H_B: ydev = 0.050 * u (slope 0.55, intercept 0);  ydev = log10(g_obs/sqrt(a0 g_bar)), u = log10(g_bar/a0)
+  crossing: u* = -1.364 (g_bar = 4.049e-12 = 0.0433 a0) -- INSIDE the deep band:
+  |delta_ydev| over deep-SPARC u: mean = 0.0147 dex; at u_min/u_med/u_max = -0.034/+0.012/+0.033 dex
+  M1 deviation if deep data lay on H_B (slope 0.55): -0.317 x a0E[g_bar] vs measured -0.276 (H_A): the M1 MOMENT CANNOT attribute (both ~ -0.3).
+  E[(d0+d1 u)^2] over the deep sample = 0.00030 dex^2;  sigma = deep s_dex = 0.160 dex
+  N =   385: LR significance S_LR =  1.07  (slope-channel-only S =  1.66)
+  N =   989: LR significance S_LR =  1.71  (slope-channel-only S =  2.66)
+  N =  3000: LR significance S_LR =  2.99  (slope-channel-only S =  4.64)
+  N = 11130: LR significance S_LR =  5.75  (slope-channel-only S =  8.94)
+  N for 5-sigma separation: slope-channel     3483 | exact LR (offset noise included)     8415 deep rings
+  Monte Carlo power (8000 sims/cell, seed 20260923+400; z = dLL/sd, validated exact):
+    N =   385: truth A: <z> = +1.07, P(|z|>1.96) = 0.190, P(|z|>=5) = 0.0000   truth B: <z> = -1.07, P(|z|>1.96) = 0.193, P(|z|>=5) = 0.0003
+    N =   989: truth A: <z> = +1.72, P(|z|>1.96) = 0.402, P(|z|>=5) = 0.0006   truth B: <z> = -1.70, P(|z|>1.96) = 0.400, P(|z|>=5) = 0.0003
+    N =  3000: truth A: <z> = +2.98, P(|z|>1.96) = 0.848, P(|z|>=5) = 0.0214   truth B: <z> = -2.99, P(|z|>1.96) = 0.848, P(|z|>=5) = 0.0210
+    N =  8414: truth A: <z> = +4.99, P(|z|>1.96) = 0.999, P(|z|>=5) = 0.4963   truth B: <z> = -4.98, P(|z|>1.96) = 0.999, P(|z|>=5) = 0.4871
+  SYSTEMATICS LEVER (the decisive one): S_LR(5-sigma) N vs per-ring residual scatter sigma:
+    sigma = 0.160 dex (SPARC-class 0.16 / MIGHTEE full 0.13 / resolved-SED recipe 0.045): N =     8415 deep rings
+    sigma = 0.150 dex (SPARC-class 0.16 / MIGHTEE full 0.13 / resolved-SED recipe 0.045): N =     7406 deep rings
+    sigma = 0.100 dex (SPARC-class 0.16 / MIGHTEE full 0.13 / resolved-SED recipe 0.045): N =     3291 deep rings
+    sigma = 0.050 dex (SPARC-class 0.16 / MIGHTEE full 0.13 / resolved-SED recipe 0.045): N =      823 deep rings
+  DEPTH LEVER (approximate): extending the band toward g_bar = 1e-3 a0 (u_min = -3) raises s_u:
+    band to u_min = -2.15: s_u = 0.502 -> slope-channel N(S=5) = 1013
+    band to u_min = -2.50: s_u = 0.582 -> slope-channel N(S=5) = 754
+    band to u_min = -3.00: s_u = 0.706 -> slope-channel N(S=5) = 513
+  => reading: at the M1-kill N the deep cut EXCLUDES the normalization-only family {a0_eff = 1} (the a0-line) but separates H_A (0.73 a0) from H_B (slope 0.55) at only ~1.9-2 sigma: attribution needs ~11k deep rings at SPARC-class scatter -- OR control of the per-ring systematic scatter (the MIGHTEE resolved-SED recipe: 0.045 dex) and/or a deeper band, each cutting N by 5-25x.
+
+--- (4) PROGRAM CARD (survey design numbers) ---
+  g_bar target: 0.05 a0 = 4.681e-12 m/s^2  (MIGHTEE deep rings already reach ~1e-12 = 0.01 a0: depth is NOT the binding constraint)
+    Vgas(2 sigma) at R =    5 kpc: V =  26.9 km/s  -> per-radius-bin precision ~V/2 =  13.4 km/s
+    Vgas(2 sigma) at R =   10 kpc: V =  38.0 km/s  -> per-radius-bin precision ~V/2 =  19.0 km/s
+    Vgas(2 sigma) at R =   20 kpc: V =  53.7 km/s  -> per-radius-bin precision ~V/2 =  26.9 km/s
+  ring budget (SPARC-class systematics): f = 1.00: 294 | f = 0.50: 1175 | f = 0.276 (measured): 385 | f = 0.15: 13057 deep rings
+  new-galaxy budget at f = 0.276: ~-100 NEW deep-HI galaxies (3 deep rings each), ~-299 new rings; total deep ensemble ~989 rings / 42 galaxies
+  MIGHTEE-HI yield reference (Varasteanu+2025): 19 galaxies -> 80 rings (72 deep) from the 4 MeerKAT L-band deep fields (20 deg^2, ~2 uJy/beam continuum class; Jarvis+2016, Maddox+2021)
+  target yield ~13x the MIGHTEE galaxy count -> MeerKAT L-band (1.4 GHz HI) survey-extension + targeted low-mass dwarfs; runtime band, assumptions labeled: 5-15 kh on MeerKAT-class arrays over ~2-3 yr cycles (B: ngVLA/SKA1-mid, 2030s) -- ESTIMATE, not budget.
+
+VERDICT: DEEP-BAR KILL TEST: NOT CLOSED -- and the deep regime is now a two-sided contradiction. SPARC deep (1288 rings): M1 = 0.873 x a0E[g_bar], z = +9.14 clustered (a0_eff = 0.73 a0, G208 register). MIGHTEE deep (72 rings): M1 = +1.164 x a0E[g_bar], z = +6.58 -- POSITIVE, ALREADY a >5-SE two-sided deviation (a0_eff ~ 2.0 a0, the G199 1.87x normalization rung): MIGHTEE does NOT close the SPARC deficit, it contradicts its sign. Budget: the measured -0.873 x a0E[g_bar] becomes a 5-SE kill at ~385 deep rings at current per-ring noise, i.e. ~-100 NEW deep-HI galaxies at ~3 rings each (-299 new rings; total deep ensemble ~989 rings / 42 galaxies) under the honest galaxy-clustered SE -- the binding unit is galaxies (clustered SE is 1.86x the ring-level SE), so deepening existing SPARC galaxies does not help. Discriminator: a 5-SE M1 kill excludes the normalization-only family {a0_eff = 1} but CANNOT attribute between H_A (a0_eff = 0.73 a0: slope 1/2, intercept -0.068 dex) and H_B (slope 0.55, intercept 0): the lines cross at 0.0433 a0 inside the band, BOTH produce the same -0.3 x a0E[g_bar] moment (H_B: -0.317), and the exact LR separates them at only 1.1 sigma at the kill N -- 5-sigma attribution needs ~8415 deep rings at SPARC-class scatter, OR the resolved-SED systematic-control recipe (0.045 dex scatter: ~823 rings) and/or a deeper band (g_bar -> 1e-3 a0: ~423 rings). Program card: MIGHTEE-class MeerKAT L-band HI + resolved 10-band SED, ~13x the published 19-galaxy yield, ~5-15 kh exposure class, ~2-3 yr; pre-registered kill/confirm/arbiter/discriminator criteria in N05_DEEP_BAR_PROGRAM.md.
+
+wrote N05_results.json

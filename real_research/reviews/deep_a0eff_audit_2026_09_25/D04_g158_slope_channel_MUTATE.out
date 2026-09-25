@@ -1,0 +1,193 @@
+D04 -- DOES FALSIFIER ROW 11 TEST THE FRAMEWORK'S LAW?  G158's slope channel, run on the law itself.
+========================================================================================================
+Row 11 ('the n-kill', G158) is registered FIRED: the deep slope beta, mapped by the task-declared rule n = 2*beta,
+reads n = 1.20 +/- 0.06, '12.7 sigma from 2.000'.  In the programme's own family the seesaw n is an AMPLITUDE
+(a0 = s/n) and the deep slope is 1/2 for every n; the rule n = 2*beta gives the canonical footing beta = 1, the
+Newtonian slope.  Here the lane's own estimator is run on data that obey the law exactly.
+Law under test: the TASK-DECLARED curve g = a0 (g_N/a0)^(n/2)  [MUTATE control].
+Footings: canonical a0 = 9.3619e-11 (seesaw n = 2.000), alternative a0 = 1.1279e-10 (n = 1.660).
+Run from the repository root:  python3 real_research/reviews/deep_a0eff_audit_2026_09_25/D04_g158_slope_channel.py
+
+======================================================================================================================
+B  FAITHFULNESS: this script's copy of G158's estimators reproduces G158's committed and D02-archived results
+======================================================================================================================
+  [PASS] B1 the copy of G158's estimators reproduces its committed results and D02's four archived corrected results
+         measured: 145 numbers over 5 corpora; worst relative difference 0.0e+00
+         reading:  the injections below go through exactly the estimator that produced row 11's numbers
+
+  corpus       SPARC Ndeep beta_pg SPARC  MIGHTEE     HI n = 2*mean  sigma from 2.000  ring n from 2.000
+  committed            289         0.535    0.602  0.667      1.203  0.063      12.7s   0.519      24.6s
+  std05_cut            343         0.596    0.602  0.667      1.244  0.037      20.3s   0.932      22.0s
+  std06_cut            330         0.530    0.602  0.667      1.200  0.065      12.4s   0.905      22.1s
+  std07_cut            319         0.539    0.602  0.667      1.206  0.060      13.1s   0.870      22.5s
+  std05_nocut          409         0.525    0.602  0.667      1.196  0.067      12.0s   0.903      22.3s
+
+======================================================================================================================
+M  THE LAW'S OWN DEEP SLOPE (d log g_obs / d log g_N at y = g_N/a0)
+======================================================================================================================
+  curve                                        y=0.0001  y=0.01    y=0.05    y=0.1     y=0.2    
+  in-force kernel nu_RAR, canonical footing    0.5025    0.5246    0.5538    0.5749    0.6035   
+  in-force kernel nu_RAR, alternative footing  0.5025    0.5246    0.5538    0.5749    0.6035   
+  alpha=1 quadratic, canonical                 0.5000    0.5050    0.5238    0.5455    0.5833   
+  programme family mu_n, n = 2.000 (a0 = s/2)  0.5019    0.5191    0.5434    0.5621    0.5892   
+  programme family mu_n, n = 1.660 (a0 = s/1.66) 0.5020    0.5203    0.5460    0.5656    0.5936   
+  task-declared beta = n/2, n = 2.000          1.0000    1.0000    1.0000    1.0000    1.0000   
+  task-declared beta = n/2, n = 1.660          0.8300    0.8300    0.8300    0.8300    0.8300   
+  [FAIL] M1 [identity] the law under test has deep slope 1/2 at BOTH footings (|beta - 0.5| < 0.01 at y = 1e-4): the slope carries no n
+         measured: beta(y = 1e-4) = 1.0000 (canonical, n = 2.000), 0.8300 (alternative, n = 1.660)
+         reading:  an identity, carries no evidence: the seesaw n sets the amplitude a0 = s/n, and beta = n/2 = 1 is the Newtonian slope
+
+======================================================================================================================
+I  INJECTION: G158's slope channel run on data that obey the law EXACTLY at the canonical footing (seesaw n = 2)
+======================================================================================================================
+  noise model from the data (dex): within-galaxy ring scatter / per-galaxy offset
+    MIGHTEE                0.067 / 0.101
+    HI                     0.358 / 0.000
+    SPARC_committed        0.112 / 0.166
+    SPARC_std05_cut        0.047 / 0.135
+    SPARC_std06_cut        0.045 / 0.136
+    SPARC_std07_cut        0.044 / 0.135
+    SPARC_std05_nocut      0.083 / 0.135
+    committed    law-exact data: slope-channel reading n = 1.998 (median), 0.0 sigma from 2.000; row 11 fires in 6.5% (per-galaxy) / 7.5% (ring level) of 400 draws
+    std05_cut    law-exact data: slope-channel reading n = 2.005 (median), -0.1 sigma from 2.000; row 11 fires in 3.2% (per-galaxy) / 16.8% (ring level) of 400 draws
+    std06_cut    law-exact data: slope-channel reading n = 2.004 (median), -0.1 sigma from 2.000; row 11 fires in 2.8% (per-galaxy) / 14.8% (ring level) of 400 draws
+    std07_cut    law-exact data: slope-channel reading n = 2.004 (median), -0.1 sigma from 2.000; row 11 fires in 3.2% (per-galaxy) / 14.2% (ring level) of 400 draws
+    std05_nocut  law-exact data: slope-channel reading n = 2.000 (median), 0.0 sigma from 2.000; row 11 fires in 5.2% (per-galaxy) / 11.2% (ring level) of 400 draws
+  [FAIL] I1 [injection] row 11's criterion (G158 C2: > 3 sigma from 2.000 and 1.660) FIRES on law-exact canonical-footing data in >= 95% of draws, for every corpus
+         measured: committed 6%/8%; std05_cut 3%/17%; std06_cut 3%/15%; std07_cut 3%/14%; std05_nocut 5%/11%
+         reading:  the falsifier fires on the law it is registered to test: its firing carries no information about the law
+    committed    noise-free: reading n = 2.000 (law at n = 2.000) vs 1.660 (law at n = 1.660); ring level 2.000 vs 1.660; programme family mu_n: 1.095 vs 1.091
+    std05_cut    noise-free: reading n = 2.000 (law at n = 2.000) vs 1.660 (law at n = 1.660); ring level 2.000 vs 1.660; programme family mu_n: 1.085 vs 1.081
+    std06_cut    noise-free: reading n = 2.000 (law at n = 2.000) vs 1.660 (law at n = 1.660); ring level 2.000 vs 1.660; programme family mu_n: 1.086 vs 1.083
+    std07_cut    noise-free: reading n = 2.000 (law at n = 2.000) vs 1.660 (law at n = 1.660); ring level 2.000 vs 1.660; programme family mu_n: 1.088 vs 1.084
+    std05_nocut  noise-free: reading n = 2.000 (law at n = 2.000) vs 1.660 (law at n = 1.660); ring level 2.000 vs 1.660; programme family mu_n: 1.083 vs 1.080
+  [FAIL] I2 [injection] the slope channel cannot tell the footings apart: its reading on law-exact data moves by < 0.10 between n = 2.000 and n = 1.660 (the gap it claims to resolve is 0.340)
+         measured: committed 0.340; std05_cut 0.340; std06_cut 0.340; std07_cut 0.340; std05_nocut 0.340
+         reading:  the footing lives in the amplitude; a slope reading of about 1.1-1.2 is what the law itself returns at either footing
+
+======================================================================================================================
+D  DATA: the measured deep slope against the law's own slope at the same points (paired bootstrap, 2000 draws)
+======================================================================================================================
+  corpus       sample   beta data beta law   delta     se      z | law at alternative
+  committed    MIGHTEE      0.602    1.000  -0.398  0.080  -4.99 | law 0.830, z -2.86
+  committed    SPARC        0.535    1.000  -0.465  0.091  -5.12 | law 0.830, z -3.25
+  committed    HI           0.667    1.000  -0.333  0.285  -1.17 | law 0.830, z -0.57
+  committed    POOLED                       -0.423  0.059  -7.21   (inverse-variance over the three samples)
+  std05_cut    MIGHTEE      0.602    1.000  -0.398  0.080  -4.99 | law 0.830, z -2.86
+  std05_cut    SPARC        0.596    1.000  -0.404  0.133  -3.04 | law 0.830, z -1.76
+  std05_cut    HI           0.667    1.000  -0.333  0.285  -1.17 | law 0.830, z -0.57
+  std05_cut    POOLED                       -0.396  0.066  -5.96   (inverse-variance over the three samples)
+  std06_cut    MIGHTEE      0.602    1.000  -0.398  0.080  -4.99 | law 0.830, z -2.86
+  std06_cut    SPARC        0.530    1.000  -0.470  0.120  -3.90 | law 0.830, z -2.49
+  std06_cut    HI           0.667    1.000  -0.333  0.285  -1.17 | law 0.830, z -0.57
+  std06_cut    POOLED                       -0.415  0.065  -6.42   (inverse-variance over the three samples)
+  std07_cut    MIGHTEE      0.602    1.000  -0.398  0.080  -4.99 | law 0.830, z -2.86
+  std07_cut    SPARC        0.539    1.000  -0.461  0.100  -4.61 | law 0.830, z -2.91
+  std07_cut    HI           0.667    1.000  -0.333  0.285  -1.17 | law 0.830, z -0.57
+  std07_cut    POOLED                       -0.418  0.061  -6.87   (inverse-variance over the three samples)
+  std05_nocut  MIGHTEE      0.602    1.000  -0.398  0.080  -4.99 | law 0.830, z -2.86
+  std05_nocut  SPARC        0.525    1.000  -0.475  0.117  -4.06 | law 0.830, z -2.61
+  std05_nocut  HI           0.667    1.000  -0.333  0.285  -1.17 | law 0.830, z -0.57
+  std05_nocut  POOLED                       -0.418  0.064  -6.51   (inverse-variance over the three samples)
+  [FAIL] D1 [data] the measured per-galaxy deep slope agrees with the law's own slope at the same points: |z| < 3 for every sample and the pooled difference, in every corrected corpus
+         measured: std05_cut: pooled -0.396 +/- 0.066 (z -5.96), max |z| 5.96; std06_cut: pooled -0.415 +/- 0.065 (z -6.42), max |z| 6.42; std07_cut: pooled -0.418 +/- 0.061 (z -6.87), max |z| 6.87; std05_nocut: pooled -0.418 +/- 0.064 (z -6.51), max |z| 6.51; committed corpus (kinematic ratios, reported only): pooled z -7.21
+         reading:  the deep slope row 11 measured is the slope the framework's law predicts
+  [FAIL] P1 [data, power] the same data and bootstrap EXCLUDE the slopes the law does not have: beta = 0.75 and the Newtonian beta = 1 at > 3 sigma, in every corrected corpus
+         measured: std05_cut: beta 0.604 +/- 0.066, 2.2 sigma from 0.75, 6.0 sigma from 1; std06_cut: beta 0.585 +/- 0.065, 2.6 sigma from 0.75, 6.4 sigma from 1; std07_cut: beta 0.582 +/- 0.061, 2.8 sigma from 0.75, 6.9 sigma from 1; std05_nocut: beta 0.582 +/- 0.064, 2.6 sigma from 0.75, 6.5 sigma from 1
+         reading:  D1's agreement is not for lack of power; what row 11 excluded at 12.7 sigma is beta = 1
+
+  ring-pooled slope (row 11's 'ring level'), data vs law-exact injections with the data's scatter, and with 0.1 dex per-galaxy mass-to-light scatter:
+    committed    data 0.259 | law, no M/L scatter 1.006 +/- 0.057 (z -13.01) | law, 0.1 dex M/L scatter 0.996 +/- 0.062 (z -11.89)
+    std05_cut    data 0.466 | law, no M/L scatter 0.999 +/- 0.053 (z -10.00) | law, 0.1 dex M/L scatter 1.002 +/- 0.068 (z -7.85)
+    std06_cut    data 0.452 | law, no M/L scatter 0.999 +/- 0.053 (z -10.33) | law, 0.1 dex M/L scatter 1.002 +/- 0.066 (z -8.28)
+    std07_cut    data 0.435 | law, no M/L scatter 0.999 +/- 0.052 (z -10.81) | law, 0.1 dex M/L scatter 1.002 +/- 0.065 (z -8.74)
+    std05_nocut  data 0.452 | law, no M/L scatter 1.002 +/- 0.051 (z -10.80) | law, 0.1 dex M/L scatter 0.997 +/- 0.057 (z -9.51)
+  [FAIL] D2 [data] the ring-pooled deep slope agrees with law-exact injections carrying 0.1 dex per-galaxy mass-to-light scatter (|z| < 3), in every corrected corpus   (reported, not load-bearing)
+         measured: std05_cut z -7.85 (without the scatter -10.00); std06_cut z -8.28 (without the scatter -10.33); std07_cut z -8.74 (without the scatter -10.81); std05_nocut z -9.51 (without the scatter -10.80); committed corpus z -11.89
+
+======================================================================================================================
+A  THE AMPLITUDE CHANNEL: where the seesaw n actually lives (n = s_Lambda/a0 = 2 a0_DE/a0)
+======================================================================================================================
+  G158's amplitude fit (the alpha=1 quadratic) on noise-free law-exact data at the canonical footing, a0_fit/a0:
+    committed    MIGHTEE 0.268, SPARC 0.268, HI 0.268  -> its n_amp on exact n = 2 data: 7.45, 7.45, 7.45
+    std05_cut    MIGHTEE 0.268, SPARC 0.268, HI 0.268  -> its n_amp on exact n = 2 data: 7.45, 7.45, 7.45
+    std06_cut    MIGHTEE 0.268, SPARC 0.268, HI 0.268  -> its n_amp on exact n = 2 data: 7.45, 7.45, 7.45
+    std07_cut    MIGHTEE 0.268, SPARC 0.268, HI 0.268  -> its n_amp on exact n = 2 data: 7.45, 7.45, 7.45
+    std05_nocut  MIGHTEE 0.268, SPARC 0.268, HI 0.268  -> its n_amp on exact n = 2 data: 7.45, 7.45, 7.45
+  [FAIL] A1 [injection] G158's alpha=1 amplitude fit returns a0 x (1.05-1.35) on law-exact canonical-footing data, for every sample and corpus: its n_amp reads LOW on exact n = 2 data
+         measured: committed 0.268-0.268; std05_cut 0.268-0.268; std06_cut 0.268-0.268; std07_cut 0.268-0.268; std05_nocut 0.268-0.268
+         reading:  the lane's amplitude channel carries the alpha=1 form's bias (D01 D5); the kernel's own fit is below
+
+  the in-force kernel's deep amplitude (deep rings only; galaxy bootstrap, 300 draws), both footings and the kill line n = 2.01:
+    corpus       sample   a0 [1e-11] a0/a0_DE      n sigma_n  vs 2.000  vs 1.660 (2.01-n)/s | G158 alpha=1 a0, n
+    committed    MIGHTEE       16.69    1.783  1.122   0.164     -5.3s     -3.3s       +5.4 | 19.04, 0.98
+    committed    SPARC          4.95    0.529  3.779   0.988     +1.8s     +2.1s       -1.8 | 6.42, 2.92
+    committed    HI            12.96    1.384  1.445   0.498     -1.1s     -0.4s       +1.1 | 14.47, 1.29
+    committed    JOINT         12.54    1.339  1.493   0.179     -2.8s     -0.9s       +2.9 | chi2 (df 2) = 16.42
+    std05_cut    MIGHTEE       16.69    1.783  1.122   0.164     -5.3s     -3.3s       +5.4 | 19.04, 0.98
+    std05_cut    SPARC         11.61    1.241  1.612   0.239     -1.6s     -0.2s       +1.7 | 13.84, 1.35
+    std05_cut    HI            12.96    1.384  1.445   0.498     -1.1s     -0.4s       +1.1 | 14.47, 1.29
+    std05_cut    JOINT         13.86    1.481  1.351   0.135     -4.8s     -2.3s       +4.9 | chi2 (df 2) = 3.07
+    std06_cut    MIGHTEE       16.69    1.783  1.122   0.164     -5.3s     -3.3s       +5.4 | 19.04, 0.98
+    std06_cut    SPARC         10.47    1.119  1.788   0.234     -0.9s     +0.5s       +0.9 | 12.58, 1.49
+    std06_cut    HI            12.96    1.384  1.445   0.498     -1.1s     -0.4s       +1.1 | 14.47, 1.29
+    std06_cut    JOINT         12.89    1.376  1.453   0.137     -4.0s     -1.5s       +4.1 | chi2 (df 2) = 5.62
+    std07_cut    MIGHTEE       16.69    1.783  1.122   0.164     -5.3s     -3.3s       +5.4 | 19.04, 0.98
+    std07_cut    SPARC          9.50    1.014  1.972   0.266     -0.1s     +1.2s       +0.1 | 11.50, 1.63
+    std07_cut    HI            12.96    1.384  1.445   0.498     -1.1s     -0.4s       +1.1 | 14.47, 1.29
+    std07_cut    JOINT         12.35    1.319  1.516   0.145     -3.3s     -1.0s       +3.4 | chi2 (df 2) = 8.04
+    std05_nocut  MIGHTEE       16.69    1.783  1.122   0.164     -5.3s     -3.3s       +5.4 | 19.04, 0.98
+    std05_nocut  SPARC         10.90    1.164  1.717   0.236     -1.2s     +0.2s       +1.2 | 13.03, 1.44
+    std05_nocut  HI            12.96    1.384  1.445   0.498     -1.1s     -0.4s       +1.1 | 14.47, 1.29
+    std05_nocut  JOINT         13.28    1.418  1.410   0.136     -4.3s     -1.8s       +4.4 | chi2 (df 2) = 4.50
+  [PASS] A2 [data] the three deep samples share ONE amplitude under the in-force kernel (chi2 < 9.21, df 2, p > 0.01), in every corrected corpus   (reported, not load-bearing)
+         measured: std05_cut chi2 3.07; std06_cut chi2 5.62; std07_cut chi2 8.04; std05_nocut chi2 4.50; committed corpus chi2 16.42
+
+======================================================================================================================
+DIAGNOSIS  (added after the first run, in which I1 and P1 failed as pre-stated; changes no pre-stated result and not the exit code)
+======================================================================================================================
+  (1) G158's per-galaxy error is the spread of THREE sample values (numpy std, which divides by 3, then /sqrt 3).  Read as the
+      lane's own error model, its 'sigma' is a t statistic with 2 degrees of freedom, inflated by sqrt(3/2): the committed 12.7
+      is t = 10.40, two-sided p = 0.0091, 2.61 sigma Gaussian-equivalent; its firing line '3 sigma' has a
+      false-alarm rate of 13.4 per cent, not 0.27.  (Against beta = 1 the paired bootstrap of D gives 6.0-6.9 sigma: P1.)
+  (2) the same injections with G158's OWN mapped null exactly true (beta = n/2 = 1 at n = 2) against the framework's law exactly true:
+      committed    fires   7.0% /   7.8% (per-galaxy / ring level) when beta = 1 is true;    6.5% /   7.5% when the law is true
+      std05_cut    fires   6.5% /  14.5% (per-galaxy / ring level) when beta = 1 is true;    3.2% /  16.8% when the law is true
+      std06_cut    fires   4.5% /  12.5% (per-galaxy / ring level) when beta = 1 is true;    2.8% /  14.8% when the law is true
+      std07_cut    fires   4.5% /  12.0% (per-galaxy / ring level) when beta = 1 is true;    3.2% /  14.2% when the law is true
+      std05_nocut  fires   5.0% /  13.8% (per-galaxy / ring level) when beta = 1 is true;    5.2% /  11.2% when the law is true
+      the firing separates beta = 1 from beta = 1/2.  It says nothing about n = 2.000 against n = 1.660, and its rate on its own null
+      is the lane's real false-alarm rate.
+  (3) where the REAL data's readings sit among the law-exact draws of I1 (percentile; 50 = typical of the law):
+      committed    per-galaxy reading n = 1.203: percentile   0.0 | ring level n = 0.519: percentile   0.0  (I1 draws carry no mass-to-light scatter)
+      std05_cut    per-galaxy reading n = 1.244: percentile   0.0 | ring level n = 0.932: percentile   0.0  (I1 draws carry no mass-to-light scatter)
+      std06_cut    per-galaxy reading n = 1.200: percentile   0.0 | ring level n = 0.905: percentile   0.0  (I1 draws carry no mass-to-light scatter)
+      std07_cut    per-galaxy reading n = 1.206: percentile   0.0 | ring level n = 0.870: percentile   0.0  (I1 draws carry no mass-to-light scatter)
+      std05_nocut  per-galaxy reading n = 1.196: percentile   0.0 | ring level n = 0.903: percentile   0.0  (I1 draws carry no mass-to-light scatter)
+  (4) why the per-galaxy reading misses some law-exact draws: the three-number error swells when one sample strays
+      committed    error 2*std/sqrt3: median 0.026 when firing, 0.090 when not; spread of the three slopes 0.052 vs 0.185; the HI slope's draw-to-draw std 0.205
+      std05_cut    error 2*std/sqrt3: median 0.031 when firing, 0.085 when not; spread of the three slopes 0.061 vs 0.173; the HI slope's draw-to-draw std 0.204
+      std06_cut    error 2*std/sqrt3: median 0.019 when firing, 0.086 when not; spread of the three slopes 0.039 vs 0.173; the HI slope's draw-to-draw std 0.204
+      std07_cut    error 2*std/sqrt3: median 0.024 when firing, 0.087 when not; spread of the three slopes 0.049 vs 0.175; the HI slope's draw-to-draw std 0.204
+      std05_nocut  error 2*std/sqrt3: median 0.017 when firing, 0.089 when not; spread of the three slopes 0.035 vs 0.178; the HI slope's draw-to-draw std 0.205
+  (5) MIGHTEE's amplitude and its stellar mass-to-light convention (the survey's own refits, Table 3, via G167):
+      fiducial varying SED Ystar (median 0.36)   a0 =  16.90e-11 = 1.805 a0_DE  (n = 1.11)
+      radial-average Ystar                       a0 =  14.70e-11 = 1.570 a0_DE  (n = 1.27)
+      fixed Ystar_K = 0.6 (SPARC-class)          a0 =  10.80e-11 = 1.154 a0_DE  (n = 1.73)
+      no molecular gas                           a0 =  20.60e-11 = 2.200 a0_DE  (n = 0.91)
+      this script's kernel fit to the digitised deep rings: a0 = 16.69e-11, -1.2 per cent from the fiducial refit:
+      the digitised deep rings carry the survey's fiducial convention.
+      what-if std05_cut   : MIGHTEE rescaled by the survey's own Ystar_K = 0.6 refit (0.639x) -> joint n = 1.66 +/- 0.17 (-2.0 sigma from 2.000, +0.0 from 1.660; a0 = 1.20 a0_DE; chi2 0.35)
+      what-if std06_cut   : MIGHTEE rescaled by the survey's own Ystar_K = 0.6 refit (0.639x) -> joint n = 1.75 +/- 0.16 (-1.5 sigma from 2.000, +0.5 from 1.660; a0 = 1.15 a0_DE; chi2 0.34)
+      what-if std07_cut   : MIGHTEE rescaled by the survey's own Ystar_K = 0.6 refit (0.639x) -> joint n = 1.83 +/- 0.17 (-1.0 sigma from 2.000, +1.0 from 1.660; a0 = 1.09 a0_DE; chi2 0.86)
+      what-if std05_nocut : MIGHTEE rescaled by the survey's own Ystar_K = 0.6 refit (0.639x) -> joint n = 1.71 +/- 0.16 (-1.8 sigma from 2.000, +0.3 from 1.660; a0 = 1.17 a0_DE; chi2 0.27)
+      (a what-if: the survey refits all radii, and the digitised points carry no per-ring stellar mass to redo it on the deep window)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  MUTATE control: the law under test was replaced by the task-declared curve beta = n/2.  The checks that say row 11
+  does not test the law must fail: M1 FAIL, I1 FAIL, I2 FAIL, D1 FAIL, D2 FAIL, A1 FAIL.
+
+  2/9 checks pass; load-bearing failures: 6  (MUTATE: M1, I1, I2, D1, A1 must fail)
+  runtime 207 s

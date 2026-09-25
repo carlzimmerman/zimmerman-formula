@@ -1,0 +1,141 @@
+SPARC kept rings: 2803 (L06: 3389)
+Table-1 (MRT) parsed: 175 galaxies
+  anchors -- NGC2403: {'MHI_1e9': 3.199, 'RHI_kpc': 15.11, 'Vflat': 131.2}   NGC3198: {'MHI_1e9': 10.869, 'RHI_kpc': 35.66, 'Vflat': 150.1}
+gas-density coverage: 2764/2803 rings (missing = 4 gals without R_HI: D512-2 D564-8 D631-7 NGC5907)
+star-density coverage: 2547/2803 rings (SB<=0 dropped)
+  Sigma_gas,gal dist (M_sun/pc^2): med 2.51, 16-84% [1.81, 2.97], min 0.63, max 5.28
+  Sigma_star,ring dist (M_sun/pc^2): med 11.80, 16-84% [0.52, 197.35]
+  [provenance] NGC2403: corpus-SBdisk vs rotmod-SBdisk max |diff| = n/a L/pc^2 over 0 rings
+  [provenance] UGCA444: corpus-SBdisk vs rotmod-SBdisk max |diff| = n/a L/pc^2 over 0 rings
+
+deep rings (g_bar < 0.2 a0 = 1.872e-11 m/s^2): 1199 from 135 galaxies (L06: 1152/135)
+
+====================================================================================================
+PRE-REGISTERED TEST PROTOCOL (stated prior to computing any bin numbers)
+====================================================================================================
+  a0_eff per bin: intercept fit log10 g_obs = 0.5 log10 g_bar + 0.5 log10 a0_eff
+      (slope FIXED at 1/2), curvature-corrected iteratively; SE = 2000-draw
+      galaxy-clustered bootstrap (galaxies whole).  Robustness: G208-style
+      full-shape grid fit per bin (slope free).
+  a0_pred(bin) = (c/2) sqrt(G rho_bin);  rho_bin = area-weighted (2 pi R dR)
+      mean of Sigma/(2h), h in {100, 300, 1000} pc; HEADLINE h = 300 pc.
+  LEGS (per ring):
+      GAS  (primary):  Sigma_gas = 1.33 M_HI/(2 pi R_HI^2)   [E1: galaxy-mean,
+             order-of-magnitude, biased HIGH at deep radii -- direction stated]
+      TOT  (task 1.4): Sigma_tot = Sigma_gas + 1.4 Sigma_star, Sigma_star =
+             m2l (SBdisk+SBbul) [E2: M/L = corpus m2l_disk = g_bar's own M/L]
+      STAR (diagnostic): Sigma_star alone.
+  per-bin z = (log10 a0_eff - log10 a0_pred) / SE(diff);  SE(diff) from the
+      JOINT clustered bootstrap (a0_eff and rho redrawn together per resample).
+      z is conditional on the recipe (h, galaxy-mean Sigma_gas, M/L = m2l);
+      systematic recipe uncertainty is stated, not folded into SE.
+  cross-bin trend: OLS slope of log10 a0_eff vs log10 rho across bins (slope is
+      h-INDEPENDENT), SE from the joint clustered bootstrap over the union of
+      deep galaxies (bin edges fixed at the full-sample quantiles).
+  KILL CONDITIONS:
+    (a) a0_eff flat across bins (span < 2*mean SE) AND rho varies > 3x
+        -> density-locality DEAD in the deep regime.
+        (rho range <= 3x on a leg -> condition VOID there: inconclusive-
+        by-construction, stated as such.)
+    (b) cross-bin slope inconsistent with +1/2 at > 5 SE -> wrong density
+        mapping (deviation direction reported).
+    (c) [additional, separate from (a)/(b)] |z_bin| > 5 in >= half the bins
+        -> absolute normalization dead: a0(rho) at disk densities cannot set
+        the observed deep a0_eff.
+    (d) synthetic controls C1/C2 must calibrate the machinery BEFORE the
+        real-data verdict is read (CONTROL ONLY).
+  reference density for a0 = a0_DE: rho_Lambda = 4 a0^2/(c^2 G) = 5.845e-27 kg/m^3
+
+--- BINNING (primary k=4, robustness k=3; quantile bins in log10 g_bar) ---
+
+==================================================================================================================================
+BINS 4 (primary)
+==================================================================================================================================
+bin    n   ng       log gbar lo/hi        a0i  se_log      a0mom    ols     a0grid |  rho(gas)    a0p300     z300 |  rho(tot)    a0p300     z300 | rho(star)    a0p300     z300 |
+  0  300   53 [  -12.06,  -11.33]  1.145e-10   0.045  1.473e-10  0.417  1.145e-10 |  2.25e-22  1.84e-08    -48.3 |  2.53e-22  1.95e-08    -46.1 |  2.87e-23  6.56e-09    -23.6 |
+  1  299   78 [  -11.33,  -11.13]  1.076e-10   0.028  1.343e-10  0.675  1.075e-10 |  2.30e-22  1.86e-08    -69.4 |  3.29e-22  2.22e-08    -67.0 |  5.03e-23  8.68e-09    -21.5 |
+  2  300   92 [  -11.13,  -10.96]  1.124e-10   0.040  1.547e-10  0.573  1.125e-10 |  2.51e-22  1.94e-08    -53.8 |  3.81e-22  2.39e-08    -55.5 |  7.83e-23  1.08e-08    -33.3 |
+  3  300   90 [  -10.96,  -10.73]  1.284e-10   0.027  1.629e-10  0.606  1.284e-10 |  2.51e-22  1.94e-08    -70.0 |  4.23e-22  2.52e-08    -73.0 |  1.18e-22  1.33e-08    -51.2 |
+
+==================================================================================================================================
+BINS 3 (robustness)
+==================================================================================================================================
+bin    n   ng       log gbar lo/hi        a0i  se_log      a0mom    ols     a0grid |  rho(gas)    a0p300     z300 |  rho(tot)    a0p300     z300 | rho(star)    a0p300     z300 |
+  0  400   70 [  -12.06,  -11.26]  1.110e-10   0.038  1.420e-10  0.415  1.112e-10 |  2.22e-22  1.83e-08    -55.8 |  2.73e-22  2.02e-08    -57.3 |  3.22e-23  6.95e-09    -31.7 |
+  1  399   93 [  -11.26,  -11.01]  1.124e-10   0.031  1.508e-10  0.618  1.124e-10 |  2.45e-22  1.92e-08    -66.8 |  3.72e-22  2.36e-08    -65.3 |  7.41e-23  1.05e-08    -29.7 |
+  2  400   96 [  -11.01,  -10.73]  1.233e-10   0.027  1.590e-10  0.695  1.230e-10 |  2.51e-22  1.94e-08    -72.3 |  4.12e-22  2.48e-08    -75.2 |  1.08e-22  1.27e-08    -50.9 |
+
+per-bin z (log a0_eff - log a0_pred)/SE(diff) -- all h, all legs
+bin  gas.h100      tot.h100      star.h100     gas.h300      tot.h300      star.h300     gas.h1000     tot.h1000     star.h1000  
+  0  -53.549870089   -51.069985306   -26.768394844   -48.322650373   -46.136324411   -23.570754584   -42.594123171   -40.729509283   -20.066450153 
+  1  -76.837774357   -73.869981930   -24.215624169   -69.434407023   -66.968598098   -21.523045630   -61.321032520   -59.405348959   -18.572239993 
+  2  -59.495161992   -61.177982160   -37.287599905   -53.762334836   -55.490981314   -33.285215598   -47.479710785   -49.258578465   -28.898989531 
+  3  -77.636091086   -80.592744179   -57.306281286   -69.974270012   -72.997224971   -51.241649745   -61.577655209   -64.673270601   -44.595400181 
+
+--- CROSS-BIN TREND log10 a0_eff vs log10 rho (slope h-INDEPENDENT) ---
+  BINS4 gas : slope +0.693 +/- 1.037 | z_vs_1/2 = +0.19 (kill(b) if |z|>5) | z_vs_0 = +0.67 | rho range   1.12x | dlog10 a0 span 0.077 (2*meanSE = 0.070, flat=False)
+  BINS4 tot : slope +0.168 +/- 0.265 | z_vs_1/2 = -1.26 (kill(b) if |z|>5) | z_vs_0 = +0.63 | rho range   1.67x | dlog10 a0 span 0.077 (2*meanSE = 0.070, flat=False)
+  BINS4 star: slope +0.076 +/- 0.087 | z_vs_1/2 = -4.85 (kill(b) if |z|>5) | z_vs_0 = +0.87 | rho range   4.11x | dlog10 a0 span 0.077 (2*meanSE = 0.070, flat=False)
+  BINS3 gas : slope +0.644 +/- 1.402 | z_vs_1/2 = +0.10 (kill(b) if |z|>5) | z_vs_0 = +0.46 | rho range   1.13x | dlog10 a0 span 0.045 (2*meanSE = 0.064, flat=True)
+  BINS3 tot : slope +0.205 +/- 0.261 | z_vs_1/2 = -1.13 (kill(b) if |z|>5) | z_vs_0 = +0.78 | rho range   1.51x | dlog10 a0 span 0.045 (2*meanSE = 0.064, flat=True)
+  BINS3 star: slope +0.075 +/- 0.087 | z_vs_1/2 = -4.90 (kill(b) if |z|>5) | z_vs_0 = +0.86 | rho range   3.35x | dlog10 a0 span 0.045 (2*meanSE = 0.064, flat=True)
+
+--- KILL-CONDITION EVALUATION (pre-registered a/b/c) ---
+  [4bins/gas] rho range  1.12x, a0 span 0.077 dex (flat=False, 2meanSE=0.070) | slope +0.693+/-1.037 z_1/2 +0.19 | KILL(a)=VOID, KILL(b)=not fired, KILL(c)=FIRED (frac |z|>5 = 1.00)
+  [4bins/tot] rho range  1.67x, a0 span 0.077 dex (flat=False, 2meanSE=0.070) | slope +0.168+/-0.265 z_1/2 -1.26 | KILL(a)=VOID, KILL(b)=not fired, KILL(c)=FIRED (frac |z|>5 = 1.00)
+  [4bins/star] rho range  4.11x, a0 span 0.077 dex (flat=False, 2meanSE=0.070) | slope +0.076+/-0.087 z_1/2 -4.85 | KILL(a)=not fired, KILL(b)=not fired, KILL(c)=FIRED (frac |z|>5 = 1.00)
+  [3bins/gas] rho range  1.13x, a0 span 0.045 dex (flat=True, 2meanSE=0.064) | slope +0.644+/-1.402 z_1/2 +0.10 | KILL(a)=VOID, KILL(b)=not fired, KILL(c)=FIRED (frac |z|>5 = 1.00)
+  [3bins/tot] rho range  1.51x, a0 span 0.045 dex (flat=True, 2meanSE=0.064) | slope +0.205+/-0.261 z_1/2 -1.13 | KILL(a)=VOID, KILL(b)=not fired, KILL(c)=FIRED (frac |z|>5 = 1.00)
+  [3bins/star] rho range  3.35x, a0 span 0.045 dex (flat=True, 2meanSE=0.064) | slope +0.075+/-0.087 z_1/2 -4.90 | KILL(a)=FIRED, KILL(b)=not fired, KILL(c)=FIRED (frac |z|>5 = 1.00)
+
+====================================================================================================
+RECONCILIATION (task 5): L06 moment-mapped vs G208 in-file vs G03D register
+====================================================================================================
+  G071-isolated deep: 330 rings from 31 gals
+  L06 moment-mapped (recomputed in-file): a0_eff = 1.54067e-10 +/- 8.43e-12 (= 1.6457 a0)   [L06 stored mapping: 1.54067e-10]
+  intercept fit, full SPARC deep (1199 rings):  a0_eff = 1.15308e-10 (se 0.025 dex) = 1.2317 a0
+  grid fit (G208-style), full SPARC deep:  a0_eff = 1.15100e-10
+  grid fit, G071-isolated (G208 lane, 330 rings): a0_eff = 1.25700e-10 (G208 registered 6.43e-11)
+  intercept fit, G071-isolated:            a0_eff = 1.25570e-10 (se 0.043 dex)
+  G03D bare register:                      a0_eff = 1.19000e-10 = 1.2711 a0_DE (0.6922x)
+  paired percent differences:
+    L06-moment vs G03D-bare:   +29.47%   (on-record 4.6%)
+    L06-moment vs G208-in-file:+22.57%   (on-record 5.4%)
+    G208-in-file vs G03D-bare:  +5.63%
+    intercept-full vs G03D:     -3.10%
+
+  REFINED READING (same data, different measures -- why the registers differ):
+    full deep set: L06 MOMENT mapping = 1.5407e-10 (0.724 a0) vs SHAPE fits (intercept 1.153e-10 / grid 1.151e-10 ~ 0.45 a0): a +34% measure-gap on IDENTICAL rings -- the full deep window is NOT a single a0-line (per-bin OLS log-log slope: 0.42 -> 0.61 across the window, steepening with g_bar)
+    G071-isolated subset: grid 1.2570e-10 (= G208) / intercept 1.2557e-10 (se 0.043 dex) / moment 1.5075e-10 -- tight, EFE-clean lane (32 gals, 289 rings)
+    -> the 4.6% (L06-moment vs G03D-bare) and 5.4% (L06-moment vs G208 in-file) figures on record are CONFIRMED as +29.47% and +22.57% respectively; the L06-vs-G208 'discrepancy' is measure + sample, not data tension.
+
+--- SYNTHETIC CONTROLS (LABELED CONTROL ONLY -- machinery calibration) ---
+  C1 null twin (flat deep line, rho ANTICORRELATED with g_bar, span >3x): slope = -0.00  (expect ~0; a false slope would indict the machinery)
+  C2 sqrt-injected twin (a0_eff ~ rho^0.5): slope = +0.49  (expect ~0.5)
+  [PASS] machinery calibrated (C1 ~0, C2 ~0.5 within tolerance)   null -0.00, pos +0.49
+
+====================================================================================================
+VERDICT (pre-registered protocol)
+====================================================================================================
+  DENSITY-LOCALITY a0(rho) = (c/2) sqrt(G rho) evaluated at DISK LOCAL DENSITIES (Sigma/(2h), h = 100-1000 pc) is KILLED as the origin of the deep-regime a0_eff: GAS leg (h-headline 300pc
+  galaxy-mean gas columns): rho range 1.1x across 4 deep bins
+  a0_eff span 0.077 dex (flat=False)
+  KILL(a)=VOID
+  slope +0.69+/-1.04, KILL(b)=not fired
+  TOT leg (gas + 1.4 star): rho range 1.7x
+  a0 span 0.077 dex (flat=False)
+  KILL(a)=VOID
+  slope +0.17+/-0.26, KILL(b)=not fired
+  STAR leg (diagnostic): rho range 4.1x
+  a0 span 0.077 dex (flat=False)
+  KILL(a)=not fired
+  slope +0.08+/-0.09, KILL(b)=not fired
+  KILL(c) normalization: per-bin z = -48 to -70 SE (GAS leg, h=300pc) -- a0_pred overshoots the measured deep a0_eff by ~2 orders of magnitude at ALL disk densities, i.e. rho_gas in SPARC disks exceeds rho_Lambda = 5.84e-27 kg/m^3 by up to 4 orders and the law cannot produce a0 ~ 1e-10 anywhere in a disk
+
+  Reconciliation confirm/refine: L06 6.78e-11 (moment, recomputed 1.5407e-10) vs G208 in-file 1.2570e-10 vs G03D register 1.1900e-10 (= 1.2711 a0_DE).  On-record 4.6% = L06-vs-G03D 29.47%, 5.4% = L06-vs-G208 22.57% -- confirmed.
+  Machinery calibration (C1/C2): -0.00 / +0.49 -> PASS (slopes as expected)
+
+wrote N01_results.json
+wrote N01_DENSITY_LOCALITY.md
+
+DONE

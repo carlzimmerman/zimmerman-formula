@@ -1,0 +1,70 @@
+{
+ "lane": "O04b_joint_update",
+ "date": "2026-09-24",
+ "channels": [
+  {
+   "name": "SPARC_deep",
+   "file": "N05_results.json",
+   "x": 1.441654393474945,
+   "se": 0.078100356860344,
+   "z_vs_1": 5.654959992880624
+  },
+  {
+   "name": "G114_dwarfs",
+   "file": "O01_results.json",
+   "x": 0.6376,
+   "se": 0.1625,
+   "z_vs_1": -1.77
+  },
+  {
+   "name": "MilkyWay_primary_R22",
+   "file": "O03_results.json",
+   "x": 0.7968394670668012,
+   "se": 0.23616538111678212
+  }
+ ],
+ "joint": {
+  "method": "inverse-variance",
+  "xbar": 1.2504735804886704,
+  "se": 0.06745944540470157,
+  "chi2_df2": 23.90618209882046,
+  "heterogeneous": true,
+  "z_vs_a0": -3.7129504843396433,
+  "z_vs_a0_dex": 4.143360267591107
+ },
+ "mightee_excluded": {
+  "a0eff_a0": 2.1638213314465284,
+  "z": 6.580710687407916,
+  "reason": "K2 pre-registered: opposite-sign mirror, N05 program card arbitrates"
+ },
+ "verdict": "CHANNELS HETEROGENEOUS (K1 fired): joint flagged, not banked",
+ "checks": [
+  {
+   "name": "C1 SPARC-deep channel found and SE derived from Delta/se/fraction",
+   "pass": true,
+   "detail": "Delta=3.5106e-22 se_cl=6.2080e-23 frac=0.4417 -> SE=0.0781"
+  },
+  {
+   "name": "C2 SE derivation agrees with O03-quoted cross-block (2e-3)",
+   "pass": false,
+   "detail": "derived 1.4417+/-0.0781 vs quoted 0.7241+/-0.0662"
+  },
+  {
+   "name": "C3 G114 dwarf channel found",
+   "pass": true,
+   "detail": "0.6376 +/- 0.1625, z_vs_1=-1.77"
+  },
+  {
+   "name": "C4 MW channel found",
+   "pass": true,
+   "detail": "0.7968394670668012 +/- 0.23616538111678212"
+  },
+  {
+   "name": "C5 joint reproduced by two independent fold routes (1e-12)",
+   "pass": true,
+   "detail": "xbar=1.250474 se=0.067459 route2=1.250474+/-0.067459"
+  }
+ ],
+ "summary": "4/5 checks PASS",
+ "exit_ok": false
+}

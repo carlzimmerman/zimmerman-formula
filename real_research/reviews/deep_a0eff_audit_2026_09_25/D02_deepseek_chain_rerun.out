@@ -1,0 +1,158 @@
+
+D02 -- THE deepseek_push SPARC-DEEP CHAIN, RE-RUN CORRECTLY.
+=============================================================
+D01 showed that the "SPARC-deep a0_eff = 0.724 a0" channel is carried by the per-galaxy disc mass-to-light ratios `m2l_disk` of
+glm53_push/data/rotation_curve_corpus_v7.json.  This script (1) establishes WHAT those numbers are, (2) re-runs every deepseek
+lane that reads them, and every lane downstream, with THEIR OWN CODE on corrected inputs, and (3) reports, lane by lane, which
+registered verdicts change.
+
+(1) ROOT CAUSE.  SPARC tabulates no mass-to-light ratio.  The corpus values correlate at r = 0.92 (log) with the ratio at which
+    Newtonian baryons ALONE reproduce each rotation curve (least squares over the curve): they are kinematic fits, not stellar-
+    population values.  Feeding them back into a measurement of a0 puts part of the mass discrepancy into the stars before a0 is
+    measured -- a circular input that drives a0_eff down.
+
+(2) THE RE-RUN (sandbox.py, lanes.py).  A sandbox mirrors the repository (copy-on-write clones of every deepseek_push top-level
+    file, read-only symlinks for directories and every other repository entry) with one file replaced: the corpus.  The SPARC
+    entries get the standard 3.6-micron convention (Lelli+2016, McGaugh+2016): Y_disc = 0.5, 0.6 or 0.7 and Y_bul = 0.7 (the
+    bulge ratio applied by rescaling V_bul inside the unmodified lane expression m2l*(V_disk^2 + V_bul^2)), and, in three of the
+    four variants, the velocity-error cut err/V < 10 per cent (2803 of 3391 rings).  V_obs, V_disk, V_gas, radii, distances
+    and inclinations are untouched.  Lanes run in dependency order, 25 of them.  The only edits to lane code are the input
+    LOOKUPS listed in lanes.py (O04b and P02 selected the SPARC entry of N05's results by a value range that assumes a deficit;
+    G183 asserted a fixed ring count; ZD08 and ZD11 hard-code the G183 a0*).  A BASELINE sandbox with the committed corpus must
+    reproduce every committed result exactly before any corrected number is believed.
+
+(3) CHECKS can fail.  MUTATE=1 builds the "corrected" variants from the UNCHANGED corpus (no mass-to-light correction, no cut):
+    every check that says a verdict changes must then FAIL (rc = 1).
+Both footings: the lanes carry a0 = 9.3619e-11 (canonical); the alternative a0 = 1.1279e-10 is 1.2048 x larger, so every
+a0_eff/a0 below divides by 1.2048 on the alternative footing -- printed for the anchors.
+Run from the repository root:  python3 real_research/reviews/deep_a0eff_audit_2026_09_25/D02_deepseek_chain_rerun.py
+(about 15 minutes; G183 alone takes 2-3 minutes per variant).  Writes D02_results[_MUTATE].json next to this file.
+
+
+======================================================================================================================
+R  THE ROOT CAUSE: what the corpus m2l_disk values are
+======================================================================================================================
+  [PASS] R1 the corpus m2l_disk is a KINEMATIC fit: log-correlation with the Newtonian no-dark-matter ratio exceeds 0.8
+         measured: r = 0.918 over 175 SPARC galaxies; median corpus/Newtonian = 0.66; corpus median 1.17, max 15.3
+         reading:  a 3.6-micron population ratio is set by photometry (0.5-0.7) and would not track the kinematics at r = 0.92
+
+======================================================================================================================
+B  BASELINE: the committed corpus in a sandbox must reproduce every committed result
+======================================================================================================================
+    base: 25 lanes in 807 s; nonzero exit: none
+    G199 fields that change with the hash seed alone (7): ['consequence/pooled_sigma_below_seesaw_line/', 'deep_end_readings/MIGHTEE/group_boot_sigma/', 'deep_end_readings/MIGHTEE/sigma_log_vs_sL/', 'deep_end_readings/SPARC/group_boot_sigma/', 'deep_end_readings/SPARC/sigma_log_vs_sL/', 'universality/pooled/se_system_boot/', 'universality/pooled/sigma_vs_seesaw/']
+  [PASS] B1 the sandbox reproduces all 21 committed result files with the committed corpus and every lookup patch in place (every numeric field to 1e-9)
+         measured: 2185 fields; worst relative difference 0.0e+00 ; nonzero exits none; the 7 G199 fields that change with the hash seed alone excluded; against the committed file they move by up to 6.3%
+         reading:  the machinery and the patches are neutral on the committed inputs: any difference below comes from the corpus alone
+
+======================================================================================================================
+C  THE CORRECTED RUNS
+======================================================================================================================
+    std05_cut: 25 lanes in 515 s; nonzero exit: ['O04b_joint_update.py']
+    std06_cut: 25 lanes in 666 s; nonzero exit: ['O04b_joint_update.py']
+    std07_cut: 25 lanes in 285 s; nonzero exit: ['O04b_joint_update.py']
+    std05_nocut: 25 lanes in 419 s; nonzero exit: ['O04b_joint_update.py']
+
+  headline                                                           committed       std05_cut       std06_cut       std07_cut     std05_nocut
+  L06 SPARC-deep a0_eff/a0 (alpha=1 moment)                             0.7241           1.873           1.646           1.442           1.867
+  L06 SPARC-deep z                                                       -4.17           9.142           7.148           5.655           8.086
+  N05 SPARC-deep a0_eff/a0                                              0.7241           1.873           1.646           1.442           1.867
+  N05 SPARC-deep z (clustered)                                           -4.17           9.142           7.148           5.655           8.086
+  N05 SPARC-deep rings                                                    1152            1288            1199            1139            1699
+  N05 MIGHTEE-deep a0_eff/a0                                             2.164           2.164           2.164           2.164           2.164
+  N05 card N_req (rings to kill the SPARC deviation at 5 SE)              1656           385.3           586.6           890.4           649.7
+  N01 kill (c) fired, gas/tot                                        True/True       True/True       True/True       True/True       True/True
+  Q02 SPARC anchor (weighted mean a0_eff/a0)                            0.8314           1.953           1.671           1.415           1.917
+  Q02 anchor SE                                                        0.04224         0.06767         0.05933          0.0527         0.08142
+  Q02 onset slope z                                                       2.82           3.008           1.367          0.5093            3.84
+  Q02 verdict                                                  CONSTANT-OFFSET       STRUCTURE CONSTANT-OFFSET CONSTANT-OFFSET       STRUCTURE
+  R03 verdict                                                  CONSTANT-OFFSET  STRUCTURE-FLAG CONSTANT-OFFSET CONSTANT-OFFSET  STRUCTURE-FLAG
+  S01 fraction of comparisons within 3 SE                               0.4444          0.2222          0.3333          0.6667          0.2222
+  S01 C1 (collapse) pass                                                 False           False           False            True           False
+  S01 SPARC Phi, deepest three bins (mean)                               0.867           1.691           1.457            1.31           1.587
+  S01 MIGHTEE - SPARC offset at the same x                               1.237          0.5423          0.7795          0.9634          0.7214
+  S01 MIGHTEE vs SPARC z                                                 4.079           2.376           3.515           4.376           3.521
+  S01 law                                                      Phi(x) = 0.957  Phi(x) = 2.610  Phi(x) = 1 +0.2 Phi(x) = 1 +0.1 Phi(x) = 2.679 
+  G158 SPARC-deep n amplitude                                            2.918           1.353           1.488           1.628           1.437
+  G158 slope channel n (pooled per galaxy)                               1.203           1.244             1.2           1.206           1.196
+  G158 slope channel sigma from n = 2                                    12.74           20.32           12.38           13.15           11.96
+  G158 pooled amplitude n                                                2.207           1.281           1.374           1.466           1.353
+  G183 pooled n-free fit n                                               3.161            2.07           2.198           2.327           2.189
+  G183 pooled n-free fit n SE                                           0.3468          0.2078          0.1973          0.1927          0.2228
+  G158 SPARC-deep a0 [1e-11]                                             6.417           13.84           12.58            11.5           13.03
+  G183 SPARC-deep free a0* [1e-11]                                       6.407            13.8           12.59           11.57           13.08
+  G199 SPARC deep fit a0 [1e-11]                                          6.43            13.8           12.57           11.52           13.04
+  G208 staircase SPARC_deep_fit [1e-11]                                   6.43            13.8           12.57           11.52           13.04
+  G208 staircase spread (x)                                              2.915           1.358           1.491           1.626           1.438
+  O04b SPARC channel                                                    0.7241           1.873           1.646           1.442           1.867
+  O04b joint a0_eff/a0                                                  0.7172           1.474           1.346            1.25           1.407
+  O04b joint chi2 (df 2; 5.991 = heterogeneous)                         0.3646           52.18           35.42           23.91           47.49
+  O04b joint z vs canonical                                              4.769          -6.091          -4.625          -3.713          -4.859
+  O04b verdict                                                 CHANNELS CONSIS CHANNELS HETERO CHANNELS HETERO CHANNELS HETERO CHANNELS HETERO
+  P02 deviation |Delta|/a0E                                             0.2759          0.8732          0.6457          0.4417          0.8667
+  S02 mirror: SPARC anchor                                              0.8314           1.953           1.671           1.415           1.917
+  S02 mirror: MIGHTEE z vs anchor                                        6.986           1.063           2.526           3.874           1.218
+  S02 mirror verdict                                           CHANNEL-DEPENDE CONSISTENT-UNIV CONSISTENT-UNIV CHANNEL-DEPENDE CONSISTENT-UNIV
+  T03 gap MIGHTEE - anchor                                               1.332          0.2103          0.4931          0.7489          0.2472
+  T03 verdict                                                          DIFFUSE CONCENTRATION-D         DIFFUSE         DIFFUSE         DIFFUSE
+  U01 z(slope difference vs Q02)                                         -1.76          -2.047          -1.458          -1.187          -2.351
+  U02 SPARC deviation (a0E units)                                       0.2759          0.8732          0.6457          0.4417          0.8667
+  U03 share of digitization draws with z < 3 vs the anchor                   0               1               1               0               1
+  U03 verdict                                                  DIGITIZATION-RO DIGITIZATION-FR DIGITIZATION-FR DIGITIZATION-RO DIGITIZATION-FR
+  W03 verdict                                                  CROSS-CHANNEL-F CROSS-CHANNEL-F CROSS-CHANNEL-F CROSS-CHANNEL-F CROSS-CHANNEL-F
+  S02 plane: alpha_SPARC [per unit z]                                   -6.233           19.73           14.59           9.979           19.58
+  S02 plane: SPARC-to-MIGHTEE step [dex]                                0.4754         0.06264          0.1189          0.1764         0.06414
+  ZD08 a0*(velocity) / registered a0*                                   0.9388          0.4357          0.4778          0.5199          0.4598
+  ZD08 C2 two-scale clash count                                ['one-scale (a0 ['one-scale (a0 ['one-scale (a0 ['one-scale (a0 ['one-scale (a0
+  ZD11 median log residual at a0* [dex]                                -0.2928         -0.1247         -0.1401         -0.1555         -0.1334
+
+  alternative footing (a0 = 1.1279e-10): divide every a0_eff/a0 by 1.2048 -- SPARC anchors: committed 0.601, std05_cut 1.555, std06_cut 1.366, std07_cut 1.197, std05_nocut 1.549
+
+======================================================================================================================
+V  WHAT CHANGES, LANE BY LANE (each check reads the lanes' own corrected outputs; under MUTATE the change checks must FAIL)
+======================================================================================================================
+  [PASS] C1 [L06/N05] the SPARC-deep alpha=1 a0_eff is ABOVE 1 in every corrected variant: the 'deficit' reverses (committed 0.724, z = -4.17)
+         measured: 1.873, 1.646, 1.442, 1.867 (z +9.1, +7.1, +5.7, +8.1); alternative footing /1.2048: 1.555, 1.366, 1.197, 1.549
+         reading:  the N05 program card (N_req = 1656 rings to kill the deficit), P02's power audit, U02's refresh and W03's census premise all target a deficit that is not there
+  [PASS] C2 [O04b] the joint 'deep a0_eff = 0.7172 +/- 0.0593, 4.77 sigma below canonical' is NOT banked: O04b's own heterogeneity test fires in every variant
+         measured: chi2 = 52.2, 35.4, 23.9, 47.5 (df 2, limit 5.991); SPARC channel 1.87, 1.65, 1.44, 1.87 vs dwarfs 0.638 and Milky Way 0.797
+         reading:  the dwarf (O01) and Milky Way (O03) channels are measured on their own inputs and stand as measured; only the joint and the '0.73' comparisons fall
+  [PASS] C3 [Q02 -> S02/T03/U01/U03] the SPARC deep-band anchor is ABOVE 1 in every variant (committed 0.8314 +/- 0.042)
+         measured: 1.953, 1.671, 1.415, 1.917 (SE 0.068, 0.059, 0.053, 0.081); alternative footing: 1.621, 1.387, 1.174, 1.591
+  [PASS] C4 [Q02/R03] the registered CONSTANT-OFFSET verdict depends on the disc mass-to-light ratio: the variants do not all return it
+         measured: Q02 STRUCTURE, CONSTANT-OFFSET, CONSTANT-OFFSET, STRUCTURE; R03 STRUCTURE-FLAG, CONSTANT-OFFSET STANDS, CONSTANT-OFFSET STANDS, STRUCTURE-FLAG; onset-slope z 3.01, 1.37, 0.51, 3.84
+  [PASS] C5 [S02 mirror] MIGHTEE agrees with the corrected SPARC anchor within 3 sigma at Upsilon_disc = 0.5 and 0.6 (committed z = +6.99, 'CHANNEL-DEPENDENT')
+         measured: z = 1.06, 2.53, 3.87, 1.22; verdicts CONSISTENT-UNIVERSAL, CONSISTENT-UNIVERSAL, CHANNEL-DEPENDENT, CONSISTENT-UNIVERSAL
+         reading:  at Upsilon_disc = 0.7 MIGHTEE sits 3.9 sigma above: what remains is a difference inside the range of the disc mass-to-light convention, not a sign mirror
+  [PASS] C6 [S01] the SPARC deep bins sit ABOVE 1 in every variant (committed 0.87): MIGHTEE and SPARC are on the SAME side, the 'sign mirror' is gone
+         measured: SPARC deepest-bin Phi 1.69, 1.46, 1.31, 1.59; MIGHTEE-SPARC offset 0.54, 0.78, 0.96, 0.72 (z 2.4, 3.5, 4.4, 3.5; committed 1.24, z 4.1); within-3-SE fraction 0.22, 0.33, 0.67, 0.22
+         reading:  S01's pre-registered NO-COLLAPSE outcome formally stands in every variant (its C1 and C2 never pass together: C1 False/C2 True, C1 False/C2 True, C1 True/C2 False, C1 False/C2 True), but its reading 'the sign-mirror is a genuine systematics divide' does not; the O01 deep-tail point (Phi = 0.31, N = 7) is O01's own and still sits below
+  [PASS] C7 [S02 a0(z) plane] the SPARC slope has the SAME sign as MIGHTEE's in every variant: the 'opposite-signed' impossibility premise fails (the lane's own C4 check fails)
+         measured: alpha_SPARC = +19.7, +14.6, +10.0, +19.6 per unit z (committed -6.2) vs MIGHTEE +26.3; SPARC-to-MIGHTEE step 0.063, 0.119, 0.176, 0.064 dex (committed 0.475); lane C4 passes: [False, False, False, False]
+         reading:  the conclusion 'the staircase cannot be a0(z)' still holds by MAGNITUDE (a 0.06-0.18 dex step over dz = 0.044 is still 1e5 x any registered a0(z) rate), not by sign
+  [PASS] C8 [G071 -> G158/G183/G199/G208] the SPARC-deep scale a0* is ABOVE the canonical a0 in every variant: the 'wedge' 6.4e-11 is the corpus mass-to-light ratios
+         measured: G183 a0* = 13.80, 12.59, 11.57, 13.08 x 1e-11 (committed 6.41; canonical 9.36, alternative 11.28); G199 13.80, 12.57, 11.52, 13.04; G208 staircase spread 1.36, 1.49, 1.63, 1.44 x (committed 2.92)
+  [PASS] C9 [ZD08 -> falsifier row 27] the velocity-domain a0*(V) = 6.0e-11 no longer matches the SPARC-deep scale: ratio < 0.6 in every variant, and ZD08's own C1 fails
+         measured: a0*(V)/a0*(SPARC-deep) = 0.44, 0.48, 0.52, 0.46 (committed 0.94, '6% agreement'); ZD08 own checks C1-C4 per variant: [[False, False, True, False], [False, False, True, False], [False, True, True, False], [False, False, True, False]]
+         reading:  ZD08's two-scale ladder loses its edge: 35/46, 31/46, 28/46, 33/46 never-doubling dwarfs clash with the corrected two-scale reading against 29/46 for one scale (committed two-scale 16/46); ZD08 prints its percentages as fixed text, so read the counts
+  [PASS] C10 [G183] the pooled n-free exponent moves from 3.16 +/- 0.35 (above the subluminality line 2.01) to within 2 sigma of n = 2 in every variant
+         measured: n = 2.07 +/- 0.21, 2.20 +/- 0.20, 2.33 +/- 0.19, 2.19 +/- 0.22
+  [PASS] S1 [G158 -> falsifier row 11] a verdict the correction does NOT change: the slope channel stays at n = 1.2 and more than 10 sigma from n = 2 in every variant
+         measured: n = 1.244, 1.200, 1.206, 1.196 (20.3, 12.4, 13.1, 12.0 sigma from 2; committed 1.203, 12.7 sigma); the AMPLITUDE channel moves 1.28, 1.37, 1.47, 1.35 (committed 2.21), so the 'two-scale' explanation that reconciled the channels loses its wedge
+         reading:  the per-galaxy log slope barely moves with a per-galaxy mass-to-light ratio, so the correction leaves row 11 where it was; whether row 11 tests the law at all is D04's question
+  [PASS] S2 [N01] a verdict that does NOT change: the density-locality law a0(rho_local) stays killed (kill (c)) in every variant
+         measured: True/True, True/True, True/True, True/True
+         reading:  N01's quoted 'measured deep a0_eff ~6.4-6.8e-11' is replaced, but a0(rho_local) at disc densities misses by 2-3 orders either way
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  The corpus v7 m2l_disk values are kinematic fits (R1). Run on 3.6-micron population ratios, the lanes' OWN code (B1: faithful)
+  reverses the SPARC 'deficit' (C1), un-banks the O04b joint (C2), lifts the SPARC anchor above 1 (C3), makes Q02's verdict
+  mass-to-light dependent (C4), dissolves the MIGHTEE 'mirror' at Upsilon_disc 0.5-0.6 (C5, C6), removes the opposite-sign
+  premise of the a0(z) impossibility leg (C7), removes the 6.4e-11 'wedge' (C8, C9) and moves the pooled n-free exponent
+  (C10: consistent with 2). Unchanged by the correction: the G158 slope channel (n = 1.2, falsifier row 11; D04 asks whether
+  it tests the law) and the N01 kill (S1, S2).
+  Even corrected, the alpha = 1 moment a0_eff is not the in-force kernel's a0 (D01 D5: +17-26 per cent for nu_RAR data).
+
+  14/14 checks pass; load-bearing failures: 0
