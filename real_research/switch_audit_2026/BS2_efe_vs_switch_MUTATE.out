@@ -1,0 +1,146 @@
+EFE tables built for 37 external fields (13 s)
+model table: 82214 ESD profiles (52 s)
+*** MUTATE=1: the 'data' are synthetic from the EFE-only model (e = 0.0001, no switch) ***
+
+========================================================================================================
+E1  MACHINERY: vectorised projection = L342's loop; e = 0 reproduces L342's no-switch chi^2
+========================================================================================================
+  [PASS] E1 the vectorised projection equals L342's loop (max rel diff < 1e-9) and the e = 0, no-switch model reproduces L342's chi^2 verbatim
+         measured: max rel diff 1.12e-15; no-switch chi^2 {'canonical': 118.0, 'alt': 108.3}
+
+========================================================================================================
+E2  THE EFE LAW'S LIMITS (exact angular average of the QUMOND flux)
+========================================================================================================
+    e = 0.003 : N(y<<e) / nu(e)(1+L_e/3) = 1.00000;  N(y>>e)/nu(y) = 1.00000;  asymptotic M_dyn/M_b = 15.72
+    e = 0.01  : N(y<<e) / nu(e)(1+L_e/3) = 1.00000;  N(y>>e)/nu(y) = 1.00000;  asymptotic M_dyn/M_b = 8.84
+    e = 0.03  : N(y<<e) / nu(e)(1+L_e/3) = 1.00000;  N(y>>e)/nu(y) = 1.00000;  asymptotic M_dyn/M_b = 5.33
+  [PASS] E2 N(y, 0) = nu(y); N -> nu(e)(1 + L_e/3) for y << e and -> nu(y) for y >> e (1%)
+         measured: {0.003: {'N(y<<e)/[nu(e)(1+L_e/3)]': 1.0, 'N(y>>e)/nu(y)': 1.0, 'boost at large r': 15.72}, 0.01: {'N(y<<e)/[nu(e)(1+L_e/3)]': 1.0, 'N(y>>e)/nu(y)': 1.0, 'boost at large r': 8.84}, 0.03: {'N(y<<e)/[nu(e)(1+L_e/3)]': 1.0, 'N(y>>e)/nu(y)': 1.0, 'boost at large r': 5.33}}
+         reading:  under the external field the phantom mass saturates at a finite multiple of M_b: the EFE is itself a truncation
+
+========================================================================================================
+E3-E5  SWITCH vs EXTERNAL FIELD vs BOTH (shared parameters, M_b per bin profiled, full covariance)
+========================================================================================================
+    canonical: none 65.9 | switch only (x_c 5.0) 52.7 | EFE only (e 7.1969e-05) 48.2 | both (e 7.1969e-05, x_c 0.0) 48.2
+               e in [0.002, 0.02]: EFE only (e 0.002682696) 201.7 | both (e 0.002682696, x_c 0.0) 201.7
+               switch gain given the EFE: +0.00 (e free), +0.00 (e in prior);  EFE gain vs nothing: -17.72;  EFE-only minus switch-only: -4.46
+               switch gain at fixed e: 0: -13.3, 3.7e-06: -14.4, 1.9e-05: -8.6, 0.0001: +0.0, 0.00052: +0.0, 0.0027: +0.0, 0.014: +0.0, 0.072: +0.0
+               chi^2 profile vs e (x_c, M_b profiled): 0: 52.7, 1.9e-06: 52.7, 5.2e-06: 52.5, 1.4e-05: 51.8, 3.7e-05: 49.4, 0.0001: 50.1, 0.00027: 76.6, 0.00072: 122.2, 0.0019: 179.8, 0.0052: 249.1, 0.014: 324.1, 0.037: 410.0, 0.1: 488.4
+               KiDS bound (Delta chi^2 <= 4 above best): e <= 0.0001
+    alt      : none 67.7 | switch only (x_c 6.0) 53.5 | EFE only (e 5.1795e-05) 49.3 | both (e 5.1795e-05, x_c 0.0) 49.3
+               e in [0.002, 0.02]: EFE only (e 0.002682696) 220.0 | both (e 0.002682696, x_c 0.0) 220.0
+               switch gain given the EFE: +0.00 (e free), +0.00 (e in prior);  EFE gain vs nothing: -18.44;  EFE-only minus switch-only: -4.21
+               switch gain at fixed e: 0: -14.2, 3.7e-06: -14.8, 1.9e-05: -6.7, 0.0001: +0.0, 0.00052: +0.0, 0.0027: +0.0, 0.014: +0.0, 0.072: +0.0
+               chi^2 profile vs e (x_c, M_b profiled): 0: 53.5, 1.9e-06: 53.5, 5.2e-06: 53.5, 1.4e-05: 52.3, 3.7e-05: 49.8, 0.0001: 56.4, 0.00027: 89.9, 0.00072: 138.2, 0.0019: 197.8, 0.0052: 268.3, 0.014: 343.1, 0.037: 429.4, 0.1: 501.6
+               KiDS bound (Delta chi^2 <= 4 above best): e <= 7.2e-05
+  [FAIL] E3a the switch still improves chi^2 by >= 4 once the external field is in (e free on 0..0.1, both footings)
+         measured: {'canonical': 0.0, 'alt': 0.0}
+         reading:  if it fails, the KiDS fall-off is carried by the framework's own EFE and is not evidence for the switch
+  [FAIL] E3b the same with e restricted to the physical range for isolated field lenses (0.002-0.02 a0)
+         measured: {'canonical': 0.0, 'alt': 0.0}
+  [PASS] E4 (documentary) the EFE-only fit: best external field and its chi^2 gain over no truncation
+         measured: {'canonical': 'e = 7.1969e-05, Delta chi^2 -17.7', 'alt': 'e = 5.1795e-05, Delta chi^2 -18.4'}
+         reading:  a best e inside 0.002-0.02 is what isolated field galaxies should feel
+  [PASS] E5 (documentary) mass scaling: chi^2(EFE only) - chi^2(switch only), one shared parameter each (r_e ~ M^(1/2) vs r_t ~ M^(1/4))
+         measured: {'canonical': -4.46, 'alt': -4.21}
+         reading:  negative favours the EFE's scaling, positive the switch's
+
+========================================================================================================
+E6  POWER: CAN FOUR MASS BINS TELL THE SWITCH FROM THE EXTERNAL FIELD? (canonical, 20 draws each)
+========================================================================================================
+    truth = switch only, x_c = 5    : chi^2(EFE) - chi^2(switch) median +4.00; true family preferred by >= 2 in 0.85 of draws
+    truth = EFE only, e = 7.2e-05   : chi^2(EFE) - chi^2(switch) median -3.09; true family preferred by >= 2 in 0.60 of draws
+  [FAIL] E6 the data can tell the two truncations apart: the true family is preferred by Delta chi^2 >= 2 in >= 70% of draws, for both truths
+         measured: {'switch only, x_c = 5': 0.85, 'EFE only, e = 7.2e-05': 0.6}
+         reading:  if not, KiDS-1000 alone cannot say WHICH mechanism ends the phantom
+
+========================================================================================================
+E7  THE KiDS BOUND ON A SINGLE EXTERNAL FIELD (M_b per bin and x_c profiled)
+========================================================================================================
+  [PASS] E7 (documentary) KiDS-1000 bound on one shared Newtonian external field e = g_ext/a0 (Delta chi^2 <= 4)
+         measured: {'canonical': 'e <= 0.0001', 'alt': 'e <= 7.2e-05'}
+
+========================================================================================================
+E8  THE CONSTRUCTION'S OWN EXTERNAL FIELD: LCDM's linear web (L342 restores its growth), z = 0.25
+========================================================================================================
+    smoothing  4.0 Mpc: sigma_g,3D = 1.373e-12 m/s^2 = 0.0147 a0 (canonical), 0.0122 a0 (alt);  sigma_v,1D = 298 km/s
+    smoothing 16.0 Mpc: sigma_g,3D = 1.223e-12 m/s^2 = 0.0131 a0 (canonical), 0.0108 a0 (alt);  sigma_v,1D = 265 km/s
+  [PASS] E8 (documentary) the linear-theory field is the standard one: sigma_v,1D within 200-400 km/s at both smoothings
+         measured: {4.0: 298, 16.0: 265}
+         reading:  the same integral that sets the field sets the peculiar velocities, which are observed at ~300 km/s
+
+========================================================================================================
+E9-E12  C-H/K + SWITCH WITH ITS OWN EXTERNAL FIELD, AGAINST KiDS-1000 (stacked, full covariance)
+========================================================================================================
+    canonical: switch, no EFE: chi^2 52.7
+      all matter, 16 Mpc    : sigma_g,3D = 0.0131 a0 -> chi^2 297.5 (Delta +244.8), best x_c 0.0
+      all matter, 4 Mpc     : sigma_g,3D = 0.0147 a0 -> chi^2 306.4 (Delta +253.8), best x_c 0.0
+      baryons only, 16 Mpc  : sigma_g,3D = 0.0021 a0 -> chi^2 167.0 (Delta +114.3), best x_c 0.0
+      pure-MOND control     : median e_N = 1.34e-04 -> chi^2 55.1 (Delta +2.5)
+      KiDS bound on the stacked rms field (Delta chi^2 <= 4): sigma_g,3D <= 0.000144 a0 -- 91x below the construction's own field
+    alt      : switch, no EFE: chi^2 53.5
+      all matter, 16 Mpc    : sigma_g,3D = 0.0108 a0 -> chi^2 301.1 (Delta +247.6), best x_c 0.0
+      all matter, 4 Mpc     : sigma_g,3D = 0.0122 a0 -> chi^2 309.9 (Delta +256.4), best x_c 0.0
+      baryons only, 16 Mpc  : sigma_g,3D = 0.0017 a0 -> chi^2 172.3 (Delta +118.8), best x_c 0.0
+      pure-MOND control     : median e_N = 9.26e-05 -> chi^2 54.8 (Delta +1.3)
+      KiDS bound on the stacked rms field (Delta chi^2 <= 4): sigma_g,3D <= 9.85e-05 a0 -- 110x below the construction's own field
+  [FAIL] E9 C-H/K + switch with its own external field (LCDM linear web, Maxwell-stacked, 16 Mpc smoothing) fits KiDS-1000 within Delta chi^2 <= 4 of the no-EFE switch fit, both footings
+         measured: {'canonical': 244.8, 'alt': 247.6}
+         reading:  the field the construction's own linear web exerts on an isolated lens, entering the kernel as the Galaxy's field enters it for the Sun (L340 S1)
+  [PASS] E10 (documentary) the same with a kernel sourced by baryons only
+         measured: {'canonical': 114.3, 'alt': 118.8}
+  [PASS] E11 (documentary control) pure MOND, whose large-scale field is MOND-level (e_N = e_M^2)
+         measured: {'canonical': 2.5, 'alt': 1.3}
+         reading:  the same machinery with a field ~100x weaker in the kernel's argument; it too sits above the KiDS bound (E12), by ~2x, on this base model (no two-halo term, which would help it most)
+  [PASS] E12 (documentary) KiDS bound on the rms Newtonian external field, stacked (Delta chi^2 <= 4)
+         measured: {'canonical': 'sigma_g,3D <= 0.000144 a0', 'alt': 'sigma_g,3D <= 9.85e-05 a0'}
+
+========================================================================================================
+E13  THE GATE INSIDE R <= 0.3 Mpc (no two-halo contribution possible; Brouwer+21's clean isolated range)
+========================================================================================================
+    canonical: 28 points; no-EFE chi^2 25.7;  own field +19.9;  baryons-only -0.2;  pure MOND +0.1
+    alt      : 28 points; no-EFE chi^2 26.2;  own field +20.7;  baryons-only +0.2;  pure MOND +0.1
+
+========================================================================================================
+E14  THE FIELD'S MAGNITUDE: Brouwer+21's adopted isolated-lens field, e = 0.003 (actual), mean |g_ext|
+========================================================================================================
+    fraction of E8's Maxwell field (16 Mpc) with |g_ext| <= 0.003 a0: {'canonical': 0.015955, 'alt': 0.027635}
+    canonical construction (e_N = e)  : Delta chi^2 +144.1 (all points), +2.3 (R <= 0.3 Mpc)
+    canonical pure MOND (e_N = e^2)   : Delta chi^2 -0.6 (all points), +0.0 (R <= 0.3 Mpc)
+    alt       construction (e_N = e)  : Delta chi^2 +160.9 (all points), +4.3 (R <= 0.3 Mpc)
+    alt       pure MOND (e_N = e^2)   : Delta chi^2 -0.8 (all points), +0.0 (R <= 0.3 Mpc)
+  [PASS] E14 (documentary) at Brouwer+21's adopted isolated-lens field (e = 0.003): construction vs pure MOND
+         measured: {'canonical': {'construction (e_N = e)': 2.3, 'pure MOND (e_N = e^2)': 0.0}, 'alt': {'construction (e_N = e)': 4.3, 'pure MOND (e_N = e^2)': 0.0}}
+         reading:  inside 0.3 Mpc: whether the exclusion inside the clean radius survives a 4x weaker field than E8's
+  [FAIL] E13 inside R <= 0.3 Mpc the construction with its own external field is within Delta chi^2 <= 4 of the no-EFE fit, both footings
+         measured: {'canonical': 19.9, 'alt': 20.7}
+         reading:  a failure here cannot be blamed on the missing two-halo term
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  1. The switch vs the EFE.  Isolated MOND over-predicts KiDS-1000 at R ~ 1-3 Mpc.  L342's switch fixes it (chi^2 65.9 ->
+     52.7 canonical, 67.7 -> 53.5 alt), but a weak external field does most of the same
+     (-17.7 / -18.4 at e ~ 7e-05); with it in, the switch adds +0.0 / +0.0, and the data cannot
+     reliably tell the two truncations apart (E6).  L342's KiDS preference is not specific evidence for the switch.
+  2. The construction's own external field.  KiDS allows e <= 0.0001 / 7.2e-05 (stacked: sigma_g,3D <= 0.00014 / 9.9e-05 a0).
+     The switch keeps the linear web Newtonian and LCDM-like, so the web pulls on every lens with sigma_g,3D =
+     0.0131 / 0.0108 a0 -- 91x / 110x over the bound -- and C-H/K's kernel takes free-fall fields in
+     its argument (L340 S1 runs it on the Sun with the Galaxy's field).  Result: chi^2 +245 / +248 (all 60 points),
+     +20 / +21 inside 0.3 Mpc, where no two-halo term can help: every lens's phantom would end at ~0.1 Mpc.
+     SENSITIVITY: at Brouwer+21's 4x weaker adopted field (e = 0.003; 1.6% of points in E8's Maxwell field are
+     that quiet) it passes inside 0.3 Mpc (+2 / +4) and fails only on all points (+144 / +161), i.e. at
+     0.3-3 Mpc, where a two-halo term would have to make up the deficit.
+     A kernel sourced by baryons only: +114 / +119 on all points but -0.2 / +0.2 inside 0.3 Mpc -- its failure
+     lies where the missing two-halo term acts, so it is NOT excluded by this lane.
+  3. Control: in pure MOND the large-scale field is MOND-level (e_N = e_M^2): +2.5 / +1.3 on all points at E8's field,
+     +0.1 / +0.1 inside 0.3 Mpc; at e = 0.003, -0.6 / -0.8 -- the same data and machinery do not exclude it.
+  READING: as built (the kernel's argument is the total filtered Newtonian field, all matter; the switch leaves the web
+  Newtonian), C-H/K + switch fails KiDS-1000 isolated lensing through its own external-field effect: by +570 on all
+  points, and inside the radius where isolation is certain if isolated lenses feel the LCDM-typical field.  What would
+  make it a clean exclusion: the field conditioned on isolation, and a two-halo term at 0.3-3 Mpc.  Doors this leaves: (i) a kernel sourced by baryons only (survives inside
+  0.3 Mpc here; decided at 0.3-3 Mpc only once a two-halo term is modelled); (ii) a kernel blind to the large-scale
+  field (e.g. sourced only by the bound region's own matter) -- new ingredients, each constrained by the Solar-System
+  floor, which needs the Galaxy's field in the kernel.
+
+  10/15 checks pass; load-bearing failures: 5; wrote BS2_efe_vs_switch_results_MUTATE.json (112 s)
