@@ -1,0 +1,144 @@
+{
+ "lane": "BSX3",
+ "mutate": true,
+ "checks": {
+  "I1 for any K(Q): the static mass term a galaxy feels equals the late Jeans scale of the khronon, mu_eff^2 = k_J,phys^2 (1 + c_ad^2) exactly (checked on BS24's quadratic K and on the cubic K)": {
+   "ok": false,
+   "measured": "mu_eff^2/k_J^2 = Subs(Derivative(K(Q), Q), Q, 1)/Subs(Derivative(K(Q), (Q, 2)), Q, 1) + 1; quadratic -> (mu^2, mu^2); cubic ratio -> 0 as q -> 0",
+   "load_bearing": true
+  },
+  "I2 at every late Jeans length that BSX2 found passing cosmology (0.3-3 kpc), the cubic khronon's galactic mass-term range is that Jeans length, MOND ends inside ~10 kpc, and its K density at 10 kpc exceeds the MOND phantom by >= 1e6: BSX2's repair (PAPER33 v1) is withdrawn": {
+   "ok": false,
+   "measured": "max r_C(MW) = inf kpc; min K/phantom density at 10 kpc = 1.47e+08",
+   "load_bearing": true
+  },
+  "I3 (the pincer for every K) the scale KiDS's field bound needs (<= 0.22 Mpc) and the scale MOND-like lensing to 1 Mpc needs (>= ~10 Mpc) differ by a factor ~40 and are, by I1, the same scale": {
+   "ok": true,
+   "measured": "1/mu_eff >= 10.3 Mpc vs 1/k_J <= 0.223 Mpc",
+   "load_bearing": false
+  },
+  "B1 (measurement) the budget radius with CDM-like accretion (M_200 from Moster+13) against the KiDS-1000 clean isolated-lens radius 0.3 Mpc, per stellar-mass bin and footing": {
+   "ok": true,
+   "measured": "generous budget radius 0.13-0.67 Mpc; bins/footings running out inside 0.3 Mpc: 6/8",
+   "load_bearing": false
+  },
+  "B2 (measurement) the same with only the galaxy's own cosmic share (Omega_dm/Omega_b) M_b": {
+   "ok": true,
+   "measured": "tight budget radius <= 82 kpc",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "I1": {
+   "cad2": "Derivative(K(Q), Q)/(Q*Derivative(K(Q), (Q, 2)))",
+   "kJ2": "Q**2*Derivative(K(Q), (Q, 2))/2",
+   "mu_eff2": "Subs(Derivative(K(Q), Q), Q, 1)/2 + Subs(Derivative(K(Q), (Q, 2)), Q, 1)/2",
+   "ratio": "Subs(Derivative(K(Q), Q), Q, 1)/Subs(Derivative(K(Q), (Q, 2)), Q, 1) + 1",
+   "quadratic": [
+    "mu2",
+    "mu2"
+   ],
+   "cubic": [
+    "0",
+    "2*M2*q*(q + 1)**2"
+   ]
+  },
+  "I2": {
+   "0.0003": {
+    "lambda_J0_kpc": 0.3,
+    "q0": 3.6042553321350055e-15,
+    "mu_eff_inv_kpc": Infinity,
+    "r_C_MW_kpc": Infinity,
+    "rhoK_over_rho_ph_at_10_30_100kpc": {
+     "10": "1.47e+12",
+     "30": "8.56e+12",
+     "100": "5.11e+13"
+    }
+   },
+   "0.001": {
+    "lambda_J0_kpc": 1.0,
+    "q0": 4.006965005958329e-14,
+    "mu_eff_inv_kpc": Infinity,
+    "r_C_MW_kpc": Infinity,
+    "rhoK_over_rho_ph_at_10_30_100kpc": {
+     "10": "1.19e+10",
+     "30": "6.93e+10",
+     "100": "4.13e+11"
+    }
+   },
+   "0.003": {
+    "lambda_J0_kpc": 3.0,
+    "q0": 3.604255332135005e-13,
+    "mu_eff_inv_kpc": Infinity,
+    "r_C_MW_kpc": Infinity,
+    "rhoK_over_rho_ph_at_10_30_100kpc": {
+     "10": "1.47e+08",
+     "30": "8.56e+08",
+     "100": "5.11e+09"
+    }
+   }
+  },
+  "I3": {
+   "need_mu_inv_Mpc": 10.2853324250053,
+   "efe_max_Mpc": 0.223
+  },
+  "B": {
+   "log M* 10.0|canonical": {
+    "M_b": 14000000000.0,
+    "M_200": 416804610943.8396,
+    "r_M_kpc": 4.566166327439127,
+    "r_budget_generous_Mpc": 0.14050896487123385,
+    "r_budget_tight_Mpc": 0.029060576666853306
+   },
+   "log M* 10.0|alt": {
+    "M_b": 14000000000.0,
+    "M_200": 416804610943.8396,
+    "r_M_kpc": 4.160048823702881,
+    "r_budget_generous_Mpc": 0.1280120153573355,
+    "r_budget_tight_Mpc": 0.026475911981697766
+   },
+   "log M* 10.5|canonical": {
+    "M_b": 44240000000.0,
+    "M_200": 1008878453999.6875,
+    "r_M_kpc": 8.116994812015774,
+    "r_budget_generous_Mpc": 0.19322235595735837,
+    "r_budget_tight_Mpc": 0.051659211058859435
+   },
+   "log M* 10.5|alt": {
+    "M_b": 44240000000.0,
+    "M_200": 1008878453999.6875,
+    "r_M_kpc": 7.3950645461192455,
+    "r_budget_generous_Mpc": 0.1760370466102396,
+    "r_budget_tight_Mpc": 0.047064610613813
+   },
+   "log M* 10.7|canonical": {
+    "M_b": 70000000000.0,
+    "M_200": 1903739206541.3552,
+    "r_M_kpc": 10.210258304724448,
+    "r_budget_generous_Mpc": 0.28789124464213023,
+    "r_budget_tight_Mpc": 0.06498142489242824
+   },
+   "log M* 10.7|alt": {
+    "M_b": 70000000000.0,
+    "M_200": 1903739206541.3552,
+    "r_M_kpc": 9.302151959517678,
+    "r_budget_generous_Mpc": 0.262286028967222,
+    "r_budget_tight_Mpc": 0.05920193895737737
+   },
+   "log M* 10.9|canonical": {
+    "M_b": 112000000000.0,
+    "M_200": 5663379332820.4795,
+    "r_M_kpc": 12.91506869663152,
+    "r_budget_generous_Mpc": 0.6659769717185929,
+    "r_budget_tight_Mpc": 0.08219572330529411
+   },
+   "log M* 10.9|alt": {
+    "M_b": 112000000000.0,
+    "M_200": 5663379332820.4795,
+    "r_M_kpc": 11.766394933229709,
+    "r_budget_generous_Mpc": 0.6067445903498078,
+    "r_budget_tight_Mpc": 0.07488518760142662
+   }
+  }
+ }
+}

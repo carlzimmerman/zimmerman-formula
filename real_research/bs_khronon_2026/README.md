@@ -117,3 +117,12 @@ The construction is K(Q) = (2M²/3)(Q−1)³, i.e. no quadratic term, with a one
   - the conserved phantom's mass budget at Mpc radii (see BSK3 above);
   - the stability of the GR-recovery tail (BSK1 M5);
   - the cubic term's strong coupling.
+
+## BSX3 — correction: no kinetic function repairs the khronon-dust aether (PAPER33 v2)
+
+`BSX3_jeans_mass_identity_and_budget.py` checks 5/5. Its MUTATE=1 control drops the cosmic background from Q, which is BSX2's slip, and I1 and I2 then fail, rc=1.
+
+- **I1, the identity (for any K(Q)).** μ_eff² = k_J²(1 + c_ad²), exactly. The galactic mass term and the late Jeans scale are one scale.
+- **I2, BSX2's repair is WITHDRAWN.** At its passing parameters (M² ~ 1e15–1e17 Mpc⁻²), 1/μ_eff equals the Jeans length (0.3–3 kpc). MOND then ends at r_C = 0.9–4.4 kpc for the Milky Way, and the K-sector density exceeds the phantom by 1e8–1e12 at 10 kpc. BSX2's X1 ("1PN") was a formal limit at fixed M². BSX2's cosmology numbers stand; its galactic claim does not.
+- **I3, the KiDS pincer for every K.** The field bound needs 1/k_J ≤ 0.22 Mpc; MOND lensing to 1 Mpc needs 1/μ_eff ≥ 10 Mpc; that is a factor ×46.
+- **B, the budget.** With CDM-like accretion (Moster+13 M_200) the conserved phantom runs out at 0.13–0.67 Mpc, inside 0.3 Mpc in 6 of 8 bin/footing cases. With the galaxy's own cosmic share it runs out by 82 kpc.
