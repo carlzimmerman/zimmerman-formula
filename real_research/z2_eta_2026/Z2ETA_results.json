@@ -1,0 +1,191 @@
+{
+ "lane": "Z2ETA",
+ "checks": {
+  "E1 reconstruction reproduces the committed statistic (|S_calc - S_committed| <= 0.02, canonical, eta=0 and 1)": {
+   "ok": true,
+   "measured": "dev eta=0: 0.0000 (S=10.1344 vs 10.1344); dev eta=1: 0.0000 (S=3.3040 vs 3.3040)",
+   "load_bearing": true
+  },
+  "E2 the framework's floor holds at eta=0 (95% CI lower on S(0) >= 1, both footings)": {
+   "ok": true,
+   "measured": "canonical: S=10.13 [lo 8.71]; alt: S=9.23 [lo 7.96]",
+   "load_bearing": true
+  },
+  "E3 the a0 ~ H(z) rival's floor holds at eta=1 -- the rival SURVIVES the floor (95% CI lower on S(1) >= 1, both footings)": {
+   "ok": true,
+   "measured": "canonical: S=3.30 [lo 2.80]; alt: S=3.01 [lo 2.57]",
+   "load_bearing": true
+  },
+  "E4 eta = 1 lies inside the 2-sigma inclusion region of the floor (eta_max_2sigma >= 1)": {
+   "ok": true,
+   "measured": "eta_max_2sigma = 1.824 (1-sigma bound 1.964); z(eta=1) = (S(1)-1)/sigma = 5.63",
+   "load_bearing": true
+  },
+  "E5 (reported) eta inclusion region at 1-2 sigma and the best-separating value (0-sigma saturation boundary, no lower bound)": {
+   "ok": true,
+   "measured": "1-sigma: [0, 1.964]; 2-sigma: [0, 1.824]; separation value eta_sep (S(eta)=1 point estimate) = 2.087",
+   "load_bearing": false
+  },
+  "C1 control at eta_true = 0: estimator returns 0 within 2 std": {
+   "ok": true,
+   "measured": "eta_hat = -0.002 +/- 0.083 (95% [-0.15, 0.17])",
+   "load_bearing": true
+  },
+  "C2 control at eta_true = 1: estimator returns 1 within 2 std": {
+   "ok": true,
+   "measured": "eta_hat = 0.997 +/- 0.089 (95% [0.83, 1.17])",
+   "load_bearing": true
+  },
+  "D1 DATA GATE for the registered test: >= 2 clean deep-MOND rotators (g_bar < 0.3 a0 both footings at the upper mass end, V/sigma > 1.5, lens control, gas measured, z in [2, 2.6]) exist on disk": {
+   "ok": false,
+   "measured": "0 / 2 required (KMOS3D z>=2 rotators all high-acceleration, g_bar/a0 >= 0.59 > 0.3; committed ledger: confirmed deep-MOND objects = 0; the only z >= 2 optimistic-corner candidate (OLAS M0717-02064, g_bar/a0 [0.17, 1.29]) fails the committed upper-end rule and has no measured gas)",
+   "load_bearing": false
+  },
+  "D2 (reported) on-disk proxy: median BTFR displacement of z >= 2 KMOS3D rotators vs the frozen zero point 0.00 (framework) / +0.33 (v1 rival) / +0.58 (v2, a0 ~ H)": {
+   "ok": true,
+   "measured": "median +- se = +0.636 +- 0.054 dex (scatter 0.367; N=46); framework 0.00, rival +0.33, rival(eta=1) +0.58",
+   "load_bearing": false
+  },
+  "D3 (reported) KMOS3D z-trend reproduces the committed slope and maps it to eta (anchor-free, AD-controlled rows carried)": {
+   "ok": true,
+   "measured": "slope = -0.0286 +/- 0.0123 dex/z -> eta_kin = -0.51 +/- 0.22; AD-controlled slope = -0.0166 +/- 0.0127 -> eta_kin_AD = -0.30 +/- 0.23; reproduction of committed values: OK",
+   "load_bearing": false
+  },
+  "M1 (reported) weighted fit of the committed a0(z) points: a0(z) = a0(0) E(z)^eta": {
+   "ok": true,
+   "measured": "eta = +0.76 +/- 0.17 (3 points); SPARC+MUSE only: +1.31 +/- 0.42; a0(0) = 10^0.203 x1e-10",
+   "load_bearing": false
+  },
+  "M2 (reported) method-split carried: MUSE reconciliation dead, rise remains a live threat": {
+   "ok": true,
+   "measured": "STANDING rev 9: opus48 M01/M02 asymmetric-drift reconciliation has a units slip; the real per-galaxy AD contribution is ~0.01 dex and cannot rescue the rise; per-galaxy re-derivation invalid (M03: halo-based proxy slope -0.263 dex/z, wrong sign)",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "N_L328": 116,
+  "reproduction": {
+   "S_calc_eta0_can": 10.134396688592222,
+   "S_committed_eta0_can": 10.134396688592222,
+   "S_calc_eta1_can": 3.304033366870395,
+   "S_committed_eta1_can": 3.304033366870395
+  },
+  "eta_floor": {
+   "eta_sep_saturation": 2.0873273207689635,
+   "eta_max_1sigma": 1.964181370974984,
+   "eta_max_2sigma": 1.8236914331209846,
+   "S(1)_z_score_above_floor": 5.6302620604631635,
+   "region_1sigma": [
+    0.0,
+    1.964181370974984
+   ],
+   "region_2sigma": [
+    0.0,
+    1.8236914331209846
+   ]
+  },
+  "floor_hold": {
+   "S0_can_CI95lo": 8.711733521149466,
+   "S1_can_CI95lo": 2.8018548314048637,
+   "S0_alt_CI95lo": 7.964153702385254,
+   "S1_alt_CI95lo": 2.566989273317239
+  },
+  "control": {
+   "log_scatter_s": 0.8493192209793052,
+   "eta_true_0": {
+    "mean": -0.002373304404318333,
+    "std": 0.08270613921217305,
+    "CI95": [
+     -0.1484806835418567,
+     0.16847040692809964
+    ]
+   },
+   "eta_true_1": {
+    "mean": 0.9971016461378894,
+    "std": 0.08923962052723408,
+    "CI95": [
+     0.8294661606894806,
+     1.1746412113541735
+    ]
+   }
+  },
+  "kmos3d": {
+   "N_total": 135,
+   "N_z2_rotating_Vsig>1.5": 46,
+   "z_range": [
+    0.602,
+    2.529
+   ],
+   "delta_z2_median": {
+    "canonical": 0.6362192175825276,
+    "alt": 0.5553126187853357
+   },
+   "delta_z2_scatter": {
+    "canonical": 0.3665031295485442,
+    "alt": 0.36650312954854425
+   },
+   "gbar_a0_out": {
+    "canonical": [
+     0.59,
+     11.29
+    ],
+    "alt": [
+     0.49,
+     9.37
+    ]
+   }
+  },
+  "deep_rotator_gate": {
+   "clean_rotators_on_disk_passing_all_gates": 0,
+   "ledger_confirmed_deepMOND": 0,
+   "ledger_in_window_deepMOND_plausible_optimistic_only": 1
+  },
+  "eta_kinematics": {
+   "slope_dexz": -0.028641254300860428,
+   "slope_err": 0.01234580347337659,
+   "eta_kin": -0.5105392923504533,
+   "eta_kin_err": 0.22006779809940447,
+   "eta_kin_ADcontrolled": -0.29618703208740593,
+   "eta_kin_AD_err": 0.22610145692012698
+  },
+  "a0z_points": [
+   {
+    "z": 0.0,
+    "a0e10": 1.2,
+    "sig": 0.26,
+    "src": "SPARC_McGaugh+2016"
+   },
+   {
+    "z": 0.05,
+    "a0e10": 1.69,
+    "sig": 0.13,
+    "src": "Varasteanu+2025"
+   },
+   {
+    "z": 0.9,
+    "a0e10": 2.38,
+    "sig": 0.11,
+    "src": "MUSE-DARK-III_2026"
+   }
+  ],
+  "eta_direct_points": {
+   "eta_3pt_WLS": 0.7632505998004823,
+   "err": 0.1713458229225442,
+   "eta_SPARC_MUSE_2pt": 1.3088455262778351,
+   "err_2pt": 0.4234409974769438
+  },
+  "eta_central_combined": {
+   "eta_central_direct_points": 0.7632505998004823,
+   "eta_region_2sigma": [
+    0.0,
+    1.8236914331209846
+   ],
+   "eta_region_1sigma": [
+    0.0,
+    1.964181370974984
+   ],
+   "eta_sep_saturation": 2.0873273207689635
+  }
+ },
+ "verdict": "eta inclusion from the committed high-z evidence: L328 floor bounds eta <= 1.96 (1-sigma) / eta <= 1.82 (2-sigma), no lower bound (region [0, 1.82] at 2-sigma; saturation boundary eta_sep = 2.09); direct a0(z) points: eta = 0.76 +/- 0.17 (RAR arm, committed-graded non-diagnostic); KMOS3D z-trend: eta = -0.51 +/- 0.22 raw, -0.30 +/- 0.23 AD-controlled (LambdaCDM-degenerate, undecided).  Flat (eta=0) vs H(z) (eta=1): BOTH inside the floor's 2-sigma region (S(1) clears the floor by 5.6 sigma), so the high-z virial floor does NOT discriminate -- verdict = measured range, UNDECIDED, with the two direct arms straddling (RAR ~ +0.8, kinematics ~ -0.3).  Registered deep-rotator BTFR test: DATA GATE NOT MET (0/2-4 clean rotators) -- pending JWST/NIRSpec + ALMA Band 3; per-object +-0.13 dex, 3 at +-0.10 or 4 at +-0.20 dex required."
+}

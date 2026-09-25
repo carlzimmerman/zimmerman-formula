@@ -1,0 +1,139 @@
+
+Z2ETA -- the redshift exponent eta of a0: bound it from the repo's committed high-z evidence.
+
+The parameter:  a0_eff(z) = a0_0 * (H(z)/H0)^eta = a0_0 * E(z)^eta.
+   framework: eta = 0 (rho_Lambda constant -> a0 flat in z);  rival: a0 ~ H(z) -> eta = 1.
+
+Committed inputs (read-only):
+  1. real_research/virial_floor_2026/highz_sigma_mstar.csv        (116 published z >= 4 galaxies, L328's table)
+     + L328_virial_floor_highz_results.json                        (committed S values, for reproduction checks)
+     The virial floor (Lean I22):  sigma^4 >= (4/81) G M a0  for every isolated equilibrium system, so
+     S(eta) = < sigma^2 / floor(eta)^2 > >= 1 must hold with floor ~ (G M a0 E^eta)^(1/4).  L328 committed
+     S(0) = 10.13 [8.71, 13.71], S(1) = 3.30 [2.80, 4.38] (canonical footing).  This lane reconstructs the
+     per-object s_i(0) = (sigma_i/floor_i(0))^2 and extrapolates S(eta) = mean_i s_i(0) * E(z_i)^(-eta/2),
+     which is EXACT for the L328 statistic (floor ~ E^(eta/4) => sigma^2/floor^2 ~ E^(-eta/2)).
+  2. real_research/data/kmos3d_ubler2017.csv                      (135 KMOS3D discs, z = 0.60-2.53, Ubler+2017)
+     -> the registered deep-rotator BTFR zero-point test proxy (z ~ 2-2.6 rotation data on disk).
+  3. real_research/data/a0_of_z.csv                               (committed direct a0(z) points)
+  4. prep_2026/a0z_crossscale/highz_target_ledger_verified_2026.out (committed gate state of the 21-object ledger)
+
+STATEMENT OF ASSUMPTIONS (every one, as demanded):
+  A1  Per-object data are the committed L328 table; its construction rules (R1-R4 of build_table.py) are
+      carried as-is; M_* in place of M_b makes the floor conservative.
+  A2  E(z) = sqrt(Om(1+z)^3 + OL), Om = 0.3153, OL = 0.6847 (the L328 cosmology); eta is defined by E = H/H0.
+  A3  s_i(eta) = s_i(0) * E(z_i)^(-eta/2) exactly (floor ~ a0^(1/4) and a0 ~ E^eta).
+  A4  Gaussian approximation for the population statistic S(eta): sigma_S(eta) from the SAME bootstrap design
+      as L328 (seed 20260923, 4000 resamples, object resampling + gaussian per-object errors on sigma and
+      log M*).  Evidence ratio -> likelihood ratio: the floor hypothesis is one-sided (S_true >= 1), so
+      p(eta) = Phi((1 - S(eta))/sigma_S(eta)); inside the allowed region the profile likelihood is saturated
+      (any S_true >= 1 fits), so the data carry NO two-sided information on eta: the region is a one-sided
+      UPPER bound.  "1-sigma" = S(eta) - 1 sigma_S(eta) >= 1 ; "2-sigma" = S(eta) - 2 sigma_S(eta) >= 1.
+  A5  No lower bound on eta exists from this statistic (negative eta lowers the floor, S grows, always
+      consistent); the region is reported as [0, eta_max(k sigma)] with a note.
+  A6  Control: synthetic s_i injected at known eta_true with multiplicative lognormal scatter (E[u]=1 exactly,
+      variance from the observed log-dispersion of s_i(0)); the estimator is the SAME monotone root used for
+      the bound (S(eta)=1).  In expectation the root of unbiased data is eta_true, so |mean(eta_hat) - eta_true|
+      <= 2 std(eta_hat) must hold for eta_true = 0 and 1.  No tuning toward the framework: eta=1 injection must
+      return ~1.
+  A7  Registered deep-rotator test (STANDING rev 9; OBSERVING_CASE_A0Z_2026.md; PAPER14 v2, DOI
+      10.5281/zenodo.22961490): BTFR zero-point shift at z ~ 2.5: framework 0.00 dex vs a0~H(z) +0.33 dex
+      (v1 convention, still quoted in STANDING rev 9) / +0.58 dex (v2, log10 E(2.5) = 0.576); per-object
+      precision <= 0.13 dex; decision needs 2-4 clean rotators (v2: 3 at +-0.10 or 4 at +-0.20 dex).  Gate:
+      deep-MOND g_bar < 0.3 a0 both footings at the upper mass end, V/sigma > 1.5 (pref > 2), lens control
+      delta log mu <= 0.05, 35 < i < 75 deg, >= 5 source-plane resolution elements, z >= 2 (window relaxed
+      from 2.32-3.12 to z >= 2 in v2).
+  A8  The g_bar gate for the KMOS3D z >= 2 discs is evaluated at R_out = 3 R_e with R_e = 2.5 kpc (labelled
+      size assumption; robustness row at R_e = 4 kpc): g_bar ~ G M_bar / R_out^2.  These discs are
+      high-acceleration; they are CONTROLS, not the registered test objects.
+  A9  MUSE folding: only the committed aggregate points of a0_of_z.csv are used.  Per-galaxy MUSE re-derivation
+      is NOT attempted: the committed opus48 M03 lane found the released per-galaxy products cannot reconstruct
+      the RAR a0 (halo-based proxy slopes with the WRONG sign, -0.263 dex/z vs observed +0.43).  The M01/M02
+      asymmetric-drift reconciliation is NOT cited: STANDING rev 9 records a units slip and a per-galaxy AD
+      contribution of only ~0.01 dex, so it cannot rescue MUSE's rise.  MUSE's rising a0(z) remains a live
+      threat; the Magneticum degeneracy (apparent-a0 rise x3 by z=2 in LCDM, Mayer+2023) keeps the RAR arm
+      non-diagnostic of a FUNDAMENTAL a0(z).
+  A10 Both footings (canonical 9.3619e-11, alt 1.1279e-10) are carried wherever the committed analysis used
+      both; load-bearing checks are stated on the canonical footing with the alt reported.
+
+Run from the repository root:
+  python3 real_research/z2_eta_2026/Z2ETA_eta_bound_a0.py
+Writes real_research/z2_eta_2026/Z2ETA_results.json
+
+
+==============================================================================================================
+E-SECTION: ETA FROM THE L328 VIRIAL-FLOOR EVIDENCE (116 published z >= 4 galaxies)
+==============================================================================================================
+   objects with (z, sigma, log M_*): 116
+  [PASS] E1 reconstruction reproduces the committed statistic (|S_calc - S_committed| <= 0.02, canonical, eta=0 and 1)
+         measured: dev eta=0: 0.0000 (S=10.1344 vs 10.1344); dev eta=1: 0.0000 (S=3.3040 vs 3.3040)
+         reading:  validates the exact reconstruction s_i(eta) = s_i(0) E(z)^(-eta/2) used for the whole lane
+   canonical: S(eta=0) = 10.13  S(eta=1) = 3.30  S(eta=2) = 1.10
+   sigma_S:   eta=0: 1.268   eta=1: 0.409   eta=2: 0.139
+  [PASS] E2 the framework's floor holds at eta=0 (95% CI lower on S(0) >= 1, both footings)
+         measured: canonical: S=10.13 [lo 8.71]; alt: S=9.23 [lo 7.96]
+         reading:  a failure at eta=0 would falsify the flat-a0 virial floor at z > 4
+  [PASS] E3 the a0 ~ H(z) rival's floor holds at eta=1 -- the rival SURVIVES the floor (95% CI lower on S(1) >= 1, both footings)
+         measured: canonical: S=3.30 [lo 2.80]; alt: S=3.01 [lo 2.57]
+         reading:  rival surviving is a RESULT, not a pass for the framework: at z >= 4 the galaxies are too high-acceleration for the floor to separate flat from rising a0 (committed L328 R1-R3 reached the same conclusion)
+  [PASS] E4 eta = 1 lies inside the 2-sigma inclusion region of the floor (eta_max_2sigma >= 1)
+         measured: eta_max_2sigma = 1.824 (1-sigma bound 1.964); z(eta=1) = (S(1)-1)/sigma = 5.63
+         reading:  the registered rival (eta=1) is NOT excluded by the high-z virial floor at 2 sigma; the floor only caps eta from above
+  [PASS] E5 (reported) eta inclusion region at 1-2 sigma and the best-separating value (0-sigma saturation boundary, no lower bound)
+         measured: 1-sigma: [0, 1.964]; 2-sigma: [0, 1.824]; separation value eta_sep (S(eta)=1 point estimate) = 2.087
+         reading:  negative eta is unconstrained (it lowers the floor, S grows); the floor cannot separate eta=0 from eta=1 (both clear it by > 5 sigma); eta_sep is the value at which the population would exactly saturate the floor
+
+==============================================================================================================
+C-SECTION: CONTROL -- inject eta_true = {0, 1}, estimator must recover it
+==============================================================================================================
+   observed log-scatter of s_i(0): 0.849
+  [PASS] C1 control at eta_true = 0: estimator returns 0 within 2 std
+         measured: eta_hat = -0.002 +/- 0.083 (95% [-0.15, 0.17])
+         reading:  injected flat-a0 data must come back flat-a0
+  [PASS] C2 control at eta_true = 1: estimator returns 1 within 2 std
+         measured: eta_hat = 0.997 +/- 0.089 (95% [0.83, 1.17])
+         reading:  injected a0 ~ H(z) data must come back eta ~ 1 -- the estimator is not tuned toward the framework
+
+==============================================================================================================
+D-SECTION: THE REGISTERED DEEP-ROTATOR BTFR ZERO-POINT TEST (z ~ 2.5)
+==============================================================================================================
+   Registered statistic (STANDING rev 9; OBSERVING_CASE_A0Z_2026.md; PAPER14 v2 10.5281/zenodo.22961490):
+   BTFR zero-point shift at z ~ 2.5: framework 0.00 dex vs a0~H(z) +0.33 dex (v1 / STANDING) / +0.58 dex
+   (v2, = log10 E(2.5) = 0.576); per-object +-0.13 dex; 2-4 clean rotators decide (v2: 3 at +-0.10 or
+   4 at +-0.20 dex).  Gate: deep-MOND g_bar < 0.3 a0 both footings at the upper mass end, V/sigma > 1.5,
+   lens delta log mu <= 0.05, i in (35, 75) deg, >= 5 kinematic elements, z >= 2, gas measured.
+   KMOS3D on disk: 135 discs, z = 0.60-2.53; z >= 2 rotators (V/sigma > 1.5): 46
+   z >= 2 rotators, median BTFR displacement 4logV - logM_bar - C0(local): canonical +0.636 dex (scatter 0.367); alt +0.555 dex
+   g_bar(R_out=3Re, Re=2.5kpc)/a0 range over z >= 2 rotators: canonical 0.59-11.29  (deep-MOND gate demands < 0.3)
+   ledger: window z >= 2: 13 objects; deep-MOND plausible (optimistic corner < 0.3 a0, canonical; M_dyn-only rows excluded): ['OLAS M0717-02064']
+   ledger: confirmed deep-MOND (PUB g_bar < 0.3 a0): []
+  [FAIL] D1 DATA GATE for the registered test: >= 2 clean deep-MOND rotators (g_bar < 0.3 a0 both footings at the upper mass end, V/sigma > 1.5, lens control, gas measured, z in [2, 2.6]) exist on disk
+         measured: 0 / 2 required (KMOS3D z>=2 rotators all high-acceleration, g_bar/a0 >= 0.59 > 0.3; committed ledger: confirmed deep-MOND objects = 0; the only z >= 2 optimistic-corner candidate (OLAS M0717-02064, g_bar/a0 [0.17, 1.29]) fails the committed upper-end rule and has no measured gas)
+         reading:  REGISTERED TEST IS PENDING DATA, not scored.  Required sample (committed): 2-4 clean rotators (STANDING rev 9); PAPER14 v2: 3 galaxies at +-0.10 dex or 4 at +-0.20 dex; per-object <= 0.13 dex (deltaV/V < 5%, delta log M_b < 0.10); each must pass the gate above.  JWST/NIRSpec G235H/F170LP Stage 1, ALMA Band 3 CO(3-2) Stage 2 (funnel, DOI 10.5281/zenodo.22563139).
+  [PASS] D2 (reported) on-disk proxy: median BTFR displacement of z >= 2 KMOS3D rotators vs the frozen zero point 0.00 (framework) / +0.33 (v1 rival) / +0.58 (v2, a0 ~ H)
+         measured: median +- se = +0.636 +- 0.054 dex (scatter 0.367; N=46); framework 0.00, rival +0.33, rival(eta=1) +0.58
+         reading:  NOT the registered test: high-acceleration regime suppresses the deep-MOND displacement, the absolute offset is zero-point-anchored (committed ground_highz_btfr_realdata.py calls it a constant systematic), and there is no lens/gas-stage control.  Reported for completeness only.
+  [PASS] D3 (reported) KMOS3D z-trend reproduces the committed slope and maps it to eta (anchor-free, AD-controlled rows carried)
+         measured: slope = -0.0286 +/- 0.0123 dex/z -> eta_kin = -0.51 +/- 0.22; AD-controlled slope = -0.0166 +/- 0.0127 -> eta_kin_AD = -0.30 +/- 0.23; reproduction of committed values: OK
+         reading:  the committed script's verdict is carried: negatively sloped (declining a0) but LambdaCDM-degenerate (dark-matter + gas-fraction growth give the same sign) and AD-absorbed to 1.3 sigma -> UNDECIDED, systematics-limited; under the a0-only reading it excludes eta=1 at ~5.7 sigma
+
+==============================================================================================================
+M-SECTION: FOLDING THE COMMITTED DIRECT a0(z) POINTS (MUSE arm)
+==============================================================================================================
+   committed a0(z) points: [(0.0, 1.2, 0.26, 'SPARC_McGaugh+2016'), (0.05, 1.69, 0.13, 'Varasteanu+2025'), (0.9, 2.38, 0.11, 'MUSE-DARK-III_2026')]
+  [PASS] M1 (reported) weighted fit of the committed a0(z) points: a0(z) = a0(0) E(z)^eta
+         measured: eta = +0.76 +/- 0.17 (3 points); SPARC+MUSE only: +1.31 +/- 0.42; a0(0) = 10^0.203 x1e-10
+         reading:  the RAR arm leans RISING (eta ~ 0.76 from all three committed points, ~1.3 from SPARC+MUSE); this arm is committed-graded NON-DIAGNOSTIC of a fundamental a0(z): the fitted RAR scale rises x3 by z=2 in LCDM with no a0 at all (Mayer+2023, Magneticum); MUSE's rise is 'faster than H(z)' and cannot come from any background-density law
+  [PASS] M2 (reported) method-split carried: MUSE reconciliation dead, rise remains a live threat
+         measured: STANDING rev 9: opus48 M01/M02 asymmetric-drift reconciliation has a units slip; the real per-galaxy AD contribution is ~0.01 dex and cannot rescue the rise; per-galaxy re-derivation invalid (M03: halo-based proxy slope -0.263 dex/z, wrong sign)
+         reading:  no per-galaxy MUSE a0 is folded because none can be reconstructed from the released products (committed M03); the committed points are folded as-is with their caveats; the two arms (RAR: rising; BTFR/kinematics: flat-to-declining) remain split and neither is clean
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+eta inclusion from the committed high-z evidence: L328 floor bounds eta <= 1.96 (1-sigma) / eta <= 1.82 (2-sigma), no lower bound (region [0, 1.82] at 2-sigma; saturation boundary eta_sep = 2.09); direct a0(z) points: eta = 0.76 +/- 0.17 (RAR arm, committed-graded non-diagnostic); KMOS3D z-trend: eta = -0.51 +/- 0.22 raw, -0.30 +/- 0.23 AD-controlled (LambdaCDM-degenerate, undecided).  Flat (eta=0) vs H(z) (eta=1): BOTH inside the floor's 2-sigma region (S(1) clears the floor by 5.6 sigma), so the high-z virial floor does NOT discriminate -- verdict = measured range, UNDECIDED, with the two direct arms straddling (RAR ~ +0.8, kinematics ~ -0.3).  Registered deep-rotator BTFR test: DATA GATE NOT MET (0/2-4 clean rotators) -- pending JWST/NIRSpec + ALMA Band 3; per-object +-0.13 dex, 3 at +-0.10 or 4 at +-0.20 dex required.
+
+==============================================================================================================
+VERDICT  (6/6 load-bearing PASS; 11/12 total PASS)
+==============================================================================================================
+
+Z2ETA COMPLETE: 11/12 checks PASS.
