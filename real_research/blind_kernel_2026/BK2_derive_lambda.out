@@ -1,0 +1,57 @@
+
+    two-halo template (b = 1, z = 0.25): Delta Sigma_2h at 0.1 / 0.3 / 1 / 2.6 Mpc = 0.045, 0.141, 0.269, 0.371 Msun/pc^2
+model tables built (156 s)
+
+========================================================================================================
+D0  CAN A CONSTANT lambda ~ 0.7 Mpc BE DERIVED FROM THE FRAMEWORK'S CONSTANTS? (and what numerology costs)
+========================================================================================================
+    c/H0                   = 4451 Mpc
+    a0/H0^2 (canonical)    = 636.7 Mpc
+    c^2/a0 (canonical)     = 3.111e+04 Mpc
+    combinations c/H0 x Z^n Omega_L^m Omega_m^q (2pi)^r with |n|<=8, |m|,|q|,|r|<=3: 5831; landing in 0.6-0.8 Mpc: 48
+    e.g. [(-8, -3, -2, 1, 0.697), (-8, -1, -1, 2, 0.647), (-8, 0, -3, 1, 0.718), (-8, 1, 0, 3, 0.601), (-8, 2, -2, 2, 0.666), (-7, -3, -2, 0, 0.642)]
+  [PASS] D0 (documentary) no constant length near 0.7 Mpc follows from (c, H0, a0, G rho): the natural ones are 4451 / 637 / 3.11e+04 Mpc; 48 of 5831 small-exponent combinations land in 0.6-0.8 Mpc, so any single 'hit' is numerology
+         measured: 48
+
+========================================================================================================
+D1  WHICH MASS SCALING DOES KiDS WANT FOR lambda?  (two-halo b <= 2, M_b per bin, full covariance)
+========================================================================================================
+    canonical const         : best L0 =   0.7  Delta chi^2 vs comparator   +7.71
+    canonical M^1/4         : best L0 =   0.6  Delta chi^2 vs comparator   +5.20
+    canonical M^1/2         : best L0 =   0.5  Delta chi^2 vs comparator   +7.59
+    canonical v/(sqrt(X) H) : best X =  10.0  Delta chi^2 vs comparator   +5.34
+    alt       const         : best L0 =   0.7  Delta chi^2 vs comparator   +7.99
+    alt       M^1/4         : best L0 =   0.6  Delta chi^2 vs comparator   +5.76
+    alt       M^1/2         : best L0 =   0.5  Delta chi^2 vs comparator   +8.06
+    alt       v/(sqrt(X) H) : best X =  10.0  Delta chi^2 vs comparator   +6.79
+  [PASS] D1 KiDS prefers lambda ~ M^(1/4) (the clock-built v/H scaling) over a constant length: chi^2(M^1/4) < chi^2(const), both footings
+         measured: {'canonical': -2.5, 'alt': -2.24}
+         reading:  negative = M^(1/4) better
+
+========================================================================================================
+D2  THE DERIVED FORM lambda = v_flat/(sqrt(X) H): v^2 = |a|^2/(4 pi G rho_dyn) and 4 pi G rho_dyn = x H^2 are C-H/K clock scalars
+========================================================================================================
+  [FAIL] D2 the fitted X lies in L342/BS1's switch-threshold range 2-7 (so lambda is the switch's own r_t, no new number)
+         measured: {'canonical': 10.0, 'alt': 10.0}
+  [FAIL] D3 the derived form fits KiDS within Delta chi^2 <= 4 of the EFE-free switch comparator, both footings
+         measured: {'canonical': 5.34, 'alt': 6.79}
+         reading:  BK1's gate, now with lambda derived rather than free
+
+========================================================================================================
+D4  THE DERIVED lambda LEAVES THE SUN AND SPARC ALONE?
+========================================================================================================
+    canonical: X = 10.0: worst SPARC change at R_last 0.20%;  lambda(MW, z=0) = 0.60 Mpc, Galaxy's field on the Sun kept to 0.999452
+    alt      : X = 10.0: worst SPARC change at R_last 0.18%;  lambda(MW, z=0) = 0.63 Mpc, Galaxy's field on the Sun kept to 0.999500
+  [PASS] D4 with the derived lambda, SPARC changes <= 1% at R_last (1e8-10^11.5 Msun) and the Sun keeps >= 99.9% of the Galaxy's field
+         measured: {'canonical': '0.20%, 0.99945', 'alt': '0.18%, 0.99950'}
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  A constant lambda cannot be derived: the framework's lengths are 4451, 637 and 3.1e+04 Mpc, and 48 of
+  5831 small-exponent combinations of them land at 0.6-0.8 Mpc (numerology, not derivation).  The one length near 1 Mpc
+  the construction supplies is mass-dependent: lambda = v_flat/(sqrt(X) H), from C-H/K's own clock scalars.
+  KiDS: M^(1/4) vs constant -2.50 / -2.24;  derived form best X = 10.0 / 10.0 at Delta chi^2
+  +5.34 / +6.79;  constant +7.71 / +7.99;  M^(1/2) +7.59 / +8.06.
+
+  3/5 checks pass; load-bearing failures: 2; wrote BK2_derive_lambda_results.json (180 s)
