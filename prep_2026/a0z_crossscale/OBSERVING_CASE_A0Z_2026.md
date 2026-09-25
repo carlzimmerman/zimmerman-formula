@@ -128,3 +128,25 @@ ledger.** Corrections that change this document:
 
 The frozen statistic (0.00 vs +0.33 dex at ±0.13 dex), the gate, and the funnel are unchanged. The
 target list changes, and "no object passes the gate today" still holds. A Zenodo PAPER14 v2 is owed.
+
+---
+
+## PAPER14 v2 PUBLISHED, 2026-09-25 (append-only; the text above is unchanged)
+
+Zenodo version 2: **doi:10.5281/zenodo.22961490** (concept doi:10.5281/zenodo.22700992). It carries the
+verified ledger of the 09-23 notice above and makes four further corrections to this document:
+
+1. **The rivals are quoted separately.** At z = 2.5, Δ = log[a₀(z)/a₀(0)] is 0.00 for a constant scale,
+   +0.23…+0.46 for the ΛCDM-emergent scale, and +0.58 for a₀ ∝ H(z). §1–2 above called the +0.33 ΛCDM
+   value "tracks H(z)".
+2. **One galaxy does not decide.** With intrinsic scatter (0.034 dex in g_obs) and halo-to-halo
+   scatter (±0.13 dex on the ΛCDM side), one galaxy at ±0.13 dex gives 3.8:1, not 20:1. The
+   decision needs 3 galaxies at ±0.10 or 4 at ±0.20 dex (MNRAS v2 `paper_numbers.py` S4).
+3. **The lens gate is tightened to δlog μ ≲ 0.05, and the window is relaxed to z ≥ 2.** At z = 2.07,
+   Hα falls in G235H, [OIII] in G140H, and CO(3–2) at 112.6 GHz in Band 3.
+4. **The framework's own zero point is not yet sharp.** The L189 retained-halo correction above is
+   still uncomputed. Until it is, the case tests the three hypotheses, not the framework.
+
+Per-object precision (`a0z_deepmond_ifu_forecast_2026.py`, 14/14, corrected in ca91cc261): 0.43 dex
+from velocity data alone (gas-limited), and 0.26 dex with a ±0.12 dex gas mass. On the published
+kinematics, M0717-02064 favours none of the hypotheses.
