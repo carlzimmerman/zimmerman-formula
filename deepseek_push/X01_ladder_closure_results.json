@@ -1,0 +1,136 @@
+{
+ "lane": "X01_ladder_closure",
+ "date": "2026-09-25",
+ "measure": "M05/P01 first-flight measure (R uniform in ball, mu isotropic); M_n = E[int (R^2+2Rmu s+s^2)^n ds]",
+ "closed_form": "M_n = (3/(2(n+1)(n+2))) * sum_{k=0}^n (k+1)/(2k+1)",
+ "ladder": {
+  "M_0": {
+   "n": 0,
+   "exact": "3/4",
+   "float": 0.75
+  },
+  "M_2": {
+   "n": 1,
+   "exact": "5/12",
+   "float": 0.4166666666666667
+  },
+  "M_4": {
+   "n": 2,
+   "exact": "17/60",
+   "float": 0.2833333333333333
+  },
+  "M_6": {
+   "n": 3,
+   "exact": "149/700",
+   "float": 0.21285714285714286
+  },
+  "M_8": {
+   "n": 4,
+   "exact": "1069/6300",
+   "float": 0.16968253968253968
+  },
+  "M_10": {
+   "n": 5,
+   "exact": "13649/97020",
+   "float": 0.1406823335394764
+  },
+  "M_12": {
+   "n": 6,
+   "exact": "50423/420420",
+   "float": 0.11993482707768421
+  },
+  "M_14": {
+   "n": 7,
+   "exact": "56429/540540",
+   "float": 0.1043937543937544
+  },
+  "M_16": {
+   "n": 8,
+   "exact": "4242577/45945900",
+   "float": 0.09233853292676822
+  }
+ },
+ "m4_audit": {
+  "landed": "1/4",
+  "true": "17/60",
+  "buggy_route_reproduces_landed": true,
+  "affected_files": [
+   "deepseek_push/M05_geometric_anchors.py (I2, E_int_r4_quarter)",
+   "deepseek_push/P01_r6_moment.py (I2, I2_b, G1/G2 gates)",
+   "deepseek_push/Q01_r6_lean.py (g_m(4))",
+   "fable_independent_2026/lean_2026/Q01_r6_core.lean (q01CoreR4)",
+   "deepseek_push/M05_FIRST_FLIGHT_MOMENTS.md (table)",
+   "register ladder strings (P/Q/R/S/T/W rows)"
+  ],
+  "mechanism": "s^2 and s^3 coefficients of (R^2+2Rmu s+s^2)^2 halved in the hand-written antiderivative"
+ },
+ "extension": {
+  "m=2*n": {
+   "exact": "4242577/45945900",
+   "quad": "0.0923385329267682209",
+   "mc": 0.09232040566722528,
+   "se": 2.1627549619873862e-05,
+   "z": 0.8381559567098662
+  }
+ },
+ "odd_rung": {
+  "M_half": "0.53862943611198906188",
+  "rational_hit": null,
+  "M_3half": "0.33798404404799531224",
+  "rational_hit_m3": null
+ },
+ "checks": [
+  {
+   "name": "K1 m=4 audit: three clean routes agree at 17/60",
+   "pass": true,
+   "detail": "A=17/60 B=17/60 C=0.28333333333333333333"
+  },
+  {
+   "name": "K1 m=4 audit: clean value differs from landed 1/4",
+   "pass": true,
+   "detail": "|17/60 - 1/4| = 0.0333333"
+  },
+  {
+   "name": "K1 m=4 audit: repo hand-written antiderivative reproduces the landed 1/4",
+   "pass": true,
+   "detail": "buggy route = 1/4 (mechanism confirmed)"
+  },
+  {
+   "name": "K1 VERDICT CORRECTED-TO-17/60",
+   "pass": true,
+   "detail": "trail: M05_geometric_anchors.py I2, P01_r6_moment.py I2/I2_b, Q01_r6_lean.py g_m(4); m=4 absent from every K0 replication gate; q01CoreR4 certified the buggy core"
+  },
+  {
+   "name": "K2 ladder closure: X01-I == route B exactly (n=1..6) AND |route C - X01-I| < 1e-30 (n=0..6)",
+   "pass": true,
+   "detail": "n=0: 3/4  B==A:True  |C-A|<1e-30:True  C=0.75 | n=1: 5/12  B==A:True  |C-A|<1e-30:True  C=0.4166666666666667 | n=2: 17/60  B==A:True  |C-A|<1e-30:True  C=0.2833333333333333 | n=3: 149/700  B==A:True  |C-A|<1e-30:True  C=0.2128571428571429 | n=4: 1069/6300  B==A:True  |C-A|<1e-30:True  C=0.1696825396825397 | n=5: 13649/97020  B==A:True  |C-A|<1e-30:True  C=0.1406823335394764 | n=6: 50423/420420  B==A:True  |C-A|<1e-30:True  C=0.1199348270776842"
+  },
+  {
+   "name": "K3 rung m=12 (n=6): exact 50423/420420  quad<1e-30:True  MC z=1.04<=5:True",
+   "pass": true,
+   "detail": "C=0.119934827077684221 est=0.119916199 se=1.80e-05"
+  },
+  {
+   "name": "K3 rung m=14 (n=7): exact 56429/540540  quad<1e-30:True  MC z=2.26<=5:True",
+   "pass": true,
+   "detail": "C=0.104393754393754394 est=0.104435896 se=1.86e-05"
+  },
+  {
+   "name": "K3 rung m=16 (n=8): exact 4242577/45945900  quad<1e-30:True  MC z=0.84<=5:True",
+   "pass": true,
+   "detail": "C=0.0923385329267682209 est=0.092320406 se=2.16e-05"
+  },
+  {
+   "name": "K4a (fix-forward, both-ways): E[int r ds] measured; clean rational: NONE (not small-rational)",
+   "pass": true,
+   "detail": "M1=0.53862943611198906188 MC=0.538557608 z=2.71"
+  },
+  {
+   "name": "K4b (probe): E[int r^3 ds] measured; clean rational: NONE (not small-rational)",
+   "pass": true,
+   "detail": "M3=0.33798404404799531224 MC=0.337990185 z=0.39"
+  }
+ ],
+ "summary": "10/10 checks PASS",
+ "exit_ok": true
+}

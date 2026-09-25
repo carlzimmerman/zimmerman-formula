@@ -80,3 +80,25 @@ M05_geometric_anchors.py (theorem run, first 3 checks PASS at 1e-9; thin-atom
 and c₀ legs recorded), M05b_simpson_check.py (independent-integrator audit,
 recorded; superseded by the Legendre ladder), this verdict.  No git commit —
 owned by the M-series conductor commit cycle.
+
+## SUPERSEDED IN PART — 2026-09-25, X-WAVE (see deepseek_push/X-WAVE_BRIEF.md, X01_ladder_closure.py)
+
+The **E[∫₀^L r⁴(s)ds] = 1/4 entry in the table above is WRONG — the true value
+is 17/60**.  The hand-written antiderivative of (R²+2Rμs+s²)² used in this
+file's `first_flight_moments` I2 expression (and, inherited, in P01's I2/I2_b
+gates and Q01's g_m(4)) has halved s²/s³ coefficients:
+(2R²μ²+R²)/3·L³ + RμL⁴/2 instead of (4R²μ²+2R²)/3·L³ + RμL⁴.  The buggy
+expression integrates to 1/4 exactly — which is why the Legendre ladder
+"confirmed" it (the check `E_int_r4_quarter` compares against the same buggy
+quantity).  Three clean routes (closed-form ladder X01-I, sympy-exact
+antiderivative reduction, 40-dps definitional quadrature) agree at 17/60 to
+<1e-30, and the closed form
+
+    M_n = E[∫₀^L (R²+2Rμs+s²)^n ds] = (3/(2(n+1)(n+2))) · Σ_{k=0}^n (k+1)/(2k+1)
+
+reproduces EVERY other rung exactly: 3/4, 5/12, 149/700, 1069/6300, 13649/97020
+(m=4 was the one rung never re-derived by a clean route — absent from every K0
+replication gate).  The thin-window law (3/4 + 5q/12)/c₀(q) uses only m=0 and
+m=2 (both correct); no physics claim downstream used the m=4 value.  The
+corrected core is machine-checked in fable_independent_2026/lean_2026/
+X01_ladder_core.lean (x01CoreR4 : ∫P~₄ = 17/60).
