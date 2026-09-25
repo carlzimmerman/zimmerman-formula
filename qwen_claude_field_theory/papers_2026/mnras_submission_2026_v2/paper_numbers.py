@@ -18,7 +18,7 @@ Sections (each ends in checks that CAN fail; exit code 1 if any does):
 Both densities are carried throughout: rho_Lambda (a0 = 9.36e-11) and rho_crit (a0 = 1.13e-10).
 Run from anywhere:  python3 paper_numbers.py        Output: paper_numbers.json next to this file.
 """
-import os, sys, glob, json, math
+import os, sys, glob, json, math, re
 import numpy as np
 from scipy.optimize import minimize_scalar, brentq
 
@@ -28,10 +28,20 @@ SPARC = os.path.join(ROOT, "real_research", "data", "sparc_data")
 RC100 = os.path.join(ROOT, "real_research", "data", "rc100_nestorshachar2023_table3.csv")
 
 OUT, FAILS, NCHK = {}, [], [0]
+KINDS = {}
+KIND_TEXT = {"identity": "algebra or arithmetic on stated inputs: certifies the arithmetic, can fail only by a coding error, carries NO evidence",
+             "model": "evaluates a published model or relation at stated inputs: can fail if the model is mis-implemented, carries no evidence",
+             "data": "can fail on the data",
+             "injection": "feeds an estimator synthetic data with a KNOWN a0 (or trend) built on the real baryons: proves the estimator measures, not echoes"}
 def P(*a): print(*a, flush=True)
-def check(name, ok, detail=""):
-    NCHK[0] += 1
-    P(f"  [{'PASS' if ok else 'FAIL'}] {name}" + (f"   ({detail})" if detail else ""))
+KIND_BY_ID = {"S1a": "identity", "S1b": "identity", "S1c": "identity", "S2d": "identity", "S3a": "identity", "S3b": "identity",
+              "S4a": "identity", "S4d": "identity", "S4e": "identity", "S4f": "identity", "S4j": "identity", "S4k": "identity", "S5a": "identity",
+              "S4b": "model", "S4c": "model", "S4g": "model", "S4h": "model", "S4i": "model", "S4l": "model"}
+def check(name, ok, detail="", kind=None):
+    kind = kind or KIND_BY_ID.get(name.split()[0], "data")
+    assert kind in KIND_TEXT
+    NCHK[0] += 1; KINDS.setdefault(kind, []).append(name)
+    P(f"  [{'PASS' if ok else 'FAIL'}] [{kind}] {name}" + (f"   ({detail})" if detail else ""))
     if not ok: FAILS.append(name)
 def head(s): P(""); P("=" * 110); P(s); P("=" * 110)
 
@@ -186,23 +196,74 @@ for UD in (0.5, 0.6, 0.7):
     gq, gw, ee, nbl = load_sparc(UD=UD, bulgeless=True); bl.append(fit_shape(gq, gw, ee) / A_L)
 P(f"  bulgeless galaxies only ({nbl} galaxies, {len(gq)} points, g_bar < {gq.max()/a0_L:.0f} a0): kappa_B = " + ", ".join(f"{b_:.2f}" for b_ in bl) + " at Ups_disc = 0.5, 0.6, 0.7  -> the lever arm is too short; no help")
 shape = [dict(UD=k_[0], UB=k_[1], kappa_L=v_) for k_, v_ in grid.items()]
-OUT["S2"] = dict(shape_only=shape, kappa_B=kB, sigma_B=sB, B_budget=dict(ml_disc=ml_disc, ml_bul=ml_bul, ml_grid=ml_all, gas=gas, stat=statB), bulgeless=bl,
+# ---- the deep band, where the stars carry less of the mass: quality-cut and error-weighted (the paper's convention), and the
+#      against-interest variant with every point given equal weight
+deep = {}
+for UD in (0.5, 0.6, 0.7):
+    g1, g2, e1, _ = load_sparc(UD=UD, UB=0.7); md = g1 < 0.1 * a0_L
+    q1, q2, q3, _ = load_sparc(UD=UD, UB=0.7, qcut=10.0); mq = q1 < 0.1 * a0_L
+    f_unw = lambda la, X=q1[mq], Y=q2[mq]: np.sum((np.log10(Y) - np.log10(X * nu(X / 10**la)))**2)
+    a_unw = 10**minimize_scalar(f_unw, bounds=(-11.5, -9.0), method="bounded", options=dict(xatol=1e-8)).x
+    deep[UD] = dict(kappa=fit_a0(g1[md], g2[md], e1[md])[0] / A_L, n=int(md.sum()), kappa_unweighted_all=a_unw / A_L, n_all=int(mq.sum()))
+P("  deep band g_bar < 0.1 a0 (bulge 0.7): kappa = " + ", ".join(f"{deep[u]['kappa']:.3f} (N {deep[u]['n']})" for u in deep) + " at Upsilon_disc = 0.5, 0.6, 0.7")
+P("     every point, equal weight (no quality cut): " + ", ".join(f"{deep[u]['kappa_unweighted_all']:.3f}" for u in deep) + "  <- points with >10% velocity errors pull it down")
+# ---- INJECTION TESTS: synthetic g_obs built on the REAL g_bar with a KNOWN a0, realistic noise; every estimator must return it
+rngI = np.random.default_rng(314159)
+g1, g2, e1, _ = load_sparc(UD=0.5, UB=0.7); sig_pt = np.sqrt(e1**2 + SIG_INT**2)
+inj = dict(standard=[], shape=[], shape_std_bias=[], deep=[])
+for fac in (0.7, 1.0, 1.3):
+    a_in = fac * a0_L
+    syn = g1 * nu(g1 / a_in) * 10**(rngI.normal(0, 1, g1.size) * sig_pt)
+    inj["standard"].append(fit_a0(g1, syn, e1)[0] / a_in)
+    off = 10**0.08                                   # a common 20 per cent distance-scale error shifts g_obs by 0.08 dex
+    inj["shape"].append(fit_shape(g1, syn * off, e1) / a_in)
+    inj["shape_std_bias"].append(fit_a0(g1, syn * off, e1)[0] / a_in)
+    md = g1 < 0.1 * a0_L
+    inj["deep"].append(fit_a0(g1[md], syn[md], e1[md])[0] / a_in)
+P("  injection (a0 = 0.7, 1.0, 1.3 x canonical, real g_bar, noise = quoted errors + 0.034 dex): returned / injected")
+P("     standard fit " + ", ".join(f"{v:.3f}" for v in inj["standard"]) + ";  deep band " + ", ".join(f"{v:.3f}" for v in inj["deep"]))
+P("     with a +0.08 dex common offset (a 20% distance error): shape-only " + ", ".join(f"{v:.3f}" for v in inj["shape"]) +
+  ";  the standard fit, for contrast, " + ", ".join(f"{v:.3f}" for v in inj["shape_std_bias"]))
+OUT["S2"] = dict(deep_band=deep, injection=inj, shape_only=shape, kappa_B=kB, sigma_B=sB, B_budget=dict(ml_disc=ml_disc, ml_bul=ml_bul, ml_grid=ml_all, gas=gas, stat=statB), bulgeless=bl,
                  shape_immunity=imm, standard_move_10pc=std_move, n_gal=ngal, n_pts=int(len(gb)), table=rows, ud_for_half_L=ud_half, ud_for_half_C=ud_half_C,
                  fixed_L=dict(UD=uL, rms=rL), fixed_C=dict(UD=uC, rms=rC))
 r05 = [r for r in rows if abs(r["UD"] - 0.5) < 1e-9][0]
 check("S2a at Upsilon_disc = 0.5 the fit returns the literature a0 = 1.2e-10 within 5%", abs(r05["a0"] / 1.2e-10 - 1) < 0.05, f"a0 = {r05['a0']:.3e}")
 check("S2b the degeneracy is steep: kappa moves by more than 0.15 between Upsilon_disc = 0.5 and 0.7", rows[1]["kappa_L"] - rows[3]["kappa_L"] > 0.15,
       f"{rows[1]['kappa_L']:.3f} -> {rows[3]['kappa_L']:.3f}")
-check("S2d the shape-only estimator is immune to a common distance rescaling (< 1e-5) while the standard fit is not (> 15%)", imm < 1e-5 and std_move > 0.15,
-      f"{imm:.1e} vs {std_move*100:.1f}%")
+check("S2d the shape-only estimator is immune to a common distance rescaling (< 1e-5): the free offset absorbs it by construction", imm < 1e-5,
+      f"{imm:.1e}")
+check("S2d2 while the standard fit is not: a 10 per cent common rescaling moves it by more than 15 per cent", std_move > 0.15, f"{std_move*100:.1f}%")
 check("S2e the replication agrees with the repository's estimator B at Upsilon_bul = 0.7, Upsilon_disc = 0.5 and 0.7 (0.529, 0.574) within 0.01",
       abs(grid[(0.5, 0.7)] - 0.529) < 0.01 and abs(grid[(0.7, 0.7)] - 0.574) < 0.01, f"{grid[(0.5, 0.7)]:.3f}, {grid[(0.7, 0.7)]:.3f}")
 check("S2f AGAINST THE EARLIER ERROR BAR: the bulge mass-to-light ratio moves estimator B by more than twice the 0.043 previously quoted",
       ml_bul > 2 * 0.043, f"bulge term {ml_bul:.3f}; total {sB:.3f}")
+check("S2g the deep band (g_bar < 0.1 a0, quality-cut, error-weighted) gives kappa between 0.40 and 0.60 for Upsilon_disc 0.5-0.7",
+      all(0.40 < deep[u]["kappa"] < 0.60 for u in deep), ", ".join(f"{deep[u]['kappa']:.3f}" for u in deep))
+check("S2h AGAINST INTEREST: giving every deep point equal weight (no quality cut) lowers kappa by at least 0.05 at every Upsilon",
+      all(deep[u]["kappa"] - deep[u]["kappa_unweighted_all"] > 0.05 for u in deep), ", ".join(f"{deep[u]['kappa_unweighted_all']:.3f}" for u in deep))
+check("I1 the standard fit returns the injected a0 to 2 per cent at 0.7, 1.0 and 1.3 x canonical", max(abs(v - 1) for v in inj["standard"]) < 0.02,
+      ", ".join(f"{v:.3f}" for v in inj["standard"]), kind="injection")
+check("I2 the shape-only estimator returns the injected a0 to 3 per cent through a 0.08 dex common offset that biases the standard fit by > 15 per cent",
+      max(abs(v - 1) for v in inj["shape"]) < 0.03 and min(abs(v - 1) for v in inj["shape_std_bias"]) > 0.15,
+      "shape " + ", ".join(f"{v:.3f}" for v in inj["shape"]) + "; standard " + ", ".join(f"{v:.3f}" for v in inj["shape_std_bias"]), kind="injection")
+check("I3 the deep-band fit returns the injected a0 to 5 per cent", max(abs(v - 1) for v in inj["deep"]) < 0.05, ", ".join(f"{v:.3f}" for v in inj["deep"]), kind="injection")
 check("S2c kappa = 1/2 needs a disc mass-to-light ratio inside the population-synthesis range 0.4-0.8", 0.4 < ud_half < 0.8 and 0.4 < ud_half_C < 0.8,
       f"{ud_half:.2f} / {ud_half_C:.2f}")
 
 # ================================================================================================================
+# ---- estimator A (repository script): its correction Q(y) is evaluated at an assumed a0.  Does that assumption do the work?
+import subprocess
+_rA = subprocess.run([sys.executable, "mi_btfr_intercept_kappa_door_2026.py"], cwd=os.path.join(ROOT, "real_research", "reviews"), capture_output=True, text=True)
+_m = re.search(r"frozen-y estimate ([0-9.e+-]+) .*?self-consistent fixed point ([0-9.e+-]+) .*?ALT-footing selection\+argument ([0-9.e+-]+)", _rA.stdout)
+A_frozen, A_selfc, A_alt = (float(x) for x in _m.groups())
+P(f"  estimator A: correction evaluated at the canonical a0 {A_frozen:.4e}; at its own output (fixed point) {A_selfc:.4e} ({(A_selfc/A_frozen-1)*100:+.2f}%);"
+  f" selection and correction at the 21% higher alternative a0 {A_alt:.4e} ({(A_alt/A_frozen-1)*100:+.1f}%)")
+OUT["A_selfconsistency"] = dict(frozen=A_frozen, fixed_point=A_selfc, alt=A_alt)
+check("I4 estimator A is not an echo of the a0 at which its correction is evaluated: iterating to its own output moves it by < 1 per cent, and a 21 per cent change of that a0 moves it by < 10 per cent",
+      _rA.returncode == 0 and abs(A_selfc / A_frozen - 1) < 0.01 and abs(A_alt / A_frozen - 1) < 0.10,
+      f"{(A_selfc/A_frozen-1)*100:+.2f}%, {(A_alt/A_frozen-1)*100:+.1f}%", kind="injection")
+
 head("S3  CANDIDATE COEFFICIENTS, THE MASS-BUDGET FLOOR, THE H0 LOCK")
 k_hor = math.sqrt(8 * math.pi / 3) / (2 * math.pi)             # a0 = c H_Lambda / 2 pi  (the Lambda form of the classical coincidence)
 cands = [("c H_Lambda/2pi (Milgrom 2020, eq. 3)", k_hor), ("1/2 (this paper)", 0.5),
@@ -244,7 +305,7 @@ check("S3b the H0 lock: the two (kappa, H0) pairs predict the same a0 to better 
       f"{(a_hor_shoes/a_half_planck - 1)*100:+.2f}%")
 check("S3c 1/2 is inside 1.5 sigma of both measurements; Milgrom-1999's 2cH_Lambda is outside 5 sigma of both",
       all(abs(p) < 1.5 for p in ctab[1]["pulls"]) and all(abs(p) > 5 for p in ctab[5]["pulls"]))
-check("S3d the data do not single out 1/2: at least three candidates lie inside 2 sigma of both measurements... or fail",
+check("S3d the data do not single out 1/2: at least three candidates lie within 2.2 sigma of both measurements",
       sum(all(abs(p) < 2.2 for p in r["pulls"]) for r in ctab) >= 3, f"{sum(all(abs(p) < 2.2 for p in r['pulls']) for r in ctab)} candidates inside 2.2 sigma of both")
 
 # ================================================================================================================
@@ -416,11 +477,55 @@ P(f"  controlling for log y_hat (absorbs noise AND part of any real signal): {sy
 weak_H = min((s_Hz - slope) / bs.std(), (s_Hz - sg) / eg, (s_Hz - sy) / ey)
 P(f"  weakest exclusion of the H(z) mean slope over the three treatments: {weak_H:.1f} sigma")
 P(f"  range of the redshift slope over the three treatments: {min(slope, sg, sy):+.2f} to {max(slope, sg, sy):+.2f};  weakest exclusion of the halo-emergent slope: {min((s_halo-slope)/bs.std(), (s_halo-sg)/eg, (s_halo-sy)/ey):.1f} sigma")
-OUT["S5"] = dict(N=int(len(zz)), slope=float(slope), slope_err=float(bs.std()), median_a0=float(10**np.median(la)), median_y=float(np.median(yy)),
+# ---- the result is conditional on the redshift calibration of the baryonic masses.  Tilt M_b by beta dex per unit z about the
+#      sample's mean redshift (g_bar -> g_bar 10^[beta (z - zbar)], g_obs fixed), re-invert, re-fit.
+zr = np.array([float(r["z"]) for r in rows]); fr = np.array([float(r["fDM_within_Re"]) for r in rows]); gr = np.array([float(r["g_Re_ms2"]) for r in rows])
+zbar = float(np.mean(zz)); tilt = []
+for beta in (-0.10, -0.075, -0.05, -0.025, 0.0, 0.025, 0.05):
+    gbt = (1 - fr) * gr * 10**(beta * (zr - zbar)); ft = 1 - gbt / gr
+    ok_ = (ft > 0.02 + 1e-9) & (ft < 0.98 - 1e-9)          # the same open interval as the main fit (the f_DM = 0.02 edge excluded)
+    lat = np.log10(gbt[ok_] / np.log(1 / ft[ok_])**2); zt = zr[ok_]
+    st = np.polyfit(zt, lat, 1)[0]
+    bt = np.array([np.polyfit(zt[i], lat[i], 1)[0] for i in (rng.integers(0, len(zt), len(zt)) for _ in range(1500))]).std()
+    tilt.append(dict(beta=beta, n=int(ok_.sum()), slope=float(st), err=float(bt), sig_const=float(st / bt), sig_halo=float((s_halo - st) / bt)))
+P("  baryonic-mass calibration drift beta [dex per unit z]  ->  slope, and its distance from constant / from the halo law:")
+for t in tilt:
+    P(f"     beta {t['beta']:+.3f}: N {t['n']:3d}, slope {t['slope']:+.3f} +/- {t['err']:.3f};  constant {t['sig_const']:+.1f} sigma;  halo law {t['sig_halo']:+.1f} sigma")
+# one galaxy sits exactly on the f_DM = 0.02 edge of the inversion; admitting it:
+edge = (fr >= 0.02 - 1e-12) & (fr < 0.98)
+la_e = np.log10((1 - fr[edge]) * gr[edge] / np.log(1 / fr[edge])**2); slope_edge = float(np.polyfit(zr[edge], la_e, 1)[0])
+P(f"  admitting the one galaxy at the f_DM = 0.02 edge: slope {slope:+.3f} -> {slope_edge:+.3f} (N {int(edge.sum())}), a {abs(slope_edge - slope)/bs.std():.1f} sigma move from one object")
+beta_halo2 = max((t["beta"] for t in tilt if t["sig_halo"] < 2.0 and t["beta"] < 0), default=None)
+beta_const2 = max((t["beta"] for t in tilt if abs(t["sig_const"]) > 2.0 and t["beta"] < 0), default=None)
+P(f"  the halo law comes within 2 sigma at beta = {beta_halo2}; constancy goes 2 sigma off at beta = {beta_const2}")
+# ---- the independent replication (KMOS3D; Ubler+2017 kinematics x KMOS3D sizes), from its committed lane
+L332 = json.load(open(os.path.join(ROOT, "real_research", "dark_sector_2026", "L332_kmos3d_trend_replication_results.json")))
+k1 = L332["checks"]; k1m = [v for k_, v in k1.items() if k_.startswith("K1")][0]["measured"]; t1 = [v for k_, v in k1.items() if k_.startswith("T1")][0]
+P(f"  KMOS3D replication (L332): T1 {'PASSED' if t1['ok'] else 'FAILED'} ({t1['measured']});  K1: {k1m}")
+# ---- injection: kernel-consistent synthetic f_DM on the REAL (z, g_bar) with injected trends and noise in f_DM
+rngR = np.random.default_rng(271828); gbr = (1 - fr) * gr; injR = []
+for s_in in (0.0, s_halo, s_Hz):
+    rec = []
+    for _ in range(300):
+        a_z = 1.2e-10 * 10**(s_in * (zr - zbar)); f_t = np.exp(-np.sqrt(gbr / a_z))
+        f_o = np.clip(f_t + rngR.normal(0, 0.05, f_t.size), 0.021, 0.979); g_o = gbr / (1 - f_t)
+        la_s = np.log10((1 - f_o) * g_o / np.log(1 / f_o)**2); rec.append(np.polyfit(zr, la_s, 1)[0])
+    injR.append((s_in, float(np.mean(rec)), float(np.std(rec))))
+P("  injection (kernel-consistent f_DM with 0.05 noise on the real z, g_bar): injected -> recovered slope: " + ", ".join(f"{a:+.3f} -> {b:+.3f}" for a, b, _ in injR))
+OUT["S5"] = dict(slope_with_edge_galaxy=slope_edge, tilt=tilt, beta_halo_within_2sigma=beta_halo2, beta_const_2sigma_off=beta_const2, L332_T1=t1, L332_K1=k1m, injection=injR,
+                 N=int(len(zz)), slope=float(slope), slope_err=float(bs.std()), median_a0=float(10**np.median(la)), median_y=float(np.median(yy)),
                  slope_halo=s_halo, slope_Hz=s_Hz, dlogfdm_dz=float(dfdm), scatter=float(np.std(la - (icpt + slope*zz))),
                  slope_ctrl_gobs=sg, err_ctrl_gobs=eg, slope_ctrl_y=sy, err_ctrl_y=ey,
                  y_percentiles=[float(y16), float(y50), float(y84)], n_below_gate=int((yy < 0.3).sum()), weakest_excl_Hz=float(weak_H))
 check("S5a the inversion is exact: nu(y) (1 - f_DM) = 1 at y = [ln(1/f_DM)]^2", abs(nu(math.log(1/0.37)**2) * (1 - 0.37) - 1) < 1e-12)
+check("S5e AGAINST INTEREST: a baryonic-mass calibration drift of at most 0.05 dex per unit z brings the halo law within 2 sigma (the result is calibration-conditional)",
+      beta_halo2 is not None and beta_halo2 >= -0.05, f"beta = {beta_halo2}")
+check("S5f AGAINST INTEREST: the independent KMOS3D replication (L332) failed, and a third to a half of its z > 1.9 galaxies rotate below their own Newtonian baryons",
+      (not t1["ok"]) and "0.27-0.54" in k1m, k1m[:80])
+check("S5g the tilt table at beta = 0 reproduces the main fit exactly (same galaxies, same slope)",
+      [t for t in tilt if t["beta"] == 0.0][0]["n"] == len(zz) and abs([t for t in tilt if t["beta"] == 0.0][0]["slope"] - slope) < 1e-9, kind="identity")
+check("I5 the inversion recovers injected trends (0, halo law, H(z)) to 0.02 dex per unit z when f_DM obeys the kernel", all(abs(a - b) < 0.02 for a, b, _ in injR),
+      ", ".join(f"{a:+.3f}->{b:+.3f}" for a, b, _ in injR), kind="injection")
 check("S5b the RC100 trend is consistent with constant a0 within 2.5 sigma and more than 3 sigma below the halo-emergent mean slope",
       abs(slope / bs.std()) < 2.5 and (s_halo - slope) / bs.std() > 3.0, f"{slope:+.3f} +/- {bs.std():.3f}")
 check("S5c no decline is claimed: the slope is within 2.5 sigma of zero under every treatment", abs(slope) < 2.5 * bs.std() and abs(sg) < 2.5 * eg and abs(sy) < 2.5 * ey)
@@ -430,5 +535,9 @@ check("S5d AGAINST INTEREST: the 3.9 sigma does not survive every control -- the
 # ----------------------------------------------------------------------------------------------------------------
 json.dump(OUT, open(os.path.join(HERE, "paper_numbers.json"), "w"), indent=1, default=float)
 P(""); P(f"RESULT: {NCHK[0]} checks, {len(FAILS)} FAIL" + (f" -> {FAILS}" if FAILS else ""))
+for k_ in ("identity", "model", "data", "injection"):
+    P(f"   {len(KINDS.get(k_, [])):2d} {k_:9s} -- {KIND_TEXT[k_]}")
+OUT["check_kinds"] = {k_: len(v) for k_, v in KINDS.items()}
+json.dump(OUT, open(os.path.join(HERE, "paper_numbers.json"), "w"), indent=1, default=float)
 if __name__ == "__main__":
     sys.exit(1 if FAILS else 0)

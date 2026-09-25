@@ -1,7 +1,7 @@
 # MNRAS submission package, version 2 (prepared 2026-09-21)
 
 Manuscript: *The galactic acceleration scale and the cosmological constant: the coefficient measured, its degeneracy
-with H0, and a redshift test.* 10 pages in `mnras.cls`, 5 figures, 8 tables, 39 references, 2 appendices.
+with H0, and a redshift test.* 11 pages in `mnras.cls`, 5 figures, 8 tables, 43 references, 2 appendices (revised 2026-09-25, section 7b).
 This package supersedes `../mnras_submission_2026/` (2026-09-06); section 7 lists what changed and why.
 Journal rules below were checked against the MNRAS Instructions to Authors, the MNRAS open-access and author-charges
 pages and the RAS Editorial Code of Practice on 2026-09-21. Items marked **[author]** need the author.
@@ -13,9 +13,9 @@ pages and the RAS Editorial Code of Practice on 2026-09-21. Items marked **[auth
 | `mnras_a0_lambda_v2.tex`, `references.bib`, `mnras_a0_lambda_v2.bbl` | manuscript source (class `mnras`, options `fleqn,usenatbib`; style `mnras.bst`) |
 | `mnras_a0_lambda_v2.pdf` | compiled manuscript with a placeholder in place of the e-mail address |
 | `fig1_rar.pdf` … `fig5_rc100.pdf` | figures, vector PDF, one per file |
-| `paper_numbers.py` → `paper_numbers.out`, `paper_numbers.json` | every number in the text that is not from the three repository estimators; 29 checks that can fail |
+| `paper_numbers.py` → `paper_numbers.out`, `paper_numbers.json` | every number in the text that is not from the repository estimators; 40 checks, each labelled by kind: 14 identity (arithmetic, no evidence), 6 model, 15 data, 5 injection |
 | `make_figures.py` | builds the figures from the same functions (5 checks) |
-| `reproduce_all.sh` | re-runs the three repository estimators, the two scripts above and the LaTeX build; stops on any failure |
+| `reproduce_all.sh` | re-runs the three repository estimators, the KMOS3D replication lane (L332), the two scripts above and the LaTeX build; stops on any failure |
 | `make_upload_bundle.py` | writes the git-ignored `upload_bundle/` (section 4); the build is gated on the checks |
 | `COVER_LETTER.md` | cover-letter text |
 | `.gitignore` | keeps `author_private.tex`, `upload_bundle/` and build intermediates out of the repository |
@@ -96,8 +96,14 @@ and update the Zenodo records with the journal DOI.
   and from the ΛCDM-emergent rise, not the Λ anchor from a bare constant.
 - *"The ΛCDM prediction is not one number."* Section 5.1(c) and Table 6 give the range (+0.23 to +0.46, and +0.56 for
   a second scaling); the smallest plausible rise is used as the decision value, and halo-to-halo scatter is in the odds.
-- *"The RC100 inversion is circular."* Section 5.3 calls it a consistency check, names the three reasons, and quotes
-  the weakest significance (2.6σ) rather than the strongest (4.3σ).
+- *"The RC100 inversion is circular / your estimators just return the a0 you put in."* Section 3.6 and Appendix B: every
+  estimator is fed synthetic data with a KNOWN a0 (0.7, 1.0, 1.3 × the κ = ½ value) built on the real baryons and returns it
+  (standard fit < 1%, deep band < 2.1%, shape-only < 2.3% through a 20% distance error); the RC100 inversion returns injected
+  trends to 0.01 dex/z; estimator A moves 0.6% when its correction is iterated to its own output. Of the 40 checks, the 14
+  identities are labelled as carrying no evidence.
+- *"RC100 shows a0 is flat."* The paper says it does not: Section 5.3 shows the verdict is erased by a 0.05 dex/z drift in the
+  baryonic-mass calibration, one edge galaxy moves it 0.4σ, and an independent KMOS3D sample does not reproduce the pattern
+  (27–54% of its z > 1.9 galaxies rotate below their own Newtonian baryons). Existing data decide nothing.
 - *"MUSE-DARK III finds a0 rising."* Cited and discussed in Section 5.3 together with the flat Tully–Fisher zero point
   from the same survey (MUSE-DARK II); the conclusion drawn is that z ≈ 1 is undecided.
 - *"Are there any targets?"* Section 5.4 says no published object passes every gate, and gives the mass–radius condition.
@@ -124,6 +130,30 @@ and update the Zenodo records with the journal DOI.
    this paper defines Δ = log10[a0(z)/a0(0)] throughout, so a rise is positive.
 9. **Bibliography.** 28 entries re-verified against arXiv and Crossref; `Singh2026` dropped (a conference sketch, not a
    derivation); MUSE-DARK II and III, Limbach et al., Mayer et al. and Keller & Wadsley added with what each reports.
+
+## 7b. Revision of 2026-09-25 (after checking every repository commit since the first package)
+
+1. **RC100 downgraded to "decides nothing"** (repository lanes L331, L332, reproduced in `paper_numbers.py` S5e–S5g): the
+   inversion's slope moves from −0.11 to +0.02 under a −0.05 dex/z baryonic-mass drift (halo law then within 2σ) and to
+   +0.16 ± 0.07 under −0.10 (constancy 2.3σ off); the one galaxy at the f_DM = 0.02 edge moves it 0.4σ; the KMOS3D
+   replication failed on a common-mode input problem. The abstract, Section 5.3, Fig. 5 caption and Conclusion (vi) say so.
+2. **Injection tests added** (Section 3.6; checks I1–I5) and **every check labelled by kind**, so no identity is presented as
+   evidence (Appendix B).
+3. **Deep band reported** (Section 3.2): κ = 0.56 / 0.49 / 0.44 at Υ_disc = 0.5 / 0.6 / 0.7 for g_bar < 0.1 a0 with the quality
+   cut; equal weight on points with > 10% velocity errors lowers each by ~0.1 (stated).
+4. **MUSE-DARK III stated at face value** as the strongest existing evidence against constancy (+0.3 dex at z ≈ 1), next to
+   the flat Tully–Fisher zero point of MUSE-DARK II from the same survey.
+5. **Prior art added:** Oppenheim & Russo (2024, arXiv:2402.19459) and the reply of Hertzberg & Loeb (2024, JCAP 09, 046).
+6. **The one plausible target named:** OLAS M0717-02064 (Hirtenstein et al. 2019, ApJ 880, 54), from the verified ledger
+   `prep_2026/a0z_crossscale/highz_target_ledger_verified_2026.py`; the old candidate list is superseded.
+7. **H0 wording:** only the product κH0 is structural; the match of 0.461 and ½ to the SH0ES and Planck H0 is called a
+   numerical coincidence.
+8. **Not in the paper, but checked because it would contradict it:** the repository's "joint deep a0_eff = 0.717 ± 0.059,
+   4.77σ below canonical" (deepseek O04b) rests on a SPARC channel whose deficit is carried by a third-party corpus's
+   per-galaxy mass-to-light ratios (median 1.17, up to 15, applied to bulges); with 3.6 µm population values the same
+   statistic is 1.4–1.9. Audit: `real_research/reviews/deep_a0eff_audit_2026_09_25/D01_deep_a0eff_ml_audit.py`.
+9. The κ = ½ derivation claims of 2026-09-21/22 (PD22, I14) were closed by the repository's own audit
+   (`opus_48_extended_research/kappa_audit_2026/CAPSTONE_kappa_nogo.md`); the paper's "κ is not derived" stands.
 
 ## 8. Not verified
 
