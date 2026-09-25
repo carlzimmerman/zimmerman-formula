@@ -128,3 +128,43 @@ D-YM2 remains world-open. The unlock is unchanged: a new analytic idea
 that controls m(β)/(a(β)Λ) across the weak→strong crossover. This session
 did not find one, and nothing in the repository or the framework supplies
 one. Nothing here is a claim toward the Clay prize.
+
+---
+
+## 7. Swing 2 (2026-09-25): the three routes §5 did not test
+
+Script: `swing2_routes.py`. Output: `swing2_stdout.txt` and `swing2_results.json`. It runs four
+computed checks, all of which pass; the lines marked `[RECORD]` are sourced statements, not checks. The door
+stays shut.
+
+- **R1: stochastic quantisation** (regularity structures, paracontrolled calculus). The stochastic
+  Yang–Mills heat flow is subcritical in d = 2 and d = 3. Those are the dimensions of the
+  Chandra–Chevyrev–Hairer–Shen constructions. In d = 4 it is **exactly critical**: both the A∂A and the
+  A³ terms have margin 0 against the noise. Hairer's theory needs subcriticality, and no theory of
+  critical singular SPDEs exists. In the critical scalar analogue, φ⁴₄ is trivial (Aizenman &
+  Duminil-Copin 2021). This route is closed by a gap in the field, not a gap in this repository.
+- **R2: analytic continuation of the strong-coupling series.** Drouffe & Zuber (1983, Phys. Rep. 102, 1,
+  §3.4.3) place the roughening point at t_R = 0.40 ± 0.01 in d = 4, independent of the group. For
+  SU(3) it falls at β = 5.8–5.9, inside the scaling window, which starts at β = 5.7. So surface
+  observables such as Wilson loops and the string tension cannot be continued into the window; the
+  authors themselves call roughening the stumbling block of strong-coupling methods. Bulk observables,
+  such as the glueball mass, escape roughening. But continuing them needs two things:
+  (i) analyticity on the whole real β-axis, which is not proved;
+  (ii) the β → ∞ asymptotics m(β) ~ C·a(β)·Λ, which *is* the continuum problem.
+- **R3: a renormalisation-group bridge.** Start at β = 6.0, where m_G·a = 0.78. Two block-spin steps
+  (a factor of 4) bring the correlation length to 0.32 block spacings, which is strong-coupling-like.
+  The missing control therefore spans only O(1) blocking steps in scale. What is missing is a *class*
+  of estimate. The blocked measure is not a Wilson action, and no theorem places it inside any
+  convergent-expansion or Dobrushin–Shlosman regime. Balaban's multiscale analysis controls blocked
+  actions only while the effective coupling is small. A computer-assisted finite-box criterion is the
+  one concrete attack. It would need rigorous integration over ~10⁴ SU(3) link variables, far beyond
+  interval arithmetic today.
+- **Literature, 2025–26.** One claimed complete proof exists: arXiv:2506.00284, a constructive proof of
+  SU(3) existence and mass gap. arXiv's administrators **withdrew** it as below research-content
+  standards. arXiv:2603.15770 (Douglas et al., 2026) formalises in Lean the free 4D field satisfying the
+  Glimm–Jaffe axioms. That is useful infrastructure, not Yang–Mills.
+
+**Verdict.** D-YM2 remains world-open. The sharpest statement this repository can make is that the
+missing idea sits in O(1) block-spin steps between g² ≈ 1 and a strong-coupling-like correlation
+length, and that it must be a non-perturbative estimate for a non-Wilson blocked measure. Nothing
+here is progress toward the Clay prize.

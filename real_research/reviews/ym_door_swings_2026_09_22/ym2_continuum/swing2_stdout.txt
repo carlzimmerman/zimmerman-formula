@@ -1,0 +1,53 @@
+====================================================================================================
+R1  stochastic quantisation: parabolic power counting of  d_t A = Delta A + A dA + A^3 + xi  in d space dimensions
+====================================================================================================
+  d=2: |xi| =    -2  |A| =     0  |A dA| - |xi| =    1   |A^3| - |xi| =    2   -> subcritical
+  d=3: |xi| =  -5/2  |A| =  -1/2  |A dA| - |xi| =  1/2   |A^3| - |xi| =    1   -> subcritical
+  d=4: |xi| =    -3  |A| =    -1  |A dA| - |xi| =    0   |A^3| - |xi| =    0   -> CRITICAL
+  d=5: |xi| =  -7/2  |A| =  -3/2  |A dA| - |xi| = -1/2   |A^3| - |xi| =   -1   -> supercritical
+  [PASS] R1a d = 2 and d = 3 are subcritical (where the 2D/3D stochastic Yang-Mills constructions of Chandra-Chevyrev-Hairer-Shen live)
+  [PASS] R1b d = 4 is EXACTLY critical (margin 0 for both nonlinearities): regularity structures and paracontrolled calculus do not apply
+  => route R1 needs a theory of CRITICAL singular SPDEs. None exists; in the critical scalar analogue, phi^4_4 is trivial
+     (Aizenman & Duminil-Copin 2021). Yang-Mills differs by asymptotic freedom, which is exactly what a critical theory would
+     have to capture. Door R1: CLOSED with current mathematics (not a gap in this repo, a gap in the field).
+====================================================================================================
+R2  analytic continuation of the strong-coupling series into the scaling window
+====================================================================================================
+  SU(3) Wilson roughening beta_R = 5.8-5.9 (t_R = 0.4 +/- 0.01 in d = 4)
+  scaling window (09-22 table) starts at beta = 5.7; m_G a there = 1.43
+  [PASS] R2a the SU(3) roughening point lies INSIDE the scaling window: surface observables (Wilson loops, string tension) cannot be continued from strong coupling into it  (window from 5.7, roughening 5.8-5.9)
+  Roughening is a SURFACE singularity: it does not obstruct bulk quantities such as the glueball mass m(beta).
+  For m(beta) the continuation route needs two statements, and both are open:
+   (i)  analyticity of the SU(3) Wilson theory on the whole real axis 0 < beta < inf (no bulk transition) -- not proved;
+   (ii) the beta -> inf asymptotics m(beta) ~ C a(beta) Lambda with C > 0 -- this IS the continuum problem.
+  [RECORD, not a check] R2b the bulk route does not bypass the problem: its requirement (ii) is the continuum statement itself
+====================================================================================================
+R3  an RG bridge: block-spin steps from the scaling window to a strong-coupling-like correlation length
+====================================================================================================
+  beta = 5.7: m a' after 2^k blocking, k = 0..3: 1.43, 2.87, 5.73, 11.46
+  beta = 6.0: m a' after 2^k blocking, k = 0..3: 0.78, 1.57, 3.14, 6.27
+  beta = 6.2: m a' after 2^k blocking, k = 0..3: 0.57, 1.14, 2.28, 4.56
+  [PASS] R3a from beta = 6.0 two block-spin steps (factor 4) already bring the correlation length below half a block spacing  (k = 2, xi/a' = [1.27, 0.64, 0.32, 0.16])
+  So the missing control spans only O(1) blocking steps in SCALE. What is missing is not distance but a CLASS of estimate:
+  the blocked measure is not a Wilson action (multi-plaquette, non-local couplings, large-field regions), and no theorem puts
+  it inside ANY convergent expansion or Dobrushin/Dobrushin-Shlosman regime. Balaban's multiscale analysis controls blocked
+  actions only while the effective coupling is small (small-field, perturbative remainder).
+  Computer-assisted Dobrushin-Shlosman checks on a finite box are the one concrete way to attack this, but they need rigorous
+  integration over ~10^4 SU(3) link variables with boundary conditions. That is far beyond interval arithmetic today.
+  [RECORD, not a check] R3b the bridge is short in scale, but no rigorous estimate of the needed class exists (open problem)
+====================================================================================================
+LIT  2025-26 literature check (2026-09-25)
+====================================================================================================
+  - arXiv:2506.00284 (May 2025), claimed constructive proof of SU(3) existence + mass gap
+      -> WITHDRAWN by arXiv admin: 'does not meet arXiv's research content quality standards'. Not a proof.
+  - arXiv:2603.15770 (Douglas, Hoback, Mei, Nissim, Mar 2026), Lean 4 formalisation of the free 4D Euclidean field satisfying the Glimm-Jaffe axioms
+      -> Real and relevant as INFRASTRUCTURE (the axioms a Yang-Mills construction must meet are now machine-checkable for the free field). Not Yang-Mills.
+  - Chandra-Chevyrev-Hairer-Shen: 2D (Publ. IHES 2022) and 3D Yang-Mills-Higgs (Invent. Math. 2024) stochastic quantisation
+      -> Subcritical dimensions only; d = 4 is critical (R1).
+  [RECORD, not a check] LIT1 no 2025-26 result found unlocks the 4D continuum with a gap (the one claimed proof is withdrawn)
+====================================================================================================
+VERDICT (swing 2): D-YM2 stays shut. R1 is closed by criticality, R2 by roughening (surface) and by reducing to the
+problem itself (bulk), and R3 localises the missing idea to O(1) blocking steps without supplying it. Nothing here is progress
+toward the Clay prize, and the framework contributes nothing (09-22 REPORT, Sec. 4).
+
+4/4 checks passed
