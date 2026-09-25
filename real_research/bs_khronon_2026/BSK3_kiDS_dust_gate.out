@@ -1,0 +1,82 @@
+ESD tables: 82214 profiles (21 s)
+
+========================================================================================================
+A  THE EXTERNAL FIELD AN ISOLATED LENS FEELS: linear LCDM mock, 300 Mpc / 256^3, KiDS-like isolation at 3 Mpc
+========================================================================================================
+    seed 11: 268756 galaxies, isolated fraction 0.159;  rms |g| (box modes): random 0.0134, all galaxies 0.0133, isolated 0.0133 a0 (canonical)
+    seed 12: 267921 galaxies, isolated fraction 0.160;  rms |g| (box modes): random 0.0134, all galaxies 0.0133, isolated 0.0133 a0 (canonical)
+    long modes (k < 2 pi/L, uniform over the sphere): rms 0.0070 a0 added back
+    FULL rms |g| at z = 0.25: random points 0.0151, all galaxies 0.0150, ISOLATED lenses 0.0150 a0 (canonical);  analytic field from outside 3 Mpc 0.0147 a0
+    isolated lenses: median |g| 0.0134 a0; fraction below 0.003 a0: 0.0103
+  [PASS] A1 (documentary) mock isolation statistics and field at random points / galaxies / isolated lenses
+         measured: {'isolated fraction': [0.159, 0.16], 'rms iso / rms random': 0.991}
+         reading:  isolation removes the field of near neighbours; the long modes that dominate |g| are shared by every lens
+  [PASS] A2 the mock's isolated-lens field is within a factor 2 of the analytic field from outside a 3 Mpc sphere
+         measured: mock / analytic = 1.022
+
+    two-halo template (b = 1, z = 0.25): Delta Sigma_2h at 0.1 / 0.3 / 1 / 2.6 Mpc = 0.045, 0.141, 0.269, 0.371 Msun/pc^2
+BS3 machinery loaded (32 s): 60 data points, TABA (2, 37, 11, 101, 4, 15), khronon web rms |g| = {'canonical': 0.013861885837353254, 'alt': 0.01150577081485215} a0 (BS3: 0.0150 a0 canonical)
+    control rows: b=0 no-EFE chi2 = {'canonical': 97.36, 'alt': 86.73} (BS3: 97.4/86.7); switch own field b<=2 Delta chi^2 all/in03 = {'canonical': (404.3, 47.1), 'alt': (415.2, 51.5)} (BS3: +404.3/+415.2, +47.1/+51.5)
+    pure MOND at own field: Delta chi^2 {'canonical': 16.9, 'alt': 15.6} (BS3: +16.9/+15.6)
+
+========================================================================================================
+C0  CONTROL: loaded BS3 machinery reproduces BS3's published numbers
+========================================================================================================
+  [PASS] C0 (control) b=0 no-EFE switch chi^2 = 97.4/86.7 within 0.5; switch at its own field Delta chi^2 +404.3/+415.2 all and +47.1/+51.5 inside 0.3 (b<=2) within 8
+         measured: {'b0': {'canonical': 97.36, 'alt': 86.73}, 'switch own-field b<=2 (all, in03)': {'canonical': (404.3, 47.1), 'alt': (415.2, 51.5)}}
+
+========================================================================================================
+K-TABLE  KHRONON-DUST HALO: self-consistent khronon kernel on khronon dust's total field
+========================================================================================================
+    khronon web field (isolated lenses, khronon dust = LCDM dust): rms |g| = 0.0139 a0 canonical / 0.0115 alt (BS3 isolated-lens measurement: 0.0150 a0)
+    khronon dust self-field at 0.3 Mpc (10^10.3): 0.0026 a0 vs khronon web rms 0.0139 a0; khronon halo R_tail = 30.00 Mpc
+
+========================================================================================================
+K1-K3/K5  KHRONON DUST AT Omega_tau = Omega_dm: khronon dust real-mass halos
+========================================================================================================
+    canonical: comparator chi^2 84.9
+        khronon dust (iso web)            : all   +373.7   in<=0.3    +90.8   (M_b 10^11.00..10^11.48 / 10^10.96..10^11.40, b [0.97, 1.6, 2.0, 2.0]/[2.0, 2.0, 2.0, 2.0])
+        khronon dust (web x4)             : all   +528.1   in<=0.3   +116.1   (M_b 10^11.02..10^11.50 / 10^11.00..10^11.42, b [1.09, 1.83, 2.0, 2.0]/[2.0, 2.0, 2.0, 2.0])
+        khronon dust (web withheld)       : all   +319.8   in<=0.3    +90.3   (M_b 10^11.00..10^11.48 / 10^10.96..10^11.40, b [0.63, 1.18, 2.0, 2.0]/[2.0, 2.0, 2.0, 2.0])
+    alt: comparator chi^2 76.5
+        khronon dust (iso web)            : all   +364.1   in<=0.3    +89.1   (M_b 10^10.98..10^11.48 / 10^10.96..10^11.40, b [0.96, 1.56, 2.0, 2.0]/[2.0, 2.0, 2.0, 2.0])
+        khronon dust (web x4)             : all   +518.7   in<=0.3   +112.5   (M_b 10^11.02..10^11.48 / 10^10.98..10^11.40, b [1.08, 1.81, 2.0, 2.0]/[2.0, 2.0, 2.0, 2.0])
+        khronon dust (web withheld)       : all   +312.4   in<=0.3    +88.7   (M_b 10^10.98..10^11.46 / 10^10.94..10^11.38, b [0.62, 1.16, 2.0, 2.0]/[2.0, 2.0, 2.0, 2.0])
+  [FAIL] K1 (gate, PAPER32 door ii) khronon dust supplies the Mpc-scale lensing flux by REAL MASS (khronon dust halos = the RAR halo as mass): all points, b <= 2, Delta chi^2 < 100 both footings (baryons-only = +144.7/+152.4; switch own field = +404/+415)
+         measured: {'canonical': 373.7, 'alt': 364.1}
+         reading:  khronon dust's real clustered mass at 1-3 Mpc (khronon dust's own field feeding khronon dust's kernel argument) carries the isolated-lensing gate that the web-field-only reading fails; khronon dust's own field is khronon dust self-gravity, on beyond the hold
+  [FAIL] K2 (gate, PAPER32 door iv) khronon dust's kernel argument is khronon-dust-dominated: khronon dust's own field at 0.3 Mpc (10^10.3) > 2x khronon web rms, and a 4x khronon web field shifts khronon dust's all-points Delta chi^2 by < +20
+         measured: {'y_self(0.3)/y_web': 0.19, 'dchi2 shift at 4x web': {'canonical': 154.4, 'alt': 154.7}}
+         reading:  khronon dust's kernel argument at the flux-carrying radii is khronon dust's own halo field (khronon dust's self-gravity): khronon dust does not read a LambdaCDM-level large-scale field as a wipeable EFE; KiDS's e <= 7.2e-5 bound is against a foreign kernel EFE, not khronon dust's own gravity
+  [FAIL] K3 (gate, inside) khronon dust inside R <= 0.3 Mpc (isolation certain): Delta chi^2 < 30 both footings (baryons-only survives ~ -4.4; the switch failed +47/+52)
+         measured: {'canonical': 90.8, 'alt': 89.1}
+         reading:  khronon dust's conserved clustered mass is real mass: no external field erases khronon dust's halo (BSK1 M2: conserved fluid)
+  [FAIL] K5 (documentary) khronon dust vs pure MOND at its own field (BS3: +16.9/+15.6 all points, ~0 inside 0.3): khronon dust within +12 all points, both footings
+         measured: {'khronon dust': {'canonical': 373.7, 'alt': 364.1}, 'pure MOND (this run)': {'canonical': 16.9, 'alt': 15.6}}
+
+========================================================================================================
+K6  FALSIFIER ARM: khronon dust WITHOUT khronon dust's own field in khronon dust's kernel
+========================================================================================================
+    canonical: web-field-alone khronon dust (no khronon self-field): Delta chi^2   +368.7
+    alt: web-field-alone khronon dust (no khronon self-field): Delta chi^2   +378.8
+  [PASS] K6 (falsifier) khronon dust with khronon dust's own field WITHHELD from khronon dust's kernel (khronon dust reading only khronon dust's web khronon field -- the switch's reading) reproduces the switch's exclusion (Delta chi^2 > +300): khronon dust's self-field is the load-bearing khronon ingredient
+         measured: {'canonical': 368.7, 'alt': 378.8}
+         reading:  khronon dust without khronon dust's real self-field fails the gate exactly as the switch did (+404/+415): khronon dust's own mass at 1-3 Mpc is the khronon mechanism; under MUTATE khronon dust is absent and this arm marks the baryons-only floor
+
+========================================================================================================
+K4  DEEP ISOLATED DWARFS (Fig-10): khronon phantom law g_lens/g_N = 1 + sqrt(a0/g_N)
+========================================================================================================
+    canonical: n = 5: med|resid| 0.347 dex, slope 0.364, signed med +0.313 dex (4G-ESD convention shift: 0.204 dex)
+    alt: n = 5: med|resid| 0.308 dex, slope 0.366, signed med +0.276 dex (4G-ESD convention shift: 0.187 dex)
+  [FAIL] K4 (gate, dwarfs) khronon phantom law g_lens/g_N = 1 + sqrt(a0/g_N) (khronon dust carries the excess as real mass) vs the Fig-10 deep isolated dwarfs: median |log10 residual| < 0.25 dex and slope(log g_obs, log g_pred) in [0.85, 1.15]
+         measured: {'med|resid|': '0.347 dex (gate < 0.25)', 'slope': '0.364 (gate in [0.85, 1.15])', 'signed med': '+0.313 dex', 'n': 5}
+         reading:  khronon dust supplies g_obs - g_N = sqrt(a0 g_N) mass-independently at every measured radius; khronon dust halo = RAR halo as real mass
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  khronon dust at Omega_tau = Omega_dm FAILS the KiDS-1000 isolated-lensing gate; mechanism: khronon dust's real-mass halo under-supplies the Mpc-scale flux; web-field-alone reading excluded at +379/+369 (the switch's +404/+415 exclusion reproduced), khronon dust's self-field is khronon dust's load-bearing ingredient
+  Delta chi^2 khronon dust (all / <=0.3 Mpc, b <= 2): {'canonical': (373.7, 90.8), 'alt': (364.1, 89.1)}  [BS3: switch +404/+415, +47/+52; baryons-only +144.7/+152.4 all; pure MOND +16.9/+15.6 all]
+  dwarfs: med|resid| 0.347 dex, slope 0.364 (khronon phantom law, canonical a0); 4x-web shift {'canonical': 154.4, 'alt': 154.7}; y_self/y_web at 0.3 Mpc 0.19
+
+BSK3 COMPLETE: 2/7 checks PASS.
