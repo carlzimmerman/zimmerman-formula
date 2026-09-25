@@ -168,3 +168,58 @@ stays shut.
 missing idea sits in O(1) block-spin steps between g² ≈ 1 and a strong-coupling-like correlation
 length, and that it must be a non-perturbative estimate for a non-Wilson blocked measure. Nothing
 here is progress toward the Clay prize.
+
+---
+
+## 8. Swing 3 (2026-09-25): the RG-bridge door, via Tomboulis's decimation route
+
+Script: `swing3_rg_bridge.py`. Output: `swing3_stdout.txt` and `swing3_results.json`. It runs seven checks,
+all of which pass; one is marked post hoc. The door stays shut.
+
+**The prior attempt.** Tomboulis (arXiv:0707.2179) tried exactly this bridge for 4D SU(2). He compared the
+lattice theory with a Migdal–Kadanoff-type ("MKT") decimation. At each step the plaquette weight is raised
+to the power 4, and each character coefficient to the power 4r, with r = 1 − ε. The comparison was meant to
+carry the decimation's flow to strong coupling back to the real theory, giving 't Hooft confinement at
+every coupling. Ito & Seiler (arXiv:0711.4930, 0803.3019, 0901.4246) showed three gaps:
+
+- (a) with r < 1 the flow goes to the weak-coupling fixed point above a critical coupling;
+- (b) the interpolation parameter α* is only shown to exist locally (a counterexample exists);
+- (c) the fundamental one: at r = 1 the 4D decimation drives U(1) to strong coupling as well (Ito 1985).
+  But the 4D U(1) theory deconfines at weak coupling (Guth 1980; Fröhlich–Spencer 1982). So any
+  comparison that ignores the nonabelian structure must fail.
+
+**Reproduced here.** The decimation is computed exactly in character space; it is exact on the
+corresponding hierarchical lattice. The quadrature matches the Wilson coefficients to 3e-16.
+
+- At r = 0.9, SU(2) has a critical coupling at β = 2.399 in the convention f = exp(β cos θ). That is
+  exactly half of Ito–Seiler's 4.795, consistent with a factor-2 difference in coupling normalisation.
+  This comparison is post hoc. Their text also states the flow directions the other way round; this
+  is recorded, not fitted.
+- At r = 1, SU(2) drifts toward strong coupling at −0.26 to −0.29 per step, the decimation's shadow of
+  asymptotic freedom. U(1)'s drift is 10⁻¹¹ to 10⁻¹⁵, too small to resolve numerically. That is Ito's
+  flow, with a sign that only his theorem fixes.
+
+**Tested here: a vanishing margin.** Ito–Seiler report that Tomboulis hinted orally at an n-dependent r,
+without saying how. The concrete schedule r_n = 1 − a/(n + n₀) was tested.
+
+- **Scalar model.** Take β_{n+1} = β_n/r_n − c. For 0 < a ≤ 1, Σ_n Π_k r_k diverges, so any drift c > 0
+  eventually wins. For a > 1 the sum converges.
+- **SU(2).** With a = 0.5 and a = 0.75, SU(2) reaches strong coupling from every tested β (4, 16 and 64),
+  within 15–27% of the scalar model's step count.
+- **U(1).** With a = 0.5, U(1) from β ≥ 8 follows the drift-free growth to within 1% over 2,500 steps,
+  with no turnaround.
+- **Finding.** In the hierarchical model, a margin that shrinks like a/n separates SU(2) from U(1). SU(2)
+  confines at every tested coupling while U(1) keeps growing at weak coupling. Ito–Seiler showed that
+  fixed-r decimations cannot do this.
+
+**Why the door stays shut.**
+
+1. Tomboulis's comparison inequality needs r bounded away from 1. A margin ε_n = a/n violates that, and
+   no one has shown that such an inequality survives a vanishing margin.
+2. Gap (b), the interpolation parameter, is still unproved.
+3. Even if both were closed, the result would be confinement in the lattice sense ('t Hooft string
+   tension) at every bare coupling for SU(2). That is a major lattice theorem, but it is not the
+   continuum mass gap the Clay problem asks for.
+
+The sharpest open question this repository can pose on the bridge is: *does a Tomboulis-type comparison
+inequality hold with margin ε_n = a/n, 0 < a ≤ 1?* Nothing here is progress toward the Clay prize.

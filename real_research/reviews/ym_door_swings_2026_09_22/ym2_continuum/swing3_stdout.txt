@@ -1,0 +1,64 @@
+====================================================================================================
+0. sanity: the coefficient machinery reproduces the Wilson action's Bessel-function coefficients
+====================================================================================================
+  SU(2) beta=2.3: c_1 numeric 0.4792790783  exact 0.4792790783
+  SU(2) beta=10.0: c_1 numeric 0.8541853083  exact 0.8541853083
+  U(1) beta=1.0: c_1 numeric 0.4463899659  exact 0.4463899659
+  U(1) beta=10.0: c_1 numeric 0.9485998260  exact 0.9485998260
+  [PASS] S0 quadrature reproduces the exact fundamental coefficients to 1e-8  (max err 3.3e-16)
+====================================================================================================
+A. Ito-Seiler (a): MKT with r = 0.9 has a bifurcation in beta (SU(2))
+====================================================================================================
+  separatrix at beta_std = 4/g^2 = 2.3988   (= 1.1994 in beta = 2/g^2)
+  Ito-Seiler report the split between beta = 4.79 and 4.80 (their normalisation stated as beta = 2/g^2)
+  [PASS] A1 a separatrix exists at r = 0.9 (flow to the WEAK fixed point above it): Ito-Seiler's point (a) reproduced qualitatively  (beta_std* = 2.399)
+  published midpoint 4.795 / this separatrix = 1.9989
+  RECORD: the location agrees with Ito-Seiler up to an exact factor 2, consistent with a factor-2 difference in how the
+  coupling is normalised (their talk states beta = 2/g^2 but not the action's normalisation). Their text also has the
+  flow directions the other way round (4.79 -> weak, 4.80 -> strong); here larger beta goes to the weak fixed point, as
+  their own Gaussian argument requires. Unresolved, recorded, not fitted.
+  [PASS] A2 (POST HOC, formulated after seeing 2.399) the separatrix equals the published 4.79-4.80 up to a factor 2.00 +/- 0.01 (normalisation)  (ratio 1.9989)
+====================================================================================================
+B. Ito-Seiler (c): r = 1, SU(2) versus U(1)
+====================================================================================================
+  SU(2)  beta0 =   4.0: mean d beta_eff/step after transients = -0.29198   (strong within 16 steps)
+  SU(2)  beta0 =   8.0: mean d beta_eff/step after transients = -0.29064   (strong within 31 steps)
+  SU(2)  beta0 =  16.0: mean d beta_eff/step after transients = -0.26687   (strong within 63 steps)
+  SU(2)  beta0 =  32.0: mean d beta_eff/step after transients = -0.25775   (strong within 127 steps)
+  U(1)   beta0 =   2.0: mean d beta_eff/step after transients = -0.00000   (undecided within 410 steps)
+  U(1)   beta0 =   4.0: mean d beta_eff/step after transients = +0.00000   (undecided within 410 steps)
+  U(1)   beta0 =   8.0: mean d beta_eff/step after transients = +0.00000   (undecided within 410 steps)
+  U(1)   beta0 =  16.0: mean d beta_eff/step after transients = +0.00000   (undecided within 410 steps)
+  [PASS] B1 SU(2) at r = 1: an O(1) drift toward strong coupling at every tested beta (the decimation's shadow of asymptotic freedom)  (-0.292, -0.291, -0.267, -0.258)
+  [PASS] B2 U(1) at r = 1: the drift is at least 100x smaller than SU(2)'s for beta0 >= 4 (near-marginal: for the Villain form it is exponentially small)  (-2.92e-11, +9.86e-16, +1.21e-15, +2.14e-15)
+  [RECORD] its SIGN is below numerical resolution here; Ito (1985) proves the r = 1 flow still reaches strong coupling.
+  That is the published obstruction: at r = 1 the decimation confines U(1), which the real 4D U(1) theory does not.
+====================================================================================================
+D. the one new idea tested: a vanishing-margin schedule r_n = 1 - a/(n + n0), 0 < a < 1
+====================================================================================================
+  Scalar model: beta_{n+1} = beta_n/r_n - c. With u_n = beta_n * prod_k r_k, u_{n+1} = u_n - c prod_k r_k, and for a < 1
+  sum_n prod_k r_k diverges: ANY drift c > 0 wins eventually. SU(2) (c = O(1)) must turn around from every beta0;
+  U(1) (c exponentially small at weak coupling) must follow the drift-free growth beta0 / prod_k r_k.
+  SU(2) a = 0.50 beta0 =   4.0: strong    after    22 steps (scalar model with c = 0.277: 19); peak beta_eff 5
+  SU(2) a = 0.50 beta0 =  16.0: strong    after   174 steps (scalar model with c = 0.277: 148); peak beta_eff 24
+  SU(2) a = 0.50 beta0 =  64.0: strong    after  2026 steps (scalar model with c = 0.277: 1680); peak beta_eff 255
+  SU(2) a = 0.75 beta0 =   4.0: strong    after    29 steps (scalar model with c = 0.277: 25); peak beta_eff 5
+  SU(2) a = 0.75 beta0 =  16.0: strong    after   515 steps (scalar model with c = 0.277: 404); peak beta_eff 56
+  U(1)  a = 0.50 beta0 =   2.0: after 2500 steps beta_eff = 31.7 vs drift-free 32.9 (ratio 0.9633); undecided
+  U(1)  a = 0.50 beta0 =   8.0: after 2500 steps beta_eff = 130.6 vs drift-free 131.7 (ratio 0.9913); undecided
+  U(1)  a = 0.50 beta0 =  32.0: after 2500 steps beta_eff = 525.8 vs drift-free 527.0 (ratio 0.9979); undecided
+  [PASS] D1 SU(2): every tested flow reaches strong coupling, within a factor 2 of the scalar-model step count  (22/19, 174/148, 2026/1680, 29/25, 515/404)
+  [PASS] D2 U(1): from beta0 >= 8 the flow tracks the drift-free growth to within 1% and does not turn around within 2500 steps (the scalar model says it never does)  (0.9633, 0.9913, 0.9979)
+  => in the hierarchical model a vanishing margin r_n = 1 - a/n (0 < a < 1) separates SU(2) (confines from every tested
+     coupling) from U(1) (keeps growing at weak coupling), the separation Ito-Seiler showed fixed-r decimations lack.
+     (For a > 1, sum_n prod_k r_k converges and SU(2) escapes at large beta too: the window is 0 < a <= 1.)
+  [RECORD] It does NOT repair the rigorous bridge: Tomboulis's comparison inequality needs r bounded away from 1, and the
+     interpolation parameter alpha* (Ito-Seiler (b)) is still unproved. The sharpened open question: does a Tomboulis-type
+     inequality survive a margin eps_n = a/n? Even a yes gives confinement ('t Hooft string tension) at every lattice
+     coupling for SU(2), which is NOT the continuum mass gap the Clay problem asks for.
+====================================================================================================
+READING. Parts A-B reproduce the published obstruction; part D finds that a vanishing margin separates the groups in the
+hierarchical model. No rigorous bridge follows (see the RECORD lines). D-YM2 stays shut.
+
+7/7 checks passed
+exit=0
