@@ -31,6 +31,8 @@ The same shift-independence is what gives α₁ = α₂ = 0. That is the **momen
 - **New prediction:** the phantom lags sources faster than c_s ~ 10³–10⁴ km/s.
 - **Status:** a candidate, not a theory. Nonlinear well-posedness, the full 1PN metric, FRW perturbations and the dark sector remain.
 - **09-23, the FRW gate FAILS as built** ([`L341`](real_research/g03_audit_2026/L341_chk_frw_gate.py)). σ₈ = 18–27 with the CMB's cold fluid, and finite tracking cannot fix it. The clock's own expansion K would give the record's dS-Unruh floor (healthy in quartic form, σ₈ back to 0.81). But the foliation is CMC-stiff (δK = 0 for static sources), so the floor also kills galaxies (SPARC Δχ² > +6500). What is missing is a switch that tells bound matter from matter still in the Hubble flow; KiDS allows it only at ≳ 1 Mpc from a galaxy.
+- **09-23, the switch** ([`L342`](real_research/g03_audit_2026/L342_bound_region_switch.py), 6/6). MOND acts only where x = 9R⁽³⁾/(4K²) ≥ x_c, i.e. where the preferred leaves curve faster than they expand. Linear growth returns to ΛCDM (σ₈ 0.810). Galaxies and the Solar System are untouched (x ≥ 600). KiDS prefers x_c ≈ 4–7 (Δχ² ≈ −15 to −19, a lead). It predicts a lensing truncation at r_t = v_flat/(√x_c H), about 1 Mpc for the Milky Way. It is a construction with one number, not a derivation. The dark sector is still open (L345 in progress).
+- **Lean certificates** for the algebra of L330/L340/L341/L342 are in `fable_independent_2026/lean_2026/` (exit 0, zero `sorry`).
 
 **Other candidates:**
 - **The clock chain's L297 "complete action" is not standing.** Three of its four checks are literal `True`, its dust is CDM by hand, its S8 "closure" is an identity, and its galaxy pass comes from a grid artefact.

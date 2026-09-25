@@ -1,0 +1,83 @@
+L342 -- THE BOUND-REGION SWITCH: MOND acts where the preferred leaves curve faster than they expand.  One geometric
+scalar of C-H/K's own foliation repairs its FRW failure (L341), leaves galaxies, the Solar System and wide binaries
+untouched, and IMPROVES the KiDS-1000 lensing fit.
+
+THE SWITCH.  L341 showed C-H/K needs a variable that knows whether matter has decoupled from the Hubble flow, and
+that its foliation is CMC-stiff (K = 3H everywhere, delta K = 0 for static sources).  The stiffness is what makes
+the following work: the ratio of the leaves' intrinsic curvature to their extrinsic curvature squared,
+        x = 9 R3 / (4 K^2),
+is built from the clock alone.  On the flat FRW background R3 = 0, so x = 0 (MOND off in the early universe); at
+linear order the Hamiltonian constraint gives x = (3/2) Omega_m(z) delta (off in the linear web); in a static bound
+system R3 = 16 pi G rho_dyn/c^2 with rho_dyn the phantom-inclusive density and K = 3H, so x = 4 pi G rho_dyn/H^2
+(>> 1 in galaxies).  C-H/K's MOND term 2 alpha^2 q(...) is multiplied by f(x): f = 0 for x < x_c, f = 1 for x > x_c.
+
+  *** MUTATE=1: no switch (x_c = 0); B2 must FAIL ***
+
+========================================================================================================
+B1  THE SWITCH VARIABLE x = 9 R3/(4 K^2): FRW, linear, static (symbolic)
+========================================================================================================
+    flat FRW background: R3 = 0 -> x = 0;  Friedmann (Hamiltonian constraint): Eq(9*H**2/c**2, 24*pi*G*rho_bar/c**2)
+    linear, delta K = 0 (L341 F5): x = 4*pi*G*delta*rho_bar/H**2 = 3*Omega_m*delta/2
+    static weak field (R3 = 16 pi G rho_dyn / c^2, K = 3H/c): x = 4*pi*G*rho_dyn/H**2
+  [PASS] B1 x = 0 on the FRW background, x = (3/2) Omega_m delta at linear order, x = 4 pi G rho_dyn / H^2 in a static system
+         measured: linear 3*Omega_m*delta/2; static 4*pi*G*rho_dyn/H**2
+
+========================================================================================================
+B2  LINEAR COSMOLOGY WITH THE SWITCH (L341's growth machinery, the CMB's cold fluid present)
+========================================================================================================
+    canonical rms    : sigma_8 with the switch (x_c = 0.0) = 23.3205;  without (L341) = 23.32
+    canonical permode: sigma_8 with the switch (x_c = 0.0) = 17.9562;  without (L341) = 17.96
+    alt       rms    : sigma_8 with the switch (x_c = 0.0) = 27.4830;  without (L341) = 27.48
+    alt       permode: sigma_8 with the switch (x_c = 0.0) = 21.0999;  without (L341) = 21.10
+  [FAIL] B2 with the switch linear growth returns to LCDM (sigma_8 within 2% of 0.811, both footings, both field arguments); without it the L341 overshoot (> 10x) is reproduced
+         measured: switched 17.956-27.483; unswitched 18.0-27.5
+         reading:  the per-mode switch here keys on the mode's own linear delta; the rms run keys on the rms delta
+
+========================================================================================================
+B3  GALAXIES, THE SOLAR SYSTEM AND WIDE BINARIES ARE UNTOUCHED (x >> x_c)
+========================================================================================================
+    SPARC outermost points: min x = 596, median 1.46e+04 (x_c = 0.0);  Solar neighbourhood (0.1 Msun/pc^3): x = 1.19e+06
+  [PASS] B3 every SPARC galaxy's outermost measured point, the Solar neighbourhood and hence wide binaries sit at x >= 100 x_c: the switch is saturated (f = 1, f' = 0) wherever the record's galaxy and local gates live
+         measured: SPARC min x = 596; Solar nbhd 1.2e+06
+
+========================================================================================================
+B4  KiDS-1000 (Brouwer+2021 lensing rotation curves) SELECTS THE THRESHOLD
+========================================================================================================
+    canonical: chi^2 no switch 118.0;  Delta chi^2 at x_c = 2/4/5/7/15/30: -3.0, -15.1, -17.5, -10.9, +45.2, +112.2
+    alt      : chi^2 no switch 108.3;  Delta chi^2 at x_c = 2/4/5/7/15/30: -1.0, -15.7, -19.1, -13.7, +40.8, +106.0
+  [PASS] B4 KiDS prefers a switch at x_c ~ 4-7 over no switch (Delta chi^2 < -8, both footings) and excludes x_c >= 15 (> +25)
+         measured: best of 4/7: -15.1 / -15.7; x_c = 15: +45.2 / +40.8
+         reading:  a lead: poor base fit (~118/60), point-mass baryons, no 2-halo or external-field term; a full comparison needs the LCDM NFW + 2-halo model on the same data
+
+========================================================================================================
+B5  HEALTH OF THE SWITCH
+========================================================================================================
+    switching shell (s ~ 0.0001): induced K^2 coefficient ~ 2 alpha^2 q x^2 f''/K^2 = 0.0e+00  vs c_2 = 7.3e-3
+  [PASS] B5 inside bound regions the switch is saturated (L340's block unchanged); in the switching shell the induced K^2 coefficient is orders of magnitude below c_2
+         measured: 0.0e+00 << 7.3e-3
+
+========================================================================================================
+B6  THE PREDICTION: a mass- and redshift-dependent lensing truncation r_t = v_flat / (sqrt(x_c) H(z))
+========================================================================================================
+    M_b = 1e+09 Msun, z = 0.0: v_flat = 59 km/s, r_t = 394 kpc
+    M_b = 1e+09 Msun, z = 2.5: v_flat = 59 km/s, r_t = 105 kpc
+    M_b = 1e+10 Msun, z = 0.0: v_flat = 106 km/s, r_t = 701 kpc
+    M_b = 1e+10 Msun, z = 2.5: v_flat = 106 km/s, r_t = 186 kpc
+    M_b = 6e+10 Msun, z = 0.0: v_flat = 165 km/s, r_t = 1097 kpc
+    M_b = 6e+10 Msun, z = 2.5: v_flat = 165 km/s, r_t = 292 kpc
+    M_b = 3e+11 Msun, z = 0.0: v_flat = 247 km/s, r_t = 1641 kpc
+    M_b = 3e+11 Msun, z = 2.5: v_flat = 247 km/s, r_t = 436 kpc
+  [PASS] B6 (a prediction, not a test) r_t ~ 1 Mpc for the Milky Way today, scaling as M_b^(1/4) and 1/H(z); at z = 2.5 it is still >> 100 kpc, so the flat-a0(z) Tully-Fisher test is untouched
+         measured: MW (6e10) today 1097 kpc; at z = 2.5 292 kpc
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  One scalar of C-H/K's own foliation, x = 9 R3/(4 K^2), switches the MOND sector on only where the leaves curve faster
+  than they expand.  It is zero on FRW and (3/2) Omega_m delta in the linear web, so linear growth returns to LCDM
+  (B2: sigma_8 17.956-27.483 against L341's 18-27); it is saturated in every galaxy and in the Solar System
+  (B3); KiDS-1000 prefers it at x_c ~ 4-7 -- the turnaround scale -- over no switch (B4, a lead); it is healthy (B5); and
+  it predicts a lensing truncation at r_t = v_flat/(sqrt(x_c) H) (B6).  It does not solve the dark sector: the CMB's cold
+  fluid must still stay out of galaxies.  Time 15 s.
+
+  5/6 checks pass; load-bearing failures: 1; wrote L342_bound_region_switch_results_MUTATE.json

@@ -2,6 +2,19 @@
 
 **What this is.** About 630 commits from roughly ten agent tracks landed in this repository between 09-14 and 09-22. On 09-22 they were audited against their committed scripts, re-running the load-bearing ones. This page assembles the most coherent theory the record supports. For each part it says whether it is measured, derived, fitted or missing. It also names the gates that would have to fall for this to become a theory of gravity, rather than a law plus an unfinished completion.
 
+**Update, 09-23 (later): the bound-region switch, [L342](../g03_audit_2026/L342_bound_region_switch.py) (6/6; `MUTATE` = no switch, fails B2).** One scalar of C-H/K's own foliation, x = 9R⁽³⁾/(4K²), turns the MOND sector on only where the preferred leaves curve faster than they expand.
+- **Where it is off:** on flat FRW, x = 0, and in the linear web x = (3/2)Ω_mδ. Linear growth returns to ΛCDM, with σ₈ = 0.810 against L341's 18–27.
+- **Where it is on:** in a static bound system x = 4πGρ_dyn/H², which is ≥ 600 at every SPARC point and 10⁶ in the Solar neighbourhood. Galaxies, the Solar System and wide binaries are untouched.
+- **KiDS-1000 picks the threshold:** x_c ≈ 4–7, the turnaround scale, preferred over no switch by Δχ² ≈ −15 to −19 on both footings; x_c ≥ 15 is excluded. This is a lead: the base fit is poor and 2-halo and external-field terms are not modelled.
+- **Prediction:** a lensing truncation at r_t = v_flat/(√x_c H(z)), about 1.1 Mpc for the Milky Way today.
+- **What it does not do:** it is a construction with one new number, not a derivation, and the outskirts are bistable. The dark sector is not solved.
+
+**Lean certificates** (algebra only; exit 0, zero `sorry`, axioms {propext, Classical.choice, Quot.sound}), in `fable_independent_2026/lean_2026/`:
+- `L330_frozen_density`: the shift cancels in the momentum-constraint divergence, with a λ ≠ 1 control; astra's block lapse is F(1+C)/C.
+- `L340_chk_certificates`: static tracking; the khronon mode has ω² > 0 ⇔ C > 0; the negative-lobe inertia bound; |α₂| ≤ c₁₄.
+- `L341_frw_certificates`: the CMC stiffness in the Newtonian and static cases; the quartic-floor suppression; the K-floor equals the dS-Unruh floor.
+- `L342_switch_certificates`: x = (3/2)Ω_mδ on the linear web and 4πGρ/H² in a static system; the linear web stays off; the truncation radius.
+
 **Update, 09-23: C-H/K fails the FRW gate, [L341](../g03_audit_2026/L341_chk_frw_gate.py).** With the cold fluid the CMB requires, C-H/K's MOND sector boosts the linear field and σ₈ comes out 18–27. Finite tracking does not rescue it.
 - **The floor it could use:** the only floor made of its own fields is the clock's expansion K, and κ = K/(3α) = cH/a₀ is exactly the record's dS-Unruh floor. It is healthy in quartic form and returns σ₈ = 0.81.
 - **Why that floor fails:** the foliation is CMC-stiff. δK = 0 for every static source, so a galaxy keeps K = 3H₀, and the floor removes MOND from the RAR (SPARC Δχ² > +6500).
@@ -234,7 +247,7 @@ The one momentum channel already on the record is L297's khronon (λ − 1 = c�
 **κ.** Settled as a measured constant of nature. Its precision is limited by the M/L zero point, the absolute gas scale and H₀.
 
 **Gravity, after L340.** C-H/K meets these requirements at the orders computed. The next computations, in order of what they decide:
-0. **(L341: FAILED)** FRW linear growth. What is needed now is a bound-vs-expanding switch that is absent from the theory; KiDS puts it at ≳ 1 Mpc;
+0. **(L341: FAILED as built; L342: REPAIRED by the switch)** FRW linear growth. The bound-region switch x = 9R⁽³⁾/(4K²) ≥ x_c ≈ 5 restores ΛCDM growth, and KiDS prefers it. What remains open here is the switch's bistability and dynamics;
 1. nonlinear well-posedness of the clock + U/W system with the khronon terms;
 2. the full 1PN metric;
 3. FRW perturbations, with the zero-gradient singularity of C regularised;

@@ -85,3 +85,15 @@ What it passes:
 
 **Rung 10 requirement, sharpened:** a bound-vs-expanding switch that C-H/K does not contain. KiDS allows it only at ≳ 1 Mpc from galaxies (0.3 / 0.5 Mpc: Δχ² +256 / +105; 1 Mpc: −11, a lead).
 | 3 action, L333 certified | the c₂ channel computed numerically and symbolically | **Lean I24** (`fable_independent_2026/lean_2026/I24_c2_channel_phantom.lean`; exit 0, zero `sorry`, standard axioms) machine-checks the mathematics L333 rests on:<br>• the explicit moving-source solution of the linear khronometric system;<br>• Yagi+2014's α₂ at β = 0;<br>• the deep-MOND inverse Laplacian χ = r²(ln r − 5/6)/6 and the isotropic D/3;<br>• the corner and branch numbers.<br>**One new exact identity:** for a momentless phantom, the distortion of the aether's acceleration (the MOND input) is exactly 2/c₁₄ times the distortion of the potential matter feels, at every speed | `I24` + `real_research/g03_audit_2026/L333` |
+
+**09-23, later: rung 10's switch built.** [`real_research/g03_audit_2026/L342`](../../real_research/g03_audit_2026/L342_bound_region_switch.py) (6/6; `MUTATE` = no switch, fails B2, rc = 1). f(x) with x = 9R⁽³⁾/(4K²), built from the clock alone.
+- **Values of x:** 0 on FRW; (3/2)Ω_mδ on the linear web; 4πGρ_dyn/H² in bound systems.
+- **Results:** linear growth returns to ΛCDM (σ₈ 0.810). Galaxies and the Solar System are unchanged (x ≥ 600). KiDS prefers x_c ≈ 4–7 over no switch (Δχ² −15 to −19, a lead).
+- **Prediction:** r_t = v_flat/(√x_c H).
+- **Open:** bistability of the outskirts and the carrier (L345).
+
+Lean certificates, algebra only (exit 0, zero `sorry`):
+- `fable_independent_2026/lean_2026/L330_frozen_density.lean`
+- `L340_chk_certificates.lean`
+- `L341_frw_certificates.lean`
+- `L342_switch_certificates.lean`
