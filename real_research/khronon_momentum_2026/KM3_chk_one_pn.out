@@ -1,0 +1,55 @@
+
+========================================================================================================
+P1  gamma_PPN = 1 FROM THE STATIC LINEAR EQUATIONS (KM1's, from the action)
+========================================================================================================
+    static solution: phi = 8*pi*G*rho/(k**2*(alpha_c - 2)), psi = 8*pi*G*rho/(k**2*(alpha_c - 2))  ->  psi/phi = 1, G_N/G = -2/(alpha_c - 2)
+  [PASS] P1 static lapse = spatial potential => gamma_PPN = 1; Newton's constant renormalised G_N = G/(1 - alpha_c/2)
+         measured: gamma = 1; G_N/G = -2/(alpha_c - 2)
+         reading:  no anisotropic stress in the static khronometric sector
+
+========================================================================================================
+P2  beta_PPN FROM THE STATIC SECOND-ORDER FIELD EQUATIONS (derived symbolically)
+========================================================================================================
+    E_n:  O(e) = 0;  O(e^2) = m**2*(-4*alpha_c*b + 2*alpha_c*c1 - alpha_c - 2*c1**2 - 8*d)/r**2
+    E_z:  O(e) = 0;  O(e^2) = m**2*(alpha_c - 8*b - 2*c1**2 + 4*c1 - 8*d - 4)/r**2
+    with the exterior gamma = 1: b = 0, d = alpha_c/8 - 1/4  ->  beta_PPN = 1 + b = 1
+    GR control (alpha_c = 0): d = -1/4  (isotropic Schwarzschild: e^(2 zeta) = (1 + m/2r)^4 -> d = -1/4)
+  [PASS] P2 the static second-order field equations force b = 0: beta_PPN = 1 exactly for every alpha_c, and the alpha_c = 0 limit is isotropic Schwarzschild (d = -1/4)
+         measured: beta = 1; d = alpha_c/8 - 1/4; GR d = -1/4
+         reading:  g_00 = -(1 - 2U + 2U^2) as in GR; the khronon's alpha a^2 term only renormalises G and the spatial O(U^2)
+
+========================================================================================================
+P3-P5  THE PREFERRED-FRAME PARAMETERS, THE ZERO PARAMETERS, NORDTVEDT, MERCURY
+========================================================================================================
+    alpha_c = 1.0e-13, c2 = 7.3e-03: alpha_1 = -4.00e-13, alpha_2 = -5.00e-14, eta_N = +3.67e-13
+    alpha_c = 1.0e-13, c2 = 6.7e-02: alpha_1 = -4.00e-13, alpha_2 = -5.00e-14, eta_N = +3.67e-13
+    alpha_c = 1.0e-11, c2 = 7.3e-03: alpha_1 = -4.00e-11, alpha_2 = -5.00e-12, eta_N = +3.67e-11
+    alpha_c = 1.0e-11, c2 = 6.7e-02: alpha_1 = -4.00e-11, alpha_2 = -5.00e-12, eta_N = +3.67e-11
+    alpha_c = 3.2e-09, c2 = 7.3e-03: alpha_1 = -1.28e-08, alpha_2 = -1.60e-09, eta_N = +1.17e-08
+    alpha_c = 3.2e-09, c2 = 6.7e-02: alpha_1 = -1.28e-08, alpha_2 = -1.60e-09, eta_N = +1.17e-08
+    alpha_3 = zeta_1..4 = 0 (semi-conservative: covariant action); xi = 0 (no Whitehead term); Mercury (2 + 2 gamma - beta)/3 = 1.0
+  [PASS] P3-P5 across L340's window: |alpha_1| <= 1.3e-8 (LLR 1e-4), |alpha_2| <= 1.6e-9 (pulsars, the window's own edge), eta_N = (11/3) alpha_c <= 1.2e-8 (LLR 4.4e-4); Mercury's factor exactly 1
+         measured: {'alpha_c=3.2e-09/c2=0.0073': 'a1 -1.3e-08 a2 -1.6e-09 etaN 1.2e-08', 'alpha_c=3.2e-09/c2=0.067': 'a1 -1.3e-08 a2 -1.6e-09 etaN 1.2e-08'}
+         reading:  the whole 1PN metric is GR's up to alpha_1, alpha_2 of order 1e-9
+  [PASS] P4 (documentary) alpha_3 = zeta_1..4 = 0 and xi = 0 for a diffeomorphism-invariant khronometric action
+         measured: Will TEGP sec. 4.4 (semi-conservative theories); Foster 2006 (aether class)
+
+========================================================================================================
+P6  THE FILTERED MOND REMAINDER AT 1PN (documentary)
+========================================================================================================
+    U at Saturn = 1.03e-09: the MOND remainder's 1PN correction is (its Newtonian-order size, already inside
+    L340's ephemeris floors) x U ~ 1e-9 -- below every 1PN observable by many orders
+  [PASS] P6 (documentary) the filtered MOND remainder enters 1PN only as (floor-bounded anomaly) x U ~ 1e-9
+         measured: U_Saturn = 1.03e-09
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  L340's second open item is closed at the level computed: in the Solar System C-H/K's 1PN metric is GR's.
+  gamma_PPN = 1 and beta_PPN = 1 are DERIVED from the khronometric field equations (beta from the static second-order
+  solution, with isotropic Schwarzschild as the control); alpha_3 = zeta_i = 0 and xi = 0 by the structure of the
+  action; alpha_1 = -4 alpha_c and alpha_2 ~ -alpha_c/2 are <= 1e-8 across the window; Nordtvedt eta_N = (11/3) alpha_c.
+  The filtered MOND remainder enters only at (floor) x U.  What stays open on L340's list: nonlinear
+  well-posedness, the dark sector and clusters; FRW is being worked by L341-L342.
+
+  5/5 checks pass; load-bearing failures: 0; wrote KM3_chk_one_pn_results.json

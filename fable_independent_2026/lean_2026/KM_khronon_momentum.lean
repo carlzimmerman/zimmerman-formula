@@ -27,6 +27,8 @@ K5  (KM1 C7) the lapse DOES carry a 1/ε pole: ε φ → 8πG ω² ρ_ph/(k²(r 
 K6  (KM2) the closed forms solve L340's block (real form); its static response is (1+C)/(1 − α_c(1+C)/2);
     at α_c = 0 the exact response is R = 1 − 3u²/(C+1) + [C/(C+1)] u²/(c_s² − u²),
     c_s² = c₂/(C(2 + 3c₂)), and the mode (pole) sits exactly at u² = c_s².
+K7–K9 (KM3) γ_PPN = 1 (static lapse = spatial potential); β_PPN = 1 from the O(m²/r²) static equations (b = 0,
+    ζ₂ = (α − 2)/8) with the γ = 2 control giving β = 3/2; the Nordtvedt combination η_N = 4α_c + α_c(α_c − c₂)/(3c₂).
 -/
 
 noncomputable section
@@ -200,6 +202,47 @@ theorem K6_mode_speed (C c2 u : ℝ) (hC : 0 < C) (hc2 : 0 < c2) :
   · intro h; field_simp; linarith
   · intro h; rw [h]; field_simp; ring
 
+/-! ## KM3 — C-H/K at first post-Newtonian order (the khronometric static sector) -/
+
+/-- γ_PPN = 1: the static Hamiltonian and trace equations force lapse = spatial potential. -/
+theorem K7_gamma_one (k φ ψ : ℝ) (hk : k ≠ 0)
+    (hT : -4 * k ^ 2 * φ + 4 * k ^ 2 * ψ = 0) : ψ = φ := by
+  have hk2 : k ^ 2 ≠ 0 := pow_ne_zero 2 hk
+  have : 4 * k ^ 2 * (ψ - φ) = 0 := by linarith
+  have h4 : (4 : ℝ) * k ^ 2 ≠ 0 := mul_ne_zero (by norm_num) hk2
+  have := (mul_eq_zero.mp this).resolve_left h4
+  linarith
+
+/-- β_PPN = 1: the O(m²/r²) static equations (derived symbolically in KM3) with the exterior γ = 1 force
+    b = 0 (so g₀₀ = −(1 − 2U + 2U²)) and ζ₂ = (α − 2)/8, for every α ≠ 2. -/
+theorem K8_beta_one (α b d : ℝ) (hα : α ≠ 2)
+    (hn : -4 * α * b + 2 * α * 1 - α - 2 * 1 ^ 2 - 8 * d = 0)
+    (hz : α - 8 * b - 2 * 1 ^ 2 + 4 * 1 - 8 * d - 4 = 0) :
+    b = 0 ∧ d = (α - 2) / 8 := by
+  have hb : b * (8 - 4 * α) = 0 := by linarith
+  have h84 : (8 : ℝ) - 4 * α ≠ 0 := by intro h; apply hα; linarith
+  have hb0 : b = 0 := (mul_eq_zero.mp hb).resolve_right h84
+  refine ⟨hb0, ?_⟩
+  subst hb0
+  linarith
+
+/-- CONTROL: a Brans–Dicke-like exterior γ = 2 in the same equations gives b = 1/2, i.e. β = 3/2. -/
+theorem K8_control_gamma_two (α b d : ℝ) (hα : α ≠ 2)
+    (hn : -4 * α * b + 2 * α * 2 - α - 2 * 2 ^ 2 - 8 * d = 0)
+    (hz : α - 8 * b - 2 * 2 ^ 2 + 4 * 2 - 8 * d - 4 = 0) :
+    b = 1 / 2 := by
+  have hb : (b - 1 / 2) * (8 - 4 * α) = 0 := by linarith
+  have h84 : (8 : ℝ) - 4 * α ≠ 0 := by intro h; apply hα; linarith
+  have := (mul_eq_zero.mp hb).resolve_right h84
+  linarith
+
+/-- Nordtvedt with β = γ = 1, ξ = ζᵢ = 0, α₁ = −4α_c, α₂ = α_c(α_c − c₂)/(2c₂): η_N = 4α_c + α_c(α_c − c₂)/(3c₂). -/
+theorem K9_nordtvedt (ac c2 : ℝ) (hc2 : c2 ≠ 0) :
+    4 * 1 - 1 - 3 - (10 / 3) * 0 - (-4 * ac) + (2 / 3) * (ac * (ac - c2) / (2 * c2)) - (2 / 3) * 0 - (1 / 3) * 0
+      = 4 * ac + ac * (ac - c2) / (3 * c2) := by
+  field_simp
+  ring
+
 end KM
 
 end
@@ -214,3 +257,7 @@ end
 #print axioms KM.K6_static
 #print axioms KM.K6_lag_law
 #print axioms KM.K6_mode_speed
+#print axioms KM.K7_gamma_one
+#print axioms KM.K8_beta_one
+#print axioms KM.K8_control_gamma_two
+#print axioms KM.K9_nordtvedt
