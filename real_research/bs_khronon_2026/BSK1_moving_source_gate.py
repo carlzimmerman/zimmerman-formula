@@ -27,7 +27,7 @@ WHY THIS LANE
   by the aether's own flow; the transport term is second order around flat space and first order around a
   galaxy.  The gate is then run on BS24's own equations: does the phantom follow a moving source (M3), how fast
   does it respond (M4, M6), and is the static MOND halo a stable state of the fluid (M5)?  M7 records the
-  structural fact behind BS24's k-dependent sound speed (their eq. 71) that the KiDS lane (BSK2) needs.
+  structural fact behind BS24's k-dependent sound speed (their eq. 71) that the KiDS lane (BSX1) needs.
 
 METHOD
   M1 symbolic, unitary gauge, general lapse/shift/conformal leaves (the machinery of L330 M1).
@@ -366,14 +366,14 @@ lim_cs = sp.limit(cs2 * kk**2 / a_**2, kk, sp.oo)
 P(f"    Xi / phi_tau = {ratio_self}:  -> {lim_small} for k >> mu (self-gravity cancelled), -> {lim_large} for k << mu")
 P(f"    BS24 eq. 71: c_s^2 k^2/a^2 -> {lim_cs} as k -> inf  (their pressure term cancels the self-gravity term exactly)")
 P(f"    late universe (quadratic regime): k_J^2 = 4piG a^2 rhobar/c_ad^2 = a^2 mu^2 -> the physical Jeans length is 1/mu,")
-P(f"    independent of how small w is (BSK2 computes the consequence for the web's field and sigma_8)")
+P(f"    independent of how small w is (BSX1 computes the consequence for the web's field and sigma_8)")
 m7_ok = (lim_small == 1) and (lim_large == 0) and sp.simplify(lim_cs - fourpiG * rb * (1 + wq)) == 0
 OUT["numbers"]["M7"] = {"Xi_over_phi_tau": str(ratio_self), "cs2k2_limit": str(lim_cs)}
 check("M7 with J_Y = -1 (linear, deep MOND) the Euler force -grad phi + grad Xi on the fluid cancels its own gravity "
       "for k >> mu (Xi -> phi_tau) and keeps it for k << mu; BS24's eq. 71 is the same statement",
       f"Xi/phi_tau -> {lim_small} (k >> mu), {lim_large} (k << mu); c_s^2 k^2/a^2 -> {lim_cs}",
       m7_ok,
-      "consequences (BSK2): the fluid clusters under baryons only below 1/mu at late times, and the aether's "
+      "consequences (BSX1): the fluid clusters under baryons only below 1/mu at late times, and the aether's "
       "acceleration in the web -- the MOND function's external field -- is the fluid's own potential gradient there")
 
 # ============================================================================================ VERDICT
@@ -394,7 +394,7 @@ P("""  BS24's extra sector is shift-free and time-derivative-free in unitary gau
        orbital rate, whatever the tail's amplitude (M5b).  For nu_RAR the fall is inside galaxies (Milky Way
        e-folding 1-4 Myr at 1-3 kpc); moving it to g >~ 1e3 a0 hides the instability but meets the ephemeris
        bound on a monotone tail: the record's Cassini-versus-ghost pincer, as a stability condition, no filter.
-  M7 hands BSK2 the web: below 1/mu the late fluid feels only the baryons' gravity, and the aether's acceleration
+  M7 hands BSX1 the web: below 1/mu the late fluid feels only the baryons' gravity, and the aether's acceleration
   there (the MOND function's external field) is the fluid's own potential gradient.""")
 P(f"\n  {n_ok}/{len(CH)} checks pass; load-bearing failures: {n_lb_fail}; wrote {SLUG}_results{'_MUTATE' if MUTATE else ''}.json")
 outname = f"{SLUG}_results{'_MUTATE' if MUTATE else ''}.json"

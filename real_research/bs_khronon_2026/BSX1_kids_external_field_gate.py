@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-BSK2 -- THE BLANCHET-SKORDIS KHRONON AGAINST THE KiDS EXTERNAL-FIELD GATE, from their own linear cosmology: the
+BSX1 -- THE BLANCHET-SKORDIS KHRONON AGAINST THE KiDS EXTERNAL-FIELD GATE, from their own linear cosmology: the
 MOND function reads the gradient of the khronon's OWN potential, filtered by k^2/(k^2 + k_J^2); with the
 k-dependent sound speed of their eq. 71 the same Jeans scale also sets sigma_8.  A scan in mu asks whether any
 value passes KiDS's external-field bound, a MOND-like lensing profile to ~1 Mpc and sigma_8 together.
@@ -41,7 +41,7 @@ CONTROLS
   MUTATE=1 sets the khronon's sound speed to zero (pure dust): the sigma_8 and external-field suppressions must
   vanish, so G1 and E1 must FAIL (rc = 1).  MUTATE outputs go to separate files.
 
-Run from the repository root:  python3 real_research/bs_khronon_2026/BSK2_kids_external_field_gate.py
+Run from the repository root:  python3 real_research/bs_khronon_2026/BSX1_kids_external_field_gate.py
 """
 import os, sys, json, math, time
 import numpy as np
@@ -50,8 +50,8 @@ from scipy.optimize import brentq
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MUTATE = os.environ.get("MUTATE", "0") == "1"
-LANE = "BSK2"
-SLUG = "BSK2_kids_external_field_gate"
+LANE = "BSX1"
+SLUG = "BSX1_kids_external_field_gate"
 P = lambda *a: print(*a, flush=True)
 CH, OUT = [], {"lane": LANE, "mutate": MUTATE, "checks": {}, "numbers": {}}
 T0 = time.time()
