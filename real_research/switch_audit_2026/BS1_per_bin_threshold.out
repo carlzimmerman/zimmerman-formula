@@ -1,0 +1,57 @@
+model table: 3030 ESD profiles (2 footings x 15 thresholds x 101 masses)
+
+========================================================================================================
+S1  REPRODUCE L342's B4 (its M_b selection by diagonal chi^2, then the full-covariance chi^2)
+========================================================================================================
+    canonical: chi^2 no switch 118.0;  Delta chi^2 at x_c = 4/5/7/15: -15.1, -17.5, -10.9, +45.2
+    alt      : chi^2 no switch 108.3;  Delta chi^2 at x_c = 4/5/7/15: -15.7, -19.1, -13.7, +40.8
+  [PASS] S1 L342's B4 chi^2 values are reproduced from its own model and data (no-switch chi^2 found verbatim in its .out)
+         measured: {'canonical': 118.0, 'alt': 108.3}
+         reading:  the machinery below is L342's, not a re-implementation with different choices
+
+========================================================================================================
+S2-S4  PER-BIN THRESHOLDS, ONE NUMBER OR FOUR, WHO CARRIES THE PREFERENCE (full covariance)
+========================================================================================================
+    canonical: no switch chi^2 115.6;  shared x_c = 5.0 chi^2 97.4 (Delta -18.3);  free x_c per bin = [4.0, 6.0, 2.0, 5.0] chi^2 89.4;  shared - free = 8.00 (3 dof, p = 0.046)
+      bin 1: best x_c   4.0  1-sigma [3.0, 6.0]  own Delta chi^2 vs no switch -5.15
+      bin 2: best x_c   6.0  1-sigma [6.0, 7.0]  own Delta chi^2 vs no switch -14.92
+      bin 3: best x_c   2.0  1-sigma [2.0, 2.0]  own Delta chi^2 vs no switch -3.23
+      bin 4: best x_c   5.0  1-sigma [4.0, 5.0]  own Delta chi^2 vs no switch -4.34
+    alt      : no switch chi^2 106.4;  shared x_c = 6.0 chi^2 86.7 (Delta -19.7);  free x_c per bin = [4.0, 6.0, 2.0, 5.0] chi^2 79.3;  shared - free = 7.46 (3 dof, p = 0.059)
+      bin 1: best x_c   4.0  1-sigma [3.0, 6.0]  own Delta chi^2 vs no switch -5.09
+      bin 2: best x_c   6.0  1-sigma [6.0, 7.0]  own Delta chi^2 vs no switch -15.43
+      bin 3: best x_c   2.0  1-sigma [2.0, 3.0]  own Delta chi^2 vs no switch -2.95
+      bin 4: best x_c   5.0  1-sigma [4.0, 6.0]  own Delta chi^2 vs no switch -4.90
+  [FAIL] S3 one threshold fits all four mass bins as well as four separate ones (shared - free Delta chi^2, 3 dof, p > 0.05, both footings)
+         measured: {'canonical': 'Delta 8.00, p 0.046', 'alt': 'Delta 7.46, p 0.059'}
+         reading:  a universal x_c is what the construction requires; a drift would falsify r_t ~ v_flat as written
+    rank correlation of the per-bin x_c with stellar mass: {'canonical': 0.0, 'alt': 0.0}  (a mis-scaled r_t would give a monotonic drift, |rho| -> 1)
+  [PASS] S3b (documentary) the per-bin thresholds show no monotonic trend with mass (the failure mode a wrong r_t scaling would produce)
+         measured: {'canonical': 0.0, 'alt': 0.0}
+  [PASS] S4 (documentary) each bin's own Delta chi^2 for a switch (best x_c vs none, others at optimum)
+         measured: {'canonical': [-5.15, -14.92, -3.23, -4.34], 'alt': [-5.09, -15.43, -2.95, -4.9]}
+         reading:  how much of L342's preference each stellar-mass bin carries
+
+========================================================================================================
+S5  POWER: THE TEST ON SYNTHETIC DATA WITH A COMMON AND WITH A DRIFTING THRESHOLD (canonical)
+========================================================================================================
+    common x_c = 5              : rejection rate at p < 0.05 over 20 draws = 0.00  (median p 0.408)
+    drifting 2 -> 5 -> 10 -> 20 : rejection rate at p < 0.05 over 20 draws = 0.90  (median p 0.000706)
+  [PASS] S5 the consistency test has power: false-rejection rate of a common threshold <= 0.2 and rejection rate of a drifting one >= 0.7 (20 draws each)
+         measured: false rejection 0.00; power 0.90
+         reading:  a pass in S3 means something only if a drift would have been caught
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  L342's preference for a switch survives a properly profiled full-covariance fit (shared x_c = 5.0 / 6.0:
+  Delta chi^2 -18.3 / -19.7 vs no switch).  Whether ONE threshold serves all four stellar-mass bins
+  is MARGINAL: four free thresholds [4.0, 6.0, 2.0, 5.0] improve chi^2 by 8.0 / 7.5 for 3 parameters
+  (p = 0.046 canonical, 0.059 alt) -- the pre-set p > 0.05 gate fails narrowly on the canonical footing and
+  passes on the alt; the per-bin values show no monotonic trend with mass (rho = +0.00), so it is scatter, not the
+  drift a mis-scaled r_t would give; and one bin (bin 2) carries most of the preference.  The test has power (S5:
+  0/20 false rejections, 90% power against a 2 -> 20 drift).  On L342's own base model (point-mass baryons, no two-halo
+  term, no external field; chi^2 ~ 97/60 after the switch), a lead with a marginal internal tension -- not a
+  confirmation and not a falsification.
+
+  4/5 checks pass; load-bearing failures: 1; wrote BS1_per_bin_threshold_results.json
