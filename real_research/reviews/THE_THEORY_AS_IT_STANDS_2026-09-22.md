@@ -40,9 +40,15 @@
     - the halo model (exact per-halo region phantoms, the converged estimate for isolated regions): worst R = 2.9–4.7 with the observed bound baryons, 4.7–9.2 with all of a halo's baryons;
     - the nonlinear mock (GP3's, groups included, 0.39 Mpc cells): worst R = 1.5–2.3.
   - Gauss cancellation removes the phantom's power as k → 0, but the phantom KiDS galaxy–galaxy lensing wants is private to each galaxy, about 4–5× its halo mass inside ~1 Mpc. It adds one-halo power at k ~ 0.3–1.
-  - Removing the carrier's one-halo power from every halo below 10¹⁴ M☉ barely helps (4.09 → 3.42).
+  - Removing the carrier's one-halo power from every halo below 10¹⁴ M☉ barely helps in the halo model (4.09 → 3.42). That model uses isolated phantoms; the grouped mock leaves replacement open (see L364).
   - The best cell (highest window threshold, finest mock) stays within the gate to k = 0.5 and fails at 0.7–1. Its margin falls with resolution and is not converged.
   - The general point: galaxy–galaxy lensing (a galaxy–mass cross-correlation) cannot tell private mass from shared (two-halo) mass; cosmic shear (mass–mass) can. A MOND-like private phantom plus a ΛCDM-like carrier double-counts.
+- **Replacement, tested** ([L364](../g03_audit_2026/L364_replacement_carrier_cosmic_shear.py), 6/6; `MUTATE` = no kicks, the mechanism check fails).
+  - **The idea:** in the grouped mock the region phantom's own power is small (P_ph/P_NL at k = 0.5 / 1 is 0.04 / 0.33 for the p = 1 switch, 0.01 / 0.10 for p = 2). The excess comes from ADDING it to a full matter field, so a carrier whose kicked daughters free-stream could hand over its small-scale power.
+  - **The test:** L319's Λ-triggered carrier on L354's p = 2 grid. Cosmic shear at z = 0.5 uses R = T² + 2 r_x T s + s², with T from the solver's free-streaming transfer, scored against P_NL.
+  - **The mechanism works:** the kicks cut the worst R by 0.46–0.54.
+  - **But there is no window.** The nearest miss is carrier f_d(0) = 0.95 at v_k = 1200 km/s with the switch p = 2, x_c0 = 2. It passes cosmic shear (1.12 / 1.17), the loose forest, S₈ = 0.762 (alternative), and X-COP plus galaxies (L354, alternative, both footings). It fails only KiDS on the alt footing: +6.0 against ≤ +4 (canonical −2.6).
+  - **The pincer:** cosmic shear wants small regions and a lot of carrier decay by z ≈ 0.5, while KiDS wants large regions; the forest and RC100 want late decay.
 - **Standing before L363** (kept for the record). One construction passed, together:
   - linear growth (σ₈ = 0.810);
   - the Lyman-α forest (switch ≤ 4%, carrier strict);
