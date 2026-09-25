@@ -93,3 +93,22 @@ The dark-sector door is now stated as precisely as the record allows: cold in th
 - a galaxy measured below its own Newtonian baryons cannot be fitted by any model that adds gravity, framework or halo (the logic of K1);
 - the closed-form a₀ inversion of L320/L323 is exact;
 - the inversion is defined only for g_b < g_obs, which is the selection that conditions T2 on its outcome.
+
+## L345 — the two live fronts tested together: C-H/K cannot host the Λ-triggered carrier
+
+`L345_chk_universal_carrier_pincer.py` (2/2; `MUTATE` switches to L321's additive coupling, L322's window reappears, rc = 1). Lean certificate `fable_independent_2026/lean_2026/I25_chk_universal_coupling.lean` (exit 0, zero `sorry`).
+
+**Why it is universal.** C-H/K's MOND sector reads the total lapse, so a minimally coupled carrier is MOND-boosted exactly like baryons. This follows from L340's own scalar block, checked symbolically (U0) and in Lean (I25). L321's "additive" coupling therefore has no realisation in C-H/K. The only internal escape is a direct coupling of the carrier to C-H's auxiliary U with g_U = C. That coupling would have to track the field-dependent kernel.
+
+**The scan.**
+- X-COP overshoots 1.78–1.92× at 1000 km/s.
+- It comes within 20% (after the non-thermal correction) only at v_k ≈ 2500–3000 km/s, where S₈ = 0.52–0.65.
+- The scan used the monotone kernel, both footings, f_d(0) = 0.8–0.99 and v_k = 1000–3000 km/s.
+- The S₈ floors are 0.767 (strict) and 0.748 (alternative).
+
+**No cell passes under either pre-declared threshold set.** The parallel L341 (`g03_audit_2026/L341_chk_frw_gate`) had already found that C-H/K fails linear cosmology with the cold fluid the CMB needs (σ₈ = 18–27). This lane adds that its only live carrier cannot fix that at z = 0 either: clusters and S₈ pull the carrier's kick in opposite directions.
+
+**What would save the pair (none is on the record):**
+- a carrier coupled directly to U;
+- a kernel that does not read the carrier's field (not C-H/K);
+- a carrier absent from clusters at z = 0 but present at z = 2–3.

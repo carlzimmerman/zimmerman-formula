@@ -1,0 +1,102 @@
+
+L345 -- THE TWO LIVE FRONTS, TESTED TOGETHER: the gravity candidate C-H/K (L340) and the Lambda-triggered dark carrier
+(L319-L322).  C-H/K is UNIVERSAL by construction -- its MOND sector reads the total lapse, so any metric-coupled dark
+component is boosted exactly like baryons -- and L321 found that a carrier that sources the MOND field overshoots the
+X-COP clusters.  Does ANY carrier parameter survive the clusters under C-H/K's coupling?
+
+WHY THIS IS THE QUESTION
+  L321/L322 kept the carrier alive only under ADDITIVE coupling: a metric-coupled carrier whose gravity is added to the
+  MOND field of the baryons without being boosted.  In a single-metric action whose MOND sector reads the lapse (C-H, and
+  C-H/K on top of it: ACTION.md -- "The metric g is the sole physical metric for ordinary matter ... minimally coupled
+  standard matter may replace this example without introducing U or tau couplings"), the lapse is sourced by ALL matter,
+  the kernel reads its filtered gradient, and there is no channel that can tell baryons from a minimally coupled carrier.
+  L321's "additive" therefore has no realisation in C-H/K; its "universal" is what C-H/K does.
+
+WHAT THIS LANE DOES
+  U0 FROM THE ACTION (L340's own unitary scalar block, symbolic): with the matter source split R = R_b + R_c, the static
+     AND the moving response of every field to R_c is identical to its response to R_b: the carrier is boosted by
+     (1 + C)/(1 - alpha_c (1 + C)/2), exactly like baryons.  Control: a carrier given a direct U-coupling (a non-minimal
+     coupling C-H/K does not contain) is NOT boosted -- the check can fail, and that coupling is the only internal escape.
+  U1 THE CLUSTER GATE UNDER C-H/K's COUPLING, on the real X-COP sample (L321's validated phase-mixing retention machinery,
+     unchanged), with L340's kernel nu_mono and BOTH footings, over the carrier's whole plausible range: decayed fraction
+     today f_d(0) in {0.8, 0.9, 0.95, 0.99} and kick v_k in {1000 .. 3000} km/s.  Pre-declared thresholds = L322's:
+     strict |median M_dyn/M_HSE - 1| <= 0.2; alternative: the same after X-COP's measured 6% non-thermal support.
+  U2 S_8 for every cell (L319's exact linear-response solver, unchanged; S_8 depends on (f_d, v_k) only, not on the
+     coupling), against L322's floors: strict 0.767 (KiDS-Legacy 3 sigma), alternative 0.748 (DES-Y3 x KiDS-1000 3 sigma).
+  U3 the galaxy gate (L321's hosts, shift <= 0.06 dex) at every cell that passes U1 and U2.
+  VERDICT a universal window = a cell passing U1, U2 and U3 under the same threshold set.
+
+  NOT in scope: C-H/K's cosmological growth -- computed by the parallel lane L341 (g03_audit_2026/L341_chk_frw_gate):
+  with the cold fluid the CMB requires, C-H/K's unfloored kernel gives sigma_8 = 18-27, and its natural K-floor erases
+  MOND in galaxies.  L319's S_8 here is computed with GR growth, so it is a NECESSARY condition only: a window found here
+  could still close on growth; none found here cannot reopen there.  This lane is the complementary CLUSTER gate: can
+  the carrier (whose decay would reduce the retained cold fluid) survive C-H/K's coupling at z = 0?
+
+MUTATE=1 evaluates U1-U3 with L321's ADDITIVE coupling (the unrealisable one): L322's alternative window must reappear, and
+the load-bearing "no universal window" finding must FAIL (rc = 1).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L345_chk_universal_carrier_pincer.py
+
+
+==============================================================================================================
+U0  FROM THE ACTION: L340's unitary scalar block with the matter source split into baryons + carrier
+==============================================================================================================
+    static boost on baryons: -2*(C + 1)/(C*alpha_c + alpha_c - 2);  on the carrier: -2*(C + 1)/(C*alpha_c + alpha_c - 2)
+    moving (omega != 0): d psi/dR_b - d psi/dR_c = 0
+    control, carrier with a direct U-coupling g_U: static boost on the carrier = -2*(C - g_U + 1)/(C*alpha_c + alpha_c - 2)
+  [PASS] U0 C-H/K IS UNIVERSAL: in L340's own block the carrier's static and moving response equals the baryons' exactly (boost (1+C)/(1 - alpha_c(1+C)/2)); only a direct U-coupling -- absent from C-H/K -- changes it
+         measured: static difference 0; moving difference 0; with g_U: -2*(C - g_U + 1)/(C*alpha_c + alpha_c - 2)
+         reading:  L321's additive coupling needs the carrier to be invisible to the kernel; a minimally coupled carrier is not
+
+  L321 machinery loaded (12 X-COP clusters); kernel nu_mono (y_p = 2.540); coupling 'universal'
+
+==============================================================================================================
+U1  THE X-COP GATE UNDER C-H/K's COUPLING (nu_mono, both footings), median M_dyn/M_HSE over 12 clusters
+==============================================================================================================
+    canonical f_d 0.80: 1000: 1.80 (eps 0.94)  1500: 1.70 (eps 0.84)  2000: 1.56 (eps 0.72)  2500: 1.39 (eps 0.56)  3000: 1.21 (eps 0.41)   [retention needed for M_dyn = M_HSE: 0.25; 74s]
+    canonical f_d 0.90: 1000: 1.79 (eps 0.93)  1500: 1.69 (eps 0.83)  2000: 1.51 (eps 0.67)  2500: 1.31 (eps 0.50)  3000: 1.11 (eps 0.33)   [retention needed for M_dyn = M_HSE: 0.25; 161s]
+    canonical f_d 0.95: 1000: 1.79 (eps 0.93)  1500: 1.67 (eps 0.82)  2000: 1.49 (eps 0.66)  2500: 1.28 (eps 0.47)  3000: 1.04 (eps 0.28)   [retention needed for M_dyn = M_HSE: 0.25; 238s]
+    canonical f_d 0.99: 1000: 1.78 (eps 0.92)  1500: 1.66 (eps 0.81)  2000: 1.47 (eps 0.63)  2500: 1.24 (eps 0.44)  3000: 0.99 (eps 0.24)   [retention needed for M_dyn = M_HSE: 0.25; 317s]
+    alt       f_d 0.80: 1000: 1.92 (eps 0.94)  1500: 1.83 (eps 0.86)  2000: 1.69 (eps 0.73)  2500: 1.52 (eps 0.59)  3000: 1.33 (eps 0.44)   [retention needed for M_dyn = M_HSE: 0.20; 392s]
+    alt       f_d 0.90: 1000: 1.91 (eps 0.93)  1500: 1.81 (eps 0.84)  2000: 1.64 (eps 0.69)  2500: 1.44 (eps 0.53)  3000: 1.23 (eps 0.36)   [retention needed for M_dyn = M_HSE: 0.20; 468s]
+    alt       f_d 0.95: 1000: 1.91 (eps 0.93)  1500: 1.80 (eps 0.83)  2000: 1.62 (eps 0.67)  2500: 1.41 (eps 0.50)  3000: 1.18 (eps 0.32)   [retention needed for M_dyn = M_HSE: 0.20; 543s]
+    alt       f_d 0.99: 1000: 1.90 (eps 0.92)  1500: 1.79 (eps 0.82)  2000: 1.60 (eps 0.66)  2500: 1.37 (eps 0.47)  3000: 1.12 (eps 0.28)   [retention needed for M_dyn = M_HSE: 0.20; 620s]
+
+==============================================================================================================
+U2  S_8 PER (f_d, v_k): L319's exact linear-response solver (GR growth -- a necessary condition only)
+==============================================================================================================
+    f_d 0.80: 1000: 0.803  1500: 0.765  2000: 0.724  2500: 0.685  3000: 0.648   [663s]
+    f_d 0.90: 1000: 0.792  1500: 0.745  2000: 0.695  2500: 0.647  3000: 0.603   [705s]
+    f_d 0.95: 1000: 0.783  1500: 0.729  2000: 0.672  2500: 0.618  3000: 0.570   [747s]
+    f_d 0.99: 1000: 0.768  1500: 0.701  2000: 0.634  2500: 0.573  3000: 0.520   [789s]
+
+==============================================================================================================
+U3  GALAXIES at the cells passing U1 and U2, and THE WINDOW
+==============================================================================================================
+    closest cells to the X-COP gate (NT-corrected): canonical f_d 0.95 v_k 3000: 0.98 at S_8 0.570; canonical f_d 0.9 v_k 3000: 1.04 at S_8 0.603; alt f_d 0.99 v_k 3000: 1.05 at S_8 0.520; canonical f_d 0.99 v_k 3000: 0.93 at S_8 0.520
+    canonical f_d 0.80: X-COP within 20% (NT) first at v_k = 3000.0, where S_8 = 0.648
+    canonical f_d 0.90: X-COP within 20% (NT) first at v_k = 3000.0, where S_8 = 0.603
+    canonical f_d 0.95: X-COP within 20% (NT) first at v_k = 3000.0, where S_8 = 0.570
+    canonical f_d 0.99: X-COP within 20% (NT) first at v_k = 2500.0, where S_8 = 0.573
+    alt       f_d 0.80: X-COP within 20% (NT) first at v_k = > 3000 (at 3000: 1.25)
+    alt       f_d 0.90: X-COP within 20% (NT) first at v_k = 3000.0, where S_8 = 0.603
+    alt       f_d 0.95: X-COP within 20% (NT) first at v_k = 3000.0, where S_8 = 0.570
+    alt       f_d 0.99: X-COP within 20% (NT) first at v_k = 3000.0, where S_8 = 0.520
+  [PASS] V1 NO UNIVERSAL WINDOW: under C-H/K's coupling no (footing, f_d, v_k) cell passes X-COP, S_8 and galaxies together, under either pre-declared threshold set
+         measured: strict window none; alternative window none
+         reading:  the live gravity candidate and the live dark carrier cannot both stand as written
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  C-H/K's MOND sector reads the total lapse, so a minimally coupled carrier is boosted exactly like baryons (U0, from
+  L340's own block).  Under that coupling the Lambda-triggered carrier, over f_d(0) = 0.8-0.99 and v_k = 1000-3000 km/s,
+  with L340's kernel and both footings: window NONE.  The clusters need so little retained
+  carrier once it is MOND-boosted that the kicks required to shed it take S_8 below its floors.
+  WHAT WOULD SAVE THE PAIR (each a new ingredient, none on the record): a carrier coupled directly to U (so its phantom
+  cancels -- a non-minimal coupling the U0 control shows is the only internal route); a kernel that does not read the
+  carrier's field (a second metric or a baryon-only MOND source, i.e. not C-H/K); or a carrier that is absent from
+  clusters at z = 0 while present at z = 2-3 (a faster late decay than Omega_Lambda^2).  NOT computed: C-H/K's own
+  cosmological growth (unfloored kernel), which can only tighten the S_8 side.
+
+  2/2 checks pass; load-bearing failures: 0; wrote L345_chk_universal_carrier_pincer_results.json   [789s]

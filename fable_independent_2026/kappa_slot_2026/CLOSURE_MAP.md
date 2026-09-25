@@ -97,3 +97,4 @@ Lean certificates, algebra only (exit 0, zero `sorry`):
 - `L340_chk_certificates.lean`
 - `L341_frw_certificates.lean`
 - `L342_switch_certificates.lean`
+| 10 × 3, the live pair | the Λ-triggered carrier alive under additive coupling (L322); C-H/K the live gravity candidate (L340) | **Incompatible as written.** C-H/K boosts any minimally coupled source exactly like baryons, so "additive" is not realisable (U0 symbolic + Lean I25). Under C-H/K's own coupling the carrier has **no window** at any f_d(0) = 0.8–0.99, v_k = 1000–3000 km/s, on either footing. X-COP needs v_k ≳ 2500–3000 km/s, where S₈ = 0.52–0.65. This is on top of the parallel L341's σ₈ = 18–27. The one internal escape is a carrier–U coupling g_U = C that tracks the kernel | `real_research/dark_sector_2026/L345` (2/2; `MUTATE` additive → window reappears, rc = 1) + `I25` |
