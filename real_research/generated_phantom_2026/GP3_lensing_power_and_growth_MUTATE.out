@@ -1,0 +1,142 @@
+GP3 -- THE GENERATED PHANTOM ON COSMOLOGICAL SCALES: growth and the forest (Newtonian by construction) and the lensing
+power spectrum (the new gate): does the phantom that KiDS needs around every galaxy add lensing power that cosmic
+shear would see?
+
+WHY.  GP1's construction keeps the web and the forest Newtonian: the dark component and the unbound gas neither source
+nor feel the phantom.  Growth (BK3's failure) and the forest (the L346-L362 pincer) are therefore safe by construction.
+But LIGHT sees the phantom.  KiDS-1000 wants each lens's phantom to reach ~1-3 Mpc (GP2: lambda ~ 2-3 Mpc, the external
+field of the other bound baryons ~1e-5-1e-4 a0).  In that weak ambient field the kernel's response to ANY fluctuation of
+the bound baryons on scales below lambda is boosted by ~nu(e) ~ 100 -- groups, pairs and filaments of galaxies included.
+Cosmic shear (KiDS-1000, DES Y3, HSC Y3) measures the lensing power at k ~ 0.1-1 h/Mpc to a few per cent and finds it
+at or slightly BELOW LCDM (S_8 ~ 0.76-0.78 vs Planck 0.83).  This lane measures the phantom's lensing power.
+
+METHOD.  A nonlinear mock (the phantom is nonlinear in its source, so a linear estimate is only a cross-check):
+  * a Gaussian linear field at z = 0.5 (the cosmic-shear lens epoch) from GP0's Eisenstein-Hu P(k), sigma_8 = 0.8111;
+    the matter density a lognormal of the field smoothed at R_s = 1.5 Mpc; halos drawn cell by cell from GP0's
+    Sheth-Tormen abundances (1e10-10^15.5 Msun) with lognormal bias b(M); each halo carries GP0's bound baryons;
+  * the construction's phantom on the grid, exactly as GP1's action gives it (the Lagrangian form):
+      (Lap - 1/lam^2) psi = 4 pi G rho_B,   rho_ph = -S* div[(nu_mono(|grad psi|/a0) - 1)(-grad psi)]/(4 pi G),
+    physical units at z = 0.5, S*(k) = (k lam)^2/(1 + (k lam)^2);
+  * power spectra of matter, phantom and their cross; the lensing field is matter + phantom (light sees both).
+  REFERENCE.  The mock's matter lacks LCDM's one-halo power at k >~ 0.5 h/Mpc, which would inflate a ratio taken
+  against it.  The gate therefore uses a CONSERVATIVE ratio against a Sheth-Tormen + NFW halo-model P_NL(k):
+      R_cons(k) = 1 + [2 r_x(k) sqrt(P_ph P_NL) + P_ph] / P_NL,   r_x = the mock's matter-phantom correlation,
+  i.e. the phantom is compared with LCDM's full nonlinear matter power; the mock-internal ratio is reported too.
+
+  *** MUTATE=1: the kernel is switched off (no phantom); L1 must PASS (inverted control, rc = 0) ***
+
+==============================================================================================================
+H1  THE LCDM REFERENCE: Sheth-Tormen + NFW halo-model P_NL(k) at z = 0.5
+==============================================================================================================
+    P_NL/P_lin at k = 0.02 / 0.1 / 0.3 / 1 h/Mpc: 1.007 / 1.03 / 1.21 / 3.44
+  [PASS] H1 CONTROL: the halo-model P_NL tends to P_lin at low k (5%) and exceeds it at k = 1 h/Mpc
+         measured: 1.007 at 0.02 h/Mpc; 3.44 at 1 h/Mpc
+
+  mock: 200 Mpc, 256^3 (cell 0.78 Mpc), smoothed sigma 1.33; bound-baryon share 0.0166 (GP0 census f_B 0.0210)   [14s]
+
+==============================================================================================================
+M1  CONTROL: the kernel switched off gives no phantom and R = 1
+==============================================================================================================
+    max |R - 1| with the kernel off: 0.0e+00
+  [PASS] M1 CONTROL: kernel off -> R = 1 to 1e-6
+         measured: 0.0e+00
+
+==============================================================================================================
+L1  THE LENSING POWER OF THE CONSTRUCTION: R_cons(k) (vs LCDM's halo-model P_NL) and the mock-internal ratio
+==============================================================================================================
+    canonical lambda 1.0: R_cons at k = 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00;  mock-internal at 0.3/1: 1.00/1.00;  r_x(0.3) 0.00   [21s]
+    canonical lambda 2.0: R_cons at k = 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00;  mock-internal at 0.3/1: 1.00/1.00;  r_x(0.3) 0.00   [25s]
+    canonical lambda 3.0: R_cons at k = 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00;  mock-internal at 0.3/1: 1.00/1.00;  r_x(0.3) 0.00   [28s]
+    alt       lambda 1.0: R_cons at k = 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00;  mock-internal at 0.3/1: 1.00/1.00;  r_x(0.3) 0.00   [32s]
+    alt       lambda 2.0: R_cons at k = 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00;  mock-internal at 0.3/1: 1.00/1.00;  r_x(0.3) 0.00   [35s]
+    alt       lambda 3.0: R_cons at k = 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00;  mock-internal at 0.3/1: 1.00/1.00;  r_x(0.3) 0.00   [39s]
+  [PASS] L1 THE GATE: at a screening length KiDS accepts (lambda = 2 or 3 Mpc) the lensing power stays within 20% of LCDM's (R_cons <= 1.2 on k = 0.1-1 h/Mpc), both footings
+         measured: {'canonical|1.0': 1.0, 'canonical|2.0': 1.0, 'canonical|3.0': 1.0, 'alt|1.0': 1.0, 'alt|2.0': 1.0, 'alt|3.0': 1.0}
+         reading:  the phantom KiDS needs around every galaxy is generated collectively by clustered bound baryons in a weak ambient field
+
+==============================================================================================================
+L2  CONVERGENCE: a 100 Mpc box at twice the resolution (canonical)
+==============================================================================================================
+    lambda 2.0: R_cons at 0.3/0.5/0.7/1 h/Mpc = 1.00 / 1.00 / 1.00 / 1.00  (200 Mpc box: 1.00 / 1.00 / 1.00 / 1.00)   [58s]
+    lambda 3.0: R_cons at 0.3/0.5/0.7/1 h/Mpc = 1.00 / 1.00 / 1.00 / 1.00  (200 Mpc box: 1.00 / 1.00 / 1.00 / 1.00)   [61s]
+  [PASS] L2 (documentary) the ratio in a 100 Mpc box at twice the resolution
+         measured: {'2.0': {'0.3': 1.0, '0.5': 1.0, '0.7': 1.0, '1.0': 1.0}, '3.0': {'0.3': 1.0, '0.5': 1.0, '0.7': 1.0, '1.0': 1.0}}
+
+==============================================================================================================
+L3  THE LINEAR CROSS-CHECK: (1 + C_eff beta_B S^2)^2 at low k, C_eff from the mock's field distribution
+==============================================================================================================
+    lambda 1.0: C_eff = 212 (beta_B 0.0362);  k = 0.1: linear 1.002 vs mock 1.000;  k = 0.2: linear 1.024 vs mock 1.000
+    lambda 2.0: C_eff = 164 (beta_B 0.0362);  k = 0.1: linear 1.018 vs mock 1.000;  k = 0.2: linear 1.248 vs mock 1.000
+    lambda 3.0: C_eff = 134 (beta_B 0.0362);  k = 0.1: linear 1.070 vs mock 1.000;  k = 0.2: linear 1.825 vs mock 1.000
+  [PASS] L3 (documentary) linear response vs the nonlinear mock at low k
+         measured: {'1.0': 'C_eff 212', '2.0': 'C_eff 164', '3.0': 'C_eff 134'}
+
+==============================================================================================================
+L4  THE PINCER: KiDS (GP2) beside cosmic shear (L1), per screening length
+==============================================================================================================
+    lambda 1.0 Mpc: KiDS vs floor (+carrier) +19.8/+18.6, vs L352 +3.6/+0.6;  cosmic shear R_cons 0.3/0.5/1 h/Mpc: 1.00 / 1.00 / 1.00
+    lambda 2.0 Mpc: KiDS vs floor (+carrier) +0.7/+0.6, vs L352 -14.8/-16.7;  cosmic shear R_cons 0.3/0.5/1 h/Mpc: 1.00 / 1.00 / 1.00
+    lambda 3.0 Mpc: KiDS vs floor (+carrier) -0.4/+0.4, vs L352 -17.9/-18.7;  cosmic shear R_cons 0.3/0.5/1 h/Mpc: 1.00 / 1.00 / 1.00
+  [PASS] L4 (documentary) the KiDS / cosmic-shear table
+         measured: {'1.0': {'0.3': 1.0, '0.5': 1.0, '1.0': 1.0}, '2.0': {'0.3': 1.0, '0.5': 1.0, '1.0': 1.0}, '3.0': {'0.3': 1.0, '0.5': 1.0, '1.0': 1.0}}
+
+==============================================================================================================
+L5  THE REPLACEMENT LEAD: the dark share smooth below R_fs at late times -- does the phantom replace it?
+==============================================================================================================
+    lambda 2.0, R_fs 1.0 Mpc: (smoothed dark + baryons + phantom)/matter at 0.1/0.3/0.5/0.7/1 h/Mpc = 1.00 / 0.97 / 0.91 / 0.83 / 0.69
+    lambda 2.0, R_fs 2.0 Mpc: (smoothed dark + baryons + phantom)/matter at 0.1/0.3/0.5/0.7/1 h/Mpc = 0.98 / 0.87 / 0.69 / 0.50 / 0.26
+    lambda 2.0, R_fs 3.0 Mpc: (smoothed dark + baryons + phantom)/matter at 0.1/0.3/0.5/0.7/1 h/Mpc = 0.97 / 0.74 / 0.45 / 0.23 / 0.08
+    lambda 3.0, R_fs 1.0 Mpc: (smoothed dark + baryons + phantom)/matter at 0.1/0.3/0.5/0.7/1 h/Mpc = 1.00 / 0.97 / 0.91 / 0.83 / 0.69
+    lambda 3.0, R_fs 2.0 Mpc: (smoothed dark + baryons + phantom)/matter at 0.1/0.3/0.5/0.7/1 h/Mpc = 0.98 / 0.87 / 0.69 / 0.50 / 0.26
+    lambda 3.0, R_fs 3.0 Mpc: (smoothed dark + baryons + phantom)/matter at 0.1/0.3/0.5/0.7/1 h/Mpc = 0.97 / 0.74 / 0.45 / 0.23 / 0.08
+  [PASS] L5 (documentary) the replacement lead (mock-internal ratio; matter reference = the unsmoothed mock)
+         measured: {'2.0|1.0': {'0.1': 1.0, '0.3': 0.97, '0.5': 0.91, '0.7': 0.83, '1.0': 0.69}, '2.0|2.0': {'0.1': 0.98, '0.3': 0.87, '0.5': 0.69, '0.7': 0.5, '1.0': 0.26}, '2.0|3.0': {'0.1': 0.97, '0.3': 0.74, '0.5': 0.45, '0.7': 0.23, '1.0': 0.08}, '3.0|1.0': {'0.1': 1.0, '0.3': 0.97, '0.5': 0.91, '0.7': 0.83, '1.0': 0.69}, '3.0|2.0': {'0.1': 0.98, '0.3': 0.87, '0.5': 0.69, '0.7': 0.5, '1.0': 0.26}, '3.0|3.0': {'0.1': 0.97, '0.3': 0.74, '0.5': 0.45, '0.7': 0.23, '1.0': 0.08}}
+         reading:  a dark component smooth below ~lambda lets the phantom stand in for its small-scale lensing power
+
+==============================================================================================================
+L6  OTHER READINGS OF 'BOUND' (canonical): stars only and galaxy (stars + cold gas), incl. no screening
+==============================================================================================================
+    stars  lambda 2.0: R_cons at 0.1/0.3/0.5/1 h/Mpc = 1.00 / 1.00 / 1.00 / 1.00   [119s]
+    stars  lambda 3.0: R_cons at 0.1/0.3/0.5/1 h/Mpc = 1.00 / 1.00 / 1.00 / 1.00   [124s]
+    stars  lambda inf: R_cons at 0.1/0.3/0.5/1 h/Mpc = 1.00 / 1.00 / 1.00 / 1.00   [128s]
+    galaxy lambda 2.0: R_cons at 0.1/0.3/0.5/1 h/Mpc = 1.00 / 1.00 / 1.00 / 1.00   [151s]
+    galaxy lambda 3.0: R_cons at 0.1/0.3/0.5/1 h/Mpc = 1.00 / 1.00 / 1.00 / 1.00   [155s]
+    galaxy lambda inf: R_cons at 0.1/0.3/0.5/1 h/Mpc = 1.00 / 1.00 / 1.00 / 1.00   [160s]
+  [PASS] L6 (documentary) the lensing power for the stars-only and galaxy readings (smaller beta_B), with and without screening
+         measured: {'stars|2.0': 1.0, 'stars|3.0': 1.0, 'stars|inf': 1.0, 'galaxy|2.0': 1.0, 'galaxy|3.0': 1.0, 'galaxy|inf': 1.0}
+         reading:  a smaller bound-baryon share lowers the collective phantom; without screening every scale is boosted
+
+==============================================================================================================
+G1  GROWTH: the web is Newtonian; only bound baryons (f_B) feel the long-mode phantom (linear two-fluid model)
+==============================================================================================================
+    lambda 1.0: fractional change of the matter growth D(z=0) by k (h/Mpc): 0.05: -2.0e-09, 0.1: -2.0e-09, 0.2: -2.0e-09, 0.5: -2.0e-09
+    lambda 2.0: fractional change of the matter growth D(z=0) by k (h/Mpc): 0.05: -2.0e-09, 0.1: -2.0e-09, 0.2: -2.0e-09, 0.5: -2.0e-09
+    lambda 3.0: fractional change of the matter growth D(z=0) by k (h/Mpc): 0.05: -2.0e-09, 0.1: -2.0e-09, 0.2: -2.0e-09, 0.5: -2.0e-09
+  [PASS] G1 (documentary) the change of the web's linear growth D(z = 0) at k = 0.2 h/Mpc (sigma_8 scales), per lambda
+         measured: {'1.0': '-2.0e-09', '2.0': '-2.0e-09', '3.0': '-2.0e-09'}
+         reading:  small but not nil: the bound baryons feel the long-mode phantom and pull the web a little (a +1-3% sigma_8 shift)
+
+==============================================================================================================
+F1  THE FOREST: forest gas is below the switch threshold (kernel-invisible)
+==============================================================================================================
+    z = 2.0: x_m = (3/2) Omega_m(z)(1 + delta) = 15.3 (delta 10), 29.1 (delta 20) vs x_c = 50
+    z = 3.0: x_m = (3/2) Omega_m(z)(1 + delta) = 16.0 (delta 10), 30.5 (delta 20) vs x_c = 50
+  [PASS] F1 (documentary) forest absorbers (delta <= 20) sit below a virial-like threshold x_c = 50 at z = 2-3: w = 0
+         measured: {'2.0': {'10': 15.263630925223811, '20': 29.13965903906364}, '3.0': {'10': 15.954788364972766, '20': 30.459141424038915}}
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  Growth and the forest are Newtonian by construction up to the bound baryons' share (G1: D(z=0) at k = 0.2 h/Mpc changes by
+  -0.0% / -0.0% / -0.0% at lambda = 1 / 2 / 3 Mpc; F1: the IGM is below the switch).
+  THE LENSING POWER, conservative ratio against LCDM's halo-model P_NL (z = 0.5), canonical:
+    lambda 1.0 Mpc: k 0.1: 1.00, k 0.2: 1.00, k 0.3: 1.00, k 0.5: 1.00, k 0.7: 1.00, k 1.0: 1.00
+    lambda 2.0 Mpc: k 0.1: 1.00, k 0.2: 1.00, k 0.3: 1.00, k 0.5: 1.00, k 0.7: 1.00, k 1.0: 1.00
+    lambda 3.0 Mpc: k 0.1: 1.00, k 0.2: 1.00, k 0.3: 1.00, k 0.5: 1.00, k 0.7: 1.00, k 1.0: 1.00
+  KiDS (GP2) wants lambda ~ 2-3 Mpc (and accepts 1-10 against L352's reference); at those lengths the phantom raises the
+  lensing power by factors 1.0-1.0 on k <= 1 h/Mpc.  Gate L1 (<= 1.2): PASS ([2.0, 3.0]).
+  The replacement lead (L5): with the dark share smooth below R_fs the lensing power returns toward the matter's --
+  the phantom must REPLACE the dark component's small-scale power, not add to it.
+
+  10/10 checks pass; load-bearing failures: 0; wrote GP3_lensing_power_and_growth_results_MUTATE.json (161 s)
+rc=0

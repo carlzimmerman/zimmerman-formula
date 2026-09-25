@@ -1,0 +1,266 @@
+{
+ "lane": "GP1",
+ "mutate": true,
+ "checks": {
+  "N1 the Euler-Lagrange equations give: kernel argument = Newtonian potential of the BOUND baryons; metric = Newtonian(all) + phantom; unbound baryons and the dark component feel Newtonian(all) only; bound baryons feel the phantom": {
+   "ok": false,
+   "measured": "{'identities': ['0', '0', '0'], 'unbound feels Newtonian only': False, 'bound feels phantom': True}",
+   "load_bearing": true
+  },
+  "N2 GAUSS: beyond the bound region's edge (250 kpc) the source-switched phantom survives (M_dyn(1 Mpc) >= 10 M_b at lambda >= 2 Mpc) while a flux switch returns the lens to its baryons (M_dyn = M_b)": {
+   "ok": true,
+   "measured": "{'2.0': '1 Mpc: 101.1 vs 1.0', '3.0': '1 Mpc: 103.6 vs 1.0', 'inf': '1 Mpc: 106.0 vs 1.0'}",
+   "load_bearing": true
+  },
+  "N3 RECIPROCITY: the linearised phantom response (Lagrangian form) is symmetric to < 2% on the grid and the construction's species matrix is symmetric; the non-Lagrangian alternative is not": {
+   "ok": true,
+   "measured": "response asymmetry 1.6e-05 (BK1's one-S form 3.3e-02); matrices 0.0e+00 vs 1.00",
+   "load_bearing": true
+  },
+  "N4 (documentary) the edge step: a baryon entering a bound region gains |Phi_ph(edge)| per unit mass (~2-3 v_flat^2 at lambda = 2 Mpc) -- a prediction for accretion shocks and outflows, not a free parameter": {
+   "ok": true,
+   "measured": "{'dwarf (M_B 1e9, edge 60 kpc)': '176 vs v_flat 59 km/s', 'Milky Way (6e10, 250 kpc)': '402 vs v_flat 165 km/s', 'group (1e12, 600 kpc)': '682 vs v_flat 334 km/s', 'cluster (1.5e13, 1.8 Mpc)': '954 vs v_flat 657 km/s'}",
+   "load_bearing": false
+  },
+  "N5 the density-built switch perturbs the metric by < 1e-3 and the khronon by < 10% of its c2 term at every edge, and is tensor-blind; the curvature-built switch (x~) would perturb the metric at O(0.1-1)": {
+   "ok": true,
+   "measured": "{'dwarf (M_B 1e9, edge 60 kpc)': '8e-08 / 5e-04 vs curvature 2.29', 'Milky Way (6e10, 250 kpc)': '4e-07 / 3e-03 vs curvature 0.69', 'group (1e12, 600 kpc)': '1e-06 / 8e-03 vs curvature 0.34', 'cluster (1.5e13, 1.8 Mpc)': '2e-06 / 1e-02 vs curvature 0.07'}",
+   "load_bearing": true
+  },
+  "N6 (documentary) inherited local limits": {
+   "ok": true,
+   "measured": "lambda_min = 0.5 Mpc (BK1 C1); KM3, L340, L351, L353 N3",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "N1": {
+   "id_arg": "0",
+   "id_metric": "0",
+   "id_lam": "0",
+   "felt_b": "Phi_ph(x) + u(x)",
+   "felt_d": "u(x)",
+   "unbound_invisible": false,
+   "bound_boosted": true
+  },
+  "N2": {
+   "2.0": {
+    "0.1": {
+     "source_switch": 10.743072941039348,
+     "flux_switch": 10.743072941039348,
+     "flux_over_baryons": 11.397368202150888
+    },
+    "0.3": {
+     "source_switch": 31.764030941121273,
+     "flux_switch": 0.9802985281146283,
+     "flux_over_baryons": 1.0
+    },
+    "1.0": {
+     "source_switch": 101.13897613984994,
+     "flux_switch": 0.994026389421726,
+     "flux_over_baryons": 1.0
+    },
+    "3.0": {
+     "source_switch": 237.53369838937704,
+     "flux_switch": 0.9980032084612451,
+     "flux_over_baryons": 1.0
+    }
+   },
+   "3.0": {
+    "0.1": {
+     "source_switch": 10.746186142940742,
+     "flux_switch": 10.746186142940742,
+     "flux_over_baryons": 11.400671010253614
+    },
+    "0.3": {
+     "source_switch": 31.84823005340806,
+     "flux_switch": 0.9802985281146283,
+     "flux_over_baryons": 1.0
+    },
+    "1.0": {
+     "source_switch": 103.6050687288602,
+     "flux_switch": 0.994026389421726,
+     "flux_over_baryons": 1.0
+    },
+    "3.0": {
+     "source_switch": 272.609864464288,
+     "flux_switch": 0.9980032084612451,
+     "flux_over_baryons": 1.0
+    }
+   },
+   "inf": {
+    "0.1": {
+     "source_switch": 10.748726212354887,
+     "flux_switch": 10.748726212354887,
+     "flux_over_baryons": 11.403365779853607
+    },
+    "0.3": {
+     "source_switch": 31.919579091689368,
+     "flux_switch": 0.9802985281146283,
+     "flux_over_baryons": 1.0
+    },
+    "1.0": {
+     "source_switch": 105.96261605407435,
+     "flux_switch": 0.994026389421726,
+     "flux_over_baryons": 1.0
+    },
+    "3.0": {
+     "source_switch": 317.5866013531479,
+     "flux_switch": 0.9980032084612451,
+     "flux_over_baryons": 1.0
+    }
+   }
+  },
+  "N2_lagrangian_over_bk1": {
+   "2.0": {
+    "0.1": 0.9965550183435689,
+    "0.3": 0.9820026527314291,
+    "1.0": 0.8912714810305293,
+    "2.6": 0.6508706192868614
+   },
+   "3.0": {
+    "0.1": 0.9979409340579911,
+    "0.3": 0.9905628042321281,
+    "1.0": 0.9386074578747486,
+    "2.6": 0.779245440534315
+   }
+  },
+  "N3": {
+   "resp_BA": -0.04959032182693481,
+   "resp_AB": -0.0495911395072937,
+   "asym": 1.648843658386194e-05,
+   "asym_bk1_form": 0.03268317919005029,
+   "linearity": 0.001976701741751574,
+   "all": {
+    "1e+06|lagr": [
+     -0.04949248993587494,
+     -0.04957706018924713
+    ],
+    "1e+06|bk1": [
+     -0.07341980109834671,
+     -0.0711319651260376
+    ],
+    "1e+04|lagr": [
+     -0.04959032182693481,
+     -0.0495911395072937
+    ],
+    "1e+04|bk1": [
+     -0.07355495781898498,
+     -0.0711509479522705
+    ]
+   },
+   "matrix_asym_construction": 0.0,
+   "matrix_asym_additive": 1.0
+  },
+  "N4": {
+   "dwarf (M_B 1e9, edge 60 kpc)": {
+    "1.0": {
+     "Phi_ph_edge_km2s2": -13036.65741537177,
+     "v_step_kms": 161.47233456770093,
+     "v_flat_kms": 59.374061654015414
+    },
+    "2.0": {
+     "Phi_ph_edge_km2s2": -15477.743560439045,
+     "v_step_kms": 175.9417151242936,
+     "v_flat_kms": 59.374061654015414
+    },
+    "3.0": {
+     "Phi_ph_edge_km2s2": -16906.285944927786,
+     "v_step_kms": 183.8819509627184,
+     "v_flat_kms": 59.374061654015414
+    }
+   },
+   "Milky Way (6e10, 250 kpc)": {
+    "1.0": {
+     "Phi_ph_edge_km2s2": -62053.82654161544,
+     "v_step_kms": 352.28916117761963,
+     "v_flat_kms": 165.2473759056664
+    },
+    "2.0": {
+     "Phi_ph_edge_km2s2": -80786.37720680279,
+     "v_step_kms": 401.9611354516822,
+     "v_flat_kms": 165.2473759056664
+    },
+    "3.0": {
+     "Phi_ph_edge_km2s2": -91811.00984274,
+     "v_step_kms": 428.51139971473333,
+     "v_flat_kms": 165.2473759056664
+    }
+   },
+   "group (1e12, 600 kpc)": {
+    "1.0": {
+     "Phi_ph_edge_km2s2": -158576.73927899674,
+     "v_step_kms": 563.1638114776139,
+     "v_flat_kms": 333.88488512452517
+    },
+    "2.0": {
+     "Phi_ph_edge_km2s2": -232327.13529449198,
+     "v_step_kms": 681.655536608472,
+     "v_flat_kms": 333.88488512452517
+    },
+    "3.0": {
+     "Phi_ph_edge_km2s2": -276656.06670336553,
+     "v_step_kms": 743.8495368061549,
+     "v_flat_kms": 333.88488512452517
+    }
+   },
+   "cluster (1.5e13, 1.8 Mpc)": {
+    "1.0": {
+     "Phi_ph_edge_km2s2": -222422.836201245,
+     "v_step_kms": 666.9675197507671,
+     "v_flat_kms": 657.0820053167104
+    },
+    "2.0": {
+     "Phi_ph_edge_km2s2": -455067.6842351624,
+     "v_step_kms": 954.0101511358906,
+     "v_flat_kms": 657.0820053167104
+    },
+    "3.0": {
+     "Phi_ph_edge_km2s2": -611978.8252824032,
+     "v_step_kms": 1106.3261953713318,
+     "v_flat_kms": 657.0820053167104
+    }
+   }
+  },
+  "N5": {
+   "dwarf (M_B 1e9, edge 60 kpc)": {
+    "density_switch_metric": 8.111238065089943e-08,
+    "density_switch_khronon": [
+     0.0005006937077216013,
+     0.0001035918015975727
+    ],
+    "curvature_switch_metric": 2.287775988275637
+   },
+   "Milky Way (6e10, 250 kpc)": {
+    "density_switch_metric": 4.2336761517060926e-07,
+    "density_switch_khronon": [
+     0.002613380340559316,
+     0.0005406993808053758
+    ],
+    "curvature_switch_metric": 0.6878068029846411
+   },
+   "group (1e12, 600 kpc)": {
+    "density_switch_metric": 1.2175293485095896e-06,
+    "density_switch_khronon": [
+     0.007515613262404873,
+     0.001554954468083767
+    ],
+    "curvature_switch_metric": 0.3434043466840634
+   },
+   "cluster (1.5e13, 1.8 Mpc)": {
+    "density_switch_metric": 2.38481940739421e-06,
+    "density_switch_khronon": [
+     0.01472110745305068,
+     0.0030457463695966924
+    ],
+    "curvature_switch_metric": 0.07473763263632499
+   },
+   "det_tt": "1"
+  },
+  "N6": {
+   "lambda_min_Mpc": 0.5
+  }
+ },
+ "n_checks": 6,
+ "n_fail_load_bearing": 1
+}

@@ -1,0 +1,154 @@
+GP2 -- KiDS-1000 FOR THE GENERATED-PHANTOM CONSTRUCTION: a kernel sourced only by bound baryons (GP1), screened at a
+length lambda, fitted to the isolated-lens lensing profiles of Brouwer+2021 with the committed blind-kernel machinery.
+
+WHY.  Every earlier completion failed KiDS-1000 through the external-field effect (EFE) of the web on each lens:
+C-H/K + switch reads the whole web (+404, BS3), a baryons-only kernel reads the web's gas (+133..+152, BS3; +233..+241,
+L355), and the Yukawa-screened kernel reads the whole web inside lambda (best +7.7 / +8.0 at lambda = 0.7 Mpc, BK1),
+while its growth fails (BK3).  In GP1's construction the kernel's source is the baryons of BOUND regions only; the
+web's gas and the dark component are kernel-invisible, so they neither source the phantom nor feel it.  An isolated
+lens then feels only the field of OTHER bound baryons: the large-scale part is the matter field times beta_B (GP0), the
+discrete part is the pull of individual galaxies, groups and clusters (GP0's Poisson sampler, KiDS-like isolation).
+
+MACHINERY (loaded unedited from real_research/blind_kernel_2026/BK1_screened_kernel.py, everything before its C1):
+the four Brouwer+21 stellar-mass bins with full covariance, the exact stacked-lens QUMOND flux law with L340's
+nu_mono, the screened point-mass law M_dyn = M_b [1 + s (N(s y_N, e) - 1)], s = (1 + r/lambda) e^(-r/lambda), the
+linear screened field outside the 3 Mpc isolation sphere (SIGE), the projected linear 2-halo template with a free
+amplitude b <= 2 per bin, M_b profiled per bin.  The comparator is BK1's: the EFE-free switch fit (lambda = inf,
+e = 0, x_c profiled over 0/3/5/7/10) -- an idealisation, the same for every model here.
+THE PHANTOM'S FORM: the Lagrangian one of GP1 (N2/N3): the action re-screens the phantom's source, rho_ph -> S* rho_ph,
+which BK1's M_dyn = M_b [1 + s (N - 1)] omits (BK1's one-S form is 3% non-reciprocal, GP1 N3); applied here exactly
+for the stacked spherical profile by a closed-form Yukawa shell kernel.  BK1's form is used only to reproduce BK1 (C0)
+and is reported alongside (W6).
+THE CONSTRUCTION'S FIELD: g = g_lin + g_P per lens, g_lin Gaussian with rms beta_B(z_l) x SIGE(lambda) and g_P from
+GP0's Monte Carlo of discrete bound clumps; the stack uses the sampled |g| distribution (not a Maxwellian).  There is
+NO flux switch in the construction (x_c = 0): the source switch keeps the web Newtonian (GP1), so nothing truncates a
+lens's phantom except its own screening and the bound baryons' EFE.
+
+  *** MUTATE=1: the kernel reads the whole matter field (beta = 1, BK1's stack); E2 must FAIL ***
+  BK1 machinery loaded; lambda_min (Sun + SPARC, BK1 C1) = 0.5 Mpc   [4s]
+  comparator (EFE-free switch, x_c profiled) chi^2: canonical 86.6, alt 77.8; isolated MOND (no switch, no EFE) sits at +27.6 / +27.8   [6s]
+
+==============================================================================================================
+C0  CONTROL: the whole matter field in the kernel (BK1's Maxwellian stack) reproduces BK1; GP0's P(k) = BK1's
+==============================================================================================================
+    generalised fitter vs BK1's fit_2h (carrier off): max |Delta chi^2| = 0.0e+00
+    canonical lambda 0.7: +7.7 (BK1 +7.7); canonical lambda inf: +396.3 (BK1 +396.3); alt lambda 0.7: +8.0 (BK1 +8.0); alt lambda inf: +407.8 (BK1 +407.8);  max |P_GP0/P_BK1 - 1| = 9.3e-08
+  [PASS] C0 CONTROL: BK1's no-switch Delta chi^2 reproduced within 0.5 (lambda = 0.7 and inf, both footings), GP0's P(k) = BK1's to 1e-3, and the generalised fitter = BK1's fitter to 1e-6 with the carrier off
+         measured: {'canonical|0.7': 7.72, 'canonical|inf': 396.26, 'alt|0.7': 8.04, 'alt|inf': 407.76, 'pk_dev': '9.3e-08', 'fit_dev': '0.0e+00'}
+
+==============================================================================================================
+E1  THE CONSTRUCTION'S EXTERNAL FIELD AT AN ISOLATED LENS: large-scale bound baryons + discrete clumps (z = 0.25)
+==============================================================================================================
+    stars     (beta_B 0.0089): lam 0.5: med 6.9e-06, rms 7.8e-06; lam 0.7: med 4.0e-05, rms 4.5e-05; lam 1.0: med 1.6e-04, rms 1.8e-04; lam 1.5: med 4.7e-04, rms 5.2e-04; lam 2.0: med 8.3e-04, rms 9.3e-04; lam 3.0: med 1.5e-03, rms 1.7e-03; lam 5.0: med 2.7e-03, rms 3.1e-03; lam 7.0: med 3.6e-03, rms 4.1e-03; lam 10.0: med 4.7e-03, rms 5.3e-03; lam inf: med 1.3e-02, rms 1.5e-02
+    galaxy    (beta_B 0.0130): lam 0.5: med 6.9e-06, rms 7.8e-06; lam 0.7: med 4.0e-05, rms 4.5e-05; lam 1.0: med 1.6e-04, rms 1.8e-04; lam 1.5: med 4.7e-04, rms 5.2e-04; lam 2.0: med 8.3e-04, rms 9.3e-04; lam 3.0: med 1.5e-03, rms 1.7e-03; lam 5.0: med 2.7e-03, rms 3.1e-03; lam 7.0: med 3.6e-03, rms 4.1e-03; lam 10.0: med 4.7e-03, rms 5.3e-03; lam inf: med 1.3e-02, rms 1.5e-02
+    observed  (beta_B 0.0422): lam 0.5: med 6.9e-06, rms 7.8e-06; lam 0.7: med 4.0e-05, rms 4.5e-05; lam 1.0: med 1.6e-04, rms 1.8e-04; lam 1.5: med 4.7e-04, rms 5.2e-04; lam 2.0: med 8.3e-04, rms 9.3e-04; lam 3.0: med 1.5e-03, rms 1.7e-03; lam 5.0: med 2.7e-03, rms 3.1e-03; lam 7.0: med 3.6e-03, rms 4.1e-03; lam 10.0: med 4.7e-03, rms 5.3e-03; lam inf: med 1.3e-02, rms 1.5e-02
+    maximal   (beta_B 0.1063): lam 0.5: med 6.9e-06, rms 7.8e-06; lam 0.7: med 4.0e-05, rms 4.5e-05; lam 1.0: med 1.6e-04, rms 1.8e-04; lam 1.5: med 4.7e-04, rms 5.2e-04; lam 2.0: med 8.3e-04, rms 9.3e-04; lam 3.0: med 1.5e-03, rms 1.7e-03; lam 5.0: med 2.7e-03, rms 3.1e-03; lam 7.0: med 3.6e-03, rms 4.1e-03; lam 10.0: med 4.7e-03, rms 5.3e-03; lam inf: med 1.3e-02, rms 1.5e-02
+  [PASS] E1 (documentary) the construction's field (median / rms, a0 canonical) vs KiDS's single-field bound 7.2e-5 / 5.2e-5
+         measured: {'stars': {'1.0': '1.6e-04/1.8e-04', '2.0': '8.3e-04/9.3e-04', '3.0': '1.5e-03/1.7e-03', 'inf': '1.3e-02/1.5e-02'}, 'galaxy': {'1.0': '1.6e-04/1.8e-04', '2.0': '8.3e-04/9.3e-04', '3.0': '1.5e-03/1.7e-03', 'inf': '1.3e-02/1.5e-02'}, 'observed': {'1.0': '1.6e-04/1.8e-04', '2.0': '8.3e-04/9.3e-04', '3.0': '1.5e-03/1.7e-03', 'inf': '1.3e-02/1.5e-02'}, 'maximal': {'1.0': '1.6e-04/1.8e-04', '2.0': '8.3e-04/9.3e-04', '3.0': '1.5e-03/1.7e-03', 'inf': '1.3e-02/1.5e-02'}}
+  [FAIL] E2 THE SOURCE SWITCH QUIETS THE KERNEL'S EXTERNAL FIELD: observed reading, every lambda <= 2 Mpc, median field below KiDS's single-field bound (each footing's a0)
+         measured: {'canonical': {'0.5': '6.9e-06', '0.7': '4.0e-05', '1.0': '1.6e-04', '1.5': '4.7e-04', '2.0': '8.3e-04'}, 'alt': {'0.5': '5.7e-06', '0.7': '3.4e-05', '1.0': '1.3e-04', '1.5': '3.9e-04', '2.0': '6.9e-04'}}
+         reading:  the kernel that reads the whole matter field exceeds the bound from lambda ~ 0.8 Mpc up (BK1 C2)
+
+==============================================================================================================
+W1-W3  KiDS-1000 WITH THE BOUND-SOURCE KERNEL (no flux switch; 2-halo b <= 2; vs BK1's EFE-free switch comparator)
+==============================================================================================================
+    stars    : lam 0.5: +111.1/+106.3 (<0.3: +3.8/+3.3) | lam 0.7: +49.7/+47.4 (<0.3: +1.9/+1.7) | lam 1.0: +38.4/+41.3 (<0.3: +1.0/+0.9) | lam 1.5: +57.5/+62.1 (<0.3: +0.3/+0.3) | lam 2.0: +79.3/+84.9 (<0.3: -0.7/-1.0) | lam 3.0: +118.9/+126.3 (<0.3: -3.3/-3.7) | lam 5.0: +173.2/+182.0 (<0.3: -4.1/-3.8) | lam 7.0: +207.3/+216.5 (<0.3: -2.2/-1.1) | lam 10.0: +239.9/+249.6 (<0.3: +1.9/+3.7) | lam inf: +396.3/+407.4 (<0.3: +44.7/+48.8)
+    galaxy   : lam 0.5: +111.1/+106.3 (<0.3: +3.8/+3.3) | lam 0.7: +49.7/+47.4 (<0.3: +1.9/+1.7) | lam 1.0: +38.4/+41.3 (<0.3: +1.0/+0.9) | lam 1.5: +57.5/+62.1 (<0.3: +0.3/+0.3) | lam 2.0: +79.3/+84.9 (<0.3: -0.7/-1.0) | lam 3.0: +118.9/+126.3 (<0.3: -3.3/-3.7) | lam 5.0: +173.2/+182.0 (<0.3: -4.1/-3.8) | lam 7.0: +207.3/+216.5 (<0.3: -2.2/-1.1) | lam 10.0: +239.9/+249.6 (<0.3: +1.9/+3.7) | lam inf: +396.3/+407.4 (<0.3: +44.7/+48.8)
+    observed : lam 0.5: +111.1/+106.3 (<0.3: +3.8/+3.3) | lam 0.7: +49.7/+47.4 (<0.3: +1.9/+1.7) | lam 1.0: +38.4/+41.3 (<0.3: +1.0/+0.9) | lam 1.5: +57.5/+62.1 (<0.3: +0.3/+0.3) | lam 2.0: +79.3/+84.9 (<0.3: -0.7/-1.0) | lam 3.0: +118.9/+126.3 (<0.3: -3.3/-3.7) | lam 5.0: +173.2/+182.0 (<0.3: -4.1/-3.8) | lam 7.0: +207.3/+216.5 (<0.3: -2.2/-1.1) | lam 10.0: +239.9/+249.6 (<0.3: +1.9/+3.7) | lam inf: +396.3/+407.4 (<0.3: +44.7/+48.8)
+    maximal  : lam 0.5: +111.1/+106.3 (<0.3: +3.8/+3.3) | lam 0.7: +49.7/+47.4 (<0.3: +1.9/+1.7) | lam 1.0: +38.4/+41.3 (<0.3: +1.0/+0.9) | lam 1.5: +57.5/+62.1 (<0.3: +0.3/+0.3) | lam 2.0: +79.3/+84.9 (<0.3: -0.7/-1.0) | lam 3.0: +118.9/+126.3 (<0.3: -3.3/-3.7) | lam 5.0: +173.2/+182.0 (<0.3: -4.1/-3.8) | lam 7.0: +207.3/+216.5 (<0.3: -2.2/-1.1) | lam 10.0: +239.9/+249.6 (<0.3: +1.9/+3.7) | lam inf: +396.3/+407.4 (<0.3: +44.7/+48.8)
+    observed, BK1's one-S form: lam 0.5: +19.0/+17.3 | lam 0.7: +7.7/+8.0 | lam 1.0: +18.8/+22.4 | lam 1.5: +46.7/+51.1 | lam 2.0: +72.2/+77.9 | lam 3.0: +115.4/+122.8 | lam 5.0: +171.8/+180.7 | lam 7.0: +206.6/+215.9 | lam 10.0: +239.6/+249.3 | lam inf: +396.3/+407.4   [73s]
+  [FAIL] W1 THE WINDOW (observed reading): some lambda >= lambda_min fits KiDS-1000 within Delta chi^2 <= 4 of the comparator, all points AND inside 0.3 Mpc, both footings
+         measured: passing lambda: []
+         reading:  a non-empty window: the kernel blind to the web's gas and dark matter, with a screening length, survives what excluded C-H/K + switch (BS3), the baryons-only kernel (L355) and the all-matter screened kernel (BK1)
+  [PASS] W2 (documentary) the window for the other readings of 'bound'
+         measured: {'stars': [], 'galaxy': [], 'observed': [], 'maximal': []}
+  [PASS] W3 (documentary) no screening (lambda = inf): Delta chi^2 per reading (canonical/alt)
+         measured: {'stars': '+396.3/+407.4', 'galaxy': '+396.3/+407.4', 'observed': '+396.3/+407.4', 'maximal': '+396.3/+407.4'}
+    against L352's acceptance (unswitched isolated MOND + 2-halo base, gate <= +4), observed reading: lam 0.5: +83.5/+78.4, lam 0.7: +22.0/+19.6, lam 1.0: +10.8/+13.5, lam 1.5: +29.9/+34.3, lam 2.0: +51.7/+57.1, lam 3.0: +91.3/+98.4, lam 5.0: +145.5/+154.2, lam 7.0: +179.6/+188.7, lam 10.0: +212.3/+221.8, lam inf: +368.7/+379.6
+  [PASS] W5 (documentary) against L352's acceptance (isolated MOND + 2-halo base; the reference of L352/L359/L360)
+         measured: {'stars': {'1.5': '+29.9/+34.3', '2.0': '+51.7/+57.1', '3.0': '+91.3/+98.4', 'inf': '+368.7/+379.6'}, 'galaxy': {'1.5': '+29.9/+34.3', '2.0': '+51.7/+57.1', '3.0': '+91.3/+98.4', 'inf': '+368.7/+379.6'}, 'observed': {'1.5': '+29.9/+34.3', '2.0': '+51.7/+57.1', '3.0': '+91.3/+98.4', 'inf': '+368.7/+379.6'}, 'maximal': {'1.5': '+29.9/+34.3', '2.0': '+51.7/+57.1', '3.0': '+91.3/+98.4', 'inf': '+368.7/+379.6'}}
+
+==============================================================================================================
+R1  THE PHYSICAL FLOOR: one uniform external field (profiled), no screening; and screening alone (e = 0)
+==============================================================================================================
+    canonical: best uniform e = 1.2e-04 a0 -> Delta chi^2 +8.2 (inside 0.3: +0.0); screening alone: lam 0.7: +20.3, lam 1.0: +19.2, lam 1.5: +22.3, lam 2.0: +24.6, lam 3.0: +26.5
+    alt: best uniform e = 8.4e-05 a0 -> Delta chi^2 +8.3 (inside 0.3: +0.1); screening alone: lam 0.7: +18.9, lam 1.0: +18.4, lam 1.5: +22.0, lam 2.0: +24.3, lam 3.0: +26.4
+  [PASS] R1 (documentary) the physical floor: the best uniform-field QUMOND fit against the (Gauss-forbidden) switch comparator
+         measured: {'canonical': 'e = 1.2e-04: +8.2', 'alt': 'e = 8.4e-05: +8.3'}
+         reading:  no realizable point-mass QUMOND lens tested here reaches W1's <= 4; the construction is measured against this floor
+
+==============================================================================================================
+B1  THE LCDM BENCHMARK on the same data: baryons (Moster+13, M_b = 1.4 M_*) + NFW(M200 free per bin) + 2-halo b <= 2
+==============================================================================================================
+    LCDM chi^2 = 285.7 (all points), 30.2 (inside 0.3 Mpc); log M200 per bin [11.91, 12.24, 12.360000000000001, 12.510000000000002] (Moster+13 hosts [11.62, 11.95, 12.28, 12.74]); b [1.0, 1.54, 2.0, 2.0]
+    switch comparator chi^2 = 86.6 / 77.8;  LCDM - comparator = +199.2 / +208.0
+  [PASS] B1 (documentary) a simple LCDM benchmark (NOT a fair LCDM fit: no M200 scatter, miscentring or splashback)
+         measured: 285.7 (all), 30.2 (<0.3 Mpc); vs switch comparator +199.2
+         reading:  published halo-model fits of these profiles do far better; nothing below is scored against B1
+
+==============================================================================================================
+F1  THE DARK COMPONENT AROUND THE LENS: + the carrier's surviving NFW halo (L355's template), f_s profiled
+==============================================================================================================
+    lambda | best f_s (can/alt) | chi^2 - LCDM (can/alt) | at f_s = 1 (uncleared CDM halo), chi^2 - LCDM
+       0.5 | 0.42 / 0.38        | -111.5 / -117.0      |   -35.9 /   -32.9
+       0.7 | 0.22 / 0.14        | -156.4 / -163.2      |   -42.8 /   -36.9
+       1.0 | 0.10 / 0.03        | -162.0 / -166.8      |   -28.4 /   -21.4
+       1.5 | 0.00 / 0.00        | -141.6 / -145.9      |   -10.2 /    -3.2
+       2.0 | 0.00 / 0.00        | -119.8 / -123.0      |    +1.0 /    +7.4
+       3.0 | 0.00 / 0.00        |  -80.3 /  -81.7      |   +13.4 /   +19.1
+       5.0 | 0.00 / 0.00        |  -26.0 /  -26.0      |   +24.5 /   +29.0
+       7.0 | 0.81 / 0.81        |   +1.8 /   +5.3      |   +29.4 /   +33.2
+      10.0 | 0.83 / 0.83        |  +10.5 /  +13.6      |   +33.3 /   +36.5
+       inf | 0.89 / 0.89        |  +37.1 /  +38.9      |   +46.3 /   +47.9
+  [PASS] F1 (documentary) KiDS on the dark component: best f_s per lambda, and the cost of an uncleared CDM halo (f_s = 1)
+         measured: best f_s at lambda 3: 0.00/0.00; f_s = 1 costs >= -42.8 vs LCDM
+         reading:  the construction's dark component must be mostly absent from galaxy halos -- the carrier's job (L357, L365)
+
+==============================================================================================================
+W4  THE ASSEMBLED CONSTRUCTION (documentary): + the carrier's surviving halo, f_s in [0, 0.5], vs the SAME freedom
+==============================================================================================================
+    lambda | vs switch comparator + f_s (can/alt) | vs uniform-e floor + f_s (can/alt) | f_s (can/alt)
+       0.5 |  +98.5 /  +97.4                     |  +86.1 /  +86.8                   | 0.42 / 0.38
+       0.7 |  +53.6 /  +51.2                     |  +41.2 /  +40.5                   | 0.22 / 0.14
+       1.0 |  +47.9 /  +47.7                     |  +35.5 /  +37.0                   | 0.10 / 0.03
+       1.5 |  +68.3 /  +68.5                     |  +55.9 /  +57.9                   | 0.00 / 0.00
+       2.0 |  +90.1 /  +91.4                     |  +77.7 /  +80.7                   | 0.00 / 0.00
+       3.0 | +129.7 / +132.7                     | +117.3 / +122.1                   | 0.00 / 0.00
+       5.0 | +183.9 / +188.4                     | +171.6 / +177.8                   | 0.00 / 0.00
+       7.0 | +225.6 / +235.1                     | +213.2 / +224.5                   | 0.50 / 0.50
+      10.0 | +243.3 / +252.4                     | +231.0 / +241.7                   | 0.50 / 0.50
+       inf | +310.9 / +318.8                     | +298.5 / +308.2                   | 0.50 / 0.50
+  [PASS] W4 (documentary) the assembled construction against the realizable floor and the comparator, same carrier freedom
+         measured: {'best lambda': 1.0, 'vs floor': '+35.5/+37.0', 'vs comparator': '+47.9/+47.7', 'f_s': '0.10/0.03'}
+
+==============================================================================================================
+I1  INJECTION at W1's best lambda (observed, canonical): does W1's gate pass when the construction is true?
+==============================================================================================================
+    lambda = 1.0: Delta chi^2 per draw [-4.3, -9.7, -8.3, -5.9, -0.4, -13.2, -11.2, -6.9, -5.0, -5.8]; pass fraction 1.00
+  [PASS] I1 when the construction is true W1's gate passes in >= 80% of 10 draws
+         measured: 1.00
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  lambda | observed field med (a0) | kernel alone vs comparator (can/alt) | + carrier halo vs floor+f_s (can/alt), f_s
+     0.5 | 6.9e-06               | +111.1 / +106.3                     |  +86.1 /  +86.8, 0.42
+     0.7 | 4.0e-05               |  +49.7 /  +47.4                     |  +41.2 /  +40.5, 0.22
+     1.0 | 1.6e-04               |  +38.4 /  +41.3                     |  +35.5 /  +37.0, 0.10
+     1.5 | 4.7e-04               |  +57.5 /  +62.1                     |  +55.9 /  +57.9, 0.00
+     2.0 | 8.3e-04               |  +79.3 /  +84.9                     |  +77.7 /  +80.7, 0.00
+     3.0 | 1.5e-03               | +118.9 / +126.3                     | +117.3 / +122.1, 0.00
+     5.0 | 2.7e-03               | +173.2 / +182.0                     | +171.6 / +177.8, 0.00
+     7.0 | 3.6e-03               | +207.3 / +216.5                     | +213.2 / +224.5, 0.50
+    10.0 | 4.7e-03               | +239.9 / +249.6                     | +231.0 / +241.7, 0.50
+     inf | 1.3e-02               | +396.3 / +407.4                     | +298.5 / +308.2, 0.50
+  The realizable floor (R1, one uniform field, no screening): +8.2 / +8.3 against the Gauss-forbidden comparator;
+  isolated MOND +27.6 / +27.8; BK1's all-matter screened kernel +7.7 / +8.0 (lambda 0.7); C-H/K + switch +404 / +415 (BS3);
+  baryons-only kernel +133..+152 (BS3).  W1 window (<= 4 vs the comparator): [].
+  Against L352's acceptance (isolated MOND + 2-halo base, <= +4; the reference of L352/L359/L360), observed reading:
+  lam 0.5: +83.5/+78.4, lam 0.7: +22.0/+19.6, lam 1.0: +10.8/+13.5, lam 1.5: +29.9/+34.3, lam 2.0: +51.7/+57.1, lam 3.0: +91.3/+98.4, lam 5.0: +145.5/+154.2, lam 7.0: +179.6/+188.7, lam 10.0: +212.3/+221.8, lam inf: +368.7/+379.6.
+  Parameter-free variant (galaxy reading: stars + cold gas, no screening): +396.3 / +407.4;
+  stars only: +396.3 / +407.4.
+
+  10/12 checks pass; load-bearing failures: 2; wrote GP2_kids_bound_source_kernel_results_MUTATE.json (91 s)
+rc=1

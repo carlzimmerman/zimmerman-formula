@@ -1,0 +1,65 @@
+GP0 -- THE BOUND-BARYON CENSUS: how much baryonic mass sits in bound regions, and how strongly it is clustered, at the
+epochs the generated-phantom construction is tested (a library for GP2/GP3, runnable on its own).
+
+WHY.  In the generated-phantom construction (GP1) only baryons in bound regions source the MOND kernel.  The external
+field the kernel feels far from a lens is then the field of OTHER bound baryons, whose large-scale part is the matter
+field times
+      beta_B(z) = int n(M) M_B(M) b(M) dM / rho_m      (the bias-weighted bound-baryon fraction of the matter),
+and whose Poisson (shot-noise) part comes from the rare massive objects.  This file computes beta_B and the shot-noise
+field from a standard halo model, for four readings of "bound", so no single guess carries a result.
+
+HALO MODEL.  Eisenstein-Hu no-wiggle P(k) normalised to sigma_8 = 0.8111 (the same formula and normalisation as
+real_research/blind_kernel_2026/BK1, re-derived here and cross-checked by GP2), LCDM growth D(z), Sheth-Tormen 1999
+mass function and peak-background bias (A = 0.3222, a = 0.707, p = 0.3, delta_c = 1.686).
+BOUND BARYONS PER HALO, four readings:
+  stars    M_* from Moster, Naab & White 2013 (eqs. 2, 11-14, as BSX3) for the central, plus satellites,
+           M_*,sat/M_*,cen = min(4, (M/1e13)^0.4) (~0.4 at 1e12, 1 at 1e13, 2.5 at 1e14, 4 in rich clusters);
+  galaxy   stars + cold gas, M_cold = 1.33 (M_HI + M_H2), log(M_HI/M_*) = -0.6 (log M_* - 10) - 0.6, M_H2 = 0.08 M_*
+           (xGASS/xCOLD GASS-like scalings), capped at the halo's cosmic baryon share;
+  observed galaxy + hot gas inside groups and clusters, f_hot(M) = min(1, 0.55 (M/1e14)^0.2) / (1 + (3e12/M)^2) of
+           the cosmic share (X-ray gas fractions: ~0.3 at 1e13, ~0.55 at 1e14, ~0.85 at 1e15);
+  maximal  every baryon inside every halo above 1e8 Msun counted as bound: M_B = f_b M (an upper bound).
+The construction's switch w(x_m) marks as bound the baryons where the local matter density exceeds a virial-like
+threshold (GP1); "observed" is the reading that matches where baryons are seen to sit; "maximal" bounds it from above.
+
+==============================================================================================================
+S1  SHETH-TORMEN SUM RULES
+==============================================================================================================
+    z = 0.0: fraction of matter in halos 1e8-1e16 Msun 0.576; bias-weighted 0.695
+    z = 0.25: fraction of matter in halos 1e8-1e16 Msun 0.548; bias-weighted 0.676
+    z = 1.0: fraction of matter in halos 1e8-1e16 Msun 0.461; bias-weighted 0.615
+    z = 3.0: fraction of matter in halos 1e8-1e16 Msun 0.269; bias-weighted 0.458
+    analytic integrals over nu: int f dnu = 1.0000, int f b dnu = 1.0000
+  [PASS] S1 the Sheth-Tormen implementation integrates to 1 (mass and bias sum rules, within 1%)
+         measured: int f = 1.0000, int f b = 1.0000; resolved fraction (1e8-1e16) at z = 0.25: 0.548 (reported)
+
+==============================================================================================================
+S2  THE STELLAR MASS DENSITY (Moster+13 over the Sheth-Tormen mass function)
+==============================================================================================================
+    Omega_* = 0.0029 (z = 0), 0.0025 (z = 0.25) with satellites; centrals only 0.0018 (z = 0); Chabrier-IMF census 0.0025-0.0035 at z = 0
+  [PASS] S2 (documentary) Omega_* at z = 0 within a factor 1.5 of the census band 0.0025-0.0035
+         measured: 0.0029
+
+==============================================================================================================
+S3  THE BOUND-BARYON AMPLITUDE beta_B(z) = int n M_B b dM / rho_m, FOUR READINGS
+==============================================================================================================
+    stars    : z=0.0: beta 0.0095 (f_B 0.0093, b 1.03)  z=0.25: beta 0.0089 (f_B 0.0079, b 1.12)  z=1.0: beta 0.0081 (f_B 0.0052, b 1.55)  z=3.0: beta 0.0031 (f_B 0.0010, b 3.14)
+    galaxy   : z=0.0: beta 0.0136 (f_B 0.0142, b 0.95)  z=0.25: beta 0.0130 (f_B 0.0128, b 1.02)  z=1.0: beta 0.0130 (f_B 0.0104, b 1.25)  z=3.0: beta 0.0100 (f_B 0.0064, b 1.58)
+    observed : z=0.0: beta 0.0492 (f_B 0.0306, b 1.61)  z=0.25: beta 0.0422 (f_B 0.0253, b 1.67)  z=1.0: beta 0.0266 (f_B 0.0148, b 1.80)  z=3.0: beta 0.0108 (f_B 0.0065, b 1.66)
+    maximal  : z=0.0: beta 0.1093 (f_B 0.0904, b 1.21)  z=0.25: beta 0.1063 (f_B 0.0861, b 1.23)  z=1.0: beta 0.0966 (f_B 0.0724, b 1.33)  z=3.0: beta 0.0719 (f_B 0.0422, b 1.71)
+    (all baryons would give beta = Omega_b/Omega_m = 0.1571; the whole matter field beta = 1)
+  [PASS] S3 (documentary) beta_B at z = 0.25 for the four readings
+         measured: {'stars': 0.0089, 'galaxy': 0.013, 'observed': 0.0422, 'maximal': 0.1063}
+
+==============================================================================================================
+S4  THE POISSON FIELD OF DISCRETE BOUND-BARYON CLUMPS AT AN ISOLATED LENS (z = 0.25; units a0 = 9.3619e-11)
+==============================================================================================================
+    stars    : lam 0.7: med 3.6e-07 rms 9.0e-07; lam 1.0: med 1.0e-06 rms 1.8e-06; lam 1.5: med 2.6e-06 rms 4.1e-06; lam 2.0: med 4.4e-06 rms 6.6e-06; lam 3.0: med 7.3e-06 rms 1.1e-05; lam 5.0: med 1.1e-05 rms 1.6e-05; lam inf: med 2.2e-05 rms 2.7e-05
+    galaxy   : lam 0.7: med 8.2e-07 rms 2.1e-06; lam 1.0: med 1.7e-06 rms 2.9e-06; lam 1.5: med 3.6e-06 rms 5.5e-06; lam 2.0: med 5.5e-06 rms 8.1e-06; lam 3.0: med 9.2e-06 rms 1.3e-05; lam 5.0: med 1.4e-05 rms 1.8e-05; lam inf: med 2.6e-05 rms 3.2e-05
+    observed : lam 0.7: med 8.8e-07 rms 2.1e-06; lam 1.0: med 2.0e-06 rms 7.0e-06; lam 1.5: med 5.0e-06 rms 2.1e-05; lam 2.0: med 8.9e-06 rms 5.1e-05; lam 3.0: med 1.9e-05 rms 9.6e-05; lam 5.0: med 3.9e-05 rms 2.2e-04; lam inf: med 2.0e-04 rms 4.1e-04
+    maximal  : lam 0.7: med 6.6e-06 rms 1.5e-05; lam 1.0: med 1.2e-05 rms 2.3e-05; lam 1.5: med 2.2e-05 rms 5.1e-05; lam 2.0: med 3.3e-05 rms 8.7e-05; lam 3.0: med 5.6e-05 rms 1.6e-04; lam 5.0: med 9.6e-05 rms 2.5e-04; lam inf: med 3.3e-04 rms 5.5e-04
+  [PASS] S4 (documentary) the Poisson field from discrete bound-baryon clumps at isolated lenses (MC median / rms, a0)
+         measured: {'stars': 'inf: 2.2e-05/2.7e-05; 1.5: 2.6e-06/4.1e-06', 'galaxy': 'inf: 2.6e-05/3.2e-05; 1.5: 3.6e-06/5.5e-06', 'observed': 'inf: 2.0e-04/4.1e-04; 1.5: 5.0e-06/2.1e-05', 'maximal': 'inf: 3.3e-04/5.5e-04; 1.5: 2.2e-05/5.1e-05'}
+
+  4/4 checks pass; load-bearing failures: 0; wrote GP0_bound_baryon_census_results.json (4 s)
+rc=0
