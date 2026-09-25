@@ -1,0 +1,54 @@
+==============================================================================
+U01 -- DETERMINISTIC E[D^2]: second-level closure of the moment hierarchy
+==============================================================================
+[1] K05 honesty battery (V1-V3 projectors/geometry; V4 collision quadrature)
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/K05_ray_solver.py:222: RuntimeWarning: divide by zero encountered in matmul
+  KM = Ptbl @ self.Pmat                    # (nn, L+1)
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/K05_ray_solver.py:222: RuntimeWarning: overflow encountered in matmul
+  KM = Ptbl @ self.Pmat                    # (nn, L+1)
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/K05_ray_solver.py:222: RuntimeWarning: invalid value encountered in matmul
+  KM = Ptbl @ self.Pmat                    # (nn, L+1)
+    V1/V2/V3: {'V3_Pmat_const': 0.0, 'V3_Gmat_const': 0.0, 'V3_Pmat_rmu': 0.0, 'V1_80_48_12_24': {'max_field_err': 4.440892098500626e-16, 'E_D': -0.0}, 'V1_160_64_16_32': {'max_field_err': 3.3306690738754696e-16, 'E_D': -1.1102230246251565e-16}, 'V2_80_48_12_24': {'max_field_err': 2.3314683517128287e-15, 'E_D': -4.440892098500626e-16, 'iters': 2, 'gap': 4.4743211457233175e-16}, 'V2_160_64_16_32': {'max_field_err': 5.551115123125783e-16, 'E_D': -5.551115123125783e-17, 'iters': 2, 'gap': 2.2289557263753705e-16}}
+[2] kappa=0 homogeneous (vacuum) limit -- closed-form fields
+    V_Um_80_48_12_24: {'err_F10': 4.440892098500626e-16, 'err_F20': 1.2635530642624015e-13, 'max_F04': 0.0, 'E_D': -0.0, 'E_D2': -2.524647157997606e-13, 'E_v4': 0.0}
+    V_Um_160_64_16_32: {'err_F10': 3.3306690738754696e-16, 'err_F20': 2.974302661801209e-14, 'max_F04': 0.0, 'E_D': -1.1102230246251565e-16, 'E_D2': -5.861977570020827e-14, 'E_v4': 0.0}
+[3] q=0 ladder (tau0=1), E[D^2] vs MC 0.7661 (+-1%)
+  cfg (80, 48, 12, 24) q=0.0: E[D]=0.500000 E[v2]=2.806761 E[Dv2]=3.708930 E[D2]=0.764626 E[v4]=66.7412  iters=[30, 33, 33, 30, 34] (8.1s)
+  cfg (160, 64, 16, 32) q=0.0: E[D]=0.500000 E[v2]=2.806748 E[Dv2]=3.708964 E[D2]=0.764624 E[v4]=66.7405  iters=[30, 33, 33, 30, 34] (35.1s)
+  cfg (240, 80, 20, 40) q=0.0: E[D]=0.500000 E[v2]=2.806745 E[Dv2]=3.708985 E[D2]=0.764624 E[v4]=66.7404  iters=[30, 33, 33, 30, 34] (63.7s)
+[4] q=3 and q=10 (tau0=1): E[D^2] vs MC 3.3724 / 16.2167 (+-1%)
+  cfg (160, 64, 16, 32) q=3.0: E[D]=1.250001 E[v2]=8.739419 E[Dv2]=22.032629 E[D2]=3.366475 E[v4]=487.7485  iters=[77, 87, 90, 80, 96] (49.1s)
+  cfg (240, 80, 20, 40) q=3.0: E[D]=1.250000 E[v2]=8.739314 E[Dv2]=22.032263 E[D2]=3.366455 E[v4]=487.7371  iters=[77, 87, 90, 80, 96] (91.0s)
+  cfg (160, 64, 16, 32) q=10.0: E[D]=3.000008 E[v2]=37.382086 E[Dv2]=191.843168 E[D2]=16.221845 E[v4]=7271.2612  iters=[281, 324, 345, 297, 375] (178.2s)
+  cfg (240, 80, 20, 40) q=10.0: E[D]=3.000002 E[v2]=37.380237 E[Dv2]=191.831841 E[D2]=16.221463 E[v4]=7270.5845  iters=[281, 324, 345, 297, 375] (361.3s)
+[5] kappa-dependence at q=0: E[D^2](tau0) for tau0 = 0.25..4 (fit c2 t^2 + c1 t + c0)
+  tau0=0.25: E[D]=0.12500000 E[D^2]=0.13481380 Var(D)=0.11918880
+  tau0=0.5: E[D]=0.25000000 E[D^2]=0.30658030 Var(D)=0.24408030
+  tau0=1.0: E[D]=0.50000000 E[D^2]=0.76462449 Var(D)=0.51462450
+  tau0=2.0: E[D]=1.00000000 E[D^2]=2.15947572 Var(D)=1.15947572
+  tau0=4.0: E[D]=1.99999999 E[D^2]=6.96485853 Var(D)=2.96485856
+    fit: E[D^2] = 0.33151189 t^2 + 0.41099550 t + 1.60e-02,  max rel resid 3.42e-02
+[6] volume port (q=0), deterministic -- targets E[D]=0.3376, E[D^2]=0.5251, U=1.893
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/U01_ed2_solver.py:207: RuntimeWarning: divide by zero encountered in matmul
+  PVc, _ = self._eval(psi @ op.T, tb)
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/U01_ed2_solver.py:207: RuntimeWarning: overflow encountered in matmul
+  PVc, _ = self._eval(psi @ op.T, tb)
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/U01_ed2_solver.py:207: RuntimeWarning: invalid value encountered in matmul
+  PVc, _ = self._eval(psi @ op.T, tb)
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/U01_ed2_solver.py:192: RuntimeWarning: divide by zero encountered in matmul
+  return psi @ self.Pg.T
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/U01_ed2_solver.py:192: RuntimeWarning: overflow encountered in matmul
+  return psi @ self.Pg.T
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/U01_ed2_solver.py:192: RuntimeWarning: invalid value encountered in matmul
+  return psi @ self.Pg.T
+    (80, 48, 12, 24): E[D]_vol=0.33976 (mc 0.3376), E[D^2]_vol(det+B)=0.52811 (mc 0.5251), U_vol=1.89069 (mc 1.893)
+    M-tensor status: diverged: (1-mu^2)^{-1/2} coordinate singularity in the tangential limit; Ex0uf2 MC-bridged (0.0891); all other volume terms deterministic
+[7] payoff: U, corr(D,ang), slack at full deterministic precision
+    q0: U=1.43475 rho0=0.89928 rhoP=0.84787 slack=1.23653 (mc 1.243)  slack*rho0^2=1.000e+00  slack*rhoP^2=0.8889  E[D2]%vs mc=-0.193
+    q3: U=1.07449 rho0=0.94176 rhoP=0.89077 slack=1.12751 (mc 1.1322)  slack*rho0^2=1.000e+00  slack*rhoP^2=0.8946  E[D2]%vs mc=-0.176
+    q10: U=0.89576 rho0=0.96750 rhoP=0.92570 slack=1.06831 (mc 1.0701)  slack*rho0^2=1.000e+00  slack*rhoP^2=0.9155  E[D2]%vs mc=0.029
+[8] MC re-verification: E[D^2] and D = tau - Q bookkeeping
+    {'n': 400000, 'E_D2': 0.7697175857232128, 'sE_D2': 0.003293293846220697, 'E_D': 0.5001452236667498, 'U': 1.4412087365909019, 'refs': {'E_D2': 0.7661, 'E_D': 0.5, 'U': 1.437}}
+    {'max_abs_Q_minus_X': 6.661338147750939e-16, 'E_D_from_tau_Q': 0.4999863513223638, 'E_tau': 1.4031543100231232, 'E_Q': 0.9031679587007594}
+==============================================================================
+total wall 1046.0s; U01_results.json written

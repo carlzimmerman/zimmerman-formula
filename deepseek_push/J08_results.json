@@ -1,0 +1,108 @@
+{
+  "record": "J08_SPINE_RECORD",
+  "date": "2026-09-25",
+  "purpose": "Close K01 finding F6 (J08 ABSENT) by recording the chi2_1 spine under its own identity. Pure record-of-record consolidation: no new physics claims, zero discovery weight claimed. No git commit.",
+  "definition": {
+    "statement": "W := v^2/(2 ang) | (D, ang) ~ chi2_1 -- W is INDEPENDENT of the whole path geometry (D, ang).",
+    "source": "deepseek_push/J09_two_component_law.py:8-22 (docstring, verbatim)",
+    "consequences": {
+      "A_hierarchy": "E[D v^{2m}] = (2m-1)!! 2^m E[D ang^m] for every m (tested m=1..5; 7!!=105, 9!!=945)",
+      "B_per_bin": "kurt(v|D) = 3 E[ang^2|D] / E[ang|D]^2 >= 3 (scale-mixture law; NOT '= 3' -- K01 F2 correction)",
+      "C_atom": "P(D=0, v=0) = A = exp(-tau0 (1+q/3)) (central source); -ln A / E[D] = (1+q/3)/(1/2+q/4) in [4/3, 2] for kappa = tau0(1+qr^2) (K01 F3 re-scope; generalized in J09P)"
+    }
+  },
+  "classification": {
+    "family": "K01 CLASS (A) -- LABEL-ONLY consistency family",
+    "basis": "v|traj ~ N(0, 2 ang) is the engine's own kick-generation rule (Gaussian kicks, J02_moment_hierarchy.py:112); W|traj ~ chi2_1 for every trajectory is a two-line tower-property restatement of that model input.",
+    "discovery_weight": 0,
+    "promotion_status": "NOT promoted. Per K01_TAUTOLOGY_AUDIT.md:246-248 (J09-A/J09-B/J09-C label-only), 256 (J08 'nothing can be audited or promoted'), 258-263 (bottom line).",
+    "roles": "Kept on record as the spine on which the (B)/(C) joint-law content (J01-C3, J02-B/C, J05-F2/F3, J07-E) hangs."
+  },
+  "evidence_trace": {
+    "spine_definition_and_checks_code": [
+      "deepseek_push/J09_two_component_law.py:8-22  (J09 theorem statement; header 'Follow-on to J08 (chi2_1 spine)')",
+      "deepseek_push/J09_two_component_law.py:24-28 (check roster A1-A5/B1-B3/C1-C3)",
+      "deepseek_push/J02_moment_hierarchy.py:60-119 (simulate engine; Gaussian kick at line 112)",
+      "deepseek_push/J09c_tail_audit.py:4-7, 39-49 (tail-collapse audit; cites 'chi2_1 spine confirmed distributionally in J08 by KS <= 0.002 in every D-bin')"
+    ],
+    "per_Dbin_KS_evidence": {
+      "note": "The ORIGINAL J08 per-D-bin KS p-value table (every D-bin, every cloud) was NEVER recorded on disk -- J08 has no files (K01 F6, K01_TAUTOLOGY_AUDIT.md:209-213). The J09c citation 'KS <= 0.002 in every D-bin, every cloud' has no backing numbers anywhere in the repo. The recorded per-D-bin spine evidence on disk is:",
+      "recorded_per_bin": [
+        "deepseek_push/J09_two_component_law.py:97-126 (B-check code: per-D-bin kurtosis vs scale-mixture law)",
+        "deepseek_push/J09_two_component_law.out:158-169 (B_central_q0: kurt 4.34396/3.93587 vs pred 4.34851/3.91078, n=75816/bin)",
+        "deepseek_push/J09_two_component_law.out:170-181 (B_central_q10: kurt 3.47460/3.34770 vs pred 3.48427/3.35690, n=118431/bin)",
+        "deepseek_push/J09_two_component_law.out:182-193 (B_volume_q0: kurt 4.33031/3.93391 vs pred 4.27403/3.95593, n=56746/bin)",
+        "deepseek_push/J08_spine_recheck.py + J08_spine_recheck.out + this file's 'recheck' (LIVE: per-D-bin KS vs chi2_1 at n=2e6, central q=0, 8 bins)"
+      ]
+    },
+    "atom_mass_A": [
+      "deepseek_push/J09_two_component_law.py:128-142 (C-check code, C_atom_* tolerance |A-predA| < 0.005)",
+      "deepseek_push/J09_two_component_law.out:194-200 (C_1.0_0.0: A=0.36825833 vs pred exp(-1)=0.36787944, resid +3.789e-4, rel +0.103%)",
+      "deepseek_push/J09_two_component_law.out:201-207 (C_1.0_10.0: A=0.013205 vs pred 0.0131237, resid +8.127e-5, rel +0.619%)",
+      "deepseek_push/J09_two_component_law.out:208-214 (C_2.0_3.0: A=0.018405 vs pred 0.0183156, resid +8.936e-5, rel +0.488%)"
+    ],
+    "hierarchy_m1_5": [
+      "deepseek_push/J09_two_component_law.py:49-95 (A-check code: m<=2 strict |ratio-1|<0.05; m=3..5 budget = 3 x 10-split subsample SE, code lines 75-91; measured rel SE 19%/39%/75% at m=3/4/5 per docstring lines 51-52)",
+      "deepseek_push/J09_two_component_law.out:32-73 (A_central_q0 ratios m1..m5: 1.0003, 0.9867, 0.9430, 0.8737, 0.7812; half-splits per m)",
+      "deepseek_push/J09_two_component_law.out:74-115 (A_central_q10: 0.9967, 0.9967, 0.9787, 0.9035, 0.7444)",
+      "deepseek_push/J09_two_component_law.out:116-157 (A_volume_q0: 0.9945, 0.9858, 0.9518, 0.8618, 0.6992)",
+      "deepseek_push/K01_J09_RERUN.out (pre-correction re-run: 19/20, A5_volume FAIL 0.6992 half [0.746, 0.648] -- the run that exposed the m>=4 tail budgets)"
+    ],
+    "verdicts": [
+      "deepseek_push/K01_TAUTOLOGY_AUDIT.md:148-169 (J09-A verdict: CLASS (A), label-only, 'unverified as recorded' at audit time)",
+      "deepseek_push/K01_TAUTOLOGY_AUDIT.md:171-181 (J09-B verdict: '= 3' headline false; >= 3 mixture law holds)",
+      "deepseek_push/K01_TAUTOLOGY_AUDIT.md:183-190 (J09-C verdict: label-only, definitional; re-run passes)",
+      "deepseek_push/K01_TAUTOLOGY_AUDIT.md:192-207 (J09-D verdict: conditional real content; universality re-scoped)",
+      "deepseek_push/K01_TAUTOLOGY_AUDIT.md:209-213 (J08 -- ABSENT; the gap this record closes)",
+      "deepseek_push/K01_TAUTOLOGY_AUDIT.md:246-256 (NO-GO-as-recorded list incl. J08)",
+      "deepseek_push/K01_TAUTOLOGY_AUDIT.md:265-289 (Appendix R: independent re-run 19/20; tail-budget miscalibration (2m-3)!! vs (2m-1)!!)",
+      "deepseek_push/J09P_GENERALIZED_P_VERDICT.md (K01 F3 fix landed: 21/21, p-family window (p+2)/(p+1); J09 window = p=2 case)"
+    ]
+  },
+  "verification_history": [
+    { "step": 1, "label": "J09 ORIGINAL RUN", "when": "2026-09-23 (pre-audit)", "detail": "Docstring-claimed 27/27; per K01 F1 the recorded J09_two_component_law.out was 0 bytes -- no captured results existed anywhere. Nothing was verifiable as recorded.", "ref": "K01_TAUTOLOGY_AUDIT.md:150-155" },
+    { "step": 2, "label": "K01 INDEPENDENT RERUN", "when": "2026-09-23 16:24", "detail": "Pre-correction script re-run: 19/20 -- A5_volume FAILS (0.6992, half [0.746, 0.648]); m=3..5 ratios sink below 1 for both sources; per-bin kurtoses 3.35-4.33 vs mixture-law preds (to <0.06), refuting the '= 3' headline; tail budget miscalibrated ((2m-3)!! products instead of (2m-1)!! moment). Exposed the m>=4 subsample-SE budgets as the required fix.", "ref": "K01_J09_RERUN.out; K01_TAUTOLOGY_AUDIT.md:265-289" },
+    { "step": 3, "label": "J09 FINAL CORRECTED RUN", "when": "2026-09-23 16:44-16:45", "detail": "Corrected script (3 x 10-split subsample-SE budget for m=3..5; 10-split SE measured 19%/39%/75% rel at m=3/4/5; 'kurtosis >= 3 mixture law' headline) captured to disk: 27/27 checks ALL_PASSED, exit 0. Atom/window checks: 2.0022/1.4413/1.5980 vs exact 2.0/1.4444/1.6, inside [4/3, 2].", "ref": "deepseek_push/J09_two_component_law.py; J09_two_component_law.out:216-221" },
+    { "step": 4, "label": "J09P RERECOPED WINDOW", "when": "2026-09-23 17:02-17:28", "detail": "K01 F3 fix: generalized-p window (1+q/(p+1))/(1/2+q/(p+2)), limit (p+2)/(p+1); 21/21 ALL_PASSED on an independent sampler.", "ref": "deepseek_push/J09P_GENERALIZED_P_VERDICT.md" },
+    { "step": 5, "label": "THIS RECORD + LIVE RE-CHECK", "when": "2026-09-25", "detail": "J08_SPINE_RECORD.md + J08_results.json written; single allowed live leg (n=2e6 W-KS in 8 D-bins, central q=0) executed and captured in J08_spine_recheck.out.", "ref": "J08_spine_recheck.py/.out; this file" }
+  ],
+  "recheck": {
+    "desc": "Single allowed live leg certifying the record is live. Heavy legs (n=6e5 totals) NOT recomputed.",
+    "params": { "n": 2000000, "cloud": "central", "tau0": 1.0, "q": 0.0, "seed": 20260925, "bins": 8, "continuous_part_only": "ang > 0 (atom spike excluded, same convention as J09 B-check)", "null": "chi2_1 CDF = erf(sqrt(x/2))", "threshold_cited": "KS <= 0.002 per bin (J09c citation, J09c_tail_audit.py:7)" },
+    "bins": [
+      { "bin": 0, "lo": 0.0, "hi": 0.0814, "n": 158175, "ks": 0.001991, "p": 0.55715, "mean_W": 0.9967, "at_0002_threshold": true },
+      { "bin": 1, "lo": 0.0814, "hi": 0.2081, "n": 158175, "ks": 0.002189, "p": 0.434233, "mean_W": 0.9969, "at_0002_threshold": false },
+      { "bin": 2, "lo": 0.2081, "hi": 0.3723, "n": 158175, "ks": 0.003011, "p": 0.113343, "mean_W": 1.0039, "at_0002_threshold": false },
+      { "bin": 3, "lo": 0.3723, "hi": 0.5765, "n": 158175, "ks": 0.003771, "p": 0.022191, "mean_W": 0.993, "at_0002_threshold": false },
+      { "bin": 4, "lo": 0.5765, "hi": 0.8279, "n": 158175, "ks": 0.001636, "p": 0.790979, "mean_W": 1.0012, "at_0002_threshold": true },
+      { "bin": 5, "lo": 0.8279, "hi": 1.1519, "n": 158175, "ks": 0.002342, "p": 0.350385, "mean_W": 1.0009, "at_0002_threshold": false },
+      { "bin": 6, "lo": 1.1519, "hi": 1.6457, "n": 158175, "ks": 0.001636, "p": 0.790719, "mean_W": 1.003, "at_0002_threshold": true },
+      { "bin": 7, "lo": 1.6457, "hi": null, "n": 158176, "ks": 0.004616, "p": 0.002357, "mean_W": 1.0136, "at_0002_threshold": false }
+    ],
+    "overall": { "ks": 0.000627, "p": 0.702845, "mean_W": 1.0011, "se_W": 0.0013, "n_cont": 1265401, "n_atom": 734599, "A": 0.3673, "pred_A": 0.367879, "resid_A": -0.00058, "resid_A_sigma_approx": 1.7 },
+    "interpretation": "W|traj ~ chi2_1 is exact BY CONSTRUCTION (Gaussian kicks; J02_moment_hierarchy.py:112), so per-bin KS scatter is Monte Carlo noise, not law signal. At n=158175/bin the median null KS is 0.00218 (0.868/sqrt(n)) -- the cited <=0.002 bound sits at the null median, so 3/8 bins meeting it and 5/8 exceeding it is binomial-consistent (P(>=5 of 8) = 36%). The p-value battery is uniform-compatible: 2/8 bins with p<0.05 (P(>=2 of 8) ~= 5.7% under null), min p = 0.0024 (P ~= 1.9% under null). Overall continuous-part KS = 0.000627 (p = 0.70), mean W = 1.0011 +/- 0.0013. KS p-value implementation validated: p(D=0.8274/sqrt(n)) = 0.4999, p(D=1.358/sqrt(n)) = 0.0499, simulated-null p-mean 0.525 / frac<0.05 = 0.035.",
+    "verdict": "LIVE-COMPATIBLE"
+  },
+  "open_items": [
+    "Per-D-bin chi2_1 KS p-value tables for the OTHER clouds (central q=10, volume q=0) were never recorded anywhere on disk -- the only on-disk per-bin records for those clouds are the J09 B-check kurtoses (J09_two_component_law.out:170-193). The J09c sentence 'KS <= 0.002 ... every D-bin, every cloud' is an unbacked citation; it is NOT reproduced here. A per-cloud KS table for those clouds would be a future run, not claimed here.",
+    "J09c_tail_audit.py's own output (pure chi2_1 shortfall table at n=6e5) was never captured (.out absent); its textual claims are cited as script content only, not recorded numbers.",
+    "Per-bin mean-W of bin 7 (large-D tail) = 1.0136 (+3.8 sigma vs 0.00356 slip SE) -- largest fluctuation of the battery; consistent with noise given 8 independent bins and the exact-by-construction status, but flagged for completeness."
+  ],
+  "closure": "K01 F6 'nothing can be promoted until the J08 record exists' -- CLOSED as of 2026-09-25: the J08 identity, evidence trace (file:line), honest LABEL-ONLY classification, and verification history are on disk (deepseek_push/J08_SPINE_RECORD.md, this file, J08_spine_recheck.py/.out). The spine itself remains label-only per K01 section 3 and is NOT promoted.",
+  "checks": [
+    "J08_SPINE_RECORD.md written: definition, evidence trace, LABEL-ONLY classification, verification history, open items",
+    "J08_results.json written: live re-check table + trace list",
+    "Live re-check executed and captured: n=2e6, central q=0, W KS in 8 D-bins; overall KS 0.000627 (p=0.70); per-bin p 0.002-0.79, null-compatible",
+    "Atom-mass leg traced, NOT recomputed (existing n=6e5 totals): residuals +3.8e-4 / +8.1e-5 / +8.9e-5 (rel 0.10%/0.62%/0.49%)",
+    "Hierarchy m=1..5 traced, NOT recomputed: ratios with subsample-SE budgets per J09 lines 75-91; K01 re-run exposure documented",
+    "J08 original per-cloud KS table absence stated as an open item (not papered over)",
+    "No git commit"
+  ],
+  "files_written": [
+    "deepseek_push/J08_SPINE_RECORD.md",
+    "deepseek_push/J08_results.json",
+    "deepseek_push/J08_spine_recheck.py",
+    "deepseek_push/J08_spine_recheck.out"
+  ],
+  "verdict": "CLOSED"
+}
