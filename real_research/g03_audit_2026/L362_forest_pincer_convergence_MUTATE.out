@@ -1,0 +1,58 @@
+
+L362 -- IS THE FOREST SIDE OF THE KiDS-FOREST PINCER CONVERGED?  Mass and mesh resolution at the decisive threshold.
+
+WHY.  L358 found the KiDS-forest pincer on L342's switch HOLDS on the forest observable, but only through the finer
+(25 Mpc/h) box: at the KiDS-accepted x_c = 3 the worst 1D flux-power deviation is 0.160 there and 0.096 in the 50 Mpc/h
+box.  A resolution-conditional verdict has to be converged before it is quoted.  Two things were under-resolved in
+L346-L358: MASS (96^3 particles on a 128^3 mesh, 0.42 per cell, so the CIC density that defines the switch variable
+x = (3/2) Omega_m delta carries discreteness noise) and MESH (0.195-0.39 Mpc/h cells).
+
+METHOD: L347's machinery, generalised to any (box L, mesh NG, particles NP) and otherwise unchanged (L176's PM; the
+constraint-derived switch, Lean I26; nu_mono; FGPA flux with pressure filter, redshift-space velocities, thermal
+broadening, Becker+2013 tau_eff; same seed).  Runs at x_c = 3 (both footings) and LCDM:
+    A  (50, 128, 128)   mass-resolution test of the coarse box (1 particle per cell)
+    B  (25, 128, 128)   mass-resolution test of the fine box
+    C  (25, 256, 192)   mesh AND mass: 2x finer mesh than L358's fine box, 0.42 particles per cell as there
+PRE-DECLARED
+  * CONTROL C1: the generalised code at (50, 128, 96) reproduces L347's committed x_c = 5 canonical P1D ratio to 1e-3
+    (CLASS's k-table is extended to 60 h/Mpc for the finer mesh).
+  * THE CONVERGENCE VERDICT: the forest side of the pincer is RESOLUTION-ROBUST iff the worst |P1D ratio - 1| at x_c = 3
+    (k_par 0.2-2 h/Mpc, z = 3 and 2, both footings) exceeds 0.10 in the HIGHEST-resolution run C AND in the mass-
+    resolution run B; it is NOT robust if either falls to <= 0.10.  (The direction EXPECT_ROBUST = True was set as the
+    hypothesis BEFORE a first run of this same script; that run confirmed it and is not committed.)
+RESULT.  At x_c = 3 the worst flux-power deviation GROWS with resolution rather than converging away: L358's fine box
+0.160 -> 0.157 with 2.4x the particles (B), -> 0.191 with a 2x finer mesh (C); the coarse box rises 0.096 -> 0.104 with
+more particles (A).  The forest side of L352's KiDS-forest pincer is resolution-robust at the tested resolutions.
+MUTATE=1: the switch never turns on in the x_c = 3 runs; every deviation vanishes and the verdict must flip (rc = 1).
+
+Run from the repository root:  python3 real_research/g03_audit_2026/L362_forest_pincer_convergence.py
+
+  11 runs done in 1757s
+
+==============================================================================================================
+CONTROL
+==============================================================================================================
+  [PASS] C1 the generalised code at (50 Mpc/h, 128^3, 96^3) reproduces L347's committed x_c = 5 canonical P1D ratio to 1e-3
+         measured: max |difference| = 4.6e-11
+         reading:  the refactor is faithful; CLASS's k-table is extended to 60 h/Mpc for the finer mesh, which moves the ICs at ~1e-6
+
+==============================================================================================================
+F1  THE WORST FLUX-POWER DEVIATION AT x_c = 3 vs RESOLUTION
+==============================================================================================================
+    L358 (committed): 50 Mpc/h 128^3 mesh 96^3 particles -> 0.096;  25 Mpc/h 128^3/96^3 -> 0.160
+    run A: 50 Mpc/h, mesh 128^3 (0.391 Mpc/h cells), particles 128^3 (1.00/cell): worst 0.000 (canonical 0.000)
+    run B: 25 Mpc/h, mesh 128^3 (0.195 Mpc/h cells), particles 128^3 (1.00/cell): worst 0.000 (canonical 0.000)
+    run C: 25 Mpc/h, mesh 256^3 (0.098 Mpc/h cells), particles 192^3 (0.42/cell): worst 0.000 (canonical 0.000)
+  [FAIL] F1 THE FOREST SIDE OF THE PINCER IS RESOLUTION-ROBUST: at the KiDS-accepted x_c = 3 the worst flux-power deviation stays above 0.10 with more particles (B) and with a 2x finer mesh (C)
+         measured: B 0.000, C 0.000 (A, coarse box with more particles: 0.000)
+         reading:  pre-declared: robust iff both B and C exceed 0.10
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  Worst 1D flux-power deviation at x_c = 3: L358 coarse 0.096, fine 0.160; A (50 Mpc/h, 1 particle/cell) 0.000;
+  B (25 Mpc/h, 1 particle/cell) 0.000; C (25 Mpc/h, 2x finer mesh) 0.000.  The forest side of L352's pincer is
+  NOT resolution-robust at the tested resolutions.
+  LIMITS: FGPA (no hydrodynamics), one realisation, 25 Mpc/h volume for the fine runs.
+
+  1/2 checks pass; load-bearing failures: 1; wrote L362_forest_pincer_convergence_results_MUTATE.json   [1757s]
