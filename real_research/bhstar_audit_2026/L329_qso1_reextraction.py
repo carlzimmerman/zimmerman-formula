@@ -22,9 +22,9 @@ WHAT IS CHECKED (both directions):
       2 pc bound, sigma_0 -> 0), so the "mass" (~10^8) is set by the core line WIDTH under a thin-disk assumption, not by
       resolved rotation.  (One rival run stuck 95 above its sibling: a search failure, recorded, not scored.)
   X5  NO resolved velocity gradient across the core (the published product shows ~10 km/s).
-  X6  (reported) the spectroastrometric red-blue centroid separation at |v| ~ 50 km/s: published product vs V1/V2, with
-      the real-noise floor.  CAVEAT: V1/V2 keep the extended intermediate (outflow) emission, which DILUTES a narrow-line
-      shift -- a spectral narrow/intermediate split is the fair comparison (next lane), so X6 is not scored.
+  X6  the spectroastrometric red-blue centroid separation at |v| ~ 50 km/s with REAL-noise errors, on the clean cube
+      after a spectral narrow/intermediate split (qso1_refit/narrow_split.py -- the fair test), on the clean cube with
+      the intermediate kept, and on the released product.
 Verdict fixed in advance of X6: QSO1 stays UNDECIDED for the framework (L324) unless X4/X5 show resolved rotation.
 
 Run from the repository root:  python3 real_research/bhstar_audit_2026/L329_qso1_reextraction.py
@@ -155,14 +155,18 @@ OUT["numbers"]["X5"] = {"grad_kms_per_arcsec": grad, "err": egrad, "across_0p2":
 check("X5 NO resolved velocity gradient across the core of the clean cube (< 2 sigma)",
       f"{grad * 0.2:.1f} +/- {egrad * 0.2:.1f} km/s across 0.2 arcsec (3x3-px bins, errors x1.77 for the real-noise excess)",
       grad < 2 * egrad, "the resolved rotation that a dynamical mass needs is not detected once the artifact is removed")
-sa = json.load(open("spectroastrometry_check.json"))
-OUT["numbers"]["X6"] = sa
-check("X6 (reported, NOT scored) spectroastrometric red-blue separation at |v| ~ 50 km/s",
-      "; ".join(f"{k.split('.')[0]}: {x['sep_arcsec']*1000:.1f} mas (noise-added median {x['sep_noise_median']*1000:.1f})"
-                for k, x in sa.items()), True,
-      "the released product's ~9 mas shift is not reproduced in the clean cube (3.5-4.2 mas, at the ~5 mas noise floor); "
-      "but V1/V2 keep the extended intermediate emission, which dilutes a narrow-line shift: a spectral narrow/intermediate "
-      "split is the fair test (next)", load_bearing=False)
+ns = json.load(open("narrow_split.json"))
+OUT["numbers"]["X6"] = ns
+sigs = {k: ns[k]["significance"] for k in ("V2_narrow_split", "V2_with_intermediate", "published_product")}
+check("X6 with REAL-noise errors no version of the public data shows a spectroastrometric red-blue shift >= 3 sigma "
+      "(this lane's centroid estimator; qso1_refit/narrow_split.py)",
+      "; ".join(f"{k}: {ns[k]['sep_arcsec']*1000:.1f} +/- {ns[k]['sigma_per_axis_arcsec']*1000:.1f} mas ({v_:.1f} sigma)"
+                for k, v_ in sigs.items()) + f"; narrow line unresolved by the LSF (fitted sigma {ns['global']['narrow']['sigma']:.1f})",
+      max(sigs.values()) < 3.0,
+      "the narrow/intermediate split (the fair test) gives 1.5 sigma; the released product 1.9 sigma (the paper quotes "
+      "24.9 +/- 9.4 pc ~ 2.6 sigma with a smaller error model: the resampled cube's noise is correlated and x1.6 above ERR). "
+      "A simpler estimator than the paper's, so NOT a refutation -- but the public data do not independently support a "
+      "significant spectroastrometric detection")
 
 lb = [c for c in CH if c[2]]
 npass = sum(1 for c in lb if c[1])
@@ -172,8 +176,9 @@ P("""  * The PSF-consistent re-extraction works: its core matches the PSF, the t
   * On the clean cube the narrow/extended emission is essentially UNRESOLVED: thin-disk fits collapse to a ~2 pc disk
     whose ~10^8 'mass' is the core line width, and no resolved velocity gradient is detected.  The laws tie.
   * QSO1 therefore stays UNDECIDED for the framework (L324): the public data do not resolve rotation anywhere near the
-    radii (r_M ~ 270 pc) where the laws differ.  The published dynamical mass rests on sub-PSF information from the
-    artifact-affected product; whether its spectroastrometric shift survives a spectral narrow/intermediate split is open.""")
+    radii (r_M ~ 270 pc) where the laws differ.  With real-noise errors no version of the public data shows a
+    spectroastrometric shift above 2 sigma (narrow split 1.5, released product 1.9): the direct dynamical mass is not
+    robustly recoverable from the public data (a statement about the public data and this estimator, not a refutation).""")
 OUT["verdict"] = {"load_bearing_pass": npass, "load_bearing_total": len(lb)}
 suffix = "_MUTATE" if MUTATE else ""
 with open(os.path.join(HERE, f"{SLUG}_results{suffix}.json"), "w") as f:

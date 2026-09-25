@@ -248,3 +248,21 @@ V1 raw s(v); V2 a smooth broad template (σ ≥ 250 km/s); V3 = V2 with the lite
   test.
 * **Standing:** QSO1 stays UNDECIDED for the framework (L324). The public data do not resolve rotation anywhere near
   r_M ≈ 270 pc, and the published dynamical mass rests on sub-PSF information from the artifact-affected product.
+* **Addendum, the fair spectroastrometry test** (`qso1_refit/narrow_split.py`; L329 X6, now scored):
+  - Method: a spectral narrow/intermediate split of the clean cube, using linear per-spaxel templates (narrow +
+    its velocity derivative + intermediate), removing only the intermediate.
+  - The narrow line is unresolved by the LSF (fitted σ → 0); the intermediate has σ ≈ 390 km/s.
+  - With REAL-noise errors (line-free blocks of the same cube), the red–blue separations at |v| ≈ 50 km/s are:
+
+    | cube | separation | significance |
+    |---|---|---|
+    | clean, narrow split | 15.0 ± 10.1 mas | 1.5σ |
+    | clean, intermediate kept | 4.5 ± 2.7 mas | 1.7σ |
+    | released product | 9.3 ± 4.8 mas | 1.9σ |
+
+  - The paper quotes 24.9 ± 9.4 pc (~2.6σ) with a smaller error model; the resampled cube's noise is correlated and
+    ×1.6 above ERR.
+  - This estimator is simpler than the paper's, so this is NOT a refutation. But the public data do not independently
+    support a significant spectroastrometric detection, and together with no resolved rotation, **the direct
+    dynamical mass is not robustly recoverable from the public data**.
+  - QSO1 stays UNDECIDED for the framework.
