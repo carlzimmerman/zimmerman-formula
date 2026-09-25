@@ -97,3 +97,23 @@ K3b, K4a, K4b FAIL as required.  Lanes re-run: python3 BSK2_frw_dust_sigma8.py.
 Both lanes find strong suppression. The size depends on the khronon's history before the turning point.
 
 **Limits.** Linear theory. For B, the early epoch starts inside the integration window, so its suppression is a lower bound. The full static profile with the μ² term is not redone here; Mistele, McGaugh & Hossenfelder (2023) did it for AeST's identical static equation.
+
+## BSX2 — the repair: a cubic, one-scale khronon (separate lane, separate session; PAPER33)
+
+`BSX2_cubic_one_scale_khronon.py` checks 3/3. Its MUTATE=1 control restores the quadratic term at the same late Jeans length, and X1 and X2 then fail, rc=1.
+
+The construction is K(Q) = (2M²/3)(Q−1)³, i.e. no quadratic term, with a one-scale J = Λ j(Y/Λ).
+
+- **X1 (galaxies).** The cubic K is 1PN in galaxies, so the statics are pure AQUAL with no mass term and no r_C.
+- **X2 (cosmology).** For late Jeans lengths of 0.3–3 kpc:
+  - σ₈ = 0.811;
+  - forest-scale power (z = 3, k = 1–10 h/Mpc) within 2% of ΛCDM;
+  - the web field in the MOND function ≤ 1.5e-7 a₀;
+  - early w ≤ 4e-6.
+
+  From 10 kpc upward the forest proxy fails.
+- **X3 (the relation).** With a one-scale J, a₀ = κ c √(Gρ_Λ) with κ = 2√(8π)/(3β). κ = ½ corresponds to β = 4√(8π)/3 and gives a₀ = 9.35e-11 from Planck's Λ. κ is not derived.
+- **Open:**
+  - the conserved phantom's mass budget at Mpc radii (see BSK3 above);
+  - the stability of the GR-recovery tail (BSK1 M5);
+  - the cubic term's strong coupling.

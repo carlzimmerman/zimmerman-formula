@@ -1,0 +1,173 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\def\UrlBreaks{\do\/\do\_\do-}
+\setlist{nosep,leftmargin=1.3em}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\sloppy
+\newcommand{\fpath}[1]{\nolinkurl{#1}}
+\begin{document}
+
+\begin{center}
+{\Large\bfseries The Khronon Route: the Blanchet--Skordis Theory Through Two Gates, and a Cubic, One-Scale Khronon That Passes Them}\\[6pt]
+{\small Carl P. Zimmerman (Briar Creek Tech) --- 2026-09-25 --- AI-assisted research programme; not peer reviewed; nothing here is claimed closed.}
+\end{center}
+
+\begin{abstract}
+\noindent PAPER32 closed the programme's filtered-khronon completion on cosmology and named one open door: a khronon sector that is itself the dark fluid, as in the theory of Blanchet \& Skordis (JCAP 11 (2024) 040). We run that theory through the same two gates, using its own equations, and then repair it.
+\emph{Moving source (passed).} Its phantom is a conserved fluid carried by the aether, and a galaxy moving uniformly with its phantom is an exact post-Newtonian solution. The costs are that the phantom is assembled rather than generated, that it follows a change of velocity only inside $r\approx 2GM_b/\Delta u^2$, and that the static halo is stable only for a monotone phantom law.
+\emph{KiDS external field and $\sigma_8$ (failed as built).} The MOND function reads the gradient of the khronon's own potential. The published benchmark $\mu^{-1}=22.3$\,Mpc puts 24 times the KiDS-1000 bound on it. The benchmark $\mu^{-1}=223$\,kpc passes, but its mass term ends MOND-like lensing at $\sim$80\,kpc, and no $\mu$ passes both. Integrating the theory's own scale-dependent sound speed gives linear $\sigma_8\approx0.21$--$0.26$.
+\emph{Diagnosis and repair.} All three cosmological failures come from one term, the quadratic part of the khronon's kinetic function $\mathcal K(\mathcal Q)$. With $\mathcal K$ starting at cubic order the galactic mass term is gone (the static limit is pure AQUAL), and the khronon's Jeans length stays short at every epoch. For late Jeans lengths of 0.3--3\,kpc the repaired theory gives $\sigma_8=0.811$, forest-scale power within 2\% of $\Lambda$CDM, a web field in the MOND function at $\leq1.5\times10^{-7}a_0$, and an early equation of state $w\leq4\times10^{-6}$, while keeping the moving phantom.
+\emph{The programme's relation.} Giving the MOND function one scale, $\mathcal J=\Lambda\,j(\mathcal Y/\Lambda)$, turns $a_0=\kappa c\sqrt{G\rho_\Lambda}$ into an identity of the action, with $\kappa=2\sqrt{8\pi}/(3\beta)$ for $\beta$ the shape coefficient of $j$. $\kappa=\tfrac12$ is $\beta=4\sqrt{8\pi}/3$ and returns $a_0=9.35\times10^{-11}$\,m\,s$^{-2}$ from Planck's $\Lambda$; $\kappa$ itself is not derived.
+Still open: the conserved phantom's mass budget at Mpc radii, the stability of the GR-recovery tail, and the cubic term's strong coupling. This is a candidate that passes the gates computed here, not a theory.
+\end{abstract}
+
+\section{The route}
+PAPER32 [Z26d] ended with a specification any completion of $a_0=\kappa c\sqrt{G\rho_\Lambda}$ must meet. It named as an open door ``a khronon sector that itself behaves as dust on FRW, the route of Blanchet \& Skordis''. That theory [BS24] is
+\begin{equation}
+S=\frac{c^3}{16\pi G}\int\!\sqrt{-g}\,\big[R-2\mathcal J(\mathcal Y)+2\mathcal K(\mathcal Q)\big]+S_m,\qquad \mathcal Q=c\sqrt{-g^{\mu\nu}\partial_\mu\tau\partial_\nu\tau},\quad \mathcal Y=\frac{A_\mu A^\mu}{c^4},
+\end{equation}
+where $A_\mu=c^2n^\nu\nabla_\nu n_\mu$ is the acceleration of the khronon's unit normal $n_\mu$.
+Their MOND function is $\mathcal J=\Lambda-\mathcal Y+\frac{2c^2}{3a_0}\mathcal Y^{3/2}+\dots$ at low acceleration (their eq.~37), with $\mathcal J\to\Lambda_\infty$ at high acceleration (eq.~40). Their kinetic function is $\mathcal K=\mu^2(\mathcal Q-1)^2+\dots$ (eq.~7), in a DBI form (eq.~87) for cosmology.
+Their post-Newtonian system (eqs.~19--30) has three parts:
+\begin{itemize}
+\item the unitary-gauge lapse $\Xi=\phi-\dot\sigma+\tfrac12|\nabla\sigma|^2$, with $\tau=t+\sigma/c^2$;
+\item a khronon mass density $4\pi G\rho_\tau=-[\nabla\!\cdot(\mathcal J_{\mathcal Y}\nabla\Xi)+\mu^2\Xi]$, which is the MOND phantom;
+\item a khronon velocity $v_\tau=-\nabla\sigma$.
+\end{itemize}
+In the static case this reduces to AQUAL with a mass term (eq.~35):
+\begin{equation}
+\nabla\!\cdot[f(|\nabla\phi|/a_0)\nabla\phi]+\mu^2\phi=4\pi G\rho_m,\qquad f=1+\mathcal J_{\mathcal Y}.
+\end{equation}
+All numbers below come from committed scripts (lanes BSK1, BSX1, BSX2) run on both $a_0$ footings where $a_0$ enters. Each lane has a mutation control that must fail.
+
+\section{Gate 1: the moving source --- passed (BSK1, 8/8)}
+In unitary gauge the extra sector depends only on the lapse and its spatial gradient: $\mathcal Q=1/N$ and $\mathcal Y=\gamma^{ij}\partial_i\ln N\,\partial_j\ln N$. That is the shift-free class in which L330 found a frozen phantom.
+BS24's own equations show why it is not frozen. The divergence of the momentum equation, combined with the time derivative of the Poisson equation and matter continuity, gives
+\[
+\partial_t\rho_\tau+\nabla\!\cdot(\rho_\tau v_\tau)=0 .
+\]
+The phantom is therefore a conserved fluid carried by the aether's flow. About flat space its transport is second order: that is L330's identity, and BS24's dispersion $\omega=0$. About a galaxy it is first order.
+A galaxy moving uniformly with its phantom is an exact solution. With $\sigma=-V\!\cdot x+V^2t/2$ the aether moves with the galaxy, $\Xi=\phi$, and eqs.~27a, 29a and 35 all hold (symbolic, in comoving coordinates). With the aether pinned (the control) the same moving phantom violates continuity.
+Passing the gate has three costs:
+\begin{enumerate}[label=(\roman*)]
+\item The phantom is conserved, so it is assembled from the cosmic khronon dust, never generated by baryons.
+\item About a static halo the fluid obeys, in the WKB approximation,
+\begin{equation}
+\omega^2=\frac{4\pi G\rho_\tau\,(k^2f_\theta-\mu^2)}{k^2(1-f_\theta)+\mu^2},\qquad f_\theta=f+yf'(y)\cos^2\theta .
+\end{equation}
+Its static limit is AQUAL's linear response. For $k\gg\mu$ the frequency is $k$-independent, so the phantom follows a change of velocity $\Delta u$ only inside $r\approx2GM_b/\Delta u^2$: 1.3\,kpc for the Milky Way at 620\,km\,s$^{-1}$, 860\,kpc for a $10^{14}M_\odot$ cluster at 1000\,km\,s$^{-1}$.
+\item The halo is stable only if $0<f_\theta<1$, i.e.\ only if the phantom acceleration increases with $g_N$. This is the monotone-phantom condition L340 found, reached here from the fluid side.
+Any tail that recovers GR (their eq.~40) makes the phantom fall. Where it falls the fluid is unstable at rate$^2=(2+2/n)GM/r^3$, the local orbital rate, whatever the tail's amplitude. With $\nu_{\rm RAR}$ the unstable region is the inner Milky Way, with e-folding times of 1--4\,Myr at 1--3\,kpc. Placing the fall above $g\sim10^3a_0$ confines it to where the phantom is below $10^{-3}$ of the field.
+\end{enumerate}
+
+\section{Gate 2 and $\sigma_8$: the theory as built fails (BSX1, 8/8)}
+The argument of the MOND function is the aether's acceleration, $A=\nabla\Upsilon$, with $\Upsilon=-4\pi Ga^2\rho_K\Delta_K/(k^2+k_J^2)$ (their eqs.~61b and 67). This is the khronon's own potential gradient, filtered above the late Jeans length. The late Jeans wavenumber is $k_J=a\mu$ exactly, as the check confirms. The field is not the web's Newtonian field; that is the field which closed the programme's C-H/K construction [Z26d].
+We integrate two-fluid growth (baryons plus the khronon, with their DBI $w(a)$, $c_{\rm ad}^2(a)$ and the scale-dependent sound speed of their eq.~71) from $z=1000$.
+The controls reproduce the $\Lambda$CDM $\sigma_8=0.811$, and the $\Lambda$CDM web field at $z=0.25$ comes out at 0.0134\,$a_0$ against an independent mock's 0.0150. A pure-dust khronon returns $\sigma_8=0.82$--$0.85$, so the suppression below is the sound speed alone.
+
+\smallskip
+{\footnotesize\centering
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+benchmark (their Fig.~1) & MOND-function field at KiDS lenses & vs bound $7.2\times10^{-5}$ & $r_C$ (Milky Way) & linear $\sigma_8$\\
+\midrule
+A: $\mu^{-1}=22.3$\,Mpc, $\lambda_D=1$ & $1.7\times10^{-3}a_0$ & $\times24$, fails & 1.7\,Mpc & 0.21\\
+B: $\mu^{-1}=223$\,kpc, $\lambda_D=30$ & $4.0\times10^{-5}a_0$ & $\times0.55$, passes & 0.08\,Mpc & 0.26\\
+\bottomrule
+\end{tabular}\par}
+\smallskip
+Across $\mu^{-1}=0.03$--100\,Mpc (with $\lambda_D=1$ and 30), KiDS alone leaves no $\mu$. The external-field bound needs $\mu^{-1}\lesssim0.3$\,Mpc, while MOND-like lensing to $\sim$1\,Mpc needs $r_C=(r_M/\mu^2)^{1/3}\gtrsim1$\,Mpc (their eq.~38), i.e.\ $\mu^{-1}\gtrsim10$\,Mpc. At the same time $\sigma_8$ lies between 0.16 and 0.49 at every scanned point.
+Mistele, McGaugh \& Hossenfelder [MMH23] confronted the full static profile of AeST's identical mass term with KiDS. BS24 checked $w(a)$ against GDM constraints and left the scale-dependent sound speed ``for a future investigation''; it is integrated here.
+A parallel lane in the same folder (BSK2) finds the same suppression on a $\Lambda$CDM background. BSK3 finds that khronon dust at the cosmic abundance under-supplies KiDS's Mpc-scale flux ($\Delta\chi^2=+374/+364$ on all points).
+
+\section{The diagnosis: one term}
+In BS24 the single constant $\mu$ of the quadratic term sets three things:
+\begin{itemize}
+\item the galactic mass term $\mu^2\phi$, which ends MOND at $r_C$;
+\item the late Jeans length $1/\mu$, which sets $\sigma_8$;
+\item the filter that hides the web's field from the MOND function, which sets KiDS.
+\end{itemize}
+Because the comoving Jeans length is $(1+z)/\mu$, a Jeans length short enough today is a thousand times longer at recombination. BS24 themselves note (their sec.~4.3.2, eq.~86) that for $\mathcal K$ starting at cubic order the kinetic term drops out of the Newtonian limit.
+
+\section{The repair: a cubic, one-scale khronon (BSX2, 3/3)}
+\begin{equation}
+\mathcal K(\mathcal Q)=\tfrac{2M^2}{3}(\mathcal Q-1)^3,\qquad \mathcal J(\mathcal Y)=\Lambda\,j(\mathcal Y/\Lambda),\quad j(u)=1-u+\beta u^{3/2}+\dots
+\end{equation}
+\emph{Galaxies.} The cubic term contributes $c^2\mathcal K_{\mathcal Q}=2M^2\Xi^2/c^2$, a 1PN correction. The static limit is therefore pure AQUAL with no mass term and no $r_C$ (symbolic; the quadratic control carries BS24's $-2\mu^2\Xi$). BS24's moving phantom (Sec.~2) is unchanged, because the PN phantom dynamics never involved $\mathcal K$ beyond the mass term.
+\emph{Cosmology.} Their eqs.~82--85 with $n=2$ give $q=\mathcal Q-1=(I_0/2M^2a^3)^{1/2}$, $w=q/(3+2q)$ and $c_{\rm ad}^2=q/[2(1+q)]$. The comoving Jeans length is $\propto(1+z)^{1/4}$, only 5.6 times longer at $z=1000$ than today.
+
+\smallskip
+{\footnotesize\centering
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+late Jeans length & $\sigma_8$ & forest power (z=3, $k=1$--10\,$h$/Mpc) & web field in MOND fn. & early $w$ & all gates\\
+\midrule
+0.3 / 1 / 3 kpc & 0.811 & $\geq$ 1.000 / 0.998 / 0.981 & $\leq1.5\times10^{-7}a_0$ & $\leq3.8\times10^{-6}$ & pass\\
+10 kpc & 0.811 & 0.82 & $1.6\times10^{-6}a_0$ & $4\times10^{-5}$ & forest fails\\
+100 kpc / 1 Mpc & 0.806 / 0.597 & $\leq$ 0.035 & $4\times10^{-5}$ / $2\times10^{-4}a_0$ & $\geq4\times10^{-3}$ & fail\\
+\bottomrule
+\end{tabular}\par}
+\smallskip
+The criteria are $\sigma_8$ within 5\% of 0.811, forest-scale matter power within 10\%, the KiDS bound on both footings, and early $w\leq0.0164$ at $a=10^{-5}$--$10^{-3}$.
+The repaired khronon passes all four for late Jeans lengths of a few kpc or less. It clusters as cold dark matter on every linear scale, and its short Jeans length removes the web's field from the MOND function.
+The control restores the quadratic term at the same late Jeans length. It then has a stiff early epoch ($w\to0.99$) and loses the forest (power 0.08 of $\Lambda$CDM).
+
+\section{The programme's relation, inside the action}
+$\mathcal J(0)=\Lambda$ is the cosmological constant that cosmology measures, and the $\mathcal Y^{3/2}$ coefficient is $2c^2/(3a_0)$ (their eq.~37). With one scale in $\mathcal J$,
+\begin{equation}
+a_0=\frac{2c^2\sqrt\Lambda}{3\beta}=\kappa\,c\sqrt{G\rho_\Lambda},\qquad \kappa=\frac{2\sqrt{8\pi}}{3\beta},\qquad \rho_\Lambda=\frac{\Lambda c^2}{8\pi G}
+\end{equation}
+(symbolic). So $\kappa=\tfrac12$ is $\beta=4\sqrt{8\pi}/3=6.684$, and Planck's $\Lambda$ ($h=0.6736$, $\Omega_\Lambda=0.6847$) then returns $a_0=9.35\times10^{-11}$\,m\,s$^{-2}$, the canonical footing.
+The relation stops being a coincidence between two constants: $a_0$ and the vacuum energy become two coefficients of one function. The programme's earlier principle that there is no independent $a_0$ [Z26b] becomes a property of a covariant action whose phantom passes the moving-source gate.
+The coefficient remains a shape number and is not derived, consistent with the zero-mode theorem [Z26a].
+
+\section{What is still open}
+\begin{enumerate}[label=(\roman*)]
+\item \emph{The mass budget.} A conserved phantom must be assembled from the khronon dust that falls in; it cannot be generated. The parallel lane BSK3 reports that khronon dust at the cosmic abundance under-supplies KiDS's Mpc-scale flux. This lane does not compute the budget. Whether nonlinear MOND infall, which is faster than $\Lambda$CDM's, closes the gap is the construction's next gate.
+\item \emph{The GR-recovery tail.} It is unstable where it falls (Sec.~2). Placing the fall above $\sim10^3a_0$ hides the instability, but the ephemeris bound on the monotone stretch must then be checked with the programme's Solar-System machinery.
+\item \emph{Strong coupling.} The cubic kinetic term makes $\mathcal K_{\mathcal{QQ}}\to0$ at $\mathcal Q\to1$, which is not analysed here. BS24's Minkowski-space mode analysis would need redoing without the quadratic term.
+\item \emph{The successor theory.} Blanchet \& Skordis's Khronon-Tensor theory [BS25] is not examined.
+\end{enumerate}
+
+\section{Reproducibility}
+All lanes are in \url{https://github.com/carlzimmerman/zimmerman-formula} under \fpath{real_research/bs_khronon_2026/}. They run in about a minute each and need no survey data files.
+
+\smallskip
+{\footnotesize
+\begin{longtable}{@{}l>{\raggedright\arraybackslash}p{0.34\textwidth}c>{\raggedright\arraybackslash}p{0.4\textwidth}@{}}
+\toprule
+lane & script & checks & mutation control (must fail)\\
+\midrule
+\endhead
+BSK1 & \fpath{BSK1_moving_source_gate.py} & 8/8 & aether pinned: moving solution and fluid response fail\\
+BSX1 & \fpath{BSX1_kids_external_field_gate.py} & 8/8 & khronon made pure dust: the $\sigma_8$ and field suppressions vanish\\
+BSX2 & \fpath{BSX2_cubic_one_scale_khronon.py} & 3/3 & quadratic term restored at the same Jeans length: mass term returns, forest and early $w$ fail\\
+\bottomrule
+\end{longtable}
+}
+
+\section*{References}
+{\small
+[BS24] Blanchet, L. \& Skordis, C. 2024, JCAP 11, 040 (arXiv:2404.06584).\par
+[BS25] Blanchet, L. \& Skordis, C. 2025, arXiv:2507.00912.\par
+[Fla23] Flanagan, \'E.\,\'E. 2023, ApJ 958, 107.\par
+[BM11] Blanchet, L. \& Marsat, S. 2011, Phys.\ Rev.\ D 84, 044056.\par
+[MMH23] Mistele, T., McGaugh, S. \& Hossenfelder, S. 2023, A\&A 676, A100 (arXiv:2301.03499).\par
+[Bro21] Brouwer, M.\,M. et al.\ 2021, A\&A 650, A113.\par
+[Z26a] Zimmerman, C.\,P. 2026, The coefficient of the $a_0$--$\Lambda$ relation: a zero-mode theorem for local MOND actions, DOI 10.5281/zenodo.22559892.\par
+[Z26b] Zimmerman, C.\,P. 2026, A parameter-free radial acceleration relation from the dark-energy scale, DOI 10.5281/zenodo.22731370.\par
+[Z26d] Zimmerman, C.\,P. 2026, The moving phantom (PAPER32), DOI 10.5281/zenodo.22967076.\par
+}
+
+\end{document}
