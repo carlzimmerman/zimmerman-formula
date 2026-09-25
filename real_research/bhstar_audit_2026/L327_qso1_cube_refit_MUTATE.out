@@ -17,13 +17,22 @@ WHAT IS CHECKED (both directions):
   C2     the laws are indistinguishable on the data: max |Delta chi^2| across the five laws, PSF free and PSF >= 0.16".
   C3     the real-noise calibration: Delta chi^2 (kepler - framework) under a KEPLER truth and under a FRAMEWORK truth;
          the data's value sits inside both; the framework-truth distribution is centred within 1 sd of zero (NO POWER).
-  C4     the kinematic mass is PSF-systematic-limited: log M (Kepler) moves by >= 0.5 dex between PSF free and PSF >= 0.16".
+  C4     (first version, SUPERSEDED 09-25 -- see the corrected C4 below) log M moved >= 0.5 dex with the PSF assumption.
   E1-E3  the extended gas (0.1" bins, real-noise centroid errors): blueshift relative to the core; the rotation-dipole
          upper limit; the dispersion and the mass it would need if bound (Jeans, isotropic).
   F1     the certified velocity floor (Lean I20): v_c >= (G M a0)^{1/4} at every radius around an isolated point mass.
+  P1-P2  (09-25, the FULL 6.4 GB cube, md5-verified, gitignored) the PSF MEASURED from the unresolved broad line, and the
+         test that exposes the published narrow-only cube's central structure as a subtraction ARTIFACT: its core is
+         sharper than the PSF (impossible for real emission: Lean I23) while the RAW line core is PSF-consistent.
+  C4     CORRECTED 09-25: the kinematically constrained combination is M sin^2 i (free-inclination fits run to face-on);
+         stated in M sin^2 i it still moves ~1 dex with the PSF assumption.
+  C5     fits at the MEASURED PSF (0.185") with free and with the paper's inclination (52 +/- 2 deg, 48 starts), judged
+         against a real-noise calibration AT THAT CONFIGURATION (the first criterion, an sd from another configuration,
+         failed and is recorded).
 
 Run from the repository root:  python3 real_research/bhstar_audit_2026/L327_qso1_cube_refit.py      (verifies, ~1 min)
-FULL=1 re-runs every fit and the calibration (~20 min, 8 cores) before verifying.
+FULL=1 re-runs every fit and the calibration (~40 min, 8 cores) and the PSF measurement (needs the 6.4 GB full cube,
+fetched from Zenodo 19402518 and md5-checked by qso1_refit/psf_from_blr.py) before verifying.
 
 
 ==============================================================================================================
@@ -40,8 +49,8 @@ N1-N3 -- THE NOISE OF THE PUBLIC CUBE (line-free channels)
 ==============================================================================================================
 C1 -- EVERY STORED BEST FIT RE-EVALUATES TO ITS STORED CHI^2 ON THE DATA
 ==============================================================================================================
-  [FAIL] C1 max |chi2(re-evaluated) - chi2(stored)| < 0.01 over the 10 stored fits
-         measured: 13.3856
+  [FAIL] C1 max |chi2(re-evaluated) - chi2(stored)| < 0.01 over the 20 stored fits
+         measured: 30.3700
          reading:  the stored numbers ARE the data's; MUTATE (law labels swapped) must break this
 
 ==============================================================================================================
@@ -72,11 +81,39 @@ C3 -- REAL-NOISE CALIBRATION: what Delta chi^2 (kepler - framework) each TRUTH p
          reading:  UNDECIDABLE: the public cube cannot tell the framework from Kepler inside ~0.16" -- a null here is not evidence
 
 ==============================================================================================================
-C4 -- THE KINEMATIC MASS IS PSF-SYSTEMATIC-LIMITED
+C4 -- THE KINEMATIC MASS IS PSF-SYSTEMATIC-LIMITED (stated in the constrained combination M sin^2 i)
 ==============================================================================================================
-  [PASS] C4 log M (Kepler) moves by >= 0.5 dex between the PSF-free and PSF >= 0.16" fits
-         measured: 6.67 -> 7.69 (+1.03 dex)
-         reading:  the ~1 dex spread is exactly the 10^6.9-vs-10^7.7 gap that flips L324's sub-dominance verdict; the data favour a PSF sharper than JWST's ~0.17" diffraction limit at 5.28 um (a resampling artifact), so neither mass is secure
+  [PASS] C4 log(M sin^2 i) (Kepler) moves by >= 0.5 dex across the PSF assumptions (the free-inclination fits run to face-on, so log M alone is inclination-degenerate -- the first version of this check compared log M: corrected)
+         measured: PSF free: 5.88; PSF>=0.16: 6.47; PSF=0.185 (measured): 6.84  (span 0.96 dex)
+         reading:  the mass constrained by these data swings ~1 dex with the PSF assumption
+
+==============================================================================================================
+P1-P2 -- THE PSF MEASURED FROM THE UNRESOLVED BROAD LINE, AND THE NARROW-CUBE ARTIFACT
+==============================================================================================================
+  [PASS] P1 PSF at H-alpha from the unresolved BLR wings: geometric FWHM 0.15-0.23 arcsec and robust to the wing window
+         measured: 0.190 +/- 0.005 arcsec (650-2500 km/s); six windows 0.168-0.208; continuum 0.235; full cube md5 verified = True
+         reading:  JWST NIRSpec-IFU at 5.28 um: ~0.17-0.21 arcsec expected; the 0.08 arcsec the free fits preferred was not the instrument
+  [PASS] P2 ARTIFACT: the published narrow-only cube's core is sharper than the PSF (all windows) while the RAW line core of the same data is PSF-consistent
+         measured: published narrow core |v|<100: 0.127, |v|<150: 0.111, |v|<250: 0.111"; raw core |v|<100: 0.200, |v|<150: 0.199, |v|<250: 0.197"; PSF band 0.168-0.208"
+         reading:  no PSF-convolved image can be sharper than the PSF (Lean I23): the narrow product's central flux distribution is an artifact of the broad-line subtraction, at exactly the < 0.2 arcsec (~100 pc) scales where the mass is measured
+
+==============================================================================================================
+C5 -- FITS AT THE MEASURED PSF: free inclination, and the paper's inclination (52 +/- 2 deg)
+==============================================================================================================
+   PSF=0.185       kepler_canonical       chi2 =   6658.40   kepler - this =  +0.00   log M = 8.52   cos i = 0.990   log M sin^2 i = 6.84
+   PSF=0.185       framework_canonical    chi2 =   6658.50   kepler - this =  -0.10   log M = 8.13   cos i = 0.974   log M sin^2 i = 6.84
+   PSF=0.185       framework_alt          chi2 =   6658.44   kepler - this =  -0.04   log M = 8.52   cos i = 0.990   log M sin^2 i = 6.84
+   PSF=0.185       rival_canonical        chi2 =   6658.05   kepler - this =  +0.35   log M = 8.34   cos i = 0.985   log M sin^2 i = 6.81
+   PSF=0.185       rival_alt              chi2 =   6657.97   kepler - this =  +0.43   log M = 8.32   cos i = 0.985   log M sin^2 i = 6.80
+   PSF=0.185,i=52  kepler_canonical       chi2 =   6674.55   kepler - this =  +0.00   log M = 6.00   cos i = 0.600   log M sin^2 i = 5.81
+   PSF=0.185,i=52  framework_canonical    chi2 =   6664.48   kepler - this = +10.07   log M = 7.11   cos i = 0.633   log M sin^2 i = 6.89
+   PSF=0.185,i=52  framework_alt          chi2 =   6672.55   kepler - this =  +2.00   log M = 6.87   cos i = 0.642   log M sin^2 i = 6.64
+   PSF=0.185,i=52  rival_canonical        chi2 =   6662.66   kepler - this = +11.89   log M = 6.69   cos i = 0.640   log M sin^2 i = 6.46
+   PSF=0.185,i=52  rival_alt              chi2 =   6662.93   kepler - this = +11.62   log M = 6.61   cos i = 0.634   log M sin^2 i = 6.38
+   calibration at (PSF 0.185, i = 52): Kepler truth +5.43 +/- 9.72; framework truth -5.48 +/- 17.38; observed +10.07; empirical P(>= obs | Kepler) = 0.125
+  [PASS] C5 at the measured PSF: with free inclination the laws span < 1 naive; with the paper's inclination the naive preference for the framework is NOT significant against a real-noise-calibrated Kepler truth (P >= 0.05), and the Kepler mass is not recovered (it runs to the 10^6 bound)
+         measured: free-i span 0.53; i = 52: Kepler - framework = +10.07, P(>= obs | Kepler) = 0.125; framework truth -5.5 +/- 17.4 (no power); Kepler log M at i = 52: 6.00
+         reading:  RECORD: the first version of C5 (naive span < 2 x an sd calibrated for a DIFFERENT configuration) FAILED at span 14.3; the calibration at THIS configuration is the proper test.  An independent forward model at the physical PSF does not reproduce the paper's 10^7.7 from the released narrow product; the law comparison has no power; L324 stays undecided
 
 ==============================================================================================================
 E1-E3 -- THE EXTENDED GAS (0.1" bins, real-noise centroid errors)
@@ -106,8 +143,11 @@ F1 -- THE CERTIFIED VELOCITY FLOOR (Lean I20)
          reading:  a PSF-controlled rotation curve that falls below this beyond r_M ~ 250-270 pc falsifies the framework (Newton has no floor)
 
 ==============================================================================================================
-VERDICT  (6/7 load-bearing PASS  -- MUTATE RUN)
+VERDICT  (9/10 load-bearing PASS  -- MUTATE RUN)
 ==============================================================================================================
+  * 09-25 FULL CUBE: PSF measured 0.19" from the broad line; the released narrow-only cube's core (0.11") is SHARPER than
+    the PSF while the raw line core is PSF-consistent -> a broad-subtraction ARTIFACT at the mass-measuring scales; at the
+    measured PSF an independent model does not recover the published 10^7.7.
   * THE TRUTH, as far as the public cube goes: UNDECIDABLE.  Kepler, the framework (both footings) and the a0 ~ H(z) rival
     fit the core equally well; real-noise injection shows the cube has NO power to separate them inside ~0.16"; the
     kinematic mass itself moves ~1 dex with the PSF assumption, so L324's mass-dependent sub-dominance verdict cannot

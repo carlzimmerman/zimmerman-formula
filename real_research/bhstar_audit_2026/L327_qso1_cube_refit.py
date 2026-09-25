@@ -19,13 +19,22 @@ WHAT IS CHECKED (both directions):
   C2     the laws are indistinguishable on the data: max |Delta chi^2| across the five laws, PSF free and PSF >= 0.16".
   C3     the real-noise calibration: Delta chi^2 (kepler - framework) under a KEPLER truth and under a FRAMEWORK truth;
          the data's value sits inside both; the framework-truth distribution is centred within 1 sd of zero (NO POWER).
-  C4     the kinematic mass is PSF-systematic-limited: log M (Kepler) moves by >= 0.5 dex between PSF free and PSF >= 0.16".
+  C4     (first version, SUPERSEDED 09-25 -- see the corrected C4 below) log M moved >= 0.5 dex with the PSF assumption.
   E1-E3  the extended gas (0.1" bins, real-noise centroid errors): blueshift relative to the core; the rotation-dipole
          upper limit; the dispersion and the mass it would need if bound (Jeans, isotropic).
   F1     the certified velocity floor (Lean I20): v_c >= (G M a0)^{1/4} at every radius around an isolated point mass.
+  P1-P2  (09-25, the FULL 6.4 GB cube, md5-verified, gitignored) the PSF MEASURED from the unresolved broad line, and the
+         test that exposes the published narrow-only cube's central structure as a subtraction ARTIFACT: its core is
+         sharper than the PSF (impossible for real emission: Lean I23) while the RAW line core is PSF-consistent.
+  C4     CORRECTED 09-25: the kinematically constrained combination is M sin^2 i (free-inclination fits run to face-on);
+         stated in M sin^2 i it still moves ~1 dex with the PSF assumption.
+  C5     fits at the MEASURED PSF (0.185") with free and with the paper's inclination (52 +/- 2 deg, 48 starts), judged
+         against a real-noise calibration AT THAT CONFIGURATION (the first criterion, an sd from another configuration,
+         failed and is recorded).
 
 Run from the repository root:  python3 real_research/bhstar_audit_2026/L327_qso1_cube_refit.py      (verifies, ~1 min)
-FULL=1 re-runs every fit and the calibration (~20 min, 8 cores) before verifying.
+FULL=1 re-runs every fit and the calibration (~40 min, 8 cores) and the PSF measurement (needs the 6.4 GB full cube,
+fetched from Zenodo 19402518 and md5-checked by qso1_refit/psf_from_blr.py) before verifying.
 """
 import os, sys, json, math, subprocess
 import numpy as np
@@ -61,7 +70,16 @@ if FULL:
     for cmd, env in ((["data"], {}), (["data"], {"PSF_MIN": "0.16", "FITS_OUT": "fits2_psf016.json"}),
                      (["calib", "kepler_canonical", "16"], {}), (["calib", "framework_canonical", "16"], {})):
         subprocess.run([sys.executable, "fit2.py"] + cmd, check=True, env={**os.environ, **env})
+    for env in ({"PSF_MIN": "0.1849", "PSF_MAX": "0.1851", "FITS_OUT": "fits2_psf0185.json"},
+                {"PSF_MIN": "0.1849", "PSF_MAX": "0.1851", "COSI_MIN": "0.5878", "COSI_MAX": "0.6428", "NSTARTS": "48",
+                 "FITS_OUT": "fits2_psf0185_i52_48.json"}):
+        subprocess.run([sys.executable, "fit2.py", "data"], check=True, env={**os.environ, **env})
+    for truth in ("kepler_canonical", "framework_canonical"):
+        subprocess.run([sys.executable, "fit2.py", "calib", truth, "16"], check=True,
+                       env={**os.environ, "PSF_MIN": "0.1849", "PSF_MAX": "0.1851", "COSI_MIN": "0.5878",
+                            "COSI_MAX": "0.6428", "CALIB_FITS": "fits2_psf0185_i52_48.json", "CALIB_SUFFIX": "_psf0185_i52"})
     subprocess.run([sys.executable, "vfield.py"], check=True)
+    subprocess.run([sys.executable, "psf_from_blr.py"], check=True)
 
 import model, model2
 D = model.load()
@@ -92,15 +110,16 @@ check("N3 adjacent channels correlated (lag-1 > 0.1)", f"{spec1:.2f}", spec1 > 0
 # ================================================================= C1
 banner("C1 -- EVERY STORED BEST FIT RE-EVALUATES TO ITS STORED CHI^2 ON THE DATA")
 fits_free = json.load(open("fits2_data.json")); fits_psf = json.load(open("fits2_psf016.json"))
+fits_m = json.load(open("fits2_psf0185.json")); fits_mi = json.load(open("fits2_psf0185_i52_48.json"))
 worst = 0.0
-for tag, fits in (("PSF free", fits_free), ("PSF>=0.16", fits_psf)):
+for tag, fits in (("PSF free", fits_free), ("PSF>=0.16", fits_psf), ("PSF=0.185", fits_m), ("PSF=0.185,i=52", fits_mi)):
     for key, rec in fits.items():
         law, foot = key.split("_")
         if MUTATE:
             law = {"kepler": "framework", "framework": "kepler", "rival": "kepler"}[law]
         c, _ = model2.chi2(rec["x"], law, foot, D, MSK)
         worst = max(worst, abs(c - rec["chi2"]))
-check("C1 max |chi2(re-evaluated) - chi2(stored)| < 0.01 over the 10 stored fits", f"{worst:.4f}", worst < 0.01,
+check("C1 max |chi2(re-evaluated) - chi2(stored)| < 0.01 over the 20 stored fits", f"{worst:.4f}", worst < 0.01,
       "the stored numbers ARE the data's; MUTATE (law labels swapped) must break this")
 
 # ================================================================= C2
@@ -139,14 +158,69 @@ check("C3 NO POWER: the observed value sits inside both truths (|z| < 1.5) and t
       abs(zk) < 1.5 and abs(zf) < 1.5 and abs(cf.mean()) < cf.std(),
       "UNDECIDABLE: the public cube cannot tell the framework from Kepler inside ~0.16\" -- a null here is not evidence")
 
-# ================================================================= C4
-banner("C4 -- THE KINEMATIC MASS IS PSF-SYSTEMATIC-LIMITED")
-dm = fits_psf["kepler_canonical"]["x"][0] - fits_free["kepler_canonical"]["x"][0]
-check("C4 log M (Kepler) moves by >= 0.5 dex between the PSF-free and PSF >= 0.16\" fits",
-      f"{fits_free['kepler_canonical']['x'][0]:.2f} -> {fits_psf['kepler_canonical']['x'][0]:.2f} ({dm:+.2f} dex)",
-      abs(dm) >= 0.5,
-      "the ~1 dex spread is exactly the 10^6.9-vs-10^7.7 gap that flips L324's sub-dominance verdict; the data favour a "
-      "PSF sharper than JWST's ~0.17\" diffraction limit at 5.28 um (a resampling artifact), so neither mass is secure")
+# ================================================================= C4 (corrected 09-25)
+banner("C4 -- THE KINEMATIC MASS IS PSF-SYSTEMATIC-LIMITED (stated in the constrained combination M sin^2 i)")
+def msin2i(rec):
+    return rec["x"][0] + math.log10(1 - rec["x"][1] ** 2)
+ms = {"PSF free": msin2i(fits_free["kepler_canonical"]), "PSF>=0.16": msin2i(fits_psf["kepler_canonical"]),
+      "PSF=0.185 (measured)": msin2i(fits_m["kepler_canonical"])}
+OUT["numbers"]["kepler_log_Msin2i"] = ms
+dm = max(ms.values()) - min(ms.values())
+check("C4 log(M sin^2 i) (Kepler) moves by >= 0.5 dex across the PSF assumptions (the free-inclination fits run to "
+      "face-on, so log M alone is inclination-degenerate -- the first version of this check compared log M: corrected)",
+      "; ".join(f"{k}: {v:.2f}" for k, v in ms.items()) + f"  (span {dm:.2f} dex)", dm >= 0.5,
+      "the mass constrained by these data swings ~1 dex with the PSF assumption")
+
+# ================================================================= P1-P2 (the full cube)
+banner("P1-P2 -- THE PSF MEASURED FROM THE UNRESOLVED BROAD LINE, AND THE NARROW-CUBE ARTIFACT")
+psf = json.load(open("psf_from_blr.json"))
+pb = psf["psf_broad"]; band = list(psf["psf_window_robustness"].values())
+OUT["numbers"]["psf"] = {"broad_geo": pb["fwhm_geo"], "broad_err": pb["err_geo"], "window_band": [min(band), max(band)],
+                         "continuum_geo": psf["psf_continuum"]["fwhm_geo"], "raw_core": psf["raw_line_core"],
+                         "published_narrow_core": psf["published_narrow_core"], "md5_ok": psf.get("md5_ok")}
+check("P1 PSF at H-alpha from the unresolved BLR wings: geometric FWHM 0.15-0.23 arcsec and robust to the wing window",
+      f"{pb['fwhm_geo']:.3f} +/- {pb['err_geo']:.3f} arcsec (650-2500 km/s); six windows {min(band):.3f}-{max(band):.3f}; "
+      f"continuum {psf['psf_continuum']['fwhm_geo']:.3f}; full cube md5 verified = {psf.get('md5_ok')}",
+      0.15 < pb["fwhm_geo"] < 0.23 and max(band) - min(band) < 0.06,
+      "JWST NIRSpec-IFU at 5.28 um: ~0.17-0.21 arcsec expected; the 0.08 arcsec the free fits preferred was not the instrument")
+nc = psf["published_narrow_core"]; rc = psf["raw_line_core"]
+art = max(nc.values()) + 3 * psf["narrow_core"]["err_geo"] < min(band) and min(rc.values()) > min(band) - 0.01
+check("P2 ARTIFACT: the published narrow-only cube's core is sharper than the PSF (all windows) while the RAW line core "
+      "of the same data is PSF-consistent",
+      f"published narrow core {', '.join(f'|v|<{k}: {v:.3f}' for k, v in nc.items())}\"; raw core "
+      f"{', '.join(f'|v|<{k}: {v:.3f}' for k, v in rc.items())}\"; PSF band {min(band):.3f}-{max(band):.3f}\"", art,
+      "no PSF-convolved image can be sharper than the PSF (Lean I23): the narrow product's central flux distribution is "
+      "an artifact of the broad-line subtraction, at exactly the < 0.2 arcsec (~100 pc) scales where the mass is measured")
+
+# ================================================================= C5
+banner("C5 -- FITS AT THE MEASURED PSF: free inclination, and the paper's inclination (52 +/- 2 deg)")
+for tag, fits in (("PSF=0.185", fits_m), ("PSF=0.185,i=52", fits_mi)):
+    k0 = fits["kepler_canonical"]["chi2"]
+    for k, v in fits.items():
+        P(f"   {tag:15s} {k:22s} chi2 = {v['chi2']:9.2f}   kepler - this = {k0 - v['chi2']:+6.2f}   log M = {v['x'][0]:.2f}"
+          f"   cos i = {v['x'][1]:.3f}   log M sin^2 i = {msin2i(v):.2f}")
+span_m = max(v["chi2"] for v in fits_m.values()) - min(v["chi2"] for v in fits_m.values())
+kep_i52 = fits_mi["kepler_canonical"]["x"][0]
+obs_i52 = fits_mi["kepler_canonical"]["chi2"] - fits_mi["framework_canonical"]["chi2"]
+cki = np.array([r["dchi2"] for r in json.load(open("calib2_kepler_canonical_psf0185_i52.json"))])
+cfi = np.array([r["dchi2"] for r in json.load(open("calib2_framework_canonical_psf0185_i52.json"))])
+p_kep = float((cki >= obs_i52).mean())
+OUT["numbers"]["C5"] = {"span_free_i": span_m, "kepler_logM_i52": kep_i52, "obs_dchi2_i52": obs_i52,
+                        "calib_kepler_truth": [float(cki.mean()), float(cki.std()), sorted(map(float, cki))],
+                        "calib_framework_truth": [float(cfi.mean()), float(cfi.std()), sorted(map(float, cfi))],
+                        "P_ge_obs_given_kepler": p_kep}
+P(f"   calibration at (PSF 0.185, i = 52): Kepler truth {cki.mean():+.2f} +/- {cki.std():.2f}; framework truth "
+  f"{cfi.mean():+.2f} +/- {cfi.std():.2f}; observed {obs_i52:+.2f}; empirical P(>= obs | Kepler) = {p_kep:.3f}")
+check("C5 at the measured PSF: with free inclination the laws span < 1 naive; with the paper's inclination the naive "
+      "preference for the framework is NOT significant against a real-noise-calibrated Kepler truth (P >= 0.05), and "
+      "the Kepler mass is not recovered (it runs to the 10^6 bound)",
+      f"free-i span {span_m:.2f}; i = 52: Kepler - framework = {obs_i52:+.2f}, P(>= obs | Kepler) = {p_kep:.3f}; "
+      f"framework truth {cfi.mean():+.1f} +/- {cfi.std():.1f} (no power); Kepler log M at i = 52: {kep_i52:.2f}",
+      span_m < 1.0 and p_kep >= 0.05 and kep_i52 < 6.5,
+      "RECORD: the first version of C5 (naive span < 2 x an sd calibrated for a DIFFERENT configuration) FAILED at span "
+      "14.3; the calibration at THIS configuration is the proper test.  An independent forward model at the physical PSF "
+      "does not reproduce the paper's 10^7.7 from the released narrow product; the law comparison has no power; L324 "
+      "stays undecided")
 
 # ================================================================= E
 banner("E1-E3 -- THE EXTENDED GAS (0.1\" bins, real-noise centroid errors)")
@@ -215,7 +289,10 @@ check("F1 v_flat = (G M a0)^{1/4} at 10^7.7: the floor below which no circular o
 lb = [c for c in CH if c[2]]
 npass = sum(1 for c in lb if c[1])
 banner(f"VERDICT  ({npass}/{len(lb)} load-bearing PASS{'  -- MUTATE RUN' if MUTATE else ''})")
-P("""  * THE TRUTH, as far as the public cube goes: UNDECIDABLE.  Kepler, the framework (both footings) and the a0 ~ H(z) rival
+P("""  * 09-25 FULL CUBE: PSF measured 0.19" from the broad line; the released narrow-only cube's core (0.11") is SHARPER than
+    the PSF while the raw line core is PSF-consistent -> a broad-subtraction ARTIFACT at the mass-measuring scales; at the
+    measured PSF an independent model does not recover the published 10^7.7.
+  * THE TRUTH, as far as the public cube goes: UNDECIDABLE.  Kepler, the framework (both footings) and the a0 ~ H(z) rival
     fit the core equally well; real-noise injection shows the cube has NO power to separate them inside ~0.16"; the
     kinematic mass itself moves ~1 dex with the PSF assumption, so L324's mass-dependent sub-dominance verdict cannot
     be settled from these data either.

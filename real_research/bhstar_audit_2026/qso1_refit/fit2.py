@@ -22,7 +22,7 @@ def polish(law, footing, D, st, fev=5000):
 
 
 def rstart(rng):
-    return [rng.uniform(6.8, 8.3), rng.uniform(0.3, 0.9), rng.uniform(0, np.pi), rng.uniform(19, 21),
+    return [rng.uniform(6.8, 8.3), rng.uniform(max(0.3, BOUNDS[1][0]), min(0.9, BOUNDS[1][1])), rng.uniform(0, np.pi), rng.uniform(19, 21),
             rng.uniform(18, 20), rng.uniform(-40, 10), rng.uniform(5, 50), rng.uniform(10, 150), rng.uniform(0.7, 3),
             rng.uniform(0, np.pi), rng.uniform(2.6, 5.5), rng.uniform(max(0.1, BOUNDS[11][0] + 0.005), 0.28), rng.uniform(-100, 0),
             rng.uniform(60, 200)]
@@ -60,7 +60,7 @@ if __name__ == "__main__":
     mode = sys.argv[1]
     t = time.time()
     if mode == "data":
-        jobs = [(law, ft, s) for law, ft in LAWS for s in range(24)]
+        jobs = [(law, ft, s) for law, ft in LAWS for s in range(int(os.environ.get("NSTARTS", "24")))]
         with Pool(8) as pool:
             res = pool.map(job_data, jobs)
         out = {}
@@ -72,10 +72,10 @@ if __name__ == "__main__":
         json.dump(out, open(os.environ.get("FITS_OUT", "fits2_data.json"), "w"), indent=1)
     else:
         truth, n = sys.argv[2], int(sys.argv[3])
-        fits = json.load(open("fits2_data.json"))
+        fits = json.load(open(os.environ.get("CALIB_FITS", "fits2_data.json")))
         with Pool(8) as pool:
             res = pool.map(job_calib, [(truth, k, fits) for k in range(n)])
-        json.dump(res, open(f"calib2_{truth}.json", "w"), indent=1)
+        json.dump(res, open(f"calib2_{truth}{os.environ.get('CALIB_SUFFIX', '')}.json", "w"), indent=1)
         d = np.array([r["dchi2"] for r in res])
         print(truth, f"Delta chi2 (kepler - framework): mean {d.mean():.2f} sd {d.std():.2f} min {d.min():.2f} max {d.max():.2f}")
     print(f"t = {time.time()-t:.0f}s")

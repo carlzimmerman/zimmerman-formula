@@ -17,9 +17,9 @@
    "measured": "0.31",
    "load_bearing": false
   },
-  "C1 max |chi2(re-evaluated) - chi2(stored)| < 0.01 over the 10 stored fits": {
+  "C1 max |chi2(re-evaluated) - chi2(stored)| < 0.01 over the 20 stored fits": {
    "ok": false,
-   "measured": "13.3856",
+   "measured": "30.3700",
    "load_bearing": true
   },
   "C2 all five laws within naive Delta chi^2 < 10 (PSF free) and < 2 (PSF >= 0.16\")": {
@@ -32,9 +32,24 @@
    "measured": "z_K = -0.27, z_F = +0.27, framework-truth mean/sd = +0.11, likelihood ratio 1.61",
    "load_bearing": true
   },
-  "C4 log M (Kepler) moves by >= 0.5 dex between the PSF-free and PSF >= 0.16\" fits": {
+  "C4 log(M sin^2 i) (Kepler) moves by >= 0.5 dex across the PSF assumptions (the free-inclination fits run to face-on, so log M alone is inclination-degenerate -- the first version of this check compared log M: corrected)": {
    "ok": true,
-   "measured": "6.67 -> 7.69 (+1.03 dex)",
+   "measured": "PSF free: 5.88; PSF>=0.16: 6.47; PSF=0.185 (measured): 6.84  (span 0.96 dex)",
+   "load_bearing": true
+  },
+  "P1 PSF at H-alpha from the unresolved BLR wings: geometric FWHM 0.15-0.23 arcsec and robust to the wing window": {
+   "ok": true,
+   "measured": "0.190 +/- 0.005 arcsec (650-2500 km/s); six windows 0.168-0.208; continuum 0.235; full cube md5 verified = True",
+   "load_bearing": true
+  },
+  "P2 ARTIFACT: the published narrow-only cube's core is sharper than the PSF (all windows) while the RAW line core of the same data is PSF-consistent": {
+   "ok": true,
+   "measured": "published narrow core |v|<100: 0.127, |v|<150: 0.111, |v|<250: 0.111\"; raw core |v|<100: 0.200, |v|<150: 0.199, |v|<250: 0.197\"; PSF band 0.168-0.208\"",
+   "load_bearing": true
+  },
+  "C5 at the measured PSF: with free inclination the laws span < 1 naive; with the paper's inclination the naive preference for the framework is NOT significant against a real-noise-calibrated Kepler truth (P >= 0.05), and the Kepler mass is not recovered (it runs to the 10^6 bound)": {
+   "ok": true,
+   "measured": "free-i span 0.53; i = 52: Kepler - framework = +10.07, P(>= obs | Kepler) = 0.125; framework truth -5.5 +/- 17.4 (no power); Kepler log M at i = 52: 6.00",
    "load_bearing": true
   },
   "E1 the extended gas is blueshifted relative to the core": {
@@ -161,6 +176,81 @@
    "z_framework": 0.26543125473301227,
    "LR_kepler_over_framework": 1.6065771485038356
   },
+  "kepler_log_Msin2i": {
+   "PSF free": 5.876361141243243,
+   "PSF>=0.16": 6.466110645057405,
+   "PSF=0.185 (measured)": 6.835342480929352
+  },
+  "psf": {
+   "broad_geo": 0.19025460022713792,
+   "broad_err": 0.004678105039972872,
+   "window_band": [
+    0.1676847785390727,
+    0.20836717306010602
+   ],
+   "continuum_geo": 0.23524169220303673,
+   "raw_core": {
+    "100": 0.19951342194459662,
+    "150": 0.19876477067825662,
+    "250": 0.19677696626562666
+   },
+   "published_narrow_core": {
+    "100": 0.12705731823180785,
+    "150": 0.11125226816694851,
+    "250": 0.11124278963756115
+   },
+   "md5_ok": true
+  },
+  "C5": {
+   "span_free_i": 0.5290082262845317,
+   "kepler_logM_i52": 6.000005716908799,
+   "obs_dchi2_i52": 10.072932643006425,
+   "calib_kepler_truth": [
+    5.425458527921421,
+    9.720778041454505,
+    [
+     -1.2367598513856137,
+     0.03609044304175768,
+     0.04620115416946646,
+     1.0367407774547246,
+     1.2285298845845318,
+     1.258614815056717,
+     1.349139073457991,
+     1.562850751838596,
+     1.6427465142414803,
+     2.0304170770896235,
+     2.569754542165356,
+     2.705270834831026,
+     3.1956965993758786,
+     8.723351899009685,
+     26.71610921957199,
+     33.94258271223953
+    ]
+   ],
+   "calib_framework_truth": [
+    -5.481579982881556,
+    17.38168260418854,
+    [
+     -71.56164243209969,
+     -11.665184318125284,
+     -4.8800268586637685,
+     -2.694190995352983,
+     -2.2385569840234893,
+     -1.2592302157727318,
+     -0.7111683536140845,
+     -0.5533651516998361,
+     -0.4374603139276587,
+     -0.1445093305701448,
+     0.2927425440893785,
+     0.4508635082438559,
+     0.5082448587236286,
+     1.94587625002805,
+     1.9826199577510124,
+     3.2597081089088533
+    ]
+   ],
+   "P_ge_obs_given_kepler": 0.125
+  },
   "extended": {
    "offset_kms": -12.084888246360107,
    "offset_err": 5.203092352308176,
@@ -185,7 +275,7 @@
   }
  },
  "verdict": {
-  "load_bearing_pass": 6,
-  "load_bearing_total": 7
+  "load_bearing_pass": 9,
+  "load_bearing_total": 10
  }
 }

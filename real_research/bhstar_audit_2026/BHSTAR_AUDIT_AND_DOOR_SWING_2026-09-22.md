@@ -179,3 +179,46 @@ it is a source-plane, PSF-controlled rotation curve beyond ~300 pc, confronted w
   ≳ 2 × 10⁴, so M_gas < ~3 × 10¹¹ Msun, which does not constrain the ~10⁹ Msun the framework would need.
 * [CII] fails for the same reason: there is almost no carbon.
 * The correction to §5: the "ALMA-testable" wording there is superseded. Only kinematics can decide.
+
+## 6. The full cube (2026-09-25): the PSF measured, and an artifact in the released narrow-line product (L327 P1–P2, C4 corrected, C5; Lean I23)
+
+The full 6.4 GB cube (Zenodo 19402518, MD5 verified against Zenodo, gitignored) contains the unresolved broad line,
+which gives the PSF at Hα directly (`qso1_refit/psf_from_blr.py`).
+
+* **PSF = 0.190 ± 0.005″.** This is the geometric FWHM of the BLR wing image (650–2500 km/s, [NII] masked). It is
+  robust: six wing windows give 0.168–0.208″, and the result is independent of the fit box. The continuum gives 0.235″
+  (a small extended host). This is the expected JWST NIRSpec-IFU PSF at 5.28 μm, not the 0.08″ the free fits preferred.
+* **The released narrow-only cube's core is SHARPER than the PSF:** 0.111–0.127″. The RAW line core of the same data
+  (|v| < 100/150/250 km/s, narrow plus broad, continuum-subtracted) is 0.197–0.200″, i.e. PSF-consistent.
+  - No image of real emission can be sharper than its PSF (Lean I23: Var[X+Y] ≥ Var[Y] for independent X, Y).
+  - So the narrow product's central flux distribution is an **artifact of the broad-line subtraction**, most plausibly
+    over-assignment to the broad component off-centre.
+  - It sits exactly at the < 0.2″ (~100 pc) scales where the dynamical mass is measured.
+  - This is a statement about the RELEASED DATA PRODUCT, not a proof that the paper's mass is wrong.
+* **C4 corrected:**
+  - The free-inclination fits run to face-on, so log M alone is inclination-degenerate. The first version of C4
+    compared log M; the constrained combination is M sin²i.
+  - log(M sin²i) (Kepler) = 5.88 (PSF free), 6.47 (PSF ≥ 0.16″) and 6.84 (PSF = 0.185″): a 0.96 dex span. The PSF
+    systematic survives the correction.
+* **C5, fits at the measured PSF:**
+  - With free inclination, all five laws lie within naive Δχ² 0.53.
+  - With the paper's i = 52 ± 2°, the Kepler mass runs to the 10^6 lower bound, so an independent model at the
+    physical PSF does not reproduce the published 10^7.7 from the released product.
+  - As first written, C5 FAILED its own criterion (a naive law span of 14.3 > 2 × calibration sd 12.4, with that sd
+    taken from a different configuration). **Resolved** with 48 starts plus a real-noise calibration at THIS
+    configuration:
+    - The 48 starts reproduce the optima: Kepler 6674.55 (mass at the 10^6 floor), framework-canonical 6664.48
+      (10^7.11), framework-alt 6672.55, rival 6662.7 / 6662.9.
+    - Under a Kepler truth, Δχ² (Kepler − framework) = 5.4 ± 9.7. The observed +10.1 has an empirical
+      P(≥ obs | Kepler) = 0.125, so it is **not significant**.
+    - Under a framework truth, −5.5 ± 17.4: the data have **no power** here either.
+    - Any extended mass (a ΛCDM halo as much as a MOND phantom) would give the same non-Keplerian preference. It is
+      not framework-specific in any case.
+* **QSO1 standing after the full cube:**
+  - The PSF is measured (0.19″).
+  - The released narrow product carries a sub-PSF artifact at the mass-measuring scales.
+  - The kinematic mass is systematics-limited: M sin²i spans ~1 dex with the PSF, and at the paper's inclination
+    an independent model does not recover 10^7.7.
+  - The law test has no power.
+  - L324's framework verdict stays **UNDECIDED**. Deciding it needs a re-extraction of the narrow line from the full
+    cube with a PSF-consistent broad-line decomposition.

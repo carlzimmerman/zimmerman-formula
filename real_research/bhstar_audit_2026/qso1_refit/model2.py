@@ -4,11 +4,23 @@ import numpy as np
 from scipy.ndimage import gaussian_filter
 from scipy.special import erf
 from model import (load, vcirc, PC_PER_ARCSEC, PIX, MU_LENS, SIG_LSF, RR, PP, AREA)
+import os as _os, json as _json
+from scipy.signal import fftconvolve
+
+_PSF_JSON = _os.environ.get("PSF_FIXED")        # path to psf_from_blr.json -> measured elliptical PSF (broad-line image)
+KERNEL = None
+if _PSF_JSON:
+    _p = _json.load(open(_PSF_JSON))[_os.environ.get("PSF_WHICH", "psf_broad")]
+    _sx, _sy, _th = _p["sx_px"], _p["sy_px"], _p["th_rad"]
+    _h = int(np.ceil(4 * max(_sx, _sy)))
+    _yy, _xx = np.mgrid[-_h:_h + 1, -_h:_h + 1]
+    _xr = _xx * np.cos(_th) + _yy * np.sin(_th); _yr = -_xx * np.sin(_th) + _yy * np.cos(_th)
+    KERNEL = np.exp(-0.5 * ((_xr / _sx) ** 2 + (_yr / _sy) ** 2)); KERNEL /= KERNEL.sum()
 
 YC, XC, RMASK = 19, 20, 8.0            # core mask radius 8 px = 0.16"
 NAMES = ["logM", "cosi", "pa", "x0", "y0", "v0", "sig0", "Re", "n", "psi", "lam1", "psf", "vout", "sout"]
-BOUNDS = [(6.0, 9.0), (0.1, 0.99), (0.0, np.pi), (16, 24), (15, 23), (-120, 80), (0, 120), (2, 400), (0.5, 4.0),
-          (0.0, np.pi), (2.5, 6.19), (float(__import__("os").environ.get("PSF_MIN", "0.08")), 0.30), (-300, 200), (30, 400)]
+BOUNDS = [(6.0, 9.0), (float(__import__("os").environ.get("COSI_MIN", "0.1")), float(__import__("os").environ.get("COSI_MAX", "0.99"))), (0.0, np.pi), (16, 24), (15, 23), (-120, 80), (0, 120), (2, 400), (0.5, 4.0),
+          (0.0, np.pi), (2.5, 6.19), (float(__import__("os").environ.get("PSF_MIN", "0.08")), float(__import__("os").environ.get("PSF_MAX", "0.30"))), (-300, 200), (30, 400)]
 
 
 def mask_for(shape):
@@ -39,7 +51,8 @@ def disk_cube(p, law, footing, shape, vch, dv):
     for c, vc in enumerate(vch):
         frac = 0.5 * (erf((vc + dv / 2 - vl) / s2) - erf((vc - dv / 2 - vl) / s2))
         img = np.bincount(lin, weights=fl * frac, minlength=ny * nx).reshape(ny, nx)
-        cube[c] = gaussian_filter(img, psf / 2.3548 / PIX, mode="constant")
+        cube[c] = (fftconvolve(img, KERNEL, mode="same") if KERNEL is not None
+                   else gaussian_filter(img, psf / 2.3548 / PIX, mode="constant"))
     return cube
 
 
