@@ -1,0 +1,83 @@
+L353 -- A KERNEL-INVISIBLE DARK COMPONENT IN C-H/K: a Lagrangian construction, and the reciprocity theorem that fixes
+its force law.  The dark component gravitates in the metric but is invisible to the MOND kernel -- and therefore, by
+action = reaction, it feels NEWTONIAN gravity only.  L321/L322's "additive" coupling (carrier feels the baryons' full
+MOND field while its own field is unboosted) has no action.
+
+WHY.  Three results on the record need a dark component the MOND kernel does not read:
+  * L345: C-H/K's kernel reads the total lapse, so any minimally coupled carrier is boosted like baryons and the
+    Lambda-triggered carrier loses its only window (L322's "additive" window reappears only under a coupling C-H/K lacks);
+  * BS2 (switch_audit_2026): a kernel that reads the CDM-like web's field EFE-truncates every lens's phantom at ~0.1 Mpc
+    (Delta chi^2 +569 on KiDS-1000); a baryons-only kernel survives inside 0.3 Mpc;
+  * the RAR: any dark mass inside galaxies is boosted by the kernel unless the kernel cannot see it.
+
+THE CONSTRUCTION (C-H's NR action, ACTION.md, + a dark component rho_d + a subtraction pair (v, lambda)):
+    L = -(rho_b + rho_d) Phi - [2 grad Phi . grad u - |grad u|^2 - a0^2 q(|grad S(u - v)|^2/a0^2)]/(8 pi G)
+        + lambda (Laplacian v - 4 pi G rho_d)
+  The kernel reads u - v instead of u.  Field equations (N1):
+    dPhi:    Lap u = 4 pi G (rho_b + rho_d)        dlambda: Lap v = 4 pi G rho_d     =>  u - v = u_b (baryons only)
+    du:      Lap Phi = Lap u + S* div[q' grad S u_b]                                =>  Phi = u_b + u_d + Phi_ph[u_b]
+    dv:      Lap lambda = -(1/4 pi G) S* div[q' grad S u_b]                          =>  4 pi G lambda = -Phi_ph[u_b]
+  Baryons feel Phi.  The dark component (coupling -rho_d Phi - 4 pi G lambda rho_d) feels Phi + 4 pi G lambda = u_b + u_d:
+  the Newtonian potential of ALL matter, and no phantom.  Relativistically the pair is two leafwise elliptic auxiliaries on
+  C-H's preferred leaves (like its heat-flow fields) with the dark source n_mu n_nu T_d^{mu nu}.
+
+========================================================================================================
+N1  THE FIELD EQUATIONS OF THE SUBTRACTION PAIR (symbolic Euler-Lagrange, arbitrary kernel primitive Q)
+========================================================================================================
+    dPhi:    -rho_b(x) - rho_d(x) + Derivative(u(x), (x, 2))/(4*pi*G) = 0
+    dlambda: -4*pi*G*rho_d(x) + Derivative(v(x), (x, 2)) = 0
+    identity (u - v)'' - 4 pi G rho_b = 4 pi G dPhi - dlambda: residual 0
+    identity Phi'' = u'' + [q'(|(u - v)'|^2/a0^2) (u - v)']' (deep-MOND primitive):  residual 0
+    identity (Phi + 4 pi G lambda)'' = u'' = 4 pi G (rho_b + rho_d):  residual 0
+    3D spherical (M_b = 6e10 Hernquist, M_d = 3e11 NFW): max |kernel argument/g_N,b - 1| = 6.7e-16; max |dark field/g_N,all - 1| = 5.1e-15; baryons at 100 kpc feel 3.36 x Newtonian(all)
+  [PASS] N1 the subtraction pair makes the kernel read the baryonic Newtonian potential only, puts Newtonian(all) + phantom(baryons) in the metric, and gives the dark component exactly the Newtonian potential of all matter
+         measured: symbolic residuals 0, 0, 0; numeric 6.7e-16, 5.1e-15
+         reading:  the multiplier's force on the dark component is exactly minus the phantom it would otherwise feel
+
+========================================================================================================
+N2  THE RECIPROCITY THEOREM: kernel-invisible <=> feels no phantom; L321's 'additive' law has no action
+========================================================================================================
+    r =    2.0 r_M: L321 additive |F on carrier|/|F on baryons| =    2.541;  subtraction pair = 1.000
+    r =   10.0 r_M: L321 additive |F on carrier|/|F on baryons| =   10.508;  subtraction pair = 1.000
+    r =  100.0 r_M: L321 additive |F on carrier|/|F on baryons| =  100.501;  subtraction pair = 1.000
+    general static quadratic Lagrangian: Gamma - Gamma^T = 0: True;  L321 additive: Gamma_bd - Gamma_db = -C
+  [PASS] N2 a static Lagrangian's species-response matrix is symmetric, so a kernel-invisible component feels no phantom; L321's additive law is asymmetric (Gamma_bd - Gamma_db = -C) and breaks momentum balance by ~r/r_M in deep MOND
+         measured: generic symmetric: True; additive asymmetry -C; force ratio at 10 r_M 10.51 (pair 1.00)
+         reading:  L322's additive window was computed under a force law no action produces; L354 redoes it with the Lagrangian one
+
+========================================================================================================
+N3  THE RELATIVISTIC BLOCK: L340's quadratic Lagrangian + the dark source + the pair (unitary gauge, symbolic)
+========================================================================================================
+    reconstructed quadratic Lagrangian reproduces L340's four rows exactly: True
+    static: phi response to R_b = -2*(C + 1)/(C*alpha_c + alpha_c - 2) x psi_N;  to R_d = -2/(C*alpha_c + alpha_c - 2) x psi_N
+    kernel argument (U - v) response to R_d: alpha_c/(4*k**2*(C*alpha_c + alpha_c - 2));  lensing = dynamics (psi - phi) for b / d: 0 / 0
+    potential felt by the dark component per R_b minus potential felt by baryons per R_d: 0
+    det M_ext(omega)/det M_340(omega) at three parameter points = [-81, -16/81, -256]  (omega-free: True);  baryon tracking residual at omega -> 0: 0
+    leakage of the dark field into the kernel argument (per psi_N,d): alpha_c/2  (exactly 0 at alpha_c = 0)
+  [PASS] N3 in L340's relativistic block the pair leaves the baryons' boost and tracking unchanged, gives the dark component a Newtonian field with lensing = dynamics, keeps the kernel blind to it (exactly at alpha_c = 0; leakage O(alpha_c) ~ 1e-9 otherwise), is reciprocal, and adds no mode (det ratio independent of omega)
+         measured: boost_b -2*(C + 1)/(C*alpha_c + alpha_c - 2); boost_d -2/(C*alpha_c + alpha_c - 2); leak alpha_c/2; det ratios [-81, -16/81, -256]
+         reading:  L340's health (H2) and tracking (H1) carry over; the pair is two leafwise auxiliaries
+
+========================================================================================================
+N4  WHAT IT BUYS AND WHAT IT COSTS
+========================================================================================================
+    (a) BS2 (committed) on a baryons-only kernel: E10 {'canonical': 249.7, 'alt': 260.4};  E13 (R <= 0.3 Mpc) {'canonical': 40.4, 'alt': 44.6}
+    (b) X-COP at R500 (12 clusters): dark mass needed = 2.31 x baryons (median); the dark component feels 47% less acceleration than the gas (median; range 37-53%)
+    (c) Milky Way at 30 kpc: an unboosted dark mass of 2.91e+10 Msun (0.49 M_b) shifts g_obs by 0.06 dex; a boosted one (universal coupling) would be allowed only ~1/nu = 0.25 of that
+  [PASS] N4 (documentary) the construction trades three failures for one prediction: the kernel's web field is baryonic only (BS2's baryons-only verdict applies), the dark component is not boosted in galaxies, and in clusters the gas feels tens of per cent more acceleration than the dark component (a dark-sector equivalence-principle violation)
+         measured: BS2 E10/E13 {'E10': "{'canonical': 249.7, 'alt': 260.4}", 'E13': "{'canonical': 40.4, 'alt': 44.6}"}; X-COP median dark/baryon 2.31, WEP gap 47%
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  A kernel-invisible dark component exists in C-H/K as a Lagrangian construction: two leafwise auxiliaries (v, lambda)
+  that subtract the dark component's Newtonian potential from the kernel's argument (N1; relativistic block N3: baryons'
+  boost, tracking and modes untouched; the dark field Newtonian with lensing = dynamics).  Reciprocity fixes the rest
+  (N2): a component the kernel cannot see feels only Newtonian gravity.  L321/L322's 'additive' coupling -- carrier feels
+  the baryons' MOND field, baryons feel the carrier unboosted -- has no action (it breaks momentum balance by ~r/r_M), so
+  L322's window must be recomputed with the Newtonian force law (L354).  The price is a dark-sector equivalence-principle
+  violation where the phantom is on: in X-COP clusters the gas feels ~47% more acceleration than the dark
+  component.  A construction, not a derivation.  Time 3 s.
+
+  4/4 checks pass; load-bearing failures: 0; wrote L353_kernel_invisible_dark_component_results.json
+rc=0

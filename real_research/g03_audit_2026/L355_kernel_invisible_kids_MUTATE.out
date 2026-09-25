@@ -1,0 +1,90 @@
+L355 -- KiDS-1000 FOR THE KERNEL-INVISIBLE CONSTRUCTION (L353): with the kernel reading baryons only, how much
+Newtonian dark mass must sit around isolated galaxies at 0.3-3 Mpc, and can the Lambda-triggered carrier supply it?
+
+WHY.  L353 makes the MOND kernel read the baryonic Newtonian field only.  The web's baryons still pull on every lens, so
+the phantom is truncated by the external-field effect at e_b ~ (Omega_b/Omega_m) x the web's field: BS2's E10 (baryons-
+only kernel) passes inside 0.3 Mpc and fails the full KiDS-1000 profile by ~+250 without any extra mass.  In the
+construction the missing lensing can only come from real, unboosted mass -- the carrier's surviving halo and correlated
+structure (2-halo).  This lane asks how much, and whether L319's carrier provides it.
+
+MACHINERY (copied with attribution, not imported, so nothing of the parallel lanes is edited):
+  * BS2's exact stacked-lens QUMOND law M_dyn = M_b N(y, e), N = <nu(w)(y - e mu)>_mu / y, with the lens population's
+    field magnitudes Maxwell-distributed (real_research/switch_audit_2026/BS2_efe_vs_switch.py);
+  * the ESD projection and the four stellar-mass bins of Brouwer+2021 with full covariance, M_b profiled per bin
+    (L342/BS2); the linear 2-halo shape with a free amplitude per bin (L352);
+  * the carrier's surviving halo: (1 - f_b) x NFW(M200) x S(z_l), M200 from the Moster+2013 stellar-to-halo relation at
+    each bin's typical stellar mass, S(z_l = 0.25) from L319's decay law (Gamma ~ Omega_Lambda^2) for L354's f_d(0).
+    The carrier is kernel-invisible (L353), so its halo lenses at its Newtonian mass.
+  Two web fields: the linear-theory baryonic rms (BS2 E8 x Omega_b/Omega_m, Maxwell-stacked) and Brouwer+21's adopted
+  isolated-lens field e = 0.003 scaled to baryons (x Omega_b/Omega_m).  No switch (the most favourable case for the
+  phantom: a switch would also cancel its excess beyond the switch edge, L352).
+
+  *** MUTATE=1: the kernel is blind to the web (no external field); K2 must FAIL ***
+  phantom tables built: 26 external fields x 41 masses x 2 footings (9 s)
+  web field (3D rms): linear-theory (16 Mpc): 0.0131 a0 all-matter; Brouwer+21 quiet (e = 0.003 a0): 0.0052 a0 all-matter
+  bins: log M* 10.00, 10.45, 10.70, 10.90 -> Moster+13 M200 4.17e+11, 8.97e+11, 1.91e+12, 5.55e+12
+  carrier surviving fraction at z_l = 0.25 (L319, Gamma ~ Omega_Lambda^2): f_d(0) = 0.8: S = 0.520, f_d(0) = 0.9: S = 0.392
+
+========================================================================================================
+K1  CONTROL: no external field reproduces the isolated-MOND base fit
+========================================================================================================
+    isolated MOND (no EFE, no carrier, no 2-halo): chi^2 = canonical 116.3, alt 107.5
+  [PASS] K1 (control) the isolated-MOND base fit is the record's (L342/BS2 base chi^2 ~ 106-116 on 60 points)
+         measured: {'canonical': 116.34753182547647, 'alt': 107.52976518154736}
+
+========================================================================================================
+K2  THE DEFICIT: baryons-only kernel (EFE from the web's baryons), no extra mass
+========================================================================================================
+    canonical linear-theory (16 Mpc)          : kernel field rms 0.00000 a0 -> Delta chi^2 +0.0
+    canonical Brouwer+21 quiet (e = 0.003 a0) : kernel field rms 0.00000 a0 -> Delta chi^2 +0.0
+    alt       linear-theory (16 Mpc)          : kernel field rms 0.00000 a0 -> Delta chi^2 +0.0
+    alt       Brouwer+21 quiet (e = 0.003 a0) : kernel field rms 0.00000 a0 -> Delta chi^2 +0.0
+  [FAIL] K2 a kernel that reads baryons only does NOT remove the external-field deficit: Delta chi^2 >= +100 at the construction's own (linear-theory) field and >= +50 at Brouwer+21's quiet field, both footings (BS2's E10 re-derived)
+         measured: {'canonical/linear-theor': 0.0, 'canonical/Brouwer+21 q': 0.0, 'alt/linear-theor': 0.0, 'alt/Brouwer+21 q': 0.0}
+         reading:  dividing the web's field by Omega_m/Omega_b ~ 6 leaves it 10-30x above KiDS's bound e <~ 7e-5 (BS2 E7)
+
+========================================================================================================
+K3  WITH THE CARRIER'S SURVIVING HALO (L319, f_d(0) = 0.8 / 0.9) + a bias-like 2-halo (A <= 2)
+========================================================================================================
+    canonical linear-theory (16 Mpc)           f_d(0) 0.8: carrier S = 0.520 -> Delta chi^2 -4.8; 2-halo A per bin [0.0, 0.0, 0.96, 1.15]
+    canonical linear-theory (16 Mpc)           f_d(0) 0.9: carrier S = 0.392 -> Delta chi^2 -10.8; 2-halo A per bin [0.0, 0.0, 0.76, 0.73]
+    canonical Brouwer+21 quiet (e = 0.003 a0)  f_d(0) 0.8: carrier S = 0.520 -> Delta chi^2 -4.8; 2-halo A per bin [0.0, 0.0, 0.96, 1.15]
+    canonical Brouwer+21 quiet (e = 0.003 a0)  f_d(0) 0.9: carrier S = 0.392 -> Delta chi^2 -10.8; 2-halo A per bin [0.0, 0.0, 0.76, 0.73]
+    alt       linear-theory (16 Mpc)           f_d(0) 0.8: carrier S = 0.520 -> Delta chi^2 +1.0; 2-halo A per bin [0.0, 0.0, 0.88, 1.08]
+    alt       linear-theory (16 Mpc)           f_d(0) 0.9: carrier S = 0.392 -> Delta chi^2 -5.8; 2-halo A per bin [0.0, 0.0, 0.67, 0.79]
+    alt       Brouwer+21 quiet (e = 0.003 a0)  f_d(0) 0.8: carrier S = 0.520 -> Delta chi^2 +1.0; 2-halo A per bin [0.0, 0.0, 0.88, 1.08]
+    alt       Brouwer+21 quiet (e = 0.003 a0)  f_d(0) 0.9: carrier S = 0.392 -> Delta chi^2 -5.8; 2-halo A per bin [0.0, 0.0, 0.67, 0.79]
+
+========================================================================================================
+K4  WHAT KiDS WANTS: the carrier fraction f_s (free) with a bias-like 2-halo
+========================================================================================================
+    canonical linear-theory (16 Mpc)          : best f_s = 0.30 of the LCDM halo -> Delta chi^2 -12.8
+    canonical Brouwer+21 quiet (e = 0.003 a0) : best f_s = 0.30 of the LCDM halo -> Delta chi^2 -12.8
+    alt       linear-theory (16 Mpc)          : best f_s = 0.20 of the LCDM halo -> Delta chi^2 -9.2
+    alt       Brouwer+21 quiet (e = 0.003 a0) : best f_s = 0.20 of the LCDM halo -> Delta chi^2 -9.2
+
+========================================================================================================
+THE READING (criterion fixed before the run: Delta chi^2 <= +9 vs isolated MOND, at the construction's own field)
+========================================================================================================
+    own field: f_d(0) 0.8: canonical -4.8, alt +1.0; f_d(0) 0.9: canonical -10.8, alt -5.8
+    what KiDS wants at the own field: canonical f_s = 0.30 (Delta -12.8), alt f_s = 0.20 (Delta -9.2)
+  [FAIL] K3 against the pre-declared criterion the construction plus the carrier's surviving halo and a bias-like 2-halo FAILS KiDS-1000 at its own field (Delta chi^2 > +9 for every f_d(0), both footings)
+         measured: f_d(0) 0.8: canonical -4.8, alt +1.0; f_d(0) 0.9: canonical -10.8, alt -5.8
+         reading:  the carrier cannot replace the phantom's EFE-truncated tail
+  [FAIL] K4 (reported) KiDS wants essentially no NFW-shaped carrier (best f_s <= 0.1 of the LCDM halo) and still misses: the deficit is the missing isothermal phantom beyond the EFE radius, which no halo shape supplies
+         measured: {'canonical/linear-theor': (0.3, -12.8), 'canonical/Brouwer+21 q': (0.3, -12.8), 'alt/linear-theor': (0.2, -9.2), 'alt/Brouwer+21 q': (0.2, -9.2)}
+         reading:  KiDS needs the kernel blind to the large-scale field at the ~1e-4 a0 level (BS2's door ii), not only blind to dark matter
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  Making the kernel read baryons only divides the web's pull in its argument by ~6, not by the ~100-200 KiDS needs.  At
+  the construction's own field the external-field deficit is +0..+0 (K2); the carrier's surviving
+  halo plus a bias-like 2-halo leaves -11..+1 against the pre-declared +9 (K3); and KiDS wants almost none
+  of an NFW-shaped carrier (K4): what is missing is the isothermal phantom beyond the EFE radius.  The construction fixes
+  reciprocity and the boost; KiDS requires more -- a kernel blind to the large-scale field altogether (sourced by the
+  bound region's own matter), which the Solar-System floor must still see (the Galaxy's field is inside the bound region).
+  Time 10 s.
+
+  1/4 checks pass; load-bearing failures: 2; wrote L355_kernel_invisible_kids_results_MUTATE.json
+rc=1

@@ -56,8 +56,14 @@ The same shift-independence is what gives α₁ = α₂ = 0. That is the **momen
 - **09-25, three more gates, and the switch closes** ([`L350`](real_research/g03_audit_2026/L350_chk_cosmological_G_gate.py), [`L351`](real_research/g03_audit_2026/L351_switch_gw170817_gate.py), [`L352`](real_research/g03_audit_2026/L352_switch_gauss_compensation.py); with the parallel lanes' KM3, L345 and L346). The synthesis's 09-25 block has the full account.
   - **λ-channel (L350):** the c₂ window above is excluded by Planck-era Hořava fits: c₂ ≤ 0.6–2.9×10⁻³ at 95%, against the tracking floor of 7.3×10⁻³. A leaf-average-subtracted term −c₂(K − ⟨K⟩)² removes the conflict and keeps L340's tracking (a construction).
   - **GW170817 (L351):** the switch's R⁽³⁾ form makes gravitational waves arrive G M_b/(6c³) early per switching shell, about 14 h for the Milky Way. The shear-completed x̃ = 9(R⁽³⁾ + σ²)/(4K²) repairs it.
-  - **Gauss (L352):** the switch cancels each galaxy's phantom beyond its edge. L342's KiDS lead (and L341 F7, BS1) came from an unrealizable retained profile and is withdrawn. Rescored, KiDS accepts only x_c ≲ 3, while the Lyman-α forest (L346) fails every x_c ≤ 7. **The local bound-region switch is closed** at the precision of those two tests.
+  - **Gauss (L352):** the switch cancels each galaxy's phantom beyond its edge. L342's KiDS lead (and L341 F7, BS1) came from an unrealizable retained profile and is withdrawn. Rescored, KiDS accepts only x_c ≲ 3, while the Lyman-α forest needs x_c ≳ 5–7 (L346 on the matter P(k); L347 at the flux-observable level: borderline at 5, passes at 7). **The local bound-region switch is closed** at the precision of those two tests.
   - **Standing:** KM3 finds the Solar-System 1PN metric is GR's. C-H/K keeps its local gravity gates and has no cosmology.
+- **09-25 (later), the kernel-invisible dark component** ([`L353`](real_research/g03_audit_2026/L353_kernel_invisible_dark_component.py)–[`L356`](real_research/dark_sector_2026/L356_construction_highz_price.py)). Full account: the synthesis's 09-25 (later) block.
+  - **Built (L353, Lean):** a subtraction pair makes the MOND kernel read baryons only. By reciprocity the dark component then feels Newtonian gravity only, so L321/L322's "additive" coupling has no action. The price is a 47% dark-sector equivalence-principle violation in X-COP clusters.
+  - **z = 0 (L354):** with that force law the Λ-triggered carrier has a window, strict cells included (f_d(0) 0.8 at 1400 km/s: X-COP 1.13, S₈ 0.773).
+  - **KiDS (L355):** it still fails through the web's baryonic field in the kernel (+120 to +145 with the carrier and a 2-halo term). With the kernel blind to the web it fits (−11 to +1).
+  - **High z (L356):** the carrier intact at z ≈ 2.5 overshoots RC100's dark fraction and moves the flagship zero point +0.8 to +1.0 dex.
+  - **Open:** a bound-region kernel, and a virialization-triggered carrier.
 - **Lean certificates** for the algebra of L330/L340/L341/L342 are in `fable_independent_2026/lean_2026/` (exit 0, zero `sorry`).
 
 **Other candidates:**

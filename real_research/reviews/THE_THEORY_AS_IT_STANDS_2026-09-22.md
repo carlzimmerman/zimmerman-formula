@@ -2,6 +2,34 @@
 
 **What this is.** About 630 commits from roughly ten agent tracks landed in this repository between 09-14 and 09-22. On 09-22 they were audited against their committed scripts, re-running the load-bearing ones. This page assembles the most coherent theory the record supports. For each part it says whether it is measured, derived, fitted or missing. It also names the gates that would have to fall for this to become a theory of gravity, rather than a law plus an unfinished completion.
 
+**Update, 09-25 (later): a kernel-invisible dark component — built, and what it does and does not fix** (L353–L356).
+
+- **It exists** ([L353](../g03_audit_2026/L353_kernel_invisible_dark_component.py), 4/4; Lean `L353_kernel_invisible_certificates`).
+  - **The construction:** a subtraction pair, two leafwise auxiliaries (v, λ) with ∇²v = 4πGρ_d, makes the MOND kernel read u − v, the baryonic Newtonian potential.
+  - **The resulting field:** the metric carries Newtonian(all) + phantom(baryons), and lensing = dynamics for both species.
+  - **What carries over:** L340's boost, tracking and modes are unchanged. The dark field leaks into the kernel only at α_c/2 ≈ 10⁻⁹.
+- **Reciprocity fixes the force law** (L353 N2; Lean `response_symmetric`).
+  - **The theorem:** a static Lagrangian's species-response matrix is symmetric, so a component the kernel cannot see feels only Newtonian gravity.
+  - **Consequence for the record:** L321/L322's "additive" coupling (the carrier feels the baryons' MOND field while its own field is unboosted) has no action. It breaks Newton's third law by r/r_M, a factor 10.5 at 10 r_M.
+  - **The price:** a dark-sector equivalence-principle violation wherever the phantom is on. In X-COP clusters the dark component feels 47% (37–53%) less acceleration than the gas.
+- **At z = 0 the two live fronts become compatible** ([L354](../dark_sector_2026/L354_carrier_lagrangian_additive_window.py), 3/3). With the carrier's orbits Newtonian, L319's Λ-triggered carrier has a window, including cells that pass the strict thresholds:
+  - canonical f_d(0) = 0.8, v_k = 1400 km/s: X-COP 1.13, S₈ 0.773, galaxies +0.02 dex;
+  - also canonical 0.9 / 1200 and alt 0.8 / 1400.
+
+  L345's "no window" was for C-H/K's universal coupling.
+- **KiDS says the kernel must be blind to the web, not only to dark matter** ([L355](../g03_audit_2026/L355_kernel_invisible_kids.py), 4/4).
+  - **Why baryons-only is not enough:** such a kernel still feels the web's baryonic field (e_b ≈ 0.002 a₀; 0.0008 at Brouwer+21's quiet field), while KiDS bounds any external field in the kernel at about 7×10⁻⁵ a₀ (BS2).
+  - **The numbers:** the deficit is +233/+241. With the carrier's surviving halo and a bias-like 2-halo it is still +120 to +145, against the +9 fixed before the run.
+  - **The control:** with the kernel blind to the web, the same carrier + 2-halo fits KiDS better than isolated MOND (Δχ² −11 to +1), and KiDS then wants 20–30% of a ΛCDM halo.
+- **At high redshift kernel-invisibility changes nothing** ([L356](../dark_sector_2026/L356_construction_highz_price.py), 3/3). The carrier's halos must be intact at z ≈ 1–2.5 for the forest.
+  - **RC100:** those halos overshoot the dark fraction (0.48–0.58 vs 0.29), and the inverted slope is +0.09 to +0.12 against −0.11 ± 0.06 (calibration-conditional).
+  - **The flagship:** the deep-MOND Tully–Fisher zero point moves by +0.8 to +1.0 dex (Moster-calibrated halos), beyond ΛCDM's +0.33.
+  - **Reading:** a Λ trigger acts too late. The carrier has to leave halos as they virialize.
+- **The dark sector's specification, sharpened:**
+  - (1) it must be kernel-invisible and feel Newtonian gravity only, as reciprocity forces (L353);
+  - (2) the kernel must be blind to the large-scale field at the ~10⁻⁴ a₀ level. A bound-region kernel would do this: the subtraction pair extended to baryons outside switched-on regions. The open issue is λ's constant mode, which then enters the force at switch edges and must be fixed by boundary conditions;
+  - (3) the carrier must be cold and present in the web and the forest, leave galaxy halos at virialization (a local trigger, e.g. on x̃), and be retained in cluster-depth wells (v_k ≈ 1000–1600 km/s).
+
 **Update, 09-25: C-H/K's λ-channel and its switch against three more gates.** Three lanes from this session (L350–L352) and three committed by parallel lanes (KM3, L345, L346).
 
 - **Local gravity holds.** KM3 ([`KM3`](../khronon_momentum_2026/KM3_chk_one_pn.py)) finds C-H/K's Solar-System 1PN metric is GR's. [L351](../g03_audit_2026/L351_switch_gw170817_gate.py) W5 confirms c_T = 1 for C-H/K without the switch: the heat filter's TT terms carry at most one derivative of h.
@@ -18,14 +46,14 @@
   - **The theorem:** the phantom is a divergence, so a switch that turns the MOND flux off makes every isolated galaxy weigh exactly its baryons beyond its edge. A negative-mass shell sits at the edge, and it is singular as a static solution.
   - **Withdrawn:** L341 F7 and L342 B4 scored KiDS with the phantom's mass retained beyond the edge, a profile the action cannot produce. BS1 is built on the same model. These are withdrawn as evidence for the switch.
   - **Rescored:** with the realizable profile, L342's x_c = 5 is disfavoured (Δχ² +35/+36 with a free 2-halo term, +214/+225 without). Using the Hamiltonian-constraint switch variable of L346/Lean I26, x_c ≈ 2–3 fits KiDS better than no switch, but only with a bias-like 2-halo term (A ≈ 0.6–1.8).
-- **The switch is closed by the forest plus KiDS.** L346 ([`L346`](../g03_audit_2026/L346_switch_forest_gate.py), parallel lane) fails every threshold up to x_c = 7 against its pre-declared forest band. KiDS with the realizable profile accepts only x_c ≲ 3, and above x_c = 7 it gives Δχ² +101 to +173. No threshold serves both. Both sides are quantitative tensions (collisionless PM; linear 2-halo), so the closure holds at that precision.
+- **The switch is closed by the forest plus KiDS.** L346 ([`L346`](../g03_audit_2026/L346_switch_forest_gate.py), parallel lane) fails every threshold up to x_c = 7 against its pre-declared band on the matter P(k). The parallel L347 corrects that headline at the level of the forest observable (FGPA 1D flux power): x_c = 5 is borderline (10.8% against a 10% rule) and x_c = 7 passes (7.2%). KiDS with the realizable profile accepts only x_c ≲ 3, and gives Δχ² +35/+36 at x_c = 5 and +101 to +106 at x_c = 7. No threshold serves both. Both sides are quantitative tensions (collisionless PM; linear 2-halo), so the closure holds at that precision.
 - **The dark sector** (L345, parallel lane): C-H/K boosts any minimally coupled carrier like baryons, and the Λ-triggered carrier has no window under its coupling. The one internal escape is a carrier–U coupling that tracks the kernel.
 - **Where this leaves it:** C-H/K, with the leaf-average λ-term, passes every local gravity gate computed (linear health, tracking, 1PN, c_T) and has no cosmology. The requirement is now sharp:
   - (i) the linear web and the forest-scale IGM at z ≈ 2–3 must stay Newtonian;
   - (ii) the lensing flux around isolated galaxies at 1–3 Mpc at z ≈ 0.25 must be supplied. By Gauss, that means either the MOND flux is on there or real mass is;
   - (iii) whatever supplies (ii) must not be boosted by the kernel.
 
-  No local density switch does (i) and (ii) together. The doors left are a time-triggered threshold (the forest needs x_c > 7 at z ≈ 2, KiDS needs x_c ≲ 3 at z ≈ 0.25) and a dark component invisible to the kernel.
+  No local density switch does (i) and (ii) together. The doors left are a time-triggered threshold (the forest needs x_c ≳ 5–7 at z ≈ 2 (L346/L347), KiDS needs x_c ≲ 3 at z ≈ 0.25) and a dark component invisible to the kernel.
 
 **Update, 09-23 (later): the bound-region switch, [L342](../g03_audit_2026/L342_bound_region_switch.py) (6/6; `MUTATE` = no switch, fails B2).** One scalar of C-H/K's own foliation, x = 9R⁽³⁾/(4K²), turns the MOND sector on only where the preferred leaves curve faster than they expand.
 - **Where it is off:** on flat FRW, x = 0, and in the linear web x = (3/2)Ω_mδ. Linear growth returns to ΛCDM, with σ₈ = 0.810 against L341's 18–27.

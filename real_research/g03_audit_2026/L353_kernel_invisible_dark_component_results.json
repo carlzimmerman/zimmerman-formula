@@ -1,0 +1,150 @@
+{
+ "lane": "L353",
+ "mutate": false,
+ "checks": {
+  "N1 the subtraction pair makes the kernel read the baryonic Newtonian potential only, puts Newtonian(all) + phantom(baryons) in the metric, and gives the dark component exactly the Newtonian potential of all matter": {
+   "ok": true,
+   "measured": "symbolic residuals 0, 0, 0; numeric 6.7e-16, 5.1e-15",
+   "load_bearing": true
+  },
+  "N2 a static Lagrangian's species-response matrix is symmetric, so a kernel-invisible component feels no phantom; L321's additive law is asymmetric (Gamma_bd - Gamma_db = -C) and breaks momentum balance by ~r/r_M in deep MOND": {
+   "ok": true,
+   "measured": "generic symmetric: True; additive asymmetry -C; force ratio at 10 r_M 10.51 (pair 1.00)",
+   "load_bearing": true
+  },
+  "N3 in L340's relativistic block the pair leaves the baryons' boost and tracking unchanged, gives the dark component a Newtonian field with lensing = dynamics, keeps the kernel blind to it (exactly at alpha_c = 0; leakage O(alpha_c) ~ 1e-9 otherwise), is reciprocal, and adds no mode (det ratio independent of omega)": {
+   "ok": true,
+   "measured": "boost_b -2*(C + 1)/(C*alpha_c + alpha_c - 2); boost_d -2/(C*alpha_c + alpha_c - 2); leak alpha_c/2; det ratios [-81, -16/81, -256]",
+   "load_bearing": true
+  },
+  "N4 (documentary) the construction trades three failures for one prediction: the kernel's web field is baryonic only (BS2's baryons-only verdict applies), the dark component is not boosted in galaxies, and in clusters the gas feels tens of per cent more acceleration than the dark component (a dark-sector equivalence-principle violation)": {
+   "ok": true,
+   "measured": "BS2 E10/E13 {'E10': \"{'canonical': 249.7, 'alt': 260.4}\", 'E13': \"{'canonical': 40.4, 'alt': 44.6}\"}; X-COP median dark/baryon 2.31, WEP gap 47%",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "N1": {
+   "symbolic": {
+    "kernel_arg": "0",
+    "metric": "0",
+    "dark": "0"
+   },
+   "numeric": {
+    "dev_kernel_arg": 6.661338147750939e-16,
+    "dev_dark": 5.10702591327572e-15,
+    "baryon_boost_100kpc": 3.3566216149841117
+   }
+  },
+  "N2": {
+   "general_symmetric": true,
+   "additive_asymmetry": "-C",
+   "two_body": [
+    [
+     2.0,
+     2.541494082536798,
+     1.0
+    ],
+    [
+     10.0,
+     10.50833194477505,
+     1.0
+    ],
+    [
+     100.0,
+     100.50083333194443,
+     1.0
+    ]
+   ]
+  },
+  "N3": {
+   "reconstruction": true,
+   "boost_b": "-2*(C + 1)/(C*alpha_c + alpha_c - 2)",
+   "boost_d": "-2/(C*alpha_c + alpha_c - 2)",
+   "leak": "alpha_c/2",
+   "kernel_arg_response_to_Rd": "alpha_c/(4*k**2*(C*alpha_c + alpha_c - 2))",
+   "lens_b": "0",
+   "lens_d": "0",
+   "reciprocity": "0",
+   "det_ratios": [
+    "-81",
+    "-16/81",
+    "-256"
+   ],
+   "tracking_b": "0"
+  },
+  "N4": {
+   "BS2": {
+    "E10": "{'canonical': 249.7, 'alt': 260.4}",
+    "E13": "{'canonical': 40.4, 'alt': 44.6}"
+   },
+   "xcop_wep": [
+    [
+     "A85",
+     2.228325486875407,
+     0.47566135945937127
+    ],
+    [
+     "A644",
+     1.9361259540422888,
+     0.5060401685690259
+    ],
+    [
+     "A1644",
+     2.008827675134908,
+     0.5305825587011839
+    ],
+    [
+     "A1795",
+     2.057459647176011,
+     0.504613749914069
+    ],
+    [
+     "A2029",
+     2.367880679268945,
+     0.4495865910728377
+    ],
+    [
+     "A2142",
+     2.5859314595516825,
+     0.41373095612436217
+    ],
+    [
+     "A2255",
+     2.2595644942751516,
+     0.4648674006648631
+    ],
+    [
+     "A2319",
+     1.8240807094669809,
+     0.45418941054464124
+    ],
+    [
+     "A3158",
+     2.4132541738091713,
+     0.47062982841523504
+    ],
+    [
+     "A3266",
+     2.776788257958083,
+     0.42418271273464203
+    ],
+    [
+     "RXC1825",
+     2.5442251118237253,
+     0.4743439152857801
+    ],
+    [
+     "ZW1215",
+     4.628708641971021,
+     0.3704598973382601
+    ]
+   ],
+   "median_wep": 0.46774861454004907,
+   "median_dark_over_baryons": 2.313722586772048,
+   "MW_unboosted_allowance_Msun": 29133574578.608707
+  }
+ },
+ "n_checks": 4,
+ "n_fail_load_bearing": 0
+}
