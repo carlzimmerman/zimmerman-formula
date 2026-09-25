@@ -2,7 +2,7 @@
 
 **What this is.** About 630 commits from roughly ten agent tracks landed in this repository between 09-14 and 09-22. On 09-22 they were audited against their committed scripts, re-running the load-bearing ones. This page assembles the most coherent theory the record supports. For each part it says whether it is measured, derived, fitted or missing. It also names the gates that would have to fall for this to become a theory of gravity, rather than a law plus an unfinished completion.
 
-**Update, 09-25 (evening): the vacuum gate reopens the switch, the bound-region kernel is built, and the assembled construction passes every gate tested so far** (L357, L359–L361).
+**Update, 09-25 (evening): the vacuum gate reopens the switch and the bound-region kernel is built; the assembled construction then FAILS cosmic shear** (L357, L359–L361, L363).
 
 - **The switch lives again, with a vacuum-gated threshold** ([L359](../g03_audit_2026/L359_vacuum_gated_switch.py), 4/4; `MUTATE` = no gate, the window closes).
   - The KiDS–forest pincer (L352/L358/L362) applied ONE threshold at two epochs: KiDS at z ≈ 0.25 accepts x_c ≲ 3, the forest at z = 2–3 needs x_c ≳ 7.
@@ -34,7 +34,16 @@
   - 70 of 96 (switch, carrier) pairs pass (≤ +4 against the unswitched model).
   - The switched phantom stops at each lens's edge, and the carrier's hollowed halo fills the deficit beyond it. An undecayed carrier fails (≥ +232).
   - Example: switch (p = 1, x_c0 = 1.5) with carrier (p = 2, x̃ ≥ 2000, 3000 km/s) scores −23.5 / −16.8.
-- **Standing.** One construction now passes, together:
+- **Cosmic shear FAILS the assembled construction** ([L363](../g03_audit_2026/L363_region_kernel_lensing_power.py), 5/5; `MUTATE` = kernel off, which removes the excess). This is prompted by the parallel GP3, which found the same failure for its own kernel.
+  - The gate is GP3's: lensing power within 20% of ΛCDM's on k = 0.1–1 h/Mpc.
+  - Two estimates, both over the gate:
+    - the halo model (exact per-halo region phantoms, the converged estimate for isolated regions): worst R = 2.9–4.7 with the observed bound baryons, 4.7–9.2 with all of a halo's baryons;
+    - the nonlinear mock (GP3's, groups included, 0.39 Mpc cells): worst R = 1.5–2.3.
+  - Gauss cancellation removes the phantom's power as k → 0, but the phantom KiDS galaxy–galaxy lensing wants is private to each galaxy, about 4–5× its halo mass inside ~1 Mpc. It adds one-halo power at k ~ 0.3–1.
+  - Removing the carrier's one-halo power from every halo below 10¹⁴ M☉ barely helps (4.09 → 3.42).
+  - The best cell (highest window threshold, finest mock) stays within the gate to k = 0.5 and fails at 0.7–1. Its margin falls with resolution and is not converged.
+  - The general point: galaxy–galaxy lensing (a galaxy–mass cross-correlation) cannot tell private mass from shared (two-halo) mass; cosmic shear (mass–mass) can. A MOND-like private phantom plus a ΛCDM-like carrier double-counts.
+- **Standing before L363** (kept for the record). One construction passed, together:
   - linear growth (σ₈ = 0.810);
   - the Lyman-α forest (switch ≤ 4%, carrier strict);
   - S₈ = 0.772;
@@ -45,7 +54,8 @@
   - the Solar System (1PN = GR, with the Sun keeping the Galaxy's field).
   
   It is a construction. The two thresholds and the gate exponent are chosen, not derived; the gate's tie to ρ_Λ, which also sets a₀, is suggestive, not derived.
-- **Open, in order:**
+- **Open, in order (after L363):**
+  0. Cosmic shear: the private-phantom excess at k ~ 0.3–1 h/Mpc (L363). This is now the construction's decisive failure; any repair must remove most of the phantom's one-halo power without losing KiDS galaxy–galaxy lensing.
   1. Gas inside active filaments at z ≲ 1 feels its own deep-MOND field, a force ×8–12 that cuts infall from 17–34 Gyr to 5.5–10 Gyr. The low-z forest and the filament tSZ stacks decide this.
   2. The high-z price: the flagship shift and RC100.
   3. The relativistic embedding of the bound-region kernel.

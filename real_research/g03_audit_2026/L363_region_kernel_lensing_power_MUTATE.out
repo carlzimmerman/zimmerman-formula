@@ -1,0 +1,101 @@
+L363 -- COSMIC SHEAR FOR THE ASSEMBLED CONSTRUCTION: does the bound-region kernel's phantom (L361), which KiDS
+galaxy-galaxy lensing needs around every lens (L359/L360), add lensing power that cosmic shear would see?
+
+WHY.  L360 passes KiDS-1000 galaxy-galaxy lensing -- a galaxy-MASS cross-correlation -- with a switched phantom that is
+isothermal out to each region's edge (~1-2 Mpc) and then Gauss-cancelled.  Cosmic shear measures the MASS-MASS
+power at k ~ 0.1-1 h/Mpc and finds it at or below LCDM.  Light sees the phantom.  The parallel GP3
+(real_research/generated_phantom_2026, a source-switched, Yukawa-screened kernel) finds the phantom inflates the lensing
+power 1.5-2.9x at k <= 1 h/Mpc.  L361's phantom differs in one place that could matter: it is cancelled at every
+region's edge, so it has no monopole beyond a region.  This lane measures its lensing power.
+
+TWO ESTIMATES (L361's field equations; GP3's machinery and mock loaded unedited)
+  (M) THE MOCK: GP3's nonlinear mock at z = 0.5 (lognormal matter smoothed at 1.5 Mpc, Sheth-Tormen halos with GP0's bound
+      baryons deposited on the grid).  Regions: the gated switch x~ = (3/2) Omega_m(z)(rho_dyn/rho_bar - 1) >= x_c,eff(z),
+      rho_dyn = matter + the phantom, grown by iteration on dilated masks until converged.  Kernel: lap w = 4 pi G rho_src on
+      active cells, w = 0 off them (the Dirichlet limit of L361's screening); phantom: lap P = div[(nu - 1) grad w] on active
+      cells, P = 0 off them; rho_ph = lap P / 4 pi G on the full grid -- the compensating edge shell comes out exactly.
+      Two boxes (200 Mpc and 100 Mpc, 256^3) and two sources (GP0's bound baryons; all baryons in active cells, L361's
+      literal source).
+  (H) THE HALO MODEL (resolution-free, the converged estimate): each halo is its own region; inside it the phantom of its
+      baryons M_b is the isolated QUMOND one (a spherical Dirichlet region leaves the monopole field exact), cancelled by
+      a shell at the edge r_e where x~(r_e) = x_c,eff.  Its transform is exactly
+          rho~_ph(k) = int_0^{r_e} M_ph(<r) k j1(k r) dr,   M_ph(<r) = (nu(G M_b/r^2 a0) - 1) M_b,
+      (-> 0 as k^2: no large-scale power).  One-halo phantom power, its cross with the NFW matter, and two-halo terms are
+      added to GP3's Sheth-Tormen + NFW P_NL.  Baryon readings: GP0 'observed' and 'maximal' (all the halo's baryons).
+GATE (GP3's, pre-declared there and adopted unchanged): the lensing power stays within 20% of LCDM's, R(k) <= 1.2 for
+all k in [0.1, 1] h/Mpc, both footings -- R_cons (GP3's conservative ratio) for the mock, P_lens/P_NL for the halo model.
+
+  *** MUTATE=1: the kernel is switched off; X1 must FAIL ***
+  GP3 machinery loaded; z = 0.5; x_c,eff(0.5): p=1, x_c0=1.5 (L360's example) -> 2.62, p=2, x_c0=2.0 (highest window threshold) -> 6.09   [1s]
+
+==============================================================================================================
+C1-C2  CONTROLS
+==============================================================================================================
+  [PASS] C1 CONTROL: the kernel off gives no phantom -- R = 1 in the mock and in the halo model
+         measured: mock 0.0e+00; halo model 0.0e+00
+
+==============================================================================================================
+(M)  THE MOCK: L361's region kernel on GP3's nonlinear mock at z = 0.5
+==============================================================================================================
+    200 Mpc source bound p=1, x_c0=1.5  canonical: active 0.089 (1 iterations), median nu-1 0; R_cons at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00   [34s]
+    200 Mpc source bound p=2, x_c0=2.0  canonical: active 0.064 (1 iterations), median nu-1 0; R_cons at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00   [35s]
+    100 Mpc source bound p=1, x_c0=1.5  canonical: active 0.052 (1 iterations), median nu-1 0; R_cons at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00   [36s]
+    100 Mpc source bound p=1, x_c0=1.5  alt      : active 0.052 (1 iterations), median nu-1 0; R_cons at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00   [37s]
+    100 Mpc source bound p=2, x_c0=2.0  canonical: active 0.020 (1 iterations), median nu-1 0; R_cons at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00   [39s]
+    100 Mpc source bound p=2, x_c0=2.0  alt      : active 0.020 (1 iterations), median nu-1 0; R_cons at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00   [40s]
+    100 Mpc source all   p=1, x_c0=1.5  canonical: active 0.052 (1 iterations), median nu-1 0; R_cons at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00   [42s]
+    100 Mpc source all   p=1, x_c0=1.5  alt      : active 0.052 (1 iterations), median nu-1 0; R_cons at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00   [43s]
+  [PASS] C2 CONTROL: every region's phantom is cancelled -- the global phantom mass is zero to machine precision
+         measured: max |sum rho_ph| / source mass = 0.0e+00
+
+==============================================================================================================
+(H)  THE HALO MODEL: each halo's compensated region phantom on top of LCDM's Sheth-Tormen + NFW P_NL
+==============================================================================================================
+    observed p=1, x_c0=1.5  canonical: r_e(1e12) 0.00 Mpc; P_lens/P_NL at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00
+    observed p=1, x_c0=1.5  alt      : r_e(1e12) 0.00 Mpc; P_lens/P_NL at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00
+    observed p=2, x_c0=2.0  canonical: r_e(1e12) 0.00 Mpc; P_lens/P_NL at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00
+    observed p=2, x_c0=2.0  alt      : r_e(1e12) 0.00 Mpc; P_lens/P_NL at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00
+    maximal  p=1, x_c0=1.5  canonical: r_e(1e12) 0.00 Mpc; P_lens/P_NL at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00
+    maximal  p=1, x_c0=1.5  alt      : r_e(1e12) 0.00 Mpc; P_lens/P_NL at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00
+    maximal  p=2, x_c0=2.0  canonical: r_e(1e12) 0.00 Mpc; P_lens/P_NL at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00
+    maximal  p=2, x_c0=2.0  alt      : r_e(1e12) 0.00 Mpc; P_lens/P_NL at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00
+
+==============================================================================================================
+X1  THE VERDICT against GP3's gate (R <= 1.2 on k = 0.1-1 h/Mpc)
+==============================================================================================================
+    halo model, worst R over k = 0.1-1: observed/p=1, x_c0=1.5 /canon 1.00; observed/p=1, x_c0=1.5 /alt 1.00; observed/p=2, x_c0=2.0 /canon 1.00; observed/p=2, x_c0=2.0 /alt 1.00; maximal/p=1, x_c0=1.5 /canon 1.00; maximal/p=1, x_c0=1.5 /alt 1.00; maximal/p=2, x_c0=2.0 /canon 1.00; maximal/p=2, x_c0=2.0 /alt 1.00
+    finest mock (100 Mpc, bound source), worst R_cons: p=1, x_c0=1.5 /canon 1.00; p=1, x_c0=1.5 /alt 1.00; p=2, x_c0=2.0 /canon 1.00; p=2, x_c0=2.0 /alt 1.00
+  [FAIL] X1 THE ASSEMBLED CONSTRUCTION FAILS COSMIC SHEAR: its lensing power exceeds LCDM's by more than 20% somewhere in k = 0.1-1 h/Mpc, in the resolution-free halo model on both baryon readings and footings and in the finest mock
+         measured: halo model worst 1.00-1.00; finest mock worst 1.00-1.00
+         reading:  Gauss cancellation removes the phantom's power as k -> 0, but each galaxy's isothermal phantom (a few times its halo mass inside its ~1-2 Mpc region, the profile KiDS galaxy-galaxy lensing wants) adds one-halo power at k ~ 0.3-1
+
+==============================================================================================================
+X2  (reported) RESOLUTION AND SOURCE
+==============================================================================================================
+    p=1, x_c0=1.5  canonical, bound: R_cons(0.5 / 1 h/Mpc) 200 Mpc 1.00 / 1.00 -> 100 Mpc 1.00 / 1.00
+    p=2, x_c0=2.0  canonical, bound: R_cons(0.5 / 1 h/Mpc) 200 Mpc 1.00 / 1.00 -> 100 Mpc 1.00 / 1.00
+    L361's literal source (all baryons in active cells), 100 Mpc: R_cons(0.5 / 1) 1.00 / 1.00
+  [PASS] X2 (reported) the mock's excess falls with resolution (smaller cells shrink small galaxies' regions to their physical edges) and rises with the source (all in-region baryons > the bound census)
+         measured: see above
+
+==============================================================================================================
+X3  (reported) THE REPLACEMENT LEAD, against P_NL: the carrier gone from every halo below M_cut
+==============================================================================================================
+    M_cut = 1e+12: P_lens/P_NL at 0.1: 1.00, 0.2: 1.00, 0.3: 1.00, 0.5: 1.00, 0.7: 1.00, 1.0: 1.00
+    M_cut = 1e+13: P_lens/P_NL at 0.1: 1.00, 0.2: 1.00, 0.3: 0.99, 0.5: 0.99, 0.7: 0.98, 1.0: 0.97
+    M_cut = 1e+14: P_lens/P_NL at 0.1: 0.99, 0.2: 0.98, 0.3: 0.95, 0.5: 0.90, 0.7: 0.85, 1.0: 0.79
+  [PASS] X3 (reported) the replacement lead: removing the carrier's one-halo power from halos below M_cut (as a decay that empties galaxy and group halos would) against the phantom's added power
+         measured: {'1e+12': 1.0, '1e+13': 1.0, '1e+14': 0.99}
+         reading:  the phantom must REPLACE the dark component's small-scale lensing power, not add to it
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  Cosmic shear is the construction's open gate.  L361's phantom is cancelled at every region's edge, so it adds nothing as
+  k -> 0, but inside each region it is the isothermal phantom KiDS galaxy-galaxy lensing wants -- a few times the halo's
+  mass out to ~1-2 Mpc -- and that is one-halo power at k ~ 0.3-1 h/Mpc.  Halo model (converged): worst R =
+  1.00-1.00 against the gate's 1.2; finest mock 1.00-1.00.
+  The replacement lead (X3): the phantom must stand in for, not add to, the dark component's small-scale power.
+
+  4/5 checks pass; load-bearing failures: 1; wrote L363_region_kernel_lensing_power_results_MUTATE.json   [43s]
+rc=1
