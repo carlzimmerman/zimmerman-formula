@@ -1,0 +1,167 @@
+{
+ "lane": "L361",
+ "mutate": false,
+ "checks": {
+  "R0 the action's Euler-Lagrange equations are the bound-region field equations: lap phi = 4 pi G rho; (lap - M^2) w = 4 pi G f rho_b; chi = w; (lap - M^2) psi = div[(f Q' + 1 - f) grad w]; so the phantom P = psi - chi obeys (lap - M^2) P = div[f (nu - 1) grad w] + M^2 w (checked with a concrete non-trivial kernel Q)": {
+   "ok": true,
+   "measured": "residuals ['0', '0', '0', '0']; phantom residual 0",
+   "load_bearing": true
+  },
+  "R1 an inactive gap screens the rest of the universe out of a region's kernel: the transmitted uniform field falls as exp[-m (R_2 - R_e)] (log-slope ~ -(R_2 - R_e) = -2 Mpc), is < 1e-3 for 1/m <= 0.2 Mpc, and the exact solution matches the finite-difference control": {
+   "ok": true,
+   "measured": "T(1/m = 0.2) = 9.50e-05; T(0.1) = 2.79e-09; d ln T/d m = -2.09 Mpc; BVP/exact at 0.3 Mpc = 1.0008",
+   "load_bearing": true
+  },
+  "R2 the Sun reads the Galaxy's field to better than 99.9% (the Galactic baryons are inside the same bound region, where the kernel is unscreened; the region's boundary changes the field at the Sun only through images ~ (r/R_e)^(2l+1))": {
+   "ok": true,
+   "measured": "relative correction 3.7e-12",
+   "load_bearing": true
+  },
+  "R3 THE BOUND-REGION KERNEL PASSES KiDS-1000 at its own field: Delta chi^2 <= +9 against isolated MOND on both footings (1/m = 0.2 Mpc, every baryon counted as active) -- while the total-field and baryons-only kernels fail (> +100, the record's controls reproduced)": {
+   "ok": true,
+   "measured": "bound-region: canonical +0.0, alt +0.0; total field +548; baryons only +233",
+   "load_bearing": true
+  },
+  "R4 (reported) the construction needs only a one-sided bound on the gap screening length (KiDS passes for every 1/m up to the bound; m -> infinity is the Dirichlet limit), not a tuned value": {
+   "ok": true,
+   "measured": "KiDS passes for 1/m <= 0.5 Mpc (tested 0.1-1 Mpc, 2 Mpc gap)",
+   "load_bearing": false
+  },
+  "R5 the switched phantom is cancelled at the region's edge: beyond it the region weighs its baryons (zero phantom monopole), so the region-local kernel adds nothing on the scales of linear growth (L359 G1 stands)": {
+   "ok": true,
+   "measured": "phantom mass inside the edge up to 99.4 M_b; beyond the edge |M_ph|/M_b <= 2.5e-07",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "R1": {
+   "transmission": {
+    "0.02": 1.2619933578660965e-44,
+    "0.05": 3.3032560084340647e-18,
+    "0.1": 2.7895312183378976e-09,
+    "0.2": 9.502310886441351e-05,
+    "0.3": 0.003166923698164316,
+    "0.5": 0.050721539628877384,
+    "1.0": 0.34891796481491,
+    "2.0": 0.73361294151327
+   },
+   "bvp_control_0.3": 0.0031693395148153997
+  },
+  "R2": {
+   "image_factors": [
+    5.513679999999998e-07,
+    3.707398431999998e-11,
+    2.492854705676798e-15
+   ],
+   "relative_quadrupole": 0.10053539559785843,
+   "field_correction": 3.727247679999998e-12
+  },
+  "R3": {
+   "total field (BS2's construction)": {
+    "kernel_field_rms_a0": {
+     "canonical": 0.013063700533034118,
+     "alt": 0.010843253659031129
+    },
+    "dchi2": {
+     "canonical": 548.27931958445,
+     "alt": 561.6466558693892
+    }
+   },
+   "baryons only (L353/L355)": {
+    "kernel_field_rms_a0": {
+     "canonical": 0.0020526443838166275,
+     "alt": 0.00170375489465847
+    },
+    "dchi2": {
+     "canonical": 233.35494268616551,
+     "alt": 240.97646824859163
+    }
+   },
+   "active baryons only, unscreened (all baryons active)": {
+    "kernel_field_rms_a0": {
+     "canonical": 0.0020526443838166275,
+     "alt": 0.00170375489465847
+    },
+    "dchi2": {
+     "canonical": 233.35494268616551,
+     "alt": 240.97646824859163
+    }
+   },
+   "active baryons only, unscreened (half active)": {
+    "kernel_field_rms_a0": {
+     "canonical": 0.0010263221919083138,
+     "alt": 0.000851877447329235
+    },
+    "dchi2": {
+     "canonical": 141.30122773302318,
+     "alt": 150.13102073873932
+    }
+   },
+   "bound-region kernel, 1/m = 0.1 Mpc (all baryons active)": {
+    "kernel_field_rms_a0": {
+     "canonical": 5.72591558880244e-12,
+     "alt": 4.752677467045798e-12
+    },
+    "dchi2": {
+     "canonical": 0.0,
+     "alt": 0.0
+    }
+   },
+   "bound-region kernel, 1/m = 0.2 Mpc (all baryons active)": {
+    "kernel_field_rms_a0": {
+     "canonical": 1.9504865074333437e-07,
+     "alt": 1.6189608683340917e-07
+    },
+    "dchi2": {
+     "canonical": 0.0,
+     "alt": 0.0
+    }
+   },
+   "bound-region kernel, 1/m = 0.3 Mpc (all baryons active)": {
+    "kernel_field_rms_a0": {
+     "canonical": 6.5005681430127676e-06,
+     "alt": 5.3956617517573564e-06
+    },
+    "dchi2": {
+     "canonical": 0.4390141655397599,
+     "alt": 0.20319685072907134
+    }
+   },
+   "bound-region kernel, 1/m = 0.5 Mpc (all baryons active)": {
+    "kernel_field_rms_a0": {
+     "canonical": 0.00010411328345774767,
+     "alt": 8.641707140731341e-05
+    },
+    "dchi2": {
+     "canonical": -11.524450306311152,
+     "alt": -11.260409246749688
+    }
+   },
+   "bound-region kernel, 1/m = 1 Mpc (all baryons active)": {
+    "kernel_field_rms_a0": {
+     "canonical": 0.0007162045008900526,
+     "alt": 0.0005944706903876747
+    },
+    "dchi2": {
+     "canonical": 104.14634116660184,
+     "alt": 110.21426535763857
+    }
+   }
+  },
+  "R4": {
+   "passing_mInv": [
+    0.1,
+    0.2,
+    0.3,
+    0.5
+   ],
+   "max_mInv": 0.5
+  },
+  "R5": {
+   "max_phantom_inside_over_Mb": 99.43967480207772,
+   "max_phantom_beyond_over_Mb": 2.46856839699581e-07
+  }
+ },
+ "n_checks": 6,
+ "n_fail_load_bearing": 0
+}

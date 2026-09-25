@@ -1,0 +1,110 @@
+L361 -- THE BOUND-REGION KERNEL: a MOND kernel that reads only its own bound region's baryons, built from an action.
+
+WHY.  Every KiDS-1000 failure of the C-H/K kernel on the record is one mechanism: the kernel's argument contains the
+cosmic web's field, and the external-field effect ends each isolated lens's phantom near 0.1 Mpc.
+  * total field in the argument: excluded (BS2 +570, BS3 after isolation and 2-halo);
+  * baryons-only argument (L353's kernel-invisible construction): still +233 (L355 K2; BS3 +133..+152 beyond 0.3 Mpc);
+  * a Yukawa-screened argument with one free length (BK1, lambda ~ 0.7 Mpc): a near miss, +7.7 against the EFE-free
+    idealisation, with lambda underivable (BK2) and a growth-vs-KiDS pincer at any constant switch threshold (BK3).
+BS3 names the door: "a kernel blind to the large-scale field: one sourced only by the bound region's own matter", which
+must still hand the Sun the Galaxy's field (L340 S1).  L359's vacuum-gated switch supplies the bound region.  This lane
+builds the kernel on it.
+
+THE CONSTRUCTION (a construction, not a derivation).  f(x) = the gated switch of L359 (1 inside bound regions, 0 in the
+inactive web); M^2 = m^2 (1 - f), a screening mass that acts only in the inactive web.  Non-relativistic Lagrangian:
+   L = -(rho_b + rho_d) phi - |grad phi|^2/(8 pi G)                                   Newtonian gravity, all matter
+       - f rho_b psi - [2 grad psi.grad w + 2 M^2 psi w - a0^2 f Q(|grad w|^2/a0^2) - (1 - f)|grad w|^2]/(8 pi G)
+       + f rho_b chi + [|grad chi|^2 + M^2 chi^2]/(8 pi G)          region-local QUMOND minus its Newtonian self-term
+  Field equations (derived symbolically in R0):
+      lap phi = 4 pi G (rho_b + rho_d);   (lap - M^2) w = 4 pi G f rho_b;   chi = w;
+      (lap - M^2) P = div[ f (nu(|grad w|/a0) - 1) grad w ] + M^2 w,   P = psi - chi   (Q'(s) = nu(sqrt s));
+  the M^2 w term lives only in the inactive web within ~1/m of a region's edge -- a thin layer that exerts no force inside
+  a spherical region and is itself screened outside.
+  In-region baryons move in phi + f P (Newtonian from everything + their own region's MOND phantom); web gas and the
+  carrier move in phi (Newtonian).  w is sourced only by the region's baryons and cannot cross the inactive web (the
+  screening), so no field from outside a bound region enters its kernel -- neither the carrier's nor the web gas's nor
+  another region's.  Inside a region there is no screening: the Sun reads the whole Galaxy.  The phantom is in
+  divergence form, so it is cancelled at the region's edge (L352 Z1): beyond it, matter weighs its baryons + carrier.
+  The one new constant is m, and it enters only through a one-sided bound (the gap must screen); m -> infinity is a
+  Dirichlet limit with the same physics.
+
+==============================================================================================================
+R0  THE FIELD EQUATIONS FROM THE LAGRANGIAN (sympy, one dimension; a concrete non-trivial Q, generic f(x), M^2(x))
+==============================================================================================================
+    delta phi: residual vs the stated field equation = 0
+    delta psi: residual vs the stated field equation = 0
+    delta w  : residual vs the stated field equation = 0
+    delta chi: residual vs the stated field equation = 0
+    phantom P = psi - chi: residual vs (lap - M^2) P = div[f (Q' - 1) grad w] + M^2 w  ->  0
+    (the M^2 w term lives only in the inactive web, within ~1/m of a region's edge: a thin layer that exerts no force inside a
+     spherical region and is itself screened outside; with f = 1, M = 0 the equations are L353's unscreened kernel)
+  [PASS] R0 the action's Euler-Lagrange equations are the bound-region field equations: lap phi = 4 pi G rho; (lap - M^2) w = 4 pi G f rho_b; chi = w; (lap - M^2) psi = div[(f Q' + 1 - f) grad w]; so the phantom P = psi - chi obeys (lap - M^2) P = div[f (nu - 1) grad w] + M^2 w (checked with a concrete non-trivial kernel Q)
+         measured: residuals ['0', '0', '0', '0']; phantom residual 0
+         reading:  in-region baryons couple to phi + f (psi - chi): Newtonian from everything plus their own region's phantom; web gas and the carrier couple to phi only (and so, by reciprocity, cannot source the phantom)
+
+==============================================================================================================
+R1  DECOUPLING: the l = 1 (uniform-field) w-mode transmitted into a region through a screened inactive gap
+==============================================================================================================
+    R_e = 1 Mpc, gap to 3 Mpc; transmitted fraction of an external uniform w-field:
+      1/m = 0.02 Mpc: 1.26e-44, 1/m = 0.05 Mpc: 3.30e-18, 1/m = 0.1 Mpc: 2.79e-09, 1/m = 0.2 Mpc: 9.50e-05, 1/m = 0.3 Mpc: 3.17e-03, 1/m = 0.5 Mpc: 5.07e-02, 1/m = 1 Mpc: 3.49e-01, 1/m = 2 Mpc: 7.34e-01
+      finite-difference control at 1/m = 0.3 Mpc: 3.169e-03  (exact 3.167e-03)
+  [PASS] R1 an inactive gap screens the rest of the universe out of a region's kernel: the transmitted uniform field falls as exp[-m (R_2 - R_e)] (log-slope ~ -(R_2 - R_e) = -2 Mpc), is < 1e-3 for 1/m <= 0.2 Mpc, and the exact solution matches the finite-difference control
+         measured: T(1/m = 0.2) = 9.50e-05; T(0.1) = 2.79e-09; d ln T/d m = -2.09 Mpc; BVP/exact at 0.3 Mpc = 1.0008
+         reading:  m -> infinity is the Dirichlet limit: regions decouple exactly
+
+==============================================================================================================
+R2  THE SUN KEEPS THE GALAXY'S FIELD (L340 S1): no screening inside the Milky Way's bound region
+==============================================================================================================
+    the monopole field inside a region is exact for any exterior; image factors (r/R_e)^(2l+1) at the Sun: l=1: 5.5e-07, l=2: 3.7e-11, l=3: 2.5e-15
+    the disc's l = 2 field at the Sun is ~0.10 of its monopole; the image correction to the Galaxy's field is ~3.7e-12
+  [PASS] R2 the Sun reads the Galaxy's field to better than 99.9% (the Galactic baryons are inside the same bound region, where the kernel is unscreened; the region's boundary changes the field at the Sun only through images ~ (r/R_e)^(2l+1))
+         measured: relative correction 3.7e-12
+         reading:  wide binaries and satellites keep their host's external field; only fields from OUTSIDE the bound region are removed
+
+==============================================================================================================
+R3  KiDS-1000 AT THE KERNEL'S OWN FIELD (L355's stacked-lens machinery, unedited)
+==============================================================================================================
+    total field (BS2's construction)                              : field rms 1.31e-02 a0 -> Delta chi^2 canonical +548.3, alt +561.6
+    baryons only (L353/L355)                                      : field rms 2.05e-03 a0 -> Delta chi^2 canonical +233.4, alt +241.0
+    active baryons only, unscreened (all baryons active)          : field rms 2.05e-03 a0 -> Delta chi^2 canonical +233.4, alt +241.0
+    active baryons only, unscreened (half active)                 : field rms 1.03e-03 a0 -> Delta chi^2 canonical +141.3, alt +150.1
+    bound-region kernel, 1/m = 0.1 Mpc (all baryons active)       : field rms 5.73e-12 a0 -> Delta chi^2 canonical +0.0, alt +0.0
+    bound-region kernel, 1/m = 0.2 Mpc (all baryons active)       : field rms 1.95e-07 a0 -> Delta chi^2 canonical +0.0, alt +0.0
+    bound-region kernel, 1/m = 0.3 Mpc (all baryons active)       : field rms 6.50e-06 a0 -> Delta chi^2 canonical +0.4, alt +0.2
+    bound-region kernel, 1/m = 0.5 Mpc (all baryons active)       : field rms 1.04e-04 a0 -> Delta chi^2 canonical -11.5, alt -11.3
+    bound-region kernel, 1/m = 1 Mpc (all baryons active)         : field rms 7.16e-04 a0 -> Delta chi^2 canonical +104.1, alt +110.2
+  [PASS] R3 THE BOUND-REGION KERNEL PASSES KiDS-1000 at its own field: Delta chi^2 <= +9 against isolated MOND on both footings (1/m = 0.2 Mpc, every baryon counted as active) -- while the total-field and baryons-only kernels fail (> +100, the record's controls reproduced)
+         measured: bound-region: canonical +0.0, alt +0.0; total field +548; baryons only +233
+         reading:  restricting the source removes the carrier and the web gas; the screened gap removes every other region; what is left is the isolated phantom that L352/L359/L360 score
+
+==============================================================================================================
+R4  THE ONE NEW CONSTANT: how short must the gap's screening length be?
+==============================================================================================================
+  [PASS] R4 (reported) the construction needs only a one-sided bound on the gap screening length (KiDS passes for every 1/m up to the bound; m -> infinity is the Dirichlet limit), not a tuned value
+         measured: KiDS passes for 1/m <= 0.5 Mpc (tested 0.1-1 Mpc, 2 Mpc gap)
+         reading:  contrast BK1/BK2: there a finite screening length acts INSIDE the lens and must be derived
+
+==============================================================================================================
+R5  GAUSS PER REGION: the switched phantom has zero total mass beyond the region's edge
+==============================================================================================================
+  [PASS] R5 the switched phantom is cancelled at the region's edge: beyond it the region weighs its baryons (zero phantom monopole), so the region-local kernel adds nothing on the scales of linear growth (L359 G1 stands)
+         measured: phantom mass inside the edge up to 99.4 M_b; beyond the edge |M_ph|/M_b <= 2.5e-07
+         reading:  the divergence form makes each region's phantom a local redistribution (L352 Z1)
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  THE BOUND-REGION KERNEL IS BUILT.  One action: Newtonian gravity for everything plus a QUMOND kernel whose argument
+  w is sourced only by the baryons inside the gated switch's bound region and is screened across the inactive web.  From
+  it (R0): in-region baryons feel their own region's phantom on top of Newtonian gravity from everything; web gas and
+  the carrier feel Newtonian gravity only.  A 2 Mpc inactive gap transmits 9.5e-05 of an external field at 1/m = 0.2 Mpc
+  (R1), the Sun keeps the Galaxy's field to 4e-12 (R2), and KiDS-1000 at the kernel's own field scores
+  +0.0/+0.0 against isolated MOND where the total-field and baryons-only kernels
+  score +548 and +233 (R3).
+  The new constant m needs only 1/m <= 0.5 Mpc (R4).  With it, L359's switch and L360's assembled construction are
+  scored at the construction's own field.
+  OPEN: the relativistic embedding (L353's pattern), the switch's edge dynamics, and baryons inside active filaments at
+  late times (their own deep-MOND field).
+
+  6/6 checks pass; load-bearing failures: 0; wrote L361_bound_region_kernel_results.json   [6s]
+rc=0
