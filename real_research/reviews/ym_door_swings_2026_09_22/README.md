@@ -20,3 +20,19 @@ commit, and every flagged gap was fixed; see `ym1_hamiltonian/REVIEW.md`.
 (`real_research/ym1_bdl_extension_2026/`: X₂ ≈ 42.3, X₃ ≈ 59.9, X₄ ≈ 73.3, BDL route). The
 `ym1_hamiltonian/` result here (131/185/227) is a second, independent method reaching the same
 statement.
+
+**2026-09-25 Lean certificates.** Each file compiles with `lake env lean` from
+`fable_independent_2026/lean_2026/` (Lean 4.34.0-rc2, Mathlib v4.34.0-rc2). All exit 0 with zero
+`sorry`, and every theorem's axioms are exactly {propext, Classical.choice, Quot.sound}. The analytic
+lemmas stay in prose in the PROOF/REPORT files. Lean certifies only the scalar chain that turns them
+into the stated numbers.
+
+| certificate | door | theorems |
+|---|---|---|
+| `I21_ym1_polymer_threshold.lean` (+ `.out`) | D-YM1 Hamiltonian | 13: tree criticality, KP a₂ identity, boundary sum κ_B ≤ 0.95K*, marked-path ratio 3/4, e^{−a₁} lower bound, N-uniform ε, X₂/X₃/X₄ = 131.1/185.3/227, gap ≥ 3x/16 |
+| `I22_ym1_dobrushin.lean` (+ `.out`) | D-YM1 Euclidean | 8: TV two-point lemma (perfect-square certificate), tanh–exp bound, α < 1 windows for D = 4/3/2, −ln α > 0, SZZ conversion β_W = N²β |
+| `I23_ym3_hardy_class.lean` (+ `.out`) | D-YM3 | 7: Newtonian s = (n−2)/2, deep-MOND s = 0, μ = A + B/u ⇒ s = ½, s = ½ ⇒ a_r′ = 0, a_r′ ≡ 0 on (0,∞) ⇒ H affine (μ = A + B/u only), and that class has no deep-MOND corner |
+
+Filename prefixes I21–I23 are shared with earlier, unrelated certificates
+(`I21_ym1_combinatorics`, `I22_virial_floor`, `I23_rar_inversion_below_baryons`). The names are kept
+because `deepseek_push/I21_VERDICT.md` (independent compile audit, PASS for I21/I22) already cites them.
