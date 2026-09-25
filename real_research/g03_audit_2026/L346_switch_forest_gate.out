@@ -1,0 +1,112 @@
+
+L346 -- THE LYMAN-ALPHA FOREST GATE FOR L342's BOUND-REGION SWITCH: does C-H/K + switch keep the z = 2-3 small-scale
+power the forest measures?
+
+WHY THIS GATE.  L342 repairs C-H/K's FRW failure (L341) with a switch: MOND acts only where x = 9 R3/(4 K^2) exceeds
+x_c ~ 4-7 (KiDS-selected).  L342 checked LINEAR sigma_8, SPARC, the Solar System and KiDS -- not the forest.
+THE SWITCH VARIABLE, FROM THE CONSTRAINT (corrected before commit -- the first run of this lane used L342's static-system
+form (3/2) Omega_m (1 + delta), whose "1" switches MOND on too early).  With the CMC-stiff foliation K = 3H (L341 F5),
+K_ij K^ij = K^2/3 + sigma^2 and the flat Friedmann relation 6 H^2 = 16 pi G rho_bar, the Hamiltonian constraint
+R3 + K^2 - K_ij K^ij = 16 pi G rho gives R3 = 16 pi G rho_bar_m delta + sigma^2, hence
+        x = (3/2) Omega_m(z) delta + 9 sigma^2/(4 K^2)  >=  (3/2) Omega_m(z) delta     (Lean I26).
+(For galaxies delta >> 1 and this equals L342's 4 pi G rho_dyn/H^2; in the forest, delta ~ a few, the difference is
+decisive.)  At z = 3, Omega_m = 0.967, so x > 5 wherever delta > 3.45: mildly nonlinear forest structures switch MOND
+ON, at peculiar accelerations far below a0.  The forest needs P(k = 1-4 h/Mpc, z = 2-3) within ~10-20% of LCDM (the record's
+standing criterion; L319 used the stricter >= 5.3 keV relic line).  This lane measures it.
+
+METHOD (L176's validated cosmological particle-mesh machinery, copied not edited: 50 Mpc/h box, 128^3 mesh, 96^3
+particles, Zel'dovich ICs at z = 49 from CLASS, same phases in every run; kernel on the peculiar Newtonian field, a0
+constant -- the Llinares/Angus way, as L176/L341)
+  * the CMB's cold fluid is present (L295; every carrier on the record is intact at z >= 2), so matter = LCDM's, and
+    C-H/K reads the TOTAL field (L345 U0 / Lean I25: a minimally coupled cold fluid is boosted like baryons);
+  * the switch: phantom source div[ f(x) (nu - 1) grad phi_N ], f = smooth step at x_c (width 0.1 x_c), with
+        x = (3/2) Omega_m(a) delta_mesh        (NEWTONIAN mesh-scale density contrast, 0.39 Mpc/h; shear dropped)
+    Dropping sigma^2 >= 0 bounds x from below exactly; the mesh smoothing lowers peak densities (checked: the 0.8 Mpc/h
+    bracket gives less excess).  A third bracket adds one phantom iteration to delta (the dynamical density); it is
+    reported, not assumed to be a bound (phantom densities can be negative in QUMOND lobes).
+  * kernel nu_mono (L340; equal to nu_RAR below y = 2.54, i.e. everywhere in the forest), both footings.
+
+CHECKS
+  C1 CONTROL: the Newtonian LCDM PM run reproduces CLASS halofit within 35% for 0.3 <= k <= 2 h/Mpc at z = 3 (L176's V1
+     criterion; PM resolution) -- only same-phase ratios are read below.
+  C2 CONTROL: x_c -> infinity (switch never on) reproduces the LCDM run to 1e-6 (the switch plumbing is exact).
+  C3 CONTROL: no switch (x_c = 0, MOND everywhere, L341's branch) overshoots the forest band -- the record's result.
+  F1 THE DIAGNOSTIC: the mass fraction with x > x_c and its median |g_N|/a0 at z = 3 (deep MOND where the switch is on).
+  F2 THE GATE: P_switch/P_LCDM in the forest band (k = 1-4 h/Mpc) at z = 3 and z = 2, x_c in {4, 5, 7}, both footings.
+     Pre-declared: the switch PASSES the forest only if every ratio is within [0.8, 1.2] at x_c = 5 for both footings.
+  F3 MONOTONICITY IN SMOOTHING: the 0.8 Mpc/h-smoothed switch gives LESS excess than the mesh-scale switch (finer
+     definitions switch on more); the phantom-inclusive bracket is reported alongside.
+MUTATE=1 sets x_c -> infinity in the gate runs: F2's excess vanishes and the load-bearing gate verdict must flip (rc=1).
+
+Run from the repository root:  python3 real_research/g03_audit_2026/L346_switch_forest_gate.py
+
+  box 50.0 Mpc/h, mesh 128^3, particles 96^3, z_i = 49.0; a0 code units canonical 428.8, alt 516.6
+  runs done in 400s
+
+==============================================================================================================
+CONTROLS
+==============================================================================================================
+  [PASS] C1 the Newtonian LCDM PM run reproduces CLASS halofit within 35% for 0.3 <= k <= 2 h/Mpc at z = 3 (L176's V1)
+         measured: P_PM/P_halofit 0.74-1.17
+  [PASS] C2 x_c -> infinity (switch never on) reproduces the LCDM run exactly (same phases)
+         measured: max |ratio - 1| = 0.0e+00
+  [PASS] C3 no switch (MOND everywhere, L341's branch) overshoots the forest band at z = 3
+         measured: P/P_LCDM 3.54-4.22
+         reading:  the record's result, reproduced in this code
+
+==============================================================================================================
+F1  WHERE THE SWITCH IS ON, AND HOW DEEP IN MOND
+==============================================================================================================
+    sw5_canon     z = 6.0: mass fraction with x > x_c = 0.030;  median |g_N|/a0 there = 4.90e-01
+    sw5_canon     z = 3.0: mass fraction with x > x_c = 0.188;  median |g_N|/a0 there = 1.80e-01
+    sw5_canon     z = 2.0: mass fraction with x > x_c = 0.298;  median |g_N|/a0 there = 1.08e-01
+    sw5_phantomx  z = 6.0: mass fraction with x > x_c = 0.031;  median |g_N|/a0 there = 4.56e-01
+    sw5_phantomx  z = 3.0: mass fraction with x > x_c = 0.191;  median |g_N|/a0 there = 1.65e-01
+    sw5_phantomx  z = 2.0: mass fraction with x > x_c = 0.296;  median |g_N|/a0 there = 9.55e-02
+    sw5_smooth08  z = 6.0: mass fraction with x > x_c = 0.000;  median |g_N|/a0 there = 7.51e-01
+    sw5_smooth08  z = 3.0: mass fraction with x > x_c = 0.068;  median |g_N|/a0 there = 3.55e-01
+    sw5_smooth08  z = 2.0: mass fraction with x > x_c = 0.155;  median |g_N|/a0 there = 2.28e-01
+  [PASS] F1 (informational) at z = 3 the switch is on in a finite fraction of the mesh-scale IGM mass, at deep-MOND accelerations
+         measured: mass fraction 0.188, median |g_N|/a0 1.8e-01
+         reading:  reported either way
+
+==============================================================================================================
+F2  THE GATE: P_switch / P_LCDM in the forest band (k = 1-4 h/Mpc)
+==============================================================================================================
+    sw4_canon     z = 3.0:   1.09   1.10   1.13   1.15   1.22   1.28   (k = 1.10, 1.39, 1.76, 2.23, 2.81, 3.56)
+    sw4_canon     z = 2.0:   1.17   1.21   1.26   1.34   1.37   1.37   (k = 1.10, 1.39, 1.76, 2.23, 2.81, 3.56)
+    sw5_canon     z = 3.0:   1.06   1.07   1.09   1.12   1.17   1.22   (k = 1.10, 1.39, 1.76, 2.23, 2.81, 3.56)
+    sw5_canon     z = 2.0:   1.13   1.17   1.22   1.28   1.31   1.32   (k = 1.10, 1.39, 1.76, 2.23, 2.81, 3.56)
+    sw7_canon     z = 3.0:   1.04   1.04   1.06   1.08   1.12   1.15   (k = 1.10, 1.39, 1.76, 2.23, 2.81, 3.56)
+    sw7_canon     z = 2.0:   1.09   1.12   1.16   1.21   1.24   1.26   (k = 1.10, 1.39, 1.76, 2.23, 2.81, 3.56)
+    sw5_alt       z = 3.0:   1.07   1.08   1.11   1.13   1.19   1.25   (k = 1.10, 1.39, 1.76, 2.23, 2.81, 3.56)
+    sw5_alt       z = 2.0:   1.15   1.19   1.24   1.31   1.35   1.36   (k = 1.10, 1.39, 1.76, 2.23, 2.81, 3.56)
+    sw5_smooth08  z = 3.0:   1.03   1.04   1.05   1.07   1.11   1.14   (k = 1.10, 1.39, 1.76, 2.23, 2.81, 3.56)
+    sw5_smooth08  z = 2.0:   1.09   1.14   1.21   1.27   1.31   1.29   (k = 1.10, 1.39, 1.76, 2.23, 2.81, 3.56)
+    sw5_phantomx  z = 3.0:   1.07   1.07   1.09   1.11   1.16   1.21   (k = 1.10, 1.39, 1.76, 2.23, 2.81, 3.56)
+    sw5_phantomx  z = 2.0:   1.13   1.17   1.21   1.27   1.30   1.31   (k = 1.10, 1.39, 1.76, 2.23, 2.81, 3.56)
+    no_switch     z = 3.0:   3.54   3.59   3.98   4.19   4.22   4.14   (k = 1.10, 1.39, 1.76, 2.23, 2.81, 3.56)
+    no_switch     z = 2.0:   4.24   4.44   4.56   4.34   3.92   3.15   (k = 1.10, 1.39, 1.76, 2.23, 2.81, 3.56)
+  [PASS] F2 THE FOREST GATE FAILS for L342's switch at its KiDS-selected x_c = 5 (both footings, z = 3 and 2): some forest-band ratio lies outside [0.8, 1.2] even with the minimal (mesh-scale Newtonian) switch variable
+         measured: worst |P/P_LCDM - 1| = 0.36; x_c = 5 canonical z=3 1.06-1.22, alt z=3 1.07-1.25
+         reading:  pre-declared: the switch passes only if every ratio at x_c = 5 is in [0.8, 1.2]
+
+==============================================================================================================
+F3  THE BOUND IS ONE-SIDED
+==============================================================================================================
+  [PASS] F3 coarser smoothing of x gives less forest excess (finer, local definitions switch on more); the phantom-inclusive bracket is reported
+         measured: mean |ratio - 1| at z = 3: 0.8 Mpc/h 0.074 <= mesh 0.123; phantom-inclusive 0.120
+         reading:  with sigma^2 >= 0 dropped, this is what makes the mesh-scale number a lower bound
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  L342's switch turns MOND on wherever x = (3/2) Omega_m delta + 9 sigma^2/(4K^2) exceeds x_c.  At z = 3 that is 19% of the
+  mesh-scale matter, at median |g_N| = 1.8e-01 a0 -- deep MOND.  Forest band (k = 1-4 h/Mpc) with x_c = 5:
+  canonical z = 3 1.06-1.22, z = 2 1.13-1.32;
+  alt z = 3 1.07-1.25, z = 2 1.15-1.36.
+  Pre-declared gate [0.8, 1.2]: FAILED.  The mesh-scale Newtonian x without shear is the least-MOND
+  definition: the shear term is non-negative and finer smoothing switches on more.  LIMITS: collisionless PM (no gas pressure, no UV background), 50 Mpc/h box,
+  single realisation, P(k) of total matter rather than the flux power.
+
+  6/6 checks pass; load-bearing failures: 0; wrote L346_switch_forest_gate_results.json   [400s]
