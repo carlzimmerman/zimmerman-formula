@@ -342,7 +342,8 @@ Plain text on purpose, so that titles and DOIs are searchable. Versions of one r
 
 | date | DOI | title | version |
 |---|---|---|---|
-| 2026-09-25 | [10.5281/zenodo.22967561](https://doi.org/10.5281/zenodo.22967561) (concept 22967560) | The Khronon Route: the Blanchet-Skordis Theory Through Two Gates, and a Cubic, One-Scale Khronon That Passes Them | v1 |
+| 2026-09-25 | [10.5281/zenodo.22967954](https://doi.org/10.5281/zenodo.22967954) (concept 22967560) | The Khronon Route: the Blanchet-Skordis Theory Through Two Gates, and Why No Kinetic Function Repairs It | v2 (corrects v1: the cubic repair is withdrawn) |
+| 2026-09-25 | [10.5281/zenodo.22967561](https://doi.org/10.5281/zenodo.22967561) (concept 22967560) | The Khronon Route: the Blanchet-Skordis Theory Through Two Gates, and a Cubic, One-Scale Khronon That Passes Them | v1 — SUPERSEDED (repair withdrawn) |
 | 2026-09-25 | [10.5281/zenodo.22967076](https://doi.org/10.5281/zenodo.22967076) (concept 22967075) | The Moving Phantom: a Khronometric MOND Completion That Passes Local Gravity and Fails Cosmology as Built, and Postquantum Classical Gravity Tested as the Origin of a0 ∝ √Λ | v1 |
 | 2026-09-16 | [10.5281/zenodo.22803511](https://doi.org/10.5281/zenodo.22803511) (concept 22803510) | What Survives Independent Verification: The Machine-Checked Identities, Reproduced Measurements and No-Go Results of a 440-Commit AI Agent-Swarm Campaign on the Equilibrium Reading of the Radial Acceleration Relation | v1
 | 2026-09-20 | [10.5281/zenodo.22862837](https://doi.org/10.5281/zenodo.22862837) (concept 22862836) | The Clock-Host Candidate in One Page: What Stands, What Died, What Decides | v1 |
