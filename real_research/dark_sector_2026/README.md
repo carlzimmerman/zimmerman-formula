@@ -133,3 +133,31 @@ Faster kicks clear halos but cost S₈ (0.65–0.87). Higher thresholds keep S�
 **What decides it: clusters.** L354's cluster table scored the carrier decaying at z = 0 in the full-depth well, and needs v_k ≥ 1000–1200 km/s. For a local trigger that is a proxy of unknown sign: the carrier decays earlier in shallower progenitors, but the growing cluster (v_esc ≈ 2000–3000 km/s) can recapture daughters kicked at about 700 km/s. Cluster retention under the assembly history is the next computation.
 
 **Limits.** 50 Mpc/h box on a 0.39 Mpc/h mesh; the MOND boost of baryons inside halos is not modelled; one realisation.
+
+## L357 — the virialization-triggered carrier: the plain trigger fails once minihalos count; the vacuum-gated one opens a window
+
+`L357_virialization_triggered_carrier.py` (8/8; `MUTATE` = the trigger never fires, V1 and D2 fail, rc = 1). Lean `fable_independent_2026/lean_2026/L357_L361_vacuum_gate_certificates.lean` (algebra only).
+
+**The construction.** The carrier is kernel-invisible (L353) and decays where u = x̃ [Ω_Λ(z)/Ω_Λ,0]^p exceeds a threshold. Here x̃ is L351's shear-completed switch variable, and dropping the shear gives a lower bound on the triggered mass. The daughters are kicked.
+- The decayed fraction that matters for large-scale power is bias-weighted. It is computed in a halo model: Sheth–Tormen, Dutton–Macciò NFW, a carrier cut-off of 10⁸ M☉, and escape of the daughters.
+- Forest and S₈ use L319's solver. X-COP and the galaxy hosts use L321's phase-mixed retention with the decay confined to the triggered region. KiDS uses L355; RC100 and the flagship use L320.
+
+**The plain trigger (p = 0) fails.**
+- At its natural threshold, where every virialized halo decays, it takes 40–50% of the bias-weighted carrier out of the z = 2–3 forest. T²(k=5) = 0.30–0.64 at 700 and 3000 km/s, against a loose floor of 0.9.
+- Where the forest does survive (x̃ ≳ 5000), cluster outskirts keep a full cold halo and X-COP overshoots (≥ 1.32).
+- The parallel L365 triggers on the mesh-scale density. It finds a slow-kick window because halos below its resolution never fire. The two lanes bracket the plain trigger.
+
+**The vacuum-gated trigger opens a window.** With p = 2 there are 3 strict cells and 17 alternative. The best cell decays where x̃ ≥ 2000 today, with v_k = 3000 km/s, and passes:
+- the forest (T² ≥ 0.998);
+- S₈ = 0.772;
+- X-COP 1.08 / 1.13 (canonical / alt);
+- the galaxy gate.
+
+It works for two reasons. Rotation curves are measured at x̃ ~ 10⁴–10⁵ while cluster R500 sits at x̃ ~ 200–350. And a cluster that loses its core expands, so phase-mixed retention leaves ~0.55–0.6 of the carrier inside R500 at 3000 km/s.
+
+**The price.** Galaxies at z ≈ 2.5 keep carrier outside their cleared cores:
+- the deep-MOND Tully–Fisher zero point shifts +0.8 dex at z = 2.5 (framework alone 0.00, ΛCDM +0.33);
+- RC100's inner dark fraction comes out at 0.43 against the data's 0.29 (RC100 is calibration-conditional).
+
+**KiDS.** With the kernel reading the web's baryons it fails, as every carrier does. With the bound-region kernel (`g03_audit_2026/L361`) and the gated switch (`L359`), the assembled pair passes (`L360`, 70 of 96 pairs).
+

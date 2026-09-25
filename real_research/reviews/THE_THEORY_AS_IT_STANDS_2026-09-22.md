@@ -2,6 +2,54 @@
 
 **What this is.** About 630 commits from roughly ten agent tracks landed in this repository between 09-14 and 09-22. On 09-22 they were audited against their committed scripts, re-running the load-bearing ones. This page assembles the most coherent theory the record supports. For each part it says whether it is measured, derived, fitted or missing. It also names the gates that would have to fall for this to become a theory of gravity, rather than a law plus an unfinished completion.
 
+**Update, 09-25 (evening): the vacuum gate reopens the switch, the bound-region kernel is built, and the assembled construction passes every gate tested so far** (L357, L359–L361).
+
+- **The switch lives again, with a vacuum-gated threshold** ([L359](../g03_audit_2026/L359_vacuum_gated_switch.py), 4/4; `MUTATE` = no gate, the window closes).
+  - The KiDS–forest pincer (L352/L358/L362) applied ONE threshold at two epochs: KiDS at z ≈ 0.25 accepts x_c ≲ 3, the forest at z = 2–3 needs x_c ≳ 7.
+  - The fix is to gate the switch variable by the vacuum's share of the expansion: u = x̃ [Ω_Λ(z)/Ω_Λ,0]^p = x̃ (3Λ/(Ω_Λ,0 K²))^p. This is local, and a tensor mode leaves K unperturbed, so L351's c_T = 1 carries over. The threshold becomes x_c,eff(z) = x_c0 E(z)^(2p): low today, high in the matter era.
+  - Eight cells (p = 0.5–2, x_c0 = 1.5–2.5) pass three tests together:
+    - linear growth (σ₈ = 0.810);
+    - KiDS-1000 with L352's Gauss-compensated profile plus 2-halo (Δχ² −1 to −28 against the unswitched model);
+    - the forest observable with L347's PM + FGPA (worst deviation 0.2–8.5% against the 10% rule).
+  - The ungated control fails the forest at 0.16–0.19.
+  - L362's resolution growth (about ×1.2) leaves the p ≥ 1 cells robust (≤ 4%) and p = 0.5 marginal.
+- **The bound-region kernel, built from an action** ([L361](../g03_audit_2026/L361_bound_region_kernel.py), 6/6; `MUTATE` = L353's full-baryon unscreened kernel, which fails).
+  - It is a region-local QUMOND. Its argument w is sourced only by the baryons inside the gated switch's bound region, and it is screened across the inactive web by M² = m²(1 − f).
+  - Euler–Lagrange: in-region baryons feel their own region's phantom plus Newtonian gravity from everything; web gas and the carrier feel Newtonian gravity only. The phantom obeys (∇² − M²)P = ∇·[f(ν−1)∇w] + M²w, so it is Gauss-cancelled at the edge apart from a thin screened layer.
+  - KiDS-1000 at the kernel's own field: +0.0 against isolated MOND, where the total-field and baryons-only kernels score +548 and +233.
+  - The Sun keeps the Galaxy's field to 4×10⁻¹², so L340 S1 holds and wide binaries keep their EFE.
+  - A 2 Mpc inactive gap transmits 9.5×10⁻⁵ of an external field at 1/m = 0.2 Mpc. The only requirement on m is 1/m ≤ 0.5 Mpc.
+  - Unlike BK1, nothing inside a region is screened.
+- **The carrier** ([L357](../dark_sector_2026/L357_virialization_triggered_carrier.py), 8/8; `MUTATE` = trigger off, V1 and D2 fail).
+  - **The plain virialization trigger fails.** As a local trigger that fires in every halo down to 10⁸ M☉, it fails the forest at both slow and fast kicks: T²(k=5) = 0.30–0.64 against the 0.9 floor. Where the forest survives, X-COP overshoots (≥ 1.32).
+  - **Relation to L365.** The parallel L365 triggers on the mesh-scale density. It finds a slow-kick window because its unresolved halos never fire, so the two lanes bracket the plain trigger.
+  - **Gated by the same vacuum factor (p = 2), the carrier opens a window:** 3 strict cells and 17 alternative. The best decays where x̃ ≥ 2000 today with v_k = 3000 km/s, and passes:
+    - the forest (T² ≥ 0.998);
+    - S₈ = 0.772;
+    - X-COP at 1.08 / 1.13 (canonical / alt);
+    - the galaxy gate.
+  - **Why it works:** galaxies are measured at x̃ ~ 10⁴–10⁵ while cluster R500 sits at x̃ ~ 200–350, and a cluster that loses its core expands.
+  - **The price at z ≈ 2.5:** galaxies there keep carrier outside their cleared cores. The deep-MOND Tully–Fisher zero point shifts +0.8 dex, against 0.00 for the framework alone and +0.33 for ΛCDM, and RC100's inner dark fraction comes out at 0.43 against 0.29 (RC100 is calibration-conditional).
+- **The assembled pair on KiDS** ([L360](../g03_audit_2026/L360_assembled_construction_kids.py), 4/4; `MUTATE` = undecayed carrier, 0 of 96 pairs pass).
+  - 70 of 96 (switch, carrier) pairs pass (≤ +4 against the unswitched model).
+  - The switched phantom stops at each lens's edge, and the carrier's hollowed halo fills the deficit beyond it. An undecayed carrier fails (≥ +232).
+  - Example: switch (p = 1, x_c0 = 1.5) with carrier (p = 2, x̃ ≥ 2000, 3000 km/s) scores −23.5 / −16.8.
+- **Standing.** One construction now passes, together:
+  - linear growth (σ₈ = 0.810);
+  - the Lyman-α forest (switch ≤ 4%, carrier strict);
+  - S₈ = 0.772;
+  - X-COP at 1.08 / 1.13;
+  - the galaxy gate;
+  - KiDS-1000 at −23.5 / −16.8;
+  - GW170817 (c_T = 1);
+  - the Solar System (1PN = GR, with the Sun keeping the Galaxy's field).
+  
+  It is a construction. The two thresholds and the gate exponent are chosen, not derived; the gate's tie to ρ_Λ, which also sets a₀, is suggestive, not derived.
+- **Open, in order:**
+  1. Gas inside active filaments at z ≲ 1 feels its own deep-MOND field, a force ×8–12 that cuts infall from 17–34 Gyr to 5.5–10 Gyr. The low-z forest and the filament tSZ stacks decide this.
+  2. The high-z price: the flagship shift and RC100.
+  3. The relativistic embedding of the bound-region kernel.
+
 **Update, 09-25 (later): a kernel-invisible dark component — built, and what it does and does not fix** (L353–L356).
 
 - **It exists** ([L353](../g03_audit_2026/L353_kernel_invisible_dark_component.py), 4/4; Lean `L353_kernel_invisible_certificates`).

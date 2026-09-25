@@ -1,0 +1,164 @@
+L357 -- THE VIRIALIZATION-TRIGGERED CARRIER, AND THE VERSION THAT WORKS: decay where the local density is high AND the
+vacuum dominates the expansion.
+
+WHY.  L354-L356 left the kernel-invisible carrier (L353: the MOND kernel reads baryons only; the carrier feels and sources
+Newtonian gravity only) with a z = 0 window but two open failures, both caused by a decay that is uniform in space:
+KiDS (the carrier's full halo around isolated lenses) and high z (galaxies at z ~ 1-2.5 still sit in full halos).  The
+next idea was a VIRIALIZATION trigger: decay only inside collapsed, dense regions, so the web and the forest stay cold and
+galaxy interiors are cleared as they form.  This lane builds that trigger from the theory's own switch variable and pushes
+it through every gate the carrier has faced -- and, where the plain trigger fails, builds the version that passes.
+
+THE CONSTRUCTION (a construction, not a derivation).
+  Carrier X (kernel-invisible, L353) decays X -> Y + light with a rate that switches on above a threshold,
+      Gamma = Gamma_0 * Theta( u - u_v ),   u = x~ * [Omega_Lambda(z)/Omega_Lambda,0]^p,
+  x~ = 9(R3 + sigma_ij sigma^ij)/(4K^2), the shear-completed switch variable of L351.  In a static bound region
+  x~ >= (3/2)(rho - rho_bar_m)/rho_crit(z) (I26 with the shear dropped; the shear only adds, so every triggered fraction
+  below is a LOWER bound).  p = 0 is the plain virialization/density trigger; p > 0 gates it by the vacuum's share of the
+  expansion (the L319 idea), so the effective density threshold x_eff(z) = x_v0 [Omega_L,0/Omega_L(z)]^p rises steeply
+  at z >~ 1.  Daughters get an isotropic kick v_k.
+  The decay is one-shot at the particle's position (Gamma_0 >> H): 'cleared' = every carrier particle where the local
+  total density exceeds the threshold decays; 'cap' = only the excess above the threshold density decays (the steady state
+  if infall refills the region).  Both pictures are carried; the truth lies between.
+  L319 solver loaded: LCDM S_8 = 0.8415; strict forest threshold T^2(k=5) >= 0.9952   [1s]
+  halo model ready: sigma8 (CLASS) = 0.8228; carrier cut-off M_min = 1e+08 Msun   [2s]
+  L321 machinery loaded (12 X-COP clusters; retention reference A2319, M200 9.98e+14, c 4.65, z 0.056)   [2s]
+  L355 KiDS machinery loaded: isolated-MOND chi^2 canonical 116.3, alt 107.5   [5s]
+
+================================================================================================================
+CONTROLS
+================================================================================================================
+  [PASS] C1 the Sheth-Tormen mass function and its peak-background bias satisfy their sum rules (int f = int f b = 1)
+         measured: 1.0001, 1.0001
+  [PASS] C2 limits of the triggered fraction: threshold -> infinity gives 0; threshold -> 0 gives the bias-weighted collapsed fraction above M_min (every halo decays whole)
+         measured: F_b(z=3): x_v -> inf 0.000; x_v -> 0 0.464; x_v = 30 0.464
+  [PASS] C3 the no-decay history reproduces LCDM through L319's solver (forest and S_8 at the LCDM values)
+         measured: T^2(k=5) z=3 1.0000, z=2 1.0000; S_8 0.8415 vs LCDM 0.8415
+
+================================================================================================================
+V1  THE PLAIN VIRIALIZATION TRIGGER (p = 0) AT ITS NATURAL THRESHOLD: whole virialized halos decay
+================================================================================================================
+    x_v =    30 v_k =   700 cleared: F_b(z=2,3) = 0.458/0.429 -> T^2(k=5) z=2 0.301, z=3 0.367; with back-reaction F_b(z=2) 0.328 -> T^2 z=2 0.478, z=3 0.585; S_8 0.804
+    x_v =    30 v_k =   700 cap    : F_b(z=2,3) = 0.408/0.383 -> T^2(k=5) z=2 0.353, z=3 0.417; with back-reaction F_b(z=2) 0.298 -> T^2 z=2 0.507, z=3 0.593; S_8 0.809
+    x_v =    30 v_k =  3000 cleared: F_b(z=2,3) = 0.538/0.464 -> T^2(k=5) z=2 0.228, z=3 0.316; with back-reaction F_b(z=2) 0.299 -> T^2 z=2 0.491, z=3 0.577; S_8 0.597
+    x_v =    30 v_k =  3000 cap    : F_b(z=2,3) = 0.482/0.415 -> T^2(k=5) z=2 0.278, z=3 0.366; with back-reaction F_b(z=2) 0.302 -> T^2 z=2 0.487, z=3 0.576; S_8 0.598
+    x_v =   100 v_k =   700 cleared: F_b(z=2,3) = 0.417/0.397 -> T^2(k=5) z=2 0.339, z=3 0.398; with back-reaction F_b(z=2) 0.302 -> T^2 z=2 0.503, z=3 0.592; S_8 0.809
+    x_v =   100 v_k =   700 cap    : F_b(z=2,3) = 0.301/0.284 -> T^2(k=5) z=2 0.480, z=3 0.538; with back-reaction F_b(z=2) 0.247 -> T^2 z=2 0.568, z=3 0.636; S_8 0.816
+    x_v =   100 v_k =  3000 cleared: F_b(z=2,3) = 0.494/0.430 -> T^2(k=5) z=2 0.263, z=3 0.348; with back-reaction F_b(z=2) 0.297 -> T^2 z=2 0.492, z=3 0.578; S_8 0.603
+    x_v =   100 v_k =  3000 cap    : F_b(z=2,3) = 0.364/0.311 -> T^2(k=5) z=2 0.403, z=3 0.489; with back-reaction F_b(z=2) 0.276 -> T^2 z=2 0.523, z=3 0.609; S_8 0.622
+  [PASS] V1 the plain virialization trigger at its natural threshold (x_v = 30-100: every virialized halo decays), as a LOCAL trigger that fires in every halo down to M_min = 1e8 Msun, FAILS the forest even on the loose reading (T^2(k=5) < 0.9 at z = 2 or 3) at slow (700 km/s) and fast (3000 km/s) kicks, with and without the back-reaction of the decay on halo formation, in both pictures
+         measured: largest min(T^2 z=2, z=3) over all cases 0.568 (loose needs >= 0.9)
+         reading:  by z = 2-3 about half of the bias-weighted mass sits in collapsed halos; a carrier that decays on collapse takes it out of the forest's power.  The parallel L365 (two-species PM, trigger on the MESH-scale density, its 'least-trigger estimate') finds a slow-kick window because halos below its resolution never trigger; the two lanes bracket the plain trigger, and the verdict hinges on whether the carrier's small halos fire
+
+================================================================================================================
+V2  THE PLAIN TRIGGER AT ANY THRESHOLD: the forest floor against X-COP's ceiling
+================================================================================================================
+    cleared: 300:0.433  500:0.521  700:0.578  1000:0.638  2000:0.746  3000:0.802  5000:0.862  7000:0.894  10000:0.923  20000:0.962  30000:0.977  50000:0.988   [min T^2(k=5) over z = 2, 3]
+    cap    : 300:0.582  500:0.664  700:0.715  1000:0.764  2000:0.848  3000:0.887  5000:0.926  7000:0.946  10000:0.963  20000:0.983  30000:0.990  50000:0.995   [min T^2(k=5) over z = 2, 3]
+    forest floor (loose / strict): cleared: 10000 / inf; cap: 5000 / 50000
+    galaxy gate at the strict forest floor: cap (x_v = 50000): max shift canon +0.218, alt +0.205
+  [PASS] V2 the plain virialization trigger has NO strict window: every threshold high enough for the strict forest (5.3 keV equivalent at z = 2 and 3) leaves the galaxy gate failed (> 0.06 dex), both pictures, both footings
+         measured: cleared: no strict-forest threshold; cap: floor 50000, max shift +0.218
+         reading:  a density threshold that spares z = 2-3 halos is far above the densities where galaxies are measured today; the plain trigger's loose-forest cells are scored with the vacuum-gated ones in D1 (p = 0)
+
+================================================================================================================
+D1  THE VACUUM-GATED TRIGGER u = x~ [Omega_L(z)/Omega_L,0]^p: the design scan (forest, S_8 on the halo model; X-COP by phase-mixed retention)
+================================================================================================================
+    X-COP reference retention (cleared): 700/0.86/0.59/0.33  1000/0.89/0.66/0.41  1500/0.92/0.73/0.50  2000/0.93/0.79/0.58  3000/0.96/0.85/0.68  5000/0.97/0.91/0.79  10000/0.98/0.96/0.89   [eps at v_k = [1200.0, 2000.0, 3000.0]; 656s]
+    X-COP reference retention (cap): 700/0.92/0.76/0.54  1000/0.94/0.81/0.62  1500/0.97/0.86/0.70  2000/0.97/0.90/0.77  3000/0.98/0.94/0.84  5000/0.99/0.97/0.90  10000/0.99/0.98/0.95   [eps at v_k = [1200.0, 2000.0, 3000.0]; 656s]
+    p=0 cleared x_v0=  700: v_k 1200: T2 0.6048 S8 0.783 X-COP 1.29/1.35 | v_k 2000: T2 0.5837 S8 0.715 X-COP 1.09/1.14 | v_k 3000: T2 0.5783 S8 0.653 X-COP 0.89/0.94   [1160s]
+    p=0 cleared x_v0= 1000: v_k 1200: T2 0.6626 S8 0.791 X-COP 1.32/1.37 | v_k 2000: T2 0.6432 S8 0.731 X-COP 1.14/1.19 | v_k 3000: T2 0.6381 S8 0.677 X-COP 0.95/1.00   [1160s]
+    p=0 cleared x_v0= 1500: v_k 1200: T2 0.7247 S8 0.799 X-COP 1.34/1.39 | v_k 2000: T2 0.7076 S8 0.749 X-COP 1.20/1.25 | v_k 3000: T2 0.7031 S8 0.703 X-COP 1.02/1.07   [1160s]
+    p=0 cleared x_v0= 2000: v_k 1200: T2 0.7656 S8 0.805 X-COP 1.35/1.40 | v_k 2000: T2 0.7503 S8 0.760 X-COP 1.24/1.29 | v_k 3000: T2 0.7462 S8 0.720 X-COP 1.08/1.13   [1160s]
+    p=0 cleared x_v0= 3000: v_k 1200: T2 0.8179 S8 0.812 X-COP 1.37/1.42 | v_k 2000: T2 0.8053 S8 0.776 X-COP 1.29/1.34 | v_k 3000: T2 0.8019 S8 0.743 X-COP 1.16/1.21   [1160s]
+    p=0 cleared x_v0= 5000: v_k 1200: T2 0.8736 S8 0.819 X-COP 1.38/1.43 | v_k 2000: T2 0.8643 S8 0.792 X-COP 1.34/1.39 | v_k 3000: T2 0.8618 S8 0.768 X-COP 1.24/1.29   [1160s]
+    p=0 cleared x_v0=10000: v_k 1200: T2 0.9300 S8 0.827 X-COP 1.39/1.44 | v_k 2000: T2 0.9246 S8 0.810 X-COP 1.37/1.43 | v_k 3000: T2 0.9231 S8 0.795 X-COP 1.32/1.37   [1160s]
+    p=0 cap     x_v0=  700: v_k 1200: T2 0.7351 S8 0.802 X-COP 1.34/1.39 | v_k 2000: T2 0.7188 S8 0.753 X-COP 1.22/1.27 | v_k 3000: T2 0.7145 S8 0.710 X-COP 1.05/1.10   [1160s]
+    p=0 cap     x_v0= 1000: v_k 1200: T2 0.7824 S8 0.808 X-COP 1.35/1.41 | v_k 2000: T2 0.7682 S8 0.767 X-COP 1.26/1.31 | v_k 3000: T2 0.7645 S8 0.730 X-COP 1.11/1.16   [1160s]
+    p=0 cap     x_v0= 1500: v_k 1200: T2 0.8304 S8 0.814 X-COP 1.38/1.43 | v_k 2000: T2 0.8187 S8 0.781 X-COP 1.30/1.35 | v_k 3000: T2 0.8156 S8 0.751 X-COP 1.18/1.23   [1160s]
+    p=0 cap     x_v0= 2000: v_k 1200: T2 0.8604 S8 0.818 X-COP 1.38/1.43 | v_k 2000: T2 0.8504 S8 0.790 X-COP 1.33/1.38 | v_k 3000: T2 0.8478 S8 0.764 X-COP 1.22/1.27   [1160s]
+    p=0 cap     x_v0= 3000: v_k 1200: T2 0.8967 S8 0.823 X-COP 1.39/1.44 | v_k 2000: T2 0.8891 S8 0.801 X-COP 1.35/1.41 | v_k 3000: T2 0.8870 S8 0.780 X-COP 1.28/1.33   [1160s]
+    p=0 cap     x_v0= 5000: v_k 1200: T2 0.9328 S8 0.828 X-COP 1.39/1.45 | v_k 2000: T2 0.9277 S8 0.812 X-COP 1.38/1.43 | v_k 3000: T2 0.9262 S8 0.798 X-COP 1.33/1.38   [1160s]
+    p=0 cap     x_v0=10000: v_k 1200: T2 0.9660 S8 0.834 X-COP 1.40/1.45 | v_k 2000: T2 0.9633 S8 0.824 X-COP 1.39/1.44 | v_k 3000: T2 0.9626 S8 0.816 X-COP 1.36/1.41   [1160s]
+    p=1 cleared x_v0=  700: v_k 1200: T2 0.9109 S8 0.799 X-COP 1.29/1.35 | v_k 2000: T2 0.9020 S8 0.745 X-COP 1.09/1.14 | v_k 3000: T2 0.8992 S8 0.692 X-COP 0.89/0.94   [1160s]
+    p=1 cleared x_v0= 1000: v_k 1200: T2 0.9347 S8 0.806 X-COP 1.32/1.37 | v_k 2000: T2 0.9280 S8 0.760 X-COP 1.14/1.19 | v_k 3000: T2 0.9258 S8 0.714 X-COP 0.95/1.00   [1160s]
+    p=1 cleared x_v0= 1500: v_k 1200: T2 0.9559 S8 0.813 X-COP 1.34/1.39 | v_k 2000: T2 0.9512 S8 0.775 X-COP 1.20/1.25 | v_k 3000: T2 0.9497 S8 0.737 X-COP 1.02/1.07   [1160s]
+    p=1 cleared x_v0= 2000: v_k 1200: T2 0.9675 S8 0.817 X-COP 1.35/1.40 | v_k 2000: T2 0.9640 S8 0.785 X-COP 1.24/1.29 | v_k 3000: T2 0.9628 S8 0.752 X-COP 1.08/1.13   [1160s]
+    p=1 cleared x_v0= 3000: v_k 1200: T2 0.9796 S8 0.823 X-COP 1.37/1.42 | v_k 2000: T2 0.9774 S8 0.797 X-COP 1.29/1.34 | v_k 3000: T2 0.9767 S8 0.770 X-COP 1.16/1.21   [1160s]
+    p=1 cleared x_v0= 5000: v_k 1200: T2 0.9895 S8 0.828 X-COP 1.38/1.43 | v_k 2000: T2 0.9883 S8 0.810 X-COP 1.34/1.39 | v_k 3000: T2 0.9879 S8 0.790 X-COP 1.24/1.29   [1160s]
+    p=1 cleared x_v0=10000: v_k 1200: T2 0.9962 S8 0.834 X-COP 1.39/1.44 | v_k 2000: T2 0.9958 S8 0.822 X-COP 1.37/1.43 | v_k 3000: T2 0.9956 S8 0.810 X-COP 1.32/1.37   [1160s]
+    p=1 cap     x_v0=  700: v_k 1200: T2 0.9541 S8 0.814 X-COP 1.34/1.39 | v_k 2000: T2 0.9494 S8 0.778 X-COP 1.22/1.27 | v_k 3000: T2 0.9478 S8 0.742 X-COP 1.05/1.10   [1160s]
+    p=1 cap     x_v0= 1000: v_k 1200: T2 0.9679 S8 0.819 X-COP 1.35/1.41 | v_k 2000: T2 0.9645 S8 0.789 X-COP 1.26/1.31 | v_k 3000: T2 0.9633 S8 0.759 X-COP 1.11/1.16   [1160s]
+    p=1 cap     x_v0= 1500: v_k 1200: T2 0.9794 S8 0.824 X-COP 1.38/1.43 | v_k 2000: T2 0.9772 S8 0.800 X-COP 1.30/1.35 | v_k 3000: T2 0.9764 S8 0.775 X-COP 1.18/1.23   [1160s]
+    p=1 cap     x_v0= 2000: v_k 1200: T2 0.9853 S8 0.827 X-COP 1.38/1.43 | v_k 2000: T2 0.9837 S8 0.807 X-COP 1.33/1.38 | v_k 3000: T2 0.9832 S8 0.786 X-COP 1.22/1.27   [1160s]
+    p=1 cap     x_v0= 3000: v_k 1200: T2 0.9913 S8 0.830 X-COP 1.39/1.44 | v_k 2000: T2 0.9903 S8 0.815 X-COP 1.35/1.41 | v_k 3000: T2 0.9900 S8 0.799 X-COP 1.28/1.33   [1160s]
+    p=1 cap     x_v0= 5000: v_k 1200: T2 0.9957 S8 0.834 X-COP 1.39/1.45 | v_k 2000: T2 0.9953 S8 0.823 X-COP 1.38/1.43 | v_k 3000: T2 0.9951 S8 0.812 X-COP 1.33/1.38   [1160s]
+    p=1 cap     x_v0=10000: v_k 1200: T2 0.9985 S8 0.837 X-COP 1.40/1.45 | v_k 2000: T2 0.9984 S8 0.831 X-COP 1.39/1.44 | v_k 3000: T2 0.9983 S8 0.825 X-COP 1.36/1.41   [1160s]
+    p=2 cleared x_v0=  700: v_k 1200: T2 0.9929 S8 0.813 X-COP 1.29/1.35 | v_k 2000: T2 0.9920 S8 0.770 X-COP 1.09/1.14 | v_k 3000: T2 0.9916 S8 0.722 X-COP 0.89/0.94   [1160s]
+    p=2 cleared x_v0= 1000: v_k 1200: T2 0.9958 S8 0.818 X-COP 1.32/1.37 | v_k 2000: T2 0.9953 S8 0.782 X-COP 1.14/1.19 | v_k 3000: T2 0.9951 S8 0.741 X-COP 0.95/1.00   [1160s]
+    p=2 cleared x_v0= 1500: v_k 1200: T2 0.9978 S8 0.822 X-COP 1.34/1.39 | v_k 2000: T2 0.9975 S8 0.794 X-COP 1.20/1.25 | v_k 3000: T2 0.9974 S8 0.760 X-COP 1.02/1.07   [1160s]
+    p=2 cleared x_v0= 2000: v_k 1200: T2 0.9986 S8 0.826 X-COP 1.35/1.40 | v_k 2000: T2 0.9985 S8 0.801 X-COP 1.24/1.29 | v_k 3000: T2 0.9984 S8 0.772 X-COP 1.08/1.13   [1160s]
+    p=2 cleared x_v0= 3000: v_k 1200: T2 0.9993 S8 0.829 X-COP 1.37/1.42 | v_k 2000: T2 0.9992 S8 0.810 X-COP 1.29/1.34 | v_k 3000: T2 0.9992 S8 0.787 X-COP 1.16/1.21   [1160s]
+    p=2 cleared x_v0= 5000: v_k 1200: T2 0.9997 S8 0.833 X-COP 1.38/1.43 | v_k 2000: T2 0.9997 S8 0.819 X-COP 1.34/1.39 | v_k 3000: T2 0.9997 S8 0.802 X-COP 1.24/1.29   [1160s]
+    p=2 cleared x_v0=10000: v_k 1200: T2 0.9999 S8 0.836 X-COP 1.39/1.44 | v_k 2000: T2 0.9999 S8 0.828 X-COP 1.37/1.43 | v_k 3000: T2 0.9999 S8 0.818 X-COP 1.32/1.37   [1160s]
+    p=2 cap     x_v0=  700: v_k 1200: T2 0.9972 S8 0.823 X-COP 1.34/1.39 | v_k 2000: T2 0.9968 S8 0.795 X-COP 1.22/1.27 | v_k 3000: T2 0.9967 S8 0.763 X-COP 1.05/1.10   [1160s]
+    p=2 cap     x_v0= 1000: v_k 1200: T2 0.9984 S8 0.827 X-COP 1.35/1.41 | v_k 2000: T2 0.9982 S8 0.804 X-COP 1.26/1.31 | v_k 3000: T2 0.9981 S8 0.777 X-COP 1.11/1.16   [1160s]
+    p=2 cap     x_v0= 1500: v_k 1200: T2 0.9992 S8 0.830 X-COP 1.38/1.43 | v_k 2000: T2 0.9991 S8 0.812 X-COP 1.30/1.35 | v_k 3000: T2 0.9990 S8 0.791 X-COP 1.18/1.23   [1160s]
+    p=2 cap     x_v0= 2000: v_k 1200: T2 0.9995 S8 0.832 X-COP 1.38/1.43 | v_k 2000: T2 0.9994 S8 0.817 X-COP 1.33/1.38 | v_k 3000: T2 0.9994 S8 0.799 X-COP 1.22/1.27   [1160s]
+    p=2 cap     x_v0= 3000: v_k 1200: T2 0.9998 S8 0.834 X-COP 1.39/1.44 | v_k 2000: T2 0.9997 S8 0.823 X-COP 1.35/1.41 | v_k 3000: T2 0.9997 S8 0.809 X-COP 1.28/1.33   [1160s]
+    p=2 cap     x_v0= 5000: v_k 1200: T2 0.9999 S8 0.837 X-COP 1.39/1.45 | v_k 2000: T2 0.9999 S8 0.829 X-COP 1.38/1.43 | v_k 3000: T2 0.9999 S8 0.820 X-COP 1.33/1.38   [1160s]
+    p=2 cap     x_v0=10000: v_k 1200: T2 1.0000 S8 0.839 X-COP 1.40/1.45 | v_k 2000: T2 1.0000 S8 0.835 X-COP 1.39/1.44 | v_k 3000: T2 1.0000 S8 0.829 X-COP 1.36/1.41   [1160s]
+
+================================================================================================================
+D2  THE WINDOW: candidates passing forest + S_8 + X-COP (both footings) are put through the galaxy gate
+================================================================================================================
+    11 candidate (picture, x_v0, v_k) cells put through the galaxy gate   [1325s]
+    strict window (3 cells): p=2 cleared x_v0=1000 v_k=2000 (T2 0.9953, S8 0.782, X-COP 1.14/1.19); p=2 cleared x_v0=2000 v_k=3000 (T2 0.9984, S8 0.772, X-COP 1.08/1.13); p=2 cap x_v0=1000 v_k=3000 (T2 0.9981, S8 0.777, X-COP 1.11/1.16)
+    alt    window (17 cells): p=1 cleared x_v0=1000 v_k=2000 (T2 0.9280, S8 0.760, X-COP 1.14/1.19); p=1 cleared x_v0=1500 v_k=2000 (T2 0.9512, S8 0.775, X-COP 1.20/1.25); p=1 cleared x_v0=2000 v_k=3000 (T2 0.9628, S8 0.752, X-COP 1.08/1.13); p=1 cleared x_v0=3000 v_k=3000 (T2 0.9767, S8 0.770, X-COP 1.16/1.21); p=1 cap x_v0=700 v_k=2000 (T2 0.9494, S8 0.778, X-COP 1.22/1.27); p=1 cap x_v0=1000 v_k=3000 (T2 0.9633, S8 0.759, X-COP 1.11/1.16); p=1 cap x_v0=1500 v_k=3000 (T2 0.9764, S8 0.775, X-COP 1.18/1.23); p=2 cleared x_v0=700 v_k=2000 (T2 0.9920, S8 0.770, X-COP 1.09/1.14); p=2 cleared x_v0=1000 v_k=2000 (T2 0.9953, S8 0.782, X-COP 1.14/1.19); p=2 cleared x_v0=1500 v_k=2000 (T2 0.9975, S8 0.794, X-COP 1.20/1.25); p=2 cleared x_v0=1500 v_k=3000 (T2 0.9974, S8 0.760, X-COP 1.02/1.07); p=2 cleared x_v0=2000 v_k=3000 (T2 0.9984, S8 0.772, X-COP 1.08/1.13); p=2 cleared x_v0=3000 v_k=3000 (T2 0.9992, S8 0.787, X-COP 1.16/1.21); p=2 cap x_v0=700 v_k=2000 (T2 0.9968, S8 0.795, X-COP 1.22/1.27); p=2 cap x_v0=700 v_k=3000 (T2 0.9967, S8 0.763, X-COP 1.05/1.10); p=2 cap x_v0=1000 v_k=3000 (T2 0.9981, S8 0.777, X-COP 1.11/1.16); p=2 cap x_v0=1500 v_k=3000 (T2 0.9990, S8 0.791, X-COP 1.18/1.23)
+  [PASS] D2 the vacuum-gated trigger OPENS a window: cells pass the forest, S_8, X-COP and the galaxy gate together on both footings (strict thresholds, or the alternative set)
+         measured: strict 3 cells, alternative 17 cells
+         reading:  the density threshold separates galaxies (probed at x~ ~ 1e4-1e5) from cluster outskirts (x~ ~ 200-350 at R500); the vacuum gate keeps z >= 2 halos intact for the forest
+
+================================================================================================================
+K1  KiDS-1000 ON THE WINDOW: the phase-mixed post-decay halos of the four lens bins (z_l = 0.25)
+================================================================================================================
+    p=1 cap     x_v0=  700 (x_eff 909; r_v [52, 67, 86, 124] kpc): own field/canon +78.9; own field/alt +91.7; web-blind/canon -25.3; web-blind/alt -19.0   [1588s]
+    p=1 cap     x_v0= 1500 (x_eff 1949; r_v [38, 49, 63, 90] kpc): own field/canon +88.6; own field/alt +102.3; web-blind/canon -19.8; web-blind/alt -11.7   [1588s]
+    p=1 cleared x_v0= 1500 (x_eff 1949; r_v [38, 49, 63, 90] kpc): own field/canon +76.2; own field/alt +88.7; web-blind/canon -26.0; web-blind/alt -19.4   [1588s]
+    p=2 cap     x_v0=  700 (x_eff 1181; r_v [47, 60, 78, 111] kpc): own field/canon +81.4; own field/alt +94.5; web-blind/canon -25.1; web-blind/alt -17.7   [1588s]
+    p=2 cap     x_v0= 1000 (x_eff 1688; r_v [40, 52, 67, 95] kpc): own field/canon +87.8; own field/alt +100.9; web-blind/canon -20.8; web-blind/alt -13.0   [1589s]
+    p=2 cap     x_v0= 1500 (x_eff 2532; r_v [34, 44, 56, 80] kpc): own field/canon +94.5; own field/alt +108.1; web-blind/canon -14.9; web-blind/alt -6.5   [1589s]
+    p=2 cleared x_v0= 1000 (x_eff 1688; r_v [40, 52, 67, 95] kpc): own field/canon +75.5; own field/alt +87.7; web-blind/canon -25.7; web-blind/alt -19.6   [1589s]
+    p=2 cleared x_v0= 1500 (x_eff 2532; r_v [34, 44, 56, 80] kpc): own field/canon +81.5; own field/alt +94.7; web-blind/canon -24.0; web-blind/alt -16.4   [1589s]
+    p=2 cleared x_v0= 2000 (x_eff 3375; r_v [30, 39, 50, 70] kpc): own field/canon +85.1; own field/alt +98.0; web-blind/canon -21.3; web-blind/alt -13.8   [1589s]
+    p=2 cleared x_v0= 3000 (x_eff 5063; r_v [25, 32, 41, 58] kpc): own field/canon +91.3; own field/alt +105.1; web-blind/canon -17.1; web-blind/alt -8.8   [1589s]
+  [PASS] K1 (reported) KiDS on the window: with the construction's own kernel field (the web's baryons) KiDS fails as it does for every carrier (L355); with a web-blind kernel the window's best cell is scored against the +9 criterion
+         measured: own field: worst-footing Delta chi^2 min +87.7; web-blind: best cell -19.6
+         reading:  KiDS is the construction's open gate; it is conditional on the bound-region kernel (L355's door), which no carrier can supply
+
+================================================================================================================
+H1  HIGH REDSHIFT ON THE BEST CELL: RC100 (z = 0.6-2.5) and the flagship prediction at z = 2.5
+================================================================================================================
+    best cell: p=2 cleared x_v0=2000 v_k=3000
+    RC100: median f_DM(<R_e) 0.43 (data 0.29); inverted slope +0.445 (data -0.112 +/- 0.062; framework alone 0.000)
+    flagship (deep-MOND Tully-Fisher zero point at z = 2.5; framework 0.00, LCDM +0.33): canon logMb 10.0: +0.84 dex; canon logMb 10.5: +0.84 dex; canon logMb 11.0: +0.87 dex; alt logMb 10.0: +0.77 dex; alt logMb 10.5: +0.78 dex; alt logMb 11.0: +0.81 dex
+  [PASS] H1 (reported) the window's high-z prediction: RC100 and the flagship zero-point shift on the best cell
+         measured: [{'footing': 'canonical', 'logMb': 10.0, 'r_out_kpc': 12.203347410357, 'shift_dex': 0.8398834759616599}, {'footing': 'canonical', 'logMb': 10.5, 'r_out_kpc': 21.70096143338966, 'shift_dex': 0.8428945754223138}, {'footing': 'canonical', 'logMb': 11.0, 'r_out_kpc': 38.5903728950456, 'shift_dex': 0.8739587416097704}, {'footing': 'alt', 'logMb': 10.0, 'r_out_kpc': 11.117974554414657, 'shift_dex': 0.7694533980122388}, {'footing': 'alt', 'logMb': 10.5, 'r_out_kpc': 19.77086523145225, 'shift_dex': 0.7778653307805357}, {'footing': 'alt', 'logMb': 11.0, 'r_out_kpc': 35.15812255974596, 'shift_dex': 0.8123617134869557}]
+         reading:  a prediction of the construction, not a gate
+
+================================================================================================================
+VERDICT
+================================================================================================================
+  THE PLAIN VIRIALIZATION TRIGGER IS CLOSED; THE VACUUM-GATED ONE WORKS THROUGH FOUR GATES.
+  Decaying the carrier whenever a halo virializes takes ~half the bias-weighted mass out of the z = 2-3 forest (V1); raising
+  the threshold until the forest survives leaves cluster outskirts untouched and X-COP overshoots (V2).  Gating the same
+  density trigger by the vacuum's share of the expansion, u = x~ [Omega_L(z)/Omega_L,0]^p, fixes both at once: it sleeps
+  through z >= 2 and, once Lambda dominates, clears exactly the dense regions -- galaxy interiors (x~ ~ 1e4-1e5 where
+  rotation curves are measured) and cluster cores -- while cluster outskirts (x~ ~ 200-350 at R500) keep their carrier and
+  the halo that loses its core expands.  Window: strict 3 cells, alternative 17 cells.
+  Best cell p = 2, cleared, x_v0 = 2000, v_k = 3000 km/s: T^2(k=5) >= 0.9984,
+  S_8 = 0.772, X-COP 1.08/1.13 (canonical/alt).
+  OPEN: KiDS (K1) -- with the construction's own kernel field it fails like every carrier (L355); with a web-blind kernel
+  see K1.  The flagship shifts (H1): the construction predicts a non-zero deep-MOND zero-point offset at z = 2.5.
+
+  8/8 checks pass; load-bearing failures: 0; wrote L357_virialization_triggered_carrier_results.json   [1589s]
+rc=0

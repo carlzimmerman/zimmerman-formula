@@ -69,6 +69,12 @@ The same shift-independence is what gives α₁ = α₂ = 0. That is the **momen
   - **KiDS (L355):** it still fails through the web's baryonic field in the kernel (+120 to +145 with the carrier and a 2-halo term). With the kernel blind to the web it fits (−11 to +1).
   - **High z (L356):** the carrier intact at z ≈ 2.5 overshoots RC100's dark fraction and moves the flagship zero point +0.8 to +1.0 dex.
   - **Open:** a bound-region kernel, and a virialization-triggered carrier.
+- **09-25 (evening), the vacuum gate and the bound-region kernel** ([`L357`](real_research/dark_sector_2026/L357_virialization_triggered_carrier.py), [`L359`](real_research/g03_audit_2026/L359_vacuum_gated_switch.py), [`L360`](real_research/g03_audit_2026/L360_assembled_construction_kids.py), [`L361`](real_research/g03_audit_2026/L361_bound_region_kernel.py)).
+  - **The switch is back.** The KiDS–forest pincer on the switch assumed a constant threshold. Gated by the vacuum's share of the expansion (u = x̃[Ω_Λ(z)/Ω_Λ,0]^p), the switch passes growth, KiDS and the forest together (L359).
+  - **The bound-region kernel is built from an action** (L361). It is region-local, sourced by in-region baryons and screened across the inactive web. KiDS at its own field scores +0.0, against +548 and +233 for the earlier kernels.
+  - **The carrier has a strict window.** The same gate on the carrier's decay gives a strict window (L357): forest, S₈ 0.772, X-COP 1.08/1.13 and galaxies. The plain virialization trigger fails the forest once minihalos count.
+  - **The assembled pair passes KiDS** (L360, 70/96 pairs).
+  - **Status:** a construction that passes every gate tested so far. Still open: gas in late-time filaments (force ×8–12), the high-z price (flagship +0.8 dex) and the relativistic embedding.
 - **Lean certificates** for the algebra of L330/L340/L341/L342 are in `fable_independent_2026/lean_2026/` (exit 0, zero `sorry`).
 
 **Other candidates:**
