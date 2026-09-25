@@ -1,0 +1,145 @@
+{
+ "lane": "COS1",
+ "mutate": false,
+ "checks": {
+  "C1 two-zone-law window slope m_fw = -0.997 in (-1.25, -0.75)": {
+   "ok": true,
+   "measured": "m_fw = -0.997 (window [R500, 3R500], alt footing -0.998)",
+   "load_bearing": true
+  },
+  "C2 NFW window slope in (-2.3, -1.40) for the full c = 3-5 bracket (measured -1.591 .. -1.673)": {
+   "ok": true,
+   "measured": "c=3: -1.591, c=5: -1.673 (anchor-matched; M500-anchored c=4: -1.391)",
+   "load_bearing": true
+  },
+  "C3 contrast = m_fw - m_nfw = +0.642 >= 0.40 (measured vs c = 4; bracket +0.593..+0.675)": {
+   "ok": true,
+   "measured": "contrast +0.642 (c=3: +0.593, c=5: +0.675)",
+   "load_bearing": true
+  },
+  "C4 label swap flips every slope check (C1: FLIPPED, C2: FLIPPED, C3 sign: FLIPPED)": {
+   "ok": true,
+   "measured": "opposite-assignment 'framework' slope -1.639 outside band; 'NFW' slope -0.997 outside band; contrast -0.642 <= -0.40",
+   "load_bearing": true
+  },
+  "C5 two-zone law M_tot(<R500) = 3.93 x M_b inside the committed anchor band [1.65, 2.00]": {
+   "ok": false,
+   "measured": "3.93 x M_b (alt footing 4.31)",
+   "load_bearing": false
+  },
+  "B1 the 3-sigma stack requirement N_lens ~ 1e3-1.3e4 (fiducial 4316) is inside the UNIONS/KiDS/DES-class survey reach (<= 1e5)": {
+   "ok": true,
+   "measured": "N_lens = 4316 (fiducial sigma_dex = 0.15); bracket 1735-20204 for sigma_dex = 0.1-0.3, c = 3-5; restricted to 1.4 R500: 46794 (~10.8x); M500-anchored reading: 11475",
+   "load_bearing": true
+  },
+  "C6 the lane records the full-window slope contrast = +0.642 with local slope runs and the data-gate inventory in results.json (self-audit)": {
+   "ok": true,
+   "measured": "contrast +0.642",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "A": {
+   "r_M_Mpc": 0.2673865061694124,
+   "Mfw_r500_over_Mb": 3.9268997341800578,
+   "Mfw_r500_over_M500": 0.6283039574688093,
+   "m_fw": -0.9974571934490244,
+   "m_fw_alt": -0.9977077310887069,
+   "m_nfw_c3": -1.5909432265865593,
+   "m_nfw_c4": -1.6394827240934868,
+   "m_nfw_c5": -1.6725763193838141,
+   "m_nfw_M500anchor": -1.3912011375419815,
+   "contrast_full": 0.6420255306444624,
+   "contrast_at_1p4R500": 0.6366445447045379,
+   "contrast_M500anchor": 0.3937439440929571,
+   "ESD_ratio_sep_full_window": 0.706271739728519,
+   "ESD_ratio_sep_1p4_window": 0.18214308909348587,
+   "fw_ESD_R500": 42.557264048050534,
+   "nfw_ESD_R500": 23.302330675538844,
+   "natural": {
+    "m_fw": -0.9974571934490244,
+    "m_nfw_c4": -1.6394827240934868,
+    "contrast_full": 0.6420255306444624
+   }
+  },
+  "C4_mutate": {
+   "m_swapped_as_fw": -1.6394827240934868,
+   "m_swapped_as_nfw": -0.9974571934490244,
+   "contrast_swapped": -0.6420255306444624,
+   "flips": [
+    true,
+    true,
+    true
+   ]
+  },
+  "B_power": {
+   "assumed_sigma_dex": [
+    0.1,
+    0.15,
+    0.3
+   ],
+   "K_bins": 6,
+   "Delta_lnR": 1.0986122886681098,
+   "sigma_m_per_stack": {
+    "0.10": 0.2964054835922225,
+    "0.15": 0.4446082253883337,
+    "0.30": 0.8892164507766674
+   },
+   "N_lens_3sigma": {
+    "0.10": {
+     "c=3": 2244.8843461599236,
+     "c=4": 1918.2728513712404,
+     "c=5": 1734.818936868855
+    },
+    "0.15": {
+     "c=3": 5050.989778859827,
+     "c=4": 4316.113915585289,
+     "c=5": 3903.3426079549226
+    },
+    "0.30": {
+     "c=3": 20203.95911543931,
+     "c=4": 17264.455662341155,
+     "c=5": 15613.37043181969
+    }
+   },
+   "N_lens_3sigma_1p4R500_window": {
+    "0.10": 20797.51127191993,
+    "0.15": 46794.40036181984,
+    "0.30": 187177.60144727936
+   },
+   "N_lens_3sigma_M500anchored_LCDM": {
+    "0.10": 5100.19995209302,
+    "0.15": 11475.449892209292,
+    "0.30": 45901.79956883717
+   }
+  },
+  "C7_gate": {
+   "xcop_hydro_reach_R500": [
+    2.097902097902098,
+    2.846299810246679
+   ],
+   "clash_clusters": 20,
+   "clash_clusters_anchored": 0,
+   "gate_hits": [],
+   "brouwer21_fig3_reach_Mpc": {
+    "rmax_Mpc": 2.6035,
+    "ESD_Msun_pc2": 0.76539,
+    "err": 0.16007
+   }
+  },
+  "C7_underpower": {
+   "local_contrast_at_1p4R500": 0.6366445447045379,
+   "contrast_over_3R500": 0.6420255306444624,
+   "Delta_lnR_1p4": 0.3364722366212129,
+   "Delta_lnR_full": 1.0986122886681098,
+   "ESD_ratio_sep_1p4": 0.18214308909348587,
+   "ESD_ratio_sep_full": 0.706271739728519,
+   "N_lens_1p4_window_fid": 46794.40036181984,
+   "N_lens_full_fid": 4316.113915585289,
+   "r_M_Mpc": 0.2673865061694124
+  }
+ },
+ "verdict": "INCONCLUSIVE (pre-registered): no on-disk cluster weak-lensing profile reaches 1.4 R500 (CLASH Tian+2020 rows stop at ~0.6 Mpc; X-COP on disk is hydrostatic X-ray, not shear). The [R500, 1.4 R500] window is under-powered by design: Delta_lnR = 0.336 vs 1.099, so the same stack reaches only ~1 sigma there (needs 46794 lenses vs 4316 for the full window); the ESD amplitude separation over the short window is 1.20x vs 2.03x. With the full [R500, 3 R500] window, a 4316-lens stack (bracket 1735-20204 for sigma_dex = 0.1-0.3, c = 3-5) separates the framework slope (-1.00, rho ~ r^-2) from the LambdaCDM NFW slope (-1.64) at 3 sigma.",
+ "n_checks": 7,
+ "n_fail_load_bearing": 0
+}

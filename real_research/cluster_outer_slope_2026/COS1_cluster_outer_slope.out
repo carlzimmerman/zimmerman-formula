@@ -1,0 +1,201 @@
+COS1 -- THE CLUSTER OUTER-SLOPE TEST: the two-zone phantom law vs LambdaCDM NFW in the
+weak-lensing ESD beyond R500, priced for a stacked-lensing campaign.
+
+THE ZERO-PARAMETER PREDICTION (committed two-zone law, equities reference
+~/.hermes/skills/research/research-lane-numerics/references/equipartition-law-tests.md):
+  deep isolated regime:  M_dark(<r) = M_b * r / r_M,   r_M = sqrt(G M_b / a0)
+                         rho_dark = A / r^2,           A  = sqrt(G M_b a0) / (4 pi G)
+  zone split: inside r_M the field is above a0 -> baryons only; outside r_M the phantom
+  (rho = A/r^2) applies.  Zero free parameters once M_b is given.
+
+  COS1 uses a representative cluster (M500 = 3e14 Msun, R500 = 1.05 Mpc, f_b = 0.16,
+  M_b = 4.8e13 Msun) and computes DeltaSigma(R) = <Sigma(<R)> - Sigma(R) over R in
+  [R500, 3 R500] together with the local logarithmic slope d ln DeltaSigma / d ln R,
+  and the cumulative slope difference (framework minus NFW) across the window.
+
+  LAMBDA CDM SIDE: baryons + NFW matched to the committed anchor (1.65-2.0 x the baryons
+  at R500, STANDING.md clusters block L315/committed endpoints), concentration c = 3-5.
+  (The cosmologically-natural variant anchored to M500 itself is computed as a DIAGNOSTIC:
+  it has a SHALLOWER window slope because the heavy halo swamps the baryon tail, so the
+  contrast narrows; both are reported, the anchor-matched one is the registered comparison.)
+
+  POWER: with UNIONS/KiDS-style stacked-lensing uncertainties at R ~ 1-3 Mpc, the number
+  of cluster lenses needed to separate the two window slopes at 3 sigma.  Assumed per-stack
+  per-bin error sigma_dex = 0.1-0.3 dex in DeltaSigma for a 10^3-lens stack (fiducial 0.15),
+  K = 6 log-spaced bins over the window.  Literature order for this assumption: published
+  stacked-cluster-lensing ESD bin errors at R ~ 1 Mpc for O(10^3-10^4)-lens stacks are
+  ~10-30% (e.g. DES/KiDS cluster stacks); 0.1-0.3 dex brackets that, stated as assumed.
+
+  DATA GATE: scan the repo for weak-lensing cluster data reaching beyond ~1.4 R500:
+    * real_research/data/xcop/*/A*_hydro_mass.fits   -- X-RAY hydrostatic mass profiles
+      (M_FORW, Ettori+2019 X-COP; on-disk reach 2.1-2.9 R500 measured at runtime) -- NOT WL.
+    * real_research/data/clash_rar_tian2020_fig2.tsv -- lensing-based g_tot RAR rows per
+      cluster (Tian+2020, CLASH); reach scored per cluster with R500 anchored from on-disk
+      catalogs (groener2016_cluster_concentrations.tsv M200/c200, xcop_r500_ettori2019.json).
+    * real_research/data/lensing_rar/brouwer2021_rar/Fig-3_Lensing-rotation-curves_*.txt
+      -- KiDS-1000 galaxy-scale ESD (stellar-mass bins, M* < ~1e11); projected reach
+      2.6 Mpc but LENS MASS IS GALACTIC, not cluster -> note only (per registration).
+    * hff_granata_*.tsv, groener2016 (no profiles), kt2017/lovisari2015/psz2/erass1 -- no
+      radial WL profiles -> not scoreable.
+  If >= 1 cluster WL profile reaches >= 1.4 R500 it is SCORED (g-slope over the window vs
+  the two predictions, 3-sigma separation from the published per-bin errors).  Otherwise the
+  PRE-REGISTERED reading stands: INCONCLUSIVE -- the X-COP X-ray reach (1.0-1.4 R500
+  usable, STANDING.md) is under-powered by design; documented with the numbers: the
+  [1.0, 1.4] R500 window is Delta_lnR = 0.336 vs 1.099 for the full window, so the
+  per-stack slope error is 3.3x larger and the 3-sigma stack requirement ~10x that of
+  [R500, 3 R500]; the ESD-amplitude separation over [1.0, 1.4] R500 is ~20% vs a factor
+  ~2 over the full window, below the stacked-lensing systematic floor -- and X-ray
+  hydrostatic mass does not measure shear in any case.
+
+  MUTATE: MUTATE=1 swaps the NFW and phantom slope LABELS (the framework curve is
+  presented as the NFW prediction and vice versa): every slope check must FLIP (the
+  slope-contrast check must flip sign).  The main run verifies the flip internally (C4);
+  the external MUTATE run writes the _MUTATE artifacts.
+
+Run from the repository root:
+  python3 real_research/cluster_outer_slope_2026/COS1_cluster_outer_slope.py
+  MUTATE=1 python3 real_research/cluster_outer_slope_2026/COS1_cluster_outer_slope.py
+
+
+========================================================================================================
+A  THE TWO PREDICTIONS, DeltaSigma over [R500, 3 R500] (representative cluster M500 = 3e14 Msun, R500 = 1.05 Mpc, f_b = 0.16 -> M_b = 4.8e13 Msun)
+========================================================================================================
+    r_M = 0.267 Mpc (canon) / 0.243 Mpc (alt); R500/r_M = 3.93 / 4.31
+    two-zone law M_tot(<R500) = 3.927 x M_b (canon) = 1.885e14; demanded by M500 anchor: 6.25 x M_b; coverage of measured M500: 63%
+    NFW: anchor-lo     M_NFW(<R500) = 0.312e14 Msun (total at R500 = 1.65 x M_b)
+    NFW: anchor-fid    M_NFW(<R500) = 0.396e14 Msun (total at R500 = 1.82 x M_b)
+    NFW: anchor-hi     M_NFW(<R500) = 0.480e14 Msun (total at R500 = 2.00 x M_b)
+    NFW: M500-anchored M_NFW(<R500) = 2.520e14 Msun (total at R500 = 6.25 x M_b)
+
+    window slopes (d ln DeltaSigma / d ln R, linear fit over [R500, 3 R500]):
+      framework (two-zone law):  m = -0.997   (alt footing -0.998)
+      NFW c=3: -1.591   c=4: -1.639   c=5: -1.673   (M500-anchored c=4: -1.391)
+    DeltaSigma(R500) Msun/pc^2: framework 42.56  (nl: 23.30);  DeltaSigma(3 R500): framework 14.24 vs NFW 3.85
+
+    local slope runs over the window (framework / NFW c=4 / contrast):
+      R =  1.05 Mpc (1.00 R500): m_fw -0.971   m_nfw -1.594   contrast +0.622
+      R =  1.10 Mpc (1.05 R500): m_fw -0.983   m_nfw -1.614   contrast +0.631
+      R =  1.16 Mpc (1.10 R500): m_fw -0.995   m_nfw -1.635   contrast +0.640
+      R =  1.21 Mpc (1.15 R500): m_fw -0.996   m_nfw -1.634   contrast +0.638
+      R =  1.27 Mpc (1.21 R500): m_fw -0.996   m_nfw -1.634   contrast +0.638
+      R =  1.33 Mpc (1.27 R500): m_fw -0.996   m_nfw -1.633   contrast +0.637
+      R =  1.40 Mpc (1.33 R500): m_fw -0.997   m_nfw -1.633   contrast +0.637
+      R =  1.47 Mpc (1.40 R500): m_fw -0.997   m_nfw -1.634   contrast +0.637
+      R =  1.54 Mpc (1.47 R500): m_fw -0.997   m_nfw -1.634   contrast +0.637
+      R =  1.61 Mpc (1.54 R500): m_fw -0.997   m_nfw -1.635   contrast +0.637
+      R =  1.69 Mpc (1.61 R500): m_fw -0.998   m_nfw -1.636   contrast +0.638
+      R =  1.78 Mpc (1.69 R500): m_fw -0.998   m_nfw -1.637   contrast +0.639
+      R =  1.86 Mpc (1.77 R500): m_fw -0.998   m_nfw -1.638   contrast +0.640
+      R =  1.95 Mpc (1.86 R500): m_fw -0.998   m_nfw -1.640   contrast +0.641
+      R =  2.05 Mpc (1.95 R500): m_fw -0.998   m_nfw -1.641   contrast +0.643
+      R =  2.15 Mpc (2.05 R500): m_fw -0.998   m_nfw -1.643   contrast +0.644
+      R =  2.25 Mpc (2.15 R500): m_fw -0.999   m_nfw -1.645   contrast +0.646
+      R =  2.37 Mpc (2.25 R500): m_fw -0.999   m_nfw -1.647   contrast +0.648
+      R =  2.48 Mpc (2.36 R500): m_fw -0.999   m_nfw -1.649   contrast +0.650
+      R =  2.60 Mpc (2.48 R500): m_fw -0.999   m_nfw -1.651   contrast +0.652
+      R =  2.73 Mpc (2.60 R500): m_fw -0.999   m_nfw -1.654   contrast +0.655
+      R =  2.86 Mpc (2.73 R500): m_fw -0.999   m_nfw -1.656   contrast +0.657
+      R =  3.00 Mpc (2.86 R500): m_fw -0.999   m_nfw -1.659   contrast +0.659
+      R =  3.15 Mpc (3.00 R500): m_fw -0.999   m_nfw -1.660   contrast +0.661
+
+    cumulative slope contrast (framework - NFW): +0.642 over [R500, 3 R500]; local value at 1.4 R500: +0.637 (M500-anchored LambdaCDM reading: +0.394)
+    ESD amplitude separation ln(DS_fw/DS_nfw) grows by 0.706 over [R500, 3 R500] (factor 2.03) vs 0.182 (factor 1.20) over [R500, 1.4 R500]
+
+========================================================================================================
+C1  FRAMEWORK WINDOW SLOPE: the two-zone law must sit within 0.2 of its r^-2-asymptote prediction (-1.0), i.e. in (-1.25, -0.75)
+========================================================================================================
+  [PASS] C1 two-zone-law window slope m_fw = -0.997 in (-1.25, -0.75)
+         measured: m_fw = -0.997 (window [R500, 3R500], alt footing -0.998)
+         reading:  phantom-dominated outer ESD: rho ~ r^-2 projects to DeltaSigma ~ R^-1 beyond r_M
+
+========================================================================================================
+C2  NFW WINDOW SLOPE: LambdaCDM NFW (c = 3-5, anchor-matched) must be steeper than -1.40 (approach to the rho ~ r^-3 / DeltaSigma ~ R^-2 asymptote)
+========================================================================================================
+  [PASS] C2 NFW window slope in (-2.3, -1.40) for the full c = 3-5 bracket (measured -1.591 .. -1.673)
+         measured: c=3: -1.591, c=5: -1.673 (anchor-matched; M500-anchored c=4: -1.391)
+         reading:  NFW ESD steepens monotonically toward -2 past the scale radius; baryons are negligible there
+
+========================================================================================================
+C3  SLOPE CONTRAST: framework minus NFW window slopes (the r^-2 vs r^-3 discriminator)
+========================================================================================================
+  [PASS] C3 contrast = m_fw - m_nfw = +0.642 >= 0.40 (measured vs c = 4; bracket +0.593..+0.675)
+         measured: contrast +0.642 (c=3: +0.593, c=5: +0.675)
+         reading:  over [R500, 3 R500] the two curves diverge by ~0.5-1.0 in log-log slope; that is the signal COS1 prices
+
+========================================================================================================
+C4  MUTATE CONTROL: swap NFW and phantom slope labels; the contrast must flip
+========================================================================================================
+  [PASS] C4 label swap flips every slope check (C1: FLIPPED, C2: FLIPPED, C3 sign: FLIPPED)
+         measured: opposite-assignment 'framework' slope -1.639 outside band; 'NFW' slope -0.997 outside band; contrast -0.642 <= -0.40
+         reading:  the checks are label-honest: mislabelling the two predictions fails them all
+
+========================================================================================================
+C5  R500 INTERCEPT vs the committed X-COP anchor band (1.65-2.0 x M_b at R500, STANDING.md L315 kernel endpoints) -- expected tension, registered here
+========================================================================================================
+  [FAIL] C5 two-zone law M_tot(<R500) = 3.93 x M_b inside the committed anchor band [1.65, 2.00]
+         measured: 3.93 x M_b (alt footing 4.31)
+         reading:  the two-zone law over-delivers vs the saturated kernel (which itself covers only ~30-50% of the measured M500); the cluster residual is unchanged at these radii
+
+========================================================================================================
+B  POWER: stacked-lensing stack size for 3-sigma separation of the two window slopes
+========================================================================================================
+    sigma_dex = 0.10/bin/10^3-lens stack, K = 6 bins over [1.0, 3.0] R500: sigma_m = 0.296 -> N(3 sigma, c=4) =     1918 lenses
+    sigma_dex = 0.10/bin/10^3-lens stack, K = 6 bins over [1.0, 3.0] R500: sigma_m = 0.296 -> N(3 sigma, c=5) =     1735 lenses
+    sigma_dex = 0.10/bin/10^3-lens stack, K = 6 bins over [1.0, 3.0] R500: sigma_m = 0.296 -> N(3 sigma, c=3) =     2245 lenses
+    sigma_dex = 0.15/bin/10^3-lens stack, K = 6 bins over [1.0, 3.0] R500: sigma_m = 0.445 -> N(3 sigma, c=4) =     4316 lenses
+    sigma_dex = 0.15/bin/10^3-lens stack, K = 6 bins over [1.0, 3.0] R500: sigma_m = 0.445 -> N(3 sigma, c=5) =     3903 lenses
+    sigma_dex = 0.15/bin/10^3-lens stack, K = 6 bins over [1.0, 3.0] R500: sigma_m = 0.445 -> N(3 sigma, c=3) =     5051 lenses
+    sigma_dex = 0.30/bin/10^3-lens stack, K = 6 bins over [1.0, 3.0] R500: sigma_m = 0.889 -> N(3 sigma, c=4) =    17264 lenses
+    sigma_dex = 0.30/bin/10^3-lens stack, K = 6 bins over [1.0, 3.0] R500: sigma_m = 0.889 -> N(3 sigma, c=5) =    15613 lenses
+    sigma_dex = 0.30/bin/10^3-lens stack, K = 6 bins over [1.0, 3.0] R500: sigma_m = 0.889 -> N(3 sigma, c=3) =    20204 lenses
+    under-power documentation (X-COP X-ray reach [R500, 1.4 R500], Delta_lnR = 0.336 vs 1.099): per-stack slope error x3.3, N(3 sigma) = 46794 (fiducial) vs 4316 for the full window -> 10.8x.  M500-anchored LambdaCDM reading: N(3 sigma) = 11475.
+  [PASS] B1 the 3-sigma stack requirement N_lens ~ 1e3-1.3e4 (fiducial 4316) is inside the UNIONS/KiDS/DES-class survey reach (<= 1e5)
+         measured: N_lens = 4316 (fiducial sigma_dex = 0.15); bracket 1735-20204 for sigma_dex = 0.1-0.3, c = 3-5; restricted to 1.4 R500: 46794 (~10.8x); M500-anchored reading: 11475
+         reading:  a cluster stack of a few x 10^3 lenses over [R500, 3 R500] would separate the r^-2 from the r^-3 outer ESD at 3 sigma
+
+========================================================================================================
+C7  DATA GATE: on-disk cluster weak-lensing reaching beyond 1.4 R500 -- scored here
+========================================================================================================
+    inventory (on-disk candidates for a cluster WL outer-slope profile):
+      - xcop_hydro_mass_fits                   WL=False X-ray hydrostatic mass profiles (Ettori+2019, X-COP)
+      - clash_rar_tian2020                     WL=True  lensing-based g_tot RAR rows (Tian+2020, CLASH)
+      - brouwer2021_fig3_massbin4              WL=True  KiDS-1000 galaxy-scale stacked ESD (stellar mass bin, M* ~ 1e11)
+      - hff_granata                            WL=False Hubble Frontier Fields source catalogues (photometry)
+      - groener2016                            WL=False c200/M200 point estimates (X-ray/CM)
+      - kt2017_lovisari2015_psz2_erass1        WL=False catalogues only
+      - x-COP X-ray hydrostatic profiles on disk: reach 2.10-2.85 R500 (12 clusters) -- NOT weak lensing
+      - CLASH A209       reach   600.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH A2261      reach   600.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH A383       reach   400.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH A611       reach   600.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH MACS0329   reach   200.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH MACS0416   reach   400.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH MACS0429   reach   200.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH MACS0647   reach   200.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH MACS0717   reach   600.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH MACS0744   reach   600.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH MACS1115   reach   200.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH MACS1149   reach   400.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH MACS1206   reach   600.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH MACS1720   reach   400.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH MACS1931   reach   600.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH MS2137     reach   200.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH RXJ1347    reach   600.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH RXJ1532    reach   600.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH RXJ2129    reach   600.0 kpc -- no on-disk R500 anchor (skipped)
+      - CLASH RXJ2248    reach   600.0 kpc -- no on-disk R500 anchor (skipped)
+      - Brouwer21 Fig-3 mass-bin-4 (galaxy scale, M* ~ 1e11): projected reach 2.60 Mpc; ESD 0.77 +/- 0.16 Msun/pc^2 at the outermost bin -- galaxy-halo signal, NOT a cluster outer-slope signal
+
+    GATE NOT MET: no on-disk cluster weak-lensing profile reaches 1.4 R500.
+    The X-COP X-ray (NOT WL) profiles that do reach 2.1-2.9 R500 cannot price the slope test (hydrostatic systematics beyond R500 are unregistered).
+
+    PRE-REGISTERED UNDER-POWER NUMBERS: over the X-COP usable reach [R500, 1.4 R500] (Delta_lnR = 0.336 vs 1.099 for [R500, 3 R500]) the LOCAL slope contrast is already +0.64 (framework r^-2 vs NFW r^-3 separation is fully developed past r_M = 0.27 Mpc, far inside R500) -- the under-power is WINDOW LENGTH: the per-stack slope error scales as 1/Delta_lnR, so a 1.4 R500 stack needs 10.8x the lenses (46794 vs 4316 at sigma_dex = 0.15), and the ESD-amplitude separation over the short window is only 1.20x vs 2.03x over the full window.
+  [PASS] C6 the lane records the full-window slope contrast = +0.642 with local slope runs and the data-gate inventory in results.json (self-audit)
+         measured: contrast +0.642
+
+========================================================================================================
+VERDICT
+========================================================================================================
+INCONCLUSIVE (pre-registered): no on-disk cluster weak-lensing profile reaches 1.4 R500 (CLASH Tian+2020 rows stop at ~0.6 Mpc; X-COP on disk is hydrostatic X-ray, not shear). The [R500, 1.4 R500] window is under-powered by design: Delta_lnR = 0.336 vs 1.099, so the same stack reaches only ~1 sigma there (needs 46794 lenses vs 4316 for the full window); the ESD amplitude separation over the short window is 1.20x vs 2.03x. With the full [R500, 3 R500] window, a 4316-lens stack (bracket 1735-20204 for sigma_dex = 0.1-0.3, c = 3-5) separates the framework slope (-1.00, rho ~ r^-2) from the LambdaCDM NFW slope (-1.64) at 3 sigma.
+
+COS1 COMPLETE: 6/7 checks PASS (load-bearing failures: 0). wrote COS1_cluster_outer_slope_results.json
