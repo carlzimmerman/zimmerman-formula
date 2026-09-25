@@ -1,0 +1,52 @@
+
+    two-halo template (b = 1, z = 0.25): Delta Sigma_2h at 0.1 / 0.3 / 1 / 2.6 Mpc = 0.045, 0.141, 0.269, 0.371 Msun/pc^2
+*** MUTATE=1: screening removed (lambda = infinity only) -- the kernel reverts to BS3's ***
+
+========================================================================================================
+C1  WHAT THE SCREENING MUST LEAVE ALONE: the Galaxy's field on the Sun; SPARC rotation curves to 100 kpc
+========================================================================================================
+  [PASS] C1 (documentary) the smallest screening length that keeps the Galaxy's field on the Sun (>= 99.9%) and SPARC to 100 kpc (<= 1%)
+         measured: lambda >= inf Mpc (grid)
+
+========================================================================================================
+C2  THE SCREENED LARGE-SCALE FIELD ON AN ISOLATED LENS (linear LCDM, matter outside the isolation sphere)
+========================================================================================================
+    lambda =  inf Mpc: rms |g_ext,screened| = 1.47e-02 a0 (outside 3 Mpc), 1.50e-02 a0 (outside 1 Mpc)
+  [PASS] C2 (documentary) screened external field vs lambda (KiDS single-field bound from BS2: e <= 7.2e-5 / 5.2e-5)
+         measured: {'inf': '1.5e-02'}
+
+ESD tables built (7 s)
+
+========================================================================================================
+C3  KiDS-1000 WITH THE SCREENED KERNEL (its own screened external field, two-halo b <= 2, switch x_c profiled)
+========================================================================================================
+    canonical lambda =  inf: Delta chi^2   +396.3 (x_c 0.0, b [1.08, 1.75, 2.0, 2.0]);  no switch   +396.3;  inside 0.3 Mpc   +44.8
+    alt       lambda =  inf: Delta chi^2   +407.8 (x_c 0.0, b [1.08, 1.75, 2.0, 2.0]);  no switch   +407.8;  inside 0.3 Mpc   +49.1
+  [FAIL] C3 THE WINDOW: some screening length lambda >= lambda_min (Sun + SPARC) fits KiDS-1000 within Delta chi^2 <= 4 of the no-EFE switch (all points and inside 0.3 Mpc), with its own screened external field, both footings
+         measured: passing lambda: []
+         reading:  a non-empty window means the blind kernel survives what excluded C-H/K + switch
+  [PASS] C4 (documentary) does the screening alone do the switch's lensing job? lambda passing with x_c = 0 (no switch)
+         measured: []
+         reading:  the switch is still needed for growth (L341/L342); this asks only about KiDS
+
+========================================================================================================
+C5  INJECTION at the best-fitting lambda: does the gate pass when the screened construction is true? (canonical)
+========================================================================================================
+    lambda = inf: Delta chi^2 per draw [-128.0, -82.8, -102.8, -128.6, -141.6, -83.6, -131.0, -101.4, -128.7, -164.0]; pass fraction 1.00
+  [PASS] C5 when the screened construction is true the gate passes in >= 80% of 10 draws
+         measured: 1.00
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  lambda (Mpc) | screened field (a0) | Delta chi^2 all pts (can/alt) | inside 0.3 Mpc | no switch
+           inf | 1.5e-02             |  +396.3 /  +407.8           |  +44.8 /  +49.1 |  +396.3 /  +407.8
+  Best lambda = inf Mpc: Delta chi^2 +396.3 / +407.8 vs the (EFE-free, hence unphysical) switch comparator;
+  for scale, pure MOND at its own field sits at +16.9 / +15.6 and C-H/K + switch unscreened at +396 / +408.
+  Sun + SPARC need lambda >= inf Mpc.  Window (KiDS within 4, both footings, both radius ranges): [].
+  The blind kernel is one new length, lambda: the kernel's argument is the Yukawa-screened Newtonian field,
+  (nabla^2 - 1/lambda^2) Phi_b = 4 pi G rho.  Sources inside lambda (the Galaxy for the Sun; a galaxy for itself) act in
+  full; the large-scale web's field -- dominated by long modes -- is screened as (k lambda)^2.
+
+  4/5 checks pass; load-bearing failures: 1; wrote BK1_screened_kernel_results_MUTATE.json (13 s)
+MUTATE rc=1
