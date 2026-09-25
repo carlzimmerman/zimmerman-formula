@@ -1,0 +1,174 @@
+
+L328 -- THE VIRIAL FLOOR AT HIGH REDSHIFT: a one-sided test of the FLATNESS of a0 with JWST/ALMA dispersions.
+
+THE THEOREM (Lean I22, from the framework's own kernel, μ(x) <= x, via the certified velocity floor I20): every
+isolated spherical system in equilibrium has  <v^2> >= (2/3) sqrt(G M a0), i.e. with sigma^2 = <v^2>/3,
+        sigma^4 >= (4/81) G M a0          (Milgrom's deep-MOND virial EQUALITY becomes a LOWER BOUND at every g)
+No deep-MOND requirement, no extended rotation curve, no radius.  With the stellar mass M_* <= M_b in place of the
+baryonic mass the floor is CONSERVATIVE (a lower floor): a violation with M_* is a violation with M_b.
+
+THE DISCRIMINATOR: the framework's a0 is FLAT in z; the rival branch a0 ~ H(z) raises the floor by E(z)^(1/4)
+(1.8-1.9 at z = 6-7).  LCDM has no such floor (a halo only raises sigma).
+
+ORIENTATION (pre-registered before the data): a measured integrated line width sigma_int of a rotating disk is
+inclination-dependent; averaged over random orientations <sigma_int^2> = sigma_0^2 + V^2/3 = <v^2>/3 exactly (thin
+disk, isotropic sigma_0).  So single objects are NOT decisive; the load-bearing statistic is the population mean
+        S = < sigma_int^2 / floor^2 >      which the framework (and any law with that floor) requires to be >= 1.
+Per-object shortfalls are reported with the orientation probability, never scored alone.
+
+CAVEATS (carried, not assumed away): the external field effect lowers the floor (isolation is an assumption at
+z > 4); ionized-gas widths are light-weighted and aperture-limited; turbulence/outflows INFLATE sigma (making any
+violation more robust, any pass less informative).
+
+MUTATE=1 multiplies every measured sigma by 0.25: the framework's population check must then FAIL (rc = 1).
+DOCUMENTED DEVIATION (2026-09-25): the pre-registration committed MUTATE = x0.4, chosen expecting S near 1.  The data
+give S ~ 10, so x0.4 (S x 0.16 ~ 1.6) does NOT break F1 -- a control too weak for the observed margin, a design flaw of
+the control, not a change of the analysis.  The control is re-set to x0.25 (S x 0.0625 ~ 0.6), which must break F1.
+The table is built by build_table.py (construction rules R1-R4 fixed before the statistic was computed).
+Run from the repository root:  python3 real_research/virial_floor_2026/L328_virial_floor_highz.py
+
+   objects with (z, sigma, log M_*): 116
+
+==============================================================================================================
+PER OBJECT -- sigma against the floors (M_* only: conservative)
+==============================================================================================================
+   JADES-1095186                z=4.02  sigma=  22.5+/- 3.3  logM*=9.37  floor fw  34.6/ 36.3   rival  55.0/ 57.6  [rotation]
+   GO1871-545                   z=4.04  sigma=  24.1+/- 0.3  logM*=9.41  floor fw  35.4/ 37.1   rival  56.4/ 59.1  [unresolved (integrated)]
+   GN20                         z=4.05  sigma=  71.6+/- 0.8  logM*=11.04  floor fw  90.6/ 94.9   rival 144.3/151.1  [rotation]
+   JADES-1000110                z=4.06  sigma=  44.0+/- 2.1  logM*=9.52  floor fw  37.8/ 39.6   rival  60.2/ 63.0  [rotation]
+   JADES-1083165                z=4.15  sigma=  29.4+/- 3.0  logM*=9.78  floor fw  43.9/ 45.9   rival  70.3/ 73.7  [dispersion]
+   JADES-1029814                z=4.16  sigma=  25.2+/- 1.8  logM*=8.38  floor fw  19.6/ 20.5   rival  31.4/ 32.9  [rotation]
+   JADES-1091236                z=4.17  sigma=  23.7+/- 2.9  logM*=9.34  floor fw  34.0/ 35.7   rival  54.7/ 57.3  [dispersion]
+   SPT0418-47                   z=4.22  sigma=  45.5+/- 0.0  logM*=10.08  floor fw  52.1/ 54.6   rival  84.0/ 88.0  [rotation]
+   J081740                      z=4.26  sigma=  41.6+/- 1.0  logM*=10.60  floor fw  70.3/ 73.7   rival 113.6/119.1  [rotation]
+   MACS0717_Az9                 z=4.27  sigma=  20.9+/- 1.3  logM*=9.33  floor fw  33.8/ 35.5   rival  54.8/ 57.4  [rotation]
+   BRI1335-0417                 z=4.41  sigma=  34.7+/- 1.4  logM*=10.40  floor fw  62.7/ 65.6   rival 102.3/107.2  [rotation]
+   CANDELS_GOODSS_32            z=4.41  sigma=  29.6+/- 1.4  logM*=9.75  floor fw  43.0/ 45.1   rival  70.2/ 73.6  [merger]
+   JADES-1077545                z=4.42  sigma=  18.7+/- 6.0  logM*=9.27  floor fw  32.7/ 34.3   rival  53.4/ 56.0  [rotation]
+   SGP38326-1                   z=4.42  sigma=  83.3+/- 0.5  logM*=11.00  floor fw  88.5/ 92.7   rival 144.7/151.6  [rotation]
+   SGP38326-2                   z=4.43  sigma=  60.0+/- 0.8  logM*=10.30  floor fw  59.2/ 62.0   rival  96.7/101.3  [rotation]
+   CANDELS_GOODSS_12            z=4.43  sigma=  57.4+/- 1.9  logM*=9.29  floor fw  33.2/ 34.8   rival  54.2/ 56.8  [unclear]
+   CRISTAL-11                   z=4.44  sigma=  35.5+/- 2.7  logM*=9.68  floor fw  41.4/ 43.4   rival  67.7/ 71.0  [rotation]
+   vuds_cosmos_510786441        z=4.46  sigma=  23.8+/- 1.4  logM*=9.99  floor fw  49.5/ 51.8   rival  81.1/ 85.0  [merger]
+   DEIMOS_COSMOS_274035         z=4.48  sigma=  28.2+/- 2.0  logM*=9.42  floor fw  35.7/ 37.4   rival  58.6/ 61.4  [dispersion]
+   DEIMOS_COSMOS_434239         z=4.49  sigma=  52.8+/- 1.4  logM*=10.32  floor fw  59.8/ 62.6   rival  98.1/102.8  [merger]
+   vuds_cosmos_510605533        z=4.50  sigma=  53.5+/- 3.3  logM*=9.47  floor fw  36.7/ 38.4   rival  60.3/ 63.1  [unclear]
+   DEIMOS_COSMOS_834764         z=4.51  sigma=  27.0+/- 1.8  logM*=9.97  floor fw  49.1/ 51.4   rival  80.6/ 84.5  [dispersion]
+   DEIMOS_COSMOS_493583         z=4.51  sigma=  21.0+/- 1.4  logM*=9.61  floor fw  39.8/ 41.7   rival  65.5/ 68.6  [merger]
+   vuds_cosmos_5100822662       z=4.52  sigma=  22.1+/- 1.4  logM*=10.17  floor fw  55.0/ 57.6   rival  90.5/ 94.8  [merger]
+   DEIMOS_COSMOS_308643         z=4.53  sigma=  43.1+/- 4.2  logM*=9.77  floor fw  43.5/ 45.6   rival  71.6/ 75.0  [merger]
+   DEIMOS_COSMOS_680104         z=4.53  sigma=  20.2+/- 1.7  logM*=9.23  floor fw  32.0/ 33.6   rival  52.7/ 55.2  [unclear]
+   DEIMOS_COSMOS_627939         z=4.53  sigma=  26.8+/- 1.4  logM*=9.98  floor fw  49.3/ 51.6   rival  81.1/ 85.0  [merger]
+   DEIMOS_COSMOS_396844         z=4.54  sigma=  30.5+/- 1.4  logM*=9.86  floor fw  45.9/ 48.1   rival  75.7/ 79.3  [rotation]
+   DEIMOS_COSMOS_510660         z=4.55  sigma=  57.3+/- 8.4  logM*=9.47  floor fw  36.7/ 38.5   rival  60.6/ 63.5  [unclear]
+   DEIMOS_COSMOS_842313         z=4.55  sigma=  26.6+/- 1.6  logM*=10.84  floor fw  80.7/ 84.6   rival 133.1/139.5  [merger]
+   CRISTAL-06b                  z=4.56  sigma=  28.2+/- 1.7  logM*=9.19  floor fw  31.2/ 32.7   rival  51.5/ 54.0  [rotation]
+   CRISTAL-25                   z=4.57  sigma=  29.1+/- 2.0  logM*=10.90  floor fw  83.6/ 87.5   rival 138.0/144.5  [unclear]
+   vuds_cosmos_5101210235       z=4.58  sigma=  15.4+/- 1.4  logM*=9.78  floor fw  43.8/ 45.9   rival  72.4/ 75.8  [rotation]
+   CRISTAL-15                   z=4.58  sigma=  30.3+/- 2.9  logM*=9.69  floor fw  41.6/ 43.6   rival  68.8/ 72.1  [rotation]
+   DEIMOS_COSMOS_454608         z=4.58  sigma=  24.6+/- 1.6  logM*=9.79  floor fw  44.1/ 46.2   rival  72.9/ 76.4  [merger]
+   ALESS 073.1                  z=4.75  sigma=  48.7+/- 0.1  logM*=10.90  floor fw  83.6/ 87.5   rival 139.5/146.2  [rotation]
+   JADES-1090054                z=4.82  sigma=  37.5+/- 0.7  logM*=9.62  floor fw  40.0/ 41.9   rival  67.1/ 70.3  [rotation]
+   JADES-1025101                z=4.91  sigma=  52.7+/- 8.9  logM*=8.99  floor fw  27.8/ 29.2   rival  47.0/ 49.2  [rotation]
+   GO1871-29                    z=5.02  sigma=  18.0+/- 0.2  logM*=9.24  floor fw  32.1/ 33.7   rival  54.6/ 57.2  [unresolved (integrated)]
+   DEIMOS_COSMOS_372292         z=5.14  sigma=  30.7+/- 1.5  logM*=9.44  floor fw  36.1/ 37.8   rival  61.7/ 64.6  [merger]
+   CRISTAL-07a                  z=5.15  sigma=  24.8+/- 1.0  logM*=10.00  floor fw  49.8/ 52.1   rival  85.3/ 89.3  [rotation]
+   JADES-1001674                z=5.18  sigma=  51.8+/- 8.3  logM*=9.92  floor fw  47.5/ 49.8   rival  81.6/ 85.4  [dispersion]
+   JADES-1028887                z=5.19  sigma=  17.3+/- 3.2  logM*=9.56  floor fw  38.6/ 40.5   rival  66.3/ 69.5  [dispersion]
+   CRISTAL-19                   z=5.23  sigma=  28.6+/- 1.5  logM*=9.51  floor fw  37.5/ 39.3   rival  64.6/ 67.7  [rotation]
+   HZ7                          z=5.25  sigma=  24.2+/- 2.4  logM*=9.86  floor fw  45.9/ 48.1   rival  79.1/ 82.9  [dispersion]
+   CRISTAL-21                   z=5.25  sigma=  27.1+/- 2.8  logM*=10.11  floor fw  53.0/ 55.6   rival  91.4/ 95.7  [unclear]
+   JADES-1002222                z=5.29  sigma=  19.0+/- 2.4  logM*=9.47  floor fw  36.7/ 38.4   rival  63.4/ 66.4  [dispersion]
+   CRISTAL-02                   z=5.29  sigma=  25.1+/- 0.9  logM*=10.30  floor fw  59.2/ 62.0   rival 102.2/107.1  [rotation]
+   JADES-1025527                z=5.30  sigma=  43.8+/- 5.1  logM*=9.39  floor fw  35.0/ 36.7   rival  60.5/ 63.4  [rotation]
+   DEIMOS_COSMOS_845652         z=5.31  sigma=  36.0+/- 1.8  logM*=10.46  floor fw  64.7/ 67.8   rival 111.9/117.2  [unclear]
+   DEIMOS_COSMOS_378903         z=5.43  sigma=  16.4+/- 1.4  logM*=9.12  floor fw  30.0/ 31.4   rival  52.2/ 54.7  [merger]
+   JADES-NS-10016374            z=5.50  sigma=  15.7+/- 0.5  logM*=7.86  floor fw  14.5/ 15.2   rival  25.4/ 26.6  [dispersion]
+   CANDELS_GOODSS_42            z=5.53  sigma=   6.7+/- 1.4  logM*=9.38  floor fw  34.8/ 36.4   rival  60.8/ 63.7  [unclear]
+   HZ9                          z=5.53  sigma=  40.3+/- 0.8  logM*=9.86  floor fw  45.9/ 48.1   rival  80.4/ 84.2  [rotation]
+   HZ4                          z=5.53  sigma=  22.7+/- 0.5  logM*=10.15  floor fw  54.3/ 56.8   rival  95.0/ 99.6  [rotation]
+   JADES-214966                 z=5.54  sigma=  28.1+/- 6.6  logM*=9.54  floor fw  38.2/ 40.0   rival  66.9/ 70.1  [dispersion]
+   CRISTAL-20                   z=5.54  sigma=  20.9+/- 1.0  logM*=10.11  floor fw  53.0/ 55.6   rival  92.9/ 97.4  [rotation]
+   CANDELS_GOODSS_14            z=5.55  sigma=  24.4+/- 1.7  logM*=10.49  floor fw  66.2/ 69.3   rival 116.1/121.6  [dispersion]
+   JADES-NS-00016745            z=5.57  sigma=  20.4+/- 0.3  logM*=8.80  floor fw  24.9/ 26.1   rival  43.8/ 45.9  [rotation]
+   CRISTAL-12                   z=5.57  sigma=  15.7+/- 2.9  logM*=9.30  floor fw  33.3/ 34.9   rival  58.4/ 61.2  [rotation]
+   CRISTAL-09a                  z=5.58  sigma=  32.1+/- 3.6  logM*=9.84  floor fw  45.4/ 47.6   rival  79.7/ 83.5  [rotation]
+   DEIMOS_COSMOS_416105         z=5.63  sigma=  21.4+/- 1.5  logM*=9.45  floor fw  36.3/ 38.0   rival  63.9/ 67.0  [rotation]
+   DEIMOS_COSMOS_742174         z=5.64  sigma=  14.8+/- 1.5  logM*=9.56  floor fw  38.7/ 40.6   rival  68.2/ 71.5  [unclear]
+   CRISTAL-22a                  z=5.65  sigma=  62.5+/- 2.5  logM*=10.35  floor fw  60.9/ 63.8   rival 107.4/112.5  [unclear]
+   DEIMOS_COSMOS_417567         z=5.67  sigma=  32.9+/- 1.7  logM*=9.81  floor fw  44.7/ 46.8   rival  78.9/ 82.7  [merger]
+   DEIMOS_COSMOS_773957         z=5.68  sigma=  36.5+/- 1.4  logM*=10.00  floor fw  49.9/ 52.3   rival  88.1/ 92.3  [merger]
+   DEIMOS_COSMOS_357722         z=5.68  sigma=  14.2+/- 1.4  logM*=9.63  floor fw  40.2/ 42.1   rival  71.0/ 74.4  [dispersion]
+   CRISTAL-03                   z=5.69  sigma=  30.8+/- 2.3  logM*=10.40  floor fw  62.7/ 65.6   rival 110.7/116.0  [rotation]
+   DEIMOS_COSMOS_351640         z=5.71  sigma=  14.0+/- 1.4  logM*=9.67  floor fw  41.2/ 43.2   rival  72.9/ 76.4  [dispersion]
+   DEIMOS_COSMOS_722679         z=5.72  sigma=  35.1+/- 2.5  logM*=8.40  floor fw  19.8/ 20.7   rival  35.0/ 36.7  [unclear]
+   vuds_cosmos_5101288969       z=5.72  sigma=  31.6+/- 1.9  logM*=9.56  floor fw  38.7/ 40.5   rival  68.5/ 71.7  [unclear]
+   JADES-NS-00022251            z=5.80  sigma=  10.3+/- 0.2  logM*=8.21  floor fw  17.8/ 18.6   rival  31.6/ 33.1  [dispersion]
+   JADES-201125                 z=5.82  sigma=  37.5+/- 3.3  logM*=9.96  floor fw  48.6/ 51.0   rival  86.6/ 90.7  [dispersion]
+   DEIMOS_COSMOS_843045         z=5.85  sigma=  16.8+/- 1.5  logM*=9.96  floor fw  48.7/ 51.0   rival  86.7/ 90.9  [merger]
+   JADES-NS-00019606            z=5.89  sigma=   9.8+/- 0.4  logM*=7.54  floor fw  12.1/ 12.7   rival  21.6/ 22.6  [dispersion]
+   J1211                        z=6.02  sigma=  25.9+/- 1.4  logM*=10.47  floor fw  65.2/ 68.3   rival 117.4/123.0  [rotation]
+   J1211                        z=6.03  sigma=  27.8+/- 2.5  logM*=10.47  floor fw  65.2/ 68.3   rival 117.4/123.0  [rotation]
+   RXCJ0600-z6 (Cosmic Grapes)  z=6.07  sigma=  16.4+/- 0.1  logM*=8.65  floor fw  22.9/ 24.0   rival  41.4/ 43.3  [rotation]
+   J0235                        z=6.08  sigma=  36.4+/- 9.3  logM*=10.47  floor fw  65.2/ 68.3   rival 117.7/123.3  [rotation]
+   J0235                        z=6.09  sigma=  47.6+/- 9.8  logM*=10.47  floor fw  65.2/ 68.3   rival 117.8/123.4  [rotation]
+   MACS0416 z6.14 LAE D1 (total z=6.14  sigma=   7.0+/- 0.6  logM*=7.39  floor fw  11.1/ 11.6   rival  20.1/ 21.1  [unclear]
+   CLM1                         z=6.15  sigma=  30.0+/- 1.3  logM*=10.11  floor fw  53.0/ 55.6   rival  96.1/100.6  [rotation]
+   VR7                          z=6.52  sigma=  30.7+/- 1.7  logM*=10.23  floor fw  56.8/ 59.5   rival 104.9/109.9  [rotation]
+   UVISTA-Z-349                 z=6.56  sigma=  22.5+/- 3.6  logM*=9.79  floor fw  44.1/ 46.2   rival  81.6/ 85.5  [rotation]
+   UVISTA-Z-004                 z=6.67  sigma=  26.4+/- 1.9  logM*=9.83  floor fw  45.1/ 47.3   rival  83.9/ 87.9  [rotation]
+   UVISTA-Z-049                 z=6.72  sigma=  27.2+/- 4.6  logM*=9.76  floor fw  43.4/ 45.4   rival  80.8/ 84.6  [rotation]
+   UVISTA-Z-019                 z=6.74  sigma=  30.1+/- 2.1  logM*=9.51  floor fw  37.5/ 39.3   rival  70.0/ 73.4  [rotation]
+   COS-29                       z=6.79  sigma=  13.7+/- 1.9  logM*=9.23  floor fw  32.0/ 33.5   rival  59.8/ 62.6  [rotation]
+   COS-30                       z=6.84  sigma=  41.7+/- 1.4  logM*=9.14  floor fw  30.3/ 31.8   rival  56.9/ 59.6  [rotation]
+   SPT0311-58 L3                z=6.89  sigma=   9.0+/- 1.8  logM*=9.17  floor fw  30.9/ 32.3   rival  58.0/ 60.8  [unclear]
+   SPT0311-58 L2                z=6.89  sigma=  16.0+/- 3.0  logM*=8.71  floor fw  23.7/ 24.8   rival  44.5/ 46.6  [unclear]
+   SPT0311-58 L1                z=6.90  sigma=  16.5+/- 0.5  logM*=8.54  floor fw  21.5/ 22.6   rival  40.5/ 42.4  [unclear]
+   SPT0311-58 C3                z=6.91  sigma=  26.5+/- 3.8  logM*=9.53  floor fw  38.0/ 39.9   rival  71.5/ 75.0  [unclear]
+   SPT0311-58 L5                z=6.91  sigma=   9.0+/- 0.8  logM*=9.07  floor fw  29.1/ 30.5   rival  54.7/ 57.4  [unclear]
+   SPT0311-58 L6                z=6.92  sigma=  11.2+/- 2.5  logM*=8.75  floor fw  24.2/ 25.4   rival  45.6/ 47.7  [unclear]
+   SPT0311-58 C1                z=6.93  sigma=  24.8+/- 2.0  logM*=9.20  floor fw  31.5/ 33.0   rival  59.3/ 62.1  [unclear]
+   GO1871-70                    z=7.03  sigma=  10.3+/- 2.0  logM*=8.85  floor fw  25.7/ 26.9   rival  48.6/ 50.9  [unresolved (integrated)]
+   UVISTA-Z-001                 z=7.06  sigma=  31.7+/- 3.3  logM*=9.58  floor fw  39.1/ 40.9   rival  74.0/ 77.6  [rotation]
+   UVISTA-Y-004                 z=7.08  sigma=  23.5+/- 3.7  logM*=9.90  floor fw  47.0/ 49.2   rival  89.1/ 93.3  [rotation]
+   J1120+0641 companion (Region z=7.08  sigma=  26.0+/-12.2  logM*=9.43  floor fw  35.9/ 37.6   rival  68.0/ 71.3  [merger]
+   GO1871-1032                  z=7.09  sigma=   9.3+/- 3.0  logM*=9.07  floor fw  29.1/ 30.5   rival  55.3/ 57.9  [unresolved (integrated)]
+   GO1871-40                    z=7.09  sigma=  15.2+/- 1.5  logM*=8.47  floor fw  20.6/ 21.6   rival  39.1/ 41.0  [unresolved (integrated)]
+   JADES-NS-20086025            z=7.26  sigma=  22.5+/- 0.5  logM*=8.85  floor fw  25.7/ 26.9   rival  49.1/ 51.4  [rotation]
+   UVISTA-Y-003                 z=7.29  sigma=  43.5+/- 2.3  logM*=10.10  floor fw  52.7/ 55.2   rival 100.9/105.8  [rotation]
+   REBELS-25                    z=7.31  sigma=  53.0+/- 0.3  logM*=9.90  floor fw  47.1/ 49.3   rival  90.2/ 94.5  [rotation]
+   SUPER8                       z=7.35  sigma=  25.1+/-14.1  logM*=9.69  floor fw  41.6/ 43.6   rival  79.9/ 83.7  [rotation]
+   UVISTA-Y-879                 z=7.36  sigma=  42.7+/- 7.3  logM*=9.00  floor fw  28.0/ 29.3   rival  53.7/ 56.3  [rotation]
+   JADES-NS-00047100            z=7.43  sigma=  22.2+/- 0.8  logM*=8.53  floor fw  21.4/ 22.4   rival  41.1/ 43.1  [rotation]
+   GO1871-12                    z=7.50  sigma=  16.8+/- 0.7  logM*=8.31  floor fw  18.8/ 19.7   rival  36.4/ 38.1  [unresolved (integrated)]
+   GO1871-10                    z=7.60  sigma=  16.3+/- 1.3  logM*=7.96  floor fw  15.4/ 16.1   rival  29.8/ 31.3  [unresolved (integrated)]
+   GO1871-11                    z=7.61  sigma=  15.2+/- 3.2  logM*=9.07  floor fw  29.1/ 30.5   rival  56.6/ 59.3  [unresolved (integrated)]
+   UVISTA-Y-001                 z=7.66  sigma=  23.6+/- 3.0  logM*=9.70  floor fw  41.9/ 43.9   rival  81.5/ 85.4  [rotation]
+   MACS0416-Y3 (MAGNIF)         z=8.34  sigma=  13.6+/- 5.1  logM*=8.60  floor fw  22.2/ 23.3   rival  44.5/ 46.6  [rotation]
+   Gz9p3 (MIRI MRS Halpha, inte z=9.31  sigma=  14.7+/- 5.2  logM*=9.20  floor fw  31.5/ 33.0   rival  65.4/ 68.5  [merger]
+   MACS0647-JD1 (full aperture) z=10.17  sigma=  24.2+/- 2.0  logM*=8.38  floor fw  19.6/ 20.5   rival  41.9/ 43.9  [merger]
+   GN-z11                       z=10.60  sigma=  43.6+/- 3.3  logM*=9.10  floor fw  29.6/ 31.1   rival  64.4/ 67.4  [rotation]
+
+==============================================================================================================
+POPULATION -- S = < sigma^2 / floor^2 > (must be >= 1 if the floor holds)
+==============================================================================================================
+   framework canonical: S =    0.63   95% CI [0.54, 0.86]   P(S < 1) = 0.996
+   framework alt      : S =    0.58   95% CI [0.50, 0.78]   P(S < 1) = 1.000
+   rival     canonical: S =    0.21   95% CI [0.18, 0.27]   P(S < 1) = 1.000
+   rival     alt      : S =    0.19   95% CI [0.16, 0.25]   P(S < 1) = 1.000
+  [FAIL] F1 the framework's floor holds for the population (95% lower bound on S >= 1, both footings)
+         measured: canonical: S=0.63 [0.54, 0.86]; alt: S=0.58 [0.50, 0.78]
+         reading:  a failure here (S < 1 at 95%) would falsify the flat-a0 floor for isolated equilibrium systems at z > 4
+  [PASS] R1 (reported, both directions) the a0 ~ H(z) rival's floor: P(S < 1) per footing
+         measured: canonical: S=0.21, P(S<1)=1.000; alt: S=0.19, P(S<1)=1.000
+         reading:  P(S<1) near 1 would EXCLUDE the rival's floor on this population (subject to EFE/aperture caveats); near 0 = no discrimination
+  [PASS] R2 (reported) objects > 2 sigma below the floor (canonical; orientation NOT accounted: not decisive alone)
+         measured: framework 90/116; rival 111/116
+         reading:  a face-on rotator falls below by orientation with probability ~9% (sin^2 i < 1/6): compare the counts to ~0.09 N
+  [FAIL] R3 (reported) the rival's per-object shortfalls are orientation-explainable: every integrated-width shortfall has P(orientation) > 1%, and no deprojected (sigma_0+V) row is > 2 sigma below once M_* errors are included
+         measured: CANDELS_GOODSS_42 q=0.11 P_orient=0.004 [integrated]; SPT0311-58 L3 q=0.155 P_orient=0.008 [integrated]; SPT0311-58 L5 q=0.164 P_orient=0.009 [integrated]; GO1871-1032 q=0.169 P_orient=0.01 [integrated]; DEIMOS_COSMOS_351640 q=0.192 P_orient=0.012 [integrated]; DEIMOS_COSMOS_843045 q=0.193 P_orient=0.013 [integrated]; max deprojected shortfall (incl. M_* error) = 30.40 sigma
+         reading:  the rival (a0 ~ H(z)) is NOT excluded by single objects either: high-z galaxies are too high-acceleration for the floor to separate flat from rising a0
+
+==============================================================================================================
+VERDICT  (0/1 load-bearing PASS  -- MUTATE RUN)
+==============================================================================================================

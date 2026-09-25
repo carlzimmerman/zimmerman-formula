@@ -1,0 +1,116 @@
+jwst_ifu.csv -- source notes (built 2026-09-23 from arXiv e-print TeX; sources in src/jw/, builder src/jw/build_csv.py)
+Conventions: sigma = FWHM/2.355 where only FWHM is printed; asymmetric errors averaged; linear masses converted to log10
+(symmetric log error = mean of the +/- log offsets). No number was read off a figure. sigma_flag='upper' is used when the
+paper states (or its table note states) that the width is NOT corrected for instrumental broadening, so the intrinsic value
+is lower. Rows without logMstar are kept only where the paper tabulates an instrument-corrected sigma but no M*.
+
+=== INCLUDED ===
+
+2512.05213 (GA-NIFS, DLA0817g1, z=4.26). Table 'pys_results' (3DBarolo). sigma = sigma_o(R_e) from a 3D forward-model fit of
+the NIRSpec IFU G395H Halpha cube (rotation + beam smearing modelled). M* = 10.6+-0.2 is NOT an SED mass: the paper quotes the
+Roman-Oliveira+24 dynamical mass-decomposition value; SED M* deferred. Mgas = M_H2 from [CII] (E(B-V)=0 column). [CII] sigma_o
+49+-11 in the same table (not ionised; noted only).
+
+2603.00232 (GA-NIFS 'Dissecting The Alchemised', MACS0647-JD1, z=10.17). Table 1. NIRSpec IFU G395M (R~1000, flagged).
+Intrinsic FWHM (deconvolved with 0.8x pre-launch LSF) of aperture spectra, single Gaussian tied over rest 3600-4700 A lines;
+integrated, rotation not removed. Paper itself quotes sigma_gas=97+-8 for the full aperture. M* Prospector, Chabrier; mu=8+-1;
+the SED section does not say explicitly that the table M* is delensed. Paper favours an early-stage merger.
+
+2404.16201 (Abdurro'uf+24, MACS0647-JD). NIRSpec MOS G395H (slit, not IFU). Only the stacked [NeIII] (144 +19/-17) and [OII]
+(150) FWHMs are instrument-corrected (in text); the per-image tables are observed widths. No M* in the paper.
+
+2407.08616 (GA-NIFS, MACS1149-JD1, z=9.11). Sect. 'Gas kinematics'. G395H IFU; sigma = average of the spaxel-by-spaxel [OIII]5007
+dispersion map (resolved, so large-scale rotation is removed at spaxel level, but no beam-smearing model; LSF handling not
+spelled out). M* 7.47 is the de-lensed (mu=10) integrated-spectrum Prospector value; IMF not stated. Paper disfavours a disc.
+The Prospector 'sigma_gas' in its table is a prism nuisance parameter and was NOT used.
+
+2411.08627 (GA-NIFS, CR7, z=6.6). Sect. 'Gas kinematics' + t.prospector. CR7-A average spaxel sigma 124+-17: footnote says it
+INCLUDES instrumental dispersion -> flagged 'upper'. CR7-B 70+-5 is the narrow-component average from the same fit (instrument
+correction not stated) -> also 'upper'. M* Prospector (IMF not stated). CR7-C has M* but no tabulated sigma (CR7-C2 '~50' only
+approximate, skipped). 2601.06255 gives alternative M* (A 9.63, B 9.10, C 8.85).
+
+2308.16620 (GA-NIFS, HFLS3 field, z~6.36). Table 'specfittab'. G395H IFU integrated component spectra, FWHM from LSF-convolved
+Gaussian fits (intrinsic). [OIII] widths used; Balmer widths in notes (S2: [OIII] 65 vs Balmer 125 km/s). NO M* for any z~6.3
+companion; no magnification correction. The main lensed arc 'C' (two blended galaxies) skipped.
+
+2312.00899 (GA-NIFS, SPT0311-58 protocluster core, z~6.9). Kinematic-properties table (sigma, R_e, Mdyn) + stellar-mass table.
+sigma = integrated R2700 [OIII]-Hbeta dispersion after deconvolving the instrumental profile (rotation not removed). M* from SED
+fit of R100 spectra, Kroupa IMF, magnification (mu 1.06-1.62) and aperture corrected; converted from 1e9 Msun to log. For
+galaxy E the row uses the median resolved sigma_0=113+-19 (text, 'E galaxy' subsection); integrated 155+-3 in notes.
+
+2412.15027 (GA-NIFS, B14-65666, z=7.15). Table 'specfittable'. G395M IFU (flagged). Intrinsic (LSF-corrected) FWHM of the NARROW
+component of narrow+broad fits to the two core apertures. Per-core M* not tabulated (system 9.78, Sugahara+24).
+
+2403.03192 (GA-NIFS, GN20, z=4.05). Table t:model (and t:inflow). DysmalPy 3D forward model of G395H Halpha; sigma_0=89+-10.
+M* 1.1e11 is a literature value (Tan+14; range 1.1-2.3e11), no error; Mgas = M_H2 (Hodge+12, alpha_CO=0.8). R_e fixed 3.6 kpc.
+
+2405.12955 (GA-NIFS, HZ10, z=5.65). Table 'linetable_CA'. G395H; narrow-component FWHM ([OIII] and Balmer) from narrow+broad fits
+in r=0.125" apertures on three components (E, C, W); intrinsic width modelled with LSF added. No per-component M*.
+
+2407.19008 (GA-NIFS, HZ4, z=5.54). Table 'tab:r2700_fluxes' + Bagpipes M* table. Narrow-component FWHM 180+-2 (tied over
+Halpha/Hbeta/[OIII]/[NII]) of the integrated spectrum; LSF deconvolution not stated for this value. M* system 9.75 (+0.05/-0.10),
+sub-clumps have M* but no sigma. ALMA calls HZ4 a [CII] disc; this paper reads the ionised gas as a merging multi-component system.
+
+2302.06647 (GA-NIFS, GS_3073, z=5.55; broad-line AGN). Tables t:fit, Mdyn table, Sect. s:mdyn. Narrow Halpha FWHM corrected for
+instrumental resolution (paper: sigma=83). M* 9.52+-0.13 from R100 continuum (constant SFH), Chabrier. AGN narrow lines.
+
+2402.18543 (Fujimoto+, Cosmic Grapes / RXCJ0600-z6, z=6.07, mu=32.5). ED Tables 2, 3, 5. NIRSpec IFU G395H. Row sigma =
+integrated [OIII]5008 intrinsic FWHM 154+-1 (sqrt(obs^2-100^2)) /2.355 -> rotation NOT removed. The resolved 3DBarolo Halpha/[OIII]
+sigma(R) profiles (Halpha 70-44, [OIII] 70-22 km/s) are listed in notes; the paper adopts [CII] for sigma_0 and does not give a
+single ionised sigma_0. M* 4.5e8 (Gimenez-Arteaga+24; Kroupa per SED methods), all delensed; Mdyn and Mgas are [CII]-based.
+
+2407.20331 (Messa+25, z=6.14 lensed LAE behind MACS J0416, mu~17-21). Appendix tables tab:clump_properties_spec (sigma) and
+tab:clump_properties_phot (M*, R_eff, mu; all delensed). NIRSpec IFU G395H; sigma = resolution-corrected integrated widths of
+region masks (rotation not removed). D1 value is from Halpha (text: [OIII] unresolved) although the column is labelled
+sigma_[OIII]; T1 Halpha gives 30.8+-3.8 vs [OIII] 20.0+-8.6. These are sub-galactic complexes / cluster-scale regions
+(M* 1e5-1e7), not whole galaxies; T1 is <~2 Myr old and possibly non-virialised. Bagpipes+BPASS, Kroupa IMF.
+
+2310.06887 (Nelson+, FRESCO Twister-z5, z=5.38). NIRCam F444W grism (not IFU). Disk sigma '~100 km/s' (range 50-150) from line
+width minus LSF and spatial extent in quadrature; paper calls it likely an upper limit (no forward model) -> flag 'upper', no
+error. M* 10.4+-0.4 (Kroupa), Mdyn 11.0+-0.2, V/sigma~2 as printed.
+
+2310.09327 (MAGNIF, MACS0416-Y3, z=8.34). Physical-properties deluxetable. NIRCam grism forward model; v_sigma 40 (+30/-26);
+tentative rotator; M* and R_e delensed (mu=1.49); IMF not stated.
+
+2412.02751 (GA-NIFS, BR1202-0725 overdensity, z~4.7). Table tab:Comp. G235H+G395H IFU; integrated narrow-component sigma
+corrected for instrumental broadening. No M* tabulated (Mdyn quoted as upper limits). QSO/SMG environment.
+
+2404.16963 (Xu+24, GN-z11, z=10.60). Table tab:models (fiducial). NIRSpec IFU G235M (R~1000, flagged); CIII] doublet;
+forward-model sigma_v=91 (+18/-32) with beam smearing and doublet blending; median observed spaxel sigma 80 in tab:results.
+M* 9.1 (+0.3/-0.4) quoted from Tacchella+23 (IMF not stated here). Mdyn(<2Re) and derived Mgas converted to log.
+
+2410.11035 (GA-NIFS & EIGER, J1120+0641 quasar host + companion, z=7.08). Table tab:DynamicalMasses. G395H IFU; integrated [OIII]
+dispersion corrected for 115 km/s instrumental FWHM; +-49 km/s is one wavelength element. Host value in table 88+-49 vs text
+92+-49 (table used). M* from NIRCam SED (Chabrier). Host is a quasar host (core missing after PSF subtraction).
+
+2608.16996 (Gz9p3, z=9.31, 'dynamically hot, interacting'). Table A1 (FWHM) + Table 1 (M*). G395H IFU; table note: FWHMs NOT
+corrected for instrumental broadening -> flagged 'upper'. M* integrated from Boyett+24, sub-region M* scaled by F444W flux
+fraction; Chabrier; everything delensed (mu=1.66).
+
+2604.22460 (Bik+26, Gz9p3). MIRI MRS Halpha FWHM 138+-49 corrected for instrumental broadening (text); NIRSpec IFU in this paper
+is PRISM only. M* attached to this row is the 2608.16996 Table 1 value (not printed in 2604.22460).
+
+2512.11985 (MACS0647 z>6 census). deluxetable tab:spec_g395h (G395H MOS FWHM), tab:catalog (Bagpipes M*, Kroupa, fit at z_phot),
+tab:catalog2 (mu). The paper never says the FWHMs are instrument-corrected and several sit at ~100-130 km/s, close to the R~2700
+instrumental FWHM -> flagged 'upper'. Delensing of M* not stated. v4-1742 is a Little Red Dot (SED unreliable per paper).
+
+0909.0111 (Swinbank+09, MS1358+62 arc, z=4.92, mu=12.5). Gemini NIFS (ground IFU, R=5300). Only two clump sigmas (86+-15, 80+-15;
+deconvolved) are printed; no galaxy-integrated sigma. Galaxy M* 7+-2e8 (Salpeter, delensed) is in the notes, not in logMstar.
+
+astro-ph/0701221 (Swinbank+07, RCS0224-002 arc, z=4.88, mu=16). VLT SINFONI; integrated [OII] intrinsic sigma 100+-20 (text;
+Table 2 lists +-30); no stellar mass in the paper.
+
+=== CHECKED, NO USABLE ROW (reason) ===
+2505.24129 Wisnioski+25 compilation: full table only in online material; its z>4 optical entries are GN20 and Fujimoto (primary
+sources used instead). 2312.03589 Ubler ZS7: no narrow-line host sigma tabulated. 2411.07695 Scholtz COS-3018: only two narrow
+components (FWHM 210+-12, 350+-6) and W80 maps; no single galaxy sigma -> skipped. 2601.06255 GA-NIFS outflows: only outflow
+sigma tabulated (useful alternative M* for many systems). 2603.13493 / 2510.16111 ALPINE-CRISTAL-JWST: Halpha kinematics
+deferred to Gomez-Espinoza et al. (in prep); 18 targets G235M/G395M, no sigma table. 2608.25982 REBELS-25: kinematics from ALMA
+[OIII]88um (sigma 61 +7/-8, 3DBarolo) and [CII] only; NIRSpec is prism -> not added (ALMA scope). 2302.04795 two z~6.8 quasar
+fields: region sigmas (+-51) but no M*, QSO-dominated -> skipped. 2306.09142 GN-z11 environment: no sigma. 2406.04617,
+2408.12310 (MACS0416-Y1 prism widths ~515-536 km/s, resolution-limited), 2512.08054 (Cosmic Spear, no line widths),
+2510.07936 (A1689-zD1, no ionised sigma), 2403.03977 Venturi (R100 only): no usable sigma. Prism-only lensed systems not mined:
+Cosmic Gems (Messa+25 IFU PRISM), Firefly Sparkle (prism), RXJ2129-z95, SPT0615-JD, Sunrise arc. Not located/out of scope:
+Li+23 grism kinematics (ID not found), Ju+25 MSA-3D (z~1), Tsukui+25 and Kohandel (no z>4 ionised-gas IFU table found).
+de Graaff+24 (2308.09742) and 2501.17145 / 2503.21863 are MOS/grism samples already present in the shared src/ from other lanes
+and were deliberately not duplicated here.

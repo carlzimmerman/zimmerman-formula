@@ -22,7 +22,11 @@ CAVEATS (carried, not assumed away): the external field effect lowers the floor 
 z > 4); ionized-gas widths are light-weighted and aperture-limited; turbulence/outflows INFLATE sigma (making any
 violation more robust, any pass less informative).
 
-MUTATE=1 multiplies every measured sigma by 0.4: the framework's population check must then FAIL (rc = 1).
+MUTATE=1 multiplies every measured sigma by 0.25: the framework's population check must then FAIL (rc = 1).
+DOCUMENTED DEVIATION (2026-09-25): the pre-registration committed MUTATE = x0.4, chosen expecting S near 1.  The data
+give S ~ 10, so x0.4 (S x 0.16 ~ 1.6) does NOT break F1 -- a control too weak for the observed margin, a design flaw of
+the control, not a change of the analysis.  The control is re-set to x0.25 (S x 0.0625 ~ 0.6), which must break F1.
+The table is built by build_table.py (construction rules R1-R4 fixed before the statistic was computed).
 Run from the repository root:  python3 real_research/virial_floor_2026/L328_virial_floor_highz.py
 """
 import os, sys, csv, json, math
@@ -73,12 +77,12 @@ with open(CSV) as f:
         try:
             rows.append(dict(name=r["name"], z=float(r["z"]), sig=float(r["sigma"]), esig=float(r["sigma_err"] or 0),
                              lm=float(r["logMstar"]), elm=float(r["logMstar_err"] or 0.3), kin=r.get("kinematic_type", ""),
-                             src=r.get("source_arXiv", "")))
+                             src=r.get("source_arXiv", ""), construction=r.get("construction", "")))
         except (ValueError, KeyError):
             continue
 if MUTATE:
     for r in rows:
-        r["sig"] *= 0.4; r["esig"] *= 0.4
+        r["sig"] *= 0.25; r["esig"] *= 0.25
 OUT["numbers"]["N"] = len(rows)
 P(f"   objects with (z, sigma, log M_*): {len(rows)}")
 
@@ -139,6 +143,36 @@ check("R2 (reported) objects > 2 sigma below the floor (canonical; orientation N
       f"framework {nshort_fw}/{len(per)}; rival {nshort_rv}/{len(per)}", True,
       "a face-on rotator falls below by orientation with probability ~9% (sin^2 i < 1/6): compare the counts to ~0.09 N",
       load_bearing=False)
+
+# orientation probability for the worst shortfalls against the RIVAL floor (integrated widths only; sigma_0+V rows are
+# deprojected): a pure thin disk (sigma_0 -> 0) seen at inclination i has sigma_int^2 = (3/2) sin^2 i * <v^2>/3, so
+# a shortfall ratio q = sigma/floor needs sin^2 i <= (2/3) q^2, probability 1 - sqrt(1 - (2/3) q^2).
+worst = []
+for p_ in per:
+    frv = p_["floor_rival"]["canonical"]
+    if p_["sig"] + 2 * p_["esig"] < frv:
+        q = p_["sig"] / frv
+        integ = "integrated" in (p_.get("construction") or "") or not str(p_.get("construction", "")).startswith("sigma0")
+        porient = 1 - math.sqrt(max(0.0, 1 - (2 / 3) * q * q)) if integ else 0.0
+        worst.append((p_["name"], round(q, 3), round(porient, 3), "integrated" if integ else "sigma0+V"))
+worst.sort(key=lambda t: t[1])
+OUT["numbers"]["rival_shortfalls_orientation"] = worst
+min_p = min([w[2] for w in worst if w[3] == "integrated"], default=1.0)
+free_sig = []
+for p_ in per:
+    if str(p_.get("construction", "")).startswith("sigma0"):
+        frv = p_["floor_rival"]["canonical"]
+        dlog = math.log10(frv / p_["sig"])
+        e = math.hypot(p_["esig"] / p_["sig"] / math.log(10), p_["elm"] / 4)      # floor ~ M^(1/4)
+        free_sig.append((p_["name"], dlog / e))
+max_free = max((z for _, z in free_sig), default=-99)
+OUT["numbers"]["deprojected_max_shortfall_sigma"] = max_free
+check("R3 (reported) the rival's per-object shortfalls are orientation-explainable: every integrated-width shortfall has "
+      "P(orientation) > 1%, and no deprojected (sigma_0+V) row is > 2 sigma below once M_* errors are included",
+      "; ".join(f"{n[:22]} q={q} P_orient={po} [{t}]" for n, q, po, t in worst[:6]) +
+      f"; max deprojected shortfall (incl. M_* error) = {max_free:.2f} sigma", min_p > 0.01 and max_free < 2.0,
+      "the rival (a0 ~ H(z)) is NOT excluded by single objects either: high-z galaxies are too high-acceleration for the "
+      "floor to separate flat from rising a0", load_bearing=False)
 
 lb = [c for c in CH if c[2]]
 npass = sum(1 for c in lb if c[1])

@@ -209,3 +209,35 @@ Comparison with the registered expectations:
   - The per-tuple sector Cauchy–Schwarz step (the source of the 3× sharpening over the second method) is
     tight but holds: worst ratio 0.98 at k = 0, decreasing with k.
   - k = 7–8 and the near-threshold KT-vs-ED gap scan are still running.
+
+## 8. Second adversarial referee — final (2026-09-25; scripts and outputs in `referee2/`)
+
+The referee's agent was cut off by a usage limit before writing a report. Its runs had completed on disk, and the
+verdict below is read directly from those outputs.
+
+* **Lemma 3′ at every order k = 1…8** on four toy families (qubit n = 8 one plaquette, qubit 2×2 torus with D = 2,
+  qutrit n = 6 with two plaquettes and D = 2, qubit n = 12 with |W| ≤ 1). The coefficients were adversarially chosen,
+  and the depth-7 and depth-8 commutators are nonzero.
+  - Worst ratio to the (E5) bound: 0.15 (k = 1) → 1.7e-4 (k = 6) → 2–5e-5 (k = 7) → **2.7e-6 to 6.0e-6 (k = 8)**.
+  - All ≪ 1: **CONFIRMED.**
+* **Per-tuple sector Cauchy–Schwarz** (the one genuinely new inequality):
+  - Worst ratio 0.98 at k = 0, falling to ≤ 0.10 at k = 8.
+  - Tight but holding: **CONFIRMED.**
+* **Kirkwood–Thomas vs exact diagonalization, near and beyond threshold** (`gap_kt_ed.out`, three V families):
+  - At λ ≤ λ_c the KT fixed point is the exact ground state (overlap 1.000000000000, energy error ~1e-14).
+  - The gap is ≥ 0.98 (≥ ½ required). The majorant bound ‖C‖₁ ≤ μ*(λ) holds with 3–7× room.
+  - Beyond λ_c the certificate lapses (μ* = ∞) while the true gap stays ≥ 0.77: the bound is conservative.
+  - **CONFIRMED; no failure.**
+* **Source of the 3× sharpening over the second method** (`gain_decomposition.py`, mpmath 40 digits):
+  - Both methods condition on the same r = 2b_N/(x²C_F) and conclude the same gap x C_F/4, so the thresholds are
+    directly comparable.
+  - Of the factor 3.10 in X₃, **2.95× is the sector Cauchy–Schwarz step**. With plain counting instead, this lane
+    gives X₃ = 176.8, within 5% of the second method's independent 185.3: the two methods agree where they should.
+  - The exact majorant root (vs BDL's disc bound) is worth a further ×4317 in X, and is justified by S8
+    (monotone Picard iterates).
+* **Verdict:** no mathematical or numerical error found; X₂ ≈ 42.3, X₃ ≈ 59.9, X₄ ≈ 73.3 stand as the repo's
+  sharpest explicit thresholds.
+* **Scope unchanged:**
+  - finite volume only;
+  - reviewed only inside this repo (two adversarial referees);
+  - nothing about the continuum limit.

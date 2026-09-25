@@ -139,3 +139,10 @@ Swarm swings are cheap; keys are not. The register stands.
     - unreviewed outside this repo;
     - misses i15's hoped-for x ≥ 2 / x ≥ 8 window by ~5–37×;
     - nothing about the continuum limit (D-YM2 unchanged).
+- **D-YM1 addendum (09-25):**
+  - A second adversarial referee confirmed L326 numerically at every order k = 1…8. The Lemma 3′ worst ratio at
+    k = 8 is ≤ 6e-6. The per-tuple Cauchy–Schwarz step is tight at 0.98 but holds. KT = exact ground state
+    below λ_c.
+  - The 3× sharpening over the second method is traced to that single step. With counting instead, L326 gives
+    X₃ = 176.8 vs the second method's 185.3.
+  - Lean I21 certifies the combinatorial skeleton.
