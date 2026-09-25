@@ -1,0 +1,74 @@
+
+L329 -- A2744-QSO1: a PSF-CONSISTENT re-extraction of the narrow/extended H-alpha cube from the full JWST cube.
+
+WHY.  L327 P2 showed the released narrow-only cube has a core SHARPER than the PSF measured from the same data (an image
+the physics cannot produce, Lean I23): a broad-subtraction artifact at the scales where the dynamical mass is measured.
+This lane rebuilds the cube so that it cannot have that artifact, and re-asks what the data say.
+
+METHOD (qso1_refit/reextract.py).  Every unresolved component (BLR, the absorber in front of it, the AGN continuum) has
+the SAME spatial profile, the PSF P(x), measured from the broad-line wings.  Per channel the continuum-subtracted cube is
+fitted as s(v) P(x) + e(v) Q_R(x) (weighted linear LSQ; Q_R = P (x) exp(-r/R), R by minimum total chi^2); the cube kept
+is d - s P: nothing extended is ever subtracted.  The unresolved-nucleus degeneracy is BRACKETED, not assumed away:
+V1 raw s(v) (all unresolved removed), V2 a smooth two-Gaussian BROAD template (sigma >= 250 km/s; any unresolved narrow
+nucleus kept), V3 = V2 x the literature absorber.  V2 is the primary.
+
+WHAT IS CHECKED (both directions):
+  X1  every variant's line core is >= the PSF (PSF-consistent) -- MUTATE=1 feeds the released cube as a variant: FAILS.
+  X2  the three-variant bracket is tight (core spread and flux spread).
+  X3  a PSF-FREE kinematic fit on V2 recovers the MEASURED PSF (the released cube drove it to a sub-diffraction 0.08").
+  X4  cross-seeded fits at the measured PSF: the laws tie; the fitted disk collapses to an UNRESOLVED disk (R_e at its
+      2 pc bound, sigma_0 -> 0), so the "mass" (~10^8) is set by the core line WIDTH under a thin-disk assumption, not by
+      resolved rotation.  (One rival run stuck 95 above its sibling: a search failure, recorded, not scored.)
+  X5  NO resolved velocity gradient across the core (the published product shows ~10 km/s).
+  X6  (reported) the spectroastrometric red-blue centroid separation at |v| ~ 50 km/s: published product vs V1/V2, with
+      the real-noise floor.  CAVEAT: V1/V2 keep the extended intermediate (outflow) emission, which DILUTES a narrow-line
+      shift -- a spectral narrow/intermediate split is the fair comparison (next lane), so X6 is not scored.
+Verdict fixed in advance of X6: QSO1 stays UNDECIDED for the framework (L324) unless X4/X5 show resolved rotation.
+
+Run from the repository root:  python3 real_research/bhstar_audit_2026/L329_qso1_reextraction.py
+(needs the gitignored full cube; builds the derived V1-V3 cubes via qso1_refit/reextract.py if absent)
+
+
+==============================================================================================================
+X1-X2 -- THE RE-EXTRACTED CUBES ARE PSF-CONSISTENT, AND THE BRACKET IS TIGHT
+==============================================================================================================
+   V1 (qso1_narrow_V1_raws.fits): core 0.200 +/- 0.002 arcsec, flux 55.9
+   V2 (qso1_narrow_V2_smooth_noabs.fits): core 0.200 +/- 0.002 arcsec, flux 55.5
+   V3 (qso1_narrow_V3_smooth_abs.fits): core 0.200 +/- 0.002 arcsec, flux 61.1
+  [PASS] X1 every variant's line core >= PSF - 3 sigma (a PSF-convolved image cannot be sharper than the PSF)
+         measured: V1: 0.200; V2: 0.200; V3: 0.200  vs PSF 0.190 +/- 0.005
+         reading:  the released product (0.111") fails this; MUTATE substitutes it and must FAIL
+  [PASS] X2 the unresolved-nucleus bracket is tight: core spread < 0.01 arcsec and flux spread < 15%
+         measured: core 0.200-0.200; flux 55.5-61.1
+         reading:  the degeneracy the decomposition cannot break does not matter here
+
+==============================================================================================================
+X3-X4 -- KINEMATIC FITS ON V2 (the stored fits re-evaluate on the cube; PSF free, then measured + cross-seeded)
+==============================================================================================================
+  [PASS] X3 the stored V2 fits re-evaluate exactly (max |dchi2| < 0.01) AND the PSF-free fits recover the measured PSF (every law within 0.02 arcsec of it)
+         measured: max re-eval diff 0.0000; free-PSF best fits 0.192-0.194 vs measured 0.190
+         reading:  on the released cube the same fit ran to 0.08 arcsec; the clean cube is internally consistent with the instrument
+  [PASS] X4 at the measured PSF (cross-seeded) the laws tie (span < 1.5 naive, excl. one documented stuck run) and the fitted disk is UNRESOLVED (R_e <= 3 pc)
+         measured: chi2 span 0.72 (Kepler 9023.47, framework 9023.71/9023.40, rival_alt 9024.12; rival_canonical stuck +95); R_e 2.0-2.0 pc; log M 7.81-8.03
+         reading:  the ~10^8 'mass' is the core line WIDTH read as Keplerian rotation of an unresolved disk -- not a resolved rotation curve; all laws are Newtonian at those radii, so they cannot differ
+
+==============================================================================================================
+X5-X6 -- RESOLVED ROTATION AND SPECTROASTROMETRY IN THE CLEAN CUBE
+==============================================================================================================
+  [PASS] X5 NO resolved velocity gradient across the core of the clean cube (< 2 sigma)
+         measured: 7.3 +/- 12.7 km/s across 0.2 arcsec (3x3-px bins, errors x1.77 for the real-noise excess)
+         reading:  the resolved rotation that a dynamical mass needs is not detected once the artifact is removed
+  [PASS] X6 (reported, NOT scored) spectroastrometric red-blue separation at |v| ~ 50 km/s
+         measured: Halpha_nr_only_cube_02px: 9.3 mas (noise-added median 10.3); qso1_narrow_V2_smooth_noabs: 3.5 mas (noise-added median 5.0); qso1_narrow_V1_raws: 4.2 mas (noise-added median 5.6)
+         reading:  the released product's ~9 mas shift is not reproduced in the clean cube (3.5-4.2 mas, at the ~5 mas noise floor); but V1/V2 keep the extended intermediate emission, which dilutes a narrow-line shift: a spectral narrow/intermediate split is the fair test (next)
+
+==============================================================================================================
+VERDICT  (5/5 load-bearing PASS)
+==============================================================================================================
+  * The PSF-consistent re-extraction works: its core matches the PSF, the three-variant bracket agrees, and a PSF-free
+    kinematic fit recovers the measured PSF (the released product drove it to a sub-diffraction 0.08").
+  * On the clean cube the narrow/extended emission is essentially UNRESOLVED: thin-disk fits collapse to a ~2 pc disk
+    whose ~10^8 'mass' is the core line width, and no resolved velocity gradient is detected.  The laws tie.
+  * QSO1 therefore stays UNDECIDED for the framework (L324): the public data do not resolve rotation anywhere near the
+    radii (r_M ~ 270 pc) where the laws differ.  The published dynamical mass rests on sub-PSF information from the
+    artifact-affected product; whether its spectroastrometric shift survives a spectral narrow/intermediate split is open.

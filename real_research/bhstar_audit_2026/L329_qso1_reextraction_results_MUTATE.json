@@ -1,0 +1,137 @@
+{
+ "lane": "L329",
+ "mutate": true,
+ "checks": {
+  "X1 every variant's line core >= PSF - 3 sigma (a PSF-convolved image cannot be sharper than the PSF)": {
+   "ok": false,
+   "measured": "V1: 0.111; V2: 0.200; V3: 0.200  vs PSF 0.190 +/- 0.005",
+   "load_bearing": true
+  },
+  "X2 the unresolved-nucleus bracket is tight: core spread < 0.01 arcsec and flux spread < 15%": {
+   "ok": false,
+   "measured": "core 0.111-0.200; flux 55.5-61.1",
+   "load_bearing": true
+  },
+  "X3 the stored V2 fits re-evaluate exactly (max |dchi2| < 0.01) AND the PSF-free fits recover the measured PSF (every law within 0.02 arcsec of it)": {
+   "ok": true,
+   "measured": "max re-eval diff 0.0000; free-PSF best fits 0.192-0.194 vs measured 0.190",
+   "load_bearing": true
+  },
+  "X4 at the measured PSF (cross-seeded) the laws tie (span < 1.5 naive, excl. one documented stuck run) and the fitted disk is UNRESOLVED (R_e <= 3 pc)": {
+   "ok": true,
+   "measured": "chi2 span 0.72 (Kepler 9023.47, framework 9023.71/9023.40, rival_alt 9024.12; rival_canonical stuck +95); R_e 2.0-2.0 pc; log M 7.81-8.03",
+   "load_bearing": true
+  },
+  "X5 NO resolved velocity gradient across the core of the clean cube (< 2 sigma)": {
+   "ok": true,
+   "measured": "7.3 +/- 12.7 km/s across 0.2 arcsec (3x3-px bins, errors x1.77 for the real-noise excess)",
+   "load_bearing": true
+  },
+  "X6 (reported, NOT scored) spectroastrometric red-blue separation at |v| ~ 50 km/s": {
+   "ok": true,
+   "measured": "Halpha_nr_only_cube_02px: 9.3 mas (noise-added median 10.3); qso1_narrow_V2_smooth_noabs: 3.5 mas (noise-added median 5.0); qso1_narrow_V1_raws: 4.2 mas (noise-added median 5.6)",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "cores": {
+   "V1": [
+    0.11124278963756115,
+    0.003799174361124371
+   ],
+   "V2": [
+    0.1999740460552654,
+    0.0020839640934116202
+   ],
+   "V3": [
+    0.19987841070940765,
+    0.0017870522174594432
+   ]
+  },
+  "fluxes": {
+   "V1": 57.10589145700897,
+   "V2": 55.497604238330744,
+   "V3": 61.0841592707373
+  },
+  "psf": [
+   0.19025460022713792,
+   0.004678105039972872
+  ],
+  "X3_psf_recovered": [
+   0.19313172745232626,
+   0.19372008602153346,
+   0.1915709965333165,
+   0.1925983323581546,
+   0.1922624752496888
+  ],
+  "X4": {
+   "chi2": {
+    "kepler_canonical": 9023.465114937793,
+    "framework_canonical": 9023.711927661006,
+    "framework_alt": 9023.40164775931,
+    "rival_canonical": 9118.702185747885,
+    "rival_alt": 9024.118882434834
+   },
+   "span_excl_stuck": 0.7172346755232866,
+   "Re_pc": [
+    2.00019577657965,
+    2.0091053641348484,
+    2.0003037801315253,
+    2.0000002386717908
+   ],
+   "sigma0": [
+    3.779273145357114e-05,
+    2.7402797217024277,
+    5.5226627320119736e-05,
+    2.6702801406000525
+   ],
+   "logM": {
+    "kepler_canonical": 7.988248595772603,
+    "framework_canonical": 8.031136737998143,
+    "framework_alt": 7.994865643247205,
+    "rival_canonical": 7.810070803141441,
+    "rival_alt": 7.989568624190754
+   },
+   "rival_canonical_stuck_gap": 95.30053798857443
+  },
+  "X5": {
+   "grad_kms_per_arcsec": 36.73047353958043,
+   "err": 63.47535041518536,
+   "across_0p2": 7.3460947079160865,
+   "err_0p2": 12.695070083037074
+  },
+  "X6": {
+   "Halpha_nr_only_cube_02px.fits": {
+    "vc": -13.661502147304923,
+    "sep_arcsec": 0.00930007370403768,
+    "sep_noise_median": 0.010328775908986638,
+    "sep_noise_16_84": [
+     0.0051187577778588475,
+     0.015654456746482675
+    ]
+   },
+   "qso1_narrow_V2_smooth_noabs.fits": {
+    "vc": 3.8587140732024925,
+    "sep_arcsec": 0.0035238710865061764,
+    "sep_noise_median": 0.005020916138761714,
+    "sep_noise_16_84": [
+     0.0029869287178020745,
+     0.007147037674939569
+    ]
+   },
+   "qso1_narrow_V1_raws.fits": {
+    "vc": -0.24128343642409916,
+    "sep_arcsec": 0.004236588228751172,
+    "sep_noise_median": 0.005628912751163311,
+    "sep_noise_16_84": [
+     0.002348628048515552,
+     0.007488508127706845
+    ]
+   }
+  }
+ },
+ "verdict": {
+  "load_bearing_pass": 3,
+  "load_bearing_total": 5
+ }
+}

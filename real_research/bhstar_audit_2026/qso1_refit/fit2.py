@@ -35,6 +35,12 @@ def job_data(args):
     return law, footing, float(r.fun), list(map(float, r.x))
 
 
+def job_seed(args):
+    law, footing, x = args
+    r = polish(law, footing, D0, x)
+    return law, footing, float(r.fun), list(map(float, r.x))
+
+
 def job_calib(args):
     truth, k, fits = args
     import noise as calib
@@ -45,14 +51,20 @@ def job_calib(args):
     sim = a[0] * disk_cube(pt, lt, ft, sh, D0["v"], D0["dv"]) + a[1] * outflow_cube(pt, sh, D0["v"], D0["dv"])
     D = dict(D0); D["data"] = sim + calib.noise_block(k)
     out = {"k": k}
-    for law, foot in (("kepler", "canonical"), ("framework", "canonical")):
+    laws = [tuple(x.split("_")) for x in os.environ.get("CALIB_LAWS", "kepler_canonical,framework_canonical").split(",")]
+    starts = [fits[f"{l}_{f}"]["x"] for l, f in laws] + [pt]
+    for law, foot in laws:
         best = None
-        for st in (fits[f"{law}_{foot}"]["x"], pt):
+        for st in starts:
             r = polish(law, foot, D, st, fev=3000)
             if best is None or r.fun < best.fun:
                 best = r
-        out[f"chi2_{law}"] = float(best.fun); out[f"logM_{law}"] = float(best.x[0])
-    out["dchi2"] = out["chi2_kepler"] - out["chi2_framework"]
+        out[f"chi2_{law}_{foot}"] = float(best.fun); out[f"logM_{law}_{foot}"] = float(best.x[0])
+        if foot == "canonical":
+            out[f"chi2_{law}"] = float(best.fun); out[f"logM_{law}"] = float(best.x[0])
+    out["dchi2"] = out["chi2_kepler"] - out.get("chi2_framework", out["chi2_kepler"])
+    if "chi2_rival" in out:
+        out["dchi2_rival"] = out["chi2_kepler"] - out["chi2_rival"]
     return out
 
 
@@ -63,6 +75,14 @@ if __name__ == "__main__":
         jobs = [(law, ft, s) for law, ft in LAWS for s in range(int(os.environ.get("NSTARTS", "24")))]
         with Pool(8) as pool:
             res = pool.map(job_data, jobs)
+            # CROSS-SEEDING: polish every law from every law's best solution (removes spurious gaps from stuck searches)
+            best0 = {}
+            for law, ft in LAWS:
+                rs = sorted([r for r in res if r[0] == law and r[1] == ft], key=lambda r: r[2])
+                best0[(law, ft)] = rs[0][3]
+            xjobs = [(law, ft, x) for law, ft in LAWS for x in best0.values()]
+            xres = pool.map(job_seed, xjobs)
+            res = res + xres
         out = {}
         for law, ft in LAWS:
             rs = sorted([r for r in res if r[0] == law and r[1] == ft], key=lambda r: r[2])

@@ -36,6 +36,9 @@ def ensure_cube(path=CUBE):
 
 
 def load(path=None):
+    alt = os.environ.get("QSO1_CUBE")                    # a re-extracted cube (derived product, no Zenodo checksum)
+    if path is None and alt:
+        path = os.path.join(REPO, "real_research", "data", "qso1", alt)
     h = fits.open(ensure_cube() if path is None else path)
     d = h["SCI"].data; e = h["ERR"].data
     hd = h["SCI"].header

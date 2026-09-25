@@ -222,3 +222,29 @@ which gives the PSF at Hα directly (`qso1_refit/psf_from_blr.py`).
   - The law test has no power.
   - L324's framework verdict stays **UNDECIDED**. Deciding it needs a re-extraction of the narrow line from the full
     cube with a PSF-consistent broad-line decomposition.
+
+## 7. The PSF-consistent re-extraction (2026-09-25; L329 5/5, MUTATE feeds the released cube and fails X1/X2)
+
+**Method** (`qso1_refit/reextract.py`): every unresolved component (BLR, the absorber in front of it, the AGN
+continuum) shares the measured PSF P(x). Per channel the continuum-subtracted cube is fitted as s(v)P(x) + e(v)Q(x),
+and the cube kept is d − sP: nothing extended is subtracted. The unresolved-nucleus degeneracy is bracketed:
+V1 raw s(v); V2 a smooth broad template (σ ≥ 250 km/s); V3 = V2 with the literature absorber.
+
+* **PSF-consistent:** the V1/V2/V3 cores are all 0.200″ (PSF 0.190 ± 0.005″), with narrow flux 55.5–61.1. The bracket
+  is tight.
+* **Self-consistent with the instrument:** a PSF-FREE kinematic fit on V2 recovers the measured PSF (0.192–0.194″),
+  where on the released cube the same fit ran to a sub-diffraction 0.08″.
+* **The narrow/extended emission is essentially UNRESOLVED:**
+  - With cross-seeding (every law polished from every law's best solution), Kepler, both framework footings and
+    rival-alt tie within naive 0.72.
+  - One rival run stuck +95 above its sibling; this is a search failure, recorded and not scored.
+  - The fitted disk collapses to its 2 pc bound with σ₀ → 0, so the ~10^8 "mass" (log M 7.8–8.0) is the core line
+    WIDTH read as rotation of an unresolved disk, not a resolved rotation curve.
+  - All laws are Newtonian at those radii.
+* **No resolved velocity gradient:** 7.3 ± 12.7 km/s across 0.2″.
+* **Spectroastrometry (reported, not scored):** the released product shows a 9.3 mas red–blue separation at
+  |v| ≈ 50 km/s; the clean cube shows 3.5–4.2 mas, at the ~5 mas noise floor. CAVEAT: the clean cube keeps the extended
+  intermediate (outflow) emission, which dilutes a narrow-line shift; a spectral narrow/intermediate split is the fair
+  test.
+* **Standing:** QSO1 stays UNDECIDED for the framework (L324). The public data do not resolve rotation anywhere near
+  r_M ≈ 270 pc, and the published dynamical mass rests on sub-PSF information from the artifact-affected product.
