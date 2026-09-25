@@ -1,0 +1,14 @@
+U06_routeD_volume.py run 2 (conductor-spawned Y-wave, 2026-09-25) -- captured stdout
+route P(N=1)=0.241189 witness=0.241189 rel=1.71e-07
+K1 z=-0.117 z_vs_V04=-1.18 | K2 z per m=[-0.68, -1.46, -2.1]
+VERDICT: VOLUME N=1-SECTOR LAW MEASURED-CLOSED (route D, 5D GL)
+ALL U06 CHECKS PASSED
+exit code: 0
+NOTES (conductor): run-1 of the route had a transposed s/mu index (z.T) that
+silently broadcast at equal axis sizes (P(N=1) read 0.722 = 3x MC -- K1 tripling
+caught it) and then a leftover g[0] offset in the phi grid (P(N=1) 0.583, +7%);
+both fixed BEFORE any kill was evaluated; fixes recorded in-file. Run-2: route
+P(N=1) = 0.241189 vs MC 0.2412265 (z = -0.12) and vs V04's recorded 0.241484
+(z = -1.18); moments m=1..3 z = [-0.68, -1.46, -2.10] all inside 3 SE; 5D
+Gauss-Legendre resolution witness (40 -> 56/axis) rel delta 1.7e-7 << 3e-3.
+Full numbers: U06_routeD_volume.json. MC: n=2e6, seed 20260927, 24-block SEs.
