@@ -26,7 +26,7 @@ sections printed at the top of the .out BEFORE any measurement:
   (g) doorB cross-check: 0.90889*R(central,q0,tau0=1) = 1.8178 +- 3se and
       verdict CONSISTENT-OPEN.
 
-Outputs: V03_trio.out (log), V03_results.json; V03_IGNORANCE_TRIO.md written
+Outputs: V03_trio.out (log), V03b_trio_results.json; V03_IGNORANCE_TRIO.md written
 by the agent from these.
 """
 import json
@@ -574,8 +574,10 @@ if __name__ == "__main__":
         gapB = r["slack"] - 1.0
         if r["slack"] < 1.0 - 3 * r["se_slack"]:
             tree = "KILL-B"; fail = []
+            tree_rows.append((tag, qh, tree, fail, atlas)); continue
         elif gapB < 3 * r["se_slack"]:
             tree = "UNDET-B"; fail = ["B_gate_n_too_small"]
+            tree_rows.append((tag, qh, tree, fail, atlas)); continue
         else:
             # node2
             vR = verdiR_set(r["R"], r["se_R_block"])
@@ -621,6 +623,8 @@ if __name__ == "__main__":
         src = tag[0]
         key = "central" if src == "c" else "volume"
         conf[key][tree] = conf[key].get(tree, 0) + 1
+        if key not in conf:
+            conf[key] = {}
     log("  tree confusion (thomson+iso pooled): truth -> tree verdict")
     for src in ("central", "volume"):
         log(f"    {src:8s}: {conf[src]}")
@@ -633,6 +637,9 @@ if __name__ == "__main__":
     tree_payload = [dict(tag=t, qh=round(q, 3) if q is not None else None,
                          tree=tr, fail=fl, atlas=at) for t, q, tr, fl, at in tree_rows]
 
+    json.dump(dict(decision_tree=dict(confusion=conf, rows=tree_payload)),
+               open(os.path.join(HERE, "V03b_tree_partial.json"), "w"),
+               indent=1, default=str)
     # ---------------- minimum n per falsifier per cell --------------------
     log("\nMIN-n per falsifier for 3-sigma (LOCKED def: n_req = n (3 se/gap)^2)")
     log("  R-gap: distance to nearest competing W-band (0 if inside) | "
@@ -861,7 +868,7 @@ if __name__ == "__main__":
         if isinstance(o, (float, int, str, bool)) or o is None:
             return o
         raise TypeError(f"unserializable {type(o)} at {path}")
-    json.dump(_sanitize(res_all), open(os.path.join(HERE, "V03_results.json"), "w"), indent=1)
-    log(f"\nWROTE V03_results.json; wall {time.time()-t_start:.0f}s; "
+    json.dump(_sanitize(res_all), open(os.path.join(HERE, "V03b_trio_results.json"), "w"), indent=1)
+    log(f"\nWROTE V03b_trio_results.json; wall {time.time()-t_start:.0f}s; "
         f"ALL V03 CHECKS {'PASSED' if ok_all else 'FAILED'}")
     sys.exit(0 if ok_all else 1)
