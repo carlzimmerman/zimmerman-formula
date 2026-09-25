@@ -1,0 +1,30 @@
+
+    two-halo template (b = 1, z = 0.25): Delta Sigma_2h at 0.1 / 0.3 / 1 / 2.6 Mpc = 0.045, 0.141, 0.269, 0.371 Msun/pc^2
+
+========================================================================================================
+G1  LINEAR GROWTH WITH THE SCREENED KERNEL AND NO SWITCH: G_eff(k) = 1 + C_eff k^2/(k^2 + m^2), sigma_8
+========================================================================================================
+*** MUTATE=1: screening removed (lambda = infinity): the kernel sees the unscreened web -> growth must blow up ***
+    canonical lambda = inf, field x1.0: C_eff today = 8.5 (the linear web's force boosted 9x)
+    canonical lambda = inf, field x3.0: C_eff today = 4.7 (the linear web's force boosted 6x)
+    alt       lambda = inf, field x1.0: C_eff today = 9.3 (the linear web's force boosted 10x)
+    alt       lambda = inf, field x3.0: C_eff today = 5.2 (the linear web's force boosted 6x)
+  [FAIL] G1 with the screening alone (no switch, lambda = 0.7 Mpc) the linear web grows as in LCDM: |sigma_8 - 0.811| <= 0.03, both footings, small-scale field x1 and x3
+         measured: unscreened
+         reading:  if it passes, the screening does the switch's growth job too and the switch can go
+
+========================================================================================================
+G2  IF THE SWITCH STAYS: KiDS with screening (lambda = 0.7) AND the switch at L342's x_c (4-7)
+========================================================================================================
+    canonical: Delta chi^2 vs the EFE-free switch comparator at x_c = 0.0: +7.7, 4.0: +20.3, 5.0: +22.8, 7.0: +28.0
+    alt      : Delta chi^2 vs the EFE-free switch comparator at x_c = 0.0: +8.0, 4.0: +20.5, 5.0: +22.9, 7.0: +28.1
+  [PASS] G2 (documentary) screening + switch at L342's thresholds on KiDS
+         measured: {'canonical': {'0.0': 7.719640641863421, '4.0': 20.336769130183256, '5.0': 22.7572080228681, '7.0': 28.032970134357768}, 'alt': {'0.0': 8.025255634657427, '4.0': 20.530881645874558, '5.0': 22.883619637277704, '7.0': 28.056527900872084}}
+         reading:  the price of keeping the switch for growth
+
+========================================================================================================
+VERDICT
+========================================================================================================
+
+  1/2 checks pass; load-bearing failures: 1; wrote BK3_growth_under_screening_results_MUTATE.json (26 s)
+MUTATE rc=1

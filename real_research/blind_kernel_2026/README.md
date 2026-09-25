@@ -10,6 +10,13 @@ and ends every lens's phantom at ~0.1 Mpc.
 
 | BK2 | `BK2_derive_lambda.py` | 3/5 (D2, D3 fail, recorded) | **Can λ be derived?** A constant λ cannot. The framework's lengths are c/H0 = 4451, a0/H0² = 637 and c²/a0 = 3.1e4 Mpc. 48 of 5831 small-exponent combinations c/H0·Z^n·Ω_Λ^m·Ω_m^q·(2π)^r land in 0.6–0.8 Mpc, so any single "hit" is numerology. The construction's one length near 1 Mpc is mass-dependent: λ = v_flat/(√X H), since v² = \|a\|²/(4πGρ_dyn) and 4πGρ_dyn = xH² are C-H/K clock scalars. KiDS mildly prefers λ ∝ M^(1/4) over a constant (Δχ² −2.5 / −2.2; M^(1/2) is no better than constant). But the derived form's best X = 10, outside the switch's 2–7 range, so it is not L342's r_t and X is still a fitted number. It reaches Δχ² +5.3 / +6.8, missing the ≤ 4 gate. SPARC and the Sun are untouched (≤ 0.2%, λ_MW ≈ 0.6 Mpc). MUTATE (constant-λ synthetic data) fails D1, rc = 1. |
 
+| BK3 | `BK3_growth_under_screening.py` | 1/2 (G1 fails, recorded) | **Growth.** On the web the kernel's argument is set by the small-scale screened field (rms 7e-4 to 3e-3 a0). A long mode's phantom is C_eff·g_b,L, with C_eff = ⟨ν−1⟩ + ⟨wν′⟩/3 ≈ 18–39. Long modes therefore feel G_eff = 1 + C_eff·k²/(k² + (a/λ)²). **Screening alone does not protect growth:** σ8 = 15 / 22 at λ = 0.7 Mpc (small-scale field ×1) and 3.2 / 3.9 (×3), against 0.81. The screening suppresses only the longest modes; at k ~ 0.1–0.3 the boost is order unity and grows. **With the switch kept for growth,** KiDS at x_c = 4/5/7 gives Δχ² +20 / +23 / +28 (both footings), against +7.7 without the switch. MUTATE (no screening) rc = 1. |
+
+**Standing (BK3): the screened kernel is caught in a pincer.** Without the switch, growth fails (σ8 ≥ 3). With the
+switch at its growth-restoring threshold (x_c = 4–7), KiDS isolated lensing disfavours it by Δχ² +20–28. The blind
+kernel fixes the external field but reopens the tension between growth and lensing that the switch was built to
+close. Every version on the record now fails one of the two.
+
 **Standing (BK2):** λ is **not derived**. The best available form trades a free length for a free O(10) number,
 X ≈ 10, which is not the switch's threshold. The data's mild preference for M^(1/4) is ~1.6σ.
 
