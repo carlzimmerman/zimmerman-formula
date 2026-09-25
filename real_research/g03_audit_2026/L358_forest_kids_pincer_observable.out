@@ -1,0 +1,74 @@
+
+L358 -- DOES THE FOREST-KiDS PINCER ON L342's SWITCH SURVIVE ON THE FOREST OBSERVABLE?
+
+WHY.  L352 Z7 closed the bound-region switch with a pincer: with the realizable (Gauss-compensated) profile, KiDS-1000
+accepts only x_c ~ 2-3 (Delta chi^2 <= +4 with a 2-halo term, both footings), while "every tested x_c <= 7 FAILS" the
+forest.  That forest side is L346's MATTER power.  L347 then showed that on the OBSERVABLE -- the 1D flux power at fixed
+mean transmission -- the switch is borderline at x_c = 5 (10.8%) and passes at x_c = 7 (7.2%).  The pincer therefore
+needs the observable at the thresholds KiDS accepts.  This lane measures it.
+
+METHOD: L347's machinery imported unchanged (L176's PM; the constraint-derived switch x = (3/2) Omega_m delta_mesh,
+Lean I26; nu_mono; FGPA flux with pressure filter, redshift-space velocities, thermal broadening, Becker+2013 tau_eff;
+two boxes 50 and 25 Mpc/h; same phases in every run of a box).  Thresholds x_c in {2, 2.5, 3, 4}, both footings.
+PRE-DECLARED
+  * the forest-observable acceptance of a threshold: worst |P1D_switch/P1D_LCDM - 1| <= 0.10 over k_par in [0.2, 2] h/Mpc,
+    z = 3 and 2, both footings, both boxes (L347's rule);
+  * THE PINCER HOLDS ON THE OBSERVABLE iff every KiDS-accepted threshold (x_c = 2, 2.5, 3) FAILS that rule;
+    it OPENS if any of them passes.  x_c = 4 is reported alongside (KiDS: +8.3/+9.0, just outside its +4 cut).
+CHECKS
+  C1 CONTROL: re-running L347's x_c = 5 canonical 50 Mpc/h cell reproduces L347's committed P1D ratios exactly.
+  F1 the worst P1D deviation for each threshold (the forest-observable curve vs x_c).
+  F2 THE PINCER VERDICT (direction fixed after an exploratory run of this same script, not committed; nothing else
+     changed): see RESULT.
+  F3 RESOLUTION DEPENDENCE (recorded): the verdict is carried by the finer (25 Mpc/h) box at z = 2; the coarse box alone
+     would pass the KiDS-accepted x_c = 3.
+RESULT.  The worst flux-power deviation falls smoothly with the threshold: x_c = 2 / 2.5 / 3 / 4 give 0.185 / 0.174 /
+0.160 / 0.131 (L347: 5 -> 0.108, 7 -> 0.072).  Every KiDS-accepted threshold fails the 10% rule, so L352's pincer HOLDS
+on the observable -- but only through the 25 Mpc/h box at z = 2 (canonical 0.143-0.173); the 50 Mpc/h box gives
+0.086-0.114 there and alone would pass x_c = 3.  The finer box resolves the switched-on filaments better, so it is taken
+as the closer of the two, but the pincer is resolution-conditional, not converged.
+MUTATE=1: the switch never turns on -- every deviation vanishes and F2 must flip (rc = 1).
+
+Run from the repository root:  python3 real_research/g03_audit_2026/L358_forest_kids_pincer_observable.py
+
+  19 runs done in 1020s
+
+==============================================================================================================
+CONTROL
+==============================================================================================================
+  [PASS] C1 re-running L347's x_c = 5 canonical 50 Mpc/h cell reproduces L347's committed P1D ratios
+         measured: max |difference| = 0.0e+00
+         reading:  same code, same phases: the machinery is reproducible
+
+==============================================================================================================
+F1  THE FOREST-OBSERVABLE CURVE: worst |P1D ratio - 1| over k_par 0.2-2 h/Mpc, z = 3 and 2
+==============================================================================================================
+    x_c = 2.0: worst 0.185 (canonical 0.173);  by cell: L25/alt/z2 0.185, L25/alt/z3 0.073, L25/canon/z2 0.173, L25/canon/z3 0.063, L50/alt/z2 0.114, L50/alt/z3 0.042, L50/canon/z2 0.104, L50/canon/z3 0.038   -> FAIL the 10% rule
+    x_c = 2.5: worst 0.174 (canonical 0.159);  by cell: L25/alt/z2 0.174, L25/alt/z3 0.057, L25/canon/z2 0.159, L25/canon/z3 0.052, L50/alt/z2 0.105, L50/alt/z3 0.035, L50/canon/z2 0.095, L50/canon/z3 0.033   -> FAIL the 10% rule
+    x_c = 3.0: worst 0.160 (canonical 0.143);  by cell: L25/alt/z2 0.160, L25/alt/z3 0.052, L25/canon/z2 0.143, L25/canon/z3 0.047, L50/alt/z2 0.096, L50/alt/z3 0.031, L50/canon/z2 0.086, L50/canon/z3 0.029   -> FAIL the 10% rule
+    x_c = 4.0: worst 0.131 (canonical 0.114);  by cell: L25/alt/z2 0.131, L25/alt/z3 0.041, L25/canon/z2 0.114, L25/canon/z3 0.037, L50/alt/z2 0.077, L50/alt/z3 0.024, L50/canon/z2 0.071, L50/canon/z3 0.022   -> FAIL the 10% rule
+    (L347, committed: x_c = 5 worst 0.108, x_c = 7 worst 0.072)
+  [PASS] F1 (informational) the forest-observable deviation falls as the threshold rises (less of the forest switched on)
+         measured: x_c 2.0: 0.185, x_c 2.5: 0.174, x_c 3.0: 0.160, x_c 4.0: 0.131
+         reading:  reported either way
+
+==============================================================================================================
+F2  THE PINCER ON THE OBSERVABLE
+==============================================================================================================
+  [PASS] F2 THE PINCER HOLDS ON THE OBSERVABLE: every KiDS-accepted threshold (x_c = 2, 2.5, 3) fails the forest's 10% flux-power rule
+         measured: worst deviations: x_c 2.0: 0.185, x_c 2.5: 0.174, x_c 3.0: 0.160
+         reading:  L352 Z7's closure, re-checked on the forest observable rather than matter power
+  [PASS] F3 (informational) resolution dependence at the KiDS-accepted x_c = 3: the coarse box alone would pass, the fine box fails
+         measured: worst deviation at x_c = 3: 50 Mpc/h 0.096, 25 Mpc/h 0.160
+         reading:  the pincer is carried by the finer box -- resolution-conditional, not converged
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  Forest observable (1D flux power, fixed mean transmission) vs threshold: x_c 2.0: 0.185, x_c 2.5: 0.174, x_c 3.0: 0.160, x_c 4.0: 0.131
+  (L347: x_c 5: 0.108, x_c 7: 0.072).  KiDS (L352, realizable profile + 2-halo) accepts x_c = 2-3.
+  The KiDS-accepted thresholds failing the forest's 10% rule: [2.0, 2.5, 3.0] -> the pincer HOLDS on the observable,
+  carried by the 25 Mpc/h box (x_c = 3: 0.160; the 50 Mpc/h box gives 0.096) -- resolution-conditional.
+  LIMITS: FGPA on a 0.2-0.4 Mpc/h grid, one realisation per box; KiDS side is L352's (linear 2-halo term).
+
+  4/4 checks pass; load-bearing failures: 0; wrote L358_forest_kids_pincer_observable_results.json   [1021s]
