@@ -267,3 +267,20 @@ Controls:
 - The trigger is still posited, with no action.
 
 L368's KiDS verdict stands, and it no longer rests on a sub-cell number.
+
+## L376 — inside galaxies, resolved: the carrier is gone (RAR and RC100 gates pass)
+
+`L376_triggered_carrier_inner_galaxies.py` (5/5; `MUTATE=1`, v_k = 0, fails R1 and R2, rc = 1). L375's shell model is generalised to any host and observing redshift. C1: it reproduces L375's committed S exactly (0.246533). In the construction the phantom supplies rotation-curve "dark matter", so any carrier left inside adds on top and moves galaxies off the RAR.
+
+- **RAR, z = 0** (gate: carrier shift of log g_obs ≤ 0.057 dex, the RAR's intrinsic-scatter bound, at 2/4/8 R_d, both footings). Hosts: dwarf 10¹¹ / 3×10⁹, Milky Way 10¹² / 6×10¹⁰, massive 5×10¹² / 2×10¹¹ M☉.
+  - At 650 km/s the worst shift is ≤ 1.2×10⁻⁴ dex.
+  - With the decay off it is 0.17–0.26 dex (C2: the gate has teeth).
+- **RC100, z = 1 and 2** (10¹² host, M_b = 10¹¹, R_e = 5.4 kpc).
+  - The carrier inside R_e is 0.000 of ΛCDM's (gate 0.30). This replaces L365's z = 2 dense-cell proxy with a resolved number.
+  - f_DM(<R_e) = 0.23 (canonical) / 0.26 (alt), all phantom, against 0.42–0.45 for a ΛCDM carrier.
+
+**Why the interiors are empty.** Inside a galaxy the baryons alone keep x̃ > 5, so every carrier element there decays. A 650 km/s daughter far exceeds the post-decay escape speed (~230 km/s at 10 kpc for the Milky-Way host).
+
+**The trigger used here is the least-trigger estimate.** Its x̃ is matter only; the geometric x̃ also contains the phantom and the shear (L342, L357), which only add decays. So these interior results can only strengthen. The same point runs the other way for clusters, noted below.
+
+**Open, and named.** The phantom-inclusive trigger lowers cluster retention. The window's X-COP margin is thin (0.32 against 0.286, L366), so the next computation is the full construction in the particle-mesh runs: the switched phantom sourced by the baryons, felt by the baryons, and read by the trigger.

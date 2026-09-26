@@ -1,0 +1,75 @@
+
+L376 -- THE TRIGGERED CARRIER INSIDE GALAXIES, RESOLVED: does the carrier that survives or is retained contaminate
+rotation curves -- the radial acceleration relation at z ~ 0 and the dark fractions RC100 measures at z ~ 1-2.5?
+
+WHY.  L365-L368's cosmological runs scored galaxy interiors only through a proxy: the carrier left in dense cells at z = 2
+(halo clearing, G3 <= 0.30 of LCDM's) on a 0.39 Mpc/h mesh.  L375 resolved KiDS hosts and found the retained carrier is
+mostly undecayed infalling material at r >~ r_200.  What is INSIDE, where rotation curves are measured, was not resolved.
+In the construction the phantom (sourced by baryons only) supplies the rotation-curve "dark matter"; any carrier left inside
+adds Newtonian acceleration ON TOP of the phantom and moves galaxies off the RAR.
+
+MODEL: L375's shell model, unchanged and generalised to any host (M_200, M_b) and observing redshift z_obs (the accretion
+history is started 2.75 in redshift earlier, as L375's; concentration from Dutton & Maccio 2014's z-dependent fit).  The
+carrier is kernel-invisible (L353), so its acceleration adds as g_c = G M_c(<r)/r^2 to the phantom-inclusive
+g_MOND = nu_RAR(g_N/a_0) g_N of the baryons (both footings of a_0).
+PRE-DECLARED GATES (before the run):
+  RAR (z = 0): for a dwarf (M_200 = 1e11, M_b = 3e9), a Milky-Way host (1e12, 6e10) and a massive spiral (5e12, 2e11),
+     the carrier shifts log g_obs by Delta = log10(1 + g_c/g_MOND) <= 0.057 dex (the RAR's intrinsic-scatter bound,
+     Lelli+17) at r = 2, 4, 8 R_d, both footings.
+  RC100 (z = 1, 2): for a 1e12 host with M_b = 1e11, the carrier inside R_e is <= 0.30 of the LCDM carrier there (the
+     record's halo-clearing threshold, now resolved); the resulting f_DM(<R_e) (phantom + carrier) is reported.
+  H1: the RAR gate passes for all three hosts.  H2: the RC100 gate passes at z = 1 and 2.
+CHECKS
+  C1 CONTROL: the generalised code reproduces L375's committed fiducial S for KiDS bin 2 exactly (same seeds).
+  C2 CONTROL: with the decay off (LCDM-like carrier) the RAR gate FAILS for the Milky-Way host (the gate has teeth).
+  R1 = H1.  R2 = H2.  I (informational): Delta per host and radius, the RC100 f_DM(<R_e).
+MUTATE=1: v_k = 0 in every decaying run: R1 must FAIL (rc = 1).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L376_triggered_carrier_inner_galaxies.py
+
+  12 halos done   [132s]
+
+==============================================================================================================
+C1  CONTROL: the generalised shell code reproduces L375
+==============================================================================================================
+  [PASS] C1 L375's fiducial bin-2 retention reproduced exactly by the generalised code (same seeds, same arithmetic)
+         measured: S = 0.246533 vs L375 0.246533
+
+==============================================================================================================
+RAR AT z = 0: the carrier's shift of log g_obs at 2, 4, 8 R_d (gate <= 0.057 dex)
+==============================================================================================================
+    dwarf               : canonical/2Rd: 0.000 (r=2.3), canonical/4Rd: 0.000 (r=4.5), canonical/8Rd: 0.000 (r=9.1)  | alt max 0.000
+    dwarf_nodecay       : canonical/2Rd: 0.178 (r=2.3), canonical/4Rd: 0.187 (r=4.5), canonical/8Rd: 0.166 (r=9.1)  | alt max 0.176
+    milky_way           : canonical/2Rd: 0.000 (r=5.6), canonical/4Rd: 0.000 (r=11.1), canonical/8Rd: 0.000 (r=22.2)  | alt max 0.000
+    milky_way_nodecay   : canonical/2Rd: 0.190 (r=5.6), canonical/4Rd: 0.202 (r=11.1), canonical/8Rd: 0.178 (r=22.2)  | alt max 0.191
+    massive             : canonical/2Rd: 0.000 (r=8.0), canonical/4Rd: 0.000 (r=16.0), canonical/8Rd: 0.000 (r=31.9)  | alt max 0.000
+    massive_nodecay     : canonical/2Rd: 0.236 (r=8.0), canonical/4Rd: 0.262 (r=16.0), canonical/8Rd: 0.248 (r=31.9)  | alt max 0.251
+  [PASS] C2 CONTROL: with the decay off the carrier moves the Milky-Way host off the RAR (> 0.057 dex): the gate has teeth
+         measured: worst Delta (decay off) = 0.202 dex
+
+==============================================================================================================
+RC100 AT z = 1, 2: carrier inside R_e (gate <= 0.30 of LCDM's), and f_DM(<R_e)
+==============================================================================================================
+    z = 1: R_e = 5.4 kpc; carrier inside R_e / LCDM's = 0.000;  f_DM(<R_e): construction canonical 0.23, alt 0.26; LCDM carrier 0.42
+    z = 2: R_e = 5.4 kpc; carrier inside R_e / LCDM's = 0.000;  f_DM(<R_e): construction canonical 0.23, alt 0.26; LCDM carrier 0.45
+  [PASS] I (informational) RAR shifts per host and radius; RC100 f_DM(<R_e) for the construction and for the LCDM carrier
+         measured: see tables
+         reading:  reported either way
+
+==============================================================================================================
+R1, R2  THE HYPOTHESES (set before the run)
+==============================================================================================================
+  [PASS] R1 = H1: the retained carrier keeps all three z = 0 hosts on the RAR (Delta <= 0.057 dex at 2, 4, 8 R_d, both footings)
+         measured: worst Delta by host: {'dwarf': 0.0, 'milky_way': 7.189094843456982e-05, 'massive': 0.00012377428496910002}
+  [PASS] R2 = H2: the carrier inside R_e at z = 1 and 2 is <= 0.30 of LCDM's (the halo-clearing gate, resolved)
+         measured: {'z1': 0.0, 'z2': 0.0}
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  Resolved galaxy interiors under the triggered carrier (v_k = 650 km/s): RAR worst shifts {'dwarf': 0.0, 'milky_way': 7.189094843456982e-05, 'massive': 0.00012377428496910002} dex (gate 0.057);
+  carrier inside R_e at z = 1/2: [0.0, 0.0] of LCDM's (gate 0.30).
+  LIMITS: spherical shells, smooth accretion history, static baryons, nu_RAR on the Hernquist baryons (no disc geometry), the
+  trigger posited (no action).
+
+  5/5 checks pass; load-bearing failures: 0; wrote L376_triggered_carrier_inner_galaxies_results.json   [132s]
