@@ -1,0 +1,84 @@
+{
+ "lane": "CV1",
+ "mutate": false,
+ "checks": {
+  "A1 the Euler-Lagrange equations are the stated field equations: the kernel reads w (gated, screened baryon field), baryons feel Phi = u + f P, and the dark component feels u (Newtonian only)": {
+   "ok": true,
+   "measured": "residuals ['0', '0', '0', '0', '0', '0']; dark potential - u = 0",
+   "load_bearing": true
+  },
+  "A2 on a gate-on plateau the action gives the operative requirement-1 equations exactly (lap u = 4 pi G rho_b, lap Phi = 4 pi G rho_b + div[(nu - 1) grad u]; with S restored, S* div[(nu - 1) grad S u])": {
+   "ok": true,
+   "measured": "residuals 0, 0",
+   "load_bearing": true
+  },
+  "A3 at sigma = 1 CV1's solution solves L361's committed Euler-Lagrange equations with zero residual (phi = u, chi = w, psi = P + w), and each species feels the same potential; sigma = 0 differs by exactly the self-term M^2 w": {
+   "ok": true,
+   "measured": "residuals ['0', '0', '0', '0']; forces equal True; sigma difference M2(x)*w(x)",
+   "load_bearing": true
+  },
+  "A4 with the heat filter as a symmetric matrix, the discrete action's gradient equals the stated field equations (the kernel's force enters as S^T div[f (nu - 1) grad S w]); a wrong adjoint is detected": {
+   "ok": true,
+   "measured": "max rel. difference 4.4e-10; wrong-adjoint control 3.4e-03; all finite True",
+   "load_bearing": true
+  },
+  "A5 one spherical region: inside the plateau the baryon acceleration is nu_mono(g_N/a0) g_N (the requirement-1 law) for both sigma; beyond the transition it is Newtonian; sigma acts only inside the transition layer, where its effect is order unity in g_N": {
+   "ok": true,
+   "measured": "1/m = 100: inside 1.0e-04, sigma inside 6.1e-13, layer 1.4e+00, web 0.0e+00; 1/m = 500: inside 1.0e-04, sigma inside 4.2e-13, layer 8.0e-01, web 0.0e+00",
+   "load_bearing": true
+  },
+  "A6 the gate and its first four derivatives vanish as t -> 0+ (and W = 0 for t <= 0): on FRW (R = 0) the kernel, its source and the phantom are absent to every order of perturbation theory, so XC5 E6's sqrt(eps) never arises there": {
+   "ok": true,
+   "measured": "limits [0, 0, 0, 0, 0]",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "A1": {
+   "Phi": "0",
+   "lam": "0",
+   "Psi": "0",
+   "w": "0",
+   "u": "0",
+   "v": "0"
+  },
+  "A3": {
+   "residuals": {
+    "phi361": "0",
+    "psi361": "0",
+    "w": "0",
+    "chi361": "0"
+   },
+   "sigma_difference": "M2(x)*w(x)"
+  },
+  "A4": {
+   "rel_diff": 4.363727414113673e-10,
+   "control_rel_diff": 0.003395803576781078
+  },
+  "A5": {
+   "100.0": {
+    "err_inside_vs_qumond": 0.0001030200899105882,
+    "sigma_diff_inside": 6.065897705973077e-13,
+    "sigma_diff_layer": 1.386348805998267,
+    "web_minus_newton": 0.0
+   },
+   "500.0": {
+    "err_inside_vs_qumond": 0.00010302008992790768,
+    "sigma_diff_inside": 4.1949265505432227e-13,
+    "sigma_diff_layer": 0.7966679488110757,
+    "web_minus_newton": 0.0
+   }
+  },
+  "A6": {
+   "limits": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ]
+  }
+ },
+ "n_checks": 6,
+ "n_fail_load_bearing": 0
+}

@@ -1,0 +1,103 @@
+CV1 -- V0 FOR THE C-H/K BRANCH, STEP 1: THE NON-RELATIVISTIC ACTION THE COVARIANT V0 MUST REDUCE TO.
+
+The author's 2026-09-26 decision (recipe, second user-decision block) keeps the C-H/K branch -- the C-H/K khronon with
+the leaf average, the vacuum gate and the region kernel -- as its own branch.  Its one covariant action ("V0" in the
+cross-thread review, real_research/cross_thread_review_2026_09_26/) was never written.  The region kernel (L361) and
+the kernel-invisible pair (L353) exist only as non-relativistic Lagrangians with different chassis: L353 is C-H's
+first-order form (Phi a multiplier for lap u = 4 pi G rho), L361 carries its own Newtonian potential phi with a
+|grad phi|^2 term and couples baryons directly to its auxiliaries.  This lane writes ONE non-relativistic Lagrangian,
+on C-H's chassis, that contains both, with baryons coupled only to the metric potential Phi (requirement 11), and
+checks that its Euler-Lagrange equations reduce exactly to L361's and to requirement 1's.  CV2 writes the covariant
+action and shows it reduces to this Lagrangian.
+
+THE LAGRANGIAN (units of potential; S = C-H's symmetric heat filter; M^2 = m^2 (1 - f); q(Z) = 2 int_0^sqrt(Z) h(s) ds
+so q'(Z) = nu(sqrt Z) - 1; f = the gate, prescribed here, varied in CV3):
+  L = -(rho_b + rho_d) Phi - [2 grad Phi.grad u - |grad u|^2]/(8 pi G)                   C-H's chassis
+      + a0^2 f q(|grad S w|^2/a0^2)/(8 pi G)                                               the region kernel (q-form)
+      + Psi [(lap - M^2) w - f lap(u - v)]/(8 pi G)                                        the region field (multiplier Psi)
+      + lam [lap v - 4 pi G (rho_d - <rho_d>)]/(8 pi G)                                    L353's pair (projected source)
+      - sigma M^2 w^2/(8 pi G)                                                             L361's web self-term (sigma = 1)
+  The kernel reads w, whose source f lap(u - v) = 4 pi G f (rho_b - <rho_b>) is the GATED BARYON density, screened in the
+  web by M.  Baryons couple only to Phi.  The dark component couples to Phi and, through L353's pair, to lam.
+
+==============================================================================================================
+A1  THE EULER-LAGRANGE EQUATIONS (sympy, one dimension, concrete non-trivial kernel, S = 1)
+==============================================================================================================
+    delta Phi: residual against the stated field equation = 0
+    delta lam: residual against the stated field equation = 0
+    delta Psi: residual against the stated field equation = 0
+    delta w  : residual against the stated field equation = 0
+    delta u  : residual against the stated field equation = 0
+    delta v  : residual against the stated field equation = 0
+    dark component's coupling -dL/d rho_d = Phi(x) + lam(x)/2  (= Phi + lam/2: True)
+    on shell Phi = u + f P, lam = -2 f P  ->  dark component's potential - u = 0  (Newtonian only)
+  [PASS] A1 the Euler-Lagrange equations are the stated field equations: the kernel reads w (gated, screened baryon field), baryons feel Phi = u + f P, and the dark component feels u (Newtonian only)
+         measured: residuals ['0', '0', '0', '0', '0', '0']; dark potential - u = 0
+         reading:  baryons couple only to Phi, so matter is minimally coupled; the region kernel's phantom enters the metric potential through C-H's u-equation, and L353's pair removes it from the dark component's force exactly
+
+==============================================================================================================
+A2  REDUCTION (i): THE OPERATIVE REQUIREMENT-1 EQUATIONS ON A GATE-ON PLATEAU (f = 1, M = 0, no dark component)
+==============================================================================================================
+    on the plateau: lap u equation residual 0; lap Phi = Derivative(P(x), (x, 2)) + Derivative(u(x), (x, 2)); lap P = (a0**5*d1 + 3*a0**4*c1*sqrt(Derivative(u(x), x)**2) - a0**3*d1*Derivative(u(x), x)**2 + 6*a0**2*c1*sqrt(Derivative(u(x), x)**2)*Derivative(u(x), x)**2 + 3*c1*sqrt(Derivative(u(x), x)**2)*Derivative(u(x), x)**4)*Derivative(u(x), (x, 2))/(a0*(a0**4 + 2*a0**2*Derivative(u(x), x)**2 + Derivative(u(x), x)**4))
+    requirement 1 (operative): lap Phi = 4 pi G rho_b + div[(nu_mono - 1) grad u];  residual = 0
+  [PASS] A2 on a gate-on plateau the action gives the operative requirement-1 equations exactly (lap u = 4 pi G rho_b, lap Phi = 4 pi G rho_b + div[(nu - 1) grad u]; with S restored, S* div[(nu - 1) grad S u])
+         measured: residuals 0, 0
+         reading:  reduction (i) of the cross-thread review's V0 pass criteria; the filter's placement is checked in A4
+
+==============================================================================================================
+A3  REDUCTION (ii): L361's COMMITTED FIELD EQUATIONS (sigma = 1, S = 1, isolated system)
+==============================================================================================================
+    L361 delta phi361    on CV1's solution: residual = 0
+    L361 delta psi361    on CV1's solution: residual = 0
+    L361 delta w         on CV1's solution: residual = 0
+    L361 delta chi361    on CV1's solution: residual = 0
+    forces species by species identical: True;  sigma = 1 minus sigma = 0 in lap P: M2(x)*w(x)
+  [PASS] A3 at sigma = 1 CV1's solution solves L361's committed Euler-Lagrange equations with zero residual (phi = u, chi = w, psi = P + w), and each species feels the same potential; sigma = 0 differs by exactly the self-term M^2 w
+         measured: residuals ['0', '0', '0', '0']; forces equal True; sigma difference M2(x)*w(x)
+         reading:  L361 = CV1 at sigma = 1 on C-H's chassis: baryons now couple only to the metric potential, and L361's self-term is one explicit web mass term -sigma M^2 w^2/(8 pi G)
+
+==============================================================================================================
+A4  THE FILTER'S ADJOINT: discrete action gradient vs the stated field equations with S^T (periodic grid)
+==============================================================================================================
+    discrete gradient vs stated equations (with S^T): max relative difference 4.36e-10 over 288 components
+    control: a non-symmetric filter with S in place of S^T in the w equation: relative difference 3.40e-03
+  [PASS] A4 with the heat filter as a symmetric matrix, the discrete action's gradient equals the stated field equations (the kernel's force enters as S^T div[f (nu - 1) grad S w]); a wrong adjoint is detected
+         measured: max rel. difference 4.4e-10; wrong-adjoint control 3.4e-03; all finite True
+         reading:  the filter sits on both sides of the kernel as in C-H (ACTION.md: S*_N = N^-1 S N at non-constant lapse; CV2)
+
+==============================================================================================================
+A5  THE SOURCE/FORCE OPERATOR (C7), NAMED, AND ONE SPHERICAL REGION: inside, transition layer, web
+==============================================================================================================
+    1/m =   100 kpc: inside |g/g_QUMOND(nu_mono) - 1| <= 1.0e-04; sigma = 1 vs 0: inside 6.1e-13, transition layer 1.39e+00 of g_N; beyond the layer |g/g_N - 1| <= 0.0e+00
+    1/m =   500 kpc: inside |g/g_QUMOND(nu_mono) - 1| <= 1.0e-04; sigma = 1 vs 0: inside 4.2e-13, transition layer 7.97e-01 of g_N; beyond the layer |g/g_N - 1| <= 0.0e+00
+    the operator: SOURCE restricted to the gate-weighted baryon contrast and screened in the web (w), RESPONSE weighted
+    by f (Phi = u + f P).  The PM runs mask the response of the all-baryon field; the merger solver restricts the source
+    per region; V0's operator is source-restricted + screened + f-weighted response (XR5 compared PM with L361's at
+    static scope: <= 2.2e-3 of the phantom monopole).
+  [PASS] A5 one spherical region: inside the plateau the baryon acceleration is nu_mono(g_N/a0) g_N (the requirement-1 law) for both sigma; beyond the transition it is Newtonian; sigma acts only inside the transition layer, where its effect is order unity in g_N
+         measured: 1/m = 100: inside 1.0e-04, sigma inside 6.1e-13, layer 1.4e+00, web 0.0e+00; 1/m = 500: inside 1.0e-04, sigma inside 4.2e-13, layer 8.0e-01, web 0.0e+00
+         reading:  sigma is NOT negligible: inside the edge layer it moves the baryon force by ~1 g_N (a sizeable fraction of the deep-MOND phantom there), so it is a physical choice at region edges, not bookkeeping.  V0 declares sigma = 1 (L361, the record's construction, so reduction (ii) is exact); sigma = 0 is the pure (nu - 1) phantom.  Edge-sensitive observables (L352's compensated lensing profile) must be scored with the sigma they assume
+
+==============================================================================================================
+A6  THE HOMOGENEOUS ZERO LIES ON THE GATE'S OFF-PLATEAU
+==============================================================================================================
+    W(t) = e^(-1/t)/(e^(-1/t) + e^(-1/(1-t))): lim t->0+ of W^(n), n = 0..4: [0, 0, 0, 0, 0]  (W = 0 for t <= 0 by definition)
+    flat FRW: R^(3) = 0 and sigma_ij = 0, so the curvature variable R = R^(3) + sigma^2 = 0, t = 27 Lambda R/(8 x_c D) = 0,
+    f = 0 with every derivative; M^2 = m^2; the w equation (lap - m^2) w = 0 and the Psi equation give w = Psi = 0.
+  [PASS] A6 the gate and its first four derivatives vanish as t -> 0+ (and W = 0 for t <= 0): on FRW (R = 0) the kernel, its source and the phantom are absent to every order of perturbation theory, so XC5 E6's sqrt(eps) never arises there
+         measured: limits [0, 0, 0, 0, 0]
+         reading:  for the curvature-based gate variable; each other 'door' must show its own homogeneous background is off-plateau (the dark-energy thread's piece, CV3); Lean CV1 certifies the flatness to every order (Mathlib's smoothTransition)
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  One non-relativistic Lagrangian on C-H's chassis carries the region kernel and L353's pair with baryons coupled only to
+  the metric potential.  Its field equations: the kernel reads w, the gate-weighted baryon field screened in the web;
+  baryons feel Phi = u + f P; the dark component feels u (A1).  On a gate-on plateau they are the operative
+  requirement-1 equations (A2).  With the explicit web self-term (sigma = 1) they are L361's committed equations with zero
+  residual (A3); sigma = 0 is the pure (nu - 1) phantom and differs only inside the transition layer -- but by order
+  unity in g_N there, so sigma is a physical edge choice that V0 must declare (A5).  The filter
+  enters as S^T div[...] S (A4).  The source/force operator is named: source restricted and screened, response f-weighted
+  (A5).  The homogeneous background sits on the gate's exact off-plateau (A6).  Time 10 s.
+
+  6/6 checks pass; load-bearing failures: 0; wrote CV1_nr_assembly_results.json
