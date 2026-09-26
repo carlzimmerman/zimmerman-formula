@@ -1,0 +1,222 @@
+{
+ "lane": "XR2-B",
+ "mutate": false,
+ "checks": {
+  "P1 I28's conclusion does not transfer to L379's statistic: with selection on the model's TOTAL density (the implied retention threshold (50 - b_m,i)/c_l,i varies with the model's baryons) the own-set value can fall BELOW the fixed-cell value (exact counterexample)": {
+   "ok": true,
+   "measured": "own-set 0.0237 / G3-form 0.0465 < fixed 0.2491",
+   "load_bearing": true
+  },
+  "P2 the theorem holds for its own hypothesis (uniform tau: no instance below fixed) and the L379-type selection can fall below in random instances": {
+   "ok": true,
+   "measured": "uniform tau 0/20000; L379-type 459/20000 (I28 form), 0/20000 (G3 form)",
+   "load_bearing": true
+  },
+  "S1 carrier cleared in place, baryons unchanged: B, D and E recover the truth (1e-10) and the record's own-set G3 (A) overstates it": {
+   "ok": true,
+   "measured": "truth 0.1086: B 0.1086, D 0.1086, E 0.1086; A 0.4412",
+   "load_bearing": true
+  },
+  "S2 galaxies displaced with their retained carrier: E and L recover the truth (1e-10); fixed cells (B) understate it": {
+   "ok": true,
+   "measured": "truth 0.1086: E 0.1086, L 0.1086; B 0.0789, D 0.1104",
+   "load_bearing": false
+  },
+  "S3 baryon density tied to carrier retention: D and L recover the truth (1e-10); the fixed-threshold baryon selection (E) overstates it": {
+   "ok": true,
+   "measured": "truth 0.1656: D 0.1656, L 0.1656; E 0.1699, E_rank 0.1735",
+   "load_bearing": false
+  },
+  "K (code-test controls) the LCDM fields satisfy rho = rhoc2 (the two species coincide, to float32) and the estimators return 1 when the model is LCDM itself": {
+   "ok": true,
+   "measured": "max |rho - rhoc2|/max rho = 0.0e+00; null max |est - 1| = 2.2e-16",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "cell_phys_kpc_z2": 193.30215756136184,
+  "P1": {
+   "fixed": 0.2491433710110905,
+   "own_restricted": 0.023727940096294333,
+   "g3_fraction": 0.04652537273783203,
+   "random": {
+    "n": 20000,
+    "below_uniform_tau": 0,
+    "below_l379": 459,
+    "below_l379_g3": 0
+   }
+  },
+  "synthetic": {
+   "S1": {
+    "truth": 0.10861825712599223,
+    "A": 0.4412316962931996,
+    "B": 0.10861825712599223,
+    "C": 0.9999999999999997,
+    "E": 0.10861825712599228,
+    "Er": 0.10861825712599228,
+    "D": 0.10861825712599227,
+    "L": 0.10861825712599228
+   },
+   "S2": {
+    "truth": 0.1086182571259922,
+    "A": 0.4412316962931996,
+    "B": 0.07888890811702368,
+    "C": 0.7148060529574913,
+    "E": 0.10861825712599225,
+    "Er": 0.10861825712599228,
+    "D": 0.11036407398989262,
+    "L": 0.10861825712599228
+   },
+   "S3": {
+    "truth": 0.1656463653034781,
+    "A": 0.5650087726896194,
+    "B": 0.10861825712599223,
+    "C": 0.6557237578198254,
+    "E": 0.16986305274696883,
+    "Er": 0.173506221863663,
+    "D": 0.16564636530347815,
+    "L": 0.16564636530347815
+   }
+  },
+  "codetest": {
+   "dir": "/var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/L379_8o3o3c8p",
+   "per_box": {
+    "7/v675": {
+     "A": 0.0,
+     "B": 0.09554768865659294,
+     "C": 0.8248057963675006,
+     "E": 0.10947632019788825,
+     "Er": 0.12344635045761077,
+     "D": 0.11584264935745031,
+     "n": {
+      "F": 248,
+      "D_m": 0,
+      "S_m": 158,
+      "S_m_in_F": 148,
+      "bmass_S_m_in_F": 0.9514131034091428
+     }
+    },
+    "7/v700": {
+     "A": 0.0,
+     "B": 0.09011109187841074,
+     "C": 0.8165203941469364,
+     "E": 0.10411181071437618,
+     "Er": 0.1130031064914516,
+     "D": 0.1103598789746761,
+     "n": {
+      "F": 248,
+      "D_m": 0,
+      "S_m": 155,
+      "S_m_in_F": 146,
+      "bmass_S_m_in_F": 0.9543755074197267
+     }
+    },
+    "17/v675": {
+     "A": 0.0,
+     "B": 0.09789440111181368,
+     "C": 0.8067622884342907,
+     "E": 0.11616963264087317,
+     "Er": 0.123051205599618,
+     "D": 0.12134231175059071,
+     "n": {
+      "F": 233,
+      "D_m": 0,
+      "S_m": 158,
+      "S_m_in_F": 142,
+      "bmass_S_m_in_F": 0.9193441905206323
+     }
+    },
+    "17/v700": {
+     "A": 0.0,
+     "B": 0.09006210605987502,
+     "C": 0.7943735216971518,
+     "E": 0.11085370575557006,
+     "Er": 0.11748023274855403,
+     "D": 0.11337501011798634,
+     "n": {
+      "F": 233,
+      "D_m": 0,
+      "S_m": 166,
+      "S_m_in_F": 143,
+      "bmass_S_m_in_F": 0.8896869113945817
+     }
+    },
+    "29/v675": {
+     "A": 0.371615016084575,
+     "B": 0.10392651583756005,
+     "C": 0.8189325590776574,
+     "E": 0.1273047515270545,
+     "Er": 0.13210861582363195,
+     "D": 0.12690485276908492,
+     "n": {
+      "F": 267,
+      "D_m": 4,
+      "S_m": 195,
+      "S_m_in_F": 183,
+      "bmass_S_m_in_F": 0.9559914332003063
+     }
+    },
+    "29/v700": {
+     "A": 0.19436372957258474,
+     "B": 0.09646822609746329,
+     "C": 0.8047688564679135,
+     "E": 0.11705822332086777,
+     "Er": 0.12557299921095827,
+     "D": 0.11987072477041055,
+     "n": {
+      "F": 267,
+      "D_m": 1,
+      "S_m": 201,
+      "S_m_in_F": 186,
+      "bmass_S_m_in_F": 0.9448877185454023
+     }
+    }
+   },
+   "pooled": {
+    "v675": {
+     "A": 0.12387167202819166,
+     "B": 0.09944931537400467,
+     "C": 0.8171020426047481,
+     "E": 0.1186485064510469,
+     "Er": 0.12662329918798054,
+     "D": 0.1217097867690813
+    },
+    "v700": {
+     "A": 0.06478790985752825,
+     "B": 0.0925169704306093,
+     "C": 0.805334908275557,
+     "E": 0.11138155551518761,
+     "Er": 0.11911922092321045,
+     "D": 0.11488011941356611
+    }
+   },
+   "lcdm_species_identity": 0.0,
+   "null_dev": 2.220446049250313e-16
+  },
+  "flip_L380": {
+   "v600": {
+    "B": 0.06987544392003528,
+    "G3_own": 0.5067545236591927,
+    "C_flip": 0.2329181464001176
+   },
+   "v625": {
+    "B": 0.06580975911866559,
+    "G3_own": 0.44194724780852274,
+    "C_flip": 0.2193658637288853
+   },
+   "v650": {
+    "B": 0.06210914578519105,
+    "G3_own": 0.3878088163781846,
+    "C_flip": 0.20703048595063683
+   },
+   "v675": {
+    "B": 0.05871546431544612,
+    "G3_own": 0.34407457495712074,
+    "C_flip": 0.19571821438482043
+   }
+  }
+ },
+ "n_checks": 6,
+ "n_fail_load_bearing": 0,
+ "elapsed_s": 3.9910151958465576
+}

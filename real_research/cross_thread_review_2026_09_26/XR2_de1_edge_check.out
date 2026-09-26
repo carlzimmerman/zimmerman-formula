@@ -1,0 +1,178 @@
+XR2 (PART A) -- AN INDEPENDENT CHECK OF DE1: where does the vacuum-gated switch turn MOND off around an isolated
+galaxy, and is DE1's p = 2 "flagship failure" an observational exclusion?
+
+Checked lane: real_research/dark_energy_2026/DE1_vacuum_gate_flagship.py as committed in c8bb50813 (a corrected
+version was being written in the working tree during this review; the controls below read the COMMITTED results via
+`git show`).  Nothing from DE1 or L352 is imported: kernels, derivatives, background and edges are re-implemented here.
+
+WHAT DE1 COMPUTES (read from its source, c8bb50813):
+  * the switch variable is x = 4 pi G (rho_dyn - rho_bar)/H(z)^2 (DE1.py lines 136-141, L352 model_M2 lines 189-196),
+    with rho_dyn = dM/dr/(4 pi r^2), M(r) = M_b nu(g_N/a0): the ON-BRANCH (phantom-inclusive) density of an isolated
+    point mass -- the baryons contribute nothing at r > 0, so x is the MOND phantom's density -- minus the mean matter
+    density rho_bar = Omega_m rho_crit0 (1+z)^3 (the Hamiltonian-constraint form (3/2) Omega_m(z) delta).  K = 3 H(z)
+    (background value), the shear part of x~ = 9(R3 + sigma^2)/(4K^2) is dropped (L359: it can only lower the
+    effective threshold).  The gate is x_c,eff = x_c0 E_g(z)^(2p), E_g^2 = 0.3138 (1+z)^3 + 0.6862 (L359/L347).
+  * MOND is on where x >= x_c,eff; the edge is the LARGEST such r ("the most favourable placement", L352 Z2).
+  * the edge is computed with nu_mono for BOTH kernel labels (DE1.py c8bb50813 lines 136-157: r_edge_numeric always
+    uses nu_mono_vec; the label only changes the size of the Newtonian jump), as the lead-track review noted.
+
+THIS SCRIPT, in y = g_N/a0 variables (r = sqrt(G M_b/(a0 y))), for a point mass:
+      X(y) = D(y) (a0 y)^(3/2) / (sqrt(G M_b) H(z)^2) - (3/2) Omega_m(z),     D(y) = -2 y nu'(y)
+  (rho_dyn = M_b D(y)/(4 pi r^3)); D is ANALYTIC for nu_RAR (D = s e^s/(e^s - 1)^2, s = sqrt(y)), for nu_mono (closed
+  form of L340's construction: h' = max(h'_RAR, 0.05 h_p/(y + y_p)), which equals nu_RAR for y <= y_s < y_p) and for
+  mu_exp (x (1 - e^-x) = y, the law in the lead-track review).  X rises from -(3/2)Omega_m at y -> 0 to a peak in the
+  Newtonian regime (y ~ 15 for nu_RAR) and falls again, so MOND is on for y_e <= y <= y_in; the flagship radius r_F
+  (g_N = 0.1 a0) is inside the MOND region iff y_e <= 0.1.  Fractional margins: m_r = r_e/r_F - 1 = sqrt(0.1/y_e) - 1
+  and m_X = X(0.1)/x_c,eff - 1.
+
+  background: H0 = 2.1830e-18 s^-1, Om = 0.31377, OL = 0.68614 (edge); gate E_g^2 = 0.3138(1+z)^3 + 0.6862
+  nu_mono: y_p = 2.5396, h_p = 0.6476; nu_mono = nu_RAR exactly for y <= y_s = 2.3374
+  DE1 committed numbers read from: git show c8bb50813:real_research/dark_energy_2026/DE1_vacuum_gate_flagship_results.json
+
+================================================================================================================
+C1-C4  CONTROLS against DE1's committed numbers and the lead-track review
+================================================================================================================
+    canonical M_b = 1e10.0: r_e DE1  20.7782 kpc | this script  20.7782 kpc ; r_F DE1 12.203259 | this 12.203259
+    canonical M_b = 1e10.5: r_e DE1  27.6770 kpc | this script  27.6770 kpc ; r_F DE1 21.700804 | this 21.700804
+    canonical M_b = 1e11.0: r_e DE1  36.8338 kpc | this script  36.8338 kpc ; r_F DE1 38.590093 | this 38.590093
+    alt       M_b = 1e10.0: r_e DE1  21.7764 kpc | this script  21.7764 kpc ; r_F DE1 11.117894 | this 11.117894
+    alt       M_b = 1e10.5: r_e DE1  29.0147 kpc | this script  29.0147 kpc ; r_F DE1 19.770722 | this 19.770722
+    alt       M_b = 1e11.0: r_e DE1  38.6331 kpc | this script  38.6331 kpc ; r_F DE1 35.157867 | this 35.157867
+  [PASS] C1 CONTROL: DE1's committed F1 edges (2e-4) and flagship radii (1e-9) at z = 2.5, cell (2, 2), are reproduced by an independent analytic-derivative edge
+         measured: edges max dev 5.5e-08; radii max dev 0.0e+00
+         reading:  DE1's np.gradient edge on its 4000-point grid agrees with the analytic derivative
+    p_max (x_c0 = 2, M_b = 1e11, z = 2.5), canonical: nu_mono 1.96501 (DE1 1.96501); nu_RAR 1.96501; closed form 1.9696272579 (DE1 1.9696272579)
+    p_max (x_c0 = 2, M_b = 1e11, z = 2.5), alt      : nu_mono 2.07086 (DE1 2.07085); nu_RAR 2.07086; closed form 2.0751153239 (DE1 2.0751153239)
+  [PASS] C2 CONTROL: DE1's committed p_max at x_c0 = 2 reproduced (numeric 1e-3, closed form 1e-9), both footings
+         measured: canonical: 1.9650 vs 1.9650; alt: 2.0709 vs 2.0709
+    X_F at M_b = 1e11, z = 2.5: nu_RAR/canonical 364.4986385, nu_RAR/alt 482.4698532, nu_mono/canonical 364.4986385, nu_mono/alt 482.4698532, mu_exp/canonical 364.3176614, mu_exp/alt 482.2305308;  p = 2 threshold 399.9004102813
+  [PASS] C3 CONTROL: the lead-track review's independent X_F (nu_RAR, mu_exp; both footings) and the (2, 2) threshold at z = 2.5 reproduced (1e-6)
+         measured: max relative deviation 1.0e-10
+    z_max (2, 2), all of 1e10-1e11: canonical 2.4623 (DE1 2.4623), alt 2.5774 (DE1 2.5774);  E1 ratios max dev 4.5e-07
+  [PASS] C4 CONTROL: DE1's committed z_max for (2, 2) (2e-3) and its E1 ratios r_e/r_F at 1e11 canonical for the three cells, z = 0.5-3 (5e-4), reproduced
+         measured: z_max max |diff| 1.1e-06; E1 max rel dev 4.5e-07
+
+================================================================================================================
+K1  THE KERNEL LABELS: each kernel with its OWN edge (DE1 c8bb50813 used nu_mono's edge for both labels)
+================================================================================================================
+    canonical 1e10.0: r_F  12.20 kpc | r_e nu_RAR  20.778, nu_mono  20.778, mu_exp  20.779 kpc | shift beyond edge: nu_RAR +0.000, nu_mono +0.000, mu_exp +0.000
+    canonical 1e10.5: r_F  21.70 kpc | r_e nu_RAR  27.677, nu_mono  27.677, mu_exp  27.676 kpc | shift beyond edge: nu_RAR +0.000, nu_mono +0.000, mu_exp +0.000
+    canonical 1e11.0: r_F  38.59 kpc | r_e nu_RAR  36.834, nu_mono  36.834, mu_exp  36.822 kpc | shift beyond edge: nu_RAR -1.134, nu_mono -1.134, mu_exp -1.073
+    alt       1e10.0: r_F  11.12 kpc | r_e nu_RAR  21.776, nu_mono  21.776, mu_exp  21.777 kpc | shift beyond edge: nu_RAR +0.000, nu_mono +0.000, mu_exp +0.000
+    alt       1e10.5: r_F  19.77 kpc | r_e nu_RAR  29.015, nu_mono  29.015, mu_exp  29.015 kpc | shift beyond edge: nu_RAR +0.000, nu_mono +0.000, mu_exp +0.000
+    alt       1e11.0: r_F  35.16 kpc | r_e nu_RAR  38.633, nu_mono  38.633, mu_exp  38.628 kpc | shift beyond edge: nu_RAR +0.000, nu_mono +0.000, mu_exp +0.000
+  [PASS] K1 (reported) at the F1 points the nu_mono and nu_RAR edges coincide (y_e << y_s: the kernels are identical there) and mu_exp's edge differs by < 0.1%: the committed 'both kernels' flag was one edge, but the verdict is kernel-independent
+         measured: max |r_e(mono)/r_e(RAR) - 1| = 2.2e-16; mu_exp vs RAR 3.2e-04
+
+================================================================================================================
+T1  FRACTIONAL MARGINS m_r = r_e/r_F - 1 (nu_RAR's own edge; > 0 = MOND on at the flagship radius g_N = 0.1 a0)
+================================================================================================================
+  cell p = 2, x_c0 = 2, canonical   (columns z = 0.5, 1, 1.5, 2, 2.5, 3)
+    M_b = 1e 9.0:  +64.341   +26.480   +11.096    +4.803    +2.031    +0.703   | y_e at z=2.5: 1.09e-02
+    M_b = 1e 9.5:  +47.999   +19.607    +8.071    +3.351    +1.272    +0.275   | y_e at z=2.5: 1.94e-02
+    M_b = 1e10.0:  +35.744   +14.453    +5.802    +2.262    +0.703    -0.046   | y_e at z=2.5: 3.45e-02
+    M_b = 1e10.5:  +26.554   +10.588    +4.100    +1.446    +0.275    -0.287   | y_e at z=2.5: 6.15e-02
+    M_b = 1e11.0:  +19.662    +7.689    +2.824    +0.833    -0.046    -0.469   | y_e at z=2.5: 1.10e-01
+    M_b = 1e11.5:  +14.495    +5.516    +1.867    +0.373    -0.287    -0.606   | y_e at z=2.5: 1.97e-01
+  cell p = 2, x_c0 = 2, alt   (columns z = 0.5, 1, 1.5, 2, 2.5, 3)
+    M_b = 1e 9.0:  +74.139   +30.601   +12.910    +5.673    +2.486    +0.959   | y_e at z=2.5: 8.23e-03
+    M_b = 1e 9.5:  +55.346   +22.697    +9.431    +4.004    +1.613    +0.467   | y_e at z=2.5: 1.46e-02
+    M_b = 1e10.0:  +41.254   +16.770    +6.822    +2.752    +0.959    +0.099   | y_e at z=2.5: 2.61e-02
+    M_b = 1e10.5:  +30.686   +12.326    +4.865    +1.813    +0.468    -0.178   | y_e at z=2.5: 4.64e-02
+    M_b = 1e11.0:  +22.761    +8.993    +3.398    +1.108    +0.099    -0.387   | y_e at z=2.5: 8.28e-02
+    M_b = 1e11.5:  +16.818    +6.493    +2.297    +0.580    -0.178    -0.544   | y_e at z=2.5: 1.48e-01
+  cell p = 1, x_c0 = 2.5, canonical   (columns z = 0.5, 1, 1.5, 2, 2.5, 3)
+    M_b = 1e 9.0:  +74.293   +41.191   +23.709   +14.316    +9.016    +5.860   | y_e at z=2.5: 9.97e-04
+    M_b = 1e 9.5:  +55.462   +30.639   +17.529   +10.485    +6.511    +4.144   | y_e at z=2.5: 1.77e-03
+    M_b = 1e10.0:  +41.341   +22.725   +12.895    +7.612    +4.632    +2.857   | y_e at z=2.5: 3.15e-03
+    M_b = 1e10.5:  +30.751   +16.791    +9.420    +5.458    +3.223    +1.892   | y_e at z=2.5: 5.61e-03
+    M_b = 1e11.0:  +22.810   +12.342    +6.813    +3.843    +2.166    +1.168   | y_e at z=2.5: 9.98e-03
+    M_b = 1e11.5:  +16.855    +9.005    +4.859    +2.631    +1.373    +0.624   | y_e at z=2.5: 1.78e-02
+  cell p = 1, x_c0 = 2.5, alt   (columns z = 0.5, 1, 1.5, 2, 2.5, 3)
+    M_b = 1e 9.0:  +85.584   +47.517   +27.415   +16.613   +10.518    +6.889   | y_e at z=2.5: 7.54e-04
+    M_b = 1e 9.5:  +63.929   +35.383   +20.308   +12.207    +7.637    +4.915   | y_e at z=2.5: 1.34e-03
+    M_b = 1e10.0:  +47.690   +26.283   +14.979    +8.904    +5.477    +3.436   | y_e at z=2.5: 2.38e-03
+    M_b = 1e10.5:  +35.512   +19.459   +10.982    +6.427    +3.856    +2.326   | y_e at z=2.5: 4.24e-03
+    M_b = 1e11.0:  +26.380   +14.342    +7.985    +4.569    +2.641    +1.493   | y_e at z=2.5: 7.54e-03
+    M_b = 1e11.5:  +19.532   +10.505    +5.738    +3.176    +1.730    +0.869   | y_e at z=2.5: 1.34e-02
+  cell p = 1, x_c0 = 1.5, canonical   (columns z = 0.5, 1, 1.5, 2, 2.5, 3)
+    M_b = 1e 9.0:  +91.051   +51.275   +30.022   +18.407   +11.767    +7.777   | y_e at z=2.5: 6.14e-04
+    M_b = 1e 9.5:  +68.029   +38.201   +22.263   +13.553    +8.573    +5.582   | y_e at z=2.5: 1.09e-03
+    M_b = 1e10.0:  +50.764   +28.397   +16.445    +9.913    +6.179    +3.935   | y_e at z=2.5: 1.94e-03
+    M_b = 1e10.5:  +37.818   +21.044   +12.082    +7.183    +4.383    +2.700   | y_e at z=2.5: 3.45e-03
+    M_b = 1e11.0:  +28.109   +15.531    +8.810    +5.136    +3.036    +1.774   | y_e at z=2.5: 6.14e-03
+    M_b = 1e11.5:  +20.829   +11.396    +6.356    +3.601    +2.026    +1.080   | y_e at z=2.5: 1.09e-02
+  cell p = 1, x_c0 = 1.5, alt   (columns z = 0.5, 1, 1.5, 2, 2.5, 3)
+    M_b = 1e 9.0: +104.855   +59.114   +34.674   +21.317   +13.681    +9.094   | y_e at z=2.5: 4.64e-04
+    M_b = 1e 9.5:  +78.380   +44.079   +25.752   +15.735   +10.009    +6.569   | y_e at z=2.5: 8.25e-04
+    M_b = 1e10.0:  +58.526   +32.805   +19.061   +11.549    +7.255    +4.676   | y_e at z=2.5: 1.47e-03
+    M_b = 1e10.5:  +43.638   +24.350   +14.043    +8.411    +5.190    +3.256   | y_e at z=2.5: 2.61e-03
+    M_b = 1e11.0:  +32.474   +18.010   +10.281    +6.057    +3.642    +2.191   | y_e at z=2.5: 4.64e-03
+    M_b = 1e11.5:  +24.102   +13.255    +7.459    +4.291    +2.480    +1.392   | y_e at z=2.5: 8.26e-03
+  cells/footings/masses/redshifts with m_r < 0 (MOND OFF at the flagship radius):
+    2.0/2.0: alt 1e10.5 z=3.0; alt 1e11.0 z=3.0; alt 1e11.5 z=2.5; alt 1e11.5 z=3.0; canonical 1e10.0 z=3.0; canonical 1e10.5 z=3.0; canonical 1e11.0 z=2.5; canonical 1e11.0 z=3.0; canonical 1e11.5 z=2.5; canonical 1e11.5 z=3.0
+  [PASS] T1 (reported) the p = 1 cells keep the flagship radius inside the MOND region at every mass 1e9-1e11.5 and z <= 3 on both footings; nu_mono and nu_RAR margins agree on this grid
+         measured: p = 1 failures: none; max |m_r(mono) - m_r(RAR)| = 3.6e-14
+
+================================================================================================================
+T2  p = 1, x_c0 = 2.5: THE SMALLEST y WITH MOND STILL ON (outer edge), z = 1-2.5, M_b = 1e9-1e10.5
+================================================================================================================
+  cell p = 1, x_c0 = 2.5, canonical:
+    M_b = 1e 9.0: z=1: y_e 5.62e-05 (y_in 492); z=1.5: y_e 1.64e-04 (y_in 436); z=2: y_e 4.26e-04 (y_in 387); z=2.5: y_e 9.97e-04 (y_in 346)
+    M_b = 1e 9.5: z=1: y_e 9.99e-05 (y_in 461); z=1.5: y_e 2.91e-04 (y_in 406); z=2: y_e 7.58e-04 (y_in 359); z=2.5: y_e 1.77e-03 (y_in 319)
+    M_b = 1e10.0: z=1: y_e 1.78e-04 (y_in 431); z=1.5: y_e 5.18e-04 (y_in 378); z=2: y_e 1.35e-03 (y_in 332); z=2.5: y_e 3.15e-03 (y_in 293)
+    M_b = 1e10.5: z=1: y_e 3.16e-04 (y_in 402); z=1.5: y_e 9.21e-04 (y_in 350); z=2: y_e 2.40e-03 (y_in 305); z=2.5: y_e 5.61e-03 (y_in 268)
+  cell p = 1, x_c0 = 2.5, alt:
+    M_b = 1e 9.0: z=1: y_e 4.25e-05 (y_in 507); z=1.5: y_e 1.24e-04 (y_in 450); z=2: y_e 3.22e-04 (y_in 401); z=2.5: y_e 7.54e-04 (y_in 359)
+    M_b = 1e 9.5: z=1: y_e 7.55e-05 (y_in 476); z=1.5: y_e 2.20e-04 (y_in 420); z=2: y_e 5.73e-04 (y_in 373); z=2.5: y_e 1.34e-03 (y_in 332)
+    M_b = 1e10.0: z=1: y_e 1.34e-04 (y_in 446); z=1.5: y_e 3.92e-04 (y_in 391); z=2: y_e 1.02e-03 (y_in 345); z=2.5: y_e 2.38e-03 (y_in 306)
+    M_b = 1e10.5: z=1: y_e 2.39e-04 (y_in 416); z=1.5: y_e 6.97e-04 (y_in 363); z=2: y_e 1.81e-03 (y_in 318); z=2.5: y_e 4.24e-03 (y_in 280)
+  cell p = 2, x_c0 = 2, canonical:
+    M_b = 1e 9.0: z=1: y_e 1.32e-04 (y_in 447); z=1.5: y_e 6.83e-04 (y_in 364); z=2: y_e 2.97e-03 (y_in 296); z=2.5: y_e 1.09e-02 (y_in 240)
+    M_b = 1e 9.5: z=1: y_e 2.35e-04 (y_in 417); z=1.5: y_e 1.22e-03 (y_in 337); z=2: y_e 5.28e-03 (y_in 270); z=2.5: y_e 1.94e-02 (y_in 216)
+    M_b = 1e10.0: z=1: y_e 4.19e-04 (y_in 388); z=1.5: y_e 2.16e-03 (y_in 310); z=2: y_e 9.40e-03 (y_in 246); z=2.5: y_e 3.45e-02 (y_in 193)
+    M_b = 1e10.5: z=1: y_e 7.45e-04 (y_in 360); z=1.5: y_e 3.84e-03 (y_in 284); z=2: y_e 1.67e-02 (y_in 222); z=2.5: y_e 6.15e-02 (y_in 171)
+  cell p = 2, x_c0 = 2, alt:
+    M_b = 1e 9.0: z=1: y_e 1.00e-04 (y_in 461); z=1.5: y_e 5.17e-04 (y_in 378); z=2: y_e 2.25e-03 (y_in 308); z=2.5: y_e 8.23e-03 (y_in 251)
+    M_b = 1e 9.5: z=1: y_e 1.78e-04 (y_in 431); z=1.5: y_e 9.19e-04 (y_in 350); z=2: y_e 3.99e-03 (y_in 283); z=2.5: y_e 1.46e-02 (y_in 227)
+    M_b = 1e10.0: z=1: y_e 3.17e-04 (y_in 402); z=1.5: y_e 1.63e-03 (y_in 323); z=2: y_e 7.10e-03 (y_in 258); z=2.5: y_e 2.61e-02 (y_in 204)
+    M_b = 1e10.5: z=1: y_e 5.63e-04 (y_in 374); z=1.5: y_e 2.91e-03 (y_in 297); z=2: y_e 1.26e-02 (y_in 233); z=2.5: y_e 4.64e-02 (y_in 182)
+  [PASS] T2 (reported) for p = 1, x_c0 = 2.5 the gate never switches MOND off at y = 0.1-0.3 for M_b = 1e9-1e10.5 at z = 1-2.5 (both footings): the outer edge lies at y_e far below 0.1
+         measured: min 0.1/y_e over the grid = 18; any y in [0.1, 0.3] off: False
+
+================================================================================================================
+T3  WHAT THE FAILING CELL (p = 2, x_c0 = 2) LOSES AT z = 2.5, AND WHERE THAT IS
+================================================================================================================
+    canonical M_b = 1e11, z = 2.5: MOND on down to y_e = 0.1098 (r_e = 36.83 kpc); lost: y in [0.1, 0.1098]
+              r_F = 38.59 kpc = 4.66 arcsec (1 arcsec = 8.28 kpc at z = 2.5); r(y = 1) = 12.20 kpc; margins m_r -0.0455, m_X -0.0885
+    alt       M_b = 1e11, z = 2.5: MOND on down to y_e = 0.0828 (r_e = 38.63 kpc) -- flagship kept
+              r_F = 35.16 kpc = 4.24 arcsec (1 arcsec = 8.28 kpc at z = 2.5); r(y = 1) = 11.12 kpc; margins m_r +0.0988, m_X +0.2065
+    y_e(M_b = 1e11, canonical) vs z: z=2: 0.030, z=2.5: 0.110, z=3: 0.354, z=3.5: 1.050
+
+================================================================================================================
+T4  THE BRANCH: the density the switch needs if x~ excludes the phantom (L377's matter-only PM switch)
+================================================================================================================
+    on-branch (DE1/L352, phantom-inclusive) vs matter-only branch (L377 lines 18, 119-120: f = 1.5 Omega_m(a) (rho - 1) gate > x_c0 with rho = baryons + carrier): for a POINT mass the matter-only x is -(3/2)Omega_m(z) at every r > 0, so that branch has no MOND region at all; for extended baryons the switch needs a LOCAL density above
+    cell (2, 2): rho_min [Msun/pc^3] at z = 0: 2.07e-07, 1: 5.80e-06, 2: 1.30e-04, 2.5: 4.76e-04
+    cell (1, 2.5): rho_min [Msun/pc^3] at z = 0: 2.49e-07, 1: 2.46e-06, 2: 1.87e-05, 2.5: 4.36e-05
+    cell (1, 1.5): rho_min [Msun/pc^3] at z = 0: 1.65e-07, 1: 1.60e-06, 2: 1.16e-05, 2.5: 2.69e-05
+    for scale: the on-branch phantom density at r_F of a 1e11 Msun point mass = canonical 4.34e-04, alt 5.74e-04 Msun/pc^3
+
+================================================================================================================
+VERDICT (PART A)
+================================================================================================================
+  DE1's numbers stand as arithmetic.  Rebuilt from scratch (analytic phantom-density derivative, no DE1/L352 code), the
+  p = 2, x_c0 = 2 edge at M_b = 1e11, z = 2.5 is 36.83 kpc against r_F = 38.59 kpc canonical (m_r = -0.046,
+  m_X = -0.089) and 38.63 vs 35.16 kpc alt (m_r = +0.099); p_max = 1.965 / 2.071
+  (nu_RAR, x_c0 = 2).  The lead track's code note is right (one nu_mono edge under two labels) and inconsequential:
+  below y_s = 2.34 nu_mono IS nu_RAR, and the edges sit at y ~ 0.1.
+  What fails is the framework's OWN deep-MOND prediction, not data: the lost interval is y = 0.100-0.110 at
+  37-39 kpc (4.7 arcsec) around the most massive flagship galaxy, canonical footing only, at radii
+  3.0x r(y = 1).  It is an internal (framework-own-terms) gate: the construction would stop making the flat-a0 prediction
+  there and would predict a Newtonian outer disc instead -- itself untested.
+  Low-mass lensed discs (M_b = 1e9-1e10.5, z = 1-2.5, y ~ 0.1-0.3): at p = 1, x_c0 = 2.5 MOND stays on to y_e <= 0.1/18;
+  the gate never touches y = 0.1-0.3 there (T2).  Caveats: point-mass baryons; the phantom-inclusive (upper) branch, which is
+  the most favourable placement but NOT the branch L377/L380's PM switch runs (T4); the omitted shear term can only move
+  edges outward.
+
+  7/7 checks pass; load-bearing failures: 0; wrote XR2_de1_edge_check_results.json   [1.8s]

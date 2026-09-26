@@ -1,0 +1,346 @@
+XR1 -- CROSS-LANE CONSISTENCY CHECK for the dark-sector / vacuum-gate construction lanes.
+
+WHAT IT DOES.  Reads XR1_registry.json (every stage that feeds a headline verdict: its switch cell (p, x_c0), a0 footing,
+kernel, phantom operator, gate variable, carrier, epoch and imports) and re-derives the load-bearing attributes from the
+SOURCE (ast / regex -- nothing is executed or imported) and from results JSON (committed version via `git show HEAD:`,
+falling back to the working tree only for untracked pending lanes).  Then, per headline verdict, it asks whether all
+contributing stages share cell, footing, kernel, operator, gate variable and epoch, and prints a mismatch table.
+
+WHY.  L381's Harvey step ran with L370's default switch cell (SW_DEF = "p1_x1.5") while importing particle-mesh retentions
+computed at p = 2, x_c0 = 2 (withdrawn, 3151d88f2); the same inheritance then showed up in L373 and AT3.  The cell is set
+in one file and consumed three imports away, so it has to be traced in the code, not read from docstrings.
+
+  registry inspected 2026-09-26T15:50:06-04:00 at 738216fbd; now HEAD 738216fbd; 54 stages, 36 verdicts
+
+  *** MUTATE=1: the registry's L381 Harvey cell is corrupted to 'p2_x2.0' in memory (hides the known mismatch); check D must fail and rc must be 1 ***
+
+======================================================================================================================
+FILES: git state and hash against the registry snapshot (informational -- lanes are being edited live)
+======================================================================================================================
+    49/49 files identical to the snapshot
+    expected absent (stopped, not committed): real_research/dark_sector_2026/L386_window_lower_edge.py -> absent
+    expected absent (stopped, not committed): real_research/dark_sector_2026/L387_harvey_window_slow_end.py -> absent
+
+======================================================================================================================
+D  REGISTRY vs SOURCE: every derivable attribute re-derived from the code / results JSON
+======================================================================================================================
+    L367.shear           rows          = ['p1_x1.5', 'p2_x2.0']   OK  [real_research/dark_sector_2026/L367_triggered_carrier_cosmic_shear.py:180]
+    L367.shear           operator      = region_dirichlet         signature confirmed  [real_research/g03_audit_2026/L363_region_kernel_lensing_power.py:154]
+    L367.shear           gate_variable = dyn_bgsub_seeded         signature confirmed  [real_research/g03_audit_2026/L363_region_kernel_lensing_power.py:138]
+    L368.kids            rows          = ['p1_x1.5', 'p2_x2.0']   OK  [real_research/dark_sector_2026/L368_triggered_carrier_full_gate_set.py:69]
+    L369.kids_shear      rows          = ['p1_x1.5', 'p2_x2.0']   OK  [real_research/dark_sector_2026/L369_triggered_carrier_window_realisations.py:77]
+    L375.kids            cell          = p2_x2.0                  OK  [real_research/dark_sector_2026/L375_triggered_carrier_galaxy_retention.py:180]
+    L376.rar_rc100       kernel        = nu_RAR                   OK  [real_research/dark_sector_2026/L376_triggered_carrier_inner_galaxies.py:52]
+    L377.pm              cell          = p2_x2.0                  OK  [real_research/dark_sector_2026/L377_full_construction_pm.py:94 P_GATE = 2, X_C0 = 2.0]
+    L377.pm              footing       = ['canonical', 'alt']     OK  [real_research/dark_sector_2026/L377_full_construction_pm.py: lines [264, 270, 273, 274, 275] use ['canonical', 'alt']]
+    L377.pm              operator      = global_baryon_masked     signature confirmed  [real_research/dark_sector_2026/L377_full_construction_pm.py:123]
+    L377.pm              gate_variable = matter_bgsub             signature confirmed  [real_research/dark_sector_2026/L377_full_construction_pm.py:120]
+    L377.pm              kernel        = nu_mono                  signature confirmed  [real_research/dark_sector_2026/L377_full_construction_pm.py:112]
+    L377.shear           cell          = p2_x2.0                  OK  [real_research/dark_sector_2026/L377_full_construction_pm.py:308 shear gate reads L364 T_max key p2_x2.0]
+    L377.shear           operator      = region_dirichlet         signature confirmed  [real_research/g03_audit_2026/L363_region_kernel_lensing_power.py:154]
+    L377.shear           gate_variable = dyn_bgsub_seeded         signature confirmed  [real_research/g03_audit_2026/L363_region_kernel_lensing_power.py:138]
+    L378.shear           cell          = p2_x2.0                  OK  [real_research/dark_sector_2026/L378_full_construction_pooled.py:109 shear gate reads L364 T_max key p2_x2.0]
+    L378.shear           operator      = region_dirichlet         signature confirmed  [real_research/g03_audit_2026/L363_region_kernel_lensing_power.py:154]
+    L378.shear           gate_variable = dyn_bgsub_seeded         signature confirmed  [real_research/g03_audit_2026/L363_region_kernel_lensing_power.py:138]
+    L380.shear           cell          = p2_x2.0                  OK  [real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing.py:121 shear gate reads L364 T_max key p2_x2.0]
+    L380.shear           operator      = region_dirichlet         signature confirmed  [real_research/g03_audit_2026/L363_region_kernel_lensing_power.py:154]
+    L380.shear           gate_variable = dyn_bgsub_seeded         signature confirmed  [real_research/g03_audit_2026/L363_region_kernel_lensing_power.py:138]
+    L373.shear           cell          = p2_x2.0                  OK  [real_research/merger_infall_2026/L373_two_mode_carrier_pm.py:380 shear gate reads L364 T_max key p2_x2.0]
+    L373.shear           operator      = region_dirichlet         signature confirmed  [real_research/g03_audit_2026/L363_region_kernel_lensing_power.py:154]
+    L373.shear           gate_variable = dyn_bgsub_seeded         signature confirmed  [real_research/g03_audit_2026/L363_region_kernel_lensing_power.py:138]
+    L378.pm              cell          = p2_x2.0                  OK  [real_research/dark_sector_2026/L377_full_construction_pm.py:94 P_GATE = 2, X_C0 = 2.0]
+    L378.pm              footing       = ['canonical']            OK  [real_research/dark_sector_2026/L378_full_construction_pooled.py: lines [71, 72] use ['canonical']]
+    L379.pm              cell          = p2_x2.0                  OK  [real_research/dark_sector_2026/L377_full_construction_pm.py:94 P_GATE = 2, X_C0 = 2.0]
+    L379.pm              footing       = ['canonical']            OK  [real_research/dark_sector_2026/L379_clearing_by_environment.py: lines [93, 94] use ['canonical']]
+    L380.pm              cell          = p2_x2.0                  OK  [real_research/dark_sector_2026/L377_full_construction_pm.py:94 P_GATE = 2, X_C0 = 2.0]
+    L380.pm              footing       = ['canonical']            OK  [real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing.py: lines [74, 76, 79] use ['canonical']]
+    L380.pm              operator      = global_baryon_masked     signature confirmed  [real_research/dark_sector_2026/L377_full_construction_pm.py:123]
+    L380.pm              gate_variable = matter_bgsub             signature confirmed  [real_research/dark_sector_2026/L377_full_construction_pm.py:120]
+  ** D: L381.harvey.cell: registry says 'p2_x2.0', source gives 'p1_x1.5'  [real_research/dark_sector_2026/L381_harvey_on_pooled_window.py:60 harvey(): none of its 22 string constants (the source replacements) mentions SW_DEF/SWITCH -> inherits 'p1_x1.5'  [real_research/merger_infall_2026/L371_harvey_slow_kick_carrier.py:79 SW_DEF unpacked from L370's namespace, never reassigned -> 'p1_x1.5'  [real_research/merger_infall_2026/L370_boosted_infall_mergers.py:160 SW_DEF = 'p1_x1.5']]]
+    L381.harvey          footing       = ['canonical']            OK  [real_research/merger_infall_2026/L371_harvey_slow_kick_carrier.py: lines [201, 214] use ['canonical']]
+    L381.harvey          operator      = region_fft               signature confirmed  [real_research/merger_infall_2026/L370_boosted_infall_mergers.py:291]
+    L381.harvey          gate_variable = absolute_real            signature confirmed  [real_research/merger_infall_2026/L370_boosted_infall_mergers.py:290]
+    L381.harvey          kernel        = nu_mono                  signature confirmed  [real_research/merger_infall_2026/L370_boosted_infall_mergers.py:151]
+    L388.pm              cell          = p1_x2.5                  OK  [real_research/dark_sector_2026/L377_full_construction_pm.py:94 P_GATE = 2, X_C0 = 2.0; real_research/dark_sector_2026/L388_linear_gate_pooled.py:42 L79.L77.X_C0 = 2.5 [top]; real_research/dark_sector_2026/L388_linear_gate_pooled.py:42 L79.L77.P_GATE = 1 [top]]
+    L388.pm              footing       = ['canonical']            OK  [real_research/dark_sector_2026/L388_linear_gate_pooled.py: lines [87, 89, 92] use ['canonical']]
+    L388.shear           cell          = p1_x2.5                  OK  [real_research/dark_energy_2026/DE3_tmax_at_linear_gate_results.json [HEAD] cell p = 1.0, x_c0 = 2.5, x_lens = 4.363021859625454]
+    L389.harvey          cell          = p1_x2.5                  OK  [real_research/dark_sector_2026/L389_harvey_same_cell_linear_gate.py:82 adapter inserts 'SW_DEF = <cell>' into L371's source; job cell CELL = 'p1_x2.5']
+    L389.harvey          operator      = region_fft               signature confirmed  [real_research/merger_infall_2026/L370_boosted_infall_mergers.py:291]
+    L389.harvey          gate_variable = absolute_real            signature confirmed  [real_research/merger_infall_2026/L370_boosted_infall_mergers.py:290]
+    L390.kids            cell          = p1_x2.5                  OK  [real_research/dark_sector_2026/L390_kids_resolved_linear_gate.py:41 NEW = 'p=1, x_c0=2.5']
+    L357.halo_model      kernel        = nu_mono                  OK  [real_research/dark_sector_2026/L357_virialization_triggered_carrier.py:261]
+    L370.elgordo         rows          = ['p0.5_x2.5', 'p1_x1.5', 'p2_x2.0'] OK  [real_research/merger_infall_2026/L370_boosted_infall_mergers.py:159 SWITCH keys ['p0.5_x2.5', 'p1_x1.5', 'p2_x2.0']]
+    L370.elgordo         operator      = region_fft               signature confirmed  [real_research/merger_infall_2026/L370_boosted_infall_mergers.py:291]
+    L370.elgordo         gate_variable = absolute_real            signature confirmed  [real_research/merger_infall_2026/L370_boosted_infall_mergers.py:290]
+    L370.harvey          cell          = p1_x1.5                  OK  [real_research/merger_infall_2026/L370_boosted_infall_mergers.py:160 SW_DEF = 'p1_x1.5']
+    L370.harvey          footing       = ['canonical']            OK  [real_research/merger_infall_2026/L370_boosted_infall_mergers.py:642]
+    L371.harvey          cell          = p1_x1.5                  OK  [real_research/merger_infall_2026/L371_harvey_slow_kick_carrier.py:79 SW_DEF unpacked from L370's namespace, never reassigned -> 'p1_x1.5'  [real_research/merger_infall_2026/L370_boosted_infall_mergers.py:160 SW_DEF = 'p1_x1.5']]
+    L371.harvey          footing       = ['canonical']            OK  [real_research/merger_infall_2026/L371_harvey_slow_kick_carrier.py: lines [201, 214] use ['canonical']]
+    L372.harvey          cell          = p1_x1.5                  OK  [real_research/merger_infall_2026/L372_gated_slow_kick_carrier.py:252 SW_DEF unpacked from L370's namespace, never reassigned -> 'p1_x1.5'  [real_research/merger_infall_2026/L370_boosted_infall_mergers.py:160 SW_DEF = 'p1_x1.5']]
+    L372.harvey          footing       = ['canonical']            OK  [real_research/merger_infall_2026/L372_gated_slow_kick_carrier.py: lines [312, 326] use ['canonical']]
+    L373.pm              cell          = p2_x2.0                  OK  [real_research/dark_sector_2026/L377_full_construction_pm.py:94 P_GATE = 2, X_C0 = 2.0]
+    L373.pm              footing       = ['canonical']            OK  [real_research/merger_infall_2026/L373_two_mode_carrier_pm.py: lines [313, 314] use ['canonical']]
+    L373.harvey          cell          = p2_x2.0                  OK  [real_research/merger_infall_2026/L373_two_mode_carrier_pm.py:230 G['SW_DEF'] = SWK built from the mesh module's P_GATE/X_C0 -> 'p2_x2.0'  [real_research/dark_sector_2026/L377_full_construction_pm.py:94 P_GATE = 2, X_C0 = 2.0]]
+    L373.harvey          footing       = ['canonical']            OK  [real_research/merger_infall_2026/L373_two_mode_carrier_pm.py: lines [268, 281] use ['canonical']]
+    L359.scan            operator signature present  [real_research/g03_audit_2026/L359_vacuum_gated_switch.py:99]
+    L363.shear           operator      = region_dirichlet         signature confirmed  [real_research/g03_audit_2026/L363_region_kernel_lensing_power.py:154]
+    L363.shear           gate_variable = dyn_bgsub_seeded         signature confirmed  [real_research/g03_audit_2026/L363_region_kernel_lensing_power.py:138]
+    L364.scan            rows          = ['p1_x1.5', 'p2_x2.0']   OK  [real_research/g03_audit_2026/L364_replacement_carrier_cosmic_shear.py:100]
+    AT3.harvey           cell          = p1_x2.5                  OK  [real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py:358 HNS['SW_DEF'] = 'p1_x2.5' after the exec at line 340 (SWITCH entry added: True)]
+    AT3.harvey           footing       = ['canonical']            OK  [real_research/merger_infall_2026/L372_gated_slow_kick_carrier.py: lines [312, 326] use ['canonical']]
+    AT3.shear            cell          = p1_x2.5                  OK  [real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py:424]
+    DE3.tmax             cell          = p1_x2.5                  OK  [real_research/dark_energy_2026/DE3_tmax_at_linear_gate_results.json [HEAD] cell p = 1.0, x_c0 = 2.5, x_lens = 4.363021859625454]
+
+======================================================================================================================
+E  THE TASK'S KNOWN CLAIMS, verified in code and results JSON
+======================================================================================================================
+  [PASS] L373_now_p2_both: expected p2_x2.0 in ['L373.pm', 'L373.harvey', 'L373.shear']; derived {'L373.pm': 'p2_x2.0', 'L373.harvey': 'p2_x2.0', 'L373.shear': 'p2_x2.0'}
+  [PASS] L388_chain_p1_x2.5: expected p1_x2.5 in ['L388.pm', 'L388.shear', 'L390.kids', 'L389.harvey']; derived {'L388.pm': 'p1_x2.5', 'L388.shear': 'p1_x2.5', 'L390.kids': 'p1_x2.5', 'L389.harvey': 'p1_x2.5'}
+  [PASS] AT3_source_harvey: expected p1_x2.5 in ['AT3.harvey', 'AT3.shear']; derived {'AT3.harvey': 'p1_x2.5', 'AT3.shear': 'p1_x2.5'}
+  [PASS] DE3_cell: expected p1_x2.5 in ['DE3.tmax']; derived {'DE3.tmax': 'p1_x2.5'}
+  [PASS] DE1_F1_p2_canonical_1e11_fails (DE1_vacuum_gate_flagship_results.json, HEAD): nu_mono: shift -1.134 dex, edge 36.8 vs r_flag 38.6 kpc; nu_RAR: shift -1.134 dex, edge 36.8 vs r_flag 38.6 kpc; mu_exp: shift -1.073 dex, edge 36.8 vs r_flag 38.6 kpc
+  [PASS] DE1_F1_p2_alt_1e11_passes (DE1_vacuum_gate_flagship_results.json, HEAD): nu_mono: shift +0.000 dex, edge 38.6 vs r_flag 35.2 kpc; nu_RAR: shift +0.000 dex, edge 38.6 vs r_flag 35.2 kpc; mu_exp: shift +0.000 dex, edge 38.6 vs r_flag 35.2 kpc
+  [PASS] DE2_W2_linear_gate_600 (DE2_vacuum_gate_joint_window_results.json, HEAD): 600: x_c0 in [2.005, 2.975]; 650: x_c0 in [1.685, 2.975]
+  [PASS] DE2_window_p_interval (DE2_vacuum_gate_joint_window.py, source/README): found at line 15
+  [PASS] DE3_x_lens (DE3_tmax_at_linear_gate_results.json, HEAD): 4.363021859625454
+  [PASS] L381_S2_600_fit (L381_harvey_on_pooled_window_results.json, HEAD): 0.10864420305035277
+  [PASS] L380_pooled_window (L380_pooled_window_fixed_cell_clearing_results.json, HEAD): ['v600', 'v625', 'v650', 'v675']
+  [PASS] L364_Tmax_cells (L364_replacement_carrier_cosmic_shear_results.json, HEAD): ['p=1, x_c0=1.5/canonical', 'p=1, x_c0=1.5/alt', 'p=2, x_c0=2.0/canonical', 'p=2, x_c0=2.0/alt']
+
+======================================================================================================================
+THE MISMATCH TABLE (one row per headline verdict; flags in severity order; cells from the SOURCE where derivable)
+======================================================================================================================
+  verdict     status                                       cells (switch-dependent stages)    flags
+  L357        STANDS (with its stated price: flagship +0.8                                    -
+  L365        SUPERSEDED (L366 box, then L369 realisations                                    -
+  L366        SUPERSEDED (L369: one-realisation artefact)                                     -
+  L367        STANDS (per cell; Newtonian single-box trans per-row                            omit
+  L368        WITHDRAWN (L369: one-realisation artefact; i per-row                            omit op gvar
+  L369        STANDS as gated (its G3 clearing proxy later per-row                            omit op
+  L375        STANDS (p2_x2.0 only)                        p2_x2.0                            EXCL
+  L376        STANDS                                                                          -
+  L377        STANDS (p2_x2.0, one box)                    p2_x2.0                            EXCL op gvar
+  L378        SUPERSEDED in its clearing reading (L379 cor p2_x2.0                            EXCL foot op gvar
+  L379        STANDS (methodological correction)           p2_x2.0                            EXCL
+  L380        SCOPED: stands for the p2_x2.0 cell only (31 p2_x2.0                            EXCL foot kern carr op gvar
+  L381        WITHDRAWN (3151d88f2)                        p1_x1.5, p2_x2.0                   CELL! epoch carr op gvar
+  L386_L387   STOPPED, not committed; files absent at insp                                    -
+  L388_chain  PENDING (L388 running, L389 waits for it; L3 p1_x2.5                            foot kern epoch carr op gvar
+  L390        STANDS (committed b3ba1f6fa during this revi p1_x2.5                            -
+  L370A       STANDS (every SWITCH cell, both footings)    per-row                            -
+  L370B       STANDS (at p1_x1.5, canonical, static L357 r p1_x1.5                            -
+  L371        STANDS as a failure of that assembly (carrie p1_x1.5                            omit epoch carr
+  L372        STANDS (alt set, static retention; relayed i p1_x1.5                            omit foot op
+  L373        PENDING (uncommitted; Harvey re-scored from  p2_x2.0                            EXCL foot carr op gvar
+  L359        STANDS                                       per-row                            op
+  L360        STANDS                                       per-row                            -
+  L363        STANDS                                       per-row                            -
+  L364        STANDS                                       per-row                            op
+  GP1         STANDS                                                                          -
+  GP2         STANDS                                                                          -
+  GP3         STANDS                                                                          -
+  AT2         PENDING (running at inspection; uncommitted)                                    -
+  GP4         SCOPED: closed at high z by GP5; KiDS vs the                                    -
+  GP5         STANDS                                                                          -
+  AT1         PENDING (uncommitted; README 9/9)                                               -
+  AT3         PENDING (not running at 15:45; the .out on d p1_x2.5                            omit foot carr op gvar
+  DE1         STANDS (c8bb50813; per-kernel edges committe per-row                            -
+  DE2         STANDS, SCOPED (switch only; L367 Newtonian  per-row                            op gvar
+  DE3         STANDS (committed 0b4e319b7 during this revi p1_x2.5                            -
+  key: CELL! = stages at different (p, x_c0); EXCL = cell fails DE1's flagship; omit = a switch-dependent stage run switch-free;
+       foot = single-footing stage in a two-footing verdict; kern = nu_mono vs nu_RAR; epoch = imported at one z, used at another;
+       carr = carrier trigger differs between stages (matter-only vs phantom-inclusive x~, or an imposed core shape);
+       op = different phantom operators; gvar = different switch-variable conventions
+
+======================================================================================================================
+DETAIL, live and pending verdicts first (WITHDRAWN/SUPERSEDED listed for the record)
+======================================================================================================================
+
+  L375 -- KiDS passes with the resolved carrier profile at p = 2 (-11.5/-8.4)
+    status: STANDS (p2_x2.0 only)  [commit 00ae4e1e1]
+    CELL-EXCLUDED   p2_x2.0 fails the flat-a0 flagship (DE1 F1: canonical M_b 1e11)
+      cell of L375.kids          p2_x2.0                    <- real_research/dark_sector_2026/L375_triggered_carrier_galaxy_retention.py:180
+
+  L377 -- phantom RAISES cluster retention 6-22% (hypothesis falsified in sign)
+    status: STANDS (p2_x2.0, one box)  [commit 70d674b95]
+    CELL-EXCLUDED   p2_x2.0 fails the flat-a0 flagship (DE1 F1: canonical M_b 1e11)
+    OPERATOR-MIXED  global_baryon_masked: L377.pm; region_dirichlet: L377.shear; spherical_isolated: XCOP.band
+    GATEVAR-MIXED   matter_bgsub: L377.pm; dyn_bgsub_seeded: L377.shear
+      cell of L377.pm            p2_x2.0                    <- real_research/dark_sector_2026/L377_full_construction_pm.py:94 P_GATE = 2, X_C0 = 2.0
+      cell of L377.shear         p2_x2.0                    <- real_research/dark_sector_2026/L377_full_construction_pm.py:308 shear gate reads L364 T_max key p2_x2.0
+
+  L379 -- G3 is selection-biased; fixed-cell clearing 5-10%
+    status: STANDS (methodological correction)  [commit 1c5a52dd5]
+    CELL-EXCLUDED   p2_x2.0 fails the flat-a0 flagship (DE1 F1: canonical M_b 1e11)
+      cell of L379.pm            p2_x2.0                    <- real_research/dark_sector_2026/L377_full_construction_pm.py:94 P_GATE = 2, X_C0 = 2.0
+
+  L380 -- pooled window 600-675 km/s with fixed-cell clearing
+    status: SCOPED: stands for the p2_x2.0 cell only (3151d88f2); that cell fails the flagship at canonical (DE1)  [commit 3151d88f2; dark_sector README 'Correction to L381']
+    CELL-EXCLUDED   p2_x2.0 fails the flat-a0 flagship (DE1 F1: canonical M_b 1e11)
+    FOOTING-PARTIAL L380.pm canonical
+    KERNEL-MIXED    nu_RAR: L376.rar_rc100; nu_mono: L380.pm, L380.shear, XCOP.band, L375.kids
+    CARRIER-MIXED   phantom_inclusive_x5: L380.pm; matter_only_x5: L375.kids, L376.rar_rc100
+    OPERATOR-MIXED  global_baryon_masked: L380.pm; region_dirichlet: L380.shear; spherical_isolated: XCOP.band, L376.rar_rc100; spherical_compensated: L375.kids
+    GATEVAR-MIXED   matter_bgsub: L380.pm; dyn_bgsub_seeded: L380.shear; dyn_bgsub_onbranch: L375.kids
+      cell of L380.pm            p2_x2.0                    <- real_research/dark_sector_2026/L377_full_construction_pm.py:94 P_GATE = 2, X_C0 = 2.0
+      cell of L380.shear         p2_x2.0                    <- real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing.py:121 shear gate reads L364 T_max key p2_x2.0
+      cell of L375.kids          p2_x2.0                    <- real_research/dark_sector_2026/L375_triggered_carrier_galaxy_retention.py:180
+
+  L373 -- two-mode carrier in the PM: does the L372 window survive assembly?
+    status: PENDING (uncommitted; Harvey re-scored from checkpoint after the SW_DEF fix)  [L373 docstring CORRECTION paragraph]
+    CELL-EXCLUDED   p2_x2.0 fails the flat-a0 flagship (DE1 F1: canonical M_b 1e11)
+    FOOTING-PARTIAL L373.pm canonical; L373.harvey canonical
+    CARRIER-MIXED   phantom_inclusive_x5_gated_p2+L319_uniform: L373.pm; imposed_shape: L373.harvey
+    OPERATOR-MIXED  global_baryon_masked: L373.pm; region_fft: L373.harvey; region_dirichlet: L373.shear; spherical_isolated: XCOP.band
+    GATEVAR-MIXED   matter_bgsub: L373.pm; absolute_real: L373.harvey; dyn_bgsub_seeded: L373.shear
+      cell of L373.pm            p2_x2.0                    <- real_research/dark_sector_2026/L377_full_construction_pm.py:94 P_GATE = 2, X_C0 = 2.0
+      cell of L373.harvey        p2_x2.0                    <- real_research/merger_infall_2026/L373_two_mode_carrier_pm.py:230 G['SW_DEF'] = SWK built from the mesh module's P_GATE/X_C0 -> 'p2_x2.0'  [real_research/dark_sector_2026/L377_full_constructi
+      cell of L373.shear         p2_x2.0                    <- real_research/merger_infall_2026/L373_two_mode_carrier_pm.py:380 shear gate reads L364 T_max key p2_x2.0
+
+  L367 -- cosmic shear passes with the p = 2 switch at 600-700; p1_x1.5 fails at 600/650
+    status: STANDS (per cell; Newtonian single-box transfer)  [commit 52a294431]
+    CELL-OMITTED    L367.pm_newtonian run without the switch while per-row cells is claimed
+      cell of L367.pm_newtonian  none                       <- real_research/dark_sector_2026/L367_triggered_carrier_cosmic_shear.py:42 (registry)
+      cell of L367.shear         ['p1_x1.5', 'p2_x2.0']     <- real_research/dark_sector_2026/L367_triggered_carrier_cosmic_shear.py:180
+
+  L369 -- no pooled window over three realisations (Newtonian)
+    status: STANDS as gated (its G3 clearing proxy later shown selection-biased by L379)  [commits 4762886e6, 1c5a52dd5]
+    CELL-OMITTED    L369.pm_newtonian run without the switch while per-row cells is claimed
+    OPERATOR-MIXED  spherical_compensated: L369.kids_shear; region_dirichlet: L369.kids_shear; spherical_isolated: XCOP.band
+      cell of L369.pm_newtonian  none                       <- real_research/dark_sector_2026/L369_triggered_carrier_window_realisations.py:38 (registry)
+      cell of L369.kids_shear    ['p1_x1.5', 'p2_x2.0']     <- real_research/dark_sector_2026/L369_triggered_carrier_window_realisations.py:77
+
+  L371 -- Harvey fails L366's slow-kick carrier (2.1/2.5/5.4 sigma)
+    status: STANDS as a failure of that assembly (carrier since superseded)  [commit fe4fb762d]
+    CELL-OMITTED    L366.pm_newtonian run without the switch while p1_x1.5 is claimed
+    EPOCH-MIXED     L371.harvey: EPS (L366 medians) from L366.pm_newtonian computed at z = 0.0 used at z = 0.4
+    CARRIER-MIXED   matter_only_x5: L366.pm_newtonian; imposed_shape: L371.harvey
+      cell of L366.pm_newtonian  none                       <- real_research/dark_sector_2026/L366_triggered_carrier_cluster_retention.py:204; real_research/dark_sector_2026/L366_triggered_carrier_cluster_retention.py:139 (registry)
+      cell of L371.harvey        p1_x1.5                    <- real_research/merger_infall_2026/L371_harvey_slow_kick_carrier.py:79 SW_DEF unpacked from L370's namespace, never reassigned -> 'p1_x1.5'  [real_research/merger_infall_2026/L370_boosted_infa
+
+  L372 -- two-channel carrier passes forest, S8, X-COP, galaxies, KiDS and Harvey (alt set)
+    status: STANDS (alt set, static retention; relayed in PAPER34 line 163 without its cell)  [commit 5562a5dac]
+    CELL-OMITTED    L372.kids run without the switch while p1_x1.5 is claimed
+    FOOTING-PARTIAL L372.harvey canonical
+    OPERATOR-MIXED  region_fft: L372.harvey; spherical_isolated: L372.kids, L372.nonharvey
+      cell of L372.harvey        p1_x1.5                    <- real_research/merger_infall_2026/L372_gated_slow_kick_carrier.py:252 SW_DEF unpacked from L370's namespace, never reassigned -> 'p1_x1.5'  [real_research/merger_infall_2026/L370_boosted_infa
+      cell of L372.kids          none                       <- real_research/dark_sector_2026/L357_virialization_triggered_carrier.py:328 (registry)
+
+  AT3 -- acceleration-triggered carrier through every gate
+    status: PENDING (not running at 15:45; the .out on disk is from a pre-fix run, the results JSON from a FAST-grid run under the main name)  [AT3 source (15:32:58 edit, Harvey + shear at p1_x2.5) vs its .out header (15:29:57) and results JSON (14:54)]
+    CELL-OMITTED    AT3.kids run without the switch while p1_x2.5 is claimed
+    FOOTING-PARTIAL AT3.harvey canonical
+    CARRIER-MIXED   accel_trigger+L319_uniform: AT3.harvey, AT3.kids, AT3.shear, AT3.nonharvey; accel_trigger: AT3.flagship
+    OPERATOR-MIXED  region_fft: AT3.harvey; spherical_isolated: AT3.kids, AT3.flagship, AT3.nonharvey; region_dirichlet: AT3.shear
+    GATEVAR-MIXED   absolute_real: AT3.harvey; dyn_bgsub_seeded: AT3.shear
+      cell of AT3.harvey         p1_x2.5                    <- real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py:358 HNS['SW_DEF'] = 'p1_x2.5' after the exec at line 340 (SWITCH entry added: True)
+      cell of AT3.kids           none                       <- real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py:292 (registry)
+      cell of AT3.shear          p1_x2.5                    <- real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py:424
+
+  L388_chain -- same-cell re-run at the linear gate: PM (L388) + KiDS (L390) + Harvey (L389)
+    status: PENDING (L388 running, L389 waits for it; L390 committed b3ba1f6fa during this review: KiDS passes at p1_x2.5)  [dark_sector README correction block; commit b3ba1f6fa; L388/L389 docstrings]
+    FOOTING-PARTIAL L388.pm canonical; L389.harvey canonical
+    KERNEL-MIXED    nu_RAR: L376.rar_rc100; nu_mono: L388.pm, L388.shear, XCOP.band, L390.kids, L389.harvey
+    EPOCH-MIXED     L389.harvey: retention_by_mass from L388.pm computed at z = 0.0 used at z = 0.4
+    CARRIER-MIXED   phantom_inclusive_x5: L388.pm; matter_only_x5: L390.kids, L376.rar_rc100; imposed_shape: L389.harvey
+    OPERATOR-MIXED  global_baryon_masked: L388.pm; region_dirichlet: L388.shear; spherical_isolated: XCOP.band, L376.rar_rc100; spherical_compensated: L390.kids; region_fft: L389.harvey
+    GATEVAR-MIXED   matter_bgsub: L388.pm; dyn_bgsub_seeded: L388.shear; dyn_bgsub_onbranch: L390.kids; absolute_real: L389.harvey
+
+  L359 -- 8 gated cells pass growth + KiDS + forest
+    status: STANDS  [commit b13dc17af]
+    OPERATOR-MIXED  global_total_matter_smooth: L359.scan; spherical_compensated: L359.scan
+
+  L364 -- replacement carrier: no window; near miss at p2_x2.0 (KiDS alt)
+    status: STANDS  [commit bbca9b8a3]
+    OPERATOR-MIXED  region_dirichlet: L364.scan; spherical_compensated: L364.scan
+
+  DE2 -- joint window p in [0.5, 2.07]; linear gate x_c0 in [2.005, 2.975] at 600 km/s
+    status: STANDS, SCOPED (switch only; L367 Newtonian transfers; switch-only KiDS; forest by dominance)  [commit c8bb50813; DE2 SCOPE paragraph]
+    OPERATOR-MIXED  spherical_compensated: DE2.kids; region_dirichlet: DE2.shear; spherical_point_mass: DE2.flagship; global_total_matter_smooth: DE2.forest
+    GATEVAR-MIXED   dyn_bgsub_onbranch: DE2.kids, DE2.flagship; dyn_bgsub_seeded: DE2.shear; matter_bgsub_smooth: DE2.forest
+
+  L381 -- Harvey on L380's pooled window: S1 passes 600-625, S2 misses by 0.009
+    status: WITHDRAWN (3151d88f2)  [commit 3151d88f2]
+    CELL-CONFLICT   L380.pm=p2_x2.0, L381.harvey=p1_x1.5
+    EPOCH-MIXED     L381.harvey: retention_by_mass from L380.pm computed at z = 0.0 used at z = 0.4
+    CARRIER-MIXED   phantom_inclusive_x5: L380.pm; imposed_shape: L381.harvey
+    OPERATOR-MIXED  global_baryon_masked: L380.pm; region_fft: L381.harvey
+    GATEVAR-MIXED   matter_bgsub: L380.pm; absolute_real: L381.harvey
+      cell of L380.pm            p2_x2.0                    <- real_research/dark_sector_2026/L377_full_construction_pm.py:94 P_GATE = 2, X_C0 = 2.0
+      cell of L381.harvey        p1_x1.5                    <- real_research/dark_sector_2026/L381_harvey_on_pooled_window.py:60 harvey(): none of its 22 string constants (the source replacements) mentions SW_DEF/SWITCH -> inherits 'p1_x1.5'  [real_rese
+
+  L378 -- pooled full construction: no window (G3 blocks)
+    status: SUPERSEDED in its clearing reading (L379 correction -> L380)  [commits 7d85e9d37, 1c5a52dd5, 4e16ccf58]
+    CELL-EXCLUDED   p2_x2.0 fails the flat-a0 flagship (DE1 F1: canonical M_b 1e11)
+    FOOTING-PARTIAL L378.pm canonical
+    OPERATOR-MIXED  global_baryon_masked: L378.pm; region_dirichlet: L378.shear; spherical_isolated: XCOP.band
+    GATEVAR-MIXED   matter_bgsub: L378.pm; dyn_bgsub_seeded: L378.shear
+      cell of L378.pm            p2_x2.0                    <- real_research/dark_sector_2026/L377_full_construction_pm.py:94 P_GATE = 2, X_C0 = 2.0
+      cell of L378.shear         p2_x2.0                    <- real_research/dark_sector_2026/L378_full_construction_pooled.py:109 shear gate reads L364 T_max key p2_x2.0
+
+  L368 -- v_k = 650 with p = 2 passes every gate
+    status: WITHDRAWN (L369: one-realisation artefact; its KiDS S was sub-cell, redone in L375)  [commit 4762886e6 ('L368's "one cell passes everything" was a one-realisation artefact')]
+    CELL-OMITTED    L366.pm_newtonian, L367.pm_newtonian run without the switch while per-row cells is claimed
+    OPERATOR-MIXED  region_dirichlet: L367.shear; spherical_compensated: L368.kids; spherical_isolated: XCOP.band
+    GATEVAR-MIXED   dyn_bgsub_seeded: L367.shear; dyn_bgsub_onbranch: L368.kids
+      cell of L366.pm_newtonian  none                       <- real_research/dark_sector_2026/L366_triggered_carrier_cluster_retention.py:204; real_research/dark_sector_2026/L366_triggered_carrier_cluster_retention.py:139 (registry)
+      cell of L367.pm_newtonian  none                       <- real_research/dark_sector_2026/L367_triggered_carrier_cosmic_shear.py:42 (registry)
+      cell of L367.shear         ['p1_x1.5', 'p2_x2.0']     <- real_research/dark_sector_2026/L367_triggered_carrier_cosmic_shear.py:180
+      cell of L368.kids          ['p1_x1.5', 'p2_x2.0']     <- real_research/dark_sector_2026/L368_triggered_carrier_full_gate_set.py:69
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: L381's mismatch detected from the source: cells ['p1_x1.5', 'p2_x2.0'], both derived: True
+         L381.harvey: p1_x1.5 (L381 harvey() -> L371 -> L370 SW_DEF);  L380.pm: p2_x2.0 (L377 constants, no override in L379/L380)
+         (MUTATE) trusting the corrupted registry alone would give cells ['p2_x2.0'] and flags ['CARRIER-MIXED', 'CELL-EXCLUDED', 'EPOCH-MIXED', 'GATEVAR-MIXED', 'OPERATOR-MIXED'] for L381 -- the mismatch would be hidden; check D is what catches it
+  [PASS] C2 CONTROL (negative): L388_chain has no cell conflict: cells ['p1_x2.5']; other flags ['CARRIER-MIXED', 'EPOCH-MIXED', 'FOOTING-PARTIAL', 'GATEVAR-MIXED', 'KERNEL-MIXED', 'OPERATOR-MIXED']
+  [PASS] C2 CONTROL (negative): L373 has no cell conflict: cells ['p2_x2.0']; other flags ['CARRIER-MIXED', 'CELL-EXCLUDED', 'FOOTING-PARTIAL', 'GATEVAR-MIXED', 'OPERATOR-MIXED']
+
+======================================================================================================================
+C3  SPAWN SAFETY: cell overrides of imported modules and where they sit (Pool uses 'spawn' on this macOS python)
+======================================================================================================================
+    real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py:358  HNS['SW_DEF']  [top]  reaches workers / not in a worker
+    real_research/dark_sector_2026/L388_linear_gate_pooled.py:42  L79.L77.X_C0  [top, spawn Pool]  reaches workers / not in a worker
+    real_research/dark_sector_2026/L388_linear_gate_pooled.py:42  L79.L77.P_GATE  [top, spawn Pool]  reaches workers / not in a worker
+    real_research/merger_infall_2026/L373_two_mode_carrier_pm.py:230  G['SW_DEF']  [def, spawn Pool]  reaches workers / not in a worker
+  [PASS] C3 no switch-cell override inside a __main__ guard of a spawn-Pool script (0 found)
+
+======================================================================================================================
+SW_DEF CONSUMERS: every script that executes L370's machinery, and the cell its Harvey/lensing maps actually use
+======================================================================================================================
+    real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py: p1_x2.5
+    real_research/merger_infall_2026/L370_boosted_infall_mergers.py: p1_x1.5, per-row
+    real_research/merger_infall_2026/L371_harvey_slow_kick_carrier.py: p1_x1.5
+    real_research/merger_infall_2026/L372_gated_slow_kick_carrier.py: p1_x1.5
+    real_research/merger_infall_2026/L373_two_mode_carrier_pm.py: p2_x2.0
+    real_research/paper34_audit_2026/P34_paper_numbers.py: (reads results only / not a registered stage)
+
+======================================================================================================================
+FRESHNESS: is the output on disk from the source on disk? (informational)
+======================================================================================================================
+    real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py [untracked]: HEADER-MISMATCH: the .out was printed by a different version of the docstring (first difference near "2's harvey(), unedited except two inputs.  The carrier profile is proc"); source newer than AT3_acceleration_trigger_full_gates.out (15:32:58 > 15:29:57); source newer than AT3_acceleration_trigger_full_gates_results.json (15:32:58 > 14:54:24)
+    real_research/merger_infall_2026/L373_two_mode_carrier_pm.py [untracked]: consistent
+    real_research/dark_sector_2026/L388_linear_gate_pooled.py [untracked]: consistent
+    real_research/dark_sector_2026/L390_kids_resolved_linear_gate.py [committed]: consistent
+    real_research/dark_energy_2026/DE1_vacuum_gate_flagship.py [committed]: consistent
+    real_research/dark_energy_2026/DE3_tmax_at_linear_gate.py [committed]: consistent
+    real_research/acceleration_trigger_2026/AT1_acceleration_trigger_highz.py [untracked]: consistent
+    real_research/acceleration_trigger_2026/AT2_forest_flux_calibrated.py [untracked]: source newer than AT2_forest_flux_calibrated_results.json (14:30:44 > 14:30:14)
+    real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing.py [committed]: consistent
+    real_research/dark_sector_2026/L381_harvey_on_pooled_window.py [committed]: consistent
+    real_research/dark_sector_2026/L377_full_construction_pm.py [committed]: consistent
+    AT3 results JSON on disk: y_v0 grid ['0.01', '0.1'] (the FAST grid: SLUG has no _FAST suffix, so a smoke run wrote the main name)
+
+======================================================================================================================
+DOWNSTREAM USES (informational)
+======================================================================================================================
+    qwen_claude_field_theory/papers_2026/PAPER34_kernel_blind_dark_sector_2026.tex:163  PAPER34 relays L372's Harvey pass; that Harvey ran at L370's default p1_x1.5 (canonical) with a switch-free KiDS stage
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  36 verdicts (30 live or pending); flagged: CELL-CONFLICT 1, CELL-EXCLUDED 6, CELL-OMITTED 6, FOOTING-PARTIAL 6, KERNEL-MIXED 2, EPOCH-MIXED 3, CARRIER-MIXED 6, OPERATOR-MIXED 13, GATEVAR-MIXED 9
+  live verdicts with a CELL-CONFLICT: none; with CELL-EXCLUDED: ['L375', 'L377', 'L379', 'L380', 'L373']
+  checks D/E/C1/C2/C3: 1 failure(s): D   [6.0s]
+rc=1

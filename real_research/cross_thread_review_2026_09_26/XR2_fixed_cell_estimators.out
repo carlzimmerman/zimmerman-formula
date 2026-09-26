@@ -1,0 +1,87 @@
+XR2 (PART B) -- THE CLEARING ESTIMATORS: what L379's fixed-cell measure estimates, what a baryon-selected one would, and
+whether Lean I28's hypotheses are L379's statistic.
+
+Reviewed: real_research/dark_sector_2026/L379_clearing_by_environment.py (1c5a52dd5), L380_pooled_window_fixed_cell_
+clearing.py (4e16ccf58), fable_independent_2026/lean_2026/I28_selection_inflates_retention.lean (8ad1d1e69).  Nothing
+is imported from them and no simulation is run.
+
+Notation (per cell, z = 2, L377's mesh units): rho = total matter / mean matter; c = carrier / mean matter (= WC x L377's
+rhoc2); b = rho - c = baryons / mean matter.  In L377's LCDM run the two species share initial positions and feel the same
+field (L377.py run(): xcar = xb.copy(), pcar = pb.copy(); mode 'none' gives both the same grad phi), so b_l = WB rho_l.
+  (A) the record's G3 (L377.py lines 196-198): [sum_{rho_m>50} c_m/sum rho_m] / [sum_{rho_l>50} c_l/sum rho_l]
+  (B) L379's fixed cells (L379.py line 144, L380.py lines 98/108/118): sum_F c_m / sum_F c_l,  F = {rho_l > 50}
+  (C) baryons kept in the fixed cells: sum_F b_m / sum_F b_l
+  (D) fixed-cell dark-to-baryon ratio: (B)/(C) = [sum_F c_m/sum_F b_m] / [sum_F c_l/sum_F b_l]
+  (E) baryon-selected, the model's own baryons: S_m = {b_m/WB > 50}: [sum_S_m c_m/sum_S_m b_m] / [sum_F c_l/sum_F b_l]
+  (E_rank) as E with S_m = the |F| cells of largest b_m (rank-matched)
+  (L) Lagrangian: the carrier-to-baryon ratio at the model positions of the baryons that sit in F in LCDM (needs particle
+      identities; in the synthetic tests below the displacement map is known, in the PM it is not saved)
+
+  PM species weights (L366.py lines 73-74 with L362's h, Om): WB = 0.157112, WC = 0.842888; dense threshold 50
+  one mesh cell (100 Mpc/h / 256) at z = 2 = 193 kpc physical = 36 x R_e (5.4 kpc, L376)
+
+================================================================================================================
+PART 1  I28's HYPOTHESES AGAINST L379's STATISTIC (A)
+================================================================================================================
+    cell 1: LCDM rho 100 (c_l = 84.29); model b = 5, c = 40 -> rho_m = 45, selected False; retained fraction 0.475
+    cell 2: LCDM rho 100 (c_l = 84.29); model b = 49, c = 2 -> rho_m = 51, selected True; retained fraction 0.0237
+    fixed-cell (B) = 0.2491;  own set, I28's form sum_S c_m/sum_S c_l = 0.0237;  own set, G3's fraction form = 0.0465  (exact rationals)
+  [PASS] P1 I28's conclusion does not transfer to L379's statistic: with selection on the model's TOTAL density (the implied retention threshold (50 - b_m,i)/c_l,i varies with the model's baryons) the own-set value can fall BELOW the fixed-cell value (exact counterexample)
+         measured: own-set 0.0237 / G3-form 0.0465 < fixed 0.2491
+         reading:  I28 needs ONE threshold on c_m/c_l and a selected set inside LCDM's; L379's (A) has neither, and normalises by each run's own total mass
+    20000 random 20-cell instances (retention U(0, 0.4), model baryons x U(0.2, 2)): I28-type selection below fixed in 0; L379-type selection below fixed in 459 (I28 form) / 0 (G3 fraction form)
+  [PASS] P2 the theorem holds for its own hypothesis (uniform tau: no instance below fixed) and the L379-type selection can fall below in random instances
+         measured: uniform tau 0/20000; L379-type 459/20000 (I28 form), 0/20000 (G3 form)
+         reading:  the reversal is possible (P1, exact) but, in G3's fraction form, atypical (0/20000 random instances): (A) > (B) in L379's data (e.g. 0.174 vs 0.052, galaxy bin, 700 km/s, L379.out) is an empirical ordering, not a consequence of I28; Part 3 shows the other way it can break (an EMPTY own set reads 0)
+
+================================================================================================================
+PART 2  SYNTHETIC TRUTH: which estimator recovers the dark-to-baryon ratio at the model's galaxies
+================================================================================================================
+    lognormal field 64^3, sigma_ln 1.8, 1.5-cell smoothing: 263 dense cells (rho_l > 50); retention U(0, 0.2)
+    S1: truth 0.1086 | A 0.4412  B 0.1086  C 1.0000  D 0.1086  E 0.1086  E_rank 0.1086  L 0.1086
+    S2: truth 0.1086 | A 0.4412  B 0.0789  C 0.7148  D 0.1104  E 0.1086  E_rank 0.1086  L 0.1086
+    S3: truth 0.1656 | A 0.5650  B 0.1086  C 0.6557  D 0.1656  E 0.1699  E_rank 0.1735  L 0.1656
+  [PASS] S1 carrier cleared in place, baryons unchanged: B, D and E recover the truth (1e-10) and the record's own-set G3 (A) overstates it
+         measured: truth 0.1086: B 0.1086, D 0.1086, E 0.1086; A 0.4412
+         reading:  L379's selection bias reproduced on a field where the answer is known
+  [PASS] S2 galaxies displaced with their retained carrier: E and L recover the truth (1e-10); fixed cells (B) understate it
+         measured: truth 0.1086: E 0.1086, L 0.1086; B 0.0789, D 0.1104
+         reading:  the 'bias the other way' exists in principle: fixed cells do not follow the model's galaxies
+  [PASS] S3 baryon density tied to carrier retention: D and L recover the truth (1e-10); the fixed-threshold baryon selection (E) overstates it
+         measured: truth 0.1656: D 0.1656, L 0.1656; E 0.1699, E_rank 0.1735
+         reading:  selecting on the model's own baryons is not free of the outcome when the carrier is most of the binding mass; only the Lagrangian estimator is exact in all three cases
+
+================================================================================================================
+PART 3  ILLUSTRATION ONLY: the 128^3 code-test fields of an uncommitted L379 development run ($TMPDIR)
+================================================================================================================
+    box ( 7) v675: A 0.000 (model dense cells 0 of LCDM's 248) | B 0.096 | C 0.825 | D 0.116 | E 0.109 (S_m 158, in F 0.94, baryon mass in F 0.95) | E_rank 0.123
+    box ( 7) v700: A 0.000 (model dense cells 0 of LCDM's 248) | B 0.090 | C 0.817 | D 0.110 | E 0.104 (S_m 155, in F 0.94, baryon mass in F 0.95) | E_rank 0.113
+    box (17) v675: A 0.000 (model dense cells 0 of LCDM's 233) | B 0.098 | C 0.807 | D 0.121 | E 0.116 (S_m 158, in F 0.90, baryon mass in F 0.92) | E_rank 0.123
+    box (17) v700: A 0.000 (model dense cells 0 of LCDM's 233) | B 0.090 | C 0.794 | D 0.113 | E 0.111 (S_m 166, in F 0.86, baryon mass in F 0.89) | E_rank 0.117
+    box (29) v675: A 0.372 (model dense cells 4 of LCDM's 267) | B 0.104 | C 0.819 | D 0.127 | E 0.127 (S_m 195, in F 0.94, baryon mass in F 0.96) | E_rank 0.132
+    box (29) v700: A 0.194 (model dense cells 1 of LCDM's 267) | B 0.096 | C 0.805 | D 0.120 | E 0.117 (S_m 201, in F 0.93, baryon mass in F 0.94) | E_rank 0.126
+    POOLED v675: A 0.124 | B 0.099 | C 0.817 | D 0.122 | E 0.119 | E_rank 0.127   (E/B = 1.19, D/B = 1.22)
+    POOLED v700: A 0.065 | B 0.093 | C 0.805 | D 0.115 | E 0.111 | E_rank 0.119   (E/B = 1.20, D/B = 1.24)
+  [PASS] K (code-test controls) the LCDM fields satisfy rho = rhoc2 (the two species coincide, to float32) and the estimators return 1 when the model is LCDM itself
+         measured: max |rho - rhoc2|/max rho = 0.0e+00; null max |est - 1| = 2.2e-16
+    reading (ILLUSTRATION ONLY -- 2x coarser mesh than the committed runs, particle number not recorded, uncommitted files): the model keeps ~80% of LCDM's baryons in LCDM's dense cells and ~90% of its own baryon-dense cells lie in them; the baryon-normalised and baryon-selected values exceed the fixed-cell value by ~20-30%; the own-set G3 is degenerate at this resolution (0-4 model dense cells per box: it reads ~0 where the set is empty)
+
+================================================================================================================
+FLIP CONDITION: how far the model's baryons must leave LCDM's dense cells for D = B/C to exceed 0.30 (L380)
+================================================================================================================
+    L380 pooled v600: B = 0.0699 (record's own-set G3 0.507) -> D > 0.30 only if C < 0.233;  if C were the code-test's 0.81-0.82: D = 0.086-0.087 (illustrative)
+    L380 pooled v625: B = 0.0658 (record's own-set G3 0.442) -> D > 0.30 only if C < 0.219;  if C were the code-test's 0.81-0.82: D = 0.081-0.082 (illustrative)
+    L380 pooled v650: B = 0.0621 (record's own-set G3 0.388) -> D > 0.30 only if C < 0.207;  if C were the code-test's 0.81-0.82: D = 0.076-0.077 (illustrative)
+    L380 pooled v675: B = 0.0587 (record's own-set G3 0.344) -> D > 0.30 only if C < 0.196;  if C were the code-test's 0.81-0.82: D = 0.072-0.073 (illustrative)
+
+================================================================================================================
+VERDICT (PART B)
+================================================================================================================
+  I28 certifies the idealised mechanism (one retention threshold, a subset of LCDM's cells); L379's own-set G3 selects on
+  the model's total density, so the theorem does not apply to it (P1: exact counterexample; P2).  On a field with known
+  truth the fixed-cell measure (B) is exact only while the model's galaxies stay in LCDM's cells; the baryon-selected
+  measure (E) is exact only while the baryons' density does not depend on the carrier kept; the Lagrangian measure (L)
+  is exact in all three cases and needs particle identities that no committed run saved.  See XR2_fixed_cell_review.md
+  for the specification the same-cell re-run should record.
+
+  6/6 checks pass; load-bearing failures: 0; wrote XR2_fixed_cell_estimators_results.json   [4.0s]

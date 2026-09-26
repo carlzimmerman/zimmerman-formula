@@ -1,0 +1,55 @@
+====================================================================================================
+K1  nu_mono's splice
+====================================================================================================
+  y_p (phantom peak of nu_RAR) = 2.5396382822,  h_p = 0.6476102379 a0,  delta = 0.05
+  branch switch y* (h'_RAR = delta h_p/(y+y_p)) = 2.3374124053   (below y_p: nu_mono = nu_RAR only for y <= y*)
+  C_L(y*) = 0.0066393634   dC_L/dy left = -0.0361060616   right = -0.0013613480   jump = +0.034745
+  -> C_L is continuous and positive; its derivative jumps: nu_mono's phantom is C^1 in h' (C^{1,1}), not C^2.
+
+====================================================================================================
+K2  nu_mono vs nu_RAR
+====================================================================================================
+  max |log10(nu_mono/nu_RAR)| on 1e-3..1e4 = 0.01037 dex at y = 14.35   (L340 A1 stored: 0.0104 dex at 14.3)
+  on (y*, y_p]: max |log10(nu_mono/nu_RAR)| = 9.03e-05 dex (nonzero, tiny)
+  on [1e-3, y*): max |log10(nu_mono/nu_RAR)| = 2.08e-09 dex (grid/trapezoid level)
+
+====================================================================================================
+K3  E = 2C/(1+C) for nu_mono (the lead track's D1/D3 variable; its exact-law obstruction needs E < 0)
+====================================================================================================
+  C_T in [1.490e-12, 1.000e+06],  C_L in [3.238e-14, 5.000e+05]
+  E_T in [2.981e-12, 1.999998],  E_L in [6.476e-14, 1.999996]   -> 0 < E < 2 at every y sampled
+  contrast, exact mu_exp at x = 2: E_L = 2(1-x)e^-x = -0.270671 (negative: the obstruction)
+  regular (r = 0) branch restoring coefficient 2(2-E)/E > 0 for 0 < E < 2: min over samples = 2.000e-06
+
+====================================================================================================
+K4  L340 frozen block: the small-y zero of N = 2 - alpha(1 + C)
+====================================================================================================
+  alpha_c = 9.624e-14: transverse N = 0 at y = 2.316e-27 (~(alpha/2)^2 = 2.316e-27); longitudinal at y = 5.789e-28 (~(alpha/4)^2 = 5.789e-28)
+  alpha_c = 3.200e-09: transverse N = 0 at y = 2.560e-18 (~(alpha/2)^2 = 2.560e-18); longitudinal at y = 6.400e-19 (~(alpha/4)^2 = 6.400e-19)
+  below these y the frozen block's static gain has a pole and N < 0; every zero of the filtered field has such a
+  neighbourhood (tiny, and far inside the heat-filter scale, so the frozen-coefficient reading does not apply there).
+
+====================================================================================================
+K5  c_s^2 of the same block, unfiltered C = C_T (the largest C a mode can see), alpha_c = 1e-9
+====================================================================================================
+  c_2 = 0.0073: y=1e-06: c_s/c=0.0019; y=0.0001: c_s/c=0.00602; y=0.01: c_s/c=0.0195; y=1: c_s/c=0.0788; y=100: c_s/c=0.696; y=10000: c_s/c=6.36
+  c_2 = 0.067: y=1e-06: c_s/c=0.00552; y=0.0001: c_s/c=0.0175; y=0.01: c_s/c=0.0566; y=1: c_s/c=0.229; y=100: c_s/c=2.02; y=10000: c_s/c=18.5
+  -> superluminal where C is small (allowed under criterion B), -> 0 as y -> 0 (no uniform lower bound).
+
+====================================================================================================
+K6  MOND-normalised gate coupling b at the gate edge vs the lead track's sufficient window
+====================================================================================================
+  x_c = Omega_L0 x_c0 = 1.7155; witness in the lead track's report: b = 1e-10 at eps = x_c = 1
+  z = 0.5: y_edge = 1.76e-04, b ~ 3.09e-08;  smallest c_2 the sufficient inequalities allow: eps=1: c2 >= 0.000194, eps=10: c2 >= 0.000121, eps=100: c2 >= 0.000113
+  z = 1.0: y_edge = 5.62e-04, b ~ 1.75e-07;  smallest c_2 the sufficient inequalities allow: eps=1: c2 >= 0.000879, eps=10: c2 >= 0.000243, eps=100: c2 >= 0.000184
+  z = 1.5: y_edge = 1.64e-03, b ~ 8.67e-07;  smallest c_2 the sufficient inequalities allow: eps=1: c2 >= 0.00435, eps=10: c2 >= 0.00111, eps=100: c2 >= 0.000676
+  z = 2.0: y_edge = 4.27e-03, b ~ 3.61e-06;  smallest c_2 the sufficient inequalities allow: eps=1: c2 >= 0.0181, eps=10: c2 >= 0.0046, eps=100: c2 >= 0.00281
+  z = 2.5: y_edge = 9.95e-03, b ~ 1.27e-05;  smallest c_2 the sufficient inequalities allow: eps=1: c2 >= 0.0636, eps=10: c2 >= 0.0162, eps=100: c2 >= 0.00986
+  z = 3.0: y_edge = 2.12e-02, b ~ 3.88e-05;  smallest c_2 the sufficient inequalities allow: eps=1: c2 >= 0.195, eps=10: c2 >= 0.0495, eps=100: c2 >= 0.0302
+  z = 3.5: y_edge = 4.22e-02, b ~ 1.06e-04;  smallest c_2 the sufficient inequalities allow: eps=1: c2 >= 0.592, eps=10: c2 >= 0.135, eps=100: c2 >= 0.0826
+  z = 4.0: y_edge = 7.83e-02, b ~ 2.61e-04;  smallest c_2 the sufficient inequalities allow: eps=1: none, eps=10: c2 >= 0.337, eps=100: c2 >= 0.203
+  -> the published constant-B witness covers low-z galaxy edges; at z >~ 2.5-3 (y_edge >~ 0.01) the sufficient
+     window needs c_2 above L340's window top (0.067) at eps ~ 1, and larger eps shifts the z ~ 0 threshold by
+     1 + eps Lambda^2/K^4. The actual reduced operator at the MOND-normalised B has to be computed (calc 3).
+
+Z check: sqrt(32 pi/3) = 5.788810 (kappa = 1/2 restated; Z^2 = 8 pi/(3 kappa^2))

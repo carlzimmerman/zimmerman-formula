@@ -1,0 +1,416 @@
+XR5 -- WHICH FORCE OPERATOR?  The action's region-local phantom (L361) against the particle-mesh operator (L377) and the
+merger operator (L370), on one controlled test bed.
+
+WHY.  The 2026-09-26 peer review (peer_review_2026_09_26/dark_sector/REPORT.md, 'Additional bridge'; NEXT_CALCULATIONS.md
+item 1) found that the PM runs (retention, L377 -> L380/L386/L388) and the Harvey+2015 merger runs (L370 -> L371/L372/L373,
+AT3) use different phantom operators, and no controlled error bound links either to the action.  This lane measures the
+difference directly.
+
+THE THREE OPERATORS (read from the code, not from the review; file:line).  f = gated switch, rho_b = baryons.
+ (A) L361_bound_region_kernel.py:16-32 (field equations derived in R0, :86-122).  M^2 = m^2 (1 - f);
+       (lap - M^2) w = 4 pi G f rho_b ;  (lap - M^2) P = div[f (nu(|grad w|/a0) - 1) grad w] + M^2 w ;
+     in-region baryons move in phi + f P, web gas and the carrier in phi.  Dirichlet limit m -> inf: w = P = 0 outside the
+     active set; finite 1/m = 0.2, 0.5 Mpc solved as written.  Gate: L359's geometric variable, the density CONTRAST
+     1.5 (rho - rho_bar_m)/rho_c(z) (L359:107 'xs = 1.5 * L7.Om_a(a) * delta'; L377:119-120).
+ (B) L377_full_construction_pm.py:117-127 (phantom): gate on the background-subtracted contrast (:119-120, p = 2, x_c0 = 2 at
+     :94); the Newtonian field of ALL baryons on the mesh, 'poisson(1.5*Om*(rb - WB)/a)' (:123); the constitutive response
+     masked to active cells (:124-125); curl-free projection 'poisson(-a*divw)' (:126-127) with L362's central-difference
+     grad/div (L362:104-108) and spectral Poisson (L362:100-102); felt by ALL baryons (:163-164), the carrier Newtonian
+     (:165); the trigger reads the phantom density (:176-178).
+ (C) L370_boosted_infall_mergers.py:286-307 (phantom_felt): mask on the ABSOLUTE real density '1.5 * rreal / (RHOC0 *
+     Ez2(z)) >= x_ceff' (:290; the docstring :19 states the contrast); connected regions labelled (:291-292), and only regions
+     containing a given centre get a phantom; each region's field from its OWN baryons 'grid.field(rb * f)' (:296); masked
+     response (:297-299); spectral projection (:301); felt only inside that region (:302-303); lensing density
+     -div(gph)/(4 pi G) (:304-305).  L371:79-80, L372:252-253, L373:221-249 and AT3:322 load this machinery.
+ All three use nu_mono (L340:104-117; L377:97-114 rebuilds it on a wider table; L370:136-155 identically).
+
+METHOD.  (1) Identity: my 3-D re-implementations of (B) and (C) are checked against the ORIGINAL functions, loaded from their
+source files unedited (L377's phantom() and L362's Sim via the AST; L370's head exec'd exactly as L373:221-240 does) on a
+small periodic box.  (2) All configurations below are axisymmetric, so the continuum operators are solved on a 2-D (R, z)
+finite-volume mesh (stretched, far boundary at ~400 Mpc = free space), 10-25 kpc cells where it matters -- resolution the
+3-D codes cannot afford.  (3) The 2-D solver is validated on exact solutions (spherical QUMOND, the Kelvin image, the
+uniformly polarised ball, L361's own screening transmission) and a no-gate control where the three operators must coincide.
+TEST BED.  A cluster region built with L370's RealHalo recipe (carrier NFW + beta-model gas + stars, 30% Hernquist BCG):
+real M200 = 1.2e15 Msun, c = 4, M_b(<1 Mpc) = 6.9e13 Msun; BCG scale 50 kpc for the mesh.  Perturbations: (i) a similar
+cluster at d = 3, 5 Mpc and 13 Mpc; (ii) a uniform external baryonic field g_e/a0 = 0.001, 0.003, 0.01, 0.03 (read by (B)
+only; (A) and (C) are blind to it by construction); (iii) a merger pair (two M200 = 6e14 halves) at 0.5 and 1.0 Mpc, one
+connected region vs the counterfactual two-region labelling; (iv) L370's Harvey configuration, toward-main orientation
+(axisymmetric), z = 0.4.  Gate cells (p, x_c0) = (1, 2.5) and (2, 2) at z = 0 and 0.4; both a0 footings.
+
+  *** MUTATE=1: the screening is dropped (M^2 = 0 in the finite-m operator): S4 and X-SCREEN must FAIL ***
+
+======================================================================================================================
+K  THE KERNEL: nu_mono exactly as L340 defines it
+======================================================================================================================
+    L340 definitions loaded unedited from the source (no execution of the script): [('h_rar', 104), ('dh_rar', 108), ('Y_P', 110), ('H_P', 110), ('DELTA', 110), ('LYG', 111), ('YG', 111), ('DH_MONO', 112), ('H_MONO', 113), ('nu_rar', 114), ('nu_mono', 116)]
+  [PASS] K1 this lane's nu_mono equals L340's (loaded from L340's source) on 4001 points y = 1e-6..1e4
+         measured: max |ratio - 1| = 0.0e+00
+  [PASS] K2 nu_mono = nu_RAR below the phantom peak y_p (as stated): exact to the table's quadrature (<= 1e-8) up to where the monotone floor takes over, and within 3e-4 up to y_p
+         measured: y_p = 2.5396; floor takes over at y = 2.3374; max dev y <= 2.33: 3.3e-09; y < y_p: 1.8e-04
+         reading:  the statement 'nu_mono = nu_RAR below y_p' is exact only below y = 2.337; cluster fields here are y ~ 0.01-1
+    (reported) L377's rebuilt table (log y in -14..14, 280001 points) vs L340's nu_mono: max |ratio - 1| = 3.6e-12; L377 gate cell X_C0, P_GATE = 2.0, 2
+
+======================================================================================================================
+I  IDENTITY: my 3-D re-implementations of (B) and (C) against the ORIGINAL functions (small periodic box)
+======================================================================================================================
+    loaded unedited: L377 [('X_C0, P_GATE, XC_TRIG', 94), ('h_rar', 97), ('dh_rar', 103), ('YP', 107), ('HP', 107), ('LYG', 108), ('YG', 108), ('DH', 108), ('HM', 109), ('nu_vec', 112), ('phantom', 117)]; L362 [('Sim', 90)]
+  [PASS] I1 my operator (B) reproduces L377's phantom() (loaded unedited) on a 32^3 box with a switched region: potential and phantom density
+         measured: max relative deviation 0.0e+00; switched fraction 0.0175 vs 0.0175
+         reading:  confirms (B) = all-baryon Newtonian field, response masked on the background-subtracted contrast, FD projection
+    L370's head loaded (lines 1-315; kernel identical to L340's: max dev 0.0e+00); SWITCH = {'p1_x1.5': (1.0, 1.5), 'p0.5_x2.5': (0.5, 2.5), 'p2_x2.0': (2.0, 2.0)}, SW_DEF = p1_x1.5
+  [PASS] I2 my operator (C) reproduces L370's phantom_felt() (L370's head loaded unedited, as L373 does) on a 32^3 box with three clusters: felt field, labels and lensing density
+         measured: max relative deviation 0.0e+00; labels [2, 2, 1] vs [2, 2, 1]; regions 2 vs 2
+         reading:  confirms (C) = mask on the absolute density, each labelled region's own baryons, spectral projection, felt in-region
+  [PASS] I3 3-D no-gate control: with f = 1 everywhere and no external source, (C) with one whole-box region and (B)'s algorithm (all baryons, response everywhere, felt everywhere) are the same operator
+         measured: max relative deviation 0.0e+00; regions 1
+         reading:  (reported) the two codes' DISCRETISATIONS differ even where the operators coincide: L377's central-difference grad/div vs spectral derivatives move the phantom potential of the same cluster pair by 4.2% at 0.750 Mpc/h cells, 1.5% at 0.375 Mpc/h cells (L377's mesh: 0.39 Mpc/h)
+
+  test cluster: real M200 1.20e+15 Msun, R200 2.25 Mpc, c 4.0; M_b(<1 Mpc) 6.86e+13, M_b(<R200) 1.68e+14; g_N,b/a0 (canonical) at 0.1/0.25/0.5/1 Mpc = 0.467/0.223/0.157/0.102
+
+======================================================================================================================
+S  THE 2-D SOLVER AGAINST EXACT SOLUTIONS, AND THE NO-GATE CONTROL
+======================================================================================================================
+    production mesh: 174 x 478 = 83172 cells; 25 kpc for R, |z| < 1.2 Mpc; 100 kpc out to R = 7, z = -7.5..19.5 Mpc; geometric to 411 Mpc
+    shell-averaged phantom force / exact QUMOND (nu - 1) g_N:  r=0.1: A_D 0.9877, B 0.9877, C 0.9877; r=0.25: A_D 0.9986, B 0.9986, C 0.9986; r=0.5: A_D 0.9996, B 0.9996, C 0.9996; r=1.0: A_D 0.9999, B 0.9999, C 0.9999; r=2.0: A_D 0.9999, B 0.9999, C 0.9999
+  [PASS] S1 an isolated spherical cluster (gate z = 0.4, p = 2): every operator (A Dirichlet, A at 1/m = 0.2 and 0.5, B, C) returns the exact spherical QUMOND phantom (nu - 1) g_N within 0.5% at 0.25-2 Mpc and 2% at 0.1 Mpc (4 cells)
+         measured: max deviation 1.4e-03 (0.25-2 Mpc), 1.2e-02 (0.1 Mpc)
+         reading:  in spherical symmetry the three operators are the same continuum object; this fixes the mesh's absolute accuracy
+  [PASS] S2 the Dirichlet-limit w of operator (A) equals the exact image solution for an off-centre mass in a spherical region (Kelvin image q' = -q R/a at R^2/a) within 2% at four interior points
+         measured: errors ['7.3e-05', '3.0e-03', '1.5e-03', '1.0e-02']; the image term is 9%-38% of the field there
+         reading:  the Dirichlet w differs from the free-space field of the region's baryons by exactly these images
+  [PASS] S3 the curl-free projection used by (B) and (C) returns 1/3 of a uniform field confined to a ball (the demagnetising factor of a sphere) within 2%
+         measured: g_ph/F0 = [0.3306, 0.3305, 0.331, 0.3304]
+         reading:  a boosted EXTERNAL field inside a region enters (B) through exactly this projection
+  [FAIL] S4 SCREENING: the finite-m operator transmits into a region (R_e = 1 Mpc) the fraction of an external uniform w-field that L361's exact l = 1 solution gives through a 2 Mpc inactive gap (its function loaded unedited; its committed R1 numbers) within 5%
+         measured: 1/m = 0.2: mesh 1.000e+00, L361 exact 9.502e-05, L361 JSON 9.502e-05; 1/m = 0.3: mesh 1.000e+00, L361 exact 3.167e-03, L361 JSON 3.167e-03; 1/m = 0.5: mesh 1.000e+00, L361 exact 5.072e-02, L361 JSON 5.072e-02
+         reading:  the gap screens as exp[-m (R_2 - R_e)]; with the screening dropped (MUTATE) the full field enters
+  [PASS] S5 NO-GATE CONTROL (asserted): one region, f = 1 everywhere, no external source -- operators A (Dirichlet and finite-m code paths), B and C coincide in potential, force and lensing density
+         measured: max relative deviation 3.1e-13
+         reading:  every difference reported below comes from the gate: the source restriction, the boundary condition, who feels it
+
+======================================================================================================================
+E  THE REGION EDGE: L377/L361's contrast gate against L370's absolute-density gate (same density field)
+======================================================================================================================
+    z=0.0 p=1 x_c0=2.5: threshold x_c,eff = 2.500 -> contrast delta_th = 5.31; edge 5.488 Mpc (contrast) vs 5.750 Mpc (absolute): +4.8%; g_N,b/a0 at the edge 0.0154
+    z=0.0 p=2 x_c0=2: threshold x_c,eff = 1.999 -> contrast delta_th = 4.25; edge 5.763 Mpc (contrast) vs 6.105 Mpc (absolute): +5.9%; g_N,b/a0 at the edge 0.0143
+    z=0.4 p=1 x_c0=2.5: threshold x_c,eff = 3.868 -> contrast delta_th = 4.63; edge 4.485 Mpc (contrast) vs 4.757 Mpc (absolute): +6.1%; g_N,b/a0 at the edge 0.0209
+    z=0.4 p=2 x_c0=2: threshold x_c,eff = 4.787 -> contrast delta_th = 5.73; edge 4.258 Mpc (contrast) vs 4.461 Mpc (absolute): +4.8%; g_N,b/a0 at the edge 0.0226
+    On L370's painted halos (no cosmic mean in the density) the absolute formula at L370:290 coincides with the contrast gate if the painted profile is read as an overdensity; read as the total density (or fed a PM field with the mean) it moves the edge outward by the amounts above.
+    REALISTIC EXTERNAL BARYONIC FIELD: linear-theory baryons-only rms at lenses (L355 via L361 R3's committed JSON) 0.0021 a0 canonical / 0.0017 alt; a 1e14 Msun baryonic neighbour at 5 Mpc gives 0.0060 a0  =>  realistic g_e ~ 0.001-0.006 a0; 0.01 = a close massive neighbour; 0.03 exceeds the all-matter rms (0.013 a0).
+
+======================================================================================================================
+X  THE OPERATOR COMPARISON (production mesh): every operator against the action's Dirichlet limit A_D
+======================================================================================================================
+  iso      z=0.0 p=1 x_c0=2.5 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -5.42..5.42 Mpc, R-extent 5.42 (absolute 5.72); kernel source M_b: region 3.12e+14, all baryons 3.89e+14
+      A_0.2  - A_D: F +6.0e-10/+8.0e-10/+1.3e-09/+2.8e-09 | Fpt +7.0e-06/+9.3e-06/+1.1e-05/+1.0e-05 | D -6.3e-06/-7.3e-06/-7.4e-06/-7.5e-06 | L +2.9e-04/+4.3e-04/+4.0e-04/-4.8e-04 | depth +1.7e-06
+      A_0.5  - A_D: F +6.0e-10/+8.0e-10/+1.3e-09/+2.8e-09 | Fpt +7.0e-06/+9.3e-06/+1.1e-05/+1.0e-05 | D -6.3e-06/-7.3e-06/-7.4e-06/-7.5e-06 | L +2.9e-04/+4.3e-04/+4.0e-04/-4.8e-04 | depth +1.7e-06
+      B      - A_D: F +3.6e-10/+6.0e-10/+1.1e-09/+2.6e-09 | Fpt +7.4e-06/+8.8e-06/+8.5e-06/+1.5e-05 | D -7.3e-06/-8.5e-06/-8.6e-06/-8.7e-06 | L +2.9e-04/+4.4e-04/+4.1e-04/-4.7e-04 | depth +1.7e-06
+      C      - A_D: F +6.0e-10/+8.0e-10/+1.3e-09/+2.8e-09 | Fpt +7.0e-06/+9.3e-06/+1.1e-05/+1.0e-05 | D -6.3e-06/-7.3e-06/-7.4e-06/-7.5e-06 | L +2.9e-04/+4.3e-04/+4.0e-04/-4.8e-04 | depth +1.7e-06
+      C_abs  - A_D: F -3.0e-10/-2.2e-10/-4.3e-10/-1.0e-09 | Fpt +1.6e-05/+3.8e-05/+7.6e-05/+1.7e-04 | D -6.6e-06/-7.7e-06/-7.8e-06/-8.0e-06 | L +1.0e-03/+1.6e-03/+2.3e-03/+2.8e-03 | depth +1.5e-06
+      B(g_e=0.001) - B(0): F -1.3e-06/-5.2e-06/-1.0e-05/-2.3e-05 | Fpt +9.3e-03/+1.0e-02/+1.0e-02/+9.8e-03 | D +9.7e-03/+1.1e-02/+1.1e-02/+1.2e-02 | L -1.6e-05/-2.6e-05/-4.2e-05/-7.4e-05 | depth -1.4e-04 | push +4.09 g_e | phantom felt outside the region at 1.25 R_e: 1.46 g_e
+      B(g_e=0.003) - B(0): F -1.2e-05/-4.7e-05/-9.2e-05/-2.1e-04 | Fpt +2.8e-02/+3.1e-02/+3.1e-02/+3.0e-02 | D +2.9e-02/+3.4e-02/+3.4e-02/+3.5e-02 | L -1.4e-04/-2.3e-04/-3.7e-04/-6.6e-04 | depth -1.2e-03 | push +4.08 g_e | phantom felt outside the region at 1.25 R_e: 1.66 g_e
+      B(g_e=0.01 ) - B(0): F -1.3e-04/-5.2e-04/-1.0e-03/-2.3e-03 | Fpt +9.0e-02/+1.0e-01/+1.0e-01/+1.1e-01 | D +9.3e-02/+1.1e-01/+1.1e-01/+1.1e-01 | L -1.4e-03/-2.3e-03/-3.7e-03/-6.5e-03 | depth -1.3e-02 | push +3.90 g_e | phantom felt outside the region at 1.25 R_e: 1.92 g_e
+      B(g_e=0.03 ) - B(0): F -1.2e-03/-4.7e-03/-9.1e-03/-2.1e-02 | Fpt +2.1e-01/+2.4e-01/+2.4e-01/+2.5e-01 | D +2.1e-01/+2.4e-01/+2.3e-01/+2.2e-01 | L -8.0e-03/-1.3e-02/-2.0e-02/-3.6e-02 | depth -1.0e-01 | push +2.85 g_e | phantom felt outside the region at 1.25 R_e: 2.00 g_e
+  iso      z=0.0 p=2 x_c0=2 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -5.72..5.72 Mpc, R-extent 5.72 (absolute 6.02); kernel source M_b: region 3.19e+14, all baryons 3.89e+14
+      A_0.2  - A_D: F +3.8e-09/+3.6e-09/+4.3e-09/+6.6e-09 | Fpt +1.5e-05/+3.2e-05/+5.5e-05/+8.5e-05 | D -6.7e-06/-7.7e-06/-7.9e-06/-8.0e-06 | L -1.7e-05/-9.6e-05/-6.8e-04/-3.7e-04 | depth +4.7e-06
+      A_0.5  - A_D: F +3.8e-09/+3.6e-09/+4.3e-09/+6.6e-09 | Fpt +1.5e-05/+3.2e-05/+5.5e-05/+8.5e-05 | D -6.7e-06/-7.7e-06/-7.9e-06/-8.0e-06 | L -1.7e-05/-9.6e-05/-6.8e-04/-3.7e-04 | depth +4.7e-06
+      B      - A_D: F +3.9e-09/+3.7e-09/+4.5e-09/+6.7e-09 | Fpt +1.6e-05/+3.4e-05/+5.8e-05/+8.9e-05 | D -7.6e-06/-8.8e-06/-8.9e-06/-9.1e-06 | L -1.8e-05/-9.9e-05/-6.9e-04/-3.8e-04 | depth +4.7e-06
+      C      - A_D: F +3.8e-09/+3.6e-09/+4.3e-09/+6.6e-09 | Fpt +1.5e-05/+3.2e-05/+5.5e-05/+8.5e-05 | D -6.7e-06/-7.7e-06/-7.9e-06/-8.0e-06 | L -1.7e-05/-9.6e-05/-6.8e-04/-3.7e-04 | depth +4.7e-06
+      C_abs  - A_D: F +4.0e-09/+3.7e-09/+4.4e-09/+6.7e-09 | Fpt +1.9e-05/+4.3e-05/+8.0e-05/+1.4e-04 | D -7.0e-06/-8.2e-06/-8.4e-06/-8.6e-06 | L +6.2e-04/+9.6e-04/+1.0e-03/+3.4e-03 | depth +5.7e-06
+      B(g_e=0.001) - B(0): F -1.3e-06/-5.2e-06/-1.0e-05/-2.3e-05 | Fpt +9.6e-03/+1.1e-02/+1.1e-02/+1.0e-02 | D +1.0e-02/+1.2e-02/+1.2e-02/+1.2e-02 | L -1.8e-05/-2.9e-05/-4.6e-05/-8.1e-05 | depth -1.5e-04 | push +4.23 g_e | phantom felt outside the region at 1.25 R_e: 1.58 g_e
+      B(g_e=0.003) - B(0): F -1.2e-05/-4.7e-05/-9.2e-05/-2.1e-04 | Fpt +2.9e-02/+3.2e-02/+3.2e-02/+3.2e-02 | D +3.0e-02/+3.5e-02/+3.5e-02/+3.6e-02 | L -1.6e-04/-2.6e-04/-4.1e-04/-7.2e-04 | depth -1.4e-03 | push +4.21 g_e | phantom felt outside the region at 1.25 R_e: 1.72 g_e
+      B(g_e=0.01 ) - B(0): F -1.3e-04/-5.2e-04/-1.0e-03/-2.3e-03 | Fpt +9.3e-02/+1.0e-01/+1.1e-01/+1.1e-01 | D +9.5e-02/+1.1e-01/+1.1e-01/+1.1e-01 | L -1.5e-03/-2.5e-03/-4.0e-03/-7.1e-03 | depth -1.5e-02 | push +3.99 g_e | phantom felt outside the region at 1.25 R_e: 2.02 g_e
+      B(g_e=0.03 ) - B(0): F -1.2e-03/-4.7e-03/-9.1e-03/-2.1e-02 | Fpt +2.1e-01/+2.4e-01/+2.4e-01/+2.5e-01 | D +2.1e-01/+2.4e-01/+2.3e-01/+2.2e-01 | L -8.3e-03/-1.4e-02/-2.1e-02/-3.7e-02 | depth -1.1e-01 | push +2.87 g_e | phantom felt outside the region at 1.25 R_e: 2.01 g_e
+  iso      z=0.4 p=1 x_c0=2.5 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -4.42..4.42 Mpc, R-extent 4.42 (absolute 4.72); kernel source M_b: region 2.83e+14, all baryons 3.89e+14
+      A_0.2  - A_D: F +8.8e-09/+9.3e-09/+1.3e-08/+2.1e-08 | Fpt +2.3e-05/+5.4e-05/+9.3e-05/+1.3e-04 | D -5.1e-06/-5.8e-06/-5.8e-06/-5.7e-06 | L +2.9e-04/+4.1e-04/+1.3e-04/-2.7e-04 | depth -9.3e-06
+      A_0.5  - A_D: F +8.8e-09/+9.3e-09/+1.3e-08/+2.1e-08 | Fpt +2.3e-05/+5.4e-05/+9.3e-05/+1.3e-04 | D -5.1e-06/-5.8e-06/-5.8e-06/-5.7e-06 | L +2.9e-04/+4.1e-04/+1.3e-04/-2.7e-04 | depth -9.3e-06
+      B      - A_D: F +9.0e-09/+9.5e-09/+1.3e-08/+2.2e-08 | Fpt +2.4e-05/+5.7e-05/+9.7e-05/+1.3e-04 | D -6.5e-06/-7.5e-06/-7.4e-06/-7.4e-06 | L +3.0e-04/+4.2e-04/+1.3e-04/-2.7e-04 | depth -9.4e-06
+      C      - A_D: F +8.8e-09/+9.3e-09/+1.3e-08/+2.1e-08 | Fpt +2.3e-05/+5.4e-05/+9.3e-05/+1.3e-04 | D -5.1e-06/-5.8e-06/-5.8e-06/-5.7e-06 | L +2.9e-04/+4.1e-04/+1.3e-04/-2.7e-04 | depth -9.3e-06
+      C_abs  - A_D: F +8.2e-09/+8.7e-09/+1.2e-08/+1.9e-08 | Fpt +1.7e-05/+3.6e-05/+5.4e-05/+7.9e-05 | D -5.5e-06/-6.2e-06/-6.3e-06/-6.2e-06 | L +1.3e-03/+2.1e-03/+2.8e-03/+4.6e-03 | depth -1.3e-05
+      B(g_e=0.001) - B(0): F -1.3e-06/-5.2e-06/-1.0e-05/-2.3e-05 | Fpt +8.3e-03/+9.0e-03/+8.6e-03/+7.9e-03 | D +8.7e-03/+9.9e-03/+9.9e-03/+9.7e-03 | L -1.1e-05/-1.8e-05/-2.9e-05/-5.0e-05 | depth -8.6e-05 | push +3.59 g_e | phantom felt outside the region at 1.25 R_e: 1.48 g_e
+      B(g_e=0.003) - B(0): F -1.2e-05/-4.7e-05/-9.2e-05/-2.1e-04 | Fpt +2.5e-02/+2.7e-02/+2.6e-02/+2.5e-02 | D +2.6e-02/+3.0e-02/+3.0e-02/+2.9e-02 | L -1.0e-04/-1.6e-04/-2.6e-04/-4.5e-04 | depth -7.7e-04 | push +3.59 g_e | phantom felt outside the region at 1.25 R_e: 1.32 g_e
+      B(g_e=0.01 ) - B(0): F -1.3e-04/-5.2e-04/-1.0e-03/-2.3e-03 | Fpt +8.2e-02/+9.1e-02/+8.9e-02/+8.8e-02 | D +8.4e-02/+9.6e-02/+9.5e-02/+9.4e-02 | L -1.1e-03/-1.7e-03/-2.7e-03/-4.7e-03 | depth -8.5e-03 | push +3.49 g_e | phantom felt outside the region at 1.25 R_e: 1.57 g_e
+      B(g_e=0.03 ) - B(0): F -1.2e-03/-4.7e-03/-9.1e-03/-2.1e-02 | Fpt +2.1e-01/+2.3e-01/+2.3e-01/+2.4e-01 | D +2.1e-01/+2.3e-01/+2.2e-01/+2.1e-01 | L -6.7e-03/-1.1e-02/-1.7e-02/-2.9e-02 | depth -7.2e-02 | push +2.79 g_e | phantom felt outside the region at 1.25 R_e: 1.93 g_e
+  iso      z=0.4 p=2 x_c0=2 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -4.22..4.22 Mpc, R-extent 4.22 (absolute 4.42); kernel source M_b: region 2.75e+14, all baryons 3.89e+14
+      A_0.2  - A_D: F +1.3e-08/+1.3e-08/+1.7e-08/+2.9e-08 | Fpt +2.8e-05/+6.7e-05/+1.1e-04/+1.6e-04 | D -4.8e-06/-5.5e-06/-5.4e-06/-5.3e-06 | L -2.5e-04/-6.0e-04/-2.7e-03/-8.6e-04 | depth +8.5e-06
+      A_0.5  - A_D: F +1.3e-08/+1.3e-08/+1.7e-08/+2.9e-08 | Fpt +2.8e-05/+6.7e-05/+1.1e-04/+1.6e-04 | D -4.8e-06/-5.5e-06/-5.4e-06/-5.3e-06 | L -2.5e-04/-6.0e-04/-2.7e-03/-8.6e-04 | depth +8.5e-06
+      B      - A_D: F +1.4e-08/+1.4e-08/+1.8e-08/+3.0e-08 | Fpt +3.1e-05/+7.5e-05/+1.3e-04/+1.7e-04 | D -6.4e-06/-7.2e-06/-7.2e-06/-7.0e-06 | L -2.6e-04/-6.1e-04/-2.8e-03/-8.8e-04 | depth +8.5e-06
+      C      - A_D: F +1.3e-08/+1.3e-08/+1.7e-08/+2.9e-08 | Fpt +2.8e-05/+6.7e-05/+1.1e-04/+1.6e-04 | D -4.8e-06/-5.5e-06/-5.4e-06/-5.3e-06 | L -2.5e-04/-6.0e-04/-2.7e-03/-8.6e-04 | depth +8.5e-06
+      C_abs  - A_D: F +1.3e-08/+1.4e-08/+1.8e-08/+3.0e-08 | Fpt +3.2e-05/+8.0e-05/+1.4e-04/+1.9e-04 | D -5.1e-06/-5.8e-06/-5.8e-06/-5.7e-06 | L +4.6e-04/+5.9e-04/-7.8e-04/+3.0e-03 | depth +8.6e-06
+      B(g_e=0.001) - B(0): F -1.3e-06/-5.2e-06/-1.0e-05/-2.3e-05 | Fpt +8.0e-03/+8.7e-03/+8.2e-03/+7.5e-03 | D +8.4e-03/+9.6e-03/+9.5e-03/+9.3e-03 | L -1.0e-05/-1.7e-05/-2.7e-05/-4.6e-05 | depth -7.7e-05 | push +3.48 g_e | phantom felt outside the region at 1.25 R_e: 1.60 g_e
+      B(g_e=0.003) - B(0): F -1.2e-05/-4.7e-05/-9.2e-05/-2.1e-04 | Fpt +2.4e-02/+2.6e-02/+2.5e-02/+2.3e-02 | D +2.5e-02/+2.9e-02/+2.8e-02/+2.8e-02 | L -9.4e-05/-1.5e-04/-2.4e-04/-4.1e-04 | depth -6.9e-04 | push +3.47 g_e | phantom felt outside the region at 1.25 R_e: 1.30 g_e
+      B(g_e=0.01 ) - B(0): F -1.3e-04/-5.2e-04/-1.0e-03/-2.3e-03 | Fpt +8.0e-02/+8.8e-02/+8.5e-02/+8.3e-02 | D +8.2e-02/+9.3e-02/+9.2e-02/+9.0e-02 | L -9.8e-04/-1.6e-03/-2.5e-03/-4.3e-03 | depth -7.7e-03 | push +3.39 g_e | phantom felt outside the region at 1.25 R_e: 1.49 g_e
+      B(g_e=0.03 ) - B(0): F -1.2e-03/-4.7e-03/-9.1e-03/-2.1e-02 | Fpt +2.0e-01/+2.3e-01/+2.3e-01/+2.4e-01 | D +2.1e-01/+2.3e-01/+2.2e-01/+2.1e-01 | L -6.5e-03/-1.0e-02/-1.6e-02/-2.8e-02 | depth -6.6e-02 | push +2.76 g_e | phantom felt outside the region at 1.25 R_e: 1.89 g_e
+  nb3      z=0.0 p=1 x_c0=2.5 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -5.62..8.62 Mpc, R-extent 6.12 (absolute 6.42); kernel source M_b: region 6.60e+14, all baryons 7.79e+14
+      A_0.2  - A_D: F -4.5e-05/-1.7e-04/-3.3e-04/-6.2e-04 | Fpt +5.3e-03/+6.5e-03/+7.5e-03/+9.3e-03 | D +5.3e-03/+6.3e-03/+6.6e-03/+7.1e-03 | L -4.4e-04/-1.3e-03/+2.1e-03/+1.5e-03 | depth -4.9e-04
+      A_0.5  - A_D: F -4.5e-05/-1.7e-04/-3.3e-04/-6.2e-04 | Fpt +5.3e-03/+6.5e-03/+7.5e-03/+9.3e-03 | D +5.3e-03/+6.3e-03/+6.6e-03/+7.1e-03 | L -4.4e-04/-1.3e-03/+2.1e-03/+1.5e-03 | depth -4.9e-04
+      B      - A_D: F -4.7e-05/-1.8e-04/-3.4e-04/-6.5e-04 | Fpt +5.5e-03/+6.8e-03/+7.8e-03/+9.7e-03 | D +5.6e-03/+6.6e-03/+6.9e-03/+7.4e-03 | L -4.3e-04/-1.3e-03/+2.2e-03/+1.6e-03 | depth -5.2e-04
+      C      - A_D: F -4.5e-05/-1.7e-04/-3.3e-04/-6.2e-04 | Fpt +5.3e-03/+6.5e-03/+7.5e-03/+9.3e-03 | D +5.3e-03/+6.3e-03/+6.6e-03/+7.1e-03 | L -4.4e-04/-1.3e-03/+2.1e-03/+1.5e-03 | depth -4.9e-04
+      C_abs  - A_D: F -4.5e-05/-1.8e-04/-3.3e-04/-6.3e-04 | Fpt +6.0e-03/+7.5e-03/+8.7e-03/+1.1e-02 | D +6.0e-03/+7.1e-03/+7.6e-03/+8.2e-03 | L +2.5e-04/-5.9e-04/+4.1e-03/+5.0e-03 | depth -5.0e-04
+  nb3      z=0.0 p=2 x_c0=2 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -5.82..8.82 Mpc, R-extent 6.42 (absolute 6.82); kernel source M_b: region 6.70e+14, all baryons 7.79e+14
+      A_0.2  - A_D: F -3.9e-05/-1.5e-04/-2.8e-04/-5.5e-04 | Fpt +4.8e-03/+5.9e-03/+6.8e-03/+8.6e-03 | D +4.8e-03/+5.7e-03/+6.0e-03/+6.5e-03 | L +7.4e-05/-1.5e-04/+1.6e-03/+1.4e-03 | depth -4.3e-04
+      A_0.5  - A_D: F -3.9e-05/-1.5e-04/-2.8e-04/-5.5e-04 | Fpt +4.8e-03/+5.9e-03/+6.8e-03/+8.6e-03 | D +4.8e-03/+5.7e-03/+6.0e-03/+6.5e-03 | L +7.4e-05/-1.5e-04/+1.6e-03/+1.4e-03 | depth -4.3e-04
+      B      - A_D: F -4.1e-05/-1.6e-04/-3.0e-04/-5.7e-04 | Fpt +5.0e-03/+6.2e-03/+7.1e-03/+8.9e-03 | D +5.0e-03/+6.0e-03/+6.3e-03/+6.8e-03 | L +8.7e-05/-1.3e-04/+1.7e-03/+1.5e-03 | depth -4.5e-04
+      C      - A_D: F -3.9e-05/-1.5e-04/-2.8e-04/-5.5e-04 | Fpt +4.8e-03/+5.9e-03/+6.8e-03/+8.6e-03 | D +4.8e-03/+5.7e-03/+6.0e-03/+6.5e-03 | L +7.4e-05/-1.5e-04/+1.6e-03/+1.4e-03 | depth -4.3e-04
+      C_abs  - A_D: F -3.9e-05/-1.5e-04/-2.9e-04/-5.5e-04 | Fpt +5.6e-03/+7.0e-03/+8.1e-03/+1.0e-02 | D +5.6e-03/+6.6e-03/+7.1e-03/+7.8e-03 | L +9.1e-04/+1.0e-03/+3.9e-03/+5.6e-03 | depth -4.4e-04
+  nb3      z=0.4 p=1 x_c0=2.5 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -4.52..7.52 Mpc, R-extent 5.02 (absolute 5.32); kernel source M_b: region 6.10e+14, all baryons 7.79e+14
+      A_0.2  - A_D: F -8.6e-05/-3.3e-04/-6.3e-04/-1.2e-03 | Fpt +8.8e-03/+1.0e-02/+1.2e-02/+1.4e-02 | D +9.0e-03/+1.0e-02/+1.1e-02/+1.1e-02 | L -1.7e-03/+5.6e-04/+3.4e-04/+2.9e-03 | depth -9.8e-04
+      A_0.5  - A_D: F -8.6e-05/-3.3e-04/-6.3e-04/-1.2e-03 | Fpt +8.8e-03/+1.0e-02/+1.2e-02/+1.4e-02 | D +9.0e-03/+1.0e-02/+1.1e-02/+1.1e-02 | L -1.7e-03/+5.6e-04/+3.4e-04/+2.9e-03 | depth -9.8e-04
+      B      - A_D: F -9.2e-05/-3.6e-04/-6.7e-04/-1.3e-03 | Fpt +9.3e-03/+1.1e-02/+1.2e-02/+1.4e-02 | D +9.6e-03/+1.1e-02/+1.1e-02/+1.2e-02 | L -1.7e-03/+5.9e-04/+4.0e-04/+3.0e-03 | depth -1.1e-03
+      C      - A_D: F -8.6e-05/-3.3e-04/-6.3e-04/-1.2e-03 | Fpt +8.8e-03/+1.0e-02/+1.2e-02/+1.4e-02 | D +9.0e-03/+1.0e-02/+1.1e-02/+1.1e-02 | L -1.7e-03/+5.6e-04/+3.4e-04/+2.9e-03 | depth -9.8e-04
+      C_abs  - A_D: F -8.8e-05/-3.4e-04/-6.4e-04/-1.2e-03 | Fpt +1.0e-02/+1.2e-02/+1.4e-02/+1.7e-02 | D +1.0e-02/+1.2e-02/+1.3e-02/+1.4e-02 | L -1.5e-04/+2.2e-03/+2.9e-03/+7.9e-03 | depth -1.0e-03
+  nb3      z=0.4 p=2 x_c0=2 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -4.32..7.32 Mpc, R-extent 4.72 (absolute 5.02); kernel source M_b: region 5.96e+14, all baryons 7.79e+14
+      A_0.2  - A_D: F -1.0e-04/-3.9e-04/-7.4e-04/-1.4e-03 | Fpt +1.0e-02/+1.2e-02/+1.3e-02/+1.5e-02 | D +1.0e-02/+1.2e-02/+1.2e-02/+1.3e-02 | L -3.3e-04/-1.2e-03/+2.3e-03/+1.3e-03 | depth -1.1e-03
+      A_0.5  - A_D: F -1.0e-04/-3.9e-04/-7.4e-04/-1.4e-03 | Fpt +1.0e-02/+1.2e-02/+1.3e-02/+1.5e-02 | D +1.0e-02/+1.2e-02/+1.2e-02/+1.3e-02 | L -3.3e-04/-1.2e-03/+2.3e-03/+1.3e-03 | depth -1.1e-03
+      B      - A_D: F -1.1e-04/-4.3e-04/-8.0e-04/-1.5e-03 | Fpt +1.1e-02/+1.3e-02/+1.4e-02/+1.6e-02 | D +1.1e-02/+1.3e-02/+1.3e-02/+1.4e-02 | L -3.0e-04/-1.1e-03/+2.4e-03/+1.4e-03 | depth -1.2e-03
+      C      - A_D: F -1.0e-04/-3.9e-04/-7.4e-04/-1.4e-03 | Fpt +1.0e-02/+1.2e-02/+1.3e-02/+1.5e-02 | D +1.0e-02/+1.2e-02/+1.2e-02/+1.3e-02 | L -3.3e-04/-1.2e-03/+2.3e-03/+1.3e-03 | depth -1.1e-03
+      C_abs  - A_D: F -1.0e-04/-4.0e-04/-7.5e-04/-1.4e-03 | Fpt +1.1e-02/+1.3e-02/+1.5e-02/+1.8e-02 | D +1.1e-02/+1.3e-02/+1.4e-02/+1.5e-02 | L -6.8e-04/-7.4e-04/+4.6e-03/+5.2e-03 | depth -1.2e-03
+  nb5      z=0.0 p=1 x_c0=2.5 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -5.52..10.52 Mpc, R-extent 5.82 (absolute 6.12); kernel source M_b: region 6.56e+14, all baryons 7.79e+14
+      A_0.2  - A_D: F -6.0e-05/-2.4e-04/-4.6e-04/-9.9e-04 | Fpt +1.4e-02/+1.6e-02/+1.7e-02/+1.8e-02 | D +1.4e-02/+1.7e-02/+1.7e-02/+1.8e-02 | L -3.4e-04/-9.7e-04/+6.2e-04/+1.6e-03 | depth -1.8e-03
+      A_0.5  - A_D: F -6.0e-05/-2.4e-04/-4.6e-04/-9.9e-04 | Fpt +1.4e-02/+1.6e-02/+1.7e-02/+1.8e-02 | D +1.4e-02/+1.7e-02/+1.7e-02/+1.8e-02 | L -3.4e-04/-9.7e-04/+6.2e-04/+1.6e-03 | depth -1.8e-03
+      B      - A_D: F -6.4e-05/-2.5e-04/-4.8e-04/-1.0e-03 | Fpt +1.4e-02/+1.7e-02/+1.7e-02/+1.9e-02 | D +1.5e-02/+1.7e-02/+1.8e-02/+1.9e-02 | L -3.2e-04/-9.4e-04/+6.6e-04/+1.7e-03 | depth -1.9e-03
+      C      - A_D: F -6.0e-05/-2.4e-04/-4.6e-04/-9.9e-04 | Fpt +1.4e-02/+1.6e-02/+1.7e-02/+1.8e-02 | D +1.4e-02/+1.7e-02/+1.7e-02/+1.8e-02 | L -3.4e-04/-9.7e-04/+6.2e-04/+1.6e-03 | depth -1.8e-03
+      C_abs  - A_D: F -6.1e-05/-2.4e-04/-4.6e-04/-1.0e-03 | Fpt +1.5e-02/+1.8e-02/+1.9e-02/+2.1e-02 | D +1.6e-02/+1.9e-02/+1.9e-02/+2.1e-02 | L +3.0e-04/-2.0e-04/+2.2e-03/+4.8e-03 | depth -1.9e-03
+  nb5      z=0.0 p=2 x_c0=2 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -5.72..10.72 Mpc, R-extent 6.12 (absolute 6.52); kernel source M_b: region 6.67e+14, all baryons 7.79e+14
+      A_0.2  - A_D: F -5.3e-05/-2.1e-04/-4.0e-04/-8.7e-04 | Fpt +1.2e-02/+1.5e-02/+1.5e-02/+1.7e-02 | D +1.3e-02/+1.5e-02/+1.6e-02/+1.6e-02 | L -8.9e-05/-4.3e-04/+1.8e-03/+1.1e-03 | depth -1.6e-03
+      A_0.5  - A_D: F -5.3e-05/-2.1e-04/-4.0e-04/-8.7e-04 | Fpt +1.2e-02/+1.5e-02/+1.5e-02/+1.7e-02 | D +1.3e-02/+1.5e-02/+1.6e-02/+1.6e-02 | L -8.9e-05/-4.3e-04/+1.8e-03/+1.1e-03 | depth -1.6e-03
+      B      - A_D: F -5.6e-05/-2.2e-04/-4.2e-04/-9.1e-04 | Fpt +1.3e-02/+1.5e-02/+1.6e-02/+1.7e-02 | D +1.3e-02/+1.6e-02/+1.6e-02/+1.7e-02 | L -7.5e-05/-4.1e-04/+1.8e-03/+1.2e-03 | depth -1.7e-03
+      C      - A_D: F -5.3e-05/-2.1e-04/-4.0e-04/-8.7e-04 | Fpt +1.2e-02/+1.5e-02/+1.5e-02/+1.7e-02 | D +1.3e-02/+1.5e-02/+1.6e-02/+1.6e-02 | L -8.9e-05/-4.3e-04/+1.8e-03/+1.1e-03 | depth -1.6e-03
+      C_abs  - A_D: F -5.4e-05/-2.1e-04/-4.1e-04/-8.8e-04 | Fpt +1.4e-02/+1.7e-02/+1.8e-02/+2.0e-02 | D +1.5e-02/+1.7e-02/+1.8e-02/+1.9e-02 | L +6.8e-04/+5.9e-04/+4.0e-03/+4.9e-03 | depth -1.6e-03
+  nb5      z=0.4 p=1 x_c0=2.5 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -4.42..9.42 Mpc, R-extent 4.62 (absolute 4.92); kernel source M_b: region 6.03e+14, all baryons 7.79e+14
+      A_0.2  - A_D: F -1.0e-04/-4.1e-04/-7.9e-04/-1.7e-03 | Fpt +2.1e-02/+2.3e-02/+2.3e-02/+2.2e-02 | D +2.2e-02/+2.5e-02/+2.5e-02/+2.6e-02 | L -8.4e-04/-1.9e-03/-9.6e-04/-4.2e-04 | depth -3.0e-03
+      A_0.5  - A_D: F -1.0e-04/-4.1e-04/-7.9e-04/-1.7e-03 | Fpt +2.1e-02/+2.3e-02/+2.3e-02/+2.2e-02 | D +2.2e-02/+2.5e-02/+2.5e-02/+2.6e-02 | L -8.4e-04/-1.9e-03/-9.6e-04/-4.2e-04 | depth -3.0e-03
+      B      - A_D: F -1.1e-04/-4.4e-04/-8.6e-04/-1.9e-03 | Fpt +2.3e-02/+2.5e-02/+2.5e-02/+2.4e-02 | D +2.4e-02/+2.7e-02/+2.7e-02/+2.8e-02 | L -8.4e-04/-1.9e-03/-9.6e-04/-4.0e-04 | depth -3.3e-03
+      C      - A_D: F -1.0e-04/-4.1e-04/-7.9e-04/-1.7e-03 | Fpt +2.1e-02/+2.3e-02/+2.3e-02/+2.2e-02 | D +2.2e-02/+2.5e-02/+2.5e-02/+2.6e-02 | L -8.4e-04/-1.9e-03/-9.6e-04/-4.2e-04 | depth -3.0e-03
+      C_abs  - A_D: F -1.1e-04/-4.2e-04/-8.0e-04/-1.8e-03 | Fpt +2.4e-02/+2.7e-02/+2.7e-02/+2.7e-02 | D +2.5e-02/+2.8e-02/+2.9e-02/+3.0e-02 | L +1.0e-05/-4.7e-04/+1.3e-03/+4.0e-03 | depth -3.1e-03
+  nb5      z=0.4 p=2 x_c0=2 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -4.22..9.22 Mpc, R-extent 4.42 (absolute 4.62); kernel source M_b: region 5.88e+14, all baryons 7.79e+14
+      A_0.2  - A_D: F -1.2e-04/-4.7e-04/-9.0e-04/-2.0e-03 | Fpt +2.4e-02/+2.6e-02/+2.5e-02/+2.3e-02 | D +2.5e-02/+2.8e-02/+2.8e-02/+2.9e-02 | L +1.7e-03/+2.7e-03/+4.9e-05/-2.6e-03 | depth -3.4e-03
+      A_0.5  - A_D: F -1.2e-04/-4.7e-04/-9.0e-04/-2.0e-03 | Fpt +2.4e-02/+2.6e-02/+2.5e-02/+2.3e-02 | D +2.5e-02/+2.8e-02/+2.8e-02/+2.9e-02 | L +1.7e-03/+2.7e-03/+4.9e-05/-2.6e-03 | depth -3.4e-03
+      B      - A_D: F -1.3e-04/-5.1e-04/-1.0e-03/-2.2e-03 | Fpt +2.6e-02/+2.8e-02/+2.7e-02/+2.6e-02 | D +2.7e-02/+3.1e-02/+3.1e-02/+3.1e-02 | L +1.7e-03/+2.6e-03/+2.9e-05/-2.6e-03 | depth -3.8e-03
+      C      - A_D: F -1.2e-04/-4.7e-04/-9.0e-04/-2.0e-03 | Fpt +2.4e-02/+2.6e-02/+2.5e-02/+2.3e-02 | D +2.5e-02/+2.8e-02/+2.8e-02/+2.9e-02 | L +1.7e-03/+2.7e-03/+4.9e-05/-2.6e-03 | depth -3.4e-03
+      C_abs  - A_D: F -1.2e-04/-4.8e-04/-9.2e-04/-2.0e-03 | Fpt +2.7e-02/+2.9e-02/+2.9e-02/+2.9e-02 | D +2.8e-02/+3.2e-02/+3.3e-02/+3.4e-02 | L +2.7e-03/+4.1e-03/+2.0e-03/+1.0e-03 | depth -3.5e-03
+  nb13     z=0.0 p=1 x_c0=2.5 [canonical]: 2 region(s) contrast / 1 absolute; z-extent -5.42..18.42 Mpc, R-extent 5.42 (absolute 5.72); gap 1.20 Mpc; kernel source M_b: region 6.29e+14, all baryons 7.79e+14
+      A_0.2  - A_D: F -1.1e-05/-4.3e-05/-8.4e-05/-1.9e-04 | Fpt +2.6e-02/+3.1e-02/+3.2e-02/+3.7e-02 | D +2.7e-02/+3.1e-02/+3.1e-02/+3.2e-02 | L -1.5e-04/-2.8e-04/-6.8e-04/-3.0e-03 | depth -1.4e-03
+      A_0.5  - A_D: F -1.1e-05/-4.3e-05/-8.4e-05/-1.9e-04 | Fpt +2.6e-02/+3.1e-02/+3.2e-02/+3.7e-02 | D +2.7e-02/+3.1e-02/+3.1e-02/+3.2e-02 | L -1.5e-04/-2.8e-04/-6.8e-04/-3.0e-03 | depth -1.4e-03
+      B      - A_D: F -1.4e-05/-5.8e-05/-1.1e-04/-2.6e-04 | Fpt +3.1e-02/+3.6e-02/+3.8e-02/+4.3e-02 | D +3.1e-02/+3.6e-02/+3.7e-02/+3.7e-02 | L -2.5e-04/-4.3e-04/-9.3e-04/-3.4e-03 | depth -1.8e-03
+      C      - A_D: F +1.5e-08/+2.0e-07/+4.2e-07/+1.1e-06 | Fpt +1.7e-03/+2.1e-03/+2.6e-03/+3.7e-03 | D -1.6e-03/-1.9e-03/-2.0e-03/-2.1e-03 | L +4.4e-04/+6.9e-04/+8.7e-04/-2.7e-04 | depth +1.1e-05
+      C_abs  - A_D: F -1.1e-05/-4.6e-05/-8.9e-05/-2.1e-04 | Fpt +2.9e-02/+3.4e-02/+3.7e-02/+4.3e-02 | D +2.9e-02/+3.4e-02/+3.5e-02/+3.7e-02 | L +4.9e-04/+8.0e-04/+1.1e-03/-3.2e-05 | depth -1.5e-03
+  nb13     z=0.0 p=2 x_c0=2 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -5.72..18.72 Mpc, R-extent 5.72 (absolute 6.02); kernel source M_b: region 6.43e+14, all baryons 7.79e+14
+      A_0.2  - A_D: F -1.1e-05/-4.5e-05/-8.9e-05/-2.1e-04 | Fpt +2.7e-02/+3.2e-02/+3.3e-02/+3.8e-02 | D +2.7e-02/+3.2e-02/+3.2e-02/+3.3e-02 | L -4.5e-04/-7.9e-04/-1.6e-03/-3.1e-03 | depth -1.7e-03
+      A_0.5  - A_D: F -1.1e-05/-4.5e-05/-8.9e-05/-2.1e-04 | Fpt +2.7e-02/+3.2e-02/+3.3e-02/+3.8e-02 | D +2.7e-02/+3.2e-02/+3.2e-02/+3.3e-02 | L -4.5e-04/-7.9e-04/-1.6e-03/-3.1e-03 | depth -1.7e-03
+      B      - A_D: F -1.4e-05/-5.7e-05/-1.1e-04/-2.6e-04 | Fpt +3.1e-02/+3.6e-02/+3.8e-02/+4.3e-02 | D +3.1e-02/+3.6e-02/+3.7e-02/+3.8e-02 | L -5.3e-04/-9.3e-04/-1.9e-03/-3.4e-03 | depth -2.1e-03
+      C      - A_D: F -1.1e-05/-4.5e-05/-8.9e-05/-2.1e-04 | Fpt +2.7e-02/+3.2e-02/+3.3e-02/+3.8e-02 | D +2.7e-02/+3.2e-02/+3.2e-02/+3.3e-02 | L -4.5e-04/-7.9e-04/-1.6e-03/-3.1e-03 | depth -1.7e-03
+      C_abs  - A_D: F -1.2e-05/-4.9e-05/-9.5e-05/-2.2e-04 | Fpt +3.1e-02/+3.7e-02/+4.0e-02/+4.8e-02 | D +3.1e-02/+3.7e-02/+3.8e-02/+4.0e-02 | L +1.1e-04/+1.5e-04/-9.6e-05/+2.7e-04 | depth -1.8e-03
+  nb13     z=0.4 p=1 x_c0=2.5 [canonical]: 2 region(s) contrast / 2 absolute; z-extent -4.42..17.42 Mpc, R-extent 4.42 (absolute 4.72); gap 4.00 Mpc; kernel source M_b: region 5.68e+14, all baryons 7.79e+14
+      A_0.2  - A_D: F -8.4e-06/-3.4e-05/-6.6e-05/-1.5e-04 | Fpt +2.1e-02/+2.4e-02/+2.5e-02/+2.8e-02 | D +2.2e-02/+2.5e-02/+2.5e-02/+2.4e-02 | L -5.0e-05/-1.4e-04/-7.0e-04/-2.0e-03 | depth -6.4e-04
+      A_0.5  - A_D: F -8.4e-06/-3.4e-05/-6.6e-05/-1.5e-04 | Fpt +2.1e-02/+2.4e-02/+2.5e-02/+2.8e-02 | D +2.2e-02/+2.5e-02/+2.5e-02/+2.4e-02 | L -5.0e-05/-1.4e-04/-7.0e-04/-2.0e-03 | depth -6.4e-04
+      B      - A_D: F -1.4e-05/-5.8e-05/-1.1e-04/-2.6e-04 | Fpt +2.8e-02/+3.2e-02/+3.3e-02/+3.6e-02 | D +2.8e-02/+3.2e-02/+3.2e-02/+3.2e-02 | L -1.8e-04/-3.6e-04/-1.0e-03/-2.6e-03 | depth -1.1e-03
+      C      - A_D: F +1.7e-09/+4.1e-08/+9.0e-08/+2.2e-07 | Fpt +6.3e-04/+7.6e-04/+8.6e-04/+1.1e-03 | D -6.2e-04/-7.3e-04/-7.5e-04/-7.8e-04 | L +3.6e-04/+5.3e-04/+3.6e-04/-2.2e-04 | depth -6.3e-06
+      C_abs  - A_D: F +9.7e-10/+3.8e-08/+8.3e-08/+2.0e-07 | Fpt +5.5e-04/+6.7e-04/+7.7e-04/+1.0e-03 | D -5.4e-04/-6.3e-04/-6.5e-04/-6.7e-04 | L +1.4e-03/+2.2e-03/+3.1e-03/+4.6e-03 | depth -8.7e-06
+  nb13     z=0.4 p=2 x_c0=2 [canonical]: 2 region(s) contrast / 2 absolute; z-extent -4.22..17.22 Mpc, R-extent 4.22 (absolute 4.42); gap 4.50 Mpc; kernel source M_b: region 5.51e+14, all baryons 7.79e+14
+      A_0.2  - A_D: F -7.8e-06/-3.2e-05/-6.2e-05/-1.4e-04 | Fpt +2.0e-02/+2.3e-02/+2.4e-02/+2.6e-02 | D +2.1e-02/+2.4e-02/+2.3e-02/+2.3e-02 | L -5.5e-04/-1.1e-03/-3.2e-03/-2.6e-03 | depth -5.1e-04
+      A_0.5  - A_D: F -7.8e-06/-3.2e-05/-6.2e-05/-1.4e-04 | Fpt +2.0e-02/+2.3e-02/+2.4e-02/+2.6e-02 | D +2.1e-02/+2.4e-02/+2.3e-02/+2.3e-02 | L -5.5e-04/-1.1e-03/-3.2e-03/-2.6e-03 | depth -5.1e-04
+      B      - A_D: F -1.4e-05/-5.8e-05/-1.1e-04/-2.6e-04 | Fpt +2.7e-02/+3.1e-02/+3.2e-02/+3.5e-02 | D +2.8e-02/+3.2e-02/+3.2e-02/+3.1e-02 | L -7.0e-04/-1.3e-03/-3.6e-03/-3.3e-03 | depth -9.5e-04
+      C      - A_D: F +6.3e-09/+1.5e-08/+2.8e-08/+6.1e-08 | Fpt +1.5e-04/+1.8e-04/+2.3e-04/+4.9e-04 | D -1.6e-04/-1.8e-04/-1.9e-04/-2.0e-04 | L -1.8e-04/-4.5e-04/-2.2e-03/-9.9e-04 | depth +8.2e-06
+      C_abs  - A_D: F +6.8e-09/+1.4e-08/+2.5e-08/+5.3e-08 | Fpt +1.1e-04/+1.5e-04/+1.5e-04/+1.2e-04 | D +9.7e-05/+1.3e-04/+1.6e-04/+2.1e-04 | L +5.4e-04/+7.3e-04/-2.7e-04/+2.8e-03 | depth +8.4e-06
+  pair0.5  z=0.0 p=1 x_c0=2.5 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -5.02..5.02 Mpc, R-extent 4.92 (absolute 5.12); kernel source M_b: region 3.29e+14, all baryons 3.89e+14
+      A_0.2  - A_D: F -2.5e-06/-3.8e-06/-1.7e-06/-1.1e-06 | Fpt +9.1e-05/+1.5e-04/+2.0e-04/+3.1e-04 | D +6.8e-05/+7.9e-05/+6.7e-05/+5.8e-05 | L +3.6e-04/+4.9e-04/+1.3e-04/-7.0e-05 | depth -6.4e-07
+      A_0.5  - A_D: F -2.5e-06/-3.8e-06/-1.7e-06/-1.1e-06 | Fpt +9.1e-05/+1.5e-04/+2.0e-04/+3.1e-04 | D +6.8e-05/+7.9e-05/+6.7e-05/+5.8e-05 | L +3.6e-04/+4.9e-04/+1.3e-04/-7.0e-05 | depth -6.4e-07
+      B      - A_D: F -2.7e-06/-3.9e-06/-1.8e-06/-1.1e-06 | Fpt +9.6e-05/+1.6e-04/+2.1e-04/+3.2e-04 | D +7.2e-05/+8.3e-05/+7.1e-05/+6.1e-05 | L +3.6e-04/+4.9e-04/+1.4e-04/-6.0e-05 | depth -5.5e-07
+      C      - A_D: F -2.5e-06/-3.8e-06/-1.7e-06/-1.1e-06 | Fpt +9.1e-05/+1.5e-04/+2.0e-04/+3.1e-04 | D +6.8e-05/+7.9e-05/+6.7e-05/+5.8e-05 | L +3.6e-04/+4.9e-04/+1.3e-04/-7.0e-05 | depth -6.4e-07
+      C_abs  - A_D: F -2.4e-06/-3.6e-06/-1.7e-06/-1.1e-06 | Fpt +6.2e-05/+1.0e-04/+1.3e-04/+2.0e-04 | D +4.8e-05/+5.3e-05/+4.2e-05/+3.2e-05 | L +1.0e-03/+1.5e-03/+1.6e-03/+2.6e-03 | depth -1.1e-06
+      C_two  - A_D: F +3.7e-02/+5.4e-02/-7.2e-01/-6.2e-01 | Fpt +1.8e+00/+1.0e+00/+2.2e+00/+7.9e-01 | D -1.5e+00/-1.7e+00/-4.2e-01/-1.2e-01 | L +2.2e-02/-2.0e-02/-1.6e-01/-1.2e-01 | depth -6.5e-01
+  pair0.5  z=0.0 p=2 x_c0=2 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -5.22..5.22 Mpc, R-extent 5.22 (absolute 5.52); kernel source M_b: region 3.34e+14, all baryons 3.89e+14
+      A_0.2  - A_D: F -1.4e-06/-1.9e-06/-7.6e-07/-5.0e-07 | Fpt +6.7e-05/+1.2e-04/+1.7e-04/+3.1e-04 | D +4.9e-05/+5.7e-05/+5.0e-05/+4.5e-05 | L -4.0e-03/-2.7e-04/-6.3e-04/-6.4e-05 | depth -2.3e-06
+      A_0.5  - A_D: F -1.4e-06/-1.9e-06/-7.6e-07/-5.0e-07 | Fpt +6.7e-05/+1.2e-04/+1.7e-04/+3.1e-04 | D +4.9e-05/+5.7e-05/+5.0e-05/+4.5e-05 | L -4.0e-03/-2.7e-04/-6.3e-04/-6.4e-05 | depth -2.3e-06
+      B      - A_D: F -1.4e-06/-1.8e-06/-7.1e-07/-4.7e-07 | Fpt +6.8e-05/+1.2e-04/+1.7e-04/+3.1e-04 | D +4.9e-05/+5.7e-05/+5.0e-05/+4.5e-05 | L -4.1e-03/-2.7e-04/-6.4e-04/-6.7e-05 | depth -2.3e-06
+      C      - A_D: F -1.4e-06/-1.9e-06/-7.6e-07/-5.0e-07 | Fpt +6.7e-05/+1.2e-04/+1.7e-04/+3.1e-04 | D +4.9e-05/+5.7e-05/+5.0e-05/+4.5e-05 | L -4.0e-03/-2.7e-04/-6.3e-04/-6.4e-05 | depth -2.3e-06
+      C_abs  - A_D: F -1.3e-06/-1.8e-06/-7.3e-07/-4.9e-07 | Fpt +6.3e-05/+1.1e-04/+1.6e-04/+2.9e-04 | D +4.6e-05/+5.3e-05/+4.6e-05/+4.1e-05 | L -3.6e-03/+1.1e-03/+1.3e-03/+3.4e-03 | depth -2.2e-06
+      C_two  - A_D: F +3.7e-02/+5.4e-02/-7.2e-01/-6.2e-01 | Fpt +1.9e+00/+1.1e+00/+2.2e+00/+8.0e-01 | D -1.5e+00/-1.7e+00/-4.3e-01/-1.2e-01 | L +1.8e-02/-2.1e-02/-1.6e-01/-1.2e-01 | depth -6.4e-01
+  pair0.5  z=0.4 p=1 x_c0=2.5 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -4.12..4.12 Mpc, R-extent 4.12 (absolute 4.32); kernel source M_b: region 3.05e+14, all baryons 3.89e+14
+      A_0.2  - A_D: F -9.8e-06/-1.6e-05/-7.7e-06/-4.8e-06 | Fpt +3.1e-04/+5.0e-04/+6.7e-04/+9.8e-04 | D +2.4e-04/+2.8e-04/+2.4e-04/+2.1e-04 | L +2.4e-03/+9.5e-04/-1.1e-03/+1.9e-04 | depth +9.0e-06
+      A_0.5  - A_D: F -9.8e-06/-1.6e-05/-7.7e-06/-4.8e-06 | Fpt +3.1e-04/+5.0e-04/+6.7e-04/+9.8e-04 | D +2.4e-04/+2.8e-04/+2.4e-04/+2.1e-04 | L +2.4e-03/+9.5e-04/-1.1e-03/+1.9e-04 | depth +9.0e-06
+      B      - A_D: F -1.0e-05/-1.7e-05/-8.2e-06/-5.1e-06 | Fpt +3.3e-04/+5.3e-04/+7.1e-04/+1.0e-03 | D +2.5e-04/+2.9e-04/+2.5e-04/+2.2e-04 | L +2.4e-03/+9.6e-04/-1.2e-03/+2.0e-04 | depth +9.4e-06
+      C      - A_D: F -9.8e-06/-1.6e-05/-7.7e-06/-4.8e-06 | Fpt +3.1e-04/+5.0e-04/+6.7e-04/+9.8e-04 | D +2.4e-04/+2.8e-04/+2.4e-04/+2.1e-04 | L +2.4e-03/+9.5e-04/-1.1e-03/+1.9e-04 | depth +9.0e-06
+      C_abs  - A_D: F -1.0e-05/-1.7e-05/-8.2e-06/-5.0e-06 | Fpt +4.3e-04/+7.1e-04/+9.6e-04/+1.5e-03 | D +3.2e-04/+3.8e-04/+3.4e-04/+3.1e-04 | L +3.9e-03/+3.0e-03/+1.2e-03/+4.5e-03 | depth +1.1e-05
+      C_two  - A_D: F +3.7e-02/+5.5e-02/-7.0e-01/-6.0e-01 | Fpt +1.8e+00/+1.0e+00/+2.1e+00/+7.4e-01 | D -1.5e+00/-1.6e+00/-4.0e-01/-1.0e-01 | L +2.6e-02/-1.5e-02/-1.5e-01/-1.1e-01 | depth -6.5e-01
+  pair0.5  z=0.4 p=2 x_c0=2 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -3.92..3.92 Mpc, R-extent 3.92 (absolute 4.02); kernel source M_b: region 2.98e+14, all baryons 3.89e+14
+      A_0.2  - A_D: F -7.8e-06/-1.2e-05/-6.0e-06/-3.7e-06 | Fpt +2.4e-04/+3.9e-04/+5.1e-04/+7.6e-04 | D +1.9e-04/+2.1e-04/+1.8e-04/+1.6e-04 | L -2.0e-03/+3.2e-04/-7.6e-04/-5.8e-06 | depth +1.2e-05
+      A_0.5  - A_D: F -7.8e-06/-1.2e-05/-6.0e-06/-3.7e-06 | Fpt +2.4e-04/+3.9e-04/+5.1e-04/+7.6e-04 | D +1.9e-04/+2.1e-04/+1.8e-04/+1.6e-04 | L -2.0e-03/+3.2e-04/-7.6e-04/-5.8e-06 | depth +1.2e-05
+      B      - A_D: F -8.1e-06/-1.3e-05/-6.3e-06/-3.9e-06 | Fpt +2.5e-04/+4.1e-04/+5.3e-04/+7.9e-04 | D +1.9e-04/+2.2e-04/+1.9e-04/+1.6e-04 | L -2.0e-03/+3.2e-04/-7.7e-04/+2.2e-06 | depth +1.2e-05
+      C      - A_D: F -7.8e-06/-1.2e-05/-6.0e-06/-3.7e-06 | Fpt +2.4e-04/+3.9e-04/+5.1e-04/+7.6e-04 | D +1.9e-04/+2.1e-04/+1.8e-04/+1.6e-04 | L -2.0e-03/+3.2e-04/-7.6e-04/-5.8e-06 | depth +1.2e-05
+      C_abs  - A_D: F -7.5e-06/-1.2e-05/-5.8e-06/-3.6e-06 | Fpt +1.9e-04/+2.9e-04/+3.8e-04/+5.4e-04 | D +1.5e-04/+1.7e-04/+1.4e-04/+1.1e-04 | L -1.3e-03/+1.7e-03/+1.1e-03/+3.5e-03 | depth +1.3e-05
+      C_two  - A_D: F +3.7e-02/+5.5e-02/-7.0e-01/-5.9e-01 | Fpt +1.8e+00/+9.9e-01/+2.1e+00/+7.3e-01 | D -1.5e+00/-1.6e+00/-4.0e-01/-1.0e-01 | L +2.1e-02/-1.5e-02/-1.4e-01/-1.1e-01 | depth -6.5e-01
+  pair1.0  z=0.0 p=1 x_c0=2.5 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -5.12..5.12 Mpc, R-extent 4.92 (absolute 5.12); kernel source M_b: region 3.29e+14, all baryons 3.89e+14
+      A_0.2  - A_D: F -1.8e-05/-4.6e-05/-5.4e-05/-3.0e-05 | Fpt +6.8e-04/+9.6e-04/+1.3e-03/+1.8e-03 | D +6.2e-04/+7.2e-04/+7.7e-04/+6.7e-04 | L -1.0e-03/-2.5e-03/+1.3e-04/+4.7e-04 | depth +3.3e-05
+      A_0.5  - A_D: F -1.8e-05/-4.6e-05/-5.4e-05/-3.0e-05 | Fpt +6.8e-04/+9.6e-04/+1.3e-03/+1.8e-03 | D +6.2e-04/+7.2e-04/+7.7e-04/+6.7e-04 | L -1.0e-03/-2.5e-03/+1.3e-04/+4.7e-04 | depth +3.3e-05
+      B      - A_D: F -1.9e-05/-4.8e-05/-5.6e-05/-3.2e-05 | Fpt +7.1e-04/+1.0e-03/+1.4e-03/+1.9e-03 | D +6.5e-04/+7.6e-04/+8.0e-04/+7.0e-04 | L -1.0e-03/-2.6e-03/+1.4e-04/+4.9e-04 | depth +3.5e-05
+      C      - A_D: F -1.8e-05/-4.6e-05/-5.4e-05/-3.0e-05 | Fpt +6.8e-04/+9.6e-04/+1.3e-03/+1.8e-03 | D +6.2e-04/+7.2e-04/+7.7e-04/+6.7e-04 | L -1.0e-03/-2.5e-03/+1.3e-04/+4.7e-04 | depth +3.3e-05
+      C_abs  - A_D: F -1.8e-05/-4.6e-05/-5.4e-05/-3.0e-05 | Fpt +6.8e-04/+9.6e-04/+1.3e-03/+1.8e-03 | D +6.2e-04/+7.2e-04/+7.6e-04/+6.7e-04 | L -3.2e-04/-1.4e-03/+2.3e-03/+3.8e-03 | depth +3.3e-05
+      C_two  - A_D: F +1.6e-02/+4.7e-02/+7.4e-02/-5.9e-01 | Fpt +1.2e+00/+1.6e+00/+6.6e-01/+1.8e+00 | D -1.0e+00/-1.1e+00/-1.2e+00/-2.6e-01 | L +1.9e-02/+2.6e-02/+7.9e-03/-1.4e-01 | depth -6.7e-01
+  pair1.0  z=0.0 p=2 x_c0=2 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -5.32..5.32 Mpc, R-extent 5.12 (absolute 5.42); kernel source M_b: region 3.34e+14, all baryons 3.89e+14
+      A_0.2  - A_D: F -1.8e-05/-4.5e-05/-5.3e-05/-3.0e-05 | Fpt +7.0e-04/+9.8e-04/+1.4e-03/+1.8e-03 | D +6.3e-04/+7.4e-04/+7.8e-04/+6.9e-04 | L +2.1e-04/+2.1e-04/-1.0e-03/+6.9e-04 | depth +3.0e-05
+      A_0.5  - A_D: F -1.8e-05/-4.5e-05/-5.3e-05/-3.0e-05 | Fpt +7.0e-04/+9.8e-04/+1.4e-03/+1.8e-03 | D +6.3e-04/+7.4e-04/+7.8e-04/+6.9e-04 | L +2.1e-04/+2.1e-04/-1.0e-03/+6.9e-04 | depth +3.0e-05
+      B      - A_D: F -1.8e-05/-4.7e-05/-5.5e-05/-3.1e-05 | Fpt +7.3e-04/+1.0e-03/+1.4e-03/+1.9e-03 | D +6.6e-04/+7.7e-04/+8.2e-04/+7.2e-04 | L +2.2e-04/+2.2e-04/-1.0e-03/+7.2e-04 | depth +3.2e-05
+      C      - A_D: F -1.8e-05/-4.5e-05/-5.3e-05/-3.0e-05 | Fpt +7.0e-04/+9.8e-04/+1.4e-03/+1.8e-03 | D +6.3e-04/+7.4e-04/+7.8e-04/+6.9e-04 | L +2.1e-04/+2.1e-04/-1.0e-03/+6.9e-04 | depth +3.0e-05
+      C_abs  - A_D: F -1.8e-05/-4.6e-05/-5.4e-05/-3.0e-05 | Fpt +8.3e-04/+1.2e-03/+1.7e-03/+2.3e-03 | D +7.4e-04/+8.7e-04/+9.4e-04/+8.5e-04 | L +1.2e-03/+1.9e-03/+1.6e-03/+5.0e-03 | depth +3.1e-05
+      C_two  - A_D: F +1.6e-02/+4.7e-02/+7.4e-02/-6.0e-01 | Fpt +1.2e+00/+1.6e+00/+6.7e-01/+1.8e+00 | D -1.0e+00/-1.2e+00/-1.2e+00/-2.6e-01 | L +2.0e-02/+2.9e-02/+5.5e-03/-1.4e-01 | depth -6.7e-01
+  pair1.0  z=0.4 p=1 x_c0=2.5 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -4.22..4.22 Mpc, R-extent 4.02 (absolute 4.32); kernel source M_b: region 3.04e+14, all baryons 3.89e+14
+      A_0.2  - A_D: F -4.0e-05/-1.0e-04/-1.2e-04/-6.8e-05 | Fpt +1.3e-03/+1.8e-03/+2.4e-03/+3.3e-03 | D +1.2e-03/+1.4e-03/+1.4e-03/+1.2e-03 | L -1.9e-04/-7.5e-04/+1.6e-05/+1.1e-03 | depth +7.1e-05
+      A_0.5  - A_D: F -4.0e-05/-1.0e-04/-1.2e-04/-6.8e-05 | Fpt +1.3e-03/+1.8e-03/+2.4e-03/+3.3e-03 | D +1.2e-03/+1.4e-03/+1.4e-03/+1.2e-03 | L -1.9e-04/-7.5e-04/+1.6e-05/+1.1e-03 | depth +7.1e-05
+      B      - A_D: F -4.3e-05/-1.1e-04/-1.3e-04/-7.2e-05 | Fpt +1.4e-03/+1.9e-03/+2.6e-03/+3.5e-03 | D +1.3e-03/+1.5e-03/+1.5e-03/+1.3e-03 | L -1.8e-04/-7.3e-04/+4.6e-05/+1.1e-03 | depth +7.6e-05
+      C      - A_D: F -4.0e-05/-1.0e-04/-1.2e-04/-6.8e-05 | Fpt +1.3e-03/+1.8e-03/+2.4e-03/+3.3e-03 | D +1.2e-03/+1.4e-03/+1.4e-03/+1.2e-03 | L -1.9e-04/-7.5e-04/+1.6e-05/+1.1e-03 | depth +7.1e-05
+      C_abs  - A_D: F -4.1e-05/-1.0e-04/-1.2e-04/-7.0e-05 | Fpt +1.6e-03/+2.3e-03/+3.2e-03/+4.5e-03 | D +1.4e-03/+1.7e-03/+1.8e-03/+1.6e-03 | L +3.1e-04/+7.4e-04/+3.5e-03/+6.5e-03 | depth +7.3e-05
+      C_two  - A_D: F +1.6e-02/+4.8e-02/+7.4e-02/-5.7e-01 | Fpt +1.1e+00/+1.6e+00/+6.1e-01/+1.7e+00 | D -9.7e-01/-1.1e+00/-1.2e+00/-2.3e-01 | L +2.0e-02/+2.9e-02/+1.1e-02/-1.2e-01 | depth -6.8e-01
+  pair1.0  z=0.4 p=2 x_c0=2 [canonical]: 1 region(s) contrast / 1 absolute; z-extent -4.02..4.02 Mpc, R-extent 3.82 (absolute 4.02); kernel source M_b: region 2.98e+14, all baryons 3.89e+14
+      A_0.2  - A_D: F -5.1e-05/-1.3e-04/-1.6e-04/-8.8e-05 | Fpt +1.6e-03/+2.2e-03/+2.9e-03/+3.5e-03 | D +1.5e-03/+1.7e-03/+1.8e-03/+1.5e-03 | L -1.3e-04/-6.6e-04/+1.4e-04/+1.5e-03 | depth +9.6e-05
+      A_0.5  - A_D: F -5.1e-05/-1.3e-04/-1.6e-04/-8.8e-05 | Fpt +1.6e-03/+2.2e-03/+2.9e-03/+3.5e-03 | D +1.5e-03/+1.7e-03/+1.8e-03/+1.5e-03 | L -1.3e-04/-6.6e-04/+1.4e-04/+1.5e-03 | depth +9.6e-05
+      B      - A_D: F -5.6e-05/-1.4e-04/-1.7e-04/-9.5e-05 | Fpt +1.7e-03/+2.3e-03/+3.1e-03/+3.8e-03 | D +1.6e-03/+1.8e-03/+1.9e-03/+1.6e-03 | L -1.1e-04/-6.3e-04/+1.9e-04/+1.6e-03 | depth +1.0e-04
+      C      - A_D: F -5.1e-05/-1.3e-04/-1.6e-04/-8.8e-05 | Fpt +1.6e-03/+2.2e-03/+2.9e-03/+3.5e-03 | D +1.5e-03/+1.7e-03/+1.8e-03/+1.5e-03 | L -1.3e-04/-6.6e-04/+1.4e-04/+1.5e-03 | depth +9.6e-05
+      C_abs  - A_D: F -5.3e-05/-1.4e-04/-1.6e-04/-9.1e-05 | Fpt +2.0e-03/+2.8e-03/+3.7e-03/+4.7e-03 | D +1.8e-03/+2.1e-03/+2.2e-03/+2.0e-03 | L +9.5e-04/+1.2e-03/+2.9e-03/+6.2e-03 | depth +1.0e-04
+      C_two  - A_D: F +1.6e-02/+4.8e-02/+7.4e-02/-5.7e-01 | Fpt +1.1e+00/+1.6e+00/+5.9e-01/+1.7e+00 | D -9.6e-01/-1.1e+00/-1.2e+00/-2.2e-01 | L +2.0e-02/+2.9e-02/+1.2e-02/-1.2e-01 | depth -6.9e-01
+  [28s]
+
+======================================================================================================================
+X  SUMMARY: max |fractional difference| vs A_D over both footings and all four gate cells
+======================================================================================================================
+    columns: 'mono' = shell-averaged radial phantom force at r = 0.1-1 Mpc (the retention core; = enclosed phantom mass); 'depth' = phantom well depth centre -> 0.9 R_e; 'M_ph(0.9Re)' = phantom mass enclosed at 0.9 R_e (outskirts); 'worst-dir' = max over theta = 0/90/180 deg of the radial-force change / the shell-averaged force; 'push' = shell-averaged z-force change (the net push along the axis) / the shell-averaged force; 'lensing' = projected (perpendicular) lensing mass change / the total lensing mass, R = 0.1-1 Mpc
+    config   operator      mono     depth  M_ph(0.9Re)  worst-dir      push   lensing
+    iso      A_0.2     2.9e-08   9.3e-06      6.5e-04    1.6e-04   8.0e-06   2.9e-03
+    iso      A_0.5     2.9e-08   9.3e-06      6.5e-04    1.6e-04   8.0e-06   2.9e-03
+    iso      B         3.0e-08   9.4e-06      6.5e-04    1.7e-04   9.1e-06   3.0e-03
+    iso      C         2.9e-08   9.3e-06      6.5e-04    1.6e-04   8.0e-06   2.9e-03
+    iso      C_abs     3.0e-08   1.3e-05      8.9e-04    1.9e-04   8.6e-06   4.9e-03
+    nb3      A_0.2     1.4e-03   1.1e-03      6.0e-04    1.5e-02   1.3e-02   3.1e-03
+    nb3      A_0.5     1.4e-03   1.1e-03      6.0e-04    1.5e-02   1.3e-02   3.1e-03
+    nb3      B         1.5e-03   1.2e-03      6.9e-04    1.6e-02   1.4e-02   3.2e-03
+    nb3      C         1.4e-03   1.1e-03      6.0e-04    1.5e-02   1.3e-02   3.1e-03
+    nb3      C_abs     1.4e-03   1.2e-03      6.2e-04    1.8e-02   1.5e-02   8.5e-03
+    nb5      A_0.2     2.0e-03   3.4e-03      5.2e-03    2.6e-02   2.9e-02   2.9e-03
+    nb5      A_0.5     2.0e-03   3.4e-03      5.2e-03    2.6e-02   2.9e-02   2.9e-03
+    nb5      B         2.2e-03   3.8e-03      6.0e-03    2.8e-02   3.1e-02   2.9e-03
+    nb5      C         2.0e-03   3.4e-03      5.2e-03    2.6e-02   2.9e-02   2.9e-03
+    nb5      C_abs     2.0e-03   3.5e-03      5.3e-03    2.9e-02   3.4e-02   5.3e-03
+    nb13     A_0.2     2.1e-04   1.7e-03      1.0e-02    3.8e-02   3.3e-02   3.4e-03
+    nb13     A_0.5     2.1e-04   1.7e-03      1.0e-02    3.8e-02   3.3e-02   3.4e-03
+    nb13     B         2.6e-04   2.1e-03      1.3e-02    4.3e-02   3.8e-02   3.9e-03
+    nb13     C         2.1e-04   1.7e-03      1.0e-02    3.8e-02   3.3e-02   3.3e-03
+    nb13     C_abs     2.2e-04   1.8e-03      1.1e-02    4.8e-02   4.0e-02   4.9e-03
+    pair0.5  A_0.2     1.6e-05   1.2e-05      5.3e-04    9.8e-04   2.8e-04   4.4e-03
+    pair0.5  A_0.5     1.6e-05   1.2e-05      5.3e-04    9.8e-04   2.8e-04   4.4e-03
+    pair0.5  B         1.7e-05   1.2e-05      5.3e-04    1.0e-03   2.9e-04   4.4e-03
+    pair0.5  C         1.6e-05   1.2e-05      5.3e-04    9.8e-04   2.8e-04   4.4e-03
+    pair0.5  C_abs     1.7e-05   1.3e-05      7.1e-04    1.5e-03   3.8e-04   4.8e-03
+    pair1.0  A_0.2     1.6e-04   9.6e-05      2.2e-04    3.5e-03   1.8e-03   2.7e-03
+    pair1.0  A_0.5     1.6e-04   9.6e-05      2.2e-04    3.5e-03   1.8e-03   2.7e-03
+    pair1.0  B         1.7e-04   1.0e-04      2.2e-04    3.8e-03   1.9e-03   2.7e-03
+    pair1.0  C         1.6e-04   9.6e-05      2.2e-04    3.5e-03   1.8e-03   2.7e-03
+    pair1.0  C_abs     1.6e-04   1.0e-04      2.6e-04    4.7e-03   2.2e-03   7.0e-03
+    iso+g_e=0.001 B(g_e) - B(0) [A and C do not see g_e]: mono 3.3e-05  depth 2.2e-04  M_ph(0.9Re) 1.1e-03  worst-dir 1.3e-02  lensing 1.3e-04; net phantom push on the baryons (<0.5 Mpc) 3.48-4.66 g_e; phantom felt by out-of-region baryons at 1.25 R_e 1.46-1.72 g_e
+    iso+g_e=0.003 B(g_e) - B(0) [A and C do not see g_e]: mono 3.0e-04  depth 2.0e-03  M_ph(0.9Re) 1.0e-02  worst-dir 3.8e-02  lensing 1.1e-03; net phantom push on the baryons (<0.5 Mpc) 3.47-4.63 g_e; phantom felt by out-of-region baryons at 1.25 R_e 1.30-1.95 g_e
+    iso+g_e=0.01  B(g_e) - B(0) [A and C do not see g_e]: mono 3.3e-03  depth 2.1e-02  M_ph(0.9Re) 1.1e-01  worst-dir 1.3e-01  lensing 1.0e-02; net phantom push on the baryons (<0.5 Mpc) 3.39-4.29 g_e; phantom felt by out-of-region baryons at 1.25 R_e 1.49-2.34 g_e
+    iso+g_e=0.03  B(g_e) - B(0) [A and C do not see g_e]: mono 3.0e-02  depth 1.4e-01  M_ph(0.9Re) 4.6e-01  worst-dir 2.8e-01  lensing 5.0e-02; net phantom push on the baryons (<0.5 Mpc) 2.76-2.89 g_e; phantom felt by out-of-region baryons at 1.25 R_e 1.89-2.02 g_e
+    B's push displaces the main cluster's baryons from its carrier by ~0.2 kpc at g_e = 0.003 (0.5 kpc at 0.01; L370's estimator dx = a/(4/3 pi G rho50), rho50 = 1.42e+16 Msun/Mpc^3 real + phantom); A and C: 0
+    NUMERICAL FLOOR (isolated sphere, where A_D = B = C exactly in the continuum): mono 3.0e-08, depth 9.4e-06, M_ph(0.9Re) 6.5e-04, lensing 3.0e-03 (the staircase edge layer in the line of sight)
+    GAUSS: net phantom mass over the whole domain / M_b <= 3.0e-13 for every operator and configuration (each region's phantom is compensated at its own edge); enclosed at 0.9 R_e (isolated, canonical): z=0.0 p=1 x_c0=2.5 6.93 M_b(<0.9Re), z=0.0 p=2 x_c0=2 7.21 M_b(<0.9Re), z=0.4 p=1 x_c0=2.5 5.93 M_b(<0.9Re), z=0.4 p=2 x_c0=2 5.70 M_b(<0.9Re)
+    WELL DEPTH z=0.0 p=1 x_c0=2.5 (isolated, canonical, centre -> 0.9 R_e): carrier (Newtonian phi, all operators) 8.545e+06 (km/s)^2 [v_esc 4134 km/s]; baryons add the phantom 3.040e+06 (A_D) -- B +1.7e-06, C +1.7e-06; with g_e = 0.003 B -1.2e-03
+    WELL DEPTH z=0.0 p=2 x_c0=2 (isolated, canonical, centre -> 0.9 R_e): carrier (Newtonian phi, all operators) 8.618e+06 (km/s)^2 [v_esc 4152 km/s]; baryons add the phantom 3.129e+06 (A_D) -- B +4.7e-06, C +4.7e-06; with g_e = 0.003 B -1.4e-03
+    WELL DEPTH z=0.4 p=1 x_c0=2.5 (isolated, canonical, centre -> 0.9 R_e): carrier (Newtonian phi, all operators) 8.214e+06 (km/s)^2 [v_esc 4053 km/s]; baryons add the phantom 2.689e+06 (A_D) -- B -9.4e-06, C -9.3e-06; with g_e = 0.003 B -7.8e-04
+    WELL DEPTH z=0.4 p=2 x_c0=2 (isolated, canonical, centre -> 0.9 R_e): carrier (Newtonian phi, all operators) 8.121e+06 (km/s)^2 [v_esc 4030 km/s]; baryons add the phantom 2.603e+06 (A_D) -- B +8.5e-06, C +8.5e-06; with g_e = 0.003 B -6.8e-04
+    EDGE DEFINITION (C_abs - C, same operator, edge +5-6%): lensing mass change at R = 0.1/0.25/0.5/1 Mpc up to 1.2e-03/2.0e-03/3.8e-03/5.8e-03; monopole force 5.1e-06 (shell theorem)
+    EDGE DEFINITION flips the labelling: nb13 at z=0.0 p=1 x_c0=2.5 is 2 regions under the contrast gate and 1 under the absolute one (the neighbour enters C_abs's kernel at first order: see the nb13 rows)
+    pair0.5 z=0.0 p=1 x_c0=2.5: phantom pull on cluster 2's baryons (km/s)^2/Mpc: A_D -9.5847e+04, B -9.5948e+04 (+1.1e-03), C -9.5883e+04 (+3.8e-04); the same pair labelled as two touching regions (split at the midplane) C_two +4.4499e+04 (sign reversed: the split plane's negative edge layer repels)
+    pair0.5 z=0.4 p=2 x_c0=2: phantom pull on cluster 2's baryons (km/s)^2/Mpc: A_D -9.3315e+04, B -9.3530e+04 (+2.3e-03), C -9.3392e+04 (+8.3e-04); the same pair labelled as two touching regions (split at the midplane) C_two +3.7298e+04 (sign reversed: the split plane's negative edge layer repels)
+    pair1.0 z=0.0 p=1 x_c0=2.5: phantom pull on cluster 2's baryons (km/s)^2/Mpc: A_D -1.3784e+05, B -1.3829e+05 (+3.2e-03), C -1.3815e+05 (+2.3e-03); the same pair labelled as two touching regions (split at the midplane) C_two +4.6711e+04 (sign reversed: the split plane's negative edge layer repels)
+    pair1.0 z=0.4 p=2 x_c0=2: phantom pull on cluster 2's baryons (km/s)^2/Mpc: A_D -1.3234e+05, B -1.3324e+05 (+6.8e-03), C -1.3294e+05 (+4.5e-03); the same pair labelled as two touching regions (split at the midplane) C_two +3.5067e+04 (sign reversed: the split plane's negative edge layer repels)
+    nb13 z=0.0 p=1 x_c0=2.5 [canonical]: gap 1.20 Mpc; response to the neighbour: B 3.77e-02, A(1/m = 0.5) 3.22e-02 (isolated A(0.5) - A_D 7.5e-06; L361 transmission for this gap ~5.1e-02)
+    nb13 z=0.0 p=1 x_c0=2.5 [alt]: gap 1.20 Mpc; response to the neighbour: B 3.73e-02, A(1/m = 0.5) 3.19e-02 (isolated A(0.5) - A_D 7.5e-06; L361 transmission for this gap ~5.1e-02)
+    nb13 z=0.4 p=1 x_c0=2.5 [canonical]: gap 4.00 Mpc; response to the neighbour: B 3.24e-02, A(1/m = 0.5) 2.47e-02 (isolated A(0.5) - A_D 5.8e-06; L361 transmission for this gap ~2.7e-04)
+    nb13 z=0.4 p=1 x_c0=2.5 [alt]: gap 4.00 Mpc; response to the neighbour: B 3.20e-02, A(1/m = 0.5) 2.44e-02 (isolated A(0.5) - A_D 5.7e-06; L361 transmission for this gap ~2.7e-04)
+    nb13 z=0.4 p=2 x_c0=2 [canonical]: gap 4.50 Mpc; response to the neighbour: B 3.19e-02, A(1/m = 0.5) 2.36e-02 (isolated A(0.5) - A_D 5.5e-06; L361 transmission for this gap ~1.1e-04)
+    nb13 z=0.4 p=2 x_c0=2 [alt]: gap 4.50 Mpc; response to the neighbour: B 3.14e-02, A(1/m = 0.5) 2.32e-02 (isolated A(0.5) - A_D 5.4e-06; L361 transmission for this gap ~1.1e-04)
+  [FAIL] X-SCREEN a similar cluster 13 Mpc away in its own region: (B)'s kernel reads it (its field, ~3e-3 a0, enters at first order), while (A) at 1/m = 0.5 Mpc sees it only through the screened gap (response < 10% of B's)
+         measured: 6 separated cells; max B 3.77e-02, max A(0.5) 3.22e-02
+         reading:  a separated region is an external field for (B) and nothing for (A) and (C)
+
+======================================================================================================================
+R  CONVERGENCE: three meshes (cells 50/35/25 kpc inner, 200/140/100 kpc outer), gate z = 0.4 p = 2, canonical
+======================================================================================================================
+    cells 50/200 kpc (33516 cells): iso B-ref mono 1.37e-08 depth 1.3e-05 dip 8.9e-06 lens 5.9e-03; nb5 B-ref mono 2.24e-03 depth 3.9e-03 dip 3.1e-02 lens 1.3e-03; pair1.0 B-ref mono 7.68e-05 depth 3.6e-05 dip 8.1e-04 lens 6.5e-03; ext0.003 B-ref mono 2.09e-04 depth 7.0e-04 dip 2.9e-02 lens 4.1e-04 push 3.471 g_e; ext0.01 B-ref mono 2.33e-03 depth 7.7e-03 dip 9.4e-02 lens 4.3e-03 push 3.388 g_e
+    cells 35/140 kpc (52593 cells): iso B-ref mono 8.15e-09 depth 8.2e-07 dip 8.9e-06 lens 1.2e-03; nb5 B-ref mono 2.19e-03 depth 3.7e-03 dip 3.1e-02 lens 2.2e-04; pair1.0 B-ref mono 1.33e-04 depth 7.8e-05 dip 1.5e-03 lens 4.9e-03; ext0.003 B-ref mono 2.09e-04 depth 7.0e-04 dip 2.9e-02 lens 4.1e-04 push 3.470 g_e; ext0.01 B-ref mono 2.33e-03 depth 7.7e-03 dip 9.3e-02 lens 4.3e-03 push 3.388 g_e
+    cells 25/100 kpc (83172 cells): iso B-ref mono 3.00e-08 depth 8.5e-06 dip 7.2e-06 lens 2.8e-03; nb5 B-ref mono 2.19e-03 depth 3.8e-03 dip 3.1e-02 lens 2.6e-03; pair1.0 B-ref mono 1.68e-04 depth 1.0e-04 dip 1.9e-03 lens 1.6e-03; ext0.003 B-ref mono 2.09e-04 depth 6.9e-04 dip 2.9e-02 lens 4.1e-04 push 3.474 g_e; ext0.01 B-ref mono 2.33e-03 depth 7.7e-03 dip 9.3e-02 lens 4.3e-03 push 3.393 g_e
+  [PASS] R1 the retention observables converge: between the two finest meshes the B-vs-A monopole force differences move by < 1e-3 and the dipole (net push) differences by < 3e-3 (fractions of the phantom force)
+         measured: max change: mono 3.6e-05, dipole 4.1e-04
+         reading:  the lensing-mass differences are floor-limited (the staircase edge layer) and reported, not gated
+
+======================================================================================================================
+H  HARVEY+2015 (L370's configuration, toward-main orientation, z = 0.4): the substructure's lensing centroid
+======================================================================================================================
+    mesh 168 x 350 = 58800 cells, 10 kpc cells over R < 0.35, z = -0.15..0.65 Mpc; lensing map = projected (real + phantom) minus the main cluster alone (as L370:666/678), centroids iterated in 100 and 150 kpc apertures; the region's far edge layer is excluded by keeping matter within r_s = 1.5 Mpc of the substructure (see the NOISE diagnostic)
+    z=0.4 p=2 x_c0=2 [canonical] sub 1e+14 (real M200 4.07e+13; main 5.20e+14) dSG 60 kpc: shift toward main (100/150 kpc) A_D 2.344/3.398 kpc, excess beta vs no phantom +0.0139/+0.0163; d_beta vs A_D: A_0.2 -2.6e-07/-9.8e-06, A_0.5 -2.6e-07/-9.8e-06, C -2.6e-07/-9.8e-06, C_abs -3.7e-07/-9.3e-06, B +3.4e-07/-7.4e-06, B+0.003 -3.7e-05/-3.8e-04, B-0.003 +4.5e-05/+3.7e-04, B+0.01 -1.1e-04/-1.2e-03, B-0.01 +1.8e-04/+1.3e-03
+    z=0.4 p=2 x_c0=2 [canonical] sub 1e+14 (real M200 4.07e+13; main 5.20e+14) dSG 120 kpc: shift toward main (100/150 kpc) A_D 2.535/6.018 kpc, excess beta vs no phantom +0.0081/+0.0211; d_beta vs A_D: A_0.2 +5.7e-08/+1.3e-06, A_0.5 +5.7e-08/+1.3e-06, C +5.7e-08/+1.3e-06, C_abs +4.4e-08/+1.2e-06, B +4.4e-07/+2.3e-06, B+0.003 -3.6e-05/-4.4e-05, B-0.003 +3.9e-05/+5.7e-05, B+0.01 -1.2e-04/-1.3e-04, B-0.01 +1.4e-04/+2.2e-04
+    z=0.4 p=2 x_c0=2 [canonical] sub 3e+14 (real M200 1.42e+14; main 5.20e+14) dSG 60 kpc: shift toward main (100/150 kpc) A_D 1.085/1.823 kpc, excess beta vs no phantom +0.0011/+0.0003; d_beta vs A_D: A_0.2 +1.8e-05/+3.3e-06, A_0.5 +1.8e-05/+3.3e-06, C +1.8e-05/+3.3e-06, C_abs +1.9e-05/+7.8e-06, B +1.8e-05/+7.2e-06, B+0.003 +1.5e-04/-3.2e-04, B-0.003 -9.4e-05/+3.6e-04, B+0.01 +5.5e-04/-1.0e-03, B-0.01 -2.7e-04/+1.3e-03
+    z=0.4 p=2 x_c0=2 [canonical] sub 3e+14 (real M200 1.42e+14; main 5.20e+14) dSG 120 kpc: shift toward main (100/150 kpc) A_D 1.295/3.653 kpc, excess beta vs no phantom +0.0003/+0.0079; d_beta vs A_D: A_0.2 +4.6e-06/+7.0e-06, A_0.5 +4.6e-06/+7.0e-06, C +4.6e-06/+7.0e-06, C_abs +5.3e-06/+8.8e-06, B +5.2e-06/+8.8e-06, B+0.003 -1.0e-05/-1.1e-04, B-0.003 +2.8e-05/+1.4e-04, B+0.01 -2.3e-05/-3.7e-04, B-0.01 +1.1e-04/+5.1e-04
+    z=0.4 p=2 x_c0=2 [alt] sub 1e+14 (real M200 3.71e+13; main 4.85e+14) dSG 60 kpc: shift toward main (100/150 kpc) A_D 2.598/3.696 kpc, excess beta vs no phantom +0.0176/+0.0205; d_beta vs A_D: A_0.2 -4.2e-07/-2.1e-05, A_0.5 -4.2e-07/-2.1e-05, C -4.2e-07/-2.1e-05, C_abs +1.0e-07/-2.0e-05, B +7.6e-08/-2.0e-05, B+0.003 -3.6e-05/-5.2e-04, B-0.003 +4.8e-05/+5.0e-04, B+0.01 -9.1e-05/-1.7e-03, B-0.01 +2.1e-04/+1.8e-03
+    z=0.4 p=2 x_c0=2 [alt] sub 1e+14 (real M200 3.71e+13; main 4.85e+14) dSG 120 kpc: shift toward main (100/150 kpc) A_D 2.788/6.607 kpc, excess beta vs no phantom +0.0101/+0.0255; d_beta vs A_D: A_0.2 -3.9e-07/+7.7e-07, A_0.5 -3.9e-07/+7.7e-07, C -3.9e-07/+7.7e-07, C_abs -2.1e-07/+1.4e-06, B -1.2e-07/+1.6e-06, B+0.003 -4.4e-05/-5.0e-05, B-0.003 +4.7e-05/+6.8e-05, B+0.01 -1.4e-04/-1.4e-04, B-0.01 +1.7e-04/+2.8e-04
+    z=0.4 p=2 x_c0=2 [alt] sub 3e+14 (real M200 1.32e+14; main 4.85e+14) dSG 60 kpc: shift toward main (100/150 kpc) A_D 1.215/2.015 kpc, excess beta vs no phantom +0.0028/+0.0029; d_beta vs A_D: A_0.2 +2.6e-06/-3.9e-05, A_0.5 +2.6e-06/-3.9e-05, C +2.6e-06/-3.9e-05, C_abs +2.7e-06/-3.9e-05, B +1.6e-06/-3.9e-05, B+0.003 +1.7e-04/-4.8e-04, B-0.003 -1.3e-04/+4.4e-04, B+0.01 +6.9e-04/-1.4e-03, B-0.01 -3.0e-04/+1.7e-03
+    z=0.4 p=2 x_c0=2 [alt] sub 3e+14 (real M200 1.32e+14; main 4.85e+14) dSG 120 kpc: shift toward main (100/150 kpc) A_D 1.431/4.024 kpc, excess beta vs no phantom +0.0012/+0.0106; d_beta vs A_D: A_0.2 -2.4e-06/-9.6e-06, A_0.5 -2.4e-06/-9.6e-06, C -2.4e-06/-9.6e-06, C_abs -2.2e-06/-9.0e-06, B -2.4e-06/-9.2e-06, B+0.003 -2.9e-05/-1.7e-04, B-0.003 +3.6e-05/+1.7e-04, B+0.01 -5.6e-05/-5.1e-04, B-0.01 +1.7e-04/+6.9e-04
+    z=0.4 p=1 x_c0=2.5 [canonical] sub 1e+14 (real M200 4.07e+13; main 5.20e+14) dSG 60 kpc: shift toward main (100/150 kpc) A_D 2.344/3.399 kpc, excess beta vs no phantom +0.0139/+0.0163; d_beta vs A_D: A_0.2 -4.2e-06/-2.4e-05, A_0.5 -4.2e-06/-2.4e-05, C -4.2e-06/-2.4e-05, C_abs -4.3e-06/-2.5e-05, B -4.2e-06/-2.4e-05, B+0.003 -4.2e-05/-4.0e-04, B-0.003 +4.0e-05/+3.6e-04, B+0.01 -1.1e-04/-1.2e-03, B-0.01 +1.7e-04/+1.3e-03
+    z=0.4 p=1 x_c0=2.5 [canonical] sub 1e+14 (real M200 4.07e+13; main 5.20e+14) dSG 120 kpc: shift toward main (100/150 kpc) A_D 2.536/6.019 kpc, excess beta vs no phantom +0.0081/+0.0211; d_beta vs A_D: A_0.2 -2.3e-06/-5.3e-06, A_0.5 -2.3e-06/-5.3e-06, C -2.3e-06/-5.3e-06, C_abs -2.3e-06/-5.4e-06, B -2.2e-06/-5.3e-06, B+0.003 -3.9e-05/-5.1e-05, B-0.003 +3.7e-05/+4.9e-05, B+0.01 -1.2e-04/-1.4e-04, B-0.01 +1.4e-04/+2.1e-04
+    z=0.4 p=1 x_c0=2.5 [canonical] sub 3e+14 (real M200 1.42e+14; main 5.20e+14) dSG 60 kpc: shift toward main (100/150 kpc) A_D 1.086/1.825 kpc, excess beta vs no phantom +0.0011/+0.0004; d_beta vs A_D: A_0.2 +5.1e-06/-2.5e-05, A_0.5 +5.1e-06/-2.5e-05, C +5.1e-06/-2.5e-05, C_abs +5.3e-06/-2.3e-05, B +4.7e-06/-2.4e-05, B+0.003 +1.4e-04/-3.5e-04, B-0.003 -1.1e-04/+3.2e-04, B+0.01 +5.3e-04/-1.0e-03, B-0.01 -2.8e-04/+1.2e-03
+    z=0.4 p=1 x_c0=2.5 [canonical] sub 3e+14 (real M200 1.42e+14; main 5.20e+14) dSG 120 kpc: shift toward main (100/150 kpc) A_D 1.296/3.654 kpc, excess beta vs no phantom +0.0003/+0.0080; d_beta vs A_D: A_0.2 -8.3e-07/-5.9e-06, A_0.5 -8.3e-07/-5.9e-06, C -8.3e-07/-5.9e-06, C_abs -6.0e-07/-5.2e-06, B -6.8e-07/-5.2e-06, B+0.003 -1.6e-05/-1.3e-04, B-0.003 +2.2e-05/+1.3e-04, B+0.01 -2.8e-05/-3.9e-04, B-0.01 +1.1e-04/+5.0e-04
+    z=0.4 p=1 x_c0=2.5 [alt] sub 1e+14 (real M200 3.71e+13; main 4.85e+14) dSG 60 kpc: shift toward main (100/150 kpc) A_D 2.599/3.698 kpc, excess beta vs no phantom +0.0176/+0.0206; d_beta vs A_D: A_0.2 -1.2e-05/-4.6e-05, A_0.5 -1.2e-05/-4.6e-05, C -1.2e-05/-4.6e-05, C_abs -1.4e-05/-5.0e-05, B -1.3e-05/-4.7e-05, B+0.003 -4.9e-05/-5.5e-04, B-0.003 +3.5e-05/+4.7e-04, B+0.01 -1.0e-04/-1.7e-03, B-0.01 +1.9e-04/+1.8e-03
+    z=0.4 p=1 x_c0=2.5 [alt] sub 1e+14 (real M200 3.71e+13; main 4.85e+14) dSG 120 kpc: shift toward main (100/150 kpc) A_D 2.789/6.609 kpc, excess beta vs no phantom +0.0101/+0.0255; d_beta vs A_D: A_0.2 -6.4e-06/-1.7e-05, A_0.5 -6.4e-06/-1.7e-05, C -6.4e-06/-1.7e-05, C_abs -7.2e-06/-2.0e-05, B -6.7e-06/-1.8e-05, B+0.003 -5.0e-05/-7.0e-05, B-0.003 +4.1e-05/+4.8e-05, B+0.01 -1.5e-04/-1.6e-04, B-0.01 +1.7e-04/+2.6e-04
+    z=0.4 p=1 x_c0=2.5 [alt] sub 3e+14 (real M200 1.32e+14; main 4.85e+14) dSG 60 kpc: shift toward main (100/150 kpc) A_D 1.215/2.015 kpc, excess beta vs no phantom +0.0028/+0.0029; d_beta vs A_D: A_0.2 +4.2e-06/-3.6e-05, A_0.5 +4.2e-06/-3.6e-05, C +4.2e-06/-3.6e-05, C_abs +4.6e-06/-3.5e-05, B +4.3e-06/-3.5e-05, B+0.003 +1.7e-04/-4.7e-04, B-0.003 -1.3e-04/+4.5e-04, B+0.01 +6.9e-04/-1.4e-03, B-0.01 -2.9e-04/+1.7e-03
+    z=0.4 p=1 x_c0=2.5 [alt] sub 3e+14 (real M200 1.32e+14; main 4.85e+14) dSG 120 kpc: shift toward main (100/150 kpc) A_D 1.431/4.025 kpc, excess beta vs no phantom +0.0012/+0.0106; d_beta vs A_D: A_0.2 -3.3e-06/-1.3e-05, A_0.5 -3.3e-06/-1.3e-05, C -3.3e-06/-1.3e-05, C_abs -3.2e-06/-1.3e-05, B -3.1e-06/-1.2e-05, B+0.003 -3.0e-05/-1.8e-04, B-0.003 +3.6e-05/+1.7e-04, B+0.01 -5.7e-05/-5.2e-04, B-0.01 +1.7e-04/+6.8e-04
+    max |d_beta| vs A_D over configurations and apertures: A_0.2 4.6e-05, A_0.5 4.6e-05, C 4.6e-05, C_abs 5.0e-05, B 4.7e-05, B+0.003 5.5e-04, B-0.003 5.0e-04, B+0.01 1.7e-03, B-0.01 1.8e-03
+    r_s stability (1e14, 60 kpc, z = 0.4 p = 2): r_s 1.0: A_D 2.349, B 2.349, C 2.349; r_s 1.5: A_D 2.344, B 2.344, C 2.344; r_s 2.0: A_D 2.343, B 2.342, C 2.342
+    NOISE (far edge layer INCLUDED) outer cells 100 kpc, z=0.4 p=2 x_c0=2: 100-kpc shift A_D 6.470 kpc (excluded: 2.344), B 2.841 kpc (excluded: 2.344), C 2.861 kpc (excluded: 2.344)
+    NOISE (far edge layer INCLUDED) outer cells 100 kpc, z=0.4 p=1 x_c0=2.5: 100-kpc shift A_D 2.371 kpc (excluded: 2.344), B 2.342 kpc (excluded: 2.344), C 2.342 kpc (excluded: 2.344)
+    NOISE (far edge layer INCLUDED) outer cells 50 kpc, z=0.4 p=2 x_c0=2: 100-kpc shift A_D 3.200 kpc (excluded: 2.344), B 2.565 kpc (excluded: 2.344), C 2.565 kpc (excluded: 2.344)
+    NOISE (far edge layer INCLUDED) outer cells 50 kpc, z=0.4 p=1 x_c0=2.5: 100-kpc shift A_D 0.060 kpc (excluded: 2.344), B 2.113 kpc (excluded: 2.344), C 2.107 kpc (excluded: 2.344)
+    NOISE summary: including the far edge layer moves the 100-kpc centroid by up to 4.13 kpc (A_D) and 0.52 kpc (B, C: the operator of the L370-family runs), i.e. d_beta up to 0.009 at a 60 kpc offset
+    resolution 20/200 kpc: shift A_D 2.418, B 2.418, C 2.418, B(+0.003) 2.415 kpc
+    resolution 15/150 kpc: shift A_D 2.345, B 2.344, C 2.344, B(+0.003) 2.341 kpc
+  [PASS] H1 HARVEY: with the far edge layer excluded, every operator (A at 1/m = 0.2/0.5, B, C, C_abs, and B with a realistic external field g_e = +/-0.003 a0) gives the Dirichlet operator's substructure centroid to |d_beta| <= 0.002 (Harvey's sigma_beta = 0.07; L381's S2 margin 0.0086)
+         measured: A_0.2 4.6e-05, A_0.5 4.6e-05, C 4.6e-05, C_abs 5.0e-05, B 4.7e-05, B+0.003 5.5e-04, B-0.003 5.0e-04, B+0.01 1.7e-03, B-0.01 1.8e-03
+         reading:  the far edge layer, projected along the line of sight, moved the same centroid by up to 4.13 kpc (A_D) and 0.52 kpc (B, C) on these staircase meshes -- a numerical effect far larger than any operator effect (README)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  (a) CLUSTER RETENTION IN THE PM BOXES.  The carrier moves in phi under all three operators, so the operator reaches
+      retention only through the phantom that the trigger reads and the baryons feel.  B against the action's A:
+      * the retention core (r = 0.1-1 Mpc): the phantom monopole agrees to <= 2.2e-03 over merged neighbours (3, 5 Mpc),
+        a separated neighbour (13 Mpc) and merger pairs, and to <= 3.0e-04 under a realistic external baryonic field
+        (0.003 a0; 3.3e-03 at 0.01 a0, second order in g_e); the phantom well depth to <= 3.8e-03
+        (2.1e-02 at 0.01 a0).  Numerical floor 3e-08; converged (R1).  For scale, at L377's own cell size
+        the discretisation alone (its central differences vs spectral, I3) moves the phantom potential by 1.5%.
+      * the outskirts: the phantom enclosed at 0.9 R_e differs by up to 1.3e-02 (the separated neighbour) and
+        1.0e-02 at g_e = 0.003 (1.1e-01 at 0.01) -- B's external-field effect, which A does not have.
+      * first order in g_e, B adds what A and C do not have: a net phantom push on the region's baryons of
+        3.5-4.6 g_e (a baryon-carrier offset of only ~0.2 kpc at 0.003 a0) and a phantom field of
+        1.3-1.9 g_e felt by baryons outside the region; the pull toward a separated neighbour
+        (<= 3.8% of the phantom force; A: screened).  With MERGED neighbours B and C agree with each other and exceed
+        A's pull by <= 3.1% of the phantom force (A's Dirichlet images).
+      VERDICT (a): B is a controlled approximation to A for cluster retention inside ~1 Mpc -- error <= 2e-03
+      of the phantom monopole at realistic external fields (<= 3e-03 up to 0.01 a0) -- and not beyond
+      that: in the outskirts and in anything first order in the external field it is a different operator.
+      DIRECTION: in 72/72 perturbed cases B's phantom at 1 Mpc is WEAKER than A's (the EFE and the reading of
+      separated structure), so switching B -> A strengthens the phantom slightly: marginally more trigger decays, retention
+      marginally LOWER, by an amount far inside the X-COP margin (median 0.32 vs 0.286).
+  (b) HARVEY OFFSETS.  With the far edge layer excluded, B, C, C_abs and A (1/m = 0.2, 0.5, inf) agree on the substructure's
+      lensing centroid to |d_beta| <= 5e-05; a realistic external field in B
+      moves beta by <= 5e-04 (2e-03 at 0.01 a0), with the sign of its
+      direction, so it averages out over orientations.  VERDICT (b): B is a controlled approximation to A for Harvey, and so
+      is C; the bound 2e-3 is far below Harvey's sigma_beta = 0.07 and L381's S2 margin 0.0086.  Switching operators does not
+      move the Harvey statistic.
+  WHAT MATTERS MORE THAN THE OPERATOR.  (1) Region labelling: the same merger pair labelled as two touching regions reverses
+      the phantom pull, and L370's absolute-density gate merges the 13 Mpc neighbour into one region at z = 0 (p = 1) where
+      the contrast gate keeps two.  (2) The edge definition (absolute vs contrast, +5-6% in radius) changes the projected
+      lensing mass at 1 Mpc by up to 5.8e-03, more than a realistic external field does (1.1e-03).  (3) Numerics: the
+      region's far edge layer, projected along the line of sight, moved a substructure's centroid by up to 4.1 kpc
+      (A_D) and 0.5 kpc (B, C) on staircase meshes -- d_beta up to 0.009 for the operator the L370-family
+      Harvey runs use, the size of L381's S2 margin (0.0086); a Harvey map must exclude that layer or show it converged.
+
+  11/13 checks pass; load-bearing failures: 2   [55s]

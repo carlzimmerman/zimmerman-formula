@@ -1,0 +1,2969 @@
+{
+ "schema": "XR1 cross-lane consistency registry v1 (real_research/cross_thread_review_2026_09_26)",
+ "inspected_at": "2026-09-26T15:50:06-04:00",
+ "git_head": "738216fbd6932e37a8447297729e7d18108cf4cb",
+ "extends": "real_research/peer_review_2026_09_26/dark_sector/REPORT.md",
+ "conventions": {
+  "cell": "the vacuum-gated MOND switch of L359: MOND on where x~ >= x_c0 E(z)^(2p); written p{p:g}_x{x_c0:.1f}. 'none' = the stage runs without that switch (unswitched/isolated phantom, or no phantom at all); 'per-row' = the stage scans cells and each row carries its own. Carrier gates (L357 p_v/x_v0, L372 P_GATE, L373 P_G/P_U, AT y_v0/q) are carrier fields, never the cell.",
+  "switch_dependent": "true when the stage's number would change with the switch cell (phantom felt by baryons, lensing maps, shear bound, KiDS edge, flagship edge). Stages marked false are excluded from cell comparisons.",
+  "footing": {
+   "canonical": 9.3619e-11,
+   "alt": 1.1279e-10,
+   "n/a": "stage does not use a0"
+  },
+  "kernels": {
+   "nu_mono": "L340 monotone envelope of nu_RAR (L352 nu_vec / L370 nu_mono / L355 nu_mono_arr)",
+   "nu_RAR": "1/(1 - exp(-sqrt(y))) (L320, L321, L376)",
+   "mu_exp": "closure-spec exponential law (DE1 working tree only)",
+   "generated(nu_mono)": "GP1's source-weighted kernel"
+  },
+  "operators": {
+   "global_baryon_masked": "L377 phantom(): g_N from ALL baryons (periodic Poisson), response (nu-1) g_N masked by the switch cells, curl-free projection; baryons feel it everywhere",
+   "global_total_matter_smooth": "L359/L347 forest PM: g_N from ALL matter, tanh switch ramp",
+   "region_fft": "L370 phantom_felt(): label connected switch regions, g_w from each region's OWN baryons (periodic FFT), response masked to the region, projected; baryons feel only their region's phantom",
+   "region_dirichlet": "L363 region_phantom(): masked Poisson with w = 0 off the region (Dirichlet), source = bound baryons in the region",
+   "spherical_compensated": "L352 fit_model/fit_comb: 1-D isolated lens phantom, Gauss-compensated at the switch edge",
+   "spherical_isolated": "1-D isolated kernel without a switch edge (L321/L354 X-COP, L355 KiDS web-blind, L320 flagship)",
+   "spherical_point_mass": "DE1/L352 on-branch point-mass profile",
+   "generated_screened": "GP1 generated phantom screened at lambda (not Gauss-cancelled)",
+   "none": "Newtonian (no phantom)"
+  },
+  "gate_variables": {
+   "matter_bgsub": "L377: (3/2) Omega_m(a) (rho_m/rho_bar - 1), matter only (lower branch), step",
+   "matter_bgsub_smooth": "L359/L347 forest PM: same variable, tanh ramp",
+   "absolute_real": "L370: (3/2) rho_real/rho_crit(z) -- no background subtraction (docstring line 19 says otherwise)",
+   "dyn_bgsub_seeded": "L363 build_regions: phantom-inclusive, background-subtracted, OR any cell holding bound baryons",
+   "dyn_bgsub_onbranch": "L352/DE1: 4 pi G (rho_dyn - rho_bar)/H^2 on the on-branch profile"
+  }
+ },
+ "files": {
+  "qwen_claude_field_theory/papers_2026/PAPER34_kernel_blind_dark_sector_2026.tex": {
+   "sha256": "567d07f928799a8240272c755043039c81619dc6e9c265fbb21d9986629ec1f0",
+   "git": "committed"
+  },
+  "real_research/acceleration_trigger_2026/AT1_acceleration_trigger_highz.py": {
+   "sha256": "6782b087ae84d30519a315ce9040b6be17312cf300ed183694d5a561d172ca3b",
+   "git": "untracked"
+  },
+  "real_research/acceleration_trigger_2026/AT2_forest_flux_calibrated.py": {
+   "sha256": "1a58a20294292b6bdc3c7072df52caa384968c7254aa03c32da7b58f8f434e22",
+   "git": "untracked"
+  },
+  "real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.out": {
+   "sha256": "b788b111c0c0169bfa44d9ebb702bcf104fc6b97a3df45d088b645a56435996f",
+   "git": "untracked"
+  },
+  "real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py": {
+   "sha256": "5a05265fc67a7ca7a9cbc819210677ff62768ba949c46b4b6145501efbc5892d",
+   "git": "untracked"
+  },
+  "real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates_results.json": {
+   "sha256": "9a2660fbd1963559a1e388c9e8b251f7c70d3ecd49ec0c10864a60f88935b601",
+   "git": "untracked"
+  },
+  "real_research/dark_energy_2026/DE1_vacuum_gate_flagship.py": {
+   "sha256": "b26d106a5e46a7ddff02aa43d9b39d9a905fa0fff115312f2b3b340e9755fecf",
+   "git": "committed"
+  },
+  "real_research/dark_energy_2026/DE1_vacuum_gate_flagship_results.json": {
+   "sha256": "1838836d590eb9d3c94a30edffb8c69afdba2f7e342367b9600179188f6a3e58",
+   "git": "committed"
+  },
+  "real_research/dark_energy_2026/DE2_vacuum_gate_joint_window.py": {
+   "sha256": "3960be1020659f4d7a7010e841c82ce4c2e881b73cfed59573109295b6b8eed0",
+   "git": "committed"
+  },
+  "real_research/dark_energy_2026/DE2_vacuum_gate_joint_window_results.json": {
+   "sha256": "a5a8d50425ef9568d6304b1842b43b68d5c2d756666c329c5848c46e39d3b6ef",
+   "git": "committed"
+  },
+  "real_research/dark_energy_2026/DE3_tmax_at_linear_gate.py": {
+   "sha256": "24b016c3a616d23424e4fcf735773dc6eb269ec2fac93cb626e0dcb9aa9e419c",
+   "git": "committed"
+  },
+  "real_research/dark_energy_2026/DE3_tmax_at_linear_gate_results.json": {
+   "sha256": "732d2330a92cb4e3a80463d74b897abba2423c87f56ae2935326e505e1095758",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/L357_virialization_triggered_carrier.py": {
+   "sha256": "25dc59fc72bbc6d1658d18e2af5a845077c33ca7cba53c0fe4c2d79c2b73d3aa",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/L365_virialization_triggered_carrier.py": {
+   "sha256": "5ebd821d9660e4cd1d8214b11eef6f1077ce98e787236037a0af72330d1d64ab",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/L366_triggered_carrier_cluster_retention.py": {
+   "sha256": "c87e125b03dbbf2e3ad01c78d05209eb1108e1a2f90fa57829c871a746c43fa3",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/L367_triggered_carrier_cosmic_shear.py": {
+   "sha256": "d7e80bbb3e7fa95e7c8d9a3375c6b9ab758b46ba80e109e1447a6522363f0eb4",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/L368_triggered_carrier_full_gate_set.py": {
+   "sha256": "bad8b2602c84ad10de9db719114d67d55a4281f5e8d949d6b682893cb75e0326",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/L369_triggered_carrier_window_realisations.py": {
+   "sha256": "4d7f48b3346c5c29c4839de9adee1ccaead72ca9f5afa1721fbd1d8ad50c1ad9",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/L375_triggered_carrier_galaxy_retention.py": {
+   "sha256": "7a525a06bf62bf4e4f20022dc98833bc58998801533f0c5c130bb5c7d47de9d7",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/L376_triggered_carrier_inner_galaxies.py": {
+   "sha256": "e155492866c7bd1afb770ce20012baed77d0075d1cee1c6d0b918016b76684ff",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/L377_full_construction_pm.py": {
+   "sha256": "7e318be8f7cd9f7f96e5acf6f18289a499edba9dce0d5d74afa004ddf8d03173",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/L378_full_construction_pooled.py": {
+   "sha256": "91815af1396881c5f71441652d04373821a0f45859245bfa864a3091c048ce1d",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/L379_clearing_by_environment.py": {
+   "sha256": "77bbe7cbf7aaf215f1a8f56ae4530759708c366ecdf984b0b53fa680d3017bef",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing.py": {
+   "sha256": "582e6c75634049c699afd611fde9cf7c4e4d77553422c4c5a41da5780be934c3",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing_results.json": {
+   "sha256": "a8753216cde87f4592bc4978f9a743e62cbeee544b2fed5d9c009cb4e3770ec8",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/L381_harvey_on_pooled_window.py": {
+   "sha256": "8ab5228859a78a41165f92b7ff049faa487b8f85e286216d4c0f44b72cf49f62",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/L381_harvey_on_pooled_window_results.json": {
+   "sha256": "cf2858db6aadcc68ab749c92c953d76e469bfce57fd85bc655011994c5e326a4",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/L388_linear_gate_pooled.py": {
+   "sha256": "5a0f7c31033cffd0940fbb5cdf1f6543010d98994f83ead536def1f962f91197",
+   "git": "untracked"
+  },
+  "real_research/dark_sector_2026/L388_linear_gate_pooled_results.json": {
+   "sha256": null,
+   "git": "absent"
+  },
+  "real_research/dark_sector_2026/L389_harvey_same_cell_linear_gate.py": {
+   "sha256": "094660c215edaafd14e32f6e8dd96930e078da11fd99481ff45ca0cb31bdd953",
+   "git": "untracked"
+  },
+  "real_research/dark_sector_2026/L390_kids_resolved_linear_gate.py": {
+   "sha256": "8d4c5938f280f6f376d4e971923fa10e7cd0e52b1318e359c95a873d283a8148",
+   "git": "committed"
+  },
+  "real_research/dark_sector_2026/README.md": {
+   "sha256": "af11fa5752a52527aa0134f065832a5197058b121edf0ad6de42ca9ed235f8dd",
+   "git": "committed"
+  },
+  "real_research/g03_audit_2026/L352_switch_gauss_compensation.py": {
+   "sha256": "1796a1798a69f963284fbea0d077691ce956214d15c157f4fc1f8fa4205f22cc",
+   "git": "committed"
+  },
+  "real_research/g03_audit_2026/L355_kernel_invisible_kids.py": {
+   "sha256": "f07342bd442aca4a50b86a8ace534a8bf11dad287183eee41a7a9608010f6998",
+   "git": "committed"
+  },
+  "real_research/g03_audit_2026/L359_vacuum_gated_switch.py": {
+   "sha256": "f0cca510b243f510c7e8215ef6cb28541e16c014cbdb1f3d53e197ca3e7cc29a",
+   "git": "committed"
+  },
+  "real_research/g03_audit_2026/L360_assembled_construction_kids.py": {
+   "sha256": "16af736fef8fee18412b856ee8ab69ed07c905ce70db89fcdf4659a2f819b1b8",
+   "git": "committed"
+  },
+  "real_research/g03_audit_2026/L363_region_kernel_lensing_power.py": {
+   "sha256": "f86282389ebc97e879564a4dad437cded2cbf37d7896b2af681a1fcdd8acfb2c",
+   "git": "committed"
+  },
+  "real_research/g03_audit_2026/L364_replacement_carrier_cosmic_shear.py": {
+   "sha256": "be4a344ae804b0455c3e6d436f2408a0309f6411a0a9f0fca65af90c63e96cf6",
+   "git": "committed"
+  },
+  "real_research/g03_audit_2026/L364_replacement_carrier_cosmic_shear_results.json": {
+   "sha256": "f368ee4305ac589b88d5029ea57ac52f64f6044d7aa6114c76695e412e51b761",
+   "git": "committed"
+  },
+  "real_research/generated_phantom_2026/GP1_generated_phantom_construction.py": {
+   "sha256": "22c83ef0b6353f7a0802bc3ba56a0a9a9a33b40f9500bb5b89a196fece7661cc",
+   "git": "committed"
+  },
+  "real_research/generated_phantom_2026/GP2_kids_bound_source_kernel.py": {
+   "sha256": "d3f803132eca051940eaa094d856449ba868dec332ce4e5048f473fddabc1edd",
+   "git": "committed"
+  },
+  "real_research/generated_phantom_2026/GP3_lensing_power_and_growth.py": {
+   "sha256": "1942e540ac855c3bf0cc07a71558fe77a3b2f502f28650d6473d5ffcf3da725d",
+   "git": "committed"
+  },
+  "real_research/generated_phantom_2026/GP4_generated_phantom_plus_kicked_carrier.py": {
+   "sha256": "6fada05e1c2a134f06c84e0604cea03bd28a05849435bf5e4272f72023c78557",
+   "git": "committed"
+  },
+  "real_research/generated_phantom_2026/GP5_window_at_high_z.py": {
+   "sha256": "bcf4bdcc923f3eeb7c4787aab2515514b1f90f5aa60816d695927d8faada0baa",
+   "git": "committed"
+  },
+  "real_research/merger_infall_2026/L370_boosted_infall_mergers.py": {
+   "sha256": "bdc19ee3fec7e939b9e078a52b153eb7c626d200b85ba4ea00f7cbdbfc1be8da",
+   "git": "committed"
+  },
+  "real_research/merger_infall_2026/L371_harvey_slow_kick_carrier.py": {
+   "sha256": "b9d3b14d675b0168cca822f7b7b208b772a146a5eebbafe7b62648eabf67756f",
+   "git": "committed"
+  },
+  "real_research/merger_infall_2026/L372_gated_slow_kick_carrier.py": {
+   "sha256": "591b452aea1cb459eaacdb58eada6bc35e7bb18dc9a65ba27b199c54cfb1af14",
+   "git": "committed"
+  },
+  "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py": {
+   "sha256": "76147b9de0decaf4ed16444374722e6cbcd87c8fa93d025e1e9c487d2c4eaf34",
+   "git": "untracked"
+  },
+  "real_research/peer_review_2026_09_26/dark_sector/REPORT.md": {
+   "sha256": "ce3910b59e630bac3add4330a17acd3446fce79203a5c7d1b551a1ed3b5d45e0",
+   "git": "untracked"
+  }
+ },
+ "stages": {
+  "L365.pm": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L365_virialization_triggered_carrier.py",
+   "stage": "PM evolution, 50 Mpc/h, one box (S8, forest, clearing)",
+   "cell": "none",
+   "footing": "n/a",
+   "kernel": "n/a",
+   "operator": "none",
+   "gate_variable": "n/a",
+   "carrier": "virialization trigger (L365): x~_matter > 5, Gamma = 10 H, kick v_k; Newtonian PM (no phantom anywhere)",
+   "epoch": "z = 0 (S8), 2-3 (forest), 2 (clearing)",
+   "switch_dependent": false,
+   "operator_relevant": false,
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L365_virialization_triggered_carrier.py",
+     "pattern": "RESULT.  A window in S_8, the forest and halo clearing exists at slow kicks",
+     "line": 42
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "matter_only_x5"
+  },
+  "L366.pm_newtonian": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L366_triggered_carrier_cluster_retention.py",
+   "stage": "PM evolution, 100 Mpc/h, seeds (7, 11), Newtonian (retention, S8, forest, clearing)",
+   "cell": "none",
+   "footing": "n/a",
+   "kernel": "n/a",
+   "operator": "none",
+   "gate_variable": "n/a",
+   "carrier": "virialization trigger (L365): x~_matter > 5, Gamma = 10 H, kick v_k; Newtonian PM (no phantom anywhere)",
+   "epoch": "retention at z = 0; clearing z = 2",
+   "note": "switch-free: the baryons do not feel the phantom; L377 measured the full construction raising cluster retention by 6-22% at 600-700 km/s, so the retention this stage exports is switch-dependent in effect",
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L366_triggered_carrier_cluster_retention.py",
+     "pattern": "cfgs.append((f\"x5_{tag}\", 5.0, vk, 10.0))",
+     "line": 204
+    },
+    {
+     "file": "real_research/dark_sector_2026/L366_triggered_carrier_cluster_retention.py",
+     "pattern": "hit = idx[(xp > xc) & (krng.random(len(idx)) < 1 - math.exp(-gamma * Hnorm(a) * dt))]",
+     "line": 139
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "matter_only_x5",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "XCOP.band": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L366_triggered_carrier_cluster_retention.py",
+   "stage": "X-COP two-sided retention band (L366.eps_bounds)",
+   "cell": "none",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "spherical_isolated",
+   "gate_variable": "n/a",
+   "carrier": "L354 table: Lambda-triggered carrier's retention -> M_dyn/M_HSE (12 X-COP clusters)",
+   "epoch": "clusters at z ~ 0.05; PM retention read at z = 0",
+   "switch_dependent": false,
+   "note": "band = intersection over footings (lo = max, hi = min), 0.286-0.768; kernel nu_mono (L354 sets Lm['nu'] = nu_mono)",
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L366_triggered_carrier_cluster_retention.py",
+     "pattern": "L4 = json.load(open(os.path.join(HERE, \"L354_carrier_lagrangian_additive_window_results.json\")))[\"numbers\"][\"W1\"][\"table\"]",
+     "line": 185
+    },
+    {
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "pattern": "est = L6.eps_bounds(); lo = max(v[0] for v in est.values()); hi = min(v[1] for v in est.values())",
+     "line": 289
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "n/a",
+   "operator_relevant": true
+  },
+  "L367.pm_newtonian": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L367_triggered_carrier_cosmic_shear.py",
+   "stage": "PM transfer T(k) at z = 0.5 (L366 box, Newtonian)",
+   "cell": "none",
+   "footing": "n/a",
+   "kernel": "n/a",
+   "operator": "none",
+   "gate_variable": "n/a",
+   "carrier": "virialization trigger (L365): x~_matter > 5, Gamma = 10 H, kick v_k; Newtonian PM (no phantom anywhere)",
+   "epoch": "z = 0.5",
+   "note": "the transfer omits the phantom felt by baryons (L377: S8 +0.6% with it); DE2/DE3 S1 reuse these transfers",
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L367_triggered_carrier_cosmic_shear.py",
+     "pattern": "import L366_triggered_carrier_cluster_retention as L6",
+     "line": 42
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "matter_only_x5",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L367.shear": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L367_triggered_carrier_cosmic_shear.py",
+   "stage": "cosmic-shear bound T_max (L364), per switch cell",
+   "cell": "per-row",
+   "rows": [
+    "p1_x1.5",
+    "p2_x2.0"
+   ],
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_dirichlet",
+   "gate_variable": "dyn_bgsub_seeded",
+   "carrier": "n/a (bound only)",
+   "epoch": "z = 0.5",
+   "derive": {
+    "rows": {
+     "kind": "row_cells",
+     "file": "real_research/dark_sector_2026/L367_triggered_carrier_cosmic_shear.py",
+     "pattern": "for sc in (\"p=1, x_c0=1.5\", \"p=2, x_c0=2.0\"):"
+    },
+    "operator": {
+     "kind": "signature",
+     "file": "real_research/g03_audit_2026/L363_region_kernel_lensing_power.py",
+     "all": [
+      "rp, i1, i2, nu1 = region_phantom(mk, mask, src_m, a0, on)",
+      "w, i1 = masked_poisson(mask, rhs, dx)"
+     ]
+    },
+    "gate_variable": {
+     "kind": "signature",
+     "file": "real_research/g03_audit_2026/L363_region_kernel_lensing_power.py",
+     "all": [
+      "mask = (1.5 * Omz * (rd / RHO - 1) >= xc) | seed",
+      "new = (1.5 * Omz * ((rd + np.maximum(np.where(dil, rp, 0.0), 0.0)) / RHO - 1) >= xc) & dil"
+     ]
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L367_triggered_carrier_cosmic_shear.py",
+     "pattern": "for sc in (\"p=1, x_c0=1.5\", \"p=2, x_c0=2.0\"):",
+     "line": 180
+    }
+   ],
+   "imports": [],
+   "trigger": "n/a",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L368.kids": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L368_triggered_carrier_full_gate_set.py",
+   "stage": "KiDS with L360's machinery, S from L367 (sub-cell)",
+   "cell": "per-row",
+   "rows": [
+    "p1_x1.5",
+    "p2_x2.0"
+   ],
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "spherical_compensated",
+   "gate_variable": "dyn_bgsub_onbranch",
+   "carrier": "NFW-scaled carrier halo x S (S = 0.029 at 0.39 Mpc/h: sub-cell)",
+   "epoch": "z_l = 0.25",
+   "derive": {
+    "rows": {
+     "kind": "row_cells",
+     "file": "real_research/dark_sector_2026/L368_triggered_carrier_full_gate_set.py",
+     "pattern": "SW = (\"p=1, x_c0=1.5\", \"p=2, x_c0=2.0\")"
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L368_triggered_carrier_full_gate_set.py",
+     "pattern": "SW = (\"p=1, x_c0=1.5\", \"p=2, x_c0=2.0\")",
+     "line": 69
+    }
+   ],
+   "imports": [],
+   "trigger": "matter_only_x5",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L369.pm_newtonian": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L369_triggered_carrier_window_realisations.py",
+   "stage": "PM, three 100 Mpc/h boxes, Newtonian",
+   "cell": "none",
+   "footing": "n/a",
+   "kernel": "n/a",
+   "operator": "none",
+   "gate_variable": "n/a",
+   "carrier": "virialization trigger (L365): x~_matter > 5, Gamma = 10 H, kick v_k; Newtonian PM (no phantom anywhere)",
+   "epoch": "z = 0 retention, z = 2 clearing (own-dense-set G3), z = 0.5 transfer",
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L369_triggered_carrier_window_realisations.py",
+     "pattern": "import L366_triggered_carrier_cluster_retention as L6",
+     "line": 38
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "matter_only_x5",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L369.kids_shear": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L369_triggered_carrier_window_realisations.py",
+   "stage": "KiDS (L360) + shear (L364 T_max), per cell",
+   "cell": "per-row",
+   "rows": [
+    "p1_x1.5",
+    "p2_x2.0"
+   ],
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "spherical_compensated+region_dirichlet",
+   "gate_variable": "dyn_bgsub",
+   "carrier": "PM retention S",
+   "epoch": "z = 0.25 / 0.5",
+   "derive": {
+    "rows": {
+     "kind": "row_cells",
+     "file": "real_research/dark_sector_2026/L369_triggered_carrier_window_realisations.py",
+     "pattern": "SW = (\"p=1, x_c0=1.5\", \"p=2, x_c0=2.0\")"
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L369_triggered_carrier_window_realisations.py",
+     "pattern": "WIN[\"pooled\"] = [t for t in TAGS if TAB[\"pooled\"][t][\"cells\"][\"p=2, x_c0=2.0\"][\"full\"]]",
+     "line": 282
+    }
+   ],
+   "imports": [],
+   "trigger": "matter_only_x5",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L375.kids": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L375_triggered_carrier_galaxy_retention.py",
+   "stage": "KiDS-1000, carrier resolved (shell model), headline at p = 2",
+   "cell": "p2_x2.0",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "spherical_compensated",
+   "gate_variable": "dyn_bgsub_onbranch",
+   "carrier": "L375 spherical shell model: L365 trigger on the LOCAL total matter density (x~ > 5, matter only -- the least-trigger estimate), Gamma = 10 H, Newtonian carrier (L353), Wechsler accretion alpha = 0.75",
+   "epoch": "z_l = 0.25",
+   "note": "baryonic masses fitted ONCE, canonical footing at the p = 2 cell, then scored on both footings and (reported) at p1_x1.5",
+   "derive": {
+    "cell": {
+     "kind": "cell_in_line",
+     "file": "real_research/dark_sector_2026/L375_triggered_carrier_galaxy_retention.py",
+     "pattern": "fitsw = fit_model(A052[\"canonical\"], XE[\"p=2, x_c0=2.0\"], \"compensated\", True)[1]"
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L375_triggered_carrier_galaxy_retention.py",
+     "pattern": "fitsw = fit_model(A052[\"canonical\"], XE[\"p=2, x_c0=2.0\"], \"compensated\", True)[1]",
+     "line": 180
+    },
+    {
+     "file": "real_research/dark_sector_2026/L375_triggered_carrier_galaxy_retention.py",
+     "pattern": "idx = np.where(cold & (xt > 5.0))[0]",
+     "line": 153
+    }
+   ],
+   "imports": [],
+   "trigger": "matter_only_x5",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L376.rar_rc100": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L376_triggered_carrier_inner_galaxies.py",
+   "stage": "RAR (z = 0) and RC100 (z = 1, 2), resolved shell model",
+   "cell": "none",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_RAR",
+   "operator": "spherical_isolated",
+   "gate_variable": "n/a",
+   "carrier": "L375 spherical shell model: L365 trigger on the LOCAL total matter density (x~ > 5, matter only -- the least-trigger estimate), Gamma = 10 H, Newtonian carrier (L353), Wechsler accretion alpha = 0.75",
+   "epoch": "z = 0 (RAR), 1 and 2 (RC100)",
+   "switch_dependent": false,
+   "derive": {
+    "kernel": {
+     "kind": "signature",
+     "file": "real_research/dark_sector_2026/L376_triggered_carrier_inner_galaxies.py",
+     "all": [
+      "nu_rar = lambda y: 1.0 / (1.0 - np.exp(-np.sqrt(y)))",
+      "gM = nu_rar(gN / a0) * gN"
+     ],
+     "id": "nu_RAR"
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L376_triggered_carrier_inner_galaxies.py",
+     "pattern": "nu_rar = lambda y: 1.0 / (1.0 - np.exp(-np.sqrt(y)))",
+     "line": 52
+    }
+   ],
+   "imports": [],
+   "trigger": "matter_only_x5",
+   "operator_relevant": true
+  },
+  "L377.pm": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+   "stage": "PM full construction, one box (7, 11): switched phantom felt by baryons",
+   "cell": "p2_x2.0",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "global_baryon_masked",
+   "gate_variable": "matter_bgsub",
+   "carrier": "virialization trigger (L365): cold carrier converts at Gamma = 10 H where x~ > XC_TRIG = 5, isotropic kick v_k; ungated; from L377 on the trigger reads the phantom-inclusive x~ (so it sees the switch cell through delta_ph)",
+   "epoch": "z = 0 retention/S8, 2 clearing, 0.5 transfer, 2-3 forest",
+   "note": "alt footing run at 625/650/675 only; module constants are read at call time by phantom()",
+   "derive": {
+    "cell": {
+     "kind": "module_cell",
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "p": "P_GATE",
+     "x": "X_C0",
+     "importers": []
+    },
+    "footing": {
+     "kind": "a0_in_lines",
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "contains": "cfgs"
+    },
+    "operator": {
+     "kind": "signature",
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "all": [
+      "s.poisson(1.5 * Om * (rb - WB) / a)",
+      "w = [np.where(f, nu1 * g, 0.0) for g in gb]"
+     ]
+    },
+    "gate_variable": {
+     "kind": "signature",
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "all": [
+      "f = (1.5 * Om_a(a) * (rho - 1.0) * gate > X_C0) if on else"
+     ]
+    },
+    "kernel": {
+     "kind": "signature",
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "all": [
+      "def nu_vec(y):",
+      "HM = float(h_rar(YG[0]))"
+     ]
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "pattern": "X_C0, P_GATE, XC_TRIG = 2.0, 2, 5.0",
+     "line": 94
+    },
+    {
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "pattern": "gb = [-(1.0 / a) * g for g in s.grad(s.poisson(1.5 * Om * (rb - WB) / a))]",
+     "line": 123
+    },
+    {
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "pattern": "w = [np.where(f, nu1 * g, 0.0) for g in gb]",
+     "line": 125
+    },
+    {
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "pattern": "f = (1.5 * Om_a(a) * (rho - 1.0) * gate > X_C0) if on else",
+     "line": 120
+    }
+   ],
+   "imports": [],
+   "trigger": "phantom_inclusive_x5",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L377.shear": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+   "stage": "shear gate against L364 T_max",
+   "cell": "p2_x2.0",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_dirichlet",
+   "gate_variable": "dyn_bgsub_seeded",
+   "carrier": "n/a (bound); T(k) from this lane's own PM",
+   "epoch": "z = 0.5",
+   "source": "L364 T_max = L363 region kernel (Dirichlet, bound-baryon source) on GP3's z = 0.5 mock, seed 20260926",
+   "derive": {
+    "cell": {
+     "kind": "shear_key",
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py"
+    },
+    "operator": {
+     "kind": "signature",
+     "file": "real_research/g03_audit_2026/L363_region_kernel_lensing_power.py",
+     "all": [
+      "rp, i1, i2, nu1 = region_phantom(mk, mask, src_m, a0, on)",
+      "w, i1 = masked_poisson(mask, rhs, dx)"
+     ]
+    },
+    "gate_variable": {
+     "kind": "signature",
+     "file": "real_research/g03_audit_2026/L363_region_kernel_lensing_power.py",
+     "all": [
+      "mask = (1.5 * Omz * (rd / RHO - 1) >= xc) | seed",
+      "new = (1.5 * Omz * ((rd + np.maximum(np.where(dil, rp, 0.0), 0.0)) / RHO - 1) >= xc) & dil"
+     ]
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "pattern": "TM[f\"p=2, x_c0=2.0/{f_}\"]",
+     "line": 308
+    }
+   ],
+   "imports": [],
+   "trigger": "n/a",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L378.shear": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L378_full_construction_pooled.py",
+   "stage": "shear gate against L364 T_max",
+   "cell": "p2_x2.0",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_dirichlet",
+   "gate_variable": "dyn_bgsub_seeded",
+   "carrier": "n/a (bound); T(k) from this lane's own PM",
+   "epoch": "z = 0.5",
+   "source": "L364 T_max = L363 region kernel (Dirichlet, bound-baryon source) on GP3's z = 0.5 mock, seed 20260926",
+   "derive": {
+    "cell": {
+     "kind": "shear_key",
+     "file": "real_research/dark_sector_2026/L378_full_construction_pooled.py"
+    },
+    "operator": {
+     "kind": "signature",
+     "file": "real_research/g03_audit_2026/L363_region_kernel_lensing_power.py",
+     "all": [
+      "rp, i1, i2, nu1 = region_phantom(mk, mask, src_m, a0, on)",
+      "w, i1 = masked_poisson(mask, rhs, dx)"
+     ]
+    },
+    "gate_variable": {
+     "kind": "signature",
+     "file": "real_research/g03_audit_2026/L363_region_kernel_lensing_power.py",
+     "all": [
+      "mask = (1.5 * Omz * (rd / RHO - 1) >= xc) | seed",
+      "new = (1.5 * Omz * ((rd + np.maximum(np.where(dil, rp, 0.0), 0.0)) / RHO - 1) >= xc) & dil"
+     ]
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L378_full_construction_pooled.py",
+     "pattern": "TM[f\"p=2, x_c0=2.0/{f_}\"]",
+     "line": 109
+    }
+   ],
+   "imports": [],
+   "trigger": "n/a",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L380.shear": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing.py",
+   "stage": "shear gate against L364 T_max",
+   "cell": "p2_x2.0",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_dirichlet",
+   "gate_variable": "dyn_bgsub_seeded",
+   "carrier": "n/a (bound); T(k) from this lane's own PM",
+   "epoch": "z = 0.5",
+   "source": "L364 T_max = L363 region kernel (Dirichlet, bound-baryon source) on GP3's z = 0.5 mock, seed 20260926",
+   "derive": {
+    "cell": {
+     "kind": "shear_key",
+     "file": "real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing.py"
+    },
+    "operator": {
+     "kind": "signature",
+     "file": "real_research/g03_audit_2026/L363_region_kernel_lensing_power.py",
+     "all": [
+      "rp, i1, i2, nu1 = region_phantom(mk, mask, src_m, a0, on)",
+      "w, i1 = masked_poisson(mask, rhs, dx)"
+     ]
+    },
+    "gate_variable": {
+     "kind": "signature",
+     "file": "real_research/g03_audit_2026/L363_region_kernel_lensing_power.py",
+     "all": [
+      "mask = (1.5 * Omz * (rd / RHO - 1) >= xc) | seed",
+      "new = (1.5 * Omz * ((rd + np.maximum(np.where(dil, rp, 0.0), 0.0)) / RHO - 1) >= xc) & dil"
+     ]
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing.py",
+     "pattern": "TM[f\"p=2, x_c0=2.0/{f_}\"]",
+     "line": 121
+    }
+   ],
+   "imports": [],
+   "trigger": "n/a",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L373.shear": {
+   "lane": "merger_infall_2026",
+   "file": "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py",
+   "stage": "shear gate against L364 T_max",
+   "cell": "p2_x2.0",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_dirichlet",
+   "gate_variable": "dyn_bgsub_seeded",
+   "carrier": "n/a (bound); T(k) from this lane's own PM",
+   "epoch": "z = 0.5",
+   "source": "L364 T_max = L363 region kernel (Dirichlet, bound-baryon source) on GP3's z = 0.5 mock, seed 20260926",
+   "derive": {
+    "cell": {
+     "kind": "shear_key",
+     "file": "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py"
+    },
+    "operator": {
+     "kind": "signature",
+     "file": "real_research/g03_audit_2026/L363_region_kernel_lensing_power.py",
+     "all": [
+      "rp, i1, i2, nu1 = region_phantom(mk, mask, src_m, a0, on)",
+      "w, i1 = masked_poisson(mask, rhs, dx)"
+     ]
+    },
+    "gate_variable": {
+     "kind": "signature",
+     "file": "real_research/g03_audit_2026/L363_region_kernel_lensing_power.py",
+     "all": [
+      "mask = (1.5 * Omz * (rd / RHO - 1) >= xc) | seed",
+      "new = (1.5 * Omz * ((rd + np.maximum(np.where(dil, rp, 0.0), 0.0)) / RHO - 1) >= xc) & dil"
+     ]
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py",
+     "pattern": "TM[f\"p=2, x_c0=2.0/{f_}\"]",
+     "line": 380
+    }
+   ],
+   "imports": [],
+   "trigger": "n/a",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L378.pm": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L378_full_construction_pooled.py",
+   "stage": "PM full construction pooled, 3 boxes, 675-750 km/s",
+   "cell": "p2_x2.0",
+   "footing": [
+    "canonical"
+   ],
+   "kernel": "nu_mono",
+   "operator": "global_baryon_masked",
+   "gate_variable": "matter_bgsub",
+   "carrier": "virialization trigger (L365): cold carrier converts at Gamma = 10 H where x~ > XC_TRIG = 5, isotropic kick v_k; ungated; from L377 on the trigger reads the phantom-inclusive x~ (so it sees the switch cell through delta_ph)",
+   "epoch": "as L377",
+   "derive": {
+    "cell": {
+     "kind": "module_cell",
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "p": "P_GATE",
+     "x": "X_C0",
+     "importers": [
+      "real_research/dark_sector_2026/L378_full_construction_pooled.py"
+     ]
+    },
+    "footing": {
+     "kind": "a0_in_lines",
+     "file": "real_research/dark_sector_2026/L378_full_construction_pooled.py",
+     "contains": "cfgs"
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L378_full_construction_pooled.py",
+     "pattern": "import L377_full_construction_pm as L77",
+     "line": 36
+    }
+   ],
+   "imports": [],
+   "trigger": "phantom_inclusive_x5",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L379.pm": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L379_clearing_by_environment.py",
+   "stage": "PM full construction + z = 2 fields (run_z2 exec'd into L377)",
+   "cell": "p2_x2.0",
+   "footing": [
+    "canonical"
+   ],
+   "kernel": "nu_mono",
+   "operator": "global_baryon_masked",
+   "gate_variable": "matter_bgsub",
+   "carrier": "virialization trigger (L365): cold carrier converts at Gamma = 10 H where x~ > XC_TRIG = 5, isotropic kick v_k; ungated; from L377 on the trigger reads the phantom-inclusive x~ (so it sees the switch cell through delta_ph)",
+   "epoch": "z = 2 (fixed-cell clearing)",
+   "derive": {
+    "cell": {
+     "kind": "module_cell",
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "p": "P_GATE",
+     "x": "X_C0",
+     "importers": [
+      "real_research/dark_sector_2026/L379_clearing_by_environment.py"
+     ]
+    },
+    "footing": {
+     "kind": "a0_in_lines",
+     "file": "real_research/dark_sector_2026/L379_clearing_by_environment.py",
+     "contains": "cfgs"
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L379_clearing_by_environment.py",
+     "pattern": "exec(compile(_SRC.replace(_OLD, _NEW).replace(\"def run(cfg):\", \"def run_z2(cfg):\", 1), \"L377.run+z2\", \"exec\"), L77.__dict__)",
+     "line": 69
+    }
+   ],
+   "imports": [],
+   "trigger": "phantom_inclusive_x5",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L380.pm": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing.py",
+   "stage": "PM full construction pooled, 3 boxes, 600-675 km/s (retention exporter)",
+   "cell": "p2_x2.0",
+   "footing": [
+    "canonical"
+   ],
+   "kernel": "nu_mono",
+   "operator": "global_baryon_masked",
+   "gate_variable": "matter_bgsub",
+   "carrier": "virialization trigger (L365): cold carrier converts at Gamma = 10 H where x~ > XC_TRIG = 5, isotropic kick v_k; ungated; from L377 on the trigger reads the phantom-inclusive x~ (so it sees the switch cell through delta_ph)",
+   "epoch": "retention_by_mass at z = 0 (1 Mpc/h comoving)",
+   "derive": {
+    "cell": {
+     "kind": "module_cell",
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "p": "P_GATE",
+     "x": "X_C0",
+     "importers": [
+      "real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing.py",
+      "real_research/dark_sector_2026/L379_clearing_by_environment.py"
+     ]
+    },
+    "footing": {
+     "kind": "a0_in_lines",
+     "file": "real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing.py",
+     "contains": "cfgs"
+    },
+    "operator": {
+     "kind": "signature",
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "all": [
+      "s.poisson(1.5 * Om * (rb - WB) / a)",
+      "w = [np.where(f, nu1 * g, 0.0) for g in gb]"
+     ]
+    },
+    "gate_variable": {
+     "kind": "signature",
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "all": [
+      "f = (1.5 * Om_a(a) * (rho - 1.0) * gate > X_C0) if on else"
+     ]
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing.py",
+     "pattern": "import L379_clearing_by_environment as L79",
+     "line": 38
+    },
+    {
+     "file": "real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing.py",
+     "pattern": "cfgs += [(f\"s{sp}_{t}\", sp, sk, L77.XC_TRIG, v, 10.0, TMP, \"full\", L77.A0[\"canonical\"]) for t, v in zip(TAGS, VK)]",
+     "line": 79
+    }
+   ],
+   "imports": [],
+   "trigger": "phantom_inclusive_x5",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L381.harvey": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L381_harvey_on_pooled_window.py",
+   "stage": "Harvey+2015 via L371 adapter (retention, kick, MUTATE, variants replaced)",
+   "cell": "p1_x1.5",
+   "footing": [
+    "canonical"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_fft",
+   "gate_variable": "absolute_real",
+   "carrier": "retention imported from a PM run; core shape IMPOSED (S1 scaled cusp / S2 L321 retained() Newtonian orbits at VK / S3 marginally bound), rescaled to the imported M(<1 Mpc/h comoving)",
+   "epoch": "Harvey maps at z = 0.4 (L371 ZH) from retention measured at z = 0",
+   "imports": [
+    {
+     "quantity": "retention_by_mass",
+     "from_stage": "L380.pm",
+     "computed_z": 0.0,
+     "used_z": 0.4,
+     "link": {
+      "a": [
+       "real_research/dark_sector_2026/L381_harvey_on_pooled_window_results.json",
+       [
+        "numbers",
+        "retention_used",
+        "v600",
+        "1e+14"
+       ]
+      ],
+      "b": [
+       "real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing_results.json",
+       [
+        "numbers",
+        "retention_by_mass",
+        "v600",
+        "6.0e+13-1.0e+14",
+        0
+       ]
+      ]
+     }
+    }
+   ],
+   "derive": {
+    "cell": {
+     "kind": "reps_adapter",
+     "file": "real_research/dark_sector_2026/L381_harvey_on_pooled_window.py",
+     "func": "harvey",
+     "base": {
+      "kind": "sw_inherit",
+      "file": "real_research/merger_infall_2026/L371_harvey_slow_kick_carrier.py",
+      "base": {
+       "kind": "sw_def",
+       "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py"
+      }
+     },
+     "cell_const": null
+    },
+    "footing": {
+     "kind": "a0_in_lines",
+     "file": "real_research/merger_infall_2026/L371_harvey_slow_kick_carrier.py",
+     "contains": "phantom_felt("
+    },
+    "operator": {
+     "kind": "signature",
+     "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py",
+     "all": [
+      "lab, nlab = ndimage.label(mask)",
+      "gw = grid.field(rb * f)",
+      "gfelt[i] += f * gph[i]"
+     ]
+    },
+    "gate_variable": {
+     "kind": "signature",
+     "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py",
+     "all": [
+      "mask = (1.5 * rreal / (RHOC0 * Ez2(z))) >= x_ceff(z, sw)",
+      "inside = (1.5 * self.rho / self.rhoc) >= x_ceff(self.z, sw)"
+     ]
+    },
+    "kernel": {
+     "kind": "signature",
+     "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py",
+     "all": [
+      "def nu_mono(y):",
+      "H_MONO = float(h_rar(YG[0]))"
+     ]
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L381_harvey_on_pooled_window.py",
+     "pattern": "reps = [('MUTATE = os.environ.get(\"MUTATE\", \"0\") == \"1\"', \"MUTATE = False\"),",
+     "line": 64
+    },
+    {
+     "file": "real_research/merger_infall_2026/L371_harvey_slow_kick_carrier.py",
+     "pattern": "RealHalo, cum_mass, m_in, RG, GK, A0K, SW_DEF, Grid, phantom_felt = (L[k] for k in (",
+     "line": 79
+    },
+    {
+     "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py",
+     "pattern": "SW_DEF = \"p1_x1.5\"",
+     "line": 160
+    },
+    {
+     "file": "real_research/merger_infall_2026/L371_harvey_slow_kick_carrier.py",
+     "pattern": "ZH, NH, LH = 0.4, (160 if FAST else 400), 10000.0",
+     "line": 85
+    }
+   ],
+   "trigger": "imposed_shape",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L388.pm": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L388_linear_gate_pooled.py",
+   "stage": "PM full construction pooled at the linear gate (retention exporter)",
+   "cell": "p1_x2.5",
+   "footing": [
+    "canonical"
+   ],
+   "kernel": "nu_mono",
+   "operator": "global_baryon_masked",
+   "gate_variable": "matter_bgsub",
+   "carrier": "virialization trigger (L365): cold carrier converts at Gamma = 10 H where x~ > XC_TRIG = 5, isotropic kick v_k; ungated; from L377 on the trigger reads the phantom-inclusive x~ (so it sees the switch cell through delta_ph)",
+   "epoch": "retention_by_mass at z = 0",
+   "note": "override is module level, so spawn-started Pool workers re-execute it (C2 in L388 checks it at run time)",
+   "derive": {
+    "cell": {
+     "kind": "module_cell",
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "p": "P_GATE",
+     "x": "X_C0",
+     "importers": [
+      "real_research/dark_sector_2026/L388_linear_gate_pooled.py",
+      "real_research/dark_sector_2026/L379_clearing_by_environment.py"
+     ]
+    },
+    "footing": {
+     "kind": "a0_in_lines",
+     "file": "real_research/dark_sector_2026/L388_linear_gate_pooled.py",
+     "contains": "cfgs"
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L388_linear_gate_pooled.py",
+     "pattern": "L79.L77.X_C0, L79.L77.P_GATE = 2.5, 1",
+     "line": 42
+    }
+   ],
+   "imports": [],
+   "trigger": "phantom_inclusive_x5",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L388.shear": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L388_linear_gate_pooled.py",
+   "stage": "shear gate against DE3's T_max at the cell's lens threshold",
+   "cell": "p1_x2.5",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_dirichlet",
+   "gate_variable": "dyn_bgsub_seeded",
+   "carrier": "n/a (bound); T(k) from L388's pooled PM",
+   "epoch": "z = 0.5",
+   "derive": {
+    "cell": {
+     "kind": "json_cell",
+     "file": "real_research/dark_energy_2026/DE3_tmax_at_linear_gate_results.json",
+     "path": [
+      "numbers",
+      "cell"
+     ]
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L388_linear_gate_pooled.py",
+     "pattern": "assert (d3[\"cell\"][\"p\"], d3[\"cell\"][\"x_c0\"]) == (float(L77.P_GATE), float(L77.X_C0)), d3[\"cell\"]",
+     "line": 77
+    }
+   ],
+   "imports": [],
+   "trigger": "n/a",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L389.harvey": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L389_harvey_same_cell_linear_gate.py",
+   "stage": "Harvey+2015 same-cell (L371 adapter + switch insertion)",
+   "cell": "p1_x2.5",
+   "footing": [
+    "canonical"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_fft",
+   "gate_variable": "absolute_real",
+   "carrier": "retention imported from a PM run; core shape IMPOSED (S1 scaled cusp / S2 L321 retained() Newtonian orbits at VK / S3 marginally bound), rescaled to the imported M(<1 Mpc/h comoving)",
+   "epoch": "Harvey at z = 0.4 from L388 retention at z = 0",
+   "imports": [
+    {
+     "quantity": "retention_by_mass",
+     "from_stage": "L388.pm",
+     "computed_z": 0.0,
+     "used_z": 0.4,
+     "link": {
+      "a": [
+       "real_research/dark_sector_2026/L388_linear_gate_pooled_results.json",
+       [
+        "cell"
+       ]
+      ],
+      "expect": "p=1, x_c0=2.5"
+     }
+    }
+   ],
+   "derive": {
+    "cell": {
+     "kind": "reps_adapter",
+     "file": "real_research/dark_sector_2026/L389_harvey_same_cell_linear_gate.py",
+     "func": "harvey_cell",
+     "base": {
+      "kind": "sw_inherit",
+      "file": "real_research/merger_infall_2026/L371_harvey_slow_kick_carrier.py",
+      "base": {
+       "kind": "sw_def",
+       "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py"
+      }
+     },
+     "cell_const": "CELL"
+    },
+    "operator": {
+     "kind": "signature",
+     "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py",
+     "all": [
+      "lab, nlab = ndimage.label(mask)",
+      "gw = grid.field(rb * f)",
+      "gfelt[i] += f * gph[i]"
+     ]
+    },
+    "gate_variable": {
+     "kind": "signature",
+     "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py",
+     "all": [
+      "mask = (1.5 * rreal / (RHOC0 * Ez2(z))) >= x_ceff(z, sw)",
+      "inside = (1.5 * self.rho / self.rhoc) >= x_ceff(self.z, sw)"
+     ]
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L389_harvey_same_cell_linear_gate.py",
+     "pattern": "CELL, CELL_PX = \"p1_x2.5\", (1.0, 2.5)",
+     "line": 50
+    },
+    {
+     "file": "real_research/dark_sector_2026/L389_harvey_same_cell_linear_gate.py",
+     "pattern": "reps.append((a, a + f'\\nL[\"SWITCH\"][{name!r}] = ({p_!r}, {x_!r}); SW_DEF = {name!r}",
+     "line": 82
+    }
+   ],
+   "trigger": "imposed_shape",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L390.kids": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L390_kids_resolved_linear_gate.py",
+   "stage": "KiDS-1000 carrier resolved, same cell",
+   "cell": "p1_x2.5",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "spherical_compensated",
+   "gate_variable": "dyn_bgsub_onbranch",
+   "carrier": "L375 spherical shell model: L365 trigger on the LOCAL total matter density (x~ > 5, matter only -- the least-trigger estimate), Gamma = 10 H, Newtonian carrier (L353), Wechsler accretion alpha = 0.75",
+   "epoch": "z_l = 0.25",
+   "note": "baryonic masses refitted at the new cell on the canonical footing only, then scored on both footings",
+   "derive": {
+    "cell": {
+     "kind": "str_const_cell",
+     "file": "real_research/dark_sector_2026/L390_kids_resolved_linear_gate.py",
+     "name": "NEW"
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L390_kids_resolved_linear_gate.py",
+     "pattern": "NEW, OLD, OLD1 = \"p=1, x_c0=2.5\", \"p=2, x_c0=2.0\", \"p=1, x_c0=1.5\"",
+     "line": 41
+    },
+    {
+     "file": "real_research/dark_sector_2026/L390_kids_resolved_linear_gate.py",
+     "pattern": "MB = {c_: [10 ** lm_ for lm_, _, _ in fit_model(A052[\"canonical\"], XE[c_], \"compensated\", True)[1]] for c_ in (NEW, OLD)}",
+     "line": 72
+    }
+   ],
+   "imports": [],
+   "trigger": "matter_only_x5",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L357.halo_model": {
+   "lane": "dark_sector_2026",
+   "file": "real_research/dark_sector_2026/L357_virialization_triggered_carrier.py",
+   "stage": "halo model: forest/S8 (L319 solver), X-COP + galaxies (L321, nu_mono), KiDS (L355, NO switch), RC100/flagship",
+   "cell": "none",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "spherical_isolated",
+   "gate_variable": "n/a",
+   "carrier": "vacuum-gated density trigger p_v = 2, x~ >= x_v0 (best 2000), v_k 3000 km/s -- a CARRIER gate, not the MOND switch",
+   "epoch": "z = 0 (X-COP, galaxies), 0.25 (KiDS), 2-3 (forest), 2.5 (flagship)",
+   "note": "no MOND switch in any stage (L355: 'No switch'); the switch enters only in L360's pairing",
+   "derive": {
+    "kernel": {
+     "kind": "signature",
+     "file": "real_research/dark_sector_2026/L357_virialization_triggered_carrier.py",
+     "all": [
+      "Lm[\"nu\"] = nu_mono"
+     ],
+     "id": "nu_mono"
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L357_virialization_triggered_carrier.py",
+     "pattern": "Lm[\"nu\"] = nu_mono",
+     "line": 261
+    },
+    {
+     "file": "real_research/g03_audit_2026/L355_kernel_invisible_kids.py",
+     "pattern": "No switch (the most favourable case for the",
+     "line": 22
+    }
+   ],
+   "imports": [],
+   "trigger": "L357_gated_p2",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L370.elgordo": {
+   "lane": "merger_infall_2026",
+   "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py",
+   "stage": "El Gordo pair force + lensing-mass solve, every SWITCH cell",
+   "cell": "per-row",
+   "rows": [
+    "p1_x1.5",
+    "p0.5_x2.5",
+    "p2_x2.0"
+   ],
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_fft",
+   "gate_variable": "absolute_real",
+   "carrier": "L357 cleared_2000 (p_v = 2), intact at SW_DEF",
+   "epoch": "z = 0.87",
+   "derive": {
+    "rows": {
+     "kind": "switch_table",
+     "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py"
+    },
+    "operator": {
+     "kind": "signature",
+     "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py",
+     "all": [
+      "lab, nlab = ndimage.label(mask)",
+      "gw = grid.field(rb * f)",
+      "gfelt[i] += f * gph[i]"
+     ]
+    },
+    "gate_variable": {
+     "kind": "signature",
+     "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py",
+     "all": [
+      "mask = (1.5 * rreal / (RHOC0 * Ez2(z))) >= x_ceff(z, sw)",
+      "inside = (1.5 * self.rho / self.rhoc) >= x_ceff(self.z, sw)"
+     ]
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py",
+     "pattern": "SWITCH = {\"p1_x1.5\": (1.0, 1.5), \"p0.5_x2.5\": (0.5, 2.5), \"p2_x2.0\": (2.0, 2.0)}",
+     "line": 159
+    },
+    {
+     "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py",
+     "pattern": "    for sw in SWITCH:",
+     "line": 369
+    }
+   ],
+   "imports": [],
+   "trigger": "L357_gated_p2",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L370.harvey": {
+   "lane": "merger_infall_2026",
+   "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py",
+   "stage": "Harvey+2015, L357 carrier cells",
+   "cell": "p1_x1.5",
+   "footing": [
+    "canonical"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_fft",
+   "gate_variable": "absolute_real",
+   "carrier": "L357 static retention: cleared_2000 / cap_1000 (p_v = 2), intact, uniform 0.55",
+   "epoch": "z = 0.4",
+   "derive": {
+    "cell": {
+     "kind": "sw_def",
+     "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py"
+    },
+    "footing": {
+     "kind": "literal",
+     "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py",
+     "pattern": "foot_B = \"canonical\"",
+     "value": [
+      "canonical"
+     ]
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py",
+     "pattern": "foot_B = \"canonical\"",
+     "line": 642
+    },
+    {
+     "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py",
+     "pattern": "x~ = (3/2)(rho - rho_bar_m)/rho_crit(z) >= x_c0 E(z)^(2p)",
+     "note": "docstring says background-subtracted; code (lines 224, 290) uses the absolute density",
+     "line": 19
+    }
+   ],
+   "imports": [],
+   "trigger": "L357_gated_p2",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L371.harvey": {
+   "lane": "merger_infall_2026",
+   "file": "real_research/merger_infall_2026/L371_harvey_slow_kick_carrier.py",
+   "stage": "Harvey+2015 on L366's slow-kick retention",
+   "cell": "p1_x1.5",
+   "footing": [
+    "canonical"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_fft",
+   "gate_variable": "absolute_real",
+   "carrier": "retention imported from a PM run; core shape IMPOSED (S1 scaled cusp / S2 L321 retained() Newtonian orbits at VK / S3 marginally bound), rescaled to the imported M(<1 Mpc/h comoving)",
+   "epoch": "Harvey z = 0.4; retention typed in from L366 at z = 0",
+   "imports": [
+    {
+     "quantity": "EPS (L366 medians)",
+     "from_stage": "L366.pm_newtonian",
+     "computed_z": 0.0,
+     "used_z": 0.4
+    }
+   ],
+   "derive": {
+    "cell": {
+     "kind": "sw_inherit",
+     "file": "real_research/merger_infall_2026/L371_harvey_slow_kick_carrier.py",
+     "base": {
+      "kind": "sw_def",
+      "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py"
+     }
+    },
+    "footing": {
+     "kind": "a0_in_lines",
+     "file": "real_research/merger_infall_2026/L371_harvey_slow_kick_carrier.py",
+     "contains": "phantom_felt("
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/merger_infall_2026/L371_harvey_slow_kick_carrier.py",
+     "pattern": "EPS = {\"med\": {1e14: 0.18, 3e14: 0.40, 1e15: 0.75}, \"max\": {1e14: 0.26, 3e14: 0.73, 1e15: 0.80}}",
+     "line": 95
+    }
+   ],
+   "trigger": "imposed_shape",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L372.harvey": {
+   "lane": "merger_infall_2026",
+   "file": "real_research/merger_infall_2026/L372_gated_slow_kick_carrier.py",
+   "stage": "Harvey+2015 on the two-channel carrier (static retention)",
+   "cell": "p1_x1.5",
+   "footing": [
+    "canonical"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_fft",
+   "gate_variable": "absolute_real",
+   "carrier": "G: L357 gated trigger (p_v = 2, cleared x_v0 = 2000), v_G 750-1050; U: L319 law, f_U(0), v_U 3000; retained fractions multiply",
+   "epoch": "z = 0.4 (retained_core at z = 0.4)",
+   "derive": {
+    "cell": {
+     "kind": "sw_inherit",
+     "file": "real_research/merger_infall_2026/L372_gated_slow_kick_carrier.py",
+     "base": {
+      "kind": "sw_def",
+      "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py"
+     }
+    },
+    "footing": {
+     "kind": "a0_in_lines",
+     "file": "real_research/merger_infall_2026/L372_gated_slow_kick_carrier.py",
+     "contains": "phantom_felt("
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/merger_infall_2026/L372_gated_slow_kick_carrier.py",
+     "pattern": "RealHalo, cum_mass, m_in, RG, A0K, SW_DEF, Grid, phantom_felt = (L70[k] for k in (",
+     "line": 252
+    },
+    {
+     "file": "real_research/merger_infall_2026/L372_gated_slow_kick_carrier.py",
+     "pattern": "NT, P_GATE = 0.06, 2.0",
+     "note": "carrier-gate exponent, not the MOND switch",
+     "line": 100
+    }
+   ],
+   "imports": [],
+   "trigger": "L357_gated_p2+L319_uniform",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L372.kids": {
+   "lane": "merger_infall_2026",
+   "file": "real_research/merger_infall_2026/L372_gated_slow_kick_carrier.py",
+   "stage": "KiDS-1000 via L357/L355 web-blind kernel",
+   "cell": "none",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "spherical_isolated",
+   "gate_variable": "n/a",
+   "carrier": "L357 templates with finite kick",
+   "epoch": "z_l = 0.25",
+   "note": "switch-free (L355 'No switch'); L359 K1 shows the switched Gauss-compensated profile scores below the unswitched base, so this is plausibly conservative but it is not the Harvey stage's cell",
+   "evidence": [
+    {
+     "file": "real_research/dark_sector_2026/L357_virialization_triggered_carrier.py",
+     "pattern": "KERNELS = {\"own field (web baryons)\": L55[\"Ob\"] / L55[\"Om\"], \"web-blind kernel\": 0.0}",
+     "line": 328
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "L357_gated_p2+L319_uniform",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L372.nonharvey": {
+   "lane": "merger_infall_2026",
+   "file": "real_research/merger_infall_2026/L372_gated_slow_kick_carrier.py",
+   "stage": "forest/S8 (L319 solver), X-COP + galaxies (L321, nu_mono)",
+   "cell": "none",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "spherical_isolated",
+   "gate_variable": "n/a",
+   "carrier": "two-channel",
+   "epoch": "z = 0 / 2-3",
+   "switch_dependent": false,
+   "derive": {},
+   "evidence": [],
+   "imports": [],
+   "trigger": "L357_gated_p2+L319_uniform",
+   "operator_relevant": true
+  },
+  "L373.pm": {
+   "lane": "merger_infall_2026",
+   "file": "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py",
+   "stage": "PM full construction, two-mode carrier, 3 boxes",
+   "cell": "p2_x2.0",
+   "footing": [
+    "canonical"
+   ],
+   "kernel": "nu_mono",
+   "operator": "global_baryon_masked",
+   "gate_variable": "matter_bgsub",
+   "carrier": "U: uniform, Gamma_U ~ [Omega_L(a)/Omega_L0]^2 (P_U = 2), f_U(0), v_U 3000; G: L377 trigger x~ * [Omega_L/Omega_L0]^2 > 5 (P_G = 2, carrier gate), v_G 750-1050",
+   "epoch": "retention z = 0 (X-COP) and z = 0.4 (Harvey groups); clearing z = 2 reported",
+   "derive": {
+    "cell": {
+     "kind": "module_cell",
+     "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+     "p": "P_GATE",
+     "x": "X_C0",
+     "importers": [
+      "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py"
+     ]
+    },
+    "footing": {
+     "kind": "a0_in_lines",
+     "file": "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py",
+     "contains": "cfgs"
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py",
+     "pattern": "import L377_full_construction_pm as L77",
+     "line": 82
+    },
+    {
+     "file": "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py",
+     "pattern": "V_U, P_U, P_G = 3000.0, 2, 2",
+     "line": 98
+    }
+   ],
+   "imports": [],
+   "trigger": "phantom_inclusive_x5_gated_p2+L319_uniform",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L373.harvey": {
+   "lane": "merger_infall_2026",
+   "file": "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py",
+   "stage": "Harvey+2015 with retention measured at z = 0.4",
+   "cell": "p2_x2.0",
+   "footing": [
+    "canonical"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_fft",
+   "gate_variable": "absolute_real",
+   "carrier": "S1 scaled cusp / S2 L321 phase-mixed at v_G, rescaled to the PM retention at z = 0.4",
+   "epoch": "z = 0.4 (both)",
+   "imports": [
+    {
+     "quantity": "group retention",
+     "from_stage": "L373.pm",
+     "computed_z": 0.4,
+     "used_z": 0.4
+    }
+   ],
+   "note": "no >= 3e14 halo at z = 0.4 in the boxes (n = 0): the 1e15 main cluster takes the 3e14 bin's retention (fallback)",
+   "derive": {
+    "cell": {
+     "kind": "g_assign",
+     "file": "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py",
+     "func": "harvey_block",
+     "mesh": {
+      "kind": "module_cell",
+      "file": "real_research/dark_sector_2026/L377_full_construction_pm.py",
+      "p": "P_GATE",
+      "x": "X_C0",
+      "importers": [
+       "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py"
+      ]
+     }
+    },
+    "footing": {
+     "kind": "a0_in_lines",
+     "file": "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py",
+     "contains": "phantom_felt("
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py",
+     "pattern": "SWK = f\"p{L77.P_GATE:g}_x{L77.X_C0:.1f}\"",
+     "line": 228
+    },
+    {
+     "file": "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py",
+     "pattern": "G[\"SW_DEF\"] = SWK",
+     "line": 230
+    },
+    {
+     "file": "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py",
+     "pattern": "fb = next((GR[t][k] for k in (3e14, 1e14, 1e15) if np.isfinite(GR[t][k])), 1.0)",
+     "line": 409
+    }
+   ],
+   "trigger": "imposed_shape",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L359.scan": {
+   "lane": "g03_audit_2026",
+   "file": "real_research/g03_audit_2026/L359_vacuum_gated_switch.py",
+   "stage": "growth + KiDS (L352) + forest PM, per gated cell",
+   "cell": "per-row",
+   "rows": [
+    "p0.5_x1.5",
+    "p0.5_x2.0",
+    "p0.5_x2.5",
+    "p1_x1.5",
+    "p1_x2.0",
+    "p1_x2.5",
+    "p2_x1.5",
+    "p2_x2.0",
+    "p2_x2.5"
+   ],
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "global_total_matter_smooth+spherical_compensated",
+   "gate_variable": "matter_bgsub_smooth(forest) / dyn_bgsub_onbranch(KiDS)",
+   "carrier": "none",
+   "epoch": "z = 0.25 (KiDS), 2-3 (forest), linear growth",
+   "note": "forest PM: the kernel reads the TOTAL matter field and the switch is a tanh ramp -- not L377's baryon source and step",
+   "derive": {
+    "operator_sig": {
+     "kind": "signature",
+     "file": "real_research/g03_audit_2026/L359_vacuum_gated_switch.py",
+     "all": [
+      "phiN = bx.poisson(1.5 * L7.Om * delta / a)",
+      "f = np.ones_like(xs) if xc == 0 else 0.5 * (1 + np.tanh((xs - xc) / (0.1 * xc)))"
+     ]
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/g03_audit_2026/L359_vacuum_gated_switch.py",
+     "pattern": "CELLS = [(0.0, 2.0), (0.0, 3.0)] + [(p_, x_) for p_ in (0.5, 1.0, 2.0) for x_ in (1.5, 2.0, 2.5)]",
+     "line": 149
+    },
+    {
+     "file": "real_research/g03_audit_2026/L359_vacuum_gated_switch.py",
+     "pattern": "phiN = bx.poisson(1.5 * L7.Om * delta / a)",
+     "line": 99
+    }
+   ],
+   "imports": [],
+   "trigger": "n/a",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L360.pairs": {
+   "lane": "g03_audit_2026",
+   "file": "real_research/g03_audit_2026/L360_assembled_construction_kids.py",
+   "stage": "KiDS, (switch cell x carrier cell) pairs",
+   "cell": "per-row",
+   "rows": [
+    "L359 W1 cells"
+   ],
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "spherical_compensated",
+   "gate_variable": "dyn_bgsub_onbranch",
+   "carrier": "L357 carrier cells (static hollowed halo)",
+   "epoch": "z_l = 0.25",
+   "evidence": [
+    {
+     "file": "real_research/g03_audit_2026/L360_assembled_construction_kids.py",
+     "pattern": "SW = [(float(c[\"p\"]), float(c[\"x_c0\"])) for c in R59[\"numbers\"][\"W1\"]]",
+     "line": 78
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "L357_gated_p2",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L363.shear": {
+   "lane": "g03_audit_2026",
+   "file": "real_research/g03_audit_2026/L363_region_kernel_lensing_power.py",
+   "stage": "cosmic shear, region kernel on GP3 mock + halo model",
+   "cell": "per-row",
+   "rows": [
+    "p1_x1.5",
+    "p2_x2.0"
+   ],
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_dirichlet",
+   "gate_variable": "dyn_bgsub_seeded",
+   "carrier": "none (LCDM-like dark field)",
+   "epoch": "z = 0.5",
+   "derive": {
+    "operator": {
+     "kind": "signature",
+     "file": "real_research/g03_audit_2026/L363_region_kernel_lensing_power.py",
+     "all": [
+      "rp, i1, i2, nu1 = region_phantom(mk, mask, src_m, a0, on)",
+      "w, i1 = masked_poisson(mask, rhs, dx)"
+     ]
+    },
+    "gate_variable": {
+     "kind": "signature",
+     "file": "real_research/g03_audit_2026/L363_region_kernel_lensing_power.py",
+     "all": [
+      "mask = (1.5 * Omz * (rd / RHO - 1) >= xc) | seed",
+      "new = (1.5 * Omz * ((rd + np.maximum(np.where(dil, rp, 0.0), 0.0)) / RHO - 1) >= xc) & dil"
+     ]
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/g03_audit_2026/L363_region_kernel_lensing_power.py",
+     "pattern": "CELLS = {\"p=1, x_c0=1.5 (L360's example)\": 1.5 * E2 ** 1.0, \"p=2, x_c0=2.0 (highest window threshold)\": 2.0 * E2 ** 2.0}",
+     "line": 87
+    }
+   ],
+   "imports": [],
+   "trigger": "n/a",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "L364.scan": {
+   "lane": "g03_audit_2026",
+   "file": "real_research/g03_audit_2026/L364_replacement_carrier_cosmic_shear.py",
+   "stage": "replacement carrier: KiDS and shear at the SAME cell per row",
+   "cell": "per-row",
+   "rows": [
+    "p1_x1.5",
+    "p2_x2.0"
+   ],
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_dirichlet+spherical_compensated",
+   "gate_variable": "dyn_bgsub",
+   "carrier": "L319 Lambda-triggered (p = 2 rate law), f_d, v_k",
+   "epoch": "z = 0.5 / 0.25",
+   "derive": {
+    "rows": {
+     "kind": "row_cells",
+     "file": "real_research/g03_audit_2026/L364_replacement_carrier_cosmic_shear.py",
+     "pattern": "SWC = {\"p=1, x_c0=1.5\": 1.5 * N63[\"E2\"] ** 1.0, \"p=2, x_c0=2.0\": 2.0 * N63[\"E2\"] ** 2.0}"
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/g03_audit_2026/L364_replacement_carrier_cosmic_shear.py",
+     "pattern": "row[\"kids\"][cell] = {f_: float(fit_comb(A052[f_], xe, TC, [1.0])[0] - BASE[f_]) for f_ in A0}",
+     "line": 166
+    }
+   ],
+   "imports": [],
+   "trigger": "L319_lambda",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "GP1.construction": {
+   "lane": "generated_phantom_2026",
+   "file": "real_research/generated_phantom_2026/GP1_generated_phantom_construction.py",
+   "stage": "generated-phantom kernel from an action (bound baryons only)",
+   "cell": "none",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "generated(nu_mono)",
+   "operator": "generated_screened",
+   "gate_variable": "n/a",
+   "carrier": "none",
+   "epoch": "static",
+   "switch_dependent": false,
+   "evidence": [
+    {
+     "file": "real_research/generated_phantom_2026/GP1_generated_phantom_construction.py",
+     "pattern": "A0 = {\"canonical\": 9.3619e-11, \"alt\": 1.1279e-10}",
+     "line": 109
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "n/a",
+   "operator_relevant": true
+  },
+  "GP2.kids": {
+   "lane": "generated_phantom_2026",
+   "file": "real_research/generated_phantom_2026/GP2_kids_bound_source_kernel.py",
+   "stage": "KiDS-1000 with the generated kernel, lambda scan",
+   "cell": "none",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "generated(nu_mono)",
+   "operator": "generated_screened",
+   "gate_variable": "n/a",
+   "carrier": "surviving halo f_s (free)",
+   "epoch": "z_l = 0.25",
+   "switch_dependent": false,
+   "evidence": [
+    {
+     "file": "real_research/generated_phantom_2026/GP2_kids_bound_source_kernel.py",
+     "pattern": "LAMS = [0.5, 0.7, 1.0, 1.5, 2.0, 3.0, 5.0, 7.0, 10.0, float(\"inf\")]",
+     "line": 119
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "n/a",
+   "operator_relevant": true
+  },
+  "GP3.shear_growth": {
+   "lane": "generated_phantom_2026",
+   "file": "real_research/generated_phantom_2026/GP3_lensing_power_and_growth.py",
+   "stage": "cosmic shear, growth, forest with the generated kernel",
+   "cell": "none",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "generated(nu_mono)",
+   "operator": "generated_screened",
+   "gate_variable": "n/a",
+   "carrier": "none (LCDM-like dark field)",
+   "epoch": "z = 0.5 (shear)",
+   "switch_dependent": false,
+   "evidence": [
+    {
+     "file": "real_research/generated_phantom_2026/GP3_lensing_power_and_growth.py",
+     "pattern": "LAMS = [1.0, 2.0, 3.0]",
+     "line": 101
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "n/a",
+   "operator_relevant": true
+  },
+  "AT2.forest": {
+   "lane": "acceleration_trigger_2026",
+   "file": "real_research/acceleration_trigger_2026/AT2_forest_flux_calibrated.py",
+   "stage": "forest flux power in L365's PM box with AT1's decay budget",
+   "cell": "none",
+   "footing": [
+    "canonical"
+   ],
+   "kernel": "n/a",
+   "operator": "none",
+   "gate_variable": "n/a",
+   "carrier": "AT1 B1 budget (canonical) applied densest-first, kick v_A; Newtonian PM",
+   "epoch": "z = 2-3",
+   "switch_dependent": false,
+   "trigger": "accel_trigger",
+   "operator_relevant": false,
+   "evidence": [
+    {
+     "file": "real_research/acceleration_trigger_2026/AT2_forest_flux_calibrated.py",
+     "pattern": "B1 = json.load(open(AT1_JSON))[\"numbers\"][\"B1\"]",
+     "line": 201
+    }
+   ],
+   "derive": {},
+   "imports": []
+  },
+  "GP4.window": {
+   "lane": "generated_phantom_2026",
+   "file": "real_research/generated_phantom_2026/GP4_generated_phantom_plus_kicked_carrier.py",
+   "stage": "generated phantom (lambda) + L319 carrier, all gates",
+   "cell": "none",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "generated(nu_mono)",
+   "operator": "generated_screened",
+   "gate_variable": "n/a",
+   "carrier": "L319 Lambda-triggered (L364 scan): f_d(0) 0.9/0.95, v_k 1200/1400",
+   "epoch": "z = 0.5 shear, 0.25 KiDS, 0 X-COP",
+   "switch_dependent": false,
+   "note": "no vacuum-gated switch in this construction; lambda plays the region role",
+   "evidence": [
+    {
+     "file": "real_research/generated_phantom_2026/GP4_generated_phantom_plus_kicked_carrier.py",
+     "pattern": "LAMS = [0.7, 1.0, 1.5, 2.0]",
+     "line": 88
+    },
+    {
+     "file": "real_research/generated_phantom_2026/GP4_generated_phantom_plus_kicked_carrier.py",
+     "pattern": "FOOTS = (\"canonical\", \"alt\")",
+     "line": 89
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "L319_lambda",
+   "operator_relevant": true
+  },
+  "GP5.flagship": {
+   "lane": "generated_phantom_2026",
+   "file": "real_research/generated_phantom_2026/GP5_window_at_high_z.py",
+   "stage": "flagship + RC100 at high z for GP4's cells",
+   "cell": "none",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_RAR+nu_mono",
+   "operator": "spherical_isolated",
+   "gate_variable": "n/a",
+   "carrier": "L319 survival for GP4's cells",
+   "epoch": "z = 0.5-2.5",
+   "switch_dependent": false,
+   "evidence": [
+    {
+     "file": "real_research/generated_phantom_2026/GP5_window_at_high_z.py",
+     "pattern": "nuf = nu if kernel == \"l320\" else nu_mono",
+     "line": 113
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "L319_lambda",
+   "operator_relevant": true
+  },
+  "AT1.flagship": {
+   "lane": "acceleration_trigger_2026",
+   "file": "real_research/acceleration_trigger_2026/AT1_acceleration_trigger_highz.py",
+   "stage": "acceleration trigger on the halo model; flagship z = 0.5-2.5",
+   "cell": "none",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_RAR+nu_mono",
+   "operator": "spherical_isolated",
+   "gate_variable": "n/a",
+   "carrier": "acceleration trigger y_b >= y_v, kick v_A (loss cone)",
+   "epoch": "z = 0.5-2.5",
+   "note": "no switch edge in the flagship; DE1 F2 says p = 1 cells keep it to z >= 4.2, p2_x2.0 only to 2.46 (canonical)",
+   "evidence": [
+    {
+     "file": "real_research/acceleration_trigger_2026/AT1_acceleration_trigger_highz.py",
+     "pattern": "for kern, nuf in ((\"l320\", nu20), (\"mono\", nu_mono)):",
+     "line": 325
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "accel_trigger",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "AT3.harvey": {
+   "lane": "acceleration_trigger_2026",
+   "file": "real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py",
+   "stage": "Harvey+2015 via L372's harvey() slice",
+   "cell": "p1_x2.5",
+   "footing": [
+    "canonical"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_fft",
+   "gate_variable": "absolute_real",
+   "carrier": "mode A retention on entry (y_b >= y_v,eff at z = 0.4, canonical a0) x mode U factor",
+   "epoch": "z = 0.4",
+   "note": "source edited 15:32:58 to set HNS['SW_DEF'] = 'p1_x2.5' after the exec; every AT3 output on disk predates that edit (earlier source: Harvey inherited L370's p1_x1.5 through L372's slice, shear reported at L364's two cells only)",
+   "derive": {
+    "cell": {
+     "kind": "exec_slice",
+     "file": "real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py",
+     "src": "real_research/merger_infall_2026/L372_gated_slow_kick_carrier.py",
+     "start": "P70 = os.path.join(HERE, \"L370_boosted_infall_mergers.py\")",
+     "end": "def non_harvey_ok(r):",
+     "ns": "HNS",
+     "base": {
+      "kind": "sw_def",
+      "file": "real_research/merger_infall_2026/L370_boosted_infall_mergers.py"
+     }
+    },
+    "footing": {
+     "kind": "a0_in_lines",
+     "file": "real_research/merger_infall_2026/L372_gated_slow_kick_carrier.py",
+     "contains": "phantom_felt("
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py",
+     "pattern": "_harv = _s72[_s72.index('P70 = os.path.join(HERE, \"L370_boosted_infall_mergers.py\")'):_s72.index(\"def non_harvey_ok(r):\")]",
+     "line": 332
+    },
+    {
+     "file": "real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py",
+     "pattern": "HNS[\"SW_DEF\"] = SW_COMMON",
+     "line": 358
+    }
+   ],
+   "imports": [],
+   "trigger": "accel_trigger+L319_uniform",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "AT3.kids": {
+   "lane": "acceleration_trigger_2026",
+   "file": "real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py",
+   "stage": "KiDS via L357/L355 web-blind kernel",
+   "cell": "none",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "spherical_isolated",
+   "gate_variable": "n/a",
+   "carrier": "AT1 retention (trigger radius on the canonical a0 for both footings)",
+   "epoch": "z_l = 0.25",
+   "evidence": [
+    {
+     "file": "real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py",
+     "pattern": "r[\"kids_ok\"] = all(r[\"kids\"][f\"web-blind kernel|{f_}\"] <= 9.0 for f_ in FOOT)",
+     "line": 292
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "accel_trigger+L319_uniform",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "AT3.shear": {
+   "lane": "acceleration_trigger_2026",
+   "file": "real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py",
+   "stage": "cosmic shear at the common cell (+ L364 cells reported)",
+   "cell": "p1_x2.5",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_dirichlet",
+   "gate_variable": "dyn_bgsub_seeded",
+   "carrier": "L319 solver transfer with every decay at v_A",
+   "epoch": "z = 0.5",
+   "derive": {
+    "cell": {
+     "kind": "cell_in_line",
+     "file": "real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py",
+     "pattern": "PH[f\"p=1, x_c0=2.5/{f_}\"] = phantom_power(XC_COMMON, FOOT[f_])"
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py",
+     "pattern": "XC_COMMON = 2.5 * N63[\"E2\"] ** 1.0",
+     "line": 422
+    }
+   ],
+   "imports": [],
+   "trigger": "accel_trigger+L319_uniform",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "AT3.flagship": {
+   "lane": "acceleration_trigger_2026",
+   "file": "real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py",
+   "stage": "flagship z = 0.5-2.5 (AT1's flagship_rows)",
+   "cell": "none",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_RAR+nu_mono",
+   "operator": "spherical_isolated",
+   "gate_variable": "n/a",
+   "carrier": "mode A only",
+   "epoch": "z = 0.5-2.5",
+   "switch_dependent": false,
+   "note": "switch-free by construction; at p = 1 cells DE1 F2 shows the switch edge does not bite before z ~ 4.2",
+   "derive": {},
+   "evidence": [],
+   "imports": [],
+   "trigger": "accel_trigger",
+   "operator_relevant": true
+  },
+  "AT3.nonharvey": {
+   "lane": "acceleration_trigger_2026",
+   "file": "real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py",
+   "stage": "galaxies, X-COP (L321), S8 (L319 solver), forest (AT2 PM)",
+   "cell": "none",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "spherical_isolated",
+   "gate_variable": "n/a",
+   "carrier": "modes A + U",
+   "epoch": "z = 0 / 2-3",
+   "switch_dependent": false,
+   "evidence": [
+    {
+     "file": "real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py",
+     "pattern": "A0C = A0K[\"canonical\"]",
+     "line": 131
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "accel_trigger+L319_uniform",
+   "operator_relevant": true
+  },
+  "DE1.flagship": {
+   "lane": "dark_energy_2026",
+   "file": "real_research/dark_energy_2026/DE1_vacuum_gate_flagship.py",
+   "stage": "switch edge vs flagship radius at z = 2.5 (point mass, on-branch)",
+   "cell": "per-row",
+   "rows": [
+    "p0.5_x1.5",
+    "p0.5_x2.0",
+    "p0.5_x2.5",
+    "p1_x1.5",
+    "p1_x2.0",
+    "p1_x2.5",
+    "p2_x1.5",
+    "p2_x2.0"
+   ],
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono (committed edge) / per-kernel (working tree)",
+   "operator": "spherical_point_mass",
+   "gate_variable": "dyn_bgsub_onbranch",
+   "carrier": "none",
+   "epoch": "z = 2.5 (F1), z_max scan (F2)",
+   "switch_dependent": true,
+   "note": "c8bb50813 computed the edge with nu_mono for both kernel labels (the peer review's point); 0b4e319b7 (15:40, during this review) computes each kernel's own edge and adds mu_exp -- F1 unchanged (-1.134 / -1.134 / -1.073 dex, canonical 1e11)",
+   "evidence": [
+    {
+     "file": "real_research/dark_energy_2026/DE1_vacuum_gate_flagship.py",
+     "pattern": "SHEAR_CELL = (2.0, 2.0)",
+     "line": 120
+    },
+    {
+     "file": "real_research/dark_energy_2026/DE1_vacuum_gate_flagship.py",
+     "pattern": "on = 4 * math.pi * G * (rho_dyn - rho_bar) / Hz(z) ** 2 >= xc",
+     "line": 169
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "n/a",
+   "operator_relevant": true
+  },
+  "DE2.kids": {
+   "lane": "dark_energy_2026",
+   "file": "real_research/dark_energy_2026/DE2_vacuum_gate_joint_window.py",
+   "stage": "KiDS switch-only fit (L352) on the threshold grid",
+   "cell": "per-row",
+   "rows": [
+    "continuum (p, x_c0)"
+   ],
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "spherical_compensated",
+   "gate_variable": "dyn_bgsub_onbranch",
+   "carrier": "none (switch only)",
+   "epoch": "z = 0.25",
+   "derive": {},
+   "evidence": [],
+   "imports": [],
+   "trigger": "n/a",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "DE2.shear": {
+   "lane": "dark_energy_2026",
+   "file": "real_research/dark_energy_2026/DE2_vacuum_gate_joint_window.py",
+   "stage": "shear floor: L363 region kernel at 17 thresholds vs L367 transfers",
+   "cell": "per-row",
+   "rows": [
+    "continuum (p, x_c0)"
+   ],
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_dirichlet",
+   "gate_variable": "dyn_bgsub_seeded",
+   "carrier": "L367 Newtonian single-box transfer (no phantom felt)",
+   "epoch": "z = 0.5",
+   "evidence": [
+    {
+     "file": "real_research/dark_energy_2026/DE2_vacuum_gate_joint_window.py",
+     "pattern": "L367 = json.load(open(os.path.join(DS, \"L367_triggered_carrier_cosmic_shear_results.json\")))[\"numbers\"][\"transfer\"]",
+     "line": 120
+    }
+   ],
+   "derive": {},
+   "imports": [],
+   "trigger": "matter_only_x5",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "DE2.flagship": {
+   "lane": "dark_energy_2026",
+   "file": "real_research/dark_energy_2026/DE2_vacuum_gate_joint_window.py",
+   "stage": "flagship cap X_F from DE1's numeric edge",
+   "cell": "per-row",
+   "rows": [
+    "continuum (p, x_c0)"
+   ],
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "spherical_point_mass",
+   "gate_variable": "dyn_bgsub_onbranch",
+   "carrier": "none",
+   "epoch": "z = 2.5",
+   "derive": {},
+   "evidence": [],
+   "imports": [],
+   "trigger": "n/a",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "DE2.forest": {
+   "lane": "dark_energy_2026",
+   "file": "real_research/dark_energy_2026/DE2_vacuum_gate_joint_window.py",
+   "stage": "forest by dominance over L359's weakest passing cell (p = 0.5, x_c0 = 1.5)",
+   "cell": "per-row",
+   "rows": [
+    "dominance over p0.5_x1.5"
+   ],
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "global_total_matter_smooth",
+   "gate_variable": "matter_bgsub_smooth",
+   "carrier": "none",
+   "epoch": "z = 2-3",
+   "derive": {},
+   "evidence": [],
+   "imports": [],
+   "trigger": "n/a",
+   "switch_dependent": true,
+   "operator_relevant": true
+  },
+  "DE3.tmax": {
+   "lane": "dark_energy_2026",
+   "file": "real_research/dark_energy_2026/DE3_tmax_at_linear_gate.py",
+   "stage": "T_max export at the linear-gate cell's lens threshold",
+   "cell": "p1_x2.5",
+   "footing": [
+    "canonical",
+    "alt"
+   ],
+   "kernel": "nu_mono",
+   "operator": "region_dirichlet",
+   "gate_variable": "dyn_bgsub_seeded",
+   "carrier": "n/a (bound)",
+   "epoch": "z = 0.5 (x_lens = 2.5 E^2(0.5) = 4.36302)",
+   "derive": {
+    "cell": {
+     "kind": "json_cell",
+     "file": "real_research/dark_energy_2026/DE3_tmax_at_linear_gate_results.json",
+     "path": [
+      "numbers",
+      "cell"
+     ]
+    }
+   },
+   "evidence": [
+    {
+     "file": "real_research/dark_energy_2026/DE3_tmax_at_linear_gate.py",
+     "pattern": "XCELL = 2.5 * (1.0 if MUTATE else eS)",
+     "line": 75
+    }
+   ],
+   "imports": [],
+   "trigger": "n/a",
+   "switch_dependent": true,
+   "operator_relevant": true
+  }
+ },
+ "verdicts": {
+  "L357": {
+   "lane": "dark_sector_2026",
+   "claim": "vacuum-gated carrier opens a halo-model window (3 strict / 17 alt cells; best p_v = 2, x~ >= 2000, 3000 km/s)",
+   "status": "STANDS (with its stated price: flagship +0.8 dex at z = 2.5, RC100 0.43 vs 0.29 -- i.e. it fails the flagship)",
+   "status_source": "commit df81d0b72; dark_sector README L357 section",
+   "stages": [
+    "L357.halo_model"
+   ],
+   "controls": []
+  },
+  "L365": {
+   "lane": "dark_sector_2026",
+   "claim": "narrow PM window x_c = 5, v_k ~ 700",
+   "status": "SUPERSEDED (L366 box, then L369 realisations)",
+   "status_source": "commits 536d67591, 2f8e3e2c5, 4762886e6",
+   "stages": [
+    "L365.pm"
+   ],
+   "controls": []
+  },
+  "L366": {
+   "lane": "dark_sector_2026",
+   "claim": "joint window at v_k ~ 650 km/s (single box)",
+   "status": "SUPERSEDED (L369: one-realisation artefact)",
+   "status_source": "commit 4762886e6",
+   "stages": [
+    "L366.pm_newtonian",
+    "XCOP.band"
+   ],
+   "controls": []
+  },
+  "L367": {
+   "lane": "dark_sector_2026",
+   "claim": "cosmic shear passes with the p = 2 switch at 600-700; p1_x1.5 fails at 600/650",
+   "status": "STANDS (per cell; Newtonian single-box transfer)",
+   "status_source": "commit 52a294431",
+   "stages": [
+    "L367.pm_newtonian",
+    "L367.shear"
+   ],
+   "controls": []
+  },
+  "L368": {
+   "lane": "dark_sector_2026",
+   "claim": "v_k = 650 with p = 2 passes every gate",
+   "status": "WITHDRAWN (L369: one-realisation artefact; its KiDS S was sub-cell, redone in L375)",
+   "status_source": "commit 4762886e6 ('L368's \"one cell passes everything\" was a one-realisation artefact')",
+   "stages": [
+    "L366.pm_newtonian",
+    "L367.pm_newtonian",
+    "L367.shear",
+    "L368.kids",
+    "XCOP.band"
+   ],
+   "controls": []
+  },
+  "L369": {
+   "lane": "dark_sector_2026",
+   "claim": "no pooled window over three realisations (Newtonian)",
+   "status": "STANDS as gated (its G3 clearing proxy later shown selection-biased by L379)",
+   "status_source": "commits 4762886e6, 1c5a52dd5",
+   "stages": [
+    "L369.pm_newtonian",
+    "L369.kids_shear",
+    "XCOP.band"
+   ],
+   "controls": []
+  },
+  "L375": {
+   "lane": "dark_sector_2026",
+   "claim": "KiDS passes with the resolved carrier profile at p = 2 (-11.5/-8.4)",
+   "status": "STANDS (p2_x2.0 only)",
+   "status_source": "commit 00ae4e1e1",
+   "stages": [
+    "L375.kids"
+   ],
+   "controls": []
+  },
+  "L376": {
+   "lane": "dark_sector_2026",
+   "claim": "RAR and RC100 gates pass (carrier gone from galaxy interiors)",
+   "status": "STANDS",
+   "status_source": "commit 7baf52c81",
+   "stages": [
+    "L376.rar_rc100"
+   ],
+   "controls": []
+  },
+  "L377": {
+   "lane": "dark_sector_2026",
+   "claim": "phantom RAISES cluster retention 6-22% (hypothesis falsified in sign)",
+   "status": "STANDS (p2_x2.0, one box)",
+   "status_source": "commit 70d674b95",
+   "stages": [
+    "L377.pm",
+    "L377.shear",
+    "XCOP.band"
+   ],
+   "controls": []
+  },
+  "L378": {
+   "lane": "dark_sector_2026",
+   "claim": "pooled full construction: no window (G3 blocks)",
+   "status": "SUPERSEDED in its clearing reading (L379 correction -> L380)",
+   "status_source": "commits 7d85e9d37, 1c5a52dd5, 4e16ccf58",
+   "stages": [
+    "L378.pm",
+    "L378.shear",
+    "XCOP.band"
+   ],
+   "controls": []
+  },
+  "L379": {
+   "lane": "dark_sector_2026",
+   "claim": "G3 is selection-biased; fixed-cell clearing 5-10%",
+   "status": "STANDS (methodological correction)",
+   "status_source": "commit 1c5a52dd5",
+   "stages": [
+    "L379.pm"
+   ],
+   "controls": []
+  },
+  "L380": {
+   "lane": "dark_sector_2026",
+   "claim": "pooled window 600-675 km/s with fixed-cell clearing",
+   "status": "SCOPED: stands for the p2_x2.0 cell only (3151d88f2); that cell fails the flagship at canonical (DE1)",
+   "status_source": "commit 3151d88f2; dark_sector README 'Correction to L381'",
+   "stages": [
+    "L380.pm",
+    "L380.shear",
+    "XCOP.band",
+    "L375.kids",
+    "L376.rar_rc100"
+   ],
+   "controls": []
+  },
+  "L381": {
+   "lane": "dark_sector_2026",
+   "claim": "Harvey on L380's pooled window: S1 passes 600-625, S2 misses by 0.009",
+   "status": "WITHDRAWN (3151d88f2)",
+   "status_source": "commit 3151d88f2",
+   "stages": [
+    "L380.pm",
+    "L381.harvey"
+   ],
+   "controls": [
+    "must_flag_cell_conflict"
+   ]
+  },
+  "L386_L387": {
+   "lane": "dark_sector_2026",
+   "claim": "p = 2 lower edge (L386) and Harvey slow end (L387)",
+   "status": "STOPPED, not committed; files absent at inspection",
+   "status_source": "commit 3151d88f2 ('L386/L387 (p = 2) stopped, not committed')",
+   "stages": [],
+   "controls": []
+  },
+  "L388_chain": {
+   "lane": "dark_sector_2026",
+   "claim": "same-cell re-run at the linear gate: PM (L388) + KiDS (L390) + Harvey (L389)",
+   "status": "PENDING (L388 running, L389 waits for it; L390 committed b3ba1f6fa during this review: KiDS passes at p1_x2.5)",
+   "status_source": "dark_sector README correction block; commit b3ba1f6fa; L388/L389 docstrings",
+   "stages": [
+    "L388.pm",
+    "L388.shear",
+    "XCOP.band",
+    "L390.kids",
+    "L389.harvey",
+    "L376.rar_rc100"
+   ],
+   "controls": [
+    "must_not_flag_cell_conflict"
+   ]
+  },
+  "L390": {
+   "lane": "dark_sector_2026",
+   "claim": "KiDS with the resolved carrier at the linear gate p1_x2.5: passes at 575-650 km/s, both footings (-13.1/-7.1)",
+   "status": "STANDS (committed b3ba1f6fa during this review)",
+   "status_source": "commit b3ba1f6fa",
+   "stages": [
+    "L390.kids"
+   ],
+   "controls": []
+  },
+  "L370A": {
+   "lane": "merger_infall_2026",
+   "claim": "El Gordo slightly easier than LCDM (Delta chi -0.58..-0.12)",
+   "status": "STANDS (every SWITCH cell, both footings)",
+   "status_source": "commit 732bbe510",
+   "stages": [
+    "L370.elgordo"
+   ],
+   "controls": []
+  },
+  "L370B": {
+   "lane": "merger_infall_2026",
+   "claim": "Harvey disfavours L357's core-decayed carrier at 1.7-4 sigma",
+   "status": "STANDS (at p1_x1.5, canonical, static L357 retention)",
+   "status_source": "commit 732bbe510; PAPER34 line 162",
+   "stages": [
+    "L370.harvey"
+   ],
+   "controls": []
+  },
+  "L371": {
+   "lane": "merger_infall_2026",
+   "claim": "Harvey fails L366's slow-kick carrier (2.1/2.5/5.4 sigma)",
+   "status": "STANDS as a failure of that assembly (carrier since superseded)",
+   "status_source": "commit fe4fb762d",
+   "stages": [
+    "L366.pm_newtonian",
+    "L371.harvey"
+   ],
+   "controls": []
+  },
+  "L372": {
+   "lane": "merger_infall_2026",
+   "claim": "two-channel carrier passes forest, S8, X-COP, galaxies, KiDS and Harvey (alt set)",
+   "status": "STANDS (alt set, static retention; relayed in PAPER34 line 163 without its cell)",
+   "status_source": "commit 5562a5dac",
+   "stages": [
+    "L372.harvey",
+    "L372.kids",
+    "L372.nonharvey"
+   ],
+   "controls": []
+  },
+  "L373": {
+   "lane": "merger_infall_2026",
+   "claim": "two-mode carrier in the PM: does the L372 window survive assembly?",
+   "status": "PENDING (uncommitted; Harvey re-scored from checkpoint after the SW_DEF fix)",
+   "status_source": "L373 docstring CORRECTION paragraph",
+   "stages": [
+    "L373.pm",
+    "L373.harvey",
+    "L373.shear",
+    "XCOP.band"
+   ],
+   "controls": [
+    "must_not_flag_cell_conflict"
+   ]
+  },
+  "L359": {
+   "lane": "g03_audit_2026",
+   "claim": "8 gated cells pass growth + KiDS + forest",
+   "status": "STANDS",
+   "status_source": "commit b13dc17af",
+   "stages": [
+    "L359.scan"
+   ],
+   "controls": []
+  },
+  "L360": {
+   "lane": "g03_audit_2026",
+   "claim": "70 of 96 (switch, carrier) pairs pass KiDS",
+   "status": "STANDS",
+   "status_source": "commit df81d0b72",
+   "stages": [
+    "L360.pairs"
+   ],
+   "controls": []
+  },
+  "L363": {
+   "lane": "g03_audit_2026",
+   "claim": "cosmic shear FAILS the assembled construction (both cells)",
+   "status": "STANDS",
+   "status_source": "commit 60a57b293",
+   "stages": [
+    "L363.shear"
+   ],
+   "controls": []
+  },
+  "L364": {
+   "lane": "g03_audit_2026",
+   "claim": "replacement carrier: no window; near miss at p2_x2.0 (KiDS alt)",
+   "status": "STANDS",
+   "status_source": "commit bbca9b8a3",
+   "stages": [
+    "L364.scan"
+   ],
+   "controls": []
+  },
+  "GP1": {
+   "lane": "generated_phantom_2026",
+   "claim": "the generated phantom built from an action (reciprocity 1.6e-5; not Gauss-cancelled)",
+   "status": "STANDS",
+   "status_source": "commit c4dfd713c",
+   "stages": [
+    "GP1.construction"
+   ],
+   "controls": []
+  },
+  "GP2": {
+   "lane": "generated_phantom_2026",
+   "claim": "KiDS: best +9.7/+9.2 vs the Gauss-forbidden comparator; realisable floor +8.2/+8.3 (W1 fails, recorded)",
+   "status": "STANDS",
+   "status_source": "commit c4dfd713c",
+   "stages": [
+    "GP2.kids"
+   ],
+   "controls": []
+  },
+  "GP3": {
+   "lane": "generated_phantom_2026",
+   "claim": "cosmic shear FAILS (lensing power 2.3-3.2x at k = 0.5-1; 1.5x at lambda = 1 Mpc)",
+   "status": "STANDS",
+   "status_source": "commit c4dfd713c",
+   "stages": [
+    "GP3.shear_growth"
+   ],
+   "controls": []
+  },
+  "AT2": {
+   "lane": "acceleration_trigger_2026",
+   "claim": "the forest on its own observable: AT1's budget passes L365's rule; proxy is not the observable",
+   "status": "PENDING (running at inspection; uncommitted)",
+   "status_source": "AT2 docstring / .out",
+   "stages": [
+    "AT2.forest"
+   ],
+   "controls": []
+  },
+  "GP4": {
+   "lane": "generated_phantom_2026",
+   "claim": "generated phantom + kicked carrier: alt-set window at lambda = 1 Mpc",
+   "status": "SCOPED: closed at high z by GP5; KiDS vs the realisable floor +19.1..+21.5 (P34 X1), not +8",
+   "status_source": "commits 29b5c74ff, 70d8070c0; PAPER34 lines 226, 273",
+   "stages": [
+    "GP4.window"
+   ],
+   "controls": []
+  },
+  "GP5": {
+   "lane": "generated_phantom_2026",
+   "claim": "GP4's window fails the flagship at z ~ 2.5 (+0.82..+1.05 dex)",
+   "status": "STANDS",
+   "status_source": "commit 70d8070c0",
+   "stages": [
+    "GP5.flagship"
+   ],
+   "controls": []
+  },
+  "AT1": {
+   "lane": "acceleration_trigger_2026",
+   "claim": "acceleration trigger keeps the flagship flat at z = 0.5-2.5",
+   "status": "PENDING (uncommitted; README 9/9)",
+   "status_source": "acceleration_trigger README",
+   "stages": [
+    "AT1.flagship"
+   ],
+   "controls": []
+  },
+  "AT3": {
+   "lane": "acceleration_trigger_2026",
+   "claim": "acceleration-triggered carrier through every gate",
+   "status": "PENDING (not running at 15:45; the .out on disk is from a pre-fix run, the results JSON from a FAST-grid run under the main name)",
+   "status_source": "AT3 source (15:32:58 edit, Harvey + shear at p1_x2.5) vs its .out header (15:29:57) and results JSON (14:54)",
+   "stages": [
+    "AT3.harvey",
+    "AT3.kids",
+    "AT3.shear",
+    "AT3.flagship",
+    "AT3.nonharvey"
+   ],
+   "controls": []
+  },
+  "DE1": {
+   "lane": "dark_energy_2026",
+   "claim": "p2_x2.0 fails the flagship at canonical, M_b = 1e11, z = 2.5; p_max 1.97/2.07",
+   "status": "STANDS (c8bb50813; per-kernel edges committed in 0b4e319b7 during this review, F1 unchanged)",
+   "status_source": "commits c8bb50813, 0b4e319b7",
+   "stages": [
+    "DE1.flagship"
+   ],
+   "controls": []
+  },
+  "DE2": {
+   "lane": "dark_energy_2026",
+   "claim": "joint window p in [0.5, 2.07]; linear gate x_c0 in [2.005, 2.975] at 600 km/s",
+   "status": "STANDS, SCOPED (switch only; L367 Newtonian transfers; switch-only KiDS; forest by dominance)",
+   "status_source": "commit c8bb50813; DE2 SCOPE paragraph",
+   "stages": [
+    "DE2.kids",
+    "DE2.shear",
+    "DE2.flagship",
+    "DE2.forest"
+   ],
+   "controls": []
+  },
+  "DE3": {
+   "lane": "dark_energy_2026",
+   "claim": "T_max at p1_x2.5 (x_lens 4.36302); shear passes with L367 transfers at 600-700",
+   "status": "STANDS (committed 0b4e319b7 during this review)",
+   "status_source": "commit 0b4e319b7",
+   "stages": [
+    "DE3.tmax"
+   ],
+   "controls": []
+  }
+ },
+ "cross": {
+  "flagship_exclusions": {
+   "file": "real_research/dark_energy_2026/DE1_vacuum_gate_flagship_results.json",
+   "note": "cells whose switch edge falls inside the flagship radius at z = 2.5 (DE1 F1)",
+   "cell": "p2_x2.0",
+   "rows_path": [
+    "numbers",
+    "F1"
+   ]
+  },
+  "expect": {
+   "L373_now_p2_both": {
+    "stages": [
+     "L373.pm",
+     "L373.harvey",
+     "L373.shear"
+    ],
+    "cell": "p2_x2.0"
+   },
+   "L388_chain_p1_x2.5": {
+    "stages": [
+     "L388.pm",
+     "L388.shear",
+     "L390.kids",
+     "L389.harvey"
+    ],
+    "cell": "p1_x2.5"
+   },
+   "AT3_source_harvey": {
+    "stages": [
+     "AT3.harvey",
+     "AT3.shear"
+    ],
+    "cell": "p1_x2.5"
+   },
+   "DE3_cell": {
+    "stages": [
+     "DE3.tmax"
+    ],
+    "cell": "p1_x2.5"
+   }
+  },
+  "json_claims": [
+   {
+    "id": "DE1_F1_p2_canonical_1e11_fails",
+    "file": "real_research/dark_energy_2026/DE1_vacuum_gate_flagship_results.json",
+    "kind": "de1_f1",
+    "foot": "canonical",
+    "lMb": 11.0,
+    "expect_fail": true
+   },
+   {
+    "id": "DE1_F1_p2_alt_1e11_passes",
+    "file": "real_research/dark_energy_2026/DE1_vacuum_gate_flagship_results.json",
+    "kind": "de1_f1",
+    "foot": "alt",
+    "lMb": 11.0,
+    "expect_fail": false
+   },
+   {
+    "id": "DE2_W2_linear_gate_600",
+    "file": "real_research/dark_energy_2026/DE2_vacuum_gate_joint_window_results.json",
+    "kind": "check_measured",
+    "check_prefix": "W2",
+    "contains": "600: x_c0 in [2.005, 2.975]"
+   },
+   {
+    "id": "DE2_window_p_interval",
+    "file": "real_research/dark_energy_2026/DE2_vacuum_gate_joint_window.py",
+    "kind": "text",
+    "contains": "p in [0.5 (the dominance limit), 2.07 (the flagship)]",
+    "alt_file": "real_research/dark_energy_2026/README.md",
+    "alt_contains": "p \u2208 [0.5, 2.07]"
+   },
+   {
+    "id": "DE3_x_lens",
+    "file": "real_research/dark_energy_2026/DE3_tmax_at_linear_gate_results.json",
+    "kind": "number",
+    "path": [
+     "numbers",
+     "cell",
+     "x_lens"
+    ],
+    "value": 4.36302,
+    "tol": 5e-06
+   },
+   {
+    "id": "L381_S2_600_fit",
+    "file": "real_research/dark_sector_2026/L381_harvey_on_pooled_window_results.json",
+    "kind": "number",
+    "path": [
+     "numbers",
+     "results",
+     "v600",
+     "MEAN",
+     "S2_med",
+     "fit"
+    ],
+    "value": 0.1086442,
+    "tol": 1e-06
+   },
+   {
+    "id": "L380_pooled_window",
+    "file": "real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing_results.json",
+    "kind": "list",
+    "path": [
+     "numbers",
+     "windows",
+     "pooled"
+    ],
+    "value": [
+     "v600",
+     "v625",
+     "v650",
+     "v675"
+    ]
+   },
+   {
+    "id": "L364_Tmax_cells",
+    "file": "real_research/g03_audit_2026/L364_replacement_carrier_cosmic_shear_results.json",
+    "kind": "keys",
+    "path": [
+     "numbers",
+     "T_max"
+    ],
+    "value": [
+     "p=1, x_c0=1.5/canonical",
+     "p=1, x_c0=1.5/alt",
+     "p=2, x_c0=2.0/canonical",
+     "p=2, x_c0=2.0/alt"
+    ]
+   }
+  ],
+  "freshness": [
+   "real_research/acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py",
+   "real_research/merger_infall_2026/L373_two_mode_carrier_pm.py",
+   "real_research/dark_sector_2026/L388_linear_gate_pooled.py",
+   "real_research/dark_sector_2026/L390_kids_resolved_linear_gate.py",
+   "real_research/dark_energy_2026/DE1_vacuum_gate_flagship.py",
+   "real_research/dark_energy_2026/DE3_tmax_at_linear_gate.py",
+   "real_research/acceleration_trigger_2026/AT1_acceleration_trigger_highz.py",
+   "real_research/acceleration_trigger_2026/AT2_forest_flux_calibrated.py",
+   "real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing.py",
+   "real_research/dark_sector_2026/L381_harvey_on_pooled_window.py",
+   "real_research/dark_sector_2026/L377_full_construction_pm.py"
+  ],
+  "absent_expected": [
+   "real_research/dark_sector_2026/L386_window_lower_edge.py",
+   "real_research/dark_sector_2026/L387_harvey_window_slow_end.py"
+  ],
+  "downstream": [
+   {
+    "file": "qwen_claude_field_theory/papers_2026/PAPER34_kernel_blind_dark_sector_2026.tex",
+    "pattern": "passes forest, $S_8$, X-COP, galaxies, KiDS and Harvey on the alternative set",
+    "note": "PAPER34 relays L372's Harvey pass; that Harvey ran at L370's default p1_x1.5 (canonical) with a switch-free KiDS stage",
+    "line": 163
+   }
+  ]
+ }
+}
