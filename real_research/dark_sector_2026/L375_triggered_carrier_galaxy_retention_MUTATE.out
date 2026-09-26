@@ -1,0 +1,77 @@
+
+L375 -- THE TRIGGERED CARRIER AROUND KiDS LENSES, RESOLVED: a self-consistent spherical shell model of each KiDS host halo
+(secondary infall on a mass-accretion history, the carrier's own gravity, the bin's baryons), the carrier decaying and
+kicked by L365's trigger, and the RETAINED CARRIER'S OWN PROJECTED PROFILE scored on KiDS-1000 with L360's machinery.
+
+WHY.  L368's full window (v_k = 650 km/s, C-H/K's p = 2 kernel switch) passed KiDS with the carrier's surviving fraction
+around galaxy-mass peaks S = 0.029, measured on a 0.39 Mpc/h mesh -- SUB-CELL for these halos (r_200 = 0.14-0.34 Mpc).
+KiDS is not monotone in S (L368: the alternative footing fails at S = 0.2).  The mesh smooths the potential (fewer kicked
+particles retained) and the trigger density (more carrier left undecayed): opposite biases.  This lane resolves both.
+
+WHAT THE CARRIER FEELS.  The carrier is kernel-invisible (L353): by the reciprocity theorem it feels Newtonian gravity only
+(baryons + carrier), not the baryons' phantom.  So a Newtonian shell model is the construction's own dynamics.
+MODEL (per KiDS bin; L360's Moster+13 hosts M_200 = 4.2e11, 9.0e11, 1.9e12, 5.6e12 Msun at z_l = 0.25):
+  * mass-accretion history M(z) = M_200 exp[-alpha (z - 0.25)] (Wechsler+02 form; alpha = 0.75 fiducial, 0.5 and 1.2
+    bracket), started at z = 3 as an NFW (c = 4) and grown by secondary infall: new carrier shells enter at 2 r_200(z)
+    with v_r = -v_200(z), v_t = 0.4 v_200(z);
+  * spherical shells (exact Newton's theorem, the carrier's own gravity self-consistent), static baryons of the bin's
+    fitted mass (Hernquist, a = 3 kpc (M_b/1e11)^0.3, + the rest of f_b M_200 as an NFW-shaped CGM), grown with M(z);
+  * L365's trigger, unchanged: a cold carrier element decays at Gamma = 10 H(z) where the LOCAL total matter density has
+    x~ = (3/2)(rho - rho_bar)/rho_crit(z) > 5; the daughter gets an isotropic kick v_k (once).
+  * at z_l = 0.25 the carrier's 3D profile is projected with L352's own projector (loaded unedited via L360) and added
+    to the switched phantom exactly as L360/L368 add the carrier's template; Delta chi^2 <= +4 against the unswitched model,
+    both footings (L352's acceptance).  S = M_carrier(<0.5 Mpc/h) relative to the no-decay run (L367's definition).
+PRE-DECLARED (before the run): H: at v_k = 650 km/s with the p = 2 switch, the fiducial accretion history passes KiDS on both
+footings -- the sub-cell caveat does not reverse L368's KiDS verdict.
+CHECKS
+  C1 CONTROL: with the decay off (Gamma = 0) the same shell halo is a cold CDM-like carrier halo and KiDS rejects it
+     (Delta chi^2 > +100 on both footings), as L360's M1 does with the NFW template: the pipeline can see a retained halo.
+  C2 CONTROL: a static NFW + baryons in Jeans equilibrium (no decay, no infall) keeps M(<r_s) to within 10% over 5 Gyr
+     (integrator and initial conditions).
+  K1 = H.  K2 (informational): S per bin, the undecayed vs kicked split, alpha and baryon variants, v_k = 600 and 700, the
+     p = 1 switch.
+MUTATE=1: v_k = 0 in every decaying run (the decayed carrier stays): K1 must FAIL (rc = 1).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L375_triggered_carrier_galaxy_retention.py
+
+  KiDS bins: M_200 = [417000000000.0, 897000000000.0, 1910000000000.0, 5550000000000.0]; fitted M_b (p = 2 switch, canonical) = ['2.00e+10', '6.31e+10', '7.94e+10', '1.58e+11']
+  MUTATE: v_k = 0 in every decaying run
+  29 halos done   [534s]
+
+==============================================================================================================
+C1, C2  CONTROLS
+==============================================================================================================
+  [PASS] C2 a static NFW + baryons in Jeans equilibrium (no decay, no infall, 5 Gyr) keeps M(<r_s) within 10%
+         measured: M(<r_s) final/initial = 1.062
+  [PASS] C1 with the decay off the shell-model carrier halo is rejected by KiDS (Delta chi^2 > +100, both switch cells, both footings), as L360's M1 rejects the NFW template
+         measured: {'p=1, x_c0=1.5': {'canonical': 119.08657545619792, 'alt': 122.3481183480485}, 'p=2, x_c0=2.0': {'canonical': 144.3571500439756, 'alt': 147.4529677694528}}
+
+==============================================================================================================
+THE RETAINED CARRIER AROUND KiDS LENSES (z_l = 0.25)
+==============================================================================================================
+    fid     : S (<0.5 Mpc/h) by bin 1.000, 1.000, 1.000, 0.999  (undecayed part 0.100, 0.102, 0.100, 0.158)  |  KiDS p=2 +150.2/+153.2 FAIL; p=1 +124.4/+128.7 FAIL
+    a0.5    : S (<0.5 Mpc/h) by bin 0.998, 0.998, 0.694, 0.918  (undecayed part 0.104, 0.107, 0.097, 0.145)  |  KiDS p=2 +403.7/+412.2 FAIL; p=1 +369.8/+378.5 FAIL
+    a1.2    : S (<0.5 Mpc/h) by bin 1.001, 1.002, 1.002, 1.431  (undecayed part 0.142, 0.144, 0.139, 0.234)  |  KiDS p=2 -12.7/-7.3 ok; p=1 -41.1/-37.3 ok
+    bstatic : S (<0.5 Mpc/h) by bin 1.000, 1.000, 0.972, 1.025  (undecayed part 0.105, 0.105, 0.104, 0.162)  |  KiDS p=2 +70.3/+74.4 FAIL; p=1 +43.4/+46.2 FAIL
+    v600    : S (<0.5 Mpc/h) by bin 1.000, 1.000, 1.000, 0.998  (undecayed part 0.100, 0.099, 0.101, 0.157)  |  KiDS p=2 +142.3/+145.3 FAIL; p=1 +116.5/+120.4 FAIL
+    v700    : S (<0.5 Mpc/h) by bin 1.000, 1.000, 1.000, 0.998  (undecayed part 0.099, 0.101, 0.101, 0.158)  |  KiDS p=2 +141.5/+144.7 FAIL; p=1 +116.3/+119.4 FAIL
+  [PASS] K2 (informational) S per bin, the undecayed share, the accretion-history and baryon variants, v_k = 600/700, p = 1
+         measured: see table
+         reading:  reported either way
+
+==============================================================================================================
+K1  THE HYPOTHESIS (set before the run)
+==============================================================================================================
+  [FAIL] K1 = H: at v_k = 650 km/s with the p = 2 switch, the resolved fiducial carrier halo passes KiDS on both footings
+         measured: Delta chi^2 {'canonical': 150.18352879947804, 'alt': 153.17236353922812}; S by bin [1.0, 1.0, 1.0, 0.999]
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  Resolved (spherical, self-consistent, secondary-infall) KiDS hosts at v_k = 650 km/s: S = [1.0, 1.0, 1.0, 0.999]
+  (L367's sub-cell PM value: 0.02-0.04); KiDS with the p = 2 switch: {'canonical': 150.18352879947804, 'alt': 153.17236353922812}.
+  Variants passing (p = 2): ['a1.2']; failing: ['fid', 'a0.5', 'bstatic', 'v600', 'v700'].
+  LIMITS: spherical symmetry (no mergers, no triaxial orbits), a smooth accretion history, static baryons (their MOND boost
+  does not act on the carrier, L353), one lens redshift (z_l = 0.25), the trigger posited (no action).
+
+  3/4 checks pass; load-bearing failures: 1; wrote L375_triggered_carrier_galaxy_retention_results_MUTATE.json   [535s]

@@ -232,3 +232,38 @@ The hypothesis was set before the run: at 650 km/s, p = 2 passes and p = 1 fails
 - More than one realisation of one 100 Mpc/h box.
 
 This is a candidate window at PM resolution, not a solved dark sector.
+
+## L375 — the carrier around KiDS lenses, resolved: KiDS passes with the carrier's own profile
+
+`L375_triggered_carrier_galaxy_retention.py` (4/4; `MUTATE=1`, v_k = 0, fails K1, rc = 1). L368's KiDS pass rested on a galaxy-scale retention (S = 0.029) measured on a 0.39 Mpc/h mesh, which is sub-cell for these halos. This lane resolves each KiDS host halo (L360's Moster+13 M₂₀₀ = 4.2×10¹¹ – 5.6×10¹² M☉) with a spherical shell model:
+- self-consistent Newtonian gravity: the carrier is kernel-invisible, so by L353's reciprocity theorem it feels no phantom;
+- secondary infall on a Wechsler-form mass-accretion history (α = 0.75, bracketed by 0.5 and 1.2);
+- the bin's fitted baryons plus a CGM;
+- L365's trigger, unchanged: decay at Γ = 10H where the local x̃ > 5, then an isotropic kick.
+
+The carrier's **own** z = 0.25 profile is projected with L352's projector and scored with L360's machinery.
+
+| variant | S (<0.5 Mpc/h), bins 1–4 | undecayed part | KiDS p = 2 (can/alt) |
+|---|---|---|---|
+| fiducial, 650 km/s | 0.26 / 0.25 / 0.23 / 0.35 | 0.18 / 0.17 / 0.16 / 0.23 | **−11.5 / −8.4** |
+| α = 0.5 | 0.20 / 0.19 / 0.18 / 0.27 | | −10.4 / −6.9 |
+| α = 1.2 | 0.32 / 0.31 / 0.30 / 0.47 | | −13.8 / −9.4 |
+| baryons static | 0.26 / 0.25 / 0.23 / 0.36 | | −11.5 / −7.2 |
+| 600 / 700 km/s | ≈ fiducial | | −11.5 / −8.3, −11.4 / −8.5 |
+
+**Two findings.**
+- **Retention is ~8× higher than the mesh measured**, and it is mostly *undecayed* infalling carrier. The trigger reads the local total density, so once a halo's carrier has left, the outskirts fall below x̃ = 5 and newly accreted carrier stops decaying. The trigger limits itself. That is also why S barely depends on v_k.
+- **KiDS passes anyway, in every variant, on both footings.** The retained carrier sits at r ≳ r₂₀₀, not in an NFW cusp. L368's non-monotone S-scan, which failed on the alternative footing at S = 0.2, scaled a full NFW profile. That was the wrong shape for this construction.
+
+Controls:
+- C1: the same halo with the decay off is rejected by KiDS (+144/+147), so the pipeline sees a retained halo.
+- C2: a static NFW in Jeans equilibrium holds M(<r_s) to within 6% over 5 Gyr.
+- MUTATE (v_k = 0): +150/+153.
+
+**Limits.**
+- Spherical symmetry: no mergers, no triaxial orbits.
+- A smooth accretion history.
+- One lens redshift.
+- The trigger is still posited, with no action.
+
+L368's KiDS verdict stands, and it no longer rests on a sub-cell number.
