@@ -127,9 +127,9 @@ def main():
     RES["replicate_best_infit_SE"] = b_in
     RES["pooled_best_infit_SE"] = p_in
     d1_dev = abs(b_in - QF3_BEST) / QF3_BEST
-    d1 = d1_dev <= QF3_THRESH
-    d2 = p_in <= POOLED_GATE
-    RES.update(D1_stable=d1, D1_dev=d1_dev, D2_noise=d2)
+    d1 = bool(d1_dev <= QF3_THRESH)
+    d2 = bool(p_in <= POOLED_GATE)
+    RES.update(D1_stable=d1, D1_dev=float(d1_dev), D2_noise=d2)
     print(f"replicate best in-fit {b_in:.2f} SE (dev {d1_dev:.2f} from {QF3_BEST}); "
           f"pooled best in-fit {p_in:.2f} SE (gate {POOLED_GATE})", flush=True)
     if not d1 and d2:
@@ -157,7 +157,7 @@ def finish(rc):
     RES["elapsed_s"] = round(time.time() - _T0, 1)
     RES["exit"] = rc
     with open(os.path.join(HERE, "QF3b_results.json"), "w") as f:
-        json.dump(RES, f, indent=1, default=str)
+        json.dump(RES, f, indent=1, default=str)  # default=str: numpy scalars stay honest
     print(json.dumps({k: RES.get(k) for k in ("verdict", "replicate_best_infit_SE",
                                               "pooled_best_infit_SE", "D1_stable", "D2_noise")}, indent=1))
     print(f"elapsed {RES['elapsed_s']}s; exit {rc}")
