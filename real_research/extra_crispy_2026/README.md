@@ -1,5 +1,18 @@
 # extra_crispy_2026 — the gates the recipe flagged and nobody ran
 
+**Peer-review correction — 2026-09-26.** The independent
+[XC1/XC2 review](../peer_review_2026_09_26/README.md) preserves the flat
+khronon power counting and the fixed-background monotone-kernel leaf result,
+but the closure labels below require restriction. XC1 omits mixed heat-filter
+vertices and does not close full G8. XC2's unweighted-to-lapse-weighted
+convexity inference fails for both exact nonmonotone kernels; its zero-field
+argument omits allowed homogeneous and degenerate-zero configurations, and
+its U-only calculation does not establish the full metric/clock principal
+symbol. Its B4 fixture also supplies an acceleration different from D ln N.
+The all-kernel elliptic and zero-field claims are not settled. Original lane
+outputs below are retained as the historical computations, with exact
+counterexamples and remaining calculations linked in the review.
+
 The crispy recipe (`qwen_claude_field_theory/closure_2026/CRISPY_FRIED_CHICKEN_RECIPE.md`) red-flagged one gate as "THE
 make-or-break": **G8, strong coupling** (sec. 5, and the sec. 9 table: "G8 Λ_sc as η→0 — OPEN"). It was never computed.
 The khronometric candidate it was written for died first (FC-KH, a radial gradient instability, 09-01), and the live
@@ -100,3 +113,24 @@ interaction as the gap in XC1. The MOND term depends on the khronon's leaves twi
 **G8 standing after XC1 + XC3.** A bounded pass at frozen-background, decoupling-limit scope, now including the
 filter/foliation interaction. It remains conditional at full-action scope: curved-background mixing, the assembled
 action, and loops are not computed.
+
+## XC4 — the 2026-09-26 decisions, recorded in the recipe and spec, with their mathematics certified
+
+The author decided three open points after XC1–XC3. They are recorded as a dated user-decision block in
+`qwen_claude_field_theory/closure_2026/CRISPY_FRIED_CHICKEN_RECIPE.md`, and as operative amendments to requirements 1,
+7 and 12 in `FRIED_CHICKEN_SPEC.md`. The original text is kept, marked as amended.
+
+1. **The kernel is ν_mono.** This is the RAR exponential law with a monotone phantom. It follows ν_RAR below the peak
+   and stays within 0.01 dex of it everywhere (L340).
+2. **Causality is criterion B.** This means a global preferred time compatible with every characteristic cone, and no
+   signal backward in that time. Criterion A is unsatisfiable by any scalar MOND realisation (L318).
+   - This has a consequence both ways: gate 7's signalling theorem is a criterion-A result, so it no longer closes
+     the strict two-DOF constraint branch (cde_l4c_2026, status OPEN). That branch's other gates were never derived.
+3. **Z is corrected in §1.** Z = √(32π/3) = 5.7888 is κ = ½ restated, not "~21".
+
+Lean: `XC4_recipe_decision_certificates.lean` (5 theorems, zero `sorry`, standard axioms):
+- `z_is_kappa`: κ = ½ ⟺ Z² = 32π/3.
+- `z_value_bounds`: 5.788 < √(32π/3) < 5.789.
+- `mono_phantom_increasing`: ν_mono's phantom slope is > 0.
+- `mu_exp_phantom_turns`: C_L = (1−x)/(eˣ+x−1) < 0 for x > 1.
+- `nu_rar_phantom_turns`: 9/(e³−1) < 4/(e²−1).

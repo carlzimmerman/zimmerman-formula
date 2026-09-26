@@ -12,6 +12,55 @@ structure together. Checks remain honest: a failure identifies a construction
 obligation; it is not permission to conceal the failure or relax a requirement.
 Historical obstructions are reference material, not the main deliverable.
 
+**User decision — 2026-09-26 (the author): the kernel is ν_mono, causality is criterion B, Z corrected.**
+These three decisions supersede, where they conflict, the ingredients below and the "exact
+exponential target" wording of any 2026-09-26 amendment written before them.
+
+- **Requirements 1 and 12 — the kernel is ν_mono.** In QUMOND form, with y = |∇Su|/a₀ the
+  filtered Newtonian acceleration: ν_mono(y) = 1 + h_mono(y)/y, with
+  h_mono(y) = ∫₀^y max(h′_RAR(s), δ h_p/(s + y_p)) ds. Here h_RAR(y) = y/(e^{√y} − 1) is the
+  phantom of the framework's RAR law ν_RAR(y) = 1/(1 − e^{−√y}) (Milgrom & Sanders 2008 eq. 13
+  at α = ½), y_p = 2.5396 is its peak, h_p = 0.6476 a₀, and δ = 0.05 is a chosen constant.
+  - Below the peak ν_mono = ν_RAR. Everywhere the two differ by ≤ 0.01 dex
+    ([L340](../../real_research/g03_audit_2026/L340_filtered_khronon_completion.py) A1, K2).
+  - Field equations: ∇²u = 4πGρ_b, ∇²Φ = 4πGρ_b + S*∇·[(ν_mono − 1)∇Su], with
+    S = e^{(ξ²/2)Δ}.
+  - **Why.** A phantom that turns over (C_L < 0) is a ghost or tachyon in every khronon
+    momentum channel scanned (L340 H2/H3). Both ν_RAR (y > 2.54) and μ_exp (x > 1, where
+    C_L = (1 − x)/(eˣ + x − 1)) turn over. ν_mono does not.
+  - **Consequences.**
+    - The exact μ_exp target and its primitive G(y) become historical.
+    - GR recovery comes from the heat filter, not the kernel's tail. The monotone phantom
+      leaves a ~a₀ residual that the ephemerides exclude ~10⁴× unless ξ ≥ 0.031 pc
+      (canonical) / 0.045 pc (alt) (L340 S1), so the filter is a required ingredient.
+    - The QUMOND primitive is Q(Z) = Z + 2∫₀^{√Z} h_mono(s) ds.
+    - The deep-MOND limit, the BTFR and a₀ are unchanged.
+- **Requirement 7 — causality is criterion B.** The theory must admit a global time function,
+  the khronon τ, compatible with every characteristic cone. That includes degenerate
+  (infinite-speed) cones lying in its leaves.
+  - No signal may propagate backward in τ, and there may be no closed causal curves.
+  - Propagation outside the metric light cone is allowed (Bruneton 2007; Babichev, Mukhanov &
+    Vikman 2008; the cuscuton of Afshordi, Chung & Geshnizjani 2007).
+  - The metric-cone criterion (A) is dropped because no scalar MOND realisation can meet it
+    ([L318](../../real_research/g03_audit_2026/L318_causality_criterion_decides_rung3.py) K3/K4).
+  - Well-posedness of the mixed elliptic–hyperbolic Cauchy problem is still required
+    ([XC2](../../real_research/extra_crispy_2026/XC2_wellposedness_scoping.py)).
+  - C-H/K under B: the khronon's cone is finite (4.4×10²–7.9×10⁵ c; XC1 A9, XC2 B6), and its
+    elliptic MOND constraint acts within the leaves. Both are allowed.
+  - **Consequence, both ways.** Gate 7's signalling theorem
+    ([elliptic_channel_signaling_theorem_2026.py](../theory_2026/york/elliptic_channel_signaling_theorem_2026.py))
+    is a criterion-A result. It therefore no longer closes the strict two-DOF constraint branch.
+    - That branch ([cde_l4c_2026](cde_l4c_2026/CDE_L4C_STATUS.md), status OPEN; its
+      N_grav = 2 certificate was withdrawn 2026-09-03) would meet requirement 2 exactly.
+    - But none of its gates were ever derived: the full-action Dirac chain, the moving-source
+      (L330-type) gate, the boosted 1PN metric, lensing and the FLRW branch.
+    - It was also built on μ_exp.
+- **§1 Numbers — Z corrected.** Z = cH_Λ/a₀ = √(32π/3) = 5.7888 is κ = ½ restated
+  (Z² = 8π/(3κ²)). It is not a second fitted number, and never ≈ 21.
+  - κ is measured: 0.465 ± 0.076 (BTFR), 0.55 ± 0.17 (distance-free).
+  - It is not derivable in this action class ([kappa_closure](../../kappa_closure/README.md)
+    k01–k03).
+
 **Current constructive checkpoint (2026-09-09, IC26):**
 [The finite-band construction](integrable_clock_construction_2026/IC26_FINITE_BAND_REPAIR.md)
 reconstructs A,D,E4 together and independently controls the negative lapse
@@ -193,8 +242,10 @@ revision and supporting derivation; never rewrite immutable old evidence.
 ---
 
 ## 1. FROZEN INGREDIENTS
-- **I1 — MOND kernel:** μ(y)=1−e^{−y}, y=g/a₀. Limits μ=y+O(y²) (y≪1), μ→1 (y≫1). Changing μ = a
-  DIFFERENT recipe, branched explicitly, never silently substituted.
+- **I1 — MOND kernel [amended 2026-09-26, user decision]:** ν_mono, the RAR exponential law
+  ν_RAR(y)=1/(1−e^{−√y}) with a monotone phantom (definition in the user-decision block above), QUMOND form,
+  y=|∇Su|/a₀. Limits ν→y^{−1/2} (y≪1), ν→1 (y≫1). Historical, retired as the target: the AQUAL μ(y)=1−e^{−y},
+  y=g/a₀. Changing the kernel again = a DIFFERENT recipe, branched explicitly, never silently substituted.
 - **I2 — Single physical metric:** S_m=S_m[g,ψ]. No hidden second metric / disformal matter metric /
   sector-dependent G without explicit reclassification.
 - **I3 — GR tensor sector:** c_T=1, Q_T>0. No hiding a tensor-speed correction behind a low-frequency
@@ -205,11 +256,17 @@ revision and supporting derivation; never rewrite immutable old evidence.
 - **I4 — Local screening anchor:** the Solar System is high-acceleration INSIDE the galactic MOND
   environment ⇒ screening must be controlled by a LOCAL dynamical quantity (acceleration/derivative), not
   environment labels, halo phases, potential-only or velocity-dispersion screening.
-- **I5 — Newtonian recovery:** y≫1 → GR with exponentially small corrections; regular limit. No singular
-  1/y factors to repair perturbative order unless the full nonlinear theory proves them removable.
-- **Numbers (locked):** a₀=κc√(Gρ_Λ)=9.3619e-11 (κ=½ FITTED, Z~21 FITTED — the a₀ reframing is the
-  claim, not a derivation). a₀(z)∝√ρ_DE(z) = TARGET/prediction, NOT action-derived.
-- **μ realizations (verified):** (A) auxiliary-Legendre χ: V′(χ)=−[ln(1−χ)]², χ=μ(y); primitive
+- **I5 — Newtonian recovery [amended 2026-09-26]:** through the heat filter S=e^{(ξ²/2)Δ}, ξ ≥ 0.031 pc
+  (canonical) / 0.045 pc (alt) (L340 S1). The kernel acts on the filtered field, so the Sun's own high-y field
+  never reaches it. A monotone phantom keeps rising slowly, so the kernel's tail is not exponentially small;
+  the filter does the screening. No singular 1/y factors to repair perturbative order unless the full
+  nonlinear theory proves them removable.
+- **Numbers (locked) [Z corrected 2026-09-26]:** a₀=κc√(Gρ_Λ)=9.3619e-11 (κ=½ FITTED;
+  Z=cH_Λ/a₀=√(32π/3)=5.7888 is κ=½ restated, not a second number — the earlier "Z~21" was an error; the a₀
+  reframing is the claim, not a derivation). a₀(z): the framework's law is FLAT (a w=−1 vacuum; <1% to z=5;
+  L37, L273–L275). That is a prediction, NOT action-derived; a₀∝H(z) is the rival.
+- **μ realizations (verified; historical since 2026-09-26 — they realise the retired μ_exp; ν_mono's QUMOND
+  primitive is Q(Z)=Z+2∫₀^{√Z}h_mono(s)ds, which for ν_RAR is Z+4I₃(Z^{1/4})):** (A) auxiliary-Legendre χ: V′(χ)=−[ln(1−χ)]², χ=μ(y); primitive
   G(y)=y²+2(1+y)e^{−y}−2 with G′/(2y)=1−e^{−y}. (B) nonlocal F₊(Z)=4[1−(1+√Z/2)e^{−√Z/2}], Z=4y²,
   2F₊′=e^{−y} (`mond_compiler_2026/FROZEN_PRIMITIVE.md`). Constitutive ingredients, not new fields.
 
@@ -289,8 +346,9 @@ retain the evidence and derive a correction from the required identity; do not
 silently change models between gates. Stop claiming progress from a new label alone.
 
 ## 8. GLOBAL DESIGN TARGET
-One metric; μ=1−e^{−y}; correct MOND dynamics + lensing; c_T=1; no ghost; no gradient instability;
-acceptable PPN; Λ_sc≫E; healthy matter + cosmology. **The required gravitational
+One metric; ν_mono through the heat filter [amended 2026-09-26]; correct MOND dynamics + lensing; c_T=1; no
+ghost; no gradient instability; acceptable PPN; Λ_sc≫E; causality by criterion B (a global preferred time, no
+signal backward in it); healthy matter + cosmology. **The required gravitational
 count is N_grav=2; the calculation must derive that count, never hard-code it.**
 Additional genuine matter/clock modes must be separately counted and healthy as
 specified in FRIED_CHICKEN_SPEC.md. A computed third gravitational mode does not

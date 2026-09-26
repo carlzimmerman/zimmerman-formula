@@ -11,9 +11,34 @@ workflow and cited there. Historical no-go results remain evidence, not a
 substitute for building the requested theory. Checks must still report failures
 honestly; the change of priority does not lower any acceptance criterion.
 
+**User decision — 2026-09-26 (amends requirements 1, 7 and 12; all others unchanged).**
+The reasons, definitions and consequences are in the user-decision block of
+[the recipe](CRISPY_FRIED_CHICKEN_RECIPE.md).
+
+- **Requirement 1 (operative text).** Exact MOND phenomenology with the kernel **ν_mono**: the
+  framework's RAR law ν_RAR(y) = 1/(1 − e^{−√y}) (QUMOND, y = g_N/a₀) below its phantom peak
+  (y_p = 2.5396), continued above it by a monotone phantom (h′ = δ h_p/(y + y_p), δ = 0.05).
+  ν_mono is within 0.01 dex of ν_RAR everywhere.
+  - Weak-field quasistatic equations: ∇²u = 4πGρ_b and
+    ∇²Φ = 4πGρ_b + S*∇·[(ν_mono(|∇Su|/a₀) − 1)∇Su], with the heat filter S = e^{(ξ²/2)Δ}.
+  - Deep MOND: g² = a₀g_N ⇒ v⁴ = Ga₀M_b.
+  - The AQUAL μ(y) = 1 − e^{−y} is retired as the target.
+- **Requirement 7 (operative text).** Stability as written, with causality judged by
+  **criterion B**. The theory must admit a global time function (the preferred foliation's
+  time) compatible with every characteristic cone, including degenerate cones lying in its
+  leaves.
+  - No signal may propagate backward in that time, and there may be no closed causal curves.
+  - Superluminal or leafwise-instantaneous propagation is allowed.
+  - The mixed Cauchy problem must be well-posed.
+  - The metric-cone criterion is dropped: no scalar MOND realisation can meet it
+    (real_research/g03_audit_2026/L318).
+- **Requirement 12 (operative text).** The exponential law is preserved as ν_RAR below the
+  phantom peak. The exact AQUAL primitive G(y) is kept as a historical ingredient only.
+
 ## The 13 requirements (all from ONE theory)
 
-1. **Exact MOND phenomenology with the preferred interpolation** μ(y) = 1 − exp(−y), y = g/a₀.
+1. *[Amended 2026-09-26: the kernel is ν_mono — see the user decision above.]* **Exact MOND phenomenology with the
+   preferred interpolation** μ(y) = 1 − exp(−y), y = g/a₀.
    Weak-field quasistatic equation must reduce to ∇·[(1 − e^{−|∇Φ|/a₀})∇Φ] = 4πGρ_b. Spherical
    symmetry: μ(g/a₀)·g = g_N. Deep MOND: g² = a₀g_N ⇒ v⁴ = G a₀ M_b.
 2. **Exactly two propagating gravitational DOF, N_grav = 2** — only the two tensor polarizations.
@@ -30,7 +55,8 @@ honestly; the change of priority does not lower any acceptance criterion.
    nonmetric force.
 6. **Correct GW sector:** c_T = c, positive tensor kinetic energy, two standard polarizations,
    GW170817-type constraints satisfied.
-7. **Stability:** derive the scalar/vector/tensor perturbation structure. No ghosts, no gradient
+7. *[Amended 2026-09-26: causality by criterion B — see the user decision above.]* **Stability:** derive the
+   scalar/vector/tensor perturbation structure. No ghosts, no gradient
    instabilities, no pathological strong coupling, no hidden scalar pole, **no unacceptable
    superluminal or instantaneous physical channel.**
 8. **Viable cosmology:** admits expanding FLRW, H(t) ≠ 0. Do NOT solve the local scalar problem by
@@ -41,7 +67,8 @@ honestly; the change of priority does not lower any acceptance criterion.
     precision. **Derive the measured Newton constant rather than assuming it equals the bare coupling.**
 11. **Prefer one physical metric** for matter and photons (minimal coupling to the same g_μν). Avoid
     disformal dark-matter-emulator constructions that produce a photon/graviton speed mismatch.
-12. **Preserve the exponential constitutive law if possible.** Useful exact primitive:
+12. *[Amended 2026-09-26: preserved as ν_RAR below the phantom peak — see the user decision above.]* **Preserve the
+    exponential constitutive law if possible.** Useful exact primitive:
     G(y) = y² + 2(1+y)e^{−y} − 2, with G′(y)/(2y) = 1 − e^{−y}. Operator eigenvalues
     λ_⊥ = 1 − e^{−y}, λ_∥ = 1 + (y−1)e^{−y}, both positive for y>0. Prior work: the exponential
     kernel is NOT the main obstruction — failures have been architectural.
@@ -54,9 +81,9 @@ honestly; the change of priority does not lower any acceptance criterion.
 **All results from the SAME explicit theory.** Do not combine MOND from one model, lensing from
 another, DOF counting from another, PPN from another.
 
-Victory chain: ONE explicit action/Hamiltonian → exact μ(y)=1−e^{−y} → correct Newtonian + deep-MOND
+Victory chain: ONE explicit action/Hamiltonian → exact μ(y)=1−e^{−y} [2026-09-26: ν_mono through the heat filter] → correct Newtonian + deep-MOND
 limits → Φ=Ψ → correct lensing → N_grav=2 → ∇_μT^{μν}=0 → β,γ acceptable → α₁,α₂,α₃ acceptable →
-c_T=c → no ghost/gradient instability → expanding FLRW → controlled k=0 and y=0 limits.
+c_T=c → no ghost/gradient instability → causality by criterion B [2026-09-26] → expanding FLRW → controlled k=0 and y=0 limits.
 
 ## HISTORICAL SCIENTIFIC OUTCOMES (current deliverable is A)
 - **A. FRIED CHICKEN:** one explicit theory derives and passes every requirement above.
