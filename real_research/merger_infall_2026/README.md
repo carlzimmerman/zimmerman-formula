@@ -1,4 +1,4 @@
-# Cluster mergers as a test of the construction (L370–L372)
+# Cluster mergers as a test of the construction (L370–L373)
 
 In the construction, a cluster's baryons fall toward a neighbour with the MOND boost of their shared bound region. Its dark carrier falls with Newtonian gravity alone: whatever feels the boost must also source it (reciprocity, L353), and L361's region kernel reads only a region's own baryons. Mergers are where this split force law shows up in cluster *dynamics* rather than statics. These lanes compute what it does to real mergers, and what the carrier must look like to pass them.
 
@@ -114,3 +114,57 @@ Other rows of the grid:
 - Harvey runs at L370's p = 1, x_c0 = 1.5 cell, with the absolute-density mask and the canonical footing only.
 
 This is a scope gap, not a known failure: L360 finds a switched p = 1, x_c0 = 1.5 construction with a carrier passes KiDS. A same-cell re-score is pending, for example at p = 1, x_c0 = 2.5 with the switched KiDS of L360/L390. Until then, quote L372 with this scope.
+
+## L373 — the two-mode carrier in the particle-mesh box (scope: the p = 2, x_c0 = 2 cell)
+
+`L373_two_mode_carrier_pm.py`: 3/4 checks pass, rc = 1. The pre-declared hypothesis, that L372's window survives real assembly, is falsified. The MUTATE run (mode U off) was not made: by the lane's rule it runs only if R1 passes.
+
+**Scope.** The box is L377's full construction at its switch cell, p = 2, x_c0 = 2:
+- DE1 (c8bb50813) finds this cell fails the flat-a₀ flagship on the canonical footing.
+- The particle-mesh track has moved to p = 1, x_c0 = 2.5 (L388). The verdict here holds for p = 2 only.
+
+**Construction.** L372's two modes are put into L377's mesh, pooled over L369's three realisations:
+- **U:** a uniform late decay at 3000 km/s.
+- **G:** the vacuum-gated trigger at the mesh's x_c = 5, the record's mesh proxy. The mesh cannot resolve L372's x_v0 = 1000–2000.
+
+**Pooled gates:**
+
+| cell (f_U(0), v_G) | S₈ | forest | X-COP retention (floor 0.286) | shear |
+|---|---|---|---|---|
+| 0.20, 900 | 0.922 | 0.000 | 0.180 (under) | ok |
+| **0.25, 750** | **0.939** | 0.000 | **0.337** | ok |
+| 0.25, 900 | 0.917 | 0.000 | 0.175 (under) | ok |
+| 0.25, 1050 | 0.892 (fails) | 0.000 | 0.087 (under) | ok |
+| 0.30, 900 | 0.912 | 0.000 | 0.176 (under) | ok |
+
+- **Decay in the mesh.** The mesh's G mode decays 65–70% of all the carrier by z = 0; mode U accounts for 12–18%. That is far more than L372's static G.
+- **Clusters.** They keep too little carrier except at the slowest kick.
+- **High redshift.** Clearing at z = 2 is 1.00 on both measures, as the vacuum gate is designed to leave high-z halos alone.
+
+**Harvey on the one cell passing X-COP** (0.25, 750 km/s):
+- Retention measured at z = 0.4 is 0.26 for 5e13–1e14 and 0.62 for 1.5e14–3e14 Msun/h.
+- No halo reaches 3e14 at z = 0.4 in the three boxes, so the main cluster takes the 1.5e14–3e14 bin's 0.62.
+
+| shape | excess β (100 kpc / 150 kpc / NFW fit) |
+|---|---|
+| intact carrier (matched control) | +0.006 / +0.040 / +0.027 |
+| S1, the scaled cusp | +0.024 / +0.073 / +0.076 (passes) |
+| S2, phase-mixed daughters | +0.040 / +0.092 / **+0.116 (fails; limit +0.10, i.e. 2.2σ from Harvey's −0.04 ± 0.07)** |
+
+- The failure comes from the depleted group cores, as in L371: carrier-to-baryons inside 150 kpc is 2.7 (1e14) and 6.0 (3e14). It does not come from the kernel, since the intact control sits at +0.027.
+- The miss is marginal: one shape, one estimator, 0.016 over the line.
+
+**Controls.**
+- **C1:** the LCDM run reproduces L366's σ₈ exactly.
+- **C2:** the Harvey stage uses the mesh's own cell, p2_x2.0.
+
+**Correction.** The first run's Harvey stage had inherited L370's default cell (p = 1, x_c0 = 1.5), the same defect that withdrew L381. It was caught by a peer session and stopped before any Harvey number. The mesh runs were kept: 27,921 s, logged in `L373_two_mode_carrier_pm_mesh_stage.out`. Harvey was then re-scored from the checkpoint on the matched cell.
+
+**Operators.** The mesh (L377: the Newtonian field of all baryons, response masked, background-subtracted gate) and the Harvey stage (L370/L361: each region's own baryons, absolute-density mask) use different phantom operators. Both are recorded in `results.json`. The cross-thread review XR5 finds Harvey operator-independent to |Δβ| ≤ 5e-5, with ≤ 1.8e-3 under a ±0.01 a₀ external field. It also flags a line-of-sight edge-layer effect of up to Δβ ≈ 0.009 on 2-D meshes. That is below this cell's 0.016 S2 margin, but the 3-D check (projection depth capped) has not yet been run.
+
+**Limits.**
+- The p = 2 cell only.
+- The G trigger is the mesh proxy.
+- Three 100 Mpc/h boxes, with no halo ≥ 3e14 at z = 0.4.
+- Harvey is scored on the canonical footing, with eight configurations standing in for Harvey's 72 collisions.
+
