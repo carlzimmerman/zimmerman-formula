@@ -382,3 +382,42 @@ A 128³ code test exposed (a)'s selection effect, so (b) was added and the hypot
 - **The hypothesis** ("protocluster cores are not cleared on (b)") **is falsified.** Every environment is cleared, to 5–10% of ΛCDM's dense-region carrier. The 675 km/s values are the same to within 0.01 (protocluster 0.115).
 - **(a) is selection-biased by construction.** Clearing lowers a cell's density, so it leaves the model's dense set. After clearing, the model keeps about 1% of ΛCDM's dense cells, and (a) is computed over exactly the minority that kept carrier. In box (17, 21), 114 of 802 protocluster cells remain, and (a) reads 0.64 there while (b) reads 0.13.
 - **Consequence for L369/L378.** The gate that closed the window was (a). On (b), clearing passes at 675–700 km/s in every box, where L378's other gates already pass at 675 (pooled S₈ 0.952, forest 4.3%, X-COP 0.291 ≥ 0.286, shear). **This is a methodological correction with a demonstrated mechanism. It is not yet a window.** The pooled full construction must be re-scored on the corrected clearing gate in its own pre-declared lane.
+
+## L380 — with the corrected clearing gate, the pooled full construction has a window (600–675 km/s)
+
+`L380_pooled_window_fixed_cell_clearing.py` (3/3; `MUTATE=1`, v_k = 0: fails R1 as designed: clearing 1.00, X-COP over its ceiling, no window, rc = 1). This is L377's full construction on L369's three realisations at 600–675 km/s, with L379's z = 2 output. Clearing is scored on **fixed cells**: the carrier kept in ΛCDM's dense cells, relative to ΛCDM's. That is L379's correction, and the same fixed-position method as the X-COP retention. Every other gate is L378's, unchanged. C1: the (7, 11) run at 675 reproduces L378 exactly.
+
+| v_k | pooled S₈ | forest | clearing, fixed cells (≤ 0.30) | record's G3 | X-COP ε (0.286–0.768) | shear p = 2 |
+|---|---|---|---|---|---|---|
+| 600 | 0.966 | 4.0% | 0.070 | 0.51 | 0.523 | ✓ |
+| 625 | 0.961 | 4.1% | 0.066 | 0.44 | 0.452 | ✓ |
+| 650 | 0.957 | 4.2% | 0.062 | 0.39 | 0.357 | ✓ |
+| 675 | 0.952 | 4.3% | 0.059 | 0.34 | 0.291 | ✓ |
+
+- **The pre-declared hypothesis holds: there is a pooled window at every kick tested.**
+- **Each realisation has its own window:** (7, 11) and (17, 21) at 600–675, and (29, 33) at 600–650.
+- **Pooled retention by M(<1 Mpc/h), in L371's bins,** is 0.28 / 0.40 / 0.63 / 0.84 at 600 km/s. L366's single-box Newtonian values were 0.18 / 0.24 / 0.40 / 0.75.
+- **This rests on L379's correction to the clearing gate.** On the record's own-dense-set G3 there is still no pooled window.
+
+## L381 — Harvey+2015 on the pooled window: the optimistic shape passes at 600–625, the middle shape misses by 0.009
+
+`L381_harvey_on_pooled_window.py` (2/3, **rc = 1: the pre-declared hypothesis "S2 passes at some window kick" is falsified**). It runs L371's Harvey machinery, loaded unedited except for its inputs, on L380's pooled retention at each window kick:
+- 72 substructures;
+- ⟨β⟩ = −0.04 ± 0.07;
+- population-mean excess β on the 100 kpc, 150 kpc and Lenstool-like-fit estimators;
+- bound ≤ +0.10.
+
+C1: the intact carrier reproduces L371's committed values exactly.
+
+| v_k | S1, cusp kept (optimistic) | S2, phase-mixed daughters | S3, recaptured (pessimistic) |
+|---|---|---|---|
+| 600 | **pass** (fit +0.077, 1.7σ) | fit +0.109 (2.1σ) | fit +0.371 (5.9σ) |
+| 625 | **pass** (fit +0.093, 1.9σ) | fit +0.123 (2.3σ) | +0.363 |
+| 650 | fit +0.108 (2.1σ) | +0.136 | +0.352 |
+| 675 | fit +0.120 | +0.155 | +0.336 |
+
+- **Harvey favours slow kicks,** because more carrier stays in group cores.
+- **S2 misses by 0.009 at 600 km/s.** S1 passes at 600–625 and S3 fails everywhere.
+- **Nothing tested closes the window below 600.** Clearing is 0.070 against 0.30, and X-COP is 0.52 against its 0.768 ceiling. L382 finds the window's lower edge.
+
+MUTATE was not run: the main run already falsified H (as L369/L378).

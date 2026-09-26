@@ -1,0 +1,65 @@
+
+L381 -- THE HARVEY TEST ON THE POOLED WINDOW: do the full construction's group cores, at the kicks where L380 finds a pooled
+window, keep enough collisionless carrier to hold the lensing peak on the galaxies when the gas is knocked loose?
+
+WHY.  L371 (parallel lane, merger_infall_2026) applied Harvey+2015 (<beta> = -0.04 +/- 0.07, 72 substructures) to L366's
+single-box NEWTONIAN retention at 650 km/s and found it fails: population-mean excess beta +0.104 (cusp kept, S1),
++0.135 (phase-mixed daughters, S2), +0.340 (recaptured, S3) on the Lenstool-like fit, against the <= +0.10 two-sigma
+bound.  L377 then showed the full construction (the phantom felt by the baryons) raises cluster retention by 6-22%, and
+L380 re-scored the pooled three-box construction with the corrected clearing gate.  This lane re-runs L371's test with the
+retention L380 measures, pooled, at every kick in L380's pooled window.
+
+METHOD.  L371's script, loaded unedited except for its inputs: the retention table EPS (lensing mass -> retention) is
+replaced by L380's pooled medians in L371's own mass bins and mapping (M(<1 Mpc/h) 6e13-1e14 -> lensing 1e14 Msun;
+1.5e14-2.5e14 -> 3e14; >= 2.5e14 -> the 1e15 main cluster), the daughters' kick VK by the window kick, L371's MUTATE flag is
+held False, and L371's own checks and output files are cut (its committed results are never touched).  One process per
+kick.  Shapes as L371: S1 (the cusp kept, optimistic), S2 (phase-mixed daughters, L321's retained(), Newtonian orbits),
+S3 (recaptured, marginally bound, pessimistic).
+PRE-DECLARED (before the run): H: at some kick in L380's pooled window, the phase-mixed shape S2 passes Harvey -- the
+population-mean excess beta is <= +0.10 on all three estimators (100 kpc, 150 kpc, Lenstool-like fit).
+CHECKS
+  C1 CONTROL: the intact carrier reproduces L371's committed configuration-averaged excess beta (all three estimators, 1e-6).
+  R1 = H.  W (informational): S1, S2, S3 at every window kick; the carrier-to-baryon ratio inside 150 kpc.
+MUTATE=1: every retention is quartered (a hollowed carrier): R1 must FAIL (rc = 1).
+
+Run from the repository root after L380:  python3 real_research/dark_sector_2026/L381_harvey_on_pooled_window.py
+
+  L380's pooled window: ['v600', 'v625', 'v650', 'v675']; kicks scored here: ['v600', 'v625', 'v650', 'v675']
+    v600: retention used (lensing 1e14 / 3e14 / 1e15) = 0.280 / 0.629 / 0.837
+    v625: retention used (lensing 1e14 / 3e14 / 1e15) = 0.212 / 0.564 / 0.819
+    v650: retention used (lensing 1e14 / 3e14 / 1e15) = 0.159 / 0.511 / 0.791
+    v675: retention used (lensing 1e14 / 3e14 / 1e15) = 0.124 / 0.422 / 0.758
+  4 kicks done   [5467s]
+
+==============================================================================================================
+C1  CONTROL: L371's machinery reproduced
+==============================================================================================================
+  [PASS] C1 the intact carrier reproduces L371's committed configuration-averaged excess beta (all estimators, every kick)
+         measured: max |difference| 0.0e+00
+
+==============================================================================================================
+HARVEY+2015 ON THE POOLED WINDOW (population-mean excess beta: 100 / 150 kpc / fit; bound <= +0.10)
+==============================================================================================================
+    v600 S1_med: +0.024/+0.073/+0.077  (+0.9/+1.6/+1.7 sigma)  -> pass;  carrier/baryons in 150 kpc: 2.93 (1e14), 6.12 (3e14)
+    v600 S2_med: +0.038/+0.090/+0.109  (+1.1/+1.9/+2.1 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 2.27 (1e14), 5.04 (3e14)
+    v600 S3_med: +0.098/+0.234/+0.371  (+2.0/+3.9/+5.9 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 0.11 (1e14), 0.24 (3e14)
+    v625 S1_med: +0.026/+0.080/+0.093  (+0.9/+1.7/+1.9 sigma)  -> pass;  carrier/baryons in 150 kpc: 2.20 (1e14), 5.43 (3e14)
+    v625 S2_med: +0.039/+0.093/+0.123  (+1.1/+1.9/+2.3 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 1.68 (1e14), 4.41 (3e14)
+    v625 S3_med: +0.097/+0.225/+0.363  (+2.0/+3.8/+5.8 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 0.08 (1e14), 0.22 (3e14)
+    v650 S1_med: +0.033/+0.088/+0.108  (+1.0/+1.8/+2.1 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 1.64 (1e14), 4.87 (3e14)
+    v650 S2_med: +0.040/+0.100/+0.136  (+1.1/+2.0/+2.5 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 1.23 (1e14), 3.87 (3e14)
+    v650 S3_med: +0.095/+0.215/+0.352  (+1.9/+3.6/+5.6 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 0.06 (1e14), 0.20 (3e14)
+    v675 S1_med: +0.034/+0.096/+0.120  (+1.1/+1.9/+2.3 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 1.27 (1e14), 3.95 (3e14)
+    v675 S2_med: +0.047/+0.113/+0.155  (+1.2/+2.2/+2.8 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 0.95 (1e14), 3.04 (3e14)
+    v675 S3_med: +0.092/+0.203/+0.336  (+1.9/+3.5/+5.4 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 0.05 (1e14), 0.17 (3e14)
+  [PASS] W (informational) S1, S2, S3 at every kick scored
+         measured: see table
+         reading:  reported either way
+
+==============================================================================================================
+R1  THE HYPOTHESIS (set before the run)
+==============================================================================================================
+  [FAIL] R1 = H: at some kick in L380's pooled window the phase-mixed shape S2 passes Harvey on all three estimators
+         measured: S2 passes at: none (window ['v600', 'v625', 'v650', 'v675'])
+
+  2/3 checks pass; load-bearing failures: 1; wrote L381_harvey_on_pooled_window_results.json   [5467s]
