@@ -1,0 +1,40 @@
+{
+ "lane": "R10",
+ "checks": {
+  "E1 at the transition acceleration gN = a0 the three laws disagree: g/a0 = 1.4876 (aux), 1.4142 (quadrature), 1.0000 (deep-only) -- they are three DIFFERENT full force laws even though all share the deep asymptote g ~ sqrt(a0 gN)": {
+   "ok": true,
+   "measured": "aux 1.4876 vs quad 1.4142 vs deep 1.0000"
+  },
+  "E2 the rational aux and the PD21 quadrature are NOT the same response: mu_aux - mu_quad is nonzero at g = a0 and g = 2 a0 (exact symbolic residual)": {
+   "ok": true,
+   "measured": "resid(a0) = -0.0624784, resid(2 a0) = -0.0307764"
+  },
+  "E3 the Newtonian-side corrections differ by orders: at gN = 100 a0 the aux is already 1.65e-4 a0 above Newton while the quadrature is 5.0e-4 a0 above (different shapes, not a reparametrization)": {
+   "ok": true,
+   "measured": "aux excess 3.84e-02 a0 vs quad excess 4.99e-01 a0"
+  },
+  "E4 the L311 deep law is deep-only: at total gN,tot = 0.1 a0 it gives g = 0.316 a0 while the quadrature gives 0.332 a0 (5%%); the two agree only in the strict gN -> 0 limit": {
+   "ok": true,
+   "measured": "gN 0.01 a0: deep 0.100 vs quad 0.100; gN 0.10 a0: deep 0.316 vs quad 0.332; gN 1.00 a0: deep 1.000 vs quad 1.414"
+  }
+ },
+ "numbers": {
+  "g_at_gN_a0": {
+   "aux": 1.4876410048986561,
+   "quad": 1.4142135623730951,
+   "deep": 1.0
+  },
+  "deep_vs_quad_gN_0.01a0": {
+   "deep": 0.1,
+   "quad": 0.1004987562112089
+  },
+  "deep_vs_quad_gN_0.10a0": {
+   "deep": 0.31622776601683794,
+   "quad": 0.33166247903553997
+  },
+  "deep_vs_quad_gN_1.00a0": {
+   "deep": 1.0,
+   "quad": 1.4142135623730951
+  }
+ }
+}

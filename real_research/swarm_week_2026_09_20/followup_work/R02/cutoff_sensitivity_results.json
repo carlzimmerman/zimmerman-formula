@@ -1,0 +1,29 @@
+{
+ "lane": "R02",
+ "checks": {
+  "R2.1 the shell-mass theorem: the cumulative integral of rho = C/r^3 over [r0, r] equals M(r0) + 4 pi C ln(r/r0) at every sampled radius (residual at quadrature level)": {
+   "ok": "True",
+   "measured": "max relative deviation = 1.99e-12"
+  },
+  "R2.2 the apparent exponent is a CUTOFF ARTIFACT: the same pure logarithmic shell fits r^0.578 when integrated from the 1 Mpc cutoff (L304's convention, every-10th sampling), and the fitted exponent is set by the cutoff window: change r0 with the outer sample fixed and the exponent moves by more than 0.5 (to 1.2-1.8 as the window narrows)": {
+   "ok": true,
+   "measured": "0.578 (1 Mpc); 1.175 (2 Mpc); 1.345 (5 Mpc); 1.820 (10 Mpc)"
+  },
+  "R2.3 with the interior mass carried at the window edge (M0 = 2.5e42 kg below 1 Mpc), the active-mass INCREMENT across the converged outer half of the window is the log law 4 pi C ln(r/r_hi) to < 1% -- the log SHAPE, not sqrt r": {
+   "ok": true,
+   "measured": "M0 = 2.52e+42 kg; C anchored at r_hi; max relative deviation = 1.04e-03"
+  },
+  "R2.4 the finite-window correction from the asymptotic remainder is bounded: 1/(4 pi) integrand |r^3 rho_act - C| / r integrated over the window is below 1% of the logarithmic term  4 pi C ln(r_out/r0)": {
+   "ok": "True",
+   "measured": "integrated remainder = 7.696e+38 vs log term 2.877e+42 (ratio 2.675e-04)"
+  }
+ },
+ "numbers": {
+  "slope_pure_log_r0_1": 0.5783526202356466,
+  "slope_pure_log_r0_2": 1.174769835501713,
+  "slope_pure_log_r0_5": 1.344699077020578,
+  "slope_pure_log_r0_10": 1.8200499285448777,
+  "M0_below_1Mpc": 2.5175327127468626e+42,
+  "slope_zeroM0_L304_convention": 0.580671301275085
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "lane": "R01",
+ "checks": {
+  "N1 the exact factorization cancels B + 2u/3: (w-1)*rho = (2/3)(2-K) D u^3 identically": {
+   "ok": true,
+   "measured": "residual = 0"
+  },
+  "N2 the rationalized root gives r*u -> A/B at large r": {
+   "ok": true,
+   "measured": "r*u = 2*A*sqrt(r)/(B*sqrt(r) + sqrt(4*A + B**2*r)); limit = A/B"
+  },
+  "N3 the asymptotic active shell: r^3 rho_act -> (2/3)(2-K) D (A/B)^3": {
+   "ok": true,
+   "measured": "limit = -2*A**3*D*(K - 2)/(3*B**3); target = A**3*D*(4/3 - 2*K/3)/B**3"
+  },
+  "N4 on L304's own window (1-100 Mpc, MW) the profile is already the C/r^3 shell: r^3 rho_act within 1% of the asymptotic constant at the window end": {
+   "ok": "True",
+   "measured": "median |rel-1| on the outer 25% = 2.777e-04, max = 4.894e-04"
+  },
+  "N5 the fitted 0.58 IS the pure-log window artifact: a pure C/r^3 shell integrated with zero mass at the lower cutoff fits r^0.578 on L304's exact sampled interval and step": {
+   "ok": true,
+   "measured": "L304-style fit 0.581; pure-log fit 0.578"
+  },
+  "N6 with the interior mass tracked, the active mass follows the LOG shell, not sqrt(r): the max relative residual of a linear fit in ln r is below 0.1% on the window's tail": {
+   "ok": true,
+   "measured": "M0(<1 Mpc) = 2.518e+42 kg; max relative residual = 6.23e-04"
+  },
+  "N7 the finite-radius remainder bound holds: |r^3 rho_act - C| <= 3 C A/(B^2 r) on the window": {
+   "ok": "True",
+   "measured": "max |resid|/bound = 1.000 (<= 1)"
+  }
+ },
+ "numbers": {
+  "slope_zeroM0_window": 0.5806713012750879,
+  "slope_pure_log_same_window": 0.5783526202356507,
+  "M0_below_1Mpc": 2.5175327127468626e+42,
+  "slope_with_M0_window60pc": 0.15123374041367765
+ }
+}
