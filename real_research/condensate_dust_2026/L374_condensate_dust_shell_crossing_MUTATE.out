@@ -1,0 +1,108 @@
+L374 -- THE CONDENSATE'S DUST THROUGH SHELL CROSSING (one dimension): when two cold streams of the framework's own field
+meet, do they pass through each other like collisionless matter?
+
+WHY.  The record's no-particle reading of the dark sector (the ghost-condensate thread; Blanchet-Skordis K(Q) = mu^2 (Q-1)^2)
+  makes the cold dark mass a state of the framework's own scalar: its condensate sits slightly above its minimum and the
+  excess dilutes as cold dust.  The CMB constrains only a fluid, so linear cosmology cannot tell this from a particle.  The
+  nonlinear universe can: halos need streams to cross (multistreaming), and so do Bullet and Harvey (the dark mass passes
+  through while the gas collides).  A single-valued flow forms caustics where streams cross; the record lists this as the
+  open liability of the mode reading ("caustic-quenched dust: no theory").  The candidate fix is the condensate's own k^4
+  term, which gives its ripples a Schroedinger-like k^2 dispersion -- the property that lets fuzzy dark matter (a linear
+  complex field) pass through itself by interference.  This lane asks whether the condensate's k^4 term does the same.
+
+THE FIELD.  phi = t + pi, X = -g^{mu nu} d_mu phi d_nu phi, P(X) quadratic about its minimum X_0, plus the ghost condensate's
+  higher-derivative term -(alpha / 2 M^2)(box phi)^2 (Arkani-Hamed, Cheng, Luty, Mukohyama 2004).  Weak field, non-relativistic,
+  one dimension, with the dust density rho = 2 P''(X_0) (X - X_0) and velocity v = -d_x pi:
+      d_t rho + d_x (rho v) = beta d_x^3 v              (the shift charge; beta = alpha / M^2 is the k^4 term)
+      d_t v + v d_x v      = -d_x Phi - eps d_x rho      (eps = 1 / 4 P'': the condensate's warmth, p = eps rho^2 / 2)
+      d_x^2 Phi = 4 pi G (rho - rho_bar)
+  derived here from L = P''(X_0) delta^2 / 2 - (beta / 2)(d_x^2 pi)^2 with delta = 2 d_t pi - (d_x pi)^2 - 2 Phi; the
+  Hamiltonian E = int [rho v^2 / 2 + eps rho^2 / 2 + beta (d_x v)^2 / 2 + (rho - rho_bar) Phi / 2] is conserved.  Linear
+  waves: omega^2 = eps rho k^2 + eps beta k^4 -- a k^2 dispersion with D = sqrt(eps beta) in the role of hbar / 2m (fuzzy
+  dark matter: omega = D k^2).  rho < 0 is the condensate below its minimum, where c_s^2 < 0 (the ghost instability).
+
+THE TEST.  A cold converging flow v = v0 sin(2 pi x / L) on a uniform density in a periodic box: (i) free streaming (G = 0;
+  the collisionless answer is exact, three streams after t_sc = L / (2 pi v0)); (ii) self-gravitating (4 pi G rho_bar =
+  (2 pi v0 / L)^2: a one-dimensional halo forms and phase-mixes; the collisionless answer is an exact-force sheet N-body).
+  Compared, each coarse-grained with a Gaussian of width L/50:
+    the collisionless N-body answer (the target);
+    Schroedinger-Poisson with the same D (fuzzy dark matter; the positive control, a field known to pass through itself);
+    the pressureless fluid (eps = beta = 0; the negative control, the caustic);
+    the condensate at warmth W = eps rho_bar / v0^2 = 1e-1, 1e-2, 1e-3, 1e-4 and de Broglie length lambda = 4 pi D / v0 =
+    L/100, L/200 (sixteen cells).  (The CMB's bound on the dust's warmth today is far colder than any scanned W; the scan
+    follows the trend toward cold.  W = 0.1 was added after the code test showed W = 1e-2 breaking down, to see whether a warm
+    condensate survives; it can only make H easier.)
+  MEASURE: the misplaced mass M = (1/2) int |rho_s - rho_s,Nbody| dx / int rho dx at every checkpoint after shell crossing;
+  the condensate's minimum density (positivity); energy conservation.
+
+PRE-DECLARED (before any run).  H (the sketch's hope): the condensate's own k^4 term quenches the caustic and the field tracks
+  the collisionless answer as Schroedinger-Poisson does -- some (W, lambda) cell keeps M <= max(0.05, 2 x Schroedinger-
+  Poisson's M at the same lambda and time) at every post-crossing checkpoint in BOTH tests, stays positive (min rho >= -0.01
+  rho_bar), conserves energy to 1% and does not break down.  The equations' structure (a dispersive gamma = 2 fluid, not a
+  linear wave equation) suggests it may not: then the condensate's dust collides like a fluid.
+
+  *** MUTATE=1: the condensate is replaced by a linear complex field (Gross-Pitaevskii-Poisson, same D and eps) ***
+
+  26 runs, pool 2
+  runs done   [921s]
+  shell crossing: free 0.1592 (exact 0.1592); self-gravitating 0.1405 (first stream crossing in the N-body)
+
+====================================================================================================================
+MISPLACED MASS vs the collisionless answer (coarse-grained on L/50), per checkpoint
+====================================================================================================================
+    free     Schroedinger-Poisson lambda = L/100: t=0.080: 0.0000, t=0.239: 0.0008, t=0.318: 0.0019, t=0.477: 0.0053
+    free     GP W = 0.1, lambda = L/100: t=0.080: 0.0013, t=0.239: 0.0512, t=0.318: 0.1874, t=0.477: 0.2152 | min rho +0 | energy drift 0.0e+00
+    free     GP W = 0.01, lambda = L/100: t=0.080: 0.0001, t=0.239: 0.0398, t=0.318: 0.0497, t=0.477: 0.0656 | min rho +0 | energy drift 0.0e+00
+    free     GP W = 0.001, lambda = L/100: t=0.080: 0.0000, t=0.239: 0.0050, t=0.318: 0.0068, t=0.477: 0.0123 | min rho +0 | energy drift 0.0e+00
+    free     GP W = 0.0001, lambda = L/100: t=0.080: 0.0000, t=0.239: 0.0011, t=0.318: 0.0022, t=0.477: 0.0059 | min rho +0 | energy drift 0.0e+00
+    free     Schroedinger-Poisson lambda = L/200: t=0.080: 0.0000, t=0.239: 0.0002, t=0.318: 0.0005, t=0.477: 0.0013
+    free     GP W = 0.1, lambda = L/200: t=0.080: 0.0013, t=0.239: 0.0509, t=0.318: 0.1871, t=0.477: 0.2152 | min rho +0 | energy drift 0.0e+00
+    free     GP W = 0.01, lambda = L/200: t=0.080: 0.0001, t=0.239: 0.0413, t=0.318: 0.0504, t=0.477: 0.0643 | min rho +0 | energy drift 0.0e+00
+    free     GP W = 0.001, lambda = L/200: t=0.080: 0.0000, t=0.239: 0.0052, t=0.318: 0.0068, t=0.477: 0.0102 | min rho +0 | energy drift 0.0e+00
+    free     GP W = 0.0001, lambda = L/200: t=0.080: 0.0000, t=0.239: 0.0006, t=0.318: 0.0010, t=0.477: 0.0021 | min rho +0 | energy drift 0.0e+00
+    gravity  Schroedinger-Poisson lambda = L/100: t=0.050: 0.0000, t=0.300: 0.0002, t=0.600: 0.0008, t=1.000: 0.0028, t=1.500: 0.0103
+    gravity  GP W = 0.1, lambda = L/100: t=0.050: 0.0002, t=0.300: 0.1257, t=0.600: 0.2227, t=1.000: 0.2387, t=1.500: 0.2294 | min rho +0 | energy drift 0.0e+00
+    gravity  GP W = 0.01, lambda = L/100: t=0.050: 0.0000, t=0.300: 0.0263, t=0.600: 0.0241, t=1.000: 0.0317, t=1.500: 0.0442 | min rho +0 | energy drift 0.0e+00
+    gravity  GP W = 0.001, lambda = L/100: t=0.050: 0.0000, t=0.300: 0.0029, t=0.600: 0.0057, t=1.000: 0.0050, t=1.500: 0.0138 | min rho +0 | energy drift 0.0e+00
+    gravity  GP W = 0.0001, lambda = L/100: t=0.050: 0.0000, t=0.300: 0.0005, t=0.600: 0.0013, t=1.000: 0.0030, t=1.500: 0.0103 | min rho +0 | energy drift 0.0e+00
+    gravity  Schroedinger-Poisson lambda = L/200: t=0.050: 0.0000, t=0.300: 0.0001, t=0.600: 0.0002, t=1.000: 0.0003, t=1.500: 0.0052
+    gravity  GP W = 0.1, lambda = L/200: t=0.050: 0.0002, t=0.300: 0.1259, t=0.600: 0.2231, t=1.000: 0.2394, t=1.500: 0.2339 | min rho +0 | energy drift 0.0e+00
+    gravity  GP W = 0.01, lambda = L/200: t=0.050: 0.0000, t=0.300: 0.0284, t=0.600: 0.0251, t=1.000: 0.0339, t=1.500: 0.0426 | min rho +0 | energy drift 0.0e+00
+    gravity  GP W = 0.001, lambda = L/200: t=0.050: 0.0000, t=0.300: 0.0033, t=0.600: 0.0062, t=1.000: 0.0042, t=1.500: 0.0074 | min rho +0 | energy drift 0.0e+00
+    gravity  GP W = 0.0001, lambda = L/200: t=0.050: 0.0000, t=0.300: 0.0004, t=0.600: 0.0008, t=1.000: 0.0006, t=1.500: 0.0050 | min rho +0 | energy drift 0.0e+00
+
+====================================================================================================================
+CHECKS
+====================================================================================================================
+  [PASS] C1 CONTROL (single stream): before shell crossing every solver agrees with the N-body answer (M <= 0.01)
+         measured: max M 1.30e-03 over 21 comparisons; pre-crossing checkpoints {'free': [0.07957747154594767], 'gravity': [0.05]}
+  [PASS] C2 POSITIVE CONTROL: Schroedinger-Poisson (a linear complex field with the same D) tracks the collisionless answer after shell crossing (M <= 0.05, both tests, both lambda)
+         measured: max post-crossing M: {'free|L/100': 0.005341287817683336, 'free|L/200': 0.0013341473852385099, 'gravity|L/100': 0.010291610393029884, 'gravity|L/200': 0.005211563968409709}
+  [PASS] C3 NEGATIVE CONTROL: the pressureless fluid follows the exact single-stream solution (central density 20 rho_bar at 0.95 t_sc within 10%) and then diverges (max rho > 50 rho_bar, or breakdown, by 1.05 t_sc)
+         measured: {'rho_center_095': 19.999999999969027, 'exact': 20.0, 'rho_max_by_105': 1314.8663084344669, 't_break': 0.1876481530081047}
+  [PASS] C5 RESOLUTION AND TIME STEP: the (W = 0.001, L/100) free-streaming cell at twice the resolution and at half the time step gives the same verdict, and its breakdown / first-negative times (or misplaced mass) agree within 20%
+         measured: verdict True / 2x grid True / dt/2 True; M [0.005, 0.0068, 0.0123] / [0.005, 0.0068, 0.0123] / [0.005, 0.0068, 0.0123]; first below the minimum None / None / None; breakdown None / None / None
+
+====================================================================================================================
+R1  THE HYPOTHESIS (set before any run)
+====================================================================================================================
+    W = 0.1, lambda = L/100: free does NOT track, self-gravitating does NOT track
+    W = 0.01, lambda = L/100: free does NOT track, self-gravitating tracks
+    W = 0.001, lambda = L/100: free tracks, self-gravitating tracks
+    W = 0.0001, lambda = L/100: free tracks, self-gravitating tracks
+    W = 0.1, lambda = L/200: free does NOT track, self-gravitating does NOT track
+    W = 0.01, lambda = L/200: free does NOT track, self-gravitating tracks
+    W = 0.001, lambda = L/200: free tracks, self-gravitating tracks
+    W = 0.0001, lambda = L/200: free tracks, self-gravitating tracks
+  [PASS] R1 = H: the linear complex field passes through itself like collisionless matter -- some (W, lambda) cell tracks the N-body answer in both tests, stays positive, conserves energy, does not break down
+         measured: tracking cells: ['W=0.001|L/100', 'W=0.0001|L/100', 'W=0.001|L/200', 'W=0.0001|L/200']
+  [PASS] W (reported) the table above
+         measured: see above
+  figure skipped: Data has no positive values, and therefore cannot be log-scaled.
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  6/6 checks pass; load-bearing failures: 0; wrote L374_condensate_dust_shell_crossing_MUTATE_results.json   [922s]
+rc=0
+L374 MUTATE rc=0
