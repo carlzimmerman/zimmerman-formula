@@ -30,3 +30,18 @@ python3 real_research/paper34_audit_2026/P34_paper_numbers.py
 ```
 
 Set `ROOT=<checkout>` to audit another checkout; this mode writes no JSON. The script holds the paper's quoted values, so an edit to the paper's numbers must be mirrored here.
+
+## After the deposit (DOI 10.5281/zenodo.22977900)
+
+**The re-runs the paper lists as "still running" have finished (2026-09-26, 10:46).** Every lane was re-run from a clean checkout of `8ad1d1e69`. Each output and results file was then compared with the committed one, ignoring timing stamps.
+- **Main runs identical:** L353, L354, L355, L356, L357, L359, L360, L361, L363, L364 and GP0–GP4 (15 lanes).
+- **Mutation controls identical:** L353, L355, L356, L360, L361, L363, L364 and GP1–GP4 (11 controls). L356's only difference is the wrapper's trailing `rc=` label.
+- **Not re-run:** L358, L362 and L370–L372, and the controls of L354, L357 and L359.
+
+The deposit needs no change.
+
+**High redshift for construction D, since computed.** The paper gives D's z ≈ 2.5 price as not computed, estimated at +0.8 to +1.0 dex from L356. `generated_phantom_2026/GP5_window_at_high_z.py` (commit `70d8070c0`, by another session) computes it for GP4's window cells:
+- the zero-point shift is +0.82 to +1.05 dex, and the gate (≤ 0.10 dex) fails;
+- RC100 gives f_DM 0.48–0.58.
+
+This agrees with the paper's estimate.
