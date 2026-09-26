@@ -1,0 +1,90 @@
+XC2 -- NONLINEAR WELL-POSEDNESS OF C-H/K, SCOPED: L340's first open item ("NOT computed yet, in the order they decide:
+nonlinear well-posedness ...").  A full theorem is not attempted.  This lane establishes the pieces that CAN be settled
+and reduces the rest to a named literature question.
+
+THE STRUCTURE.  C-H/K (L340) is a mixed elliptic-hyperbolic system: the metric and the khronon evolve; the auxiliary
+sector (U, W, L, lambda_0) is solved on each preferred leaf.  For a fixed metric and lapse N the U-equation is the
+Euler-Lagrange equation of
+    E[U] = Int N sqrt(h) { 2 |D U - D ln N|^2 + 2 alpha_M^2 q(|D S U|^2 / alpha_M^2) },   S = exp((xi^2/2) Delta_h).
+
+==============================================================================================================
+B1  THE HESSIAN OF THE q-INTEGRAND (sympy, generic q)
+==============================================================================================================
+    on-axis Hessian of 2 alpha^2 q(|p|^2/alpha^2): transverse = 4 q'(Y): True;  along p = 4 (q' + 2 Y q''): True;  off-diagonal zero: True
+  [PASS] B1 the q-integrand's Hessian has eigenvalues 4 C_T (x2) and 4 C_L: Q is convex in grad S U iff C_T, C_L >= 0
+         measured: transverse True, longitudinal True, off-diagonal True
+
+==============================================================================================================
+B2  THE HEAT FILTER NEVER RAISES THE DIRICHLET ENERGY (any closed leaf)
+==============================================================================================================
+    per mode: lambda e^(-2 b lambda) - lambda = -lambda (1 - e^(-2 b lambda)) <= 0: True
+    curved periodic leaf (20x20, random metric weights): max over 50 random f of ||D S f||^2/||D f||^2 = 0.092305 (eigenbasis route 0.092305; all entries finite: True)
+  [PASS] B2 ||D S f|| <= ||D f|| on any closed leaf (spectral identity; curved discrete leaf, 50 random fields, two routes)
+         measured: per-mode identity True; max ratio 0.092305 / 0.092305
+         reading:  so the filtered MOND term can lower the second variation by at most |C_min| times the unfiltered Dirichlet energy
+
+==============================================================================================================
+B3  THE CONVEXITY THRESHOLD, C_min > -1, FOR EVERY KERNEL ON THE RECORD
+==============================================================================================================
+    nu_mono                 min C_T = +0.0000   min C_L = +0.0000   1 + min(0, C) = 1.0000
+    nu_RAR                  min C_T = +0.0000   min C_L = -0.0324   1 + min(0, C) = 0.9676
+    mu_exp (1 - e^-x)       min C_T = +0.0000   min C_L = -0.1192   1 + min(0, C) = 0.8808
+    mu_2 (x/sqrt(1+x^2))    min C_T = +0.0000   min C_L = -0.0814   1 + min(0, C) = 0.9186
+    mu_5                    min C_T = +0.0000   min C_L = -0.2526   1 + min(0, C) = 0.7474
+    mu_10                   min C_T = +0.0000   min C_L = -0.3478   1 + min(0, C) = 0.6522
+  [PASS] B3 every kernel on the record has C_min > -1, so E[U] is strictly convex and the MOND constraint has exactly one solution on every leaf (d2E >= 4(1 + min(0, C_min)) ||D dU||^2, from B1 + B2)
+         measured: lowest C over all kernels = -0.3478 (nu_mono: +0.0000; nu_RAR's turnover -0.0324)
+         reading:  uniqueness of the constraint does not need the monotone law; L340 needs it for the khronon's momentum channel, not for the elliptic solve
+
+==============================================================================================================
+B4  NUMERICAL DEMONSTRATION: 2-D periodic leaf, non-constant lapse, filter xi = 2.5 cells
+==============================================================================================================
+    nu_mono : energies 0.4916235101, 0.4916235101, 0.4916235101, 0.4916235101;  max |U_i - U_1|/max|U| = 2.72e-07;  lowest Hessian eigenvalue +2.170e-02;  filtered y in [6.83e-06, 2.27]
+    nu_RAR  : energies 0.491623508, 0.491623508, 0.491623508, 0.491623508;  max |U_i - U_1|/max|U| = 1.50e-07;  lowest Hessian eigenvalue +2.170e-02;  filtered y in [6.84e-06, 2.27]
+  [PASS] B4 on a curved-lapse periodic leaf the MOND constraint converges to ONE solution from four random starts, and the lowest non-trivial Hessian eigenvalue is positive (nu_mono and nu_RAR; the field spans deep MOND to y ~ 6)
+         measured: nu_mono: spread 2.7e-07, lambda_min +2.17e-02; nu_RAR: spread 1.5e-07, lambda_min +2.17e-02
+         reading:  the elliptic half of the mixed Cauchy problem is uniquely solvable at every step
+
+==============================================================================================================
+B5  THE MOND SECTOR IS LOWER ORDER: the linearised operator S^T D^T C D S at high k
+==============================================================================================================
+    |k| >= 2/xi: ||MOND block|| / (4 K^2) = 5.11e-01   (e^(-xi^2 K^2) = 1.83e-02)
+    |k| >= 3/xi: ||MOND block|| / (4 K^2) = 3.62e-03   (e^(-xi^2 K^2) = 1.23e-04)
+    |k| >= 4/xi: ||MOND block|| / (4 K^2) = 1.61e-06   (e^(-xi^2 K^2) = 1.13e-07)
+    prefactor ratio / e^(-xi^2 K^2): 2/xi: 27.9, 3/xi: 29.3, 4/xi: 14.3  (bounded: the effective constitutive coefficient, largest near zero-field points)
+  [PASS] B5 the linearised MOND operator falls like C_eff e^{-xi^2 K^2} relative to the principal part (bounded prefactor, monotone, < 1e-4 by K = 4/xi): an order -infinity (smoothing) operator, absent from the principal symbol; with XC1 A3 the principal symbol of C-H/K is GR + the BPS khronon
+         measured: K = 2/xi: 5.1e-01 (prefactor 27.9); K = 3/xi: 3.6e-03 (prefactor 29.3); K = 4/xi: 1.6e-06 (prefactor 14.3)
+
+==============================================================================================================
+B6  THE KHRONON'S CHARACTERISTIC CONE (decoupling limit, from XC1 A1), and the alpha_c -> 0 control
+==============================================================================================================
+    symbol k^2 (alpha_c w^2 - c_2 k^2): real roots w/k = sqrt(c_2)/sqrt(alpha_c)  (finite cone for alpha_c > 0)
+    alpha_c = 0: symbol = -c_2*k**4; contains omega: False  -> no time derivative: the lapse is elliptic on each leaf
+  [PASS] B6 for alpha_c > 0 the khronon has a finite characteristic cone (c_s^2 = c_2/alpha_c, XC1 A9's 4.4e2-7.9e5 c); at alpha_c = 0 the time derivatives vanish (minimal Horava's elliptic lapse, whose Cauchy problem fails after collapse)
+         measured: cone sqrt(c_2)/sqrt(alpha_c); alpha_c = 0 symbol -c_2*k**4
+         reading:  alpha_c > 0 is load-bearing a third time (after L340's negative lobes and XC1's strong coupling): it is what keeps the khronon hyperbolic
+
+==============================================================================================================
+B7  THE ZERO-FIELD LIMIT: regularity of the deep-MOND flux F(p) = |p|^(1/2) p/|p| near zeros of the filtered field
+==============================================================================================================
+    eps:               1e-02     1e-03     1e-04     1e-05     1e-06     1e-07     1e-08
+    codim 1 (plane):    2.129     2.384     2.614     2.826     3.023     3.207     3.382   <- grows like sqrt(ln(1/eps)/2):
+    sqrt(ln/2):         1.517     1.858     2.146     2.399     2.628     2.839     3.035
+    codim 2 (line):     1.980     1.981     1.982     1.982     1.982   <- bounded (Lipschitz)
+    codim 3 (point):    2.171     2.171     2.171     2.171     2.171   <- bounded (Lipschitz)
+  [PASS] B7 the deep-MOND flux is Lipschitz at isolated zeros (codim 2, 3) and log-Lipschitz, R^2 ~ ln(1/eps)/2, at a planar zero set (codim 1); the log modulus satisfies Osgood's uniqueness criterion (Int du/sqrt(u) diverges)
+         measured: d(R^2)/d ln(1/eps) = 0.500 (predicted 0.5); codim 2 range 1.980-1.982; codim 3 range 2.171-2.171; Osgood integral oo
+         reading:  the zero-field point (spec requirement 9) is controlled: the filter makes zeros generic (isolated) and the only non-Lipschitz case, a symmetric planar zero set, is still Osgood-unique
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  Nonlinear well-posedness of C-H/K, scoped.  SETTLED here: (i) the elliptic half -- the MOND constraint is a strictly
+  convex variational problem on every leaf for every kernel on the record (C_min > -1; B1-B3), demonstrated numerically
+  (B4); (ii) the MOND sector is lower order (B5), so with XC1 A3 the principal symbol is GR + the BPS khronon; (iii) the
+  khronon is hyperbolic with a finite cone for alpha_c > 0 and degenerates to minimal Horava's elliptic lapse at alpha_c = 0
+  (B6); (iv) the zero-field limit is controlled: Lipschitz at generic zeros, log-Lipschitz (Osgood-unique) at symmetric
+  planar ones (B7).  REDUCED, not settled: strong hyperbolicity of GR + the BPS khronon on arbitrary nonlinear backgrounds
+  -- a question about khronometric gravity itself.  Time 6 s.
+
+  7/7 checks pass; load-bearing failures: 0; wrote XC2_wellposedness_scoping_results.json

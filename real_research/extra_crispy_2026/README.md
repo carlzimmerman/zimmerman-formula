@@ -39,3 +39,34 @@ computed separately; the UV completion; nonlinear well-posedness.
 black holes need α = β = 0 exactly. Kovachik & Sibiryakov 2023/2025 (arXiv:2311.12936) find regular solutions for
 general small α, β, λ, analytic outside the universal horizon. C-H/K's UV sector is exactly this khronon, so the question
 is open in the literature and not settled here.
+
+## XC2 — nonlinear well-posedness of C-H/K, scoped: the elliptic half settled, the rest reduced (7/7; MUTATE C = −1.5 fails B4, rc = 1)
+
+`XC2_wellposedness_scoping.py` (+ `.out`, `_MUTATE.out`, results JSON). Lean: `XC2_wellposedness_certificates.lean`
+(9 theorems, zero `sorry`, standard axioms). This is L340's first open item. No full theorem is claimed. The lane
+settles what can be settled and reduces the rest to a question about khronometric gravity itself.
+
+- **The MOND constraint has exactly one solution on every leaf.** For a fixed metric and lapse, the U-equation is the
+  Euler–Lagrange equation of E[U] = ∫N√h{2|DU − D ln N|² + 2α_M²q(|DSU|²/α_M²)}.
+  - The q-integrand's Hessian has eigenvalues 4C_T (twice) and 4C_L (B1).
+  - The heat filter never raises the Dirichlet energy on any closed leaf (B2).
+  - Together these give δ²E ≥ 4(1 + min(0, C_min))‖Dδ‖². So E is strictly convex whenever C_min > −1.
+  - C_min > −1 is exactly "g(g_N) strictly increasing", and every kernel on the record meets it (B3): ν_mono 0,
+    ν_RAR −0.032, μ₂ −0.081, μ_exp −0.119, μ₅ −0.253, μ₁₀ −0.348.
+- **Numerical demonstration (B4).** On a 2-D periodic leaf with a lapse varying by 30%, four random starts converge to
+  the same U to 3×10⁻⁷ for both ν_mono and ν_RAR. The lowest non-trivial Hessian eigenvalue is +0.022.
+- **The MOND sector is lower order (B5).** The linearised MOND operator falls like ≈30 e^{−ξ²K²} relative to the
+  principal part: 0.51, 3.6×10⁻³ and 1.6×10⁻⁶ at K = 2, 3 and 4/ξ. It is a smoothing operator. With XC1 A3 (U = ln N
+  removes the C-H term), the principal symbol of C-H/K is that of GR plus the BPS khronon.
+- **The khronon is hyperbolic only because α_c > 0 (B6).** Its symbol is k²(α_c ω² − c₂k²), with the finite cone
+  c_s² = c₂/α_c. At α_c = 0 the time derivatives drop out and the lapse becomes elliptic. That is minimal Hořava gravity,
+  whose Cauchy problem fails after a dust shell collapses (Jacobson & Pulakkat 2025, J. Phys. A 58, 315404). α_c > 0
+  is load-bearing a third time, after L340's negative lobes and XC1's strong coupling.
+- **The zero-field limit is controlled (B7).** The deep-MOND flux |p|^{1/2}p̂ is Lipschitz at isolated zeros of the
+  filtered field (codim 2 and 3, generic after filtering). At a symmetric planar zero set (codim 1) it is only
+  log-Lipschitz: R² = ln(1/ε)/2, with a measured slope of 0.500. The log modulus still satisfies Osgood's uniqueness
+  criterion. This is spec requirement 9.
+
+**Reduced, not settled.** Is GR plus the BPS khronon (α_c, λ − 1 = c₂, β = 0) strongly hyperbolic on arbitrary
+nonlinear backgrounds? Einstein-aether theory is, under conditions on its couplings (Sarbach, Barausse & Preciado-López
+2019, CQG 36, 165007). No general theorem for the hypersurface-orthogonal case is used here, and its α → 0 limit fails.

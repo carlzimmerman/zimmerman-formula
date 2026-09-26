@@ -1,0 +1,172 @@
+{
+ "lane": "XC2",
+ "mutate": true,
+ "checks": {
+  "B1 the q-integrand's Hessian has eigenvalues 4 C_T (x2) and 4 C_L: Q is convex in grad S U iff C_T, C_L >= 0": {
+   "ok": true,
+   "measured": "transverse True, longitudinal True, off-diagonal True",
+   "load_bearing": true
+  },
+  "B2 ||D S f|| <= ||D f|| on any closed leaf (spectral identity; curved discrete leaf, 50 random fields, two routes)": {
+   "ok": true,
+   "measured": "per-mode identity True; max ratio 0.092305 / 0.092305",
+   "load_bearing": true
+  },
+  "B3 every kernel on the record has C_min > -1, so E[U] is strictly convex and the MOND constraint has exactly one solution on every leaf (d2E >= 4(1 + min(0, C_min)) ||D dU||^2, from B1 + B2)": {
+   "ok": true,
+   "measured": "lowest C over all kernels = -0.3478 (nu_mono: +0.0000; nu_RAR's turnover -0.0324)",
+   "load_bearing": true
+  },
+  "B4 on a curved-lapse periodic leaf the MOND constraint converges to ONE solution from four random starts, and the lowest non-trivial Hessian eigenvalue is positive (nu_mono and nu_RAR; the field spans deep MOND to y ~ 6)": {
+   "ok": false,
+   "measured": "nu_mono: spread 1.0e+00, lambda_min -2.87e-02; nu_RAR: spread 1.0e+00, lambda_min -2.87e-02",
+   "load_bearing": true
+  },
+  "B5 the linearised MOND operator falls like C_eff e^{-xi^2 K^2} relative to the principal part (bounded prefactor, monotone, < 1e-4 by K = 4/xi): an order -infinity (smoothing) operator, absent from the principal symbol; with XC1 A3 the principal symbol of C-H/K is GR + the BPS khronon": {
+   "ok": true,
+   "measured": "K = 2/xi: 5.1e-01 (prefactor 27.9); K = 3/xi: 3.6e-03 (prefactor 29.3); K = 4/xi: 1.6e-06 (prefactor 14.3)",
+   "load_bearing": true
+  },
+  "B6 for alpha_c > 0 the khronon has a finite characteristic cone (c_s^2 = c_2/alpha_c, XC1 A9's 4.4e2-7.9e5 c); at alpha_c = 0 the time derivatives vanish (minimal Horava's elliptic lapse, whose Cauchy problem fails after collapse)": {
+   "ok": true,
+   "measured": "cone sqrt(c_2)/sqrt(alpha_c); alpha_c = 0 symbol -c_2*k**4",
+   "load_bearing": true
+  },
+  "B7 the deep-MOND flux is Lipschitz at isolated zeros (codim 2, 3) and log-Lipschitz, R^2 ~ ln(1/eps)/2, at a planar zero set (codim 1); the log modulus satisfies Osgood's uniqueness criterion (Int du/sqrt(u) diverges)": {
+   "ok": true,
+   "measured": "d(R^2)/d ln(1/eps) = 0.500 (predicted 0.5); codim 2 range 1.980-1.982; codim 3 range 2.171-2.171; Osgood integral oo",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "B1": {
+   "transverse": true,
+   "longitudinal": true,
+   "offdiag_zero": true
+  },
+  "B2": {
+   "per_mode": true,
+   "max_ratio": 0.09230507911536187,
+   "max_ratio_eigenbasis": 0.09230507911536179,
+   "finite": true
+  },
+  "B3": {
+   "nu_mono": {
+    "min_CT": 1.1921232144713505e-08,
+    "min_CL": 3.2380511072247896e-10
+   },
+   "nu_RAR": {
+    "min_CT": 0.0,
+    "min_CL": -0.03244744977130566
+   },
+   "mu_exp (1 - e^-x)": {
+    "min_CT": 0.0,
+    "min_CL": -0.11920291656641502
+   },
+   "mu_2 (x/sqrt(1+x^2))": {
+    "min_CT": 5.10702591327572e-15,
+    "min_CL": -0.08144133663675523
+   },
+   "mu_5": {
+    "min_CT": 4.440892098500626e-16,
+    "min_CL": -0.2525613895411324
+   },
+   "mu_10": {
+    "min_CT": 2.220446049250313e-16,
+    "min_CL": -0.3477724492931491
+   }
+  },
+  "B4": {
+   "nu_mono": {
+    "energies": [
+     NaN,
+     -2.66410102935102e+303,
+     NaN,
+     -1.9262988920287913e+303
+    ],
+    "spread_rel": 0.9999999343729157,
+    "lambda_min": -0.028724207675788774,
+    "y_filtered_range": [
+     1.4195172353073544e+158,
+     6.510253662270019e+159
+    ]
+   },
+   "nu_RAR": {
+    "energies": [
+     NaN,
+     NaN,
+     -9.919079633987652e+301,
+     -2.9906522570675253e+302
+    ],
+    "spread_rel": 0.9994903907429566,
+    "lambda_min": -0.028724207675787435,
+    "y_filtered_range": [
+     4.1181613241787055e+153,
+     2.0811612012264147e+155
+    ]
+   }
+  },
+  "B5": {
+   "2.0": 0.5111545406367703,
+   "3.0": 0.0036171728943373616,
+   "4.0": 1.6064367955149778e-06
+  },
+  "B5_prefactor": {
+   "2.0": 27.908092299809315,
+   "3.0": 29.310255543366406,
+   "4.0": 14.274974909156597
+  },
+  "B6": {
+   "cone": "sqrt(c_2)/sqrt(alpha_c)",
+   "alpha0_symbol": "-c_2*k**4",
+   "alpha0_has_time": false
+  },
+  "B7": {
+   "eps": [
+    0.01,
+    0.001,
+    0.0001,
+    1e-05,
+    1e-06,
+    1e-07,
+    1e-08
+   ],
+   "codim1": [
+    2.1286433764833292,
+    2.3837833176116163,
+    2.6141376262855376,
+    2.825775659254051,
+    3.022631407061967,
+    3.207427812018058,
+    3.3821421791302115
+   ],
+   "codim1_pred": [
+    1.5174271293851465,
+    1.8584610944249191,
+    2.145966026289347,
+    2.3992629560940406,
+    2.628260884878466,
+    2.838846213777555,
+    3.034854258770293
+   ],
+   "codim2": [
+    1.9798446628894006,
+    1.9814524277511747,
+    1.9816382946062205,
+    1.981661032739493,
+    1.98166338631973
+   ],
+   "codim3": [
+    2.1707428250387784,
+    2.1708029988931403,
+    2.170803755411788,
+    2.170803763590671,
+    2.1708037636636908
+   ],
+   "d(R^2)/d ln(1/eps)": 0.5000000008469186,
+   "osgood_integral": "oo"
+  }
+ },
+ "n_checks": 7,
+ "n_fail_load_bearing": 1
+}
