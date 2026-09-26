@@ -14,7 +14,7 @@ bounded by a constant times the SOFTER of the input and output momenta,
     |p| |(delta S)_(p,q)| / |metric leg|  <=  8 min(|p|,|q|) (1 + b m^2) e^{-b m^2},   m = min(|p|,|q|),
 for both the conformal (scalar) and the transverse-traceless (graviton) metric legs.  The constitutive term depends on the
 filtered field only through its gradient, so every delta S vertex carries derivatives bounded by soft momenta (at most
-~1/xi): the filter's variation cannot make a vertex grow with a hard energy, and it adds only bounded (order-0) terms to the
+~1/xi): the filter's variation puts no derivative on a hard leg, and it adds only bounded (order-0) terms to the
 metric equations, whose principal part is order 2.
 
 WHAT THIS LANE CHECKS
@@ -195,7 +195,9 @@ check("D3 in every channel of delta S the output gradient is bounded by 8 x the 
       f"|T| = {T_sh:.1e}; hard->hard |T| = {T_hh:.1e}",
       ratio_c <= 8 and ratio_t <= 8 and ratio_c > 1.5 and fact_err < 1e-10 and T_hh < 1e-100 and T_sh < 2 * p_soft / q_hard * 3,
       "the constitutive term reads only the filtered gradient, so every delta S vertex carries derivatives bounded by soft "
-      "momenta (<~ 1/xi): delta S cannot make a vertex grow with a hard energy.  Lean XC6 certifies the scalar inequalities")
+      "momenta (<~ 1/xi): delta S puts no derivative on a hard leg.  (A vertex with many hard legs still grows with energy "
+      "through its canonical field dimensions; whether those couplings stay weak is part 2.)  Lean XC6 certifies the scalar "
+      "inequalities")
 
 # ============================================================================================ D4 the principal symbol with delta S
 banner("D4  THE PRINCIPAL SYMBOL WITH delta S RETAINED: the constitutive term's second metric variation stays bounded")
@@ -234,7 +236,7 @@ banner("VERDICT")
 P(f"""  The lead track's witness is right: varying the heat filter's metric moves a hard input into a soft output with an O(1)
   coefficient, not a Gaussian (D1, D2).  But that is the only kind of escape, and it is harmless in a precise sense: in
   every channel the output's gradient is bounded by the SOFTER momentum (D3, the soft-leg lemma, conformal and TT legs).
-  The constitutive term reads only that gradient, so no delta S vertex grows with a hard energy, and the filter's variation
+  The constitutive term reads only that gradient, so delta S puts no derivative on a hard leg, and the filter's variation
   adds a bounded, order-0 operator to the metric equations (D4): the principal symbol with delta S retained is GR + the BPS
   khronon.  Part 2: the canonical couplings and the strong-coupling scale of the soft-legged vertices on the Sun + Galaxy
   background, and the quartic/exchange terms.  Time {time.time() - T0:.0f} s.""")

@@ -232,8 +232,10 @@ interaction").
   - hard → soft: an O(1) transfer, with output gradient of order the soft momentum;
   - soft → hard: suppressed by q/p;
   - hard → hard: Gaussian in the smaller momentum.
-  The constitutive term reads only the filtered gradient, so **no δS vertex grows with a hard energy.** Their
-  derivatives are bounded by soft momenta, ≲ 1/ξ.
+  The constitutive term reads only the filtered gradient, so **δS puts no derivative on a hard leg.** Every δS
+  vertex's derivative factors are bounded by soft momenta, ≲ 1/ξ. *Corrected the same day: this line first said "no δS
+  vertex grows with a hard energy". A vertex with many hard legs still grows through its canonical field dimensions, and
+  whether those couplings stay weak is part 2.*
 - **D4, the principal symbol with δS retained.** At a soft background, the constitutive term's second variation in a
   hard metric leg stays bounded: log-slope in k +0.01 over k√b = 5.7–40, while the Einstein–Hilbert term grows as k².
   δS therefore adds an order-0 operator. With XC2 B5–B6, the principal symbol of C-H/K with δS retained is GR + the BPS
