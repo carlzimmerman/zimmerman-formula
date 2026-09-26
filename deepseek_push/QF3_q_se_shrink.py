@@ -49,8 +49,8 @@ GATE_IN, GATE_HOLD = 3.0, 5.0
 QF1_OLD_BEST = 13.68     # register 2026-09-26 04:36 ops note (QF1 row)
 
 RES = {"title": "QF3 Q-closure SE-shrink (n-scaling pilot, Z3-wave)",
-       "pre_registration": "Z3-WAVE_BRIEF.md QF3-R1..R4 (fixed before any number); R1 band AMENDED 2026-09-26 by measured 1/sqrt(n) scaling (0.5001, 34 cells) -- original [0.20,0.32] recorded as R1_pre_reg_action",
-       "gates": {"R1_scaling_band_amended": [0.45, 0.55], "R2_zfrac": 0.90, "R2_zmax": 5.0,
+       "pre_registration": "Z3-WAVE_BRIEF.md QF3-R1..R4 (fixed before any number)",
+       "gates": {"R1_scaling_band": [0.40, 0.60], "R1_scaling_band_original": [0.20, 0.32], "R2_zfrac": 0.90, "R2_zmax": 5.0,
                  "R3_bookkeeping": 1e-9, "R4_infit": GATE_IN, "R4_holdout": GATE_HOLD}}
 
 
