@@ -49,6 +49,38 @@ declared input; no new dark-matter particle species; the dark mass is still requ
    Group zero-velocity radius and the EFE samples with a 3-D disc solve.
 8. External data: Gaia DR4 (2026-12-02), Euclid DR1 (2027), the z ≈ 2.5 zero point (new JWST and ALMA time).
 
+## Updates after the review (2026-09-26, evening)
+
+**The author's decisions** (recorded in the recipe, `27bc6db4c`):
+- Both architectures go ahead as separate branches, never pooled: the C-H/K khronon plus vacuum gate, and the lead track's IC28.
+- "All doors" on the switch variable: each reading gets its own labelled cell.
+- PAPER34 gets a v2 scope note once L372 has been re-scored at p1_x2.5.
+
+**Ledger items closed:**
+- `441d811e2` L391: RAR and RC100 re-scored with ν_mono. No change: carrier shift ≤ 1.24e-4 dex, carrier inside R_e 0.000 of ΛCDM's, f_DM 0.232/0.264.
+- `77f79072c` L370 gains explicit-cell entry points; `8850550c4` scoped L372 and fixed L370's docstring.
+- `27bc6db4c` XC4 confirms the ν_mono splice in closed form: y* = 2.3374, maximum difference 0.01037 dex. XC3's C_T is corrected, and every verdict holds.
+- `9df26672f` L373 is committed, scoped to p2_x2.0: no window. Its only X-COP cell fails Harvey S2 at +0.116 against 0.10.
+
+**The flagship on the matter-only branch is CGM-conditional** (DE4 `ecffd2af3`, DE6 `4132da393`). At z = 2.5:
+- An intact carrier gives +0.97 dex, and L380's 6% residue +0.102.
+- With the carrier cleared and 30% of L375's maximal CGM, every p ≤ 1 window cell keeps the flagship and every p ≈ 2 cell loses it.
+- At 10% CGM only the p = 0.5 cells and (1, 1.5) keep it. **p1_x2.5 loses it.**
+- On the matter-only branch the switch reaches 1.5–4.4 less in z than on the upper branch (z_max).
+- Candidate to check on that branch: p = 0.5, x_c0 ≈ 2.65–3.39. That range sits inside DE2's cosmic-shear floor (600 km/s, L367's transfers) and its KiDS cap, but the forest is marginal at p = 0.5 (L359/L362). The branch's own T_max (DE5) decides it.
+
+**New axis: the web self-term σ** (V0, `real_research/chk_v0_2026/`: CV1 `cc2b55bbb`, CV2 `db21f7edf`). σ is a physical edge choice: it moves the baryon force inside a region's edge layer by 0.8–1.4 g_N.
+- L361's action and V0 use σ = 1.
+- Every committed KiDS score (L352, L360, AT3; L361 R3 edgeless) and L370's Harvey use σ = 0.
+- So the σ = 1 edge layer's lensing is unscored. It is routed to the KiDS re-fit and to the edge-layer Harvey check as labelled cells.
+- XR5's action operator "A" is σ = 1. In projection it moved the substructure centroid 4.1 kpc, against 0.52 kpc for σ = 0.
+
+**Reported by owners, not yet committed when this section was written:**
+- L388: 4/4, a pooled window at 575–650 km/s at p1_x2.5 on the matter-only branch.
+- AT3 at p1_x2.5: every gate passes on the alternative set except cosmic shear, R = 1.47–1.58 (T(k=1) = 0.85–0.89 against T_max 0.76/0.72). A scan of the window has been requested.
+
+**Follow-up for the checker:** XR1's registry tracks the cell, footing, kernel and operator. It should also track the switch branch (upper/lower, contrast/absolute) and σ, so that pooling across either is flagged automatically.
+
 ## Files
 
 XR1–XR5 scripts, outputs and results JSON as listed in each lane's README. Re-run any lane from the repository root,
