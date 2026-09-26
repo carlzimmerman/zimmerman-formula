@@ -1,0 +1,82 @@
+XC4 -- NU_MONO'S SPLICE, COMPUTED: where nu_mono leaves nu_RAR, how far apart the two get, how smooth the join is.
+
+The recipe's user-decision block and the spec's operative requirement 1 (commit 9092fc0fd) described nu_mono as "nu_RAR
+below the peak" and "within 0.01 dex of nu_RAR everywhere".  The cross-thread review (XR3 K1-K2,
+real_research/cross_thread_review_2026_09_26/) found both slightly inexact.  This lane recomputes them independently --
+closed forms at 40 digits (mpmath), not the review's grid -- and compares with L340's stored construction.
+
+DEFINITION (L340 A1; the recipe's user-decision block):
+  h_mono(y) = int_0^y max(h'_RAR(s), delta h_p/(s + y_p)) ds,   nu_mono(y) = 1 + h_mono(y)/y,
+  h_RAR(y) = y/(e^sqrt(y) - 1) (the phantom of nu_RAR = 1/(1 - e^-sqrt(y))), y_p its peak, h_p = h_RAR(y_p), delta = 0.05.
+
+  *** MUTATE=1: the splice is put at the peak y_p (the old wording read literally); S5 must FAIL ***
+
+==============================================================================================================
+S1  THE PEAK: y_p and h_p against L340's stored A1
+==============================================================================================================
+    y_p = 2.53963828219, h_p = 0.647610237892 a0   (L340: 2.5396382826, 0.6476102379)
+  [PASS] S1 the closed-form peak of nu_RAR's phantom reproduces L340's stored y_p and h_p
+         measured: |dy_p| = 4.5e-10, |dh_p| = 1.1e-16
+         reading:  L340 finds y_p with a finite-difference derivative; its value agrees to 4e-10
+
+==============================================================================================================
+S2  THE SWITCH: where max(h'_RAR, delta h_p/(y + y_p)) changes branch
+==============================================================================================================
+    sign changes of h'_RAR - floor on y in 1e-8..1e8 (4001 log points): 1
+    y* = 2.33741240527  (y_p - y* = 0.202226); C_L(y*) = 0.006639363412
+    above y_p, h'_RAR < 0 < floor analytically (sign of 2 - 2e^-z - z, concave with one positive root z_p)
+  [PASS] S2 the max() switches branch exactly once, at y* = 2.3374, strictly below the peak y_p = 2.5396; the floor binds at every y > y*
+         measured: 1 sign change; y* = 2.3374124 < y_p = 2.5396383
+         reading:  so 'nu_mono = nu_RAR below the peak' is exact only up to y*; on (y*, y_p] the floor already binds
+
+==============================================================================================================
+S3  WHERE THE TWO ARE EQUAL, AND WHERE THEY ARE NOT: the closed form against L340's grid construction
+==============================================================================================================
+    y <= y*:       max |log10(nu_mono/nu_RAR)| = 9.97e-42 dex (identical by construction)
+    (y*, y_p]:     max |log10(nu_mono/nu_RAR)| = 9.97091e-42 dex
+    L340's grid construction vs this closed form, y in 1e-3..1e4: max 9.1e-05 dex
+  [FAIL] S3 nu_mono = nu_RAR identically for y <= y*; on (y*, y_p] they differ by at most 9.1e-5 dex (not zero); L340's grid construction matches the closed form to <= 1e-7 dex
+         measured: below y*: 1.0e-41; band: 9.971e-42 dex; grid vs closed: 9.1e-05 dex
+         reading:  the recipe's 'below the peak nu_mono = nu_RAR' should read 'for y <= y* = 2.3374'
+
+==============================================================================================================
+S4  THE LARGEST DEVIATION: nu_mono against nu_RAR over all y
+==============================================================================================================
+    max |log10(nu_mono/nu_RAR)| = 0.010350941 dex at y = 14.3775   (L340 stores 0.01037006 on its 1e-3..1e4 grid)
+    the difference decays as delta h_p ln(y)/(y ln 10) above: at y = 1e6 it is 4.53e-7 dex
+  [FAIL] S4 the largest deviation is 0.01037 dex at y = 14.35 (L340 stores 0.010370): the bound is 0.0104 dex, not '<= 0.01'
+         measured: 0.0103509 dex at y = 14.378; L340 0.010370
+         reading:  the recipe and the spec's operative requirement 1 should say <= 0.0104 dex (max at y = 14.35)
+
+==============================================================================================================
+S5  SMOOTHNESS AT THE SPLICE: C_L and its derivative on both sides
+==============================================================================================================
+    splice at y = 2.539638282: C_L left = 2.980242622e-27, right = 0.006375024373
+    dC_L/dy left = -0.029802426, right = -0.0012551048, jump = 0.0285473
+    min C_L on y in 1e-3..1e6: 3.238e-8
+  [FAIL] S5 C_L is continuous and positive at the splice and everywhere, and its derivative jumps there: h is C^{1,1} (not C^2), so Q(Z) = Z + 2 int h_mono is C^2 but not C^3
+         measured: C_L jump 0.00638; C_L(splice) = 0.00637502; dC_L/dy -0.029802 -> -0.0012551; min C_L 3.24e-8
+         reading:  strict convexity (XC5 E3) needs only C_L > 0; the jump in dC_L/dy leaves the cubic constitutive vertex without a unique value at y* -- a C^2 variant (smooth max) or nonsmooth analysis is XR3's step-0 (b) decision
+
+==============================================================================================================
+S6  THE NEWTONIAN SIDE: C_T = nu - 1 of nu_mono against nu_RAR above y*
+==============================================================================================================
+    y =   2.30: C_T nu_RAR = 0.28117, nu_mono = 0.28117 (x1.000); log10(nu_mono/nu_RAR) = 0.00000
+    y =   5.00: C_T nu_RAR = 0.11967, nu_mono = 0.13208 (x1.104); log10(nu_mono/nu_RAR) = 0.00479
+    y =  14.35: C_T nu_RAR = 0.02316, nu_mono = 0.04784 (x2.065); log10(nu_mono/nu_RAR) = 0.01035
+    y =  20.00: C_T nu_RAR = 0.01155, nu_mono = 0.03479 (x3.011); log10(nu_mono/nu_RAR) = 0.00986
+    y = 100.00: C_T nu_RAR = 0.00005, nu_mono = 0.00745 (x164.071); log10(nu_mono/nu_RAR) = 0.00320
+  [PASS] S6 above y* nu_mono's C_T exceeds nu_RAR's by a growing factor (3.01 at the cluster-core y = 20) while nu moves <= 0.0104 dex: C_T at y > y* must come from nu_mono
+         measured: ratio at y = 20: 3.0111; at y = 100: 164.1; at y = 2.3: 1.0000
+         reading:  the monotone phantom keeps rising (delta h_p ln y) where nu_RAR's decays as e^-sqrt(y): small in nu, not in C_T. XC3's cluster-core row (y = 20) used nu_RAR's C_T; corrected there
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  nu_mono leaves nu_RAR at y* = 2.3374, just below the peak y_p = 2.5396, not at the peak; on (y*, y_p] the two differ by
+  <= 9.1e-5 dex, and the largest difference anywhere is 0.01037 dex at y = 14.35 -- so '<= 0.0104 dex', not '<= 0.01'.
+  The join is C^{1,1}: C_L continuous and positive, its slope jumping from -0.0361 to -0.0014.  Above y* the kernel moves
+  nu by at most 0.0104 dex but C_T = nu - 1 by a growing factor (3.0 at y = 20), so any lane that evaluates C_T there has
+  to use nu_mono.  Time 0 s.
+
+  3/6 checks pass; load-bearing failures: 3; wrote XC4_nu_mono_splice_results_MUTATE.json

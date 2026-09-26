@@ -92,6 +92,12 @@ settles what can be settled and reduces the rest to a question about khronometri
 2. B7's "controlled" covers isolated and planar zeros only. Around an open zero-field region (a homogeneous background)
    the response scales as √ε for every kernel, ν_mono included, and that fails Osgood (XC5 E6).
 
+**A third point from the lead track's review (the block at the top), answered here.** B4's fixture, and XC5 E5's,
+takes its source a = ∇φ from a different potential than its lapse weight N. So neither is a physical a = D ln N leaf.
+The second variation of E contains no a: the source only moves the U at which the Hessian is evaluated. For ν_mono
+the Hessian is positive at every U, and for ν_RAR it is positive under the contrast bound at every U. So the convexity
+and uniqueness readings hold for every source. The fixtures test the functional, not a physical leaf.
+
 **Reduced, not settled.** Is GR plus the BPS khronon (α_c, λ − 1 = c₂, β = 0) strongly hyperbolic on arbitrary
 nonlinear backgrounds? Einstein-aether theory is, under conditions on its couplings (Sarbach, Barausse & Preciado-López
 2019, CQG 36, 165007). No general theorem for the hypersurface-orthogonal case is used here, and its α → 0 limit fails.
@@ -110,14 +116,18 @@ interaction as the gap in XC1. The MOND term depends on the khronon's leaves twi
 - **The heat-kernel derivative.** δS = b∫₀¹e^{(1−v)bΔ}δΔ e^{vbΔ}dv is verified against finite differences, with a
   second-order residual. It is bounded by b·max_v‖δΔ e^{vbΔ}f‖, and its high-K factor is ≤ min(b, 1/K²) (C3).
 - **Quadratic terms (C4).** Against the khronon's own gradient term they are ≤ 6C_T(gL_bg)²/c₂. The largest value,
-  3.5×10⁻⁷, is in a cluster core at k = 1/L_bg; it is 10⁻¹¹ for the Sun and galaxies.
+  1.1×10⁻⁶, is in a cluster core at k = 1/L_bg; it is 10⁻¹¹ for the Sun and galaxies.
 - **The sign (C5).** The (∇π·∇W₀)² term lowers the gradient energy, so the band k < g√(2C_T/c₂) is formally unstable.
-  But k_thr·L_bg ≤ 3.4×10⁻⁴ for every background, so no mode the local analysis describes ever sees it. The band's
+  But k_thr·L_bg ≤ 6.0×10⁻⁴ for every background, so no mode the local analysis describes ever sees it. The band's
   wavelengths are Gpc-scale, longer than the structure that produces them.
 - **Cubic vertices (C6).** The leading one is −2M_P²C_T π̇(∇π·∇W₀)². These are relevant operators whose couplings are
-  suppressed by the background; they become strong only below 1.9×10⁻⁹² GeV, far below the Hubble energy.
+  suppressed by the background; they become strong only below 5.7×10⁻⁹² GeV, far below the Hubble energy.
 - **MUTATE.** A time-dependent background brings back O(π) terms, −2∇π·∇(∂_tF) − Δπ ∂_tF. That is the moving-source
   physics of L340's T1, not a new vertex.
+- **Correction (2026-09-26).** The first run took C_T from ν_RAR at every background. That equals ν_mono's only for
+  y ≤ y* = 2.3374 (XC4 S3). At the cluster core (y = 20) ν_mono's C_T is 3.01× larger (XC4 S6). Re-run with ν_mono,
+  the three cluster-core numbers above rose from 3.5×10⁻⁷, 3.4×10⁻⁴ and 1.9×10⁻⁹² GeV. The Sun and galaxy rows and
+  every verdict are unchanged.
 
 **G8 standing after XC1 + XC3.** A bounded pass at frozen-background, decoupling-limit scope, now including the
 filter/foliation interaction. It remains conditional at full-action scope: curved-background mixing, the assembled
@@ -129,12 +139,18 @@ The author decided three open points after XC1–XC3. They are recorded as a dat
 `qwen_claude_field_theory/closure_2026/CRISPY_FRIED_CHICKEN_RECIPE.md`, and as operative amendments to requirements 1,
 7 and 12 in `FRIED_CHICKEN_SPEC.md`. The original text is kept, marked as amended.
 
-1. **The kernel is ν_mono.** This is the RAR exponential law with a monotone phantom. It follows ν_RAR below the peak
-   and stays within 0.01 dex of it everywhere (L340).
+1. **The kernel is ν_mono.** This is the RAR exponential law with a monotone phantom. It equals ν_RAR for
+   y ≤ y* = 2.3374, just below the peak y_p = 2.5396, and stays within 0.0104 dex of it everywhere (largest at
+   y = 14.35; L340, XC4 S3–S4). *Corrected 2026-09-26: this line first said "below the peak" and "within 0.01 dex".*
 2. **Causality is criterion B.** This means a global preferred time compatible with every characteristic cone, and no
    signal backward in that time. Criterion A is unsatisfiable by any scalar MOND realisation (L318).
    - This has a consequence both ways: gate 7's signalling theorem is a criterion-A result, so it no longer closes
      the strict two-DOF constraint branch (cde_l4c_2026, status OPEN). That branch's other gates were never derived.
+   - Scope, from the cross-thread review (XR3 §2.5; a structural argument, not computed here): under criterion B the
+     khronon's leaves are the global time function, since the MOND constraint is solved instantaneously on them. A dark
+     state built from the clock's own dust flows along the leaves' normal, so shell crossing would be a caustic of the
+     foliation: a loss of the time function, not only a transport failure. Separately, L374 found the minimal condensate
+     dust breaking at the first crossing on dynamical grounds.
 3. **Z is corrected in §1.** Z = √(32π/3) = 5.7888 is κ = ½ restated, not "~21".
 
 Lean: `XC4_recipe_decision_certificates.lean` (5 theorems, zero `sorry`, standard axioms):
@@ -143,6 +159,27 @@ Lean: `XC4_recipe_decision_certificates.lean` (5 theorems, zero `sorry`, standar
 - `mono_phantom_increasing`: ν_mono's phantom slope is > 0.
 - `mu_exp_phantom_turns`: C_L = (1−x)/(eˣ+x−1) < 0 for x > 1.
 - `nu_rar_phantom_turns`: 9/(e³−1) < 4/(e²−1).
+
+### XC4 script — ν_mono's splice, computed (6/6; MUTATE splice-at-the-peak fails S3–S5, rc = 1)
+
+`XC4_nu_mono_splice.py` (+ `.out`, `_MUTATE.out`, results JSON). Runtime about a second. The cross-thread review
+(XR3 K1–K2, `real_research/cross_thread_review_2026_09_26/`) found the first two wording points below. This lane
+recomputes them independently, with closed forms at 40 digits rather than the review's grid, and checks them against
+L340's stored construction.
+
+- **Where ν_mono leaves ν_RAR (S2, S3).** The max() in h′_mono = max(h′_RAR, δh_p/(y + y_p)) switches branch once, at
+  y* = 2.3374. That is 0.20 below the peak y_p = 2.5396, where h′_RAR has already fallen to the floor. The two laws are
+  identical for y ≤ y*. On (y*, y_p] they differ by ≤ 9.1×10⁻⁵ dex.
+- **The largest deviation (S4).** It is 0.01037 dex at y = 14.35, which L340 stores as 0.010370. So the bound is
+  0.0104 dex, not "≤ 0.01".
+- **The join (S5).** C_L = h′ is continuous (0.00664) and positive at y*, and its slope jumps from −0.0361 to −0.0014.
+  h is C^{1,1}, so Q(Z) is C² but not C³, as XC5's scope line says. Strict convexity needs only C_L > 0. Whether to
+  declare a C² variant (a smooth max) or do the symbol and G8 arguments nonsmoothly is a decision (XR3 step 0 (b)).
+- **The Newtonian side (S6).** Above y*, ν moves by at most 0.0104 dex, but C_T = ν − 1 grows by a factor of 3.01 at
+  y = 20 and 164 at y = 100. The monotone tail δh_p ln y replaces ν_RAR's e^{−√y}. This is why XC3's cluster-core row
+  had to be re-run with ν_mono.
+- **MUTATE.** It reads the old wording literally, with ν_RAR up to the peak and the floor above it. That function's C_L
+  jumps from 0 to 0.0064 at y_p (S5 fails). It also misses the true construction's band and maximum (S3 and S4 fail).
 
 ## XC5 — the constraint with a non-constant lapse: what the ν_mono decision buys, and one correction the other way (6/6; MUTATE C = −1.5 fails E5, rc = 1)
 
@@ -173,4 +210,4 @@ contract the lapse-weighted energy.
 - **Scope.**
   - This is convexity of the fixed-metric, fixed-lapse auxiliary solve, not coupled time stability. The filter's
     failure to contract still matters for energy estimates.
-  - ν_mono's splice makes the q-integrand C² but not C³ at the splice point.
+  - ν_mono's splice (y* = 2.3374; XC4 S5) makes the q-integrand C² but not C³ at the splice point.

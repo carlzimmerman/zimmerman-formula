@@ -16,9 +16,12 @@ The reasons, definitions and consequences are in the user-decision block of
 [the recipe](CRISPY_FRIED_CHICKEN_RECIPE.md).
 
 - **Requirement 1 (operative text).** Exact MOND phenomenology with the kernel **ν_mono**: the
-  framework's RAR law ν_RAR(y) = 1/(1 − e^{−√y}) (QUMOND, y = g_N/a₀) below its phantom peak
-  (y_p = 2.5396), continued above it by a monotone phantom (h′ = δ h_p/(y + y_p), δ = 0.05).
-  ν_mono is within 0.01 dex of ν_RAR everywhere.
+  framework's RAR law ν_RAR(y) = 1/(1 − e^{−√y}) (QUMOND, y = g_N/a₀) up to y* = 2.3374, just
+  below its phantom peak (y_p = 2.5396), continued by a monotone phantom:
+  h′ = max(h′_RAR, δ h_p/(y + y_p)), δ = 0.05, whose second branch takes over at y*.
+  ν_mono is within 0.0104 dex of ν_RAR everywhere, most at y = 14.35.
+  *Wording corrected 2026-09-26 (XR3 K1–K2; XC4 S2–S4): it first said "below its phantom peak"
+  and "within 0.01 dex".*
   - Weak-field quasistatic equations: ∇²u = 4πGρ_b and
     ∇²Φ = 4πGρ_b + S*∇·[(ν_mono(|∇Su|/a₀) − 1)∇Su], with the heat filter S = e^{(ξ²/2)Δ}.
   - Deep MOND: g² = a₀g_N ⇒ v⁴ = Ga₀M_b.
@@ -67,7 +70,7 @@ The reasons, definitions and consequences are in the user-decision block of
     precision. **Derive the measured Newton constant rather than assuming it equals the bare coupling.**
 11. **Prefer one physical metric** for matter and photons (minimal coupling to the same g_μν). Avoid
     disformal dark-matter-emulator constructions that produce a photon/graviton speed mismatch.
-12. *[Amended 2026-09-26: preserved as ν_RAR below the phantom peak — see the user decision above.]* **Preserve the
+12. *[Amended 2026-09-26: preserved as ν_RAR up to y* = 2.3374, just below the phantom peak — see the user decision above.]* **Preserve the
     exponential constitutive law if possible.** Useful exact primitive:
     G(y) = y² + 2(1+y)e^{−y} − 2, with G′(y)/(2y) = 1 − e^{−y}. Operator eigenvalues
     λ_⊥ = 1 − e^{−y}, λ_∥ = 1 + (y−1)e^{−y}, both positive for y>0. Prior work: the exponential

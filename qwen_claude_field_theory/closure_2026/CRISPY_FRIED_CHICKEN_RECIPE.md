@@ -21,8 +21,14 @@ exponential target" wording of any 2026-09-26 amendment written before them.
   h_mono(y) = ∫₀^y max(h′_RAR(s), δ h_p/(s + y_p)) ds. Here h_RAR(y) = y/(e^{√y} − 1) is the
   phantom of the framework's RAR law ν_RAR(y) = 1/(1 − e^{−√y}) (Milgrom & Sanders 2008 eq. 13
   at α = ½), y_p = 2.5396 is its peak, h_p = 0.6476 a₀, and δ = 0.05 is a chosen constant.
-  - Below the peak ν_mono = ν_RAR. Everywhere the two differ by ≤ 0.01 dex
-    ([L340](../../real_research/g03_audit_2026/L340_filtered_khronon_completion.py) A1, K2).
+  - ν_mono = ν_RAR for y ≤ y* = 2.3374, where the max switches branch, just below the peak.
+    Everywhere the two differ by ≤ 0.0104 dex, most at y = 14.35
+    ([L340](../../real_research/g03_audit_2026/L340_filtered_khronon_completion.py) A1, K2;
+    [XC4](../../real_research/extra_crispy_2026/XC4_nu_mono_splice.py) S2–S4).
+    *Corrected 2026-09-26: this line first said "below the peak" and "≤ 0.01 dex" (XR3 K1–K2).*
+  - The join at y* is C^{1,1}. C_L is continuous (0.0066) and positive, and dC_L/dy jumps from
+    −0.0361 to −0.0014 (XC4 S5). It is still open whether to use a C² variant (a smooth max) or
+    to do the symbol and strong-coupling arguments nonsmoothly (XR3 step 0 (b)).
   - Field equations: ∇²u = 4πGρ_b, ∇²Φ = 4πGρ_b + S*∇·[(ν_mono − 1)∇Su], with
     S = e^{(ξ²/2)Δ}.
   - **Why.** A phantom that turns over (C_L < 0) is a ghost or tachyon in every khronon
@@ -60,6 +66,27 @@ exponential target" wording of any 2026-09-26 amendment written before them.
   - κ is measured: 0.465 ± 0.076 (BTFR), 0.55 ± 0.17 (distance-free).
   - It is not derivable in this action class ([kappa_closure](../../kappa_closure/README.md)
     k01–k03).
+
+**User decision — 2026-09-26, later the same day (the author, answering the cross-thread review): both branches, every switch variable, PAPER34 v2 after the re-score.**
+These add to the decisions above and change none of them.
+
+- **Architecture: both, as separate branches.** Asked which cosmology the one combined action
+  should be built on, the author answered "Both, as separate branches".
+  - **B-νmono (C-H/K).** The C-H/K khronon with the leaf average, the vacuum gate and the region
+    kernel (L340, L350, L353, L359/L361, DE1–DE3). Its one covariant action is still to be
+    written, with the gate as a varied term and a slot for the dark state. The
+    [cross-thread review](../../real_research/cross_thread_review_2026_09_26/README.md) calls it
+    "V0" (unrelated to any vacuum-tension V0), and its XR3 obligation table is the checklist.
+  - **IC28.** The lead track's cosmological sector continues as its own branch.
+  - Passes are never pooled across the two branches.
+- **The switch variable: "all doors".** Asked which density the MOND switch should read, the
+  author answered "all doors". Every candidate is explored as its own labelled cell and never
+  pooled with another. The candidates are the curvature-based, phantom-inclusive variable
+  (DE1/DE2, L352), the matter-only variable of the PM runs, and the absolute- and
+  contrast-density definitions.
+- **PAPER34: a v2 scope note after the re-score.** Asked whether PAPER34 needs a v2 note on the
+  scope of L372's result, the author answered "Yes, after the re-score". The note waits until
+  L372 has been re-scored at the p = 1, x_c0 = 2.5 cell.
 
 **Current constructive checkpoint (2026-09-09, IC26):**
 [The finite-band construction](integrable_clock_construction_2026/IC26_FINITE_BAND_REPAIR.md)

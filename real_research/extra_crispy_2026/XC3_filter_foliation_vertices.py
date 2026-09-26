@@ -193,7 +193,16 @@ def h_rar(y):
     y = np.asarray(y, float)
     with np.errstate(over="ignore", invalid="ignore"):
         return np.where(y < 1e4, y / np.expm1(np.sqrt(np.clip(y, 1e-300, 1e4))), 0.0)
-def CT(y): return float(h_rar(y) / y)                          # nu_RAR's C_T = nu_mono's below y_p
+# nu_mono, L340 A1's construction.  Corrected 2026-09-26: this lane first used nu_RAR's C_T = h_RAR/y at every
+# background, which equals nu_mono's only for y <= y* = 2.3374 (XC4 S3); at the cluster core (y = 20) nu_mono's C_T is
+# 3.01x larger (XC4 S6).  The Sun (2.3) and galaxy (1.0, 0.1) rows are unchanged.
+def dh_rar(y, e_=1e-6):
+    return (h_rar(y * (1 + e_)) - h_rar(y * (1 - e_))) / (2 * y * e_)
+Y_P = brentq(lambda y: float(dh_rar(y)), 1.0, 5.0); H_P = float(h_rar(Y_P)); DELTA = 0.05
+LYG = np.linspace(-12, 12, 240001); YG = 10**LYG
+DH_MONO = np.maximum(dh_rar(YG), DELTA * H_P / (YG + Y_P))
+H_MONO = float(h_rar(YG[0])) + np.concatenate([[0.0], np.cumsum(0.5 * (DH_MONO[1:] + DH_MONO[:-1]) * np.diff(YG))])
+def CT(y): return float(np.interp(np.log10(y), LYG, H_MONO) / y)     # nu_mono's C_T = nu - 1
 L340 = json.load(open(os.path.join(REPO, "real_research", "g03_audit_2026", "L340_filtered_khronon_completion_results.json")))
 AC_MIN, AC_MAX = L340["numbers"]["P1"]["alpha_c_min"], L340["numbers"]["P1"]["alpha_c_max"]
 C2_MIN, C2_MAX = L340["numbers"]["P1"]["c2_min"], L340["numbers"]["P1"]["c2_max"]

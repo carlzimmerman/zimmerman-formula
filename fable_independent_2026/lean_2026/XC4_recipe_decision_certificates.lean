@@ -5,8 +5,9 @@ import Mathlib
 
 SCOPE. The user decided (2026-09-26): the kernel is ν_mono, causality is criterion B, and Z is corrected in the recipe
 (`qwen_claude_field_theory/closure_2026/CRISPY_FRIED_CHICKEN_RECIPE.md`, user-decision block; the spec's requirements
-1, 7, 12 amended). Lean certifies the mathematics those decisions rest on; the numbers y_p = 2.5396, h_p = 0.6476 and
-the ≤ 0.01 dex agreement of ν_mono with ν_RAR are computed in L340, not here.
+1, 7, 12 amended). Lean certifies the mathematics those decisions rest on; the numbers y_p = 2.5396, h_p = 0.6476,
+the splice y* = 2.3374 and the ≤ 0.0104 dex agreement of ν_mono with ν_RAR are computed in L340 and in
+`real_research/extra_crispy_2026/XC4_nu_mono_splice.py`, not here.
 
 * `z_is_kappa`: with Z = √(8π/3)/κ (Z ≡ κ), κ = ½ ⟺ Z² = 32π/3 for κ > 0 — Z is κ restated, not a second number.
 * `z_value_bounds`: 5.788 < √(32π/3) < 5.789 — the recipe's corrected value (never ≈ 21).

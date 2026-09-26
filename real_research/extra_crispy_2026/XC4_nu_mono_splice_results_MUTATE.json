@@ -1,0 +1,101 @@
+{
+ "lane": "XC4",
+ "mutate": true,
+ "checks": {
+  "S1 the closed-form peak of nu_RAR's phantom reproduces L340's stored y_p and h_p": {
+   "ok": true,
+   "measured": "|dy_p| = 4.5e-10, |dh_p| = 1.1e-16",
+   "load_bearing": true
+  },
+  "S2 the max() switches branch exactly once, at y* = 2.3374, strictly below the peak y_p = 2.5396; the floor binds at every y > y*": {
+   "ok": true,
+   "measured": "1 sign change; y* = 2.3374124 < y_p = 2.5396383",
+   "load_bearing": true
+  },
+  "S3 nu_mono = nu_RAR identically for y <= y*; on (y*, y_p] they differ by at most 9.1e-5 dex (not zero); L340's grid construction matches the closed form to <= 1e-7 dex": {
+   "ok": false,
+   "measured": "below y*: 1.0e-41; band: 9.971e-42 dex; grid vs closed: 9.1e-05 dex",
+   "load_bearing": true
+  },
+  "S4 the largest deviation is 0.01037 dex at y = 14.35 (L340 stores 0.010370): the bound is 0.0104 dex, not '<= 0.01'": {
+   "ok": false,
+   "measured": "0.0103509 dex at y = 14.378; L340 0.010370",
+   "load_bearing": true
+  },
+  "S5 C_L is continuous and positive at the splice and everywhere, and its derivative jumps there: h is C^{1,1} (not C^2), so Q(Z) = Z + 2 int h_mono is C^2 but not C^3": {
+   "ok": false,
+   "measured": "C_L jump 0.00638; C_L(splice) = 0.00637502; dC_L/dy -0.029802 -> -0.0012551; min C_L 3.24e-8",
+   "load_bearing": true
+  },
+  "S6 above y* nu_mono's C_T exceeds nu_RAR's by a growing factor (3.01 at the cluster-core y = 20) while nu moves <= 0.0104 dex: C_T at y > y* must come from nu_mono": {
+   "ok": true,
+   "measured": "ratio at y = 20: 3.0111; at y = 100: 164.1; at y = 2.3: 1.0000",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "S1": {
+   "y_p": 2.5396382821881653,
+   "h_p": 0.6476102378919149,
+   "L340_y_p": 2.5396382826332706,
+   "L340_h_p": 0.647610237891915
+  },
+  "S2": {
+   "y_star": 2.3374124052663294,
+   "sign_changes": 1,
+   "CL_at_y_star": 0.006639363412377466
+  },
+  "S3": {
+   "max_dev_below_y_star": 9.970912306065716e-42,
+   "max_dev_band": 9.970912306065716e-42,
+   "grid_vs_closed_dex": 9.066038548491791e-05
+  },
+  "S4": {
+   "max_dev_dex": 0.010350941104541796,
+   "y_at_max": 14.377511953063806,
+   "L340_max_dlog": 0.010370057849754814
+  },
+  "S5": {
+   "y_splice": 2.5396382821881653,
+   "CL_left": 2.9802426216689295e-27,
+   "CL_right": 0.0063750243728993815,
+   "dCL_left": -0.029802426216689284,
+   "dCL_right": -0.0012551047953582248,
+   "min_CL": 3.2380429660016983e-08
+  },
+  "S6": {
+   "2.3": {
+    "CT_rar": 0.28116799876653387,
+    "CT_mono": 0.28116799876653387,
+    "ratio": 1.0,
+    "dev_dex": 0.0
+   },
+   "5.0": {
+    "CT_rar": 0.1196677685291931,
+    "CT_mono": 0.132080142761196,
+    "ratio": 1.1037236206921908,
+    "dev_dex": 0.0047879962136724704
+   },
+   "14.35": {
+    "CT_rar": 0.02316201709723261,
+    "CT_mono": 0.0478408670383926,
+    "ratio": 2.065487942503445,
+    "dev_dex": 0.010350923012204069
+   },
+   "20.0": {
+    "CT_rar": 0.011554881141185167,
+    "CT_mono": 0.03479303264769525,
+    "ratio": 3.011111254418891,
+    "dev_dex": 0.009864045848459355
+   },
+   "100.0": {
+    "CT_rar": 4.5401991009687765e-05,
+    "CT_mono": 0.007449162858719877,
+    "ratio": 164.07128174467928,
+    "dev_dex": 0.0032034229382740323
+   }
+  }
+ },
+ "n_checks": 6,
+ "n_fail_load_bearing": 3
+}
