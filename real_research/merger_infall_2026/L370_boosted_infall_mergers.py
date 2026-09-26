@@ -313,6 +313,36 @@ def phantom_felt(grid, rb, rreal, z, a0, sw, centres, want_rho=True):
     return gfelt, [int(lab[c]) for c in centres], rho_ph, nlab
 
 
+
+# ---------------------------------------------------------------- explicit-cell entry points (added 2026-09-26)
+# New consumers call these, never phantom_felt/solve_real with SW_DEF: the switch cell and the a0 footing are REQUIRED
+# keyword arguments with no module default, and the resolved model comes back with every result (L381 and L373's first
+# run inherited SW_DEF against a p = 2 mesh).  The committed paths above are unchanged.
+def resolve_cell(cell, footing, z):
+    """the resolved switch model for one cell and footing at redshift z; raises on a missing or unknown input."""
+    if cell is None or footing is None:
+        raise ValueError("pass the switch cell AND the a0 footing explicitly (no module default)")
+    if cell not in SWITCH:
+        raise ValueError(f"unknown switch cell {cell!r}; known: {sorted(SWITCH)}")
+    if footing not in A0K:
+        raise ValueError(f"unknown a0 footing {footing!r}; known: {sorted(A0K)}")
+    p_, x0 = SWITCH[cell]
+    return dict(cell=cell, p=float(p_), x_c0=float(x0), x_c_eff=float(x_ceff(z, cell)), z=float(z), footing=footing,
+                a0=float(A0K[footing]), mask="absolute density: (3/2) rho / rho_crit(z) >= x_c0 E(z)^(2p)",
+                operator="L361 region kernel: each bound region's phantom from its own baryons (phantom_felt)")
+
+
+def phantom_felt_at(grid, rb, rreal, z, centres, *, cell, footing, want_rho=True):
+    """phantom_felt() with the cell and footing required; returns (g_felt, labels, rho_phantom, n_regions, model)."""
+    m_ = resolve_cell(cell, footing, z)
+    return (*phantom_felt(grid, rb, rreal, z, m_["a0"], cell, centres, want_rho=want_rho), m_)
+
+
+def solve_real_at(M200L, z, gate, *, cell, footing, fgas=0.125, fstar=0.015, c_fixed=None, kernel=True):
+    """solve_real() with the cell and footing required; returns (halo, info, model)."""
+    m_ = resolve_cell(cell, footing, z)
+    return (*solve_real(M200L, z, m_["a0"], cell, gate, fgas=fgas, fstar=fstar, c_fixed=c_fixed, kernel=kernel), m_)
+
 # ============================================================================================================ C1
 banner("C1  THE SOLVER against Milgrom's exact deep-MOND two-body force (a pure 1/sqrt(y) kernel inside a 4 Mpc region)")
 G1 = Grid(160 if FAST else 256, 9000.0)
