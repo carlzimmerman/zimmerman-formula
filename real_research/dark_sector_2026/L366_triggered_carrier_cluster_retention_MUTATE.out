@@ -1,0 +1,81 @@
+
+L366 -- CLUSTER RETENTION OF THE VIRIALIZATION-TRIGGERED CARRIER UNDER ITS ASSEMBLY HISTORY, and the joint window that
+decides L365's candidate.
+
+WHY.  L365 found a narrow window for the virialization-triggered carrier (x_c = 5, v_k ~ 560-720 km/s): S_8, the forest
+and halo clearing all pass.  Clusters decide it.  L354 scored X-COP with the carrier decaying at z = 0 in the full-depth
+cluster well and needs v_k >= 1000-1200 km/s; for a local trigger that is a proxy of unknown sign -- the carrier decays
+earlier in shallower progenitors, but the growing cluster (v_esc ~ 2000-3000 km/s) can recapture daughters kicked at
+~700 km/s.  This lane measures the retention directly, in a volume that forms group- and cluster-mass halos.
+
+METHOD: L365's two-species construction, unchanged in physics, in a 100 Mpc/h box with a 256^3 mesh and 192^3 particles
+per species -- the SAME trigger resolution (0.39 Mpc/h cells) and particle mass as L365, in 8x the volume.  A bincount
+CIC deposit replaces np.add.at for speed (C2 checks it against L362's reference deposit).  Runs: LCDM, trigger-off, and
+x_c = 5 at v_k in {550, 600, 650, 700, 850} km/s.
+  * HALOS: the 40 highest peaks of the LCDM z = 0 total density (Gaussian-smoothed on 1 Mpc/h, peaks >= 4 Mpc/h apart);
+    M(<1 Mpc/h) from the mesh.  Each halo's CARRIER mass within R = 1 Mpc/h (comoving; ~R500 of an X-COP cluster) is
+    measured at the same position in every run (same phases), giving the retention eps = M_c,model / M_c,LCDM.
+  * THE GATE (L354's committed table read as the X-COP response; the record's criterion is TWO-SIDED, |M_dyn/M_HSE - 1|
+    <= 0.2 after the non-thermal correction): clusters pass iff eps_lo <= eps <= eps_hi, where ratio_nt(eps_hi) = 1.2 and
+    ratio_nt(eps_lo) = 0.8 on L354's rows, per footing.  Scored on the median over halos with M(<1 Mpc/h) >= 1e14 Msun/h
+    AND on the five most massive (X-COP-like) halos.
+  * S_8, the forest and halo clearing (L365's G3: dense-cell carrier at z = 2 <= 30% of LCDM's) are re-measured in the
+    larger box, so every gate is scored in one volume.
+HISTORY (stated, not hidden).  The first run of this script used a ONE-SIDED gate (eps <= eps_hi only) and the pre-run
+hypothesis "clusters RECAPTURE: eps > eps_hi, the window closes".  That hypothesis was FALSIFIED: at v_k = 700 km/s the
+22 cluster-mass halos keep a median eps = 0.21 (range 0.04-0.68) against eps_hi = 0.77.  The one-sided gate omitted the
+record's undershoot side; this version applies the two-sided criterion, adds v_k = 600 and 650 km/s, keeps per-halo
+retention against mass, and measures G3 in this box.  Hypothesis for this run (set after the first, before this one):
+a JOINT window exists near v_k ~ 600 km/s.
+CHECKS
+  C1 CONTROL: trigger off reproduces LCDM exactly (retention 1).
+  C2 CONTROL: the bincount deposit equals L362's np.add.at deposit on the ICs to 1e-10.
+  R1 THE JOINT WINDOW: a kick passing S_8 (strict or alternative), the forest, G3 and the two-sided cluster gate
+     (median over >= 1e14 halos, both footings).
+  R2 (informational) the same with the five most massive halos only.
+MUTATE=2 gives the window runs v_k = 0 (nothing escapes: galaxies keep their carrier, clusters overshoot) -- R1 must flip.
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L366_triggered_carrier_cluster_retention.py
+
+  MUTATE=2: the window runs use v_k = 0 km/s
+  7 runs done in 3263s
+
+==============================================================================================================
+CONTROLS
+==============================================================================================================
+  [PASS] C1 trigger off (Gamma = 0) reproduces the LCDM carrier field exactly
+         measured: max |difference| = 0.0e+00
+  [PASS] C2 the bincount CIC deposit equals L362's np.add.at deposit
+         measured: max |difference| = 1.1e-16
+
+==============================================================================================================
+HALOS AND RETENTION (z = 0, R = 1 Mpc/h)
+==============================================================================================================
+    40 peaks; M(<1 Mpc/h) = 3.54e+13 .. 5.08e+14 Msun/h; >= 1e14: 22, >= 5e13: 39
+    X-COP within 20% (L354, two-sided): canonical 0.286 <= eps <= 0.835;  alt 0.220 <= eps <= 0.768
+    v_k  550: S8 1.000  forest 0.000  G3 1.00  |  cluster eps median (>=1e14, 22) 1.00, top-5 1.00  ->  S8 ok, forest ok, cleared NO, clusters OVER (top-5 OVER)
+    v_k  600: S8 1.000  forest 0.000  G3 1.00  |  cluster eps median (>=1e14, 22) 1.00, top-5 1.00  ->  S8 ok, forest ok, cleared NO, clusters OVER (top-5 OVER)
+    v_k  650: S8 1.000  forest 0.000  G3 1.00  |  cluster eps median (>=1e14, 22) 1.00, top-5 1.00  ->  S8 ok, forest ok, cleared NO, clusters OVER (top-5 OVER)
+    v_k  700: S8 1.000  forest 0.000  G3 1.00  |  cluster eps median (>=1e14, 22) 1.00, top-5 1.00  ->  S8 ok, forest ok, cleared NO, clusters OVER (top-5 OVER)
+    v_k  850: S8 1.000  forest 0.000  G3 1.00  |  cluster eps median (>=1e14, 22) 1.00, top-5 1.00  ->  S8 ok, forest ok, cleared NO, clusters OVER (top-5 OVER)
+    per-halo retention vs mass at v_k 600/650/700 (the 10 most massive): 5.1e+14: 1.00/1.00/1.00; 4.0e+14: 1.00/1.00/1.00; 2.2e+14: 1.00/1.00/1.00; 2.2e+14: 1.00/1.00/1.00; 2.0e+14: 1.00/1.00/1.00; 1.9e+14: 1.00/1.00/1.00; 1.7e+14: 1.00/1.00/1.00; 1.7e+14: 1.00/1.00/1.00; 1.7e+14: 1.00/1.00/1.00; 1.6e+14: 1.00/1.00/1.00
+
+==============================================================================================================
+R1  THE JOINT WINDOW
+==============================================================================================================
+  [FAIL] R1 A JOINT WINDOW EXISTS: a kick passing S_8, the forest, halo clearing and the two-sided cluster gate (median over >= 1e14 Msun/h halos, both footings) in one volume
+         measured: strict none; alternative none
+         reading:  hypothesis set after the first (one-sided) run, before this one -- see HISTORY
+  [PASS] R2 (informational) the joint window scored on the five most massive (X-COP-like) halos
+         measured: alternative-threshold window with top-5 clusters: none
+         reading:  reported either way
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  Two-sided X-COP gate on the cluster retention: 0.29 <= eps <= 0.77.  Joint window (S_8, forest, halo clearing,
+  clusters): strict none, alternative none (top-5 clusters: none).
+  LIMITS: 100 Mpc/h box, 0.39 Mpc/h mesh, 1 Mpc/h aperture, L354's X-COP response as the map from retention to M_dyn/M_HSE,
+  MOND on baryons inside halos not modelled, one realisation.
+
+  3/4 checks pass; load-bearing failures: 1; wrote L366_triggered_carrier_cluster_retention_results_MUTATE.json   [3272s]

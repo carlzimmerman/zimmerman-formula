@@ -161,3 +161,33 @@ It works for two reasons. Rotation curves are measured at x̃ ~ 10⁴–10⁵ wh
 
 **KiDS.** With the kernel reading the web's baryons it fails, as every carrier does. With the bound-region kernel (`g03_audit_2026/L361`) and the gated switch (`L359`), the assembled pair passes (`L360`, 70 of 96 pairs).
 
+
+## L366 — cluster retention under the assembly history: a joint window at v_k ≈ 650 km/s
+
+`L366_triggered_carrier_cluster_retention.py` (4/4; `MUTATE=2`, in which nothing escapes, fails R1, rc = 1). This is L365's construction in a 100 Mpc/h box (256³ mesh, 192³ particles per species), with the same trigger resolution and particle mass as L365 in 8× the volume. There are 22 halos with M(<1 Mpc/h) ≥ 10¹⁴ M☉/h. The carrier retention ε is measured within 1 Mpc/h at the same positions in every run.
+
+**The cluster gate is two-sided**, as the record's X-COP criterion is (|M_dyn/M_HSE − 1| ≤ 0.2, non-thermal corrected, L354's table). It requires 0.286 ≤ ε ≤ 0.835 on the canonical footing and 0.220 ≤ ε ≤ 0.768 on the alternative.
+
+| v_k (km/s) | S₈ / ΛCDM | forest | dense-cell carrier at z = 2 | cluster ε median (top 5) |
+|---|---|---|---|---|
+| 550 | 0.971 | 3.9% | 0.52 (not cleared) | 0.61 (0.75) |
+| 600 | 0.963 | 4.2% | 0.33 (not cleared) | 0.50 (0.73) |
+| **650** | **0.955** | **4.3%** | **0.22 (cleared)** | **0.32 (0.60)** |
+| 700 | 0.945 | 4.4% | 0.17 | 0.21, undershoot (0.39) |
+| 850 | 0.914 | 4.9% | 0.12 | 0.06, undershoot (0.16) |
+
+**A joint window exists at v_k ≈ 650 km/s (roughly 620–690).** It passes S₈ strictly, the forest, halo clearing and both sides of the cluster gate, in one volume. The most massive halos (4–5×10¹⁴ M☉/h) keep 0.7–0.8.
+
+**History, stated.** The first run of this script used a one-sided gate and the hypothesis that clusters recapture the carrier and close the window. That hypothesis was falsified: the median ε was 0.21 at 700 km/s. The gate was then made two-sided, as the record's criterion is, and the rerun hypothesis ("a joint window exists") was set before the rerun.
+
+**Limits.**
+- 0.39 Mpc/h mesh: galaxy-scale halos are not resolved.
+- 1 Mpc/h aperture.
+- L354's X-COP response is used as the map from retention to M_dyn/M_HSE.
+- The MOND boost of baryons inside halos is not modelled.
+- One realisation.
+
+**Next, in order:**
+- KiDS galaxy-scale retention at z ≈ 0.3 (L355 wants 20–30% of a ΛCDM halo);
+- RC100's dark fractions at z ≈ 1–2.5;
+- an action for the trigger, a decay rate tied to the foliation's bound-region scalar.
