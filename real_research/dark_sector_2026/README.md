@@ -284,3 +284,28 @@ L368's KiDS verdict stands, and it no longer rests on a sub-cell number.
 **The trigger used here is the least-trigger estimate.** Its x̃ is matter only; the geometric x̃ also contains the phantom and the shear (L342, L357), which only add decays. So these interior results can only strengthen. The same point runs the other way for clusters, noted below.
 
 **Open, and named.** The phantom-inclusive trigger lowers cluster retention. The window's X-COP margin is thin (0.32 against 0.286, L366), so the next computation is the full construction in the particle-mesh runs: the switched phantom sourced by the baryons, felt by the baryons, and read by the trigger.
+
+## L369 — the window does NOT survive other realisations (both hypotheses falsified)
+
+`L369_triggered_carrier_window_realisations.py` (2/4, **rc = 1: both pre-declared hypotheses falsified**). L366/L367's construction, unchanged, in three 100 Mpc/h realisations: seeds (7, 11), which are L366's own, plus (17, 21) and (29, 33). Kicks run over 600–700 km/s in 25 km/s steps. Every gate is computed per box and on the pooled sample (3×10⁶ (Mpc/h)³, 71 halos ≥ 10¹⁴ M☉/h).
+
+C1: the (7, 11) reruns reproduce L366's and L367's committed numbers **exactly** (zero deviation over 32 numbers).
+
+| v_k | pooled S₈ | pooled forest | pooled cleared (≤ 0.30) | pooled X-COP ε (0.286–0.768) | shear p = 2 |
+|---|---|---|---|---|---|
+| 600 | 0.960 | 4.0% | 0.51 ✗ | 0.51 | ✓ |
+| 625 | 0.955 | 4.1% | 0.44 ✗ | 0.44 | ✓ |
+| 650 | 0.951 | 4.2% | 0.39 ✗ | 0.34 | ✓ |
+| 675 | 0.946 | 4.3% | 0.34 ✗ | 0.27 ✗ | ✓ |
+| 700 | 0.940 | 4.3% | 0.31 ✗ | 0.23 ✗ | ✓ |
+
+- **The full window exists only in the original box** (7, 11), at 625 and 650 km/s. Box (17, 21) has none: clearing is 0.57–0.72. Box (29, 33) has none: clearing passes only where X-COP undershoots.
+- **The pooled sample has no window, so L368's "one cell passes everything" was a one-realisation artefact.**
+- **Box-to-box scatter is large in both gates that close the window.** The dense-cell clearing at z = 2 is 0.22 / 0.66 / 0.28 at 650 km/s. The cluster median is 0.25–0.59 at 650.
+- **Pooled, the gates pinch from both sides.** Clearing needs kicks above 700 km/s; X-COP needs kicks below ~660 km/s.
+
+**Two readings, stated separately.**
+1. **As gated, the window is closed.** These are the record's gates, unchanged.
+2. **The gate that fails at every kick is G3, a mesh proxy.** It is the carrier in cells with 1 + δ > 50 at z = 2, on a 0.39 Mpc/h mesh. Its stated purposes were RC100's dark fractions inside R_e and KiDS's 20–30% of a ΛCDM halo (L365). Both have since been resolved and pass: L376 finds 0.000 inside R_e at z = 1–2, and L375 finds KiDS −11.5/−8.4. If G3 were retired in favour of those resolved gates, the pooled sample would pass S₈, the forest, X-COP and shear at 600–650 km/s. **That retirement is a judgement made after seeing G3 fail, not a result.** It needs its own pre-declared test before anyone may claim a window.
+
+MUTATE was not run. The main run's hypotheses were already falsified (rc = 1), so a control that forces the window closed has nothing to discriminate. The C1 reproduction is the control that matters here, and it is exact.

@@ -1,0 +1,88 @@
+
+L369 -- IS THE TRIGGERED CARRIER'S WINDOW A ONE-REALISATION ARTEFACT?  Three realisations, a 25 km/s kick grid, every gate
+recomputed per realisation and pooled.
+
+WHY.  L368 found that v_k = 650 km/s with C-H/K's p = 2 kernel switch passes every dark-sector gate on the record (S_8, the
+forest, halo clearing, the two-sided X-COP gate, cosmic shear, KiDS), but in ONE grid cell of a 50 km/s grid in ONE 100 Mpc/h
+realisation.  The X-COP side was thin (median retention 0.32 against a lower bound of 0.286, over 22 halos).  This lane asks
+whether that window is a sampling accident of one box.
+
+SETUP (L366/L367's construction and code, unchanged: x_c = 5, Gamma = 10 H, 100 Mpc/h, 256^3 mesh, 192^3 particles per
+species).  Realisations: phase/kick seeds (7, 11) -- L366/L367's own -- and two new ones, (17, 21) and (29, 33).  Kicks
+v_k in {600, 625, 650, 675, 700} km/s plus a LCDM run per realisation (18 runs).  Every gate is computed per realisation
+exactly as L366 (S_8, forest, clearing, clusters), L367 (cosmic shear T(k) at z = 0.5, galaxy-peak retention at z = 0.3)
+and L368 (KiDS with L360's machinery, loaded unedited) compute it, and on the POOLED sample (three boxes = 3 x 10^6
+(Mpc/h)^3): S_8 ratio averaged, forest and shear from the summed power, clearing from the summed dense-cell fractions,
+clusters as the median over all >= 1e14 Msun/h halos, galaxy retention over all pooled peaks.
+PRE-DECLARED (before the run; thresholds are the record's, unchanged):
+  H1 the POOLED sample has a non-empty full window (strict S_8, p = 2 switch) on the 25 km/s grid.
+  H2 EVERY realisation, on its own, has a non-empty full window on the grid (it may sit at different kicks).
+CHECKS
+  C1 CONTROL: realisation (7, 11) reproduces L366's committed numbers (LCDM sigma_8; at 600/650/700 the S_8 ratio, forest,
+     clearing and cluster median) and L367's T(k) exactly (deterministic code, same seeds).
+  R1 = H1.  R2 = H2.  W (informational): the per-realisation and pooled gate tables; the common window.
+MUTATE=1: every kick is 0 (the decayed carrier stays: nothing is cleared, clusters overshoot) -- R1 must FAIL (rc = 1).
+L369_POOL sets the process-pool size (default 6; each run needs ~2.5 GB).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L369_triggered_carrier_window_realisations.py
+
+  18 runs, pool 6, temporary fields in L369_14o0kf83
+  18 runs done in 8313s
+
+==============================================================================================================
+C1  CONTROL: realisation (7, 11) reproduces L366 and L367
+==============================================================================================================
+  [PASS] C1 realisation (7, 11) reproduces L366's LCDM sigma_8 and forest power, and at 600/650/700 L366's S_8 ratio, forest, clearing and cluster median and L367's T(k) (same seeds, same code)
+         measured: max relative deviation 0.0e+00 over 32 numbers
+
+==============================================================================================================
+THE GATE TABLE, PER REALISATION AND POOLED
+==============================================================================================================
+    X-COP two-sided (L354 via L366): 0.286 <= eps <= 0.768; clearing <= 0.30; forest <= 0.10; S8 >= 0.922 (strict)
+  realisation (7): 22 halos >= 1e14 Msun/h
+            v600: S8 0.963 | forest 0.042 | cleared 0.33 X | X-COP eps 0.50 (n=22) | shear p2 ok p1 X | KiDS S=0.037 p2 -6.0/-2.0 | FULL p2 no, p1 no
+            v625: S8 0.959 | forest 0.042 | cleared 0.26 | X-COP eps 0.40 (n=22) | shear p2 ok p1 X | KiDS S=0.032 p2 -5.7/-2.1 | FULL p2 YES, p1 no
+            v650: S8 0.955 | forest 0.043 | cleared 0.22 | X-COP eps 0.32 (n=22) | shear p2 ok p1 X | KiDS S=0.029 p2 -5.5/-2.2 | FULL p2 YES, p1 no
+            v675: S8 0.950 | forest 0.044 | cleared 0.19 | X-COP eps 0.24 UNDER (n=22) | shear p2 ok p1 X | KiDS S=0.024 p2 -5.1/-2.2 | FULL p2 no, p1 no
+            v700: S8 0.945 | forest 0.044 | cleared 0.17 | X-COP eps 0.21 UNDER (n=22) | shear p2 ok p1 ok | KiDS S=0.024 p2 -5.1/-2.2 | FULL p2 no, p1 no
+  realisation (17): 19 halos >= 1e14 Msun/h
+            v600: S8 0.968 | forest 0.040 | cleared 0.72 X | X-COP eps 0.71 (n=19) | shear p2 ok p1 X | KiDS S=0.029 p2 -5.5/-2.2 | FULL p2 no, p1 no
+            v625: S8 0.964 | forest 0.042 | cleared 0.67 X | X-COP eps 0.65 (n=19) | shear p2 ok p1 X | KiDS S=0.025 p2 -5.1/-2.2 | FULL p2 no, p1 no
+            v650: S8 0.960 | forest 0.043 | cleared 0.66 X | X-COP eps 0.59 (n=19) | shear p2 ok p1 X | KiDS S=0.023 p2 -5.0/-2.2 | FULL p2 no, p1 no
+            v675: S8 0.955 | forest 0.044 | cleared 0.61 X | X-COP eps 0.47 (n=19) | shear p2 ok p1 X | KiDS S=0.020 p2 -4.7/-2.1 | FULL p2 no, p1 no
+            v700: S8 0.951 | forest 0.044 | cleared 0.57 X | X-COP eps 0.38 (n=19) | shear p2 ok p1 ok | KiDS S=0.020 p2 -4.7/-2.1 | FULL p2 no, p1 no
+  realisation (29): 30 halos >= 1e14 Msun/h
+            v600: S8 0.949 | forest 0.041 | cleared 0.47 X | X-COP eps 0.45 (n=30) | shear p2 ok p1 X | KiDS S=0.034 p2 -5.8/-2.1 | FULL p2 no, p1 no
+            v625: S8 0.943 | forest 0.041 | cleared 0.39 X | X-COP eps 0.34 (n=30) | shear p2 ok p1 ok | KiDS S=0.029 p2 -5.5/-2.2 | FULL p2 no, p1 no
+            v650: S8 0.938 | forest 0.043 | cleared 0.28 | X-COP eps 0.25 UNDER (n=30) | shear p2 ok p1 ok | KiDS S=0.025 p2 -5.2/-2.2 | FULL p2 no, p1 no
+            v675: S8 0.932 | forest 0.043 | cleared 0.23 | X-COP eps 0.18 UNDER (n=30) | shear p2 ok p1 ok | KiDS S=0.024 p2 -5.1/-2.2 | FULL p2 no, p1 no
+            v700: S8 0.926 | forest 0.044 | cleared 0.18 | X-COP eps 0.15 UNDER (n=30) | shear p2 ok p1 ok | KiDS S=0.022 p2 -4.9/-2.1 | FULL p2 no, p1 no
+  POOLED (three realisations)
+            v600: S8 0.960 | forest 0.040 | cleared 0.51 X | X-COP eps 0.51 (n=71) | shear p2 ok p1 X | KiDS S=0.031 p2 -5.6/-2.1 | FULL p2 no, p1 no
+            v625: S8 0.955 | forest 0.041 | cleared 0.44 X | X-COP eps 0.44 (n=71) | shear p2 ok p1 X | KiDS S=0.027 p2 -5.4/-2.2 | FULL p2 no, p1 no
+            v650: S8 0.951 | forest 0.042 | cleared 0.39 X | X-COP eps 0.34 (n=71) | shear p2 ok p1 X | KiDS S=0.025 p2 -5.2/-2.2 | FULL p2 no, p1 no
+            v675: S8 0.946 | forest 0.043 | cleared 0.34 X | X-COP eps 0.27 UNDER (n=71) | shear p2 ok p1 ok | KiDS S=0.023 p2 -5.0/-2.2 | FULL p2 no, p1 no
+            v700: S8 0.940 | forest 0.043 | cleared 0.31 X | X-COP eps 0.23 UNDER (n=71) | shear p2 ok p1 ok | KiDS S=0.022 p2 -4.9/-2.1 | FULL p2 no, p1 no
+
+    full windows (p = 2, strict S8): 7: ['v625', 'v650']; 17: none; 29: none; pooled: none; common to all three: none
+    cluster-median spread across realisations: v600: 0.45-0.71, v625: 0.34-0.65, v650: 0.25-0.59, v675: 0.18-0.47, v700: 0.15-0.38
+  [PASS] W (informational) per-realisation and pooled gate tables, the common window and the cluster-median spread
+         measured: see tables
+         reading:  reported either way
+
+==============================================================================================================
+R1, R2  THE HYPOTHESES (set before the run)
+==============================================================================================================
+  [FAIL] R1 = H1: the POOLED three-realisation sample has a non-empty full window (strict S_8, p = 2 switch, every gate, both footings)
+         measured: pooled window: none
+  [FAIL] R2 = H2: EVERY realisation on its own has a non-empty full window on the 25 km/s grid
+         measured: (7): ['v625', 'v650']; (17): none; (29): none
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  Full window (p = 2 switch, strict S_8, every gate): pooled none; per realisation (7) ['v625', 'v650']; (17) none; (29) none; common none.
+  LIMITS: three 100 Mpc/h boxes (one mesh, 0.39 Mpc/h), galaxy retention sub-cell, the trigger posited (no action), MOND on
+  baryons inside halos not modelled, L354's X-COP response as the map from retention to M_dyn/M_HSE.
+
+  2/4 checks pass; load-bearing failures: 2; wrote L369_triggered_carrier_window_realisations_results.json   [8414s]
