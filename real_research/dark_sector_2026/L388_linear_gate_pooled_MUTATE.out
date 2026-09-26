@@ -1,0 +1,87 @@
+
+L388 -- THE FULL CONSTRUCTION AT THE LINEAR VACUUM GATE (p = 1, x_c0 = 2.5), POOLED, SAME-CELL: is there a window?
+
+WHY.  L380 found a pooled window (600-675 km/s) for the full construction at L377's switch cell p = 2, x_c0 = 2.  DE1/DE2
+(dark_energy_2026, committed) then showed that cell FAILS the flat-a0 flagship at M_b = 1e11 on the canonical footing
+(edge 36.8 < 38.6 kpc), while the LINEAR vacuum gate p = 1 with L359's x_c0 = 2.5 lies inside the joint KiDS + cosmic
+shear + flagship + forest window; and L381's Harvey step turned out to run at a third cell (correction 3151d88f2).  Passes
+are never pooled across cells.  This lane re-runs L380's pooled full construction, unchanged except for the cell, AT the
+linear gate -- the switch that sources the baryons' phantom and enters the trigger is p = 1, x_c0 = 2.5 throughout.
+
+SETUP: L377's full construction (canonical a_0, nu_mono phantom felt by the baryons and read by the trigger) with its switch
+constants set to the linear gate, X_C0 = 2.5 and P_GATE = 1 (module level, so every spawned worker inherits them),
+with L379's z = 2 field output (its transformed run, imported unchanged); L369's three realisations; v_k in {575, 600, 625,
+650} km/s plus a LCDM run each (15 runs).  Gates pooled exactly as L378 (S_8 averaged; forest and shear from summed power;
+X-COP two-sided median over all >= 1e14 Msun/h halos; fixed-cell clearing, L379/L380), with cosmic shear scored AT THIS CELL:
+R = T^2 + 2 r_x T s + s^2 <= 1.2 with T_max(k) at x_c,eff(0.5) = 2.5 E(0.5)^2 = 4.363 from DE3 (dark_energy_2026, the same
+region kernel, mock and seed as L364/DE2), both footings.  KiDS at this cell and Harvey at this cell follow in their own
+lanes, same-cell.
+PRE-DECLARED (before the run): H: at the linear gate the pooled full construction has a window -- strict S_8, forest,
+fixed-cell clearing, two-sided X-COP and cosmic shear at this cell (both footings) all pass -- at some kick in 575-650 km/s.
+CHECKS
+  C1 CONTROL: the (7, 11) LCDM run (no phantom, so independent of the cell) reproduces L366's committed sigma_8 exactly.
+  C2 CONTROL: the cell change took effect -- the (7, 11) run at 650 km/s switches on fewer cells at z = 0 than L377's p = 2
+     run at the same seed and kick (threshold 2.5 against 2.0), and more than none.
+  R1 = H.  W (informational): per-realisation and pooled tables on both clearing measures; the per-halo retention and mass
+     of every peak (for the Harvey test, L371's machinery) and the pooled retention in L371's mass bins.
+MUTATE=1: every kick is 0 (the decayed carrier stays; one run per realisation, used for every kick): R1 must FAIL (rc = 1).
+L388_POOL sets the pool size (default 8).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L388_linear_gate_pooled.py
+
+  MUTATE: v_k = 0 in every decaying run (one run per realisation, used for every kick)
+  6 runs, pool 6, cell p = 1, x_c0 = 2.5
+  6 runs done in 6427s
+
+==============================================================================================================
+C1, C2  CONTROLS
+==============================================================================================================
+  [PASS] C1 the (7, 11) LCDM run reproduces L366's sigma_8 (no phantom: independent of the cell)
+         measured: relative deviation 0.0e+00
+
+==============================================================================================================
+THE GATE TABLE with the corrected (fixed-cell) clearing, per realisation and pooled
+==============================================================================================================
+    X-COP two-sided 0.286-0.768; clearing <= 0.30; forest <= 0.10; S8 >= 0.922
+         7 v575: S8 1.012 | forest 0.006 | clearing fixed 1.001 X (record's G3 0.99) | X-COP eps 1.007 OVER (n=22) | shear X  =>  no
+         7 v600: S8 1.012 | forest 0.006 | clearing fixed 1.001 X (record's G3 0.99) | X-COP eps 1.007 OVER (n=22) | shear X  =>  no
+         7 v625: S8 1.012 | forest 0.006 | clearing fixed 1.001 X (record's G3 0.99) | X-COP eps 1.007 OVER (n=22) | shear X  =>  no
+         7 v650: S8 1.012 | forest 0.006 | clearing fixed 1.001 X (record's G3 0.99) | X-COP eps 1.007 OVER (n=22) | shear X  =>  no
+        17 v575: S8 1.014 | forest 0.007 | clearing fixed 1.001 X (record's G3 0.99) | X-COP eps 0.981 OVER (n=19) | shear X  =>  no
+        17 v600: S8 1.014 | forest 0.007 | clearing fixed 1.001 X (record's G3 0.99) | X-COP eps 0.981 OVER (n=19) | shear X  =>  no
+        17 v625: S8 1.014 | forest 0.007 | clearing fixed 1.001 X (record's G3 0.99) | X-COP eps 0.981 OVER (n=19) | shear X  =>  no
+        17 v650: S8 1.014 | forest 0.007 | clearing fixed 1.001 X (record's G3 0.99) | X-COP eps 0.981 OVER (n=19) | shear X  =>  no
+        29 v575: S8 1.009 | forest 0.006 | clearing fixed 1.001 X (record's G3 0.99) | X-COP eps 0.996 OVER (n=30) | shear X  =>  no
+        29 v600: S8 1.009 | forest 0.006 | clearing fixed 1.001 X (record's G3 0.99) | X-COP eps 0.996 OVER (n=30) | shear X  =>  no
+        29 v625: S8 1.009 | forest 0.006 | clearing fixed 1.001 X (record's G3 0.99) | X-COP eps 0.996 OVER (n=30) | shear X  =>  no
+        29 v650: S8 1.009 | forest 0.006 | clearing fixed 1.001 X (record's G3 0.99) | X-COP eps 0.996 OVER (n=30) | shear X  =>  no
+    pooled v575: S8 1.012 | forest 0.006 | clearing fixed 1.001 X (record's G3 0.99) | X-COP eps 0.997 OVER (n=71) | shear X  =>  no
+    pooled v600: S8 1.012 | forest 0.006 | clearing fixed 1.001 X (record's G3 0.99) | X-COP eps 0.997 OVER (n=71) | shear X  =>  no
+    pooled v625: S8 1.012 | forest 0.006 | clearing fixed 1.001 X (record's G3 0.99) | X-COP eps 0.997 OVER (n=71) | shear X  =>  no
+    pooled v650: S8 1.012 | forest 0.006 | clearing fixed 1.001 X (record's G3 0.99) | X-COP eps 0.997 OVER (n=71) | shear X  =>  no
+
+    windows (corrected clearing): 7: none; 17: none; 29: none; pooled: none
+    pooled retention by M(<1 Mpc/h) (L371's bins), v575: 6.0e+13-1.0e+14: 1.00 (n=47), 1.0e+14-1.5e+14: 0.99 (n=38), 1.5e+14-2.5e+14: 1.00 (n=26), 2.5e+14-1.0e+17: 1.00 (n=7)
+    pooled retention by M(<1 Mpc/h) (L371's bins), v600: 6.0e+13-1.0e+14: 1.00 (n=47), 1.0e+14-1.5e+14: 0.99 (n=38), 1.5e+14-2.5e+14: 1.00 (n=26), 2.5e+14-1.0e+17: 1.00 (n=7)
+    pooled retention by M(<1 Mpc/h) (L371's bins), v625: 6.0e+13-1.0e+14: 1.00 (n=47), 1.0e+14-1.5e+14: 0.99 (n=38), 1.5e+14-2.5e+14: 1.00 (n=26), 2.5e+14-1.0e+17: 1.00 (n=7)
+    pooled retention by M(<1 Mpc/h) (L371's bins), v650: 6.0e+13-1.0e+14: 1.00 (n=47), 1.0e+14-1.5e+14: 0.99 (n=38), 1.5e+14-2.5e+14: 1.00 (n=26), 2.5e+14-1.0e+17: 1.00 (n=7)
+  [PASS] W (informational) per-realisation and pooled gate tables on both clearing measures
+         measured: see tables
+         reading:  reported either way
+
+==============================================================================================================
+R1  THE HYPOTHESIS (set before the run)
+==============================================================================================================
+  [FAIL] R1 = H: at the linear gate (p = 1, x_c0 = 2.5) the pooled full construction has a window at some kick in 575-650 km/s
+         measured: pooled window: none
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  Pooled full construction at the linear gate (p = 1, x_c0 = 2.5), fixed-cell clearing, cosmic shear at this cell:
+  window none; per realisation
+  (7) none; (17) none; (29) none.
+  LIMITS: three 100 Mpc/h boxes on a 0.39 Mpc/h mesh; the trigger posited (no action); the switch on the matter-only branch;
+  KiDS, RC100 and the RAR from the resolved shell model (L375, L376), not from these boxes.
+
+  2/3 checks pass; load-bearing failures: 1; wrote L388_linear_gate_pooled_results_MUTATE.json   [6463s]

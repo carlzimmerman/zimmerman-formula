@@ -473,3 +473,44 @@ KiDS passes at the linear gate at every kick, on both footings; the pre-declared
 - **f_DM(<R_e)** is 0.232/0.264 at z = 1 and 0.231/0.263 at z = 2 (canonical/alt), identical to L376 at this precision. At these accelerations (y below the phantom peak y_p = 2.54) ν_mono equals ν_RAR.
 
 The trigger is still L376's matter-only one (XR1 item 6).
+
+## L388 — the full construction at the linear vacuum gate (p = 1, x_c0 = 2.5), pooled: a window at every kick 575–650 km/s
+
+`L388_linear_gate_pooled.py` (4/4; `MUTATE=1`, v_k = 0: fails R1 as designed: clearing 1.00, X-COP over its ceiling, no window, rc = 1). This is L380's pooled full construction, unchanged except for the cell. The switch that sources the baryons' phantom and enters the trigger is the linear gate **p = 1, x_c0 = 2.5**, the cell DE1/DE2 select because the p = 2 cell fails the flagship.
+- Cosmic shear is scored at this cell against DE3's committed T_max(k) at x_c,eff(0.5) = 4.363, both footings; the committed file was verified byte-identical before the run.
+- C1: the ΛCDM run reproduces L366 exactly.
+- C2: the cell change took effect. 1.76% of cells are switched on at z = 0, against 2.79% for L377's p = 2 run at the same seed and kick.
+
+| v_k | pooled S₈ | forest | fixed-cell clearing (≤ 0.30) | X-COP ε (0.286–0.768) | cosmic shear at the cell |
+|---|---|---|---|---|---|
+| 575 | 0.973 | 4.0% | 0.075 | 0.607 | ✓ |
+| 600 | 0.969 | 4.0% | 0.070 | 0.526 | ✓ |
+| 625 | 0.964 | 4.1% | 0.066 | 0.436 | ✓ |
+| 650 | 0.960 | 4.2% | 0.062 | 0.374 | ✓ |
+
+- **Every box has its own window at all four kicks.** The pre-declared hypothesis holds.
+- **Pooled retention by M(<1 Mpc/h)**, in L371's bins, is 0.34 / 0.50 / 0.68 / 0.85 at 575 km/s and 0.28 / 0.40 / 0.63 / 0.82 at 600.
+- **The z = 2 fields are kept** for external re-analysis in `real_research/dark_sector_2026/_L388_fields/` (gitignored, 1.9 GB). These are the total and unit-weight carrier densities per run, ΛCDM included; baryons = ρ − W_C·ρ_c.
+
+### Consistency ledger: same cell, NOT yet the same model
+
+From the cross-thread reviews XR1 and XR2, in `real_research/cross_thread_review_2026_09_26/`. The chain L388 (cosmology), L389 (Harvey) and L390 (KiDS) shares the cell p = 1, x_c0 = 2.5. Its passes must **not** be pooled as one theory. It still mixes the following:
+1. **Phantom operators.** The PM operator (all-baryon field, masked response) is a **controlled approximation** to L361's action for retention and Harvey, at static-field scope. XR5 found this (13/13; MUTATE with screening dropped fails, rc = 1; `XR5_operator_identity.py`, uncommitted at the time of writing):
+   - phantom monopole within 2.2×10⁻³ at 0.1–1 Mpc;
+   - Harvey |Δβ| ≤ 5×10⁻⁵ between operators (≤ 1.8×10⁻³ with an external field of 0.01 a₀);
+   - retention error below L377's own 1.5% discretisation.
+
+   **The live items are region labelling and the edge definition.** Splitting a merger pair into two regions reverses the phantom pull. L370's absolute-density gate puts edges 4.8–6.1% further out than the contrast gate. The far edge layer projected along the line of sight moves substructure centroids by up to Δβ ≈ 0.009 on XR5's 2-D meshes, which needs checking on L389's 3-D maps. The outskirts beyond 0.9 R_e are not controlled either.
+2. **Switch variable.** This lane's switch is on the **matter-only branch**, f = 1.5 Ω_m(a)(ρ_b + ρ_c − 1)·gate > x_c0. DE1/DE2 (and L352/L359) read the phantom-inclusive, on-branch density. **DE2's flagship pass therefore does not carry over to this construction.** On the matter-only branch a point mass has no MOND region, and clearing the carrier from galaxies starves the switch (XR2). The flagship on the matter-only branch is open, and the parallel DE4/DE6 find it CGM-conditional there.
+   - **KiDS is branch-dependent too.** L390's KiDS pass used L360/L352's machinery, which sets the switch edge from the dynamical (phantom-inclusive, untruncated) density. **L390 is therefore a curvature-branch result.** The matter-only-branch KiDS for this carrier has not been computed. The parallel lane L392 (merger_infall_2026) finds the matter branch fails KiDS for L372's cleared carrier (+118/+128, NFW-continued), because the lens's matter density drops below x_c,eff(0.25) inside 1 Mpc and the phantom is truncated early. The curvature branch passes (−60/−55).
+   - **So this lane's matter-branch window does not yet have a same-branch KiDS pass.** The curvature-branch cosmology is L395's first-priority cell.
+3. **Epoch.** Retention is measured at z = 0, and L389 applies it at the z = 0.4 merger epoch.
+4. **Footing.** The PM and Harvey stages are canonical only.
+5. **Kernel.** L376's RAR/RC100 numbers use ν_RAR, not the construction's ν_mono.
+6. **Trigger.** L390 (and L375/L376) use the matter-only trigger; this lane uses the phantom-inclusive trigger.
+
+**Planned.** One successor run at this cell will carry every recording hook, with its pass rule declared before launch:
+- XR2 §5's particle-tracked clearing estimator;
+- the z = 0.4 fields;
+- the alt footing in one box;
+- any combined-action decision on the switch variable and operator.
