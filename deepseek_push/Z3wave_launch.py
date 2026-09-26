@@ -6,7 +6,8 @@ Exits after spawning (rc 0)."""
 import os, sys, subprocess
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-LANES = [("QF3_q_se_shrink.py", "QF3_q_se_shrink.out", "QF3_q_se_shrink.err"),
+LANES = [("QF3b_replicate.py", "QF3b_replicate.out", "QF3b_replicate.err"),
+         ("QF3_q_se_shrink.py", "QF3_q_se_shrink.out", "QF3_q_se_shrink.err"),
          ("A3_u_band_rule.py", "A3_u_band_rule.out", "A3_u_band_rule.err"),
          ("M04b_j10z_at_ob1.py", "M04b_j10z_at_ob1.out", "M04b_j10z_at_ob1.err")]
 

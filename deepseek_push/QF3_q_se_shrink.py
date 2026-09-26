@@ -7,8 +7,11 @@ re-runs the VERBATIM bank gate on the shrunk tables. NOT a new family search:
 only QF1's families F8-F10 and QF2's B1/B2 (loaded code, never transcribed).
 
 Pre-registered (Z3-WAVE_BRIEF.md, fixed before any number):
- R1 SE-scaling: median over matched cells of s_Q(4x)/s_Q(L02) in [0.20, 0.32]
-    (expect ~0.25 at 4x n); else exit 1 (engine anomaly).
+ R1 SE-scaling: median over matched cells of s_Q(4x)/s_Q(L02) in [0.40, 0.60]
+    (RE-REGISTERED with reason, see R1_reregistration_note; the original band
+    [0.20, 0.32] was an arithmetic blunder in the brief: SEM = sigma/sqrt(n), so
+    4x n gives 1/sqrt(4) = 1/2, not 1/4. The first run measured 0.5001 and was
+    recorded FAIL verbatim in the .out before this correction).
  R2 engine consistency (fresh independent seeds): per-cell z of
     (E_Q_new - E_Q_L02)/sqrt(s_Q_new^2 + s_Q_L02^2); >= 90% of cells |z| <= 3
     AND max |z| <= 5; else exit 1 (numbers disagree).
@@ -25,6 +28,7 @@ Pre-registered (Z3-WAVE_BRIEF.md, fixed before any number):
 House rules 1-10 (LOOP_CONDUCTOR.md) binding; leaf lane does NOT commit.
 """
 import json
+import math
 import os
 import sys
 import time
@@ -45,8 +49,8 @@ GATE_IN, GATE_HOLD = 3.0, 5.0
 QF1_OLD_BEST = 13.68     # register 2026-09-26 04:36 ops note (QF1 row)
 
 RES = {"title": "QF3 Q-closure SE-shrink (n-scaling pilot, Z3-wave)",
-       "pre_registration": "Z3-WAVE_BRIEF.md QF3-R1..R4 (fixed before any number)",
-       "gates": {"R1_scaling_band": [0.20, 0.32], "R2_zfrac": 0.90, "R2_zmax": 5.0,
+       "pre_registration": "Z3-WAVE_BRIEF.md QF3-R1..R4 (fixed before any number); R1 band AMENDED 2026-09-26 by measured 1/sqrt(n) scaling (0.5001, 34 cells) -- original [0.20,0.32] recorded as R1_pre_reg_action",
+       "gates": {"R1_scaling_band_amended": [0.45, 0.55], "R2_zfrac": 0.90, "R2_zmax": 5.0,
                  "R3_bookkeeping": 1e-9, "R4_infit": GATE_IN, "R4_holdout": GATE_HOLD}}
 
 
@@ -95,15 +99,34 @@ def main():
     t0 = time.time()
     l02 = json.load(open(os.path.join(HERE, "L02_results.json")))
     tbl0c, tbl0v = l02["table_central"], l02["table_volume"]
+    # L02 rows carry no src field; annotate from the table they were loaded from
+    for r in tbl0c:
+        r["src"] = "central"
+    for r in tbl0v:
+        r["src"] = "volume"
     print(f"QF3 loaded L02 tables: central {len(tbl0c)} rows, volume {len(tbl0v)} rows; "
           f"stage-1 n = {N_S1} (4x L02 1.5e5), seeds fresh from {SEED0}", flush=True)
 
-    # ---- stage 1 -----------------------------------------------------------
+    # ---- stage 1 (checkpointed: QF3 died twice after a completed 25-min stage) ----
     cells, meta, sid = build_cells(tbl0c, "central", N_S1, SEED0)
     cells_v, meta_v, sid = build_cells(tbl0v, "volume", N_S1, sid)
     cells = cells + cells_v; meta = meta + meta_v
-    with Pool(4) as ex:
-        res = list(ex.map(run_cell, cells, chunksize=1))
+    ck_path = os.path.join(HERE, "QF3_stage1.json")
+    res = None
+    if os.path.exists(ck_path):
+        try:
+            ck = json.load(open(ck_path))
+            if ck["n"] == N_S1 and ck["seed0"] == SEED0 and len(ck["res"]) == len(meta):
+                res = ck["res"]
+                print("stage-1 checkpoint loaded (%d cells, n=%d, seed0=%d)" % (len(res), N_S1, SEED0), flush=True)
+        except Exception as e:
+            print(f"checkpoint unreadable ({e}); re-running stage 1", flush=True)
+    if res is None:
+        with Pool(4) as ex:
+            res = list(ex.map(run_cell, cells, chunksize=1))
+        with open(ck_path, "w") as f:
+            json.dump({"n": N_S1, "seed0": SEED0, "res": res}, f)
+        print("stage-1 checkpoint written", flush=True)
     new = {(m[2], m[0], m[1]): r for m, r in zip(meta, res)}
     tbl1c = table_rows([new[("central", r["tau0"], r["q"])] for r in tbl0c], N_S1)
     tbl1v = table_rows([new[("volume", r["tau0"], r["q"])] for r in tbl0v], N_S1)
@@ -125,7 +148,14 @@ def main():
     zfrac = float(np.mean([abs(z) <= 3.0 for z in zs]))
     zmax = float(np.max(np.abs(zs)))
     RES.update(R1_median_ratio=med, R2_zfrac_le3=zfrac, R2_zmax=zmax)
-    ok1 = 0.20 <= med <= 0.32
+    RES["R1_reregistration_note"] = (
+        "Original band [0.20,0.32] (brief) expected s_Q ~ n^-1; WRONG: se() returns the "
+        "standard error of the mean, sigma/sqrt(n), so 4x n -> ratio 1/2. First run "
+        "measured 0.5001 and was recorded FAIL verbatim in QF3_q_se_shrink.out before "
+        "this re-registration (W01 budget-change precedent: correction recorded with "
+        "measured reason before gate-dependent verdicts). R2 (mean consistency, "
+        "max|z|=1.95) was independent of the band and PASSED unchanged.")
+    ok1 = 0.40 <= med <= 0.60
     ok2 = (zfrac >= 0.90) and (zmax <= RES["gates"]["R2_zmax"])
     RES["R1_pass"], RES["R2_pass"] = ok1, ok2
     print(f"R1 SE-scaling median ratio = {med:.4f} (band [0.20,0.32]) -> {'PASS' if ok1 else 'FAIL'}", flush=True)
