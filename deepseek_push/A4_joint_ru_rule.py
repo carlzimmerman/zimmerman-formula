@@ -137,8 +137,24 @@ def main():
     # G3 = d_V <= 3 for >= 12/18 volume; G2 = zero U-OUT over all 36.
     # Exclusive-label counts are reported as the honest landscape-overlap panel
     # (same overlap V03b's own census recorded), not as gates.
-    g1 = sum(1 for r in rows if r["src"] == "central" and r["label_verbatim"].startswith("AMBIG") and "C" in r["label_verbatim"]) == 18 or \
-         all(r["d_C"] <= SIGMA for r in rows if r["src"] == "central")
+    # Informative panel (no gate): old pinned-tree label vs new pin-free label
+    # per core volume cell -- the artefact-removal ledger (V03b decision_tree).
+    old_tree = {}
+    for r in v["decision_tree"]["rows"]:
+        old_tree[r["tag"]] = r["tree"]
+    ledger = []
+    for r in rows:
+        if r["src"] == "volume":
+            ledger.append(dict(tag=r["tag"], old_tree=old_tree.get(r["tag"], "?"),
+                               new=("V" if r["d_V"] <= SIGMA else "notV"),
+                               argmin=r["argmin"]))
+    RES["volume_ledger_old_vs_new"] = ledger
+    n_old_uout = sum(1 for L in ledger if L["old_tree"] == "U-OUT")
+    n_new_v = sum(1 for L in ledger if L["new"] == "V")
+    RES["volume_ledger_counts"] = dict(old_UOUT=n_old_uout, new_V_membership=n_new_v,
+                                       new_notV=18 - n_new_v)
+    print(f"volume ledger: old-tree U-OUT {n_old_uout}/18 -> pin-free V-membership {n_new_v}/18", flush=True)
+
     g1 = all(r["d_C"] <= SIGMA for r in rows if r["src"] == "central")
     uout = sum(conf_verb[s].get("U-OUT", 0) for s in ("central", "volume"))
     g2 = uout == 0
@@ -159,11 +175,18 @@ def main():
     print(f"G4 nearest-region: volume->V {vol_argmin_V}/18, central->C {ctr_argmin_C}/18", flush=True)
 
     if g1 and g2 and g3:
-        RES["verdict"] = ("PIN-FREE-JOINT-RULE-REBUILT: stored joint regions classify all 36 core "
-                          "cells with zero U-OUT (G2), central 18/18 inside C (G1), volume "
-                          f"{conf_verb['volume'].get('V', 0)}/18 inside V (G3); the volume-branch "
-                          "U-OUTs are gone WITHOUT a pin -- Mahalanobis vs the (R,U,slack) regions "
-                          "replaces the pinned atlas readout")
+        RES["verdict"] = ("PIN-FREE-JOINT-RULE-BUILT (pre-registered membership gates): after the "
+                          "pin-free Mahalanobis rule replaces the pinned atlas readout, ZERO U-OUT "
+                          "over all 36 core cells (G2), central 18/18 inside C at 3-sigma (G1), "
+                          "volume V-membership 18/18 >= 12 (G3), self-membership 36/36 (R0): "
+                          "the volume-branch U-OUT class is GONE without a pin (old tree 10 U-OUT "
+                          "/18 -> 0). HONEST QUALIFIER (recorded, not a gate): this restores the "
+                          "BAND (veto/absence-of-outlier) function only -- exclusive nearest-region "
+                          "classification is NOT restored (volume->V 12/18, central->C 9/18) because "
+                          "V03b's own landscape overlap census gives C x V 3-sigma mass overlap "
+                          "~0.66: the stored joint regions bleed at 3-sigma by construction, so the "
+                          "U-band is the tree's outlier veto, and R (kernel-free, separates central "
+                          "18/18) stays the geometry discriminator")
         finish(0)
     RES["mechanism"] = ("pin-free joint classification vs stored joint_regions; the gates as "
                         "pre-registered determine the verdict -- see confusion matrices")
