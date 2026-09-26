@@ -43,6 +43,8 @@ Population-mean excess β, in σ from Harvey's mean:
 - The boost's own pull on the peak is small: +0.03 to +0.06 in β for an intact carrier.
 - **Design constraint: the carrier must keep collisionless mass in group and cluster cores.**
 
+**Scope (2026-09-26).** L370's region mask is computed on the absolute density, (3/2)ρ/ρ_crit(z) ≥ x_c0 E(z)^(2p). Its docstring said the mean was subtracted; the correction is now in the docstring. L352, L377 and DE1 do subtract the mean: at z = 0.4 the two gates differ by 0.84 in x̃. Every L370 number, and every lane that reuses its solver, uses the absolute mask at L370's cell (p = 1, x_c0 = 1.5). This operator difference is open item 1 of the 2026-09-26 peer review.
+
 ## L371 — the Harvey test on L366's slow-kick carrier
 
 `L371_harvey_slow_kick_carrier.py`: C1 reproduces L370's intact carrier to 1e-4. H1–H3 fail and are recorded; H4 is reported. `MUTATE=1` sets the retention to 1, so every shape becomes the intact carrier and passes (the inverted control, rc = 0).
@@ -63,6 +65,8 @@ Population-mean excess β, in σ from Harvey's mean:
 
 - **L366's slow-kick carrier fails Harvey at 2.1–5.4σ on the Lenstool-like fit.** Only the most favourable retention L366 allows passes.
 - The reason is that its group cores keep too little collisionless mass: carrier-to-baryons inside 150 kpc is 1.4–3.7, against about 10 for an intact halo. Its trigger fires early, so galaxies lose their carrier before groups assemble from them.
+
+**Scope (2026-09-26).** Harvey here runs at L370's cell (p = 1, x_c0 = 1.5; absolute-density mask; canonical footing). The retentions come from L366's mesh, which carries no phantom.
 
 ## L372 — a carrier that passes Harvey and X-COP together
 
@@ -104,3 +108,9 @@ Other rows of the grid:
 - The two modes are combined multiplicatively (a stated approximation).
 - Harvey is scored on the canonical footing, with eight configurations standing in for the 72 substructures.
 - High-z galaxies keep their carrier, as for every vacuum-gated carrier (L357's flagship shift).
+
+**Scope (2026-09-26, cross-lane review XR1).** The combined verdict joins two kernel setups:
+- KiDS is scored through L357 → L355, which has **no switch** (the kernel acts everywhere).
+- Harvey runs at L370's p = 1, x_c0 = 1.5 cell, with the absolute-density mask and the canonical footing only.
+
+This is a scope gap, not a known failure: L360 finds a switched p = 1, x_c0 = 1.5 construction with a carrier passes KiDS. A same-cell re-score is pending, for example at p = 1, x_c0 = 2.5 with the switched KiDS of L360/L390. Until then, quote L372 with this scope.

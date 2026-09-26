@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
+SCOPE (2026-09-26, cross-lane review XR1).  The combined verdict below joins two kernel setups: KiDS is scored through
+  L357 -> L355, which has NO switch (the kernel everywhere), while Harvey runs at L370's p = 1, x_c0 = 1.5 cell (absolute-
+  density region mask, canonical footing only).  A scope gap, not a known failure (L360 finds a switched p1_x1.5
+  construction with a carrier passes KiDS).  A same-cell re-score (e.g. p = 1, x_c0 = 2.5 with the switched KiDS of
+  L360/L390) is pending; until then quote L372 with this scope.
 L372 -- A CARRIER FOR HARVEY AND X-COP TOGETHER.  Part 1: the single-channel pincer.  Part 2: a two-channel carrier that
 passes both, with the forest, S_8, the galaxy gate and KiDS kept.
 

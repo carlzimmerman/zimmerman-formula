@@ -16,7 +16,11 @@ This lane computes what THIS construction actually does.
 
 THE CONSTRUCTION'S MERGER PHYSICS (L353 + L359 + L361 + L357; nothing new is added):
   * a cluster = a real halo (carrier + gas + stars) plus the phantom of its region's baryons.  The region is the connected
-    set where x~ = (3/2)(rho - rho_bar_m)/rho_crit(z) >= x_c0 E(z)^(2p) (L359 window cells).  The phantom field is
+    set where x~ = (3/2)(rho - rho_bar_m)/rho_crit(z) >= x_c0 E(z)^(2p) (L359 window cells) [CORRECTION 2026-09-26: the
+    code masks on the ABSOLUTE density, (3/2) rho/rho_crit(z) >= x_c0 E(z)^(2p) (RealHalo.lensing and phantom_felt), and
+    every result here and in its consumers (L371, L372, L373's Harvey stage) used that mask; L352, L377 and DE1 subtract
+    the background, a shift of (3/2) Omega_m(z) in x~ (0.84 at z = 0.4) -- an operator difference, open item 1 of the
+    2026-09-26 peer review].  The phantom field is
     P[f (nu(|g_w|/a0) - 1) g_w], with g_w the Newtonian field of the REGION's baryons (L361) and P the curl-free
     projection, so it is Gauss-cancelled at the region's edge;
   * baryons move in phi + f P; the carrier moves in phi (Newtonian from all matter).  Lensing = dynamics (L279), so weak
@@ -158,6 +162,8 @@ def nu_mono(y):                                                       # L340's m
 # ------------------------------------------------------------------------------------------------ the switch and the carrier gate
 SWITCH = {"p1_x1.5": (1.0, 1.5), "p0.5_x2.5": (0.5, 2.5), "p2_x2.0": (2.0, 2.0)}     # L359 window cells (p, x_c0)
 SW_DEF = "p1_x1.5"                                                    # L360's assembled construction
+# ^ L370's OWN cell.  A consumer must pass its construction's cell explicitly and never inherit this default: L381 and
+#   L373's first run inherited it against a p = 2, x_c0 = 2 mesh (2026-09-26).  Kept so committed consumers reproduce.
 x_ceff = lambda z, sw: SWITCH[sw][1] * Ez2(z) ** SWITCH[sw][0]
 GATE = {"cleared_2000": ("cleared", 2000.0), "cap_1000": ("cap", 1000.0), "intact": ("intact", None),
         "uniform_0.55": ("uniform", 0.55)}                            # L357 strict cells (p_v = 2); intact; X-COP's eps, uniform
