@@ -111,13 +111,41 @@ which the record's CGM convention supplies at ≳ 30% of its maximal share. Belo
 the switch's bistable band: MOND on the upper branch, Newtonian on the lower. Which branch a galaxy occupies is a
 formation-history question — one more reason the switch has to be a varied action term with its own dynamics (step 3).
 
+**DE5** (`DE5_tmax_window_both_branches.py`, 5/5; MUTATE, lower regions grown like the upper ones, fails L1; commit
+d62efdcef). Cosmic shear's bound T_max(k) across DE2's whole window, on both switch branches, reported separately. At the
+window's highest lens-epoch threshold (x = 6.785, p ≈ 1.9) the best bound at k = 1 is 0.882/0.857 on the upper branch
+and 0.890/0.866 on the matter-only branch (canonical/alt); the matter-only regions never lower T_max.
+
+**DE6** (`DE6_flagship_window_matter_only.py`, 4/5 with H1's part (b) failure recorded). On the matter-only branch the
+flagship survives to lower redshift than on the upper branch, everywhere; p = 0.5 cells hold it longest (z_max 3.1–4.5
+at 10–30% CGM with the carrier cleared), p ≈ 2 cells shortest (1.5–1.8).
+
+**DE7** (`DE7_gate_action_term_mond_normalised.py`, 15/15; MUTATE, the gate prescribed, fails U1) — the gate as a term
+of the action, at the coupling the MOND sector actually supplies (B = M²a₀²q(y²), the Lagrangian density the gate
+multiplies; the V0 writer's full ∂L/∂f agrees with it to ~10% at transitions).
+1. *It cannot be a bare smooth switch.* A smooth on/off gate has f″ of both signs across its transition (Lean DE7), so
+   the varied gate adds a wrong-signed k⁴ term somewhere on every transition — ill-posed. This holds for any gate shape
+   and either sign of B, and on all 3766 real transitions computed.
+2. *A repair works in the principal sector.* The lead track's concave curvature term needs only η ≈ 8×10⁻⁵ at z = 4
+   edges (ceiling 3.5×10⁻³); its reach is z ≈ 6 for 10¹¹ M☉ at c₂'s floor, further for lighter galaxies and for p = 0.5.
+3. *But a curvature-reading gate makes lensing and dynamics differ.* The coefficient of R⁽³⁾ + σ² varies wherever the
+   gate or its repair does, and the static trace-free equation turns that into slip, ψ − φ = 2δ𝒢_R/M². The gate's own
+   slip is ~6% of the MOND-level acceleration in 10¹¹ M☉ transition layers at the KiDS epoch, ~40% at z = 2.5 and
+   ~100% at z ≈ 4. The Λ-scaled repair would have to stay below η ≈ 10⁻⁸–10⁻⁷ to keep KiDS lenses within 10%, so it can
+   repair edges only up to z ≈ 0.5–1; any metric-only repair carries a floor set by the most massive bound systems at
+   each epoch (clusters: 14% at 10¹¹ M☉ lenses, 44% at 10¹⁰ M☉, z = 0.25).
+4. *The door this opens.* A gate on K alone — the local vacuum share of the leaf expansion, Ω_Λ(K) = 3Λc²/K², with no
+   R⁽³⁾ in it — has f_R = 0: no wrong-signed k⁴ term and no slip. It works only if the khronon's K differs between bound
+   regions and the Hubble flow (on the CMC-like leaves used so far, K = 3H everywhere and such a gate is blind). Whether
+   it does is the khronon's own profile around a bound region, not yet computed.
+
 ## 4. The theory as it stands, sector by sector
 
 | sector | what is built | standing | open |
 |---|---|---|---|
 | gravity + clock | **C-H/K**: GR + khronon (BPS terms α_c a² − c₂K², leaf-average λ-term) | linear frozen-coefficient health in the scanned channels; moving-source tracking; static β = γ = 1 derived in the reduced khronometric sector (KM3; other PPN terms and the filtered remainder documentary); c_T = 1 in the tested TT sector; c₂ under the Planck cap; G8 bounded pass at frozen-background, decoupling-limit scope including the filter/foliation vertices (XC1 + XC3, peer lanes); conditional at full-action scope | full canonical classification (is the khronon the spec's "genuine clock"?); nonlinear well-posedness scoped (XC2 + XC5, peer lanes, after the lead track's review): with ν_mono the MOND constraint is uniquely solvable for any positive lapse (turning kernels need (N_max/N_min)|C_min| < 1); open zero-field regions respond as √ε for every kernel (Hölder-½, not Osgood-unique), so the kernel must be switched off there — which the vacuum gate does in the unbound web; the principal symbol is GR + BPS khronon for α_c > 0 only if the mixed heat-operator variations the lead track flagged are lower order (unproved); open: strong hyperbolicity of GR + BPS and coupled energy estimates; the UV khronon is superluminal on the metric cone (4.4×10²–7.9×10⁵ c): requirement 7 must say which causality criterion it means (see the R2 proposal) |
 | MOND kernel | ν_mono (≤ 0.01 dex from ν_RAR) + heat filter ξ — decided 2026-09-26 (9092fc0fd); the exact μ_exp target is now historical | SPARC RAR 0.108 dex at Υ = 0.70 (`rar_framework_a0_mlfit.py`); Solar-System floors 0.031/0.045 pc | κ's value (input); whether the exact law can be carried by another constrained action |
-| where MOND acts | bound-region kernel (L361, nonrelativistic, gate prescribed) + vacuum gate (L359, prescribed mask) | KiDS at the realizable profile, growth, forest; the Sun keeps the Galaxy's field | the gate's parameters are data-pinned (DE2), not derived; the gate is not yet varied in an action (its W′(U)δU terms feed the clock and metric equations); relativistic embedding |
+| where MOND acts | bound-region kernel (L361, nonrelativistic, gate prescribed) + vacuum gate (L359, prescribed mask) | KiDS at the realizable profile, growth, forest; the Sun keeps the Galaxy's field | the gate's parameters are data-pinned (DE2), not derived; varied as an action term (DE7) a curvature-reading gate is ill-posed without a repair, and any metric-only repair makes lensing ≠ dynamics in transition layers (a floor set by the largest bound systems); a gate on K alone would avoid both, if the khronon's K separates bound regions from the Hubble flow (not computed); relativistic embedding |
 | dark mass | kernel-invisible carrier, cold early, shed from galaxy halos at virialization with v_k ≈ 600–675 km/s (L365–L380) | S₈, forest, clearing, two-sided X-COP, cosmic shear (with the p = 2 gate), KiDS — pooled on fixed-cell clearing; Harvey: L381's verdict withdrawn (3151d88f2) — it used an active p = 1, x_c0 = 1.5 merger gate with p = 2, x_c0 = 2 retentions — and a same-cell re-run at (p = 1, x_c0 = 2.5) is under way (L388+) | no action for the trigger; the no-particle field (L374: condensate dust breaks at shell crossing; only a wave field passes, m ≳ 2–5×10⁻¹⁹ eV) |
 
 ## 5. The path to closure — four steps, in order
@@ -137,7 +165,9 @@ formation-history question — one more reason the switch has to be a varied act
    vacuum gate + the dark-mass field, one action ID, every proof package on that ID. The cheapest deciding piece, named
    by the lead track's audit: write the gate as a smooth factor W(U) on the MOND term, vary it (the extra
    L_M W′(U)δU terms enter the clock and metric equations; ∂U/∂K = −(2+2p)U/K at fixed curvature), and check the
-   constraint structure and principal symbol on FRW and in one transition patch. The full list still open there:
+   constraint structure and principal symbol on FRW and in one transition patch. DE7 did the principal-symbol part
+   along real transitions: the curvature-reading gate needs a repair term, and the repair costs lensing = dynamics.
+   The V0 writer carries the full variation (CV3). The full list still open there:
    canonical classification, nonlinear well-posedness, full PPN of the assembled action, the filter's vertices, and the
    relativistic embedding of the region kernel. Never pool passes from different gate cells or action revisions.
 4. **Let the data decide what no calculation can:** the z ≈ 2.5 deep-MOND rotator (flat vs ΛCDM's +0.33 vs a

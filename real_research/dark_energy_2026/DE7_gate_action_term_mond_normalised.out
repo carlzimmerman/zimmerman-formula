@@ -1,0 +1,253 @@
+DE7 -- THE VACUUM GATE VARIED AS AN ACTION TERM, AT THE COUPLING THE MOND SECTOR SUPPLIES.
+
+DE1-DE6 priced the vacuum gate as a PRESCRIBED switch.  In the C-H/K branch's one action (V0; the author's
+2026-09-26 decision keeps that branch) the gate is a term of the action, so it must be varied.  Its variation
+adds curvature-squared pieces to the gravitational operator.  The lead track's environment-gate report (uncommitted
+at the time of writing: real_research/closure_doors_2026_09_26/environment_gate/) worked this out for a CONSTANT
+declared coupling B = b M^2 Lambda in an isotropic, frozen-coefficient ADM principal sector.  It found a wrong-sign
+k^4 term on part of the transition, repaired it with a concave curvature term C(R), and proved LOOSE sufficient
+inequalities.  The cross-thread review (XR3 K6, committed 05627f376) put the MOND-normalised coupling at galaxy
+gate edges at b ~ 3e-8 (z = 0.5) to 2.6e-4 (z = 4).  Its sufficient window then needed c2 above L340's range from
+z ~ 3, and it said so: "the actual reduced operator at the MOND-normalised B has to be computed".  This lane
+computes it, along the actual transition of actual galaxies, at every redshift where galaxies exist.
+
+THE GATE ON THE KHRONON LEAVES (general exponent p, transition width w, regulator eps; c = 1)
+  R = R^(3) + sigma_ij sigma^ij  (shear-completed: keeps c_T = 1, L351),   K = the leaf's mean curvature,
+  s(R, K) = (9/4) 3^p Lambda^p R / (Omega_L0^p x_c0 D^((1+p)/2)),   D = K^4 + eps Lambda^2,
+  t = (s - 1)/(2w) + 1/2,   f = W(t),   W(t) = g(t)/(g(t) + g(1 - t)),  g = e^(-1/t) (t > 0), 0 otherwise.
+  s = u/x_c0 with u = x~ [Omega_L(K)/Omega_L0]^p the DE1/DE2 vacuum-gate variable (Omega_L(K) = 3 Lambda/K^2,
+  x~ = 9R/(4K^2)).  p = 1, w = 1 is the lead track's gate with x_c = Omega_L0 x_c0.  f = 1/2 at u = x_c0 (DE1's
+  edge); the transition spans x_c0(1 - w) < u < x_c0(1 + w).
+  The action term: S_G = int N sqrt(gamma) B f(R, K), with B = dL/df the Lagrangian density the gate multiplies.
+  Its constitutive part, in the region kernel's own chassis (CV1's q-form, QUMOND sign), is
+  B = M^2 a0^2 q(y^2),  q(y^2) = 2 int_0^y h(s) ds,  h = y (nu_mono - 1),  y = g_N/a0,  M^2 = 1/(8 pi G),
+  so b = B/(M^2 Lambda) = (a0/c^2)^2 q/Lambda (= q/(32 pi) at kappa = 1/2; x 1.45 on the alt footing).
+
+  L352 loaded: H0 = 2.18299e-18 s^-1, Om = 0.31377, OL = 0.68614; kernel nu_mono (h on a 1e-14..1e14 grid)
+  (a0/c^2)^2/Lambda: canonical 9.94151e-03 (1/(32 pi) = 9.94718e-03), alt 1.44300e-02
+
+==============================================================================================================
+S1  THE GATE ON THE LEAVES: general p, w, eps -- derivatives, and the lead track's p = 1 control
+==============================================================================================================
+    residuals vs the lead track's t, t_K, t_KK, t_RK, t_RR at p = w = 1: [0, 0, 0, 0, 0]
+  [PASS] S1 the general-p/w gate argument and its derivatives reduce to the lead track's p = 1 expressions exactly
+         measured: [0, 0, 0, 0, 0]
+         reading:  t is linear in R (t_RR = 0) for every p and w; the half-activation point is u = x_c0 (DE1's edge)
+    W, W', W'' at t = 0.3 (sympy vs closed form): [(0.1295704694, 0.1295704694), (1.4833001918, 1.4833001918), (6.75626989306, 6.75626989306)]
+
+==============================================================================================================
+S2  INDEPENDENT RE-DERIVATION: the quadratic ADM action on a plane-wave scalar ansatz, then the reduction
+==============================================================================================================
+    R^(3) on the ansatz (from the Christoffel symbols): 2*A*e_b*k**2*(-A*e_b*sin(k*x)**2 + 2*cos(k*x))*exp(-2*A*e_b*cos(k*x))   [46s]
+    remainder (independent - lead track's principal density): A**2*(9*G0/4 - 9*K0**2*M2*c2/8 - 3*K0**2*M2/4 - 9*Lambda_*M2/4) + A*(9*A_dot*G_K/2 - 9*A_dot*K0*M2*c2/2 - 3*A_dot*K0*M2 + 3*G0*n_1/2 - 3*G_K*K0*n_1/2 + 3*K0**2*M2*c2*n_1/4 + K0**2*M2*n_1/2 - 3*Lambda_*M2*n_1/2)
+    reduced kinetic (k -> inf) - 9F/2 = 0;  reduced V/k^4 (k -> inf) - 4 E_* = 0   [49s]
+  [PASS] S2 INDEPENDENT: the quadratic ADM action re-derived on a plane-wave ansatz equals the lead track's principal density (k-free, shift-free remainder), and the exact shift/lapse reduction has k->inf kinetic 9F/2 and k^4 coefficient 4 E_*
+         measured: remainder k-free: True; kinetic residual 0; k^4 residual 0
+         reading:  the remainder holds only background-measure pieces (G0, G_K, Lambda, K0^2) -- lower order in k
+
+==============================================================================================================
+S3  THE GATE'S FIRST VARIATIONS (for V0): lapse, momentum, metric -- each against a direct Euler-Lagrange run
+==============================================================================================================
+    relative residuals -- lapse: |dL/dN - sqrt(g)[G - 2 sigma^2 G_R - K G_K]|/|dL/dN| = 4.3e-172;  metric (a, b): 1.6e-172, 1.4e-172   [96s]
+    momentum: |EL_v - sqrt(g) D_i P^ix| = 2.3e-172;  curvature part: |EL_zeta - formula| = 3.1e-172   [162s]
+  [PASS] S3 the gate's first variations (lapse, momentum, metric curvature part, metric kinetic part) equal direct Euler-Lagrange computations on their ansatze (generic non-polynomial G, random rational couplings, 40 digits, residual relative to the Euler-Lagrange expression)
+         measured: worst relative residual 4.3e-172
+         reading:  lapse: sqrt(g)[G - 2 sigma^2 G_R - K G_K]; momentum: sqrt(g) D_i(2 G_R sigma^ij + G_K g^ij); metric: see docstring
+
+==============================================================================================================
+S4  LENSING vs DYNAMICS: the static trace-free metric equation fixes psi - phi = 2 dG_R/M^2
+==============================================================================================================
+    trace-free xx part at first order: M2*Derivative(phi_s(x), (x, 2))/3 + M2*Derivative(zeta_s(x), (x, 2))/3 + 2*Derivative(chi_s(x), (x, 2))/3
+    minus (2/3) d^2/dx^2 [ (M^2/2)(phi - psi) + G_R ]  (psi = -zeta):  0
+  [PASS] S4 the static trace-free metric equation (the S3-verified E^ij) gives (M^2/2)(phi - psi) + dG_R = harmonic, i.e. psi - phi = 2 dG_R/M^2: lensing sees (phi + psi)/2, dynamics phi, so they differ by dG_R/M^2 (exact at first order)
+         measured: residual 0
+         reading:  any spatial variation of the total leaf function's G_R -- the gate's B f_R or a repair's C_R -- is gravitational slip
+
+==============================================================================================================
+T1  ANY smooth plateau gate has a wrong-sign k^4 term somewhere on its transition unless a repair dominates
+==============================================================================================================
+    W'' > 0 on t in (0.000, 0.500), W'' < 0 on (0.500, 0.974); max W'' t^2 on the lower half = 0.6158 at t = 0.284
+  [PASS] T1 (i) W'' takes both signs on (0, 1) [Lean DE7: every C^2 plateau gate does]; (ii) E_* - E = -D^2/Delta, >= 0 on the no-ghost branch Delta < 0 [Lean]
+         measured: W'' > 0 on (0.000, 0.5), < 0 on (0.5, 0.974); symbolic residual 0
+         reading:  so B f'' t_R^2 > 0 somewhere for either sign of B, and E_* > 0 there: growth rate ~ sqrt(16 E_*/(9F)) k^2
+
+==============================================================================================================
+C2  CONTROL: the lead track's midpoint witness, recomputed from this lane's own coefficients
+==============================================================================================================
+    this lane: {'Z': 0.9999994245641058, 'Delta': -0.020000383423929402, 'E': -9.192938209103844e-07, 'F': 22.888436912413038}
+    lead track (35-digit): Z 0.999999424564106, Delta -0.020000383423929, E_* -9.1929382091e-07, F 22.888436912413
+  [PASS] C2 CONTROL: at the lead track's midpoint witness this lane's Z, Delta, E_*, F reproduce its recorded values
+         measured: {'Z': '0.0e+00', 'Delta': '0.0e+00', 'E': '0.0e+00', 'F': '1.1e-16'}
+         reading:  same operator, independent code path (S2 derived it; S1 the gate derivatives)
+
+==============================================================================================================
+C1  CONTROL: the MOND-normalised edge coupling b(z) against XR3 K6 (p = 1, x_c0 = 2.5, 1e11 Msun, canonical)
+==============================================================================================================
+    z = 0.5: y_edge 1.790e-04 (r_e = 912.2 kpc), b = 3.158e-08 vs XR3 3.09e-08 (+2.2%)
+    z = 1.0: y_edge 5.647e-04 (r_e = 513.5 kpc), b = 1.763e-07 vs XR3 1.75e-07 (+0.7%)
+    z = 1.5: y_edge 1.642e-03 (r_e = 301.1 kpc), b = 8.689e-07 vs XR3 8.67e-07 (+0.2%)
+    z = 2.0: y_edge 4.273e-03 (r_e = 186.7 kpc), b = 3.613e-06 vs XR3 3.61e-06 (+0.1%)
+    z = 2.5: y_edge 9.996e-03 (r_e = 122.1 kpc), b = 1.276e-05 vs XR3 1.27e-05 (+0.5%)
+    z = 3.0: y_edge 2.133e-02 (r_e = 83.6 kpc), b = 3.908e-05 vs XR3 3.88e-05 (+0.7%)
+    z = 3.5: y_edge 4.216e-02 (r_e = 59.4 kpc), b = 1.061e-04 vs XR3 1.06e-04 (+0.1%)
+    z = 4.0: y_edge 7.817e-02 (r_e = 43.6 kpc), b = 2.605e-04 vs XR3 2.61e-04 (-0.2%)
+  [PASS] C1 CONTROL: this lane's edge coupling reproduces XR3 K6's b(z) at z = 0.5-4 to 5%
+         measured: max |dev| = 2.2%
+         reading:  XR3 used DE1's numeric edge ratios and 1/(32 pi); this lane the upper-branch profile with the mean-density term
+
+==============================================================================================================
+U1 R1 R2  THE REAL TRANSITIONS: unrepaired sign, the repair's minimal strength, and the window's reach
+==============================================================================================================
+    3840 transitions computed   [175s]
+    unrepaired E_* > 0 on 3766/3766 transitions; wrong-sign fraction of each transition 0.06-1.00; t-range of the wrong sign 0.000-0.639
+  [PASS] U1 at MOND normalisation the UNREPAIRED gate has E_* > 0 (wrong-sign k^4, Hadamard ill-posed) on part of EVERY real transition computed (z 0-12, M_b 1e9-1e12, both footings, 5 window cells, w = 1, 0.5, 0.25)
+         measured: 3766/3766
+         reading:  T1's theorem made concrete: the lower (outer) half of every transition, where W'' > 0
+
+    BASELINE (p = 1, x_c0 = 2.5, w = 1, M_b = 1e11): eta_min along the transition vs the ceiling 3 c2/(2 pi)
+    ceilings: c2 = 0.0073: eta < 3.485e-03;  c2 = 0.067: eta < 3.199e-02
+    canonical z =  0.0: r_e =  1582.8 kpc, y_edge = 5.94e-05, b_edge = 6.06e-09; eta_min = 2.22e-09 (at t = 0.32, y = 4.10e-05)
+    canonical z =  0.2: r_e =  1214.2 kpc, y_edge = 1.01e-04, b_edge = 1.34e-08; eta_min = 4.73e-09 (at t = 0.32, y = 7.10e-05)
+    canonical z =  0.5: r_e =   912.2 kpc, y_edge = 1.79e-04, b_edge = 3.16e-08; eta_min = 1.09e-08 (at t = 0.32, y = 1.26e-04)
+    canonical z =  1.0: r_e =   513.5 kpc, y_edge = 5.65e-04, b_edge = 1.76e-07; eta_min = 5.82e-08 (at t = 0.33, y = 3.93e-04)
+    canonical z =  1.5: r_e =   301.1 kpc, y_edge = 1.64e-03, b_edge = 8.69e-07; eta_min = 2.78e-07 (at t = 0.33, y = 1.13e-03)
+    canonical z =  2.0: r_e =   186.7 kpc, y_edge = 4.27e-03, b_edge = 3.61e-06; eta_min = 1.13e-06 (at t = 0.33, y = 2.89e-03)
+    canonical z =  2.5: r_e =   122.1 kpc, y_edge = 1.00e-02, b_edge = 1.28e-05; eta_min = 3.95e-06 (at t = 0.33, y = 6.75e-03)
+    canonical z =  3.0: r_e =    83.6 kpc, y_edge = 2.13e-02, b_edge = 3.91e-05; eta_min = 1.20e-05 (at t = 0.33, y = 1.43e-02)
+    canonical z =  3.5: r_e =    59.4 kpc, y_edge = 4.22e-02, b_edge = 1.06e-04; eta_min = 3.27e-05 (at t = 0.33, y = 2.83e-02)
+    canonical z =  4.0: r_e =    43.6 kpc, y_edge = 7.82e-02, b_edge = 2.60e-04; eta_min = 8.03e-05 (at t = 0.33, y = 5.22e-02)
+    canonical z =  5.0: r_e =    25.3 kpc, y_edge = 2.32e-01, b_edge = 1.23e-03; eta_min = 3.83e-04 (at t = 0.33, y = 1.53e-01)
+    canonical z =  6.0: r_e =    15.8 kpc, y_edge = 5.96e-01, b_edge = 4.52e-03; eta_min = 1.43e-03 (at t = 0.33, y = 3.92e-01)
+    canonical z =  7.0: r_e =    10.3 kpc, y_edge = 1.41e+00, b_edge = 1.39e-02; eta_min = 4.42e-03 (at t = 0.33, y = 9.06e-01)
+    canonical z =  8.0: r_e =     6.1 kpc, y_edge = 3.99e+00, b_edge = 4.70e-02; eta_min = 1.20e-02 (at t = 0.33, y = 2.00e+00)
+    canonical z = 10.0: r_e =     2.0 kpc, y_edge = 3.80e+01, b_edge = 5.17e-01; eta_min = 1.33e-01 (at t = 0.35, y = 1.97e+01)
+    canonical z = 12.0: r_e =     0.8 kpc, y_edge = 2.41e+02, b_edge = 3.55e+00; eta_min = 3.00e-01 (at t = 0.21, y = 4.95e+01)
+    alt       z =  0.0: r_e =  1658.2 kpc, y_edge = 4.50e-05, b_edge = 5.78e-09; eta_min = 2.12e-09 (at t = 0.32, y = 3.10e-05)
+    alt       z =  0.2: r_e =  1272.1 kpc, y_edge = 7.64e-05, b_edge = 1.28e-08; eta_min = 4.52e-09 (at t = 0.32, y = 5.37e-05)
+    alt       z =  0.5: r_e =   955.7 kpc, y_edge = 1.35e-04, b_edge = 3.02e-08; eta_min = 1.04e-08 (at t = 0.32, y = 9.53e-05)
+    alt       z =  1.0: r_e =   538.0 kpc, y_edge = 4.27e-04, b_edge = 1.68e-07; eta_min = 5.56e-08 (at t = 0.32, y = 2.96e-04)
+    alt       z =  1.5: r_e =   315.5 kpc, y_edge = 1.24e-03, b_edge = 8.31e-07; eta_min = 2.66e-07 (at t = 0.33, y = 8.51e-04)
+    alt       z =  2.0: r_e =   195.6 kpc, y_edge = 3.23e-03, b_edge = 3.46e-06; eta_min = 1.08e-06 (at t = 0.33, y = 2.19e-03)
+    alt       z =  2.5: r_e =   127.9 kpc, y_edge = 7.56e-03, b_edge = 1.22e-05; eta_min = 3.79e-06 (at t = 0.33, y = 5.11e-03)
+    alt       z =  3.0: r_e =    87.6 kpc, y_edge = 1.61e-02, b_edge = 3.75e-05; eta_min = 1.16e-05 (at t = 0.33, y = 1.08e-02)
+    alt       z =  3.5: r_e =    62.3 kpc, y_edge = 3.19e-02, b_edge = 1.02e-04; eta_min = 3.14e-05 (at t = 0.33, y = 2.14e-02)
+    alt       z =  4.0: r_e =    45.8 kpc, y_edge = 5.90e-02, b_edge = 2.52e-04; eta_min = 7.74e-05 (at t = 0.33, y = 3.95e-02)
+    alt       z =  5.0: r_e =    26.6 kpc, y_edge = 1.74e-01, b_edge = 1.19e-03; eta_min = 3.71e-04 (at t = 0.33, y = 1.16e-01)
+    alt       z =  6.0: r_e =    16.7 kpc, y_edge = 4.45e-01, b_edge = 4.41e-03; eta_min = 1.39e-03 (at t = 0.33, y = 2.93e-01)
+    alt       z =  7.0: r_e =    10.9 kpc, y_edge = 1.04e+00, b_edge = 1.36e-02; eta_min = 4.32e-03 (at t = 0.33, y = 6.71e-01)
+    alt       z =  8.0: r_e =     7.3 kpc, y_edge = 2.32e+00, b_edge = 3.69e-02; eta_min = 1.17e-02 (at t = 0.33, y = 1.45e+00)
+    alt       z = 10.0: r_e =     2.3 kpc, y_edge = 2.27e+01, b_edge = 4.37e-01; eta_min = 1.12e-01 (at t = 0.35, y = 1.18e+01)
+    alt       z = 12.0: r_e =     0.9 kpc, y_edge = 1.44e+02, b_edge = 3.01e+00; eta_min = 3.00e-01 (at t = 0.22, y = 3.19e+01)
+  [PASS] R1 [H1, pre-declared] with the lead track's Lambda-scaled concave repair, the minimal eta at every z <= 4 edge (1e11 canonical, p = 1, x_c0 = 2.5, w = 1) lies below the repair's own ceiling 3 c2/(2 pi) at c2 = 7.3e-3
+         measured: max eta_min(z <= 4) = 8.03e-05 vs ceiling 3.49e-03
+         reading:  XR3's sufficient inequalities needed c2 > 0.067 from z ~ 3; the actual operator needs far less
+
+    z_wp: the highest listed z to which the repaired window stays open (first failing z in brackets)
+    p = 1.0    x_c0 = 2.005  w = 1.0  c2 = 0.0073: can 1e+09: 10.0 [12.0]; can 1e+10: 8.0 [10.0]; can 1e+11: 7.0 [8.0]; can 1e+12: 5.0 [6.0]; alt 1e+09: 10.0 [12.0]; alt 1e+10: 8.0 [10.0]; alt 1e+11: 7.0 [8.0]; alt 1e+12: 5.0 [6.0]
+    p = 1.0    x_c0 = 2.005  w = 1.0  c2 = 0.067 : can 1e+09: 12.0+; can 1e+10: 10.0 [12.0]; can 1e+11: 8.0 [10.0]; can 1e+12: 7.0 [8.0]; alt 1e+09: 12.0+; alt 1e+10: 10.0 [12.0]; alt 1e+11: 8.0 [10.0]; alt 1e+12: 7.0 [8.0]
+    p = 1.0    x_c0 = 2.005  w = 0.5  c2 = 0.0073: can 1e+09: 7.0 [8.0]; can 1e+10: 6.0 [7.0]; can 1e+11: 5.0 [6.0]; can 1e+12: 3.5 [4.0]; alt 1e+09: 7.0 [8.0]; alt 1e+10: 6.0 [7.0]; alt 1e+11: 5.0 [6.0]; alt 1e+12: 4.0 [5.0]
+    p = 1.0    x_c0 = 2.005  w = 0.5  c2 = 0.067 : can 1e+09: 10.0 [12.0]; can 1e+10: 8.0 [10.0]; can 1e+11: 6.0 [7.0]; can 1e+12: 5.0 [6.0]; alt 1e+09: 10.0 [12.0]; alt 1e+10: 8.0 [10.0]; alt 1e+11: 6.0 [7.0]; alt 1e+12: 5.0 [6.0]
+    p = 1.0    x_c0 = 2.005  w = 0.25 c2 = 0.0073: can 1e+09: 6.0 [7.0]; can 1e+10: 4.0 [5.0]; can 1e+11: 3.5 [4.0]; can 1e+12: 2.5 [3.0]; alt 1e+09: 6.0 [7.0]; alt 1e+10: 4.0 [5.0]; alt 1e+11: 3.5 [4.0]; alt 1e+12: 2.5 [3.0]
+    p = 1.0    x_c0 = 2.005  w = 0.25 c2 = 0.067 : can 1e+09: 8.0 [10.0]; can 1e+10: 6.0 [7.0]; can 1e+11: 5.0 [6.0]; can 1e+12: 4.0 [5.0]; alt 1e+09: 8.0 [10.0]; alt 1e+10: 6.0 [7.0]; alt 1e+11: 5.0 [6.0]; alt 1e+12: 4.0 [5.0]
+    p = 1.0    x_c0 = 2.5    w = 1.0  c2 = 0.0073: can 1e+09: 10.0 [12.0]; can 1e+10: 8.0 [10.0]; can 1e+11: 6.0 [7.0]; can 1e+12: 5.0 [6.0]; alt 1e+09: 10.0 [12.0]; alt 1e+10: 8.0 [10.0]; alt 1e+11: 6.0 [7.0]; alt 1e+12: 5.0 [6.0]
+    p = 1.0    x_c0 = 2.5    w = 1.0  c2 = 0.067 : can 1e+09: 12.0+; can 1e+10: 10.0 [12.0]; can 1e+11: 8.0 [10.0]; can 1e+12: 7.0 [8.0]; alt 1e+09: 12.0+; alt 1e+10: 10.0 [12.0]; alt 1e+11: 8.0 [10.0]; alt 1e+12: 7.0 [8.0]
+    p = 1.0    x_c0 = 2.5    w = 0.5  c2 = 0.0073: can 1e+09: 7.0 [8.0]; can 1e+10: 6.0 [7.0]; can 1e+11: 4.0 [5.0]; can 1e+12: 3.5 [4.0]; alt 1e+09: 7.0 [8.0]; alt 1e+10: 6.0 [7.0]; alt 1e+11: 4.0 [5.0]; alt 1e+12: 3.5 [4.0]
+    p = 1.0    x_c0 = 2.5    w = 0.5  c2 = 0.067 : can 1e+09: 10.0 [12.0]; can 1e+10: 8.0 [10.0]; can 1e+11: 6.0 [7.0]; can 1e+12: 5.0 [6.0]; alt 1e+09: 10.0 [12.0]; alt 1e+10: 8.0 [10.0]; alt 1e+11: 6.0 [7.0]; alt 1e+12: 5.0 [6.0]
+    p = 1.0    x_c0 = 2.5    w = 0.25 c2 = 0.0073: can 1e+09: 5.0 [6.0]; can 1e+10: 4.0 [5.0]; can 1e+11: 3.5 [4.0]; can 1e+12: 2.5 [3.0]; alt 1e+09: 5.0 [6.0]; alt 1e+10: 4.0 [5.0]; alt 1e+11: 3.5 [4.0]; alt 1e+12: 2.5 [3.0]
+    p = 1.0    x_c0 = 2.5    w = 0.25 c2 = 0.067 : can 1e+09: 7.0 [8.0]; can 1e+10: 6.0 [7.0]; can 1e+11: 5.0 [6.0]; can 1e+12: 3.5 [4.0]; alt 1e+09: 7.0 [8.0]; alt 1e+10: 6.0 [7.0]; alt 1e+11: 5.0 [6.0]; alt 1e+12: 3.5 [4.0]
+    p = 1.0    x_c0 = 2.975  w = 1.0  c2 = 0.0073: can 1e+09: 10.0 [12.0]; can 1e+10: 8.0 [10.0]; can 1e+11: 6.0 [7.0]; can 1e+12: 5.0 [6.0]; alt 1e+09: 10.0 [12.0]; alt 1e+10: 8.0 [10.0]; alt 1e+11: 6.0 [7.0]; alt 1e+12: 5.0 [6.0]
+    p = 1.0    x_c0 = 2.975  w = 1.0  c2 = 0.067 : can 1e+09: 12.0+; can 1e+10: 10.0 [12.0]; can 1e+11: 8.0 [10.0]; can 1e+12: 6.0 [7.0]; alt 1e+09: 12.0+; alt 1e+10: 10.0 [12.0]; alt 1e+11: 8.0 [10.0]; alt 1e+12: 6.0 [7.0]
+    p = 1.0    x_c0 = 2.975  w = 0.5  c2 = 0.0073: can 1e+09: 7.0 [8.0]; can 1e+10: 5.0 [6.0]; can 1e+11: 4.0 [5.0]; can 1e+12: 3.5 [4.0]; alt 1e+09: 7.0 [8.0]; alt 1e+10: 5.0 [6.0]; alt 1e+11: 4.0 [5.0]; alt 1e+12: 3.5 [4.0]
+    p = 1.0    x_c0 = 2.975  w = 0.5  c2 = 0.067 : can 1e+09: 8.0 [10.0]; can 1e+10: 7.0 [8.0]; can 1e+11: 6.0 [7.0]; can 1e+12: 5.0 [6.0]; alt 1e+09: 8.0 [10.0]; alt 1e+10: 7.0 [8.0]; alt 1e+11: 6.0 [7.0]; alt 1e+12: 5.0 [6.0]
+    p = 1.0    x_c0 = 2.975  w = 0.25 c2 = 0.0073: can 1e+09: 5.0 [6.0]; can 1e+10: 4.0 [5.0]; can 1e+11: 3.5 [4.0]; can 1e+12: 2.5 [3.0]; alt 1e+09: 5.0 [6.0]; alt 1e+10: 4.0 [5.0]; alt 1e+11: 3.5 [4.0]; alt 1e+12: 2.5 [3.0]
+    p = 1.0    x_c0 = 2.975  w = 0.25 c2 = 0.067 : can 1e+09: 7.0 [8.0]; can 1e+10: 6.0 [7.0]; can 1e+11: 4.0 [5.0]; can 1e+12: 3.5 [4.0]; alt 1e+09: 7.0 [8.0]; alt 1e+10: 6.0 [7.0]; alt 1e+11: 4.0 [5.0]; alt 1e+12: 3.5 [4.0]
+    p = 0.5    x_c0 = 3.39   w = 1.0  c2 = 0.0073: can 1e+09: 12.0+; can 1e+10: 12.0+; can 1e+11: 10.0 [12.0]; can 1e+12: 8.0 [10.0]; alt 1e+09: 12.0+; alt 1e+10: 12.0+; alt 1e+11: 10.0 [12.0]; alt 1e+12: 8.0 [10.0]
+    p = 0.5    x_c0 = 3.39   w = 1.0  c2 = 0.067 : can 1e+09: 12.0+; can 1e+10: 12.0+; can 1e+11: 12.0+; can 1e+12: 12.0+; alt 1e+09: 12.0+; alt 1e+10: 12.0+; alt 1e+11: 12.0+; alt 1e+12: 12.0+
+    p = 0.5    x_c0 = 3.39   w = 0.5  c2 = 0.0073: can 1e+09: 12.0+; can 1e+10: 10.0 [12.0]; can 1e+11: 7.0 [8.0]; can 1e+12: 5.0 [6.0]; alt 1e+09: 12.0+; alt 1e+10: 10.0 [12.0]; alt 1e+11: 7.0 [8.0]; alt 1e+12: 5.0 [6.0]
+    p = 0.5    x_c0 = 3.39   w = 0.5  c2 = 0.067 : can 1e+09: 12.0+; can 1e+10: 12.0+; can 1e+11: 10.0 [12.0]; can 1e+12: 8.0 [10.0]; alt 1e+09: 12.0+; alt 1e+10: 12.0+; alt 1e+11: 10.0 [12.0]; alt 1e+12: 8.0 [10.0]
+    p = 0.5    x_c0 = 3.39   w = 0.25 c2 = 0.0073: can 1e+09: 8.0 [10.0]; can 1e+10: 7.0 [8.0]; can 1e+11: 5.0 [6.0]; can 1e+12: 3.5 [4.0]; alt 1e+09: 8.0 [10.0]; alt 1e+10: 7.0 [8.0]; alt 1e+11: 5.0 [6.0]; alt 1e+12: 3.5 [4.0]
+    p = 0.5    x_c0 = 3.39   w = 0.25 c2 = 0.067 : can 1e+09: 12.0+; can 1e+10: 10.0 [12.0]; can 1e+11: 8.0 [10.0]; can 1e+12: 5.0 [6.0]; alt 1e+09: 12.0+; alt 1e+10: 10.0 [12.0]; alt 1e+11: 8.0 [10.0]; alt 1e+12: 6.0 [7.0]
+    p = 1.9042 x_c0 = 2.3497 w = 1.0  c2 = 0.0073: can 1e+09: 5.0 [6.0]; can 1e+10: 4.0 [5.0]; can 1e+11: 3.5 [4.0]; can 1e+12: 2.5 [3.0]; alt 1e+09: 5.0 [6.0]; alt 1e+10: 4.0 [5.0]; alt 1e+11: 3.5 [4.0]; alt 1e+12: 2.5 [3.0]
+    p = 1.9042 x_c0 = 2.3497 w = 1.0  c2 = 0.067 : can 1e+09: 6.0 [7.0]; can 1e+10: 5.0 [6.0]; can 1e+11: 4.0 [5.0]; can 1e+12: 3.5 [4.0]; alt 1e+09: 6.0 [7.0]; alt 1e+10: 5.0 [6.0]; alt 1e+11: 4.0 [5.0]; alt 1e+12: 3.5 [4.0]
+    p = 1.9042 x_c0 = 2.3497 w = 0.5  c2 = 0.0073: can 1e+09: 3.5 [4.0]; can 1e+10: 3.0 [3.5]; can 1e+11: 2.5 [3.0]; can 1e+12: 2.0 [2.5]; alt 1e+09: 3.5 [4.0]; alt 1e+10: 3.0 [3.5]; alt 1e+11: 2.5 [3.0]; alt 1e+12: 2.0 [2.5]
+    p = 1.9042 x_c0 = 2.3497 w = 0.5  c2 = 0.067 : can 1e+09: 4.0 [5.0]; can 1e+10: 4.0 [5.0]; can 1e+11: 3.5 [4.0]; can 1e+12: 2.5 [3.0]; alt 1e+09: 4.0 [5.0]; alt 1e+10: 4.0 [5.0]; alt 1e+11: 3.5 [4.0]; alt 1e+12: 2.5 [3.0]
+    p = 1.9042 x_c0 = 2.3497 w = 0.25 c2 = 0.0073: can 1e+09: 3.0 [3.5]; can 1e+10: 2.5 [3.0]; can 1e+11: 2.0 [2.5]; can 1e+12: 1.5 [2.0]; alt 1e+09: 3.0 [3.5]; alt 1e+10: 2.5 [3.0]; alt 1e+11: 2.0 [2.5]; alt 1e+12: 1.5 [2.0]
+    p = 1.9042 x_c0 = 2.3497 w = 0.25 c2 = 0.067 : can 1e+09: 4.0 [5.0]; can 1e+10: 3.0 [3.5]; can 1e+11: 2.5 [3.0]; can 1e+12: 2.0 [2.5]; alt 1e+09: 4.0 [5.0]; alt 1e+10: 3.0 [3.5]; alt 1e+11: 2.5 [3.0]; alt 1e+12: 2.0 [2.5]
+
+    SENSITIVITY (baseline, canonical, 1e11, c2 = 7.3e-3): B < 0 (the bad half is the inner one), b x 0.3 and x 3
+    B<0     : z = 1.0: 2.04e-06, z = 2.5: 1.55e-04, z = 4.0: 3.21e-03, z = 6.0: 5.46e-02, z = 8.0: 3.00e-01
+    b x 0.3 : z = 1.0: 1.74e-08, z = 2.5: 1.19e-06, z = 4.0: 2.40e-05, z = 6.0: 4.24e-04, z = 8.0: 3.56e-03
+    b x 3   : z = 1.0: 1.74e-07, z = 2.5: 1.19e-05, z = 4.0: 2.43e-04, z = 6.0: 4.36e-03, z = 8.0: 3.60e-02
+  [PASS] R2 (reported) eta_min and the window's reach z_wp per cell, mass, footing, w and c2; sensitivities
+         measured: see tables and results JSON
+
+==============================================================================================================
+N2 N3 N4  LENSING vs DYNAMICS AT GATE TRANSITIONS (S4's slip on the real profiles)
+==============================================================================================================
+    N2 -- the gate's own slip (no repair), baseline cell, 1e11 Msun: max |g_lens - g_dyn|/(nu g_N) on the transition
+    canonical z=0: 0.043, z=0.25: 0.057, z=0.5: 0.076, z=1: 0.13, z=1.5: 0.2, z=2: 0.3, z=2.5: 0.43, z=3: 0.59, z=3.5: 0.77, z=4: 0.97, z=5: 1.3, z=6: 1.6, z=7: 1.3, z=8: 1.3, z=10: 1.4, z=12: 1.4
+    alt       z=0: 0.037, z=0.25: 0.05, z=0.5: 0.066, z=1: 0.11, z=1.5: 0.17, z=2: 0.26, z=2.5: 0.38, z=3: 0.53, z=3.5: 0.69, z=4: 0.88, z=5: 1.2, z=6: 1.5, z=7: 1.6, z=8: 1.2, z=10: 1.4, z=12: 1.4
+  [PASS] N2 (reported) the varied gate's own slip: lensing and dynamics differ in every transition layer by the gradient of B f_R/M^2 (S4); max ratio at z = 0.25 / 2.5 / 4 / 6 (canonical, 1e11)
+         measured: 0.057 / 0.43 / 0.97 / 1.6
+
+    N3 -- the Lambda-scaled repair's slip around KiDS-epoch lenses (z = 0.25), with eta sized for edges at z_t
+    lens 1e+10 canonical: 10% lensing = dynamics needs eta <= 1.00e-08 (rigorous bound); max ratio for eta(z_t) 0.5: 0.34, 1: 1.8, 1.5: 8.6, 2: 35, 2.5: 1.2e+02, 4: 2.5e+03, 6: 4.4e+04;  edges repairable up to z_t = None
+    lens 1e+10 alt      : 10% lensing = dynamics needs eta <= 1.10e-08 (rigorous bound); max ratio for eta(z_t) 0.5: 0.31, 1: 1.6, 1.5: 7.8, 2: 32, 2.5: 1.1e+02, 4: 2.3e+03, 6: 4e+04;  edges repairable up to z_t = 0.5
+    lens 1e+11 canonical: 10% lensing = dynamics needs eta <= 3.18e-08 (rigorous bound); max ratio for eta(z_t) 0.5: 0.11, 1: 0.57, 1.5: 2.7, 2: 11, 2.5: 39, 4: 7.8e+02, 6: 1.4e+04;  edges repairable up to z_t = 0.5
+    lens 1e+11 alt      : 10% lensing = dynamics needs eta <= 3.49e-08 (rigorous bound); max ratio for eta(z_t) 0.5: 0.096, 1: 0.52, 1.5: 2.5, 2: 10, 2.5: 35, 4: 7.1e+02, 6: 1.3e+04;  edges repairable up to z_t = 0.5
+    lens 1e+12 canonical: 10% lensing = dynamics needs eta <= 1.01e-07 (rigorous bound); max ratio for eta(z_t) 0.5: 0.033, 1: 0.18, 1.5: 0.86, 2: 3.5, 2.5: 12, 4: 2.5e+02, 6: 4.4e+03;  edges repairable up to z_t = 1.0
+    lens 1e+12 alt      : 10% lensing = dynamics needs eta <= 1.11e-07 (rigorous bound); max ratio for eta(z_t) 0.5: 0.03, 1: 0.16, 1.5: 0.78, 2: 3.2, 2.5: 11, 4: 2.3e+02, 6: 4e+03;  edges repairable up to z_t = 1.0
+  [PASS] N3 (reported) the lead track's Lambda-scaled repair: its C_R = -eta M^2 arctan(R/Lambda) falls by eta arctan(R_1/2) across every lens's transition, a lensing-dynamics slip of relative size ~ eta (c/v_f)^2; keeping it below 10% at KiDS lenses (1e10-1e12, z = 0.25) caps eta, and so caps the redshift of the edges it can repair
+         measured: lowest reach over lenses/footings: z_t = 0.0
+         reading:  the repair's slip is O(eta) in potential against galaxy potentials O(v_f^2/c^2) ~ 1e-7-1e-6
+
+    N4 -- ANY metric-only repair: at a given epoch every system's transition sits at the same R (the gate reads (R, K)),
+    so C_RR(R, K) <= -max_systems B f_RR there; a lens g then carries a slip >= I_max/2 over its transition,
+    I_max = int_lower-half B_max f_RR dR, set by the most massive bound system at that epoch.  Floor on the max ratio:
+    z = 0.25, most massive system 1e+12 Msun (I_max = 4.08e-09): floor per lens 1e+09: 0.044, 1e+10: 0.014, 1e+11: 0.0044, 1e+12: 0.0014
+    z = 0.25, most massive system 1e+14 Msun (I_max = 1.28e-07): floor per lens 1e+09: 1.4, 1e+10: 0.44, 1e+11: 0.14, 1e+12: 0.044
+    z = 1.00, most massive system 1e+12 Msun (I_max = 8.57e-09): floor per lens 1e+09: 0.081, 1e+10: 0.026, 1e+11: 0.0081, 1e+12: 0.0025
+    z = 1.00, most massive system 1e+14 Msun (I_max = 2.64e-07): floor per lens 1e+09: 2.5, 1e+10: 0.79, 1e+11: 0.25, 1e+12: 0.078
+    z = 2.00, most massive system 1e+12 Msun (I_max = 1.95e-08): floor per lens 1e+09: 0.14, 1e+10: 0.044, 1e+11: 0.014, 1e+12: 0.0043
+    z = 2.00, most massive system 1e+14 Msun (I_max = 5.79e-07): floor per lens 1e+09: 4.2, 1e+10: 1.3, 1e+11: 0.41, 1e+12: 0.13
+  [PASS] N4 (reported) the floor for ANY metric-only repair: lensing-dynamics slip in each lens's transition layer, set by the most massive bound system's B at that epoch (canonical, p = 1, x_c0 = 2.5, w = 1)
+         measured: z = 0.25, clusters (1e14) setting B_max: 1e11 lens 0.14, 1e10 lens 0.44; galaxies (1e12) setting it: 1e11 lens 0.0044
+         reading:  the floor scales with B_max: it is the constitutive coupling of the largest bound regions, not the lens's own
+
+==============================================================================================================
+N1  THE REPAIR'S STRUCTURAL COST (indicative, not gates)
+==============================================================================================================
+    any R-only concave repair: C_R(+inf) - C_R(-inf) = int C_RR dR < 0 -- the R^(3)+sigma^2 coefficient differs
+    between over- and under-dense leaves.  The arctan form: C_R = -eta M^2 arctan(R/Lambda) -> -/+ (pi/2) eta M^2, i.e.
+    a Newton coupling G/(1 -/+ pi eta) wherever |delta rho| >> rho_L (every bound structure; CMB-epoch perturbations,
+    where |R|/Lambda = 2 |delta| rho_bar/rho_L ~ 1e4 for delta ~ 1e-5 at z ~ 1100).  Scale analogy (L350):
+    pi eta <= |G_cos/G_N - 1| cap 1.5 x (0.63-2.9)e-3  =>  eta <~ 3.0e-04 to 1.4e-03
+    baseline canonical: eta_min first exceeds the tighter/looser indicative caps at z = 5.0 / 6.0
+    baseline alt: eta_min first exceeds the tighter/looser indicative caps at z = 5.0 / 6.0
+  [PASS] N1 (reported, indicative) the repair's sign-dependent coupling and the redshift where the needed eta reaches the L350-analog scale
+         measured: {'canonical': [5.0, 6.0], 'alt': [5.0, 6.0]}
+
+==============================================================================================================
+M1  THE DOORS (CV1's A6 obligation): which homogeneous backgrounds sit on the off-plateau
+==============================================================================================================
+    contrast door: R = R^(3) + sigma^2 = 0 on flat FRW => s = 0 => t = (w - 1)/(2w) <= 0 for w <= 1: f and every
+    derivative vanish on the background and in its perturbation theory to all orders (exact).
+    absolute door, cell (p = 1.0, x_c0 = 2.005): u_FRW = (3/2) Om(z) E^-2p peaks at 0.5463 (z = 0.30) => off-plateau iff w <= 0.728
+    absolute door, cell (p = 1.0, x_c0 = 2.5): u_FRW = (3/2) Om(z) E^-2p peaks at 0.5463 (z = 0.30) => off-plateau iff w <= 0.781
+    absolute door, cell (p = 1.0, x_c0 = 2.975): u_FRW = (3/2) Om(z) E^-2p peaks at 0.5463 (z = 0.30) => off-plateau iff w <= 0.816
+    absolute door, cell (p = 0.5, x_c0 = 3.39): u_FRW = (3/2) Om(z) E^-2p peaks at 0.6967 (z = 0.63) => off-plateau iff w <= 0.794
+    absolute door, cell (p = 1.9042, x_c0 = 2.3497): u_FRW = (3/2) Om(z) E^-2p peaks at 0.4736 (z = 0.05) => off-plateau iff w <= 0.798
+    absolute door, baseline cell, w = 0.78: (z, eta_min, unrepaired wrong-sign) = [(0.5, 9.100540224041883e-09, True), (1.0, 6.718825360633205e-08, True), (2.0, 2.0735563190494053e-06, True), (2.5, 8.048593906337231e-06, True), (4.0, 0.00018694364610906153, True)]
+    matter-only door: no metric-only form.  On the lensing = dynamics sector (KiDS requires it) the leaf curvature is
+    R^(3) = 16 pi G rho_dyn (phantom included; S2's R^(3) linear part is -4 lap zeta), so every functional of leaf
+    invariants reads rho_dyn.  The matter-only reading is the LOWER static branch of the same geometric term (DE4's
+    bistable band), selected by history; a term reading u^mu u^nu T_mu nu couples matter to the khronon (requirement 11).
+  [PASS] M1 (reported) the doors' homogeneous backgrounds: contrast off-plateau for all w <= 1; absolute off-plateau iff w <= w_max(cell); matter-only has no metric-only action form (a branch, not a term)
+         measured: {'1.0/2.005': 0.728, '1.0/2.5': 0.781, '1.0/2.975': 0.816, '0.5/3.39': 0.794, '1.9042/2.3497': 0.798}
+
+==============================================================================================================
+SUMMARY
+==============================================================================================================
+  15/15 checks pass; load-bearing failures: 0   [176s]
+  wrote DE7_gate_action_term_mond_normalised_results.json
+rc=0
