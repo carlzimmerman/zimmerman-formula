@@ -1,0 +1,69 @@
+CV2 -- V0 FOR THE C-H/K BRANCH, STEP 2: THE COVARIANT ACTION, AND THREE OF ITS REDUCTIONS.
+
+THE ACTION (signature -+++, x0 = ct; C-H's clock tau, n_mu = -d_mu tau/sqrt(X), N = X^-1/2, h = g + n n, K, a_mu = D_mu ln N,
+Delta_h the leaf Laplace-Beltrami operator, <.>_h the proper-volume leaf average, alpha = a0/c^2; ACTION.md for C-H's
+fields, filter, caps and endpoint terms, unchanged):
+  I_V0 = c^3/(16 pi G) Int d^4x sqrt(-g) {
+           R - 2 Lambda + 2 h^{mu nu}(D_mu U - a_mu)(D_nu U - a_nu)                          C-H's chassis
+           + alpha_c a_mu a^mu - c_2 (K - <K>_h)^2                                            L340's BPS terms, L350's leaf average
+           + 2 alpha^2 f q(h^{mu nu} D_mu W_b D_nu W_b / alpha^2)                              the region kernel, nu_mono's q
+           + Int_0^b dz L (d_z W - Delta_h W) + lambda_0 (W_0 - Y)                            C-H's heat flow, started from Y
+           + 2 Psi [(Delta_h - m^2 (1 - f)) Y - f Delta_h (U - V)] - 2 sigma m^2 (1 - f) Y^2   the region field (L361, lifted)
+           + 2 Lam_d [Delta_h V - (4 pi G/c^4)(eps_d - <eps_d>_h)] }                          L353's pair, eps_d = n n T_d
+         + GHY caps + S_matter[g] + S_dark[g; the dark state]
+  f = F(R^(3) + sigma_ij sigma^ij, K; Lambda) is the gate (its functional form and normalisation are the dark-energy thread's
+  piece; CV3 varies it).  Every added field (Y, Psi, V, Lam_d) is a leafwise auxiliary like C-H's W, L, lambda_0.
+
+  *** MUTATE=1: the leaf average is dropped (-c_2 K^2); B3's G_cos = G must FAIL ***
+
+==============================================================================================================
+B1  THE NON-RELATIVISTIC LIMIT: the covariant action on the static branch, leading order, every factor of c
+==============================================================================================================
+    R^(3)[e^(-2 psi) delta] = -2*Derivative(psi(x, y, z), x)**2 + 4*Derivative(psi(x, y, z), (x, 2)) - 2*Derivative(psi(x, y, z), y)**2 + 4*Derivative(psi(x, y, z), (y, 2)) - 2*Derivative(psi(x, y, z), z)**2 + 4*Derivative(psi(x, y, z), (z, 2)) e^(2 psi);  N sqrt(h) R^(3) - claim - 4 div(e^(phi-psi) grad psi) = 0: True
+    psi equation solved by psi = Phi: True;  (covariant action on the static branch) - (CV1's Lagrangian) = 0
+    dark component's coupling from the covariant pair: -dL/d rho_d = Phi(x, y, z) + lam(x, y, z)/2
+  [PASS] B1 at leading weak-field order the covariant action is CV1's Lagrangian exactly: the leaf curvature gives e^(phi-psi)(2|grad psi|^2 - 4 grad phi.grad psi) + a divergence, psi = Phi, and every added term lands with its factors of c
+         measured: EH identity True; psi = Phi True; difference 0; coupling Phi(x, y, z) + lam(x, y, z)/2
+         reading:  psi = Phi at this order is lensing = dynamics for both species (the pair and the region field add no psi source)
+
+==============================================================================================================
+B2  REDUCTION (iii): ON A GATE-ON PLATEAU V0 IS C-H/K, AND L340's BLOCK IS RECOVERED
+==============================================================================================================
+    det M_V0(omega) / det M_L340(omega) = -4*k**4  (independent of omega and nonzero: the same modes)
+    eliminating (Y, Psi) exactly: Schur complement = L340's matrix True; reduced source = L340's True
+    omega -> 0: psi/psi_N = -2*(C + 1)/(C*alpha_c + alpha_c - 2)  (L340's static MOND solution -2*(C + 1)/(C*alpha_c + alpha_c - 2));  det M_V0(0) = 256*c_2*k**14*(C*alpha_c + alpha_c - 2)
+  [PASS] B2 on a gate-on plateau V0 reduces to C-H/K: the 6x6 block's determinant is an omega-independent nonzero factor times L340's, the responses of psi, phi, beta, U are L340's, and the omega -> 0 limit is its static MOND solution with no frozen mode
+         measured: det ratio -4*k**4; same responses [True, True]; psi -> -2*(C + 1)/(C*alpha_c + alpha_c - 2); det(0) = 256*c_2*k**14*(C*alpha_c + alpha_c - 2)
+         reading:  Delta_h(Y - U) = 0 gives Y = U + const for every leaf metric, so the elimination is exact nonlinearly, not only in this block; the leaf average equals -c_2 K^2 on every k != 0 mode (L350 G5); L340's H2/H3 health carries over
+
+==============================================================================================================
+B3  FRW WITH THE LEAF AVERAGE (minisuperspace): the gate off, the auxiliaries off, GR's Friedmann equation
+==============================================================================================================
+    auxiliary equations on FRW: [-2*m2*(2*sigma*Y(t) + Psi(t))*N(t)*a(t)**3, -2*m2*N(t)*Y(t)*a(t)**3, 0];  solution [{Psi(t): 0, Y(t): 0}]  (Lam_d: its equation is 0 = 0, V a gauge constant)
+    auxiliary contribution to the lapse constraint at Y = Psi = Lam_d = 0: 0
+    Friedmann: (H/c)^2 = 2*(8*pi*G*rho0 + Lambda*c**2*a(t)**3)/(3*c**2*(3*c_2 + 2)*a(t)**3);  ratio to 8 pi G rho/(3c^2) + Lambda/3: 2/(3*c_2 + 2)
+  [FAIL] B3 on FRW the gate is off, the auxiliaries vanish consistently and exert no force, alpha_c a^2 = 0 and the leaf average removes the c_2 term: the Friedmann equation is GR's, G_cos = G
+         measured: aux solution [{Psi(t): 0, Y(t): 0}]; aux force 0; H^2 ratio 2/(3*c_2 + 2)
+         reading:  L350 G5 from the action: the Planck-era bound on c_2 (<= 0.6-2.9e-3) no longer conflicts with L340's tracking floor 7.3e-3 at the background level; perturbations with k != 0 still carry c_2 (the review's recheck item)
+
+==============================================================================================================
+B4  THE DARK SOURCE ON A CLOSED LEAF: projected vs unprojected (spectral solve on a torus)
+==============================================================================================================
+    projected source eps - <eps>: zero mode 9.8e-17, residual |lap V - src|/|src| = 6.0e-14
+    unprojected source eps > 0:    zero mode 1.00 -> no periodic solution (residual 0.56)
+  [PASS] B4 the projected dark source is solvable on a closed leaf for a positive density and the unprojected one is not
+         measured: projected residual 6.0e-14; unprojected zero mode 1.00, residual 0.56
+         reading:  the mean belongs to the FRW background (the lead track's CD26-4 made the same point for the carrier coupling)
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  V0 for the C-H/K branch, written as one covariant action on C-H's leaves: C-H's chassis, L340's BPS terms with L350's
+  leaf average, the region kernel read through a leafwise field Y (L361, lifted, sigma declared), L353's pair with the
+  projected dark source, and the gate f as a prescribed function of the leaf geometry.  Its static weak-field limit is
+  CV1's Lagrangian exactly (B1), so reductions (i) and (ii) at prescribed f carry over from CV1; on a gate-on plateau it
+  IS C-H/K, so L340's block and its health are recovered (B2, reduction (iii)); on FRW the gate and every auxiliary are
+  off and the Friedmann equation is GR's (B3); the dark source is well posed on closed leaves only when projected (B4).
+  Left for CV3: the gate varied as an action term.  Time 3 s.
+
+  3/4 checks pass; load-bearing failures: 1; wrote CV2_covariant_action_results_MUTATE.json

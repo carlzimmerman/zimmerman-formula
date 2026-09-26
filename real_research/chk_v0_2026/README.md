@@ -27,7 +27,7 @@ This directory builds V0 one step at a time. Each lane has a MUTATE control and 
 | Lane | Content | Status |
 |---|---|---|
 | CV1 | the non-relativistic action V0 must reduce to; reductions (i) and (ii) at f prescribed; C7 named; the off-plateau | **6/6** (MUTATE rc = 1); Lean 8 thm |
-| CV2 | the covariant action; its NR limit = CV1; L340's static block (iii); FRW with the leaf average | next |
+| CV2 | the covariant action; its NR limit = CV1; L340's static block (iii); FRW with the leaf average | **4/4** (MUTATE rc = 1); Lean 5 thm |
 | CV3 | the gate as a varied action term (the dark-energy thread's piece); L361's EL equations with f varied (ii) | awaiting the gate functional |
 
 ## CV1 — the non-relativistic action on C-H's chassis (6/6; MUTATE ungated source fails A3, rc = 1)
@@ -77,3 +77,55 @@ pair, to λ.
 
 **Scope.** Non-relativistic, with f prescribed. On a closed leaf the Poisson sources carry the leaf mean, so the kernel's
 source is the gated baryon contrast; for an isolated system that equals L361's fρ_b.
+
+**The record's σ is inconsistent, and this has to be declared per result.** From the L361/L353 owner's review of CV1
+and a check of L370:
+- L361's action (R0) is σ = 1: χ is screened with the same M² as w, so that χ = w everywhere.
+- No KiDS score on the record includes the σ = 1 layer:
+  - L352, L360 and AT3 (through L360's fit_comb) use L352's hard-edge, Gauss-compensated profile, which is σ = 0 in
+    the Dirichlet limit;
+  - L361's R3 has no edge at all (isolated QUMOND with the transmitted EFE).
+- L370's `phantom_felt` (Harvey, inherited by AT3) is also σ = 0: a hard region mask, the region's source unscreened
+  and the response masked.
+- The σ = 1 layer's lensing, a finite shell in the Dirichlet limit, is unscored.
+
+## CV2 — the covariant action and three reductions (4/4; MUTATE without the leaf average fails B3, rc = 1)
+
+`CV2_covariant_action.py` (+ `.out`, `_MUTATE.out`, results JSON; seconds). Lean:
+`CV2_covariant_reduction_certificates.lean` (5 theorems, zero `sorry`, standard axioms).
+
+    I_V0 = c³/(16πG) ∫ d⁴x √−g { R − 2Λ + 2h^{μν}(D_μU − a_μ)(D_νU − a_ν)
+             + α_c a_μa^μ − c₂(K − ⟨K⟩_h)²
+             + 2α² f q(h^{μν}D_μW_b D_νW_b/α²) + ∫₀^b dz L(∂_zW − Δ_hW) + λ₀(W₀ − Y)
+             + 2Ψ[(Δ_h − m²(1 − f))Y − fΔ_h(U − V)] − 2σm²(1 − f)Y²
+             + 2Λ_d[Δ_hV − (4πG/c⁴)(ε_d − ⟨ε_d⟩_h)] } + GHY + S_matter[g] + S_dark[g; dark state]
+
+Here ε_d = n_μn_νT_d^{μν}. The gate f is a prescribed function of the leaf geometry (R^(3) + σ_ijσ^ij, K). Every
+added field (Y, Ψ, V, Λ_d) is a leafwise auxiliary, like C-H's W, L and λ₀.
+
+- **B1, the non-relativistic limit.** The leaf curvature of the conformally flat leaf, computed from Christoffel
+  symbols, gives N√h R^(3) = e^{φ−ψ}(2|∇ψ|² − 4∇φ·∇ψ) + a divergence. The ψ equation gives ψ = Φ, so lensing equals
+  dynamics for both species. At leading order the action is CV1's Lagrangian exactly, every factor of c included.
+  Reductions (i) and (ii) at prescribed f therefore carry over from CV1.
+- **B2, reduction (iii).**
+  - On a gate-on plateau, where f = 1 with every derivative zero (Lean CV1 `gate_flat_above_one`), the constraint
+    Δ_h(Y − U) = 0 gives Y = U + const for every leaf metric (Lean `periodic_laplacian_kernel_const`, a discrete
+    analogue). So V0 is C-H/K there.
+  - On L340's own block (its E-list copied verbatim) the exact elimination of (Y, Ψ) returns L340's 4×4 matrix and
+    source. The determinant picks up only −4k⁴, independent of ω. The ω → 0 limit is L340's static MOND solution, with no
+    frozen mode.
+- **B3, FRW.**
+  - With the gate off, the auxiliaries vanish consistently and exert no force. α_c a² = 0, and the leaf-averaged
+    λ-term is identically zero, so the Friedmann equation is GR's: G_cos = G (Lean `frw_leaf_average`).
+  - The control, the plain −c₂K², gives H²(1 + 3c₂/2) (L350 G1; Lean `frw_plain_c2`).
+  - This settles the background only. k ≠ 0 perturbations still carry c₂ (XR3 item 7's recheck).
+- **B4, the dark source.** On a closed leaf, Δ_hV = (4πG/c⁴)(ε_d − ⟨ε_d⟩) is solvable for a positive density (residual
+  6×10⁻¹⁴). The unprojected source is not, because its zero mode is nonzero.
+
+**Open after CV2, in order:**
+- CV3, the gate varied as an action term (B δf with δf = f_R δR + f_K δK), which needs the dark-energy thread's gate
+  functional and normalisation;
+- the σ = 1 layer's lensing;
+- the Dirac count (XR3 calc 2);
+- the dark state at action level under criterion B (XR3 calc 7). A multistreaming state made of the clock's own dust
+  would fold the foliation.
