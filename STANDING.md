@@ -7,6 +7,17 @@ conflicts with this file, this file is newer unless it says otherwise.
 
 ---
 
+## ⚠⚠⚠ REVISION 11 BLOCK — 2026-09-26. Dark energy's gate, pinned by the framework's own gates. Newer than everything below it.
+
+**What dark energy does in the construction, and how tightly the data pin it** ([`dark_energy_2026/`](real_research/dark_energy_2026/README.md); note [`THE_CLEAN_PATH_2026-09-26.md`](real_research/dark_energy_2026/THE_CLEAN_PATH_2026-09-26.md); Lean [`DE_vacuum_gate_certificates.lean`](fable_independent_2026/lean_2026/DE_vacuum_gate_certificates.lean), 17 theorems, standard axioms, no `sorry`).
+
+- Three jobs, as built: its energy accelerates the expansion; its pressure sets a₀ = κc√(Gρ_Λ) (the stage-17 promotion — a postulate — which makes a₀ flat for a w = −1 vacuum); its share Ω_Λ = 3Λc²/K² gates where MOND acts, u = x̃[Ω_Λ(z)/Ω_Λ,0]^p ≥ x_c0 (L359; a prescribed mask, not yet a varied action term).
+- **DE1** (5/6, F1 fail recorded as pre-declared): the deepest MOND acceleration visible at z is y_edge = x_c0 (H₀²/a₀^{3/2})√(GM_b) E(z)^{2+2p}, so the flat-a₀ flagship caps the exponent, **p ≤ 1.97** (x_c0 = 2, canonical, M_b = 10¹¹, z = 2.5). The cell L364/L367/L380 use for cosmic shear (p = 2, x_c0 = 2) **fails the flagship at 10¹¹ M☉ canonical** (zero point −1.13 dex); flagship-safe only to z = 2.46/2.58.
+- **DE2** (8/8; MUTATE constant-threshold: no window, rc = 1): KiDS caps x_c,eff(0.25) ≤ 3.867, cosmic shear needs x_c,eff(0.5) ≥ 3.50/2.93/2.49 (600/650/700 km/s), the flagship caps x_c,eff(2.5) ≤ 364.5; **window p ∈ [0.5, 2.07], containing the linear gate p = 1, x_c0 ∈ [2.005, 2.975]**. L359's (p = 1, x_c0 = 2.5) passes all four; L380's particle-mesh gates must be re-run there (never pool across cells).
+- **Recipe:** proposed Branch R2 ingredient adjustments are in [`RECIPE_BRANCH_R2_PROPOSAL_2026-09-26.md`](real_research/dark_energy_2026/RECIPE_BRANCH_R2_PROPOSAL_2026-09-26.md) (the recipe file itself was not edited: the lead track has an uncommitted amendment in it). Includes the §1 "Z~21" error (Z = √(32π/3) = 5.7888 is κ restated) and the requirement-7 causality reading (criterion B), both the user's call.
+
+---
+
 ## ⚠⚠⚠ REVISION 10 BLOCK — 2026-09-25. Newer than everything below it; where they conflict, this block wins.
 
 **The khronon as FRW dust: the first leg of PAPER32's last open route is closed** ([`BSK2`](real_research/bs_khronon_2026/BSK2_frw_dust_sigma8.py), 8/8, commit 2ffe0fc39, MUTATE kills K3b/K4a/K4b).
