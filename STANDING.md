@@ -1,5 +1,16 @@
 # STANDING
 
+**Acceleration-triggered carrier — 2026-09-26, AT1–AT3.**
+[The lanes](real_research/acceleration_trigger_2026/README.md) build a carrier that converts where the MOND
+kernel's own argument, the baryonic acceleration, exceeds a threshold. It is the first carrier on the record to
+keep the flat-a₀ flagship at every redshift from 0.5 to 2.5 (within 0.074 dex), and it selects massive hosts
+with no resolution scale. On the forest's own flux its high-z clearing costs at most 1.7% (AT2). L319's matter
+proxy, which charges any such clearing T² ≤ 0.84, is the wrong yardstick for it. With L372's uniform mode it
+passes every gate on the record except cosmic shear, on the alternative set, at the common kernel cell
+p = 1, x_c0 = 2.5 (AT3). Cosmic shear blocks it at 1.54–1.58 against 1.2. A faster kick buys cosmic shear and
+costs Harvey; the next door is an intermediate kick with a switch cell near the window's top. It is a
+construction; the carrier's mass is still required.
+
 **de Sitter–Unruh modified inertia — where the programme actually stands**
 Last updated **2026-09-22** (rev. 9 block at the top, then rev. 8 of 2026-09-06, rev. 7 of 2026-09-04 and rev. 6 of 2026-09-02; body below them is the rev. 5 record of 2026-08-03). Maintained as the single entry point: what is claimed, what is earned,
 what is postulated, what is live, and what is closed. If a statement anywhere in this repository

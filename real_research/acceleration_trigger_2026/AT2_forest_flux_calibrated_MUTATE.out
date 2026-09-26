@@ -1,0 +1,132 @@
+AT2 -- THE FOREST ON ITS OWN OBSERVABLE: the acceleration trigger's decay budget in the particle-mesh cosmology, scored
+by the Lyman-alpha flux power and calibrated against warm-dark-matter relics run through the same machinery.
+
+WHY.  AT1 built the acceleration-triggered carrier and found its high-z clearing costs L319's MATTER-power proxy dearly.
+Keeping the flagship flat at z = 2.5 moves >~ 9% of the bias-weighted mass onto >~ Mpc orbits, T^2(k = 5 h/Mpc) <~ 0.86.
+That holds for ANY trigger.  But the forest is measured in the gas's flux, not in the matter power.  In L365's committed
+runs, 15% (z = 3) and 27% (z = 2) of the carrier decays out of dense regions.  The flux power moves <= 1% at z = 3 and
+<= 5% at z = 2, at every k_par to 6.5 h/Mpc.  Which reading holds for THIS carrier decides whether the high-z clearing is
+affordable.  The fair test puts the trigger and the forest's own yardstick -- warm-dark-matter relics, whose masses define
+the forest bounds -- through one machinery and compares them there.
+
+METHOD.  L365/L366's two-species particle-mesh cosmology, unedited: L362's Sim, L347's FGPA flux recipe, L366's fast CIC
+deposit, the same seeds (7, 11).  L365's box is 50 Mpc/h, 128^3 mesh, 96^3 per species; L366's 100 Mpc/h, 256^3, 192^3
+box checks the result.  Added:
+  * the acceleration trigger's budget.  AT1's B1 history F_trig(z) is the unweighted fraction of the carrier whose orbits
+    have entered r_v.  It is applied as a sub-grid rule: at each step the densest cold carrier elements (CIC density at
+    their position) convert until the decayed fraction reaches F_trig(z), with AT1's kick v_A.  The trigger fires in the
+    inner parts of halos above ~1e10.5 Msun (AT1 A1: >= 98%), which the mesh cannot resolve; the densest cells are where
+    those halos sit.
+  * warm-dark-matter relics at 1.5, 2.0, 2.5, 3.5 and 5.3 keV: the same initial field times L319's T_wdm^2(k) (Viel+05,
+    L319's line), both species.
+  * the forest distance D: the rms, over k_par bands 0.5-1, 1-2, 2-3, 3-4, 4-5, 5-6.5 h/Mpc and z = 3, 2, of the flux
+    power's fractional deviation from the same box's LCDM run.  A carrier's WDM-EQUIVALENT MASS m_eq is the relic mass
+    whose D equals the carrier's (log-log interpolation along the relics).
+  * the matter power at k = 5 h/Mpc in the same runs: L319's proxy quantity, measured.
+GATES.  The record's particle-mesh forest gate (L365's rule): flux power within 10% of LCDM on k_par 0.2-2 h/Mpc at z = 3
+  and 2.  Beside it this lane reports the relic calibration, which the exploratory run showed to be weak here.  The
+  machinery (0.39 Mpc/h cells, L347's Jeans smoothing 0.1 Mpc/h) compresses a relic's small-scale imprint: a 1.5 keV relic
+  moves the flux by only 0.7% rms, a 5.3 keV relic by 0.03%.  A relic-equivalent mass read from it is therefore a LOWER
+  bound, and the strict 5.3 keV line cannot be decided in this box.
+PRE-DECLARED (before the main run).  The directions were fixed after one exploratory run of LCDM, the 1.5 and 5.3 keV
+  relics and the (y_v 0.1, v_A 600) budget, densest-first and sparsest-first (not committed).  In that run the budget moved
+  the flux <= 0.3% at z = 3 and <= 1.7% at z = 2 on k_par <= 6.5, and the matter power at k = 5 dropped to 0.23 of LCDM.
+  H1: AT1's A2 cell (y_v 0.1, v_A 600) passes L365's rule in L365's box.
+  H2: the proxy is not the observable.  The A2 cell's flux-to-matter response ratio at z = 2 (the largest fractional flux
+      deviation over the bands, divided by the fractional matter-power change at k = 5) is below 0.1.  The 1.5 keV
+      relic's is above 0.5: for a relic the flux follows the matter, for the halo-internal clearing it does not.
+  H3: both hold again in L366's larger box.
+
+  *** MUTATE=1: the budget converts the SPARSEST cold carrier first; F2 must flip ***
+  L365's box: 11 runs done   [1243s]
+  L366's box: 3 runs done   [5072s]
+
+====================================================================================================================
+C1-C3  CONTROLS
+====================================================================================================================
+  [PASS] C1 CONTROL: the LCDM run in L365's box reproduces L365's committed LCDM flux power at z = 3 and 2 (relative 1e-6)
+         measured: max relative deviation 4.4e-15
+  [PASS] C2 CONTROL: the relics register -- the forest distance D rises monotonically as the relic mass falls
+         measured: D: 1.5 keV 0.00713, 2.0 keV 0.00353, 2.5 keV 0.00203, 3.5 keV 0.00089, 5.3 keV 0.00032; matter P(k=5) ratio at z = 2: 1.5: 0.9940, 2.0: 0.9970, 2.5: 0.9983, 3.5: 0.9993, 5.3: 0.9997
+  [PASS] C3 CONTROL: this file's T_wdm^2 is L319's (the strict line at L319's k = 5 grid point, to 1e-6: L362's Om vs L319's)
+         measured: AT2 0.99518838, L319 0.99518849
+
+====================================================================================================================
+F1-F2  THE FOREST ON ITS OBSERVABLE (L365's box): flux imprint, L365's rule, and flux vs matter
+====================================================================================================================
+    y_v|v_A 0.1|600.0 : decayed z = 3/2 0.054/0.084; flux max |dev| z = 3 0.0076, z = 2 0.0059; L365's rule 0.0064; matter P(k=5) ratio z = 3/2 1.011/1.006; flux/matter response z = 2 1.016
+        bands z = 3: 0-1.0:+0.0038 1-2.0:+0.0050 2-3.0:+0.0052 3-4.0:+0.0047 4-5.0:+0.0076 5-6.5:+0.0051 | z = 2: 0-1.0:+0.0025 1-2.0:+0.0034 2-3.0:+0.0035 3-4.0:+0.0042 4-5.0:+0.0046 5-6.5:+0.0059
+    y_v|v_A 0.1|800.0 : decayed z = 3/2 0.054/0.084; flux max |dev| z = 3 0.0093, z = 2 0.0070; L365's rule 0.0077; matter P(k=5) ratio z = 3/2 1.012/1.007; flux/matter response z = 2 1.053
+        bands z = 3: 0-1.0:+0.0057 1-2.0:+0.0068 2-3.0:+0.0075 3-4.0:+0.0063 4-5.0:+0.0093 5-6.5:+0.0061 | z = 2: 0-1.0:+0.0038 1-2.0:+0.0046 2-3.0:+0.0047 3-4.0:+0.0057 4-5.0:+0.0056 5-6.5:+0.0070
+    y_v|v_A 0.05|600.0: decayed z = 3/2 0.071/0.111; flux max |dev| z = 3 0.0112, z = 2 0.0082; L365's rule 0.0093; matter P(k=5) ratio z = 3/2 1.014/1.008; flux/matter response z = 2 0.990
+        bands z = 3: 0-1.0:+0.0059 1-2.0:+0.0080 2-3.0:+0.0085 3-4.0:+0.0075 4-5.0:+0.0112 5-6.5:+0.0068 | z = 2: 0-1.0:+0.0036 1-2.0:+0.0050 2-3.0:+0.0056 3-4.0:+0.0070 4-5.0:+0.0069 5-6.5:+0.0082
+    y_v|v_A 0.3|600.0 : decayed z = 3/2 0.031/0.046; flux max |dev| z = 3 0.0032, z = 2 0.0029; L365's rule 0.0028; matter P(k=5) ratio z = 3/2 1.007/1.003; flux/matter response z = 2 0.820
+        bands z = 3: 0-1.0:+0.0020 1-2.0:+0.0023 2-3.0:+0.0026 3-4.0:+0.0022 4-5.0:+0.0032 5-6.5:+0.0026 | z = 2: 0-1.0:+0.0013 1-2.0:+0.0016 2-3.0:+0.0018 3-4.0:+0.0020 4-5.0:+0.0019 5-6.5:+0.0029
+    y_v|v_A 1.0|600.0 : decayed z = 3/2 0.013/0.018; flux max |dev| z = 3 0.0014, z = 2 0.0010; L365's rule 0.0017; matter P(k=5) ratio z = 3/2 1.003/1.001; flux/matter response z = 2 0.825
+        bands z = 3: 0-1.0:+0.0007 1-2.0:+0.0011 2-3.0:+0.0008 3-4.0:+0.0009 4-5.0:+0.0014 5-6.5:+0.0013 | z = 2: 0-1.0:+0.0004 1-2.0:+0.0005 2-3.0:+0.0006 3-4.0:+0.0007 4-5.0:+0.0008 5-6.5:+0.0010
+    relic 1.5 keV: flux max |dev| z = 3 0.0132, z = 2 0.0061; matter P(k=5) ratio z = 2 0.9940; flux/matter response z = 2 1.009
+    relic 2.0 keV: flux max |dev| z = 3 0.0065, z = 2 0.0030; matter P(k=5) ratio z = 2 0.9970; flux/matter response z = 2 1.011
+    relic 2.5 keV: flux max |dev| z = 3 0.0038, z = 2 0.0017; matter P(k=5) ratio z = 2 0.9983; flux/matter response z = 2 1.009
+    relic 3.5 keV: flux max |dev| z = 3 0.0016, z = 2 0.0008; matter P(k=5) ratio z = 2 0.9993; flux/matter response z = 2 1.014
+    relic 5.3 keV: flux max |dev| z = 3 0.0006, z = 2 0.0003; matter P(k=5) ratio z = 2 0.9997; flux/matter response z = 2 1.020
+  [PASS] F1 = H1: AT1's A2 cell (y_v 0.1, v_A 600) passes L365's forest rule in L365's box (flux within 10% of LCDM on k_par 0.2-2 at z = 3 and 2)
+         measured: worst deviation 0.0064; largest band deviation to 6.5 h/Mpc 0.0076
+         reading:  the gas lags a late, halo-internal removal, and the forest samples the IGM, not halo interiors
+  [FAIL] F2 = H2: the proxy is not the observable -- the A2 cell's flux-to-matter response ratio at z = 2 is below 0.1 while the 1.5 keV relic's is above 0.5
+         measured: A2 cell 1.016 (flux 0.0059 vs matter 0.006); 1.5 keV relic 1.009
+         reading:  a relic suppresses the IGM's small-scale structure, which the flux reads directly; this carrier empties halo interiors, which dominate the matter power at k = 5 but are saturated or absent in the forest
+
+====================================================================================================================
+F3  L366's BOX (100 Mpc/h, 256^3, 192^3 per species): the A2 cell again
+====================================================================================================================
+    A2 cell: decayed z = 3/2 0.054/0.084; L365's rule 0.0061; flux max z = 3/2 0.0077/0.0052; matter P(k=5) ratio z = 2 1.006; response 0.921 (1.5 keV relic: 0.972, flux max z = 3/2 0.0146/0.0060)
+  [FAIL] F3 = H3: in L366's larger box the A2 cell again passes L365's rule, with a flux-to-matter response below 0.1 (the 1.5 keV relic's above 0.5)
+         measured: rule 0.0061; response 0.921 (relic 0.972)
+
+====================================================================================================================
+R1  (reported) THE RELIC CALIBRATION: relic-equivalent masses in this machinery (LOWER bounds; see GATES)
+====================================================================================================================
+    y_v|v_A 0.1|600.0 : D 0.00479 -> relic-equivalent 1.77 keV
+    y_v|v_A 0.1|800.0 : D 0.00624 -> relic-equivalent 1.58 keV
+    y_v|v_A 0.05|600.0: D 0.00726 -> relic-equivalent < 1.5 keV
+    y_v|v_A 0.3|600.0 : D 0.00226 -> relic-equivalent 2.40 keV
+    y_v|v_A 1.0|600.0 : D 0.00090 -> relic-equivalent 3.47 keV
+  [PASS] R1 (reported) relic-equivalent masses (this machinery compresses a relic's imprint, so these are lower bounds; the 5.3 keV line is not decidable here)
+         measured: {'0.1|600.0': 1.7650074996502496, '0.1|800.0': 1.583825769911222, '0.05|600.0': nan, '0.3|600.0': 2.395186039875784, '1.0|600.0': 3.474526567719318}
+
+====================================================================================================================
+F4  (reported) THE SAME YARDSTICK ON L365's COMMITTED MESH-TRIGGER RUNS (its box; its LCDM = ours by C1)
+====================================================================================================================
+    L365 x5_v700   : decayed z = 3/2 0.15/0.27; flux max |dev| 0.0406; D 0.01857 -> relic-equivalent < 1.5 keV
+    L365 x5_v1000  : decayed z = 3/2 0.14/0.25; flux max |dev| 0.0469; D 0.02209 -> relic-equivalent < 1.5 keV
+    L365 x5_v1300  : decayed z = 3/2 0.14/0.24; flux max |dev| 0.0494; D 0.02364 -> relic-equivalent < 1.5 keV
+    L365 x5_v1600  : decayed z = 3/2 0.13/0.24; flux max |dev| 0.0512; D 0.02519 -> relic-equivalent < 1.5 keV
+    L365 x10_v700  : decayed z = 3/2 0.08/0.17; flux max |dev| 0.0238; D 0.01090 -> relic-equivalent < 1.5 keV
+    L365 x10_v1000 : decayed z = 3/2 0.08/0.16; flux max |dev| 0.0298; D 0.01410 -> relic-equivalent < 1.5 keV
+    L365 x10_v1300 : decayed z = 3/2 0.07/0.16; flux max |dev| 0.0334; D 0.01496 -> relic-equivalent < 1.5 keV
+    L365 x10_v1600 : decayed z = 3/2 0.07/0.15; flux max |dev| 0.0349; D 0.01568 -> relic-equivalent < 1.5 keV
+    L365 x20_v700  : decayed z = 3/2 0.04/0.11; flux max |dev| 0.0147; D 0.00700 -> relic-equivalent 1.51 keV
+    L365 x20_v1000 : decayed z = 3/2 0.04/0.10; flux max |dev| 0.0186; D 0.00844 -> relic-equivalent < 1.5 keV
+    L365 x20_v1300 : decayed z = 3/2 0.04/0.10; flux max |dev| 0.0203; D 0.00928 -> relic-equivalent < 1.5 keV
+    L365 x20_v1600 : decayed z = 3/2 0.03/0.09; flux max |dev| 0.0220; D 0.00989 -> relic-equivalent < 1.5 keV
+    L365 x5_v400   : decayed z = 3/2 0.17/0.28; flux max |dev| 0.0234; D 0.01140 -> relic-equivalent < 1.5 keV
+    L365 x5_v550   : decayed z = 3/2 0.16/0.28; flux max |dev| 0.0331; D 0.01579 -> relic-equivalent < 1.5 keV
+    L365 x5_v850   : decayed z = 3/2 0.15/0.26; flux max |dev| 0.0448; D 0.02069 -> relic-equivalent < 1.5 keV
+  [PASS] F4 (reported) the same yardstick on L365's committed mesh-trigger runs
+         measured: {'x5_v700': 0.0406, 'x5_v1000': 0.0469, 'x5_v1300': 0.0494, 'x5_v1600': 0.0512, 'x10_v700': 0.0238, 'x10_v1000': 0.0298, 'x10_v1300': 0.0334, 'x10_v1600': 0.0349, 'x20_v700': 0.0147, 'x20_v1000': 0.0186, 'x20_v1300': 0.0203, 'x20_v1600': 0.022, 'x5_v400': 0.0234, 'x5_v550': 0.0331, 'x5_v850': 0.0448}
+         reading:  the other track's triggered carriers, scored on this lane's calibration (not re-run)
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  On the forest's own observable the acceleration trigger's high-z clearing is cheap: AT1's A2 cell moves the flux power by at
+  most 0.0076 at z = 3 and 0.0059 at z = 2 (k_par <= 6.5 h/Mpc) and passes L365's rule (0.0064 vs 0.10),
+  while the matter power at k = 5 in the same run falls to 1.01 of LCDM.  L319's matter proxy, which AT1's A3 and
+  bound price, is the wrong yardstick for a late, halo-internal clearing: the flux-to-matter response is 1.016 here
+  against 1.01 for a relic.  The relic calibration in this box is weak (a 1.5 keV relic moves the flux
+  only 0.0132); on it the cell reads as a 1.77 keV relic, a LOWER bound
+  because the box compresses a relic's small-scale imprint more than this carrier's intermediate-scale one.  The strict
+  5.3 keV line needs a higher-resolution forest calculation to decide.
+
+  6/8 checks pass; load-bearing failures: 2; wrote AT2_forest_flux_calibrated_results_MUTATE.json   [5072s]
+rc=1

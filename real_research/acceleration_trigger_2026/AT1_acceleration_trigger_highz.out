@@ -1,0 +1,137 @@
+AT1 -- THE ACCELERATION-TRIGGERED CARRIER: the carrier converts where the MOND kernel's own argument is large.  Built on
+the halo model, scored at high z (the flagship and RC100), with its decay budget handed to AT2's forest test.
+
+WHY.  Every carrier window on the record fails at high z.  GP5 (70d8070c0) and L356: a carrier still inside galaxies at
+z ~ 2.5 moves the flagship deep-MOND Tully-Fisher zero point by +0.82..+1.05 dex (framework 0.00, LCDM +0.33).  L357's
+density (virialization) trigger clears galaxies, but as a local trigger it fires in every halo down to 1e8 Msun (its V1).
+The vacuum gate that rescued it keeps z >= 2 halos intact, which is GP5's failure again.  What is needed is a trigger that
+is MASS-SELECTIVE at high z: it fires in galaxies, not in the web or in minihalos.
+
+THE CONSTRUCTION (a construction: the rule is put in by hand, like every decay channel on the record).
+  The carrier X is kernel-invisible (L353): a state of the framework's own field, not a new particle species; the MASS is
+  still required.  X converts to a kicked state Y where the kernel's own argument exceeds a threshold y_v.  That argument
+  is the bound region's baryonic Newtonian acceleration y_b = |grad w|/a0 (L361):
+      Gamma = Gamma_0 Theta(y_b - y_v),   Gamma_0 >> 1/t_dyn,   isotropic kick v_A.
+  Because Gamma_0 is fast, a carrier element converts the first time its orbit enters r_v, the radius where y_b = y_v.  In
+  steady state this empties the whole LOSS CONE (every orbit with pericentre < r_v), not just the mass inside r_v.  The
+  daughter is born at r_v with its orbit's speed there plus the kick.  y_b reaches y_v only where baryons have condensed
+  (discs, BCGs, group gas), never in minihalos whose gas stays diffuse: the kernel's own variable supplies the mass
+  selection, with no resolution scale.  y_v = 1 (the kernel's own Newtonian/MOND transition) adds no constant; any other
+  y_v is one new constant.
+
+METHOD (machinery loaded unedited from committed lanes; three pieces added).
+  * Baryons of a halo (added): Moster+13 stellar mass (L320's function) with L356's cold-gas ratio mu = 0.5((1+z)/2)^2
+    (x 1/1.5..1.5), in a Hernquist sphere of half-mass radius R_e (van der Wel+14, late types).  The diffuse halo gas is
+    left out.  It only raises y_b, so every trigger radius here is a lower bound.
+  * Carrier orbits (added): isotropic Jeans NFW (Dutton-Maccio c(M,z); L321's sampling).  The steady-state loss cone and
+    the escape fraction of daughters kicked at r_v are tabulated by Monte Carlo on the truncated NFW, V200 = r200 = 1, as
+    L357's esc().
+  * Retention (added, from L321's pieces): L321/L357's phase-mixed retention (its potential(), frac_inside(), sampling and
+    draw order), with decay on entry into r_v.  With r_v -> infinity it IS L321's retained(fd = 1) (control C3).
+  * Halo model, L319's linear solver (L357's head, unedited): Sheth-Tormen mass function and bias; the decayed fraction
+    that matters for large-scale power is bias-weighted and counts only escaped daughters.
+  * The flagship (GP5's definition, unedited: outer radius g_bar = 0.1 a0, Moster-calibrated halos, L320's g_nfw, both
+    kernels, both footings, M_b 1e10-1e11, L356's gas range) and RC100 (L320's 100 galaxies, L357 H1's formulas).
+GATES (from the record): the flagship |shift| <= 0.10 dex (GP5 F1); L319's forest proxy T^2(k = 5 h/Mpc) at z = 2 and 3,
+  >= 0.9952 strict / 0.9 loose (the forest gate of L319/L354/L357/L372/GP4).  The PROXY is a statement about the MATTER power.
+  L365's particle-mesh runs show the forest's FLUX power moving <= 1% at z = 3 and <= 5% at z = 2.  In the same runs,
+  15-27% of the carrier decays from dense regions, which on the proxy is ~50% of the matter power.  So the forest verdict
+  on this carrier is AT2's: the flux observable in the record's particle-mesh machinery, with a relic calibration.
+  L357 head loaded (L319 solver, halo model, L321 retention); strict forest proxy threshold 0.9952   [10s]
+  L320 loaded (100 RC100 galaxies) and BK1's nu_mono (GP5's second kernel)   [10s]
+  loss-cone and escape tables built (NFW, 14 x 50 x 41)   [27s]
+
+====================================================================================================================
+C1-C3  CONTROLS
+====================================================================================================================
+    c  4.0 x_v 0.27 u 2.5: loss cone table 0.749 / direct 0.750; escape table 0.722 / direct 0.722
+    c  8.0 x_v 0.08 u 3.5: loss cone table 0.339 / direct 0.343; escape table 0.809 / direct 0.808
+    c 15.0 x_v 0.02 u 5.0: loss cone table 0.098 / direct 0.098; escape table 0.904 / direct 0.907
+  [PASS] C1 CONTROL: the loss-cone and escape tables agree with an independent direct Monte Carlo (new seed, 40000 draws) within 0.02 at three test points
+         measured: max |dev| 0.0038
+  [PASS] C2 CONTROL: with GP5's retained fraction the flagship grid reproduces GP5's committed z = 2.5 shifts (min and max, both window cells) to 1e-9 dex
+         measured: max |dev| 0.0e+00
+  [PASS] C3 CONTROL: decay on entry with r_v -> infinity is L321's retained(fd = 1) (Milky-Way host, 250 km/s so the retained fraction is non-trivial, identical draws)
+         measured: L321 0.111645, AT1 0.111645
+
+====================================================================================================================
+A1  MASS SELECTIVITY: where the carrier converts, by host mass (z = 2, 3)
+====================================================================================================================
+    z = 2.0: canon y_v 0.1: 0.993 of F_trig 0.083 above 1e10.5 (fires from 1e9.9); canon y_v 0.3: 0.999 of F_trig 0.046 above 1e10.5 (fires from 1e10.4); canon y_v 1.0: 1.000 of F_trig 0.018 above 1e10.5 (fires from 1e10.9); alt y_v 0.1: 0.994 of F_trig 0.076 above 1e10.5 (fires from 1e10.0); alt y_v 0.3: 1.000 of F_trig 0.041 above 1e10.5 (fires from 1e10.5); alt y_v 1.0: 1.000 of F_trig 0.016 above 1e10.5 (fires from 1e11.0)  || L357 density trigger (x_v = 30): 0.540 of F_trig 0.361
+    z = 3.0: canon y_v 0.1: 0.980 of F_trig 0.052 above 1e10.5 (fires from 1e9.9); canon y_v 0.3: 0.997 of F_trig 0.030 above 1e10.5 (fires from 1e10.3); canon y_v 1.0: 1.000 of F_trig 0.013 above 1e10.5 (fires from 1e10.8); alt y_v 0.1: 0.984 of F_trig 0.048 above 1e10.5 (fires from 1e9.9); alt y_v 0.3: 0.999 of F_trig 0.027 above 1e10.5 (fires from 1e10.4); alt y_v 1.0: 1.000 of F_trig 0.011 above 1e10.5 (fires from 1e10.8)  || L357 density trigger (x_v = 30): 0.409 of F_trig 0.275
+  [PASS] A1 MASS SELECTIVITY: at z = 2 and 3, y_v >= 0.1, both footings, >= 95% of the triggered carrier sits in halos >= 1e10.5 Msun (the kernel's argument never reaches y_v in the web or in minihalos)
+         measured: min fraction above 1e10.5: 0.980; L357's density trigger (x_v = 30): 0.540 (z = 2), 0.409 (z = 3)
+         reading:  the trigger's variable selects condensed baryons; a density trigger at the particle scale fires in every halo
+
+====================================================================================================================
+S1  THE DESIGN SCAN: flagship at z = 2.5 (canonical, L356's central gas) and L319's matter proxy, over (y_v, v_A)
+====================================================================================================================
+    y_v 0.05: v_A  300: flag +0.50 T2 0.877 | v_A  450: flag +0.11 T2 0.789 | v_A  600: flag +0.01 T2 0.725 | v_A  800: flag +0.00 T2 0.667 | v_A 1000: flag +0.00 T2 0.636   [1324s]
+    y_v 0.10: v_A  300: flag +0.60 T2 0.914 | v_A  450: flag +0.20 T2 0.846 | v_A  600: flag +0.02 T2 0.794 | v_A  800: flag +0.00 T2 0.744 | v_A 1000: flag +0.00 T2 0.715   [1324s]
+    y_v 0.20: v_A  300: flag +0.71 T2 0.944 | v_A  450: flag +0.33 T2 0.896 | v_A  600: flag +0.05 T2 0.857 | v_A  800: flag +0.05 T2 0.818 | v_A 1000: flag +0.05 T2 0.793   [1324s]
+    y_v 0.30: v_A  300: flag +0.77 T2 0.958 | v_A  450: flag +0.46 T2 0.921 | v_A  600: flag +0.25 T2 0.888 | v_A  800: flag +0.26 T2 0.855 | v_A 1000: flag +0.26 T2 0.835   [1324s]
+    y_v 0.50: v_A  300: flag +0.84 T2 0.972 | v_A  450: flag +0.61 T2 0.946 | v_A  600: flag +0.49 T2 0.922 | v_A  800: flag +0.50 T2 0.896 | v_A 1000: flag +0.50 T2 0.879   [1324s]
+    y_v 1.00: v_A  300: flag +0.92 T2 0.985 | v_A  450: flag +0.79 T2 0.970 | v_A  600: flag +0.71 T2 0.956 | v_A  800: flag +0.69 T2 0.939 | v_A 1000: flag +0.70 T2 0.928   [1324s]
+    y_v 2.00: v_A  300: flag +0.97 T2 0.993 | v_A  450: flag +0.89 T2 0.985 | v_A  600: flag +0.83 T2 0.977 | v_A  800: flag +0.81 T2 0.968 | v_A 1000: flag +0.82 T2 0.961   [1324s]
+  [PASS] S1 (reported) the design scan: flagship at z = 2.5 and L319's matter proxy over (y_v, v_A)
+         measured: cells passing the flagship (<= 0.10): [(0.05, 600.0), (0.05, 800.0), (0.05, 1000.0), (0.1, 600.0), (0.1, 800.0), (0.1, 1000.0), (0.2, 600.0), (0.2, 800.0), (0.2, 1000.0)]; passing the loose proxy: [(0.1, 300.0), (0.2, 300.0), (0.3, 300.0), (0.3, 450.0), (0.5, 300.0), (0.5, 450.0), (0.5, 600.0), (1.0, 300.0), (1.0, 450.0), (1.0, 600.0), (1.0, 800.0), (1.0, 1000.0), (2.0, 300.0), (2.0, 450.0), (2.0, 600.0), (2.0, 800.0), (2.0, 1000.0)]; both: []
+
+====================================================================================================================
+A2  THE FLAGSHIP BY CONSTRUCTION: y_v <= 0.1, v_A >= 600 km/s -- GP5's full grid at z = 2.5, and z = 0.5-2
+====================================================================================================================
+    y_v 0.05, v_A 600: z 0.5: max |shift| 0.012; z 1.0: max |shift| 0.004; z 1.5: max |shift| 0.004; z 2.0: max |shift| 0.005; z 2.5: max |shift| 0.013   [2481s]
+    y_v 0.1, v_A 600: z 0.5: max |shift| 0.074; z 1.0: max |shift| 0.026; z 1.5: max |shift| 0.022; z 2.0: max |shift| 0.015; z 2.5: max |shift| 0.042   [2481s]
+    y_v 0.1, v_A 800: z 0.5: max |shift| 0.008; z 1.0: max |shift| 0.006; z 1.5: max |shift| 0.002; z 2.0: max |shift| 0.002; z 2.5: max |shift| 0.002   [2481s]
+    y_v 0.1, v_A 1000: z 0.5: max |shift| 0.008; z 1.0: max |shift| 0.006; z 1.5: max |shift| 0.002; z 2.0: max |shift| 0.002; z 2.5: max |shift| 0.000   [2481s]
+  [PASS] A2 THE FLAGSHIP BY CONSTRUCTION: every cell with y_v <= 0.1 and v_A >= 600 km/s keeps the deep-MOND Tully-Fisher zero point within 0.10 dex of the framework's 0.00 at z = 2.5 over GP5's full grid (M_b 1e10-1e11, both footings, L356's gas range, both kernels) and at z = 0.5, 1, 1.5, 2
+         measured: worst |shift| 0.074 dex over 4 cells x 5 redshifts
+         reading:  the trigger radius sits at or outside the flagship radius by definition (g_bar = 0.1 a0), and the loss cone empties the orbits that would carry carrier back inside it
+
+====================================================================================================================
+A3  THE MATTER PROXY'S PRICE: the A2 cell, and the trigger-independent minimum for GP5's flagship population
+====================================================================================================================
+    A2 cell (y_v 0.1, v_A 600): F_b(z = 3, 2) 0.100/0.107 -> T^2(k = 5) z = 3 0.8251, z = 2 0.7945
+    optimal-removal table built: to cut the inner carrier by 93% a c = 3.5 halo at x_out = 0.27 must lose 0.450 of its carrier   [2483s]
+    flagship population M_b >= 1e10.0: minimum removal F_b 0.0966 (bias-weighted) at z = 2.5 -> T^2(k = 5, z = 2) 600: 0.820, 700: 0.812, 800: 0.816, 1000: 0.844, 1500: 0.841, 2000: 0.843, 3000: 0.843   [2589s]
+    flagship population M_b >= 1e10.5: minimum removal F_b 0.0806 (bias-weighted) at z = 2.5 -> T^2(k = 5, z = 2) 600: 0.849, 700: 0.841, 800: 0.845, 1000: 0.869, 1500: 0.867, 2000: 0.868, 3000: 0.868   [2707s]
+    flagship population M_b >= 1e11.0: minimum removal F_b 0.0584 (bias-weighted) at z = 2.5 -> T^2(k = 5, z = 2) 600: 0.889, 700: 0.884, 800: 0.886, 1000: 0.904, 1500: 0.902, 2000: 0.904, 3000: 0.904   [2805s]
+  [PASS] A3 THE MATTER PROXY'S PRICE: the A2 cell fails L319's proxy even loose (T^2(k = 5) < 0.9 at z = 2 or 3), and so does the trigger-independent minimum for GP5's flagship population (M_b >= 1e10 at z = 2.5, optimal removal, every daughter speed 600-3000 km/s)
+         measured: A2 cell: T^2 z = 3 0.825, z = 2 0.794; minimum: F_b 0.0966, best T^2(z = 2) 0.844 (M_b >= 1e10.5: 0.869; >= 1e11: 0.904)
+         reading:  a statement about the MATTER power at k = 5 h/Mpc: clearing the flagship radius at z = 2.5 means moving ~9% of the bias-weighted mass onto >~ Mpc orbits.  Whether the FOREST sees it is AT2's calibrated flux test (the gas lags a late, halo-internal removal; L365's runs)
+
+====================================================================================================================
+R1  RC100 (documentary): the inner dark fraction and the inverted a0(z) slope, natural cell y_v = 1 and the A2 cell
+====================================================================================================================
+    y_v 1.0, v_A 600                : median f_DM(<R_e) 0.34 (data 0.29); inverted slope -0.031 (data -0.112 +/- 0.062)
+    y_v 0.1, v_A 600                : median f_DM(<R_e) 0.30 (data 0.29); inverted slope +0.003 (data -0.112 +/- 0.062)
+    carrier retained (no trigger)   : median f_DM(<R_e) 0.57 (data 0.29); inverted slope +0.083 (data -0.112 +/- 0.062)
+  [PASS] R1 (documentary) RC100 on the natural cell and the A2 cell
+         measured: {'(1.0, 600.0)': {'median_fdm': 0.33697362714245127, 'slope': -0.03149967868424363}, '(0.1, 600.0)': {'median_fdm': 0.3044152817631403, 'slope': 0.0032799645461078983}, "('retained', 0.0)": {'median_fdm': 0.5663155156799339, 'slope': 0.08346972373306678}}
+         reading:  RC100's level and trend are calibration-conditional (L331/L332); reported, not gated
+
+====================================================================================================================
+B1  THE DECAY BUDGET HANDED TO AT2 (canonical footing, L356's central gas)
+====================================================================================================================
+    y_v 0.1, v_A 600: triggered (unweighted) z = 4/3/2/1/0: 0.032/0.052/0.083/0.108/0.117; escaped, bias-weighted: 0.083/0.100/0.107/0.107/0.107
+    y_v 0.1, v_A 800: triggered (unweighted) z = 4/3/2/1/0: 0.032/0.052/0.083/0.108/0.117; escaped, bias-weighted: 0.096/0.124/0.137/0.137/0.137
+    y_v 0.05, v_A 600: triggered (unweighted) z = 4/3/2/1/0: 0.043/0.069/0.111/0.152/0.174; escaped, bias-weighted: 0.112/0.136/0.148/0.148/0.148
+    y_v 0.3, v_A 600: triggered (unweighted) z = 4/3/2/1/0: 0.018/0.030/0.046/0.053/0.053; escaped, bias-weighted: 0.045/0.054/0.056/0.056/0.056
+    y_v 1.0, v_A 600: triggered (unweighted) z = 4/3/2/1/0: 0.008/0.013/0.018/0.019/0.019; escaped, bias-weighted: 0.018/0.021/0.022/0.022/0.022
+  [PASS] B1 (reported) the decay budget F(z) for AT2's particle-mesh forest test
+         measured: {'0.1|600.0': [0.0523, 0.0834], '0.1|800.0': [0.0523, 0.0834], '0.05|600.0': [0.0687, 0.1106], '0.3|600.0': [0.0298, 0.0458], '1.0|600.0': [0.013, 0.0184]}
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  The acceleration trigger does what it was built for.  Keyed on the kernel's own argument, it converts the carrier only
+  where baryons have condensed (A1: >= 0.98 of the triggered carrier in hosts
+  above 1e10.5 Msun at z = 2-3), and with y_v <= 0.1 and v_A >= 600 km/s it keeps the flagship prediction flat at every
+  redshift (A2: worst 0.074 dex).  With y_v = 1 (no new constant) it brings RC100's inner dark fraction to
+  0.34 (data 0.29; carrier retained 0.57).
+  The price on L319's MATTER proxy is real and trigger-independent (A3): clearing the flagship radius at z = 2.5 moves
+  >= 0.097 of the bias-weighted mass onto >~ Mpc orbits, T^2(k = 5, z = 2) <= 0.844.  The forest,
+  however, is measured in the gas's flux, which lags a late, halo-internal removal: AT2 scores it on that observable in
+  the record's particle-mesh machinery (L365's rule), with warm-dark-matter relics as a yardstick.
+
+  9/9 checks pass; load-bearing failures: 0; wrote AT1_acceleration_trigger_highz_results.json   [3137s]
+rc=0

@@ -2,6 +2,30 @@
 
 **What this is.** About 630 commits from roughly ten agent tracks landed in this repository between 09-14 and 09-22. On 09-22 they were audited against their committed scripts, re-running the load-bearing ones. This page assembles the most coherent theory the record supports. For each part it says whether it is measured, derived, fitted or missing. It also names the gates that would have to fall for this to become a theory of gravity, rather than a law plus an unfinished completion.
 
+**Update, 09-26: the acceleration-triggered carrier (AT1–AT3)** ([acceleration_trigger_2026](../acceleration_trigger_2026/README.md)).
+
+- **The construction.** The carrier converts where the MOND kernel's own argument, the bound region's baryonic acceleration y_b = |∇w|/a₀ (L361), exceeds a threshold y_v.
+  - Conversion is fast, so it happens the first time an orbit enters r_v; in steady state that empties the loss cone.
+  - Baryons reach y_v only where they have condensed, so the trigger selects massive hosts with no resolution scale.
+  - y_v = 1 (the kernel's own transition) adds no constant.
+  - A construction, like every decay channel on the record. The carrier is a state of the framework's own field, not a new particle; its mass is still required.
+- **High z, fixed** ([AT1](../acceleration_trigger_2026/AT1_acceleration_trigger_highz.py), 9/9; `MUTATE` = no kick, A2 and A3 fail).
+  - At z = 2–3, ≥ 0.98 of the triggered carrier sits in hosts above 10¹⁰·⁵ M☉ (L357's density trigger: 0.54 / 0.41).
+  - With y_v ≤ 0.1 and v_A ≥ 600 km/s the flagship zero point stays within 0.074 dex of 0.00 at every z from 0.5 to 2.5, over GP5's full grid. This is the first carrier on the record to keep the framework's flagship prediction.
+  - RC100 (documentary): median f_DM(<R_e) is 0.30–0.34, against data 0.29 and 0.57 with the carrier retained.
+  - On L319's matter proxy the clearing has a trigger-independent price. The optimal removal, ordered by each orbit's time fraction inside the flagship radius (Lean `greedy_removal_bound`), takes ≥ 0.097 of the bias-weighted mass for M_b ≥ 10¹⁰, which gives T²(k = 5, z = 2) ≤ 0.844. That is a statement about the matter power.
+- **The forest on its own observable** ([AT2](../acceleration_trigger_2026/AT2_forest_flux_calibrated.py), 8/8; `MUTATE` = the budget taken from the sparsest carrier, F2 and F3 fail).
+  - The runs use L365/L366's particle-mesh cosmology and FGPA flux, unedited.
+  - AT1's budget moves the flux power by at most 0.33% at z = 3 and 1.7% at z = 2 (k_par ≤ 6.5 h/Mpc). It passes L365's rule (2.5% against 10%; 2.3% in the 100 Mpc/h box), while the matter power at k = 5 falls to 0.23.
+  - The flux-to-matter response is 0.022, against 1.01 for a warm relic. **L319's proxy is the wrong yardstick for a late, halo-internal clearing**: the gas lags it, and halo interiors are saturated in the forest.
+  - The relic calibration is weak in this box (1.5 keV moves the flux only 1.3%), so relic-equivalent masses are lower bounds and **the strict 5.3 keV line is undecided**.
+- **Every gate** ([AT3](../acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py), 8/8; `MUTATE` = mode A off, W1 and W2 fail).
+  - Mode A runs with a vacuum-gated threshold y_v,eff(z) = y_v0 E(z)^(2q), with y_v,eff(2.5) = 0.1. L372's uniform mode (f_U(0) = 0.25) is added for X-COP. KiDS, Harvey and cosmic shear are all scored at one kernel cell, the program's common cell p = 1, x_c0 = 2.5.
+  - **Every gate but cosmic shear passes together on the alternative set** (v_A = 600 km/s; y_v0 = 0.1 or 0.03). For y_v0 = 0.1: flagship ≤ 0.074 dex at z = 0.5–2.5; galaxies +0.057; X-COP 1.18/1.23; KiDS −27.0/−24.5; Harvey +0.054; S₈ 0.784; forest on the flux 2.5%.
+  - **Cosmic shear blocks it** (worst R 1.54–1.58 against 1.2; T(k = 1, z = 0.5) = 0.88–0.89).
+  - **Kick pincer:** at 800 km/s the transfer falls to 0.73–0.84 and cosmic shear nearly passes (1.14/1.22), but Harvey fails (+0.110/+0.114 against +0.10).
+- **Standing.** This is the first construction to pass every gate but cosmic shear with the high-z flagship included. Its remaining pincer is cosmic shear against Harvey through the kick speed. Next: a kick near 700 km/s with a switch cell near the window's top (DE5's bound there is up to 0.88/0.86 at k = 1).
+
 **Update, 09-25 (evening): the vacuum gate reopens the switch and the bound-region kernel is built; the assembled construction then FAILS cosmic shear** (L357, L359–L361, L363).
 
 - **The switch lives again, with a vacuum-gated threshold** ([L359](../g03_audit_2026/L359_vacuum_gated_switch.py), 4/4; `MUTATE` = no gate, the window closes).
