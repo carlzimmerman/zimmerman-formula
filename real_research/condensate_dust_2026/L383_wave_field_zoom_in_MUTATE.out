@@ -1,0 +1,69 @@
+L383 -- THE WAVE FIELD INSIDE A DWARF HALO: a zoom-in Schroedinger-Poisson simulation, and the one thing the wave field does
+there that cold particles do not -- it heats the stars.
+
+WHY.  L374: of the no-particle candidates, only a linear wave field (fuzzy dark matter) passes through itself.  L382: at every
+  boson mass the Lyman-alpha forest allows, the record's particle-mesh box cannot tell that field from the collisionless
+  carrier; everything wave-like sits below ~30 pc, inside galaxies.  This lane goes there.  Inside a halo the wave field
+  (a) settles into a solitonic core -- the ground state of Schroedinger-Poisson -- surrounded by an envelope of interference
+  granules, and (b) its granules, O(1) density fluctuations of size ~ hbar / (m sigma) that live ~ hbar / (m sigma^2), heat
+  any star that orbits through them, like a swarm of heavy quasi-particles (Bar-Or, Fouvry & Tremaine 2019: the heating is
+  that of classical particles of mass m_eff ~ pi^(3/2) hbar^3 rho / (m^3 sigma^3), so D[v^2] ~ G^2 rho^2 (hbar/m)^3 / sigma^4).
+  The heating is what observations bite on: ultra-faint dwarfs would puff up (Dalal & Kravtsov 2022: m >~ 3e-19 eV).  The
+  framework adds one thing the literature does not have: its vacuum-gated clearing (mode G, L357/L372) removes the dark mass
+  from galaxies once the vacuum takes over, which shortens the heating.
+METHOD (code units hbar/m = G = 1; periodic box L = 1; the evolution is exact in Fourier space for the kinetic term).
+  A  THE ZOOM-IN.  Ground-state solitons by imaginary-time propagation (masses 40 and 60 in code units: lighter ones are wider
+     than their own wave Jeans length in this box and relax to the uniform state).  A halo from 12 merging solitons
+     (random positions within 0.25 of the centre, sub-virial random velocities, random phases) on a 128^3 grid, evolved for
+     ~12 crossing times (split-step, kick-drift-kick).  The relaxed halo's core against the ground state, its envelope, its
+     granules; a figure of a density slice and the profile.
+  B  THE HEATING.  A homogeneous wave bath (random phases, Maxwellian with 1D dispersion sigma, mean density rho), evolved
+     exactly (free), its fluctuation potential from Poisson; 4000 stars in a harmonic trap (sigma_* = sigma/3, cloud radius
+     0.15 spanning several granules); heating D = 2 d<E>/dt fitted while the stars stay slow (trap energy up < 25%).  Three baths: (rho, 24), (2 rho, 24), (2 rho, 36; twice the orbits,
+     so the weaker heating stays above the noise); two seeds each.
+  C  THE APPLICATION.  A Segue-1-like ultra-faint dwarf (r_h 29 pc, sigma_* 3.7 km/s, dark density 5.7 Msun/pc^3 inside r_h;
+     Simon et al. 2011) in a halo with dispersion 5-10 km/s: the measured D, carried to physical units with the Coulomb
+     logarithm ln(b_max / b_min) of each system, over the time the dark halo is there -- LCDM: from z = 8 to today; the
+     framework: from z = 8 until the vacuum-gated trigger fires in the dwarf's own density (x~ [Omega_L(z)/Omega_L0]^2 >=
+     x_v0 = 1000-2000, L357).  The minimum boson mass is the one whose heating stays below the observed sigma_*^2.
+PRE-DECLARED (before any run).  H: the framework's late clearing opens the wave field's mass window down to the forest bound:
+  with the clearing, the ultra-faint-dwarf floor falls to <= 2e-20 eV.  (The heating scales as m^-3 and the exposure ratio
+  is ~10, which suggests it will not: then the clearing lowers the floor by only ~10^(1/3).)
+
+  *** MUTATE=1: the bath is frozen (granules that never change); Part A is not rerun ***
+  Parts A and B done   [3352s]
+
+====================================================================================================================
+B  THE HEATING: stars in a trap inside a wave bath (code units)
+====================================================================================================================
+    rho 350, sigma 24: D = 0.1 / 0.2 (mean 0.2); stars sigma_* 8.0, trap energy 191.8 -> +0.3% over 6 orbits; ln Lambda 1.28
+    rho 700, sigma 24: D = 0.5 / 1.1 (mean 0.8); stars sigma_* 8.0, trap energy 191.8 -> +1.3% over 6 orbits; ln Lambda 1.28
+    rho 700, sigma 36: D = 0.1 / -0.0 (mean 0.0); stars sigma_* 12.0, trap energy 431.5 -> +0.1% over 12 orbits; ln Lambda 1.69
+  [PASS] B1 CONTROL: with the bath's potential switched off the stars' trap energy is conserved to 1e-3 (the integrator)
+         measured: relative change 2.0e-09
+  [PASS] B2 THE QUASI-PARTICLE SCALING: doubling rho multiplies the heating by 4 (within 25%) -- the granules act as quasi-particles whose mass grows with rho
+         measured: rho x2: x4.86 (4)
+  [PASS] B3 (reported) the sigma scaling: sigma x 1.5 against 1.5^-4 x the Coulomb-log ratio (the log model is rough at ln Lambda ~ 1.3-1.7)
+         measured: x0.033 (predicted 0.260; ratio 0.13)
+    D = C G^2 rho^2 (hbar/m)^3 / sigma^4 with C / ln Lambda = 0.34 (sigma 24), 0.05 (sigma 36); mean 0.20.  (Quasi-particle estimate: 3 x pi^1.5 / 0.34 ~ 49, with its factor-of-2 conventions)
+
+====================================================================================================================
+C  A SEGUE-1-LIKE ULTRA-FAINT DWARF: the boson-mass floor from granule heating, LCDM vs the framework's clearing
+====================================================================================================================
+    sigma_DM  5.0 km/s: floor LCDM 9.50e-20 eV (exposure 13.2 Gyr); framework 3.19e-20 (x_v0 1000, cleared at z = 4.04, exposure 0.99 Gyr) / 3.38e-20 (x_v0 2000, z = 3.66)
+    sigma_DM  7.0 km/s: floor LCDM 5.93e-20 eV (exposure 13.2 Gyr); framework 2.04e-20 (x_v0 1000, cleared at z = 4.04, exposure 0.99 Gyr) / 2.16e-20 (x_v0 2000, z = 3.66)
+    sigma_DM 10.0 km/s: floor LCDM 3.58e-20 eV (exposure 13.2 Gyr); framework 1.27e-20 (x_v0 1000, cleared at z = 4.04, exposure 0.99 Gyr) / 1.34e-20 (x_v0 2000, z = 3.66)
+  [PASS] C1 CONTROL: with LCDM's exposure the floor is within a factor 5 of Dalal & Kravtsov's 3e-19 eV (sigma_DM 7 km/s)
+         measured: 5.93e-20 eV (ratio 0.20)
+         reading:  under MUTATE the frozen bath does not heat: the floor collapses (the inverted control)
+  [FAIL] R1 = H: with the framework's clearing the ultra-faint-dwarf floor falls to <= 2e-20 eV (the forest bound) for every sigma_DM 5-10 km/s and x_v0 1000-2000
+         measured: highest framework floor 3.38e-20 eV
+  [PASS] W (reported) the floors with and without the clearing
+         measured: see above
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  5/6 checks pass; load-bearing failures: 1; wrote L383_wave_field_zoom_in_MUTATE_results.json   [3352s]
+rc=1
+L383 MUTATE rc=1

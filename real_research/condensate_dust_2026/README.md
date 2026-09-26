@@ -88,3 +88,41 @@ On the gates the box checks, a forest-allowed wave field is just the collisionle
 **Limits.**
 - Linear transfer and sub-mesh scales only; no wave-resolving zoom simulation.
 - The solitonic core scaling is Schive et al. 2014's, at z = 0.
+
+## L383 — the wave field inside a dwarf halo: a zoom-in, and the heating it does
+
+`L383_wave_field_zoom_in.py`: 8/9 checks pass, rc = 1. The pre-declared hypothesis R1 is falsified. `MUTATE=1` freezes the granules, cutting the heating about 1000×. The floor then drops only 10×, to about the forest bound, so R1 does not fully flip there either (rc = 1).
+
+**Why.** L382 showed that at forest-allowed masses, everything wave-like sits inside galaxies. This lane goes there, in code units ħ/m = G = 1.
+
+**A — the zoom-in (128³).**
+- **Ground states.** Imaginary-time ground states match Schive et al. 2014's soliton profile to a 0.7–1.0% rms log residual. They obey the Schrödinger–Poisson scaling r_c ∝ 1/M (ratio 0.659 against 2/3), with the invariant ρ_c r_c⁴ = 0.237.
+- **The halo.** Twelve solitons were merged and evolved for 12 crossing times, conserving mass to 7 × 10⁻¹³ and energy to 3 × 10⁻⁴. The result is the textbook structure:
+  - a solitonic core with ρ_c r_c⁴ = 0.283 (1.19× the ground state);
+  - a power-law envelope of interference granules, with rms density contrast 1.1 and correlation length 0.039, against 1/σ = 0.032.
+- **Resolution caveat.** The core carries 37% of the mass and is only 2.1 cells across. The core–ground-state match is indicative, not a resolved test.
+
+**B — the heating (wave bath with stars in a trap).**
+- The granules heat the stars like quasi-particles whose mass grows with density: doubling ρ multiplies the heating by 4.31 (4 expected).
+- The measured coefficient, per unit Coulomb log, is 146–237. That is 3–5× the textbook quasi-particle estimate, measured at ln Λ ≈ 1.3–1.7, where the log model is rough.
+- With the bath's potential off, the integrator conserves the stars' energy to 2 × 10⁻⁹.
+
+**C — a Segue-1-like ultra-faint dwarf** (r_h 29 pc, σ_* 3.7 km/s, dark density 5.7 M☉/pc³). The boson-mass floor is the mass below which granule heating over the halo's lifetime exceeds the observed σ_*².
+
+| dark-halo dispersion | LCDM (13.2 Gyr of heating) | framework (cleared at z ≈ 3.7–4.0, ~1 Gyr) |
+|---|---|---|
+| 5 km/s | 1.25 × 10⁻¹⁸ eV | 4.9–5.2 × 10⁻¹⁹ eV |
+| 7 km/s | 7.9 × 10⁻¹⁹ eV | 3.1–3.3 × 10⁻¹⁹ eV |
+| 10 km/s | 4.9 × 10⁻¹⁹ eV | 1.9–2.0 × 10⁻¹⁹ eV |
+
+- **The LCDM floor** is 1.6–4× Dalal & Kravtsov's 3 × 10⁻¹⁹ eV (C1 passes).
+- **The framework's clearing** cuts the exposure 13× but lowers the floor only about 2.5×, because the floor goes as the cube root of the heating time (plus a little from the Coulomb log). It stays 10–25× above the forest bound (2 × 10⁻²⁰ eV), so the pre-declared hypothesis (the clearing opens the window to the forest bound) is falsified.
+- **MUTATE (frozen granules):** the heating falls about 1000× (the residual is energy exchange in a static bumpy potential, not heating), yet the floor falls only to 1.3–3.4 × 10⁻²⁰ eV. Even removing almost all the heating barely reaches the forest bound.
+
+**Reading.** As dark mass, the wave field has to be heavier than about 2–5 × 10⁻¹⁹ eV even with the framework's clearing. At that mass its wave features (solitonic cores, granules) sit below about a parsec in dwarfs. Everywhere else it behaves exactly like cold particles.
+
+**Limits.**
+- One merger-built halo, core under-resolved.
+- The heating is calibrated in a homogeneous bath at ln Λ ≈ 1–2 and carried to the dwarf's ln Λ ≈ 2–3 with the log model.
+- A single dwarf with representative parameters, not Dalal & Kravtsov's full sample.
+- The dwarf's dark density is held fixed from z = 8.
