@@ -1,0 +1,83 @@
+{
+ "title": "OB2 JWST observing-block recipe",
+ "inputs": [
+  "L05_results.json",
+  "OB1_results.json",
+  "K11_results.json"
+ ],
+ "pre_registration": "Z2-WAVE_BRIEF.md R1/R2/R3",
+ "R1": {
+  "key": "central_N3_SN10_f20",
+  "rate_recomputed": 0.9998,
+  "rate_registered": 0.9998,
+  "pass": true,
+  "volume_key_present": true
+ },
+ "R2": {
+  "t5_verbatim": "T5 J10-I a0-radius: J10-I = (r_B/R)*window in [4/3,2], r_B = sqrt(G M_b / a0(rho_B)), a0 = (c/2)sqrt(G rho_B); kill: >=3sigma outside with M_b,rho_B independent -> framework BLR-radius assignment fails; sharp: R > (3/2)r_B kills q=0, R > 2 r_B kills all q",
+  "consolidated_tests": 5,
+  "targets": [
+   {
+    "obj": 1,
+    "truth": "central",
+    "sn": 10.0,
+    "t": 2.39,
+    "q": 2.3,
+    "rb_ld": 38.2,
+    "lag_d": 97.2,
+    "J10I": 1.838
+   },
+   {
+    "obj": 4,
+    "truth": "central",
+    "sn": 10.0,
+    "t": 1.64,
+    "q": 2.5,
+    "rb_ld": 23.7,
+    "lag_d": 43.5,
+    "J10I": 1.79
+   },
+   {
+    "obj": 7,
+    "truth": "volume",
+    "sn": 10.0,
+    "t": 1.5,
+    "q": 0.0,
+    "rb_ld": 319.4,
+    "lag_d": 153.5,
+    "J10I": 1.652
+   }
+  ],
+  "note": "per target: measure J10I with T5 window [4/3,2]; rb_ld/lag_d columns are L05's stored targets (rb_ld = r_B/lag distance units, loaded not transcribed)"
+ },
+ "R3": {
+  "budget": {
+   "bar0.5_central": {
+    "sn_N10_2x": 5.0,
+    "n_SN30_2x": 1
+   },
+   "bar0.5_volume": {
+    "sn_N10_2x": 5.0,
+    "n_SN30_2x": 1
+   },
+   "bar0.8_central": {
+    "sn_N10_2x": 5.0,
+    "n_SN30_2x": 1
+   },
+   "bar0.8_volume": {
+    "sn_N10_2x": 5.0,
+    "n_SN30_2x": 1
+   },
+   "bar0.95_central": {
+    "sn_N10_2x": 5.0,
+    "n_SN30_2x": 1
+   },
+   "bar0.95_volume": {
+    "sn_N10_2x": 5.0,
+    "n_SN30_2x": 1
+   }
+  },
+  "recipe": "SN=10 blocks are the unit; SN=30 on the same target costs x5.0 the SN=10 time; depth doubling recipes per bar from the loaded dict"
+ },
+ "verdict": "BLOCK-RECIPE-PASS: R1 rate reproduced, R2 T5 schedule on 3 targets, R3 exposure from loaded budget"
+}
