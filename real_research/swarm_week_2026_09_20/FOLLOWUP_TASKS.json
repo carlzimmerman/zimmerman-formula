@@ -1,617 +1,617 @@
 {
- "schema_version": 1,
- "program_id": "particle_free_followup_2026_09_20",
- "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
- "parent_registry": "TASKS.json",
- "scope": "Twenty finer-grained follow-up tickets refining existing obligations; not twenty independent additions to the original effort budget.",
- "estimated_agent_days": 14.75,
- "readiness": "Dependencies are required reviewed inputs, not assertions that those claims passed. External original IDs refer to TASKS.json. Preparation can run early. R18 has a separate applicable-forward-model gate; R20 integrates returned work rather than pretending results already exist.",
- "tasks": [
-  {
-   "id": "R01",
-   "title": "Certify the actual active-density asymptote",
-   "refines_original": [
-    "E1",
-    "B2"
-   ],
-   "depends_on": [],
-   "estimated_agent_days": 0.5,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/clock_2026/L304_phantom_active_mass.py",
-    "real_research/clock_2026/L298_phantom_stress_tensor.py"
-   ],
-   "target": "For B,D>0, 0<K<2 and u>0, prove rho_act=(2/3)(2-K)D u^3 from the displayed rho and w. With u(B+u)=A/r, A>0, prove r*u -> A/B and r^3*rho_act -> (2/3)(2-K)D(A/B)^3.",
-   "first_discriminator": "Cancel B+2u/3 exactly before fitting any radial slope. Use the rationalized positive root u=2A/[r(B+sqrt(B^2+4A/r))] to avoid cancellation at large r. This audits the L304 surrogate, not the complete covariant stress.",
-   "deliverables": [
-    "ActiveDensity.lean with domains and limit hypotheses",
-    "exact_factorization.py",
-    "asymptotic_remainder.md"
-   ],
-   "on_supported": "Pass the coefficient and a finite-radius remainder bound to R02/R03; feed the source identity to B2 for its physical interpretation.",
-   "on_refuted_or_inconclusive": "If the published profile is inconsistent with the factorization, isolate the equation/version mismatch. A failed Lean tactic is not a mathematical refutation; retain the symbolic result with its formalization status.",
-   "execution_status": "completed",
-   "claim_status": "proved_conditional",
-   "owner": "hermes_session",
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R01"
-  },
-  {
-   "id": "R02",
-   "title": "Replace the fitted power with a shell-mass theorem",
-   "refines_original": [
-    "E1"
-   ],
-   "depends_on": [
-    "R01"
-   ],
-   "estimated_agent_days": 0.5,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/clock_2026/L304_phantom_active_mass.py",
-    "real_research/clock_2026/L311_phantom_law.py"
-   ],
-   "target": "For an exact shell rho=C/r^3, C>0, r>=r0>0, certify M(r)=M0+4*pi*C*log(r/r0). Bound the integral correction from the R01 asymptotic remainder for the actual profile.",
-   "first_discriminator": "Reproduce the apparent exponent near 0.578 for a pure logarithm on the same sampled radial interval with r0=1000, then change r0 while holding the outer sample fixed. Track the interior mass M0 separately; starting a cumulative integral at the first grid point sets it to zero.",
-   "deliverables": [
-    "ShellMass.lean",
-    "cutoff_sensitivity.py",
-    "corrected_mass_comparison.json"
-   ],
-   "on_supported": "Replace the square-root extrapolation in a proposed patch, preserving its old output for comparison. Send physical predictions to R03 and the feedback question to R04.",
-   "on_refuted_or_inconclusive": "If the finite observed interval still resembles a power, label it a local approximation and bound its error; do not promote it to an asymptotic theorem or replace the central mass by zero.",
-   "execution_status": "completed",
-   "claim_status": "proved_conditional",
-   "owner": "hermes_session",
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R02"
-  },
-  {
-   "id": "R03",
-   "title": "Derive corrected velocity curvature and its observable domain",
-   "refines_original": [
-    "F2",
-    "E1"
-   ],
-   "depends_on": [
-    "R02"
-   ],
-   "estimated_agent_days": 0.75,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/clock_2026/L305_phantom_rar_boost.py",
-    "real_research/clock_2026/L311_phantom_law.py",
-    "real_research/clock_2026/L312_law_implications.py"
-   ],
-   "target": "Conditional on g^2=a0*G*M_total(r)/r^2 and circular motion, derive v^4=a0*G*M_total and beta=(1/4)d log M_total/d log r. For M_total=Mbase+C_log*log(r/r0), obtain beta=C_log/(4*M_total) and its curvature. Derive the curvature invariant C_beta=d beta/d log r+4*beta^2: C_beta=0 for the logarithmic mass model, while C_beta=beta/2 for a positive square-root contribution over a constant base mass. These are conditional shape relations, not new empirically established laws.",
-   "first_discriminator": "Compare the logarithmic and square-root continuations using the same independent mass at an anchor radius, then the same local derivative as a separate matching experiment. Do not force both matches if the models lack that freedom. Before proposing an observation, estimate the covariance cost of a second derivative of the rotation curve; curvature can be formally distinctive yet observationally unusable.",
-   "deliverables": [
-    "VelocityCurvature.lean",
-    "matched_profile_comparison.py",
-    "observable_domain.md"
-   ],
-   "on_supported": "Choose radii where the predictions differ after mass, anisotropy and boundary uncertainties. Hand a frozen forward comparison to F2/R18; use R05 first for lensing.",
-   "on_refuted_or_inconclusive": "If the full metric equations do not license the starting force law, retain this as a conditional instrument calculation. If finite-range differences are below nuisance uncertainty, report the precision limit rather than declaring a detection.",
-   "execution_status": "completed",
-   "claim_status": "proved_conditional",
-   "owner": "hermes_session",
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R03"
-  },
-  {
-   "id": "R04",
-   "title": "Test whether self-gravity stabilizes or amplifies the profile",
-   "refines_original": [
-    "E2",
-    "C4"
-   ],
-   "depends_on": [
-    "R01",
-    "B2"
-   ],
-   "estimated_agent_days": 1,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/clock_2026/L299_phantom_halo_selfconsistent.py",
-    "real_research/clock_2026/L305_phantom_rar_boost.py",
-    "real_research/clock_2026/L311_phantom_law.py"
-   ],
-   "target": "After B2 identifies a genuine additional source, test the conditional deep feedback system rho=A_g*g^3 and g^2=a0*G*M/r^2. It implies dM/d log r=K_g*M^(3/2), K_g=4*pi*A_g*(a0*G)^(3/2), rather than an imposed square-root mass. Within the same conditional feedback system, derive beta=K_g*sqrt(M)/4 and d beta/d log r=2*beta^2, then compare its sign/curvature with R03. Do not promote any of these diagnostic continuations to a physical solution before B2 licenses the source.",
-   "first_discriminator": "For positive constants derive M^(-1/2)=M0^(-1/2)-(K_g/2)*log(r/r0). Test the finite-radius singularity against the first radius at which the deep, static or source approximation fails. A singular toy continuation does not refute a model outside that approximation.",
-   "deliverables": [
-    "Feedback.lean or exact differential identity",
-    "feedback_ode.py",
-    "validity_vs_singularity.md"
-   ],
-   "on_supported": "If the growth obstruction lies inside the valid domain, derive the necessary regulating change: pressure, finite supply, changed branch or coupling. Each candidate must appear in the action/EOM and pass conservation before a new solve.",
-   "on_refuted_or_inconclusive": "If rho_act is only effective bookkeeping, prohibit re-insertion as a second source and return to B2. If the approximation fails first, solve through that transition with a new controlled operator instead of extrapolating the toy singularity.",
-   "execution_status": "not_started",
-   "claim_status": "open",
-   "owner": null,
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R04"
-  },
-  {
-   "id": "R05",
-   "title": "Separate density slope, lensing slope and dynamical source",
-   "refines_original": [
-    "B2",
-    "E3"
-   ],
-   "depends_on": [
-    "B2",
-    "R02"
-   ],
-   "estimated_agent_days": 1,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/clock_2026/L279_quasistatic_slip_from_action.py",
-    "real_research/clock_2026/L304_phantom_active_mass.py",
-    "real_research/clock_2026/L309_three_sector_cluster.py",
-    "real_research/clock_2026/L310_instrument_sweep.py"
-   ],
-   "target": "Derive projected lensing and dynamics from the same physical potentials: ds^2=-(1+2Psi)dt^2+a^2(1-2Phi)dx^2, Weyl potential=(Phi+Psi)/2. A 3D density slope is not directly a shear slope.",
-   "first_discriminator": "For a controlled spherical source, compute the Abel projection, mean interior surface density and DeltaSigma separately, with inner core and outer cutoff explicit. Compare to direct null-geodesic/weak-field potential integration where applicable.",
-   "deliverables": [
-    "projection_dictionary.md",
-    "joint_projection.py",
-    "cutoff_and_slip_grid.json"
-   ],
-   "on_supported": "Pass a mock observable and covariance model to E3/R18. Mark which signatures are preserved when anisotropic stress changes slip.",
-   "on_refuted_or_inconclusive": "If only an inferred Poisson density is available, label its projection conditional on a metric bridge. Do not call a ratio of virial mass estimates M_lens/M_X without modeling those observables.",
-   "execution_status": "not_started",
-   "claim_status": "open",
-   "owner": null,
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R05"
-  },
-  {
-   "id": "R06",
-   "title": "Lock down the unequal-mass conservation obstruction",
-   "refines_original": [
-    "G1"
-   ],
-   "depends_on": [],
-   "estimated_agent_days": 0.25,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "deepseek_push/lean/PD20_two_body_factor.lean",
-    "deepseek_push/lean/PD21_law_of_nature.lean"
-   ],
-   "target": "For positive masses prove m1*sqrt(m2)=m2*sqrt(m1) iff m1=m2. Apply it only to the proposed isolated static per-body ansatz; derive and state the translation-conservation obligation for its intended action.",
-   "first_discriminator": "Use masses 1 and 4 with a0*G=r=1: the opposing force magnitudes are 2 and 4. Check separately the test-particle limit and the exactly equal-mass case.",
-   "deliverables": [
-    "PairObstruction.lean",
-    "mass_ratio_counterexamples.json",
-    "premise_scope.md"
-   ],
-   "on_supported": "Preserve PD20/PD21 as conditional algebra, withdraw the unsupported action-derived amplitude in a proposed correction, and route the actual force calculation to R07.",
-   "on_refuted_or_inconclusive": "If a completion supplies additional time-dependent field momentum or external force, derive that contribution and its boundary conditions explicitly. It defines a different physical problem; it cannot be inserted silently to excuse a static isolated force imbalance.",
-   "execution_status": "completed",
-   "claim_status": "proved_conditional",
-   "owner": "hermes_session",
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R06"
-  },
-  {
-   "id": "R07",
-   "title": "Derive the correct mass-ratio force from the action",
-   "refines_original": [
-    "G1"
-   ],
-   "depends_on": [
-    "R06",
-    "B1"
-   ],
-   "estimated_agent_days": 1,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/reviews/kappa_unit_response_2026_09_20/README.md",
-    "real_research/reviews/kappa_unit_response_2026_09_20/ACTION_ROUTE.md",
-    "deepseek_push/lean/PD18_wide_binary_face.lean"
-   ],
-   "target": "Derive a two-source force from the action translation identity or stress-flux surface integral. Establish which hypotheses permit import of the known isolated deep-MOND virial theorem.",
-   "first_discriminator": "Read the primary virial theorem in full and translate normalization, point-mass/extended-body limits and boundary terms. Recover the small-mass limit and equal-and-opposite forces before producing an equal-mass amplitude.",
-   "deliverables": [
-    "two_source_stress.md",
-    "PairForce.lean for the justified algebra",
-    "literature_hypotheses.json"
-   ],
-   "on_supported": "Treat known virial content as inherited mathematics. A novel result must be an action-specific correction, controlled finite-size term or applicability theorem; give the benchmark to R08.",
-   "on_refuted_or_inconclusive": "If screening or external fields break the virial hypotheses, derive their boundary/work terms rather than apply the isolated formula. Return the exact missing bridge for B1/G1 if no common action is available.",
-   "execution_status": "not_started",
-   "claim_status": "open",
-   "owner": null,
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R07"
-  },
-  {
-   "id": "R08",
-   "title": "Validate a nonlinear two-source solver independently",
-   "refines_original": [
-    "G2"
-   ],
-   "depends_on": [
-    "R07",
-    "F1"
-   ],
-   "estimated_agent_days": 1,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/reviews/mi_aqual_solve_framework_kernel_2026.py",
-    "qwen_claude_field_theory/theory_2026/aqual_solver_2026.py"
-   ],
-   "target": "Resolve force from two independent evaluations: the matter/source force and a field-stress flux integral, on a finite-size two-source regularization of the selected operator.",
-   "first_discriminator": "Run mass ratios 1, 1/4 and 1/100 at one separation, then halve source radius and mesh size independently. Check total-force cancellation, analytic isolated controls and boundary sensitivity.",
-   "deliverables": [
-    "two_source_solver.py",
-    "force_balance_convergence.json",
-    "regularization_limits.md"
-   ],
-   "on_supported": "Use the convergence error to bound finite-size/mass-ratio corrections and feed the validated solver to R09. Do not infer an entire continuous parameter range from three cases.",
-   "on_refuted_or_inconclusive": "If source regularization dominates, refine that limit before astrophysical forecasting. If force and stress methods disagree, freeze the amplitude claim and isolate the discretization/operator error.",
-   "execution_status": "not_started",
-   "claim_status": "open",
-   "owner": null,
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R08"
-  },
-  {
-   "id": "R09",
-   "title": "Classify which binary signatures survive environment and size",
-   "refines_original": [
-    "G2",
-    "G3",
-    "F3"
-   ],
-   "depends_on": [
-    "R08",
-    "B4"
-   ],
-   "estimated_agent_days": 0.75,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/reviews/mi_wb_gext_kappa_route_2026.py",
-    "real_research/reviews/mi_wb_dr3_feasibility_2026.py",
-    "fable_independent_2026/L47_xi_collision.py"
-   ],
-   "target": "Produce a regime diagram in g_internal/g_external, separation/xi and mass ratio, marking isolated, external-field-dominated and screened limits of the actual candidate.",
-   "first_discriminator": "Calculate these ratios for an admissible pilot population before simulating velocities. Carry the same xi and local-constraint parameter point everywhere.",
-   "deliverables": [
-    "binary_regime_map.csv",
-    "matched_environment_grid.py",
-    "recoverable_observable.md"
-   ],
-   "on_supported": "Forward-model the surviving orientation or velocity statistic with contamination and selection through R18; state which mass calibration remains necessary.",
-   "on_refuted_or_inconclusive": "If the accessible systems are fully screened, record the predicted null and redirect effort to larger systems or another independently accessible regime. Do not keep amplifying the isolated plateau headline.",
-   "execution_status": "not_started",
-   "claim_status": "open",
-   "owner": null,
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R09"
-  },
-  {
-   "id": "R10",
-   "title": "Stop mixing inequivalent full force laws",
-   "refines_original": [
-    "B1",
-    "A3"
-   ],
-   "depends_on": [],
-   "estimated_agent_days": 0.5,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "deepseek_push/lean/PD21_law_of_nature.lean",
-    "real_research/reviews/kappa_unit_response_2026_09_20/README.md",
-    "real_research/reviews/orbital_shape_law_2026_09_20/README.md"
-   ],
-   "target": "Compare the rational auxiliary response, the PD21 quadrature law g^2=gN^2+a0*gN, and the L311 deep law with an added active source. Determine exact equivalence or inequivalence with physical s, a0 and mass fixed.",
-   "first_discriminator": "At one transition acceleration solve each response with the same parameters. Then compare their weak/high-field expansions and scale-independent derivative ratios; a shared leading deep asymptote is insufficient.",
-   "deliverables": [
-    "model_equivalence_table.md",
-    "CompletionSeparation.lean",
-    "transition_comparison.json"
-   ],
-   "on_supported": "Assign distinct model IDs when the laws differ. Attach orbital quarter-slope and screening predictions only to the model from which they were derived; hand the distinct curves to R18.",
-   "on_refuted_or_inconclusive": "If a field or parameter transformation allegedly identifies them, derive the transformation of matter coupling and independently measured scales as well. A change of observable or refit is not equivalence.",
-   "execution_status": "completed",
-   "claim_status": "proved_conditional",
-   "owner": "hermes_session",
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R10"
-  },
-  {
-   "id": "R11",
-   "title": "Try a genuinely new selector with a noncircular falsifier",
-   "refines_original": [
-    "A1"
-   ],
-   "depends_on": [
-    "R10"
-   ],
-   "estimated_agent_days": 0.75,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/reviews/kappa_unit_response_2026_09_20/README.md",
-    "real_research/reviews/kappa_unit_response_2026_09_20/THERMAL_ROUTE.md",
-    "fable_independent_2026/L226_kappa_and_the_free_function.py",
-    "deepseek_push/lean/PD21_law_of_nature.lean"
-   ],
-   "target": "Write one new physical equation capable of selecting lambda=1 while keeping s independently fixed. Candidates must supply a microscopic response normalization, a protected matching relation or a derived boundary condition, not channel counting alone.",
-   "first_discriminator": "Evaluate the proposed equation at lambda=1 and lambda=2 before a long derivation. List every externally fixed quantity and every calibration using galaxy a0. Reject algebraic restatements of kappa=1/2 immediately.",
-   "deliverables": [
-    "selector_assumption_ledger.md",
-    "selector_discriminator.py",
-    "SelectionOrObstruction.lean"
-   ],
-   "on_supported": "Prove uniqueness in the declared class and check stability under allowed action perturbations. Send an independently selected response invariant to R12 and a noncircular measurement prediction to A2.",
-   "on_refuted_or_inconclusive": "If both coefficients survive, record the new selector specific obstruction and move to a materially different mechanism. If none survives the budget, retain lambda=1 as a model postulate and pursue its empirical consequences; do not repackage the existing counterfamily as a new result.",
-   "execution_status": "not_started",
-   "claim_status": "open",
-   "owner": null,
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R11"
-  },
-  {
-   "id": "R12",
-   "title": "Find a second observable that breaks calibration degeneracy",
-   "refines_original": [
-    "A2",
-    "A3"
-   ],
-   "depends_on": [
-    "R10"
-   ],
-   "estimated_agent_days": 0.75,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/reviews/kappa_unit_response_2026_09_20/README.md",
-    "real_research/reviews/orbital_shape_law_2026_09_20/README.md",
-    "real_research/reviews/field_orbit_reciprocity_2026_09_20/README.md",
-    "deepseek_push/PD10_zero_mode_measured.py"
-   ],
-   "target": "Identify two observables with linearly independent sensitivities to response shape and independent normalization, after nuisance parameters are included. An invariant such as mu_second(0)/mu_prime(0)^2 is a candidate, not automatically a measurable statistic.",
-   "first_discriminator": "Compute the Jacobian rank for candidate observables under s, lambda, mass scale and distance rescalings. Try orbital shape plus independently matched external-field response, with all domain restrictions stated.",
-   "deliverables": [
-    "identifiability_rank.py",
-    "ObservableDegeneracy.lean",
-    "independent_pair_protocol.json"
-   ],
-   "on_supported": "If a degeneracy is broken, specify the additional measurement and its attainable calibration requirements, then use R18 for mock recovery.",
-   "on_refuted_or_inconclusive": "If the rank remains deficient, give an explicit parameter transformation preserving the observations. Search a new observable with a different dependence rather than collecting more copies of the same relation.",
-   "execution_status": "not_started",
-   "claim_status": "open",
-   "owner": null,
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R12"
-  },
-  {
-   "id": "R13",
-   "title": "Determine whether the BH photospheric gravity is independent",
-   "refines_original": [
-    "H1",
-    "H2"
-   ],
-   "depends_on": [],
-   "estimated_agent_days": 0.5,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/reviews/bhstar_u1_decircularization.py",
-    "fable_independent_2026/lean_2026/I12_bhstar_dial.lean",
-    "real_research/reviews/bhstar_p1_empirical_rigor.py"
-   ],
-   "target": "Distinguish g_fit from g_grav in the atmosphere model. Carry g_fit=g_grav-g_rad+g_dyn with a documented sign convention and derive its effect on the inferred Gamma.",
-   "first_discriminator": "Eliminate Gamma symbolically from the wave-U chain and recover M=g_fit*R^2/G under its assumptions. Then construct two gravity decompositions with the same g_fit,T but different true mass if the atmosphere permits them.",
-   "deliverables": [
-    "GravityReadout.lean",
-    "gravity_decomposition.py",
-    "atmosphere_source_audit.md"
-   ],
-   "on_supported": "If the source model identifies g_grav or bounds the correction, propagate that independent bound to H2/R15 instead of treating the algebraic round trip as a validation.",
-   "on_refuted_or_inconclusive": "If gravity decomposition remains free, report an interval/identifiability obstruction and the needed independent mass or radiation-force measurement. Preserve I12 as a conditional identity.",
-   "execution_status": "not_started",
-   "claim_status": "open",
-   "owner": null,
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R13"
-  },
-  {
-   "id": "R14",
-   "title": "Separate wind, opacity and photosphere radius information",
-   "refines_original": [
-    "H1"
-   ],
-   "depends_on": [],
-   "estimated_agent_days": 0.75,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/reviews/bhstar_r1_wind_kinematics.py",
-    "real_research/reviews/bhstar_s1_u_route_void.py",
-    "real_research/reviews/bhstar_t1_kepler_predictions.py"
-   ],
-   "target": "Build separate likelihoods or bounded constraints for launch radius, line-forming radius, photospheric radius and slab thickness. Establish which observable links any two.",
-   "first_discriminator": "Use the proper wind interval-membership test and invert the factor required for a given radius. For opacity distinguish the ionization parameter at the illuminated boundary from the attenuated interior field and total neutral from excited-state populations.",
-   "deliverables": [
-    "radius_constraint_graph.json",
-    "wind_interval_check.py",
-    "transfer_boundary_contract.md"
-   ],
-   "on_supported": "Combine only genuinely independent constraints, including their common mass/continuum inputs, and send the resulting radius-density covariance to R15.",
-   "on_refuted_or_inconclusive": "If the available spectrum fixes only N_H/n_H, construct the surviving radius family and specify a lag, angular size or independently normalized ionizing flux that would break it. Neither large opacity nor a broad wind-factor range alone proves or disproves the transition.",
-   "execution_status": "not_started",
-   "claim_status": "open",
-   "owner": null,
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R14"
-  },
-  {
-   "id": "R15",
-   "title": "Design a noncircular population falsifier",
-   "refines_original": [
-    "H2",
-    "F4"
-   ],
-   "depends_on": [
-    "R13",
-    "R14"
-   ],
-   "estimated_agent_days": 0.75,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/reviews/bhstar_t1_kepler_predictions.py",
-    "fable_independent_2026/lean_2026/I11_bhstar_kepler.lean"
-   ],
-   "target": "Use the dimensionless residual D_B=log[r_B^4*n_H*c^2*mu_gas*m_p/(4*G*M^2)] only when radius, density and mass are constrained independently of D_B=0. Test exponent, intercept and intrinsic scatter separately.",
-   "first_discriminator": "Compute the sensitivity vector (4,1,-2) with respect to (log r_B, log n_H, log M). Use the full covariance, including shared continuum/line-fit information, to determine whether the intercept is identifiable.",
-   "deliverables": [
-    "population_protocol.json",
-    "joint_covariance_mocks.py",
-    "measurement_value_table.md"
-   ],
-   "on_supported": "Freeze the estimator and a held-out population or observation design. Rank missing measurements by reduction of uncertainty in D_B, not convenience.",
-   "on_refuted_or_inconclusive": "If no direct radius exists, publish the required observation and keep the relation a conditional prediction. Do not generate radii from the transition law and then test that same law.",
-   "execution_status": "not_started",
-   "claim_status": "open",
-   "owner": null,
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R15"
-  },
-  {
-   "id": "R16",
-   "title": "Challenge the cosmological operator under variable changes",
-   "refines_original": [
-    "C2",
-    "B3"
-   ],
-   "depends_on": [
-    "C1",
-    "B3"
-   ],
-   "estimated_agent_days": 1,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/clock_2026/L291b_frw_ymod_carrier.py",
-    "real_research/clock_2026/L300_exact_a1_arbiter.py",
-    "real_research/clock_2026/L306_s8_closure.py"
-   ],
-   "target": "Build an invariance audit for the physical FRW evolution: constraint propagation, dimensional consistency, physical observable invariance and two independent reductions.",
-   "first_discriminator": "For a constant-background pencil transform rows and columns by nonsingular matrices and compare generalized physical roots. For a time-dependent change z=S(t)y, include the extra S_dot*S_inverse term; instantaneous generator eigenvalues need not be invariant.",
-   "deliverables": [
-    "operator_transformation_contract.md",
-    "constraint_basis_audit.py",
-    "physical_mode_comparison.json"
-   ],
-   "on_supported": "If density/curvature observables agree and constraints converge, promote the operator to C2/D1/R17. Formalize the finite matrix identity, separating it from a full cosmological proof.",
-   "on_refuted_or_inconclusive": "If a root changes only because residual equations are least-squares weighted or a transformed derivative is omitted, identify that computation failure. Do not call it a physical instability or repair it by choosing a convenient variable scale.",
-   "execution_status": "not_started",
-   "claim_status": "open",
-   "owner": null,
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R16"
-  },
-  {
-   "id": "R17",
-   "title": "Test whether baryonic forcing fixes entropy and phase",
-   "refines_original": [
-    "C3",
-    "D1"
-   ],
-   "depends_on": [
-    "R16"
-   ],
-   "estimated_agent_days": 1,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/clock_2026/L307_seeding_gate.py",
-    "real_research/clock_2026/L308_referee_audit.py",
-    "real_research/clock_2026/L296_doublet_selfenergy.py"
-   ],
-   "target": "Determine the homogeneous entropy mode and the retarded response to an oscillating baryon-photon source separately. Large static susceptibility does not determine time-dependent phase or erase homogeneous initial data.",
-   "first_discriminator": "Solve a small forced linear system with two distinct initial entropy amplitudes. Then repeat using the reviewed action operator, consistent k_phys=k_com/a, and a stated primordial covariance.",
-   "deliverables": [
-    "forced_mode_control.py",
-    "retarded_transfer.py",
-    "entropy_phase_report.md"
-   ],
-   "on_supported": "If an attractor suppresses the mode before the relevant epoch, quantify its basin and residual spectrum, then pass those initial conditions to D1 rather than setting alpha=(1-R)^2.",
-   "on_refuted_or_inconclusive": "If a homogeneous mode survives, retain its amplitude and correlation as initial-condition parameters. A fluid control illustrates the distinction but does not by itself refute or validate the action.",
-   "execution_status": "not_started",
-   "claim_status": "open",
-   "owner": null,
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R17"
-  },
-  {
-   "id": "R18",
-   "title": "Run a blinded discrimination challenge",
-   "refines_original": [
-    "F2",
-    "Q3"
-   ],
-   "depends_on": [
-    "R10"
-   ],
-   "estimated_agent_days": 1,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/reviews/particle_free_validation_2026_09_20/README.md",
-    "real_research/reviews/particle_free_validation_2026_09_20/precision_budget.py"
-   ],
-   "target": "Determine whether one feasible observable distinguishes the surviving models after geometry, calibration and selection, without knowing which model generated the mock.",
-   "first_discriminator": "Use an independently reviewed candidate population and validated forward models. Freeze nuisance priors, statistic and decision rule; have the integrator withhold the generating model and nuisance draw from the fitting worker.",
-   "deliverables": [
-    "blind_protocol.json",
-    "generation_manifest.json",
-    "recovery_and_coverage.json"
-   ],
-   "on_supported": "If discrimination has calibrated power and coverage, freeze a held-out real-data analysis. Require the applicable F1/G2/H1/B2 input first; R10 alone supplies only model definitions.",
-   "on_refuted_or_inconclusive": "If the models are confused, report the degeneracy and minimum missing precision/observable. Never repair the same held-out sample and keep calling it held out; start a new registered version.",
-   "execution_status": "not_started",
-   "claim_status": "open",
-   "owner": null,
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R18",
-   "additional_dispatch_gate": "Integrator must approve the chosen observable and its reviewed forward-model, source/geometry and independent-input prerequisites before generating scientific mocks; model definitions alone do not suffice."
-  },
-  {
-   "id": "R19",
-   "title": "Make the load-bearing claims fail when their premise is wrong",
-   "refines_original": [
-    "Q2"
-   ],
-   "depends_on": [],
-   "estimated_agent_days": 0.5,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/clock_2026/L309_three_sector_cluster.py",
-    "real_research/clock_2026/L312_law_implications.py",
-    "deepseek_push/lean/PD21_law_of_nature.lean",
-    "real_research/reviews/bhstar_r1_wind_kinematics.py"
-   ],
-   "target": "For only the claims used in the current release candidate, replace narrative-only checks with independently computed predicates and preserve the intended evidence boundary.",
-   "first_discriminator": "Try four controls: integrate a known logarithmic mass profile, perturb channel slope away from one, change pair mass ratio away from one, and use a radius outside the declared wind interval. A relevant check must fail for the intended reason.",
-   "deliverables": [
-    "claim_check_map.json",
-    "negative_controls.py",
-    "proposed_check_corrections.diff"
-   ],
-   "on_supported": "Attach fresh logs and printed Lean axioms to Q2/Q4/R20. Count physical premises and observational comparisons separately from algebra and software checks.",
-   "on_refuted_or_inconclusive": "If the advertised gate cannot fail, relabel it as a status assertion or implement an actual test in a proposed patch. Do not broaden thresholds after seeing an unfavorable result or let a failing negative control overwrite the main run.",
-   "execution_status": "not_started",
-   "claim_status": "open",
-   "owner": null,
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R19"
-  },
-  {
-   "id": "R20",
-   "title": "Choose the strongest surviving result and dispatch the next cycle",
-   "refines_original": [
-    "Q4"
-   ],
-   "depends_on": [],
-   "estimated_agent_days": 0.5,
-   "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
-   "inputs": [
-    "real_research/swarm_week_2026_09_20/TASKS.json",
-    "real_research/swarm_week_2026_09_20/RESULT_TEMPLATE.md"
-   ],
-   "target": "Integrate reviewed results as they arrive and select a paper-sized theorem, obstruction or independent instrument; keep the next ready scientific move assigned.",
-   "first_discriminator": "For each returned result ask: which exact implication changed, which model version did it use, what downstream evidence is stale, and what new discriminator follows? A completed process or more PASS rows is not sufficient.",
-   "deliverables": [
-    "FOLLOWUP_REPORT.md",
-    "MODEL_STATUS.json",
-    "NEXT_DISPATCH.json",
-    "paper_claim.md"
-   ],
-   "on_supported": "Promote only reviewed claims with raw evidence. Prepare direct-main patches and a reproducible release outline. Run the next nonduplicated ready packet after its prerequisite is checked.",
-   "on_refuted_or_inconclusive": "If a route is refuted, close that branch and preserve its obstruction; select an alternative mechanism with a different failed premise. If no executable route exists, state the exact missing input and keep the scientific claim open rather than fabricate closure.",
-   "execution_status": "not_started",
-   "claim_status": "open",
-   "owner": null,
-   "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R20",
-   "additional_dispatch_gate": "Ledger preparation may start now; scientific synthesis requires actual reviewed returned artifacts."
-  }
- ]
+  "schema_version": 1,
+  "program_id": "particle_free_followup_2026_09_20",
+  "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+  "parent_registry": "TASKS.json",
+  "scope": "Twenty finer-grained follow-up tickets refining existing obligations; not twenty independent additions to the original effort budget.",
+  "estimated_agent_days": 14.75,
+  "readiness": "Dependencies are required reviewed inputs, not assertions that those claims passed. External original IDs refer to TASKS.json. Preparation can run early. R18 has a separate applicable-forward-model gate; R20 integrates returned work rather than pretending results already exist.",
+  "tasks": [
+    {
+      "id": "R01",
+      "title": "Certify the actual active-density asymptote",
+      "refines_original": [
+        "E1",
+        "B2"
+      ],
+      "depends_on": [],
+      "estimated_agent_days": 0.5,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/clock_2026/L304_phantom_active_mass.py",
+        "real_research/clock_2026/L298_phantom_stress_tensor.py"
+      ],
+      "target": "For B,D>0, 0<K<2 and u>0, prove rho_act=(2/3)(2-K)D u^3 from the displayed rho and w. With u(B+u)=A/r, A>0, prove r*u -> A/B and r^3*rho_act -> (2/3)(2-K)D(A/B)^3.",
+      "first_discriminator": "Cancel B+2u/3 exactly before fitting any radial slope. Use the rationalized positive root u=2A/[r(B+sqrt(B^2+4A/r))] to avoid cancellation at large r. This audits the L304 surrogate, not the complete covariant stress.",
+      "deliverables": [
+        "ActiveDensity.lean with domains and limit hypotheses",
+        "exact_factorization.py",
+        "asymptotic_remainder.md"
+      ],
+      "on_supported": "Pass the coefficient and a finite-radius remainder bound to R02/R03; feed the source identity to B2 for its physical interpretation.",
+      "on_refuted_or_inconclusive": "If the published profile is inconsistent with the factorization, isolate the equation/version mismatch. A failed Lean tactic is not a mathematical refutation; retain the symbolic result with its formalization status.",
+      "execution_status": "completed",
+      "claim_status": "proved_conditional",
+      "owner": "hermes_session",
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R01"
+    },
+    {
+      "id": "R02",
+      "title": "Replace the fitted power with a shell-mass theorem",
+      "refines_original": [
+        "E1"
+      ],
+      "depends_on": [
+        "R01"
+      ],
+      "estimated_agent_days": 0.5,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/clock_2026/L304_phantom_active_mass.py",
+        "real_research/clock_2026/L311_phantom_law.py"
+      ],
+      "target": "For an exact shell rho=C/r^3, C>0, r>=r0>0, certify M(r)=M0+4*pi*C*log(r/r0). Bound the integral correction from the R01 asymptotic remainder for the actual profile.",
+      "first_discriminator": "Reproduce the apparent exponent near 0.578 for a pure logarithm on the same sampled radial interval with r0=1000, then change r0 while holding the outer sample fixed. Track the interior mass M0 separately; starting a cumulative integral at the first grid point sets it to zero.",
+      "deliverables": [
+        "ShellMass.lean",
+        "cutoff_sensitivity.py",
+        "corrected_mass_comparison.json"
+      ],
+      "on_supported": "Replace the square-root extrapolation in a proposed patch, preserving its old output for comparison. Send physical predictions to R03 and the feedback question to R04.",
+      "on_refuted_or_inconclusive": "If the finite observed interval still resembles a power, label it a local approximation and bound its error; do not promote it to an asymptotic theorem or replace the central mass by zero.",
+      "execution_status": "completed",
+      "claim_status": "proved_conditional",
+      "owner": "hermes_session",
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R02"
+    },
+    {
+      "id": "R03",
+      "title": "Derive corrected velocity curvature and its observable domain",
+      "refines_original": [
+        "F2",
+        "E1"
+      ],
+      "depends_on": [
+        "R02"
+      ],
+      "estimated_agent_days": 0.75,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/clock_2026/L305_phantom_rar_boost.py",
+        "real_research/clock_2026/L311_phantom_law.py",
+        "real_research/clock_2026/L312_law_implications.py"
+      ],
+      "target": "Conditional on g^2=a0*G*M_total(r)/r^2 and circular motion, derive v^4=a0*G*M_total and beta=(1/4)d log M_total/d log r. For M_total=Mbase+C_log*log(r/r0), obtain beta=C_log/(4*M_total) and its curvature. Derive the curvature invariant C_beta=d beta/d log r+4*beta^2: C_beta=0 for the logarithmic mass model, while C_beta=beta/2 for a positive square-root contribution over a constant base mass. These are conditional shape relations, not new empirically established laws.",
+      "first_discriminator": "Compare the logarithmic and square-root continuations using the same independent mass at an anchor radius, then the same local derivative as a separate matching experiment. Do not force both matches if the models lack that freedom. Before proposing an observation, estimate the covariance cost of a second derivative of the rotation curve; curvature can be formally distinctive yet observationally unusable.",
+      "deliverables": [
+        "VelocityCurvature.lean",
+        "matched_profile_comparison.py",
+        "observable_domain.md"
+      ],
+      "on_supported": "Choose radii where the predictions differ after mass, anisotropy and boundary uncertainties. Hand a frozen forward comparison to F2/R18; use R05 first for lensing.",
+      "on_refuted_or_inconclusive": "If the full metric equations do not license the starting force law, retain this as a conditional instrument calculation. If finite-range differences are below nuisance uncertainty, report the precision limit rather than declaring a detection.",
+      "execution_status": "completed",
+      "claim_status": "proved_conditional",
+      "owner": "hermes_session",
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R03"
+    },
+    {
+      "id": "R04",
+      "title": "Test whether self-gravity stabilizes or amplifies the profile",
+      "refines_original": [
+        "E2",
+        "C4"
+      ],
+      "depends_on": [
+        "R01",
+        "B2"
+      ],
+      "estimated_agent_days": 1,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/clock_2026/L299_phantom_halo_selfconsistent.py",
+        "real_research/clock_2026/L305_phantom_rar_boost.py",
+        "real_research/clock_2026/L311_phantom_law.py"
+      ],
+      "target": "After B2 identifies a genuine additional source, test the conditional deep feedback system rho=A_g*g^3 and g^2=a0*G*M/r^2. It implies dM/d log r=K_g*M^(3/2), K_g=4*pi*A_g*(a0*G)^(3/2), rather than an imposed square-root mass. Within the same conditional feedback system, derive beta=K_g*sqrt(M)/4 and d beta/d log r=2*beta^2, then compare its sign/curvature with R03. Do not promote any of these diagnostic continuations to a physical solution before B2 licenses the source.",
+      "first_discriminator": "For positive constants derive M^(-1/2)=M0^(-1/2)-(K_g/2)*log(r/r0). Test the finite-radius singularity against the first radius at which the deep, static or source approximation fails. A singular toy continuation does not refute a model outside that approximation.",
+      "deliverables": [
+        "Feedback.lean or exact differential identity",
+        "feedback_ode.py",
+        "validity_vs_singularity.md"
+      ],
+      "on_supported": "If the growth obstruction lies inside the valid domain, derive the necessary regulating change: pressure, finite supply, changed branch or coupling. Each candidate must appear in the action/EOM and pass conservation before a new solve.",
+      "on_refuted_or_inconclusive": "If rho_act is only effective bookkeeping, prohibit re-insertion as a second source and return to B2. If the approximation fails first, solve through that transition with a new controlled operator instead of extrapolating the toy singularity.",
+      "execution_status": "not_started",
+      "claim_status": "open",
+      "owner": null,
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R04"
+    },
+    {
+      "id": "R05",
+      "title": "Separate density slope, lensing slope and dynamical source",
+      "refines_original": [
+        "B2",
+        "E3"
+      ],
+      "depends_on": [
+        "B2",
+        "R02"
+      ],
+      "estimated_agent_days": 1,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/clock_2026/L279_quasistatic_slip_from_action.py",
+        "real_research/clock_2026/L304_phantom_active_mass.py",
+        "real_research/clock_2026/L309_three_sector_cluster.py",
+        "real_research/clock_2026/L310_instrument_sweep.py"
+      ],
+      "target": "Derive projected lensing and dynamics from the same physical potentials: ds^2=-(1+2Psi)dt^2+a^2(1-2Phi)dx^2, Weyl potential=(Phi+Psi)/2. A 3D density slope is not directly a shear slope.",
+      "first_discriminator": "For a controlled spherical source, compute the Abel projection, mean interior surface density and DeltaSigma separately, with inner core and outer cutoff explicit. Compare to direct null-geodesic/weak-field potential integration where applicable.",
+      "deliverables": [
+        "projection_dictionary.md",
+        "joint_projection.py",
+        "cutoff_and_slip_grid.json"
+      ],
+      "on_supported": "Pass a mock observable and covariance model to E3/R18. Mark which signatures are preserved when anisotropic stress changes slip.",
+      "on_refuted_or_inconclusive": "If only an inferred Poisson density is available, label its projection conditional on a metric bridge. Do not call a ratio of virial mass estimates M_lens/M_X without modeling those observables.",
+      "execution_status": "not_started",
+      "claim_status": "open",
+      "owner": null,
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R05"
+    },
+    {
+      "id": "R06",
+      "title": "Lock down the unequal-mass conservation obstruction",
+      "refines_original": [
+        "G1"
+      ],
+      "depends_on": [],
+      "estimated_agent_days": 0.25,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "deepseek_push/lean/PD20_two_body_factor.lean",
+        "deepseek_push/lean/PD21_law_of_nature.lean"
+      ],
+      "target": "For positive masses prove m1*sqrt(m2)=m2*sqrt(m1) iff m1=m2. Apply it only to the proposed isolated static per-body ansatz; derive and state the translation-conservation obligation for its intended action.",
+      "first_discriminator": "Use masses 1 and 4 with a0*G=r=1: the opposing force magnitudes are 2 and 4. Check separately the test-particle limit and the exactly equal-mass case.",
+      "deliverables": [
+        "PairObstruction.lean",
+        "mass_ratio_counterexamples.json",
+        "premise_scope.md"
+      ],
+      "on_supported": "Preserve PD20/PD21 as conditional algebra, withdraw the unsupported action-derived amplitude in a proposed correction, and route the actual force calculation to R07.",
+      "on_refuted_or_inconclusive": "If a completion supplies additional time-dependent field momentum or external force, derive that contribution and its boundary conditions explicitly. It defines a different physical problem; it cannot be inserted silently to excuse a static isolated force imbalance.",
+      "execution_status": "completed",
+      "claim_status": "proved_conditional",
+      "owner": "hermes_session",
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R06"
+    },
+    {
+      "id": "R07",
+      "title": "Derive the correct mass-ratio force from the action",
+      "refines_original": [
+        "G1"
+      ],
+      "depends_on": [
+        "R06",
+        "B1"
+      ],
+      "estimated_agent_days": 1,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/reviews/kappa_unit_response_2026_09_20/README.md",
+        "real_research/reviews/kappa_unit_response_2026_09_20/ACTION_ROUTE.md",
+        "deepseek_push/lean/PD18_wide_binary_face.lean"
+      ],
+      "target": "Derive a two-source force from the action translation identity or stress-flux surface integral. Establish which hypotheses permit import of the known isolated deep-MOND virial theorem.",
+      "first_discriminator": "Read the primary virial theorem in full and translate normalization, point-mass/extended-body limits and boundary terms. Recover the small-mass limit and equal-and-opposite forces before producing an equal-mass amplitude.",
+      "deliverables": [
+        "two_source_stress.md",
+        "PairForce.lean for the justified algebra",
+        "literature_hypotheses.json"
+      ],
+      "on_supported": "Treat known virial content as inherited mathematics. A novel result must be an action-specific correction, controlled finite-size term or applicability theorem; give the benchmark to R08.",
+      "on_refuted_or_inconclusive": "If screening or external fields break the virial hypotheses, derive their boundary/work terms rather than apply the isolated formula. Return the exact missing bridge for B1/G1 if no common action is available.",
+      "execution_status": "not_started",
+      "claim_status": "open",
+      "owner": null,
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R07"
+    },
+    {
+      "id": "R08",
+      "title": "Validate a nonlinear two-source solver independently",
+      "refines_original": [
+        "G2"
+      ],
+      "depends_on": [
+        "R07",
+        "F1"
+      ],
+      "estimated_agent_days": 1,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/reviews/mi_aqual_solve_framework_kernel_2026.py",
+        "qwen_claude_field_theory/theory_2026/aqual_solver_2026.py"
+      ],
+      "target": "Resolve force from two independent evaluations: the matter/source force and a field-stress flux integral, on a finite-size two-source regularization of the selected operator.",
+      "first_discriminator": "Run mass ratios 1, 1/4 and 1/100 at one separation, then halve source radius and mesh size independently. Check total-force cancellation, analytic isolated controls and boundary sensitivity.",
+      "deliverables": [
+        "two_source_solver.py",
+        "force_balance_convergence.json",
+        "regularization_limits.md"
+      ],
+      "on_supported": "Use the convergence error to bound finite-size/mass-ratio corrections and feed the validated solver to R09. Do not infer an entire continuous parameter range from three cases.",
+      "on_refuted_or_inconclusive": "If source regularization dominates, refine that limit before astrophysical forecasting. If force and stress methods disagree, freeze the amplitude claim and isolate the discretization/operator error.",
+      "execution_status": "not_started",
+      "claim_status": "open",
+      "owner": null,
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R08"
+    },
+    {
+      "id": "R09",
+      "title": "Classify which binary signatures survive environment and size",
+      "refines_original": [
+        "G2",
+        "G3",
+        "F3"
+      ],
+      "depends_on": [
+        "R08",
+        "B4"
+      ],
+      "estimated_agent_days": 0.75,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/reviews/mi_wb_gext_kappa_route_2026.py",
+        "real_research/reviews/mi_wb_dr3_feasibility_2026.py",
+        "fable_independent_2026/L47_xi_collision.py"
+      ],
+      "target": "Produce a regime diagram in g_internal/g_external, separation/xi and mass ratio, marking isolated, external-field-dominated and screened limits of the actual candidate.",
+      "first_discriminator": "Calculate these ratios for an admissible pilot population before simulating velocities. Carry the same xi and local-constraint parameter point everywhere.",
+      "deliverables": [
+        "binary_regime_map.csv",
+        "matched_environment_grid.py",
+        "recoverable_observable.md"
+      ],
+      "on_supported": "Forward-model the surviving orientation or velocity statistic with contamination and selection through R18; state which mass calibration remains necessary.",
+      "on_refuted_or_inconclusive": "If the accessible systems are fully screened, record the predicted null and redirect effort to larger systems or another independently accessible regime. Do not keep amplifying the isolated plateau headline.",
+      "execution_status": "not_started",
+      "claim_status": "open",
+      "owner": null,
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R09"
+    },
+    {
+      "id": "R10",
+      "title": "Stop mixing inequivalent full force laws",
+      "refines_original": [
+        "B1",
+        "A3"
+      ],
+      "depends_on": [],
+      "estimated_agent_days": 0.5,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "deepseek_push/lean/PD21_law_of_nature.lean",
+        "real_research/reviews/kappa_unit_response_2026_09_20/README.md",
+        "real_research/reviews/orbital_shape_law_2026_09_20/README.md"
+      ],
+      "target": "Compare the rational auxiliary response, the PD21 quadrature law g^2=gN^2+a0*gN, and the L311 deep law with an added active source. Determine exact equivalence or inequivalence with physical s, a0 and mass fixed.",
+      "first_discriminator": "At one transition acceleration solve each response with the same parameters. Then compare their weak/high-field expansions and scale-independent derivative ratios; a shared leading deep asymptote is insufficient.",
+      "deliverables": [
+        "model_equivalence_table.md",
+        "CompletionSeparation.lean",
+        "transition_comparison.json"
+      ],
+      "on_supported": "Assign distinct model IDs when the laws differ. Attach orbital quarter-slope and screening predictions only to the model from which they were derived; hand the distinct curves to R18.",
+      "on_refuted_or_inconclusive": "If a field or parameter transformation allegedly identifies them, derive the transformation of matter coupling and independently measured scales as well. A change of observable or refit is not equivalence.",
+      "execution_status": "completed",
+      "claim_status": "proved_conditional",
+      "owner": "hermes_session",
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R10"
+    },
+    {
+      "id": "R11",
+      "title": "Try a genuinely new selector with a noncircular falsifier",
+      "refines_original": [
+        "A1"
+      ],
+      "depends_on": [
+        "R10"
+      ],
+      "estimated_agent_days": 0.75,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/reviews/kappa_unit_response_2026_09_20/README.md",
+        "real_research/reviews/kappa_unit_response_2026_09_20/THERMAL_ROUTE.md",
+        "fable_independent_2026/L226_kappa_and_the_free_function.py",
+        "deepseek_push/lean/PD21_law_of_nature.lean"
+      ],
+      "target": "Write one new physical equation capable of selecting lambda=1 while keeping s independently fixed. Candidates must supply a microscopic response normalization, a protected matching relation or a derived boundary condition, not channel counting alone.",
+      "first_discriminator": "Evaluate the proposed equation at lambda=1 and lambda=2 before a long derivation. List every externally fixed quantity and every calibration using galaxy a0. Reject algebraic restatements of kappa=1/2 immediately.",
+      "deliverables": [
+        "selector_assumption_ledger.md",
+        "selector_discriminator.py",
+        "SelectionOrObstruction.lean"
+      ],
+      "on_supported": "Prove uniqueness in the declared class and check stability under allowed action perturbations. Send an independently selected response invariant to R12 and a noncircular measurement prediction to A2.",
+      "on_refuted_or_inconclusive": "If both coefficients survive, record the new selector specific obstruction and move to a materially different mechanism. If none survives the budget, retain lambda=1 as a model postulate and pursue its empirical consequences; do not repackage the existing counterfamily as a new result.",
+      "execution_status": "not_started",
+      "claim_status": "open",
+      "owner": null,
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R11"
+    },
+    {
+      "id": "R12",
+      "title": "Find a second observable that breaks calibration degeneracy",
+      "refines_original": [
+        "A2",
+        "A3"
+      ],
+      "depends_on": [
+        "R10"
+      ],
+      "estimated_agent_days": 0.75,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/reviews/kappa_unit_response_2026_09_20/README.md",
+        "real_research/reviews/orbital_shape_law_2026_09_20/README.md",
+        "real_research/reviews/field_orbit_reciprocity_2026_09_20/README.md",
+        "deepseek_push/PD10_zero_mode_measured.py"
+      ],
+      "target": "Identify two observables with linearly independent sensitivities to response shape and independent normalization, after nuisance parameters are included. An invariant such as mu_second(0)/mu_prime(0)^2 is a candidate, not automatically a measurable statistic.",
+      "first_discriminator": "Compute the Jacobian rank for candidate observables under s, lambda, mass scale and distance rescalings. Try orbital shape plus independently matched external-field response, with all domain restrictions stated.",
+      "deliverables": [
+        "identifiability_rank.py",
+        "ObservableDegeneracy.lean",
+        "independent_pair_protocol.json"
+      ],
+      "on_supported": "If a degeneracy is broken, specify the additional measurement and its attainable calibration requirements, then use R18 for mock recovery.",
+      "on_refuted_or_inconclusive": "If the rank remains deficient, give an explicit parameter transformation preserving the observations. Search a new observable with a different dependence rather than collecting more copies of the same relation.",
+      "execution_status": "not_started",
+      "claim_status": "open",
+      "owner": null,
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R12"
+    },
+    {
+      "id": "R13",
+      "title": "Determine whether the BH photospheric gravity is independent",
+      "refines_original": [
+        "H1",
+        "H2"
+      ],
+      "depends_on": [],
+      "estimated_agent_days": 0.5,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/reviews/bhstar_u1_decircularization.py",
+        "fable_independent_2026/lean_2026/I12_bhstar_dial.lean",
+        "real_research/reviews/bhstar_p1_empirical_rigor.py"
+      ],
+      "target": "Distinguish g_fit from g_grav in the atmosphere model. Carry g_fit=g_grav-g_rad+g_dyn with a documented sign convention and derive its effect on the inferred Gamma.",
+      "first_discriminator": "Eliminate Gamma symbolically from the wave-U chain and recover M=g_fit*R^2/G under its assumptions. Then construct two gravity decompositions with the same g_fit,T but different true mass if the atmosphere permits them.",
+      "deliverables": [
+        "GravityReadout.lean",
+        "gravity_decomposition.py",
+        "atmosphere_source_audit.md"
+      ],
+      "on_supported": "If the source model identifies g_grav or bounds the correction, propagate that independent bound to H2/R15 instead of treating the algebraic round trip as a validation.",
+      "on_refuted_or_inconclusive": "If gravity decomposition remains free, report an interval/identifiability obstruction and the needed independent mass or radiation-force measurement. Preserve I12 as a conditional identity.",
+      "execution_status": "not_started",
+      "claim_status": "open",
+      "owner": null,
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R13"
+    },
+    {
+      "id": "R14",
+      "title": "Separate wind, opacity and photosphere radius information",
+      "refines_original": [
+        "H1"
+      ],
+      "depends_on": [],
+      "estimated_agent_days": 0.75,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/reviews/bhstar_r1_wind_kinematics.py",
+        "real_research/reviews/bhstar_s1_u_route_void.py",
+        "real_research/reviews/bhstar_t1_kepler_predictions.py"
+      ],
+      "target": "Build separate likelihoods or bounded constraints for launch radius, line-forming radius, photospheric radius and slab thickness. Establish which observable links any two.",
+      "first_discriminator": "Use the proper wind interval-membership test and invert the factor required for a given radius. For opacity distinguish the ionization parameter at the illuminated boundary from the attenuated interior field and total neutral from excited-state populations.",
+      "deliverables": [
+        "radius_constraint_graph.json",
+        "wind_interval_check.py",
+        "transfer_boundary_contract.md"
+      ],
+      "on_supported": "Combine only genuinely independent constraints, including their common mass/continuum inputs, and send the resulting radius-density covariance to R15.",
+      "on_refuted_or_inconclusive": "If the available spectrum fixes only N_H/n_H, construct the surviving radius family and specify a lag, angular size or independently normalized ionizing flux that would break it. Neither large opacity nor a broad wind-factor range alone proves or disproves the transition.",
+      "execution_status": "not_started",
+      "claim_status": "open",
+      "owner": null,
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R14"
+    },
+    {
+      "id": "R15",
+      "title": "Design a noncircular population falsifier",
+      "refines_original": [
+        "H2",
+        "F4"
+      ],
+      "depends_on": [
+        "R13",
+        "R14"
+      ],
+      "estimated_agent_days": 0.75,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/reviews/bhstar_t1_kepler_predictions.py",
+        "fable_independent_2026/lean_2026/I11_bhstar_kepler.lean"
+      ],
+      "target": "Use the dimensionless residual D_B=log[r_B^4*n_H*c^2*mu_gas*m_p/(4*G*M^2)] only when radius, density and mass are constrained independently of D_B=0. Test exponent, intercept and intrinsic scatter separately.",
+      "first_discriminator": "Compute the sensitivity vector (4,1,-2) with respect to (log r_B, log n_H, log M). Use the full covariance, including shared continuum/line-fit information, to determine whether the intercept is identifiable.",
+      "deliverables": [
+        "population_protocol.json",
+        "joint_covariance_mocks.py",
+        "measurement_value_table.md"
+      ],
+      "on_supported": "Freeze the estimator and a held-out population or observation design. Rank missing measurements by reduction of uncertainty in D_B, not convenience.",
+      "on_refuted_or_inconclusive": "If no direct radius exists, publish the required observation and keep the relation a conditional prediction. Do not generate radii from the transition law and then test that same law.",
+      "execution_status": "not_started",
+      "claim_status": "open",
+      "owner": null,
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R15"
+    },
+    {
+      "id": "R16",
+      "title": "Challenge the cosmological operator under variable changes",
+      "refines_original": [
+        "C2",
+        "B3"
+      ],
+      "depends_on": [
+        "C1",
+        "B3"
+      ],
+      "estimated_agent_days": 1,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/clock_2026/L291b_frw_ymod_carrier.py",
+        "real_research/clock_2026/L300_exact_a1_arbiter.py",
+        "real_research/clock_2026/L306_s8_closure.py"
+      ],
+      "target": "Build an invariance audit for the physical FRW evolution: constraint propagation, dimensional consistency, physical observable invariance and two independent reductions.",
+      "first_discriminator": "For a constant-background pencil transform rows and columns by nonsingular matrices and compare generalized physical roots. For a time-dependent change z=S(t)y, include the extra S_dot*S_inverse term; instantaneous generator eigenvalues need not be invariant.",
+      "deliverables": [
+        "operator_transformation_contract.md",
+        "constraint_basis_audit.py",
+        "physical_mode_comparison.json"
+      ],
+      "on_supported": "If density/curvature observables agree and constraints converge, promote the operator to C2/D1/R17. Formalize the finite matrix identity, separating it from a full cosmological proof.",
+      "on_refuted_or_inconclusive": "If a root changes only because residual equations are least-squares weighted or a transformed derivative is omitted, identify that computation failure. Do not call it a physical instability or repair it by choosing a convenient variable scale.",
+      "execution_status": "not_started",
+      "claim_status": "open",
+      "owner": null,
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R16"
+    },
+    {
+      "id": "R17",
+      "title": "Test whether baryonic forcing fixes entropy and phase",
+      "refines_original": [
+        "C3",
+        "D1"
+      ],
+      "depends_on": [
+        "R16"
+      ],
+      "estimated_agent_days": 1,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/clock_2026/L307_seeding_gate.py",
+        "real_research/clock_2026/L308_referee_audit.py",
+        "real_research/clock_2026/L296_doublet_selfenergy.py"
+      ],
+      "target": "Determine the homogeneous entropy mode and the retarded response to an oscillating baryon-photon source separately. Large static susceptibility does not determine time-dependent phase or erase homogeneous initial data.",
+      "first_discriminator": "Solve a small forced linear system with two distinct initial entropy amplitudes. Then repeat using the reviewed action operator, consistent k_phys=k_com/a, and a stated primordial covariance.",
+      "deliverables": [
+        "forced_mode_control.py",
+        "retarded_transfer.py",
+        "entropy_phase_report.md"
+      ],
+      "on_supported": "If an attractor suppresses the mode before the relevant epoch, quantify its basin and residual spectrum, then pass those initial conditions to D1 rather than setting alpha=(1-R)^2.",
+      "on_refuted_or_inconclusive": "If a homogeneous mode survives, retain its amplitude and correlation as initial-condition parameters. A fluid control illustrates the distinction but does not by itself refute or validate the action.",
+      "execution_status": "not_started",
+      "claim_status": "open",
+      "owner": null,
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R17"
+    },
+    {
+      "id": "R18",
+      "title": "Run a blinded discrimination challenge",
+      "refines_original": [
+        "F2",
+        "Q3"
+      ],
+      "depends_on": [
+        "R10"
+      ],
+      "estimated_agent_days": 1,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/reviews/particle_free_validation_2026_09_20/README.md",
+        "real_research/reviews/particle_free_validation_2026_09_20/precision_budget.py"
+      ],
+      "target": "Determine whether one feasible observable distinguishes the surviving models after geometry, calibration and selection, without knowing which model generated the mock.",
+      "first_discriminator": "Use an independently reviewed candidate population and validated forward models. Freeze nuisance priors, statistic and decision rule; have the integrator withhold the generating model and nuisance draw from the fitting worker.",
+      "deliverables": [
+        "blind_protocol.json",
+        "generation_manifest.json",
+        "recovery_and_coverage.json"
+      ],
+      "on_supported": "If discrimination has calibrated power and coverage, freeze a held-out real-data analysis. Require the applicable F1/G2/H1/B2 input first; R10 alone supplies only model definitions.",
+      "on_refuted_or_inconclusive": "If the models are confused, report the degeneracy and minimum missing precision/observable. Never repair the same held-out sample and keep calling it held out; start a new registered version.",
+      "execution_status": "not_started",
+      "claim_status": "open",
+      "owner": null,
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R18",
+      "additional_dispatch_gate": "Integrator must approve the chosen observable and its reviewed forward-model, source/geometry and independent-input prerequisites before generating scientific mocks; model definitions alone do not suffice."
+    },
+    {
+      "id": "R19",
+      "title": "Make the load-bearing claims fail when their premise is wrong",
+      "refines_original": [
+        "Q2"
+      ],
+      "depends_on": [],
+      "estimated_agent_days": 0.5,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/clock_2026/L309_three_sector_cluster.py",
+        "real_research/clock_2026/L312_law_implications.py",
+        "deepseek_push/lean/PD21_law_of_nature.lean",
+        "real_research/reviews/bhstar_r1_wind_kinematics.py"
+      ],
+      "target": "For only the claims used in the current release candidate, replace narrative-only checks with independently computed predicates and preserve the intended evidence boundary.",
+      "first_discriminator": "Try four controls: integrate a known logarithmic mass profile, perturb channel slope away from one, change pair mass ratio away from one, and use a radius outside the declared wind interval. A relevant check must fail for the intended reason.",
+      "deliverables": [
+        "claim_check_map.json",
+        "negative_controls.py",
+        "proposed_check_corrections.diff"
+      ],
+      "on_supported": "Attach fresh logs and printed Lean axioms to Q2/Q4/R20. Count physical premises and observational comparisons separately from algebra and software checks.",
+      "on_refuted_or_inconclusive": "If the advertised gate cannot fail, relabel it as a status assertion or implement an actual test in a proposed patch. Do not broaden thresholds after seeing an unfavorable result or let a failing negative control overwrite the main run.",
+      "execution_status": "not_started",
+      "claim_status": "open",
+      "owner": null,
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R19"
+    },
+    {
+      "id": "R20",
+      "title": "Choose the strongest surviving result and dispatch the next cycle",
+      "refines_original": [
+        "Q4"
+      ],
+      "depends_on": [],
+      "estimated_agent_days": 0.5,
+      "base_revision": "3e857b5a6f8f05b48e29d0cbe42136998e9f9445",
+      "inputs": [
+        "real_research/swarm_week_2026_09_20/TASKS.json",
+        "real_research/swarm_week_2026_09_20/RESULT_TEMPLATE.md"
+      ],
+      "target": "Integrate reviewed results as they arrive and select a paper-sized theorem, obstruction or independent instrument; keep the next ready scientific move assigned.",
+      "first_discriminator": "For each returned result ask: which exact implication changed, which model version did it use, what downstream evidence is stale, and what new discriminator follows? A completed process or more PASS rows is not sufficient.",
+      "deliverables": [
+        "FOLLOWUP_REPORT.md",
+        "MODEL_STATUS.json",
+        "NEXT_DISPATCH.json",
+        "paper_claim.md"
+      ],
+      "on_supported": "Promote only reviewed claims with raw evidence. Prepare direct-main patches and a reproducible release outline. Run the next nonduplicated ready packet after its prerequisite is checked.",
+      "on_refuted_or_inconclusive": "If a route is refuted, close that branch and preserve its obstruction; select an alternative mechanism with a different failed premise. If no executable route exists, state the exact missing input and keep the scientific claim open rather than fabricate closure.",
+      "execution_status": "not_started",
+      "claim_status": "open",
+      "owner": null,
+      "output_directory": "real_research/swarm_week_2026_09_20/followup_work/R20",
+      "additional_dispatch_gate": "Ledger preparation may start now; scientific synthesis requires actual reviewed returned artifacts."
+    }
+  ]
 }
