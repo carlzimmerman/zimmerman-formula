@@ -211,3 +211,38 @@ contract the lapse-weighted energy.
   - This is convexity of the fixed-metric, fixed-lapse auxiliary solve, not coupled time stability. The filter's
     failure to contract still matters for energy estimates.
   - ν_mono's splice (y* = 2.3374; XC4 S5) makes the q-integrand C² but not C³ at the splice point.
+
+## XC6 — full G8, part 1: the filter's metric variation escapes the Gaussian, but only into soft legs (4/4; MUTATE no-transfer fails D1, rc = 1)
+
+`XC6_filter_variation_soft_leg.py` (+ `.out`, `_MUTATE.out`, results JSON; seconds). Lean:
+`XC6_soft_leg_certificates.lean` (4 theorems, zero `sorry`, standard axioms). This is XR3 calc 5, assigned to this lane.
+It answers the lead track's review of XC1 (`real_research/peer_review_2026_09_26/xc1/REVIEW.md`, "Decisive missing heat
+interaction").
+
+- **D1, the witness reproduced.** Vary the conformal leaf metric h = e^{2εσ}δ on a periodic leaf. A hard input
+  cos(Kx) and a hard metric leg cos((K−1)x) then give a soft cos(x) output. Its coefficient is
+  (3K² − K)/(2(K² − 1))[e^{−b} − e^{−bK²}], reproduced to 10⁻⁶: 0.8969 at K = 20, tending to (3/2)e^{−1/2} = 0.9098. The
+  per-leg Gaussian e^{−bK²} is 10⁻⁸⁷. **XC1's "one Gaussian per hard leg" does not hold for δS.**
+- **D2, the closed form.** Every element of the filter's Fréchet derivative is (δΔ)_(p,q)[e^{−bq²} − e^{−bp²}]/(p² − q²),
+  checked to 2×10⁻⁸ over 24 mode triples. For the conformal leg (δΔ)_(p,q) = 3q² − p·q; for a TT leg it is h_ij q_i q_j.
+- **D3, the soft-leg lemma.** In every channel the output gradient is bounded by the softer momentum:
+  |p||(δS)_(p,q)| ≤ 8 m(1 + bm²)e^{−bm²}·|metric leg|, with m = min(|p|, |q|). This holds for the conformal and TT
+  legs; the measured sharp constants are 4 and 1. Lean certifies the scalar inequalities (`dd_factor`, `phi_bounds`,
+  `soft_leg_conformal`, `soft_leg_tt`). The three regimes:
+  - hard → soft: an O(1) transfer, with output gradient of order the soft momentum;
+  - soft → hard: suppressed by q/p;
+  - hard → hard: Gaussian in the smaller momentum.
+  The constitutive term reads only the filtered gradient, so **no δS vertex grows with a hard energy.** Their
+  derivatives are bounded by soft momenta, ≲ 1/ξ.
+- **D4, the principal symbol with δS retained.** At a soft background, the constitutive term's second variation in a
+  hard metric leg stays bounded: log-slope in k +0.01 over k√b = 5.7–40, while the Einstein–Hilbert term grows as k².
+  δS therefore adds an order-0 operator. With XC2 B5–B6, the principal symbol of C-H/K with δS retained is GR + the BPS
+  khronon. This settles XR3 calc 5's third bullet on the conformal-leg model.
+
+**Part 2, not yet done:**
+- the canonical couplings of the soft-legged vertices, and their strong-coupling scale on the Sun + Galaxy background
+  at ξ = 0.031 pc;
+- the quartic contact and exchange terms, with the nonlinear elimination of U;
+- the second metric variation, bounded analytically (D4 samples it directly).
+
+Until then G8 remains a bounded pass at frozen-background decoupling scope, not a full pass.

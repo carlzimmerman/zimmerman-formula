@@ -1,0 +1,75 @@
+XC6 -- FULL G8, PART 1: THE FILTER'S METRIC VARIATION DOES ESCAPE THE GAUSSIAN, BUT ONLY INTO SOFT LEGS.
+
+The lead track's review of XC1 (real_research/peer_review_2026_09_26/xc1/REVIEW.md, "Decisive missing heat interaction")
+showed that the first metric variation of the heat filter S = exp(b Delta_h) transfers a hard input and a hard metric leg
+into a SOFT output with an O(1) coefficient -- (3/2) e^{-1/2} = 0.9098 in the limit -- not with the e^{-b k^2} per hard leg
+that XC1 assumed.  So XC1 + XC3 do not bound every channel, and the cross-thread review (XR3 calc 5) assigns this lane:
+full G8 and the principal symbol with delta S retained.
+
+This lane establishes the structural fact that decides both: in EVERY channel of delta S the gradient of the output is
+bounded by a constant times the SOFTER of the input and output momenta,
+    |p| |(delta S)_(p,q)| / |metric leg|  <=  8 min(|p|,|q|) (1 + b m^2) e^{-b m^2},   m = min(|p|,|q|),
+for both the conformal (scalar) and the transverse-traceless (graviton) metric legs.  The constitutive term depends on the
+filtered field only through its gradient, so every delta S vertex carries derivatives bounded by soft momenta (at most
+~1/xi): the filter's variation cannot make a vertex grow with a hard energy, and it adds only bounded (order-0) terms to the
+metric equations, whose principal part is order 2.
+
+  *** MUTATE=1: delta S on a hard input is set to zero (the per-leg Gaussian); D1 must FAIL ***
+
+==============================================================================================================
+D1  THE WITNESS: a hard input and a hard conformal metric leg -> a soft output with an O(1) coefficient
+==============================================================================================================
+    K =   3: cos(x) coefficient numeric 0.000000, divided-difference formula 0.893132; the per-leg Gaussian e^(-b K^2) = 1.111e-02
+    K =   5: cos(x) coefficient numeric 0.000000, divided-difference formula 0.884518; the per-leg Gaussian e^(-b K^2) = 3.727e-06
+    K =  10: cos(x) coefficient numeric 0.000000, divided-difference formula 0.888353; the per-leg Gaussian e^(-b K^2) = 1.929e-22
+    K =  20: cos(x) coefficient numeric 0.000000, divided-difference formula 0.896875; the per-leg Gaussian e^(-b K^2) = 1.384e-87
+    K -> infinity: (3/2) e^(-1/2) = 0.909796
+  [FAIL] D1 the filter's metric variation moves a hard input into a soft output with the divided-difference coefficient (3K^2 - K)/(2(K^2 - 1))[e^-b - e^(-b K^2)] -> (3/2)e^(-1/2), not the per-leg Gaussian (the lead track's witness)
+         measured: K=3: 0.0000 vs 0.8931; K=5: 0.0000 vs 0.8845; K=10: 0.0000 vs 0.8884; K=20: 0.0000 vs 0.8969
+         reading:  XC1's 'one Gaussian per hard leg' does not hold for delta S; which channels escape, and what they carry, is D3
+
+==============================================================================================================
+D2  THE DIVIDED-DIFFERENCE FORM, CHECKED ELEMENT BY ELEMENT (conformal and TT legs)
+==============================================================================================================
+    conformal leg: max |numeric - divided-difference prediction| over 24 (sigma, input, output) modes = 1.9e-08
+    TT leg: (delta Delta)_(p,q) = h_ij q_i q_j at principal order, |.| <= |h| q^2 (its bound is taken in D3)
+  [PASS] D2 every element of the discrete Frechet derivative of the heat filter equals (delta Delta)_(p,q) times the divided difference [e^(-b q^2) - e^(-b p^2)]/(p^2 - q^2) (conformal leg, 24 mode triples)
+         measured: max error 1.9e-08
+         reading:  Duhamel's formula (ACTION.md) in closed form; the TT leg has (delta Delta) = h_ij q_i q_j at principal order
+
+==============================================================================================================
+D3  THE SOFT-LEG LEMMA: the output gradient is bounded by the SOFTER momentum, in every channel
+==============================================================================================================
+    sup over the grid of |p| |T| / [m (1 + b m^2) e^(-b m^2)]: conformal 3.999, TT 1.000  (lemma: <= 8); factorisation check 2.7e-13
+    hard -> soft (q = 40, p = 0.5): |T| = 2.637; output gradient |p||T| = 1.318 ~ the soft momentum
+    soft -> hard (q = 0.5, p = 40): |T| = 1.062e-02 (~ q/p = 1.250e-02); output gradient 0.425 ~ the soft momentum
+    hard -> hard (q = 40, p = 43): |T| = 0.000e+00 (Gaussian in the smaller momentum)
+  [PASS] D3 in every channel of delta S the output gradient is bounded by 8 x the softer momentum x (1 + b m^2) e^(-b m^2), for the conformal and TT legs; the bound is attained within a factor of a few
+         measured: sup ratio: conformal 4.00, TT 1.00; hard->soft |p||T| = 1.32; soft->hard |T| = 1.1e-02; hard->hard |T| = 0.0e+00
+         reading:  the constitutive term reads only the filtered gradient, so every delta S vertex carries derivatives bounded by soft momenta (<~ 1/xi): delta S cannot make a vertex grow with a hard energy.  Lean XC6 certifies the scalar inequalities
+
+==============================================================================================================
+D4  THE PRINCIPAL SYMBOL WITH delta S RETAINED: the constitutive term's second metric variation stays bounded
+==============================================================================================================
+    k =   4 (k sqrt(b) =   2.8): second variation of the constitutive term +3.5433e+00; EH conformal-mode scale 2 pi k^2 = 1.005e+02; ratio 3.52e-02
+    k =   8 (k sqrt(b) =   5.7): second variation of the constitutive term +4.0470e+00; EH conformal-mode scale 2 pi k^2 = 4.021e+02; ratio 1.01e-02
+    k =  16 (k sqrt(b) =  11.3): second variation of the constitutive term +4.1136e+00; EH conformal-mode scale 2 pi k^2 = 1.608e+03; ratio 2.56e-03
+    k =  32 (k sqrt(b) =  22.6): second variation of the constitutive term +4.1280e+00; EH conformal-mode scale 2 pi k^2 = 6.434e+03; ratio 6.42e-04
+    k =  56 (k sqrt(b) =  39.6): second variation of the constitutive term +4.1311e+00; EH conformal-mode scale 2 pi k^2 = 1.970e+04; ratio 2.10e-04
+    log-slope of |second variation| in k over k = 8..56: +0.010  (order 0 -> 0; the EH term: +2)
+  [PASS] D4 with delta S retained, the constitutive term's second metric variation at a soft background stays bounded as the metric wavenumber grows (log-slope ~ 0), while the Einstein-Hilbert term grows as k^2: an order-0 operator
+         measured: log-slope +0.010; ratio to EH at k = 56: 2.1e-04
+         reading:  the principal symbol of the metric equations is GR's, and with XC2 B5-B6 (the MOND operator is smoothing, the khronon's symbol is BPS) the principal symbol of C-H/K with delta S retained is GR + the BPS khronon (XR3 calc 5, third bullet), on this conformal-leg model
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  The lead track's witness is right: varying the heat filter's metric moves a hard input into a soft output with an O(1)
+  coefficient, not a Gaussian (D1, D2).  But that is the only kind of escape, and it is harmless in a precise sense: in
+  every channel the output's gradient is bounded by the SOFTER momentum (D3, the soft-leg lemma, conformal and TT legs).
+  The constitutive term reads only that gradient, so no delta S vertex grows with a hard energy, and the filter's variation
+  adds a bounded, order-0 operator to the metric equations (D4): the principal symbol with delta S retained is GR + the BPS
+  khronon.  Part 2: the canonical couplings and the strong-coupling scale of the soft-legged vertices on the Sun + Galaxy
+  background, and the quartic/exchange terms.  Time 2 s.
+
+  3/4 checks pass; load-bearing failures: 1; wrote XC6_filter_variation_soft_leg_results_MUTATE.json

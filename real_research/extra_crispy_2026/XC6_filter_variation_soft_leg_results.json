@@ -1,0 +1,95 @@
+{
+ "lane": "XC6",
+ "mutate": false,
+ "checks": {
+  "D1 the filter's metric variation moves a hard input into a soft output with the divided-difference coefficient (3K^2 - K)/(2(K^2 - 1))[e^-b - e^(-b K^2)] -> (3/2)e^(-1/2), not the per-leg Gaussian (the lead track's witness)": {
+   "ok": true,
+   "measured": "K=3: 0.8931 vs 0.8931; K=5: 0.8845 vs 0.8845; K=10: 0.8884 vs 0.8884; K=20: 0.8969 vs 0.8969",
+   "load_bearing": true
+  },
+  "D2 every element of the discrete Frechet derivative of the heat filter equals (delta Delta)_(p,q) times the divided difference [e^(-b q^2) - e^(-b p^2)]/(p^2 - q^2) (conformal leg, 24 mode triples)": {
+   "ok": true,
+   "measured": "max error 1.9e-08",
+   "load_bearing": true
+  },
+  "D3 in every channel of delta S the output gradient is bounded by 8 x the softer momentum x (1 + b m^2) e^(-b m^2), for the conformal and TT legs; the bound is attained within a factor of a few": {
+   "ok": true,
+   "measured": "sup ratio: conformal 4.00, TT 1.00; hard->soft |p||T| = 1.32; soft->hard |T| = 1.1e-02; hard->hard |T| = 0.0e+00",
+   "load_bearing": true
+  },
+  "D4 with delta S retained, the constitutive term's second metric variation at a soft background stays bounded as the metric wavenumber grows (log-slope ~ 0), while the Einstein-Hilbert term grows as k^2: an order-0 operator": {
+   "ok": true,
+   "measured": "log-slope +0.010; ratio to EH at k = 56: 2.1e-04",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "D1": {
+   "rows": {
+    "3": {
+     "numeric": 0.8931324924914706,
+     "analytic": 0.8931324947615867,
+     "per_leg_gaussian": 0.011108996538242306
+    },
+    "5": {
+     "numeric": 0.8845184449859459,
+     "analytic": 0.8845184440450478,
+     "per_leg_gaussian": 3.726653172078671e-06
+    },
+    "10": {
+     "numeric": 0.8883529861776733,
+     "analytic": 0.8883529864477965,
+     "per_leg_gaussian": 1.9287498479639178e-22
+    },
+    "20": {
+     "numeric": 0.8968749103266893,
+     "analytic": 0.8968749103520144,
+     "per_leg_gaussian": 1.3838965267367376e-87
+    }
+   },
+   "limit": 0.9097959895689501
+  },
+  "D2": {
+   "max_err_conformal": 1.9168168426860213e-08
+  },
+  "D3": {
+   "sup_conformal": 3.9988891974451546,
+   "sup_tt": 0.9999530287165922,
+   "T_hard_soft": 2.6368715076445484,
+   "T_soft_hard": 0.010619200109237982,
+   "T_hard_hard": 0.0
+  },
+  "D4": {
+   "rows": {
+    "4": {
+     "d2_constitutive": 3.543311541231997,
+     "eh_scale": 100.53096491487338,
+     "ratio": 0.035245971668852155
+    },
+    "8": {
+     "d2_constitutive": 4.046969018844937,
+     "eh_scale": 402.1238596594935,
+     "ratio": 0.010063986310764522
+    },
+    "16": {
+     "d2_constitutive": 4.113563751961813,
+     "eh_scale": 1608.495438637974,
+     "ratio": 0.002557398456438929
+    },
+    "32": {
+     "d2_constitutive": 4.1279559003237765,
+     "eh_scale": 6433.981754551896,
+     "ratio": 0.0006415865101580901
+    },
+    "56": {
+     "d2_constitutive": 4.1310694381402335,
+     "eh_scale": 19704.06912331518,
+     "ratio": 0.00020965565093618527
+    }
+   },
+   "slope": 0.010169461410244966
+  }
+ },
+ "n_checks": 4,
+ "n_fail_load_bearing": 0
+}
