@@ -1,0 +1,94 @@
+{
+ "lane": "L382",
+ "mutate": true,
+ "checks": {
+  "C1 IDENTITY: the transfer is Hu-Barkana-Gruzinov's -- T(k -> 0) = 1, k_1/2 ~ m^(4/9) (exponent within 0.002), k_1/2(m22 = 1) in 4.5-4.7 Mpc^-1": {
+   "ok": true,
+   "measured": "T(1e-6) - 1 = 0.0e+00; exponent 0.4444 (4/9 = 0.4444); k_1/2 = 4.58 Mpc^-1 (6.8 h/Mpc) at m22 = 1, 17.36 Mpc^-1 (25.8 h/Mpc) at m22 = 20, 48.30 Mpc^-1 (71.7 h/Mpc) at m22 = 200",
+   "load_bearing": true
+  },
+  "C2 CONTROL: P_lin on the mesh's distinct |k| reproduces direct evaluation at 200 random modes": {
+   "ok": true,
+   "measured": "max deviation 3.7e-13",
+   "load_bearing": true
+  },
+  "C3 LIMIT: at m22 = 1e6 the box's initial variance changes by < 1e-8 (the collisionless limit)": {
+   "ok": true,
+   "measured": "1 - variance ratio 0.0e+00",
+   "load_bearing": true
+  },
+  "R1 = H: at the forest-allowed masses the box cannot tell the wave field from the carrier (initial variance, sigma_8, displacement < 1%; every shell and the forest-range 1D power < 2%; de Broglie length and group cores < 1 kpc)": {
+   "ok": false,
+   "measured": "m22 (0.01, 0.01): [False, False]; for contrast m22 = 1 (forest-excluded): worst shell 0.000, T^2 at Nyquist 0.119",
+   "load_bearing": true
+  },
+  "W (reported) the table and the sub-mesh scales": {
+   "ok": true,
+   "measured": "see above",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "k_half_mpc": {
+   "1": 4.584211873648453,
+   "20": 17.35802203427926,
+   "200": 48.299727415202184
+  },
+  "box": {
+   "1": {
+    "var": 0.7935199287329018,
+    "s8": 0.9999986601080539,
+    "disp": 0.9994198259094497,
+    "shell_min": 2.0191127190373224e-05,
+    "shell_top": 2.0191127190373224e-05,
+    "p1d_min": 0.8466556974938876,
+    "T2_nyq": 0.11909563888863163,
+    "T2_corner": 7.074665658815834e-08
+   },
+   "0.01": {
+    "var": 0.15822224689206071,
+    "s8": 0.9980264211083355,
+    "disp": 0.9740651640968531,
+    "shell_min": 1.1315852953437216e-18,
+    "shell_top": 1.1315852953437216e-18,
+    "p1d_min": 2.620986945547349e-06,
+    "T2_nyq": 5.933001574022813e-17,
+    "T2_corner": 7.753286912454571e-19
+   }
+  },
+  "sub_mesh": {
+   "1": {
+    "lambda_dB_kpc": {
+     "200.0": 0.6022868003787492,
+     "700.0": 0.17208194296535695,
+     "1200.0": 0.1003811333964582
+    },
+    "soliton_core_kpc": {
+     "1e+12": 0.16000000000000003,
+     "1e+14": 0.03447095504051015,
+     "1e+15": 0.016000000000000004
+    }
+   },
+   "0.01": {
+    "lambda_dB_kpc": {
+     "200.0": 60.22868003787492,
+     "700.0": 17.20819429653569,
+     "1200.0": 10.03811333964582
+    },
+    "soliton_core_kpc": {
+     "1e+12": 16.000000000000004,
+     "1e+14": 3.4470955040510147,
+     "1e+15": 1.6000000000000003
+    }
+   }
+  },
+  "cell_kpc": 579.9064726840855,
+  "allowed": [
+   0.01,
+   0.01
+  ],
+  "excluded": 1.0
+ },
+ "n_checks": 5,
+ "n_fail_load_bearing": 1
+}

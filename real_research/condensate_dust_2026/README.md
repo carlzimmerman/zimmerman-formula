@@ -56,3 +56,35 @@ The one field that passes is a linear wave field. Physically, that is wave (fuzz
 - One dimension, a static background, and the non-relativistic weak-field limit.
 - The minimal action only: quadratic P about the minimum and the (□φ)² term. The ghost condensate's cubic operator and other completions are not tested.
 - The scanned warmth is far above the CMB's bound on the dust, but the trend runs the wrong way for the condensate (colder breaks earlier).
+
+## L382 — the fuzzy wave field in the particle-mesh box
+
+`L382_fuzzy_field_in_the_box.py`: 5/5 checks pass, rc = 0. `MUTATE=1` sets the allowed masses to 10⁻²⁴ eV. The box then sees the wave field and R1 flips (rc = 1).
+
+**The question.** L374 found that only a linear wave field (fuzzy dark matter) passes through itself. What does such a field do in the record's particle-mesh box: 100 Mpc/h, 256³ mesh, 580 kpc cells?
+
+**What can differ.** A wave field differs from collisionless dust in only two ways:
+- its initial power is suppressed below its Jeans scale (the Hu–Barkana–Gruzinov transfer);
+- below its de Broglie length it interferes and forms solitonic cores.
+
+Above that length it moves as collisionless dust, which was L374's positive control. The Lyman-α forest bounds the boson mass: m ≳ 2 × 10⁻²¹ eV (Iršič et al. 2017), and m ≳ 2 × 10⁻²⁰ eV (Rogers & Peiris 2021).
+
+**On the box's own mesh and spectrum:**
+
+| boson mass | initial variance | σ₈ | worst mesh shell | forest-range 1D power | de Broglie length (200 / 700 km/s) | solitonic core (10¹² / 10¹⁴ M☉) |
+|---|---|---|---|---|---|---|
+| 10⁻²² eV (forest-excluded) | −21% | 1 − 10⁻⁶ | 0.00 (the corner) | ≥ 0.85 | 600 / 170 pc | 160 / 35 pc |
+| 2 × 10⁻²¹ eV | −1.3 × 10⁻⁴ | unchanged | 0.991 (the corner) | ≥ 0.9999 | 30 / 9 pc | 8 / 1.7 pc |
+| 2 × 10⁻²⁰ eV | unchanged | unchanged | 1.000 | 1.0000 | 3 / 0.9 pc | 0.8 / 0.2 pc |
+
+**Reading.** At every mass the forest allows, the box and its gates cannot tell the wave field from the collisionless carrier:
+- the initial conditions differ by at most 10⁻⁴ in variance;
+- every wave effect sits at ≲ 30 pc, against 580 kpc cells and Harvey's 100 kpc aperture.
+
+So the record's box runs, L373 included, are the wave field's runs as they stand. The decay modes read as the field's momentum being redistributed, which is the same thing in the classical limit. The box would see the wave field only at ~10⁻²² eV, which the forest already excludes as all of the dark mass.
+
+On the gates the box checks, a forest-allowed wave field is just the collisionless carrier, so the galaxy clearing (mode G) is still needed. Its solitonic cores in galaxies (≲ 8 pc) are far too small to matter to the MOND regime.
+
+**Limits.**
+- Linear transfer and sub-mesh scales only; no wave-resolving zoom simulation.
+- The solitonic core scaling is Schive et al. 2014's, at z = 0.

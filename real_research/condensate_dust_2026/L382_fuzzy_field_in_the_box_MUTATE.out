@@ -1,0 +1,65 @@
+L382 -- THE FUZZY WAVE FIELD IN THE PARTICLE-MESH BOX: can the record's box tell a wave field (fuzzy dark matter) from the
+collisionless carrier at the boson masses the Lyman-alpha forest still allows?
+
+WHY.  L374: the minimal condensate cannot pass through itself at a stream crossing, while a linear wave field
+  (Schroedinger-Poisson; fuzzy dark matter) with the same dispersion tracks the collisionless answer.  The next question is
+  what the wave field does in the record's particle-mesh box (L366-L378, L373: 100 Mpc/h, 256^3 mesh, 0.39 Mpc/h cells).
+  A wave field differs from collisionless dust in two ways only: (a) its initial power is suppressed below its Jeans scale
+  (Hu, Barkana & Gruzinov 2000: T(k) = cos(x^3) / (1 + x^8), x = 1.61 m22^(1/18) k / k_J,eq, k_J,eq = 9 m22^(1/2) Mpc^-1,
+  m22 = m / 1e-22 eV); (b) below its de Broglie length it interferes and forms solitonic cores.  Above its de Broglie length
+  it moves as collisionless dust (L374's positive control), so on the mesh everything else is the box as it stands.  The
+  forest bounds the boson mass from below: m >~ 2e-21 eV (Irsic et al. 2017), m >~ 2e-20 eV (Rogers & Peiris 2021).
+
+METHOD.  On the box's own mesh (its |k| grid, its CLASS linear spectrum at z_i = 49, L362's P_lin): the wave field's change
+  to the box's initial conditions -- total density variance, sigma_8, rms displacement, each |k| shell, and the one-
+  dimensional power along a mesh axis on the forest gate's k_par = 0.2-2 h/Mpc -- at m22 = 1 (forest-excluded), 20 and 200
+  (the two forest bounds).  The box's evolution is the same code from those initial conditions.  Sub-mesh: de Broglie
+  lengths at galaxy / group / cluster speeds and solitonic core radii (Schive et al. 2014: r_c ~ 1.6 kpc / m22 x
+  (M_h / 1e9 Msun)^(-1/3)) against the mesh cell and Harvey's 100 kpc aperture.
+PRE-DECLARED (before any run).  H: at the forest-allowed masses (m22 = 20, 200) the wave field changes the box's initial
+  total variance, sigma_8 and rms displacement by < 1% and every mesh shell and the forest-range 1D power by < 2%, and its
+  sub-mesh scales (de Broglie length at group/cluster speeds, solitonic cores of 1e14-1e15 Msun halos) are < 1% of
+  Harvey's aperture -- so the box and its gates cannot tell the wave field from the carrier, and L373's verdict is the wave
+  field's.  Reported: at m22 = 1 the box sees it.
+
+  *** MUTATE=1: the 'allowed' masses are set to m22 = 0.01 -- the box must see the wave field ***
+  mesh: 256^3 over 100 Mpc/h (580 kpc cells at z = 0); |k| from 0.063 to 13.93 h/Mpc (Nyquist 8.04); 34475 distinct |k|   [7s]
+
+====================================================================================================================
+C1-C3  THE TRANSFER, THE SPECTRUM ON THE MESH, THE COLLISIONLESS LIMIT
+====================================================================================================================
+  [PASS] C1 IDENTITY: the transfer is Hu-Barkana-Gruzinov's -- T(k -> 0) = 1, k_1/2 ~ m^(4/9) (exponent within 0.002), k_1/2(m22 = 1) in 4.5-4.7 Mpc^-1
+         measured: T(1e-6) - 1 = 0.0e+00; exponent 0.4444 (4/9 = 0.4444); k_1/2 = 4.58 Mpc^-1 (6.8 h/Mpc) at m22 = 1, 17.36 Mpc^-1 (25.8 h/Mpc) at m22 = 20, 48.30 Mpc^-1 (71.7 h/Mpc) at m22 = 200
+  [PASS] C2 CONTROL: P_lin on the mesh's distinct |k| reproduces direct evaluation at 200 random modes
+         measured: max deviation 3.7e-13
+  [PASS] C3 LIMIT: at m22 = 1e6 the box's initial variance changes by < 1e-8 (the collisionless limit)
+         measured: 1 - variance ratio 0.0e+00
+
+====================================================================================================================
+THE BOX'S INITIAL CONDITIONS WITH THE WAVE FIELD (ratios to the collisionless carrier's)
+====================================================================================================================
+    m = 1e-22 eV: variance 0.793520 | sigma_8 0.999999 | rms displacement 0.999420 | worst shell 0.0000 | forest-range 1D power >= 0.8467 | T^2 at Nyquist 0.1191, at the corner 0.0000
+    m = 0.01e-22 eV: variance 0.158222 | sigma_8 0.998026 | rms displacement 0.974065 | worst shell 0.0000 | forest-range 1D power >= 0.0000 | T^2 at Nyquist 0.0000, at the corner 0.0000
+    m = 0.01e-22 eV: variance 0.158222 | sigma_8 0.998026 | rms displacement 0.974065 | worst shell 0.0000 | forest-range 1D power >= 0.0000 | T^2 at Nyquist 0.0000, at the corner 0.0000
+
+====================================================================================================================
+BELOW THE MESH: de Broglie lengths and solitonic cores (kpc) against the cell and Harvey's 100 kpc aperture
+====================================================================================================================
+    m = 1e-22 eV: de Broglie length 0.602 / 0.172 / 0.1 kpc at 200 / 700 / 1200 km/s; solitonic core 0.16 / 0.0345 / 0.016 kpc in 1e12 / 1e14 / 1e15 Msun halos; mesh cell 580 kpc
+    m = 0.01e-22 eV: de Broglie length 60.2 / 17.2 / 10 kpc at 200 / 700 / 1200 km/s; solitonic core 16 / 3.45 / 1.6 kpc in 1e12 / 1e14 / 1e15 Msun halos; mesh cell 580 kpc
+    m = 0.01e-22 eV: de Broglie length 60.2 / 17.2 / 10 kpc at 200 / 700 / 1200 km/s; solitonic core 16 / 3.45 / 1.6 kpc in 1e12 / 1e14 / 1e15 Msun halos; mesh cell 580 kpc
+
+====================================================================================================================
+R1  THE HYPOTHESIS (set before any run)
+====================================================================================================================
+  [FAIL] R1 = H: at the forest-allowed masses the box cannot tell the wave field from the carrier (initial variance, sigma_8, displacement < 1%; every shell and the forest-range 1D power < 2%; de Broglie length and group cores < 1 kpc)
+         measured: m22 (0.01, 0.01): [False, False]; for contrast m22 = 1 (forest-excluded): worst shell 0.000, T^2 at Nyquist 0.119
+  [PASS] W (reported) the table and the sub-mesh scales
+         measured: see above
+  figure: L382_fuzzy_field_in_the_box_MUTATE.png
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  4/5 checks pass; load-bearing failures: 1; wrote L382_fuzzy_field_in_the_box_MUTATE_results.json   [74s]
+rc=1
