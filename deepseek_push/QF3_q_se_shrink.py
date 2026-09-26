@@ -59,12 +59,12 @@ def run_cell(c):
                 book_err=float(np.max(np.abs(Q - X))))
 
 
-def build_cells(tbl, n, seed0):
+def build_cells(tbl, src, n, seed0):
     cells, meta = [], []
     sid = seed0
     for r in tbl:
-        cells.append((r["tau0"], r["q"], r["src"], n, sid))
-        meta.append((r["tau0"], r["q"], r["src"]))
+        cells.append((r["tau0"], r["q"], src, n, sid))
+        meta.append((r["tau0"], r["q"], src))
         sid += 1
     return cells, meta, sid
 
@@ -99,7 +99,9 @@ def main():
           f"stage-1 n = {N_S1} (4x L02 1.5e5), seeds fresh from {SEED0}", flush=True)
 
     # ---- stage 1 -----------------------------------------------------------
-    cells, meta, sid = build_cells(tbl0c + tbl0v, N_S1, SEED0)
+    cells, meta, sid = build_cells(tbl0c, "central", N_S1, SEED0)
+    cells_v, meta_v, sid = build_cells(tbl0v, "volume", N_S1, sid)
+    cells = cells + cells_v; meta = meta + meta_v
     with Pool(4) as ex:
         res = list(ex.map(run_cell, cells, chunksize=1))
     new = {(m[2], m[0], m[1]): r for m, r in zip(meta, res)}
@@ -174,7 +176,7 @@ def main():
     print(f"stage 2: binding q={worst_q} ({worst_src}); rerun its tau0 rows at n = {n2}", flush=True)
     src_rows = tbl0c if worst_src == "central" else tbl0v
     qrows = [r for r in src_rows if r["q"] == worst_q]
-    cells2, meta2, _ = build_cells(qrows, n2, sid)
+    cells2, meta2, _ = build_cells(qrows, worst_src, n2, sid)
     with Pool(2) as ex:
         res2 = list(ex.map(run_cell, cells2, chunksize=1))
     RES["stage2"]["book_err_max"] = max(r["book_err"] for r in res2)

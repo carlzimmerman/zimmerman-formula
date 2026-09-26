@@ -34,7 +34,8 @@ import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-TAUS = [0.5, 1.0, 2.0, 3.0]
+# V03b core grid (36 core cells = 2 src x 2 kernel x tau0 {0.5,1,2} x q {0,3,10})
+TAUS = [0.5, 1.0, 2.0]
 QS = [0.0, 3.0, 10.0]
 
 RES = {"title": "A3 U-band-rule re-derivation (Z3-wave)",
@@ -43,7 +44,9 @@ RES = {"title": "A3 U-band-rule re-derivation (Z3-wave)",
 
 
 def parse_tag(tag):
-    m = re.match(r"([cv])t([0-9.]+)q([0-9.]+)(th|is)", tag)
+    m = re.match(r"([cv])t([0-9.]+)q([0-9.]+)(th|is)$", tag)
+    if m is None:
+        return None  # shell tags (st...) do not match the core pattern
     return m.group(1), float(m.group(2)), float(m.group(3)), m.group(4)
 
 
@@ -55,10 +58,10 @@ def main():
     # atlas U_REC[(src,tau0,q)] = (U, se_U_block): thomson -> N04-record; iso -> in-run
     U_REC = {"th": {}, "is": {}}
     for (src, t0, q) in [(s, t, q) for s in ("central", "volume") for t in TAUS for q in QS]:
-        k = ("c" if src == "central" else "v") + f"t{t0}q{q}th"
+        k = ("c" if src == "central" else "v") + f"t{t0:g}q{q:g}th"
         c = n04[k]
         U_REC["th"][(src, t0, q)] = (c["U"], c["se_U_block"])
-        ki = ("c" if src == "central" else "v") + f"t{t0}q{q}is"
+        ki = ("c" if src == "central" else "v") + f"t{t0:g}q{q:g}is"
         ci = cells[ki]
         U_REC["is"][(src, t0, q)] = (ci["U"], ci["se_U_block"])
 
@@ -106,16 +109,18 @@ def main():
         src = "central" if cell["src"] == "central" else "volume"
         se_cell = cell["se_U_block"]
         if mode == "truth":
+            # R0 verbatim: the cell's TRUTH grid row (its own (tau0,q)), no pin
+            row = (cell["tau0"], cell["q"])
             uC, seC = U_REC[kernel][("central", row[0], row[1])]
             uV, seV = U_REC[kernel][("volume", row[0], row[1])]
-            meta = {"row": row, "th": round(th, 3), "qh": round(qh, 3)}
+            meta = {"row": row, "th": round(th, 3), "qh": round(qh, 3), "pin_row": row}
         else:
             uC, seC, cl_c = atlas_interp("central", kernel, th, qh)
             uV, seV, cl_v = atlas_interp("volume", kernel, th, qh)
             cl_c = bool(cl_c); cl_v = bool(cl_v)
             meta = {"row": row, "th": round(th, 3), "qh": round(qh, 3),
                     "uC": round(uC, 4), "uV": round(uV, 4),
-                    "clamp": bool(cl_c[0] or cl_c[1] or cl_v[0] or cl_v[1])}
+                    "clamp": bool(cl_c or cl_v)}
         U = cell["U"]
         inC = abs(U - uC) <= 3.0 * math.hypot(se_cell, seC)
         inV = abs(U - uV) <= 3.0 * math.hypot(se_cell, seV)
@@ -133,7 +138,10 @@ def main():
     conf = {"truth": {"central": {}, "volume": {}}, "V1": {"central": {}, "volume": {}}}
     clamps = 0
     for tag, cell in sorted(cells.items()):
-        src0, t0, q, ker = parse_tag(tag)
+        parsed = parse_tag(tag)
+        if parsed is None:
+            continue  # shell cells: the tree scores central/volume only (V03b verbatim)
+        src0, t0, q, ker = parsed
         src = "central" if src0 == "c" else "volume"
         kernel = "th" if ker == "th" else "is"
         for mode in ("truth", "V1"):
@@ -168,9 +176,16 @@ def main():
                           "volume-branch U-OUTs were nearest-row-snap artefacts; successor "
                           "rule registered for the V lane")
         finish(0)
+    RES["mechanism"] = ("V1 readout conditions on the PIN, and the pin is the failure point: "
+                        "the central K06 inversion applied to volume truth lands off-grid "
+                        "(wild qh, clamps %d/36), so bilinear-at-pin reads the wrong atlas "
+                        "column -- while the R0 truth-config control shows 0 volume U-OUT "
+                        "(the atlas and the cells agree at matched config, per A2). The "
+                        "volume U-band rule must be PIN-FREE (successor A4: joint (R,U) "
+                        "Mahalanobis classification against V03b's stored joint_regions)." % clamps)
     RES["verdict"] = (f"RULE-RECONSTRUCTION-FAILED: G1={g1} G2={g2} G3={g3} "
                       f"(conf V1 central={conf['V1']['central']}, volume={conf['V1']['volume']}); "
-                      f"honest FAIL, verdict verbatim")
+                      f"honest FAIL, verdict verbatim; mechanism = pin-side (see 'mechanism')")
     finish(1)
 
 

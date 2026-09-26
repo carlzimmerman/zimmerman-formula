@@ -29,7 +29,7 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "M04_j10z.py")
-KEYS = ["dev_days", "sigma_d_days", "zstat_window_z1", "chain_zstats",
+KEYS = ["dev_days", "sigma_d_days", "zstat_window_z1", "chain_zstats_mrise",
         "zc_3sigma_window", "zc_3sigma_chain", "sigma_J10I_rel", "d_fw1_days", "d_mr1_days"]
 
 RES = {"title": "M04b J10-I(z) at the OB1 recipe (S/N = 10, N = 3)",
