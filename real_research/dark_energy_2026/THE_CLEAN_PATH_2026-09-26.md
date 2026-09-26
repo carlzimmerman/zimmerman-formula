@@ -32,7 +32,8 @@ an action enforces it: in the C-H action Λ and a₀ are independent inputs. Wha
 
 The cleanest action-level statement of the premise on the record is the **four-form promotion** — a distinct action
 proposal, not part of C-H/K (`kappa_closure/k04`): one conserved, non-propagating flux q sets both ρ_Λ and a₀ = β√G|q|. It makes a₀ ∝ √(Gρ_Λ)
-structural and a₀(z) exactly flat, and leaves one ratio free: κ = ½ ⟺ Z/β² = 7.96. It also predicts an environmental
+structural and a₀(z) exactly flat, and leaves one ratio free: κ = ½ ⟺ Z_q/β² = 7.96, where Z_q is the four-form's
+stiffness (k04's P(q) = Z_q q²/2) — not the framework's Z = cH_Λ/a₀ = √(32π/3) = 5.7888, which is κ restated. It also predicts an environmental
 a₀ that switches off above 155 a₀, invisible in galaxies (< 0.002 dex) and a ~1σ shift of wide-binary γ_v for Gaia DR4.
 Once the MOND term depends on q, the conserved object is ∂L/∂q, not q itself, so "exactly flat" holds for the vacuum,
 not unqualified inside coupled environments. A related identity (XC1 A7, the peer track): with a₀ = κc√(Gρ_Λ)

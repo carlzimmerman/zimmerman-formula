@@ -35,8 +35,10 @@ The vacuum sets the scale (the identities the clean path rests on; `THE_CLEAN_PA
 * `Z_is_kappa` — with H_Λ² = Λc²/3 and a₀² = κ² c⁴ Λ/(8π), Z² ≡ (c H_Λ)²/a₀² = 8π/(3κ²): Z is κ restated, not a
   second number; `Z_at_half` — κ = ½ gives Z² = 32π/3 (Z = 5.7888, never ~21).
 * `four_form_energy`, `four_form_kappa`, `four_form_half` — for the four-form promotion (kappa_closure/k04) with
-  P(q) = Z q²/2 + b β² q² and a₀²/G = β² q²: the gravitating energy is the Legendre form ε = q P′ − P = Z q²/2 + b β² q²,
-  the flux amplitude cancels from κ² = β²q²/ε = 2β²/(Z + 2bβ²), and κ = ½ ⟺ Z = (8 − 2b) β² — one free ratio.
+  P(q) = Z_q q²/2 + b β² q² and a₀²/G = β² q²: the gravitating energy is the Legendre form ε = q P′ − P =
+  Z_q q²/2 + b β² q², the flux amplitude cancels from κ² = β²q²/ε = 2β²/(Z_q + 2bβ²), and κ = ½ ⟺ Z_q = (8 − 2b) β² — one
+  free ratio.  Z_q (`Zq` below) is the four-form's stiffness, k04's "Z"; it is NOT the framework's Z = cH_Λ/a₀ =
+  √(32π/3) = 5.7888 of `Z_is_kappa`.
 
 The linear gate inside DE2's window (numbers are DE2's computed bounds, entered as data):
 
@@ -170,20 +172,20 @@ theorem Z_is_kappa (c HΛ a0 κ Λ : ℝ) (hc : 0 < c) (hΛ : 0 < Λ) (hκ : 0 <
 theorem Z_at_half : 8 * Real.pi / (3 * (1 / 2 : ℝ) ^ 2) = 32 * Real.pi / 3 := by
   ring
 
-theorem four_form_energy (Z b β q : ℝ) :
-    q * (Z * q + 2 * b * β ^ 2 * q) - (Z * q ^ 2 / 2 + b * β ^ 2 * q ^ 2) = Z * q ^ 2 / 2 + b * β ^ 2 * q ^ 2 := by
+theorem four_form_energy (Zq b β q : ℝ) :
+    q * (Zq * q + 2 * b * β ^ 2 * q) - (Zq * q ^ 2 / 2 + b * β ^ 2 * q ^ 2) = Zq * q ^ 2 / 2 + b * β ^ 2 * q ^ 2 := by
   ring
 
-theorem four_form_kappa (Z b β q : ℝ) (hq : q ≠ 0) (hden : 0 < Z + 2 * b * β ^ 2) :
-    β ^ 2 * q ^ 2 / (Z * q ^ 2 / 2 + b * β ^ 2 * q ^ 2) = 2 * β ^ 2 / (Z + 2 * b * β ^ 2) := by
+theorem four_form_kappa (Zq b β q : ℝ) (hq : q ≠ 0) (hden : 0 < Zq + 2 * b * β ^ 2) :
+    β ^ 2 * q ^ 2 / (Zq * q ^ 2 / 2 + b * β ^ 2 * q ^ 2) = 2 * β ^ 2 / (Zq + 2 * b * β ^ 2) := by
   have hq2 : 0 < q ^ 2 := by positivity
-  have hne : Z * q ^ 2 / 2 + b * β ^ 2 * q ^ 2 ≠ 0 := by
-    have : Z * q ^ 2 / 2 + b * β ^ 2 * q ^ 2 = q ^ 2 * (Z + 2 * b * β ^ 2) / 2 := by ring
+  have hne : Zq * q ^ 2 / 2 + b * β ^ 2 * q ^ 2 ≠ 0 := by
+    have : Zq * q ^ 2 / 2 + b * β ^ 2 * q ^ 2 = q ^ 2 * (Zq + 2 * b * β ^ 2) / 2 := by ring
     rw [this]; positivity
   field_simp
 
-theorem four_form_half (Z b β : ℝ) (_hβ : 0 < β) (hden : 0 < Z + 2 * b * β ^ 2) :
-    2 * β ^ 2 / (Z + 2 * b * β ^ 2) = 1 / 4 ↔ Z = (8 - 2 * b) * β ^ 2 := by
+theorem four_form_half (Zq b β : ℝ) (_hβ : 0 < β) (hden : 0 < Zq + 2 * b * β ^ 2) :
+    2 * β ^ 2 / (Zq + 2 * b * β ^ 2) = 1 / 4 ↔ Zq = (8 - 2 * b) * β ^ 2 := by
   rw [div_eq_iff (ne_of_gt hden)]
   constructor <;> intro h <;> linarith
 
