@@ -1,5 +1,17 @@
 # L319–L320 — the Λ-triggered kicked-decay carrier, and the pincer it exposes
 
+**Peer-review correction — 2026-09-26, scoped to L380/L381/L386/L387.**
+[The independent source and computation review](../peer_review_2026_09_26/dark_sector/REPORT.md)
+finds that L381/L387 inherit the active merger gate `p1_x1.5`, while the
+imported L380/L386 retention calculation uses `p2_x2.0`. Their source/force
+operators also differ (global baryonic source versus connected-region source).
+The saved merger result therefore does not certify or exclude one common
+pooled model. Retention arithmetic reproduces; a corrected-gate physical
+verdict is pending. L386 has no completed result at review, with process
+state unknown; L387 is also incomplete. Both exact exponential laws requested
+by the user are reviewed separately and do not inherit `nu_mono` passes.
+See the report for the correction and required matched control before reruns.
+
 ## L319 — the one dark-sector door the record left untested
 
 `L319_lambda_triggered_kicked_decay.py` reuses the validated exact linear-response solver from L168, copied rather than edited, with CLASS initial conditions. Its controls:
@@ -421,3 +433,16 @@ C1: the intact carrier reproduces L371's committed values exactly.
 - **Nothing tested closes the window below 600.** Clearing is 0.070 against 0.30, and X-COP is 0.52 against its 0.768 ceiling. L382 finds the window's lower edge.
 
 MUTATE was not run: the main run already falsified H (as L369/L378).
+
+## ⚠️ Correction to L381 (2026-09-26): its Harvey step ran at a different switch cell than the retentions it used
+
+This was found by a lead-track peer review (astra, `real_research/peer_review_2026_09_26/dark_sector/REPORT.md`, uncommitted) and confirmed independently by two sessions and in the source.
+- L381's `harvey()` adapter replaces L371's retention, kick, MUTATE flag and variants, but **never its switch**. L371 inherits `SW_DEF = "p1_x1.5"` from L370 and passes it to the lensing-mass solve and to both phantom maps.
+- L380's PM retentions come from L377's cell, **p = 2, x_c0 = 2**. The two thresholds at z = 0.4 are 2.321 and 4.787.
+- **L381's numbers therefore establish neither a Harvey pass nor a Harvey exclusion for any single construction.** The S2 value of +0.109 at 600 km/s is a mixed-cell number.
+- L387, which imported the same adapter, was stopped before running.
+
+**The cell itself is also in question.** DE1/DE2 (`real_research/dark_energy_2026/`, committed c8bb50813) find that the p = 2, x_c0 = 2 switch fails the flat-a₀ flagship at M_b = 10¹¹, canonical footing: the edge is 36.8 kpc against a flagship radius of 38.6. The linear gate p = 1 with L359's x_c0 = 2.5 lies inside DE2's joint KiDS + shear + flagship + forest window.
+- L380's pooled window is therefore a result **for the p = 2 cell only**, and never to be pooled across cells.
+- The whole chain (PM gates, then Harvey) is re-run **same-cell at p = 1, x_c0 = 2.5**, from L388 on.
+- L386 (the p = 2 lower edge) was stopped part-way and is not committed.
