@@ -1,0 +1,49 @@
+
+L391 -- L376's RAR and RC100 gates re-scored with the construction's OWN kernel, nu_mono (L340's monotone kernel), in place
+of the nu_RAR L376 used.
+
+WHY.  The cross-thread consistency registry (XR1) flagged that L376 computes g_MOND with nu_RAR, while every construction
+lane (L340, L352, L377, L388) uses nu_mono -- identical to nu_RAR below the phantom peak y_p = 2.54 and a monotone
+continuation above it.  L376's verdict rests on the carrier's contribution g_c (~0 inside galaxies), which does not depend
+on the kernel, but the RC100 dark fractions and the gate denominators do.  This lane closes that ledger item.
+
+METHOD: L376's halo2() imported unchanged (same hosts, seeds, redshifts, trigger); L377's nu_vec (the nu_mono table,
+equal to L352's by L377's C2) as the kernel; L376's gate arithmetic, with the kernel as the only change.
+PRE-DECLARED (before the run): H: with nu_mono the RAR gate (carrier shift <= 0.057 dex at 2, 4, 8 R_d, three hosts, both
+footings) and the RC100 inner-clearing gate (carrier inside R_e at z = 1, 2 <= 0.30 of LCDM's) still pass.
+CHECKS
+  C1 CONTROL: with nu_RAR the same halos reproduce L376's committed RAR shifts and RC100 f_DM values exactly.
+  R1 = H.  W (informational): the nu_mono f_DM(<R_e) at z = 1, 2 beside L376's nu_RAR values.
+MUTATE=1: v_k = 0 in every decaying run: R1 must FAIL (rc = 1).
+SCOPE: the trigger is L376's matter-only (least-trigger) one, as L375/L376/L390; the cosmological lanes use the
+phantom-inclusive trigger (XR1 item 6).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L391_inner_galaxies_nu_mono.py
+
+  10 halos done   [204s]
+
+==============================================================================================================
+C1  CONTROL: with nu_RAR the same halos reproduce L376
+==============================================================================================================
+  [PASS] C1 with nu_RAR the same halos reproduce L376's committed RAR shifts and RC100 f_DM exactly (the kernel is the only change)
+         measured: max |difference| 0.0e+00
+
+==============================================================================================================
+THE GATES WITH nu_mono
+==============================================================================================================
+    RAR dwarf     : worst carrier shift 0.00e+00 dex (gate 0.057)
+    RAR milky_way : worst carrier shift 7.19e-05 dex (gate 0.057)
+    RAR massive   : worst carrier shift 1.24e-04 dex (gate 0.057)
+    RC100 z1: carrier inside R_e / LCDM's 0.000 (gate 0.30);  f_DM(<R_e) nu_mono: canonical 0.232, alt 0.264  (L376 nu_RAR: canonical 0.232, alt 0.264)
+    RC100 z2: carrier inside R_e / LCDM's 0.000 (gate 0.30);  f_DM(<R_e) nu_mono: canonical 0.231, alt 0.263  (L376 nu_RAR: canonical 0.231, alt 0.263)
+  [PASS] W (informational) nu_mono f_DM(<R_e) beside L376's nu_RAR values
+         measured: see table
+         reading:  reported either way
+
+==============================================================================================================
+R1  THE HYPOTHESIS (set before the run)
+==============================================================================================================
+  [PASS] R1 = H: with nu_mono the RAR gate (<= 0.057 dex) and the RC100 inner-clearing gate (<= 0.30) still pass
+         measured: RAR worst {'dwarf': 0.0, 'milky_way': 7.189094827143263e-05, 'massive': 0.00012377428464026166}; RC100 carrier ratio {'z1': 0.0, 'z2': 0.0}
+
+  3/3 checks pass; load-bearing failures: 0; wrote L391_inner_galaxies_nu_mono_results.json   [204s]

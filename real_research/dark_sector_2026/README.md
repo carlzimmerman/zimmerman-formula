@@ -464,3 +464,12 @@ L375's `halo()` is imported unchanged, and L360's KiDS machinery is loaded unedi
 | 650 | 0.26 / 0.25 / 0.23 / 0.35 | −13.0 / −7.1 |
 
 KiDS passes at the linear gate at every kick, on both footings; the pre-declared hypothesis holds. This is one same-cell piece of the chain. The cosmology (L388) and Harvey (L389) at the same cell are pending.
+
+## L391 — L376's RAR and RC100 gates with the construction's own kernel (ν_mono): unchanged
+
+`L391_inner_galaxies_nu_mono.py` (3/3; `MUTATE=1`, v_k = 0, fails R1, rc = 1). This closes the kernel item in XR1's consistency ledger. L376 computed g_MOND with ν_RAR, while the construction uses ν_mono (L340). L376's `halo2()` is imported unchanged, and ν_mono comes from L377 (equal to L352's table). C1: with ν_RAR the same halos reproduce L376's committed RAR shifts and RC100 f_DM exactly.
+- **RAR:** with ν_mono the worst carrier shift is ≤ 1.24×10⁻⁴ dex (gate 0.057).
+- **RC100:** the carrier inside R_e at z = 1 and 2 is 0.000 of ΛCDM's (gate 0.30).
+- **f_DM(<R_e)** is 0.232/0.264 at z = 1 and 0.231/0.263 at z = 2 (canonical/alt), identical to L376 at this precision. At these accelerations (y below the phantom peak y_p = 2.54) ν_mono equals ν_RAR.
+
+The trigger is still L376's matter-only one (XR1 item 6).
