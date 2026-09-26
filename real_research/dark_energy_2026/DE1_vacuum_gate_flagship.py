@@ -39,8 +39,12 @@ CHECKS
   E1 (reported) THE EDGE TABLE: r_e, r_flag and y_edge for L359's eight window cells, M_b = 1e10 / 1e10.5 / 1e11,
      z = 0.5 ... 4, both footings.
   F1 THE FLAGSHIP GATE for the cosmic-shear cell (p = 2, x_c0 = 2), pre-declared as in GP5 F1: the deep-MOND Tully-Fisher
-     zero point at z = 2.5 stays within 0.10 dex of the framework for M_b = 1e10, 1e10.5, 1e11, both footings, both
-     kernels (L320's nu_RAR and L340's nu_mono).
+     zero point at z = 2.5 stays within 0.10 dex of the framework for M_b = 1e10, 1e10.5, 1e11, both footings, for three
+     kernels, EACH WITH ITS OWN EDGE: L340's nu_mono (L352's profile), L320's nu_RAR, and the exact-exponential AQUAL law
+     (x(1 - e^-x) = y).  (Correction 2026-09-26, after the lead track's peer review: the first committed version computed
+     the edge with nu_mono for both kernel labels and changed only the size of the jump beyond it, so "both kernels" was
+     not two independent edges.  The verdict did not depend on it: the lead track's separate spherical calculation gives
+     X_F = 364.50 / 364.32 for nu_RAR / mu_exp against the cell's threshold 399.90 at canonical, 1e11, z = 2.5.)
      HYPOTHESIS (set before the run, from the closed form): F1 FAILS at M_b = 1e11 on the canonical footing
      (r_e ~ 37 kpc < r_flag ~ 39 kpc) and passes on the alt footing -- a marginal failure at the flagship's own epoch.
   F2 (reported) for every window cell, the highest redshift z_max at which the flagship survives for all three masses,
@@ -133,9 +137,33 @@ def r_edge_closed(Mb, a0, z, xc0, p):
     return vf / (math.sqrt(XCEFF(z, xc0, p) + xbar(z)) * Hz(z))
 
 
-def r_edge_numeric(Mb, a0, z, xc):
-    """L352's model_M2 edge (on-branch nu_mono profile, x = 4 pi G (rho_dyn - rho_bar)/H^2 >= xc, largest r)."""
-    M = Mb * MS * nu_mono_vec(G * Mb * MS / rr ** 2 / a0)
+def mu_exp_x_of_y(y):
+    """spherical exact-exponential AQUAL: g/a0 = x solves x (1 - e^-x) = y = g_N/a0 (vectorised Newton, monotone)."""
+    y = np.asarray(y, float)
+    x = np.where(y < 1.0, np.sqrt(y) + y / 4.0, y + 0.0)                  # deep-MOND / Newtonian starts
+    for _ in range(80):
+        f = x * (1 - np.exp(-x)) - y
+        fp = (1 - np.exp(-x)) + x * np.exp(-x)
+        x = np.maximum(x - f / fp, 1e-300)
+    return x
+
+
+def profile_M(Mb, a0, kernel):
+    """the on-branch spherical dynamical mass M(<r) = r^2 g/G of a point mass for each kernel."""
+    yN = G * Mb * MS / rr ** 2 / a0
+    if kernel == "nu_mono":                                               # L352's profile (the construction's kernel)
+        return Mb * MS * nu_mono_vec(yN)
+    if kernel == "nu_RAR":
+        return Mb * MS / (1.0 - np.exp(-np.sqrt(np.maximum(yN, 1e-300))))
+    if kernel == "mu_exp":
+        return rr ** 2 * a0 * mu_exp_x_of_y(yN) / G
+    raise ValueError(kernel)
+
+
+def r_edge_numeric(Mb, a0, z, xc, kernel="nu_mono"):
+    """L352's model_M2 edge (on-branch profile, x = 4 pi G (rho_dyn - rho_bar)/H^2 >= xc, largest r); nu_mono by default
+    (L352's own profile); nu_RAR and mu_exp use their own spherical profiles (F1 only)."""
+    M = profile_M(Mb, a0, kernel)
     rho_dyn = np.gradient(M, rr) / (4 * math.pi * rr ** 2)
     rho_bar = Om * rho_crit0 * (1 + z) ** 3
     on = 4 * math.pi * G * (rho_dyn - rho_bar) / Hz(z) ** 2 >= xc
@@ -151,10 +179,11 @@ def r_edge_numeric(Mb, a0, z, xc):
 
 
 def flagship_shift(Mb, foot, z, xc0, p, kernel):
-    """2 log10(g_switch/g_framework) at r(g_bar = 0.1 a0): 0 inside the edge, the Newtonian value beyond it (Gauss)."""
-    a0 = A0[foot]; rf = r_flag(Mb, a0); re = r_edge_numeric(Mb, a0, z, XCEFF(z, xc0, p))
-    nu = nu_rar if kernel == "nu_RAR" else nu_mono
-    return (0.0 if re >= rf else -2 * math.log10(nu(0.1))), re, rf
+    """2 log10(g_switch/g_framework) at r(g_bar = 0.1 a0): 0 inside the edge, the Newtonian value beyond it (Gauss).
+    Each kernel uses its OWN edge (its own profile) and its own boost at y = 0.1."""
+    a0 = A0[foot]; rf = r_flag(Mb, a0); re = r_edge_numeric(Mb, a0, z, XCEFF(z, xc0, p), kernel)
+    boost = {"nu_RAR": nu_rar(0.1), "nu_mono": nu_mono(0.1), "mu_exp": float(mu_exp_x_of_y(0.1)) / 0.1}[kernel]
+    return (0.0 if re >= rf else -2 * math.log10(boost)), re, rf
 
 
 # ============================================================================================ C1-C3 controls
@@ -225,7 +254,7 @@ banner("F1  THE FLAGSHIP GATE FOR THE COSMIC-SHEAR CELL (p = 2, x_c0 = 2) AT z =
 F1 = []
 for foot in FEET:
     for lMb in MBS:
-        for kern in ("nu_RAR", "nu_mono"):
+        for kern in ("nu_mono", "nu_RAR", "mu_exp"):
             s, re, rf = flagship_shift(10 ** lMb, foot, 2.5, SHEAR_CELL[1], SHEAR_CELL[0], kern)
             F1.append(dict(foot=foot, lMb=lMb, kernel=kern, shift_dex=s, re_kpc=re / KPCm, rflag_kpc=rf / KPCm))
             P(f"    {foot:9s} M_b = 1e{lMb:.1f} {kern:7s}: r_e = {re/KPCm:6.1f} kpc, r_flag = {rf/KPCm:5.1f} kpc -> "
@@ -234,7 +263,8 @@ OUT["numbers"]["F1"] = F1
 worst = min(r_["shift_dex"] for r_ in F1)
 fails = sorted({(r_["foot"], r_["lMb"]) for r_ in F1 if abs(r_["shift_dex"]) > 0.10})
 check("F1 THE FLAGSHIP (GP5's gate): with the cosmic-shear switch cell p = 2, x_c0 = 2 the deep-MOND Tully-Fisher zero "
-      "point at z = 2.5 stays within 0.10 dex of the framework for M_b = 1e10-1e11, both footings, both kernels",
+      "point at z = 2.5 stays within 0.10 dex of the framework for M_b = 1e10-1e11, both footings, three kernels (each "
+      "with its own edge)",
       f"worst shift {worst:+.3f} dex; failing (footing, log M_b): {fails if fails else 'none'}",
       abs(worst) <= 0.10,
       "beyond the switch edge Gauss leaves the baryons alone: the zero point jumps to the Newtonian value, "

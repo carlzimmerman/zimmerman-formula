@@ -26,7 +26,7 @@ x >= x_c,eff (the most favourable placement, L352 Z2).
 
   *** MUTATE=1: the gate is removed (p = 0 in every cell); F1 must PASS (inverted control) ***
 
-  L352 loaded: H0 = 2.1830e-18 s^-1, Om = 0.3138; kernel nu_mono; edge grid 1.0 kpc - 30 Mpc   [1s]
+  L352 loaded: H0 = 2.1830e-18 s^-1, Om = 0.3138; kernel nu_mono; edge grid 1.0 kpc - 30 Mpc   [2s]
 
 ==============================================================================================================
 C1-C3  CONTROLS: L352's z = 0 edges; L359's gate; closed form vs numeric at z = 2.5
@@ -68,19 +68,25 @@ E1  THE EDGE TABLE: r_e / r_flag and y_edge for the eight window cells (numeric 
 ==============================================================================================================
 F1  THE FLAGSHIP GATE FOR THE COSMIC-SHEAR CELL (p = 2, x_c0 = 2) AT z = 2.5 (GP5's gate: |shift| <= 0.10 dex)
 ==============================================================================================================
-    canonical M_b = 1e10.0 nu_RAR : r_e =  225.2 kpc, r_flag =  12.2 kpc -> zero-point shift +0.000 dex
     canonical M_b = 1e10.0 nu_mono: r_e =  225.2 kpc, r_flag =  12.2 kpc -> zero-point shift +0.000 dex
-    canonical M_b = 1e10.5 nu_RAR : r_e =  300.3 kpc, r_flag =  21.7 kpc -> zero-point shift +0.000 dex
+    canonical M_b = 1e10.0 nu_RAR : r_e =  225.2 kpc, r_flag =  12.2 kpc -> zero-point shift +0.000 dex
+    canonical M_b = 1e10.0 mu_exp : r_e =  225.2 kpc, r_flag =  12.2 kpc -> zero-point shift +0.000 dex
     canonical M_b = 1e10.5 nu_mono: r_e =  300.3 kpc, r_flag =  21.7 kpc -> zero-point shift +0.000 dex
-    canonical M_b = 1e11.0 nu_RAR : r_e =  400.4 kpc, r_flag =  38.6 kpc -> zero-point shift +0.000 dex
+    canonical M_b = 1e10.5 nu_RAR : r_e =  300.3 kpc, r_flag =  21.7 kpc -> zero-point shift +0.000 dex
+    canonical M_b = 1e10.5 mu_exp : r_e =  300.3 kpc, r_flag =  21.7 kpc -> zero-point shift +0.000 dex
     canonical M_b = 1e11.0 nu_mono: r_e =  400.4 kpc, r_flag =  38.6 kpc -> zero-point shift +0.000 dex
-    alt       M_b = 1e10.0 nu_RAR : r_e =  235.9 kpc, r_flag =  11.1 kpc -> zero-point shift +0.000 dex
+    canonical M_b = 1e11.0 nu_RAR : r_e =  400.4 kpc, r_flag =  38.6 kpc -> zero-point shift +0.000 dex
+    canonical M_b = 1e11.0 mu_exp : r_e =  400.4 kpc, r_flag =  38.6 kpc -> zero-point shift +0.000 dex
     alt       M_b = 1e10.0 nu_mono: r_e =  235.9 kpc, r_flag =  11.1 kpc -> zero-point shift +0.000 dex
-    alt       M_b = 1e10.5 nu_RAR : r_e =  314.6 kpc, r_flag =  19.8 kpc -> zero-point shift +0.000 dex
+    alt       M_b = 1e10.0 nu_RAR : r_e =  235.9 kpc, r_flag =  11.1 kpc -> zero-point shift +0.000 dex
+    alt       M_b = 1e10.0 mu_exp : r_e =  235.9 kpc, r_flag =  11.1 kpc -> zero-point shift +0.000 dex
     alt       M_b = 1e10.5 nu_mono: r_e =  314.6 kpc, r_flag =  19.8 kpc -> zero-point shift +0.000 dex
-    alt       M_b = 1e11.0 nu_RAR : r_e =  419.5 kpc, r_flag =  35.2 kpc -> zero-point shift +0.000 dex
+    alt       M_b = 1e10.5 nu_RAR : r_e =  314.6 kpc, r_flag =  19.8 kpc -> zero-point shift +0.000 dex
+    alt       M_b = 1e10.5 mu_exp : r_e =  314.6 kpc, r_flag =  19.8 kpc -> zero-point shift +0.000 dex
     alt       M_b = 1e11.0 nu_mono: r_e =  419.5 kpc, r_flag =  35.2 kpc -> zero-point shift +0.000 dex
-  [PASS] F1 THE FLAGSHIP (GP5's gate): with the cosmic-shear switch cell p = 2, x_c0 = 2 the deep-MOND Tully-Fisher zero point at z = 2.5 stays within 0.10 dex of the framework for M_b = 1e10-1e11, both footings, both kernels
+    alt       M_b = 1e11.0 nu_RAR : r_e =  419.5 kpc, r_flag =  35.2 kpc -> zero-point shift +0.000 dex
+    alt       M_b = 1e11.0 mu_exp : r_e =  419.5 kpc, r_flag =  35.2 kpc -> zero-point shift +0.000 dex
+  [PASS] F1 THE FLAGSHIP (GP5's gate): with the cosmic-shear switch cell p = 2, x_c0 = 2 the deep-MOND Tully-Fisher zero point at z = 2.5 stays within 0.10 dex of the framework for M_b = 1e10-1e11, both footings, three kernels (each with its own edge)
          measured: worst shift +0.000 dex; failing (footing, log M_b): none
          reading:  beyond the switch edge Gauss leaves the baryons alone: the zero point jumps to the Newtonian value, -2 log10 nu(0.1) (the opposite sign to LCDM's +0.33)
     pre-declared hypothesis (fails at 1e11 canonical only, passes alt): NOT confirmed
@@ -140,4 +146,4 @@ VERDICT
   not the flagship.  The gate touches deep MOND only; today's z ~ 2.5 kinematics (r <~ r(y = 1)) are inside the edge.
   Whether ANY gate exponent serves cosmic shear (z = 0.5), KiDS (z = 0.25) and the flagship (z = 2.5) together is DE2.
 
-  6/6 checks pass; load-bearing failures: 0; wrote DE1_vacuum_gate_flagship_results_MUTATE.json   [1s]
+  6/6 checks pass; load-bearing failures: 0; wrote DE1_vacuum_gate_flagship_results_MUTATE.json   [2s]

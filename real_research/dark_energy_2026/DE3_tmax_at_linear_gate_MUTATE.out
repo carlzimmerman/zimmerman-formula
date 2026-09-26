@@ -1,0 +1,63 @@
+DE3 -- THE COSMIC-SHEAR BOUND AT THE LINEAR GATE: L363's region-kernel T_max(k), s^2 and r_x at the lens-epoch threshold
+of DE2's linear-gate cell (p = 1, x_c0 = 2.5), exported as a table for a same-cell re-run of the construction.
+
+WHY.  DE2 found a joint window for the vacuum gate that contains the linear gate p = 1; L359's cell (p = 1, x_c0 = 2.5)
+passes KiDS, cosmic shear, the flagship and the forest.  DE2's results store the cosmic-shear MARGINS against L367's
+committed transfers, not the bound itself.  A same-cell re-run of the particle-mesh construction (with its own nonlinear
+transfer at that cell) needs the bound
+      T_max(k) = -r_x s + sqrt(r_x^2 s^2 + 1.2 - s^2),   s^2 = P_ph/P_NL,   R = T^2 + 2 r_x T s + s^2 <= 1.2   (L364)
+at the cell's lens-epoch threshold.  This lane computes it with L363's machinery (unedited), GP3's mock at z = 0.5 and
+L364's seed, exactly as L364 and DE2 do.
+
+THE CELL.  x_c,eff(0.5) = x_c0 [Omega_L0/Omega_L(0.5)]^p = 2.5 E^2(0.5), with E^2(0.5) = N63["E2"] = 1.745209 (GP3's mock
+background, as L364/DE2 use; L359's L347 background gives 1.745275, 4e-5 relative): x = 4.36302.
+
+  *** MUTATE=1: the ungated threshold x = x_c0 = 2.5 replaces the cell's; S1 must FAIL at 600 km/s ***
+  L363 loaded (mock E^2(0.5) = 1.745209); the cell's threshold x = 2.50000 (UNGATED, p = 0)
+  GP3 mock built (100 Mpc, 256^3, seed 20260926)   [20s]
+  bound computed at 10 (threshold, footing) points   [681s]
+
+==============================================================================================================
+C1-C2  CONTROLS: L364's committed T_max; DE2's committed margins at 4.2 and 4.4
+==============================================================================================================
+  [PASS] C1 CONTROL: L364's committed T_max reproduced exactly at its two cells, both footings
+         measured: max |diff| = 0.0e+00
+  [PASS] C2 CONTROL: DE2's committed cosmic-shear margins at x = 4.2 and 4.4 reproduced (all kicks, both footings)
+         measured: max |diff| = 0.0e+00
+
+==============================================================================================================
+T1-S1  THE CELL: its bound between the grid neighbours, and cosmic shear with L367's committed transfers
+==============================================================================================================
+  [n/a ] T1 not applicable under MUTATE: the ungated threshold 2.5 lies outside [4.2, 4.4] by construction
+    v_k = 600: margin max_k [T - T_max] canonical +0.0582, alt +0.1183
+    v_k = 650: margin max_k [T - T_max] canonical -0.0043, alt +0.0559
+    v_k = 700: margin max_k [T - T_max] canonical -0.0623, alt -0.0021
+  [FAIL] S1 THE CELL'S VERDICT: cosmic shear passes at v_k = 600, 650 and 700 km/s on both footings with L367's transfers
+         measured: 600/canonical: +0.0582; 600/alt: +0.1183; 650/canonical: -0.0043; 650/alt: +0.0559; 700/canonical: -0.0623; 700/alt: -0.0021
+         reading:  the linear gate's lens-epoch threshold leaves room for the carrier's matter power at every committed kick
+
+==============================================================================================================
+E1  THE EXPORT: T_max, s^2 = P_ph/P_NL and r_x per k and footing
+==============================================================================================================
+    x = 2.50000 canonical: T_max 0.1: 1.0909, 0.2: 1.0661, 0.3: 1.0356, 0.5: 0.9163, 0.7: 0.7627, 1.0: 0.5888
+                      s^2   0.1: 3.594e-05, 0.2: 0.001022, 0.3: 0.00506, 0.5: 0.04599, 0.7: 0.1541, 1.0: 0.346
+                      r_x   0.1: 0.7626, 0.2: 0.9170, 0.3: 0.8316, 0.5: 0.7998, 0.7: 0.7750, 1.0: 0.7324
+    x = 2.50000 alt      : T_max 0.1: 1.0904, 0.2: 1.0631, 0.3: 1.0295, 0.5: 0.8976, 0.7: 0.7261, 1.0: 0.5287
+                      s^2   0.1: 4.344e-05, 0.2: 0.001237, 0.3: 0.006125, 0.5: 0.05569, 0.7: 0.1867, 1.0: 0.4193
+                      r_x   0.1: 0.7624, 0.2: 0.9170, 0.3: 0.8314, 0.5: 0.7994, 0.7: 0.7746, 1.0: 0.7320
+    x = 4.20000 canonical: T_max 0.1: 1.0933, 0.2: 1.0794, 0.3: 1.0628, 0.5: 0.9903, 0.7: 0.8918, 1.0: 0.7500
+                      s^2   0.1: 9.623e-06, 0.2: 0.0003177, 0.3: 0.001686, 0.5: 0.01812, 0.7: 0.067, 1.0: 0.1859
+                      r_x   0.1: 0.6924, 0.2: 0.8964, 0.3: 0.7880, 0.5: 0.7549, 0.7: 0.7313, 1.0: 0.6982
+    x = 4.20000 alt      : T_max 0.1: 1.0931, 0.2: 1.0778, 0.3: 1.0595, 0.5: 0.9793, 0.7: 0.8697, 1.0: 0.7098
+                      s^2   0.1: 1.164e-05, 0.2: 0.0003851, 0.3: 0.002043, 0.5: 0.02197, 0.7: 0.08124, 1.0: 0.2256
+                      r_x   0.1: 0.6921, 0.2: 0.8964, 0.3: 0.7879, 0.5: 0.7546, 0.7: 0.7309, 1.0: 0.6978
+    x = 4.40000 canonical: T_max 0.1: 1.0935, 0.2: 1.0804, 0.3: 1.0648, 0.5: 0.9958, 0.7: 0.9019, 1.0: 0.7640
+                      s^2   0.1: 8.439e-06, 0.2: 0.0002826, 0.3: 0.001507, 0.5: 0.01649, 0.7: 0.06149, 1.0: 0.1739
+                      r_x   0.1: 0.6829, 0.2: 0.8938, 0.3: 0.7834, 0.5: 0.7502, 0.7: 0.7266, 1.0: 0.6943
+    x = 4.40000 alt      : T_max 0.1: 1.0933, 0.2: 1.0789, 0.3: 1.0617, 0.5: 0.9854, 0.7: 0.8810, 1.0: 0.7255
+                      s^2   0.1: 1.021e-05, 0.2: 0.0003424, 0.3: 0.001827, 0.5: 0.01999, 0.7: 0.07455, 1.0: 0.211
+                      r_x   0.1: 0.6824, 0.2: 0.8937, 0.3: 0.7831, 0.5: 0.7498, 0.7: 0.7262, 1.0: 0.6940
+  [PASS] E1 (reported) the table is written for the cell and its grid neighbours, both footings
+         measured: see results JSON
+
+  3/4 checks pass; load-bearing failures: 1; wrote DE3_tmax_at_linear_gate_results_MUTATE.json   [681s]

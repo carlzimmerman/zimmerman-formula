@@ -9,6 +9,10 @@ and "closed" is not claimed. An independent audit of an earlier draft of this no
 writing) found five overclaims; they are
 corrected here, and its stricter labels are adopted throughout.
 
+**Decided 2026-09-26 (the author; recorded in the recipe and spec, commit 9092fc0fd):** the kernel is ν_mono, causality
+is criterion B (a global time function, the khronon, compatible with every characteristic cone), and Z is corrected.
+The filtered branch this note describes is therefore the recipe's operative branch.
+
 ---
 
 ## 1. One principle, and what follows from it
@@ -22,7 +26,7 @@ an action enforces it: in the C-H action Λ and a₀ are independent inputs. Wha
 | with a₀ tied to the vacuum's pressure, a₀² = κ²G(−p_vac) (the stage-17 promotion, a postulate), a w = −1 vacuum makes **a₀ flat in time** (< 1% to z = 5); ΛCDM's emergent scale rises (+0.33 dex at z ≈ 2.5) | postulate + exact consequence | L37, L273–L275 |
 | κ, one pure number: measured 0.465 ± 0.076 (BTFR), 0.55 ± 0.17 (distance-free), consistent with ½; Z = cH_Λ/a₀ = √(32π/3) = 5.7888 is κ restated | measured, **not derivable** in the present action class | `kappa_closure/k01–k03` |
 | the de Sitter vacuum has no invariant timelike vector; so the preferred frame the record's local constructions need can only be a *state* — one clock field (the khronon) | theorem (representation) + the record's scoped class exclusions | `opus_48_extended_research/reviews/gap2_rep_door/so41_no_invariant_timelike_vector.py` |
-| strict two-DOF MOND with an external-field effect can signal instantaneously (conditional theorem); a moving source's phantom needs a momentum channel ⇒ **2 tensors + 1 extra scalar (the khronon)** — whether it qualifies as the spec's separately counted "genuine clock" needs the full canonical classification of the assembled action (open) | theorem (conditional) + open count | `qwen_claude_field_theory/theory_2026/york/elliptic_channel_signaling_theorem_2026.py`; L330; L340 |
+| a moving source's phantom needs a momentum channel ⇒ **2 tensors + 1 extra scalar (the khronon)** — whether it qualifies as the spec's separately counted "genuine clock" needs the full canonical classification of the assembled action (open). The signalling theorem (strict two-DOF MOND with an external-field effect signals instantaneously) is a criterion-A result: under the adopted criterion B it no longer closes the strict two-DOF constraint branch, which is OPEN again (CDE-L4C; its gates were never derived) | L330 + open count; signalling theorem scoped to criterion A | `qwen_claude_field_theory/theory_2026/york/elliptic_channel_signaling_theorem_2026.py`; L330; L340 |
 | in L340's tested momentum channels the kernel must have a monotone phantom (243/243 negative-coefficient cells unhealthy — a bounded scan of the families tried, not a theorem for every channel), and GR then comes back through a filter, not the kernel's tail. The exact exponential law has longitudinal coefficient C_L = (1−x)/(eˣ + x − 1) < 0 for x > 1 (exact), so it cannot be imported into that branch; in the reduced C-H/K block both exact laws need α_c > 0.06 (RAR) / 0.27 (exponential) against the candidate's ceiling 3.2×10⁻⁹ (lead-track peer review); whether another constrained action can carry them is open | scoped | L340 H2/H3, S1; lead-track recipe audit and peer review |
 | one metric, minimal coupling ⇒ any component the kernel cannot see feels Newtonian gravity only (reciprocity) | theorem | L353 N2 |
 
@@ -89,14 +93,20 @@ particle-mesh gates (clusters, clearing, Harvey; L380/L381) were run at p = 2 an
 before the assembled construction can claim that cell (never pool passes across cells). Lean:
 `window_iff`, `window_p_interval`, `dominance`, `ungated_pincer`, `linear_gate_cell_in_window`.
 
+**DE3** (`DE3_tmax_at_linear_gate.py`, 5/5; MUTATE, the ungated threshold, fails). At that cell's own lens-epoch threshold,
+x_c,eff(0.5) = 4.36302, cosmic shear passes at 600/650/700 km/s on both footings (margins −0.076 to −0.103 with L367's
+transfers); the bound T_max(k), s² and r_x are exported so the particle-mesh construction can be re-run at the same cell
+against its own transfer. That re-run is under way in the construction's own lanes (L388+), after L381's Harvey verdict
+was withdrawn for mixing gate cells (commit 3151d88f2).
+
 ## 4. The theory as it stands, sector by sector
 
 | sector | what is built | standing | open |
 |---|---|---|---|
 | gravity + clock | **C-H/K**: GR + khronon (BPS terms α_c a² − c₂K², leaf-average λ-term) | linear frozen-coefficient health in the scanned channels; moving-source tracking; static β = γ = 1 derived in the reduced khronometric sector (KM3; other PPN terms and the filtered remainder documentary); c_T = 1 in the tested TT sector; c₂ under the Planck cap; G8 bounded pass at frozen-background, decoupling-limit scope including the filter/foliation vertices (XC1 + XC3, peer lanes); conditional at full-action scope | full canonical classification (is the khronon the spec's "genuine clock"?); nonlinear well-posedness scoped by XC2 (peer, f3b848273) — but the lead track's peer review (`real_research/peer_review_2026_09_26/`, uncommitted) finds XC2's all-kernel convexity step applies an unweighted heat contraction to a lapse-weighted norm (sound for a genuinely monotone kernel, not for the exact non-monotone ones without extra lapse restrictions), its zero-field modulus fails at a homogeneous U = 0 leaf (a √ε response), and mixed heat-operator variations escape XC1/XC3's per-leg suppression — so the principal-symbol reduction to GR + BPS khronon is unproved and G4/G7/G8 stay conditional; the UV khronon is superluminal on the metric cone (4.4×10²–7.9×10⁵ c): requirement 7 must say which causality criterion it means (see the R2 proposal) |
-| MOND kernel | ν_mono (≤ 0.01 dex from ν_RAR) + heat filter ξ — a different constitutive law from the spec's exact μ_exp | SPARC RAR 0.108 dex at Υ = 0.70 (`rar_framework_a0_mlfit.py`); Solar-System floors 0.031/0.045 pc | κ's value (input); whether the exact law can be carried by another constrained action |
+| MOND kernel | ν_mono (≤ 0.01 dex from ν_RAR) + heat filter ξ — decided 2026-09-26 (9092fc0fd); the exact μ_exp target is now historical | SPARC RAR 0.108 dex at Υ = 0.70 (`rar_framework_a0_mlfit.py`); Solar-System floors 0.031/0.045 pc | κ's value (input); whether the exact law can be carried by another constrained action |
 | where MOND acts | bound-region kernel (L361, nonrelativistic, gate prescribed) + vacuum gate (L359, prescribed mask) | KiDS at the realizable profile, growth, forest; the Sun keeps the Galaxy's field | the gate's parameters are data-pinned (DE2), not derived; the gate is not yet varied in an action (its W′(U)δU terms feed the clock and metric equations); relativistic embedding |
-| dark mass | kernel-invisible carrier, cold early, shed from galaxy halos at virialization with v_k ≈ 600–675 km/s (L365–L380) | S₈, forest, clearing, two-sided X-COP, cosmic shear (with the p = 2 gate), KiDS — pooled on fixed-cell clearing; Harvey: L381's merger check uses an active p = 1, x_c0 = 1.5 gate with p = 2, x_c0 = 2 retentions (lead-track peer review), so no same-cell Harvey verdict exists yet | no action for the trigger; the no-particle field (L374: condensate dust breaks at shell crossing; only a wave field passes, m ≳ 2–5×10⁻¹⁹ eV) |
+| dark mass | kernel-invisible carrier, cold early, shed from galaxy halos at virialization with v_k ≈ 600–675 km/s (L365–L380) | S₈, forest, clearing, two-sided X-COP, cosmic shear (with the p = 2 gate), KiDS — pooled on fixed-cell clearing; Harvey: L381's verdict withdrawn (3151d88f2) — it used an active p = 1, x_c0 = 1.5 merger gate with p = 2, x_c0 = 2 retentions — and a same-cell re-run at (p = 1, x_c0 = 2.5) is under way (L388+) | no action for the trigger; the no-particle field (L374: condensate dust breaks at shell crossing; only a wave field passes, m ≳ 2–5×10⁻¹⁹ eV) |
 
 ## 5. The path to closure — four steps, in order
 

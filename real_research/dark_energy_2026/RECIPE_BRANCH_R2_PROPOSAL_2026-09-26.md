@@ -10,7 +10,13 @@ consistent with that amendment. It lists what the calculations since the recipe'
 ("changing μ = a different recipe, branched explicitly, never silently substituted"). Every row cites the committed
 lane; labels follow the lead track's stricter scoping.
 
-## 1. One factual error in the recipe as it stands
+**Update, same day:** the author decided three of this proposal's open items, recorded in the recipe and spec by
+commit 9092fc0fd — the kernel is ν_mono, causality is criterion B, and the Z line is corrected. The remaining items below
+(I6 the vacuum gate, I7 the dark mass, G13–G21, P8–P16, §9 and §12.6) are still proposals. One consequence recorded both
+ways: under criterion B the signalling theorem no longer closes the strict two-DOF constraint branch (CDE-L4C is open
+again).
+
+## 1. One factual error in the recipe as it stands (fixed in 9092fc0fd)
 
 §1's Numbers line says "Z~21 FITTED". On the record's definition Z ≡ cH_Λ/a₀, with a₀ = κc√(Gρ_Λ) and the vacuum
 Friedmann normalization H_Λ² = Λc²/3, one has **Z² = 8π/(3κ²)**, so Z is κ restated, not a second fitted number; at
