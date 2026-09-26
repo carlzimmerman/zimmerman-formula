@@ -42,3 +42,44 @@ Population-mean excess β, in σ from Harvey's mean:
 - **The core-decayed carriers are disfavoured at 1.7–4σ.** The MUTATE run shows this failure survives with the kernel off. It comes from the hollowed core, not from the boost. It is the Bullet-cluster logic: with no collisionless mass at the galaxies, the lensing peak follows the displaced gas.
 - The boost's own pull on the peak is small: +0.03 to +0.06 in β for an intact carrier.
 - **Design constraint: the carrier must keep collisionless mass in group and cluster cores.**
+
+## L372 — a carrier that passes Harvey and X-COP together
+
+`L372_gated_slow_kick_carrier.py`: 4/4 checks pass. `MUTATE=1` switches the uniform channel off; W1 then fails (X-COP overshoots) and rc = 1.
+
+**Part 1: the pincer.** L357's vacuum-gated trigger with a finite kick (p = 2; cleared x_v0 2000 and cap x_v0 1000; v_k from 600 to 3000 km/s):
+
+| kick | forest | S₈ | X-COP (canonical/alt) | galaxies | KiDS | Harvey (NFW fit) |
+|---|---|---|---|---|---|---|
+| 750 km/s | pass | 0.836 | 1.38/1.44 (fails) | pass | pass | +0.044 (pass) |
+| 3000 km/s | pass | 0.772 | 1.08/1.13 (pass) | pass | pass | +0.129 (fails) |
+
+- Slow kicks pass everything except X-COP: massive clusters recapture their daughters.
+- Fast kicks pass X-COP but empty group cores.
+- Escape depends monotonically on potential depth, so no single kick strips massive clusters to X-COP's ceiling while leaving group cores intact.
+
+**Part 2: the two-channel carrier that passes.** The carrier has two decay modes:
+- **U**, spatially uniform: L319's rate law Γ ∝ [Ω_Λ(a)/Ω_Λ,0]², with fast daughters at 3000 km/s. It depletes every host by nearly the same fraction and keeps its cusp. Its partial retention in the deepest cluster core is computed, not assumed (0.77 of the carrier stays inside R500 at f_U(0) = 0.25).
+- **G**, L357's vacuum-gated density trigger with a slow kick (750–1050 km/s): galaxies lose their daughters, while groups and clusters recapture theirs.
+
+At **f_U(0) = 0.25**, all three G kicks (750, 900, 1050 km/s) pass every gate on the record's alternative threshold set:
+
+| gate | result |
+|---|---|
+| forest | T² ≥ 0.9976 |
+| S₈ | 0.750–0.755 with every decayed particle at 3000 km/s (the conservative bound); 0.821–0.831 at v_G |
+| X-COP | 1.19–1.21 / 1.24–1.26, passing after the 6% non-thermal correction |
+| galaxies | +0.022 dex |
+| KiDS | −24 / −17 |
+| Harvey (100 kpc / 150 kpc / fit) | +0.019 / +0.050 / +0.048 up to +0.030 / +0.070 / +0.062; core carrier-to-baryons 5.7–7.9 |
+
+Other rows of the grid:
+- f_U(0) = 0.20 leaves X-COP too heavy on the alt footing (1.28–1.30).
+- f_U(0) ≥ 0.30 drops the conservative S₈ below 0.748.
+
+**Limits.**
+- The strict threshold set fails on X-COP (1.24–1.26 on the alt footing) and on the conservative S₈ bound. The true S₈ lies between the two free-streaming bounds, 0.75 and 0.83.
+- Retention is the static, full-depth, phase-mixed kind of L357/L321, not an assembly history. L366's PM machinery with both modes is the next check.
+- The two modes are combined multiplicatively (a stated approximation).
+- Harvey is scored on the canonical footing, with eight configurations standing in for the 72 substructures.
+- High-z galaxies keep their carrier, as for every vacuum-gated carrier (L357's flagship shift).

@@ -1,0 +1,110 @@
+L372 -- A CARRIER FOR HARVEY AND X-COP TOGETHER.  Part 1: the single-channel pincer.  Part 2: a two-channel carrier that
+passes both, with the forest, S_8, the galaxy gate and KiDS kept.
+
+WHY.  Harvey+2015 needs group cores (lensing M200 1e14-3e14, z ~ 0.2-0.6) to keep most of their collisionless carrier: L370
+(B3, B6, B7) and L371 show that a hollowed or depleted core lets the displaced gas drag the lensing peak (measured
+<beta> = -0.04 +/- 0.07).  X-COP needs massive clusters at z ~ 0.05 to keep only 0.22-0.77 of their carrier inside R500
+(L354's two-sided gate, as L366 reads it).  The carriers on the record each fail one side: L357 (vacuum-gated, 3000 km/s
+kicks) empties group cores; L366 (ungated, ~650 km/s) loses group carrier through their progenitors.
+
+PART 1 -- ONE CHANNEL: L357's trigger (p = 2; 'cleared', x_v0 = 2000; 'cap', x_v0 = 1000) at a finite kick v_k from 600 to
+  3000 km/s.  Pre-declared hypothesis (from a coarse run of this lane): a PINCER -- escape is monotonic in potential depth,
+  so any kick that strips massive clusters to X-COP's ceiling strips group cores harder.  Slow kicks pass forest, S_8,
+  galaxies and KiDS and Harvey but fail X-COP (clusters recapture); fast kicks pass X-COP and fail Harvey.
+PART 2 -- TWO CHANNELS: the carrier X has two decay modes.
+  U  spatially uniform, L319's rate law Gamma_U = Gamma_0 [Omega_L(a)/Omega_L,0]^2 (fraction f_U(0) decayed today), fast
+     daughters v_U = 3000 km/s.  It removes carrier from every host by nearly the same fraction and keeps each host's SHAPE
+     (cusp) -- the depletion X-COP needs without hollowing group cores.  In the deepest cluster cores (central escape speed
+     ~4600 km/s for A2319) its daughters are partly retained: that is computed, not assumed (L321's retained()).
+  G  L357's vacuum-gated density trigger with a SLOW kick v_G (750-1050 km/s): galaxies (escape speeds 300-900 km/s) lose
+     their daughters, groups and clusters recapture theirs.
+  Combination (stated approximation): the retained fractions multiply, host by host (the modes act on the same parents;
+  treating them as independent is exact when either is small and conservative for Harvey, where U is applied as the full
+  uniform factor 1 - f_U(z)).  Forest and S_8: L319's solver on the product survival S_U S_G, with every decayed particle
+  given v_U (the conservative bound, more free streaming) and, as the other bound, v_G.
+  Grid: f_U(0) in {0.20, 0.25, 0.30, 0.35}, v_G in {750, 900, 1050} km/s, G on ('cleared', x_v0 = 2000, p = 2).  (A coarse
+  run of this lane placed the grid: at f_U(0) = 0.35 channel U's 3000 km/s daughters cost S_8 0.737 < 0.748 while X-COP
+  already passed strictly, so the window, if any, lies at smaller f_U.)
+GATES (all pre-declared, both footings where they apply): forest T^2(k = 5) at z = 3, 2 >= 0.9952 (strict) or 0.9 (loose);
+  S_8 >= 0.767 (strict) or 0.748 (alternative); X-COP two-sided, strict or after 6% non-thermal support (L322/L354);
+  galaxies <= 0.06 dex in L321's three hosts; KiDS-1000 web-blind kernel Delta chi^2 <= +9 (L355/L357); Harvey: L370's
+  machinery, population-mean excess beta <= +0.10 on all three estimators (100 / 150 kpc apertures, projected-NFW fit).
+
+  *** MUTATE=1: channel U switched off (f_U = 0) -- X-COP must fail and W1 must flip ***
+  L357 machinery loaded (L319 solver, halo model, L321 retention, L355 KiDS): LCDM S_8 0.8415   [7s]
+
+====================================================================================================================
+C1  CONTROL: L357's committed best cell (p = 2, cleared, x_v0 = 2000, v_k = 3000)
+====================================================================================================================
+  [PASS] C1 CONTROL: L357's committed best cell reproduced (forest 0.9984 +/- 0.002, S_8 0.772 +/- 0.003, X-COP 1.08/1.13 +/- 0.02)
+         measured: T^2 0.9984, S_8 0.772, X-COP 1.077/1.129
+
+====================================================================================================================
+PART 1  ONE CHANNEL: L357's trigger with a finite kick (forest, S_8, X-COP, galaxies, KiDS)
+====================================================================================================================
+    channel-G retention and histories done for 10 cells   [970s]
+    G cleared x_v0  2000 v_k   600: forest T2 0.9991; S8 0.838; X-COP eps 0.98 -> 1.39/1.44; galaxies +0.029 dex; KiDS -19.9/-12.0
+    G cleared x_v0  2000 v_k   750: forest T2 0.9989; S8 0.836; X-COP eps 0.97 -> 1.38/1.44; galaxies +0.029 dex; KiDS -21.0/-13.5
+    G cleared x_v0  2000 v_k   900: forest T2 0.9988; S8 0.833; X-COP eps 0.97 -> 1.38/1.43; galaxies +0.029 dex; KiDS -21.8/-14.1
+    G cleared x_v0  2000 v_k  1050: forest T2 0.9987; S8 0.829; X-COP eps 0.94 -> 1.36/1.41; galaxies +0.029 dex; KiDS -21.3/-13.4
+    G cleared x_v0  2000 v_k  1200: forest T2 0.9986; S8 0.826; X-COP eps 0.93 -> 1.35/1.40; galaxies +0.029 dex; KiDS -21.5/-13.5
+    G cleared x_v0  2000 v_k  2000: forest T2 0.9985; S8 0.801; X-COP eps 0.79 -> 1.24/1.29; galaxies +0.029 dex; KiDS -21.3/-13.8
+    G cleared x_v0  2000 v_k  3000: forest T2 0.9984; S8 0.772; X-COP eps 0.58 -> 1.08/1.13; galaxies +0.029 dex; KiDS -21.3/-13.8
+    G cap     x_v0  1000 v_k   750: forest T2 0.9987; S8 0.836; X-COP eps 0.97 -> 1.38/1.44; galaxies +0.042 dex; KiDS -20.5/-12.7
+    G cap     x_v0  1000 v_k  1050: forest T2 0.9984; S8 0.830; X-COP eps 0.95 -> 1.37/1.42; galaxies +0.041 dex; KiDS -20.6/-12.9
+    G cap     x_v0  1000 v_k  3000: forest T2 0.9981; S8 0.777; X-COP eps 0.62 -> 1.11/1.16; galaxies +0.041 dex; KiDS -20.8/-13.0
+
+====================================================================================================================
+PART 2  TWO CHANNELS: uniform fast mode U (L319's rate law, v_U = 3000 km/s) + slow triggered mode G
+====================================================================================================================
+    channel U in the reference cluster (retained inside R500): f_U(0) 0.20 -> f_U(z_ref) 0.167, retained 1.000 (uniform would be 0.833), f_U(0) 0.25 -> f_U(z_ref) 0.210, retained 1.000 (uniform would be 0.790), f_U(0) 0.30 -> f_U(z_ref) 0.254, retained 1.000 (uniform would be 0.746), f_U(0) 0.35 -> f_U(z_ref) 0.298, retained 1.000 (uniform would be 0.702)   [970s]
+    U+G f_U(0) 0.20 v_G   750: forest T2 0.9986; S8 0.798; X-COP eps 0.97 -> 1.38/1.44; galaxies +0.029 dex; KiDS -21.0/-13.5
+    U+G f_U(0) 0.20 v_G   900: forest T2 0.9986; S8 0.795; X-COP eps 0.97 -> 1.38/1.43; galaxies +0.029 dex; KiDS -21.8/-14.1
+    U+G f_U(0) 0.20 v_G  1050: forest T2 0.9985; S8 0.792; X-COP eps 0.94 -> 1.36/1.41; galaxies +0.029 dex; KiDS -21.3/-13.4
+    U+G f_U(0) 0.25 v_G   750: forest T2 0.9986; S8 0.798; X-COP eps 0.97 -> 1.38/1.44; galaxies +0.029 dex; KiDS -21.0/-13.5
+    U+G f_U(0) 0.25 v_G   900: forest T2 0.9986; S8 0.795; X-COP eps 0.97 -> 1.38/1.43; galaxies +0.029 dex; KiDS -21.8/-14.1
+    U+G f_U(0) 0.25 v_G  1050: forest T2 0.9985; S8 0.792; X-COP eps 0.94 -> 1.36/1.41; galaxies +0.029 dex; KiDS -21.3/-13.4
+    U+G f_U(0) 0.30 v_G   750: forest T2 0.9986; S8 0.798; X-COP eps 0.97 -> 1.38/1.44; galaxies +0.029 dex; KiDS -21.0/-13.5
+    U+G f_U(0) 0.30 v_G   900: forest T2 0.9986; S8 0.795; X-COP eps 0.97 -> 1.38/1.43; galaxies +0.029 dex; KiDS -21.8/-14.1
+    U+G f_U(0) 0.30 v_G  1050: forest T2 0.9985; S8 0.792; X-COP eps 0.94 -> 1.36/1.41; galaxies +0.029 dex; KiDS -21.3/-13.4
+    U+G f_U(0) 0.35 v_G   750: forest T2 0.9986; S8 0.798; X-COP eps 0.97 -> 1.38/1.44; galaxies +0.029 dex; KiDS -21.0/-13.5
+    U+G f_U(0) 0.35 v_G   900: forest T2 0.9986; S8 0.795; X-COP eps 0.97 -> 1.38/1.43; galaxies +0.029 dex; KiDS -21.8/-14.1
+    U+G f_U(0) 0.35 v_G  1050: forest T2 0.9985; S8 0.792; X-COP eps 0.94 -> 1.36/1.41; galaxies +0.029 dex; KiDS -21.3/-13.4
+
+====================================================================================================================
+HARVEY  (L370's machinery): the slow and fast one-channel references, and every two-channel cell passing the rest
+====================================================================================================================
+    G slow ('cleared', 2000.0, 750.0): excess beta +0.022/+0.048/+0.044; core carrier/baryons(<150 kpc) 7.87 / 8.53 -> PASS   [1527s]
+    G fast ('cleared', 2000.0, 3000.0): excess beta +0.063/+0.114/+0.129; core carrier/baryons(<150 kpc) 3.84 / 2.95 -> FAIL   [2106s]
+
+====================================================================================================================
+VERDICTS
+====================================================================================================================
+  [PASS] P1 THE PINCER: no single-channel cell passes both X-COP and Harvey; the slow cell fails X-COP and passes Harvey, the fast cell passes X-COP and fails Harvey
+         measured: slow: X-COP 1.38/1.44, Harvey pass (fit +0.044); fast: X-COP 1.08/1.13, Harvey fail (fit +0.129)
+         reading:  escape is monotonic in potential depth: a kick that strips massive clusters to X-COP's ceiling strips group cores harder
+  [FAIL] W1 THE TWO-CHANNEL WINDOW: a cell passes forest + S_8 + X-COP + galaxies + KiDS + Harvey together (strict or alternative)
+         measured: no cell
+         reading:  the uniform mode depletes every host by nearly the same fraction and keeps its cusp (X-COP without hollowing group cores); the slow triggered mode clears galaxies while groups recapture
+    U+G f_U(0) 0.20 v_G   750: X-COP 1.38/1.44   (S_8 with v_G free streaming: 0.836)
+    U+G f_U(0) 0.20 v_G   900: X-COP 1.38/1.43   (S_8 with v_G free streaming: 0.833)
+    U+G f_U(0) 0.20 v_G  1050: X-COP 1.36/1.41   (S_8 with v_G free streaming: 0.829)
+    U+G f_U(0) 0.25 v_G   750: X-COP 1.38/1.44   (S_8 with v_G free streaming: 0.836)
+    U+G f_U(0) 0.25 v_G   900: X-COP 1.38/1.43   (S_8 with v_G free streaming: 0.833)
+    U+G f_U(0) 0.25 v_G  1050: X-COP 1.36/1.41   (S_8 with v_G free streaming: 0.829)
+    U+G f_U(0) 0.30 v_G   750: X-COP 1.38/1.44   (S_8 with v_G free streaming: 0.836)
+    U+G f_U(0) 0.30 v_G   900: X-COP 1.38/1.43   (S_8 with v_G free streaming: 0.833)
+    U+G f_U(0) 0.30 v_G  1050: X-COP 1.36/1.41   (S_8 with v_G free streaming: 0.829)
+    U+G f_U(0) 0.35 v_G   750: X-COP 1.38/1.44   (S_8 with v_G free streaming: 0.836)
+    U+G f_U(0) 0.35 v_G   900: X-COP 1.38/1.43   (S_8 with v_G free streaming: 0.833)
+    U+G f_U(0) 0.35 v_G  1050: X-COP 1.36/1.41   (S_8 with v_G free streaming: 0.829)
+  [PASS] W2 (reported) the two-channel gate table, with each cell's S_8 under the other free-streaming bound
+         measured: {'0.2|750.0': ['X-COP 1.38/1.44'], '0.2|900.0': ['X-COP 1.38/1.43'], '0.2|1050.0': ['X-COP 1.36/1.41'], '0.25|750.0': ['X-COP 1.38/1.44'], '0.25|900.0': ['X-COP 1.38/1.43'], '0.25|1050.0': ['X-COP 1.36/1.41'], '0.3|750.0': ['X-COP 1.38/1.44'], '0.3|900.0': ['X-COP 1.38/1.43'], '0.3|1050.0': ['X-COP 1.36/1.41'], '0.35|750.0': ['X-COP 1.38/1.44'], '0.35|900.0': ['X-COP 1.38/1.43'], '0.35|1050.0': ['X-COP 1.36/1.41']}
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  3/4 checks pass; load-bearing failures: 1   [2106s]
+  wrote L372_gated_slow_kick_carrier_MUTATE_results.json
+rc=1
+L372 MUTATE rc=1
