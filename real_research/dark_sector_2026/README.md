@@ -339,3 +339,26 @@ C3 checks the mesh QUMOND on a spherical blob inside a switched sphere: it retur
 - **S₈ rises by 0.6%.** With no decay, the phantom alone gives S₈ ×1.009 and fails cosmic shear, as expected.
 - **Single-box (7, 11) window: 625–675 km/s on both footings.** L369 shows single-box windows do not survive pooling.
 - **The pooled estimate with the shifts applied is still no window.** Clearing, the G3 mesh proxy, stays the blocker. At 700 km/s both clearing (0.31) and X-COP (0.28) miss by under 0.01, so the construction pushes the pinch toward closing without opening it.
+
+## L378 — the full construction pooled over three realisations: no window, the pinch is real
+
+`L378_full_construction_pooled.py` (2/3, **rc = 1: the pre-declared hypothesis "a pooled window exists at 675–750 km/s" is falsified**). This runs L377's full construction, unchanged, on L369's three realisations. C1: the (7, 11) reruns reproduce L377's committed numbers exactly (6 numbers).
+
+| v_k | pooled S₈ | pooled cleared (≤ 0.30) | pooled X-COP ε (≥ 0.286) | per-box windows |
+|---|---|---|---|---|
+| 675 | 0.952 | 0.34 ✗ | 0.291 | (7, 11) only |
+| 700 | 0.946 | 0.31 ✗ | 0.247 ✗ | none |
+| 725 | 0.941 | 0.28 | 0.182 ✗ | none |
+| 750 | 0.936 | 0.22 | 0.139 ✗ | none |
+
+**The pinch is real.** Pooled, clearing needs kicks of 725 km/s or more, while clusters stay above the X-COP floor only up to about 680. The two sides are about 50 km/s apart, in the full construction and over 3×10⁶ (Mpc/h)³. L377's estimate at 700 km/s was right on clearing (0.31) but too kind on clusters (0.25 measured, not 0.28).
+
+Across boxes, clearing is worst in (17, 21): 0.61 → 0.39 over 675–750. Cluster retention is lowest in (29, 33): 0.229 → 0.103.
+
+**Standing.** Under the record's gate set, the virialization-triggered carrier has no window, in the Newtonian construction (L369) or the full one (L378).
+
+**What the result turns on.** The clearing gate is the mesh proxy G3. Its stated targets, RC100 inside R_e and KiDS, both pass when resolved (L376, L375). So the construction's fate is:
+- a judgement on whether G3 constrains anything physical beyond those targets; or
+- a change to the carrier that separates z = 2 clearing from z = 0 cluster retention.
+
+MUTATE was not run, because the main run already falsified H, as the docstring pre-declares.

@@ -1,0 +1,76 @@
+
+L378 -- THE FULL CONSTRUCTION, POOLED OVER THREE REALISATIONS: is the clearing-vs-clusters pinch real?
+
+WHY.  L369: the Newtonian construction has no window over three 100 Mpc/h realisations -- the z = 2 dense-cell clearing
+(G3) needs kicks above ~700 km/s, the X-COP cluster gate needs kicks below ~660.  L377: the full construction (the switched
+phantom felt by the baryons and read by the trigger) raises cluster retention by 6-22% on one realisation and leaves G3
+untouched; applying those shifts to L369's pooled gates ESTIMATES a near miss at 700 km/s (G3 0.31, X-COP 0.28, each
+within 0.01 of its threshold).  An estimate is not a run.  This lane runs the full construction on all three realisations
+at the kicks where the pinch sits.
+
+SETUP: L377's run(), unchanged (full mode, canonical a_0, L359's p = 2 switch, nu_mono, phantom-inclusive trigger), seeds
+(7, 11), (17, 21), (29, 33) as L369; v_k in {675, 700, 725, 750} km/s plus a LCDM run per realisation (15 runs).  Gates as
+L369 computes them, per realisation and pooled (S_8 averaged, forest and shear from summed power, clearing from summed
+dense-cell fractions, clusters as the median over all >= 1e14 Msun/h halos); KiDS is not re-scored (L375, resolved).
+PRE-DECLARED (before the run): H: the POOLED full construction has a window (strict S_8, forest, clearing, two-sided X-COP,
+p = 2 shear) at some kick in {675, 700, 725, 750} km/s.
+CHECKS
+  C1 CONTROL: the (7, 11) reruns at 675 and 700 reproduce L377's committed X-COP median, clearing and S_8 exactly.
+  R1 = H.  W (informational): per-realisation and pooled tables; the pinch -- the lowest kick that clears (pooled G3 <= 0.30)
+     against the highest kick that keeps clusters (pooled median >= the X-COP floor).
+MUTATE=1: every kick is 0 (the decayed carrier stays): R1 must FAIL (rc = 1).  Run only if R1 passes in the main run (a
+control that forces the window shut has nothing to discriminate when the main run already finds none -- as L369).
+L378_POOL sets the pool size (default 8).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L378_full_construction_pooled.py
+
+  15 runs, pool 8
+  15 runs done in 5983s
+
+==============================================================================================================
+C1  CONTROL: the (7, 11) reruns reproduce L377
+==============================================================================================================
+  [PASS] C1 the (7, 11) reruns reproduce L377's committed X-COP median, clearing and S_8 at 675 and 700 km/s
+         measured: max relative deviation 0.0e+00 over 6 numbers
+
+==============================================================================================================
+THE GATE TABLE: full construction, per realisation and pooled
+==============================================================================================================
+    X-COP two-sided 0.286-0.768; clearing <= 0.30; forest <= 0.10; S8 >= 0.922
+         7 v675: S8 0.956 | forest 0.044 | cleared 0.19 | X-COP eps 0.288 (n=22) | shear ok  =>  ALL PASS
+         7 v700: S8 0.951 | forest 0.044 | cleared 0.17 | X-COP eps 0.258 UNDER (n=22) | shear ok  =>  no
+         7 v725: S8 0.947 | forest 0.044 | cleared 0.15 | X-COP eps 0.195 UNDER (n=22) | shear ok  =>  no
+         7 v750: S8 0.941 | forest 0.045 | cleared 0.15 | X-COP eps 0.153 UNDER (n=22) | shear ok  =>  no
+        17 v675: S8 0.963 | forest 0.044 | cleared 0.61 X | X-COP eps 0.535 (n=19) | shear ok  =>  no
+        17 v700: S8 0.959 | forest 0.044 | cleared 0.57 X | X-COP eps 0.446 (n=19) | shear ok  =>  no
+        17 v725: S8 0.954 | forest 0.045 | cleared 0.53 X | X-COP eps 0.382 (n=19) | shear ok  =>  no
+        17 v750: S8 0.949 | forest 0.045 | cleared 0.39 X | X-COP eps 0.302 (n=19) | shear ok  =>  no
+        29 v675: S8 0.936 | forest 0.043 | cleared 0.23 | X-COP eps 0.229 UNDER (n=30) | shear ok  =>  no
+        29 v700: S8 0.929 | forest 0.044 | cleared 0.18 | X-COP eps 0.175 UNDER (n=30) | shear ok  =>  no
+        29 v725: S8 0.923 | forest 0.045 | cleared 0.15 | X-COP eps 0.132 UNDER (n=30) | shear ok  =>  no
+        29 v750: S8 0.916 | forest 0.046 | cleared 0.13 | X-COP eps 0.103 UNDER (n=30) | shear ok  =>  no
+    pooled v675: S8 0.952 | forest 0.043 | cleared 0.34 X | X-COP eps 0.291 (n=71) | shear ok  =>  no
+    pooled v700: S8 0.946 | forest 0.043 | cleared 0.31 X | X-COP eps 0.247 UNDER (n=71) | shear ok  =>  no
+    pooled v725: S8 0.941 | forest 0.043 | cleared 0.28 | X-COP eps 0.182 UNDER (n=71) | shear ok  =>  no
+    pooled v750: S8 0.936 | forest 0.044 | cleared 0.22 | X-COP eps 0.139 UNDER (n=71) | shear ok  =>  no
+
+    windows: 7: ['v675']; 17: none; 29: none; pooled: none
+    the pinch (pooled): lowest kick that clears = v725; kicks keeping clusters above the floor = ['v675']
+  [PASS] W (informational) per-realisation and pooled gate tables; the pinch
+         measured: see tables
+         reading:  reported either way
+
+==============================================================================================================
+R1  THE HYPOTHESIS (set before the run)
+==============================================================================================================
+  [FAIL] R1 = H: the POOLED full construction has a window at some kick in 675-750 km/s
+         measured: pooled window: none
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  Full construction pooled over three realisations: window none; lowest clearing kick v725,
+  cluster-keeping kicks ['v675'].  LIMITS: three 100 Mpc/h boxes on a 0.39 Mpc/h mesh, the clearing gate is the
+  mesh proxy G3 (its resolved targets pass, L375/L376), the switch on the matter-only branch, the trigger posited.
+
+  2/3 checks pass; load-bearing failures: 1; wrote L378_full_construction_pooled_results.json   [6009s]
