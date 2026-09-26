@@ -362,3 +362,23 @@ Across boxes, clearing is worst in (17, 21): 0.61 → 0.39 over 675–750. Clust
 - a change to the carrier that separates z = 2 clearing from z = 0 cluster retention.
 
 MUTATE was not run, because the main run already falsified H, as the docstring pre-declares.
+
+## L379 — the clearing gate is selection-biased: on fixed cells, z = 2 dense regions are cleared everywhere
+
+`L379_clearing_by_environment.py` (3/4, **rc = 1: the pre-declared hypothesis is falsified, in the direction of more clearing**). This is L377's full construction on L369's three realisations at 675 and 700 km/s, with the z = 2 fields saved. L377's run source is transformed by one asserted insertion. C1: the per-box G3 reproduces L378 exactly. C2: the bins partition the dense cells exactly.
+
+Every dense cell (1 + δ > 50) at z = 2 is assigned to its nearest ΛCDM peak and binned by that peak's mass within 0.5 Mpc/h. The bins are galaxy (< 3×10¹²), group (3×10¹²–10¹³) and protocluster core (≥ 10¹³ M☉/h). Two clearing measures:
+- **(a) the record's G3:** the carrier fraction in each run's **own** dense cells, relative to ΛCDM's;
+- **(b) fixed cells:** the carrier the run keeps in **ΛCDM's** dense cells, relative to ΛCDM's carrier there. This is how L366's X-COP retention is already measured, at fixed ΛCDM positions.
+
+A 128³ code test exposed (a)'s selection effect, so (b) was added and the hypothesis put on (b) before the main run.
+
+| pooled, 700 km/s | (b) fixed cells | (a) record's G3 | model's dense cells / ΛCDM's (summed over boxes) |
+|---|---|---|---|
+| galaxy | **0.052** | 0.174 | 2 / 14,716 |
+| group | **0.053** | 0.153 | 69 / 9,383 |
+| protocluster | **0.104** | 0.552 | 147 / 1,427 |
+
+- **The hypothesis** ("protocluster cores are not cleared on (b)") **is falsified.** Every environment is cleared, to 5–10% of ΛCDM's dense-region carrier. The 675 km/s values are the same to within 0.01 (protocluster 0.115).
+- **(a) is selection-biased by construction.** Clearing lowers a cell's density, so it leaves the model's dense set. After clearing, the model keeps about 1% of ΛCDM's dense cells, and (a) is computed over exactly the minority that kept carrier. In box (17, 21), 114 of 802 protocluster cells remain, and (a) reads 0.64 there while (b) reads 0.13.
+- **Consequence for L369/L378.** The gate that closed the window was (a). On (b), clearing passes at 675–700 km/s in every box, where L378's other gates already pass at 675 (pooled S₈ 0.952, forest 4.3%, X-COP 0.291 ≥ 0.286, shear). **This is a methodological correction with a demonstrated mechanism. It is not yet a window.** The pooled full construction must be re-scored on the corrected clearing gate in its own pre-declared lane.

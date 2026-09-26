@@ -1,0 +1,76 @@
+
+L379 -- WHAT THE CLEARING GATE MEASURES: the z = 2 dense-cell carrier split by environment.  Is the clearing-vs-clusters
+pinch a GALAXY constraint or a PROTOCLUSTER one?
+
+WHY.  L369/L378: pooled over three realisations, the triggered carrier has no window -- clearing (G3: the carrier in cells
+with 1 + delta > 50 at z = 2, relative to LCDM's, on the 0.39 Mpc/h mesh) needs kicks >= 725 km/s, X-COP clusters need
+<= ~680.  G3 was introduced for RC100 (galaxies at z ~ 1-2.5 must sit in cleared halos) and KiDS (L365); both targets pass
+when resolved (L376: 0.000 of LCDM's carrier inside R_e at z = 1-2; L375).  The G3 values themselves move with the kick
+in every box (L369, box (17, 21): 0.72 -> 0.39 over 600-750 km/s), so the dense-cell carrier is retained DAUGHTERS, and the
+densest cells at z = 2 on this mesh are plausibly protocluster cores -- the progenitors of the very clusters X-COP needs to
+keep carrier.  If so, the pinch sets unobserved z = 2 protocluster cores against z = 0 clusters, and G3 is not measuring
+RC100's galaxies.  This lane measures it.
+
+SETUP: L377's run() with ONE change -- the z = 2 total and carrier fields are also saved (the source is transformed and the
+replacement asserted to occur exactly once; C1 checks the arithmetic is untouched).  Full construction, canonical a_0,
+v_k = 675 and 700 km/s, L369's three realisations, a LCDM run each (9 runs).  Every dense cell (1 + delta > 50, the
+run's own field, as G3) is assigned to its nearest LCDM peak at z = 2 (periodic), and binned by that peak's mass within
+0.5 Mpc/h comoving (~ r_200 of a 1e13 Msun halo at z = 2): galaxy (< 3e12), massive galaxy / group (3e12 - 1e13),
+protocluster core (>= 1e13 Msun/h).  Two clearing measures per bin:
+  (a) the record's G3: the run's carrier fraction in ITS OWN dense cells of that bin / LCDM's (as L365-L378);
+  (b) fixed cells: the carrier mass the run keeps in LCDM's dense cells of that bin / LCDM's carrier there -- the fraction of
+      LCDM's dense-region carrier still in place.
+HISTORY.  A 128^3 code test (no physics result) showed that (a) drops cleared cells: where the carrier leaves, the cell's
+density falls below 50 and it leaves the model's dense set, so (a) is computed over the cells that KEPT their carrier -- a
+selection toward retaining regions.  Measure (b) was added, and made the hypothesis's measure, before the main run.
+PRE-DECLARED (before the main run): H: pooled over the three boxes at 700 km/s, on the fixed-cell measure (b), the galaxy and
+group environments (< 1e13) are cleared (<= 0.30) and the protocluster environment is not (> 0.30).
+CHECKS
+  C1 CONTROL: the overall G3 per box at 675 and 700 reproduces L378's committed values exactly.
+  C2 CONTROL: the bins partition the dense cells (bin masses sum to the total, every run).
+  R1 = H.  W (informational): both measures by bin, per box and pooled, at 675 and 700; the dense-cell mass share of each bin.
+MUTATE=1: v_k = 0 (the decayed carrier stays): the galaxy bins are not cleared and R1 must FAIL (rc = 1).
+L379_POOL sets the pool size (default 9).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L379_clearing_by_environment.py
+
+  9 runs done in 3236s
+
+==============================================================================================================
+C1  CONTROL: the overall clearing per box reproduces L378
+==============================================================================================================
+  [PASS] C1 the overall z = 2 clearing per box at 675 and 700 km/s reproduces L378's committed values (same code path)
+         measured: max relative deviation 0.0e+00 over 6 numbers
+
+==============================================================================================================
+THE DENSE-CELL CARRIER AT z = 2 BY ENVIRONMENT
+==============================================================================================================
+    box ( 7) v675: galaxy: (b) 0.05, (a) 0.16 [cells 1/5021, LCDM dense-mass share 0.49]; group: (b) 0.06, (a) 0.19 [cells 26/3447, LCDM dense-mass share 0.46]; protocluster: (b) 0.07, (a) 0.21 [cells 7/245, LCDM dense-mass share 0.04]  | overall (a) 0.19
+    box ( 7) v700: galaxy: (b) 0.05, (a) nan [cells 0/5021, LCDM dense-mass share 0.49]; group: (b) 0.05, (a) 0.17 [cells 23/3447, LCDM dense-mass share 0.46]; protocluster: (b) 0.07, (a) 0.16 [cells 6/245, LCDM dense-mass share 0.04]  | overall (a) 0.17
+    box (17) v675: galaxy: (b) 0.05, (a) nan [cells 0/4848, LCDM dense-mass share 0.48]; group: (b) 0.06, (a) 0.17 [cells 23/2980, LCDM dense-mass share 0.39]; protocluster: (b) 0.14, (a) 0.67 [cells 138/802, LCDM dense-mass share 0.13]  | overall (a) 0.61
+    box (17) v700: galaxy: (b) 0.05, (a) 0.23 [cells 1/4848, LCDM dense-mass share 0.48]; group: (b) 0.05, (a) 0.14 [cells 22/2980, LCDM dense-mass share 0.39]; protocluster: (b) 0.13, (a) 0.64 [cells 114/802, LCDM dense-mass share 0.13]  | overall (a) 0.57
+    box (29) v675: galaxy: (b) 0.05, (a) 0.18 [cells 1/4847, LCDM dense-mass share 0.51]; group: (b) 0.05, (a) 0.13 [cells 27/2956, LCDM dense-mass share 0.42]; protocluster: (b) 0.09, (a) 0.30 [cells 35/380, LCDM dense-mass share 0.07]  | overall (a) 0.23
+    box (29) v700: galaxy: (b) 0.05, (a) 0.13 [cells 1/4847, LCDM dense-mass share 0.51]; group: (b) 0.05, (a) 0.14 [cells 24/2956, LCDM dense-mass share 0.42]; protocluster: (b) 0.08, (a) 0.21 [cells 27/380, LCDM dense-mass share 0.07]  | overall (a) 0.18
+  [PASS] C2 the environment bins partition the dense cells (bin masses sum to the dense total in every run)
+         measured: max relative deviation 0.0e+00
+    POOLED v675: galaxy: (b) fixed cells 0.053, (a) own dense set 0.172; group: (b) fixed cells 0.055, (a) own dense set 0.164; protocluster: (b) fixed cells 0.115, (a) own dense set 0.586
+    POOLED v700: galaxy: (b) fixed cells 0.052, (a) own dense set 0.174; group: (b) fixed cells 0.053, (a) own dense set 0.153; protocluster: (b) fixed cells 0.104, (a) own dense set 0.552
+  [PASS] W (informational) G3 by environment per box and pooled at 675 and 700 km/s
+         measured: see tables
+         reading:  reported either way
+
+==============================================================================================================
+R1  THE HYPOTHESIS (set before the run)
+==============================================================================================================
+  [FAIL] R1 = H: pooled at 700 km/s on the fixed-cell measure (b), the galaxy and group environments are cleared (<= 0.30) and the protocluster environment is not (> 0.30)
+         measured: galaxy 0.052, group 0.053, protocluster 0.104
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  Pooled fixed-cell clearing at 700 km/s by environment: galaxy 0.052, group 0.053, protocluster
+  0.104; the record's own-dense-set G3: galaxy 0.174, group 0.153, protocluster 0.552.
+  LIMITS: 0.39 Mpc/h mesh; environments from the nearest LCDM peak's mass within 0.5 Mpc/h at z = 2; the full construction
+  of L377 (switch on the matter-only branch, trigger posited).
+
+  3/4 checks pass; load-bearing failures: 1; wrote L379_clearing_by_environment_results.json   [3473s]
