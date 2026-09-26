@@ -342,6 +342,7 @@ Plain text on purpose, so that titles and DOIs are searchable. Versions of one r
 
 | date | DOI | title | version |
 |---|---|---|---|
+| 2026-09-26 | [10.5281/zenodo.22977900](https://doi.org/10.5281/zenodo.22977900) (concept 22977899) | A Dark Sector the MOND Kernel Cannot See: Reciprocity, Bound-Region Kernels, and the Cosmic-Shear Pincer | v1 (PAPER34; audit lane `real_research/paper34_audit_2026/`) |
 | 2026-09-25 | [10.5281/zenodo.22967954](https://doi.org/10.5281/zenodo.22967954) (concept 22967560) | The Khronon Route: the Blanchet-Skordis Theory Through Two Gates, and Why No Kinetic Function Repairs It | v2 (corrects v1: the cubic repair is withdrawn) |
 | 2026-09-25 | [10.5281/zenodo.22967561](https://doi.org/10.5281/zenodo.22967561) (concept 22967560) | The Khronon Route: the Blanchet-Skordis Theory Through Two Gates, and a Cubic, One-Scale Khronon That Passes Them | v1 — SUPERSEDED (repair withdrawn) |
 | 2026-09-25 | [10.5281/zenodo.22967076](https://doi.org/10.5281/zenodo.22967076) (concept 22967075) | The Moving Phantom: a Khronometric MOND Completion That Passes Local Gravity and Fails Cosmology as Built, and Postquantum Classical Gravity Tested as the Origin of a0 ∝ √Λ | v1 |
