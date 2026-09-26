@@ -446,3 +446,21 @@ This was found by a lead-track peer review (astra, `real_research/peer_review_20
 - L380's pooled window is therefore a result **for the p = 2 cell only**, and never to be pooled across cells.
 - The whole chain (PM gates, then Harvey) is re-run **same-cell at p = 1, x_c0 = 2.5**, from L388 on.
 - L386 (the p = 2 lower edge) was stopped part-way and is not committed.
+
+## L390 — KiDS with the carrier resolved, at the linear vacuum gate (p = 1, x_c0 = 2.5): passes
+
+`L390_kids_resolved_linear_gate.py` (4/4; `MUTATE=1`, v_k = 0, fails R1, rc = 1). This is L375's test re-run **at the linear-gate cell**, the one DE1/DE2 select because the p = 2 cell fails the flagship. Three things change with the cell:
+- the switched phantom uses the new cell's x_c,eff(0.25), from L359's own K1 entry;
+- the bins' baryonic masses are **refitted at the new cell**;
+- the carrier halos are re-run with those masses.
+
+L375's `halo()` is imported unchanged, and L360's KiDS machinery is loaded unedited. C1: at L375's cell, with L375's masses and seeds, the fiducial score **reproduces L375 exactly** (−11.4556/−8.4468). C2: with the decay off, KiDS rejects the carrier halo at the new cell (+137/+140).
+
+| v_k | S (< 0.5 Mpc/h), bins 1–4 | KiDS at p = 1, x_c0 = 2.5 (can/alt) |
+|---|---|---|
+| 575 | 0.27 / 0.26 / 0.24 / 0.37 | −13.1 / −7.1 |
+| 600 | 0.26 / 0.25 / 0.24 / 0.36 | −13.1 / −7.2 |
+| 625 | 0.26 / 0.25 / 0.23 / 0.36 | −13.1 / −7.2 |
+| 650 | 0.26 / 0.25 / 0.23 / 0.35 | −13.0 / −7.1 |
+
+KiDS passes at the linear gate at every kick, on both footings; the pre-declared hypothesis holds. This is one same-cell piece of the chain. The cosmology (L388) and Harvey (L389) at the same cell are pending.

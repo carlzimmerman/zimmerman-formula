@@ -1,0 +1,53 @@
+
+L390 -- KiDS-1000 WITH THE CARRIER RESOLVED, AT THE LINEAR VACUUM GATE (p = 1, x_c0 = 2.5): L375's test, same-cell.
+
+WHY.  L375 resolved the triggered carrier around KiDS lenses (spherical shell model: secondary infall, the bins' baryons,
+Newtonian carrier per L353, L365's trigger) and scored the carrier's OWN projected profile on KiDS with the switch at the
+p = 2, x_c0 = 2 cell: it passed (-11.5/-8.4).  DE1/DE2 (dark_energy_2026) moved the construction to the linear gate
+p = 1, x_c0 = 2.5 (the p = 2 cell fails the flat-a0 flagship), and L388 re-runs the cosmology there.  Passes are never
+pooled across cells, so KiDS is re-scored at the new cell: the switched phantom at the new cell's x_c,eff(0.25) (L359's
+own K1 entry), the bins' baryonic masses REFITTED at the new cell, and the carrier halos re-run with those masses.
+
+METHOD: L375's halo() imported unchanged; L360's KiDS machinery loaded unedited (as L375); L375's template() and kids()
+reproduced line for line.  Kicks 575, 600, 625, 650 km/s (L388's grid), fiducial accretion history.
+PRE-DECLARED (before the run): H: at the linear gate the resolved carrier halo passes KiDS (Delta chi^2 <= +4 against the
+unswitched model, both footings) at every kick 575-650 km/s.
+CHECKS
+  C1 CONTROL: at the p = 2, x_c0 = 2 cell, with L375's own baryonic masses and seeds, the fiducial (650 km/s) score
+     reproduces L375's committed Delta chi^2 exactly (same code path).
+  C2 CONTROL: with the decay off, KiDS rejects the carrier halo at the new cell (> +100, both footings), as L375's C1.
+  R1 = H.  W (informational): the refitted baryonic masses, S per bin, the p = 1, x_c0 = 1.5 cell alongside.
+MUTATE=1: v_k = 0 in every decaying run at the new cell: R1 must FAIL (rc = 1).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L390_kids_resolved_linear_gate.py
+
+  x_c,eff(0.25): {'p=1, x_c0=2.5': 3.2477, 'p=2, x_c0=2.0': 3.3753, 'p=1, x_c0=1.5': 1.9486};  fitted M_b: new cell ['3.16e+10', '6.31e+10', '1.00e+11', '1.26e+11'], L375's cell ['2.00e+10', '6.31e+10', '7.94e+10', '1.58e+11']
+  MUTATE: v_k = 0 in every decaying run at the new cell
+  28 halos done   [785s]
+
+==============================================================================================================
+C1, C2  CONTROLS
+==============================================================================================================
+  [PASS] C1 at L375's cell (p = 2, x_c0 = 2) with L375's masses and seeds, the fiducial KiDS score reproduces L375's committed value
+         measured: {'canonical': -11.4556, 'alt': -8.4468} vs L375 {'canonical': -11.4556, 'alt': -8.4468} (max |diff| 0.0e+00)
+  [PASS] C2 with the decay off KiDS rejects the carrier halo at the new cell (> +100, both footings)
+         measured: {'canonical': 136.76852050094237, 'alt': 139.56132665101308}
+
+==============================================================================================================
+KiDS AT THE LINEAR GATE, CARRIER RESOLVED
+==============================================================================================================
+    v575: S by bin [1.0, 1.0, 1.0, 1.0]  |  KiDS at p = 1, x_c0 = 2.5: +138.2/+140.8 FAIL   (p = 1, x_c0 = 1.5 alongside: +114.7/+118.3)
+    v600: S by bin [1.0, 1.0, 1.001, 1.0]  |  KiDS at p = 1, x_c0 = 2.5: +141.7/+144.3 FAIL   (p = 1, x_c0 = 1.5 alongside: +118.7/+122.1)
+    v625: S by bin [1.0, 1.0, 1.0, 0.999]  |  KiDS at p = 1, x_c0 = 2.5: +136.5/+139.2 FAIL   (p = 1, x_c0 = 1.5 alongside: +113.1/+116.8)
+    v650: S by bin [1.0, 1.0, 1.0, 1.001]  |  KiDS at p = 1, x_c0 = 2.5: +141.6/+144.2 FAIL   (p = 1, x_c0 = 1.5 alongside: +118.6/+121.9)
+  [PASS] W (informational) S per bin and the p = 1, x_c0 = 1.5 cell alongside
+         measured: see table
+         reading:  reported either way
+
+==============================================================================================================
+R1  THE HYPOTHESIS (set before the run)
+==============================================================================================================
+  [FAIL] R1 = H: at the linear gate the resolved carrier halo passes KiDS on both footings at every kick 575-650 km/s
+         measured: v575: +138.2/+140.8; v600: +141.7/+144.3; v625: +136.5/+139.2; v650: +141.6/+144.2
+
+  3/4 checks pass; load-bearing failures: 1; wrote L390_kids_resolved_linear_gate_results_MUTATE.json   [787s]
