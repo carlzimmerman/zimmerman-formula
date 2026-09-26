@@ -47,8 +47,8 @@ merger offsets (L370–L372/L381) · G20 growth σ₈ within 2% (L341/L342) · G
 wording (L331/L332). For G8, the first computations on the live candidate (`real_research/extra_crispy_2026/`, peer lanes): a
 bounded pass at frozen-background, decoupling-limit scope, including the filter/foliation interaction — XC1
 (strong-coupling momentum ≥ 8.5×10⁸ GeV over L340's window; α_c = 0 collapses it, so α_c > 0 is load-bearing) and XC3
-(the filter's own foliation vertices enter only at O(π²) with two background powers; induced terms ≤ 3.5×10⁻⁷ of the
-khronon's gradient term, in a cluster core); conditional at full-action scope (curved-background mixing, the assembled
+(the filter's own foliation vertices enter only at O(π²) with two background powers; induced terms ≤ 1.1×10⁻⁶ of the
+khronon's gradient term, in a cluster core — re-run on ν_mono in 27bc6db4c, up from ν_RAR's 3.5×10⁻⁷); conditional at full-action scope (curved-background mixing, the assembled
 action, loops). XC1
 also reports the UV khronon superluminal on the metric cone (4.4×10²–7.9×10⁵ c): requirement 7 must be resolved
 explicitly. **Proposed reading of requirement 7 (the user's call):** under the metric-cone criterion (A) every scalar MOND
