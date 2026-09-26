@@ -1,0 +1,189 @@
+L370 -- BOOSTED INFALL IN CLUSTER MERGERS: in the construction a cluster's baryons fall into a neighbour with the MOND
+boost of their shared bound region, while its dark carrier falls in on plain Newtonian gravity.  Two merger tests:
+(A) El Gordo's collision speed on Asencio, Banik & Kroupa's own yardstick; (B) the star-dark offsets of Harvey et al.'s
+72 collisions.
+
+WHY.  The idea under test: "boosted acceleration into the halo".  For baryons the construction already has it -- the MOND
+kernel, switched on inside bound regions (L359) and reading only a region's own baryons (L361).  The carrier cannot have
+it: whatever feels the boost must source it (reciprocity, L353 N2), and that universal coupling dies on X-COP
+(L321/L345/L354 MUTATE).  So in a merger the two components fall differently.  This is the one place the construction's
+split force law shows up in cluster DYNAMICS rather than statics.  MOND folklore says mergers favour modified gravity
+(El Gordo and the Bullet collide fast; the record's FALSIFICATION_MATRIX row "El Gordo: natural (faster growth + boost)").
+This lane computes what THIS construction actually does.
+
+THE CONSTRUCTION'S MERGER PHYSICS (L353 + L359 + L361 + L357; nothing new is added):
+  * a cluster = a real halo (carrier + gas + stars) plus the phantom of its region's baryons.  The region is the connected
+    set where x~ = (3/2)(rho - rho_bar_m)/rho_crit(z) >= x_c0 E(z)^(2p) (L359 window cells).  The phantom field is
+    P[f (nu(|g_w|/a0) - 1) g_w], with g_w the Newtonian field of the REGION's baryons (L361) and P the curl-free
+    projection, so it is Gauss-cancelled at the region's edge;
+  * baryons move in phi + f P; the carrier moves in phi (Newtonian from all matter).  Lensing = dynamics (L279), so weak
+    lensing weighs real + phantom;
+  * two clusters in separate regions attract as Newtonian REAL masses; once their regions merge, the combined baryons
+    source one nonlinear phantom;
+  * the carrier's core has decayed where the pre-decay density exceeds L357's vacuum-gated threshold (best strict cell
+    p_v = 2, x_v0 = 2000, 'cleared'; variant 'cap', x_v0 = 1000; and an intact carrier).
+
+METHOD.
+ (A) El Gordo in Asencio+2023's convention (Kim+2021 lensing): M200 = 2.13e15 Msun, mass ratio 1.52, z = 0.87.
+     * Each subcluster's real halo is solved so that real + phantom reproduces its lensing M200.  This is done in 1-D,
+       which is exact in spherical symmetry; control C3 shows the grid reproduces it.
+     * The pair force F(d) comes from a periodic-FFT QUMOND solve with region labelling (384^3 over 40 Mpc).  The
+       Newtonian periodic images are removed with an Ewald point-mass correction, and the force is antisymmetrized.  The
+       relative acceleration uses the REAL inertial masses.  LCDM: the same components (NFW dark matter + beta-model gas +
+       stars) normalized to the lensing M200, all real and Newtonian -- with the kernel off the construction's intact variant
+       is exactly this reference.
+     * "The same collision" means the same relative speed at core contact, d_m = 0.5 Mpc (1 Mpc as a variant).
+     * The speed the construction needs far out is mapped onto Asencio's statistic v~ = v(2R_T)/sqrt(G M/R_T), using
+       its REAL virial masses and radii.  The mapping holds because the construction's z >~ 1 structure formation is
+       LCDM's in real mass: the gated carrier is intact then (L357).
+     * It is scored with Asencio+2023 Fig. 1 (chi against V_infall at M~ = 15.33, digitized) and with the mass
+       dependence of Asencio+2021 Table A1 (the z = 1 quadratic; Models B and A as a bracket).
+ (B) Harvey+2015 measured <delta_SI> = -5.8 +/- 8.2 kpc and <beta> = delta_SI/delta_SG = -0.04 +/- 0.07.
+     * The configuration: a substructure (lensing M200 1e14 or 3e14) 400 kpc from a 1e15 main cluster at z = 0.4, its gas
+       displaced by delta_SG = 60 or 120 kpc.
+     * LCDM is the same substructure (NFW dark matter + stars + the displaced gas) with all mass real, normalized to the
+       same lensing M200.
+     * The lensing position (real + phantom) is measured three ways and compared with LCDM's: iterated centroids in
+       apertures of 100 and 150 kpc (pre-declared), and the centre of a projected-NFW profile fitted to the convergence on
+       the annulus 40-300 kpc -- the analogue of Harvey's Lenstool fits of NFW halos to the shear (added before the
+       full-resolution run, after the coarse smoke test showed the apertures disagree).
+     * The construction's EXCESS beta is the prediction, because Harvey's corrections null LCDM's own gas pull.  It is
+       computed for an intact and for a core-decayed carrier.
+
+====================================================================================================================
+C1  THE SOLVER against Milgrom's exact deep-MOND two-body force (a pure 1/sqrt(y) kernel inside a 4 Mpc region)
+====================================================================================================================
+    F on body 2 -5.2793e+14, on body 1 5.1295e+14; Milgrom 5.2855e+14; ratio 0.9847; momentum defect 0.0284
+  [PASS] C1 the periodic-FFT QUMOND solver with a region mask reproduces Milgrom's exact deep-MOND two-body force within 5% and conserves momentum within 5%
+         measured: ratio 0.9847, momentum defect 0.0284
+         reading:  the nonlinear two-body MOND force (the 'two-body deficit' of deep MOND) is what the merged-region phantom must carry
+
+====================================================================================================================
+A  EL GORDO (Kim+2021 lensing; Asencio+2023 convention): the real halos behind the lensing masses
+====================================================================================================================
+    Asencio yardstick: M = 2.13e+15 (M~ 15.328), ratio 1.52, 2R_T = 6.06 Mpc, sqrt(GM/R_T) = 1739 km/s; Fig. 1: 1000->3.03, 1500->4.12, 2000->4.70, 2500->5.10, 3000->5.38
+    canonical p1_x1.5    cleared_2000: real M200 7.958e+14 / 5.032e+14 (real/lensing 0.619 / 0.595); at R200_L the phantom is 0.33 / 0.35 of lensing; region edge 3.11 / 2.66 Mpc (R200_L 1.64 / 1.43)
+    canonical p1_x1.5    intact      : real M200 7.726e+14 / 4.880e+14 (real/lensing 0.601 / 0.577); at R200_L the phantom is 0.33 / 0.35 of lensing; region edge 3.08 / 2.63 Mpc (R200_L 1.64 / 1.43)
+    canonical p0.5_x2.5  cleared_2000: real M200 7.958e+14 / 5.032e+14 (real/lensing 0.619 / 0.595); at R200_L the phantom is 0.33 / 0.35 of lensing; region edge 3.10 / 2.65 Mpc (R200_L 1.64 / 1.43)
+    canonical p2_x2.0    cleared_2000: real M200 7.958e+14 / 5.032e+14 (real/lensing 0.619 / 0.595); at R200_L the phantom is 0.33 / 0.35 of lensing; region edge 2.25 / 1.92 Mpc (R200_L 1.64 / 1.43)
+    alt       p1_x1.5    cleared_2000: real M200 7.511e+14 / 4.731e+14 (real/lensing 0.585 / 0.560); at R200_L the phantom is 0.36 / 0.38 of lensing; region edge 3.05 / 2.60 Mpc (R200_L 1.64 / 1.43)
+    alt       p1_x1.5    intact      : real M200 7.299e+14 / 4.593e+14 (real/lensing 0.568 / 0.543); at R200_L the phantom is 0.36 / 0.38 of lensing; region edge 3.02 / 2.58 Mpc (R200_L 1.64 / 1.43)
+    alt       p0.5_x2.5  cleared_2000: real M200 7.511e+14 / 4.731e+14 (real/lensing 0.585 / 0.560); at R200_L the phantom is 0.36 / 0.38 of lensing; region edge 3.04 / 2.60 Mpc (R200_L 1.64 / 1.43)
+    alt       p2_x2.0    cleared_2000: real M200 7.511e+14 / 4.731e+14 (real/lensing 0.585 / 0.560); at R200_L the phantom is 0.36 / 0.38 of lensing; region edge 2.20 / 1.88 Mpc (R200_L 1.64 / 1.43)
+  [PASS] A1 the phantom is part of what lensing weighs: El Gordo's REAL mass (baryons + carrier within the real R200s) is < 0.9 of its lensing mass on both footings
+         measured: canonical/p1_x1.5/cleared_2000 0.610, canonical/p1_x1.5/intact 0.592, canonical/p0.5_x2.5/cleared_2000 0.610, canonical/p2_x2.0/cleared_2000 0.610, alt/p1_x1.5/cleared_2000 0.575, alt/p1_x1.5/intact 0.558, alt/p0.5_x2.5/cleared_2000 0.575, alt/p2_x2.0/cleared_2000 0.575
+         reading:  at z = 0.87 the baryons at R200 sit near 0.1 a0, so their phantom adds ~30-40% to what the shear measures
+
+====================================================================================================================
+A  THE PAIR FORCE F(d): QUMOND with region labelling (construction) against Newtonian lensing halos (LCDM)
+====================================================================================================================
+    image correction (fraction of G/d^2): 0.52 Mpc +0.000, 0.73 Mpc +0.000, 1.04 Mpc +0.000, 1.46 Mpc +0.000, 1.98 Mpc +0.001, 2.50 Mpc +0.001, 3.02 Mpc +0.002, 3.54 Mpc +0.003, 3.96 Mpc +0.004, 5.00 Mpc +0.009, 6.04 Mpc +0.015, 6.98 Mpc +0.024, 8.02 Mpc +0.038
+    LCDM (same components, all real; masses in box 2.220e+15 / 1.453e+15): a_rel [(km/s)^2/kpc] 0.52:2548.4, 0.73:2621.1, 1.04:2485.8, 1.46:2165.2, 1.98:1758.7, 2.50:1416.1, 3.02:1143.6, 3.54:930.8, 3.96:795.0, 5.00:551.9, 6.04:399.1, 6.98:307.6, 8.02:237.3   [43s]
+    alt       p0.5_x2.5  cleared_2000 (real masses in box 1.266e+15 / 7.912e+14): a_rel/a_LCDM 0.52:0.788*, 0.73:0.787*, 1.04:0.774*, 1.46:0.753*, 1.98:0.729*, 2.50:0.709*, 3.02:0.693*, 3.54:0.679*, 3.96:0.669*, 5.00:0.645*, 6.04:0.621*, 6.98:0.577, 8.02:0.570   (* = regions merged; phantom-force momentum defect max 0.106)   [330s]
+    alt       p1_x1.5    cleared_2000 (real masses in box 1.266e+15 / 7.912e+14): a_rel/a_LCDM 0.52:0.788*, 0.73:0.787*, 1.04:0.774*, 1.46:0.753*, 1.98:0.729*, 2.50:0.710*, 3.02:0.693*, 3.54:0.679*, 3.96:0.669*, 5.00:0.645*, 6.04:0.621*, 6.98:0.577, 8.02:0.570   (* = regions merged; phantom-force momentum defect max 0.103)   [574s]
+    alt       p2_x2.0    cleared_2000 (real masses in box 1.266e+15 / 7.912e+14): a_rel/a_LCDM 0.52:0.786*, 0.73:0.786*, 1.04:0.771*, 1.46:0.748*, 1.98:0.722*, 2.50:0.698*, 3.02:0.677*, 3.54:0.658*, 3.96:0.643*, 5.00:0.595, 6.04:0.581, 6.98:0.574, 8.02:0.569   (* = regions merged; phantom-force momentum defect max 0.083)   [874s]
+    alt       p1_x1.5    intact       (real masses in box 1.252e+15 / 7.831e+14): a_rel/a_LCDM 0.52:0.891*, 0.73:0.854*, 1.04:0.813*, 1.46:0.774*, 1.98:0.739*, 2.50:0.713*, 3.02:0.693*, 3.54:0.677*, 3.96:0.665*, 5.00:0.639*, 6.04:0.614*, 6.98:0.572, 8.02:0.565   (* = regions merged; phantom-force momentum defect max 0.097)   [1178s]
+    canonical p0.5_x2.5  cleared_2000 (real masses in box 1.342e+15 / 8.425e+14): a_rel/a_LCDM 0.52:0.798*, 0.73:0.801*, 1.04:0.791*, 1.46:0.773*, 1.98:0.752*, 2.50:0.734*, 3.02:0.720*, 3.54:0.707*, 3.96:0.698*, 5.00:0.676*, 6.04:0.654*, 6.98:0.612, 8.02:0.605   (* = regions merged; phantom-force momentum defect max 0.107)   [1433s]
+    canonical p1_x1.5    cleared_2000 (real masses in box 1.342e+15 / 8.425e+14): a_rel/a_LCDM 0.52:0.798*, 0.73:0.801*, 1.04:0.791*, 1.46:0.773*, 1.98:0.752*, 2.50:0.734*, 3.02:0.720*, 3.54:0.707*, 3.96:0.698*, 5.00:0.676*, 6.04:0.655*, 6.98:0.612, 8.02:0.605   (* = regions merged; phantom-force momentum defect max 0.103)   [1614s]
+    canonical p2_x2.0    cleared_2000 (real masses in box 1.342e+15 / 8.425e+14): a_rel/a_LCDM 0.52:0.797*, 0.73:0.799*, 1.04:0.788*, 1.46:0.769*, 1.98:0.745*, 2.50:0.724*, 3.02:0.705*, 3.54:0.688*, 3.96:0.674*, 5.00:0.629, 6.04:0.615, 6.98:0.608, 8.02:0.603   (* = regions merged; phantom-force momentum defect max 0.078)   [1854s]
+    canonical p1_x1.5    intact       (real masses in box 1.326e+15 / 8.327e+14): a_rel/a_LCDM 0.52:0.902*, 0.73:0.868*, 1.04:0.831*, 1.46:0.795*, 1.98:0.762*, 2.50:0.738*, 3.02:0.719*, 3.54:0.704*, 3.96:0.693*, 5.00:0.669*, 6.04:0.646*, 6.98:0.605, 8.02:0.598   (* = regions merged; phantom-force momentum defect max 0.098)   [2094s]
+  [PASS] C2 the periodic-image correction: for two Gaussian blobs the corrected grid force equals their exact isolated mutual force within 1% at 4 and 8 Mpc
+         measured: 4.0 Mpc 1.0000, 8.0 Mpc 1.0000
+    (reported) extended profiles at 8.0 Mpc against point masses of their box masses: LCDM 0.966; construction canonical/p1_x1.5/cleared_2000 0.983, canonical/p1_x1.5/intact 0.984, canonical/p0.5_x2.5/cleared_2000 0.983, canonical/p2_x2.0/cleared_2000 0.980, alt/p1_x1.5/cleared_2000 0.984, alt/p1_x1.5/intact 0.985, alt/p0.5_x2.5/cleared_2000 0.984, alt/p2_x2.0/cleared_2000 0.981  (overlap of the outskirts)
+    isolated main subcluster (canonical, p1_x1.5): grid lensing M(<R200_L) 1.2823e+15 vs 1-D 1.2848e+15 (-0.002); net phantom inside edge + 4 cells 6.718e+11 = +0.0026 of the baryons
+  [PASS] C3 the isolated construction cluster on the grid reproduces the 1-D lensing mass at R200 within 3%, and its phantom is Gauss-cancelled at the region's edge (|net phantom| < 2% of its baryons)
+         measured: -0.002; +0.0026
+
+====================================================================================================================
+A  THE SAME COLLISION: the infall speed the construction needs far out, on Asencio's v~ statistic
+====================================================================================================================
+    canonical/p1_x1.5/cleared_2000     d_m 0.5 Mpc V_infall(LCDM) 1500: v~ LCDM 0.863 -> construction 1.661 (M~ 15.114, regions merge at 6.0 Mpc); chi LCDM 4.12 -> construction 4.12 (mass slope B) / 4.39 (A); Gaussian tail 4.12 / 4.39
+    canonical/p1_x1.5/cleared_2000     d_m 0.5 Mpc V_infall(LCDM) 2300: v~ LCDM 1.323 -> construction 2.044 (M~ 15.114, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 4.94 -> construction 4.57 (mass slope B) / 4.81 (A); Gaussian tail 4.63 / 4.87
+    canonical/p1_x1.5/cleared_2000     d_m 0.5 Mpc V_infall(LCDM) 2500: v~ LCDM 1.438 -> construction 2.151 (M~ 15.114, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 5.10 -> construction 4.68 (mass slope B) / 4.92 (A); Gaussian tail 4.79 / 5.02
+    canonical/p1_x1.5/cleared_2000     d_m 1 Mpc   V_infall(LCDM) 1500: v~ LCDM 0.863 -> construction 1.587 (M~ 15.114, regions merge at 6.0 Mpc); chi LCDM 4.12 -> construction 4.03 (mass slope B) / 4.30 (A); Gaussian tail 4.03 / 4.30
+    canonical/p1_x1.5/cleared_2000     d_m 1 Mpc   V_infall(LCDM) 2500: v~ LCDM 1.438 -> construction 2.093 (M~ 15.114, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 5.10 -> construction 4.62 (mass slope B) / 4.86 (A); Gaussian tail 4.70 / 4.94
+    canonical/p1_x1.5/intact           d_m 0.5 Mpc V_infall(LCDM) 1500: v~ LCDM 0.863 -> construction 1.641 (M~ 15.101, regions merge at 6.0 Mpc); chi LCDM 4.12 -> construction 4.02 (mass slope B) / 4.30 (A); Gaussian tail 4.02 / 4.30
+    canonical/p1_x1.5/intact           d_m 0.5 Mpc V_infall(LCDM) 2300: v~ LCDM 1.323 -> construction 2.035 (M~ 15.101, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 4.94 -> construction 4.49 (mass slope B) / 4.74 (A); Gaussian tail 4.55 / 4.80
+    canonical/p1_x1.5/intact           d_m 0.5 Mpc V_infall(LCDM) 2500: v~ LCDM 1.438 -> construction 2.144 (M~ 15.101, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 5.10 -> construction 4.61 (mass slope B) / 4.86 (A); Gaussian tail 4.71 / 4.95
+    canonical/p1_x1.5/intact           d_m 1 Mpc   V_infall(LCDM) 1500: v~ LCDM 0.863 -> construction 1.590 (M~ 15.101, regions merge at 6.0 Mpc); chi LCDM 4.12 -> construction 3.96 (mass slope B) / 4.24 (A); Gaussian tail 3.96 / 4.24
+    canonical/p1_x1.5/intact           d_m 1 Mpc   V_infall(LCDM) 2500: v~ LCDM 1.438 -> construction 2.105 (M~ 15.101, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 5.10 -> construction 4.57 (mass slope B) / 4.82 (A); Gaussian tail 4.65 / 4.90
+    canonical/p0.5_x2.5/cleared_2000   d_m 0.5 Mpc V_infall(LCDM) 1500: v~ LCDM 0.863 -> construction 1.661 (M~ 15.114, regions merge at 6.0 Mpc); chi LCDM 4.12 -> construction 4.12 (mass slope B) / 4.39 (A); Gaussian tail 4.12 / 4.39
+    canonical/p0.5_x2.5/cleared_2000   d_m 0.5 Mpc V_infall(LCDM) 2300: v~ LCDM 1.323 -> construction 2.044 (M~ 15.114, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 4.94 -> construction 4.57 (mass slope B) / 4.81 (A); Gaussian tail 4.63 / 4.87
+    canonical/p0.5_x2.5/cleared_2000   d_m 0.5 Mpc V_infall(LCDM) 2500: v~ LCDM 1.438 -> construction 2.151 (M~ 15.114, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 5.10 -> construction 4.68 (mass slope B) / 4.92 (A); Gaussian tail 4.79 / 5.02
+    canonical/p0.5_x2.5/cleared_2000   d_m 1 Mpc   V_infall(LCDM) 1500: v~ LCDM 0.863 -> construction 1.587 (M~ 15.114, regions merge at 6.0 Mpc); chi LCDM 4.12 -> construction 4.03 (mass slope B) / 4.30 (A); Gaussian tail 4.03 / 4.30
+    canonical/p0.5_x2.5/cleared_2000   d_m 1 Mpc   V_infall(LCDM) 2500: v~ LCDM 1.438 -> construction 2.093 (M~ 15.114, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 5.10 -> construction 4.62 (mass slope B) / 4.86 (A); Gaussian tail 4.70 / 4.94
+    canonical/p2_x2.0/cleared_2000     d_m 0.5 Mpc V_infall(LCDM) 1500: v~ LCDM 0.863 -> construction 1.734 (M~ 15.114, regions merge at 4.0 Mpc) [extrapolated]; chi LCDM 4.12 -> construction 4.21 (mass slope B) / 4.47 (A); Gaussian tail 4.21 / 4.47
+    canonical/p2_x2.0/cleared_2000     d_m 0.5 Mpc V_infall(LCDM) 2300: v~ LCDM 1.323 -> construction 2.103 (M~ 15.114, regions merge at 4.0 Mpc) [extrapolated]; chi LCDM 4.94 -> construction 4.63 (mass slope B) / 4.87 (A); Gaussian tail 4.72 / 4.95
+    canonical/p2_x2.0/cleared_2000     d_m 0.5 Mpc V_infall(LCDM) 2500: v~ LCDM 1.438 -> construction 2.207 (M~ 15.114, regions merge at 4.0 Mpc) [extrapolated]; chi LCDM 5.10 -> construction 4.74 (mass slope B) / 4.98 (A); Gaussian tail 4.87 / 5.09
+    canonical/p2_x2.0/cleared_2000     d_m 1 Mpc   V_infall(LCDM) 1500: v~ LCDM 0.863 -> construction 1.662 (M~ 15.114, regions merge at 4.0 Mpc); chi LCDM 4.12 -> construction 4.12 (mass slope B) / 4.39 (A); Gaussian tail 4.12 / 4.39
+    canonical/p2_x2.0/cleared_2000     d_m 1 Mpc   V_infall(LCDM) 2500: v~ LCDM 1.438 -> construction 2.151 (M~ 15.114, regions merge at 4.0 Mpc) [extrapolated]; chi LCDM 5.10 -> construction 4.68 (mass slope B) / 4.92 (A); Gaussian tail 4.79 / 5.02
+    alt/p1_x1.5/cleared_2000           d_m 0.5 Mpc V_infall(LCDM) 1500: v~ LCDM 0.863 -> construction 1.743 (M~ 15.088, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 4.12 -> construction 4.07 (mass slope B) / 4.36 (A); Gaussian tail 4.08 / 4.37
+    alt/p1_x1.5/cleared_2000           d_m 0.5 Mpc V_infall(LCDM) 2300: v~ LCDM 1.323 -> construction 2.125 (M~ 15.088, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 4.94 -> construction 4.52 (mass slope B) / 4.78 (A); Gaussian tail 4.62 / 4.88
+    alt/p1_x1.5/cleared_2000           d_m 0.5 Mpc V_infall(LCDM) 2500: v~ LCDM 1.438 -> construction 2.232 (M~ 15.088, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 5.10 -> construction 4.64 (mass slope B) / 4.90 (A); Gaussian tail 4.77 / 5.03
+    alt/p1_x1.5/cleared_2000           d_m 1 Mpc   V_infall(LCDM) 1500: v~ LCDM 0.863 -> construction 1.664 (M~ 15.088, regions merge at 6.0 Mpc); chi LCDM 4.12 -> construction 3.98 (mass slope B) / 4.27 (A); Gaussian tail 3.98 / 4.27
+    alt/p1_x1.5/cleared_2000           d_m 1 Mpc   V_infall(LCDM) 2500: v~ LCDM 1.438 -> construction 2.170 (M~ 15.088, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 5.10 -> construction 4.57 (mass slope B) / 4.83 (A); Gaussian tail 4.68 / 4.94
+    alt/p1_x1.5/intact                 d_m 0.5 Mpc V_infall(LCDM) 1500: v~ LCDM 0.863 -> construction 1.724 (M~ 15.075, regions merge at 6.0 Mpc); chi LCDM 4.12 -> construction 3.98 (mass slope B) / 4.28 (A); Gaussian tail 3.98 / 4.28
+    alt/p1_x1.5/intact                 d_m 0.5 Mpc V_infall(LCDM) 2300: v~ LCDM 1.323 -> construction 2.115 (M~ 15.075, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 4.94 -> construction 4.44 (mass slope B) / 4.72 (A); Gaussian tail 4.54 / 4.81
+    alt/p1_x1.5/intact                 d_m 0.5 Mpc V_infall(LCDM) 2500: v~ LCDM 1.438 -> construction 2.225 (M~ 15.075, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 5.10 -> construction 4.57 (mass slope B) / 4.84 (A); Gaussian tail 4.70 / 4.97
+    alt/p1_x1.5/intact                 d_m 1 Mpc   V_infall(LCDM) 1500: v~ LCDM 0.863 -> construction 1.668 (M~ 15.075, regions merge at 6.0 Mpc); chi LCDM 4.12 -> construction 3.91 (mass slope B) / 4.22 (A); Gaussian tail 3.91 / 4.22
+    alt/p1_x1.5/intact                 d_m 1 Mpc   V_infall(LCDM) 2500: v~ LCDM 1.438 -> construction 2.182 (M~ 15.075, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 5.10 -> construction 4.52 (mass slope B) / 4.79 (A); Gaussian tail 4.64 / 4.91
+    alt/p0.5_x2.5/cleared_2000         d_m 0.5 Mpc V_infall(LCDM) 1500: v~ LCDM 0.863 -> construction 1.743 (M~ 15.088, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 4.12 -> construction 4.07 (mass slope B) / 4.36 (A); Gaussian tail 4.08 / 4.37
+    alt/p0.5_x2.5/cleared_2000         d_m 0.5 Mpc V_infall(LCDM) 2300: v~ LCDM 1.323 -> construction 2.125 (M~ 15.088, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 4.94 -> construction 4.52 (mass slope B) / 4.78 (A); Gaussian tail 4.62 / 4.88
+    alt/p0.5_x2.5/cleared_2000         d_m 0.5 Mpc V_infall(LCDM) 2500: v~ LCDM 1.438 -> construction 2.232 (M~ 15.088, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 5.10 -> construction 4.64 (mass slope B) / 4.90 (A); Gaussian tail 4.77 / 5.03
+    alt/p0.5_x2.5/cleared_2000         d_m 1 Mpc   V_infall(LCDM) 1500: v~ LCDM 0.863 -> construction 1.664 (M~ 15.088, regions merge at 6.0 Mpc); chi LCDM 4.12 -> construction 3.98 (mass slope B) / 4.27 (A); Gaussian tail 3.98 / 4.27
+    alt/p0.5_x2.5/cleared_2000         d_m 1 Mpc   V_infall(LCDM) 2500: v~ LCDM 1.438 -> construction 2.170 (M~ 15.088, regions merge at 6.0 Mpc) [extrapolated]; chi LCDM 5.10 -> construction 4.57 (mass slope B) / 4.83 (A); Gaussian tail 4.68 / 4.94
+    alt/p2_x2.0/cleared_2000           d_m 0.5 Mpc V_infall(LCDM) 1500: v~ LCDM 0.863 -> construction 1.818 (M~ 15.088, regions merge at 4.0 Mpc) [extrapolated]; chi LCDM 4.12 -> construction 4.17 (mass slope B) / 4.45 (A); Gaussian tail 4.18 / 4.46
+    alt/p2_x2.0/cleared_2000           d_m 0.5 Mpc V_infall(LCDM) 2300: v~ LCDM 1.323 -> construction 2.187 (M~ 15.088, regions merge at 4.0 Mpc) [extrapolated]; chi LCDM 4.94 -> construction 4.59 (mass slope B) / 4.85 (A); Gaussian tail 4.71 / 4.96
+    alt/p2_x2.0/cleared_2000           d_m 0.5 Mpc V_infall(LCDM) 2500: v~ LCDM 1.438 -> construction 2.291 (M~ 15.088, regions merge at 4.0 Mpc) [extrapolated]; chi LCDM 5.10 -> construction 4.70 (mass slope B) / 4.96 (A); Gaussian tail 4.86 / 5.11
+    alt/p2_x2.0/cleared_2000           d_m 1 Mpc   V_infall(LCDM) 1500: v~ LCDM 0.863 -> construction 1.742 (M~ 15.088, regions merge at 4.0 Mpc) [extrapolated]; chi LCDM 4.12 -> construction 4.07 (mass slope B) / 4.36 (A); Gaussian tail 4.07 / 4.36
+    alt/p2_x2.0/cleared_2000           d_m 1 Mpc   V_infall(LCDM) 2500: v~ LCDM 1.438 -> construction 2.230 (M~ 15.088, regions merge at 4.0 Mpc) [extrapolated]; chi LCDM 5.10 -> construction 4.64 (mass slope B) / 4.90 (A); Gaussian tail 4.77 / 5.03
+  [PASS] A2 the split force law slows the infall: to collide as LCDM's pair does, the construction needs a larger v~ than LCDM at V_infall = 2500 km/s (every variant, both matching radii)
+         measured: v~ LCDM 1.438; construction 2.093-2.291
+         reading:  the carrier -- most of the inertia -- feels only the real mass's Newtonian pull, and until the regions merge so does everything else
+  [FAIL] A3 THE VERDICT on El Gordo (pre-declared neutral): |chi_construction - chi_LCDM| < 0.5 at V_infall = 2500 km/s, every variant, both mass-slope models
+         measured: Delta chi from -0.58 to -0.12
+         reading:  the phantom lowers El Gordo's real mass (fewer-sigma rarity) and the unboosted carrier raises the infall speed it needs (more-sigma); the pre-declared expectation was that the two nearly cancel
+  [PASS] A4 (reported) the same verdict with the v~ tail continued as a Gaussian (Asencio's Fig. 1 beyond 3000 km/s), and the construction's v~ against the largest v~ among Jubilee's 1000 most massive pairs (~1.69, Asencio+2021 Fig. 9)
+         measured: Delta chi (Gaussian tail) -0.46 to +0.01; construction v~ at 2500 km/s 2.09-2.29 vs Jubilee's extreme ~1.69
+         reading:  beyond v~ ~ 1.7 no LCDM-like pair exists to calibrate the tail: the verdict there is an extrapolation either way
+
+====================================================================================================================
+B  HARVEY+2015: where the lensing peak sits when a substructure's gas is displaced (z = 0.4)
+====================================================================================================================
+    LCDM substructure maps done   [2303s]
+    cleared_2000 done   [2625s]
+    cap_1000 done   [2892s]
+    intact done   [3150s]
+    uniform_0.55 done   [3403s]
+    sub 1e+14 dSG 60 perp       : LCDM gas pull +1.7/+1.6/+1.9 kpc; excess beta (100 kpc / 150 kpc / NFW fit) cleared_2000 +0.229/+0.228/+0.137; cap_1000 +0.201/+0.224/+0.198; intact +0.015/+0.072/+0.056; uniform_0.55 +0.065/+0.098/+0.095  (star-carrier equilibrium offset 10.4 kpc intact, 41.7 cleared)
+    sub 1e+14 dSG 60 toward_main: LCDM gas pull +1.7/+1.6/+1.9 kpc; excess beta (100 kpc / 150 kpc / NFW fit) cleared_2000 +0.114/+0.103/+0.017; cap_1000 +0.095/+0.100/+0.043; intact +0.007/+0.037/+0.014; uniform_0.55 +0.012/+0.047/+0.035  (star-carrier equilibrium offset 10.9 kpc intact, 45.3 cleared)
+    sub 1e+14 dSG 120 perp       : LCDM gas pull +1.8/+2.0/+2.9 kpc; excess beta (100 kpc / 150 kpc / NFW fit) cleared_2000 +0.121/+0.315/+0.146; cap_1000 +0.106/+0.177/+0.200; intact +0.008/+0.056/+0.044; uniform_0.55 +0.035/+0.089/+0.085  (star-carrier equilibrium offset 10.6 kpc intact, 45.3 cleared)
+    sub 1e+14 dSG 120 toward_main: LCDM gas pull +1.8/+2.0/+2.9 kpc; excess beta (100 kpc / 150 kpc / NFW fit) cleared_2000 +0.323/+0.169/+0.067; cap_1000 +0.051/+0.148/+0.099; intact +0.003/+0.036/+0.017; uniform_0.55 +0.007/+0.045/+0.043  (star-carrier equilibrium offset 11.3 kpc intact, 50.4 cleared)
+    sub 3e+14 dSG 60 perp       : LCDM gas pull +1.7/+1.4/+1.6 kpc; excess beta (100 kpc / 150 kpc / NFW fit) cleared_2000 +0.180/+0.291/+0.129; cap_1000 +0.181/+0.224/+0.321; intact +0.007/+0.061/+0.041; uniform_0.55 +0.010/+0.069/+0.065  (star-carrier equilibrium offset 6.1 kpc intact, 19.8 cleared)
+    sub 3e+14 dSG 60 toward_main: LCDM gas pull +1.7/+1.4/+1.6 kpc; excess beta (100 kpc / 150 kpc / NFW fit) cleared_2000 +0.017/+0.106/-0.040; cap_1000 +0.016/+0.058/+0.024; intact +0.001/+0.003/-0.005; uniform_0.55 +0.001/+0.003/-0.005  (star-carrier equilibrium offset 6.4 kpc intact, 21.4 cleared)
+    sub 3e+14 dSG 120 perp       : LCDM gas pull +1.8/+1.7/+2.6 kpc; excess beta (100 kpc / 150 kpc / NFW fit) cleared_2000 +0.096/+0.369/+0.130; cap_1000 +0.096/+0.143/+0.324; intact +0.005/+0.036/+0.034; uniform_0.55 +0.007/+0.042/+0.059  (star-carrier equilibrium offset 6.2 kpc intact, 20.5 cleared)
+    sub 3e+14 dSG 120 toward_main: LCDM gas pull +1.8/+1.7/+2.6 kpc; excess beta (100 kpc / 150 kpc / NFW fit) cleared_2000 +0.010/+0.312/+0.043; cap_1000 +0.009/+0.118/+0.128; intact +0.001/+0.019/+0.006; uniform_0.55 +0.001/+0.022/+0.014  (star-carrier equilibrium offset 6.7 kpc intact, 23.3 cleared)
+  [PASS] B1 (control) LCDM's own gas pull on the lensing centroid is a few kpc in these configurations, the size of Harvey's correction (4.3 +/- 1.6 kpc on average)
+         measured: 1.4-2.0 kpc
+  [PASS] B2 intact carrier: the construction's excess beta lies within 2 sigma of Harvey's <beta> = -0.04 +/- 0.07 (-0.18 <= beta <= +0.10) in every configuration
+         measured: beta +0.001 to +0.072
+  [FAIL] B3 core-decayed carrier (L357's strict cells): the same test
+         measured: cleared_2000 beta +0.010 to +0.369; cap_1000 beta +0.009 to +0.224
+  [PASS] B4 (design pointer) a carrier depleted UNIFORMLY to X-COP's retained fraction 0.55 (rather than decayed in the core) passes the same test
+         measured: beta +0.001 to +0.098
+  [PASS] B5 with the Lenstool-like projected-NFW fit (Harvey's estimator): the intact carrier's excess beta lies within 2 sigma of <beta> in every configuration
+         measured: beta -0.005 to +0.056
+  [FAIL] B6 with the Lenstool-like projected-NFW fit: the core-decayed carrier (L357's strict cells), the same test
+         measured: cleared_2000 beta -0.040 to +0.146; cap_1000 beta +0.024 to +0.324
+    configuration-averaged excess beta (100 / 150 / fit): cleared_2000 +0.136/+0.237/+0.079; cap_1000 +0.094/+0.149/+0.167; intact +0.006/+0.040/+0.026; uniform_0.55 +0.017/+0.052/+0.049
+  [PASS] B7 (reported) the population-mean comparison: configuration-averaged excess beta minus Harvey's <beta>, in sigma (100 kpc / 150 kpc / NFW fit)
+         measured: cleared_2000 +2.5/+4.0/+1.7; cap_1000 +1.9/+2.7/+3.0; intact +0.7/+1.1/+0.9; uniform_0.55 +0.8/+1.3/+1.3
+         reading:  every carrier pulls the lensing peak toward the displaced gas (the gas's phantom); the core-decayed carriers most
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  11/14 checks pass; load-bearing failures: 3   [3403s]
+  wrote L370_boosted_infall_mergers_results.json
+rc=1
+MAIN rc=1
