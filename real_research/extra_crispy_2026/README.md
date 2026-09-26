@@ -6,14 +6,17 @@ The khronometric candidate it was written for died first (FC-KH, a radial gradie
 candidate C-H/K (L340) does not list it. This directory runs the unrun gates on C-H/K, one lane per gate, each with a
 MUTATE control and a Lean certificate of its algebra in `fable_independent_2026/lean_2026/XC*_*.lean`.
 
-## XC1 — G8 strong coupling on C-H/K: PASS (9/9; MUTATE α_c = 0 fails A4, rc = 1)
+## XC1 — G8 strong coupling on C-H/K: bounded pass in the decoupling-limit scope (9/9; MUTATE α_c = 0 fails A4, rc = 1)
+
+**Scope label (corrected 09-26 after the lead track's audit, `real_research/closure_resume_2026_09_26/`, uncommitted at the time):** XC1 is tree-level power counting in the decoupling limit on frozen backgrounds. It is a bounded pass within that scope, and conditional at full-action scope. It does not cover full curved-background mixing, the assembled action, or causal closure. The filter/foliation vertices it originally omitted are computed in XC3.
 
 `XC1_strong_coupling_chk.py` (+ `.out`, `_MUTATE.out`, results JSON). Lean: `XC1_strong_coupling_certificates.lean`
 (12 theorems, zero `sorry`, axioms propext / Classical.choice / Quot.sound).
 
-- **The UV khronon is pure khronometric gravity.** Above k ≈ 1/ξ the heat filter removes the C-H sector exactly:
-  eliminating U gives the clock inertia 2C/(1+C) with C = C₀e^{−ξ²k²}, and at U = ln N the C-H term vanishes identically.
-  At AU scales log₁₀ C/C₀ ≈ −1.8×10⁷. So the only kinetic term the khronon keeps there is α_c a².
+- **The UV khronon is khronometric gravity up to e^{−ξ²k²}.** Above k ≈ 1/ξ the heat filter suppresses the C-H sector
+  by e^{−ξ²k²}. That factor is positive at every finite k, so the removal is exponentially small, not exact. Eliminating U
+  gives the clock inertia 2C/(1+C) with C = C₀e^{−ξ²k²}; the C-H term vanishes identically only at the C = 0 solution
+  U = ln N. At AU scales log₁₀ C/C₀ ≈ −1.8×10⁷, so the only kinetic term the khronon effectively keeps there is α_c a².
 - **Literature control.** Expanding α a·a − c₂K² to quartic order, the lowest strong-coupling scale over all vertex
   classes is √α M c_s^{3/2} (c_s < 1) and √α M c_s^{−1/2} (c_s > 1). This reproduces Gümrükçüoğlu, Saravani & Sotiriou
   2018 (PRD 97, 024032) eq. (15). The binding vertices are the c₂ cubic and the α cubic with three time derivatives.
@@ -70,3 +73,30 @@ settles what can be settled and reduces the rest to a question about khronometri
 **Reduced, not settled.** Is GR plus the BPS khronon (α_c, λ − 1 = c₂, β = 0) strongly hyperbolic on arbitrary
 nonlinear backgrounds? Einstein-aether theory is, under conditions on its couplings (Sarbach, Barausse & Preciado-López
 2019, CQG 36, 165007). No general theorem for the hypersurface-orthogonal case is used here, and its α → 0 limit fails.
+
+## XC3 — the filter's own foliation vertices, the piece XC1 left out: harmless at frozen-background scope (6/6; MUTATE time-dependent background fails C1/C2, rc = 1)
+
+`XC3_filter_foliation_vertices.py` (+ `.out`, `_MUTATE.out`, results JSON). Lean: `XC3_filter_foliation_certificates.lean`
+(5 theorems, zero `sorry`, standard axioms). Prompted by the lead track's audit, which flagged the filter/foliation
+interaction as the gap in XC1. The MOND term depends on the khronon's leaves twice: through the leaf metric in
+|DW|²_h, and through the leaf Laplacian inside W = e^{bΔ_h}U.
+
+- **Both dependences start at O(π²) on a static background, with two powers of the background in every term (C1, C2;
+  exact jet expansions).**
+  - Δ_hF has no O(π) term. Its O(π²) term is ∂_iπ∂_jπ∂_i∂_jF + Δπ(∇π·∇F).
+  - The argument is |∇W₀|² + (∇π·∇W₀)² − 2π̇(∇π·∇W₀)² + O(π⁴).
+- **The heat-kernel derivative.** δS = b∫₀¹e^{(1−v)bΔ}δΔ e^{vbΔ}dv is verified against finite differences, with a
+  second-order residual. It is bounded by b·max_v‖δΔ e^{vbΔ}f‖, and its high-K factor is ≤ min(b, 1/K²) (C3).
+- **Quadratic terms (C4).** Against the khronon's own gradient term they are ≤ 6C_T(gL_bg)²/c₂. The largest value,
+  3.5×10⁻⁷, is in a cluster core at k = 1/L_bg; it is 10⁻¹¹ for the Sun and galaxies.
+- **The sign (C5).** The (∇π·∇W₀)² term lowers the gradient energy, so the band k < g√(2C_T/c₂) is formally unstable.
+  But k_thr·L_bg ≤ 3.4×10⁻⁴ for every background, so no mode the local analysis describes ever sees it. The band's
+  wavelengths are Gpc-scale, longer than the structure that produces them.
+- **Cubic vertices (C6).** The leading one is −2M_P²C_T π̇(∇π·∇W₀)². These are relevant operators whose couplings are
+  suppressed by the background; they become strong only below 1.9×10⁻⁹² GeV, far below the Hubble energy.
+- **MUTATE.** A time-dependent background brings back O(π) terms, −2∇π·∇(∂_tF) − Δπ ∂_tF. That is the moving-source
+  physics of L340's T1, not a new vertex.
+
+**G8 standing after XC1 + XC3.** A bounded pass at frozen-background, decoupling-limit scope, now including the
+filter/foliation interaction. It remains conditional at full-action scope: curved-background mixing, the assembled
+action, and loops are not computed.

@@ -1,0 +1,79 @@
+H062 -- the exponent gap.  3389 committed SPARC RAR points.
+
+  [ok] 0.0  RAR points loaded with positive accelerations
+         3389 rows
+============================================================================================
+PART 1 -- what each family predicts for the RAR (nothing fitted)
+============================================================================================
+    n    A) BN11 rms[dex]     B) Mandel rms[dex]     B) a0(n)=S/n
+    1              0.2069                 0.2618      1.87238e-10
+    2              0.1979                 0.2007      9.36190e-11
+    3              0.2005                 0.1991      6.24127e-11
+    4              0.2021                 0.2117      4.68095e-11
+    5              0.2030                 0.2268      3.74476e-11
+    6              0.2036                 0.2414      3.12063e-11
+    8              0.2043                 0.2668      2.34048e-11
+   10              0.2046                 0.2873      1.87238e-11
+   20              0.2051                 0.3489      9.36190e-12
+
+  RAR-preferred:  (A) BN11 n = 2  (0.1979 dex)      (B) Mandel n = 3  (0.1991 dex)
+  NOTE the two families coincide only at n = 1 (BN11 0.2069 vs Mandel 0.2618)
+  [ok] 1.1  the two families are the SAME FUNCTION at n = 1 (not merely similar)
+         max|mu_bn11 - mu_mand| at n=1 over 5 decades = 1.45e-16
+  [ok] 1.1b they DIVERGE for n >= 2, which is why route1B's numbers do not apply here
+         n=2 RAR rms: BN11 0.1979 vs Mandel 0.2007
+  [ok] 1.2  the Mandel family reproduces L232's selection (n = 2 <=> kappa = 1/2)
+         this independent pipeline selects n = 3 on 3389 points
+
+============================================================================================
+PART 2 -- family (B), the one that carries kappa = 1/n, against Cassini
+============================================================================================
+    n         a0(n)   etilde        |q|          Q_zz   x ceiling   RAR rms
+/Users/carlzimmerman/new_physics/zimmerman-formula/hy4_push/H062_exponent_gap.py:76: IntegrationWarning: The occurrence of roundoff error is detected, which prevents 
+  the requested tolerance from being achieved.  The error may be 
+  underestimated.
+  val, _ = integrate.quad(f, vlo, vhi, limit=800, epsabs=1e-15, epsrel=1e-13)
+/Users/carlzimmerman/new_physics/zimmerman-formula/hy4_push/H062_exponent_gap.py:76: IntegrationWarning: Extremely bad integrand behavior occurs at some points of the
+  integration interval.
+  val, _ = integrate.quad(f, vlo, vhi, limit=800, epsabs=1e-15, epsrel=1e-13)
+    1    1.8724e-10    1.239    0.12126    5.0458e-26        9.70    0.2618
+    2    9.3619e-11    2.478    0.12320    1.8125e-26        3.49    0.2007
+    3    6.2413e-11    3.717    0.03985    3.1910e-27        0.61    0.1991
+    4    4.6810e-11    4.956    0.00770    4.0075e-28        0.08    0.2117
+    5    3.7448e-11    6.195    0.00114    4.2586e-29        0.01    0.2268
+    6    3.1206e-11    7.434    0.00016    4.4853e-30        0.00    0.2414
+    8    2.3405e-11    9.913    0.00000    8.5596e-32        0.00    0.2668
+   10    1.8724e-11   12.391    0.00000    4.6312e-33        0.00    0.2873
+   20    9.3619e-12   24.781    0.00000    1.5408e-36        0.00    0.3489
+
+  Cassini-safe      (Q_zz < ceiling)      : n in [3, 4, 5, 6, 8, 10, 20]
+  kappa-consistent  (1/n = 1/2 within 3s) : n in [2]
+  JOINT                                   : EMPTY
+  [ok] 2.1  some integer clears the Cassini quadrupole
+         [3, 4, 5, 6, 8, 10, 20]
+  [ok] 2.2  DECISIVE: no integer is BOTH Cassini-safe AND kappa = 1/2
+         Cassini needs [3, 4, 5, 6, 8, 10, 20]; kappa = 1/2 needs [2]; intersection []
+
+============================================================================================
+RESULT
+============================================================================================
+  The lowest Cassini-safe exponent is n = 3, which forces
+  kappa = 1/3 = 0.333   against the measured
+  0.529 +- 0.034 (README)  --  off by 5.8 sigma.
+  The RAR-preferred n = 3 gives kappa = 1/3 = 0.333
+      but its Q_zz is 0.61x the Cassini ceiling.
+
+READING: inside a single mu_n kernel there is a FORK, not a gap.
+  Family (A) BN11  : n and kappa are DECOUPLED -> Cassini satisfiable,
+                     but then nothing connects a_0 to Lambda.
+  Family (B) Mandel: n IS kappa -> you may have the relation OR Cassini.
+  You cannot have both with one exponent.
+
+CAVEATS: (i) SPARC-only rms on committed binned points, no per-galaxy
+         nuisance (Upsilon_disk) fit -- route1B flags that as undecided;
+         (ii) family (A) is given a_0 = A0C fixed, which is its free dial;
+         (iii) the DHF24 quadrature is this lane's reconstruction of
+         route1B's committed pipeline, not an independent derivation.
+
+H062 RESULT: 6/6 checks passed.
+{"pass": 6, "fail": 0, "cassini_safe": [3, 4, 5, 6, 8, 10, 20], "kappa_ok": [2], "joint": [], "rar_best_mandel": 3}

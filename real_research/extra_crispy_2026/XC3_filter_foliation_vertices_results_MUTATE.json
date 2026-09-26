@@ -1,0 +1,341 @@
+{
+ "lane": "XC3",
+ "mutate": true,
+ "checks": {
+  "C1 for a static background the leaf Laplacian has no O(pi) term and its O(pi^2) term is d_i pi d_j pi d_i d_j F + Lap pi (grad pi . grad F): every filter correction carries the background's gradient or curvature": {
+   "ok": false,
+   "measured": "O(pi^0) residual 0; O(pi) = -2*W01*p1 - 2*W02*p2 - 2*W03*p3 - h11*w0 - h22*w0 - h33*w0; O(pi^2) residual W00*p1**2 + W00*p2**2 + W00*p3**2 + 2*W01*p0*p1 + 2*W02*p0*p2 + 2*W03*p0*p3 + 2*h01*p1*w0 + 2*h02*p2*w0 + 2*h03*p3*w0 + h11*p0*w0 + h22*p0*w0 + h33*p0*w0",
+   "load_bearing": true
+  },
+  "C2 the leaf-metric dependence of the q-argument starts at O(pi^2): X_h = |grad W0|^2 + (grad pi.grad W0)^2 - 2 pi_t (grad pi.grad W0)^2 + O(pi^4) -- two powers of the background field in every term": {
+   "ok": false,
+   "measured": "residuals 0, -2*p1*w0*w1 - 2*p2*w0*w2 - 2*p3*w0*w3, 2*p0*p1*w0*w1 + 2*p0*p2*w0*w2 + 2*p0*p3*w0*w3 + p1**2*w0**2 + p2**2*w0**2 + p3**2*w0**2, -2*p0**2*p1*w0*w1 - 2*p0**2*p2*w0*w2 - 2*p0**2*p3*w0*w3 - 2*p0*p1**2*w0**2 - 2*p0*p2**2*w0**2 - 2*p0*p3**2*w0**2 - 2*p1**3*w0*w1 - 2*p1**2*p2*w0*w2 - 2*p1**2*p3*w0*w3 - 2*p1*p2**2*w0*w1 - 2*p1*p3**2*w0*w1 - 2*p2**3*w0*w2 - 2*p2**2*p3*w0*w3 - 2*p2*p3**2*w0*w2 - 2*p3**3*w0*w3",
+   "load_bearing": true
+  },
+  "C3 the Frechet-derivative formula for the leaf-dependent heat kernel is verified (the relative residual falls as eps^1, i.e. the absolute residual is second order) and the derivative is bounded by b times the perturbation acting on the smoothed field": {
+   "ok": true,
+   "measured": "relative-residual order 1.00; residual at eps = 2.5e-3: 3.4e-04; bound ratio 0.437",
+   "load_bearing": true
+  },
+  "C4 the filter/foliation quadratic terms are negligible against the khronon's own gradient term at every k inside the background (k >= 1/L_bg), for the Sun, galaxies and cluster cores, at both c_2 edges": {
+   "ok": true,
+   "measured": "largest ratio 3.54e-07 (at k = 1/L_bg)",
+   "load_bearing": true
+  },
+  "C5 the formally unstable band lies far below the background's inverse coherence length (k_thr L_bg << 1) for every background, so no local mode ever sees it; its width is set by g L_bg ~ Phi/c^2 << 1": {
+   "ok": true,
+   "measured": "largest k_thr L_bg = 3.43e-04",
+   "load_bearing": true
+  },
+  "C6 every filter/foliation cubic vertex is relevant with a background-suppressed coupling; its IR strong-coupling scale is far below the Hubble energy over the whole window, so it is never strong at any physical scale": {
+   "ok": true,
+   "measured": "max Lambda_IR = 1.88e-92 GeV (Hubble energy 1.4e-42 GeV)",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "C1": {
+   "O0_residual": "0",
+   "O1": "-2*W01*p1 - 2*W02*p2 - 2*W03*p3 - h11*w0 - h22*w0 - h33*w0",
+   "O2_residual": "W00*p1**2 + W00*p2**2 + W00*p3**2 + 2*W01*p0*p1 + 2*W02*p0*p2 + 2*W03*p0*p3 + 2*h01*p1*w0 + 2*h02*p2*w0 + 2*h03*p3*w0 + h11*p0*w0 + h22*p0*w0 + h33*p0*w0"
+  },
+  "C2": {
+   "residuals": [
+    "0",
+    "-2*p1*w0*w1 - 2*p2*w0*w2 - 2*p3*w0*w3",
+    "2*p0*p1*w0*w1 + 2*p0*p2*w0*w2 + 2*p0*p3*w0*w3 + p1**2*w0**2 + p2**2*w0**2 + p3**2*w0**2",
+    "-2*p0**2*p1*w0*w1 - 2*p0**2*p2*w0*w2 - 2*p0**2*p3*w0*w3 - 2*p0*p1**2*w0**2 - 2*p0*p2**2*w0**2 - 2*p0*p3**2*w0**2 - 2*p1**3*w0*w1 - 2*p1**2*p2*w0*w2 - 2*p1**2*p3*w0*w3 - 2*p1*p2**2*w0*w1 - 2*p1*p3**2*w0*w1 - 2*p2**3*w0*w2 - 2*p2**2*p3*w0*w3 - 2*p2*p3**2*w0*w2 - 2*p3**3*w0*w3"
+   ]
+  },
+  "C3": {
+   "fd_rel_residuals": [
+    0.0013693175619271826,
+    0.0006852532408670795,
+    0.0003427760224837678
+   ],
+   "order": 0.999059482156416,
+   "bound_ratio": 0.4368068174675565
+  },
+  "C4": {
+   "rows": [
+    {
+     "bg": "Sun, in the Galaxy's field",
+     "k": "1/L_bg",
+     "c2": 0.007288800437803917,
+     "ratio": 8.505321444650373e-11
+    },
+    {
+     "bg": "Sun, in the Galaxy's field",
+     "k": "1/L_bg",
+     "c2": 0.06666666666666667,
+     "ratio": 9.299038600414604e-12
+    },
+    {
+     "bg": "Sun, in the Galaxy's field",
+     "k": "1/pc",
+     "c2": 0.007288800437803917,
+     "ratio": 1.264919905510169e-18
+    },
+    {
+     "bg": "Sun, in the Galaxy's field",
+     "k": "1/pc",
+     "c2": 0.06666666666666667,
+     "ratio": 1.3829623141604113e-19
+    },
+    {
+     "bg": "Sun, in the Galaxy's field",
+     "k": "1/AU",
+     "c2": 0.007288800437803917,
+     "ratio": 2.9732068420793837e-29
+    },
+    {
+     "bg": "Sun, in the Galaxy's field",
+     "k": "1/AU",
+     "c2": 0.06666666666666667,
+     "ratio": 3.250666699834472e-30
+    },
+    {
+     "bg": "galaxy, transition",
+     "k": "1/L_bg",
+     "c2": 0.007288800437803917,
+     "ratio": 4.949337478027976e-11
+    },
+    {
+     "bg": "galaxy, transition",
+     "k": "1/L_bg",
+     "c2": 0.06666666666666667,
+     "ratio": 5.411209976503447e-12
+    },
+    {
+     "bg": "galaxy, transition",
+     "k": "1/pc",
+     "c2": 0.007288800437803917,
+     "ratio": 4.949337478027976e-19
+    },
+    {
+     "bg": "galaxy, transition",
+     "k": "1/pc",
+     "c2": 0.06666666666666667,
+     "ratio": 5.411209976503447e-20
+    },
+    {
+     "bg": "galaxy, transition",
+     "k": "1/AU",
+     "c2": 0.007288800437803917,
+     "ratio": 1.1633467059321568e-29
+    },
+    {
+     "bg": "galaxy, transition",
+     "k": "1/AU",
+     "c2": 0.06666666666666667,
+     "ratio": 1.2719102969274072e-30
+    },
+    {
+     "bg": "galaxy, deep MOND",
+     "k": "1/L_bg",
+     "c2": 0.007288800437803917,
+     "ratio": 5.716173893474569e-11
+    },
+    {
+     "bg": "galaxy, deep MOND",
+     "k": "1/L_bg",
+     "c2": 0.06666666666666667,
+     "ratio": 6.249607616598114e-12
+    },
+    {
+     "bg": "galaxy, deep MOND",
+     "k": "1/pc",
+     "c2": 0.007288800437803917,
+     "ratio": 2.2864695573898274e-20
+    },
+    {
+     "bg": "galaxy, deep MOND",
+     "k": "1/pc",
+     "c2": 0.06666666666666667,
+     "ratio": 2.4998430466392457e-21
+    },
+    {
+     "bg": "galaxy, deep MOND",
+     "k": "1/AU",
+     "c2": 0.007288800437803917,
+     "ratio": 5.374369477959808e-31
+    },
+    {
+     "bg": "galaxy, deep MOND",
+     "k": "1/AU",
+     "c2": 0.06666666666666667,
+     "ratio": 5.875905990581018e-32
+    },
+    {
+     "bg": "cluster core",
+     "k": "1/L_bg",
+     "c2": 0.007288800437803917,
+     "ratio": 3.5376058904131073e-07
+    },
+    {
+     "bg": "cluster core",
+     "k": "1/L_bg",
+     "c2": 0.06666666666666667,
+     "ratio": 3.867735504423116e-08
+    },
+    {
+     "bg": "cluster core",
+     "k": "1/pc",
+     "c2": 0.007288800437803917,
+     "ratio": 3.930673211570119e-18
+    },
+    {
+     "bg": "cluster core",
+     "k": "1/pc",
+     "c2": 0.06666666666666667,
+     "ratio": 4.297483893803462e-19
+    },
+    {
+     "bg": "cluster core",
+     "k": "1/AU",
+     "c2": 0.007288800437803917,
+     "ratio": 9.239086550626247e-29
+    },
+    {
+     "bg": "cluster core",
+     "k": "1/AU",
+     "c2": 0.06666666666666667,
+     "ratio": 1.010127871426693e-29
+    }
+   ],
+   "worst": 3.5376058904131073e-07
+  },
+  "C5": {
+   "rows": [
+    {
+     "bg": "Sun, in the Galaxy's field",
+     "k_thr_1_per_m": 2.1043614673048198e-26,
+     "k_thr_L_bg": 5.324572422473744e-06,
+     "Phi_sqrt": 4.391773331673233e-06
+    },
+    {
+     "bg": "galaxy, transition",
+     "k_thr_1_per_m": 1.3163226714051616e-26,
+     "k_thr_L_bg": 4.061747357163735e-06,
+     "Phi_sqrt": 6.3184386599625675e-06
+    },
+    {
+     "bg": "galaxy, deep MOND",
+     "k_thr_1_per_m": 2.829251397933116e-27,
+     "k_thr_L_bg": 4.365078805502664e-06,
+     "Phi_sqrt": 8.148359881564965e-06
+    },
+    {
+     "bg": "cluster core",
+     "k_thr_1_per_m": 3.7095591197666527e-26,
+     "k_thr_L_bg": 0.00034339510239242427,
+     "Phi_sqrt": 1.7806136947204467e-05
+    }
+   ],
+   "worst_kthr_Lbg": 0.00034339510239242427
+  },
+  "C6": {
+   "rows": [
+    {
+     "bg": "Sun, in the Galaxy's field",
+     "alpha_c": 9.624047966926507e-14,
+     "c2": 0.007288800437803917,
+     "Lambda_IR_GeV": 6.036319049981249e-93
+    },
+    {
+     "bg": "Sun, in the Galaxy's field",
+     "alpha_c": 9.624047966926507e-14,
+     "c2": 0.06666666666666667,
+     "Lambda_IR_GeV": 1.2227434485156052e-93
+    },
+    {
+     "bg": "Sun, in the Galaxy's field",
+     "alpha_c": 3.2e-09,
+     "c2": 0.007288800437803917,
+     "Lambda_IR_GeV": 2.4514782097316805e-96
+    },
+    {
+     "bg": "Sun, in the Galaxy's field",
+     "alpha_c": 3.2e-09,
+     "c2": 0.06666666666666667,
+     "Lambda_IR_GeV": 4.965822540704649e-97
+    },
+    {
+     "bg": "galaxy, transition",
+     "alpha_c": 9.624047966926507e-14,
+     "c2": 0.007288800437803917,
+     "Lambda_IR_GeV": 2.3618712910804334e-93
+    },
+    {
+     "bg": "galaxy, transition",
+     "alpha_c": 9.624047966926507e-14,
+     "c2": 0.06666666666666667,
+     "Lambda_IR_GeV": 4.7843108084465227e-94
+    },
+    {
+     "bg": "galaxy, transition",
+     "alpha_c": 3.2e-09,
+     "c2": 0.007288800437803917,
+     "Lambda_IR_GeV": 9.592064230422841e-97
+    },
+    {
+     "bg": "galaxy, transition",
+     "alpha_c": 3.2e-09,
+     "c2": 0.06666666666666667,
+     "Lambda_IR_GeV": 1.9430108975977404e-97
+    },
+    {
+     "bg": "galaxy, deep MOND",
+     "alpha_c": 9.624047966926507e-14,
+     "c2": 0.007288800437803917,
+     "Lambda_IR_GeV": 1.0911251919075328e-94
+    },
+    {
+     "bg": "galaxy, deep MOND",
+     "alpha_c": 9.624047966926507e-14,
+     "c2": 0.06666666666666667,
+     "Lambda_IR_GeV": 2.210231382516821e-95
+    },
+    {
+     "bg": "galaxy, deep MOND",
+     "alpha_c": 3.2e-09,
+     "c2": 0.007288800437803917,
+     "Lambda_IR_GeV": 4.431292663463379e-98
+    },
+    {
+     "bg": "galaxy, deep MOND",
+     "alpha_c": 3.2e-09,
+     "c2": 0.06666666666666667,
+     "Lambda_IR_GeV": 8.976222144391031e-99
+    },
+    {
+     "bg": "cluster core",
+     "alpha_c": 9.624047966926507e-14,
+     "c2": 0.007288800437803917,
+     "Lambda_IR_GeV": 1.8757549377549066e-92
+    },
+    {
+     "bg": "cluster core",
+     "alpha_c": 9.624047966926507e-14,
+     "c2": 0.06666666666666667,
+     "Lambda_IR_GeV": 3.7996120519304452e-93
+    },
+    {
+     "bg": "cluster core",
+     "alpha_c": 3.2e-09,
+     "c2": 0.007288800437803917,
+     "Lambda_IR_GeV": 7.617841798334106e-96
+    },
+    {
+     "bg": "cluster core",
+     "alpha_c": 3.2e-09,
+     "c2": 0.06666666666666667,
+     "Lambda_IR_GeV": 1.54310368183244e-96
+    }
+   ],
+   "max_Lambda_IR_GeV": 1.8757549377549066e-92
+  }
+ },
+ "n_checks": 6,
+ "n_fail_load_bearing": 2
+}
