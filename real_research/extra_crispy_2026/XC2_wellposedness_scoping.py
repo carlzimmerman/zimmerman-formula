@@ -245,7 +245,7 @@ def hess_vec(v, U, kname, mut=MUTATE):
     fx = 4 * Nlap * (CT * wx + (CL - CT) * par * ex_); fy = 4 * Nlap * (CT * wy + (CL - CT) * par * ey_)
     out = -div(4 * Nlap * vx, 4 * Nlap * vy) - filt(div(fx, fy))
     # the spectral gradient annihilates the constant and the Nyquist lines (checkerboards): lift those trivial modes
-    out = out + 50.0 * np.real(np.fft.ifft2(TRIV * np.fft.fft2(V)))
+    out = out + 1.0e6 * np.real(np.fft.ifft2(TRIV * np.fft.fft2(V)))  # lifted far above, so eigsh 'SA' returns the true lowest non-trivial eigenvalue
     return (out * dx * dx).ravel()
 rowsB4, SOLS = {}, {}
 for kname in ("nu_mono", "nu_RAR"):

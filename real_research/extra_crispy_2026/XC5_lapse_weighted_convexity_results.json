@@ -1,0 +1,104 @@
+{
+ "lane": "XC5",
+ "mutate": false,
+ "checks": {
+  "E1 the geometric heat filter raises the N-weighted Dirichlet energy for some field once the lapse contrast is large (largest generalized eigenvalue positive at contrast >= 1e3 on a single-mode well), while with N = 1 it never can": {
+   "ok": true,
+   "measured": "contrast 1: -1.90e+01; contrast 8: -4.22e+00; contrast 50: -7.45e-01; contrast 100: -3.76e-01; contrast 300: +4.53e+00; contrast 1000: +7.37e+01; contrast 10000: +4.72e+02; crossover ~263",
+   "load_bearing": true
+  },
+  "E2 the lapse-contrast bound holds on every random pair tested (it is proved in Lean: N_max, a contraction of the unweighted energy, then 1/N_min)": {
+   "ok": true,
+   "measured": "max LHS/RHS 0.2843",
+   "load_bearing": true
+  },
+  "E3 nu_mono's constitutive coefficients are positive at every y, so its q-integrand is convex (non-decreasing, convex radial profile, C^1 at zero gradient) and d2E >= 4 Int N|D dU|^2 for any positive lapse and the unchanged filter": {
+   "ok": true,
+   "measured": "min C_T 1.49e-12, min C_L 3.24e-14",
+   "load_bearing": true
+  },
+  "E4 mu_exp's threshold is exactly e^2 + 1 (its C_L minimum -1/(e^2+1) at x = 2); every turning kernel's threshold exceeds weak-field lapse contrasts by far, and none survives the unbounded contrast near a compact object": {
+   "ok": true,
+   "measured": "thresholds mu_exp: 8.389, nu_RAR: 30.819, mu_10: 2.875; weak-field contrast 1.000200",
+   "load_bearing": true
+  },
+  "E5 with nu_mono at a realised lapse contrast of 27.4 the constraint converges to one solution from four random starts and its lowest non-trivial Hessian eigenvalue is positive": {
+   "ok": true,
+   "measured": "nu_mono: spread 3.3e-07, lambda_min +1.13e+01, contrast 27.4",
+   "load_bearing": true
+  },
+  "E6 around an open zero-field region the MOND response scales as sqrt(eps) for every kernel, nu_mono included (log-slope -1/2), and that modulus FAILS Osgood's criterion: XC2 B7's 'zero field controlled' holds only away from open zero-field regions (it covered codim 1-3 zero sets, not codim 0)": {
+   "ok": true,
+   "measured": "nu_mono: slope -0.500; mu_exp: slope -0.500; Int de/sqrt(e) = 2",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "E1": {
+   "rows": {
+    "1.0": -18.995347514334988,
+    "8.0": -4.221188336417146,
+    "50.0": -0.7449155887148423,
+    "100.0": -0.37614549526427277,
+    "300.0": 4.5306703324717095,
+    "1000.0": 73.68552440673925,
+    "10000.0": 471.70012979133685
+   },
+   "crossover_contrast": 263.2640276652038
+  },
+  "E2": {
+   "max_lhs_over_rhs": 0.28425310206342447
+  },
+  "E3": {
+   "min_CT": 1.490358752252731e-12,
+   "min_CL": 3.238051189451352e-14
+  },
+  "E4": {
+   "thresholds": {
+    "mu_exp": 8.38905609893065,
+    "nu_RAR": 30.819058674702617,
+    "mu_10": 2.875441201432833
+   },
+   "mu_exp_exact": "1 + exp(2)",
+   "galaxy_contrast": 1.0002000200013335
+  },
+  "E5": {
+   "kernel": "nu_mono",
+   "energies": [
+    24.89165937507846,
+    24.891659375083456,
+    24.891659375084167,
+    24.89165937507774
+   ],
+   "spread": 3.2814921255958775e-07,
+   "lambda_min": 11.330875712976455
+  },
+  "E6": {
+   "rows": {
+    "nu_mono": {
+     "R": [
+      7.635701753404551,
+      79.44144612866494,
+      797.5473083465012,
+      7978.610775013998,
+      79789.2465430802
+     ],
+     "slope": -0.5003162037805342
+    },
+    "mu_exp": {
+     "R": [
+      7.461113306293646,
+      79.26706250584675,
+      797.3729538922726,
+      7978.436382232982,
+      79789.07112240608
+     ],
+     "slope": -0.500475107478215
+    }
+   },
+   "osgood_integral_sqrt": "2"
+  }
+ },
+ "n_checks": 6,
+ "n_fail_load_bearing": 0
+}

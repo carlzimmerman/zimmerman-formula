@@ -70,7 +70,9 @@ settles what can be settled and reduces the rest to a question about khronometri
   - C_min > −1 is exactly "g(g_N) strictly increasing", and every kernel on the record meets it (B3): ν_mono 0,
     ν_RAR −0.032, μ₂ −0.081, μ_exp −0.119, μ₅ −0.253, μ₁₀ −0.348.
 - **Numerical demonstration (B4).** On a 2-D periodic leaf with a lapse varying by 30%, four random starts converge to
-  the same U to 3×10⁻⁷ for both ν_mono and ν_RAR. The lowest non-trivial Hessian eigenvalue is +0.022.
+  the same U to 3×10⁻⁷ for both ν_mono and ν_RAR. The lowest non-trivial Hessian eigenvalue is +0.247.
+  *[Corrected 09-26: the first version reported +0.022, which was the value assigned to the lifted trivial modes, not
+  the lowest non-trivial eigenvalue. Positivity was never in question.]*
 - **The MOND sector is lower order (B5).** The linearised MOND operator falls like ≈30 e^{−ξ²K²} relative to the
   principal part: 0.51, 3.6×10⁻³ and 1.6×10⁻⁶ at K = 2, 3 and 4/ξ. It is a smoothing operator. With XC1 A3 (U = ln N
   removes the C-H term), the principal symbol of C-H/K is that of GR plus the BPS khronon.
@@ -82,6 +84,13 @@ settles what can be settled and reduces the rest to a question about khronometri
   filtered field (codim 2 and 3, generic after filtering). At a symmetric planar zero set (codim 1) it is only
   log-Lipschitz: R² = ln(1/ε)/2, with a measured slope of 0.500. The log modulus still satisfies Osgood's uniqueness
   criterion. This is spec requirement 9.
+
+**Two scope corrections (09-26, from the lead track's review and a peer session; computed in XC5):**
+1. B2's "any closed leaf" holds when the filter and the energy share one measure. C-H/K's functional carries the lapse,
+   and the geometric filter need not contract the lapse-weighted energy. So B3's convexity needs
+   (N_max/N_min)|C_min| < 1 for kernels with C_min < 0. For ν_mono (C_min ≥ 0) no condition is needed (XC5).
+2. B7's "controlled" covers isolated and planar zeros only. Around an open zero-field region (a homogeneous background)
+   the response scales as √ε for every kernel, ν_mono included, and that fails Osgood (XC5 E6).
 
 **Reduced, not settled.** Is GR plus the BPS khronon (α_c, λ − 1 = c₂, β = 0) strongly hyperbolic on arbitrary
 nonlinear backgrounds? Einstein-aether theory is, under conditions on its couplings (Sarbach, Barausse & Preciado-López
@@ -134,3 +143,34 @@ Lean: `XC4_recipe_decision_certificates.lean` (5 theorems, zero `sorry`, standar
 - `mono_phantom_increasing`: ν_mono's phantom slope is > 0.
 - `mu_exp_phantom_turns`: C_L = (1−x)/(eˣ+x−1) < 0 for x > 1.
 - `nu_rar_phantom_turns`: 9/(e³−1) < 4/(e²−1).
+
+## XC5 — the constraint with a non-constant lapse: what the ν_mono decision buys, and one correction the other way (6/6; MUTATE C = −1.5 fails E5, rc = 1)
+
+`XC5_lapse_weighted_convexity.py` (+ `.out`, `_MUTATE.out`, results JSON). Lean: `XC5_lapse_convexity_certificates.lean`
+(4 theorems, zero `sorry`, standard axioms). This lane takes up the lead track's finding
+(`real_research/closure_doors_2026_09_26/auxiliary/`, uncommitted at the time) that the geometric heat filter need not
+contract the lapse-weighted energy.
+
+- **The finding, reproduced (E1).** The largest d/db ∫N|De^{bΔ}f|² / ∫N|Df|² over all fields is a generalised
+  eigenvalue problem. On a single-mode lapse well it changes sign at contrast N_max/N_min ≈ 263 (+74 at 10³). With
+  N = 1 it is always negative.
+- **The contrast bound (E2, Lean `contrast_bound`).** ∫N|DSf|² ≤ (N_max/N_min)∫N|Df|². So for a kernel with a
+  negative coefficient, the constraint is convex when (N_max/N_min)|C_min| < 1.
+- **What the ν_mono decision buys (E3, Lean `convex_for_monotone_kernel`).** ν_mono's coefficients are positive at
+  every y. The q-integrand is therefore convex, and the constraint is strictly convex (one solution) for any positive
+  lapse with the unchanged filter.
+  - No contrast condition and no filter repair are needed.
+  - The demonstration (E5) at realised contrast 27.4 converges from four starts, with lowest eigenvalue +11.3.
+- **Why it matters where it matters (E4).**
+  - The turning kernels' thresholds are: μ_exp exactly e² + 1 = 8.39 (its C_L minimum is −1/(e²+1); Lean
+    `mu_exp_CL_floor`), ν_RAR 30.8, μ₁₀ 2.88.
+  - In weak fields the lapse contrast is ≤ e^{2×10⁻⁴}, so the kernel choice doesn't matter for uniqueness.
+  - Near compact objects the contrast is unbounded, and only a C_min ≥ 0 kernel keeps the constraint convex there.
+- **The correction the other way (E6).** Around an open zero-field region the response scales as √ε for every kernel,
+  ν_mono included (log-slope −0.500). √ε fails Osgood, and ẋ = √x has two solutions from 0 (Lean
+  `sqrt_ode_two_solutions`). So linear perturbation theory does not exist around a homogeneous zero-field background.
+  In the assembled construction the vacuum-gated switch keeps the kernel off there (L359/L361).
+- **Scope.**
+  - This is convexity of the fixed-metric, fixed-lapse auxiliary solve, not coupled time stability. The filter's
+    failure to contract still matters for energy estimates.
+  - ν_mono's splice makes the q-integrand C² but not C³ at the splice point.

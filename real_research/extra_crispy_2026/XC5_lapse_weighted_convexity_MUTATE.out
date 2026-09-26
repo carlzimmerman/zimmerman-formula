@@ -1,0 +1,85 @@
+XC5 -- THE MOND CONSTRAINT WITH A NON-CONSTANT LAPSE: a correction to XC2, and what the nu_mono decision buys.
+
+THE CORRECTION.  XC2 B2 proved that the heat filter never raises the Dirichlet energy when the filter's Laplacian and
+the energy share one measure.  C-H/K's constraint functional is lapse-weighted,
+    E[U] = Int N sqrt(h) { 2 |D U - D ln N|^2 + 2 alpha_M^2 q(|D S U|^2/alpha_M^2) },   S = exp(b Delta_h),
+and the geometric filter need NOT contract the N-weighted energy.  The lead track found this independently
+(real_research/closure_doors_2026_09_26/auxiliary/RESULT.md, uncommitted at the time: an exact Fourier example with
+positive initial derivative 154 pi/25, a converged negative Hessian with the exact exponential kernel, the sufficient
+bound N_max/N_min < e^2 + 1, and the repair S -> exp(b Delta_N), Delta_N = N^-1 D_i(N D^i)).  So XC2 B3's convexity
+statement needs a lapse-contrast condition for kernels whose constitutive coefficient is somewhere negative.
+
+  *** MUTATE=1: E5 uses C_T = C_L = -1.5 (below the convexity threshold everywhere); E5 must FAIL ***
+
+==============================================================================================================
+E1  THE GEOMETRIC HEAT FILTER CAN RAISE THE LAPSE-WEIGHTED ENERGY (the lead's finding, reproduced)
+==============================================================================================================
+    lapse contrast      1.0: largest d/db Int N|D e^(b Delta) f|^2 / Int N|D f|^2 over all fields = -1.8995e+01
+    lapse contrast      8.0: largest d/db Int N|D e^(b Delta) f|^2 / Int N|D f|^2 over all fields = -4.2212e+00
+    lapse contrast     50.0: largest d/db Int N|D e^(b Delta) f|^2 / Int N|D f|^2 over all fields = -7.4492e-01
+    lapse contrast    100.0: largest d/db Int N|D e^(b Delta) f|^2 / Int N|D f|^2 over all fields = -3.7615e-01
+    lapse contrast    300.0: largest d/db Int N|D e^(b Delta) f|^2 / Int N|D f|^2 over all fields = +4.5307e+00
+    lapse contrast   1000.0: largest d/db Int N|D e^(b Delta) f|^2 / Int N|D f|^2 over all fields = +7.3686e+01
+    lapse contrast  10000.0: largest d/db Int N|D e^(b Delta) f|^2 / Int N|D f|^2 over all fields = +4.7170e+02
+    sign change at lapse contrast N_max/N_min ~ 263.3 (single-mode well): above it some field's weighted energy RISES
+  [PASS] E1 the geometric heat filter raises the N-weighted Dirichlet energy for some field once the lapse contrast is large (largest generalized eigenvalue positive at contrast >= 1e3 on a single-mode well), while with N = 1 it never can
+         measured: contrast 1: -1.90e+01; contrast 8: -4.22e+00; contrast 50: -7.45e-01; contrast 100: -3.76e-01; contrast 300: +4.53e+00; contrast 1000: +7.37e+01; contrast 10000: +4.72e+02; crossover ~263
+         reading:  XC2 B2's 'any closed leaf' holds when the filter and the energy share one measure; C-H/K's energy carries the lapse, and for strong-field lapse contrasts the filter need not contract it (the lead's finding; its exact example differs)
+
+==============================================================================================================
+E2  THE CONTRAST BOUND: Int N|D S f|^2 <= (N_max/N_min) Int N|D f|^2
+==============================================================================================================
+    max over 200 random (lapse, field) pairs, contrasts 1..1000 x noise, of LHS/RHS: 0.2843  (must be <= 1)
+  [PASS] E2 the lapse-contrast bound holds on every random pair tested (it is proved in Lean: N_max, a contraction of the unweighted energy, then 1/N_min)
+         measured: max LHS/RHS 0.2843
+
+==============================================================================================================
+E3  nu_mono: C_T > 0 and C_L > 0 everywhere -> the constraint is convex for ANY positive lapse
+==============================================================================================================
+    nu_mono over y in [1e-12, 1e12]: min C_T = 1.490e-12, min C_L = 3.238e-14
+    radial profile phi(r) = 2 alpha^2 q(r^2/alpha^2): phi' = 4 r q' = 4 r C_T >= 0, phi'' = 4 (q' + 2 Y q'') = 4 C_L >= 0  (sympy: phi' = 4*r*Subs(Derivative(q(_xi_1), _xi_1), _xi_1, r**2/alpha**2))
+  [PASS] E3 nu_mono's constitutive coefficients are positive at every y, so its q-integrand is convex (non-decreasing, convex radial profile, C^1 at zero gradient) and d2E >= 4 Int N|D dU|^2 for any positive lapse and the unchanged filter
+         measured: min C_T 1.49e-12, min C_L 3.24e-14
+         reading:  the author's kernel decision removes the lapse-contrast condition and the need to change the filter
+
+==============================================================================================================
+E4  THE TURNING KERNELS' CONTRAST THRESHOLDS 1/|C_min|, and the lapse contrasts nature supplies
+==============================================================================================================
+    mu_exp: C_L = (1-x)/(e^x + x - 1) has its minimum at x = 2 (sympy critical points [2]): C_L(2) = -1/(1 + exp(2)) -> threshold 1/|C_min| = 1 + exp(2) = 8.3891  (the lead's bound N_max/N_min < e^2 + 1)
+    nu_RAR threshold 30.82;  mu_10 threshold 2.88;  nu_mono: none (C_min >= 0)
+    lapse contrast of a galaxy / the Solar System (|Phi/c^2| <= 1e-4): <= 1.000200;  at a horizon N -> 0: unbounded
+  [PASS] E4 mu_exp's threshold is exactly e^2 + 1 (its C_L minimum -1/(e^2+1) at x = 2); every turning kernel's threshold exceeds weak-field lapse contrasts by far, and none survives the unbounded contrast near a compact object
+         measured: thresholds mu_exp: 8.389, nu_RAR: 30.819, mu_10: 2.875; weak-field contrast 1.000200
+         reading:  in galaxies and the Solar System the kernel choice does not matter for uniqueness; near black holes and neutron stars it does, and nu_mono is the kernel that keeps the constraint convex there
+
+==============================================================================================================
+E5  NUMERICAL DEMONSTRATION: well-shaped lapse (nominal contrast 50), filter 2.5 cells, four random starts
+==============================================================================================================
+    kernel neg_const, lapse contrast 27.4: energies nan, -6.108838514e+300, -6.535350914e+300, -4.294626168e+299
+    max |U_i - U_1| / max|U| = 1.00e+00;  lowest non-trivial Hessian eigenvalue -1.426e+00;  filtered y in [1.5e+157, 737015447404198892940508466603268813797645756211583136827951574852288156538342291108232333729033631973989563002754497954964253318163400577258675155964342042624.00]
+  [FAIL] E5 with neg_const at a realised lapse contrast of 27.4 the constraint converges to one solution from four random starts and its lowest non-trivial Hessian eigenvalue is positive
+         measured: neg_const: spread 1.0e+00, lambda_min -1.43e+00, contrast 27.4
+
+==============================================================================================================
+E6  A CORRECTION TO XC2 B7: an open zero-field region (a homogeneous background) responds as sqrt(eps)
+==============================================================================================================
+    nu_mono : ||response||/eps at eps = 1e-02, 1e-04, 1e-06, 1e-08, 1e-10: 7.636e+00, 7.944e+01, 7.975e+02, 7.979e+03, 7.979e+04  -> log-slope -0.500 (Hoelder-1/2 gives -0.5)
+    mu_exp  : ||response||/eps at eps = 1e-02, 1e-04, 1e-06, 1e-08, 1e-10: 7.461e+00, 7.927e+01, 7.974e+02, 7.978e+03, 7.979e+04  -> log-slope -0.500 (Hoelder-1/2 gives -0.5)
+    Osgood test for the modulus sqrt(eps): Int_0^1 de/sqrt(e) = 2 (finite, so Osgood's uniqueness criterion FAILS)
+  [PASS] E6 around an open zero-field region the MOND response scales as sqrt(eps) for every kernel, nu_mono included (log-slope -1/2), and that modulus FAILS Osgood's criterion: XC2 B7's 'zero field controlled' holds only away from open zero-field regions (it covered codim 1-3 zero sets, not codim 0)
+         measured: nu_mono: slope -0.500; mu_exp: slope -0.500; Int de/sqrt(e) = 2
+         reading:  linear perturbation theory does not exist around a homogeneous zero-field background (requirement 9's hard case). In the assembled construction the vacuum-gated switch keeps the kernel off in the homogeneous web (L359/L361); in C-H/K alone it does not, which is part of why L341's FRW gate failed
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  XC2's convexity statement was too broad for a non-constant lapse, as the lead track found: the geometric filter can
+  raise the lapse-weighted energy (E1), so a kernel with a negative constitutive coefficient needs the contrast condition
+  (N_max/N_min)|C_min| < 1 (E2, E4; for mu_exp exactly N_max/N_min < e^2 + 1, the lead's bound).  With the author's kernel
+  decision the condition disappears: nu_mono's coefficients are positive everywhere (E3), so the MOND constraint is
+  strictly convex -- one solution -- for ANY positive lapse and the unchanged filter, including near compact objects where
+  the lapse contrast is unbounded (E4, E5).  One correction runs the other way: around an OPEN zero-field region the
+  response is sqrt(eps) for every kernel, nu_mono included, which fails Osgood (E6) -- XC2 B7's 'controlled' covered
+  isolated and planar zeros only.  Time 7 s.
+
+  5/6 checks pass; load-bearing failures: 1; wrote XC5_lapse_weighted_convexity_results_MUTATE.json
