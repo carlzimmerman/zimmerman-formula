@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "landed_by": "hermes_session dispatch 1",
+  "meta": "R19 negative-control map: which release-candidate claim each control predicate guards, and its verdict.",
+  "controls": {
+    "NC1": {
+      "claim": "L311 V2: the suppressed-halo rise v_c/v_f = (1 + K sqrt(r))^{1/4}, exponent -> 1/8",
+      "predicate": "slope of ln(v_c/v_f) vs ln r over 300-600 kpc inside [0.06, 0.14]",
+      "control_input": "known log shell M = M0 + C ln(r/r0) (R02)",
+      "result": 0.0169,
+      "verdict": "rejected (log law is not r^1/8); the gate is a real predicate",
+      "dependent_lanes": ["L311", "F2", "E1"]
+    },
+    "NC2": {
+      "claim": "kappa_unit_response: mu'(0+) = 2 (unit channel, lambda = 1)",
+      "predicate": "mu'(0+) = 2 lambda; deep scale a0 = s/(2 lambda)",
+      "control_input": "lambda = 1.2 (channel slope perturbed away from 1)",
+      "result": {"mu_prime_0": 2.4, "a0_deep_shift": 0.2},
+      "verdict": "selector responds to the premise it was claimed independent of",
+      "dependent_lanes": ["A1", "A3", "R11"]
+    },
+    "NC3": {
+      "claim": "PD20/PD21: two-body amplitude sqrt(2) from the per-body law",
+      "predicate": "m1 sqrt(m2) = m2 sqrt(m1) (momentum balance)",
+      "control_input": "mass ratios (1,1), (1,1.5), (1,4)",
+      "result": "holds at (1,1); breaks at (1,1.5) and (1,4)",
+      "verdict": "unequal-mass amplitude not transportable (R06 certified)",
+      "dependent_lanes": ["G1", "G2", "R07", "R09"]
+    },
+    "NC4": {
+      "claim": "bhstar_r1: the wind radius is inside the CAK band",
+      "predicate": "interval membership r_launch in [490, 650] au (the declared band)",
+      "control_input": "r* = 100 au, r_in = 2000 au",
+      "result": "both outside; the record's one-sided chain check is not a membership test",
+      "verdict": "membership predicate implemented; standing unchanged (radius still unmeasured)",
+      "dependent_lanes": ["H1", "H2", "R13", "R14", "R15"]
+    }
+  },
+  "regression_use": "NC1 is the gate for any future sqrt-law claim (rerun after each mass-law change); NC3 reruns with R06's Lean certificate as its witness."
+}

@@ -1,4 +1,4 @@
-# Follow-up work dispatch 1 (2026-09-25): R01, R02, R03, R06, R10 landed
+# Follow-up work dispatch 1 (2026-09-25): R01, R02, R03, R06, R10, R19 landed
 
 Landed by the Hermes lane on 2026-09-25, against the followup work order
 (baseline `3e857b5a6f8f05b48e29d0cbe42136998e9f9445`; repo HEAD at run time
@@ -13,6 +13,7 @@ each lane's `.py`.
 | R03 | 4/4 PASS | Curvature invariant C_β = dβ/d ln r + 4β²: **= 0 identically for the log continuation, = β/2 for sqrt** (both machine- and algebra-checked; matching amplitude+slope does not erase the difference). Observability gate FAILS at galactic data quality: σ(C_β) ≈ 4.9×10³ × the separation at 12 points × 1% over Δln r = 1.1 — precision-gated, not ready (R18 note). |
 | R06 | 3/3 PASS + Lean | m1√m2 = m2√m1 ⟺ m1 = m2 certified in Lean (PairObstruction.lean, zero sorry, axioms = standard three). PD20's per-body ansatz at (1, 4) gives opposing forces 2 and 4 — **unequal-mass momentum violation; PD20's √2 two-body factor is conditional algebra, not a derived amplitude for m1 ≠ m2**. Test-particle limit = the only consistent limit. |
 | R10 | 4/4 PASS | The rational aux response, the PD21 quadrature g² = gN² + a0 gN, and L311's deep-active law are THREE inequivalent full laws: g/a0 at gN = a0 is 1.488 / 1.414 / 1.000; exact symbolic residual mu_aux − mu_quad ≠ 0; Newtonian-side corrections 1.7×10⁻⁴ vs 5.0×10⁻⁴ a0 at gN = 100 a0. Assign distinct model IDs; do not mix quarter-slope/normalization predictions across them. |
+| R19 | 4/4 PASS | Negative controls: (NC1) the known log shell passes L311 V2's own estimator at slope 0.0169 — the [0.06, 0.14] r^{1/8} gate rejects it, so the gate is a real predicate; (NC2) mu'(0+) = 2.4 at λ = 1.2 (the unit-response selector moves with its premise); (NC3) PD20's balance holds at (1,1) and breaks at (1,1.5)/(1,4) (R06 regression); (NC4) r* = 100 au and 2e3 au fail membership in the CAK band [490, 650] au — the record's one-sided chain check is not a test. Claim-check map delivered. |
 
 **Consequences for the record (proposed, not yet integrated):**
 1. L304 V4's "sqrt(r)" reading is a window artifact — do not quote
