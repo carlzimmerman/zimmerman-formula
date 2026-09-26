@@ -1,0 +1,53 @@
+DE5 -- THE COSMIC-SHEAR BOUND ACROSS THE WHOLE VACUUM-GATE WINDOW, ON BOTH BRANCHES OF THE SWITCH: L363's T_max(k),
+s^2 and r_x at every lens-epoch threshold DE2's window allows, for the upper (phantom-grown) regions DE2/DE3 used and,
+separately labelled, for the lower (matter-only) regions the particle-mesh construction runs.
+
+WHY.  A carrier passes cosmic shear at a gate cell iff its matter transfer obeys T(k) <= T_max(k; x) at every
+k = 0.1-1 h/Mpc, where x = x_c,eff(0.5) is the cell's lens-epoch threshold (L364: R = T^2 + 2 r_x T s + s^2 <= 1.2).
+DE2's window fixes which thresholds are available: x = x_c0 E^2(0.5)^p over the window's (p, x_c0) cells.  A carrier
+that fails at one cell (e.g. the acceleration-triggered carrier at the linear cell, x = 4.36) can only be rescued by a
+cell with a higher threshold, since T_max rises with x (DE2 M1).  The window's highest lens-epoch threshold follows in
+closed form from DE2's committed caps: maximise x0 e_S^p subject to x0 e_K^p <= X_K, x0 e_F^p <= X_F, p >= 1/2 and
+x0 >= 3/2 (dominance).  The two caps bind together at p* = ln(X_F/X_K)/ln(e_F/e_K), giving
+      x_max(0.5) = X_K (e_S/e_K)^p*.
+THE TWO BRANCHES (reported separately, never pooled).  L363's region builder starts from the cells whose MATTER contrast
+passes the threshold plus the galaxies' own seed cells, then grows the regions with the phantom's density: its first
+line is the lower (matter-only) branch -- the one L377/L380/L388 run -- and its converged mask is the upper branch
+DE1/DE2/DE3 used.  The lower mask is built here with L363's own first line.
+  L363 loaded (mock E^2(0.5) = 1.745209); DE2's caps: X_K = 3.8673 (z = 0.25), X_F = 364.50 (z = 2.5)
+
+==============================================================================================================
+W1  THE WINDOW'S HIGHEST LENS-EPOCH THRESHOLD (closed form from DE2's committed caps)
+==============================================================================================================
+    p* = 1.9042, x0* = 2.3497: x_max(0.5) = 6.7849; brute force 6.7845 at (p, x0) = (1.904, 2.3499)
+  [PASS] W1 the window's highest lens-epoch threshold x_max(0.5) from DE2's caps: closed form = brute force (1e-3), attained inside the window (x0* >= 1.5, p* >= 0.5)
+         measured: x_max = 6.7849 at p* = 1.904, x0* = 2.350
+  GP3 mock built (100 Mpc, 256^3, seed 20260926)   [35s]
+  bound computed at 48 (threshold, footing, branch) points   [1362s]
+
+==============================================================================================================
+C1-L1  CONTROL, MONOTONICITY, AND THE TWO BRANCHES
+==============================================================================================================
+  [PASS] C1 CONTROL: the upper-branch bound reproduces DE3's committed table at x = 4.2, 4.3630219, 4.4 (both footings)
+         measured: max |diff| = 0.0e+00
+  [PASS] M1 on each branch T_max(k; x) is non-decreasing in the threshold at every k and footing
+         measured: upper: True; lower: True
+  [PASS] L1 THE BRANCHES: the lower (matter-only) regions give a smaller private phantom than the upper (grown) regions, so T_max(lower) >= T_max(upper) at every threshold, k and footing, strictly somewhere
+         measured: all >=: True; largest gain in T_max +0.0090
+         reading:  the grown regions extend each galaxy's MOND zone into its outskirts; the matter-only ones stop where the matter contrast falls below the gate
+
+==============================================================================================================
+E1  THE EXPORT: T_max(k) per threshold, footing and branch; the window's best T_max(k = 1)
+==============================================================================================================
+    upper canonical: T_max(k = 0.5 / 0.7 / 1.0) at x = 2.500: 0.916/0.763/0.589; 3.000: 0.945/0.811/0.646; 3.500: 0.967/0.849/0.694; 4.000: 0.984/0.880/0.735; 4.200: 0.990/0.892/0.750; 4.363: 0.995/0.900/0.761; 4.400: 0.996/0.902/0.764; 5.000: 1.010/0.928/0.801; 5.500: 1.019/0.946/0.827; 6.000: 1.027/0.961/0.851; 6.500: 1.034/0.974/0.871; 6.785: 1.038/0.981/0.882
+    upper alt      : T_max(k = 0.5 / 0.7 / 1.0) at x = 2.500: 0.898/0.726/0.529; 3.000: 0.929/0.780/0.593; 3.500: 0.953/0.823/0.647; 4.000: 0.972/0.857/0.693; 4.200: 0.979/0.870/0.710; 4.363: 0.984/0.879/0.723; 4.400: 0.985/0.881/0.726; 5.000: 1.001/0.910/0.767; 5.500: 1.012/0.930/0.796; 6.000: 1.020/0.946/0.822; 6.500: 1.028/0.961/0.845; 6.785: 1.032/0.968/0.857
+    upper active volume fraction at x = 2.50: 0.060, 3.00: 0.050, 3.50: 0.043, 4.00: 0.037, 4.20: 0.035, 4.36: 0.034, 4.40: 0.034, 5.00: 0.029, 5.50: 0.026, 6.00: 0.024, 6.50: 0.022, 6.78: 0.021
+    lower canonical: T_max(k = 0.5 / 0.7 / 1.0) at x = 2.500: 0.919/0.767/0.594; 3.000: 0.947/0.815/0.652; 3.500: 0.970/0.854/0.701; 4.000: 0.987/0.886/0.742; 4.200: 0.993/0.897/0.757; 4.363: 0.998/0.905/0.768; 4.400: 0.999/0.907/0.771; 5.000: 1.013/0.933/0.808; 5.500: 1.022/0.951/0.835; 6.000: 1.030/0.966/0.859; 6.500: 1.037/0.979/0.879; 6.785: 1.041/0.986/0.890
+    lower alt      : T_max(k = 0.5 / 0.7 / 1.0) at x = 2.500: 0.901/0.731/0.535; 3.000: 0.932/0.785/0.599; 3.500: 0.957/0.828/0.655; 4.000: 0.976/0.863/0.701; 4.200: 0.983/0.875/0.718; 4.363: 0.988/0.884/0.730; 4.400: 0.989/0.886/0.733; 5.000: 1.004/0.915/0.775; 5.500: 1.015/0.935/0.805; 6.000: 1.024/0.952/0.831; 6.500: 1.031/0.967/0.854; 6.785: 1.035/0.974/0.866
+    lower active volume fraction at x = 2.50: 0.054, 3.00: 0.045, 3.50: 0.038, 4.00: 0.033, 4.20: 0.031, 4.36: 0.029, 4.40: 0.029, 5.00: 0.025, 5.50: 0.023, 6.00: 0.021, 6.50: 0.019, 6.78: 0.018
+    the window's best bound at k = 1 (upper branch, x_max = 6.785): canonical 0.8817, alt 0.8573
+    the window's best bound at k = 1 (lower branch, x_max = 6.785): canonical 0.8897, alt 0.8663
+  [PASS] E1 (reported) the table covers DE2's shear floors to the window's top threshold on both branches
+         measured: see results JSON
+
+  5/5 checks pass; load-bearing failures: 0; wrote DE5_tmax_window_both_branches_results.json   [1362s]
