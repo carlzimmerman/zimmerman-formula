@@ -1,0 +1,107 @@
+DE4 -- THE FLAGSHIP ON THE MATTER-ONLY SWITCH: on the lower branch of the switch's bistability -- the one the particle-mesh
+construction runs (L377/L380, and the same-cell re-run L388+) -- does MOND stay on at the flagship radius at z = 2.5,
+and what does the carrier do there?
+
+WHY.  DE1/DE2 priced the vacuum-gated switch on its UPPER branch: the switch variable reads the dynamical density,
+baryons + phantom (L352's "most favourable" placement; L363's region growth likewise).  The particle-mesh construction
+switches on MATTER ONLY -- L377's own docstring: "x~_m the matter-only switch variable (the lower branch of L342's
+bistability, stated)":  1.5 Omega_m(a) (rho_m/rho_bar_m - 1) [Omega_L(a)/Omega_L0]^p > x_c0.  So a galaxy keeps MOND at
+radius r on that branch only if its local MATTER density there -- baryons, circumgalactic gas and whatever carrier it
+retains -- exceeds
+      rho_min(z) = rho_bar_m(z) [1 + x_c,eff(z) / (1.5 Omega_m(z))],   x_c,eff(z) = x_c0 E(z)^(2p).
+The carrier is supposed to have LEFT galaxies by z ~ 2.5 (GP5/L356: an intact carrier moves the flagship +0.8 dex).
+If it has left, the outskirts may fall below rho_min and MOND switches off there (Gauss: Newtonian beyond the edge,
+the zero point then drops to -2 log10 nu(0.1)).  The cross-thread review (XR2 T4) flagged this branch point; this lane
+computes it.
+
+THE GALAXY (the record's own conventions).  Flagship radius r_F where g_bar = 0.1 a0 for point-mass baryons M_b (GP5/DE1).
+Halo from L320's machinery (Moster+13 stellar-to-halo relation at M_* = M_b/(1 + mu), mu = 0.5((1+z)/2)^2, GP5's gas
+fraction; Dutton & Maccio c200), used only to shape the dark and circumgalactic components:
+  * baryonic disc: Hernquist with a = 3 kpc (M_b/1e11)^0.3 (L375);
+  * circumgalactic gas: f_CGM x (f_b M_200 - M_b) in the halo's NFW shape (L375's convention, f_CGM = 1 its maximal share);
+  * carrier: S x (1 - f_b) M_200 in the NFW shape; S = retained fraction (1 = intact; 0.06 = L380's fixed-cell clearing
+    at 600-675 km/s; 0 = fully cleared).  Its gravity at r_F is Newtonian (kernel-invisible, L353), S x g_NFW with GP5's
+    convention (the full M_200 NFW), so S = 1 reproduces GP5/L356's price.
+Zero-point shift at r_F: 2 log10[(g_MOND or Newton + g_carrier) / (nu(0.1) 0.1 a0)] (GP5's definition; nu = L320's nu_RAR).
+  GP5/L320 loaded: Om = 0.3153, f_b = 0.1571   [0.1s]
+
+==============================================================================================================
+C1-C3  CONTROLS: GP5 reproduces L356; rho_min; the upper branch is on at r_F (DE1/DE2)
+==============================================================================================================
+  [PASS] C1 CONTROL: GP5's flagship machinery reproduces L356's committed shifts (0.005 dex)
+         measured: max |diff| = 0.0e+00 dex
+  [PASS] C2 CONTROL: rho_min at the linear cell, z = 2.5, matches the cross-thread review's quoted 4.36e-5 Msun/pc^3 (1%)
+         measured: rho_min(2.5) = 4.3649e-05 Msun/pc^3
+  [PASS] C3 CONTROL: on the upper (phantom-inclusive) branch the switch is on at r_F for M_b = 1e10-1e11, both footings, at the linear cell (DE1/DE2's reading)
+         measured: rho_switch/rho_min at r_F: 34.6, 45.7, 19.2, 25.4, 10.7, 14.1
+
+==============================================================================================================
+F1  THE FLAGSHIP ON THE MATTER-ONLY BRANCH: linear cell (p = 1, x_c0 = 2.5), z = 2.5
+==============================================================================================================
+    f_CGM = 0.1, S = 0.00: switch on at r_F: on on on on OFF OFF  | worst shift -1.134 dex -> fail
+    f_CGM = 0.1, S = 0.06: switch on at r_F: on on on on on on  | worst shift +0.102 dex -> fail
+    f_CGM = 0.1, S = 0.10: switch on at r_F: on on on on on on  | worst shift +0.163 dex -> fail
+    f_CGM = 0.1, S = 0.30: switch on at r_F: on on on on on on  | worst shift +0.419 dex -> fail
+    f_CGM = 0.1, S = 1.00: switch on at r_F: on on on on on on  | worst shift +0.973 dex -> fail
+    f_CGM = 0.3, S = 0.00: switch on at r_F: on on on on on on  | worst shift +0.000 dex -> PASS
+    f_CGM = 0.3, S = 0.06: switch on at r_F: on on on on on on  | worst shift +0.102 dex -> fail
+    f_CGM = 0.3, S = 0.10: switch on at r_F: on on on on on on  | worst shift +0.163 dex -> fail
+    f_CGM = 0.3, S = 0.30: switch on at r_F: on on on on on on  | worst shift +0.419 dex -> fail
+    f_CGM = 0.3, S = 1.00: switch on at r_F: on on on on on on  | worst shift +0.973 dex -> fail
+    f_CGM = 1.0, S = 0.00: switch on at r_F: on on on on on on  | worst shift +0.000 dex -> PASS
+    f_CGM = 1.0, S = 0.06: switch on at r_F: on on on on on on  | worst shift +0.102 dex -> fail
+    f_CGM = 1.0, S = 0.10: switch on at r_F: on on on on on on  | worst shift +0.163 dex -> fail
+    f_CGM = 1.0, S = 0.30: switch on at r_F: on on on on on on  | worst shift +0.419 dex -> fail
+    f_CGM = 1.0, S = 1.00: switch on at r_F: on on on on on on  | worst shift +0.973 dex -> fail
+    detail, M_b = 1e11 canonical, S = 0.06, f_CGM = 0.3: r_F = 38.6 kpc; rho_min = 4.365e-05; disc 1.72e-05 + CGM 4.33e-05 + carrier 6.45e-05 = 1.25e-04 Msun/pc^3 (M_200 = 2.28e+12, c = 3.7)
+  [FAIL] F1 THE FLAGSHIP: on this branch, for every CGM share there is a carrier retention S that keeps the deep-MOND zero point within 0.10 dex at z = 2.5 for M_b = 1e10-1e11, both footings
+         measured: passing S by f_CGM: 0.1: none; 0.3: [0.0]; 1.0: [0.0]
+         reading:  on the matter-only branch the carrier is squeezed from both sides: kept, its gravity moves the zero point; cleared, the outskirts fall below the gate and MOND switches off
+    pre-declared hypothesis (no retention passes for f_CGM <= 0.3; a pass needs the maximal CGM): NOT confirmed; maximal CGM passes at S = [0.0]
+
+==============================================================================================================
+B1-Z1  (reported) the bistable band at r_F, other redshifts and the p = 2, x_c0 = 2 cell
+==============================================================================================================
+    S = 0.00, f_CGM = 0.1, M_b = 1e10.0 canonical: matter-only edge r_m =   18.4 kpc vs r_F =  12.2; rho_matter/rho_min at r_F = 3.14; lower branch on, upper on
+    S = 0.00, f_CGM = 0.1, M_b = 1e10.0 alt      : matter-only edge r_m =   18.4 kpc vs r_F =  11.1; rho_matter/rho_min at r_F = 4.10; lower branch on, upper on
+    S = 0.00, f_CGM = 0.1, M_b = 1e10.5 canonical: matter-only edge r_m =   24.6 kpc vs r_F =  21.7; rho_matter/rho_min at r_F = 1.50; lower branch on, upper on
+    S = 0.00, f_CGM = 0.1, M_b = 1e10.5 alt      : matter-only edge r_m =   24.6 kpc vs r_F =  19.8; rho_matter/rho_min at r_F = 1.97; lower branch on, upper on
+    S = 0.00, f_CGM = 0.1, M_b = 1e11.0 canonical: matter-only edge r_m =   34.6 kpc vs r_F =  38.6; rho_matter/rho_min at r_F = 0.72; lower branch OFF, upper on  <- bistable at r_F: history decides
+    S = 0.00, f_CGM = 0.1, M_b = 1e11.0 alt      : matter-only edge r_m =   34.6 kpc vs r_F =  35.2; rho_matter/rho_min at r_F = 0.96; lower branch OFF, upper on  <- bistable at r_F: history decides
+    S = 0.00, f_CGM = 0.3, M_b = 1e10.0 canonical: matter-only edge r_m =   25.8 kpc vs r_F =  12.2; rho_matter/rho_min at r_F = 5.92; lower branch on, upper on
+    S = 0.00, f_CGM = 0.3, M_b = 1e10.0 alt      : matter-only edge r_m =   25.8 kpc vs r_F =  11.1; rho_matter/rho_min at r_F = 7.40; lower branch on, upper on
+    S = 0.00, f_CGM = 0.3, M_b = 1e10.5 canonical: matter-only edge r_m =   32.6 kpc vs r_F =  21.7; rho_matter/rho_min at r_F = 2.82; lower branch on, upper on
+    S = 0.00, f_CGM = 0.3, M_b = 1e10.5 alt      : matter-only edge r_m =   32.6 kpc vs r_F =  19.8; rho_matter/rho_min at r_F = 3.56; lower branch on, upper on
+    S = 0.00, f_CGM = 0.3, M_b = 1e11.0 canonical: matter-only edge r_m =   43.3 kpc vs r_F =  38.6; rho_matter/rho_min at r_F = 1.39; lower branch on, upper on
+    S = 0.00, f_CGM = 0.3, M_b = 1e11.0 alt      : matter-only edge r_m =   43.3 kpc vs r_F =  35.2; rho_matter/rho_min at r_F = 1.77; lower branch on, upper on
+    S = 0.06, f_CGM = 0.3, M_b = 1e10.0 canonical: matter-only edge r_m =   35.7 kpc vs r_F =  12.2; rho_matter/rho_min at r_F = 11.10; lower branch on, upper on
+    S = 0.06, f_CGM = 0.3, M_b = 1e10.0 alt      : matter-only edge r_m =   35.7 kpc vs r_F =  11.1; rho_matter/rho_min at r_F = 13.52; lower branch on, upper on
+    S = 0.06, f_CGM = 0.3, M_b = 1e10.5 canonical: matter-only edge r_m =   45.2 kpc vs r_F =  21.7; rho_matter/rho_min at r_F = 5.50; lower branch on, upper on
+    S = 0.06, f_CGM = 0.3, M_b = 1e10.5 alt      : matter-only edge r_m =   45.2 kpc vs r_F =  19.8; rho_matter/rho_min at r_F = 6.78; lower branch on, upper on
+    S = 0.06, f_CGM = 0.3, M_b = 1e11.0 canonical: matter-only edge r_m =   59.2 kpc vs r_F =  38.6; rho_matter/rho_min at r_F = 2.86; lower branch on, upper on
+    S = 0.06, f_CGM = 0.3, M_b = 1e11.0 alt      : matter-only edge r_m =   59.2 kpc vs r_F =  35.2; rho_matter/rho_min at r_F = 3.56; lower branch on, upper on
+  [PASS] B1 (reported) the number of (retention, CGM, mass, footing) cases in which r_F lies in the switch's bistable band (lower branch off, upper branch on) -- the cases where formation history, not the static equations, decides
+         measured: 2/18 cases: S=0.0/f=0.1/1e11.0/can, S=0.0/f=0.1/1e11.0/alt
+    cell (p = 1.0, x_c0 = 2.5), z = 2.0, S = 0.06, f_CGM = 0.3: on at r_F on on on on on on; worst shift +0.093
+    cell (p = 1.0, x_c0 = 2.5), z = 2.0, S = 1.00, f_CGM = 0.3: on at r_F on on on on on on; worst shift +0.922
+    cell (p = 1.0, x_c0 = 2.5), z = 2.5, S = 0.06, f_CGM = 0.3: on at r_F on on on on on on; worst shift +0.102
+    cell (p = 1.0, x_c0 = 2.5), z = 2.5, S = 1.00, f_CGM = 0.3: on at r_F on on on on on on; worst shift +0.973
+    cell (p = 1.0, x_c0 = 2.5), z = 3.0, S = 0.06, f_CGM = 0.3: on at r_F on on on on on on; worst shift +0.109
+    cell (p = 1.0, x_c0 = 2.5), z = 3.0, S = 1.00, f_CGM = 0.3: on at r_F on on on on on on; worst shift +1.020
+    cell (p = 2.0, x_c0 = 2.0), z = 2.0, S = 0.06, f_CGM = 0.3: on at r_F on on on on OFF on; worst shift -0.830
+    cell (p = 2.0, x_c0 = 2.0), z = 2.0, S = 1.00, f_CGM = 0.3: on at r_F on on on on on on; worst shift +0.922
+    cell (p = 2.0, x_c0 = 2.0), z = 2.5, S = 0.06, f_CGM = 0.3: on at r_F on on OFF OFF OFF OFF; worst shift -0.853
+    cell (p = 2.0, x_c0 = 2.0), z = 2.5, S = 1.00, f_CGM = 0.3: on at r_F on on on on on on; worst shift +0.973
+    cell (p = 2.0, x_c0 = 2.0), z = 3.0, S = 0.06, f_CGM = 0.3: on at r_F OFF OFF OFF OFF OFF OFF; worst shift -0.829
+    cell (p = 2.0, x_c0 = 2.0), z = 3.0, S = 1.00, f_CGM = 0.3: on at r_F on on on on OFF OFF; worst shift +1.002
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  On the matter-only switch the particle-mesh construction runs, the flagship at z = 2.5 needs the carrier gone (its
+  gravity costs up to +0.97 dex when intact) AND enough circumgalactic matter at r_F to keep the gate open
+  (rho_min = 4.36e-05 Msun/pc^3 at the linear cell). Passing retentions by CGM share: {0.1: [], 0.3: [0.0], 1.0: [0.0]}.
+  The upper branch (DE1/DE2's) keeps MOND on there; the two branches differ exactly at the flagship radius, so which
+  one a galaxy occupies -- a question of formation history, not of the static equations -- decides the flagship.
+
+  4/5 checks pass; load-bearing failures: 1; wrote DE4_flagship_matter_only_switch_results.json   [0s]

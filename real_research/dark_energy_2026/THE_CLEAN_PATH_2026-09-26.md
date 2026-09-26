@@ -102,6 +102,15 @@ transfers); the bound T_max(k), s² and r_x are exported so the particle-mesh co
 against its own transfer. That re-run is under way in the construction's own lanes (L388+), after L381's Harvey verdict
 was withdrawn for mixing gate cells (commit 3151d88f2).
 
+**DE4** (`DE4_flagship_matter_only_switch.py`, 4/5 with F1's failure recorded; MUTATE, the upper branch, passes). DE1/DE2
+priced the switch on its upper branch (the switch variable reads baryons + phantom, as the leaf curvature does when
+lensing = dynamics); the particle-mesh construction runs the matter-only lower branch. On that branch the flagship needs
+two things at once at z = 2.5: the carrier essentially gone (intact it costs +0.97 dex; L380's 6% residue +0.10 dex) and
+enough circumgalactic matter at the flagship radius to hold the gate open (ρ_min = 4.37×10⁻⁵ M☉/pc³ at the linear cell),
+which the record's CGM convention supplies at ≳ 30% of its maximal share. Below that the massive flagship galaxies sit in
+the switch's bistable band: MOND on the upper branch, Newtonian on the lower. Which branch a galaxy occupies is a
+formation-history question — one more reason the switch has to be a varied action term with its own dynamics (step 3).
+
 ## 4. The theory as it stands, sector by sector
 
 | sector | what is built | standing | open |
