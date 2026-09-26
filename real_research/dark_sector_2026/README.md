@@ -309,3 +309,33 @@ C1: the (7, 11) reruns reproduce L366's and L367's committed numbers **exactly**
 2. **The gate that fails at every kick is G3, a mesh proxy.** It is the carrier in cells with 1 + δ > 50 at z = 2, on a 0.39 Mpc/h mesh. Its stated purposes were RC100's dark fractions inside R_e and KiDS's 20–30% of a ΛCDM halo (L365). Both have since been resolved and pass: L376 finds 0.000 inside R_e at z = 1–2, and L375 finds KiDS −11.5/−8.4. If G3 were retired in favour of those resolved gates, the pooled sample would pass S₈, the forest, X-COP and shear at 600–650 km/s. **That retirement is a judgement made after seeing G3 fail, not a result.** It needs its own pre-declared test before anyone may claim a window.
 
 MUTATE was not run. The main run's hypotheses were already falsified (rc = 1), so a control that forces the window closed has nothing to discriminate. The C1 reproduction is the control that matters here, and it is exact.
+
+## L377 — the full construction on the mesh: the phantom RAISES cluster retention (hypothesis falsified, in sign)
+
+`L377_full_construction_pm.py` (4/5, **rc = 1: the pre-declared hypothesis is falsified**; `MUTATE=1`, phantom off, reproduces L369 exactly, shift ×1.000, and fails R1 as designed). This is the first run of the whole construction on the mesh, on L366's box and seeds:
+- L359's p = 2 vacuum-gated switch, on the matter-only branch;
+- L340's ν_mono, rebuilt identically (C2: zero deviation from L352's table);
+- a switched QUMOND phantom sourced by the baryons' Newtonian field and **felt by the baryons**;
+- a carrier that feels Newtonian gravity only (L353);
+- a trigger reading the **phantom-inclusive** x̃ (L342/L357).
+
+C3 checks the mesh QUMOND on a spherical blob inside a switched sphere: it returns ν·g_N to within 4.5 / 2.5 / 1.2% at 1 / 2 / 3 Mpc/h. C1 reproduces L366's ΛCDM exactly.
+
+**History.** The first design asked whether the seed-(7, 11) window survives the phantom. L369 then showed that window is a one-realisation artefact. The main run was stopped 80 s in, before any result, and the lane was redesigned. It now measures each gate's shift against L369's matched Newtonian runs. The hypothesis, set before the rerun, was that the phantom lowers cluster retention at every kick.
+
+| v_k | X-COP ε: Newtonian → full | cleared (z = 2) | S₈ | pooled estimate (shifts applied to L369's pooled gates) |
+|---|---|---|---|---|
+| 600 | 0.495 → 0.527 (×1.06) | 0.335 → 0.335 | 0.963 → 0.969 | cleared 0.51 ✗, ε 0.54 |
+| 625 | 0.401 → 0.446 (×1.11) | 0.264 → 0.264 | 0.959 → 0.965 | cleared 0.44 ✗, ε 0.49 |
+| 650 | 0.318 → 0.358 (×1.12) | 0.223 → 0.223 | 0.955 → 0.961 | cleared 0.39 ✗, ε 0.38 |
+| 675 | 0.239 → 0.288 (×1.20) | 0.195 → 0.195 | 0.950 → 0.956 | cleared 0.34 ✗, ε 0.32 |
+| 700 | 0.212 → 0.258 (×1.22) | 0.171 → 0.171 | 0.945 → 0.951 | cleared 0.31 ✗, ε 0.28 ✗ (both within 0.01) |
+
+- **The hypothesis is falsified in sign: the phantom *raises* cluster retention by 6–22%.**
+  - The phantom in the trigger alone does almost nothing: the trigger-only run at 650 gives ε = 0.32 against 0.318. Cluster cores are already far above x̃ = 5.
+  - The rise comes from the **baryons feeling the phantom**. They settle deeper into cluster wells, and that deepens the Newtonian potential the carrier feels.
+  - L376's worry that the phantom-inclusive trigger lowers cluster retention was wrong in effect. I27's theorem (more cells fire) is still true; it just doesn't matter in cluster cores.
+- **Clearing at z = 2 is untouched**, identical to four digits: the p = 2 gate keeps the phantom off at z = 2.
+- **S₈ rises by 0.6%.** With no decay, the phantom alone gives S₈ ×1.009 and fails cosmic shear, as expected.
+- **Single-box (7, 11) window: 625–675 km/s on both footings.** L369 shows single-box windows do not survive pooling.
+- **The pooled estimate with the shifts applied is still no window.** Clearing, the G3 mesh proxy, stays the blocker. At 700 km/s both clearing (0.31) and X-COP (0.28) miss by under 0.01, so the construction pushes the pinch toward closing without opening it.

@@ -1,0 +1,103 @@
+
+L377 -- THE FULL CONSTRUCTION IN THE PARTICLE-MESH COSMOLOGY: the switched phantom sourced by the baryons, felt by the
+baryons, and read by the carrier's trigger -- does the virialization-triggered carrier's window survive?
+
+WHY.  L365-L369 ran the carrier in a NEWTONIAN particle-mesh cosmology with the least-trigger estimate x~ >= (3/2) Omega_m(a)
+delta_matter (L357/L365's own words): the geometric switch variable x~ = 9(R3 + sigma^2)/(4K^2) of C-H/K's CMC-stiff
+foliation (K = 3H) has R3 = 16 pi G rho_dyn with rho_dyn the PHANTOM-INCLUSIVE density (L342).  The phantom only adds
+decays.  Inside galaxies that can only help (L376), but around clusters it lowers the carrier's retention, and the window's
+X-COP margin is thin (median 0.32 against 0.286, L366).  The baryons' own MOND boost inside bound regions was also never
+modelled.  This lane puts both in.
+
+THE CONSTRUCTION ON THE MESH (one realisation, L366's box and seeds (7, 11), 100 Mpc/h, 256^3, 192^3 per species):
+  * the kernel reads the BARYONS' Newtonian field only (kernel-invisible carrier, L353): g_N,b = -(1/a) grad phi_b with
+    lap phi_b = (3/2) Omega_m delta_b / a (the code's own normalisation, peculiar field, as Llinares/Angus);
+  * L359's vacuum-gated switch, the p = 2, x_c0 = 2 cell: f = Theta(u - 2), u = x~_m [Omega_L(a)/Omega_L0]^2, with x~_m the
+    matter-only switch variable (the lower branch of L342's bistability, stated);
+  * L340's monotone kernel nu_mono (L352's table, rebuilt identically and checked): the phantom field is the curl-free
+    part of f (nu - 1) g_N,b (QUMOND): lap Phi_ph = -a div[f (nu - 1) g_N,b]; the phantom's switch edge is Gauss-
+    compensated automatically (the divergence of the truncated field, L352);
+  * baryons feel grad(phi + Phi_ph); the carrier feels grad(phi) only (L353's reciprocity);
+  * the trigger reads the geometric variable x~ = (3/2) Omega_m(a) (delta_matter + delta_ph), delta_ph = -(2a^2/(3 Omega_m))
+    div[f (nu - 1) g_N,b] (the shear, which only adds, still dropped); decay at Gamma = 10 H above x_c = 5, kick v_k (L365).
+RUNS: LCDM (no phantom, no decay); the phantom with no decay (the boost's own effect); the full construction at v_k = 600,
+625, 650, 675, 700 km/s (canonical a_0) and 625, 650, 675 (alternative a_0); the trigger-only variant at 650 (phantom in
+the trigger, baryons Newtonian).  Gates exactly as L366/L367/L369 compute them (S_8, forest, clearing, two-sided X-COP,
+cosmic shear with the p = 2 cell); KiDS is not re-scored here (L375: resolved retention passes, and the phantom-inclusive
+trigger only lowers retention).
+PRE-DECLARED (before the run): H: at every kick 600-700 km/s (canonical footing) the phantom-inclusive construction LOWERS
+the median cluster retention below L369's Newtonian value for the same realisation (seeds (7, 11)): the least-trigger
+estimate overstated cluster retention.
+HISTORY.  The first design of this lane asked whether the seed-(7, 11) window survives the phantom.  L369 then showed that
+window is a one-realisation artefact (no pooled window over three boxes), so the design was changed BEFORE any main-run
+result was seen: the main run was stopped 80 s in, and the first design's control run (v_k = 0) was not used.  The lane now
+measures the phantom's DIFFERENTIAL effect on every gate at fixed seeds (the difference is far less noisy than the absolute
+gates), against L369's matched Newtonian runs.
+CHECKS
+  C1 CONTROL: the no-phantom LCDM run reproduces L366's committed LCDM sigma_8 exactly (same code path, same seeds).
+  C2 CONTROL: the rebuilt nu_mono table equals L352's nu_vec (loaded unedited) at 60 test points.
+  C3 CONTROL (the mesh QUMOND, signs and units): an isolated spherical baryon blob inside a switched sphere gives
+     |g_N + g_ph| = nu_mono(g_N/a_0) g_N to within 10% at r = 1, 2, 3 Mpc/h (spherical symmetry makes QUMOND's projection
+     exact; the switch edge's compensation leaves the interior field untouched).
+  R1 = H.  W (informational): the gate table and each gate's shift against L369 (S_8, forest, clearing, X-COP, shear), the
+     phantom's own effect without decay, the trigger-only split, both footings, and an ESTIMATE of the pooled three-box
+     gates with the seed-(7, 11) shifts applied to L369's pooled values (labelled as an estimate, not a run).
+MUTATE=1: the phantom is switched off in the canonical kicked runs (they become L369's Newtonian runs): the shifts vanish and
+R1 must FAIL (rc = 1).
+L377_POOL sets the pool size (default 6).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L377_full_construction_pm.py
+
+
+==============================================================================================================
+C2, C3  CONTROLS ON THE KERNEL AND THE MESH QUMOND
+==============================================================================================================
+  [PASS] C2 the rebuilt nu_mono table equals L352's nu_vec (loaded unedited) at 60 points
+         measured: max relative deviation 0.0e+00
+    r = 1 Mpc/h: |g_N + g_ph| / (nu g_N) = 0.955;  mesh g_N / (G M / r^2) = 1.037
+    r = 2 Mpc/h: |g_N + g_ph| / (nu g_N) = 0.975;  mesh g_N / (G M / r^2) = 1.017
+    r = 3 Mpc/h: |g_N + g_ph| / (nu g_N) = 0.988;  mesh g_N / (G M / r^2) = 1.004
+  [PASS] C3 the mesh QUMOND returns nu_mono(g_N/a_0) g_N for a spherical baryon blob in a switched sphere (within 10% at r = 1, 2, 3 Mpc/h) and the mesh g_N matches G M/r^2 (within 10%): signs and units
+         measured: [{'r': 1.0, 'ratio': 0.9549865737177116, 'gN_mesh_over_analytic': 1.0373347366778531}, {'r': 2.0, 'ratio': 0.9752894743444142, 'gN_mesh_over_analytic': 1.0167997621349596}, {'r': 3.0, 'ratio': 0.9876497998607445, 'gN_mesh_over_analytic': 1.0044313237117348}]
+  MUTATE: the phantom is switched off in the canonical kicked runs
+  6 runs, pool 3
+  6 runs done in 5382s
+
+==============================================================================================================
+C1  CONTROL: the no-phantom LCDM run reproduces L366
+==============================================================================================================
+  [PASS] C1 the no-phantom LCDM run reproduces L366's committed LCDM sigma_8 (same code path, same seeds)
+         measured: relative deviation 0.0e+00
+    full_can_v600  : S8 0.963 | forest 0.042 | cleared 0.33 X | X-COP eps 0.50 | shear ok (T(1) 0.647) | switched 0.000, decayed 0.54  =>  no
+    full_can_v625  : S8 0.959 | forest 0.042 | cleared 0.26 | X-COP eps 0.40 | shear ok (T(1) 0.615) | switched 0.000, decayed 0.53  =>  ALL PASS
+    full_can_v650  : S8 0.955 | forest 0.043 | cleared 0.22 | X-COP eps 0.32 | shear ok (T(1) 0.585) | switched 0.000, decayed 0.53  =>  ALL PASS
+    full_can_v675  : S8 0.950 | forest 0.044 | cleared 0.19 | X-COP eps 0.24 UNDER | shear ok (T(1) 0.555) | switched 0.000, decayed 0.53  =>  no
+    full_can_v700  : S8 0.945 | forest 0.044 | cleared 0.17 | X-COP eps 0.21 UNDER | shear ok (T(1) 0.527) | switched 0.000, decayed 0.53  =>  no
+  [PASS] W (informational) the gate table: the phantom's own effect, the full construction on both footings, trigger-only
+         measured: see table
+         reading:  reported either way
+
+==============================================================================================================
+SHIFTS AGAINST L369's MATCHED NEWTONIAN RUNS (same seeds), AND A POOLED ESTIMATE
+==============================================================================================================
+    v600: X-COP eps 0.495 -> 0.495 (x1.000) | cleared 0.335 -> 0.335 | S8 0.963 -> 0.963 | forest 0.042 -> 0.042   ||  pooled ESTIMATE: S8 0.960, cleared 0.51, eps 0.51 -> no
+    v625: X-COP eps 0.401 -> 0.401 (x1.000) | cleared 0.264 -> 0.264 | S8 0.959 -> 0.959 | forest 0.042 -> 0.042   ||  pooled ESTIMATE: S8 0.955, cleared 0.44, eps 0.44 -> no
+    v650: X-COP eps 0.318 -> 0.318 (x1.000) | cleared 0.223 -> 0.223 | S8 0.955 -> 0.955 | forest 0.043 -> 0.043   ||  pooled ESTIMATE: S8 0.951, cleared 0.39, eps 0.34 -> no
+    v675: X-COP eps 0.239 -> 0.239 (x1.000) | cleared 0.195 -> 0.195 | S8 0.950 -> 0.950 | forest 0.044 -> 0.044   ||  pooled ESTIMATE: S8 0.946, cleared 0.34, eps 0.27 -> no
+    v700: X-COP eps 0.212 -> 0.212 (x1.000) | cleared 0.171 -> 0.171 | S8 0.945 -> 0.945 | forest 0.044 -> 0.044   ||  pooled ESTIMATE: S8 0.940, cleared 0.31, eps 0.23 -> no
+
+==============================================================================================================
+R1  THE HYPOTHESIS (set before the run; see HISTORY)
+==============================================================================================================
+  [FAIL] R1 = H: at every kick 600-700 km/s the phantom-inclusive construction lowers the median cluster retention below L369's Newtonian value for the same seeds
+         measured: v600: +0.000; v625: +0.000; v650: +0.000; v675: +0.000; v700: +0.000
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  Full construction on the mesh (switched nu_mono phantom from the baryons, felt by the baryons, read by the trigger):
+  seed-(7, 11) window ['full_can_v625', 'full_can_v650'] (one realisation -- L369: such windows do not survive pooling); pooled estimate with the
+  shifts applied: none.  LIMITS: one realisation, 0.39 Mpc/h mesh (galaxy phantoms sub-cell), the switch on the
+  matter-only branch, the shear dropped from x~, the trigger posited (no action).
+
+  4/5 checks pass; load-bearing failures: 1; wrote L377_full_construction_pm_results_MUTATE.json   [5399s]
