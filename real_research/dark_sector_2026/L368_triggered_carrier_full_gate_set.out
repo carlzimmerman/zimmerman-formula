@@ -1,0 +1,72 @@
+
+L368 -- THE VIRIALIZATION-TRIGGERED CARRIER AGAINST THE RECORD'S FULL DARK-SECTOR GATE SET: forest, S_8, halo clearing,
+X-COP (two-sided), cosmic shear with the phantom, and KiDS galaxy-galaxy lensing -- one verdict from committed results.
+
+WHAT IS ASSEMBLED (nothing re-simulated; every number is read from a committed results file or recomputed with committed
+machinery, unedited):
+  * L366 (committed): at x_c = 5 and v_k in {550, 600, 650, 700, 850} km/s in a 100 Mpc/h box -- S_8 (matter), the
+    forest (FGPA 1D flux power, z = 2-3), halo clearing (dense-cell carrier at z = 2) and the two-sided X-COP gate on
+    22 cluster-mass halos (L354's response).
+  * L367 (committed): the carrier's nonlinear matter transfer T(k) at z = 0.5 against cosmic shear's bound T_max(k)
+    (L364: L363's region kernel on GP3's mock), for the kernel switch cells p = 1 (x_c0 = 1.5) and p = 2 (x_c0 = 2.0).
+  * KiDS-1000 (this lane): L360's machinery (L352's switched, Gauss-compensated phantom + the carrier's halo; loaded
+    unedited, as L364 loads it) with the carrier's surviving fraction around galaxy lenses S taken from L367's measured
+    retention at z = 0.3 within 0.5 Mpc/h of 1e12-3e13 Msun/h peaks (sub-cell at this mesh: indicative; the verdict is
+    also shown over S = 0-0.3).  Gate: Delta chi^2 <= +4 against the unswitched model, both footings (L352/L360/L364).
+PRE-DECLARED (the record's thresholds, unchanged): S_8 >= 0.922 x LCDM (strict) or 0.899 (alt); forest <= 10%; halo
+clearing <= 0.30; X-COP two-sided; cosmic shear T <= T_max on k = 0.1-1 h/Mpc, both footings; KiDS Delta chi^2 <= +4, both
+footings.
+CHECKS
+  C1 CONTROL: with no carrier halo (S = 0) the KiDS machinery reproduces L364's no-carrier behaviour (the switched phantom
+     alone), and the unswitched baseline gives Delta chi^2 = 0 against itself.
+  W1 THE FULL WINDOW: v_k = 650 km/s with the p = 2 kernel switch passes EVERY gate on both footings.
+  W2 (informational) the gate-by-gate table for every kick and both switch cells.
+MUTATE=1 replaces the window's numbers by the no-kick limit (T = 1, S = 1, cluster retention 1: nothing leaves): W1 must
+FAIL (rc = 1).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L368_triggered_carrier_full_gate_set.py
+
+
+==============================================================================================================
+C1  CONTROL
+==============================================================================================================
+    S = 0 (switched phantom alone): p=1, x_c0=1.5: canonical -15.9, alt -11.7; p=2, x_c0=2.0: canonical -1.5, alt -1.2
+  [PASS] C1 the unswitched baseline gives Delta chi^2 = 0 against itself on both footings (the KiDS machinery is wired as L364's)
+         measured: {'canonical': 0.0, 'alt': 0.0}
+
+==============================================================================================================
+THE GATE TABLE
+==============================================================================================================
+    v_k  600 p=1, x_c0=1.5: S8 0.963 ok | forest 0.042 | cleared 0.33 | X-COP eps 0.50 ok | shear FAIL | KiDS (S = 0.037) -21.3/-14.9 ok  =>  window: no
+    v_k  600 p=2, x_c0=2.0: S8 0.963 ok | forest 0.042 | cleared 0.33 | X-COP eps 0.50 ok | shear ok | KiDS (S = 0.037) -6.0/-2.0 ok  =>  window: no
+    v_k  650 p=1, x_c0=1.5: S8 0.955 ok | forest 0.043 | cleared 0.22 | X-COP eps 0.32 ok | shear FAIL | KiDS (S = 0.029) -19.5/-12.5 ok  =>  window: no
+    v_k  650 p=2, x_c0=2.0: S8 0.955 ok | forest 0.043 | cleared 0.22 | X-COP eps 0.32 ok | shear ok | KiDS (S = 0.029) -5.5/-2.2 ok  =>  ALL PASS
+    v_k  700 p=1, x_c0=1.5: S8 0.945 ok | forest 0.044 | cleared 0.17 | X-COP eps 0.21 FAIL | shear ok | KiDS (S = 0.024) -18.1/-12.5 ok  =>  window: no
+    v_k  700 p=2, x_c0=2.0: S8 0.945 ok | forest 0.044 | cleared 0.17 | X-COP eps 0.21 FAIL | shear ok | KiDS (S = 0.024) -5.1/-2.2 ok  =>  window: no
+  [PASS] W2 (informational) the gate table for every kick in both L366 and L367, both kernel switch cells
+         measured: see table
+         reading:  reported either way
+
+==============================================================================================================
+THE KiDS DEPENDENCE ON THE SURVIVING FRACTION (S is sub-cell-measured)
+==============================================================================================================
+    p=1, x_c0=1.5: S=0.00: -15.9/-11.7, S=0.03: -19.7/-12.5, S=0.05: -24.1/-19.4, S=0.10: -33.5/-29.0, S=0.20: -43.5/-39.5, S=0.30: -40.4/-36.1
+    p=2, x_c0=2.0: S=0.00: -1.5/-1.2, S=0.03: -5.6/-2.2, S=0.05: -8.2/-1.4, S=0.10: -8.5/-4.9, S=0.20: +2.4/+5.4, S=0.30: -2.7/+4.9
+
+==============================================================================================================
+W1  THE FULL WINDOW
+==============================================================================================================
+  [PASS] W1 THE FULL WINDOW: v_k = 650 km/s with the p = 2 kernel switch passes EVERY gate on both footings -- S_8 (strict), the forest, halo clearing, X-COP (two-sided), cosmic shear with the phantom, and KiDS
+         measured: S8 True, forest True, cleared True, X-COP True, shear True, KiDS {'canonical': -5.513759282803818, 'alt': -2.1655296889172178}
+         reading:  every threshold is the record's; nothing was tuned to this cell
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  The virialization-triggered carrier (x_c = 5, Gamma = 10 H, v_k ~ 650 km/s) with C-H/K's p = 2 kernel switch passes the
+  record's full dark-sector gate set at the precision of these tools.  What is NOT established: an action for the trigger
+  (a decay rate tied to the foliation's bound-region scalar is posited, not derived); RC100's dark fractions at z ~ 1-2.5
+  beyond the z = 2 halo-clearing proxy; galaxy-scale retention (sub-cell here); the MOND boost of baryons inside halos in
+  the cosmological runs; convergence beyond one realisation and a 100 Mpc/h box.
+
+  3/3 checks pass; load-bearing failures: 0; wrote L368_triggered_carrier_full_gate_set_results.json   [2s]

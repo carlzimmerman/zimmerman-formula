@@ -191,3 +191,44 @@ It works for two reasons. Rotation curves are measured at x̃ ~ 10⁴–10⁵ wh
 - KiDS galaxy-scale retention at z ≈ 0.3 (L355 wants 20–30% of a ΛCDM halo);
 - RC100's dark fractions at z ≈ 1–2.5;
 - an action for the trigger, a decay rate tied to the foliation's bound-region scalar.
+
+## L367 — cosmic shear for the triggered carrier: passes with the p = 2 kernel switch
+
+`L367_triggered_carrier_cosmic_shear.py` (3/3; `MUTATE=1`, v_k = 0, fails S1, rc = 1). This reruns L366's box (same phases) to z = 0.5 and measures the carrier's **nonlinear** matter transfer T(k) = √(P_model/P_ΛCDM). T is compared with cosmic shear's bound T_max(k) from L364 (L363's region kernel on GP3's mock, R ≤ 1.2 on k = 0.1–1 h/Mpc, both footings).
+
+| v_k (km/s) | T at k = 0.1 / 0.3 / 0.5 / 1.0 h/Mpc | p = 1 switch | p = 2 switch |
+|---|---|---|---|
+| 600 | 0.993 / 0.942 / 0.862 / 0.647 | fails | passes |
+| **650** | **0.992 / 0.928 / 0.831 / 0.585** | **fails** (alt, +0.04) | **passes** (margin 0.10) |
+| 700 | 0.990 / 0.913 / 0.796 / 0.527 | passes | passes |
+
+The hypothesis was set before the run: at 650 km/s, p = 2 passes and p = 1 fails. It was confirmed. The ΛCDM twin gives T = 1 exactly.
+
+**Informational.** Carrier retention at z = 0.3, within 0.5 Mpc/h of 10¹²–3×10¹³ M☉/h peaks, is 0.02–0.04. It is 0.26–0.44 for 3×10¹³–10¹⁴ peaks. Galaxy halos are sub-cell at this mesh.
+
+## L368 — the full gate set: one cell passes everything
+
+`L368_triggered_carrier_full_gate_set.py` (3/3; `MUTATE=1`, the no-kick limit, fails W1, rc = 1). Nothing is re-simulated. The script assembles the committed L366 and L367 numbers and adds KiDS with L360's machinery, loaded unedited: L352's switched phantom plus the carrier's halo, scaled by L367's measured galaxy-peak retention S. Every threshold is the record's.
+
+| v_k | switch | S₈ | forest | cleared | X-COP ε | shear | KiDS Δχ² (can/alt) | all |
+|---|---|---|---|---|---|---|---|---|
+| 600 | p = 2 | 0.963 | 4.2% | 0.33 ✗ | 0.50 | ✓ | −6.0/−2.0 | no |
+| **650** | **p = 2** | **0.955** | **4.3%** | **0.22** | **0.32** | **✓** | **−5.5/−2.2** | **yes** |
+| 650 | p = 1 | 0.955 | 4.3% | 0.22 | 0.32 | ✗ | −19.5/−12.5 | no |
+| 700 | p = 2 | 0.945 | 4.4% | 0.17 | 0.21 ✗ (undershoot) | ✓ | −5.1/−2.2 | no |
+
+**v_k = 650 km/s with the p = 2 switch passes every gate on both footings:** S₈ (strict), the forest, halo clearing, the two-sided X-COP gate, cosmic shear with the phantom, and KiDS.
+
+**How narrow the window is.**
+- It is one grid cell. 600 fails clearing and 700 undershoots X-COP. The kick grid is 50 km/s.
+- KiDS is **not monotone in S** for p = 2: +2.4/+5.4 at S = 0.2 (fails on the alternative footing), −8.5/−4.9 at S = 0.1.
+- The pass therefore needs galaxy-scale retention ≲ 0.1. That is sub-cell here: S = 0.029 is measured at 0.39 Mpc/h mesh.
+
+**Not established.**
+- An action for the trigger (the decay rate is posited, not derived).
+- RC100 beyond the z = 2 clearing proxy.
+- Resolved galaxy retention.
+- The MOND boost of baryons in halos.
+- More than one realisation of one 100 Mpc/h box.
+
+This is a candidate window at PM resolution, not a solved dark sector.

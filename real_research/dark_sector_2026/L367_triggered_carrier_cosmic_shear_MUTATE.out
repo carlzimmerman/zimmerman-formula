@@ -1,0 +1,77 @@
+
+L367 -- COSMIC SHEAR FOR THE VIRIALIZATION-TRIGGERED CARRIER: does L366's joint window survive the gate that closed the
+parallel constructions (L363, L364)?
+
+WHY.  L366 found a joint window for the virialization-triggered carrier (x_c = 5, v_k ~ 650 km/s): S_8 (matter only),
+the forest, halo clearing and the two-sided X-COP gate.  But lensing sees the MOND PHANTOM as well as matter.  L363
+showed the bound-region phantom ADDED to a full matter field fails cosmic shear; L364 showed a kicked, free-streaming
+carrier can hand its small-scale power to the phantom, and wrote the gate as a bound on the total-matter transfer at the
+lens epoch:
+      R(k) = T(k)^2 + 2 r_x(k) T(k) s(k) + s(k)^2 <= 1.2   <=>   T(k) <= T_max(k) = -r_x s + sqrt(r_x^2 s^2 + 1.2 - s^2),
+with s^2 = P_ph/P_NL and r_x the matter-phantom correlation measured by L363's region kernel on GP3's mock (z = 0.5), for
+the two kernel switch cells (p = 1, x_c0 = 1.5; p = 2, x_c0 = 2.0) and both footings.  The phantom depends on the kernel's
+switch only (the carrier is kernel-invisible, L353), so this lane reads L364's committed T_max and measures the carrier's
+T(k) = sqrt(P_model/P_LCDM) at z = 0.5 -- NONLINEAR, from the particle-mesh runs, where L364 had to assume the one-halo
+power scales with the linear transfer.
+
+METHOD: L366's construction and code, unchanged (100 Mpc/h, 256^3 mesh, 192^3 particles per species, x_c = 5, Gamma =
+10 H, same seed), with outputs at z = 0.5 (total-matter P(k) in bins centred on L364's k-grid, +-20%) and z = 0.3 (the
+carrier's retention in low-mass peaks, for the KiDS side).  Runs: LCDM and v_k in {600, 650, 700} km/s.
+PRE-DECLARED
+  * COSMIC SHEAR passes for a kick iff T(k) <= T_max(k) at every k in {0.1, 0.2, 0.3, 0.5, 0.7, 1.0} h/Mpc for at least one
+    switch cell, on both footings.
+  * HYPOTHESIS (set before the run): it passes with the p = 2 switch cell and fails with p = 1.
+CHECKS
+  C1 CONTROL: LCDM against itself gives T = 1 exactly.
+  S1 THE GATE AT THE WINDOW (v_k = 650): as hypothesised.
+  S2 (informational) retention of the carrier at z = 0.3 within 0.5 Mpc/h of group- and galaxy-mass peaks (KiDS's side;
+     galaxy halos are sub-cell at this mesh, so this is indicative only).
+MUTATE=1: v_k = 0 (the decayed carrier stays and keeps clustering: T ~ 1): the p = 2 pass must FAIL (rc = 1).
+
+Run from the repository root:  python3 real_research/dark_sector_2026/L367_triggered_carrier_cosmic_shear.py
+
+  MUTATE: v_k = 0 in the window runs
+  5 runs done in 2796s
+
+==============================================================================================================
+CONTROL
+==============================================================================================================
+  [PASS] C1 LCDM against an identical LCDM run gives T(k) = 1 exactly (same phases, deterministic code)
+         measured: max |T - 1| = 0.0e+00
+
+==============================================================================================================
+THE TRANSFER AT z = 0.5 vs WHAT COSMIC SHEAR ALLOWS (L364's T_max)
+==============================================================================================================
+    T_max (L364): p=1, x_c0=1.5/canonical: 0.1:1.09, 0.2:1.07, 0.3:1.04, 0.5:0.92, 0.7:0.77, 1.0:0.60; p=1, x_c0=1.5/alt: 0.1:1.09, 0.2:1.06, 0.3:1.03, 0.5:0.91, 0.7:0.74, 1.0:0.54; p=2, x_c0=2.0/canonical: 0.1:1.09, 0.2:1.09, 0.3:1.08, 0.5:1.03, 0.7:0.96, 1.0:0.85; p=2, x_c0=2.0/alt: 0.1:1.09, 0.2:1.08, 0.3:1.07, 0.5:1.02, 0.7:0.95, 1.0:0.83
+    v_k 600: T(k) 0.1:1.000, 0.2:1.000, 0.3:1.000, 0.5:1.000, 0.7:1.000, 1.0:1.000  ->  p=1, x_c0=1.5: FAIL; p=2, x_c0=2.0: FAIL   (worst T - T_max: p=1, x_c0=1.5/canonical: +0.397, p=1, x_c0=1.5/alt: +0.455, p=2, x_c0=2.0/canonical: +0.146, p=2, x_c0=2.0/alt: +0.173)
+    v_k 650: T(k) 0.1:1.000, 0.2:1.000, 0.3:1.000, 0.5:1.000, 0.7:1.000, 1.0:1.000  ->  p=1, x_c0=1.5: FAIL; p=2, x_c0=2.0: FAIL   (worst T - T_max: p=1, x_c0=1.5/canonical: +0.397, p=1, x_c0=1.5/alt: +0.455, p=2, x_c0=2.0/canonical: +0.146, p=2, x_c0=2.0/alt: +0.173)
+    v_k 700: T(k) 0.1:1.000, 0.2:1.000, 0.3:1.000, 0.5:1.000, 0.7:1.000, 1.0:1.000  ->  p=1, x_c0=1.5: FAIL; p=2, x_c0=2.0: FAIL   (worst T - T_max: p=1, x_c0=1.5/canonical: +0.397, p=1, x_c0=1.5/alt: +0.455, p=2, x_c0=2.0/canonical: +0.146, p=2, x_c0=2.0/alt: +0.173)
+
+==============================================================================================================
+S2  THE KiDS SIDE (informational): carrier retention at z = 0.3 near low-mass peaks
+==============================================================================================================
+    v_k 600: retention within 0.5 Mpc/h at z = 0.3 by M(<0.5 Mpc/h): 1e+12-1e+13: 1.00 (n=55), 1e+13-3e+13: 1.00 (n=139), 3e+13-1e+14: 1.00 (n=6), 1e+14-1e+16: - (n=0)
+    v_k 650: retention within 0.5 Mpc/h at z = 0.3 by M(<0.5 Mpc/h): 1e+12-1e+13: 1.00 (n=55), 1e+13-3e+13: 1.00 (n=139), 3e+13-1e+14: 1.00 (n=6), 1e+14-1e+16: - (n=0)
+    v_k 700: retention within 0.5 Mpc/h at z = 0.3 by M(<0.5 Mpc/h): 1e+12-1e+13: 1.00 (n=55), 1e+13-3e+13: 1.00 (n=139), 3e+13-1e+14: 1.00 (n=6), 1e+14-1e+16: - (n=0)
+  [PASS] S2 (informational) the carrier's retention near group- and galaxy-mass peaks at z = 0.3 (KiDS wants ~0.2-0.3 of a LCDM halo, L355; galaxy halos are sub-cell here)
+         measured: v600: {'1e+12-1e+13': (1.0, 55), '1e+13-3e+13': (1.0, 139), '3e+13-1e+14': (1.0, 6), '1e+14-1e+16': (None, 0)}; v650: {'1e+12-1e+13': (1.0, 55), '1e+13-3e+13': (1.0, 139), '3e+13-1e+14': (1.0, 6), '1e+14-1e+16': (None, 0)}; v700: {'1e+12-1e+13': (1.0, 55), '1e+13-3e+13': (1.0, 139), '3e+13-1e+14': (1.0, 6), '1e+14-1e+16': (None, 0)}
+         reading:  reported either way
+
+==============================================================================================================
+S1  THE GATE AT THE WINDOW (v_k = 650)
+==============================================================================================================
+  [FAIL] S1 COSMIC SHEAR AT THE WINDOW (v_k = 650): PASSES with the p = 2 kernel switch and FAILS with p = 1 (both footings) -- the hypothesis set before the run
+         measured: p = 2: FAIL; p = 1: FAIL
+         reading:  T_max from L364 (L363's region kernel on GP3's mock at z = 0.5)
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  The carrier's nonlinear matter transfer at z = 0.5 against cosmic shear's bound (L364):
+  v_k 600: p=1, x_c0=1.5: FAIL; p=2, x_c0=2.0: FAIL
+  v_k 650: p=1, x_c0=1.5: FAIL; p=2, x_c0=2.0: FAIL
+  v_k 700: p=1, x_c0=1.5: FAIL; p=2, x_c0=2.0: FAIL
+  LIMITS: one lens epoch (z = 0.5), P(k) not a projected xi_+-, r_x held at its full-matter value (L364's approximation),
+  100 Mpc/h box (few modes at k = 0.1), one realisation.
+
+  2/3 checks pass; load-bearing failures: 1; wrote L367_triggered_carrier_cosmic_shear_results_MUTATE.json   [2820s]
