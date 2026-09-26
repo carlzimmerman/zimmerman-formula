@@ -1,0 +1,353 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\def\UrlBreaks{\do\/\do\_\do-}
+\setlist{nosep,leftmargin=1.3em}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\sloppy
+\newcommand{\fpath}[1]{\nolinkurl{#1}}
+\newcommand{\hMpc}{\,h\,\mathrm{Mpc}^{-1}}
+\begin{document}
+
+\begin{center}
+{\Large\bfseries A Dark Sector the MOND Kernel Cannot See: Reciprocity, Bound-Region Kernels, and the Cosmic-Shear Pincer}\\[6pt]
+{\small Carl P. Zimmerman (Briar Creek Tech) --- 2026-09-26 --- AI-assisted research programme; not peer reviewed; nothing here is claimed closed.}
+\end{center}
+
+\begin{abstract}
+\noindent The programme's previous two notes found that two relativistic completions of $a_0=\kappa c\sqrt{G\rho_\Lambda}$ fail as built, and they left a specification: the cosmic web and the $z\approx2$--3 intergalactic medium must stay Newtonian, the Mpc-scale lensing around isolated galaxies must be supplied, whatever supplies it must not be MOND-boosted, and the MOND kernel must not read the large-scale field. This note reports the constructions built to that specification and the gates they were put through. Every number comes from a committed script, run on both $a_0$ footings wherever $a_0$ enters unless stated.
+(i)~\emph{Reciprocity.} If each species couples linearly to the fields of a static Lagrangian, the species-response matrix is symmetric. A dark component the kernel cannot see therefore feels Newtonian gravity only. A dark component that feels the baryons' MOND field while its own field stays unboosted has no action: it breaks momentum balance by a factor $\nu\approx r/r_M$.
+(ii)~\emph{A kernel-invisible dark component} exists as a Lagrangian construction, a pair of auxiliary fields that subtracts its potential from the kernel's argument. It leaves the baryons' boost, tracking and modes unchanged, and it predicts a dark-sector violation of the equivalence principle: at $R_{500}$ in X-COP clusters the dark component feels 47\% (37--53\%) less acceleration than the gas.
+(iii)~\emph{Blindness to dark matter is not enough.} A kernel that reads all baryons still feels the web's baryonic field, about 30 times what KiDS-1000 isolated lensing allows. Two kernels blind to the large-scale field are built from actions. One is a region-local QUMOND screened across the inactive web; at its own external field it reproduces isolated MOND on KiDS. Its switch is gated by the vacuum's share of the expansion, which opens the KiDS--forest pincer that closes any constant threshold. The other is a \emph{generated phantom} whose source, not its flux, is switched, so it is not Gauss-cancelled.
+(iv)~\emph{Cosmic shear.} Galaxy--galaxy lensing, a cross-correlation, constrains only the sum of the mass private to each lens and the mass shared with its neighbours; cosmic shear separates them. For both kernels, the private phantom KiDS wants, added to a $\Lambda$CDM-like dark field, raises the lensing power at $k=0.3$--$1\hMpc$ by factors of 1.5--9.
+(v)~\emph{Replacement.} If the dark component converts, at a rate set by $\Omega_\Lambda(z)$, into a hot state that free-streams, the phantom can stand in for its small-scale power. The generated phantom with a 1\,Mpc screening length plus such a component passes KiDS (the record's acceptance), cosmic shear, X-COP, the galaxies' radial acceleration relation, $S_8$ and the Lyman-$\alpha$ forest together on the alternative threshold set. On the strict set only the forest blocks it (4.3--4.7\,keV thermal-relic equivalent, against 5.3\,keV), once the strict $S_8$ floor is corrected to KiDS-Legacy's lower error bar. The window sits at one screening length, and KiDS prefers longer screening than cosmic shear allows: the window cells score $\Delta\chi^2=+19$ to $+21$ against the best realisable lens tested.
+(vi)~\emph{The price is at high redshift.} The components built here are intact at $z\approx2.5$, as the forest requires, and shift the deep-MOND Tully--Fisher zero point there by $+0.8$ to $+1.0$\,dex ($\Lambda$CDM-calibrated halo masses), against $0.00$ for the framework alone. The dark sector and the flagship flat-$a_0(z)$ test pull against each other.
+The dark component is read as a state of the framework's own field, not a new particle. That reading keeps the mass, which clusters and the CMB require, and does not yet supply the hot, multistreaming state the window needs. $\kappa$ is not touched and remains fitted.
+\end{abstract}
+
+\section{The specification, and the gates}\label{sec:spec}
+
+The programme's central relation is $a_0=\kappa c\sqrt{G\rho_\Lambda}$ with $\kappa=\tfrac12$ fitted, not derived [Z26a]. Wherever $a_0$ enters, the lanes run on two footings: canonical $a_0=9.3619\times10^{-11}$\,m\,s$^{-2}$ ($\rho_\Lambda$) and alternative $1.1279\times10^{-10}$\,m\,s$^{-2}$ ($\rho_{\rm crit}$ in place of $\rho_\Lambda$). Pairs written $x/y$ are canonical/alternative, and single-footing numbers are marked. The interpolating function is $\nu_{\rm RAR}(y)=1/(1-e^{-\sqrt y})$ [MS08] or, where the khronometric completion requires a monotone phantom, its variant $\nu_{\rm mono}$, which differs from it by at most 0.0104\,dex in $g_{\rm obs}$ [Z26d].
+
+PAPER32 [Z26d] found that the khronometric completion C-H/K fails cosmology as built, and PAPER33 [Z26e] closed the khronon-as-dark-fluid aether on KiDS for every kinetic function. Together they left five requirements:
+\begin{enumerate}[label=(\roman*)]
+\item the linear web must stay Newtonian ($\sigma_8$), and the $z\approx2$--3 intergalactic medium nearly so;
+\item the Mpc-scale lensing flux around isolated galaxies must be supplied; by Gauss's law that means MOND switched on there, or real mass;
+\item whatever supplies (ii) must not itself be MOND-boosted;
+\item the kernel must not read a $\Lambda$CDM-level large-scale field ($\sim10^{-2}a_0$). KiDS-1000 allows one shared external field of at most $7.2\times10^{-5}/5.2\times10^{-5}\,a_0$ (lane BS2, on the data of [Bro21]);
+\item any switch variable must enter kinetic and gradient terms together ($c_T=1$).
+\end{enumerate}
+PAPER33 named the route that remained: a phantom generated by the baryons, a kernel blind to the large-scale field, and a dark component invisible to the kernel. This note reports that route, built. Everything below is a \emph{construction}: thresholds, exponents and screening lengths are chosen, not derived.
+
+\paragraph{The gates.} Most thresholds were fixed by earlier lanes before the lane that uses them ran. The exceptions are stated: GP3 declared its own cosmic-shear tolerance, L358 fixed the direction of its verdict (F2) after an exploratory run, and L364 R2 records its finding without a pre-set direction. Two threshold sets are used:
+\smallskip
+
+{\footnotesize\centering
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.38\textwidth}>{\raggedright\arraybackslash}p{0.31\textwidth}@{}}
+\toprule
+gate & strict set & alternative set\\
+\midrule
+Lyman-$\alpha$ forest, dark component & $T^2\geq0.9952$ at $z=3$ and 2, at the solver's grid point nearest $k=5\hMpc$ ($4.62\hMpc$): the value for the allowed 5.3\,keV relic [Irs17, Vie05] & $T^2\geq0.9$ (the record's 10\% reading; 1.5\,keV equivalent)\\
+Lyman-$\alpha$ forest, MOND switch & \multicolumn{2}{l}{1D flux power within 10\% of $\Lambda$CDM, $k_\parallel=0.2$--$2\hMpc$, $z=2,3$, two boxes (L347, L358)}\\
+$S_8$ & $\geq0.767$: KiDS-Legacy's $0.815^{+0.016}_{-0.021}$ [Wri25] minus $3\times0.016$ (see \S\ref{sec:replace}) & $\geq0.748$ (DES Y3 + KiDS-1000, $0.790-3\times0.014$ [DK23])\\
+X-COP clusters [Eck19, Ett19] & $|M_{\rm dyn}/M_{\rm HSE}-1|\leq0.2$ at $R_{500}$ (median of 12) & after the measured 6\% non-thermal support\\
+galaxies & \multicolumn{2}{l}{radial-acceleration shift $\leq0.06$\,dex for three hosts (L321)}\\
+linear growth & \multicolumn{2}{l}{$\sigma_8$ within 2\% of $\Lambda$CDM's 0.811}\\
+KiDS-1000 isolated lensing [Bro21] & \multicolumn{2}{l}{$\Delta\chi^2\leq+4$ against isolated MOND with a free two-halo term (L352's acceptance)}\\
+cosmic shear & \multicolumn{2}{l}{$R(k)=P_{\rm lens}/P^{\Lambda{\rm CDM}}_{\rm NL}\leq1.2$ for $k=0.1$--$1\hMpc$ at $z=0.5$ (GP3)}\\
+\bottomrule
+\end{tabular}\par}
+\smallskip
+The cosmic-shear tolerance is loose on purpose: the surveys measure the lensing power at these scales to a few per cent and find it at or below $\Lambda$CDM's [Asg21, Amo22, Sec22, Li23, Dal23]. Two further KiDS references appear below, named where used: a pre-declared $\Delta\chi^2\leq+9$ against isolated MOND without a two-halo term (L355, L361), and the best \emph{realisable} lens tested, an isolated QUMOND lens in one uniform external field (GP2's ``floor'').
+
+\section{Reciprocity: what a component the kernel cannot see must feel}\label{sec:recip}
+
+Let static fields $\psi$ have a Lagrangian $F[\psi]$ that contains every self-interaction (the MOND kernel included), and let each species $s$ couple linearly, $-\int\rho_s\,\Phi_s$ with $\Phi_s=c_s\cdot\psi$. On shell define $W[\rho]=\mathrm{ext}_\psi\{F[\psi]-\sum_s\int\rho_s c_s\cdot\psi\}$. By the envelope theorem $\delta W/\delta\rho_s(x)=-\Phi_s(x)$, so the response of the potential felt by species $s$ to the density of species $t$ is a second derivative of $W$:
+\begin{equation}
+\frac{\delta\Phi_s(x)}{\delta\rho_t(y)}=-\frac{\delta^2W}{\delta\rho_s(x)\,\delta\rho_t(y)}=\frac{\delta\Phi_t(y)}{\delta\rho_s(x)} .
+\end{equation}
+For a quadratic $F=\tfrac12\psi^{\rm T}H\psi$ this is the statement that $\Gamma=B^{\rm T}H^{-1}B$ is symmetric (Lean \texttt{response\_symmetric}).
+Now suppose the dark density $\rho_d$ never enters the kernel's argument and its own field is Newtonian, so that $\delta\Phi_b/\delta\rho_d=G_N$ on every background. By symmetry $\delta\Phi_d/\delta\rho_b=G_N$ on every background too. Integrating from $\rho_b=0$, where nothing is MOND, gives $\Phi_d=G_N\ast(\rho_b+\rho_d)$ exactly: \emph{a component the kernel cannot see feels the Newtonian potential of all matter, and no phantom.}
+
+The statement is elementary; its use is to fix the force law. Lanes L321 and L322 had used an ``additive'' coupling in which the dark component falls in the baryons' full MOND field while the baryons feel its field unboosted. Its response matrix, $\bigl(\begin{smallmatrix}1+C&1\\1+C&1\end{smallmatrix}\bigr)$ with rows ``felt by'' and columns ``sourced by'', is not symmetric for $C\neq0$ (Lean \texttt{additive\_not\_symmetric}), so no Lagrangian produces it. In deep MOND the force a baryonic lump exerts on a dark test mass exceeds the reaction by $\nu$: 2.54, 10.5 and 100.5 at 2, 10 and 100 MOND radii (L353 N2). L322's window rested on that law and is withdrawn; L354 recomputes it (\S\ref{sec:pair}).
+Symmetry does allow partial coupling. A dark component may enter the kernel's argument with any weight, provided it feels the matching phantom; L353's leak below is an example. What symmetry excludes is feeling the boost without sourcing it, or the reverse. Universal coupling, as in L345 and in MOND with sterile neutrinos [Ang09], is the other end of that range.
+\emph{Scope.} The theorem assumes linear couplings. A switch that reads the local density, such as GP1's $w$ or B's switch $f$ below, couples non-linearly: its variation adds forces at region edges on every species. The statements below that a species ``moves in'' a given potential hold away from those edges.
+
+\section{A kernel-invisible dark component (L353--L356)}\label{sec:pair}
+
+In C-H's non-relativistic action [Z26d] add a dark density and a subtraction pair $(v,\lambda)$:
+\begin{equation}
+\mathcal L=-(\rho_b+\rho_d)\Phi-\frac{2\nabla\Phi\!\cdot\!\nabla u-|\nabla u|^2-a_0^2\,q\big(|\nabla S(u-v)|^2/a_0^2\big)}{8\pi G}+\lambda\big(\nabla^2v-4\pi G\rho_d\big),
+\end{equation}
+where $S$ is C-H's heat filter and $q'(s^2)=\nu(s)-1$. The Euler--Lagrange equations (L353 N1, symbolic, arbitrary kernel) are $\nabla^2u=4\pi G(\rho_b+\rho_d)$ and $\nabla^2v=4\pi G\rho_d$, so the kernel reads $u-v=u_b$, the Newtonian potential of the baryons alone. Then $\Phi=u_b+u_d+\Phi_{\rm ph}[u_b]$ and $4\pi G\lambda=-\Phi_{\rm ph}[u_b]$.
+Baryons move in $\Phi$. The dark component couples as $-\rho_d(\Phi+4\pi G\lambda)$ and so moves in $u_b+u_d$, the Newtonian potential of all matter, as reciprocity requires. For a Hernquist galaxy in an NFW halo the numerical residuals are below $10^{-14}$.
+Relativistically the pair is two leafwise elliptic auxiliaries on C-H's preferred leaves, with source $n_\mu n_\nu T_d^{\mu\nu}$. In C-H/K's quadratic block (L353 N3) the baryons' boost and tracking are unchanged, neither species' field has gravitational slip, and the determinant ratio is independent of frequency, so no mode is added. The dark field leaks into the kernel's argument at $\alpha_c/2\sim10^{-9}$ (exactly zero at $\alpha_c=0$).
+
+\paragraph{What it buys at $z=0$ (L354, 3/3).} The programme's $\Lambda$-triggered dark component (lane L319, \S\ref{sec:replace}) had no window under C-H/K's universal coupling (L345). With its orbits Newtonian, as reciprocity requires, it has one on the strict X-COP and $S_8$ thresholds. L354 does not score the forest; the forest column below is L364's value for the same cell.
+\smallskip
+
+{\footnotesize\centering
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+footing, $f_d(0)$, $v_k$ & X-COP $M_{\rm dyn}/M_{\rm HSE}$ (non-thermal corrected) & $S_8$ & galaxies (max shift) & forest $T^2$ (L364)\\
+\midrule
+canonical, 0.8, 1400\,km\,s$^{-1}$ & 1.13 (1.06) & 0.773 & $+0.022$\,dex & 0.9954 (strict)\\
+canonical, 0.9, 1200\,km\,s$^{-1}$ & 1.19 (1.11) & 0.774 & $+0.010$\,dex & 0.9936 (loose only)\\
+alternative, 0.8, 1400\,km\,s$^{-1}$ & 1.18 (1.11) & 0.773 & $+0.020$\,dex & 0.9954 (strict)\\
+\bottomrule
+\end{tabular}\par}
+\smallskip
+Fourteen cells pass on the alternative set. KiDS still fails for all of them (L355, below). Newtonian orbits retain less of the component than the additive law did: a cluster keeps 0.53 of it at 1500\,km\,s$^{-1}$, against 0.77.
+
+\paragraph{What it costs.} The equivalence principle fails in the dark sector wherever the phantom is on. On the canonical footing, in the 12 X-COP clusters the dark mass needed at $R_{500}$ is 2.31 times the baryons (median), and the dark component there feels 47\% (37--53\%) less acceleration than the gas (L353 N4). In the Milky Way at 30\,kpc an unboosted dark mass of $0.49M_b$ moves $g_{\rm obs}$ by 0.06\,dex; under universal coupling only a quarter of it would be allowed.
+
+\paragraph{What it does not fix: KiDS (L355, 4/4).} A kernel that reads all baryons still feels the web's baryonic field, which is the web's field divided by $\Omega_m/\Omega_b\approx6$. In the linear-theory web that is $2.1\times10^{-3}/1.7\times10^{-3}\,a_0$ (rms), 28--33 times KiDS's bound; at the quieter isolated-lens field Brouwer et al.\ adopted it is still 11--13 times. KiDS-1000 then scores $\Delta\chi^2=+233/+241$ against isolated MOND, and $+120$ to $+145$ with the dark component's surviving halo and a bias-like two-halo term, against a pre-declared $+9$. KiDS wants almost none of an NFW-shaped halo; what is missing is the isothermal phantom beyond the external-field radius. \emph{The kernel must be blind to the large-scale field, not only to dark matter.}
+
+\paragraph{What it does not fix: high redshift (L356, 3/3).} The $\Lambda$ trigger acts at $z<1$, so at $z\approx2.5$ galaxies still sit in intact halos (survival 0.999 for $f_d(0)=0.8$). Near $R_e$ the kernel's response slope is $\approx1$, so boosting the halo or not barely matters. On RC100 [NS23] the dark fraction inside $R_e$ is 0.48--0.58 against the measured 0.29, and the inverted $a_0(z)$ slope is $+0.090$ to $+0.120$ against $-0.112\pm0.062$. That test is conditional on the high-redshift baryonic-mass calibration (lane L332). The flagship prediction [Z26c], the deep-MOND Tully--Fisher zero point at $z=2.5$, moves by $+0.82$ to $+1.05$\,dex, against $0.00$ for the framework alone and $+0.33$ for $\Lambda$CDM. The halo masses are the $\Lambda$CDM-calibrated relation of Moster et al.\ [MNW13]; a framework-native halo model has not been built.
+
+\section{Kernels blind to the large-scale field}\label{sec:blind}
+
+\subsection{The constant-threshold pincer and the vacuum gate (L358, L362, L359)}
+PAPER32's bound-region switch turns MOND on only where $\tilde x=9(R^{(3)}+\sigma_{ij}\sigma^{ij})/(4K^2)\geq x_c$. On FRW $\tilde x=0$, in the linear web $\tilde x=\tfrac32\Omega_m\delta$, and in a static system $\tilde x=4\pi G\rho_{\rm dyn}/H^2$. The shear completion keeps $c_T=1$. The switch keeps linear growth Newtonian, but by Gauss's law it cancels each lens's phantom beyond its edge. With that realisable profile, KiDS accepts only $x_c\lesssim3$.
+On the forest's flux power every KiDS-accepted threshold fails: the worst deviations are 0.185, 0.174 and 0.160 at $x_c=2$, 2.5 and 3 (L358). At $x_c=3$ this survives more particles (0.157) and a mesh twice as fine (0.191; L362). These are FGPA runs without hydrodynamics, in one realisation; the pincer rests on the finer, 25\,$h^{-1}$Mpc box, since the 50\,$h^{-1}$Mpc box alone gives 0.096. One threshold is being asked to serve two epochs.
+L359 gates the switch variable by the vacuum's share of the expansion:
+\begin{equation}
+u=\tilde x\left[\frac{\Omega_\Lambda(z)}{\Omega_{\Lambda,0}}\right]^p=\tilde x\left(\frac{3\Lambda}{\Omega_{\Lambda,0}K^2}\right)^p\geq x_{c0}\qquad\Longleftrightarrow\qquad x_{c,{\rm eff}}(z)=x_{c0}\,E(z)^{2p}.
+\end{equation}
+$K$ is the leaves' expansion ($3H$ on FRW), so $u$ is a local scalar of the foliation. A transverse-traceless mode leaves $K$ exactly unperturbed, so $c_T=1$ carries over (L359 S1).
+Of nine gated cells ($p=0.5$, 1, 2; $x_{c0}=1.5$, 2, 2.5), eight pass all three tests at once:
+\begin{itemize}
+\item linear growth: $\sigma_8=0.810$;
+\item KiDS with the Gauss-compensated profile: $\Delta\chi^2=-1.0$ to $-28.1$ against the unswitched model;
+\item the forest's flux power: worst deviation 0.2--8.5\%.
+\end{itemize}
+The ninth ($p=2$, $x_{c0}=2.5$) fails KiDS. The ungated control fails the forest at 16--19\%. The $p\geq1$ cells deviate by at most 4.0\%, so they survive L362's factor $\approx1.2$ resolution growth; the $p=0.5$ cells (6.5--8.5\%) are marginal under it. Not simulated: the shear part of $\tilde x$ in the web. Not tested: the low-redshift forest, and the growth of filaments once switched on.
+The tie of the gate to $\rho_\Lambda$, which also sets $a_0$ here, is suggestive and not derived.
+
+\subsection{The bound-region kernel, from an action (L361, 6/6)}
+Let $f$ be the gated switch (1 in bound regions, 0 in the inactive web) and $M^2=m^2(1-f)$ a screening mass that acts only in the inactive web:
+\begin{equation}
+\begin{aligned}
+\mathcal L={}&-(\rho_b+\rho_d)\varphi-\frac{|\nabla\varphi|^2}{8\pi G}-f\rho_b\psi-\frac{2\nabla\psi\!\cdot\!\nabla w+2M^2\psi w-a_0^2fQ(|\nabla w|^2/a_0^2)-(1-f)|\nabla w|^2}{8\pi G}\\
+&+f\rho_b\chi+\frac{|\nabla\chi|^2+M^2\chi^2}{8\pi G},\qquad Q'(s)=\nu(\sqrt s).
+\end{aligned}
+\end{equation}
+With $f$ prescribed, the field equations (R0, symbolic) are $\nabla^2\varphi=4\pi G(\rho_b+\rho_d)$, $(\nabla^2-M^2)w=4\pi Gf\rho_b$ and $\chi=w$. The phantom $P=\psi-\chi$ obeys
+\begin{equation}
+(\nabla^2-M^2)P=\nabla\!\cdot\!\big[f(\nu-1)\nabla w\big]+M^2w .
+\end{equation}
+In-region baryons move in $\varphi+fP$: Newtonian gravity from everything, plus their own region's phantom. Web gas and the dark component move in $\varphi$ alone.
+\begin{itemize}
+\item \emph{Decoupling (R1).} A 2\,Mpc inactive gap transmits $9.5\times10^{-5}$ of an external uniform field at $1/m=0.2$\,Mpc ($2.8\times10^{-9}$ at 0.1\,Mpc); a finite-difference solution matches the exact one.
+\item \emph{The Solar System (R2).} Inside a region nothing is screened. The Sun keeps the Galaxy's field to $4\times10^{-12}$, so wide binaries keep their host's external field.
+\item \emph{KiDS at the kernel's own external field (R3).} This tests the isolated profile against the external-field effect; the switch's Gauss compensation at the edge is scored in L359 and L360. Against isolated MOND, $\Delta\chi^2=+0.0/+0.0$ at $1/m=0.1$--0.2\,Mpc, $+0.4/+0.2$ at 0.3\,Mpc and $-11.5/-11.3$ at 0.5\,Mpc; at 1\,Mpc the gap leaks and the score is $+104/+110$. The total-field kernel scores $+548/+562$ and the baryons-only kernel $+233/+241$. The one new constant therefore needs only $1/m\lesssim0.5$\,Mpc; $m\to\infty$ is a Dirichlet limit with the same physics.
+\item \emph{Gauss per region (R5).} The phantom is a divergence, so it is cancelled at each region's edge ($|M_{\rm ph}|/M_b\leq2.5\times10^{-7}$ beyond it). Linear growth is untouched.
+\item \emph{A liability: the switch reads curvature.} $f$ is built from $\tilde x$, the leaves' curvature. GP1 N5 estimates that a curvature-built switch back-reacts on the metric at $O(0.07$--$2.3)$ at region edges, and concludes that a switch must read the matter density instead. R0 treats $f$ as prescribed, and this back-reaction has not been computed for L361.
+\end{itemize}
+
+\subsection{The gated dark component, and the assembled construction (L357, L360)}
+A dark component that converts where it virialises would keep the web and the forest cold and clear galaxy interiors. As a local trigger that fires in every halo down to $10^8M_\odot$, it fails the forest at both slow and fast kicks: $T^2(k=5)$ at $z=2$ is 0.23--0.57 against the loose 0.9. By $z=2$--3 about half of the bias-weighted mass sits in collapsed halos (L357 V1). Raising the threshold does not help. At the strict forest floor galaxies stay unconverted (a $+0.2$\,dex shift, V2); at the loose floor X-COP overshoots ($\geq1.32$, D1).
+Gated by the same vacuum factor ($p=2$) the trigger sleeps through $z\geq2$ and then clears the dense regions. Three cells pass on the strict set and 17 on the alternative. The best converts where $\tilde x\geq2000$ today, with $v_k=3000$\,km\,s$^{-1}$: forest $T^2\geq0.998$, $S_8=0.772$, X-COP $1.08/1.13$, and the galaxy gate passed. It works because rotation curves are measured at $\tilde x\sim10^4$--$10^5$, while cluster $R_{500}$ sits at $\tilde x\sim200$--350. At high redshift the same cell prices high: on RC100 the dark fraction inside $R_e$ is 0.43 against 0.29, and the inverted $a_0(z)$ slope is $+0.44$ against $-0.11\pm0.06$ (calibration-conditional; L357 H1).
+\emph{Assembled} (L360, 4/4), 70 of 96 (switch, component) pairs pass KiDS on both footings. An example is the switch ($p=1$, $x_{c0}=1.5$) with the component ($p=2$, cleared where $\tilde x\geq2000$), at $-23.5/-16.8$. The switched phantom stops at each lens's edge, and the hollowed halo fills the deficit beyond it. An unconverted halo is rejected ($\Delta\chi^2\geq+231.9$). KiDS prefers a halo amplitude of 0.30--0.75 of the modelled one. The halo profile is static; the kick speed does not enter L360, and phase mixing is not included.
+\emph{Cluster collisions} (L370). In the Harvey et al.\ [Har15] offset test, core-converted components (L357's strict cells) leave group cores short of collisionless mass. Against the measured $\langle\beta\rangle=-0.04\pm0.07$ the population-mean offset is $+1.7\sigma$ to $+4.0\sigma$ across three estimators, $+1.7\sigma$ for the best strict cell on Harvey's own (NFW-fit) estimator: disfavoured, whatever the kernel. An intact component, or one depleted uniformly to X-COP's retained fraction (0.55), sits at $+0.7\sigma$ to $+1.3\sigma$. The equilibrium star--dark offset is 6--11\,kpc for an intact component and 20--50\,kpc for a core-converted one, a direct prediction. El Gordo [AsBK21, Kim21, AsBK23] comes out slightly easier than in $\Lambda$CDM ($\Delta\chi=-0.58$ to $-0.12$). The reason is that about 40\% of its lensing mass is phantom, not that the pair falls in faster; it falls more slowly than $\Lambda$CDM's.
+A committed follow-up (L372) finds a pincer for this component. Slow kicks (750\,km\,s$^{-1}$) pass Harvey but fail X-COP (1.38/1.44); fast kicks (3000\,km\,s$^{-1}$) pass X-COP and fail Harvey. A two-channel component, a uniform late mode at $f_U(0)=0.25$ plus the slow gated mode, passes forest, $S_8$, X-COP, galaxies, KiDS and Harvey on the alternative set, with static retention. Its particle-mesh check (L373) is running.
+
+\subsection{The generated phantom: switch the source, not the flux (GP1, GP2)}
+Every switch above acts on the kernel's flux, so the phantom ends at the region's edge. GP1 switches the kernel's \emph{source} instead. It extends L353's pair to unbound baryons:
+\begin{equation}
+\mathcal L=-(\rho_b+\rho_d)\Phi-\frac{2\nabla\Phi\!\cdot\!\nabla u-|\nabla u|^2-a_0^2\,q\big(|\nabla S_\ell(u-v)|^2/a_0^2\big)}{8\pi G}+\lambda\Big(\nabla^2v-4\pi G\big[\rho_d+(1-w)\rho_b\big]\Big).
+\end{equation}
+Here $w=w(x_m)$ switches on the matter density in the preferred frame, $x_m=4\pi G\rho_m/H^2=36\pi G\,(n\!\cdot\!T\!\cdot\!n)/K^2$, at a virial-like threshold ($x_c=50$). $S_\ell(k)=(k\ell)^2/[1+(k\ell)^2]$ is a Yukawa high-pass with screening length $\ell$ (called $\lambda$ in the GP lanes).
+With $w$ prescribed, the kernel reads the Newtonian potential of the \emph{bound} baryons, $u-v=u_B$, and the metric is $\Phi=u+\Phi_{\rm ph}[u_B]$. Away from region edges, unbound baryons (the web's gas, the forest) and the dark component move in $u$ alone, and light follows $\Phi$.
+\begin{itemize}
+\item \emph{Not Gauss-cancelled (N2).} Past a 250\,kpc edge, $M_{\rm dyn}(1\,{\rm Mpc})/M_b=101$--106 for $\ell=2$\,Mpc to $\infty$, against 1.0 for a flux switch. The threshold no longer decides where a lens's phantom ends.
+\item \emph{Reciprocal (N3).} The Lagrangian form $S^*\nabla\!\cdot[q'\nabla S\,u_B]$ is symmetric to $1.6\times10^{-5}$. The earlier one-filter form (BK1) is not ($3.3\times10^{-2}$); relative to it, the Lagrangian form's enclosed lensing mass is 6--11\% lower at 1\,Mpc and 22--35\% lower at 2.6\,Mpc.
+\item \emph{A potential step at the edge (N4), a prediction.} A baryon entering a bound region falls through $|\Phi_{\rm ph}({\rm edge})|$. At the window's $\ell=1$\,Mpc its speed equivalent $\sqrt{2|\Phi_{\rm ph}|}$ is 161, 352, 563 and 667\,km\,s$^{-1}$ for a dwarf, the Milky Way, a group and a cluster ($v_{\rm flat}=59$, 165, 334, 657\,km\,s$^{-1}$; 176, 402, 682 and 954 at $\ell=2$\,Mpc). It bears on accretion shocks, outflows and the circumgalactic gas. The switch's density dependence is what produces this step; GP1 quantifies it for baryons entering a region, not for the dark component.
+\item \emph{A switch built from density, not curvature (N5).} Its back-reaction is $\leq2.4\times10^{-6}$ on the metric and $\leq1.5\%$ of the khronon's $c_2$ term, and it is tensor-blind. A curvature-built switch would perturb the metric at $O(0.07$--$2.3)$.
+\end{itemize}
+\emph{KiDS} (GP2, 11/12 with the recorded W1 failure). With the observed census of bound baryons, the kernel's field at isolated lenses has a median of $7.3\times10^{-6}a_0$ at $\ell=1$\,Mpc and $3.9\times10^{-5}a_0$ at 2\,Mpc, both below KiDS's bound. The score depends on the reference:
+\begin{itemize}
+\item against L352's acceptance: $+3.6/+0.6$ ($\ell=1$\,Mpc), $-14.8/-16.7$ (2\,Mpc) and $-17.9/-18.7$ (3\,Mpc), passing for $\ell=1$--10\,Mpc;
+\item against the realisable floor, with the dark component's surviving halo free for both: $+19.8/+18.6$ at $\ell=1$\,Mpc, $+5.6/+4.9$ at 1.5\,Mpc, and $+0.7/+0.6$ and $-0.4/+0.4$ at 2 and 3\,Mpc (GP2 W4). KiDS then wants a halo 0.17--0.30 of $\Lambda$CDM's, and an uncleared CDM halo costs $+103$ to $+133$ / $+113$ to $+145$ at $\ell=1$--3\,Mpc;
+\item against the Gauss-forbidden retained-profile comparator of earlier lanes (GP2 W1, $\leq+4$): nothing realisable reaches it. The floor itself is $+8.2/+8.3$ from it, which is why W1's failure is recorded rather than read as a verdict.
+\end{itemize}
+
+\section{Cosmic shear: the gate galaxy--galaxy lensing cannot see (GP3, L363)}\label{sec:shear}
+
+Galaxy--galaxy lensing measures the cross-power of galaxies with mass. Around the lens population it constrains the sum of the mass private to each lens (here, a phantom) and the mass in correlated neighbours (a two-halo term), not how that sum is split. Cosmic shear measures the auto-power of the mass, where the split shows. A private phantom added to a matter field that already carries $\Lambda$CDM's power contributes
+\begin{equation}
+P_{\rm lens}=P_{mm}+2P_{m,{\rm ph}}+P_{\rm ph},\qquad R(k)=T^2+2r_xTs+s^2,
+\end{equation}
+where $s^2=P_{\rm ph}/P^{\Lambda{\rm CDM}}_{\rm NL}$, $r_x$ is the matter--phantom correlation, and $T$ is the matter's transfer relative to $\Lambda$CDM. A MOND-like private phantom paired with a $\Lambda$CDM-like dark field therefore double-counts the small-scale lensing power.
+\begin{itemize}
+\item \emph{Generated phantom} (GP3, 9/10 with the recorded L1 failure). A lognormal mock with Sheth--Tormen halos at $z=0.5$ (200\,Mpc, $256^3$; checked against a 100\,Mpc box at twice the resolution) solves the phantom on the grid. The maximum of $R(k)$ over $k\leq1\hMpc$ is $1.49/1.56$, $2.31/2.48$ and $2.91/3.18$ at $\ell=1$, 2 and 3\,Mpc. The weak ambient field ($\sim10^{-5}$--$10^{-4}a_0$) that KiDS needs lets the kernel boost every clustered fluctuation of bound baryons below $\ell$. Growth changes by $+0.8$, $+2.0$ and $+3.1\%$ in $D(z=0)$, and forest absorbers stay below the switch.
+\item \emph{Region kernel} (L363, 5/5). Gauss cancellation removes the phantom's power as $k\to0$. But the phantom KiDS wants is isothermal to each region's edge, a few times the halo mass inside $\sim$1\,Mpc, and it adds one-halo power. In the halo model (exact per-halo compensated phantoms on the Sheth--Tormen [ST99] + NFW $P_{\rm NL}$) the worst $R$ is 2.90--4.69 with the observed bound baryons and 4.68--9.18 with all of a halo's baryons. The finest mock gives 1.53--2.32; its excess falls with resolution and is not converged.
+\end{itemize}
+For both kernels tested (at $z=0.5$, on $P(k)$) the gate fails when the phantom is added to a $\Lambda$CDM-like dark field. In the grouped mock the region phantom's own power is small: $s^2=0.04$ at $k=0.5$ and 0.33 at $k=1\hMpc$ for the $p=1$ switch, and 0.01 and 0.10 for $p=2$ (L364). The excess comes mostly from the cross term. That leaves one door: the phantom must \emph{replace} the dark component's small-scale power, not add to it.
+
+\section{Replacement: a dark component that converts and free-streams (L364, GP4)}\label{sec:replace}
+
+L319's component converts at the rate
+\begin{equation}
+\Gamma(a)=\Gamma_0\left[\frac{\Omega_\Lambda(a)}{\Omega_{\Lambda,0}}\right]^p ,\qquad p=2,
+\end{equation}
+with $\Gamma_0$ fixed by the fraction converted by today, $f_d(0)$. The converted part receives an isotropic velocity $v_k$ and free-streams. L319's exact linear-response solver (CLASS initial conditions) gives the matter transfer $T(k,z)$; here it is applied up to $k=1\hMpc$, and converted material is not recaptured by halos. Most of the conversion happens at $z<1$, so the late small-scale power falls. A small fraction converts earlier (0.3\% by $z=2$ at $f_d(0)=0.8$; L356), and it sets the forest: across L364's scan the strict forest holds at $f_d(0)=0.8$ ($T^2=0.9954$--0.9960) and fails at 0.9 (0.9934--0.9943) and 0.95 (0.9914--0.9926).
+
+\paragraph{With the region kernel (L364, 6/6): the mechanism works, the window does not.} Kicks lower the worst $R$ by 0.46--0.54 against no conversion, and with $v_k=0$ the mechanism check fails. But no cell passes the forest, $S_8$, X-COP and galaxies, KiDS and cosmic shear together, on either set. Over the 48 combinations of component cell, switch cell and threshold set, the gate failures are cosmic shear 44, X-COP and galaxies 36, KiDS 24, the forest 16 and $S_8$ 8. The nearest miss is $f_d(0)=0.95$, $v_k=1200$\,km\,s$^{-1}$, switch $p=2$, $x_{c0}=2$. It passes cosmic shear ($1.12/1.17$), the loose forest, $S_8=0.762$, and X-COP and galaxies on the alternative set. It fails only KiDS on the alternative footing ($+6.0$ against $+4$; canonical $-2.6$). The pincer is that cosmic shear wants small regions and much conversion by $z\approx0.5$, while KiDS wants large regions.
+
+\paragraph{With the generated phantom (GP4, 5/5): a window on the alternative set.} GP4 scans $\ell\in\{0.7,1,1.5,2\}$\,Mpc against L364's twelve component cells and its gates. Its controls reproduce GP3's ratio ($4\times10^{-16}$), L364's X-COP ratios (exactly) and GP2's KiDS scores (exactly).
+At $\ell=0.7$\,Mpc cosmic shear passes (0.99--1.09) but KiDS fails in every cell ($+20.7$ to $+30.6$). At 1.5 and 2\,Mpc KiDS passes in every cell and cosmic shear fails in every cell (1.45--1.88 and 1.89--2.36). At $\ell=1$\,Mpc the $f_d(0)=0.8$ cells pass the strict forest but leave too much power for cosmic shear (1.23--1.40) and fail KiDS on the alternative footing ($+4.4$). Two cells pass every gate on the alternative set:
+\smallskip
+
+{\footnotesize\centering
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+$f_d(0)$, $v_k$ & cosmic shear & KiDS (L352) & X-COP raw (non-thermal) & galaxies & $S_8$ & forest $T^2$\\
+\midrule
+0.95, 1200\,km\,s$^{-1}$ & $1.09/1.15$ & $-6.2/-4.6$ & $0.97/1.00$ ($0.92/0.94$) & $+0.004$\,dex & 0.762 & 0.9917\\
+0.90, 1400\,km\,s$^{-1}$ & $1.13/1.19$ & $-4.8/-2.2$ & $0.89/0.92$ ($0.83/0.86$) & $+0.010$\,dex & 0.755 & 0.9934\\
+\bottomrule
+\end{tabular}\par}
+\smallskip
+GP4's X-COP differs from L364's unscreened $1.17/1.22$ for the first cell in two ways: the screening, and the smaller ambient field it assumes ($10^{-4}a_0$, the bound baryons' field, against L354's $10^{-2}a_0$). Without free streaming (the mutation control) cosmic shear fails at every $\ell$ ($1.49/1.56$ at 1\,Mpc).
+What the window does \emph{not} establish:
+\begin{itemize}
+\item \emph{The strict set.} The record's strict $S_8$ floor, 0.767, subtracts three times KiDS-Legacy's \emph{upper} error from 0.815. With its lower error, $-0.021$, the $3\sigma$ floor is 0.752, and both cells pass. That leaves the strict forest as the only strict gate they fail: their $T^2$ corresponds to 4.3 and 4.7\,keV thermal relics at the solver's $k$, against 5.3\,keV (the Viel et al.\ transfer function [Vie05]). With the corrected floor no cell of GP4's scan passes the strict set.
+\item \emph{KiDS.} It passes the record's acceptance, which here equals isolated MOND to 0.1 in $\chi^2$. Against the best realisable lens tested, given the same freedom in the dark component's halo, the two window cells score $+19.1$ to $+21.5$ (lane P34 X1, from GP2's and GP4's committed tables; GP2 W4 gives $+19.8/+18.6$ for the $\ell=1$\,Mpc kernel with the halo amplitude free). Measured against that floor, KiDS wants $\ell\gtrsim2$\,Mpc, while cosmic shear allows $\ell\lesssim1$\,Mpc. The window sits in the gap between the record's KiDS acceptance and the floor.
+\item \emph{Cosmic shear.} It is scored at one epoch ($z=0.5$), on $P(k)$ rather than the measured $\xi_\pm$, in the lognormal mock with $r_x$ held at its full-matter value. It sits at the edge of the gate on the alternative footing.
+\item \emph{Cluster collisions.} Untested at group scale. The uniform-depletion proxy passes Harvey's test at X-COP's retained fraction (0.55), but Harvey's substructures are 1--3$\times10^{14}M_\odot$ groups, where a kicked component keeps less. For another kicked component, retentions of 0.18--0.40 there are disfavoured at $2.1\sigma$ or more (L371).
+\item \emph{High redshift.} Not computed for this construction. The component is intact at $z=2.5$, so L356's estimate ($+0.8$ to $+1.0$\,dex, for $f_d(0)=0.8$ on L353's kernel) should apply roughly.
+\item \emph{Free parameters.} $\ell$ is underivable within the construction (lane BK2); $f_d(0)$, $v_k$ and $p$ are free.
+\end{itemize}
+
+\section{What the dark component is}\label{sec:what}
+The lanes call it the carrier and its conversion a decay with a kick. The language is a particle's, and one property the window needs is particle-like: the converted part must be hot and free-streaming, a multistream distribution in phase space. The solvers themselves track a cold fluid converting into a hot one at a prescribed rate, and linear cosmology constrains a generalised dark fluid, $(w,c_s^2,c_{\rm vis}^2)$ plus an amount, not a species [Hu98].
+The programme's reading is that the dark sector is a state of its own scalar. In the ghost-condensate structure of AeST-class theories [SZ21, ACLM04, BS24] one mode sets $a_0$ and another is cold $a^{-3}$ dust. That reading drops the particle, not the mass: clusters and the CMB still require collisionless mass. It does not yet supply the hot state. A single-valued flow forms caustics and cannot multistream [BR17], and the quadratic-kinetic realisation squeezes the dust's equation of state between the CMB and galaxies [BS24, \S4.3.1]. The conversion rate and the kick are put in by hand.
+
+\section{Standing}\label{sec:standing}
+\begin{center}
+{\footnotesize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.25\textwidth}>{\raggedright\arraybackslash}p{0.25\textwidth}>{\raggedright\arraybackslash}p{0.25\textwidth}@{}}
+\toprule
+gate & B: gated switch + region kernel + gated component & C: B's kernel + converting component (nearest miss) & D: generated phantom + converting component (window)\\
+\midrule
+linear growth, forest (switch) & pass (L359) & pass (L359) & pass (GP3: $\sigma_8+0.8\%$; IGM below switch)\\
+forest, dark component & strict (L357) & loose only (4.3\,keV) & loose only (4.3; 4.7\,keV)\\
+$S_8$ & strict (0.772) & 0.762: passes the corrected strict floor & 0.762; 0.755: pass the corrected strict floor\\
+X-COP, galaxies & pass (L357) & alternative (L354) & pass\\
+KiDS, L352 acceptance & pass, 70/96 pairs (L360) & fails alt.\ footing ($+6.0$) & pass ($-6.2/-4.6$; $-4.8/-2.2$)\\
+KiDS, realisable floor & not computed & not computed & $+19.1$ to $+21.5$ (P34 X1)\\
+cosmic shear ($\leq1.2$) & fails (halo model 2.9--9.2; mock 1.5--2.3) & pass (1.12/1.17) & pass, at the edge (1.09/1.15; 1.13/1.19)\\
+Harvey offsets & disfavoured, $1.7$--$4.0\sigma$ (L370) & untested at group scale & untested at group scale\\
+switch back-reaction & $O(0.07$--$2.3)$ by GP1's estimate; not computed & as B & $\leq2.4\times10^{-6}$\\
+RC100 (calibration-conditional) & $f_{\rm DM}=0.43$; slope $+0.44$ (L357) & $f_{\rm DM}=0.48$--0.58; slope $+0.09$--0.12 (L356's estimate) & as C (not computed)\\
+$z\approx2.5$ zero point & $+0.77$ to $+0.87$\,dex (L357) & $+0.8$ to $+1.0$\,dex (L356's estimate) & $\approx+0.8$ to $+1.0$\,dex (not computed)\\
+\bottomrule
+\end{tabular}}
+\end{center}
+\begin{itemize}
+\item \emph{What holds.} The reciprocity theorem, and the force law it fixes. The subtraction pair, the region kernel and the generated phantom, each derived from an action, with their field equations checked symbolically for prescribed switches. The vacuum gate's opening of the constant-threshold pincer. The cross-versus-auto argument, which applies to any theory that fits galaxy--galaxy lensing with a private phantom.
+\item \emph{What the gates say.} For both kernels tested, adding the private phantom to a $\Lambda$CDM-like dark field fails cosmic shear at $z=0.5$. A component that converts only in dense cores is disfavoured by the Harvey offsets.
+\item \emph{What is open.} No construction passes every gate on the strict set. D passes every low-redshift gate that has been computed for it on the alternative set, under the record's KiDS acceptance, and misses the strict set only on the forest. Still open for D: group-scale cluster collisions, high redshift, and the KiDS floor. Still open for B and C: the curvature switch's back-reaction. Open for all: a relativistic embedding of the switch or screening, gas in active filaments at $z\lesssim1$ (region kernel), and the edge step's effect on the circumgalactic medium (generated phantom).
+\item \emph{What it does to the core relation.} $a_0=\kappa c\sqrt{G\rho_\Lambda}$ is unaffected as a law, and $\kappa$ remains fitted. But the dark components built here keep the forest cold at $z=2$--3 and sit in galaxies at $z\approx2.5$, and that moves the flagship prediction from 0.00 to $+0.8$--$1.0$\,dex. A clean deep-MOND measurement at $z\approx2.5$ [Z26f] would then test the dark sector as much as $a_0(z)$.
+\end{itemize}
+One more line of work is in progress and is not used here: particle-mesh lanes on a mesh-triggered component (L365--L369, L375--L381). Their single-realisation window (L366--L368) did not survive other realisations (L369, L378). The clearing statistic that closed it was then shown to be selection-biased against the model (L379), and its re-scoring (L380) and a Harvey test (L381) are running.
+
+\section{Corrections carried on the record}
+\begin{itemize}
+\item L322's window used a force law with no action (\S\ref{sec:recip}); it is withdrawn and recomputed in L354.
+\item BK1's one-filter screened law is not Lagrangian (GP1 N3). GP2's tables were rebuilt with the Lagrangian form before commit.
+\item A KiDS gate scored against a plain NFW $\Lambda$CDM benchmark ($\chi^2=286$), which GP2 ``passed'' by $\sim$190, was withdrawn before commit. The benchmark is still printed, as documentary only; published halo-model fits do far better.
+\item The assembled construction B was recorded as passing every gate tested before L363 scored cosmic shear. That standing is superseded.
+\item \emph{New in this note.} L354's ``strict'' cells are strict on X-COP and $S_8$ only; one of them misses the strict forest (L364's $T^2=0.9936$).
+\item \emph{New in this note.} The GP4 summary said its window is ``about $+8$'' above the realisable KiDS floor. GP2's and GP4's committed tables give $+19.1$ to $+21.5$ for the two window cells (lane P34 X1). The $+8.2/+8.3$ is the floor's own distance from the Gauss-forbidden comparator. The summary now carries a correction.
+\item \emph{New in this note.} The strict $S_8$ floor used since L168, 0.767, subtracts three times KiDS-Legacy's upper error bar. The lower bar gives 0.752 (\S\ref{sec:replace}). The deficits it produced in GP4 and L364 were artefacts; no window opens on the strict set, which the forest still blocks.
+\end{itemize}
+
+\section{Reproducibility}
+All lanes are in \url{https://github.com/carlzimmerman/zimmerman-formula}. For this note the lanes were re-run from a clean checkout of commit \texttt{8ad1d1e69}; the table note below says which, and how they compared. The audit lane P34 and this note's source were committed afterwards. The KiDS lanes read the public Brouwer et al.\ (2021) lensing release, which the repository does not redistribute; it goes in \fpath{real_research/data/lensing_rar/brouwer2021_rar/}. Every lane except the census library GP0 has a mutation control, run with \texttt{MUTATE=1}, which writes separate outputs and must fail a named check.
+
+\smallskip
+{\footnotesize
+\begin{longtable}{@{}l>{\raggedright\arraybackslash}p{0.43\textwidth}c>{\raggedright\arraybackslash}p{0.33\textwidth}@{}}
+\toprule
+lane & script (under \texttt{real\_research/}) & checks & mutation control (must fail)\\
+\midrule
+\endhead
+L353 & \fpath{g03_audit_2026/L353_kernel_invisible_dark_component.py} & 4/4 & no subtraction: N1, N3 fail\\
+L354 & \fpath{dark_sector_2026/L354_carrier_lagrangian_additive_window.py} & 3/3 & universal coupling: W1 flips\\
+L355 & \fpath{g03_audit_2026/L355_kernel_invisible_kids.py} & 4/4 & kernel blind to the web: K2 fails\\
+L356 & \fpath{dark_sector_2026/L356_construction_highz_price.py} & 3/3 & no dark component at high $z$: H3 fails\\
+L357 & \fpath{dark_sector_2026/L357_virialization_triggered_carrier.py} & 8/8 & trigger never fires: V1, D2 fail\\
+L358 & \fpath{g03_audit_2026/L358_forest_kids_pincer_observable.py} & 4/4 & switch never on: F2 fails\\
+L359 & \fpath{g03_audit_2026/L359_vacuum_gated_switch.py} & 4/4 & no gate: W1 fails\\
+L360 & \fpath{g03_audit_2026/L360_assembled_construction_kids.py} & 4/4 & unconverted component: M2 fails\\
+L361 & \fpath{g03_audit_2026/L361_bound_region_kernel.py} & 6/6 & unscreened full-baryon kernel: R1, R3 fail\\
+L362 & \fpath{g03_audit_2026/L362_forest_pincer_convergence.py} & 2/2 & switch never on: F1 fails\\
+L363 & \fpath{g03_audit_2026/L363_region_kernel_lensing_power.py} & 5/5 & kernel off: X1 fails\\
+L364 & \fpath{g03_audit_2026/L364_replacement_carrier_cosmic_shear.py} & 6/6 & no kicks: R3 fails\\
+L370 & \fpath{merger_infall_2026/L370_boosted_infall_mergers.py} & 11/14$^a$ & kernel off: A1, A2 fail\\
+L371 & \fpath{merger_infall_2026/L371_harvey_slow_kick_carrier.py} & 2/5$^b$ & retention 1: H1--H3 pass (inverted)\\
+L372 & \fpath{merger_infall_2026/L372_gated_slow_kick_carrier.py} & 4/4 & uniform channel off: W1 fails\\
+GP0 & \fpath{generated_phantom_2026/GP0_bound_baryon_census.py} & 4/4 & none (a census library; sum rules)\\
+GP1 & \fpath{generated_phantom_2026/GP1_generated_phantom_construction.py} & 6/6 & every baryon active: N1 fails\\
+GP2 & \fpath{generated_phantom_2026/GP2_kids_bound_source_kernel.py} & 11/12$^c$ & kernel reads all matter: E2 fails\\
+GP3 & \fpath{generated_phantom_2026/GP3_lensing_power_and_growth.py} & 9/10$^d$ & kernel off: L1 passes (inverted)\\
+GP4 & \fpath{generated_phantom_2026/GP4_generated_phantom_plus_kicked_carrier.py} & 5/5 & no free streaming: W1 fails\\
+P34 & \fpath{paper34_audit_2026/P34_paper_numbers.py} & 7/7 & floor read as in the old summary: X1 fails\\
+\bottomrule
+\end{longtable}
+\vspace{-8pt}
+
+$^a$ The failing checks are the construction's own verdicts: the pre-declared neutral El Gordo test (A3, slightly easier than $\Lambda$CDM) and the core-converted component's two Harvey tests (B3, B6). The lane's README says 10/14; its committed output says 11/14. $^b$ H1--H3, the Harvey tests at L366's median retention, fail: that is the result. $^c$ W1 against the Gauss-forbidden comparator, recorded. $^d$ L1, the cosmic-shear gate, fails: that is the result. \par Re-run for this note and identical to the committed output and results file (timing stamps aside): L353, L355, L356, L357, L361, L363 and GP0--GP3. Still running when this note was committed: L354 and L359, then L360, L364, GP4 and the mutation-control re-runs. Not re-run, because of load on the shared machine: L358, L362 and L370--L372. For every lane not yet reproduced the committed output is cited, and P34 checks each quoted number against it.
+}
+
+\smallskip
+The Lean~4 certificates are \fpath{fable_independent_2026/lean_2026/L353_kernel_invisible_certificates.lean} (6 theorems) and \fpath{L357_L361_vacuum_gate_certificates.lean} (7 theorems), recompiled for this note with \texttt{lake env lean} (Mathlib, exit 0, zero \texttt{sorry}, axioms $\subseteq$ \{propext, Classical.choice, Quot.sound\}). They certify algebra: response symmetry, the additive law's asymmetry, the pair's on-shell identities, the static block at $\alpha_c=0$, the constant-threshold pincer and its gated opening, and the region phantom's equation. They do not certify the physical premises or the numerics.
+
+\section*{References}
+{\small
+[ACLM04] Arkani-Hamed, N., Cheng, H.-C., Luty, M.\,A. \& Mukohyama, S. 2004, JHEP 05, 074 (ghost condensation).\par
+[Amo22] Amon, A. et al.\ 2022, Phys.\ Rev.\ D 105, 023514 (DES Y3 cosmic shear).\par
+[Ang09] Angus, G.\,W. 2009, MNRAS 394, 527.\par
+[Asg21] Asgari, M. et al.\ 2021, A\&A 645, A104 (KiDS-1000 cosmic shear).\par
+[AsBK21] Asencio, E., Banik, I. \& Kroupa, P. 2021, MNRAS 500, 5249 (El Gordo).\par
+[AsBK23] Asencio, E., Banik, I. \& Kroupa, P. 2023, ApJ 954, 162 (El Gordo).\par
+[BR17] Babichev, E. \& Ramazanov, S. 2017, JHEP 08, 040.\par
+[Bro21] Brouwer, M.\,M. et al.\ 2021, A\&A 650, A113 (KiDS-1000 lensing RAR).\par
+[BS24] Blanchet, L. \& Skordis, C. 2024, JCAP 11, 040 (arXiv:2404.06584).\par
+[Dal23] Dalal, R. et al.\ 2023, Phys.\ Rev.\ D 108, 123519 (HSC Y3 cosmic shear).\par
+[DK23] Dark Energy Survey and Kilo-Degree Survey Collaboration 2023, Open J.\ Astrophys.\ 6, 36 (DES Y3 + KiDS-1000).\par
+[Eck19] Eckert, D. et al.\ 2019, A\&A 621, A40 (X-COP).\par
+[Ett19] Ettori, S. et al.\ 2019, A\&A 621, A39 (X-COP).\par
+[Har15] Harvey, D., Massey, R., Kitching, T., Taylor, A. \& Tittley, E. 2015, Science 347, 1462.\par
+[Hu98] Hu, W. 1998, ApJ 506, 485 (generalized dark matter).\par
+[Irs17] Ir\v{s}i\v{c}, V. et al.\ 2017, Phys.\ Rev.\ D 96, 023522.\par
+[Kim21] Kim, J. et al.\ 2021, ApJ 923, 101 (El Gordo).\par
+[Li23] Li, X. et al.\ 2023, Phys.\ Rev.\ D 108, 123518 (HSC Y3 cosmic shear).\par
+[MNW13] Moster, B.\,P., Naab, T. \& White, S.\,D.\,M. 2013, MNRAS 428, 3121.\par
+[MS08] Milgrom, M. \& Sanders, R.\,H. 2008, ApJ 678, 131.\par
+[NS23] Nestor Shachar, A. et al.\ 2023, ApJ 944, 78 (RC100).\par
+[Sec22] Secco, L.\,F. et al.\ 2022, Phys.\ Rev.\ D 105, 023515 (DES Y3 cosmic shear).\par
+[ST99] Sheth, R.\,K. \& Tormen, G. 1999, MNRAS 308, 119.\par
+[SZ21] Skordis, C. \& Z\l o\'snik, T. 2021, Phys.\ Rev.\ Lett.\ 127, 161302 (AeST).\par
+[Vie05] Viel, M., Lesgourgues, J., Haehnelt, M.\,G., Matarrese, S. \& Riotto, A. 2005, Phys.\ Rev.\ D 71, 063534.\par
+[Wri25] Wright, A.\,H. et al.\ 2025, arXiv:2503.19441 (KiDS-Legacy cosmic shear).\par
+[Z26a] Zimmerman, C.\,P. 2026, The coefficient of the $a_0$--$\Lambda$ relation: a zero-mode theorem for local MOND actions, DOI 10.5281/zenodo.22559892.\par
+[Z26c] Zimmerman, C.\,P. 2026, Does the MOND acceleration scale evolve? A pre-registered decisive measurement (PAPER7 v3), DOI 10.5281/zenodo.22833314.\par
+[Z26d] Zimmerman, C.\,P. 2026, The moving phantom (PAPER32), DOI 10.5281/zenodo.22967076.\par
+[Z26e] Zimmerman, C.\,P. 2026, The khronon route (PAPER33 v2), DOI 10.5281/zenodo.22967954.\par
+[Z26f] Zimmerman, C.\,P. 2026, Observing case: does the galactic acceleration scale evolve? Deep-regime rotators at $z\sim2$--2.6 (v2), DOI 10.5281/zenodo.22961490.\par
+}
+
+\end{document}

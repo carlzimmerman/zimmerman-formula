@@ -35,6 +35,7 @@ GP0 is a census library that the other lanes import. It has no MUTATE control; i
 What it does **not** yet establish:
 - **Thresholds:** only the lenient forest and S_8 thresholds pass. The strict ones fail by 0.4% (forest) and by 0.005–0.012 (S_8).
 - **KiDS:** it passes by L352's acceptance, the reference the other lanes use. Against the realizable floor with the same carrier freedom it is still about +8 (GP2 W4).
+  - ⚠️ **Correction (2026-09-26, `real_research/paper34_audit_2026/P34_paper_numbers.py`, check X1):** the "+8" is not what GP2 W4 gives. From GP2's and GP4's committed tables, the two window cells sit **+19.1 to +21.5** above the realizable floor with the same carrier freedom (GP2 W4 itself: +19.8/+18.6 for the λ = 1 Mpc kernel with the halo amplitude free). +8.2/+8.3 is the floor's own distance from the Gauss-forbidden comparator. Measured against that floor, KiDS wants λ ≳ 2 Mpc, where cosmic shear fails.
 - **Cosmic shear:** scored at one epoch (z = 0.5), in a lognormal mock, with r_x held at its full-matter value and on P(k), not ξ±. It sits at the edge on the alt footing (1.15–1.19 against 1.2).
 - **Free parameters:** λ and the carrier's parameters (f_d(0), v_k, trigger power p = 2) are all free.
 - **Untested:** high z (RC100 and the z ≈ 2.5 flagship, where L356 found the carrier still intact) and the edge step's effect on the circumgalactic gas.
