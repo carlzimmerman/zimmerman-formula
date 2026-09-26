@@ -43,6 +43,27 @@ Population-mean excess β, in σ from Harvey's mean:
 - The boost's own pull on the peak is small: +0.03 to +0.06 in β for an intact carrier.
 - **Design constraint: the carrier must keep collisionless mass in group and cluster cores.**
 
+## L371 — the Harvey test on L366's slow-kick carrier
+
+`L371_harvey_slow_kick_carrier.py`: C1 reproduces L370's intact carrier to 1e-4. H1–H3 fail and are recorded; H4 is reported. `MUTATE=1` sets the retention to 1, so every shape becomes the intact carrier and passes (the inverted control, rc = 0).
+
+**Input.** L366's carrier retention at 650 km/s (z = 0, within 1 Mpc/h): 0.18 for 1e14 M☉ substructures, 0.40 for 3e14 M☉, and 0.75 for the 1e15 M☉ main cluster. L366's 0.39 Mpc/h mesh does not resolve how that carrier sits inside a core, so three shapes bracket it:
+- the original cusp, scaled down (optimistic);
+- phase-mixed daughters kicked at 650 km/s (L321's machinery);
+- recaptured, marginally bound daughters (pessimistic).
+
+Population-mean excess β, in σ from Harvey's mean:
+
+| shape of the retained carrier | 100 kpc | 150 kpc | NFW fit |
+|---|---|---|---|
+| cusp, L366 median retention | +1.0 | +1.8 | +2.1 |
+| heated daughters, median | +1.1 | +2.0 | +2.5 |
+| recaptured daughters, median | +1.9 | +3.5 | +5.4 |
+| cusp, each bin's maximum retention (0.26 / 0.73 / 0.80) | +0.9 | +1.6 | +1.7 |
+
+- **L366's slow-kick carrier fails Harvey at 2.1–5.4σ on the Lenstool-like fit.** Only the most favourable retention L366 allows passes.
+- The reason is that its group cores keep too little collisionless mass: carrier-to-baryons inside 150 kpc is 1.4–3.7, against about 10 for an intact halo. Its trigger fires early, so galaxies lose their carrier before groups assemble from them.
+
 ## L372 — a carrier that passes Harvey and X-COP together
 
 `L372_gated_slow_kick_carrier.py`: 4/4 checks pass. `MUTATE=1` switches the uniform channel off; W1 then fails (X-COP overshoots) and rc = 1.

@@ -1,0 +1,77 @@
+L371 -- THE HARVEY TEST ON L366's SLOW-KICK CARRIER: does the virialization-triggered carrier kicked at v_k ~ 650 km/s
+keep enough collisionless mass in group cores to hold the lensing peak on the galaxies when the gas is knocked loose?
+
+WHY.  L370 (B3, B6, B7): L357's vacuum-gated carrier (3000 km/s kicks, decayed cores) pulls a substructure's lensing peak
+toward its displaced gas, +1.8 to +3.4 sigma against Harvey+2015 (<beta> = -0.04 +/- 0.07, 72 substructures).  The failure
+survives with the MOND kernel switched off: it is the hollowed core (the Bullet-cluster logic), not the boost.  An intact
+carrier passes.  L366 found a joint window for the slow-kick carrier (x_c = 5, v_k ~ 650 km/s) whose clusters keep part of
+their carrier (median retention 0.32).  This lane asks whether that is enough in group-mass substructures.
+
+INPUT FROM L366 (committed 2f8e3e2c5; retention eps = M_c(<1 Mpc/h) / LCDM at z = 0, v_k = 650 km/s, by the halo's LCDM
+mass M(<1 Mpc/h) in Msun/h):
+  6e13-1e14: median 0.18 (range 0.06-0.26);  1e14-1.5e14: 0.24 (0.07-0.51);  1.5e14-2.5e14: 0.40 (0.14-0.73);  >= 2.5e14: 0.75.
+  Harvey's substructures by lensing mass (Msun -> Msun/h): 1e14 -> 0.18 (bin maximum 0.26); 3e14 -> 0.40 (maximum 0.73);
+  the 1e15 main cluster -> 0.75.  L366's retention is at z = 0; Harvey's systems sit at z ~ 0.2-0.6 (stated, not corrected:
+  L366's trigger acts as halos form, so most of a group's decays precede z ~ 0.4).
+  L366's 0.39 Mpc/h mesh does not resolve HOW that carrier sits inside a core, so three shapes bracket it, each rescaled so
+  that M_c(<1 Mpc/h comoving) = eps x LCDM's:
+    S1 scaled NFW -- the retained carrier keeps the original cusp (optimistic);
+    S2 the phase-mixed profile of daughters kicked at 650 km/s in the halo's own potential (L321's retained(), Newtonian
+       orbits as L353 requires, every carrier particle decayed as L366's mesh trigger does inside a halo);
+    S3 recaptured, marginally bound daughters, rho ~ sqrt(2[Phi(2 R200) - Phi(r)]) -- the hottest a bound population can be
+       (pessimistic; L366's low retention says most of a group's daughters left its progenitors and some fell back).
+METHOD.  L370's machinery, loaded unedited: its definitions (cosmology, the L340 kernel, L359's switch, L361's region
+  kernel, the construction's real halo solved to the lensing M200, the periodic-FFT QUMOND grid) and its Harvey helpers
+  (iterated centroids in 100 / 150 kpc apertures, the Lenstool-like projected-NFW fit on 40-300 kpc).  The same eight
+  substructure configurations (lensing M200 1e14 / 3e14, 400 kpc from a 1e15 main cluster at z = 0.4, gas displaced by
+  60 / 120 kpc, perpendicular to / toward the main cluster); LCDM = the same components, all real; canonical footing.
+
+  L370 machinery loaded (grid 400^3 over 10 Mpc, 25.0 kpc cells)   [0s]
+
+====================================================================================================================
+S2  THE PHASE-MIXED SHAPE of daughters kicked at 650 km/s (L321's retained(), Newtonian orbits, f_d = 1)
+====================================================================================================================
+    lensing M200 1e+14: retained/control within r = 25:0.268, 50:0.316, 100:0.366, 150:0.410, 250:0.460, 400:0.515, 700:0.546, 1060:0.544   [193s]
+    lensing M200 3e+14: retained/control within r = 25:0.684, 50:0.640, 100:0.610, 150:0.636, 250:0.673, 400:0.745, 700:0.798, 1060:0.800   [387s]
+    lensing M200 1e+15: retained/control within r = 25:0.664, 50:0.815, 100:0.807, 150:0.810, 250:0.825, 400:0.872, 700:0.911, 1060:0.918   [575s]
+
+====================================================================================================================
+H  HARVEY+2015 ON THE SLOW-KICK CARRIER: substructures 400 kpc from a 1e15 main cluster, z = 0.4
+====================================================================================================================
+    LCDM substructure maps done   [769s]
+    intact  (shape intact, retention med): carrier/baryons inside 150 kpc of the galaxies 10.59 (1e14) / 10.12 (3e14)   [1055s]
+    S1_med  (shape S1, retention med): carrier/baryons inside 150 kpc of the galaxies 1.86 (1e14) / 3.72 (3e14)   [1341s]
+    S2_med  (shape S2, retention med): carrier/baryons inside 150 kpc of the galaxies 1.40 (1e14) / 2.95 (3e14)   [1649s]
+    S3_med  (shape S3, retention med): carrier/baryons inside 150 kpc of the galaxies 0.07 (1e14) / 0.16 (3e14)   [1961s]
+    S1_max  (shape S1, retention max): carrier/baryons inside 150 kpc of the galaxies 2.71 (1e14) / 7.20 (3e14)   [2286s]
+    sub 1e+14 dSG 60 perp       : excess beta (100 / 150 / fit) intact +0.015/+0.072/+0.056; S1_med +0.103/+0.191/+0.222; S2_med +0.113/+0.216/+0.274; S3_med +0.182/+0.277/+0.494; S1_max +0.098/+0.179/+0.183
+    sub 1e+14 dSG 60 toward_main: excess beta (100 / 150 / fit) intact +0.007/+0.037/+0.014; S1_med +0.016/+0.085/+0.057; S2_med +0.020/+0.092/+0.074; S3_med +0.091/+0.165/+0.157; S1_max +0.016/+0.082/+0.050
+    sub 1e+14 dSG 120 perp       : excess beta (100 / 150 / fit) intact +0.008/+0.056/+0.044; S1_med +0.083/+0.134/+0.255; S2_med +0.090/+0.177/+0.325; S3_med +0.109/+0.332/+0.583; S1_max +0.054/+0.118/+0.189
+    sub 1e+14 dSG 120 toward_main: excess beta (100 / 150 / fit) intact +0.003/+0.036/+0.017; S1_med +0.011/+0.107/+0.113; S2_med +0.041/+0.115/+0.146; S3_med +0.052/+0.251/+0.339; S1_max +0.010/+0.081/+0.088
+    sub 3e+14 dSG 60 perp       : excess beta (100 / 150 / fit) intact +0.007/+0.061/+0.041; S1_med +0.012/+0.074/+0.082; S2_med +0.014/+0.080/+0.110; S3_med +0.086/+0.222/+0.385; S1_max +0.009/+0.066/+0.054
+    sub 3e+14 dSG 60 toward_main: excess beta (100 / 150 / fit) intact +0.001/+0.003/-0.005; S1_med +0.003/+0.004/-0.000; S2_med +0.005/+0.006/+0.005; S3_med +0.081/+0.098/+0.100; S1_max +0.002/+0.004/-0.003
+    sub 3e+14 dSG 120 perp       : excess beta (100 / 150 / fit) intact +0.005/+0.036/+0.034; S1_med +0.032/+0.076/+0.079; S2_med +0.034/+0.089/+0.109; S3_med +0.091/+0.182/+0.457; S1_max +0.006/+0.039/+0.047
+    sub 3e+14 dSG 120 toward_main: excess beta (100 / 150 / fit) intact +0.001/+0.019/+0.006; S1_med +0.002/+0.024/+0.022; S2_med +0.002/+0.026/+0.035; S3_med +0.042/+0.118/+0.202; S1_max +0.001/+0.021/+0.011
+    population means (100 / 150 / fit): intact +0.006/+0.040/+0.026; S1_med +0.033/+0.087/+0.104; S2_med +0.040/+0.100/+0.135; S3_med +0.092/+0.206/+0.340; S1_max +0.024/+0.074/+0.077
+    in sigma from Harvey's <beta>:     intact +0.7/+1.1/+0.9; S1_med +1.0/+1.8/+2.1; S2_med +1.1/+2.0/+2.5; S3_med +1.9/+3.5/+5.4; S1_max +0.9/+1.6/+1.7
+
+====================================================================================================================
+CHECKS
+====================================================================================================================
+  [PASS] C1 CONTROL: L370's machinery reproduced -- the intact carrier's configuration-averaged excess beta equals L370's committed value (all three estimators, to 0.005)
+         measured: this lane [0.0058, 0.04, 0.0259] vs L370 [0.0058, 0.04, 0.026]
+  [FAIL] H1 S1 (the retained carrier keeps the cusp) at L366's median retention: the population-mean excess beta lies within 2 sigma of Harvey's <beta> (<= +0.10) for all three estimators
+         measured: +0.033/+0.087/+0.104 (100 / 150 / fit)
+  [FAIL] H2 S2 (phase-mixed 650 km/s daughters) at L366's median retention: the population-mean excess beta lies within 2 sigma of Harvey's <beta> (<= +0.10) for all three estimators
+         measured: +0.040/+0.100/+0.135 (100 / 150 / fit)
+  [FAIL] H3 S3 (recaptured, marginally bound daughters) at L366's median retention: the population-mean excess beta lies within 2 sigma of Harvey's <beta> (<= +0.10) for all three estimators
+         measured: +0.092/+0.206/+0.340 (100 / 150 / fit)
+  [PASS] H4 (reported) S1 at each mass bin's MAXIMUM retention in L366 (0.26 / 0.73 / 0.80): the most favourable case
+         measured: +0.024/+0.074/+0.077
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  2/5 checks pass; load-bearing failures: 3   [2286s]
+  wrote L371_harvey_slow_kick_carrier_results.json
+rc=1
