@@ -1,0 +1,151 @@
+XR27_efe_favouring.py -- THE SYSTEMS THAT SEEMED TO FAVOUR AN EXTERNAL-FIELD EFFECT, re-scored in the derivation chain's
+band-passed static law: Crater II, NGC 1052-DF2 and DF4, Andromeda's dwarf spheroidals (the Collins+2013 data that McGaugh &
+Milgrom 2013 tested, and the LVD M31 set), and Chae et al.'s SPARC rotation-curve EFE signal -- as a function of the band-pass
+length L (0.5-5 Mpc) with H_Y's and H_S's own L marked, both a0 footings.  Independent cross-thread review (2026-09-27).
+Read-only on every other file.  Companion of XR27_efe_disfavouring.py (the law and its reduction are derived there; the same
+FP11 definitions are exec'd read-only here).
+
+THE LAW (FP11's QUMOND form of the chain's static law; XR27_efe_disfavouring.py derives the reduction): a satellite's internal
+  dynamics is the QUMOND external-field effect with the kernel P2 and the host's field replaced by its BAND-PASSED Newtonian field
+  e_bp = [(1 - S_L) g_N,host] at the satellite (a point host: e_N Efac(D/L)); for an environment of many sources, each source's
+  Newtonian field is multiplied by Efac(d/L) and the vectors are summed (the band-pass is linear in the sources).
+THE STATISTICS (the record's own, reproduced first; the record never scored M* on these systems, so M*'s verdict is computed
+  here with M*'s law: QUMOND + nu_mono with the host's in-region baryons, identical to the chain's L -> oo limit up to the kernel
+  for hosts inside M*'s regions; for Chae's environments M*'s region rule is applied, see D):
+  A  Crater II: g05's statistic, B = log10(g_obs/g_pred), g_obs = 3 sigma^2/r_1/2, r_1/2 = (4/3) r_h, the prediction the EXACT
+     QUMOND sphere average (u02's flux theorem) of M_b/2 in the MW's field (6e10 Msun baryons, McGaugh 2016; x1.5/x2 CGM variants),
+     sigma from the LVD row (2.34 +0.42/-0.30, Ji+2021) and Caldwell+2017's 2.7 +- 0.3.  Significance |B|/dB with dB from the
+     dispersion error on the side toward the prediction (the record's convention for single objects, DSPH_FOOTING_BOTHWAYS).
+     The isolated prediction beside it.  A literature-convention variant (reported): project15's transcription of McGaugh 2016 /
+     McGaugh & Milgrom 2013 (sigma_iso^4 = (4/81) G M a0; sigma_efe^2 = G_eff M/(3 R_h), full M), with G_eff = G nu(e_bp/a0).
+  B  DF2/DF4: u02's inputs (L_V 1.1e8 / 1.0e8, (4/3) r_h = 2.2 / 1.6 kpc, NGC 1052 at 80 kpc with 1e11 Msun of baryons) and u02's
+     statistic (the flux theorem), sigma_obs as the record carries it (Danieli+2019 8.5 +2.3/-3.1; Emsellem+2019 10.8 +3.2/-4.0;
+     van Dokkum+2019 DF4 4.2 +4.4/-2.2); variants: the host's 3-D distance x1 / x1.5 (projection), the distance 20 Mpc (u02) /
+     13 Mpc (Trujillo+2019) / 22.1 Mpc (Shen+2021) with the standard scalings.
+  C  M31 dSphs: (i) the LVD M31 satellites, u02's class statistic (median B, flux theorem; bootstrap error of the median here);
+     (ii) the Collins+2013 table (J/ApJ/768/172, the data McGaugh & Milgrom 2013 II tested), h43's loader and 3-D separations,
+     median log10(sigma_obs/sigma_pred) (h43's statistic) in the flux form; the M&M-type convention as a reported variant.
+     McGaugh & Milgrom's own table of predictions is NOT on disk; their method is carried as the variant.
+  D  Chae's SPARC signal (Chae et al. 2021, ApJ 921, 104; the fitted e~ = e_N/sqrt|e_N| of Table 2 and the environmental e_N of
+     Table 3, both on disk): D1 their detection statistic, the median fitted e~ over the 143 galaxies with x_0,3 < -10.6 (0.053
+     +0.008/-0.012, a 4.4 sigma detection) against the predicted median; D2 their agreement statistic, the median fitted e~ of the
+     Table-3 galaxies in the same cut ("the 90") against the predicted band [no clustering, max clustering].  The prediction is
+     Chae's own e_N,env times the band-pass suppression s(L) = |sum_i Efac(d_i/L) g_i| / |sum_i g_i| computed with the repo's
+     committed 2M++ + MCXC rebuild of Chae's environment (gext_vectors_2026: its estimator imported read-only; its catalogues;
+     catalog_mode 'ks115', the mode its committed CSV and GATE-A were built with; the 'full' mode carried as a variant).
+     Two geometries for s(L): as catalogued (3-D, source distances Vcmb/73) and group-collapsed (sources within +-5 Mpc in
+     distance put at the test galaxy's distance: an upper bracket on the local field, since peculiar velocities scramble the
+     Mpc-scale geometry the band-pass reads).  M*'s rule for D: a source counts iff its region and the galaxy's region overlap
+     (d <= r_e,i + r_e,j, r_e = XR6's MOND-sector closed form (G M_b a0)^(1/4)/(H0 sqrt(x_c,eff - 1.5 Om f_b)), capped at the
+     kappa cap v_cap/(H0 sqrt(x_c,eff))), an approximation labelled as such.
+THE SCAN.  L = 0.5-5 Mpc at each system's epoch (all z < 0.03), y_th = 0; L -> infinity; H_Y's cell (L = 2.4615 Omega_L(z),
+  1.690 Mpc at z = 0, its yield included) and H_S's (FP13's committed headline, 2.879 Mpc at z = 0; pending FP19 after XR18).
+Footings: the chain's FP0 values (9.3603e-11 / 1.1312e-10) for every chain cell; the controls use the record's (9.36e-11 / 1.13e-10).
+Chae's e_N is in units of 1.2e-10 m/s^2 and his fits used his own nu_e: the comparison is made in his convention (no RC re-fit
+  exists on disk; project_efe_sparc_test.py says so), and the footing enters only through that convention (stated, not varied).
+
+  hunt_lib, FP11's definitions and the gext estimator loaded read-only   [0 s]
+
+======================================================================================================================
+K1  THE FLUX THEOREM'S LIMITS, both kernels
+======================================================================================================================
+  [PASS] K1 THE FLUX THEOREM: no host -> nu(y) y; quasi-Newtonian -> nu(e)(1 + L(e)/3) (u02's closed form), for Route A and P2; the band-passed point-host version equals the uniform one for a distant host (L -> oo)
+         measured: max |dev| 6.0e-10; point-host vs uniform 1.3e-08
+
+======================================================================================================================
+PART A -- CRATER II (g05's statistic: B = log10(g_obs/g_pred), exact QUMOND sphere average)
+======================================================================================================================
+  LVD crater_2: sigma 2.34 +0.42/-0.3 km/s (Ji2021ApJ...921...32J), r_h 1054 pc, M* 3.236e+05 (Upsilon_V = 2), host distance 115.5 kpc; Caldwell+2017: 2.7 +- 0.3 km/s
+  [PASS] C1 CONTROL (Crater II): g05's committed residual (+0.492 dex, canonical, Route A, flux theorem) is reproduced to its printed precision; project15's McGaugh-type values 1.93 / 1.71 km/s (DSPH_FOOTING_BOTHWAYS) are reproduced
+         measured: B = +0.4918 (g05 +0.492); project15 1.932 / 1.707 km/s
+  L =  inf: EFE prediction 1.30 km/s (B +0.511) vs isolated 3.87 (B -0.436); sigma over (LVD, Caldwell) x CGM x footings: EFE 4.22-8.12, isolated 2.80-3.66; M&M-type 0.06-2.48 -> fail
+  L =  0.5: EFE prediction 1.30 km/s (B +0.510) vs isolated 3.87 (B -0.436); sigma over (LVD, Caldwell) x CGM x footings: EFE 4.22-8.11, isolated 2.80-3.66; M&M-type 0.05-2.47 -> fail
+  L =    1: EFE prediction 1.30 km/s (B +0.511) vs isolated 3.87 (B -0.436); sigma over (LVD, Caldwell) x CGM x footings: EFE 4.22-8.12, isolated 2.80-3.66; M&M-type 0.06-2.48 -> fail
+  L =  1.6: EFE prediction 1.30 km/s (B +0.511) vs isolated 3.87 (B -0.436); sigma over (LVD, Caldwell) x CGM x footings: EFE 4.22-8.12, isolated 2.80-3.66; M&M-type 0.06-2.48 -> fail
+  L =  2.8: EFE prediction 1.30 km/s (B +0.511) vs isolated 3.87 (B -0.436); sigma over (LVD, Caldwell) x CGM x footings: EFE 4.22-8.12, isolated 2.80-3.66; M&M-type 0.06-2.48 -> fail
+  L =    5: EFE prediction 1.30 km/s (B +0.511) vs isolated 3.87 (B -0.436); sigma over (LVD, Caldwell) x CGM x footings: EFE 4.22-8.12, isolated 2.80-3.66; M&M-type 0.06-2.48 -> fail
+  L =  H_Y: EFE prediction 1.30 km/s (B +0.511) vs isolated 3.86 (B -0.436); sigma over (LVD, Caldwell) x CGM x footings: EFE 4.22-8.12, isolated 2.79-3.65; M&M-type 0.06-2.48 -> fail
+  L =  H_S: EFE prediction 1.30 km/s (B +0.511) vs isolated 3.87 (B -0.436); sigma over (LVD, Caldwell) x CGM x footings: EFE 4.22-8.12, isolated 2.80-3.66; M&M-type 0.06-2.48 -> fail
+  M*  (Route A = nu_mono here, record footings, L -> oo): EFE prediction 1.33 km/s, sigma 4.07-7.85 -> fail
+
+======================================================================================================================
+PART B -- NGC 1052-DF2 AND DF4 (u02's statistic: the flux theorem with the host's Newtonian baryonic field)
+======================================================================================================================
+  [PASS] C2 CONTROL (DF2/DF4): u02's committed rows (isolated, naive, sum-in-nu, eq. 60, flux theorem; DF2 and DF4 canonical, DF2 alt) and h8's committed dispersions (Newtonian, simple-EFE, isolated; both footings) are reproduced to their printed precision
+         measured: u02 max |diff| 4.6e-04 dex; h8 max |diff| 0.00 km/s
+  [PASS] (reported) C2b (reported) LITERATURE: the AQUAL-type scalar sum with the MONDian field (the record's mi_ngc1052 recipe, nu_P2, a0 = 1.2e-10) returns Famaey, McGaugh & Milgrom 2018's isolated 20 and EFE 13.4 km/s for DF2 at 20 Mpc
+         measured: isolated 20.05, EFE 13.28 km/s
+         reading:  that literature value reads the host's MONDian (true) field in the kernel; the chain's QUMOND form reads the Newtonian one (u02 2d)
+  L =  inf: DF2 predicted 18.9 km/s (isolated 19.9), sigma 1.2-3.5 (isolated 1.3-3.5); DF4 predicted 19.2 km/s (isolated 19.6), sigma 1.2-4.6 (isolated 1.3-4.6)
+  L =  0.5: DF2 predicted 18.9 km/s (isolated 19.9), sigma 1.2-3.5 (isolated 1.3-3.5); DF4 predicted 19.2 km/s (isolated 19.6), sigma 1.2-4.6 (isolated 1.3-4.6)
+  L =  1.6: DF2 predicted 18.9 km/s (isolated 19.9), sigma 1.2-3.5 (isolated 1.3-3.5); DF4 predicted 19.2 km/s (isolated 19.6), sigma 1.2-4.6 (isolated 1.3-4.6)
+  L =  2.8: DF2 predicted 18.9 km/s (isolated 19.9), sigma 1.2-3.5 (isolated 1.3-3.5); DF4 predicted 19.2 km/s (isolated 19.6), sigma 1.2-4.6 (isolated 1.3-4.6)
+  L =    5: DF2 predicted 18.9 km/s (isolated 19.9), sigma 1.2-3.5 (isolated 1.3-3.5); DF4 predicted 19.2 km/s (isolated 19.6), sigma 1.2-4.6 (isolated 1.3-4.6)
+  L =  H_Y: DF2 predicted 18.9 km/s (isolated 19.9), sigma 1.2-3.5 (isolated 1.3-3.5); DF4 predicted 19.2 km/s (isolated 19.6), sigma 1.2-4.6 (isolated 1.3-4.6)
+  L =  H_S: DF2 predicted 18.9 km/s (isolated 19.9), sigma 1.2-3.5 (isolated 1.3-3.5); DF4 predicted 19.2 km/s (isolated 19.6), sigma 1.2-4.6 (isolated 1.3-4.6)
+  M*  (Route A, record footings, L -> oo): DF2 predicted 19.6 km/s, sigma 1.3-3.6; DF4 predicted 20.1 km/s, sigma 1.3-4.7
+
+======================================================================================================================
+PART C -- ANDROMEDA'S DWARF SPHEROIDALS (LVD M31: u02's class statistic; Collins+2013: h43's statistic), flux theorem
+======================================================================================================================
+  [PASS] C3 CONTROL (M31): u02's LVD-M31 class medians (flux theorem, isolated; g-dex) and h43's Collins+2013 medians (eq. 60, its rms, isolated, Newtonian; sigma-dex) are reproduced to their printed precision, both footings
+         measured: max |diff| 4.3e-04; N(LVD) = 34, N(Collins) = 14; canonical LVD flux +0.578, Collins eq.60 +0.480
+  L =  inf: median log10(sigma_obs/sigma_pred) LVD +0.300 +- 0.066 (isolated +0.121), Collins +0.376 +- 0.125 (isolated +0.233; M&M-type +0.246); |median|/err over variants 2.9-4.7 -> fail
+  L =  0.5: median log10(sigma_obs/sigma_pred) LVD +0.299 +- 0.066 (isolated +0.121), Collins +0.376 +- 0.125 (isolated +0.233; M&M-type +0.246); |median|/err over variants 2.8-4.7 -> fail
+  L =  1.6: median log10(sigma_obs/sigma_pred) LVD +0.300 +- 0.066 (isolated +0.121), Collins +0.376 +- 0.125 (isolated +0.233; M&M-type +0.246); |median|/err over variants 2.9-4.7 -> fail
+  L =  2.8: median log10(sigma_obs/sigma_pred) LVD +0.300 +- 0.066 (isolated +0.121), Collins +0.376 +- 0.125 (isolated +0.233; M&M-type +0.246); |median|/err over variants 2.9-4.7 -> fail
+  L =    5: median log10(sigma_obs/sigma_pred) LVD +0.300 +- 0.066 (isolated +0.121), Collins +0.376 +- 0.125 (isolated +0.233; M&M-type +0.246); |median|/err over variants 2.9-4.7 -> fail
+  L =  H_Y: median log10(sigma_obs/sigma_pred) LVD +0.300 +- 0.066 (isolated +0.121), Collins +0.376 +- 0.125 (isolated +0.233; M&M-type +0.246); |median|/err over variants 2.9-4.7 -> fail
+  L =  H_S: median log10(sigma_obs/sigma_pred) LVD +0.300 +- 0.066 (isolated +0.121), Collins +0.376 +- 0.125 (isolated +0.233; M&M-type +0.246); |median|/err over variants 2.9-4.7 -> fail
+  M*  (Route A, record footings, L -> oo): LVD +0.289 +- 0.064, Collins +0.364 +- 0.123; |median|/err 2.8-4.7
+    [18 s]
+
+======================================================================================================================
+PART D -- CHAE et al.'s SPARC EFE SIGNAL: the band-passed environment against the rotation-curve fits
+======================================================================================================================
+  Chae Table 2: 162 fitted; x_0,3 < -10.6: 143 (median e~ 0.053 +0.008/-0.013; Chae: 0.053 +0.008/-0.012); Table 3: 109; rebuild: 175 SPARC galaxies, 27630 2M++ sources (ks115; 'full' variant 54488), 234 MCXC clusters   [18 s]
+  [PASS] C4 CONTROL (Chae): the imported estimator's field_at equals this lane's source sum at L -> oo for all 175 SPARC galaxies (no and max clustering), the committed gext_vectors.csv log_eN columns are reproduced to their printed precision (6 significant digits), and the median fitted e~ of the x_0,3 < -10.6 sample is Chae's 0.053 (N = 143)
+         measured: field_at max rel |diff| 0.0e+00; csv max |d log| 5.0e-06; N = 143, median 0.053 (+0.008/-0.013)
+    [21 s]
+  suppression factors computed for 175 galaxies   [61 s]
+  L =  inf: median s (max clu, 3-D / collapsed) 1.000 / 1.000; D1 predicted median e~ 0.0431 vs 0.053 -> +0.8 sigma (collapsed +0.8); D2 (N = 90) fitted median 0.060 vs band 0.0248-0.0708 -> 0.0 sigma (collapsed 0.0; 'full' catalogue 0.0 / 0.0) -> PASS
+  L =  0.5: median s (max clu, 3-D / collapsed) 0.000 / 0.100; D1 predicted median e~ 0.0009 vs 0.053 -> +4.0 sigma (collapsed +3.0); D2 (N = 90) fitted median 0.060 vs band 0.0007-0.0019 -> 4.2 sigma (collapsed 2.3; 'full' catalogue 4.1 / 2.1) -> fail
+  L =  0.6: median s (max clu, 3-D / collapsed) 0.001 / 0.130; D1 predicted median e~ 0.0016 vs 0.053 -> +4.0 sigma (collapsed +2.8); D2 (N = 90) fitted median 0.060 vs band 0.0013-0.0035 -> 4.0 sigma (collapsed 2.1; 'full' catalogue 4.0 / 2.0) -> bracket-dependent
+  L =  0.7: median s (max clu, 3-D / collapsed) 0.003 / 0.142; D1 predicted median e~ 0.0023 vs 0.053 -> +3.9 sigma (collapsed +2.8); D2 (N = 90) fitted median 0.060 vs band 0.0020-0.0053 -> 3.9 sigma (collapsed 1.9; 'full' catalogue 3.9 / 1.8) -> bracket-dependent
+  L =  0.8: median s (max clu, 3-D / collapsed) 0.004 / 0.164; D1 predicted median e~ 0.0029 vs 0.053 -> +3.9 sigma (collapsed +2.6); D2 (N = 90) fitted median 0.060 vs band 0.0024-0.0068 -> 3.8 sigma (collapsed 1.7; 'full' catalogue 3.8 / 1.7) -> bracket-dependent
+  L =  0.9: median s (max clu, 3-D / collapsed) 0.007 / 0.164; D1 predicted median e~ 0.0036 vs 0.053 -> +3.8 sigma (collapsed +2.6); D2 (N = 90) fitted median 0.060 vs band 0.0030-0.0086 -> 3.7 sigma (collapsed 1.6; 'full' catalogue 3.6 / 1.5) -> bracket-dependent
+  L =    1: median s (max clu, 3-D / collapsed) 0.008 / 0.180; D1 predicted median e~ 0.0044 vs 0.053 -> +3.7 sigma (collapsed +2.6); D2 (N = 90) fitted median 0.060 vs band 0.0036-0.0107 -> 3.5 sigma (collapsed 1.5; 'full' catalogue 3.5 / 1.5) -> bracket-dependent
+  L =  1.2: median s (max clu, 3-D / collapsed) 0.015 / 0.210; D1 predicted median e~ 0.0057 vs 0.053 -> +3.6 sigma (collapsed +2.6); D2 (N = 90) fitted median 0.060 vs band 0.0045-0.0128 -> 3.4 sigma (collapsed 1.4; 'full' catalogue 3.3 / 1.5) -> bracket-dependent
+  L =  1.4: median s (max clu, 3-D / collapsed) 0.018 / 0.254; D1 predicted median e~ 0.0061 vs 0.053 -> +3.6 sigma (collapsed +2.5); D2 (N = 90) fitted median 0.060 vs band 0.0050-0.0155 -> 3.2 sigma (collapsed 1.4; 'full' catalogue 3.2 / 1.5) -> bracket-dependent
+  L =  1.6: median s (max clu, 3-D / collapsed) 0.022 / 0.262; D1 predicted median e~ 0.0068 vs 0.053 -> +3.6 sigma (collapsed +2.4); D2 (N = 90) fitted median 0.060 vs band 0.0058-0.0184 -> 3.0 sigma (collapsed 1.3; 'full' catalogue 3.0 / 1.4) -> bracket-dependent
+  L =  1.8: median s (max clu, 3-D / collapsed) 0.026 / 0.284; D1 predicted median e~ 0.0074 vs 0.053 -> +3.5 sigma (collapsed +2.4); D2 (N = 90) fitted median 0.060 vs band 0.0063-0.0191 -> 2.9 sigma (collapsed 1.3; 'full' catalogue 2.9 / 1.3) -> bracket-dependent
+  L =    2: median s (max clu, 3-D / collapsed) 0.032 / 0.295; D1 predicted median e~ 0.0077 vs 0.053 -> +3.5 sigma (collapsed +2.3); D2 (N = 90) fitted median 0.060 vs band 0.0066-0.0198 -> 2.9 sigma (collapsed 1.3; 'full' catalogue 2.8 / 1.2) -> bracket-dependent
+  L =  2.4: median s (max clu, 3-D / collapsed) 0.043 / 0.305; D1 predicted median e~ 0.0085 vs 0.053 -> +3.4 sigma (collapsed +2.4); D2 (N = 90) fitted median 0.060 vs band 0.0071-0.0207 -> 2.8 sigma (collapsed 1.1; 'full' catalogue 2.7 / 1.1) -> bracket-dependent
+  L =  2.8: median s (max clu, 3-D / collapsed) 0.050 / 0.331; D1 predicted median e~ 0.0099 vs 0.053 -> +3.3 sigma (collapsed +2.4); D2 (N = 90) fitted median 0.060 vs band 0.0076-0.0213 -> 2.8 sigma (collapsed 1.0; 'full' catalogue 2.7 / 1.0) -> bracket-dependent
+  L =  3.2: median s (max clu, 3-D / collapsed) 0.062 / 0.344; D1 predicted median e~ 0.0115 vs 0.053 -> +3.2 sigma (collapsed +2.3); D2 (N = 90) fitted median 0.060 vs band 0.0078-0.0219 -> 2.7 sigma (collapsed 1.0; 'full' catalogue 2.7 / 1.0) -> bracket-dependent
+  L =  3.6: median s (max clu, 3-D / collapsed) 0.076 / 0.361; D1 predicted median e~ 0.0129 vs 0.053 -> +3.1 sigma (collapsed +2.3); D2 (N = 90) fitted median 0.060 vs band 0.0088-0.0251 -> 2.5 sigma (collapsed 1.0; 'full' catalogue 2.5 / 0.9) -> bracket-dependent
+  L =    4: median s (max clu, 3-D / collapsed) 0.104 / 0.375; D1 predicted median e~ 0.0146 vs 0.053 -> +3.0 sigma (collapsed +2.2); D2 (N = 90) fitted median 0.060 vs band 0.0100-0.0291 -> 2.2 sigma (collapsed 0.9; 'full' catalogue 2.2 / 0.9) -> bracket-dependent
+  L =  4.5: median s (max clu, 3-D / collapsed) 0.125 / 0.404; D1 predicted median e~ 0.0160 vs 0.053 -> +2.8 sigma (collapsed +2.1); D2 (N = 90) fitted median 0.060 vs band 0.0115-0.0333 -> 1.9 sigma (collapsed 0.9; 'full' catalogue 1.9 / 0.9) -> PASS
+  L =    5: median s (max clu, 3-D / collapsed) 0.175 / 0.424; D1 predicted median e~ 0.0180 vs 0.053 -> +2.7 sigma (collapsed +2.0); D2 (N = 90) fitted median 0.060 vs band 0.0123-0.0358 -> 1.7 sigma (collapsed 0.8; 'full' catalogue 1.7 / 0.7) -> PASS
+  L =  H_Y: median s (max clu, 3-D / collapsed) 0.023 / 0.271; D1 predicted median e~ 0.0071 vs 0.053 -> +3.5 sigma (collapsed +2.4); D2 (N = 90) fitted median 0.060 vs band 0.0061-0.0188 -> 2.9 sigma (collapsed 1.3; 'full' catalogue 3.0 / 1.3) -> bracket-dependent
+  L =  H_S: median s (max clu, 3-D / collapsed) 0.052 / 0.336; D1 predicted median e~ 0.0102 vs 0.053 -> +3.3 sigma (collapsed +2.4); D2 (N = 90) fitted median 0.060 vs band 0.0076-0.0214 -> 2.8 sigma (collapsed 1.0; 'full' catalogue 2.7 / 1.0) -> bracket-dependent
+  M* (region overlap rule, approximate): D1 +3.6 / +3.5 sigma; D2 band 0.0056-0.0188 -> 2.9 / 2.9 sigma; median suppression (max clu) 0.026
+    [79 s]
+
+======================================================================================================================
+B1 AND THE PRE-DECLARED HYPOTHESES
+======================================================================================================================
+  [PASS] B1 THE BAND-PASS REMOVES THE FAR ENVIRONMENT (MUTATE must fail): at H_Y's L the median suppression of Chae's 143 galaxies' environmental field (as catalogued, max clustering) is < 0.5, and a point host at D = 3L keeps Efac(3) < 0.05 (as scored)
+         measured: median s(H_Y) = 0.023; Efac(3) as scored 0.0293
+  [PASS] (reported) G1 (reported, pre-declared) CRATER II is L-independent over the scan and its EFE prediction sits > 2 sigma below the measurement (some variant), the isolated one above it
+         measured: EFE sigma ranges 4.22-8.11 (0.5 Mpc) .. 4.22-8.12 (5 Mpc); isolated 2.80-3.66
+  [FAIL] (reported) G2 (reported, pre-declared) DF2 AND DF4 fail by > 3 sigma at every scanned L and variant (the QUMOND flux prediction stays near isolated)
+         measured: min sigma over the scan: DF2 1.16, DF4 1.25
+  [PASS] (reported) G3 (reported, pre-declared) THE M31 DWARFS: the EFE prediction's median offset stays >= 0.25 dex in g (0.125 in sigma) at Upsilon_V = 2 and further from the data than the isolated one, at every L (LVD sample)
+         measured: LVD median sigma-offset EFE +0.300 vs isolated +0.121 (L = 1 Mpc)
+  [FAIL] (reported) G4 (reported, pre-declared) CHAE: at L -> oo D2 agrees (<= 2 sigma); at H_Y's and H_S's L the catalogued geometry fails D2 by > 3 sigma; no scanned L passes
+         measured: D2 z: oo 0.0, H_Y 2.9, H_S 2.8; passing scanned L: ['4.5', '5']
+  [PASS] (reported) G5 (reported, pre-declared) M* ALSO FAILS CHAE'S D2 (> 2 sigma, both footings): no flip against M* there
+         measured: M* D2 z 2.9 / 2.9
+
+  10/12 checks pass; load-bearing failures: 0; wrote XR27_efe_favouring_results.json   [79 s]
