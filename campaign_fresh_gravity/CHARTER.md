@@ -102,6 +102,20 @@ and expanding matter. Each lane takes one of these.
   - Solar System safety;
   - a linear web that stays GR-like, so CMB lensing is safe by construction.
 
+## Second wave (2026-09-27)
+
+- **CFG4, the target law from the evidence.** The smallest set of effective equations that reproduces every
+  model-independent fact at once. It covers:
+  - the galaxy law and the dark density it implies;
+  - the switch criterion that is on in bound systems and off in the web, the forest and the Solar System;
+  - the cluster and cosmology requirements.
+
+  Either it finds one consistent effective description, or it names the precise minimal conflict and the smallest
+  ingredient that would resolve it. CFG2, CFG3 and CFG5 build to its target.
+- **CFG5, the radial acceleration relation as a fossil of collapse.** Gravity is GR, and there is no MOND field. As
+  matter collapses, a process keyed to a₀ = κc√(Gρ_Λ) rearranges or removes the framework's dark field. The halo that
+  survives encodes a₀, so the RAR is written in during formation.
+
 ## Files
 
 - Lane files are named `CFG<n>_*`, each with its README, its scripts, and the scripts' `.out` and `_results.json`
