@@ -36,8 +36,10 @@ state only through the leaf-averaged expansion <K>_h:
     chi = (S_xi - S_B) phi,   B = L^2/2,   L = L_Lambda 3 Lambda/<K>_h^2
     J_Y = J_P2(Y) + 2 y_th sqrt(Y),   y_th = max(0, 1 + Omega_r - 9 Lambda/<K>_h^2) (<K>_h^2/3 - Lambda) L/alpha   (c_y = 2)
 
-with lambda > 0 required as a regulator (the yield vanishes below z = 0.635). It awaits the hub's XR18-style re-audit and
-XR21 stage 2; H_Y (FP9; four declared constants) is the fallback. The dark sector is FK1's internal splitting (FP10), a
+with lambda > 0 required as a regulator (the yield vanishes below z = 0.635). The hub's re-audit XR18b (3c0cf3c37) finds it
+linearly well posed and causal under criterion B, with FRW well posed across the q = 0 kink (the Newtonian psi-symbol is
+>= +0.999982 at every sub-horizon k for z = 0-2.5); the particle-mesh run (XR21 stage 2a) proceeds on it. H_Y (FP9; four
+declared constants) is the fallback. The dark sector is FK1's internal splitting (FP10), a
 light complex scalar whose own rest energy powers the kick.
 
 **Who feels MOND (FP22, adopted).** On the matter metric g, FK1 would source and feel chi like any matter (reciprocity),
@@ -56,7 +58,7 @@ merger/offset gates (Harvey, the Bullet cluster) must score it (OPEN).
 
 | sector | constant | status | lane |
 |---|---|---|---|
-| core | lambda (inertia) | eliminated under H_Y (lambda = 0); required > 0 under H_S and H_K1 (below z = 0.635). NOT a pure regulator at c_2 = infinity (the hub's XR25): inert for strong-field observables, but a MOND-regime knob across (0, 274.4] (tracking speed 17,300 -> 1,800 km/s, galaxy alpha_2 v^2 1.3e-3 -> 0.12); inert only for lambda <~ 0.03. Counts as a knob unless that range is shown free of trouble (XR18b) | FP14, FP13, FP19, XR25 |
+| core | lambda (inertia) | REGULATOR in a DECLARED range 0 < lambda <= 0.03 (XR18b, 3c0cf3c37): only there are the MOND-regime observables lambda-independent (sigma_8 spread 3.6e-7; the tracking speed moves 1% at 0.061, galaxy alpha_2 v^2 at 0.030). Outside it lambda is a knob no datum picks (x9.6 and x93 across (0, 274.4], XR25). Required > 0 under H_S and H_K1 (below z = 0.635); eliminated under H_Y | FP14, FP13, FP19, XR25, XR18b |
 | core | c_2 | ELIMINATED on Minkowski and FRW (c_2 -> infinity: a multiplier). At black holes the limit is not uniform: at c_2 = infinity with alpha_c > 0 the multiplier diverges logarithmically at the universal horizon (r = 3M/2), a curvature singularity at O(alpha_c); finite c_2 is regular. OPEN (XR25) | FP14, XR25 |
 | core | alpha_c | REGULATOR (every observable moves <= 1.6e-9) | FP14 |
 | core | xi (heat filter) | KNOB: irreducible by a threshold-mass theorem. MEASURABLE by Gaia DR4 wide binaries with a separation-resolved statistic: sigma(ln xi) ~ 0.20/0.15 at the floor, 91% of the information at 5-30 kAU. The frozen pre-registered statistic can only kill the chain from above (gamma_hat >~ 1.157/1.174); a Newtonian result only bounds xi > 0.036/0.047 pc (the hub's XR22, 661ea3cff, re-run pending) | FP17, XR22 |
@@ -112,6 +114,10 @@ merger/offset gates (Harvey, the Bullet cluster) must score it (OPEN).
 - H_K1's prices (FP19): KiDS for lenses at z = 0.7 comes out at +500/+524 with the exact projector (FP20b; +467/+496 before), a sharp prediction the data can test; the Local
   Group R0 still fails (1.41/1.46 Mpc). All of FP19's numbers are in the all-matter reading and use FP6's projection, so
   they are provisional until FP20 and FP22.
+- Nonlinear well-posedness (XR18b, OPEN): cold-matter growth is resolution-dependent at H_K1's yield surfaces (190-374 H
+  at xi) and, below z = 0.635, at every zero of the band-passed field (halo centres, web saddles); the nonlinear
+  free-boundary problem is open. Far from an isolated host (13.6 Mpc at z = 0.25, band-passed field ~1e-24 a0, no yield)
+  DE12's convention gives up to 1.4e5 H; embedded in the web's own field it is 0.
 - Strong lensing (the hub's XR33, 92fe59705): SLACS ellipticals from baryons plus the phantom need a stellar IMF
   0.118 +- 0.013 dex above the spectroscopic relation (CvD12's heaviest); the phantom supplies only 9.5-11% of the
   Einstein mass (g_N ~ 9-11 a0). LCDM's own IMF for the same lenses is off by +0.021 dex.
@@ -142,6 +148,9 @@ merger/offset gates (Harvey, the Bullet cluster) must score it (OPEN).
 - **The record's forest particle-mesh codes** (L346, L347, L362, DE11, DE11b) pass (1+z) times the physical field to the
   MOND kernel, so MOND is evaluated about sqrt(1+z) too weak in the deep limit at z = 2-3 (the hub's XR21 flag, confirmed by
   FP22; the hub's XR34 re-scores DE11b). The chain's own forest proxies (FP9, FP13) use the physical field.
+- **FP19's "the <K>_h read acts at k = 0 only" is wrong** (XR18b): its second variation is a local operator at every k.
+  It is harmless: the constraint determinant is identical with and without it (|eps_C| <= 9.1e-6, rho_extra/rho_bar <=
+  2.6e-5). FP19's "lambda any value <~ 100" is also wrong at c_2 = infinity: lambda must be declared <= 0.03.
 - **FP14's "sigma_8 unchanged for lambda = 0-100"** was measured at the c_2 floor, where lambda_eff = lambda + 277 (the
   hub's XR25, 43cfa1692). At that floor the lambda window is empty, so a required lambda > 0 (FP13, FP19) needs
   c_2 > 7.289e-3; FP14's "c_2 -> infinity is regular" holds on Minkowski and FRW but not uniformly at black holes.
