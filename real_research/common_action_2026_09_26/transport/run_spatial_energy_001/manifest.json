@@ -1,0 +1,145 @@
+{
+  "schema_version": 2,
+  "claim_id": "CD26_4_SPATIAL_ENERGY_AND_TIMESTEP_AUDIT",
+  "repository": {
+    "commit": "ecffd2af3623ff3e32318234fd51e1fac50b9126",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "real_research/common_action_2026_09_26/transport/spatial_energy_audit.py",
+    "--output",
+    "real_research/common_action_2026_09_26/transport/run_spatial_energy_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent complex-coordinate integration matches real-component calculation; half timestep preserves retention direction; initial gradient, seed and interaction energy are fully accounted.",
+    "coefficient_domain": "Float64 deterministic Hamiltonian finite differences and velocity Verlet",
+    "conventions": "Signature -+++; c=hbar=1; R²=φ1²+φ2²; three Cartesian canonical scalars; same physical metric; optional common exponential preferred-frame lapse factors A=expZ,B=exp(-Z)",
+    "inputs": [
+      "Prior bounded spatial outputs and the same quartic Hamiltonian"
+    ],
+    "bounds": {
+      "wall_seconds": 60,
+      "cpu_seconds": 50,
+      "N": 512,
+      "box_length": 128,
+      "time_interval": [
+        0,
+        30
+      ],
+      "dt": [
+        0.025,
+        0.0125
+      ],
+      "seed": 0.001,
+      "g2": [
+        0,
+        1
+      ],
+      "random_sampling": false
+    },
+    "non_claims": [
+      "No halo evacuation demonstrated",
+      "No full coupled gravity global wellposedness",
+      "No derived stochastic decay",
+      "No observational or particle interpretation",
+      "No global timelike phase"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-26T20:29:23.167462+00:00",
+    "runtime_seconds": 1.133818,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 50,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/common_action_2026_09_26/transport/spatial_energy_audit.py",
+    "real_research/common_action_2026_09_26/transport/run_spatial_001/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/common_action_2026_09_26/transport/spatial_energy_audit.py",
+      "sha256": "20de3b4b3c21317ccfd3f9cfd13def23ecb012dfe76687710fd4079ed8bec7ad",
+      "sha256_after": "20de3b4b3c21317ccfd3f9cfd13def23ecb012dfe76687710fd4079ed8bec7ad"
+    },
+    {
+      "path": "real_research/common_action_2026_09_26/transport/run_spatial_001/results.json",
+      "sha256": "413b4c2d08eff59d7898ebd96a9b33f1dd5c59d222da742c05e74aa5fa09661e",
+      "sha256_after": "413b4c2d08eff59d7898ebd96a9b33f1dd5c59d222da742c05e74aa5fa09661e"
+    }
+  ],
+  "output_directory": "real_research/common_action_2026_09_26/transport/run_spatial_energy_001",
+  "declared_results": [
+    "real_research/common_action_2026_09_26/transport/run_spatial_energy_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/common_action_2026_09_26/transport/run_spatial_energy_001/stdout.txt",
+      "sha256": "38ee76832e8823765f4db35939ce8e605de66bf51c002b969134f241e401f2eb",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/common_action_2026_09_26/transport/run_spatial_energy_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/common_action_2026_09_26/transport/run_spatial_energy_001/results.json",
+      "sha256": "38ee76832e8823765f4db35939ce8e605de66bf51c002b969134f241e401f2eb",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

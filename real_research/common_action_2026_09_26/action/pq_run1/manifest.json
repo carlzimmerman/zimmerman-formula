@@ -1,0 +1,125 @@
+{
+  "schema_version": 2,
+  "claim_id": "CD26_4_PROJECTED_QUADRATIC_REPAIR",
+  "repository": {
+    "commit": "ecffd2af3623ff3e32318234fd51e1fac50b9126",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "real_research/common_action_2026_09_26/action/check_pq.py",
+    "--output",
+    "real_research/common_action_2026_09_26/action/pq_run1/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The explicit extra action -V0 zeta (P_hZ)^2 yields the stated exact source/lapse/projector stress and the normalized vacuum de Sitter quadratic repair. Exact factorization supports a separate analytic all-nonzero-mode sign proof.",
+    "coefficient_domain": "Exact real SymPy identities; positive parameter hypotheses stated in the report.",
+    "conventions": "zeta=4/ell-1, Lambda_bare=0, V0=3M_P^2 H^2>0, 0<alpha<=1, 0<ell<=1, eta=3H^2 xi^2 ell/4<=1/10, compact h-volume projection.",
+    "inputs": [
+      "VACUUM_STIFFNESS_VARIANT.md explicit GNC-PQ definition",
+      "Evolution frw_check.py actual on-shell vacuum de Sitter ADM expansion",
+      "Exact two-cell h-volume projector"
+    ],
+    "bounds": {
+      "projector_cells": 2,
+      "sampling": false,
+      "full_global_health_claim": false
+    },
+    "non_claims": [
+      "No arbitrary-background principal theorem",
+      "No zero-mode coercivity",
+      "No coupled nonlinear Cauchy theorem",
+      "No empirical pass transfer"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-26T21:08:12.434734+00:00",
+    "runtime_seconds": 0.863697,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 45,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/common_action_2026_09_26/action/check_pq.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/common_action_2026_09_26/action/check_pq.py",
+      "sha256": "42950e55470b1b84db2eef9b375adb6d676d73693f981f595d98ac70c68aa5e8",
+      "sha256_after": "42950e55470b1b84db2eef9b375adb6d676d73693f981f595d98ac70c68aa5e8"
+    }
+  ],
+  "output_directory": "real_research/common_action_2026_09_26/action/pq_run1",
+  "declared_results": [
+    "real_research/common_action_2026_09_26/action/pq_run1/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/common_action_2026_09_26/action/pq_run1/stdout.txt",
+      "sha256": "d58ccde2c66d35de20d3e039c374ef9d6d636ee74fefb70f201a2681f0246e28",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/common_action_2026_09_26/action/pq_run1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/common_action_2026_09_26/action/pq_run1/results.json",
+      "sha256": "3652938112e4b39cdf1635bfefc85f75b280f035886e860bb393492121b56146",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

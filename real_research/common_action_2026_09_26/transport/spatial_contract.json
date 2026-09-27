@@ -1,0 +1,58 @@
+{
+  "claim_id": "CD26_4_SPATIAL_CHARGE_FLUX_CONTROL",
+  "mathematics": {
+    "assertion_tested": "Does the stated seeded transition improve fixed-region clearing relative to uncoupled fields? Independently verify current flux, global charge, energy error and refinement; report either direction.",
+    "coefficient_domain": "Float64 deterministic Hamiltonian finite differences and velocity Verlet",
+    "conventions": "Signature -+++; c=hbar=1; R\u00b2=\u03c61\u00b2+\u03c62\u00b2; three Cartesian canonical scalars; same physical metric; optional common exponential preferred-frame lapse factors A=expZ,B=exp(-Z)",
+    "inputs": [
+      "Canonical quartic field action at fixed Z=0"
+    ],
+    "bounds": {
+      "wall_seconds": 60,
+      "cpu_seconds": 50,
+      "N": [
+        256,
+        512,
+        1024
+      ],
+      "box_length": 128,
+      "time_interval": [
+        0,
+        30
+      ],
+      "dt_rule": "12.8/N adjusted to exactly thirty time units",
+      "region": "abs(x)<10, cell centered",
+      "seeds": [
+        0,
+        0.001,
+        0.01
+      ],
+      "random_sampling": false
+    },
+    "non_claims": [
+      "No halo evacuation demonstrated",
+      "No full coupled gravity global wellposedness",
+      "No derived stochastic decay",
+      "No observational or particle interpretation",
+      "No global timelike phase"
+    ]
+  },
+  "execution_artifacts": [
+    "real_research/common_action_2026_09_26/transport/spatial_check.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

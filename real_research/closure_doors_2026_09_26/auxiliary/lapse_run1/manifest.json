@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "D3_WEIGHTED_FILTER_FIXED_H_LAPSE_VARIATION",
+  "repository": {
+    "commit": "763086b2345085e93f35628b4d59abe69a5a7da3",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "real_research/closure_doors_2026_09_26/auxiliary/lapse_variation.py",
+    "--output",
+    "real_research/closure_doors_2026_09_26/auxiliary/lapse_run1/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The complete fixed-metric lapse first variation includes measure, acceleration and weighted-heat-generator variations, with the latter matching a Duhamel weighted-adjoint formula.",
+    "coefficient_domain": "Real smooth continuum derivation recorded separately; deterministic IEEE binary64 finite weighted-graph surrogate using NumPy and SciPy",
+    "conventions": "Periodic 12-node cycle, D forward oriented edge derivative, P endpoint mean, M=dx diag(exp(logN)), W=dx diag(exp(P logN)), L=-M^-1 D^T W D; U fixed under lapse variation.",
+    "inputs": [
+      "Weighted-filter auxiliary energy in auxiliary/RESULT.md",
+      "Exact inverse exponential kernel x(1-exp(-x))=abs(p)/alpha",
+      "Deterministic smooth lapse, field and lapse perturbation on a cycle"
+    ],
+    "bounds": {
+      "graph_nodes": 12,
+      "heat_time": 0.11,
+      "alpha": 0.8,
+      "inverse_bisection_steps": 64,
+      "Duhamel_Gauss_Legendre_nodes": 32,
+      "energy_central_difference_steps": [
+        0.01,
+        0.001,
+        0.0001,
+        1e-05
+      ],
+      "matrix_absolute_tolerance": 2e-09,
+      "Duhamel_absolute_tolerance": 2e-12,
+      "last_energy_derivative_absolute_tolerance": 2e-08,
+      "small_x_kernel_series_threshold": 0.001,
+      "small_x_kernel_series_max_power": 12,
+      "random_sampling": false
+    },
+    "non_claims": [
+      "Finite graph does not prove a continuum convergence theorem",
+      "No full metric or clock variation",
+      "No physical causal response or degrees-of-freedom count",
+      "No empirical validation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-26T19:03:08.500931+00:00",
+    "runtime_seconds": 0.439891,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 45,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/closure_doors_2026_09_26/auxiliary/lapse_variation.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/closure_doors_2026_09_26/auxiliary/lapse_variation.py",
+      "sha256": "bcba39bda923e5322bfc10e266df94c26743f78b50895bb2bd1ef4293c76022f",
+      "sha256_after": "bcba39bda923e5322bfc10e266df94c26743f78b50895bb2bd1ef4293c76022f"
+    }
+  ],
+  "output_directory": "real_research/closure_doors_2026_09_26/auxiliary/lapse_run1",
+  "declared_results": [
+    "real_research/closure_doors_2026_09_26/auxiliary/lapse_run1/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/closure_doors_2026_09_26/auxiliary/lapse_run1/stdout.txt",
+      "sha256": "cd86c15d82916a90516c47d3cbc1a849f0fd721e8b6ffc1146519b459a8616e7",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/closure_doors_2026_09_26/auxiliary/lapse_run1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/closure_doors_2026_09_26/auxiliary/lapse_run1/results.json",
+      "sha256": "cd86c15d82916a90516c47d3cbc1a849f0fd721e8b6ffc1146519b459a8616e7",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

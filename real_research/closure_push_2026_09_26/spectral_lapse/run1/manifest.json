@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "claim_id": "CD26_2_NONLINEAR_POSITIVE_LAPSE_SLICE",
+  "repository": {
+    "commit": "9092fc0fd02b904e87c708971335cd63adb18151",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "real_research/closure_push_2026_09_26/spectral_lapse/check.py",
+    "--output",
+    "real_research/closure_push_2026_09_26/spectral_lapse/run1/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Explicit nonlinear inhomogeneous positive-density constraint slice for flattened cosmological potential and homogeneous lapse-gradient coefficient; groundstate factorization and global trace datum.",
+    "coefficient_domain": "Exact analytic/symbolic real identities; deterministic finite-difference spectral refinement",
+    "conventions": "Flat connected periodic torus2pi; N=y²; H=integral N[A-b|DlnN|²]; A=-ell q²+Lambda+rho; qconstantnegative; matteratrest",
+    "inputs": [
+      "Explicit displayed modified cosmological Hamiltonian",
+      "Continuum positive y=exp(epsilon cosx)",
+      "Groundstate quadratic-form identity"
+    ],
+    "bounds": {
+      "grids": [
+        64,
+        128,
+        256,
+        512
+      ],
+      "b": 0.2,
+      "ell": 0.1,
+      "Lambda": 0.7,
+      "rho0": 0.5,
+      "eps": 0.1,
+      "spectral_residual_tolerance": 1e-09
+    },
+    "non_claims": [
+      "No full Hamiltonian/Dirac closure",
+      "No nonlinear evolution theorem",
+      "No noncompact gap theorem",
+      "No MOND static or transition pass"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-26T19:34:39.784122+00:00",
+    "runtime_seconds": 2.148284,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 55,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/closure_push_2026_09_26/spectral_lapse/check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/closure_push_2026_09_26/spectral_lapse/check.py",
+      "sha256": "983c7d1550c8bf9bec9199b95d31c6be59902a278fd5b5db068e2645daa64bd1",
+      "sha256_after": "983c7d1550c8bf9bec9199b95d31c6be59902a278fd5b5db068e2645daa64bd1"
+    }
+  ],
+  "output_directory": "real_research/closure_push_2026_09_26/spectral_lapse/run1",
+  "declared_results": [
+    "real_research/closure_push_2026_09_26/spectral_lapse/run1/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/closure_push_2026_09_26/spectral_lapse/run1/stdout.txt",
+      "sha256": "b4baa6cd26db4d41e48c0b9103cec108f8d2a6a131e2e474e96f5c49dcecf6ac",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/closure_push_2026_09_26/spectral_lapse/run1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/closure_push_2026_09_26/spectral_lapse/run1/results.json",
+      "sha256": "190b087dfbfa9c79921ba97127931ede9f1de849f1c5fd42ed46cc57bce57cd3",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

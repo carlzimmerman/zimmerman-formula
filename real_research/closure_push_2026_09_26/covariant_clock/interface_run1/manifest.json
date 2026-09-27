@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "claim_id": "CD26_2_POLAR_CLOCK_COMMON_MOND_INTERFACE",
+  "repository": {
+    "commit": "9092fc0fd02b904e87c708971335cd63adb18151",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "real_research/closure_push_2026_09_26/covariant_clock/check_mond_interface.py",
+    "--output",
+    "real_research/closure_push_2026_09_26/covariant_clock/interface_run1/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The exact static lapse source and gradient-retaining radial susceptibility of a canonical polar clock do not vanish when the same phase defines the exact-MOND acceleration term. A homogeneous vacuum subtraction cannot remove the susceptibility.",
+    "coefficient_domain": "Exact SymPy real identities and deterministic binary64 finite weighted-graph Newton solves",
+    "conventions": "One metric, T=Omega t, X=-(partial T)^2/2, q=2X=Omega^2/N^2, potential m0^2 R^2/2+lambda R^4/4; F_C is the explicitly integrated measured-G acceleration primitive.",
+    "inputs": [
+      "Explicit common Einstein plus F_C plus polar scalar action",
+      "Static lapse and radial first variations",
+      "Constant circular reference patch for the linear response only"
+    ],
+    "bounds": {
+      "graph_nodes": 32,
+      "Fourier_mode": 2,
+      "Newton_iterations_max": 15,
+      "Newton_residual_absolute_tolerance": 3e-12,
+      "central_difference_steps": [
+        0.001,
+        0.0001,
+        1e-05
+      ],
+      "radial_derivative_tolerance": 2e-08,
+      "density_derivative_tolerance": 5e-08,
+      "example_m0_squared": 1,
+      "example_lambda": 0.5,
+      "example_R0": 1,
+      "example_q0": 1.5,
+      "random_sampling": false
+    },
+    "non_claims": [
+      "No full common-action gravitational constraint or DOF proof",
+      "No empirical galaxy fit",
+      "No inheritance of bare-action no-slip or causality",
+      "No no-go outside the stated minimal addition or healthy first-derivative effective-clock class"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-26T19:25:33.385951+00:00",
+    "runtime_seconds": 1.912895,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 45,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/closure_push_2026_09_26/covariant_clock/check_mond_interface.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/closure_push_2026_09_26/covariant_clock/check_mond_interface.py",
+      "sha256": "a3f014dbdfc6492a9eecb1b4c046efe407a6a57f5a7146cc71646388c6f6368b",
+      "sha256_after": "a3f014dbdfc6492a9eecb1b4c046efe407a6a57f5a7146cc71646388c6f6368b"
+    }
+  ],
+  "output_directory": "real_research/closure_push_2026_09_26/covariant_clock/interface_run1",
+  "declared_results": [
+    "real_research/closure_push_2026_09_26/covariant_clock/interface_run1/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/closure_push_2026_09_26/covariant_clock/interface_run1/stdout.txt",
+      "sha256": "d54ef576b7e27a7c06eaf12d78bb9d48ec93fff85f98f13d2ad03e118efe86c1",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/closure_push_2026_09_26/covariant_clock/interface_run1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/closure_push_2026_09_26/covariant_clock/interface_run1/results.json",
+      "sha256": "d54ef576b7e27a7c06eaf12d78bb9d48ec93fff85f98f13d2ad03e118efe86c1",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

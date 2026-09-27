@@ -1,0 +1,131 @@
+{
+  "result": "fixed-h lapse variation verified for the stated weighted graph; continuum identity derived separately",
+  "number_of_checks": 16,
+  "checks": {
+    "weighted_generator_self_adjoint": {
+      "passed": true,
+      "measured": 4.440892098500626e-16
+    },
+    "generator_and_variation_preserve_constants": {
+      "passed": true,
+      "measured": [
+        1.7763568394002505e-15,
+        8.881784197001252e-16
+      ]
+    },
+    "generator_variation_central_difference": {
+      "passed": true,
+      "measured": 6.513944939001703e-11
+    },
+    "heat_operator_variation_central_difference": {
+      "passed": true,
+      "measured": 1.6729992391439907e-11
+    },
+    "Duhamel_vs_Frechet_full_matrix": {
+      "passed": true,
+      "measured": 4.163336342344337e-17
+    },
+    "weighted_adjoint_Duhamel_vs_Frechet_energy": {
+      "passed": true,
+      "measured": 5.551115123125783e-17
+    },
+    "node_mass_plus_edge_conductance_vertices": {
+      "passed": true,
+      "measured": 1.3877787807814457e-16
+    },
+    "full_lapse_energy_central_difference": {
+      "passed": true,
+      "measured": [
+        {
+          "step": 0.01,
+          "central_derivative": -4.941252955865139,
+          "absolute_error": 9.206564118624527e-05
+        },
+        {
+          "step": 0.001,
+          "central_derivative": -4.9413441008567816,
+          "absolute_error": 9.206495432678707e-07
+        },
+        {
+          "step": 0.0001,
+          "central_derivative": -4.941345012312581,
+          "absolute_error": 9.193743544244626e-09
+        },
+        {
+          "step": 1e-05,
+          "central_derivative": -4.941345021691745,
+          "absolute_error": 1.8542056778869664e-10
+        }
+      ]
+    },
+    "central_difference_second_order_control": {
+      "passed": true,
+      "measured": 100.00074605963064
+    },
+    "negative_control_freezing_filter_fails": {
+      "passed": true,
+      "measured": 0.17815580930612956
+    },
+    "negative_control_omitting_node_mass_vertex_fails": {
+      "passed": true,
+      "measured": 0.3766050633719322
+    },
+    "leafwise_constant_lapse_rescaling": {
+      "passed": true,
+      "measured": {
+        "generator_error": 0.0,
+        "energy_derivative_error": 0.0
+      }
+    },
+    "zero_heat_time_control": {
+      "passed": true,
+      "measured": 0.0
+    },
+    "zero_gradient_C1_join_control": {
+      "passed": true,
+      "measured": {
+        "energy_derivative_error": 1.6076251441177192e-11,
+        "heat_term": 0.0
+      }
+    },
+    "kernel_one_sided_C1_join_scaling": {
+      "passed": true,
+      "measured": {
+        "J_over_p": [
+          0.023701522547625937,
+          0.0023836394107517307,
+          0.0002384989177304182
+        ],
+        "last_asymptotic_ratio": 0.9999371111350218
+      }
+    },
+    "inverse_kernel_residual": {
+      "passed": true,
+      "measured": 2.710505431213761e-20
+    }
+  },
+  "generic_derivative": {
+    "direct": -4.763189212200195,
+    "heat_frechet": -0.17815580930612956,
+    "heat_duhamel": -0.17815580930612962,
+    "mass_vertex": -0.3766050633719322,
+    "edge_vertex": 0.19844925406580274,
+    "total": -4.941345021506325
+  },
+  "generic_energy": 36.80525815806869,
+  "graph": {
+    "nodes": 12,
+    "heat_time": 0.11,
+    "alpha": 0.8,
+    "node_mass": "dx exp(logN)",
+    "edge_conductance": "dx exp(P logN)",
+    "D": "(u[i+1]-u[i])/dx, periodic",
+    "P": "arithmetic endpoint interpolation"
+  },
+  "non_claims": [
+    "No continuum convergence theorem from this finite graph",
+    "No full metric or clock variation, constraint count or causal-response result",
+    "No exact finite-graph continuum Leibniz identity; both graph weights are differentiated",
+    "Binary64 matrix exponential, quadrature and inverse-kernel calculations are tolerance-dependent"
+  ]
+}

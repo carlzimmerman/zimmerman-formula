@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "D5_FISHER_SAME_CANONICAL_PAIR_BRIDGE",
+  "repository": {
+    "commit": "f3b848273e635b81bc328882db0ffb4206d86e45",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "real_research/closure_doors_2026_09_26/transport/fisher_bridge_check.py",
+    "--output",
+    "real_research/closure_doors_2026_09_26/transport/fisher_run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact local symplectic and energy identities on rho>0; exact free two-mode propagation, conservation and nodal/global-clock domain boundary",
+    "coefficient_domain": "SymPy exact real/complex algebra; deterministic numpy complex128 spectral evolution",
+    "conventions": "D=hbar/m in wave notation; v=phi_x and Theta=-phi; one canonical pair; U=0 exact free-wave control",
+    "inputs": [
+      "real_research/closure_doors_2026_09_26/transport/fisher_bridge_check.py",
+      "rho>0 canonical chart; periodic two modes k=+3,-3; D=.2; A=1; B=.6 or1"
+    ],
+    "bounds": {
+      "N": [
+        96,
+        192,
+        384,
+        768
+      ],
+      "times": [
+        0,
+        0.125,
+        1.234
+      ],
+      "B": [
+        0.6,
+        1
+      ],
+      "clock_gradient_probe_B": [
+        0.6,
+        0.9,
+        0.99,
+        0.999
+      ],
+      "wall_seconds": 110
+    },
+    "non_claims": [
+      "No particle ontology, covariant completion, finite propagation cone, nonlinear DBI scattering or global regular clock at nodes"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-26T18:48:10.442196+00:00",
+    "runtime_seconds": 1.683092,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 110.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/closure_doors_2026_09_26/transport/fisher_bridge_check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/closure_doors_2026_09_26/transport/fisher_bridge_check.py",
+      "sha256": "6cad3a7d4dbd8fe52e1e386f7b92ae050c429d626d60170134fb74c1d6d045fe",
+      "sha256_after": "6cad3a7d4dbd8fe52e1e386f7b92ae050c429d626d60170134fb74c1d6d045fe"
+    }
+  ],
+  "output_directory": "real_research/closure_doors_2026_09_26/transport/fisher_run_001",
+  "declared_results": [
+    "real_research/closure_doors_2026_09_26/transport/fisher_run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/closure_doors_2026_09_26/transport/fisher_run_001/stdout.txt",
+      "sha256": "484c9f337d3834da7c4be7d920a185489b62c82f2dead29c75b9d0393e85dd21",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/closure_doors_2026_09_26/transport/fisher_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/closure_doors_2026_09_26/transport/fisher_run_001/results.json",
+      "sha256": "4733e2035c05ef629e6fcbee6f81196211f96eabb071dfe54438c330be5dcc29",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

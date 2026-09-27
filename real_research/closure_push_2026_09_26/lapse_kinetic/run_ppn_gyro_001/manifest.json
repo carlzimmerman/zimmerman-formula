@@ -1,0 +1,131 @@
+{
+  "schema_version": 2,
+  "claim_id": "CD26_2_LAPSE_MOVING_SOURCE_AND_GYRO",
+  "repository": {
+    "commit": "3151d88f29f751df4f599d489f8dac1cbbb77774",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "real_research/closure_push_2026_09_26/lapse_kinetic/check_ppn_gyro.py",
+    "--output",
+    "real_research/closure_push_2026_09_26/lapse_kinetic/run_ppn_gyro_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The lapse/trace completion has alpha1=-4E and alpha2 tied to scalar speed on its planar-contact-free locus; a local phi/U gyroscopic extension creates a second pole, while a one-mode-compatible lower-order gyro has unchanged UV obstruction.",
+    "coefficient_domain": "Exact symbolic rational functions and complex Fourier i",
+    "conventions": "Minimally coupled source; Einstein vector shift; gamma boost and Fourier Jacobian; alpha1=-2 isotropic v^2 coefficient, alpha2=angular coefficient; local gyro gamma(U V_N-lnN V_U)",
+    "inputs": [
+      "General frozen trace/lapse rank-one block",
+      "Conserved weak moving source",
+      "Two distinct local gyroscopic quadratic forms"
+    ],
+    "bounds": {
+      "PPN_expansion": "through v^2",
+      "regularity": "E!=2, zeta!=0, D!=0, B!=0, k!=0",
+      "gyro_pole_count": "regular nonzero kappa and gamma; fixed coefficients",
+      "random_sampling": false
+    },
+    "non_claims": [
+      "No full nonlinear PPN or constraint calculation",
+      "No all-action no-go",
+      "No general 3D causal-support proof"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-26T19:17:15.296723+00:00",
+    "runtime_seconds": 1.927643,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 80,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/closure_push_2026_09_26/lapse_kinetic/check_ppn_gyro.py",
+    "real_research/g03_audit_2026/L333_c2_channel_carries_the_phantom.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/closure_push_2026_09_26/lapse_kinetic/check_ppn_gyro.py",
+      "sha256": "41f0f5a955ceb66ee11360e5e3fa57fa18362ca41418addbfb1e4aebdef629cb",
+      "sha256_after": "41f0f5a955ceb66ee11360e5e3fa57fa18362ca41418addbfb1e4aebdef629cb"
+    },
+    {
+      "path": "real_research/g03_audit_2026/L333_c2_channel_carries_the_phantom.py",
+      "sha256": "422faf3732c84b0a3c396b4001fb221f2587871ee465c6709d3ddaf2f2d74b2a",
+      "sha256_after": "422faf3732c84b0a3c396b4001fb221f2587871ee465c6709d3ddaf2f2d74b2a"
+    }
+  ],
+  "output_directory": "real_research/closure_push_2026_09_26/lapse_kinetic/run_ppn_gyro_001",
+  "declared_results": [
+    "real_research/closure_push_2026_09_26/lapse_kinetic/run_ppn_gyro_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/closure_push_2026_09_26/lapse_kinetic/run_ppn_gyro_001/stdout.txt",
+      "sha256": "27849e5d430c467aa8341ed59b87dcffef8f14665e23230cd0075deb5fda63c8",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/closure_push_2026_09_26/lapse_kinetic/run_ppn_gyro_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/closure_push_2026_09_26/lapse_kinetic/run_ppn_gyro_001/results.json",
+      "sha256": "9b8ce21d0c8ff9c2d6f4d3b164c083da7cd86cd685879586dd10461000230907",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

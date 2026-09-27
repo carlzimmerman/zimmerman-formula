@@ -1,0 +1,40 @@
+{
+  "claim_id": "CD26_4_PQ_HOMOGENEOUS_FUTURE_GLOBAL_BRANCH",
+  "mathematics": {
+    "assertion_tested": "Exact homogeneous energy, Friedmann and component/total U1 identities; critical-point elimination and excluded massless flat direction; bounded fully evolved nonlinear Einstein-five-field solution at two tolerances with constraint, energy and charge ledgers",
+    "coefficient_domain": "Exact real symbolic algebra and float64 DOP853 integration",
+    "conventions": "Five canonical real fields: Psi=(u0+i*u1)/sqrt(2), Chi=(u2+i*u3)/sqrt(2), s=u4. Expanding flat FLRW proper time, a(0)=1, bare Lambda=0. Mpl is the bare cosmological Planck mass. Homogeneous projected z=0, t=1, centered trace QK=0, inactive compensated gate.",
+    "inputs": [
+      "Vmix=M^2|Psi|^2+m^2|Chi+gamma*s*Psi|^2+mu^2*s^2/2; rho=|v|^2/2+Vmix+V0",
+      "Mpl=100,V0=0.01,M=3,m=1,mu=0.5,gamma=0.2; rotating Psi amplitude 1, rotating Chi amplitude 0.001, s=0.001, sdot=0"
+    ],
+    "bounds": {
+      "wall_seconds": 120,
+      "cpu_seconds": 110,
+      "time_interval": [0,6000],
+      "retained_times": 3001,
+      "DOP853_rtol": [3e-9,3e-11],
+      "DOP853_atol": [3e-12,3e-14],
+      "max_step": 0.4,
+      "vacuum_control_interval": [0,100],
+      "random_sampling": false
+    },
+    "non_claims": [
+      "The bounded computation does not prove infinite-time continuation or attraction; the separate analytic argument does",
+      "No inhomogeneous stability, full coupled PDE Cauchy theorem, outward transport or empirical fit",
+      "No particle population or phenomenological decay rate",
+      "No automatic global timelike scalar phase or conclusion for the contracting branch",
+      "The strict positive masses and floor are hypotheses"
+    ]
+  },
+  "execution_artifacts": [
+    "real_research/common_action_2026_09_26/transport/homogeneous_frw_check.py"
+  ],
+  "software": [
+    {"name":"Python","version":"3.9.6"},
+    {"name":"SymPy","version":"1.14.0"},
+    {"name":"NumPy","version":"1.26.2"},
+    {"name":"SciPy","version":"1.11.4"}
+  ],
+  "randomness": {"used":false,"generator":"","seed":null}
+}

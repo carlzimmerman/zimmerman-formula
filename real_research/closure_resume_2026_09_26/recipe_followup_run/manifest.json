@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "C_CHK_EXPONENTIAL_FINITE_BAND_REPAIR",
+  "repository": {
+    "commit": "03524d209b7ca0c3900f47ccf5dfe42f9187d7c3",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "real_research/closure_resume_2026_09_26/recipe_followup_check.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The independent L340 Fourier matrix and real-time auxiliary elimination have the same dispersion; the exponential negative-response branch has a filter-dependent threshold; a rational finite-alpha interval has positive scalar kinetic and gradient coefficients with subluminal speed.",
+    "coefficient_domain": "Exact real rational and exponential expressions in SymPy, plus separately labeled IEEE binary64 threshold table",
+    "conventions": "c=1; k>0; B=c2>0; A=alpha_c; D=A+(A+2)C nonzero; N=2-A(1+C); frozen principal scalar block; no k=0 elimination",
+    "inputs": [
+      "L340 matrix with extra a2,a3,g couplings zero",
+      "C-H quadratic action plus A a^2 - B K^2",
+      "Exact exponential inverse-response tangent"
+    ],
+    "bounds": {
+      "symbolic_scope": "finite 4x4 linear block and quadratic action",
+      "witness": "A=3/10, B=1/100, -1/8<=C<=5",
+      "numerical_table": "x=2, three listed alpha values",
+      "negative_control": "A=0, B=1/100, C=-1/8 has negative speed squared",
+      "random_sampling": false
+    },
+    "non_claims": [
+      "No full canonical count or covariant action-to-block theorem",
+      "No nonlinear stability or physical causal closure",
+      "No static exponential, PPN or empirical pass for the finite-alpha witness"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-26T18:26:51.758410+00:00",
+    "runtime_seconds": 1.954794,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/closure_resume_2026_09_26/recipe_followup_check.py",
+    "real_research/g03_audit_2026/L340_filtered_khronon_completion.py",
+    "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/ACTION.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/closure_resume_2026_09_26/recipe_followup_check.py",
+      "sha256": "25551ede71cc550a7374ef9bd0fff828a091d25c5d822a73bfa5038d9d8f2546",
+      "sha256_after": "25551ede71cc550a7374ef9bd0fff828a091d25c5d822a73bfa5038d9d8f2546"
+    },
+    {
+      "path": "real_research/g03_audit_2026/L340_filtered_khronon_completion.py",
+      "sha256": "b8e52d88c2c3190a015d39a0df2b8f8343ca14164e2f414a289362003a4df1a2",
+      "sha256_after": "b8e52d88c2c3190a015d39a0df2b8f8343ca14164e2f414a289362003a4df1a2"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/ACTION.md",
+      "sha256": "18b75c25f8842bdb9ea6be22e8f6bfb4ecf67d34819dbb530772632b97d810ed",
+      "sha256_after": "18b75c25f8842bdb9ea6be22e8f6bfb4ecf67d34819dbb530772632b97d810ed"
+    }
+  ],
+  "output_directory": "real_research/closure_resume_2026_09_26/recipe_followup_run",
+  "declared_results": [
+    "real_research/closure_resume_2026_09_26/recipe_followup_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/closure_resume_2026_09_26/recipe_followup_run/stdout.txt",
+      "sha256": "37f4cfa08c41082f05c3056c8988fdec4da4f380b1e9083ef18182b931895dee",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/closure_resume_2026_09_26/recipe_followup_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/closure_resume_2026_09_26/recipe_followup_run/results.json",
+      "sha256": "37f4cfa08c41082f05c3056c8988fdec4da4f380b1e9083ef18182b931895dee",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

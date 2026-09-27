@@ -1,0 +1,153 @@
+{
+  "schema_version": 2,
+  "claim_id": "CD26_4_PQ_HOMOGENEOUS_FUTURE_GLOBAL_BRANCH_REFINED",
+  "repository": {
+    "commit": "ecffd2af3623ff3e32318234fd51e1fac50b9126",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "real_research/common_action_2026_09_26/transport/homogeneous_frw_refined_check.py",
+    "--output",
+    "real_research/common_action_2026_09_26/transport/run_homogeneous_frw_002/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact homogeneous energy, Friedmann and component/total U1 identities; critical-point elimination and excluded massless flat direction; bounded fully evolved nonlinear Einstein-five-field solution at two tolerances with constraint, energy and charge ledgers",
+    "coefficient_domain": "Exact real symbolic algebra and float64 DOP853 integration",
+    "conventions": "Five canonical real fields: Psi=(u0+i*u1)/sqrt(2), Chi=(u2+i*u3)/sqrt(2), s=u4. Expanding flat FLRW proper time, a(0)=1, bare Lambda=0. Mpl is the bare cosmological Planck mass. Homogeneous projected z=0, t=1, centered trace QK=0, inactive compensated gate.",
+    "inputs": [
+      "Vmix=M^2|Psi|^2+m^2|Chi+gamma*s*Psi|^2+mu^2*s^2/2; rho=|v|^2/2+Vmix+V0",
+      "Mpl=100,V0=0.01,M=3,m=1,mu=0.5,gamma=0.2; rotating Psi amplitude 1, rotating Chi amplitude 0.001, s=0.001, sdot=0",
+      "Refines the failed two-tolerance H agreement in run_homogeneous_frw_001; original source retained unchanged"
+    ],
+    "bounds": {
+      "wall_seconds": 120,
+      "cpu_seconds": 110,
+      "time_interval": [
+        0,
+        6000
+      ],
+      "retained_times": 3001,
+      "DOP853_rtol": [
+        3e-11,
+        3e-13
+      ],
+      "DOP853_atol": [
+        3e-14,
+        3e-16
+      ],
+      "max_step": 0.4,
+      "vacuum_control_interval": [
+        0,
+        100
+      ],
+      "random_sampling": false,
+      "fine_constraint_relative_vacuum_density_tolerance": 1e-07
+    },
+    "non_claims": [
+      "The bounded computation does not prove infinite-time continuation or attraction; the separate analytic argument does",
+      "No inhomogeneous stability, full coupled PDE Cauchy theorem, outward transport or empirical fit",
+      "No particle population or phenomenological decay rate",
+      "No automatic global timelike scalar phase or conclusion for the contracting branch",
+      "The strict positive masses and floor are hypotheses"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-26T21:14:11.900192+00:00",
+    "runtime_seconds": 14.133204,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 110,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/common_action_2026_09_26/transport/homogeneous_frw_refined_check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/common_action_2026_09_26/transport/homogeneous_frw_refined_check.py",
+      "sha256": "e4d7bdb2cac3212613c703504be66526bea8f015267f384bb20925071f3c056b",
+      "sha256_after": "e4d7bdb2cac3212613c703504be66526bea8f015267f384bb20925071f3c056b"
+    }
+  ],
+  "output_directory": "real_research/common_action_2026_09_26/transport/run_homogeneous_frw_002",
+  "declared_results": [
+    "real_research/common_action_2026_09_26/transport/run_homogeneous_frw_002/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/common_action_2026_09_26/transport/run_homogeneous_frw_002/stdout.txt",
+      "sha256": "d911045b4ee6469d0d77f2364ba692e1c05c42b300c49cccf6776ede55fbf21e",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/common_action_2026_09_26/transport/run_homogeneous_frw_002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/common_action_2026_09_26/transport/run_homogeneous_frw_002/results.json",
+      "sha256": "6157e4686befbf80f05ee63b9f2df4555756d35bcd6a6c8fc1f123f633b7d854",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,252 @@
+{
+ "lane": "L340",
+ "mutate": false,
+ "checks": {
+  "A1 the kernel in use has positive constitutive coefficients in both directions at every y in 1e-3..1e4 (phantom acceleration non-decreasing in g_N)": {
+   "ok": true,
+   "measured": "nu_mono: min C_T 8.94e-05, min C_L +3.24e-06",
+   "load_bearing": true
+  },
+  "H1 with the khronon's c_2 channel the omega -> 0 response is the static MOND solution and there is no frozen mode; without it (control) the response is Newtonian and det M(0) = 0": {
+   "ok": true,
+   "measured": "psi -> -2*(C + 1)/(C*alpha_c + alpha_c - 2) psi_N; det M(0) = -64*c_2*k**10*(C*alpha_c + alpha_c - 2); control: 1 psi_N, det 0",
+   "load_bearing": true
+  },
+  "H2 every (y, direction) cell of the kernel gives exactly healthy modes (omega^2 > 0, positive energy); the control C < 0 (nu_RAR, longitudinal, y = 10) gives a ghost or tachyon": {
+   "ok": true,
+   "measured": "0 unhealthy cells; control ['TACHYON']",
+   "load_bearing": true
+  },
+  "H3 no momentum channel in the scanned families makes a C < 0 direction healthy (C is the clock's inertia; momentum couplings change only its restoring term)": {
+   "ok": true,
+   "measured": "243/243 unhealthy",
+   "load_bearing": true
+  },
+  "D1-D4 the clock's O(Phi/c^2) terms: inertia 2k^2 C/(1+C) + lambda0 (1/2 - e^{-b k^2}), restoring (lambda0/2) k^2, lambda0 = 16 pi G rho_ph/c^2 -- every ingredient verified symbolically": {
+   "ok": true,
+   "measured": "residuals 0, 0, 0, 0, 0",
+   "load_bearing": true
+  },
+  "H4 in every negative-phantom lobe the clock inertia stays positive and omega^2 > 0 at all k that fit inside the lobe once alpha_c = 1e-9 (>> alpha_min); with alpha_c = 0 the inertia crosses zero (the audit's pole, control)": {
+   "ok": true,
+   "measured": "Solar nbhd lobe: (False, False) -> (True, True); galaxy-in-group lobe: (False, False) -> (True, True); cluster-outskirt lobe: (False, False) -> (True, True); galaxy transition (rho > 0): (True, True) -> (True, True)",
+   "load_bearing": true
+  },
+  "H5 on static configurations K = 0, so -c_2 K^2 and its first variation (proportional to K) vanish: C-H's static solutions, Cassini/ephemeris floors and deep-MOND limit carry over; alpha_c only renormalises G by O(1e-9)": {
+   "ok": true,
+   "measured": "K_static = 0",
+   "load_bearing": true
+  },
+  "K2 on SPARC the monotone kernel is indistinguishable from nu_RAR (|Delta chi^2| <= 2 on 18 bins, both footings; nu_RAR's chi^2 reproduces f21's 38.8)": {
+   "ok": true,
+   "measured": "canonical: -0.8; alt: +0.5",
+   "load_bearing": true
+  },
+  "S1 with the filter the monotone kernel's Solar-System floors equal nu_RAR's; without it (xi = 1e-4 pc) its constant phantom tail is ephemeris-excluded by > 1e4 x -- the 08-31 Cassini-vs-ghost pincer, reproduced, and broken by the filter": {
+   "ok": true,
+   "measured": "canonical/nu_RAR: 0.031/0.045 pc; canonical/nu_mono: 0.031/0.045 pc; alt/nu_RAR: 0.033/0.049 pc; alt/nu_mono: 0.033/0.049 pc; unfiltered monotone tail 1.9e+04 x bound",
+   "load_bearing": true
+  },
+  "P1 a non-empty window satisfies the preferred-frame, GW170817, BBN, tracking and negative-lobe conditions at once": {
+   "ok": true,
+   "measured": "alpha_c in (9.6e-14, 3.2e-09); c_2 in (7.3e-03, 0.067)",
+   "load_bearing": true
+  },
+  "T1 (a prediction, not a test) the phantom follows sources slower than c_s ~ 1e3-1e4 km/s in halos and lags faster ones (fractional lag ~ (v/c_s)^2); merging clusters at 3000-4700 km/s sit near the edge for c_2 near its floor": {
+   "ok": true,
+   "measured": "c_2=0.0073, C=1: 18000 km/s; c_2=0.0073, C=10: 5692 km/s; c_2=0.0073, C=100: 1800 km/s",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "A1": {
+   "y_p": 2.5396382826332706,
+   "h_p": 0.647610237891915,
+   "delta": 0.05,
+   "kernel": "nu_mono",
+   "min_CT": 8.938958974802347e-05,
+   "min_CL": 3.237222699681297e-06,
+   "max_dlog_vs_rar": 0.010370057849754814
+  },
+  "H1": {
+   "det0": "-64*c_2*k**10*(C*alpha_c + alpha_c - 2)",
+   "limits": {
+    "psi": "-2*(C + 1)/(C*alpha_c + alpha_c - 2)",
+    "phi": "-2*(C + 1)/(C*alpha_c + alpha_c - 2)",
+    "beta": "0",
+    "U": "-2/(C*alpha_c + alpha_c - 2)"
+   },
+   "control_det0": "0",
+   "control_limit": "1"
+  },
+  "H2": {
+   "c2": 0.01,
+   "alpha_c": 1e-09,
+   "n_bad": 0,
+   "bad_sample": [],
+   "control": [
+    "TACHYON"
+   ],
+   "cs2_T": [
+    0.0005180833384825972,
+    0.008464442458150652,
+    0.6607064648496132
+   ]
+  },
+  "H3": {
+   "cells": 243,
+   "unhealthy": 243,
+   "polarisation_current": [
+    [
+     "GHOST",
+     "zero"
+    ],
+    [
+     "zero",
+     "ok"
+    ]
+   ]
+  },
+  "H4": {
+   "Solar nbhd lobe": {
+    "lam0_m-2": -2.5269135635069924e-47,
+    "alpha_min": 2.436087141628272e-18,
+    "alpha_c=0": [
+     false,
+     false
+    ],
+    "alpha_c=1e-9": [
+     true,
+     true
+    ]
+   },
+   "galaxy-in-group lobe": {
+    "lam0_m-2": -1.2634567817534961e-46,
+    "alpha_min": 9.624047966926507e-14,
+    "alpha_c=0": [
+     false,
+     false
+    ],
+    "alpha_c=1e-9": [
+     true,
+     true
+    ]
+   },
+   "cluster-outskirt lobe": {
+    "lam0_m-2": -2.526913563506992e-49,
+    "alpha_min": 3.0075149896645336e-14,
+    "alpha_c=0": [
+     false,
+     false
+    ],
+    "alpha_c=1e-9": [
+     true,
+     true
+    ]
+   },
+   "galaxy transition (rho > 0)": {
+    "lam0_m-2": 1.2634567817534961e-46,
+    "alpha_min": 0.0,
+    "alpha_c=0": [
+     true,
+     true
+    ],
+    "alpha_c=1e-9": [
+     true,
+     true
+    ]
+   }
+  },
+  "K2": {
+   "canonical": {
+    "bins": 18,
+    "chi2_RAR": 38.79049867545929,
+    "chi2_mono": 37.9543614543199,
+    "delta": -0.8361372211393885
+   },
+   "alt": {
+    "bins": 18,
+    "chi2_RAR": 18.739810125518627,
+    "chi2_mono": 19.269721678756817,
+    "delta": 0.5299115532381897
+   }
+  },
+  "S1": {
+   "canonical/nu_RAR": {
+    "xi_Q2": 0.03114823716986827,
+    "xi_M": 0.045132823912093965,
+    "M_over_bound_at_1e-4pc": -0.007307336626419921
+   },
+   "canonical/nu_mono": {
+    "xi_Q2": 0.03114775832796533,
+    "xi_M": 0.04513286228499776,
+    "M_over_bound_at_1e-4pc": 18865.305220061826
+   },
+   "alt/nu_RAR": {
+    "xi_Q2": 0.03281778721646317,
+    "xi_M": 0.04892463188078711,
+    "M_over_bound_at_1e-4pc": -0.012881386774603796
+   },
+   "alt/nu_mono": {
+    "xi_Q2": 0.03281824878059975,
+    "xi_M": 0.04892460633088243,
+    "M_over_bound_at_1e-4pc": 22867.952624222926
+   }
+  },
+  "P1": {
+   "alpha_c_min": 9.624047966926507e-14,
+   "alpha_c_max": 3.2e-09,
+   "c2_min": 0.007288800437803917,
+   "c2_max": 0.06666666666666667
+  },
+  "T1": [
+   [
+    0.007288800437803917,
+    1.0,
+    18000.0
+   ],
+   [
+    0.007288800437803917,
+    10.0,
+    5692.099788303083
+   ],
+   [
+    0.007288800437803917,
+    100.0,
+    1800.0
+   ],
+   [
+    0.03,
+    1.0,
+    35917.67258507219
+   ],
+   [
+    0.03,
+    10.0,
+    11358.165362101601
+   ],
+   [
+    0.03,
+    100.0,
+    3591.767258507219
+   ],
+   [
+    0.06666666666666667,
+    1.0,
+    52187.16836183699
+   ],
+   [
+    0.06666666666666667,
+    10.0,
+    16503.031665808317
+   ],
+   [
+    0.06666666666666667,
+    100.0,
+    5218.716836183698
+   ]
+  ]
+ },
+ "n_checks": 11,
+ "n_fail_load_bearing": 0
+}

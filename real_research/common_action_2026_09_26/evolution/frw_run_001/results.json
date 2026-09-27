@@ -1,0 +1,51 @@
+{
+  "runtime": {
+    "python": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "sympy": "1.14.0"
+  },
+  "checks": {
+    "ADM_kinetic_vacuum_before_IBP": "0",
+    "ADM_spatial_shift_IBP": "0",
+    "ADM_time_IBP_boundary": "0",
+    "ADM_intrinsic_curvature_IBP": "0",
+    "centered_clock_shift_stationarity": "0",
+    "centered_clock_shift_reduced_kinetic": "0",
+    "projected_vacuum_quadratic": "0",
+    "off_U_constraint": "0",
+    "off_spatial_alpha_effective": "0",
+    "FRW_lapse_stationarity": "0",
+    "FRW_reduced_coefficients": "0",
+    "FRW_integrated_stiffness": "0",
+    "FRW_IR_kinetic": "0",
+    "FRW_IR_C_over_x": "0",
+    "FRW_IR_growth_coefficient": "0",
+    "FRW_D_dot_positive_bridge": "0",
+    "FRW_friction_lower_bridge": "0",
+    "FRW_friction_baseline": "0",
+    "FRW_UV_speed": "0"
+  },
+  "count": 19,
+  "definitions": {
+    "background": "a=exp(Ht), H\u00b2=V0/(3M\u00b2), Lambda_bare=0, zero carrier excitations, inactive gate",
+    "mode": "q=k/a !=0",
+    "r": "ell exp(-xi\u00b2q\u00b2/2)/4",
+    "K": "(6*b + 4)/b",
+    "D": "6*H**2*r*(1 - r) + x*(-(1 - r)**2*(2 - alpha) + 2)",
+    "A": "(6*b + 4)*(6*H**2*r*(1 - r) + x*(-(1 - r)**2*(2 - alpha) + 2))/(b*(6*H**2*r*(1 - r) + H**2*(6*b + 4)/b + x*(-(1 - r)**2*(2 - alpha) + 2)))",
+    "B": "4*H*x*(6*b + 4)/(b*(6*H**2*r*(1 - r) + H**2*(6*b + 4)/b + x*(-(1 - r)**2*(2 - alpha) + 2)))",
+    "C": "-4*x**2/(6*H**2*r*(1 - r) + H**2*(6*b + 4)/b + x*(-(1 - r)**2*(2 - alpha) + 2)) + 2*x",
+    "C_integrated": "2*b*x*(36*H**4*b*r**4 - 72*H**4*b*r**3 - 72*H**4*b*r**2*x*xi**2 + 36*H**4*b*r*x*xi**2 + 36*H**4*b*r - 48*H**4*r**2*x*xi**2 - 24*H**4*r**2 + 24*H**4*r*x*xi**2 + 24*H**4*r - 12*H**2*alpha*b*r**4*x + 36*H**2*alpha*b*r**3*x + 12*H**2*alpha*b*r**2*x**2*xi**2 - 42*H**2*alpha*b*r**2*x - 12*H**2*alpha*b*r*x**2*xi**2 + 24*H**2*alpha*b*r*x - 6*H**2*alpha*b*x + 8*H**2*alpha*r**2*x**2*xi**2 - 4*H**2*alpha*r**2*x - 8*H**2*alpha*r*x**2*xi**2 + 8*H**2*alpha*r*x - 4*H**2*alpha*x + 24*H**2*b*r**4*x - 72*H**2*b*r**3*x - 24*H**2*b*r**2*x**2*xi**2 + 72*H**2*b*r**2*x + 24*H**2*b*r*x**2*xi**2 - 36*H**2*b*r*x - 12*H**2*b*x - 16*H**2*r**2*x**2*xi**2 + 8*H**2*r**2*x + 16*H**2*r*x**2*xi**2 - 16*H**2*r*x - 8*H**2*x + alpha**2*b*r**4*x**2 - 4*alpha**2*b*r**3*x**2 + 6*alpha**2*b*r**2*x**2 - 4*alpha**2*b*r*x**2 + alpha**2*b*x**2 - 4*alpha*b*r**4*x**2 + 16*alpha*b*r**3*x**2 - 22*alpha*b*r**2*x**2 + 12*alpha*b*r*x**2 - 2*alpha*b*x**2 + 4*b*r**4*x**2 - 16*b*r**3*x**2 + 20*b*r**2*x**2 - 8*b*r*x**2)/(-6*H**2*b*r**2 + 6*H**2*b*r + 6*H**2*b + 4*H**2 + alpha*b*r**2*x - 2*alpha*b*r*x + alpha*b*x - 2*b*r**2*x + 4*b*r*x)**2"
+  },
+  "results": [
+    "Conjectured ADM block confirmed after explicit spatial and time IBP and projection variation",
+    "For0<ell<4 all finite nonzero modes have positive reduced kinetic A",
+    "For anyell>0 infrared C_integrated/A=(2/K)q\u00b2+O(q4), negative spatial stiffness",
+    "For0<ell<=2 the future friction is>=H and each fixed Fourier mode has a finite future limit by an integrable-coefficient Volterra bound"
+  ],
+  "nonclaims": [
+    "No q=0 division or homogeneous-mode degree count",
+    "No uniform Sobolev/mode-sum or nonlinear global PDE theorem",
+    "Infrared negative stiffness is not an automatic unbounded-time instability because q redshifts"
+  ]
+}

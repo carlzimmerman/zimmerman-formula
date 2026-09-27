@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "CD26_2_LAPSE_TRACE_DEGENERACY",
+  "repository": {
+    "commit": "3151d88f29f751df4f599d489f8dac1cbbb77774",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "real_research/closure_push_2026_09_26/lapse_kinetic/check_lapse.py",
+    "--output",
+    "real_research/closure_push_2026_09_26/lapse_kinetic/run_lapse_002/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "A rank-one trace/lapse/U kinetic completion preserves static response and has a single regular scalar pole; its conserved planar-source tidal contact cancels only on E r^2=zeta(r-s)^2.",
+    "coefficient_domain": "Exact real rational functions with complex Fourier i",
+    "conventions": "k=1 by homogeneous rescaling, q=omega^2/k^2; derivative=-i omega; source=-R phi+Rdot beta-stress psi with stress=qR; tidal=-k^2(phi+betadot)-omega^2 psi",
+    "inputs": [
+      "Three-field static quadratic form and rank-one trace/lapse/U velocities",
+      "General real E,zeta,r,s,B on regular branch"
+    ],
+    "bounds": {
+      "exclusions": "k=0, E=2, zeta=0, D=0, B=0, kappa<=0",
+      "negative_E_claim": "contact cancellation forces instability",
+      "positive_E_cell": "r=1,s=2,zeta=E,B=1,0<E<2",
+      "random_sampling": false
+    },
+    "non_claims": [
+      "No full action DOF or PPN certification",
+      "No general 3D retarded response theorem",
+      "No omitted shift/background-gradient terms certified",
+      "No universal obstruction from exact law after independent G normalization"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-26T19:17:00.148990+00:00",
+    "runtime_seconds": 116.041317,
+    "exit_status": -24,
+    "status": "resource-limit",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 110,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "real_research/closure_push_2026_09_26/lapse_kinetic/run_lapse_002/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/closure_push_2026_09_26/lapse_kinetic/check_lapse.py",
+    "real_research/closure_doors_2026_09_26/response_inertia/check_rankone.py",
+    "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/ACTION.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/closure_push_2026_09_26/lapse_kinetic/check_lapse.py",
+      "sha256": "046f9f8e6f90aacf12cd7adbbeb0fc094872c687cbe476d0920dc672ee680262",
+      "sha256_after": "046f9f8e6f90aacf12cd7adbbeb0fc094872c687cbe476d0920dc672ee680262"
+    },
+    {
+      "path": "real_research/closure_doors_2026_09_26/response_inertia/check_rankone.py",
+      "sha256": "24e0a2becfdd1578d20b016f2e7632fa89248b18e37857fcd8831ecb6e5f9ca3",
+      "sha256_after": "24e0a2becfdd1578d20b016f2e7632fa89248b18e37857fcd8831ecb6e5f9ca3"
+    },
+    {
+      "path": "qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/ACTION.md",
+      "sha256": "18b75c25f8842bdb9ea6be22e8f6bfb4ecf67d34819dbb530772632b97d810ed",
+      "sha256_after": "18b75c25f8842bdb9ea6be22e8f6bfb4ecf67d34819dbb530772632b97d810ed"
+    }
+  ],
+  "output_directory": "real_research/closure_push_2026_09_26/lapse_kinetic/run_lapse_002",
+  "declared_results": [
+    "real_research/closure_push_2026_09_26/lapse_kinetic/run_lapse_002/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/closure_push_2026_09_26/lapse_kinetic/run_lapse_002/stdout.txt",
+      "sha256": "aa8bac7a08c852871021f1aeff50262c604026315640a83e03c5ce85c0621ce6",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/closure_push_2026_09_26/lapse_kinetic/run_lapse_002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run resource-limit; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "The child reached its POSIX CPU-time limit.",
+    "Declared results were not produced: real_research/closure_push_2026_09_26/lapse_kinetic/run_lapse_002/results.json"
+  ]
+}

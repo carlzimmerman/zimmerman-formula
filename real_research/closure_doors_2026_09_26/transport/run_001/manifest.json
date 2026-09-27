@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "D5_SAME_CLOCK_BOUNDED_DBI_TRANSPORT",
+  "repository": {
+    "commit": "f3b848273e635b81bc328882db0ffb4206d86e45",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "real_research/closure_doors_2026_09_26/transport/transport_check.py",
+    "--output",
+    "real_research/closure_doors_2026_09_26/transport/run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Same-canonical-clock bounded DBI dynamics: exact Legendre and Chaplygin-limit identities; convergent/conservative 1D finite-eta transport; first Jacobian loss for Mach2 and positive branch for Mach0.5 in tested interval",
+    "coefficient_domain": "Symbolic real algebra in SymPy; float64 deterministic periodic finite differences",
+    "conventions": "One canonical pair Theta,rho; v=-Theta_x; positive density equivalent to fluid mass-coordinate Jacobian tau>0; numerical branch stops at tau<=0",
+    "inputs": [
+      "Explicit K(u)=kappa/lambda*(1-sqrt(1-lambda*u^2)) on positive-current branch",
+      "real_research/closure_doors_2026_09_26/transport/transport_check.py"
+    ],
+    "bounds": {
+      "eta": [
+        0,
+        0.1,
+        0.25,
+        0.5
+      ],
+      "Mach": [
+        0.5,
+        2
+      ],
+      "N": [
+        64,
+        128,
+        256,
+        512
+      ],
+      "end_time": 6.283185307179586,
+      "cfl": [
+        0.4,
+        0.2,
+        0.1
+      ],
+      "wall_seconds": 110
+    },
+    "non_claims": [
+      "No covariant completion, extra species, cosmological fit, arbitrary multistream realization, or global nonlinear well-posedness claim"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-26T18:37:57.301682+00:00",
+    "runtime_seconds": 3.101094,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 110.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/closure_doors_2026_09_26/transport/transport_check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/closure_doors_2026_09_26/transport/transport_check.py",
+      "sha256": "ac3bd23794b2e6bfd7dcc215b7b05a3b370716058d8bd581aa2b089c2b3ced70",
+      "sha256_after": "ac3bd23794b2e6bfd7dcc215b7b05a3b370716058d8bd581aa2b089c2b3ced70"
+    }
+  ],
+  "output_directory": "real_research/closure_doors_2026_09_26/transport/run_001",
+  "declared_results": [
+    "real_research/closure_doors_2026_09_26/transport/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/closure_doors_2026_09_26/transport/run_001/stdout.txt",
+      "sha256": "54e84d07217af6fd8d64781f15b9b5dd4a24a70a3a34ac80b77e8bb0d82b6e2c",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/closure_doors_2026_09_26/transport/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/closure_doors_2026_09_26/transport/run_001/results.json",
+      "sha256": "4056788677b65eb6d0a7d760e8017827aa57f42f3219a83f33bbe82e1c92ec5f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

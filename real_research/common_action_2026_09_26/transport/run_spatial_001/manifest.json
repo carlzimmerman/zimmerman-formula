@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "claim_id": "CD26_4_SPATIAL_CHARGE_FLUX_CONTROL",
+  "repository": {
+    "commit": "ecffd2af3623ff3e32318234fd51e1fac50b9126",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "real_research/common_action_2026_09_26/transport/spatial_check.py",
+    "--output",
+    "real_research/common_action_2026_09_26/transport/run_spatial_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Does the stated seeded transition improve fixed-region clearing relative to uncoupled fields? Independently verify current flux, global charge, energy error and refinement; report either direction.",
+    "coefficient_domain": "Float64 deterministic Hamiltonian finite differences and velocity Verlet",
+    "conventions": "Signature -+++; c=hbar=1; R²=φ1²+φ2²; three Cartesian canonical scalars; same physical metric; optional common exponential preferred-frame lapse factors A=expZ,B=exp(-Z)",
+    "inputs": [
+      "Canonical quartic field action at fixed Z=0"
+    ],
+    "bounds": {
+      "wall_seconds": 60,
+      "cpu_seconds": 50,
+      "N": [
+        256,
+        512,
+        1024
+      ],
+      "box_length": 128,
+      "time_interval": [
+        0,
+        30
+      ],
+      "dt_rule": "12.8/N adjusted to exactly thirty time units",
+      "region": "abs(x)<10, cell centered",
+      "seeds": [
+        0,
+        0.001,
+        0.01
+      ],
+      "random_sampling": false
+    },
+    "non_claims": [
+      "No halo evacuation demonstrated",
+      "No full coupled gravity global wellposedness",
+      "No derived stochastic decay",
+      "No observational or particle interpretation",
+      "No global timelike phase"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-26T20:27:41.120912+00:00",
+    "runtime_seconds": 1.762165,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 50,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/common_action_2026_09_26/transport/spatial_check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/common_action_2026_09_26/transport/spatial_check.py",
+      "sha256": "0de6fe97d4da234577de54debe50003876df66905d36ecdfe52e3410fa9824b1",
+      "sha256_after": "0de6fe97d4da234577de54debe50003876df66905d36ecdfe52e3410fa9824b1"
+    }
+  ],
+  "output_directory": "real_research/common_action_2026_09_26/transport/run_spatial_001",
+  "declared_results": [
+    "real_research/common_action_2026_09_26/transport/run_spatial_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/common_action_2026_09_26/transport/run_spatial_001/stdout.txt",
+      "sha256": "a426b62396c39b6c135d3eaf37a5e082a7b78e58d3ef46aa247d150654d1070e",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/common_action_2026_09_26/transport/run_spatial_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/common_action_2026_09_26/transport/run_spatial_001/results.json",
+      "sha256": "413b4c2d08eff59d7898ebd96a9b33f1dd5c59d222da742c05e74aa5fa09661e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
