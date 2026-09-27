@@ -13,8 +13,7 @@ from pathlib import Path
 
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[1]
-XR32 = ROOT / "real_research/cross_thread_review_2026_09_26/XR32_matter_power_results.json"
+XR32_EXTRACT = HERE / "spt_pol_growth_input.json"
 OUTPUT = HERE / "spt_pol_screen_result.json"
 
 # Ouellette et al. (2026), arXiv:2606.26223v2, Tables 4 and 5.
@@ -27,13 +26,10 @@ RAW_GMV_AMP = 0.86  # Foreground-biased estimator: included as a warning, not a 
 
 
 def calculate() -> dict:
-    source = json.loads(XR32.read_text())
-    assert source["lane"] == "XR32" and not source["mutate"]
-    numbers = source["numbers"]
-    base_s8 = float(numbers["C5"]["S8"])
-    row = numbers["M1"]["nominal (dt0 5.31)"]
-    model_s8 = float(row["S8"])
-    ratios = {z: float(row["ratio"][z]) for z in ("0.0", "0.5", "1.0", "2.0")}
+    source = json.loads(XR32_EXTRACT.read_text())
+    base_s8 = float(source["planck_baseline_S8"])
+    model_s8 = float(source["nominal_conversion_S8_z0"])
+    ratios = {z: float(source["nominal_linear_sigma8_ratio_by_z"][z]) for z in ("0.0", "0.5", "1.0", "2.0")}
     assert abs(model_s8 / base_s8 - ratios["0.0"]) < 1e-4
 
     # A fixed-template, split-normal one-dimensional check. This is a posterior
@@ -58,7 +54,8 @@ def calculate() -> dict:
         "source": {
             "cross_paper": "https://arxiv.org/html/2606.26223v2",
             "cross_tables": [4, 5],
-            "xr32_input": str(XR32.relative_to(ROOT)),
+            "xr32_input_extract": XR32_EXTRACT.name,
+            "xr32_original_sha256": source["source_sha256"],
         },
         "published": {
             "full_pol_A_planck": POL_AMP,
