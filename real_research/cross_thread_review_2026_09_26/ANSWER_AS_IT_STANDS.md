@@ -54,7 +54,7 @@ below (switch reading, cap form, cell, kernel, carrier, operator, footing).
 | Flat-a₀ flagship, z = 2.5 | pass, needs no CGM | on at r_F for every CGM share | MS2 | committed |
 | KiDS-1000, carrier lensing included | pass | Δχ² −37.0/−34.0 (hard), −32.3/−29.3 (w = 0.25) | DE10 dabce1b73 | committed |
 | Cosmic shear, halo model | pass **only with the cap** | 1.049/1.124 (w 0.25); uncapped 2.7/3.2 | MS3, MS4 969a15e7f, MS5 | committed |
-| Lyman-α forest | pass | 0.4% worst deviation, both boxes | DE11 | pending commit |
+| Lyman-α forest | pass (conservative: the operator over-states the phantom) | worst 0.0041 (25 Mpc/h, alt, z = 2) | DE11 aa6588d56 | committed; DE11b convergence pending |
 | RAR, RC100 | pass | carrier shift ≤ 1.24e-4 dex; f_DM 0.23/0.26 | L391 441d811e2 | committed |
 | S₈, galaxy clearing, X-COP (particle-mesh) | pending | — | L396 (κ-form cap) | pending |
 | Harvey mergers | knife-edge | S2 passes only at 575 km/s; S1 at 575–625 (provisional) | L389 → L397 | pending |
@@ -86,6 +86,17 @@ below (switch reading, cap form, cell, kernel, carrier, operator, footing).
 - XR9, the small-region door, including the κ-form EFE and Local Group re-score. Owner: this review.
 - XR8 (the fluid's continuum tests) and DF1 (the fluid in V0). Owners: this review and the V0 writer.
 - The kick as a phase transition. Owner: Path forward.
-- CV3/CV4, and DE7 re-run with U_cap (k_⊥⁴ anisotropy and slip). Owners: the V0 writer and the DE thread.
+- CV3/CV4. Owner: the V0 writer.
+- **DE12, a possible new obstruction** (DE thread; replaces a DE7 re-run).
+  - In CV3's auxiliary form the gate leaves the metric's principal symbol alone. Its slip is ~1e-5 of DE7's, which
+    is negligible.
+  - But its second variation acts on baryons as a negative bulk term, amplified by A² ~ 1e4 in deep MOND. The
+    estimated stability threshold is σ_b ≳ 10³ km/s in L* edge layers, against 30–100 km/s in the gas there.
+  - DE12 computes:
+    - the growth rate against H(z) and the layer's crossing time;
+    - the baryon mass in transition layers;
+    - the A = 1 control, a baryon-only reading;
+    - the gate potential's shift of the flagship zero point.
+  - It is an obstruction only if Γ ≫ H on real transitions with real gas.
 - AT4 (the acceleration-trigger carrier on the halo model), a labelled alternative. L393, the curvature comparison.
 - PAPER34 v3: the source is ready; the upload waits for the author's go.
