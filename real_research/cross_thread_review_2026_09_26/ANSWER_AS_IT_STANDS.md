@@ -90,16 +90,16 @@ below (switch reading, cap form, cell, kernel, carrier, operator, footing).
 - XR8 (the fluid's continuum tests) and DF1 (the fluid in V0). Owners: this review and the V0 writer.
 - The kick as a phase transition. Owner: Path forward.
 - CV3/CV4. Owner: the V0 writer.
-- **DE12, a possible new obstruction** (DE thread; replaces a DE7 re-run).
-  - In CV3's auxiliary form the gate leaves the metric's principal symbol alone. Its slip is ~1e-5 of DE7's, which
-    is negligible.
-  - But its second variation acts on baryons as a negative bulk term, amplified by A² ~ 1e4 in deep MOND. The
-    estimated stability threshold is σ_b ≳ 10³ km/s in L* edge layers, against 30–100 km/s in the gas there.
-  - DE12 computes:
-    - the growth rate against H(z) and the layer's crossing time;
-    - the baryon mass in transition layers;
-    - the A = 1 control, a baryon-only reading;
-    - the gate potential's shift of the flagship zero point.
-  - It is an obstruction only if Γ ≫ H on real transitions with real gas.
+- **DE12 found an ACTION-LEVEL obstruction** (7f84b3546, 8/8; MUTATE with A = 1, w = 1 fails G1).
+  - Varied as an action term, the MOND-sector gate's second variation is a negative bulk modulus for
+    baryons, amplified by A² (A ≈ 50–100 at the edges). It gives a gradient instability of the gas in
+    transition layers.
+  - c_gate is 1500–3700 km/s against gas at 37–117 km/s, so Γ(1/kpc) ≈ 2–5e4 H at z = 0.25. The
+    unstable gas mass is 0.25–1.4 M_b. At w = 1 it is still 300–620 km/s.
+  - The A = 1 (baryon-only) control is stable at 18 km/s. Slip is negligible (≤ 3e-7).
+  - The prescribed-mask data passes are unaffected.
+  - **Repair under test (DE13):** a gradient stiffness μ(∇U)² on the gate variable, the baryon-channel
+    analogue of DE7's k⁴ repair. An acceleration-reading gate is excluded: it breaks ν_mono's
+    monotonicity, giving C_L < 0 (the L340 ghost).
 - AT5 (a two-sided acceleration trigger), a labelled alternative. L393, the curvature comparison.
 - PAPER34 v3: the source is ready; the upload waits for the author's go.
