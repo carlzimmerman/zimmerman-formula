@@ -216,3 +216,20 @@ vacuum-gated through K. One new constant, ε.
   (transverse) at the z = 0.25 edge (DE12, DE13).
 - **The correction:** G4's c_g = 91 km/s was reading A's A = 1 scale, mislabelled as A+'s cost.
 - **Checks:** 7/7; MUTATE (the gate reads the carrier) fails G1. The V0 writer is now standing by.
+
+**DE13 completion | content in a7abb4d4f (swept into a concurrent commit), record commit e9a9978f9**
+- **E3:** on all 24 galaxy layers, one direction has negative energy under the gate and gas alone AND under the repair
+  alone. So G + μR < 0 for every μ ≥ 0: a gradient energy on the gate rescues no layer at any strength.
+- **Controls:** MUTATE (background term dropped) fails E1–E3.
+- **Lean `DE13_gradient_repair_certificates`:** 8 theorems.
+
+**CV6 design (queued here; NOT started; scratch numbers from the DE thread, not committed).** The gate becomes a
+dynamical field χ with a spring, (M/2)(χ − W(U))², and f = χ.
+- Gas pressure closes the fast-branch instability strip for m = M/B ≥ m_min, which is 2.5e4 (z = 4, 1e11) up to
+  9.1e5 (z = 0.25, 1e12).
+- **The price:** edge-layer gas acquires a fast sound speed of 0.38c–7.7c, i.e. rigid on times < τ ≲ 100 Myr.
+  Criterion B allows it.
+- χ is a new propagating gravity-sector field (m ~ 1e-30 eV, energy density ~1e-6 ρ_Λ c²). It is not dark matter.
+- **Decisive test:** do the WHIM and accretion shocks tolerate edge-layer gas with c_fast = 0.4–8c?
+- **Flag to verify:** at z = 4 and 1e12 M☉, r_F lies off the plateau in DE12's static profile (U(r_F)/U_edge = 0.6).
+  So the flat-a₀ flagship may not hold for massive galaxies at z ≳ 4. This is a scope limit, not the JWST regime.

@@ -133,7 +133,16 @@ The forest's conservative-argument rules stay off, because they are arguments, n
   ~150–190 pc at 2e-19 eV) without disturbing the clock: δK/K ≤ 1.1e-3, no vorticity reaches τ, and criterion B
   holds.
 
-**Open doors from DE13, not yet sized:**
+**Repairs of V0's gate obstruction.** DE13's completion (a7abb4d4f, e9a9978f9) proves no gradient energy of any
+strength works (E3; Lean 8 theorems). What remains:
+- XR15 (running here): door (c), a smoothed gate variable.
+- CV6 (queued here): a dynamical gate field χ with a spring. Its price is edge-layer gas with a fast sound speed of
+  0.4–8c on times < 100 Myr, plus a new gravity-sector field of ~1e-30 eV. Its decisive test is whether the WHIM
+  and accretion shocks tolerate that.
+- Flag: massive galaxies (1e12) at z ≳ 4 may lose MOND at r_F (DE12's profile). This limits the flagship's scope;
+  the JWST regime (z ≲ 2.5, low mass) is unaffected.
+
+**Open doors from DE13, not yet sized (superseded by the list above):**
 - (b) h(U)|∇U|², switching off inside collapsed regions.
 - (c) a smoothed gate variable, (1−ℓ²∇²)χ = U.
 
