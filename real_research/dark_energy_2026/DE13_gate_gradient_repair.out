@@ -1,0 +1,115 @@
+DE13 -- CAN A GRADIENT STIFFNESS REPAIR DE12's OBSTRUCTION?  The exact second variation of mu|grad U|^2 and mu|grad f|^2.
+
+WHY.  DE12 (7f84b3546) found that the converged model's MOND-sector gate, varied as an action term, is a negative bulk
+modulus for the baryons in each transition layer: omega^2 = (c_s^2 - c_gate^2) k^2 with c_gate = 1500-3700 km/s at
+z = 0.25, a gradient instability worst in the UV.  The review asked for the natural repair, a gradient stiffness on the
+gate, and whether it pushes every unstable mode out of the layer (k_c below 1/L_layer).  Two forms:
+  (i)  - (mu_U/2) |grad U|^2    the review's form;
+  (ii) - (mu_f/2) |grad f|^2    a gradient energy on the gate itself (f = W(t)), nonzero only where f varies.
+Both read only MOND-sector fields, so MS1's reciprocity holds for any functional of Phi - v (MS5 A1's identity), and they
+add a Korteweg-like energy for the constraint-slaved baryons, not a new propagating field.
+THE EXACT SECOND VARIATION.  Take the gate variable eps = delta t = h delta rho_b, with h = t_U U_rho and the transverse
+A = nu of DE12 (its worst direction).  To second order a layer's energy is
+    E2 = 1/2 int { [c_s^2/(rho_b h^2) - B W''] eps^2 + mu s |grad eps|^2 - mu K0 eps^2 } d^3x,
+    form (i):  s = 1/t_U^2,  K0 = 0                                     (the term is quadratic in U);
+    form (ii): s = W'^2,     K0 = (W''^2 + W' W''') |grad t|^2 + 2 W' W'' lap t.
+K0 is the repair's own background term: to second order, f's change couples to the background gradient grad f.  At both
+edges of the layer W''^2 + W'W''' ~ 2 W''^2 > 0, so K0 destabilises.  It scales with mu exactly as the stiffness does,
+so on scales longer than W's own variation length the repair destabilises the layer however large mu is.
+METHOD.  Each layer is resampled on 8000 points uniform in ln r over t in [0.004, 0.996].  DE12's transition() is used
+with the radial grid as an argument (that one line replaced; C2 checks it is DE12's on DE12's grid).  The radial form is
+discretised with weights r^2 dr and Dirichlet ends.  Negative modes are counted exactly: they are the negative LDL^T
+pivots of the tridiagonal matrix (Sylvester's law of inertia).  A mode FITS IN THE LAYER if it has negative energy on a
+Dirichlet window half the layer wide (t-width 0.5, five windows), i.e. k >= 2 pi/L, the review's lenient scale.  The
+full-layer count, which also admits layer-wide modes, is reported alongside.
+  DE12 machinery loaded   [1s]
+
+==============================================================================================================
+C1 C2  CONTROLS: DE12's c_gate and DE12's transition on DE12's grid
+==============================================================================================================
+  [PASS] C1 CONTROL: the unrepaired c_gate reproduces DE12's committed value (z = 0.25, 1e11, canonical)
+         measured: 2235.367 vs 2235.367 km/s
+  [PASS] C2 CONTROL: transition() with the grid as an argument is DE12's on DE12's grid
+         measured: max |diff| 0.0e+00
+
+==============================================================================================================
+C3  CONTROL: the second variation of 1/2 int |grad f|^2 against finite differences of the discretised functional
+==============================================================================================================
+  [PASS] C3 CONTROL: stiffness + K0 matches the functional's finite-difference second variation (1e-4); without K0 it does not
+         measured: with K0: 1.5e-06, 9.9e-09, 1.5e-08; without: 1.5e-01, 4.1e-03, 4.3e-03
+
+==============================================================================================================
+C4 R1 E1 E2  THE FORM (ii) REPAIR ON EVERY LAYER (w = 0.25, 1e6 K gas)
+==============================================================================================================
+    0.25/1e+10/canonical    : unrepaired 3802 modes; repair alone  28; best lambda 0.56 leaves 3 (full layer 5); stable lambda: none
+    0.25/1e+10/alt          : unrepaired 3821 modes; repair alone  28; best lambda 0.56 leaves 3 (full layer 5); stable lambda: none
+    0.25/1e+11/canonical    : unrepaired 3863 modes; repair alone  28; best lambda 1 leaves 3 (full layer 5); stable lambda: none
+    0.25/1e+11/alt          : unrepaired 3876 modes; repair alone  28; best lambda 1 leaves 3 (full layer 6); stable lambda: none
+    0.25/1e+12/canonical    : unrepaired 3915 modes; repair alone  28; best lambda 1.8 leaves 3 (full layer 7); stable lambda: none
+    0.25/1e+12/alt          : unrepaired 3925 modes; repair alone  28; best lambda 1 leaves 4 (full layer 7); stable lambda: none
+    1.0/1e+10/canonical     : unrepaired 3712 modes; repair alone  28; best lambda 0.32 leaves 3 (full layer 5); stable lambda: none
+    1.0/1e+10/alt           : unrepaired 3733 modes; repair alone  28; best lambda 0.32 leaves 3 (full layer 5); stable lambda: none
+    1.0/1e+11/canonical     : unrepaired 3816 modes; repair alone  28; best lambda 0.56 leaves 3 (full layer 5); stable lambda: none
+    1.0/1e+11/alt           : unrepaired 3828 modes; repair alone  28; best lambda 0.56 leaves 3 (full layer 5); stable lambda: none
+    1.0/1e+12/canonical     : unrepaired 3889 modes; repair alone  28; best lambda 1 leaves 3 (full layer 6); stable lambda: none
+    1.0/1e+12/alt           : unrepaired 3898 modes; repair alone  28; best lambda 1.8 leaves 3 (full layer 6); stable lambda: none
+    2.5/1e+10/canonical     : unrepaired 3590 modes; repair alone  28; best lambda 0.32 leaves 2 (full layer 4); stable lambda: none
+    2.5/1e+10/alt           : unrepaired 3616 modes; repair alone  28; best lambda 0.32 leaves 2 (full layer 4); stable lambda: none
+    2.5/1e+11/canonical     : unrepaired 3748 modes; repair alone  28; best lambda 0.32 leaves 3 (full layer 5); stable lambda: none
+    2.5/1e+11/alt           : unrepaired 3765 modes; repair alone  28; best lambda 0.32 leaves 3 (full layer 5); stable lambda: none
+    2.5/1e+12/canonical     : unrepaired 3834 modes; repair alone  28; best lambda 0.56 leaves 3 (full layer 5); stable lambda: none
+    2.5/1e+12/alt           : unrepaired 3847 modes; repair alone  28; best lambda 0.56 leaves 3 (full layer 5); stable lambda: none
+    4.0/1e+10/canonical     : unrepaired 3488 modes; repair alone  28; best lambda 0.18 leaves 2 (full layer 3); stable lambda: none
+    4.0/1e+10/alt           : unrepaired 3527 modes; repair alone  28; best lambda 0.32 leaves 2 (full layer 4); stable lambda: none
+    4.0/1e+11/canonical     : unrepaired 3670 modes; repair alone  28; best lambda 0.56 leaves 2 (full layer 4); stable lambda: none
+    4.0/1e+11/alt           : unrepaired 3695 modes; repair alone  28; best lambda 0.18 leaves 3 (full layer 5); stable lambda: none
+    4.0/1e+12/canonical     : unrepaired 3765 modes; repair alone  28; best lambda 0.32 leaves 3 (full layer 5); stable lambda: none
+    4.0/1e+12/alt           : unrepaired 3784 modes; repair alone  28; best lambda 0.56 leaves 3 (full layer 5); stable lambda: none
+    0.25/1e+14/canonical    : unrepaired 3975 modes; repair alone  28; best lambda 1.8 leaves 4 (full layer 7); stable lambda: none
+    0.25/1e+14/alt          : unrepaired 3981 modes; repair alone  28; best lambda 1.8 leaves 4 (full layer 7); stable lambda: none
+    1.0/1e+14/canonical     : unrepaired 3956 modes; repair alone  28; best lambda 1.8 leaves 4 (full layer 7); stable lambda: none
+    1.0/1e+14/alt           : unrepaired 3962 modes; repair alone  28; best lambda 1.8 leaves 4 (full layer 7); stable lambda: none
+    2.5/1e+14/canonical     : unrepaired 3912 modes; repair alone  28; best lambda 3.2 leaves 3 (full layer 7); stable lambda: none
+    2.5/1e+14/alt           : unrepaired 3921 modes; repair alone  28; best lambda 1 leaves 4 (full layer 7); stable lambda: none
+    4.0/1e+14/canonical     : unrepaired 3856 modes; repair alone  27; best lambda 1.8 leaves 3 (full layer 6); stable lambda: none
+    4.0/1e+14/alt           : unrepaired 3868 modes; repair alone  27; best lambda 1.8 leaves 3 (full layer 6); stable lambda: none
+  [PASS] C4 CONTROL: without the repair every galaxy layer has negative modes; gas alone has none
+         measured: unrepaired unstable on 24/24; gas alone stable on 24/24
+  [FAIL] R1 [pre-declared, first run, kept as run] form (ii)'s lambda at k = 1/L (WKB stiffness only) lies in [0.05, 2]
+         measured: lambda_galaxies = 240.884 (with the cluster: 536.299)
+         reading:  superseded by E1/E2: the criterion had no K0 and asked for stiffness at the edges, where W'^2 -> 0
+  [PASS] E1 the repair's own second variation (form ii, gate and gas off) is indefinite on every galaxy layer, with a negative mode inside a half-layer window
+         measured: indefinite on 24/24 galaxy layers; negative modes per layer [28]
+         reading:  K0 grows with mu exactly as the stiffness does: more repair, more instability on scales longer than W's own
+  [PASS] E2 form (ii) stabilises no galaxy layer: for every lambda in 1e-3 to 1e5, some half-layer window keeps a negative mode
+         measured: no stable lambda on 24/24 galaxy layers; fewest modes left 2-4 at lambda 0.18-1.8
+         reading:  a gradient energy on the gate cannot repair DE12's obstruction at any strength
+
+==============================================================================================================
+G1  THE RESIDUAL MODES' GROWTH (displacement formulation, mass conserved)
+==============================================================================================================
+    0.25/1e+11/canonical: at lambda 1 the fastest mode grows at Gamma/H = 1.16e+04 (N 1500), 1.16e+04 (N 3000); unrepaired (grid-limited, Gamma ~ k): 4.71e+05
+    4.0/1e+11/alt: at lambda 0.18 the fastest mode grows at Gamma/H = 3.22e+03 (N 1500), 3.22e+03 (N 3000); unrepaired (grid-limited, Gamma ~ k): 9.73e+05
+  [PASS] G1 (reported) the residual modes' growth at the best lambda (Gamma/H), 1500 and 3000 points
+         measured: {'0.25/1e+11/canonical': {'lam': 1.0, '1500': 11553.497070024398, '3000': 11557.245986896674, 'unrepaired_N3000': 470807.5984956212}, '4.0/1e+11/alt': {'lam': 0.1778279410038923, '1500': 3218.178708144681, '3000': 3218.901338405304, 'unrepaired_N3000': 973366.9895415226}}
+
+==============================================================================================================
+F1 N1  FORM (i): the smallest mu_U that stabilises each layer, and its own potential
+==============================================================================================================
+    lambda_U = sqrt(mu_U/(B r^2)) per galaxy layer: 0.25/1e+10/canonical: 0.22, 0.25/1e+10/alt: 0.22, 0.25/1e+11/canonical: 0.22, 0.25/1e+11/alt: 0.22, 0.25/1e+12/canonical: 0.22, 0.25/1e+12/alt: 0.22, 1.0/1e+10/canonical: 0.22, 1.0/1e+10/alt: 0.22, 1.0/1e+11/canonical: 0.22, 1.0/1e+11/alt: 0.22, 1.0/1e+12/canonical: 0.22, 1.0/1e+12/alt: 0.22, 2.5/1e+10/canonical: 0.21, 2.5/1e+10/alt: 0.21, 2.5/1e+11/canonical: 0.21, 2.5/1e+11/alt: 0.21, 2.5/1e+12/canonical: 0.21, 2.5/1e+12/alt: 0.21, 4.0/1e+10/canonical: 0.21, 4.0/1e+10/alt: 0.21, 4.0/1e+11/canonical: 0.21, 4.0/1e+11/alt: 0.21, 4.0/1e+12/canonical: 0.21, 4.0/1e+12/alt: 0.21
+    universal (galaxies) mu_U: eta_U = 3.21e-14;  clusters: 0.25/1e+14/canonical: eta_U 4.8e-13, 0.25/1e+14/alt: eta_U 5.1e-13, 1.0/1e+14/canonical: eta_U 1.1e-12, 1.0/1e+14/alt: eta_U 1.1e-12, 2.5/1e+14/canonical: eta_U 3.5e-12, 2.5/1e+14/alt: eta_U 3.9e-12, 4.0/1e+14/canonical: eta_U 8.3e-12, 4.0/1e+14/alt: eta_U 9.1e-12
+  [PASS] F1 (reported) form (i) stabilises every layer above a minimum mu_U (half-layer windows)
+         measured: stabilised 32/32; lambda_U 0.21-0.22; eta_U = 3.21e-14
+  [PASS] N1 form (i)'s own potential, taken with the smallest universal mu_U, exceeds v_f^2 at r_F and at the Sun's distance
+         measured: flagship r_F, z = 2.5, 1e11: 3.18e+01 v_f^2; the Sun, z = 0, 6e10 at 8 kpc: 2.13e+08 v_f^2
+         reading:  the term acts wherever U varies: inside every galaxy (and, on smaller scales still, at every stellar surface)
+
+==============================================================================================================
+R3  FORM (ii)'s EDGE POTENTIAL per lambda^2 (the review's question on the edge profile)
+==============================================================================================================
+    max |Phi_f|/v_f^2 at lambda = 1: 0.25/1e+10: 1.51, 0.25/1e+11: 2.66, 0.25/1e+12: 4.64, 2.5/1e+10: 14.59, 2.5/1e+11: 23.08, 2.5/1e+12: 33.63, 4.0/1e+10: 33.17, 4.0/1e+11: 46.17, 4.0/1e+12: 57.67
+  [PASS] R3 (reported) form (ii)'s edge potential at lambda = 1, max over the layer
+         measured: 1.51-57.67 v_f^2
+
+  10/11 checks pass; load-bearing failures: 1; wrote DE13_gate_gradient_repair_results.json   [16s]
+rc=1
