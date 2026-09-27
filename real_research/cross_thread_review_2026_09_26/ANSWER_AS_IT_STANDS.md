@@ -238,6 +238,38 @@ Running here:
   - Small-scale carrier power falls 2.5–3.5×, so weak lensing leans on the MOND phantom.
   - The forest is still not established.
   - A box run needs a web conversion channel.
+- **FP15 (138f73b69): none of the dark sector's constants is derived.**
+  - ε is irreducible and fitted.
+  - The trigger normalisation δ_t0 is fitted by data.
+  - Sharing q with the separator fails the web.
+  - m is pinned on the canonical footing and only bounded on alt.
+- **FP16 (b3f5759a4): the dark sector's window is EMPTY (0/8 cells, semi-analytic, with the web channel).**
+  - Clusters recapture 24–58% of escaped daughters.
+  - X-COP's ε(R500) comes out 1.33–1.40 against the 0.91–0.93 observed: too much mass, at every kick. X-COP alone
+    would need a kick of about 1050 km/s.
+  - The flagship, galaxies, KiDS and S₈ pass.
+  - Harvey fails. Cosmic shear depends on the reading. The forest is not established.
+  - Only XR21's stage 3 could overturn the X-COP failure, and FP16's bias runs toward a stronger failure.
+- **FP19 (0c18c582f): a well-posed repair of the separator, H_K1, with one declared constant.**
+  - It reads the state through <K>_h only, with L_Λ = 2.9 Mpc.
+  - It uses three natural choices; c_y = 2 was chosen after scoring.
+  - It passes every scored gate. It predicts KiDS at z = 0.7 at +496, a near-term falsifier.
+  - The Local Group still fails.
+  - All in the all-matter reading, and KiDS is provisional until FP20.
+  - XR18b is re-auditing it before any box run.
+- **XR25 (43cfa1692), strong fields:**
+  - Binary pulsars, preferred-frame PPN and GW170817 pass, because α_c is tiny.
+  - At black holes, the c₂ = ∞ limit with α_c > 0 makes the universal horizon singular at O(α_c).
+  - The scalar's inertia λ is a regulator for strong fields but a knob in the MOND regime. It is inert only below
+    ~0.03.
+- **XR27 (3e55fdff2), the external-field systems under the band-pass:** none of M*'s failures flips at any L.
+  - The dwarf failures are inherited from MOND at Υ_V = 2.
+  - The "EFE-favouring" dwarfs don't actually favour an EFE in the record's exact statistic.
+  - There is a new L pincer between the cluster slope (L ≤ 0.8 Mpc), Chae's signal (L ≥ 4.5) and KiDS (L ≳ 1.56).
+- **XR30 (2a2d81f61):** the khronon's foliation and the unimodular clock don't merge. They combine as two structures
+  with unchanged local content. The a₀ tie stays, as a₀ ∝ κ c² √(3Λ).
+- **XR33 (92fe59705):** SLACS strong lenses need an IMF about 0.1 dex heavier than Salpeter. That is at the heaviest
+  spectroscopic value, and 0.12 dex above the spectroscopic relation, where ΛCDM is off by only 0.02.
 - **The hardest open tests of the chain, launched 2026-09-27:**
   - **XR22, Gaia DR4 wide binaries.** It solves the chain's z = 0 law as a 3-D AQUAL two-body problem in the Galactic
     field, with the heat filter across ξ's window. It then computes the frozen pre-registration's own statistic
