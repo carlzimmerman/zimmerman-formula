@@ -275,6 +275,17 @@ Running here:
   with unchanged local content. The a₀ tie stays, as a₀ ∝ κ c² √(3Λ).
 - **XR33 (92fe59705):** SLACS strong lenses need an IMF about 0.1 dex heavier than Salpeter. That is at the heaviest
   spectroscopic value, and 0.12 dex above the spectroscopic relation, where ΛCDM is off by only 0.02.
+- **FP22 (bfe9a2fe5), the reading question is settled.**
+  - The action as written makes all matter feel MOND, and that reading is **excluded by CMB lensing**: the
+    real-space cut is 0.52–1.35, against the ≤ 0.62 needed.
+  - The chain now puts its dark field on the root's Einstein-frame metric, so the dark field neither sources nor
+    feels the MOND field. That needs no new field and no new constant, but it breaks dark–baryon free-fall
+    universality where the field is non-zero.
+  - In that reading, CMB lensing passes Planck and ACT on the linear base. It fails ACT on the halofit base
+    (≥ 3.8σ), so the nonlinear box run (XR21's stage 2a, in the 'chain' reading) is the decisive test.
+  - σ₈ without a separator fails in both readings. The forest passes with any separator.
+  - New KiDS risk: the web's band-passed field inside the kernel costs Δχ² +205–232 in this reading.
+  - The (1+z) kernel bug in the forest PM codes is confirmed.
 - **The hardest open tests of the chain, launched 2026-09-27:**
   - **XR22, Gaia DR4 wide binaries.** It solves the chain's z = 0 law as a 3-D AQUAL two-body problem in the Galactic
     field, with the heat filter across ξ's window. It then computes the frozen pre-registration's own statistic
