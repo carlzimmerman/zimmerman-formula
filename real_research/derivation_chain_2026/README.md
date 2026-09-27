@@ -47,7 +47,7 @@ light complex scalar whose own rest energy powers the kick.
 | core | lambda (inertia) | eliminated under H_Y (lambda = 0); required > 0 under H_S and H_K1 (below z = 0.635). NOT a pure regulator at c_2 = infinity (the hub's XR25): inert for strong-field observables, but a MOND-regime knob across (0, 274.4] (tracking speed 17,300 -> 1,800 km/s, galaxy alpha_2 v^2 1.3e-3 -> 0.12); inert only for lambda <~ 0.03. Counts as a knob unless that range is shown free of trouble (XR18b) | FP14, FP13, FP19, XR25 |
 | core | c_2 | ELIMINATED on Minkowski and FRW (c_2 -> infinity: a multiplier). At black holes the limit is not uniform: at c_2 = infinity with alpha_c > 0 the multiplier diverges logarithmically at the universal horizon (r = 3M/2), a curvature singularity at O(alpha_c); finite c_2 is regular. OPEN (XR25) | FP14, XR25 |
 | core | alpha_c | REGULATOR (every observable moves <= 1.6e-9) | FP14 |
-| core | xi (heat filter) | KNOB: irreducible by a threshold-mass theorem; to be MEASURED by wide binaries (Gaia DR4) | FP17, the hub's XR22 |
+| core | xi (heat filter) | KNOB: irreducible by a threshold-mass theorem. MEASURABLE by Gaia DR4 wide binaries with a separation-resolved statistic: sigma(ln xi) ~ 0.20/0.15 at the floor, 91% of the information at 5-30 kAU. The frozen pre-registered statistic can only kill the chain from above (gamma_hat >~ 1.157/1.174); a Newtonian result only bounds xi > 0.036/0.047 pc (the hub's XR22, 661ea3cff, re-run pending) | FP17, XR22 |
 | separator | L_Lambda | DECLARED in H_K1: 2.9 Mpc, inside the window 2.65-4.6 (sigma_8 <= 1.02 needs <= 3.0); zero modes alone cannot give it (FP19) | FP19 |
 | separator | n = 2, the q = 0 ramp, c_y = 2 | natural choices in H_K1 (c_y chosen after scoring: the only one of four natural normalizations passing both yardsticks); H_Y's y_Lambda and p' are gone | FP13, FP19 |
 | dark | eps | IRREDUCIBLE (the only Z4-odd term; a khronon-frame coupling only relabels it) and FITTED (the flagship sets the window's lower end, Harvey its upper) | FP10, FP15 |
@@ -55,7 +55,25 @@ light complex scalar whose own rest energy powers the kick.
 | dark | cross quartic | POSTULATED (radiatively stable) | FP15 |
 | dark | amount, misalignment | initial data (the amount has the status of LCDM's omega_c) | FP10, FP15 |
 
+## Where the theory passes (beyond the galaxy law it embeds)
+
+- The early universe (the hub's XR26, 68135cb7a, re-run pending): at z >~ 10 the linear equations derived from the full
+  action reduce to GR + CDM up to alpha_c (G_cos = G_N (1 - alpha_c/2), no slip, the unimodular multiplier cancels from
+  the comoving Poisson equation, the band-pass is closed at recombination); TT/TE/EE equal LCDM's to 7.8e-8; BBN is
+  standard BBN. Load-bearing: the phi-dot = 0 initial condition (with lambda > 0, BBN needs Omega_phi,0 < 1.7e-25).
+- The Solar System, c_T = 1, PPN gamma = 1 and alpha_3 = 0 (FP2); binary pulsars and GW170817 (XR25; alpha_2 sits on
+  the isolated-MSP bound by construction, not by prediction); MW-M31 timing with baryons only (FP11).
+
 ## Where the theory fails or is undecided
+
+- CMB lensing (XR26, re-run pending): below z ~ 0.64 the separator's yield vanishes and MOND switches on in the linear
+  web; on FP13's per-mode yardstick C_L^phiphi rises x1.08/1.74/4.85 at L = 100/400/1000, and Planck's 8-400 amplitude
+  (1.011 +- 0.028) becomes 1.149 on the linear base (+4.9 sigma) and 2.13 on halofit (+40 sigma); every variant scored
+  fails. Passing needs the web's phantom cut to 0.62x (linear) / 0.18x (halofit). The two ways out -- the reading the
+  action implies (baryons only?) and the real-space operator (0.28-0.91 of the per-mode boost) -- are FP22's test.
+- The Milky Way's outer curve (the hub's XR29, 633c161b5, re-run pending): the Gaia DR3 decline needs M_* = 7.3-8.2e10
+  (4-5 sigma above the McMillan/Cautun censuses) and the 8-19 kpc slope misfits (-2.2 to -2.9 vs -1.7 km/s/kpc); LCDM's
+  control needs a concentration 1.9-3.8 sigma above the c-M relation.
 
 - The group-scale outer profile: R0 overshoots by +0.20 dex for the Local Group, M81 and IC 342 (Cen A matches); fixing
   it costs KiDS (FP11, FP12). FP18 finds the tension is in the data itself: at face value no profile fits both KiDS and
