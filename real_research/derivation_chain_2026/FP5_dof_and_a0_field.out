@@ -1,0 +1,245 @@
+FP5 -- GATE G-2 ON THE UNGATED C-H/K CORE: the canonical degree-of-freedom count, linear well-posedness, "a0 as a
+field", and the free constants the core carries.
+
+WHY.  The derivation chain is re-rooted in the ungated C-H/K core.  Its canonical count has no owner on the record
+(real_research/cross_thread_review_2026_09_26/XR3_obligations.md, requirement 2).  XC2 reduced strong hyperbolicity to
+GR + the BPS khronon without settling it.  XC5 E6 found that the response around an open zero-field region scales as
+sqrt(eps).  This lane counts the modes from the action's own quadratic form, locates every rank change, and says what the
+nonlocal heat filter adds.  It then asks whether any term of the core can tie a0 to Lambda, and lists the core's
+constants with their status.
+
+THE CORE (varied here exactly as written; nothing is added by hand):
+    I = c^3/(16 pi G) Int d^4x sqrt(-g) { R - 2 Lambda + 2 h^{mn}(D_m U - a_m)(D_n U - a_n)
+          + 2 alpha^2 q(h^{mn} D_m W_b D_n W_b / alpha^2) + Int_0^b dz L (d_z W - Delta_h W) + lambda_0 (W_0 - U)
+          + alpha_c a_m a^m - c_2 (K - <K>_h)^2 } + GHY + S_m[g]
+The first line is astra's C-H action (qwen_claude_field_theory/closure_2026/g03_covariant_action_2026/ACTION.md:95-106).
+The khronon terms are L340's BPS terms with beta = 0 (real_research/g03_audit_2026/L340_filtered_khronon_completion.py:9),
+with L350's proper-volume leaf average (as in real_research/chk_v0_2026/CV2_covariant_action.py).  The clock tau gives
+n_m = -d_m tau / sqrt(X), N = X^{-1/2}, a_m = D_m ln N, K = nabla_m n^m.  The kernel is nu_mono: nu_RAR up to the splice
+y_s = 2.3374, then the phantom floor h' = 0.05 h_p/(y + y_p) (L340 A1).  In this lane q'(s^2) = nu_mono(s) - 1, alpha = a0/c^2,
+and b = xi^2/2.  There is no gate, no L353/L361 pair and no dark state: this is the ungated core.
+
+  nu_mono: y_p = 2.5396, h_p = 0.6476 a0, splice y_s = 2.3374, floor slope 0.05; canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2
+
+  building the second-order ADM Lagrangian from the action ...
+  done (2.2 s); first-order part (must be a total derivative): -2*xi_B*Derivative(hs(t, z), (z, 2))
+
+==============================================================================================================
+K0  CONTROL: the quadratic action is the correct gauge-invariant one (linearised spatial diffeomorphisms)
+==============================================================================================================
+  [PASS] K0 CONTROL the second-order ADM Lagrangian built from the action is invariant under xi_x, xi_y, xi_z (M v_xi = 0 exactly) and its first-order part is a total derivative
+         measured: M v_xi = 0: {'xi_x': True, 'xi_y': True, 'xi_z': True}; L1 = -2*xi_B*Derivative(hs(t, z), (z, 2))
+
+==============================================================================================================
+K1  CONTROL: the published BPS healthy extension (no MOND sector)
+==============================================================================================================
+  [PASS] K1 CONTROL the machine reproduces BPS: c_T^2 = xi_B, c_s^2 = xi_B(lambda_B - 1)(2 xi_B - eta)/(eta(3 lambda_B - 1)), G_N/G = 1/(xi_B - eta/2), positive tensor kinetic term
+         measured: c_T^2 k^2 = [k**2*xi_B]; c_s^2 k^2 = [-k**2*xi_B*(eta - 2*xi_B)*(lambda_B - 1)/(eta*(3*lambda_B - 1))]; G_N/G = -2/(eta - 2*xi_B); det(vector) = k**4/4
+
+==============================================================================================================
+K2  CONTROL: L340 H1's committed static zero set and static gain, at the record's action (c_CH = 2)
+==============================================================================================================
+  [PASS] K2 CONTROL det M(0) vanishes exactly where L340's committed det0 does (alpha_c(1 + C) = 2), and the static lapse gain is L340's (1 + C)/(1 - alpha_c(1 + C)/2)
+         measured: this lane: det M(0) = -c_2*k**8*(C_e*alpha_c + alpha_c - 2), zero at C = [(2 - alpha_c)/alpha_c]; L340 (committed): C = [(2 - alpha_c)/alpha_c]; gain = -2*(C_e + 1)/(C_e*alpha_c + alpha_c - 2)
+
+==============================================================================================================
+K3  CONTROL: FRW minisuperspace -- the plain K^2 and the leaf average
+==============================================================================================================
+  [PASS] K3 CONTROL on FRW the plain -c_2 K^2 gives H^2 (1 + 3c_2/2) = (Lambda + 8 pi G rho)/3 (L350 G1) and the leaf average gives GR's Friedmann equation (L350 G5 / CV2 B3)
+         measured: leaf average: 3H^2 = Lambda + kappa_4*rho_m(a(t)); plain: H^2/H^2_leaf = 2/(3*c_2 + 2)
+
+==============================================================================================================
+A1  THE VELOCITY CONTENT IN UNITARY GAUGE (covariant definitions on generic polynomial fields, exact)
+==============================================================================================================
+  [PASS] A1 in unitary gauge (tau = t) the covariant pieces are the manifestly velocity-free ADM expressions: n.n = -1, a^2 = h^ij d_i lnN d_j lnN, h^mn dU dU = h^ij d_iU d_jU (no Udot), Delta_h F has no Fdot, and K enters through hdot_ij only
+         measured: max residual over 3 exact points: n.n + 1: 0.0e+00, a^2 - ADM: 0.0e+00, K - ADM: 0.0e+00, h dU dU - ADM: 0.0e+00, Delta_h identity: 0.0e+00; inverse metric exact True
+    => velocities: hdot_ij only.  N, N^i, U, W(z), L(z), lambda_0 carry none: primary constraints pi_N, pi_{N^i}, pi_U, pi_W(z), pi_L(z), pi_lambda0 ~ 0.
+
+==============================================================================================================
+A2  THE LEGENDRE MAP (DeWitt kinetic form, leaf average mode by mode)
+==============================================================================================================
+  [PASS] A2 the kinetic Hessian of K_ij K^ij - lambda K^2 (independent components) is positive on the traceless part (eigenvalues 2 x2 diagonal, 4 x3 off-diagonal) and 2(1 - 3 lambda) on the trace; the leaf average removes exactly the k = 0 part of c_2 K^2, so lambda = 1 + c_2 on k != 0 and 1 on k = 0: the Legendre map is invertible on every mode unless c_2 = -2/3
+         measured: eigenvalues {2 - 6*lambda: 1, 2: 2, 4: 3}; Parseval |lhs - rhs| = 1.1e-16; det(k=0) = -1024; det(k!=0) = -512*(3*c_2 + 2)
+
+==============================================================================================================
+A3  THE AUXILIARY SECTOR IS SECOND CLASS (heat block, (N, U) block, Dirac bookkeeping)
+==============================================================================================================
+  [PASS] A3 the heat block (W, L, lambda_0) has a kernel-independent determinant (1 + Dz k^2)^(2n)/4^(n+1) (nonzero) for n = 1-4, so its pairs are second class; the (N, U) Hessian det is > 0 on nu_mono's range (C > 0) at both alpha_c ends; Dirac count (12 + 2 + 6 + 2 + 2(n+1) + 2n + 2 - 2 x 6 - (8 + 4n))/2 = 3 for every n
+         measured: heat det: n=1: (Delta_z*k**2 + 1)**2/16, n=2: -(Delta_z*k**2 + 1)**4/64, n=3: (Delta_z*k**2 + 1)**6/256, n=4: -(Delta_z*k**2 + 1)**8/1024; det(N,U) = k**4*(2*C_e*alpha_c + 2*C_e*c_CH + alpha_c*c_CH) (at C = 0: alpha_c*c_CH*k**4); N_phys = 3
+    note: at C -> 0 the (N, U) determinant is alpha_c c_CH k^4, so its positivity against the O(Phi/c^2) clock terms needs alpha_c >= alpha_min = 9.62e-14 (L340 H4, committed) -- inherited, inside the window.
+
+==============================================================================================================
+B1  THE COUNT: det M(w, k) degrees, explicit heat points, random draws
+==============================================================================================================
+    n = 1 heat points: deg_w det (tensor, vector, scalar) = [4, 0, 2] (blocks decoupled: True)
+    n = 1 heat points: deg_w det (tensor, vector, scalar) = [4, 0, 2] (blocks decoupled: True)
+    n = 2 heat points: deg_w det (tensor, vector, scalar) = [4, 0, 2] (blocks decoupled: True)
+    n = 3 heat points: deg_w det (tensor, vector, scalar) = [4, 0, 2] (blocks decoupled: True)
+    n = 4 heat points: deg_w det (tensor, vector, scalar) = [4, 0, 2] (blocks decoupled: True)
+    n = 4 heat points: deg_w det (tensor, vector, scalar) = [4, 0, 2] (blocks decoupled: True)
+  [PASS] B1 for 1-4 explicit heat points, 3 random parameter draws plus the physical corner (alpha_c = 1e-9, C = 1e6, c_2 = 6.3e-4) each: deg_w det = 4 (tensor) + 0 (vector, det != 0) + 2 (scalar), det not identically zero => N = 3: two tensor modes and one khronon scalar, no vector mode
+         measured: 16 cases, all degrees [4, 0, 2]: True
+
+==============================================================================================================
+B2  WHAT THE NONLOCAL FILTER ADDS: nothing but the tangent's filter factor
+==============================================================================================================
+  [PASS] B2 the Schur complement of the heat block equals the continuum scalar block with C -> sigma_n(k)^2 C, sigma_n = (1 + b k^2/n)^(-n) -> exp(-b k^2) = exp(-xi^2 k^2/2) (both filters, S and S^dagger): the filter adds no mode, no free data and no first-class constraint
+         measured: Schur == sigma_n^2 C for n = 1-4: {1: True, 2: True, 3: True, 4: True}; max |sigma_n/exp(-bk^2) - 1| at b = 0.5: {4: 3.414580402616556, 64: 0.1631800048317733, 4096: 0.0024731680745986306, 262144: 3.8624113697594e-05}
+
+==============================================================================================================
+B3  THE REDUCED KHRONON: no ghost, its dispersion, c_T = 1
+==============================================================================================================
+  [PASS] B3 the reduced khronon has kinetic coefficient (2 + 3c_2)/(2c_2) > 0 for c_2 > 0 (no ghost) and w^2 = c_2(2 - E)k^2/(E(2 + 3c_2)), E(C) = alpha_c + 2 C c_CH/(c_CH + 2C): the C-H sector renormalises the BPS alpha; tensors: det = (w^2 - k^2)^2/4, c_T = 1
+         measured: kinetic = (3*c_2 + 2)/(2*c_2); w^2 = -c_2*k**2*(2*C_e*alpha_c + 2*C_e*c_CH - 4*C_e + alpha_c*c_CH - 2*c_CH)/((3*c_2 + 2)*(2*C_e*alpha_c + 2*C_e*c_CH + alpha_c*c_CH)); E(C) from the Schur complement = (-c_CH**2 + (2*C_e + c_CH)*(alpha_c + c_CH))/(2*C_e + c_CH); tensor det = (k**2 - omega**2)**2/4
+
+==============================================================================================================
+B4  THE EXCEPTIONAL SURFACES (rank changes), located symbolically
+==============================================================================================================
+  [PASS] B4 the only rank changes: E = 0 (the lapse becomes a multiplier, the scalar is lost: deg 0), lambda = 1/3 (deg 0), c_2 = 0 (det ~ w^2: the frozen mode, L340 H1's control), E = 2 (w = 0: the static-gain pole); nu_mono's C > 0 keeps 1 + C > 0 and E >= alpha_c > 0 everywhere a field exists
+         measured: leading coefficient = -k**6*(3*c_2 + 2)*(2*C_e*alpha_c + 2*C_e*c_CH + alpha_c*c_CH)/2; degrees at E = 0 / lambda = 1/3: {'E = 0 (alpha_c = C = 0)': 0, 'lambda = 1/3 (c_2 = -2/3)': 0}; c_2 = 0: det = -k**6*omega**2*(2*C_e*alpha_c + 2*C_e*c_CH + alpha_c*c_CH); w^2 at E = 2: 0
+
+==============================================================================================================
+C1  THE NONZERO-FIELD BRANCH: where is 0 < E < 2 (nu_mono, both directions, both alpha_c ends)
+==============================================================================================================
+    alpha_min (L340 H4)      T: E crosses 2 at y* = 2.3156e-27  ->  g* = 2.167e-37 (canonical) / 2.619e-37 m/s^2 (alt)
+    alpha_min (L340 H4)      L: E crosses 2 at y* = 5.7889e-28  ->  g* = 5.419e-38 (canonical) / 6.548e-38 m/s^2 (alt)
+    alpha_c max (L340 P1)    T: E crosses 2 at y* = 2.5600e-18  ->  g* = 2.396e-28 (canonical) / 2.896e-28 m/s^2 (alt)
+    alpha_c max (L340 P1)    L: E crosses 2 at y* = 6.4000e-19  ->  g* = 5.991e-29 (canonical) / 7.240e-29 m/s^2 (alt)
+    over y in [1e-15, 1e12] (both directions, both alpha_c ends): E in [1.610e-13, 1.999999940]
+    context (not this gate): a linear cosmological perturbation at y ~ 1e-3 has E_T = 1.9377, static gain 1/(1 - E/2) = 32.1 -- the ungated core's growth excess (L341)
+  [PASS] C1 on the nonzero-field branch the khronon is healthy (0 < E < 2) for every field above g* = y* a0; y*_T reproduces XR3 K4's committed values (2.316e-27, 2.560e-18) to < 1%; E stays in (0, 2) over y = 1e-15 .. 1e12
+         measured: y*_T = 2.3155574817426798e-27, 2.560000004096006e-18 vs XR3 [2.316e-27, 2.56e-18]; E range 1.61e-13 .. 1.999999940
+
+==============================================================================================================
+C2  ZERO FIELD, the exact leaf problem at fixed lapse (1-D, nu_mono): U is pinned, the lapse feels the C-H term
+==============================================================================================================
+    background y0 = 0    : |dU'| slope 1.999;  R = 0.994378, 0.999434, 0.999943, 0.999994, 0.999999   (expected -> 1.000000)
+    background y0 = 0.01 : |dU'| slope 1.000;  R = 0.818596, 0.818594, 0.818594   (expected -> 0.818594)
+    background y0 = 1    : |dU'| slope 1.000;  R = 0.108448, 0.108448, 0.108447   (expected -> 0.108448)
+  [PASS] C2 at an open zero-field region the leaf problem pins U (|dU'| ~ eps^2) and the lapse feels the full C-H coefficient (R -> 1: the C = inf member of the frozen family); at a nonzero field the response is linear (slope 1) with R = 2C_L/(c_CH + 2C_L); the phantom's source response h(eps) ~ eps^(1/2) is the other face (XC5 E6's committed slope -1/2)
+         measured: zero field: slope 1.999, R -> 0.9999994; y0 = 0.01: R 0.818594 vs 0.818594; y0 = 1: R 0.108447 vs 0.108448; h(eps) slope 0.499; XC5 E6 slope -0.5003
+
+==============================================================================================================
+C3  ZERO FIELD, the formal linearisation: BPS khronometric gravity with alpha_eff = c_CH + alpha_c
+==============================================================================================================
+    alpha_min (L340 H4)      c_2 = Planck cap (L350) : E_inf - 2 = +9.6240e-14; w^2/k^2 = -1.514e-17; growth rate / (k c) = 3.891e-09
+    alpha_min (L340 H4)      c_2 = L340 floor        : E_inf - 2 = +9.6240e-14; w^2/k^2 = -1.735e-16; growth rate / (k c) = 1.317e-08
+    alpha_min (L340 H4)      c_2 = BBN ceiling       : E_inf - 2 = +9.6240e-14; w^2/k^2 = -1.458e-15; growth rate / (k c) = 3.819e-08
+    alpha_c max (L340 P1)    c_2 = Planck cap (L350) : E_inf - 2 = +3.2000e-09; w^2/k^2 = -5.035e-13; growth rate / (k c) = 7.096e-07
+    alpha_c max (L340 P1)    c_2 = L340 floor        : E_inf - 2 = +3.2000e-09; w^2/k^2 = -5.768e-12; growth rate / (k c) = 2.402e-06
+    alpha_c max (L340 P1)    c_2 = BBN ceiling       : E_inf - 2 = +3.2000e-09; w^2/k^2 = -4.848e-11; growth rate / (k c) = 6.963e-06
+    w^2/k^2 at C -> inf (exact) = -alpha_c*c_2/((alpha_c + 2)*(3*c_2 + 2));  static gain at C -> inf: -2/alpha_c
+    zero-field limit of det/C = -k**6*(alpha_c*c_2*k**2 + 3*alpha_c*c_2*omega**2 + 2*alpha_c*omega**2 + 6*c_2*omega**2 + 4*omega**2)  (deg_w = 2: still 3 modes); khronon kinetic coefficient (3*c_2 + 2)/(2*c_2) (C-independent): the zero-field failure is a gradient instability, not a ghost
+    THE ALPHA-PINCER: E runs monotonically from E(C=0) = alpha_c (Newtonian end) to E(C=inf) = alpha_c + 2 (zero field); both inside (0, 2) requires (alpha_c > 0) & (alpha_c + 2 < 2) -> solution set: False
+  [PASS] C3 at an open zero-field region the formal linearisation is BPS khronometric gravity with alpha_eff = lim_{C->inf} E = c_CH + alpha_c > 2 (outside BPS's window 0 < alpha < 2): w^2 < 0 at every k for every (alpha_c, c_2) in the windows, growth rate proportional to k (no filter cut-off at C = inf) => Hadamard ill-posed; the ungated core has no well-posed linearisation on its own FRW background; and since E runs from alpha_c to alpha_c + c_CH, no alpha_c puts both ends inside the window (the alpha-pincer)
+         measured: E_inf = alpha_c + 2; min over windows of -w^2/k^2 = 1.514e-17; count at C = inf: deg 2; all outside: True
+
+==============================================================================================================
+C4  (reported) finite amplitude: the band is bounded below y*, and it saturates at y ~ y*
+==============================================================================================================
+    y = y*/1e2   = 2.56e-20: unstable band k xi < 1.52; max growth 6.35e-06 c/xi -> e-fold 2.32e+04 yr at xi = 0.045 pc
+    y = y*/1e10  = 2.56e-28: unstable band k xi < 3.39; max growth 2.00e-05 c/xi -> e-fold 7.34e+03 yr at xi = 0.045 pc
+    y = y*/1e40  = 2.56e-58: unstable band k xi < 6.79; max growth 4.48e-05 c/xi -> e-fold 3.29e+03 yr at xi = 0.045 pc
+    saturation: once the perturbation's own field exceeds g* ~ 2.4e-28 m/s^2 (canonical) E drops below 2; physical cosmological perturbations (y ~ 1e-3) never enter the band
+  [PASS] C4 (reported) below y* the unstable band is bounded (k_max xi = sqrt(ln(C/C*)), growing only logarithmically) and the instability saturates at y ~ y*: harmless in amplitude, but the exact FRW is not a perturbative background
+         measured: [(2, 1.52, '2.3e+04 yr'), (10, 3.39, '7.3e+03 yr'), (40, 6.79, '3.3e+03 yr')]
+
+==============================================================================================================
+C6  (reported) the one exit from the pincer inside the core: c_CH = 2(1 - delta) -- priced, not adopted
+==============================================================================================================
+    delta = 1e-08: E_inf = 2 - 1.68e-08 (< 2: inside); static MOND law shift -2.1e-07 dex at y = 0.0001, -6.2e-08 dex at y = 0.001, -5.7e-11 dex at y = 1; zero-field static gain 1/(delta - alpha_c/2) = 1.19e+08
+    delta = 1e-06: E_inf = 2 - 2.00e-06 (< 2: inside); static MOND law shift -2.1e-05 dex at y = 0.0001, -6.2e-06 dex at y = 0.001, -5.7e-09 dex at y = 1; zero-field static gain 1/(delta - alpha_c/2) = 1.00e+06
+    delta = 1e-04: E_inf = 2 - 2.00e-04 (< 2: inside); static MOND law shift -2.1e-03 dex at y = 0.0001, -6.2e-04 dex at y = 0.001, -5.7e-07 dex at y = 1; zero-field static gain 1/(delta - alpha_c/2) = 1.00e+04
+    reading: alpha_c/2 < delta << sqrt(y_min) keeps the RAR (the shift is ~ delta C_L ~ delta/sqrt(y)); it breaks C-H's exact
+    Newtonian normalisation of U (Delta u = 4 pi G rho holds only at c_CH = 2) and it does NOT cure the ungated growth excess
+    (E ~ 1.94 at y ~ 1e-3, L341): a new constant, recorded as the price of the only in-core exit, not adopted.
+  [PASS] C6 (reported) the pincer's in-core exit c_CH = 2(1 - delta), alpha_c/2 < delta, restores the zero-field window at a static-law cost ~ delta/sqrt(y) and leaves the growth excess: priced, not adopted
+         measured: [(1e-08, 1.9999999832, {0.0001: '-2.1e-07', 0.001: '-6.2e-08', 1.0: '-5.7e-11'}), (1e-06, 1.9999980032, {0.0001: '-2.1e-05', 0.001: '-6.2e-06', 1.0: '-5.7e-09'}), (0.0001, 1.9998000032, {0.0001: '-2.1e-03', 0.001: '-6.2e-04', 1.0: '-5.7e-07'})]
+
+==============================================================================================================
+C5  THE PRINCIPAL SYMBOL off open zero-field regions (k xi -> inf): GR + BPS(alpha_c, c_2, beta = 0)
+==============================================================================================================
+  [PASS] C5 at k xi -> inf (finite tangent) the filter removes the MOND block (E -> alpha_c): the principal symbol is GR + BPS with real, distinct physical cones c_T = 1 and c_s = sqrt(c_2(2 - alpha_c)/(alpha_c(2 + 3c_2))) plus an elliptic lapse => the linear frozen problem is hyperbolic-elliptic with no complex characteristic (gauge-invariant dispersion level); a strongly hyperbolic formulation of the nonlinear GR + BPS system (gauge included) stays OPEN
+         measured: E(k xi -> inf) = alpha_c; c_s/c over the windows = 4.435e+02 .. 7.936e+05 (XC1 A9: 4.4e2-7.9e5)
+
+==============================================================================================================
+D1  a0 AS A FIELD -- FRW: which terms survive the homogeneous background?
+==============================================================================================================
+  [PASS] D1 on FRW every MOND, C-H, alpha_c and leaf-average term vanishes identically, so the Friedmann equation is 3H^2 = Lambda + 8 pi G rho with no a0; the lapse constraint is local (A3: second class at k != 0, first class at k = 0), so no dust integration constant appears -- the core carries no dark mass
+         measured: terms on the homogeneous leaf: {'q(0) = 2H(0)': 0.0, 'a_m a^m': 0, 'C-H |DU - a|^2 (h dU dU, a = 0)': 0, 'Delta_h W': 0, '(K - <K>_h)^2: spatial dependence of K': 0}; K = 3*Derivative(a(t), t)/(N(t)*a(t)); 3H^2 = Lambda + kappa_4*rho_m(a(t))
+
+==============================================================================================================
+D2  statics: the primitive's constant is a zero mode (k01 K1, in C-H form)
+==============================================================================================================
+  [PASS] D2 the static field equations contain q only through q' (invariant under q -> q + const): the MOND primitive's additive constant -- the only place a vacuum energy could hide -- is a free zero mode; C-H fixes it by q(0) = 0, a choice
+         measured: EL(q) == EL(q + C): True
+
+==============================================================================================================
+D3  promote alpha = a0/c^2 to a field sigma: its equation has no stationary MOND solution
+==============================================================================================================
+  [PASS] D3 d_sigma[2 sigma^2 q(Z/sigma^2)] = 4 sigma [q - (Z/sigma^2) q'], which is identically 0 at Z = 0 (a flat direction: FRW does not fix sigma) and > 0 at every Z > 0 for nu_mono ((q - Z q')/s^(3/2) > 0 over s = 1e-10..1e6, -> 1/3 in deep MOND): the field equation forces Z = 0 (no MOND) unless a potential V(sigma) is put in by hand -- which is P1 declared
+         measured: symbolic identity (two test primitives) True; (q - Z q')/s^1.5: min 9.782e-04 at s = 1.0e+06, deep-MOND value 0.3333
+
+==============================================================================================================
+D4  the khronon's only background scale is K = 3H: tying a0 to it is the rival footing
+==============================================================================================================
+  [PASS] D4 on FRW K = nabla.n = 3 adot/a = 3H and <K> = K: the only dynamical background scale; a0 ~ c<K> gives a0(z)/a0(0) = E(z) (+0.576 dex at z = 2.5), the rival footing that L37 kills at recombination (committed S8b = FAIL)
+         measured: K_FRW (N = 1) = 3*Derivative(a(t), t)/a(t); log10 E(2.5) = 0.576; L37 S8b rival verdict FAIL found: True
+
+==============================================================================================================
+D5  the record: k01 (no equation relates a0 to Lambda) and k04 (the four-form leaves a free ratio)
+==============================================================================================================
+  [PASS] D5 k01's committed K2 (outcome 3: with Lambda explicit no equation relates a0 to Lambda) and k04's committed F2 (the four-form links the scales but kappa becomes a free coupling ratio) both stand; in the core's variables P1 is the declared relation Lambda/alpha^2 = 8 pi/kappa^2
+         measured: k01 K2 PASS found True; k04 F2 FAIL found True; Lambda/alpha^2 = 100.531 (32 pi = 100.531, kappa = 1/2, canonical) / 68.834 (kappa = 0.604, alt)
+
+==============================================================================================================
+E  (reported) THE CORE'S CONSTANTS, each with its status (values from the committed L340/L350 results)
+==============================================================================================================
+    G (Einstein-Hilbert)             measured                                 G_N = G/(1 - alpha_c/2) (K1); fixed by the laboratory G
+    Lambda                           measured (fixed constant, not a field)   rho_Lambda = 5.842e-27 kg/m^3 (Omega_L = 0.6847)
+    a0 = alpha c^2 (kappa)           declared input; kappa = 1/2 FITTED       P1: Lambda/alpha^2 = 8 pi/kappa^2; a0 = 9.3603e-11 (canonical) / 1.1312e-10 (alt, kappa = 0.604)
+    xi (b = xi^2/2)                  bounded knob                             Solar-System floors 0.0311/0.0451 pc (canonical), 0.0328/0.0489 pc (alt) (L340 S1); discs untouched up to ~100 pc (G03 spec S3)
+    alpha_c                          bounded knob (CONSTRAINT window)         [9.62e-14, 3.2e-09] (L340 H4 lobes / P1 alpha_2); must be > 0 (hyperbolicity, XC2 B6) -- and that is what puts zero field outside the BPS window (C3)
+    c_2                              bounded knob, in tension (OPEN)          L340 window [7.29e-03, 0.067] vs Planck-era ceilings on the plain K^2 [6.3e-04, 2.9e-03] (L350 G2); the leaf average removes the background bound only; the perturbation bound is not computed
+    beta (BPS K_ij K^ij)             fixed = 0                                GW170817: c_T = 1 exactly (B3)
+    c_CH = 2                         fixed by the static normalisation        Delta u = 4 pi G rho; at zero field it is exactly BPS's alpha = 2 edge (C3)
+    nu_mono shape                    chosen function (POSTULATED)             nu_RAR below the splice y_s = 2.3374; floor slope delta = 0.05 above (C^1,1 splice, XR3 K1)
+    heat filter, leaf average        structural choices (POSTULATED)          no constants beyond xi
+    dark state / dark initial data   ABSENT (OPEN)                            the core's FRW is GR + Lambda (D1); CMB and clusters need a dark mass it does not carry
+  [PASS] E (reported) the core's constants: 2 measured (G, Lambda), 1 fitted coupling (kappa), 3 bounded knobs (xi, alpha_c, c_2), 2 fixed structural numbers (beta = 0, c_CH = 2), 1 kernel-shape constant (delta = 0.05), and no dark sector
+         measured: 11 rows
+
+==============================================================================================================
+W  THE LEDGER
+==============================================================================================================
+    G-2a    DERIVED     canonical count of the ungated C-H/K core: 2 tensor + 1 khronon scalar, 0 vector (N = 3)  --  A1-A3 (primary structure, second-class auxiliaries, Dirac bookkeeping) + B1 (deg det, frozen principal order)
+    G-2b    DERIVED     the nonlocal heat filter (W, L, lambda_0) adds no mode, no free data, no first-class constraint  --  A3 (kernel-independent heat determinant) + B2 (Schur complement = sigma_n^2 C)
+    G-2c    DERIVED     leaf average: lambda = 1 + c_2 on k != 0, GR on k = 0; Legendre map invertible on every mode  --  A2, K3
+    G-2d    DERIVED     no ghost (c_2 > 0) and c_T = 1  --  B3
+    G-2e    DERIVED     gradient stability on the nonzero-field branch: 0 < E < 2 above g* = y* a0 (y* ~ (alpha_c/2)^2)  --  C1
+    G-2f    FAILS       well-posed linearisation at an open zero-field region (the ungated core's own FRW)  --  C2 (U pinned) + C3 (alpha_eff = 2 + alpha_c > 2: Hadamard ill-posed); amplitude saturates at y ~ y* (C4)
+    G-2g    OPEN        nonlinear strong hyperbolicity of GR + BPS khronon (alpha_c > 0, beta = 0, lambda = 1 + c_2)  --  C5 settles the linear frozen symbol only
+    L2b     POSTULATED  a0 as a field: a0 tied to Lambda by the core's own dynamics  --  D1-D5: no term links them; a free a0-field is flat on FRW and kills MOND in galaxies; K = 3H gives the dead rival
+    L0c     FITTED      kappa = 1/2 (Lambda/alpha^2 = 32 pi)  --  D5; k01-k03
+    K-xi    CONSTRAINT  filter length xi  --  E: Solar-System floors 0.031/0.045 pc canonical, <= ~100 pc
+    K-ac    CONSTRAINT  khronon alpha_c  --  E: [9.6e-14, 3.2e-9]
+    K-c2    OPEN        khronon c_2 (tracking floor vs Planck-era ceilings on perturbations)  --  E: L340 vs L350
+    K-dark  OPEN        dark mass as a state of the core's fields  --  D1: absent from the core
+  [PASS] W (reported) the ledger
+         measured: 13 links
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  COUNT: the ungated C-H/K core propagates 3 local degrees of freedom -- two tensor modes at c and one khronon scalar --
+  and no vector mode.  U, W(z), L(z), lambda_0, the lapse and the shift are auxiliary; the heat filter adds only
+  second-class pairs and multiplies the MOND tangent by sigma(k)^2; the leaf average makes k = 0 exactly GR.
+  HEALTH: no ghost for c_2 > 0; the C-H sector renormalises the BPS alpha to E = alpha_c + 2C c_CH/(c_CH + 2C), healthy
+  for 0 < E < 2, i.e. at every field above g* = y* a0 (y* <= 2.6e-18).
+  ZERO FIELD: at an open zero-field region U is pinned and the lapse feels the full C-H coefficient: alpha_eff = alpha_c + 2,
+  outside BPS's window -- Hadamard ill-posed: the ungated core's own FRW has no well-posed linearisation (a canonical
+  face of XC5's sqrt(eps)); the gate's exact off-plateau, needed anyway for growth (L341), is what removes it.
+  a0 AS A FIELD: no term of the core ties a0 to Lambda; P1 stays a declared input and kappa = 1/2 stays fitted.
+
+  24/24 checks pass; load-bearing failures: 0; wrote FP5_dof_and_a0_field_results.json  (4 s)
+rc=0
