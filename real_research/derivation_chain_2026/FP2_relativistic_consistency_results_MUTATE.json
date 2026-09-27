@@ -1,0 +1,427 @@
+{
+ "lane": "FP2",
+ "mutate": true,
+ "root": "ungated C-H/K core (C-H + BPS khronon, beta = 0, leaf-averaged lambda-term, nu_mono)",
+ "checks": {
+  "A2 the heat-filter pair is eliminated exactly: W_b = e^{-bk^2} U, lambda_0 = -e^{-bk^2} dq/dW_b, the heat terms vanish on shell, and the U-equation carries the kernel with C_eff = e^{-2bk^2} C = e^{-xi^2 k^2} C; from q' = nu - 1 the constitutive coefficients are C_T = nu - 1 and C_L = nu - 1 + y nu' (nu_mono rebuilt = L340's)": {
+   "ok": true,
+   "measured": "reduced action - target = 0; force mismatch 0; C_T nu(s) - 1; C_L - target 0",
+   "load_bearing": true
+  },
+  "A1 the symbolically derived quadratic action of the full core gives L340's block EXACTLY (lapse, trace, longitudinal shift, U), the transverse shift is GR's (k^2 S = source), and U's equation has no time derivative and no shift (L330 M1: the C-H sector is instantaneous and momentum-free on its own)": {
+   "ok": true,
+   "measured": "residuals vs L340: {'n': 0, 'psi': 0, 'B': 0, 'U': 0}; transverse shift - k^2 S = 0; U equation free of omega and shift: True; 1.5 s",
+   "load_bearing": true
+  },
+  "A3 c_T = 1 EXACTLY: the tensor modes obey omega^2 = k^2 with GR's positive kinetic term (1/2)(d_t h_+)^2 (gamma_xx = 1 + h_+); c_2, alpha_c and the C-H sector are absent from the tensor sector at quadratic order (tr K is blind to TT modes; a_i and U are scalar)": {
+   "ok": true,
+   "measured": "roots [-k, k]; kinetic coefficient 1/2; c_2 in L_TT: False",
+   "load_bearing": true
+  },
+  "B1 CONTROL (GR limit alpha_c = c_2 = C = 0): the rest-frame h'_00 of the moving source equals the static 8 pi G M/k^2 at O(v^0) and O(v^2): the boost/Jacobian/contraction pipeline is Lorentz invariant": {
+   "ok": true,
+   "measured": "O(1) 1; O(v^2) isotropic 0, anisotropic 0",
+   "load_bearing": true
+  },
+  "B2 CONTROL (literature): with the C-H sector off the same pipeline returns Yagi, Blas, Barausse & Yunes 2014's khronometric alpha_1 = -4 alpha_c and alpha_2 = alpha_c (alpha_c - c_2 + 2 alpha_c c_2)/(c_2 (2 - alpha_c)) EXACTLY": {
+   "ok": true,
+   "measured": "alpha_2(C=0) - Yagi = 0; alpha_1(C=0) + 4 alpha_c = 0",
+   "load_bearing": true
+  },
+  "B3 THE FULL PPN OF THE CORE, derived with the C-H sector and its filter live (C_eff = e^{-xi^2 k^2} C): gamma = 1 for every C_eff; alpha_3 = 0 (the O(v) g_0j and O(v^2) g_00 readings of alpha_1 agree); alpha_1 = -4 alpha_c - 8 C_eff/(1 + C_eff) EXACTLY; alpha_2 -> C_eff^2 (2+3c_2)/(c_2(1+C_eff)) + C_eff (dlnC - 1)/(1+C_eff) as alpha_c -> 0": {
+   "ok": true,
+   "measured": "gamma 1; alpha_3 0; alpha_1 - closed form 0; alpha_2 lead - form 0",
+   "load_bearing": true
+  },
+  "B4 at the scales where the bounds live the C-H sector's preferred-frame leakage is <= 1e-11 (the Gaussian filter leaves a harmonic core ~ (r/xi)^3 inside xi), so |alpha_1| < 1e-5 and |alpha_2| < 1.6e-9 are the khronometric ones and CONSTRAIN alpha_c <= 3.2e-9 (L340's window edge, re-derived with the C-H sector live)": {
+   "ok": true,
+   "measured": "worst |alpha_1^CH| 3.2e-13, worst |alpha_2^CH| 1.8e-12 (both footings, c_2 [0.00729, 0.067, 1.0]); alpha_c bound 3.20e-09",
+   "load_bearing": true
+  },
+  "B5 (reported, a prediction) in the MOND regime the phantom's preferred-frame imprint is O(1) in alpha_1 (-8C/(1+C): no transverse momentum; <= 0.4% on lensing at 620 km/s) and C^2(2+3c_2)/(c_2(1+C)) in alpha_2 (KM2's amplification): ~12% in C ~ 100 outskirts at the tracking floor c_2 = 7.29e-3 and v_par = 620 km/s, 0.2% at c_2 = 1 -- with the cosmological cap gone (D), raising c_2 is how the action suppresses it": {
+   "ok": true,
+   "measured": "C=0.5,c2=0.00729: 2.0e-04; C=0.5,c2=1: 2.1e-06; C=1,c2=0.00729: 5.9e-04; C=1,c2=1: 8.6e-06; C=10,c2=0.00729: 1.1e-02; C=10,c2=1: 1.9e-04; C=100,c2=0.00729: 1.2e-01; C=100,c2=1: 2.1e-03",
+   "load_bearing": false
+  },
+  "C1 TRACKING: with the c_2 channel the omega -> 0 response of every field is the static MOND solution and det M(0) is proportional to c_2 (no frozen mode); without it det M(0) = 0 and the response is Newtonian (L330's frozen phantom)": {
+   "ok": true,
+   "measured": "psi -> -2*(C_eff + 1)/(C_eff*alpha_c + alpha_c - 2) psi_N; det M(0) = -64*c_2*k**10*(C_eff*alpha_c + alpha_c - 2); control det 0, response 1",
+   "load_bearing": true
+  },
+  "C2 THE TRACKING MODE, exact: c_s^2 = c_2 (2 - alpha_c(1+C))/((2+3c_2)(2C + alpha_c(1+C))) -> c_2/(C(2+3c_2)); KM2's amplification law R = 1 - 3u^2/(C+1) + [C/(C+1)] u^2/(c_s^2 - u^2) is the exact Bardeen-lapse ratio of this block": {
+   "ok": true,
+   "measured": "c_s^2 = -c_2*(C_eff*alpha_c + alpha_c - 2)/((3*c_2 + 2)*(C_eff*alpha_c + 2*C_eff + alpha_c)); limit residual 0; KM2 residual 0",
+   "load_bearing": true
+  },
+  "C3 HEALTH on Minkowski (C = 0) and on the static MOND background (frozen coefficients, both constitutive directions, y = 1e-3..1e4): every cell has one scalar mode with omega^2 > 0 and positive Krein energy (tensor: A3; vector: a constraint, A1); the non-monotone control (nu_RAR's C_L < 0) is a tachyon or a ghost": {
+   "ok": true,
+   "measured": "0 unhealthy cells of 228; control TACHYON",
+   "load_bearing": true
+  },
+  "C4 THE TRACKING FLOOR re-derived from the exact mode: c_s >= 3 x 600 km/s where C <= 100 needs c_2 >= 7.29e-3 (a CONSTRAINT on the action's c_2); with no cosmological ceiling larger c_2 extends tracking to deeper MOND": {
+   "ok": true,
+   "measured": "c_2 >= 7.289e-03; reach [(0.00729, 100, '9.9e-05'), (0.067, 844, '1.4e-06'), (1.0, 5548, '3.2e-08'), (10.0, 8669, '1.3e-08')]",
+   "load_bearing": true
+  },
+  "D1 THE FRW BACKGROUND from the action: the core's lambda-term leaves the Friedmann equation GR's (c_2 absent: G_cos = G); control: the plain -c_2 K^2 gives 8 pi G rho_bar = 3H^2 (1 + 3c_2/2) - Lambda (L350 G1)": {
+   "ok": false,
+   "measured": "core (plain) c_2 in Friedmann: True; plain control reproduces L350 G1: True",
+   "load_bearing": true
+  },
+  "D2 THE ROOT TENSION AT LINEAR ORDER (khronon + dust, the MOND sector off in the linear web -- the ungated sector has no linearisation there, D4): with the core's lambda-term, c_2 enters every linear FRW equation ONLY through Q = (K - <K>)^(1) = (k^2/a^2 - 3 Hdot) pi - 3 H Phi - 3 Psidot (all c_2-parts vanish on Q = 0), the dust equations carry no c_2, and the khronon equation is [c_2 x (k^2/a^2 - 3Hdot) x Q] + [alpha_c x d/dt(a(Phi - pidot))] = 0, so c_2 Q = O(alpha_c): the linear cosmology is c_2-independent up to O(alpha_c).  Control: the plain -c_2 K^2 fails this in every equation, including the dust's": {
+   "ok": false,
+   "measured": "core (plain): all c_2-parts vanish on Q = 0: False, dust c_2-free: False, khronon c_2-part / Q = k**2*(-12*Lambda*a(t)**2*pik(t) + 18*c_2**2*k**2*pik(t) - 54*c_2**2*Phik(t)*a(t)*Derivative(a(t), t) - 54*c_2**2*a(t)**2*Derivative(Psik(t), t) + 81*c_2**2*pik(t)*Derivative(a(t), t)**2 + 24*c_2*k**2*pik(t) - 72*c_2*Phik(t)*a(t)*Derivative(a(t), t) - 72*c_2*a(t)**2*Derivative(Psik(t), t) + 108*c_2*pik(t)*Derivative(a(t), t)**2 + 8*k**2*pik(t) - 24*Phik(t)*a(t)*Derivative(a(t), t) - 24*a(t)**2*Derivative(Psik(t), t) + 36*pik(t)*Derivative(a(t), t)**2)*a(t)/((3*c_2 + 2)**2*(-k**2*pik(t) + 3*Phik(t)*a(t)*Derivative(a(t), t) + 3*a(t)**2*Derivative(Psik(t), t))); plain control fails: True",
+   "load_bearing": true
+  },
+  "D3 THE NUMBERS: the core's quasi-static growth coupling is G_eff/G_cos = 1/(1 - alpha_c/2) with no slip, so sigma_8 moves by ~1e-9 across the whole tracking window; the plain term gives (1 + 3c_2/2)/(1 - alpha_c/2), +4.1% on sigma_8 at the tracking floor (L350 G3's growth convention, reproduced) -- the effect every Planck-era Horava cap constrains.  The tracking window c_2 >= 7.29e-3 is therefore NOT excluded at linear order, and L340's BBN ceiling (a G_cos effect) is gone": {
+   "ok": false,
+   "measured": "core: mu - 1 = +1.09e-02, d sigma_8 = +4.09e-02, slip 1; plain: mu - 1 = +1.093e-02, d sigma_8 = +4.09%",
+   "load_bearing": true
+  },
+  "D4 (reported) the leaf average does NOT fix the ungated core's own cosmology: at zero gradient the kernel's linear coefficient C = nu - 1 diverges (q is C^1, not C^2, at p = 0), so the core has no linear FRW sector and L341's growth failure (sigma_8 18-27) stands, independently of c_2; the owed piece is the vacuum gate (the cosmology lane's), and at any gradient the tracking speed is capped by c/sqrt(3C)": {
+   "ok": true,
+   "measured": "C_T [99.50083366060674, 999.5000866171748, 9999.500040865554] at y [0.0001, 1e-06, 1e-08]; c_s cap [17352, 5475, 1731] km/s",
+   "load_bearing": false
+  },
+  "W (reported) the ledger of this lane": {
+   "ok": true,
+   "measured": "17 links",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "B3": {
+   "alpha_1": "-4*(C_eff*alpha_c + 2*C_eff + alpha_c)/(C_eff + 1)",
+   "alpha_2": "-(2*C_eff**2*alpha_c**2*c_2 + C_eff**2*alpha_c**2 + 7*C_eff**2*alpha_c*c_2 + 4*C_eff**2*alpha_c + 6*C_eff**2*c_2 + 4*C_eff**2 + 4*C_eff*alpha_c**2*c_2 + 2*C_eff*alpha_c**2 + 6*C_eff*alpha_c*c_2 + 4*C_eff*alpha_c + 2*C_eff*c_2*dlnC - 2*C_eff*c_2 + 2*alpha_c**2*c_2 + alpha_c**2 - alpha_c*c_2)/(c_2*(C_eff + 1)*(C_eff*alpha_c + alpha_c - 2))",
+   "alpha_2_alpha_c_to_0": "C_eff*(3*C_eff*c_2 + 2*C_eff + c_2*dlnC - c_2)/(c_2*(C_eff + 1))",
+   "gamma": "1",
+   "alpha_3": "0"
+  },
+  "B4": {
+   "cells": {
+    "canonical|1 AU (LLR alpha_1)|c2=0.00729": {
+     "y_e": 1.8401944330027273,
+     "C": 0.34689379549960875,
+     "alpha1_CH": 3.2344936438828687e-13,
+     "alpha2_CH": 1.4763656100763117e-12
+    },
+    "canonical|1 AU (LLR alpha_1)|c2=0.067": {
+     "y_e": 1.8401944330027273,
+     "C": 0.34689379549960875,
+     "alpha1_CH": 3.2344936438828687e-13,
+     "alpha2_CH": 2.6397492897312887e-13
+    },
+    "canonical|1 AU (LLR alpha_1)|c2=1.0": {
+     "y_e": 1.8401944330027273,
+     "C": 0.34689379549960875,
+     "alpha1_CH": 3.2344936438828687e-13,
+     "alpha2_CH": 1.2587142730052844e-13
+    },
+    "canonical|R_sun (solar-spin alpha_2)|c2=0.00729": {
+     "y_e": 1.8401944330027273,
+     "C": 0.34689379549960875,
+     "alpha1_CH": 3.2530899800641936e-20,
+     "alpha2_CH": 1.4848537985853732e-19
+    },
+    "canonical|R_sun (solar-spin alpha_2)|c2=0.067": {
+     "y_e": 1.8401944330027273,
+     "C": 0.34689379549960875,
+     "alpha1_CH": 3.2530899800641936e-20,
+     "alpha2_CH": 2.6549262158044698e-20
+    },
+    "canonical|R_sun (solar-spin alpha_2)|c2=1.0": {
+     "y_e": 1.8401944330027273,
+     "C": 0.34689379549960875,
+     "alpha1_CH": 3.2530899800641936e-20,
+     "alpha2_CH": 1.2659511026439618e-20
+    },
+    "canonical|10 km (pulsar alpha_2)|c2=0.00729": {
+     "y_e": 1.8401944330027273,
+     "C": 0.34689379549960875,
+     "alpha1_CH": 9.66117760338566e-35,
+     "alpha2_CH": 4.409787725242103e-34
+    },
+    "canonical|10 km (pulsar alpha_2)|c2=0.067": {
+     "y_e": 1.8401944330027273,
+     "C": 0.34689379549960875,
+     "alpha1_CH": 9.66117760338566e-35,
+     "alpha2_CH": 7.884723094645478e-35
+    },
+    "canonical|10 km (pulsar alpha_2)|c2=1.0": {
+     "y_e": 1.8401944330027273,
+     "C": 0.34689379549960875,
+     "alpha1_CH": 9.66117760338566e-35,
+     "alpha2_CH": 3.759680339246024e-35
+    },
+    "alt|1 AU (LLR alpha_1)|c2=0.00729": {
+     "y_e": 1.4308182924166108,
+     "C": 0.4333846357295146,
+     "alpha1_CH": 3.1723412034105087e-13,
+     "alpha2_CH": 1.7843072271092388e-12
+    },
+    "alt|1 AU (LLR alpha_1)|c2=0.067": {
+     "y_e": 1.4308182924166108,
+     "C": 0.4333846357295146,
+     "alpha1_CH": 3.1723412034105087e-13,
+     "alpha2_CH": 2.9873709877344467e-13
+    },
+    "alt|1 AU (LLR alpha_1)|c2=1.0": {
+     "y_e": 1.4308182924166108,
+     "C": 0.4333846357295146,
+     "alpha1_CH": 3.1723412034105087e-13,
+     "alpha2_CH": 1.2951570842367266e-13
+    },
+    "alt|R_sun (solar-spin alpha_2)|c2=0.00729": {
+     "y_e": 1.4308182924166108,
+     "C": 0.4333846357295146,
+     "alpha1_CH": 3.1905802015337727e-20,
+     "alpha2_CH": 1.7945658892599148e-19
+    },
+    "alt|R_sun (solar-spin alpha_2)|c2=0.067": {
+     "y_e": 1.4308182924166108,
+     "C": 0.4333846357295146,
+     "alpha1_CH": 3.1905802015337727e-20,
+     "alpha2_CH": 3.0045465230895446e-20
+    },
+    "alt|R_sun (solar-spin alpha_2)|c2=1.0": {
+     "y_e": 1.4308182924166108,
+     "C": 0.4333846357295146,
+     "alpha1_CH": 3.1905802015337727e-20,
+     "alpha2_CH": 1.3026034371896047e-20
+    },
+    "alt|10 km (pulsar alpha_2)|c2=0.00729": {
+     "y_e": 1.4308182924166108,
+     "C": 0.4333846357295146,
+     "alpha1_CH": 9.475533161937167e-35,
+     "alpha2_CH": 5.329585066311525e-34
+    },
+    "alt|10 km (pulsar alpha_2)|c2=0.067": {
+     "y_e": 1.4308182924166108,
+     "C": 0.4333846357295146,
+     "alpha1_CH": 9.475533161937167e-35,
+     "alpha2_CH": 8.923041709602652e-35
+    },
+    "alt|10 km (pulsar alpha_2)|c2=1.0": {
+     "y_e": 1.4308182924166108,
+     "C": 0.4333846357295146,
+     "alpha1_CH": 9.475533161937167e-35,
+     "alpha2_CH": 3.8685321434672874e-35
+    }
+   },
+   "worst_alpha1_CH": 3.2344936438828687e-13,
+   "worst_alpha2_CH": 1.7843072271092388e-12,
+   "alpha_c_bound": 3.2000080000215094e-09
+  },
+  "B5": {
+   "rows": [
+    [
+     0.5,
+     0.00729,
+     -2.6666666666666665,
+     45.89140374942844
+    ],
+    [
+     0.5,
+     1.0,
+     -2.6666666666666665,
+     0.5
+    ],
+    [
+     1.0,
+     0.00729,
+     -4.0,
+     138.17421124828533
+    ],
+    [
+     1.0,
+     1.0,
+     -4.0,
+     2.0
+    ],
+    [
+     10.0,
+     0.00729,
+     -7.272727272727273,
+     2520.4402045142792
+    ],
+    [
+     10.0,
+     1.0,
+     -7.272727272727273,
+     44.54545454545455
+    ],
+    [
+     100.0,
+     0.00729,
+     -7.920792079207921,
+     27459.249752135707
+    ],
+    [
+     100.0,
+     1.0,
+     -7.920792079207921,
+     494.05940594059405
+    ]
+   ],
+   "alpha2_v620sq": {
+    "C=0.5,c2=0.00729": 0.00019627876443587097,
+    "C=0.5,c2=1": 2.1385134077350547e-06,
+    "C=1,c2=0.00729": 0.000590974806715348,
+    "C=1,c2=1": 8.554053630940219e-06,
+    "C=10,c2=0.00729": 0.010779990341496539,
+    "C=10,c2=1": 0.00019052210359821398,
+    "C=100,c2=0.00729": 0.11744394752257538,
+    "C=100,c2=1": 0.002113105327643153
+   }
+  },
+  "C4": {
+   "c2_floor": 0.007288800437803909,
+   "reach": [
+    [
+     0.00729,
+     100.01627959056911,
+     9.89770161553579e-05
+    ],
+    [
+     0.067,
+     844.4056990841253,
+     1.4008246234255448e-06
+    ],
+    [
+     1.0,
+     5547.871473684059,
+     3.24839941039116e-08
+    ],
+    [
+     10.0,
+     8668.549177631343,
+     1.3306311224132715e-08
+    ]
+   ]
+  },
+  "D3": {
+   "G_eff_over_G": {
+    "leaf": "-2/(alpha_c - 2)",
+    "plain": "-36.0/(18.0*alpha_c - 36.0)"
+   },
+   "slip": {
+    "leaf": "1",
+    "plain": "1"
+   },
+   "growth_source_ratio": {
+    "leaf": "-2/(alpha_c - 2)",
+    "plain": "(-162.0*H**2*c_2 - 108.0*H**2 + 36.0*Lambda)/((3*H**2 - Lambda)*(18.0*alpha_c - 36.0))"
+   },
+   "core_mu_minus_1": 0.010933202274198806,
+   "core_dsigma8": 0.04087750827761516,
+   "plain_mu_minus_1": 0.010933202274198806,
+   "plain_dsigma8": 0.04087750827761516
+  }
+ },
+ "ledger": [
+  {
+   "link": "L3-FP2",
+   "what": "root action for the relativistic lanes: the ungated C-H/K core (C-H + BPS khronon, beta = 0, leaf-averaged lambda-term, nu_mono)",
+   "status": "POSTULATED",
+   "basis": "coordinator's choice after the root-action map; the leaf average and alpha_c a^2, c_2 terms are chosen, not derived"
+  },
+  {
+   "link": "L5a",
+   "what": "the heat filter in the linear theory: C_eff = e^{-xi^2 k^2} C, C_T = nu - 1, C_L = nu - 1 + y nu'",
+   "status": "DERIVED",
+   "basis": "A2, sympy dsolve"
+  },
+  {
+   "link": "L5b",
+   "what": "the core's quadratic action = L340's block; C-H sector instantaneous and shift-free",
+   "status": "DERIVED",
+   "basis": "A1, symbolic second variation"
+  },
+  {
+   "link": "L7",
+   "what": "tensor speed c_T = 1 (GW170817)",
+   "status": "DERIVED",
+   "basis": "A3: omega^2 = k^2, no C-H or khronon term in the TT sector"
+  },
+  {
+   "link": "L6a",
+   "what": "PPN gamma = 1",
+   "status": "DERIVED",
+   "basis": "B3 (every C_eff); KM3 at 1PN"
+  },
+  {
+   "link": "L6b",
+   "what": "PPN beta = 1",
+   "status": "DERIVED",
+   "basis": "KM3 P2 (inherited; the C-H sector is filtered off at 1 AU, B4)"
+  },
+  {
+   "link": "L6c",
+   "what": "PPN alpha_3 = 0",
+   "status": "DERIVED",
+   "basis": "B3: the g_0j and g_00 readings of alpha_1 agree with the C-H sector live"
+  },
+  {
+   "link": "L6d",
+   "what": "PPN alpha_1 = -4 alpha_c - 8 C_eff/(1+C_eff)",
+   "status": "DERIVED",
+   "basis": "B3 closed form; B4 C-H part <= 1e-11 at 1 AU"
+  },
+  {
+   "link": "L6e",
+   "what": "PPN alpha_2 (closed form, KM2 amplification inside)",
+   "status": "DERIVED",
+   "basis": "B3; B2 reproduces Yagi+14 at C = 0"
+  },
+  {
+   "link": "L6f",
+   "what": "alpha_c <= 3.2e-9 (|alpha_1| < 1e-5, |alpha_2| < 1.6e-9)",
+   "status": "CONSTRAINT",
+   "basis": "B4; alpha_c is a free coupling"
+  },
+  {
+   "link": "L8a",
+   "what": "moving-source tracking (L330 gate): the omega -> 0 response is static MOND iff c_2 != 0",
+   "status": "DERIVED",
+   "basis": "C1, C2"
+  },
+  {
+   "link": "L8b",
+   "what": "health on the static MOND background needs the monotone kernel nu_mono",
+   "status": "DERIVED",
+   "basis": "C3 (Krein, frozen coefficients)"
+  },
+  {
+   "link": "L8c",
+   "what": "tracking floor c_2 >= 7.29e-3 (3 x 600 km/s where C <= 100)",
+   "status": "CONSTRAINT",
+   "basis": "C4"
+  },
+  {
+   "link": "L9a",
+   "what": "Planck-era cap on c_2 vs the tracking floor: the leaf-averaged lambda-term is c_2-inert in linear cosmology (G_eff/G_cos = 1/(1 - alpha_c/2), no slip); the published caps do not apply",
+   "status": "DERIVED",
+   "basis": "D1-D3 (linear equations, MOND sector off in the web); a Boltzmann-level fit is owed"
+  },
+  {
+   "link": "L9b",
+   "what": "c_2 upper edge (BBN 0.067 in L340) -- removed with G_cos = G; no ceiling found at linear order",
+   "status": "OPEN",
+   "basis": "D3; strong coupling / nonlinear khronon not checked here"
+  },
+  {
+   "link": "L9c",
+   "what": "the ungated core's own linear cosmology (C -> oo at zero gradient)",
+   "status": "FAILS",
+   "basis": "D4 + L341 (sigma_8 18-27, inherited); needs the vacuum gate -- independent of c_2"
+  },
+  {
+   "link": "L10",
+   "what": "nonlinear well-posedness, strong coupling of the full core",
+   "status": "OPEN",
+   "basis": "XC1-XC3 scoped it; not re-derived here"
+  }
+ ],
+ "n_checks": 17,
+ "n_fail_load_bearing": 3
+}

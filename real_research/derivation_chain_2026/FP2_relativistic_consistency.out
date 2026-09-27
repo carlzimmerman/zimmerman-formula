@@ -1,0 +1,176 @@
+FP2 -- RELATIVISTIC CONSISTENCY OF THE C-H/K CORE: the full preferred-frame PPN with the heat-filter sector, moving-source
+tracking, and the root tension between tracking and Planck-era cosmology.
+
+ROOT (coordinator's redirect, 2026-09-26).  The AeST-type host is not re-derived here (generalized AeST dies on alpha_1:
+closure_2026/GEN_AEST_PPN_VERDICT.md).  FP2 is rooted in the UNGATED C-H/K core: astra's C-H action
+(closure_2026/g03_covariant_action_2026/ACTION.md, FULL_VARIATION.md) plus the Blas-Pujolas-Sibiryakov khronon terms of
+g03_audit_2026/L340 with beta = 0, the leaf-average lambda-term of L350 G5 / chk_v0_2026 CV2, and the kernel nu_mono.
+In units c = 1 (x0 = ct; alpha = a0/c^2; the source terms carry 16 pi G):
+
+  I = (1/16 pi G) Int d^4x sqrt(-g) {  R - 2 Lambda
+        + 2 h^{mn} (D_m U - a_m)(D_n U - a_n)                                   C-H chassis (U auxiliary, a_m = D_m ln N)
+        + 2 alpha^2 q( h^{mn} D_m W_b D_n W_b / alpha^2 )                         C-H kernel on the filtered field, q' = nu_mono - 1
+        + Int_0^b dz L (d_z W - Delta_h W) + lambda_0 (W_0 - U)                   C-H heat filter, b = xi^2/2
+        + alpha_c a_m a^m - c_2 (K - <K>_h)^2   }                                 BPS khronon (beta = 0), leaf-averaged lambda-term
+      + GHY caps + S_m[g, psi]                                                   matter minimally coupled to g only
+  n_m = -d_m tau/sqrt(X) is the clock's unit normal, h = g + n n, K = nabla.n, <K>_h the proper-volume leaf average.
+
+RE-DERIVED HERE: the quadratic action, c_T = 1 on flat space, gamma, alpha_1..3, tracking, health, the FRW equations.
+INHERITED (cited, not re-derived): beta = 1 at 1PN for the khronometric sector (KM3, static O(m^2) equations); c_T = 1 on
+FRW (L351 W5; A3's argument is leaf by leaf); the Solar-System xi floors 0.045/0.049 pc (canonical/alt, nu_mono, Saturn
+monopole binding; L340 S1 -- the static-limit lane owns them); L341's ungated growth failure (sigma_8 18-27).
+
+  inputs: a0 = 9.3603e-11 / 1.1312e-10 m/s^2 (FP0); xi floors 0.0451 / 0.0489 pc (L340 S1, nu_mono, binding of Q2 and Saturn monopole); |alpha_1| < 1e-05, |alpha_2| < 1.6e-09
+  nu_mono rebuilt: y_p = 2.5396, h_p = 0.6476 (L340 recorded 2.5396, 0.6476); identical: True
+
+================================================================================================================
+A2  THE HEAT FILTER ELIMINATED EXACTLY, and the kernel's constitutive coefficients from q
+================================================================================================================
+    W(z) = U*exp(-k**2*z);  L(z) = -4*C*U*k**2*exp(-k**2*(2*b - z));  lambda_0 = -4*C*U*k**2*exp(-2*b*k**2)
+    bulk residuals [0, 0];  heat terms on shell = 0;  reduced U-action - 2 C k^2 e^(-2bk^2) U^2 = 0;  -lambda_0 - dI_red/dU = 0
+    C_T = nu(s) - 1;  C_L = s*Derivative(nu(s), s) + nu(s) - 1
+  [PASS] A2 the heat-filter pair is eliminated exactly: W_b = e^{-bk^2} U, lambda_0 = -e^{-bk^2} dq/dW_b, the heat terms vanish on shell, and the U-equation carries the kernel with C_eff = e^{-2bk^2} C = e^{-xi^2 k^2} C; from q' = nu - 1 the constitutive coefficients are C_T = nu - 1 and C_L = nu - 1 + y nu' (nu_mono rebuilt = L340's)
+         measured: reduced action - target = 0; force mismatch 0; C_T nu(s) - 1; C_L - target 0
+         reading:  C-H's filter is a leafwise elliptic constraint: in the linear theory it only rescales the constitutive tensor by e^{-xi^2 k_perp^2}, k_perp the wavenumber on the clock's leaves
+
+================================================================================================================
+A1  THE QUADRATIC ACTION OF THE CORE, DERIVED (unitary gauge tau = t, flat background, symbolic second variation)
+================================================================================================================
+    dL/dn   : -2*k**2*(2*A_U - A_n*alpha_c - 2*A_n + 2*A_psi)
+    dL/dpsi : 2*I*(3*A_B*c_2*k**2*omega + 2*A_B*k**2*omega + 2*I*A_n*k**2 + 9*I*A_psi*c_2*omega**2 - 2*I*A_psi*k**2 + 6*I*A_psi*omega**2)
+    dL/dB   : -2*k**2*(A_B*c_2*k**2 + 3*I*A_psi*c_2*omega + 2*I*A_psi*omega)
+    dL/dS   : A_S*k**2
+    dL/dU   : 4*k**2*(A_U*C_eff + A_U - A_n)
+  [PASS] A1 the symbolically derived quadratic action of the full core gives L340's block EXACTLY (lapse, trace, longitudinal shift, U), the transverse shift is GR's (k^2 S = source), and U's equation has no time derivative and no shift (L330 M1: the C-H sector is instantaneous and momentum-free on its own)
+         measured: residuals vs L340: {'n': 0, 'psi': 0, 'B': 0, 'U': 0}; transverse shift - k^2 S = 0; U equation free of omega and shift: True; 1.5 s
+         reading:  L340 typed its block from astra's ADM principal block; here it is varied out of the action, chassis and filter included
+
+================================================================================================================
+A3  c_T = 1: the tensor sector of the full core
+================================================================================================================
+    TT Euler-Lagrange (h_+ = A e^(i(kz - wt))): -A_T*(k - omega)*(k + omega);  omega roots [-k, k];  coefficient of (d_t h_+)^2 in L: 1/2
+  [PASS] A3 c_T = 1 EXACTLY: the tensor modes obey omega^2 = k^2 with GR's positive kinetic term (1/2)(d_t h_+)^2 (gamma_xx = 1 + h_+); c_2, alpha_c and the C-H sector are absent from the tensor sector at quadratic order (tr K is blind to TT modes; a_i and U are scalar)
+         measured: roots [-k, k]; kinetic coefficient 1/2; c_2 in L_TT: False
+         reading:  GW170817 is met by construction on flat space (and on FRW, where the same argument holds leaf by leaf; L351 W5)
+
+================================================================================================================
+B   THE FULL PREFERRED-FRAME PPN OF THE CORE (moving source in the khronon frame, exact in v, boosted to rest)
+================================================================================================================
+  [PASS] B1 CONTROL (GR limit alpha_c = c_2 = C = 0): the rest-frame h'_00 of the moving source equals the static 8 pi G M/k^2 at O(v^0) and O(v^2): the boost/Jacobian/contraction pipeline is Lorentz invariant
+         measured: O(1) 1; O(v^2) isotropic 0, anisotropic 0
+  [PASS] B2 CONTROL (literature): with the C-H sector off the same pipeline returns Yagi, Blas, Barausse & Yunes 2014's khronometric alpha_1 = -4 alpha_c and alpha_2 = alpha_c (alpha_c - c_2 + 2 alpha_c c_2)/(c_2 (2 - alpha_c)) EXACTLY
+         measured: alpha_2(C=0) - Yagi = 0; alpha_1(C=0) + 4 alpha_c = 0
+    static: U = -n = -8*pi*G_ae*M*(C_eff + 1)/(k**2*(C_eff*alpha_c + alpha_c - 2));  gamma = psi/n = 1
+    alpha_1 (g_00, O(v^2)) = -4*(C_eff*alpha_c + 2*C_eff + alpha_c)/(C_eff + 1);  alpha_1 (g_0j, O(v)) = -4*(C_eff*alpha_c + 2*C_eff + alpha_c)/(C_eff + 1);  alpha_3 = difference = 0
+    alpha_2 = -(2*C_eff**2*alpha_c**2*c_2 + C_eff**2*alpha_c**2 + 7*C_eff**2*alpha_c*c_2 + 4*C_eff**2*alpha_c + 6*C_eff**2*c_2 + 4*C_eff**2 + 4*C_eff*alpha_c**2*c_2 + 2*C_eff*alpha_c**2 + 6*C_eff*alpha_c*c_2 + 4*C_eff*alpha_c + 2*C_eff*c_2*dlnC - 2*C_eff*c_2 + 2*alpha_c**2*c_2 + alpha_c**2 - alpha_c*c_2)/(c_2*(C_eff + 1)*(C_eff*alpha_c + alpha_c - 2))
+    alpha_2 at alpha_c -> 0: C_eff*(3*C_eff*c_2 + 2*C_eff + c_2*dlnC - c_2)/(c_2*(C_eff + 1))  [= C^2 (2+3c_2)/(c_2 (1+C)) + C (dlnC - 1)/(1+C)]
+  [PASS] B3 THE FULL PPN OF THE CORE, derived with the C-H sector and its filter live (C_eff = e^{-xi^2 k^2} C): gamma = 1 for every C_eff; alpha_3 = 0 (the O(v) g_0j and O(v^2) g_00 readings of alpha_1 agree); alpha_1 = -4 alpha_c - 8 C_eff/(1 + C_eff) EXACTLY; alpha_2 -> C_eff^2 (2+3c_2)/(c_2(1+C_eff)) + C_eff (dlnC - 1)/(1+C_eff) as alpha_c -> 0
+         measured: gamma 1; alpha_3 0; alpha_1 - closed form 0; alpha_2 lead - form 0
+         reading:  -8 C_eff/(1 + C_eff) is the phantom's missing transverse momentum (the c_2 channel is longitudinal); the C_eff^2/c_2 term is KM2's tracking amplification; both scale with the filtered constitutive coefficient
+
+================================================================================================================
+B4  THE NUMBERS AT THE SCALES OF THE BOUNDS (both footings; xi at the binding floor; nu_mono at the Galactic field)
+================================================================================================================
+    canonical y_e = 1.840, C = 0.347, xi = 0.0451 pc;  1 AU (LLR alpha_1)        : |alpha_1^CH| = 3.23e-13;  |alpha_2^CH| (c_2 = 0.00729) = 1.48e-12
+    canonical y_e = 1.840, C = 0.347, xi = 0.0451 pc;  R_sun (solar-spin alpha_2): |alpha_1^CH| = 3.25e-20;  |alpha_2^CH| (c_2 = 0.00729) = 1.48e-19
+    canonical y_e = 1.840, C = 0.347, xi = 0.0451 pc;  10 km (pulsar alpha_2)    : |alpha_1^CH| = 9.66e-35;  |alpha_2^CH| (c_2 = 0.00729) = 4.41e-34
+    alt       y_e = 1.431, C = 0.433, xi = 0.0489 pc;  1 AU (LLR alpha_1)        : |alpha_1^CH| = 3.17e-13;  |alpha_2^CH| (c_2 = 0.00729) = 1.78e-12
+    alt       y_e = 1.431, C = 0.433, xi = 0.0489 pc;  R_sun (solar-spin alpha_2): |alpha_1^CH| = 3.19e-20;  |alpha_2^CH| (c_2 = 0.00729) = 1.79e-19
+    alt       y_e = 1.431, C = 0.433, xi = 0.0489 pc;  10 km (pulsar alpha_2)    : |alpha_1^CH| = 9.48e-35;  |alpha_2^CH| (c_2 = 0.00729) = 5.33e-34
+    khronometric part at alpha_c = 3.2e-09: |alpha_1| = 1.28e-08; |alpha_2| = 1.60e-09, 1.60e-09, 1.60e-09 (c_2 = [0.00729, 0.067, 1.0]);  the bounds require alpha_c <= 3.20e-09
+  [PASS] B4 at the scales where the bounds live the C-H sector's preferred-frame leakage is <= 1e-11 (the Gaussian filter leaves a harmonic core ~ (r/xi)^3 inside xi), so |alpha_1| < 1e-5 and |alpha_2| < 1.6e-9 are the khronometric ones and CONSTRAIN alpha_c <= 3.2e-9 (L340's window edge, re-derived with the C-H sector live)
+         measured: worst |alpha_1^CH| 3.2e-13, worst |alpha_2^CH| 1.8e-12 (both footings, c_2 [0.00729, 0.067, 1.0]); alpha_c bound 3.20e-09
+         reading:  alpha_c is not derived: it is a free coupling the PPN bounds cap.  Leakage uses isotropic C = max(C_T, C_L) at the Galactic field and drops O(background gradient/k) ~ 1e-16 terms; real-space (r/xi)^3 cores of the three kernel shapes (e^{-xi^2k^2}, xi^2k^2 e^{-xi^2k^2}, e^{-2xi^2k^2}) convert the k-space closed forms
+    MOND regime (xi k << 1, dlnC = 0):  C=0.5, c2=0.00729: a1 -2.67, a2 +45.9; C=0.5, c2=1: a1 -2.67, a2 +0.5; C=1, c2=0.00729: a1 -4.00, a2 +138; C=1, c2=1: a1 -4.00, a2 +2; C=10, c2=0.00729: a1 -7.27, a2 +2.52e+03; C=10, c2=1: a1 -7.27, a2 +44.5; C=100, c2=0.00729: a1 -7.92, a2 +2.75e+04; C=100, c2=1: a1 -7.92, a2 +494
+    sizes at 620 km/s: gravitomagnetic lensing correction ~ |alpha_1| v_los/4 <= 4.1e-03; the alpha_2 term is KM2's amplification alpha_2 v_par^2: C=0.5, c2=0.00729: 2.0e-04; C=0.5, c2=1: 2.1e-06; C=1, c2=0.00729: 5.9e-04; C=1, c2=1: 8.6e-06; C=10, c2=0.00729: 1.1e-02; C=10, c2=1: 1.9e-04; C=100, c2=0.00729: 1.2e-01; C=100, c2=1: 2.1e-03
+  [PASS] B5 (reported, a prediction) in the MOND regime the phantom's preferred-frame imprint is O(1) in alpha_1 (-8C/(1+C): no transverse momentum; <= 0.4% on lensing at 620 km/s) and C^2(2+3c_2)/(c_2(1+C)) in alpha_2 (KM2's amplification): ~12% in C ~ 100 outskirts at the tracking floor c_2 = 7.29e-3 and v_par = 620 km/s, 0.2% at c_2 = 1 -- with the cosmological cap gone (D), raising c_2 is how the action suppresses it
+         measured: C=0.5,c2=0.00729: 2.0e-04; C=0.5,c2=1: 2.1e-06; C=1,c2=0.00729: 5.9e-04; C=1,c2=1: 8.6e-06; C=10,c2=0.00729: 1.1e-02; C=10,c2=1: 1.9e-04; C=100,c2=0.00729: 1.2e-01; C=100,c2=1: 2.1e-03
+
+================================================================================================================
+C   TRACKING (the L330 gate) AND HEALTH, from the derived block
+================================================================================================================
+    M Hermitian: True;  det M = -64*k**8*(C_eff*alpha_c*c_2*k**2 + 3*C_eff*alpha_c*c_2*omega**2 + 2*C_eff*alpha_c*omega**2 + 6*C_eff*c_2*omega**2 + 4*C_eff*omega**2 + alpha_c*c_2*k**2 + 3*alpha_c*c_2*omega**2 + 2*alpha_c*omega**2 - 2*c_2*k**2)
+    omega -> 0: psi, n, B, U / psi_N = [-2*(C_eff + 1)/(C_eff*alpha_c + alpha_c - 2), -2*(C_eff + 1)/(C_eff*alpha_c + alpha_c - 2), 0, -2/(C_eff*alpha_c + alpha_c - 2)];  static MOND (1+C)/(1 - alpha_c (1+C)/2) = -2*(C_eff + 1)/(C_eff*alpha_c + alpha_c - 2);  det M(0) = -64*c_2*k**10*(C_eff*alpha_c + alpha_c - 2)
+    control c_2 = 0: det M(0) = 0;  omega -> 0+ response psi/psi_N = 1 (Newtonian: frozen phantom)
+  [PASS] C1 TRACKING: with the c_2 channel the omega -> 0 response of every field is the static MOND solution and det M(0) is proportional to c_2 (no frozen mode); without it det M(0) = 0 and the response is Newtonian (L330's frozen phantom)
+         measured: psi -> -2*(C_eff + 1)/(C_eff*alpha_c + alpha_c - 2) psi_N; det M(0) = -64*c_2*k**10*(C_eff*alpha_c + alpha_c - 2); control det 0, response 1
+    the one mode: omega^2/k^2 = -c_2*(C_eff*alpha_c + alpha_c - 2)/((3*c_2 + 2)*(C_eff*alpha_c + 2*C_eff + alpha_c));  at alpha_c = 0 minus c_2/(C(2+3c_2)): 0
+    Bardeen-lapse ratio Phi_B(u)/Phi_B(0) at alpha_c = 0 minus KM2's law: 0
+  [PASS] C2 THE TRACKING MODE, exact: c_s^2 = c_2 (2 - alpha_c(1+C))/((2+3c_2)(2C + alpha_c(1+C))) -> c_2/(C(2+3c_2)); KM2's amplification law R = 1 - 3u^2/(C+1) + [C/(C+1)] u^2/(c_s^2 - u^2) is the exact Bardeen-lapse ratio of this block
+         measured: c_s^2 = -c_2*(C_eff*alpha_c + alpha_c - 2)/((3*c_2 + 2)*(C_eff*alpha_c + 2*C_eff + alpha_c)); limit residual 0; KM2 residual 0
+    nu_mono, alpha_c = 1e-9, c_2 = 7.29e-3 and 1: unhealthy (y, direction, c_2) cells 0 [];  Minkowski (C = 0): ['ok', 'ok'];  control nu_RAR C_L(y=10) = -0.0288: TACHYON
+  [PASS] C3 HEALTH on Minkowski (C = 0) and on the static MOND background (frozen coefficients, both constitutive directions, y = 1e-3..1e4): every cell has one scalar mode with omega^2 > 0 and positive Krein energy (tensor: A3; vector: a constraint, A1); the non-monotone control (nu_RAR's C_L < 0) is a tachyon or a ghost
+         measured: 0 unhealthy cells of 228; control TACHYON
+         reading:  the monotone phantom law is what health needs (L340 H2/H3), now from the derived block
+    c_s >= 3 x 600 km/s where C <= 100:  c_2 >= 7.2888e-03  (L340: 7.2888e-03)
+    tracking reach (largest C, i.e. deepest y, where 600 km/s is tracked with margin 3): c_2 = 0.00729: C <= 100, y >= 9.9e-05; c_2 = 0.067: C <= 844, y >= 1.4e-06; c_2 = 1: C <= 5548, y >= 3.2e-08; c_2 = 10: C <= 8669, y >= 1.3e-08
+  [PASS] C4 THE TRACKING FLOOR re-derived from the exact mode: c_s >= 3 x 600 km/s where C <= 100 needs c_2 >= 7.29e-3 (a CONSTRAINT on the action's c_2); with no cosmological ceiling larger c_2 extends tracking to deeper MOND
+         measured: c_2 >= 7.289e-03; reach [(0.00729, 100, '9.9e-05'), (0.067, 844, '1.4e-06'), (1.0, 5548, '3.2e-08'), (10.0, 8669, '1.3e-08')]
+
+================================================================================================================
+D   THE ROOT TENSION: linear FRW perturbations of the khronon sector, derived (leaf lambda-term; the other is the control)
+================================================================================================================
+    both systems derived (29.8 s)
+    [leaf ] Friedmann: 8 pi G rho_bar a^2 = -Lambda*a(t)**2 + 3*Derivative(a(t), t)**2;  acceleration: a_tt = -(-Lambda*a(t)**2 + Derivative(a(t), t)**2)/(2*a(t))
+    [plain] Friedmann: 8 pi G rho_bar a^2 = (-2*Lambda*a(t)**2 + 9*c_2*Derivative(a(t), t)**2 + 6*Derivative(a(t), t)**2)/2;  acceleration: a_tt = -(-2*Lambda*a(t)**2 + 3*c_2*Derivative(a(t), t)**2 + 2*Derivative(a(t), t)**2)/(2*(3*c_2 + 2)*a(t))
+  [PASS] D1 THE FRW BACKGROUND from the action: the core's lambda-term leaves the Friedmann equation GR's (c_2 absent: G_cos = G); control: the plain -c_2 K^2 gives 8 pi G rho_bar = 3H^2 (1 + 3c_2/2) - Lambda (L350 G1)
+         measured: core (leaf) c_2 in Friedmann: False; plain control reproduces L350 G1: True
+         reading:  the leaf average removes the background effect behind every published Horava cosmological cap
+    [leaf ] c_2-part of each equation on Q = 0: Phi: 0, Psi: 0, B: 0, E: 0, pi: 0, theta: 0, delta: 0;  dust equations c_2-free: True
+    [plain] c_2-part of each equation on Q = 0: Phi: NONZERO, Psi: NONZERO, B: NONZERO, E: NONZERO, pi: NONZERO, theta: NONZERO, delta: NONZERO;  dust equations c_2-free: False
+    Q (leaf) = (-3*Lambda/2 + k**2/a(t)**2 + 9*Derivative(a(t), t)**2/(2*a(t)**2))*pik(t) - 3*Phik(t)*Derivative(a(t), t)/a(t) - 3*Derivative(Psik(t), t)
+    [leaf] khronon equation: c_2-part = -(-3*Lambda*a(t)**2 + 2*k**2 + 9*Derivative(a(t), t)**2)*(-3*Lambda*a(t)**2*pik(t) + 2*k**2*pik(t) - 6*Phik(t)*a(t)*Derivative(a(t), t) - 6*a(t)**2*Derivative(Psik(t), t) + 9*pik(t)*Derivative(a(t), t)**2)/(2*a(t))
+                              alpha_c-part = 2*k**2*(Phik(t)*Derivative(a(t), t) + a(t)*Derivative(Phik(t), t) - a(t)*Derivative(pik(t), (t, 2)) - Derivative(a(t), t)*Derivative(pik(t), t));  remainder = 0;  c_2-part / Q = (3*Lambda*a(t)**2 - 2*k**2 - 9*Derivative(a(t), t)**2)*a(t)
+    [leaf] lapse (Hamiltonian) equation alpha_c-part = -2*k**2*(-Phik(t) + Derivative(pik(t), t))*a(t);  Psi/E/B equations alpha_c-parts: 0, 0, 0
+  [PASS] D2 THE ROOT TENSION AT LINEAR ORDER (khronon + dust, the MOND sector off in the linear web -- the ungated sector has no linearisation there, D4): with the core's lambda-term, c_2 enters every linear FRW equation ONLY through Q = (K - <K>)^(1) = (k^2/a^2 - 3 Hdot) pi - 3 H Phi - 3 Psidot (all c_2-parts vanish on Q = 0), the dust equations carry no c_2, and the khronon equation is [c_2 x (k^2/a^2 - 3Hdot) x Q] + [alpha_c x d/dt(a(Phi - pidot))] = 0, so c_2 Q = O(alpha_c): the linear cosmology is c_2-independent up to O(alpha_c).  Control: the plain -c_2 K^2 fails this in every equation, including the dust's
+         measured: core (leaf): all c_2-parts vanish on Q = 0: True, dust c_2-free: True, khronon c_2-part / Q = (3*Lambda*a(t)**2 - 2*k**2 - 9*Derivative(a(t), t)**2)*a(t); plain control fails: True
+         reading:  the leaf-averaged lambda-term is inert on cosmological perturbations because the khronon relaxes its leaves to constant mean curvature (Q -> 0) and the leaf average removes the only k = 0 channel; c_2 acts where Q is sourced by something the khronon cannot absorb -- a moving MOND phantom (C1), not the linear web.  Assumes the khronon's fast mode (omega^2 ~ (c_2/alpha_c) k^2/a^2) is not excited (adiabatic initial data); if excited it oscillates at >> H
+    [leaf ] quasi-static: G_eff/G = -2/(alpha_c - 2), slip Phi/Psi = 1;  growth source / GR's = -2/(alpha_c - 2)
+    [plain] quasi-static: G_eff/G = -36/(18*alpha_c - 36), slip Phi/Psi = 1;  growth source / GR's = -(9*H**2*c_2 + 6*H**2 - 2*Lambda)/((3*H**2 - Lambda)*(alpha_c - 2))
+    at alpha_c = 3.2e-09, c_2 = 0.007288800437803909: growth-source ratio core +1.600e-09 -> sigma_8 +5.887e-09;  plain +1.093e-02 -> sigma_8 +4.088%  (L350 G3 recorded +4.088% at its c_2 = 0.007288800437803917);  plain at c_2 = 0.067: +1.005e-01
+  [PASS] D3 THE NUMBERS: the core's quasi-static growth coupling is G_eff/G_cos = 1/(1 - alpha_c/2) with no slip, so sigma_8 moves by ~1e-9 across the whole tracking window; the plain term gives (1 + 3c_2/2)/(1 - alpha_c/2), +4.1% on sigma_8 at the tracking floor (L350 G3's growth convention, reproduced) -- the effect every Planck-era Horava cap constrains.  The tracking window c_2 >= 7.29e-3 is therefore NOT excluded at linear order, and L340's BBN ceiling (a G_cos effect) is gone
+         measured: core: mu - 1 = +1.60e-09, d sigma_8 = +5.89e-09, slip 1; plain: mu - 1 = +1.093e-02, d sigma_8 = +4.09%
+         reading:  linear-order statement from the derived equations; a Boltzmann-level fit of the leaf-averaged core has not been run (OPEN)
+    the ungated core at small gradient: C_T = nu_mono - 1 = 100, 1000, 10000 at y = 1e-4/1e-6/1e-8 (C ~ y^-1/2 -> oo); the tracking speed's c_2 -> oo ceiling c/sqrt(3C) = 17352, 5475, 1731 km/s
+  [PASS] D4 (reported) the leaf average does NOT fix the ungated core's own cosmology: at zero gradient the kernel's linear coefficient C = nu - 1 diverges (q is C^1, not C^2, at p = 0), so the core has no linear FRW sector and L341's growth failure (sigma_8 18-27) stands, independently of c_2; the owed piece is the vacuum gate (the cosmology lane's), and at any gradient the tracking speed is capped by c/sqrt(3C)
+         measured: C_T [99.50083366060674, 999.5000866171748, 9999.500040865554] at y [0.0001, 1e-06, 1e-08]; c_s cap [17352, 5475, 1731] km/s
+
+================================================================================================================
+W   THE LEDGER: what this lane settles for the C-H/K core
+================================================================================================================
+    L3-FP2  POSTULATED  root action for the relativistic lanes: the ungated C-H/K core (C-H + BPS khronon, beta = 0, leaf-averaged lambda-term, nu_mono)  --  coordinator's choice after the root-action map; the leaf average and alpha_c a^2, c_2 terms are chosen, not derived
+    L5a     DERIVED     the heat filter in the linear theory: C_eff = e^{-xi^2 k^2} C, C_T = nu - 1, C_L = nu - 1 + y nu'  --  A2, sympy dsolve
+    L5b     DERIVED     the core's quadratic action = L340's block; C-H sector instantaneous and shift-free  --  A1, symbolic second variation
+    L7      DERIVED     tensor speed c_T = 1 (GW170817)  --  A3: omega^2 = k^2, no C-H or khronon term in the TT sector
+    L6a     DERIVED     PPN gamma = 1  --  B3 (every C_eff); KM3 at 1PN
+    L6b     DERIVED     PPN beta = 1  --  KM3 P2 (inherited; the C-H sector is filtered off at 1 AU, B4)
+    L6c     DERIVED     PPN alpha_3 = 0  --  B3: the g_0j and g_00 readings of alpha_1 agree with the C-H sector live
+    L6d     DERIVED     PPN alpha_1 = -4 alpha_c - 8 C_eff/(1+C_eff)  --  B3 closed form; B4 C-H part <= 1e-11 at 1 AU
+    L6e     DERIVED     PPN alpha_2 (closed form, KM2 amplification inside)  --  B3; B2 reproduces Yagi+14 at C = 0
+    L6f     CONSTRAINT  alpha_c <= 3.2e-9 (|alpha_1| < 1e-5, |alpha_2| < 1.6e-9)  --  B4; alpha_c is a free coupling
+    L8a     DERIVED     moving-source tracking (L330 gate): the omega -> 0 response is static MOND iff c_2 != 0  --  C1, C2
+    L8b     DERIVED     health on the static MOND background needs the monotone kernel nu_mono  --  C3 (Krein, frozen coefficients)
+    L8c     CONSTRAINT  tracking floor c_2 >= 7.29e-3 (3 x 600 km/s where C <= 100)  --  C4
+    L9a     DERIVED     Planck-era cap on c_2 vs the tracking floor: the leaf-averaged lambda-term is c_2-inert in linear cosmology (G_eff/G_cos = 1/(1 - alpha_c/2), no slip); the published caps do not apply  --  D1-D3 (linear equations, MOND sector off in the web); a Boltzmann-level fit is owed
+    L9b     OPEN        c_2 upper edge (BBN 0.067 in L340) -- removed with G_cos = G; no ceiling found at linear order  --  D3; strong coupling / nonlinear khronon not checked here
+    L9c     FAILS       the ungated core's own linear cosmology (C -> oo at zero gradient)  --  D4 + L341 (sigma_8 18-27, inherited); needs the vacuum gate -- independent of c_2
+    L10     OPEN        nonlinear well-posedness, strong coupling of the full core  --  XC1-XC3 scoped it; not re-derived here
+  [PASS] W (reported) the ledger of this lane
+         measured: 17 links
+
+================================================================================================================
+VERDICT
+================================================================================================================
+  The C-H/K core, varied as one action: its quadratic sector is L340's block (A1), the heat filter only rescales the
+  constitutive tensor by e^(-xi^2 k^2) (A2), and c_T = 1 exactly (A3).  The full PPN with the C-H sector live gives gamma = 1,
+  alpha_3 = 0, alpha_1 = -4 alpha_c - 8 C_eff/(1 + C_eff) and a closed-form alpha_2 carrying KM2's amplification (B3); at the
+  scales of the bounds the filter leaves <= 1e-11 of it, so the bounds are the khronometric ones and cap alpha_c <= 3.2e-9
+  (B4).  Tracking holds iff c_2 != 0 (C1-C2), the monotone kernel is healthy (C3), and tracking needs c_2 >= 7.29e-3 (C4).
+  The root tension does not survive linear order: the leaf-averaged lambda-term enters the linear FRW equations only
+  through Q = (K - <K>)^(1), which the khronon drives to O(alpha_c/c_2), so linear cosmology is c_2-independent
+  (G_eff/G_cos = 1/(1 - alpha_c/2), no slip) and the Planck-era caps -- which constrain the plain term's G_cos -- do not
+  apply (D1-D3).  What the leaf average does not fix is the ungated core's own cosmology (C -> oo at zero gradient,
+  L341), which is c_2-independent and belongs to the vacuum gate (D4).  Time 31 s.
+
+  17/17 checks pass; load-bearing failures: 0; wrote FP2_relativistic_consistency_results.json
+rc=0
