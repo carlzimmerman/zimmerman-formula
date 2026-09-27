@@ -1,0 +1,145 @@
+FP20b -- FP20's EXACT PROJECTOR APPLIED TO THE THREE LANES COMMITTED BEFORE IT: FP15 (138f73b69) and FP16 (b3f5759a4) score
+KiDS with L352's projector through AT3's kids_switched (the switched fit at the common cell, WITH carrier templates -- where
+FP20 found L352's projector worst: up to +187% / -123% at 35 kpc on cored or hollowed carriers), and FP19 (0c18c582f) scores
+KiDS with FP6's esd_of_M through FP13's kids_class (FP20's P1 bug: -59% at 35 kpc on the SIS).  Every KiDS number of the three
+lanes is re-scored with FP20's committed projector (its source exec'd read-only: ESDFix for the P1 path, M2Fix + the direct
+model_M2 for the P2 path), by FP20's drop-in method: each lane's own committed code, exec'd in this lane's private namespace,
+the projector swapped, no file of theirs edited, file writes refused.
+
+WHAT IS RE-RUN (only what the KiDS numbers need; the lanes' other gates do not read the projector)
+  FP16  its KiDS hosts: the four lens bins' re-accretion model runs at z_l = 0.25 (every kick: 575/600/625/650 km/s; G4) and in
+        XR19's nominal web (575/650; G11) -- FP16's own job(), run_all() and q_profile(), 28 runs + references -- then G4's and G11's
+        kids_switched.  (XR19's other web brackets feed only X-COP in FP16; they are not KiDS numbers.)
+  FP15  its one computed KiDS cell (T5, the yield onset on FP13's H_S at zeta = 94.6, q = 0): the four lens hosts' FK1 retention
+        at 575/650 km/s (FP10's retained_fk1 with FP15's set_trigger), in place and optimistic.  FP15's other KiDS entries are the
+        text "pass (FP10 B4)" (FP10's numbers, FP20 R11's estimate).
+  FP19  its whole main() re-run with the projector swapped after it loads FP13's machinery (KB recomputed): H_K1 at z = 0.25 /
+        0.4 / 0.7, the L_Lambda window (B1, whose lower edge is set by KiDS at z = 0.4), the c_y and choice scans (B2, B3), the n scan
+        (H6), the stationary scans (A3, A4) and the hybrid table (C) -- by FP19's own code and gates.
+
+  FP20's committed projector and harness exec'd read-only from FP20_esd_projection_fix.py (ESDFix, M2Fix, model_M2_factory, exec_slices)   [0 s]
+
+======================================================================================================================
+V1  THE PROJECTOR APPLIED HERE against the analytic standard (FP20 V1/V1b, re-checked in this lane)
+======================================================================================================================
+    SIS (P1 grid, point) error [%]: +0.01 +0.01 +0.01 +0.01 +0.00 +0.00 +0.01 +0.01 +0.01 +0.01 +0.01 +0.00 +0.00 +0.01 +0.01
+    capped carrier, bin 4 (L352 grid, annulus) error [%]: -0.00 -0.00 -0.00 -0.00 -0.00 -0.00 -0.01 -0.07 +0.11 +0.11 +0.11 +0.11 +0.11 +0.11 +0.11
+  [PASS] V1 THE PROJECTOR APPLIED HERE IS FP20's EXACT ONE: the singular isothermal sphere (P1 grid, point values -- FP19's path) and L360's capped carrier template (L352's grid, node densities, annulus averages -- FP15/FP16's path) to < 0.2% at the 15 KiDS radii
+         measured: max |error| SIS 0.013%, carrier 0.107%
+    [2 s]
+
+======================================================================================================================
+R1  FP16 (daughter re-accretion): G4 KiDS at every kick and G11's nominal-web KiDS -- the KiDS hosts re-run by FP16's own code
+======================================================================================================================
+    the KiDS hosts: 28 runs   [167s]   [168 s]
+    control: FP16's committed G4/G11 KiDS recomputed with the committed projector: max |d chi^2| 0.0e+00
+    G4 KiDS v_k 575 (modelled re-accretion; gate <= +4)                    canonical    -18.609 ->    -15.063 (gate <= 4)     PASS -> PASS
+    G4 KiDS v_k 575 (modelled re-accretion; gate <= +4)                    alt          -11.816 ->     -8.097 (gate <= 4)     PASS -> PASS
+    G4 KiDS v_k 600 (modelled re-accretion; gate <= +4)                    canonical    -18.412 ->    -15.859 (gate <= 4)     PASS -> PASS
+    G4 KiDS v_k 600 (modelled re-accretion; gate <= +4)                    alt          -11.976 ->     -9.180 (gate <= 4)     PASS -> PASS
+    G4 KiDS v_k 625 (modelled re-accretion; gate <= +4)                    canonical    -15.633 ->    -13.486 (gate <= 4)     PASS -> PASS
+    G4 KiDS v_k 625 (modelled re-accretion; gate <= +4)                    alt          -11.557 ->     -8.690 (gate <= 4)     PASS -> PASS
+    G4 KiDS v_k 650 (modelled re-accretion; gate <= +4)                    canonical    -15.859 ->    -13.458 (gate <= 4)     PASS -> PASS
+    G4 KiDS v_k 650 (modelled re-accretion; gate <= +4)                    alt          -10.954 ->     -7.474 (gate <= 4)     PASS -> PASS
+    G11 KiDS v_k 575, XR19 nominal web (reported)                          canonical    -10.118 ->     -8.124 (gate <= 4)     PASS -> PASS
+    G11 KiDS v_k 575, XR19 nominal web (reported)                          alt           -5.594 ->     -2.820 (gate <= 4)     PASS -> PASS
+    G11 KiDS v_k 650, XR19 nominal web (reported)                          canonical    -10.838 ->     -8.931 (gate <= 4)     PASS -> PASS
+    G11 KiDS v_k 650, XR19 nominal web (reported)                          alt           -6.289 ->     -3.657 (gate <= 4)     PASS -> PASS
+    FP16 G4 (KiDS passes at every kick, both footings): PASS -> PASS   [170 s]
+
+======================================================================================================================
+R2  FP15 (zero-knob dark sector): its one computed KiDS cell -- T5's yield onset on H_S (zeta 94.6, q = 0), in place and optimistic
+======================================================================================================================
+    the four lens hosts' FK1 retention at 575/650 km/s recomputed with FP15's trigger (zeta 94.6167, q = 0)   [335 s]
+    control: FP15's committed in-place KiDS recomputed with the committed projector: max |d chi^2| 0.0e+00; its committed OPTIMISTIC values equal the zero-carrier fit to 0.0e+00 (every bin's template max(q - F_b, 0) is zero), so the optimistic reading re-scores as the zero-carrier fit
+    T5 yield-onset cell, KiDS in place, v_k 575 (gate <= +4)               canonical     -6.007 ->     -4.110 (gate <= 4)     PASS -> PASS
+    T5 yield-onset cell, KiDS optimistic, v_k 575 (gate <= +4)             canonical     -6.079 ->     -4.199 (gate <= 4)     PASS -> PASS
+    T5 yield-onset cell, KiDS in place, v_k 575 (gate <= +4)               alt           -0.503 ->     +0.114 (gate <= 4)     PASS -> PASS
+    T5 yield-onset cell, KiDS optimistic, v_k 575 (gate <= +4)             alt           -0.956 ->     -0.407 (gate <= 4)     PASS -> PASS
+    T5 yield-onset cell, KiDS in place, v_k 650 (gate <= +4)               canonical     -6.036 ->     -4.102 (gate <= 4)     PASS -> PASS
+    T5 yield-onset cell, KiDS optimistic, v_k 650 (gate <= +4)             canonical     -6.079 ->     -4.199 (gate <= 4)     PASS -> PASS
+    T5 yield-onset cell, KiDS in place, v_k 650 (gate <= +4)               alt           -0.819 ->     -0.162 (gate <= 4)     PASS -> PASS
+    T5 yield-onset cell, KiDS optimistic, v_k 650 (gate <= +4)             alt           -0.956 ->     -0.407 (gate <= 4)     PASS -> PASS
+    FP15's other KiDS entries (T5's 'FK1 q = 7/4' and 'shared q = 3.75' rows) are the text 'pass (FP10 B4)': FP10's committed numbers, estimated in FP20 R11 (no carrier: -6.0/-0.5 -> about -4.1/+0.0; still pass)   [336 s]
+
+======================================================================================================================
+R3  FP19 (H_K1, the repaired separator): its main() re-run whole with the projector swapped after it loads FP13's machinery
+======================================================================================================================
+    control: the re-run reproduces FP19's committed H1 sigma_8, forest, flagships and SPARC to 0.0e+00 (they do not read the projector)
+    C the hybrid table, KiDS / KiDS@0.4 flags: H_Y  (FP9): True/False -> True/False; H_S  (FP13): True/True -> True/True; stationary B + ramp y*: True/True -> True/True; H_K  (L_Lambda 2.9, y* 0.013): True/True -> True/True; H_K1 (L_Lambda 2.9, tied c_y = 1): True/True -> True/True; H_K1 (L_Lambda 2.9, tied c_y = 2): True/True -> True/True
+    FP19's own checks: 23/24 pass (committed 24/24); flips: K1 PASS->FAIL
+    H1 the H_K1 HEADLINE: KiDS at z = 0.25 (gate <= +9)                    canonical     -7.841 ->     -8.843 (gate <= 9)     PASS -> PASS
+    H1 the H_K1 HEADLINE: KiDS at z = 0.25 (gate <= +9)                    alt          -10.670 ->     -9.692 (gate <= 9)     PASS -> PASS
+    H1 the H_K1 HEADLINE: KiDS at z = 0.4 (gate <= +9)                     canonical     +0.006 ->     +0.127 (gate <= 9)     PASS -> PASS
+    H1 the H_K1 HEADLINE: KiDS at z = 0.4 (gate <= +9)                     alt           -5.337 ->     +2.100 (gate <= 9)     PASS -> PASS
+    H1 the H_K1 HEADLINE: KiDS at z = 0.7 (a prediction, reported)         canonical   +467.240 ->   +500.052                 
+    H1 the H_K1 HEADLINE: KiDS at z = 0.7 (a prediction, reported)         alt         +495.836 ->   +523.956                 
+    B1 the L_Lambda window, lower edge [Mpc] (set by KiDS at z = 0.4)      both          +2.650 ->     +2.800                 
+    B1 the L_Lambda window, upper edge [Mpc] (set by sigma_8)              both          +4.600 ->     +4.600                 
+    B1 L_Lambda = 2.5 Mpc: KiDS at z = 0.4 (gate <= +9)                    canonical    +17.296 ->    +18.900 (gate <= 9)     FAIL -> FAIL
+    B1 L_Lambda = 2.5 Mpc: KiDS at z = 0.4 (gate <= +9)                    alt          +10.159 ->    +20.186 (gate <= 9)     FAIL -> FAIL
+    B1 L_Lambda = 2.6 Mpc: KiDS at z = 0.4 (gate <= +9)                    canonical    +11.390 ->    +12.764 (gate <= 9)     FAIL -> FAIL
+    B1 L_Lambda = 2.6 Mpc: KiDS at z = 0.4 (gate <= +9)                    alt           +4.669 ->    +14.222 (gate <= 9)     PASS -> FAIL  ** FLIP **
+    B1 L_Lambda = 2.65 Mpc: KiDS at z = 0.4 (gate <= +9)                   canonical     +8.885 ->    +10.098 (gate <= 9)     PASS -> FAIL  ** FLIP **
+    B1 L_Lambda = 2.65 Mpc: KiDS at z = 0.4 (gate <= +9)                   alt           +2.383 ->    +11.643 (gate <= 9)     PASS -> FAIL  ** FLIP **
+    B1 L_Lambda = 2.7 Mpc: KiDS at z = 0.4 (gate <= +9)                    canonical     +6.650 ->     +7.677 (gate <= 9)     PASS -> PASS
+    B1 L_Lambda = 2.7 Mpc: KiDS at z = 0.4 (gate <= +9)                    alt           +0.373 ->     +9.308 (gate <= 9)     PASS -> FAIL  ** FLIP **
+    B1 L_Lambda = 2.8 Mpc: KiDS at z = 0.4 (gate <= +9)                    canonical     +2.908 ->     +3.506 (gate <= 9)     PASS -> PASS
+    B1 L_Lambda = 2.8 Mpc: KiDS at z = 0.4 (gate <= +9)                    alt           -2.908 ->     +5.309 (gate <= 9)     PASS -> PASS
+    B1 L_Lambda = 3.0 Mpc: KiDS at z = 0.4 (gate <= +9)                    canonical     -3.220 ->     -2.576 (gate <= 9)     PASS -> PASS
+    B1 L_Lambda = 3.0 Mpc: KiDS at z = 0.4 (gate <= +9)                    alt           -7.063 ->     -0.435 (gate <= 9)     PASS -> PASS
+    H6 n = 2.5 (L(0.25) fixed): KiDS at z = 0.4 (gate <= +9)               canonical     +3.725 ->     +4.433 (gate <= 9)     PASS -> PASS
+    H6 n = 2.5 (L(0.25) fixed): KiDS at z = 0.4 (gate <= +9)               alt           -2.202 ->     +6.195 (gate <= 9)     PASS -> PASS
+    H6 n = 3.0 (L(0.25) fixed): KiDS at z = 0.4 (gate <= +9)               canonical     +8.548 ->     +9.735 (gate <= 9)     PASS -> FAIL  ** FLIP **
+    H6 n = 3.0 (L(0.25) fixed): KiDS at z = 0.4 (gate <= +9)               alt           +2.077 ->    +11.292 (gate <= 9)     PASS -> FAIL  ** FLIP **
+    A4 stationary law, cost mu = 70.0: KiDS at z = 0.4 (gate <= +9)        max           -4.675 ->     -4.352 (gate <= 9)     PASS -> PASS
+    A4 stationary law, cost mu = 100.0: KiDS at z = 0.4 (gate <= +9)       max          +10.350 ->    +11.663 (gate <= 9)     FAIL -> FAIL
+    A4 stationary law, cost mu = 150.0: KiDS at z = 0.4 (gate <= +9)       max          +48.271 ->    +49.878 (gate <= 9)     FAIL -> FAIL
+    A3 closed band-pass (z <= z_q0): KiDS at z = 0.25 (fails iff > +9)     canonical  +1123.609 ->  +1094.279 (gate > 9)      PASS -> PASS
+    A3 closed band-pass (z <= z_q0): KiDS at z = 0.25 (fails iff > +9)     alt        +1130.285 ->  +1101.010 (gate > 9)      PASS -> PASS
+    B2 yield coefficient 1/Z^3: KiDS at z = 0.7 (reported)                 canonical   +445.600 ->   +447.882                 
+    B2 yield coefficient 1/Z^3: KiDS at z = 0.7 (reported)                 alt         +502.947 ->   +524.193                 
+    B2 yield coefficient 1/Z^2: KiDS at z = 0.7 (reported)                 canonical   +780.480 ->   +813.091                 
+    B2 yield coefficient 1/Z^2: KiDS at z = 0.7 (reported)                 alt         +869.337 ->   +903.853                 
+    B2 yield coefficient kappa^6: KiDS at z = 0.7 (reported)               canonical   +643.711 ->   +678.134                 
+    B2 yield coefficient kappa^6: KiDS at z = 0.7 (reported)               alt         +711.594 ->   +741.043                 
+    [700 s]
+
+======================================================================================================================
+K1 / R4  CONTROLS AND THE FLIPS
+======================================================================================================================
+  [PASS] K1 CONTROLS: with the committed projector this harness reproduces FP16's G4 (4 kicks) and G11 (2 kicks) and FP15's in-place and optimistic KiDS exactly (their host runs and retention profiles recomputed by their own code, deterministic seeds); FP19's re-run reproduces its committed sigma_8, forest, flagships and SPARC exactly (numbers the projector cannot touch)
+         measured: FP16 0.0e+00; FP15 0.0e+00; FP19 0.0
+    55 rows re-scored; 6 cross their lane's gate:
+      FP19  B1 L_Lambda = 2.6 Mpc: KiDS at z = 0.4 (gate <= +9)                                  alt           +4.67 ->    +14.22  PASS -> FAIL  ** FLIP **
+      FP19  B1 L_Lambda = 2.65 Mpc: KiDS at z = 0.4 (gate <= +9)                                 canonical     +8.89 ->    +10.10  PASS -> FAIL  ** FLIP **
+      FP19  B1 L_Lambda = 2.65 Mpc: KiDS at z = 0.4 (gate <= +9)                                 alt           +2.38 ->    +11.64  PASS -> FAIL  ** FLIP **
+      FP19  B1 L_Lambda = 2.7 Mpc: KiDS at z = 0.4 (gate <= +9)                                  alt           +0.37 ->     +9.31  PASS -> FAIL  ** FLIP **
+      FP19  H6 n = 3.0 (L(0.25) fixed): KiDS at z = 0.4 (gate <= +9)                             canonical     +8.55 ->     +9.74  PASS -> FAIL  ** FLIP **
+      FP19  H6 n = 3.0 (L(0.25) fixed): KiDS at z = 0.4 (gate <= +9)                             alt           +2.08 ->    +11.29  PASS -> FAIL  ** FLIP **
+  [PASS] (reported) R4 (reported) THE FLIPS, both directions: gate crossings in the before/after table, and FP19's own checks that change verdict
+         measured: 6 gate crossings; FP19 check flips: K1 PASS->FAIL
+  [PASS] F EVERY RE-SCORE COMPLETED: no re-run raised and every number is finite
+         measured: errors none; non-finite none
+
+======================================================================================================================
+W  THE LEDGER
+======================================================================================================================
+    F20b-a  DERIVED     FP16's G4 KiDS pass with the modelled re-accretion, every kick, both footings: -18.6..-11.0 -> -15.9..-7.5 (gate <= +4)  --  corrected by FP20b (R1: FP16's KiDS hosts re-run by its own code; FP20's projector)
+    F20b-b  CONSTRAINT  FP16 G11: KiDS in XR19's nominal web (reported) -10.8..-5.6 -> -8.9..-2.8  --  corrected by FP20b (R1)
+    F20b-c  DERIVED     FP15's T5 yield-onset cell passes KiDS: in place -6.0..-0.5 -> -4.1..+0.1, optimistic -6.1..-1.0 -> -4.2..-0.4 (gate <= +4); its other KiDS entries are FP10 B4's text  --  corrected by FP20b (R2)
+    F20b-d  DERIVED     FP19's H_K1 passes KiDS at z = 0.25 (-10.7..-7.8 -> -9.7..-8.8) and 0.4 (-5.3..+0.0 -> +0.1..+2.1)  --  corrected by FP20b (R3: FP19's main re-run whole)
+    F20b-e  CONSTRAINT  FP19's headline prediction: KiDS for lenses at z = 0.7 +467.2..+495.8 -> +500.1..+524.0 (the yield switches the phantom off beyond ~0.1-0.3 Mpc)  --  corrected by FP20b (R3)
+    F20b-f  CONSTRAINT  FP19's L_Lambda window: [2.65, 4.6] -> [2.8, 4.6] Mpc (lower edge from KiDS at z = 0.4); the declared L_Lambda = 2.9 Mpc stays inside  --  corrected by FP20b (R3)
+  [PASS] (reported) W (reported) the ledger
+         measured: 6 links
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  FP15, FP16 and FP19 re-scored with FP20's exact projector by their own committed code: 6 gate crossings in
+  55 rows; FP19's own checks that flip: K1.  See the table (R1-R3) and the
+  ledger; not 'closed'.  Time 700 s.
+
+  5/5 checks pass; load-bearing failures: 0; wrote FP20b_rescore_fp15_fp16_fp19_results.json
+rc=0
