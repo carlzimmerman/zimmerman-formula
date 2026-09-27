@@ -1,0 +1,50 @@
+XR21_s1_web_channel -- STAGE 1 (code test for stage 3's web conversion channel): the box reads the dark fluid's own flow --
+strain eigenvalues, turned-around / expanding classes, dispersion -- the input XR19's web census says the sub-grid rule needs.
+
+WHY.  XR19 (the coordinator relaying it after this lane was specified; XR19_web_runaway.py) found that once halos convert,
+FK1's conversion spreads through the collapsed and turned-around web at z <~ 1.5 (one connected cluster), never into
+expanding voids (an exact theorem: a daughter's relative velocity only falls where the strain is positive definite), and not
+at z >~ 3 (the vacuum gate).  A halo-only sub-grid rule misses 0.12 of the carrier at z = 2 and 0.28 at z = 1 and puts the
+removal in the wrong place.  Stage 3's sub-grid rule must therefore include a web channel: conversion in turned-around
+sheets and filaments (the zero-strain cone), seeded within ~1 Mpc/h of converted converging or halo-hosting cells at >~ 3
+e-folds per passage, one passage in expanding cells, gate-limited at high z -- with FK1/FP10's own rates (XR19_common:
+G_t, rho_t_over_mean, sweep_gain, cone_gain_kinetic, kinetic_rate).  Stage 3 waits for the coordinator; this script tests
+the instrument that channel stands on: XR21_pm_core.flow_strain (the carrier's mass-weighted velocity, Gaussian-smoothed on
+R_s, its symmetrised spectral gradient plus the Hubble term, eigenvalues in units of H).
+
+====================================================================================================================
+W0-W2  THE INSTRUMENT AT THE INITIAL CONDITIONS
+====================================================================================================================
+    R_s = 1.0: corr(e_1) 0.9964; std(e_1 - 1) box/ZA 0.9497; mean e box [0.9762, 1.0, 1.0238] ZA [0.975, 0.9996, 1.0234]
+    R_s = 0.5: corr(e_1) 0.9868; std(e_1 - 1) box/ZA 0.9174; mean e box [0.9691, 1.0002, 1.0307] ZA [0.9661, 0.9994, 1.0309]
+  [PASS] W0 [code] AT THE ICs THE BOX READS THE ZEL'DOVICH FLOW: the strain eigenvalue e_1 from the particles (mass-weighted, smoothed, Hubble + peculiar) correlates with the Zel'dovich deformation read by the same operators at >= 0.99, with the std of e_1 - 1 within 10% and every eigenvalue's mean within 0.005 H (R_s = 1 Mpc/h; R_s = 0.5, at the mesh's own scale, reported)
+         measured: R_s 1.0: corr 0.9964, std ratio 0.950, level 0.0012; R_s 0.5: corr 0.9868, std ratio 0.917, level 0.0030
+         reading:  the residual (a few %) is the CIC deposit of particle-carried velocities against the Lagrangian field; it grows at the mesh scale (R_s = 0.5)
+  [PASS] W1 [code] the box's trigger threshold delta_t0 E^4/(1+z)^3 is XR19's rho_t_over_mean (FK1 N2, q = 1.75) at z = 0-6
+         measured: max relative deviation 6.7e-16
+  [PASS] W2 [code] the ICs' Zel'dovich T-web fractions at threshold 0 equal Doroshkevich's Gaussian-field values within 0.015
+         measured: [0.0782, 0.4234, 0.4194, 0.079] vs [0.0798, 0.4202, 0.4202, 0.0798] (max |diff| 0.0032)
+
+====================================================================================================================
+W3  THE EVOLVED FLOW: the box's Eulerian mesh strain vs XR19's Lagrangian Zel'dovich census on the same ICs
+====================================================================================================================
+    z 5.0 R_s 1.0: rank corr(e_1) 0.861; turned around -- box 0.000 by volume, 0.000 by mass; Zel'dovich (Lagrangian) 0.024 (+ shell-crossed 0.000); median dispersion 31 km/s
+    z 5.0 R_s 0.5: rank corr(e_1) 0.711; turned around -- box 0.007 by volume, 0.022 by mass; Zel'dovich (Lagrangian) 0.125 (+ shell-crossed 0.000); median dispersion 18 km/s
+    z 3.0 R_s 1.0: rank corr(e_1) 0.772; turned around -- box 0.013 by volume, 0.039 by mass; Zel'dovich (Lagrangian) 0.182 (+ shell-crossed 0.001); median dispersion 36 km/s
+    z 3.0 R_s 0.5: rank corr(e_1) 0.590; turned around -- box 0.056 by volume, 0.163 by mass; Zel'dovich (Lagrangian) 0.340 (+ shell-crossed 0.023); median dispersion 19 km/s
+    z 2.0 R_s 1.0: rank corr(e_1) 0.697; turned around -- box 0.041 by volume, 0.121 by mass; Zel'dovich (Lagrangian) 0.323 (+ shell-crossed 0.020); median dispersion 38 km/s
+    z 2.0 R_s 0.5: rank corr(e_1) 0.504; turned around -- box 0.102 by volume, 0.285 by mass; Zel'dovich (Lagrangian) 0.403 (+ shell-crossed 0.113); median dispersion 20 km/s
+    z 1.0 R_s 1.0: rank corr(e_1) 0.589; turned around -- box 0.086 by volume, 0.220 by mass; Zel'dovich (Lagrangian) 0.371 (+ shell-crossed 0.158); median dispersion 40 km/s
+    z 1.0 R_s 0.5: rank corr(e_1) 0.396; turned around -- box 0.149 by volume, 0.390 by mass; Zel'dovich (Lagrangian) 0.326 (+ shell-crossed 0.335); median dispersion 20 km/s
+    z 0.5 R_s 1.0: rank corr(e_1) 0.515; turned around -- box 0.098 by volume, 0.244 by mass; Zel'dovich (Lagrangian) 0.304 (+ shell-crossed 0.308); median dispersion 39 km/s
+    z 0.5 R_s 0.5: rank corr(e_1) 0.334; turned around -- box 0.153 by volume, 0.397 by mass; Zel'dovich (Lagrangian) 0.233 (+ shell-crossed 0.485); median dispersion 19 km/s
+  [PASS] W3 [reported] THE WEB CHANNEL'S INPUT IS ESTIMATOR-DEPENDENT: after evolution the box's Eulerian mesh strain and XR19's Lagrangian Zel'dovich census on the same ICs disagree on the turned-around share -- the box calls far less mass turned around at z >= 2 (and at every z for R_s = 1), while at z <= 1 Zel'dovich's shell-crossed share has no class in the box (the rows above)  (reported, not load-bearing)
+         measured: z 5.0: TA box mass 0.000 vs ZA 0.024 + crossed 0.000 (R_s 1), 0.022 vs 0.125 + crossed 0.000 (R_s 0.5); z 3.0: TA box mass 0.039 vs ZA 0.182 + crossed 0.001 (R_s 1), 0.163 vs 0.340 + crossed 0.023 (R_s 0.5); z 2.0: TA box mass 0.121 vs ZA 0.323 + crossed 0.020 (R_s 1), 0.285 vs 0.403 + crossed 0.113 (R_s 0.5); z 1.0: TA box mass 0.220 vs ZA 0.371 + crossed 0.158 (R_s 1), 0.390 vs 0.326 + crossed 0.335 (R_s 0.5); z 0.5: TA box mass 0.244 vs ZA 0.304 + crossed 0.308 (R_s 1), 0.397 vs 0.233 + crossed 0.485 (R_s 0.5)
+         reading:  Eulerian smoothing across thin pancakes dilutes the contracting axis, and Zel'dovich overshoots after shell crossing: stage 3 must read the strain per particle (Lagrangian) and re-derive XR19's F_tot(z) on the box's own flow
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  The box reads the carrier's flow correctly at the ICs and carries XR19's trigger threshold exactly; after evolution its Eulerian estimator and XR19's Lagrangian census disagree on the turned-around share, which stage 3 must settle first.
+
+  4/4 checks pass; load-bearing failures: 0; wrote XR21_s1_web_channel_results.json   [108 s]

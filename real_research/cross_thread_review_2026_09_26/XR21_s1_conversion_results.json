@@ -1,0 +1,562 @@
+{
+ "lane": "XR21_s1_conversion",
+ "mutate": false,
+ "checks": {
+  "C0": {
+   "title": "C0 CONTROL: the conversion hook with an infinite threshold leaves the two-species box bit-identical to the plain box",
+   "ok": true,
+   "measured": "max |dx| 0.0e+00",
+   "load_bearing": true
+  },
+  "T4a": {
+   "title": "T4a mass is conserved through every conversion (relative 1e-12) and carried by the mesh (deposit sum = 1 to 1e-12)",
+   "ok": true,
+   "measured": "max relative change 4.4e-16; mesh sum - 1: 4.4e-16; total mass at z = 0 1.000000000000000",
+   "load_bearing": true
+  },
+  "T4b": {
+   "title": "T4b momentum is conserved through every conversion (relative to sum m|p|, 1e-12)",
+   "ok": true,
+   "measured": "max 4.0e-16",
+   "load_bearing": true
+  },
+  "T4c": {
+   "title": "T4c every daughter leaves its parent at v_k = 600 km/s (relative 1e-12) and the pair is back to back (1e-12)",
+   "ok": true,
+   "measured": "max |v_rel/v_k - 1| 6.7e-16 (max v_rel 600.000 km/s); back-to-back residual 4.2e-16",
+   "load_bearing": true
+  },
+  "T4d": {
+   "title": "T4d the kinetic energy gained per conversion call equals sum m v_k^2/2 (FK1 A1's latent heat) to 1e-10",
+   "ok": true,
+   "measured": "max relative deviation 1.8e-13",
+   "load_bearing": true
+  },
+  "T4e": {
+   "title": "T4e the emission directions are isotropic: |mean n| < 4/sqrt(N)",
+   "ok": true,
+   "measured": "|mean n| 2.83e-03 vs 1.17e-02 (N = 116688)",
+   "load_bearing": true
+  },
+  "T4f": {
+   "title": "T4f FORCE-FREE CONTROL: the daughters move ballistically after emission -- displacement = p x the leapfrog's own drift factor sum(dt/a^2) (1e-12), peculiar speed relative to the parent = v_k a_emit/a (1e-12)",
+   "ok": true,
+   "measured": "a_emit 0.2551; drift vs the leapfrog's sum 2.5e-15; decay 4.4e-16; 8192 daughters from 4096 parents",
+   "load_bearing": true
+  },
+  "T4f'": {
+   "title": "T4f' (reported) the record's KDK drift factor against the continuous int da/(a^3 E) from emission to z = 0",
+   "ok": true,
+   "measured": "relative difference 1.83e-02 at dlna = 0.02 (first order in dlna: the free-streaming daughters' comoving travel is overstated by this much -- a stage-3 systematic, halved by dlna = 0.01)",
+   "load_bearing": false
+  },
+  "T4g": {
+   "title": "T4g (reported) the mesh trigger's converted share of the carrier at the production cell (0.39 Mpc/h) and re-accretion at z = 0",
+   "ok": true,
+   "measured": "converted z 3.0: 0.0023, z 2.0: 0.0403, z 1.0: 0.2167, z 0.5: 0.3548, z 0.0: 0.4451; light/heavy mass in dense cells (rho > 50) at z = 0: 12.509 (box-wide 0.802)",
+   "load_bearing": false
+  },
+  "T5a": {
+   "title": "T5a WHERE THE MESH RESOLVES THE CLUMP (M >= 300 x the one-cell threshold mass, both meshes) the mesh trigger's converted mass equals the exact profile integral within 5% (cap and cleared); for EVERY clump the clump's seen share equals the sub-grid's detection function within 0.05 + 3 sigma (the sampling errors of the copies' mean and of the Monte Carlo) -- the hand-over is seamless: the sub-grid adds exactly what the mesh misses; the sub-grid's per-clump share 1 - delta_t/Delta_vir equals the exact cap share within 2%",
+   "ok": true,
+   "measured": "8 resolved (mesh, size) cases within 5%: True; detection function within 0.05 everywhere: True; share 0.9109 vs exact 0.9163-0.9163",
+   "load_bearing": true
+  },
+  "T5b": {
+   "title": "T5b [reported; tolerance as declared] IN A COSMOLOGICAL BOX (LCDM, 12.5 Mpc/h, z = 3 and 2, cap) the production mesh (0.39 Mpc/h) plus its seamless sub-grid term reproduces a finer mesh plus ITS seamless term (the same EPS census above one 96^3 cell's threshold mass) within 30% (box total) with a per-cell correlation >= 0.5 -- scored on the better-resolved run (force mesh 192^3 = 0.065 Mpc/h); the 96^3 run is its resolution partner",
+   "ok": true,
+   "measured": "96 z 3.0: 1.583; 96 z 2.0: 1.386; 192 z 3.0: 1.050; 192 z 2.0: 1.216; correlations >= 0.5: True",
+   "load_bearing": false
+  },
+  "T5b-H": {
+   "title": "T5b-H [reported; pre-declared after the smoke runs] the coarse/fine mismatch shrinks when the fine run's own halos are better resolved (force mesh 96^3 -> 192^3): the finer mesh sees less than the census because its clumps are softened",
+   "ok": true,
+   "measured": "z 3.0: |ratio - 1| 0.583 -> 0.050; z 2.0: |ratio - 1| 0.386 -> 0.216",
+   "load_bearing": false
+  },
+  "T5b0": {
+   "title": "T5b0 (reported) the FIRST sub-grid form (a sharp cut at M_up = delta_t rho_bar V_cell; the smoke run, disclosed) on the same snapshots: the over-count the seamless form removes",
+   "ok": true,
+   "measured": "96 z 3.0: sharp 0.0893 vs seamless 0.0911 vs fine 0.0576; 96 z 2.0: sharp 0.2522 vs seamless 0.2757 vs fine 0.1989; 192 z 3.0: sharp 0.0941 vs seamless 0.0964 vs fine 0.0918; 192 z 2.0: sharp 0.2593 vs seamless 0.2838 vs fine 0.2334",
+   "load_bearing": false
+  },
+  "T5c": {
+   "title": "T5c (reported) the production reading: the 0.39 Mpc/h mesh with the seamless sub-grid term down to M_min = 1e8 Msun (XR16's record value): box-mean converted fraction (a 12.5 Mpc/h box) against XR16's committed halo-model budget",
+   "ok": true,
+   "measured": "z 3.0: 0.312 (sub-grid alone 0.312); z 2.0: 0.486 (sub-grid alone 0.477) vs XR16 (Sheth-Tormen halo model) F(3)/F(2): most favourable 0.245/0.352, fiducial 0.342/0.433",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "T4": {
+   "C0": 0.0,
+   "T4": {
+    "audit": {
+     "mass": 4.440892098500626e-16,
+     "momentum": 4.022907285910393e-16,
+     "vrel": 6.661338147750939e-16,
+     "vrel_abs_max": 600.0000000000005,
+     "back_to_back": 4.1551889606687437e-16,
+     "latent_heat": 1.8207657603852567e-13,
+     "nsum": [
+      -81.26810354271518,
+      -204.85754476754659,
+      -245.78452559575717
+     ],
+     "n": 116688,
+     "mesh_mass": 4.440892098500626e-16
+    },
+    "hist": {
+     "3.0": {
+      "converted": 0.0023193359375,
+      "n_particles": 262752,
+      "total_mass": 1.0000000000000004
+     },
+     "2.0": {
+      "converted": 0.040317535400390625,
+      "n_particles": 272713,
+      "total_mass": 1.0
+     },
+     "1.0": {
+      "converted": 0.21674346923828125,
+      "n_particles": 318962,
+      "total_mass": 1.0
+     },
+     "0.5": {
+      "converted": 0.35480499267578136,
+      "n_particles": 355154,
+      "total_mass": 0.9999999999999997
+     },
+     "0.0": {
+      "converted": 0.4451293945312502,
+      "n_particles": 378832,
+      "total_mass": 0.9999999999999998,
+      "dense_light_over_heavy": 12.508903654142218,
+      "global_light_over_heavy": 0.8022219777802221
+     }
+    },
+    "wall": 40.1649112701416,
+    "steps": 196,
+    "events": 116688,
+    "rss": 2.087174144
+   },
+   "T4f": {
+    "a_emit": 0.25505033500668894,
+    "a_end": 1.0137999917111662,
+    "drift": 3.0987835229303995,
+    "integral": 3.042953698172207,
+    "dev_drift": 2.4707424034642704e-15,
+    "dev_int": 0.018347247541665723,
+    "dev_decay": 4.440892098500626e-16,
+    "n_daughters": 8192,
+    "n_parents": 4096,
+    "wall": 0.09372186660766602
+   }
+  },
+  "T5": {
+   "t5a": {
+    "meshes": {
+     "256": {
+      "d": 0.078125,
+      "rows": {
+       "1000000000.0": {
+        "rvir_cells": 0.3143090589061618,
+        "M_over_M1": 1.4595023046132112,
+        "n": 16,
+        "seen": 0.0003741582389357405,
+        "seen_sd": 0.0014491086282444185,
+        "seen_mc": 0.00220053239901695,
+        "seen_mc_se": 0.0010494862776013753,
+        "share": 0.9162848803704627,
+        "cap_ratio": 0.0004083426966343313,
+        "clr_ratio": 0.013163284822201261,
+        "tol": 0.05333076502752999
+       },
+       "3000000000.0": {
+        "rvir_cells": 0.4533121051511377,
+        "M_over_M1": 4.378506913839633,
+        "n": 16,
+        "seen": 0.10907778732893231,
+        "seen_sd": 0.1255856743396638,
+        "seen_mc": 0.14874045389748905,
+        "seen_mc_se": 0.019975018454247834,
+        "share": 0.9162848803704626,
+        "cap_ratio": 0.11904353074649791,
+        "clr_ratio": 0.48132242529916813,
+        "tol": 0.16163614181733965
+       },
+       "10000000000.0": {
+        "rvir_cells": 0.6771583398987098,
+        "M_over_M1": 14.59502304613211,
+        "n": 16,
+        "seen": 0.6547642730222213,
+        "seen_sd": 0.05716429221801798,
+        "seen_mc": 0.6519264108263516,
+        "seen_mc_se": 0.008029444227343642,
+        "share": 0.9162848803704629,
+        "cap_ratio": 0.7238389118678182,
+        "clr_ratio": 1.0235381566259192,
+        "tol": 0.09917683085399932
+       },
+       "30000000000.0": {
+        "rvir_cells": 0.9766313247489921,
+        "M_over_M1": 43.78506913839633,
+        "n": 16,
+        "seen": 0.8444991494702178,
+        "seen_sd": 0.01830642826572407,
+        "seen_mc": 0.8398190288234453,
+        "seen_mc_se": 0.002906824546253583,
+        "share": 0.9162848803704625,
+        "cap_ratio": 0.9327357176626756,
+        "clr_ratio": 1.0139015607812623,
+        "tol": 0.06626513604765967
+       },
+       "100000000000.0": {
+        "rvir_cells": 1.4588934181221815,
+        "M_over_M1": 145.95023046132113,
+        "n": 16,
+        "seen": 0.904467934170692,
+        "seen_sd": 0.0018260953772487828,
+        "seen_mc": 0.9037701585896419,
+        "seen_mc_se": 0.00019321000644382958,
+        "share": 0.9162848803704629,
+        "cap_ratio": 0.994652861162851,
+        "clr_ratio": 1.0059857856231513,
+        "tol": 0.0514871775761961
+       },
+       "300000000000.0": {
+        "rvir_cells": 2.1040884054110225,
+        "M_over_M1": 437.85069138396335,
+        "n": 16,
+        "seen": 0.9119736439212401,
+        "seen_sd": 0.0011252479326807582,
+        "seen_mc": 0.9116643774911196,
+        "seen_mc_se": 0.00016365340322405092,
+        "share": 0.9162848803704627,
+        "cap_ratio": 1.0017423349048684,
+        "clr_ratio": 1.0042649649366053,
+        "tol": 0.05097635537298549
+       },
+       "1000000000000.0": {
+        "rvir_cells": 3.143090589061617,
+        "M_over_M1": 1459.5023046132112,
+        "n": 16,
+        "seen": 0.9070322847516101,
+        "seen_sd": 0.00028306920121418463,
+        "seen_mc": 0.9070475681372696,
+        "seen_mc_se": 7.165886777747291e-05,
+        "share": 0.9162848803704629,
+        "cap_ratio": 0.9952963945296031,
+        "clr_ratio": 1.0021862135472583,
+        "tol": 0.05030213744738218
+       },
+       "3000000000000.0": {
+        "rvir_cells": 4.533121051511377,
+        "M_over_M1": 4378.506913839634,
+        "n": 1,
+        "seen": 0.9047448504849314,
+        "seen_sd": 0.0,
+        "seen_mc": 0.916284880370463,
+        "seen_mc_se": 0.0,
+        "share": 0.9162848803704623,
+        "cap_ratio": 0.9925534052127689,
+        "clr_ratio": 1.001456585576163,
+        "tol": 0.05
+       },
+       "10000000000000.0": {
+        "rvir_cells": 6.7715833989870955,
+        "M_over_M1": 14595.023046132112,
+        "n": 1,
+        "seen": 0.9047150803917011,
+        "seen_sd": 0.0,
+        "seen_mc": 0.9162848803704632,
+        "seen_mc_se": 0.0,
+        "share": 0.9162848803704625,
+        "cap_ratio": 0.9922656646976822,
+        "clr_ratio": 1.000839843442106,
+        "tol": 0.05
+       },
+       "30000000000000.0": {
+        "rvir_cells": 9.76631324748992,
+        "M_over_M1": 43785.069138396335,
+        "n": 1,
+        "seen": 0.9057910679066937,
+        "seen_sd": 0.0,
+        "seen_mc": 0.9162848803704625,
+        "seen_mc_se": 0.0,
+        "share": 0.9162848803704627,
+        "cap_ratio": 0.9934418258338819,
+        "clr_ratio": 1.0005645121322562,
+        "tol": 0.05
+       },
+       "100000000000000.0": {
+        "rvir_cells": 14.588934181221813,
+        "M_over_M1": 145950.2304613211,
+        "n": 1,
+        "seen": 0.9072149961773159,
+        "seen_sd": 0.0,
+        "seen_mc": 0.916284880370463,
+        "seen_mc_se": 0.0,
+        "share": 0.9162848803704627,
+        "cap_ratio": 0.9950012896176377,
+        "clr_ratio": 1.0004499743073527,
+        "tol": 0.05
+       }
+      },
+      "M1": 685165070.8869653
+     },
+     "64": {
+      "d": 0.3125,
+      "rows": {
+       "1000000000.0": {
+        "rvir_cells": 0.07857726472654045,
+        "M_over_M1": 0.022804723509581425,
+        "n": 16,
+        "seen": 0.0,
+        "seen_sd": 0.0,
+        "seen_mc": 0.0,
+        "seen_mc_se": 0.0,
+        "share": 0.9162848803704627,
+        "cap_ratio": 0.0,
+        "clr_ratio": 0.0,
+        "tol": 0.05
+       },
+       "3000000000.0": {
+        "rvir_cells": 0.11332802628778442,
+        "M_over_M1": 0.06841417052874427,
+        "n": 16,
+        "seen": 0.0,
+        "seen_sd": 0.0,
+        "seen_mc": 0.0,
+        "seen_mc_se": 0.0,
+        "share": 0.9162848803704626,
+        "cap_ratio": 0.0,
+        "clr_ratio": 0.0,
+        "tol": 0.05
+       },
+       "10000000000.0": {
+        "rvir_cells": 0.16928958497467744,
+        "M_over_M1": 0.22804723509581423,
+        "n": 16,
+        "seen": 0.0,
+        "seen_sd": 0.0,
+        "seen_mc": 0.0,
+        "seen_mc_se": 0.0,
+        "share": 0.9162848803704629,
+        "cap_ratio": 0.0,
+        "clr_ratio": 0.0,
+        "tol": 0.05
+       },
+       "30000000000.0": {
+        "rvir_cells": 0.24415783118724801,
+        "M_over_M1": 0.6841417052874427,
+        "n": 16,
+        "seen": 0.0,
+        "seen_sd": 0.0,
+        "seen_mc": 0.0,
+        "seen_mc_se": 0.0,
+        "share": 0.9162848803704625,
+        "cap_ratio": 0.0,
+        "clr_ratio": 0.0,
+        "tol": 0.05
+       },
+       "100000000000.0": {
+        "rvir_cells": 0.3647233545305454,
+        "M_over_M1": 2.2804723509581426,
+        "n": 16,
+        "seen": 0.013281156724820482,
+        "seen_sd": 0.035964912259031596,
+        "seen_mc": 0.014671180032820532,
+        "seen_mc_se": 0.006112432943384615,
+        "share": 0.9162848803704629,
+        "cap_ratio": 0.014537800773581182,
+        "clr_ratio": 0.09721831120029834,
+        "tol": 0.08261650145859872
+       },
+       "300000000000.0": {
+        "rvir_cells": 0.5260221013527556,
+        "M_over_M1": 6.841417052874427,
+        "n": 16,
+        "seen": 0.32033188513933414,
+        "seen_sd": 0.14032641142252383,
+        "seen_mc": 0.3729741453040768,
+        "seen_mc_se": 0.01877884730783969,
+        "share": 0.9162848803704627,
+        "cap_ratio": 0.3527291960436409,
+        "clr_ratio": 0.9229027081205221,
+        "tol": 0.16937451857989771
+       },
+       "1000000000000.0": {
+        "rvir_cells": 0.7857726472654043,
+        "M_over_M1": 22.804723509581425,
+        "n": 16,
+        "seen": 0.7316337343838984,
+        "seen_sd": 0.04573883367692037,
+        "seen_mc": 0.7500167164767606,
+        "seen_mc_se": 0.006111341163658109,
+        "share": 0.9162848803704629,
+        "cap_ratio": 0.8084047774980656,
+        "clr_ratio": 1.0153814665716916,
+        "tol": 0.08889613640277017
+       },
+       "3000000000000.0": {
+        "rvir_cells": 1.1332802628778442,
+        "M_over_M1": 68.41417052874428,
+        "n": 1,
+        "seen": 0.8582372568570685,
+        "seen_sd": 0.0,
+        "seen_mc": 0.8706071726912195,
+        "seen_mc_se": 0.001039060625783372,
+        "share": 0.9162848803704623,
+        "cap_ratio": 0.9463964533026055,
+        "clr_ratio": 1.0092759947758272,
+        "tol": 0.05311718187735012
+       },
+       "10000000000000.0": {
+        "rvir_cells": 1.6928958497467739,
+        "M_over_M1": 228.04723509581424,
+        "n": 1,
+        "seen": 0.9067264152377963,
+        "seen_sd": 0.0,
+        "seen_mc": 0.9068956131998498,
+        "seen_mc_se": 0.00017490593594198295,
+        "share": 0.9162848803704625,
+        "cap_ratio": 0.9964975271820833,
+        "clr_ratio": 1.004936773332634,
+        "tol": 0.05052471780782595
+       },
+       "30000000000000.0": {
+        "rvir_cells": 2.44157831187248,
+        "M_over_M1": 684.1417052874427,
+        "n": 1,
+        "seen": 0.9077721286567616,
+        "seen_sd": 0.0,
+        "seen_mc": 0.9079329670554596,
+        "seen_mc_se": 0.00010251196652296958,
+        "share": 0.9162848803704627,
+        "cap_ratio": 0.9966143663615449,
+        "clr_ratio": 1.0030424939208822,
+        "tol": 0.05030753589956891
+       },
+       "100000000000000.0": {
+        "rvir_cells": 3.647233545305453,
+        "M_over_M1": 2280.472350958142,
+        "n": 1,
+        "seen": 0.9041601569066483,
+        "seen_sd": 0.0,
+        "seen_mc": 0.9059943383838792,
+        "seen_mc_se": 3.851004809988049e-05,
+        "share": 0.9162848803704627,
+        "cap_ratio": 0.9920719816966715,
+        "clr_ratio": 1.0017682606189018,
+        "tol": 0.05011553014429965
+       }
+      },
+      "M1": 43850564536.76578
+     }
+    },
+    "rho_t": 16.50095945361125,
+    "share_sg": 0.9108842392114387,
+    "rss": 2.619244544
+   },
+   "t5b": {
+    "t5b_96": {
+     "out": {
+      "3.0": {
+       "F_fine": 0.05756024799642269,
+       "F_fine_mesh": 0.03769431952294272,
+       "F_coarse": 0.09114227946528976,
+       "F_coarse_mesh": 0.00014700571881594486,
+       "F_coarse_sharp": 0.08925871331037007,
+       "corr": 0.9558688417210859,
+       "M_min": 6612360365.674425,
+       "rho_t": 34.39729154816561,
+       "F_prod_1e8": 0.3068653867669677,
+       "F_prod_sg_only": 0.30682551720989093
+      },
+      "2.0": {
+       "F_fine": 0.19891206692553676,
+       "F_fine_mesh": 0.15101213228285193,
+       "F_coarse": 0.2756770101367225,
+       "F_coarse_mesh": 0.03835624045880385,
+       "F_coarse_sharp": 0.25222188103155385,
+       "corr": 0.9861290449559784,
+       "M_min": 3119282102.0225315,
+       "rho_t": 16.22640781062458,
+       "F_prod_1e8": 0.4806011753996038,
+       "F_prod_sg_only": 0.4724746880222786
+      }
+     },
+     "wall": 231.82695984840393,
+     "steps": 141,
+     "rss": 3.451961344,
+     "NGf": 96,
+     "d": 0.13020833333333334
+    },
+    "t5b_192": {
+     "out": {
+      "3.0": {
+       "F_fine": 0.09181795735970955,
+       "F_fine_mesh": 0.0912024346264174,
+       "F_coarse": 0.0964119036861545,
+       "F_coarse_mesh": 0.00018063712920980568,
+       "F_coarse_sharp": 0.09409483155631368,
+       "corr": 0.9710413624088523,
+       "M_min": 6612360365.674425,
+       "rho_t": 34.39729154816561,
+       "F_prod_1e8": 0.3117544461494848,
+       "F_prod_sg_only": 0.3117052355733725
+      },
+      "2.0": {
+       "F_fine": 0.2334094028531217,
+       "F_fine_mesh": 0.23134989166667588,
+       "F_coarse": 0.283793851898936,
+       "F_coarse_mesh": 0.04198315568496194,
+       "F_coarse_sharp": 0.25926321661045204,
+       "corr": 0.9883395576705484,
+       "M_min": 3119282102.0225315,
+       "rho_t": 16.22640781062458,
+       "F_prod_1e8": 0.48603076365553904,
+       "F_prod_sg_only": 0.4769112177780113
+      }
+     },
+     "wall": 294.3078353404999,
+     "steps": 141,
+     "rss": 2.692743168,
+     "NGf": 192,
+     "d": 0.06510416666666667
+    }
+   },
+   "ratios": {
+    "t5b_96/3.0": 1.5834240233112644,
+    "t5b_96/2.0": 1.3859240135487754,
+    "t5b_192/3.0": 1.0500332011138904,
+    "t5b_192/2.0": 1.2158629790828088
+   }
+  }
+ },
+ "runs": {
+  "t4": {
+   "wall": 40.1649112701416,
+   "steps": 196,
+   "rss_gb": 2.087174144
+  },
+  "t5b_96": {
+   "wall": 231.82695984840393,
+   "steps": 141,
+   "rss_gb": 3.451961344
+  },
+  "t5b_192": {
+   "wall": 294.3078353404999,
+   "steps": 141,
+   "rss_gb": 2.692743168
+  },
+  "t5a": {
+   "rss_gb": 2.619244544
+  }
+ },
+ "n_checks": 14,
+ "n_pass": 14,
+ "n_fail_load_bearing": 0,
+ "wall_s": 297.57868790626526
+}

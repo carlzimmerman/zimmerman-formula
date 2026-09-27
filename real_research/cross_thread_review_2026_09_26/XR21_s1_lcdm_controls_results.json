@@ -1,0 +1,195 @@
+{
+ "lane": "XR21_s1_lcdm_controls",
+ "mutate": false,
+ "checks": {
+  "A1": {
+   "title": "A1 R1 (one species, Newtonian) reproduces L362's committed control LCDM flux P1D (z = 3, 2; all k_par) to 1e-10",
+   "ok": true,
+   "measured": "max relative deviation 6.9e-15",
+   "load_bearing": true
+  },
+  "A2": {
+   "title": "A2 R2 (two species; the H_Y operator run every step at infinite yield; the conversion hook idle) reproduces the same committed P1D to 1e-10, with an identically zero phantom and no conversion",
+   "ok": true,
+   "measured": "max relative deviation 8.4e-15; max |delta_ph| over all steps 0.0e+00; conversion events 0",
+   "load_bearing": true
+  },
+  "A3": {
+   "title": "A3 R3 (L346's CLASS settings; the H_Y path in FP9's reading at infinite yield) reproduces L346's committed LCDM matter power (14 log bins, z = 6, 3, 2) to 1e-10, and the lensing estimator returns the matter power exactly",
+   "ok": true,
+   "measured": "max relative deviation 6.7e-16; lensing / matter - 1: 0.0e+00; max |delta_ph| 0.0e+00",
+   "load_bearing": true
+  },
+  "A4": {
+   "title": "A4 R4 reproduces L366's committed LCDM sigma_8(z = 0) = 1.0208791238487946 and its LCDM P1D (z = 3, 2) to 1e-8",
+   "ok": true,
+   "measured": "sigma_8 1.0208791238487953 (relative deviation 6.7e-16); P1D max relative deviation 9.5e-15",
+   "load_bearing": true
+  },
+  "A5": {
+   "title": "A5 the mesh trigger's input on R4's z = 2 carrier mesh -- the mass fraction above FK1's nominal threshold -- reproduces XR12 A2's committed seed-7 value to 1e-6",
+   "ok": true,
+   "measured": "0.128041153626 vs 0.128041153626 (threshold 16.500959454 vs 16.500959454); relative deviation 2.4e-14",
+   "load_bearing": true
+  },
+  "A6": {
+   "title": "A6 (reported) R4's cosmic-shear bins at z = 0.5 are recorded as stage 2's LCDM reference (L367 stored only ratios, so there is no committed absolute value to compare)",
+   "ok": true,
+   "measured": "see the numbers block",
+   "load_bearing": false
+  },
+  "A7": {
+   "title": "A7 (reported) run time and memory per box size",
+   "ok": true,
+   "measured": "see the R5 block and numbers.probes",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "A1_A3": {
+   "A1": 6.8833827526759706e-15,
+   "A2": 8.43769498715119e-15,
+   "A2_phantom_max": 0.0,
+   "A3": 6.661338147750939e-16,
+   "A3_lens": 0.0
+  },
+  "A4_A6": {
+   "sigma8": 1.0208791238487953,
+   "dev_sigma8": 6.661338147750939e-16,
+   "dev_p1d": 9.547918011776346e-15,
+   "thr": {
+    "threshold": 16.500959453611244,
+    "mass_frac": 0.12804115362645146
+   },
+   "dev_thr": 2.4091839634365897e-14,
+   "pk_bins_z05": {
+    "0.1": 1554254290356.4038,
+    "0.2": 386687751398.4095,
+    "0.3": 220298462826.31598,
+    "0.5": 111732123781.54988,
+    "0.7": 71380620247.24771,
+    "1.0": 49522438917.85886
+   }
+  },
+  "probes": {
+   "hy_256_192x2_1thread": {
+    "t_ic": 3.19120192527771,
+    "t_force": 3.9053328037261963,
+    "rss_gb": 4.11951104,
+    "name": "hy_256_192x2_1thread",
+    "L": 100.0,
+    "NG": 256,
+    "NP": 192,
+    "gravity": "hy",
+    "workers": 1,
+    "threads": 1
+   },
+   "hy_256_192x2_4threads": {
+    "t_ic": 1.6982238292694092,
+    "t_force": 2.081528902053833,
+    "rss_gb": 4.58252288,
+    "name": "hy_256_192x2_4threads",
+    "L": 100.0,
+    "NG": 256,
+    "NP": 192,
+    "gravity": "hy",
+    "workers": 4,
+    "threads": 4
+   },
+   "newton_256_192x2_4threads": {
+    "t_ic": 1.6976351737976074,
+    "t_force": 1.6608469486236572,
+    "rss_gb": 3.966631936,
+    "name": "newton_256_192x2_4threads",
+    "L": 100.0,
+    "NG": 256,
+    "NP": 192,
+    "gravity": "newton",
+    "workers": 4,
+    "threads": 4
+   },
+   "hy_384_192x2_4threads": {
+    "t_ic": 3.823051929473877,
+    "t_force": 4.924332141876221,
+    "rss_gb": 9.936764928,
+    "name": "hy_384_192x2_4threads",
+    "L": 150.0,
+    "NG": 384,
+    "NP": 192,
+    "gravity": "hy",
+    "workers": 4,
+    "threads": 4
+   },
+   "hy_384_256x2_4threads": {
+    "t_ic": 4.594387054443359,
+    "t_force": 8.755146980285645,
+    "rss_gb": 11.627921408,
+    "name": "hy_384_256x2_4threads",
+    "L": 200.0,
+    "NG": 384,
+    "NP": 256,
+    "gravity": "hy",
+    "workers": 4,
+    "threads": 4
+   }
+  }
+ },
+ "runs": {
+  "R1": {
+   "wall": 37.40024781227112,
+   "steps": 141,
+   "rss_gb": 1.32538368,
+   "n_particles": 884736,
+   "converted_events": 0,
+   "phantom_max": 0.0,
+   "L": 50.0,
+   "NG": 128,
+   "NP": 96,
+   "mode": "single",
+   "gravity": "newton"
+  },
+  "R2": {
+   "wall": 143.97927808761597,
+   "steps": 141,
+   "rss_gb": 1.431666688,
+   "n_particles": 1769472,
+   "converted_events": 0,
+   "phantom_max": 0.0,
+   "L": 50.0,
+   "NG": 128,
+   "NP": 96,
+   "mode": "two",
+   "gravity": "hy"
+  },
+  "R3": {
+   "wall": 46.2966206073761,
+   "steps": 141,
+   "rss_gb": 1.208827904,
+   "n_particles": 884736,
+   "converted_events": 0,
+   "phantom_max": 0.0,
+   "L": 50.0,
+   "NG": 128,
+   "NP": 96,
+   "mode": "single",
+   "gravity": "hy"
+  },
+  "R4": {
+   "wall": 810.3394448757172,
+   "steps": 196,
+   "rss_gb": 5.518671872,
+   "n_particles": 14155776,
+   "converted_events": 0,
+   "phantom_max": 0.0,
+   "L": 100.0,
+   "NG": 256,
+   "NP": 192,
+   "mode": "two",
+   "gravity": "newton"
+  }
+ },
+ "n_checks": 7,
+ "n_pass": 7,
+ "n_fail_load_bearing": 0,
+ "wall_s": 1060.9196779727936
+}

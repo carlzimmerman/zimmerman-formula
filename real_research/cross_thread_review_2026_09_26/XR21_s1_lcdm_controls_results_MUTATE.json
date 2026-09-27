@@ -1,0 +1,90 @@
+{
+ "lane": "XR21_s1_lcdm_controls",
+ "mutate": true,
+ "checks": {
+  "A1": {
+   "title": "A1 R1 (one species, Newtonian) reproduces L362's committed control LCDM flux P1D (z = 3, 2; all k_par) to 1e-10",
+   "ok": false,
+   "measured": "max relative deviation 7.3e-02",
+   "load_bearing": true
+  },
+  "A2": {
+   "title": "A2 R2 (two species; the H_Y operator run every step at infinite yield; the conversion hook idle) reproduces the same committed P1D to 1e-10, with an identically zero phantom and no conversion",
+   "ok": false,
+   "measured": "max relative deviation 3.6e-02; max |delta_ph| over all steps 6.8e+01; conversion events 0",
+   "load_bearing": true
+  },
+  "A3": {
+   "title": "A3 R3 (L346's CLASS settings; the H_Y path in FP9's reading at infinite yield) reproduces L346's committed LCDM matter power (14 log bins, z = 6, 3, 2) to 1e-10, and the lensing estimator returns the matter power exactly",
+   "ok": false,
+   "measured": "max relative deviation 1.0e-01; lensing / matter - 1: 3.5e+00; max |delta_ph| 1.4e+02",
+   "load_bearing": true
+  },
+  "A4": {
+   "title": "A4 R4 reproduces L366's committed sigma_8 and P1D",
+   "ok": true,
+   "measured": "not run under MUTATE",
+   "load_bearing": false
+  },
+  "A5": {
+   "title": "A5 R4's z = 2 threshold statistic reproduces XR12 A2",
+   "ok": true,
+   "measured": "not run under MUTATE",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "A1_A3": {
+   "A1": 0.07251332937920241,
+   "A2": 0.03585542242672335,
+   "A2_phantom_max": 68.33576930541915,
+   "A3": 0.10084752458241497,
+   "A3_lens": 3.479198926082879
+  }
+ },
+ "runs": {
+  "R1": {
+   "wall": 41.452993869781494,
+   "steps": 141,
+   "rss_gb": 1.319354368,
+   "n_particles": 884736,
+   "converted_events": 0,
+   "phantom_max": 0.0,
+   "L": 50.0,
+   "NG": 128,
+   "NP": 96,
+   "mode": "single",
+   "gravity": "hy"
+  },
+  "R2": {
+   "wall": 128.27025508880615,
+   "steps": 141,
+   "rss_gb": 1.44474112,
+   "n_particles": 1769472,
+   "converted_events": 0,
+   "phantom_max": 68.33576930541915,
+   "L": 50.0,
+   "NG": 128,
+   "NP": 96,
+   "mode": "two",
+   "gravity": "hy"
+  },
+  "R3": {
+   "wall": 41.267536878585815,
+   "steps": 141,
+   "rss_gb": 1.237549056,
+   "n_particles": 884736,
+   "converted_events": 0,
+   "phantom_max": 0.0,
+   "L": 50.0,
+   "NG": 128,
+   "NP": 96,
+   "mode": "single",
+   "gravity": "hy"
+  }
+ },
+ "n_checks": 5,
+ "n_pass": 2,
+ "n_fail_load_bearing": 3,
+ "wall_s": 129.98292183876038
+}

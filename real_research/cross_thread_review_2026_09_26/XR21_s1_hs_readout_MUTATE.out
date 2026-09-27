@@ -1,0 +1,47 @@
+XR21_s1_hs_readout -- STAGE 1 (code tests for FP13's separator H_S read ON THE FLY): the box reads L and y_th from its own
+nonlinear matter field, and how that reading compares with FP13's committed (halofit) readout.
+
+STATUS OF H_S (the coordinator, relaying XR18, after this lane was specified): FP13's H_S is linearly ILL-POSED as written at
+z <= 0.635 -- the state term's leaf average puts an O(1) local force into the lapse and phi equations (R_B = 6.9-8.1 on FP13's
+headline state; the psi-constraint's symbol k^2 (1 - R_B) changes sign on k = 0.12-1.62 h/Mpc).  The repair belongs to the chain
+lead.  This script is therefore a CODE TEST of the live-readout machinery only; no H_S box number here is physics.  The box
+applies the readout as a prescribed functional: the state term's own force is NOT in the quasi-static operator, so these boxes
+can neither show nor rule out XR18's ill-posedness (no blow-up here means nothing about it).  The readout rules are pluggable
+(XR21_pm_core.HSLive: L_rule, y_rule) so a repaired readout -- B fixed by dS/dB = 0, or a <K>_h-type state -- drops in.
+
+WHY.  FP13 (27faacc84) replaced FP9's four declared constants with state functionals: L from <(S_B delta_m)^2>_h = delta_c^2
+(delta_c = 1.686, the MATTER readout, the ACTUAL nonlinear field) and y_th = c_y <|g_bp|^2>_h^(1/2)/a0 x max(0, 2q).  FP13 is
+explicit that its result is conditional on the action reading the actual nonlinear field, for which it used halofit LCDM as
+a stand-in.  A particle-mesh box can read its own field -- but only the field it resolves (the mesh, the fundamental mode,
+its particle noise).  Stage 1 builds the live readout (XR21_pm_core.HSLive), tests its arithmetic (XR21_s1_separator_linear
+H1), and here measures (i) the live reading of LCDM boxes against FP13's committed tables, at two resolutions and two box
+sizes, and (ii) the live readout feeding back inside a small H_S box, against the frozen (FP13) readout.  Whether delta_c stays
+inside the theory's own window (FP13: 1.3-2.6) on the actual field is stage 2's question; stage 1 supplies the instrument.
+
+RUNS (L362's CLASS ICs, seed 7; the live readout reads the TOTAL matter field on the mesh, the box average standing in for
+the leaf average)
+  B1  LCDM, 50 Mpc/h, 128^3 mesh, 128^3 particles (0.39 Mpc/h: the production cell)
+  B2  LCDM, 50 Mpc/h, 256^3 mesh, 256^3 particles (0.195 Mpc/h: 2x finer, the same box)
+  B3  LCDM, 100 Mpc/h, 256^3 mesh, 256^3 particles (0.39 Mpc/h in a 2x larger box)
+  M1  H_S LIVE, chain reading (the kernel reads the baryons; only baryons feel the phantom), 50 Mpc/h, 128^3 mesh, 2 x 128^3
+      particles, canonical footing -- the readout recomputed every step and fed to the operator
+  M2  H_S FROZEN (FP13's committed tables), otherwise M1
+
+  *** MUTATE=1: the live readout without its onset switch; D1 must FAIL ***
+
+  runs done [202 s]: B1 106 s/196 steps/1.3 GB; M1_live 199 s/196 steps/1.4 GB
+
+====================================================================================================================
+D1, D2  THE LIVE READOUT'S SWITCH AND ITS USE
+====================================================================================================================
+  [FAIL] D1 [code] THE LIVE YIELD OBEYS FP13'S RAMP: y_th = 0 exactly wherever 2q <= 0 (z <= 0.635) and y_th > 0 wherever 2q > 0 with the band-pass open -- every LCDM readout (3 boxes, 12 epochs, both footings) and every step of the live H_S box
+         measured: 33 readouts at 2q <= 0, 58 at 2q > 0 with the band-pass open; violations 33
+  [PASS] D2 [code] THE READOUT FEEDS THE OPERATOR: in the live H_S box the readout is taken at every force evaluation and the operator's band-pass length is the readout's (to 1e-12)
+         measured: 197 readouts for 196 steps (+1 initial); max |L_operator - L_readout| 0.0e+00
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  MUTATE: without the onset switch the live yield stays on after the leaf accelerates, as FP13's own MUTATE says.
+
+  1/2 checks pass; load-bearing failures: 1; wrote XR21_s1_hs_readout_results_MUTATE.json   [202 s]

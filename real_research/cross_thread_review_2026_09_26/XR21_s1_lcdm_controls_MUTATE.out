@@ -1,0 +1,62 @@
+XR21_s1_lcdm_controls -- STAGE 1, TESTS 1 AND 2 (code tests): in the no-MOND, no-conversion limit the XR21 particle-mesh box
+(XR21_pm_core) reproduces committed LCDM particle-mesh numbers of the record, and its forest and lensing estimators return
+their committed LCDM values.  Also: the run time and memory of each box (for the production plan).
+
+WHY.  Stage 1 of lane XR21 builds a PM box for the derivation chain's current model (FP7's AQUAL-type root + FP9's separator
+H_Y in the QUMOND-type approximation; FK1's dark fluid with its own density trigger).  Before any model number is read, the
+box must be the record's box when the model is switched off -- the same ICs, integrator, force, estimators -- with the new
+code paths (two species, the H_Y operator, the conversion hooks) exercised in their OFF limit, not bypassed.
+
+RUNS (every run is the record's configuration; the committed numbers are read from the record's JSON)
+  R1  L362's control box: 50 Mpc/h, 128^3 mesh, 96^3 particles, Zel'dovich ICs at z = 49 from L362's CLASS (seed 7), the
+      record's KDK in ln a (dlna = 0.02), one species, Newtonian.  -> flux P1D at z = 3 and 2 (L362's FGPA estimator).
+  R2  R1's box with TWO species (baryons f_b + the dark fluid, co-located at t_i, L366's layout), the H_Y operator ON in the
+      chain reading with the yield at infinity (every step runs the band-pass, the kernel, the divergence and the Poisson
+      solve, and returns an exactly zero phantom), and FK1's conversion hook ON with an infinite threshold.  The forest is
+      read from the baryon particles (L366's convention).
+  R3  L346's box (L176's machinery: the same geometry, L346's own CLASS settings, P_k_max = 20, clip at 20 h/Mpc), one
+      species, the H_Y operator ON in FP9's reading with the yield at infinity.  -> L346's matter-power estimator at z = 6, 3, 2,
+      and the lensing estimator P(delta_m + delta_ph) through the phantom path.
+  R4  L366's box (the one L388's control C1 reproduces): 100 Mpc/h, 256^3 mesh, 2 x 192^3 particles (baryons + carrier,
+      co-located), L362's CLASS, seed 7, Newtonian.  -> sigma_8 at z = 0 (L366's estimator), the flux P1D at z = 3 and 2
+      (L366's committed LCDM values), the carrier's mass fraction above FK1's nominal threshold on the z = 2 mesh (XR12 A2's
+      committed seed-7 number), and the record's cosmic-shear bins at z = 0.5 (L367's estimator; reported).
+  R5  (reported) timing probes of the H_Y chain-reading force at production sizes (1 thread; 4 threads for the FFTs and the
+      particle chunks), and every run's wall time, step count and peak memory.
+
+  *** MUTATE=1: R1-R3 run with the H_Y operator ON at FP9's headline yield; A1-A3 must FAIL ***
+
+  small runs done [130 s]: R1: 41 s, 141 steps, 1.32 GB; R2: 128 s, 141 steps, 1.44 GB; R3: 41 s, 141 steps, 1.24 GB
+
+====================================================================================================================
+A1-A3  THE OFF LIMIT REPRODUCES THE RECORD'S LCDM BOXES (50 Mpc/h, 128^3 mesh, 96^3 particles)
+====================================================================================================================
+  [FAIL] A1 R1 (one species, Newtonian) reproduces L362's committed control LCDM flux P1D (z = 3, 2; all k_par) to 1e-10
+         measured: max relative deviation 7.3e-02
+         reading:  the record's ICs, integrator, CIC and FGPA estimator are reproduced (bincount deposits, real FFTs)
+  [FAIL] A2 R2 (two species; the H_Y operator run every step at infinite yield; the conversion hook idle) reproduces the same committed P1D to 1e-10, with an identically zero phantom and no conversion
+         measured: max relative deviation 3.6e-02; max |delta_ph| over all steps 6.8e+01; conversion events 0
+  [FAIL] A3 R3 (L346's CLASS settings; the H_Y path in FP9's reading at infinite yield) reproduces L346's committed LCDM matter power (14 log bins, z = 6, 3, 2) to 1e-10, and the lensing estimator returns the matter power exactly
+         measured: max relative deviation 1.0e-01; lensing / matter - 1: 3.5e+00; max |delta_ph| 1.4e+02
+
+====================================================================================================================
+A4-A6  L366'S BOX (100 Mpc/h, 256^3 mesh, 2 x 192^3 particles): sigma_8, the forest, the trigger's input
+====================================================================================================================
+  [PASS] A4 R4 reproduces L366's committed sigma_8 and P1D  (reported, not load-bearing)
+         measured: not run under MUTATE
+  [PASS] A5 R4's z = 2 threshold statistic reproduces XR12 A2  (reported, not load-bearing)
+         measured: not run under MUTATE
+
+====================================================================================================================
+R5  RUN TIME AND MEMORY (every run above; H_Y chain-force probes at production sizes)
+====================================================================================================================
+    R1: L = 50 Mpc/h, mesh 128^3, 884736 particles (single, hy): 41 s for 141 steps = 0.29 s/step, peak 1.32 GB
+    R2: L = 50 Mpc/h, mesh 128^3, 1769472 particles (two, hy): 128 s for 141 steps = 0.91 s/step, peak 1.44 GB
+    R3: L = 50 Mpc/h, mesh 128^3, 884736 particles (single, hy): 41 s for 141 steps = 0.29 s/step, peak 1.24 GB
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  MUTATE: the model switched on breaks the reproduction, as it must.
+
+  2/5 checks pass; load-bearing failures: 3; wrote XR21_s1_lcdm_controls_results_MUTATE.json   [130 s]

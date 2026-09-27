@@ -1,0 +1,113 @@
+XR21_s1_separator_linear -- STAGE 1, TEST 3 AND THE OPERATOR'S UNIT TESTS: the chain's separator in the particle-mesh box
+against the chain's committed linear predictions.  The separator is FP13's H_S (the chain's separator since 27faacc84:
+its scales are read from the state); FP9's H_Y is kept as a code option and tested alongside.
+
+WHY.  The box (XR21_pm_core) puts FP7's AQUAL-type root with the separator on a mesh in the QUMOND-type approximation the
+chain's lead accepted for a first pass (labelled wherever used).  Before stage 2 reads a nonlinear number, the operator must
+(i) have the right units, (ii) reproduce the chain's committed spherical law, (iii) respond to a Gaussian field as the Gaussian
+(Stein) identity says it must, and (iv) evolve a linear box the way the chain's own linear yardstick does when it is given
+the yardstick's own rule.  Then the lead's test: does the model's real-space operator reproduce the committed linear boosts?
+
+THE SEPARATORS (both a0 footings throughout; FP0: 9.3603e-11 canonical, 1.1312e-10 alt)
+  H_S  (FP13, headline):  B = L^2/2 from <(S_B delta_m)^2>_h = delta_c^2 (delta_c = 1.686, matter readout, the NONLINEAR field;
+       no root -> band-pass closed), y_th = c_y <|g_bp|^2>_h^(1/2)/a0 x max(0, 2q) (c_y = 1; the ramp switches the yield off
+       once the leaf accelerates, z < 0.635).  FROZEN: FP13's committed functions (halofit LCDM) on its ln a grid, exec'd
+       read-only and reproduced (K2).  LIVE: read from the box's own mesh field each step (XR21_pm_core.HSLive).
+  H_Y  (FP9): L = L_Lambda Omega_L^(n/2), y_th = y_Lambda Omega_L^(-p'), the headline cell (2.46 Mpc, 2, 7.8e-8, 4).
+  Kernel P2 with the yield (FP9 Y1).  lambda > 0 (FP13 A1) enters only the tracking weight, which the quasi-static box omits (P5).
+  STATUS (the coordinator, relaying XR18, after this script was written): H_S is linearly ILL-POSED as written at z <= 0.635 (the
+  state term's own O(1) force in the lapse and phi equations, absent from this quasi-static operator); H_Y is linearly healthy.
+  Every H_S row below is a CODE comparison with FP13's committed yardstick, not physics; the H_Y rows are the healthy option's.
+
+====================================================================================================================
+K  CONTROLS: the chain's committed machinery, exec'd read-only, reproduces its committed numbers
+====================================================================================================================
+  [PASS] K1 CONTROL: FP9's exec'd machinery reproduces FP9's committed H_Y linear P boost (H2c; z = 0, 0.25; q = 0.1-1)
+         measured: max relative deviation 0.0e+00
+  [PASS] K2 CONTROL: FP13's exec'd state machinery reproduces FP13's committed H_S tables (H1: L at z = 0-3, y_th at z = 0-3)
+         measured: max deviation 0.0e+00
+  [PASS] K3 CONTROL: FP13's machinery (FP9's yardstick with FP13's model_of) reproduces FP13's committed H_S P boost (H4)
+         measured: max relative deviation 0.0e+00
+    committed linear P boost (per-mode yardstick): H_S (FP13 H4) z = 0: k 0.1: +0.0016, k 0.3: +0.0484, k 0.5: +0.2354, k 1.0: +1.9222; z = 0.25: k 0.1: +0.0005, k 0.3: +0.0146, k 0.5: +0.0734, k 1.0: +0.5991
+                                                   H_Y (FP9 H2c) z = 0: k 0.1: +0.0007, k 0.3: +0.0253, k 0.5: +0.1312, k 1.0: +1.3584; z = 0.25: k 0.1: +0.0003, k 0.3: +0.0124, k 0.5: +0.0658, k 1.0: +0.6492
+    H_S frozen (FP13): z 0.0: L 2879 kpc, y_th 0.00e+00, z 0.25: L 1914 kpc, y_th 0.00e+00, z 1.0: L 702 kpc, y_th 4.21e-03, z 2.0: L 252 kpc, y_th 1.00e-02, z 3.0: L 111 kpc, y_th 1.14e-02
+
+====================================================================================================================
+U  UNITS: the box's physical field against FP6's linear field
+====================================================================================================================
+  [PASS] U1 the box's physical field |grad phi|/a (units H0^2 Mpc/h -> m/s^2) equals FP6's linear gfield x sin(kd)/(kd) to 1e-9
+         measured: ratio 1.000000000000 (z = 1.50, k = 0.393 h/Mpc)
+  [PASS] U2 (reported flag) the record's kernel argument |grad phi|/a^2 (L346/L347/L362/DE11/DE11b) is (1+z) x the physical field; L377/L388's phantom uses 1/a  (reported, not load-bearing)
+         measured: ratio 2.500000 = 1 + z = 2.500000
+         reading:  a flag for those lanes' owners (the MOND kernel read a field (1+z) too strong: its tangent too weak at z = 2-3); not scored here
+
+====================================================================================================================
+S  STATIC: the mesh operator against the chain's spherical law (FP6's phantom() + FP9's yield hook)
+====================================================================================================================
+    H_Y z=0             : L = 14.6 cells, y_th = 3.51e-07; max |dg|/max|g| beyond 8 cells 0.0083; within 2 cells of the yield surface(s) at 0.0, 51.6 cells 0.0000; 4-8 cells 0.0421
+    H_Y z=0 yield 3e-4  : L = 14.6 cells, y_th = 3.00e-04; max |dg|/max|g| beyond 8 cells 0.0094; within 2 cells of the yield surface(s) at 0.3, 16.7 cells 0.0148; 4-8 cells 0.0440
+    H_Y z=2.5           : L = 18.0 cells, y_th = 1.41e-02; max |dg|/max|g| beyond 8 cells 0.0109; within 2 cells of the yield surface(s) at 0.4, 14.6 cells 0.0200; 4-8 cells 0.0403
+    H_S z=1 (yield on)  : L = 12.1 cells, y_th = 4.21e-03; max |dg|/max|g| beyond 8 cells 0.0001; within 2 cells of the yield surface(s) at 1.0, 9.6 cells 0.0410; 4-8 cells 0.0554
+    H_S z=0.25          : L = 13.8 cells, y_th = 0.00e+00; max |dg|/max|g| beyond 8 cells 0.0083; within 2 cells of the yield surface(s) at none cells 0.0000; 4-8 cells 0.0425
+  [PASS] S1 THE MESH OPERATOR IS THE CHAIN'S SPHERICAL LAW: for H_Y (z = 0; z = 0 with the yield exercised; z = 2.5) and H_S (z = 1 with its yield active; z = 0.25) the mesh phantom field matches FP6's committed phantom() law (band-pass, yield, output filter; a Gaussian source) to 2% of its peak beyond 8 cells away from yield surfaces, and to 5% within 2 cells of a yield surface; the law's point-mass limit is FP6's function
+         measured: H_Y z=0: 0.0083/0.0000; H_Y z=0 yield 3e-4: 0.0094/0.0148; H_Y z=2.5: 0.0109/0.0200; H_S z=1 (yield on): 0.0001/0.0410; H_S z=0.25: 0.0083/0.0000; point-mass limit vs FP6 phantom() 9.6e-16
+         reading:  in spherical symmetry QUMOND = AQUAL, so this tests the operator itself; its error is set by distance in cells, and at a yield surface by the kink of X ~ sqrt(D) the mesh smooths (~3-4% of the peak at 12 cells per L)
+
+====================================================================================================================
+G, H  A GAUSSIAN FIELD: the operator's linear response (Stein) and the live readout
+====================================================================================================================
+    HS z=1.0  : cbar 2.7966 vs Stein 2.7945 (dev 7.4e-04); cross-spectrum / (cbar h^2 S_FD) in 8 log bins (0.3-3 h/Mpc): 0.993+-0.031, 1.023+-0.021, 0.981+-0.013, 1.013+-0.008, 1.001+-0.005, 1.000+-0.004, 1.000+-0.003, 1.000+-0.003; y_rms 3.53e-03, y_th 4.21e-03, L 0.946 Mpc/h
+    HY z=1.0  : cbar 16.7286 vs Stein 16.7315 (dev 1.7e-04); cross-spectrum / (cbar h^2 S_FD) in 8 log bins (0.3-3 h/Mpc): 0.999+-0.024, 0.997+-0.017, 1.003+-0.010, 0.998+-0.006, 0.999+-0.004, 1.000+-0.002, 1.000+-0.001, 1.000+-0.001; y_rms 2.81e-03, y_th 3.67e-05, L 0.712 Mpc/h
+    HS z=0.25 : cbar 16.4356 vs Stein 16.4416 (dev 3.7e-04); cross-spectrum / (cbar h^2 S_FD) in 8 log bins (0.3-3 h/Mpc): 1.003+-0.022, 0.997+-0.016, 1.004+-0.008, 0.997+-0.004, 1.001+-0.002, 1.000+-0.001, 0.999+-0.001, 1.000+-0.001; y_rms 2.93e-03, y_th 0.00e+00, L 1.611 Mpc/h
+    HY z=0.25 : cbar 19.0198 vs Stein 19.0251 (dev 2.8e-04); cross-spectrum / (cbar h^2 S_FD) in 8 log bins (0.3-3 h/Mpc): 1.002+-0.023, 0.996+-0.017, 1.004+-0.010, 0.997+-0.006, 1.000+-0.003, 1.000+-0.002, 1.000+-0.001, 1.000+-0.001; y_rms 2.22e-03, y_th 1.00e-06, L 1.095 Mpc/h
+  [PASS] G1 THE OPERATOR'S LINEAR RESPONSE IS STEIN'S: on a Gaussian field (both separators; z = 1 with H_S's yield active, z = 0.25) the coherent coefficient <W.G>/<|G|^2> equals its Maxwell expectation to 1%, and the phantom-matter cross-spectrum in 8 log bins (0.3-3 h/Mpc) equals cbar h_k^2 S_FD(k) within 2% + 3 sigma (sigma: the realisation noise of the incoherent part, measured)
+         measured: HS z=1.0: 7.4e-04/2.3e-02; HY z=1.0: 1.7e-04/3.5e-03; HS z=0.25: 3.7e-04/3.9e-03; HY z=0.25: 2.8e-04/4.2e-03
+         reading:  the real-space kernel responds to each mode with ONE coefficient set by the whole band-passed field (not the mode's own amplitude, as the per-mode yardstick assumes)
+    live readout z=1.0: L 0.447364 vs independent 0.447364 Mpc/h; y_th 7.7261e-04 vs 7.7261e-04; unsmoothed sigma 3.581; FP13 (halofit, nonlinear) L 0.946 Mpc/h, y_th 4.21e-03
+    live readout z=0.25: L 0.962331 vs independent 0.962331 Mpc/h; y_th 0.0000e+00 vs 0.0000e+00; unsmoothed sigma 5.165; FP13 (halofit, nonlinear) L 1.611 Mpc/h, y_th 0.00e+00
+  [PASS] H1 THE LIVE READOUT'S ARITHMETIC: H_S live's L (the variance root) and y_th (the band-passed rms x the ramp) equal an independent real-space evaluation on the same Gaussian field to 1e-6
+         measured: z=1.0: L 1.7e-15, y 1.8e-15; z=0.25: L 3.6e-13, y 0.0e+00
+         reading:  a LINEAR field read by the live readout gives a different L than FP13's halofit (nonlinear) reading: the live readout is only as nonlinear as the box's field -- stage 1's LCDM boxes measure that in XR21_s1_hs_readout
+
+====================================================================================================================
+P  THE LINEAR BOXES (amplitude 1e-4; fixed amplitudes; z_i = 9; exact growing mode)
+====================================================================================================================
+    14 linear boxes done [1422 s]: real_HS_chain_canonical 571 s/3.8 GB; real_HY_chain_canonical 572 s/5.6 GB; lcdm24 242 s/2.5 GB; perm_HS_canonical 277 s/2.5 GB; perm_HY_canonical 300 s/2.6 GB; perm_HS_alt 305 s/3.8 GB; perm_HY_alt 306 s/5.6 GB; real_HS_fp9_canonical 312 s/3.7 GB; real_HY_fp9_canonical 309 s/3.9 GB; real_HS_fp9_alt 308 s/5.6 GB; real_HY_fp9_alt 257 s/3.7 GB; lcdm200 65 s/4.0 GB; perm_HS_canonical_200 69 s/5.6 GB; perm_HY_canonical_200 62 s/4.0 GB
+    perm_HS_canonical       : vs the yardstick at the box's shells, max |(1+b_box)/(1+b_yard) - 1| z=1/0.25/0: 0.0000/0.0072/0.0145; vs committed: z0.0 k0.3: +0.0556 vs +0.0484, z0.0 k0.5: +0.2426 vs +0.2354, z0.0 k1.0: +1.9436 vs +1.9222, z0.25 k0.3: +0.0167 vs +0.0146, z0.25 k0.5: +0.0756 vs +0.0734, z0.25 k1.0: +0.6035 vs +0.5991
+    perm_HY_canonical       : vs the yardstick at the box's shells, max |(1+b_box)/(1+b_yard) - 1| z=1/0.25/0: 0.0006/0.0063/0.0114; vs committed: z0.0 k0.3: +0.0293 vs +0.0253, z0.0 k0.5: +0.1348 vs +0.1312, z0.0 k1.0: +1.3552 vs +1.3584, z0.25 k0.3: +0.0144 vs +0.0124, z0.25 k0.5: +0.0675 vs +0.0658, z0.25 k1.0: +0.6471 vs +0.6492
+    perm_HS_alt             : vs the yardstick at the box's shells, max |(1+b_box)/(1+b_yard) - 1| z=1/0.25/0: 0.0000/0.0078/0.0154
+    perm_HY_alt             : vs the yardstick at the box's shells, max |(1+b_box)/(1+b_yard) - 1| z=1/0.25/0: 0.0006/0.0067/0.0120
+    perm_HS_canonical_200   : vs the yardstick at the box's shells, max |(1+b_box)/(1+b_yard) - 1| z=1/0.25/0: 0.0000/0.0002/0.0011; vs committed: z0.0 k0.1: +0.0016 vs +0.0016, z0.0 k0.3: +0.0481 vs +0.0484, z0.25 k0.1: +0.0004 vs +0.0005, z0.25 k0.3: +0.0142 vs +0.0146
+    perm_HY_canonical_200   : vs the yardstick at the box's shells, max |(1+b_box)/(1+b_yard) - 1| z=1/0.25/0: 0.0001/0.0001/0.0003; vs committed: z0.0 k0.1: +0.0007 vs +0.0007, z0.0 k0.3: +0.0250 vs +0.0253, z0.25 k0.1: +0.0003 vs +0.0003, z0.25 k0.3: +0.0122 vs +0.0124
+  [PASS] P1 [code] FP9'S PER-MODE RULE IN THE BOX IS THE CHAIN'S LINEAR YARDSTICK: for H_S (FP13's committed readout, frozen) and H_Y the box's linear P boost equals the chain's own per-mode yardstick at the box's shells (0.2 < k <= 1.2; z = 1, 0.25, 0; both footings) and the committed boosts (FP13 H4, FP9 H2c; q = 0.1-1; z = 0, 0.25) to 2% on (1 + b)
+         measured: worst at the shells 0.0154; worst vs committed 0.0073
+         reading:  the integrator, the band-pass, the yield, the running readouts and both footings are right in the box: it reproduces the chain's linear numbers when given the chain's linear rule
+    real_HS_chain_canonical : box vs Stein (own cbar(a)) max |(1+b_box)/(1+b_Stein) - 1| z=1/0.25/0: 0.0000/0.0005/0.0015
+    real_HY_chain_canonical : box vs Stein (own cbar(a)) max |(1+b_box)/(1+b_Stein) - 1| z=1/0.25/0: 0.0000/0.0010/0.0021
+    real_HS_fp9_canonical   : box vs Stein (own cbar(a)) max |(1+b_box)/(1+b_Stein) - 1| z=1/0.25/0: 0.0009/0.0082/0.0234
+    real_HY_fp9_canonical   : box vs Stein (own cbar(a)) max |(1+b_box)/(1+b_Stein) - 1| z=1/0.25/0: 0.0014/0.0169/0.0301
+    real_HS_fp9_alt         : box vs Stein (own cbar(a)) max |(1+b_box)/(1+b_Stein) - 1| z=1/0.25/0: 0.0010/0.0092/0.0257
+    real_HY_fp9_alt         : box vs Stein (own cbar(a)) max |(1+b_box)/(1+b_Stein) - 1| z=1/0.25/0: 0.0014/0.0185/0.0333
+  [PASS] P2 [code] THE REAL-SPACE OPERATOR EVOLVES AS ITS OWN GAUSSIAN RESPONSE SAYS: every real-space linear box (H_S and H_Y; all-matter and chain readings; both footings) matches the Stein yardstick built from its own cbar(a) to 1% on (1 + b_m) at z = 1 and 5% at z = 0.25, 0
+         measured: real_HS_chain_canonical: 0.0000/0.0005/0.0015; real_HY_chain_canonical: 0.0000/0.0010/0.0021; real_HS_fp9_canonical: 0.0009/0.0082/0.0234; real_HY_fp9_canonical: 0.0014/0.0169/0.0301; real_HS_fp9_alt: 0.0010/0.0092/0.0257; real_HY_fp9_alt: 0.0014/0.0185/0.0333
+         reading:  the residual at late times is the incoherent part of a non-analytic kernel (power uncorrelated with the linear field)
+    H_S vs FP13 H4: z0.25 k0.3: box +0.0091 vs +0.0146 (x0.63), z0.25 k0.5: box +0.0529 vs +0.0734 (x0.72), z0.25 k1.0: box +0.5470 vs +0.5991 (x0.91), z0.0 k0.3: box +0.0242 vs +0.0484 (x0.50), z0.0 k0.5: box +0.1401 vs +0.2354 (x0.60), z0.0 k1.0: box +1.5352 vs +1.9222 (x0.80)
+    H_Y vs FP9 H2c: z0.25 k0.3: box +0.0039 vs +0.0124 (x0.32), z0.25 k0.5: box +0.0242 vs +0.0658 (x0.37), z0.25 k1.0: box +0.3313 vs +0.6492 (x0.51), z0.0 k0.3: box +0.0072 vs +0.0253 (x0.28), z0.0 k0.5: box +0.0443 vs +0.1312 (x0.34), z0.0 k1.0: box +0.6209 vs +1.3584 (x0.46)
+  [FAIL] P3 [reported; the lead's literal test] the model's real-space box reproduces the committed linear boosts (FP13 H4 for H_S, FP9 H2c for H_Y; q = 0.3, 0.5, 1.0; z = 0.25, 0) within 25% on b -- pre-declared expectation: it does NOT (low)  (reported, not load-bearing)
+         measured: H_S vs FP13 H4: b_box/b_committed 0.63/0.72/0.91/0.50/0.60/0.80; H_Y vs FP9 H2c: b_box/b_committed 0.32/0.37/0.51/0.28/0.34/0.46
+         reading:  b_box/b_committed < 1 everywhere means the per-mode yardstick OVERSTATES the linear boost of the chain's own real-space operator (G1: one coefficient from the whole band-passed field, not each mode's own amplitude)
+    real_HS_chain_canonical: z0.25 k0.3: matter +0.0004 baryons +0.0028 lensing +0.202 (all-matter reading: matter +0.0091, lensing +0.455); z0.25 k0.5: matter +0.0025 baryons +0.0159 lensing +1.311 (all-matter reading: matter +0.0529, lensing +3.503); z0.25 k1.0: matter +0.0211 baryons +0.1374 lensing +20.577 (all-matter reading: matter +0.5470, lensing +100.534); z0.0 k0.3: matter +0.0015 baryons +0.0095 lensing +0.440 (all-matter reading: matter +0.0242, lensing +0.961); z0.0 k0.5: matter +0.0083 baryons +0.0530 lensing +3.006 (all-matter reading: matter +0.1401, lensing +8.304); z0.0 k1.0: matter +0.0638 baryons +0.4352 lensing +44.539 (all-matter reading: matter +1.5352, lensing +260.403)
+    real_HY_chain_canonical: z0.25 k0.3: matter +0.0003 baryons +0.0018 lensing +0.045 (all-matter reading: matter +0.0039, lensing +0.081); z0.25 k0.5: matter +0.0017 baryons +0.0109 lensing +0.280 (all-matter reading: matter +0.0242, lensing +0.533); z0.25 k1.0: matter +0.0214 baryons +0.1375 lensing +4.963 (all-matter reading: matter +0.3313, lensing +13.632); z0.0 k0.3: matter +0.0006 baryons +0.0035 lensing +0.055 (all-matter reading: matter +0.0072, lensing +0.098); z0.0 k0.5: matter +0.0035 baryons +0.0216 lensing +0.351 (all-matter reading: matter +0.0443, lensing +0.649); z0.0 k1.0: matter +0.0410 baryons +0.2681 lensing +6.915 (all-matter reading: matter +0.6209, lensing +19.631)
+  [PASS] P4 [reported] THE CHAIN READING (FP10/L353: the kernel reads the baryons, only they feel the phantom) against the one-fluid yardstick FP9/FP13 use (all matter sources and feels the MOND): the linear total-matter, baryon and lensing boosts  (reported, not load-bearing)
+         measured: see the rows above (P4 in the JSON)
+         reading:  a convention mismatch the chain carries (flagged for the lead); in both readings the LINEAR lensing boost at k >= 0.5 h/Mpc is far above cosmic shear's 20% -- the linear regime overstates the kernel (fields too weak); stage 2 decides
+  [PASS] P5 [reported] THE QUASI-STATIC APPROXIMATION: FP9's tracking weight at the runs' cbar(a), over the box's k range, z <= 1  (reported, not load-bearing)
+         measured: max (1 - w) = 1.0e-03 (lambda = 0; lambda > 0, which FP13 requires, only raises c_s^-1 x lambda_eff -- see note)
+         reading:  the omitted tracking lag is below 1e-2 wherever the band-pass is open; with FP13's required lambda > 0 the weight is 1/(1 + H^2 cbar (lambda + 277 h^2)/(c^2 k^2)): lambda up to ~1e5 keeps it below a few per cent at k >= 0.3 h/Mpc
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  The operator has the right units, reproduces the chain's spherical law, responds to a Gaussian field exactly as Stein's identity requires, and -- given the chain's own per-mode rule -- reproduces FP13's and FP9's committed linear boosts.  The model's real-space operator does NOT reproduce them (P3): the per-mode yardstick overstates its linear boost.
+
+  12/13 checks pass; load-bearing failures: 0; wrote XR21_s1_separator_linear_results.json   [1424 s]

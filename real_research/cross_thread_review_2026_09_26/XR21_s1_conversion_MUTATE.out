@@ -1,0 +1,82 @@
+XR21_s1_conversion -- STAGE 1,
+
+  *** MUTATE=1: v_k = 0 and no sub-grid term; T4c and T5b must FAIL ***
+
+  runs done [291 s]
+
+====================================================================================================================
+C0, T4  MOND OFF, CONVERSION ON: the bookkeeping and the kick
+====================================================================================================================
+  [PASS] C0 CONTROL: the conversion hook with an infinite threshold leaves the two-species box bit-identical to the plain box
+         measured: max |dx| 0.0e+00
+    122603 conversion events in 196 steps (45 s); converted share of the carrier: z 3.0: 0.0023, z 2.0: 0.0403, z 1.0: 0.2221, z 0.5: 0.3664, z 0.0: 0.4677
+  [PASS] T4a mass is conserved through every conversion (relative 1e-12) and carried by the mesh (deposit sum = 1 to 1e-12)
+         measured: max relative change 4.4e-16; mesh sum - 1: 2.2e-16; total mass at z = 0 1.000000000000000
+  [PASS] T4b momentum is conserved through every conversion (relative to sum m|p|, 1e-12)
+         measured: max 7.8e-16
+  [FAIL] T4c every daughter leaves its parent at v_k = 600 km/s (relative 1e-12) and the pair is back to back (1e-12)
+         measured: max |v_rel/v_k - 1| 0.0e+00 (max v_rel 0.000 km/s); back-to-back residual 0.0e+00
+  [PASS] T4d the kinetic energy gained per conversion call equals sum m v_k^2/2 (FK1 A1's latent heat) to 1e-10
+         measured: max relative deviation 8.9e-16
+  [PASS] T4e the emission directions are isotropic: |mean n| < 4/sqrt(N)
+         measured: |mean n| 2.08e-03 vs 1.14e-02 (N = 122603)
+  [FAIL] T4f FORCE-FREE CONTROL: the daughters move ballistically after emission -- displacement = p x the leapfrog's own drift factor sum(dt/a^2) (1e-12), peculiar speed relative to the parent = v_k a_emit/a (1e-12)
+         measured: a_emit 0.2551; drift vs the leapfrog's sum 1.2e-14; decay 0.0e+00; 8192 daughters from 4096 parents
+  [PASS] T4f' (reported) the record's KDK drift factor against the continuous int da/(a^3 E) from emission to z = 0  (reported, not load-bearing)
+         measured: relative difference 1.83e-02 at dlna = 0.02 (first order in dlna: the free-streaming daughters' comoving travel is overstated by this much -- a stage-3 systematic, halved by dlna = 0.01)
+  [PASS] T4g (reported) the mesh trigger's converted share of the carrier at the production cell (0.39 Mpc/h) and re-accretion at z = 0  (reported, not load-bearing)
+         measured: converted z 3.0: 0.0023, z 2.0: 0.0403, z 1.0: 0.2221, z 0.5: 0.3664, z 0.0: 0.4677; light/heavy mass in dense cells (rho > 50) at z = 0: 23.065 (box-wide 0.879)
+         reading:  at 600 km/s the daughters escape the dense cells: light/heavy there is below the box-wide ratio -- the re-accretion the box follows; a 25 Mpc/h box has few groups (stage 3 uses 100 Mpc/h)
+
+====================================================================================================================
+T5  THE SUB-GRID PRESCRIPTION AND THE MESH TRIGGER
+====================================================================================================================
+    mesh 256^3 (d = 0.0781 Mpc/h; the one-cell threshold mass M1 = 6.85e+08 Msun/h):
+      M 1e+09 (M/M1      1.5, r_vir  0.31 cells, x16): mesh/exact cap 0.000, cleared 0.013; clump's seen share 0.000 (+- 0.001) vs detection function 0.002; exact share 0.916
+      M 3e+09 (M/M1      4.4, r_vir  0.45 cells, x16): mesh/exact cap 0.119, cleared 0.481; clump's seen share 0.109 (+- 0.126) vs detection function 0.149; exact share 0.916
+      M 1e+10 (M/M1     14.6, r_vir  0.68 cells, x16): mesh/exact cap 0.724, cleared 1.024; clump's seen share 0.655 (+- 0.057) vs detection function 0.652; exact share 0.916
+      M 3e+10 (M/M1     43.8, r_vir  0.98 cells, x16): mesh/exact cap 0.933, cleared 1.014; clump's seen share 0.844 (+- 0.018) vs detection function 0.840; exact share 0.916
+      M 1e+11 (M/M1    146.0, r_vir  1.46 cells, x16): mesh/exact cap 0.995, cleared 1.006; clump's seen share 0.904 (+- 0.002) vs detection function 0.904; exact share 0.916
+      M 3e+11 (M/M1    437.9, r_vir  2.10 cells, x16): mesh/exact cap 1.002, cleared 1.004; clump's seen share 0.912 (+- 0.001) vs detection function 0.912; exact share 0.916  [resolved]
+      M 1e+12 (M/M1   1459.5, r_vir  3.14 cells, x16): mesh/exact cap 0.995, cleared 1.002; clump's seen share 0.907 (+- 0.000) vs detection function 0.907; exact share 0.916  [resolved]
+      M 3e+12 (M/M1   4378.5, r_vir  4.53 cells, x1): mesh/exact cap 0.993, cleared 1.001; clump's seen share 0.905 (+- 0.000) vs detection function 0.916; exact share 0.916  [resolved]
+      M 1e+13 (M/M1  14595.0, r_vir  6.77 cells, x1): mesh/exact cap 0.992, cleared 1.001; clump's seen share 0.905 (+- 0.000) vs detection function 0.916; exact share 0.916  [resolved]
+      M 3e+13 (M/M1  43785.1, r_vir  9.77 cells, x1): mesh/exact cap 0.993, cleared 1.001; clump's seen share 0.906 (+- 0.000) vs detection function 0.916; exact share 0.916  [resolved]
+      M 1e+14 (M/M1 145950.2, r_vir 14.59 cells, x1): mesh/exact cap 0.995, cleared 1.000; clump's seen share 0.907 (+- 0.000) vs detection function 0.916; exact share 0.916  [resolved]
+    mesh 64^3 (d = 0.3125 Mpc/h; the one-cell threshold mass M1 = 4.39e+10 Msun/h):
+      M 1e+09 (M/M1      0.0, r_vir  0.08 cells, x16): mesh/exact cap 0.000, cleared 0.000; clump's seen share 0.000 (+- 0.000) vs detection function 0.000; exact share 0.916
+      M 3e+09 (M/M1      0.1, r_vir  0.11 cells, x16): mesh/exact cap 0.000, cleared 0.000; clump's seen share 0.000 (+- 0.000) vs detection function 0.000; exact share 0.916
+      M 1e+10 (M/M1      0.2, r_vir  0.17 cells, x16): mesh/exact cap 0.000, cleared 0.000; clump's seen share 0.000 (+- 0.000) vs detection function 0.000; exact share 0.916
+      M 3e+10 (M/M1      0.7, r_vir  0.24 cells, x16): mesh/exact cap 0.000, cleared 0.000; clump's seen share 0.000 (+- 0.000) vs detection function 0.000; exact share 0.916
+      M 1e+11 (M/M1      2.3, r_vir  0.36 cells, x16): mesh/exact cap 0.015, cleared 0.097; clump's seen share 0.013 (+- 0.036) vs detection function 0.015; exact share 0.916
+      M 3e+11 (M/M1      6.8, r_vir  0.53 cells, x16): mesh/exact cap 0.353, cleared 0.923; clump's seen share 0.320 (+- 0.140) vs detection function 0.373; exact share 0.916
+      M 1e+12 (M/M1     22.8, r_vir  0.79 cells, x16): mesh/exact cap 0.808, cleared 1.015; clump's seen share 0.732 (+- 0.046) vs detection function 0.750; exact share 0.916
+      M 3e+12 (M/M1     68.4, r_vir  1.13 cells, x1): mesh/exact cap 0.946, cleared 1.009; clump's seen share 0.858 (+- 0.000) vs detection function 0.871; exact share 0.916
+      M 1e+13 (M/M1    228.0, r_vir  1.69 cells, x1): mesh/exact cap 0.996, cleared 1.005; clump's seen share 0.907 (+- 0.000) vs detection function 0.907; exact share 0.916
+      M 3e+13 (M/M1    684.1, r_vir  2.44 cells, x1): mesh/exact cap 0.997, cleared 1.003; clump's seen share 0.908 (+- 0.000) vs detection function 0.908; exact share 0.916  [resolved]
+      M 1e+14 (M/M1   2280.5, r_vir  3.65 cells, x1): mesh/exact cap 0.992, cleared 1.002; clump's seen share 0.904 (+- 0.000) vs detection function 0.906; exact share 0.916  [resolved]
+  [PASS] T5a WHERE THE MESH RESOLVES THE CLUMP (M >= 300 x the one-cell threshold mass, both meshes) the mesh trigger's converted mass equals the exact profile integral within 5% (cap and cleared); for EVERY clump the clump's seen share equals the sub-grid's detection function within 0.05 + 3 sigma (the sampling errors of the copies' mean and of the Monte Carlo) -- the hand-over is seamless: the sub-grid adds exactly what the mesh misses; the sub-grid's per-clump share 1 - delta_t/Delta_vir equals the exact cap share within 2%
+         measured: 8 resolved (mesh, size) cases within 5%: True; detection function within 0.05 everywhere: True; share 0.9109 vs exact 0.9163-0.9163
+         reading:  a density trigger sees a compact clump only once it lifts cells over the threshold: partially from ~3 M1, fully by ~300 M1 -- 'resolved' is a mass criterion, not r_vir in cells (the smoke run's first design used r_vir; disclosed)
+    run t5b_96 (force mesh 96^3 = 0.130 Mpc/h), z = 3.0: FINE mesh 0.0377 + sub-grid -> 0.0377;  COARSE (0.39): mesh 0.0001 + sub-grid -> 0.0001 (ratio 0.004, cell correlation 0.419);  census floor M_min = 6.61e+09 Msun/h;  sharp-cut form: 0.0893
+    run t5b_96 (force mesh 96^3 = 0.130 Mpc/h), z = 2.0: FINE mesh 0.1510 + sub-grid -> 0.1510;  COARSE (0.39): mesh 0.0384 + sub-grid -> 0.0384 (ratio 0.254, cell correlation 0.856);  census floor M_min = 3.12e+09 Msun/h;  sharp-cut form: 0.2522
+    run t5b_192 (force mesh 192^3 = 0.065 Mpc/h), z = 3.0: FINE mesh 0.0912 + sub-grid -> 0.0912;  COARSE (0.39): mesh 0.0002 + sub-grid -> 0.0002 (ratio 0.002, cell correlation 0.331);  census floor M_min = 6.61e+09 Msun/h;  sharp-cut form: 0.0941
+    run t5b_192 (force mesh 192^3 = 0.065 Mpc/h), z = 2.0: FINE mesh 0.2313 + sub-grid -> 0.2313;  COARSE (0.39): mesh 0.0420 + sub-grid -> 0.0420 (ratio 0.181, cell correlation 0.819);  census floor M_min = 3.12e+09 Msun/h;  sharp-cut form: 0.2593
+  [FAIL] T5b [reported; tolerance as declared] IN A COSMOLOGICAL BOX (LCDM, 12.5 Mpc/h, z = 3 and 2, cap) the production mesh (0.39 Mpc/h) plus its seamless sub-grid term reproduces a finer mesh plus ITS seamless term (the same EPS census above one 96^3 cell's threshold mass) within 30% (box total) with a per-cell correlation >= 0.5 -- scored on the better-resolved run (force mesh 192^3 = 0.065 Mpc/h); the 96^3 run is its resolution partner  (reported, not load-bearing)
+         measured: 96 z 3.0: 0.004; 96 z 2.0: 0.254; 192 z 3.0: 0.002; 192 z 2.0: 0.181; correlations >= 0.5: False
+         reading:  the SPATIAL pattern of the sub-grid term tracks the finer mesh (correlation) at both resolutions; the AMOUNT is the EPS census against the box's own clumps, which the box's force softening flattens below ~1e11 Msun/h -- see T5b-H
+  [FAIL] T5b-H [reported; pre-declared after the smoke runs] the coarse/fine mismatch shrinks when the fine run's own halos are better resolved (force mesh 96^3 -> 192^3): the finer mesh sees less than the census because its clumps are softened  (reported, not load-bearing)
+         measured: z 3.0: |ratio - 1| 0.996 -> 0.998; z 2.0: |ratio - 1| 0.746 -> 0.819
+         reading:  if it shrinks, the census is not the main error at this size; if not, Press-Schechter's conditional census overcounts and stage 3 must calibrate it (Sheth-Tormen or a resolved zoom)
+  [PASS] T5b0 (reported) the FIRST sub-grid form (a sharp cut at M_up = delta_t rho_bar V_cell; the smoke run, disclosed) on the same snapshots: the over-count the seamless form removes  (reported, not load-bearing)
+         measured: 96 z 3.0: sharp 0.0893 vs seamless 0.0001 vs fine 0.0377; 96 z 2.0: sharp 0.2522 vs seamless 0.0384 vs fine 0.1510; 192 z 3.0: sharp 0.0941 vs seamless 0.0002 vs fine 0.0912; 192 z 2.0: sharp 0.2593 vs seamless 0.0420 vs fine 0.2313
+  [PASS] T5c (reported) the production reading: the 0.39 Mpc/h mesh with the seamless sub-grid term down to M_min = 1e8 Msun (XR16's record value): box-mean converted fraction (a 12.5 Mpc/h box) against XR16's committed halo-model budget  (reported, not load-bearing)
+         measured: z 3.0: 0.312 (sub-grid alone 0.312); z 2.0: 0.486 (sub-grid alone 0.477) vs XR16 (Sheth-Tormen halo model) F(3)/F(2): most favourable 0.245/0.352, fiducial 0.342/0.433
+         reading:  EPS in Press-Schechter's conditional form, extrapolated from the resolved scale to the fluid's own M_min (labelled)
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  MUTATE: with no kick and no sub-grid term the daughters do not leave and the coarse mesh misses the resolved conversion.
+
+  10/14 checks pass; load-bearing failures: 2; wrote XR21_s1_conversion_results_MUTATE.json   [291 s]

@@ -1,0 +1,54 @@
+XR21_s1_separator_linear -- STAGE 1, TEST 3 AND THE OPERATOR'S UNIT TESTS: the chain's separator in the particle-mesh box
+against the chain's committed linear predictions.  The separator is FP13's H_S (the chain's separator since 27faacc84:
+its scales are read from the state); FP9's H_Y is kept as a code option and tested alongside.
+
+WHY.  The box (XR21_pm_core) puts FP7's AQUAL-type root with the separator on a mesh in the QUMOND-type approximation the
+chain's lead accepted for a first pass (labelled wherever used).  Before stage 2 reads a nonlinear number, the operator must
+(i) have the right units, (ii) reproduce the chain's committed spherical law, (iii) respond to a Gaussian field as the Gaussian
+(Stein) identity says it must, and (iv) evolve a linear box the way the chain's own linear yardstick does when it is given
+the yardstick's own rule.  Then the lead's test: does the model's real-space operator reproduce the committed linear boosts?
+
+THE SEPARATORS (both a0 footings throughout; FP0: 9.3603e-11 canonical, 1.1312e-10 alt)
+  H_S  (FP13, headline):  B = L^2/2 from <(S_B delta_m)^2>_h = delta_c^2 (delta_c = 1.686, matter readout, the NONLINEAR field;
+       no root -> band-pass closed), y_th = c_y <|g_bp|^2>_h^(1/2)/a0 x max(0, 2q) (c_y = 1; the ramp switches the yield off
+       once the leaf accelerates, z < 0.635).  FROZEN: FP13's committed functions (halofit LCDM) on its ln a grid, exec'd
+       read-only and reproduced (K2).  LIVE: read from the box's own mesh field each step (XR21_pm_core.HSLive).
+  H_Y  (FP9): L = L_Lambda Omega_L^(n/2), y_th = y_Lambda Omega_L^(-p'), the headline cell (2.46 Mpc, 2, 7.8e-8, 4).
+  Kernel P2 with the yield (FP9 Y1).  lambda > 0 (FP13 A1) enters only the tracking weight, which the quasi-static box omits (P5).
+  STATUS (the coordinator, relaying XR18, after this script was written): H_S is linearly ILL-POSED as written at z <= 0.635 (the
+  state term's own O(1) force in the lapse and phi equations, absent from this quasi-static operator); H_Y is linearly healthy.
+  Every H_S row below is a CODE comparison with FP13's committed yardstick, not physics; the H_Y rows are the healthy option's.
+
+  *** MUTATE=1: H_S without its onset switch and H_Y without its floor in the per-mode boxes; P1 must FAIL ***
+
+====================================================================================================================
+K  CONTROLS: the chain's committed machinery, exec'd read-only, reproduces its committed numbers
+====================================================================================================================
+  [PASS] K1 CONTROL: FP9's exec'd machinery reproduces FP9's committed H_Y linear P boost (H2c; z = 0, 0.25; q = 0.1-1)
+         measured: max relative deviation 0.0e+00
+  [PASS] K2 CONTROL: FP13's exec'd state machinery reproduces FP13's committed H_S tables (H1: L at z = 0-3, y_th at z = 0-3)
+         measured: max deviation 0.0e+00
+  [PASS] K3 CONTROL: FP13's machinery (FP9's yardstick with FP13's model_of) reproduces FP13's committed H_S P boost (H4)
+         measured: max relative deviation 0.0e+00
+    committed linear P boost (per-mode yardstick): H_S (FP13 H4) z = 0: k 0.1: +0.0016, k 0.3: +0.0484, k 0.5: +0.2354, k 1.0: +1.9222; z = 0.25: k 0.1: +0.0005, k 0.3: +0.0146, k 0.5: +0.0734, k 1.0: +0.5991
+                                                   H_Y (FP9 H2c) z = 0: k 0.1: +0.0007, k 0.3: +0.0253, k 0.5: +0.1312, k 1.0: +1.3584; z = 0.25: k 0.1: +0.0003, k 0.3: +0.0124, k 0.5: +0.0658, k 1.0: +0.6492
+    H_S frozen (FP13): z 0.0: L 2879 kpc, y_th 0.00e+00, z 0.25: L 1914 kpc, y_th 0.00e+00, z 1.0: L 702 kpc, y_th 4.21e-03, z 2.0: L 252 kpc, y_th 1.00e-02, z 3.0: L 111 kpc, y_th 1.14e-02
+
+====================================================================================================================
+P  THE LINEAR BOXES (amplitude 1e-4; fixed amplitudes; z_i = 9; exact growing mode)
+====================================================================================================================
+    6 linear boxes done [322 s]: lcdm24 241 s/2.4 GB; perm_HS_canonical 252 s/2.5 GB; perm_HY_canonical 252 s/2.5 GB; lcdm200 63 s/2.6 GB; perm_HS_canonical_200 67 s/2.7 GB; perm_HY_canonical_200 66 s/2.7 GB
+    perm_HS_canonical       : vs the yardstick at the box's shells, max |(1+b_box)/(1+b_yard) - 1| z=1/0.25/0: 0.0000/0.4900/0.7565; vs committed: z0.0 k0.3: +0.0000 vs +0.0484, z0.0 k0.5: +0.0000 vs +0.2354, z0.0 k1.0: +0.0000 vs +1.9222, z0.25 k0.3: +0.0000 vs +0.0146, z0.25 k0.5: +0.0000 vs +0.0734, z0.25 k1.0: +0.0000 vs +0.5991
+    perm_HY_canonical       : vs the yardstick at the box's shells, max |(1+b_box)/(1+b_yard) - 1| z=1/0.25/0: 0.0879/0.1092/0.1065; vs committed: z0.0 k0.3: +0.0333 vs +0.0253, z0.0 k0.5: +0.1497 vs +0.1312, z0.0 k1.0: +1.5096 vs +1.3584, z0.25 k0.3: +0.0181 vs +0.0124, z0.25 k0.5: +0.0807 vs +0.0658, z0.25 k1.0: +0.7596 vs +0.6492
+    perm_HS_canonical_200   : vs the yardstick at the box's shells, max |(1+b_box)/(1+b_yard) - 1| z=1/0.25/0: 0.0000/0.0225/0.0706; vs committed: z0.0 k0.1: +0.0000 vs +0.0016, z0.0 k0.3: +0.0000 vs +0.0484, z0.25 k0.1: +0.0000 vs +0.0005, z0.25 k0.3: +0.0000 vs +0.0146
+    perm_HY_canonical_200   : vs the yardstick at the box's shells, max |(1+b_box)/(1+b_yard) - 1| z=1/0.25/0: 0.0026/0.0050/0.0059; vs committed: z0.0 k0.1: +0.0010 vs +0.0007, z0.0 k0.3: +0.0289 vs +0.0253, z0.25 k0.1: +0.0005 vs +0.0003, z0.25 k0.3: +0.0156 vs +0.0124
+  [FAIL] P1 [code] FP9'S PER-MODE RULE IN THE BOX IS THE CHAIN'S LINEAR YARDSTICK: for H_S (FP13's committed readout, frozen) and H_Y the box's linear P boost equals the chain's own per-mode yardstick at the box's shells (0.2 < k <= 1.2; z = 1, 0.25, 0; both footings) and the committed boosts (FP13 H4, FP9 H2c; q = 0.1-1; z = 0, 0.25) to 2% on (1 + b)
+         measured: worst at the shells 0.7565; worst vs committed 0.6578
+         reading:  MUTATE: the yield's control removed
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  MUTATE: without the yield's control the box no longer reproduces the committed linear boosts, as it must.
+
+  3/4 checks pass; load-bearing failures: 1; wrote XR21_s1_separator_linear_results_MUTATE.json   [322 s]
