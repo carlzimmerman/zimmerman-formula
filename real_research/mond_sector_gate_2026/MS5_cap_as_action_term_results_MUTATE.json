@@ -1,0 +1,143 @@
+{
+ "lane": "MS5",
+ "mutate": true,
+ "checks": {
+  "A1 RECIPROCITY FOR ANY MOND-SECTOR READING: with U = C F(Phi_X', Phi_X'') varied, the gate's term enters the Phi and v equations with opposite signs, the other four equations are CV1's, and V_d = u_N exactly": {
+   "ok": false,
+   "measured": "v + Phi gate terms 0; others [0, 0, 0, 0]; V_d - u_N = C*Wp*(a0*(-a0**2*d1*log((a0**2 + Derivative(w(x), x)**2)/a0**2) - m2*sigma*w(x)**2 - m2*Psi(x)*w(x) + Psi(x)*Derivative(u(x), (x, 2)) - Psi(x)*Derivative(v(x), (x, 2))) - c1*(Derivative(w(x), x)**2)**(3/2))/(8*pi*G*a0)",
+   "load_bearing": true
+  },
+  "A2 the mean curvature of the equipotentials is 1/r for every spherical profile; lap Phi/|grad Phi| is (1 + beta_b/2)/r in deep MOND, 1/r only where the enclosed baryons have stopped rising": {
+   "ok": true,
+   "measured": "kappa = 1/r; lap/|grad| - (1 + beta/2)/r = 0",
+   "load_bearing": true
+  },
+  "N1 L395's form stays at l_cap on MS3's point-mass baryons but moves out wherever the baryons still rise at the cap": {
+   "ok": true,
+   "measured": "z = 0.5, 1e14.5 canonical: point 0.932, past r200 1.273",
+   "load_bearing": false
+  },
+  "S1 PRE-DECLARED: the kappa form reproduces MS3's K1 at 1.75 Mpc and passes; L395's form on baryons that keep tracing the host past r200 fails": {
+   "ok": false,
+   "measured": "kappa 1.418/1.567 (MS3 diff 4.5e-01); L395 past r200 1.418/1.567",
+   "load_bearing": true
+  },
+  "P1 the capped gate's fourth-order term has the stated closed form (zero residual): the kappa form's is transverse (k_perp^4) and carries a new definite-sign W'B/2 term; its bracket still changes sign inside the layer, as the uncapped door's W'' does": {
+   "ok": true,
+   "measured": "{'uncapped': '0', 'kappa': '0', 'L395': '0'}",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "A1": {
+   "v_residual": "0",
+   "others": {
+    "u": "0",
+    "lam": "0",
+    "Psi": "0",
+    "w": "0"
+   },
+   "leak": "C*Wp*(a0*(-a0**2*d1*log((a0**2 + Derivative(w(x), x)**2)/a0**2) - m2*sigma*w(x)**2 - m2*Psi(x)*w(x) + Psi(x)*Derivative(u(x), (x, 2)) - Psi(x)*Derivative(v(x), (x, 2))) - c1*(Derivative(w(x), x)**2)**(3/2))/(8*pi*G*a0)"
+  },
+  "A2": {
+   "kappa": "1/r",
+   "l395_ratio": "Derivative(M(r), r)/(2*M(r)) + 1/r"
+  },
+  "N1": {
+   "edge_over_lcap": {
+    "canonical/13.5": {
+     "point": 0.9834552999869863,
+     "nfw_trunc": 0.9834552999869863,
+     "nfw_ext": 1.2081603575373532
+    },
+    "canonical/14.0": {
+     "point": 0.9668391222584274,
+     "nfw_trunc": 0.9668391222584274,
+     "nfw_ext": 1.2370671062048229
+    },
+    "canonical/14.5": {
+     "point": 0.9316873376180308,
+     "nfw_trunc": 0.9316873376180308,
+     "nfw_ext": 1.2733741076286853
+    },
+    "canonical/15.0": {
+     "point": 0.8562413286485703,
+     "nfw_trunc": 1.004585364788807,
+     "nfw_ext": 1.313360903578501
+    },
+    "alt/13.5": {
+     "point": 0.9849123302539287,
+     "nfw_trunc": 0.9849123302539287,
+     "nfw_ext": 1.2081603575373532
+    },
+    "alt/14.0": {
+     "point": 0.9695820109499315,
+     "nfw_trunc": 0.9695820109499315,
+     "nfw_ext": 1.2405766222123205
+    },
+    "alt/14.5": {
+     "point": 0.9380092382328117,
+     "nfw_trunc": 0.9380092382328117,
+     "nfw_ext": 1.276823254638039
+    },
+    "alt/15.0": {
+     "point": 0.8707049503789717,
+     "nfw_trunc": 1.004585364788807,
+     "nfw_ext": 1.318447649406539
+    }
+   },
+   "l_cap": {
+    "0.02": 2.996565180118633,
+    "0.023": 2.9879266049477193,
+    "0.04": 2.938969871867837,
+    "0.06": 2.8814162039972473,
+    "0.25": 2.35101212765795,
+    "0.5": 1.7500000000000002
+   },
+   "coma_L395": {
+    "point": 2.745984547408357,
+    "nfw_trunc": 2.745984547408357,
+    "nfw_ext": 3.7663262524485326
+   }
+  },
+  "S1": {
+   "kappa": {
+    "canonical": 1.4175274575559136,
+    "alt": 1.5665239010319902
+   },
+   "L395/point": {
+    "canonical": 0.9908877442939998,
+    "alt": 1.0632007523292482
+   },
+   "L395/nfw_trunc": {
+    "canonical": 1.0035812893811813,
+    "alt": 1.0765400858846894
+   },
+   "L395/nfw_ext": {
+    "canonical": 1.4175274575559136,
+    "alt": 1.5665239010319902
+   }
+  },
+  "P1": {
+   "residuals": {
+    "uncapped": "0",
+    "kappa": "0",
+    "L395": "0"
+   },
+   "flip": {
+    "0.25": {
+     "capped_t_flip": 0.5297903,
+     "uncapped_t_flip": 0.5000498999999999
+    },
+    "0.5": {
+     "capped_t_flip": 0.553393,
+     "uncapped_t_flip": 0.5000498999999999
+    }
+   }
+  }
+ },
+ "summary": {
+  "load_bearing_failed": 2,
+  "runtime_s": 32.7
+ }
+}

@@ -1,0 +1,92 @@
+MS5 -- THE REGION CAP AS AN ACTION TERM: WHICH LOCAL INVARIANT REPRODUCES MS3's CAP, AND DOES THE CAPPED GATE KEEP
+RECIPROCITY?
+
+WHY.  MS3 (2a5def6d9) passed cosmic shear on L363's resolution-free halo model with every MOND region stopped at
+r_cap = 1.75 Mpc (z = 0.5), a velocity scale v_cap = r_cap H sqrt(x) = 325 km/s, and L388's retention.  That cap was a
+hard radius cut.  To put it in the action the gate must read a local scalar of the MOND-sector field Phi_X = Phi - v.
+This lane's README (step 4) proposed v_loc^2 = |grad Phi|^2 / lap Phi, and L395 implements the cap in that form
+(XR6: the switch is on where 4 pi G rho_ms >= max(x_c H^2, sqrt(x_c) H |g| / v_cap)).  In deep MOND
+
+    lap Phi_X / |grad Phi_X| = (1 + beta_b/2) / r,     beta_b = dln M_b(<r) / dln r,
+
+which is 1/r only where the baryons have stopped rising.  Wherever the baryons still rise at the cap (clusters, whose gas
+keeps tracing the host past r200), that form puts the edge (1 + beta_b/2) further out than MS3 scored.  The mean
+curvature of the MOND field's equipotentials,
+
+    kappa_X = (1/2) div( grad Phi_X / |grad Phi_X| ) = (lap Phi_X - n.(grad grad Phi_X).n) / (2 |grad Phi_X|),
+
+is exactly 1/r for EVERY spherical profile, so the gate U_cap = C min(lap Phi_X, v_cap^2 kappa_X^2) stops every spherical
+region at exactly l_cap(z) = v_cap / (H(z) sqrt(x_c(z))): MS3's hard cap, for any baryon profile.
+
+==============================================================================================================
+A1  THE GATE VARIED ON A GENERIC MOND-SECTOR READING U = C F(Phi_X', Phi_X''): reciprocity
+==============================================================================================================
+    gate term in the Phi equation is non-zero: True;  v equation's gate term + Phi's = 0
+    other equations against CV1's: u 0, lam 0, Psi 0, w 0
+    V_d - u_N = 0
+  [PASS] A1 RECIPROCITY FOR ANY MOND-SECTOR READING: with U = C F(Phi_X', Phi_X'') varied, the gate's term enters the Phi and v equations with opposite signs, the other four equations are CV1's, and V_d = u_N exactly
+         measured: v + Phi gate terms 0; others [0, 0, 0, 0]; V_d - u_N = 0
+         reading:  any cap built from the MOND-sector field alone (either form below) keeps the carrier exactly Newtonian
+
+==============================================================================================================
+A2  THE TWO LOCAL INVARIANTS ON AN ARBITRARY SPHERICAL PROFILE [sympy, 3-D]
+==============================================================================================================
+    kappa = (1/2) div(grad Phi/|grad Phi|) at radius r, phi arbitrary with phi' > 0:  1/r
+    deep MOND: lap Phi/|grad Phi| = Derivative(M(r), r)/(2*M(r)) + 1/r   (target (1 + beta/2)/r: difference 0)
+  [PASS] A2 the mean curvature of the equipotentials is 1/r for every spherical profile; lap Phi/|grad Phi| is (1 + beta_b/2)/r in deep MOND, 1/r only where the enclosed baryons have stopped rising
+         measured: kappa = 1/r; lap/|grad| - (1 + beta/2)/r = 0
+
+  MS3 loaded: v_cap = 325.3 km/s (r_cap 1.75 Mpc at z = 0.5); (v_cap/c)^2 = 1.177e-06   [7s]
+
+==============================================================================================================
+N1  L395's FORM ON SPHERICAL HOSTS: its edge as a ratio to l_cap (the kappa form's edge, 1.75 Mpc at z = 0.5)
+==============================================================================================================
+    canonical M = 1e13.5: edge/l_cap  point mass 0.983, NFW to r200 0.983, NFW past r200 1.208
+    canonical M = 1e14.0: edge/l_cap  point mass 0.967, NFW to r200 0.967, NFW past r200 1.237
+    canonical M = 1e14.5: edge/l_cap  point mass 0.932, NFW to r200 0.932, NFW past r200 1.273
+    canonical M = 1e15.0: edge/l_cap  point mass 0.856, NFW to r200 1.005, NFW past r200 1.313
+    alt       M = 1e13.5: edge/l_cap  point mass 0.985, NFW to r200 0.985, NFW past r200 1.208
+    alt       M = 1e14.0: edge/l_cap  point mass 0.970, NFW to r200 0.970, NFW past r200 1.241
+    alt       M = 1e14.5: edge/l_cap  point mass 0.938, NFW to r200 0.938, NFW past r200 1.277
+    alt       M = 1e15.0: edge/l_cap  point mass 0.871, NFW to r200 1.005, NFW past r200 1.318
+    l_cap(z) [kappa form, every host above v_cap]: z=0.02: 3.00, z=0.023: 2.99, z=0.04: 2.94, z=0.06: 2.88, z=0.25: 2.35, z=0.5: 1.75 Mpc
+    Coma-like host (1e15, z = 0.023, canonical): L395-form edge 2.75 (point) / 2.75 (NFW to r200) / 3.77 Mpc (NFW past r200); XR6 reports 3.5-3.7 Mpc for its hosts at z = 0.02-0.06
+  [PASS] N1 L395's form stays at l_cap on MS3's point-mass baryons but moves out wherever the baryons still rise at the cap
+         measured: z = 0.5, 1e14.5 canonical: point 0.932, past r200 1.273
+
+==============================================================================================================
+S1  COSMIC SHEAR ON MS3's MACHINERY WITH EACH LOCAL FORM (door convention, L388's retention, both footings)
+==============================================================================================================
+    kappa          : worst R canonical 1.047, alt 1.121
+    L395/point     : worst R canonical 0.991, alt 1.063
+    L395/nfw_trunc : worst R canonical 1.004, alt 1.077
+    L395/nfw_ext   : worst R canonical 1.418, alt 1.567
+    MS3's committed K1 at 1.75 Mpc: 1.047/1.121; kappa form differs by 0.0e+00   [31s]
+  [PASS] S1 PRE-DECLARED: the kappa form reproduces MS3's K1 at 1.75 Mpc and passes; L395's form on baryons that keep tracing the host past r200 fails
+         measured: kappa 1.047/1.121 (MS3 diff 0.0e+00); L395 past r200 1.418/1.567
+         reading:  the cap must read the equipotentials' curvature, not lap/|grad|: the latter lets cluster regions grow with their gas
+
+==============================================================================================================
+P1  THE GATE'S FOURTH-ORDER TERM [sympy] and where its bracket changes sign in DE9's smooth gate
+==============================================================================================================
+    uncapped: Q - target = 0
+    kappa   : Q - target = 0
+    L395    : Q - target = 0
+    w = 0.25: the capped bracket is negative for t > 0.530 (uncapped W'': t > 0.500) -- both change sign inside the layer
+    w = 0.5: the capped bracket is negative for t > 0.553 (uncapped W'': t > 0.500) -- both change sign inside the layer
+  [PASS] P1 the capped gate's fourth-order term has the stated closed form (zero residual): the kappa form's is transverse (k_perp^4) and carries a new definite-sign W'B/2 term; its bracket still changes sign inside the layer, as the uncapped door's W'' does
+         measured: {'uncapped': '0', 'kappa': '0', 'L395': '0'}
+
+==============================================================================================================
+SUMMARY
+==============================================================================================================
+  A cap built from the MOND-sector field alone keeps the carrier exactly Newtonian with the gate varied (A1).  The cap
+  must read the mean curvature of the MOND field's equipotentials, kappa_X = (1/2) div(grad Phi_X/|grad Phi_X|), which is
+  1/r for every spherical profile (A2): U_cap = C min(lap Phi_X, v_cap^2 kappa_X^2) ends every spherical region at
+  l_cap(z) = v_cap/(H sqrt(x_c)) = 1.75 Mpc at z = 0.5 and 2.99 Mpc at z = 0.023, and reproduces MS3's pass
+  (1.047/1.121).  L395's form, lap Phi_X/|grad Phi_X|, is (1 + beta_b/2)/r: on baryons that keep
+  tracing a cluster past r200 its edge sits 1.27x further out at 1e14.5 and cosmic shear fails
+  (1.418/1.567).  The fourth-order term of the capped gate keeps a sign change inside
+  the transition layer (P1): DE7's repair is still needed.  v_cap = 325 km/s stays a declared constant.
+
+  checks: 5/5 pass; load-bearing failures: 0   [31s]
