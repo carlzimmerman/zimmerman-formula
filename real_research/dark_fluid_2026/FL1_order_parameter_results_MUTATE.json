@@ -1,0 +1,100 @@
+{
+ "lane": "FL1",
+ "mutate": true,
+ "checks": {
+  "F1 V0's scalar block has exactly one propagating mode (the khronon): with the two tensor modes, V0 has no dust degree of freedom, so the dark fluid needs its own field": {
+   "ok": true,
+   "measured": "det degree in omega = 2",
+   "load_bearing": true
+  },
+  "F2 coupled to V0 exactly as the dark slot is, the order parameter obeys i psi_t = -lap psi/(2m) + m (Phi + lam/2) psi with Phi + lam/2 = u, the Newtonian potential of all matter: Schrodinger-Poisson, kernel-invisible": {
+   "ok": false,
+   "measured": "residuals m*a(t, x)*lam(t, x), m*b(t, x)*lam(t, x); lap u sourced by the fluid True",
+   "load_bearing": true
+  },
+  "F3 the Madelung form of the order parameter is exact, and its phase-only (Thomas-Fermi) limit is a quadratic P(mu) about the condensate -- the record's ghost-condensate dust, whose density n = mu/g the phase-only theory lets run negative (L374's runaway) while the full field keeps n = |psi|^2 >= 0": {
+   "ok": true,
+   "measured": "Madelung exact True; n = mu/g; P = mu**2/(2*g)",
+   "load_bearing": true
+  },
+  "F4 through a stream crossing and at a vortex core the order parameter, its energy density and its momentum density stay single-valued and finite: the stress the metric and the khronon see is smooth, so the khronon's leaves never fold; the clock's own dust could not do this": {
+   "ok": true,
+   "measured": "two streams True; vortex True",
+   "load_bearing": true
+  },
+  "F5 for every m >= 2e-19 eV the free order parameter is GDM (0, 0, 0) to below 1e-12 on the scales linear cosmology sees, and V0's MOND equations carry no parameter of the fluid, so the w0 squeeze's lower bound does not exist": {
+   "ok": true,
+   "measured": "m = 2e-19: c_s^2 <= 3e-16, w_rec ~ 3e-20; m = 5e-19: c_s^2 <= 5e-17, w_rec ~ 5e-21; m = 1e-15: c_s^2 <= 1e-23, w_rec ~ 1e-27; m = 1e-06: c_s^2 <= 1e-41, w_rec ~ 1e-45; MOND independent of the fluid: True",
+   "load_bearing": true
+  },
+  "F6 for 2-5e-19 eV <= m <~ 1 eV the dark fluid is a classical coherent field (N >> 1 per de Broglie cell in clusters and at the cosmic mean); above ~1-10 eV it would be a particle gas": {
+   "ok": true,
+   "measured": "cluster: N = 1 at 3.46 eV; cosmic mean today: N = 1 at 2.91 eV",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "F1": {
+   "degree": 2
+  },
+  "F2": {
+   "res_a": "m*a(t, x)*lam(t, x)",
+   "res_b": "m*b(t, x)*lam(t, x)",
+   "lap_u": true
+  },
+  "F3": {
+   "madelung": true,
+   "n_star": "mu/g",
+   "P_mu": "mu**2/(2*g)"
+  },
+  "F4": {
+   "two_streams": true,
+   "vortex": true
+  },
+  "F5": {
+   "rows": {
+    "2e-19": {
+     "max_cs2": 3.09829075050425e-16,
+     "w_rec": 2.8755355656424574e-20
+    },
+    "5e-19": {
+     "max_cs2": 4.9572652008068e-17,
+     "w_rec": 4.600856905027933e-21
+    },
+    "1e-15": {
+     "max_cs2": 1.2393163002016998e-23,
+     "w_rec": 1.1502142262569828e-27
+    },
+    "1e-06": {
+     "max_cs2": 1.2393163002017e-41,
+     "w_rec": 1.1502142262569833e-45
+    }
+   },
+   "mond_independent": true
+  },
+  "F6": {
+   "rows": {
+    "cluster (rho = 5e-24 kg/m^3, v = 1000 km/s)": {
+     "2e-19": 9.002065306437462e+76,
+     "1e-06": 1.440330449029994e+26,
+     "0.001": 144033044902999.4,
+     "1.0": 144.03304490299936,
+     "10.0": 0.014403304490299942
+    },
+    "cosmic mean today (rho = 2.5e-27 kg/m^3, v = 100 km/s)": {
+     "2e-19": 4.501032653218732e+76,
+     "1e-06": 7.201652245149974e+25,
+     "0.001": 72016522451499.69,
+     "1.0": 72.01652245149971,
+     "10.0": 0.007201652245149969
+    }
+   },
+   "m_cross_eV": {
+    "cluster (rho = 5e-24 kg/m^3, v = 1000 km/s)": 3.4643003322426886,
+    "cosmic mean today (rho = 2.5e-27 kg/m^3, v = 100 km/s)": 2.913117730745129
+   }
+  }
+ },
+ "n_checks": 6,
+ "n_fail_load_bearing": 1
+}
