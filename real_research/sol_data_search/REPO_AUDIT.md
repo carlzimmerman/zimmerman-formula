@@ -24,6 +24,10 @@
 | D18 Euclid Q2 bulge | **No analysis found; indirect.** | [Q2 description](https://www.euclid-ec.org/science/q2/). Useful for microlensing/stellar controls, not the awaited cosmic shear survey. |
 | D19 SDSS-V DR20 | **Partly referenced, no new exact-release fit found; ancillary.** | [Official release](https://www.sdss.org/dr20/); existing [eROSITA cluster analysis](../../deepseek_push/G237_eRASS3_zlaw/README.md) mentions SDSS cross-match context. A predeclared stellar-kinematic or membership target is needed before downloading more spectra. |
 | D20 DES Y6 joint DE | **New paper found in follow-up search; no exact-paper analysis found.** | [DES multi-probe paper](https://arxiv.org/abs/2605.27221v2) gives a supernova-excluded `2.6σ` alternative, valuable as a photometric-calibration control. It overlaps D10 shear and some D05 BAO combinations, so analyze its nested probe splits rather than count it as a new independent survey. |
+| D21 DESI Lyα three-bin BAO | **No exact-paper calculation found before this folder; summary slope now checked.** | [Authors' paper](https://arxiv.org/abs/2607.19619v2) uses unreleased DR2 Lyα data and shares the forest with D06. [Our central secant calculation](LYALPHA_SHAPE_RESULT.md) is orientation only; full joint covariance is owed. |
+| D22 SPT × DES cross-lensing | **No exact-paper or cross-spectrum fit found.** | [Early SPT analysis](https://arxiv.org/abs/2606.26223v2) identifies polarization-only cross-lensing and foreground bias in raw GMV. Same SPT field as D12; distinct cross-observable, shared sample covariance. |
+| D23 FRB feedback data | **No exact-paper or sample-file use found.** | [Nature Astronomy paper](https://www.nature.com/articles/s41550-026-02957-9) and [authors' data/code](https://github.com/krittisharma/dmz_spk_sharma2026) provide an independent gas-feedback nuisance control. |
+| D24 Rubin Virgo sample | **No exact-paper analysis found.** | [DP2 paper](https://arxiv.org/abs/2609.19246v2) offers seven targets, but no dynamical measurements. |
 
 ## Work worth doing next
 

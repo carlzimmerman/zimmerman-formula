@@ -4,6 +4,8 @@
 
 **Repository deduplication update:** See [the per-release audit](REPO_AUDIT.md) before starting work. D01/D02/D03/D05/D09/D15 and the KiDS-Legacy summary have already received substantial repository analysis; repeating them would not meet the request for unused data. D06 has been noticed but its **published two-distance covariance had not been used**; a reproducible, limited calculation is in [the Lyα shape check](LYALPHA_SHAPE_RESULT.md). D10, D12 and D13 are the clearest public, apparently unfit products for required lensing/growth/GW sectors. D07's full likelihood is **not yet public**, correcting the initial version of this inventory.
 
+**Academic early-access follow-up:** [Seven primary analysis/validation papers](EARLY_ACCESS_PAPERS.md) add four distinct targets below and important controls for DESI growth, DES Y6 bin selection, SPT foregrounds and GW polarizations. Published summaries can guide a fit even where raw DR2 or SPT maps remain restricted.
+
 ## The target being tested
 
 The operative goal is the [13-requirement one-action theory](../../qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md): the amended `nu_mono`/filtered weak-field law, two gravitational tensor degrees of freedom, derived lensing and conservation, acceptable PPN and GW behavior, stable evolution, cosmology, and controlled limits. The relation `a0 = (c/2) sqrt(G rho_Lambda)` and possible `a0(z) proportional to sqrt(rho_DE(z))` are desirable but explicitly **not required** for closure. Some older repository files discuss AeST or modified inertia as if they were the operative theory; this inventory uses the current specification and does not transfer a data fit from those predecessors to the proposed action. The [2026-09-26 review](../peer_review_2026_09_26/README.md) finds the present construction incomplete.
@@ -44,6 +46,17 @@ The operative goal is the [13-requirement one-action theory](../../qwen_claude_f
 | D17 | **Rubin Early Data Preview 2**, 2026-07-27; [official release notice](https://community.lsst.org/t/early-data-preview-2-is-now-available/12346) | New commissioning/early-operations catalogs, coadds and a `ShearObject` catalog can stress-test baryon and lensing pipelines. Access is for **Rubin data-rights holders**; it is not a validated wide-area science shear measurement and cannot yet resolve the lensing RAR. | **P3** |
 | D18 | **Euclid Q2 Galactic Bulge Survey**, 2026-06-24; [consortium description](https://www.euclid-ec.org/science/q2/), [release timeline](https://euclid.caltech.edu/page/data-release-timeline) | Public VIS photometry/astrometry over 4.8 deg² can improve bulge lens-mass and microlensing controls. **It is a Galactic bulge release**, not the Euclid DR1 cosmic-shear data anticipated later. | **P3** |
 | D19 | **SDSS-V DR20**, 2026-07-30; [official release](https://www.sdss.org/dr20/) | New optical stellar spectra from north and south can support Milky Way kinematics, dwarf membership and mass-to-light calibration. The DR20 page explicitly says **no new APOGEE spectra or analysis**, and spectroscopy alone does not determine the full Galactic potential. | **P3** |
+
+## 4. Additional distinct observables found in academic papers
+
+These share parent surveys where noted. The linked [paper audit](EARLY_ACCESS_PAPERS.md) gives exact findings, access status and overlap rules.
+
+| ID | Published result | Why it matters / immediate gate | Priority |
+|---|---|---|---|
+| D21 | [DESI DR2 three-bin Lyα BAO](https://arxiv.org/abs/2607.19619v2), 2026-07-21 | Reports a redshift exponent `H(z)∝(1+z)^(1.34±0.16)` across `z=2.13–2.81`, independent of `H0` and `r_d` in the ratio. Check the action's high-z FLRW slope; same forest as D06, underlying DR2 correlations pending. [A bounded central-value check](LYALPHA_SHAPE_RESULT.md) is included. | **P1 summary** |
+| D22 | [SPT-3G D1 × DES Y3 cross-lensing](https://arxiv.org/abs/2606.26223v2), 2026-06-24 | Polarization-only CMB-lensing × galaxy-shear cross-spectrum detected at `~14σ`; raw temperature-inclusive estimator shows foreground bias. A distinct **cross-observable** of metric lensing, but overlaps D12 SPT and DES Y3. Need its numerical bandpowers/covariance and action-derived cross-spectrum. | **P2** |
+| D23 | [FRB baryon-feedback sample](https://www.nature.com/articles/s41550-026-02957-9), 2026-09-08 [version of record](https://github.com/krittisharma/dmz_spk_sharma2026) | `114` localized FRBs and public sample/code constrain gas redistribution and small-scale power suppression; independent baryonic-feedback control for D10/D12 lensing, with a halo-model interpretation. | **P2 control** |
+| D24 | [Rubin DP2 almost-dark Virgo galaxies](https://arxiv.org/abs/2609.19246v2), 2026-09-16 | Seven newly selected low-stellar-mass objects are potential targets for future dynamics; data-rights access and missing kinematics keep them from an acceleration-law test now. | **P3 target list** |
 
 ## Exclusions and near-term watch points
 

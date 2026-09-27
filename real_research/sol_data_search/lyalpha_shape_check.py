@@ -36,6 +36,16 @@ def shape(omega_m, w0, wa, steps=8192):
     return integral, 1 / e(Z), integral * e(Z)
 
 
+def redshift_slope(omega_m, w0, wa, z_low=2.13, z_high=2.81):
+    """Secant d ln H / d ln(1+z), independent of H0 and r_d."""
+    def log_e(z):
+        de = math.exp(3 * (1 + w0 + wa) * math.log1p(z)
+                      - 3 * wa * z / (1 + z))
+        return 0.5 * math.log(omega_m * (1 + z) ** 3 + (1 - omega_m) * de)
+
+    return (log_e(z_high) - log_e(z_low)) / math.log((1 + z_high) / (1 + z_low))
+
+
 def profile_shape(omega_m, w0, wa):
     """Profile q=c/(H0*r_d) from the published correlated distance pair."""
     d_m, d_h = DATA
@@ -81,6 +91,16 @@ def main():
             "unite_cpl_central_fixed": profile_shape(0.305, -0.861, -0.60),
             "lcdm_same_omega_m_fixed": profile_shape(0.305, -1.0, 0.0),
             "desi_lya_lcdm_central_fixed": profile_shape(0.325, -1.0, 0.0),
+        },
+        "multiredshift_bao": {
+            "source": "https://arxiv.org/abs/2607.19619v2",
+            "published_fit_n": 1.34,
+            "published_sigma_n": 0.16,
+            "z_low": 2.13,
+            "z_high": 2.81,
+            "secant_n_unite_cpl_central": redshift_slope(0.305, -0.861, -0.60),
+            "secant_n_lcdm_same_omega_m": redshift_slope(0.305, -1.0, 0.0),
+            "scope": "The published n is a three-bin fitted power-law slope; the computed n is only an endpoint secant. They are orientation values, not a matched likelihood. The three-bin BAO and full-shape AP reuse DESI DR2 Ly-alpha data.",
         },
         "quadrature_abs_difference_4096_vs_8192":
             abs(shape(0.305, -0.861, -0.60, 4096)[2]

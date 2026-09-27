@@ -37,6 +37,10 @@ The Unite central trajectory is `0.09443` below the measured ratio. Its scale-pr
 
 The 4096-versus-8192-panel Simpson difference in `F_AP` is `1.24e-14`, far below the published precision. This verifies numerical convergence of the restricted integral; it says nothing about model-systematic or posterior uncertainty.
 
+### New academic three-bin check
+
+An [early-access DESI DR2 Lyα study](https://arxiv.org/abs/2607.19619v2) split the unreleased forest correlations into `z=2.13, 2.40, 2.81` bins and fit `H(z)∝(1+z)^n`, reporting `n=1.34±0.16`. The script now computes the *endpoint secant* `[ln E(2.81)-ln E(2.13)]/[ln(3.81)-ln(3.13)]`: `1.432` for the Unite central CPL parameters and `1.420` for ΛCDM at the same matter fraction. Both sit near the published three-bin fit. The endpoint secant is not the paper's three-point covariance fit, so it is a directional check only. This three-bin study and the full-shape AP measurement reuse the DESI DR2 Lyα forest; their apparent agreement or disagreement must not be multiplied as independent evidence.
+
 ## How this helps closure
 
 The new AP summary creates a sharp, sound-horizon-free target for any proposed FLRW background. A candidate action must yield `H(z)` and therefore `F_AP(z)`; the DESI pair can then reject incompatible backgrounds without first assuming a dark-energy density or an `a0(z)` law. A complete theory test also requires the action's perturbation/lensing predictions. The optional `a0∝√ρ_DE` bridge is not assumed here, and this calculation cannot certify or refute the 13-requirement theory.
