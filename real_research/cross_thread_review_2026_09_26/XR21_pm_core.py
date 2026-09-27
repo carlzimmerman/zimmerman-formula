@@ -286,6 +286,40 @@ class HSLive(HY):
         self.hist.append((a, self._L, self._y, s0))
 
 
+class HK1(HY):
+    """FP19's separator H_K1 (0c18c582f), every read a zero mode of the khronon (per 1/16 pi G, c = 1, alpha = a0/c^2):
+        chi = (S_xi - S_B) phi,  B = L^2/2,  L = L_Lambda Omega_L(<K>_h)^(n/2),  Omega_L(<K>_h) = 3 Lambda/<K>_h^2,
+        J_Y = J_P2(Y) + 2 y_th sqrt(Y),  y_th = max(0, 1 + Omega_r - 9 Lambda/<K>_h^2) (<K>_h^2/3 - Lambda) L/alpha
+                                              = c_y max(0, 2q) 4 pi G rho_bar L/a0 with c_y = 2 (FP19's y_tied).
+    FP19's headline: L_Lambda = 2.9 Mpc (physical), n = 2, c_y = 2, P2 kernel.  THE READOUT IN THE BOX: <K>_h is the leaf's mean
+    extrinsic curvature; on the box it is 3 H(a) exactly (the box mean of the velocity divergence vanishes on a periodic mesh,
+    and FP19 B4 finds the <K>_h channel (v/c)^2-suppressed), so L and y_th are the background functions below, read on the
+    separator's own background `sep` (FP6's, with radiation, as FP19) -- they need not equal the box's dynamical background.
+    yield_on=False removes the yield floor (y_th = 0 at every epoch; this lane's MUTATE)."""
+
+    def __init__(self, sep, a0c, L_Lambda=2.9, n=2.0, c_y=2.0, yield_on=True, kernel="p2", label="H_K1"):
+        self.c = sep; self.a0c = a0c; self.L_Lambda, self.n, self.c_y = L_Lambda, n, c_y
+        self.yield_on, self.bandpass_on, self.kernel, self.label = yield_on, True, kernel, label
+
+    def K2_over_9H02(self, a):                                  # <K>_h^2 / (9 H0^2) = E(a)^2 on FRW
+        return self.c.E(a) ** 2
+
+    def OmL_K(self, a):                                         # 3 Lambda/<K>_h^2 = Omega_L(a)
+        return self.c.OL / self.K2_over_9H02(a)
+
+    def two_q(self, a):                                         # 1 + Omega_r(a) - 9 Lambda/<K>_h^2 = 2q
+        return 1.0 + (self.c.Or / a ** 4) / self.K2_over_9H02(a) - 3.0 * self.OmL_K(a)
+
+    def L_phys(self, a):                                        # physical Mpc
+        return self.L_Lambda * self.OmL_K(a) ** (self.n / 2.0)
+
+    def y_th(self, a):
+        if not self.yield_on:
+            return 0.0
+        fourpiGrho = 1.5 * (self.c.Om / a ** 3 + self.c.Or / a ** 4)            # 4 pi G rho_bar in H0^2 units
+        return self.c_y * max(0.0, self.two_q(a)) * fourpiGrho * self.L_phys(a) * self.c.h / self.a0c
+
+
 def X_p2(D):
     """P2's scalar field law with the yield: phantom field / a0 = sqrt(D^2 + D) - D for D > 0, else 0 (stable form)."""
     D = np.asarray(D, dtype=np.float64)

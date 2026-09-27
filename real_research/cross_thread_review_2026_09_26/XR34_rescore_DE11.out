@@ -1,0 +1,92 @@
+XR34_rescore_DE11 -- DE11's forest verdict re-scored with ONLY the MOND kernel's argument corrected.
+
+DE11 AS COMMITTED.  The converged model's MOND-sector switch (x_MS = 1.5 Omega_m(a)[f_b delta + delta_ph], the phantom
+lagged one step; threshold 2.5 E(z)^2; smoothTransition width w = 0.25 and 0.02) in L347's PM (128^3 mesh, 96^3
+particles, 50 and 25 Mpc/h, CLASS to 40 h/Mpc, seed 7).  F1: worst |P1D/P1D_LCDM - 1| = 0.0041 (L25 alt) against 0.10 ->
+PASS.  Its kernel line reads |grad phi|/a^2 = (1+z) g_N,phys (XR34_kernel_argument).
+
+METHOD.  DE11's committed source executed read-only with that ONE line changed to |grad phi|/a (XR34_common).  Runs:
+  'fix'  (after):   all eight MOND cells (2 boxes x 2 footings x 2 widths)
+  'none' (control): L25_alt_w0.02 and L25_alt_w0.25 (the cells that set DE11's worst) and L50_alt_w0.25
+  LCDM:             L50_lcdm and L25_lcdm re-run (DE11's own run(); compared with L347's committed LCDM P1D)
+
+====================================================================================================================
+K1  THE ARGUMENT: DE11's own accel() on the analytic single halo
+====================================================================================================================
+    z3/canonical  y 0.120-0.377: kick/a over nu g_N  'fix' 0.992-0.998   committed 0.582-0.650
+    z3/alt        y 0.100-0.313: kick/a over nu g_N  'fix' 0.992-0.998   committed 0.574-0.637
+    z2/canonical  y 0.068-0.212: kick/a over nu g_N  'fix' 0.992-0.997   committed 0.627-0.671
+    z2/alt        y 0.056-0.176: kick/a over nu g_N  'fix' 0.992-0.997   committed 0.622-0.663
+    z0/canonical  y 0.008-0.024: kick/a over nu g_N  'fix' 0.991-0.995   committed 0.991-0.995
+    z0/alt        y 0.006-0.020: kick/a over nu g_N  'fix' 0.991-0.995   committed 0.991-0.995
+  [PASS] K1 DE11's accel() with the corrected line reproduces nu_mono(g_N/a0) g_N on the analytic halo (2%, z = 3, 2, 0, both footings)
+         measured: 'fix': max |ratio - 1| = 0.0090; committed line: z = 3 0.426, z = 2 0.378, z = 0 0.009
+         reading:  the 'after' runs below use the physical argument
+
+====================================================================================================================
+THE RUNS (DE11's run(), one line patched; wall time and peak memory per run)
+====================================================================================================================
+    run done: DE11  fix    L25_alt_w0.25              200 s, peak RSS 1.46 GB   [200 s; 11 queued, 1 running]
+    run done: DE11  fix    L25_alt_w0.02              200 s, peak RSS 1.47 GB   [201 s; 10 queued, 1 running]
+    run done: DE11  fix    L25_canonical_w0.02        202 s, peak RSS 1.51 GB   [403 s; 9 queued, 1 running]
+    run done: DE11  fix    L25_canonical_w0.25        204 s, peak RSS 1.48 GB   [405 s; 8 queued, 1 running]
+    run done: DE11  fix    L50_alt_w0.02              207 s, peak RSS 1.54 GB   [610 s; 7 queued, 1 running]
+    run done: DE11  fix    L50_alt_w0.25              205 s, peak RSS 1.55 GB   [610 s; 6 queued, 1 running]
+    run done: DE11  fix    L50_canonical_w0.25        210 s, peak RSS 1.44 GB   [821 s; 5 queued, 1 running]
+    run done: DE11  fix    L50_canonical_w0.02        211 s, peak RSS 1.45 GB   [821 s; 4 queued, 1 running]
+    run done: DE11  none   L25_lcdm                   136 s, peak RSS 1.45 GB   [957 s; 3 queued, 1 running]
+    run done: DE11  none   L50_lcdm                   136 s, peak RSS 1.43 GB   [957 s; 2 queued, 1 running]
+    run done: DE11  none   L25_alt_w0.02              241 s, peak RSS 1.47 GB   [1198 s; 1 queued, 1 running]
+    run done: DE11  none   L25_alt_w0.25              241 s, peak RSS 1.50 GB   [1199 s; 0 queued, 1 running]
+    run done: DE11  none   L50_alt_w0.25              205 s, peak RSS 1.51 GB   [1404 s; 0 queued, 0 running]
+
+====================================================================================================================
+C1 C2  CONTROLS: the committed line reproduces DE11; MOND off reproduces the LCDM box
+====================================================================================================================
+    L25_alt_w0.02   z = 3.0: committed 0.000108534559   re-run (committed line) 0.000108534559   |diff| 0.0e+00
+    L25_alt_w0.02   z = 2.0: committed 0.004124679439   re-run (committed line) 0.004124679439   |diff| 0.0e+00
+    L25_alt_w0.25   z = 3.0: committed 0.000115642928   re-run (committed line) 0.000115642928   |diff| 0.0e+00
+    L25_alt_w0.25   z = 2.0: committed 0.004111691043   re-run (committed line) 0.004111691043   |diff| 0.0e+00
+    L50_alt_w0.25   z = 3.0: committed 0.000005866913   re-run (committed line) 0.000005866913   |diff| 0.0e+00
+    L50_alt_w0.25   z = 2.0: committed 0.000921420836   re-run (committed line) 0.000921420836   |diff| 0.0e+00
+  [PASS] C1 the committed line re-run reproduces DE11's committed per-cell deviations (three cells, both z; 1e-9)
+         measured: max |diff| = 0.0e+00
+         reading:  the harness is DE11 exactly; only the kernel line differs in 'fix'
+  [PASS] C2 MOND off: DE11's L50_lcdm and L25_lcdm re-runs equal L347's committed LCDM P1D (1e-12)
+         measured: max |P1D ratio - 1| = 0.0e+00
+
+====================================================================================================================
+R1  BEFORE / AFTER: worst |P1D/P1D_LCDM - 1| over k_par 0.2-2 h/Mpc, per z (DE11's statistic)
+====================================================================================================================
+    cell                      before     after      x    active z=2 before -> after   largest phantom density z=2 before -> after
+    L50_canonical_w0.25/z3.0    0.0000    0.0000   8.14
+    L50_canonical_w0.25/z2.0    0.0009    0.0018   1.98    2.15e-04 -> 2.77e-04     113 -> 247 rho_bar_m
+    L50_canonical_w0.02/z3.0    0.0000    0.0000   2.35
+    L50_canonical_w0.02/z2.0    0.0009    0.0020   2.29    2.09e-04 -> 2.57e-04     113 -> 249 rho_bar_m
+    L50_alt_w0.25/z3.0        0.0000    0.0001   8.99
+    L50_alt_w0.25/z2.0        0.0009    0.0021   2.27    2.23e-04 -> 2.89e-04     130 -> 280 rho_bar_m
+    L50_alt_w0.02/z3.0        0.0000    0.0000   2.38
+    L50_alt_w0.02/z2.0        0.0008    0.0022   2.64    2.16e-04 -> 2.67e-04     130 -> 281 rho_bar_m
+    L25_canonical_w0.25/z3.0    0.0001    0.0003   3.33
+    L25_canonical_w0.25/z2.0    0.0036    0.0087   2.44    4.87e-04 -> 5.92e-04     289 -> 635 rho_bar_m
+    L25_canonical_w0.02/z3.0    0.0001    0.0004   5.13
+    L25_canonical_w0.02/z2.0    0.0035    0.0080   2.26    4.79e-04 -> 5.60e-04     289 -> 630 rho_bar_m
+    L25_alt_w0.25/z3.0        0.0001    0.0003   2.67
+    L25_alt_w0.25/z2.0        0.0041    0.0101   2.45    5.02e-04 -> 6.17e-04     335 -> 708 rho_bar_m
+    L25_alt_w0.02/z3.0        0.0001    0.0004   3.28
+    L25_alt_w0.02/z2.0        0.0041    0.0092   2.22    4.90e-04 -> 5.73e-04     335 -> 710 rho_bar_m
+  [PASS] R1 (reported) DE11's F1 rule (worst <= 0.10, both boxes, footings, widths) with the corrected argument  (reported, not load-bearing)
+         measured: before 0.0041 (PASS) -> after 0.0101 (PASS)
+  [PASS] H1 (reported) the pre-declared hypothesis H-DE11: the pass does not flip  (reported, not load-bearing)
+         measured: verdict PASS after (worst 0.0101)
+         reading:  a failed hypothesis is kept as run
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  With ONLY the kernel argument corrected, DE11's worst forest deviation goes 0.0041 -> 0.0101 (x2.4) against
+  0.10: the verdict does NOT flip (PASS).  Controls: the committed line reproduces DE11 to 0e+00 (C1);
+  MOND off reproduces L347's LCDM boxes to 0e+00 (C2).  DE11's own limits stand (FGPA, one phase per box, all-matter kernel).
+
+  5/5 checks pass; load-bearing failures: 0; wrote XR34_rescore_DE11_results.json   [1413 s]
+rc=0

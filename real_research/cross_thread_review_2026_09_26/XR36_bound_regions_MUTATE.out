@@ -1,0 +1,181 @@
+XR36 (part 2) -- THE TURNAROUND GATE AROUND BOUND SYSTEMS: KiDS, the Local Group (R0 and the MW-M31 timing), clusters and
+splashback, the flagship and SPARC.  How far out is the matter flow around an isolated galaxy turned around, in the chain's
+own law, once MOND acts only where it has turned around?
+
+WHY.  Part 1 (XR36_gate_action.py) wrote the gate as an action term and found it ill posed when saturated; this part scores
+the gate's PHENOMENOLOGY as a prescribed mask, to say whether a well-posed realisation would be worth finding.  KiDS needs
+the phantom around isolated lenses out to ~1 Mpc at z = 0.25 (FP9/FP13/FP19; FP20's exact projector); the Local Group's
+zero-velocity radius R0 = 0.93 +- 0.12 Mpc (FP18's bootstrap error) is the edge of its turned-around region.
+
+THE MODEL (the chain's conventions, FP6/FP11/XR4).  A baryonic point mass M_b; the surrounding BARYON flow (the IGM; the gate
+reads baryons, MS1 -- part 1 A7) as radial shells started on the Hubble flow at a = 0.02; convention A (point mass + Lambda,
+the chain's R0 convention) and B (A + the smooth background's deceleration, FP11's B).  The phantom is the chain's P2 law in
+its local QUMOND form, gated shell by shell (spherical symmetry makes the gate local): g = g_N [1 + W(theta) (nu_P2(y) - 1)],
+so beyond the gate the enclosed phantom is Gauss-compensated to zero.  theta is read two ways:
+  D1 (local, the formal theta_m = div u): theta = dv/dr + 2 v/r on the shells, per axis; a shell that has fallen through the
+     centre (crossed) is virialised: theta = 0 there;
+  D2 (the shell's own turnaround, spherical collapse's reading): theta = 3 v/r (the sphere-averaged divergence).
+The gates: SHARP (W = 1 where theta <= 0; the candidate, no new constant), RAMP (W = clip(1 - theta/(c_w <K>_h)), c_w = 1 its
+natural width: no constant), ALL3 (W = 1 only where every axis contracts: 3-D bound), and the H_K1 combination (the sharp D1 gate
+times FP19's band-passed phantom, L = 2.9 Omega_L(<K>_h) Mpc).  The yield plays no role at z < 0.635.
+
+PRE-DECLARED (written before this script's first run; the exploratory scratch runs listed under DISCLOSED came first).
+ H1 [load-bearing; MUTATE must fail] THE TURNED-AROUND REGION IS SMALL.  Around isolated KiDS lenses at z = 0.25 (M_b = 10^10.5,
+    10^11, 10^11.2; both footings; conventions A and B) the sharp local (D1) gate is on only inside r_on <= 0.6 Mpc and the
+    zero-velocity radius is R0 <= 0.6 Mpc: MOND is NOT on out to 1 Mpc.  The reason is a bootstrap: the pull that would turn the
+    outskirts around is the MOND pull the gate withholds until they have turned around; with baryons alone the Newtonian
+    turnaround radius of 1e10.5-1e11.2 Msun is 0.2-0.5 Mpc.
+ H2 KiDS (reported gate, FP20's exact projector, the FP13/FP19 setup, d chi^2 <= +9 against the isolated-P2 base): every
+    turnaround-keyed variant FAILS (expected +400 to +1100 for sharp/all3 and >= +40 for the natural ramps).
+ H3 THE LOCAL GROUP (reported gates): the sharp gate's R0 is the Newtonian baryons-only value (0.4-0.5 Mpc, conventions A/B)
+    and FAILS 0.93 +- 0.12 low; the MW-M31 pair cannot turn around on Newtonian baryons before today, so the timing has no
+    first-approach solution with M_b in FP11's window [1.145e11, 2.4e11] (expected timing mass > 1e12).
+ H4 THE PINCER MAP (reported): widening the ramp (c_w = 1 ... 4) moves KiDS from failing to passing while the LG's R0 moves
+    from ~0.6 to > 2 Mpc: no width passes both (FP18's KiDS-R0 pincer survives the gate).
+ H5 (reported) MS1: a total-matter reading with an outstreaming daughter fraction f_d pulls the switch-on radius inward.
+ H6 (reported) clusters: the gate is on to ~(1-3) R200 when the cluster keeps its carrier (FP16) and X-COP's radii
+    (R500 ~ 0.65 R200) sit inside it, so X-COP's MOND share is unchanged; the first-caustic (splashback) radius moves by the
+    printed amount.
+ H7 (reported gates) the flagship (z = 2.5, y = 0.1) and SPARC (z = 0, y = 0.01-100, 1e9-1e12) sit inside the gate: the galaxy
+    law is intact to <= 0.05 dex (flagship) and <= 0.01 dex (SPARC); UNCERTAIN for the flagship at z = 2.5 (young, small
+    turned-around regions) and for SPARC's 1e12 outer points.
+
+  *** MUTATE=1: G1's gate is on at theta <= 3H (the expanding Hubble flow counts as turned around) -- G1 must FAIL ***
+
+  machinery: FP13's module + main() body to its K banner (FP9/FP6 inside), FP20's shell_mats/ESDFix, FP11's module (via FP13's loader); a0 = 9.3603e-11 / 1.1312e-10 m/s^2   [1 s]
+  the flow engine: two passes of 300 log-spaced radial shells (0.003-15 Mpc comoving) + 200 concentrated at each row's zero-velocity transition, RK4 in ln a from a = 0.02, 3000 steps, 10 kpc softening   [1 s]
+
+======================================================================================================================
+K  CONTROLS: FP19's H_K1 headline; FP20's exact projector; FP11/FP6's R0 machinery and this lane's engine
+======================================================================================================================
+    FP19 H_K1 (FP6 projection, as committed): sigma_8 1.011722-1.015061; forest 0; flagship -0.00996..-0.00695; SPARC 3.88e-03; KiDS z = 0.25 -7.841/-10.670, 0.4 +0.006/-5.337, 0.7 +467.2/+495.8   (1 s)
+  [PASS] K1 CONTROL: FP19's committed H_K1 headline (L = 2.9 Omega_L(<K>_h) Mpc, the tied yield c_y = 2) is reproduced with FP19's own definitions on FP13's machinery: sigma_8 (x4), the forest proxy (x4), the flagship (x4), SPARC (x2) and KiDS at z = 0.25, 0.4, 0.7 (x2, FP6's projection as committed)
+         measured: max |deviation| 0.0e+00 over 20 numbers
+    FP20's exact projector: FP13 H_S d chi^2 canonical/0.25: -8.6248, canonical/0.4: -8.8175, alt/0.25: -10.3461, alt/0.4: -9.6617; the isolated-P2 base KB = 141.6466/134.9155 (FP20: +141.6/+134.9)
+    (reported) H_K1 with the exact projector (not in the record: FP19 predates FP20): canonical: z = 0.25 -8.84, 0.4 +0.13, 0.7 +500.1; alt: z = 0.25 -9.69, 0.4 +2.10, 0.7 +524.0
+  [PASS] K2 CONTROL: FP20's exact projector (its committed shell_mats/ESDFix) reproduces FP20's committed R3 re-score of FP13's H_S (KiDS at z = 0.25 and 0.4, both footings) and the isolated-P2 base 141.6/134.9 -- the projector every KiDS number below uses
+         measured: max |d chi^2 dev| 0.0e+00; KB 141.647/134.915
+    FP6's lg_R0 (loaded): plain P2 R0 = 1.924578 / 2.017868 (FP1's committed R0_e0 via FP11 K5: 1.924581 / 2.017871, FP1's own tabulated implementation); Newtonian (baryons only) R0 = 0.3883 Mpc
+    this lane's engine (convention A, no softening): W = 1 R0 = 1.9246 / 2.0179; W = 0 R0 = nan; gated band-passed phantom at W = 1 vs FP6's phantom(): max rel dev 0.0e+00
+  [FAIL] K3 CONTROL: FP6's lg_R0 (loaded read-only) reproduces FP1's committed plain-P2 R0 (R0_e0, FP11 K5's reference) to 1e-5 (two implementations of the same shell model); this lane's two-pass flow engine at W = 1 (no softening) reproduces it and at W = 0 the Newtonian (baryons-only) R0 of the same machinery to <= 1%; the gated band-passed phantom equals FP6's phantom() at W = 1 to <= 1e-12
+         measured: lg_R0/FP1 - 1: -1.4e-06/-1.3e-06; engine/lg_R0 - 1: W=1 +6.80e-06/+6.48e-06, W=0 +nan; phantom 0.0e+00
+    [8 s]
+
+======================================================================================================================
+G1  THE TURNED-AROUND REGION AROUND ISOLATED KiDS LENSES (z = 0.25)  [MUTATE: on at theta <= 3H]
+======================================================================================================================
+    canonical conv A D1 (mut): M_b = 10^10.5 / 10^11 / 10^11.2: R0 = 0.261/0.373/0.430 Mpc; gate on to r_on = 0.157/0.318/0.459 Mpc; multistream core 0.154/0.208/0.300
+    canonical conv A D2 (mut): M_b = 10^10.5 / 10^11 / 10^11.2: R0 = nan/nan/nan Mpc; gate on to r_on = 0.034/0.064/0.080 Mpc; multistream core 0.034/0.064/0.080
+    canonical conv B D1 (mut): M_b = 10^10.5 / 10^11 / 10^11.2: R0 = 1.412/1.883/2.113 Mpc; gate on to r_on = 11.680/11.427/11.275 Mpc; multistream core 0.480/0.642/0.720
+    canonical conv B D2 (mut): M_b = 10^10.5 / 10^11 / 10^11.2: R0 = 1.412/1.883/2.113 Mpc; gate on to r_on = 11.680/11.427/11.275 Mpc; multistream core 0.480/0.642/0.720
+    alt       conv A D1 (mut): M_b = 10^10.5 / 10^11 / 10^11.2: R0 = 0.252/0.371/0.456 Mpc; gate on to r_on = 0.226/0.304/0.413 Mpc; multistream core 0.153/0.214/0.318
+    alt       conv A D2 (mut): M_b = 10^10.5 / 10^11 / 10^11.2: R0 = nan/nan/nan Mpc; gate on to r_on = 0.035/0.067/0.081 Mpc; multistream core 0.035/0.067/0.081
+    alt       conv B D1 (mut): M_b = 10^10.5 / 10^11 / 10^11.2: R0 = 1.481/1.975/2.216 Mpc; gate on to r_on = 11.648/11.369/11.202 Mpc; multistream core 0.506/0.674/0.765
+    alt       conv B D2 (mut): M_b = 10^10.5 / 10^11 / 10^11.2: R0 = 1.481/1.975/2.216 Mpc; gate on to r_on = 11.648/11.369/11.202 Mpc; multistream core 0.506/0.674/0.765
+  [FAIL] G1 [H1, HEADLINE; MUTATE must fail] THE TURNED-AROUND REGION IS SMALL: around isolated KiDS lenses at z = 0.25 (10^10.5-10^11.2 Msun, both footings, conventions A and B, local D1 and regional D2 readings) the gate is on only inside r_on <= 0.6 Mpc and the zero-velocity radius is R0 <= 0.6 Mpc -- MOND is NOT on to 1 Mpc: the pull that would turn the outskirts around is the MOND pull the gate withholds until they have turned around
+         measured: max r_on 11.680 Mpc; max R0 2.216 Mpc
+         reading:  MUTATE: counting the expanding Hubble flow as turned around switches MOND on everywhere: the gate never closes
+    [23 s]
+
+======================================================================================================================
+G2  KiDS (reported gate): FP20's exact projector, the FP13/FP19 KiDS setup, d chi^2 against the isolated-P2 base
+======================================================================================================================
+    canonical: A/sharp/D1/-: +1015.3; A/sharp/D2/-: +754.6; A/ramp/D1/-: +690.6; A/ramp/D2/-: +456.2; A/all3/D1/-: +1397.2; A/sharp/D1/HK1: +1009.8; B/sharp/D1/-: +972.2; B/sharp/D2/-: +690.6; B/ramp/D1/-: +384.8; B/ramp/D2/-: +44.9; B/all3/D1/-: +1270.4; B/sharp/D1/HK1: +968.3
+    alt: A/sharp/D1/-: +1060.2; A/sharp/D2/-: +790.3; A/ramp/D1/-: +699.8; A/ramp/D2/-: +503.6; A/all3/D1/-: +1171.8; A/sharp/D1/HK1: +1060.3; B/sharp/D1/-: +995.7; B/sharp/D2/-: +715.6; B/ramp/D1/-: +444.3; B/ramp/D2/-: +52.8; B/all3/D1/-: +1219.3; B/sharp/D1/HK1: +989.0
+    (reported) the sharp D1 gate (convention B) at z = 0.4 / 0.7: canonical/0.4: +967.9, canonical/0.7: +1093.8, alt/0.4: +1052.7, alt/0.7: +1126.7  (H_K1, exact projector: z = 0.7 +500/+524)
+    [270 s]
+  [FAIL] (reported) G2 [H2] (reported gate) KiDS within +9 of the isolated-P2 base for the turnaround-keyed gates (sharp D1/D2, ramp D1/D2 at the natural width, the 3-D-bound all-axes gate, the sharp gate on H_K1's band-passed phantom), both footings, conventions A and B
+         measured: d chi^2 +44.9 .. +1397.2 (all 24 > +9: True); H_K1 itself (exact projector, K2) -8.8/-9.7
+         reading:  KiDS FAILS for every turnaround-keyed variant: the phantom is truncated where the gate closes (0.1-0.6 Mpc)
+
+======================================================================================================================
+G3  THE LOCAL GROUP'S R0 (reported gate): 0.93 +- 0.12 Mpc (FP18's bootstrap error), M_b = 1.145e11 (the chain's LG value)
+======================================================================================================================
+    canonical: A/off/D1: 0.388; A/sharp/D1: 0.388; A/sharp/D2: 0.392; A/ramp/D1: 0.499; A/ramp/D2: nan [flow edge 0.889]; A/all3/D1: 0.388; B/off/D1: 0.440; B/sharp/D1: 0.440; B/sharp/D2: 0.441; B/ramp/D1: 0.688; B/ramp/D2: 1.512; B/all3/D1: 0.440
+    alt: A/off/D1: 0.388; A/sharp/D1: 0.388; A/sharp/D2: 0.392; A/ramp/D1: 0.502; A/ramp/D2: nan [flow edge 0.889]; A/all3/D1: 0.388; B/off/D1: 0.440; B/sharp/D1: 0.440; B/sharp/D2: 0.441; B/ramp/D1: nan [flow edge 1.272]; B/ramp/D2: 1.573; B/all3/D1: 0.440
+  [FAIL] (reported) G3 [H3] (reported gate) THE LG's R0 within 2 sigma of 0.93 +- 0.12 Mpc for the sharp gate (both readings, conventions A/B, both footings); the ramps, the all-axes gate and the Newtonian (baryons-only) R0 printed alongside (nan: the gate's feedback empties the zero-velocity zone -- the flow either falls in or keeps expanding -- and the inner edge of the expanding flow is printed)
+         measured: sharp R0 0.388-0.441 Mpc (-4.1 sigma at best); Newtonian 0.388 (A) / 0.440 (B); ramp D2 (B) 1.512
+         reading:  the sharp gate's R0 is the Newtonian baryons-only value: the R0 shell never turned around, so it never felt MOND
+    [316 s]
+
+======================================================================================================================
+G4  THE MW-M31 TIMING (reported gate): FP11's two-body force (no separator) and FP11's branch finder, the pair's own turnaround gating its MOND
+======================================================================================================================
+    canonical: first-branch v_r at D0 = 0.78 Mpc (convention A) [km/s] by M_b: none: 1.14e+11: -142.3, 1.65e+11: -170.6, 2.40e+11: -203.2, 1.00e+12: -369.6, 3.00e+12: -558.6, 8.00e+12: -790.6; sharp: 1.14e+11: +48.7, 1.65e+11: +43.9, 2.40e+11: +37.8, 1.00e+12: -42.9, 3.00e+12: none, 8.00e+12: none; ramp: 1.14e+11: none, 1.65e+11: none, 2.40e+11: none, 1.00e+12: none, 3.00e+12: none, 8.00e+12: none; off: 1.14e+11: +48.7, 1.65e+11: +43.9, 2.40e+11: +37.8, 1.00e+12: -3.0, 3.00e+12: -66.8, 8.00e+12: -167.3   (148 s)
+    alt: first-branch v_r at D0 = 0.78 Mpc (convention A) [km/s] by M_b: sharp: 1.14e+11: +48.7, 1.65e+11: +43.9, 2.40e+11: +37.8, 1.00e+12: -46.6, 3.00e+12: none, 8.00e+12: -577.5   (179 s)
+    timing masses (first-branch v_r = -109.3 km/s): canonical/none: not bracketed in 1.1e11-8e12, canonical/sharp: not bracketed in 1.1e11-8e12, canonical/ramp: not bracketed in 1.1e11-8e12, canonical/off: 4.543e+12, alt/sharp: 1.278e+12
+  [FAIL] (reported) G4 [H3] (reported gate) THE MW-M31 TIMING with the sharp gate (the pair's MOND on only once the pair itself has turned around): the first approach reaches -109.3 km/s with M_b inside FP11's window [1.145e11, 2.4e11] on both footings
+         measured: timing mass: sharp None / 1278193352994.1733; ramp None; ungated two-body MOND None; Newtonian 4543011358467.521
+         reading:  a pair that must turn around on Newtonian baryons before its MOND switches on is still receding at D0 for baryonic masses
+    [494 s]
+
+======================================================================================================================
+G5  THE PINCER MAP (reported): the ramp's width c_w -- KiDS against the LG's R0 (canonical)
+======================================================================================================================
+    ramp D1 conv A: c_w 1.0: KiDS +690.6, LG R0 0.50; c_w 1.5: KiDS +492.0, LG R0 0.76; c_w 2.0: KiDS +60.5, LG R0 1.33; c_w 3.0: KiDS +1.6, LG R0 1.58; c_w 4.0: KiDS -7.5, LG R0 1.67
+    ramp D1 conv B: c_w 1.0: KiDS +384.8, LG R0 0.69; c_w 1.5: KiDS +27.2, LG R0 1.58; c_w 2.0: KiDS -6.5, LG R0 1.81; c_w 3.0: KiDS -15.4, LG R0 2.00; c_w 4.0: KiDS -14.3, LG R0 2.08
+    ramp D2 conv A: c_w 1.0: KiDS +456.2, LG R0 nan (edge 0.89); c_w 1.5: KiDS +4.8, LG R0 1.47; c_w 2.0: KiDS -16.7, LG R0 1.64; c_w 3.0: KiDS -15.1, LG R0 1.76; c_w 4.0: KiDS -11.7, LG R0 1.80
+    ramp D2 conv B: c_w 1.0: KiDS +44.9, LG R0 1.51; c_w 1.5: KiDS -15.3, LG R0 1.94; c_w 2.0: KiDS -11.0, LG R0 2.05; c_w 3.0: KiDS -7.8, LG R0 2.15; c_w 4.0: KiDS -5.7, LG R0 2.19
+  [FAIL] (reported) G5 [H4] (reported) THE PINCER MAP: some ramp width passes KiDS (<= +9) AND the LG's R0 (within 2 sigma of 0.93) at once
+         measured: cells passing both: none; LG R0 at the KiDS-passing widths 1.47-2.19 Mpc
+         reading:  the gate does not open FP18's KiDS-R0 pincer: whatever gives the KiDS lenses their Mpc phantom gives the LG R0 >~ 1.3 Mpc
+    [652 s]
+
+======================================================================================================================
+G6  (reported) MS1: the total-matter reading with an outstreaming daughter fraction f_d (1e11 at z = 0.25, convention B)
+======================================================================================================================
+    r_on [Mpc] by f_d: 0.0: 0.227, 0.02: 0.162, 0.05: 0.112, 0.1: 0.071, 0.2: 0.037, 0.5: 0.027
+  [PASS] (reported) G6 [H5] (reported) MS1: reading the total matter flow (daughters outstreaming at 600 km/s, fraction f_d) pulls the switch-on radius inward toward the multistream core -- the baryon reading is the admissible one
+         measured: f_d 0.0: r_on 0.227, f_d 0.02: r_on 0.162, f_d 0.05: r_on 0.112, f_d 0.1: r_on 0.071, f_d 0.2: r_on 0.037, f_d 0.5: r_on 0.027
+
+======================================================================================================================
+G7  (reported) CLUSTERS AND SPLASHBACK: M_b = 1.5e14 with its carrier kept (5.36 M_b Newtonian, FP16/XR4) and without
+======================================================================================================================
+    carrier 0.00 M_b, gate sharp: R200 = 1.12 Mpc; gate on to 4.42 (3.93 R200); R0 = 4.81 (4.28 R200); multistream (splashback) region 4.42 Mpc (3.93 R200)
+    carrier 0.00 M_b, gate on   : R200 = 1.12 Mpc; gate on to 26.62 (23.68 R200); R0 = 13.89 (12.35 R200); multistream (splashback) region 12.67 Mpc (11.27 R200)
+    carrier 0.00 M_b, gate off  : R200 = 1.12 Mpc; gate on to 4.62 (4.11 R200); R0 = 4.81 (4.28 R200); multistream (splashback) region 4.62 Mpc (4.11 R200)
+    carrier 5.36 M_b, gate sharp: R200 = 2.08 Mpc; gate on to 6.62 (3.18 R200); R0 = 8.92 (4.28 R200); multistream (splashback) region 6.62 Mpc (3.18 R200)
+    carrier 5.36 M_b, gate on   : R200 = 2.08 Mpc; gate on to 271.81 (130.51 R200); R0 = 15.32 (7.35 R200); multistream (splashback) region 12.94 Mpc (6.21 R200)
+    carrier 5.36 M_b, gate off  : R200 = 2.08 Mpc; gate on to 6.62 (3.18 R200); R0 = 8.92 (4.28 R200); multistream (splashback) region 6.62 Mpc (3.18 R200)
+  [PASS] (reported) G7 [H6] (reported) CLUSTERS: with its carrier kept the cluster's gate covers X-COP's radii (R500 ~ 0.65 R200), so X-COP's MOND share is unchanged by the gate; the multistream (splashback) radius with and without the gate is printed
+         measured: carrier kept: gate on to 3.18 R200, R0 = 4.28 R200, splashback 3.18 (gated) / 6.21 (MOND everywhere) / 3.18 (Newton) R200; baryons only: gate on to 3.93 R200
+    [664 s]
+
+======================================================================================================================
+G8  (reported gates) THE FLAGSHIP (z = 2.5, y = 0.1) AND SPARC (z = 0, y = 0.01-100): is the galaxy law inside the gate?
+======================================================================================================================
+    flagship canonical/1e+10: r_F = 12.2 kpc, gate on to 38.3 kpc, W(r_F) = 1.00: deviation +0.000 dex
+    flagship canonical/1e+11: r_F = 38.6 kpc, gate on to 97.3 kpc, W(r_F) = 1.00: deviation +0.000 dex
+    flagship alt/1e+10: r_F = 11.1 kpc, gate on to 43.6 kpc, W(r_F) = 1.00: deviation +0.000 dex
+    flagship alt/1e+11: r_F = 35.1 kpc, gate on to 97.3 kpc, W(r_F) = 1.00: deviation +0.000 dex
+    SPARC canonical/1e+09: gate on to 55 kpc; the y = 0.01 radius 12 kpc; worst |dev| 0.000 dex
+    SPARC canonical/1e+10: gate on to 116 kpc; the y = 0.01 radius 39 kpc; worst |dev| 0.000 dex
+    SPARC canonical/1e+11: gate on to 234 kpc; the y = 0.01 radius 122 kpc; worst |dev| 0.000 dex
+    SPARC canonical/1e+12: gate on to 577 kpc; the y = 0.01 radius 386 kpc; worst |dev| 0.000 dex
+    SPARC alt/1e+09: gate on to 55 kpc; the y = 0.01 radius 11 kpc; worst |dev| 0.000 dex
+    SPARC alt/1e+10: gate on to 116 kpc; the y = 0.01 radius 35 kpc; worst |dev| 0.000 dex
+    SPARC alt/1e+11: gate on to 217 kpc; the y = 0.01 radius 111 kpc; worst |dev| 0.000 dex
+    SPARC alt/1e+12: gate on to 678 kpc; the y = 0.01 radius 351 kpc; worst |dev| 0.000 dex
+  [PASS] (reported) G8 [H7] (reported gates) the FLAGSHIP (|dev| <= 0.05 dex at y = 0.1, z = 2.5, 1e10-1e11) and SPARC (|dev| <= 0.01 dex at y = 0.01-100, 1e9-1e12, z = 0) with the sharp local gate (convention B): the law holds where the gate is on
+         measured: flagship worst 0.000 dex; SPARC worst 0.000 dex
+         reading:  the galaxy law survives only where the galaxy's own turned-around (and multistream) region covers its test radii
+
+======================================================================================================================
+K4  (reported) CONVERGENCE: shells x2 and steps x2 on the headline rows
+======================================================================================================================
+    N/steps 300+200/3000: r_on 0.227, R0 0.378, LG R0 0.440; N/steps 600+400/3000: r_on 0.187, R0 0.378, LG R0 0.440; N/steps 300+200/6000: r_on 0.227, R0 0.378, LG R0 0.440; KiDS (sharp D1, B) 300+200/3000: +972.23, 600+400/6000: +1069.09
+  [PASS] (reported) K4 (reported) CONVERGENCE: doubling the shells or the steps moves R0 (1e11, z = 0.25; the LG, z = 0) by the printed fraction and the sharp-D1 KiDS d chi^2 by the printed amount (a fraction of its excess over +9)
+         measured: max |R0 change| 6.4e-06; KiDS {'300+200/3000': 972.2326248551713, '600+400/6000': 1069.0860502391606}
+  [PASS] F [load-bearing] every KiDS score, the sharp and Newtonian R0 and every pincer KiDS score is finite
+         measured: 56 numbers finite: True
+
+======================================================================================================================
+W  THE LEDGER
+======================================================================================================================
+    XR36-g   FAILS      the turnaround gate around isolated KiDS lenses: the turned-around region at z = 0.25 is <= 0.6 Mpc (baryons only), so KiDS fails for every turnaround-keyed variant  [G1, G2]
+    XR36-h   FAILS      the LG under the sharp gate: R0 = the Newtonian baryons-only value; the MW-M31 pair must turn around on Newtonian baryons first  [G3, G4]
+    XR36-i   CONSTRAINT the ramp width c_w maps FP18's KiDS-R0 pincer: KiDS passes only where the LG's R0 >~ 1.3 Mpc  [G5]
+    XR36-j   CONSTRAINT MS1: the gate must read the baryon flow (a total-matter reading pulls the switch-on inward)  [G6]
+    XR36-k   DERIVED    clusters that keep their carrier are turned around well beyond R500: X-COP's MOND share is untouched by the gate  [G7]
+
+7/13 checks pass; load-bearing failures: 2   [704 s]

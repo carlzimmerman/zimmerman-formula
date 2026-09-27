@@ -1,0 +1,86 @@
+XR34_rescore_L346 -- L346's forest gate (matter power) re-scored with ONLY the MOND kernel's argument corrected.
+
+L346 AS COMMITTED.  L342's constant-threshold switch (matter reading, x = 1.5 Omega_m(a) delta_mesh) in L176's PM (50 Mpc/h,
+128^3 mesh, 96^3 particles, CLASS to 20 h/Mpc, seed 7).  F2: P_switch/P_LCDM in the forest band (k = 1-4 h/Mpc, z = 3 and
+2) at x_c = 5 must lie in [0.8, 1.2] for both footings: worst |P/P_LCDM - 1| = 0.36 -> FAILS.  C3: MOND everywhere
+overshoots (3.5-4.6).  F1 (diagnostic): the switched-on mass fraction and its median |g_N|/a0.  F3: 0.8 Mpc/h smoothing
+gives less excess.  Its kernel line is gN = -grad phi / a^2 = (1+z) g_N,phys; the F1 median reads the same gN.
+
+METHOD.  L346's committed source executed read-only with that ONE line changed to gN = -grad phi / a (XR34_common).
+The same line feeds F1's median |g_N|/a0, which after the change is the physical one.  Runs:
+  'fix'  (after):   sw5_canon, sw5_alt, sw4_canon, sw7_canon, sw5_smooth08, sw5_phantomx, no_switch
+  'none' (control): sw5_canon, sw5_alt; LCDM re-run
+
+====================================================================================================================
+K1  THE ARGUMENT: L346's own accel() on the analytic single halo (L346's 50 Mpc/h mesh)
+====================================================================================================================
+    z3/canonical  y 0.120-0.377: kick/a over nu g_N  'fix' 0.992-0.998   committed 0.582-0.650
+    z3/alt        y 0.100-0.313: kick/a over nu g_N  'fix' 0.992-0.998   committed 0.574-0.637
+    z2/canonical  y 0.068-0.212: kick/a over nu g_N  'fix' 0.992-0.997   committed 0.627-0.671
+    z2/alt        y 0.056-0.176: kick/a over nu g_N  'fix' 0.992-0.997   committed 0.622-0.663
+    z0/canonical  y 0.008-0.024: kick/a over nu g_N  'fix' 0.991-0.995   committed 0.991-0.995
+    z0/alt        y 0.006-0.020: kick/a over nu g_N  'fix' 0.991-0.995   committed 0.991-0.995
+  [PASS] K1 L346's accel() with the corrected line reproduces nu_mono(g_N/a0) g_N on the analytic halo (2%, z = 3, 2, 0, both footings)
+         measured: 'fix': max |ratio - 1| = 0.0090; committed line: z = 3 0.426, z = 2 0.378, z = 0 0.009
+         reading:  the 'after' runs below use the physical argument
+
+====================================================================================================================
+THE RUNS (L346's run(), one line patched; wall time and peak memory per run)
+====================================================================================================================
+    run done: L346  fix    sw5_alt                    177 s, peak RSS 1.36 GB   [177 s; 9 queued, 0 running]
+    run done: L346  fix    sw5_canon                  167 s, peak RSS 1.36 GB   [344 s; 8 queued, 0 running]
+    run done: L346  fix    sw4_canon                  173 s, peak RSS 1.37 GB   [517 s; 7 queued, 0 running]
+    run done: L346  fix    sw7_canon                  163 s, peak RSS 1.37 GB   [681 s; 6 queued, 0 running]
+    run done: L346  fix    sw5_smooth08               186 s, peak RSS 1.36 GB   [867 s; 5 queued, 0 running]
+    run done: L346  fix    sw5_phantomx               211 s, peak RSS 1.39 GB   [1078 s; 4 queued, 0 running]
+    run done: L346  fix    no_switch                  176 s, peak RSS 1.29 GB   [1254 s; 3 queued, 0 running]
+    run done: L346  none   lcdm                        93 s, peak RSS 1.17 GB   [1347 s; 2 queued, 0 running]
+    run done: L346  none   sw5_canon                  174 s, peak RSS 1.35 GB   [1521 s; 1 queued, 0 running]
+    run done: L346  none   sw5_alt                    184 s, peak RSS 1.33 GB   [1705 s; 0 queued, 0 running]
+
+====================================================================================================================
+C1 C2  CONTROLS: the committed line reproduces L346; MOND off reproduces the LCDM box
+====================================================================================================================
+  [PASS] C1 the committed line re-run reproduces L346's committed P(k) and F1 diagnostics (sw5_canon, sw5_alt; 1e-12)
+         measured: max relative difference = 2.2e-16
+         reading:  the harness is L346 exactly; only the kernel line differs in 'fix'
+  [PASS] C2 MOND off: the LCDM re-run equals L346's committed LCDM P(k) (1e-12)
+         measured: max |P ratio - 1| = 3.3e-16
+
+====================================================================================================================
+R1  BEFORE / AFTER: P/P_LCDM in the forest band (k = 1-4 h/Mpc), L346's [0.8, 1.2] rule at x_c = 5
+====================================================================================================================
+    no_switch_3.0      before 3.54-4.22   after 14.97-39.38
+    no_switch_2.0      before 3.15-4.56   after 7.79-25.64
+    sw5_canon_3.0      before 1.06-1.22   after 1.17-1.55
+    sw5_canon_2.0      before 1.13-1.32   after 1.26-1.60
+    sw5_alt_3.0        before 1.07-1.25   after 1.19-1.59
+    sw5_alt_2.0        before 1.15-1.36   after 1.29-1.66
+    sw4_canon_3.0      before 1.09-1.28   after 1.25-1.68
+    sw4_canon_2.0      before 1.17-1.37   after 1.34-1.74
+    sw7_canon_3.0      before 1.04-1.15   after 1.10-1.39
+    sw7_canon_2.0      before 1.09-1.26   after 1.18-1.46
+    sw5_smooth08_3.0   before 1.03-1.14   after 1.06-1.32
+    sw5_smooth08_2.0   before 1.09-1.31   after 1.15-1.53
+    sw5_phantomx_3.0   before 1.07-1.21   after 1.19-1.52
+    sw5_phantomx_2.0   before 1.13-1.31   after 1.28-1.57
+    F1 sw5_canon     mass fraction switched on / median |g_N|/a0 there, z = 6, 3, 2: before 0.030/4.90e-01, 0.188/1.80e-01, 0.298/1.08e-01   after 0.030/7.14e-02, 0.188/4.72e-02, 0.296/3.76e-02
+    F1 sw5_phantomx  mass fraction switched on / median |g_N|/a0 there, z = 6, 3, 2: before 0.031/4.56e-01, 0.191/1.65e-01, 0.296/9.55e-02   after 0.034/6.23e-02, 0.192/4.19e-02, 0.292/3.23e-02
+    F1 sw5_smooth08  mass fraction switched on / median |g_N|/a0 there, z = 6, 3, 2: before 0.000/7.51e-01, 0.068/3.55e-01, 0.155/2.28e-01   after 0.000/1.09e-01, 0.068/9.36e-02, 0.154/7.94e-02
+    F3 mean |ratio - 1| at z = 3: before {'sw5_smooth08': 0.07414961020556661, 'sw5_canon': 0.12250783847582714, 'sw5_phantomx': 0.11966924697876087}  after {'sw5_smooth08': 0.17001692401427285, 'sw5_canon': 0.3152049916802106, 'sw5_phantomx': 0.31570685499254264}
+    (before recomputed from the committed arrays equals L346's committed F2 to 0e+00)
+  [PASS] R1 (reported) L346's F2 ([0.8, 1.2] at x_c = 5, both footings), C3, F3 with the corrected argument  (reported, not load-bearing)
+         measured: F2 worst 0.36 (FAIL) -> 0.66 (FAIL); C3 no-switch z = 3 min 3.54 -> 14.97; F3 smooth <= mesh True -> True
+  [PASS] H1 (reported) the pre-declared hypothesis H-L346: F2's FAIL does not flip  (reported, not load-bearing)
+         measured: F2 FAIL after
+         reading:  a failed hypothesis is kept as run
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  With ONLY the kernel argument corrected, L346's forest-band matter power at x_c = 5 fails by more: worst |P/P_LCDM - 1|
+  0.36 -> 0.66 (FAIL).  (L347 showed the flux observable absorbs most of this excess; see
+  XR34_rescore_L347.)  Controls: committed line reproduces L346 to 2e-16 (C1); MOND off reproduces the LCDM box to 3e-16 (C2).
+
+  5/5 checks pass; load-bearing failures: 0; wrote XR34_rescore_L346_results.json   [1716 s]
+rc=0

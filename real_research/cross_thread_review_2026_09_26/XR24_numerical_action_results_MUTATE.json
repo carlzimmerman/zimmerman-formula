@@ -1,0 +1,337 @@
+{
+ "lane": "XR24",
+ "mutate": true,
+ "checks": {
+  "K7": {
+   "ok": true,
+   "measured": "max |L/L_committed - 1| 0.0e+00; max |y_th - committed| 0.0e+00; q = 0 at z = 0.6348",
+   "load_bearing": true,
+   "name": "K7 CONTROL: FP13's code (exec'd read-only) returns its committed headline H_S tables -- L(z) at 7 redshifts and y_th(z) at 8 (canonical) -- exactly; the law used below is FP13's"
+  },
+  "K4": {
+   "ok": true,
+   "measured": "(a) (0.78,1): 1.00000/0.99989, (0.9,0.667): 1.00009/1.00021, (0.2,0.5): 0.99992/1.00023, (0.78,0.8): 1.00003/1.00003; (b) (0.78,1): 1.0174/1.0029, (0.9,0.667): 1.0140/1.0032, (0.2,0.5): 1.0098/1.0005; (c) scale 1.0: virial 1.0002 (pairwise 1.925), |sum m g|/sum|m g| 1.5e-05 (pairwise 6.6e-02), scale 3.0: virial 1.0000 (pairwise 1.925), |sum m g|/sum|m g| 1.5e-05 (pairwise 6.6e-02)",
+   "load_bearing": true,
+   "name": "K4 CONTROL (the 3-D field solver of the chain's static law): (a) the direct 3-D integral of the band-passed dipole kernel equals FP11's committed axisymmetric dg_body at both bodies of the MW-M31 pair (4 cells with band-pass and yield); (b) the spherical-harmonic grid solver (180 x 64 x 96, l <= 40, a tilted axis) equals it within 2.5%; (c) three bodies, deep MOND: the N-body virial identity sum m x.g = -(2/3) sqrt(G a0)[(sum m)^1.5 - sum m^1.5] and momentum conservation hold, and the pairwise superposition (no interaction field) violates the identity by > 50% -- the non-additive part is computed, not approximated"
+  },
+  "K3": {
+   "ok": true,
+   "measured": "integrator -109.258463 vs committed -109.258463 km/s (d 0.779999988); BVP -109.2585 km/s at d = 0.78 exactly, residual 1.8e-10 Mpc",
+   "load_bearing": true,
+   "name": "K3 CONTROL: this lane's N-body integrator in the two-body limit, started from FP11's committed convention-B branch at FP11's committed B timing mass, returns FP11's committed velocity (the same ODE); its numerical-action BVP (positions today = 0.78 Mpc, growing mode at a = 0.02) returns the same branch"
+  },
+  "K6": {
+   "ok": true,
+   "measured": "3.0e+12: -68.9, 4.0e+12: -93.3, 4.5e+12: -104.4, 5.0e+12: -115.0, 5.5e+12: -125.1, 6.5e+12: -144.1 -> 4.725e+12 Msun (t0 = 13.82 Gyr, Planck-2018 h = 0.674 vs their 13.81 Gyr, h = 0.674)",
+   "load_bearing": true,
+   "name": "K6 CONTROL (LCDM benchmark): the radial Lambda timing with point masses + Lambda from the Hubble flow at a = 0.02 (FP11's convention A), r = 0.77 Mpc and v = -109.3 km/s (the inputs of Partridge, Lahav & Hoffman 2013, MNRAS 436, L45), recovers their M_TA,Lambda = (4.73 +- 1.03)e12 Msun within the quoted error"
+  },
+  "K1": {
+   "ok": true,
+   "measured": "max |v_r - committed| 0.0e+00 km/s over 12 points; R0(HY/B/canonical) 1.570962 vs 1.570962 Mpc",
+   "load_bearing": true,
+   "name": "K1 CONTROL: FP11's committed machinery (its module, main() not run) reproduces its committed first-approach velocities (H_Y, conventions A and B, both footings, three masses) and its committed convention-B two-body zero-velocity radius at its B timing mass exactly"
+  },
+  "K2": {
+   "ok": true,
+   "measured": "canonical: -107.0194256807 vs -107.0194256807; alt: -118.8957071319 vs -118.8957071319",
+   "load_bearing": true,
+   "name": "K2 CONTROL: FP11's two-body machinery hooked to FP13's H_S (FP13's hook11 in effect) reproduces FP13's committed L-section first-approach velocities (convention A, M_b = 1.45e11, both footings) exactly -- the H_S used here is FP13's"
+  },
+  "K5": {
+   "ok": true,
+   "measured": "mean 1.5711 vs 1.5710 Mpc (+0.0001); max ray deviation 0.0004; azimuthal spread 1.7e-06 Mpc; pair v_r -109.259 km/s",
+   "load_bearing": true,
+   "name": "K5 CONTROL: the 3-D test-particle machinery (the grid solver's interaction field, tracers on rays in 3-D, a tilted axis, 4 azimuths per polar ray) on the MW-M31 pair alone at FP11's committed convention-B timing mass reproduces FP11's committed two-body zero-velocity radius and its eight rays"
+  },
+  "T1": {
+   "ok": false,
+   "measured": "canonical: s 0.67: -171.8, s 1.0: -205.0, s 1.36: -233.5 -> not bracketed; alt: s 0.67: -187.0, s 1.0: -222.2, s 1.36: -252.5 -> not bracketed",
+   "load_bearing": true,
+   "name": "T1 THE 3-D FIRST-APPROACH TIMING WORKS WITH BARYONS ONLY: in 3-D (MUTATE: the pair in the 3-D machinery), the plain root law (MUTATE) reaches the MW-M31 v_r = -109.3 km/s on the FIRST approach (no pericentre since a = 0.02) at an LG baryonic mass inside the window [1.221e+11, 2.476e+11] Msun, both footings"
+  }
+ },
+ "numbers": {
+  "K4": {
+   "direct": [
+    [
+     0.78,
+     1.0,
+     1.0000003092993754,
+     0.9998897498491985
+    ],
+    [
+     0.9,
+     0.667,
+     1.0000946312694792,
+     1.000211494868639
+    ],
+    [
+     0.2,
+     0.5,
+     0.9999238035378868,
+     1.000225091811269
+    ],
+    [
+     0.78,
+     0.8,
+     1.000031162683708,
+     1.0000287862483799
+    ]
+   ],
+   "grid": [
+    [
+     0.78,
+     1.0,
+     1.0174083540777947,
+     1.0029150493536965
+    ],
+    [
+     0.9,
+     0.667,
+     1.0139880688744922,
+     1.003224438417314
+    ],
+    [
+     0.2,
+     0.5,
+     1.0098095900543849,
+     1.000538956730053
+    ]
+   ],
+   "virial": {
+    "1.0": {
+     "ratio": 1.0001637592796744,
+     "pairwise": 1.9253649239739783,
+     "mom": 1.4838064768749352e-05,
+     "mom_pair": 0.06560861410420654
+    },
+    "3.0": {
+     "ratio": 1.0000225329264003,
+     "pairwise": 1.9252953619995536,
+     "mom": 1.4785947465499584e-05,
+     "mom_pair": 0.06561328400400032
+    }
+   }
+  },
+  "K6": {
+   "pts": [
+    [
+     3000000000000.0,
+     -68.92879670082793
+    ],
+    [
+     4000000000000.0,
+     -93.27457759429153
+    ],
+    [
+     4500000000000.0,
+     -104.39882179277095
+    ],
+    [
+     5000000000000.0,
+     -114.97167393447073
+    ],
+    [
+     5500000000000.0,
+     -125.0701739749685
+    ],
+    [
+     6500000000000.0,
+     -144.07582988821179
+    ]
+   ],
+   "M": 4725241095580.547
+  },
+  "K": {
+   "K1": [
+    [
+     "HY/canonical/1.145e+11",
+     "A",
+     -89.47284445291007,
+     -89.47284445291007
+    ],
+    [
+     "HY/canonical/1.145e+11",
+     "B",
+     -99.6729950304441,
+     -99.6729950304441
+    ],
+    [
+     "HY/canonical/1.450e+11",
+     "A",
+     -101.96856765477649,
+     -101.96856765477649
+    ],
+    [
+     "HY/canonical/1.450e+11",
+     "B",
+     -112.06654262449918,
+     -112.06654262449918
+    ],
+    [
+     "HY/canonical/1.750e+11",
+     "A",
+     -112.53058718290646,
+     -112.53058718290646
+    ],
+    [
+     "HY/canonical/1.750e+11",
+     "B",
+     -122.44785748997113,
+     -122.44785748997113
+    ],
+    [
+     "HY/alt/1.145e+11",
+     "A",
+     -99.38001140106363,
+     -99.38001140106363
+    ],
+    [
+     "HY/alt/1.145e+11",
+     "B",
+     -109.58349590477611,
+     -109.58349590477611
+    ],
+    [
+     "HY/alt/1.450e+11",
+     "A",
+     -112.60396551146698,
+     -112.60396551146698
+    ],
+    [
+     "HY/alt/1.450e+11",
+     "B",
+     -122.53727915256403,
+     -122.53727915256403
+    ],
+    [
+     "HY/alt/1.750e+11",
+     "A",
+     -123.72190444219035,
+     -123.72190444219035
+    ],
+    [
+     "HY/alt/1.750e+11",
+     "B",
+     -133.46814758414965,
+     -133.46814758414965
+    ]
+   ],
+   "K1R0": [
+    1.5709623632932967,
+    1.5709623632932967
+   ],
+   "K2": [
+    [
+     "canonical",
+     -107.01942568070555,
+     -107.01942568070555
+    ],
+    [
+     "alt",
+     -118.89570713190297,
+     -118.89570713190297
+    ]
+   ],
+   "K5": {
+    "rays": [
+     1.760566426762921,
+     1.657158908573677,
+     1.5299232477043803,
+     1.4762675436390078,
+     1.504243945909584,
+     1.575730159839166,
+     1.653036520354379,
+     1.7053312177035034
+    ],
+    "mean": 1.5711098631906646,
+    "vr": -109.25865059832117,
+    "phi_spread": 1.7095140891702355e-06
+   }
+  },
+  "T": {
+   "scan": {
+    "canonical/0.67": {
+     "vr": -171.7805613432058,
+     "vt": 0.002865772502896533,
+     "d": 0.7799999902713637,
+     "dmax": 1.3023445546717918,
+     "z_dmax": 0.6858250219139599,
+     "t_dmax_lookback": 6.4269112044203744,
+     "peri": [],
+     "d_ai_kpc": 83.94709049738394,
+     "Qrel": 4.197354524869197
+    },
+    "canonical/1.0": {
+     "vr": -205.00890663604986,
+     "vt": 0.0035028182420136452,
+     "d": 0.7800000095445934,
+     "dmax": 1.4111794050214113,
+     "z_dmax": 0.7157652221028297,
+     "t_dmax_lookback": 6.597997827181281,
+     "peri": [],
+     "d_ai_kpc": 92.22414286886588,
+     "Qrel": 4.611207143443294
+    },
+    "canonical/1.36": {
+     "vr": -233.49385057886934,
+     "vt": 0.004086718055311099,
+     "d": 0.7800000021551682,
+     "dmax": 1.5032574092782,
+     "z_dmax": 0.7360201855045896,
+     "t_dmax_lookback": 6.710320626808116,
+     "peri": [],
+     "d_ai_kpc": 99.17686027616551,
+     "Qrel": 4.958843013808275
+    },
+    "alt/0.67": {
+     "vr": -186.97422858316858,
+     "vt": 0.003151134601409342,
+     "d": 0.780000002426772,
+     "dmax": 1.352351410742519,
+     "z_dmax": 0.6990667287635381,
+     "t_dmax_lookback": 6.503335600053674,
+     "peri": [],
+     "d_ai_kpc": 87.73750291451503,
+     "Qrel": 4.386875145725752
+    },
+    "alt/1.0": {
+     "vr": -222.18555441575327,
+     "vt": 0.0038517631659007,
+     "d": 0.7800000127353012,
+     "dmax": 1.4667187484017241,
+     "z_dmax": 0.7292421012560366,
+     "t_dmax_lookback": 6.673033728360542,
+     "peri": [],
+     "d_ai_kpc": 96.40936261582074,
+     "Qrel": 4.8204681307910375
+    },
+    "alt/1.36": {
+     "vr": -252.46837527105782,
+     "vt": 0.004493988786638486,
+     "d": 0.7800000014824915,
+     "dmax": 1.5641396025951895,
+     "z_dmax": 0.7462371593199766,
+     "t_dmax_lookback": 6.765962438714945,
+     "peri": [],
+     "d_ai_kpc": 103.71080667984978,
+     "Qrel": 5.185540333992489
+    }
+   },
+   "s_timing": {
+    "canonical": null,
+    "alt": null
+   },
+   "s_timing_twobody": {
+    "canonical": null,
+    "alt": null
+   },
+   "pairB": {}
+  }
+ },
+ "ledger": [],
+ "n_checks": 8,
+ "n_fail_load_bearing": 1,
+ "elapsed_s": 272
+}

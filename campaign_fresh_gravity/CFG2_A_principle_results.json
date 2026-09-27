@@ -1,0 +1,270 @@
+{
+ "lane": "CFG2",
+ "script": "CFG2_A_principle",
+ "mutate": false,
+ "checks": {
+  "H1": {
+   "ok": true,
+   "load_bearing": true,
+   "measured": "identity True; canonical 5.2232e-12 Pa, alt 7.6284e-12 Pa; fraction of rho c^2 = 0.009947 = 1/(32 pi) at kappa = 1/2",
+   "name": "H1 THE VACUUM STRESS SCALE: P_Lambda = a0^2/(8 pi G) = kappa^2 rho c^2/(8 pi) (sympy identity) and equals the printed numbers on both footings (rho_Lambda canonical, rho_total alt)"
+  },
+  "H2": {
+   "ok": true,
+   "load_bearing": true,
+   "measured": "P2: True; hydrostatic True; virial True; flux M_b*a0/2; BTFR norm canonical 1.00000001, alt 1.00000001; max dev from P2 7.8e-16",
+   "name": "H2 [HEADLINE] THE POINT-MASS THEOREM: a static dark medium in GR hydrostatic equilibrium around a point mass, with pressure the geometric mean of the vacuum stress and the baryons' field stress, P_d = sqrt(P_Lambda P_N) = a0 g_N/(8 pi G), has M(<r) = M_b sqrt(1 + a0 r^2/(G M_b)) -- the framework's own kernel P2 -- uniquely (sympy dsolve), with local temperature sigma^2 = v_c^2/2 and pressure force a0 M_b/2 on every sphere; numerically its BTFR normalisation v^4/(G M_b a0) -> 1 to < 1e-6 at 1e4 r_M on both footings"
+  },
+  "H3": {
+   "ok": true,
+   "load_bearing": true,
+   "measured": "P2: max dev 0.000, deep 1.000; nu_mono: max dev 0.484, deep 1.011; nu_RAR: max dev 0.594, deep 1.011",
+   "name": "H3 P2 IS SINGLED OUT: the point-mass phantom of P2 has pressure exactly sqrt(P_Lambda P_N) at every y (numerical quadrature, < 1e-3), while nu_mono's and nu_RAR's depart from it by > 10% somewhere in 0.1 <= y <= 10 and approach it in the deep limit (y = 1e-3: within 5%)"
+  },
+  "H4": {
+   "ok": true,
+   "load_bearing": true,
+   "measured": "F solves: True; limits F 1, E 1; numeric can/expo F 1.0000 E 1.0000, can/hern F 0.9941 E 0.9980, alt/expo F 1.0000 E 1.0000, alt/hern F 0.9941 E 0.9980",
+   "name": "H4 THE BTFR IS EXACT FOR ANY FINITE SPHERICAL DISTRIBUTION: outside the baryons reading F's hydrostatic medium is the point-mass solution with M_tot (sympy), and both readings give lim v^4/(G M_b a0) = 1 (sympy); numerically an exponential and a Hernquist sphere give 1 to < 1e-2 at 1000 scale radii (finite-r approach ~ r_M/r) on both footings"
+  },
+  "H5": {
+   "ok": true,
+   "load_bearing": true,
+   "measured": "limit 1, monotone True; canonical: 106.9 (-0.121 dex); alt: 129.2 (-0.039 dex)",
+   "name": "H5 THE HALO SURFACE DENSITY: the settled column M_d(<r)/(pi r^2) rises monotonically to exactly a0/(2 pi G) (sympy); the ceiling is 106.9 / 129.2 Msun/pc^2, inside Donato+09's 2.15 +- 0.2 dex on both footings (the SPARC Burkert product of the settled profiles is scored in CFG2_B)"
+  },
+  "H6": {
+   "ok": true,
+   "load_bearing": true,
+   "measured": "ratio (2 - n)/(n + 2); target identity True; F's deep ODE residual 0",
+   "name": "H6 THE TWO READINGS DIFFER INSIDE EXTENDED BARYONS: for M_b ~ r^n the deep dark mass of reading F (medium pressure local) is sqrt((2 - n)/(n + 2)) of reading E's (stress law local) (sympy): equal for point masses, 1/sqrt 3 for n = 1, zero for the r^2 inner disc -- F under-supplies dark mass exactly where Renzo's rule is tested"
+  },
+  "H7": {
+   "ok": true,
+   "load_bearing": true,
+   "measured": "Pi on P2 residual 0; deep stress-free True; inner slope -M_R*r**2/(2*R_b**3); BTFR ratio G*M_R/(R_b**2*a0); thermal bound 1/3",
+   "name": "H7 THE OBSTRUCTION (design constraints): (i) a gravity-only pressure law P_d = Pi(|g|) reproduces P2 around a point mass but reduces to the stress-free law in the deep regime, which leaves no dark medium inside diffuse baryons and gives v^4/(G M_b a0) = (r_M/R_b)^2 for a uniform sphere; (ii) an isothermal sphere capped at P_Lambda holds <= M_b/3 inside r_M, nu(1) <= 4/3 < sqrt 2 (sympy)"
+  },
+  "H8": {
+   "ok": false,
+   "load_bearing": false,
+   "measured": "canonical window log M* [5.00, 10.65]; alt [5.00, 10.70]",
+   "name": "H8 (reported) THE SETTLED WINDOW: with the record's Moster+13 accretion the settled state can hold the accreted dark mass (eta <= 1) for disc-galaxy stellar masses and cannot below (dwarf spheroidals, M* < 1e6) or above (massive galaxies, groups, clusters), on both footings (SPARC gas prescription)"
+  },
+  "H9": {
+   "ok": true,
+   "load_bearing": true,
+   "measured": "reproduced FP0 rival E(z) to 0.0e+00; rival +0.576 dex at z = 2.5",
+   "name": "H9 a0(z) IS FLAT IN THE SETTLED LAW: its only scale is P_Lambda ~ rho_Lambda (constant for w = -1); FP0's committed rival E(z) is reproduced (the rival puts the z = 2.5 BTFR zero point +0.576 dex away)"
+  },
+  "A10": {
+   "ok": true,
+   "load_bearing": false,
+   "measured": "1 / 1 / 1 / 2 rules / 1 tied",
+   "name": "A10 (reported) THE CONSTANT COUNT: 1 fitted (kappa), 1 declared number (m, cosmology only), 1 initial datum (Omega_c), 2 declared rules (scope; reading E), 1 tied (P_Lambda), the kernel and the BTFR/column derived"
+  }
+ },
+ "numbers": {
+  "A1": {
+   "canonical": {
+    "P_Lambda_Pa": 5.223195202666154e-12,
+    "fraction_of_rho_c2": 0.00994718394324346,
+    "a0_check": 0.0
+   },
+   "alt": {
+    "P_Lambda_Pa": 7.628443409765084e-12,
+    "fraction_of_rho_c2": 0.009947183943243459,
+    "a0_check": 1.1425615813289705e-16
+   }
+  },
+  "A2": {
+   "canonical": {
+    "btfr_norm_at_1e4_rM": 1.000000009999999,
+    "max_dev_from_P2": 7.771561172376096e-16
+   },
+   "alt": {
+    "btfr_norm_at_1e4_rM": 1.0000000100000004,
+    "max_dev_from_P2": 5.551115123125783e-16
+   }
+  },
+  "A3": {
+   "P2": {
+    "max_dev_0p1_10": 1.2963074835781185e-08,
+    "at_y_1e_3": 1.0000000132514364,
+    "at_y_1": 1.0000000119746848,
+    "at_y_10": 1.0000000122680608
+   },
+   "nu_mono": {
+    "max_dev_0p1_10": 0.4842204367141394,
+    "at_y_1e_3": 1.0105404172123365,
+    "at_y_1": 1.31593450412176,
+    "at_y_10": 1.4459087501196806
+   },
+   "nu_RAR": {
+    "max_dev_0p1_10": 0.5941874945013612,
+    "at_y_1e_3": 1.0105404106046625,
+    "at_y_1": 1.315934496411058,
+    "at_y_10": 1.5886510514249819
+   }
+  },
+  "A4": {
+   "canonical/exponential": {
+    "F": 0.9999915478971538,
+    "E": 1.0000016545894352
+   },
+   "canonical/hernquist": {
+    "F": 0.9941009383757677,
+    "E": 0.9980046439925842
+   },
+   "alt/exponential": {
+    "F": 0.9999911597386965,
+    "E": 1.0000013691165202
+   },
+   "alt/hernquist": {
+    "F": 0.9940986356865762,
+    "E": 0.9980043596587119
+   }
+  },
+  "A5": {
+   "canonical": {
+    "Sigma_ceiling": 106.87776792899722,
+    "log10": 2.028887375275164,
+    "off_Donato_dex": -0.12111262472483597
+   },
+   "alt": {
+    "Sigma_ceiling": 129.16272869009325,
+    "log10": 2.1111372113415046,
+    "off_Donato_dex": -0.03886278865849535
+   }
+  },
+  "A6": {
+   "ratio_n0": 1.0,
+   "ratio_n1": 0.3333333333333333,
+   "ratio_n2": 0.0
+  },
+  "A7": {
+   "thermal_bound_nu1": 1.3333333333333333,
+   "nu_P2_1": 1.4142135623730951,
+   "nu_mono_1": 1.5819767100712954
+  },
+  "A8": {
+   "canonical/sparc_fit": {
+    "window_logMstar": [
+     5.0,
+     10.64999999999998
+    ],
+    "eta_at": {
+     "6.0": 0.8614688406566497,
+     "7.0": 0.8542294677087968,
+     "8.0": 0.810559183225679,
+     "9.0": 0.7115045588263942,
+     "10.0": 0.6150002616582365,
+     "10.5": 0.7409873081548162,
+     "11.0": 2.2634695607065236,
+     "11.5": 9.157586899513735
+    }
+   },
+   "canonical/gas_free": {
+    "window_logMstar": [
+     9.149999999999984,
+     10.59999999999998
+    ],
+    "eta_at": {
+     "6.0": 4.668668988531924,
+     "7.0": 2.82165292085829,
+     "8.0": 1.7115576709828004,
+     "9.0": 1.0561852888141119,
+     "10.0": 0.7318574422654974,
+     "10.5": 0.8267870655846774,
+     "11.0": 2.4237238794562908,
+     "11.5": 9.550683967515532
+    }
+   },
+   "alt/sparc_fit": {
+    "window_logMstar": [
+     5.0,
+     10.69999999999998
+    ],
+    "eta_at": {
+     "6.0": 0.7832328751334859,
+     "7.0": 0.776492374258283,
+     "8.0": 0.7365509912164176,
+     "9.0": 0.6461346774182674,
+     "10.0": 0.5578188839274827,
+     "10.5": 0.6717440882813536,
+     "11.0": 2.0537531895322236,
+     "11.5": 8.316473801844902
+    }
+   },
+   "alt/gas_free": {
+    "window_logMstar": [
+     8.949999999999985,
+     10.64999999999998
+    ],
+    "eta_at": {
+     "6.0": 4.246460319419385,
+     "7.0": 2.5661651896095603,
+     "8.0": 1.5561502106377583,
+     "9.0": 0.9596803147338079,
+     "10.0": 0.664126074211564,
+     "10.5": 0.7498005487362446,
+     "11.0": 2.199538023055362,
+     "11.5": 8.674065040397783
+    }
+   }
+  },
+  "A9": {
+   "rival_E_2p5": 3.768711649887797,
+   "rival_dex_2p5": 0.5761929101603522,
+   "reproduced_dev": 0.0
+  },
+  "A10": {
+   "fitted": 1,
+   "declared_numbers": 1,
+   "declared_initial_data": 1,
+   "declared_rules": 2,
+   "tied": 1
+  }
+ },
+ "ledger": [
+  {
+   "id": "CFG2-A1",
+   "status": "DERIVED",
+   "text": "P2 = the hydrostatic dark medium with P_d = sqrt(P_Lambda P_N) around a point mass (unique)",
+   "where": "A2/A3"
+  },
+  {
+   "id": "CFG2-A2",
+   "status": "DERIVED",
+   "text": "BTFR exact (any spherical distribution); column ceiling a0/(2 pi G) = 106.9/129.2 Msun/pc^2",
+   "where": "A4/A5"
+  },
+  {
+   "id": "CFG2-A3",
+   "status": "CONSTRAINT",
+   "text": "readings E vs F differ inside extended baryons by (2-n)/(n+2) in M^2",
+   "where": "A6"
+  },
+  {
+   "id": "CFG2-A4",
+   "status": "CONSTRAINT",
+   "text": "gravity-only pressure and thermal settling cannot make the RAR (stress-free inside diffuse baryons; nu(1) <= 4/3)",
+   "where": "A7"
+  },
+  {
+   "id": "CFG2-A5",
+   "status": "PREDICTION",
+   "text": "settled window in M*; outside it systems sit ABOVE the RAR",
+   "where": "A8"
+  }
+ ],
+ "summary": {
+  "n_checks": 10,
+  "n_pass": 9,
+  "load_bearing_failures": 0,
+  "failed": [
+   "H8"
+  ],
+  "seconds": 0.8
+ }
+}

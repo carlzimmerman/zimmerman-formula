@@ -1,0 +1,29 @@
+XR34_rescore_DE11 -- DE11's forest verdict re-scored with ONLY the MOND kernel's argument corrected.
+
+DE11 AS COMMITTED.  The converged model's MOND-sector switch (x_MS = 1.5 Omega_m(a)[f_b delta + delta_ph], the phantom
+lagged one step; threshold 2.5 E(z)^2; smoothTransition width w = 0.25 and 0.02) in L347's PM (128^3 mesh, 96^3
+particles, 50 and 25 Mpc/h, CLASS to 40 h/Mpc, seed 7).  F1: worst |P1D/P1D_LCDM - 1| = 0.0041 (L25 alt) against 0.10 ->
+PASS.  Its kernel line reads |grad phi|/a^2 = (1+z) g_N,phys (XR34_kernel_argument).
+
+METHOD.  DE11's committed source executed read-only with that ONE line changed to |grad phi|/a (XR34_common).  Runs:
+  'fix'  (after):   all eight MOND cells (2 boxes x 2 footings x 2 widths)
+  'none' (control): L25_alt_w0.02 and L25_alt_w0.25 (the cells that set DE11's worst) and L50_alt_w0.25
+  LCDM:             L50_lcdm and L25_lcdm re-run (DE11's own run(); compared with L347's committed LCDM P1D)
+
+  *** MUTATE=1: 'double' stands in for the corrected line; K1 must FAIL; no PM run ***
+
+====================================================================================================================
+K1  THE ARGUMENT: DE11's own accel() on the analytic single halo
+====================================================================================================================
+    z3/canonical  y 0.120-0.377: kick/a over nu g_N  'double' 1.728-1.825   committed 0.582-0.650
+    z3/alt        y 0.100-0.313: kick/a over nu g_N  'double' 1.748-1.838   committed 0.574-0.637
+    z2/canonical  y 0.068-0.212: kick/a over nu g_N  'double' 1.573-1.628   committed 0.627-0.671
+    z2/alt        y 0.056-0.176: kick/a over nu g_N  'double' 1.585-1.636   committed 0.622-0.663
+    z0/canonical  y 0.008-0.024: kick/a over nu g_N  'double' 0.991-0.995   committed 0.991-0.995
+    z0/alt        y 0.006-0.020: kick/a over nu g_N  'double' 0.991-0.995   committed 0.991-0.995
+  [FAIL] K1 DE11's accel() with the corrected line reproduces nu_mono(g_N/a0) g_N on the analytic halo (2%, z = 3, 2, 0, both footings)
+         measured: 'double': max |ratio - 1| = 0.8378; committed line: z = 3 0.426, z = 2 0.378, z = 0 0.009
+         reading:  the 'after' runs below use the physical argument
+
+  0/1 checks pass; load-bearing failures: 1; wrote XR34_rescore_DE11_results_MUTATE.json   [9 s]
+rc=1

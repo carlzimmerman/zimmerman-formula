@@ -1,0 +1,86 @@
+XR34_rescore_DE11b -- DE11b's forest verdict re-scored with ONLY the MOND kernel's argument corrected.
+
+DE11b AS COMMITTED.  The converged model's MOND-sector switch (vacuum-gated, p = 1, x_c0 = 2.5, w = 0.25, the phantom
+lagged one step inside the switch variable) at 25 Mpc/h: ctrl (128^3 mesh, 96^3 particles), B (128^3, 128^3), C (256^3,
+192^3).  Scorecard row: worst |P1D/P1D_LCDM - 1| = 0.0046 (B alt 0.00464, C alt 0.00457) against L347's 0.10 -> PASS,
+converged (+10-13% per refinement).  Its kernel line reads |grad phi|/a^2 = (1+z) g_N,phys (XR34_kernel_argument).
+
+METHOD.  DE11b's committed source is executed read-only with that ONE line changed to |grad phi|/a (XR34_common checks
+that exactly one line differs).  Everything else is DE11b's: L362's machinery, the ICs (seed 7, CLASS to 60 h/Mpc), the
+switch and its lagged phantom, the FGPA estimator, the score (k_par 0.2-2 h/Mpc, z = 3 and 2).  Runs (one thread each,
+<= 3 at a time, <= 1 on the 256^3 mesh):
+  'fix'  (after):   C_alt, B_alt, B_canonical, ctrl_canonical, ctrl_alt  -- DE11b's five MOND cells, both footings
+  'none' (control): the same five cells with the committed line
+  LCDM:             B_lcdm and ctrl_lcdm re-run; C's LCDM is L362's committed C_lcdm P1D (the same code path: C2 shows
+                    DE11b's LCDM run equals L362's committed one exactly at B, and C1's C_alt reproduction uses it)
+
+====================================================================================================================
+K1  THE ARGUMENT: DE11b's own accel() on the analytic single halo
+====================================================================================================================
+    z3/canonical  y 0.120-0.377: kick/a over nu g_N  'fix' 0.992-0.998   committed 0.582-0.650
+    z3/alt        y 0.100-0.313: kick/a over nu g_N  'fix' 0.992-0.998   committed 0.574-0.637
+    z2/canonical  y 0.068-0.212: kick/a over nu g_N  'fix' 0.992-0.997   committed 0.627-0.671
+    z2/alt        y 0.056-0.176: kick/a over nu g_N  'fix' 0.992-0.997   committed 0.622-0.663
+    z0/canonical  y 0.008-0.024: kick/a over nu g_N  'fix' 0.991-0.995   committed 0.991-0.995
+    z0/alt        y 0.006-0.020: kick/a over nu g_N  'fix' 0.991-0.995   committed 0.991-0.995
+  [PASS] K1 DE11b's accel() with the corrected line reproduces nu_mono(g_N/a0) g_N on the analytic halo (2%, z = 3, 2, 0, both footings)
+         measured: 'fix': max |ratio - 1| = 0.0090; committed line: z = 3 0.426, z = 2 0.378, z = 0 0.009
+         reading:  the 'after' runs below use the physical argument
+
+====================================================================================================================
+THE RUNS (DE11b's run(), one line patched; wall time and peak memory per run)
+====================================================================================================================
+    run done: DE11b fix    B_alt                      332 s, peak RSS 1.37 GB   [332 s; 9 queued, 2 running]
+    run done: DE11b fix    B_canonical                334 s, peak RSS 1.38 GB   [334 s; 8 queued, 2 running]
+    run done: DE11b fix    ctrl_alt                   191 s, peak RSS 1.45 GB   [524 s; 7 queued, 2 running]
+    run done: DE11b fix    ctrl_canonical             194 s, peak RSS 1.49 GB   [527 s; 6 queued, 2 running]
+    run done: DE11b none   ctrl_lcdm                   91 s, peak RSS 1.48 GB   [619 s; 5 queued, 2 running]
+    run done: DE11b none   B_lcdm                     167 s, peak RSS 1.28 GB   [691 s; 4 queued, 2 running]
+    run done: DE11b none   B_alt                      232 s, peak RSS 1.40 GB   [851 s; 3 queued, 2 running]
+    run done: DE11b none   B_canonical                245 s, peak RSS 1.40 GB   [936 s; 2 queued, 2 running]
+    run done: DE11b none   ctrl_alt                   169 s, peak RSS 1.49 GB   [1021 s; 1 queued, 2 running]
+    run done: DE11b none   ctrl_canonical             171 s, peak RSS 1.48 GB   [1106 s; 1 queued, 1 running]
+    run done: DE11b fix    C_alt                     1801 s, peak RSS 6.66 GB   [1801 s; 1 queued, 0 running]
+    run done: DE11b none   C_alt                     1830 s, peak RSS 6.65 GB   [3632 s; 0 queued, 0 running]
+
+====================================================================================================================
+C1 C2  CONTROLS: the committed line reproduces DE11b; MOND off reproduces the LCDM box
+====================================================================================================================
+    C_alt           committed 0.004572876287   re-run (committed line) 0.004572876287   |diff| 0.0e+00
+    B_alt           committed 0.004637027888   re-run (committed line) 0.004637027888   |diff| 0.0e+00
+    B_canonical     committed 0.003923187820   re-run (committed line) 0.003923187820   |diff| 0.0e+00
+    ctrl_canonical  committed 0.003567831589   re-run (committed line) 0.003567831589   |diff| 0.0e+00
+    ctrl_alt        committed 0.004111690838   re-run (committed line) 0.004111690838   |diff| 0.0e+00
+  [PASS] C1 the committed line re-run reproduces DE11b's committed worst deviation in all five cells (1e-9)
+         measured: max |diff| = 0.0e+00
+         reading:  the harness is DE11b exactly; only the kernel line differs in 'fix'
+  [PASS] C2 MOND off: DE11b's B_lcdm re-run equals L362's committed B_lcdm P1D (1e-12)
+         measured: max |P1D ratio - 1| = 0.0e+00; ctrl_lcdm vs L347's L25_lcdm (CLASS 60 vs 40 h/Mpc, reported) 2.8e-09
+         reading:  so L362's committed C_lcdm is the LCDM reference DE11b's own C run would give
+
+====================================================================================================================
+R1  BEFORE / AFTER: worst |P1D/P1D_LCDM - 1| over k_par 0.2-2 h/Mpc, z = 3 and 2 (DE11b's statistic)
+====================================================================================================================
+    cell             committed      after  after/before   after z=3 / z=2      active mesh fraction z = 2: before -> after
+    C_alt               0.0046     0.0090          1.97   0.0006 / 0.0090      9.26e-04 -> 1.26e-03
+    B_alt               0.0046     0.0093          2.01   0.0003 / 0.0093      4.84e-04 -> 5.94e-04
+    B_canonical         0.0039     0.0085          2.17   0.0003 / 0.0085      4.70e-04 -> 5.70e-04
+    ctrl_canonical      0.0036     0.0087          2.44   0.0003 / 0.0087      4.87e-04 -> 5.92e-04
+    ctrl_alt            0.0041     0.0101          2.45   0.0003 / 0.0101      5.02e-04 -> 6.17e-04
+  [PASS] R1 (reported) DE11b's F1 rule (worst <= 0.10 at B and C) with the corrected argument  (reported, not load-bearing)
+         measured: before 0.0046 (PASS) -> after 0.0093 (PASS); growth with resolution after: B/ctrl canonical 0.98, B/ctrl alt 0.93, C/ctrl alt (2x mesh) 0.89 (before: B/ctrl canonical 1.10, B/ctrl alt 1.13, C/ctrl alt (2x mesh) 1.11)
+  [PASS] H1 (reported) the pre-declared hypothesis H-DE11b: the pass does not flip  (reported, not load-bearing)
+         measured: verdict PASS after (worst 0.0093)
+         reading:  a failed hypothesis is kept as run
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  With ONLY the kernel argument corrected (|grad phi|/a: MOND sqrt(1+z) stronger at z = 2-3), DE11b's worst forest deviation
+  goes 0.0046 -> 0.0093 (x2.0) against the 0.10 gate: the verdict
+  does NOT flip (PASS).  Cells: C_alt 0.0046 -> 0.0090; B_alt 0.0046 -> 0.0093; B_canonical 0.0039 -> 0.0085; ctrl_canonical 0.0036 -> 0.0087; ctrl_alt 0.0041 -> 0.0101.
+  Controls: the committed line reproduces DE11b to 0e+00 (C1); MOND off reproduces the LCDM box to 0e+00 (C2).
+  Unchanged limits (DE11b's own): FGPA, one realisation, all-matter kernel and a single fluid (both over-state the phantom).
+
+  5/5 checks pass; load-bearing failures: 0; wrote XR34_rescore_DE11b_results.json   [3641 s]
+rc=0

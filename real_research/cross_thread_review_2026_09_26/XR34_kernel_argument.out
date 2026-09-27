@@ -1,0 +1,147 @@
+XR34_kernel_argument -- IS THE MOND KERNEL'S ARGUMENT IN THE RECORD'S PARTICLE-MESH FOREST LANES WRONG?  (before any re-score)
+
+WHY.  XR21 (U2) reported that L346, L347, L362, DE11 and DE11b evaluate the MOND kernel at |grad phi|/a^2, which it read as
+(1+z) times the physical field: MOND about sqrt(1+z) too weak at z = 2-3.  Before anything is re-scored this lane shows
+from the codes' own lines whether that is so, and which record scripts carry the pattern.
+
+THE CODE'S CONVENTION, FROM ITS OWN LINES (L362:180-200; L347:201-221, L346:187-225, L359:96-117, DE11:100-129 and
+DE11b:88-116 are the same lines).  Units H0 = 1, lengths comoving Mpc/h, t in 1/H0.
+    drift   x <- x + dt p / a^2                 =>  p = a^2 dx/dt
+    kick    p <- p + dt (-grad_x phi)           =>  dp/dt = -grad_x phi
+    Poisson lap_x phi = 1.5 Om delta / a        =  4 pi G a^2 rho_bar_m(a) delta   (4 pi G rho_m0 = 1.5 Om H0^2)
+The Poisson line makes phi the PHYSICAL peculiar potential Phi (lap_r Phi = 4 pi G rho_bar delta, r = a x).  With the
+peculiar velocity v = a dx/dt = p/a, the peculiar equation of motion dv/dt + H v = g gives g = (dp/dt)/a, so the kick is
+the physical acceleration only if g = -grad_x Phi / a, which is also -grad_r Phi.  Both lines agree: the physical
+Newtonian field is |grad_x phi| / a.  The kernel is evaluated at |grad_x phi| / a^2 = (1+z) g_N,phys (in L346 through
+gN = -grad phi / a^2).  THE CORRECT ARGUMENT, in code units, is  y = |grad_x phi_N| / (a a0),  a0 = a0_SI / UNIT_ACC with
+UNIT_ACC = (Mpc/h) H0^2 in m s^-2 (the lanes' own constant).  (A code written in GADGET's convention, phi_c = a Phi, would
+use a^2 -- but then its Poisson source would carry no 1/a and its kick would be -grad phi_c / a.  These codes have neither.)
+In the deep regime nu - 1 ~ y^(-1/2), so the committed line makes the MOND term sqrt(1+z) too weak: 2.0 at z = 3, 1.73 at
+z = 2.  At z = 0 (a = 1) the two lines coincide.
+
+====================================================================================================================
+THE LINE, PER LANE (the committed text, and the corrected text XR34 substitutes; nothing else changes)
+====================================================================================================================
+    L346  real_research/g03_audit_2026/L346_switch_forest_gate.py:196
+          committed: gN = [-gg / a ** 2 for gg in gphi]
+          corrected: gN = [-gg / a for gg in gphi]
+    L347  real_research/g03_audit_2026/L347_switch_forest_flux_power.py:209
+          committed: mag = np.sqrt(sum((gg / a ** 2) ** 2 for gg in gphi)) + 1e-30
+          corrected: mag = np.sqrt(sum((gg / a) ** 2 for gg in gphi)) + 1e-30
+    L359  real_research/g03_audit_2026/L359_vacuum_gated_switch.py:105
+          committed: mag = np.sqrt(sum((gg / a ** 2) ** 2 for gg in gphi)) + 1e-30
+          corrected: mag = np.sqrt(sum((gg / a) ** 2 for gg in gphi)) + 1e-30
+    L362  real_research/g03_audit_2026/L362_forest_pincer_convergence.py:188
+          committed: mag = np.sqrt(sum((gg / a ** 2) ** 2 for gg in gphi)) + 1e-30
+          corrected: mag = np.sqrt(sum((gg / a) ** 2 for gg in gphi)) + 1e-30
+    DE11  real_research/dark_energy_2026/DE11_forest_converged_model.py:108
+          committed: mag = np.sqrt(sum((gg / a ** 2) ** 2 for gg in gphi)) + 1e-30
+          corrected: mag = np.sqrt(sum((gg / a) ** 2 for gg in gphi)) + 1e-30
+    DE11b real_research/dark_energy_2026/DE11b_forest_convergence.py:96
+          committed: mag = np.sqrt(sum((gg / a ** 2) ** 2 for gg in gphi)) + 1e-30
+          corrected: mag = np.sqrt(sum((gg / a) ** 2 for gg in gphi)) + 1e-30
+
+====================================================================================================================
+B0 K1 K2  THE SINGLE-HALO PROBE THROUGH EACH LANE'S OWN accel() (Plummer b = 4 cells, r = 8-16 cells)
+====================================================================================================================
+    L346  box 50 Mpc/h, 128^3 mesh   [14 s]
+       z3/canonical  y 0.120-0.377  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.582-0.650 (pred 0.586-0.649)  fix: 0.992-0.998 (pred 1.000-1.000)  double: 1.728-1.825 (pred 1.736-1.841)
+       z3/alt        y 0.100-0.313  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.574-0.637 (pred 0.578-0.636)  fix: 0.992-0.998 (pred 1.000-1.000)  double: 1.748-1.838 (pred 1.756-1.854)
+       z2/canonical  y 0.068-0.212  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.627-0.671 (pred 0.631-0.671)  fix: 0.992-0.997 (pred 1.000-1.000)  double: 1.573-1.628 (pred 1.581-1.642)
+       z2/alt        y 0.056-0.176  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.622-0.663 (pred 0.627-0.663)  fix: 0.992-0.997 (pred 1.000-1.000)  double: 1.585-1.636 (pred 1.593-1.650)
+       z0/canonical  y 0.008-0.024  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.991-0.995 (pred 1.000-1.000)  fix: 0.991-0.995 (pred 1.000-1.000)  double: 0.991-0.995 (pred 1.000-1.000)
+       z0/alt        y 0.006-0.020  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.991-0.995 (pred 1.000-1.000)  fix: 0.991-0.995 (pred 1.000-1.000)  double: 0.991-0.995 (pred 1.000-1.000)
+    L347  box 25 Mpc/h, 128^3 mesh   [28 s]
+       z3/canonical  y 0.120-0.377  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.582-0.650 (pred 0.586-0.649)  fix: 0.992-0.998 (pred 1.000-1.000)  double: 1.728-1.825 (pred 1.736-1.841)
+       z3/alt        y 0.100-0.313  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.574-0.637 (pred 0.578-0.636)  fix: 0.992-0.998 (pred 1.000-1.000)  double: 1.748-1.838 (pred 1.756-1.854)
+       z2/canonical  y 0.068-0.212  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.627-0.671 (pred 0.631-0.671)  fix: 0.992-0.997 (pred 1.000-1.000)  double: 1.573-1.628 (pred 1.581-1.642)
+       z2/alt        y 0.056-0.176  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.622-0.663 (pred 0.627-0.663)  fix: 0.992-0.997 (pred 1.000-1.000)  double: 1.585-1.636 (pred 1.593-1.650)
+       z0/canonical  y 0.008-0.024  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.991-0.995 (pred 1.000-1.000)  fix: 0.991-0.995 (pred 1.000-1.000)  double: 0.991-0.995 (pred 1.000-1.000)
+       z0/alt        y 0.006-0.020  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.991-0.995 (pred 1.000-1.000)  fix: 0.991-0.995 (pred 1.000-1.000)  double: 0.991-0.995 (pred 1.000-1.000)
+    L359  box 25 Mpc/h, 128^3 mesh   [40 s]
+       z3/canonical  y 0.120-0.377  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.582-0.650 (pred 0.586-0.649)  fix: 0.992-0.998 (pred 1.000-1.000)  double: 1.728-1.825 (pred 1.736-1.841)
+       z3/alt        y 0.100-0.313  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.574-0.637 (pred 0.578-0.636)  fix: 0.992-0.998 (pred 1.000-1.000)  double: 1.748-1.838 (pred 1.756-1.854)
+       z2/canonical  y 0.068-0.212  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.627-0.671 (pred 0.631-0.671)  fix: 0.992-0.997 (pred 1.000-1.000)  double: 1.573-1.628 (pred 1.581-1.642)
+       z2/alt        y 0.056-0.176  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.622-0.663 (pred 0.627-0.663)  fix: 0.992-0.997 (pred 1.000-1.000)  double: 1.585-1.636 (pred 1.593-1.650)
+       z0/canonical  y 0.008-0.024  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.991-0.995 (pred 1.000-1.000)  fix: 0.991-0.995 (pred 1.000-1.000)  double: 0.991-0.995 (pred 1.000-1.000)
+       z0/alt        y 0.006-0.020  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.991-0.995 (pred 1.000-1.000)  fix: 0.991-0.995 (pred 1.000-1.000)  double: 0.991-0.995 (pred 1.000-1.000)
+    L362  box 25 Mpc/h, 128^3 mesh   [55 s]
+       z3/canonical  y 0.120-0.377  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.582-0.650 (pred 0.586-0.649)  fix: 0.992-0.998 (pred 1.000-1.000)  double: 1.728-1.825 (pred 1.736-1.841)
+       z3/alt        y 0.100-0.313  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.574-0.637 (pred 0.578-0.636)  fix: 0.992-0.998 (pred 1.000-1.000)  double: 1.748-1.838 (pred 1.756-1.854)
+       z2/canonical  y 0.068-0.212  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.627-0.671 (pred 0.631-0.671)  fix: 0.992-0.997 (pred 1.000-1.000)  double: 1.573-1.628 (pred 1.581-1.642)
+       z2/alt        y 0.056-0.176  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.622-0.663 (pred 0.627-0.663)  fix: 0.992-0.997 (pred 1.000-1.000)  double: 1.585-1.636 (pred 1.593-1.650)
+       z0/canonical  y 0.008-0.024  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.991-0.995 (pred 1.000-1.000)  fix: 0.991-0.995 (pred 1.000-1.000)  double: 0.991-0.995 (pred 1.000-1.000)
+       z0/alt        y 0.006-0.020  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.991-0.995 (pred 1.000-1.000)  fix: 0.991-0.995 (pred 1.000-1.000)  double: 0.991-0.995 (pred 1.000-1.000)
+    DE11  box 25 Mpc/h, 128^3 mesh   [67 s]
+       z3/canonical  y 0.120-0.377  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.582-0.650 (pred 0.586-0.649)  fix: 0.992-0.998 (pred 1.000-1.000)  double: 1.728-1.825 (pred 1.736-1.841)
+       z3/alt        y 0.100-0.313  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.574-0.637 (pred 0.578-0.636)  fix: 0.992-0.998 (pred 1.000-1.000)  double: 1.748-1.838 (pred 1.756-1.854)
+       z2/canonical  y 0.068-0.212  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.627-0.671 (pred 0.631-0.671)  fix: 0.992-0.997 (pred 1.000-1.000)  double: 1.573-1.628 (pred 1.581-1.642)
+       z2/alt        y 0.056-0.176  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.622-0.663 (pred 0.627-0.663)  fix: 0.992-0.997 (pred 1.000-1.000)  double: 1.585-1.636 (pred 1.593-1.650)
+       z0/canonical  y 0.008-0.024  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.991-0.995 (pred 1.000-1.000)  fix: 0.991-0.995 (pred 1.000-1.000)  double: 0.991-0.995 (pred 1.000-1.000)
+       z0/alt        y 0.006-0.020  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.991-0.995 (pred 1.000-1.000)  fix: 0.991-0.995 (pred 1.000-1.000)  double: 0.991-0.995 (pred 1.000-1.000)
+    DE11b box 25 Mpc/h, 128^3 mesh   [81 s]
+       z3/canonical  y 0.120-0.377  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.582-0.650 (pred 0.586-0.649)  fix: 0.992-0.998 (pred 1.000-1.000)  double: 1.728-1.825 (pred 1.736-1.841)
+       z3/alt        y 0.100-0.313  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.574-0.637 (pred 0.578-0.636)  fix: 0.992-0.998 (pred 1.000-1.000)  double: 1.748-1.838 (pred 1.756-1.854)
+       z2/canonical  y 0.068-0.212  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.627-0.671 (pred 0.631-0.671)  fix: 0.992-0.997 (pred 1.000-1.000)  double: 1.573-1.628 (pred 1.581-1.642)
+       z2/alt        y 0.056-0.176  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.622-0.663 (pred 0.627-0.663)  fix: 0.992-0.997 (pred 1.000-1.000)  double: 1.585-1.636 (pred 1.593-1.650)
+       z0/canonical  y 0.008-0.024  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.991-0.995 (pred 1.000-1.000)  fix: 0.991-0.995 (pred 1.000-1.000)  double: 0.991-0.995 (pred 1.000-1.000)
+       z0/alt        y 0.006-0.020  Newton kick/a over SI 0.994-1.005  | kick/a over nu g_N -> none: 0.991-0.995 (pred 1.000-1.000)  fix: 0.991-0.995 (pred 1.000-1.000)  double: 0.991-0.995 (pred 1.000-1.000)
+  [PASS] B0 each lane's own Newtonian kick / a equals G M(<r)/r_phys^2 from SI constants (Plummer, z = 3, 2, 0, all six lanes)
+         measured: max |kick/a over SI - 1| = 0.0061 (tolerance 0.02); kick/a^2 over SI (L362, mean over r): z3 4.001, z2 3.001, z0 1.000  (= 1+z)
+         reading:  the codes' own phi_N is the physical peculiar potential: g_N,phys = |grad_x phi_N|/a; the committed kernel reads (1+z) g_N,phys
+
+====================================================================================================================
+B1  THE DYNAMICS: L346's own LCDM run grows its largest modes at the linear-theory rate
+====================================================================================================================
+    z = 6.0: P(k)/P_ICs over D^2 = 50.9: k = 0.17 -> 1.048, k = 0.21 -> 1.020   (force x a would give D^2 = 5.87; force / a would give 8.03e+08)
+    z = 3.0: P(k)/P_ICs over D^2 = 154.3: k = 0.17 -> 1.040, k = 0.21 -> 0.991   (force x a would give D^2 = 8.03; force / a would give 1.85e+10)
+    z = 2.0: P(k)/P_ICs over D^2 = 270.0: k = 0.17 -> 1.013, k = 0.21 -> 0.948   (force x a would give D^2 = 9.64; force / a would give 6.65e+10)
+  [PASS] B1 L346's own LCDM run grows the two largest-scale bins at the linear rate at z = 6 (5%)
+         measured: max |P/P_ICs/D^2 - 1| = 0.048 at k = 0.17, 0.21 h/Mpc; a force off by a or 1/a misses D^2 by x0.115 or x1.58e+07
+         reading:  the Poisson line and the kick together are the standard physical-potential PM
+
+====================================================================================================================
+K1 K2  THE KERNEL LINE ON THE ANALYTIC HALO ('fix' stands for the corrected line)
+====================================================================================================================
+  [PASS] K1 with the corrected line every lane's QUMOND kick matches nu_mono(g_N/a0) g_N (z = 3, 2, 0; both footings; 2%)
+         measured: max |kick/a over nu g_N - 1| = 0.0090 over six lanes x 3 z x 2 footings x 9 radii ('fix')
+         reading:  the corrected argument is the physical one; the residual is the mesh (grad o poisson o div on a 4-cell core)
+  [PASS] K2 the measured profile follows the derivation for all three lines (committed / corrected / doubled): ratio = nu(s y)/nu(y), s = 1+z | 1 | 1/(1+z), to 2%; the committed line fails K1 at z = 3 and 2 and passes at z = 0
+         measured: max |ratio/pred - 1| = 0.0090; committed line, L362, max |ratio - 1|: z3/canonical 0.418, z3/alt 0.426, z2/canonical 0.373, z2/alt 0.378, z0/canonical 0.009, z0/alt 0.009
+         reading:  the committed MOND term is too weak by the predicted factor: kick 33-43% low at r = 8-16 cells on this halo
+
+====================================================================================================================
+S1  THE CENSUS: which record scripts carry the pattern (regex over real_research/ and fable_independent_2026/)
+====================================================================================================================
+    real_research/dark_energy_2026/DE11_forest_converged_model.py:108   mag = np.sqrt(sum((gg / a ** 2) ** 2 for gg in gphi)) + 1e-30
+    real_research/dark_energy_2026/DE11b_forest_convergence.py:96   mag = np.sqrt(sum((gg / a ** 2) ** 2 for gg in gphi)) + 1e-30
+    real_research/g03_audit_2026/L346_switch_forest_gate.py:196   gN = [-gg / a ** 2 for gg in gphi]
+    real_research/g03_audit_2026/L347_switch_forest_flux_power.py:209   mag = np.sqrt(sum((gg / a ** 2) ** 2 for gg in gphi)) + 1e-30
+    real_research/g03_audit_2026/L359_vacuum_gated_switch.py:105   mag = np.sqrt(sum((gg / a ** 2) ** 2 for gg in gphi)) + 1e-30
+    real_research/g03_audit_2026/L362_forest_pincer_convergence.py:188   mag = np.sqrt(sum((gg / a ** 2) ** 2 for gg in gphi)) + 1e-30
+    fable_independent_2026/L176_framework_pk_baseline.py:98   gN = [-gg/a**2 for gg in grad(phiN)]
+    fable_independent_2026/L178_pm_coupled_component_kernel_baryons.py:19   gN = [-gg/a**2 for gg in grad(phiNb)]; mag = np.sqrt(sum(gg**2 for gg in gN)) + 1e-30
+    fable_independent_2026/L179_lensing_from_kernel_potential.py:25   gN = [-gg/a**2 for gg in grad(phiN)]; mag = np.sqrt(sum(gg**2 for gg in gN)) + 1e-30
+    fable_independent_2026/L179_lensing_from_kernel_potential.py:29   gN = [-gg/a**2 for gg in grad(phiNb)]; mag = np.sqrt(sum(gg**2 for gg in gN)) + 1e-30
+    forest lanes, own kernel line (re-scored by XR34): L346 (matter power in the forest band), L347, L362, DE11, DE11b, L359 (its forest runs F1)
+    forest lane that runs L347's run() (inherits the line): L358 (pool.map(L7.run, ...))
+    not forest: matter power / lensing, same line (flagged, not re-scored): fable_independent_2026/L176 (docstring: 'g_N = -grad phi_N / a^2 (physical)'), L178, L179
+    correct argument (1/a) -- not affected: L377 (and L379/L388 through it), L393, L394, L395, L396, XR21_pm_core
+    PM with no MOND kernel -- not affected: L365, L366, AT2
+    downstream readers of the affected forest numbers: DE2 (L358/L347 constant-threshold table; L359's (0.5, 1.5) dominance anchor), L360 (L359's window W1), L352 Z7 (L346's F2), PAPER34 (P34_paper_numbers: L358, L362, L359's forest numbers)
+  [PASS] S1 (reported) the pattern's census  (reported, not load-bearing)
+         measured: 10 lines in 9 files: L176_framework_pk_baseline.py, L178_pm_coupled_component_kernel_baryons.py, L179_lensing_from_kernel_potential.py, DE11_forest_converged_model.py, DE11b_forest_convergence.py, L346_switch_forest_gate.py, L347_switch_forest_flux_power.py, L359_vacuum_gated_switch.py, L362_forest_pincer_convergence.py; L358 calls L347's run(): True
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  The bug is real.  In all six code variants the Poisson line makes phi_N the physical peculiar potential, and each
+  lane's own Newtonian kick / a is Newton's G M/r^2 in SI to 0.6% (B0); the LCDM run grows its largest modes at the linear
+  rate (B1).  The kernel reads |grad phi_N|/a^2 = (1+z) g_N,phys.  On an analytic halo the committed line's QUMOND kick is
+  33-43% low at z = 2-3 (exactly nu((1+z) y)/nu(y), K2) and right at z = 0; the corrected line, |grad_x phi_N|/(a a0),
+  is right at every z to 0.9% ('fix', K1).
+  Affected: L346, L347, L359, L362, DE11, DE11b (own line), L358 (through L347's run()); and, outside the forest,
+  fable_independent_2026's L176/L178/L179 (matter power and lensing; flagged, not re-scored here).
+
+  5/5 checks pass; load-bearing failures: 0; wrote XR34_kernel_argument_results.json   [85 s]
+rc=0

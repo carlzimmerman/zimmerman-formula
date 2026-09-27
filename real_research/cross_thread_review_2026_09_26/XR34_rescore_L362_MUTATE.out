@@ -1,0 +1,33 @@
+XR34_rescore_L362 -- L362's forest convergence verdict re-scored with ONLY the MOND kernel's argument corrected.
+
+L362 AS COMMITTED.  L342's constant-threshold switch at the KiDS-accepted x_c = 3 (matter reading, all matter feels the
+phantom), L347's machinery generalised to (box L, mesh NG, particles NP), CLASS to 60 h/Mpc, seed 7:
+  A (50, 128, 128), B (25, 128, 128), C (25, 256, 192); control ctrl_x5 (50, 128, 96) at x_c = 5.
+F1: worst |P1D/P1D_LCDM - 1| (k_par 0.2-2, z = 3 and 2, both footings) = A 0.104, B 0.157, C 0.191 -> the forest side of
+the KiDS-forest pincer is RESOLUTION-ROBUST (B and C > 0.10).  Its kernel line reads |grad phi|/a^2 = (1+z) g_N,phys.
+
+METHOD.  L362's committed source executed read-only with that ONE line changed to |grad phi|/a (XR34_common).  Runs:
+  'fix'  (after):   A, B, C at x_c = 3, both footings; ctrl_x5
+  'none' (control): A_x3_alt, B_x3_alt, ctrl_x5 (compared with L362's committed P1D arrays)
+  LCDM:             A_lcdm and ctrl_lcdm re-run (compared with the committed arrays); every ratio uses L362's committed
+                    LCDM P1D (B_lcdm's exactness: XR34_rescore_DE11b C2; C_lcdm is not re-run)
+The committed-line C runs are not re-run (256^3 mesh, ~6.5 GB and ~1 h each on the shared machine): L362's committed C
+arrays are the 'before', and XR34_rescore_DE11b's C1 re-runs a C cell of the same Sim to 1e-9.
+
+  *** MUTATE=1: 'double' stands in for the corrected line; K1 must FAIL; no PM run ***
+
+====================================================================================================================
+K1  THE ARGUMENT: L362's own accel() on the analytic single halo
+====================================================================================================================
+    z3/canonical  y 0.120-0.377: kick/a over nu g_N  'double' 1.728-1.825   committed 0.582-0.650
+    z3/alt        y 0.100-0.313: kick/a over nu g_N  'double' 1.748-1.838   committed 0.574-0.637
+    z2/canonical  y 0.068-0.212: kick/a over nu g_N  'double' 1.573-1.628   committed 0.627-0.671
+    z2/alt        y 0.056-0.176: kick/a over nu g_N  'double' 1.585-1.636   committed 0.622-0.663
+    z0/canonical  y 0.008-0.024: kick/a over nu g_N  'double' 0.991-0.995   committed 0.991-0.995
+    z0/alt        y 0.006-0.020: kick/a over nu g_N  'double' 0.991-0.995   committed 0.991-0.995
+  [FAIL] K1 L362's accel() with the corrected line reproduces nu_mono(g_N/a0) g_N on the analytic halo (2%, z = 3, 2, 0, both footings)
+         measured: 'double': max |ratio - 1| = 0.8378; committed line: z = 3 0.426, z = 2 0.378, z = 0 0.009
+         reading:  the 'after' runs below use the physical argument
+
+  0/1 checks pass; load-bearing failures: 1; wrote XR34_rescore_L362_results_MUTATE.json   [11 s]
+rc=1

@@ -1,0 +1,30 @@
+XR34_rescore_L346 -- L346's forest gate (matter power) re-scored with ONLY the MOND kernel's argument corrected.
+
+L346 AS COMMITTED.  L342's constant-threshold switch (matter reading, x = 1.5 Omega_m(a) delta_mesh) in L176's PM (50 Mpc/h,
+128^3 mesh, 96^3 particles, CLASS to 20 h/Mpc, seed 7).  F2: P_switch/P_LCDM in the forest band (k = 1-4 h/Mpc, z = 3 and
+2) at x_c = 5 must lie in [0.8, 1.2] for both footings: worst |P/P_LCDM - 1| = 0.36 -> FAILS.  C3: MOND everywhere
+overshoots (3.5-4.6).  F1 (diagnostic): the switched-on mass fraction and its median |g_N|/a0.  F3: 0.8 Mpc/h smoothing
+gives less excess.  Its kernel line is gN = -grad phi / a^2 = (1+z) g_N,phys; the F1 median reads the same gN.
+
+METHOD.  L346's committed source executed read-only with that ONE line changed to gN = -grad phi / a (XR34_common).
+The same line feeds F1's median |g_N|/a0, which after the change is the physical one.  Runs:
+  'fix'  (after):   sw5_canon, sw5_alt, sw4_canon, sw7_canon, sw5_smooth08, sw5_phantomx, no_switch
+  'none' (control): sw5_canon, sw5_alt; LCDM re-run
+
+  *** MUTATE=1: 'double' stands in for the corrected line; K1 must FAIL; no PM run ***
+
+====================================================================================================================
+K1  THE ARGUMENT: L346's own accel() on the analytic single halo (L346's 50 Mpc/h mesh)
+====================================================================================================================
+    z3/canonical  y 0.120-0.377: kick/a over nu g_N  'double' 1.728-1.825   committed 0.582-0.650
+    z3/alt        y 0.100-0.313: kick/a over nu g_N  'double' 1.748-1.838   committed 0.574-0.637
+    z2/canonical  y 0.068-0.212: kick/a over nu g_N  'double' 1.573-1.628   committed 0.627-0.671
+    z2/alt        y 0.056-0.176: kick/a over nu g_N  'double' 1.585-1.636   committed 0.622-0.663
+    z0/canonical  y 0.008-0.024: kick/a over nu g_N  'double' 0.991-0.995   committed 0.991-0.995
+    z0/alt        y 0.006-0.020: kick/a over nu g_N  'double' 0.991-0.995   committed 0.991-0.995
+  [FAIL] K1 L346's accel() with the corrected line reproduces nu_mono(g_N/a0) g_N on the analytic halo (2%, z = 3, 2, 0, both footings)
+         measured: 'double': max |ratio - 1| = 0.8378; committed line: z = 3 0.426, z = 2 0.378, z = 0 0.009
+         reading:  the 'after' runs below use the physical argument
+
+  0/1 checks pass; load-bearing failures: 1; wrote XR34_rescore_L346_results_MUTATE.json   [1412 s]
+rc=1

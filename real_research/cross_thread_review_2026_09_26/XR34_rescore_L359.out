@@ -1,0 +1,90 @@
+XR34_rescore_L359 -- L359's forest leg of the vacuum-gated window, re-scored with ONLY the kernel argument corrected.
+
+L359 AS COMMITTED.  The vacuum-gated switch x_c,eff(z) = x_c0 E(z)^(2p) (matter reading) in L347's PM (128^3 mesh, 96^3
+particles, 50 and 25 Mpc/h).  F1: a cell (p, x_c0) passes the forest if worst |P1D/P1D_LCDM - 1| <= 0.10 (k_par 0.2-2,
+z = 3 and 2, both footings, both boxes).  W1, the window (growth + KiDS + forest): eight cells, forest worst 0.002-0.085;
+the p = 0.5 cells are the closest to the gate (0.065-0.085), and DE2 uses (p = 0.5, x_c0 = 1.5) as its dominance anchor.
+The growth (G1) and KiDS (K1) legs do not use the PM and are untouched.  L359's run_gated() carries the kernel line
+|grad phi|/a^2 = (1+z) g_N,phys (XR34_kernel_argument).
+
+METHOD.  L359's committed source executed read-only with that ONE line changed to |grad phi|/a (XR34_common).  A PARTIAL
+re-score, to fit the shared machine: every window cell on the 25 Mpc/h box at both footings (in all ten committed F1
+cells the 25 Mpc/h box carries the worst deviation, by 1.4-3.7x over 50 Mpc/h), plus the 50 Mpc/h box at the alt footing
+for the anchor cell (p = 0.5, x_c0 = 1.5) to check that ordering after the correction.  A cell that fails on 25 Mpc/h
+fails L359's rule; a cell that passes there passes it if the ordering holds (checked on the anchor cell only).
+  'fix'  (after):   8 window cells x L25 x 2 footings; (0.5, 1.5) L50 alt
+  'none' (control): (0.5, 1.5) L25 alt; LCDM: L25_lcdm through run_gated (L50: L347's committed L50_lcdm, the same code)
+
+====================================================================================================================
+K1  THE ARGUMENT: L359's own accel() (run_gated) on the analytic single halo
+====================================================================================================================
+    z3/canonical  y 0.120-0.377: kick/a over nu g_N  'fix' 0.992-0.998   committed 0.582-0.650
+    z3/alt        y 0.100-0.313: kick/a over nu g_N  'fix' 0.992-0.998   committed 0.574-0.637
+    z2/canonical  y 0.068-0.212: kick/a over nu g_N  'fix' 0.992-0.997   committed 0.627-0.671
+    z2/alt        y 0.056-0.176: kick/a over nu g_N  'fix' 0.992-0.997   committed 0.622-0.663
+    z0/canonical  y 0.008-0.024: kick/a over nu g_N  'fix' 0.991-0.995   committed 0.991-0.995
+    z0/alt        y 0.006-0.020: kick/a over nu g_N  'fix' 0.991-0.995   committed 0.991-0.995
+  [PASS] K1 L359's accel() with the corrected line reproduces nu_mono(g_N/a0) g_N on the analytic halo (2%, z = 3, 2, 0, both footings)
+         measured: 'fix': max |ratio - 1| = 0.0090; committed line: z = 3 0.426, z = 2 0.378, z = 0 0.009
+         reading:  the 'after' runs below use the physical argument
+
+====================================================================================================================
+THE RUNS (L359's run_gated(), one line patched; window cells [(0.5, 1.5), (0.5, 2.0), (0.5, 2.5), (1.0, 1.5), (1.0, 2.0), (1.0, 2.5), (2.0, 1.5), (2.0, 2.0)])
+====================================================================================================================
+    run done: L359  fix    L25_p0.5_x1.5_alt          172 s, peak RSS 1.49 GB   [173 s; 18 queued, 0 running]
+    run done: L359  fix    L25_p0.5_x1.5_canonical     165 s, peak RSS 1.48 GB   [338 s; 17 queued, 0 running]
+    run done: L359  fix    L25_p0.5_x2.0_alt          170 s, peak RSS 1.49 GB   [508 s; 16 queued, 0 running]
+    run done: L359  fix    L25_p0.5_x2.0_canonical     171 s, peak RSS 1.45 GB   [680 s; 15 queued, 0 running]
+    run done: L359  fix    L25_p0.5_x2.5_alt          168 s, peak RSS 1.47 GB   [848 s; 14 queued, 0 running]
+    run done: L359  fix    L25_p0.5_x2.5_canonical     168 s, peak RSS 1.46 GB   [1016 s; 13 queued, 0 running]
+    run done: L359  fix    L25_p1.0_x1.5_alt          168 s, peak RSS 1.48 GB   [1184 s; 12 queued, 0 running]
+    run done: L359  fix    L25_p1.0_x1.5_canonical     170 s, peak RSS 1.50 GB   [1354 s; 11 queued, 0 running]
+    run done: L359  fix    L25_p1.0_x2.0_alt          172 s, peak RSS 1.46 GB   [1526 s; 10 queued, 0 running]
+    run done: L359  fix    L25_p1.0_x2.0_canonical     177 s, peak RSS 1.49 GB   [1703 s; 9 queued, 0 running]
+    run done: L359  fix    L25_p1.0_x2.5_alt          173 s, peak RSS 1.47 GB   [1876 s; 7 queued, 1 running]
+    run done: L359  fix    L25_p1.0_x2.5_canonical     165 s, peak RSS 1.47 GB   [1988 s; 6 queued, 1 running]
+    run done: L359  fix    L25_p2.0_x1.5_alt          163 s, peak RSS 1.45 GB   [2039 s; 5 queued, 1 running]
+    run done: L359  fix    L25_p2.0_x1.5_canonical     164 s, peak RSS 1.45 GB   [2152 s; 4 queued, 1 running]
+    run done: L359  fix    L25_p2.0_x2.0_alt          167 s, peak RSS 1.46 GB   [2206 s; 3 queued, 1 running]
+    run done: L359  fix    L25_p2.0_x2.0_canonical     160 s, peak RSS 1.47 GB   [2313 s; 2 queued, 1 running]
+    run done: L359  fix    L50_p0.5_x1.5_alt          164 s, peak RSS 1.45 GB   [2371 s; 1 queued, 1 running]
+    run done: L359  none   L25_lcdm                    99 s, peak RSS 1.42 GB   [2412 s; 0 queued, 1 running]
+    run done: L359  none   L25_p0.5_x1.5_alt          155 s, peak RSS 1.47 GB   [2526 s; 0 queued, 0 running]
+
+====================================================================================================================
+C1 C2  CONTROLS: the committed line reproduces L359; MOND off reproduces the LCDM box
+====================================================================================================================
+  [PASS] C1 the committed line re-run reproduces L359's committed (0.5, 1.5) L25 alt deviations at z = 3 and 2 (1e-9)
+         measured: committed 0.0194890643 / 0.0851563383; max |diff| = 0.0e+00
+         reading:  the harness is L359 exactly; only the kernel line differs in 'fix'
+  [PASS] C2 MOND off: run_gated's L25_lcdm equals L347's committed L25_lcdm P1D (1e-12)
+         measured: max |P1D ratio - 1| = 0.0e+00
+
+====================================================================================================================
+R1  BEFORE / AFTER per window cell: worst |P1D/P1D_LCDM - 1|, k_par 0.2-2 h/Mpc, z = 3 and 2
+====================================================================================================================
+    p = 0.5, x_c0 = 1.5: before 0.0852 (L25 0.0852)   after (L25) 0.1745 x2.05  -> FAIL   [L25/canonical/3.0 0.043, L25/canonical/2.0 0.158, L25/alt/3.0 0.048, L25/alt/2.0 0.174]
+    p = 0.5, x_c0 = 2.0: before 0.0733 (L25 0.0733)   after (L25) 0.1381 x1.88  -> FAIL   [L25/canonical/3.0 0.031, L25/canonical/2.0 0.122, L25/alt/3.0 0.035, L25/alt/2.0 0.138]
+    p = 0.5, x_c0 = 2.5: before 0.0650 (L25 0.0650)   after (L25) 0.1081 x1.66  -> FAIL   [L25/canonical/3.0 0.023, L25/canonical/2.0 0.101, L25/alt/3.0 0.026, L25/alt/2.0 0.108]
+    p = 1.0, x_c0 = 1.5: before 0.0397 (L25 0.0397)   after (L25) 0.0647 x1.63  -> PASS   [L25/canonical/3.0 0.005, L25/canonical/2.0 0.060, L25/alt/3.0 0.005, L25/alt/2.0 0.065]
+    p = 1.0, x_c0 = 2.0: before 0.0322 (L25 0.0322)   after (L25) 0.0524 x1.63  -> PASS   [L25/canonical/3.0 0.002, L25/canonical/2.0 0.047, L25/alt/3.0 0.003, L25/alt/2.0 0.052]
+    p = 1.0, x_c0 = 2.5: before 0.0269 (L25 0.0269)   after (L25) 0.0430 x1.60  -> PASS   [L25/canonical/3.0 0.002, L25/canonical/2.0 0.041, L25/alt/3.0 0.002, L25/alt/2.0 0.043]
+    p = 2.0, x_c0 = 1.5: before 0.0025 (L25 0.0025)   after (L25) 0.0047 x1.94  -> PASS   [L25/canonical/3.0 0.000, L25/canonical/2.0 0.004, L25/alt/3.0 0.000, L25/alt/2.0 0.005]
+    p = 2.0, x_c0 = 2.0: before 0.0018 (L25 0.0018)   after (L25) 0.0034 x1.88  -> PASS   [L25/canonical/3.0 0.000, L25/canonical/2.0 0.003, L25/alt/3.0 0.000, L25/alt/2.0 0.003]
+    anchor (0.5, 1.5) L50 alt after: z = 3 0.0175, z = 2 0.0980  (before 0.0093, 0.0620); L25 still the worse box: True
+  [PASS] R1 (reported) L359's forest leg with the corrected argument (25 Mpc/h box, both footings; the window's growth and KiDS legs are untouched)  (reported, not load-bearing)
+         measured: window cells passing the forest: before 8 -> after 5 ((1, 1.5), (1, 2), (1, 2.5), (2, 1.5), (2, 2)); anchor (0.5, 1.5) 0.0852 -> 0.1745
+  [PASS] H1 (reported) the pre-declared hypothesis H-L359: the p = 0.5 cells flip to fail, the p >= 1 cells stay pass  (reported, not load-bearing)
+         measured: (0.5, 1.5) 0.174, (0.5, 2) 0.138, (0.5, 2.5) 0.108, (1, 1.5) 0.065, (1, 2) 0.052, (1, 2.5) 0.043, (2, 1.5) 0.005, (2, 2) 0.003
+         reading:  a failed hypothesis is kept as run
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  With ONLY the kernel argument corrected, L359's forest leg (25 Mpc/h box, both footings) keeps 5 of the 8
+  window cells: (1, 1.5), (1, 2), (1, 2.5), (2, 1.5), (2, 2).  The anchor (0.5, 1.5) goes 0.0852 ->
+  0.1745.  Partial: the 50 Mpc/h box is re-run for the anchor cell only (alt), where it stays below the
+  25 Mpc/h box: True.  Controls: committed line reproduces L359 to 0e+00 (C1); MOND off reproduces the box to 0e+00 (C2).
+
+  5/5 checks pass; load-bearing failures: 0; wrote XR34_rescore_L359_results.json   [2535 s]
+rc=0

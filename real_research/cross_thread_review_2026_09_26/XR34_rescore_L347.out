@@ -1,0 +1,85 @@
+XR34_rescore_L347 -- L347's forest-observable verdict re-scored with ONLY the MOND kernel's argument corrected.
+
+L347 AS COMMITTED.  L342's constant-threshold switch (matter reading) on the 1D flux power, 50 and 25 Mpc/h boxes
+(128^3 mesh, 96^3 particles, CLASS to 40 h/Mpc, seed 7).  F2: at x_c = 5 the worst |P1D/P1D_LCDM - 1| (k_par 0.2-2,
+z = 3 and 2, both footings, both boxes) = 0.108 -> FAILS the 10% rule, BORDERLINE (< 0.15); x_c = 7: 0.072 (inside).
+F3: the observable absorbs most of the matter-power excess (flux < half of matter).  Its kernel line reads |grad phi|/a^2.
+
+METHOD.  L347's committed source executed read-only with that ONE line changed to |grad phi|/a (XR34_common).  Runs:
+  'fix'  (after):   both boxes x (sw5_canon, sw5_alt, sw7_canon)
+  'none' (control): L25_sw5_alt (L347's worst cell) and L25_sw7_canon (its x_c = 7 cell)
+  LCDM:             L25_lcdm re-run; every ratio uses L347's committed LCDM arrays (P1D and matter power)
+
+====================================================================================================================
+K1  THE ARGUMENT: L347's own accel() on the analytic single halo
+====================================================================================================================
+    z3/canonical  y 0.120-0.377: kick/a over nu g_N  'fix' 0.992-0.998   committed 0.582-0.650
+    z3/alt        y 0.100-0.313: kick/a over nu g_N  'fix' 0.992-0.998   committed 0.574-0.637
+    z2/canonical  y 0.068-0.212: kick/a over nu g_N  'fix' 0.992-0.997   committed 0.627-0.671
+    z2/alt        y 0.056-0.176: kick/a over nu g_N  'fix' 0.992-0.997   committed 0.622-0.663
+    z0/canonical  y 0.008-0.024: kick/a over nu g_N  'fix' 0.991-0.995   committed 0.991-0.995
+    z0/alt        y 0.006-0.020: kick/a over nu g_N  'fix' 0.991-0.995   committed 0.991-0.995
+  [PASS] K1 L347's accel() with the corrected line reproduces nu_mono(g_N/a0) g_N on the analytic halo (2%, z = 3, 2, 0, both footings)
+         measured: 'fix': max |ratio - 1| = 0.0090; committed line: z = 3 0.426, z = 2 0.378, z = 0 0.009
+         reading:  the 'after' runs below use the physical argument
+
+====================================================================================================================
+THE RUNS (L347's run(), one line patched; wall time and peak memory per run)
+====================================================================================================================
+    run done: L347  fix    L25_sw5_alt                174 s, peak RSS 1.44 GB   [174 s; 8 queued, 0 running]
+    run done: L347  fix    L25_sw5_canon              193 s, peak RSS 1.44 GB   [368 s; 7 queued, 0 running]
+    run done: L347  fix    L25_sw7_canon              171 s, peak RSS 1.44 GB   [539 s; 6 queued, 0 running]
+    run done: L347  fix    L50_sw5_alt                162 s, peak RSS 1.46 GB   [701 s; 5 queued, 0 running]
+    run done: L347  fix    L50_sw5_canon              163 s, peak RSS 1.46 GB   [865 s; 4 queued, 0 running]
+    run done: L347  fix    L50_sw7_canon              159 s, peak RSS 1.44 GB   [1024 s; 3 queued, 0 running]
+    run done: L347  none   L25_lcdm                   101 s, peak RSS 1.39 GB   [1125 s; 1 queued, 1 running]
+    run done: L347  none   L25_sw5_alt                180 s, peak RSS 1.45 GB   [1255 s; 0 queued, 1 running]
+    run done: L347  none   L25_sw7_canon              179 s, peak RSS 1.43 GB   [1305 s; 0 queued, 0 running]
+
+====================================================================================================================
+C1 C2  CONTROLS: the committed line reproduces L347; MOND off reproduces the LCDM box
+====================================================================================================================
+  [PASS] C1 the committed line re-run reproduces L347's committed P1D arrays (L25_sw5_alt, L25_sw7_canon; 1e-12)
+         measured: max |P1D ratio - 1| = 0.0e+00
+         reading:  the harness is L347 exactly; only the kernel line differs in 'fix'
+  [PASS] C2 MOND off: the L25_lcdm re-run equals L347's committed LCDM P1D (1e-12)
+         measured: P1D 0.0e+00; matter power 0.0e+00
+
+====================================================================================================================
+R1  BEFORE / AFTER: L347's F2 (10% rule at x_c = 5, 'borderline' < 0.15), x_c = 7, F1/F3
+====================================================================================================================
+    L50_sw5_canon_3.0      before 0.017 (0.983-1.011)   after 0.029 (0.971-1.027)
+    L50_sw5_canon_2.0      before 0.062 (0.938-1.043)   after 0.109 (0.891-1.083)
+    L50_sw5_alt_3.0        before 0.018 (0.982-1.013)   after 0.031 (0.969-1.029)
+    L50_sw5_alt_2.0        before 0.067 (0.933-1.049)   after 0.121 (0.879-1.091)
+    L50_sw7_canon_3.0      before 0.011 (0.989-1.007)   after 0.021 (0.979-1.019)
+    L50_sw7_canon_2.0      before 0.051 (0.949-1.035)   after 0.082 (0.918-1.073)
+    L25_sw5_canon_3.0      before 0.030 (0.982-1.030)   after 0.075 (0.955-1.075)
+    L25_sw5_canon_2.0      before 0.096 (0.904-1.052)   after 0.192 (0.808-1.097)
+    L25_sw5_alt_3.0        before 0.033 (0.980-1.033)   after 0.083 (0.949-1.083)
+    L25_sw5_alt_2.0        before 0.108 (0.892-1.057)   after 0.204 (0.796-1.101)
+    L25_sw7_canon_3.0      before 0.020 (0.988-1.020)   after 0.053 (0.970-1.053)
+    L25_sw7_canon_2.0      before 0.072 (0.928-1.041)   after 0.149 (0.851-1.076)
+    matter power sw5_canon L50_3.0  k = 1-4 h/Mpc: before 1.07-1.22   after 1.19-1.56
+    matter power sw5_canon L50_2.0  k = 1-4 h/Mpc: before 1.15-1.32   after 1.30-1.59
+    matter power sw5_canon L25_3.0  k = 1-4 h/Mpc: before 1.05-1.15   after 1.13-1.37
+    matter power sw5_canon L25_2.0  k = 1-4 h/Mpc: before 1.11-1.36   after 1.27-1.70
+    (before recomputed from the committed arrays equals L347's committed worst_dev_xc5 to 0e+00)
+  [PASS] R1 (reported) L347's F2 at x_c = 5, x_c = 7 and F3 with the corrected argument  (reported, not load-bearing)
+         measured: x_c = 5 worst 0.108 (FAIL, borderline (< 0.15)) -> 0.204 (FAIL (>= 0.15)); canonical alone 0.096 -> 0.192; x_c = 7 0.072 -> 0.149 (FAIL); matter power worst 0.355 -> 0.699; F3 translation True -> True
+  [PASS] H1 (reported) H-L347 part 1: x_c = 5 still fails and no longer as 'borderline' (worst >= 0.15)  (reported, not load-bearing)
+         measured: 0.204
+         reading:  a failed hypothesis is kept as run
+  [PASS] H2 (reported) H-L347 part 2: x_c = 7 flips from pass to FAIL (> 0.10)  (reported, not load-bearing)
+         measured: 0.072 -> 0.149
+         reading:  a failed hypothesis is kept as run
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  With ONLY the kernel argument corrected, L347's forest observable at x_c = 5 goes 0.108 -> 0.204
+  (FAIL, borderline (< 0.15) -> FAIL (>= 0.15)); x_c = 7 goes 0.072 -> 0.149 (pass -> FAIL).
+  Controls: committed line reproduces L347 to 0e+00 (C1); MOND off reproduces the LCDM box to 0e+00 (C2).
+
+  6/6 checks pass; load-bearing failures: 0; wrote XR34_rescore_L347_results.json   [1316 s]
+rc=0

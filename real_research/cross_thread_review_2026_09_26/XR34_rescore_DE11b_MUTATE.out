@@ -1,0 +1,33 @@
+XR34_rescore_DE11b -- DE11b's forest verdict re-scored with ONLY the MOND kernel's argument corrected.
+
+DE11b AS COMMITTED.  The converged model's MOND-sector switch (vacuum-gated, p = 1, x_c0 = 2.5, w = 0.25, the phantom
+lagged one step inside the switch variable) at 25 Mpc/h: ctrl (128^3 mesh, 96^3 particles), B (128^3, 128^3), C (256^3,
+192^3).  Scorecard row: worst |P1D/P1D_LCDM - 1| = 0.0046 (B alt 0.00464, C alt 0.00457) against L347's 0.10 -> PASS,
+converged (+10-13% per refinement).  Its kernel line reads |grad phi|/a^2 = (1+z) g_N,phys (XR34_kernel_argument).
+
+METHOD.  DE11b's committed source is executed read-only with that ONE line changed to |grad phi|/a (XR34_common checks
+that exactly one line differs).  Everything else is DE11b's: L362's machinery, the ICs (seed 7, CLASS to 60 h/Mpc), the
+switch and its lagged phantom, the FGPA estimator, the score (k_par 0.2-2 h/Mpc, z = 3 and 2).  Runs (one thread each,
+<= 3 at a time, <= 1 on the 256^3 mesh):
+  'fix'  (after):   C_alt, B_alt, B_canonical, ctrl_canonical, ctrl_alt  -- DE11b's five MOND cells, both footings
+  'none' (control): the same five cells with the committed line
+  LCDM:             B_lcdm and ctrl_lcdm re-run; C's LCDM is L362's committed C_lcdm P1D (the same code path: C2 shows
+                    DE11b's LCDM run equals L362's committed one exactly at B, and C1's C_alt reproduction uses it)
+
+  *** MUTATE=1: 'double' stands in for the corrected line; K1 must FAIL; no PM run ***
+
+====================================================================================================================
+K1  THE ARGUMENT: DE11b's own accel() on the analytic single halo
+====================================================================================================================
+    z3/canonical  y 0.120-0.377: kick/a over nu g_N  'double' 1.728-1.825   committed 0.582-0.650
+    z3/alt        y 0.100-0.313: kick/a over nu g_N  'double' 1.748-1.838   committed 0.574-0.637
+    z2/canonical  y 0.068-0.212: kick/a over nu g_N  'double' 1.573-1.628   committed 0.627-0.671
+    z2/alt        y 0.056-0.176: kick/a over nu g_N  'double' 1.585-1.636   committed 0.622-0.663
+    z0/canonical  y 0.008-0.024: kick/a over nu g_N  'double' 0.991-0.995   committed 0.991-0.995
+    z0/alt        y 0.006-0.020: kick/a over nu g_N  'double' 0.991-0.995   committed 0.991-0.995
+  [FAIL] K1 DE11b's accel() with the corrected line reproduces nu_mono(g_N/a0) g_N on the analytic halo (2%, z = 3, 2, 0, both footings)
+         measured: 'double': max |ratio - 1| = 0.8378; committed line: z = 3 0.426, z = 2 0.378, z = 0 0.009
+         reading:  the 'after' runs below use the physical argument
+
+  0/1 checks pass; load-bearing failures: 1; wrote XR34_rescore_DE11b_results_MUTATE.json   [9 s]
+rc=1

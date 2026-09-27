@@ -1,0 +1,34 @@
+XR34_rescore_L359 -- L359's forest leg of the vacuum-gated window, re-scored with ONLY the kernel argument corrected.
+
+L359 AS COMMITTED.  The vacuum-gated switch x_c,eff(z) = x_c0 E(z)^(2p) (matter reading) in L347's PM (128^3 mesh, 96^3
+particles, 50 and 25 Mpc/h).  F1: a cell (p, x_c0) passes the forest if worst |P1D/P1D_LCDM - 1| <= 0.10 (k_par 0.2-2,
+z = 3 and 2, both footings, both boxes).  W1, the window (growth + KiDS + forest): eight cells, forest worst 0.002-0.085;
+the p = 0.5 cells are the closest to the gate (0.065-0.085), and DE2 uses (p = 0.5, x_c0 = 1.5) as its dominance anchor.
+The growth (G1) and KiDS (K1) legs do not use the PM and are untouched.  L359's run_gated() carries the kernel line
+|grad phi|/a^2 = (1+z) g_N,phys (XR34_kernel_argument).
+
+METHOD.  L359's committed source executed read-only with that ONE line changed to |grad phi|/a (XR34_common).  A PARTIAL
+re-score, to fit the shared machine: every window cell on the 25 Mpc/h box at both footings (in all ten committed F1
+cells the 25 Mpc/h box carries the worst deviation, by 1.4-3.7x over 50 Mpc/h), plus the 50 Mpc/h box at the alt footing
+for the anchor cell (p = 0.5, x_c0 = 1.5) to check that ordering after the correction.  A cell that fails on 25 Mpc/h
+fails L359's rule; a cell that passes there passes it if the ordering holds (checked on the anchor cell only).
+  'fix'  (after):   8 window cells x L25 x 2 footings; (0.5, 1.5) L50 alt
+  'none' (control): (0.5, 1.5) L25 alt; LCDM: L25_lcdm through run_gated (L50: L347's committed L50_lcdm, the same code)
+
+  *** MUTATE=1: 'double' stands in for the corrected line; K1 must FAIL; no PM run ***
+
+====================================================================================================================
+K1  THE ARGUMENT: L359's own accel() (run_gated) on the analytic single halo
+====================================================================================================================
+    z3/canonical  y 0.120-0.377: kick/a over nu g_N  'double' 1.728-1.825   committed 0.582-0.650
+    z3/alt        y 0.100-0.313: kick/a over nu g_N  'double' 1.748-1.838   committed 0.574-0.637
+    z2/canonical  y 0.068-0.212: kick/a over nu g_N  'double' 1.573-1.628   committed 0.627-0.671
+    z2/alt        y 0.056-0.176: kick/a over nu g_N  'double' 1.585-1.636   committed 0.622-0.663
+    z0/canonical  y 0.008-0.024: kick/a over nu g_N  'double' 0.991-0.995   committed 0.991-0.995
+    z0/alt        y 0.006-0.020: kick/a over nu g_N  'double' 0.991-0.995   committed 0.991-0.995
+  [FAIL] K1 L359's accel() with the corrected line reproduces nu_mono(g_N/a0) g_N on the analytic halo (2%, z = 3, 2, 0, both footings)
+         measured: 'double': max |ratio - 1| = 0.8378; committed line: z = 3 0.426, z = 2 0.378, z = 0 0.009
+         reading:  the 'after' runs below use the physical argument
+
+  0/1 checks pass; load-bearing failures: 1; wrote XR34_rescore_L359_results_MUTATE.json   [2832 s]
+rc=1

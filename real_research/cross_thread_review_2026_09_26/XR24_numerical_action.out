@@ -1,0 +1,210 @@
+XR24 -- THE LOCAL GROUP'S HUBBLE FLOW IN 3-D, IN THE CHAIN'S LAW: a numerical-action reconstruction of the Local Group and its
+surroundings to ~5 Mpc.  Does the full 3-D flow (the neighbours' tides and the MOND non-linearity included) resolve or confirm
+the chain's most persistent failure, the Local Group's zero-velocity radius R0?  Cross-thread review lane (2026-09-27).
+
+WHY.  FP11 (committed): in the chain's law the MW-M31 timing works with baryons only on the first approach, a past flyby is
+excluded, and R0 overshoots, 1.52-1.57 Mpc against 0.96 +- 0.03 (+0.20 dex; FP18: honest error +-0.11).  FP13's state
+separator H_S keeps both (timing masses 1.50e11 / 1.26e11, R0 1.54 Mpc).  FP12: the LG, M81 and IC 342 share the +0.20 dex
+offset, Cen A matches.  FP11's open item F11m lists the neighbours' tidal field, the CGM's baryons and 'a 3-D fit of the full
+local Hubble flow'.  This lane is that fit.
+
+THE LAW (nothing added).  FP7's AQUAL-type root with FP13's headline state separator H_S: the band-pass length L(z) set by the
+matter field's collapse scale (delta_c on the actual field) and the yield y_th = the web's band-passed rms x max(0, 2q) (on
+while the universe decelerates, z > 0.635); FP13's own code is exec'd read-only for the tables (K7 reproduces its committed
+L(z), y_th(z) exactly).  Both a0 footings: 9.3603e-11 (canonical) and 1.1312e-10 m/s^2 (alt) (FP0).
+THE FORCE (labelled): the chain's static law in QUMOND form, as FP11 used it -- g = g_N + P (1 - S_L) X(g_bp), g_bp = (1 - S_L)
+g_N, X(g) = a0 x_P2(|g|/a0 - y_th) g/|g| -- solved in 3-D for ALL bodies at once (it is not pairwise additive): each body's
+isolated band-passed phantom exactly (FP6's phantom()), the MW-M31 pair's interaction exactly (FP11's two-body tables,
+live), and the rest of the interaction field P(1 - S_L)[X(sum g_j) - sum X(g_j)] by (i) a direct 3-D integral of the band-
+passed dipole kernel at every body (this lane's closed form; the axisymmetric limit is FP11's dg_body) and (ii) a spherical-
+harmonic finite-volume solver on a 3-D grid about the Local Group (FP11's multipole solver generalised to l, m) for the test
+particles.  The AQUAL-vs-QUMOND curl difference is not computed (FP7 A3: <= 0.035 dex on discs; FP11 idem).
+THE NUMERICAL ACTION (labelled): Peebles' boundary conditions -- today's positions (sky positions and distances) and the
+growing mode at early times (zero peculiar velocity on the Hubble flow at a = 0.02, FP11's convention) -- solved by Newton
+shooting on the comoving initial positions (finite-difference Jacobian, Broyden, line search), not by the action's own
+discretisation; the bodies' interaction history is iterated to self-consistency (Picard); every test-particle solution
+(each observed dwarf) is found from Lagrangian seeds, all branches kept.
+THE BACKGROUND CONVENTION.  FP11's headline convention A (point masses + Lambda, no background matter) cannot host a
+multi-body Local Volume: with no smooth matter the region coasts (a free particle today sits at 4.18x its comoving start),
+so the eleven bodies start within ~20 kpc of each other at z = 49 and the first-approach problem has no tractable solution
+(exploratory run, disclosed).  The headline here is FP11's convention B (the smooth cosmic background's deceleration -- in
+the chain, the dark fluid, smooth at early times and, after FP16's kick, spread through the field: FP16 L16b/L16g say
+galaxies <= 1e13 Msun do not keep it), for which FP11 committed numbers too (K1 reproduces them); convention A is run as a
+variant only for the pair (below).  For LCDM, convention B double-counts the halos on top of the full background (a 4.7e12 point
+mass on the mean density is a delta ~ 0.6 perturbation at z = 49: the neighbours fall into the LG), and convention A with halo-
+mass neighbours did not converge with this solver either (exploratory runs, disclosed) -- so the matched flow comparison is
+made where both laws are tractable and matched: the MW-M31 pair alone with the dwarfs as test particles, convention A
+(FP11's headline for the chain; Partridge, Lahav & Hoffman's for LCDM).
+BODIES (baryonic only).  MW: stars 6.08e10 (Licquia & Newman 2015) + HI x 1.33 (UNGC); M31: 1.03e11 (Sick+2015) + HI x 1.33;
+M33 (4.8e9, Corbelli+2014, + HI x 1.33) merged into M31 (a satellite 0.2 Mpc away: its orbit is not a Hubble-flow problem;
+exploratory runs as a separate body made the BVP chaotic, disclosed); MW-M31 separation 0.78 Mpc (FP11).  The neighbours as
+merged group points at their main galaxies with FP12's k02 UNGC baryons (M81 9.62e10, Cen A 9.02e10, M83 5.76e10, IC 342
+1.03e11 incl. Maffei 1/2) and, by the same recipe (0.6 L_K + 1.33 M_HI inside 0.7 Mpc), NGC 253 (7.1e10), NGC 4736 (3.4e10),
+NGC 4826 (1.9e10), Circinus (2.7e10).  The LG's baryons carry one scale s (the fit parameter; window [1.22e11, 2.48e11] =
+FP11's MW+M31 window + M33); the CGM range [0, 9.8e10] per L* galaxy (Bregman+2022 tSZ within 250 kpc, as the committed
+L45 lane reads it) is a statement about that window.  The dark fluid: not added (FP16: galaxies do not keep it).
+DATA.  The UNGC (Karachentsev+2013, committed): the flow sample is FP11's section-D selection (32 galaxies at 0.7-3 Mpc from
+the LG barycentre, accurate distances, other groups' members excluded); heliocentric velocities to Galactocentric with
+van der Marel+2012's solar parameters (R0 8.29 kpc, V0 239 km/s, (11.1, 12.24, 7.25) km/s; read at source); MW-M31
+v_r = -109.3 +- 4.4 km/s, v_t = 17 (<34), 57 (+35/-31), 82 +- 31 km/s (FP11's sources).  chi^2 per galaxy with sigma^2 =
+25^2 (unmodelled dispersion, stated) + 5^2 (velocity) + (70 km/s/Mpc x 5% D)^2 (distance); the best branch per galaxy (the
+NAM convention), the same rule for both laws.  R0: the published 0.96 +- 0.03 (Karachentsev+2009) with FP18's honest
++-0.11; the chain's +0.10 dex band (1.21 Mpc).
+THE LCDM CONTROL (matched): the same numerical action, the MW-M31 pair as Newtonian point masses with the LG halo mass
+M_LG = f x M_b (f scanned, fitted), the same 32 dwarfs as test particles, convention A; the chain's matched counterpart is the
+pair alone in convention A at its own timing mass.  Benchmark for the two-body limit: Partridge, Lahav & Hoffman 2013 (MNRAS
+436, L45; read at source): M_TA,Lambda = (4.73 +- 1.03)e12 Msun from r = 770 kpc, v = -109.3 km/s, Planck (their radial
+Lambda timing = FP11's convention A).  The neighbours' LCDM halos are not in the control (not tractable here; stated).
+
+CHECKS.  K1 FP11's committed timing (H_Y; conventions A, B; both footings) and convention-B two-body R0 reproduced exactly with
+FP11's module; K2 FP13's committed H_S L-section points exactly (FP11's machinery hooked, FP13's hook11); K3 this lane's N-body
+integrator and BVP in the two-body limit = FP11's committed branch; K4 the 3-D field solver (direct kernel vs FP11's dg_body;
+the grid; the N-body deep-MOND virial identity, momentum; the pairwise superposition fails); K5 the 3-D test-particle
+machinery on the pair alone = FP11's committed B R0 and rays; K6 the LCDM benchmark (PLH13); K7 FP13's committed H_S tables.
+T1 [load-bearing; MUTATE must fail] the 3-D first-approach timing inside the baryonic window, both footings; T2 (reported) the
+3-D vs the two-body timing mass.  O1 (reported) the MW-M31 orbit (pericentres, the tidal v_t).  R1 [load-bearing] the 3-D R0
+at the timing mass stays above 1.21 Mpc (a verified FAIL of the chain's LG); R2 (reported) the neighbours' shift of R0
+(removes / reduces / confirms).  F1 [load-bearing] the chain's joint chi^2 (pair alone, convention A, at its timing mass)
+exceeds the matched LCDM control's minimum by >= 9 on both footings; F2 (reported) LCDM's own tension (its flow-preferred mass
+against its timing mass; its R0 at its timing mass); F3 (reported) the chain's flow in 3-D with the neighbours.  E1 (reported) the published linear estimator on the model and the data.  V1
+(reported) variants.  C1 (reported) the CGM room.  G1 the other gates unchanged.  W the ledger.
+MUTATE=1 scores FP7's plain P2 root law (no band-pass, no yield) in the 3-D timing scan over the window -- the pair in the 3-D
+machinery (with the neighbours the plain law's untruncated MOND made the ten-body problem intractable: an exploratory MUTATE
+run was stopped after 40 min without one converged scan, disclosed): its first approach is too fast at every window mass
+(FP11's F11e), so T1 must FAIL (rc = 1); the sections that need a timing solution are not run.
+Run from the repository root (4 worker processes, ~1 h; MUTATE ~20 min):
+    python3 real_research/cross_thread_review_2026_09_26/XR24_numerical_action.py   (MUTATE=1 for the control)
+
+HISTORY (stated, not hidden).  Exploratory runs before the committed ones: (1) M33 as its own body made the ten-body BVP chaotic
+(it fell through M31) -> merged; (2) convention A with the neighbours: no convergence (bodies packed at z = 49) -> B headline;
+(3) one end-to-end chain configuration (H_S, canonical, B, s = 0.85, neighbours on: v_r -111.8, R0 1.62 Mpc, flow chi^2 295/32)
+-- the first chain-law 3-D numbers seen; (4) LCDM with halo-mass neighbours in B (f = 27) and A (f = 22, 8), and with light
+neighbours in B: no convergence -> the LCDM control was redesigned as the matched pair-alone comparison in convention A BEFORE
+any LCDM chi^2 was computed (the F1 threshold and direction are unchanged); (5) a MUTATE run with the neighbours was stopped
+after 40 min without a converged scan -> MUTATE scans the pair.  No check direction or threshold was changed after a scored run.
+
+  phase 1 queued: FP11/FP13 reproductions, the pair's 3-D R0, the HS 3-D timing scans (bodies only)  [0 s]
+
+======================================================================================================================
+K  CONTROLS: the reused machinery reproduces the record; the 3-D field solver; the LCDM benchmark
+======================================================================================================================
+  [PASS] K7 CONTROL: FP13's code (exec'd read-only) returns its committed headline H_S tables -- L(z) at 7 redshifts and y_th(z) at 8 (canonical) -- exactly; the law used below is FP13's
+         measured: max |L/L_committed - 1| 0.0e+00; max |y_th - committed| 0.0e+00; q = 0 at z = 0.6348
+  [PASS] K4 CONTROL (the 3-D field solver of the chain's static law): (a) the direct 3-D integral of the band-passed dipole kernel equals FP11's committed axisymmetric dg_body at both bodies of the MW-M31 pair (4 cells with band-pass and yield); (b) the spherical-harmonic grid solver (180 x 64 x 96, l <= 40, a tilted axis) equals it within 2.5%; (c) three bodies, deep MOND: the N-body virial identity sum m x.g = -(2/3) sqrt(G a0)[(sum m)^1.5 - sum m^1.5] and momentum conservation hold, and the pairwise superposition (no interaction field) violates the identity by > 50% -- the non-additive part is computed, not approximated
+         measured: (a) (0.78,1): 1.00000/0.99989, (0.9,0.667): 1.00009/1.00021, (0.2,0.5): 0.99992/1.00023, (0.78,0.8): 1.00003/1.00003; (b) (0.78,1): 1.0174/1.0029, (0.9,0.667): 1.0140/1.0032, (0.2,0.5): 1.0098/1.0005; (c) scale 1.0: virial 1.0002 (pairwise 1.925), |sum m g|/sum|m g| 1.5e-05 (pairwise 6.6e-02), scale 3.0: virial 1.0000 (pairwise 1.925), |sum m g|/sum|m g| 1.5e-05 (pairwise 6.6e-02)
+  [PASS] K3 CONTROL: this lane's N-body integrator in the two-body limit, started from FP11's committed convention-B branch at FP11's committed B timing mass, returns FP11's committed velocity (the same ODE); its numerical-action BVP (positions today = 0.78 Mpc, growing mode at a = 0.02) returns the same branch
+         measured: integrator -109.258463 vs committed -109.258463 km/s (d 0.779999988); BVP -109.2585 km/s at d = 0.78 exactly, residual 1.8e-10 Mpc
+  [PASS] K6 CONTROL (LCDM benchmark): the radial Lambda timing with point masses + Lambda from the Hubble flow at a = 0.02 (FP11's convention A), r = 0.77 Mpc and v = -109.3 km/s (the inputs of Partridge, Lahav & Hoffman 2013, MNRAS 436, L45), recovers their M_TA,Lambda = (4.73 +- 1.03)e12 Msun within the quoted error
+         measured: 3.0e+12: -68.9, 4.0e+12: -93.3, 4.5e+12: -104.4, 5.0e+12: -115.0, 5.5e+12: -125.1, 6.5e+12: -144.1 -> 4.725e+12 Msun (t0 = 13.82 Gyr, Planck-2018 h = 0.674 vs their 13.81 Gyr, h = 0.674)
+    [75 s]
+  [PASS] K1 CONTROL: FP11's committed machinery (its module, main() not run) reproduces its committed first-approach velocities (H_Y, conventions A and B, both footings, three masses) and its committed convention-B two-body zero-velocity radius at its B timing mass exactly
+         measured: max |v_r - committed| 0.0e+00 km/s over 12 points; R0(HY/B/canonical) 1.570962 vs 1.570962 Mpc
+  [PASS] K2 CONTROL: FP11's two-body machinery hooked to FP13's H_S (FP13's hook11 in effect) reproduces FP13's committed L-section first-approach velocities (convention A, M_b = 1.45e11, both footings) exactly -- the H_S used here is FP13's
+         measured: canonical: -107.0194256807 vs -107.0194256807; alt: -118.8957071319 vs -118.8957071319
+  [PASS] K5 CONTROL: the 3-D test-particle machinery (the grid solver's interaction field, tracers on rays in 3-D, a tilted axis, 4 azimuths per polar ray) on the MW-M31 pair alone at FP11's committed convention-B timing mass reproduces FP11's committed two-body zero-velocity radius and its eight rays
+         measured: mean 1.5711 vs 1.5710 Mpc (+0.0001); max ray deviation 0.0004; azimuthal spread 1.7e-06 Mpc; pair v_r -109.259 km/s
+    [252 s]
+
+======================================================================================================================
+T  THE MW-M31 TIMING IN 3-D (the chain law, FP7 root + FP13 H_S; neighbours on; convention B)
+======================================================================================================================
+    HS-canonical-s0.620-B-scan: M_LG 1.130e+11: v_r -90.79 km/s, v_t 27.5; d_max 0.929 Mpc at z = 0.28; pericentres []  [263s]
+    HS-canonical-s0.740-B-scan: M_LG 1.349e+11: v_r -102.21 km/s, v_t 28.0; d_max 0.952 Mpc at z = 0.30; pericentres []  [249s]
+    HS-canonical-s0.860-B-scan: M_LG 1.567e+11: v_r -112.69 km/s, v_t 28.1; d_max 0.975 Mpc at z = 0.31; pericentres []  [391s]
+    HS-canonical-s1.000-B-scan: M_LG 1.822e+11: v_r -123.17 km/s, v_t 28.3; d_max 0.996 Mpc at z = 0.32; pericentres []  [391s]
+    HS-alt-s0.520-B-scan: M_LG 9.476e+10: v_r -89.00 km/s, v_t 30.9; d_max 0.924 Mpc at z = 0.28; pericentres []  [282s]
+    HS-alt-s0.620-B-scan: M_LG 1.130e+11: v_r -100.68 km/s, v_t 31.2; d_max 0.949 Mpc at z = 0.29; pericentres []  [369s]
+    HS-alt-s0.740-B-scan: M_LG 1.349e+11: v_r -112.37 km/s, v_t 31.5; d_max 0.972 Mpc at z = 0.30; pericentres []  [419s]
+    HS-alt-s0.860-B-scan: M_LG 1.567e+11: v_r -123.44 km/s, v_t 31.3; d_max 0.995 Mpc at z = 0.32; pericentres []  [282s]
+  [PASS] T1 THE 3-D FIRST-APPROACH TIMING WORKS WITH BARYONS ONLY: in 3-D with the neighbours, the chain law reaches the MW-M31 v_r = -109.3 km/s on the FIRST approach (no pericentre since a = 0.02) at an LG baryonic mass inside the window [1.221e+11, 2.476e+11] Msun, both footings
+         measured: canonical: s 0.62: -90.8, s 0.74: -102.2, s 0.86: -112.7, s 1.0: -123.2 -> M_t = 1.493e+11; alt: s 0.52: -89.0, s 0.62: -100.7, s 0.74: -112.4, s 0.86: -123.4 -> M_t = 1.287e+11
+  [PASS] (reported) T2 (reported) THE 3-D TIMING MASS AGAINST THE TWO-BODY ONE (the same law and convention, FP11's machinery hooked to H_S, the pair alone): the neighbours' effect on the timing
+         measured: canonical: 3-D 1.493e+11 vs two-body 1.213e+11 Msun (+0.231); alt: 3-D 1.287e+11 vs two-body 1.016e+11 Msun (+0.267)
+
+  phase 2 queued: 15 full configurations (bodies, the 3-D grid field, 64 R0 rays, the 32 dwarfs' numerical action)  [986 s]
+    HS-canonical-t: v_r -109.43, v_t 28.0 km/s; R0 1.670 Mpc (|cos| <= 0.9 1.678); flow chi^2 283.1/32 (mean model - data -61.2, rms 77.8 km/s), timing chi^2 0.00  [778s]
+    HS-canonical-t-noNB: v_r -122.80, v_t 0.0 km/s; R0 1.691 Mpc (|cos| <= 0.9 1.677); flow chi^2 370.4/32 (mean model - data -80.2, rms 89.5 km/s), timing chi^2 9.41  [321s]
+    HS-alt-t: v_r -109.38, v_t 31.4 km/s; R0 1.687 Mpc (|cos| <= 0.9 1.699); flow chi^2 279.9/32 (mean model - data -59.1, rms 77.3 km/s), timing chi^2 0.00  [821s]
+    HS-alt-t-noNB: v_r -124.72, v_t 0.0 km/s; R0 1.695 Mpc (|cos| <= 0.9 1.680); flow chi^2 377.4/32 (mean model - data -80.9, rms 90.4 km/s), timing chi^2 12.27  [358s]
+    HS-canonical-lo: v_r -94.20, v_t 27.5 km/s; R0 1.627 Mpc (|cos| <= 0.9 1.639); flow chi^2 222.7/32 (mean model - data -50.6, rms 69.0 km/s), timing chi^2 11.78  [849s]
+    HS-canonical-hi: v_r -125.14, v_t 28.5 km/s; R0 1.811 Mpc (|cos| <= 0.9 1.815); flow chi^2 362.4/32 (mean model - data -72.5, rms 88.1 km/s), timing chi^2 12.96  [1075s]
+    HS-canonical-t-nbhi: v_r -95.45, v_t 52.0 km/s; R0 1.824 Mpc (|cos| <= 0.9 1.814); flow chi^2 232.3/31 (mean model - data -42.5, rms 71.5 km/s), timing chi^2 9.91  [871s]
+    HS-canonical-A-pair: v_r -109.51, v_t 0.0 km/s; R0 1.551 Mpc (|cos| <= 0.9 1.538); flow chi^2 212.0/32 (mean model - data -52.2, rms 67.3 km/s), timing chi^2 0.00  [287s]
+    HS-alt-A-pair: v_r -109.41, v_t 0.0 km/s; R0 1.547 Mpc (|cos| <= 0.9 1.534); flow chi^2 211.7/32 (mean model - data -51.8, rms 67.2 km/s), timing chi^2 0.00  [299s]
+    LCDM-f4: v_r +51.26, v_t 0.0 km/s; R0 0.728 Mpc (|cos| <= 0.9 0.727); flow chi^2 130.4/27 (mean model - data +12.8, rms 57.8 km/s), timing chi^2 1331.51  [4002s]
+    LCDM-f6: v_r -6.95, v_t 0.0 km/s; R0 0.873 Mpc (|cos| <= 0.9 0.862); flow chi^2 92.3/29 (mean model - data +13.5, rms 47.2 km/s), timing chi^2 541.14  [701s]
+    LCDM-f9: v_r -27.07, v_t 0.0 km/s; R0 0.989 Mpc (|cos| <= 0.9 0.978); flow chi^2 47.8/19 (mean model - data -0.6, rms 42.2 km/s), timing chi^2 349.26  [1072s]
+    LCDM-f13: v_r -49.71, v_t 0.0 km/s; R0 1.110 Mpc (|cos| <= 0.9 1.098); flow chi^2 22.9/9 (mean model - data -33.2, rms 42.4 km/s), timing chi^2 183.39  [2020s]
+    LCDM-f19: v_r -78.45, v_t 0.0 km/s; R0 1.241 Mpc (|cos| <= 0.9 1.231); flow chi^2 41.7/13 (mean model - data -22.6, rms 47.1 km/s), timing chi^2 49.17  [2817s]
+    LCDM-f27: v_r -110.94, v_t 0.0 km/s; R0 1.392 Mpc (|cos| <= 0.9 1.381); flow chi^2 27.4/12 (mean model - data -26.4, rms 39.6 km/s), timing chi^2 0.14  [3792s]
+
+======================================================================================================================
+O  THE MW-M31 ORBIT IN 3-D AT THE TIMING MASS
+======================================================================================================================
+    canonical: v_r -109.43 km/s; tidally induced v_t 28.0 km/s (measured 17 (<34), 57 (+35/-31), 82 +- 31); d_max 0.968 Mpc at z = 0.30 (3.59 Gyr ago); pericentres since a = 0.02: none; separation at a = 0.02: 37.4 kpc
+    alt: v_r -109.38 km/s; tidally induced v_t 31.4 km/s (measured 17 (<34), 57 (+35/-31), 82 +- 31); d_max 0.966 Mpc at z = 0.30 (3.56 Gyr ago); pericentres since a = 0.02: none; separation at a = 0.02: 36.5 kpc
+  [PASS] (reported) O1 (reported) THE ORBIT: no pericentre since a = 0.02 (first approach; no past flyby) and the tangential velocity the neighbours' tides induce, against the measured 17 (<34), 57 (+35/-31) and 82 +- 31 km/s
+         measured: canonical: pericentres none, v_t 28.0 km/s; alt: pericentres none, v_t 31.4 km/s
+         reading:  v_t 28-31 km/s lies inside the measured spread (17-82)
+
+======================================================================================================================
+R  THE ZERO-VELOCITY RADIUS IN 3-D: with the neighbours vs the pair alone (the same machinery), both footings
+======================================================================================================================
+    canonical: with neighbours: mean 1.6698 Mpc (+0.240 dex; |cos| <= 0.9 1.6775); per polar ray (phi-mean) [1.603, 1.618, 1.613, 1.545, 1.796, 1.523, 2.068, 1.599]; range 1.242-3.696 | pair alone: 1.6913 (-0.0056 dex)
+    alt: with neighbours: mean 1.6873 Mpc (+0.245 dex; |cos| <= 0.9 1.6993); per polar ray (phi-mean) [1.585, 1.602, 1.607, 1.536, 1.496, 2.019, 2.073, 1.578]; range 1.216-3.817 | pair alone: 1.6949 (-0.0019 dex)
+  [PASS] R1 THE 3-D FLOW DOES NOT REMOVE THE OVERSHOOT: at the 3-D timing mass, with the neighbours' tides and the non-linear MOND superposition of all ten bodies, the solid-angle-mean zero-velocity radius stays above the +0.10 dex band (1.21 Mpc) on both footings -- a verified FAIL of the chain's Local Group
+         measured: canonical: 1.670 Mpc (+0.240 dex; 6.4 x FP18's honest +-0.111); alt: 1.687 Mpc (+0.245 dex; 6.6 x FP18's honest +-0.111); measured 0.96 +- 0.03 (Karachentsev+2009)
+  [PASS] (reported) R2 (reported; classification pre-declared) THE NEIGHBOURS' EFFECT ON R0: removes (R0 <= 1.21 on both footings), reduces (shift <= -0.03 dex on both), confirms (|shift| < 0.03 dex on both) -- the pre-declared expectation was CONFIRMS
+         measured: canonical: -0.0056 dex; alt: -0.0019 dex -> CONFIRMS
+
+======================================================================================================================
+F  THE FLOW FIT: 32 galaxies at 0.7-3 Mpc + the MW-M31 v_r; the chain against the matched LCDM numerical action
+======================================================================================================================
+    LCDM (pair alone, conv. A) f = 4 (M_LG 7.29e+11 Msun): v_r +51.3 km/s; flow chi^2 130.4 (mean model - data +12.8, rms 57.8); timing chi^2 1331.5; R0 0.728 Mpc
+    LCDM (pair alone, conv. A) f = 6 (M_LG 1.09e+12 Msun): v_r -6.9 km/s; flow chi^2 92.3 (mean model - data +13.5, rms 47.2); timing chi^2 541.1; R0 0.873 Mpc
+    LCDM (pair alone, conv. A) f = 9 (M_LG 1.64e+12 Msun): v_r -27.1 km/s; flow chi^2 47.8 (mean model - data -0.6, rms 42.2); timing chi^2 349.3; R0 0.989 Mpc
+    LCDM (pair alone, conv. A) f = 13 (M_LG 2.37e+12 Msun): v_r -49.7 km/s; flow chi^2 22.9 (mean model - data -33.2, rms 42.4); timing chi^2 183.4; R0 1.110 Mpc
+    LCDM (pair alone, conv. A) f = 19 (M_LG 3.46e+12 Msun): v_r -78.4 km/s; flow chi^2 41.7 (mean model - data -22.6, rms 47.1); timing chi^2 49.2; R0 1.241 Mpc
+    LCDM (pair alone, conv. A) f = 27 (M_LG 4.92e+12 Msun): v_r -110.9 km/s; flow chi^2 27.4 (mean model - data -26.4, rms 39.6); timing chi^2 0.1; R0 1.392 Mpc
+    chain, pair alone, conv. A canonical (M_LG 1.502e+11): v_r -109.5; flow chi^2 212.0/32 (mean model - data -52.2, rms 67.3 km/s); timing chi^2 0.00; sigma_th 35: 112.9; R0 1.551
+    chain, pair alone, conv. A alt (M_LG 1.256e+11): v_r -109.4; flow chi^2 211.7/32 (mean model - data -51.8, rms 67.2 km/s); timing chi^2 0.00; sigma_th 35: 112.7; R0 1.547
+    chain, 3-D with neighbours, conv. B canonical (M_LG 1.493e+11): v_r -109.4; flow chi^2 283.1/32 (mean model - data -61.2, rms 77.8 km/s); timing chi^2 0.00; sigma_th 35: 150.8; R0 1.670
+    chain, 3-D with neighbours, conv. B alt (M_LG 1.287e+11): v_r -109.4; flow chi^2 279.9/32 (mean model - data -59.1, rms 77.3 km/s); timing chi^2 0.00; sigma_th 35: 149.0; R0 1.687
+    chain, pair alone, conv. B canonical (M_LG 1.493e+11): v_r -122.8; flow chi^2 370.4/32 (mean model - data -80.2, rms 89.5 km/s); timing chi^2 9.41; sigma_th 35: 198.3; R0 1.691
+    chain, pair alone, conv. B alt (M_LG 1.287e+11): v_r -124.7; flow chi^2 377.4/32 (mean model - data -80.9, rms 90.4 km/s); timing chi^2 12.27; sigma_th 35: 202.1; R0 1.695
+  [PASS] F1 THE FLOW FAVOURS THE MATCHED LCDM CONTROL: the chain's joint chi^2 (the pair alone, convention A, at its own timing mass) exceeds the matched LCDM numerical action's minimum over the LG halo mass (the same pair, convention A) by >= 9 on both footings
+         measured: canonical: chain 212.0 vs LCDM min 27.5 (at M_LG = 4.92e+12) -> +184.5; alt: chain 211.7 vs LCDM min 27.5 (at M_LG = 4.92e+12) -> +184.1
+         reading:  LCDM's flow-only minimum 22.8 at M_LG = 2.45e+12
+  [PASS] (reported) F2 (reported) THE LCDM CONTROL'S OWN TENSION (FP18: LCDM shares the pincer): the LG halo mass its flow prefers against its own timing mass, and its zero-velocity radius at that timing mass
+         measured: flow-preferred M_LG 2.45e+12 Msun; joint best 4.92e+12; timing (v_r = -109.3) at M_LG = 4.83e+12, where R0 = 1.384 Mpc (+0.159 dex)
+         reading:  FP18 (committed): KiDS-fitted LCDM halos turn around at 1.85-1.94 Mpc
+  [PASS] (reported) F3 (reported) THE CHAIN'S FLOW IN 3-D WITH THE NEIGHBOURS (convention B, the headline 3-D reconstruction) against the pair alone in the same convention: what the neighbours do to the 32-galaxy fit
+         measured: canonical: with neighbours 283.1 (mean model - data -61.2), pair alone 379.8 (mean -80.2); alt: with neighbours 279.9 (mean model - data -59.1), pair alone 389.7 (mean -80.9)
+  [PASS] (reported) E1 (reported) THE PUBLISHED ESTIMATOR ON THE MODEL: the linear fit V = H (R - R0) over 0.7-3 Mpc (FP11 R4 / Karachentsev+2009) applied to each model's predicted velocities at the 32 observed galaxies, the data's own geometry (FP18's warning: not FP12's 'eq. 14')
+         measured: HS-canonical-t: R0 1.617, H 144; HS-alt-t: R0 1.609, H 147; HS-canonical-A-pair: R0 1.552, H 144; HS-alt-A-pair: R0 1.551, H 145; LCDM-f4: R0 0.663, H 103; LCDM-f6: R0 0.772, H 107; LCDM-f9: R0 0.790, H 103; LCDM-f13: R0 0.975, H 110; LCDM-f19: R0 1.180, H 120; LCDM-f27: R0 1.339, H 126; data 1.048, H 118
+  [PASS] (reported) V1 (reported) VARIANTS (canonical, convention B, neighbours on): the neighbours at FP12's band top, the LG mass scaled -- R0, v_r and the joint chi^2
+         measured: neighbours x2.3 (FP12's band top): R0 1.824 Mpc, v_r -95.5, chi^2 242.2; LG mass x0.80: R0 1.627 Mpc, v_r -94.2, chi^2 234.4; LG mass x1.25: R0 1.811 Mpc, v_r -125.1, chi^2 375.4
+  [PASS] (reported) C1 (reported) THE CGM RANGE: the 3-D timing mass against the LG's stars + HI (nominal 1.82e11) and the CGM range (0-9.8e10 per L* galaxy, Bregman+2022 tSZ as the L45 lane reads it): the room the timing leaves for circumgalactic baryons
+         measured: canonical: M_t 1.493e+11 = 0.82 x stars + HI -> CGM room 0.0e+00 (range up to 2.0e+11); alt: M_t 1.287e+11 = 0.71 x stars + HI -> CGM room 0.0e+00 (range up to 2.0e+11)
+  [PASS] G1 THE OTHER GATES ARE UNCHANGED: this lane adds no term to the action (the law is FP13's H_S as committed; K7), so the flagship, SPARC, KiDS, sigma_8 and forest rows are FP13's
+         measured: new action terms: 0
+
+======================================================================================================================
+W  THE LEDGER
+======================================================================================================================
+    XR24a  DERIVED     the chain's static law (FP7 root + FP13 H_S) for N point masses in 3-D: isolated phantoms + the non-additive interaction field, direct kernel integral and spherical-harmonic grid  --  K3-K5 (virial identity, momentum, FP11 two-body limit)
+    XR24b  POSTULATED  the numerical-action idealisation: point-mass groups (M33 merged into M31), growing mode at a = 0.02, convention B for the ten-body reconstruction (A packs the Local Volume within ~20 kpc at z = 49); the matched LCDM comparison on the pair alone in A  --  scope; F1-F3
+    XR24c  DERIVED     the 3-D MW-M31 timing on the first approach with baryons: M_t = canonical 1.49e+11, alt 1.29e+11  --  T1, T2, O1
+    XR24d  FAILS       R0 in 3-D at the timing mass: canonical 1.67, alt 1.69 Mpc vs 0.96 (+-0.03 quoted, +-0.11 honest); the neighbours: CONFIRMS  --  R1, R2
+    XR24e  FAILS       the 32-galaxy flow (pair alone, conv. A): chain joint chi^2 canonical 212, alt 212 vs matched LCDM min 28  --  F1, F2, F3, E1
+    XR24f  OPEN        not computed: the AQUAL curl part, M33's own orbit, Virgo and the Local Void (beyond 5 Mpc), distance adjustments in the action, the dark fluid as a variant (FP16: not kept by these galaxies)  --  scope
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  The Local Group's Hubble flow in 3-D in the chain's law (FP7 root + FP13 H_S; convention B; both footings):
+  timing: canonical M_t = 1.49e+11 Msun, alt M_t = 1.29e+11 Msun; R0: canonical 1.67, alt 1.69 Mpc -> the overshoot CONFIRMS.
+  flow (matched pair, conv. A): canonical chain chi^2 212, alt chain chi^2 212 vs LCDM 28 at M_LG 4.92e+12; LCDM's own R0 at its timing mass 1.38 Mpc.  Not 'closed'.
+
+  19/19 checks pass; load-bearing failures: 0; time 7283 s; wrote XR24_numerical_action_results.json
+rc=0
