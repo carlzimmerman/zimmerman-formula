@@ -168,6 +168,15 @@ Lyman-α forest, run with L347's simulation pipeline and only the switch changed
 halo cores switch on. This run over-states the phantom by construction (single fluid, all-matter kernel). The
 deviation still grows with resolution, so a convergence run comes next.
 
+**DE12** (`DE12_mond_sector_gate_stiffness.py`, 8/8; MUTATE fails G1) — a new obstruction for the converged model as
+an action. Written as a term of the action, the MOND-sector gate avoids DE7's metric problems: no wrong-signed k⁴
+term in gravity, and a slip smaller than 1e-7. But T1's convexity has to land somewhere, and it lands on the
+baryons. The gate acts as a negative pressure on the gas, amplified ~50–100× by the phantom's own response. In the
+transition layers around every galaxy it beats the gas pressure by 15–100× in sound speed, and the gas there would
+fragment on Myr timescales. A switch that reads the gate as a prescribed mask (every data test so far) never sees
+this. A usable action therefore needs either a gate variable whose own stiffness wins, or a way to remove the
+phantom's amplification from the gate's second variation.
+
 ## 4. The theory as it stands, sector by sector
 
 | sector | what is built | standing | open |

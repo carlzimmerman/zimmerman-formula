@@ -1,0 +1,121 @@
+DE12 -- THE MOND-SECTOR GATE AS AN ACTION TERM: THE BARYON STIFFNESS BUDGET, THE GATE'S OWN FORCE, AND THE SLIP.
+
+WHY.  The model the threads converged on (M*) switches MOND on where the MOND sector's own density crosses the vacuum
+threshold.  CV3 writes that gate in constrained-field form, U = C[lap(u - v) + div((nu - 1) grad S w)]: it reads the
+auxiliaries, never the metric's curvature.  MS5 wrote the region cap as U_cap = C m(lap Phi_X, v_cap^2 kappa_X^2).
+DE7 showed that any smooth on/off gate has f'' > 0 somewhere (Lean DE7 T1).  For the curvature reading that convexity
+lands on the metric (a wrong-sign k^4 term, repaired at the cost of slip).  For the MOND-sector reading it lands
+somewhere else: the auxiliaries are slaved to the baryons by their constraints (lap(u - v) = 4 pi G rho_b, and w by
+L361's source), so the gate's second variation is a k^0 term in the BARYON density -- a negative contribution to the
+gas's pressure.  This lane prices that, and the gate's first variation (a potential felt by baryons and light alike).
+
+THE REDUCTION (frozen background, high k against the transition width):
+  dU/d rho_b = (4 pi G/(H^2 x_c,eff)) A,   A(theta) = nu + y nu' cos^2(theta)     (the phantom's own response: nu_perp,
+      d(y nu)/dy along g; the on-branch phantom in CV3's form is ungated);
+  kappa branch (MS5, where v_cap^2 kappa^2 < lap Phi_X): dU/d rho_b = (v_cap^2 kappa/|g|)(k_perp/k)^2 (4 pi G A/(H^2 x_c))
+      and d2U/d rho_b^2 = v_cap^2 (k_perp/k)^4 (4 pi G A)^2 / (2 |g|^2 H^2 x_c) (MS5's definite-sign W'/2 piece);
+  the gate's second variation, per (delta rho_b)^2:  S = B [W'' t_U^2 (U_rho)^2 + W' t_U U_rhorho],  t_U = 1/(2w),
+      B = a0^2 q(y^2)/(8 pi G) (DE7's constitutive coupling; the V0 writer measured dL/df within ~10% of it at edges);
+  the gas: delta^2 E = (1/2)(c_s^2/rho_b - S)(delta rho_b)^2, so it is stable only if c_s^2 > c_gate^2 = rho_b S, and
+      otherwise grows at Gamma(k) = k sqrt(c_gate^2 - c_s^2) above the Jeans scale;
+  the gate's first variation through u (CV1's chassis: the u equation feeds Phi): Phi_gate = -4 pi G B W' t_U C
+      = -a0^2 q W'/(4 w H^2 x_c,eff), felt by baryons and by light (Phi is the metric potential) -- no slip at this order.
+      (The w channel adds a term of the same order; it is the V0 writer's CV3.)
+  slip: U depends on the metric only through the Laplacian's coefficients, so the gate's anisotropic stress is
+      ~ B W' t_U C d_i d_j chi and psi - phi ~ 3 b W' Omega_L(z) Phi_N/(w x_c,eff): a factor ~ (v/c)^2 below DE7's
+      curvature-gate slip.
+
+THE TRANSITIONS.  Isolated spherical systems at z = 0.25, 1, 2.5, 4: point-mass baryons M_b = 1e10, 1e11, 1e12 (galaxies)
+and 1e14 (a cluster, where the kappa cap is active), both footings.  The gas around each system follows its host's matter
+(the NFW continued past r200, plus the mean): rho_b = f_b (rho_NFW + rho_bar_m).  Its sound speed is c_s at T = 1e5 K
+(37 km/s, WHIM) and T = 1e6 K (117 km/s).  The gate: MS2's MOND-sector reading, p = 1, x_c0 = 2.5, w = 0.25 and 1.
+
+  *** MUTATE=1: A = 1 and w = 1; G1 must FAIL ***
+  constants loaded; gas sound speeds: 1e5K 37 km/s, 1e6K 117 km/s   [1s]
+
+==============================================================================================================
+C1  CONTROL: the phantom's response to a plane-wave baryon perturbation is A(theta) = nu + y nu' cos^2 theta
+==============================================================================================================
+    y = 0.001, theta = 0deg: measured A = 16.3153, predicted 16.3153
+    y = 0.001, theta = 90deg: measured A = 32.1254, predicted 32.1254
+    y = 0.1, theta = 0deg: measured A = 2.1206, predicted 2.1206
+    y = 0.1, theta = 90deg: measured A = 3.6886, predicted 3.6886
+  [PASS] C1 CONTROL: the plane-wave response reproduces A = nu + y nu' cos^2 theta (y = 1e-3, 1e-1; theta = 0, 90 deg) to 2%
+         measured: max rel dev 5.8e-09
+
+==============================================================================================================
+C2  CONTROL: the gate potential's closed form
+==============================================================================================================
+  [PASS] C2 CONTROL: Phi_gate = -4 pi G B W' t_U C equals -a0^2 q W'/(4 w H^2 x_c,eff) on the profile
+         measured: 3.6e-17
+
+==============================================================================================================
+G1 G2  THE BARYON STIFFNESS BUDGET ON REAL TRANSITIONS (M*: MOND-sector door, p = 1, x_c0 = 2.5)
+==============================================================================================================
+    z = 0.25 M_b = 1e+10 canonical: edge   767.6 kpc; max c_gate         1 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.004
+    z = 0.25 M_b = 1e+10 alt      : edge   803.6 kpc; max c_gate         1 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.004
+    z = 0.25 M_b = 1e+11 canonical: edge  1372.9 kpc; max c_gate         3 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.007
+    z = 0.25 M_b = 1e+11 alt      : edge  1436.3 kpc; max c_gate         3 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.007
+    z = 0.25 M_b = 1e+12 canonical: edge  2469.3 kpc; max c_gate         7 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.013
+    z = 0.25 M_b = 1e+12 alt      : edge  2579.8 kpc; max c_gate         7 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.011
+    z = 1.00 M_b = 1e+10 canonical: edge   315.0 kpc; max c_gate         2 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.010
+    z = 1.00 M_b = 1e+10 alt      : edge   329.4 kpc; max c_gate         2 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.009
+    z = 1.00 M_b = 1e+11 canonical: edge   568.4 kpc; max c_gate         4 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.017
+    z = 1.00 M_b = 1e+11 alt      : edge   593.4 kpc; max c_gate         4 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.015
+    z = 1.00 M_b = 1e+12 canonical: edge  1038.4 kpc; max c_gate        12 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.028
+    z = 1.00 M_b = 1e+12 alt      : edge  1080.9 kpc; max c_gate        12 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.025
+    z = 2.50 M_b = 1e+10 canonical: edge    74.7 kpc; max c_gate         4 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.038
+    z = 2.50 M_b = 1e+10 alt      : edge    77.7 kpc; max c_gate         4 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.034
+    z = 2.50 M_b = 1e+11 canonical: edge   139.1 kpc; max c_gate        12 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.057
+    z = 2.50 M_b = 1e+11 alt      : edge   144.2 kpc; max c_gate        11 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.052
+    z = 2.50 M_b = 1e+12 canonical: edge   265.1 kpc; max c_gate        32 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.081
+    z = 2.50 M_b = 1e+12 alt      : edge   273.3 kpc; max c_gate        31 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.074
+    z = 4.00 M_b = 1e+10 canonical: edge    28.4 kpc; max c_gate         9 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.083
+    z = 4.00 M_b = 1e+10 alt      : edge    29.4 kpc; max c_gate         8 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.076
+    z = 4.00 M_b = 1e+11 canonical: edge    54.3 kpc; max c_gate        23 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.115
+    z = 4.00 M_b = 1e+11 alt      : edge    55.9 kpc; max c_gate        22 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.106
+    z = 4.00 M_b = 1e+12 canonical: edge   105.6 kpc; max c_gate        54 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.147
+    z = 4.00 M_b = 1e+12 alt      : edge   108.3 kpc; max c_gate        53 km/s (gas 37/117 km/s); unstable gas 0.00e+00 Msun (0.00e+00 of M_b); Gamma(k = 1/kpc)/H = 0.0e+00; max |Phi_gate|/v_f^2 = 0.139
+  [FAIL] G1 [pre-declared] on M* (w = 0.25) the gate's negative stiffness beats 1e6 K gas pressure on every z = 0.25 galaxy transition, growing at k = 1/kpc faster than 1e3 H(z)
+         measured: min c_gate 1 km/s; min Gamma/H 0.0e+00
+         reading:  the varied MOND-sector gate makes the transition-layer gas unstable (a new obstruction for M* at the action level)
+    the lead track's broad gate (w = 1), z = 0.25, canonical: max c_gate 1e+10: 1 km/s, 1e+11: 3 km/s, 1e+12: 7 km/s
+  [PASS] G2 (reported) the baryon mass in the unstable part of each layer
+         measured: {'0.25/1e+10/canonical': '0.0e+00', '0.25/1e+10/alt': '0.0e+00', '0.25/1e+11/canonical': '0.0e+00', '0.25/1e+11/alt': '0.0e+00', '0.25/1e+12/canonical': '0.0e+00', '0.25/1e+12/alt': '0.0e+00', '1.0/1e+10/canonical': '0.0e+00', '1.0/1e+10/alt': '0.0e+00', '1.0/1e+11/canonical': '0.0e+00', '1.0/1e+11/alt': '0.0e+00', '1.0/1e+12/canonical': '0.0e+00', '1.0/1e+12/alt': '0.0e+00', '2.5/1e+10/canonical': '0.0e+00', '2.5/1e+10/alt': '0.0e+00', '2.5/1e+11/canonical': '0.0e+00', '2.5/1e+11/alt': '0.0e+00', '2.5/1e+12/canonical': '0.0e+00', '2.5/1e+12/alt': '0.0e+00', '4.0/1e+10/canonical': '0.0e+00', '4.0/1e+10/alt': '0.0e+00', '4.0/1e+11/canonical': '0.0e+00', '4.0/1e+11/alt': '0.0e+00', '4.0/1e+12/canonical': '0.0e+00', '4.0/1e+12/alt': '0.0e+00'}
+
+==============================================================================================================
+G3  THE A = 1 CONTROL: MS1's other leak-free reading, U = C rho_b (baryons alone)
+==============================================================================================================
+    z = 0.25, 1e11 canonical, A = 1 (same edge): max c_gate 18.4 km/s
+    z = 2.5, 1e11 canonical, A = 1 (same edge): max c_gate 93.4 km/s
+  [PASS] G3 (reported) without the phantom's amplification the gate's c_gate falls by ~A (the A^2 is the story)
+         measured: {'0.25/1e+11': 18387.84672252109, '2.5/1e+11': 93382.5204903662}
+
+==============================================================================================================
+G4  THE GATE POTENTIAL AT THE FLAGSHIP RADIUS (z = 2.5-4), both footings
+==============================================================================================================
+    z = 2.5, canonical: t(r_F) = 28.316; gate force at r_F / g_MOND = +0.000e+00; zero-point shift +0.0000 dex
+    z = 2.5, alt      : t(r_F) = 37.013; gate force at r_F / g_MOND = +0.000e+00; zero-point shift +0.0000 dex
+    z = 3.0, canonical: t(r_F) = 12.777; gate force at r_F / g_MOND = +0.000e+00; zero-point shift +0.0000 dex
+    z = 3.0, alt      : t(r_F) = 16.925; gate force at r_F / g_MOND = +0.000e+00; zero-point shift +0.0000 dex
+    z = 3.5, canonical: t(r_F) = 5.908; gate force at r_F / g_MOND = +0.000e+00; zero-point shift +0.0000 dex
+    z = 3.5, alt      : t(r_F) = 8.053; gate force at r_F / g_MOND = +0.000e+00; zero-point shift +0.0000 dex
+    z = 4.0, canonical: t(r_F) = 2.606; gate force at r_F / g_MOND = +0.000e+00; zero-point shift +0.0000 dex
+    z = 4.0, alt      : t(r_F) = 3.792; gate force at r_F / g_MOND = +0.000e+00; zero-point shift +0.0000 dex
+  [PASS] G4 (reported) the flagship zero-point shift from the gate's own force
+         measured: {'2.5/canonical': 0.0, '2.5/alt': 0.0, '3.0/canonical': 0.0, '3.0/alt': 0.0, '3.5/canonical': 0.0, '3.5/alt': 0.0, '4.0/canonical': 0.0, '4.0/alt': 0.0}
+         reading:  zero wherever r_F sits on the plateau (t >= 1)
+
+==============================================================================================================
+G5 G6  THE SLIP, AND THE KAPPA-CAPPED CLUSTER
+==============================================================================================================
+    z = 0.25: MOND-sector gate slip / Phi_N <= 3.7e-08  (DE7's curvature gate: 5.7% of g at z = 0.25, 43% at 2.5)
+    z = 2.5: MOND-sector gate slip / Phi_N <= 2.9e-07  (DE7's curvature gate: 5.7% of g at z = 0.25, 43% at 2.5)
+    cluster 1e14 at z = 0.25 with the kappa cap: cap active on 1.0 of its layer; max c_gate 4460 km/s (ICM ~ 1000 km/s)
+  [PASS] G5 (reported) the MOND-sector gate's slip is post-Newtonian-suppressed
+         measured: {'0.25': 3.73013568076129e-08, '2.5': 2.927090328977063e-07}
+  [PASS] G6 (reported) the kappa-capped cluster layer
+         measured: {'cap_active_frac': 1.0, 'c_gate_max': 4459730.605944521}
+
+  7/8 checks pass; load-bearing failures: 1; wrote DE12_mond_sector_gate_stiffness_results_MUTATE.json   [3s]
+rc=1
