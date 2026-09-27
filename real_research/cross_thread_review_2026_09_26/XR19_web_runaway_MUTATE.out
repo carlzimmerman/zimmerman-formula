@@ -1,0 +1,208 @@
+XR19 (2/2) -- DOES THE DARK FLUID'S CONVERSION RUN AWAY THROUGH THE COSMIC WEB?  The web census, F_tot(z), percolation,
+the reach, and what a web-wide conversion would cost.
+
+WHY.  XR12 (K, an estimate: F_b(z = 2) -> 0.95 with a cone-enhanced smooth web) and XR16 (B3, a flag: the stimulated
+criterion is met in filaments at z = 2 and at the mean density below z ~ 1.2-1.8) left the web open.  XR19_front_physics.py
+settles the rules: against its LOCAL pump a daughter's relative velocity only shrinks in an expanding flow (no branching
+there, one passage per seed); contracting flows have a zero-strain cone (spontaneous ignition far below the trigger,
+calibrated by exact rays) and re-resonance; every accreting halo's infalling pump turns ~85% of its daughters into fast
+seeds for the zone around it.  This script puts those rules on a realistic web and asks how much of the WHOLE dark fluid
+converts, when, and at what price.  The dark fluid is FL1/FK1's order parameter (a classical field; quanta would be bosons
+of m >~ 1.9-5.2e-19 eV); the dark MASS is still required.
+
+THE MODEL (FK1/FP10's rates; nothing new is fitted)
+  * The halo budget F_halo(z): XR16's own machinery (AT1's halo model, the fluid's depth, the m = 2e-19 eV cut, K = 60),
+    exec'd from XR16's committed text; C1 reproduces XR16's committed history exactly, then the same code is run to z = 0
+    and at every normalisation of the band (delta_t scaled; under MUTATE, ungated).
+  * The web: a Gaussian field with the record's CLASS P(k) (L357's head, z = 0, Gaussian-smoothed at the cell R_s) on a
+    periodic 128^3 grid (R_s = 0.5 Mpc/h; 1 Mpc/h and a second realisation as brackets).  Every Lagrangian cell carries its
+    deformation eigenvalues lambda_i; at each epoch d_i = D(z) lambda_i.  Single-stream cells (d_1 < 1) take the
+    Zel'dovich density 1/prod(1 - d_i) and strains e_i = H (1 - f d_i/(1 - d_i)); multistream cells (d_1 >= 1) take the
+    CIC density and 1D dispersion of the Zel'dovich particles.  Classes: EX (all axes expanding), TA (turned around along
+    axis 1, single stream: a zero-strain cone), MS (shell-crossed: kinetic regime).
+  * The pump is the SMOOTH carrier: s = 1 - F_halo(z) of the cell density (the halo carrier is F_halo's); s = 1 bracketed.
+  * Spontaneous ignition (E_need e-folds from the vacuum): EX along axis 1 with the one-passage sweep integral; TA on the
+    cone, cal x C4 G^(3/2)/sqrt(alpha) (cal = XR19_front_physics Z1's min exact/local), Doppler-broadened by a pump
+    roughness sigma_r when m v_k sigma_r > G; a compression cap 1/(1 - d_1) <= cap brackets the caustic's reliance; MS
+    kinetic (FP10 A5's gamma = sqrt(pi) G^2/(m v_k sigma)), absolute over t_av when gamma W/v_k >= 1 (XR12 S1).
+  * Seeded conversion (ln(pump/seed) = g_need e-folds): sources are the halo-hosting (MS) cells and every converted
+    TA/MS cell (converging flow: XR19_front_physics B1/I1); an EX cell within the reach of a source converts if its
+    passage gain (axis 1, or the isotropic mean strain) >= g_need; a TA/MS cell within reach if its gain >= g_need.  The
+    front advances at most v_k dt per step (the causal limit) and the reach is R_beam cells.  Conversion is irreversible.
+  * F_tot(z) = running max of F_halo + (1 - F_halo) f_web over z' >= z.
+  * Consequences: L319's linear solver (exec'd via L357's head) with S(a) = 1 - F_esc, F_esc = XR16's bias-weighted
+    escaped halo fraction + the web part (web daughters leave shallow structures); S8 against FP10 B6's gates (ratio >=
+    0.922 strict, 0.899 alt; PAPER34's absolute floors 0.752/0.748); the carrier-sector T^2(k) at KiDS scales; a Limber
+    estimate of the CMB lensing power; free streaming; the forest through XR16 B2's committed response range; X-COP.
+A0 FOOTINGS.  a0 enters only through the flagship's bound on the normalisation (XR12 W2, committed): the band is
+  delta_t0 = 5.31 zeta with zeta in [1.42 (forest), 2.54-2.76 (canonical flagship)] or [1.42, 4.09-4.29] (alt):
+  delta_t0 = 7.54-14.6 (canonical, 9.36e-11) and 7.54-22.8 (alt, 1.13e-10).  F_tot is reported at both bands' edges.
+
+  *** MUTATE=1: the vacuum gate removed (q = 0) in the web census and the halo budget; G0 and W2 must FAIL ***
+  XR16's head loaded (AT1's machinery, L357's head, L319's solver, CLASS P(k) to 190 h/Mpc)   [9s]
+
+======================================================================================================================
+C1  CONTROL: XR16's committed F(z) budget reproduced by its own code (20 budgets x 13 epochs)
+======================================================================================================================
+    260 rows; fiducial (m = 2e-19 eV, K = 60) F(4/3/2) = 0.255/0.342/0.433; max |dev| 0.0e+00   [12s]
+  [PASS] C1 CONTROL: XR16's committed F(z) history reproduced exactly by its own Part B (exec'd from its committed text)
+         measured: 260 rows, max |dev| 0.0e+00
+
+======================================================================================================================
+C2  CONTROL: L319's committed control cell through the loaded solver
+======================================================================================================================
+    S8 0.7865422693234108 (committed 0.7865422693234108); T^2(k=5, z=3) 0.46813357143746914 (committed 0.46813357143746914); LCDM S8 0.8415   [20s]
+  [PASS] C2 CONTROL: L319's committed universal-decay cell (5 Gyr, 600 km/s) reproduced exactly
+         measured: dS8 0.0e+00, dT2 0.0e+00
+
+======================================================================================================================
+B   (reported) THE HALO BUDGET TO z = 0 (XR16's machinery), at every normalisation of the band -- UNGATED (MUTATE)
+======================================================================================================================
+    nominal 5.31          : F_halo(z = 4/3/2/1/0.5/0) = 0.290/0.358/0.437/0.530/0.580/0.629; F_b,esc = 0.459/0.493/0.503/0.503/0.503/0.503   [27s]
+    forest floor 7.54     : F_halo(z = 4/3/2/1/0.5/0) = 0.290/0.358/0.437/0.530/0.580/0.629; F_b,esc = 0.459/0.493/0.503/0.503/0.503/0.503   [33s]
+    canonical top 13.5    : F_halo(z = 4/3/2/1/0.5/0) = 0.290/0.358/0.437/0.530/0.580/0.629; F_b,esc = 0.459/0.493/0.503/0.503/0.503/0.503   [39s]
+    canonical top+up 14.6 : F_halo(z = 4/3/2/1/0.5/0) = 0.290/0.358/0.437/0.530/0.580/0.628; F_b,esc = 0.459/0.493/0.503/0.503/0.503/0.503   [45s]
+    alt top 21.7          : F_halo(z = 4/3/2/1/0.5/0) = 0.290/0.358/0.437/0.530/0.580/0.628; F_b,esc = 0.459/0.493/0.503/0.503/0.503/0.503   [51s]
+    alt top+up 22.8       : F_halo(z = 4/3/2/1/0.5/0) = 0.290/0.358/0.437/0.530/0.580/0.628; F_b,esc = 0.459/0.493/0.503/0.503/0.503/0.503   [58s]
+    FK1 upper 25          : F_halo(z = 4/3/2/1/0.5/0) = 0.290/0.358/0.437/0.530/0.579/0.627; F_b,esc = 0.459/0.493/0.503/0.503/0.503/0.503   [64s]
+
+======================================================================================================================
+G0  THE MEAN BACKGROUND: spontaneous gain against E_need (UNGATED)
+======================================================================================================================
+    max spontaneous exponent / E_need at the mean density: 3070.3828 at z = 10.00; >= 1 (the whole background self-ignites) for z >= 0.91
+  [FAIL] G0 the mean background never converts spontaneously (its exponent stays below E_need at every z <= 10)
+         measured: max 3070.3828 E_need at z = 10.00
+         reading:  the gate's job (FK1 N2); everything the web converts below is structure or seeds
+
+======================================================================================================================
+W   THE WEB CENSUS: a Zel'dovich web on the record's CLASS P(k), time-tracked, seeded, percolation
+======================================================================================================================
+    cone calibration cal = 0.697 (XR19_front_physics Z1's min exact/local)
+    grid 128^3, L = 64 Mpc/h (R_s = 0.5): sigma(delta_lin) = 2.465 (CLASS 2.415); Zel'dovich states at 17 epochs   [81s]
+  [PASS] C3 CONTROL: the grid's deformation eigenvalues: T-web fractions at threshold 0 (void/sheet/filament/knot) equal Doroshkevich's Gaussian-field values within 0.01, and the rms linear overdensity is within 5% of CLASS's sigma(R_s)
+         measured: T-web [0.0794, 0.4193, 0.4225, 0.0789] vs [0.0798, 0.4202, 0.4202, 0.0798]; sigma 2.465 vs 2.415
+  the nominal cell (delta_t0 = 5.31, m = 2e-19 eV, v_k 600, s = 1 - F_halo, sigma_r 10, cal, g_need 3, reach 2 cells) and its O(1) brackets:
+    nominal                           : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    no seeding                        : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [7s]
+    no halo sources                   : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    pump s = 1                        : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    sigma_r 0 (coherent)              : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    sigma_r 30                        : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    cal 0.2                           : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    cap 10                            : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    cap 3                             : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    kinetic x1/2                      : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    t_av 0.3/H                        : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    g_need 1                          : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    g_need 10                         : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    reach 1                           : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    reach 4                           : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    iso strain                        : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [10s]
+    v_k 575                           : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    v_k 650                           : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    m 1e-17 (E_need 162)              : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    m 1e-6 (E_need 61)                : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [8s]
+    most conservative                 : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    realisation 2                     : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [10s]
+    realisation 2, most conservative  : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [10s]
+    grid 128^3, L = 128 Mpc/h (R_s = 1.0): sigma = 1.798 (CLASS 1.772)   [325s]
+    R_s 1 Mpc/h                       : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    R_s 1 Mpc/h, most conservative    : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+  the normalisation band (O(1) choices at nominal, and most conservative):
+    dt0 forest floor 7.54             : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    dt0 forest floor 7.54, most conservative: f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    dt0 canonical top 13.5            : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    dt0 canonical top 13.5, most conservative: f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [10s]
+    dt0 canonical top+up 14.6         : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    dt0 canonical top+up 14.6, most conservative: f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 0.00   [9s]
+    dt0 alt top 21.7                  : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 1.00   [9s]
+    dt0 alt top 21.7, most conservative: f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 1.00   [9s]
+    dt0 alt top+up 22.8               : f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 1.00   [9s]
+    dt0 alt top+up 22.8, most conservative: f_web(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 1.00   [10s]
+    dt0 FK1 upper 25                  : f_web(z=3/2/1.5/1/0.5/0) = 0.999/0.999/0.999/0.999/0.999/0.999; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 1.00   [9s]
+    dt0 FK1 upper 25, most conservative: f_web(z=3/2/1.5/1/0.5/0) = 0.999/0.999/0.999/0.999/0.999/0.999; largest cluster/converted (z=1.5/1/0) 1.00/1.00/1.00; unconverted EX share 1.00   [9s]
+  [PASS] W1 = H-W1: at the nominal cell the smooth web converts -- f_web(z = 0) >= 0.5 and f_web(z = 1) >= 0.3 in every O(1) bracket, and the converted set percolates (largest cluster >= 90% of the converted cells) at every z <= 1.5
+         measured: f_web(0) 1.000-1.000 (min: nominal); f_web(1) 1.000-1.000 (min: nominal); largest cluster >= 1.00 (min: nominal)
+         reading:  the halos' own daughters seed the multistream and turned-around web around them, and turned-around cells ignite on their own; the converted set is one connected web
+  [FAIL] W2 = H-W2: the web conversion is late, held by the gate -- f_web(z = 3) <= 0.1 in every bracket and at every normalisation 5.31-25
+         measured: max f_web(3) 1.000 (nominal)
+         reading:  the gated threshold rho_t/rho_bar = delta_t0 E^4/(1+z)^3 is 36 at z = 3 and 68 at z = 4 (nominal): the web's pump density is far below it, and the per-passage gain scales as (rho/rho_t)^2
+  [FAIL] W3 = H-W3: the voids resist -- >= 70% of the cells left unconverted at z = 0 (nominal) are all-expanding (EX)
+         measured: unconverted EX share 0.000; converted EX fraction at z = 0 1.000
+         reading:  no re-resonance in expanding flow (XR19_front_physics H1), and the void pump's gain per passage is below a few e-folds
+    channels (nominal, fraction of all cells by first conversion): spont EX 0.935, spont TA 0.065, spont MS 0.000, seeded EX 0.000, seeded TA 0.000, seeded MS 0.000
+
+======================================================================================================================
+F   F_tot(z): the halo budget plus the smooth web, running maximum; the band on both footings
+======================================================================================================================
+    nominal                                   : F_tot(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000   (halo only 0.358/0.437/0.482/0.530/0.580/0.629)
+    most conservative                         : F_tot(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000   (halo only 0.358/0.437/0.482/0.530/0.580/0.629)
+    pump s = 1                                : F_tot(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000   (halo only 0.358/0.437/0.482/0.530/0.580/0.629)
+    no seeding                                : F_tot(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000   (halo only 0.358/0.437/0.482/0.530/0.580/0.629)
+    dt0 forest floor 7.54                     : F_tot(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000   (halo only 0.358/0.437/0.482/0.530/0.580/0.629)
+    dt0 forest floor 7.54, most conservative  : F_tot(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000   (halo only 0.358/0.437/0.482/0.530/0.580/0.629)
+    dt0 canonical top 13.5                    : F_tot(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000   (halo only 0.358/0.437/0.482/0.530/0.580/0.629)
+    dt0 canonical top 13.5, most conservative : F_tot(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000   (halo only 0.358/0.437/0.482/0.530/0.580/0.629)
+    dt0 canonical top+up 14.6                 : F_tot(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000   (halo only 0.358/0.437/0.482/0.530/0.580/0.628)
+    dt0 canonical top+up 14.6, most conservative: F_tot(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000   (halo only 0.358/0.437/0.482/0.530/0.580/0.628)
+    dt0 alt top 21.7                          : F_tot(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000   (halo only 0.358/0.437/0.482/0.530/0.580/0.628)
+    dt0 alt top 21.7, most conservative       : F_tot(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000   (halo only 0.358/0.437/0.482/0.530/0.580/0.628)
+    dt0 alt top+up 22.8                       : F_tot(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000   (halo only 0.358/0.437/0.482/0.530/0.580/0.628)
+    dt0 alt top+up 22.8, most conservative    : F_tot(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000   (halo only 0.358/0.437/0.482/0.530/0.580/0.628)
+    dt0 FK1 upper 25                          : F_tot(z=3/2/1.5/1/0.5/0) = 1.000/1.000/1.000/1.000/1.000/1.000   (halo only 0.358/0.437/0.482/0.530/0.579/0.627)
+    dt0 FK1 upper 25, most conservative       : F_tot(z=3/2/1.5/1/0.5/0) = 0.999/0.999/1.000/1.000/1.000/1.000   (halo only 0.358/0.437/0.482/0.530/0.579/0.627)
+    canonical (a0 = 9.3603e-11): band edges dt0 forest floor 7.54: F_tot(0/1/2) = 1.000/1.000/1.000 (most conservative 1.000/1.000); dt0 canonical top+up 14.6: F_tot(0/1/2) = 1.000/1.000/1.000 (most conservative 1.000/1.000)
+    alt (a0 = 1.1312e-10): band edges dt0 forest floor 7.54: F_tot(0/1/2) = 1.000/1.000/1.000 (most conservative 1.000/1.000); dt0 alt top+up 22.8: F_tot(0/1/2) = 1.000/1.000/1.000 (most conservative 1.000/1.000)
+  [PASS] F1 = H-F: F_tot(z = 0) >= 0.7 and F_tot(z = 1) >= 0.55 at both ends of both footings' bands (O(1) choices at nominal)
+         measured: min F_tot(0) 1.000, min F_tot(1) 1.000 over the four band edges
+         reading:  a0 moves only the band's upper edge (the flagship bound); the runaway's size is set by delta_t0 and z
+
+======================================================================================================================
+R   (reported) THE REACH: comoving advance per step (v_k dt) against the cell and the resonance reach
+======================================================================================================================
+    comoving advance of a daughter per step (Mpc/h): z 3.5->3: 0.61, z 2.25->2: 0.47, z 1.25->1: 0.78, z 0.75->0.5: 1.06, z 0.25->0: 1.42
+
+======================================================================================================================
+X   CONSEQUENCES: L319's linear solver with the converted history; free streaming; CMB lensing; forest; X-COP
+======================================================================================================================
+    halo only (nominal)         : F_esc(0) 0.503; S8 0.8083 (ratio 0.961); carrier-sector T^2(k = 0.3/1/3 h/Mpc) at z = 0.5: 0.866/0.313/0.189; C_L^phiphi ratio L = 100/300/1000: 0.998/0.986/0.916   [463s]
+    nominal                     : F_esc(0) 1.000; S8 0.7768 (ratio 0.923); carrier-sector T^2(k = 0.3/1/3 h/Mpc) at z = 0.5: 0.734/0.019/0.006; C_L^phiphi ratio L = 100/300/1000: 0.996/0.971/0.842   [470s]
+    most conservative           : F_esc(0) 1.000; S8 0.7768 (ratio 0.923); carrier-sector T^2(k = 0.3/1/3 h/Mpc) at z = 0.5: 0.734/0.019/0.006; C_L^phiphi ratio L = 100/300/1000: 0.996/0.971/0.842   [477s]
+    pump s = 1                  : F_esc(0) 1.000; S8 0.7768 (ratio 0.923); carrier-sector T^2(k = 0.3/1/3 h/Mpc) at z = 0.5: 0.734/0.019/0.006; C_L^phiphi ratio L = 100/300/1000: 0.996/0.971/0.842   [485s]
+    dt0 canonical top+up 14.6   : F_esc(0) 1.000; S8 0.7768 (ratio 0.923); carrier-sector T^2(k = 0.3/1/3 h/Mpc) at z = 0.5: 0.734/0.019/0.006; C_L^phiphi ratio L = 100/300/1000: 0.996/0.971/0.842   [493s]
+    dt0 alt top+up 22.8         : F_esc(0) 1.000; S8 0.7768 (ratio 0.923); carrier-sector T^2(k = 0.3/1/3 h/Mpc) at z = 0.5: 0.734/0.019/0.006; C_L^phiphi ratio L = 100/300/1000: 0.996/0.971/0.842   [500s]
+    dt0 FK1 upper 25            : F_esc(0) 1.000; S8 0.7768 (ratio 0.923); carrier-sector T^2(k = 0.3/1/3 h/Mpc) at z = 0.5: 0.734/0.019/0.006; C_L^phiphi ratio L = 100/300/1000: 0.996/0.971/0.842   [507s]
+    FP10 A8's maximal web bracket (the whole carrier converts at z_web), this pipeline vs FP10's committed: z_web 1.8: 0.918 (FP10 0.918), z_web 1.2: 0.929 (FP10 0.929), z_web 0.5: 0.943 (FP10 0.948)
+  [PASS] X1 = H-X: the S8 ratio at the nominal cell stays >= 0.899 (FP10 B6's alt gate)
+         measured: 0.9232 (strict gate 0.922: pass; absolute S8 0.777 vs PAPER34's floors 0.752/0.748)
+         reading:  S8 weighs k ~ 0.1-0.3 h/Mpc; the daughters' free-streaming scale is near it, so S8 moves by percents while the small-scale carrier power collapses
+    free streaming of the web daughters: converted at z = 2.0: 200 km/s today, k_fs 0.34 h/Mpc (lambda 18 Mpc/h), travelled 4.3 Mpc/h; converted at z = 1.0: 300 km/s today, k_fs 0.23 h/Mpc (lambda 27 Mpc/h), travelled 3.3 Mpc/h; converted at z = 0.5: 400 km/s today, k_fs 0.17 h/Mpc (lambda 37 Mpc/h), travelled 2.2 Mpc/h
+    against: galaxy r200 ~ 0.1-0.3 Mpc, group ~ 0.5 Mpc, cluster R500 ~ 1 Mpc, the sigma8 sphere 8 Mpc/h: the daughters stream out of every galaxy and group potential (v_esc < v), are recaptured by clusters (v_esc ~ 2000 km/s) after Hubble cooling, and cluster only above ~20-40 Mpc/h
+  [PASS] X2 (reported) free streaming and the carrier-sector matter power at KiDS scales
+         measured: {'halo only (nominal)': {'0.1': 0.9860239284484831, '0.3': 0.8661114056498808, '1.0': 0.31257835268900447, '3.0': 0.18876376683836463, '5.0': 0.17597484171936295}, 'nominal': {'0.1': 0.9710164166492524, '0.3': 0.7344975527950846, '1.0': 0.01940608668595446, '3.0': 0.006487086337293113, '5.0': 0.005990519671388923}, 'most conservative': {'0.1': 0.9710164166492524, '0.3': 0.7344975527950846, '1.0': 0.01940608668595446, '3.0': 0.006487086337293113, '5.0': 0.005990519671388923}, 'pump s = 1': {'0.1': 0.9710164166492524, '0.3': 0.7344975527950846, '1.0': 0.01940608668595446, '3.0': 0.006487086337293113, '5.0': 0.005990519671388923}, 'dt0 canonical top+up 14.6': {'0.1': 0.971016416388321, '0.3': 0.7344975509806088, '1.0': 0.01940608579372984, '3.0': 0.006487086452005301, '5.0': 0.005990519768567041}, 'dt0 alt top+up 22.8': {'0.1': 0.9710164159601486, '0.3': 0.7344975480030678, '1.0': 0.019406084329610246, '3.0': 0.006487086640245283, '5.0': 0.005990519928034038}, 'dt0 FK1 upper 25': {'0.1': 0.9710164158115975, '0.3': 0.7344975469700632, '1.0': 0.019406083821660296, '3.0': 0.006487086705551773, '5.0': 0.005990519983358245}}
+  [PASS] X3 (reported) CMB lensing (Limber, linear): C_L^phiphi ratio to LCDM at L = 100/300/1000
+         measured: {'halo only (nominal)': {100.0: 0.9982483982031337, 300.0: 0.985615924642472, 1000.0: 0.9158359405148039}, 'nominal': {100.0: 0.996464087104276, 300.0: 0.9712392251952394, 1000.0: 0.8419079294040693}, 'most conservative': {100.0: 0.996464087104276, 300.0: 0.9712392251952394, 1000.0: 0.8419079294040693}, 'pump s = 1': {100.0: 0.996464087104276, 300.0: 0.9712392251952394, 1000.0: 0.8419079294040693}, 'dt0 canonical top+up 14.6': {100.0: 0.9964640870278365, 300.0: 0.9712392250326978, 1000.0: 0.8419079293871926}, 'dt0 alt top+up 22.8': {100.0: 0.9964640869023971, 300.0: 0.9712392247659805, 1000.0: 0.8419079293594849}, 'dt0 FK1 upper 25': {100.0: 0.9964640868588839, 300.0: 0.9712392246734515, 1000.0: 0.8419079293498773}}
+         reading:  Planck 2018 measures the lensing amplitude to ~2.5% (1 sigma)
+    forest (XR16 B2's committed L365-rule response per unit F(2), 0.062-0.312): projected rule at z = 2 nominal: F_tot(2) 1.000 -> 0.062-0.312; most conservative: F_tot(2) 1.000 -> 0.062-0.312; pump s = 1: F_tot(2) 1.000 -> 0.062-0.312; dt0 canonical top+up 14.6: F_tot(2) 1.000 -> 0.062-0.312; dt0 alt top+up 22.8: F_tot(2) 1.000 -> 0.062-0.312 (gate 0.10; halo only 0.027-0.135)
+  [PASS] X4 (reported) the Lyman-alpha forest: the web's z ~ 2 conversion raises F(2) and the projected rule; an extrapolation past the committed F(2) <= 0.28, as in XR16 B2
+         measured: {'nominal': '0.062-0.312', 'most conservative': '0.062-0.312', 'pump s = 1': '0.062-0.312', 'dt0 canonical top+up 14.6': '0.062-0.312', 'dt0 alt top+up 22.8': '0.062-0.312'}
+    X-COP (order of magnitude): a cluster's carrier accreted after z_web (M ~ exp(-alpha z), XR16's alpha) that arrives already converted: alpha 0.6, z_web 1.0: 0.45; alpha 0.6, z_web 1.5: 0.59; alpha 0.8, z_web 1.0: 0.55; alpha 0.8, z_web 1.5: 0.70; alpha 1.0, z_web 1.0: 0.63; alpha 1.0, z_web 1.5: 0.78
+    those daughters were Hubble-cooled to ~300-400 km/s before infall, far below a cluster's escape speed (~2000 km/s): they are recaptured (as XR12's upstream daughters were), on hotter orbits; X-COP's retained fraction moves by less than this share
+  [PASS] X5 (reported) X-COP, order of magnitude only (no re-scoring)
+         measured: {'alpha 0.6, z_web 1.0': 0.451, 'alpha 0.6, z_web 1.5': 0.593, 'alpha 0.8, z_web 1.0': 0.551, 'alpha 0.8, z_web 1.5': 0.699, 'alpha 1.0, z_web 1.0': 0.632, 'alpha 1.0, z_web 1.5': 0.777}
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  Does the dark fluid's conversion run away through the web?  Partly -- yes through the collapsed and turned-around web at
+  z <~ 1.5, no through the voids, and not at z >~ 3.
+  Nominal cell: the smooth (non-halo) carrier converts f_web = 1.00/1.00/1.00/1.00 at z = 3/2/1/0 (most conservative bracket
+  1.00/1.00/1.00/1.00); with the halos, F_tot = 1.00/1.00/1.00/1.00 (halo only
+  0.36/0.44/0.53/0.63).  The converted web is one connected set.
+  What drives it: the halos' own daughters seed the multistream and turned-around web around them (momentum matching through
+  the infall), and turned-around sheets ignite by themselves on the zero-strain cone.  What stops it: expanding flow (no
+  re-resonance; the voids keep 0% of their carrier), and the gate at high z (rho_t/rho_bar = 36/68 at z = 3/4).
+  Across the band: F_tot(0) 1.00-1.00, F_tot(1) 1.00-1.00; S8 ratio 0.923 (nominal).
+
+  checks: 10/13 pass; load-bearing failures: 3   [529s]
+exit code: 1

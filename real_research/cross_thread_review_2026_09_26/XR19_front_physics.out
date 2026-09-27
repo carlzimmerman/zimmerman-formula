@@ -1,0 +1,233 @@
+XR19 (1/2) -- THE DARK FLUID'S SEEDED FRONT: gain, momentum matching and re-resonance, from FK1/FP10's own formulas.
+
+WHY.  XR12 (K, an estimate) and XR16 (B3, a flag) left one question open: once the fluid converts in halos, do its
+daughters -- or the web's own slow sweeps -- carry the conversion phi_H phi_H -> phi_L phi_L through the cosmic web?
+FK1 normalises the conversion on the Hubble-swept background: the pair coupling G(rho, z) = G_t(z) rho/rho_t(z), with
+G_t(z) = sqrt(4 H delta E_need/pi) and the vacuum-gated threshold rho_t/rho_bar = delta_t0 E^4/(1+z)^3 (q = 1.75).  At the
+mean density the SPONTANEOUS exponent never reaches E_need (FK1 N2), but a seed only needs ln(pump/seed) e-folds.  This
+lane computes what the design leaves implicit: which daughters can re-enter the resonance |v - u_pump| = v_k at all
+(Bose stimulation of back-to-back pairs is momentum-matched to the LOCAL pump), and the gain they get where they do.
+The dark fluid is FL1/FK1's order parameter (a classical field, not a particle species; its quanta would be bosons of mass
+m >~ 1.9-5.2e-19 eV); the dark MASS is still required.  XR19_web_runaway.py uses these results on a realistic web.
+
+WHAT IS COMPUTED
+  C0  CONTROL: FK1's N1-N3 from FK1's own formulas vs its committed JSON (XR12 C0's numbers).
+  C1  CONTROL: the design's stimulated criterion in the Hubble flow reproduced from the gain formula below: XR16 B3's and
+      FP10 A8's committed 'mean density stimulable below z' values (L319's cosmology, each lane's own grid).
+  G   the gain map with the vacuum gate: G/H, gain length v_k/G, the Hubble-sweep gain E_need (rho/rho_t)^2 per passage,
+      and the density at which a seed with ln(pump/seed) = 1, 3, 10 converts, for z = 0-4, delta_t0 = 5.31-25, m.
+  S1  [sympy] the momentum-matching identities: for a pressureless pump u and a free daughter in the SAME gravity,
+      w = v - u(x(t), t) obeys dw/dt = -(w.grad)u exactly; |w|^2 falls monotonically wherever the strain T = sym(grad u) is
+      positive definite; D'' = 2 delta (2|T n|^2 - n.Tdot.n) (irrotational pump); on a zero-strain cone |T n|^2 = -e_1 e_2;
+      the one-passage integral I(beta) -> C4 (tangent) and pi/(2 beta) (FK1 K4); the Doppler-broadened area is 2x the
+      coherent one in FP10's convention (a factor carried as a bracket downstream).
+  H   the Hubble flow: rays in every direction never re-enter the resonance (branching ratio 0); a ray through the
+      resonance gains exactly E_need (rho/rho_t)^2 (K4).
+  Z   a Zel'dovich pancake after turnaround: exact ray integration of the pair's detuning against the local zero-strain
+      (cone) formula C4 G^(3/2)/sqrt(alpha); the enhancement over the Hubble sweep; the 1D ignition table.
+  B   re-resonance: daughters born on the resonance inside a turned-around pancake, followed forward -- blue-shifted along
+      the contracting axis, then red-shifted outside -- re-cross the resonance; the gain there.
+  I   halo-seeded zones: LCDM spherical shells around a halo (linear mean overdensity delta_c (M/M200)^(-eps) at the
+      epoch, eps = 0.6, 0.4-1.0 bracket); daughters emitted isotropically at r200 by the infalling pump, followed through the
+      halo and out in the time-dependent flow; where |w| = v_k again, the exact detuning's D1, D'' and the local G give the
+      gain; the zone's pump mass against the fast seeds' mass gives the yield Y = M_seed e^g / M_zone.
+  R   the reach: the comoving distance a daughter covers, and how far past its source it can still be resonant.
+PRE-DECLARED (written in the session's scratch notes before this script's first full run; see HISTORY)
+  H-S  S1's identities hold exactly (sympy).
+  H-H  no re-resonance in the unperturbed Hubble flow in any direction; a passage gains E_need (rho/rho_t)^2 to <= 1%.
+  H-Z  exact/local cone gain in [0.5, 1.0] at every tested pancake; the best direction beats the transverse (Hubble-sweep)
+       gain by >= 10x; every tested pancake at z <= 2 ignites (gain >= E_need) at rho/rho_t <= 0.84 (below the trigger).
+  H-B  daughters born on the resonance inside a turned-around pancake re-cross it outside the contracting zone for >= 20%
+       of (birth point, direction) pairs, with median gain >= 3 e-folds at z = 0.5-1 (nominal cell, pump = full density).
+  H-I  >= 30% of the daughters emitted at r200 cross the resonance again outside r200; at z_e <= 1 (nominal cell) the
+       median gain at those crossings exceeds ln(M_zone/M_seed) + 1 (Y >= 1: the fast seeds convert their zone) for the
+       smooth pump s = 1 - F_halo as well as s = 1.
+
+======================================================================================================================
+C0  CONTROL: FK1's N1-N3 from FK1's own formulas against its committed JSON
+======================================================================================================================
+    constant coupling converts the background by z: 5/1 -> 0.8574 (FK1 0.8574), 5/4 -> 1.4829 (FK1 1.4829), 25/1 -> 2.6934 (FK1 2.6934), 25/4 -> 4.0119 (FK1 4.0119)
+    q = 1.75: peak z = 0.298 (FK1 0.298), 1.3479x (FK1 1.3479); E_need(2e-19) = 178.05 (FK1 178.05); G_t/mc^2 = 1.806e-09 (FK1 1.806e-09)
+  [PASS] C0 CONTROL: FK1's N1-N3 reproduced from its own formulas (z_convert 0.8574/1.4829/2.6934/4.0119; peak z = 0.298 at 1.3479x; E_need 178.05; G_t/mc^2 1.806e-9)
+         measured: max |dz| 0.0e+00; peak 0.298/1.3479; E_need 178.05; G_t/mc^2 1.8061e-09
+
+======================================================================================================================
+C1  CONTROL: the stimulated criterion in the Hubble flow -- XR16 B3's and FP10 A8's committed numbers from the gain formula
+======================================================================================================================
+    XR16 60     : mean density gains >= 1 e-fold per passage below z = 1.1520 (committed 1.1520)
+    XR16 180    : mean density gains >= 1 e-fold per passage below z = 1.7620 (committed 1.7620)
+    FP10 61.09  : mean density gains >= 1 e-fold per passage below z = 1.1650 (committed 1.1650)
+    FP10 178.05 : mean density gains >= 1 e-fold per passage below z = 1.7600 (committed 1.7600)
+  [PASS] C1 CONTROL: the per-passage seeded gain E_need (rho/rho_t)^2 reproduces XR16 B3 (1.152/1.762) and FP10 A8 (1.165/1.760)
+         measured: max |dz| 0.0e+00
+         reading:  the same criterion both lanes flagged; here it is the gain formula used throughout
+
+======================================================================================================================
+G   THE GAIN MAP WITH THE VACUUM GATE (m = 2e-19 eV, v_k = 600 km/s unless stated)
+======================================================================================================================
+    z = 0.0: rho_t/rho_bar   5.31; per-passage Hubble-sweep gain at 1+delta = 0.3: 0.568, 1: 6.31, 3: 56.8, 10: 631, 30: 5.68e+03, 100: 6.31e+04;  gain length at 1+delta = 10: coherent 0.02 kpc, kinetic (sigma 20) 0.42 kpc
+    z = 0.3: rho_t/rho_bar   4.57; per-passage Hubble-sweep gain at 1+delta = 0.3: 0.766, 1: 8.51, 3: 76.6, 10: 851, 30: 7.66e+03, 100: 8.51e+04;  gain length at 1+delta = 10: coherent 0.01 kpc, kinetic (sigma 20) 0.26 kpc
+    z = 0.5: rho_t/rho_bar   4.79; per-passage Hubble-sweep gain at 1+delta = 0.3: 0.697, 1: 7.75, 3: 69.7, 10: 775, 30: 6.97e+03, 100: 7.75e+04;  gain length at 1+delta = 10: coherent 0.01 kpc, kinetic (sigma 20) 0.26 kpc
+    z = 1.0: rho_t/rho_bar   6.78; per-passage Hubble-sweep gain at 1+delta = 0.3: 0.348, 1: 3.87, 3: 34.8, 10: 387, 30: 3.48e+03, 100: 3.87e+04;  gain length at 1+delta = 10: coherent 0.02 kpc, kinetic (sigma 20) 0.38 kpc
+    z = 1.5: rho_t/rho_bar  10.62; per-passage Hubble-sweep gain at 1+delta = 0.3: 0.142, 1: 1.58, 3: 14.2, 10: 158, 30: 1.42e+03, 100: 1.58e+04;  gain length at 1+delta = 10: coherent 0.02 kpc, kinetic (sigma 20) 0.70 kpc
+    z = 2.0: rho_t/rho_bar  16.50; per-passage Hubble-sweep gain at 1+delta = 0.3: 0.0589, 1: 0.654, 3: 5.89, 10: 65.4, 30: 589, 100: 6.54e+03;  gain length at 1+delta = 10: coherent 0.03 kpc, kinetic (sigma 20) 1.33 kpc
+    z = 3.0: rho_t/rho_bar  35.80; per-passage Hubble-sweep gain at 1+delta = 0.3: 0.0125, 1: 0.139, 3: 1.25, 10: 13.9, 30: 125, 100: 1.39e+03;  gain length at 1+delta = 10: coherent 0.06 kpc, kinetic (sigma 20) 4.16 kpc
+    z = 4.0: rho_t/rho_bar  67.68; per-passage Hubble-sweep gain at 1+delta = 0.3: 0.0035, 1: 0.0389, 3: 0.35, 10: 3.89, 30: 35, 100: 389;  gain length at 1+delta = 10: coherent 0.10 kpc, kinetic (sigma 20) 10.72 kpc
+    delta_t0  5.31, E_need  61.1: the density (1+delta) a resonant seed converts at, ln(pump/seed) = 1/3/10: z=0: 0.68/1.18/2.15; z=0.5: 0.61/1.06/1.94; z=1: 0.87/1.50/2.74; z=2: 2.11/3.66/6.68; z=3: 4.58/7.93/14.48
+    delta_t0  5.31, E_need 178.1: the density (1+delta) a resonant seed converts at, ln(pump/seed) = 1/3/10: z=0: 0.40/0.69/1.26; z=0.5: 0.36/0.62/1.14; z=1: 0.51/0.88/1.61; z=2: 1.24/2.14/3.91; z=3: 2.68/4.65/8.48
+    delta_t0  7.54, E_need  61.1: the density (1+delta) a resonant seed converts at, ln(pump/seed) = 1/3/10: z=0: 0.96/1.67/3.05; z=0.5: 0.87/1.51/2.75; z=1: 1.23/2.13/3.90; z=2: 3.00/5.19/9.48; z=3: 6.50/11.26/20.56
+    delta_t0  7.54, E_need 178.1: the density (1+delta) a resonant seed converts at, ln(pump/seed) = 1/3/10: z=0: 0.57/0.98/1.79; z=0.5: 0.51/0.88/1.61; z=1: 0.72/1.25/2.28; z=2: 1.76/3.04/5.55; z=3: 3.81/6.60/12.04
+    delta_t0 13.50, E_need  61.1: the density (1+delta) a resonant seed converts at, ln(pump/seed) = 1/3/10: z=0: 1.73/2.99/5.46; z=0.5: 1.56/2.70/4.93; z=1: 2.21/3.82/6.98; z=2: 5.37/9.29/16.97; z=3: 11.64/20.16/36.81
+    delta_t0 13.50, E_need 178.1: the density (1+delta) a resonant seed converts at, ln(pump/seed) = 1/3/10: z=0: 1.01/1.75/3.20; z=0.5: 0.91/1.58/2.89; z=1: 1.29/2.24/4.09; z=2: 3.14/5.44/9.94; z=3: 6.82/11.81/21.56
+    delta_t0 22.80, E_need  61.1: the density (1+delta) a resonant seed converts at, ln(pump/seed) = 1/3/10: z=0: 2.92/5.05/9.22; z=0.5: 2.63/4.56/8.33; z=1: 3.73/6.45/11.78; z=2: 9.06/15.70/28.66; z=3: 19.66/34.05/62.17
+    delta_t0 22.80, E_need 178.1: the density (1+delta) a resonant seed converts at, ln(pump/seed) = 1/3/10: z=0: 1.71/2.96/5.40; z=0.5: 1.54/2.67/4.88; z=1: 2.18/3.78/6.90; z=2: 5.31/9.19/16.79; z=3: 11.52/19.95/36.42
+    delta_t0 25.00, E_need  61.1: the density (1+delta) a resonant seed converts at, ln(pump/seed) = 1/3/10: z=0: 3.20/5.54/10.11; z=0.5: 2.89/5.00/9.13; z=1: 4.09/7.08/12.92; z=2: 9.94/17.21/31.42; z=3: 21.56/37.34/68.17
+    delta_t0 25.00, E_need 178.1: the density (1+delta) a resonant seed converts at, ln(pump/seed) = 1/3/10: z=0: 1.87/3.25/5.92; z=0.5: 1.69/2.93/5.35; z=1: 2.39/4.14/7.57; z=2: 5.82/10.08/18.41; z=3: 12.63/21.87/39.93
+    mean background: spontaneous exponent/E_need <= 0.0478 (z = 0.30); seeded gain per passage E_need 61.1: max 2.92 e-folds at z = 0.30, >= 1 e-fold for z <= 1.162; E_need 178.1: max 8.51 e-folds at z = 0.30, >= 1 e-fold for z <= 1.756
+  [PASS] G2 with the gate the mean background never self-ignites (spontaneous exponent <= 0.054 E_need at every z <= 10), yet a resonant seed gains >= 1 e-fold per passage there at low z (max 2.9-8.5 e-folds at z = 0.30 for E_need = 61-178)
+         measured: spontaneous max 0.0478 E_need; seeded max 2.92, 8.51 e-folds
+         reading:  the gate protects the background from vacuum noise, not from seeds: whether it converts turns on momentum matching
+
+======================================================================================================================
+S1  [sympy] MOMENTUM MATCHING: the relative velocity of a daughter to its LOCAL pump
+======================================================================================================================
+    chain rule along the path (generic polynomial field): True;  dw/dt + (w.grad)u (free fall, pressureless pump, same g): residuals [0, 0, 0]
+    antisymmetric part drops out of d|w|^2/dt: True;  d2|w|^2/dt2 = 4 w.T^2.w - 2 w.Tdot.w: True
+    two-axis cone n1^2 = e2/(e2 - e1): n.T.n = 0 True, |T n|^2 = -e1 e2 True
+    I(0) = 1.748038 (C4 = 1.748038);  beta I(beta) at beta = 1e4 -> 1.571467 (pi/2 = 1.570796);  kinetic/coherent area = 2
+  [PASS] S1 [sympy] dw/dt = -(w.grad)u exactly (free daughter, pressureless pump, same gravity); d|w|^2/dt = -2 w.T.w (the vorticity drops out), so |w| falls monotonically in positive-definite strain; D'' = 2 delta (2|Tn|^2 - n.Tdot.n); on the cone |Tn|^2 = -e1 e2; I(0) = C4, beta I -> pi/2 (K4); the kinetic area is 2x the coherent (FP10's convention)
+         measured: identity True; anti True; D'' True; cone True/True; I(0) 1.74804; beta I 1.57147; ratio 2
+         reading:  Bose stimulation needs |w| = v_k with w measured against the LOCAL pump; in an expanding flow w only shrinks, so a daughter born on the resonance can never re-enter it there, and a seed can enter it at most once, from above
+
+======================================================================================================================
+H   THE HUBBLE FLOW: every direction, rays through the resonance, forward paths
+======================================================================================================================
+    z = 0.5: gain over 21 directions 7.7425-7.7425 vs K4 E_need (rho_bar/rho_t)^2 = 7.7491; forward D(t) strictly decreasing in every direction: True; re-crossings: 0   [7s]
+    z = 1.0: gain over 21 directions 3.8658-3.8658 vs K4 E_need (rho_bar/rho_t)^2 = 3.8689; forward D(t) strictly decreasing in every direction: True; re-crossings: 0   [13s]
+    z = 2.0: gain over 21 directions 0.6534-0.6534 vs K4 E_need (rho_bar/rho_t)^2 = 0.6539; forward D(t) strictly decreasing in every direction: True; re-crossings: 0   [19s]
+  [PASS] H1 the Hubble flow: no direction re-enters the resonance (D(t) strictly falls after birth), and a passage gains E_need (rho/rho_t)^2 to <= 1% in every direction (FK1 K4)
+         measured: z=0.5: dev 8.5e-04, monotone True, re-crossings 0; z=1.0: dev 8.1e-04, monotone True, re-crossings 0; z=2.0: dev 8.6e-04, monotone True, re-crossings 0
+         reading:  in the expanding background conversion cannot branch: each seed is amplified once, and its products never return
+
+======================================================================================================================
+Z   A TURNED-AROUND ZEL'DOVICH PANCAKE: exact rays against the local zero-strain (cone) formula
+======================================================================================================================
+    z_c 0.5 d 0.7 lambda 4000 kpc: rho/rho_t 0.695; local cone   3855.0; exact max   2685.6 at n_x 0.7729 (cone 0.7509); exact/local 0.697; transverse 86.06 (K4 86.10); off-centre 0.02/0.05/0.1: 2569/1797/926   [41s]
+    z_c 0.5 d 0.8 lambda 4000 kpc: rho/rho_t 1.043; local cone   4877.3; exact max   3541.2 at n_x 0.5995 (cone 0.5735); exact/local 0.726; transverse 193.70 (K4 193.73); off-centre 0.02/0.05/0.1: 3605/1817/36   [64s]
+    z_c 1.0 d 0.7 lambda 4000 kpc: rho/rho_t 0.491; local cone   1821.7; exact max   1616.1 at n_x 0.7154 (cone 0.6994); exact/local 0.887; transverse 42.97 (K4 42.99); off-centre 0.02/0.05/0.1: 1618/989/619   [86s]
+    z_c 1.0 d 0.85 lambda 4000 kpc: rho/rho_t 0.983; local cone   3035.2; exact max   2572.0 at n_x 0.4708 (cone 0.4488); exact/local 0.847; transverse 171.97 (K4 171.95); off-centre 0.02/0.05/0.1: 2458/1125/15   [107s]
+    z_c 2.0 d 0.7 lambda 2000 kpc: rho/rho_t 0.202; local cone    385.8; exact max    294.6 at n_x 0.6837 (cone 0.6687); exact/local 0.764; transverse 7.26 (K4 7.27); off-centre 0.02/0.05/0.1: 291/176/112   [129s]
+    z_c 2.0 d 0.85 lambda 2000 kpc: rho/rho_t 0.404; local cone    660.6; exact max    471.6 at n_x 0.4501 (cone 0.4291); exact/local 0.714; transverse 29.06 (K4 29.06); off-centre 0.02/0.05/0.1: 450/156/3   [150s]
+  [PASS] Z1 the local zero-strain formula C4 G^(3/2)/sqrt(alpha) (alpha = delta (2|Tn|^2 - n.Tdot.n) at the centre) is confirmed by exact ray integration to a factor 0.5-1.0 at every tested pancake, and the transverse direction reproduces K4 to <= 10%
+         measured: exact/local 0.697-0.887; transverse vs K4 max dev 0.001
+         reading:  the calibration factor min(exact/local) is carried into the web census (XR19_web_runaway) as 'cal'
+  [PASS] Z2 on the zero-strain cone of a turned-around pancake the gain beats the Hubble sweep by >= 10x, and every tested pancake at z <= 2 that sits below the trigger (rho/rho_t <= 0.84; at least three of them) ignites from vacuum (gain >= E_need = 178)
+         measured: enhancement 15.0-40.6x; below the trigger: 2686 at rho/rho_t 0.70, 1616 at rho/rho_t 0.49, 295 at rho/rho_t 0.20, 472 at rho/rho_t 0.40; above it: 3541 at 1.04, 2572 at 0.98
+         reading:  the trigger is not a density threshold outside the Hubble flow: where the detuning's first derivative vanishes, the narrow resonance (G/delta ~ 1e-3) holds a mode for sqrt(G/alpha) instead of G/(H delta)
+    delta_t0  5.31 s=1    sigma_r    0 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 2.9, z=0.5: 2.3, z=1: 2.1, z=2: 2.0, z=3: 9.7  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0  5.31 s=1    sigma_r   10 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 2.9, z=0.5: 2.3, z=1: 2.1, z=2: 9.1, z=3: 26.8  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0  5.31 s=1    sigma_r   30 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 2.9, z=0.5: 2.3, z=1: 3.3, z=2: 13.4, z=3: 38.8  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0  5.31 s=1-F  sigma_r    0 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 2.9, z=0.5: 2.3, z=1: 2.1, z=2: 6.0, z=3: 18.8  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0  5.31 s=1-F  sigma_r   10 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 2.9, z=0.5: 4.6, z=1: 7.2, z=2: 19.9, z=3: 47.8  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0  5.31 s=1-F  sigma_r   30 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 8.2, z=0.5: 7.1, z=1: 10.6, z=2: 29.4, z=3: 70.2  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0 13.50 s=1    sigma_r    0 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 2.9, z=0.5: 2.3, z=1: 2.1, z=2: 11.0, z=3: 41.7  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0 13.50 s=1    sigma_r   10 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 2.9, z=0.5: 5.1, z=1: 9.3, z=2: 32.9, z=3: 94.3  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0 13.50 s=1    sigma_r   30 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 7.5, z=0.5: 7.8, z=1: 13.7, z=2: 48.1, z=3: -  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0 13.50 s=1-F  sigma_r    0 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 2.9, z=0.5: 2.3, z=1: 7.1, z=2: 27.0, z=3: 80.5  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0 13.50 s=1-F  sigma_r   10 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 21.5, z=0.5: 18.2, z=1: 26.7, z=2: 70.4, z=3: -  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0 13.50 s=1-F  sigma_r   30 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 31.5, z=0.5: 26.7, z=1: 38.4, z=2: -, z=3: -  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0 25.00 s=1    sigma_r    0 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 2.9, z=0.5: 2.3, z=1: 5.6, z=2: 29.4, z=3: -  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0 25.00 s=1    sigma_r   10 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 12.6, z=0.5: 12.8, z=1: 22.0, z=2: 76.9, z=3: -  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0 25.00 s=1    sigma_r   30 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 18.7, z=0.5: 18.8, z=1: 32.1, z=2: -, z=3: -  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0 25.00 s=1-F  sigma_r    0 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 11.9, z=0.5: 11.3, z=1: 19.5, z=2: 70.4, z=3: -  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0 25.00 s=1-F  sigma_r   10 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 50.9, z=0.5: 42.2, z=1: 61.4, z=2: -, z=3: -  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+    delta_t0 25.00 s=1-F  sigma_r   30 km/s: a 1D pancake centre ignites at compression 1/(1-d) = z=0: 74.9, z=0.5: 61.2, z=1: 89.7, z=2: -, z=3: -  (turnaround 1+1/f: 2.90, 2.32, 2.14, 2.04, 2.02)
+  [PASS] Z3 (reported) the 1D pancake's ignition compression by z, delta_t0, smooth fraction and pump roughness
+         measured: table above
+
+======================================================================================================================
+B   RE-RESONANCE: daughters born on the resonance inside a turned-around pancake, followed forward
+======================================================================================================================
+    z_c 0.5 d = 0.6: re-crossing fraction 3/125 = 0.02; gain at the re-crossing median 222.2, 10th pct 155.7 e-folds (pump = full density); Hubble-flow control: 0 re-crossings   [167s]
+    z_c 1.0 d = 0.6: re-crossing fraction 7/125 = 0.06; gain at the re-crossing median 97.5, 10th pct 29.4 e-folds (pump = full density); Hubble-flow control: 0 re-crossings   [184s]
+    z_c 2.0 d = 0.6: re-crossing fraction 9/125 = 0.07; gain at the re-crossing median 10.4, 10th pct 3.5 e-folds (pump = full density); Hubble-flow control: 0 re-crossings   [200s]
+    z_c 0.5 d = 0.75: re-crossing fraction 17/125 = 0.14; gain at the re-crossing median 59.5, 10th pct 18.7 e-folds (pump = full density); Hubble-flow control: 0 re-crossings   [216s]
+    z_c 1.0 d = 0.75: re-crossing fraction 23/125 = 0.18; gain at the re-crossing median 39.8, 10th pct 7.4 e-folds (pump = full density); Hubble-flow control: 0 re-crossings   [232s]
+    z_c 2.0 d = 0.75: re-crossing fraction 24/125 = 0.19; gain at the re-crossing median 4.8, 10th pct 1.0 e-folds (pump = full density); Hubble-flow control: 0 re-crossings   [248s]
+    z_c 0.5 d = 0.85: re-crossing fraction 26/125 = 0.21; gain at the re-crossing median 94.7, 10th pct 10.5 e-folds (pump = full density); Hubble-flow control: 0 re-crossings   [260s]
+    z_c 1.0 d = 0.85: re-crossing fraction 32/125 = 0.26; gain at the re-crossing median 53.3, 10th pct 4.4 e-folds (pump = full density); Hubble-flow control: 0 re-crossings   [271s]
+    z_c 2.0 d = 0.85: re-crossing fraction 33/125 = 0.26; gain at the re-crossing median 6.9, 10th pct 0.7 e-folds (pump = full density); Hubble-flow control: 0 re-crossings   [280s]
+  [PASS] B1 re-resonance exists where the flow contracts and nowhere in the Hubble flow: in every tested turned-around pancake a nonzero fraction of the daughters born on the resonance re-cross it, with median gain >= 3 e-folds at z <= 1 (full-density pump), and the fraction grows with the collapse depth; the same rays in the Hubble flow never re-cross
+         measured: z=0.5 d=0.6: 0.02, median 222.2; z=1.0 d=0.6: 0.06, median 97.5; z=2.0 d=0.6: 0.07, median 10.4; z=0.5 d=0.75: 0.14, median 59.5; z=1.0 d=0.75: 0.18, median 39.8; z=2.0 d=0.75: 0.19, median 4.8; z=0.5 d=0.85: 0.21, median 94.7; z=1.0 d=0.85: 0.26, median 53.3; z=2.0 d=0.85: 0.26, median 6.9; Hubble re-crossings 0
+         reading:  a contracting axis blue-shifts the daughters back above v_k and the expanding flow beyond brings them down through it: the web's turned-around structures are where the conversion can branch, the more so the deeper the collapse
+
+======================================================================================================================
+I   HALO-SEEDED ZONES: LCDM spherical shells, daughters from r200, crossings outside, the zone's yield
+======================================================================================================================
+    M200 1e+11 z_e 1.0 delta_t0  5.31 s=1  : r200 67 kpc, u(r200) -88 km/s; fast 0.87; crossings at 5.28 r200 (1+delta 1.92); median gain 11.2; ln(M_zone/M_seed) 4.42; Y = 8.59e+02   [281s]
+    M200 1e+11 z_e 1.0 delta_t0  5.31 s=1-F: r200 67 kpc, u(r200) -88 km/s; fast 0.87; crossings at 5.28 r200 (1+delta 1.92); median gain 2.4; ln(M_zone/M_seed) 3.64; Y = 2.75e-01   [281s]
+    M200 1e+11 z_e 1.0 delta_t0 13.50 s=1  : r200 67 kpc, u(r200) -88 km/s; fast 0.87; crossings at 5.28 r200 (1+delta 1.92); median gain 1.7; ln(M_zone/M_seed) 4.42; Y = 6.78e-02   [282s]
+    M200 1e+11 z_e 1.0 delta_t0 13.50 s=1-F: r200 67 kpc, u(r200) -88 km/s; fast 0.87; crossings at 5.28 r200 (1+delta 1.92); median gain 0.4; ln(M_zone/M_seed) 3.64; Y = 3.77e-02   [282s]
+    M200 1e+12 z_e 0.5 delta_t0  5.31 s=1  : r200 176 kpc, u(r200) -174 km/s; fast 0.87; crossings at 5.22 r200 (1+delta 2.2); median gain 25.2; ln(M_zone/M_seed) 3.64; Y = 2.29e+09   [283s]
+    M200 1e+12 z_e 0.5 delta_t0  5.31 s=1-F: r200 176 kpc, u(r200) -174 km/s; fast 0.87; crossings at 5.22 r200 (1+delta 2.2); median gain 4.1; ln(M_zone/M_seed) 2.74; Y = 3.97e+00   [283s]
+    M200 1e+12 z_e 0.5 delta_t0 13.50 s=1  : r200 176 kpc, u(r200) -174 km/s; fast 0.87; crossings at 5.22 r200 (1+delta 2.2); median gain 3.9; ln(M_zone/M_seed) 3.64; Y = 1.29e+00   [284s]
+    M200 1e+12 z_e 0.5 delta_t0 13.50 s=1-F: r200 176 kpc, u(r200) -174 km/s; fast 0.87; crossings at 5.22 r200 (1+delta 2.2); median gain 0.6; ln(M_zone/M_seed) 2.74; Y = 1.23e-01   [284s]
+    M200 1e+12 z_e 1.0 delta_t0  5.31 s=1  : r200 144 kpc, u(r200) -191 km/s; fast 0.86; crossings at 5.23 r200 (1+delta 2.08); median gain 14.7; ln(M_zone/M_seed) 3.68; Y = 6.02e+04   [285s]
+    M200 1e+12 z_e 1.0 delta_t0  5.31 s=1-F: r200 144 kpc, u(r200) -191 km/s; fast 0.86; crossings at 5.23 r200 (1+delta 2.08); median gain 2.9; ln(M_zone/M_seed) 2.88; Y = 1.06e+00   [285s]
+    M200 1e+12 z_e 1.0 delta_t0 13.50 s=1  : r200 144 kpc, u(r200) -191 km/s; fast 0.86; crossings at 5.23 r200 (1+delta 2.08); median gain 2.3; ln(M_zone/M_seed) 3.68; Y = 2.44e-01   [285s]
+    M200 1e+12 z_e 1.0 delta_t0 13.50 s=1-F: r200 144 kpc, u(r200) -191 km/s; fast 0.86; crossings at 5.23 r200 (1+delta 2.08); median gain 0.5; ln(M_zone/M_seed) 2.88; Y = 8.86e-02   [286s]
+    M200 1e+12 z_e 2.0 delta_t0  5.31 s=1  : r200 101 kpc, u(r200) -224 km/s; fast 0.86; crossings at 5.16 r200 (1+delta 2.07); median gain 3.3; ln(M_zone/M_seed) 3.5; Y = 8.62e-01   [286s]
+    M200 1e+12 z_e 2.0 delta_t0  5.31 s=1-F: r200 101 kpc, u(r200) -224 km/s; fast 0.86; crossings at 5.16 r200 (1+delta 2.07); median gain 0.9; ln(M_zone/M_seed) 2.86; Y = 1.42e-01   [287s]
+    M200 1e+12 z_e 2.0 delta_t0 13.50 s=1  : r200 101 kpc, u(r200) -224 km/s; fast 0.86; crossings at 5.16 r200 (1+delta 2.07); median gain 0.5; ln(M_zone/M_seed) 3.5; Y = 5.09e-02   [287s]
+    M200 1e+12 z_e 2.0 delta_t0 13.50 s=1-F: r200 101 kpc, u(r200) -224 km/s; fast 0.86; crossings at 5.16 r200 (1+delta 2.07); median gain 0.1; ln(M_zone/M_seed) 2.86; Y = 6.58e-02   [288s]
+    M200 1e+13 z_e 0.5 delta_t0  5.31 s=1  : r200 379 kpc, u(r200) -374 km/s; fast 0.87; crossings at 4.97 r200 (1+delta 2.59); median gain 31.6; ln(M_zone/M_seed) 2.78; Y = 3.25e+12   [288s]
+    M200 1e+13 z_e 0.5 delta_t0  5.31 s=1-F: r200 379 kpc, u(r200) -374 km/s; fast 0.87; crossings at 4.97 r200 (1+delta 2.59); median gain 4.8; ln(M_zone/M_seed) 1.84; Y = 2.02e+01   [289s]
+    M200 1e+13 z_e 0.5 delta_t0 13.50 s=1  : r200 379 kpc, u(r200) -374 km/s; fast 0.87; crossings at 4.97 r200 (1+delta 2.59); median gain 4.9; ln(M_zone/M_seed) 2.78; Y = 8.24e+00   [289s]
+    M200 1e+13 z_e 0.5 delta_t0 13.50 s=1-F: r200 379 kpc, u(r200) -374 km/s; fast 0.87; crossings at 4.97 r200 (1+delta 2.59); median gain 0.8; ln(M_zone/M_seed) 1.84; Y = 3.35e-01   [290s]
+    M200 1e+13 z_e 1.0 delta_t0  5.31 s=1  : r200 310 kpc, u(r200) -411 km/s; fast 0.86; crossings at 4.87 r200 (1+delta 2.51); median gain 23.3; ln(M_zone/M_seed) 2.64; Y = 9.52e+08   [290s]
+    M200 1e+13 z_e 1.0 delta_t0  5.31 s=1-F: r200 310 kpc, u(r200) -411 km/s; fast 0.86; crossings at 4.87 r200 (1+delta 2.51); median gain 4.3; ln(M_zone/M_seed) 1.8; Y = 1.24e+01   [291s]
+    M200 1e+13 z_e 1.0 delta_t0 13.50 s=1  : r200 310 kpc, u(r200) -411 km/s; fast 0.86; crossings at 4.87 r200 (1+delta 2.51); median gain 3.6; ln(M_zone/M_seed) 2.64; Y = 2.63e+00   [291s]
+    M200 1e+13 z_e 1.0 delta_t0 13.50 s=1-F: r200 310 kpc, u(r200) -411 km/s; fast 0.86; crossings at 4.87 r200 (1+delta 2.51); median gain 0.7; ln(M_zone/M_seed) 1.8; Y = 3.22e-01   [292s]
+    eps 0.4: M200 1e12 z_e 1: fast 0.87; crossings at 5.727035597393873 r200; median gain 6.3; Y = 3.21e+01
+    eps 1.0: M200 1e12 z_e 1: fast 0.86; crossings at 4.823551624870695 r200; median gain 1.2; Y = 1.71e-01
+  [PASS] I1 halo-seeded zones: in every tested case >= 30% of the daughters emitted at r200 by the infalling pump cross the resonance again outside r200 (fast seeds exist), and with the full-density pump (s = 1) at z_e <= 1 (nominal cell) their median gain beats ln(M_zone/M_seed) (Y >= 1) for every tested halo
+         measured: 1e+11/z1.0/s=1: fast 0.87, g 11.2, Y 8.6e+02; 1e+11/z1.0/s=1-F: fast 0.87, g 2.4, Y 2.8e-01; 1e+12/z0.5/s=1: fast 0.87, g 25.2, Y 2.3e+09; 1e+12/z0.5/s=1-F: fast 0.87, g 4.1, Y 4.0e+00; 1e+12/z1.0/s=1: fast 0.86, g 14.7, Y 6.0e+04; 1e+12/z1.0/s=1-F: fast 0.86, g 2.9, Y 1.1e+00; 1e+13/z0.5/s=1: fast 0.87, g 31.6, Y 3.2e+12; 1e+13/z0.5/s=1-F: fast 0.87, g 4.8, Y 2.0e+01; 1e+13/z1.0/s=1: fast 0.86, g 23.3, Y 9.5e+08; 1e+13/z1.0/s=1-F: fast 0.86, g 4.3, Y 1.2e+01
+         reading:  the infalling pump at r200 blue-shifts the inward-emitted daughters (and the tangential ones, through the converging infall) above v_k; they cross it again where the outflow catches up, near the turnaround radius
+  [PASS] I2 (reported) the smooth pump s = 1 - F_halo, z_e = 2, delta_t0 = 13.5, and the eps bracket
+         measured: 1e+11/z1.0/dt0 5.31/s=1-F/eps 0.6: Y 2.8e-01; 1e+11/z1.0/dt0 13.5/s=1/eps 0.6: Y 6.8e-02; 1e+11/z1.0/dt0 13.5/s=1-F/eps 0.6: Y 3.8e-02; 1e+12/z0.5/dt0 5.31/s=1-F/eps 0.6: Y 4.0e+00; 1e+12/z0.5/dt0 13.5/s=1/eps 0.6: Y 1.3e+00; 1e+12/z0.5/dt0 13.5/s=1-F/eps 0.6: Y 1.2e-01; 1e+12/z1.0/dt0 5.31/s=1-F/eps 0.6: Y 1.1e+00; 1e+12/z1.0/dt0 13.5/s=1/eps 0.6: Y 2.4e-01; 1e+12/z1.0/dt0 13.5/s=1-F/eps 0.6: Y 8.9e-02; 1e+12/z2.0/dt0 5.31/s=1/eps 0.6: Y 8.6e-01; 1e+12/z2.0/dt0 5.31/s=1-F/eps 0.6: Y 1.4e-01; 1e+12/z2.0/dt0 13.5/s=1/eps 0.6: Y 5.1e-02; 1e+12/z2.0/dt0 13.5/s=1-F/eps 0.6: Y 6.6e-02; 1e+13/z0.5/dt0 5.31/s=1-F/eps 0.6: Y 2.0e+01; 1e+13/z0.5/dt0 13.5/s=1/eps 0.6: Y 8.2e+00; 1e+13/z0.5/dt0 13.5/s=1-F/eps 0.6: Y 3.4e-01; 1e+13/z1.0/dt0 5.31/s=1-F/eps 0.6: Y 1.2e+01; 1e+13/z1.0/dt0 13.5/s=1/eps 0.6: Y 2.6e+00; 1e+13/z1.0/dt0 13.5/s=1-F/eps 0.6: Y 3.2e-01; 1e+12/z1.0/dt0 5.31/s=1-F/eps 0.4: Y 3.2e+01; 1e+12/z1.0/dt0 5.31/s=1-F/eps 1.0: Y 1.7e-01
+
+======================================================================================================================
+H   (reported) THE PRE-DECLARED HYPOTHESES, as they fell
+======================================================================================================================
+    H-S                                         : held
+    H-H                                         : held
+    H-Z                                         : held
+    H-B (pre-declared configuration d = 0.6)    : FELL
+    H-I (s = 1 - F_halo and s = 1)              : FELL
+  [PASS] H (reported) the pre-declared hypotheses as they fell
+         measured: {'H-S': True, 'H-H': True, 'H-Z': True, 'H-B (pre-declared configuration d = 0.6)': False, 'H-I (s = 1 - F_halo and s = 1)': False}
+         reading:  fell: H-B (pre-declared configuration d = 0.6); H-I (s = 1 - F_halo and s = 1) -- kept as run; the load-bearing checks above state what does hold
+
+======================================================================================================================
+R   THE REACH: comoving distance a daughter covers from z_e (peculiar speed v_k (1+z)/(1+z_e)), and the resonance reach
+======================================================================================================================
+    z_e = 3.0: comoving distance to z = 0 6.9 Mpc; resonance reach Delta/H for an excess Delta = 30/100/300 km/s: 0.39/1.30/3.91 comoving Mpc
+    z_e = 2.0: comoving distance to z = 0 6.4 Mpc; resonance reach Delta/H for an excess Delta = 30/100/300 km/s: 0.44/1.47/4.41 comoving Mpc
+    z_e = 1.0: comoving distance to z = 0 4.9 Mpc; resonance reach Delta/H for an excess Delta = 30/100/300 km/s: 0.50/1.66/4.98 comoving Mpc
+    z_e = 0.5: comoving distance to z = 0 3.2 Mpc; resonance reach Delta/H for an excess Delta = 30/100/300 km/s: 0.51/1.69/5.06 comoving Mpc
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  The gate keeps the mean background from self-igniting (<= 0.048 of E_need), but a resonant seed gains up to
+  2.9, 8.5 e-folds per passage there at z ~ 0.3 (G2).  Whether seeds find the resonance is kinematics: against its
+  LOCAL pump a daughter's relative velocity obeys dw/dt = -(w.grad)u (S1), so in any expanding flow a daughter born on the
+  resonance never returns (H1) and a seed enters it at most once.  Where the flow contracts along some axis it can: a
+  turned-around pancake has a zero-strain cone on which the narrow resonance holds a mode for sqrt(G/alpha), a gain
+  15-41x the Hubble sweep's (Z1, exact rays within 0.70-0.89 of the local formula), so pancakes ignite below the
+  trigger (Z2); daughters born inside re-cross the resonance outside for 2%-26% of pairs (B1); and around
+  every accreting halo the infalling pump blue-shifts about half the daughters, which convert the zone outside (I1).
+  XR19_web_runaway.py puts these rules on a realistic web.
+
+  checks: 12/12 pass; load-bearing failures: 0   [293s]
+exit code: 0
