@@ -151,6 +151,30 @@ kicked at 575–650 km/s (L388).
 
 **Follow-up for the checker:** XR1's registry tracks the cell, footing, kernel and operator. It should also track the switch branch (upper/lower, contrast/absolute) and σ, so that pooling across either is flagged automatically.
 
+### Morning 2026-09-27: the redirect, the six lanes, and the lanes serving the chain
+
+- **The redirect.** At 22:40 the author stopped the triggered-carrier chain, because hand-set switch branches, caps
+  and kicks add knobs instead of deriving them. The first-principles derivation chain
+  (`real_research/derivation_chain_2026/`) now leads. Its target is no declared constant beyond κ = ½.
+- **The six lanes (b667f56bb)**, all run to completion at the author's request:
+  - XR11 closes the edge-layer reading of the dark fluid.
+  - XR12: the fluid's own trigger fires in filaments; the forest sits at its 10% line; spin changes nothing.
+  - XR13 closes the per-object region door (2 flips, 5 broken).
+  - XR14: KiDS passes on M*'s carrier, the first validator row ON M* (c64766ca8).
+  - XR15: neither repair door removes V0's gate obstruction, and CV3's determinant is gate-dependent as written.
+  - XR16: the fluid's own conversion clears r_F at z = 2.5 through early escape; the forest is not established.
+  - XR17 makes the flagship row's numbers a committed script.
+- **Rows received:** DE11b (converged forest pass for the switch) and L389 (partial, uncontrolled). Stopped with no
+  result: L393–L397 and AT5.
+- **Now running here, for the chain:**
+  - XR18: H_Y's well-posedness.
+  - XR19: runaway conversion through the web.
+  - XR20: a₀ and Λ from one field.
+  - XR21: the chain's model in a particle-mesh box, staged and gated.
+  - FP10_FULL.
+
+  The answer page's §7 has the details.
+
 ## Files
 
 XR1–XR5 scripts, outputs and results JSON as listed in each lane's README. Re-run any lane from the repository root,

@@ -233,3 +233,96 @@ dynamical field χ with a spring, (M/2)(χ − W(U))², and f = χ.
 - **Decisive test:** do the WHIM and accretion shocks tolerate edge-layer gas with c_fast = 0.4–8c?
 - **Flag to verify:** at z = 4 and 1e12 M☉, r_F lies off the plateau in DE12's static profile (U(r_F)/U_edge = 0.6).
   So the flat-a₀ flagship may not hold for massive galaxies at z ≳ 4. This is a scope limit, not the JWST regime.
+
+## Rows received 2026-09-27 (overnight), after the author stopped the carrier chain
+
+The author stopped the triggered-carrier chain at 22:40 on 2026-09-26. Their reason: scanning switch branches, caps and
+kicks on a hand-posited carrier adds knobs instead of deriving them. The direction is now a first-principles derivation
+chain: one action, with the dark sector a state of the same field (`real_research/derivation_chain_2026/`,
+`CHAIN_STATUS.md`). Runs that were stopped are recorded as stopped. They are not pending.
+
+**DE11b | e35112739** (the dark-energy thread): DE11's forest pass for M*'s switch has converged.
+- Setup: 25 Mpc/h box, three resolutions (ctrl 128 mesh / 96³; B 128 / 128³; C 256 / 192³).
+- F1 (pre-declared) PASS: worst |P1D/P1D_ΛCDM − 1| is 0.0046 (C, alt), 0.0046 (B, alt) and 0.0039 (B, canonical),
+  against 0.10.
+- Refining raises the deviation by only 10–13%. DE11's 4.6× from 50 to 25 Mpc/h came from first resolving the halo
+  cores.
+- Control: reproduces DE11's L25 value to 1.4e-10.
+- MUTATE (full QUMOND everywhere): 1.305, fails, rc = 1.
+- Scope: single fluid, all-matter kernel, phantom over-stated. No carrier.
+
+**L389 | 6dc375e88** (the triggered-carrier thread; PARTIAL, not a controlled result)
+- Harvey at the same switch cell on L388's retention.
+- The phase-mixed shape S2 passes at 575 km/s (fit +0.096 against +0.10) and fails at 600–650 (+0.110/+0.122/+0.134).
+- The cusp S1 passes at 575–625. The recaptured shape S3 fails everywhere.
+- Controls: C1 reproduces L381 exactly; C2, the cell took effect.
+- Scope: matter-only switch branch (not M*'s reading); z = 0 retention applied at z = 0.4; canonical footing only.
+- MUTATE never ran, because the chain was stopped.
+
+**Stopped, no result:**
+- L393 (merger lane): stopped 2 h 10 min into its mesh stage; 1 of 21 runs done, nothing scored.
+- L394: cancelled before launch; its 64³ code test had passed C5/C6. Both are recorded in cc465307a.
+- L395: killed mid-run.
+- L396 and L397: never launched. Committed as design records only (6dc375e88).
+- AT5: halted and not committed (the advancement thread). Its flagship numbers are reproduced by XR17 below from
+  committed sources only.
+
+**XR11 | b667f56bb** (the author's reading 2: the dark fluid in the gate's edge layers; plus swirl and flow): FAIL.
+- A gate that reads the dark fluid moves its whole k⁰ second variation onto the fluid (A = 1); the gas sees none.
+- That is about 10× smaller than DE12's gas channel (148–430 km/s), but still unstable on every z = 0.25 layer:
+  - the layers sit beyond the multistream zone, where the fluid is a cold infall stream;
+  - even a generous Jeans dispersion loses (127–369 against 73–349 km/s).
+- The regions land in the wrong places in every reading (the density reading switches MOND off inside 90–120 kpc; the
+  depletion reading switches it on in voids and the forest's IGM).
+- The edge force is at most 0.54 of the escape speed, with no mass trend, so it cannot clear galaxies or separate them
+  from clusters.
+- An exact inequality ties barrier height to layer width; it holds on 72 of 72 readings.
+- Rotation (an exact dispersion relation) and shear stabilise nothing.
+- The pre-declared H1 failed and is kept as run.
+
+**XR12 | b667f56bb** (reading 3: filaments and streams).
+- FK1's trigger fires upstream: 65–75% of conversions happen outside r200 when infall comes in streams.
+- Forest at the nominal cell: 11.3% (whole halos) or 8.0% (refilled), against the 10% line. The excess is at
+  k_par ≳ 1.4 h/Mpc, and deciding it needs a flux run with sub-grid conversion.
+- Flagship: holds for stream infall at ≥ 50 H; fails at the record's 10 H.
+- Spin moves retention by ≤ 0.0064.
+- Flag (unscored): the smooth web may convert wholesale by z ≈ 2.
+
+**XR13 | b667f56bb** (the per-object region door): 2 flips against 5 broken. Closed.
+- Flips:
+  - cluster-infall BTFR to 0.07–0.10σ;
+  - LV dwarfs to 1.41σ, only for l_obj ≤ 1.5 kpc.
+- Still failing: Coma UDGs at 2.0–2.25σ; LG R0 at +0.14 to +0.20 dex.
+- Breaks:
+  - MW–M31 timing (−7 to +49 km/s against −110; ≥ 23σ);
+  - X-COP (no window);
+  - 2e13 groups;
+  - two-sided cosmic shear;
+  - El Gordo's ease.
+- It needs a new constant, l_obj (0.55–1.1 kpc), and a rule for what counts as a galaxy. It has no action.
+
+**XR14 | b667f56bb, validator c64766ca8** (KiDS on M*'s carrier): PASS.
+- The first data row that is ON M* (with two stated approximations, both in the carrier trigger).
+- Scores run −34.3 to −26.3 against the +4 bar (worst −26.28). That is 2.7–2.9 weaker than DE10.
+- L388's carrier as written also passes (−36.6/−33.6).
+- MS5's cap and the 2-halo cap do not bind.
+- Controls: DE10's table reproduced to 0e+00. MUTATE (v_k = 0): +133 to +136, rc = 1.
+
+**XR15 | b667f56bb** (repairs of V0's varied gate): neither door closes the obstruction.
+- Door (c), a smoothed gate: removes the UV catastrophe, but only 8 of 24 layers reach Γ ≤ H, and no single smoothing
+  length works.
+- Door (b), switched stiffness: unstable at every width.
+- New: CV3's constraint determinant depends on the gate and is singular in every layer, unless U reads an ungated
+  phantom. CV3's owner decides.
+
+**XR16 | b667f56bb** (reading 1: FK2, the fluid's own conversion).
+- The front passes r_F at z = 3.8–6.9, while the progenitor's escape speed is still below the kick.
+- So S at r_F ≤ 7e-5 at z = 2.5 on the record's grid (M_b 1e10–1e11), in both halo-response readings. M_b = 1e11.5
+  mostly fails.
+- Forest NOT established: conversion is not mass-selective (budget 4–6.5× AT1's).
+- The pre-declared T1 was falsified in AT1's self-consistent reading and is reported.
+
+**XR17 | b667f56bb**: the flagship row's numbers, from DE4's evaluate() and L388's pooled residues.
+- S_crit = 0.0590.
+- Shifts are +0.1055 to +0.1258 dex at 650 to 575 km/s.
+- Control: DE4's F1 reproduced to 0.
