@@ -1,0 +1,1439 @@
+{
+ "lane": "FP18",
+ "mutate": false,
+ "R0_shift_dex": 0.0,
+ "checks": {
+  "K1": {
+   "ok": true,
+   "measured": "corrected: min eigenvalue +1.259e-02, max |sqrt(diag)/error - 1| = 4.4e-05; plain reshape: min eigenvalue -6.421e+01",
+   "load_bearing": true,
+   "name": "K1 CONTROL: the Fig-3 covariance in its (m,n,i,j) order is positive definite with diagonal = the published errors^2; the plain reshape is indefinite (the record's corrected bug, exhibited)"
+  },
+  "K2": {
+   "ok": true,
+   "measured": "NFW (M200 0.5/3/10e12, c 8/4/2): max dev 5.23e-03; SIS: max dev 3.30e-03",
+   "load_bearing": true,
+   "name": "K2 CONTROL: this lane's uniform-shell projection reproduces the analytic NFW Delta Sigma (Wright & Brainerd 2000) and the singular isothermal sphere's V^2/(4 G R) at the 15 KiDS radii"
+  },
+  "K2b": {
+   "ok": true,
+   "measured": "R 0.04: -58.6%, R 0.07: -34.0%, R 0.12: -19.4%, R 0.22: -11.7%, R 0.41: -7.4%, R 0.76: -4.9%, R 1.41: -3.6%, R 2.60: -13.9%",
+   "load_bearing": false,
+   "name": "K2b (reported) SIDE FINDING: FP6's committed esd_of_M (L341 F7's 'lead grade' Abel matrix, used by FP6/FP9/FP12's KiDS gates) UNDER-projects: on the same SIS it is low by tens of per cent inside 0.1 Mpc and by ~5-14% at 0.3-2.6 Mpc (a trapezoid over the Abel singularity plus the inner-mass approximation); this lane does not use it"
+  },
+  "K3": {
+   "ok": true,
+   "measured": "M/R0^3 = 1.9553, 1.9553, 1.9553 e12 (exactly self-similar); K&K eq. (4) 1.95 (Planck), 2.12 (WMAP); deviation +0.27%",
+   "load_bearing": true,
+   "name": "K3 CONTROL: the spherical-infall relation with Lambda -- the record's shell integrator (FP6 lg_R0: point mass + Lambda, Planck 2018, shells from the Hubble flow at a = 0.02) gives M/R0^3 equal to K&K 2018 eq. (4)'s 1.95e12 Msun/Mpc^3"
+  },
+  "K4": {
+   "ok": true,
+   "measured": "R0 = 0.952 (MC 0.927 +- 0.025), H0 = 86.5 (MC 85.0 +- 1.7), sigma_v = 58.3 km/s vs published 0.93 +- 0.02, 85 +- 2, 57",
+   "load_bearing": true,
+   "name": "K4 CONTROL: the transcribed K&K 2018 Table 7 (66 companions, barycentre frame, minor attractor) reproduces their stack fit with their eq. (14), V = H0 R - H0 R0 (R0/R)^(1/2), free H0, errors from their 5%-distance Monte Carlo"
+  },
+  "K5": {
+   "ok": true,
+   "measured": "-2.4024 vs FP12 -2.4024 (canonical)",
+   "load_bearing": true,
+   "name": "K5 CONTROL: the chain-shaped family uses FP9's (H_Y) phantom at z = 0.25 -- FP6's kids_class with FP9's constants reproduces FP9/FP12's committed KiDS lead grade"
+  },
+  "K6": {
+   "ok": true,
+   "measured": "log <M_gal> 10.137, 10.569, 10.773, 10.947 vs B21 10.14, 10.57, 10.78, 10.96 (max dev 0.013); red fractions 0.12, 0.46, 0.65, 0.76",
+   "load_bearing": false,
+   "name": "K6 CONTROL: the record's reconstruction of B21's isolated lenses (lr_lenses.npz; its own isolation window and colour split) reproduces B21's four bin mean masses -- so its per-bin red fractions can price the galaxy-type systematic"
+  },
+  "K7": {
+   "ok": true,
+   "measured": "max[pi R^2 Delta Sigma - M(<R)] = +1.78e-15 (1e12 Msun); void term +0.066 Msun/pc^2 (KiDS there: 1.3-3.2)",
+   "load_bearing": true,
+   "name": "K7 CONTROL: the bound Delta Sigma(R) <= M(<R)/(pi R^2) holds for any non-negative spherical excess density (each shell outside R contributes -(M_s/pi R^2)(1-s)^2/(2s) <= 0, s = sqrt(1 - R^2/r_s^2)) -- 2000 random profiles; the most negative allowed outside (a complete void, excess = -rho_m, 1-20 Mpc) raises Delta Sigma(1.04 Mpc) by only"
+  },
+  "E1": {
+   "ok": true,
+   "measured": "stack: quoted 0.02, distance-MC 0.025, bootstrap 0.115; LG(14): quoted 0.03-0.05, bootstrap 0.099; LG(35) bootstrap 0.081; FP12's fit form gives R0 0.72 on the stack (not eq. 14)",
+   "load_bearing": false,
+   "name": "E1 (reported) THE PUBLISHED R0 ERRORS OMIT THE VELOCITY SCATTER: K&K's quoted errors are reproduced by their distance-only Monte Carlo; the bootstrap over galaxies (the same estimator, the same tables) is 4-6x larger"
+  },
+  "B1": {
+   "ok": true,
+   "measured": "stack (M_gal 10.70): KiDS M(<0.56) >= 4.46, M(<0.76) >= 5.86 vs <= 1.44 inside R0 = 0.93; even bin 1 (M_gal 10.14): M(<0.76) >= 3.76 +- 0.66",
+   "load_bearing": false,
+   "name": "B1 (reported) THE BOUND AGAINST THE FLOW: at face value KiDS's isolated lenses of the LV centrals' mass hold more excess mass inside ~0.5-0.8 Mpc than eq. (4) allows inside the whole R0 of the LV groups -- with no profile assumed"
+  },
+  "F1": {
+   "ok": true,
+   "measured": "stack: 241 (quoted) / 52 (honest); LG: 129 (quoted) / 50 (honest); LG_K09: 159 (quoted) / 45 (honest); M81: 148 (quoted) / --; IC342: 70 (quoted) / --; CenA: 21 (quoted) / --; primary joint (stack + LG, honest) 102.0",
+   "load_bearing": false,
+   "name": "F1 (reported) THE FREE PROFILE, SYSTEM BY SYSTEM: the least joint penalty any non-negative spherical profile pays for the KiDS profile of the system's central mass and its R0 (face value: no comparability systematics)"
+  },
+  "S1": {
+   "ok": true,
+   "measured": "type: data-based: 62.0; type: extreme (all-red bins, all-spiral LV): 34.2; leakage 1/1.3: 40.7; M* scale -0.2 dex: 34.8; R0 method +0.05 dex: 36.7; eq.4 coefficient +0.04 dex: 53.0; epoch/h -0.045 dex: 52.7; KiDS errors inflated: 59.5",
+   "load_bearing": false,
+   "name": "S1 (reported) EACH COMPARABILITY SYSTEMATIC ALONE (the data-based type factor applied, then one more at its edge): the primary joint T stays above 3 sigma under every single one"
+  },
+  "S2": {
+   "ok": true,
+   "measured": "primary joint T: face value 102.0 -> profiled 7.50 (inflated 7.40); extreme corner 4.77; R <= 0.3 Mpc profiled 0.28; per system stack 6.7, LG 5.8, M81 8.8, IC342 6.7, CenA 3.2, LG_K09 4.8",
+   "load_bearing": false,
+   "name": "S2 (reported) THE SYSTEMATICS TOGETHER: profiled jointly under their priors they absorb most of the face-value disagreement"
+  },
+  "F2": {
+   "ok": true,
+   "measured": "stack/NFW: d chi2_PG 56.4 (R0 implied 1.88); stack/NFW+2h: d chi2_PG 70.1 (R0 implied 1.94); stack/TIS: d chi2_PG 38.5 (R0 implied 1.89); stack/chain+cut: d chi2_PG 47.4 (R0 implied 1.75); stack/PPL: d chi2_PG 51.3 (R0 implied 2.26); stack/free: d chi2_PG 51.9; LG/NFW: d chi2_PG 59.5 (R0 implied 1.85); LG/NFW+2h: d chi2_PG 77.6 (R0 implied 1.93); LG/TIS: d chi2_PG 42.7 (R0 implied 1.65); LG/chain+cut: d chi2_PG 54.4 (R0 implied 1.75); LG/PPL: d chi2_PG 48.4 (R0 implied 2.05); LG/free: d chi2_PG 50.1",
+   "load_bearing": false,
+   "name": "F2 (reported) THE FAMILIES AT FACE VALUE: no family fits both the KiDS profile and the published R0 of the stack or the LG; each family's KiDS-alone fit implies an R0 well above the flow's"
+  },
+  "L1": {
+   "ok": true,
+   "measured": "stack/NFW: KiDS alone chi2 19.4/13 (M200 2.66e12, c 1.75) -> R0 1.88 vs 0.93 +- 0.12; joint d chi2 56.4; stack/NFW+2h: KiDS alone chi2 109.7/14 (M200 1.93e12, c 5.31) -> R0 1.94 vs 0.93 +- 0.12; joint d chi2 70.1; LG/NFW: KiDS alone chi2 13.3/13 (M200 2.58e12, c 1.81) -> R0 1.85 vs 0.91 +- 0.11; joint d chi2 59.5; LG/NFW+2h: KiDS alone chi2 96.3/14 (M200 1.88e12, c 5.33) -> R0 1.93 vs 0.91 +- 0.11; joint d chi2 77.6",
+   "load_bearing": false,
+   "name": "L1 (reported) LCDM INHERITS THE FACE-VALUE PINCER: its halos fitted to KiDS's isolated lenses turn around at R0 ~ 1.6-2 Mpc (Lagrangian infall), not at the LV's 0.9 Mpc; fitted jointly it pays the same penalty as the free profile"
+  },
+  "D1": {
+   "ok": true,
+   "measured": "Lagrangian 1.88, Eulerian-static 1.73, z_on 0.143 (KiDS lenses at <z> = 0.25)",
+   "load_bearing": false,
+   "name": "D1 (reported) THE DYNAMICS READING: an Eulerian (field) reading lowers R0 for the same present profile, but reaching the flow's R0 needs the outer mass to appear only at z < z_on, below KiDS's own lens epoch (0.1 < z < 0.5, <z> = 0.25)"
+  },
+  "H1": {
+   "ok": true,
+   "measured": "face value: stack +194, LG +153 (p 6e-49); type db: stack +122, LG +97 (p 5e-27); type db + leakage 1/1.3: stack +78, LG +68 (p 1e-15); extreme type + leakage: stack +44, LG +36 (p 4e-07); extreme + M* -0.2 + epoch -0.045: stack +11, LG +7 (p 1e-01); profiled: stack +3, LG +0 (p 2e-01); profiled, H fixed: stack +15, LG +3 (p 1e-02)",
+   "load_bearing": false,
+   "name": "H1 (reported) THE VELOCITIES THEMSELVES, no R0 compression: the KiDS-implied flow (each companion's shell holding the KiDS mass of its group's centre, eq. 14 generalised, free local H) fails the published velocities at face value (p < 0.0027); with the systematics profiled it is no longer excluded at 3 sigma"
+  },
+  "V1": {
+   "ok": true,
+   "measured": "T = 102.0 (stack 51.9, LG 50.1; p 7.2e-23, 9.8 sigma); with the quoted errors 370",
+   "load_bearing": true,
+   "name": "V1 THE PUBLISHED DATA DISAGREE AT FACE VALUE: no non-negative spherical profile fits KiDS's isolated lenses (at the LV centrals' masses) together with K&K 2018's stack and LG zero-velocity radii (honest errors) -- T_nominal > 11.83 (p < 0.0027)"
+  },
+  "V2": {
+   "ok": true,
+   "measured": "primary (stack + LG): UNDECIDED -- T_nominal 102.0 (9.8 sigma), T_profiled 7.50 (2.3 sigma), inflated 7.40 (2.2 sigma); per system: stack UNDECIDED (52 -> 6.7), LG UNDECIDED (50 -> 5.8), M81 UNDECIDED (148 -> 8.8), IC342 UNDECIDED (70 -> 6.7), CenA UNDECIDED (21 -> 3.2), LG_K09 UNDECIDED (45 -> 4.8)",
+   "load_bearing": false,
+   "name": "V2 (reported) THE VERDICT BY THE DECLARED RULE, and per system (1 dof: compatible if T_nominal <= 3.84, in tension if T_profiled > 9)"
+  },
+  "W": {
+   "ok": true,
+   "measured": "9 links",
+   "load_bearing": false,
+   "name": "W (reported) the ledger of this lane"
+  }
+ },
+ "numbers": {
+  "K": {
+   "eig_good": 0.012591858577300318,
+   "eig_plain": -64.20764496870885,
+   "K2": {
+    "nfw": 0.0052253477012857985,
+    "sis": 0.003304814417502744,
+    "fp6_sis_bias": [
+     -0.585541385008848,
+     -0.4270741284055577,
+     -0.340014080445202,
+     -0.24865509451479006,
+     -0.1943101369763951,
+     -0.1330594264943724,
+     -0.11672721004179487,
+     -0.10356403812784731,
+     -0.0740400138571774,
+     -0.0568980852704577,
+     -0.04916278477500369,
+     -0.06491822643646672,
+     -0.036033411003542404,
+     -0.04111709212508963,
+     -0.13928768550779558
+    ]
+   },
+   "COEF_SI": 1.9552586545077473,
+   "K4": {
+    "R0": 0.9519832357698065,
+    "H0": 86.46600176176645,
+    "sig": 58.31518041249212,
+    "mcR0": [
+     0.9274552628147766,
+     0.025365205910432845
+    ]
+   },
+   "K5": [
+    -2.402381941164819,
+    -2.402381941164819
+   ],
+   "K6": {
+    "mgal": [
+     10.137141339477235,
+     10.569004029611717,
+     10.773410878068196,
+     10.947174529234937
+    ],
+    "fred": [
+     0.11945614104128134,
+     0.46081249401168917,
+     0.6469888611879875,
+     0.7639122729286664
+    ]
+   },
+   "K7": [
+    1.7763568394002505e-15,
+    0.06580654795037898
+   ]
+  },
+  "E": {
+   "stack": {
+    "R0": 0.9519832357698065,
+    "H0": 86.46600176176645,
+    "sig": 58.31518041249212,
+    "boot": 0.1151237394550106,
+    "mc": 0.025365205910432845
+   },
+   "LG14": {
+    "R0": 0.9593614185258444,
+    "H0": 85.33293842099212,
+    "sig": 27.92490283106897,
+    "boot": 0.09885314807584847
+   },
+   "LG35": {
+    "R0": 1.0188555287508831,
+    "H0": 93.40465442324323,
+    "sig": 43.21905833287908,
+    "boot": 0.08057036830982126
+   },
+   "honest": {
+    "stack": 0.11684808678838163,
+    "LG": 0.11077881062958576
+   },
+   "fp12_form_R0": 0.7240509864907236,
+   "systems": {
+    "stack": [
+     0.93,
+     0.02,
+     0.11684808678838163
+    ],
+    "LG": [
+     0.91,
+     0.05,
+     0.11077881062958576
+    ],
+    "LG_K09": [
+     0.96,
+     0.03,
+     0.11077881062958576
+    ],
+    "M81": [
+     0.89,
+     0.05,
+     null
+    ],
+    "IC342": [
+     0.9,
+     0.1,
+     null
+    ],
+    "CenA": [
+     1.4,
+     0.11,
+     null
+    ]
+   }
+  },
+  "matching": {
+   "targets": {
+    "i": {
+     "stack": [
+      [
+       10.795920804929183,
+       0.13636363636363635
+      ],
+      [
+       10.742151717669072,
+       0.18181818181818182
+      ],
+      [
+       10.715460598554662,
+       0.07575757575757576
+      ],
+      [
+       10.822990371025831,
+       0.09090909090909091
+      ],
+      [
+       10.398720502923299,
+       0.045454545454545456
+      ],
+      [
+       10.456685929417262,
+       0.19696969696969696
+      ],
+      [
+       10.653712513184695,
+       0.13636363636363635
+      ],
+      [
+       10.768973197913995,
+       0.07575757575757576
+      ],
+      [
+       10.760018482631795,
+       0.030303030303030304
+      ],
+      [
+       10.671276783846713,
+       0.015151515151515152
+      ],
+      [
+       10.768973197913995,
+       0.015151515151515152
+      ]
+     ],
+     "LG": [
+      [
+       10.653712513184695,
+       1.0
+      ]
+     ],
+     "LG_K09": [
+      [
+       10.653712513184695,
+       1.0
+      ]
+     ],
+     "M81": [
+      [
+       10.795920804929183,
+       1.0
+      ]
+     ],
+     "IC342": [
+      [
+       10.715460598554662,
+       1.0
+      ]
+     ],
+     "CenA": [
+      [
+       10.742151717669072,
+       1.0
+      ]
+     ]
+    },
+    "ii": {
+     "stack": [
+      [
+       10.91124652350529,
+       0.13636363636363635
+      ],
+      [
+       11.015146955909035,
+       0.18181818181818182
+      ],
+      [
+       10.94075152051376,
+       0.07575757575757576
+      ],
+      [
+       10.798531693566014,
+       0.09090909090909091
+      ],
+      [
+       10.279311316175932,
+       0.045454545454545456
+      ],
+      [
+       10.405976078873543,
+       0.19696969696969696
+      ],
+      [
+       10.700390619974412,
+       0.13636363636363635
+      ],
+      [
+       10.763788580298101,
+       0.07575757575757576
+      ],
+      [
+       10.924320128451859,
+       0.030303030303030304
+      ],
+      [
+       10.60071592313085,
+       0.015151515151515152
+      ],
+      [
+       10.96523789779758,
+       0.015151515151515152
+      ]
+     ],
+     "LG": [
+      [
+       11.058805486675906,
+       1.0
+      ]
+     ],
+     "LG_K09": [
+      [
+       11.058805486675906,
+       1.0
+      ]
+     ],
+     "M81": [
+      [
+       10.983220214648103,
+       1.0
+      ]
+     ],
+     "IC342": [
+      [
+       11.014520538757925,
+       1.0
+      ]
+     ],
+     "CenA": [
+      [
+       10.955447210577695,
+       1.0
+      ]
+     ]
+    }
+   },
+   "late_fraction": {
+    "stack": 0.803030303030303,
+    "LG": 1.0,
+    "LG_K09": 1.0,
+    "M81": 1.0,
+    "IC342": 1.0,
+    "CenA": 0.0
+   },
+   "delta_blue_red": {
+    "in": [
+     0.6598232902948448,
+     0.060907470448119484
+    ],
+    "out": [
+     0.4972581994407326,
+     0.0438927236849338
+    ]
+   },
+   "fred": [
+    0.11945614104128134,
+    0.46081249401168917,
+    0.6469888611879875,
+    0.7639122729286664
+   ],
+   "gas_shift_dex": -0.05385301842965725
+  },
+  "B": {
+   "bin1": [
+    [
+     0.09878765870380737,
+     0.16701432021379628,
+     0.23919850401400258,
+     0.3841303492491646,
+     0.4773171214906335,
+     0.5621764213721984,
+     0.5537425582569577,
+     0.5459145489490536,
+     0.8086250579585632,
+     1.8978810709991638,
+     3.763692256636317,
+     4.3235827045837745,
+     4.517473471703684,
+     3.668413071167821,
+     5.378111369201218
+    ],
+    [
+     0.028213065273765024,
+     0.03824733456016115,
+     0.05205315067968609,
+     0.0712020689346205,
+     0.09733041772104656,
+     0.1334631259309082,
+     0.1828161262531368,
+     0.25062186945025916,
+     0.34423021062881587,
+     0.4740589933105152,
+     0.6561484471443929,
+     0.9094527080232865,
+     1.2672621618157511,
+     1.7512295510462257,
+     2.412099698278272
+    ]
+   ],
+   "bin2": [
+    [
+     0.1314173765172446,
+     0.20633090653019737,
+     0.3151087805985398,
+     0.48499448752692176,
+     0.6617351002483781,
+     0.881207668762482,
+     1.7683831396761813,
+     2.2245511114792085,
+     3.5116779671951837,
+     3.4630310895403875,
+     5.200216018711247,
+     8.973609262555945,
+     6.919531146747043,
+     7.419159894435051,
+     5.4626137419300775
+    ],
+    [
+     0.038308670414402723,
+     0.05162515725779697,
+     0.07030188844744004,
+     0.09595069661796123,
+     0.1315601824225598,
+     0.18024233013967225,
+     0.24709350675939237,
+     0.3389822945876946,
+     0.4657139658117823,
+     0.6406251412171807,
+     0.8841942773999782,
+     1.2240788143582728,
+     1.6949148825563507,
+     2.3439390050800353,
+     3.2160608915042523
+    ]
+   ],
+   "bin3": [
+    [
+     0.13170489820156323,
+     0.2976563705414174,
+     0.4385805884794424,
+     0.5401762169369362,
+     0.8364689235954664,
+     1.3256832415829252,
+     1.1668180831350743,
+     2.8828918014618967,
+     3.040269535179061,
+     5.2568898206544485,
+     6.408564199997243,
+     9.877581276293592,
+     10.609989951894946,
+     18.2303768142838,
+     12.658066421302605
+    ],
+    [
+     0.0409319064481375,
+     0.05495762166854898,
+     0.0745848807009344,
+     0.10261533927958169,
+     0.14044353267425827,
+     0.19204683044764068,
+     0.26386635772008976,
+     0.3617789199971799,
+     0.49737280938062184,
+     0.6837989262572463,
+     0.943453199559379,
+     1.3018361645357814,
+     1.8032046272932407,
+     2.4914146604740046,
+     3.4289377128288736
+    ]
+   ],
+   "bin4": [
+    [
+     0.18132235553015918,
+     0.3256679624440185,
+     0.5394443060824282,
+     0.9451697953876954,
+     0.8787439866381405,
+     1.5118708411925728,
+     2.738664745487899,
+     2.6534273155424506,
+     4.186708350903208,
+     6.052956637750082,
+     7.2254364863797225,
+     10.633574544318975,
+     15.014996517463354,
+     13.842362071713053,
+     16.541501550624552
+    ],
+    [
+     0.04141909596878851,
+     0.05499525578833382,
+     0.07450715686825399,
+     0.10229785535694873,
+     0.14078340928242075,
+     0.19321695584259962,
+     0.2648838576835823,
+     0.36377656242996986,
+     0.5002987553140246,
+     0.6880019504049664,
+     0.948828578798111,
+     1.3118041772677882,
+     1.815419659867303,
+     2.5122320012036843,
+     3.459410435475342
+    ]
+   ]
+  },
+  "F1": {
+   "stack/i": {
+    "quoted": {
+     "T": 240.74700304203282,
+     "R0t": 1.0564083156787298,
+     "T_relaxed": 240.63333782881696
+    },
+    "honest": {
+     "T": 51.881005228964334,
+     "R0t": 1.6673926294365486,
+     "T_relaxed": 51.881005228964334
+    }
+   },
+   "stack/ii": {
+    "quoted": {
+     "T": 372.52156307540355,
+     "R0t": 1.1125520061832912,
+     "T_relaxed": null
+    },
+    "honest": {
+     "T": 57.14679809608159,
+     "R0t": 1.7030037681650145,
+     "T_relaxed": null
+    }
+   },
+   "LG/i": {
+    "quoted": {
+     "T": 128.96034792129717,
+     "R0t": 1.2354795640669507,
+     "T_relaxed": 128.96034792129717
+    },
+    "honest": {
+     "T": 50.086317247706106,
+     "R0t": 1.5579806393149933,
+     "T_relaxed": 50.086317247706106
+    }
+   },
+   "LG/ii": {
+    "quoted": {
+     "T": 162.20502037226413,
+     "R0t": 1.315144740436273,
+     "T_relaxed": null
+    },
+    "honest": {
+     "T": 71.92977448643477,
+     "R0t": 1.7318202454210776,
+     "T_relaxed": null
+    }
+   },
+   "LG_K09/i": {
+    "quoted": {
+     "T": 158.5794570489852,
+     "R0t": 1.154716427865465,
+     "T_relaxed": 158.5794570489852
+    },
+    "honest": {
+     "T": 44.614439975968494,
+     "R0t": 1.6165703589566456,
+     "T_relaxed": 44.614439975968494
+    }
+   },
+   "LG_K09/ii": {
+    "quoted": {
+     "T": 195.3038303673851,
+     "R0t": 1.1443143949386083,
+     "T_relaxed": null
+    },
+    "honest": {
+     "T": 65.57331469403157,
+     "R0t": 1.7422357268112438,
+     "T_relaxed": null
+    }
+   },
+   "M81/i": {
+    "quoted": {
+     "T": 147.57489558456496,
+     "R0t": 1.23473652978394,
+     "T_relaxed": 144.1717255691807
+    },
+    "honest": null
+   },
+   "M81/ii": {
+    "quoted": {
+     "T": 168.57817352710762,
+     "R0t": 1.288045957626616,
+     "T_relaxed": null
+    },
+    "honest": null
+   },
+   "IC342/i": {
+    "quoted": {
+     "T": 69.68502013726145,
+     "R0t": 1.5586501438114293,
+     "T_relaxed": 69.68502013726145
+    },
+    "honest": null
+   },
+   "IC342/ii": {
+    "quoted": {
+     "T": 82.60633959972452,
+     "R0t": 1.563993064789642,
+     "T_relaxed": null
+    },
+    "honest": null
+   },
+   "CenA/i": {
+    "quoted": {
+     "T": 20.569056562123706,
+     "R0t": 1.751228362000455,
+     "T_relaxed": 20.569056562123706
+    },
+    "honest": null
+   },
+   "CenA/ii": {
+    "quoted": {
+     "T": 23.29560041977725,
+     "R0t": 1.8241353905638238,
+     "T_relaxed": null
+    },
+    "honest": null
+   }
+  },
+  "S": {
+   "infl": {
+    "stack": 1.2200259672613765,
+    "LG": 1.010164845674953,
+    "LG_K09": 1.010164845674953,
+    "M81": 1.270784759939065,
+    "IC342": 1.1955958483553166,
+    "CenA": 1.2432822432184154
+   },
+   "delta": {
+    "in": [
+     0.6598232902948448,
+     0.060907470448119484
+    ],
+    "out": [
+     0.4972581994407326,
+     0.0438927236849338
+    ]
+   },
+   "gama_over_kids": [
+    [
+     0.7514910805421684,
+     0.1284275849600579
+    ],
+    [
+     1.0932577235363368,
+     0.14977800013944909
+    ]
+   ],
+   "all_over_iso": [
+    [
+     1.5177777869029534,
+     0.1751203555159783
+    ],
+    [
+     1.3409718932960546,
+     0.09870675494472857
+    ],
+    [
+     1.395819422553183,
+     0.08634407220980159
+    ],
+    [
+     1.4113969065102,
+     0.07468206765650869
+    ]
+   ],
+   "one_at_a_time": {
+    "type: data-based": {
+     "stack": 34.79580067204919,
+     "LG": 27.244819960828334
+    },
+    "type: extreme (all-red bins, all-spiral LV)": {
+     "stack": 17.06778480488632,
+     "LG": 17.14147224643299
+    },
+    "leakage 1/1.3": {
+     "stack": 23.392457613853885,
+     "LG": 17.355113235363522
+    },
+    "M* scale -0.2 dex": {
+     "stack": 19.134215899921756,
+     "LG": 15.68442695219236
+    },
+    "R0 method +0.05 dex": {
+     "stack": 21.534817456009645,
+     "LG": 15.123108395169599
+    },
+    "eq.4 coefficient +0.04 dex": {
+     "stack": 30.030551516815713,
+     "LG": 22.99907633625593
+    },
+    "epoch/h -0.045 dex": {
+     "stack": 29.846156654999234,
+     "LG": 22.869299935557823
+    },
+    "KiDS errors inflated": {
+     "stack": 32.32754312795333,
+     "LG": 27.203755324052604
+    }
+   },
+   "base": {
+    "stack": 51.881005228964334,
+    "LG": 50.086317247706106
+   },
+   "at_optimum": {
+    "stack": {
+     "viol": 1.226211160832416e-16,
+     "R0t": 1.2266445235110888,
+     "R0_nfw": 1.1287134654396584,
+     "R0_obs": 1.1105382722822053,
+     "adj_out": -0.47640877956599226,
+     "type_part": -0.1755832851643231
+    },
+    "LG": {
+     "viol": 0.0,
+     "R0t": 1.152109537435544,
+     "R0_nfw": 1.0305648412347839,
+     "R0_obs": 1.0866557287922654,
+     "adj_out": -0.5436477098514687,
+     "type_part": -0.2527173111501901
+    }
+   },
+   "profiled": {
+    "T_relaxed": 7.651029327046027,
+    "x": [
+     -0.06645347767422682,
+     -0.10485858986246857,
+     -0.2842622222067933,
+     0.07705058160165837,
+     0.017866820940222232,
+     -0.020469400785644958
+    ],
+    "pen": 6.338174496930348,
+    "T": 7.497389837789849,
+    "T_at_relaxed_opt": 7.651029327046027,
+    "parts": {
+     "stack": 0.8471078053703129,
+     "LG": 0.31210753548918807
+    }
+   },
+   "profiled_inflated": {
+    "T_relaxed": 7.572212234523318,
+    "x": [
+     -0.06391719148948932,
+     -0.10442924257483635,
+     -0.2818302409747309,
+     0.07660643133337203,
+     0.018187075749542758,
+     -0.02019585430585843
+    ],
+    "pen": 6.219594586582117,
+    "T": 7.400412892075698,
+    "T_at_relaxed_opt": 7.572212234523318,
+    "parts": {
+     "stack": 0.8301024215005796,
+     "LG": 0.3507158839930013
+    }
+   },
+   "single": {
+    "stack": {
+     "T_relaxed": 6.738677144340927,
+     "x": [
+      -0.06348269695101774,
+      -0.12784587485108886,
+      -0.15244380438759852,
+      0.07403664697501805,
+      0.017221383460012292,
+      -0.02004685554434083
+     ],
+     "pen": 5.045973380323476,
+     "T": 6.738677144340927,
+     "T_at_relaxed_opt": 6.738677144340927,
+     "parts": {
+      "stack": 1.6927037640174512
+     }
+    },
+    "LG": {
+     "T_relaxed": 5.844023446146341,
+     "x": [
+      -0.0519330975072667,
+      -0.09763828093488386,
+      -0.20013712464694927,
+      0.06102256558515541,
+      0.014290007130558884,
+      -0.016793356178429877
+     ],
+     "pen": 3.913462860090722,
+     "T": 5.843847503975662,
+     "T_at_relaxed_opt": 5.844023446146341,
+     "parts": {
+      "LG": 1.9303846438849404
+     }
+    },
+    "M81": {
+     "T_relaxed": 8.82693312311937,
+     "x": [
+      -0.08099304679276545,
+      -0.14700919955565134,
+      -0.17321220244147167,
+      0.09155869166124198,
+      0.020794730812000072,
+      -0.023376954358804956
+     ],
+     "pen": 7.332974618283745,
+     "T": 8.756623348908551,
+     "T_at_relaxed_opt": 8.82693312311937,
+     "parts": {
+      "M81": 1.4236487306248067
+     }
+    },
+    "IC342": {
+     "T_relaxed": 6.721341086358992,
+     "x": [
+      -0.06072214239670727,
+      -0.09935727195989719,
+      -0.20505856384500273,
+      0.07156225673692813,
+      0.016922448819817474,
+      -0.018757594936340025
+     ],
+     "pen": 4.788905860611355,
+     "T": 6.721341086358992,
+     "T_at_relaxed_opt": 6.721341086358992,
+     "parts": {
+      "IC342": 1.932435225747637
+     }
+    },
+    "CenA": {
+     "T_relaxed": 3.1943498435265862,
+     "x": [
+      -0.0574778694480597,
+      -0.11876393565834792,
+      -0.12014223068344232,
+      0.027759048495464095,
+      0.016439577676578488,
+      -0.017747172356383942
+     ],
+     "pen": 2.596136505827816,
+     "T": 3.1943498435265862,
+     "T_at_relaxed_opt": 3.1943498435265862,
+     "parts": {
+      "CenA": 0.5982133376987702
+     }
+    },
+    "LG_K09": {
+     "T_relaxed": 4.839399721741961,
+     "x": [
+      -0.048744621544146965,
+      -0.09641282149082239,
+      -0.17982326934550374,
+      0.057161165491163894,
+      0.013270822874906874,
+      -0.015483307577175675
+     ],
+     "pen": 3.4310486684826977,
+     "T": 4.839304956575501,
+     "T_at_relaxed_opt": 4.839399721741961,
+     "parts": {
+      "LG_K09": 1.408256288092803
+     }
+    }
+   },
+   "corner": [
+    4.773539941373611,
+    [
+     -0.12843722382931072,
+     0.06619344495057186,
+     0.01669152829285995,
+     -0.018649275670398837
+    ]
+   ],
+   "R03": {
+    "stack": 0.6474840738477404,
+    "LG": 0.261442714718423
+   },
+   "R03_face": {
+    "stack": 2.4371392001106384,
+    "LG": 3.0895835535774436
+   },
+   "R03_quoted": {
+    "stack": 17.37896958761323,
+    "LG": 10.39455126241362
+   },
+   "R03_profiled": {
+    "T_relaxed": 0.28184516410644556,
+    "x": [
+     -0.012741821584687474,
+     -0.02561524011641261,
+     -0.05037665537497355,
+     0.015131109312219667,
+     0.0034382697584614784,
+     -0.004082144234811031
+    ],
+    "pen": 0.24654893315304396,
+    "T": 0.28184516410644556,
+    "parts": {
+     "stack": 0.011287656818091373,
+     "LG": 0.024008574135310202
+    }
+   },
+   "comoving": {
+    "stack": 51.9372479314348,
+    "LG": 50.18282755653342
+   },
+   "chain_growth": {
+    "0.3": 1.005246997002275,
+    "0.56": 1.0202567034196097,
+    "0.76": 1.0399815664551881,
+    "1.0": 1.0745840611757025
+   }
+  },
+  "F2": {
+   "stack/NFW": {
+    "alone": {
+     "chiK": 19.350023690296744,
+     "R0p": 1.8818586997959683,
+     "p": [
+      0.424426594402596,
+      0.241861886111778
+     ]
+    },
+    "joint": {
+     "chiK": 27.62423616117062,
+     "chiR": 48.16934579224978,
+     "tot": 75.7935819534204,
+     "R0p": 1.7409740915339225,
+     "p": [
+      0.38386431548973327,
+      0.3363023115647221
+     ]
+    },
+    "dPG": 56.443558263123656,
+    "p": 5.78348850473938e-14,
+    "npar": 2
+   },
+   "stack/NFW+2h": {
+    "alone": {
+     "chiK": 109.7267070179181,
+     "R0p": 1.939683162797297,
+     "p": [
+      0.2848753016289247
+     ]
+    },
+    "joint": {
+     "chiK": 114.1683616608842,
+     "chiR": 65.64486032424342,
+     "tot": 179.81322198512763,
+     "R0p": 1.8767209117059627,
+     "p": [
+      0.23398093375972512
+     ]
+    },
+    "dPG": 70.08651496720952,
+    "p": 5.675966302840186e-17,
+    "npar": 1
+   },
+   "stack/TIS": {
+    "alone": {
+     "chiK": 62.688141383300845,
+     "R0p": 1.893139476927014,
+     "p": [
+      2.2623909273180445,
+      0.19131294183950537
+     ]
+    },
+    "joint": {
+     "chiK": 64.09904310564458,
+     "chiR": 37.054377972529075,
+     "tot": 101.15342107817366,
+     "R0p": 1.641281264757735,
+     "p": [
+      2.2575023627739976,
+      0.014120263942621097
+     ]
+    },
+    "dPG": 38.46527969487282,
+    "p": 5.573649077532268e-10,
+    "npar": 2
+   },
+   "stack/chain+cut": {
+    "alone": {
+     "chiK": 16.29355729115936,
+     "R0p": 1.7546119869242331,
+     "p": [
+      -1.1849374813882618,
+      1.4999999555091823,
+      -1.0089775354614674
+     ]
+    },
+    "joint": {
+     "chiK": 18.416733572908576,
+     "chiR": 45.24937219525387,
+     "tot": 63.666105768162446,
+     "R0p": 1.7160096624753478,
+     "p": [
+      -1.2491404818127834,
+      1.4999998984263123,
+      -1.2270093893258145
+     ]
+    },
+    "dPG": 47.372548477003086,
+    "p": 5.869899600968451e-12,
+    "npar": 3
+   },
+   "stack/PPL": {
+    "alone": {
+     "chiK": 9.292020773342287,
+     "R0p": 2.2589788965154476,
+     "p": [
+      6.994952748661625,
+      5.375171030224119,
+      3.0248379082323487,
+      0.8679378318974705,
+      -1.9013379844866738,
+      -1.0324960213012204
+     ]
+    },
+    "joint": {
+     "chiK": 22.45268739121695,
+     "chiR": 38.147475582831824,
+     "tot": 60.60016297404877,
+     "R0p": 1.6516963481355869,
+     "p": [
+      6.99353792750279,
+      5.381740166055668,
+      2.993051633247214,
+      0.8237160727335645,
+      -6.006646829417092,
+      -5426.741711935401
+     ]
+    },
+    "dPG": 51.308142200706484,
+    "p": 7.8947511959736e-13,
+    "npar": 6
+   },
+   "stack/free": {
+    "dPG": 51.881005228964334,
+    "p": 5.896812009380186e-13
+   },
+   "LG/NFW": {
+    "alone": {
+     "chiK": 13.265629200687519,
+     "R0p": 1.84958828611387,
+     "p": [
+      0.4123681026801158,
+      0.25717811163574467
+     ]
+    },
+    "joint": {
+     "chiK": 23.358750315033728,
+     "chiR": 49.45369565228003,
+     "tot": 72.81244596731376,
+     "R0p": 1.689033392981261,
+     "p": [
+      0.3611834499651856,
+      0.3640076125137809
+     ]
+    },
+    "dPG": 59.54681676662624,
+    "p": 1.194191489049736e-14,
+    "npar": 2
+   },
+   "LG/NFW+2h": {
+    "alone": {
+     "chiK": 96.30042348374539,
+     "R0p": 1.9261542848962947,
+     "p": [
+      0.2744278891433162
+     ]
+    },
+    "joint": {
+     "chiK": 102.57767068461638,
+     "chiR": 71.35754117106696,
+     "tot": 173.93521185568335,
+     "R0p": 1.845786200125421,
+     "p": [
+      0.20854049344180142
+     ]
+    },
+    "dPG": 77.63478837193796,
+    "p": 1.2396735807707003e-18,
+    "npar": 1
+   },
+   "LG/TIS": {
+    "alone": {
+     "chiK": 52.11442044263005,
+     "R0p": 1.6504204810613379,
+     "p": [
+      2.261255604008931,
+      0.014120274794387183
+     ]
+    },
+    "joint": {
+     "chiK": 56.87978054648198,
+     "chiR": 37.885312972030974,
+     "tot": 94.76509351851296,
+     "R0p": 1.5918551699041448,
+     "p": [
+      2.254108725223534,
+      -0.018947370280606578
+     ]
+    },
+    "dPG": 42.65067307588291,
+    "p": 6.544190653658843e-11,
+    "npar": 2
+   },
+   "LG/chain+cut": {
+    "alone": {
+     "chiK": 11.606672808855961,
+     "R0p": 1.7471780319876418,
+     "p": [
+      -1.1971354911590812,
+      1.4999998239486838,
+      -0.9733342244723129
+     ]
+    },
+    "joint": {
+     "chiK": 14.390007924634169,
+     "chiR": 51.60103622019445,
+     "tot": 65.99104414482862,
+     "R0p": 1.7057669712155719,
+     "p": [
+      -1.266168437995156,
+      1.499999574246334,
+      -1.162560980948157
+     ]
+    },
+    "dPG": 54.38437133597266,
+    "p": 1.6486889387275012e-13,
+    "npar": 3
+   },
+   "LG/PPL": {
+    "alone": {
+     "chiK": 6.924699787783591,
+     "R0p": 2.0548301368299406,
+     "p": [
+      6.966928832810967,
+      5.332091451712489,
+      3.0958742122087584,
+      0.7579991636165315,
+      -2.3079370197897644,
+      -1.1598398049604706
+     ]
+    },
+    "joint": {
+     "chiK": 19.84208048449922,
+     "chiR": 35.469121308476325,
+     "tot": 55.311201792975545,
+     "R0p": 1.5697538190866844,
+     "p": [
+      6.966648807876215,
+      5.32802944510161,
+      3.0891376872490888,
+      0.6203005761619131,
+      -7.587972934524785,
+      -4982.05724845148
+     ]
+    },
+    "dPG": 48.38650200519196,
+    "p": 3.499688335705546e-12,
+    "npar": 6
+   },
+   "LG/free": {
+    "dPG": 50.086317247706106,
+    "p": 1.4712935382072577e-12
+   }
+  },
+  "L": [
+   "stack/NFW: KiDS alone chi2 19.4/13 (M200 2.66e12, c 1.75) -> R0 1.88 vs 0.93 +- 0.12; joint d chi2 56.4",
+   "stack/NFW+2h: KiDS alone chi2 109.7/14 (M200 1.93e12, c 5.31) -> R0 1.94 vs 0.93 +- 0.12; joint d chi2 70.1",
+   "LG/NFW: KiDS alone chi2 13.3/13 (M200 2.58e12, c 1.81) -> R0 1.85 vs 0.91 +- 0.11; joint d chi2 59.5",
+   "LG/NFW+2h: KiDS alone chi2 96.3/14 (M200 1.88e12, c 5.33) -> R0 1.93 vs 0.91 +- 0.11; joint d chi2 77.6"
+  ],
+  "D": {
+   "R0_lagr": 1.8818586997959683,
+   "R0_euler": 1.7331026621656798,
+   "z_on": 0.14330419384559634
+  },
+  "H": {
+   "face value": {
+    "stack": 194.24148310264826,
+    "H_stack": 130.96347769365747,
+    "LG": 153.46882939188782,
+    "H_LG": 34.85670699475309,
+    "n_infall": 26,
+    "chi": 423.7103124945361,
+    "p_gof": 5.60726331090956e-49
+   },
+   "type db": {
+    "stack": 122.0811870615263,
+    "H_stack": 137.1686012237886,
+    "LG": 97.3672619014179,
+    "H_LG": 96.01051594874212,
+    "n_infall": 22,
+    "chi": 295.4484489629442,
+    "p_gof": 4.927675141685789e-27
+   },
+   "type db + leakage 1/1.3": {
+    "stack": 77.68831993712027,
+    "H_stack": 138.98547304227327,
+    "LG": 68.22993114720498,
+    "H_LG": 113.02807534820411,
+    "n_infall": 19,
+    "chi": 221.91825108432525,
+    "p_gof": 9.724160065191685e-16
+   },
+   "extreme type + leakage": {
+    "stack": 44.27031748260774,
+    "H_stack": 136.06146403517607,
+    "LG": 35.56083720763683,
+    "H_LG": 125.32243299601048,
+    "n_infall": 15,
+    "chi": 155.83115469024457,
+    "p_gof": 4.0362800395297933e-07
+   },
+   "extreme + M* -0.2 + epoch -0.045": {
+    "stack": 11.423295935508975,
+    "H_stack": 125.32427826374607,
+    "LG": 7.157627336823706,
+    "H_LG": 122.4316797010267,
+    "n_infall": 9,
+    "chi": 94.58092327233268,
+    "p_gof": 0.09745844062844264
+   },
+   "profiled": {
+    "stack": 2.5395865903829815,
+    "H_stack": 114.84631867359553,
+    "LG": 0.13997546014319262,
+    "H_LG": 110.01344586256506,
+    "n_infall": 3,
+    "chi": 86.29602039051701,
+    "x": [
+     -0.10962817877283032,
+     -0.13304986540561475,
+     -0.3635783046502159,
+     0.027819122508442665,
+     -0.034467976262626474
+    ],
+    "pen": 7.616458339990835,
+    "p_gof": 0.24353469143826204
+   },
+   "profiled, H fixed": {
+    "stack": 15.193063620311989,
+    "H_stack": 86.46600176176645,
+    "LG": 3.276880932179173,
+    "H_LG": 85.33293842099212,
+    "n_infall": 1,
+    "chi": 108.80388623319469,
+    "x": [
+     -0.11791266148888177,
+     -0.1623582100159184,
+     -0.4998970061124836,
+     0.07132166299074144,
+     -0.03777120040518443
+    ],
+    "pen": 14.333941680703528,
+    "p_gof": 0.012148224762991329
+   }
+  },
+  "V": {
+   "T_nominal": 101.96732247667043,
+   "T_profiled": 7.497389837789849,
+   "T_profiled_inflated": 7.400412892075698,
+   "verdict": "UNDECIDED",
+   "per_system": {
+    "stack": [
+     "UNDECIDED",
+     51.881005228964334,
+     6.738677144340927
+    ],
+    "LG": [
+     "UNDECIDED",
+     50.086317247706106,
+     5.843847503975662
+    ],
+    "M81": [
+     "UNDECIDED",
+     147.57489558456496,
+     8.756623348908551
+    ],
+    "IC342": [
+     "UNDECIDED",
+     69.68502013726145,
+     6.721341086358992
+    ],
+    "CenA": [
+     "UNDECIDED",
+     20.569056562123706,
+     3.1943498435265862
+    ],
+    "LG_K09": [
+     "UNDECIDED",
+     44.614439975968494,
+     4.839304956575501
+    ]
+   },
+   "p": {
+    "nominal": 7.21235768935668e-23,
+    "profiled": 0.023548458458619196,
+    "inflated": 0.024718422923079617
+   }
+  }
+ },
+ "ledger": [
+  {
+   "link": "F18a",
+   "what": "the model-independent bound: for any non-negative spherical excess density Delta Sigma(R) <= M(<R)/(pi R^2), so KiDS's stacked lenses give M(<R) >= pi R^2 Delta Sigma(R) with no profile assumed (voids outside R change it by < 0.07 Msun/pc^2)",
+   "status": "DERIVED",
+   "basis": "K7 (2000 random profiles), B1"
+  },
+  {
+   "link": "F18b",
+   "what": "the published R0 errors omit the velocity scatter: K&K 2018's +-0.02 (stack) is their 5%-distance Monte Carlo (reproduced: +-0.025); the bootstrap of their own estimator on their own Table 7 gives +-0.12 (LG, Table 4: +-0.10); FP12's fit form V = H R [1 - (R0/R)^(1/2)] is not K&K's eq. (14) (it returns R0 = 0.72 on K&K's own table)",
+   "status": "CONSTRAINT",
+   "basis": "K4, E1"
+  },
+  {
+   "link": "F18c",
+   "what": "at face value NO static spherical profile fits KiDS's isolated lenses (at the LV centrals' masses) and the LV Hubble flow: T = 102 (stack + LG, honest R0 errors; 370 with the quoted ones); every family fails, LCDM's NFW(+2h) included (KiDS-fitted profiles turn around at R0 = 1.65-2.26 Mpc vs 0.91-0.93); the velocities themselves reject the KiDS-implied flow at p ~ 6e-49; within R <= 0.3 Mpc the two agree (T = 2.4 / 3.1) -- the disagreement lives at 0.3-2.6 Mpc, where B21 flag photo-z isolation",
+   "status": "CONSTRAINT",
+   "basis": "B1, F1, F2, L1, H1, S, V1"
+  },
+  {
+   "link": "F18d",
+   "what": "the comparability systematics (galaxy type, photo-z isolation leakage, stellar-mass scale, R0 method, eq. 4 coefficient, epoch/h), profiled jointly under declared priors, bring the joint T to 7.5 (2.3 sigma; inflated covariance 7.4; extreme corner 4.8); each alone leaves it >= 34 (S1); at the optimum M* -0.28 dex, R0 +0.077 dex, type -0.07 dex beyond the data-based factor, leakage -0.10 dex; the direct velocity test agrees (profiled p = 0.24) but only with a local H ~ 115 km/s/Mpc -- held at the flow's own point-mass value it gives p = 1e-02",
+   "status": "FITTED",
+   "basis": "S1, S2, H1"
+  },
+  {
+   "link": "F18e",
+   "what": "the verdict by the declared rule: UNDECIDED",
+   "status": "OPEN",
+   "basis": "V1, V2"
+  },
+  {
+   "link": "F18f",
+   "what": "for the chain: at face value KiDS itself, read as a static Lagrangian profile, demands R0 = 1.65-2.26 Mpc for the stack / LG centrals -- above the chain's own 1.24/1.28 (stack) and 1.53/1.52 (LG) (FP12), so the chain's R0 overshoot is not a refutation of its outer profile by this pair; after the systematics the reconciled target is R0 ~ 1.03-1.13 Mpc with the LV centrals' lensing beyond 0.3 Mpc -0.54 to -0.48 dex from B21's published bins, of which -0.25 to -0.18 dex is the measured spiral-vs-mixed (red/blue) difference at fixed M* -- a type dependence the chain's universal law does not produce; the rest are measurement systematics that would move the chain's own KiDS target too",
+   "status": "CONSTRAINT",
+   "basis": "F2, S, D1, FP12"
+  },
+  {
+   "link": "F18g",
+   "what": "the escape for a field (non-Lagrangian) theory: an outer pull weaker over the flow's history than its lensing today; with the stack's KiDS profile (Lagrangian R0 1.88, Eulerian-static 1.73) R0 = 0.93 needs the outer mass to switch on only after z_on = 0.14, later than KiDS's own lenses (<z> = 0.25) -- the same z_on FP12 found for the chain",
+   "status": "CONSTRAINT",
+   "basis": "D1, FP12 U2"
+  },
+  {
+   "link": "F18h",
+   "what": "open: the deciding measurement is like-for-like -- the lensing Delta Sigma(0.3-1.5 Mpc) of spectroscopically isolated SPIRAL centrals at M_gal ~ 10^10.4-10.8 (the LV analogs; the record holds the KiDS-1000 shear catalogue and a re-measurement pipeline, reviews/lensing_rar/lr_esd_remeasure.py), and on the flow side R0 with its bootstrap error plus a group bulk-flow model for the companion velocities",
+   "status": "OPEN",
+   "basis": "S, H1"
+  },
+  {
+   "link": "F18i",
+   "what": "the record's KiDS lead-grade projection (FP6 esd_of_M, used by FP6/FP9/FP11/FP12's KiDS numbers) under-projects: on a singular isothermal sphere it is -59% at 35 kpc, -10% at 0.3 Mpc, -5% at 0.76 Mpc, -14% at 2.6 Mpc (this lane's exact projection: < 0.5%); those lanes' KiDS chi2 are not re-scored here",
+   "status": "OPEN",
+   "basis": "K2, K2b"
+  }
+ ],
+ "n_checks": 20,
+ "n_fail_load_bearing": 0,
+ "elapsed_s": 171
+}

@@ -1,0 +1,305 @@
+FP18 -- IS THE KiDS-VERSUS-R0 PINCER IN THE DATA ITSELF?  A data-only test, with no theory in between: can ONE static
+spherical mass profile fit both KiDS-1000's isolated-lens lensing and the Local Volume's Hubble-flow zero-velocity radius?
+
+WHY.  FP12 found the chain's law overshoots the zero-velocity radius R0 of the Local Group (LG), M81 and IC 342 by +0.20 dex
+and the 14-group stack by +0.12-0.14 dex, while it fits KiDS's isolated lenses; cutting its phantom beyond ~0.3 Mpc to fix
+R0 costs KiDS d chi^2 = +346.  If NO mass profile at all can fit both datasets, the pincer is a tension between two
+datasets that every theory inherits (LCDM included), and it does not refute the chain's outer profile in particular.  If one
+profile fits both, the pair refutes the chain's outer profile and describes the target its action must produce.
+
+THE DATA (each read at its source for this lane; none quoted from memory)
+  (a) Brouwer et al. 2021, A&A 650, A113 (arXiv:2106.11677; files real_research/data/lensing_rar/brouwer2021_rar, README
+      read): Fig. 3's excess surface density Delta Sigma(R) of ISOLATED KiDS-bright lenses in four stellar-mass bins,
+      log M*/(h70^-2 Msun) = [8.5, 10.3, 10.6, 10.8, 11.0], mean log M_gal (stars + cold gas) = 10.14, 10.57, 10.78, 10.96
+      (Fig. 3 panel labels; Sect. 5.5); R = PROPER transverse separation (Sect. 3.1: "we compute Delta Sigma(R) as a function
+      of proper transverse separation R"), 0.035-2.6 h70^-1 Mpc, 15 bins; ESD and covariance divided by the multiplicative
+      bias (README); H0 = 70 (WMAP9: Om 0.2793); lenses 0.1 < z < 0.5, <z> = 0.25 (Sect. 3.3); isolation: no neighbour
+      with > 10% of the lens's M* within 3 h70^-1 Mpc, M* < 1e11; App. A / Fig. A.3: photometric-redshift errors let
+      non-isolated lenses in, so at
+      R > 0.3 h70^-1 Mpc the ESD is ~30% above that of truly isolated galaxies (MICE); stellar masses carry a >= 0.2 dex
+      systematic (Sects. 3.3, 5.2); M_gal = M* (1 + f_cold), log f_cold = -0.69 log M* + 6.63 (Boselli+14, their Eq. 23);
+      early/late types differ (Sect. 5.4, Fig. 8; files Fig-8_*: colour split u - r = 2.5).  The binned covariance is
+      stored in (m, n, i, j) order: a plain reshape is NOT positive definite (the record's 2026-09-03 correction,
+      ccnl_clock_fix_2026.py; hunt_2026/h113 "bug pattern 4"); the corrected order is reshape(4,4,15,15).transpose(0,2,1,3).
+  (b) Kashibadze & Karachentsev 2018, A&A 609, A11 (arXiv:1709.09420v2): R0 from a fit of their eq. (14),
+      V(R) = H0 R - H0 R0 (R0/R)^(1/2), to galaxies around a group (barycentre frame, "minor attractor" velocities, free H0);
+      the 14-group STACK (Table 7: 66 companions of 11 groups): R0 = 0.93 +- 0.02 Mpc, H0 = 85 +- 2, sigma_v = 57 km/s
+      (Sect. 6); the LG (Table 4: 35 galaxies): adopted R0 = 0.91 +- 0.05 Mpc (barycentre scan, Table 5: 0.83-0.99);
+      Table 8: the stack's R0 over centre/attractor choices, 0.71-1.03 Mpc; mass conversion eq. (4):
+      M_T = 1.95e12 (R0/Mpc)^3 Msun (Planck: Om 0.315, OL 0.685, H0 67.3; WMAP: 2.12); their errors come from "a Monte
+      Carlo ... assuming that distance errors ... ~5%" (Sect. 4).  Tables 4, 7 and 8 are transcribed below from the paper;
+      Table 6 is FP12's transcription (KK18_T6).
+  (c) FP12's other published R0 (read at source there): LG 0.96 +- 0.03 (Karachentsev+2009), M81 0.89 +- 0.05
+      (Karachentsev & Kashibadze 2006), IC 342 0.90 +- 0.10 (Karachentsev 2005, Table 11), Cen A 1.40 +- 0.11
+      (Karachentsev+2007); the groups' baryons (FP12 / k02, UNGC).
+  (d) the record's reconstruction of B21's isolated lens sample (real_research/data/lensing_rar/lr_lenses.npz, built by
+      real_research/reviews/lensing_rar/lr_esd_remeasure.py): per-bin red fractions (u - r split), used ONLY for the
+      galaxy-type systematic, after K6 checks that it reproduces B21's bin mean masses.
+
+CONVENTIONS (stated, as the published estimators use them)
+  * The spherical-infall relation with Lambda is K&K 2018's eq. (4) (point mass + Lambda, the shell turning around today):
+    M_T(<R0) = COEF R0^3.  COEF = 1.955e12 Msun Mpc^-3 is taken from the record's shell integrator (FP6 lg_R0: shells on
+    the Hubble flow from a = 0.02, point mass + Lambda, Planck 2018), which K3 checks against K&K's 1.95e12.  For an
+    extended profile the zero-velocity shell encloses a fixed (Lagrangian) mass, so R0 is the OUTERMOST radius where
+    M_tot(<R) = COEF R^3 -- the published convention; the Eulerian readings (the profile acting at every epoch, or
+    switched on late) are the D section's systematic.
+  * M_tot = the lensing excess mass + the mean matter inside R (Planck, z = 0); lensing measures excess over the mean.
+  * "Static": the proper-radius profile at the lenses' z ~ 0.25 is the profile at z = 0 (the epoch systematic prices it).
+  * Matching: an LV system is compared with the KiDS profile at its central galaxy's M_gal (mapping (i): M* = 0.6 L_K from
+    K&K Table 6 (their M* = L_K, FP12 K8), plus B21's own Boselli cold gas), interpolated linearly in log M_gal between
+    the bin means (the covariance follows the same linear combination; no extrapolation beyond 10.14-10.96).  Mapping (ii)
+    (the group's total baryons, FP12/k02) is reported.  (i) is the conservative one: companions only ADD mass.
+
+THE TEST.  For each LV system, the joint statistic T = min over profiles [chi2_KiDS + chi2_R0] - min over profiles
+  [chi2_KiDS], for (1) the FREE profile -- any non-negative spherical density (26 uniform shells, 0-10 Mpc: the family-
+  agnostic answer; "relaxed" imposes only M(<R0) <= COEF R0^3 and is a rigorous LOWER bound on T, "full" imposes the exact
+  outermost-crossing definition of R0), and (2) four parametric families: NFW (+ the galaxy; c free = LCDM's one-halo),
+  NFW + two-halo (LCDM standard: Duffy+08 c(M), Tinker+10 bias, linear xi), truncated isothermal, the chain's baryons +
+  phantom (FP9's (H_Y) at z = 0.25) with a free outer cut, a free piecewise power law.  The B section proves and applies the
+  model-independent bound that drives everything: for any non-negative spherical excess density, Delta Sigma(R) <=
+  M(<R)/(pi R^2), i.e. KiDS measures a LOWER bound M(<R) >= pi R^2 Delta Sigma(R) with no profile assumed.
+  R0 ERRORS: the published estimator is re-run on the published tables (K4 reproduces K&K's stack fit); a bootstrap over
+  galaxies gives the statistical error from the velocity scatter, which K&K's distance-only Monte Carlo omits; the
+  "honest" error is the bootstrap and the quoted error in quadrature.  Both are reported; the rule uses the honest one.
+  COMPARABILITY SYSTEMATICS (nuisances, priors declared here): galaxy type (the LV centrals are mostly spirals; KiDS's high-
+  mass bins are mostly red): log t ~ N(log t_db, 0.08 dex) about the data-based late-type factor t_db (B21's blue/red
+  contrast x the bins' red fractions x the system's late-type fraction); photometric-redshift isolation leakage at
+  R > 0.3 Mpc: log l <= 0, half-normal 0.114 dex (= B21's 30%); the stellar-mass scale: N(0, 0.2 dex); the R0 method:
+  N(0, 0.05 dex); the eq. (4) coefficient: N(0, 0.04 dex) (Planck 1.95 vs WMAP 2.12); epoch + h: N(0, 0.045 dex) on the
+  lensing mass (static to +-10%, h 0.674-0.73).  All shared between systems.
+
+RULE (fixed before this lane's committed run; it was designed after exploratory runs on the same data, so its priors are
+  anchored to the published systematic sizes, not to any outcome).  The primary joint sample is K&K 2018's STACK and their
+  LG (independent galaxy sets, one paper, one method), mapping (i), the full published radial range, the free profile with
+  the exact R0 definition, honest R0 errors, dof = 2:
+    COMPATIBLE   if T_nominal (no systematics) <= 5.99 (p >= 0.05): one profile fits both at face value.
+    IN TENSION   if T_profiled (every comparability systematic profiled under its prior) > 11.83 (p < 0.0027, 3 sigma),
+                 with the published KiDS covariance AND with it inflated by sqrt(chi2/dof) of the NFW fit.
+    UNDECIDED    otherwise: the published data disagree but the comparability systematics can absorb it.
+  Reported, not in the rule: every other system; mapping (ii); the quoted R0 errors; each systematic alone at its edge; the
+  extreme corner (every flat systematic at its bound at once); R <= 0.3 Mpc only (B21's range for analytic models); a
+  comoving reading; the direct Hubble-diagram test (the companions' velocities against the KiDS-implied flow); LCDM's own
+  fit; the Eulerian dynamics readings.
+
+  *** MUTATE=1: every published R0 is shifted by +0.3 dex (the face-value offset); V1 must FAIL, the verdict must turn COMPATIBLE ***
+
+======================================================================================================================
+K  CONTROLS: the covariance, the projection, the infall relation, K&K's fit, the chain's phantom, the lens sample, the bound
+======================================================================================================================
+  [PASS] K1 CONTROL: the Fig-3 covariance in its (m,n,i,j) order is positive definite with diagonal = the published errors^2; the plain reshape is indefinite (the record's corrected bug, exhibited)
+         measured: corrected: min eigenvalue +1.259e-02, max |sqrt(diag)/error - 1| = 4.4e-05; plain reshape: min eigenvalue -6.421e+01
+  [PASS] K2 CONTROL: this lane's uniform-shell projection reproduces the analytic NFW Delta Sigma (Wright & Brainerd 2000) and the singular isothermal sphere's V^2/(4 G R) at the 15 KiDS radii
+         measured: NFW (M200 0.5/3/10e12, c 8/4/2): max dev 5.23e-03; SIS: max dev 3.30e-03
+  [PASS] (reported) K2b (reported) SIDE FINDING: FP6's committed esd_of_M (L341 F7's 'lead grade' Abel matrix, used by FP6/FP9/FP12's KiDS gates) UNDER-projects: on the same SIS it is low by tens of per cent inside 0.1 Mpc and by ~5-14% at 0.3-2.6 Mpc (a trapezoid over the Abel singularity plus the inner-mass approximation); this lane does not use it
+         measured: R 0.04: -58.6%, R 0.07: -34.0%, R 0.12: -19.4%, R 0.22: -11.7%, R 0.41: -7.4%, R 0.76: -4.9%, R 1.41: -3.6%, R 2.60: -13.9%
+  [PASS] K3 CONTROL: the spherical-infall relation with Lambda -- the record's shell integrator (FP6 lg_R0: point mass + Lambda, Planck 2018, shells from the Hubble flow at a = 0.02) gives M/R0^3 equal to K&K 2018 eq. (4)'s 1.95e12 Msun/Mpc^3
+         measured: M/R0^3 = 1.9553, 1.9553, 1.9553 e12 (exactly self-similar); K&K eq. (4) 1.95 (Planck), 2.12 (WMAP); deviation +0.27%
+  [PASS] K4 CONTROL: the transcribed K&K 2018 Table 7 (66 companions, barycentre frame, minor attractor) reproduces their stack fit with their eq. (14), V = H0 R - H0 R0 (R0/R)^(1/2), free H0, errors from their 5%-distance Monte Carlo
+         measured: R0 = 0.952 (MC 0.927 +- 0.025), H0 = 86.5 (MC 85.0 +- 1.7), sigma_v = 58.3 km/s vs published 0.93 +- 0.02, 85 +- 2, 57
+  [PASS] K5 CONTROL: the chain-shaped family uses FP9's (H_Y) phantom at z = 0.25 -- FP6's kids_class with FP9's constants reproduces FP9/FP12's committed KiDS lead grade
+         measured: -2.4024 vs FP12 -2.4024 (canonical)
+  [PASS] (reported) K6 CONTROL: the record's reconstruction of B21's isolated lenses (lr_lenses.npz; its own isolation window and colour split) reproduces B21's four bin mean masses -- so its per-bin red fractions can price the galaxy-type systematic
+         measured: log <M_gal> 10.137, 10.569, 10.773, 10.947 vs B21 10.14, 10.57, 10.78, 10.96 (max dev 0.013); red fractions 0.12, 0.46, 0.65, 0.76
+  [PASS] K7 CONTROL: the bound Delta Sigma(R) <= M(<R)/(pi R^2) holds for any non-negative spherical excess density (each shell outside R contributes -(M_s/pi R^2)(1-s)^2/(2s) <= 0, s = sqrt(1 - R^2/r_s^2)) -- 2000 random profiles; the most negative allowed outside (a complete void, excess = -rho_m, 1-20 Mpc) raises Delta Sigma(1.04 Mpc) by only
+         measured: max[pi R^2 Delta Sigma - M(<R)] = +1.78e-15 (1e12 Msun); void term +0.066 Msun/pc^2 (KiDS there: 1.3-3.2)
+    [2 s]
+
+======================================================================================================================
+E  THE R0 DATA: the published estimator re-run on the published tables -- bootstrap vs quoted errors
+======================================================================================================================
+    stack (Table 7, 66): eq. 14 fit R0 0.952, H0 86.5, sigma_v 58.3; bootstrap over companions +-0.115 (16-84: 0.833-1.054); 5%-distance MC +-0.025 (quoted +-0.02)
+    LG (Table 4): 14 MW/M31-disturbed: R0 0.959, H0 85.3, sigma_v 27.9, bootstrap +-0.099 (K&K quote 0.85 +- 0.03, H0 79, sigma 23); all 35: R0 1.019, H0 93.4, sigma_v 43.2, bootstrap +-0.081 (K&K 0.95 +- 0.03, 90, 42); adopted 0.91 +- 0.05
+    FP12's fit form V = H R [1 - (R0/R)^(1/2)] on the same Table 7: R0 0.724, H 140 -- not K&K's eq. (14) (which is V = H R [1 - (R0/R)^(3/2)]); FP12's R1/V5 'eq.14' numbers used it (non-load-bearing there)
+    honest errors (bootstrap (+) quoted): stack +-0.117, LG +-0.111 Mpc; M81 / IC 342 / Cen A: quoted only (no tables here)
+      stack   R0 = 1.856  quoted +-0.040  honest +-0.233   M_T(<R0) = 12.49e12   (K&K 2018 stack (Table 7, BC minor))
+      LG      R0 = 1.816  quoted +-0.100  honest +-0.221   M_T(<R0) = 11.70e12   (K&K 2018 LG (adopted))
+      LG_K09  R0 = 1.915  quoted +-0.060  honest +-0.221   M_T(<R0) = 13.74e12   (Karachentsev+2009)
+      M81     R0 = 1.776  quoted +-0.100  honest    --   M_T(<R0) = 10.95e12   (Karachentsev & Kashibadze 2006)
+      IC342   R0 = 1.796  quoted +-0.200  honest    --   M_T(<R0) = 11.32e12   (Karachentsev 2005 Tab.11)
+      CenA    R0 = 2.793  quoted +-0.219  honest    --   M_T(<R0) = 42.62e12   (Karachentsev+2007)
+  [PASS] (reported) E1 (reported) THE PUBLISHED R0 ERRORS OMIT THE VELOCITY SCATTER: K&K's quoted errors are reproduced by their distance-only Monte Carlo; the bootstrap over galaxies (the same estimator, the same tables) is 4-6x larger
+         measured: stack: quoted 0.02, distance-MC 0.025, bootstrap 0.115; LG(14): quoted 0.03-0.05, bootstrap 0.099; LG(35) bootstrap 0.081; FP12's fit form gives R0 0.72 on the stack (not eq. 14)
+         reading:  the R0 values stand; their significance does not -- FP12's sigma for the LG / stack used the quoted errors
+    [3 s]
+
+======================================================================================================================
+M  THE MATCHING: which KiDS lenses are the LV systems' analogs (the M* -> M_b mapping, gas, type)
+======================================================================================================================
+    stack   mapping (i) central M_gal 10.70 (bins 0.07, 0.33, 0.57, 0.03), (ii) group total 10.80; late-type fraction 0.80; t_db (R < / > 0.3 Mpc) 0.86 / 0.78
+    LG      mapping (i) central M_gal 10.67 (bins 0.00, 0.60, 0.40, 0.00), (ii) group total 10.96; late-type fraction 1.00; t_db (R < / > 0.3 Mpc) 0.78 / 0.65
+    LG_K09  mapping (i) central M_gal 10.67 (bins 0.00, 0.60, 0.40, 0.00), (ii) group total 10.96; late-type fraction 1.00; t_db (R < / > 0.3 Mpc) 0.78 / 0.65
+    M81     mapping (i) central M_gal 10.80 (bins 0.00, 0.00, 0.91, 0.09), (ii) group total 10.96; late-type fraction 1.00; t_db (R < / > 0.3 Mpc) 0.75 / 0.60
+    IC342   mapping (i) central M_gal 10.73 (bins 0.00, 0.31, 0.69, 0.00), (ii) group total 10.96; late-type fraction 1.00; t_db (R < / > 0.3 Mpc) 0.77 / 0.63
+    CenA    mapping (i) central M_gal 10.75 (bins 0.00, 0.18, 0.82, 0.00), (ii) group total 10.96; late-type fraction 0.00; t_db (R < / > 0.3 Mpc) 1.15 / 1.24
+    the stack's centrals, (i): M81 10.80, CenA/M83 10.74, Maffei2/IC342 10.72, NGC253 10.82, NGC4826 10.40, NGC4736 10.46, M101 10.65, NGC4258 10.77, NGC6744 10.76, NGC2683 10.67, NGC3379 10.77; cold gas as B21 (Boselli) vs the UNGC's 1.33 M_HI: companion-weighted shift -0.054 dex; Upsilon_K 0.5 / 1.0 instead of 0.6: -0.079 / +0.222 dex
+    red fractions of B21-like isolated lenses per bin (K6): 0.12, 0.46, 0.65, 0.76; B21's blue/red contrast (Fig. 8): 0.66 (R < 0.3 Mpc), 0.50 (R > 0.3 Mpc)
+
+======================================================================================================================
+B  THE MODEL-INDEPENDENT BOUND: KiDS gives M(<R) >= pi R^2 Delta Sigma(R) for ANY non-negative spherical profile
+======================================================================================================================
+    bin (log M_gal)    R= 0.22 R= 0.30 R= 0.41 R= 0.56 R= 0.76 R= 1.04 R= 1.41   [1e12 Msun, +-1 sigma]
+    bin 1 (10.14)       0.6+0.2  0.5+0.3  0.8+0.3  1.9+0.5  3.8+0.7  4.3+0.9  4.5+1.3
+    bin 2 (10.57)       1.8+0.2  2.2+0.3  3.5+0.5  3.5+0.6  5.2+0.9  9.0+1.2  6.9+1.7
+    bin 3 (10.78)       1.2+0.3  2.9+0.4  3.0+0.5  5.3+0.7  6.4+0.9  9.9+1.3 10.6+1.8
+    bin 4 (10.96)       2.7+0.3  2.7+0.4  4.2+0.5  6.1+0.7  7.2+0.9 10.6+1.3 15.0+1.8
+    the Hubble-flow systems: the TOTAL mass inside R0 (eq. 4) minus the mean = the most excess mass allowed inside R0:
+      stack   R0 1.86: M_exc(<R0) <= 11.44; KiDS at its M_gal 10.70 (mapping i) needs >= 9.13 +- 1.17 already inside R = 1.41 (-2.0 sigma, one point)
+      LG      R0 1.82: M_exc(<R0) <= 10.71; KiDS at its M_gal 10.67 (mapping i) needs >= 9.33 +- 0.90 already inside R = 1.04 (-1.5 sigma, one point)
+      LG_K09  R0 1.92: M_exc(<R0) <= 12.58; KiDS at its M_gal 10.67 (mapping i) needs >= 11.73 +- 1.72 already inside R = 1.92 (-0.5 sigma, one point)
+      M81     R0 1.78: M_exc(<R0) <= 10.02; KiDS at its M_gal 10.80 (mapping i) needs >= 11.00 +- 1.65 already inside R = 1.41 (+0.6 sigma, one point)
+      IC342   R0 1.80: M_exc(<R0) <= 10.36; KiDS at its M_gal 10.73 (mapping i) needs >= 9.48 +- 1.35 already inside R = 1.41 (-0.7 sigma, one point)
+      CenA    R0 2.79: M_exc(<R0) <= 39.01; KiDS at its M_gal 10.75 (mapping i) needs >= 11.36 +- 2.87 already inside R = 2.60 (-9.6 sigma, one point)
+  [FAIL] (reported) B1 (reported) THE BOUND AGAINST THE FLOW: at face value KiDS's isolated lenses of the LV centrals' mass hold more excess mass inside ~0.5-0.8 Mpc than eq. (4) allows inside the whole R0 of the LV groups -- with no profile assumed
+         measured: stack (M_gal 10.70): KiDS M(<0.56) >= 4.46, M(<0.76) >= 5.86 vs <= 11.44 inside R0 = 1.86; even bin 1 (M_gal 10.14): M(<0.76) >= 3.76 +- 0.66
+    [3 s]
+
+======================================================================================================================
+F1  THE FREE PROFILE (any non-negative spherical density): the minimum joint penalty T, system by system
+======================================================================================================================
+    system   map    R0 |  T quoted (relaxed/full) |  T honest (relaxed/full) |  R0 the fit moves to | KiDS M_gal
+    stack    i    1.86 |       1.8 /       1.8   |       0.3 /       0.3   |   1.87 /  1.97     | 10.70
+    stack    ii   1.86 |       0.8 /        --   |       0.2 /        --   |   1.86 /  1.95     | 10.80
+    LG       i    1.82 |       0.6 /       0.6   |       0.3 /       0.3   |   1.86 /  1.89     | 10.67
+    LG       ii   1.82 |       3.2 /        --   |       0.9 /        --   |   1.98 /  2.01     | 10.96
+    LG_K09   i    1.92 |       0.1 /       0.1   |       0.1 /       0.1   |   1.92 /  1.94     | 10.67
+    LG_K09   ii   1.92 |       1.6 /        --   |       0.5 /        --   |   1.97 /  2.07     | 10.96
+    M81      i    1.78 |       7.1 /       7.1   |                    --   |   1.95 /    --     | 10.80
+    M81      ii   1.78 |       4.4 /        --   |                    --   |   1.93 /    --     | 10.96
+    IC342    i    1.80 |       1.5 /       1.5   |                    --   |   2.00 /    --     | 10.73
+    IC342    ii   1.80 |       1.5 /        --   |                    --   |   2.03 /    --     | 10.96
+    CenA     i    2.79 |       0.0 /       0.0   |                    --   |   2.79 /    --     | 10.75
+    CenA     ii   2.79 |       0.0 /        --   |                    --   |   2.75 /    --     | 10.96
+  [PASS] (reported) F1 (reported) THE FREE PROFILE, SYSTEM BY SYSTEM: the least joint penalty any non-negative spherical profile pays for the KiDS profile of the system's central mass and its R0 (face value: no comparability systematics)
+         measured: stack: 2 (quoted) / 0 (honest); LG: 1 (quoted) / 0 (honest); LG_K09: 0 (quoted) / 0 (honest); M81: 7 (quoted) / --; IC342: 1 (quoted) / --; CenA: 0 (quoted) / --; primary joint (stack + LG, honest) 0.6
+    [4 s]
+
+======================================================================================================================
+S  THE COMPARABILITY SYSTEMATICS: one at a time, profiled under their priors, the extreme corner, the variants
+======================================================================================================================
+    covariance inflation sqrt(chi2_NFW / 13): stack 1.22, LG 1.01, LG_K09 1.01, M81 1.27, IC342 1.20, CenA 1.24
+    type contrast (B21 Fig. 8, colour, M*-matched): blue/red = 0.660 +- 0.061 (R < 0.3 Mpc; -0.181 dex vs B21's quoted -0.19), 0.497 +- 0.044 (R > 0.3 Mpc)
+    data-based late-type factor t_db (in/out) per system: stack 0.86/0.78, LG 0.78/0.65, LG_K09 0.78/0.65, M81 0.75/0.60, IC342 0.77/0.63, CenA 1.15/1.24
+    isolation: GAMA (spectroscopic) / KiDS (photometric) isolated ESD = 0.75 +- 0.13 at R > 0.3 Mpc, 1.09 +- 0.15 inside (B21's MICE: 1/1.30 = 0.77 beyond 0.3)
+    group-like environments: ALL lenses / isolated lenses (Fig. A.4 / Fig. 9, R > 0.3 Mpc): bin 1 1.52 +- 0.18, bin 2 1.34 +- 0.10, bin 3 1.40 +- 0.09, bin 4 1.41 +- 0.07 -- the LV groups have companions, so the isolated profile UNDER-states them (the direction that deepens the tension)
+    one systematic at a time (relaxed T; honest R0 errors):  face value: stack 0.3, LG 0.3
+      type: data-based                                : stack    0.0, LG    0.0   joint    0.0
+      type: extreme (all-red bins, all-spiral LV)     : stack    0.0, LG    0.0   joint    0.0
+      leakage 1/1.3                                   : stack    0.0, LG    0.0   joint    0.0
+      M* scale -0.2 dex                               : stack    0.0, LG    0.0   joint    0.0
+      R0 method +0.05 dex                             : stack    0.0, LG    0.0   joint    0.0
+      eq.4 coefficient +0.04 dex                      : stack    0.0, LG    0.0   joint    0.0
+      epoch/h -0.045 dex                              : stack    0.0, LG    0.0   joint    0.0
+      KiDS errors inflated                            : stack    0.0, LG    0.0   joint    0.0
+  [FAIL] (reported) S1 (reported) EACH COMPARABILITY SYSTEMATIC ALONE (the data-based type factor applied, then one more at its edge): the primary joint T stays above 3 sigma under every single one
+         measured: type: data-based: 0.0; type: extreme (all-red bins, all-spiral LV): 0.0; leakage 1/1.3: 0.0; M* scale -0.2 dex: 0.0; R0 method +0.05 dex: 0.0; eq.4 coefficient +0.04 dex: 0.0; epoch/h -0.045 dex: 0.0; KiDS errors inflated: 0.0
+    profiled (stack + LG, shared nuisances, full R0 definition): T = 0.03 (relaxed 0.03; prior penalty 0.00; parts stack 0.00, LG 0.02)
+      at: log t +0.000, log l +0.000, dM +0.000, log R0 +0.000, log coef +0.000, log s_z +0.000  (priors: 0.08, half 0.114, 0.2, 0.05, 0.04, 0.045 dex)
+    profiled with the inflated KiDS covariance: T = 0.03 (relaxed 0.03; penalty 0.00)
+    at the profiled optimum: stack: the free profile's R0 1.86 (max constraint violation 0.0e+00); an NFW fit to the adjusted KiDS data implies R0 1.69 vs the (shifted) flow's 1.86; the adjusted lensing beyond 0.3 Mpc is -0.11 dex from the published bins (galaxy type -0.11); LG: the free profile's R0 1.82 (max constraint violation 1.7e-16); an NFW fit to the adjusted KiDS data implies R0 1.53 vs the (shifted) flow's 1.82; the adjusted lensing beyond 0.3 Mpc is -0.19 dex from the published bins (galaxy type -0.19)
+    profiled per system (full; M81 / IC 342 / Cen A with their quoted errors): stack 0.0, LG 0.0, M81 0.0, IC342 0.0, CenA 0.0, LG_K09 0.0
+    extreme corner (type at blue/red, leakage at 1/1.3, the Gaussian ones profiled): T = 0.03 at dM +0.00, log R0 -0.000
+    R <= 0.3 Mpc only (B21's range for analytic models): face value stack 0.0, LG 0.0 (quoted R0 errors: stack 0.0, LG 0.0); with t_db stack 0.0, LG 0.0; profiled joint 0.03
+    comoving reading (B21 state proper): face value stack 0.3, LG 0.4 (vs proper stack 0.3, LG 0.3)
+    epoch: the chain's own phantom grows from z = 0.25 to 0 by x1.01 at 0.3 Mpc, x1.02 at 0.56 Mpc, x1.04 at 0.76 Mpc, x1.07 at 1.0 Mpc -- growth, like LCDM's accretion, DEEPENS the tension; the static assumption is the conservative side
+  [PASS] (reported) S2 (reported) THE SYSTEMATICS TOGETHER: profiled jointly under their priors they absorb most of the face-value disagreement
+         measured: primary joint T: face value 0.6 -> profiled 0.03 (inflated 0.03); extreme corner 0.03; R <= 0.3 Mpc profiled 0.03; per system stack 0.0, LG 0.0, M81 0.0, IC342 0.0, CenA 0.0, LG_K09 0.0
+         reading:  the nuisances at the optimum: type +0.00 dex beyond t_db, leakage +0.00, M* +0.00, R0 +0.000, coefficient +0.000, epoch +0.000 dex -- each within ~0.0 sigma, all in the same direction
+    [123 s]
+
+======================================================================================================================
+F2  THE PROFILE FAMILIES (face value, mapping (i), honest R0 errors): KiDS alone, the implied R0, and the joint fit
+======================================================================================================================
+    system profile    | chi2_K alone R0 implied | joint chi2_K  chi2_R0    joint | d chi2_PG        p | fits both?
+    stack  NFW        |         19.4       1.88 |         19.4      0.0     19.4 |       0.0  9.1e-01 | yes
+    stack  NFW+2h     |        109.7       1.94 |        109.7      0.1    109.9 |       0.1  7.2e-01 | yes
+    stack  TIS        |         62.7       1.89 |         62.7      0.0     62.7 |       0.0  8.8e-01 | yes
+    stack  chain+cut  |         16.3       1.75 |         16.3      0.2     16.5 |       0.2  6.7e-01 | yes
+    stack  PPL        |          9.3       2.26 |          9.8      0.4     10.2 |       0.9  3.3e-01 | yes
+    stack  free       |          0.0         -- |          0.0      0.2      0.3 |       0.3  5.8e-01 | yes
+    LG     NFW        |         13.3       1.85 |         13.3      0.0     13.3 |       0.0  8.8e-01 | yes
+    LG     NFW+2h     |         96.3       1.93 |         96.3      0.2     96.5 |       0.2  6.2e-01 | yes
+    LG     TIS        |         52.1       1.65 |         52.1      0.5     52.7 |       0.6  4.6e-01 | yes
+    LG     chain+cut  |         11.6       1.75 |         11.6      0.1     11.7 |       0.1  7.6e-01 | yes
+    LG     PPL        |          6.9       2.05 |          7.2      0.2      7.4 |       0.5  4.9e-01 | yes
+    LG     free       |          0.0         -- |          0.2      0.1      0.3 |       0.3  5.8e-01 | yes
+  [FAIL] (reported) F2 (reported) THE FAMILIES AT FACE VALUE: no family fits both the KiDS profile and the published R0 of the stack or the LG; each family's KiDS-alone fit implies an R0 well above the flow's
+         measured: stack/NFW: d chi2_PG 0.0 (R0 implied 1.88); stack/NFW+2h: d chi2_PG 0.1 (R0 implied 1.94); stack/TIS: d chi2_PG 0.0 (R0 implied 1.89); stack/chain+cut: d chi2_PG 0.2 (R0 implied 1.75); stack/PPL: d chi2_PG 0.9 (R0 implied 2.26); stack/free: d chi2_PG 0.3; LG/NFW: d chi2_PG 0.0 (R0 implied 1.85); LG/NFW+2h: d chi2_PG 0.2 (R0 implied 1.93); LG/TIS: d chi2_PG 0.6 (R0 implied 1.65); LG/chain+cut: d chi2_PG 0.1 (R0 implied 1.75); LG/PPL: d chi2_PG 0.5 (R0 implied 2.05); LG/free: d chi2_PG 0.3
+    [126 s]
+
+======================================================================================================================
+L  LCDM's OWN FIT TO BOTH (NFW + galaxy, c free; and the LCDM standard NFW + two-halo with Duffy c(M), Tinker bias)
+======================================================================================================================
+    stack/NFW: KiDS alone chi2 19.4/13 (M200 2.66e12, c 1.75) -> R0 1.88 vs 1.86 +- 0.23; joint d chi2 0.0
+    stack/NFW+2h: KiDS alone chi2 109.7/14 (M200 1.93e12, c 5.31) -> R0 1.94 vs 1.86 +- 0.23; joint d chi2 0.1
+    LG/NFW: KiDS alone chi2 13.3/13 (M200 2.58e12, c 1.81) -> R0 1.85 vs 1.82 +- 0.22; joint d chi2 0.0
+    LG/NFW+2h: KiDS alone chi2 96.3/14 (M200 1.88e12, c 5.33) -> R0 1.93 vs 1.82 +- 0.22; joint d chi2 0.2
+  [FAIL] (reported) L1 (reported) LCDM INHERITS THE FACE-VALUE PINCER: its halos fitted to KiDS's isolated lenses turn around at R0 ~ 1.6-2 Mpc (Lagrangian infall), not at the LV's 0.9 Mpc; fitted jointly it pays the same penalty as the free profile
+         measured: stack/NFW: KiDS alone chi2 19.4/13 (M200 2.66e12, c 1.75) -> R0 1.88 vs 1.86 +- 0.23; joint d chi2 0.0; stack/NFW+2h: KiDS alone chi2 109.7/14 (M200 1.93e12, c 5.31) -> R0 1.94 vs 1.86 +- 0.23; joint d chi2 0.1; LG/NFW: KiDS alone chi2 13.3/13 (M200 2.58e12, c 1.81) -> R0 1.85 vs 1.82 +- 0.22; joint d chi2 0.0; LG/NFW+2h: KiDS alone chi2 96.3/14 (M200 1.88e12, c 5.33) -> R0 1.93 vs 1.82 +- 0.22; joint d chi2 0.2
+    [126 s]
+
+======================================================================================================================
+D  THE DYNAMICS READING: Lagrangian (the published convention) vs the profile acting at every epoch vs switched on late
+======================================================================================================================
+    the stack's KiDS NFW profile: Lagrangian R0 1.88; Eulerian-static (the profile in place from a = 0.02) 1.73; R0 = 1.86 needs the outer mass switched on only after z_on = nan (baryons alone before)
+  [FAIL] (reported) D1 (reported) THE DYNAMICS READING: an Eulerian (field) reading lowers R0 for the same present profile, but reaching the flow's R0 needs the outer mass to appear only at z < z_on, below KiDS's own lens epoch (0.1 < z < 0.5, <z> = 0.25)
+         measured: Lagrangian 1.88, Eulerian-static 1.73, z_on nan (KiDS lenses at <z> = 0.25)
+         reading:  the one escape the data leave a non-Lagrangian theory: an outer pull that is weaker over the flow's history than its lensing today (FP12 found z_on = 0.14-0.22 with the chain's own law)
+    [128 s]
+
+======================================================================================================================
+H  THE DIRECT HUBBLE DIAGRAM: the published companions' velocities against the flow the KiDS profile implies
+======================================================================================================================
+    face value                        : stack d chi2  +194.2 (H_loc 131; 26/66 predicted infalling), LG(14) d chi2  +153.5 (H_loc 35); goodness of fit chi2 423.7/78 (p 5.6e-49)
+    type db                           : stack d chi2  +122.1 (H_loc 137; 22/66 predicted infalling), LG(14) d chi2   +97.4 (H_loc 96); goodness of fit chi2 295.4/78 (p 4.9e-27)
+    type db + leakage 1/1.3           : stack d chi2   +77.7 (H_loc 139; 19/66 predicted infalling), LG(14) d chi2   +68.2 (H_loc 113); goodness of fit chi2 221.9/78 (p 9.7e-16)
+    extreme type + leakage            : stack d chi2   +44.3 (H_loc 136; 15/66 predicted infalling), LG(14) d chi2   +35.6 (H_loc 125); goodness of fit chi2 155.8/78 (p 4.0e-07)
+    extreme + M* -0.2 + epoch -0.045  : stack d chi2   +11.4 (H_loc 125; 9/66 predicted infalling), LG(14) d chi2    +7.2 (H_loc 122); goodness of fit chi2 94.6/78 (p 9.7e-02)
+    profiled                          : stack d chi2    +2.5 (H_loc 115; 3/66 predicted infalling), LG(14) d chi2    +0.1 (H_loc 110); goodness of fit chi2 86.3/78 (p 2.4e-01)
+    profiled, H fixed                 : stack d chi2   +15.2 (H_loc 86; 1/66 predicted infalling), LG(14) d chi2    +3.3 (H_loc 85); goodness of fit chi2 108.8/78 (p 1.2e-02)
+      eq. 14's own fits: chi2 64.0 + 12.0 (sigma_v 58 / 28 km/s, the velocity errors used here); profiled at log t -0.110, log l -0.133, dM -0.364, log coef +0.028, log s_z -0.034 (penalty 7.6); with H held at the flow's own point-mass value (86 / 85) at log t -0.118, log l -0.162, dM -0.500, log coef +0.071, log s_z -0.038 (penalty 14.3)
+  [PASS] (reported) H1 (reported) THE VELOCITIES THEMSELVES, no R0 compression: the KiDS-implied flow (each companion's shell holding the KiDS mass of its group's centre, eq. 14 generalised, free local H) fails the published velocities at face value (p < 0.0027); with the systematics profiled it is no longer excluded at 3 sigma
+         measured: face value: stack +194, LG +153 (p 6e-49); type db: stack +122, LG +97 (p 5e-27); type db + leakage 1/1.3: stack +78, LG +68 (p 1e-15); extreme type + leakage: stack +44, LG +36 (p 4e-07); extreme + M* -0.2 + epoch -0.045: stack +11, LG +7 (p 1e-01); profiled: stack +3, LG +0 (p 2e-01); profiled, H fixed: stack +15, LG +3 (p 1e-02)
+         reading:  caveats: sigma_v from the point-mass fit; coherent bulk flows of whole groups (K&K: the Local Void outflow) are not modelled; the local H is free -- the KiDS flow wants H_loc ~ 110-140 km/s/Mpc, against the flow's own point-mass fits (86 / 85) and the global 67-73; held at 86 / 85 the profiled test gives p 1e-02; the type/leakage factors scale the fitted NFW mass inside / beyond 0.3 Mpc (an approximation to refitting)
+    [129 s]
+
+======================================================================================================================
+V  THE VERDICT (the rule declared in the docstring)
+======================================================================================================================
+  [FAIL] V1 THE PUBLISHED DATA DISAGREE AT FACE VALUE: no non-negative spherical profile fits KiDS's isolated lenses (at the LV centrals' masses) together with K&K 2018's stack and LG zero-velocity radii (honest errors) -- T_nominal > 11.83 (p < 0.0027)
+         measured: T = 0.6 (stack 0.3, LG 0.3; p 7.4e-01, 0.3 sigma); with the quoted errors 2
+  [PASS] (reported) V2 (reported) THE VERDICT BY THE DECLARED RULE, and per system (1 dof: compatible if T_nominal <= 3.84, in tension if T_profiled > 9)
+         measured: primary (stack + LG): COMPATIBLE -- T_nominal 0.6 (0.3 sigma), T_profiled 0.03 (0.0 sigma), inflated 0.03 (0.0 sigma); per system: stack COMPATIBLE (0 -> 0.0), LG COMPATIBLE (0 -> 0.0), M81 UNDECIDED (7 -> 0.0), IC342 COMPATIBLE (1 -> 0.0), CenA COMPATIBLE (0 -> 0.0), LG_K09 COMPATIBLE (0 -> 0.0)
+
+======================================================================================================================
+W  THE LEDGER: FP18, the KiDS-vs-Hubble-flow pincer as a data-only test
+======================================================================================================================
+    F18a  DERIVED     the model-independent bound: for any non-negative spherical excess density Delta Sigma(R) <= M(<R)/(pi R^2), so KiDS's stacked lenses give M(<R) >= pi R^2 Delta Sigma(R) with no profile assumed (voids outside R change it by < 0.07 Msun/pc^2)  --  K7 (2000 random profiles), B1
+    F18b  CONSTRAINT  the published R0 errors omit the velocity scatter: K&K 2018's +-0.02 (stack) is their 5%-distance Monte Carlo (reproduced: +-0.025); the bootstrap of their own estimator on their own Table 7 gives +-0.12 (LG, Table 4: +-0.10); FP12's fit form V = H R [1 - (R0/R)^(1/2)] is not K&K's eq. (14) (it returns R0 = 0.72 on K&K's own table)  --  K4, E1
+    F18c  DERIVED     at face value NO static spherical profile fits KiDS's isolated lenses (at the LV centrals' masses) and the LV Hubble flow: T = 1 (stack + LG, honest R0 errors; 2 with the quoted ones); every family fails, LCDM's NFW(+2h) included (KiDS-fitted profiles turn around at R0 = 1.65-2.26 Mpc vs 0.91-0.93); the velocities themselves reject the KiDS-implied flow at p ~ 6e-49; within R <= 0.3 Mpc the two agree (T = 0.0 / 0.0) -- the disagreement lives at 0.3-2.6 Mpc, where B21 flag photo-z isolation  --  B1, F1, F2, L1, H1, S, V1
+    F18d  FITTED      the comparability systematics (galaxy type, photo-z isolation leakage, stellar-mass scale, R0 method, eq. 4 coefficient, epoch/h), profiled jointly under declared priors, bring the joint T to 0.0 (0.0 sigma; inflated covariance 0.0; extreme corner 0.0); each alone leaves it >= 0 (S1); at the optimum M* +0.00 dex, R0 +0.000 dex, type +0.00 dex beyond the data-based factor, leakage +0.00 dex; the direct velocity test agrees (profiled p = 0.24) but only with a local H ~ 115 km/s/Mpc -- held at the flow's own point-mass value it gives p = 1e-02  --  S1, S2, H1
+    F18e  FAILS       the verdict by the declared rule: COMPATIBLE  --  V1, V2
+    F18f  CONSTRAINT  for the chain: at face value KiDS itself, read as a static Lagrangian profile, demands R0 = 1.65-2.26 Mpc for the stack / LG centrals -- above the chain's own 1.24/1.28 (stack) and 1.53/1.52 (LG) (FP12), so the chain's R0 overshoot is not a refutation of its outer profile by this pair; after the systematics the reconciled target is R0 ~ 1.53-1.69 Mpc with the LV centrals' lensing beyond 0.3 Mpc -0.19 to -0.11 dex from B21's published bins, of which -0.19 to -0.11 dex is the measured spiral-vs-mixed (red/blue) difference at fixed M* -- a type dependence the chain's universal law does not produce; the rest are measurement systematics that would move the chain's own KiDS target too  --  F2, S, D1, FP12
+    F18g  CONSTRAINT  the escape for a field (non-Lagrangian) theory: an outer pull weaker over the flow's history than its lensing today; with the stack's KiDS profile (Lagrangian R0 1.88, Eulerian-static 1.73) R0 = 1.86 needs the outer mass to switch on only after z_on = nan, later than KiDS's own lenses (<z> = 0.25) -- the same z_on FP12 found for the chain  --  D1, FP12 U2
+    F18h  OPEN        open: the deciding measurement is like-for-like -- the lensing Delta Sigma(0.3-1.5 Mpc) of spectroscopically isolated SPIRAL centrals at M_gal ~ 10^10.4-10.8 (the LV analogs; the record holds the KiDS-1000 shear catalogue and a re-measurement pipeline, reviews/lensing_rar/lr_esd_remeasure.py), and on the flow side R0 with its bootstrap error plus a group bulk-flow model for the companion velocities  --  S, H1
+    F18i  OPEN        the record's KiDS lead-grade projection (FP6 esd_of_M, used by FP6/FP9/FP11/FP12's KiDS numbers) under-projects: on a singular isothermal sphere it is -59% at 35 kpc, -10% at 0.3 Mpc, -5% at 0.76 Mpc, -14% at 2.6 Mpc (this lane's exact projection: < 0.5%); those lanes' KiDS chi2 are not re-scored here  --  K2, K2b
+  [PASS] (reported) W (reported) the ledger of this lane
+         measured: 9 links
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  Joint fit table (face value, mapping (i), honest R0 errors; d chi2_PG = joint minimum - KiDS-alone minimum, 1 dof):
+    profile    |  chi2 KiDS (stack/LG) |  chi2 R0 (stack/LG) |  joint (stack/LG) |   d chi2_PG | verdict
+    NFW        |      19.4 /      13.3 |      0.0 /      0.0 |    19.4 /    13.3 |   0.0 /   0.0 | fits both
+    NFW+2h     |     109.7 /      96.3 |      0.1 /      0.2 |   109.9 /    96.5 |   0.1 /   0.2 | fits both
+    TIS        |      62.7 /      52.1 |      0.0 /      0.5 |    62.7 /    52.7 |   0.0 /   0.6 | fits both
+    chain+cut  |      16.3 /      11.6 |      0.2 /      0.1 |    16.5 /    11.7 |   0.2 /   0.1 | fits both
+    PPL        |       9.8 /       7.2 |      0.4 /      0.2 |    10.2 /     7.4 |   0.9 /   0.5 | fits both
+    free       |                   (any non-negative profile: minimum penalty) |   0.3 /   0.3 | fits both
+  VERDICT (declared rule): COMPATIBLE.  Face value T = 0.6 (0.3 sigma, honest errors); systematics profiled T = 0.03 (0.0 sigma), inflated covariance 0.03; extreme corner 0.03.
+  Per system (1 dof): stack COMPATIBLE (0 -> 0.0), LG COMPATIBLE (0 -> 0.0), M81 UNDECIDED (7 -> 0.0), IC342 COMPATIBLE (1 -> 0.0), CenA COMPATIBLE (0 -> 0.0), LG_K09 COMPATIBLE (0 -> 0.0).  Within R <= 0.3 Mpc the datasets agree at face value (T = 0.0 / 0.0); the disagreement lives at 0.3-2.6 Mpc.
+  The velocities without the R0 compression: face value p = 6e-49; profiled p = 0.24 with a free local H (115 / 110 km/s/Mpc), p = 0.012 with H held at the flow's own point-mass value.  LCDM (NFW c free): KiDS-fitted R0 1.88 / 1.85 Mpc -- the same face-value pincer.
+  Not 'closed'.  Time 129 s.
+
+  14/20 checks pass; load-bearing failures: 1; wrote FP18_kids_vs_hubble_flow_data_results_MUTATE.json
+rc=1
