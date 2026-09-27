@@ -1,0 +1,830 @@
+{
+ "lane": "FP4",
+ "mutate": true,
+ "fast": false,
+ "checks": {
+  "C0a CONTROL: L340's printed khronon mode speeds (c_2 = 0.00729/0.03/0.0667, C = 1/10/100) are reproduced from L340's own block (exec'd from its source), within the table's rounding": {
+   "ok": true,
+   "measured": "omega^2/k^2 = c_2/(C*(3*c_2 + 2)); max relative deviation 2.3e-04 over 9 entries",
+   "load_bearing": false
+  },
+  "C0b CONTROL: the loaded retention and flagship machinery reproduces AT1's committed z = 2.5 row (y_v 0.1, v_A 600 km/s, canonical, M_b 1e10.5, central gas, both kernels)": {
+   "ok": true,
+   "measured": "shift [0.001553, 0.001553] vs AT1 [0.001553, 0.001553]; max |dev| 0.0e+00 dex",
+   "load_bearing": false
+  },
+  "C0c CONTROL: MS3's committed intact-carrier cosmic-shear row (1.75 Mpc cap, door convention, both footings) is reproduced": {
+   "ok": true,
+   "measured": "max |dev| 0.0e+00",
+   "load_bearing": false
+  },
+  "A1 DERIVED: the clock carries no conserved charge -- n_m dn_n/d(d_m tau) = 0 identically, n is invariant under tau -> F(tau), and on FRW the clock's whole action is independent of the clock rate, so no condensate dust can be made of it (AeST's independent aether, by contrast, gives rho = Q0 mu^2 u)": {
+   "ok": false,
+   "measured": "contraction [0, 0, 0, 0]; FRW dL/d(tau-dot) = mu**2*(-Q_0*N(t) + f_p)/N(t)**2 / 0; AeST d rho/du = Q_0*mu**2",
+   "load_bearing": true
+  },
+  "A2 DERIVED: U, W, L and lambda_0 are constrained -- with lapse and shift kept, h^{tt} = h^{tx} = 0, their normal derivatives never enter the action, and the kinetic Hessian of the auxiliaries is identically zero": {
+   "ok": true,
+   "measured": "h^tt 0, h^tx 0; first derivatives [0, 0, 0, 0, 0]; Hessian zero True",
+   "load_bearing": true
+  },
+  "A3 DERIVED: the clock's one propagating mode is gapless, omega^2 = c_2 k^2/(C(2 + 3 c_2)) (L340's own block), so a gas of its quanta has p = rho/3 exactly (radiation, not the a^-3 dust the CMB needs) and moves at >= 1800 km/s wherever C <= 100 in L340's window -- >= 100x the forest's cold bound": {
+   "ok": true,
+   "measured": "p/rho = 1/3; slowest speed 1800 km/s vs forest 9.5 km/s (x189); needs C >= 3.6e+06 (y_b <= 7.8e-14) to be cold",
+   "load_bearing": true
+  },
+  "A4 the metric's own cold state (PBHs) is cold and multistreams, but it sources u like any matter (not kernel-invisible) and has no internal energy to convert (not kickable): with its full halo it fails X-COP, the galaxy gate and the flagship": {
+   "ok": true,
+   "measured": "X-COP 1.86/1.98; worst galaxy shift +0.445/+0.446 dex; flagship >= +0.86 dex",
+   "load_bearing": true
+  },
+  "A5 VERDICT A: no state of the core's fields (metric, clock, U, W, L, lambda_0) can be the cosmological dust or the clusters' missing mass; the minimal addition is ONE nearly free complex scalar (two real propagating fields) with ONE mass m >= 1.9-5.2e-19 eV, its amount initial data, kernel-invisible through L353's constrained pair (no new constant)": {
+   "ok": false,
+   "measured": "A1-A4 False; FL1 F1 True; XR8 nodes from 1.03 t_sc; L383 floor 1.9e-19-5.2e-19 eV",
+   "load_bearing": true
+  },
+  "B1 DERIVED (reciprocity): varying u in I_NR - rho_d V(I) multiplies the phantom's coefficient q'(I) = nu - 1 by (1 - delta) wherever the dark state sits, delta = 8 pi G rho_d V'(I)/(a0^2 (nu - 1)); the energy per unit mass the coupling can hand over is therefore V <= delta (a0^2/8 pi G) Int q'(I)/rho_d dI, and delta >= 1 reverses the phantom": {
+   "ok": true,
+   "measured": "residual 0; Poisson residual 0",
+   "load_bearing": true
+  },
+  "B2 DERIVED: a dark coupling to the clock's acceleration reads the NR multiplier Phi -- the (Phi, u) constraint determinant, kernel-independent without it (CV3's rule), acquires a zero at 8 pi G rho_d A (1 + B)/a0^2 = -1, and a threshold coupling has A < 0 along the field for I > 1/3: the constraint turns singular at O(1) strength, before the coupling can kick": {
+   "ok": true,
+   "measured": "det -k**4*(8*pi*A*B*G*rho_d + 8*pi*A*G*rho_d + a_0**2)/(16*pi**2*G**2*a_0**2); zero at A = -a_0**2/(8*pi*G*rho_d*(B + 1)); A < 0 for I > [1/3]",
+   "load_bearing": true
+  },
+  "B3 DERIVED + LOADED: a coupling to K cannot push the dark state out of a bound region (K = 3H to <= 4.8e-3 there, CV4), and a K-gated conversion's speed is the mass splitting, eps/m^2 = v^2/(2c^2 - v^2): FK1's 1.84-2.35e-6 for 575-650 km/s is a constant of the added field, not of the core": {
+   "ok": true,
+   "measured": "max |K/3H - 1| 4.8e-03; identity True; FK1 match 0.0e+00",
+   "load_bearing": true
+  },
+  "B4 DERIVED: in the deep-MOND limit with a quasi-isothermal dark halo, B1's ceiling accumulated from the outside in is v_cap^2 = 4 delta (G M_b a0/v_d^2) (r_t/r): at the kernel's natural scale the framework's own velocity scale, v_cap(r_t) = 2 sqrt(delta) (G M_b a0)^(1/2)/v_d, appears as the CEILING of what the core can hand over, set by each host's own baryonic mass and falling as r^(-1/2) outside": {
+   "ok": true,
+   "measured": "v_cap^2(s) = 4*G*M_b*a_0*delta*sqrt(s)/v_d**2; (v_cap/v_esc)^2 at r_t = -4*G*M_b*a_0*delta/(v_d**4*(log(G*M_b/(R**2*a_0)) - 2))",
+   "load_bearing": true
+  },
+  "B5 on real halos, both footings: every flagship host needs delta_req > 1 at the flagship radius (the phantom reversed around it) to be unbound, and the X-COP cluster needs LESS than any z = 2.5 galaxy -- the ordering is backwards (anti-selective)": {
+   "ok": true,
+   "measured": "flagship delta_req 13.5-28.7; cluster (at R500) 2.5-2.8",
+   "load_bearing": true
+  },
+  "B6 THE WINDOW IS NOT PREDICTED: no parameter-free velocity of the core (with the dark mass m) lies in 575-675 km/s; the candidates that reach it need a declared constant tuned inside its window (alpha_c) or an environment variable (C); (G M a0)^(1/4) lies in it only for M in a 0.28-dex band near 1e13 Msun on either footing": {
+   "ok": true,
+   "measured": "parameter-free hits []; tunable hits ['c alpha_c^(1/4) [alpha_c window]', 'tracking speed c_s(C), C in 1..1e4']; band canonical [8.80e+12, 1.67e+13], alt [7.28e+12, 1.38e+13] Msun",
+   "load_bearing": true
+  },
+  "C1 the derived mechanism (the delta = 1 ceiling as the kick -- natural scale, outer threshold, and the upper bound that gives every element the full hill height -- with the reciprocal suppression of the phantom by the kept carrier, both footings) clears no flagship host: every z = 2.5 zero point stays above the 0.10 dex gate [MUTATE: the hand-set 600 km/s]": {
+   "ok": false,
+   "measured": "smallest |shift| over 6 cells 0.000 dex; kicks 600-600 km/s; retained 0.00-0.01",
+   "load_bearing": true
+  },
+  "C2a CONTROL: with delta = 0 this lane's reciprocal X-COP and galaxy formulas reproduce the committed cl_ratio (via AT3's xcop_from_eps) and L357's gal_shifts on the same retentions": {
+   "ok": true,
+   "measured": "max |dev| X-COP 0.0e+00, galaxies 0.0e+00",
+   "load_bearing": false
+  },
+  "C2 (reported) X-COP, with the reciprocal term: in the upper bound the ceiling clears the reference cluster MORE than it clears any z = 2.5 flagship galaxy (the anti-selectivity of B5, on the committed machinery); the per-reading gate verdicts are printed above (the natural reading keeps the halo and switches the phantom off: Newton + halo)": {
+   "ok": false,
+   "measured": "{'canonical|hand-set 600 km/s': {'eps': 0.931, 'ratio': 1.351, 'strict': False, 'nonthermal': False}, 'alt|hand-set 600 km/s': {'eps': 0.929, 'ratio': 1.401, 'strict': False, 'nonthermal': False}}",
+   "load_bearing": false
+  },
+  "C3 (reported) the z = 0 galaxies (L321's three hosts, hand-set 600 km/s), with the reciprocal term: every host stays inside the 0.06 dex band -- the kept halo stands in for the suppressed phantom (the host is Newton + halo, as in LCDM)": {
+   "ok": false,
+   "measured": "{'canonical': {'dwarf': 0.074, 'SPARC disc': 0.0, 'Milky Way': 0.0}, 'alt': {'dwarf': 0.095, 'SPARC disc': 0.0, 'Milky Way': 0.0}}",
+   "load_bearing": false
+  },
+  "C4 (reported) KiDS-1000 at the common switch cell (L360's switched fit, AT3's template, hand-set 600 km/s) WITHOUT the reciprocal term (L352's lens model returns the total ESD and cannot carry it): the kept halos are rejected; WITH it the verdict is OPEN": {
+   "ok": false,
+   "measured": "{'canonical': -25.3, 'alt': -20.1}",
+   "load_bearing": false
+  },
+  "C5a CONTROL: this lane's reciprocal copy of MS3's R_of reproduces MS3's R_of exactly at delta = 0 (same retention)": {
+   "ok": true,
+   "measured": "max |dev| 0.0e+00",
+   "load_bearing": false
+  },
+  "C5 (reported) cosmic shear on MS3's halo model: WITHOUT the reciprocal term the kept halos fail at the KiDS-safe 1.75 Mpc cap in both readings; WITH it (delta = 1) the kept halos' phantoms are switched off and the natural reading is LCDM-like, within 1.2 at the cap on both footings": {
+   "ok": false,
+   "measured": "{'canonical|hand-set 600 km/s': {'inf': 3.591, '1.75': 1.577, 'recip_1.75': 1.577, 'recip_inf': 3.591, 'keep_1e12_13_14': [0.596, 0.823, 0.919]}, 'alt|hand-set 600 km/s': {'inf': 4.161, '1.75': 1.685, 'recip_1.75': 1.685, 'recip_inf': 4.161, 'keep_1e12_13_14': [0.638, 0.845, 0.925]}}",
+   "load_bearing": false
+  },
+  "C6 (reported) the forest and S_8: the derived kick unbinds a few per cent of the bias-weighted carrier at z = 2-3, below AT1's A2 budget, which moved the forest's flux by <= 1.7%: they pass, as cold dark matter does (S_8 -> LCDM's 0.8415)": {
+   "ok": false,
+   "measured": "{'canonical|3.0': 0.10055, 'canonical|2.0': 0.11084, 'alt|3.0': 0.09182, 'alt|2.0': 0.10079}",
+   "load_bearing": false
+  },
+  "C7 (reported, a proxy) Harvey: in the natural reading groups and clusters keep >= 90% of the carrier, so the prediction is the intact carrier's committed excess beta (L389), which passes +0.10; where a reading clears clusters, Harvey is not scored here": {
+   "ok": false,
+   "measured": "{'canonical|hand-set 600 km/s': {'1e+13': 0.8297838917029713, '1e+14': 0.9174028668345177, '3e+14': 0.9696970325041396}, 'alt|hand-set 600 km/s': {'1e+13': 0.8507681243628007, '1e+14': 0.9250661193475136, '3e+14': 0.97135362880574}}",
+   "load_bearing": false
+  },
+  "K1 THE KNIFE-EDGE, answered: the derived kick is a host-proportional distribution -- below escape in the z = 2 galaxies (median kick/escape < 1), almost never inside 575-675 there, and closer to escape in groups and clusters than in galaxies: it neither lands in the sliver where the flagship needs it nor widens the window": {
+   "ok": false,
+   "measured": "{'canonical|hand-set 600 km/s|z2.0': {'kick_min': 600.0, 'kick_max': 600.0, 'in_window': 1.0, 'ratio_med': 1.684, 'range': '1e10.5-1e12.5'}, 'canonical|hand-set 600 km/s|z0.4': {'kick_min': 600.0, 'kick_max': 600.0, 'in_window': 1.0, 'ratio_med': 0.439, 'range': '1e13-1e14.5'}, 'alt|hand-set 600 km/s|z2.0': {'kick_min': 600.0, 'kick_max': 600.0, 'in_window': 1.0, 'ratio_med': 1.665, 'range': '1e10.5-1e12.5'}, 'alt|hand-set 600 km/s|z0.4': {'kick_min': 600.0, 'kick_max': 600.0, 'in_window': 1.0, 'ratio_med': 0.427, 'range': '1e13-1e14.5'}}",
+   "load_bearing": false
+  },
+  "W (reported) the ledger of this lane's links": {
+   "ok": true,
+   "measured": "15 links",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "a0_FP0": {
+   "canonical": 9.360324825027975e-11,
+   "alt": 1.1312035414413022e-10
+  },
+  "controls": {
+   "L340_dev": 0.00023046343801527323,
+   "AT1_dev": 0.0,
+   "MS3_dev": 0.0
+  },
+  "A1": {
+   "contraction": [
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "K": "3*Derivative(a(t), t)/(N(t)*a(t))",
+   "acc": [
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "dL": "mu**2*(-Q_0*N(t) + f_p)/N(t)**2",
+   "dL_plain": "0",
+   "aest": "Q_0*mu**2"
+  },
+  "A3": {
+   "omega2": "c_2*k**2/(C*(3*c_2 + 2))",
+   "omega2_alpha_c": "c_2*k**2*(-C*alpha_c - alpha_c + 2)/(3*C*alpha_c*c_2 + 2*C*alpha_c + 6*C*c_2 + 4*C + 3*alpha_c*c_2 + 2*alpha_c)",
+   "p_over_rho": "1/3",
+   "cs_min_kms": 1800.1465103525431,
+   "forest_cs": 9.5,
+   "C_star": 3590612.142642037,
+   "y_star": 7.756448057855219e-14,
+   "c2_window": [
+    0.00729,
+    0.067
+   ]
+  },
+  "A4": {
+   "canonical": {
+    "xcop_ratio": 1.8606665691886664,
+    "gal_shift": {
+     "dwarf": 0.44480737382955154,
+     "SPARC disc": 0.28734128733782605,
+     "Milky Way": 0.36513606118895786
+    }
+   },
+   "alt": {
+    "xcop_ratio": 1.9844619980720364,
+    "gal_shift": {
+     "dwarf": 0.4464238145005964,
+     "SPARC disc": 0.2831576458672874,
+     "Milky Way": 0.3626357927233099
+    }
+   },
+   "flagship_min": 0.8624839502132073
+  },
+  "B5": {
+   "canonical|flagship 1e10": {
+    "r_t": 2.7349970743165075,
+    "r_F": 12.203347410357,
+    "v_cap_rt": 109.3198222452008,
+    "v_esc_rt": 450.4247456847888,
+    "delta_req_rt": 15.640117652232671,
+    "v_cap_rF": 64.72152414690129,
+    "v_esc_rF": 379.9574828974939,
+    "delta_req_rF": 28.704204041883678,
+    "v_btfr": 105.57690050590398,
+    "v_cap_over_btfr_rt": 1.0354520896271955
+   },
+   "canonical|flagship 1e10.5": {
+    "r_t": 5.447106722200753,
+    "r_F": 21.70096143338966,
+    "v_cap_rt": 152.7040108895189,
+    "v_esc_rt": 559.0821963358405,
+    "delta_req_rt": 11.960758988244692,
+    "v_cap_rF": 93.47656807863457,
+    "v_esc_rF": 455.22903444484075,
+    "delta_req_rF": 18.752918947166155,
+    "v_btfr": 140.78905956599783,
+    "v_cap_over_btfr_rt": 1.084629809732735
+   },
+   "canonical|flagship 1e11": {
+    "r_t": 10.421083037512636,
+    "r_F": 38.5903728950456,
+    "v_cap_rt": 204.7597017418682,
+    "v_esc_rt": 723.7822316608252,
+    "delta_req_rt": 10.82789215089993,
+    "v_cap_rF": 127.35025664205426,
+    "v_esc_rF": 571.0948824823528,
+    "delta_req_rF": 15.089596774417226,
+    "v_btfr": 187.745228345377,
+    "v_cap_over_btfr_rt": 1.0906253306485707
+   },
+   "canonical|KiDS bin 1": {
+    "r_t": 1.399415180182464,
+    "r_F": 13.912172342096651,
+    "v_cap_rt": 146.05281195276876,
+    "v_esc_rt": 375.22522028415835,
+    "delta_req_rt": 6.286856527324689,
+    "v_cap_rF": 103.64619474512232,
+    "v_esc_rF": 299.5465237593654,
+    "delta_req_rF": 6.942313096575982,
+    "v_btfr": 112.73395567436715,
+    "v_cap_over_btfr_rt": 1.2955529776196568
+   },
+   "canonical|KiDS bin 2": {
+    "r_t": 4.385755881879702,
+    "r_F": 23.355810828725392,
+    "v_cap_rt": 213.43988748535827,
+    "v_esc_rt": 466.23765650043214,
+    "delta_req_rt": 4.308686790897943,
+    "v_cap_rF": 146.66712590551626,
+    "v_esc_rF": 370.0132400343761,
+    "delta_req_rF": 5.130711173106513,
+    "v_btfr": 146.06788672575078,
+    "v_cap_over_btfr_rt": 1.4612375948595844
+   },
+   "canonical|KiDS bin 3": {
+    "r_t": 6.849063761212916,
+    "r_F": 31.145474305657558,
+    "v_cap_rt": 233.44157148528922,
+    "v_esc_rt": 575.8689640582851,
+    "delta_req_rt": 5.4509607097389035,
+    "v_cap_rF": 155.60101828700354,
+    "v_esc_rF": 466.1566314395042,
+    "delta_req_rF": 7.272687212165487,
+    "v_btfr": 168.67656413255744,
+    "v_cap_over_btfr_rt": 1.3839597260342287
+   },
+   "canonical|KiDS bin 4": {
+    "r_t": 9.399236651371995,
+    "r_F": 39.20982906577464,
+    "v_cap_rt": 218.5191689390621,
+    "v_esc_rt": 780.3206944284905,
+    "delta_req_rt": 11.642137313529458,
+    "v_cap_rF": 137.31693294560728,
+    "v_esc_rF": 659.9869013391263,
+    "delta_req_rF": 19.34702328137521,
+    "v_btfr": 189.2582177649782,
+    "v_cap_over_btfr_rt": 1.1546086163107605
+   },
+   "canonical|X-COP ref": {
+    "r_t": 168.64725404351717,
+    "r_F": 1346.0,
+    "v_cap_rt": 1402.8036855015864,
+    "v_esc_rt": 3863.1723307106554,
+    "delta_req_rt": 6.783549182205558,
+    "v_cap_rF": 1150.0680656338586,
+    "v_esc_rF": 2453.862764382815,
+    "delta_req_rF": 2.7609755045194677,
+    "v_btfr": 1173.1918061554625,
+    "v_cap_over_btfr_rt": 1.1957155497859806
+   },
+   "alt|flagship 1e10": {
+    "r_t": 2.391816059746816,
+    "r_F": 11.117974554414657,
+    "v_cap_rt": 120.49598835118036,
+    "v_esc_rt": 455.0906823562463,
+    "delta_req_rt": 13.193486520838166,
+    "v_cap_rF": 70.46627914630987,
+    "v_esc_rF": 385.75356342500686,
+    "delta_req_rF": 25.232363957102134,
+    "v_btfr": 110.61029680013921,
+    "v_cap_over_btfr_rt": 1.0893740622439836
+   },
+   "alt|flagship 1e10.5": {
+    "r_t": 4.836834990075203,
+    "r_F": 19.77086523145225,
+    "v_cap_rt": 168.02315371027893,
+    "v_esc_rt": 566.1460367377707,
+    "delta_req_rt": 10.175808544384765,
+    "v_cap_rF": 101.84030877357543,
+    "v_esc_rF": 463.9535877884355,
+    "delta_req_rF": 16.636121139339945,
+    "v_btfr": 147.50120140093196,
+    "v_cap_over_btfr_rt": 1.1391307468307665
+   },
+   "alt|flagship 1e11": {
+    "r_t": 9.335849381744982,
+    "r_F": 35.15812255974596,
+    "v_cap_rt": 224.96731033892385,
+    "v_esc_rt": 734.28888738606,
+    "delta_req_rt": 9.281308384940354,
+    "v_cap_rF": 139.0011666768171,
+    "v_esc_rF": 584.1798338658772,
+    "delta_req_rF": 13.478667049107477,
+    "v_btfr": 196.6960133379817,
+    "v_cap_over_btfr_rt": 1.1437309100533917
+   },
+   "alt|KiDS bin 1": {
+    "r_t": 1.0081286210095124,
+    "r_F": 12.674815597299874,
+    "v_cap_rt": 156.7305625908596,
+    "v_esc_rt": 380.4952903069128,
+    "delta_req_rt": 5.670955000130322,
+    "v_cap_rF": 111.1713066754506,
+    "v_esc_rF": 304.183979401084,
+    "delta_req_rF": 6.2807657273475135,
+    "v_btfr": 118.10856576432812,
+    "v_cap_over_btfr_rt": 1.3270041980155542
+   },
+   "alt|KiDS bin 2": {
+    "r_t": 3.728862434102801,
+    "r_F": 21.27853135370951,
+    "v_cap_rt": 231.60826195928522,
+    "v_esc_rt": 473.4008689715653,
+    "delta_req_rt": 3.797848970078393,
+    "v_cap_rF": 157.90764944631178,
+    "v_esc_rF": 376.6142425030521,
+    "delta_req_rF": 4.631087957846511,
+    "v_btfr": 153.03169752365395,
+    "v_cap_over_btfr_rt": 1.5134659401101251
+   },
+   "alt|KiDS bin 3": {
+    "r_t": 5.973082269954759,
+    "r_F": 28.375377605130904,
+    "v_cap_rt": 254.692926450315,
+    "v_esc_rt": 583.9727540344539,
+    "delta_req_rt": 4.731405015767241,
+    "v_cap_rF": 167.97269503902285,
+    "v_esc_rF": 474.2868049849439,
+    "delta_req_rF": 6.524559325918802,
+    "v_btfr": 176.71824738676196,
+    "v_cap_over_btfr_rt": 1.4412372814726895
+   },
+   "alt|KiDS bin 4": {
+    "r_t": 8.296441291765749,
+    "r_F": 35.72248393635446,
+    "v_cap_rt": 240.20163940999254,
+    "v_esc_rt": 788.6909943223311,
+    "delta_req_rt": 9.875134338440734,
+    "v_cap_rF": 148.80086655563196,
+    "v_esc_rF": 669.8054652227281,
+    "delta_req_rF": 17.128455443461434,
+    "v_btfr": 198.28113477984675,
+    "v_cap_over_btfr_rt": 1.2114195315489318
+   },
+   "alt|X-COP ref": {
+    "r_t": 139.9477157479068,
+    "r_F": 1346.0,
+    "v_cap_rt": 1492.1572104376837,
+    "v_esc_rt": 3935.527128954589,
+    "delta_req_rt": 6.30466881832915,
+    "v_cap_rF": 1210.9549925831498,
+    "v_esc_rF": 2453.862764382815,
+    "delta_req_rF": 2.4903112942785746,
+    "v_btfr": 1229.123920673257,
+    "v_cap_over_btfr_rt": 1.2140006270648034
+   }
+  },
+  "B6": {
+   "census": {
+    "canonical": {
+     "c sqrt(c_2) [c_2 window]": [
+      25596.72880074991,
+      77599.35371855025,
+      "declared c_2"
+     ],
+     "c alpha_c^(1/4) [alpha_c window]": [
+      166.87393660042576,
+      2254.8008896775455,
+      "declared alpha_c"
+     ],
+     "tracking speed c_s(C), C in 1..1e4": [
+      180.01465103525433,
+      52305.58732136143,
+      "environment C"
+     ],
+     "sqrt(a0 xi)": [
+      0.29922755195837897,
+      0.5374285484421712,
+      "declared xi"
+     ],
+     "a0 / H0": [
+      42853.03333540938,
+      42853.03333540938,
+      "none"
+     ],
+     "c / Z": [
+      51788.27014731553,
+      51788.27014731553,
+      "none"
+     ],
+     "hbar/(m xi), m >= floor": [
+      0.0,
+      328.71663211369935,
+      "declared m, xi"
+     ],
+     "(hbar a0/m)^(1/3), m >= floor": [
+      0.0,
+      3.0875093343564406,
+      "declared m"
+     ]
+    },
+    "alt": {
+     "c sqrt(c_2) [c_2 window]": [
+      25596.72880074991,
+      77599.35371855025,
+      "declared c_2"
+     ],
+     "c alpha_c^(1/4) [alpha_c window]": [
+      166.87393660042576,
+      2254.8008896775455,
+      "declared alpha_c"
+     ],
+     "tracking speed c_s(C), C in 1..1e4": [
+      180.01465103525433,
+      52305.58732136143,
+      "environment C"
+     ],
+     "sqrt(a0 xi)": [
+      0.3289474299121382,
+      0.5908070250030096,
+      "declared xi"
+     ],
+     "a0 / H0": [
+      51788.270147315525,
+      51788.270147315525,
+      "none"
+     ],
+     "c / Z": [
+      51788.27014731553,
+      51788.27014731553,
+      "none"
+     ],
+     "hbar/(m xi), m >= floor": [
+      0.0,
+      328.71663211369935,
+      "declared m, xi"
+     ],
+     "(hbar a0/m)^(1/3), m >= floor": [
+      0.0,
+      3.2887047931302553,
+      "declared m"
+     ]
+    }
+   },
+   "band": {
+    "canonical": [
+     8799453322794.22,
+     16710883227686.734
+    ],
+    "alt": [
+     7281248543394.839,
+     13827687891160.682
+    ]
+   },
+   "v13": {
+    "canonical": 593.6820547880976,
+    "alt": 622.467069393301
+   },
+   "v14": {
+    "canonical": 1055.7325741392738,
+    "alt": 1106.9203729293765
+   },
+   "free_hit": []
+  },
+  "C1": {
+   "canonical|10.0|hand-set 600 km/s": {
+    "r_v": 11.078237028893723,
+    "kick": 600.0,
+    "loss_cone": 0.5292,
+    "retained": 1.6392615788454947e-09,
+    "shift_additive": 2.766653375614744e-09,
+    "shift": 2.766653375614744e-09,
+    "halo_over_phantom": 2.6658036447943845
+   },
+   "canonical|10.5|hand-set 600 km/s": {
+    "r_v": 20.283718546439488,
+    "kick": 600.0,
+    "loss_cone": 0.6993,
+    "retained": 0.0009164435729354403,
+    "shift_additive": 0.0015530995118415655,
+    "shift": 0.0015530995118415655,
+    "halo_over_phantom": 2.679190243016516
+   },
+   "canonical|11.0|hand-set 600 km/s": {
+    "r_v": 36.8047243592964,
+    "kick": 600.0,
+    "loss_cone": 0.8143,
+    "retained": 0.008741971008771802,
+    "shift_additive": 0.015552858118552048,
+    "shift": 0.015552858118552238,
+    "halo_over_phantom": 2.8354143398934135
+   },
+   "alt|10.0|hand-set 600 km/s": {
+    "r_v": 9.993003373126067,
+    "kick": 600.0,
+    "loss_cone": 0.4846,
+    "retained": 1.1250412831059241e-08,
+    "shift_additive": 1.6604975511716192e-08,
+    "shift": 1.6604975511716192e-08,
+    "halo_over_phantom": 2.3312639653043976
+   },
+   "alt|10.5|hand-set 600 km/s": {
+    "r_v": 18.3538698813066,
+    "kick": 600.0,
+    "loss_cone": 0.6527,
+    "retained": 0.0008047056723156657,
+    "shift_additive": 0.0012057164788195833,
+    "shift": 0.0012057164788195833,
+    "halo_over_phantom": 2.3682702788600714
+   },
+   "alt|11.0|hand-set 600 km/s": {
+    "r_v": 33.372914213599486,
+    "kick": 600.0,
+    "loss_cone": 0.7831,
+    "retained": 0.011788072040627283,
+    "shift_additive": 0.018676407565483118,
+    "shift": 0.018676407565483118,
+    "halo_over_phantom": 2.5295874410754484
+   }
+  },
+  "C2": {
+   "canonical|hand-set 600 km/s": {
+    "r_v": 1506.1474000043256,
+    "kick": 600.0,
+    "eps": 0.9310136692259462,
+    "ratio": 1.3505889565980689,
+    "strict": false,
+    "alt": false,
+    "ratio_committed_formula": 1.3505889565980689
+   },
+   "alt|hand-set 600 km/s": {
+    "r_v": 1372.0209611834894,
+    "kick": 600.0,
+    "eps": 0.9292368422138191,
+    "ratio": 1.4009707873355202,
+    "strict": false,
+    "alt": false,
+    "ratio_committed_formula": 1.4009707873355202
+   }
+  },
+  "C3": {
+   "eps": {
+    "canonical|dwarf": {
+     "r_v": 1.7278732278040303,
+     "kick": 600.0,
+     "eps": 0.2048280765001343
+    },
+    "canonical|SPARC disc": {
+     "r_v": 10.860549330744968,
+     "kick": 600.0,
+     "eps": 0.0
+    },
+    "canonical|Milky Way": {
+     "r_v": 26.882612601039877,
+     "kick": 600.0,
+     "eps": 5.426155835855953e-07
+    },
+    "alt|dwarf": {
+     "r_v": 1.4852808800314095,
+     "kick": 600.0,
+     "eps": 0.2895028605024803
+    },
+    "alt|SPARC disc": {
+     "r_v": 9.677190434068075,
+     "kick": 600.0,
+     "eps": 0.0
+    },
+    "alt|Milky Way": {
+     "r_v": 24.219725042978762,
+     "kick": 600.0,
+     "eps": 0.0005836103179272177
+    }
+   },
+   "shifts": {
+    "canonical": {
+     "dwarf": 0.07381977766020406,
+     "SPARC disc": 0.0,
+     "Milky Way": 1.7934994897128548e-07
+    },
+    "alt": {
+     "dwarf": 0.09503290749522653,
+     "SPARC disc": 0.0,
+     "Milky Way": 0.00017886005641785894
+    }
+   },
+   "shifts_without_reciprocal": {
+    "canonical": {
+     "dwarf": 0.07381977766020406,
+     "SPARC disc": 0.0,
+     "Milky Way": 1.7934994897128548e-07
+    },
+    "alt": {
+     "dwarf": 0.09503290749522653,
+     "SPARC disc": 0.0,
+     "Milky Way": 0.00017886005641785894
+    }
+   }
+  },
+  "C4": {
+   "dchi2": {
+    "canonical": -25.29075571251184,
+    "alt": -20.07399819978201
+   },
+   "S05": {
+    "canonical|0": 0.34178978789151454,
+    "canonical|1": 0.13260169910671563,
+    "canonical|2": 0.13538868698355355,
+    "canonical|3": 0.33329134989376275,
+    "alt|0": 0.40439952052931083,
+    "alt|1": 0.18985469518325573,
+    "alt|2": 0.19895917084176834,
+    "alt|3": 0.40391998901736254
+   },
+   "kicks": {
+    "canonical|0": 600.0,
+    "canonical|1": 600.0,
+    "canonical|2": 600.0,
+    "canonical|3": 600.0,
+    "alt|0": 600.0,
+    "alt|1": 600.0,
+    "alt|2": 600.0,
+    "alt|3": 600.0
+   }
+  },
+  "C5_C7": {
+   "shear": {
+    "canonical|hand-set 600 km/s": {
+     "inf": 3.590549623083572,
+     "1.75": 1.5766352844146143,
+     "recip_1.75": 1.5766352844146143,
+     "recip_inf": 3.590549623083572,
+     "recip0_dev": 0.0,
+     "keep_1e12_13_14": [
+      0.5955113902391503,
+      0.8228377061866573,
+      0.9186915138060674
+     ]
+    },
+    "alt|hand-set 600 km/s": {
+     "inf": 4.160888690131009,
+     "1.75": 1.685255931360704,
+     "recip_1.75": 1.685255931360704,
+     "recip_inf": 4.160888690131009,
+     "recip0_dev": 0.0,
+     "keep_1e12_13_14": [
+      0.637783489416494,
+      0.8453242063333222,
+      0.9254756384101482
+     ]
+    }
+   },
+   "forest": {
+    "canonical|3.0": 0.10055045912434848,
+    "canonical|2.0": 0.11083870436499338,
+    "alt|3.0": 0.09182243520060486,
+    "alt|2.0": 0.10078787718700381
+   },
+   "harvey_keep": {
+    "canonical|hand-set 600 km/s": {
+     "1e+13": 0.8297838917029713,
+     "1e+14": 0.9174028668345177,
+     "3e+14": 0.9696970325041396
+    },
+    "alt|hand-set 600 km/s": {
+     "1e+13": 0.8507681243628007,
+     "1e+14": 0.9250661193475136,
+     "3e+14": 0.97135362880574
+    }
+   },
+   "harvey_intact": {
+    "100": 0.005952303589975618,
+    "150": 0.039867749044243075,
+    "fit": 0.026083449072383132
+   }
+  },
+  "K1": {
+   "canonical|hand-set 600 km/s|2.0": {
+    "kick_min": 600.0,
+    "kick_max": 600.0,
+    "in_window": 1.0,
+    "ratio_med": 1.6835587702246047,
+    "range": "1e10.5-1e12.5"
+   },
+   "canonical|hand-set 600 km/s|0.4": {
+    "kick_min": 600.0,
+    "kick_max": 600.0,
+    "in_window": 1.0,
+    "ratio_med": 0.4388512201030402,
+    "range": "1e13-1e14.5"
+   },
+   "alt|hand-set 600 km/s|2.0": {
+    "kick_min": 600.0,
+    "kick_max": 600.0,
+    "in_window": 1.0,
+    "ratio_med": 1.6650392860995202,
+    "range": "1e10.5-1e12.5"
+   },
+   "alt|hand-set 600 km/s|0.4": {
+    "kick_min": 600.0,
+    "kick_max": 600.0,
+    "in_window": 1.0,
+    "ratio_med": 0.42655663886867545,
+    "range": "1e13-1e14.5"
+   }
+  }
+ },
+ "ledger": [
+  {
+   "link": "L10a",
+   "what": "the dark mass and the clusters' missing mass as a STATE of the core's own fields (g, tau, U, W, L, lambda_0)",
+   "status": "FAILS",
+   "basis": "A1-A5: the clock has no charge and one gapless mode; the auxiliaries are constrained; the metric's PBHs fail the gates"
+  },
+  {
+   "link": "L10b",
+   "what": "the clock carries no conserved charge (n.dn/d(d tau) = 0; FRW action independent of tau-dot)",
+   "status": "DERIVED",
+   "basis": "check A1"
+  },
+  {
+   "link": "L10c",
+   "what": "U, W, L, lambda_0 are constrained (zero kinetic Hessian with lapse and shift)",
+   "status": "DERIVED",
+   "basis": "check A2"
+  },
+  {
+   "link": "L10d",
+   "what": "the clock's one mode: omega^2 = c_2 k^2/(C(2 + 3c_2)); its quanta are radiation (p = rho/3) at >= 1800 km/s",
+   "status": "DERIVED",
+   "basis": "check A3"
+  },
+  {
+   "link": "L10e",
+   "what": "the metric's cold state (primordial black holes): sources u, cannot be kicked; fails X-COP, galaxies, flagship",
+   "status": "FAILS",
+   "basis": "check A4"
+  },
+  {
+   "link": "L10f",
+   "what": "the minimal addition: one nearly free complex scalar (2 real d.o.f.) + one mass m >= 1.9-5.2e-19 eV; amount = initial data",
+   "status": "POSTULATED",
+   "basis": "check A5 (XR8, FL1, L383)"
+  },
+  {
+   "link": "L10g",
+   "what": "reciprocity: a dark coupling V(I) multiplies the phantom by (1 - delta) where the dark state sits",
+   "status": "DERIVED",
+   "basis": "check B1"
+  },
+  {
+   "link": "L10h",
+   "what": "a coupling to the clock's acceleration reads the multiplier Phi: the constraint turns singular at O(1) strength",
+   "status": "FAILS",
+   "basis": "check B2"
+  },
+  {
+   "link": "L10i",
+   "what": "a coupling to the clock's K is spatially blind in bound regions; the kick speed is the splitting eps/m^2 = v^2/(2c^2 - v^2)",
+   "status": "FITTED",
+   "basis": "check B3 (FK1's eps = 1.84-2.35e-6, set by the 575-650 window)"
+  },
+  {
+   "link": "L10j",
+   "what": "the kick velocity scale from the action: only a ceiling, v_cap(r_t) = 2 sqrt(delta) (G M_b a0)^(1/2)/v_d ~ (G M_b a0)^(1/4) at delta = 1 on real z = 2.5 halos, host-proportional",
+   "status": "DERIVED",
+   "basis": "checks B4, B5"
+  },
+  {
+   "link": "L10k",
+   "what": "clearing galaxies with the core's own energy: needs delta > 1 (phantom reversed) and is anti-selective (clusters first)",
+   "status": "FAILS",
+   "basis": "check B5"
+  },
+  {
+   "link": "L10l",
+   "what": "the ~600 km/s window: not predicted; (G M a0)^(1/4) in it only for a 0.28-dex band near 1e13 Msun (a selection)",
+   "status": "FITTED",
+   "basis": "check B6"
+  },
+  {
+   "link": "L10m",
+   "what": "the derived mechanism on the gates (delta = 1, with the reciprocal term): the kept halos switch their phantoms off, so it passes what LCDM passes (z = 0 galaxies, X-COP in the natural reading, cosmic shear, forest, S_8, Harvey by proxy; KiDS in the upper bound without the term) and fails the framework's distinctive flagship at z = 2.5 in every reading",
+   "status": "FAILS",
+   "basis": "checks C1-C7"
+  },
+  {
+   "link": "L10n",
+   "what": "the knife-edge: the derived kick neither lands in 575-675 nor widens the window",
+   "status": "FAILS",
+   "basis": "check K1"
+  },
+  {
+   "link": "L10o",
+   "what": "derivative/current couplings of the dark state to the core; an acceleration-gated conversion rate's own reciprocal distortion; the varied region gate's onset (V0, obstructed: CV3/DE12/DE13)",
+   "status": "OPEN",
+   "basis": "not computed here"
+  }
+ ],
+ "n_checks": 25,
+ "n_fail_load_bearing": 3,
+ "runtime_s": 217.57794308662415
+}
