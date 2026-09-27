@@ -1,0 +1,32 @@
+MS4 -- DOES A SMOOTH, ACTION-READY GATE KEEP MS3's COSMIC-SHEAR PASS?  L363's resolution-free halo model on the
+MOND-sector reading with DE7/DE9's smooth gate at the transition widths DE9's window allows.
+
+WHY.  MS3 (2a5def6d9) passed cosmic shear with a SHARP gate: worst R 1.05/1.12 (canonical/alt) with every MOND region
+capped at 1.75 Mpc (z = 0.5) and L388's retention.  An action term needs a smooth gate.  DE9 (8c3bfe8f3) found the smooth
+gate's own data window on the MOND-sector reading at p = 1: transition widths w <= 0.5 (KiDS's cap falling 4.48 -> 3.76 as
+w goes 0.1 -> 0.75).  DE9 did not score cosmic shear.  This lane does, on MS3's machinery.
+
+THE SMOOTH GATE (DE7/DE9's): f = W(t), t = (u/x_c0 - 1)/(2w) + 1/2, W(t) = g(t)/(g(t) + g(1 - t)), g = e^(-1/t) (t > 0),
+f = 0 from the first radius where t <= 0 outward.  u is MS3's MOND-sector door variable on the host in the mean density,
+x = 1.5 Omega_m(z) (f_b rho_host + rho_ph)/rho_bar_m, read with the ungated phantom (first order in the gate's width).
+The gated phantom's enclosed mass is f(r) M_ph(<r), so its transform is int f M_ph k j1(kr) dr (compensated wherever f
+reaches 0), cut at r_cap when capped.
+
+  *** MUTATE=1: no cap; S1 must FAIL ***
+
+==============================================================================================================
+C1  CONTROL: a near-sharp gate reproduces MS3's committed door numbers
+==============================================================================================================
+    no cap: 2.722/3.185 vs MS3 2.718/3.181; cap 1.75: 1.049/1.124 vs MS3 1.047/1.121
+  [PASS] C1 CONTROL: w = 1e-3 reproduces MS3's committed door numbers (L388 retention, no cap and 1.75 Mpc cap) within 1%
+         measured: max relative deviation 2.18e-03
+
+==============================================================================================================
+S1-S3  THE SMOOTH GATE AT DE9's WIDTHS (p = 1, x_c0 = 2.5, L388 retention)
+==============================================================================================================
+    w = 0.25, cap   inf Mpc: worst R canonical 2.719, alt 3.181
+    w = 0.50, cap   inf Mpc: worst R canonical 2.710, alt 3.167
+  [FAIL] S1 PRE-DECLARED: with the 1.75 Mpc cap the smooth MOND-sector gate keeps cosmic shear within 20% of LCDM (worst R <= 1.2) on both footings at w = 0.25 and 0.5
+         measured: w 0.25: 2.719/3.181; w 0.5: 2.710/3.167
+
+  1/2 checks pass; load-bearing failures: 1; wrote MS4_smooth_gate_shear_results_MUTATE.json   [17s]
