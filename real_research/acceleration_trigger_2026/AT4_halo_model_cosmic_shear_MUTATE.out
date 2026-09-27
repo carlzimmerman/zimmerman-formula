@@ -1,0 +1,91 @@
+AT4 -- COSMIC SHEAR FOR THE ACCELERATION-TRIGGERED CARRIER, RESOLUTION-FREE: the carrier's own retention by halo mass on
+MS3's halo model, at the common kernel cell and at the window's top corner, with MS3's region caps.  Does the mock-based
+"corner rescue" survive?
+
+WHY.  AT3 (dd1d6a0d6) found the acceleration-triggered carrier passing every gate but cosmic shear at the common kernel
+cell (p = 1, x_c0 = 2.5), with cosmic shear scored on GP3's 100 Mpc mock (L364's convention).  DE5's mock-based table then
+suggested the gate loosens at the window's top corner (x_c,eff(0.5) = 6.785), enough for a 700-750 km/s kick.  But MS3
+(2a5def6d9) shows the mock cannot score phantom-supported regions: L363's builder cannot grow an isolated galaxy's region
+(U1), and the box is cluster-poor (M1).  On L363's resolution-free halo model the region kernel fails cosmic shear for
+every carrier history unless every MOND region is capped near 1.75 Mpc at z = 0.5.  That cap is the largest one that
+keeps KiDS's lenses untouched (K1), and it passes only with the particle-mesh track's group and cluster clearing (L388's
+retention); clearing galaxies alone fails even capped.  DE5b (e56c00165) reproduces U1 on the upper-branch builder.  This
+lane scores the acceleration-triggered carrier on MS3's halo model, with ITS OWN retention by halo mass.
+
+THE CARRIER'S RETENTION BY HALO MASS at the lens epoch z = 0.5 (AT1/AT3's construction, f_U(0) = 0.25):
+  mode A: a halo keeps 1 - f_lc(M) f_esc(M; v_A).  f_lc is the steady-state loss cone of its trigger radius at
+    y_v,eff(0.5) = y_v0 E(0.5)^(2q) (AT1's trig_acc).  f_esc is the escape fraction of daughters kicked at v_A (AT1's
+    table).  Bound daughters stay in the halo: they are redistributed, not removed.
+  mode U: the halo keeps 1 - f_U(0.5) f_esc,U(M), with L319's law and daughters at 3000 km/s (AT1's table, whole halo).
+  Two readings.  STEADY STATE is the current halo alone.  OPTIMISTIC also takes AT1's cumulative escaped fraction from
+  progenitors (bias-weighted, at z = 0.5) out of every halo; that is more removal than any halo suffers, so it is the most
+  favourable case for the gate.
+METHOD: MS3's R_of (L363's per-halo compensated phantom transform with a region cap and an edge convention, GP3's
+  Sheth-Tormen + NFW P_NL, GP0's observed bound baryons), loaded unedited, with the carrier's retention function.
+  Caps {inf, 2, 1.75, 1.5, 1.2, 1} Mpc (physical, z = 0.5).  Switch cells: MS3's linear cell x = 2.5 E(0.5)^2 and DE5's
+  window-top corner x = 6.785.  Both edge conventions ('door' as MS3 K1, 'upper' as L363).  Both footings.
+GATE: GP3's, worst R <= 1.2 on k = 0.1-1 h/Mpc, both footings.  KiDS-safe caps: MS3 K1's r_cap >= 1.75 Mpc (at 325 km/s the
+  cap sits above every KiDS lens's region; smaller caps truncate the largest lenses).
+PRE-DECLARED (before the run; from MS3's committed K1, whose galaxy-only clearing fails every KiDS-safe cap at 1.64/1.74
+  and above):
+  H1: at every KiDS-safe cap, at both switch cells and on both edge conventions, the acceleration-triggered carrier fails
+      cosmic shear on at least one footing for every kick Harvey allows (v_A <= 800 km/s, AT3), in BOTH readings.  So the
+      mock-based corner rescue does not survive the resolution-free estimate.
+
+  *** MUTATE=1: the carrier's retention is L388's -- H1 must FAIL ***
+  MS3's halo model loaded (L363, GP0, L388's retention): E(0.5)^2 = 1.745209, linear cell x = 4.36302   [1s]
+  AT1's head loaded (loss-cone and escape tables, the halo model's trigger)   [18s]
+
+====================================================================================================================
+C1-C2  CONTROLS
+====================================================================================================================
+  [PASS] C1 CONTROL: MS3's committed K1 rows (L388's retention and galaxies-only clearing, caps 2.0 and 1.75 Mpc, door convention, both footings) reproduced
+         measured: max |dev| 0.0e+00
+  [PASS] C2 CONTROL: a retention of 1 reproduces MS3's committed intact row at the 1.75 Mpc cap (1e-9)
+         measured: intact |dev| 0.0e+00; mode U's decayed share by z = 0.5, f_U(0.5) = 0.0464
+
+====================================================================================================================
+S1  THE SCAN: the carrier's own retention on MS3's halo model (worst R over k = 0.1-1, canonical / alt)
+====================================================================================================================
+    y_v0 0.03 v_A   600 steady    : retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [140s]
+    y_v0 0.03 v_A   600 optimistic: retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [271s]
+    y_v0 0.03 v_A   700 steady    : retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [392s]
+    y_v0 0.03 v_A   700 optimistic: retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [529s]
+    y_v0 0.03 v_A   800 steady    : retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [673s]
+    y_v0 0.03 v_A   800 optimistic: retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [798s]
+    y_v0 0.03 v_A  1200 steady    : retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [925s]
+    y_v0 0.03 v_A  1200 optimistic: retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [1058s]
+    y_v0 0.03 v_A  2000 steady    : retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [1193s]
+    y_v0 0.03 v_A  2000 optimistic: retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [1333s]
+    y_v0 0.10 v_A   600 steady    : retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [1462s]
+    y_v0 0.10 v_A   600 optimistic: retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [1589s]
+    y_v0 0.10 v_A   700 steady    : retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [1714s]
+    y_v0 0.10 v_A   700 optimistic: retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [1840s]
+    y_v0 0.10 v_A   800 steady    : retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [1969s]
+    y_v0 0.10 v_A   800 optimistic: retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [2089s]
+    y_v0 0.10 v_A  1200 steady    : retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [2216s]
+    y_v0 0.10 v_A  1200 optimistic: retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [2339s]
+    y_v0 0.10 v_A  2000 steady    : retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [2456s]
+    y_v0 0.10 v_A  2000 optimistic: retention at 1e12/1e13/1e13.5/1e14/1e14.5 = 0.07/0.07/0.19/0.35/0.73 | door, corner: cap inf: 2.11/2.49, cap 2: 1.14/1.24, cap 1.75: 0.99/1.05, cap 1.5: 0.99/0.99, cap 1.2: 0.98/0.98, cap 1: 0.98/0.98   [2577s]
+
+====================================================================================================================
+H1-R1  THE VERDICT
+====================================================================================================================
+  [FAIL] H1: at every KiDS-safe cap (>= 1.75 Mpc), both switch cells, both edge conventions and both readings, the acceleration-triggered carrier fails cosmic shear on at least one footing for every kick Harvey allows (v_A <= 800 km/s): the mock-based corner rescue does not survive the resolution-free estimate
+         measured: best case: worst R 1.031 at (0.03, 600.0, 'optimistic', 'corner (1.904, 2.350)', 'upper', 1.75)
+         reading:  cosmic shear on the halo model is a group-and-cluster phantom problem (MS3 D1); the acceleration trigger clears galaxies' inner regions, and its slow daughters stay bound in groups and clusters
+    optimistic reading, KiDS-safe caps, passing (switch cell, convention, cap): 0.03|600.0: [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)]; 0.03|700.0: [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)]; 0.03|800.0: [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)]; 0.03|1200.0: [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)]; 0.03|2000.0: [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)]; 0.1|600.0: [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)]; 0.1|700.0: [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)]; 0.1|800.0: [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)]; 0.1|1200.0: [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)]; 0.1|2000.0: [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)]
+  [PASS] R1 (reported) where the optimistic reading passes a KiDS-safe cap, by kick; AT3's Harvey fails at 800 km/s (+0.110/+0.114) and the loss would grow with faster kicks
+         measured: {'0.03|600.0': [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)], '0.03|700.0': [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)], '0.03|800.0': [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)], '0.03|1200.0': [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)], '0.03|2000.0': [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)], '0.1|600.0': [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)], '0.1|700.0': [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)], '0.1|800.0': [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)], '0.1|1200.0': [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)], '0.1|2000.0': [('linear (1, 2.5)', 'door', 1.75), ('linear (1, 2.5)', 'upper', 1.75), ('corner (1.904, 2.350)', 'door', 1.75), ('corner (1.904, 2.350)', 'upper', 1.75)]}
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  On the resolution-free halo model the acceleration-triggered carrier does not fail cosmic shear at every KiDS-safe
+  region cap for every kick Harvey allows, at the common cell and at the window-top corner alike (best case 1.031).  The
+  corner rescue suggested by the mock (DE5) rests on regions the mock cannot grow (MS3 U1, DE5b).  What passes on the halo
+  model is group-and-cluster clearing plus a region cap near 1.75 Mpc (MS3 K1, L388's retention) -- and clearing group cores
+  is what Harvey forbids for this trigger's kicks (AT3).
+
+  3/4 checks pass; load-bearing failures: 1; wrote AT4_halo_model_cosmic_shear_results_MUTATE.json   [2577s]
+rc=1

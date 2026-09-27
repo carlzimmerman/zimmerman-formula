@@ -24,7 +24,11 @@
   - **Every gate but cosmic shear passes together on the alternative set** (v_A = 600 km/s; y_v0 = 0.1 or 0.03). For y_v0 = 0.1: flagship ≤ 0.074 dex at z = 0.5–2.5; galaxies +0.057; X-COP 1.18/1.23; KiDS −27.0/−24.5; Harvey +0.054; S₈ 0.784; forest on the flux 2.5%.
   - **Cosmic shear blocks it** (worst R 1.54–1.58 against 1.2; T(k = 1, z = 0.5) = 0.88–0.89).
   - **Kick pincer:** at 800 km/s the transfer falls to 0.73–0.84 and cosmic shear nearly passes (1.14/1.22), but Harvey fails (+0.110/+0.114 against +0.10).
-- **Standing.** This is the first construction to pass every gate but cosmic shear with the high-z flagship included. Its remaining pincer is cosmic shear against Harvey through the kick speed. Next: a kick near 700 km/s with a switch cell near the window's top (DE5's bound there is up to 0.88/0.86 at k = 1).
+- **Cosmic shear, resolution-free** ([AT4](../acceleration_trigger_2026/AT4_halo_model_cosmic_shear.py), 4/4; `MUTATE` = L388's retention, H1 fails).
+  - MS3 (a parallel lane) shows the record's mock cannot grow an isolated galaxy's phantom-supported region. So mock-based cosmic-shear verdicts (L364's convention, AT3's, DE5's) are not established.
+  - On MS3's resolution-free halo model, with the carrier's own retention by halo mass, the carrier fails at every KiDS-safe region cap (≥ 1.75 Mpc) for every kick Harvey allows. That holds at the common cell and at the window-top corner, on both edge conventions; the best case is 1.26 against 1.2.
+  - The reason: it keeps 61–95% of its carrier in groups and clusters, where the phantom's power at k = 1 lives. Only kicks ≥ 1200 km/s pass at the 1.75 Mpc cap, and Harvey already fails at 800.
+- **Standing.** This is the first construction to pass every gate but cosmic shear with the high-z flagship included (AT3). On the resolution-free estimate, cosmic shear needs group-and-cluster clearing plus a region cap near 1.75 Mpc (MS3). This trigger's slow kicks keep groups' carrier, and a fast kick hollows group cores (Harvey). The mock-based corner rescue does not survive (AT4).
 
 **Update, 09-25 (evening): the vacuum gate reopens the switch and the bound-region kernel is built; the assembled construction then FAILS cosmic shear** (L357, L359–L361, L363).
 
