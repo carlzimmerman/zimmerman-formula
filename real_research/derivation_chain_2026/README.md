@@ -18,6 +18,9 @@ requirement on a lower link), OPEN (owed), FAILS (derived and contradicted by da
 - a0 = kappa c sqrt(G rho_DE), with the form forced by (G, c, rho) and kappa = 1/2 FITTED (FP0). On a true Lambda, a0 is
   flat in z. The link to Lambda is TIED inside the action by the Henneaux-Teitelboim unimodular multiplier (the hub's
   XR20, a075ad7f7). Under evolving dark energy, an action-level field tie reads sqrt(V), not sqrt(rho_DE) (FP0 L2a').
+  In the khronon's own terms, a0 = (kappa/sqrt(24 pi)) c^2 K_inf with K_inf = sqrt(3 Lambda) the asymptotic expansion
+  (XR30, 2a2d81f61). The khronon's CMC clock and the unimodular clock stay two structures (unimodular shape dynamics):
+  the local count is unchanged and the global count gains one pair.
 - The galaxy law P2, g_obs = sqrt(g_bar^2 + g_bar a0): an infrared law (FP0 R2).
 
 ## The action as it stands (per 1/16 pi G, c = 1)
@@ -41,8 +44,8 @@ light complex scalar whose own rest energy powers the kick.
 
 | sector | constant | status | lane |
 |---|---|---|---|
-| core | lambda (inertia) | eliminated under H_Y (lambda = 0); a regulator (lambda > 0, any value) under H_S and H_K1 (required below z = 0.635) | FP14, FP13, FP19; the hub's XR25 settles it |
-| core | c_2 | ELIMINATED (c_2 -> infinity: a multiplier) | FP14 |
+| core | lambda (inertia) | eliminated under H_Y (lambda = 0); required > 0 under H_S and H_K1 (below z = 0.635). NOT a pure regulator at c_2 = infinity (the hub's XR25): inert for strong-field observables, but a MOND-regime knob across (0, 274.4] (tracking speed 17,300 -> 1,800 km/s, galaxy alpha_2 v^2 1.3e-3 -> 0.12); inert only for lambda <~ 0.03. Counts as a knob unless that range is shown free of trouble (XR18b) | FP14, FP13, FP19, XR25 |
+| core | c_2 | ELIMINATED on Minkowski and FRW (c_2 -> infinity: a multiplier). At black holes the limit is not uniform: at c_2 = infinity with alpha_c > 0 the multiplier diverges logarithmically at the universal horizon (r = 3M/2), a curvature singularity at O(alpha_c); finite c_2 is regular. OPEN (XR25) | FP14, XR25 |
 | core | alpha_c | REGULATOR (every observable moves <= 1.6e-9) | FP14 |
 | core | xi (heat filter) | KNOB: irreducible by a threshold-mass theorem; to be MEASURED by wide binaries (Gaia DR4) | FP17, the hub's XR22 |
 | separator | L_Lambda | DECLARED in H_K1: 2.9 Mpc, inside the window 2.65-4.6 (sigma_8 <= 1.02 needs <= 3.0); zero modes alone cannot give it (FP19) | FP19 |
@@ -66,6 +69,9 @@ light complex scalar whose own rest energy powers the kick.
 - H_K1's prices (FP19): KiDS for lenses at z = 0.7 comes out at +496, a sharp prediction the data can test; the Local
   Group R0 still fails (1.41/1.46 Mpc). All of FP19's numbers are in the all-matter reading and use FP6's projection, so
   they are provisional until FP20 and FP22.
+- Strong lensing (the hub's XR33, 92fe59705): SLACS ellipticals from baryons plus the phantom need a stellar IMF
+  0.118 +- 0.013 dex above the spectroscopic relation (CvD12's heaviest); the phantom supplies only 9.5-11% of the
+  Einstein mass (g_N ~ 9-11 a0). LCDM's own IMF for the same lenses is off by +0.021 dex.
 - No-go results that constrain any repair: local gates (FP3 lemma), the MOND-sector kick (FP4, FP8 reciprocity), and
   xi from (a0, Lambda, G, c) (FP17 theorem).
 
@@ -82,6 +88,9 @@ light complex scalar whose own rest energy powers the kick.
 - **FP7's sigma_8 failure used the all-matter reading** (the MOND scalar sourced by, and acting on, the total delta),
   while FP10's dark component does not source the phantom. FP22 derives which reading the action implies and re-scores
   sigma_8, the forest and KiDS in it.
+- **FP14's "sigma_8 unchanged for lambda = 0-100"** was measured at the c_2 floor, where lambda_eff = lambda + 277 (the
+  hub's XR25, 43cfa1692). At that floor the lambda window is empty, so a required lambda > 0 (FP13, FP19) needs
+  c_2 > 7.289e-3; FP14's "c_2 -> infinity is regular" holds on Minkowski and FRW but not uniformly at black holes.
 - **FP16's MUTATE banner** names R1, G3 and G9 as the flips; the observed flips are R1, G7 and G9 (without recapture
   X-COP fails on the other side, which G3 does not distinguish). Wording only; no number changes.
 - **Numerology is flagged, never claimed:** eps/m^2 = kappa^19 (FP10); (c^2/a0)(32 pi)^-6 = 0.030 pc and
