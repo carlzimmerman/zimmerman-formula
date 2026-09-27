@@ -193,4 +193,19 @@ Running here:
     own matter field, plus a frozen-readout control.
   - Stage 2 (H_S's nonlinear cosmology) waits on XR18. It is the test FP13's pass depends on.
   - Stage 3 (conversion with re-accretion) waits on XR19.
-- **FP10_FULL:** the chain's full grid, launched here. The chain lead commits its outputs.
+- **FP10_FULL (df13605e0), done:** the dark-sector window hinges on re-accretion.
+  - With conversion in place, 0 of 12 cells pass: X-COP fails at every kick, and cosmic shear fails.
+  - In the optimistic (history) reading, 6 of 12 pass, at 575 and 600 km/s.
+  - The flagship passes in the history reading, at ≤ 0.0005 dex.
+  - FP16 (semi-analytic) and XR21's stage 3 (particle mesh) decide which reading holds.
+- **The hardest open tests of the chain, launched 2026-09-27:**
+  - **XR22, Gaia DR4 wide binaries.** It solves the chain's z = 0 law as a 3-D AQUAL two-body problem in the Galactic
+    field, with the heat filter across ξ's window. It then computes the frozen pre-registration's own statistic
+    (read-only), to see whether DR4 still tests the chain.
+  - **XR23, the first massive halos.** Spherical collapse and the mass function in the chain's law at z = 6–20,
+    against the knob-free baryon limit for JWST's earliest massive galaxies.
+  - **XR24, the Local Group by numerical action.** A 3-D fit of the local Hubble flow, with the neighbouring groups'
+    tides, to see whether R0's overshoot survives.
+  - **XR25, strong fields.** Preferred-frame PPN, neutron-star sensitivities, and binary-pulsar dipole radiation on
+    FP14's core. It also asks whether the constant-mean-curvature leaves exist around neutron stars and black holes,
+    and what the GW170817 dipole bound gives.
