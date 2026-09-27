@@ -1,0 +1,252 @@
+XR22_prereg_statistic -- THE CHAIN'S WIDE-BINARY PREDICTION IN THE FROZEN GAIA DR4 STATISTIC: the pre-registered gamma_v estimator
+applied to the derivation chain's force law (XR22_force_law.py), across the heat filter's window, both a0 footings; where it lands
+against the frozen decision rows; whether DR4 can measure xi; and FP17's Galileon variant as a labelled estimate.
+
+WHY.  The frozen pre-registration (prep_2026/gaia_dr4_prep/PREREGISTRATION_DR4.md; read-only, never edited here) scores one
+number, gamma_hat: the median of vtilde = v_perp/sqrt(G M/s_proj) in 8 bins of log10 y_proj, fitted by a 1-parameter asymptote
+with the EFE-saturated shape and an anchored nuisance kappa (section 1.3), against rows built for Arm A (Route A one-field AQUAL,
+no filter; canonical 1.1614-1.1814) and Arm B (the carrier reading, xi >= 4 pc: 1.0000 +- 0.0025; killed from above at 1.084).
+The chain's law (FP7 + FP14 + FP13 at z = 0: two-field AQUAL with J_P2 and a double heat filter of length xi) is neither arm.
+
+THE TWO PATHS FROM FORCE LAW TO gamma_hat (both through the frozen estimator's own functions, exec'd read-only):
+  REG   the theory-to-gamma_v path Amendments 11 and 12 register for coherence-length arms (g03y / L47 run_estimator, mirrored
+        line by line): tables B(M_tot in {1, 2}, s in 3-30 kAU, 0/45/90 deg), orientation-averaged by the 3-point rule,
+        log-interpolated in s and linear in M with clipping, velocity boost sqrt(B) at fixed orbit, population =
+        make_population(1.5e6, seed 20261216) used as data and model.
+  PHYS  the same population and model medians (a mirror of make_population, bit-identical by control), each system boosted at
+        its TRUE mass (0.6-2.5 Msun), TRUE 3-D separation (1.5-120 kAU) and its own angle psi to an isotropic Galactic-field
+        direction (Amendment 10 PART D's treatment), with the full angular dependence (lane 1's validated interpolation).
+Both are reported; PHYS is the more faithful force law, REG the like-for-like comparison with the registered arms.
+
+    force law: XR22_force_law_results.json (lane 1 main run: 0 load-bearing failures); 3-D xi = [0.0242814, 0.03, 0.04, 0.05, 0.07, 0.1, 0.15, 0.2] (canonical) / [0.0268323, 0.03, 0.04, 0.05, 0.07, 0.1, 0.15, 0.2] (alt); linear-kernel xi = [0.3, 0.5, 1.0, 2.0, 3.0, 10.0, 30.0, 100.0]; M = [0.6, 1.0, 1.5, 2.0, 2.5]; s = 1.5-120.0 kAU
+
+======================================================================================================================
+S1-S3  CONTROLS: the pre-registration's own machinery reproduces its committed numbers
+======================================================================================================================
+    registered estimator populations built (716117 pairs after the frozen selection; 20 s)
+    g03y rar_carried (Amendment 11(b))   [canonical]: gamma = 1.0450 +- 0.0037  (committed 1.0450)
+    g03y rar_carried (Amendment 11(b))   [alt      ]: gamma = 1.0300 +- 0.0037  (committed 1.0300)
+    g03g original (g03h published)       [canonical]: gamma = 1.0325 +- 0.0025  (committed 1.0325)
+    g03g original (g03h published)       [alt      ]: gamma = 1.0400 +- 0.0037  (committed 1.0400)
+    direct run_estimator (verbatim) = 1.0450 +- 0.0037, kappa 0.990868; cached 1.0450 +- 0.0037, kappa 0.990868: identical True
+  [PASS] S1 CONTROL: the registered theory-to-gamma_v path reproduces Amendment 11(b)'s 1.0450 / 1.0300 (g03y) and the published 1.0325 / 1.0400 (g03g) exactly, and the cached estimator equals the direct call bit for bit
+         measured: g03y can 1.0450; g03y alt 1.0300; g03g can 1.0325; g03g alt 1.0400; identical True
+    frozen gate, inject 1.00: canonical 0.9850 +- 0.0137 (kappa 1.0070); alt 0.9900 +- 0.0125 (kappa 1.0043)  [committed: 0.9850 +- 0.0137 (1.0070) / 0.9900 +- 0.0125 (1.0043)]  (38 s)
+  [PASS] S2 CONTROL: the frozen pipeline's own gate (seed 20261216, 3,000,000-pair master) reproduces its committed inject-1.00 recovery
+         measured: 0.9850 +- 0.0137 (kappa 1.0070) / 0.9900 +- 0.0125 (kappa 1.0043)
+    population mirror vs the frozen make_population (same seed): all 10 returned fields identical: True
+  [PASS] S3 CONTROL: the mirrored population (with the 3-D separation, true masses and a field direction drawn from a SEPARATE generator) is bit-identical to the frozen make_population
+         measured: identical True
+
+======================================================================================================================
+V1  THE CHAIN AS COMMITTED (heat filter), gamma_hat vs xi, both paths, the pre-registration's primary field
+======================================================================================================================
+  [canonical]  (a0 = 9.3603e-11 in the force law; the estimator bins with the frozen 9.360e-11)
+      xi [pc]  REG gamma   kappa  PHYS gamma   kappa  (g-1)/sig_tot  frozen row (PHYS)
+       0.0243     1.0725  0.9876      1.0725  0.9878           2.59  1.056-1.084: Arm A disfavored (2.8-3.8 sigma_tot); Newton disfavored at 2-3 sigma_tot
+       0.0300     1.0650  0.9873      1.0650  0.9875           2.32  1.056-1.084: Arm A disfavored (2.8-3.8 sigma_tot); Newton disfavored at 2-3 sigma_tot
+       0.0400     1.0500  0.9891      1.0500  0.9895           1.79  1.007-1.056: Arm A falsified (>= 3.8 sigma_tot); Newton not excluded; Amdt 11(d)'s 'decided for B' voided by Amdt 12(d)
+       0.0500     1.0375  0.9912      1.0400  0.9906           1.43  1.007-1.056: Arm A falsified (>= 3.8 sigma_tot); Newton not excluded; Amdt 11(d)'s 'decided for B' voided by Amdt 12(d)
+       0.0700     1.0200  0.9951      1.0250  0.9935           0.89  1.007-1.056: Arm A falsified (>= 3.8 sigma_tot); Newton not excluded; Amdt 11(d)'s 'decided for B' voided by Amdt 12(d)
+       0.1000     1.0075  0.9983      1.0125  0.9966           0.45  1.007-1.056: Arm A falsified (>= 3.8 sigma_tot); Newton not excluded; Amdt 11(d)'s 'decided for B' voided by Amdt 12(d)
+       0.1500     1.0025  0.9995      1.0050  0.9986           0.18  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+       0.2000     1.0000  1.0002      1.0025  0.9993           0.09  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+       0.3000     1.0000  1.0001      1.0000  1.0001          -0.00  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+       0.5000     1.0000  1.0000      1.0000  1.0000          -0.00  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+       1.0000     1.0000  1.0000      1.0000  1.0000          -0.00  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+       2.0000     1.0000  1.0000      1.0000  1.0000          -0.00  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+       3.0000     1.0000  1.0000      1.0000  1.0000          -0.00  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+      10.0000     1.0000  1.0000      1.0000  1.0000          -0.00  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+      30.0000     1.0000  1.0000      1.0000  1.0000          -0.00  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+     100.0000     1.0000  1.0000      1.0000  1.0000          -0.00  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+  [alt]  (a0 = 1.1312e-10 in the force law; the estimator bins with the frozen 1.130e-10)
+      xi [pc]  REG gamma   kappa  PHYS gamma   kappa  (g-1)/sig_tot  frozen row (PHYS)
+       0.0268     1.0900  0.9847      1.0900  0.9851           3.21  1.084-1.101: Arm B killed from above (Amdt 12(d)); arm not decided
+       0.0300     1.0850  0.9843      1.0875  0.9837           3.12  1.084-1.101: Arm B killed from above (Amdt 12(d)); arm not decided
+       0.0400     1.0650  0.9865      1.0675  0.9858           2.41  1.056-1.084: Arm A disfavored (2.8-3.8 sigma_tot); Newton disfavored at 2-3 sigma_tot
+       0.0500     1.0475  0.9896      1.0525  0.9881           1.87  1.007-1.056: Arm A falsified (>= 3.8 sigma_tot); Newton not excluded; Amdt 11(d)'s 'decided for B' voided by Amdt 12(d)
+       0.0700     1.0275  0.9935      1.0300  0.9931           1.07  1.007-1.056: Arm A falsified (>= 3.8 sigma_tot); Newton not excluded; Amdt 11(d)'s 'decided for B' voided by Amdt 12(d)
+       0.1000     1.0125  0.9968      1.0150  0.9963           0.54  1.007-1.056: Arm A falsified (>= 3.8 sigma_tot); Newton not excluded; Amdt 11(d)'s 'decided for B' voided by Amdt 12(d)
+       0.1500     1.0050  0.9986      1.0050  0.9989           0.18  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+       0.2000     1.0025  0.9992      1.0025  0.9994           0.09  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+       0.3000     1.0000  1.0001      1.0000  1.0001          -0.00  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+       0.5000     1.0000  1.0000      1.0000  1.0000          -0.00  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+       1.0000     1.0000  1.0000      1.0000  1.0000          -0.00  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+       2.0000     1.0000  1.0000      1.0000  1.0000          -0.00  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+       3.0000     1.0000  1.0000      1.0000  1.0000          -0.00  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+      10.0000     1.0000  1.0000      1.0000  1.0000          -0.00  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+      30.0000     1.0000  1.0000      1.0000  1.0000          -0.00  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+     100.0000     1.0000  1.0000      1.0000  1.0000          -0.00  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+  V0 [canonical] the xi -> 0 LINEAR kernel (y-independent: its boost is the same in the anchor bins as in the deep bins): REG 1.0000 (kappa 1.0705), PHYS 0.9975 (kappa 1.0643) -- the anchored kappa absorbs a y-flat boost, so this is the estimator's blind spot, NOT the unfiltered law's gamma_hat (that law returns to Newton at high y where the scalar saturates; it is excluded by the Solar System anyway, FP7 A4); frozen row: kappa = 1.0643 outside the frozen [0.95, 1.05]: 'systematic-limited, no verdict' (frozen section 1.3/1.5)
+  V0 [alt] the xi -> 0 LINEAR kernel (y-independent: its boost is the same in the anchor bins as in the deep bins): REG 0.9975 (kappa 1.0920), PHYS 0.9975 (kappa 1.0835) -- the anchored kappa absorbs a y-flat boost, so this is the estimator's blind spot, NOT the unfiltered law's gamma_hat (that law returns to Newton at high y where the scalar saturates; it is excluded by the Solar System anyway, FP7 A4); frozen row: kappa = 1.0835 outside the frozen [0.95, 1.05]: 'systematic-limited, no verdict' (frozen section 1.3/1.5)
+  [canonical] Galactic field prereg_alt (2.078e-10), xi = 0.0243 pc: REG gamma = 1.0575 (kappa 0.9904)
+  [canonical] Galactic field prereg_alt (2.078e-10), xi = 0.0300 pc: REG gamma = 1.0500 (kappa 0.9908)
+  [canonical] Galactic field prereg_alt (2.078e-10), xi = 0.0500 pc: REG gamma = 1.0300 (kappa 0.9929)
+  [canonical] Galactic field prereg_alt (2.078e-10), xi = 0.1000 pc: REG gamma = 1.0075 (kappa 0.9980)
+  [canonical] Galactic field chain_FP7 (2.320e-10), xi = 0.0243 pc: REG gamma = 1.0500 (kappa 0.9916)
+  [alt] Galactic field prereg_alt (2.078e-10), xi = 0.0268 pc: REG gamma = 1.0750 (kappa 0.9866)
+  [alt] Galactic field prereg_alt (2.078e-10), xi = 0.0300 pc: REG gamma = 1.0700 (kappa 0.9866)
+  [alt] Galactic field prereg_alt (2.078e-10), xi = 0.0500 pc: REG gamma = 1.0400 (kappa 0.9909)
+  [alt] Galactic field prereg_alt (2.078e-10), xi = 0.1000 pc: REG gamma = 1.0100 (kappa 0.9975)
+  [alt] Galactic field chain_FP7 (2.320e-10), xi = 0.0268 pc: REG gamma = 1.0625 (kappa 0.9892)
+
+======================================================================================================================
+THE SEPARATION SIGNATURE AND WHERE DR4'S xi INFORMATION IS (N = 30,000)
+======================================================================================================================
+  [canonical] separation-binned boost of the median vtilde (PHYS, chain / Newton - 1), s_proj bins [2.0, 3.0, 5.0, 7.0, 10.0, 15.0, 20.0, 30.0] kAU:
+    xi =  0.0243 pc: +0.0020 +0.0063 +0.0153 +0.0280 +0.0439 +0.0554 +0.0599
+    xi =  0.0300 pc: +0.0013 +0.0042 +0.0106 +0.0207 +0.0357 +0.0497 +0.0587
+    xi =  0.0400 pc: +0.0006 +0.0021 +0.0056 +0.0125 +0.0240 +0.0381 +0.0526
+    xi =  0.0500 pc: +0.0004 +0.0013 +0.0032 +0.0078 +0.0164 +0.0282 +0.0441
+    xi =  0.0700 pc: +0.0001 +0.0005 +0.0014 +0.0036 +0.0084 +0.0155 +0.0289
+    xi =  0.1000 pc: +0.0000 +0.0002 +0.0006 +0.0014 +0.0035 +0.0072 +0.0152
+    xi =  0.1500 pc: +0.0000 +0.0001 +0.0002 +0.0005 +0.0010 +0.0022 +0.0059
+    xi =  0.2000 pc: +0.0000 +0.0000 +0.0000 +0.0002 +0.0004 +0.0009 +0.0029
+    xi =  0.3000 pc: +0.0000 +0.0000 +0.0000 +0.0001 +0.0001 +0.0003 +0.0008
+    per-bin error at N = 30,000: 0.0079 0.0076 0.0121 0.0131 0.0130 0.0170 0.0149  (bin shares of the sample: 0.27 0.26 0.13 0.11 0.10 0.06 0.06)
+  [alt] separation-binned boost of the median vtilde (PHYS, chain / Newton - 1), s_proj bins [2.0, 3.0, 5.0, 7.0, 10.0, 15.0, 20.0, 30.0] kAU:
+    xi =  0.0268 pc: +0.0023 +0.0070 +0.0172 +0.0320 +0.0526 +0.0701 +0.0782
+    xi =  0.0300 pc: +0.0017 +0.0055 +0.0141 +0.0272 +0.0468 +0.0655 +0.0769
+    xi =  0.0400 pc: +0.0008 +0.0028 +0.0077 +0.0160 +0.0315 +0.0502 +0.0690
+    xi =  0.0500 pc: +0.0005 +0.0017 +0.0044 +0.0103 +0.0213 +0.0371 +0.0583
+    xi =  0.0700 pc: +0.0002 +0.0006 +0.0018 +0.0049 +0.0109 +0.0205 +0.0383
+    xi =  0.1000 pc: +0.0000 +0.0003 +0.0008 +0.0019 +0.0046 +0.0094 +0.0197
+    xi =  0.1500 pc: +0.0000 +0.0001 +0.0002 +0.0006 +0.0014 +0.0033 +0.0082
+    xi =  0.2000 pc: +0.0000 +0.0000 +0.0001 +0.0003 +0.0005 +0.0011 +0.0036
+    xi =  0.3000 pc: +0.0000 +0.0000 +0.0000 +0.0001 +0.0001 +0.0003 +0.0011
+    per-bin error at N = 30,000: 0.0079 0.0076 0.0120 0.0133 0.0137 0.0180 0.0150  (bin shares of the sample: 0.27 0.26 0.13 0.11 0.10 0.06 0.06)
+  [PASS] L1 THE PREDICTION PATH CARRIES THE FILTER: at the canonical floor the separation-binned boost at s_proj 2-5 kAU is < 25% of that at 20-30 kAU
+         measured: 2-3: +0.0020, 3-5: +0.0063, 20-30: +0.0599 (ratio 0.07)
+  [canonical] Fisher information on ln xi at xi = 0.0243 pc (separation bins, N = 30,000): 23.890 -> sigma(ln xi) = 0.20; per-bin shares 0.01 0.08 0.14 0.29 0.37 0.10 0.01
+  [canonical] Fisher information on ln xi at xi = 0.0300 pc (separation bins, N = 30,000): 25.326 -> sigma(ln xi) = 0.20; per-bin shares 0.00 0.03 0.08 0.18 0.39 0.22 0.10
+  [canonical] Fisher information on ln xi at xi = 0.0400 pc (separation bins, N = 30,000): 25.999 -> sigma(ln xi) = 0.20; per-bin shares 0.00 0.01 0.03 0.09 0.32 0.28 0.27
+  [canonical] Fisher information on ln xi at xi = 0.0500 pc (separation bins, N = 30,000): 19.487 -> sigma(ln xi) = 0.23; per-bin shares 0.00 0.00 0.01 0.04 0.19 0.30 0.45
+  [canonical] Fisher information on ln xi at xi = 0.0700 pc (separation bins, N = 30,000): 10.061 -> sigma(ln xi) = 0.32; per-bin shares 0.00 0.00 0.00 0.02 0.13 0.23 0.61
+  [canonical] Fisher information on ln xi at xi = 0.1000 pc (separation bins, N = 30,000): 3.468 -> sigma(ln xi) = 0.54; per-bin shares 0.00 0.00 0.00 0.01 0.08 0.15 0.76
+  [alt] Fisher information on ln xi at xi = 0.0268 pc (separation bins, N = 30,000): 39.814 -> sigma(ln xi) = 0.16; per-bin shares 0.01 0.08 0.13 0.27 0.37 0.13 0.02
+  [alt] Fisher information on ln xi at xi = 0.0300 pc (separation bins, N = 30,000): 43.271 -> sigma(ln xi) = 0.15; per-bin shares 0.00 0.03 0.08 0.20 0.38 0.22 0.09
+  [alt] Fisher information on ln xi at xi = 0.0400 pc (separation bins, N = 30,000): 43.852 -> sigma(ln xi) = 0.15; per-bin shares 0.00 0.01 0.03 0.09 0.32 0.30 0.26
+  [alt] Fisher information on ln xi at xi = 0.0500 pc (separation bins, N = 30,000): 33.292 -> sigma(ln xi) = 0.17; per-bin shares 0.00 0.00 0.01 0.04 0.21 0.28 0.45
+  [alt] Fisher information on ln xi at xi = 0.0700 pc (separation bins, N = 30,000): 17.156 -> sigma(ln xi) = 0.24; per-bin shares 0.00 0.00 0.00 0.02 0.12 0.24 0.61
+  [alt] Fisher information on ln xi at xi = 0.1000 pc (separation bins, N = 30,000): 5.078 -> sigma(ln xi) = 0.44; per-bin shares 0.00 0.00 0.00 0.01 0.08 0.17 0.73
+  [PASS] H5 WHERE THE xi INFORMATION IS: >= 70% of the separation-resolved Fisher information on ln xi at the floor comes from s_proj = 5-30 kAU
+         measured: share 0.91
+
+======================================================================================================================
+THE FROZEN NUMBER AS A xi-METER: gamma_hat(xi) against the frozen error model
+======================================================================================================================
+  [canonical] ceiling (floor xi): PHYS 1.0725 / REG 1.0725; distance to Newton 2.59 sigma_tot (3.82 sigma_fit); d gamma/d ln xi at the floor -0.0355 -> sigma(ln xi) from the frozen number 0.8 (sigma_tot) / 0.5 (sigma_fit); a true-floor outcome's 2 sigma_tot interval [1.0165, 1.1285] does not reach Newton; a Newtonian outcome (1.000) excludes xi below 0.03565204915931771 pc at 2 sigma_tot (below 0.04999999999999654 pc at the infinite-N floor sigma_sys = 0.02)
+  [alt] ceiling (floor xi): PHYS 1.0900 / REG 1.0900; distance to Newton 3.21 sigma_tot (4.74 sigma_fit); d gamma/d ln xi at the floor -0.0224 -> sigma(ln xi) from the frozen number 1.2 (sigma_tot) / 0.8 (sigma_fit); a true-floor outcome's 2 sigma_tot interval [1.0340, 1.1460] does not reach Newton; a Newtonian outcome (1.000) excludes xi below 0.047463271330280485 pc at 2 sigma_tot (below 0.06027708565391154 pc at the infinite-N floor sigma_sys = 0.02)
+  [PASS] L2 THE PREDICTION PATH CARRIES xi: gamma_hat(100 pc) = 1.0000 +- 0.0025 on both paths and gamma_hat(floor) exceeds it by > 0.005
+         measured: canonical: floor 1.0725 / 1.0725, 100 pc 1.0000 / 1.0000; alt: floor 1.0900 / 1.0900, 100 pc 1.0000 / 1.0000
+  [FAIL] H1 PLACEMENT: the chain's gamma_hat at the canonical floor lies in [1.007, 1.056] on both paths (Arm A falsified, Newton not excluded)
+         measured: PHYS 1.0725, REG 1.0725 (alt: 1.0900 / 1.0900)
+  [PASS] H2 xi DEPENDENCE: gamma_hat falls monotonically with xi on both paths and is <= 1.0025 for every xi >= 0.3 pc
+         measured: canonical: monotone True, first xi with gamma <= 1.0025: 0.2; alt: monotone True, first xi with gamma <= 1.0025: 0.2
+  [FAIL] H3 NOT DECISIVE vs NEWTON: at no allowed xi does gamma_hat exceed 1 + 3 sigma_tot = 1.084
+         measured: max gamma_hat 1.0900
+  [FAIL] H4 xi NOT FIXED BY THE FROZEN NUMBER: a true floor-xi outcome's 2 sigma_tot interval reaches gamma = 1 (so the frozen number bounds the boost from above and xi only from below)
+         measured: canonical: [1.0165, ...]; alt: [1.0340, ...]
+  [PASS] H7 KAPPA WINDOW: the anchored nuisance kappa stays in the frozen [0.95, 1.05] at every xi (both paths, both footings)
+         measured: kappa in [0.9837, 1.0002]
+
+======================================================================================================================
+THE FROZEN STRICTNESS LADDER: separation 2-30 -> 3-20 kAU (the frozen generator rerun with the rung's cut; data = model)
+======================================================================================================================
+  [canonical] xi = 0.0243 pc: gamma_hat 2-30 kAU 1.0725 -> 3-20 kAU 1.0775 (kappa 0.9831; Newton on the rung 1.0000); shift +0.0050 = +0.26 sigma_fit
+  [canonical] xi = 0.0300 pc: gamma_hat 2-30 kAU 1.0650 -> 3-20 kAU 1.0675 (kappa 0.9832; Newton on the rung 1.0000); shift +0.0025 = +0.13 sigma_fit
+  [canonical] xi = 0.0400 pc: gamma_hat 2-30 kAU 1.0500 -> 3-20 kAU 1.0475 (kappa 0.9873; Newton on the rung 1.0000); shift -0.0025 = -0.13 sigma_fit
+  [alt] xi = 0.0268 pc: gamma_hat 2-30 kAU 1.0900 -> 3-20 kAU 1.0950 (kappa 0.9798; Newton on the rung 1.0000); shift +0.0050 = +0.26 sigma_fit
+  [alt] xi = 0.0300 pc: gamma_hat 2-30 kAU 1.0875 -> 3-20 kAU 1.0875 (kappa 0.9800; Newton on the rung 1.0000); shift +0.0000 = +0.00 sigma_fit
+  [alt] xi = 0.0400 pc: gamma_hat 2-30 kAU 1.0675 -> 3-20 kAU 1.0650 (kappa 0.9828; Newton on the rung 1.0000); shift -0.0025 = -0.13 sigma_fit
+  [PASS] H6 THE FROZEN LADDER: the 3-20 kAU rung moves the chain's floor gamma_hat by < sigma_fit = 0.019
+         measured: canonical 0.0243: +0.0050; alt 0.0268: +0.0050
+         reading:  the frozen stability rule requires every ladder variant to move gamma_hat by < 1 sigma_fit, else 'systematic-limited'
+
+======================================================================================================================
+THE ORIENTATION-RESOLVED SPLIT (Amendment 2(e), non-scoring): projected separation vs the projected field direction
+======================================================================================================================
+  [canonical] floor: gamma_hat projected-parallel half 1.0725, perpendicular half 1.0750: perp - par = +0.0025 (+0.07 sigma at N = 30,000)
+  [alt] floor: gamma_hat projected-parallel half 1.0900, perpendicular half 1.0950: perp - par = +0.0050 (+0.13 sigma at N = 30,000)
+  [FAIL] H10 ANISOTROPY: the chain's floor sample-level split is parallel-dominant (opposite to Amendment 2(f)'s registered Arm-A sense) at < 1 sigma for N = 30,000
+         measured: canonical: +0.0025 (+0.07 sigma); alt: +0.0050 (+0.13 sigma)
+
+======================================================================================================================
+V2  BDEF'S RIEMANN-COUPLED GALILEON, FP17'S REDUCTION (ESTIMATE; NOT ADOPTED: its c_T and stability are open)
+======================================================================================================================
+    FP17 V4: k^(1/4) floor (Saturn monopole) 104.45 kpc, GW170817 ceiling (FP17's estimate) 407 / 379 kpc
+    r_E(2 Msun, k floor, 2.32e-10) in FP17's convention (the field as Newtonian): canonical: 0.0817 (mu_T) / 0.0349 (mu_L) pc; alt: 0.0866 (mu_T) / 0.0388 (mu_L) pc  (FP17 quotes 0.035-0.087 pc)
+    the same with the field as OBSERVED (FP7 A4's convention, used for every number below): canonical: 0.0869 / 0.0390 pc; alt: 0.0931 / 0.0442 pc  -- FP17's r_E runs 6-12% small from that convention (flagged, not load-bearing here)
+  [PASS] V2-K CONTROL (reported): this lane's reduction, in FP17's convention, reproduces FP17's wide-binary screening radius for a 2-Msun pair at the floor (0.035-0.087 pc)
+         measured: 0.0349-0.0866 pc
+  [canonical] gamma_hat (PHYS): k floor, FP17, muT: 1.0625; k floor, FP17, muL: 1.0850; k floor, linearised, muT: 1.0200; k floor, linearised, muL: 1.0500; k ceiling, FP17, muT: 1.0150; k ceiling, FP17, muL: 1.0500; k ceiling, linearised, muT: 1.0000; k ceiling, linearised, muL: 1.0025
+  [alt] gamma_hat (PHYS): k floor, FP17, muT: 1.0775; k floor, FP17, muL: 1.1100; k floor, linearised, muT: 1.0225; k floor, linearised, muL: 1.0550; k ceiling, FP17, muT: 1.0175; k ceiling, FP17, muL: 1.0600; k ceiling, linearised, muT: 1.0000; k ceiling, linearised, muL: 1.0025
+  gamma_v(s) = sqrt(<B>) (sphere average over the field direction), primary field, canonical:
+    Galileon M = 1.0, k floor  , FP17      : 1.000-1.001 1.000-1.004 1.002-1.016 1.006-1.034 1.015-1.055 1.037-1.063 1.054-1.064 1.063-1.064 1.064-1.064 1.064-1.064   (s = [2.0, 3.0, 5.0, 7.0, 10.0, 15.0, 20.0, 30.0, 45.0, 60.0] kAU)
+    Galileon M = 1.0, k floor  , linearised: 1.000-1.000 1.000-1.000 1.000-1.001 1.000-1.002 1.001-1.007 1.005-1.025 1.012-1.043 1.035-1.058 1.055-1.063 1.061-1.063   (s = [2.0, 3.0, 5.0, 7.0, 10.0, 15.0, 20.0, 30.0, 45.0, 60.0] kAU)
+    Galileon M = 1.0, k ceiling, FP17      : 1.000-1.000 1.000-1.000 1.000-1.001 1.000-1.003 1.001-1.009 1.004-1.026 1.008-1.044 1.024-1.060 1.049-1.063 1.060-1.064   (s = [2.0, 3.0, 5.0, 7.0, 10.0, 15.0, 20.0, 30.0, 45.0, 60.0] kAU)
+    Galileon M = 1.0, k ceiling, linearised: 1.000-1.000 1.000-1.000 1.000-1.000 1.000-1.000 1.000-1.000 1.000-1.000 1.000-1.001 1.000-1.003 1.002-1.012 1.005-1.027   (s = [2.0, 3.0, 5.0, 7.0, 10.0, 15.0, 20.0, 30.0, 45.0, 60.0] kAU)
+    heat filter M = 1.0, xi at the floor:          1.000 1.001 1.005 1.012 1.026 1.049 1.059 1.063 1.063 1.064
+    Galileon M = 2.0, k floor  , FP17      : 1.000-1.001 1.000-1.002 1.001-1.009 1.003-1.021 1.008-1.043 1.023-1.060 1.041-1.063 1.059-1.064 1.063-1.064 1.064-1.064   (s = [2.0, 3.0, 5.0, 7.0, 10.0, 15.0, 20.0, 30.0, 45.0, 60.0] kAU)
+    Galileon M = 2.0, k floor  , linearised: 1.000-1.000 1.000-1.000 1.000-1.000 1.000-1.001 1.000-1.004 1.002-1.016 1.007-1.033 1.024-1.054 1.048-1.061 1.058-1.063   (s = [2.0, 3.0, 5.0, 7.0, 10.0, 15.0, 20.0, 30.0, 45.0, 60.0] kAU)
+    Galileon M = 2.0, k ceiling, FP17      : 1.000-1.000 1.000-1.000 1.000-1.001 1.000-1.002 1.001-1.005 1.002-1.015 1.004-1.029 1.013-1.053 1.034-1.062 1.052-1.063   (s = [2.0, 3.0, 5.0, 7.0, 10.0, 15.0, 20.0, 30.0, 45.0, 60.0] kAU)
+    Galileon M = 2.0, k ceiling, linearised: 1.000-1.000 1.000-1.000 1.000-1.000 1.000-1.000 1.000-1.000 1.000-1.000 1.000-1.000 1.000-1.001 1.001-1.007 1.003-1.017   (s = [2.0, 3.0, 5.0, 7.0, 10.0, 15.0, 20.0, 30.0, 45.0, 60.0] kAU)
+    heat filter M = 2.0, xi at the floor:          1.000 1.001 1.004 1.010 1.023 1.045 1.057 1.062 1.063 1.063
+  [PASS] H8 GALILEON vs HEAT FILTER, FROZEN NUMBER: the Galileon's gamma_hat range over its window overlaps the heat filter's, so the frozen statistic cannot tell them apart
+         measured: heat filter [1.0000, 1.0725]; Galileon (all readings) [1.0000, 1.0850]
+    matched gamma_hat 1.0625: Galileon (floor, FP17, muT) vs heat filter at xi = 0.0315 pc: resolved (7 s_proj x 3 mass bins) Asimov chi^2 = 0.72 -> 0.85 sigma at N = 30,000
+    matched gamma_hat 1.0200: Galileon (floor, linearised, muT) vs heat filter at xi = 0.0807 pc: resolved (7 s_proj x 3 mass bins) Asimov chi^2 = 0.15 -> 0.39 sigma at N = 30,000
+    matched gamma_hat 1.0500: Galileon (floor, linearised, muL) vs heat filter at xi = 0.0400 pc: resolved (7 s_proj x 3 mass bins) Asimov chi^2 = 0.37 -> 0.61 sigma at N = 30,000
+    matched gamma_hat 1.0150: Galileon (ceiling, FP17, muT) vs heat filter at xi = 0.0931 pc: resolved (7 s_proj x 3 mass bins) Asimov chi^2 = 0.11 -> 0.33 sigma at N = 30,000
+    matched gamma_hat 1.0500: Galileon (ceiling, FP17, muL) vs heat filter at xi = 0.0400 pc: resolved (7 s_proj x 3 mass bins) Asimov chi^2 = 0.42 -> 0.65 sigma at N = 30,000
+    matched gamma_hat 1.0025: Galileon (ceiling, linearised, muL) vs heat filter at xi = 0.2000 pc: resolved (7 s_proj x 3 mass bins) Asimov chi^2 = 0.00 -> 0.06 sigma at N = 30,000
+  [PASS] H9 GALILEON vs HEAT FILTER, RESOLVED: at matched gamma_hat a separation x mass resolved statistic at N = 30,000 separates them by < 3 sigma
+         measured: max 0.85 sigma over 6 matched readings
+
+======================================================================================================================
+P  PLACEMENT AGAINST THE FROZEN PRE-REGISTRATION (Amendment 7(e)/10(b)/11(g) reporting: raw gamma_hat, sigma_fit, distances)
+======================================================================================================================
+    canonical xi   0.0243 pc: gamma_hat 1.0725 (REG 1.0725); to Newton +3.82, to Arm A 1.1614 -4.68 / 1.1814 -5.73, to Arm B +3.82 sigma_fit  |  1.056-1.084: Arm A disfavored (2.8-3.8 sigma_tot); Newton disfavored at 2-3 sigma_tot
+    canonical xi   0.0300 pc: gamma_hat 1.0650 (REG 1.0650); to Newton +3.42, to Arm A 1.1614 -5.07 / 1.1814 -6.13, to Arm B +3.42 sigma_fit  |  1.056-1.084: Arm A disfavored (2.8-3.8 sigma_tot); Newton disfavored at 2-3 sigma_tot
+    canonical xi   0.0400 pc: gamma_hat 1.0500 (REG 1.0500); to Newton +2.63, to Arm A 1.1614 -5.86 / 1.1814 -6.92, to Arm B +2.63 sigma_fit  |  1.007-1.056: Arm A falsified (>= 3.8 sigma_tot); Newton not excluded; Amdt 11(d)'s 'decided for B' voided by Amdt 12(d)
+    canonical xi   0.0500 pc: gamma_hat 1.0400 (REG 1.0375); to Newton +2.11, to Arm A 1.1614 -6.39 / 1.1814 -7.44, to Arm B +2.11 sigma_fit  |  1.007-1.056: Arm A falsified (>= 3.8 sigma_tot); Newton not excluded; Amdt 11(d)'s 'decided for B' voided by Amdt 12(d)
+    canonical xi   0.0700 pc: gamma_hat 1.0250 (REG 1.0200); to Newton +1.32, to Arm A 1.1614 -7.18 / 1.1814 -8.23, to Arm B +1.32 sigma_fit  |  1.007-1.056: Arm A falsified (>= 3.8 sigma_tot); Newton not excluded; Amdt 11(d)'s 'decided for B' voided by Amdt 12(d)
+    canonical xi   0.1000 pc: gamma_hat 1.0125 (REG 1.0075); to Newton +0.66, to Arm A 1.1614 -7.84 / 1.1814 -8.89, to Arm B +0.66 sigma_fit  |  1.007-1.056: Arm A falsified (>= 3.8 sigma_tot); Newton not excluded; Amdt 11(d)'s 'decided for B' voided by Amdt 12(d)
+    canonical xi   0.1500 pc: gamma_hat 1.0050 (REG 1.0025); to Newton +0.26, to Arm A 1.1614 -8.23 / 1.1814 -9.28, to Arm B +0.26 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    canonical xi   0.2000 pc: gamma_hat 1.0025 (REG 1.0000); to Newton +0.13, to Arm A 1.1614 -8.36 / 1.1814 -9.42, to Arm B +0.13 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    canonical xi   0.3000 pc: gamma_hat 1.0000 (REG 1.0000); to Newton -0.00, to Arm A 1.1614 -8.49 / 1.1814 -9.55, to Arm B -0.00 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    canonical xi   0.5000 pc: gamma_hat 1.0000 (REG 1.0000); to Newton -0.00, to Arm A 1.1614 -8.49 / 1.1814 -9.55, to Arm B -0.00 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    canonical xi   1.0000 pc: gamma_hat 1.0000 (REG 1.0000); to Newton -0.00, to Arm A 1.1614 -8.49 / 1.1814 -9.55, to Arm B -0.00 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    canonical xi   2.0000 pc: gamma_hat 1.0000 (REG 1.0000); to Newton -0.00, to Arm A 1.1614 -8.49 / 1.1814 -9.55, to Arm B -0.00 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    canonical xi   3.0000 pc: gamma_hat 1.0000 (REG 1.0000); to Newton -0.00, to Arm A 1.1614 -8.49 / 1.1814 -9.55, to Arm B -0.00 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    canonical xi  10.0000 pc: gamma_hat 1.0000 (REG 1.0000); to Newton -0.00, to Arm A 1.1614 -8.49 / 1.1814 -9.55, to Arm B -0.00 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    canonical xi  30.0000 pc: gamma_hat 1.0000 (REG 1.0000); to Newton -0.00, to Arm A 1.1614 -8.49 / 1.1814 -9.55, to Arm B -0.00 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    canonical xi 100.0000 pc: gamma_hat 1.0000 (REG 1.0000); to Newton -0.00, to Arm A 1.1614 -8.49 / 1.1814 -9.55, to Arm B -0.00 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    alt       xi   0.0268 pc: gamma_hat 1.0900 (REG 1.0900); to Newton +4.74, to Arm A 1.1917 -5.35 / 1.2267 -7.19, to Arm B +4.74 sigma_fit  |  1.084-1.101: Arm B killed from above (Amdt 12(d)); arm not decided
+    alt       xi   0.0300 pc: gamma_hat 1.0875 (REG 1.0850); to Newton +4.61, to Arm A 1.1917 -5.48 / 1.2267 -7.33, to Arm B +4.61 sigma_fit  |  1.084-1.101: Arm B killed from above (Amdt 12(d)); arm not decided
+    alt       xi   0.0400 pc: gamma_hat 1.0675 (REG 1.0650); to Newton +3.55, to Arm A 1.1917 -6.54 / 1.2267 -8.38, to Arm B +3.55 sigma_fit  |  1.056-1.084: Arm A disfavored (2.8-3.8 sigma_tot); Newton disfavored at 2-3 sigma_tot
+    alt       xi   0.0500 pc: gamma_hat 1.0525 (REG 1.0475); to Newton +2.76, to Arm A 1.1917 -7.33 / 1.2267 -9.17, to Arm B +2.76 sigma_fit  |  1.007-1.056: Arm A falsified (>= 3.8 sigma_tot); Newton not excluded; Amdt 11(d)'s 'decided for B' voided by Amdt 12(d)
+    alt       xi   0.0700 pc: gamma_hat 1.0300 (REG 1.0275); to Newton +1.58, to Arm A 1.1917 -8.51 / 1.2267 -10.35, to Arm B +1.58 sigma_fit  |  1.007-1.056: Arm A falsified (>= 3.8 sigma_tot); Newton not excluded; Amdt 11(d)'s 'decided for B' voided by Amdt 12(d)
+    alt       xi   0.1000 pc: gamma_hat 1.0150 (REG 1.0125); to Newton +0.79, to Arm A 1.1917 -9.30 / 1.2267 -11.14, to Arm B +0.79 sigma_fit  |  1.007-1.056: Arm A falsified (>= 3.8 sigma_tot); Newton not excluded; Amdt 11(d)'s 'decided for B' voided by Amdt 12(d)
+    alt       xi   0.1500 pc: gamma_hat 1.0050 (REG 1.0050); to Newton +0.26, to Arm A 1.1917 -9.83 / 1.2267 -11.67, to Arm B +0.26 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    alt       xi   0.2000 pc: gamma_hat 1.0025 (REG 1.0025); to Newton +0.13, to Arm A 1.1917 -9.96 / 1.2267 -11.80, to Arm B +0.13 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    alt       xi   0.3000 pc: gamma_hat 1.0000 (REG 1.0000); to Newton -0.00, to Arm A 1.1917 -10.09 / 1.2267 -11.93, to Arm B -0.00 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    alt       xi   0.5000 pc: gamma_hat 1.0000 (REG 1.0000); to Newton -0.00, to Arm A 1.1917 -10.09 / 1.2267 -11.93, to Arm B -0.00 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    alt       xi   1.0000 pc: gamma_hat 1.0000 (REG 1.0000); to Newton -0.00, to Arm A 1.1917 -10.09 / 1.2267 -11.93, to Arm B -0.00 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    alt       xi   2.0000 pc: gamma_hat 1.0000 (REG 1.0000); to Newton -0.00, to Arm A 1.1917 -10.09 / 1.2267 -11.93, to Arm B -0.00 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    alt       xi   3.0000 pc: gamma_hat 1.0000 (REG 1.0000); to Newton -0.00, to Arm A 1.1917 -10.09 / 1.2267 -11.93, to Arm B -0.00 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    alt       xi  10.0000 pc: gamma_hat 1.0000 (REG 1.0000); to Newton -0.00, to Arm A 1.1917 -10.09 / 1.2267 -11.93, to Arm B -0.00 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    alt       xi  30.0000 pc: gamma_hat 1.0000 (REG 1.0000); to Newton -0.00, to Arm A 1.1917 -10.09 / 1.2267 -11.93, to Arm B -0.00 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+    alt       xi 100.0000 pc: gamma_hat 1.0000 (REG 1.0000); to Newton -0.00, to Arm A 1.1917 -10.09 / 1.2267 -11.93, to Arm B -0.00 sigma_fit  |  <= 1.007: Arm A falsified; Newton-side; Arm B consistent only as its Newtonian limit
+
+======================================================================================================================
+W  THE LEDGER
+======================================================================================================================
+    X22f   DERIVED     the chain's gamma_hat under the frozen statistic: 1.0725 (canonical) / 1.0900 (alt) at the Solar-System floor of xi, falling to 1.000 as xi grows: a CEILING, not a point  --  V1 (PHYS; REG reported alongside)
+    X22g   CONSTRAINT  the frozen pre-registration registers no reading for this law (Arm A: no filter, Route A; Arm B: carrier + biharmonic cone); its rows only place the number  --  P
+    X22h   DERIVED     the frozen number cannot fix xi (at best a bound); the transition (s ~ 2 xi, inside 2-30 kAU at the floor) needs a separation-resolved statistic  --  H4, H5
+    X22i   DERIVED     BDEF's Galileon (FP17's reduction, ESTIMATE, not adopted) is not separable from the heat filter by the frozen number  --  H8, H9
+    X22j   OPEN        an amendment registering the chain's ceiling and a separation-resolved xi statistic would be needed for DR4 to test the chain on its own terms; the author decides  --  the verdict
+
+  12/16 checks pass; load-bearing failures: 0; wrote XR22_prereg_statistic_results.json  (470 s)
+rc = 0

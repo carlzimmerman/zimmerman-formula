@@ -1,0 +1,99 @@
+XR22_force_law -- THE CHAIN'S LAW FOR A WIDE BINARY IN THE GALAXY'S FIELD, SOLVED IN 3-D: the relative-force boost of a pair of
+stars under the derivation chain's z = 0 static law, across the heat filter's allowed window, both a0 footings.
+
+WHY.  The chain's root (FP7, the AQUAL-type repair, committed 17a90e572) carries a heat filter of length xi on the MOND scalar,
+applied to the source and to the output (FP7 A1b: forced).  The Solar System needs xi >= 0.0243 / 0.0268 pc (FP7 A4, AQUAL
+floors; the Saturn monopole binds), and FP14/FP17 leave xi as the gravity core's one knob, bounded to about [floor, ~100 pc].
+A wide binary at 1-30 kAU straddles that length (5 kAU = 0.024 pc), so the chain's wide-binary prediction is set by xi.  The
+frozen Gaia DR4 pre-registration (prep_2026/gaia_dr4_prep/PREREGISTRATION_DR4.md, read-only) registers Arm A (Route A,
+one-field AQUAL, no filter: canonical 1.1614-1.1814) and Arm B (the carrier reading with the biharmonic cone, xi >= 4 pc:
+1.0000 +- 0.0025).  The chain is neither.  This lane computes its force law; XR22_prereg_statistic.py turns it into the
+pre-registered statistic.
+
+THE LAW (FP7 R7d; FP14: lambda = 0, c_2 -> oo, alpha_c <= 3.2e-9 a regulator; FP13's separator reduced to z = 0):
+    g = g_N + S grad(phi),   div[mu_s(|grad phi|/a0) grad phi] = 4 pi G S rho,   mu_s(x) = x/(1 - 2x)  (J_P2),  S = e^{xi^2 Lap/2}
+  with the Galaxy as the scalar's uniform background gradient x_e (mu_s(x_e) x_e = eta, eta the Newtonian Galactic field, P2
+  inversion of the observed field).  FP13's band-pass leg S_L (L(z = 0) = 2.88 Mpc) and yield floor (y_th = 0 today: the switch is
+  max(0, 2q) and q < 0) drop out locally (K0).  Two point stars, the relative acceleration along the separation, compared with
+  G M_tot/s^2: the radial force boost B(M_tot, s, theta; xi) (theta = the angle between the separation and the Galactic field).
+
+METHOD.  (i) the exact LINEAR response of the double-filtered anisotropic operator (Schwinger integral, XR22_common.lin_kernel);
+(ii) the full NONLINEAR problem on a periodic box: pseudo-spectral, Newton on the convex energy with preconditioned CG, a
+barrier-aware line search, the periodic images removed by the linear image correction; (iii) an independent axisymmetric
+free-space P1-FEM Newton solver for the parallel orientation and for the isolated deep-MOND control.
+
+  *** MUTATE=1: the OUTPUT leg of the double filter is dropped in the 3-D solver (source filter only): K4 and K5 must FAIL ***
+
+======================================================================================================================
+K0  THE CHAIN'S INPUTS AND ITS LOCAL (z = 0, wide-binary) REDUCTION
+======================================================================================================================
+    a0 = 9.36032e-11 / 1.13120e-10 m/s^2 (FP0); xi floors 0.02428 / 0.02683 pc (FP7 A4 AQUAL, binding ['M', '2.00']); QUMOND floors 0.0294 / 0.0316 pc
+    FP14 F14p: xi is the gravity core's one remaining knob, bounded to [0.0243/0.0268 pc, ~100 pc]
+    FP13 H1: L(z = 0) = 2879 kpc, y_th(z = 0) = 0.0 (the yield's switch max(0, 2q) is off while the leaf accelerates); the band-pass's Mpc leg moves the pair's relative force by ~(s/L)^3 = 1.3e-22 at 30 kAU
+    FP14 F14d: no scored observable depends on alpha_c beyond O(alpha_c) <= 1.6e-09; the Solar-System alphas vanish as alpha_c -> 0; FP5's y* does not exist on the AQUAL root
+    quasi-static: the scalar's signal speed c_s = c sqrt(C_phi/lambda_eff) ~ 1.06 c (lambda_eff = 3 at lambda = 0, c_2 -> oo, C_phi ~ mu_T = 3.36); a 2-Msun pair at 30 kAU orbits at 0.24 km/s: retardation ~ v/c_s = 7.7e-07
+  [PASS] K0 THE LOCAL REDUCTION: at z = 0 the chain's separator adds nothing on wide-binary scales (FP13: y_th(0) = 0; the band-pass's Mpc leg changes the pair's relative force by < 1e-12), alpha_c renormalises G by <= 1.6e-9 (FP14), and the pair is quasi-static (retardation < 1e-5): the law is FP7's double-filtered two-field AQUAL with J_P2
+         measured: y_th(0) = 0.0; band-pass leak 1.3e-22; retardation 7.7e-07
+
+======================================================================================================================
+K1  CONTROL: THE FROZEN SECTION 1.1 NUMBERS AND FP7'S STIFFNESSES FROM THIS LANE'S LAW
+======================================================================================================================
+    frozen pipeline y_extN(A0_CAN) = 1.4647, y_extN(A0_ALT) = 1.1513 (section 1.1: 1.4647 / 1.1513)
+    the chain's unfiltered law at that field: x_e = 0.43531, mu_T = 3.3647, mu_L = 29.3716; B_par = 1 + 1/mu_T = 1.297204 = nu_P2(y_extN) = 1.297204; sqrt = 1.13895 (the banked 'framework-as-MG' asymptote 1.1389); B_perp = 1 + 1/sqrt(mu_T mu_L) = 1.10059
+    FP7 A4 at 2.32e-10 (canonical): x_e = 0.4501, mu_T = 4.507, mu_L = 49.64 (committed 0.4501, 4.507, 49.64)
+  [PASS] K1 CONTROL: the frozen pipeline's own y_extN reproduces section 1.1 (1.4647 / 1.1513); the banked MG asymptote 1.1389 is sqrt(B_par) of the chain's unfiltered two-field law (B_par = 1 + 1/mu_T = nu_P2(y_extN) identically); FP7's committed stiffnesses at 2.32e-10 reproduced to the printed digits
+         measured: y_extN 1.4647/1.1513; sqrt(B_par) 1.13895; B_par - nu 0.0e+00; FP7 0.4501/4.507/49.64
+         reading:  so the pre-registration's own P2 number is the xi -> 0 limit of this lane's law, parallel direction only (the perpendicular eigenvalue is far smaller, and Amendment 10 showed the isotropic reading overstates)
+
+======================================================================================================================
+K2  CONTROL: THE EXACT LINEAR KERNEL (Schwinger integral) against the analytic tensor and direct quadrature
+======================================================================================================================
+    xi = 0: max |B_kernel - B_analytic|/(B - 1) over 3 separations x 5 angles = 2.2e-15;  xi > 0 vs scipy.quad: max rel 4.2e-11;  orientation average (closed form) 1.131016 vs quadrature 1.131016
+  [PASS] K2 CONTROL: the linear kernel reproduces the analytic anisotropic-Coulomb tensor at xi = 0 and direct quadrature at xi > 0 to 1e-7; the closed-form orientation average matches quadrature
+         measured: 2.2e-15; 4.2e-11; 4.8e-08
+
+======================================================================================================================
+K3  CONTROL: THE ISOLATED DEEP-MOND TWO-BODY FORCE (independent 2-D FEM solver, mu = x) vs Milgrom's exact virial result
+======================================================================================================================
+    xi/s = 0.05, q = 1: s F = 0.195923 vs (2/3)[M^1.5 - m1^1.5 - m2^1.5] = 0.195262: ratio 1.00338 (133123 nodes, 11 Newton steps, |F1 + F2|/|F2| = 7.8e-06)
+    xi/s = 0.025, q = 1: s F = 0.195533 vs (2/3)[M^1.5 - m1^1.5 - m2^1.5] = 0.195262: ratio 1.00139 (179629 nodes, 13 Newton steps, |F1 + F2|/|F2| = 4.6e-05)
+    xi/s = 0.05, q = 0.3: s F = 0.143640 vs (2/3)[M^1.5 - m1^1.5 - m2^1.5] = 0.142988: ratio 1.00456 (133123 nodes, 7 Newton steps, |F1 + F2|/|F2| = 7.0e-04)
+    Richardson in (xi/s)^2: ratio -> 1.00072   (21 s)
+  [PASS] K3 CONTROL (deep-MOND two-body): the independent 2-D solver reproduces Milgrom's exact two-body force within 0.5% at xi/s = 0.05 (q = 1 and 0.3), 0.25% at 0.025, 0.1% after Richardson
+         measured: 1.00338, 1.00456, 1.00139; Richardson 1.00072
+         reading:  the residual shrinks as (xi/s)^2: the finite size of the smoothed bodies, not the solver
+
+======================================================================================================================
+K4  CONTROL: THE 3-D SOLVER'S LINEAR RESPONSE, EXTRAPOLATED IN THE BOX SIZE, vs THE DOUBLE-FILTERED KERNEL  [MUTATE]
+======================================================================================================================
+    canonical M = 1.0 s = 10.0 kAU theta = 45.0: periodic linear B at L = 19.3, 28.3, 37.3 r_M: 1.095314, 1.095060, 1.094990 -> L^-3 extrapolation 1.094940; double-filter kernel 1.051979 (|d| = 4.3e-02, tol 2.6e-04)
+    alt M = 2.0 s = 20.0 kAU theta = 90.0: periodic linear B at L = 20.0, 29.0, 38.0 r_M: 1.155802, 1.153660, 1.153011 -> L^-3 extrapolation 1.152566; double-filter kernel 1.158004 (|d| = 5.4e-03, tol 7.9e-04)
+  [FAIL] K4 CONTROL (linear regime): the 3-D solver's periodic linear response extrapolates (L^-3) to the chain's double-filtered free-space kernel at both configurations
+         measured: canonical 1.094940 vs 1.051979; alt 1.152566 vs 1.158004
+
+======================================================================================================================
+K5  CONTROL: 3-D PERIODIC NONLINEAR vs 2-D FREE-SPACE FEM, separation parallel to the Galactic field  [MUTATE]
+======================================================================================================================
+    canonical M = 1.0 s = 5.0 kAU (xi/r_M = 0.629, s/r_M = 0.628): 3-D 1.008776 (N = 125, 7 Newton, momentum 1e+00); 2-D 1.004893 (h = xi/6) / 1.004905 (xi/9) -> 1.004915; linear kernel 1.013661; |3D - 2D| = 3.9e-03 (tol 4.4e-04)
+    canonical M = 1.0 s = 10.0 kAU (xi/r_M = 0.629, s/r_M = 1.256): 3-D 1.046520 (N = 125, 7 Newton, momentum 6e-01); 2-D 1.029047 (h = xi/6) / 1.029106 (xi/9) -> 1.029153; linear kernel 1.062479; |3D - 2D| = 1.7e-02 (tol 1.7e-03)
+    canonical M = 2.5 s = 15.0 kAU (xi/r_M = 0.398, s/r_M = 1.192): 3-D 1.042837 (N = 189, 8 Newton, momentum 1e+00); 2-D 1.052988 (h = xi/6) / 1.053086 (xi/9) -> 1.053164; linear kernel 1.109987; |3D - 2D| = 1.0e-02 (tol 2.8e-03)
+    alt M = 2.0 s = 10.0 kAU (xi/r_M = 0.541, s/r_M = 0.977): 3-D 1.037490 (N = 135, 9 Newton, momentum 9e-01); 2-D 1.029226 (h = xi/6) / 1.029292 (xi/9) -> 1.029345; linear kernel 1.072316; |3D - 2D| = 8.1e-03 (tol 2.1e-03)
+  [FAIL] K5 CONTROL (nonlinear, independent method): the 3-D periodic solver and the 2-D free-space FEM agree at the floors for the parallel orientation
+         measured: canonical M1.0 s5.0: 1.008776 vs 1.004915; canonical M1.0 s10.0: 1.046520 vs 1.029153; canonical M2.5 s15.0: 1.042837 vs 1.053164; alt M2.0 s10.0: 1.037490 vs 1.029345
+         reading:  (160 s)
+
+======================================================================================================================
+MUTATE: production and hypotheses not run (they need the main-run tables)
+======================================================================================================================
+
+======================================================================================================================
+W  THE LEDGER
+======================================================================================================================
+    X22a   DERIVED     the chain's z = 0 wide-binary law = FP7's double-filtered two-field AQUAL with J_P2 (FP13's separator and FP14's alpha_c drop out locally)  --  K0
+    X22b   DERIVED     xi -> 0 limit: B_par = nu_P2(y_extN) (the frozen record's 1.1389 = sqrt), B_perp = 1 + 1/sqrt(mu_T mu_L): the parallel-only reading overstates  --  K1, K2
+    X22c   n/a         the force tables B(M, s, theta; xi) at the floors and above (3-D nonlinear, validated: deep-MOND two-body, linear kernel, 2-D FEM, convergence)  --  K3-K7, P
+    X22d   POSTULATED  the Galactic field at the Sun: the pre-registration's frozen 1.778e-10 / 2.078e-10 vs the chain's 2.32e-10 (FP7)  --  inputs; H7 prices the choice
+    X22e   DERIVED     the solver takes a plug-in screening term (a matter-keyed one must supply its key force)  --  K8
+
+  4/6 checks pass; load-bearing failures: 2; wrote XR22_force_law_results_MUTATE.json  (183 s)
+rc = 1

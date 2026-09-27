@@ -1,0 +1,248 @@
+XR22_force_law -- THE CHAIN'S LAW FOR A WIDE BINARY IN THE GALAXY'S FIELD, SOLVED IN 3-D: the relative-force boost of a pair of
+stars under the derivation chain's z = 0 static law, across the heat filter's allowed window, both a0 footings.
+
+WHY.  The chain's root (FP7, the AQUAL-type repair, committed 17a90e572) carries a heat filter of length xi on the MOND scalar,
+applied to the source and to the output (FP7 A1b: forced).  The Solar System needs xi >= 0.0243 / 0.0268 pc (FP7 A4, AQUAL
+floors; the Saturn monopole binds), and FP14/FP17 leave xi as the gravity core's one knob, bounded to about [floor, ~100 pc].
+A wide binary at 1-30 kAU straddles that length (5 kAU = 0.024 pc), so the chain's wide-binary prediction is set by xi.  The
+frozen Gaia DR4 pre-registration (prep_2026/gaia_dr4_prep/PREREGISTRATION_DR4.md, read-only) registers Arm A (Route A,
+one-field AQUAL, no filter: canonical 1.1614-1.1814) and Arm B (the carrier reading with the biharmonic cone, xi >= 4 pc:
+1.0000 +- 0.0025).  The chain is neither.  This lane computes its force law; XR22_prereg_statistic.py turns it into the
+pre-registered statistic.
+
+THE LAW (FP7 R7d; FP14: lambda = 0, c_2 -> oo, alpha_c <= 3.2e-9 a regulator; FP13's separator reduced to z = 0):
+    g = g_N + S grad(phi),   div[mu_s(|grad phi|/a0) grad phi] = 4 pi G S rho,   mu_s(x) = x/(1 - 2x)  (J_P2),  S = e^{xi^2 Lap/2}
+  with the Galaxy as the scalar's uniform background gradient x_e (mu_s(x_e) x_e = eta, eta the Newtonian Galactic field, P2
+  inversion of the observed field).  FP13's band-pass leg S_L (L(z = 0) = 2.88 Mpc) and yield floor (y_th = 0 today: the switch is
+  max(0, 2q) and q < 0) drop out locally (K0).  Two point stars, the relative acceleration along the separation, compared with
+  G M_tot/s^2: the radial force boost B(M_tot, s, theta; xi) (theta = the angle between the separation and the Galactic field).
+
+METHOD.  (i) the exact LINEAR response of the double-filtered anisotropic operator (Schwinger integral, XR22_common.lin_kernel);
+(ii) the full NONLINEAR problem on a periodic box: pseudo-spectral, Newton on the convex energy with preconditioned CG, a
+barrier-aware line search, the periodic images removed by the linear image correction; (iii) an independent axisymmetric
+free-space P1-FEM Newton solver for the parallel orientation and for the isolated deep-MOND control.
+
+======================================================================================================================
+K0  THE CHAIN'S INPUTS AND ITS LOCAL (z = 0, wide-binary) REDUCTION
+======================================================================================================================
+    a0 = 9.36032e-11 / 1.13120e-10 m/s^2 (FP0); xi floors 0.02428 / 0.02683 pc (FP7 A4 AQUAL, binding ['M', '2.00']); QUMOND floors 0.0294 / 0.0316 pc
+    FP14 F14p: xi is the gravity core's one remaining knob, bounded to [0.0243/0.0268 pc, ~100 pc]
+    FP13 H1: L(z = 0) = 2879 kpc, y_th(z = 0) = 0.0 (the yield's switch max(0, 2q) is off while the leaf accelerates); the band-pass's Mpc leg moves the pair's relative force by ~(s/L)^3 = 1.3e-22 at 30 kAU
+    FP14 F14d: no scored observable depends on alpha_c beyond O(alpha_c) <= 1.6e-09; the Solar-System alphas vanish as alpha_c -> 0; FP5's y* does not exist on the AQUAL root
+    quasi-static: the scalar's signal speed c_s = c sqrt(C_phi/lambda_eff) ~ 1.06 c (lambda_eff = 3 at lambda = 0, c_2 -> oo, C_phi ~ mu_T = 3.36); a 2-Msun pair at 30 kAU orbits at 0.24 km/s: retardation ~ v/c_s = 7.7e-07
+  [PASS] K0 THE LOCAL REDUCTION: at z = 0 the chain's separator adds nothing on wide-binary scales (FP13: y_th(0) = 0; the band-pass's Mpc leg changes the pair's relative force by < 1e-12), alpha_c renormalises G by <= 1.6e-9 (FP14), and the pair is quasi-static (retardation < 1e-5): the law is FP7's double-filtered two-field AQUAL with J_P2
+         measured: y_th(0) = 0.0; band-pass leak 1.3e-22; retardation 7.7e-07
+
+======================================================================================================================
+K1  CONTROL: THE FROZEN SECTION 1.1 NUMBERS AND FP7'S STIFFNESSES FROM THIS LANE'S LAW
+======================================================================================================================
+    frozen pipeline y_extN(A0_CAN) = 1.4647, y_extN(A0_ALT) = 1.1513 (section 1.1: 1.4647 / 1.1513)
+    the chain's unfiltered law at that field: x_e = 0.43531, mu_T = 3.3647, mu_L = 29.3716; B_par = 1 + 1/mu_T = 1.297204 = nu_P2(y_extN) = 1.297204; sqrt = 1.13895 (the banked 'framework-as-MG' asymptote 1.1389); B_perp = 1 + 1/sqrt(mu_T mu_L) = 1.10059
+    FP7 A4 at 2.32e-10 (canonical): x_e = 0.4501, mu_T = 4.507, mu_L = 49.64 (committed 0.4501, 4.507, 49.64)
+  [PASS] K1 CONTROL: the frozen pipeline's own y_extN reproduces section 1.1 (1.4647 / 1.1513); the banked MG asymptote 1.1389 is sqrt(B_par) of the chain's unfiltered two-field law (B_par = 1 + 1/mu_T = nu_P2(y_extN) identically); FP7's committed stiffnesses at 2.32e-10 reproduced to the printed digits
+         measured: y_extN 1.4647/1.1513; sqrt(B_par) 1.13895; B_par - nu 0.0e+00; FP7 0.4501/4.507/49.64
+         reading:  so the pre-registration's own P2 number is the xi -> 0 limit of this lane's law, parallel direction only (the perpendicular eigenvalue is far smaller, and Amendment 10 showed the isotropic reading overstates)
+
+======================================================================================================================
+K2  CONTROL: THE EXACT LINEAR KERNEL (Schwinger integral) against the analytic tensor and direct quadrature
+======================================================================================================================
+    xi = 0: max |B_kernel - B_analytic|/(B - 1) over 3 separations x 5 angles = 2.2e-15;  xi > 0 vs scipy.quad: max rel 4.2e-11;  orientation average (closed form) 1.131016 vs quadrature 1.131016
+  [PASS] K2 CONTROL: the linear kernel reproduces the analytic anisotropic-Coulomb tensor at xi = 0 and direct quadrature at xi > 0 to 1e-7; the closed-form orientation average matches quadrature
+         measured: 2.2e-15; 4.2e-11; 4.8e-08
+
+======================================================================================================================
+K3  CONTROL: THE ISOLATED DEEP-MOND TWO-BODY FORCE (independent 2-D FEM solver, mu = x) vs Milgrom's exact virial result
+======================================================================================================================
+    xi/s = 0.05, q = 1: s F = 0.195923 vs (2/3)[M^1.5 - m1^1.5 - m2^1.5] = 0.195262: ratio 1.00338 (133123 nodes, 11 Newton steps, |F1 + F2|/|F2| = 7.8e-06)
+    xi/s = 0.025, q = 1: s F = 0.195533 vs (2/3)[M^1.5 - m1^1.5 - m2^1.5] = 0.195262: ratio 1.00139 (179629 nodes, 13 Newton steps, |F1 + F2|/|F2| = 4.6e-05)
+    xi/s = 0.05, q = 0.3: s F = 0.143640 vs (2/3)[M^1.5 - m1^1.5 - m2^1.5] = 0.142988: ratio 1.00456 (133123 nodes, 7 Newton steps, |F1 + F2|/|F2| = 7.0e-04)
+    Richardson in (xi/s)^2: ratio -> 1.00072   (19 s)
+  [PASS] K3 CONTROL (deep-MOND two-body): the independent 2-D solver reproduces Milgrom's exact two-body force within 0.5% at xi/s = 0.05 (q = 1 and 0.3), 0.25% at 0.025, 0.1% after Richardson
+         measured: 1.00338, 1.00456, 1.00139; Richardson 1.00072
+         reading:  the residual shrinks as (xi/s)^2: the finite size of the smoothed bodies, not the solver
+
+======================================================================================================================
+K4  CONTROL: THE 3-D SOLVER'S LINEAR RESPONSE, EXTRAPOLATED IN THE BOX SIZE, vs THE DOUBLE-FILTERED KERNEL
+======================================================================================================================
+    canonical M = 1.0 s = 10.0 kAU theta = 45.0: periodic linear B at L = 19.3, 28.3, 37.3 r_M: 1.052334, 1.052100, 1.052033 -> L^-3 extrapolation 1.051988; double-filter kernel 1.051979 (|d| = 8.5e-06, tol 2.6e-04)
+    alt M = 2.0 s = 20.0 kAU theta = 90.0: periodic linear B at L = 20.0, 29.0, 38.0 r_M: 1.161238, 1.159185, 1.158551 -> L^-3 extrapolation 1.158127; double-filter kernel 1.158004 (|d| = 1.2e-04, tol 7.9e-04)
+  [PASS] K4 CONTROL (linear regime): the 3-D solver's periodic linear response extrapolates (L^-3) to the chain's double-filtered free-space kernel at both configurations
+         measured: canonical 1.051988 vs 1.051979; alt 1.158127 vs 1.158004
+
+======================================================================================================================
+K5  CONTROL: 3-D PERIODIC NONLINEAR vs 2-D FREE-SPACE FEM, separation parallel to the Galactic field
+======================================================================================================================
+    canonical M = 1.0 s = 5.0 kAU (xi/r_M = 0.629, s/r_M = 0.628): 3-D 1.004914 (N = 125, 7 Newton, momentum 1e-12); 2-D 1.004893 (h = xi/6) / 1.004905 (xi/9) -> 1.004915; linear kernel 1.005386; |3D - 2D| = 7.8e-07 (tol 1.0e-04)
+    canonical M = 1.0 s = 10.0 kAU (xi/r_M = 0.629, s/r_M = 1.256): 3-D 1.029151 (N = 125, 7 Newton, momentum 3e-13); 2-D 1.029047 (h = xi/6) / 1.029106 (xi/9) -> 1.029153; linear kernel 1.031514; |3D - 2D| = 1.3e-06 (tol 1.2e-04)
+    canonical M = 2.5 s = 15.0 kAU (xi/r_M = 0.398, s/r_M = 1.192): 3-D 1.053165 (N = 189, 8 Newton, momentum 2e-09); 2-D 1.052988 (h = xi/6) / 1.053086 (xi/9) -> 1.053164; linear kernel 1.068894; |3D - 2D| = 1.4e-06 (tol 7.9e-04)
+    alt M = 2.0 s = 10.0 kAU (xi/r_M = 0.541, s/r_M = 0.977): 3-D 1.029344 (N = 135, 9 Newton, momentum 1e-10); 2-D 1.029226 (h = xi/6) / 1.029292 (xi/9) -> 1.029345; linear kernel 1.034956; |3D - 2D| = 1.4e-06 (tol 2.8e-04)
+  [PASS] K5 CONTROL (nonlinear, independent method): the 3-D periodic solver and the 2-D free-space FEM agree at the floors for the parallel orientation
+         measured: canonical M1.0 s5.0: 1.004914 vs 1.004915; canonical M1.0 s10.0: 1.029151 vs 1.029153; canonical M2.5 s15.0: 1.053165 vs 1.053164; alt M2.0 s10.0: 1.029344 vs 1.029345
+         reading:  (157 s)
+
+======================================================================================================================
+K8  THE PLUG-IN INTERFACE (a different screening term drops into the same solver)
+======================================================================================================================
+    constant term via the plug-in: B = 1.0484077141; the same law built directly: 1.0484077141
+    a matter-keyed term (c = 5 x the bodies' Gaussian profile): momentum |F1 + F2|/|F2| = 7.01e-01 without its key force, 6.2e-09 with it
+  [PASS] K8 THE PLUG-IN INTERFACE: a screening term passed through the plug-in reproduces the equivalent law built directly (1e-8)
+         measured: |dB| = 0.0e+00
+  [PASS] K8b (reported) a matter-keyed screening term needs its key force: the momentum diagnostic flags it without (O(1)) and passes with it
+         measured: 7.01e-01 vs 6.2e-09
+
+======================================================================================================================
+P  PRODUCTION: NONLINEAR FORCE TABLES (4 single-threaded workers)
+======================================================================================================================
+    3540 production solves + 43 convergence / symmetry / mass-ratio / angle / bound solves on 3 worker processes
+    [production] 3583 solves in 1981 s wall; not converged / errors: 0
+    production: 3540 solves, 0 not converged; max momentum non-conservation 2.6e-07; boxes at the size cap: 0; wall 1981 s
+    linear-kernel tables: 102 (footing x field x xi) x 169 points  (1 s)
+
+======================================================================================================================
+K6  CONVERGENCE OF THE PRODUCTION SETTINGS (h = xi/2.5, margin 9 r_M)
+======================================================================================================================
+    canonical M 2.5 s  10.0 th   45 [fine]: production 1.040150 (N 125) -> 1.040150 (N 175): |dB| = 1.1e-09
+    canonical M 2.5 s  10.0 th   45 [big ]: production 1.040150 (N 125) -> 1.040166 (N 175): |dB| = 1.6e-05
+    canonical M 2.5 s  30.0 th    0 [fine]: production 1.137588 (N 135) -> 1.137588 (N 189): |dB| = 2.7e-08
+    canonical M 2.5 s  30.0 th    0 [big ]: production 1.137588 (N 135) -> 1.137589 (N 189): |dB| = 1.6e-06
+    canonical M 1.0 s   5.0 th   90 [fine]: production 1.012139 (N 75) -> 1.012139 (N 105): |dB| = 1.1e-11
+    canonical M 1.0 s   5.0 th   90 [big ]: production 1.012139 (N 75) -> 1.012146 (N 125): |dB| = 6.3e-06
+    alt       M 2.5 s  20.0 th   45 [fine]: production 1.148100 (N 105) -> 1.148100 (N 147): |dB| = 3.7e-09
+    alt       M 2.5 s  20.0 th   45 [big ]: production 1.148100 (N 105) -> 1.148152 (N 175): |dB| = 5.2e-05
+    canonical M 0.6 s 120.0 th   45 [fine]: production 1.135505 (N 125) -> 1.135505 (N 175): |dB| = 6.1e-13
+    canonical M 0.6 s 120.0 th   45 [big ]: production 1.135505 (N 125) -> 1.135513 (N 147): |dB| = 8.0e-06
+  [PASS] K6 CONVERGENCE: refining h (xi/2.5 -> xi/3.5) or enlarging the box (margin 9 -> 13.5 r_M) moves the production boosts by < 3e-4 at the worst cases; every production solve converged (|R| < 1e-8) and conserves momentum to < 1e-6
+         measured: max |dB| = 5.2e-05; not converged 0; momentum 2.6e-07
+         reading:  3e-4 in B is 1.5e-4 in gamma_v, 17x below the registered estimator's grid step
+
+======================================================================================================================
+K7  SYMMETRY, MASS RATIO AND THE ANGULAR INTERPOLATION
+======================================================================================================================
+    theta = 135 vs 45 deg (M 1.5, 10 kAU, equal masses): 1.04620725 vs 1.04620725
+  [PASS] K7a SYMMETRY: equal masses give B(180 - theta) = B(theta)
+         measured: |dB| = 0.0e+00
+    q = 0.3, s    5 kAU, th   0: B = 1.004175 vs equal masses 1.004501  (relative to B - 1: -7.24%)
+    q = 0.6, s    5 kAU, th   0: B = 1.004344 vs equal masses 1.004501  (relative to B - 1: -3.49%)
+    q = 0.3, s    5 kAU, th  90: B = 1.011327 vs equal masses 1.011331  (relative to B - 1: -0.04%)
+    q = 0.6, s    5 kAU, th  90: B = 1.011330 vs equal masses 1.011331  (relative to B - 1: -0.01%)
+    q = 0.3, s   10 kAU, th   0: B = 1.024124 vs equal masses 1.026966  (relative to B - 1: -10.54%)
+    q = 0.6, s   10 kAU, th   0: B = 1.025574 vs equal masses 1.026966  (relative to B - 1: -5.16%)
+    q = 0.3, s   10 kAU, th  90: B = 1.058951 vs equal masses 1.059009  (relative to B - 1: -0.10%)
+    q = 0.6, s   10 kAU, th  90: B = 1.058997 vs equal masses 1.059009  (relative to B - 1: -0.02%)
+    q = 0.3, s   20 kAU, th   0: B = 1.088590 vs equal masses 1.094923  (relative to B - 1: -6.67%)
+    q = 0.6, s   20 kAU, th   0: B = 1.092022 vs equal masses 1.094923  (relative to B - 1: -3.06%)
+    q = 0.3, s   20 kAU, th  90: B = 1.116610 vs equal masses 1.116819  (relative to B - 1: -0.18%)
+    q = 0.6, s   20 kAU, th  90: B = 1.116774 vs equal masses 1.116819  (relative to B - 1: -0.04%)
+  [PASS] K7b (reported) MASS RATIO: unequal pairs (q = 0.3, 0.6) at the floor differ from the equal-mass table by at most this fraction of (B - 1)
+         measured: 10.54%
+    M 1.0 s    7 th 22.5: direct 1.015020, interpolated 1.015005 (|d| 1.4e-05)
+    M 1.0 s    7 th 67.5: direct 1.026719, interpolated 1.026732 (|d| 1.3e-05)
+    M 1.0 s   15 th 22.5: direct 1.078892, interpolated 1.078807 (|d| 8.5e-05)
+    M 1.0 s   15 th 67.5: direct 1.106285, interpolated 1.106349 (|d| 6.4e-05)
+    M 1.0 s   30 th 22.5: direct 1.161466, interpolated 1.161372 (|d| 9.4e-05)
+    M 1.0 s   30 th 67.5: direct 1.117733, interpolated 1.117777 (|d| 4.4e-05)
+    M 2.5 s    7 th 22.5: direct 1.011662, interpolated 1.011625 (|d| 3.6e-05)
+    M 2.5 s    7 th 67.5: direct 1.021633, interpolated 1.021665 (|d| 3.2e-05)
+    M 2.5 s   15 th 22.5: direct 1.065937, interpolated 1.065744 (|d| 1.9e-04)
+    M 2.5 s   15 th 67.5: direct 1.094651, interpolated 1.094818 (|d| 1.7e-04)
+    M 2.5 s   30 th 22.5: direct 1.150964, interpolated 1.150575 (|d| 3.9e-04)
+    M 2.5 s   30 th 67.5: direct 1.115306, interpolated 1.115517 (|d| 2.1e-04)
+  [PASS] K7c ANGULAR INTERPOLATION: the downstream scheme (exact linear angular shape x a nonlinear correction quadratic in cos^2) matches direct solves at 22.5 and 67.5 deg
+         measured: max |dB| = 3.9e-04
+    xi = 0.3 pc bound [canonical] M 1.0 s 30.0: nonlinear 1.0011881 vs linear 1.0011881 (d = -5.4e-09)
+    xi = 0.3 pc bound [canonical] M 1.0 s 120.0: nonlinear 1.0489083 vs linear 1.0489084 (d = -1.5e-07)
+    xi = 0.3 pc bound [canonical] M 2.5 s 30.0: nonlinear 1.0011880 vs linear 1.0011881 (d = -3.4e-08)
+    xi = 0.3 pc bound [canonical] M 2.5 s 120.0: nonlinear 1.0489075 vs linear 1.0489084 (d = -9.3e-07)
+    xi = 0.3 pc bound [alt] M 1.0 s 30.0: nonlinear 1.0015822 vs linear 1.0015822 (d = -6.8e-09)
+    xi = 0.3 pc bound [alt] M 1.0 s 120.0: nonlinear 1.0648017 vs linear 1.0648019 (d = -1.9e-07)
+    xi = 0.3 pc bound [alt] M 2.5 s 30.0: nonlinear 1.0015822 vs linear 1.0015822 (d = -4.3e-08)
+    xi = 0.3 pc bound [alt] M 2.5 s 120.0: nonlinear 1.0648008 vs linear 1.0648019 (d = -1.2e-06)
+  [PASS] K7d THE LINEAR KERNEL TAKES OVER: at xi = 0.3 pc the nonlinear correction is below 1e-4 in B (so the exact linear kernel is used for xi >= 0.3 pc)
+         measured: max |B_NL - B_lin| = 1.2e-06
+
+======================================================================================================================
+THE CHAIN'S BOOST vs SEPARATION (primary Galactic field 1.778e-10; orientation average = 3-point rule / exact sphere average)
+======================================================================================================================
+  [canonical] unfiltered (xi -> 0): B_par 1.2972, B_perp 1.1006, sphere average 1.1310 (gamma_v = sqrt: 1.0635)
+    xi = 0.0243 pc, M = 1: gamma_v(s) = sqrt(<B>) at s = 1.5, 2, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120 kAU:
+        1.0002 1.0004 1.0012 1.0049 1.0117 1.0261 1.0486 1.0595 1.0630 1.0634 1.0635 1.0636 1.0637
+        par/perp B: 1.000/1.000 1.000/1.001 1.001/1.003 1.005/1.012 1.012/1.029 1.029/1.062 1.065/1.107 1.099/1.119 1.150/1.110 1.200/1.104 1.231/1.102 1.262/1.101 1.276/1.101
+    xi = 0.0300 pc, M = 1: gamma_v(s) = sqrt(<B>) at s = 1.5, 2, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120 kAU:
+        1.0001 1.0002 1.0007 1.0028 1.0071 1.0172 1.0377 1.0531 1.0626 1.0634 1.0635 1.0636 1.0637
+        par/perp B: 1.000/1.000 1.000/1.000 1.001/1.002 1.003/1.007 1.007/1.018 1.018/1.042 1.046/1.087 1.076/1.114 1.125/1.116 1.176/1.106 1.210/1.104 1.248/1.102 1.266/1.101
+    xi = 0.0400 pc, M = 1: gamma_v(s) = sqrt(<B>) at s = 1.5, 2, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120 kAU:
+        1.0000 1.0001 1.0003 1.0013 1.0033 1.0087 1.0226 1.0382 1.0580 1.0633 1.0635 1.0636 1.0636
+        par/perp B: 1.000/1.000 1.000/1.000 1.000/1.001 1.001/1.003 1.003/1.008 1.009/1.021 1.025/1.054 1.047/1.088 1.091/1.119 1.141/1.112 1.177/1.106 1.223/1.103 1.248/1.102
+    xi = 0.0500 pc, M = 1: gamma_v(s) = sqrt(<B>) at s = 1.5, 2, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120 kAU:
+        1.0000 1.0000 1.0001 1.0007 1.0018 1.0048 1.0138 1.0259 1.0486 1.0620 1.0634 1.0636 1.0636
+        par/perp B: 1.000/1.000 1.000/1.000 1.000/1.000 1.001/1.002 1.002/1.004 1.005/1.012 1.015/1.033 1.029/1.062 1.065/1.107 1.113/1.119 1.149/1.111 1.199/1.104 1.229/1.103
+    xi = 0.0700 pc, M = 1: gamma_v(s) = sqrt(<B>) at s = 1.5, 2, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120 kAU:
+        1.0000 1.0000 1.0001 1.0003 1.0007 1.0019 1.0059 1.0123 1.0296 1.0521 1.0613 1.0635 1.0636
+        par/perp B: 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.001 1.001/1.002 1.002/1.005 1.006/1.014 1.013/1.030 1.034/1.070 1.073/1.113 1.108/1.120 1.158/1.109 1.194/1.105
+    xi = 0.1000 pc, M = 1: gamma_v(s) = sqrt(<B>) at s = 1.5, 2, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120 kAU:
+        1.0000 1.0000 1.0000 1.0001 1.0002 1.0007 1.0022 1.0049 1.0138 1.0324 1.0487 1.0620 1.0635
+        par/perp B: 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.001 1.001/1.002 1.002/1.005 1.005/1.012 1.015/1.034 1.038/1.076 1.066/1.107 1.114/1.119 1.150/1.111
+    xi = 0.1500 pc, M = 1: gamma_v(s) = sqrt(<B>) at s = 1.5, 2, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120 kAU:
+        1.0000 1.0000 1.0000 1.0000 1.0001 1.0002 1.0007 1.0016 1.0049 1.0138 1.0260 1.0487 1.0599
+        par/perp B: 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.001 1.001/1.002 1.002/1.004 1.005/1.012 1.015/1.034 1.030/1.062 1.066/1.107 1.099/1.120
+    xi = 0.2000 pc, M = 1: gamma_v(s) = sqrt(<B>) at s = 1.5, 2, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120 kAU:
+        1.0000 1.0000 1.0000 1.0000 1.0000 1.0001 1.0003 1.0007 1.0022 1.0067 1.0138 1.0324 1.0487
+        par/perp B: 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.001 1.001/1.002 1.002/1.005 1.007/1.016 1.015/1.034 1.038/1.076 1.066/1.107
+  [alt] unfiltered (xi -> 0): B_par 1.3674, B_perp 1.1347, sphere average 1.1730 (gamma_v = sqrt: 1.0831)
+    xi = 0.0268 pc, M = 1: gamma_v(s) = sqrt(<B>) at s = 1.5, 2, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120 kAU:
+        1.0002 1.0004 1.0012 1.0050 1.0123 1.0285 1.0574 1.0748 1.0824 1.0829 1.0831 1.0832 1.0833
+        par/perp B: 1.000/1.000 1.000/1.001 1.001/1.003 1.005/1.012 1.014/1.030 1.033/1.068 1.077/1.130 1.121/1.156 1.185/1.150 1.247/1.140 1.284/1.138 1.323/1.136 1.341/1.135
+    xi = 0.0300 pc, M = 1: gamma_v(s) = sqrt(<B>) at s = 1.5, 2, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120 kAU:
+        1.0001 1.0003 1.0009 1.0037 1.0094 1.0226 1.0495 1.0696 1.0820 1.0830 1.0831 1.0832 1.0833
+        par/perp B: 1.000/1.000 1.000/1.001 1.001/1.002 1.004/1.009 1.010/1.023 1.026/1.054 1.064/1.114 1.104/1.150 1.169/1.154 1.232/1.142 1.271/1.139 1.314/1.136 1.335/1.136
+    xi = 0.0400 pc, M = 1: gamma_v(s) = sqrt(<B>) at s = 1.5, 2, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120 kAU:
+        1.0000 1.0001 1.0004 1.0017 1.0044 1.0115 1.0298 1.0502 1.0759 1.0828 1.0831 1.0832 1.0832
+        par/perp B: 1.000/1.000 1.000/1.000 1.000/1.001 1.002/1.004 1.005/1.011 1.013/1.028 1.035/1.071 1.065/1.115 1.124/1.158 1.188/1.150 1.233/1.142 1.286/1.138 1.315/1.136
+    xi = 0.0500 pc, M = 1: gamma_v(s) = sqrt(<B>) at s = 1.5, 2, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120 kAU:
+        1.0000 1.0001 1.0002 1.0009 1.0024 1.0064 1.0181 1.0341 1.0637 1.0811 1.0830 1.0832 1.0832
+        par/perp B: 1.000/1.000 1.000/1.000 1.000/1.000 1.001/1.002 1.003/1.006 1.007/1.016 1.020/1.044 1.041/1.081 1.090/1.141 1.154/1.158 1.199/1.148 1.259/1.140 1.294/1.137
+    xi = 0.0700 pc, M = 1: gamma_v(s) = sqrt(<B>) at s = 1.5, 2, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120 kAU:
+        1.0000 1.0000 1.0001 1.0003 1.0009 1.0025 1.0077 1.0162 1.0389 1.0683 1.0802 1.0831 1.0832
+        par/perp B: 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.001 1.001/1.002 1.003/1.006 1.008/1.019 1.018/1.039 1.048/1.091 1.101/1.149 1.146/1.159 1.210/1.146 1.252/1.140
+    xi = 0.1000 pc, M = 1: gamma_v(s) = sqrt(<B>) at s = 1.5, 2, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120 kAU:
+        1.0000 1.0000 1.0000 1.0001 1.0003 1.0009 1.0029 1.0064 1.0182 1.0425 1.0639 1.0812 1.0830
+        par/perp B: 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.001 1.001/1.002 1.003/1.007 1.007/1.016 1.021/1.044 1.053/1.099 1.091/1.142 1.154/1.158 1.199/1.148
+    xi = 0.1500 pc, M = 1: gamma_v(s) = sqrt(<B>) at s = 1.5, 2, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120 kAU:
+        1.0000 1.0000 1.0000 1.0000 1.0001 1.0003 1.0009 1.0021 1.0064 1.0182 1.0342 1.0639 1.0785
+        par/perp B: 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.001 1.001/1.002 1.002/1.005 1.007/1.016 1.021/1.044 1.041/1.081 1.091/1.142 1.135/1.159
+    xi = 0.2000 pc, M = 1: gamma_v(s) = sqrt(<B>) at s = 1.5, 2, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120 kAU:
+        1.0000 1.0000 1.0000 1.0000 1.0000 1.0001 1.0004 1.0009 1.0029 1.0088 1.0182 1.0425 1.0639
+        par/perp B: 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.000 1.000/1.001 1.001/1.002 1.003/1.007 1.010/1.022 1.021/1.044 1.053/1.099 1.091/1.142
+
+======================================================================================================================
+H  THE PRE-DECLARED HYPOTHESES
+======================================================================================================================
+  [PASS] H1 SUPPRESSION: at the canonical floor the orientation-averaged (B - 1) at 3 kAU is < 5% of the unfiltered value (M = 1, 2)
+         measured: M 1.0: 1.77%, M 2.0: 1.51%
+  [PASS] H2 TRANSITION AT s ~ xi: the orientation-averaged boost reaches half its unfiltered value at s_1/2 in [1.5, 3] xi, moving < 15% between 1 and 2 Msun
+         measured: can M1: 2.23 xi, can M2: 2.36 xi, alt M1: 2.19 xi, alt M2: 2.29 xi; mass dependence 6.0%
+  [FAIL] H3 NONLINEARITY: at the floors (M <= 2.5, s >= 3 kAU) the two-body solve lowers the boost below the linear total-mass kernel, by < 15% of (B_lin - 1)
+         measured: relative correction from -31.08% (('canonical', 2.5, 3.0, 0.0)) to +0.05% (('alt', 0.6, 120.0, 0.0))
+  [FAIL] H4 MONOTONE IN xi: every registered-grid boost decreases with xi across the window (3-D below 0.3 pc, the exact kernel above)
+         measured: violations: 4 [('canonical', 1.0, 30.0, 90.0), ('canonical', 2.0, 30.0, 90.0), ('alt', 1.0, 30.0, 90.0), ('alt', 2.0, 30.0, 90.0)]
+  [PASS] H4b (added after the dry run, NOT pre-declared) the ORIENTATION-AVERAGED boost (3-point rule) decreases with xi at every registered-grid point; the perpendicular component alone overshoots its unfiltered value
+         measured: violations: 0; largest perpendicular overshoot above B_perp(xi -> 0): +0.0246 at ('alt', 0.15, 0.6, 120.0)
+         reading:  a flattened (filtered) source pulls harder in its own plane near its edge: the in-plane (perpendicular) radial force of the Gaussian-smoothed anisotropic kernel exceeds the point value at s ~ 2-4 xi
+  [PASS] H5 ANISOTROPY FLIP: at the canonical floor perpendicular > parallel at s <= 10 kAU and parallel > perpendicular at s >= 30 kAU
+         measured: [(1.0, True, True), (2.0, True, True)]
+  [PASS] H6 NEWTONIAN LIMIT: for xi >= 1 pc, |B - 1| < 1e-3 at every s <= 30 kAU
+         measured: max |B - 1| = 6.2e-05
+  [PASS] H7 FIELD SENSITIVITY: the chain's own Galactic field (2.32e-10) lowers the canonical-floor (B - 1) at 30 kAU by > 20% vs the pre-registration's 1.778e-10
+         measured: (B - 1) = 0.1320 (1.778e-10) vs 0.0894 (2.32e-10): 32.3% lower
+
+======================================================================================================================
+W  THE LEDGER
+======================================================================================================================
+    X22a   DERIVED     the chain's z = 0 wide-binary law = FP7's double-filtered two-field AQUAL with J_P2 (FP13's separator and FP14's alpha_c drop out locally)  --  K0
+    X22b   DERIVED     xi -> 0 limit: B_par = nu_P2(y_extN) (the frozen record's 1.1389 = sqrt), B_perp = 1 + 1/sqrt(mu_T mu_L): the parallel-only reading overstates  --  K1, K2
+    X22c   DERIVED     the force tables B(M, s, theta; xi) at the floors and above (3-D nonlinear, validated: deep-MOND two-body, linear kernel, 2-D FEM, convergence)  --  K3-K7, P
+    X22d   POSTULATED  the Galactic field at the Sun: the pre-registration's frozen 1.778e-10 / 2.078e-10 vs the chain's 2.32e-10 (FP7)  --  inputs; H7 prices the choice
+    X22e   DERIVED     the solver takes a plug-in screening term (a matter-keyed one must supply its key force)  --  K8
+
+  19/21 checks pass; load-bearing failures: 0; wrote XR22_force_law_results.json  (2166 s)
+rc = 0
