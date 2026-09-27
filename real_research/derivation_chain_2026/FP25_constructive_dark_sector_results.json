@@ -1,0 +1,2556 @@
+{
+ "lane": "FP25",
+ "mutate": false,
+ "smoke": false,
+ "checks": {
+  "A1 DERIVED: on FRW the comoving flow has theta = (1/a^3) d(a^3)/dt = 3H > 0, so lambda_on Theta(-theta_b) (Im Phi^2)^2 = 0 identically: no background conversion, at any epoch, with no constant (the threshold 0 is the only scale-free one)": {
+   "ok": true,
+   "measured": "theta = 3*Derivative(a(t), t)/a(t) = 3*H; gate term on FRW = 0",
+   "load_bearing": true
+  },
+  "A2 DERIVED (sympy): along the principal axes of the Zel'dovich map the physical expansion rate is H_i = H [1 - f x_i/(1 - x_i)], so theta/H = sum_i [1 - f x_i/(1 - x_i)]; to first order theta/H = 3 - f delta_L: the gate cannot open in linear theory (it needs delta_L >= 3/f)": {
+   "ok": true,
+   "measured": "formula residual 0; linear limit -D*f*lambda1 - D*f*lambda2 - D*f*lambda3 + 3",
+   "load_bearing": true
+  },
+  "A3 DERIVED (sympy): the single-stream divergence along a collapsing axis -> -inf at shell crossing, so EVERY Lagrangian element that ever shell-crosses passes theta <= 0 first; with n axes already collapsed and the rest at the Hubble rate the gate opens at x* = (3-n)/(3-n+f): sheets 3/(3+f), filaments 2/(2+f), halos 1/(1+f) (the last axis' turnaround)": {
+   "ok": true,
+   "measured": "lim theta/H term = -oo; x* = 3/(f + 3), 2/(f + 2), 1/(f + 1); at z = 0/1/3 (f = 0.53/0.88/0.98): z 0: sheet 0.850 filament 0.791 halo 0.654; z 1: sheet 0.774 filament 0.695 halo 0.533; z 3: sheet 0.753 filament 0.671 halo 0.505",
+   "load_bearing": true
+  },
+  "A4 DERIVED (EdS): a collapsing axis has l/l_ta = 4x(1-x) after turnaround, so the gas axis freezes (its accretion shock) at 4 x_s (1 - x_s) = s; the gate opens BEFORE the shock unless s >= l/l_ta(x*): 3/4 for a forming sheet, 8/9 for a forming filament, 1 for a halo (always open).  At the self-similar cold-accretion stand-off s = 0.347 the pre-shock gas reaches x_s = 0.904 > 3/4: the baryon reading opens the gate in forming sheets too": {
+   "ok": true,
+   "measured": "l/l_ta(x*) = 3/4, 8/9, 1; s = 0.347 -> x_s = 0.904",
+   "load_bearing": true
+  },
+  "A5 CONSTRAINT: lambda_on is NOT a regulator -- the cross quartic raises the daughter's mass, m_L,eff^2 = m^2 - eps + lambda Phi0^2, so the first resonance band exists only for lambda Phi0^2 <= 2 eps, i.e. G <= G_block = eps(m^2+eps)/(2m^3) ~ m v_k^2/4 (derived); conversion needs G >= G_min = [E_need m v_k sigma H/sqrt(pi)]^(1/2) (FP10 A5's rate).  With G proportional to lambda_on rho the open window is FINITE (10^2.6-10^4 in density), so lambda_on places a density window: a threshold constant (zeta's analogue), with the Doppler factor favouring COLD (web) regions": {
+   "ok": true,
+   "measured": "window 434-10470x (m 1.9-5.2e-19 eV, v_k 600-1000, sigma 5-1000 km/s); symbolic G_block epsilon*(epsilon + m**2)/(2*m**3)",
+   "load_bearing": true
+  },
+  "A5b (reported) DERIVED: FK1's own lambda(K) makes its channel close above rho_block/rho_t = G_block/G_t = (v_k^2/4)/(G_t/m) = 554/sqrt(E(z)) at 600 km/s (G_t/mc^2 = 1.807e-09 at z = 0, FK1 N3 1.806e-09): unconverted carrier cannot convert in galaxy centres (z = 2.5, r <~ 0.05 r200) or cluster cores (z <~ 0.4, r <~ 0.15-0.2 r200) -- a correction FP10/FP16 omit; small in their timing (the carrier converts at the front, outside, before it gets dense)": {
+   "ok": true,
+   "measured": "{'flagship host 1e12 (z = 2.5)': {'2.37': 0.054, '2.76': 0.048}, 'X-COP cluster 1e15 (z = 0.056)': {'2.37': 0.189, '2.76': 0.174}, 'Harvey subcluster 1e14 (z = 0.4)': {'2.37': 0.166, '2.76': 0.153}, 'Harvey cluster 3e14 (z = 0.4)': {'2.37': 0.162, '2.76': 0.149}}",
+   "load_bearing": false
+  },
+  "B0 CONTROL: the sampler reproduces <delta^2> = 1, <psi_11^2> = 1/5, <psi_12^2> = 1/15 and Doroshkevich's P(lambda_1 > 0) = 0.92, P(all > 0) = 0.08; the root finder opens a pure sheet at x = 3/4 and a sphere at x = 1/2 (f = 1)": {
+   "ok": true,
+   "measured": "{'var_trace': 0.9914, 'P_l1_pos': 0.9191, 'P_l3_pos': 0.0776, 'psi11': 0.1992, 'psi12': 0.066}; sheet 0.7500, sphere 0.5000",
+   "load_bearing": false
+  },
+  "B1 THE UNIFIED TRIGGER CONVERTS THE WEB: by z = 3 at least ~half of the mass at the baryon scale has passed theta <= 0 (the caustic theorem, A3) in the total-flow reading AND in the cold-accretion baryon reading, at every baryon smoothing bracketed (1e6, 1e7, the filtering mass) -- sheets and filaments convert as they form; only the 'hot sheet' readings (s >= 0.75) spare them": {
+   "ok": true,
+   "measured": "z = 3: total 0.72, 0.68, 0.51; baryons (cold) 0.72, 0.68, 0.51",
+   "load_bearing": true
+  },
+  "B2 THE FORMED WEB IS SHUT NOW under the unified gate: every formed filament whose long axis still expands has theta = H_3 > 0 (exact: the collapsed axes add 0), and most formed sheets do (the rest are becoming filaments: their second axis falls in faster than the third expands) -- the gate's INSTANTANEOUS state spares the formed web (useful for XR36's reversible MOND gate), even though its history does not (B1)": {
+   "ok": true,
+   "measured": "filaments shut 1.000 (worst over z = 0-3, both scales); sheets 0.802; all formed web 0.815",
+   "load_bearing": true
+  },
+  "B3/C1 THE BUDGET: the unified trigger converts more carrier, earlier, than FK1's own trigger -- F(3) >= FK1's fiducial 0.342 and F(2) >= 0.433 (XR16), with the conversion well under way before reionization (F(7) >= 0.3)": {
+   "ok": true,
+   "measured": "F(7/3/2) = 0.437/0.514/0.613 (M_pre 1e6); M_pre 1e7: 0.360/0.514/0.613",
+   "load_bearing": true
+  },
+  "C2 MASS SELECTIVITY FAILS: at most 0.32 / 0.22 / 0.14 of the converted carrier sits in hosts >= 1e10.5 Msun at z = 2 / 3 / 4 (AT1's acceleration trigger >= 0.98; FK1's fluid 0.45/0.31/0.21, XR16) -- the turnaround gate converts the web and the minihalos first": {
+   "ok": true,
+   "measured": "{'2': 0.318, '3': 0.218, '4': 0.137}",
+   "load_bearing": true
+  },
+  "C3a CONTROL: XR12's committed nominal FK1 row (M_min 1e8, 600 km/s) reproduced through the loaded proxy (calibrated gas proxy at z = 3/2)": {
+   "ok": true,
+   "measured": "0.05160/0.11339 vs committed 0.05160/0.11339; max |dev| 0.0e+00",
+   "load_bearing": false
+  },
+  "C3 THE FOREST FAILS for the unified trigger: XR12's calibrated gas proxy exceeds DE11's 10% line at z = 2 in every theta reading and bracket (M_pre 1e6/1e7; even with sheets and filaments shut), well above FK1's own nominal cell (0.113)": {
+   "ok": true,
+   "measured": "{'theta, M_pre 1e6 (nominal)|650': {'3.0': 0.42, '2.0': 0.512}, 'theta, M_pre 1e6 (nominal)|1000': {'3.0': 0.456, '2.0': 0.542}, 'theta, M_pre 1e7|650': {'3.0': 0.377, '2.0': 0.476}, 'theta, M_pre 1e7|1000': {'3.0': 0.412, '2.0': 0.505}, 'theta, sheets+filaments shut s = 0.9|650': {'3.0': 0.445, '2.0': 0.546}, 'theta, sheets+filaments shut s = 0.9|1000': {'3.0': 0.482, '2.0': 0.576}, '3-axis gate (halos only)|650': {'3.0': 0.445, '2.0': 0.546}, '3-axis gate (halos only)|1000': {'3.0': 0.482, '2.0': 0.576}}",
+   "load_bearing": true
+  },
+  "C4 (reported) S_8 (L319's solver, ratio to LCDM; strict gate 0.922) for the unified trigger at every scanned kick (FK1-as-is 0.931): it passes at FK1's kicks and falls below the gate at the fast kicks X-COP needs (E8 pairs them)": {
+   "ok": true,
+   "measured": "{'FK1 nominal (XR19, 600)': 0.931, 'FK1 halo only (600)': 0.9556, 'theta nominal (400)': 0.9784, 'theta nominal (575)': 0.9561, 'theta nominal (650)': 0.9449, 'theta nominal (800)': 0.9204, 'theta nominal (1000)': 0.8846, 'theta nominal (1200)': 0.8468, 'theta nominal (1500)': 0.7898, '3-axis gate (650)': 0.9357}",
+   "load_bearing": false
+  },
+  "C5 (reported, APPROXIMATE) THE XR32 GATES move the WRONG way under the unified trigger: relative to FK1-as-is (XR32: counts 0.64-0.81 of LCDM, 5-9 sigma under eRASS1; DESI RSD -2.2 sigma; lensing = +0.098 eV Sum m_nu) its earlier, larger conversion lowers the counts, the RSD amplitude and the lensing further (linear proxies scaled by XR32's numbers)": {
+   "ok": true,
+   "measured": "{'FK1 nominal (XR19, 600)': {'counts': 0.696, 'rsd05': 0.934, 'alens': 0.992, 'mnu': 0.098}, 'FK1 halo only (600)': {'counts': 0.785, 'rsd05': 0.956, 'alens': 0.994, 'mnu': 0.072}, 'theta nominal (1000)': {'counts': 0.497, 'rsd05': 0.885, 'alens': 0.981, 'mnu': 0.249}, '3-axis gate (650)': {'counts': 0.688, 'rsd05': 0.936, 'alens': 0.992, 'mnu': 0.109}}",
+   "load_bearing": false
+  },
+  "C6 (reported) THE LATE-TIME SUPPRESSION P(k, z)/P_LCDM (linear, L319's CLASS-validated solver; no T_EH98): FK1-as-is suppresses k = 0.3 h/Mpc by 14.3% at z = 1 and 26.5% at z = 0; at the CMB-lensing weights (L = 100-1000, z = 0.5-2) -0.2-74.4% -- it offsets only a sliver of XR26's phantom boost (1.149 linear / 2.13 halofit)": {
+   "ok": true,
+   "measured": "{'tables': {'FK1-as-is (XR32 nominal, 600)': {'0': [0.9693282268918308, 0.7350536685990767, 0.06998262244223653, 0.05447273475694085], '0.5': [0.978336679897555, 0.7994774320212064, 0.1174766305515043, 0.06270245761474004], '1': [0.985660340877045, 0.8572541407400354, 0.22303047022476144, 0.087420356906471], '2': [0.9936942503065653, 0.9277072937919858, 0.4748556325541877, 0.2335088392256735]}, 'FK1 halo only (600)': {'0': [0.9808556173140476, 0.8286138314941763, 0.26913400077398925, 0.1957369641723707], '0.5': [0.9844300787059795, 0.8546465932246211, 0.29480017298318856, 0.21409209446640692], '1': [0.988050106079217, 0.8824416739059091, 0.340766840563151, 0.2357913364268924], '2': [0.9938403386666187, 0.9305493308342512, 0.49618989656809165, 0.2976828783906604]}, 'theta trigger (1000)': {'0': [0.9410918243793531, 0.5695664283383258, 0.040752174527264, 0.015200176376125992], '0.5': [0.9495207918717522, 0.6130057556317005, 0.045398655863067336, 0.020298279121873004], '1': [0.9565886655565508, 0.6537497924967315, 0.0522991012695985, 0.0278694634867398], '2': [0.9665506502926854, 0.7170428708017721, 0.07405842381527092, 0.048527849222232404]}}, 'lensing_points': {'L100|z0.5': 0.989, 'L100|z1': 0.9999, 'L100|z2': 1.0018, 'L400|z0.5': 0.7947, 'L400|z1': 0.9507, 'L400|z2': 0.9916, 'L1000|z0.5': 0.2558, 'L1000|z1': 0.7217, 'L1000|z2': 0.9367}}",
+   "load_bearing": false
+  },
+  "E0 CONTROL: this lane's harness runs FP16's own model and reproduces its committed X-COP scan value (1e15 Msun, t = 0, 650 km/s) and its G4 KiDS row (575 km/s, committed projector) exactly; FP20's exact projector on the same profiles gives the re-scored value": {
+   "ok": true,
+   "measured": "eps(R500) 0.909410 vs 0.909410 (|d| 0.0e+00); KiDS -18.6087/-11.8164 vs -18.6087/-11.8164 (|d| 0.0e+00); exact projector -15.063/-8.097",
+   "load_bearing": true
+  },
+  "E1 X-COP WITH THE THETA TRIGGER: at FK1's kicks (575-650 km/s) the cluster keeps too much (strict FAIL); the strict window (alt edge 0.669 binds) opens at v_k ~ 871 km/s and the non-thermal one (<= 0.769) at ~724 -- below FK1's own requirement (FP16 G10: 1047 / 913 km/s): the early conversion scatters the proto-cluster's carrier before the cluster assembles": {
+   "ok": true,
+   "measured": "{'400': 0.961, '575': 0.894, '650': 0.819, '800': 0.718, '1000': 0.58, '1200': 0.44, '1500': 0.205}",
+   "load_bearing": true
+  },
+  "E1r (reported) RESOLUTION: the theta trigger's X-COP retention moves by <= 0.05 from 2000 to 3000 shells (FP16 C0g's test; a 1200-shell smoke run sat ~0.1 higher)": {
+   "ok": true,
+   "measured": "{'650': 0.002, '1000': 0.016}",
+   "load_bearing": false
+  },
+  "E2 THE FLAGSHIP PASSES with the theta trigger for v_k >= 650 km/s (every host, z, footing, kernel within 0.074 dex): the progenitors' carrier converts at turnaround, far out, and the daughters leave": {
+   "ok": true,
+   "measured": "{'400': True, '650': True, '1000': True, '1500': True}",
+   "load_bearing": true
+  },
+  "E3 z = 0 GALAXIES PASS at every scanned kick (<= 0.06 dex)": {
+   "ok": true,
+   "measured": "{'400': 0.0, '650': 0.0, '1000': 0.0, '1500': 0.0}",
+   "load_bearing": false
+  },
+  "E4 KiDS PASSES with the theta trigger at every scanned kick (exact projector, both footings, <= +4)": {
+   "ok": true,
+   "measured": "{'400': {'canonical': -6.4, 'alt': -0.24}, '650': {'canonical': -4.39, 'alt': -0.38}, '1000': {'canonical': -4.22, 'alt': -0.41}, '1500': {'canonical': -4.36, 'alt': -0.46}}",
+   "load_bearing": false
+  },
+  "E5 (reported) COSMIC SHEAR at the 1.75 Mpc cap with the theta trigger's retention (raw model, both footings)": {
+   "ok": true,
+   "measured": "{'400': {'canonical': 1.422, 'alt': 1.51}, '650': {'canonical': 1.144, 'alt': 1.221}, '1000': {'canonical': 0.981, 'alt': 0.982}, '1500': {'canonical': 0.975, 'alt': 0.976}}",
+   "load_bearing": false
+  },
+  "E6 (reported) HARVEY with the theta trigger's profiles at 650 and 1000 km/s (<= +0.10 excess beta on all three estimators)": {
+   "ok": true,
+   "measured": "{'650': {'beta': {'100': 0.083, '150': 0.176, 'fit': 0.25}, 'ok': False}, '1000': {'beta': {'100': 0.071, '150': 0.173, 'fit': 0.29}, 'ok': False}}",
+   "load_bearing": false
+  },
+  "E6b (reported, OPEN) FP22's price in mergers: the subcluster's galaxies feel the host's phantom and its carrier does not, so their centroids separate by ~20-31 kpc inside a 150 kpc aperture (linear response of a bound tracer; x R_ap^2; the free drift over a crossing time, 347-538 kpc, is the unbound ceiling) against Harvey's 60-120 kpc gas-galaxy offsets: beta can move by O(0.1), sign set by the orbital phase": {
+   "ok": true,
+   "measured": "{'canonical|300': {'100': 12.1, '150': 27.1, '250': 75.3}, 'canonical|500': {'100': 10.7, '150': 24.1, '250': 66.8}, 'canonical|1000': {'100': 8.9, '150': 20.0, '250': 55.6}, 'alt|300': {'100': 13.8, '150': 31.1, '250': 86.3}, 'alt|500': {'100': 12.2, '150': 27.4, '250': 76.1}, 'alt|1000': {'100': 10.1, '150': 22.6, '250': 62.8}}",
+   "load_bearing": false
+  },
+  "E8 THE WINDOW IS EMPTY for the unified trigger at every kick 400-1500 km/s: the forest fails at every kick (C3, kick-independent); where X-COP's strict window opens (fast kicks) S_8 falls below 0.922 as well": {
+   "ok": true,
+   "measured": "{'400': {'X-COP': 'FAIL', 'flagship': 'pass', 'galaxies': 'pass', 'KiDS': 'pass', 'shear': 'FAIL', 'forest': 'FAIL', 'S8': 'pass'}, '575': {'X-COP': 'FAIL', 'forest': 'FAIL', 'S8': 'pass'}, '650': {'X-COP': 'FAIL', 'flagship': 'pass', 'galaxies': 'pass', 'KiDS': 'pass', 'shear': 'FAIL', 'Harvey': 'FAIL', 'forest': 'FAIL', 'S8': 'pass'}, '800': {'X-COP': 'FAIL', 'forest': 'FAIL', 'S8': 'FAIL'}, '1000': {'X-COP': 'pass', 'flagship': 'pass', 'galaxies': 'pass', 'KiDS': 'pass', 'shear': 'pass', 'Harvey': 'FAIL', 'forest': 'FAIL', 'S8': 'FAIL'}, '1200': {'X-COP': 'pass', 'forest': 'FAIL', 'S8': 'FAIL'}, '1500': {'X-COP': 'FAIL', 'flagship': 'pass', 'galaxies': 'pass', 'KiDS': 'pass', 'shear': 'pass', 'forest': 'FAIL', 'S8': 'FAIL'}}",
+   "load_bearing": true
+  },
+  "F1 THE 3-AXIS GATE SPARES THE FORMING WEB (an expanding axis keeps it shut, derived) BUT STILL FAILS THE FOREST: every turned-around halo above the baryon scale converts, including the pre-reionization minihalos, so the calibrated gas proxy stays above 10% at z = 2 (0.546)": {
+   "ok": true,
+   "measured": "{'forest': {'3.0': 0.444992569773085, '2.0': 0.5463267790441757}, 'xcop': {650.0: 0.8409755065925271, 1000.0: 0.5816382267267378}, 'knots': {'3': {'zeldovich_knots': 0.01}, '2': {'zeldovich_knots': 0.015916666666666666}}}",
+   "load_bearing": true
+  },
+  "F2 NEWTONIAN-CORE RETENTION IS NOT THE HARVEY FIX: vetoing conversion where y_b > 1 (a0's own scale, no constant) keeps carrier only inside r_N <= 65 kpc in 1e14-1e15 clusters -- inside Harvey's 100-150 kpc estimators, not across them -- while in the z = 2.5 flagship hosts it keeps the orbits confined inside r_N = sqrt(G M_b/a0), S(r_F) = 0.048-0.062 against MS2's 0.059: the flagship's margin is gone": {
+   "ok": true,
+   "measured": "{'flagship': {'10.5|canonical': 0.051, '10.5|alt': 0.048, '11.0|canonical': 0.062, '11.0|alt': 0.058}, 'cluster_rN': {'1e+14': {'canonical': 32.42455773629046, 'alt': 27.52865252055658}, '3e+14': {'canonical': 41.59476415488863, 'alt': 35.039009385682185}, '1e+15': {'canonical': 65.23345674946867, 'alt': 53.92907797619686}}}",
+   "load_bearing": true
+  },
+  "F4 CONSTRAINT (sympy, FP15's Z4 theorem re-checked): under Phi -> i Phi only eps Re(Phi^2) is odd; the quartics are even and split nothing at quadratic order -- one complex field carries ONE kick line (v_k), broadened only by the pump's motion.  The record's one opening of X-COP + Harvey together (L372's two-channel carrier, alt set) needs a second, fast (3000 km/s), spatially uniform channel: a second splitting, i.e. a second field -- a new species, excluded by the standing rule": {
+   "ok": true,
+   "measured": "{'Re(Phi^2)': 'odd', '|Phi|^2': 'even', 'Re(Phi^4)': 'even', '|Phi|^4': 'even', '(Im Phi^2)^2': 'even'}",
+   "load_bearing": true
+  },
+  "F5 (reported, OPEN) FK1 + A THETA_b VETO (convert only where rho >= rho_t(z) AND theta_b <= 0; zero new constants; zeta, q kept): the veto cannot reduce FK1's knobs, but it shuts XR19's late runaway through FORMED, axis-expanding filaments and sheets (theta > 0 now, B2) while leaving halos (flagship, galaxies) untouched -- the direction XR32's counts, RSD and Sum m_nu want (less late conversion).  Its bite is bounded by the web part of XR19's budget, 0.28 of the fluid by z = 0; forming sheets' caustics (theta and density both spike) remain open to it": {
+   "ok": true,
+   "measured": "{'web_part': {'1.0': 0.2814453503064379, '0.0': 0.28248358657845873}, 'formed_web_shut_now': 0.8959202470607358, 'ceiling': {'nominal': {'counts': 0.6959155558543044, 'rsd': {0.5: 0.9343632131994528, 1.0: 0.9518536391086473}, 'alens': 0.9924373280345367, 'alens_vs_FK1': 1.0, 'mnu_equiv_eV': 0.098, 'counts_scaled': [0.64, 0.81], 'rsd_sigma_scaled': -2.2}, 'halo_only': {'counts': 0.7846319287331539, 'rsd': {0.5: 0.9563443225053938, 1.0: 0.9630710968802773}, 'alens': 0.9944123228479683, 'alens_vs_FK1': 0.7388495993941129, 'mnu_equiv_eV': 0.07240726074062306, 'counts_scaled': [0.7215881728247368, 0.9132600312313075], 'rsd_sigma_scaled': -1.463241806458036}}}",
+   "load_bearing": false
+  },
+  "H (reported) the pre-declared hypotheses as they fell": {
+   "ok": true,
+   "measured": "{'H1': 'held', 'H2': 'held', 'H3': 'held', 'H4': 'FELL', 'H5': 'held', 'H6': 'FELL', 'H7': 'held', 'H8': 'FELL', 'H9': 'held', 'H10': 'held', 'H11': 'held', 'H12': 'FELL', 'H13': 'FELL', 'H14': 'held', 'H15': 'FELL'}",
+   "load_bearing": false
+  },
+  "D (reported) THE COUNT: no construction tested here opens the window with fewer constants than FK1's four; the unified trigger trades zeta and q for lambda_on (4 -> 3) and fails; the smallest structure on the record that opens X-COP + Harvey (L372's second channel) needs a second field": {
+   "ok": true,
+   "measured": "{'FK1 as adopted (FP10/FP15/FP22)': 4, 'unified theta_b trigger (this lane)': 3, '3-axis gate (F1)': 3, 'Newtonian-core veto (F2)': 3, 'FK1 + theta veto (F5)': 4, 'two-channel opening (L372, F4)': 7}",
+   "load_bearing": false
+  },
+  "W (reported) the ledger": {
+   "ok": true,
+   "measured": "14 links",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "a0_FP0": {
+   "canonical": 9.360324825027975e-11,
+   "alt": 1.1312035414413022e-10
+  },
+  "A": {
+   "x_open": {
+    "0.0": {
+     "0": 0.8498518007029404,
+     "1": 0.7905053251499403,
+     "2": 0.653583138138197
+    },
+    "1.0": {
+     "0": 0.7739407590052234,
+     "1": 0.6953460579596853,
+     "2": 0.5329735614581836
+    },
+    "3.0": {
+     "0": 0.7534252656442582,
+     "1": 0.6707324302392466,
+     "2": 0.5045879742330338
+    }
+   },
+   "x_shock_selfsim": 0.9040420770167384,
+   "standoff_needed": {
+    "sheet": 0.75,
+    "filament": 0.8888888888888888,
+    "halo": 1.0
+   }
+  },
+  "A5": {
+   "rows": {
+    "1.9e-19|600|forming sheet / minihalo, z = 3": {
+     "G_block_over_m": 1.0013890615483834e-06,
+     "G_min_over_m": 3.4043852456016595e-10,
+     "window": 2941.468104534119
+    },
+    "1.9e-19|600|flagship halo, z = 2.5": {
+     "G_block_over_m": 1.0013890615483834e-06,
+     "G_min_over_m": 1.6937406428991685e-09,
+     "window": 591.2292804371217
+    },
+    "1.9e-19|600|cluster, z = 0.1": {
+     "G_block_over_m": 1.0013890615483834e-06,
+     "G_min_over_m": 2.3093136048028915e-09,
+     "window": 433.6306075821416
+    },
+    "1.9e-19|1000|forming sheet / minihalo, z = 3": {
+     "G_block_over_m": 2.7816560901460007e-06,
+     "G_min_over_m": 4.395042453429825e-10,
+     "window": 6329.076725926136
+    },
+    "1.9e-19|1000|flagship halo, z = 2.5": {
+     "G_block_over_m": 2.7816560901460007e-06,
+     "G_min_over_m": 2.186609767581041e-09,
+     "window": 1272.1319237603313
+    },
+    "1.9e-19|1000|cluster, z = 0.1": {
+     "G_block_over_m": 2.7816560901460007e-06,
+     "G_min_over_m": 2.9813110441906045e-09,
+     "window": 933.0311560634868
+    },
+    "5.2e-19|600|forming sheet / minihalo, z = 3": {
+     "G_block_over_m": 1.0013890615483834e-06,
+     "G_min_over_m": 2.0578505361220927e-10,
+     "window": 4866.189472805185
+    },
+    "5.2e-19|600|flagship halo, z = 2.5": {
+     "G_block_over_m": 1.0013890615483834e-06,
+     "G_min_over_m": 1.0238162953340619e-09,
+     "window": 978.0944746749116
+    },
+    "5.2e-19|600|cluster, z = 0.1": {
+     "G_block_over_m": 1.0013890615483834e-06,
+     "G_min_over_m": 1.3959120066853093e-09,
+     "window": 717.3726257475582
+    },
+    "5.2e-19|1000|forming sheet / minihalo, z = 3": {
+     "G_block_over_m": 2.7816560901460007e-06,
+     "G_min_over_m": 2.6566736184616233e-10,
+     "window": 10470.4472194697
+    },
+    "5.2e-19|1000|flagship halo, z = 2.5": {
+     "G_block_over_m": 2.7816560901460007e-06,
+     "G_min_over_m": 1.3217411538015322e-09,
+     "window": 2104.5392149177824
+    },
+    "5.2e-19|1000|cluster, z = 0.1": {
+     "G_block_over_m": 2.7816560901460007e-06,
+     "G_min_over_m": 1.8021146515543929e-09,
+     "window": 1543.5511207606662
+    }
+   },
+   "span": {
+    "flagship progenitor at turnaround, z ~ 5 (5.55 rhobar(5))": 1198.8,
+    "cluster outskirts at turnaround, z ~ 0.3 (5.55 rhobar(0.3))": 12.19335,
+    "pre-reionization minihalo at turnaround, z ~ 12 (5.55 rhobar(12))": 12193.35
+   }
+  },
+  "A5b": {
+   "Gt_over_mc2_z0": 1.806632347067267e-09,
+   "FK1_N3": 1.8060914224948324e-09,
+   "block_ratio_z0": 554.282697347814,
+   "hosts": {
+    "flagship host 1e12 (z = 2.5)": {
+     "c": 3.850593409412832,
+     "2.37": {
+      "rho_block_over_rhobar": 16911.912450082265,
+      "r_block_over_r200": 0.053698763989821145
+     },
+     "2.76": {
+      "rho_block_over_rhobar": 19688.198411312518,
+      "r_block_over_r200": 0.047886327110642446
+     }
+    },
+    "X-COP cluster 1e15 (z = 0.056)": {
+     "c": 4.133136603673782,
+     "2.37": {
+      "rho_block_over_rhobar": 6520.464993249605,
+      "r_block_over_r200": 0.18880314673531967
+     },
+     "2.76": {
+      "rho_block_over_rhobar": 7590.874710357864,
+      "r_block_over_r200": 0.173961086597515
+     }
+    },
+    "Harvey subcluster 1e14 (z = 0.4)": {
+     "c": 4.66042361137834,
+     "2.37": {
+      "rho_block_over_rhobar": 5474.705484405043,
+      "r_block_over_r200": 0.16572166780444728
+     },
+     "2.76": {
+      "rho_block_over_rhobar": 6373.44168724945,
+      "r_block_over_r200": 0.15265959147750233
+     }
+    },
+    "Harvey cluster 3e14 (z = 0.4)": {
+     "c": 4.21889005952312,
+     "2.37": {
+      "rho_block_over_rhobar": 5474.705484405043,
+      "r_block_over_r200": 0.1621905995272152
+     },
+     "2.76": {
+      "rho_block_over_rhobar": 6373.44168724945,
+      "r_block_over_r200": 0.14900193393117683
+     }
+    }
+   }
+  },
+  "B0": {
+   "var_trace": 0.9914266100561661,
+   "P_l1_pos": 0.91905,
+   "P_l3_pos": 0.077575,
+   "psi11": 0.19920300279401623,
+   "psi12": 0.0660290947572959
+  },
+  "B1": {
+   "total flow (single stream to crossing)": {
+    "6": {
+     "1e+06": 0.512425,
+     "1e+07": 0.4399,
+     "3e+08": 0.281575
+    },
+    "3": {
+     "1e+06": 0.72165,
+     "1e+07": 0.682575,
+     "2e+09": 0.51455
+    },
+    "2": {
+     "1e+06": 0.78125,
+     "1e+07": 0.754775,
+     "3e+09": 0.61355
+    }
+   },
+   "baryons, cold accretion (s = 0.347)": {
+    "6": {
+     "1e+06": 0.512425,
+     "1e+07": 0.4399,
+     "3e+08": 0.281575
+    },
+    "3": {
+     "1e+06": 0.72165,
+     "1e+07": 0.682575,
+     "2e+09": 0.51455
+    },
+    "2": {
+     "1e+06": 0.78125,
+     "1e+07": 0.754775,
+     "3e+09": 0.61355
+    }
+   },
+   "baryons, hot sheets (s = 0.75)": {
+    "6": {
+     "1e+06": 0.26815,
+     "1e+07": 0.248675,
+     "3e+08": 0.1897
+    },
+    "3": {
+     "1e+06": 0.301825,
+     "1e+07": 0.2966,
+     "2e+09": 0.2657
+    },
+    "2": {
+     "1e+06": 0.314425,
+     "1e+07": 0.304525,
+     "3e+09": 0.28035
+    }
+   },
+   "baryons, sheets+filaments shut (s = 0.9)": {
+    "6": {
+     "1e+06": 0.0476,
+     "1e+07": 0.0406,
+     "3e+08": 0.0265
+    },
+    "3": {
+     "1e+06": 0.063575,
+     "1e+07": 0.06135,
+     "2e+09": 0.047125
+    },
+    "2": {
+     "1e+06": 0.0649,
+     "1e+07": 0.063875,
+     "3e+09": 0.054775
+    }
+   }
+  },
+  "B2": {
+   "0|2 Mpc/h web scale (1e12.7 Msun)": {
+    "web_frac": 0.4682,
+    "sel_frac": 0.461425,
+    "shut": 0.8959202470607358,
+    "shut_fil": 1.0,
+    "shut_sheet": 0.8819589529310556
+   },
+   "0|forest scale (1e9.5)": {
+    "web_frac": 0.769475,
+    "sel_frac": 0.756025,
+    "shut": 0.9471247643927119,
+    "shut_fil": 1.0,
+    "shut_sheet": 0.9240055130459579
+   },
+   "1|2 Mpc/h web scale (1e12.7 Msun)": {
+    "web_frac": 0.15275,
+    "sel_frac": 0.150025,
+    "shut": 0.8338610231628062,
+    "shut_fil": 1.0,
+    "shut_sheet": 0.8282219159200551
+   },
+   "1|forest scale (1e9.5)": {
+    "web_frac": 0.6539,
+    "sel_frac": 0.636525,
+    "shut": 0.8893994737048819,
+    "shut_fil": 1.0,
+    "shut_sheet": 0.8607250605865769
+   },
+   "2|2 Mpc/h web scale (1e12.7 Msun)": {
+    "web_frac": 0.0179,
+    "sel_frac": 0.017725,
+    "shut": 0.8293370944992948,
+    "shut_fil": 1.0,
+    "shut_sheet": 0.8288543140028288
+   },
+   "2|forest scale (1e9.5)": {
+    "web_frac": 0.490175,
+    "sel_frac": 0.477025,
+    "shut": 0.840259944447356,
+    "shut_fil": 1.0,
+    "shut_sheet": 0.8181167203723595
+   },
+   "3|2 Mpc/h web scale (1e12.7 Msun)": {
+    "web_frac": 0.0008,
+    "sel_frac": 0.000775,
+    "shut": 0.8709677419354839,
+    "shut_fil": "nan",
+    "shut_sheet": 0.8709677419354839
+   },
+   "3|forest scale (1e9.5)": {
+    "web_frac": 0.315925,
+    "sel_frac": 0.30805,
+    "shut": 0.8145593247849375,
+    "shut_fil": 1.0,
+    "shut_sheet": 0.8016320861185867
+   }
+  },
+  "C1": {
+   "theta, M_pre 1e6 (nominal)": {
+    "z": [
+     0.0,
+     0.1,
+     0.2,
+     0.30000000000000004,
+     0.4,
+     0.5,
+     0.6000000000000001,
+     0.7000000000000001,
+     0.8,
+     0.9,
+     1.0,
+     1.1,
+     1.2000000000000002,
+     1.3,
+     1.4000000000000001,
+     1.5,
+     1.6,
+     1.7000000000000002,
+     1.8,
+     1.9000000000000001,
+     2.0,
+     2.1,
+     2.2,
+     2.3000000000000003,
+     2.4000000000000004,
+     2.5,
+     2.6,
+     2.7,
+     2.8000000000000003,
+     2.9000000000000004,
+     3.0,
+     3.25,
+     3.5,
+     3.75,
+     4.0,
+     4.25,
+     4.5,
+     4.75,
+     5.0,
+     5.25,
+     5.5,
+     5.75,
+     6.0,
+     6.25,
+     6.5,
+     6.75,
+     7.0,
+     7.25,
+     7.5,
+     7.75,
+     8.0,
+     9.0,
+     10.0,
+     12.0,
+     15.0,
+     20.0,
+     30.0
+    ],
+    "F": [
+     0.7935597465061608,
+     0.7879395560963643,
+     0.7805293759393322,
+     0.7736577097263722,
+     0.7659518482981647,
+     0.7572446198606952,
+     0.7499493821665476,
+     0.7411252070932175,
+     0.7313701523596712,
+     0.7213848039111916,
+     0.7114637888130337,
+     0.7010748422192657,
+     0.6921426871500925,
+     0.6821886606180324,
+     0.673021945312938,
+     0.6638051474717757,
+     0.6538440196525117,
+     0.6439803458523561,
+     0.6338480982022663,
+     0.623723442013199,
+     0.6129952782643182,
+     0.6030103795415307,
+     0.5928102547195275,
+     0.5820069051415493,
+     0.5725799223343084,
+     0.5640851698801967,
+     0.5554223194245655,
+     0.5450879299899282,
+     0.5342677768766131,
+     0.5240349801904087,
+     0.5138763962215882,
+     0.4911251874670225,
+     0.467134431046274,
+     0.44281626658118306,
+     0.4373615006924618,
+     0.4373615006924618,
+     0.4373615006924618,
+     0.4373615006924618,
+     0.4373615006924618,
+     0.4373615006924618,
+     0.4373615006924618,
+     0.4373615006924618,
+     0.4373615006924618,
+     0.4373615006924618,
+     0.4373615006924618,
+     0.4373615006924618,
+     0.4373615006924618,
+     0.41987369201387387,
+     0.4013694179467047,
+     0.3854012431270419,
+     0.3716193401603621,
+     0.30684919410808886,
+     0.25677176295228366,
+     0.18038664048113728,
+     0.09943625434297355,
+     0.030754082424555778,
+     0.001459473857334842
+    ],
+    "Fb": [
+     0.8580816937421359,
+     0.8565978974564464,
+     0.8540513575438923,
+     0.8521543360730235,
+     0.8488401321533263,
+     0.8455266620236964,
+     0.8444895972959678,
+     0.8410706648180413,
+     0.8365493235195685,
+     0.8338920818984021,
+     0.8293336945762967,
+     0.8258959313129012,
+     0.8228705444090916,
+     0.8181098479822938,
+     0.8163598968869558,
+     0.81374725257959,
+     0.8088890969272762,
+     0.8032277506022113,
+     0.7985493208181802,
+     0.793962028233649,
+     0.7899868659397329,
+     0.7875036186409794,
+     0.7837219485011779,
+     0.7812047835567756,
+     0.77776967832952,
+     0.7754621766989218,
+     0.7723299320630059,
+     0.7695584163892752,
+     0.7643402909662109,
+     0.7594344936816125,
+     0.7545163556345104,
+     0.7459640918792971,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.716821725049209,
+     0.7124952898246744,
+     0.7124952898246744,
+     0.7124952898246744,
+     0.7046715457971479,
+     0.7046715457971479,
+     0.7046715457971479,
+     0.7046715457971479,
+     0.7046715457971479,
+     0.7046715457971479,
+     0.5907066786013194,
+     0.41800690600563856,
+     0.1881415361749078,
+     0.016563637006259766
+    ]
+   },
+   "theta, M_pre 1e7": {
+    "z": [
+     0.0,
+     0.1,
+     0.2,
+     0.30000000000000004,
+     0.4,
+     0.5,
+     0.6000000000000001,
+     0.7000000000000001,
+     0.8,
+     0.9,
+     1.0,
+     1.1,
+     1.2000000000000002,
+     1.3,
+     1.4000000000000001,
+     1.5,
+     1.6,
+     1.7000000000000002,
+     1.8,
+     1.9000000000000001,
+     2.0,
+     2.1,
+     2.2,
+     2.3000000000000003,
+     2.4000000000000004,
+     2.5,
+     2.6,
+     2.7,
+     2.8000000000000003,
+     2.9000000000000004,
+     3.0,
+     3.25,
+     3.5,
+     3.75,
+     4.0,
+     4.25,
+     4.5,
+     4.75,
+     5.0,
+     5.25,
+     5.5,
+     5.75,
+     6.0,
+     6.25,
+     6.5,
+     6.75,
+     7.0,
+     7.25,
+     7.5,
+     7.75,
+     8.0,
+     9.0,
+     10.0,
+     12.0,
+     15.0,
+     20.0,
+     30.0
+    ],
+    "F": [
+     0.7935597465061608,
+     0.7879395560963643,
+     0.7805293759393322,
+     0.7736577097263722,
+     0.7659518482981647,
+     0.7572446198606952,
+     0.7499493821665476,
+     0.7411252070932175,
+     0.7313701523596712,
+     0.7213848039111916,
+     0.7114637888130337,
+     0.7010748422192657,
+     0.6921426871500925,
+     0.6821886606180324,
+     0.673021945312938,
+     0.6638051474717757,
+     0.6538440196525117,
+     0.6439803458523561,
+     0.6338480982022663,
+     0.623723442013199,
+     0.6129952782643182,
+     0.6030103795415307,
+     0.5928102547195275,
+     0.5820069051415493,
+     0.5725799223343084,
+     0.5640851698801967,
+     0.5554223194245655,
+     0.5450879299899282,
+     0.5342677768766131,
+     0.5240349801904087,
+     0.5138763962215882,
+     0.4911251874670225,
+     0.467134431046274,
+     0.44281626658118306,
+     0.4218747753410888,
+     0.3994833030308195,
+     0.3813631371970273,
+     0.3638946648225893,
+     0.36030910134828414,
+     0.36030910134828414,
+     0.36030910134828414,
+     0.36030910134828414,
+     0.36030910134828414,
+     0.36030910134828414,
+     0.36030910134828414,
+     0.36030910134828414,
+     0.36030910134828414,
+     0.34065117652577703,
+     0.3220805089142778,
+     0.3062135121599738,
+     0.28910805507775794,
+     0.23823877326679332,
+     0.19464515007886019,
+     0.1255244155978103,
+     0.05952888110246722,
+     0.01349034875933552,
+     0.00027284775131811726
+    ],
+    "Fb": [
+     0.8580816937421359,
+     0.8565978974564464,
+     0.8540513575438923,
+     0.8521543360730235,
+     0.8488401321533263,
+     0.8455266620236964,
+     0.8444895972959678,
+     0.8410706648180413,
+     0.8365493235195685,
+     0.8338920818984021,
+     0.8293336945762967,
+     0.8258959313129012,
+     0.8228705444090916,
+     0.8181098479822938,
+     0.8163598968869558,
+     0.81374725257959,
+     0.8088890969272762,
+     0.8032277506022113,
+     0.7985493208181802,
+     0.793962028233649,
+     0.7899868659397329,
+     0.7875036186409794,
+     0.7837219485011779,
+     0.7812047835567756,
+     0.77776967832952,
+     0.7754621766989218,
+     0.7723299320630059,
+     0.7695584163892752,
+     0.7643402909662109,
+     0.7594344936816125,
+     0.7545163556345104,
+     0.7459640918792971,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.7366204743014446,
+     0.716821725049209,
+     0.6965600227747202,
+     0.6802448027177195,
+     0.6802448027177195,
+     0.6802448027177195,
+     0.6802448027177195,
+     0.6802448027177195,
+     0.6802448027177195,
+     0.6802448027177195,
+     0.6148661456193927,
+     0.48150604711472533,
+     0.29940387981786726,
+     0.10123503949788736,
+     0.0039043991737507467
+    ]
+   },
+   "theta, hot sheets s = 0.75": {
+    "z": [
+     0.0,
+     0.1,
+     0.2,
+     0.30000000000000004,
+     0.4,
+     0.5,
+     0.6000000000000001,
+     0.7000000000000001,
+     0.8,
+     0.9,
+     1.0,
+     1.1,
+     1.2000000000000002,
+     1.3,
+     1.4000000000000001,
+     1.5,
+     1.6,
+     1.7000000000000002,
+     1.8,
+     1.9000000000000001,
+     2.0,
+     2.1,
+     2.2,
+     2.3000000000000003,
+     2.4000000000000004,
+     2.5,
+     2.6,
+     2.7,
+     2.8000000000000003,
+     2.9000000000000004,
+     3.0,
+     3.25,
+     3.5,
+     3.75,
+     4.0,
+     4.25,
+     4.5,
+     4.75,
+     5.0,
+     5.25,
+     5.5,
+     5.75,
+     6.0,
+     6.25,
+     6.5,
+     6.75,
+     7.0,
+     7.25,
+     7.5,
+     7.75,
+     8.0,
+     9.0,
+     10.0,
+     12.0,
+     15.0,
+     20.0,
+     30.0
+    ],
+    "F": [
+     0.7889083557660825,
+     0.7789991071326207,
+     0.7686026252824678,
+     0.7577998086034405,
+     0.7466947737116854,
+     0.7353507219180666,
+     0.7238540375796401,
+     0.7122475465909301,
+     0.7006001673156729,
+     0.6889366440197342,
+     0.6773117342534913,
+     0.6657359870241808,
+     0.6542537733724565,
+     0.6428651123925218,
+     0.6316071131578992,
+     0.6204721842991225,
+     0.6094925111571619,
+     0.5986550125640292,
+     0.5879885550245192,
+     0.5774760955865528,
+     0.5671442683044763,
+     0.5569731547583388,
+     0.5469879252705191,
+     0.5371665267862404,
+     0.5275330718211956,
+     0.5180639932983793,
+     0.5087827643053974,
+     0.4996646452703869,
+     0.49073259975848227,
+     0.4819610836383714,
+     0.4733726756062022,
+     0.45262135147935856,
+     0.4328902322718695,
+     0.4141544225241707,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.3945780855277028,
+     0.3804611344885227,
+     0.36665861567331137,
+     0.3531726084745622,
+     0.30241827571963464,
+     0.25677176295228366,
+     0.18038664048113728,
+     0.09943625434297355,
+     0.030754082424555778,
+     0.001459473857334842
+    ],
+    "Fb": [
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.9495770192939076,
+     0.9463202476488087,
+     0.9429432662205793,
+     0.9394559578604094,
+     0.9358541668877655,
+     0.9321489348914781,
+     0.9283354614556911,
+     0.9244259318845444,
+     0.9204148012971463,
+     0.9163153301970068,
+     0.9121211721436653,
+     0.9078466642515468,
+     0.9034845628844754,
+     0.8990502029227683,
+     0.8945354115743402,
+     0.889956468964469,
+     0.8782171522309401,
+     0.8661169624816272,
+     0.8537205657102444,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.8397576949698278,
+     0.8290063876803273,
+     0.817908654084722,
+     0.8064761661709114,
+     0.7576664380170948,
+     0.7046715457971479,
+     0.5907066786013194,
+     0.41800690600563856,
+     0.1881415361749078,
+     0.016563637006259766
+    ]
+   },
+   "theta, sheets+filaments shut s = 0.9": {
+    "z": [
+     0.0,
+     0.1,
+     0.2,
+     0.30000000000000004,
+     0.4,
+     0.5,
+     0.6000000000000001,
+     0.7000000000000001,
+     0.8,
+     0.9,
+     1.0,
+     1.1,
+     1.2000000000000002,
+     1.3,
+     1.4000000000000001,
+     1.5,
+     1.6,
+     1.7000000000000002,
+     1.8,
+     1.9000000000000001,
+     2.0,
+     2.1,
+     2.2,
+     2.3000000000000003,
+     2.4000000000000004,
+     2.5,
+     2.6,
+     2.7,
+     2.8000000000000003,
+     2.9000000000000004,
+     3.0,
+     3.25,
+     3.5,
+     3.75,
+     4.0,
+     4.25,
+     4.5,
+     4.75,
+     5.0,
+     5.25,
+     5.5,
+     5.75,
+     6.0,
+     6.25,
+     6.5,
+     6.75,
+     7.0,
+     7.25,
+     7.5,
+     7.75,
+     8.0,
+     9.0,
+     10.0,
+     12.0,
+     15.0,
+     20.0,
+     30.0
+    ],
+    "F": [
+     0.7889083557660825,
+     0.7789991071326207,
+     0.7686026252824678,
+     0.7577998086034405,
+     0.7466947737116854,
+     0.7353507219180666,
+     0.7238540375796401,
+     0.7122475465909301,
+     0.7006001673156729,
+     0.6889366440197342,
+     0.6773117342534913,
+     0.6657359870241808,
+     0.6542537733724565,
+     0.6428651123925218,
+     0.6316071131578992,
+     0.6204721842991225,
+     0.6094925111571619,
+     0.5986550125640292,
+     0.5879885550245192,
+     0.5774760955865528,
+     0.5671442683044763,
+     0.5569731547583388,
+     0.5469879252705191,
+     0.5371665267862404,
+     0.5275330718211956,
+     0.5180639932983793,
+     0.5087827643053974,
+     0.4996646452703869,
+     0.49073259975848227,
+     0.4819610836383714,
+     0.4733726756062022,
+     0.45262135147935856,
+     0.4328902322718695,
+     0.4141544225241707,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.3945780855277028,
+     0.3804611344885227,
+     0.36665861567331137,
+     0.3531726084745622,
+     0.30241827571963464,
+     0.25677176295228366,
+     0.18038664048113728,
+     0.09943625434297355,
+     0.030754082424555778,
+     0.001459473857334842
+    ],
+    "Fb": [
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.9495770192939076,
+     0.9463202476488087,
+     0.9429432662205793,
+     0.9394559578604094,
+     0.9358541668877655,
+     0.9321489348914781,
+     0.9283354614556911,
+     0.9244259318845444,
+     0.9204148012971463,
+     0.9163153301970068,
+     0.9121211721436653,
+     0.9078466642515468,
+     0.9034845628844754,
+     0.8990502029227683,
+     0.8945354115743402,
+     0.889956468964469,
+     0.8782171522309401,
+     0.8661169624816272,
+     0.8537205657102444,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.8397576949698278,
+     0.8290063876803273,
+     0.817908654084722,
+     0.8064761661709114,
+     0.7576664380170948,
+     0.7046715457971479,
+     0.5907066786013194,
+     0.41800690600563856,
+     0.1881415361749078,
+     0.016563637006259766
+    ]
+   },
+   "3-axis gate (halos only)": {
+    "z": [
+     0.0,
+     0.1,
+     0.2,
+     0.30000000000000004,
+     0.4,
+     0.5,
+     0.6000000000000001,
+     0.7000000000000001,
+     0.8,
+     0.9,
+     1.0,
+     1.1,
+     1.2000000000000002,
+     1.3,
+     1.4000000000000001,
+     1.5,
+     1.6,
+     1.7000000000000002,
+     1.8,
+     1.9000000000000001,
+     2.0,
+     2.1,
+     2.2,
+     2.3000000000000003,
+     2.4000000000000004,
+     2.5,
+     2.6,
+     2.7,
+     2.8000000000000003,
+     2.9000000000000004,
+     3.0,
+     3.25,
+     3.5,
+     3.75,
+     4.0,
+     4.25,
+     4.5,
+     4.75,
+     5.0,
+     5.25,
+     5.5,
+     5.75,
+     6.0,
+     6.25,
+     6.5,
+     6.75,
+     7.0,
+     7.25,
+     7.5,
+     7.75,
+     8.0,
+     9.0,
+     10.0,
+     12.0,
+     15.0,
+     20.0,
+     30.0
+    ],
+    "F": [
+     0.7889083557660825,
+     0.7789991071326207,
+     0.7686026252824678,
+     0.7577998086034405,
+     0.7466947737116854,
+     0.7353507219180666,
+     0.7238540375796401,
+     0.7122475465909301,
+     0.7006001673156729,
+     0.6889366440197342,
+     0.6773117342534913,
+     0.6657359870241808,
+     0.6542537733724565,
+     0.6428651123925218,
+     0.6316071131578992,
+     0.6204721842991225,
+     0.6094925111571619,
+     0.5986550125640292,
+     0.5879885550245192,
+     0.5774760955865528,
+     0.5671442683044763,
+     0.5569731547583388,
+     0.5469879252705191,
+     0.5371665267862404,
+     0.5275330718211956,
+     0.5180639932983793,
+     0.5087827643053974,
+     0.4996646452703869,
+     0.49073259975848227,
+     0.4819610836383714,
+     0.4733726756062022,
+     0.45262135147935856,
+     0.4328902322718695,
+     0.4141544225241707,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.40900688168055954,
+     0.3945780855277028,
+     0.3804611344885227,
+     0.36665861567331137,
+     0.3531726084745622,
+     0.30241827571963464,
+     0.25677176295228366,
+     0.18038664048113728,
+     0.09943625434297355,
+     0.030754082424555778,
+     0.001459473857334842
+    ],
+    "Fb": [
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.95,
+     0.9495770192939076,
+     0.9463202476488087,
+     0.9429432662205793,
+     0.9394559578604094,
+     0.9358541668877655,
+     0.9321489348914781,
+     0.9283354614556911,
+     0.9244259318845444,
+     0.9204148012971463,
+     0.9163153301970068,
+     0.9121211721436653,
+     0.9078466642515468,
+     0.9034845628844754,
+     0.8990502029227683,
+     0.8945354115743402,
+     0.889956468964469,
+     0.8782171522309401,
+     0.8661169624816272,
+     0.8537205657102444,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.850151984209758,
+     0.8397576949698278,
+     0.8290063876803273,
+     0.817908654084722,
+     0.8064761661709114,
+     0.7576664380170948,
+     0.7046715457971479,
+     0.5907066786013194,
+     0.41800690600563856,
+     0.1881415361749078,
+     0.016563637006259766
+    ]
+   }
+  },
+  "C2": {
+   "2": {
+    "collapsed_ge_10p5": 0.19513307526493395,
+    "F": 0.6129952782643182,
+    "share_upper": 0.31832720770288586
+   },
+   "3": {
+    "collapsed_ge_10p5": 0.11225038837560708,
+    "F": 0.5138763962215882,
+    "share_upper": 0.21843849844234464
+   },
+   "4": {
+    "collapsed_ge_10p5": 0.05975084842081774,
+    "F": 0.4373615006924618,
+    "share_upper": 0.1366166165202377
+   }
+  },
+  "C3": {
+   "control": 0.0,
+   "rows": {
+    "theta, M_pre 1e6 (nominal)|650": {
+     "3.0": 0.41995241259309307,
+     "2.0": 0.5120084296023228
+    },
+    "theta, M_pre 1e6 (nominal)|1000": {
+     "3.0": 0.4559878223083968,
+     "2.0": 0.5420517133613847
+    },
+    "theta, M_pre 1e7|650": {
+     "3.0": 0.377321575691404,
+     "2.0": 0.47596929905836566
+    },
+    "theta, M_pre 1e7|1000": {
+     "3.0": 0.41209362702556396,
+     "2.0": 0.505269539374977
+    },
+    "theta, sheets+filaments shut s = 0.9|650": {
+     "3.0": 0.444992569773085,
+     "2.0": 0.5463267790441757
+    },
+    "theta, sheets+filaments shut s = 0.9|1000": {
+     "3.0": 0.4823925685443085,
+     "2.0": 0.5761574215033045
+    },
+    "3-axis gate (halos only)|650": {
+     "3.0": 0.444992569773085,
+     "2.0": 0.5463267790441757
+    },
+    "3-axis gate (halos only)|1000": {
+     "3.0": 0.4823925685443085,
+     "2.0": 0.5761574215033045
+    }
+   }
+  },
+  "C4": {
+   "FK1 nominal (XR19, 600)": 0.9309768137385802,
+   "FK1 halo only (600)": 0.9556279077923149,
+   "theta nominal (400)": 0.9784474345097103,
+   "theta nominal (575)": 0.9561036148288942,
+   "theta nominal (650)": 0.9449465778161203,
+   "theta nominal (800)": 0.9204439606100594,
+   "theta nominal (1000)": 0.8845704869888105,
+   "theta nominal (1200)": 0.8467893221223377,
+   "theta nominal (1500)": 0.7898089296365247,
+   "3-axis gate (650)": 0.9357029019703649
+  },
+  "C5": {
+   "reference": {
+    "counts": [
+     0.64,
+     0.81
+    ],
+    "rsd_sigma": -2.2,
+    "mnu_eV": 0.098,
+    "alens": 0.976
+   },
+   "rows": {
+    "FK1 nominal (XR19, 600)": {
+     "counts": 0.6959155558543044,
+     "rsd": {
+      "0.5": 0.9343632131994528,
+      "1.0": 0.9518536391086473
+     },
+     "alens": 0.9924373280345367,
+     "alens_vs_FK1": 1.0,
+     "mnu_equiv_eV": 0.098,
+     "counts_scaled": [
+      0.64,
+      0.81
+     ],
+     "rsd_sigma_scaled": -2.2
+    },
+    "FK1 halo only (600)": {
+     "counts": 0.7846319287331539,
+     "rsd": {
+      "0.5": 0.9563443225053938,
+      "1.0": 0.9630710968802773
+     },
+     "alens": 0.9944123228479683,
+     "alens_vs_FK1": 0.7388495993941129,
+     "mnu_equiv_eV": 0.07240726074062306,
+     "counts_scaled": [
+      0.7215881728247368,
+      0.9132600312313075
+     ],
+     "rsd_sigma_scaled": -1.463241806458036
+    },
+    "theta nominal (1000)": {
+     "counts": 0.4970812306030504,
+     "rsd": {
+      "0.5": 0.884863304312823,
+      "1.0": 0.8973873659403369
+     },
+     "alens": 0.9807629588124346,
+     "alens_vs_FK1": 2.5436831420714445,
+     "mnu_equiv_eV": 0.24928094792300157,
+     "counts_scaled": [
+      0.45714165304929,
+      0.5785699046405077
+     ],
+     "rsd_sigma_scaled": -3.8591275237391383
+    },
+    "3-axis gate (650)": {
+     "counts": 0.6876007048638945,
+     "rsd": {
+      "0.5": 0.9362428210207643,
+      "1.0": 0.9426911399778347
+     },
+     "alens": 0.9915835601921121,
+     "alens_vs_FK1": 1.1128923542265814,
+     "mnu_equiv_eV": 0.10906345071420498,
+     "counts_scaled": [
+      0.6323532322433435,
+      0.8003220595579817
+     ],
+     "rsd_sigma_scaled": -2.1369997008011556
+    }
+   }
+  },
+  "C6": {
+   "k": [
+    0.1,
+    0.3,
+    1.0,
+    3.0
+   ],
+   "z": [
+    0.0,
+    0.5,
+    1.0,
+    2.0
+   ],
+   "tables": {
+    "FK1-as-is (XR32 nominal, 600)": {
+     "0": [
+      0.9693282268918308,
+      0.7350536685990767,
+      0.06998262244223653,
+      0.05447273475694085
+     ],
+     "0.5": [
+      0.978336679897555,
+      0.7994774320212064,
+      0.1174766305515043,
+      0.06270245761474004
+     ],
+     "1": [
+      0.985660340877045,
+      0.8572541407400354,
+      0.22303047022476144,
+      0.087420356906471
+     ],
+     "2": [
+      0.9936942503065653,
+      0.9277072937919858,
+      0.4748556325541877,
+      0.2335088392256735
+     ]
+    },
+    "FK1 halo only (600)": {
+     "0": [
+      0.9808556173140476,
+      0.8286138314941763,
+      0.26913400077398925,
+      0.1957369641723707
+     ],
+     "0.5": [
+      0.9844300787059795,
+      0.8546465932246211,
+      0.29480017298318856,
+      0.21409209446640692
+     ],
+     "1": [
+      0.988050106079217,
+      0.8824416739059091,
+      0.340766840563151,
+      0.2357913364268924
+     ],
+     "2": [
+      0.9938403386666187,
+      0.9305493308342512,
+      0.49618989656809165,
+      0.2976828783906604
+     ]
+    },
+    "theta trigger (1000)": {
+     "0": [
+      0.9410918243793531,
+      0.5695664283383258,
+      0.040752174527264,
+      0.015200176376125992
+     ],
+     "0.5": [
+      0.9495207918717522,
+      0.6130057556317005,
+      0.045398655863067336,
+      0.020298279121873004
+     ],
+     "1": [
+      0.9565886655565508,
+      0.6537497924967315,
+      0.0522991012695985,
+      0.0278694634867398
+     ],
+     "2": [
+      0.9665506502926854,
+      0.7170428708017721,
+      0.07405842381527092,
+      0.048527849222232404
+     ]
+    }
+   },
+   "lensing_points": {
+    "L100|z0.5": {
+     "k": 0.07638017540274229,
+     "FK1": 0.9889825269323366,
+     "FK1_halo": 0.9920545386488554
+    },
+    "L100|z1": {
+     "k": 0.04380839105179656,
+     "FK1": 0.9999471947527462,
+     "FK1_halo": 0.9997527525739399
+    },
+    "L100|z2": {
+     "k": 0.028041392862691424,
+     "FK1": 1.0017841145070598,
+     "FK1_halo": 1.001599121211472
+    },
+    "L400|z0.5": {
+     "k": 0.3043806989930178,
+     "FK1": 0.7946615912391051,
+     "FK1_halo": 0.8511136385257996
+    },
+    "L400|z1": {
+     "k": 0.17457970762432362,
+     "FK1": 0.9506706438089763,
+     "FK1_halo": 0.9593507528151964
+    },
+    "L400|z2": {
+     "k": 0.11174704319908374,
+     "FK1": 0.9916125682707743,
+     "FK1_halo": 0.991843831577577
+    },
+    "L1000|z0.5": {
+     "k": 0.7603817461735688,
+     "FK1": 0.25576078221517023,
+     "FK1_halo": 0.42442313228905054
+    },
+    "L1000|z1": {
+     "k": 0.4361223407693777,
+     "FK1": 0.7217284697366669,
+     "FK1_halo": 0.7699703576972093
+    },
+    "L1000|z2": {
+     "k": 0.2791583438718684,
+     "FK1": 0.9366975430176325,
+     "FK1_halo": 0.93917267768182
+    }
+   }
+  },
+  "E0": {
+   "xcop": [
+    0.9094099165098217,
+    0.9094099165098217
+   ],
+   "kids": [
+    {
+     "canonical": -18.608741266717146,
+     "alt": -11.816351847510902
+    },
+    {
+     "canonical": -18.608741266717146,
+     "alt": -11.816351847510902
+    }
+   ],
+   "kids_exact": {
+    "canonical": -15.062864837154791,
+    "alt": -8.097372596363556
+   }
+  },
+  "E1r": {
+   "650.0": 0.0018150523782747285,
+   "1000.0": 0.01581421020551632
+  },
+  "E1": {
+   "window_strict": {
+    "canonical": [
+     0.22063848471920824,
+     0.7365685608500776
+    ],
+    "alt": [
+     0.15721934891014572,
+     0.6687780688750635
+    ]
+   },
+   "nonthermal_upper": 0.769,
+   "per_kick": {
+    "400": {
+     "eps": 0.9606697085312781,
+     "by_mass": {
+      "500000000000000.0": 0.9805601660246352,
+      "1000000000000000.0": 0.9606697085312781,
+      "1500000000000000.0": 0.9533898155651218
+     },
+     "ratio": {
+      "canonical": 1.3736744610654763,
+      "alt": 1.4254394484511888
+     },
+     "strict": {
+      "canonical": false,
+      "alt": false
+     },
+     "nonthermal": false
+    },
+    "575": {
+     "eps": 0.8941755194006282,
+     "by_mass": {
+      "500000000000000.0": 0.8614478627881703,
+      "1000000000000000.0": 0.8941755194006282,
+      "1500000000000000.0": 0.9012940321659006
+     },
+     "ratio": {
+      "canonical": 1.3219125961573646,
+      "alt": 1.3736775835430772
+     },
+     "strict": {
+      "canonical": false,
+      "alt": false
+     },
+     "nonthermal": false
+    },
+    "650": {
+     "eps": 0.8187849733404104,
+     "by_mass": {
+      "500000000000000.0": 0.7805718714367093,
+      "1000000000000000.0": 0.8347884186860607,
+      "1500000000000000.0": 0.8739077034480602
+     },
+     "ratio": {
+      "canonical": 1.2632254339927085,
+      "alt": 1.315053963238723
+     },
+     "strict": {
+      "canonical": false,
+      "alt": false
+     },
+     "nonthermal": false
+    },
+    "800": {
+     "eps": 0.7181087202673505,
+     "by_mass": {
+      "500000000000000.0": 0.6395638832053817,
+      "1000000000000000.0": 0.7181087202673505,
+      "1500000000000000.0": 0.80247585933696
+     },
+     "ratio": {
+      "canonical": 1.185841466248684,
+      "alt": 1.2378361714219714
+     },
+     "strict": {
+      "canonical": true,
+      "alt": false
+     },
+     "nonthermal": true
+    },
+    "1000": {
+     "eps": 0.5801151390389123,
+     "by_mass": {
+      "500000000000000.0": 0.46494615680907264,
+      "1000000000000000.0": 0.5863415959127161,
+      "1500000000000000.0": 0.6432414210429074
+     },
+     "ratio": {
+      "canonical": 1.0800016152203298,
+      "alt": 1.131996320393617
+     },
+     "strict": {
+      "canonical": true,
+      "alt": true
+     },
+     "nonthermal": true
+    },
+    "1200": {
+     "eps": 0.44041497616197295,
+     "by_mass": {
+      "500000000000000.0": 0.3144801738162725,
+      "1000000000000000.0": 0.44041497616197295,
+      "1500000000000000.0": 0.5145446904517276
+     },
+     "ratio": {
+      "canonical": 0.9728528312268538,
+      "alt": 1.024847536400141
+     },
+     "strict": {
+      "canonical": true,
+      "alt": true
+     },
+     "nonthermal": true
+    },
+    "1500": {
+     "eps": 0.20537828185585277,
+     "by_mass": {
+      "500000000000000.0": 0.04331425331608216,
+      "1000000000000000.0": 0.20537828185585277,
+      "1500000000000000.0": 0.29586769050930856
+     },
+     "ratio": {
+      "canonical": 0.7876216533904312,
+      "alt": 0.8387275604291677
+     },
+     "strict": {
+      "canonical": false,
+      "alt": true
+     },
+     "nonthermal": true
+    }
+   },
+   "v_strict": 871.4970231993962,
+   "v_nonthermal": 724.1758435888777,
+   "strict_pass_kicks": [
+    1000.0,
+    1200.0
+   ]
+  },
+  "E2": {
+   "2.5|10.0|400": {
+    "S": {
+     "canonical": 2.6924718078394442e-17,
+     "alt": 2.836642107621878e-17
+    },
+    "shift": 0.0
+   },
+   "2.5|10.0|650": {
+    "S": {
+     "canonical": 7.108613668172107e-18,
+     "alt": 7.543019137764677e-18
+    },
+    "shift": 0.0
+   },
+   "2.5|10.0|1000": {
+    "S": {
+     "canonical": 2.9834301972956083e-18,
+     "alt": 3.060345005414796e-18
+    },
+    "shift": 0.0
+   },
+   "2.5|10.0|1500": {
+    "S": {
+     "canonical": 2.507162261665441e-18,
+     "alt": 2.6476381824461855e-18
+    },
+    "shift": 0.0
+   },
+   "2.5|10.5|400": {
+    "S": {
+     "canonical": 4.416877091796225e-17,
+     "alt": 4.8996109604309495e-17
+    },
+    "shift": 1.928654933106574e-16
+   },
+   "2.5|10.5|650": {
+    "S": {
+     "canonical": 1.7994404436550468e-17,
+     "alt": 1.945238394304244e-17
+    },
+    "shift": 0.0
+   },
+   "2.5|10.5|1000": {
+    "S": {
+     "canonical": 6.5712430507707666e-18,
+     "alt": 6.409699788750981e-18
+    },
+    "shift": 0.0
+   },
+   "2.5|10.5|1500": {
+    "S": {
+     "canonical": 7.797512422158077e-18,
+     "alt": 8.435701687503166e-18
+    },
+    "shift": 0.0
+   },
+   "2.5|11.0|400": {
+    "S": {
+     "canonical": 0.004449207505130544,
+     "alt": 0.00457049434891371
+    },
+    "shift": 0.007950389617604773
+   },
+   "2.5|11.0|650": {
+    "S": {
+     "canonical": 0.006094054967509796,
+     "alt": 0.0068438866066041475
+    },
+    "shift": 0.010891934120346596
+   },
+   "2.5|11.0|1000": {
+    "S": {
+     "canonical": 6.667074940626009e-18,
+     "alt": 6.4310533766342816e-18
+    },
+    "shift": 0.0
+   },
+   "2.5|11.0|1500": {
+    "S": {
+     "canonical": 2.8809100252143846e-18,
+     "alt": 2.981413400917671e-18
+    },
+    "shift": 0.0
+   },
+   "1.0|11.0|400": {
+    "S": {
+     "canonical": 0.0016693408013415166,
+     "alt": 0.0014624726473206002
+    },
+    "shift": 0.0023181602342862927
+   },
+   "1.0|11.0|650": {
+    "S": {
+     "canonical": 3.373947725139697e-17,
+     "alt": 3.4477645432638284e-17
+    },
+    "shift": 0.0
+   },
+   "1.0|11.0|1000": {
+    "S": {
+     "canonical": 1.4162910000680847e-17,
+     "alt": 1.5572344530147033e-17
+    },
+    "shift": 0.0
+   },
+   "1.0|11.0|1500": {
+    "S": {
+     "canonical": 4.817908986781913e-18,
+     "alt": 4.943117724284836e-18
+    },
+    "shift": 0.0
+   },
+   "0.5|11.0|400": {
+    "S": {
+     "canonical": 0.010261895830139454,
+     "alt": 0.011088013582098096
+    },
+    "shift": 0.014521701083841083
+   },
+   "0.5|11.0|650": {
+    "S": {
+     "canonical": 5.098777317359824e-17,
+     "alt": 5.1470333272226235e-17
+    },
+    "shift": 0.0
+   },
+   "0.5|11.0|1000": {
+    "S": {
+     "canonical": 3.7314119984124045e-17,
+     "alt": 3.846432549151032e-17
+    },
+    "shift": 0.0
+   },
+   "0.5|11.0|1500": {
+    "S": {
+     "canonical": 7.502108083646017e-18,
+     "alt": 7.881097181329448e-18
+    },
+    "shift": 0.0
+   }
+  },
+  "E3": {
+   "400": {
+    "retained": {
+     "dwarf": 3.168820203196842e-17,
+     "SPARC disc": 4.3103530676399065e-18,
+     "Milky Way": 8.058179168506535e-19
+    },
+    "max_shift": 0.0
+   },
+   "650": {
+    "retained": {
+     "dwarf": 1.399485958495264e-17,
+     "SPARC disc": 4.632618399831931e-18,
+     "Milky Way": 7.495210505262317e-18
+    },
+    "max_shift": 0.0
+   },
+   "1000": {
+    "retained": {
+     "dwarf": 4.065088433863911e-18,
+     "SPARC disc": 7.08973722475478e-19,
+     "Milky Way": 4.615013177934878e-19
+    },
+    "max_shift": 0.0
+   },
+   "1500": {
+    "retained": {
+     "dwarf": 2.410121744082501e-18,
+     "SPARC disc": 1.1813273797369828e-18,
+     "Milky Way": 5.1907571214173625e-18
+    },
+    "max_shift": 0.0
+   }
+  },
+  "E4": {
+   "400": {
+    "kids": {
+     "canonical": -6.395117388949558,
+     "alt": -0.242069059012465
+    },
+    "kids_committed_projector": {
+     "canonical": -8.537448093144405,
+     "alt": -3.281565499701969
+    },
+    "r200_ret": [
+     0.024411668815474102,
+     0.004456970287242086,
+     0.03135803903908006,
+     0.04150715189315352
+    ]
+   },
+   "650": {
+    "kids": {
+     "canonical": -4.394959194192609,
+     "alt": -0.3797474012176565
+    },
+    "kids_committed_projector": {
+     "canonical": -6.298692378081228,
+     "alt": -0.9582216155467052
+    },
+    "r200_ret": [
+     0.00012111844912356699,
+     0.0001622878621817781,
+     0.0168636765662774,
+     0.0012911207231300506
+    ]
+   },
+   "1000": {
+    "kids": {
+     "canonical": -4.221023775309533,
+     "alt": -0.4138249526747302
+    },
+    "kids_committed_projector": {
+     "canonical": -6.101532760298426,
+     "alt": -0.9637683666187513
+    },
+    "r200_ret": [
+     1.2987180574373582e-17,
+     6.618770024668527e-05,
+     0.001427831665885334,
+     1.8380016050700726e-05
+    ]
+   },
+   "1500": {
+    "kids": {
+     "canonical": -4.363735091709884,
+     "alt": -0.45812151501240805
+    },
+    "kids_committed_projector": {
+     "canonical": -6.2487080899555565,
+     "alt": -1.0135367849046588
+    },
+    "r200_ret": [
+     1.75664472084634e-17,
+     5.587650445847666e-18,
+     0.00013497033686033782,
+     0.005206083529124359
+    ]
+   }
+  },
+  "E5": {
+   "400": {
+    "M200": [
+     117673851907.15234,
+     1104861919278.6604,
+     10770952794202.0,
+     29886688350219.242,
+     95228704558952.84,
+     278346683674206.72,
+     915028005071613.1
+    ],
+    "ret": [
+     5.159345291300217e-05,
+     0.010830030680732962,
+     0.16258999820463904,
+     0.6076051318644694,
+     0.8164720723533718,
+     0.9653564955779106,
+     0.992304681913405
+    ],
+    "R": {
+     "canonical": 1.4223321073777022,
+     "alt": 1.5104873741054137
+    }
+   },
+   "650": {
+    "M200": [
+     117673851907.15234,
+     1104861919278.6604,
+     10770952794202.0,
+     29886688350219.242,
+     95228704558952.84,
+     278346683674206.72,
+     915028005071613.1
+    ],
+    "ret": [
+     1.2046396726222734e-17,
+     0.004285972069386131,
+     0.007885367320856738,
+     0.0577669403090957,
+     0.49735804450030324,
+     0.8353663242757056,
+     0.9389627477132013
+    ],
+    "R": {
+     "canonical": 1.1442906082426785,
+     "alt": 1.220971598757419
+    }
+   },
+   "1000": {
+    "M200": [
+     117673851907.15234,
+     1104861919278.6604,
+     10770952794202.0,
+     29886688350219.242,
+     95228704558952.84,
+     278346683674206.72,
+     915028005071613.1
+    ],
+    "ret": [
+     7.633961894116027e-18,
+     0.07358687089900884,
+     0.0007275375439386066,
+     0.02504998390850188,
+     0.047386734745055115,
+     0.3915462291539776,
+     0.7897280180907867
+    ],
+    "R": {
+     "canonical": 0.9813320961410941,
+     "alt": 0.9821112093567128
+    }
+   },
+   "1500": {
+    "M200": [
+     117673851907.15234,
+     1104861919278.6604,
+     10770952794202.0,
+     29886688350219.242,
+     95228704558952.84,
+     278346683674206.72,
+     915028005071613.1
+    ],
+    "ret": [
+     5.1148941054585045e-18,
+     0.00013052610574639583,
+     0.007973333557528372,
+     0.0035135688311663214,
+     0.01254837540981132,
+     0.0537519480583914,
+     0.2763266706222409
+    ],
+    "R": {
+     "canonical": 0.9751307531484906,
+     "alt": 0.9759063986500974
+    }
+   }
+  },
+  "E6": {
+   "650": {
+    "beta": {
+     "100": 0.08255475454761024,
+     "150": 0.17586023904089987,
+     "fit": 0.24951290493762332
+    },
+    "core": {
+     "1e+14": 0.952104943671075,
+     "3e+14": 2.200826962567245
+    },
+    "ok": false
+   },
+   "1000": {
+    "beta": {
+     "100": 0.07125931098859067,
+     "150": 0.17253091361673464,
+     "fit": 0.2899695372257547
+    },
+    "core": {
+     "1e+14": 0.02702494928456286,
+     "3e+14": 0.43573221203939494
+    },
+    "ok": false
+   }
+  },
+  "E6b": {
+   "canonical|300": {
+    "y": 0.25479405383508424,
+    "g_phantom": 2.9076780144612924e-11,
+    "ratio_phantom_newton": 1.2191751557340749,
+    "offset_kpc_by_aperture": {
+     "100": 12.053704666653545,
+     "150": 27.120835499970468,
+     "250": 75.33565416658463
+    },
+    "free_drift_kpc": 469.28833682373437
+   },
+   "canonical|500": {
+    "y": 0.16932079109251932,
+    "g_phantom": 2.5800822043654153e-11,
+    "ratio_phantom_newton": 1.6279172846472134,
+    "offset_kpc_by_aperture": {
+     "100": 10.695664634266942,
+     "150": 24.065245427100614,
+     "250": 66.84790396416838
+    },
+    "free_drift_kpc": 416.4156005352904
+   },
+   "canonical|1000": {
+    "y": 0.09724925709738677,
+    "g_phantom": 2.1473579186183805e-11,
+    "ratio_phantom_newton": 2.3589961151192016,
+    "offset_kpc_by_aperture": {
+     "100": 8.90181720118047,
+     "150": 20.029088702656054,
+     "250": 55.63635750737794
+    },
+    "free_drift_kpc": 346.5755221801608
+   },
+   "alt|300": {
+    "y": 0.21083341945193232,
+    "g_phantom": 3.3305245313463306e-11,
+    "ratio_phantom_newton": 1.396472630045528,
+    "offset_kpc_by_aperture": {
+     "100": 13.806604062152699,
+     "150": 31.064859139843563,
+     "250": 86.29127538845434
+    },
+    "free_drift_kpc": 537.5341802953174
+   },
+   "alt|500": {
+    "y": 0.14010719965014573,
+    "g_phantom": 2.9361994134535695e-11,
+    "ratio_phantom_newton": 1.852611427746239,
+    "offset_kpc_by_aperture": {
+     "100": 12.171939394991025,
+     "150": 27.3868636387298,
+     "250": 76.07462121869389
+    },
+    "free_drift_kpc": 473.89158375492923
+   },
+   "alt|1000": {
+    "y": 0.08047045488068177,
+    "g_phantom": 2.42524982708761e-11,
+    "ratio_phantom_newton": 2.6642763512727323,
+    "offset_kpc_by_aperture": {
+     "100": 10.053810983601183,
+     "150": 22.62107471310266,
+     "250": 62.83631864750738
+    },
+    "free_drift_kpc": 391.426234980443
+   }
+  },
+  "E8_xcop_pairs": {
+   "1000": {
+    "S8": 0.8846,
+    "Harvey": false
+   },
+   "1200": {
+    "S8": 0.8468,
+    "Harvey": null
+   }
+  },
+  "E8": {
+   "400": {
+    "X-COP": false,
+    "flagship": true,
+    "galaxies": true,
+    "KiDS": true,
+    "shear": false,
+    "forest": false,
+    "S8": true
+   },
+   "575": {
+    "X-COP": false,
+    "forest": false,
+    "S8": true
+   },
+   "650": {
+    "X-COP": false,
+    "flagship": true,
+    "galaxies": true,
+    "KiDS": true,
+    "shear": false,
+    "Harvey": false,
+    "forest": false,
+    "S8": true
+   },
+   "800": {
+    "X-COP": false,
+    "forest": false,
+    "S8": false
+   },
+   "1000": {
+    "X-COP": true,
+    "flagship": true,
+    "galaxies": true,
+    "KiDS": true,
+    "shear": true,
+    "Harvey": false,
+    "forest": false,
+    "S8": false
+   },
+   "1200": {
+    "X-COP": true,
+    "forest": false,
+    "S8": false
+   },
+   "1500": {
+    "X-COP": false,
+    "flagship": true,
+    "galaxies": true,
+    "KiDS": true,
+    "shear": true,
+    "forest": false,
+    "S8": false
+   }
+  },
+  "F1": {
+   "knots": {
+    "3": {
+     "zeldovich_knots": 0.01
+    },
+    "2": {
+     "zeldovich_knots": 0.015916666666666666
+    }
+   },
+   "forest": {
+    "3.0": 0.444992569773085,
+    "2.0": 0.5463267790441757
+   },
+   "xcop": {
+    "650.0": 0.8409755065925271,
+    "1000.0": 0.5816382267267378
+   }
+  },
+  "F2_clusters": {
+   "1e+14": {
+    "canonical": 32.42455773629046,
+    "alt": 27.52865252055658
+   },
+   "3e+14": {
+    "canonical": 41.59476415488863,
+    "alt": 35.039009385682185
+   },
+   "1e+15": {
+    "canonical": 65.23345674946867,
+    "alt": 53.92907797619686
+   }
+  },
+  "F2": {
+   "10.5|canonical": {
+    "r_N_kpc": 6.863023943613398,
+    "r_F_kpc": 21.70096143338966,
+    "S_all_inside_rN": 0.17646806871460163,
+    "S_confined": 0.05104434315210758
+   },
+   "10.5|alt": {
+    "r_N_kpc": 6.242960628169962,
+    "r_F_kpc": 19.77086523145225,
+    "S_all_inside_rN": 0.17008161189039178,
+    "S_confined": 0.04801823070156612
+   },
+   "11.0|canonical": {
+    "r_N_kpc": 12.204374169531837,
+    "r_F_kpc": 38.5903728950456,
+    "S_all_inside_rN": 0.19517212894494662,
+    "S_confined": 0.061512484435577164
+   },
+   "11.0|alt": {
+    "r_N_kpc": 11.101728342758305,
+    "r_F_kpc": 35.15812255974596,
+    "S_all_inside_rN": 0.1875851204112185,
+    "S_confined": 0.05762096511456596
+   }
+  },
+  "F4": {
+   "Re(Phi^2)": true,
+   "|Phi|^2": false,
+   "Re(Phi^4)": false,
+   "|Phi|^4": false,
+   "(Im Phi^2)^2": false
+  },
+  "F5": {
+   "web_part": {
+    "1.0": 0.2814453503064379,
+    "0.0": 0.28248358657845873
+   },
+   "shut_now": 0.8959202470607358
+  },
+  "H": {
+   "H1": {
+    "text": "no background conversion",
+    "held": true
+   },
+   "H2": {
+    "text": "caustic theorem; >= 0.5 converted by z = 3 at the baryon scale",
+    "held": true
+   },
+   "H3": {
+    "text": "cold accretion (s ~ 0.35) does not shut the gate",
+    "held": true
+   },
+   "H4": {
+    "text": ">= 90% of formed sheets+filaments shut now",
+    "held": false
+   },
+   "H5": {
+    "text": "F(3) >= 0.34 and the forest fails",
+    "held": true
+   },
+   "H6": {
+    "text": "share >= 1e10.5 at z = 3 <= 0.1",
+    "held": false
+   },
+   "H7": {
+    "text": "the flagship passes",
+    "held": true
+   },
+   "H8": {
+    "text": "X-COP needs v_k >= 1000",
+    "held": false
+   },
+   "H9": {
+    "text": "Harvey fails at >= 800",
+    "held": true
+   },
+   "H10": {
+    "text": "the window is EMPTY",
+    "held": true
+   },
+   "H11": {
+    "text": "the 3-axis gate spares the web, the forest fails",
+    "held": true
+   },
+   "H12": {
+    "text": "lambda_on window <= 4 decades",
+    "held": false
+   },
+   "H13": {
+    "text": "S_8 < 0.922 at ~600 km/s",
+    "held": false
+   },
+   "H14": {
+    "text": "FP22 offset >= 10 kpc",
+    "held": true
+   },
+   "H15": {
+    "text": "FK1 linear suppression at k = 0.3, z = 1 <= 3%",
+    "held": false
+   }
+  },
+  "D": [
+   {
+    "construction": "FK1 as adopted (FP10/FP15/FP22)",
+    "constants": "eps, zeta, q, m (+ the pure cross quartic POSTULATED; amount/misalignment initial data)",
+    "n": 4,
+    "status": "window EMPTY (FP16: X-COP, Harvey)"
+   },
+   {
+    "construction": "unified theta_b trigger (this lane)",
+    "constants": "eps, m, lambda_on (a density window, A5) -- zeta and q removed",
+    "n": 3,
+    "status": "FAILS: web (B1), forest (C3), selectivity (C2), S_8 (C4); XR32 gates worse (C5); window EMPTY (E8)"
+   },
+   {
+    "construction": "3-axis gate (F1)",
+    "constants": "eps, m, lambda_on",
+    "n": 3,
+    "status": "FAILS: forest (F1)"
+   },
+   {
+    "construction": "Newtonian-core veto (F2)",
+    "constants": "the theta gate's + nothing (y_b = 1 is a0's own)",
+    "n": 3,
+    "status": "FAILS: flagship (F2)"
+   },
+   {
+    "construction": "FK1 + theta veto (F5)",
+    "constants": "eps, zeta, q, m (the veto adds none)",
+    "n": 4,
+    "status": "OPEN: can only lower the late web conversion"
+   },
+   {
+    "construction": "two-channel opening (L372, F4)",
+    "constants": "FK1's + f_U, v_U, the U rate exponent, and a second field",
+    "n": 7,
+    "status": "excluded (a new species)"
+   }
+  ]
+ },
+ "ledger": [
+  {
+   "link": "L25a",
+   "what": "the unified gate lambda_on Theta(-theta_b) vanishes on FRW (theta = 3H) and in linear theory (theta/H = 3 - f delta_L): no background conversion, threshold 0 scale-free",
+   "status": "DERIVED",
+   "basis": "A1, A2 (sympy)"
+  },
+  {
+   "link": "L25b",
+   "what": "caustic theorem: theta -> -inf at shell crossing; the gate opens in forming sheets (x* = 3/(3+f)), filaments (2/(2+f)) and halos (1/(1+f))",
+   "status": "DERIVED",
+   "basis": "A3 (sympy)"
+  },
+  {
+   "link": "L25c",
+   "what": "baryon reading: the gas passes theta_b <= 0 before its accretion shock unless the shock stands off >= 3/4 (sheets) / 8/9 (filaments) of the turnaround distance; the self-similar 0.347 does not shut it",
+   "status": "DERIVED",
+   "basis": "A4; the stand-off is a literature input (Bertschinger 1985), bracketed in B1"
+  },
+  {
+   "link": "L25d",
+   "what": "lambda_on is not a regulator: the channel closes above G_block = eps(m^2+eps)/(2m^3) ~ m v_k^2/4 and needs G >= G_min; the open window is <= 1e4 wide in density",
+   "status": "CONSTRAINT",
+   "basis": "A5 (derived from V and FP10 A5's rate)"
+  },
+  {
+   "link": "L25e",
+   "what": "FK1-as-written cannot convert above rho_block = rho_t (v_k^2/4)/(G_t/m) (~555/sqrt(E) rho_t at 600 km/s): galaxy centres at z = 2.5 (r <~ 0.05 r200) and cluster cores at z <~ 0.4 (r <~ 0.15-0.2 r200); omitted by FP10/FP16",
+   "status": "DERIVED",
+   "basis": "A5b; small in FK1's timing (conversion at the front, before the carrier is dense)"
+  },
+  {
+   "link": "L25f",
+   "what": "the unified theta_b trigger converts the web (the history of every shell-crossing element) in both readings",
+   "status": "FAILS",
+   "basis": "B1: ever-opened fraction by z = 3 at the baryon scale >= ~0.5"
+  },
+  {
+   "link": "L25g",
+   "what": "the formed web is shut NOW under the theta gate (useful for XR36's reversible MOND gate)",
+   "status": "DERIVED",
+   "basis": "B2 (MUTATE: a delta >= delta_c key turns it on)"
+  },
+  {
+   "link": "L25h",
+   "what": "the unified trigger fails the forest (XR12's calibrated gas proxy), mass selectivity and S_8",
+   "status": "FAILS",
+   "basis": "C2, C3, C4"
+  },
+  {
+   "link": "L25i",
+   "what": "XR32's gates (eRASS1 counts, DESI RSD, Sum m_nu-equivalent lensing) move further from the data under the unified trigger than under FK1-as-is (approximate linear proxies scaled by XR32)",
+   "status": "FAILS",
+   "basis": "C5 (approximate)"
+  },
+  {
+   "link": "L25j",
+   "what": "with the theta trigger X-COP's strict window opens at v_k ~ 871 km/s (FK1: ~1047); the window stays EMPTY (forest, S_8 at every kick)",
+   "status": "FAILS",
+   "basis": "E1, E8"
+  },
+  {
+   "link": "L25k",
+   "what": "the 3-axis gate spares the forming web but still fails the forest; Newtonian-core retention fails the flagship; a second fast channel needs a second field (FP15's Z4)",
+   "status": "CONSTRAINT",
+   "basis": "F1, F2, F4"
+  },
+  {
+   "link": "L25l",
+   "what": "FP22's merger price: galaxy-carrier centroid offsets of tens of kpc from the phantom acting on baryons only",
+   "status": "OPEN",
+   "basis": "E6b (estimate; needs a merger run)"
+  },
+  {
+   "link": "L25m",
+   "what": "FK1 + theta_b veto (zero constants): can only remove late web conversion (XR32's direction)",
+   "status": "OPEN",
+   "basis": "F5"
+  },
+  {
+   "link": "L25n",
+   "what": "FK1-as-is's late-time linear suppression P/P_LCDM (k = 0.1-3 h/Mpc, z = 0-2) and at the CMB-lensing weights",
+   "status": "DERIVED",
+   "basis": "C6 (L319's CLASS-validated solver)"
+  }
+ ]
+}

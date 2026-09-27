@@ -1,0 +1,584 @@
+{
+ "lane": "FP25",
+ "mutate": true,
+ "smoke": false,
+ "checks": {
+  "A1 DERIVED: on FRW the comoving flow has theta = (1/a^3) d(a^3)/dt = 3H > 0, so lambda_on Theta(-theta_b) (Im Phi^2)^2 = 0 identically: no background conversion, at any epoch, with no constant (the threshold 0 is the only scale-free one)": {
+   "ok": true,
+   "measured": "theta = 3*Derivative(a(t), t)/a(t) = 3*H; gate term on FRW = 0",
+   "load_bearing": true
+  },
+  "A2 DERIVED (sympy): along the principal axes of the Zel'dovich map the physical expansion rate is H_i = H [1 - f x_i/(1 - x_i)], so theta/H = sum_i [1 - f x_i/(1 - x_i)]; to first order theta/H = 3 - f delta_L: the gate cannot open in linear theory (it needs delta_L >= 3/f)": {
+   "ok": true,
+   "measured": "formula residual 0; linear limit -D*f*lambda1 - D*f*lambda2 - D*f*lambda3 + 3",
+   "load_bearing": true
+  },
+  "A3 DERIVED (sympy): the single-stream divergence along a collapsing axis -> -inf at shell crossing, so EVERY Lagrangian element that ever shell-crosses passes theta <= 0 first; with n axes already collapsed and the rest at the Hubble rate the gate opens at x* = (3-n)/(3-n+f): sheets 3/(3+f), filaments 2/(2+f), halos 1/(1+f) (the last axis' turnaround)": {
+   "ok": true,
+   "measured": "lim theta/H term = -oo; x* = 3/(f + 3), 2/(f + 2), 1/(f + 1); at z = 0/1/3 (f = 0.53/0.88/0.98): z 0: sheet 0.850 filament 0.791 halo 0.654; z 1: sheet 0.774 filament 0.695 halo 0.533; z 3: sheet 0.753 filament 0.671 halo 0.505",
+   "load_bearing": true
+  },
+  "A4 DERIVED (EdS): a collapsing axis has l/l_ta = 4x(1-x) after turnaround, so the gas axis freezes (its accretion shock) at 4 x_s (1 - x_s) = s; the gate opens BEFORE the shock unless s >= l/l_ta(x*): 3/4 for a forming sheet, 8/9 for a forming filament, 1 for a halo (always open).  At the self-similar cold-accretion stand-off s = 0.347 the pre-shock gas reaches x_s = 0.904 > 3/4: the baryon reading opens the gate in forming sheets too": {
+   "ok": true,
+   "measured": "l/l_ta(x*) = 3/4, 8/9, 1; s = 0.347 -> x_s = 0.904",
+   "load_bearing": true
+  },
+  "A5 CONSTRAINT: lambda_on is NOT a regulator -- the cross quartic raises the daughter's mass, m_L,eff^2 = m^2 - eps + lambda Phi0^2, so the first resonance band exists only for lambda Phi0^2 <= 2 eps, i.e. G <= G_block = eps(m^2+eps)/(2m^3) ~ m v_k^2/4 (derived); conversion needs G >= G_min = [E_need m v_k sigma H/sqrt(pi)]^(1/2) (FP10 A5's rate).  With G proportional to lambda_on rho the open window is FINITE (10^2.6-10^4 in density), so lambda_on places a density window: a threshold constant (zeta's analogue), with the Doppler factor favouring COLD (web) regions": {
+   "ok": true,
+   "measured": "window 434-10470x (m 1.9-5.2e-19 eV, v_k 600-1000, sigma 5-1000 km/s); symbolic G_block epsilon*(epsilon + m**2)/(2*m**3)",
+   "load_bearing": true
+  },
+  "A5b (reported) DERIVED: FK1's own lambda(K) makes its channel close above rho_block/rho_t = G_block/G_t = (v_k^2/4)/(G_t/m) = 554/sqrt(E(z)) at 600 km/s (G_t/mc^2 = 1.807e-09 at z = 0, FK1 N3 1.806e-09): unconverted carrier cannot convert in galaxy centres (z = 2.5, r <~ 0.05 r200) or cluster cores (z <~ 0.4, r <~ 0.15-0.2 r200) -- a correction FP10/FP16 omit; small in their timing (the carrier converts at the front, outside, before it gets dense)": {
+   "ok": true,
+   "measured": "{'flagship host 1e12 (z = 2.5)': {'2.37': 0.054, '2.76': 0.048}, 'X-COP cluster 1e15 (z = 0.056)': {'2.37': 0.189, '2.76': 0.174}, 'Harvey subcluster 1e14 (z = 0.4)': {'2.37': 0.166, '2.76': 0.153}, 'Harvey cluster 3e14 (z = 0.4)': {'2.37': 0.162, '2.76': 0.149}}",
+   "load_bearing": false
+  },
+  "B0 CONTROL: the sampler reproduces <delta^2> = 1, <psi_11^2> = 1/5, <psi_12^2> = 1/15 and Doroshkevich's P(lambda_1 > 0) = 0.92, P(all > 0) = 0.08; the root finder opens a pure sheet at x = 3/4 and a sphere at x = 1/2 (f = 1)": {
+   "ok": true,
+   "measured": "{'var_trace': 0.9914, 'P_l1_pos': 0.9191, 'P_l3_pos': 0.0776, 'psi11': 0.1992, 'psi12': 0.066}; sheet 0.7500, sphere 0.5000",
+   "load_bearing": false
+  },
+  "B1 THE UNIFIED TRIGGER CONVERTS THE WEB: by z = 3 at least ~half of the mass at the baryon scale has passed theta <= 0 (the caustic theorem, A3) in the total-flow reading AND in the cold-accretion baryon reading, at every baryon smoothing bracketed (1e6, 1e7, the filtering mass) -- sheets and filaments convert as they form; only the 'hot sheet' readings (s >= 0.75) spare them": {
+   "ok": true,
+   "measured": "z = 3: total 0.72, 0.68, 0.51; baryons (cold) 0.72, 0.68, 0.51",
+   "load_bearing": true
+  },
+  "B2 THE FORMED WEB IS SHUT NOW under the unified gate: every formed filament whose long axis still expands has theta = H_3 > 0 (exact: the collapsed axes add 0), and most formed sheets do (the rest are becoming filaments: their second axis falls in faster than the third expands) -- the gate's INSTANTANEOUS state spares the formed web (useful for XR36's reversible MOND gate), even though its history does not (B1)": {
+   "ok": false,
+   "measured": "filaments shut 0.000 (worst over z = 0-3, both scales); sheets 0.000; all formed web 0.000",
+   "load_bearing": true
+  },
+  "F2 NEWTONIAN-CORE RETENTION IS NOT THE HARVEY FIX: vetoing conversion where y_b > 1 (a0's own scale, no constant) keeps carrier only inside r_N <= 65 kpc in 1e14-1e15 clusters -- inside Harvey's 100-150 kpc estimators, not across them -- while in the z = 2.5 flagship hosts it keeps the orbits confined inside r_N = sqrt(G M_b/a0), S(r_F) = 0.048-0.062 against MS2's 0.059: the flagship's margin is gone": {
+   "ok": true,
+   "measured": "{'flagship': {'10.5|canonical': 0.051, '10.5|alt': 0.048, '11.0|canonical': 0.062, '11.0|alt': 0.058}, 'cluster_rN': {'1e+14': {'canonical': 32.42455773629046, 'alt': 27.52865252055658}, '3e+14': {'canonical': 41.59476415488863, 'alt': 35.039009385682185}, '1e+15': {'canonical': 65.23345674946867, 'alt': 53.92907797619686}}}",
+   "load_bearing": true
+  },
+  "H (reported) the pre-declared hypotheses as they fell": {
+   "ok": true,
+   "measured": "{'H1': 'held', 'H2': 'held', 'H3': 'held', 'H4': 'FELL', 'H5': 'FELL', 'H6': 'n/a', 'H7': 'n/a', 'H8': 'n/a', 'H9': 'n/a', 'H10': 'n/a', 'H11': 'n/a', 'H12': 'FELL', 'H13': 'n/a', 'H14': 'FELL', 'H15': 'n/a'}",
+   "load_bearing": false
+  },
+  "D (reported) THE COUNT: no construction tested here opens the window with fewer constants than FK1's four; the unified trigger trades zeta and q for lambda_on (4 -> 3) and fails; the smallest structure on the record that opens X-COP + Harvey (L372's second channel) needs a second field": {
+   "ok": true,
+   "measured": "{'FK1 as adopted (FP10/FP15/FP22)': 4, 'unified theta_b trigger (this lane)': 3, '3-axis gate (F1)': 3, 'Newtonian-core veto (F2)': 3, 'FK1 + theta veto (F5)': 4, 'two-channel opening (L372, F4)': 7}",
+   "load_bearing": false
+  },
+  "W (reported) the ledger": {
+   "ok": true,
+   "measured": "14 links",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "a0_FP0": {
+   "canonical": 9.360324825027975e-11,
+   "alt": 1.1312035414413022e-10
+  },
+  "A": {
+   "x_open": {
+    "0.0": {
+     "0": 0.8498518007029404,
+     "1": 0.7905053251499403,
+     "2": 0.653583138138197
+    },
+    "1.0": {
+     "0": 0.7739407590052234,
+     "1": 0.6953460579596853,
+     "2": 0.5329735614581836
+    },
+    "3.0": {
+     "0": 0.7534252656442582,
+     "1": 0.6707324302392466,
+     "2": 0.5045879742330338
+    }
+   },
+   "x_shock_selfsim": 0.9040420770167384,
+   "standoff_needed": {
+    "sheet": 0.75,
+    "filament": 0.8888888888888888,
+    "halo": 1.0
+   }
+  },
+  "A5": {
+   "rows": {
+    "1.9e-19|600|forming sheet / minihalo, z = 3": {
+     "G_block_over_m": 1.0013890615483834e-06,
+     "G_min_over_m": 3.4043852456016595e-10,
+     "window": 2941.468104534119
+    },
+    "1.9e-19|600|flagship halo, z = 2.5": {
+     "G_block_over_m": 1.0013890615483834e-06,
+     "G_min_over_m": 1.6937406428991685e-09,
+     "window": 591.2292804371217
+    },
+    "1.9e-19|600|cluster, z = 0.1": {
+     "G_block_over_m": 1.0013890615483834e-06,
+     "G_min_over_m": 2.3093136048028915e-09,
+     "window": 433.6306075821416
+    },
+    "1.9e-19|1000|forming sheet / minihalo, z = 3": {
+     "G_block_over_m": 2.7816560901460007e-06,
+     "G_min_over_m": 4.395042453429825e-10,
+     "window": 6329.076725926136
+    },
+    "1.9e-19|1000|flagship halo, z = 2.5": {
+     "G_block_over_m": 2.7816560901460007e-06,
+     "G_min_over_m": 2.186609767581041e-09,
+     "window": 1272.1319237603313
+    },
+    "1.9e-19|1000|cluster, z = 0.1": {
+     "G_block_over_m": 2.7816560901460007e-06,
+     "G_min_over_m": 2.9813110441906045e-09,
+     "window": 933.0311560634868
+    },
+    "5.2e-19|600|forming sheet / minihalo, z = 3": {
+     "G_block_over_m": 1.0013890615483834e-06,
+     "G_min_over_m": 2.0578505361220927e-10,
+     "window": 4866.189472805185
+    },
+    "5.2e-19|600|flagship halo, z = 2.5": {
+     "G_block_over_m": 1.0013890615483834e-06,
+     "G_min_over_m": 1.0238162953340619e-09,
+     "window": 978.0944746749116
+    },
+    "5.2e-19|600|cluster, z = 0.1": {
+     "G_block_over_m": 1.0013890615483834e-06,
+     "G_min_over_m": 1.3959120066853093e-09,
+     "window": 717.3726257475582
+    },
+    "5.2e-19|1000|forming sheet / minihalo, z = 3": {
+     "G_block_over_m": 2.7816560901460007e-06,
+     "G_min_over_m": 2.6566736184616233e-10,
+     "window": 10470.4472194697
+    },
+    "5.2e-19|1000|flagship halo, z = 2.5": {
+     "G_block_over_m": 2.7816560901460007e-06,
+     "G_min_over_m": 1.3217411538015322e-09,
+     "window": 2104.5392149177824
+    },
+    "5.2e-19|1000|cluster, z = 0.1": {
+     "G_block_over_m": 2.7816560901460007e-06,
+     "G_min_over_m": 1.8021146515543929e-09,
+     "window": 1543.5511207606662
+    }
+   },
+   "span": {
+    "flagship progenitor at turnaround, z ~ 5 (5.55 rhobar(5))": 1198.8,
+    "cluster outskirts at turnaround, z ~ 0.3 (5.55 rhobar(0.3))": 12.19335,
+    "pre-reionization minihalo at turnaround, z ~ 12 (5.55 rhobar(12))": 12193.35
+   }
+  },
+  "A5b": {
+   "Gt_over_mc2_z0": 1.806632347067267e-09,
+   "FK1_N3": 1.8060914224948324e-09,
+   "block_ratio_z0": 554.282697347814,
+   "hosts": {
+    "flagship host 1e12 (z = 2.5)": {
+     "c": 3.850593409412832,
+     "2.37": {
+      "rho_block_over_rhobar": 16911.912450082265,
+      "r_block_over_r200": 0.053698763989821145
+     },
+     "2.76": {
+      "rho_block_over_rhobar": 19688.198411312518,
+      "r_block_over_r200": 0.047886327110642446
+     }
+    },
+    "X-COP cluster 1e15 (z = 0.056)": {
+     "c": 4.133136603673782,
+     "2.37": {
+      "rho_block_over_rhobar": 6520.464993249605,
+      "r_block_over_r200": 0.18880314673531967
+     },
+     "2.76": {
+      "rho_block_over_rhobar": 7590.874710357864,
+      "r_block_over_r200": 0.173961086597515
+     }
+    },
+    "Harvey subcluster 1e14 (z = 0.4)": {
+     "c": 4.66042361137834,
+     "2.37": {
+      "rho_block_over_rhobar": 5474.705484405043,
+      "r_block_over_r200": 0.16572166780444728
+     },
+     "2.76": {
+      "rho_block_over_rhobar": 6373.44168724945,
+      "r_block_over_r200": 0.15265959147750233
+     }
+    },
+    "Harvey cluster 3e14 (z = 0.4)": {
+     "c": 4.21889005952312,
+     "2.37": {
+      "rho_block_over_rhobar": 5474.705484405043,
+      "r_block_over_r200": 0.1621905995272152
+     },
+     "2.76": {
+      "rho_block_over_rhobar": 6373.44168724945,
+      "r_block_over_r200": 0.14900193393117683
+     }
+    }
+   }
+  },
+  "B0": {
+   "var_trace": 0.9914266100561661,
+   "P_l1_pos": 0.91905,
+   "P_l3_pos": 0.077575,
+   "psi11": 0.19920300279401623,
+   "psi12": 0.0660290947572959
+  },
+  "B1": {
+   "total flow (single stream to crossing)": {
+    "6": {
+     "1e+06": 0.512425,
+     "1e+07": 0.4399,
+     "3e+08": 0.281575
+    },
+    "3": {
+     "1e+06": 0.72165,
+     "1e+07": 0.682575,
+     "2e+09": 0.51455
+    },
+    "2": {
+     "1e+06": 0.78125,
+     "1e+07": 0.754775,
+     "3e+09": 0.61355
+    }
+   },
+   "baryons, cold accretion (s = 0.347)": {
+    "6": {
+     "1e+06": 0.512425,
+     "1e+07": 0.4399,
+     "3e+08": 0.281575
+    },
+    "3": {
+     "1e+06": 0.72165,
+     "1e+07": 0.682575,
+     "2e+09": 0.51455
+    },
+    "2": {
+     "1e+06": 0.78125,
+     "1e+07": 0.754775,
+     "3e+09": 0.61355
+    }
+   },
+   "baryons, hot sheets (s = 0.75)": {
+    "6": {
+     "1e+06": 0.26815,
+     "1e+07": 0.248675,
+     "3e+08": 0.1897
+    },
+    "3": {
+     "1e+06": 0.301825,
+     "1e+07": 0.2966,
+     "2e+09": 0.2657
+    },
+    "2": {
+     "1e+06": 0.314425,
+     "1e+07": 0.304525,
+     "3e+09": 0.28035
+    }
+   },
+   "baryons, sheets+filaments shut (s = 0.9)": {
+    "6": {
+     "1e+06": 0.0476,
+     "1e+07": 0.0406,
+     "3e+08": 0.0265
+    },
+    "3": {
+     "1e+06": 0.063575,
+     "1e+07": 0.06135,
+     "2e+09": 0.047125
+    },
+    "2": {
+     "1e+06": 0.0649,
+     "1e+07": 0.063875,
+     "3e+09": 0.054775
+    }
+   }
+  },
+  "B2": {
+   "0|2 Mpc/h web scale (1e12.7 Msun)": {
+    "web_frac": 0.4682,
+    "sel_frac": 0.461425,
+    "shut": 0.0,
+    "shut_fil": 0.0,
+    "shut_sheet": 0.0
+   },
+   "0|forest scale (1e9.5)": {
+    "web_frac": 0.769475,
+    "sel_frac": 0.756025,
+    "shut": 0.0,
+    "shut_fil": 0.0,
+    "shut_sheet": 0.0
+   },
+   "1|2 Mpc/h web scale (1e12.7 Msun)": {
+    "web_frac": 0.15275,
+    "sel_frac": 0.150025,
+    "shut": 0.0,
+    "shut_fil": 0.0,
+    "shut_sheet": 0.0
+   },
+   "1|forest scale (1e9.5)": {
+    "web_frac": 0.6539,
+    "sel_frac": 0.636525,
+    "shut": 0.0,
+    "shut_fil": 0.0,
+    "shut_sheet": 0.0
+   },
+   "2|2 Mpc/h web scale (1e12.7 Msun)": {
+    "web_frac": 0.0179,
+    "sel_frac": 0.017725,
+    "shut": 0.0,
+    "shut_fil": 0.0,
+    "shut_sheet": 0.0
+   },
+   "2|forest scale (1e9.5)": {
+    "web_frac": 0.490175,
+    "sel_frac": 0.477025,
+    "shut": 0.0,
+    "shut_fil": 0.0,
+    "shut_sheet": 0.0
+   },
+   "3|2 Mpc/h web scale (1e12.7 Msun)": {
+    "web_frac": 0.0008,
+    "sel_frac": 0.000775,
+    "shut": 0.0,
+    "shut_fil": "nan",
+    "shut_sheet": 0.0
+   },
+   "3|forest scale (1e9.5)": {
+    "web_frac": 0.315925,
+    "sel_frac": 0.30805,
+    "shut": 0.0,
+    "shut_fil": 0.0,
+    "shut_sheet": 0.0
+   }
+  },
+  "F2_clusters": {
+   "1e+14": {
+    "canonical": 32.42455773629046,
+    "alt": 27.52865252055658
+   },
+   "3e+14": {
+    "canonical": 41.59476415488863,
+    "alt": 35.039009385682185
+   },
+   "1e+15": {
+    "canonical": 65.23345674946867,
+    "alt": 53.92907797619686
+   }
+  },
+  "F2": {
+   "10.5|canonical": {
+    "r_N_kpc": 6.863023943613398,
+    "r_F_kpc": 21.70096143338966,
+    "S_all_inside_rN": 0.17646806871460163,
+    "S_confined": 0.05104434315210758
+   },
+   "10.5|alt": {
+    "r_N_kpc": 6.242960628169962,
+    "r_F_kpc": 19.77086523145225,
+    "S_all_inside_rN": 0.17008161189039178,
+    "S_confined": 0.04801823070156612
+   },
+   "11.0|canonical": {
+    "r_N_kpc": 12.204374169531837,
+    "r_F_kpc": 38.5903728950456,
+    "S_all_inside_rN": 0.19517212894494662,
+    "S_confined": 0.061512484435577164
+   },
+   "11.0|alt": {
+    "r_N_kpc": 11.101728342758305,
+    "r_F_kpc": 35.15812255974596,
+    "S_all_inside_rN": 0.1875851204112185,
+    "S_confined": 0.05762096511456596
+   }
+  },
+  "H": {
+   "H1": {
+    "text": "no background conversion",
+    "held": true
+   },
+   "H2": {
+    "text": "caustic theorem; >= 0.5 converted by z = 3 at the baryon scale",
+    "held": true
+   },
+   "H3": {
+    "text": "cold accretion (s ~ 0.35) does not shut the gate",
+    "held": true
+   },
+   "H4": {
+    "text": ">= 90% of formed sheets+filaments shut now",
+    "held": false
+   },
+   "H5": {
+    "text": "F(3) >= 0.34 and the forest fails",
+    "held": false
+   },
+   "H6": {
+    "text": "share >= 1e10.5 at z = 3 <= 0.1",
+    "held": null
+   },
+   "H7": {
+    "text": "the flagship passes",
+    "held": null
+   },
+   "H8": {
+    "text": "X-COP needs v_k >= 1000",
+    "held": null
+   },
+   "H9": {
+    "text": "Harvey fails at >= 800",
+    "held": null
+   },
+   "H10": {
+    "text": "the window is EMPTY",
+    "held": null
+   },
+   "H11": {
+    "text": "the 3-axis gate spares the web, the forest fails",
+    "held": null
+   },
+   "H12": {
+    "text": "lambda_on window <= 4 decades",
+    "held": false
+   },
+   "H13": {
+    "text": "S_8 < 0.922 at ~600 km/s",
+    "held": null
+   },
+   "H14": {
+    "text": "FP22 offset >= 10 kpc",
+    "held": false
+   },
+   "H15": {
+    "text": "FK1 linear suppression at k = 0.3, z = 1 <= 3%",
+    "held": null
+   }
+  },
+  "D": [
+   {
+    "construction": "FK1 as adopted (FP10/FP15/FP22)",
+    "constants": "eps, zeta, q, m (+ the pure cross quartic POSTULATED; amount/misalignment initial data)",
+    "n": 4,
+    "status": "window EMPTY (FP16: X-COP, Harvey)"
+   },
+   {
+    "construction": "unified theta_b trigger (this lane)",
+    "constants": "eps, m, lambda_on (a density window, A5) -- zeta and q removed",
+    "n": 3,
+    "status": "FAILS: web (B1), forest (C3), selectivity (C2), S_8 (C4); XR32 gates worse (C5); window EMPTY (E8)"
+   },
+   {
+    "construction": "3-axis gate (F1)",
+    "constants": "eps, m, lambda_on",
+    "n": 3,
+    "status": "FAILS: forest (F1)"
+   },
+   {
+    "construction": "Newtonian-core veto (F2)",
+    "constants": "the theta gate's + nothing (y_b = 1 is a0's own)",
+    "n": 3,
+    "status": "FAILS: flagship (F2)"
+   },
+   {
+    "construction": "FK1 + theta veto (F5)",
+    "constants": "eps, zeta, q, m (the veto adds none)",
+    "n": 4,
+    "status": "OPEN: can only lower the late web conversion"
+   },
+   {
+    "construction": "two-channel opening (L372, F4)",
+    "constants": "FK1's + f_U, v_U, the U rate exponent, and a second field",
+    "n": 7,
+    "status": "excluded (a new species)"
+   }
+  ]
+ },
+ "ledger": [
+  {
+   "link": "L25a",
+   "what": "the unified gate lambda_on Theta(-theta_b) vanishes on FRW (theta = 3H) and in linear theory (theta/H = 3 - f delta_L): no background conversion, threshold 0 scale-free",
+   "status": "DERIVED",
+   "basis": "A1, A2 (sympy)"
+  },
+  {
+   "link": "L25b",
+   "what": "caustic theorem: theta -> -inf at shell crossing; the gate opens in forming sheets (x* = 3/(3+f)), filaments (2/(2+f)) and halos (1/(1+f))",
+   "status": "DERIVED",
+   "basis": "A3 (sympy)"
+  },
+  {
+   "link": "L25c",
+   "what": "baryon reading: the gas passes theta_b <= 0 before its accretion shock unless the shock stands off >= 3/4 (sheets) / 8/9 (filaments) of the turnaround distance; the self-similar 0.347 does not shut it",
+   "status": "DERIVED",
+   "basis": "A4; the stand-off is a literature input (Bertschinger 1985), bracketed in B1"
+  },
+  {
+   "link": "L25d",
+   "what": "lambda_on is not a regulator: the channel closes above G_block = eps(m^2+eps)/(2m^3) ~ m v_k^2/4 and needs G >= G_min; the open window is <= 1e4 wide in density",
+   "status": "CONSTRAINT",
+   "basis": "A5 (derived from V and FP10 A5's rate)"
+  },
+  {
+   "link": "L25e",
+   "what": "FK1-as-written cannot convert above rho_block = rho_t (v_k^2/4)/(G_t/m) (~555/sqrt(E) rho_t at 600 km/s): galaxy centres at z = 2.5 (r <~ 0.05 r200) and cluster cores at z <~ 0.4 (r <~ 0.15-0.2 r200); omitted by FP10/FP16",
+   "status": "DERIVED",
+   "basis": "A5b; small in FK1's timing (conversion at the front, before the carrier is dense)"
+  },
+  {
+   "link": "L25f",
+   "what": "the unified theta_b trigger converts the web (the history of every shell-crossing element) in both readings",
+   "status": "FAILS",
+   "basis": "B1: ever-opened fraction by z = 3 at the baryon scale >= ~0.5"
+  },
+  {
+   "link": "L25g",
+   "what": "the formed web is shut NOW under the theta gate (useful for XR36's reversible MOND gate)",
+   "status": "DERIVED",
+   "basis": "B2 (MUTATE: a delta >= delta_c key turns it on)"
+  },
+  {
+   "link": "L25h",
+   "what": "the unified trigger fails the forest (XR12's calibrated gas proxy), mass selectivity and S_8",
+   "status": "FAILS",
+   "basis": "C2, C3, C4"
+  },
+  {
+   "link": "L25i",
+   "what": "XR32's gates (eRASS1 counts, DESI RSD, Sum m_nu-equivalent lensing) move further from the data under the unified trigger than under FK1-as-is (approximate linear proxies scaled by XR32)",
+   "status": "FAILS",
+   "basis": "C5 (approximate)"
+  },
+  {
+   "link": "L25j",
+   "what": "with the theta trigger X-COP's strict window opens at v_k ~ n/a km/s (FK1: ~1047); the window stays EMPTY (forest, S_8 at every kick)",
+   "status": "FAILS",
+   "basis": "E1, E8"
+  },
+  {
+   "link": "L25k",
+   "what": "the 3-axis gate spares the forming web but still fails the forest; Newtonian-core retention fails the flagship; a second fast channel needs a second field (FP15's Z4)",
+   "status": "CONSTRAINT",
+   "basis": "F1, F2, F4"
+  },
+  {
+   "link": "L25l",
+   "what": "FP22's merger price: galaxy-carrier centroid offsets of tens of kpc from the phantom acting on baryons only",
+   "status": "OPEN",
+   "basis": "E6b (estimate; needs a merger run)"
+  },
+  {
+   "link": "L25m",
+   "what": "FK1 + theta_b veto (zero constants): can only remove late web conversion (XR32's direction)",
+   "status": "OPEN",
+   "basis": "F5"
+  },
+  {
+   "link": "L25n",
+   "what": "FK1-as-is's late-time linear suppression P/P_LCDM (k = 0.1-3 h/Mpc, z = 0-2) and at the CMB-lensing weights",
+   "status": "DERIVED",
+   "basis": "C6 (L319's CLASS-validated solver)"
+  }
+ ]
+}

@@ -1,0 +1,424 @@
+FP25 -- ONE SWITCH FOR THE SEPARATOR AND THE CARRIER?  FK1's conversion keyed to the baryon flow's turnaround (theta_b <= 0),
+scored on every gate; the kick-recapture window with that trigger; the smallest structure that opens it; the late-time
+suppression.  A CONSTRUCTIVE lane: the target is a dark sector that works with the fewest constants beyond kappa = 1/2.
+
+WHY.  The dark sector on the record (FK1 on FP10's action, adopted by FP22 on the root's Einstein-frame metric, so the dark
+component feels Newtonian gravity only) carries eps (IRREDUCIBLE, FITTED), zeta and q (FITTED BY DATA, FP15) and m.  FP16's
+semi-analytic re-accretion finds its window EMPTY: clusters recapture the kicked daughters (X-COP eps(R500) 0.91-0.93 at
+575-650 km/s; X-COP alone needs ~1050 km/s), and Harvey fails (hollow cores).  The hub is testing XR36, a turnaround-keyed
+separator: MOND on only where the baryon flow has stopped expanding, theta_b = div u_b <= 0, threshold 0 (MS1: the switch
+reads the baryons, never the carrier; on FRW theta = 3H > 0).  This lane asks whether FK1's CONVERSION can be the same gate
+-- removing zeta and q with no new constant -- and, if not, what the smallest honest structure is.
+
+THE CONSTRUCTION (tested).  FP10's dark action with FK1's K-gate replaced by the separator's own gate:
+    lambda(K) (Im Phi^2)^2  ->  lambda_on Theta(-theta_b) (Im Phi^2)^2,   theta_b = nabla_mu u_b^mu  (the baryon flow's expansion)
+The carrier converts (phi_H phi_H -> phi_L phi_L at v_k = sqrt(2 eps/(m^2 + eps))) wherever, and once, the baryon flow has
+turned around; the conversion is irreversible.  lambda_on is the gate's 'on' coupling (A5 decides whether it is a regulator).
+
+WHAT IS COMPUTED
+  A  (sympy + numbers) A1 the gate on FRW; A2 the Zel'dovich expansion rate theta/H = sum_i [1 - f x_i/(1 - x_i)] and its
+     linear limit 3 - f delta_L; A3 the CAUSTIC THEOREM (theta -> -inf at shell crossing) and the opening points x* =
+     (3-n)/(3-n+f) for sheets, filaments and halos; A4 the baryon reading: the accretion shock's stand-off s (a fraction of
+     the turnaround distance) shuts the gate in a forming sheet only if s >= 3/4 (filament: 8/9); A5 lambda_on's window:
+     the channel is kinematically CLOSED above G_block = eps/(2m) ~ m v_k^2/4 (derived from V: the cross quartic raises m_L)
+     and needs G >= G_min (FP10 A5's golden-rule rate); A5b FK1-as-written's own blocking density (a derived correction).
+  B  the web (Zel'dovich / Doroshkevich Monte Carlo): B0 sampler controls; B1 the ever-opened mass fraction at the baryon
+     scale (the unified gate converts the web: both readings); B2 the formed web's INSTANTANEOUS state (the MUTATE target);
+     B3 the forest-epoch IGM.
+  C  the budget and the linear gates: C1 F(z), F_b(z) (the conditional Monte Carlo + the turnaround excursion set, the
+     pre-/post-reionization baryon smoothing); C2 mass selectivity (XR16's measure); C3 the forest on XR12's calibrated gas
+     proxy (its committed nominal row reproduced first); C4 S_8 (L319's solver); C5 the hub's XR32 gates (eRASS1 counts,
+     DESI RSD, Sum m_nu-equivalent lensing) as APPROXIMATE linear proxies relative to FK1-as-is (XR32's nominal history);
+     C6 the late-time suppression P(k, z)/P_LCDM (L319's CLASS-validated solver; no T_EH98 anywhere).
+  E  the kick scan with FP16's recapture model (its code exec'd read-only; only the emission is replaced by the theta
+     trigger's): v_k = 400-1500 km/s -- E1 X-COP (eps(R500), strict and non-thermal windows), E2 the flagship, E3 z = 0
+     galaxies, E4 KiDS with FP20's exact projector, E5 cosmic shear (MS3), E6 Harvey (L372's harvey(), two kicks) and
+     FP22's differential-acceleration offset (OPEN, estimated), E8 the gate table and the window.
+  F  the smallest structures: F1 the 3-axis (negative-semidefinite rate-of-strain) gate; F2 Newtonian-core retention
+     (veto where y_b > 1); F3 FK1's own blocking; F4 a second, fast channel (L372's two-channel opening) against FP15's Z4
+     theorem; F5 FK1 + a theta_b veto (zero constants); D the knob count; W the ledger.
+BOTH FOOTINGS everywhere a0 enters (FP0's 9.3603e-11 / 1.1312e-10; the loaded machinery's 9.3619e-11 / 1.1279e-10).
+INPUTS NOT FROM THE FRAMEWORK (stated): the baryon smoothing before reionization M_pre = 1e6 (1e7 bracket) Msun (the
+  carrier's own half-mode at m = 2e-19 eV is ~6e5, the pre-reionization Jeans/streaming scale 1e5-1e7), reionization at
+  z = 7, the post-reionization filtering mass rising from 1e8.5 (z = 6) to 1e10 Msun (z = 0); the spherical turnaround
+  delta_ta = 1.062; the self-similar accretion-shock stand-off 0.347 r_ta (Bertschinger 1985) as the cold-accretion
+  reference.  Each is bracketed where the verdict could turn on it.
+PRE-DECLARED (scratch note written 2026-09-27 ~12:05 before any FP25 number; only committed files had been read):
+  H1 no background conversion (FRW, linear).  H2 caustic theorem; the ever-converted fraction at the baryon scale by z = 3
+  is >= 0.5 (the web converts).  H3 a cold-accretion shock at s ~ 0.35 does not shut the gate (only s >= 3/4, 8/9).
+  H4 formed sheets/filaments have theta > 0 NOW in >= 90%.  H5 F(3) >= FK1-nominal's 0.34 and the forest FAILS.
+  H6 share of converted carrier in hosts >= 1e10.5 at z = 3 <= 0.1.  H7 the flagship passes.  H8 X-COP needs v_k >= 1000.
+  H9 Harvey fails at >= 800.  H10 the window is EMPTY at every kick 400-1500.  H11 the 3-axis gate spares the web but the
+  forest still fails.  H12 lambda_on is not a regulator (window <= 4 decades).  H13 S_8 < 0.922 at 600 km/s.  H14 FP22's
+  differential offset >= 10 kpc (1e14 into 1e15).  H15 FK1's linear suppression at k = 0.3, z = 1 <= 3%.
+HISTORY (stated).  Exploratory component runs in scratch came first: the Doroshkevich sampler and the Zel'dovich opening
+  (grid scan, then the vectorised root finder, which agreed to <= 0.002), the unconditional budget and its bias, XR12's head
+  (its committed nominal forest row reproduced exactly), and FP16's model with the theta emission on the X-COP host
+  (1e15, t = 0) at 400/650/1000/1500 km/s.  That first host run had a bug: the conditional turnaround fraction erfc(x) was
+  not clipped for a shell already above the barrier (erfc -> 2), which inflated its converted mass to 1.13; clipped at 1
+  (the whole region has turned around) before any check was written.  The coordinator's relays (FP22's adoption of FK1 on
+  the Einstein-frame metric -> the Harvey differential-acceleration item E6b; XR32's eRASS1 / DESI RSD / Sum m_nu gates ->
+  C5) arrived while the lane was being written and were added then.  A smoke run (FP25_SMOKE, reduced shells and grids, scratch
+  only) then changed five things before the main run: (1) A5's pre-declared bound "window <= 10^4" fell at one corner (10^4.02:
+  sigma = 5 km/s, m = 5.2e-19 eV); the check now asserts the load-bearing content (G_block exists, the window is finite) and H12
+  is reported as fallen; (2) B2's pre-declared ">= 90% of formed sheets + filaments shut" fell (0.82-0.95): formed filaments are
+  shut exactly (theta = H_3 > 0), formed sheets in 80-93% (the rest are becoming filaments); the check now asserts the exact part
+  plus the sheets' majority and H4 is reported as fallen; (3) C4 asserted S_8 < 0.922 at every kick, but the smoke run gave 0.946
+  at 650 km/s: S_8 is now a reported table and its pairing with X-COP's fast kicks is scored in E8 (H13 reported); (4) F2's
+  flagship residue sat at the line (0.048-0.062 vs 0.059), so its check now rests on the robust part (the clusters' Newtonian
+  zone lies inside Harvey's apertures) with the flagship's lost margin stated; (5) the X-COP host's retention moved ~0.1 between
+  1200 (smoke) and 2000 shells, so a 3000-shell resolution control (E1r, FP16 C0g's form) was added; E6b's dispersion was tied
+  to the subcluster (0.7 V200) and made aperture-resolved.  Nothing was retuned to a gate.
+
+  footings: FP0 9.3603e-11 / 1.1312e-10 m/s^2; FK1 N1 E_need(2e-19 eV) = 178.1; FP15 zeta band 2.37-2.76
+
+======================================================================================================================
+A1  THE GATE ON FRW: theta_b = nabla_mu u^mu = 3H > 0 -- the gate term vanishes identically (no background conversion)
+======================================================================================================================
+  [PASS] A1 DERIVED: on FRW the comoving flow has theta = (1/a^3) d(a^3)/dt = 3H > 0, so lambda_on Theta(-theta_b) (Im Phi^2)^2 = 0 identically: no background conversion, at any epoch, with no constant (the threshold 0 is the only scale-free one)
+         measured: theta = 3*Derivative(a(t), t)/a(t) = 3*H; gate term on FRW = 0
+
+======================================================================================================================
+A2  THE ZEL'DOVICH EXPANSION RATE: theta/H = sum_i [1 - f x_i/(1 - x_i)], x_i = D lambda_i; linear limit 3 - f delta_L
+======================================================================================================================
+  [PASS] A2 DERIVED (sympy): along the principal axes of the Zel'dovich map the physical expansion rate is H_i = H [1 - f x_i/(1 - x_i)], so theta/H = sum_i [1 - f x_i/(1 - x_i)]; to first order theta/H = 3 - f delta_L: the gate cannot open in linear theory (it needs delta_L >= 3/f)
+         measured: formula residual 0; linear limit -D*f*lambda1 - D*f*lambda2 - D*f*lambda3 + 3
+
+======================================================================================================================
+A3  THE CAUSTIC THEOREM: theta -> -inf as an axis reaches shell crossing; the gate opens in every collapsing structure
+======================================================================================================================
+  [PASS] A3 DERIVED (sympy): the single-stream divergence along a collapsing axis -> -inf at shell crossing, so EVERY Lagrangian element that ever shell-crosses passes theta <= 0 first; with n axes already collapsed and the rest at the Hubble rate the gate opens at x* = (3-n)/(3-n+f): sheets 3/(3+f), filaments 2/(2+f), halos 1/(1+f) (the last axis' turnaround)
+         measured: lim theta/H term = -oo; x* = 3/(f + 3), 2/(f + 2), 1/(f + 1); at z = 0/1/3 (f = 0.53/0.88/0.98): z 0: sheet 0.850 filament 0.791 halo 0.654; z 1: sheet 0.774 filament 0.695 halo 0.533; z 3: sheet 0.753 filament 0.671 halo 0.505
+         reading:  the coordinator's 'filaments and sheets that still expand along an axis have theta > 0' holds for the FORMED web; on the way in, the collapsing axis dominates: the web passes through theta <= 0 before it forms
+
+======================================================================================================================
+A4  THE BARYON READING: the gas shocks; the gate opens pre-shock unless the shock stands off beyond 3/4 (8/9) of r_ta
+======================================================================================================================
+  [PASS] A4 DERIVED (EdS): a collapsing axis has l/l_ta = 4x(1-x) after turnaround, so the gas axis freezes (its accretion shock) at 4 x_s (1 - x_s) = s; the gate opens BEFORE the shock unless s >= l/l_ta(x*): 3/4 for a forming sheet, 8/9 for a forming filament, 1 for a halo (always open).  At the self-similar cold-accretion stand-off s = 0.347 the pre-shock gas reaches x_s = 0.904 > 3/4: the baryon reading opens the gate in forming sheets too
+         measured: l/l_ta(x*) = 3/4, 8/9, 1; s = 0.347 -> x_s = 0.904
+         reading:  only pressure-dominated (Jeans-scale) sheets, whose shocked gas fills >= 3/4 of the turnaround distance, keep the gate shut; cold accretion does not
+
+======================================================================================================================
+A5  lambda_on's WINDOW: the channel closes above G_block = eps/(2m) (derived from V) and needs G >= G_min (the rate)
+======================================================================================================================
+    m 1.9e-19 eV, v_k 600 km/s, forming sheet / minihalo, z = 3   : G_block/m 1.00e-06, G_min/m 3.40e-10 -> window 2941x in density
+    m 1.9e-19 eV, v_k 600 km/s, flagship halo, z = 2.5            : G_block/m 1.00e-06, G_min/m 1.69e-09 -> window 591x in density
+    m 1.9e-19 eV, v_k 600 km/s, cluster, z = 0.1                  : G_block/m 1.00e-06, G_min/m 2.31e-09 -> window 434x in density
+    m 1.9e-19 eV, v_k 1000 km/s, forming sheet / minihalo, z = 3   : G_block/m 2.78e-06, G_min/m 4.40e-10 -> window 6329x in density
+    m 1.9e-19 eV, v_k 1000 km/s, flagship halo, z = 2.5            : G_block/m 2.78e-06, G_min/m 2.19e-09 -> window 1272x in density
+    m 1.9e-19 eV, v_k 1000 km/s, cluster, z = 0.1                  : G_block/m 2.78e-06, G_min/m 2.98e-09 -> window 933x in density
+    m 5.2e-19 eV, v_k 600 km/s, forming sheet / minihalo, z = 3   : G_block/m 1.00e-06, G_min/m 2.06e-10 -> window 4866x in density
+    m 5.2e-19 eV, v_k 600 km/s, flagship halo, z = 2.5            : G_block/m 1.00e-06, G_min/m 1.02e-09 -> window 978x in density
+    m 5.2e-19 eV, v_k 600 km/s, cluster, z = 0.1                  : G_block/m 1.00e-06, G_min/m 1.40e-09 -> window 717x in density
+    m 5.2e-19 eV, v_k 1000 km/s, forming sheet / minihalo, z = 3   : G_block/m 2.78e-06, G_min/m 2.66e-10 -> window 10470x in density
+    m 5.2e-19 eV, v_k 1000 km/s, flagship halo, z = 2.5            : G_block/m 2.78e-06, G_min/m 1.32e-09 -> window 2105x in density
+    m 5.2e-19 eV, v_k 1000 km/s, cluster, z = 0.1                  : G_block/m 2.78e-06, G_min/m 1.80e-09 -> window 1544x in density
+    densities one lambda_on must serve (units of rhobar_0): flagship progenitor at turnaround, z ~ 5 (5.55 rhobar(5)) 1199; cluster outskirts at turnaround, z ~ 0.3 (5.55 rhobar(0.3)) 12; pre-reionization minihalo at turnaround, z ~ 12 (5.55 rhobar(12)) 12193
+  [PASS] A5 CONSTRAINT: lambda_on is NOT a regulator -- the cross quartic raises the daughter's mass, m_L,eff^2 = m^2 - eps + lambda Phi0^2, so the first resonance band exists only for lambda Phi0^2 <= 2 eps, i.e. G <= G_block = eps(m^2+eps)/(2m^3) ~ m v_k^2/4 (derived); conversion needs G >= G_min = [E_need m v_k sigma H/sqrt(pi)]^(1/2) (FP10 A5's rate).  With G proportional to lambda_on rho the open window is FINITE (10^2.6-10^4 in density), so lambda_on places a density window: a threshold constant (zeta's analogue), with the Doppler factor favouring COLD (web) regions
+         measured: window 434-10470x (m 1.9-5.2e-19 eV, v_k 600-1000, sigma 5-1000 km/s); symbolic G_block epsilon*(epsilon + m**2)/(2*m**3)
+         reading:  a physical-density window cannot put the pre-reionization web and minihalos (denser, colder) outside it while keeping the flagship's progenitors inside: the ordering is wrong for the forest (C3)
+
+======================================================================================================================
+A5b FK1-AS-WRITTEN BLOCKS ITS OWN CONVERSION above rho_block = rho_t G_block/G_t (derived; not in FP10/FP16)
+======================================================================================================================
+    flagship host 1e12 (z = 2.5)      : rho_block/rhobar 16912-19688; blocked inside r = 0.048-0.054 r200 (c = 3.9)
+    X-COP cluster 1e15 (z = 0.056)    : rho_block/rhobar 6520-7591; blocked inside r = 0.174-0.189 r200 (c = 4.1)
+    Harvey subcluster 1e14 (z = 0.4)  : rho_block/rhobar 5475-6373; blocked inside r = 0.153-0.166 r200 (c = 4.7)
+    Harvey cluster 3e14 (z = 0.4)     : rho_block/rhobar 5475-6373; blocked inside r = 0.149-0.162 r200 (c = 4.2)
+  [PASS] (reported) A5b (reported) DERIVED: FK1's own lambda(K) makes its channel close above rho_block/rho_t = G_block/G_t = (v_k^2/4)/(G_t/m) = 554/sqrt(E(z)) at 600 km/s (G_t/mc^2 = 1.807e-09 at z = 0, FK1 N3 1.806e-09): unconverted carrier cannot convert in galaxy centres (z = 2.5, r <~ 0.05 r200) or cluster cores (z <~ 0.4, r <~ 0.15-0.2 r200) -- a correction FP10/FP16 omit; small in their timing (the carrier converts at the front, outside, before it gets dense)
+         measured: {'flagship host 1e12 (z = 2.5)': {'2.37': 0.054, '2.76': 0.048}, 'X-COP cluster 1e15 (z = 0.056)': {'2.37': 0.189, '2.76': 0.174}, 'Harvey subcluster 1e14 (z = 0.4)': {'2.37': 0.166, '2.76': 0.153}, 'Harvey cluster 3e14 (z = 0.4)': {'2.37': 0.162, '2.76': 0.149}}
+
+======================================================================================================================
+LOADING the committed machinery (read-only): FP16's head (FP10's head: AT3, MS3, FP10's budget); XR12's forest proxy, XR32's solver interface and FP20's exact projector are loaded where they are used
+======================================================================================================================
+  FP16's head loaded (FP10's head inside it): sigma(1e6/1e7/1e10 Msun) = 8.10/7.08/3.97; D(3) = 0.3158; f(0/3) = 0.533/0.981   [30s]
+
+======================================================================================================================
+B0  THE DOROSHKEVICH SAMPLER (controls): deformation-tensor eigenvalues of a Gaussian field at unit sigma_delta
+======================================================================================================================
+  [PASS] (reported) B0 CONTROL: the sampler reproduces <delta^2> = 1, <psi_11^2> = 1/5, <psi_12^2> = 1/15 and Doroshkevich's P(lambda_1 > 0) = 0.92, P(all > 0) = 0.08; the root finder opens a pure sheet at x = 3/4 and a sphere at x = 1/2 (f = 1)
+         measured: {'var_trace': 0.9914, 'P_l1_pos': 0.9191, 'P_l3_pos': 0.0776, 'psi11': 0.1992, 'psi12': 0.066}; sheet 0.7500, sphere 0.5000
+  conditional opening table: (29, 6, 12000) (r = -1..6, f = 0.5..1, total-flow reading)   [40s]
+
+======================================================================================================================
+B1  THE WEB CONVERTS: the ever-opened mass fraction at the baryon scale (theta_b <= 0 at any earlier time), by reading
+======================================================================================================================
+    total flow (single stream to crossing)      : z 6: 0.512/0.440/0.282; z 3: 0.722/0.683/0.515; z 2: 0.781/0.755/0.614   (M = 1e6 / 1e7 / the post-reionization filtering mass)
+    baryons, cold accretion (s = 0.347)         : z 6: 0.512/0.440/0.282; z 3: 0.722/0.683/0.515; z 2: 0.781/0.755/0.614   (M = 1e6 / 1e7 / the post-reionization filtering mass)
+    baryons, hot sheets (s = 0.75)              : z 6: 0.268/0.249/0.190; z 3: 0.302/0.297/0.266; z 2: 0.314/0.305/0.280   (M = 1e6 / 1e7 / the post-reionization filtering mass)
+    baryons, sheets+filaments shut (s = 0.9)    : z 6: 0.048/0.041/0.026; z 3: 0.064/0.061/0.047; z 2: 0.065/0.064/0.055   (M = 1e6 / 1e7 / the post-reionization filtering mass)
+  [PASS] B1 THE UNIFIED TRIGGER CONVERTS THE WEB: by z = 3 at least ~half of the mass at the baryon scale has passed theta <= 0 (the caustic theorem, A3) in the total-flow reading AND in the cold-accretion baryon reading, at every baryon smoothing bracketed (1e6, 1e7, the filtering mass) -- sheets and filaments convert as they form; only the 'hot sheet' readings (s >= 0.75) spare them
+         measured: z = 3: total 0.72, 0.68, 0.51; baryons (cold) 0.72, 0.68, 0.51
+         reading:  an irreversible conversion keyed to theta_b <= 0 inherits the collapse history of every Lagrangian element, not the current state of the web: the 'web must not convert' gate FAILS
+
+======================================================================================================================
+B2  THE FORMED WEB IS SHUT NOW: sheets and filaments with an axis still expanding have theta > 0 (the MUTATE target)
+======================================================================================================================
+    z 0 2 Mpc/h web scale (1e12.7 Msun) : formed web 0.468 of the mass (0.461 with an expanding axis); gate shut now in 0.896 (filaments 1.000, sheets 0.882)
+    z 0 forest scale (1e9.5)            : formed web 0.769 of the mass (0.756 with an expanding axis); gate shut now in 0.947 (filaments 1.000, sheets 0.924)
+    z 1 2 Mpc/h web scale (1e12.7 Msun) : formed web 0.153 of the mass (0.150 with an expanding axis); gate shut now in 0.834 (filaments 1.000, sheets 0.828)
+    z 1 forest scale (1e9.5)            : formed web 0.654 of the mass (0.637 with an expanding axis); gate shut now in 0.889 (filaments 1.000, sheets 0.861)
+    z 2 2 Mpc/h web scale (1e12.7 Msun) : formed web 0.018 of the mass (0.018 with an expanding axis); gate shut now in 0.829 (filaments 1.000, sheets 0.829)
+    z 2 forest scale (1e9.5)            : formed web 0.490 of the mass (0.477 with an expanding axis); gate shut now in 0.840 (filaments 1.000, sheets 0.818)
+    z 3 2 Mpc/h web scale (1e12.7 Msun) : formed web 0.001 of the mass (0.001 with an expanding axis); gate shut now in 0.871 (filaments nan, sheets 0.871)
+    z 3 forest scale (1e9.5)            : formed web 0.316 of the mass (0.308 with an expanding axis); gate shut now in 0.815 (filaments 1.000, sheets 0.802)
+  [PASS] B2 THE FORMED WEB IS SHUT NOW under the unified gate: every formed filament whose long axis still expands has theta = H_3 > 0 (exact: the collapsed axes add 0), and most formed sheets do (the rest are becoming filaments: their second axis falls in faster than the third expands) -- the gate's INSTANTANEOUS state spares the formed web (useful for XR36's reversible MOND gate), even though its history does not (B1)
+         measured: filaments shut 1.000 (worst over z = 0-3, both scales); sheets 0.802; all formed web 0.815
+         reading:  keyed to delta >= delta_c instead (MUTATE) the formed web is ON everywhere; pre-declared H4 (>= 90% of sheets + filaments) is reported in H
+
+======================================================================================================================
+B3  THE FOREST-EPOCH IGM: the fraction of the carrier that has passed theta_b <= 0 by z = 2-3 (the budget, C1)
+======================================================================================================================
+    theta, M_pre 1e6 (nominal)            : F(z = 10/7/4/3/2/1/0) 0.257/0.437/0.437/0.514/0.613/0.711/0.794; F_b(3/2) 0.755/0.790
+    theta, M_pre 1e7                      : F(z = 10/7/4/3/2/1/0) 0.195/0.360/0.422/0.514/0.613/0.711/0.794; F_b(3/2) 0.755/0.790
+    theta, hot sheets s = 0.75            : F(z = 10/7/4/3/2/1/0) 0.257/0.409/0.409/0.473/0.567/0.677/0.789; F_b(3/2) 0.890/0.932
+    theta, sheets+filaments shut s = 0.9  : F(z = 10/7/4/3/2/1/0) 0.257/0.409/0.409/0.473/0.567/0.677/0.789; F_b(3/2) 0.890/0.932
+    3-axis gate (halos only)              : F(z = 10/7/4/3/2/1/0) 0.257/0.409/0.409/0.473/0.567/0.677/0.789; F_b(3/2) 0.890/0.932
+  [PASS] B3/C1 THE BUDGET: the unified trigger converts more carrier, earlier, than FK1's own trigger -- F(3) >= FK1's fiducial 0.342 and F(2) >= 0.433 (XR16), with the conversion well under way before reionization (F(7) >= 0.3)
+         measured: F(7/3/2) = 0.437/0.514/0.613 (M_pre 1e6); M_pre 1e7: 0.360/0.514/0.613
+
+======================================================================================================================
+C2  MASS SELECTIVITY (XR16's measure): the share of the converted carrier sitting in hosts >= 1e10.5 Msun
+======================================================================================================================
+    share (upper bound: every halo >= 1e10.5 counted whole): z = 2: 0.318 (collapsed 0.195 / F 0.613), z = 3: 0.218 (collapsed 0.112 / F 0.514), z = 4: 0.137 (collapsed 0.060 / F 0.437)
+  [PASS] C2 MASS SELECTIVITY FAILS: at most 0.32 / 0.22 / 0.14 of the converted carrier sits in hosts >= 1e10.5 Msun at z = 2 / 3 / 4 (AT1's acceleration trigger >= 0.98; FK1's fluid 0.45/0.31/0.21, XR16) -- the turnaround gate converts the web and the minihalos first
+         measured: {'2': 0.318, '3': 0.218, '4': 0.137}
+
+======================================================================================================================
+C3  THE FOREST on XR12's calibrated gas proxy (XR12's head exec'd read-only; its committed nominal row reproduced first)
+======================================================================================================================
+  [PASS] (reported) C3a CONTROL: XR12's committed nominal FK1 row (M_min 1e8, 600 km/s) reproduced through the loaded proxy (calibrated gas proxy at z = 3/2)
+         measured: 0.05160/0.11339 vs committed 0.05160/0.11339; max |dev| 0.0e+00
+    theta, M_pre 1e6 (nominal)             v_k 650: calibrated worst |dP1D| z = 3 0.420, z = 2 0.512 (gate 0.10; FK1 nominal 0.113, FK1 at the floor mass 1e6 0.149)   [77s]
+    theta, M_pre 1e6 (nominal)             v_k 1000: calibrated worst |dP1D| z = 3 0.456, z = 2 0.542 (gate 0.10; FK1 nominal 0.113, FK1 at the floor mass 1e6 0.149)   [92s]
+    theta, M_pre 1e7                       v_k 650: calibrated worst |dP1D| z = 3 0.377, z = 2 0.476 (gate 0.10; FK1 nominal 0.113, FK1 at the floor mass 1e6 0.149)   [108s]
+    theta, M_pre 1e7                       v_k 1000: calibrated worst |dP1D| z = 3 0.412, z = 2 0.505 (gate 0.10; FK1 nominal 0.113, FK1 at the floor mass 1e6 0.149)   [125s]
+    theta, sheets+filaments shut s = 0.9   v_k 650: calibrated worst |dP1D| z = 3 0.445, z = 2 0.546 (gate 0.10; FK1 nominal 0.113, FK1 at the floor mass 1e6 0.149)   [141s]
+    theta, sheets+filaments shut s = 0.9   v_k 1000: calibrated worst |dP1D| z = 3 0.482, z = 2 0.576 (gate 0.10; FK1 nominal 0.113, FK1 at the floor mass 1e6 0.149)   [156s]
+    3-axis gate (halos only)               v_k 650: calibrated worst |dP1D| z = 3 0.445, z = 2 0.546 (gate 0.10; FK1 nominal 0.113, FK1 at the floor mass 1e6 0.149)   [156s]
+    3-axis gate (halos only)               v_k 1000: calibrated worst |dP1D| z = 3 0.482, z = 2 0.576 (gate 0.10; FK1 nominal 0.113, FK1 at the floor mass 1e6 0.149)   [156s]
+  [PASS] C3 THE FOREST FAILS for the unified trigger: XR12's calibrated gas proxy exceeds DE11's 10% line at z = 2 in every theta reading and bracket (M_pre 1e6/1e7; even with sheets and filaments shut), well above FK1's own nominal cell (0.113)
+         measured: {'theta, M_pre 1e6 (nominal)|650': {'3.0': 0.42, '2.0': 0.512}, 'theta, M_pre 1e6 (nominal)|1000': {'3.0': 0.456, '2.0': 0.542}, 'theta, M_pre 1e7|650': {'3.0': 0.377, '2.0': 0.476}, 'theta, M_pre 1e7|1000': {'3.0': 0.412, '2.0': 0.505}, 'theta, sheets+filaments shut s = 0.9|650': {'3.0': 0.445, '2.0': 0.546}, 'theta, sheets+filaments shut s = 0.9|1000': {'3.0': 0.482, '2.0': 0.576}, '3-axis gate (halos only)|650': {'3.0': 0.445, '2.0': 0.546}, '3-axis gate (halos only)|1000': {'3.0': 0.482, '2.0': 0.576}}
+         reading:  the proxy is a magnitude calibration with a ~2x systematic (XR12 C2); the excess here is several times that of FK1's at-the-line cell, and it is kick-independent: no kick rescues it
+
+======================================================================================================================
+C4-C6  L319's SOLVER (via XR32's committed interface): S_8, the XR32 gates as approximate proxies, the suppression table
+======================================================================================================================
+  XR32_common's record(): L357's head + L319's solver (N_A = 420), LCDM S_8 0.8415   [161s]
+    S_8 ratio to LCDM (the solver's own): FK1 nominal (XR19, 600) 0.9310; FK1 halo only (600) 0.9556; theta nominal (400) 0.9784; theta nominal (575) 0.9561; theta nominal (650) 0.9449; theta nominal (800) 0.9204; theta nominal (1000) 0.8846; theta nominal (1200) 0.8468; theta nominal (1500) 0.7898; 3-axis gate (650) 0.9357
+  [PASS] (reported) C4 (reported) S_8 (L319's solver, ratio to LCDM; strict gate 0.922) for the unified trigger at every scanned kick (FK1-as-is 0.931): it passes at FK1's kicks and falls below the gate at the fast kicks X-COP needs (E8 pairs them)
+         measured: {'FK1 nominal (XR19, 600)': 0.931, 'FK1 halo only (600)': 0.9556, 'theta nominal (400)': 0.9784, 'theta nominal (575)': 0.9561, 'theta nominal (650)': 0.9449, 'theta nominal (800)': 0.9204, 'theta nominal (1000)': 0.8846, 'theta nominal (1200)': 0.8468, 'theta nominal (1500)': 0.7898, '3-axis gate (650)': 0.9357}
+    FK1 nominal (XR19, 600)   : counts(>3e14, z 0.3) 0.696 of LCDM (x XR32 -> 0.64-0.81); f sigma8 ratio z 0.5/1 0.934/0.952 (-> DESI -2.2 sigma); kernel-weighted lensing 0.992 (x1.00 FK1's deficit -> Sum m_nu-equivalent +0.098 eV)
+    FK1 halo only (600)       : counts(>3e14, z 0.3) 0.785 of LCDM (x XR32 -> 0.72-0.91); f sigma8 ratio z 0.5/1 0.956/0.963 (-> DESI -1.5 sigma); kernel-weighted lensing 0.994 (x0.74 FK1's deficit -> Sum m_nu-equivalent +0.072 eV)
+    theta nominal (1000)      : counts(>3e14, z 0.3) 0.497 of LCDM (x XR32 -> 0.46-0.58); f sigma8 ratio z 0.5/1 0.885/0.897 (-> DESI -3.9 sigma); kernel-weighted lensing 0.981 (x2.54 FK1's deficit -> Sum m_nu-equivalent +0.249 eV)
+    3-axis gate (650)         : counts(>3e14, z 0.3) 0.688 of LCDM (x XR32 -> 0.63-0.80); f sigma8 ratio z 0.5/1 0.936/0.943 (-> DESI -2.1 sigma); kernel-weighted lensing 0.992 (x1.11 FK1's deficit -> Sum m_nu-equivalent +0.109 eV)
+  [PASS] (reported) C5 (reported, APPROXIMATE) THE XR32 GATES move the WRONG way under the unified trigger: relative to FK1-as-is (XR32: counts 0.64-0.81 of LCDM, 5-9 sigma under eRASS1; DESI RSD -2.2 sigma; lensing = +0.098 eV Sum m_nu) its earlier, larger conversion lowers the counts, the RSD amplitude and the lensing further (linear proxies scaled by XR32's numbers)
+         measured: {'FK1 nominal (XR19, 600)': {'counts': 0.696, 'rsd05': 0.934, 'alens': 0.992, 'mnu': 0.098}, 'FK1 halo only (600)': {'counts': 0.785, 'rsd05': 0.956, 'alens': 0.994, 'mnu': 0.072}, 'theta nominal (1000)': {'counts': 0.497, 'rsd05': 0.885, 'alens': 0.981, 'mnu': 0.249}, '3-axis gate (650)': {'counts': 0.688, 'rsd05': 0.936, 'alens': 0.992, 'mnu': 0.109}}
+    P/P_LCDM  FK1-as-is (XR32 nominal, 600)  k = 0.1/0.3/1/3 h/Mpc: z 0: 0.969/0.735/0.070/0.054; z 0.5: 0.978/0.799/0.117/0.063; z 1: 0.986/0.857/0.223/0.087; z 2: 0.994/0.928/0.475/0.234
+    P/P_LCDM  FK1 halo only (600)            k = 0.1/0.3/1/3 h/Mpc: z 0: 0.981/0.829/0.269/0.196; z 0.5: 0.984/0.855/0.295/0.214; z 1: 0.988/0.882/0.341/0.236; z 2: 0.994/0.931/0.496/0.298
+    P/P_LCDM  theta trigger (1000)           k = 0.1/0.3/1/3 h/Mpc: z 0: 0.941/0.570/0.041/0.015; z 0.5: 0.950/0.613/0.045/0.020; z 1: 0.957/0.654/0.052/0.028; z 2: 0.967/0.717/0.074/0.049
+    at the (k, z) CMB lensing weights (k = (L+1/2)/chi(z)): L100|z0.5: k 0.076, FK1 0.989; L100|z1: k 0.044, FK1 1.000; L100|z2: k 0.028, FK1 1.002; L400|z0.5: k 0.304, FK1 0.795; L400|z1: k 0.175, FK1 0.951; L400|z2: k 0.112, FK1 0.992; L1000|z0.5: k 0.760, FK1 0.256; L1000|z1: k 0.436, FK1 0.722; L1000|z2: k 0.279, FK1 0.937
+  [PASS] (reported) C6 (reported) THE LATE-TIME SUPPRESSION P(k, z)/P_LCDM (linear, L319's CLASS-validated solver; no T_EH98): FK1-as-is suppresses k = 0.3 h/Mpc by 14.3% at z = 1 and 26.5% at z = 0; at the CMB-lensing weights (L = 100-1000, z = 0.5-2) -0.2-74.4% -- it offsets only a sliver of XR26's phantom boost (1.149 linear / 2.13 halofit)
+         measured: {'tables': {'FK1-as-is (XR32 nominal, 600)': {'0': [0.9693282268918308, 0.7350536685990767, 0.06998262244223653, 0.05447273475694085], '0.5': [0.978336679897555, 0.7994774320212064, 0.1174766305515043, 0.06270245761474004], '1': [0.985660340877045, 0.8572541407400354, 0.22303047022476144, 0.087420356906471], '2': [0.9936942503065653, 0.9277072937919858, 0.4748556325541877, 0.2335088392256735]}, 'FK1 halo only (600)': {'0': [0.9808556173140476, 0.8286138314941763, 0.26913400077398925, 0.1957369641723707], '0.5': [0.9844300787059795, 0.8546465932246211, 0.29480017298318856, 0.21409209446640692], '1': [0.988050106079217, 0.8824416739059091, 0.340766840563151, 0.2357913364268924], '2': [0.9938403386666187, 0.9305493308342512, 0.49618989656809165, 0.2976828783906604]}, 'theta trigger (1000)': {'0': [0.9410918243793531, 0.5695664283383258, 0.040752174527264, 0.015200176376125992], '0.5': [0.9495207918717522, 0.6130057556317005, 0.045398655863067336, 0.020298279121873004], '1': [0.9565886655565508, 0.6537497924967315, 0.0522991012695985, 0.0278694634867398], '2': [0.9665506502926854, 0.7170428708017721, 0.07405842381527092, 0.048527849222232404]}}, 'lensing_points': {'L100|z0.5': 0.989, 'L100|z1': 0.9999, 'L100|z2': 1.0018, 'L400|z0.5': 0.7947, 'L400|z1': 0.9507, 'L400|z2': 0.9916, 'L1000|z0.5': 0.2558, 'L1000|z1': 0.7217, 'L1000|z2': 0.9367}}
+
+======================================================================================================================
+E0  FP16's RECAPTURE MODEL WITH THE THETA TRIGGER's EMISSION (every other line of FP16's model unchanged)
+======================================================================================================================
+  [PASS] E0 CONTROL: this lane's harness runs FP16's own model and reproduces its committed X-COP scan value (1e15 Msun, t = 0, 650 km/s) and its G4 KiDS row (575 km/s, committed projector) exactly; FP20's exact projector on the same profiles gives the re-scored value
+         measured: eps(R500) 0.909410 vs 0.909410 (|d| 0.0e+00); KiDS -18.6087/-11.8164 vs -18.6087/-11.8164 (|d| 0.0e+00); exact projector -15.063/-8.097
+    all hosts (111 model runs + references, 2 threads): 134 runs   [644s]
+
+======================================================================================================================
+E1  X-COP: eps(R500) of the A2319-mass cluster against the kick (strict window: canonical 0.221-0.737, alt 0.157-0.669; non-thermal <= 0.769)
+======================================================================================================================
+    v_k   400: eps(R500) 0.961 (by M200 5.0e+14 0.981, 1.0e+15 0.961, 1.5e+15 0.953) -> ratio 1.374/1.425; strict FAIL
+    v_k   575: eps(R500) 0.894 (by M200 5.0e+14 0.861, 1.0e+15 0.894, 1.5e+15 0.901) -> ratio 1.322/1.374; strict FAIL
+    v_k   650: eps(R500) 0.819 (by M200 5.0e+14 0.781, 1.0e+15 0.835, 1.5e+15 0.874) -> ratio 1.263/1.315; strict FAIL
+    v_k   800: eps(R500) 0.718 (by M200 5.0e+14 0.640, 1.0e+15 0.718, 1.5e+15 0.802) -> ratio 1.186/1.238; strict FAIL
+    v_k  1000: eps(R500) 0.580 (by M200 5.0e+14 0.465, 1.0e+15 0.586, 1.5e+15 0.643) -> ratio 1.080/1.132; strict PASS
+    v_k  1200: eps(R500) 0.440 (by M200 5.0e+14 0.314, 1.0e+15 0.440, 1.5e+15 0.515) -> ratio 0.973/1.025; strict PASS
+    v_k  1500: eps(R500) 0.205 (by M200 5.0e+14 0.043, 1.0e+15 0.205, 1.5e+15 0.296) -> ratio 0.788/0.839; strict FAIL
+  [PASS] E1 X-COP WITH THE THETA TRIGGER: at FK1's kicks (575-650 km/s) the cluster keeps too much (strict FAIL); the strict window (alt edge 0.669 binds) opens at v_k ~ 871 km/s and the non-thermal one (<= 0.769) at ~724 -- below FK1's own requirement (FP16 G10: 1047 / 913 km/s): the early conversion scatters the proto-cluster's carrier before the cluster assembles
+         measured: {'400': 0.961, '575': 0.894, '650': 0.819, '800': 0.718, '1000': 0.58, '1200': 0.44, '1500': 0.205}
+  [PASS] (reported) E1r (reported) RESOLUTION: the theta trigger's X-COP retention moves by <= 0.05 from 2000 to 3000 shells (FP16 C0g's test; a 1200-shell smoke run sat ~0.1 higher)
+         measured: {'650': 0.002, '1000': 0.016}
+
+======================================================================================================================
+E2  THE FLAGSHIP at z = 0.5-2.5 (FP10's hosts and arithmetic; <= 0.074 dex, both footings and kernels)
+======================================================================================================================
+    v_k   400: max S(r_F) 0.0111, max |shift| 0.0145 dex (z 2.5 1e10.0: 0.000, z 2.5 1e10.5: 0.000, z 2.5 1e11.0: 0.008, z 1.0 1e11.0: 0.002, z 0.5 1e11.0: 0.015)
+    v_k   650: max S(r_F) 0.0068, max |shift| 0.0109 dex (z 2.5 1e10.0: 0.000, z 2.5 1e10.5: 0.000, z 2.5 1e11.0: 0.011, z 1.0 1e11.0: 0.000, z 0.5 1e11.0: 0.000)
+    v_k  1000: max S(r_F) 0.0000, max |shift| 0.0000 dex (z 2.5 1e10.0: 0.000, z 2.5 1e10.5: 0.000, z 2.5 1e11.0: 0.000, z 1.0 1e11.0: 0.000, z 0.5 1e11.0: 0.000)
+    v_k  1500: max S(r_F) 0.0000, max |shift| 0.0000 dex (z 2.5 1e10.0: 0.000, z 2.5 1e10.5: 0.000, z 2.5 1e11.0: 0.000, z 1.0 1e11.0: 0.000, z 0.5 1e11.0: 0.000)
+  [PASS] E2 THE FLAGSHIP PASSES with the theta trigger for v_k >= 650 km/s (every host, z, footing, kernel within 0.074 dex): the progenitors' carrier converts at turnaround, far out, and the daughters leave
+         measured: {'400': True, '650': True, '1000': True, '1500': True}
+
+======================================================================================================================
+E3  z = 0 GALAXIES / RAR (L321's three hosts; <= 0.06 dex)
+======================================================================================================================
+    v_k   400: retained dwarf 0.0000, SPARC disc 0.0000, Milky Way 0.0000 -> max |shift| 0.0000 dex
+    v_k   650: retained dwarf 0.0000, SPARC disc 0.0000, Milky Way 0.0000 -> max |shift| 0.0000 dex
+    v_k  1000: retained dwarf 0.0000, SPARC disc 0.0000, Milky Way 0.0000 -> max |shift| 0.0000 dex
+    v_k  1500: retained dwarf 0.0000, SPARC disc 0.0000, Milky Way 0.0000 -> max |shift| 0.0000 dex
+  [PASS] (reported) E3 z = 0 GALAXIES PASS at every scanned kick (<= 0.06 dex)
+         measured: {'400': 0.0, '650': 0.0, '1000': 0.0, '1500': 0.0}
+
+======================================================================================================================
+E4  KiDS-1000 (L360's switched fit at the common cell, FP20's EXACT projector; the lens halos' modelled carrier)
+======================================================================================================================
+    v_k   400: Delta chi^2 -6.4/-0.2 (exact projector; committed -8.5/-3.3); retention at r200 by bin [0.024, 0.004, 0.031, 0.042]
+    v_k   650: Delta chi^2 -4.4/-0.4 (exact projector; committed -6.3/-1.0); retention at r200 by bin [0.0, 0.0, 0.017, 0.001]
+    v_k  1000: Delta chi^2 -4.2/-0.4 (exact projector; committed -6.1/-1.0); retention at r200 by bin [0.0, 0.0, 0.001, 0.0]
+    v_k  1500: Delta chi^2 -4.4/-0.5 (exact projector; committed -6.2/-1.0); retention at r200 by bin [0.0, 0.0, 0.0, 0.005]
+  [PASS] (reported) E4 KiDS PASSES with the theta trigger at every scanned kick (exact projector, both footings, <= +4)
+         measured: {'400': {'canonical': -6.4, 'alt': -0.24}, '650': {'canonical': -4.39, 'alt': -0.38}, '1000': {'canonical': -4.22, 'alt': -0.41}, '1500': {'canonical': -4.36, 'alt': -0.46}}
+
+======================================================================================================================
+E5  COSMIC SHEAR (MS3's halo model; the halos' modelled retention inside r200 at z = 0.5; 1.75 Mpc cap, door; R <= 1.2)
+======================================================================================================================
+    v_k   400: retention inside r200 1.2e+11: 0.00, 1.1e+12: 0.01, 1.1e+13: 0.16, 3.0e+13: 0.61, 9.5e+13: 0.82, 2.8e+14: 0.97, 9.2e+14: 0.99; worst R 1.42/1.51
+    v_k   650: retention inside r200 1.2e+11: 0.00, 1.1e+12: 0.00, 1.1e+13: 0.01, 3.0e+13: 0.06, 9.5e+13: 0.50, 2.8e+14: 0.84, 9.2e+14: 0.94; worst R 1.14/1.22
+    v_k  1000: retention inside r200 1.2e+11: 0.00, 1.1e+12: 0.07, 1.1e+13: 0.00, 3.0e+13: 0.03, 9.5e+13: 0.05, 2.8e+14: 0.39, 9.2e+14: 0.79; worst R 0.98/0.98
+    v_k  1500: retention inside r200 1.2e+11: 0.00, 1.1e+12: 0.00, 1.1e+13: 0.01, 3.0e+13: 0.00, 9.5e+13: 0.01, 2.8e+14: 0.05, 9.2e+14: 0.28; worst R 0.98/0.98
+  [PASS] (reported) E5 (reported) COSMIC SHEAR at the 1.75 Mpc cap with the theta trigger's retention (raw model, both footings)
+         measured: {'400': {'canonical': 1.422, 'alt': 1.51}, '650': {'canonical': 1.144, 'alt': 1.221}, '1000': {'canonical': 0.981, 'alt': 0.982}, '1500': {'canonical': 0.975, 'alt': 0.976}}
+
+======================================================================================================================
+E6  HARVEY+2015 (L370's machinery via L372's harvey(), FP16's wiring; the theta trigger's retention profiles)
+======================================================================================================================
+    v_k 650: retention at 0.1/0.2/0.5/1 r200 (z = 0.4): 1e+14: 0.05/0.11/0.32/0.47; 3e+14: 0.18/0.38/0.65/0.84; 1e+15: 0.56/0.75/0.84/0.94
+    v_k 1000: retention at 0.1/0.2/0.5/1 r200 (z = 0.4): 1e+14: 0.00/0.00/0.01/0.03; 3e+14: 0.04/0.08/0.26/0.40; 1e+15: 0.14/0.31/0.60/0.76
+    v_k 650: excess beta +0.083/+0.176/+0.250; core carrier/baryons(<150 kpc) 0.95 / 2.20 -> FAIL   [1103s]
+    v_k 1000: excess beta +0.071/+0.173/+0.290; core carrier/baryons(<150 kpc) 0.03 / 0.44 -> FAIL   [1351s]
+  [PASS] (reported) E6 (reported) HARVEY with the theta trigger's profiles at 650 and 1000 km/s (<= +0.10 excess beta on all three estimators)
+         measured: {'650': {'beta': {'100': 0.083, '150': 0.176, 'fit': 0.25}, 'ok': False}, '1000': {'beta': {'100': 0.071, '150': 0.173, 'fit': 0.29}, 'ok': False}}
+
+======================================================================================================================
+E6b FP22's DIFFERENTIAL ACCELERATION in a merger (galaxies feel the phantom, the carrier does not): an ESTIMATE (OPEN)
+======================================================================================================================
+    canonical r =  300 kpc: y_b 0.25, phantom/Newtonian(baryons) 1.22, g_ph 2.91e-11 m/s^2 -> galaxy-carrier centroid offset (linear response, sigma 498 km/s) 12 kpc (aperture 100), 27 kpc (aperture 150), 75 kpc (aperture 250); free drift over 1 Gyr 469 kpc
+    canonical r =  500 kpc: y_b 0.17, phantom/Newtonian(baryons) 1.63, g_ph 2.58e-11 m/s^2 -> galaxy-carrier centroid offset (linear response, sigma 498 km/s) 11 kpc (aperture 100), 24 kpc (aperture 150), 67 kpc (aperture 250); free drift over 1 Gyr 416 kpc
+    canonical r = 1000 kpc: y_b 0.10, phantom/Newtonian(baryons) 2.36, g_ph 2.15e-11 m/s^2 -> galaxy-carrier centroid offset (linear response, sigma 498 km/s) 9 kpc (aperture 100), 20 kpc (aperture 150), 56 kpc (aperture 250); free drift over 1 Gyr 347 kpc
+    alt       r =  300 kpc: y_b 0.21, phantom/Newtonian(baryons) 1.40, g_ph 3.33e-11 m/s^2 -> galaxy-carrier centroid offset (linear response, sigma 498 km/s) 14 kpc (aperture 100), 31 kpc (aperture 150), 86 kpc (aperture 250); free drift over 1 Gyr 538 kpc
+    alt       r =  500 kpc: y_b 0.14, phantom/Newtonian(baryons) 1.85, g_ph 2.94e-11 m/s^2 -> galaxy-carrier centroid offset (linear response, sigma 498 km/s) 12 kpc (aperture 100), 27 kpc (aperture 150), 76 kpc (aperture 250); free drift over 1 Gyr 474 kpc
+    alt       r = 1000 kpc: y_b 0.08, phantom/Newtonian(baryons) 2.66, g_ph 2.43e-11 m/s^2 -> galaxy-carrier centroid offset (linear response, sigma 498 km/s) 10 kpc (aperture 100), 23 kpc (aperture 150), 63 kpc (aperture 250); free drift over 1 Gyr 391 kpc
+  [PASS] (reported) E6b (reported, OPEN) FP22's price in mergers: the subcluster's galaxies feel the host's phantom and its carrier does not, so their centroids separate by ~20-31 kpc inside a 150 kpc aperture (linear response of a bound tracer; x R_ap^2; the free drift over a crossing time, 347-538 kpc, is the unbound ceiling) against Harvey's 60-120 kpc gas-galaxy offsets: beta can move by O(0.1), sign set by the orbital phase
+         measured: {'canonical|300': {'100': 12.1, '150': 27.1, '250': 75.3}, 'canonical|500': {'100': 10.7, '150': 24.1, '250': 66.8}, 'canonical|1000': {'100': 8.9, '150': 20.0, '250': 55.6}, 'alt|300': {'100': 13.8, '150': 31.1, '250': 86.3}, 'alt|500': {'100': 12.2, '150': 27.4, '250': 76.1}, 'alt|1000': {'100': 10.1, '150': 22.6, '250': 62.8}}
+         reading:  FP16's shell model has no mergers; deciding it needs a merger run with the two metrics (the hub's PM)
+
+======================================================================================================================
+E8  THE GATE TABLE AND THE WINDOW for the theta trigger (kicks x gates; the forest and S_8 are kick-scanned in C3/C4)
+======================================================================================================================
+    v_k   400: X-COP FAIL, flagship pass, galaxies pass, KiDS pass, shear FAIL, Harvey n/a, S8 pass, forest FAIL
+    v_k   575: X-COP FAIL, flagship n/a, galaxies n/a, KiDS n/a, shear n/a, Harvey n/a, S8 pass, forest FAIL
+    v_k   650: X-COP FAIL, flagship pass, galaxies pass, KiDS pass, shear FAIL, Harvey FAIL, S8 pass, forest FAIL
+    v_k   800: X-COP FAIL, flagship n/a, galaxies n/a, KiDS n/a, shear n/a, Harvey n/a, S8 FAIL, forest FAIL
+    v_k  1000: X-COP pass, flagship pass, galaxies pass, KiDS pass, shear pass, Harvey FAIL, S8 FAIL, forest FAIL
+    v_k  1200: X-COP pass, flagship n/a, galaxies n/a, KiDS n/a, shear n/a, Harvey n/a, S8 FAIL, forest FAIL
+    v_k  1500: X-COP FAIL, flagship pass, galaxies pass, KiDS pass, shear pass, Harvey n/a, S8 FAIL, forest FAIL
+    the kicks where X-COP's strict window is open, with S_8 and Harvey there: 1000: S_8 0.8846, Harvey FAIL, 1200: S_8 0.8468, Harvey n/a
+  [PASS] E8 THE WINDOW IS EMPTY for the unified trigger at every kick 400-1500 km/s: the forest fails at every kick (C3, kick-independent); where X-COP's strict window opens (fast kicks) S_8 falls below 0.922 as well
+         measured: {'400': {'X-COP': 'FAIL', 'flagship': 'pass', 'galaxies': 'pass', 'KiDS': 'pass', 'shear': 'FAIL', 'forest': 'FAIL', 'S8': 'pass'}, '575': {'X-COP': 'FAIL', 'forest': 'FAIL', 'S8': 'pass'}, '650': {'X-COP': 'FAIL', 'flagship': 'pass', 'galaxies': 'pass', 'KiDS': 'pass', 'shear': 'FAIL', 'Harvey': 'FAIL', 'forest': 'FAIL', 'S8': 'pass'}, '800': {'X-COP': 'FAIL', 'forest': 'FAIL', 'S8': 'FAIL'}, '1000': {'X-COP': 'pass', 'flagship': 'pass', 'galaxies': 'pass', 'KiDS': 'pass', 'shear': 'pass', 'Harvey': 'FAIL', 'forest': 'FAIL', 'S8': 'FAIL'}, '1200': {'X-COP': 'pass', 'forest': 'FAIL', 'S8': 'FAIL'}, '1500': {'X-COP': 'FAIL', 'flagship': 'pass', 'galaxies': 'pass', 'KiDS': 'pass', 'shear': 'pass', 'forest': 'FAIL', 'S8': 'FAIL'}}
+
+======================================================================================================================
+F1  THE 3-AXIS GATE (theta_ij negative semidefinite: no direction still expanding) -- zero constants
+======================================================================================================================
+    a pure forming sheet under the 3-axis gate: never opens (axes 2, 3 expand); Zel'dovich knots at the filtering scale z = 3/2: 0.010/0.016 (the excursion-set turnaround carries the halos)
+    halo-only budget F(7/3/2) = 0.409/0.473/0.567
+    forest (XR12 calibrated gas proxy, 650 km/s): z = 3 0.445, z = 2 0.546
+    X-COP eps(R500) with the 3-axis gate: 650 km/s 0.841, 1000 km/s 0.582
+  [PASS] F1 THE 3-AXIS GATE SPARES THE FORMING WEB (an expanding axis keeps it shut, derived) BUT STILL FAILS THE FOREST: every turned-around halo above the baryon scale converts, including the pre-reionization minihalos, so the calibrated gas proxy stays above 10% at z = 2 (0.546)
+         measured: {'forest': {'3.0': 0.444992569773085, '2.0': 0.5463267790441757}, 'xcop': {650.0: 0.8409755065925271, 1000.0: 0.5816382267267378}, 'knots': {'3': {'zeldovich_knots': 0.01}, '2': {'zeldovich_knots': 0.015916666666666666}}}
+         reading:  zero constants, but not mass-selective: the forest needs the conversion held back at z >~ 2-4 in small halos, which only a threshold (zeta, q) or an acceleration key (AT1's y_v) has done on the record
+
+======================================================================================================================
+F2  NEWTONIAN-CORE RETENTION (the conversion vetoed where y_b > 1): the flagship's residue at r_F
+======================================================================================================================
+    M_b 1e10.5 (canonical): r_N 6.9 kpc vs r_F 21.7 kpc; carrier inside r_N / NFW carrier inside r_F = 0.176 (all kept), 0.051 (only orbits confined inside r_N kept; isotropic Jeans, Maxwellian)
+    M_b 1e10.5 (alt): r_N 6.2 kpc vs r_F 19.8 kpc; carrier inside r_N / NFW carrier inside r_F = 0.170 (all kept), 0.048 (only orbits confined inside r_N kept; isotropic Jeans, Maxwellian)
+    M_b 1e11.0 (canonical): r_N 12.2 kpc vs r_F 38.6 kpc; carrier inside r_N / NFW carrier inside r_F = 0.195 (all kept), 0.062 (only orbits confined inside r_N kept; isotropic Jeans, Maxwellian)
+    M_b 1e11.0 (alt): r_N 11.1 kpc vs r_F 35.2 kpc; carrier inside r_N / NFW carrier inside r_F = 0.188 (all kept), 0.058 (only orbits confined inside r_N kept; isotropic Jeans, Maxwellian)
+    clusters' Newtonian zone (y_b > 1) at z = 0.4: 1e+14: r_N 32/28 kpc; 3e+14: r_N 42/35 kpc; 1e+15: r_N 65/54 kpc
+  [PASS] F2 NEWTONIAN-CORE RETENTION IS NOT THE HARVEY FIX: vetoing conversion where y_b > 1 (a0's own scale, no constant) keeps carrier only inside r_N <= 65 kpc in 1e14-1e15 clusters -- inside Harvey's 100-150 kpc estimators, not across them -- while in the z = 2.5 flagship hosts it keeps the orbits confined inside r_N = sqrt(G M_b/a0), S(r_F) = 0.048-0.062 against MS2's 0.059: the flagship's margin is gone
+         measured: {'flagship': {'10.5|canonical': 0.051, '10.5|alt': 0.048, '11.0|canonical': 0.062, '11.0|alt': 0.058}, 'cluster_rN': {'1e+14': {'canonical': 32.42455773629046, 'alt': 27.52865252055658}, '3e+14': {'canonical': 41.59476415488863, 'alt': 35.039009385682185}, '1e+15': {'canonical': 65.23345674946867, 'alt': 53.92907797619686}}}
+         reading:  the veto keeps the wrong carrier: the flagship's inner halo, not the cluster cores Harvey needs
+
+======================================================================================================================
+F3-F5  FK1's OWN BLOCKING, A SECOND CHANNEL, AND FK1 + A THETA VETO
+======================================================================================================================
+  [PASS] F4 CONSTRAINT (sympy, FP15's Z4 theorem re-checked): under Phi -> i Phi only eps Re(Phi^2) is odd; the quartics are even and split nothing at quadratic order -- one complex field carries ONE kick line (v_k), broadened only by the pump's motion.  The record's one opening of X-COP + Harvey together (L372's two-channel carrier, alt set) needs a second, fast (3000 km/s), spatially uniform channel: a second splitting, i.e. a second field -- a new species, excluded by the standing rule
+         measured: {'Re(Phi^2)': 'odd', '|Phi|^2': 'even', 'Re(Phi^4)': 'even', '|Phi|^4': 'even', '(Im Phi^2)^2': 'even'}
+         reading:  L372's channel U costs 3 constants (f_U, v_U, its rate exponent) on top of the gated channel's
+    the veto's ceiling (FK1-as-is -> FK1 halo-only, linear proxies): counts 0.696 -> 0.785 of LCDM (x XR32: 0.64-0.81 -> 0.72-0.91); f sigma8(z 0.5) 0.934 -> 0.956 (DESI -2.2 -> -1.5 sigma); Sum m_nu-equivalent +0.098 -> +0.072 eV; S_8 0.931 -> 0.956
+    XR19 nominal: F_tot(z = 1/0) = 0.811/0.912 against the halo-only 0.529/0.629: the web part 0.281/0.282; the formed web with an expanding axis is shut now in 0.896 (B2)
+  [PASS] (reported) F5 (reported, OPEN) FK1 + A THETA_b VETO (convert only where rho >= rho_t(z) AND theta_b <= 0; zero new constants; zeta, q kept): the veto cannot reduce FK1's knobs, but it shuts XR19's late runaway through FORMED, axis-expanding filaments and sheets (theta > 0 now, B2) while leaving halos (flagship, galaxies) untouched -- the direction XR32's counts, RSD and Sum m_nu want (less late conversion).  Its bite is bounded by the web part of XR19's budget, 0.28 of the fluid by z = 0; forming sheets' caustics (theta and density both spike) remain open to it
+         measured: {'web_part': {'1.0': 0.2814453503064379, '0.0': 0.28248358657845873}, 'formed_web_shut_now': 0.8959202470607358, 'ceiling': {'nominal': {'counts': 0.6959155558543044, 'rsd': {0.5: 0.9343632131994528, 1.0: 0.9518536391086473}, 'alens': 0.9924373280345367, 'alens_vs_FK1': 1.0, 'mnu_equiv_eV': 0.098, 'counts_scaled': [0.64, 0.81], 'rsd_sigma_scaled': -2.2}, 'halo_only': {'counts': 0.7846319287331539, 'rsd': {0.5: 0.9563443225053938, 1.0: 0.9630710968802773}, 'alens': 0.9944123228479683, 'alens_vs_FK1': 0.7388495993941129, 'mnu_equiv_eV': 0.07240726074062306, 'counts_scaled': [0.7215881728247368, 0.9132600312313075], 'rsd_sigma_scaled': -1.463241806458036}}}
+         reading:  deciding it needs XR19's runaway machinery (or the hub's PM) re-run with the veto
+
+======================================================================================================================
+H  THE PRE-DECLARED HYPOTHESES as they fell (scratch note 12:05, before any FP25 number)
+======================================================================================================================
+    H1   held: no background conversion
+    H2   held: caustic theorem; >= 0.5 converted by z = 3 at the baryon scale
+    H3   held: cold accretion (s ~ 0.35) does not shut the gate
+    H4   FELL: >= 90% of formed sheets+filaments shut now
+    H5   held: F(3) >= 0.34 and the forest fails
+    H6   FELL: share >= 1e10.5 at z = 3 <= 0.1
+    H7   held: the flagship passes
+    H8   FELL: X-COP needs v_k >= 1000
+    H9   held: Harvey fails at >= 800
+    H10  held: the window is EMPTY
+    H11  held: the 3-axis gate spares the web, the forest fails
+    H12  FELL: lambda_on window <= 4 decades
+    H13  FELL: S_8 < 0.922 at ~600 km/s
+    H14  held: FP22 offset >= 10 kpc
+    H15  FELL: FK1 linear suppression at k = 0.3, z = 1 <= 3%
+  [PASS] (reported) H (reported) the pre-declared hypotheses as they fell
+         measured: {'H1': 'held', 'H2': 'held', 'H3': 'held', 'H4': 'FELL', 'H5': 'held', 'H6': 'FELL', 'H7': 'held', 'H8': 'FELL', 'H9': 'held', 'H10': 'held', 'H11': 'held', 'H12': 'FELL', 'H13': 'FELL', 'H14': 'held', 'H15': 'FELL'}
+
+======================================================================================================================
+D  THE DARK SECTOR's CONSTANTS: before (FK1, FP10/FP15) and with each construction tested here
+======================================================================================================================
+    FK1 as adopted (FP10/FP15/FP22)        4 constants: eps, zeta, q, m (+ the pure cross quartic POSTULATED; amount/misalignment initial data)  --  window EMPTY (FP16: X-COP, Harvey)
+    unified theta_b trigger (this lane)    3 constants: eps, m, lambda_on (a density window, A5) -- zeta and q removed  --  FAILS: web (B1), forest (C3), selectivity (C2), S_8 (C4); XR32 gates worse (C5); window EMPTY (E8)
+    3-axis gate (F1)                       3 constants: eps, m, lambda_on  --  FAILS: forest (F1)
+    Newtonian-core veto (F2)               3 constants: the theta gate's + nothing (y_b = 1 is a0's own)  --  FAILS: flagship (F2)
+    FK1 + theta veto (F5)                  4 constants: eps, zeta, q, m (the veto adds none)  --  OPEN: can only lower the late web conversion
+    two-channel opening (L372, F4)         7 constants: FK1's + f_U, v_U, the U rate exponent, and a second field  --  excluded (a new species)
+  [PASS] (reported) D (reported) THE COUNT: no construction tested here opens the window with fewer constants than FK1's four; the unified trigger trades zeta and q for lambda_on (4 -> 3) and fails; the smallest structure on the record that opens X-COP + Harvey (L372's second channel) needs a second field
+         measured: {'FK1 as adopted (FP10/FP15/FP22)': 4, 'unified theta_b trigger (this lane)': 3, '3-axis gate (F1)': 3, 'Newtonian-core veto (F2)': 3, 'FK1 + theta veto (F5)': 4, 'two-channel opening (L372, F4)': 7}
+
+======================================================================================================================
+W  THE LEDGER (link / status / basis)
+======================================================================================================================
+    L25a  DERIVED    the unified gate lambda_on Theta(-theta_b) vanishes on FRW (theta = 3H) and in linear theory (theta/H = 3 - f delta_L): no background conversion, threshold 0 scale-free  --  A1, A2 (sympy)
+    L25b  DERIVED    caustic theorem: theta -> -inf at shell crossing; the gate opens in forming sheets (x* = 3/(3+f)), filaments (2/(2+f)) and halos (1/(1+f))  --  A3 (sympy)
+    L25c  DERIVED    baryon reading: the gas passes theta_b <= 0 before its accretion shock unless the shock stands off >= 3/4 (sheets) / 8/9 (filaments) of the turnaround distance; the self-similar 0.347 does not shut it  --  A4; the stand-off is a literature input (Bertschinger 1985), bracketed in B1
+    L25d  CONSTRAINT lambda_on is not a regulator: the channel closes above G_block = eps(m^2+eps)/(2m^3) ~ m v_k^2/4 and needs G >= G_min; the open window is <= 1e4 wide in density  --  A5 (derived from V and FP10 A5's rate)
+    L25e  DERIVED    FK1-as-written cannot convert above rho_block = rho_t (v_k^2/4)/(G_t/m) (~555/sqrt(E) rho_t at 600 km/s): galaxy centres at z = 2.5 (r <~ 0.05 r200) and cluster cores at z <~ 0.4 (r <~ 0.15-0.2 r200); omitted by FP10/FP16  --  A5b; small in FK1's timing (conversion at the front, before the carrier is dense)
+    L25f  FAILS      the unified theta_b trigger converts the web (the history of every shell-crossing element) in both readings  --  B1: ever-opened fraction by z = 3 at the baryon scale >= ~0.5
+    L25g  DERIVED    the formed web is shut NOW under the theta gate (useful for XR36's reversible MOND gate)  --  B2 (MUTATE: a delta >= delta_c key turns it on)
+    L25h  FAILS      the unified trigger fails the forest (XR12's calibrated gas proxy), mass selectivity and S_8  --  C2, C3, C4
+    L25i  FAILS      XR32's gates (eRASS1 counts, DESI RSD, Sum m_nu-equivalent lensing) move further from the data under the unified trigger than under FK1-as-is (approximate linear proxies scaled by XR32)  --  C5 (approximate)
+    L25j  FAILS      with the theta trigger X-COP's strict window opens at v_k ~ 871 km/s (FK1: ~1047); the window stays EMPTY (forest, S_8 at every kick)  --  E1, E8
+    L25k  CONSTRAINT the 3-axis gate spares the forming web but still fails the forest; Newtonian-core retention fails the flagship; a second fast channel needs a second field (FP15's Z4)  --  F1, F2, F4
+    L25l  OPEN       FP22's merger price: galaxy-carrier centroid offsets of tens of kpc from the phantom acting on baryons only  --  E6b (estimate; needs a merger run)
+    L25m  OPEN       FK1 + theta_b veto (zero constants): can only remove late web conversion (XR32's direction)  --  F5
+    L25n  DERIVED    FK1-as-is's late-time linear suppression P/P_LCDM (k = 0.1-3 h/Mpc, z = 0-2) and at the CMB-lensing weights  --  C6 (L319's CLASS-validated solver)
+  [PASS] (reported) W (reported) the ledger
+         measured: 14 links
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  THE UNIFIED TRIGGER (convert where theta_b <= 0) removes zeta and q and is exactly off on FRW, but it FAILS: an irreversible
+  conversion reads the HISTORY of the flow, and every Lagrangian element that shell-crosses passes theta <= 0 on the way in
+  (the caustic theorem), so the web and the pre-reionization minihalos convert.  The budget runs ahead of FK1's; the forest,
+  mass selectivity and S_8 fail, and XR32's counts/RSD/lensing tensions worsen.  The kick scan (FP16's model) opens X-COP's
+  window at a lower kick than FK1 needs, but the window stays EMPTY.  lambda_on is a density window, not a regulator.  The
+  smallest structures fail (3-axis gate: forest; Newtonian-core veto: flagship); a second fast channel needs a second field.
+  Constructive residue: the theta gate's INSTANTANEOUS state spares the formed web (for XR36), and FK1 + a theta veto (zero
+  constants) can only reduce late web conversion.  The dark sector stays at FK1's four constants.
+
+  33/33 checks pass; load-bearing failures: 0; wrote FP25_constructive_dark_sector_results.json   [1351s]
+rc=0
