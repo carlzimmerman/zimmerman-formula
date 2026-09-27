@@ -1,0 +1,242 @@
+{
+ "lane": "XR25/radiation",
+ "mutate": true,
+ "checks": {
+  "R-K1 CONTROL: the residue form of the work done by the source, applied to the TT sector (L_TT = (1/2)(hdot^2 - h'^2) per 1/16 pi G, source (1/2) h_ij T^ij, T^ij = -(omega^2/2) Q^ij), gives Einstein's quadrupole formula P = (G/5) <Q''' Q'''> for a random complex traceless Q (angular integral over the TT projector done numerically)": {
+   "ok": true,
+   "measured": "P_residue / P_Einstein = 1.0000000000",
+   "load_bearing": true
+  },
+  "R-K2 CONTROL (literature): at three finite-c_2 khronometric points the pure khronometric block (re-derived) and the residue form reproduce Yagi et al. 2014's eqs. (121)-(124): the dipole coefficient C = 4/(3 c_s^3 alpha (2 - alpha)) and the scalar A_1 term 3 alpha (Z - 1)^2/(2 c_s (2 - alpha)), Z = (alpha_1 - 2 alpha_2)/(-3 alpha), to 1e-8": {
+   "ok": true,
+   "measured": "(0.1, 0.1): C ratio 1.000000000000, A ratio 1.000000000000; (0.02, 0.01): C ratio 1.000000000000, A ratio 1.000000000000; (0.25, 2.0): C ratio 1.000000000000, A ratio 1.000000000000",
+   "load_bearing": true
+  },
+  "R-K3 CONTROL: the chain's c_2 = oo block (FP14's multiplier form + FP7's AQUAL sector) has det = 128 k^6 D with D = -3 alpha_c lambda W^2 + [3 alpha_c C_phi + (2 - alpha_c)(lambda + 3 sigma^2)] k^2 W - (2 - alpha_c) C_phi k^4; with the MOND sector filtered (sigma = 0) the khronon pole's residues are Res_nn = 1/(3 alpha_c^2) and Res_q = 1/12 for every lambda and C_phi -- exactly Yagi's C and A_1 at lambda_BPS = oo; the cofactor responses used below equal sympy's direct inverse": {
+   "ok": true,
+   "measured": "Res_nn 1/(3*alpha_c**2), Res_q 1/12; max |closed form - direct| = 1.4e-38; D as typed: True",
+   "load_bearing": true
+  },
+  "R-K3b CONTROL: the numerical engine (k-scan + mpmath root, residues from the cofactor forms, implicit dW/dk) returns, at sigma = 0 and alpha_c = 3.2e-9, exactly Yagi's C = sqrt(3 alpha/2)(1 + O(alpha)) and A_1-scalar = 3 alpha^3/(2 c_s (2 - alpha)^3)": {
+   "ok": true,
+   "measured": "C 6.92820325799e-5 vs 6.92820325799e-5; A 4.25668808852e-31 vs 4.25668808852e-31; branches 1",
+   "load_bearing": true
+  },
+  "S1 the TOV stars (Read+09's SLy core fit, simplified crust; M_max = 2.060 Msun, 2.01 supported) have Komar mass = gravitational mass to 1e-4 (the lapse flux int D_i(N a^i) = 4 pi G M_Komar is the gravitational mass)": {
+   "ok": true,
+   "measured": "J1738+0333:p: +5.2e-11; J0348+0432:p: +1.2e-10; J0737-3039A/B:p: +4.1e-11; J0737-3039A/B:c: +3.7e-11; GW170817:1: +5.2e-11; GW170817:2: +3.8e-11",
+   "load_bearing": true
+  },
+  "S2 (H3) THE KHRONON SENSITIVITIES ARE O(alpha_c): with the core's alpha_1 = -4 alpha_c and alpha_2 = alpha_c (2 alpha_c - 1)/(2 - alpha_c), Foster's weak-field s = (alpha_1 - 2 alpha_2/3) Omega/m = (11/3) alpha_c |Omega/m| (1 + O(alpha_c)); the strong-field bracket x3 (Yagi+14 Fig. 1: the weak-field form underestimates by up to 200%); at alpha_c = 0 they vanish exactly (the khronon is a stealth field on GR's stars and black holes: Franchini, Herrero-Valea & Barausse 2021, PRD 103, 084012; Ramos & Barausse 2019, PRD 99, 024034)": {
+   "ok": true,
+   "measured": "s/alpha_c for J1738+0333's pulsar: 0.433 (weak field) = (11/3) x 0.1181",
+   "load_bearing": true
+  },
+  "S3 (H3) THE MOND SCALAR HAS NO CHARGE OF ITS OWN: phi couples to matter only through the chassis (2 - alpha_c)(2 a.Dchi - |Dchi|^2), so its source is S^T D_i(N (a^i - D^i chi)) whose total is the lapse flux 4 pi G M_Komar = 4 pi G M (S1: Komar = gravitational mass for every star) -- a universal charge-to-mass ratio: phi's dipole is the gravitational-mass dipole, conserved, and the only SEP-violating input is the khronon's sensitivity (which the block carries into phi)": {
+   "ok": true,
+   "measured": "Gauss's law on the chassis source + S1",
+   "load_bearing": true
+  },
+  "B1 (H4) J1738+0333: the core's total deviation of P_b-dot from GR (dipole with the MOND sector live and the 3x strong-field sensitivity bracket, scalar quadrupole, O(alpha_c) quadrupole corrections), worst over the regulator window, xi, lambda, both footings and both channels, is < 1e-6 of GR -- far below the measured 0.13 (1 sigma)": {
+   "ok": false,
+   "measured": "total 1.05e+04 = 8.1e+04 of the error",
+   "load_bearing": true
+  },
+  "B2 (H4) J0348+0432: the core's total deviation of P_b-dot from GR (dipole with the MOND sector live and the 3x strong-field sensitivity bracket, scalar quadrupole, O(alpha_c) quadrupole corrections), worst over the regulator window, xi, lambda, both footings and both channels, is < 1e-6 of GR -- far below the measured 0.18 (1 sigma)": {
+   "ok": false,
+   "measured": "total 9.35e+03 = 5.2e+04 of the error",
+   "load_bearing": true
+  },
+  "B3 (H4) J0737-3039A/B: the core's total deviation of P_b-dot from GR (dipole with the MOND sector live and the 3x strong-field sensitivity bracket, scalar quadrupole, O(alpha_c) quadrupole corrections), worst over the regulator window, xi, lambda, both footings and both channels, is < 1e-6 of GR -- far below the measured 6.3e-05 (1 sigma)": {
+   "ok": false,
+   "measured": "total 1.27e+03 = 2.0e+07 of the error",
+   "load_bearing": true
+  },
+  "I1 (H6) GW170817: at LIGO frequencies the radiated scalar is the pure khronon (the filter is exponentially closed), so B = (5/32) C (s1 - s2)^2 with C = sqrt(3 alpha_c/2) and s = O(alpha_c): B <= 1e-10 x the bound B <= 1.2e-5 (Abbott et al. 2019, PRL 123, 011102) over the window; GW170817 alone bounds alpha_c only at the 1e-2 level (x3 strong-field bracket)": {
+   "ok": false,
+   "measured": "alpha_c 2.0e-02: B 7.6e-03",
+   "load_bearing": true
+  },
+  "I2 (reported) GWTC binary black holes are NOT used: their -1PN bounds need black-hole sensitivities; at alpha_c = 0 these vanish exactly (stealth khronon), at alpha_c > 0 with c_2 = oo the slowly moving black hole is not established (XR25_cmc_compact_objects: the O(alpha_c) multiplier is log-singular at the universal horizon in strict perturbation theory).  If s_BH = O(alpha_c) as for neutron stars, B_BBH = O(alpha_c^2.5) <~ 1e-21: unobservable either way": {
+   "ok": true,
+   "measured": "not applied",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "R-K2": [
+   {
+    "alpha": 0.1,
+    "lam": 0.1,
+    "C_mine": 9.346445722669738,
+    "C_yagi": 9.346445722669737,
+    "A_mine": 0.014142648132987105,
+    "A_yagi": 0.014142648132987101
+   },
+   {
+    "alpha": 0.02,
+    "lam": 0.01,
+    "C_mine": 98.86323461919527,
+    "C_yagi": 98.86323461919528,
+    "A_mine": 0.010135978094796282,
+    "A_yagi": 0.010135978094796284
+   },
+   {
+    "alpha": 0.25,
+    "lam": 2.0,
+    "C_mine": 1.3164476883042473,
+    "C_yagi": 1.3164476883042469,
+    "A_mine": 0.005876998608501103,
+    "A_yagi": 0.005876998608501102
+   }
+  ],
+  "R-K3": {
+   "D": "3*C_phi*W*alpha_c*kk**2 + C_phi*alpha_c*kk**4 - 2*C_phi*kk**4 - 3*W**2*alpha_c*lambda - W*alpha_c*kk**2*lambda - 3*W*alpha_c*kk**2*sigma**2 + 2*W*kk**2*lambda + 6*W*kk**2*sigma**2",
+   "Res_nn": "1/(3*alpha_c**2)",
+   "Res_q": "1/12"
+  },
+  "S2": {
+   "J1738+0333:p": {
+    "2.0e-02": [
+     0.010271744688996122,
+     0.030815234066988363
+    ]
+   },
+   "J0348+0432:p": {
+    "2.0e-02": [
+     0.016147301189777783,
+     0.04844190356933335
+    ]
+   },
+   "J0737-3039A/B:p": {
+    "2.0e-02": [
+     0.009221446863584448,
+     0.027664340590753345
+    ]
+   },
+   "J0737-3039A/B:c": {
+    "2.0e-02": [
+     0.008484306609129022,
+     0.025452919827387066
+    ]
+   },
+   "GW170817:1": {
+    "2.0e-02": [
+     0.010271744688996122,
+     0.030815234066988363
+    ]
+   },
+   "GW170817:2": {
+    "2.0e-02": [
+     0.008656436621887515,
+     0.025969309865662545
+    ]
+   }
+  },
+  "M3": [],
+  "M4": [],
+  "B": {
+   "J1738+0333": {
+    "worst": 10476.409052586969,
+    "parts": {
+     "alpha_c": 0.02,
+     "dipole": 10476.32728614074,
+     "scalar_quad": 0.010135978094796284,
+     "O_alpha": 0.07163046813397672,
+     "v": 0.0011832822856708725,
+     "C": 98.86323461919528,
+     "ds2": 0.0009495786506032802
+    },
+    "err": 0.13,
+    "ratio": 80587.76194297668,
+    "src": "Antoniadis et al. 2012 (MNRAS 423, 3316) masses; Freire et al. 2012 (MNRAS 423, 3328): Pb-dot int/GR = 0.93 +- 0.13"
+   },
+   "J0348+0432": {
+    "worst": 9352.225923032442,
+    "parts": {
+     "alpha_c": 0.02,
+     "dipole": 9352.108903247208,
+     "scalar_quad": 0.010135978094796284,
+     "O_alpha": 0.1068838071386667,
+     "v": 0.00196876483628634,
+     "C": 98.86323461919528,
+     "ds2": 0.0023466180214205914
+    },
+    "err": 0.18,
+    "ratio": 51956.81068351357,
+    "src": "Antoniadis et al. 2013 (Science 340, 1233232): masses; Pb-dot obs/GR = 1.05 +- 0.18"
+   },
+   "J0737-3039A/B": {
+    "worst": 1272.4587058718557,
+    "parts": {
+     "alpha_c": 0.02,
+     "dipole": 1272.3832412125796,
+     "scalar_quad": 0.010135978094796284,
+     "O_alpha": 0.06532868118150668,
+     "v": 0.0020849135521194737,
+     "C": 98.86323461919528,
+     "ds2": 0.00036787370353626376
+    },
+    "err": 6.3e-05,
+    "ratio": 20197757.2360612,
+    "src": "Kramer et al. 2021 (PRX 11, 041050): masses; Pb-dot int/GR = 0.999963 +- 0.000063"
+   }
+  },
+  "I1": {
+   "rows": {
+    "2.0e-02": {
+     "C": 98.86323461919528,
+     "ds2": 0.0004910123042130077,
+     "B": 0.007584853848800355,
+     "dphi": -0.004334202199314489
+    }
+   },
+   "B_bound": 1.2e-05,
+   "alpha_c_bound_from_GW170817": null,
+   "src": "Abbott et al. (LVC) 2019, PRL 123, 011102: F = F_GR (1 + B c^2/v^2), delta-phi_-2 = -4B/7, B <= 1.2e-5 (90%)"
+  }
+ },
+ "ledger": [
+  {
+   "link": "XR25-R1",
+   "what": "the residue form reproduces Einstein's quadrupole formula and Yagi+14's khronometric C and A_1 exactly",
+   "status": "DERIVED",
+   "basis": "R-K1-R-K3"
+  },
+  {
+   "link": "XR25-R2",
+   "what": "at c_2 = oo the khronon's dipole coefficient is C = sqrt(3 alpha_c/2), lambda- and C_phi-free; the scalar quadrupole term 3 alpha_c^3/(2 c_s (2 - alpha_c)^3)",
+   "status": "DERIVED",
+   "basis": "R-K3"
+  },
+  {
+   "link": "XR25-R3",
+   "what": "neutron-star sensitivities (11/3) alpha_c |Omega/m| (x3 strong-field bracket); the MOND scalar has no charge of its own (lapse-flux = Komar mass)",
+   "status": "DERIVED",
+   "basis": "S1-S3"
+  },
+  {
+   "link": "XR25-R4",
+   "what": "with the MOND sector live the pulsars' scalar radiation moves to the filter's transition branch for xi <~ 1.6 pc; every contribution to P_b-dot stays < 1e-6 of GR (J1738+0333, J0348+0432, J0737-3039A/B)",
+   "status": "DERIVED",
+   "basis": "M2, B1-B3"
+  },
+  {
+   "link": "XR25-R5",
+   "what": "GW170817: B <= 1e-10 of its bound; the -1PN test bounds alpha_c only at ~1e-2",
+   "status": "DERIVED",
+   "basis": "I1"
+  },
+  {
+   "link": "XR25-R6",
+   "what": "slow binaries in deep-MOND fields radiate more scalar than tensor power (unobservable)",
+   "status": "DERIVED (prediction)",
+   "basis": "M4"
+  }
+ ],
+ "verdict_counts": {
+  "n_checks": 12,
+  "n_fail_load_bearing": 4,
+  "n_fail_reported": 0
+ }
+}

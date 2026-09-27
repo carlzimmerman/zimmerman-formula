@@ -1,0 +1,188 @@
+XR25 (2 of 4) -- NEUTRON-STAR SENSITIVITIES, DIPOLE AND SCALAR-QUADRUPOLE RADIATION OF THE CHAIN'S FINAL CORE, THE THREE
+PULSARS, AND THE INSPIRAL (-1PN) BOUND FROM GW170817.
+
+THE CORE: FP14's (see XR25_ppn_preferred_frame): c_2 -> oo (CMC multiplier), alpha_c in [8.2e-16, 3.2e-9], xi in
+[0.0243 / 0.0268 pc, 100 pc], lambda in [0, 274.8].  Matter couples to g only; the MOND scalar phi has no direct matter
+coupling -- it is sourced through the perfect-square chassis by the lapse acceleration a_m = D_m ln N.  Both a0 footings
+(9.3603e-11 / 1.1312e-10 m/s^2) enter through C_phi at the pulsars' Galactic field.
+
+METHOD.  The scalar sector's radiation is computed from the chain's own quadratic block (unitary gauge, Minkowski, frozen
+C_phi, heat filter sigma(k) = exp(-xi^2 k^2/2)), by the pole-residue form of the work done by the source:
+  P = (pi omega/2) Int d^3k/(2 pi)^3 Res_{omega^2}[ j^dagger (M/16 pi G)^{-1} j ](k) delta(omega^2 - omega_k^2),
+  j = (rho, T^kk, d_i T^0i) on (n, psi, B), phi and mu unsourced.  The dispersion is solved in k at fixed omega with sigma(k)
+  live (the filter makes it strongly dispersive: a MOND-dominated branch at k xi ~ 3 when omega xi/c is O(1e3), the pure
+  khronon branch c_s^2 = (2 - alpha_c)/(3 alpha_c) otherwise).  Dipole source (frequency Omega): rho = i k (k-hat . d),
+  d = Sum_A sigma_A m_A x_A (the sensitivities' non-conserved energy dipole; Yagi+14's Sigma-dot); quadrupole source (2 Omega):
+  rho = -(1/2) k_i k_j Q^ij with the momentum from conservation.
+
+PRE-DECLARED HYPOTHESES (written before the first full run)
+  H1  The residue machinery reproduces GR's quadrupole formula (TT sector) and Yagi+14's khronometric dipole coefficient
+      C = 4/(3 c_s^3 alpha (2 - alpha)) and scalar A_1-term 3 alpha (Z - 1)^2/(2 c_s (2 - alpha)) exactly (controls).
+  H2  At c_2 = oo with the MOND sector filtered off the dipole coefficient is Yagi's at lambda_BPS = oo: C = sqrt(3 alpha_c/2)
+      (1 + O(alpha_c)), independent of lambda and C_phi; the scalar quadrupole term is O(alpha_c^3.5).
+  H3  The khronon sensitivities are O(alpha_c): s = (alpha_1 - 2 alpha_2/3) Omega/m (Foster 2007) = (11/3) alpha_c |Omega/m|
+      in the weak field, up to ~3x that in the strong field (Yagi+14 Fig. 1); exactly 0 at alpha_c = 0 (stealth khronon).
+      The MOND scalar has no charge of its own: its source is the lapse-flux (Komar) mass, universal, so its dipole is fed only by
+      the khronon's sensitivities (through the block).
+  H4  With the MOND sector live the radiated scalar power changes (a MOND-dominated transition branch for xi <~ 1.6 pc at
+      binary-pulsar frequencies), but every contribution to P_b-dot stays < 1e-6 of GR for J1738+0333, J0348+0432 and
+      J0737-3039A/B, far below their measurement errors (13%, 18%, 6.3e-5).
+      [Re-specified before the first COMPLETED main run: an exploratory dispersion scan (after the first main run crashed in M2)
+      showed the transition branch also at xi = 100 pc when alpha_c = 8.2e-16 (k xi ~ 5); M2 now classifies each cell by
+      whether the filter is open on its radiated branch (sigma >= 1e-10) instead of by xi.]
+  H5  The strong-field regime (the scalar unfiltered at y >> 1, C_phi ~ 2y or 8y^2) reduces the MOND sector to the khronon.
+  H6  GW170817's dipole bound B <= 1.2e-5 (90%) is passed by ~15+ orders; it bounds alpha_c only weakly.
+  H7  (expected FAIL-type control) Khronometric couplings at the generic values the literature studied (alpha = 0.02,
+      lambda = 0.01, finite) violate J1738+0333 through dipole radiation (the MUTATE).
+
+====================================================================================================================
+R-K1  CONTROL: GR's quadrupole formula from the residue machinery (TT sector)
+====================================================================================================================
+  [PASS] R-K1 CONTROL: the residue form of the work done by the source, applied to the TT sector (L_TT = (1/2)(hdot^2 - h'^2) per 1/16 pi G, source (1/2) h_ij T^ij, T^ij = -(omega^2/2) Q^ij), gives Einstein's quadrupole formula P = (G/5) <Q''' Q'''> for a random complex traceless Q (angular integral over the TT projector done numerically)
+         measured: P_residue / P_Einstein = 1.0000000000
+
+====================================================================================================================
+R-K2  CONTROL: Yagi+14's khronometric dipole C and scalar A_1 term, from the pure khronometric block (finite c_2)
+====================================================================================================================
+    alpha 0.100, lambda 0.100: C = 9.3464457227e+00 (Yagi 9.3464457227e+00); A_1 scalar = 1.4142648133e-02 (Yagi 1.4142648133e-02)
+    alpha 0.020, lambda 0.010: C = 9.8863234619e+01 (Yagi 9.8863234619e+01); A_1 scalar = 1.0135978095e-02 (Yagi 1.0135978095e-02)
+    alpha 0.250, lambda 2.000: C = 1.3164476883e+00 (Yagi 1.3164476883e+00); A_1 scalar = 5.8769986085e-03 (Yagi 5.8769986085e-03)
+  [PASS] R-K2 CONTROL (literature): at three finite-c_2 khronometric points the pure khronometric block (re-derived) and the residue form reproduce Yagi et al. 2014's eqs. (121)-(124): the dipole coefficient C = 4/(3 c_s^3 alpha (2 - alpha)) and the scalar A_1 term 3 alpha (Z - 1)^2/(2 c_s (2 - alpha)), Z = (alpha_1 - 2 alpha_2)/(-3 alpha), to 1e-8
+         measured: (0.1, 0.1): C ratio 1.000000000000, A ratio 1.000000000000; (0.02, 0.01): C ratio 1.000000000000, A ratio 1.000000000000; (0.25, 2.0): C ratio 1.000000000000, A ratio 1.000000000000
+
+====================================================================================================================
+R-K3  CONTROL: the chain's c_2 = oo block -- closed-form responses; the MOND-filtered limit is Yagi's at lambda_BPS = oo
+====================================================================================================================
+    det M / (128 k^6) = 3*C_phi*W*alpha_c*kk**2 + C_phi*alpha_c*kk**4 - 2*C_phi*kk**4 - 3*W**2*alpha_c*lambda - W*alpha_c*kk**2*lambda - 3*W*alpha_c*kk**2*sigma**2 + 2*W*kk**2*lambda + 6*W*kk**2*sigma**2
+    sigma = 0, khronon pole W = (2 - alpha_c) k^2/(3 alpha_c): Res_nn = 1/(3*alpha_c**2), Res_q = 1/12
+  [PASS] R-K3 CONTROL: the chain's c_2 = oo block (FP14's multiplier form + FP7's AQUAL sector) has det = 128 k^6 D with D = -3 alpha_c lambda W^2 + [3 alpha_c C_phi + (2 - alpha_c)(lambda + 3 sigma^2)] k^2 W - (2 - alpha_c) C_phi k^4; with the MOND sector filtered (sigma = 0) the khronon pole's residues are Res_nn = 1/(3 alpha_c^2) and Res_q = 1/12 for every lambda and C_phi -- exactly Yagi's C and A_1 at lambda_BPS = oo; the cofactor responses used below equal sympy's direct inverse
+         measured: Res_nn 1/(3*alpha_c**2), Res_q 1/12; max |closed form - direct| = 1.4e-38; D as typed: True
+  [PASS] R-K3b CONTROL: the numerical engine (k-scan + mpmath root, residues from the cofactor forms, implicit dW/dk) returns, at sigma = 0 and alpha_c = 3.2e-9, exactly Yagi's C = sqrt(3 alpha/2)(1 + O(alpha)) and A_1-scalar = 3 alpha^3/(2 c_s (2 - alpha)^3)
+         measured: C 6.92820325799e-5 vs 6.92820325799e-5; A 4.25668808852e-31 vs 4.25668808852e-31; branches 1
+    [3 s]
+
+====================================================================================================================
+S  THE NEUTRON STARS (TOV, SLy-type) AND THE SENSITIVITIES
+====================================================================================================================
+    J1738+0333:p       M = 1.4600 Msun, R = 11.44 km, C = GM/Rc^2 = 0.1884, (M_b - M)/M = 0.1181, M_Komar/M - 1 = +5.2e-11
+    J0348+0432:p       M = 2.0100 Msun, R = 10.57 km, C = GM/Rc^2 = 0.2808, (M_b - M)/M = 0.1856, M_Komar/M - 1 = +1.2e-10
+    J0737-3039A/B:p    M = 1.3382 Msun, R = 11.47 km, C = GM/Rc^2 = 0.1723, (M_b - M)/M = 0.1060, M_Komar/M - 1 = +4.1e-11
+    J0737-3039A/B:c    M = 1.2489 Msun, R = 11.47 km, C = GM/Rc^2 = 0.1608, (M_b - M)/M = 0.0975, M_Komar/M - 1 = +3.7e-11
+    GW170817:1         M = 1.4600 Msun, R = 11.44 km, C = GM/Rc^2 = 0.1884, (M_b - M)/M = 0.1181, M_Komar/M - 1 = +5.2e-11
+    GW170817:2         M = 1.2700 Msun, R = 11.47 km, C = GM/Rc^2 = 0.1635, (M_b - M)/M = 0.0995, M_Komar/M - 1 = +3.8e-11
+  [PASS] S1 the TOV stars (Read+09's SLy core fit, simplified crust; M_max = 2.060 Msun, 2.01 supported) have Komar mass = gravitational mass to 1e-4 (the lapse flux int D_i(N a^i) = 4 pi G M_Komar is the gravitational mass)
+         measured: J1738+0333:p: +5.2e-11; J0348+0432:p: +1.2e-10; J0737-3039A/B:p: +4.1e-11; J0737-3039A/B:c: +3.7e-11; GW170817:1: +5.2e-11; GW170817:2: +3.8e-11
+    J1738+0333:p       s (weak-field .. x3): alpha_c 8.2e-16: 3.53e-16 .. 1.06e-15; alpha_c 1.0e-12: 4.33e-13 .. 1.30e-12; alpha_c 3.2e-09: 1.39e-09 .. 4.16e-09
+    J0348+0432:p       s (weak-field .. x3): alpha_c 8.2e-16: 5.55e-16 .. 1.66e-15; alpha_c 1.0e-12: 6.81e-13 .. 2.04e-12; alpha_c 3.2e-09: 2.18e-09 .. 6.53e-09
+    J0737-3039A/B:p    s (weak-field .. x3): alpha_c 8.2e-16: 3.17e-16 .. 9.50e-16; alpha_c 1.0e-12: 3.89e-13 .. 1.17e-12; alpha_c 3.2e-09: 1.24e-09 .. 3.73e-09
+    J0737-3039A/B:c    s (weak-field .. x3): alpha_c 8.2e-16: 2.91e-16 .. 8.74e-16; alpha_c 1.0e-12: 3.58e-13 .. 1.07e-12; alpha_c 3.2e-09: 1.14e-09 .. 3.43e-09
+    GW170817:1         s (weak-field .. x3): alpha_c 8.2e-16: 3.53e-16 .. 1.06e-15; alpha_c 1.0e-12: 4.33e-13 .. 1.30e-12; alpha_c 3.2e-09: 1.39e-09 .. 4.16e-09
+    GW170817:2         s (weak-field .. x3): alpha_c 8.2e-16: 2.97e-16 .. 8.92e-16; alpha_c 1.0e-12: 3.65e-13 .. 1.09e-12; alpha_c 3.2e-09: 1.17e-09 .. 3.50e-09
+  [PASS] S2 (H3) THE KHRONON SENSITIVITIES ARE O(alpha_c): with the core's alpha_1 = -4 alpha_c and alpha_2 = alpha_c (2 alpha_c - 1)/(2 - alpha_c), Foster's weak-field s = (alpha_1 - 2 alpha_2/3) Omega/m = (11/3) alpha_c |Omega/m| (1 + O(alpha_c)); the strong-field bracket x3 (Yagi+14 Fig. 1: the weak-field form underestimates by up to 200%); at alpha_c = 0 they vanish exactly (the khronon is a stealth field on GR's stars and black holes: Franchini, Herrero-Valea & Barausse 2021, PRD 103, 084012; Ramos & Barausse 2019, PRD 99, 024034)
+         measured: s/alpha_c for J1738+0333's pulsar: 0.433 (weak field) = (11/3) x 0.1181
+  [PASS] S3 (H3) THE MOND SCALAR HAS NO CHARGE OF ITS OWN: phi couples to matter only through the chassis (2 - alpha_c)(2 a.Dchi - |Dchi|^2), so its source is S^T D_i(N (a^i - D^i chi)) whose total is the lapse flux 4 pi G M_Komar = 4 pi G M (S1: Komar = gravitational mass for every star) -- a universal charge-to-mass ratio: phi's dipole is the gravitational-mass dipole, conserved, and the only SEP-violating input is the khronon's sensitivity (which the block carries into phi)
+         measured: Gauss's law on the chassis source + S1
+    [4 s]
+
+====================================================================================================================
+M  THE RADIATED SCALAR POWER WITH THE MOND SECTOR LIVE (the chain's block, c_2 = oo, heat filter in the dispersion)
+====================================================================================================================
+    J1738+0333: alpha_c = 3.2e-9, lambda = 0, canonical C_T = 4.51:
+      xi   0.0243 pc: dipole branch k xi = 3.13, sigma = 7.49e-03, v_phase/c = 164; C_eff/C_khronon = 8.17; A_s = 1.75e-20
+      xi   0.1000 pc: dipole branch k xi = 3.52, sigma = 2.04e-03, v_phase/c = 599; C_eff/C_khronon = 1.8; A_s = 1.51e-24
+      xi   1.0000 pc: dipole branch k xi = 4.1, sigma = 2.23e-04, v_phase/c = 5.14e+03; C_eff/C_khronon = 0.179; A_s = 5.85e-31
+      xi   1.6000 pc: dipole branch k xi = 4.23, sigma = 1.28e-04, v_phase/c = 7.97e+03; C_eff/C_khronon = 0.135; A_s = 2.99e-31
+      xi  10.0000 pc: dipole branch k xi = 14.6, sigma = 4.06e-47, v_phase/c = 1.44e+04; C_eff/C_khronon = 1; A_s = 4.26e-31
+      xi 100.0000 pc: dipole branch k xi = 146, sigma = 0.00e+00, v_phase/c = 1.44e+04; C_eff/C_khronon = 1; A_s = 4.26e-31
+    J0348+0432: alpha_c = 3.2e-9, lambda = 0, canonical C_T = 4.51:
+      xi   0.0243 pc: dipole branch k xi = 3.47, sigma = 2.40e-03, v_phase/c = 511; C_eff/C_khronon = 2.16; A_s = 4.77e-24
+      xi   0.1000 pc: dipole branch k xi = 3.84, sigma = 6.38e-04, v_phase/c = 1.91e+03; C_eff/C_khronon = 0.49; A_s = 4.04e-28
+      xi   1.0000 pc: dipole branch k xi = 5.07, sigma = 2.68e-06, v_phase/c = 1.44e+04; C_eff/C_khronon = 0.976; A_s = 4.26e-31
+      xi   1.6000 pc: dipole branch k xi = 8.1, sigma = 5.62e-15, v_phase/c = 1.44e+04; C_eff/C_khronon = 1; A_s = 4.26e-31
+      xi  10.0000 pc: dipole branch k xi = 50.6, sigma = 0.00e+00, v_phase/c = 1.44e+04; C_eff/C_khronon = 1; A_s = 4.26e-31
+      xi 100.0000 pc: dipole branch k xi = 506, sigma = 0.00e+00, v_phase/c = 1.44e+04; C_eff/C_khronon = 1; A_s = 4.26e-31
+    J0737-3039A/B: alpha_c = 3.2e-9, lambda = 0, canonical C_T = 4.51:
+      xi   0.0243 pc: dipole branch k xi = 3.47, sigma = 2.39e-03, v_phase/c = 512; C_eff/C_khronon = 2.16; A_s = 4.72e-24
+      xi   0.1000 pc: dipole branch k xi = 3.84, sigma = 6.37e-04, v_phase/c = 1.91e+03; C_eff/C_khronon = 0.489; A_s = 3.99e-28
+      xi   1.0000 pc: dipole branch k xi = 5.07, sigma = 2.57e-06, v_phase/c = 1.44e+04; C_eff/C_khronon = 0.977; A_s = 4.26e-31
+      xi   1.6000 pc: dipole branch k xi = 8.11, sigma = 5.03e-15, v_phase/c = 1.44e+04; C_eff/C_khronon = 1; A_s = 4.26e-31
+      xi  10.0000 pc: dipole branch k xi = 50.7, sigma = 0.00e+00, v_phase/c = 1.44e+04; C_eff/C_khronon = 1; A_s = 4.26e-31
+      xi 100.0000 pc: dipole branch k xi = 507, sigma = 0.00e+00, v_phase/c = 1.44e+04; C_eff/C_khronon = 1; A_s = 4.26e-31
+    over 648 cells: C_eff/C_khronon in [0.0972, 1.79e+04]; A_s <= 1.75e-20; lambda-spread of C_eff at fixed (pulsar, footing, channel, xi, alpha_c) <= 1.43e+05
+    filter closed on every radiated branch (sigma < 1e-10): 120 cells, all pure khronon: True; transition branch (sigma >= 1e-10): 528 cells, C_eff/C_kh in [0.0972, 1.79e+04]; their xi: [0.024281419855163956, 0.026832267367263626, 0.1, 1.0, 1.6, 10.0, 100.0], alpha_c: [8.151335388659955e-16, 1e-12, 3.2e-09]
+  [PASS] M2 (H4, re-specified -- see the disclosure) WITH THE MOND SECTOR LIVE the binary pulsars' scalar radiation changes character wherever the filter is open on the radiated branch (sigma >= 1e-10): the mode sits on the filter's MOND-dominated transition branch (k xi ~ 3-5) and the dipole coefficient differs from the khronon's; wherever the filter is closed on every radiated branch it is the pure khronon (C_eff = C_khronon to 1e-6).  No branch carries a negative spectral weight (beyond roundoff) and every coupled branch a positive one (outgoing flux); the scalar quadrupole term stays tiny
+         measured: C_eff/C_kh in [0.0972, 1.79e+04]; closed-filter cells pure khronon: True; A_s <= 1.7e-20; no negative spectral weight, positive on coupled branches: True
+    [79 s]
+
+====================================================================================================================
+M3  THE STRONG-FIELD REGIME: the scalar formally unfiltered at y >> 1 (C_phi = 2y transverse, ~8y^2 longitudinal)
+====================================================================================================================
+    y = 1e+03 C_T = 2.00e+03, alpha_c = 8.2e-16 (alpha_c C_phi = 1.6e-12): C_eff/C_khronon = 1.109e+06, A_s = 7.3e-12
+    y = 1e+03 C_T = 2.00e+03, alpha_c = 1.0e-12 (alpha_c C_phi = 2.0e-09): C_eff/C_khronon = 3.165e+04, A_s = 7.3e-12
+    y = 1e+03 C_T = 2.00e+03, alpha_c = 3.2e-09 (alpha_c C_phi = 6.4e-06): C_eff/C_khronon = 559.5, A_s = 7.3e-12
+    y = 1e+03 C_L = 8.01e+06, alpha_c = 8.2e-16 (alpha_c C_phi = 6.5e-09): C_eff/C_khronon = 1.75e+04, A_s = 1.8e-24
+    y = 1e+03 C_L = 8.01e+06, alpha_c = 1.0e-12 (alpha_c C_phi = 8.0e-06): C_eff/C_khronon = 499.8, A_s = 1.8e-24
+    y = 1e+03 C_L = 8.01e+06, alpha_c = 3.2e-09 (alpha_c C_phi = 2.6e-02): C_eff/C_khronon = 8.891, A_s = 1.9e-24
+    y = 1e+06 C_T = 2.00e+06, alpha_c = 8.2e-16 (alpha_c C_phi = 1.6e-09): C_eff/C_khronon = 3.503e+04, A_s = 2.3e-22
+    y = 1e+06 C_T = 2.00e+06, alpha_c = 1.0e-12 (alpha_c C_phi = 2.0e-06): C_eff/C_khronon = 1000, A_s = 2.3e-22
+    y = 1e+06 C_T = 2.00e+06, alpha_c = 3.2e-09 (alpha_c C_phi = 6.4e-03): C_eff/C_khronon = 17.71, A_s = 2.3e-22
+    y = 1e+06 C_L = 8.00e+12, alpha_c = 8.2e-16 (alpha_c C_phi = 6.5e-03): C_eff/C_khronon = 17.54, A_s = 1.8e-45
+    y = 1e+06 C_L = 8.00e+12, alpha_c = 1.0e-12 (alpha_c C_phi = 8.0e+00): C_eff/C_khronon = 1.118, A_s = 5.0e-43
+    y = 1e+06 C_L = 8.00e+12, alpha_c = 3.2e-09 (alpha_c C_phi = 2.6e+04): C_eff/C_khronon = 1, A_s = 4.3e-31
+    y = 1e+12 C_T = 2.00e+12, alpha_c = 8.2e-16 (alpha_c C_phi = 1.6e-03): C_eff/C_khronon = 35.04, A_s = 2.3e-43
+    y = 1e+12 C_T = 2.00e+12, alpha_c = 1.0e-12 (alpha_c C_phi = 2.0e+00): C_eff/C_khronon = 1.414, A_s = 2.6e-42
+    y = 1e+12 C_T = 2.00e+12, alpha_c = 3.2e-09 (alpha_c C_phi = 6.4e+03): C_eff/C_khronon = 1, A_s = 4.3e-31
+    y = 1e+12 C_L = 8.00e+24, alpha_c = 8.2e-16 (alpha_c C_phi = 6.5e+09): C_eff/C_khronon = 1, A_s = 3.6e-54
+    y = 1e+12 C_L = 8.00e+24, alpha_c = 1.0e-12 (alpha_c C_phi = 8.0e+12): C_eff/C_khronon = 1, A_s = 2.3e-43
+    y = 1e+12 C_L = 8.00e+24, alpha_c = 3.2e-09 (alpha_c C_phi = 2.6e+16): C_eff/C_khronon = 1, A_s = 4.3e-31
+  [PASS] M3 (H5) IN THE STRONG-FIELD REGIME the MOND scalar is stiff: wherever alpha_c C_phi >> 1 the radiated mode is the khronon (C_eff = C_khronon to 1e-3); where alpha_c C_phi << 1 (tiny alpha_c) the mode is phi-dominated with c_s^2 ~ C_phi/3 >> 1 (superluminal) -- its dipole coefficient is larger than the khronon's but still multiplies (s_1 - s_2)^2 = O(alpha_c^2)
+         measured: y 1e+03 C_T a_c 8e-16: 1.11e+06; y 1e+03 C_T a_c 1e-12: 3.17e+04; y 1e+03 C_T a_c 3e-09: 560; y 1e+03 C_L a_c 8e-16: 1.75e+04; y 1e+03 C_L a_c 1e-12: 500; y 1e+03 C_L a_c 3e-09: 8.89; y 1e+06 C_T a_c 8e-16: 3.5e+04; y 1e+06 C_T a_c 1e-12: 1e+03; y 1e+06 C_T a_c 3e-09: 17.7; y 1e+06 C_L a_c 8e-16: 17.5; y 1e+06 C_L a_c 1e-12: 1.12; y 1e+06 C_L a_c 3e-09: 1; y 1e+12 C_T a_c 8e-16: 35; y 1e+12 C_T a_c 1e-12: 1.41; y 1e+12 C_T a_c 3e-09: 1; y 1e+12 C_L a_c 8e-16: 1; y 1e+12 C_L a_c 1e-12: 1; y 1e+12 C_L a_c 3e-09: 1
+
+====================================================================================================================
+M4  (reported) THE ONE PLACE THE MOND BRANCH IS SUBLUMINAL: a slow binary in a deep-MOND field
+====================================================================================================================
+    P =     1 yr, C_phi = 0.01 (C^Q = 100), xi at the floor: quadrupole branch v_phase/c = 0.483, sigma = 1.20e-01; P_scalar/P_GR = 1.73
+    P =     1 yr, C_phi = 0.1 (C^Q = 10), xi at the floor: quadrupole branch v_phase/c = 0.632, sigma = 2.89e-01; P_scalar/P_GR = 0.398
+    P =    10 yr, C_phi = 0.01 (C^Q = 100), xi at the floor: quadrupole branch v_phase/c = 0.0974, sigma = 5.93e-01; P_scalar/P_GR = 3.28e+05
+    P =    10 yr, C_phi = 0.1 (C^Q = 10), xi at the floor: quadrupole branch v_phase/c = 0.205, sigma = 8.89e-01; P_scalar/P_GR = 2.92e+03
+    P =   100 yr, C_phi = 0.01 (C^Q = 100), xi at the floor: quadrupole branch v_phase/c = 0.0586, sigma = 9.86e-01; P_scalar/P_GR = 2.28e+07
+    P =   100 yr, C_phi = 0.1 (C^Q = 10), xi at the floor: quadrupole branch v_phase/c = 0.183, sigma = 9.99e-01; P_scalar/P_GR = 8.11e+03
+  [PASS] (reported) M4 (reported) a PREDICTION, unobservable: for binaries with periods of years in deep-MOND fields (dwarf galaxies, C^Q ~ 10-100) with xi near its floor, the radiated scalar sits on the filter's slow branch (v_phase < c) and its quadrupole power can exceed GR's (P_scalar/P_GR ~ O(1-100)); GR's own decay time for such systems exceeds the Hubble time by >1e7, so nothing observable follows
+         measured: P 1 yr, C 0.01: 1.7; P 1 yr, C 0.1: 0.4; P 10 yr, C 0.01: 3.3e+05; P 10 yr, C 0.1: 2.9e+03; P 100 yr, C 0.01: 2.3e+07; P 100 yr, C 0.1: 8.1e+03
+    [80 s]
+
+====================================================================================================================
+B  THE THREE PULSARS: Delta P_b-dot / P_b-dot(GR) against the measurement errors
+====================================================================================================================
+    J1738+0333: v/c = 1.183e-03; worst over the window: dipole 1.20e-15 (C_eff 6.25e-04, (ds)^2 1.7e-17), scalar quadrupole 1.7e-20, O(alpha_c) 9.9e-09; total 9.91e-09 vs error 0.13 (7.6e-08 of it)
+      data: Antoniadis et al. 2012 (MNRAS 423, 3316) masses; Freire et al. 2012 (MNRAS 423, 3328): Pb-dot int/GR = 0.93 +- 0.13
+    J0348+0432: v/c = 1.969e-03; worst over the window: dipole 2.81e-16 (C_eff 1.63e-04, (ds)^2 4.3e-17), scalar quadrupole 4.8e-24, O(alpha_c) 1.5e-08; total 1.47e-08 vs error 0.18 (8.1e-08 of it)
+      data: Antoniadis et al. 2013 (Science 340, 1233232): masses; Pb-dot obs/GR = 1.05 +- 0.18
+    J0737-3039A/B: v/c = 2.085e-03; worst over the window: dipole 3.81e-17 (C_eff 1.63e-04, (ds)^2 6.7e-18), scalar quadrupole 4.7e-24, O(alpha_c) 9.1e-09; total 9.06e-09 vs error 6.3e-05 (1.4e-04 of it)
+      data: Kramer et al. 2021 (PRX 11, 041050): masses; Pb-dot int/GR = 0.999963 +- 0.000063
+  [PASS] B1 (H4) J1738+0333: the core's total deviation of P_b-dot from GR (dipole with the MOND sector live and the 3x strong-field sensitivity bracket, scalar quadrupole, O(alpha_c) quadrupole corrections), worst over the regulator window, xi, lambda, both footings and both channels, is < 1e-6 of GR -- far below the measured 0.13 (1 sigma)
+         measured: total 9.91e-09 = 7.6e-08 of the error
+  [PASS] B2 (H4) J0348+0432: the core's total deviation of P_b-dot from GR (dipole with the MOND sector live and the 3x strong-field sensitivity bracket, scalar quadrupole, O(alpha_c) quadrupole corrections), worst over the regulator window, xi, lambda, both footings and both channels, is < 1e-6 of GR -- far below the measured 0.18 (1 sigma)
+         measured: total 1.47e-08 = 8.1e-08 of the error
+  [PASS] B3 (H4) J0737-3039A/B: the core's total deviation of P_b-dot from GR (dipole with the MOND sector live and the 3x strong-field sensitivity bracket, scalar quadrupole, O(alpha_c) quadrupole corrections), worst over the regulator window, xi, lambda, both footings and both channels, is < 1e-6 of GR -- far below the measured 6.3e-05 (1 sigma)
+         measured: total 9.06e-09 = 1.4e-04 of the error
+
+====================================================================================================================
+I  THE INSPIRAL: GW170817's -1PN dipole bound and the GWTC binary black holes
+====================================================================================================================
+    alpha_c = 8.2e-16: C_eff (100 Hz, MOND sector live) = 3.497e-08, (s1 - s2)^2 <= 5.79e-31, B = 3.17e-39, delta-phi_-2 = -1.81e-39
+    alpha_c = 1.0e-12: C_eff (100 Hz, MOND sector live) = 1.225e-06, (s1 - s2)^2 <= 8.72e-25, B = 1.67e-31, delta-phi_-2 = -9.54e-32
+    alpha_c = 3.2e-09: C_eff (100 Hz, MOND sector live) = 6.928e-05, (s1 - s2)^2 <= 8.93e-18, B = 9.67e-23, delta-phi_-2 = -5.52e-23
+  [PASS] I1 (H6) GW170817: at LIGO frequencies the radiated scalar is the pure khronon (the filter is exponentially closed), so B = (5/32) C (s1 - s2)^2 with C = sqrt(3 alpha_c/2) and s = O(alpha_c): B <= 1e-10 x the bound B <= 1.2e-5 (Abbott et al. 2019, PRL 123, 011102) over the window; GW170817 alone bounds alpha_c only at the 1e-2 level (x3 strong-field bracket)
+         measured: alpha_c 8.2e-16: B 3.2e-39; alpha_c 1.0e-12: B 1.7e-31; alpha_c 3.2e-09: B 9.7e-23; implied alpha_c <= 2.2e-02
+  [PASS] (reported) I2 (reported) GWTC binary black holes are NOT used: their -1PN bounds need black-hole sensitivities; at alpha_c = 0 these vanish exactly (stealth khronon), at alpha_c > 0 with c_2 = oo the slowly moving black hole is not established (XR25_cmc_compact_objects: the O(alpha_c) multiplier is log-singular at the universal horizon in strict perturbation theory).  If s_BH = O(alpha_c) as for neutron stars, B_BBH = O(alpha_c^2.5) <~ 1e-21: unobservable either way
+         measured: not applied
+    XR25-R1   DERIVED     the residue form reproduces Einstein's quadrupole formula and Yagi+14's khronometric C and A_1 exactly  --  R-K1-R-K3
+    XR25-R2   DERIVED     at c_2 = oo the khronon's dipole coefficient is C = sqrt(3 alpha_c/2), lambda- and C_phi-free; the scalar quadrupole term 3 alpha_c^3/(2 c_s (2 - alpha_c)^3)  --  R-K3
+    XR25-R3   DERIVED     neutron-star sensitivities (11/3) alpha_c |Omega/m| (x3 strong-field bracket); the MOND scalar has no charge of its own (lapse-flux = Komar mass)  --  S1-S3
+    XR25-R4   DERIVED     with the MOND sector live the pulsars' scalar radiation moves to the filter's transition branch for xi <~ 1.6 pc; every contribution to P_b-dot stays < 1e-6 of GR (J1738+0333, J0348+0432, J0737-3039A/B)  --  M2, B1-B3
+    XR25-R5   DERIVED     GW170817: B <= 1e-10 of its bound; the -1PN test bounds alpha_c only at ~1e-2  --  I1
+    XR25-R6   DERIVED (prediction) slow binaries in deep-MOND fields radiate more scalar than tensor power (unobservable)  --  M4
+
+  15/15 checks pass; load-bearing failures: 0; wrote XR25_pulsar_radiation_results.json  (81 s)
+rc = 0

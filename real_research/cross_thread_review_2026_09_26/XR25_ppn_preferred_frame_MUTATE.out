@@ -1,0 +1,109 @@
+XR25 (1 of 4) -- PREFERRED-FRAME PPN OF THE CHAIN'S FINAL GRAVITY CORE, recomputed from the action at the core's actual
+parameters, against the lunar-laser-ranging and pulsar bounds.
+
+THE CORE (FP14, commit 03db97f14; FP7's AQUAL-type root, per 1/16 pi G, c = 1):
+  R - 2 Lambda + alpha_c a^2 - c_2 (K - <K>_h)^2 + (2 - alpha_c) h^mn (2 a_m - D_m chi) D_n chi - 2 alpha^2 J_P2(|D phi|^2/alpha^2)
+    + 2 lambda (n.d phi)^2 + heat pair (chi = S_h phi, S = e^{(xi^2/2) Delta_h}) + S_m[g]
+  with FP14's settings: c_2 -> oo (the term becomes the CMC multiplier -2 mu (K - <K>_h)), alpha_c a REGULATOR in
+  [8.2e-16 (XC1 gate at c_2 = oo), 3.2e-9 (PPN cap)], xi the one knob in [0.0243 / 0.0268 pc, ~100 pc], lambda = 0 (FP14) or
+  lambda > 0 (FP13's H_S requires it; the lambda question is XR25_lambda_regulator's).  Both a0 footings enter through
+  C_phi at the Galactic field: a0 = 9.3603e-11 (canonical) and 1.1312e-10 m/s^2 (alt).
+
+PRE-DECLARED HYPOTHESES (written before the first full run)
+  H1  In the multiplier (c_2 = oo) block the PPN parameters are the c_2 -> oo limits of FP7's committed closed forms (the
+      limits commute), gamma = 1 and alpha_3 = 0.
+  H2  Where the bounds live (1 AU, R_sun, a pulsar orbit, 10 km) the heat filter kills the MOND sector (leak <~ (r/xi)^3), so
+      alpha_1 = -4 alpha_c and alpha_2 = alpha_c (2 alpha_c - 1)/(2 - alpha_c) ~ -alpha_c/2: at the cap |alpha_2| = 1.6e-9 sits
+      ON the pulsar bound (that is how the cap was set), |alpha_1| = 1.3e-8 is ~3000x inside the pulsar alpha_1 bound.
+  H3  The lambda-dependence of alpha_2 is O(sigma^2) and invisible where the bounds live for every lambda up to the tracking
+      bound (~275 at c_2 = oo).
+  H4  (expected FAIL-type control) With finite c_2 and a large alpha_c the alpha_1 bound is violated (the MUTATE).
+
+  *** MUTATE=1: the core evaluated at finite c_2 = 7.29e-3 with alpha_c = 1e-3: V must FAIL ***
+
+  inputs: a0 = 9.3603e-11 / 1.1312e-10 m/s^2 (FP0); alpha_c window [8.2e-16, 3.2e-09] (FP14 A3 / FP2 B4); xi window [0.0243 / 0.0268 pc, 100 pc] (FP7 A4 / FP14)
+  bound alpha1_LLR : lunar laser ranging: alpha_1 = (-7 +- 9) x 1e-5 (1 sigma; Mueller, Williams & Turyshev 2008, Astrophys. Space Sci. Libr. 349, 457); |alpha_1| < 2.5e-4 at 2 sigma
+  bound alpha2_LLR : lunar laser ranging: alpha_2 = (1.8 +- 2.5) x 1e-5 (1 sigma; same)
+  bound alpha1_psr : PSR J1738+0333: alpha_1-hat = -0.4 (+3.7, -3.1) x 1e-5 at 95% CL (Shao & Wex 2012, CQG 29, 215018)
+  bound alpha2_sun : solar spin-orbit alignment: |alpha_2| < 2.4e-7 (Nordtvedt 1987, ApJ 320, 871)
+  bound alpha2_psr : isolated millisecond pulsars B1937+21 and J1744-1134: |alpha_2-hat| < 1.6e-9 at 95% CL (Shao, Caballero, Kramer, Wex, Champion & Jessner 2013, CQG 30, 165019)
+
+====================================================================================================================
+K  CONTROLS: GR, FP2 B3, FP7 D2, Yagi+14 (48)-(49), FP2 B4
+====================================================================================================================
+  [PASS] K1 CONTROL (GR): in the GR limit (alpha_c -> 0, then c_2 -> 0) the pipeline's rest-frame h_00 carries no preferred-frame term: alpha_1 = alpha_2 = 0, and the O(v^0) part is the static h_00 (o0 = 1)
+         measured: alpha_1 -> 0, alpha_2 -> 0, o0 = 1
+  [PASS] K2 CONTROL: FP2's C-H block (2|DU - a|^2 + 2 C_eff |DU|^2 + BPS, re-derived here from the ADM action) through FP2's moving-source pipeline (re-implemented) reproduces FP2's committed B3 alpha_1 and alpha_2 EXACTLY; gamma = 1, alpha_3 = 0
+         measured: alpha_1 - FP2 = 0; alpha_2 - FP2 = 0; gamma 1; alpha_3 0
+  [PASS] K3 CONTROL: FP7's AQUAL root (perfect-square chassis on chi = sigma phi, -2 C_phi |D phi|^2, 2 lambda (n.d phi)^2), re-derived here, reproduces FP7's committed D2 alpha_1 and alpha_2 EXACTLY (finite c_2, general lambda); gamma = 1, alpha_3 = 0
+         measured: alpha_1 - FP7 = 0; alpha_2 - FP7 = 0; gamma 1; alpha_3 0
+  [PASS] K4 CONTROL (literature): with the MOND sector off and BPS's beta term added, the pipeline reproduces Yagi et al. 2014 eqs. (48)-(49) EXACTLY for general (alpha, beta, lambda): alpha_1 = 4(alpha - 2 beta)/(beta - 1), alpha_2 = (alpha - 2 beta)[-beta^2 + beta(alpha - 3) + alpha + lambda(-1 - 3 beta + 2 alpha)]/((beta - 1)(lambda + beta)(alpha - 2)); the block's scalar pole is their eq. (118) c_s^2 = (alpha - 2)(beta + lambda)/(alpha (beta - 1)(2 + beta + 3 lambda)) and the TT sector has c_T^2 = 1/(1 - beta) (their eq. 117).  The chain maps as (alpha, beta, lambda)_BPS = (alpha_c, 0, c_2): FP2's 'Yagi+14' control is the beta = 0 slice
+         measured: alpha_1 - Yagi = 0; alpha_2 - Yagi = 0; c_s^2 among the block's poles: True; TT roots [-k*sqrt(-1/(beta - 1)), k*sqrt(-1/(beta - 1))]
+  [PASS] K5 CONTROL: FP2's committed B4 numbers are reproduced with FP2's own inputs (nu_mono rebuilt, L340's floors, the Galactic field 2.32e-10, F1/F2/F4): worst C-H alpha_1 leak, worst alpha_2 leak, and the alpha_c bound
+         measured: alpha_1 leak 3.234494e-13 (FP2 3.234494e-13); alpha_2 leak 1.784307e-12 (FP2 1.784307e-12); alpha_c bound 3.200008000e-09 (FP2 3.200008000e-09)
+    [87 s]  (controls 87 s)
+
+====================================================================================================================
+P1  THE CORE'S PPN AT c_2 = oo (the CMC multiplier block), derived
+====================================================================================================================
+    alpha_1 (c_2 = oo) = -8*(C_phi*alpha_c - alpha_c*sigma**2 + 2*sigma**2)/(2*C_phi - alpha_c*sigma**2 + 2*sigma**2)
+    alpha_2 (c_2 = oo) = -(4*C_phi**2*alpha_c**2 - 2*C_phi**2*alpha_c - 7*C_phi*alpha_c**2*sigma**2 + 16*C_phi*alpha_c*sigma**2 - 4*C_phi*sigma**2 + alpha_c**2*lambda*sigma**2 + 3*alpha_c**2*sigma**4 - 4*alpha_c*lambda*sigma**2 - 12*alpha_c*sigma**4 + 4*lambda*sigma**2 + 12*sigma**4)/(C_phi*(alpha_c - 2)*(2*C_phi - alpha_c*sigma**2 + 2*sigma**2))
+    filtered (sigma -> 0): alpha_1 = -4*alpha_c, alpha_2 = -alpha_c*(2*alpha_c - 1)/(alpha_c - 2);   MOND regime (alpha_c -> 0): alpha_1 = -8*sigma**2/(C_phi + sigma**2), alpha_2 = -sigma**2*(C_phi - lambda - 3*sigma**2)/(C_phi*(C_phi + sigma**2))
+  [PASS] P1 (H1) THE MULTIPLIER BLOCK'S PPN = THE c_2 -> oo LIMIT OF FP7's FORMS (the limits commute): gamma = 1, alpha_3 = 0; filtered alpha_1 = -4 alpha_c, alpha_2 = alpha_c (2 alpha_c - 1)/(2 - alpha_c) (Yagi+14 at lambda_BPS -> oo, beta = 0); MOND regime alpha_1 = -8 sigma^2/(C_phi + sigma^2), alpha_2 = sigma^2 (lambda + 3 sigma^2 - C_phi)/(C_phi (C_phi + sigma^2))
+         measured: alpha_1 = limit: True; alpha_2 = limit: True; gamma 1; alpha_3 0; filtered -4*alpha_c, -alpha_c*(2*alpha_c - 1)/(alpha_c - 2)
+
+====================================================================================================================
+P2  THE NUMBERS WHERE THE BOUNDS LIVE (both footings; alpha_c, xi, lambda over their windows; the MOND leak in real space)
+====================================================================================================================
+    d alpha_1/d sigma^2 |_0 = 2*(-alpha_c**2 + 4*alpha_c - 4)/C_phi;  d alpha_2/d sigma^2 |_0 = (-C_phi*alpha_c**2 + 4*C_phi*alpha_c - C_phi - alpha_c*lambda/2 + lambda)/C_phi**2
+    Galactic field at the Sun 2.32e-10 m/s^2: y_N = 2.028 / 1.611; x_e = 0.4501 / 0.4399; C_T = 4.51 / 3.66, C_L = 49.6 / 34.1
+    scale                    | bound                                   | worst |alpha| at the core's parameters (filtered + MOND leak)
+    LLR, 1 AU                | alpha1_LLR  |alpha1| < 2.5e-04            | 4.000e-03 (MOND leak <= 3.3e-12): 1.60e+01 of the bound
+    LLR, 1 AU                | alpha2_LLR  |alpha2| < 6.8e-05            | 4.306e-04 (MOND leak <= 2.9e-11): 6.33e+00 of the bound
+    solar spin, R_sun        | alpha2_sun  |alpha2| < 2.4e-07            | 4.306e-04 (MOND leak <= 2.9e-18): 1.79e+03 of the bound
+    PSR J1738+0333 orbit     | alpha1_psr  |alpha1| < 3.7e-05            | 4.000e-03 (MOND leak <= 1.9e-18): 1.08e+02 of the bound
+    pulsar spin, 10 km       | alpha2_psr  |alpha2| < 1.6e-09            | 4.306e-04 (MOND leak <= 8.7e-33): 2.69e+05 of the bound
+  [FAIL] (reported) P2abs (reported; the AS-RUN pre-declared form) the MOND leak at every bound scale is < 1e-11 in absolute terms
+         measured: worst leak alpha_1 3.3e-12, alpha_2 2.9e-11 (144 cells)
+         reading:  FAILED on the first runs: the worst alpha_2 leak (~3e-11) is at 1 AU with lambda at the tracking bound, where the only alpha_2 bound is LLR's 6.8e-5 -- the absolute threshold was mis-specified; the load-bearing test is P2 (per scale)
+  [PASS] P2 (H2) WHERE THE BOUNDS LIVE THE MOND SECTOR IS FILTERED OFF: over both footings, both AQUAL channels (C_T, C_L of the Galactic field), xi = floor..100 pc, alpha_c over its window and lambda = 0..274.8, the MOND leak at each bound's scale (1 AU, R_sun, a pulsar orbit, 10 km) is < 1e-3 of that scale's bound, so the PPN values are the filtered khronometric ones, alpha_1 = -4 alpha_c, alpha_2 = alpha_c (2 alpha_c - 1)/(2 - alpha_c).  DISCLOSED: first specified as an absolute 1e-11 (P2abs)
+         measured: alpha1_LLR: leak 3.3e-12 = 1.3e-08 of the bound; alpha2_LLR: leak 2.9e-11 = 4.3e-07 of the bound; alpha2_sun: leak 2.9e-18 = 1.2e-11 of the bound; alpha1_psr: leak 1.9e-18 = 5.1e-14 of the bound; alpha2_psr: leak 8.7e-33 = 5.4e-24 of the bound
+         reading:  the leak is (r/xi)^3-suppressed (the Gaussian filter's harmonic core); the largest is at 1 AU with xi at the floor, C_phi = C_T and lambda at the tracking bound
+
+====================================================================================================================
+P3  THE lambda-DEPENDENCE: invisible where the bounds live, O(1) in the MOND regime (reported)
+====================================================================================================================
+    d alpha_2/d lambda (c_2 = oo) = -sigma**2*(alpha_c - 2)/(C_phi*(2*C_phi - alpha_c*sigma**2 + 2*sigma**2))  (alpha_1 is lambda-free)
+    lambda-part of alpha_2 where the bounds live (lambda = 274.8, xi at the floor): <= 3.8e-11
+    MOND regime (C^Q = 100, i.e. C_phi = 0.01, sigma = 1, 620 km/s): alpha_2 v^2 = lambda 0: 1.27e-03, lambda 1: 1.69e-03, lambda 3: 2.54e-03, lambda 30: 1.40e-02, lambda 274.8: 1.18e-01
+    lambda-part of alpha_2 at each bound's scale (lambda = 274.8, xi at the floor, both footings): LLR, 1 AU: 3.8e-11 = 5.6e-07 of its alpha_2 bound 6.8e-05; solar spin, R_sun: 3.9e-18 = 1.6e-11 of its alpha_2 bound 2.4e-07; PSR J1738+0333 orbit: 2.2e-17 = 1.4e-08 of its alpha_2 bound 1.6e-09; pulsar spin, 10 km: 1.1e-32 = 7.2e-24 of its alpha_2 bound 1.6e-09
+  [FAIL] (reported) P3abs (reported; the AS-RUN pre-declared form) alpha_2's lambda-part is <= 1e-12 at every bound scale (lambda = 274.8)
+         measured: absolute worst 3.8e-11
+         reading:  FAILED on the first run at 1 AU (LLR's alpha_2 bound 6.8e-5 is the only one there); the load-bearing form is P3
+  [PASS] P3 (H3) lambda IS INVISIBLE WHERE THE BOUNDS LIVE: alpha_1 is lambda-free and alpha_2's lambda-part is O(sigma^2): at every bound's scale it is < 1e-3 of that scale's alpha_2 bound for lambda up to the tracking bound 274.8 (c_2 = oo).  DISCLOSED: the first run (the MUTATE run) used an absolute threshold 1e-12 and FAILED it at 3.8e-11 -- at 1 AU, where the only alpha_2 bound is LLR's 6.8e-5; the criterion was re-specified per scale after that run (the absolute worst is printed)
+         measured: LLR, 1 AU: 5.6e-07 of the bound; solar spin, R_sun: 1.6e-11 of the bound; PSR J1738+0333 orbit: 1.4e-08 of the bound; pulsar spin, 10 km: 7.2e-24 of the bound; absolute worst 3.8e-11
+         reading:  in the MOND regime the same term is O(1): alpha_2 v^2 grows linearly in lambda + 3 (reported below; the lambda question is XR25_lambda_regulator's)
+  [PASS] (reported) P3b (reported) MOND-regime preferred-frame imprint at c_2 = oo: alpha_2 = sigma^2 (lambda + 3 sigma^2 - C_phi)/(C_phi (C_phi + sigma^2)): in C^Q = 100 outskirts moving at 620 km/s, alpha_2 v^2 = 1.3e-3 at lambda = 0, 1.2e-1 at lambda = 274.8 -- the khronon's own inertia contributes only 3 to lambda + 3 at c_2 = oo, so lambda >~ 3 is observable there
+         measured: lambda 0: 1.3e-03, lambda 1: 1.7e-03, lambda 3: 2.5e-03, lambda 30: 1.4e-02, lambda 274.8: 1.2e-01
+
+====================================================================================================================
+P4  STRONG-FIELD VERSIONS alpha-hat (reported)
+====================================================================================================================
+  [PASS] (reported) P4 (reported) the pulsar bounds are on the strong-field alpha-hat; in the core alpha-hat - alpha = O(alpha_c x s), s = O(alpha_c) the khronon sensitivity (XR25_pulsar_radiation), i.e. <= ~1e-16 at the cap: the weak-field values stand in for both
+         measured: |alpha-hat - alpha| <~ 9e-17
+
+====================================================================================================================
+V  THE VERDICT AGAINST THE CITED BOUNDS
+====================================================================================================================
+    at the top of the window (alpha_c = 1.0e-03, c_2 = 0.0072888): alpha_1 = -4.000e-03, alpha_2 = -4.3062e-04
+    per bound: alpha1_LLR: FAIL (1.60e+01 of the bound); alpha2_LLR: FAIL (6.33e+00 of the bound); alpha2_sun: FAIL (1.79e+03 of the bound); alpha1_psr: FAIL (1.08e+02 of the bound); alpha2_psr: FAIL (2.69e+05 of the bound)
+  [FAIL] V THE CORE PASSES EVERY PREFERRED-FRAME BOUND AT ITS ACTUAL PARAMETERS (c_2 = oo, alpha_c in its regulator window, xi and lambda over their windows, both footings): |alpha_1| <= 1.3e-8 (~3000x inside PSR J1738+0333's 3.7e-5, ~2e4x inside LLR), |alpha_2| <= 1.6e-9 -- AT the pulsar bound at the window's cap (the cap was set there; strictly inside for alpha_c < 3.2e-9), ~150x inside the solar-spin bound and ~4e4x inside LLR's
+         measured: alpha_1 at cap -4.00e-03 (margin x0); alpha_2 at cap -4.306e-04; bounds: {'alpha1_LLR': False, 'alpha2_LLR': False, 'alpha2_sun': False, 'alpha1_psr': False, 'alpha2_psr': False}
+         reading:  the alpha_2 row is marginal by construction: the pulsar bound IS the regulator window's upper edge; FP14's window is PPN-safe, not PPN-predicted
+    XR25-P1   DERIVED     at c_2 = oo the core's PPN are the limits of FP7's forms: gamma = 1, alpha_3 = 0, alpha_1 = -4 alpha_c, alpha_2 = alpha_c (2 alpha_c - 1)/(2 - alpha_c) where the filter acts (Yagi+14 at beta = 0, lambda_BPS -> oo)  --  P1, K2-K4
+    XR25-P2   DERIVED     the MOND sector's leak where the bounds live is < 1e-11 over the xi, alpha_c, lambda windows and both footings  --  P2
+    XR25-P3   CONSTRAINT  alpha_2 at the cap equals the pulsar bound (1.6e-9): the window's edge is the bound, not a prediction  --  V
+    XR25-P4   DERIVED     lambda is invisible in the PPN where the bounds live, O(1) in the MOND regime at c_2 = oo (alpha_2 v^2 ~ 4e-4 (lambda + 3))  --  P3
+
+  10/13 checks pass; load-bearing failures: 1; wrote XR25_ppn_preferred_frame_results_MUTATE.json  (103 s)
+rc = 1

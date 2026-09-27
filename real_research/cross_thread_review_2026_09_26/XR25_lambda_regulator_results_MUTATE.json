@@ -1,0 +1,435 @@
+{
+ "lane": "XR25/lambda",
+ "mutate": true,
+ "checks": {
+  "K1 CONTROL: FP13's state machinery (copied from its main() unchanged; FP9 exec'd read-only) reproduces FP13's committed H1: sigma_8 on both footings and modes, the 1e10/1e11 flagships at z = 2.5, SPARC, KiDS": {
+   "ok": true,
+   "measured": "max relative deviation 0.0e+00",
+   "load_bearing": true
+  },
+  "K2 CONTROL: FP14 L4's lambda scan -- sigma_8 (canonical, per-mode) under FP9's H_Y at the c_2 floor for lambda = 0, 1, 100 -- is reproduced": {
+   "ok": true,
+   "measured": "max relative deviation 0.0e+00",
+   "load_bearing": true
+  },
+  "K3 CONTROL: FP7 B6's tree-level strong-coupling scale Lambda_sc = c_s^(9/4) [(3/2) alpha M_P (2 lambda_eff)^(3/2)]^(1/2), c_s^2 = C_phi/lambda_eff, ell_sc = c_s hbar c/Lambda_sc, reproduced for its 12 committed rows (web, galaxy outskirts, Solar neighbourhood; lambda_eff = 277.4 and 1e8; both footings)": {
+   "ok": true,
+   "measured": "max relative deviation 0.0e+00",
+   "load_bearing": true
+  },
+  "K4 CONTROL: in FP14's multiplier block phi's row is -4 C_phi k^2 A_phi + 2 sigma k^2 [(2 - alpha_c)(A_n - sigma A_phi) + ...] + 4 lambda omega^2 A_phi; with the band-pass closed (sigma -> 0: FP13's h = 0 on exact FRW) and zero field (C_phi = 0, the yield off at z < 0.635) it is 4 lambda omega^2 A_phi -- phi has NO equation at lambda = 0 (FP13 A1): lambda > 0 is required": {
+   "ok": true,
+   "measured": "phi row at sigma = 0, C_phi = 0: 4*A_phi*lambda*omega**2",
+   "load_bearing": true
+  },
+  "L1 (H1) UNDER H_S AT c_2 = oo sigma_8 AND THE FOREST ARE lambda-INERT ACROSS (0, 274.8]: every cell stays in the sigma_8 band [0.922, 1.05] and the forest proxy <= 10%; the spread in sigma_8 over lambda is printed (the static gates -- flagship, SPARC, KiDS -- carry no lambda at all: FP14 L4's static block)": {
+   "ok": true,
+   "measured": "sigma_8 spread over lambda 2.5e-04; c_2 = oo vs floor at lambda = 0: 9.8e-08; band kept True; forest kept True",
+   "load_bearing": true
+  },
+  "L2 (H3) THE UPPER BOUND IS TRACKING, AND THE WINDOW IS NON-DEGENERATE (lambda_max >= 1) ONLY AWAY FROM THE c_2 FLOOR: at c_2 = oo the moving-source gate (c_s >= 3 x 600 km/s where C^Q <= 100) allows 0 < lambda <= 274.8; at FP2's c_2 floor it allows lambda <= ~0 only (the floor was DEFINED by tracking at lambda = 0), so FP13's 'lambda > 0 required' and FP2's floor are compatible only for c_2 > 2/274.8 = 7.28e-3 -- FP14's c_2 = oo supplies the room": {
+   "ok": false,
+   "measured": "lambda_max = -0.00 (core), -1.65e-05 (floor, a rounding residue of the floor constant); window needs c_2 > 0.007289",
+   "load_bearing": true
+  },
+  "L3 (H2) THE STRONG-FIELD OBSERVABLES ARE lambda-INERT ACROSS (0, 274.8]: the PPN lambda-part is < 1e-3 of every bound at its scale; the neutron-star sensitivities carry no lambda (the MOND sector is filtered on xi >> R_NS); the pulsars' P_b-dot deviations stay < 1e-6 of GR for every lambda (the radiated dipole COEFFICIENT moves with lambda on the filter's transition branch -- by up to the printed relative spread -- but it multiplies (s_1 - s_2)^2 = O(alpha_c^2)); compact-object structure (XR25_cmc) involves no phi": {
+   "ok": true,
+   "measured": "PPN True; radiation True",
+   "load_bearing": true
+  },
+  "L4 (H3) THE MOND-REGIME OBSERVABLES ARE NOT lambda-INERT AT c_2 = oo: the tracking speed ~ (lambda + 3)^(-1/2) (17,300 km/s at lambda -> 0, 1,800 at 274.8) and the galaxy-scale alpha_2 v^2 ~ (lambda + 3) (1.3e-3 -> 0.12): the khronon's own inertia contributes only 3 to lambda_eff, so lambda is observable-inert (< 1%) only for lambda < 0.03; above ~3 it is a knob": {
+   "ok": true,
+   "measured": "c_s ratio (0 -> 274.8) 9.62; alpha_2 v^2 ratio 93",
+   "load_bearing": true
+  },
+  "L5 (H4) STRONG COUPLING: about exact zero field with the yield off and the band-pass closed the fluctuation's quadratic action is 2 lambda phidot^2 alone (K4): no gradient term, Lambda_sc = 0 for EVERY lambda (FP7 R7l), and after canonical normalisation the cubic |grad phi|^3 coupling scales as lambda^(-3/2) -- small lambda makes the zero-field sector more strongly coupled, and lambda -> 0 removes its equation.  In real backgrounds at c_2 = oo the khronon supplies inertia 3 sigma^2: for k << 1/xi ell_sc stays <= 1 cm as lambda -> 0 (weak lambda_eff^(-1/8) dependence); only the sub-xi phi fluctuations (lambda_eff = lambda, which the metric never sees through the filter) grow as lambda^(-1/8)": {
+   "ok": true,
+   "measured": "worst ell_sc (k << 1/xi) 1.0e-03 m over lambda = 1e-9..274.8; sub-xi worst 1.5e-02 m",
+   "load_bearing": true
+  },
+  "L5b (reported) CHERENKOV: for lambda > C_phi the sub-xi phi mode is subluminal (c_s^2 = C_phi/lambda), but it couples to matter only through the filter, e^(-xi^2 k^2/2); at cosmic-ray wavenumbers (k ~ 1e10 /m) that factor is exp(-1e50): no gravitational-Cherenkov bound on lambda (L19's criterion: the bound is on the coupling, not the speed)": {
+   "ok": true,
+   "measured": "suppression at k = 1e10/m, xi at the floor: 0.0",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "K1": {
+   "s8 canonical/rms": [
+    1.0184469972511851,
+    1.0184469972511851
+   ],
+   "s8 canonical/permode": [
+    1.0202412194030035,
+    1.0202412194030035
+   ],
+   "flag canonical/1e+10": [
+    -0.012456377486034672,
+    -0.012456377486034672
+   ],
+   "flag canonical/1e+11": [
+    -0.013146848162347275,
+    -0.013146848162347275
+   ],
+   "sparc canonical": [
+    0.0018146562266757745,
+    0.0018146562266757745
+   ],
+   "kids canonical": [
+    -6.245165925136391,
+    -6.245165925136391
+   ],
+   "s8 alt/rms": [
+    1.0207561808796728,
+    1.0207561808796728
+   ],
+   "s8 alt/permode": [
+    1.0227126772232236,
+    1.0227126772232236
+   ],
+   "flag alt/1e+10": [
+    -0.010190593027883978,
+    -0.010190593027883978
+   ],
+   "flag alt/1e+11": [
+    -0.010729714218626113,
+    -0.010729714218626113
+   ],
+   "sparc alt": [
+    0.0014951922867175009,
+    0.0014951922867175009
+   ],
+   "kids alt": [
+    -7.6713257751607955,
+    -7.6713257751607955
+   ]
+  },
+  "L1": {
+   "rows": {
+    "0.0": {
+     "s8 canonical/rms": 1.0184469904810856,
+     "forest canonical/rms": 0.0,
+     "s8 canonical/permode": 1.0202412521617645,
+     "forest canonical/permode": 0.0,
+     "s8 alt/rms": 1.020756172118162,
+     "forest alt/rms": 0.0,
+     "s8 alt/permode": 1.022712775201383,
+     "forest alt/permode": 0.0
+    },
+    "1e-06": {
+     "s8 canonical/rms": 1.0184469904807134,
+     "forest canonical/rms": 0.0,
+     "s8 canonical/permode": 1.0202413732465656,
+     "forest canonical/permode": 0.0,
+     "s8 alt/rms": 1.0207561721095506,
+     "forest alt/rms": 0.0,
+     "s8 alt/permode": 1.0227129452825487,
+     "forest alt/permode": 0.0
+    },
+    "0.001": {
+     "s8 canonical/rms": 1.0184469904354994,
+     "forest canonical/rms": 0.0,
+     "s8 canonical/permode": 1.020241186316739,
+     "forest canonical/permode": 0.0,
+     "s8 alt/rms": 1.0207561720483158,
+     "forest alt/rms": 0.0,
+     "s8 alt/permode": 1.022712662781286,
+     "forest alt/permode": 0.0
+    },
+    "1.0": {
+     "s8 canonical/rms": 1.018446945301006,
+     "forest canonical/rms": 0.0,
+     "s8 canonical/permode": 1.0202403956305546,
+     "forest canonical/permode": 0.0,
+     "s8 alt/rms": 1.0207561162657028,
+     "forest alt/rms": 0.0,
+     "s8 alt/permode": 1.0227117022967094,
+     "forest alt/permode": 0.0
+    },
+    "3.0": {
+     "s8 canonical/rms": 1.0184468549435317,
+     "forest canonical/rms": 0.0,
+     "s8 canonical/permode": 1.020238686475334,
+     "forest canonical/permode": 0.0,
+     "s8 alt/rms": 1.0207560046189652,
+     "forest alt/rms": 0.0,
+     "s8 alt/permode": 1.0227098192736943,
+     "forest alt/permode": 0.0
+    },
+    "30.0": {
+     "s8 canonical/rms": 1.0184456352156843,
+     "forest canonical/rms": 0.0,
+     "s8 canonical/permode": 1.02021673425654,
+     "forest canonical/permode": 0.0,
+     "s8 alt/rms": 1.0207544978682832,
+     "forest alt/rms": 0.0,
+     "s8 alt/permode": 1.0226831807429986,
+     "forest alt/permode": 0.0
+    },
+    "100.0": {
+     "s8 canonical/rms": 1.018442473881775,
+     "forest canonical/rms": 0.0,
+     "s8 canonical/permode": 1.0201621031052435,
+     "forest canonical/permode": 0.0,
+     "s8 alt/rms": 1.0207505921436524,
+     "forest alt/rms": 0.0,
+     "s8 alt/permode": 1.022616922118697,
+     "forest alt/permode": 0.0
+    },
+    "274.8": {
+     "s8 canonical/rms": 1.0184345854164767,
+     "forest canonical/rms": 0.0,
+     "s8 canonical/permode": 1.0200352146482488,
+     "forest canonical/permode": 0.0,
+     "s8 alt/rms": 1.0207407722406028,
+     "forest alt/rms": 0.0,
+     "s8 alt/permode": 1.0224646272245144,
+     "forest alt/permode": 0.0
+    }
+   },
+   "shift_c2": 9.797815936352094e-08,
+   "lambda_span": 0.00024831805803438023
+  },
+  "L2": {
+   "lambda_max": -1.6481530735745764e-05,
+   "lambda_max_floor": -1.6481530735745764e-05,
+   "c2_min_for_window": 0.007288800437803917
+  },
+  "L4": {
+   "cs_track": {
+    "0.0": 17308.52563273196,
+    "0.03": 17222.62671227118,
+    "1.0": 14989.6229,
+    "3.0": 12238.975847245947,
+    "30.0": 5218.716836183698,
+    "274.8": 1798.6828021268036
+   },
+   "alpha2_v2": {
+    "0.0": 0.0012661693245797651,
+    "0.03": 0.001278873364625716,
+    "1.0": 0.0016896373261114591,
+    "3.0": 0.002536573329174847,
+    "30.0": 0.013970209370530586,
+    "274.8": 0.11763517614548928
+   },
+   "inert_below": 0.03
+  },
+  "L5": {
+   "rows": [
+    {
+     "foot": "canonical",
+     "bg": "web y ~ 1e-3",
+     "lam": 1e-09,
+     "ell_unfiltered": 0.0010022559511173664,
+     "ell_subxi": 0.015332705725286964
+    },
+    {
+     "foot": "canonical",
+     "bg": "web y ~ 1e-3",
+     "lam": 0.001,
+     "ell_unfiltered": 0.0010022141983227718,
+     "ell_subxi": 0.002726583489146371
+    },
+    {
+     "foot": "canonical",
+     "bg": "web y ~ 1e-3",
+     "lam": 1.0,
+     "ell_unfiltered": 0.0009668548978337534,
+     "ell_subxi": 0.0011497907236791285
+    },
+    {
+     "foot": "canonical",
+     "bg": "web y ~ 1e-3",
+     "lam": 274.8,
+     "ell_unfiltered": 0.000569052414410097,
+     "ell_subxi": 0.0005698252759086792
+    },
+    {
+     "foot": "canonical",
+     "bg": "galaxy outskirts y ~ 0.1",
+     "lam": 1e-09,
+     "ell_unfiltered": 0.00019957012264949675,
+     "ell_subxi": 0.003053062402605612
+    },
+    {
+     "foot": "canonical",
+     "bg": "galaxy outskirts y ~ 0.1",
+     "lam": 0.001,
+     "ell_unfiltered": 0.00019956180879480837,
+     "ell_subxi": 0.0005429198008117525
+    },
+    {
+     "foot": "canonical",
+     "bg": "galaxy outskirts y ~ 0.1",
+     "lam": 1.0,
+     "ell_unfiltered": 0.00019252103250654912,
+     "ell_subxi": 0.0002289473816444584
+    },
+    {
+     "foot": "canonical",
+     "bg": "galaxy outskirts y ~ 0.1",
+     "lam": 274.8,
+     "ell_unfiltered": 0.00011331023778028583,
+     "ell_subxi": 0.00011346413066951355
+    },
+    {
+     "foot": "canonical",
+     "bg": "Solar neighbourhood x_e",
+     "lam": 1e-09,
+     "ell_unfiltered": 4.606590580325997e-05,
+     "ell_subxi": 0.0007047251521557318
+    },
+    {
+     "foot": "canonical",
+     "bg": "Solar neighbourhood x_e",
+     "lam": 0.001,
+     "ell_unfiltered": 4.6063986752242425e-05,
+     "ell_subxi": 0.00012531982278150854
+    },
+    {
+     "foot": "canonical",
+     "bg": "Solar neighbourhood x_e",
+     "lam": 1.0,
+     "ell_unfiltered": 4.4438794900021095e-05,
+     "ell_subxi": 5.2846931077251724e-05
+    },
+    {
+     "foot": "canonical",
+     "bg": "Solar neighbourhood x_e",
+     "lam": 274.8,
+     "ell_unfiltered": 2.6154910719271417e-05,
+     "ell_subxi": 2.619043314740264e-05
+    },
+    {
+     "foot": "alt",
+     "bg": "web y ~ 1e-3",
+     "lam": 1e-09,
+     "ell_unfiltered": 0.0009117037174258215,
+     "ell_subxi": 0.013947420109958862
+    },
+    {
+     "foot": "alt",
+     "bg": "web y ~ 1e-3",
+     "lam": 0.001,
+     "ell_unfiltered": 0.0009116657369299189,
+     "ell_subxi": 0.0024802410004702642
+    },
+    {
+     "foot": "alt",
+     "bg": "web y ~ 1e-3",
+     "lam": 1.0,
+     "ell_unfiltered": 0.0008795010930927084,
+     "ell_subxi": 0.0010459089575585191
+    },
+    {
+     "foot": "alt",
+     "bg": "web y ~ 1e-3",
+     "lam": 274.8,
+     "ell_unfiltered": 0.0005176394323719721,
+     "ell_subxi": 0.0005183424670613916
+    },
+    {
+     "foot": "alt",
+     "bg": "galaxy outskirts y ~ 0.1",
+     "lam": 1e-09,
+     "ell_unfiltered": 0.00018153927896744087,
+     "ell_subxi": 0.0027772230625174852
+    },
+    {
+     "foot": "alt",
+     "bg": "galaxy outskirts y ~ 0.1",
+     "lam": 0.001,
+     "ell_unfiltered": 0.00018153171625632188,
+     "ell_subxi": 0.0004938678589160084
+    },
+    {
+     "foot": "alt",
+     "bg": "galaxy outskirts y ~ 0.1",
+     "lam": 1.0,
+     "ell_unfiltered": 0.0001751270629255902,
+     "ell_subxi": 0.00020826234926064113
+    },
+    {
+     "foot": "alt",
+     "bg": "galaxy outskirts y ~ 0.1",
+     "lam": 274.8,
+     "ell_unfiltered": 0.00010307283772325843,
+     "ell_subxi": 0.00010321282663431242
+    },
+    {
+     "foot": "alt",
+     "bg": "Solar neighbourhood x_e",
+     "lam": 1e-09,
+     "ell_unfiltered": 4.7711122689399856e-05,
+     "ell_subxi": 0.0007298939988373938
+    },
+    {
+     "foot": "alt",
+     "bg": "Solar neighbourhood x_e",
+     "lam": 0.001,
+     "ell_unfiltered": 4.7709135100597505e-05,
+     "ell_subxi": 0.00012979554696435105
+    },
+    {
+     "foot": "alt",
+     "bg": "Solar neighbourhood x_e",
+     "lam": 1.0,
+     "ell_unfiltered": 4.6025900471796236e-05,
+     "ell_subxi": 5.4734328315467174e-05
+    },
+    {
+     "foot": "alt",
+     "bg": "Solar neighbourhood x_e",
+     "lam": 274.8,
+     "ell_unfiltered": 2.7089018060058397e-05,
+     "ell_subxi": 2.7125809150936597e-05
+    }
+   ],
+   "worst_unfiltered": 0.0010022559511173664,
+   "worst_subxi": 0.015332705725286964
+  }
+ },
+ "ledger": [
+  {
+   "link": "XR25-L1",
+   "what": "lambda > 0 required under H_S (phi has no equation at lambda = 0 with the yield off and the band-pass closed)",
+   "status": "DERIVED",
+   "basis": "K4 (FP13 A1 re-derived)"
+  },
+  {
+   "link": "XR25-L2",
+   "what": "sigma_8 and the forest under H_S at c_2 = oo are lambda-inert over (0, -0.0]; c_2 = oo moves sigma_8 by 9.8e-08 vs FP13's C2W",
+   "status": "DERIVED",
+   "basis": "L1"
+  },
+  {
+   "link": "XR25-L3",
+   "what": "every strong-field observable (PPN at the bound scales, sensitivities, radiation, compact objects) is lambda-inert",
+   "status": "DERIVED",
+   "basis": "L3"
+  },
+  {
+   "link": "XR25-L4",
+   "what": "MOND-regime tracking speed and alpha_2 depend on lambda + 3 at c_2 = oo: lambda is a knob there above ~0.03-3",
+   "status": "CONSTRAINT",
+   "basis": "L4"
+  },
+  {
+   "link": "XR25-L5",
+   "what": "the upper bound: tracking, lambda <= -0.0 at c_2 = oo; empty at the c_2 floor",
+   "status": "CONSTRAINT",
+   "basis": "L2"
+  },
+  {
+   "link": "XR25-L6",
+   "what": "zero-field strong coupling for every lambda (kinetic-only quadratic action, cubic coupling ~ lambda^(-3/2))",
+   "status": "DERIVED",
+   "basis": "L5, K4"
+  }
+ ],
+ "verdict_counts": {
+  "n_checks": 10,
+  "n_fail_load_bearing": 1,
+  "n_fail_reported": 0
+ }
+}
