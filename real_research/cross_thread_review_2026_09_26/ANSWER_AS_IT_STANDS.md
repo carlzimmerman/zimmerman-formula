@@ -167,13 +167,12 @@ Where the chain stands, from its own ledger (chain lead's commits; checked again
   - FP17: ξ.
 
 Running here:
-- **XR18:** an adversarial well-posedness audit, now with H_S as its priority. It checks:
-  - the yield surface;
-  - a DE12-type second variation;
-  - the global terms that the leaf-averaged readouts put into every field equation;
-  - whether an action can read the matter readout;
-  - growth across the onset ramp.
-  H_Y's findings are still reported.
+- **XR18 (53854a459): H_S is linearly ILL-POSED as written at z ≤ 0.635.** Its leaf-averaged state term feeds an
+  O(1) local force into the lapse and φ equations. On FP13's own headline state that force flips the sign of the
+  constraint on k = 0.12–1.62 h/Mpc. FP13's "adds no local term" does not hold at the action level.
+  - H_Y is linearly healthy: criterion B holds, and there is no DE12-type term. But it fails KiDS at z = 0.4.
+  - The chain lead is repairing H_S in FP19, testing both of XR18's directions: B fixed by stationarity, or a
+    readout through <K>_h only. XR21's stage 2 waits for the repaired term's re-audit.
 - **XR19:** does the fluid's own conversion run away through the cosmic web? XR12 and XR16 both flagged this, unscored.
 - **XR20 (a075ad7f7): a₀ and Λ can be TIED through one field; κ stays fitted.**
   - **The tie that works:** in unimodular gravity (Henneaux–Teitelboim), dΛ = 0 is a field equation. So
@@ -196,7 +195,7 @@ Running here:
 - **XR21:** the chain's model in a particle-mesh box.
   - Stage 1 (build and code tests) is running. It now includes H_S with its readouts computed on the fly from the box's
     own matter field, plus a frozen-readout control.
-  - Stage 2 (H_S's nonlinear cosmology) waits on XR18. It is the test FP13's pass depends on.
+  - Stage 2 (the separator's nonlinear cosmology) is on hold until FP19's repaired term passes a re-audit.
   - Stage 3 (conversion with re-accretion) waits on XR19.
 - **FP10_FULL (df13605e0), done:** the dark-sector window hinges on re-accretion.
   - With conversion in place, 0 of 12 cells pass: X-COP fails at every kick, and cosmic shear fails.
