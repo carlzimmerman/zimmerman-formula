@@ -1,0 +1,305 @@
+FP24 -- A BUG CORRECTION: THE CHAIN'S LINEAR SPECTRUM MIXES h UNITS.  The hub's XR23 (6b7ab8243) flagged that the chain's
+Eisenstein & Hu (1998) no-wiggle transfer function T_EH98 -- first written in the record's L341, copied into FP3, FP6 and FP7,
+and run by FP9, FP13, FP14, FP17 and FP19 through FP6's machinery -- is called with k in 1/Mpc but evaluated as if k were in
+h/Mpc in one place and in 1/Mpc in another.  This lane pins the error, writes the published form, validates both against
+CLASS, and RE-SCORES every committed chain number that depends on the linear spectrum with the corrected function -- same
+fits, gates, yardsticks and conventions, only the transfer function swapped (in this lane's own namespace; no committed file
+is edited).
+
+THE BUG.  EH98 eqs. (26), (28)-(31), with k in 1/Mpc and the sound horizon s in Mpc:
+    q = (k / h) Theta^2 / Gamma_eff,   Gamma_eff = Omega_m h [alpha_G + (1 - alpha_G) / (1 + (0.43 k s)^4)].
+  The committed code (FP6:137, FP3:197, FP7:1028; L341 and its record copies) is called as T_EH98(k_h h) and evaluates
+    q = k Theta^2 / Gamma_eff          (missing 1/h: q is h = 0.674 times too small)
+    ... (0.43 k s / h)^4               (a spurious 1/h: the baryon-suppression step sits at k s = 2.3, not 0.43^-1 = 2.3 h)
+  Both errors push power from large to small scales at fixed sigma_8.
+THE FIX (two edits per copy, applied to the source text in memory): 0.43 k s / h -> 0.43 k s and q = k ... -> q = (k/h) ....
+  The corrected function is the published zero-baryon (no-wiggle) form: it equals colossus's independent implementation to
+  machine precision.
+
+FINDINGS (committed -> corrected EH98 [CLASS no-wiggle]; every number on the chain's ALL-MATTER reading, both footings).
+  The spectrum: committed/CLASS = 0.44 at 0.01 h/Mpc and 1.29 / 1.50 / 1.65 at 1 / 10 / 100 h/Mpc (fixed sigma_8).  The
+    corrected EH98 is within 3.3% of CLASS's no-wiggle broad band on 0.01-20 h/Mpc -- the published FORMULA misses the 2%
+    target at 0.041-0.048 and 0.44-5.2 h/Mpc (max at k = 1.2).  CLASS vs CAMB: 0.15%.  Re-scored with CLASS itself, no check moves (S).
+  ONE VERDICT FLIPS: FP13 A2 (load-bearing) PASS -> FAIL.  The state's own running is n_eff = 2.21 (nonlinear, delta_c; CLASS
+    2.18) and 2.98 (linear), not 2.06 / 2.66: the linear value and the nonlinear scan (2.17-2.31) leave A2's bands, so 'n = 2 is
+    the state's own running' is no longer derived.  FP19 carries n = 2 as a postulate and its n window [1, 2.5] still passes.
+  Six CONTROL flips, each a reproduction of a number computed on the committed spectrum: FP3 B2, FP6 K1 and FP9 K1 (the LCDM
+    yardstick sigma_8 0.8101 -> 0.8080), FP7 B5 (its embedded L341 control; B5's verdict part holds), FP19 K2 / K4 (the hub's
+    XR18 coefficients).
+  sigma_8 / LCDM, every gate holds: H_Y 1.0128-1.0180 -> 1.0109-1.0154; H_S 1.0184-1.0227 -> 1.0148-1.0184 (now <= 1.02);
+    H_K1 1.0117-1.0151 -> 1.0099-1.0127; FP6's (H) 1.0134-1.0191 -> 1.0115-1.0164.  The ungated core still fails: rms
+    23.3 / 27.5 -> 21.8 / 25.7 (FP3 B3; FP7 B5 at lambda_eff = 277: 22.1 / 26.1 -> 20.7 / 24.4), per-mode ~17 / ~20 (+-0.2%).
+    FP7's linear and per-mode lambda_eff thresholds for sigma_8 <= 1.02 drop 8-11% (linear, k <= 1: 1.07e7 -> 9.5e6; the rms
+    physical one is unchanged); the sigma_8-vs-tracking pincer stands (gap x48 -> x42).
+  Forest proxy: FP6's (H) 0.0055 -> 0.0029; H_Y 2.8e-7 unchanged; H_S and H_K1 0; H_K1 in real space (H7) 7.7e-4 -> 3.4e-5.
+  Windows widen: FP6 H1 43 -> 48 of 81 cells; FP9 H1 28 -> 29 of 48 (22 at sigma_8 <= 1.02, was 18); H_K1's L_Lambda window
+    [2.65, 4.6] -> [2.65, >= 5.0] Mpc (the scan ends at 5.0; the sigma_8 = 1.05 edge extrapolates to ~5.06), its
+    sigma_8 <= 1.02 part [2.65, 3.0] -> [2.65, 3.3] (interpolated edge 3.24 -> 3.46).  The lower edge (KiDS at z = 0.4) holds.
+  FP13's state: A6's 'linear-spectrum systematic' was this bug (linear -13..-42% -> +2..+4.5% against CLASS; nonlinear
+    -1..-15% -> -0.4..+3.5%).  H_S's band-pass closes for z >= 13.6 (committed 17.4; CLASS 13.3), and the flagship keeps MOND
+    to z_max = 3.79 (was 4.24).
+  Unmoved: every KiDS verdict (H_Y and H_K1 exactly; H_S -6.2 / -7.7 -> -6.5 / -8.1 at z = 0.25), SPARC, the Local Group
+    failure (R0 1.54 Mpc against the 1.21 edge), FP14 and FP17 (all pass).  FP18's copy (only the 0.43 k s term) moves its
+    2-halo spectrum by <= 0.3%, so it is not re-run.
+
+  *** MUTATE=1: the corrected T_EH98 is replaced by the committed one EVERYWHERE -- V1 must FAIL, and the re-scores must reproduce every committed number (M) ***
+
+======================================================================================================================
+K1  CONTROL: the in-memory patch (the only change to the committed code)
+======================================================================================================================
+    FP3_cosmology_linear.py: T_EH98 defined 1x; edits (0.43 k s term, q term) = 1, 1; lines kept: True; rest of the file identical: True
+       - ge = Om * h * (ag + (1 - ag) / (1 + (0.43 * k * s / h) ** 4)); qq = k * th * th / ge
+       + ge = Om * h * (ag + (1 - ag) / (1 + (0.43 * k * s) ** 4)); qq = (k / h) * th * th / ge
+    FP6_gate_survey.py: T_EH98 defined 1x; edits (0.43 k s term, q term) = 1, 1; lines kept: True; rest of the file identical: True
+       - ge = Om * h * (ag + (1 - ag) / (1 + (0.43 * k * s / h) ** 4)); q = k * th * th / ge
+       + ge = Om * h * (ag + (1 - ag) / (1 + (0.43 * k * s) ** 4)); q = (k / h) * th * th / ge
+    FP7_aqual_type_repair.py: T_EH98 defined 1x; edits (0.43 k s term, q term) = 1, 1; lines kept: True; rest of the file identical: True
+       - ge = Om * h_ * (ag + (1 - ag) / (1 + (0.43 * k * s_ / h_) ** 4)); qq = k * th_ * th_ / ge
+       + ge = Om * h_ * (ag + (1 - ag) / (1 + (0.43 * k * s_) ** 4)); qq = (k / h_) * th_ * th_ / ge
+  [PASS] K1 CONTROL: the patch is exactly the fix -- one T_EH98 per file (FP3, FP6, FP7), the 0.43 k s term and the q term edited once each, every line number kept, the rest of each file byte-identical; the three committed copies are one function and so are the three corrected ones
+         measured: {'FP3_': (1, 1), 'FP6_': (1, 1), 'FP7_': (1, 1)}; copies agree to 0e+00 (committed) / 0e+00 (corrected)
+
+======================================================================================================================
+V  VALIDATION: the corrected T_EH98 against EH98's published form (colossus) and against CLASS / CAMB
+======================================================================================================================
+  [FAIL] V1 THE FIX IS THE PUBLISHED FORM: the corrected T_EH98 equals EH98's zero-baryon (no-wiggle) transfer function eqs. (26), (28)-(31) as independently implemented in colossus, to 1e-10 at k = 1e-4 - 1e3 h/Mpc; the committed form does not
+         measured: max |T/T_colossus - 1|: corrected (= committed under MUTATE) 1.1e+00; committed 1.11
+    CLASS (classy, h = 0.6736, omega_b = 0.02237, omega_c = 0.12, n_s = 0.965, T_cmb = 2.7255, N_ur = 3.046, no ncdm); each spectrum normalised to sigma_8 = 0.811 (8 Mpc/h top hat); CLASS no-wiggle = Gaussian smoothing (width 0.25 in ln k) of ln(P_CLASS/P_EH,corrected) -- the broad band is CLASS's
+     k [h/Mpc]  committed/CLASS_nw  corrected/CLASS_nw  CLASS_full/CLASS_nw
+         0.001              0.3699              0.9830               1.0004
+         0.005              0.4023              0.9903               1.0000
+          0.01              0.4382              0.9885               1.0002
+          0.02              0.4853              0.9823               1.0025
+          0.05              0.7224              1.0172               0.9702
+           0.1              0.8952              1.0054               0.9512
+           0.2              1.0682              1.0024               1.0312
+           0.3              1.1449              0.9912               0.9888
+           0.5              1.2175              0.9767               1.0002
+             1              1.2924              0.9669               1.0012
+             2              1.3606              0.9692               1.0006
+             5              1.4449              0.9795               1.0002
+            10              1.4986              0.9866               1.0002
+            20              1.5422              0.9920               1.0003
+            50              1.5924              1.0007               1.0010
+           100              1.6470              1.0211               1.0031
+    0.01-20 h/Mpc: committed max |dP/P| = 0.562 (at k = 0.01); corrected max = 0.0334 (at k = 1.18); within 2% on [0.01, 0.0408], [0.0475, 0.439], [5.22, 20] h/Mpc
+    dewiggling width 0.15/0.25/0.5: corrected max 0.0368/0.0334/0.0298; CLASS's own BAO wiggles 0.056 (corrected vs CLASS with wiggles: 0.067); CLASS sigma_8 at A_s = 2.1e-9: 0.8228
+  [PASS] V2 (reported; the task's 2% target) THE ERROR vs k AGAINST CLASS (no-wiggle vs no-wiggle, fixed sigma_8), committed and corrected: the corrected EH98 removes the committed error; whether the published no-wiggle FORMULA itself meets 2% of CLASS's broad band on 0.01-20 h/Mpc is printed (and where it does)
+         measured: committed: 0.438 / 1.292 / 1.499 / 1.647 at k = 0.01/1/10/100; max |dP/P| on 0.01-20: committed 0.562, corrected 0.0334 (k = 1.18); 2% target NOT MET (within 2%: 0.01-0.0408, 0.0475-0.439, 5.22-20)
+  [PASS] V3 (reported) THE REFERENCE: CLASS and CAMB agree on the linear spectrum at fixed sigma_8 (0.01-20 h/Mpc, with wiggles)
+         measured: max |P_CAMB/P_CLASS - 1| = 0.0015
+  [PASS] V4 (reported) THE CHAIN'S OTHER EH98 COPIES: FP1's T_eh (its E section's 2-halo spectrum) is the published form; FP18's _T_nw (LCDM's NFW+2h family, WMAP9) has only the 0.43 k s term wrong (k in h/Mpc against s in Mpc), which moves its spectrum by <= 0.3% at k >= 0.1 h/Mpc and the linear correlation function by <= 0.3% at 0.3-3 Mpc -- below every FP18 verdict's margin; not re-run
+         measured: FP1 vs colossus 8.9e-16; FP18 T vs colossus max 0.043; FP18 P/P_correct at k >= 0.1 h/Mpc: 1.0020-1.0031 (k = 0.03 h/Mpc: 0.945); xi_lin ratio at 0.3/1/3 Mpc: 1.0030/1.0028/1.0023
+    (7 s)
+
+======================================================================================================================
+K2  CONTROL: the harness reproduces a committed lane when the committed spectrum is served (FP3, whole)
+======================================================================================================================
+  [PASS] K2 CONTROL: FP3's committed source, exec'd through the harness with the committed spectrum (its own JSON write discarded), reproduces FP3's committed checks and every committed number
+         measured: checks 28/28 same (re-run has 28); 350 numbers, max relative deviation 0.0e+00; rc 0; 24 s
+
+======================================================================================================================
+R  THE RE-SCORE: every spectrum-dependent chain lane re-run whole through the harness (two workers)
+======================================================================================================================
+    workers: committed_A (committed: FP6, FP7, FP9, FP19; FP13 state -); committed_B (committed: FP3, FP13, FP14, FP17; FP13 state committed) -- one thread each; logs in /var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/fp24_m148r4j9
+    worker committed_A: rc 0
+      [committed] FP6: rc=0 verdict=31/32/0 err=no (104 s)
+      [committed] FP7: rc=None verdict=None err=no (9 s)
+      [committed] FP9: rc=0 verdict=36/36/0 err=no (112 s)
+      [committed] FP19: rc=0 verdict=24/24/0 err=no (303 s)
+    worker committed_B: rc 0
+      [committed] FP3: rc=0 verdict=27/28/0 err=no (23 s)
+      [committed] FP13: rc=0 verdict=30/31/0 err=no (402 s)
+      [committed] FP14: rc=0 verdict=27/27/0 err=no (65 s)
+      [committed] FP17: rc=0 verdict=28/28/0 err=no (40 s)
+      [committed] FP13_state_committed: {'head': {'s': 1.686470199841145, 'reading': 'NL', 'z_close': 17.374437246107266, 'L_kpc': {'0.0': 2879.2890622037007, '0.25': 1913.6937528428034, '1.0': 702.3494245090917, '2.5': 164.1194949801604, '6.0': 17.501571701732146, 
+
+======================================================================================================================
+R  FP3: FP3_cosmology_linear -- committed -> committed (MUTATE)
+======================================================================================================================
+    re-run (committed): verdict 27/28/0 (committed 27/28/0); rc 0; 23 s
+    number                                                                                  committed                         re-run
+    B  LCDM sigma_8 (the yardstick, k <= 20 h/Mpc)                                             0.8101                         0.8101
+    B3 ungated core sigma_8/LCDM can rms/pm, alt rms/pm                [23.3104, 17.7100, 27.5454, 20.8363] [23.3104, 17.7100, 27.5454, 20.8363]
+    C2 on-fraction f_max can rms/pm, alt rms/pm                        [0.0018, 0.0021, 0.0016, 0.0019] [0.0018, 0.0021, 0.0016, 0.0019]
+    C4a concave gate: max sigma_8/LCDM (D1-D4, both footings/modes; ga                         1.0199                         1.0199
+    checks: 27/28 pass after (committed 27/28); flips 0
+
+======================================================================================================================
+R  FP6: FP6_gate_survey -- committed -> committed (MUTATE)
+======================================================================================================================
+    re-run (committed): verdict 31/32/0 (committed 31/32/0); rc 0; 104 s
+    number                                                                                  committed                         re-run
+    K1 LCDM / ungated rms / per-mode sigma_8                               [0.8101, 23.3139, 17.7126]     [0.8101, 23.3139, 17.7126]
+    E2 web field y at z = 0.25: rms341 / variance                                    [0.0048, 0.0127]               [0.0048, 0.0127]
+    H2 headline sigma_8/LCDM (6: rms, pm, mono)                        [1.0134, 1.0167, 1.0140, 1.0157, 1.0191, 1.0165] [1.0134, 1.0167, 1.0140, 1.0157, 1.0191, 1.0165]
+    H2 headline forest proxy max (gate 0.10)                                                   0.0055                         0.0055
+    H2c flagship z_max can / alt                                                     [2.9831, 2.9872]               [2.9831, 2.9872]
+    B2 n=2 band-pass sigma_8 rms at L = 1/2/3 Mpc                            [1.0039, 1.0111, 1.0198]       [1.0039, 1.0111, 1.0198]
+    H1 window: cells passing every linchpin gate (of 81)                                      43.0000                        43.0000
+    checks: 31/32 pass after (committed 31/32); flips 0
+
+======================================================================================================================
+R  FP7: FP7_aqual_type_repair -- committed -> committed (MUTATE)
+======================================================================================================================
+    re-run (committed): verdict partial exec (committed 23/24/0); rc None; 9 s
+    number                                                                                  committed                         re-run
+    B5 LCDM sigma_8 (yardstick)                                                                0.8101                         0.8101
+    B5 no gate, lambda_eff = 277: sigma_8/LCDM can rms/pm, alt rms/pm  [22.0696, 16.8193, 26.0946, 19.7981] [22.0696, 16.8193, 26.0946, 19.7981]
+    B5 linear sigma_8/LCDM at lambda_eff = 1e7 / 3e7 / 1e8                  [30.9462, 1.1187, 1.0026]      [30.9462, 1.1187, 1.0026]
+    B5 lambda_eff threshold (sigma_8 <= 1.02): linear k<=20 / k<=1             [4.297e+07, 1.070e+07]         [4.297e+07, 1.070e+07]
+    B5 lambda_eff threshold physical: can rms/pm, alt rms/pm           [4.361e+08, 4.811e+07, 4.362e+08, 5.344e+07] [4.361e+08, 4.811e+07, 4.362e+08, 5.344e+07]
+    T  lambda_sigma8 (most lenient) / gap vs tracking                            [1.070e+07, 47.6299]           [1.070e+07, 47.6299]
+    checks: 2/3 pass after (committed 2/3); flips 0
+
+======================================================================================================================
+R  FP9: FP9_web_galaxy_separator -- committed -> committed (MUTATE)
+======================================================================================================================
+    re-run (committed): verdict 36/36/0 (committed 36/36/0); rc 0; 112 s
+    number                                                                                  committed                         re-run
+    H2 (H_Y) sigma_8/LCDM can rms/pm, alt rms/pm                       [1.0128, 1.0159, 1.0148, 1.0180] [1.0128, 1.0159, 1.0148, 1.0180]
+    H2 (H_Y) forest proxy max (gate 0.10)                                                   2.778e-07                      2.778e-07
+    H2 (H_Y) flagship dex (min; gate -0.05)                                                   -0.0182                        -0.0182
+    H2 (H_Y) KiDS d chi^2 (z = 0.25) can / alt                                     [-2.4024, -5.5698]             [-2.4024, -5.5698]
+    H1 window: passing cells (of 48)                                                          28.0000                        28.0000
+    H2c flagship z_max can / alt                                                     [2.7889, 2.7940]               [2.7889, 2.7940]
+    V  sigma_8's lambda (FP7 B5 k<=1) / forest lambda / flagship lambd [1.070e+07, 3.487e+10, 11974.0398] [1.070e+07, 3.487e+10, 11974.0398]
+    H1 window cells also at sigma_8 <= 1.02                                                   18.0000                        18.0000
+    checks: 35/36 pass after (committed 35/36); flips 0
+
+======================================================================================================================
+R  FP13: FP13_separator_from_state -- committed -> committed (MUTATE)
+======================================================================================================================
+    re-run (committed): verdict 30/31/0 (committed 30/31/0); rc 0; 402 s
+    number                                                                                  committed                         re-run
+    H1 (H_S) sigma_8/LCDM can rms/pm, alt rms/pm                       [1.0184, 1.0202, 1.0208, 1.0227] [1.0184, 1.0202, 1.0208, 1.0227]
+    H1 (H_S) forest proxy max                                                                  0.0000                         0.0000
+    H1 (H_S) flagship dex (min)                                                               -0.0131                        -0.0131
+    H1 (H_S) SPARC dex can / alt                                                     [0.0018, 0.0015]               [0.0018, 0.0015]
+    H1 (H_S) KiDS z = 0.25 / 0.4 / 0.7 (can)                             [-6.2452, -7.8283, 542.7196]   [-6.2452, -7.8283, 542.7196]
+    H1 (H_S) KiDS z = 0.25 / 0.4 / 0.7 (alt)                            [-7.6713, -10.6678, 575.7350]  [-7.6713, -10.6678, 575.7350]
+    H5 FP9's (H_Y) at z = 0.4: KiDS can / alt (gate +9)                            [20.5849, 18.3357]             [20.5849, 18.3357]
+    H4 flagship MOND to z_max; flagship dex at z = 4 / 5                   [4.2418, -0.0374, -0.1238]     [4.2418, -0.0374, -0.1238]
+    H4 sub-L P boost z=0, k = 0.3/0.5/1 h/Mpc                                [0.0484, 0.2354, 1.9222]       [0.0484, 0.2354, 1.9222]
+    A2 n_eff (NL/delta_c, lin/delta_c)                                               [2.0570, 2.6640]               [2.0570, 2.6640]
+    A6 L(z): CLASS/chain - 1, lin z = 0/0.25/1/2.5                     [-0.1331, -0.1614, -0.2514, -0.4154] [-0.1331, -0.1614, -0.2514, -0.4154]
+    A6 L(z): CLASS/chain - 1, NL  z = 0/0.25/1/2.5                     [-0.0099, -0.0191, -0.0636, -0.1520] [-0.0099, -0.0191, -0.0636, -0.1520]
+    A2 n_eff, NL scan at s = 1.3/1.5/2.0/2.4/3.0 (A2 band 1.9-2.2)     [2.0200, 2.0400, 2.0800, 2.1000, 2.1300] [2.0200, 2.0400, 2.0800, 2.1000, 2.1300]
+    L1 LG timing mass can / alt [1e11 Msun]                                          [1.5010, 1.2560]               [1.5010, 1.2560]
+    L2 LG merged R0 can / alt [Mpc] (edge 1.21: FAILS)                               [1.5410, 1.5380]               [1.5410, 1.5380]
+    checks: 30/31 pass after (committed 30/31); flips 0
+
+======================================================================================================================
+R  FP14: FP14_zero_knob_core -- committed -> committed (MUTATE)
+======================================================================================================================
+    re-run (committed): verdict 27/27/0 (committed 27/27/0); rc 0; 65 s
+    number                                                                                  committed                         re-run
+    C3 (H_Y) sigma_8/LCDM at the c_2 floor, can rms/pm, alt rms/pm     [1.0128, 1.0159, 1.0148, 1.0180] [1.0128, 1.0159, 1.0148, 1.0180]
+    C3 forest proxy (floor / c_2 -> oo)                                        [2.778e-07, 2.778e-07]         [2.778e-07, 2.778e-07]
+    L  sigma_8 vs lambda = 0/1/100 (can pm)                                  [1.0159, 1.0158, 1.0158]       [1.0159, 1.0158, 1.0158]
+    checks: 27/27 pass after (committed 27/27); flips 0
+    moved K1     (PASS both): det == FP7: True; T, V == FP7 C1: True; Hermitian True; quadratic True; (2.8 s)
+                  -> det == FP7: True; T, V == FP7 C1: True; Hermitian True; quadratic True; (5.0 s)
+
+======================================================================================================================
+R  FP17: FP17_screening_without_xi -- committed -> committed (MUTATE)
+======================================================================================================================
+    re-run (committed): verdict 28/28/0 (committed 28/28/0); rc 0; 40 s
+    number                                                                                  committed                         re-run
+    R1 (H_Y) sigma_8/LCDM can / alt (per-mode)                                       [1.0159, 1.0180]               [1.0159, 1.0180]
+    R2 sigma_8 factor                                                                          1.0000                         1.0000
+    checks: 28/28 pass after (committed 28/28); flips 0
+    moved K6     (PASS both): V(no readout) == FP7: True; V_11(order 1) == FP14 X3b: True; Hermitian True; quadratic True; (3.3 s)
+                  -> V(no readout) == FP7: True; V_11(order 1) == FP14 X3b: True; Hermitian True; quadratic True; (4.7 s)
+
+======================================================================================================================
+R  FP19: FP19_hs_repair -- committed -> committed (MUTATE)
+======================================================================================================================
+    re-run (committed): verdict 24/24/0 (committed 24/24/0); rc 0; 303 s
+    number                                                                                  committed                         re-run
+    H1 (H_K1) sigma_8/LCDM can rms/pm, alt rms/pm                      [1.0117, 1.0134, 1.0132, 1.0151] [1.0117, 1.0134, 1.0132, 1.0151]
+    H1 (H_K1) forest proxy max                                                                 0.0000                         0.0000
+    H1 (H_K1) flagship dex (min) / SPARC can                                        [-0.0100, 0.0039]              [-0.0100, 0.0039]
+    H1 (H_K1) KiDS z = 0.25 can/alt; z = 0.4 can/alt                   [-7.8410, -10.6696, 0.0059, -5.3373] [-7.8410, -10.6696, 0.0059, -5.3373]
+    H7 real-space (Stein) sigma_8 can/alt; forest can/alt              [1.0075, 1.0084, 7.720e-04, 8.507e-04] [1.0075, 1.0084, 7.720e-04, 8.507e-04]
+    B1 L_Lambda window [lo, hi] (grid)                                               [2.6500, 4.6000]               [2.6500, 4.6000]
+    B1 L_Lambda window with sigma_8 <= 1.02 (grid)                                   [2.6500, 3.0000]               [2.6500, 3.0000]
+    B1 L_Lambda where max sigma_8 = 1.02 / 1.05 (interpolated)                       [3.2426, 4.7506]               [3.2426, 4.7506]
+    A3 open root sigma_8 can rms/pm, alt rms/pm                        [1.8909, 1.7348, 1.9933, 1.8186] [1.8909, 1.7348, 1.9933, 1.8186]
+    H5 flagship z_max; KiDS z = 0.7 can                                            [4.0834, 467.2398]             [4.0834, 467.2398]
+    H6 n window: passing n (count of 1.0/1.5/2.0/2.5)                                          4.0000                         4.0000
+    checks: 24/24 pass after (committed 24/24); flips 0
+    moved K3     (PASS both): max deviation 6.4e-09 of the largest value (per value: 2.3e-08; 2/6 bit-exact; the rest at the absolute noise of a finite second difference); max B-pa
+                  -> max deviation 1.8e-08 of the largest value (per value: 2.3e-06; 3/6 bit-exact; the rest at the absolute noise of a finite second difference); max B-pa
+
+======================================================================================================================
+R5b FP13's STATE AT HIGH z: where the H_S band-pass closes (L at the filter floor) -- committed vs corrected vs CLASS
+======================================================================================================================
+    committed head   (s = 1.686, NL): closed for z >= 17.37; L [kpc] z=0.0: 2879.3, z=0.25: 1913.7, z=1.0: 702.3, z=2.5: 164.1, z=6.0: 17.5, z=10.0: 2.7
+    committed lin_dc (s = 1.686, lin): closed for z >= 9.80; L [kpc] z=0.0: 1840.6, z=0.25: 1152.8, z=1.0: 335.0, z=2.5: 47.9, z=6.0: 1.8, z=10.0: 0.0
+
+======================================================================================================================
+R9  THE FLIP TABLE (every check whose pass/fail changed; CONTROL = a reproduction of a committed/record number)
+======================================================================================================================
+    verdict flips: 0; control flips: 0
+
+======================================================================================================================
+M  MUTATE CONTROL: the harness with the committed spectrum reproduces every committed check and headline number
+======================================================================================================================
+  [PASS] M CONTROL (MUTATE): with the committed spectrum the harness reproduces every committed check and headline number of every re-scored lane (no flips)
+         measured: checks 209/209 same; 139 headline numbers, max relative deviation 0.0e+00
+  [PASS] F EVERY RE-RUN COMPLETED: each lane's committed code ran to its end through the harness (no exception) with finite headline numbers, in every spectrum column
+         measured: lanes 8 x columns 1; errors: none; finite headline numbers 139/139
+
+======================================================================================================================
+H  THE OTHER COPIES: files that carry the committed form, and files that name the chain's EH98 lanes
+======================================================================================================================
+    carry the committed form (0.43 k s / h):
+      fable_independent_2026/L144_verdict_and_lean_propositions.py
+      real_research/bs_khronon_2026/BSX1_kids_external_field_gate.py
+      real_research/bs_khronon_2026/BSX2_cubic_one_scale_khronon.py
+      real_research/cross_thread_review_2026_09_26/XR28_common.py
+      real_research/derivation_chain_2026/FP3_cosmology_linear.py
+      real_research/derivation_chain_2026/FP6_gate_survey.py
+      real_research/derivation_chain_2026/FP7_aqual_type_repair.py
+      real_research/g03_audit_2026/L341_chk_frw_gate.py
+      real_research/g03_audit_2026/L342_bound_region_switch.py
+      real_research/g03_audit_2026/L350_chk_cosmological_G_gate.py
+      real_research/g03_audit_2026/L352_switch_gauss_compensation.py
+    name the chain's EH98 lanes (FP6/FP9/FP13: exec'd or read) outside the chain:
+      real_research/cross_thread_review_2026_09_26/XR18_frw_yield_crossing.py
+      real_research/cross_thread_review_2026_09_26/XR18_nonlocal_dof.py
+      real_research/cross_thread_review_2026_09_26/XR18_second_variation.py
+      real_research/cross_thread_review_2026_09_26/XR18_state_separator.py
+      real_research/cross_thread_review_2026_09_26/XR18_yield_surface.py
+      real_research/cross_thread_review_2026_09_26/XR18b_common.py
+      real_research/cross_thread_review_2026_09_26/XR21_common.py
+      real_research/cross_thread_review_2026_09_26/XR23_common.py
+      real_research/cross_thread_review_2026_09_26/XR24_common.py
+      real_research/cross_thread_review_2026_09_26/XR25_lambda_regulator.py
+      real_research/cross_thread_review_2026_09_26/XR26_cmb.py
+      real_research/cross_thread_review_2026_09_26/XR26_linear_equations.py
+      real_research/cross_thread_review_2026_09_26/XR28_controls.py
+      real_research/cross_thread_review_2026_09_26/XR35_kids_rescore.py
+      real_research/cross_thread_review_2026_09_26/XR36_bound_regions.py
+  [PASS] H (reported) THE OTHER COPIES: the record's and the hub's files that carry the committed form, or name the chain's EH98 lanes (FP6/FP9/FP13) and may inherit it -- not re-scored here (their owners' re-runs); the chain's own lanes are re-scored above
+         measured: 11 carry it; 15 name the chain's EH98 lanes
+
+======================================================================================================================
+W  THE LEDGER
+======================================================================================================================
+    R24a   DERIVED     the corrected T_EH98 is EH98's published zero-baryon form (q = (k/h) Theta^2/Gamma_eff, 0.43 k s; colossus to 1e+00); against CLASS's no-wiggle spectrum at fixed sigma_8 it is within 3.3% on 0.01-20 h/Mpc (the formula's own broad-band error; the 2% target NOT met)  --  V1, V2
+    R24b   FAILS       the chain's committed T_EH98 (L341 -> FP3/FP6/FP7 -> FP9/FP13/FP14/FP17/FP19) is EH98  --  corrected by FP24: q = k Theta^2/Gamma and 0.43 k s/h with k in 1/Mpc; at fixed sigma_8 0.44x CLASS at 0.01 h/Mpc, 1.29/1.50/1.65x at 1/10/100 h/Mpc (V2)
+    R24n   FITTED      kappa = 1/2 (Z = 5.7888): the only accepted fitted input; not derived here  --  FP0
+  [PASS] W (reported) the ledger
+         measured: 3 links
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  The committed T_EH98 mixes h units (q missing 1/h, a spurious 1/h in 0.43 k s): at fixed sigma_8 it is 0.44x CLASS at 0.01 h/Mpc and 1.29-1.65x at 1-100 h/Mpc.  The corrected function is EH98's published form (within 3.3% of CLASS's no-wiggle broad band on 0.01-20 h/Mpc; the 2% target is NOT met by the formula itself).
+  Re-score: 0 verdict flip(s), 0 control flip(s) across 8 lanes.  Not 'closed'.
+  Time 562 s.
+
+  9/10 checks pass; load-bearing failures: 1; wrote FP24_transfer_function_fix_results_MUTATE.json
+rc=1

@@ -1,0 +1,1074 @@
+{
+ "lane": "FP24",
+ "mutate": true,
+ "checks": {
+  "K1 CONTROL: the patch is exactly the fix -- one T_EH98 per file (FP3, FP6, FP7), the 0.43 k s term and the q term edited once each, every line number kept, the rest of each file byte-identical; the three committed copies are one function and so are the three corrected ones": {
+   "ok": true,
+   "measured": "{'FP3_': (1, 1), 'FP6_': (1, 1), 'FP7_': (1, 1)}; copies agree to 0e+00 (committed) / 0e+00 (corrected)",
+   "load_bearing": true
+  },
+  "V1 THE FIX IS THE PUBLISHED FORM: the corrected T_EH98 equals EH98's zero-baryon (no-wiggle) transfer function eqs. (26), (28)-(31) as independently implemented in colossus, to 1e-10 at k = 1e-4 - 1e3 h/Mpc; the committed form does not": {
+   "ok": false,
+   "measured": "max |T/T_colossus - 1|: corrected (= committed under MUTATE) 1.1e+00; committed 1.11",
+   "load_bearing": true
+  },
+  "V2 (reported; the task's 2% target) THE ERROR vs k AGAINST CLASS (no-wiggle vs no-wiggle, fixed sigma_8), committed and corrected: the corrected EH98 removes the committed error; whether the published no-wiggle FORMULA itself meets 2% of CLASS's broad band on 0.01-20 h/Mpc is printed (and where it does)": {
+   "ok": true,
+   "measured": "committed: 0.438 / 1.292 / 1.499 / 1.647 at k = 0.01/1/10/100; max |dP/P| on 0.01-20: committed 0.562, corrected 0.0334 (k = 1.18); 2% target NOT MET (within 2%: 0.01-0.0408, 0.0475-0.439, 5.22-20)",
+   "load_bearing": false
+  },
+  "V3 (reported) THE REFERENCE: CLASS and CAMB agree on the linear spectrum at fixed sigma_8 (0.01-20 h/Mpc, with wiggles)": {
+   "ok": true,
+   "measured": "max |P_CAMB/P_CLASS - 1| = 0.0015",
+   "load_bearing": false
+  },
+  "V4 (reported) THE CHAIN'S OTHER EH98 COPIES: FP1's T_eh (its E section's 2-halo spectrum) is the published form; FP18's _T_nw (LCDM's NFW+2h family, WMAP9) has only the 0.43 k s term wrong (k in h/Mpc against s in Mpc), which moves its spectrum by <= 0.3% at k >= 0.1 h/Mpc and the linear correlation function by <= 0.3% at 0.3-3 Mpc -- below every FP18 verdict's margin; not re-run": {
+   "ok": true,
+   "measured": "FP1 vs colossus 8.9e-16; FP18 T vs colossus max 0.043; FP18 P/P_correct at k >= 0.1 h/Mpc: 1.0020-1.0031 (k = 0.03 h/Mpc: 0.945); xi_lin ratio at 0.3/1/3 Mpc: 1.0030/1.0028/1.0023",
+   "load_bearing": false
+  },
+  "K2 CONTROL: FP3's committed source, exec'd through the harness with the committed spectrum (its own JSON write discarded), reproduces FP3's committed checks and every committed number": {
+   "ok": true,
+   "measured": "checks 28/28 same (re-run has 28); 350 numbers, max relative deviation 0.0e+00; rc 0; 24 s",
+   "load_bearing": true
+  },
+  "M CONTROL (MUTATE): with the committed spectrum the harness reproduces every committed check and headline number of every re-scored lane (no flips)": {
+   "ok": true,
+   "measured": "checks 209/209 same; 139 headline numbers, max relative deviation 0.0e+00",
+   "load_bearing": true
+  },
+  "F EVERY RE-RUN COMPLETED: each lane's committed code ran to its end through the harness (no exception) with finite headline numbers, in every spectrum column": {
+   "ok": true,
+   "measured": "lanes 8 x columns 1; errors: none; finite headline numbers 139/139",
+   "load_bearing": true
+  },
+  "H (reported) THE OTHER COPIES: the record's and the hub's files that carry the committed form, or name the chain's EH98 lanes (FP6/FP9/FP13) and may inherit it -- not re-scored here (their owners' re-runs); the chain's own lanes are re-scored above": {
+   "ok": true,
+   "measured": "11 carry it; 15 name the chain's EH98 lanes",
+   "load_bearing": false
+  },
+  "W (reported) the ledger": {
+   "ok": true,
+   "measured": "3 links",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "K1": {
+   "FP3_cosmology_linear.py": {
+    "n_def": 1,
+    "edits": [
+     1,
+     1
+    ],
+    "same_lines": true,
+    "outside_same": true,
+    "changed_lines": 1
+   },
+   "FP6_gate_survey.py": {
+    "n_def": 1,
+    "edits": [
+     1,
+     1
+    ],
+    "same_lines": true,
+    "outside_same": true,
+    "changed_lines": 1
+   },
+   "FP7_aqual_type_repair.py": {
+    "n_def": 1,
+    "edits": [
+     1,
+     1
+    ],
+    "same_lines": true,
+    "outside_same": true,
+    "changed_lines": 1
+   }
+  },
+  "V1": {
+   "dev_corrected": 1.1101405915399063,
+   "dev_committed": 1.1101405915399063
+  },
+  "V2": {
+   "table": {
+    "0.001": [
+     0.36985167246968215,
+     0.983013914071172,
+     1.0004162101833842
+    ],
+    "0.005": [
+     0.40226290809428117,
+     0.9903006385487155,
+     0.9999971458257353
+    ],
+    "0.01": [
+     0.4382040427329725,
+     0.9885257060236015,
+     1.0002276362565727
+    ],
+    "0.02": [
+     0.48532425777636673,
+     0.9822570840050562,
+     1.0025375302250579
+    ],
+    "0.05": [
+     0.7223630001699737,
+     1.0172408622512705,
+     0.9702123928285818
+    ],
+    "0.1": [
+     0.8951863714138877,
+     1.005442494298865,
+     0.9512140867683619
+    ],
+    "0.2": [
+     1.068165808380569,
+     1.0024352037227307,
+     1.031224269757057
+    ],
+    "0.3": [
+     1.1449483294082976,
+     0.991160907747739,
+     0.9887792939326857
+    ],
+    "0.5": [
+     1.2175124897098903,
+     0.9767053448075754,
+     1.0001711637015953
+    ],
+    "1.0": [
+     1.2924005688611675,
+     0.9669162461507543,
+     1.0011752041491155
+    ],
+    "2.0": [
+     1.3606310497051213,
+     0.9692156896066719,
+     1.0006342257119412
+    ],
+    "5.0": [
+     1.444929869199387,
+     0.9795026472742312,
+     1.00020937206415
+    ],
+    "10.0": [
+     1.4986165783599554,
+     0.9866272731073978,
+     1.000178203935199
+    ],
+    "20.0": [
+     1.5421678279736057,
+     0.9920442408656525,
+     1.0002799957685824
+    ],
+    "50.0": [
+     1.5923558728486982,
+     1.0006844300300435,
+     1.000983835047706
+    ],
+    "100.0": [
+     1.6469900829537276,
+     1.021105265160673,
+     1.0031104691970385
+    ]
+   },
+   "max_committed": 0.5615790906100819,
+   "k_max_committed": 0.010024836378106592,
+   "max_corrected": 0.03343396640459306,
+   "k_max_corrected": 1.1832020118047337,
+   "within2_segments": [
+    [
+     0.010024836378106592,
+     0.04081825075381923
+    ],
+    [
+     0.047536997604448815,
+     0.4394465547966259
+    ],
+    [
+     5.21795496925531,
+     19.9752097897755
+    ]
+   ],
+   "target_2pct_met": false,
+   "dewiggle_sensitivity": {
+    "0.15": 0.03682575055749693,
+    "0.25": 0.03343396640459306,
+    "0.5": 0.029758571898468755
+   },
+   "class_wiggle_amp": 0.05552380935696788,
+   "corrected_vs_class_full": 0.0670545238597986,
+   "sigma8_class_As": 0.8228131847508879
+  },
+  "V3": {
+   "camb_vs_class": 0.0015311074872506047
+  },
+  "V4": {
+   "fp1_dev": 8.881784197001252e-16,
+   "fp18_T_dev": 0.043458247146662354,
+   "fp18_P_ratio_kge0p1": [
+    1.0019800140169508,
+    1.0031112745435922
+   ],
+   "fp18_xi_ratio": {
+    "0.3": 1.002972335034504,
+    "1.0": 1.0027960681150956,
+    "3.0": 1.002289066969417
+   }
+  },
+  "R": {
+   "FP3": {
+    "rows": [
+     {
+      "label": "B  LCDM sigma_8 (the yardstick, k <= 20 h/Mpc)",
+      "committed": 0.8100856100697766,
+      "corrected": 0.8100856100697766,
+      "class_nw": null
+     },
+     {
+      "label": "B3 ungated core sigma_8/LCDM can rms/pm, alt rms/pm",
+      "committed": [
+       23.31038842694226,
+       17.709959866657137,
+       27.545440346728423,
+       20.836325608818303
+      ],
+      "corrected": [
+       23.31038842694226,
+       17.709959866657137,
+       27.545440346728423,
+       20.836325608818303
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "C2 on-fraction f_max can rms/pm, alt rms/pm",
+      "committed": [
+       0.0017827949120191,
+       0.002134524693325809,
+       0.0016026392632703622,
+       0.0019156165595280075
+      ],
+      "corrected": [
+       0.0017827949120191,
+       0.002134524693325809,
+       0.0016026392632703622,
+       0.0019156165595280075
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "C4a concave gate: max sigma_8/LCDM (D1-D4, both footings/modes; gate 1.02)",
+      "committed": 1.0198628321607732,
+      "corrected": 1.0198628321607732,
+      "class_nw": null
+     }
+    ],
+    "flips": [],
+    "n_checks": 28,
+    "n_pass": 27,
+    "n_pass_committed": 27,
+    "verdict": "27/28/0",
+    "err": false,
+    "class_verdict": null,
+    "moved": 0
+   },
+   "FP6": {
+    "rows": [
+     {
+      "label": "K1 LCDM / ungated rms / per-mode sigma_8",
+      "committed": [
+       0.8100859265034036,
+       23.31389915099458,
+       17.712551635370613
+      ],
+      "corrected": [
+       0.8100859265034036,
+       23.31389915099458,
+       17.712551635370613
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "E2 web field y at z = 0.25: rms341 / variance",
+      "committed": [
+       0.004833226163357449,
+       0.0127258500428551
+      ],
+      "corrected": [
+       0.004833226163357449,
+       0.0127258500428551
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H2 headline sigma_8/LCDM (6: rms, pm, mono)",
+      "committed": [
+       1.0133703769258924,
+       1.0167143781343193,
+       1.014046930727769,
+       1.015683942775553,
+       1.019069820783145,
+       1.0164549973740375
+      ],
+      "corrected": [
+       1.0133703769258924,
+       1.0167143781343193,
+       1.014046930727769,
+       1.015683942775553,
+       1.019069820783145,
+       1.0164549973740375
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H2 headline forest proxy max (gate 0.10)",
+      "committed": 0.0055358999063856995,
+      "corrected": 0.0055358999063856995,
+      "class_nw": null
+     },
+     {
+      "label": "H2c flagship z_max can / alt",
+      "committed": [
+       2.9830666899815883,
+       2.987189233619084
+      ],
+      "corrected": [
+       2.9830666899815883,
+       2.987189233619084
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "B2 n=2 band-pass sigma_8 rms at L = 1/2/3 Mpc",
+      "committed": [
+       1.0039386616280888,
+       1.0110903177408743,
+       1.01977068127205
+      ],
+      "corrected": [
+       1.0039386616280888,
+       1.0110903177408743,
+       1.01977068127205
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H1 window: cells passing every linchpin gate (of 81)",
+      "committed": 43.0,
+      "corrected": 43.0,
+      "class_nw": null
+     }
+    ],
+    "flips": [],
+    "n_checks": 32,
+    "n_pass": 31,
+    "n_pass_committed": 31,
+    "verdict": "31/32/0",
+    "err": false,
+    "class_verdict": null,
+    "moved": 0
+   },
+   "FP7": {
+    "rows": [
+     {
+      "label": "B5 LCDM sigma_8 (yardstick)",
+      "committed": 0.8100854474507065,
+      "corrected": 0.8100854474507065,
+      "class_nw": null
+     },
+     {
+      "label": "B5 no gate, lambda_eff = 277: sigma_8/LCDM can rms/pm, alt rms/pm",
+      "committed": [
+       22.069566498529813,
+       16.819272197370335,
+       26.09461750734881,
+       19.79811806948959
+      ],
+      "corrected": [
+       22.069566498529813,
+       16.819272197370335,
+       26.09461750734881,
+       19.79811806948959
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "B5 linear sigma_8/LCDM at lambda_eff = 1e7 / 3e7 / 1e8",
+      "committed": [
+       30.946170203963216,
+       1.1187471689050419,
+       1.0026361009799503
+      ],
+      "corrected": [
+       30.946170203963216,
+       1.1187471689050419,
+       1.0026361009799503
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "B5 lambda_eff threshold (sigma_8 <= 1.02): linear k<=20 / k<=1",
+      "committed": [
+       42965024.85479691,
+       10701895.148176061
+      ],
+      "corrected": [
+       42965024.85479691,
+       10701895.148176061
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "B5 lambda_eff threshold physical: can rms/pm, alt rms/pm",
+      "committed": [
+       436096038.4146381,
+       48105644.98792821,
+       436192356.44753176,
+       53441046.454392165
+      ],
+      "corrected": [
+       436096038.4146381,
+       48105644.98792821,
+       436192356.44753176,
+       53441046.454392165
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "T  lambda_sigma8 (most lenient) / gap vs tracking",
+      "committed": [
+       10701895.148176061,
+       47.62985694599217
+      ],
+      "corrected": [
+       10701895.148176061,
+       47.62985694599217
+      ],
+      "class_nw": null
+     }
+    ],
+    "flips": [],
+    "n_checks": 3,
+    "n_pass": 2,
+    "n_pass_committed": 2,
+    "verdict": null,
+    "err": false,
+    "class_verdict": null,
+    "moved": 0
+   },
+   "FP9": {
+    "rows": [
+     {
+      "label": "H2 (H_Y) sigma_8/LCDM can rms/pm, alt rms/pm",
+      "committed": [
+       1.0127677705181344,
+       1.0158502273395096,
+       1.0148368801264098,
+       1.0179788787904498
+      ],
+      "corrected": [
+       1.0127677705181344,
+       1.0158502273395096,
+       1.0148368801264098,
+       1.0179788787904498
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H2 (H_Y) forest proxy max (gate 0.10)",
+      "committed": 2.7775600108803644e-07,
+      "corrected": 2.7775600108803644e-07,
+      "class_nw": null
+     },
+     {
+      "label": "H2 (H_Y) flagship dex (min; gate -0.05)",
+      "committed": -0.018151565620108983,
+      "corrected": -0.018151565620108983,
+      "class_nw": null
+     },
+     {
+      "label": "H2 (H_Y) KiDS d chi^2 (z = 0.25) can / alt",
+      "committed": [
+       -2.402381941164819,
+       -5.569819235318079
+      ],
+      "corrected": [
+       -2.402381941164819,
+       -5.569819235318079
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H1 window: passing cells (of 48)",
+      "committed": 28,
+      "corrected": 28,
+      "class_nw": null
+     },
+     {
+      "label": "H2c flagship z_max can / alt",
+      "committed": [
+       2.7889206139226825,
+       2.7940003556925452
+      ],
+      "corrected": [
+       2.7889206139226825,
+       2.7940003556925452
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "V  sigma_8's lambda (FP7 B5 k<=1) / forest lambda / flagship lambda",
+      "committed": [
+       10701895.148176061,
+       34873215637.783745,
+       11974.039768505078
+      ],
+      "corrected": [
+       10701895.148176061,
+       34873215637.783745,
+       11974.039768505078
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H1 window cells also at sigma_8 <= 1.02",
+      "committed": 18.0,
+      "corrected": 18.0,
+      "class_nw": null
+     }
+    ],
+    "flips": [],
+    "n_checks": 36,
+    "n_pass": 35,
+    "n_pass_committed": 35,
+    "verdict": "36/36/0",
+    "err": false,
+    "class_verdict": null,
+    "moved": 0
+   },
+   "FP13": {
+    "rows": [
+     {
+      "label": "H1 (H_S) sigma_8/LCDM can rms/pm, alt rms/pm",
+      "committed": [
+       1.0184469972511851,
+       1.0202412194030035,
+       1.0207561808796728,
+       1.0227126772232236
+      ],
+      "corrected": [
+       1.0184469972511851,
+       1.0202412194030035,
+       1.0207561808796728,
+       1.0227126772232236
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H1 (H_S) forest proxy max",
+      "committed": 0.0,
+      "corrected": 0.0,
+      "class_nw": null
+     },
+     {
+      "label": "H1 (H_S) flagship dex (min)",
+      "committed": -0.013146848162347275,
+      "corrected": -0.013146848162347275,
+      "class_nw": null
+     },
+     {
+      "label": "H1 (H_S) SPARC dex can / alt",
+      "committed": [
+       0.0018146562266757745,
+       0.0014951922867175009
+      ],
+      "corrected": [
+       0.0018146562266757745,
+       0.0014951922867175009
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H1 (H_S) KiDS z = 0.25 / 0.4 / 0.7 (can)",
+      "committed": [
+       -6.245165925136391,
+       -7.828340447585006,
+       542.7195707377774
+      ],
+      "corrected": [
+       -6.245165925136391,
+       -7.828340447585006,
+       542.7195707377774
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H1 (H_S) KiDS z = 0.25 / 0.4 / 0.7 (alt)",
+      "committed": [
+       -7.6713257751607955,
+       -10.667762173928935,
+       575.7349894837312
+      ],
+      "corrected": [
+       -7.6713257751607955,
+       -10.667762173928935,
+       575.7349894837312
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H5 FP9's (H_Y) at z = 0.4: KiDS can / alt (gate +9)",
+      "committed": [
+       20.584932943301837,
+       18.335684272650923
+      ],
+      "corrected": [
+       20.584932943301837,
+       18.335684272650923
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H4 flagship MOND to z_max; flagship dex at z = 4 / 5",
+      "committed": [
+       4.241805912903808,
+       -0.037412504065944804,
+       -0.12376044162518757
+      ],
+      "corrected": [
+       4.241805912903808,
+       -0.037412504065944804,
+       -0.12376044162518757
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H4 sub-L P boost z=0, k = 0.3/0.5/1 h/Mpc",
+      "committed": [
+       0.04843113033535906,
+       0.23542791419841524,
+       1.9221777816685215
+      ],
+      "corrected": [
+       0.04843113033535906,
+       0.23542791419841524,
+       1.9221777816685215
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "A2 n_eff (NL/delta_c, lin/delta_c)",
+      "committed": [
+       2.0569630639885963,
+       2.664046015488391
+      ],
+      "corrected": [
+       2.0569630639885963,
+       2.664046015488391
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "A6 L(z): CLASS/chain - 1, lin z = 0/0.25/1/2.5",
+      "committed": [
+       -0.1331133647720939,
+       -0.16143310793060195,
+       -0.25135276296182174,
+       -0.4153906185628867
+      ],
+      "corrected": [
+       -0.1331133647720939,
+       -0.16143310793060195,
+       -0.25135276296182174,
+       -0.4153906185628867
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "A6 L(z): CLASS/chain - 1, NL  z = 0/0.25/1/2.5",
+      "committed": [
+       -0.00990198763366601,
+       -0.019090407919082453,
+       -0.06363759971189631,
+       -0.1519770715758466
+      ],
+      "corrected": [
+       -0.00990198763366601,
+       -0.019090407919082453,
+       -0.06363759971189631,
+       -0.1519770715758466
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "A2 n_eff, NL scan at s = 1.3/1.5/2.0/2.4/3.0 (A2 band 1.9-2.2)",
+      "committed": [
+       2.02,
+       2.04,
+       2.08,
+       2.1,
+       2.13
+      ],
+      "corrected": [
+       2.02,
+       2.04,
+       2.08,
+       2.1,
+       2.13
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "L1 LG timing mass can / alt [1e11 Msun]",
+      "committed": [
+       1.501,
+       1.256
+      ],
+      "corrected": [
+       1.501,
+       1.256
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "L2 LG merged R0 can / alt [Mpc] (edge 1.21: FAILS)",
+      "committed": [
+       1.541,
+       1.538
+      ],
+      "corrected": [
+       1.541,
+       1.538
+      ],
+      "class_nw": null
+     }
+    ],
+    "flips": [],
+    "n_checks": 31,
+    "n_pass": 30,
+    "n_pass_committed": 30,
+    "verdict": "30/31/0",
+    "err": false,
+    "class_verdict": null,
+    "moved": 0
+   },
+   "FP14": {
+    "rows": [
+     {
+      "label": "C3 (H_Y) sigma_8/LCDM at the c_2 floor, can rms/pm, alt rms/pm",
+      "committed": [
+       1.0127677630730751,
+       1.0158502752907776,
+       1.0148368699390222,
+       1.0179791422767805
+      ],
+      "corrected": [
+       1.0127677630730751,
+       1.0158502752907776,
+       1.0148368699390222,
+       1.0179791422767805
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "C3 forest proxy (floor / c_2 -> oo)",
+      "committed": [
+       2.7775600108803644e-07,
+       2.7775600108803644e-07
+      ],
+      "corrected": [
+       2.7775600108803644e-07,
+       2.7775600108803644e-07
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "L  sigma_8 vs lambda = 0/1/100 (can pm)",
+      "committed": [
+       1.0158502752907776,
+       1.0158495688815632,
+       1.0157964307392344
+      ],
+      "corrected": [
+       1.0158502752907776,
+       1.0158495688815632,
+       1.0157964307392344
+      ],
+      "class_nw": null
+     }
+    ],
+    "flips": [],
+    "n_checks": 27,
+    "n_pass": 27,
+    "n_pass_committed": 27,
+    "verdict": "27/27/0",
+    "err": false,
+    "class_verdict": null,
+    "moved": 1
+   },
+   "FP17": {
+    "rows": [
+     {
+      "label": "R1 (H_Y) sigma_8/LCDM can / alt (per-mode)",
+      "committed": [
+       1.0158502273395096,
+       1.0179788787904498
+      ],
+      "corrected": [
+       1.0158502273395096,
+       1.0179788787904498
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "R2 sigma_8 factor",
+      "committed": 0.9999999980487756,
+      "corrected": 0.9999999980487756,
+      "class_nw": null
+     }
+    ],
+    "flips": [],
+    "n_checks": 28,
+    "n_pass": 28,
+    "n_pass_committed": 28,
+    "verdict": "28/28/0",
+    "err": false,
+    "class_verdict": null,
+    "moved": 1
+   },
+   "FP19": {
+    "rows": [
+     {
+      "label": "H1 (H_K1) sigma_8/LCDM can rms/pm, alt rms/pm",
+      "committed": [
+       1.0117219028775037,
+       1.0133818123426912,
+       1.013228158045516,
+       1.0150607877195665
+      ],
+      "corrected": [
+       1.0117219028775037,
+       1.0133818123426912,
+       1.013228158045516,
+       1.0150607877195665
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H1 (H_K1) forest proxy max",
+      "committed": 0.0,
+      "corrected": 0.0,
+      "class_nw": null
+     },
+     {
+      "label": "H1 (H_K1) flagship dex (min) / SPARC can",
+      "committed": [
+       -0.009957536857380352,
+       0.0038764920914459893
+      ],
+      "corrected": [
+       -0.009957536857380352,
+       0.0038764920914459893
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H1 (H_K1) KiDS z = 0.25 can/alt; z = 0.4 can/alt",
+      "committed": [
+       -7.841032537731863,
+       -10.669596977515795,
+       0.005939119603581844,
+       -5.337302612001736
+      ],
+      "corrected": [
+       -7.841032537731863,
+       -10.669596977515795,
+       0.005939119603581844,
+       -5.337302612001736
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H7 real-space (Stein) sigma_8 can/alt; forest can/alt",
+      "committed": [
+       1.0074764492854786,
+       1.0083964742443177,
+       0.0007720046723656004,
+       0.0008507362149214881
+      ],
+      "corrected": [
+       1.0074764492854786,
+       1.0083964742443177,
+       0.0007720046723656004,
+       0.0008507362149214881
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "B1 L_Lambda window [lo, hi] (grid)",
+      "committed": [
+       2.65,
+       4.6
+      ],
+      "corrected": [
+       2.65,
+       4.6
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "B1 L_Lambda window with sigma_8 <= 1.02 (grid)",
+      "committed": [
+       2.65,
+       3.0
+      ],
+      "corrected": [
+       2.65,
+       3.0
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "B1 L_Lambda where max sigma_8 = 1.02 / 1.05 (interpolated)",
+      "committed": [
+       3.2426016814905583,
+       4.750571815490809
+      ],
+      "corrected": [
+       3.2426016814905583,
+       4.750571815490809
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "A3 open root sigma_8 can rms/pm, alt rms/pm",
+      "committed": [
+       1.8908744546088243,
+       1.7348432856684766,
+       1.9933390295226487,
+       1.8186329120517377
+      ],
+      "corrected": [
+       1.8908744546088243,
+       1.7348432856684766,
+       1.9933390295226487,
+       1.8186329120517377
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H5 flagship z_max; KiDS z = 0.7 can",
+      "committed": [
+       4.08337513769728,
+       467.2397983919255
+      ],
+      "corrected": [
+       4.08337513769728,
+       467.2397983919255
+      ],
+      "class_nw": null
+     },
+     {
+      "label": "H6 n window: passing n (count of 1.0/1.5/2.0/2.5)",
+      "committed": 4.0,
+      "corrected": 4.0,
+      "class_nw": null
+     }
+    ],
+    "flips": [],
+    "n_checks": 24,
+    "n_pass": 24,
+    "n_pass_committed": 24,
+    "verdict": "24/24/0",
+    "err": false,
+    "class_verdict": null,
+    "moved": 1
+   }
+  },
+  "FP13_state": {
+   "committed": {
+    "head": {
+     "s": 1.686470199841145,
+     "reading": "NL",
+     "z_close": 17.374437246107266,
+     "L_kpc": {
+      "0.0": 2879.2890622037007,
+      "0.25": 1913.6937528428034,
+      "1.0": 702.3494245090917,
+      "2.5": 164.1194949801604,
+      "6.0": 17.501571701732146,
+      "10.0": 2.6998723312196984
+     }
+    },
+    "lin_dc": {
+     "s": 1.686470199841145,
+     "reading": "lin",
+     "z_close": 9.800523745162529,
+     "L_kpc": {
+      "0.0": 1840.5714353339524,
+      "0.25": 1152.8245696368126,
+      "1.0": 334.96509800229416,
+      "2.5": 47.88794837263072,
+      "6.0": 1.7521628419392148,
+      "10.0": 2.4299999999999964e-05
+     }
+    }
+   }
+  },
+  "flips": [],
+  "H": {
+   "carry": [
+    "fable_independent_2026/L144_verdict_and_lean_propositions.py",
+    "real_research/bs_khronon_2026/BSX1_kids_external_field_gate.py",
+    "real_research/bs_khronon_2026/BSX2_cubic_one_scale_khronon.py",
+    "real_research/cross_thread_review_2026_09_26/XR28_common.py",
+    "real_research/derivation_chain_2026/FP3_cosmology_linear.py",
+    "real_research/derivation_chain_2026/FP6_gate_survey.py",
+    "real_research/derivation_chain_2026/FP7_aqual_type_repair.py",
+    "real_research/g03_audit_2026/L341_chk_frw_gate.py",
+    "real_research/g03_audit_2026/L342_bound_region_switch.py",
+    "real_research/g03_audit_2026/L350_chk_cosmological_G_gate.py",
+    "real_research/g03_audit_2026/L352_switch_gauss_compensation.py"
+   ],
+   "inherit": [
+    "real_research/cross_thread_review_2026_09_26/XR18_frw_yield_crossing.py",
+    "real_research/cross_thread_review_2026_09_26/XR18_nonlocal_dof.py",
+    "real_research/cross_thread_review_2026_09_26/XR18_second_variation.py",
+    "real_research/cross_thread_review_2026_09_26/XR18_state_separator.py",
+    "real_research/cross_thread_review_2026_09_26/XR18_yield_surface.py",
+    "real_research/cross_thread_review_2026_09_26/XR18b_common.py",
+    "real_research/cross_thread_review_2026_09_26/XR21_common.py",
+    "real_research/cross_thread_review_2026_09_26/XR23_common.py",
+    "real_research/cross_thread_review_2026_09_26/XR24_common.py",
+    "real_research/cross_thread_review_2026_09_26/XR25_lambda_regulator.py",
+    "real_research/cross_thread_review_2026_09_26/XR26_cmb.py",
+    "real_research/cross_thread_review_2026_09_26/XR26_linear_equations.py",
+    "real_research/cross_thread_review_2026_09_26/XR28_controls.py",
+    "real_research/cross_thread_review_2026_09_26/XR35_kids_rescore.py",
+    "real_research/cross_thread_review_2026_09_26/XR36_bound_regions.py"
+   ]
+  }
+ },
+ "ledger": [
+  {
+   "link": "R24a",
+   "status": "DERIVED",
+   "what": "the corrected T_EH98 is EH98's published zero-baryon form (q = (k/h) Theta^2/Gamma_eff, 0.43 k s; colossus to 1e+00); against CLASS's no-wiggle spectrum at fixed sigma_8 it is within 3.3% on 0.01-20 h/Mpc (the formula's own broad-band error; the 2% target NOT met)",
+   "basis": "V1, V2"
+  },
+  {
+   "link": "R24b",
+   "status": "FAILS",
+   "what": "the chain's committed T_EH98 (L341 -> FP3/FP6/FP7 -> FP9/FP13/FP14/FP17/FP19) is EH98",
+   "basis": "corrected by FP24: q = k Theta^2/Gamma and 0.43 k s/h with k in 1/Mpc; at fixed sigma_8 0.44x CLASS at 0.01 h/Mpc, 1.29/1.50/1.65x at 1/10/100 h/Mpc (V2)"
+  },
+  {
+   "link": "R24n",
+   "status": "FITTED",
+   "what": "kappa = 1/2 (Z = 5.7888): the only accepted fitted input; not derived here",
+   "basis": "FP0"
+  }
+ ]
+}
