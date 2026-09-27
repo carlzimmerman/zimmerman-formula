@@ -78,7 +78,9 @@ light complex scalar whose own rest energy powers the kick.
 - The group-scale outer profile: R0 overshoots by +0.20 dex for the Local Group, M81 and IC 342 (Cen A matches); fixing
   it costs KiDS (FP11, FP12). FP18 finds the tension is in the data itself: at face value no profile fits both KiDS and
   the Hubble-flow R0 (9.8 sigma, LCDM included); six comparability systematics bring it to 2.3 sigma (UNDECIDED). FP21
-  measures the lensing of isolated spirals at 0.3-1.5 Mpc, which decides it.
+  measured the lensing of 52 spectroscopically isolated late-type centrals (2M++ in KiDS-1000) at 0.26-1.62 Mpc: A =
+  2.19 +- 1.46 of the mixed-type level, S/N 1.5; the reconciliation level (A ~ 0.3) is disfavoured at 0.8-1.8 sigma, a
+  lean, not a result (UNDECIDED). Deciding it needs ~2,100 such centrals at z ~ 0.03: all-sky shear around 2M++.
 - Re-accretion of the kicked dark component: FP16 (semi-analytic) finds the window EMPTY. Clusters recapture the escaped
   daughters, so X-COP fails at every kick from 575 to 650 km/s; the flagship, galaxies, KiDS and S8 pass. Only the hub's
   particle-mesh run (XR21 stage 3) could overturn it.

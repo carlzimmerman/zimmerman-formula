@@ -1,6 +1,6 @@
 # The first-principles derivation chain -- status ledger
 
-Assembled by `run_chain.py` on 2026-09-27 11:18. A lane counts only if its main run has a verdict and its MUTATE control flips (rc = 1). Status meanings: DERIVED (varied out of the chain above it, with a script), TIED (an input implemented as an exact action-level relation, coupling chosen), POSTULATED (an input), FITTED (a constant set by data), CONSTRAINT (a derived requirement on a lower link), OPEN (owed), FAILS (derived and contradicted by data).
+Assembled by `run_chain.py` on 2026-09-27 11:22. A lane counts only if its main run has a verdict and its MUTATE control flips (rc = 1). Status meanings: DERIVED (varied out of the chain above it, with a script), TIED (an input implemented as an exact action-level relation, coupling chosen), POSTULATED (an input), FITTED (a constant set by data), CONSTRAINT (a derived requirement on a lower link), OPEN (owed), FAILS (derived and contradicted by data).
 
 ## Lanes
 
@@ -27,6 +27,7 @@ Assembled by `run_chain.py` on 2026-09-27 11:18. A lane counts only if its main 
 | FP18_kids_vs_hubble_flow_data | 20/20 | 0 | 0 | 1 | ok |
 | FP19_hs_repair | 24/24 | 0 | 0 | 1 | ok |
 | FP20_esd_projection_fix | 12/12 | 0 | 0 | 1 | ok |
+| FP21_isolated_spiral_lensing | 18/19 | 0 | 0 | 1 | ok |
 
 ## Links
 
@@ -358,5 +359,15 @@ Assembled by `run_chain.py` on 2026-09-27 11:18. A lane counts only if its main 
 | FP20 | F20n | OPEN | the P2 lanes downstream of DE8 (DE10's converged model, the hub's XR9 and XR14 ON-M* KiDS pass) carry the carrier-template error (V1b) and must be re-scored with the corrected projection; so must FP15/FP16 (uncommitted, kids_switched) | V4, V1b, R9, H |
 | FP20 | F20o | CONSTRAINT | the isolated-P2 KiDS base itself: P1 lanes +112.3/+105.6 -> +141.6/+134.9 (the lead grade flattered the inner phantom); P2 lanes (nu_mono, 2-halo) +174.3/+166.9 -> +159.9/+153.0 -- every gate here is a difference to its lane's base | R1, R9 |
 | FP20 | F20p | OPEN | the P1 lanes score point values at the bin centres, not B21's annulus averages (a ~1-2% convention, unchanged here); the 2-halo templates keep their own inner-disc approximation (V5) | scope |
+| FP21 | F21a | CONSTRAINT | the like-for-like lens sample exists and is small: 2M++ (spectroscopic, K <= 12.5, complete in both KiDS regions) holds 2,036 galaxies in the KiDS-1000 footprint (z >= 0.01), 621 at 10.4 <= log M_gal <= 10.8 with the LV centrals' own mass mapping (0.6 L_K + Boselli gas; UNGC L_K reproduced to -0.008 dex), 227 LATE-labelled; only 108 are the brightest within 3 Mpc / +-500 km/s, 52 of them LATE (the primary) | K4, S, T1 |
+| FP21 | F21b | CONSTRAINT | the pipeline (exact spherical geometry, c, m = B21's 1+K, dilution model, randoms, jackknife) reproduces B21's published bins 2 / 3 from the record's photometric reconstruction at A = 0.91 +- 0.10 / 1.15 +- 0.09 with B21's convention (no boost); applying the boost measured against uniform randoms gives 1.00 / 1.28 (K6 as first declared FAILS for bin 3) -- that boost is confounded by the lens samples' mask selection, and is inactive for the 2M++ lenses (B <= 1 in the band); cross-shear and random nulls pass | K1, K5, K6, K6b |
+| FP21 | F21c | CONSTRAINT | the measurement: the primary sample's Delta Sigma over 0.26-1.62 Mpc is 5.60 +- 3.73 Msun/pc^2 (S/N 1.5), A = 2.19 +- 1.46 of B21's mixed-type isolated lenses at the same mass; all types isolated A = 2.37 +- 1.18; group centrals (1 Mpc) A = 1.18 +- 0.78 | D1, D2, D3, C1 |
+| FP21 | F21d | CONSTRAINT | against the flow (R0 = 0.919 +- 0.080 Mpc): the band Delta Sigma allowed is <= 0.96 (rigorous, any profile) / 0.57 (any NFW); the primary's mass-matched band is 5.67 +- 3.78; the joint free-profile T = 2.86 (p 0.09); at B21's precision the flow tolerates at most A_rec = 0.31 of the mixed-type profile (all radii scaled) at face value -- FP18's -0.5 dex reconciliation, recovered independently | C2, C3 |
+| FP21 | F21e | OPEN | the verdict by the declared rule: UNDECIDED | V1 |
+| FP21 | F21f | CONSTRAINT | FP18's comparability systematics tested directly (L_K masses as the LV's, spectroscopic isolation, z ~ 0): no sample is measurably BELOW B21's mixed level -- isolated all types A = 2.37 +- 1.18, group centrals 1.18 +- 0.78, the primary 2.19 +- 1.46, non-isolated 1.90 +- 0.77 (isolated and non-isolated do not differ measurably); FP18's reconciled level A ~ 0.3 lies 0.8-1.8 sigma below the isolated samples -- a lean against reconciliation, not a result | D3, C1 |
+| FP21 | F21g | OPEN | for the chain's universal law (R0 = 1.24-1.53 Mpc for the stack / LG, FP12; no type dependence possible): nothing moves: FP18's standing holds -- the chain's R0 = 1.24-1.53 Mpc overshoot of the LV is neither confirmed as a law-specific failure nor excused as a data-data pincer; the chain's universal law cannot produce a type dependence, so a future RECONCILED would FAIL it | V1, FP12, FP18 |
+| FP21 | F21h | OPEN | for LCDM: unchanged: LCDM's KiDS-fitted halos turn around at 1.65-2.26 Mpc (FP18 L1); a type split in halo mass at fixed M* is standard LCDM, so a future RECONCILED would be comfortable for it | V1, FP18 L1 |
+| FP21 | F21i | OPEN | what would decide it: ~2084 spectroscopically isolated late-type centrals at LV-central mass at z ~ 0.03 (3 sigma between A = 1 and A_rec = 0.31), or ~13978 at z ~ 0.1-0.4; the on-disk 2M++ holds 52; GAMA DR4 (G09/G12/G15/G23, r < 19.65) or SDSS DR7 spectroscopy over KiDS-N is the next step, and fetching it needs the user's go | V2 |
+| FP21 | F21j | FITTED | the type cut is FITTED to labels, not to lensing: GAaP u - r < 2.35 (no 6dF-FP early type below it; ~70% of HI-rich spirals) -- at z ~ 0.026 it is a bulge colour, so LATE is spiral-enriched, not morphological | T1 |
 
-Totals: DERIVED 127, TIED 1, POSTULATED 30, FITTED 14, CONSTRAINT 36, OPEN 40, FAILS 78
+Totals: DERIVED 127, TIED 1, POSTULATED 30, FITTED 15, CONSTRAINT 41, OPEN 44, FAILS 78
