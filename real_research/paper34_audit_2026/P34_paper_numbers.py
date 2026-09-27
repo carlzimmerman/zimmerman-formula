@@ -574,8 +574,8 @@ mh = re.search(r"\[PASS\] H1 HARVEY.*?\n\s+measured: A_0\.2 ([0-9.e-]+), A_0\.5 
 row(s, "XR5 H1: sigma = 1 (A) vs L370 (C) Harvey centroid, |d_beta| <= 0.002", (mh.group(1), mh.group(2), mh.group(3)), "<= 0.002", bool(mh) and max(float(mh.group(1)), float(mh.group(2)), float(mh.group(3))) <= 0.002)
 row(s, "XR5 Harvey configuration is toward-main", "toward-main orientation" in x5, True, "toward-main orientation" in x5)
 
-# ------------------------------------------------------------------------------------------------------------ v3: MS3, P34b
-s = "v3 MS3/P34b"
+# ------------------------------------------------------------------------------------------------------------ v3: MS3, P34b, P34c
+s = "v3 MS3/P34b/P34c"
 ms3 = J("mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector_results.json")["numbers"]
 u1 = ms3["U1"]
 row(s, "MS3 U1 region radius vs analytic edges (Mpc)", [(round(u1[k]["R_grid_Mpc"], 2), round(u1[k]["R_edge_Mpc"], 2)) for k in ("12.0", "13.0", "14.0")],
@@ -588,11 +588,75 @@ row(s, "MS3 K1 1.75 Mpc cap with L388's retention", (mc.group(1), mc.group(2)), 
 row(s, "MS3 largest passing cap", ms3["K1_design"]["r_cap_z05"], 1.75, ms3["K1_design"]["r_cap_z05"] == 1.75)
 pb = J("paper34_audit_2026/P34b_gp4_window_resolution_results.json")["numbers"]
 w = pb["window"]
-row(s, "P34b (0.95, 1200) at twice the resolution", (round(w["0.95|1200|100"]["canonical"], 3), round(w["0.95|1200|100"]["alt"], 3)), (1.11, 1.17),
-    near(w["0.95|1200|100"]["canonical"], 1.11, 2) and near(w["0.95|1200|100"]["alt"], 1.17, 2))
-row(s, "P34b (0.90, 1400) alt at twice the resolution", round(w["0.9|1400|100"]["alt"], 4), 1.208, near(w["0.9|1400|100"]["alt"], 1.208, 3) and w["0.9|1400|100"]["alt"] > 1.2)
-dr = max(abs(v) for k, d in pb["drift"].items() if k.endswith("|1.0") for v in d.values())
-row(s, "P34b kernel-alone drift at lambda = 1 (%)", round(100 * dr, 2), 0.6, near(100 * dr, 0.6, 1))
+row(s, "P34b 100 Mpc box, alt footing: (0.95, 1200) and (0.90, 1400)", (round(w["0.95|1200|100"]["alt"], 4), round(w["0.9|1400|100"]["alt"], 4)), (1.167, 1.208),
+    near(w["0.95|1200|100"]["alt"], 1.167, 3) and near(w["0.9|1400|100"]["alt"], 1.208, 3))
+pc = J("paper34_audit_2026/P34c_gp4_window_fixed_volume_results.json")["numbers"]
+wc = pc["window"]
+row(s, "P34c 512^3, alt footing: (0.95, 1200) and (0.90, 1400) fail", (round(wc["0.95|1200|200/512"]["alt"], 4), round(wc["0.9|1400|200/512"]["alt"], 4)), (1.207, 1.251),
+    near(wc["0.95|1200|200/512"]["alt"], 1.207, 3) and near(wc["0.9|1400|200/512"]["alt"], 1.251, 3) and min(wc["0.95|1200|200/512"]["alt"], wc["0.9|1400|200/512"]["alt"]) > 1.2)
+row(s, "P34c 512^3, canonical footing: both pass", (round(wc["0.95|1200|200/512"]["canonical"], 4), round(wc["0.9|1400|200/512"]["canonical"], 4)), (1.146, 1.189),
+    near(wc["0.95|1200|200/512"]["canonical"], 1.146, 3) and near(wc["0.9|1400|200/512"]["canonical"], 1.189, 3) and max(wc["0.95|1200|200/512"]["canonical"], wc["0.9|1400|200/512"]["canonical"]) <= 1.2)
+dd = [v for f in pc["kernel_alone_drift"].values() for q_, v in f.items() if q_ in ("0.5", "0.7", "1.0")]
+row(s, "P34c kernel-alone rise 512^3/256^3 at k 0.5-1 (%)", (round(100 * min(dd), 1), round(100 * max(dd), 1)), "2-4", near(100 * min(dd), 2, 0) and near(100 * max(dd), 4, 0))
+cen = pc["census"]
+row(s, "P34c census >= 1e14 in the 200 Mpc boxes vs expected", (cen["200/256"]["14.0"]["cells_with_bound_baryons_above"], cen["200/512"]["14.0"]["cells_with_bound_baryons_above"], round(cen["200/256"]["14.0"]["expected_halos_above"], 1)),
+    (36, 43, 59), cen["200/256"]["14.0"]["cells_with_bound_baryons_above"] == 36 and cen["200/512"]["14.0"]["cells_with_bound_baryons_above"] == 43 and near(cen["200/256"]["14.0"]["expected_halos_above"], 59, 0))
+pd = J("paper34_audit_2026/P34d_resolution_or_realisation_results.json")
+pdn, pdc = pd["numbers"], pd["checks"]
+sd8 = pdn["H2"]["seeds"]
+drawn = [pdn["tally"][f"s{x}"]["14.0"]["drawn"] for x in sd8]
+exp14 = pdn["tally"]["s20260925"]["14.0"]["expected"]
+row(s, "P34d halos >= 1e14 drawn over eight realisations: min, max, mean, expected, GP4's box", (min(drawn), max(drawn), sum(drawn) / 8, round(exp14, 2), drawn[0]),
+    (20, 72, 49.5, 58.9, 36), min(drawn) == 20 and max(drawn) == 72 and near(sum(drawn) / 8, 49.5, 1) and near(exp14, 58.9, 1) and drawn[0] == 36 and sd8[0] == 20260925)
+row(s, "P34d realisations drawing fewer than expected", sum(x < exp14 for x in drawn), 6, sum(x < exp14 for x in drawn) == 6)
+
+
+def _rank(a):
+    o = sorted(range(len(a)), key=lambda i: a[i]); r = [0.0] * len(a); i = 0
+    while i < len(a):
+        j = i
+        while j + 1 < len(a) and a[o[j + 1]] == a[o[i]]:
+            j += 1
+        for m in range(i, j + 1):
+            r[o[m]] = (i + j) / 2 + 1
+        i = j + 1
+    return r
+
+
+def _pearson(x, y):
+    mx, my = sum(x) / len(x), sum(y) / len(y)
+    return sum((a - mx) * (b - my) for a, b in zip(x, y)) / (sum((a - mx) ** 2 for a in x) * sum((b - my) ** 2 for b in y)) ** 0.5
+
+
+rho = [_pearson(_rank(drawn), _rank(pdn["H2"]["worst"][c][f])) for c in ("0.95|1200", "0.9|1400") for f in ("canonical", "alt")]
+row(s, "P34d rank correlation of worst R with the >= 1e14 count (all cells, footings)", (round(min(rho), 3), round(max(rho), 3)), 0.83, near(min(rho), 0.83, 2) and near(max(rho), 0.83, 2))
+wa = pdn["H2"]["worst"]
+row(s, "P34d alt passes over eight realisations: (0.95, 1200), (0.90, 1400)", (sum(x <= 1.2 for x in wa["0.95|1200"]["alt"]), sum(x <= 1.2 for x in wa["0.9|1400"]["alt"])), (3, 2),
+    sum(x <= 1.2 for x in wa["0.95|1200"]["alt"]) == 3 and sum(x <= 1.2 for x in wa["0.9|1400"]["alt"]) == 2)
+row(s, "P34d alt eight-realisation means of the worst R", (round(sum(wa["0.95|1200"]["alt"]) / 8, 4), round(sum(wa["0.9|1400"]["alt"]) / 8, 4)), (1.198, 1.244),
+    near(sum(wa["0.95|1200"]["alt"]) / 8, 1.198, 3) and near(sum(wa["0.9|1400"]["alt"]) / 8, 1.244, 3)
+    and near(pdn["H3"]["0.95|1200|alt"]["worst_mean_256"], 1.198, 3) and near(pdn["H3"]["0.9|1400|alt"]["worst_mean_256"], 1.244, 3))
+h1 = [v["shift"] for v in pdn["H1"].values()]
+row(s, "P34d resolution shift at fixed realisation, alt (four pairs)", (round(min(h1), 4), round(max(h1), 4)), "0.030-0.031; 0.0302-0.0315",
+    near(min(h1), 0.030, 3) and near(max(h1), 0.031, 3) and near(min(h1), 0.0302, 4) and near(max(h1), 0.0315, 4))
+hh = [v["half_P34c"] for v in pdn["H1"].values()]
+row(s, "P34d H1 threshold (half of P34c's raise) and verdict", (round(min(hh), 4), round(max(hh), 4), pdc[[k for k in pdc if k.startswith("H1")][0]]["ok"]), (0.0308, 0.0309, False),
+    near(min(hh), 0.0308, 4) and near(max(hh), 0.0309, 4) and not pdc[[k for k in pdc if k.startswith("H1")][0]]["ok"])
+d3 = [v[q_] for v in pdn["D3"].values() for q_ in ("0.5", "0.7", "1.0")]
+row(s, "P34d kernel-alone ratio rise at fixed realisation, k = 0.5-1 (%)", (round(100 * min(d3), 2), round(100 * max(d3), 2)), "1.0-2.2", near(100 * min(d3), 1.0, 1) and near(100 * max(d3), 2.2, 1))
+bins = [abs(v["binning"]) for v in pdn["D1"].values()]
+row(s, "P34d binning's effect on the worst R in GP4's realisation (both footings, both cells)", round(max(bins), 4), "<= 0.002", len(bins) == 4 and max(bins) <= 0.002)
+est = {k: v["worst_estimate"] for k, v in pdn["H3"].items()}
+row(s, "P34d ensemble estimate, alt: (0.95, 1200), (0.90, 1400)", (round(est["0.95|1200|alt"], 4), round(est["0.9|1400|alt"], 4)), (1.229, 1.275),
+    near(est["0.95|1200|alt"], 1.229, 3) and near(est["0.9|1400|alt"], 1.275, 3) and near(est["0.95|1200|alt"], 1.23, 2) and near(est["0.9|1400|alt"], 1.27, 2))
+row(s, "P34d ensemble estimate, canonical: (0.95, 1200), (0.90, 1400)", (round(est["0.95|1200|canonical"], 4), round(est["0.9|1400|canonical"], 4)), (1.164, 1.208),
+    near(est["0.95|1200|canonical"], 1.164, 3) and near(est["0.9|1400|canonical"], 1.208, 3) and near(est["0.95|1200|canonical"], 1.16, 2) and near(est["0.9|1400|canonical"], 1.21, 2))
+row(s, "P34d verdict: both cells fail alt, (0.90, 1400) fails canonical, (0.95, 1200) passes canonical",
+    (est["0.95|1200|alt"] > 1.2, est["0.9|1400|alt"] > 1.2, est["0.9|1400|canonical"] > 1.2, est["0.95|1200|canonical"] <= 1.2), (True, True, True, True),
+    est["0.95|1200|alt"] > 1.2 and est["0.9|1400|alt"] > 1.2 and est["0.9|1400|canonical"] > 1.2 and est["0.95|1200|canonical"] <= 1.2)
+sh = [(v["realisation"] / v["total"], v["resolution"] / v["total"]) for k, v in pdn["D1"].items() if k.endswith("alt")]
+row(s, "P34d P34c's rise: realisation and grid shares (alt)", [(round(a, 2), round(b, 2)) for a, b in sh], "half and half", all(0.45 <= a <= 0.55 and 0.45 <= b <= 0.55 for a, b in sh))
+row(s, "P34d checks", f"{sum(v['ok'] for v in pdc.values())}/{len(pdc)}", "7/10", sum(v["ok"] for v in pdc.values()) == 7 and len(pdc) == 10)
 row(s, "GP3's 200 Mpc cells (Mpc) and cells per screening length at 1 Mpc", (round(200 / 256, 3), round(1 / (200 / 256), 2)), (0.78, 1.3), near(200 / 256, 0.78, 2) and near(256 / 200, 1.3, 1))
 
 # ============================================================================================================== REPORT

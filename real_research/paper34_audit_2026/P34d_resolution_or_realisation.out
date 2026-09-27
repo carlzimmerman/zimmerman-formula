@@ -1,0 +1,109 @@
+P34d -- RESOLUTION OR REALISATION?  GP4's cosmic-shear window cells in one realisation at two resolutions, across
+realisations, and the mock's cluster content.
+
+======================================================================================================================
+C1  build_counted() AGAINST GP3's OWN MOCK
+======================================================================================================================
+  [PASS] C1 CONTROL: build_counted() reproduces GP3's own 200 Mpc / 256^3 mock MK bit for bit (rho_m and rhoB)
+         measured: rho_m identical True; rhoB identical True
+
+======================================================================================================================
+R  EIGHT REALISATIONS AT GP4's RESOLUTION (GP3's builder, 200 Mpc / 256^3, lambda = 1 Mpc)
+======================================================================================================================
+    seed 20260925: (0.95|1200) worst R 1.091 / 1.145; (0.9|1400) worst R 1.134 / 1.190; halos >= 1e14 drawn 36 (expected 58.9) in 36 cells   [48s]
+    seed 20260932: (0.95|1200) worst R 1.144 / 1.206; (0.9|1400) worst R 1.189 / 1.252; halos >= 1e14 drawn 58 (expected 58.9) in 57 cells   [78s]
+    seed 20260933: (0.95|1200) worst R 1.150 / 1.212; (0.9|1400) worst R 1.194 / 1.258; halos >= 1e14 drawn 49 (expected 58.9) in 49 cells   [107s]
+    seed 20260934: (0.95|1200) worst R 1.158 / 1.221; (0.9|1400) worst R 1.203 / 1.267; halos >= 1e14 drawn 44 (expected 58.9) in 44 cells   [136s]
+    seed 20260935: (0.95|1200) worst R 1.104 / 1.161; (0.9|1400) worst R 1.147 / 1.205; halos >= 1e14 drawn 45 (expected 58.9) in 45 cells   [165s]
+    seed 20260936: (0.95|1200) worst R 1.185 / 1.254; (0.9|1400) worst R 1.230 / 1.300; halos >= 1e14 drawn 72 (expected 58.9) in 65 cells   [194s]
+    seed 20260937: (0.95|1200) worst R 1.182 / 1.252; (0.9|1400) worst R 1.227 / 1.298; halos >= 1e14 drawn 72 (expected 58.9) in 63 cells   [225s]
+    seed 20260938: (0.95|1200) worst R 1.083 / 1.136; (0.9|1400) worst R 1.127 / 1.181; halos >= 1e14 drawn 20 (expected 58.9) in 20 cells   [254s]
+
+======================================================================================================================
+P  ONE REALISATION AT TWO RESOLUTIONS: 512^3 boxes and their 2x2x2-averaged 256^3 twins on GP4's grid
+======================================================================================================================
+    seed 20260925, 512^3, canonical measured   [594s]
+    seed 20260925, 512^3, alt measured   [966s]
+    seed 20260925 (0.95|1200), alt: 512^3 own bins 1.207, 512^3 GP4's bins 1.208, paired 256^3 1.177; canonical 1.146 / 1.145 / 1.118
+    seed 20260925 (0.9|1400), alt: 512^3 own bins 1.251, 512^3 GP4's bins 1.253, paired 256^3 1.222; canonical 1.189 / 1.190 / 1.162
+    seed 20260925: halos >= 1e14 drawn 43 (expected 58.9); cells holding them 512^3 43, census 512^3 43, paired 256^3 45   [998s]
+    seed 20260931, 512^3, canonical measured   [2076s]
+    seed 20260931, 512^3, alt measured   [2347s]
+    seed 20260931 (0.95|1200), alt: 512^3 own bins 1.175, 512^3 GP4's bins 1.174, paired 256^3 1.143; canonical 1.117 / 1.115 / 1.089
+    seed 20260931 (0.9|1400), alt: 512^3 own bins 1.218, 512^3 GP4's bins 1.218, paired 256^3 1.187; canonical 1.159 / 1.159 / 1.132
+    seed 20260931: halos >= 1e14 drawn 34 (expected 58.9); cells holding them 512^3 34, census 512^3 34, paired 256^3 34   [2380s]
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C2 CONTROL: GP4's box (seed 20260925, 256^3) reproduces GP4's committed scores for its two window cells (1e-9)
+         measured: max |diff| = 0.0e+00
+  [PASS] C3 CONTROL: the 512^3 box at seed 20260925, with its own bins, reproduces P34c's committed 512^3 scores (1e-9)
+         measured: max |diff| = 0.0e+00
+  [PASS] C4 CONTROL: the paired coarse boxes conserve mass (1e-12, relative); on every 256^3 box GP4's-bin spectra equal GP3's spectra()
+         measured: mass: max relative 5.6e-15; spectra: max |diff| 0.0e+00 over 10 boxes
+
+======================================================================================================================
+H1  RESOLUTION AT FIXED REALISATION (GP4's bins, alternative footing)
+======================================================================================================================
+    seed 20260925 (0.95|1200): 512^3 - paired 256^3 = +0.0310   (half of P34c's raise: 0.0309)
+    seed 20260925 (0.9|1400): 512^3 - paired 256^3 = +0.0315   (half of P34c's raise: 0.0308)
+    seed 20260931 (0.95|1200): 512^3 - paired 256^3 = +0.0302   (half of P34c's raise: 0.0309)
+    seed 20260931 (0.9|1400): 512^3 - paired 256^3 = +0.0306   (half of P34c's raise: 0.0308)
+  [FAIL] H1 RESOLUTION: at fixed realisation and common bins, 256^3 -> 512^3 raises the worst R (alt) by at least half of P34c's raise, both cells, both realisations
+         measured: {'20260925|0.95|1200': 0.031, '20260925|0.9|1400': 0.0315, '20260931|0.95|1200': 0.0302, '20260931|0.9|1400': 0.0306}
+
+======================================================================================================================
+H2  THE WINDOW ACROSS EIGHT REALISATIONS AT GP4's RESOLUTION
+======================================================================================================================
+    (0.95|1200) canonical: worst R over seeds mean 1.137, sd 0.040, range 1.083-1.185; passes in 8/8
+    (0.95|1200) alt      : worst R over seeds mean 1.198, sd 0.046, range 1.136-1.254; passes in 3/8
+    (0.9|1400) canonical: worst R over seeds mean 1.181, sd 0.041, range 1.127-1.230; passes in 5/8
+    (0.9|1400) alt      : worst R over seeds mean 1.244, sd 0.047, range 1.181-1.300; passes in 2/8
+  [FAIL] H2 REALISATIONS: both window cells pass (both footings) in each of the eight 256^3 realisations
+         measured: 2/8 realisations pass for both cells on both footings
+
+======================================================================================================================
+H3  THE ENSEMBLE ESTIMATE: the eight-realisation mean R(k) plus the paired resolution shift
+======================================================================================================================
+    (0.95|1200) canonical: worst of the mean 1.137; with the resolution shift 1.164 (shift at k = 1: +0.027)
+    (0.95|1200) alt      : worst of the mean 1.198; with the resolution shift 1.229 (shift at k = 1: +0.031)
+    (0.9|1400) canonical: worst of the mean 1.181; with the resolution shift 1.208 (shift at k = 1: +0.027)
+    (0.9|1400) alt      : worst of the mean 1.244; with the resolution shift 1.275 (shift at k = 1: +0.031)
+  [FAIL] H3 THE ENSEMBLE ESTIMATE passes for both cells on both footings
+         measured: {'0.95|1200|canonical': 1.164, '0.95|1200|alt': 1.229, '0.9|1400|canonical': 1.208, '0.9|1400|alt': 1.275}
+
+======================================================================================================================
+D1-D3  (reported) P34c's RISE SPLIT, THE CLUSTER CONTENT, THE KERNEL-ALONE RATIO
+======================================================================================================================
+    seed 20260925 (0.95|1200) canonical: total +0.0550 = realisation +0.0278 + resolution +0.0271 + binning +0.0001
+    seed 20260925 (0.95|1200) alt      : total +0.0619 = realisation +0.0313 + resolution +0.0310 + binning -0.0005
+    seed 20260925 (0.9|1400) canonical: total +0.0546 = realisation +0.0284 + resolution +0.0275 + binning -0.0013
+    seed 20260925 (0.9|1400) alt      : total +0.0616 = realisation +0.0320 + resolution +0.0315 + binning -0.0019
+  [PASS] D1 (reported) P34c's rise split into realisation, resolution and binning (seed 20260925)
+         measured: {'0.95|1200|alt': (0.0313, 0.031, -0.0005), '0.9|1400|alt': (0.032, 0.0315, -0.0019)}
+    f20260925 : >= 1e13.5: drawn 300 vs expected 326.3; >= 1e14.0: drawn 43 vs expected 58.9, in 43 cells (0 with 2+, max 1); >= 1e14.5: drawn 0 vs expected 6.1, in 0 cells (0 with 2+, max 0)
+    f20260931 : >= 1e13.5: drawn 287 vs expected 326.3; >= 1e14.0: drawn 34 vs expected 58.9, in 34 cells (0 with 2+, max 1); >= 1e14.5: drawn 1 vs expected 6.1, in 1 cells (0 with 2+, max 1)
+    s20260925 : >= 1e13.5: drawn 279 vs expected 326.3; >= 1e14.0: drawn 36 vs expected 58.9, in 36 cells (0 with 2+, max 1); >= 1e14.5: drawn 2 vs expected 6.1, in 2 cells (0 with 2+, max 1)
+    s20260932 : >= 1e13.5: drawn 319 vs expected 326.3; >= 1e14.0: drawn 58 vs expected 58.9, in 57 cells (1 with 2+, max 2); >= 1e14.5: drawn 1 vs expected 6.1, in 1 cells (0 with 2+, max 1)
+    s20260933 : >= 1e13.5: drawn 345 vs expected 326.3; >= 1e14.0: drawn 49 vs expected 58.9, in 49 cells (0 with 2+, max 1); >= 1e14.5: drawn 0 vs expected 6.1, in 0 cells (0 with 2+, max 0)
+    s20260934 : >= 1e13.5: drawn 333 vs expected 326.3; >= 1e14.0: drawn 44 vs expected 58.9, in 44 cells (0 with 2+, max 1); >= 1e14.5: drawn 1 vs expected 6.1, in 1 cells (0 with 2+, max 1)
+    s20260935 : >= 1e13.5: drawn 302 vs expected 326.3; >= 1e14.0: drawn 45 vs expected 58.9, in 45 cells (0 with 2+, max 1); >= 1e14.5: drawn 2 vs expected 6.1, in 2 cells (0 with 2+, max 1)
+    s20260936 : >= 1e13.5: drawn 382 vs expected 326.3; >= 1e14.0: drawn 72 vs expected 58.9, in 65 cells (7 with 2+, max 2); >= 1e14.5: drawn 1 vs expected 6.1, in 1 cells (0 with 2+, max 1)
+    s20260937 : >= 1e13.5: drawn 363 vs expected 326.3; >= 1e14.0: drawn 72 vs expected 58.9, in 63 cells (7 with 2+, max 3); >= 1e14.5: drawn 7 vs expected 6.1, in 7 cells (0 with 2+, max 1)
+    s20260938 : >= 1e13.5: drawn 264 vs expected 326.3; >= 1e14.0: drawn 20 vs expected 58.9, in 20 cells (0 with 2+, max 1); >= 1e14.5: drawn 1 vs expected 6.1, in 1 cells (0 with 2+, max 1)
+  [PASS] D2 (reported) the mock's >= 1e14 halos: drawn / expected, and the share of drawn halos lost to shared cells
+         measured: drawn/expected 0.34-1.22; shared-cell loss 0.00-0.12 over 10 boxes
+    seed 20260925 canonical: kernel-alone ratio 512^3 / paired 256^3 - 1 at k 0.3/0.5/0.7/1: +0.002 / +0.010 / +0.016 / +0.020
+    seed 20260925 alt      : kernel-alone ratio 512^3 / paired 256^3 - 1 at k 0.3/0.5/0.7/1: +0.003 / +0.011 / +0.018 / +0.022
+    seed 20260931 canonical: kernel-alone ratio 512^3 / paired 256^3 - 1 at k 0.3/0.5/0.7/1: +0.002 / +0.010 / +0.015 / +0.020
+    seed 20260931 alt      : kernel-alone ratio 512^3 / paired 256^3 - 1 at k 0.3/0.5/0.7/1: +0.003 / +0.011 / +0.017 / +0.022
+  [PASS] D3 (reported) the kernel-alone ratio's change 256^3 -> 512^3 at fixed realisation, common bins, k = 0.5-1
+         measured: +0.010 to +0.022
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  7/10 checks pass; load-bearing failures: 3   [2380s]
+  wrote P34d_resolution_or_realisation_results.json
+rc=1

@@ -1,0 +1,40 @@
+P34c -- GP4's COSMIC-SHEAR WINDOW AT TWICE THE RESOLUTION IN THE SAME 200 Mpc VOLUME, AND THE CLUSTER CENSUS OF EVERY BOX.
+  *** MUTATE=1: no free streaming (T = 1); H must FAIL ***
+
+======================================================================================================================
+D1  THE CLUSTER CENSUS OF EVERY BOX (MS3's method)
+======================================================================================================================
+  256^3 boxes counted and the 200 Mpc box measured   [34s]
+  200 Mpc / 512^3 box built (cell 0.391 Mpc)   [143s]
+    measured canonical   [186s]
+    measured alt   [231s]
+    200/256 : >= 1e13.5: 279 cells vs 328.0 expected; >= 1e14.0: 36 cells vs 59.4 expected; >= 1e14.5: 2 cells vs 6.2 expected
+    100/256 : >= 1e13.5: 28 cells vs 41.0 expected; >= 1e14.0: 4 cells vs 7.4 expected; >= 1e14.5: 0 cells vs 0.8 expected
+    200/512 : >= 1e13.5: 300 cells vs 328.0 expected; >= 1e14.0: 43 cells vs 59.4 expected; >= 1e14.5: 0 cells vs 6.2 expected
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: the 200 Mpc / 256^3 box reproduces GP4's committed cosmic-shear scores for its two window cells (1e-9)
+         measured: max |diff| = 0.0e+00
+  [PASS] C2 CONTROL: the census of the 100 Mpc box reproduces MS3's committed M1 counts exactly
+         measured: {'13.5': (28, 28), '14.0': (4, 4), '14.5': (0, 0)}
+
+======================================================================================================================
+H  GP4's WINDOW CELLS IN THE 200 Mpc BOX AT TWICE THE RESOLUTION (512^3, lambda = 1 Mpc)
+======================================================================================================================
+    cell f_d(0) 0.95, v_k 1200, 200/256: worst R canonical 1.495, alt 1.556
+    cell f_d(0) 0.95, v_k 1200, 200/512: worst R canonical 1.552, alt 1.621
+    cell f_d(0) 0.9, v_k 1400, 200/256: worst R canonical 1.495, alt 1.556
+    cell f_d(0) 0.9, v_k 1400, 200/512: worst R canonical 1.552, alt 1.621
+    kernel-alone ratio, 512^3 / 256^3 - 1 at k 0.3/0.5/0.7/1: canonical +0.002 / +0.017 / +0.022 / +0.038; alt +0.002 / +0.019 / +0.024 / +0.042
+  [FAIL] H GP4's two window cells pass cosmic shear (worst R <= 1.2, k = 0.1-1, both footings) in the 200 Mpc box at twice the resolution
+         measured: {'0.95|1200': {'canonical': 1.552, 'alt': 1.621}, '0.9|1400': {'canonical': 1.552, 'alt': 1.621}}
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  window cells passing at 512^3 in 200 Mpc: []
+  2/3 checks pass; load-bearing failures: 1   [231s]
+  wrote P34c_gp4_window_fixed_volume_results_MUTATE.json
+rc=1
