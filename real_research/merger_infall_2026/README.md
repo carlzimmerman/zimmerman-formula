@@ -4,7 +4,7 @@ In the construction, a cluster's baryons fall toward a neighbour with the MOND b
 
 ## L370 — boosted infall in cluster mergers
 
-`L370_boosted_infall_mergers.py`: 10/14 checks pass. The load-bearing failures A3, B3 and B6 are recorded. `MUTATE=1` switches the kernel off; A1 and A2 then fail (rc = 1).
+`L370_boosted_infall_mergers.py`: 11/14 checks pass. The load-bearing failures A3, B3 and B6 are recorded. `MUTATE=1` switches the kernel off; A1 and A2 then fail (rc = 1).
 
 **Machinery.**
 - A periodic-FFT QUMOND solver with L361's region labelling: each bound region's phantom is sourced by its own baryons, and baryons feel it while the carrier does not.
