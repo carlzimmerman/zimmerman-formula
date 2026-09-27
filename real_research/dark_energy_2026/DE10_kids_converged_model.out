@@ -1,0 +1,55 @@
+DE10 -- KiDS-1000 FOR THE MODEL THE THREADS HAVE CONVERGED ON: the carrier-blind MOND-sector switch, the linear gate,
+MS3's cap, and the triggered carrier resolved around each lens.
+
+WHY.  Every KiDS pass on the record scores a different model: L390 and L392 put the switch on the curvature branch,
+and DE9 is switch-only with no carrier.  MS1/MS2 moved the switch to the MOND sector's own density, lap(Phi - v) =
+baryons + their phantom.  That reading is leak-free when the gate is varied, and it never reads the carrier.  MS3 added
+a region cap for cosmic shear (v_cap = 325 km/s), and MS4 found the smooth gate keeps that shear pass at w = 0.25.
+DE9 put the common cell at w <~ 0.25 for p = 1, x_c0 = 2.5.  Nobody has scored this model's KiDS gate.  This lane does.
+
+THE MODEL (each piece loaded from its committed source, unedited):
+  the switch: DE8's region operator (L361/CV1: screened w, gated phantom P with sigma M^2 w, lensing on
+    Phi = u + f P including f' P), sigma = 1, 1/m = 0.1 Mpc, on the MOND-sector reading
+    x = 4 pi G (rho_b + rho_ph - f_b rho_bar_m)/H^2 (MS2's door, carrier-blind), p = 1, x_c0 = 2.5 at z_l = 0.25, with
+    the transition width w = 0.02 (hard) and w = 0.25;
+  MS3's cap, in its local form: the threshold is scaled by max(1, v_loc^2/v_cap^2), v_loc^2 = |grad Phi|^2/lap Phi of the
+    MOND-sector potential, v_cap = 325 km/s (it should not bind for KiDS lenses, v_f <= 247 km/s);
+  the carrier: L375's shell-model halo(), imported unchanged, re-run exactly as L390 ran it at the linear gate (L390's
+    refitted baryonic masses, alpha = 0.75, gamma = 10, N = 60000, L390's seeds) at kicks 600 and 650 km/s (L388's
+    window).  Its projected profile enters the lens at amplitude 1 through L375's template(), exactly as in L390.
+    The gate does not read it.
+  the fit: L352's KiDS machinery through DE8 (M_b profiled per bin, a free linear 2-halo term, full covariance);
+    Delta chi^2 against L352's unswitched model; pass = <= +4 on both footings (L352/L360/L390's criterion).
+  L360 and DE8 loaded; x_c,eff(0.25) = 3.2477 (L359's K1 entry 3.2477)   [1s]
+  8 carrier halos done (L390's masses ['3.16e+10', '6.31e+10', '1.00e+11', '1.26e+11'], seeds, N = 60000)   [96s]
+
+==============================================================================================================
+C1  CONTROL: L360's curvature switch + the re-run carrier reproduces L390's committed scores
+==============================================================================================================
+  [PASS] C1 CONTROL: the re-run carrier halos + L360's switch reproduce L390's committed KiDS scores at 600 and 650 km/s
+         measured: {600.0: {'canonical': -13.124, 'alt': -7.161}, 650.0: {'canonical': -12.965, 'alt': -7.139}} vs L390 {600.0: {'canonical': -13.124, 'alt': -7.161}, 650.0: {'canonical': -12.965, 'alt': -7.139}} (max |diff| 0.0e+00)
+         reading:  same shell-model halos, same template, same fit: the carrier is L390's (not applicable under MUTATE, whose carrier is not kicked)
+
+==============================================================================================================
+C2 S1  THE GATE IS CARRIER-BLIND; THE CAP ON KiDS LENSES
+==============================================================================================================
+  [PASS] C2 (reported) the resolved carrier moves the curvature reading's gate (max |df| > 0 around bin 3) and is not an input of the MOND-sector gate
+         measured: curvature reading: max |df| = 0.161; MOND-sector: carrier-blind by construction
+  [PASS] S1 (reported) MS3's local cap on KiDS lenses: the largest threshold scaling on any transition
+         measured: max 1.0000
+         reading:  1 means the cap does not bind (v_loc = v_f <= 247 km/s < 325)
+
+==============================================================================================================
+H1 V1  KiDS FOR THE CONVERGED MODEL
+==============================================================================================================
+    v_k = 600, w = 0.02: Delta chi^2  -37.03/ -34.01 ok;  KiDS-preferred carrier amplitude 1.2/1.2 (-38.1/-35.1);  L390 curvature branch -13.1/-7.2   [97s]
+    v_k = 600, w = 0.25: Delta chi^2  -32.27/ -29.29 ok;  KiDS-preferred carrier amplitude 1.2/1.2 (-33.2/-30.4);  L390 curvature branch -13.1/-7.2   [97s]
+    v_k = 650, w = 0.02: Delta chi^2  -36.82/ -33.74 ok;  KiDS-preferred carrier amplitude 1.2/1.2 (-37.9/-34.8);  L390 curvature branch -13.0/-7.1   [97s]
+    v_k = 650, w = 0.25: Delta chi^2  -32.08/ -29.02 ok;  KiDS-preferred carrier amplitude 1.2/1.2 (-33.0/-30.1);  L390 curvature branch -13.0/-7.1   [97s]
+  [PASS] H1 [pre-declared] the converged model passes KiDS (<= +4, both footings) at w = 0.02 and 0.25, v_k = 600 and 650
+         measured: v600/w0.02: -37.0/-34.0; v600/w0.25: -32.3/-29.3; v650/w0.02: -36.8/-33.7; v650/w0.25: -32.1/-29.0
+  [PASS] V1 (reported) scores beside L390's and the KiDS-preferred carrier amplitude
+         measured: see table
+
+  5/5 checks pass; load-bearing failures: 0; wrote DE10_kids_converged_model_results.json   [97s]
+rc=0

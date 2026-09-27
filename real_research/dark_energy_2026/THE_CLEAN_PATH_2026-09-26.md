@@ -156,6 +156,12 @@ lead track's broad gate (w = 1, on from u = 0) has no window on either. Narrow t
 DE7 says narrow transitions need the strongest repair. On the MOND-sector reading that repair question becomes the
 matter sector's stability budget, not yet computed.
 
+**DE10** (`DE10_kids_converged_model.py`, 5/5; MUTATE fails H1). The KiDS gate of the model the threads converged on
+had never been scored: the carrier-blind MOND-sector switch at p = 1, x_c0 = 2.5 (w = 0.02 and 0.25), MS3's cap, and
+the triggered carrier resolved around each lens (L375's shell model, re-run exactly as L390 ran it). It passes
+KiDS-1000 comfortably, Δχ² = −37 to −29 against isolated MOND on both footings, better than the curvature branch with
+the same carrier (−13/−7). The cap does not bind on KiDS lenses, and KiDS would accept somewhat more carrier lensing.
+
 ## 4. The theory as it stands, sector by sector
 
 | sector | what is built | standing | open |
