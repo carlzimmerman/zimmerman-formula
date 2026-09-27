@@ -48,6 +48,8 @@ GATES (pre-declared; L378's arithmetic where it exists, pooled over the three re
 CHECKS
   C1 CONTROL: the (7, 11) LCDM run reproduces L366's committed LCDM sigma_8 exactly (same code path, same seeds).
   C2 CONTROL: the Harvey stage's phantom and lensing-mass solve use the mesh runs' switch cell (p = 2, x_c0 = 2).
+  C3 CONTROL (re-scores): the full-projection betas reproduce the previously committed Harvey numbers.
+  W2 (reported) the edge-layer check: betas with the line of sight capped at +-3 and +-1.5 Mpc.
   R1 THE WINDOW SURVIVES ASSEMBLY (pre-declared hypothesis: yes): a cell passes S_8 (alternative), forest, X-COP, shear and
      Harvey (both shapes) pooled over the three realisations.
   W  (reported) per-realisation and pooled gate tables; group retention at z = 0.4 and cluster retention at z = 0 against L372's
@@ -60,6 +62,9 @@ SCOPE.  The switch cell is L377's (p = 2, x_c0 = 2).  DE1 (c8bb50813) finds this
   (L377: the Newtonian field of all baryons, response masked, background-subtracted gate; L370/L361: each bound region's
   phantom from its own baryons, absolute-density mask) -- the open item 1 of the 2026-09-26 peer review; both are
   recorded in the results.  The Harvey stage carries its matched intact-carrier control (kernel on, carrier intact).
+EDGE-LAYER CHECK (added after the first committed result, reported, not gated).  The cross-thread review XR5 found that the
+  projected far edge layer of a switched region can move a substructure centroid (delta beta ~ 0.009 on 2-D meshes); the
+  Harvey maps are also projected with the line of sight capped at +-3 and +-1.5 Mpc and the betas compared (W2).
 CORRECTION (before any Harvey result).  The first main run's Harvey stage inherited L370's default switch cell with its
   header (SW_DEF = p = 1, x_c0 = 1.5: thresholds 2.32 against the mesh's 4.79 at z = 0.4) in both phantom maps and the
   lensing-mass solve -- the defect that withdrew L381 (flagged by a peer session).  It was stopped 50 minutes into its only
@@ -248,26 +253,42 @@ def harvey_block(EPSM, VKG):
     paint_at, centroid, nfw_fit_centre, phantom_felt, m_in = (G[k] for k in ("paint_at", "centroid", "nfw_fit_centre", "phantom_felt", "m_in"))
     A0K, SW_DEF = G["A0K"], G["SW_DEF"]
     CONF = [(Msub, dSG, orient) for Msub in (1e14, 3e14) for dSG in (60.0, 120.0) for orient in ("perp", "toward_main")]
+    # line-of-sight projection depths: the full box (gated, as pre-declared) and two caps -- XR5's edge-layer check
+    # (the far edge layer of a switched region, projected, can move a centroid; reported, not gated)
+    CAPS = (("full", None), ("3Mpc", 3000.0), ("1.5Mpc", 1500.0))
+    kz = NH // 2
+
+    def proj(a3, cap):
+        if cap is None:
+            return a3.sum(axis=2) * DXH
+        n_ = int(round(cap / DXH))
+        return a3[:, :, kz - n_:kz + n_].sum(axis=2) * DXH
+
+    def offsets(S, ux, uy):
+        o = {}
+        for Rap in (100.0, 150.0):
+            cx, cy = centroid(S, 400.0, 0.0, Rap); o[f"{Rap:.0f}"] = (cx - 400.0) * ux + cy * uy
+        fx, fy = nfw_fit_centre(S, 400.0, 0.0); o["fit"] = (fx - 400.0) * ux + fy * uy
+        return o
     RES = {}
     for (Msub, dSG, orient) in CONF:
         gx, gy = (400.0, dSG) if orient == "perp" else (400.0 - dSG, 0.0)
         ux, uy = ((0.0, 1.0) if orient == "perp" else (-1.0, 0.0))
         HsL = G["solve_l366"](Msub, "intact", 1.0, None, 0.10, 0.02, kernel=False)
-        SL = (paint_at(HsL.rho_c + HsL.rho_s, 400.0, 0.0, m_in(HsL.rho_c + HsL.rho_s, 1e9))
-              + paint_at(HsL.rho_g, gx, gy, m_in(HsL.rho_g, 1e9))).sum(axis=2) * DXH
-        res = dict(gx=gx, gy=gy, ux=ux, uy=uy, dSG=dSG)
-        for Rap in (100.0, 150.0):
-            cx, cy = centroid(SL, 400.0, 0.0, Rap); res[f"L_{Rap:.0f}"] = (cx - 400.0) * ux + cy * uy
-        fx, fy = nfw_fit_centre(SL, 400.0, 0.0); res["L_fit"] = (fx - 400.0) * ux + fy * uy
-        RES[(Msub, dSG, orient)] = res
+        A3 = (paint_at(HsL.rho_c + HsL.rho_s, 400.0, 0.0, m_in(HsL.rho_c + HsL.rho_s, 1e9))
+              + paint_at(HsL.rho_g, gx, gy, m_in(HsL.rho_g, 1e9)))
+        RES[(Msub, dSG, orient)] = dict(gx=gx, gy=gy, ux=ux, uy=uy, dSG=dSG, L={c_: offsets(proj(A3, cap), ux, uy) for c_, cap in CAPS})
+        del A3
     ic0 = NH // 2; icx = int(round((400.0 + LH / 2) / DXH))
     OUTB = {}
     for shape in ("intact", "S1", "S2"):                           # intact: the matched control (the kernel's own shift)
         Hm = G["solve_l366"](1e15, shape, EPSM[1e15], QTAB[1e15], 0.125, 0.015)
         bm = paint_at(Hm.rho_b, 0.0, 0.0, m_in(Hm.rho_b, 1e9)); cm = paint_at(Hm.rho_c, 0.0, 0.0, m_in(Hm.rho_c, 1e9))
         _, _, rph, _ = phantom_felt(GH, bm, bm + cm, ZH, A0K["canonical"], SW_DEF, [(ic0, ic0, ic0)])
-        SMAIN = (bm + cm + rph).sum(axis=2) * DXH
-        beta = {e: [] for e in ("100", "150", "fit")}; core = {}
+        A3 = bm + cm + rph
+        SMAIN = {c_: proj(A3, cap) for c_, cap in CAPS}
+        del A3, rph
+        beta = {c_: {e: [] for e in ("100", "150", "fit")} for c_, _ in CAPS}; core = {}
         for Msub in (1e14, 3e14):
             Hs = G["solve_l366"](Msub, shape, EPSM[Msub], QTAB[Msub], 0.10, 0.02)
             core[Msub] = m_in(Hs.rho_c, 150.0) / m_in(Hs.rho_b, 150.0)
@@ -279,17 +300,17 @@ def harvey_block(EPSM, VKG):
                 gs = paint_at(Hs.rho_g, r_["gx"], r_["gy"], m_in(Hs.rho_g, 1e9))
                 rb = bm + ss + gs; rreal = rb + cm + cs
                 _, _, rph, _ = phantom_felt(GH, rb, rreal, ZH, A0K["canonical"], SW_DEF, [(ic0, ic0, ic0), (icx, ic0, ic0)])
-                S = (rreal + rph).sum(axis=2) * DXH - SMAIN
-                for Rap in (100.0, 150.0):
-                    cx, cy = centroid(S, 400.0, 0.0, Rap)
-                    beta[f"{Rap:.0f}"].append(((cx - 400.0) * r_["ux"] + cy * r_["uy"] - r_[f"L_{Rap:.0f}"]) / dSG)
-                fx, fy = nfw_fit_centre(S, 400.0, 0.0)
-                beta["fit"].append(((fx - 400.0) * r_["ux"] + fy * r_["uy"] - r_["L_fit"]) / dSG)
-                del gs, rb, rreal, rph
+                A3 = rreal + rph
+                for c_, cap in CAPS:
+                    o = offsets(proj(A3, cap) - SMAIN[c_], r_["ux"], r_["uy"])
+                    for e in ("100", "150", "fit"):
+                        beta[c_][e].append((o[e] - r_["L"][c_][e]) / dSG)
+                del gs, rb, rreal, rph, A3
             del ss, cs
         del bm, cm, SMAIN
-        b = {e: float(np.mean(v)) for e, v in beta.items()}
-        OUTB[shape] = dict(beta=b, core=core, ok=all(b[e] <= -0.04 + 2 * 0.07 for e in b), switch=SW_DEF)
+        bc = {c_: {e: float(np.mean(v)) for e, v in d.items()} for c_, d in beta.items()}
+        b = bc["full"]
+        OUTB[shape] = dict(beta=b, beta_caps=bc, core=core, ok=all(b[e] <= -0.04 + 2 * 0.07 for e in b), switch=SW_DEF)
     return OUTB
 
 
@@ -402,6 +423,8 @@ if __name__ == "__main__":
           f"{GR[t][3e14]:.2f} (n={GR[t]['n'][1]}), >= 3e14 {GR[t][1e15]:.2f} (n={GR[t]['n'][2]})")
 
     # ------------------------------------------------------------------------------------------ Harvey
+    PREV_JSON = os.path.join(HERE, f"{SLUG}_results{'_MUTATE' if MUTATE else ''}.json")
+    PREV = json.load(open(PREV_JSON))["numbers"].get("harvey", {}) if (os.path.exists(PREV_JSON) and not SMOKE) else {}
     banner("HARVEY (L371's machinery) on every pooled cell passing X-COP, with the retention measured at z = 0.4")
     todo = []
     for (fu, vg), t in zip(CELLS, TAGS):
@@ -419,10 +442,29 @@ if __name__ == "__main__":
           + "/".join(f"{HV[t]['S2']['beta'][e]:+.3f}" for e in ("100", "150", "fit"))
           + f"; core carrier/baryons(<150 kpc) S1 {HV[t]['S1']['core'][1e14]:.2f}/{HV[t]['S1']['core'][3e14]:.2f}"
           + f" -> {'PASS' if HV[t]['S1']['ok'] and HV[t]['S2']['ok'] else 'FAIL'}")
+    for t, EPSM, vg in todo:
+        for sh in ("intact", "S1", "S2"):
+            P(f"      {t} {sh:6s} edge-layer check, excess beta (100/150/fit) by projection depth: " + "; ".join(
+                f"{c_} " + "/".join(f"{HV[t][sh]['beta_caps'][c_][e]:+.3f}" for e in ("100", "150", "fit"))
+                for c_ in ("full", "3Mpc", "1.5Mpc")))
+    if todo:
+        dmax = max(abs(HV[t][sh]["beta_caps"][c_][e] - HV[t][sh]["beta_caps"]["full"][e]) for t in HV for sh in HV[t]
+                   for c_ in ("3Mpc", "1.5Mpc") for e in ("100", "150", "fit"))
+        s2fit = {t: {c_: HV[t]["S2"]["beta_caps"][c_]["fit"] for c_ in ("full", "3Mpc", "1.5Mpc")} for t in HV}
+        check("W2 (reported) XR5's edge-layer check: excess beta with the line-of-sight projection capped at +-3 and +-1.5 Mpc "
+              "(the gate stays on the full projection, as pre-declared)", f"max |beta(cap) - beta(full)| {dmax:.3f}; S2 fit by depth {s2fit}",
+              True, load_bearing=False)
+        OUT["numbers"]["edge_layer_check"] = dict(max_abs_shift=dmax, s2_fit=s2fit)
     if not todo:
         P("    no pooled cell passes X-COP: Harvey not run")
     P(f"    [{time.time() - T0:.0f}s]")
 
+    if PREV and HV:
+        diffs = [abs(HV[t][sh]["beta"][e] - PREV[t][sh]["beta"][e]) for t in HV if t in PREV for sh in HV[t] if sh in PREV[t]
+                 for e in ("100", "150", "fit")]
+        check("C3 CONTROL: the full-projection betas reproduce the previously committed Harvey numbers (the depth caps are "
+              "added beside them, not in their place)", f"max |difference| {max(diffs) if diffs else float('nan'):.1e} over "
+              f"{len(diffs)} numbers", bool(diffs) and max(diffs) < 1e-9)
     SW_MESH = f"p{L77.P_GATE:g}_x{L77.X_C0:.1f}"
     used = sorted({HV[t][sh]["switch"] for t in HV for sh in HV[t]})
     check("C2 CONTROL: the Harvey stage's switch cell is the mesh runs' (L377: p = %d, x_c0 = %.1f)" % (L77.P_GATE, L77.X_C0),

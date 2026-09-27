@@ -117,7 +117,7 @@ This is a scope gap, not a known failure: L360 finds a switched p = 1, x_c0 = 1.
 
 ## L373 — the two-mode carrier in the particle-mesh box (scope: the p = 2, x_c0 = 2 cell)
 
-`L373_two_mode_carrier_pm.py`: 3/4 checks pass, rc = 1. The pre-declared hypothesis, that L372's window survives real assembly, is falsified. The MUTATE run (mode U off) was not made: by the lane's rule it runs only if R1 passes.
+`L373_two_mode_carrier_pm.py`: 5/6 checks pass, rc = 1 (3/4 before the edge-layer re-score added C3 and W2). The pre-declared hypothesis, that L372's window survives real assembly, is falsified. The MUTATE run (mode U off) was not made: by the lane's rule it runs only if R1 passes.
 
 **Scope.** The box is L377's full construction at its switch cell, p = 2, x_c0 = 2:
 - DE1 (c8bb50813) finds this cell fails the flat-a₀ flagship on the canonical footing.
@@ -157,6 +157,11 @@ This is a scope gap, not a known failure: L360 finds a switched p = 1, x_c0 = 1.
 **Controls.**
 - **C1:** the LCDM run reproduces L366's σ₈ exactly.
 - **C2:** the Harvey stage uses the mesh's own cell, p2_x2.0.
+
+**Edge-layer check (added after the first result; reported, not gated).** XR5 found that the projected far edge layer of a switched region can move a substructure centroid. The Harvey maps were re-scored from the checkpoint with the line of sight also capped at ±3 and ±1.5 Mpc:
+- **W2:** the betas move by at most 0.0006; the S2 fit is +0.116 on the full projection and +0.116 at both caps.
+- **C3:** the full-projection betas reproduce the committed numbers exactly (0 difference over 9 numbers).
+- The verdict is unchanged, so the S2 miss is not an edge-layer artefact.
 
 **Correction.** The first run's Harvey stage had inherited L370's default cell (p = 1, x_c0 = 1.5), the same defect that withdrew L381. It was caught by a peer session and stopped before any Harvey number. The mesh runs were kept: 27,921 s, logged in `L373_two_mode_carrier_pm_mesh_stage.out`. Harvey was then re-scored from the checkpoint on the matched cell.
 
