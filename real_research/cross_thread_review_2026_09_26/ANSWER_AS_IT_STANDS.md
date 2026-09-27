@@ -216,6 +216,15 @@ Running here:
   - In the optimistic (history) reading, 6 of 12 pass, at 575 and 600 km/s.
   - The flagship passes in the history reading, at ≤ 0.0005 dex.
   - FP16 (semi-analytic) and XR21's stage 3 (particle mesh) decide which reading holds.
+- **XR19 (b55775ce0): the fluid's own conversion spreads through the web, but not everywhere.**
+  - It spreads through collapsed and turned-around structure at z ≲ 1.5. It stays out of voids (exactly, in expanding
+    flow) and out of z ≳ 3 (the vacuum gate).
+  - 84–91% of the fluid is converted by z = 0. The rest streams at 200–400 km/s, leaving galaxies and groups, and
+    clusters recapture it.
+  - S8 comes out at 0.931 of LCDM, which passes.
+  - Small-scale carrier power falls 2.5–3.5×, so weak lensing leans on the MOND phantom.
+  - The forest is still not established.
+  - A box run needs a web conversion channel.
 - **The hardest open tests of the chain, launched 2026-09-27:**
   - **XR22, Gaia DR4 wide binaries.** It solves the chain's z = 0 law as a 3-D AQUAL two-body problem in the Galactic
     field, with the heat filter across ξ's window. It then computes the frozen pre-registration's own statistic
@@ -227,3 +236,18 @@ Running here:
   - **XR25, strong fields.** Preferred-frame PPN, neutron-star sensitivities, and binary-pulsar dipole radiation on
     FP14's core. It also asks whether the constant-mean-curvature leaves exist around neutron stars and black holes,
     and what the GW170817 dipole bound gives.
+  - **XR26, the CMB and BBN.** Do the chain's linear equations reduce exactly to GR + CDM at z ≳ 10? It computes the
+    TT/TE/EE and lensing spectra against Planck, plus Y_p, D/H and ⁷Li. If gravity's cosmological strength differs
+    from its local value, it also reports the implied H0 shift.
+  - **XR27, the external-field systems.** M*'s three failures (cluster infall, the LV dwarfs, the Coma UDGs) and the
+    systems that favour an external-field effect (Crater II, DF2/DF4, the M31 dwarfs, Chae's SPARC signal), all under
+    the band-pass, as a function of L.
+  - **XR28, cluster splashback.** Cluster outskirts with the two-phase dark sector and MOND cut beyond L: can the
+    data pin L?
+  - **XR29, the Milky Way's outer rotation curve.** The Gaia DR3 decline in the chain's law.
+  - **XR30, one clock or two.** Can the khronon's constant-mean-curvature foliation and the unimodular clock be one
+    structure?
+  - **XR31, verifying the k04 correction.** An independent check of the claim that k04's four-form kernel folds.
+  - **XR32, the S8 tension.** Does the conversion lower the S8 a weak-lensing survey would infer by the right amount,
+    while keeping CMB lensing and cluster counts consistent?
+  - **XR33, galaxy strong lensing.** SLACS lenses from baryons alone, and the IMF that requires.
