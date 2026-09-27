@@ -162,6 +162,12 @@ the triggered carrier resolved around each lens (L375's shell model, re-run exac
 KiDS-1000 comfortably, Δχ² = −37 to −29 against isolated MOND on both footings, better than the curvature branch with
 the same carrier (−13/−7). The cap does not bind on KiDS lenses, and KiDS would accept somewhat more carrier lensing.
 
+**DE11** (`DE11_forest_converged_model.py`, 4/4; MUTATE reproduces L358's failing cell). The same model on the
+Lyman-α forest, run with L347's simulation pipeline and only the switch changed. The worst flux-power deviation is
+0.4%, against a registered 10% limit. The vacuum gate keeps MOND off in the intergalactic gas at z = 2–3, and only
+halo cores switch on. This run over-states the phantom by construction (single fluid, all-matter kernel). The
+deviation still grows with resolution, so a convergence run comes next.
+
 ## 4. The theory as it stands, sector by sector
 
 | sector | what is built | standing | open |

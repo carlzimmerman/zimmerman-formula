@@ -1,0 +1,61 @@
+DE11 -- THE LYMAN-ALPHA FOREST FOR THE CONVERGED MODEL: the MOND-sector switch, vacuum-gated, on the flux observable.
+
+WHY.  The model the threads converged on (MOND-sector switch lap(Phi - v) = baryons + their phantom, p = 1,
+x_c0 = 2.5, a transition width w <~ 0.25, MS3's cap, the triggered carrier) now has KiDS (DE10), cosmic shear (MS3/MS4)
+and the flagship (MS2) scored on one model.  Its forest gate has only DE2's dominance bracket.  That bracket compares
+against a matter-reading cell with no phantom in the switch variable, and the MOND-sector reading does contain a
+phantom.  This lane runs the forest observable directly: the 1D flux power at fixed mean transmission.
+
+METHOD.  L347's machinery is imported unchanged: L176's PM (128^3 mesh, 96^3 particles, Zel'dovich ICs at z = 49 from
+CLASS, the same phases in every run of a box), FGPA flux with the pressure filter, redshift-space velocities, thermal
+broadening, and Becker+2013 tau_eff.  Two boxes are run, 50 and 25 Mpc/h.  Only the switch in the force is replaced:
+  x_MS = (3/2) Omega_m(a) [f_b delta + delta_ph]      the MOND-sector reading (MS2): baryons ~ f_b (1 + delta) and
+                                                       their phantom, less the baryonic background f_b.
+  delta_ph = div[f (nu - 1) grad phi_N] / (1.5 Omega_m/a), the phantom's own density (in rho_bar_m units).  It is
+      LAGGED one step: the gate reads the phantom of the previous step.  At z = 49 the gate is off, so each region
+      switches on only when its own baryons (and then its phantom) cross the threshold -- the history-selected branch.
+  threshold x_c,eff(a) = x_c0 E(z)^(2p), p = 1, x_c0 = 2.5 (the vacuum gate); f = W(t), t = (x_MS/x_c,eff - 1)/(2w) + 1/2,
+  W = Mathlib's smoothTransition, w = 0.25 and 0.02 (hard).
+CONSERVATIVE BY CONSTRUCTION.  The kernel reads all matter's Newtonian field, as in L347, and every particle feels the
+phantom.  The converged model's region kernel reads only the gated baryons, and its carrier feels Newtonian gravity
+only, so both choices here over-state the phantom.  A pass therefore carries over; a fail would need the two-species
+run.
+
+  *** MUTATE=1: L358's failing cell (matter reading, constant x_c = 2.5) replaces the converged model; F1 must FAIL ***
+  9 runs done   [574s]
+
+==============================================================================================================
+C1 C2  CONTROLS
+==============================================================================================================
+  [PASS] C1 CONTROL: this lane's run() in L347's mode reproduces L347's committed 50 Mpc/h P1D ratio at x_c = 5 (z = 3, 2)
+         measured: max |difference| = 0.0e+00
+  [PASS] C2 CONTROL: the switch never on reproduces LCDM's P1D exactly (both boxes)
+         measured: max |ratio - 1| = 0.0e+00
+
+==============================================================================================================
+A1  THE GATE'S REACH IN THE BOX
+==============================================================================================================
+    L50_canonical_w0.25   : active mesh fraction z = 3 4.95e-02, z = 2 5.03e-02;  mean f 5.07e-02;  largest phantom density 137.9 rho_bar_m (z = 2)
+    L50_alt_w0.25         : active mesh fraction z = 3 4.91e-02, z = 2 4.98e-02;  mean f 5.02e-02;  largest phantom density 161.4 rho_bar_m (z = 2)
+    L25_canonical_w0.25   : active mesh fraction z = 3 5.11e-02, z = 2 4.94e-02;  mean f 4.97e-02;  largest phantom density 290.4 rho_bar_m (z = 2)
+    L25_alt_w0.25         : active mesh fraction z = 3 5.07e-02, z = 2 4.87e-02;  mean f 4.90e-02;  largest phantom density 333.5 rho_bar_m (z = 2)
+  [PASS] A1 (reported) the active mesh fraction and the phantom's reach at z = 3 and 2
+         measured: see above
+
+==============================================================================================================
+F1  THE FOREST OBSERVABLE: worst |P1D/P1D_LCDM - 1| for k_par in [0.2, 2] h/Mpc, z = 3 and 2
+==============================================================================================================
+    L50_canonical_w0.25    z = 3.0: worst 0.0325  (ratio range 0.967-1.017)
+    L50_canonical_w0.25    z = 2.0: worst 0.0954  (ratio range 0.905-1.077)
+    L50_alt_w0.25          z = 3.0: worst 0.0351  (ratio range 0.965-1.019)
+    L50_alt_w0.25          z = 2.0: worst 0.1053  (ratio range 0.895-1.085)
+    L25_canonical_w0.25    z = 3.0: worst 0.0524  (ratio range 0.954-1.052)
+    L25_canonical_w0.25    z = 2.0: worst 0.1594  (ratio range 0.841-1.089)
+    L25_alt_w0.25          z = 3.0: worst 0.0567  (ratio range 0.947-1.057)
+    L25_alt_w0.25          z = 2.0: worst 0.1742  (ratio range 0.826-1.098)
+  [FAIL] F1 [pre-declared] the converged model passes the registered forest rule (worst <= 0.10, both boxes, footings, widths)
+         measured: worst 0.1742
+         reading:  conservative: all-matter kernel and a single fluid over-state the phantom (see the docstring)
+
+  3/4 checks pass; load-bearing failures: 1; wrote DE11_forest_converged_model_results_MUTATE.json   [574s]
+rc=1
