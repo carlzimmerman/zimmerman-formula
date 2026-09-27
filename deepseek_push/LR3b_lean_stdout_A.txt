@@ -1,0 +1,94 @@
+LR3b_m05_reduction.lean:12:50: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  √(|r| ^ 2)
+in the target expression
+  √(r ^ 2) * √(1 - mu ^ 2) = r * √(1 - mu ^ 2)
+
+r : ℝ
+hr : 0 < r
+H : ℝ → ℝ → ℝ
+mu : ℝ
+⊢ √(r ^ 2) * √(1 - mu ^ 2) = r * √(1 - mu ^ 2)
+LR3b_m05_reduction.lean:16:28: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  √(r ^ 2 - (r * mu) ^ 2)
+in the target expression
+  H (r * √(1 - mu ^ 2)) (r * mu) = (fun v => H (√(r ^ 2 - v ^ 2)) v) (r * mu)
+
+case e_f
+r : ℝ
+hr : 0 < r
+H : ℝ → ℝ → ℝ
+hsqrt : ∀ (mu : ℝ), √(r ^ 2 - (r * mu) ^ 2) = r * √(1 - mu ^ 2)
+mu : ℝ
+⊢ H (r * √(1 - mu ^ 2)) (r * mu) = (fun v => H (√(r ^ 2 - v ^ 2)) v) (r * mu)
+LR3b_m05_reduction.lean:17:12: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∫ (x : ℝ) in ?m.450..?m.451, ?m.453 (r * x)
+in the target expression
+  ∫ (mu : ℝ) in -1..1, (fun v => H (√(r ^ 2 - v ^ 2)) v) (r * mu) = 1 / r * ∫ (v : ℝ) in -r..r, H (√(r ^ 2 - v ^ 2)) v
+
+r : ℝ
+hr : 0 < r
+H : ℝ → ℝ → ℝ
+hsqrt : ∀ (mu : ℝ), √(r ^ 2 - (r * mu) ^ 2) = r * √(1 - mu ^ 2)
+this :
+  ∫ (mu : ℝ) in -1..1, H (r * √(1 - mu ^ 2)) (r * mu) = ∫ (mu : ℝ) in -1..1, (fun v => H (√(r ^ 2 - v ^ 2)) v) (r * mu)
+⊢ ∫ (mu : ℝ) in -1..1, (fun v => H (√(r ^ 2 - v ^ 2)) v) (r * mu) = 1 / r * ∫ (v : ℝ) in -r..r, H (√(r ^ 2 - v ^ 2)) v
+LR3b_m05_reduction.lean:29:4: error(lean.dependsOnNoncomputable): failed to compile definition, consider marking it as 'noncomputable' because it depends on 'sqrt', which is 'noncomputable'
+LR3b_m05_reduction.lean:39:19: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  √(1 - b ^ 2) ^ 2
+in the target expression
+  1 - a ^ 2 * (1 - b ^ 2) = 1 - (a * √(1 - b ^ 2)) ^ 2
+
+cov : ∀ (H : ℝ → ℝ → ℝ), (Continuous fun p => H p.1 p.2) → covStatement H
+inst :
+  3 * ∫ (r : ℝ) in 0..1, r ^ 2 * (1 / 2 * ∫ (mu : ℝ) in -1..1, r * mu + √(1 - (r * √(1 - mu ^ 2)) ^ 2)) =
+    3 / 2 * ∫ (u : ℝ) in 0..1, ∫ (v : ℝ) in -√(1 - u ^ 2)..√(1 - u ^ 2), u * (v + √(1 - u ^ 2))
+a b : ℝ
+⊢ 1 - a ^ 2 * (1 - b ^ 2) = 1 - (a * √(1 - b ^ 2)) ^ 2
+LR3b_m05_reduction.lean:40:2: error: `simp` made no progress
+LR3b_m05_reduction.lean:63:50: error(lean.unknownIdentifier): Unknown constant `intervalIntegral.integral_pow`
+LR3b_m05_reduction.lean:57:99: error: unsolved goals
+cov : ∀ (H : ℝ → ℝ → ℝ), (Continuous fun p => H p.1 p.2) → covStatement H
+inst :
+  3 *
+      ∫ (r : ℝ) in 0..1,
+        r ^ 2 *
+          (1 / 2 *
+            ∫ (mu : ℝ) in -1..1,
+              (r * √(1 - mu ^ 2)) ^ 2 * (√(1 - (r * √(1 - mu ^ 2)) ^ 2) - r * mu) +
+                (√(1 - (r * √(1 - mu ^ 2)) ^ 2) ^ 3 - (r * mu) ^ 3) / 3) =
+    3 / 2 *
+      ∫ (u : ℝ) in 0..1,
+        ∫ (v : ℝ) in -√(1 - u ^ 2)..√(1 - u ^ 2), u * (u ^ 2 * (√(1 - u ^ 2) - v) + (√(1 - u ^ 2) ^ 3 - v ^ 3) / 3)
+⊢ (∫ (u : ℝ) in 0..1,
+        u *
+          ∫ (x : ℝ) in -√(1 - u ^ 2)..√(1 - u ^ 2),
+            u ^ 2 * √(1 - u ^ 2) - u ^ 2 * x + √(1 - u ^ 2) ^ 3 * (1 / 3) + -(x ^ 3 * (1 / 3))) *
+      (3 / 2) =
+    5 / 12
+LR3b_m05_reduction.lean:62:13: warning: This simp argument is unused:
+  intervalIntegral.integral_add
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [intervalIntegral.integral_sub, intervalIntegral.integral_const_mul, intervalIntegral.integral_pow,
+    smul_eq_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LR3b_m05_reduction.lean:62:44: warning: This simp argument is unused:
+  intervalIntegral.integral_sub
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [intervalIntegral.integral_add, intervalIntegral.integral_const_mul, intervalIntegral.integral_pow,
+    smul_eq_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LR3b_m05_reduction.lean:63:81: warning: This simp argument is unused:
+  smul_eq_mul
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [intervalIntegral.integral_add, intervalIntegral.integral_sub, intervalIntegral.integral_const_mul,
+    intervalIntegral.integral_pow]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'step1' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'chord_cond' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'I1_cond' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
