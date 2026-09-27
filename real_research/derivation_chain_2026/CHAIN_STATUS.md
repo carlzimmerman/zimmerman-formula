@@ -1,6 +1,6 @@
 # The first-principles derivation chain -- status ledger
 
-Assembled by `run_chain.py` on 2026-09-27 01:13. A lane counts only if its main run has a verdict and its MUTATE control flips (rc = 1). Status meanings: DERIVED (varied out of the chain above it, with a script), POSTULATED (an input), FITTED (a constant set by data), CONSTRAINT (a derived requirement on a lower link), OPEN (owed), FAILS (derived and contradicted by data).
+Assembled by `run_chain.py` on 2026-09-27 03:11. A lane counts only if its main run has a verdict and its MUTATE control flips (rc = 1). Status meanings: DERIVED (varied out of the chain above it, with a script), POSTULATED (an input), FITTED (a constant set by data), CONSTRAINT (a derived requirement on a lower link), OPEN (owed), FAILS (derived and contradicted by data).
 
 ## Lanes
 
@@ -13,6 +13,9 @@ Assembled by `run_chain.py` on 2026-09-27 01:13. A lane counts only if its main 
 | FP4_kick_from_action | 24/25 | 0 | 0 | 1 | ok |
 | FP5_dof_and_a0_field | 24/24 | 0 | 0 | 1 | ok |
 | FP6_gate_survey | 31/32 | 0 | 0 | 1 | ok |
+| FP7_aqual_type_repair | 23/24 | 0 | 0 | 1 | ok |
+| FP8_current_coupling_kick | 22/22 | 0 | 0 | 1 | ok |
+| FP9_web_galaxy_separator | 36/36 | 0 | 0 | 1 | ok |
 
 ## Links
 
@@ -120,5 +123,57 @@ Assembled by `run_chain.py` on 2026-09-27 01:13. A lane counts only if its main 
 | FP6 | G6l | POSTULATED | (H)'s constants L_Lambda, n, y_Lambda, p', m | declared; windows set by KiDS, the flagship, the forest and sigma_8 (H1) |
 | FP6 | G6m | FAILS | classes (a), (c), (d): local multiplier gates | FP3's lemma (C1, C3, C5, C7, T), CV4; (d) S7: symbol zero wherever W' > 0 |
 | FP6 | G6n | OPEN | (H) beyond linear order: the sub-L web keeps C_eff ~ 0.6 at k <= 0.5 h/Mpc and ~12 at 20 h/Mpc today (cosmic shear, halo masses); the flux P1D (PM); full KiDS (2-halo, and the isolated lenses' band-passed external field, estimated <~ 2e-4 a0 but not computed); the carrier in galaxies; nonlinear well-posedness of a Mpc-range leafwise filter | not computed here (no PM run in this lane) |
+| FP7 | R7a | POSTULATED | the repaired root: the core with C-H's U-sector replaced by (2 - alpha_c) h(2a - Dchi)Dchi - 2 alpha^2 J_P2(|Dphi|^2/alpha^2) + 2 lambda (n.dphi)^2, chi = S_h phi (khronon terms, leaf average, filter kept) | the coordinator's repair of FP3's G1t; the inertia's form is the suggested a0-free (n.dphi)^2 |
+| FP7 | R7b | DERIVED | the chassis is forced: 2a^2 - (2 - alpha_c)|Dchi - a|^2 (no Newtonian term in phi's equation, GR + BPS Newtonian limit); C-H's sign pins its field to Newton (QUMOND) | A1 (sympy EL of the static density) |
+| FP7 | R7c | DERIVED | the filter must sit on the chassis (chi = S phi): J on S phi needs S^{-1}; filtering both cancels | A1b (discrete adjoint + Fourier gains) |
+| FP7 | R7d | DERIVED | static law: psi = Phi, Phi = Phi_N[G_N] + S phi, div(mu_s grad phi) = 4 pi G S rho (two-field AQUAL); P2 exact in spherical symmetry; C_T, C_L > 0; C^Q = 1/C^phi | A1, A2 |
+| FP7 | R7e | DERIVED | thin exponential discs: AQUAL vs QUMOND <= 0.035 dex (y = 0.01-100, R >= 0.3 R_d), <= 0.008 dex after profiling Upsilon (SPARC median error 0.037 dex): not resolvable by SPARC | A3 (dual Kacanov; Plummer control) |
+| FP7 | R7f | DERIVED | Solar System under the double filter: AQUAL floors 0.0243 / 0.0268 pc (Saturn monopole binds; QUMOND 0.0294/0.0316); strict law excluded by its a0/2 tail (1279x / 1545x) | A4 (dual AQUAL; g02 read-only; FP1 reproduced) |
+| FP7 | R7g | DERIVED | FRW background = GR (chassis, J vanish; phibar-dot ~ a^-3, declared 0); a0 absent | B1 |
+| FP7 | R7h | DERIVED | zero tangent: J is O(eps^3) around FRW and drops out of linear order | B2 |
+| FP7 | R7i | DERIVED | zero-field well-posedness restored: omega^2 = 0 (marginal) + omega^2 > 0; E(C_phi) in (alpha_c, 2] (FP5's E > 2 band gone) | B3 (the naive chassis re-opens a growing band: MUTATE) |
+| FP7 | R7j | DERIVED | linear cosmology: no slip; G_eff/G_N = 1 + (2/5)(ck/aH)^2/lambda_eff (matter era), inertia-limited; lambda_eff = lambda + (2+3c_2)/c_2 | B4 (sub-horizon reduction of the action's FRW equations) |
+| FP7 | R7k | FAILS | sigma_8 with no gate: lambda_eff <= 277 gives L341's ~ 20x; sigma_8 <= 1.02 needs lambda_eff >= 1.1e+07 | B5 + T (linear and physical-amplitude yardsticks, both footings) |
+| FP7 | R7l | DERIVED | strong coupling: Lambda_sc -> 0 at exact zero field; ell_sc <= ~1 mm in real backgrounds (tree level) | B6 (reported); the quantum zero-field question is OPEN |
+| FP7 | R7m | DERIVED | stability: no ghost, no gradient instability for monotone J (T = diag(4(2+3c_2)/c_2, 4 lambda), det V ~ C_phi); FC-KH's (yq)' obstruction absent | C1, C2 |
+| FP7 | R7n | DERIVED | tracking: omega -> 0 gives static MOND iff c_2 C_phi != 0; c_s^2 = C_phi/lambda_eff; lambda = 0 reproduces c_2 >= 7.29e-3 | C3 |
+| FP7 | R7o | DERIVED | c_T = 1 (exact on flat space; ~1e-41 on MOND backgrounds) | D1 |
+| FP7 | R7p | DERIVED | PPN: gamma = 1, alpha_3 = 0, closed-form alpha_1, alpha_2; filtered = khronometric; alpha_c <= 3.2e-9 unchanged; beta = 1 inherited | D2 (FP2's pipeline) |
+| FP7 | R7q | DERIVED | mode count N = 4 (lambda > 0) / 3 (lambda = 0); the filter adds none | E1 |
+| FP7 | R7r | DERIVED | the fourth mode is not harmful (fifth force, PPN, Cherenkov, GW170817): the spec's limit is a preference | E2 (reported) |
+| FP7 | R7s | FAILS | lambda (the MOND scalar's inertia): sigma_8 needs >= 1e7, tracking <= 2.8e4: EMPTY | T |
+| FP7 | R7t | OPEN | a web-vs-galaxy separation of the scalar's response (a new scale ~ Mpc in its inertia, or a density-read gate) | T; with the zero tangent a gate need not vanish on FRW, so FP3's convexity lemma no longer binds -- FP3's chord bound (L* outskirts, KiDS) does; untested |
+| FP7 | R7u | OPEN | nonlinear well-posedness; the L340 H4 O(Phi/c^2) lobes for the new sector; KiDS-EFE with AQUAL's EFE; Boltzmann-level cosmology | not computed here |
+| FP8 | L10o.1 | DERIVED | the task's current: J.n = n_d (clock-frame density), J^i = -n_d v^i | check A1 |
+| FP8 | L10o.2 | DERIVED | gauge reduction: -|dPsi|^2 + gA.J == -|DPsi|^2 + g^2 A.A|Psi|^2; J.d chi is pure gauge at O(g) and FP4's density class at O(g^2); J.n f is an electrostatic density coupling | check A2 |
+| FP8 | L10o.3 | DERIVED | kinetic couplings: -F(I) g^mn dPsi*dPsi is the density coupling V = c^2[(1+F)^(-1/2) - 1] (|F| = 2.0 x FK1's eps/m^2 for 575-650 km/s); spatial/anisotropic members change only the inertia | check A3 |
+| FP8 | L10o.4 | DERIVED | THE ENERGY-RECIPROCITY IDENTITY: the energy any coupling takes from the MOND sector is -Int S.d_t grad u, S its source in the MOND equation; <= max(delta) x the MOND field energy | check A4 |
+| FP8 | L10o.5 | DERIVED | exact back-reactions: S = -2 rho_d V' u'/a0^2 (density), 2 g (d_t n_d) u'/a0^2 (rate), -G' rho_d w^2 u'/a0^2 (inertia), g j (F + 2IF') (current) | check A5 |
+| FP8 | L10o.6 | FAILS | class-wide: unbinding the flagship's dark mass costs 7.2-11.9x the host's whole MOND field energy (4.9-8.7x with the baryons' kinetic energy added): any MOND-powered clearing needs delta > 1 where the dark state sits (beyond H4's health boundary) | check B0 |
+| FP8 | L10o.7 | FAILS | linear spatial-current (magnetic) couplings: no work in a static host; the re-direction floor fails the flagship | check B1 |
+| FP8 | L10o.8 | FAILS | velocity-weighted couplings at FP4's delta = 1 cap (density, inertia, anisotropic inertia): fail the flagship in the slow and sudden readings, both footings | check B2 (B3: an unattainable pericentre-timed envelope with FP4's cap clears 3 of 18 member-host cells (['inertia']); with the health-enforced cap: 0) |
+| FP8 | L10o.9 | FAILS | ordering: every MOND-sector coupling clears clusters before z = 2.5 galaxies (anti-selective) | check B4 |
+| FP8 | L10o.10 | FAILS | the rate member g J_perp.grad chi == -g n_d d_t chi: silent in static halos (escapes the static reciprocity), right ordering by growth rate, but delta >= B0's ratio during the clearing (ill-posed core); clock-frame dependent | checks A5, B5, H4 |
+| FP8 | L10o.11 | FITTED | velocity scale: host-proportional ceilings or a fitted strength per member; the 575-675 km/s window not predicted | check B6 |
+| FP8 | L10o.12 | DERIVED | health: current members luminal (tachyonic beyond g|A| = m); every velocity-weighted kicker is superluminal (the weighting theorem); all I-members off on FRW | checks H1-H3 |
+| FP8 | L10o.13 | DERIVED | FP4's ceiling delta = 1 is the core's own health boundary: FP5's (N, U) determinant vanishes at delta* = 1 + O(1e-9) | check H4 |
+| FP8 | L10o.14 | FAILS | the best healthy coupling (-F(I) g^mn dPsi*dPsi) = FP4's density class: passes what LCDM passes, fails the flagship | check G1 (FP4's committed rows) |
+| FP8 | L10o.15 | FITTED | the honest minimal price of a working kick: FK1's eps (FITTED, eps/m^2 = 1.84-2.35e-6 for 575-650 km/s: energy from the dark field's own splitting, S = 0) + its trigger's constants (the conversion coupling and gate exponent q, DECLARED) + the initial misalignment (initial data) + m | FK1 (committed); this lane's no-go for every MOND-sector source |
+| FP8 | L10o.16 | OPEN | not scored here: zero-net redistributors in a GROWING host (betatron-like magnetic members, sign-changing weights) beyond B1's static floor; velocity couplings nonlinear in Psi (outside the low-order class; ill-defined for a multistreaming wave field); the superluminal members' KiDS / cosmic-shear / forest / Harvey rows (moot: their flagship and X-COP fail); the rate member's residual clock-frame dipole under khronon tracking | not computed |
+| FP9 | R9a | DERIVED | the band-pass sits on the chassis, chi = (S_xi - S_L) phi (J on B phi needs 1/h^2, unbounded at both ends) | A1 (discrete adjoint + Fourier gains) |
+| FP9 | R9b | DERIVED | band-passed AQUAL block: roots >= 0, det V = 16 C_phi k^4 (2 - a_c)/a_c for every h, E in [a_c, 2] | A2 (this lane's re-derivation of FP7 B3, reproduced exactly: K2) |
+| FP9 | R9c | DERIVED | at lambda = 0 the formal linear response is h-independent (the khronon carries the mode); the band-pass acts through J's amplitude or lambda > 0 | A3 (FP7's slow root and static law, sigma -> h) |
+| FP9 | R9d | FAILS | route (i), the band-pass alone: sigma_8, flagship, SPARC, KiDS pass; the forest FAILS (scale overlap survives the repair) | I1-I6 (both footings, both modes, inertia at the tracking edge) |
+| FP9 | R9e | DERIVED | the yield floor J_Y = J_P2 + 2 y_th sqrt(Y): unique statics, C_T > 0, C_L >= 0; lowest order of J; no shape constant | Y1, Y4 |
+| FP9 | R9f | DERIVED | the yield is admissible on the AQUAL root (E -> 2 marginal) and not on the QUMOND core (E -> 2 + a_c) | Y2 |
+| FP9 | R9g | DERIVED | FRW with the yield: phi frozen, GR + BPS at linear order, linear yardstick = 1; lambda = 0 allowed | Y3 |
+| FP9 | R9h | POSTULATED | the separator (H_Y): band-pass (L_Lambda, n) + yield (y_Lambda, p'), both through Omega_L(<K>_h) | chosen after the survey: the fewest declared constants found |
+| FP9 | R9i | DERIVED | (H_Y) meets sigma_8 (phys; linear = 1), forest (linear proxy), flagship, SPARC, KiDS (lead grade), E in the BPS window | H1-H2b, given R9h (forest a proxy, KiDS lead grade) |
+| FP9 | R9j | CONSTRAINT | (H_Y)'s constant windows: L(0.25) >= ~1.2 Mpc; y_th(0.25) <~ 3e-6; 4e-3 <~ y_th(2.5) <~ 0.03 | H1, H4 |
+| FP9 | R9k | FAILS | (H_Y): the Local Group's zero-velocity radius (the KiDS-LG pincer) | H3: R0 = 1.4-1.5 Mpc at every KiDS-passing cell |
+| FP9 | R9l | FAILS | route (ii), a concave density gate on the AQUAL block: stable iff concave; KiDS needs f(0.25) >~ 0.65, the flagship f(2.5) >~ 3.6e-3: its 2-constant running gives sigma_8 ~ 1.09; a step history (>= 3 constants) gives 1.04 with G_eff ~ 3 on all scales at z <~ 0.3 | D1-D6 (chord bound x AQUAL sensitivity; the step's failure is the linear-scale lensing amplitude) |
+| FP9 | R9m | FAILS | route (iii): no host-independent Mpc length from (a0, Lambda, G, c); Yukawa: sigma_8 vs KiDS screening; lambda(k): forest vs tracking | V1-V3 |
+| FP9 | R9n | POSTULATED | the four constants of (H_Y) | declared inside R9j's windows; none derived |
+| FP9 | R9o | OPEN | beyond linear order: the sub-L web (linear P boost at k >= 0.3 h/Mpc; cosmic shear/S8, halo masses), dense z ~ 2 IGM lumps above the yield (flux P1D), full KiDS (2-halo, lens-redshift spread), the running yield's z ~ 2.8 switch-off, non-analytic zero-field EFT | H2c (reported); no PM run in this lane |
 
-Totals: DERIVED 44, POSTULATED 13, FITTED 4, CONSTRAINT 6, OPEN 13, FAILS 22
+Totals: DERIVED 74, POSTULATED 16, FITTED 6, CONSTRAINT 7, OPEN 17, FAILS 34
