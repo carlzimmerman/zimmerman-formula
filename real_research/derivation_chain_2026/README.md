@@ -27,19 +27,26 @@ The gravity core (FP7's AQUAL-type repair of the C-H/K root, with FP14's elimina
     R - 2 Lambda + alpha_c a^2 - 2 mu (K - <K>_h) + (2 - alpha_c) h^mn (2 a_m - D_m chi) D_n chi
       - 2 alpha^2 J_Y(h^mn D_m phi D_n phi/alpha^2) + [2 lambda (n.d phi)^2] + heat pair (chi = S_h phi) + S_m[g]
 
-The cosmology separator is H_Y (FP9; linearly healthy, four declared constants), pending the repair of H_S (FP13 -> FP19;
-see errata). The dark sector is FK1's internal splitting (FP10), a light complex scalar whose own rest energy powers the
-kick.
+The cosmology separator is H_K1 (FP19), the well-posed repair of H_S (FP13, ill-posed as written; see errata). It reads the
+state only through the leaf-averaged expansion <K>_h:
+
+    chi = (S_xi - S_B) phi,   B = L^2/2,   L = L_Lambda 3 Lambda/<K>_h^2
+    J_Y = J_P2(Y) + 2 y_th sqrt(Y),   y_th = max(0, 1 + Omega_r - 9 Lambda/<K>_h^2) (<K>_h^2/3 - Lambda) L/alpha   (c_y = 2)
+
+with lambda > 0 required as a regulator (the yield vanishes below z = 0.635). It awaits the hub's XR18-style re-audit and
+XR21 stage 2; H_Y (FP9; four declared constants) is the fallback. The dark sector is FK1's internal splitting (FP10), a
+light complex scalar whose own rest energy powers the kick.
 
 ## What is derived, and what is not (knob ledger; kappa = 1/2 accepted)
 
 | sector | constant | status | lane |
 |---|---|---|---|
-| core | lambda (inertia) | eliminated under H_Y (lambda = 0); a regulator (lambda > 0, any value) under H_S | FP14, FP13; the hub's XR25 settles it |
+| core | lambda (inertia) | eliminated under H_Y (lambda = 0); a regulator (lambda > 0, any value) under H_S and H_K1 (required below z = 0.635) | FP14, FP13, FP19; the hub's XR25 settles it |
 | core | c_2 | ELIMINATED (c_2 -> infinity: a multiplier) | FP14 |
 | core | alpha_c | REGULATOR (every observable moves <= 1.6e-9) | FP14 |
 | core | xi (heat filter) | KNOB: irreducible by a threshold-mass theorem; to be MEASURED by wide binaries (Gaia DR4) | FP17, the hub's XR22 |
-| separator | L_Lambda, n, y_Lambda, p' | declared in H_Y; replaced by state readouts in H_S (ill-posed as written; FP19 repairing) | FP9, FP13, FP19 |
+| separator | L_Lambda | DECLARED in H_K1: 2.9 Mpc, inside the window 2.65-4.6 (sigma_8 <= 1.02 needs <= 3.0); zero modes alone cannot give it (FP19) | FP19 |
+| separator | n = 2, the q = 0 ramp, c_y = 2 | natural choices in H_K1 (c_y chosen after scoring: the only one of four natural normalizations passing both yardsticks); H_Y's y_Lambda and p' are gone | FP13, FP19 |
 | dark | eps | IRREDUCIBLE (the only Z4-odd term; a khronon-frame coupling only relabels it) and FITTED (the flagship sets the window's lower end, Harvey its upper) | FP10, FP15 |
 | dark | zeta (lambda_0), q, m | FITTED BY DATA: zeta's band is x1.16 wide at the mass floor; sharing q with the separator FAILS the web; m is pinned on the canonical footing, bounded on alt. The yield-onset trigger removes q but keeps zeta and adds a postulated gate form | FP15 |
 | dark | cross quartic | POSTULATED (radiatively stable) | FP15 |
@@ -54,7 +61,11 @@ kick.
 - Re-accretion of the kicked dark component: FP16 (semi-analytic) finds the window EMPTY. Clusters recapture the escaped
   daughters, so X-COP fails at every kick from 575 to 650 km/s; the flagship, galaxies, KiDS and S8 pass. Only the hub's
   particle-mesh run (XR21 stage 3) could overturn it.
-- The small-scale (sub-L) power boost and its cosmic-shear cost need the particle-mesh run (the hub's XR21).
+- The small-scale (sub-L) power boost and its cosmic-shear cost need the particle-mesh run (the hub's XR21). Under H_K1 the
+  per-mode boost at z = 0 is +0.03/+0.14/+1.34 at k = 0.3/0.5/1 h/Mpc (FP19).
+- H_K1's prices (FP19): KiDS for lenses at z = 0.7 comes out at +496, a sharp prediction the data can test; the Local
+  Group R0 still fails (1.41/1.46 Mpc). All of FP19's numbers are in the all-matter reading and use FP6's projection, so
+  they are provisional until FP20 and FP22.
 - No-go results that constrain any repair: local gates (FP3 lemma), the MOND-sector kick (FP4, FP8 reciprocity), and
   xi from (a0, Lambda, G, c) (FP17 theorem).
 
