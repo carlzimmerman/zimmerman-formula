@@ -1,0 +1,37 @@
+DE11b -- IS DE11's FOREST PASS CONVERGED?  The converged model's switch at L362's mass and mesh resolutions.
+
+WHY.  DE11 found the converged model (MOND-sector switch, vacuum-gated at p = 1, x_c0 = 2.5) passes the forest easily:
+worst |P1D/P1D_LCDM - 1| = 0.0041 against 0.10.  But the deviation grew 4.6x from the 50 to the 25 Mpc/h box, as the halo
+cores where the gate switches on became better resolved.  L362 found the constant-threshold switch's deviation keeps
+growing with resolution.  A pass that grows 4.6x per doubling would cross 0.10 within about two more doublings.  This
+lane measures the next step.
+
+METHOD.  L362's generalised machinery is imported unchanged: L347's arithmetic line for line, with any (box L, mesh NG,
+particles NP), CLASS extended to 60 h/Mpc, and the same seed.  DE11's MOND-sector switch is inserted exactly as in DE11:
+x_MS = 1.5 Omega_m(a)[f_b delta + delta_ph], the phantom lagged one step, threshold 2.5 E(z)^2, W with w = 0.25.
+Runs at 25 Mpc/h:
+  ctrl (25, 128, 96)   DE11's own resolution (control)
+  B    (25, 128, 128)  mass resolution (L362's B)
+  C    (25, 256, 192)  mesh and mass, 2x finer mesh (L362's C)
+The kernel reads all matter, and the fluid is single, so the phantom is over-stated as in DE11.
+
+  *** MUTATE=1: the switch is on everywhere at B; F1 must FAIL ***
+  4 runs done   [313s]
+
+==============================================================================================================
+C1  CONTROL: DE11's resolution reproduced through L362's generalised machinery
+==============================================================================================================
+  [PASS] C1 CONTROL: at DE11's resolution (25, 128, 96) the worst deviation reproduces DE11's committed L25 canonical value
+         measured: 0.0036 vs DE11 0.0036 (|diff| 1.4e-10)
+         reading:  CLASS's k-table is extended to 60 h/Mpc here (L362), 40 in DE11
+
+==============================================================================================================
+F1 G1  THE CONVERGED MODEL'S FOREST AT HIGHER RESOLUTION
+==============================================================================================================
+    B_alt          : worst 1.3050;  active mesh fraction z = 2 1.00e+00
+    ctrl_canonical : worst 0.0036;  active mesh fraction z = 2 4.87e-04
+  [FAIL] F1 [pre-declared] the converged model still passes L347's rule (worst <= 0.10) at the higher resolutions
+         measured: {'B_alt': 1.305}
+
+  1/2 checks pass; load-bearing failures: 1; wrote DE11b_forest_convergence_results_MUTATE.json   [313s]
+rc=1

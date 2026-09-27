@@ -168,6 +168,11 @@ Lyman-α forest, run with L347's simulation pipeline and only the switch changed
 halo cores switch on. This run over-states the phantom by construction (single fluid, all-matter kernel). The
 deviation still grows with resolution, so a convergence run comes next.
 
+**DE11b** (`DE11b_forest_convergence.py`, 3/3; MUTATE fails F1) — the forest pass has converged. At L362's two
+finer resolutions the worst flux-power deviation is 0.46%, against the 10% limit, only 10–13% above DE11's value.
+DE11's 4.6× growth came from first resolving the halo cores. The forest is now a converged pass for the converged
+model (with its gate as a prescribed mask).
+
 **DE12** (`DE12_mond_sector_gate_stiffness.py`, 8/8; MUTATE fails G1) — a new obstruction for the converged model as
 an action. Written as a term of the action, the MOND-sector gate avoids DE7's metric problems: no wrong-signed k⁴
 term in gravity, and a slip smaller than 1e-7. But T1's convexity has to land somewhere, and it lands on the
