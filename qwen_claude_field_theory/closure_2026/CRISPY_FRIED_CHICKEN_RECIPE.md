@@ -67,6 +67,265 @@ exponential target" wording of any 2026-09-26 amendment written before them.
   - It is not derivable in this action class ([kappa_closure](../../kappa_closure/README.md)
     k01–k03).
 
+**Reciprocal-vacuum amendment — 2026-09-26, CD26-5.**
+The [new candidate and review](../../real_research/breakthrough_review_2026_09_26/README.md)
+replace the PQ vacuum ingredients, for CA5-GNC-R only, by
+`V0 F(t)` outside the excitation perspective, where
+`F(t)=1+(t+1/t-2)^2`, `t=1+Z-<Z>_h>0`.
+This keeps a positive convex boundary barrier while setting
+`F'(1)=F''(1)=0`; the prior `zeta=4/ell-1` tuning is absent.
+The new action has positive vacuum scalar kinetic/restoring coefficients
+for all finite nonzero modes in its stated domain, a positive occupied-FRW
+kinetic Schur complement, and a smooth positive fixed-data Z solve.
+Keep the complete occupied spatial matrix and nonlinear inhomogeneous
+evolution as separate open gates. The exact global filtered-MOND target,
+full constraints/PPN and observed vacuum magnitude also remain open.
+The new transport bounds concern linear transverse fields on an expanding
+pump and do not certify halo clearing. V0 is an input vacuum tension.
+All thirteen requirements and the author's decisions above remain intact.
+
+**Common-action construction amendment — 2026-09-26, CD26-4.**
+The [common-action checkpoint](../../real_research/common_action_2026_09_26/README.md)
+adds explicit candidate ingredients and records their costs. It preserves
+the author's decisions above and all thirteen requirements; it does not
+declare the complete recipe satisfied.
+
+- **Vary the source and its zero mode together.** On compact leaves use the
+  proper-volume projection in the carrier coupling and retain the resulting
+  mean stress and clock terms. A purely spatial unprojected auxiliary cannot
+  absorb an everywhere positive homogeneous source. Distinguish the lapse
+  density from the auxiliary source whenever the coupling changes.
+- **Use the Newton-normalized host and test the switching terms.** The
+  normalized alpha sector removes the old finite-alpha frozen sign crossing.
+  A convex activation energy controls the fixed-leaf auxiliary solve, but a
+  weighted-Laplacian trigger has an additional lapse instability. The new
+  intrinsic-Laplacian trigger plus fixed compensator repairs the calculated
+  scalar principal block, with an explicitly changed inactive force law.
+  Its global filtered static law is also changed: the heat kernel samples
+  off/interface regions. Exact requirement 1 remains unresolved, and no old
+  lensing, shear or moving-source pass transfers to this new gate.
+- **Check canonical reduction, not positivity before elimination alone.**
+  An exponential carrier has positive local kinetic coefficients and a unique
+  canonical auxiliary solve, yet a two-cell control has negative reduced
+  momentum curvature. The explicit perspective replacement
+  `Ld=t Kd-Wd/t`, `t=1+Z-<Z>_h>0`, repairs that joint canonical convexity
+  defect. It changes the source to `sigma=rho/t`; its nonlinear and vacuum
+  response must be derived from this replacement.
+- **Retain the positive floor and its physical price.** Adding `V0>0` to the
+  carrier potential supplies a proved positive-domain barrier for the fixed
+  smooth canonical constraint. Homogeneous `t=1` gives pressure `-V0` and
+  energy density `V0`: a precise role for vacuum tension, with an uncomputed
+  magnitude. Homogeneous subtraction does not remove its perturbations.
+  The newest variant sets bare Lambda to zero, keeps `G_cosm/G_N=cN`, and
+  treats any acceleration–tension relation as an explicit input.
+- **Retain the derived vacuum-stiffness repair in that same action.** The
+  actual expanding-vacuum calculation exposes an infrared scalar problem in
+  the perspective-floor trial. The further term `-V0 zeta(t-1)^2`, outside
+  `Wd/t`, with `zeta=4/ell-1`, repairs its scalar kinetic/restoring test for
+  all finite nonzero wavelengths in the stated parameter window. It also
+  preserves the fixed-data positive-lapse theorem. This latest CA4-GNC-PQ
+  variant still needs the occupied-carrier, nonlinear and PPN calculations;
+  positive linear vacuum modes are not a global theory certificate.
+- **Use derived transport with all five real fields counted.** The positive
+  square potential for two complex fields and one real field derives
+  reversible charge conversion and an outgoing flux. The neutral-trigger
+  trial did not improve clearing; the new packet clears only about `9.75e-5`
+  of its initial region charge. Neither is a calibrated cosmological
+  evacuation law. A slow-wave example is a separate parameter realization.
+- **State global results at their proved scope.** Global carrier evolution
+  is proved analytically on fixed flat/static geometry; the positive-floor
+  auxiliary theorem holds for fixed smooth canonical data. The same PQ
+  action also has a nonlinear future-global homogeneous expanding branch,
+  approaching de Sitter under positive-mass/floor assumptions, with no
+  ordinary matter in that theorem. Full spatially inhomogeneous evolution,
+  including the lapse, foliation and all constraints, remains open.
+  Lean certifies the listed algebraic bridges, not those continuum proofs
+  or the full theory. The host scalar and five carrier scalars remain
+  separately counted; the full Dirac classification is still required.
+
+**Inverse-relationship amendment — 2026-09-26, CD26-3.**
+The [inverse audit](../../real_research/dark_energy_inverse_2026_09_26/README.md)
+keeps the author's filtered ν_mono and criterion-B decision. Its ingredients
+clarify which quantities the theory can identify; they do not add a new
+dark-matter particle or change the thirteen requirements.
+
+- **Separate pressure from energy density.** Write Pi=-p, with Pi and energy
+  density epsilon in J/m³. The proposed pressure link is a0²=κ²G_N Pi;
+  the density link is a0²=κ²G_N epsilon. They coincide only for p=-epsilon.
+  Specify and derive the chosen link from the common action, or label it as
+  an allowed constitutive input. For a separately conserved component,
+  constant Pi permits epsilon=Pi+D/a³. Constant a0 therefore does not fix
+  the whole sector's equation of state or remove its independent charge/
+  density boundary condition.
+- **Add the inverse pressure test.** On a flat Einstein-form background
+  with constant κ and G_cosm/G_N and negligible ordinary pressure, define
+  Q=2 Hdot+3H². The pressure link predicts
+  [a0(z)/a0(0)]² Q(0)/Q(z)=1, for a0(0)≠0 and Q(z)>0.
+  A conserved pressureless contribution cancels
+  exactly. Derive the background/action bridge and include curvature,
+  ordinary pressure and data covariance before calling this an empirical pass.
+- **Calibrate independent quantities once.** Keep g=G_cosm/G_N explicit:
+  Z_H²=8πg/(3κ²), Lambda_geom=8πg a0²/(κ²c⁴), and
+  H_vac=H_total sqrt(Omega_vac). The displayed g=1 vacuum dictionary above
+  cannot be exported to an action with unequal Newton and cosmological
+  couplings. Distinguish geometric, Newton-normalized and bare Lambda.
+  A κ estimate already calibrated with an assumed vacuum density returns
+  that same density when inverted; it is not a second measurement.
+- **Keep gate inverses on their actual branch.** The phantom-inclusive
+  DE1 edge and the matter-only lower switch identified in DE4 require
+  different source profiles. Preserve background subtraction. Several
+  gate epochs identify an exponent only with independent fraction history;
+  otherwise they determine its product with the logarithm of that history.
+- **Retain vacuum offset and clock excitation separately.** The canonical
+  polar clock's rho+p removes its constant vacuum offset. Sound/dispersion
+  identifies local potential derivatives on the stated circular branch,
+  not that offset. Recovering the offset additionally needs separated
+  stress and a specified potential; the clock's source and scalar pairs
+  still belong in the full action and field count.
+- **Make the lapse inverse a consistency test.** Positive N gives
+  A/b=-4 Delta sqrt(N)/sqrt(N). With source, geometry, proper expansion
+  and action coefficients calibrated, the reconstructed vacuum coefficient
+  must be spatially constant. Without that calibration, exact families
+  admit the same lapse, matter and expansion with different vacuum constants.
+- **Use names at the established scope.** “Cosmic tension” denotes Pi=-p;
+  use “effective cosmic tension” if it is reconstructed geometric stress.
+  “Vacuum tension” requires an identified vacuum contribution. These are
+  provisional descriptions, not a microscopic explanation or a renaming
+  of every dark-sector contribution.
+
+The checkpoint records exact calculations, inverse counterexamples and
+scoped Lean certificates. It does not certify the full field theory or a
+new observational fit. Common-action closure and the physical origin of
+the vacuum magnitude remain open; the specification's permission to retain
+an explicitly stated acceleration-scale input remains intact.
+
+**Constructive continuation — 2026-09-26, CD26-2.**
+The [continued construction](../../real_research/closure_push_2026_09_26/README.md)
+records the user-decision revision above, which entered the shared repository
+during its calculations. The operative target is now filtered ν_mono with
+criterion B. Earlier exponential/metric-cone statements below remain historical
+branch records; they do not override that decision.
+
+- **Advance the cosmological construction:** a new constant active potential
+  and gradient coefficient B=b exp(S) give a local linear physical metric/fluid
+  system, with positive nonzero-mode kinetic matrix under stated conditions.
+  These are explicit changes to the action. They must be connected to the
+  operative static sector by a varied transition before claiming one theory.
+- **Retain and solve the homogeneous lapse condition:** y=exp(S/2) turns the
+  new nonlinear lapse equation into (-4bΔ-A)y=0. Explicit positive-density,
+  expanding, inhomogeneous initial data solve the constraint. The positive
+  ground-state factorization controls the normalized lapse shape; the global
+  constraint and full field count cannot be discarded. A conditional canonical
+  reduction to H_red=-c lambda0 preserves that global condition; its full-action
+  and continuum hypotheses still need to be verified.
+- **Use the actual outer heat filter at zero field:** it makes the fixed-leaf
+  force spatially Lipschitz even where the inner acceleration vanishes.
+  This does not establish Lipschitz dependence on source data or full coupled
+  well-posedness. Keep that distinction in the requirement-9 calculation.
+- **Improve the exponential branch without borrowing its passes:** the
+  symmetric auxiliary penalty is globally C² and preserves its demonstrated
+  static branch. Deriving G_N rather than setting it equal to G_bare opens a
+  positive principal window, but the tested family fails its derived
+  preferred-frame check. Neither conclusion automatically applies to ν_mono.
+- **Keep clock stress in the common-action source:** a charged amplitude/phase
+  clock has a proved homogeneous timelike branch, but also adds a nonzero
+  static density and pressure response. Vacuum subtraction cannot remove that
+  response. Its two scalar pairs must remain explicitly counted.
+
+The checkpoint contains scoped Lean certificates and reproducible calculations.
+The new potential's magnitude and the a0–Λ coefficient remain declared inputs.
+Full nonlinear evolution, the common static/cosmological action, PPN and
+empirical closure remain **OPEN**.
+
+**Constructive amendment — 2026-09-26, CD26-1: all-door calculations.**
+The [new calculation campaign](../../real_research/closure_doors_2026_09_26/README.md)
+extends the source audit below with direct action constructions and controlled
+continuations. Keep the thirteen requirements unchanged and use these updated
+ingredients at their demonstrated scope:
+
+- A directly integrated acceleration primitive gives exact **general-source
+  exponential AQUAL**, with both static metric potentials varied. Its displayed
+  two-scalar realization is healthy on a bounded low-acceleration principal
+  branch; global health, field classification and PPN remain open.
+- The original geometric heat filter does **not** contract the lapse-weighted
+  norm for arbitrary positive lapse. Retain its proved sufficient contrast bound,
+  or explicitly change to the weighted operator ΔN=N⁻¹Di(NDi). The latter repairs
+  fixed-geometry auxiliary existence/uniqueness, and must be varied with N.
+- A vacuum-regulated C∞ gate supplies a global domain and exact plateaus. Its
+  actual scalar variation creates a curvature-gradient obligation. A concave
+  repair and a local positive-energy causal completion are explicit separate
+  constructions; their field counts and static effects must be reconciled.
+- A healthy wave pole alone is insufficient: the regular rank-one trace-mixing
+  family fails the independently derived conserved-source tidal response at
+  high acceleration. New work must change that structure, not retune its weights.
+- Fisher capillarity has a **local same-canonical-pair** wave representation.
+  Its nodes and phase gradients need a global clock treatment; wave notation
+  neither proves a new particle species nor supplies causal gravity by itself.
+- Vacuum origin, its magnitude, the gate and κ remain separate questions.
+  Requirement 13 permits a declared a0–Λ relation; no free coupling ratio or
+  allowed vacuum counterterm is to be called a first-principles prediction.
+
+The campaign retains exact calculations, numerical refinement, independent
+reviews and scoped Lean certificates. These ingredients have not yet passed
+as one common action. The target remains **OPEN**.
+
+**Dated amendment — 2026-09-26: ingredient and evidence reconciliation.**
+The thirteen-requirement spec remains the success contract. The recent C-H/K,
+vacuum-gate and carrier calculations are useful branch research; they do not
+replace the exact exponential target or certify one completed action. The
+[source audit](../../real_research/closure_resume_2026_09_26/recipe_audit.md)
+records the equations, input revisions and precise limits. Earlier checkpoints
+below remain historical records, including their original dates and labels.
+
+- **Keep the exact kernel distinct from approximate alternatives.** The original
+  [C-H action](g03_covariant_action_2026/ACTION.md) already identifies itself as
+  screened T-B, not strict exponential AQUAL T-A. [L340](../../real_research/g03_audit_2026/L340_filtered_khronon_completion.py)
+  further replaces its kernel by `nu_mono`, numerically built from `nu_RAR`.
+  Similar galaxy fits do not establish the exact equation in requirement 1.
+  On its spherical branch, write `x=g/a0`, `t=g_N/a0` and `h=g-g_N`; then
+  `t=x(1-exp(-x))`, `h/a0=x exp(-x)` and
+  `d(h/a0)/dt=(1-x)/(exp(x)+x-1)<0` for `x>1`.
+  Thus L340's positive-longitudinal-response construction cannot simply inherit
+  that kernel. Its 243 failed alternative parameter cells are a bounded scan,
+  not a theorem excluding every possible momentum channel or action.
+- **Count the clock before assigning its category.** L340 adds
+  `alpha_c a_mu a^mu - c_2 K^2` and explicitly obtains an extra scalar mode in
+  its reduced block. Calling it a clock does not establish the spec's exception
+  for a genuine matter/clock scalar. The full canonical classification,
+  independent initial data and health must still be derived for the final action.
+  Particle-free does not mean free of independent field initial data or charges.
+- **Retain the no-dark-matter-particle constraint.** A Newtonian-inferred phantom
+  density is a description of a derived metric response. It does not supply an
+  independent cosmological density or prove equality to a field's Hilbert stress.
+  L353/L361 explicitly introduce `rho_d`; a wave/condensate interpretation must
+  state its action, initial data and observable force law before use. Numerical
+  particles used to sample a continuum are not, by themselves, a particle ontology.
+- **Do not promote partial PPN or strong-coupling checks.**
+  [KM3](../../real_research/khronon_momentum_2026/KM3_chk_one_pn.py)
+  derives static `beta=gamma=1` in the reduced khronometric sector; its remaining
+  zero-parameter and filtered-remainder checks include documentary inputs.
+  [XC1](../../real_research/extra_crispy_2026/XC1_strong_coupling_chk.py)
+  supplies useful cubic/quartic decoupling power counting, while explicitly
+  omitting filter metric/foliation vertices and a full curved-background analysis.
+  G7/G8 remain conditional at full-action scope. XC1 also reports a scalar speed
+  above the physical metric light cone; preferred-foliation causality alone is
+  not a pass of requirement 7 without resolving that requirement explicitly.
+- **Keep vacuum origin, scale normalization and environmental gate separate.**
+  In C-H, `Lambda` and `a0` are independent inputs. A constant vacuum term has
+  `w=-1`; the action must additionally explain its magnitude and any relation
+  to `a0` before those are called derived. Four-form promotion is a distinct
+  action proposal, and a relation structural within that proposal does not select
+  its free dimensionless ratio. The L359 power and threshold are chosen inputs;
+  L361 varies its nonrelativistic fields with the gate prescribed. A gate window
+  or edge-law identity does not complete their covariant, conserved, stable
+  combination. Never pool passes from different gate cells or action revisions.
+
+**Next constructive obligation:** use one explicit particle-free action and one
+kernel definition; derive its scalar constraint/initial-data structure, both
+physical metric responses, and the gate's variation together. Preserve the
+exponential branch as the target and label any alternative as a separate branch.
+The canonical target is **OPEN**, with the bounded results above retained.
+
 **User decision — 2026-09-26, later the same day (the author, answering the cross-thread review): both branches, every switch variable, PAPER34 v2 after the re-score.**
 These add to the decisions above and change none of them.
 

@@ -12,6 +12,54 @@ model (MS3's machinery, AT4) cosmic shear fails at every KiDS-safe region cap fo
 cleared (MS3). This trigger's slow kicks leave them, and a fast kick hollows group cores (Harvey). It is a
 construction; the carrier's mass is still required.
 
+**Reciprocal-vacuum checkpoint — 2026-09-26, CD26-5.**
+The [new review and derivations](real_research/breakthrough_review_2026_09_26/README.md)
+define a distinct CA5-GNC-R candidate: `Ld=t K-Wexc/t-V0[1+(t+1/t-2)^2]`.
+The reciprocal convex barrier removes the previous vacuum susceptibility
+tuning and has a unique positive fixed-data Z solve. The actual occupied
+homogeneous background now has a positive reduced kinetic matrix for every
+finite nonzero mode; this does not establish its finite-wavelength spatial
+stability. Joint auxiliary and expanding transport results retain their
+stated finite-resolution/restricted-background scopes. Full closure and
+the origin/magnitude of V0 remain **OPEN**. This is the latest candidate,
+not a retroactive change to the CD26-4 actions below.
+
+**Common-action construction checkpoint — 2026-09-26, CD26-4.**
+The [new construction and evidence](real_research/common_action_2026_09_26/README.md)
+retains filtered nu_mono, criterion B and the thirteen-requirement target.
+It writes a common gravity/clock/heat/carrier action and a perspective-carrier
+variant with a positive vacuum floor. New results include a smooth positive
+fixed-data auxiliary theorem, scoped principal and canonical positivity,
+global field evolution on fixed static geometry, and action-derived charged
+transport. The gate changes the exact global static target; the vacuum floor
+changes source response; full coupled evolution and same-action empirical
+closure remain **OPEN**. V0 has a derived role as vacuum tension and a
+carrier-lapse barrier, but its magnitude is not derived. The current recipe
+links this checkpoint; earlier passes remain scoped to their own actions.
+The latest PQ vacuum-stiffness term also passes an actual de Sitter scalar
+kinetic/restoring test at every finite nonzero wavenumber in an explicit
+window. Occupied-carrier spatial perturbations and nonlinear inhomogeneous
+continuation remain open.
+The same action's homogeneous occupied-carrier expanding branch is now
+proved future-global and asymptotically de Sitter under positive-mass/floor
+assumptions. The open claims concern its spatial perturbations and general
+inhomogeneous evolution; the homogeneous theorem is not promoted to them.
+
+**Bounded peer-review update — 2026-09-26.** The newest XC1/XC2 and
+L380/L381/L386/L387 calculations have an
+[independent review with reproducible checks](real_research/peer_review_2026_09_26/README.md).
+This continues the existing September 26 closure work. The user requested
+both exact exponential laws be explored as separate branches; neither is
+identical to the completion's `nu_mono`. New findings: the PM-to-Harvey chain
+silently changes its active gate and source/force operator; XC2's global
+weighted-convexity and zero-field arguments fail on admitted configurations;
+and mixed heat variations remain outside XC1's full strong-coupling claim.
+The fixed-background monotone leaf problem and restricted khronon power
+counting survive. Full gravity closure is **OPEN**. This update qualifies
+those specific claims below and in newer lane summaries; it does not erase
+the underlying calculations or refute the framework as a whole. Next work
+is specified in the [continuation work order](real_research/peer_review_2026_09_26/NEXT_CALCULATIONS.md).
+
 **de Sitter–Unruh modified inertia — where the programme actually stands**
 Last updated **2026-09-22** (rev. 9 block at the top, then rev. 8 of 2026-09-06, rev. 7 of 2026-09-04 and rev. 6 of 2026-09-02; body below them is the rev. 5 record of 2026-08-03). Maintained as the single entry point: what is claimed, what is earned,
 what is postulated, what is live, and what is closed. If a statement anywhere in this repository
