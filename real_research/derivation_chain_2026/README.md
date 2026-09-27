@@ -40,16 +40,20 @@ kick.
 | core | alpha_c | REGULATOR (every observable moves <= 1.6e-9) | FP14 |
 | core | xi (heat filter) | KNOB: irreducible by a threshold-mass theorem; to be MEASURED by wide binaries (Gaia DR4) | FP17, the hub's XR22 |
 | separator | L_Lambda, n, y_Lambda, p' | declared in H_Y; replaced by state readouts in H_S (ill-posed as written; FP19 repairing) | FP9, FP13, FP19 |
-| dark | eps | FITTED (the kick) | FP10 |
-| dark | m, lambda_0, q | DECLARED | FP10, FP15 |
-| dark | amount, misalignment | initial data | FP10, FP15 |
+| dark | eps | IRREDUCIBLE (the only Z4-odd term; a khronon-frame coupling only relabels it) and FITTED (the flagship sets the window's lower end, Harvey its upper) | FP10, FP15 |
+| dark | zeta (lambda_0), q, m | FITTED BY DATA: zeta's band is x1.16 wide at the mass floor; sharing q with the separator FAILS the web; m is pinned on the canonical footing, bounded on alt. The yield-onset trigger removes q but keeps zeta and adds a postulated gate form | FP15 |
+| dark | cross quartic | POSTULATED (radiatively stable) | FP15 |
+| dark | amount, misalignment | initial data (the amount has the status of LCDM's omega_c) | FP10, FP15 |
 
 ## Where the theory fails or is undecided
 
 - The group-scale outer profile: R0 overshoots by +0.20 dex for the Local Group, M81 and IC 342 (Cen A matches); fixing
-  it costs KiDS (FP11, FP12). FP18 tests whether the tension is in the data itself.
-- Re-accretion of the kicked dark component decides X-COP, cosmic shear and Harvey (FP10: optimistic window 575-600
-  km/s; in place empty). FP16 is the semi-analytic answer; the hub's XR21 stage 3 is the particle-mesh one.
+  it costs KiDS (FP11, FP12). FP18 finds the tension is in the data itself: at face value no profile fits both KiDS and
+  the Hubble-flow R0 (9.8 sigma, LCDM included); six comparability systematics bring it to 2.3 sigma (UNDECIDED). FP21
+  measures the lensing of isolated spirals at 0.3-1.5 Mpc, which decides it.
+- Re-accretion of the kicked dark component: FP16 (semi-analytic) finds the window EMPTY. Clusters recapture the escaped
+  daughters, so X-COP fails at every kick from 575 to 650 km/s; the flagship, galaxies, KiDS and S8 pass. Only the hub's
+  particle-mesh run (XR21 stage 3) could overturn it.
 - The small-scale (sub-L) power boost and its cosmic-shear cost need the particle-mesh run (the hub's XR21).
 - No-go results that constrain any repair: local gates (FP3 lemma), the MOND-sector kick (FP4, FP8 reciprocity), and
   xi from (a0, Lambda, G, c) (FP17 theorem).
@@ -61,5 +65,13 @@ kick.
   z <= 0.635, so the psi-constraint symbol k^2(1 - R_B) changes sign on k = 0.12-1.62 h/Mpc. H_S as written is linearly
   ill-posed. FP19 carries the correction in its ledger and tests the repairs (stationary B, a <K>_h-only readout).
 - **FP9's H_Y fails KiDS at z = 0.4** (+20.6; found by FP13). Its z = 0.25 KiDS pass stands.
+- **FP6's KiDS projection `esd_of_M` under-projects** (found by FP18): -59% at 35 kpc, -5 to -14% at 0.3-2.6 Mpc on a
+  singular isothermal sphere. Every KiDS chi^2 that used it (FP1, FP6, FP9, FP11, FP12, FP13, FP14) is provisional
+  until FP20 re-scores it with an exact projection.
+- **FP7's sigma_8 failure used the all-matter reading** (the MOND scalar sourced by, and acting on, the total delta),
+  while FP10's dark component does not source the phantom. FP22 derives which reading the action implies and re-scores
+  sigma_8, the forest and KiDS in it.
+- **FP16's MUTATE banner** names R1, G3 and G9 as the flips; the observed flips are R1, G7 and G9 (without recapture
+  X-COP fails on the other side, which G3 does not distinguish). Wording only; no number changes.
 - **Numerology is flagged, never claimed:** eps/m^2 = kappa^19 (FP10); (c^2/a0)(32 pi)^-6 = 0.030 pc and
   ((hbar/m)^2/a0)^(1/3) (FP14, FP17); (hbar c/G)^(3/2)/m_p^2 (FP17).
