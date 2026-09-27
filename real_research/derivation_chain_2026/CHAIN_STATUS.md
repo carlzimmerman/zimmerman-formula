@@ -1,12 +1,12 @@
 # The first-principles derivation chain -- status ledger
 
-Assembled by `run_chain.py` on 2026-09-27 03:11. A lane counts only if its main run has a verdict and its MUTATE control flips (rc = 1). Status meanings: DERIVED (varied out of the chain above it, with a script), POSTULATED (an input), FITTED (a constant set by data), CONSTRAINT (a derived requirement on a lower link), OPEN (owed), FAILS (derived and contradicted by data).
+Assembled by `run_chain.py` on 2026-09-27 09:29. A lane counts only if its main run has a verdict and its MUTATE control flips (rc = 1). Status meanings: DERIVED (varied out of the chain above it, with a script), TIED (an input implemented as an exact action-level relation, coupling chosen), POSTULATED (an input), FITTED (a constant set by data), CONSTRAINT (a derived requirement on a lower link), OPEN (owed), FAILS (derived and contradicted by data).
 
 ## Lanes
 
 | lane | checks | load-bearing failures | main rc | MUTATE rc | contract |
 |---|---|---|---|---|---|
-| FP0_core_postulates | 6/6 | 0 | 0 | 1 | ok |
+| FP0_core_postulates | 7/7 | 0 | 0 | 1 | ok |
 | FP1_static_sector | 24/24 | 0 | 0 | 1 | ok |
 | FP2_relativistic_consistency | 17/17 | 0 | 0 | 1 | ok |
 | FP3_cosmology_linear | 27/28 | 0 | 0 | 1 | ok |
@@ -16,6 +16,13 @@ Assembled by `run_chain.py` on 2026-09-27 03:11. A lane counts only if its main 
 | FP7_aqual_type_repair | 23/24 | 0 | 0 | 1 | ok |
 | FP8_current_coupling_kick | 22/22 | 0 | 0 | 1 | ok |
 | FP9_web_galaxy_separator | 36/36 | 0 | 0 | 1 | ok |
+| FP10_internal_splitting_dark_sector | 31/31 | 0 | 0 | 1 | ok |
+| FP11_local_group_flyby | 22/22 | 0 | 0 | 1 | ok |
+| FP12_local_volume_groups_r0 | 23/23 | 0 | 0 | 1 | ok |
+| FP13_separator_from_state | 30/31 | 0 | 0 | 1 | ok |
+| FP14_zero_knob_core | 27/27 | 0 | 0 | 1 | ok |
+| FP17_screening_without_xi | 28/28 | 0 | 0 | 1 | ok |
+| FP18_kids_vs_hubble_flow_data | 20/20 | 0 | 0 | 1 | ok |
 
 ## Links
 
@@ -28,7 +35,8 @@ Assembled by `run_chain.py` on 2026-09-27 03:11. A lane counts only if its main 
 | FP0 | L1b | DERIVED | deep limit, BTFR v^4 = G M a0, slope s(y), sum rule 3/2 | R1, from L1a |
 | FP0 | L1c | CONSTRAINT | the a0/2 tail vs the planets | R2: the action's kernel must reach Newton faster (alpha >~ 1.5) |
 | FP0 | L2a | DERIVED | a0(z) flat (rho_Lambda, w = -1) | R3, from L0 + P3 |
-| FP0 | L2b | POSTULATED | a0 as a field (a0^2 = kappa^2 G (-p_Q)) | a chosen promotion; the action has to produce it |
+| FP0 | L2a' | DERIVED | a0(z) ~ sqrt(rho_DE(z)) for evolving dark energy: -0.10 dex at z = 2.5 under DESI (vs the rival +0.58) | R3b, from P1 + the measured w(z); reproduces L273. Postulate level only: an ACTION-level field tie reads sqrt(V), V = (rho - p)/2, not sqrt(rho_DE) (XR20, a075ad7f7): +0.051 dex at z = 1, -0.034 at z = 2.5 under DESI DR2 + CMB + DESY5; DESI's w = -1 crossing needs a ghost; a healthy thawing field gives +0.07..+0.16 dex at z = 2.5; with a true Lambda a0 is flat |
+| FP0 | L2b | TIED | a0 tied to Lambda inside the action | the Henneaux-Teitelboim unimodular multiplier (XR20, a075ad7f7): d Lambda = 0 is a field equation, so a0 = kappa c sqrt(G rho_Lambda) holds on every solution, no local mode (1 global DOF), FRW and PPN untouched; the coupling alpha(Lambda) = kappa sqrt(Lambda/8 pi) is chosen and kappa FITTED; a separate matter vacuum energy would shift the observed Lambda but not a0 (-0.023 dex at 0.1 rho_Lambda) |
 | FP0 | L3 | OPEN | the covariant action (root) | next lane: chosen after the candidate map; everything below is varied out of it |
 | FP0 | L4-L10 | OPEN | static limit/kernel, lensing, PPN, c_T = 1, stability, cosmology, clusters | each derived from L3 or it fails |
 | FP1 | L3 | POSTULATED | the root action: the ungated C-H/K core (C-H + alpha_c a^2 - c_2 (K - <K>)^2, beta = 0) | chosen root (coordinator's redirect); one covariant, spatially nonlocal classical action |
@@ -175,5 +183,106 @@ Assembled by `run_chain.py` on 2026-09-27 03:11. A lane counts only if its main 
 | FP9 | R9m | FAILS | route (iii): no host-independent Mpc length from (a0, Lambda, G, c); Yukawa: sigma_8 vs KiDS screening; lambda(k): forest vs tracking | V1-V3 |
 | FP9 | R9n | POSTULATED | the four constants of (H_Y) | declared inside R9j's windows; none derived |
 | FP9 | R9o | OPEN | beyond linear order: the sub-L web (linear P boost at k >= 0.3 h/Mpc; cosmic shear/S8, halo masses), dense z ~ 2 IGM lumps above the yield (flux P1D), full KiDS (2-halo, lens-redshift spread), the running yield's z ~ 2.8 switch-off, non-analytic zero-field EFT | H2c (reported); no PM run in this lane |
+| FP10 | L11a | POSTULATED | the dark sector's action: S_Psi with eps Re(Phi^2) + lambda(K)(Im Phi^2)^2 on one complex field (FK1 + FL2), L353's pair for kernel invisibility | FK1/FL2 (committed); FP4 L10f |
+| FP10 | L11b | DERIVED | masses m_H^2 - m_L^2 = 2 eps, Z2 x Z2, kick v_k = sqrt(2 eps/(m^2 + eps)), latent heat v_k^2/2 | check A1 |
+| FP10 | L11c | DERIVED | S = 0: the dark action does not touch the MOND sector; the kick's energy is the rest-energy difference; energy selectivity (galaxies before clusters) | check A2 (FP8's B0 costs) |
+| FP10 | L11d | DERIVED | pair vertex lambda/(4 m_H m_L), G = lambda n_H/(2 m_H m_L), growth sqrt(G^2 - D^2) | check A3 |
+| FP10 | L11e | DERIVED | Hubble sweep pi G^2/(4 H Delta); trigger n_t ~ H^(2q + 1/2); no spontaneous background conversion for q = 7/4 | check A4 |
+| FP10 | L11f | DERIVED | the halo gain: gamma = sqrt(pi) G^2/(m v_k sigma), S_c = (2/sqrt(pi)) H Int (rho/rho_t)^2 e^{-(Dv/sigma)^2} dl/sigma (the design's C = sqrt(pi)) | check A5 |
+| FP10 | L11g | DERIVED | where/when: fronts at >= 0.95 r200 for z <= 2.5; not mass-selective; one-shot at each progenitor's collapse | checks A6, A7 |
+| FP10 | L11h | FITTED | the splitting eps/m^2 = 1.84-2.35e-6 | checks C1-C3 (kappa^19 = numerology) |
+| FP10 | L11i | POSTULATED | the trigger's lambda_0 and q (values re-used from the switch's x_c0, p) | check C4 |
+| FP10 | L11j | DERIVED | the flagship z = 0.5-2.5 in FK1's history reading (<= 0.074 dex); fails in place with the intact well at M_b 1e11 | check B1 |
+| FP10 | L11k | DERIVED | z = 0 galaxies, KiDS, S_8 (ratio >= 0.922) | checks B2, B4, B6 |
+| FP10 | L11l | FAILS | X-COP and cosmic shear IN PLACE (AT3's machinery): one splitting keeps clusters' carrier | checks B3, B8 |
+| FP10 | L11m | OPEN | X-COP, cosmic shear and Harvey in the optimistic history reading / the PM proxy | checks B3, B5, B8 (reading-dependent; FK1's own particle-mesh run decides) |
+| FP10 | L11n | OPEN | the forest (budget >= 4x AT2's; projection straddles 10%) | check B7 |
+| FP10 | L11o | OPEN | the web (seeded stimulation, super-threshold filaments) and the escaped daughters' re-accretion into r_F | check A8; B1's reading |
+| FP11 | F11a | DERIVED | the MW-M31 two-body force of the chain's static law (FP7 root, FP9 H_Y): Newton + each body's isolated band-passed phantom + the interaction field P(1 - S_L)[X(g1 + g2) - X(g1) - X(g2)] | K3: kernel = FP6's phantom, momentum conserved, deep limit = Milgrom's two-body formula, test-particle limit; K4 multipoles |
+| FP11 | F11b | DERIVED | (H_Y) switches the pair's MOND off at early times (running yield) and truncates it beyond ~2L(z) (band-pass); the pair coasts until the MOND switch-on | the force tables (T) and the matched orbits (O); XR13's 'Newtonian pair' and 'M*' bracket this law |
+| FP11 | F11c | DERIVED | the timing: (H_Y) reaches -109.3 km/s on the FIRST approach at M_b = 1.65e+11 / 1.37e+11 (can/alt, conv. A), inside the baryonic window: a flyby is NOT required | T1 (conv. A = the chain's point masses + Lambda from the Hubble flow; B and C in T3; sensitivity T5) |
+| FP11 | F11d | DERIVED | a past MW-M31 flyby is EXCLUDED by (H_Y): no approaching branch with a past pericentre for M_b <= 1e+12; with v_t = 17-82 km/s the last apocentre 962-1017 kpc, 3.5-4.8 Gyr ago; the first pericentre 3.5-3.8 Gyr ahead at 26-189 kpc | T2, O1 (2-D, J conserved from today) |
+| FP11 | F11e | FAILS | the plain root law (no separator) has no timing solution at the LG's baryonic mass: its first approach is too fast; the plain law's flyby needs M_b = 3.32e+11-5.60e+11 = 1.9-3.2x the nominal baryons; the MOND-literature flyby (Zhao+2013) is reproduced with a0 = 1.2e-10 and their interpolation | T4, K6, O2 |
+| FP11 | F11f | POSTULATED | dynamical friction and flyby energy loss set to zero (no halos in the galaxy sector; the (H_Y) orbit has no past pericentre) | scope; stellar friction at the future pericentre is not computed |
+| FP11 | F11g | POSTULATED | the timing idealisation: point masses from the Hubble flow at a = 0.02 (the chain's XR4 convention), J treated as conserved from today | T3 / T5 measure how far the background term, the carrier and the start epoch move it |
+| FP11 | F11h | FAILS | R0 at the timing-matched mass: HY/A/canonical 1.53, HY/A/alt 1.52, HY/B/canonical 1.57 Mpc vs 0.96 +- 0.03 -- the timing pins M_b a0, and with it R0 | R1, R2, R4 |
+| FP11 | F11i | FAILS | a flyby does not resolve the R0 overshoot: none exists in (H_Y), and the only matched flyby (the plain law, at its larger timing mass) has a larger R0; the flyby's own effect on R0 is small | R3 |
+| FP11 | F11j | CONSTRAINT | the KiDS-LG pincer at the timing mass: the LG would need e = 2.4e-03-3.6e-03 a0 in the kernel; KiDS tolerates <= 3.7e-04-5.2e-04 (2-halo); (H_Y)'s band-pass passes no uniform field | P1 (FP1 E3's tolerances, committed) |
+| FP11 | F11k | DERIVED | the flagship, SPARC, KiDS (and sigma_8, forest) gates are unchanged -- no action term was added | G1, K7 |
+| FP11 | F11l | FAILS | the LG alone, timing imposed: lengths L(0.25) passing timing + R0: canonical: none, alt: none (canonical scan 0.6-1.3 Mpc, alt at 1.3); KiDS needs L(0.25) >= ~1.2 Mpc | X1 (merged pair; yield, n unchanged) |
+| FP11 | F11m | OPEN | open: the AQUAL-vs-QUMOND curl part of the two-body force (near pericentre only), the neighbours' tidal field (M81, Cen A, IC 342), the CGM's baryons (raise M_b, R0 and the timing speed), a 3-D fit of the full local Hubble flow, and an LG-scale action term that separates the pair's mutual MOND (fixed by the timing) from the outer flow (R0) | scope; not computed here |
+| FP12 | F12a | DERIVED | the chain's R0 of an isolated group ((H_Y)): M81 1.37/1.41, Cen A 1.35/1.39, M83 1.24/1.28, IC 342 1.38/1.43 Mpc (can/alt) at k02's baryons; d log R0/d log M_b = 0.19 | R1, K5 (FP11's tracer machinery = FP6's shells), K1-K3 (FP9/FP11 reproduced) |
+| FP12 | F12b | POSTULATED | the groups as merged point masses on their own Hubble flow from a = 0.02, no neighbour tides; binary geometry <= +0.016 (FP11 R2); baryons = k02's UNGC accounting (0.6 L_K + 1.33 M_HI) with a band (Upsilon_K 0.5-1.0, aperture 0.7-1.5 Mpc, x1.4 unseen gas) | M1, K4 (k02 re-derived), K8 |
+| FP12 | F12c | CONSTRAINT | the record's UNGC R0 of M81, Cen A, M83 and IC 342 (k02) are not measurements: they move by more than twice their bootstrap error under window / distance-quality changes; the published R0 (read at source) carry the test | S1 (and the record's XR4 N2, k_dimensional K3.2/K3.3) |
+| FP12 | F12d | FAILS | the overshoot is NOT the Local Group's alone: M81 +0.19/+0.20, IC 342 +0.19/+0.20, the 14-group stack +0.12/+0.14 dex, like the LG's +0.20/+0.20 (FP11); LG, M81 and IC 342 share one offset (+0.200, chi^2 p = 0.93); with K&K 2018's own eq.-14 estimator on the model the stack reads +0.08/+0.10 and the same paper's LG +0.13/+0.15 dex (stack minus LG -0.048) | V1, V4, V5 |
+| FP12 | F12e | DERIVED | Cen A is matched: -0.02/-0.00 dex alone, +0.02/+0.04 with M83's baryons -- the one group whose measured R0 is as large as the chain's | V2 |
+| FP12 | F12f | FAILS | the verdict by the declared rule: MIXED (mean delta +0.140/+0.149, scatter 0.104/0.101 dex over LG, M81, Cen A, IC 342; common offset without Cen A +0.200, chi^2 p = 0.93; with it p = 1.4e-03) | V3, V4 (robustness: MIXED) |
+| FP12 | F12g | CONSTRAINT | the universal fix needs the phantom beyond ~0.3 Mpc cut to f = 0.29-0.43 (all epochs), or no phantom before z_on = 0.14-0.22; KiDS d chi^2 at f = 0.3: +346/+340 (<= +9 allowed); SPARC's outer points move <= 4e-03 dex | U2 |
+| FP12 | F12h | FAILS | no action-level term of the chain supplies it: L(0.25) -> 0.56 Mpc costs KiDS +263 (and FP9's SPARC gate 0.031 dex vs 0.01), y_th(0.25) -> 8.6e-05 costs KiDS +146 (can); with f = 0.3 the MW-M31 timing mass becomes 1.13e+12, 1.01e+12 (window <= 2.4e+11) | U1, U2, FP11 X1 |
+| FP12 | F12i | FAILS | no universal outer profile fits Cen A and the rest: Cen A needs f in [0.88, 1.40], the others <= 0.46; the measured R0 are not a function of M_b alone | U3 |
+| FP12 | F12j | OPEN | open: M83 has no published R0 (the chain predicts 1.24/1.28 Mpc); one estimator (eq. 14) refit around every group from the same catalogue; a two-body Cen A/M83 model (an LG analog); what separates Cen A (its binary, its off-sheet position, its mass budget); an action term that weakens the time-integrated pull on infall regions ~3x while KiDS's isolated lenses keep the full phantom | scope; not computed here |
+| FP13 | R13a | DERIVED | no length from (a0, c, G, Lambda, hbar, m, xi) has an Mpc size at natural exponents AND the web's running (n_eff >= 2); FP9's n = 2 form needs a declared acceleration a0 Z^-3.38 | S1 (dimension census); S2 numerology rates |
+| FP13 | R13b | POSTULATED | the state-length form: B[state] with <(S_B delta_m)^2>_h = s^2 -- the heat branch read out on the matter density; a leaf average (no local variation), closed on exact FRW | A1 |
+| FP13 | R13c | DERIVED | n eliminated: the web's nonlinear scale runs as Omega_L^(n_eff/2), n_eff = 2.06 (actual field) / 2.66 (linear), inside FP9's [2, 2.7] | A2 |
+| FP13 | R13d | CONSTRAINT | the threshold window: nonlinear reading s in ~[1.3, 2.6], linear ~[1.1, 1.65]; delta_c inside the nonlinear only; s = 1 excluded (sigma_8) | A3a-A3c, A6 |
+| FP13 | R13e | FAILS | the dynamical readout (D_i a^i, phantom included): the separator feeds on its own phantom; no threshold window | A4 |
+| FP13 | R13f | CONSTRAINT | the matter readout D_i(a^i - D^i chi) is required, and its feedback is mild (the headline is a fixed point) | A4, H3 |
+| FP13 | R13g | FAILS | the MOND-sector energy, the unsmoothed variance and the heat relaxation depth set no web length of their own | A5 |
+| FP13 | R13h | FAILS | the dark field's scales at m >= 1.9e-19 eV: sub-kpc, n_eff <= 0.65, kernel-invisible (no coupling) | B1 |
+| FP13 | R13i | FAILS | p' as a power of any state measure: the yield's 3.1-decade rise exceeds every measure's (<= 1 decade) without a declared exponent and normalisation | C1 |
+| FP13 | R13j | FAILS | y_th at the web's rms alone: 3-3.8 decades above KiDS's ceiling (KiDS +870..+1200, SPARC) | D1 |
+| FP13 | R13k | POSTULATED | the state yield y_th = <|g_bp|^2>_h^(1/2)/a0 x max(0, 2q): the web's own rms while the leaf decelerates (c_y = 1, ramp) | C2, D2 |
+| FP13 | R13l | DERIVED | (H_S) passes sigma_8, the forest proxy, the flagship, SPARC and KiDS on both footings and modes; E in the BPS window at every epoch | H1, H2, H3 |
+| FP13 | R13m | CONSTRAINT | FP7's lambda > 0 is required at exact zero field (band-pass closed and yield zero on FRW); its value is free | A1 |
+| FP13 | R13n | DERIVED | the MW-M31 timing with baryons only survives (H_S) on both footings | L1, K4 |
+| FP13 | R13o | FAILS | the Local Group's R0 ~1.54 Mpc (edge 1.21): the state band-pass is longer today; the KiDS-LG pincer is untouched | L2 |
+| FP13 | R13p | POSTULATED | the remaining choices: s = delta_c (a GR number applied to the actual field), c_y = 1, the q = 0 ramp -- natural, windowed, chosen after scoring | F |
+| FP13 | R13q | OPEN | the nonlinear reading rests on halofit LCDM, not a PM run of this theory, and on halos staying LCDM-like (FP10's clearing thins them: the five gates hold to 20% of LCDM's one-halo power, the z = 0.4 lens check to ~45%: A7); lensing of lenses at z_l > 0.64 and galaxies below ~1e-2 a0 at 0.64 < z < 3 (new predictions); KiDS beyond lead grade (lens-z spread, 2-halo); the Local Group | A7, H4, H5, L2 |
+| FP14 | F14a | DERIVED | lambda = 0 passes every gate FP7/FP9 scored: statics, Solar System, SPARC, KiDS, flagship, FRW, sigma_8 and forest (H_Y), health (one scalar), tracking (best), PPN (alpha_2's lag gone), c_T, N = 3 | L2, L4 (this lane's block; FP9's machinery) |
+| FP14 | F14b | DERIVED | at lambda = 0 the action has the exact gauge symmetry phi -> phi + f(tau): FRW's phibar is gauge, FP7's declared 'phibar-dot = 0' is eliminated | L1 (generic ADM metric, FRW minisuperspace) |
+| FP14 | F14c | CONSTRAINT | lambda = 0 needs FP9's yield at exact zero field (else phi = A_n/sigma: the backward heat operator) | L3 |
+| FP14 | F14c' | DERIVED | at lambda = 0 the chassis field chi gains an equal-time response (zero at lambda > 0): Newtonian-strength, EFE-blind to O(alpha_c C_phi); the MOND enhancement still arrives only through the propagating pole | L4 (source response of the block; L318 criterion B admits it) |
+| FP14 | F14d | DERIVED | no scored observable depends on alpha_c beyond O(alpha_c) <= 1.6e-09; the Solar-System alphas vanish as alpha_c -> 0; FP5's y* does not exist on the AQUAL root | A1 |
+| FP14 | F14e | FAILS | alpha_c -> 0+: the UV khronon becomes instantaneous (rank change) and strongly coupled, k_sc ~ alpha_c^(3/4): alpha_c = 0 excluded | A2, A3 (XC1's formula, reproduced) |
+| FP14 | F14f | POSTULATED | alpha_c is a REGULATOR in [alpha_sc, 3.2e-9] (alpha_sc = 3e-41 .. 8e-16 by the probe criterion): nonzero, value unobservable | A (verdict): a UV requirement, not a fitted constant |
+| FP14 | F14g | OPEN | the L340 H4 O(Phi/c^2) lobe floor on alpha_c for the AQUAL root | A4 (L340's scaling: 7e-19..6e-11 over the xi window, inside it) |
+| FP14 | F14h | DERIVED | c_2 -> oo is regular: -c_2 (K - <K>_h)^2 -> -2 mu (K - <K>_h); Minkowski (det = 2 lim det/c_2, T -> diag(12, 4 lambda), V unchanged, same count, second-class multiplier pair) and FRW (HS identity, Q = 0, mu finite, dust unchanged, G_eff = 1/(1 - alpha_c/2)) | C1, C1b (the MUTATE plain K^2 freezes the expansion) |
+| FP14 | F14i | DERIVED | c_2 -> oo does NOT reproduce the York/CMC kill: a0 not tied to K, the scalar propagates (alpha_c keeps the lapse dynamical), the response's equal-time part is c_2-independent (no new instantaneous channel) and EFE-blind, G_eff = G_N, Cassini unchanged; the York-like limit is the double limit alpha_c -> 0, excluded by strong coupling | C2 |
+| FP14 | F14j | DERIVED | in the limit: tracking 1,800 -> 17,309 km/s (C^Q = 100), outskirts alpha_2 v^2 11.7% -> 0.13%, sigma_8/forest (H_Y) unchanged (<= 7e-06), c_T = 1, k_sc finite | C3, C4 (the cubic mixing analysis at c_2 -> oo is OPEN) |
+| FP14 | F14k | POSTULATED | the c_2 term replaced by the CMC constraint (c_2 eliminated) | C (verdict): the zero-knob choice of a regular limit |
+| FP14 | F14k' | OPEN | not covered for the c_2 -> oo root: nonlinear well-posedness, the cubic strong-coupling analysis with metric mixing, and the khronon's binary-pulsar radiation at lambda_BPS -> oo (only the PPN bounds were scored) | scope; the same items are open at finite c_2 |
+| FP14 | F14l | FAILS | xi from (a0, Lambda, G, c): only (c^2/a0)(8 pi/kappa^2)^e_L; O(1) coefficient = 31 Gpc; 6 integer-power hits in the window are numerology | X1 (sympy nullspace) |
+| FP14 | F14m | FAILS | field-dependent xi(g) = (c^2/g)(a0/g)^s: galaxies (SPARC 0.275 dex, KiDS +1120), Solar System (readout-gradient force 3e+02x the ephemeris gate at the Earth for the lead; every s fails), FC-KH-type gradient instability | X2, X3, X3b |
+| FP14 | F14n | FAILS | |Phi|-based xi: gauge-ambiguous and a floor/ceiling pincer (m <= 0.69 vs >= 1.42) | X4 (reported) |
+| FP14 | F14o | FAILS | dropping the filter by a kernel change: healthy kernels keep >= 0.26 a0 at the planets (671x); Cassini Q2 is an EFE/transition statement (tail cuts < 3%); only unhealthy sharp kernels (P2_n n = 4) pass | X5 (theorem + FP1's Q2 integral) |
+| FP14 | F14p | CONSTRAINT | xi is the gravity core's one remaining knob, bounded to [0.0243/0.0268 pc, ~100 pc] | X (verdict); FP7 A4 floors |
+| FP14 | F14q | DERIVED | the core's count beyond (kappa, G, Lambda): 1 knob (xi) + 1 regulator (alpha_c); eliminated c_2, lambda, phibar-dot | F |
+| FP17 | F17a | DERIVED | the strict law's Cassini Q2 is made at 1695-7280 AU (y_N 1.7-22, C <= 3e-12): the Sun at its own EFE transition, at the same y as galaxy interiors | M1 (f28's integrand, cumulative; FP14 X5 reproduced) |
+| FP17 | F17b | DERIVED | at fixed y a local key sees only C ~ M^(1/2) (Buckingham); SPARC at the same y has C >= 4e-09: every Solar-System screening is a threshold MASS in [~1, ~2e+07] Msun | M2 (sympy nullspace; SPARC) |
+| FP17 | F17c | FAILS | no O(1) mass from (a0, Lambda, G, c) in the window: M_H (8 pi/kappa^2)^D needs D in [-12.1, -8.5]; 4 integer hits and the Chandrasekhar-type 1.85 Msun (needs m_p) are NUMEROLOGY | M3 |
+| FP17 | F17d | DERIVED | every constant-free construction puts the threshold mass at 1e20-1e22 Msun (galaxies screened); in-window rows carry a fitted length or are numerology | M4 |
+| FP17 | F17e | FAILS | cubic Galileon, r_c = c/H_Lambda: r_V(1e11 Msun) = 502-1034 kpc (the '~70 kpc' is low), r_V/r_M >= 45: galaxies screened | V1 (sympy flux) |
+| FP17 | F17f | FAILS | cubic Galileon on P2 (Route 2 on the AQUAL root): constant-free R_* screens SPARC; for ANY R_* the window is empty (>= 2e+06): P2's pole beats a 1/r Galileon flux | V2 (K5: Route 2 reproduced) |
+| FP17 | F17g | FAILS | BDEF's Riemann Galileon on P2 beats the pole (interior force c^2 r/sqrt(8k)); with k^(1/4) = c/H it fails SPARC, KiDS and the flagship | V3, R1 |
+| FP17 | F17h | CONSTRAINT | BDEF with k fitted: k^(1/4) >= 104 kpc (Saturn), SPARC to ~13 Mpc, GW170817 (estimate) <= ~379 kpc: a REPLACEMENT of xi, not an elimination | V4 (reported) |
+| FP17 | F17i | OPEN | the tie k = L(0)^4 to FP9's separator length: Solar System and SPARC pass, GW170817 missed by the static-gradient c_T estimate | V4 (an estimate; the Paul term's c_T on a static gradient is not derived here) |
+| FP17 | F17j | FAILS | de Broglie hbar/(m v) = 0.006-0.050 pc (verified); at FP10's kick speed <= 0.0175 pc, below the floor (monopole 1.9x) | B1 |
+| FP17 | F17k | FAILS | xi_q = ((hbar/m)^2/a0)^(1/3) = 1.6-3.3 pc, the unique c-free length from (hbar/m, a0), inside the window: NUMEROLOGY (no action couples the heat depth to m); SHARED only by postulate | B2, B4, R2 |
+| FP17 | F17l | FAILS | a readout keyed to the dark field's local coherence is absent where FP10 cleared the field (SPARC discs, dwarfs): MOND off, and S != 0 | B3 (FP10's retained fractions) |
+| FP17 | F17m | FAILS | density (Ricci) keys: the planets' vacuum is no denser than a galaxy disc; the vacuum ratio needs a new small threshold | C1 |
+| FP17 | F17n | FAILS | tidal (Weyl) keys need ell_* in [21, 238] kpc -- a new length | C2 |
+| FP17 | F17o | DERIVED | a curvature-keyed readout depth: V_11 = 4k^2 (2 - alpha_c)(1 + u)^2/(2 - (2 - alpha_c)(1 + u)^2), u = K_2 k^2: unstable unless saturated (the FC-KH lesson at one more derivative) | C3 (sympy, FP14's block) |
+| FP17 | F17p | OPEN | not derived here: the Paul term's c_T on static gradients, the Galileon-lapse mixing (FC-KH for R_0i0j couplings), BDEF's stability, a leaf-projected Galileon's second-order property | R1, V4 |
+| FP17 | F17q | CONSTRAINT | xi remains the gravity core's one knob; physically it encodes the stellar mass scale (a0 xi^2/G in [0.4, 7e6] Msun) | F (verdict) |
+| FP17 | F17r | OPEN | keys on the EXTERNAL field (outside theorem M): relational (Theorem 8), threshold FITTED in the record (ESCREEN), a local angle proxy is direction-dependent around the Sun; they screen every EFE-dominated system alike | C5 (reported, not pursued) |
+| FP18 | F18a | DERIVED | the model-independent bound: for any non-negative spherical excess density Delta Sigma(R) <= M(<R)/(pi R^2), so KiDS's stacked lenses give M(<R) >= pi R^2 Delta Sigma(R) with no profile assumed (voids outside R change it by < 0.07 Msun/pc^2) | K7 (2000 random profiles), B1 |
+| FP18 | F18b | CONSTRAINT | the published R0 errors omit the velocity scatter: K&K 2018's +-0.02 (stack) is their 5%-distance Monte Carlo (reproduced: +-0.025); the bootstrap of their own estimator on their own Table 7 gives +-0.12 (LG, Table 4: +-0.10); FP12's fit form V = H R [1 - (R0/R)^(1/2)] is not K&K's eq. (14) (it returns R0 = 0.72 on K&K's own table) | K4, E1 |
+| FP18 | F18c | CONSTRAINT | at face value NO static spherical profile fits KiDS's isolated lenses (at the LV centrals' masses) and the LV Hubble flow: T = 102 (stack + LG, honest R0 errors; 370 with the quoted ones); every family fails, LCDM's NFW(+2h) included (KiDS-fitted profiles turn around at R0 = 1.65-2.26 Mpc vs 0.91-0.93); the velocities themselves reject the KiDS-implied flow at p ~ 6e-49; within R <= 0.3 Mpc the two agree (T = 2.4 / 3.1) -- the disagreement lives at 0.3-2.6 Mpc, where B21 flag photo-z isolation | B1, F1, F2, L1, H1, S, V1 |
+| FP18 | F18d | FITTED | the comparability systematics (galaxy type, photo-z isolation leakage, stellar-mass scale, R0 method, eq. 4 coefficient, epoch/h), profiled jointly under declared priors, bring the joint T to 7.5 (2.3 sigma; inflated covariance 7.4; extreme corner 4.8); each alone leaves it >= 34 (S1); at the optimum M* -0.28 dex, R0 +0.077 dex, type -0.07 dex beyond the data-based factor, leakage -0.10 dex; the direct velocity test agrees (profiled p = 0.24) but only with a local H ~ 115 km/s/Mpc -- held at the flow's own point-mass value it gives p = 1e-02 | S1, S2, H1 |
+| FP18 | F18e | OPEN | the verdict by the declared rule: UNDECIDED | V1, V2 |
+| FP18 | F18f | CONSTRAINT | for the chain: at face value KiDS itself, read as a static Lagrangian profile, demands R0 = 1.65-2.26 Mpc for the stack / LG centrals -- above the chain's own 1.24/1.28 (stack) and 1.53/1.52 (LG) (FP12), so the chain's R0 overshoot is not a refutation of its outer profile by this pair; after the systematics the reconciled target is R0 ~ 1.03-1.13 Mpc with the LV centrals' lensing beyond 0.3 Mpc -0.54 to -0.48 dex from B21's published bins, of which -0.25 to -0.18 dex is the measured spiral-vs-mixed (red/blue) difference at fixed M* -- a type dependence the chain's universal law does not produce; the rest are measurement systematics that would move the chain's own KiDS target too | F2, S, D1, FP12 |
+| FP18 | F18g | CONSTRAINT | the escape for a field (non-Lagrangian) theory: an outer pull weaker over the flow's history than its lensing today; with the stack's KiDS profile (Lagrangian R0 1.88, Eulerian-static 1.73) R0 = 0.93 needs the outer mass to switch on only after z_on = 0.14, later than KiDS's own lenses (<z> = 0.25) -- the same z_on FP12 found for the chain | D1, FP12 U2 |
+| FP18 | F18h | OPEN | open: the deciding measurement is like-for-like -- the lensing Delta Sigma(0.3-1.5 Mpc) of spectroscopically isolated SPIRAL centrals at M_gal ~ 10^10.4-10.8 (the LV analogs; the record holds the KiDS-1000 shear catalogue and a re-measurement pipeline, reviews/lensing_rar/lr_esd_remeasure.py), and on the flow side R0 with its bootstrap error plus a group bulk-flow model for the companion velocities | S, H1 |
+| FP18 | F18i | OPEN | the record's KiDS lead-grade projection (FP6 esd_of_M, used by FP6/FP9/FP11/FP12's KiDS numbers) under-projects: on a singular isothermal sphere it is -59% at 35 kpc, -10% at 0.3 Mpc, -5% at 0.76 Mpc, -14% at 2.6 Mpc (this lane's exact projection: < 0.5%); those lanes' KiDS chi2 are not re-scored here | K2, K2b |
 
-Totals: DERIVED 74, POSTULATED 16, FITTED 6, CONSTRAINT 7, OPEN 17, FAILS 34
+Totals: DERIVED 107, TIED 1, POSTULATED 25, FITTED 8, CONSTRAINT 21, OPEN 31, FAILS 63

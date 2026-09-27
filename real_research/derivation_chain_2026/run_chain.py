@@ -10,11 +10,14 @@ MUTATE control), and checks the chain's contract:
   * the lane's own ledger entries (link, status, basis), where status is one of
     DERIVED / POSTULATED / FITTED / CONSTRAINT / OPEN / FAILS.
 It writes CHAIN_STATUS.md (the ledger in one table, lane by lane) and exits 1 if any lane breaks the contract.
+A full run covers the lanes committed to git; a lane whose script is not yet tracked is in progress and is listed but
+skipped (--all includes it). A run restricted with --only prints its table and never overwrites CHAIN_STATUS.md.
 
 Usage (from the repository root):
   python3 real_research/derivation_chain_2026/run_chain.py            # collect from the existing outputs
   python3 real_research/derivation_chain_2026/run_chain.py --rerun    # re-execute every lane (main + MUTATE) first
-  python3 real_research/derivation_chain_2026/run_chain.py --only FP0 # one lane
+  python3 real_research/derivation_chain_2026/run_chain.py --only FP0 # one lane (check only; CHAIN_STATUS.md untouched)
+  python3 real_research/derivation_chain_2026/run_chain.py --all      # include uncommitted lanes
 """
 import os, re, sys, glob, json, subprocess, time
 
@@ -22,15 +25,27 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 STATUSES = ("DERIVED", "TIED", "POSTULATED", "FITTED", "CONSTRAINT", "OPEN", "FAILS")
 
 
-def lanes(only=None):
-    out = []
+def tracked():
+    try:
+        r = subprocess.run(["git", "ls-files", "--", "."], cwd=HERE, capture_output=True, text=True, timeout=60)
+        return {os.path.basename(x) for x in r.stdout.split()} if r.returncode == 0 else None
+    except Exception:
+        return None
+
+
+def lanes(only=None, committed=None):
+    out, skipped = [], []
     for p in sorted(glob.glob(os.path.join(HERE, "FP[0-9]*_*.py"))):
         stem = os.path.basename(p)[:-3]
         tag = stem.split("_", 1)[0]
         if only and tag not in only:
             continue
+        if committed is not None and os.path.basename(p) not in committed:
+            skipped.append(stem)
+            continue
         out.append((tag, stem, p))
-    return sorted(out, key=lambda t: (int(re.sub(r"\D", "", t[0]) or 0), t[1]))
+    key = lambda s: (int(re.sub(r"\D", "", s.split("_", 1)[0]) or 0), s)
+    return sorted(out, key=lambda t: key(t[1])), sorted(skipped, key=key)
 
 
 def run(path, mutate, timeout=1800):
@@ -79,8 +94,10 @@ def main():
     only = None
     if "--only" in args:
         only = set(args[args.index("--only") + 1].split(","))
+    committed = None if (only or "--all" in args) else tracked()
+    selected, skipped = lanes(only, committed)
     rows, ledger, broken = [], [], []
-    for tag, stem, path in lanes(only):
+    for tag, stem, path in selected:
         if rerun:
             for mut in (False, True):
                 rc, dt = run(path, mut)
@@ -118,13 +135,18 @@ def main():
     lines += [f"| {t} | {k} | {s} | {w} | {b} |" for t, k, s, w, b in ledger]
     counts = {s: sum(1 for x in ledger if x[2] == s) for s in STATUSES}
     lines += ["", "Totals: " + ", ".join(f"{s} {n}" for s, n in counts.items()), ""]
-    open(os.path.join(HERE, "CHAIN_STATUS.md"), "w").write("\n".join(lines))
+    write = not only
+    if write:
+        open(os.path.join(HERE, "CHAIN_STATUS.md"), "w").write("\n".join(lines))
     print("\n".join(lines))
+    if skipped:
+        print("\nIN PROGRESS (script not committed; skipped): " + ", ".join(skipped))
     if broken:
         print("\nCONTRACT BROKEN:")
         for s, p in broken:
             print(f"  {s}: {'; '.join(p)}")
-    print(f"\n  {len(rows)} lanes, {len(ledger)} links; contract broken in {len(broken)}; wrote CHAIN_STATUS.md")
+    print(f"\n  {len(rows)} lanes, {len(ledger)} links; contract broken in {len(broken)}; "
+          + ("wrote CHAIN_STATUS.md" if write else "CHAIN_STATUS.md untouched (--only)"))
     sys.exit(1 if broken else 0)
 
 
