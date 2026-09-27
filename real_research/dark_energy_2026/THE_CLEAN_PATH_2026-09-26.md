@@ -111,6 +111,8 @@ which the record's CGM convention supplies at ≳ 30% of its maximal share. Belo
 the switch's bistable band: MOND on the upper branch, Newtonian on the lower. Which branch a galaxy occupies is a
 formation-history question — one more reason the switch has to be a varied action term with its own dynamics (step 3).
 
+**Correction (late 2026-09-26).** Everything below about cosmic shear from DE2, DE3 and DE5 is mock-based and not established. L363's mock cannot grow an isolated galaxy's phantom-supported region: MS3's U1, reproduced on the upper-branch builder in DE5b. On the resolution-free halo model the region kernel fails cosmic shear unless MOND regions are capped near 1.75 Mpc (MS3). DE2's window is established on its KiDS, flagship and forest sides only.
+
 **DE5** (`DE5_tmax_window_both_branches.py`, 5/5; MUTATE, lower regions grown like the upper ones, fails L1; commit
 d62efdcef). Cosmic shear's bound T_max(k) across DE2's whole window, on both switch branches, reported separately. At the
 window's highest lens-epoch threshold (x = 6.785, p ≈ 1.9) the best bound at k = 1 is 0.882/0.857 on the upper branch
