@@ -1,0 +1,1161 @@
+{
+ "lane": "FP8",
+ "mutate": true,
+ "fast": false,
+ "checks": {
+  "C0a CONTROL: FP4's own ceiling() (exec'd from its committed source) reproduces FP4's committed B5 delta_req at r_F on all six flagship hosts": {
+   "ok": true,
+   "measured": "max |dev| 0.0e+00",
+   "load_bearing": false
+  },
+  "C0b CONTROL: this lane's copy of AT1's retention (identical draws, decay in place, isotropic 250 km/s kick) reproduces AT1's retained_acc on the 1e10.5 flagship host": {
+   "ok": true,
+   "measured": "this lane 0.181090, AT1 0.181090, |dev| 2.0e-13",
+   "load_bearing": false
+  },
+  "C0c CONTROL: the orbit quadrature used for the gains (48 nodes, zero weight outside the turning points) is converged: the sample-summed time fraction inside r_F, orbit-averaged v^2 and v_r^2 agree with 400 nodes within 1%": {
+   "ok": true,
+   "measured": "max relative |dev| 0.0075; (reported) L321's frac_inside, whose nodes beyond the turning points carry an artificial weight, differs by 0.041 in the time inside r_F",
+   "load_bearing": false
+  },
+  "A1 DERIVED: with Psi = e^{-imt} a e^{i theta}/sqrt(2m), J.n = a^2 (1 - theta_t/m) -> n_d (the number density in the clock frame) and J^x = -a^2 theta_x/m = -n_d v: a coupling to J.n is a density coupling, a coupling to the spatial J is a coupling to the dark flux": {
+   "ok": true,
+   "measured": "J^0 = (-m + Derivative(theta(t, x), t))*a(t, x)**2/m; J^x = -a(t, x)**2*Derivative(theta(t, x), x)/m; residuals 0, 0",
+   "load_bearing": true
+  },
+  "A2 DERIVED (gauge reduction): -|dPsi|^2 + g A.J == -|(d + igA)Psi|^2 + g^2 A.A |Psi|^2 identically, and for A = d chi the field redefinition removes the current coupling exactly, leaving the density coupling g^2 (d chi)^2 |Psi|^2  [MUTATE: without the diamagnetic term]": {
+   "ok": false,
+   "measured": "identity residual g**2*(-A_0(t, x)**2 + A_1(t, x)**2)*P(t, x)*Q(t, x); gradient-reduction residual 0",
+   "load_bearing": true
+  },
+  "A3 DERIVED (rest-energy reduction): -F(I) g^{mn} dPsi* dPsi is exactly the density coupling V = c^2[(1+F)^(-1/2) - 1] (rest energy m/sqrt(1+F), luminal); the temporal member shifts the rest energy AND the speed (1/(1+F)); the spatial and anisotropic members leave the rest energy and change only the inertia; a 575-650 km/s hill needs |F| = 2.0 x FK1's eps/m^2": {
+   "ok": true,
+   "measured": "V_iso = sqrt(1/(F + 1)) - 1; |F|/(eps/m^2) = 2 - 5*beta/2; 575.0: 1.99999, 600.0: 1.99999, 625.0: 1.99999, 650.0: 1.99999",
+   "load_bearing": true
+  },
+  "A4 DERIVED (the energy-reciprocity identity): for a particle, dh/dt = dW/dt|_(x,v) and h has no linear-in-v part (a static current coupling does no work); for any L_int(grad u, d_t grad u, dark fields) the dark state's energy changes as -S.d_t grad u - d_t(Pi.d_t grad u) with S its source in the MOND sector's equation; with |S| <= delta |P| the energy handed over between static epochs is <= max(delta) x the MOND field energy (a0^2/8 pi G) Int q(I) for a field growing in magnitude": {
+   "ok": true,
+   "measured": "particle residual 0 (W1 in h: False); field residual 0; flux-energy residual 0",
+   "load_bearing": true
+  },
+  "A5 DERIVED: the Euler-Lagrange equations of I_NR + L_int give Phi' = u'(1 + q') + 4 pi G S for every member (residual 0), with S = -2 rho_d V' u'/a0^2 (density), 2 g (d_t n_d) u'/a0^2 (rate: the n_d d_t u' terms cancel), -G' rho_d w^2 u'/a0^2 (inertia), g j (F + 2 I F') (current); the Poisson equation for u is untouched": {
+   "ok": true,
+   "measured": "residuals density 0, rate 0, inertia 0, current 0; Poisson 0",
+   "load_bearing": true
+  },
+  "B0 DERIVED + NUMBERS (class-wide, any order, any weighting of the NET energy): unbinding the flagship's dark mass inside r_F down to the flagship's allowed core needs a net energy input larger than the MOND sector's whole field energy (to 2 r200) -- and larger than that plus all the baryons' kinetic energy (a generous allowance for a rotating field) -- on every host and footing; so by A4 any coupling that supplies it from the MOND sector reaches delta > 1 where the dark state sits during the clearing (the no-go needs a ratio > 1)": {
+   "ok": true,
+   "measured": "cost/E_MOND 7.16-11.89; cost/(E_MOND + K_b) 4.88-8.66 (flagship); cost/E_MOND for X-COP 3.78-4.20",
+   "load_bearing": true
+  },
+  "B1 DERIVED + NUMBERS: a linear coupling to the spatial current (magnetic, or a gradient: pure gauge) does no work in a static host (A4: its part of W is linear in v); even re-choosing every particle's direction to minimise its time inside r_F (AT1's retention, sudden potential iteration) keeps the flagship above 0.10 dex on every host and footing [MUTATE: the hand-set 600 km/s kick]": {
+   "ok": false,
+   "measured": "retained 0.000-0.008; smallest shift +0.000 dex",
+   "load_bearing": true
+  },
+  "B2 NUMBERS: at FP4's (generous, static) delta = 1 cap the density, inertia and anisotropic-inertia members clear no flagship host in either physical switch-on reading (slow: orbit-averaged gains; sudden: a random phase), both footings, even with the inertia members' speed-up inside the region granted (retained time divided by sqrt(1 + G_max))": {
+   "ok": true,
+   "measured": "smallest shift over 36 cells +0.260 dex (gate 0.10); retained 0.68-0.92",
+   "load_bearing": true
+  },
+  "B3 (reported) the envelope reading: which member/host cells pass the flagship when every particle is hit at its orbit's most favourable phase -- with FP4's cap and with the health-enforced Eulerian cap": {
+   "ok": true,
+   "measured": "passing cells: ['alt|flagship 1e10.5|inertia|envelope|fp4', 'alt|flagship 1e11|inertia|envelope|fp4', 'canonical|flagship 1e11|inertia|envelope|fp4']",
+   "load_bearing": false
+  },
+  "B4 NUMBERS: every weighted member clears the X-COP reference cluster MORE than any z = 2.5 flagship host (slow reading, both footings), and the unbinding cost per unit MOND field energy is lower for the cluster: the whole class is anti-selective (clusters first), the ordering the framework needs is the opposite": {
+   "ok": true,
+   "measured": "{'canonical|density': {'cluster': 0.523, 'flagship_min': 0.87, 'flagship_max': 0.923}, 'canonical|inertia': {'cluster': 0.17, 'flagship_min': 0.768, 'flagship_max': 0.852}, 'canonical|anisotropic': {'cluster': 0.288, 'flagship_min': 0.757, 'flagship_max': 0.791}, 'alt|density': {'cluster': 0.43, 'flagship_min': 0.809, 'flagship_max': 0.852}, 'alt|inertia': {'cluster': 0.11, 'flagship_min': 0.698, 'flagship_max': 0.779}, 'alt|anisotropic': {'cluster': 0.239, 'flagship_min': 0.679, 'flagship_max': 0.746}}",
+   "load_bearing": true
+  },
+  "H1 DERIVED (Minkowski): the general quadratic member A|d_t Psi|^2 - B|grad Psi|^2 - C|e.grad Psi|^2 - M^2|Psi|^2 is ghost-free iff A > 0, gradient-stable iff B > 0 and B + C > 0, and propagates at speed^2 (B + C cos^2 theta)/A; the current members are luminal": {
+   "ok": true,
+   "measured": "{'isotropic F': '1', 'temporal F': '1/(F + 1)', 'spatial G': 'G + 1', 'anisotropic G': 'G*cos(theta)**2 + 1', 'linear current / rate / electrostatic': '1'}",
+   "load_bearing": true
+  },
+  "H2 DERIVED (the weighting theorem): a coupling that hands more energy to faster dark particles without a rest-energy well needs d(s^2)/dI > 0 -- the dark field propagates outside the metric light cone; the luminal members can weight only together with a well (c/v)^2 times stronger; so every velocity-weighted kicker is superluminal (ordered only by the clock's foliation, which the core's instantaneous heat filter already uses)": {
+   "ok": true,
+   "measured": "identity residual 0; spatial 1/m; temporal -m/(2*(F + 1)**(3/2)), -1/(F + 1)**2; isotropic 1/(2*m*sqrt(F + 1))",
+   "load_bearing": true
+  },
+  "H3 DERIVED (FRW): grad u = 0 on the homogeneous background (FP3 G1b: a0 absent there), so I = 0 and every I-member with F(0) = G(0) = f(0) = 0 and A(grad u = 0) = 0 is off; the dark field is then free and its homogeneous mode has p = 0 exactly (dust); K-members are uniform on CMC leaves in bound regions (CV4) and act only as a time-dependent mass": {
+   "ok": true,
+   "measured": "p = 0, rho = 2*m**2*psi0**2",
+   "load_bearing": true
+  },
+  "H4 DERIVED (static MOND background): FP5's (N, U) determinant with the reciprocal suppression C_e -> (1 - delta) C_e vanishes at delta* = 1 + alpha_c c_CH/(2 C_e (alpha_c + c_CH)) = 1 + O(1e-9) and is negative beyond: FP4's ceiling delta = 1 is the core's own health boundary (FP5's positivity), not only the point where the phantom switches off": {
+   "ok": true,
+   "measured": "det = -k**4*(2*C_e*alpha_c*delta - 2*C_e*alpha_c + 2*C_e*c_CH*delta - 2*C_e*c_CH - alpha_c*c_CH); delta* - 1 = alpha_c*c_CH/(2*C_e*(alpha_c + c_CH)) (5.3e-09, 1.6e-09, 5.3e-10)",
+   "load_bearing": true
+  },
+  "B5 DERIVED + NUMBERS (the rate member): its back-reaction is 2 g (d_t n_d) u'/a0^2 (A5) -- silent in any static halo, so it escapes the STATIC reciprocity; but by A4 the energy it hands over passes through that same S, so during the clearing delta >= the B0 ratio on every flagship host, beyond H4's delta* = 1 + O(1e-9): the core is ill-posed while it clears": {
+   "ok": true,
+   "measured": "delta during clearing >= 4.9 vs delta* - 1 <= 5.3e-09",
+   "load_bearing": true
+  },
+  "B6 THE WINDOW IS NOT PREDICTED: no member produces a universal 575-675 km/s from (a0, rho_Lambda, m): the ceilings are host-proportional (below the window at every flagship host), the other members carry their own fitted strength, and FP4's census has no parameter-free hit": {
+   "ok": true,
+   "measured": "{'canonical': {'density_ceiling': [153, 233, 341], 'density_ceiling_eulerian': [71, 105, 149], 'xcop_ceiling': 1757}, 'alt': {'density_ceiling': [164, 252, 368], 'density_ceiling_eulerian': [76, 114, 163], 'xcop_ceiling': 1878}}",
+   "load_bearing": true
+  },
+  "G1 THE BEST HEALTHY COUPLING (-F(I) g^{mn} dPsi* dPsi: luminal, ghost-free for F > -1, exactly FP4's density class by A3) inherits FP4's committed delta = 1 gate rows: it passes what LCDM passes and FAILS the flagship at z = 2.5 in every reading": {
+   "ok": true,
+   "measured": "flagship smallest |shift| 0.261 dex",
+   "load_bearing": true
+  },
+  "G2 (reported) the best-CLEARING member (the superluminal inertia coupling, slow reading, FP4's cap): X-COP with the reciprocal term and L321's z = 0 galaxies, from its own retention; the flagship is B2's": {
+   "ok": true,
+   "measured": "{'canonical|xcop': 0.681, 'canonical|galaxies': {'dwarf': 0.014, 'SPARC disc': -0.0, 'Milky Way': 0.0}, 'canonical|galaxies_density': {'dwarf': 0.014, 'SPARC disc': -0.0, 'Milky Way': 0.0}, 'alt|xcop': 0.706, 'alt|galaxies': {'dwarf': 0.004, 'SPARC disc': -0.0, 'Milky Way': -0.0}, 'alt|galaxies_density': {'dwarf': 0.004, 'SPARC disc': -0.0, 'Milky Way': -0.0}}",
+   "load_bearing": false
+  },
+  "W (reported) the ledger of this lane's links": {
+   "ok": true,
+   "measured": "16 links",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "a0_FP0": {
+   "canonical": 9.360324825027975e-11,
+   "alt": 1.1312035414413022e-10
+  },
+  "controls": {
+   "B5_dev": 0.0,
+   "AT1_dev": 2.0089485630592208e-13,
+   "quad_conv_dev": 0.007542543616410279,
+   "quad_vs_L321": 0.041290185938732286
+  },
+  "A3": {
+   "table": {
+    "isotropic -F(I) g^mn": {
+     "rest": "m*sqrt(1/(F + 1))",
+     "inv_inertia_perp": "(F + 1)*sqrt(1/(F + 1))/m",
+     "inv_inertia_par": "(F + 1)*sqrt(1/(F + 1))/m",
+     "speed2_perp": "1",
+     "speed2_par": "1"
+    },
+    "temporal -F(I) n^m n^n": {
+     "rest": "m*sqrt(1/(F + 1))",
+     "inv_inertia_perp": "sqrt(1/(F + 1))/m",
+     "inv_inertia_par": "sqrt(1/(F + 1))/m",
+     "speed2_perp": "1/(F + 1)",
+     "speed2_par": "1/(F + 1)"
+    },
+    "spatial -G(I) h^mn": {
+     "rest": "m",
+     "inv_inertia_perp": "(G + 1)/m",
+     "inv_inertia_par": "(G + 1)/m",
+     "speed2_perp": "G + 1",
+     "speed2_par": "G + 1"
+    },
+    "anisotropic -G(I) e^m e^n": {
+     "rest": "m",
+     "inv_inertia_perp": "1/m",
+     "inv_inertia_par": "(G + 1)/m",
+     "speed2_perp": "1",
+     "speed2_par": "G + 1"
+    }
+   },
+   "F_kick": "-1 + 4/(beta + 2)**2",
+   "F_num": {
+    "575.0": 3.6786890983409037e-06,
+    "600.0": 4.005528168482542e-06,
+    "625.0": 4.346275113698006e-06,
+    "650.0": 4.700929912671015e-06
+   },
+   "F_over_FK1": {
+    "575.0": 1.9999908033352862,
+    "600.0": 1.999989986138434,
+    "625.0": 1.999989134250215,
+    "650.0": 1.9999882476579645
+   }
+  },
+  "B0": {
+   "canonical|flagship 1e10": {
+    "cost": 2611978905632998.0,
+    "E_mond": 219653389264432.97,
+    "K_b": 81870766206779.44,
+    "ratio": 8.662585926328457,
+    "ratio_mond": 11.891366276568256,
+    "ret": 0.10049343354962204,
+    "Min": 60079249622.34309,
+    "cost_per_mass": 48332.67447894098,
+    "delta_esc_mean": 68.86939182094787,
+    "delta_esc_min": 37.866770881831734
+   },
+   "canonical|flagship 1e10.5": {
+    "cost": 1.1121089575178798e+16,
+    "E_mond": 1184937998893444.0,
+    "K_b": 501216862942235.6,
+    "ratio": 6.595532727682862,
+    "ratio_mond": 9.385376775463563,
+    "ret": 0.09969229429545712,
+    "Min": 190973913543.47528,
+    "cost_per_mass": 64681.83371213334,
+    "delta_esc_mean": 48.37786343744437,
+    "delta_esc_min": 28.001261512727822
+   },
+   "canonical|flagship 1e11": {
+    "cost": 5.56313384970139e+16,
+    "E_mond": 6429027694008778.0,
+    "K_b": 3334931441786128.5,
+    "ratio": 5.697620987890875,
+    "ratio_mond": 8.653149612165592,
+    "ret": 0.09120683229193037,
+    "Min": 639219994297.2812,
+    "cost_per_mass": 95764.40286379584,
+    "delta_esc_mean": 40.79641868932047,
+    "delta_esc_min": 25.17437253771398
+   },
+   "alt|flagship 1e10": {
+    "cost": 2302380062371761.5,
+    "E_mond": 243467832108263.28,
+    "K_b": 81870766206779.44,
+    "ratio": 7.076873369148299,
+    "ratio_mond": 9.456608876970481,
+    "ret": 0.12574690838761315,
+    "Min": 52537191732.24319,
+    "cost_per_mass": 50127.14664783645,
+    "delta_esc_mean": 59.17048057962564,
+    "delta_esc_min": 32.54176701427369
+   },
+   "alt|flagship 1e10.5": {
+    "cost": 1.001406110111275e+16,
+    "E_mond": 1317358014649999.2,
+    "K_b": 501216862942235.6,
+    "ratio": 5.506543186371964,
+    "ratio_mond": 7.601624607547041,
+    "ret": 0.12234595055614915,
+    "Min": 168802696806.6074,
+    "cost_per_mass": 67593.8985062434,
+    "delta_esc_mean": 41.92130559345872,
+    "delta_esc_min": 23.793262518704033
+   },
+   "alt|flagship 1e11": {
+    "cost": 5.131495081909535e+16,
+    "E_mond": 7170218022853586.0,
+    "K_b": 3334931441786128.5,
+    "ratio": 4.884742572375695,
+    "ratio_mond": 7.156679288626869,
+    "ret": 0.10944279705066261,
+    "Min": 570243853615.393,
+    "cost_per_mass": 101046.54844780255,
+    "delta_esc_mean": 35.60358505928834,
+    "delta_esc_min": 21.185490147943614
+   },
+   "canonical|X-COP ref": {
+    "cost": 9.31480303934829e+20,
+    "E_mond": 2.2188058699980066e+20,
+    "K_b": 1.6206334772840933e+20,
+    "ratio": 2.4260841744881696,
+    "ratio_mond": 4.198115376067875,
+    "ret": 0.1,
+    "Min": 589193351851981.9,
+    "cost_per_mass": 1756601.822186127,
+    "delta_esc_mean": 38.60807323267584,
+    "delta_esc_min": 9.05765631809776
+   },
+   "alt|X-COP ref": {
+    "cost": 9.31480303934829e+20,
+    "E_mond": 2.462002537276432e+20,
+    "K_b": 1.6206334772840933e+20,
+    "ratio": 2.2815658819761278,
+    "ratio_mond": 3.7834254426287903,
+    "ret": 0.1,
+    "Min": 589193351851981.9,
+    "cost_per_mass": 1756601.822186127,
+    "delta_esc_mean": 34.16343488761183,
+    "delta_esc_min": 8.151784365021115
+   }
+  },
+  "B1": {
+   "canonical|flagship 1e10": {
+    "ret": 0.0,
+    "shift_d0": 0.0,
+    "shift_d1": 0.0,
+    "ret_allowed": 0.0627961958907797
+   },
+   "canonical|flagship 1e10.5": {
+    "ret": 0.0006025929578546129,
+    "shift_d0": 0.0010215286017581048,
+    "shift_d1": 0.0006403865189419881,
+    "ret_allowed": 0.06248243413143496
+   },
+   "canonical|flagship 1e11": {
+    "ret": 0.007961551741973806,
+    "shift_d0": 0.014175678243617562,
+    "shift_d1": 0.009202535689315483,
+    "ret_allowed": 0.059039811405889805
+   },
+   "alt|flagship 1e10": {
+    "ret": 0.0,
+    "shift_d0": 0.0,
+    "shift_d1": 0.0,
+    "ret_allowed": 0.07180753890433195
+   },
+   "alt|flagship 1e10.5": {
+    "ret": 0.0006579529286374386,
+    "shift_d0": 0.0009859568524983576,
+    "shift_d1": 0.0005697739634335177,
+    "ret_allowed": 0.07068548272515547
+   },
+   "alt|flagship 1e11": {
+    "ret": 0.007883936255990528,
+    "shift_d0": 0.012535265834830696,
+    "shift_d1": 0.007601407389772514,
+    "ret_allowed": 0.06617771940458873
+   }
+  },
+  "B2": {
+   "canonical|flagship 1e10": {
+    "density|slow": {
+     "ret": 0.9232292583791766,
+     "ret_speedup": 0.9232292583791766,
+     "shift": 0.6530726491862755,
+     "shift_speedup": 0.6530726491862755
+    },
+    "density|sudden": {
+     "ret": 0.9141506930028402,
+     "ret_speedup": 0.9141506930028402,
+     "shift": 0.6485466544005903,
+     "shift_speedup": 0.6485466544005903
+    },
+    "inertia|slow": {
+     "ret": 0.8517591273726257,
+     "ret_speedup": 0.6553814258698778,
+     "shift": 0.616787398454434,
+     "shift_speedup": 0.5084964613995603
+    },
+    "inertia|sudden": {
+     "ret": 0.8724266450512014,
+     "ret_speedup": 0.6712839348892501,
+     "shift": 0.6274369580826956,
+     "shift_speedup": 0.5177860204860509
+    },
+    "anisotropic|slow": {
+     "ret": 0.791397696311358,
+     "ret_speedup": 0.4518818908965438,
+     "shift": 0.5849152274080501,
+     "shift_speedup": 0.3799188742306828
+    },
+    "anisotropic|sudden": {
+     "ret": 0.8909501321861998,
+     "ret_speedup": 0.5087255526561829,
+     "shift": 0.6368720363126434,
+     "shift_speedup": 0.4177912248338304
+    }
+   },
+   "canonical|flagship 1e10.5": {
+    "density|slow": {
+     "ret": 0.8842238755302216,
+     "ret_speedup": 0.8842238755302216,
+     "shift": 0.6370642562962145,
+     "shift_speedup": 0.6370642562962145
+    },
+    "density|sudden": {
+     "ret": 0.8913460917234993,
+     "ret_speedup": 0.8913460917234993,
+     "shift": 0.640692978842271,
+     "shift_speedup": 0.640692978842271
+    },
+    "inertia|slow": {
+     "ret": 0.7874576334594836,
+     "ret_speedup": 0.5742842297254923,
+     "shift": 0.5861986375541378,
+     "shift_speedup": 0.4623760416996203
+    },
+    "inertia|sudden": {
+     "ret": 0.8305867844954169,
+     "ret_speedup": 0.6057378473284764,
+     "shift": 0.6092383558335833,
+     "shift_speedup": 0.48179372230685225
+    },
+    "anisotropic|slow": {
+     "ret": 0.7619637504340862,
+     "ret_speedup": 0.3993470577279906,
+     "shift": 0.5722866797239079,
+     "shift_speedup": 0.34566170208961233
+    },
+    "anisotropic|sudden": {
+     "ret": 0.8294708389876271,
+     "ret_speedup": 0.4347276872845558,
+     "shift": 0.6086498521802187,
+     "shift_speedup": 0.3705658692565308
+    }
+   },
+   "canonical|flagship 1e11": {
+    "density|slow": {
+     "ret": 0.8695881648223341,
+     "ret_speedup": 0.8695881648223341,
+     "shift": 0.6702550523660944,
+     "shift_speedup": 0.6702550523660944
+    },
+    "density|sudden": {
+     "ret": 0.8723331182812953,
+     "ret_speedup": 0.8723331182812953,
+     "shift": 0.6717282179670137,
+     "shift_speedup": 0.6717282179670137
+    },
+    "inertia|slow": {
+     "ret": 0.7680735355522813,
+     "ret_speedup": 0.5482793329974797,
+     "shift": 0.6139411028862598,
+     "shift_speedup": 0.4778476109637169
+    },
+    "inertia|sudden": {
+     "ret": 0.7855352669099389,
+     "ret_speedup": 0.5607441634838909,
+     "shift": 0.6238914730526135,
+     "shift_speedup": 0.48616322765260267
+    },
+    "anisotropic|slow": {
+     "ret": 0.7574252872060669,
+     "ret_speedup": 0.38415856134228243,
+     "shift": 0.6078168907306988,
+     "shift_speedup": 0.36021477643590677
+    },
+    "anisotropic|sudden": {
+     "ret": 0.8188044669550382,
+     "ret_speedup": 0.41528946994412197,
+     "shift": 0.6425397480860144,
+     "shift_speedup": 0.383786460637058
+    }
+   },
+   "alt|flagship 1e10": {
+    "density|slow": {
+     "ret": 0.8523866677774709,
+     "ret_speedup": 0.8523866677774709,
+     "shift": 0.5235308191987464,
+     "shift_speedup": 0.5235308191987464
+    },
+    "density|sudden": {
+     "ret": 0.8683562119691137,
+     "ret_speedup": 0.8683562119691137,
+     "shift": 0.530866398817464,
+     "shift_speedup": 0.530866398817464
+    },
+    "inertia|slow": {
+     "ret": 0.7788842306584273,
+     "ret_speedup": 0.5815087877594888,
+     "shift": 0.48894511884793834,
+     "shift_speedup": 0.3886216463299033
+    },
+    "inertia|sudden": {
+     "ret": 0.8317219959925367,
+     "ret_speedup": 0.6209570441985549,
+     "shift": 0.5139456518380684,
+     "shift_speedup": 0.4096206730534471
+    },
+    "anisotropic|slow": {
+     "ret": 0.746365822671932,
+     "ret_speedup": 0.40584138726010244,
+     "shift": 0.4731932809358436,
+     "shift_speedup": 0.2884059071202202
+    },
+    "anisotropic|sudden": {
+     "ret": 0.8607431516369434,
+     "ret_speedup": 0.46803482169696975,
+     "shift": 0.5273770802651901,
+     "shift_speedup": 0.3252228189252202
+    }
+   },
+   "alt|flagship 1e10.5": {
+    "density|slow": {
+     "ret": 0.8085168110018784,
+     "ret_speedup": 0.8085168110018784,
+     "shift": 0.5136050422215104,
+     "shift_speedup": 0.5136050422215104
+    },
+    "density|sudden": {
+     "ret": 0.8372825163698707,
+     "ret_speedup": 0.8372825163698707,
+     "shift": 0.5272916739741773,
+     "shift_speedup": 0.5272916739741773
+    },
+    "inertia|slow": {
+     "ret": 0.7224162026908201,
+     "ret_speedup": 0.5088809841393299,
+     "shift": 0.47130048642372,
+     "shift_speedup": 0.3565254788783134
+    },
+    "inertia|sudden": {
+     "ret": 0.7895924290988342,
+     "ret_speedup": 0.5562009419115216,
+     "shift": 0.5044818207395719,
+     "shift_speedup": 0.38329995744437295
+    },
+    "anisotropic|slow": {
+     "ret": 0.7030409369626428,
+     "ret_speedup": 0.3495191255935423,
+     "shift": 0.4614898313683671,
+     "shift_speedup": 0.2597557035033864
+    },
+    "anisotropic|sudden": {
+     "ret": 0.8042385929915932,
+     "ret_speedup": 0.3998298747800214,
+     "shift": 0.5115509305802318,
+     "shift_speedup": 0.2914861654841468
+    }
+   },
+   "alt|flagship 1e11": {
+    "density|slow": {
+     "ret": 0.8342657676935793,
+     "ret_speedup": 0.8342657676935793,
+     "shift": 0.5711722611337526,
+     "shift_speedup": 0.5711722611337526
+    },
+    "density|sudden": {
+     "ret": 0.8357448872872281,
+     "ret_speedup": 0.8357448872872281,
+     "shift": 0.5719140568818911,
+     "shift_speedup": 0.5719140568818911
+    },
+    "inertia|slow": {
+     "ret": 0.6975338202944333,
+     "ret_speedup": 0.4800209502960155,
+     "shift": 0.4997095128631024,
+     "shift_speedup": 0.3723176681991631
+    },
+    "inertia|sudden": {
+     "ret": 0.7538343949971463,
+     "ret_speedup": 0.5187652442423656,
+     "shift": 0.5298502411756894,
+     "shift_speedup": 0.39642016321368756
+    },
+    "anisotropic|slow": {
+     "ret": 0.6792619595803098,
+     "ret_speedup": 0.32625250637499326,
+     "shift": 0.48969843063615376,
+     "shift_speedup": 0.26946376061703553
+    },
+    "anisotropic|sudden": {
+     "ret": 0.8037412558629299,
+     "ret_speedup": 0.3860404598018164,
+     "shift": 0.5557206986316893,
+     "shift_speedup": 0.3109143390480221
+    }
+   }
+  },
+  "B2_gain_ratio": [
+   1.2935373585397643,
+   1.412033847632163,
+   1.334644913985739,
+   1.4634345726065134,
+   1.3701495530519872,
+   1.5036803582433276,
+   1.2916512997720437,
+   1.4093481604288987,
+   1.33217093192334,
+   1.459901046983571,
+   1.367110709323925,
+   1.499319329640447
+  ],
+  "B3": {
+   "canonical|flagship 1e10": {
+    "density|envelope|fp4": {
+     "ret": 0.6468358236917232,
+     "shift": 0.5034631441659366
+    },
+    "density|envelope|eul": {
+     "ret": 0.9941219311629751,
+     "shift": 0.6876267818271172
+    },
+    "density|slow|eul": {
+     "ret": 1.0064414442733873,
+     "shift": 0.6953271593724608
+    },
+    "inertia|envelope|fp4": {
+     "ret": 0.2887707749884689,
+     "shift": 0.2610686307658262
+    },
+    "inertia|envelope|eul": {
+     "ret": 0.8259239275044135,
+     "shift": 0.6032887414743134
+    },
+    "inertia|slow|eul": {
+     "ret": 1.0115070611301311,
+     "shift": 0.6991582033398439
+    },
+    "anisotropic|envelope|fp4": {
+     "ret": 0.38922299661574095,
+     "shift": 0.3361648482306704
+    },
+    "anisotropic|envelope|eul": {
+     "ret": 0.8720040610031095,
+     "shift": 0.6272205114311014
+    },
+    "anisotropic|slow|eul": {
+     "ret": 1.0289003363312021,
+     "shift": 0.7121853082546716
+    }
+   },
+   "canonical|flagship 1e10.5": {
+    "density|envelope|fp4": {
+     "ret": 0.5369861099903871,
+     "shift": 0.43877318854001346
+    },
+    "density|envelope|eul": {
+     "ret": 0.9698534693626021,
+     "shift": 0.6797185524005268
+    },
+    "density|slow|eul": {
+     "ret": 0.9911218477511377,
+     "shift": 0.6899959099182726
+    },
+    "inertia|envelope|fp4": {
+     "ret": 0.10957376060459961,
+     "shift": 0.10931256694322923
+    },
+    "inertia|envelope|eul": {
+     "ret": 0.820561487310925,
+     "shift": 0.6039370731938559
+    },
+    "inertia|slow|eul": {
+     "ret": 1.0256239031268286,
+     "shift": 0.7135771765992195
+    },
+    "anisotropic|envelope|fp4": {
+     "ret": 0.24614165472413327,
+     "shift": 0.22873166631302208
+    },
+    "anisotropic|envelope|eul": {
+     "ret": 0.8477029299697248,
+     "shift": 0.6182151012211403
+    },
+    "anisotropic|slow|eul": {
+     "ret": 1.037361400847975,
+     "shift": 0.7222886004080732
+    }
+   },
+   "canonical|flagship 1e11": {
+    "density|envelope|fp4": {
+     "ret": 0.5316138136305616,
+     "shift": 0.46660375085941536
+    },
+    "density|envelope|eul": {
+     "ret": 0.9636147564269925,
+     "shift": 0.7193464030514869
+    },
+    "density|slow|eul": {
+     "ret": 0.9833773795223368,
+     "shift": 0.7293208275607006
+    },
+    "inertia|envelope|fp4": {
+     "ret": 0.029277055798562365,
+     "shift": 0.033371088413462445
+    },
+    "inertia|envelope|eul": {
+     "ret": 0.8136117315359013,
+     "shift": 0.6396553202241371
+    },
+    "inertia|slow|eul": {
+     "ret": 0.9886695943111896,
+     "shift": 0.7319725398734529
+    },
+    "anisotropic|envelope|fp4": {
+     "ret": 0.20040260786834188,
+     "shift": 0.2063089930577706
+    },
+    "anisotropic|envelope|eul": {
+     "ret": 0.8676580450568844,
+     "shift": 0.669217694751436
+    },
+    "anisotropic|slow|eul": {
+     "ret": 1.012292205098436,
+     "shift": 0.7470104780134377
+    }
+   },
+   "alt|flagship 1e10": {
+    "density|envelope|fp4": {
+     "ret": 0.5727969718040781,
+     "shift": 0.3839149462800003
+    },
+    "density|envelope|eul": {
+     "ret": 0.9368575995275826,
+     "shift": 0.56164795444193
+    },
+    "density|slow|eul": {
+     "ret": 0.9847790474737115,
+     "shift": 0.5825511263054045
+    },
+    "inertia|envelope|fp4": {
+     "ret": 0.2282146820222248,
+     "shift": 0.17374997327817512
+    },
+    "inertia|envelope|eul": {
+     "ret": 0.7625443927195358,
+     "shift": 0.481065848102808
+    },
+    "inertia|slow|eul": {
+     "ret": 0.9804224404065178,
+     "shift": 0.5806714408760923
+    },
+    "anisotropic|envelope|fp4": {
+     "ret": 0.34627327068509656,
+     "shift": 0.2516168872032215
+    },
+    "anisotropic|envelope|eul": {
+     "ret": 0.8189428349451131,
+     "shift": 0.5079647538678793
+    },
+    "anisotropic|slow|eul": {
+     "ret": 1.0240233806542263,
+     "shift": 0.606898038076224
+    }
+   },
+   "alt|flagship 1e10.5": {
+    "density|envelope|fp4": {
+     "ret": 0.4375914042874826,
+     "shift": 0.31456292151653115
+    },
+    "density|envelope|eul": {
+     "ret": 0.9342784007992757,
+     "shift": 0.5719142156548381
+    },
+    "density|slow|eul": {
+     "ret": 0.9897538165808134,
+     "shift": 0.5964413868774376
+    },
+    "inertia|envelope|fp4": {
+     "ret": 0.06461498707595154,
+     "shift": 0.05424402529350845
+    },
+    "inertia|envelope|eul": {
+     "ret": 0.7376237782811409,
+     "shift": 0.47892395660162845
+    },
+    "inertia|slow|eul": {
+     "ret": 0.9958200234793244,
+     "shift": 0.5990818886240671
+    },
+    "anisotropic|envelope|fp4": {
+     "ret": 0.22359779836163476,
+     "shift": 0.17485239608184036
+    },
+    "anisotropic|envelope|eul": {
+     "ret": 0.7997552531154821,
+     "shift": 0.509393107824406
+    },
+    "anisotropic|slow|eul": {
+     "ret": 1.0380016106840704,
+     "shift": 0.6289657017857057
+    }
+   },
+   "alt|flagship 1e11": {
+    "density|envelope|fp4": {
+     "ret": 0.39383118995383437,
+     "shift": 0.31617279641349055
+    },
+    "density|envelope|eul": {
+     "ret": 0.9496171227420558,
+     "shift": 0.6272004862589546
+    },
+    "density|slow|eul": {
+     "ret": 0.9720390994838993,
+     "shift": 0.6376839019508095
+    },
+    "inertia|envelope|fp4": {
+     "ret": 0.01039927275203634,
+     "shift": 0.010012673125829716
+    },
+    "inertia|envelope|eul": {
+     "ret": 0.7665518940165054,
+     "shift": 0.5365161855095827
+    },
+    "inertia|slow|eul": {
+     "ret": 0.9910284991535325,
+     "shift": 0.6464645167140853
+    },
+    "anisotropic|envelope|fp4": {
+     "ret": 0.15775880421821417,
+     "shift": 0.14073063950693415
+    },
+    "anisotropic|envelope|eul": {
+     "ret": 0.7998191464299108,
+     "shift": 0.5537152420328086
+    },
+    "anisotropic|slow|eul": {
+     "ret": 1.0127713610432743,
+     "shift": 0.6601998426785047
+    }
+   }
+  },
+  "B4": {
+   "canonical|density": {
+    "cluster": 0.5228559569219744,
+    "flagship_min": 0.8695881648223341,
+    "flagship_max": 0.9232292583791766
+   },
+   "canonical|inertia": {
+    "cluster": 0.1703951279467163,
+    "flagship_min": 0.7680735355522813,
+    "flagship_max": 0.8517591273726257
+   },
+   "canonical|anisotropic": {
+    "cluster": 0.2876032631725921,
+    "flagship_min": 0.7574252872060669,
+    "flagship_max": 0.791397696311358
+   },
+   "alt|density": {
+    "cluster": 0.4303344706692435,
+    "flagship_min": 0.8085168110018784,
+    "flagship_max": 0.8523866677774709
+   },
+   "alt|inertia": {
+    "cluster": 0.11004785638670268,
+    "flagship_min": 0.6975338202944333,
+    "flagship_max": 0.7788842306584273
+   },
+   "alt|anisotropic": {
+    "cluster": 0.23913716861031684,
+    "flagship_min": 0.6792619595803098,
+    "flagship_max": 0.746365822671932
+   }
+  },
+  "B5": {
+   "rows": {
+    "canonical|10.0": {
+     "delta_during_clearing_min": 8.662585926328457,
+     "advective_over_growth": 12.571745421432077
+    },
+    "canonical|10.5": {
+     "delta_during_clearing_min": 6.595532727682862,
+     "advective_over_growth": 7.069611980243819
+    },
+    "canonical|11.0": {
+     "delta_during_clearing_min": 5.697620987890875,
+     "advective_over_growth": 3.9755349695518745
+    },
+    "alt|10.0": {
+     "delta_during_clearing_min": 7.076873369148299,
+     "advective_over_growth": 13.799040120251272
+    },
+    "alt|10.5": {
+     "delta_during_clearing_min": 5.506543186371964,
+     "advective_over_growth": 7.759770507576895
+    },
+    "alt|11.0": {
+     "delta_during_clearing_min": 4.884742572375695,
+     "advective_over_growth": 4.363639630403778
+    }
+   },
+   "declared_rates": {
+    "flagship_sSFR_per_Gyr": 2.0,
+    "cluster_growth_per_Gyr": 0.2,
+    "zeq0_disc_sSFR_per_Gyr": 0.1
+   },
+   "v_host_kms": 300.0
+  },
+  "H": {
+   "speed2": {
+    "isotropic F": "1",
+    "temporal F": "1/(F + 1)",
+    "spatial G": "G + 1",
+    "anisotropic G": "G*cos(theta)**2 + 1",
+    "linear current / rate / electrostatic": "1"
+   },
+   "det": "-k**4*(2*C_e*alpha_c*delta - 2*C_e*alpha_c + 2*C_e*c_CH*delta - 2*C_e*c_CH - alpha_c*c_CH)",
+   "delta_star": "[(C_e*alpha_c + C_e*c_CH + alpha_c*c_CH/2)/(C_e*(alpha_c + c_CH))]",
+   "delta_star_excess": [
+    5.3333333248000014e-09,
+    1.5999999974400001e-09,
+    5.333333324800001e-10
+   ],
+   "Psi_at_caps": {
+    "canonical|flagship 1e10": {
+     "Gmax_fp4": 0.6890610006011073,
+     "Gmax_eul": 0.1344123108502813,
+     "speed_fp4": 1.2996387962049714,
+     "speed_aniso_fp4": 1.7513374894072593
+    },
+    "canonical|flagship 1e10.5": {
+     "Gmax_fp4": 0.8801851310254964,
+     "Gmax_eul": 0.14353921319830276,
+     "speed_fp4": 1.3711984287569383,
+     "speed_aniso_fp4": 1.9080239498173206
+    },
+    "canonical|flagship 1e11": {
+     "Gmax_fp4": 0.9624646903019867,
+     "Gmax_eul": 0.13632520104591805,
+     "speed_fp4": 1.400879969983862,
+     "speed_aniso_fp4": 1.9716475524053378
+    },
+    "alt|flagship 1e10": {
+     "Gmax_fp4": 0.7940446933156812,
+     "Gmax_eul": 0.15806551151748544,
+     "speed_fp4": 1.3394195359616348,
+     "speed_aniso_fp4": 1.8390579327326921
+    },
+    "alt|flagship 1e10.5": {
+     "Gmax_fp4": 1.0153130216164206,
+     "Gmax_eul": 0.1697134947943088,
+     "speed_fp4": 1.4196172095379869,
+     "speed_aniso_fp4": 2.0114519792551007
+    },
+    "alt|flagship 1e11": {
+     "Gmax_fp4": 1.111592710829321,
+     "Gmax_eul": 0.16177236664453792,
+     "speed_fp4": 1.453132034891985,
+     "speed_aniso_fp4": 2.0820130000766
+    }
+   }
+  },
+  "B6": {
+   "canonical": {
+    "density_ceiling": [
+     152.90046444798767,
+     233.39502981547525,
+     340.91375676641746
+    ],
+    "density_ceiling_eulerian": [
+     70.61130140356832,
+     104.65728992855392,
+     149.3143864314969
+    ],
+    "xcop_ceiling": 1756.5724634032206
+   },
+   "alt": {
+    "density_ceiling": [
+     164.2956562219478,
+     251.5150052777602,
+     368.24324553899214
+    ],
+    "density_ceiling_eulerian": [
+     76.46270063145592,
+     113.90843984031048,
+     162.9296802553286
+    ],
+    "xcop_ceiling": 1878.2644250993396
+   }
+  },
+  "G": {
+   "G1": {
+    "flagship_min_abs_shift": 0.26121571548573863,
+    "xcop": {
+     "canonical|natural (y = 1)": 0.933,
+     "canonical|upper bound": 0.73,
+     "alt|natural (y = 1)": 0.939,
+     "alt|upper bound": 0.747
+    },
+    "galaxies": {
+     "canonical": {
+      "dwarf": 0.036,
+      "SPARC disc": -0.001,
+      "Milky Way": 0.0
+     },
+     "alt": {
+      "dwarf": 0.012,
+      "SPARC disc": -0.007,
+      "Milky Way": -0.001
+     }
+    },
+    "kids_without_term": {
+     "canonical": -3.0,
+     "alt": -3.8
+    },
+    "shear_with_term": {
+     "canonical|natural (y = 1)": 0.999,
+     "canonical|upper bound": 0.994,
+     "alt|natural (y = 1)": 0.999,
+     "alt|upper bound": 0.993
+    },
+    "forest_escaped": {
+     "canonical|3.0": 0.0208,
+     "canonical|2.0": 0.0323,
+     "alt|3.0": 0.0233,
+     "alt|2.0": 0.0351
+    },
+    "harvey_keep": {
+     "canonical|natural (y = 1)": {
+      "1e+13": 0.9950795544738119,
+      "1e+14": 0.9932815460799114,
+      "3e+14": 0.9875536121709039
+     },
+     "canonical|upper bound": {
+      "1e+13": 0.9304889086057162,
+      "1e+14": 0.8727820463506583,
+      "3e+14": 0.8375915993717681
+     },
+     "alt|natural (y = 1)": {
+      "1e+13": 0.9954820616418854,
+      "1e+14": 0.9940208370315773,
+      "3e+14": 0.9891431317051577
+     },
+     "alt|upper bound": {
+      "1e+13": 0.9314033103204263,
+      "1e+14": 0.869740492516407,
+      "3e+14": 0.817894340665639
+     }
+    },
+    "harvey_intact": {
+     "100": 0.005952303589975618,
+     "150": 0.039867749044243075,
+     "fit": 0.026083449072383132
+    }
+   },
+   "G2": {
+    "canonical|xcop": {
+     "ratio": 0.6813357395369655,
+     "strict": false,
+     "alt": false,
+     "eps": 0.1703951279467163
+    },
+    "canonical|galaxies": {
+     "eps": {
+      "dwarf": 0.3019020036920698,
+      "SPARC disc": 0.02162907996520525,
+      "Milky Way": 0.004586457807393019
+     },
+     "shifts": {
+      "dwarf": 0.013688363097905607,
+      "SPARC disc": -8.57855884983344e-05,
+      "Milky Way": 2.6361739906987097e-05
+     }
+    },
+    "canonical|galaxies_density": {
+     "eps": {
+      "dwarf": 0.31833201251165744,
+      "SPARC disc": 0.021915322687983917,
+      "Milky Way": 0.0007777262876499667
+     },
+     "shifts": {
+      "dwarf": 0.014421070716908619,
+      "SPARC disc": -8.692100239184562e-05,
+      "Milky Way": 4.470276564570396e-06
+     }
+    },
+    "alt|xcop": {
+     "ratio": 0.7059358954828878,
+     "strict": false,
+     "alt": false,
+     "eps": 0.11004785638670268
+    },
+    "alt|galaxies": {
+     "eps": {
+      "dwarf": 0.2463136200729672,
+      "SPARC disc": 0.01354866535344244,
+      "Milky Way": 0.0030576515008566055
+     },
+     "shifts": {
+      "dwarf": 0.0035328393643664436,
+      "SPARC disc": -0.0004721347510710831,
+      "Milky Way": -8.010480343519158e-05
+     }
+    },
+    "alt|galaxies_density": {
+     "eps": {
+      "dwarf": 0.28330765610227476,
+      "SPARC disc": 0.000788770077169629,
+      "Milky Way": 8.738156747863656e-08
+     },
+     "shifts": {
+      "dwarf": 0.004060965751189179,
+      "SPARC disc": -2.74724611854585e-05,
+      "Milky Way": -2.289024016957139e-09
+     }
+    }
+   }
+  }
+ },
+ "ledger": [
+  {
+   "link": "L10o.1",
+   "what": "the task's current: J.n = n_d (clock-frame density), J^i = -n_d v^i",
+   "status": "DERIVED",
+   "basis": "check A1"
+  },
+  {
+   "link": "L10o.2",
+   "what": "gauge reduction: -|dPsi|^2 + gA.J == -|DPsi|^2 + g^2 A.A|Psi|^2; J.d chi is pure gauge at O(g) and FP4's density class at O(g^2); J.n f is an electrostatic density coupling",
+   "status": "DERIVED",
+   "basis": "check A2"
+  },
+  {
+   "link": "L10o.3",
+   "what": "kinetic couplings: -F(I) g^mn dPsi*dPsi is the density coupling V = c^2[(1+F)^(-1/2) - 1] (|F| = 2.0 x FK1's eps/m^2 for 575-650 km/s); spatial/anisotropic members change only the inertia",
+   "status": "DERIVED",
+   "basis": "check A3"
+  },
+  {
+   "link": "L10o.4",
+   "what": "THE ENERGY-RECIPROCITY IDENTITY: the energy any coupling takes from the MOND sector is -Int S.d_t grad u, S its source in the MOND equation; <= max(delta) x the MOND field energy",
+   "status": "DERIVED",
+   "basis": "check A4"
+  },
+  {
+   "link": "L10o.5",
+   "what": "exact back-reactions: S = -2 rho_d V' u'/a0^2 (density), 2 g (d_t n_d) u'/a0^2 (rate), -G' rho_d w^2 u'/a0^2 (inertia), g j (F + 2IF') (current)",
+   "status": "DERIVED",
+   "basis": "check A5"
+  },
+  {
+   "link": "L10o.6",
+   "what": "class-wide: unbinding the flagship's dark mass costs 7.2-11.9x the host's whole MOND field energy (4.9-8.7x with the baryons' kinetic energy added): any MOND-powered clearing needs delta > 1 where the dark state sits (beyond H4's health boundary)",
+   "status": "FAILS",
+   "basis": "check B0"
+  },
+  {
+   "link": "L10o.7",
+   "what": "linear spatial-current (magnetic) couplings: no work in a static host; the re-direction floor fails the flagship",
+   "status": "FAILS",
+   "basis": "check B1"
+  },
+  {
+   "link": "L10o.8",
+   "what": "velocity-weighted couplings at FP4's delta = 1 cap (density, inertia, anisotropic inertia): fail the flagship in the slow and sudden readings, both footings",
+   "status": "FAILS",
+   "basis": "check B2 (B3: an unattainable pericentre-timed envelope with FP4's cap clears 3 of 18 member-host cells (['inertia']); with the health-enforced cap: 0)"
+  },
+  {
+   "link": "L10o.9",
+   "what": "ordering: every MOND-sector coupling clears clusters before z = 2.5 galaxies (anti-selective)",
+   "status": "FAILS",
+   "basis": "check B4"
+  },
+  {
+   "link": "L10o.10",
+   "what": "the rate member g J_perp.grad chi == -g n_d d_t chi: silent in static halos (escapes the static reciprocity), right ordering by growth rate, but delta >= B0's ratio during the clearing (ill-posed core); clock-frame dependent",
+   "status": "FAILS",
+   "basis": "checks A5, B5, H4"
+  },
+  {
+   "link": "L10o.11",
+   "what": "velocity scale: host-proportional ceilings or a fitted strength per member; the 575-675 km/s window not predicted",
+   "status": "FITTED",
+   "basis": "check B6"
+  },
+  {
+   "link": "L10o.12",
+   "what": "health: current members luminal (tachyonic beyond g|A| = m); every velocity-weighted kicker is superluminal (the weighting theorem); all I-members off on FRW",
+   "status": "DERIVED",
+   "basis": "checks H1-H3"
+  },
+  {
+   "link": "L10o.13",
+   "what": "FP4's ceiling delta = 1 is the core's own health boundary: FP5's (N, U) determinant vanishes at delta* = 1 + O(1e-9)",
+   "status": "DERIVED",
+   "basis": "check H4"
+  },
+  {
+   "link": "L10o.14",
+   "what": "the best healthy coupling (-F(I) g^mn dPsi*dPsi) = FP4's density class: passes what LCDM passes, fails the flagship",
+   "status": "FAILS",
+   "basis": "check G1 (FP4's committed rows)"
+  },
+  {
+   "link": "L10o.15",
+   "what": "the honest minimal price of a working kick: FK1's eps (FITTED, eps/m^2 = 1.84-2.35e-6 for 575-650 km/s: energy from the dark field's own splitting, S = 0) + its trigger's constants (the conversion coupling and gate exponent q, DECLARED) + the initial misalignment (initial data) + m",
+   "status": "FITTED",
+   "basis": "FK1 (committed); this lane's no-go for every MOND-sector source"
+  },
+  {
+   "link": "L10o.16",
+   "what": "not scored here: zero-net redistributors in a GROWING host (betatron-like magnetic members, sign-changing weights) beyond B1's static floor; velocity couplings nonlinear in Psi (outside the low-order class; ill-defined for a multistreaming wave field); the superluminal members' KiDS / cosmic-shear / forest / Harvey rows (moot: their flagship and X-COP fail); the rate member's residual clock-frame dipole under khronon tracking",
+   "status": "OPEN",
+   "basis": "not computed"
+  }
+ ],
+ "n_checks": 22,
+ "n_fail_load_bearing": 2,
+ "runtime_s": 286.9184238910675
+}

@@ -1,0 +1,304 @@
+FP8 -- THE LAST OPEN DOOR FOR THE DARK-SECTOR KICK: couplings of the dark field's CURRENT and DERIVATIVES to the core.
+
+WHY.  FP4 (committed) showed that the ungated C-H/K core cannot carry the dark mass and cannot supply the kick through any
+DENSITY coupling -rho_d V(I): by the action's own reciprocity (FP4 B1) the term that pushes the dark state multiplies the
+MOND phantom around it by (1 - delta), and at delta = 1 the host is Newton + halo, which fails the z = 2.5 flagship.  FP4's
+ledger left one door OPEN (L10o): couplings to the dark field's CURRENT J^m = i(Psi* d^m Psi - Psi d^m Psi*) or its
+DERIVATIVES, which might move or heat the dark state without writing on the phantom.  This lane writes the most general
+low-order couplings of that kind, varies the action with them, and asks: (1) does any escape the reciprocity bound, and what
+is its exact back-reaction on the MOND sector's source; (2) what velocity scale does it produce, from which constants;
+(3) where does it act; (4) is it healthy (Minkowski, FRW, static MOND background); (5) the gates for the best one.
+
+THE ROOT (FP4's, varied here exactly as written):
+    I = I_core + S_Psi + S_int,   I_core = C-H (ACTION.md:95-106) + alpha_c a^2 - c_2 (K - <K>_h)^2, beta = 0, nu_mono;
+    S_Psi = -Int sqrt(-g) [g^{mn} d_m Psi* d_n Psi + m^2 |Psi|^2]   (FP4 L10f, POSTULATED: one complex field, m >= 1.9e-19 eV),
+  with L353's constrained pair, so the kernel reads the baryons' Newtonian field and the dark state feels Newtonian gravity
+  (the retention machinery below uses exactly that force law).  NR limit of the MOND sector (FP4's I_NR):
+    I_NR = Int dt d^3x { L_kin - rho Phi - [2 grad Phi . grad u - |grad u|^2 - a0^2 q(|grad u|^2/a0^2)]/(8 pi G) } + S_int,
+  q'(s^2) = nu_mono(s) - 1 (the filter S is at the 0.03-0.1 pc scale and is dropped at halo scales, as in FP4 B1).
+  Both a0 footings: FP0's 9.3603e-11 / 1.1312e-10 m/s^2; the imported machinery's pair 9.3619e-11 / 1.1279e-10 is used
+  wherever a committed lane's function is called (0.02% / 0.3% apart).
+
+THE CLASS (local, the dark U(1) kept unless stated, at most one derivative on each Psi; chi is any scalar of the core --
+U, W_b, I = |grad W_b|^2/alpha^2, tau, ln N, K; e^m = D^m W_b/|D W_b| the MOND field's direction):
+  (a) density                   -rho_d V(I)                                     [FP4's class]
+  (b) electrostatic current     g (J.n) f(I)                                    (the task's (J.u) f(I))
+  (c) gradient current          g J^m d_m chi                                   (the task's J^m d_m(sector field))
+  (d) spatial ("rate") current  g J^m h_m^n d_n chi  == -g (J.n)(n.d chi) + (c) (J.a is (d) with chi = ln N)
+  (e) magnetic current          g J^m A_m, A spatial with curl A != 0           (e.g. F(I) D_m W_b off spherical symmetry)
+  (f) kinetic couplings         -F(I) g^{mn} dPsi* dPsi,  -F(I) n^m n^n dPsi* dPsi,  -G(I) h^{mn} dPsi* dPsi,
+                                -G(I) e^m e^n dPsi* dPsi
+  (g) U(1)-breaking             f(I) Re Psi^2 (a triggered splitting); eps Re Psi^2 (FK1's kick)
+  (h) clock couplings           the same with K, a_m, n_m in place of the MOND sector (FP4 B2/B3 cover their densities)
+
+======================================================================================================================
+LOADING the committed lanes' machinery (read-only exec; nothing is edited)
+======================================================================================================================
+  AT3's head (AT1, L357, L320, BK1, L321, L355, L360) and FP4's ceiling/X-COP/galaxy functions loaded   [16s]
+  footings: FP0 9.3603e-11 / 1.1312e-10 m/s^2; the machinery's 9.3619e-11 / 1.1279e-10
+  hosts built: 14 (6 flagship at z = 2.5, the X-COP reference cluster, L321's three z = 0 galaxies; both footings)   [16s]
+
+======================================================================================================================
+C0  CONTROLS: the loaded machinery reproduces committed numbers
+======================================================================================================================
+  [PASS] C0a CONTROL: FP4's own ceiling() (exec'd from its committed source) reproduces FP4's committed B5 delta_req at r_F on all six flagship hosts
+         measured: max |dev| 0.0e+00
+  [PASS] C0b CONTROL: this lane's copy of AT1's retention (identical draws, decay in place, isotropic 250 km/s kick) reproduces AT1's retained_acc on the 1e10.5 flagship host
+         measured: this lane 0.181090, AT1 0.181090, |dev| 2.0e-13
+  [PASS] C0c CONTROL: the orbit quadrature used for the gains (48 nodes, zero weight outside the turning points) is converged: the sample-summed time fraction inside r_F, orbit-averaged v^2 and v_r^2 agree with 400 nodes within 1%
+         measured: max relative |dev| 0.0075; (reported) L321's frac_inside, whose nodes beyond the turning points carry an artificial weight, differs by 0.041 in the time inside r_F
+  controls done   [22s]
+
+======================================================================================================================
+A1  THE TASK'S CURRENT IN THE NR LIMIT: J.n is the clock-frame number density, J^i the (reversed) number flux
+======================================================================================================================
+  [PASS] A1 DERIVED: with Psi = e^{-imt} a e^{i theta}/sqrt(2m), J.n = a^2 (1 - theta_t/m) -> n_d (the number density in the clock frame) and J^x = -a^2 theta_x/m = -n_d v: a coupling to J.n is a density coupling, a coupling to the spatial J is a coupling to the dark flux
+         measured: J^0 = (-m + Derivative(theta(t, x), t))*a(t, x)**2/m; J^x = -a(t, x)**2*Derivative(theta(t, x), x)/m; residuals 0, 0
+
+======================================================================================================================
+A2  GAUGE REDUCTION: a current coupling is a charged scalar in an external potential plus a DENSITY coupling
+======================================================================================================================
+    -|dPsi|^2 - m^2|Psi|^2 + g A.J  -  [ -|(d + i g A)Psi|^2 - m^2|Psi|^2 + g^2 A.A |Psi|^2 ] = 0
+    A = d chi, Psi = e^(-i g chi) Psi':  L - [ -|dPsi'|^2 - m^2 |Psi'|^2 + g^2 (d chi)^2 |Psi'|^2 ] = 0
+    so: (c) g J.d chi is FP4's density class at O(g^2) (m^2 -> m^2 - g^2 (d chi)^2: a WELL for spatial gradients);
+        (b) g (J.n) f: A = f n, A.A = -f^2 -> an electrostatic potential g f per particle plus m^2 -> m^2 + g^2 f^2 (healthy);
+        (e) spatial A: only B = curl A (magnetic, no work) and E = -d_t A are physical
+  [PASS] A2 DERIVED (gauge reduction): -|dPsi|^2 + g A.J == -|(d + igA)Psi|^2 + g^2 A.A |Psi|^2 identically, and for A = d chi the field redefinition removes the current coupling exactly, leaving the density coupling g^2 (d chi)^2 |Psi|^2
+         measured: identity residual 0; gradient-reduction residual 0
+         reading:  a current coupling to a gradient does nothing at O(g) (pure gauge) and is FP4's density class at O(g^2); a coupling to J.n is an electrostatic potential, i.e. FP4's class; only a curl (magnetic) or a clock-frame rate survives
+
+======================================================================================================================
+A3  REST-ENERGY REDUCTION: the kinetic couplings' dispersion; which are density couplings, which change inertia
+======================================================================================================================
+    isotropic -F(I) g^mn        : rest energy m*sqrt(1/(F + 1)); 1/inertia (F + 1)*sqrt(1/(F + 1))/m (along e: (F + 1)*sqrt(1/(F + 1))/m); speed^2 1 (along e: 1)
+    temporal -F(I) n^m n^n      : rest energy m*sqrt(1/(F + 1)); 1/inertia sqrt(1/(F + 1))/m (along e: sqrt(1/(F + 1))/m); speed^2 1/(F + 1) (along e: 1/(F + 1))
+    spatial -G(I) h^mn          : rest energy m; 1/inertia (G + 1)/m (along e: (G + 1)/m); speed^2 G + 1 (along e: G + 1)
+    anisotropic -G(I) e^m e^n   : rest energy m; 1/inertia 1/m (along e: (G + 1)/m); speed^2 1 (along e: G + 1)
+    isotropic member: V/c^2 = sqrt(1/(F + 1)) - 1 per unit rest mass (a density coupling, luminal); a hill of v^2/2 needs F = -1 + 4/(beta + 2)**2; |F|/(FK1 eps/m^2) = 2 - 5*beta/2 + O(beta^2): 575.0 km/s 3.679e-06 (2.0000x), 600.0 km/s 4.006e-06 (2.0000x), 625.0 km/s 4.346e-06 (2.0000x), 650.0 km/s 4.701e-06 (2.0000x)
+  [PASS] A3 DERIVED (rest-energy reduction): -F(I) g^{mn} dPsi* dPsi is exactly the density coupling V = c^2[(1+F)^(-1/2) - 1] (rest energy m/sqrt(1+F), luminal); the temporal member shifts the rest energy AND the speed (1/(1+F)); the spatial and anisotropic members leave the rest energy and change only the inertia; a 575-650 km/s hill needs |F| = 2.0 x FK1's eps/m^2
+         measured: V_iso = sqrt(1/(F + 1)) - 1; |F|/(eps/m^2) = 2 - 5*beta/2; 575.0: 1.99999, 600.0: 1.99999, 625.0: 1.99999, 650.0: 1.99999
+         reading:  the derivative door is the density door with a different name: the kinetic coupling's hill is a rest-mass hill, FK1's latent heat written as a place-dependent mass, and it pays FP4's reciprocity exactly
+
+======================================================================================================================
+A4  THE ENERGY-RECIPROCITY IDENTITY: energy reaches the dark state from the MOND sector only through S, its back-reaction
+======================================================================================================================
+    particle: h = m*Phi(x) - 3*v**4*W4(x, t) + v**2*(m/2 - W2(x, t)) + W0(x, t);  dh/dt - dW/dt|_(x,v) on shell = 0;  h contains W1: False
+    field: -dL_int/dt|_dark + S u'_t + d/dt(Pi u'_t) = 0  (S = dL/du' - dPi/dt, Pi = dL/du'_t: generic L_int)
+    bound: P u'_t - (a0^2 q'/8 pi G) dI/dt = 0  (P = q' u'/4 pi G; u'_t parallel to u')  =>  energy per volume between static
+           epochs <= max(delta) (a0^2/8 pi G) q(I): the MOND sector can hand over at most max(delta) x its own field energy
+  [PASS] A4 DERIVED (the energy-reciprocity identity): for a particle, dh/dt = dW/dt|_(x,v) and h has no linear-in-v part (a static current coupling does no work); for any L_int(grad u, d_t grad u, dark fields) the dark state's energy changes as -S.d_t grad u - d_t(Pi.d_t grad u) with S its source in the MOND sector's equation; with |S| <= delta |P| the energy handed over between static epochs is <= max(delta) x the MOND field energy (a0^2/8 pi G) Int q(I) for a field growing in magnitude
+         measured: particle residual 0 (W1 in h: False); field residual 0; flux-energy residual 0
+         reading:  no coupling -- density, current, derivative, rate, any order, any velocity weighting -- can take energy from the MOND sector without an equal source S in the MOND sector's own equation; couplings only choose WHEN they pay it
+
+======================================================================================================================
+A5  THE EXACT BACK-REACTION ON THE MOND SECTOR'S SOURCE, member by member (Euler-Lagrange of I_NR + L_int, spherical)
+======================================================================================================================
+    density  -rho_d V(I)                        : S = -2*rho_d(r, t)*Derivative(u(r, t), r)*Subs(Derivative(V(_xi_1), _xi_1), _xi_1, Derivative(u(r, t), r)**2/a_0**2)/a_0**2;  EL - d_r[r^2 flux] = 0
+    rate     -g n_d d_t I  (== g J_perp.grad I) : S = 2*g*Derivative(n(r, t), t)*Derivative(u(r, t), r)/a_0**2;  EL - d_r[r^2 flux] = 0
+    inertia  -G(I) rho_d w^2/2                  : S = -rho_d(r, t)*w(r, t)**2*Derivative(u(r, t), r)*Subs(Derivative(Gcoef(_xi_1), _xi_1), _xi_1, Derivative(u(r, t), r)**2/a_0**2)/a_0**2;  EL - d_r[r^2 flux] = 0
+    current  g j F(I) u'  (J_perp . F grad u)   : S = g*(a_0**2*F(Derivative(u(r, t), r)**2/a_0**2) + 2*Derivative(u(r, t), r)**2*Subs(Derivative(F(I_s), I_s), I_s, Derivative(u(r, t), r)**2/a_0**2))*j(r, t)/a_0**2;  EL - d_r[r^2 flux] = 0
+    Phi-equation: Lap u = 4 pi G rho (residual 0), unchanged by every member
+    => with a regular centre Phi' = u' (1 + q') + 4 pi G S = u' [1 + q'(1 - delta)], delta = -4 pi G S/(q' u'):
+       density: delta = 8 pi G rho_d V'/(a0^2 q')  (FP4 B1);  rate: delta = -8 pi G g d_t n_d/(a0^2 q')  (zero for a static dark state);
+       inertia: delta = 8 pi G G' (rho_d w^2/2)/(a0^2 q');  current: S = g j (F + 2 I F'), proportional to the dark current
+  [PASS] A5 DERIVED: the Euler-Lagrange equations of I_NR + L_int give Phi' = u'(1 + q') + 4 pi G S for every member (residual 0), with S = -2 rho_d V' u'/a0^2 (density), 2 g (d_t n_d) u'/a0^2 (rate: the n_d d_t u' terms cancel), -G' rho_d w^2 u'/a0^2 (inertia), g j (F + 2 I F') (current); the Poisson equation for u is untouched
+         measured: residuals density 0, rate 0, inertia 0, current 0; Poisson 0
+         reading:  the current and rate members write on the phantom only while the dark state FLOWS (j != 0, d_t n_d != 0): in a static halo they are silent -- and, by A4, they hand over nothing there either
+  part A done   [23s]
+
+======================================================================================================================
+B0  THE CLASS-WIDE ENERGY BOUND: unbinding the flagship's dark mass vs the MOND sector's whole field energy (+ the baryons')
+======================================================================================================================
+    canonical flagship 1e10  : unbinding cost 2.61e+15 Msun (km/s)^2 (48333 (km/s)^2 per unbound Msun, core kept 0.100); MOND field energy 2.20e+14, baryon kinetic 8.19e+13 -> cost/(both) 8.66 (cost/MOND 11.89); average-particle delta to escape: mean 68.9, min over 0.1-1 gate 37.9
+    canonical flagship 1e10.5: unbinding cost 1.11e+16 Msun (km/s)^2 (64682 (km/s)^2 per unbound Msun, core kept 0.100); MOND field energy 1.18e+15, baryon kinetic 5.01e+14 -> cost/(both) 6.60 (cost/MOND 9.39); average-particle delta to escape: mean 48.4, min over 0.1-1 gate 28.0
+    canonical flagship 1e11  : unbinding cost 5.56e+16 Msun (km/s)^2 (95764 (km/s)^2 per unbound Msun, core kept 0.091); MOND field energy 6.43e+15, baryon kinetic 3.33e+15 -> cost/(both) 5.70 (cost/MOND 8.65); average-particle delta to escape: mean 40.8, min over 0.1-1 gate 25.2
+    alt       flagship 1e10  : unbinding cost 2.30e+15 Msun (km/s)^2 (50127 (km/s)^2 per unbound Msun, core kept 0.126); MOND field energy 2.43e+14, baryon kinetic 8.19e+13 -> cost/(both) 7.08 (cost/MOND 9.46); average-particle delta to escape: mean 59.2, min over 0.1-1 gate 32.5
+    alt       flagship 1e10.5: unbinding cost 1.00e+16 Msun (km/s)^2 (67594 (km/s)^2 per unbound Msun, core kept 0.122); MOND field energy 1.32e+15, baryon kinetic 5.01e+14 -> cost/(both) 5.51 (cost/MOND 7.60); average-particle delta to escape: mean 41.9, min over 0.1-1 gate 23.8
+    alt       flagship 1e11  : unbinding cost 5.13e+16 Msun (km/s)^2 (101047 (km/s)^2 per unbound Msun, core kept 0.109); MOND field energy 7.17e+15, baryon kinetic 3.33e+15 -> cost/(both) 4.88 (cost/MOND 7.16); average-particle delta to escape: mean 35.6, min over 0.1-1 gate 21.2
+    canonical X-COP ref      : unbinding cost 9.31e+20 Msun (km/s)^2 (1756602 (km/s)^2 per unbound Msun, core kept 0.100); MOND field energy 2.22e+20, baryon kinetic 1.62e+20 -> cost/(both) 2.43 (cost/MOND 4.20); average-particle delta to escape: mean 38.6, min over 0.1-1 gate 9.1
+    alt       X-COP ref      : unbinding cost 9.31e+20 Msun (km/s)^2 (1756602 (km/s)^2 per unbound Msun, core kept 0.100); MOND field energy 2.46e+20, baryon kinetic 1.62e+20 -> cost/(both) 2.28 (cost/MOND 3.78); average-particle delta to escape: mean 34.2, min over 0.1-1 gate 8.2
+  [PASS] B0 DERIVED + NUMBERS (class-wide, any order, any weighting of the NET energy): unbinding the flagship's dark mass inside r_F down to the flagship's allowed core needs a net energy input larger than the MOND sector's whole field energy (to 2 r200) -- and larger than that plus all the baryons' kinetic energy (a generous allowance for a rotating field) -- on every host and footing; so by A4 any coupling that supplies it from the MOND sector reaches delta > 1 where the dark state sits during the clearing (the no-go needs a ratio > 1)
+         measured: cost/E_MOND 7.16-11.89; cost/(E_MOND + K_b) 4.88-8.66 (flagship); cost/E_MOND for X-COP 3.78-4.20
+         reading:  the MOND sector is too soft to be the source: the dark halo inside r_F at z = 2.5 is bound by 7-12x more energy than the whole host's MOND field holds (for clusters the ratio is lower: the same measure is anti-selective).  Scope: this bounds the NET energy; a pure redistributor (zero net, e.g. a betatron-like magnetic member) would have to take it from the rest of the halo -- that case is B1's
+  B0 done   [23s]
+
+======================================================================================================================
+B1-B4  THE RETENTION RUNS (AT1's machinery; FP4's delta = 1 cap and the health-enforced Eulerian cap)
+======================================================================================================================
+  retention runs done (14 hosts, 6000 particles each)   [286s]
+
+======================================================================================================================
+B1  LINEAR SPATIAL-CURRENT (MAGNETIC) MEMBERS: no work in a static host; even perfect re-direction leaves the halo
+======================================================================================================================
+    canonical flagship 1e10  : every direction re-chosen (speed kept): retained inside r_F 0.135 (allowed 0.063) -> shift +0.203 dex (S = 0: no suppression; with delta = 1 it would be +0.132)
+    canonical flagship 1e10.5: every direction re-chosen (speed kept): retained inside r_F 0.166 (allowed 0.062) -> shift +0.244 dex (S = 0: no suppression; with delta = 1 it would be +0.161)
+    canonical flagship 1e11  : every direction re-chosen (speed kept): retained inside r_F 0.216 (allowed 0.059) -> shift +0.320 dex (S = 0: no suppression; with delta = 1 it would be +0.220)
+    alt       flagship 1e10  : every direction re-chosen (speed kept): retained inside r_F 0.127 (allowed 0.072) -> shift +0.170 dex (S = 0: no suppression; with delta = 1 it would be +0.101)
+    alt       flagship 1e10.5: every direction re-chosen (speed kept): retained inside r_F 0.171 (allowed 0.071) -> shift +0.225 dex (S = 0: no suppression; with delta = 1 it would be +0.137)
+    alt       flagship 1e11  : every direction re-chosen (speed kept): retained inside r_F 0.217 (allowed 0.066) -> shift +0.292 dex (S = 0: no suppression; with delta = 1 it would be +0.188)
+  [PASS] B1 DERIVED + NUMBERS: a linear coupling to the spatial current (magnetic, or a gradient: pure gauge) does no work in a static host (A4: its part of W is linear in v); even re-choosing every particle's direction to minimise its time inside r_F (AT1's retention, sudden potential iteration) keeps the flagship above 0.10 dex on every host and footing
+         measured: retained 0.127-0.217; smallest shift +0.170 dex
+         reading:  in spherical symmetry the member is pure gauge (retention 1); the re-direction floor is the most any non-spherical (magnetic) field could do, and energy conservation keeps the deep particles inside r_F
+
+======================================================================================================================
+B2  THE WEIGHTED MEMBERS AT FP4's delta = 1 CAP: slow and sudden switch-on (with the inertia members' own speed-up granted)
+======================================================================================================================
+    canonical flagship 1e10   (G_max 0.69): density|slow 0.92 -> +0.65 (+0.65); density|sudden 0.91 -> +0.65 (+0.65); inertia|slow 0.85 -> +0.62 (+0.51); inertia|sudden 0.87 -> +0.63 (+0.52); anisotropic|slow 0.79 -> +0.58 (+0.38); anisotropic|sudden 0.89 -> +0.64 (+0.42)
+    canonical flagship 1e10.5 (G_max 0.88): density|slow 0.88 -> +0.64 (+0.64); density|sudden 0.89 -> +0.64 (+0.64); inertia|slow 0.79 -> +0.59 (+0.46); inertia|sudden 0.83 -> +0.61 (+0.48); anisotropic|slow 0.76 -> +0.57 (+0.35); anisotropic|sudden 0.83 -> +0.61 (+0.37)
+    canonical flagship 1e11   (G_max 0.96): density|slow 0.87 -> +0.67 (+0.67); density|sudden 0.87 -> +0.67 (+0.67); inertia|slow 0.77 -> +0.61 (+0.48); inertia|sudden 0.79 -> +0.62 (+0.49); anisotropic|slow 0.76 -> +0.61 (+0.36); anisotropic|sudden 0.82 -> +0.64 (+0.38)
+    alt       flagship 1e10   (G_max 0.79): density|slow 0.85 -> +0.52 (+0.52); density|sudden 0.87 -> +0.53 (+0.53); inertia|slow 0.78 -> +0.49 (+0.39); inertia|sudden 0.83 -> +0.51 (+0.41); anisotropic|slow 0.75 -> +0.47 (+0.29); anisotropic|sudden 0.86 -> +0.53 (+0.33)
+    alt       flagship 1e10.5 (G_max 1.02): density|slow 0.81 -> +0.51 (+0.51); density|sudden 0.84 -> +0.53 (+0.53); inertia|slow 0.72 -> +0.47 (+0.36); inertia|sudden 0.79 -> +0.50 (+0.38); anisotropic|slow 0.70 -> +0.46 (+0.26); anisotropic|sudden 0.80 -> +0.51 (+0.29)
+    alt       flagship 1e11   (G_max 1.11): density|slow 0.83 -> +0.57 (+0.57); density|sudden 0.84 -> +0.57 (+0.57); inertia|slow 0.70 -> +0.50 (+0.37); inertia|sudden 0.75 -> +0.53 (+0.40); anisotropic|slow 0.68 -> +0.49 (+0.27); anisotropic|sudden 0.80 -> +0.56 (+0.31)
+    mean slow gain of the inertia members relative to the density member at the same cap: 1.29-1.50
+  [PASS] B2 NUMBERS: at FP4's (generous, static) delta = 1 cap the density, inertia and anisotropic-inertia members clear no flagship host in either physical switch-on reading (slow: orbit-averaged gains; sudden: a random phase), both footings, even with the inertia members' speed-up inside the region granted (retained time divided by sqrt(1 + G_max))
+         measured: smallest shift over 36 cells +0.260 dex (gate 0.10); retained 0.68-0.92
+         reading:  velocity weighting moves the energy onto the fast particles and raises its total only by the cap's pressure weighting (1.29-1.50x the density member's); the reciprocal term then turns the kept halo into Newton + halo, as in FP4
+
+======================================================================================================================
+B3  (reported) THE ENVELOPE: every particle handed the orbit maximum of its gain (pericentre timing, unattainable)
+======================================================================================================================
+    canonical flagship 1e10  : density env|fp4 0.647/+0.503; density env|eul 0.994/+0.688; density slow|eul 1.006/+0.695; inertia env|fp4 0.289/+0.261; inertia env|eul 0.826/+0.603; inertia slow|eul 1.012/+0.699; anisotropic env|fp4 0.389/+0.336; anisotropic env|eul 0.872/+0.627; anisotropic slow|eul 1.029/+0.712
+    canonical flagship 1e10.5: density env|fp4 0.537/+0.439; density env|eul 0.970/+0.680; density slow|eul 0.991/+0.690; inertia env|fp4 0.110/+0.109; inertia env|eul 0.821/+0.604; inertia slow|eul 1.026/+0.714; anisotropic env|fp4 0.246/+0.229; anisotropic env|eul 0.848/+0.618; anisotropic slow|eul 1.037/+0.722
+    canonical flagship 1e11  : density env|fp4 0.532/+0.467; density env|eul 0.964/+0.719; density slow|eul 0.983/+0.729; inertia env|fp4 0.029/+0.033; inertia env|eul 0.814/+0.640; inertia slow|eul 0.989/+0.732; anisotropic env|fp4 0.200/+0.206; anisotropic env|eul 0.868/+0.669; anisotropic slow|eul 1.012/+0.747
+    alt       flagship 1e10  : density env|fp4 0.573/+0.384; density env|eul 0.937/+0.562; density slow|eul 0.985/+0.583; inertia env|fp4 0.228/+0.174; inertia env|eul 0.763/+0.481; inertia slow|eul 0.980/+0.581; anisotropic env|fp4 0.346/+0.252; anisotropic env|eul 0.819/+0.508; anisotropic slow|eul 1.024/+0.607
+    alt       flagship 1e10.5: density env|fp4 0.438/+0.315; density env|eul 0.934/+0.572; density slow|eul 0.990/+0.596; inertia env|fp4 0.065/+0.054; inertia env|eul 0.738/+0.479; inertia slow|eul 0.996/+0.599; anisotropic env|fp4 0.224/+0.175; anisotropic env|eul 0.800/+0.509; anisotropic slow|eul 1.038/+0.629
+    alt       flagship 1e11  : density env|fp4 0.394/+0.316; density env|eul 0.950/+0.627; density slow|eul 0.972/+0.638; inertia env|fp4 0.010/+0.010; inertia env|eul 0.767/+0.537; inertia slow|eul 0.991/+0.646; anisotropic env|fp4 0.158/+0.141; anisotropic env|eul 0.800/+0.554; anisotropic slow|eul 1.013/+0.660
+  [PASS] B3 (reported) the envelope reading: which member/host cells pass the flagship when every particle is hit at its orbit's most favourable phase -- with FP4's cap and with the health-enforced Eulerian cap
+         measured: passing cells: ['alt|flagship 1e10.5|inertia|envelope|fp4', 'alt|flagship 1e11|inertia|envelope|fp4', 'canonical|flagship 1e11|inertia|envelope|fp4']
+         reading:  with FP4's generous cap the (superluminal) inertia envelope clears the heavier hosts; with the cap H4 actually enforces (delta <= 1 at every time where the dark state sits) no envelope clears any host
+
+======================================================================================================================
+B4  ORDERING: galaxies vs clusters for every weighted member (slow reading, FP4's cap)
+======================================================================================================================
+    canonical density     : X-COP keeps 0.523 inside R500; the flagship hosts keep 0.870-0.923 inside r_F
+    canonical inertia     : X-COP keeps 0.170 inside R500; the flagship hosts keep 0.768-0.852 inside r_F
+    canonical anisotropic : X-COP keeps 0.288 inside R500; the flagship hosts keep 0.757-0.791 inside r_F
+    canonical unbinding cost / MOND field energy: X-COP 4.20, flagship 8.65-11.89
+    alt       density     : X-COP keeps 0.430 inside R500; the flagship hosts keep 0.809-0.852 inside r_F
+    alt       inertia     : X-COP keeps 0.110 inside R500; the flagship hosts keep 0.698-0.779 inside r_F
+    alt       anisotropic : X-COP keeps 0.239 inside R500; the flagship hosts keep 0.679-0.746 inside r_F
+    alt       unbinding cost / MOND field energy: X-COP 3.78, flagship 7.16-9.46
+  [PASS] B4 NUMBERS: every weighted member clears the X-COP reference cluster MORE than any z = 2.5 flagship host (slow reading, both footings), and the unbinding cost per unit MOND field energy is lower for the cluster: the whole class is anti-selective (clusters first), the ordering the framework needs is the opposite
+         measured: {'canonical|density': {'cluster': 0.523, 'flagship_min': 0.87, 'flagship_max': 0.923}, 'canonical|inertia': {'cluster': 0.17, 'flagship_min': 0.768, 'flagship_max': 0.852}, 'canonical|anisotropic': {'cluster': 0.288, 'flagship_min': 0.757, 'flagship_max': 0.791}, 'alt|density': {'cluster': 0.43, 'flagship_min': 0.809, 'flagship_max': 0.852}, 'alt|inertia': {'cluster': 0.11, 'flagship_min': 0.698, 'flagship_max': 0.779}, 'alt|anisotropic': {'cluster': 0.239, 'flagship_min': 0.679, 'flagship_max': 0.746}}
+         reading:  the energy any MOND-sector coupling can hand over scales with the host's MOND field energy per unit dark mass, which is largest where the halo is diffuse and hot -- the clusters
+
+======================================================================================================================
+B5  THE RATE MEMBER g J_perp.grad chi == -g n_d d_t chi: silent in a static halo, pays during the clearing
+======================================================================================================================
+    A5: S = 2 g (d_t n_d) u'/a0^2 -- zero before and after a clearing; during it, A4 + B0 force max(delta) >= the B0 ratio
+    canonical|10.0    : delta during the clearing >= 8.7; a host moving at 300 km/s through the clock frame sees an advective n.d chi 13x its growth term at r_F (without tracking)
+    canonical|10.5    : delta during the clearing >= 6.6; a host moving at 300 km/s through the clock frame sees an advective n.d chi 7x its growth term at r_F (without tracking)
+    canonical|11.0    : delta during the clearing >= 5.7; a host moving at 300 km/s through the clock frame sees an advective n.d chi 4x its growth term at r_F (without tracking)
+    alt|10.0          : delta during the clearing >= 7.1; a host moving at 300 km/s through the clock frame sees an advective n.d chi 14x its growth term at r_F (without tracking)
+    alt|10.5          : delta during the clearing >= 5.5; a host moving at 300 km/s through the clock frame sees an advective n.d chi 8x its growth term at r_F (without tracking)
+    alt|11.0          : delta during the clearing >= 4.9; a host moving at 300 km/s through the clock frame sees an advective n.d chi 4x its growth term at r_F (without tracking)
+    ordering (declared illustrative growth rates {'flagship_sSFR_per_Gyr': 2.0, 'cluster_growth_per_Gyr': 0.2, 'zeq0_disc_sSFR_per_Gyr': 0.1}): the hill per unit I scales with the growth rate -- a z = 2.5 galaxy gets 10x a cluster's: the RIGHT order, the class's only member with it
+
+======================================================================================================================
+H1-H4  HEALTH: Minkowski, the weighting theorem, FRW, and the static MOND background
+======================================================================================================================
+    isotropic F                           : ghost-free iff F + 1 > 0; gradient-stable iff F + 1 > 0 and F + 1 + 0 > 0; speed^2 = 1
+    temporal F                            : ghost-free iff F + 1 > 0; gradient-stable iff 1 > 0 and 1 + 0 > 0; speed^2 = 1/(F + 1)
+    spatial G                             : ghost-free iff 1 > 0; gradient-stable iff G + 1 > 0 and G + 1 + 0 > 0; speed^2 = G + 1
+    anisotropic G                         : ghost-free iff 1 > 0; gradient-stable iff 1 > 0 and 1 + G > 0; speed^2 = G*cos(theta)**2 + 1
+    linear current / rate / electrostatic : ghost-free iff 1 > 0; gradient-stable iff 1 > 0 and 1 + 0 > 0; speed^2 = 1
+    linear current: m^2 -> m^2 - g^2 A.A (A2): spatial A is tachyonic beyond g|A| = m; electrostatic A = f n gives m^2 + g^2 f^2 (healthy)
+  [PASS] H1 DERIVED (Minkowski): the general quadratic member A|d_t Psi|^2 - B|grad Psi|^2 - C|e.grad Psi|^2 - M^2|Psi|^2 is ghost-free iff A > 0, gradient-stable iff B > 0 and B + C > 0, and propagates at speed^2 (B + C cos^2 theta)/A; the current members are luminal
+         measured: {'isotropic F': '1', 'temporal F': '1/(F + 1)', 'spatial G': 'G + 1', 'anisotropic G': 'G*cos(theta)**2 + 1', 'linear current / rate / electrostatic': '1'}
+    weighting theorem: s2' - [R d(s2/R)/dI + s2 R'/R] = 0: with R' >= 0 (no well) and d(s2/R)/dI > 0 (faster particles gain more), s2' > 0 -- the speed rises above c
+    spatial G: d(s2/R)/dG = 1/m > 0 -> kick needs G > 0 -> speed^2 1 + G > 1;  temporal F: dR/dF = -m/(2*(F + 1)**(3/2)) < 0, ds2/dF = -1/(F + 1)**2 < 0 -> the hill (F < 0) is superluminal;  isotropic F: d(s2/R)/dF = 1/(2*m*sqrt(F + 1)) > 0 needs F' > 0, i.e. a WELL
+  [PASS] H2 DERIVED (the weighting theorem): a coupling that hands more energy to faster dark particles without a rest-energy well needs d(s^2)/dI > 0 -- the dark field propagates outside the metric light cone; the luminal members can weight only together with a well (c/v)^2 times stronger; so every velocity-weighted kicker is superluminal (ordered only by the clock's foliation, which the core's instantaneous heat filter already uses)
+         measured: identity residual 0; spatial 1/m; temporal -m/(2*(F + 1)**(3/2)), -1/(F + 1)**2; isotropic 1/(2*m*sqrt(F + 1))
+  [PASS] H3 DERIVED (FRW): grad u = 0 on the homogeneous background (FP3 G1b: a0 absent there), so I = 0 and every I-member with F(0) = G(0) = f(0) = 0 and A(grad u = 0) = 0 is off; the dark field is then free and its homogeneous mode has p = 0 exactly (dust); K-members are uniform on CMC leaves in bound regions (CV4) and act only as a time-dependent mass
+         measured: p = 0, rho = 2*m**2*psi0**2
+    FP5's committed det(N, U) = k**4*(2*C_e*alpha_c + 2*C_e*c_CH + alpha_c*c_CH); with C_e -> (1 - delta) C_e: -k**4*(2*C_e*alpha_c*delta - 2*C_e*alpha_c + 2*C_e*c_CH*delta - 2*C_e*c_CH - alpha_c*c_CH); zero at delta = [(C_e*alpha_c + C_e*c_CH + alpha_c*c_CH/2)/(C_e*(alpha_c + c_CH))]
+    delta* - 1 = alpha_c*c_CH/(2*C_e*(alpha_c + c_CH)) = 5.3e-09, 1.6e-09, 5.3e-10 at alpha_c = 3.2e-9, c_CH = 2, C_e = 0.3/1/3
+    Psi at the ceilings on the flagship hosts: canonical|flagship 1e10 G_max 0.69 -> speed 1.30 c (anisotropic 1.75 c); canonical|flagship 1e10.5 G_max 0.88 -> speed 1.37 c (anisotropic 1.91 c); canonical|flagship 1e11 G_max 0.96 -> speed 1.40 c (anisotropic 1.97 c); alt|flagship 1e10 G_max 0.79 -> speed 1.34 c (anisotropic 1.84 c); alt|flagship 1e10.5 G_max 1.02 -> speed 1.42 c (anisotropic 2.01 c); alt|flagship 1e11 G_max 1.11 -> speed 1.45 c (anisotropic 2.08 c)
+  [PASS] H4 DERIVED (static MOND background): FP5's (N, U) determinant with the reciprocal suppression C_e -> (1 - delta) C_e vanishes at delta* = 1 + alpha_c c_CH/(2 C_e (alpha_c + c_CH)) = 1 + O(1e-9) and is negative beyond: FP4's ceiling delta = 1 is the core's own health boundary (FP5's positivity), not only the point where the phantom switches off
+         measured: det = -k**4*(2*C_e*alpha_c*delta - 2*C_e*alpha_c + 2*C_e*c_CH*delta - 2*C_e*c_CH - alpha_c*c_CH); delta* - 1 = alpha_c*c_CH/(2*C_e*(alpha_c + c_CH)) (5.3e-09, 1.6e-09, 5.3e-10)
+         reading:  so B0's delta >= 4.9 during any MOND-powered clearing is not a phenomenological cost but an ill-posed core; the density, inertia and rate members pay it in C_e itself (A5), a current member only while the dark state flows
+  [PASS] B5 DERIVED + NUMBERS (the rate member): its back-reaction is 2 g (d_t n_d) u'/a0^2 (A5) -- silent in any static halo, so it escapes the STATIC reciprocity; but by A4 the energy it hands over passes through that same S, so during the clearing delta >= the B0 ratio on every flagship host, beyond H4's delta* = 1 + O(1e-9): the core is ill-posed while it clears
+         measured: delta during clearing >= 4.9 vs delta* - 1 <= 5.3e-09
+         reading:  the one member with the right ordering (its hill tracks each host's growth rate) defers the reciprocity to the epoch of the clearing instead of removing it.  B0 is the PERMANENT (unbinding) case: holding the dark mass out without unbinding it lasts only while the host grows, since the hill is g d_t chi.  It is also clock-frame dependent (n.d chi): advective terms dominate unless the khronon tracks each host to a few per cent
+
+======================================================================================================================
+B6  THE VELOCITY SCALE EACH MEMBER PRODUCES, AND WHERE IT COMES FROM
+======================================================================================================================
+    canonical: density-class ceiling (FP4 cap, centre) 153, 233, 341 km/s at the flagship hosts; Eulerian 71, 105, 149; X-COP 1757 km/s (host-proportional)
+    alt      : density-class ceiling (FP4 cap, centre) 164, 252, 368 km/s at the flagship hosts; Eulerian 76, 114, 163; X-COP 1878 km/s (host-proportional)
+    inertia members: v^2 ~ G sigma^2 (host-proportional, G fitted); rate member: v^2 = 2 g d_t chi (g fitted, times each host's growth rate); electrostatic: g f/m (fitted); magnetic: 0; kinetic isotropic: c sqrt|F| with |F| = 2.0 x FK1's eps/m^2 for 575-650 km/s (fitted)
+    FP4 B6's census of the core's parameter-free velocities (with m): hits in 575-675 km/s: none
+  [PASS] B6 THE WINDOW IS NOT PREDICTED: no member produces a universal 575-675 km/s from (a0, rho_Lambda, m): the ceilings are host-proportional (below the window at every flagship host), the other members carry their own fitted strength, and FP4's census has no parameter-free hit
+         measured: {'canonical': {'density_ceiling': [153, 233, 341], 'density_ceiling_eulerian': [71, 105, 149], 'xcop_ceiling': 1757}, 'alt': {'density_ceiling': [164, 252, 368], 'density_ceiling_eulerian': [76, 114, 163], 'xcop_ceiling': 1878}}
+         reading:  the ~600 km/s speed remains a constant of the added field (FK1's eps), FITTED
+
+======================================================================================================================
+G1-G2  THE GATES FOR THE BEST COUPLINGS
+======================================================================================================================
+    G1 the best HEALTHY member -F(I) g^mn dPsi* dPsi (A3: exactly FP4's density class) -- FP4's committed delta = 1 rows:
+       flagship z = 2.5: smallest |shift| over FP4's 18 cells 0.261 dex (gate 0.10) -> FAILS
+       X-COP (with the reciprocal term) {'canonical|natural (y = 1)': 0.933, 'canonical|upper bound': 0.73, 'alt|natural (y = 1)': 0.939, 'alt|upper bound': 0.747} (strict 0.8-1.2: natural passes, upper bound fails)
+       z = 0 galaxies {'canonical': {'dwarf': 0.036, 'SPARC disc': -0.001, 'Milky Way': 0.0}, 'alt': {'dwarf': 0.012, 'SPARC disc': -0.007, 'Milky Way': -0.001}} (0.06 dex: pass); KiDS without the term {'canonical': -3.0, 'alt': -3.8} (<= +4: pass; with it OPEN)
+       cosmic shear with the term (1.75 Mpc cap) {'canonical|natural (y = 1)': 0.999, 'canonical|upper bound': 0.994, 'alt|natural (y = 1)': 0.999, 'alt|upper bound': 0.993} (<= 1.2: pass); forest/S_8 escaped {'canonical|3.0': 0.0208, 'canonical|2.0': 0.0323, 'alt|3.0': 0.0233, 'alt|2.0': 0.0351} (pass)
+       Harvey: kept carrier {'canonical|natural (y = 1)': {'1e+13': 0.9950795544738119, '1e+14': 0.9932815460799114, '3e+14': 0.9875536121709039}, 'canonical|upper bound': {'1e+13': 0.9304889086057162, '1e+14': 0.8727820463506583, '3e+14': 0.8375915993717681}, 'alt|natural (y = 1)': {'1e+13': 0.9954820616418854, '1e+14': 0.9940208370315773, '3e+14': 0.9891431317051577}, 'alt|upper bound': {'1e+13': 0.9314033103204263, '1e+14': 0.869740492516407, '3e+14': 0.817894340665639}} -> intact-carrier excess beta {'100': 0.005952303589975618, '150': 0.039867749044243075, 'fit': 0.026083449072383132} (natural reading: pass by proxy)
+       and with the health-enforced Eulerian cap (H4) the member is weaker still (B3's 'eul' rows): FP4's rows bound it from above
+  [PASS] G1 THE BEST HEALTHY COUPLING (-F(I) g^{mn} dPsi* dPsi: luminal, ghost-free for F > -1, exactly FP4's density class by A3) inherits FP4's committed delta = 1 gate rows: it passes what LCDM passes and FAILS the flagship at z = 2.5 in every reading
+         measured: flagship smallest |shift| 0.261 dex
+         reading:  Newton + halo where the halo stays: the framework's distinctive gate is lost exactly as in FP4
+    G2 canonical inertia member (slow, FP4 cap): X-COP keeps 0.170 -> median M_dyn/M_HSE 0.68 (strict False); z = 0 galaxies keep dwarf 0.30, SPARC disc 0.02, Milky Way 0.00 -> shifts dwarf +0.014, SPARC disc -0.000, Milky Way +0.000 dex
+    G2 alt       inertia member (slow, FP4 cap): X-COP keeps 0.110 -> median M_dyn/M_HSE 0.71 (strict False); z = 0 galaxies keep dwarf 0.25, SPARC disc 0.01, Milky Way 0.00 -> shifts dwarf +0.004, SPARC disc -0.000, Milky Way -0.000 dex
+  [PASS] G2 (reported) the best-CLEARING member (the superluminal inertia coupling, slow reading, FP4's cap): X-COP with the reciprocal term and L321's z = 0 galaxies, from its own retention; the flagship is B2's
+         measured: {'canonical|xcop': 0.681, 'canonical|galaxies': {'dwarf': 0.014, 'SPARC disc': -0.0, 'Milky Way': 0.0}, 'canonical|galaxies_density': {'dwarf': 0.014, 'SPARC disc': -0.0, 'Milky Way': 0.0}, 'alt|xcop': 0.706, 'alt|galaxies': {'dwarf': 0.004, 'SPARC disc': -0.0, 'Milky Way': -0.0}, 'alt|galaxies_density': {'dwarf': 0.004, 'SPARC disc': -0.0, 'Milky Way': -0.0}}
+
+======================================================================================================================
+W  THE LEDGER: what this lane settles (link / status / basis)
+======================================================================================================================
+    L10o.1   DERIVED    the task's current: J.n = n_d (clock-frame density), J^i = -n_d v^i  --  check A1
+    L10o.2   DERIVED    gauge reduction: -|dPsi|^2 + gA.J == -|DPsi|^2 + g^2 A.A|Psi|^2; J.d chi is pure gauge at O(g) and FP4's density class at O(g^2); J.n f is an electrostatic density coupling  --  check A2
+    L10o.3   DERIVED    kinetic couplings: -F(I) g^mn dPsi*dPsi is the density coupling V = c^2[(1+F)^(-1/2) - 1] (|F| = 2.0 x FK1's eps/m^2 for 575-650 km/s); spatial/anisotropic members change only the inertia  --  check A3
+    L10o.4   DERIVED    THE ENERGY-RECIPROCITY IDENTITY: the energy any coupling takes from the MOND sector is -Int S.d_t grad u, S its source in the MOND equation; <= max(delta) x the MOND field energy  --  check A4
+    L10o.5   DERIVED    exact back-reactions: S = -2 rho_d V' u'/a0^2 (density), 2 g (d_t n_d) u'/a0^2 (rate), -G' rho_d w^2 u'/a0^2 (inertia), g j (F + 2IF') (current)  --  check A5
+    L10o.6   FAILS      class-wide: unbinding the flagship's dark mass costs 7.2-11.9x the host's whole MOND field energy (4.9-8.7x with the baryons' kinetic energy added): any MOND-powered clearing needs delta > 1 where the dark state sits (beyond H4's health boundary)  --  check B0
+    L10o.7   FAILS      linear spatial-current (magnetic) couplings: no work in a static host; the re-direction floor fails the flagship  --  check B1
+    L10o.8   FAILS      velocity-weighted couplings at FP4's delta = 1 cap (density, inertia, anisotropic inertia): fail the flagship in the slow and sudden readings, both footings  --  check B2 (B3: an unattainable pericentre-timed envelope with FP4's cap clears 3 of 18 member-host cells (['inertia']); with the health-enforced cap: 0)
+    L10o.9   FAILS      ordering: every MOND-sector coupling clears clusters before z = 2.5 galaxies (anti-selective)  --  check B4
+    L10o.10  FAILS      the rate member g J_perp.grad chi == -g n_d d_t chi: silent in static halos (escapes the static reciprocity), right ordering by growth rate, but delta >= B0's ratio during the clearing (ill-posed core); clock-frame dependent  --  checks A5, B5, H4
+    L10o.11  FITTED     velocity scale: host-proportional ceilings or a fitted strength per member; the 575-675 km/s window not predicted  --  check B6
+    L10o.12  DERIVED    health: current members luminal (tachyonic beyond g|A| = m); every velocity-weighted kicker is superluminal (the weighting theorem); all I-members off on FRW  --  checks H1-H3
+    L10o.13  DERIVED    FP4's ceiling delta = 1 is the core's own health boundary: FP5's (N, U) determinant vanishes at delta* = 1 + O(1e-9)  --  check H4
+    L10o.14  FAILS      the best healthy coupling (-F(I) g^mn dPsi*dPsi) = FP4's density class: passes what LCDM passes, fails the flagship  --  check G1 (FP4's committed rows)
+    L10o.15  FITTED     the honest minimal price of a working kick: FK1's eps (FITTED, eps/m^2 = 1.84-2.35e-6 for 575-650 km/s: energy from the dark field's own splitting, S = 0) + its trigger's constants (the conversion coupling and gate exponent q, DECLARED) + the initial misalignment (initial data) + m  --  FK1 (committed); this lane's no-go for every MOND-sector source
+    L10o.16  OPEN       not scored here: zero-net redistributors in a GROWING host (betatron-like magnetic members, sign-changing weights) beyond B1's static floor; velocity couplings nonlinear in Psi (outside the low-order class; ill-defined for a multistreaming wave field); the superluminal members' KiDS / cosmic-shear / forest / Harvey rows (moot: their flagship and X-COP fail); the rate member's residual clock-frame dipole under khronon tracking  --  not computed
+  [PASS] W (reported) the ledger of this lane's links
+         measured: 16 links
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  NO-GO FOR THE CLASS (FP4's last open door, L10o).  No coupling of the dark field's density, current or derivatives to
+  the core's MOND sector can hand the dark state the kick's energy without writing on the phantom.  The reason is one
+  identity (A4): whatever the coupling, the net energy it takes from the MOND sector is -Int S.d_t grad u, where S is the
+  very term it adds to the MOND sector's own equation.  Couplings differ only in WHEN they pay: density and inertia members while the dark state sits
+  there (FP4's reciprocity), current members while it flows, the rate member (g J_perp.grad chi == -g n_d d_t chi) only
+  during the clearing itself (A5: its S is proportional to d_t n_d).  A gradient current is pure gauge (A2); J.n f is an
+  electrostatic density coupling; -F(I)(dPsi)^2 is a rest-mass hill, FP4's class with |F| = 2 x FK1's eps/m^2 (A3); a magnetic
+  current does no work in a static host and only redistributes in a growing one (B1).  How much any of them must pay is
+  fixed by energy (B0): unbinding the z = 2.5 flagship's dark mass inside r_F costs 7.2-11.9x the whole
+  host's MOND field energy (4.9-8.7x even with all the baryons' kinetic energy added), so the clearing
+  needs delta > 1 -- and delta = 1 + O(1e-9) is where FP5's (N, U) determinant changes sign (H4): the core itself goes
+  ill-posed.  At FP4's generous delta = 1 cap the velocity-weighted members fail the flagship in both physical readings
+  (B2, smallest shift +0.26 dex).  Only an unattainable pericentre-timed envelope with that cap clears any cell:
+  alt flagship 1e10.5 (inertia); alt flagship 1e11 (inertia); canonical flagship 1e11 (inertia);
+  every velocity-weighted quadratic kicker is superluminal (H2), and with the health-enforced cap no envelope clears any
+  host.  Every member clears clusters first (B4): the ordering is backwards.  The rate member alone has the right ordering
+  (its hill follows each host's growth rate) -- and it pays delta >= 4.9 during the clearing.  The best healthy coupling is
+  FP4's density class and inherits its gates: it passes what LCDM passes and fails the flagship (G1).  The ~600 km/s window
+  is not predicted by any member (B6).
+  THE HONEST MINIMAL PRICE: the kick's energy cannot come from the MOND sector; it must come from the dark field itself.
+  FK1's U(1)-breaking splitting eps Re Psi^2 (eps/m^2 = 1.84-2.35e-6 for 575-650 km/s, FITTED) has S = 0 by construction,
+  plus its trigger's constants (the conversion coupling with its K-gate exponent q, DECLARED), the initial misalignment near
+  the heavy axis (initial data), and the dark mass m (required anyway).  Not 'closed' as a theory: FK1's own gates are its
+  lanes', not re-derived here.
+
+  22/22 checks pass; load-bearing failures: 0; wrote FP8_current_coupling_kick_results.json   [286s]
+rc=0
