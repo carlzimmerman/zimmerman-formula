@@ -1,0 +1,93 @@
+XR28 CONTROLS -- the machinery behind XR28's cluster-outskirts lane reproduces published and committed numbers before it is
+used on the chain.
+
+WHY.  XR28 asks whether the outskirts of galaxy clusters (the splashback radius and the outer slope) can measure the derivation
+chain's band-pass length L.  Its answer rests on a spherical secondary-infall (shell) model, the chain's band-passed phantom,
+a projection to Delta Sigma and a DK14 forward-fit.  Each piece is checked here first.
+
+  *** MUTATE=1: K1's mass profile frozen at the initial guess; K2's halo stops growing after entry -- K1 and K2 must FAIL ***
+
+====================================================================================================================
+K1  BERTSCHINGER (1985): self-similar collisionless secondary infall, EdS, point-mass seed
+====================================================================================================================
+    iteration 0: max |dM| = 2.12e-01; caustics = [0.3689, 0.2268, 0.1665]   [2 s]
+  [FAIL] K1 BERTSCHINGER (1985): the self-consistent self-similar collisionless solution puts the first three caustics at 0.364, 0.236, 0.179 r_ta (published) -- each within 1%
+         measured: caustics 0.3689, 0.2268, 0.1665 (published (0.364, 0.236, 0.179)); deviations 1.34%, 3.89%, 6.99%; 1 iterations, tau_max 300, softening 0.0003
+
+====================================================================================================================
+K2  ADHIKARI, DALAL & CHAMBERLAIN (2014): the toy model against their fitting function eq. (3)
+====================================================================================================================
+    s = 1, Omega_M = 0.300: Delta_s = 85.6 (fit 138.1), ratio 0.620   [3 s]
+    s = 1, Omega_M = 0.500: Delta_s = 67.9 (fit 106.3), ratio 0.639   [5 s]
+    s = 1, Omega_M = 1.000: Delta_s = 51.7 (fit 78.1), ratio 0.662   [5 s]
+    s = 2, Omega_M = 0.300: Delta_s = 86.8 (fit 201.7), ratio 0.431   [7 s]
+    s = 2, Omega_M = 0.500: Delta_s = 68.9 (fit 153.7), ratio 0.448   [8 s]
+    s = 2, Omega_M = 1.000: Delta_s = 52.5 (fit 111.3), ratio 0.472   [9 s]
+    s = 3, Omega_M = 0.300: Delta_s = 87.5 (fit 281.9), ratio 0.310   [10 s]
+    s = 3, Omega_M = 0.500: Delta_s = 69.4 (fit 212.6), ratio 0.327   [12 s]
+    s = 3, Omega_M = 1.000: Delta_s = 52.9 (fit 151.9), ratio 0.348   [12 s]
+  [FAIL] K2 ADHIKARI et al. (2014): their toy model reproduces their eq. (3) within 10% over s = 1-3, Omega_M = 0.3-1 (a Lambda cosmology control of the orbit integration)
+         measured: ratios 0.310-0.662; s = 1: 0.620, 0.639, 0.662
+
+====================================================================================================================
+K3  XR19 (committed b55775ce0): a daughter's comoving reach from z_e = 1, reproduced exactly
+====================================================================================================================
+  [PASS] K3 XR19's committed R table: the comoving reach of a daughter born at z_e = 1 with v_k = 600 km/s (peculiar speed ~ 1/a) is reproduced exactly from XR19_common's E(z) and H0 and its 4001-point trapezoid
+         measured: this lane 4.945567068731957 Mpc; XR19 committed 4.945567068731957; independent quadrature 4.945566989 (|d| = 8.0e-08)
+  [PASS] (reported) K3b (reported) the same reach by adaptive quadrature agrees to 1e-6
+         measured: 7.99e-08 Mpc
+
+====================================================================================================================
+K4  THE PHANTOM: this lane's routine against FP6's committed phantom() (exec'd read-only)
+====================================================================================================================
+  [PASS] K4 THE PHANTOM: this lane's band-passed phantom equals FP6's committed phantom() (M_b 1e11-1e14 Msun, L 0.5-3 Mpc, both footings) to 1e-6, and its L -> oo limit is the unfiltered P2 phantom to 1e-9
+         measured: max relative deviation 4.6e-08; L -> oo 2.7e-13 (FP6's S8_LCDM in its namespace: 0.8101)
+
+====================================================================================================================
+K5  THE PROJECTION AND THE DK14 FORWARD-FIT
+====================================================================================================================
+  [PASS] K5 THE PROJECTION: the uniform-shell Delta Sigma equals Wright & Brainerd's NFW to 0.5% (M200m 1.8e14-1.4e15 h^-1, c 3-4, 14 radii 0.2-20 h^-1 cMpc); the DK14 forward-fit recovers a known DK14 profile's r_sp to 2%
+         measured: NFW max deviation 6.6e-04; DK14 r_sp true 1.575, fitted 1.586 (+0.73%), gamma -3.87 -> -3.86
+    [K5b] SIS                           : max |shell/quad - 1| = 3.90e-04 over R = 35 kpc and the 14 WL radii
+    [K5b] NFW (r_s = 0.35)              : max |shell/quad - 1| = 5.70e-04 over R = 35 kpc and the 14 WL radii
+    [K5b] cored (r_c = 50 kpc)          : max |shell/quad - 1| = 5.30e-04 over R = 35 kpc and the 14 WL radii
+    [K5b] hollow (empty inside 50 kpc)  : max |shell/quad - 1| = 5.18e-04 over R = 35 kpc and the 14 WL radii
+    [K5b] compact 1e14 Msun mass in the first bin: max |model_esd/(M/pi R^2) - 1| = 2.2e-16; piecewise-constant profile through model_esd vs quadrature: 9.3e-15
+  [PASS] K5b THE PROJECTOR ON FP20's TEST CASES (FP20 listed this lane by the function name model_esd; the projector is FP20's own exact uniform-shell formula): truncated SIS, NFW, a cored and a hollow template (at 35 kpc and the 14 WL radii) within 0.2% of an independent singularity-free quadrature; a compact mass passed as extended is kept exactly; the model's histogram profiles are projected to 1e-6
+         measured: SIS: 3.9e-04; NFW (r_s = 0.35): 5.7e-04; cored (r_c = 50 kpc): 5.3e-04; hollow (empty inside 50 kpc): 5.2e-04; compact mass (model_esd): 2.2e-16; histogram (model_esd, exact): 9.3e-15
+
+====================================================================================================================
+K6  CONVERGENCE of the shell model (K6 as first written; K6b the production configuration); K7 (reported) realism
+====================================================================================================================
+    [K6]  LCDM      N_q  600, ds 0.0015: 3D lensing x_sp 1.075; DK14 WL x_sp 1.268   [17 s]
+    [K6]  LCDM      N_q 1200, ds 0.0015: 3D lensing x_sp 1.007; DK14 WL x_sp 1.207   [19 s]
+    [K6]  LCDM      N_q  600, ds 0.00075: 3D lensing x_sp 1.075; DK14 WL x_sp 0.307   [27 s]
+    [K6]  chain H_Y N_q  600, ds 0.0015: 3D lensing x_sp 1.141; DK14 WL x_sp 0.879   [51 s]
+    [K6]  chain H_Y N_q 1200, ds 0.0015: 3D lensing x_sp 0.954; DK14 WL x_sp 0.864   [64 s]
+    [K6]  chain H_Y N_q  600, ds 0.00075: 3D lensing x_sp 1.141; DK14 WL x_sp 0.879   [79 s]
+  [FAIL] (reported) K6 (reported; as first written -- it FELL in this lane's first run, the MUTATE run, and is kept as run) CONVERGENCE of the t = 0 member with no apocentre scatter and an unwindowed read-out: 1200 shells and a halved step move the 3D lensing and the DK14 WL r_sp/r200m by <= 5%
+         measured: max change 75.8%
+    [K6b] LCDM       N_q  600, ds 0.00075, nodes 2: DK14 WL x_sp 1.216 (gamma -3.10); galaxies 1.002 (-2.86); 3D lensing 1.070 (-4.12); M200m 7.130e+14   [82 s]
+    [K6b] LCDM       N_q 1200, ds 0.00075, nodes 2: DK14 WL x_sp 1.164 (gamma -3.17); galaxies 0.973 (-2.98); 3D lensing 1.070 (-4.53); M200m 7.104e+14   [86 s]
+    [K6b] LCDM       N_q  600, ds 0.0005, nodes 2: DK14 WL x_sp 1.241 (gamma -3.03); galaxies 1.014 (-2.73); 3D lensing 1.068 (-3.95); M200m 7.180e+14   [94 s]
+    [K6b] chain H_Y  N_q  600, ds 0.00075, nodes 2: DK14 WL x_sp 0.893 (gamma -4.28); galaxies 0.863 (-2.86); 3D lensing 1.072 (-9.29); M200m 7.048e+14   [137 s]
+    [K6b] chain H_Y  N_q 1200, ds 0.00075, nodes 2: DK14 WL x_sp 0.886 (gamma -4.31); galaxies 0.877 (-2.86); 3D lensing 1.073 (-9.78); M200m 7.044e+14   [183 s]
+    [K6b] chain H_Y  N_q  600, ds 0.0005, nodes 2: DK14 WL x_sp 0.893 (gamma -4.28); galaxies 0.863 (-2.86); 3D lensing 1.072 (-9.31); M200m 7.050e+14   [217 s]
+    [K6b] chain H_Y  N_q  600, ds 0.00075, nodes 4: DK14 WL x_sp 0.863 (gamma -4.26); galaxies 0.841 (-3.00); 3D lensing 1.069 (-10.71); M200m 7.084e+14   [255 s]
+    [K6b] chain 0.75 N_q  600, ds 0.00075, nodes 2: DK14 WL x_sp 1.197 (gamma -2.93); galaxies 1.004 (-2.86); 3D lensing 1.211 (-13.47); M200m 7.061e+14   [301 s]
+    [K6b] chain 0.75 N_q  600, ds 0.0005, nodes 2: DK14 WL x_sp 1.199 (gamma -2.93); galaxies 1.004 (-2.85); 3D lensing 1.140 (-9.38); M200m 7.068e+14   [341 s]
+  [PASS] K6b CONVERGENCE of the production configuration (3-member ensemble, apocentre scatter 0.12, [0.5, 3] r200m read-out, ds = 0.00075, 2 kick nodes): 1200 shells, ds = 0.0005 and 4 kick nodes move the DK14 WL and galaxy r_sp/r200m by <= 5% (LCDM; the chain at H_Y's L0 and at L0 = 0.75 Mpc, where the outskirts are LCDM-like)
+         measured: LCDM|600|0.00075|2: 0.0%; LCDM|1200|0.00075|2: 4.3%; LCDM|600|0.0005|2: 2.0%; chain H_Y|600|0.00075|2: 0.0%; chain H_Y|1200|0.00075|2: 1.6%; chain H_Y|600|0.0005|2: 0.0%; chain H_Y|600|0.00075|4: 3.3%; chain 0.75|600|0.00075|2: 0.0%; chain 0.75|600|0.0005|2: 0.2%
+  [PASS] (reported) K7 (reported) LCDM REALISM: the model's 3D r_sp/r200m against More, Diemer & Kravtsov (2015) eq. (5) at the model's own Gamma (Delta ln M200m/Delta ln a over the window), and its DK14 WL r_sp/r200m against Shin et al. (2021)'s N-body 1.07
+         measured: Gamma 2.70: model 3D 1.070 vs More+15 1.104; DK14 WL 1.216 vs N-body 1.07
+
+====================================================================================================================
+K8  (reported) THE COMMITTED INPUTS
+====================================================================================================================
+    FP10 A6 budget (600 km/s, K = 185): F(z = 0/1/2/4) = 0.629/0.530/0.437/0.290; F_b = 0.491/0.491/0.491/0.456
+    XR19 nominal F_tot(z = 0/1/2/3) = 0.912/0.811/0.554/0.363
+  [PASS] (reported) K8 (reported) the inputs are the committed files (sha256 recorded)
+         measured: {'FP10_internal_splitting_dark_sector_results.json': '14e02f0cc62489bc535a105b239c645bd2eeaec10cb632fbf2e1feb65ee8872a', 'XR19_web_runaway_results.json': 'c973dd1005b89c85da642fa5da3d16d3a79da8ae3df47fc00b2d6c62f7855dbd', 'XR19_front_physics_results.json': '7419f0f4f8f88fbb8eeff09feb5f2b08ff0c4da406971f745a0682db8eaa40f4'}
+
+8/11 checks pass; load-bearing failures: 2   [341 s]
+rc=1
