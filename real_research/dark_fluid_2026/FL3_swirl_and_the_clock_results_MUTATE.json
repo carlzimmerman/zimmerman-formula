@@ -1,0 +1,130 @@
+{
+ "lane": "FL3",
+ "mutate": true,
+ "checks": {
+  "S1 at every vortex core the gated energy vanishes smoothly (as r^2; the relativistic (Im Phi^2)^2 as r^4 at a common core), it is finite and smooth across the lattice, and it is identically zero before the conversion": {
+   "ok": true,
+   "measured": "core value 0; r^2 coefficient finite; lattice core max 0.0e+00; gradient 8.1 E_max/l_v; before 0.0; near-core scaling [257.651, 260.226, 260.252]",
+   "load_bearing": true
+  },
+  "S2 at the lattice scale the gate channel only modulates FL2's conversion shift between 0 (cores) and its maximum, below CV4's 4.8e-3 for c_2 >= 1e-3 at z <= 4; the swirl's own moving-pattern channel (kernel-invisible: G_1 at C = 0 ~ alpha_c/c_2) is below 1e-10 for the lattice and the random tangle": {
+   "ok": true,
+   "measured": "gate channel by c_2: {'1e-04': '1.0e-02', '1e-03': '1.1e-03', '3e-03': '3.8e-04', '7e-03': '1.5e-04'}; swirl channel worst 2.3e-13",
+   "load_bearing": true
+  },
+  "S3 at linear order the khronon's K and the lapse are independent of a transverse (vortical) shift, while a longitudinal shift does enter K (the control); the khronon's normal is twist-free; V0's khronon terms are a^2 and (K - <K>)^2 only -- so no vorticity coupling reaches tau at linear order": {
+   "ok": true,
+   "measured": "transverse dK 0, dN 0; longitudinal dK = -1 lap chi; twist 0",
+   "load_bearing": true
+  },
+  "S4 the fluid's circulation is quantised in its phase (N h/m around N cores, mean vorticity 2 Omega) while the loop integral of the khronon's tilt -- solved from the swirling fluid's own E_int -- is zero: tau is single-valued, its source is smooth (S1) and the stress is continuous through every core, so the leaves never fold": {
+   "ok": false,
+   "measured": "fluid 7.000 h/m around 7 cores; clock 7.0e+00 (scale 6.9e+00); stress continuous True",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "S1": {
+   "core_value": "0",
+   "r2_coefficient": "-2*c0i**2*cos(2*theta) + 4*c0i**2 + 4*c0i*c0r*sin(2*theta) + 2*c0r**2*cos(2*theta) + 4*c0r**2",
+   "relativistic_r4": "alpha**2*beta**2*(1 - cos(4*theta))/8",
+   "lattice_Emax": 3.111464929296759,
+   "at_cores_max": 0.0,
+   "grad_rel": 8.140506921349564,
+   "E_before": 0.0,
+   "near_core_r2": [
+    257.650539616638,
+    260.22588141931743,
+    260.2518923063435
+   ]
+  },
+  "S2": {
+   "gate_channel_max_by_c2": {
+    "0.0001": 0.010445048620281294,
+    "0.001": 0.0010891563030953118,
+    "0.0029": 0.0003767761586516788,
+    "0.0073": 0.00014983109709203115
+   },
+   "CV4_max": 0.004786633991960057,
+   "G1_C0": "2*I*alpha_c/(c_2*(alpha_c - 2))",
+   "swirl": {
+    "2e-19/0.03": {
+     "v_rot": 8.485281374238571,
+     "l_v_pc": 188.38882103941364,
+     "N_v_within_10kpc": 8851.963534127673,
+     "lambda_dB_pc": 0.425884174711443,
+     "dK_lattice": 1.7919625177955526e-13,
+     "dK_tangle": 6.751714121486473e-15
+    },
+    "2e-19/0.05": {
+     "v_rot": 14.142135623730953,
+     "l_v_pc": 145.92535329945972,
+     "N_v_within_10kpc": 14753.272556879456,
+     "lambda_dB_pc": 0.425884174711443,
+     "dK_lattice": 2.313413662816696e-13,
+     "dK_tangle": 6.751714121486473e-15
+    },
+    "1e-17/0.03": {
+     "v_rot": 8.485281374238571,
+     "l_v_pc": 26.64220257134167,
+     "N_v_within_10kpc": 442598.1767063837,
+     "lambda_dB_pc": 0.00851768349422886,
+     "dK_lattice": 2.53421769593071e-14,
+     "dK_tangle": 1.350342824297295e-16
+    },
+    "1e-17/0.05": {
+     "v_rot": 14.142135623730953,
+     "l_v_pc": 20.636961373018142,
+     "N_v_within_10kpc": 737663.6278439728,
+     "lambda_dB_pc": 0.00851768349422886,
+     "dK_lattice": 3.271660977334591e-14,
+     "dK_tangle": 1.350342824297295e-16
+    },
+    "1e-15/0.03": {
+     "v_rot": 8.485281374238571,
+     "l_v_pc": 2.6642202571341675,
+     "N_v_within_10kpc": 44259817.67063837,
+     "lambda_dB_pc": 8.51768349422886e-05,
+     "dK_lattice": 2.5342176959307095e-15,
+     "dK_tangle": 1.3503428242972949e-18
+    },
+    "1e-15/0.05": {
+     "v_rot": 14.142135623730953,
+     "l_v_pc": 2.063696137301814,
+     "N_v_within_10kpc": 73766362.78439727,
+     "lambda_dB_pc": 8.51768349422886e-05,
+     "dK_lattice": 3.2716609773345895e-15,
+     "dK_tangle": 1.3503428242972949e-18
+    }
+   },
+   "worst_swirl": 2.313413662816696e-13
+  },
+  "S3": {
+   "K_linear": "-3*Phi(t, x, y, z)*Derivative(a(t), t)/a(t) - 3*Derivative(Psi(t, x, y, z), t) - Derivative(pi(t, x, y, z), (x, 2))/a(t)**2 - Derivative(pi(t, x, y, z), (y, 2))/a(t)**2 - Derivative(pi(t, x, y, z), (z, 2))/a(t)**2",
+   "dK_transverse": "0",
+   "dN_transverse": "0",
+   "second_order": 1.9379156044908518e-09,
+   "dK_longitudinal": "-Derivative(chi(t, x, y, z), (x, 2)) - Derivative(chi(t, x, y, z), (y, 2)) - Derivative(chi(t, x, y, z), (z, 2))",
+   "twist": "0"
+  },
+  "S4": {
+   "enclosed": 7,
+   "circ_fluid": 7.0,
+   "circ_clock": 7.0,
+   "circ_scale": 6.933447514452801,
+   "clock_grad_max": Infinity,
+   "stress_loops": [
+    [
+     177.62468515989806,
+     177.62468516472055
+    ],
+    [
+     177.66037995176987,
+     177.66037995181358
+    ]
+   ]
+  }
+ },
+ "n_checks": 4,
+ "n_fail_load_bearing": 1
+}

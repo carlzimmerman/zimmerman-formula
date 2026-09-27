@@ -18,6 +18,7 @@ continuum tests and the inverse specification are the cross-thread review's XR8.
 |---|---|---|
 | FL1 | the identification: a superfluid order parameter; the condensate dust as its limit | **6/6** (MUTATE rc = 1) |
 | FL2 | FK1's kick potential in V0's dark slot: the field-side checks | **8/8** (MUTATE rc = 1) |
+| FL3 | the swirl: a rotating halo's vortex lattice against the clock's slices | **4/4** (MUTATE rc = 1) |
 
 The kick itself — clearing the fluid from galaxies while clusters keep it — is FK1, in its own folder
 (`real_research/dark_fluid_kick_2026/`, c2e1fa119).
@@ -127,3 +128,44 @@ gas of particles.
 **Scope.** The khronon response is CV4's quasi-static, linear equation, dominated by the λ-term. The conversion is taken
 to happen at the trigger density. FK1's G_t is its z = 0 background estimate, with O(1) factors; the z-scaling G_t ∝ H^½
 follows from FK1 K4.
+
+## FL3 — can the dark fluid swirl without disturbing the clock's slices? (4/4; MUTATE dust clock fails S4, rc = 1)
+
+`FL3_swirl_and_the_clock.py` (+ `.out`, `_MUTATE.out`, results JSON; a few seconds). It reads FL2's and CV4's committed
+JSON. Lean: `FL3_swirl_certificates.lean`, 4 theorems, zero sorry.
+
+The review session asked this as one of four readings of the author's idea that halos are like a fluid swirling down
+between the bands. The fluid here is the dark fluid (FL1/FK1), not Λ. A superfluid holds angular momentum only in
+quantised vortices: one circulation quantum h/m each, at Feynman's density n_v = mΩ/(πħ). At every core the field
+vanishes.
+
+- **S1, the gate's khronon source at the cores.**
+  - It vanishes smoothly. The gated energy g_c(6a² + 2b²), with a + ib = ψ_Hψ_L*, goes as r² at a ψ_H core. The
+    relativistic (Im Φ²)² goes as r⁴ at a common core.
+  - On a rotating triangular lattice it is exactly zero at every one of the 37 cores, finite and smooth everywhere
+    (|∇E_int| ≤ 8 E_max per lattice spacing), and identically zero before the conversion.
+  - The swirl gives the source holes, never spikes.
+- **S2, δK/K at the lattice scale.**
+  - FL2's response is algebraic, so the lattice only modulates the conversion's own shift between 0 (at the cores) and
+    FL2 V4's maximum. That maximum is 1.1 × 10⁻³ (c₂ = 10⁻³), 3.8 × 10⁻⁴ (2.9 × 10⁻³) and 1.5 × 10⁻⁴ (7.3 × 10⁻³),
+    all below CV4's 4.8 × 10⁻³.
+  - At the KM1 floor, c₂ = 10⁻⁴, it reaches 1.0 × 10⁻² at z = 4. That is a statement about the conversion, not the
+    swirl.
+  - The swirl's own moving-pattern channel is ≤ 2 × 10⁻¹³, taking CV4 K2's G₁ at C = 0 because the fluid is
+    kernel-invisible (G₁ ∝ α_c/c₂). This covers the ordered lattice (l_v = 146–188 pc at 2 × 10⁻¹⁹ eV for spin
+    0.03–0.05, 2–27 pc for heavier m) and the random tangle (one vortex per λ_dB²).
+- **S3, no vorticity reaches τ at linear order.**
+  - On a metric with a shift, the linear K and the lapse do not depend on a transverse (vortical) shift. A longitudinal
+    shift enters K as −∇²χ, which is the built-in control.
+  - The khronon's normal is twist-free, and V0's khronon terms are only a² and (K − ⟨K⟩)².
+  - The second-order leak is ≤ 2 × 10⁻⁹.
+- **S4, criterion B holds.**
+  - The circulation lives in the order parameter's phase: 7 h/m around 7 cores, one quantum each.
+  - The khronon's tilt, solved from the swirling fluid's own E_int, has a zero loop integral (relative 4 × 10⁻⁹).
+  - The stress is continuous through every core.
+  - So τ is single-valued and the leaves never fold. A clock made of the fluid's dust (the MUTATE) would carry that
+    winding: a screw dislocation at every core.
+
+**Answer.** Yes. The dark fluid can swirl without disturbing the clock's slices. Its swirl is the winding of its own
+phase, which the twist-free clock does not see at linear order, and the only coupling, the conversion gate, has a hole at
+every core. The baryons' swirl (the disk, spiral patterns) is CV4 K2's moving-source dipole, not this lane.
