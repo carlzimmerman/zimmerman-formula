@@ -147,7 +147,9 @@ def _gate_f_plus(branch, Mb, a0, xc_eff, w, rho_car):
     if branch != "mond":
         return _gate_f8(branch, Mb, a0, xc_eff, w, rho_car)
     Mdyn = Mb * nu_vec(G * Mb / rr ** 2 / a0)
-    rho = np.gradient(Mdyn, rr) / (4 * math.pi * rr ** 2) + rho_car
+    rho = np.gradient(Mdyn, rr) / (4 * math.pi * rr ** 2)          # MS1's reading: baryons + phantom, never the carrier
+    #   (rho_car is deliberately NOT added: the MOND-sector door is carrier-blind; every DE9 KiDS cell has no carrier
+    #   anyway -- cc = None, so rho_car was zero; the '+ rho_car' of the first commit changed no number)
     x = 4 * math.pi * G * (rho - FB * D8["rho_bar"]) / D8["H_L"] ** 2
     if w is None:
         on = x >= xc_eff
