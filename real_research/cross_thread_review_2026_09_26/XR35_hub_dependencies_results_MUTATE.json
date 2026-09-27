@@ -1,0 +1,1226 @@
+{
+ "lane": "XR35 part 2 (hub dependencies on the defective KiDS projectors)",
+ "mutate": true,
+ "checks": {
+  "P0": {
+   "pass": false,
+   "measured": "SIS V=200: nodes 2.9559%, cells 2.9561%; NFW 3e12 c4: nodes 8.1664%, cells 8.1662%",
+   "load_bearing": true,
+   "name": "P0 THE CORRECTED SLOT IS FP20's DROP-IN: M2Fix (node densities) and CellFix (DE8's cells) reproduce the SIS and NFW 3e12 c4 annulus Delta Sigma to 0.04% at the 15 KiDS radii"
+  },
+  "D1": {
+   "pass": true,
+   "measured": "XR18_frw_yield_crossing.py: calls ['kids_class'] -> ['K1']; XR18_state_separator.py: calls ['gates'] -> ['K1']; XR25_lambda_regulator.py: calls ['kids_class'] -> ['K1'] | no calls in XR10/XR29/XR25_common: True (XR10's 'gates' is a local set of a row's gate names); XR29 reads from FP11 ['Efac', 'Grid', 'L_of_a', 'MPC', 'RG', 'W_pair', 'YIELD', 'dg_body', 'g_iso', 'phantom', 'yth_of_a']; XR28 calls: [[], ['model_esd'], ['model_esd'], []]",
+   "load_bearing": true,
+   "name": "D1 THE TRACE: XR18_frw and XR25 reach FP6's esd_of_M only through kids_class and XR18_state only through FP13's gates(), and every call and every 'kids'-keyed access feeds only the K1 control (the containers' later uses are printed with their keys); XR10, XR29 (and XR25_common) call nothing of the kind, and XR29 reads nothing projected from the FP11 it exec's; the XR28 files call only their own model_esd"
+  },
+  "D2": {
+   "pass": true,
+   "measured": "8 of 8 committed values equal FP20's 'before'; largest shift 19.53",
+   "load_bearing": false,
+   "name": "D2 (reported) THE P1 CONSUMERS' K1 CONTROLS: each lane's committed K1 KiDS value is FP20's 'before', FP20's committed re-score moves it by the shift printed; each K1 would fail on a re-run (pinned to a defective-projection number); no other check of these lanes consumes KiDS (D1)"
+  },
+  "K1": {
+   "pass": true,
+   "measured": "288 numbers, max |d| 0.0e+00; shifts max |d| 0.0e+00",
+   "load_bearing": true,
+   "name": "K1 CONTROL: with the committed projector DE8's upper-branch scan (2 outer conventions x 36 cells x 2 sigma x 2 footings) and its two sigma shifts are reproduced exactly"
+  },
+  "X1": {
+   "pass": true,
+   "measured": "r200/upper 0.39991 -> 0.39991; nfw/upper 0.31318 -> 0.31318",
+   "load_bearing": false,
+   "name": "X1 (reported; = HX1, pre-declared) XR10's SIGMA0_FOR_SIGMA1 evidence under the corrected projection: DE8's upper-branch sigma shift <= 0.4 on both outer conventions (XR10's json_le evidence)"
+  },
+  "K2": {
+   "pass": true,
+   "measured": "{0.1: 4.478906250000001, 0.25: 4.347265625000002} vs DE9 4.478906250000001/4.347265625000002 (max |d| 0.0e+00)",
+   "load_bearing": true,
+   "name": "K2 CONTROL: with the committed projector DE9's MOND-sector switch-only KiDS caps at w = 0.1 and 0.25 are reproduced exactly"
+  },
+  "X2": {
+   "pass": true,
+   "measured": "caps w = 0.1: 4.4789 -> 4.478906250000001; w = 0.25: 4.3473 -> 4.347265625000002; windows {0.1: (1.667, 3.448), 0.25: (2.0, 3.346)} -> {0.1: (1.667, 3.448), 0.25: (2.0, 3.346)}",
+   "load_bearing": false,
+   "name": "X2 (reported; = HX2, pre-declared) XR10's HARDW_FOR_SMOOTH evidence under the corrected projection: DE9's MOND-sector window at p = 1 still contains x_c0 = 2.5 at w = 0.1 and 0.25"
+  },
+  "K-MUT": {
+   "pass": true,
+   "measured": "identical: True",
+   "load_bearing": true,
+   "name": "K-MUT (MUTATE control) with the committed projector in the corrected slot X1's and X2's 'after' equal their 'before'"
+  },
+  "X3": {
+   "pass": true,
+   "measured": "11 rows; re-scored 7; not re-scored ['DE2.window', 'DE9.curv', 'L392.curvature', 'L392.matter']",
+   "load_bearing": false,
+   "name": "X3 (reported) XR10's KiDS rows mapped: every row that scores KiDS uses a defective projector; the rows re-scored here, in XR35_kids_rescore and in FP20 are listed before -> after; XR10's own verdicts are axis classifications from the code and consume no projected number"
+  },
+  "XR28": {
+   "pass": true,
+   "measured": "own kernel present: True; code references [['model_esd'], ['model_esd'], ['model_esd'], []]",
+   "load_bearing": false,
+   "name": "XR28 (reported) the in-flight lane uses none of the three defective projectors (its own exact uniform-shell kernel)"
+  },
+  "F": {
+   "pass": true,
+   "measured": "580 numbers; non-finite 0; DE9 caps found: True",
+   "load_bearing": true,
+   "name": "F EVERY RE-SCORE COMPLETED: DE8's upper branch and DE9's caps in both projections, every number finite"
+  }
+ },
+ "numbers": {
+  "P0": {
+   "SIS V=200": [
+    0.029558512507522727,
+    0.029560672554244327
+   ],
+   "NFW 3e12 c4": [
+    0.08166387356492022,
+    0.08166189776797439
+   ]
+  },
+  "D1": {
+   "trace": {
+    "XR10_answer_validator.py": {
+     "refs": [
+      [
+       426,
+       "gates",
+       "name"
+      ],
+      [
+       426,
+       "gates",
+       "string key"
+      ],
+      [
+       427,
+       "gates",
+       "name"
+      ],
+      [
+       428,
+       "gates",
+       "name"
+      ],
+      [
+       429,
+       "gates",
+       "name"
+      ],
+      [
+       430,
+       "gates",
+       "name"
+      ],
+      [
+       728,
+       "gates",
+       "string key"
+      ]
+     ],
+     "defs": {},
+     "calls": [],
+     "kidskeys": [],
+     "feeds": [],
+     "holders": [],
+     "later_uses": [],
+     "execd": [],
+     "lines": {
+      "426": "gates = set(row[\"gates\"])",
+      "427": "if \"gates_only\" in ru and not gates <= set(ru[\"gates_only\"]):",
+      "428": "return False, f\"{rid}: covers only {ru['gates_only']}, row scores {sorted(gates - set(ru['gates_only']))}\"",
+      "429": "if ru.get(\"exclude_efe\") and gates & EFE_GATES:",
+      "430": "return False, f\"{rid}: not controlled for the EFE ({sorted(gates & EFE_GATES)})\"",
+      "728": "P(f\"\\n  {row['id']}  [{row['lane']}, {cm}, claim {row['claim']}, {row['kind']}-level]  gates {row['gates']}  -> {STAT[row['id']]}\""
+     }
+    },
+    "XR18_frw_yield_crossing.py": {
+     "refs": [
+      [
+       124,
+       "kids_class",
+       "name"
+      ],
+      [
+       124,
+       "kids_class",
+       "string key"
+      ],
+      [
+       137,
+       "kids_class",
+       "name"
+      ],
+      [
+       166,
+       "kids_class",
+       "name"
+      ]
+     ],
+     "defs": {},
+     "calls": [
+      [
+       137,
+       "kids_class"
+      ],
+      [
+       166,
+       "kids_class"
+      ]
+     ],
+     "kidskeys": [
+      [
+       128,
+       "Z_KIDS"
+      ],
+      [
+       166,
+       "kids"
+      ],
+      [
+       175,
+       "kids"
+      ]
+     ],
+     "feeds": [
+      "K1"
+     ],
+     "holders": [
+      "KB",
+      "k1"
+     ],
+     "later_uses": [
+      [
+       342,
+       "k1",
+       "s8",
+       "ref0 = {m: (k1[\"s8\"][str((\"canonical\", m))] if not MUTATE else s8_aq(model_e, \"canonical\", m)) for m in MODES}"
+      ],
+      [
+       343,
+       "k1",
+       "forest",
+       "f0 = k1[\"forest\"][str((\"canonical\", \"permode\", 15.0))] if not MUTATE else forest_aq(model_e, \"canonical\", \"permode\", kFs=(15.0,))"
+      ]
+     ],
+     "execd": [
+      "FP9_web_galaxy_separator.py"
+     ],
+     "lines": {
+      "124": "bandpass_model, L_phys, y_th_z, law_dev_dex, kids_class = (NS9[k] for k in (\"bandpass_model\", \"L_phys\", \"y_th_z\", \"law_dev_dex\", \"kids_class\"))",
+      "137": "KB = {f: kids_class(A0[f]) for f in FOOTS}",
+      "166": "k1[\"kids\"][f] = kids_class(A0[f], HEAD[\"L25\"], y_th_z(FLh, Z_KIDS), YIELD) - KB[f]"
+     }
+    },
+    "XR18_state_separator.py": {
+     "refs": [
+      [
+       164,
+       "gates",
+       "name"
+      ],
+      [
+       164,
+       "gates",
+       "string key"
+      ],
+      [
+       179,
+       "gates",
+       "name"
+      ]
+     ],
+     "defs": {},
+     "calls": [
+      [
+       179,
+       "gates"
+      ]
+     ],
+     "kidskeys": [
+      [
+       192,
+       "kids"
+      ],
+      [
+       192,
+       "kids@0.4"
+      ]
+     ],
+     "feeds": [
+      "K1"
+     ],
+     "holders": [
+      "H"
+     ],
+     "later_uses": [
+      [
+       440,
+       "H",
+       "s8",
+       "n3[(f, m)] = dict(fp13=H[\"s8\"][(f, m)], rebuilt=s0, B=sB, B_Ygauss=sBG, B_Yhalo=sBH)"
+      ],
+      [
+       506,
+       "H",
+       "s8",
+       "f\"{min(H['s8'].values()):.4f}-{max(H['s8'].values()):.4f}; this lane's rebuild of FP13's yardstick without the terms: max dev {reb:.1e}); \""
+      ]
+     ],
+     "execd": [
+      "FP13_separator_from_state.py"
+     ],
+     "lines": {
+      "164": "L_table, fun_of, yth_state, gates, model_of = NS[\"L_table\"], NS[\"fun_of\"], NS[\"yth_state\"], NS[\"gates\"], NS[\"model_of\"]",
+      "179": "H = gates(Lh, yh, extra=True)"
+     }
+    },
+    "XR25_lambda_regulator.py": {
+     "refs": [
+      [
+       96,
+       "kids_class",
+       "name"
+      ],
+      [
+       96,
+       "kids_class",
+       "string key"
+      ],
+      [
+       204,
+       "kids_class",
+       "name"
+      ],
+      [
+       237,
+       "kids_class",
+       "name"
+      ]
+     ],
+     "defs": {},
+     "calls": [
+      [
+       204,
+       "kids_class"
+      ],
+      [
+       237,
+       "kids_class"
+      ]
+     ],
+     "kidskeys": [
+      [
+       96,
+       "kids_class"
+      ],
+      [
+       101,
+       "Z_KIDS"
+      ],
+      [
+       238,
+       "kids"
+      ],
+      [
+       238,
+       "kids "
+      ],
+      [
+       239,
+       "kids"
+      ]
+     ],
+     "feeds": [
+      "K1"
+     ],
+     "holders": [
+      "KB",
+      "dev",
+      "rows_k1"
+     ],
+     "later_uses": [
+      [
+       324,
+       "rows_k1",
+       ".items",
+       "s8_floor0 = {k_: v_[0] for k_, v_ in rows_k1.items() if k_.startswith(\"s8\")}"
+      ]
+     ],
+     "execd": [
+      "FP9_web_galaxy_separator.py"
+     ],
+     "lines": {
+      "96": "law_dev_dex, kids_class = ns9[\"law_dev_dex\"], ns9[\"kids_class\"]",
+      "204": "KB = {f: kids_class(A0[f]) for f in FOOTS}",
+      "237": "v_ = kids_class(A0[f], Lh(1 / (1 + Z_KIDS)), yh[f](1 / (1 + Z_KIDS)), YIELD) - KB[f]"
+     }
+    },
+    "XR25_common.py": {
+     "refs": [],
+     "defs": {},
+     "calls": [],
+     "kidskeys": [],
+     "feeds": [],
+     "holders": [],
+     "later_uses": [],
+     "execd": [],
+     "lines": {}
+    },
+    "XR29_mw_outer_curve.py": {
+     "refs": [],
+     "defs": {},
+     "calls": [],
+     "kidskeys": [],
+     "feeds": [],
+     "holders": [],
+     "later_uses": [],
+     "execd": [
+      "FP11_local_group_flyby.py",
+      "FP7_aqual_type_repair.py",
+      "mi_aqual_mcmillan2017_2026.py",
+      "mi_aqual_mond_refit_2026.py"
+     ],
+     "lines": {}
+    },
+    "XR28_common.py": {
+     "refs": [
+      [
+       612,
+       "model_esd",
+       "def"
+      ]
+     ],
+     "defs": {
+      "model_esd": 612
+     },
+     "calls": [],
+     "kidskeys": [],
+     "feeds": [],
+     "holders": [],
+     "later_uses": [],
+     "execd": [],
+     "lines": {
+      "612": "def model_esd(st, key=\"lens\", mean=1.0):"
+     }
+    },
+    "XR28_controls.py": {
+     "refs": [
+      [
+       330,
+       "model_esd",
+       "attribute"
+      ],
+      [
+       335,
+       "model_esd",
+       "attribute"
+      ],
+      [
+       346,
+       "model_esd",
+       "string key"
+      ],
+      [
+       369,
+       "model_esd",
+       "attribute"
+      ]
+     ],
+     "defs": {},
+     "calls": [
+      [
+       330,
+       "model_esd"
+      ],
+      [
+       335,
+       "model_esd"
+      ],
+      [
+       369,
+       "model_esd"
+      ]
+     ],
+     "kidskeys": [],
+     "feeds": [
+      "K5b",
+      "K6"
+     ],
+     "holders": [
+      "fw",
+      "got",
+      "got_h"
+     ],
+     "later_uses": [],
+     "execd": [
+      "FP6_gate_survey.py"
+     ],
+     "lines": {
+      "330": "got = X.model_esd(st_c, \"lens\", mean=0.0)",
+      "335": "got_h = X.model_esd(st_h, \"lens\", mean=1.0)",
+      "346": "all(v_ <= 2e-3 for k_, v_ in K5b.items() if \"model_esd\" not in k_) and K5b[\"compact mass (model_esd)\"] < 1e-9",
+      "369": "fw = X.dk14_fit(X.model_esd(st), \"esd\", r200h=r200h if window else None)"
+     }
+    },
+    "XR28_outskirts_L.py": {
+     "refs": [
+      [
+       93,
+       "model_esd",
+       "attribute"
+      ]
+     ],
+     "defs": {},
+     "calls": [
+      [
+       93,
+       "model_esd"
+      ]
+     ],
+     "kidskeys": [],
+     "feeds": [
+      "O1"
+     ],
+     "holders": [
+      "e",
+      "g"
+     ],
+     "later_uses": [],
+     "execd": [],
+     "lines": {
+      "93": "e = X.model_esd(st); g = X.model_sigma(st)"
+     }
+    },
+    "XR28_hot_phase.py": {
+     "refs": [],
+     "defs": {},
+     "calls": [],
+     "kidskeys": [],
+     "feeds": [],
+     "holders": [],
+     "later_uses": [],
+     "execd": [],
+     "lines": {}
+    }
+   },
+   "XR29_reads_from_FP11": [
+    "Efac",
+    "Grid",
+    "L_of_a",
+    "MPC",
+    "RG",
+    "W_pair",
+    "YIELD",
+    "dg_body",
+    "g_iso",
+    "phantom",
+    "yth_of_a"
+   ]
+  },
+  "D2": [
+   {
+    "lane": "XR18_frw_yield_crossing",
+    "check": "K1",
+    "item": "FP9 H2 KiDS (z = 0.25) canonical",
+    "committed": -2.402381941164819,
+    "fp20_before": -2.402381941164819,
+    "fp20_after": -2.630381129044224
+   },
+   {
+    "lane": "XR18_frw_yield_crossing",
+    "check": "K1",
+    "item": "FP9 H2 KiDS (z = 0.25) alt",
+    "committed": -5.569819235318079,
+    "fp20_before": -5.569819235318079,
+    "fp20_after": -1.9377100561155771
+   },
+   {
+    "lane": "XR18_state_separator",
+    "check": "K1",
+    "item": "FP13 H1 KiDS (z = 0.25) canonical",
+    "committed": -6.245165925136391,
+    "fp20_before": -6.245165925136391,
+    "fp20_after": -8.624825333993783
+   },
+   {
+    "lane": "XR18_state_separator",
+    "check": "K1",
+    "item": "FP13 H1 KiDS (z = 0.25) alt",
+    "committed": -7.6713257751607955,
+    "fp20_before": -7.6713257751607955,
+    "fp20_after": -10.346080064408781
+   },
+   {
+    "lane": "XR18_state_separator",
+    "check": "K1",
+    "item": "FP13 H1 KiDS (z = 0.4) canonical",
+    "committed": -7.828340447585006,
+    "fp20_before": -7.828340447585006,
+    "fp20_after": -8.81750005609672
+   },
+   {
+    "lane": "XR18_state_separator",
+    "check": "K1",
+    "item": "FP13 H1 KiDS (z = 0.4) alt",
+    "committed": -10.667762173928935,
+    "fp20_before": -10.667762173928935,
+    "fp20_after": -9.66166945878804
+   },
+   {
+    "lane": "XR18_state_separator",
+    "check": "K1",
+    "item": "FP13 H1 KiDS (z = 0.7) canonical",
+    "committed": NaN,
+    "fp20_before": 542.7195707377774,
+    "fp20_after": 558.6922747679394
+   },
+   {
+    "lane": "XR18_state_separator",
+    "check": "K1",
+    "item": "FP13 H1 KiDS (z = 0.7) alt",
+    "committed": NaN,
+    "fp20_before": 575.7349894837312,
+    "fp20_after": 595.2650381227195
+   },
+   {
+    "lane": "XR25_lambda_regulator",
+    "check": "K1",
+    "item": "FP13 H1 KiDS (z = 0.25) canonical",
+    "committed": -6.245165925136391,
+    "fp20_before": -6.245165925136391,
+    "fp20_after": -8.624825333993783
+   },
+   {
+    "lane": "XR25_lambda_regulator",
+    "check": "K1",
+    "item": "FP13 H1 KiDS (z = 0.25) alt",
+    "committed": -7.6713257751607955,
+    "fp20_before": -7.6713257751607955,
+    "fp20_after": -10.346080064408781
+   }
+  ],
+  "X1": {
+   "committed_shift": {
+    "r200/upper": 0.3999087895541322,
+    "nfw/upper": 0.3131779070359926
+   },
+   "corrected_shift": {
+    "r200/upper": 0.39990878955418907,
+    "nfw/upper": 0.3131779070359926
+   },
+   "counts": {
+    "committed": {
+     "r200": {
+      "pass_sigma0": 22,
+      "pass_sigma1": 22,
+      "cells": 36
+     },
+     "nfw": {
+      "pass_sigma0": 35,
+      "pass_sigma1": 35,
+      "cells": 36
+     }
+    },
+    "corrected": {
+     "r200": {
+      "pass_sigma0": 22,
+      "pass_sigma1": 22,
+      "cells": 36
+     },
+     "nfw": {
+      "pass_sigma0": 35,
+      "pass_sigma1": 35,
+      "cells": 36
+     }
+    }
+   },
+   "worst_cell": [
+    "r200/upper/0.5/3.39/2.0_cap_1000.0/500/0.25",
+    0.39990878955418907
+   ],
+   "corrected_scan": {
+    "r200/upper/1.0/2.5/1.0_cap_700.0/100/1.0": {
+     "0.0/canonical": -0.5930406040540959,
+     "0.0/alt": 3.7442495831615474,
+     "1.0/canonical": -0.4136761769856889,
+     "1.0/alt": 3.856046931040794
+    },
+    "r200/upper/1.0/2.5/1.0_cap_700.0/100/0.25": {
+     "0.0/canonical": -18.485217639670225,
+     "0.0/alt": -11.310557012497554,
+     "1.0/canonical": -18.439647846624155,
+     "1.0/alt": -11.261336651453348
+    },
+    "r200/upper/1.0/2.5/1.0_cap_700.0/500/1.0": {
+     "0.0/canonical": -18.074498759725827,
+     "0.0/alt": -9.888790458161822,
+     "1.0/canonical": -17.869715085037626,
+     "1.0/alt": -9.718387097213224
+    },
+    "r200/upper/1.0/2.5/1.0_cap_700.0/500/0.25": {
+     "0.0/canonical": -19.17569529440283,
+     "0.0/alt": -12.244504071005792,
+     "1.0/canonical": -19.080246283667236,
+     "1.0/alt": -12.138066239555826
+    },
+    "r200/upper/1.0/2.5/1.0_cleared_1000.0/100/1.0": {
+     "0.0/canonical": -6.362187294979776,
+     "0.0/alt": -0.09038451246658497,
+     "1.0/canonical": -6.246838824150728,
+     "1.0/alt": 0.013675758152089657
+    },
+    "r200/upper/1.0/2.5/1.0_cleared_1000.0/100/0.25": {
+     "0.0/canonical": -5.862600480917024,
+     "0.0/alt": -4.400319150411292,
+     "1.0/canonical": -5.835043218956798,
+     "1.0/alt": -4.299102620883161
+    },
+    "r200/upper/1.0/2.5/1.0_cleared_1000.0/500/1.0": {
+     "0.0/canonical": -14.600465782552703,
+     "0.0/alt": -9.37567761288824,
+     "1.0/canonical": -14.451679715457544,
+     "1.0/alt": -9.250642886220987
+    },
+    "r200/upper/1.0/2.5/1.0_cleared_1000.0/500/0.25": {
+     "0.0/canonical": -6.227093679429601,
+     "0.0/alt": -6.76829683576392,
+     "1.0/canonical": -5.97897000975604,
+     "1.0/alt": -6.5405393038524835
+    },
+    "r200/upper/1.0/2.5/2.0_cap_1000.0/100/1.0": {
+     "0.0/canonical": 26.204196389711853,
+     "0.0/alt": 32.25616756749238,
+     "1.0/canonical": 26.402126282818642,
+     "1.0/alt": 32.42440244442355
+    },
+    "r200/upper/1.0/2.5/2.0_cap_1000.0/100/0.25": {
+     "0.0/canonical": 1.2783457903910858,
+     "0.0/alt": 7.945083511279222,
+     "1.0/canonical": 1.3729007843411978,
+     "1.0/alt": 8.011255323006282
+    },
+    "r200/upper/1.0/2.5/2.0_cap_1000.0/500/1.0": {
+     "0.0/canonical": 6.818380604778838,
+     "0.0/alt": 11.819657398801041,
+     "1.0/canonical": 7.028024855023091,
+     "1.0/alt": 12.002504034123945
+    },
+    "r200/upper/1.0/2.5/2.0_cap_1000.0/500/0.25": {
+     "0.0/canonical": -0.26033273019751846,
+     "0.0/alt": 6.3598517443865035,
+     "1.0/canonical": -0.050557339838405824,
+     "1.0/alt": 6.52958350412834
+    },
+    "r200/upper/0.5/2.65/1.0_cap_700.0/100/1.0": {
+     "0.0/canonical": -12.021361216393302,
+     "0.0/alt": -3.360076154957909,
+     "1.0/canonical": -11.880361545777816,
+     "1.0/alt": -3.2643300104402897
+    },
+    "r200/upper/0.5/2.65/1.0_cap_700.0/100/0.25": {
+     "0.0/canonical": -21.08617903370657,
+     "0.0/alt": -14.430733971431152,
+     "1.0/canonical": -21.065078791161056,
+     "1.0/alt": -14.406775974564681
+    },
+    "r200/upper/0.5/2.65/1.0_cap_700.0/500/1.0": {
+     "0.0/canonical": -24.53315669633139,
+     "0.0/alt": -16.30953226465681,
+     "1.0/canonical": -24.386692506761193,
+     "1.0/alt": -16.17829725385667
+    },
+    "r200/upper/0.5/2.65/1.0_cap_700.0/500/0.25": {
+     "0.0/canonical": -21.381567593497152,
+     "0.0/alt": -14.863802904959869,
+     "1.0/canonical": -21.343325988484082,
+     "1.0/alt": -14.816171854063924
+    },
+    "r200/upper/0.5/2.65/1.0_cleared_1000.0/100/1.0": {
+     "0.0/canonical": -8.57671204170569,
+     "0.0/alt": -3.229533954803969,
+     "1.0/canonical": -8.4766470791877,
+     "1.0/alt": -3.1487948885737183
+    },
+    "r200/upper/0.5/2.65/1.0_cleared_1000.0/100/0.25": {
+     "0.0/canonical": -16.569356218810356,
+     "0.0/alt": -9.319044725769999,
+     "1.0/canonical": -16.430026222258135,
+     "1.0/alt": -9.276944434200175
+    },
+    "r200/upper/0.5/2.65/1.0_cleared_1000.0/500/1.0": {
+     "0.0/canonical": -17.888844656119375,
+     "0.0/alt": -11.222928661304024,
+     "1.0/canonical": -17.720647839323703,
+     "1.0/alt": -11.067503797290044
+    },
+    "r200/upper/0.5/2.65/1.0_cleared_1000.0/500/0.25": {
+     "0.0/canonical": -19.45785809683838,
+     "0.0/alt": -10.302514693616587,
+     "1.0/canonical": -19.13911034995715,
+     "1.0/alt": -10.211335966048523
+    },
+    "r200/upper/0.5/2.65/2.0_cap_1000.0/100/1.0": {
+     "0.0/canonical": 13.73964644179759,
+     "0.0/alt": 19.21166604495727,
+     "1.0/canonical": 13.890800936883124,
+     "1.0/alt": 19.3401099242748
+    },
+    "r200/upper/0.5/2.65/2.0_cap_1000.0/100/0.25": {
+     "0.0/canonical": -4.803913462653725,
+     "0.0/alt": 1.1753904796991606,
+     "1.0/canonical": -4.749360231959486,
+     "1.0/alt": 1.2304732613476688
+    },
+    "r200/upper/0.5/2.65/2.0_cap_1000.0/500/1.0": {
+     "0.0/canonical": -1.9375447231818725,
+     "0.0/alt": 3.442705310934741,
+     "1.0/canonical": -1.7591805195879715,
+     "1.0/alt": 3.58301099892023
+    },
+    "r200/upper/0.5/2.65/2.0_cap_1000.0/500/0.25": {
+     "0.0/canonical": -6.531874052249805,
+     "0.0/alt": 0.06437113000669115,
+     "1.0/canonical": -6.36670764680369,
+     "1.0/alt": 0.18604396945599433
+    },
+    "r200/upper/0.5/3.39/1.0_cap_700.0/100/1.0": {
+     "0.0/canonical": 33.74395188234621,
+     "0.0/alt": 38.75593340423089,
+     "1.0/canonical": 34.02396009906255,
+     "1.0/alt": 39.00107453321726
+    },
+    "r200/upper/0.5/3.39/1.0_cap_700.0/100/0.25": {
+     "0.0/canonical": -1.6854033951439078,
+     "0.0/alt": 4.469944561953696,
+     "1.0/canonical": -1.5414260750188191,
+     "1.0/alt": 4.562348830870519
+    },
+    "r200/upper/0.5/3.39/1.0_cap_700.0/500/1.0": {
+     "0.0/canonical": 8.46612865253681,
+     "0.0/alt": 12.736809788186463,
+     "1.0/canonical": 8.780914242519685,
+     "1.0/alt": 12.990784834356077
+    },
+    "r200/upper/0.5/3.39/1.0_cap_700.0/500/0.25": {
+     "0.0/canonical": -3.729986956806897,
+     "0.0/alt": 2.8924871009969593,
+     "1.0/canonical": -3.4146255418486646,
+     "1.0/alt": 3.0884698292680355
+    },
+    "r200/upper/0.5/3.39/1.0_cleared_1000.0/100/1.0": {
+     "0.0/canonical": 18.297042392516744,
+     "0.0/alt": 24.289017547465477,
+     "1.0/canonical": 18.532407184039243,
+     "1.0/alt": 24.466378143381803
+    },
+    "r200/upper/0.5/3.39/1.0_cleared_1000.0/100/0.25": {
+     "0.0/canonical": -2.537894513369281,
+     "0.0/alt": 3.0816402499534945,
+     "1.0/canonical": -2.4955962744415956,
+     "1.0/alt": 3.131484196406234
+    },
+    "r200/upper/0.5/3.39/1.0_cleared_1000.0/500/1.0": {
+     "0.0/canonical": -2.852763931447157,
+     "0.0/alt": 5.947542280950472,
+     "1.0/canonical": -2.58496476896687,
+     "1.0/alt": 6.152813258195238
+    },
+    "r200/upper/0.5/3.39/1.0_cleared_1000.0/500/0.25": {
+     "0.0/canonical": -3.0721782516692997,
+     "0.0/alt": 2.3077383910017204,
+     "1.0/canonical": -2.9971559740247358,
+     "1.0/alt": 2.4052522085903547
+    },
+    "r200/upper/0.5/3.39/2.0_cap_1000.0/100/1.0": {
+     "0.0/canonical": 52.46167920901459,
+     "0.0/alt": 59.73284860738988,
+     "1.0/canonical": 52.605048063991916,
+     "1.0/alt": 59.88798800198231
+    },
+    "r200/upper/0.5/3.39/2.0_cap_1000.0/100/0.25": {
+     "0.0/canonical": 25.323561153223835,
+     "0.0/alt": 30.03293763631285,
+     "1.0/canonical": 25.503478526578107,
+     "1.0/alt": 30.20665081023253
+    },
+    "r200/upper/0.5/3.39/2.0_cap_1000.0/500/1.0": {
+     "0.0/canonical": 34.68698825208142,
+     "0.0/alt": 40.418794453575345,
+     "1.0/canonical": 34.96147485301174,
+     "1.0/alt": 40.65995101781971
+    },
+    "r200/upper/0.5/3.39/2.0_cap_1000.0/500/0.25": {
+     "0.0/canonical": 22.67317128111688,
+     "0.0/alt": 26.933388974005368,
+     "1.0/canonical": 23.073080070671068,
+     "1.0/alt": 27.317208515612265
+    },
+    "nfw/upper/1.0/2.5/1.0_cap_700.0/100/1.0": {
+     "0.0/canonical": -30.634139706736732,
+     "0.0/alt": -24.400998752031967,
+     "1.0/canonical": -30.522728454842422,
+     "1.0/alt": -24.312989587815537
+    },
+    "nfw/upper/1.0/2.5/1.0_cap_700.0/100/0.25": {
+     "0.0/canonical": -43.010185948339995,
+     "0.0/alt": -37.47121373345021,
+     "1.0/canonical": -42.96696969551766,
+     "1.0/alt": -37.43092634813007
+    },
+    "nfw/upper/1.0/2.5/1.0_cap_700.0/500/1.0": {
+     "0.0/canonical": -42.569617381489905,
+     "0.0/alt": -35.24120756026812,
+     "1.0/canonical": -42.437181590600346,
+     "1.0/alt": -35.13529122029422
+    },
+    "nfw/upper/1.0/2.5/1.0_cap_700.0/500/0.25": {
+     "0.0/canonical": -44.14893850491541,
+     "0.0/alt": -38.47034646694189,
+     "1.0/canonical": -44.00988556323108,
+     "1.0/alt": -38.377230682487664
+    },
+    "nfw/upper/1.0/2.5/1.0_cleared_1000.0/100/1.0": {
+     "0.0/canonical": -22.926983376606756,
+     "0.0/alt": -15.465219346967217,
+     "1.0/canonical": -22.7909896142601,
+     "1.0/alt": -15.368758201525822
+    },
+    "nfw/upper/1.0/2.5/1.0_cleared_1000.0/100/0.25": {
+     "0.0/canonical": -37.60144674154611,
+     "0.0/alt": -28.63985127259366,
+     "1.0/canonical": -37.57866067908677,
+     "1.0/alt": -28.612128015993164
+    },
+    "nfw/upper/1.0/2.5/1.0_cleared_1000.0/500/1.0": {
+     "0.0/canonical": -36.065758468070214,
+     "0.0/alt": -26.69589562459123,
+     "1.0/canonical": -35.93278365165253,
+     "1.0/alt": -26.57643503217892
+    },
+    "nfw/upper/1.0/2.5/1.0_cleared_1000.0/500/0.25": {
+     "0.0/canonical": -38.04014720868349,
+     "0.0/alt": -29.27922513736155,
+     "1.0/canonical": -37.996676985096684,
+     "1.0/alt": -29.220208633280578
+    },
+    "nfw/upper/1.0/2.5/2.0_cap_1000.0/100/1.0": {
+     "0.0/canonical": -22.200607258646812,
+     "0.0/alt": -16.068784256429524,
+     "1.0/canonical": -22.112607018888355,
+     "1.0/alt": -15.987521991086112
+    },
+    "nfw/upper/1.0/2.5/2.0_cap_1000.0/100/0.25": {
+     "0.0/canonical": -31.748008683222906,
+     "0.0/alt": -23.781413990391854,
+     "1.0/canonical": -31.705027598605568,
+     "1.0/alt": -23.75525713196106
+    },
+    "nfw/upper/1.0/2.5/2.0_cap_1000.0/500/1.0": {
+     "0.0/canonical": -33.032716465435584,
+     "0.0/alt": -25.825282268427117,
+     "1.0/canonical": -32.904759545063484,
+     "1.0/alt": -25.73366613655466
+    },
+    "nfw/upper/1.0/2.5/2.0_cap_1000.0/500/0.25": {
+     "0.0/canonical": -32.395242700345875,
+     "0.0/alt": -24.244065287223577,
+     "1.0/canonical": -32.30049272256656,
+     "1.0/alt": -24.187708601162512
+    },
+    "nfw/upper/0.5/2.65/1.0_cap_700.0/100/1.0": {
+     "0.0/canonical": -36.5696384721746,
+     "0.0/alt": -28.965853364807003,
+     "1.0/canonical": -36.47374307606151,
+     "1.0/alt": -28.89137950113951
+    },
+    "nfw/upper/0.5/2.65/1.0_cap_700.0/100/0.25": {
+     "0.0/canonical": -49.93195224979331,
+     "0.0/alt": -40.860737748356996,
+     "1.0/canonical": -49.883091564180006,
+     "1.0/alt": -40.83389845927125
+    },
+    "nfw/upper/0.5/2.65/1.0_cap_700.0/500/1.0": {
+     "0.0/canonical": -47.65329428081529,
+     "0.0/alt": -39.51282548321227,
+     "1.0/canonical": -47.525054584211176,
+     "1.0/alt": -39.413968621907316
+    },
+    "nfw/upper/0.5/2.65/1.0_cap_700.0/500/0.25": {
+     "0.0/canonical": -50.971032099667326,
+     "0.0/alt": -41.91065100294476,
+     "1.0/canonical": -50.85530165202945,
+     "1.0/alt": -41.82501033652295
+    },
+    "nfw/upper/0.5/2.65/1.0_cleared_1000.0/100/1.0": {
+     "0.0/canonical": -30.569211658610755,
+     "0.0/alt": -21.648224368830427,
+     "1.0/canonical": -30.467520723687215,
+     "1.0/alt": -21.57166551337548
+    },
+    "nfw/upper/0.5/2.65/1.0_cleared_1000.0/100/0.25": {
+     "0.0/canonical": -38.16183803742649,
+     "0.0/alt": -30.09783284296617,
+     "1.0/canonical": -38.15795714498745,
+     "1.0/alt": -30.091375633256973
+    },
+    "nfw/upper/0.5/2.65/1.0_cleared_1000.0/500/1.0": {
+     "0.0/canonical": -40.02865928638727,
+     "0.0/alt": -31.427174533108428,
+     "1.0/canonical": -39.92692124474638,
+     "1.0/alt": -31.331684228992856
+    },
+    "nfw/upper/0.5/2.65/1.0_cleared_1000.0/500/0.25": {
+     "0.0/canonical": -38.0762641301273,
+     "0.0/alt": -30.184899821716357,
+     "1.0/canonical": -38.07374656523703,
+     "1.0/alt": -30.17654233982688
+    },
+    "nfw/upper/0.5/2.65/2.0_cap_1000.0/100/1.0": {
+     "0.0/canonical": -28.431363845580165,
+     "0.0/alt": -21.696545902109506,
+     "1.0/canonical": -28.531130952294518,
+     "1.0/alt": -21.635194892117624
+    },
+    "nfw/upper/0.5/2.65/2.0_cap_1000.0/100/0.25": {
+     "0.0/canonical": -35.64078916183732,
+     "0.0/alt": -27.72246062064579,
+     "1.0/canonical": -35.57002397808628,
+     "1.0/alt": -27.676410605325316
+    },
+    "nfw/upper/0.5/2.65/2.0_cap_1000.0/500/1.0": {
+     "0.0/canonical": -38.694751933797335,
+     "0.0/alt": -31.044650434521657,
+     "1.0/canonical": -38.58284215810551,
+     "1.0/alt": -30.95361055360584
+    },
+    "nfw/upper/0.5/2.65/2.0_cap_1000.0/500/0.25": {
+     "0.0/canonical": -37.230885022295894,
+     "0.0/alt": -28.92806248752936,
+     "1.0/canonical": -37.06242795909006,
+     "1.0/alt": -28.8182511624737
+    },
+    "nfw/upper/0.5/3.39/1.0_cap_700.0/100/1.0": {
+     "0.0/canonical": -11.942673652762494,
+     "0.0/alt": -4.345115685153928,
+     "1.0/canonical": -11.783760359324276,
+     "1.0/alt": -4.2141874829236485
+    },
+    "nfw/upper/0.5/3.39/1.0_cap_700.0/100/0.25": {
+     "0.0/canonical": -27.03797098434086,
+     "0.0/alt": -20.14797591480294,
+     "1.0/canonical": -26.97271057295029,
+     "1.0/alt": -20.109353582139875
+    },
+    "nfw/upper/0.5/3.39/1.0_cap_700.0/500/1.0": {
+     "0.0/canonical": -26.42954404502325,
+     "0.0/alt": -19.67167803936246,
+     "1.0/canonical": -26.23968171338487,
+     "1.0/alt": -19.51114782663086
+    },
+    "nfw/upper/0.5/3.39/1.0_cap_700.0/500/0.25": {
+     "0.0/canonical": -27.883729400021622,
+     "0.0/alt": -20.705237757886067,
+     "1.0/canonical": -27.742578075772542,
+     "1.0/alt": -20.624404562669667
+    },
+    "nfw/upper/0.5/3.39/1.0_cleared_1000.0/100/1.0": {
+     "0.0/canonical": -2.784675910714526,
+     "0.0/alt": 2.896862839046321,
+     "1.0/canonical": -2.6120875031276682,
+     "1.0/alt": 3.0434296362846567
+    },
+    "nfw/upper/0.5/3.39/1.0_cleared_1000.0/100/0.25": {
+     "0.0/canonical": -24.143212679641266,
+     "0.0/alt": -16.96910144178463,
+     "1.0/canonical": -24.008627877615197,
+     "1.0/alt": -16.911505585681283
+    },
+    "nfw/upper/0.5/3.39/1.0_cleared_1000.0/500/1.0": {
+     "0.0/canonical": -17.931793109223065,
+     "0.0/alt": -12.630551661210063,
+     "1.0/canonical": -17.72458540145999,
+     "1.0/alt": -12.473507757138606
+    },
+    "nfw/upper/0.5/3.39/1.0_cleared_1000.0/500/0.25": {
+     "0.0/canonical": -26.629082630494167,
+     "0.0/alt": -18.188957308029757,
+     "1.0/canonical": -26.315904723458175,
+     "1.0/alt": -18.06219770071658
+    },
+    "nfw/upper/0.5/3.39/2.0_cap_1000.0/100/1.0": {
+     "0.0/canonical": -0.8651444555894443,
+     "0.0/alt": 6.210836634344162,
+     "1.0/canonical": -0.7137641893028217,
+     "1.0/alt": 6.348397249699929
+    },
+    "nfw/upper/0.5/3.39/2.0_cap_1000.0/100/0.25": {
+     "0.0/canonical": -21.29508687813535,
+     "0.0/alt": -14.801202156057684,
+     "1.0/canonical": -21.209144338019684,
+     "1.0/alt": -14.736016586635657
+    },
+    "nfw/upper/0.5/3.39/2.0_cap_1000.0/500/1.0": {
+     "0.0/canonical": -16.188322547394165,
+     "0.0/alt": -10.082768176858849,
+     "1.0/canonical": -16.000848298959994,
+     "1.0/alt": -9.925068958867598
+    },
+    "nfw/upper/0.5/3.39/2.0_cap_1000.0/500/0.25": {
+     "0.0/canonical": -22.53731032328045,
+     "0.0/alt": -15.922700049945774,
+     "1.0/canonical": -22.34869525373111,
+     "1.0/alt": -15.779991571307107
+    }
+   }
+  },
+  "X2": {
+   "caps": {
+    "committed": {
+     "0.1": 4.478906250000001,
+     "0.25": 4.347265625000002
+    },
+    "corrected": {
+     "0.1": 4.478906250000001,
+     "0.25": 4.347265625000002
+    }
+   },
+   "window": {
+    "committed": {
+     "0.1": [
+      1.667,
+      3.448
+     ],
+     "0.25": [
+      2.0,
+      3.346
+     ]
+    },
+    "corrected": {
+     "0.1": [
+      1.667,
+      3.448
+     ],
+     "0.25": [
+      2.0,
+      3.346
+     ]
+    }
+   },
+   "flagship_cap_used": {
+    "0.1": {
+     "canonical": 344.50546136259857,
+     "alt": 455.9866827400103
+    },
+    "0.25": {
+     "canonical": 329.3632781815201,
+     "alt": 436.186164277987
+    },
+    "0.5": {
+     "canonical": 310.3210309379882,
+     "alt": 410.98963281883874
+    },
+    "0.75": {
+     "canonical": 295.16519071322773,
+     "alt": 390.9497429611245
+    }
+   }
+  },
+  "X3": [
+   {
+    "id": "DE2.window",
+    "claim": "comparison",
+    "projector": [
+     "P2 (project_M2 / esd_from_mlens via L352 / DE8)"
+    ],
+    "before_after": "on the defective projector; NOT re-scored (here, in XR35_kids_rescore or in FP20); a comparison row"
+   },
+   {
+    "id": "DE8.kids",
+    "claim": "comparison",
+    "projector": [
+     "P2 (project_M2 / esd_from_mlens via L352 / DE8)"
+    ],
+    "before_after": "upper branch (X1): sigma shift r200 0.3999 -> 0.3999, nfw 0.3132 -> 0.3132; passing cells r200 22 -> 22 of 36, nfw 35 -> 35 of 36 (sigma = 1); lower branches not re-scored"
+   },
+   {
+    "id": "DE9.msc",
+    "claim": "comparison",
+    "projector": [
+     "P2 (project_M2 / esd_from_mlens via L352 / DE8)"
+    ],
+    "before_after": "MOND-sector caps (X2) w = 0.1 4.4789 -> 4.478906250000001, w = 0.25 4.3473 -> 4.347265625000002"
+   },
+   {
+    "id": "DE9.curv",
+    "claim": "comparison",
+    "projector": [
+     "P2 (project_M2 / esd_from_mlens via L352 / DE8)"
+    ],
+    "before_after": "on the defective projector; NOT re-scored (here, in XR35_kids_rescore or in FP20); a comparison row"
+   },
+   {
+    "id": "DE10.kids",
+    "claim": "comparison",
+    "projector": [
+     "P2 (project_M2 / esd_from_mlens via L352 / DE8)"
+    ],
+    "before_after": "worst -29.02 -> -29.02 (still passes; XR35_kids_rescore R1)"
+   },
+   {
+    "id": "L390.kids",
+    "claim": "comparison",
+    "projector": [
+     "P2 (project_M2 / esd_from_mlens via L352 / DE8)"
+    ],
+    "before_after": "v_k = 600: -13.12/-7.16 -> -13.12/-7.16; v_k = 650: -12.96/-7.14 -> -12.96/-7.14 (its R1 at 600/650 km/s = DE10's C1, re-scored in XR35_kids_rescore; bar +4)"
+   },
+   {
+    "id": "L392.curvature",
+    "claim": "comparison",
+    "projector": [
+     "P2 (project_M2 / esd_from_mlens via L352 / DE8)"
+    ],
+    "before_after": "on the defective projector; NOT re-scored (here, in XR35_kids_rescore or in FP20); a comparison row"
+   },
+   {
+    "id": "L392.matter",
+    "claim": "comparison",
+    "projector": [
+     "P2 (project_M2 / esd_from_mlens via L352 / DE8)"
+    ],
+    "before_after": "on the defective projector; NOT re-scored (here, in XR35_kids_rescore or in FP20); a comparison row"
+   },
+   {
+    "id": "AT3.gates",
+    "claim": "comparison",
+    "projector": [
+     "P1 (esd_of_M via kids_* / gates)",
+     "P2 (project_M2 / esd_from_mlens via L352 / DE8)"
+    ],
+    "before_after": "FP20 R11: window cells keep their KiDS pass [['(0.1, 600.0)', '0.25'], ['(0.03, 600.0)', '0.25']]; gate moves [0.6777561833437176, 6.124924681013027]"
+   },
+   {
+    "id": "XR9.kids",
+    "claim": "pending",
+    "projector": [
+     "P2 (project_M2 / esd_from_mlens via L352 / DE8)"
+    ],
+    "before_after": "passing cells ['p1.5_x2.5', 'p1_x2.5'] -> ['p1.5_x2.5', 'p1_x2.5'] (XR35_kids_rescore R2)"
+   },
+   {
+    "id": "XR14.kids",
+    "claim": "M*",
+    "projector": [
+     "P2 (project_M2 / esd_from_mlens via L352 / DE8)"
+    ],
+    "before_after": "M* worst -26.28 -> -26.28, L388 -28.75 -> -28.75 (still passes; XR35_kids_rescore R3)"
+   }
+  ]
+ },
+ "n_checks": 11,
+ "n_fail_load_bearing": 1,
+ "elapsed_s": 169
+}

@@ -1,0 +1,439 @@
+CFG1 -- THE EVIDENCE AUDIT.  Every empirical result the fresh-gravity campaign must answer, how it was measured, the model
+assumptions built into its pipeline, how far a framework-consistent but physically defensible treatment could move it (the
+SAME treatment applied to LCDM's use of the same data), and a class for each.  Then the record's own "equipment": the
+computational approximations that decided or bent past verdicts, with their status and commits.  Then the framework's OWN
+empirical results, audited the same way (the author's rule 0, relayed 2026-09-27).  It ends with the requirements list.
+
+THE BASE.  a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 FITTED and not derived (Z = kappa-form = 2 sqrt(8 pi/3) = 5.7888, never ~21);
+both footings everywhere a0 enters: canonical 9.3603e-11, alt 1.1312e-10 m/s^2 (read from FP0's committed results).  Nothing
+here says the theory is closed.  The dark component, where one is needed, is the framework's own field, and a mass is still
+required.
+
+METHOD.
+  * Numbers are READ from committed result files (git-tracked and unmodified; each file's sha256 is recorded) or COMPUTED here
+    from committed machinery re-executed read-only (FP18's pincer, FP20's projectors, XR26's lensing Limber and band powers, FP6's
+    linear spectrum and kernel).  Published values not on disk are cited in the row that uses them.
+  * Numbers from lanes still in flight (uncommitted when this lane ran: XR34, FP24, XR35, XR24, XR28) are quoted as PENDING and never
+    decide a class; this script records whether each is committed at run time.  FP22 (bfe9a2fe5), FP20b (3924bb8c2), XR32 (fa341733d)
+    and XR18b (3c0cf3c37) were committed while this lane was being written; they are cited by commit (XR32 carries the hub's
+    "re-run pending" flag).
+  * Every shift is applied to the DATA, through one function (`seen`), so the framework and LCDM are scored against the same
+    shifted data; LCDM's pull at the shift the framework needs is printed beside it.
+
+THE CLASS RULE (declared before the first full run; applied mechanically in `classify`).
+  1. CONTESTED if at least two published analyses (or the record's own independent analyses) of the same observable disagree by
+     more than their combined quoted uncertainties; the disagreement is printed.
+  2. Otherwise the STAKE is computed.  For a record FAIL: the favourable data shift that brings the framework's MOST FAVOURABLE
+     scored variant (either construction -- M* or the derivation chain -- and either footing) to the record's own gate; a failure
+     is only called model-independent if it survives for the variant most charitable to the framework.  For a record PASS: the
+     unfavourable shift that would push its LEAST favourable variant over the gate.  Where no verdict is scored, the stake is the
+     smallest discrepancy the campaign's gates register (stated per row).
+  3. The BUDGET is the documented data-side systematics (published budgets or the record's committed machinery), each at its edge
+     in the relevant direction, combined in quadrature ("defensible"); the aligned corner (linear sum) is printed beside it.
+  4. SOFT if BUDGET >= STAKE, MODEL-INDEPENDENT otherwise.  The class is a property of the result at the level at stake; it says
+     nothing about whether the framework is right.
+  5. (Clarified after the development run, before the recorded runs; disclosed.)  If a record FAIL's most favourable variant already
+     lies inside the gate, the FAIL is not established for that variant; the stake is then that variant's margin to the gate (the
+     shift that would make it fail), as for a PASS.  Where LCDM's number is a per-object fit (a halo mass fitted to each object), it
+     refits under any shift, so no LCDM pull at a shifted datum is printed for it.
+
+PRE-DECLARED HYPOTHESES (written before the first full run; scored in section H, kept as run).
+  H1  the three controls reproduce FP18's pincer (T 102.0 face value, 7.50 profiled), FP20's projector errors and XR26's Planck
+      lensing amplitude (1.1492 linear / 2.1344 halofit, f* 0.618 / 0.178) exactly (relative deviation <= 1e-9).
+  H2  MODEL-INDEPENDENT includes at least: the Solar-System quadrupole, GW speed, BBN (Y_P, D/H), the CMB primary spectra, the CMB
+      lensing amplitude (data side), BAO, the RAR's shape, the cluster mass beyond MOND and the Bullet offsets.
+  H3  the Local Group row: the R0 measurement is at least SOFT at the pincer level (FP18: 9.8 -> 2.3 sigma), and the chain's own
+      R0 overshoot stays >= 2 sigma with FP18's honest errors.
+  H4  at least two of the three external-field samples (cluster-infall BTFR slope, LV-dwarf statistic C, Coma UDGs) are
+      MODEL-INDEPENDENT: their documented data-side systematics cannot bring even the most favourable variant to 2 sigma.
+  H5  the CMB-lensing FAIL is equipment-dependent in magnitude: with XR21's real-space box numbers mapped onto XR26's committed
+      A(f), the linear-base amplitude in the baryons-only reading lies within 2 sigma of Planck 2018 (8-400), while the
+      all-matter reading fails on the halofit base at every mapped factor.
+  H6  X-COP (FP16's too-much-mass failure) is SOFT: the hydrostatic/non-thermal bias it needs lies inside the published range
+      (<= 0.2) but above X-COP's own 6%.
+  H7  SLACS is CONTESTED (the published IMF methods disagree by more than the shift the framework needs).
+  H8  the forest: DE11b's pass survives the kernel-argument factor estimated from FP6's own kernel (worst <= 0.02 against 0.10),
+      and the chain's linear forest proxies are not established.
+  H9  the fairness check passes in the main run and FAILS in the MUTATE run.
+  H10 the framework's own results: the SN-Ia host step is MODEL-INDEPENDENT as a step with its a0 attribution untested; the
+      environmental null is MODEL-INDEPENDENT; kappa is SOFT; flat a0(z) is CONTESTED; the directional EFE, the comet anisotropy,
+      the vertical force and the forest b-cutoff are SOFT or CONTESTED, none MODEL-INDEPENDENT.
+
+======================================================================================================================
+K  CONTROLS: the footings; FP18's pincer; FP20's projectors; XR26's CMB lensing; the sources; the commits
+======================================================================================================================
+  [PASS] K6 THE FOOTINGS AND Z: FP0's committed a0 values are the charter's 9.3603e-11 / 1.1312e-10 m/s^2 (to 1e-4); Z = 2 sqrt(8 pi/3) = 5.7888 (kappa = 1/2 FITTED, the same number)
+         measured: a0 canonical 9.36032e-11, alt 1.13120e-10; Z = 5.7888
+  [PASS] K1 CONTROL -- FP18'S PINCER, RE-EXECUTED READ-ONLY: T_nominal (stack + LG, honest R0 errors, free profile) and the profiled T (six comparability systematics under their priors) equal FP18's committed values, and so do the profiled nuisances
+         measured: T_nominal 101.967322 vs 101.967322; T_profiled 7.497390 vs 7.497390; max |d nuisance| 0.0e+00 (45 s)
+  [PASS] K2 CONTROL -- FP20'S PROJECTOR AUDIT, RE-EXECUTED READ-ONLY: every projector's error against the analytic profiles (SIS, three NFW, point masses, the chain's phantom, the carrier templates) at the 15 KiDS radii equals FP20's committed table
+         measured: max |d| over 88 projector rows 0.0e+00 pp; esd_of_M on the SIS at 35 kpc -58.56% (3 s)
+  [PASS] K3 CONTROL -- XR26'S CMB-LENSING PIPELINE, RE-EXECUTED READ-ONLY (CAMB + CLASS at the Planck 2018 best fit, FP13's yardstick, Limber, Planck 2018 VIII's MV band powers): the chain's 8-400 amplitude (linear and halofit bases), the phantom budget f* and the whole A(f) table equal XR26's committed numbers
+         measured: amplitude lin 1.149178 vs 1.149178, halofit 2.134361 vs 2.134361; f* 0.6182/0.1776; max relative deviation 0.0e+00 (21 s)
+    [69 s]
+
+======================================================================================================================
+A  THE LEDGER (Part A): each result, how it was measured, its pipeline's assumptions, the quantified shift, the class
+======================================================================================================================
+    [69 s]
+    [69 s]
+
+======================================================================================================================
+O  THE FRAMEWORK'S OWN RESULTS (rule 0): the same equipment and model-dependence treatment, a class each, and what to keep
+======================================================================================================================
+  O1  [MODEL-INDEPENDENT] The SN-Ia host-mass step at the a0 scale
+        standing: a real step of -0.050 +- 0.007 mag (6.9 sigma) sits where g_bar crosses a0 (log M* 9.6-10.2 vs the step at 10); the decisive fixed-mass test finds acceleration adds nothing beyond mass (partial +0.030 vs mass -0.170) but has only 18% (23% alt) power against the framework's own step model
+        keep:     keep the step (-0.050 +- 0.007 mag at log M* ~ 10); any construction that ties it to a0 must predict a fixed-mass acceleration dependence, which the present sample cannot see (80% power needs a 0.142 mag step)
+  O2  [MODEL-INDEPENDENT] The environmental null: a0 tracks rho_Lambda, not the local density (the BIG-SPARC pipeline)
+        standing: the rho_local fork (d log a0/d log rho_env = +1/2) is excluded at 13-34 sigma on 175 SPARC; no committed .out (the number is the committed ledger EMPIRICAL_TESTS.md A14)
+        keep:     a0 must not depend on the ambient density (|d log a0/d log rho_env| << 1/2); the source is the cosmic rho_Lambda
+  O3  [SOFT             ] The measured kappa
+        standing: kappa = 1/2 is FITTED and sits 0.46 sigma from the BTFR value and 0.29 sigma from the distance-free one; the two estimators share galaxies (not independent); 1/2 vs 1/(2 pi): Delta chi^2 63.9 vs 154.3 (~2.2 sigma, forecast-grade)
+        keep:     any construction that ties kappa must land inside 0.465 +- 0.076 (BTFR) and 0.55 +- 0.17 (distance-free); the record carries kappa = 1/2 as fitted
+  O4  [CONTESTED        ] Flat a0(z): the z ~ 2.5 deep-MOND BTFR zero point and the MUSE confrontation
+        standing: the registered test cannot run (0 of 2 deep-MOND rotators); the on-disk proxy (+0.636 +- 0.054 dex) is at high acceleration and is NOT the registered test; the framework predicts 0.00 against LCDM-native +0.33 dex
+        keep:     a0(z) flat to < 1% for z <= 5 on a true Lambda (the distinctive prediction); the decisive test needs 3 deep-MOND rotators at +-0.10 dex or 4 at +-0.20 dex at z ~ 2.5
+  O5  [SOFT             ] The Oort-cloud comet anisotropy as an external-field instrument (DOI 10.5281/zenodo.21966646)
+        standing: spike quadrupole -0.0268 +- 0.0389 (0.7 sigma) against a predicted A ~ 0.12: UNDERPOWERED (N ~ 3197 needed), recorded as such, not as a null; the nu0-correlated pair with DR4 collapses to 16.7%, indistinguishable from constant-a0 17%, once stage76's nu0 bound applies
+        keep:     no constraint yet; a prospective instrument that needs original 1/a and ~3000 spike comets
+  O6  [CONTESTED        ] The directional external-field test (rotation-curve asymmetry toward the external field)
+        standing: an exploratory ~2-sigma-at-best hint that did not reproduce; the AQUAL floor signal registers at only ~0.3 sigma in the n = 16 stack; 'pure MI predicts exactly zero' was retracted (the derived dipole is 4.2-22.3%)
+        keep:     no constraint yet (consistent with zero); a construction's predicted dipole (4-22% for the MI class) needs ~1400-6000 galaxies
+  O7  [SOFT             ] The Milky Way's local vertical force
+        standing: full AQUAL on McMillan-2017 baryons matches the vertical force at +0.2 sigma (Eilers slope +1.2 sigma) but only with ~30% more stellar mass for v_c; Route A's joint box clears at 1.502 sigma (p = 0.03, a minimax criterion) and its floor Sigma_dyn(1.1 kpc) 78.5/82.7 exceeds Bovy & Rix's 68 +- 4
+        keep:     Sigma_dyn(|z| < 1.1 kpc) = 68-74 (+-4-6) Msun/pc^2 at R0 with census-compatible baryons, jointly with v_c(R0)
+  O8  [SOFT             ] The Lyman-alpha forest b-cutoff sign
+        standing: the framework's b sits above the measured b0 in every bin (the sign is robust) at 1.1-9.0 sigma on the statistical channel but only 0.4-0.9 sigma on the calibration channel; the magnitude is convention-owned (a factor ~32)
+        keep:     the b0 cutoff sign (framework b above b0) must not grow beyond the calibration channel's 0.4-0.9 sigma in a construction's forest-gas acceleration
+    [69 s]
+
+======================================================================================================================
+B  THE RECORD'S OWN EQUIPMENT (Part B): the computational approximations that decided or bent verdicts; status and commits
+======================================================================================================================
+  B01  [OPEN] FP9/FP13's per-mode linear yardstick against XR21's real-space operator
+        real/per-mode boost b = 0.50-0.91 (H_S) and 0.28-0.51 (H_Y) at k = 0.3-1, z = 0-0.25 (XR21 P3); mapped onto XR26's own A(f), CMB lensing moves from 1.149 / 2.134 (per-mode) to 1.036-1.099 (linear) / 1.250-1.737 (halofit), all matter
+          - FP9/FP13/FP19 sigma_8 passes: conservative (the true linear boost is smaller) -- they stand
+          - FP9/FP13/FP19 forest-proxy passes: optimistic (the real-space rms field reaches the yield at z ~ 1-2) -- NOT established
+          - XR26's CMB-lensing FAIL: its magnitude (+4.9 / +40 sigma) is yardstick-dependent; with the real-space operator it persists on the halofit base in the all-matter reading
+  B02  [P1 FIXED; P2 PENDING] The Abel projection defect: FP6's esd_of_M (P1) and L352's project_M2 / DE8's esd_from_mlens (P2)
+        P1: SIS -58.6% at 35 kpc, -4 to -14% outside (reproduced here, K2); P2: SIS -2.96..-2.04%, NFW up to +11.5%, carrier templates +187% / -123% at 35 kpc
+          - P1 (FP6/FP9/FP11-FP14/FP17, L355/L357/AT1/AT3): re-scored by FP20 -- no deciding verdict flips; L360's passing pairs 70 -> 35, FP13's A3 window edges and FP11 P1's band edge flip
+          - P2 (L352/L359/L360/AT3's switched gate/DE8/DE10/XR9/XR14/XR28/XR29, FP15/FP16/FP19 via kids_switched): NOT re-scored -- M*'s 'KiDS pass ON M*' (XR14), DE10's -37/-34 and XR9's KiDS cap 4.42 are NOT established until XR35
+  B03  [PENDING] The T_EH98 h-units error in the record's linear spectrum
+        the committed spectrum over the textbook form at fixed sigma_8: k = 0.01: 0.44, k = 0.1: 0.89, k = 1.0: 1.34, k = 10.0: 1.52, k = 100.0: 1.61 h/Mpc; over CLASS: 0.01: 0.43, 0.1: 0.94, 1.0: 1.29, 10.0: 1.49
+          - FP13's state at high z (z_close 17.4 vs 13.6 on the textbook spectrum) and A6 -- absolute scales, NOT established
+          - sigma_8 and forest ratios to LCDM on the same spectrum partly cancel (FP22 C0, bfe9a2fe5: 1.0202 -> 1.0177 for H_S)
+          - XR26's B(k, z) was built on T_EH98 (FP22 L2 on CLASS, bfe9a2fe5: CMB lensing 1.149 -> 1.172 linear, 2.134 -> 2.373 halofit: the error UNDER-stated the all-matter lensing failure)
+  B04  [DECIDED (FP22 bfe9a2fe5; the chain adopts the baryons-only reading, 08548fc85)] Who feels MOND: the all-matter reading (FP9/FP13's yardstick) against the baryons-only reading (FP10's reciprocity)
+        the baryons-only reading cuts the total-matter boost to 0.039-0.062 of the all-matter one but the LENSING boost only to 0.17-0.46 (XR21 P4, real space, H_S)
+          - FP7's sigma_8 failure (18-27x): the reading does not remove the need for a separator (FP22: (b) still fails at 1.45-2.2x without one)
+          - XR26's CMB lensing: the action AS WRITTEN (all matter) is excluded in every cell (FP22); in the adopted baryons-only reading the linear base passes Planck and ACT and the halofit base fails ACT -- the verdict hinges on the nonlinear phantom (A11)
+          - FP10/FP15/FP16's dark orbits are Newtonian: the adopted reading; its price is a dark-baryon equivalence-principle violation wherever the phantom is on (X-COP median 0.47 at R500; FP22 A5)
+  B05  [PENDING] The (1+z) kernel-argument error in the record's forest PM codes
+        with FP6's own P2 kernel, (nu(y) - 1)/(nu((1+z)y) - 1) = 2.04-2.30 at z = 2 and 2.66-3.15 at z = 3 over XR34's halo range of y; DE11b's worst 0.0046 scales to ~0.015 (an estimate) against 0.10
+          - DE11/DE11b forest PASS: very likely survives (margin ~7x after the factor) -- pending XR34's re-score
+          - L347 (borderline at x_c = 5), L358's failing cell (0.174), L362's pincer, L359's forest window, DE2's constant-threshold table, L360's window and PAPER34's forest numbers: deviations UNDER-stated -- their failures stand or worsen, their borderline passes are NOT established
+          - fable_independent_2026 L176/L178/L179 (matter power, lensing): same line, not in the forest
+  B06  [OPEN] Linear forest proxies against flux runs
+        XR21: the real-space rms field reaches H_Y's yield near z ~ 2 and H_S's near z ~ 1, so the proxies' 'forest 0' does not carry over; XR12's halo-model flux proxy for the fluid's conversion sits at 11.3% / 8.0% against the 10% line
+          - the chain's forest PASS (FP9/FP13/FP19): NOT established
+          - the fluid's own conversion on the forest (XR12): NOT established
+  B07  [OPEN] Halo-model and semi-analytic estimates against particle-mesh runs
+        FP16's semi-analytic model over-predicts the committed PM's retention by +0.07-0.11 at the massive end and up to +0.40 at 1-2.5e14 Msun (V1/V2); XR21's box and XR19's Zel'dovich census disagree on the turned-around share (0.12 vs 0.32 at z = 2)
+          - the cosmic-shear PASS on M* (MS3/MS4): NOT established (mock-based; DE5b)
+          - FP16's X-COP FAIL: its bias runs toward a stronger failure (and see A09b: SOFT on the data side)
+          - FP13's KiDS / sigma_8 with halofit standing in: conditional
+  B08  [OPEN (for rates ~ H)] Frozen-coefficient and local-WKB stability audits
+        where growth rates are O(H) the background evolves as fast as the mode: XR15's smoothed gate leaves 16 of 24 layers growing at 1.1-2.8 H; DE13's first-run lambda = 241 was a WKB artefact (it missed the background term; corrected in the committed run); sign flips of a principal symbol (XR18's H_S) are not frozen-coefficient-sensitive
+          - XR15's smoothed-gate instability at 1.1-2.8 H: NOT established in magnitude
+          - XR11's fluid instability on the z = 0.25 layers: scope-limited (frozen background)
+          - DE12's gate instability (c_gate 1500-3700 km/s against gas <= 117 km/s): rates >> H, stands
+          - XR18's H_S ill-posedness: stands; XR18b (3c0cf3c37) finds FP19's repair H_K1 linearly well posed and causal (criterion B)
+  B09  [PENDING] The web's external field in the kernel, omitted from the committed isolated-lens KiDS models
+        FP22 D2 (bfe9a2fe5; a uniform-rms upper-side estimate): +200 (baryons-only) to +600 (all-matter) in Delta chi^2 with H_Y or H_K1
+          - the chain's KiDS PASS (FP13/FP19 after FP20): NOT established until the web's field is scored
+  B10  [OPEN] The cosmic-shear gate's reading: one-sided (R <= 1.2, MS3/MS4's code) or two-sided (0.8 <= R <= 1.2, MS3's text)
+        two-sided, only x_c0 <= 3.5 (p = 1) passes; M*'s capped minimum is 0.904 (XR9)
+          - M*'s shear PASS holds under both readings at its cell; neighbouring cells flip
+  B11  [FIXED] The Brouwer et al. 2021 covariance reshape
+        the plain reshape is indefinite (min eigenvalue -64.2); the (m, n, i, j) order is positive definite (1.26e-02)
+          - the pre-2026-09-03 KiDS chi^2 (corrected then; FP18 K1 exhibits it)
+  B12  [FIXED in FP18 (FP12 not re-scored)] The published R0 errors and FP12's fit form
+        K&K's quoted +-0.02 (stack) is their distance-only Monte Carlo; the bootstrap over galaxies gives +-0.115 (LG +-0.099); FP12's fit form returns R0 = 0.72 on K&K's own table
+          - FP12's R0 significances (the LG at 13.6 sigma on the quoted errors): OVERSTATED -- the offsets stand; with the honest error the chain's LG overshoot is 4.0 sigma, and 2.9 sigma with the method systematic added
+  B13  [FIXED] The lensing boost against uniform randoms (FP21)
+        applying the boost moves B21's bins 2/3 from A = 0.91/1.15 to 1.00/1.28 -- photometric lenses avoid masked holes, so the boost is confounded; B21's no-boost convention is used
+          - FP21's K6 as first declared (reported failing)
+  B14  [OPEN] Harvey same-cell (L389): no MUTATE run
+        beta = +0.096 against +0.10 at 575 km/s only
+          - M*'s Harvey PASS: uncontrolled, NOT established
+  B15  [OPEN] FP16's semi-analytic retention against the committed PM
+        over-prediction +0.07-0.11 (massive end), +0.17-0.40 (6e13-2.5e14 Msun); V4 reads the PM's own most massive halos, which also keep a median above X-COP's window
+          - FP16's X-COP FAIL: robust to the model's bias (V4), SOFT on the data side (A09b)
+  B16  [FLAGGED] The record's first-order leapfrog drift (XR21)
+        a free-streaming daughter's travel from z = 3 is overstated by 1.8% at dlna = 0.02
+          - stage-3 escape distances: use dlna = 0.01
+  B17  [OPEN (theory-side forms)] Statistic and convention choices on the EFE and wide-binary tests
+        scalar-sum vs subtract forms differ by ~1-4 sigma on the cluster slope; Crater II is 4.2 sigma in the record's convention and 0.06-2.48 sigma in the literature's; the frozen DR4 rows carry no entry for the chain's law (XR22)
+          - the EFE FAILs are form-dependent in size (A05a is SOFT for the gentlest form, A05b/A05c are not)
+          - DR4 can kill the chain only from above
+  B18  [OPEN (record-keeping; this lane edits nothing)] Bookkeeping of the framework's own results
+        EMPIRICAL_TESTS.md (compiled 2026-08-18) cites memory tags for A5/A9/A13; its header kappa 0.529 +- 0.034 is a hard-coded string (stage75); C2 'fired once' omits the n = 25 non-reproduction in the same commit; 'N ~ 1157' is stale (1385/1705; R1/R2 need ~6000); STANDING.md's 'one object at +-0.13 dex decides at 20:1' was corrected to 3.8:1 by PAPER14 v2
+          - the own-results' headline claims above are restated in O1-O8 with the corrected numbers
+    [69 s]
+
+======================================================================================================================
+A  THE LEDGER TABLE (class, stake, budget, LCDM under the same shift)
+======================================================================================================================
+  A01   [MODEL-INDEPENDENT] Solar System: Cassini light-time (gamma) and the planetary-ephemeris anomalous quadrupole Q2
+        framework: the strict law (no screening) gives Q2 = 3.99-5.69 x the ceiling (FP17 K3, FP14 X5); it passes only with the heat-filter length xi >= 0.0243/0.0268 pc, a knob no chain link fixes (FP17)
+        LCDM:      GR predicts no external-field quadrupole: passes
+        stake 1.56e-26 s^-2 (variant: strict P2 law, canonical, lowest Galactic field); budget 2.4e-27 s^-2 (quadrature), 2.4e-27 s^-2 (corner); LCDM pull at the needed shift: GR (no external-field quadrupole) 9.54
+  A02   [CONTESTED        ] Wide binaries: Gaia DR3 wide-binary relative velocities at 1-30 kAU (the low-acceleration boost gamma)
+        framework: the chain's law gives a CEILING gamma_hat = 1.0725 (canonical) / 1.0900 (alt) at xi's floor, 1.000 for xi >= 0.3 pc (XR22); DR4 can kill it only from above (gamma_hat >~ 1.157 / 1.174)
+        LCDM:      GR: gamma = 1.000
+        stake: -; budget: the published analyses themselves span ~1.0-1.4; DR4 (2026-12-02) decides
+        contested: published low-acceleration boosts range from ~1.0 (Newtonian; Banik et al. 2024; Pittordis & Sutherland 2023) to ~1.4 (Chae 2023, 2024; Hernandez 2023) on the same Gaia DR3 catalogue -- different hidden-triple, error and selection models
+  A03a  [MODEL-INDEPENDENT] Galaxies: The RAR's shape and tightness (SPARC, 175 galaxies, 3389 points)
+        framework: the core law: scatter 0.108 dex at Upsilon = 0.70 on 175 SPARC (EMPIRICAL_TESTS A1); M*'s carrier moves it by <= 1.24e-4 dex (L391); the framework's strength
+        LCDM:      accommodated, not predicted: hydrodynamical simulations reproduce a RAR-like relation with feedback-dependent scatter
+        stake: no verdict is at stake at < 0.05 dex; the RAR's form is established across analyses (Li et al. 2018: a0 universal); budget: Upsilon, distance and inclination systematics move individual galaxies (marginalised per galaxy by Li et al. 2018) but not the relation's form
+  A03b  [SOFT             ] Galaxies: The RAR's acceleration scale (a0 normalisation) against the fitted g-dagger
+        framework: a0 = kappa c sqrt(G rho_Lambda) with kappa = 1/2 FITTED: 9.36e-11 (canonical) / 1.13e-10 (alt)
+        LCDM:      no a0 is predicted (no counterpart)
+        stake 2.88e-12 m/s^2 (variant: alt footing); budget 2.4e-11 m/s^2 (quadrature), 2.4e-11 m/s^2 (corner); LCDM pull at the needed shift: no LCDM counterpart
+  A04   [CONTESTED        ] Galaxies (high z): The RAR/BTFR at z = 0.3-2.5 and the evolution of a0 (MUSE-DARK III, KMOS3D, RC100)
+        framework: the core law: a0 flat to < 1% for z <= 5; M*: RC100 passes (carrier shift <= 1.24e-4 dex, L391); M*'s flat-a0 flagship at z = 2.5 is NOT established (XR17: +0.105 to +0.126 dex residue against S_crit 0.059)
+        LCDM:      LCDM's apparent a0 rises (Magneticum x2.3-3 by z ~ 2), closer to MUSE's x4 than the flat law
+        stake: -; budget: the stellar-mass scale: +0.2 to +0.45 dex would flatten MUSE's rise (disowned by its authors); see O4 for the registered z ~ 2.5 test
+        contested: MUSE-DARK III fits a0(z) = a0(0) + a1 z with a1 = +1.59 (+0.11/-0.10) x 1e-10 per unit z (15 sigma from flat at face value), while McGaugh et al. 2024 find no clear evolution in the BTFR / dark fraction to z ~ 2.5; a LCDM simulation (Magneticum) produces an APPARENT rise x2.3-3 by z ~ 2
+  A05a  [SOFT             ] Dwarfs / external field: Cluster-infall BTFR: the slope of the BTFR residual against the host's field (N = 314)
+        framework: fails: M* 2.23-6.28 sigma (XR9), the chain at L -> inf 2.35-5.30 sigma (XR27); the spread is the EFE form (scalar-sum / subtract / flux), a theory-side ambiguity
+        LCDM:      SEP gives slope 0: 0.11 sigma
+        stake 0.007058 dex per dex (variant: M* most favourable form (XR9)); budget 0.02103 dex per dex (quadrature), 0.0307 dex per dex (corner); LCDM pull at the needed shift: strong equivalence principle 0.12
+  A05b  [MODEL-INDEPENDENT] Dwarfs / external field: Local Volume dwarfs: statistic C, the slope of log sigma_los against the host field at fixed M* and r_half (N = 92)
+        framework: fails: M* 3.87-4.48 sigma (XR9), chain 3.92-4.58 sigma (XR27); L-independent
+        LCDM:      slope 0: 1.71 sigma (the observed slope is POSITIVE)
+        stake 0.08722 dex per dex (variant: M* most favourable (XR9)); budget 0.03943 dex per dex (quadrature), 0.05473 dex per dex (corner); LCDM pull at the needed shift: strong equivalence principle 0.15
+  A05c  [MODEL-INDEPENDENT] Dwarfs / external field: Coma ultra-diffuse galaxies: the dynamical excess over the EFE-suppressed prediction (11 UDGs)
+        framework: fails: M* 4.20-4.35 sigma (XR9), chain L->inf 4.61 (XR27); even with no EFE the UDGs sit +0.40 dex high (1.8 sigma)
+        LCDM:      UDG dispersions are fitted with dwarf-mass halos: no tension (accommodated)
+        stake 0.7926 dex (observed minus predicted) (variant: framework alt/0.1); budget 0.2175 dex (observed minus predicted) (quadrature), 0.514 dex (observed minus predicted) (corner); LCDM pull at the needed shift: no LCDM counterpart
+  A05d  [SOFT             ] Dwarfs / external field: Crater II and the M31 dwarf spheroidals: dispersions in the EFE regime
+        framework: fails in the record's statistic: Crater II 4.22-8.12 sigma, M31 dSphs 2.8-4.7 sigma (XR27)
+        LCDM:      accommodated with tidally stripped halos
+        stake: Crater II: from 4.2 sigma to 2 sigma; budget: the literature convention (full mass, projected R_h) gives 0.06-2.48 sigma: the convention alone moves Crater II across the gate
+  A05e  [CONTESTED        ] Dwarfs / external field: NGC 1052-DF2 / DF4: the dark-matter-deficient UDGs
+        framework: 1.2-3.5 sigma (DF2), 1.2-4.6 sigma (DF4) across distance and estimator (XR27)
+        LCDM:      accommodated (tidal stripping)
+        stake: -; budget: -
+        contested: the distance is disputed: ~13 Mpc (Trujillo et al. 2019) against 22.1 +- 1.2 Mpc (TRGB, Shen et al. 2021) for DF2
+  A05f  [SOFT             ] Dwarfs / external field: Chae's EFE signal in SPARC rotation curves
+        framework: the chain passes only at L -> inf (D2 0.0, D1 0.8 sigma); at the separators' L it fails (catalogued) or passes (collapsed); M* fails D2 at 2.9 sigma (XR27)
+        LCDM:      no EFE: the signal would be a systematic
+        stake: D2 at the separators: from 2.9 to 2 sigma; budget: the environment geometry (catalogued vs group-collapsed) moves D2 by 1.6-1.9 sigma (XR27)
+  A06   [CONTESTED        ] Strong lensing: SLACS Einstein masses and aperture dispersions of massive ellipticals
+        framework: the chain needs log alpha_Salp +0.118 +- 0.013 dex above the spectroscopic alpha-sigma relation (alt +0.110), the heaviest spectroscopic IMF (XR33)
+        LCDM:      LCDM's own SLACS IMF sits +0.021 dex from the relation (Treu et al. 2010)
+        stake: -; budget: the spectroscopic relation's own rms is 0.123 dex; SNELLS vs SLACS differ by 0.26-0.30 dex in both frameworks
+        contested: published IMF methods disagree: SNELLS lenses need an IMF 0.256 dex (chain) / 0.297 dex (LCDM) lighter than SLACS lenses at sigma >= 280 km/s, more than the shift the framework needs
+  A07a  [MODEL-INDEPENDENT] Weak lensing: KiDS-1000 isolated-lens excess surface density inside 0.3 Mpc (Brouwer et al. 2021, four mass bins)
+        framework: the chain passes (FP13/FP19 with FP20's exact projection: -8.6/-10.3 at z = 0.25); M* passes (-29.0, XR9; provisional until XR35 re-scores the P2 projector); the core's weak-lensing RAR passes (EMPIRICAL_TESTS A2)
+        LCDM:      NFW + galaxy fits it (FP18 L1)
+        stake: the chain's KiDS passes sit ~17-19 in Delta chi^2 below the gate at z = 0.25; budget: FP20 moved the model's inner Delta Sigma by up to 59% at 35 kpc (and 4-14% outside) and no deciding verdict flipped; the data-side budget inside 0.3 Mpc (M* scale ~0.1 dex in the MOND prediction, boost ~0.04 dex) is smaller than that perturbation
+  A07b  [SOFT             ] Weak lensing: KiDS-1000 isolated-lens excess surface density at 0.3-2.6 Mpc
+        framework: the chain and M* pass against the published (mixed-type, leakage-inflated) bins; neither model has been scored against the leakage-corrected signal
+        LCDM:      B21 compare LCDM mocks built with the same photometric selection
+        stake: the record's verdicts at > 0.3 Mpc (the KiDS passes and the KiDS-R0 pincer) turn on shifts of 0.1-0.5 dex; budget: 0.11-0.5 dex against a stake of 0.1-0.5 dex
+  A07c  [SOFT             ] Groups / weak lensing: The KiDS-versus-Local-Volume pincer: one mass profile for KiDS isolated lenses and the LV Hubble flow
+        framework: the chain's and M*'s outer profiles overshoot R0 (A08) while fitting KiDS
+        LCDM:      LCDM's KiDS-fitted halos turn around at 1.85-1.94 Mpc against 0.91-0.93: the same pincer (FP18 L1)
+        stake: from 9.8 sigma (face value) to below 3 sigma; budget: the profile itself (K1)
+  A08   [MODEL-INDEPENDENT] Groups, Local Group: The Local Group zero-velocity radius R0 (log10 R0)
+        framework: fails: the chain +0.20 dex (FP12), M* +0.18 to +0.24 dex (XR9); FP12's significances used the quoted errors, which omit the velocity scatter (FP18 E1: the honest error is 4-6x larger)
+        LCDM:      passes with a per-system halo mass; its KiDS-calibrated halo overshoots by +0.31 dex (FP18 L1)
+        stake 0.07592 dex (variant: M* most favourable (XR9)); budget 0.05642 dex (quadrature), 0.07613 dex (corner); LCDM pull at the needed shift: KiDS-calibrated NFW at the LG central's mass (FP18 L1) 4.17
+  A09a  [MODEL-INDEPENDENT] Clusters: The mass beyond MOND in clusters (eRASS1 / X-COP hydrostatic masses)
+        framework: MOND on the baryons leaves eta(R500) = 2.33 [1.55-2.8] (INHAND_CALCS 2026-07): a dark component is required; the chain's dark-sector window is empty so far (FP16)
+        LCDM:      CDM supplies it (the cosmic baryon fraction at R500)
+        stake: any shift that lowers eta toward 1; budget: none in the favourable direction
+  A09b  [SOFT             ] Clusters: X-COP total masses at R500 against the chain's dark sector (FP16: too much retained mass)
+        framework: FP16: the chain's dark sector keeps M_dyn/M_HSE = 1.200-1.398 against the 20% gate
+        LCDM:      LCDM + CDM fits X-COP by construction (f_gas calibrated at b = 0.06)
+        stake: the hydrostatic bias b that brings the most favourable cell inside the gate, |ratio (1 - b) - 1| <= 0.2: b = 0.000 (web turned|600 cal canonical); the least favourable needs 0.142; budget: b <= 0.2
+  A09c  [MODEL-INDEPENDENT] Clusters: Collisionless mass offsets in merging clusters (the Bullet Cluster)
+        framework: requires a collisionless component; the framework's dark field is collisionless in kind (FL1/FK1), not scored on the chain
+        LCDM:      CDM is collisionless: passes
+        stake: any offset < 8 sigma; budget: none
+  A09d  [CONTESTED        ] Clusters: Dark-matter-star offsets in 72 cluster collisions (Harvey et al. 2015)
+        framework: M*: knife-edge, beta = +0.096 against +0.10 at 575 km/s only (L389); its MUTATE never ran
+        LCDM:      collisionless: passes
+        stake: -; budget: -
+        contested: Harvey et al. 2015 bound sigma/m < 0.47 cm^2/g from the stacked offsets; Wittman, Golovich & Dawson 2018 re-analyse the offsets and find them consistent with zero with a much weaker bound (~2 cm^2/g)
+  A10   [MODEL-INDEPENDENT] CMB: Planck 2018 TT/TE/EE primary spectra and the compressed distance priors
+        framework: the chain's early universe is GR + CDM: spectra move by 7.8e-08 against CLASS's own precision 1.9e-03 (XR26)
+        LCDM:      the reference model
+        stake: any departure the spectra can register (> 1e-3); budget: n/a
+  A11   [MODEL-INDEPENDENT] CMB lensing, growth: The CMB lensing amplitude (Planck 2018, 8 <= L <= 400; ACT DR6)
+        framework: XR26: the chain fails at +4.9 sigma (linear base) / +40 sigma (halofit), on FP13's per-mode, all-matter yardstick; mapped onto XR26's own A(f) with XR21's real-space box, f = 0.42-0.78 (all matter) and 0.21-0.47 (baryons only) -- see B01, B04.  FP22 (bfe9a2fe5): the action as written (all matter) is excluded in every cell; the chain has adopted the baryons-only reading (08548fc85), which passes Planck and ACT on the linear base and fails ACT on the halofit base (undecided until the nonlinear phantom is computed); the fluid's conversion alone gives A = 0.976 (-1.6 sigma vs ACT; XR32)
+        LCDM:      A = 1 by construction (pull -0.39 sigma)
+        stake 0.05401 A_lens (variant: real-space, baryons only (lowest mapped f) [lin]); budget 0.002 A_lens (quadrature), 0.002 A_lens (corner); LCDM pull at the needed shift: LCDM (Planck best fit) 1.54
+  A12a  [MODEL-INDEPENDENT] Large-scale structure: BAO, the P(k) shape and RSD growth
+        framework: the chain's background is LCDM's (unimodular Lambda; r_d moves by 8.1e-10, XR26 C3); late linear growth sigma_8 1.012-1.015 x LCDM on the per-mode yardstick (FP19); the fluid's conversion leaves BAO untouched but puts DESI's f sigma_8 3.5-7.3% low (-2.2 sigma; XR32, hub re-run pending)
+        LCDM:      the reference
+        stake: percent-level shifts in r_d or in the P(k) shape; budget: sub-percent
+  A12b  [CONTESTED        ] Large-scale structure: S8 from weak-lensing surveys
+        framework: the dark fluid's conversion (no phantom) gives the S8 a survey would infer: 0.766 (KiDS-1000 set-up) / 0.752 (DES-Y3 set-up) -- on KiDS-1000/DES/HSC and ~2.3 sigma below KiDS-Legacy (XR32, fa341733d; hub re-run pending; XR19's linear S8 0.787)
+        LCDM:      Planck-normalised LCDM sits at the top of the band
+        stake: -; budget: -
+        contested: KiDS-1000 S8 = 0.759 (+0.024/-0.021) vs KiDS-Legacy 0.815 (+0.016/-0.021) vs Planck 2018 0.832 +- 0.013 (DES Y3 3x2pt 0.776 +- 0.017): the same survey's two analyses straddle the Planck value
+  A19   [CONTESTED        ] Clusters: Cluster abundance (number counts)
+        framework: the fluid's conversion puts the counts at 0.64-0.81 of LCDM: it fits SPT and sits 5-9 sigma below eRASS1 (XR32, hub re-run pending)
+        LCDM:      Planck LCDM fits eRASS1; SPT prefers a lower S8
+        stake: -; budget: -
+        contested: the published cluster-count cosmologies disagree: eRASS1 S8 = 0.86 +- 0.01 (Ghirardini et al. 2024) against SPT S8 = 0.795 +- 0.029 (Bocquet et al. 2024)
+  A13   [SOFT             ] Lyman-alpha forest: Small-scale power at z = 2-3 from the 1D flux power
+        framework: M*'s switch passes (DE11b worst 0.0046; with FP6's own kernel the committed (1+z) argument under-weights MOND by up to x3.15 at z = 2-3, so the corrected worst is ~0.015 against 0.10 -- an estimate, XR34 re-scores it); the chain's forest 'passes' are linear per-mode proxies, not flux runs (not established, B06); the fluid's conversion sits at the line (11.3% / 8.0%, XR12)
+        LCDM:      the reference (emulators are LCDM-trained)
+        stake: deviations of 8-11% (XR12) against the record's 10% line; budget: 10-15%
+  A14   [SOFT             ] First galaxies (JWST): The abundance of massive galaxies at z ~ 7-10 against the baryon ceiling
+        framework: the chain's halo abundance equals LCDM's at M >= 1e11 Msun (XR23): the same ceiling
+        LCDM:      the same
+        stake: from eps = 1.275 to 1; budget: IMF (0.21 dex) and revisions (0.67 dex)
+  A15a  [MODEL-INDEPENDENT] BBN: Primordial helium and deuterium
+        framework: standard BBN: the chain shifts Y_P by -1.6e-10 (XR26)
+        LCDM:      the same standard BBN
+        stake: any departure > 1e-3; budget: shared
+  A15b  [SOFT             ] BBN: Primordial lithium-7
+        framework: inherits the factor 2.95 (4.0 sigma) unchanged
+        LCDM:      the same factor
+        stake: 0.26 dex (to 2 sigma); budget: ~0.25 dex (shared)
+  A16   [MODEL-INDEPENDENT] GW speed: The speed of gravitational waves (GW170817 / GRB 170817A)
+        framework: c_T = c (FP2, XR25)
+        LCDM:      c_T = c
+        stake: any |c_T/c - 1| > 1e-15; budget: none
+  A17a  [CONTESTED        ] Galaxies (Milky Way): The Milky Way's outer rotation curve (Gaia DR3, 13-27 kpc)
+        framework: the law reproduces every curve's outer points at the fitted mass (XR29)
+        LCDM:      its NFW needs a concentration 1.9-3.8 sigma above the c-M relation (XR29)
+        stake: -; budget: -
+        contested: the published DR3 curves disagree on the outer decline: power-law index -0.47 (Jiao et al. 2023) and -0.56 (Ou et al. 2024) against -0.19 to -0.40 in XR29's fits of the same tables; Eilers et al. 2019 and Zhou et al. 2023 decline more gently
+  A17b  [MODEL-INDEPENDENT] Galaxies (Milky Way): The Milky Way's stellar mass needed by the inner rotation curve, against the census
+        framework: the chain needs M* = 7.31-8.21 x1e10 (XR29); the 8-19 kpc slope misfits (-2.2 to -2.9 against -1.7 km/s/kpc)
+        LCDM:      uses the census baryons; pays in concentration instead
+        stake 7.41e+09 Msun (variant: most favourable fit (XR29)); budget 6.5e+09 Msun (quadrature), 6.5e+09 Msun (corner); LCDM pull at the needed shift: no LCDM counterpart
+  A18   [SOFT             ] Large-scale structure: Cosmic-shear power at k ~ 0.3-3 h/Mpc, z ~ 0.5 (the record's R(k) gate)
+        framework: M* passes with the kappa-form cap (1.049/1.124); uncapped it fails (2.72/3.18); a halo-model estimate, mock-based passes are not established (MS3, DE5b)
+        LCDM:      the reference
+        stake 0.07572 P_lens/P_LCDM (the record's +-20% gate = 2 x 0.10) (variant: M* capped, alt (MS4)); budget 0.1 P_lens/P_LCDM (the record's +-20% gate = 2 x 0.10) (quadrature), 0.1 P_lens/P_LCDM (the record's +-20% gate = 2 x 0.10) (corner); LCDM pull at the needed shift: LCDM 0.76
+
+======================================================================================================================
+N  THE PAST VERDICTS THAT ARE NOT ESTABLISHED (they rest on the record's own approximations or on soft data)
+======================================================================================================================
+  - [FAIL (as the chain now stands)] XR26: the chain FAILS Planck CMB lensing at +4.9 sigma (linear) / +40 sigma (halofit)  <- B01, B03, B04: it holds for the action as written (all matter; FP22: every cell excluded); in the reading the chain has adopted (baryons only) the linear base passes Planck and ACT and the halofit base fails ACT, so the verdict is open until the nonlinear phantom is computed
+  - [PASS] FP9 / FP13 / FP19: the forest passes ('forest 0')  <- B06, B01: linear per-mode proxies
+  - [PASS] M*: KiDS-1000 passes ON M* (XR14), DE10's -37/-34, XR9's KiDS cap 4.42  <- B02: P2 projector on carrier templates (+187% / -123% at 35 kpc); XR35 in flight
+  - [PASS] the chain: KiDS passes at z = 0.25-0.4 (FP13/FP19 after FP20)  <- B09, A07b: the web's field in the kernel is omitted; the outer bins carry B21's own 30% leakage
+  - [PASS] M*: the cosmic-shear pass (MS3/MS4, 1.049/1.124)  <- B07, B10, A18: halo model, mock-based; within the baryonic-feedback budget
+  - [PASS] M*: Harvey passes at 575 km/s (L389)  <- B14: no MUTATE; knife-edge
+  - [FAIL] FP16: the dark sector's window is EMPTY because X-COP fails at every kick  <- A09b, B04, B07: SOFT on the data side (hydrostatic bias; the canonical turned-around-web cell already sits at the gate); FP20b keeps its KiDS passes; scored in the reading the chain has adopted (baryons only)
+  - [PASS and FAIL] L347 / L358 / L359 / L362 / DE2: the forest verdicts of the constant-threshold and window lanes  <- B05: deviations under-stated by the (1+z) kernel argument; failures stand or worsen, borderline passes are open
+  - [FAIL (magnitude)] XR15 / XR11: instability of the smoothed gate and of the fluid's edge layers at O(H) rates  <- B08: frozen-background WKB at rates ~ H
+  - [FAIL (significance)] FP12: the LG / M81 / IC 342 R0 overshoots at high significance  <- B12: the offsets stand (+0.20 dex); the significance is 2.9-4.0 sigma with honest errors (and the method systematic), not 14 on the quoted ones
+  - [derived number] FP13: the state at high z (z_close) and its A6 systematic  <- B03: the T_EH98 units error
+  - [PASS (was)] M*: the flat-a0 flagship at z = 2.5  <- A04: already 'not established' on the answer page (XR17)
+
+======================================================================================================================
+R  THE REQUIREMENTS LIST
+======================================================================================================================
+  MODEL-INDEPENDENT:
+    A01   Newtonian where g >> a0: Q2 <= 5.2e-27 s^-2 (2 sigma) and gamma - 1 = (2.1 +- 2.3)e-5
+    A03a  the RAR's form and tightness (0.1 dex on 175 SPARC), deterministic in the baryons
+    A05b  LV dwarfs: statistic C = +0.080 +- 0.047 -- no host-field suppression of dwarf dispersions at 50-300 kpc (robust to binaries, tides, Upsilon)
+    A05c  Coma UDGs are dynamically hot: no visible EFE suppression at 0.2-2.3 Mpc (+0.92 to +1.01 dex over the EFE-suppressed prediction; +0.40 dex even over isolated MOND)
+    A07a  KiDS isolated-lens Delta Sigma inside 0.3 Mpc (Brouwer et al. 2021, four mass bins)
+    A08   the LG zero-velocity radius R0 = 0.96 (0.91) +- 0.11 Mpc (honest) with a 0.05-dex method systematic
+    A09a  clusters need mass beyond MOND on the baryons: eta(R500) = 2.33 [1.55-2.80]; hydrostatic corrections only raise it
+    A09c  collisionless lensing mass offset from the gas in mergers (Bullet: 8 sigma)
+    A10   the CMB primary spectra: GR + CDM at z >~ 10 with omega_c ~ 0.120, omega_b ~ 0.0224
+    A11   CMB lensing amplitude 1.011 +- 0.028 (Planck 8-400) and 1.013 +- 0.023 (ACT DR6)
+    A12a  BAO and the P(k) shape: the LCDM background and linear growth to ~1%
+    A15a  standard BBN: Y_P ~ 0.245-0.247, D/H ~ 2.45-2.59e-5 at omega_b = 0.0224
+    A16   c_T = c to 1e-15
+    A17b  the MW's stellar mass 5.0-6.1 (+-0.6-1.1) x1e10 Msun from the censuses, jointly with the 8-19 kpc slope -1.7 km/s/kpc
+  SOFT:
+    A03b  a0 = 0.94-1.13 x1e-10 m/s^2 (both footings) is inside g-dagger = 1.20 +- 0.24 (sys); kappa = 1/2 stays fitted
+    A05a  the cluster-infall BTFR slope +0.003 +- 0.030 with ~0.021 data-side: an external-field deficit slope no steeper than -0.079 (the data shifted by the whole budget, then the 2-sigma gate): QUMOND's gentlest (scalar-sum) form, -0.065, fits inside it; the least favourable (subtract) form, -0.188, does not
+    A05d  Crater II / M31 dSphs: the verdict is set by Upsilon_V and the radius convention (0.06-2.5 sigma in the literature's convention)
+    A05f  Chae's SPARC EFE: 1.0-2.9 sigma depending on the environment geometry
+    A07b  KiDS beyond 0.3 Mpc: the published bins carry ~30% photo-z leakage (-0.11 dex); for LV-like isolated spirals the signal may be up to ~0.5 dex lower (FP18) -- A = 2.19 +- 1.46 of the mixed level measured (FP21)
+    A07c  the KiDS-R0 pincer: 2.3 sigma after comparability systematics, shared by LCDM
+    A09b  X-COP totals at R500 with a hydrostatic bias b in 0.06-0.2 (a b above 0.06 lowers LCDM's gas fraction by the same factor)
+    A13   small-scale linear power at z = 2-3 within ~10-15% of LCDM (after IGM marginalisation)
+    A14   early massive galaxies need eps = 0.27-1.27 of the baryon ceiling, set by the IMF and spectroscopy (same for any model with LCDM's halo abundance)
+    A15b  lithium-7: the factor ~3 is shared; stellar depletion ~0.25 dex
+    A18   cosmic-shear power at k ~ 1 h/Mpc within the ~10% baryonic-feedback budget of LCDM
+  CONTESTED:
+    A02   wide binaries: state gamma_hat at the pre-registration's primary field and its xi dependence; DR4 (2026-12-02) decides
+    A04   a0(z): state the high-z BTFR zero point at z ~ 2.5 (the flat law: 0.00 dex; LCDM-native +0.33 dex); the MUSE rise is contested
+    A05e  DF2/DF4: state the prediction at both 13 and 20-22 Mpc
+    A06   SLACS: state the IMF the construction needs; the published IMF methods disagree by 0.26-0.30 dex
+    A09d  Harvey-type offsets: state the fractional drag; the published bounds disagree (0.47 vs ~2 cm^2/g)
+    A12b  S8: state it; the survey values span 0.76-0.82 (Planck 0.83)
+    A19   cluster counts: state them; the eRASS1 (S8 0.86 +- 0.01) and SPT (0.795 +- 0.029) cosmologies disagree
+    A17a  the MW's outer decline: state the curve at 20-27 kpc; the published indices span -0.19 to -0.56
+  OWN (keep):
+    O1    [MODEL-INDEPENDENT] keep the step (-0.050 +- 0.007 mag at log M* ~ 10); any construction that ties it to a0 must predict a fixed-mass acceleration dependence, which the present sample cannot see (80% power needs a 0.142 mag step)
+    O2    [MODEL-INDEPENDENT] a0 must not depend on the ambient density (|d log a0/d log rho_env| << 1/2); the source is the cosmic rho_Lambda
+    O3    [SOFT] any construction that ties kappa must land inside 0.465 +- 0.076 (BTFR) and 0.55 +- 0.17 (distance-free); the record carries kappa = 1/2 as fitted
+    O4    [CONTESTED] a0(z) flat to < 1% for z <= 5 on a true Lambda (the distinctive prediction); the decisive test needs 3 deep-MOND rotators at +-0.10 dex or 4 at +-0.20 dex at z ~ 2.5
+    O5    [SOFT] no constraint yet; a prospective instrument that needs original 1/a and ~3000 spike comets
+    O6    [CONTESTED] no constraint yet (consistent with zero); a construction's predicted dipole (4-22% for the MI class) needs ~1400-6000 galaxies
+    O7    [SOFT] Sigma_dyn(|z| < 1.1 kpc) = 68-74 (+-4-6) Msun/pc^2 at R0 with census-compatible baryons, jointly with v_c(R0)
+    O8    [SOFT] the b0 cutoff sign (framework b above b0) must not grow beyond the calibration channel's 0.4-0.9 sigma in a construction's forest-gas acceleration
+
+======================================================================================================================
+K4 / K5 / F  THE SOURCES, THE COMMITS, THE FAIRNESS CHECKS
+======================================================================================================================
+  [PASS] K4 every committed source the ledger reads is git-tracked and unmodified (sha256 recorded)
+         measured: 47 sources; not tracked or modified: none
+    FP22 (who feels MOND)                    committed
+    FP20b (P2 re-score of FP15/FP16/FP19)    committed
+    FP24 (the T_EH98 fix)                    in flight
+    XR34 (kernel-argument re-score)          in flight
+    XR35 (KiDS re-score on M*)               in flight
+    XR32 (S8 tension)                        committed
+    XR24 (LG numerical action)               in flight
+    XR28 (cluster splashback)                committed
+  [PASS] K5 every commit the ledger cites exists in the repository
+         measured: 68 commits; missing: none
+  [PASS] F1 FAIRNESS: under every systematic, the framework and LCDM were scored against identical (shifted) data
+         measured: 29 (row, shift) scorings; asymmetric: 0
+  [PASS] F2 every SOFT row carries a quantified budget with its source and LCDM's standing under the same shift
+         measured: SOFT rows 11; incomplete: none
+  [PASS] F3 every ledger and own-result row has a class, a measurement description, assumptions and a citation
+         measured: 33 ledger rows, 8 own results; incomplete: none
+
+======================================================================================================================
+H  THE PRE-DECLARED HYPOTHESES, AS THEY FELL (reported)
+======================================================================================================================
+  H1: HELD -- K1, K2, K3
+  H2: HELD -- A01 MODEL-INDEPENDENT, A16 MODEL-INDEPENDENT, A15a MODEL-INDEPENDENT, A10 MODEL-INDEPENDENT, A11 MODEL-INDEPENDENT, A12a MODEL-INDEPENDENT, A03a MODEL-INDEPENDENT, A09a MODEL-INDEPENDENT, A09c MODEL-INDEPENDENT
+  H3: HELD -- A07c SOFT; the chain's LG pull with honest errors 4.04 sigma; A08 MODEL-INDEPENDENT
+  H4: HELD -- A05a SOFT, A05b MODEL-INDEPENDENT, A05c MODEL-INDEPENDENT
+  H5: HELD -- baryons-only linear 1.013-1.043; all-matter halofit 1.250-2.134 (2-sigma edge 1.067)
+  H6: FELL -- A09b SOFT; b needed 0.000-0.142
+  H7: HELD -- A06 CONTESTED
+  H8: HELD -- DE11b estimate 0.0146
+  H9: HELD -- F1 PASS in the main run
+  H10: HELD -- O1 MODEL-INDEPENDENT, O2 MODEL-INDEPENDENT, O3 SOFT, O4 CONTESTED, O5 SOFT, O6 CONTESTED, O7 SOFT, O8 SOFT
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  Part A: 33 results -- MODEL-INDEPENDENT 14, SOFT 11, CONTESTED 8
+  Own results: 8 -- MODEL-INDEPENDENT 2, SOFT 4, CONTESTED 2
+  Part B: 18 equipment items; 12 past verdicts not established
+  kappa = 1/2 is fitted (Z = 5.7888); both footings carried; not 'closed'.
+
+  9/9 checks pass; load-bearing failures: 0; wrote CFG1_evidence_audit_results.json   [81 s]
+rc=0

@@ -1,0 +1,276 @@
+CFG4 (part 5 of 5) -- THE TARGET: one effective description (galaxy law + switch + dark component) put against every
+model-independent fact at once, with the framework's own findings as constraints; its equations, its constants (fitted /
+declared / tied / derived), and either the consistent window or the precise minimal conflict and the smallest ingredient
+that resolves it.  CFG2, CFG3 and CFG5 build to this target.
+
+INPUTS (committed files, read-only): the results JSONs of parts 1-4 (CFG4_galaxy_law, CFG4_switch, CFG4_clusters,
+CFG4_cosmology); the record's JSONs for the own findings (FP0, FP17, XR26, XR19); the SPARC master table (gas fractions);
+the corrected X-COP audit rows.  Published input typed here: the GAMA galaxy stellar mass function (Baldry et al. 2012,
+double Schechter, h = 0.7: log M* = 10.66, phi1 = 3.96e-3, alpha1 = -0.35, phi2 = 0.79e-3, alpha2 = -1.47 Mpc^-3).
+
+THE BOOKKEEPING QUESTION (the crux).  In a bound region the law's total field exceeds the baryons' by the phantom
+M_ph(<r) = (nu - 1) g_bar r^2/G.  The CMB demands a cold component (Omega_c h^2 = 0.12) that clusters as CDM wherever the
+law is off.  Two readings:
+  ADDITIVE -- the phantom is extra gravity and the cold component also sits in the bound region (as CDM would put it there);
+  IDENTITY -- the cold component in a bound region IS the phantom: it arranges itself as rho_eff, and any cold mass beyond
+              the phantom (clusters, baryon-complete) stays as collisionless mass: dark = max(phantom, cosmic share).
+The identity reading needs a BUDGET: the phantoms of all galaxies, out to where the switch turns them off (x r_ta), cannot
+hold more mass than the cold component has.  KiDS sets how far out the phantom must reach (part 2: x >= 0.48 without a
+2-halo term, >= 0.31 with one).
+
+PRE-DECLARED (written before any run of this script):
+  H1 [HEADLINE] THE ASSEMBLED TARGET'S GATE ROWS.  Every gate row of the target, read from parts 1-4, passes: SPARC (the
+     law), KiDS (the phantom to the target's edge, inside each lens's turnaround radius), CMB lensing (the switch keeps the unbound web free of the
+     phantom), the forest (unbound IGM), the z = 2.5 discs (ON), the Solar System (M_* window), X-COP (identity reading),
+     the Bullet (collisionless), the cosmology (a late fraction may leave).  EXPECT TRUE.
+  H2 THE ADDITIVE READING FAILS.  Adding the cold component's cosmic share to the law's phantom overshoots X-COP by
+     20-45% (>= 5 sigma on the median of twelve clusters) and leaks into CMB lensing (part 2 H6).  EXPECT TRUE.
+  H3 THE IDENTITY READING'S BUDGET.  With every galaxy's phantom extended to its own turnaround radius (x = 1), the phantoms
+     would hold MORE mass than the cold component has (Omega_ph > Omega_c) -- the exploratory estimate gave ~1.5-2.7 Omega_m.
+     Cut at KiDS's lower edge (x = 0.31-0.48) the budget comes near Omega_c.  UNCERTAIN; the answer decides between a
+     consistent window [x_KiDS, x_budget] and a minimal conflict KiDS-vs-Omega_c.
+  H4 THE OWN FINDINGS.  Each of the ten the author named is placed in the target with its status, and none contradicts
+     it; the cluster-kernel share is re-measured (the record carries both '74-89%' and '~32%'; the difference is the reading:
+     the extra component sourcing the law (all-matter) or not (baryons-only, FP22's adopted reading)).  EXPECT TRUE.
+MUTATE=1 removes the switch from the assembled target (the law acts in the linear web, part 2's no-switch amplitude): the
+headline H1 must FAIL (rc = 1).
+
+DISCLOSED EXPLORATORY RUN: before this script was written a scratch estimate of the phantom budget (the Baldry et al. SMF,
+a rough gas fraction, the EdS turnaround contrast 5.55) gave Omega_ph(r_ta)/Omega_m = 2.7 (all galaxies), 2.0 (M* > 1e9),
+1.5 (M* > 1e10) on the canonical footing, and Omega_ph = 0.18 / 0.52 with a fixed 0.3 / 1.0 Mpc cut.  That estimate shaped
+H3's wording; this script recomputes it with the top-hat contrast from part 2 and SPARC's own gas fractions.
+  part galaxy_law: 7/9 checks, load-bearing failures 0, failed ['H3', 'H6']
+  part switch    : 13/13 checks, load-bearing failures 0, failed []
+  part clusters  : 7/7 checks, load-bearing failures 0, failed []
+  part cosmology : 5/6 checks, load-bearing failures 0, failed ['H3']
+
+======================================================================================================================
+H1  THE ASSEMBLED TARGET, GATE BY GATE (numbers from parts 1-4)
+======================================================================================================================
+    PASS  SPARC RAR (175 galaxies, a0 fixed, Upsilon profiled)
+          gate: rms <= 0.110 dex at Upsilon 0.50-0.80
+          value: nu_mono 0.1003/0.0991, P2 0.1083/0.1035
+    PASS  KiDS-1000 isolated lenses (z = 0.25, exact projector)
+          gate: d chi^2 <= +9 with the phantom ending at the target's edge x_e = 0.4 r_ta and the unbound cold component's 2-halo (A <= 2)
+          value: canonical|P2 -10.7, canonical|nu_mono -12.4, alt|P2 -10.9, alt|nu_mono -11.3; at r_ta without a 2-halo: -9.5, -9.2, -8.7, -9.3
+    PASS  Planck 2018 CMB lensing (8-400)
+          gate: amplitude within 2 sigma of 1.011 +- 0.028
+          value: 1.0000 (-0.39 sigma)
+    PASS  Lyman-alpha forest (z = 2-3, linear proxy)
+          gate: deviation <= 10%
+          value: 0.0
+    PASS  z = 2.5 discs (the flagship, flat a0)
+          gate: the law ON at r_F
+          value: ON: True
+    PASS  Solar System (Cassini, ephemerides)
+          gate: M_* window non-empty (FP17)
+          value: (1, 6.72e+06] / (1, 8.12e+06] Msun
+    PASS  X-COP (12 clusters, 0.8 R500)
+          gate: identity reading / measured within 20%
+          value: canonical|P2 0.946, canonical|nu_mono 0.946, alt|P2 0.946, alt|nu_mono 0.946
+    PASS  Bullet cluster (Clowe et al. 2006)
+          gate: collisionless mass on the galaxies > 2x the aperture baryons
+          value: main 4.6x, offset 209 kpc, sub 4.9x, offset 194 kpc
+    PASS  Cosmology: a late fraction of the cold component may leave (CMB lensing, S8, RSD, BAO)
+          gate: F_max >= 0.3 at z_c = 1, v_k <= 600 km/s
+          value: v 200.0: 1.00, v 400.0: 1.00, v 600.0: 1.00
+  [PASS] H1 [HEADLINE] THE ASSEMBLED TARGET'S GATE ROWS ALL PASS: SPARC, KiDS, CMB lensing, the forest, the z = 2.5 discs, the Solar System, X-COP, the Bullet and the late-cosmology allowance
+         measured: SPARC RAR: ok; KiDS-1000 isolated lenses: ok; Planck 2018 CMB lensing: ok; Lyman-alpha forest: ok; z = 2.5 discs: ok; Solar System: ok; X-COP: ok; Bullet cluster: ok; Cosmology: a late fraction of the cold component may leave: ok
+
+======================================================================================================================
+H2  THE ADDITIVE READING: the cold component's cosmic share ADDED to the law's phantom in clusters, and CMB lensing
+======================================================================================================================
+    canonical|P2      : additive (baryons + phantom + cosmic share) / measured = 1.271 +- 0.112 over 12 clusters -> 8.4 sigma on the median
+    canonical|nu_mono : additive (baryons + phantom + cosmic share) / measured = 1.325 +- 0.116 over 12 clusters -> 9.7 sigma on the median
+    alt|P2            : additive (baryons + phantom + cosmic share) / measured = 1.317 +- 0.117 over 12 clusters -> 9.4 sigma on the median
+    alt|nu_mono       : additive (baryons + phantom + cosmic share) / measured = 1.373 +- 0.122 over 12 clusters -> 10.6 sigma on the median
+    CMB lensing with the bound regions' phantom ADDED (part 2 H6, conservative): 1.0601 (linear base) / 1.5279 (halofit)
+  [PASS] (reported) H2 THE ADDITIVE READING FAILS: the cosmic share added to the law's phantom overshoots X-COP by 20-45% (>= 5 sigma on the median of twelve clusters, both footings, both kernels) -- the record's FP16 'X-COP too massive' in data form -- and it leaks into CMB lensing
+         measured: canonical|P2: 1.27 (8 sigma); canonical|nu_mono: 1.32 (10 sigma); alt|P2: 1.32 (9 sigma); alt|nu_mono: 1.37 (11 sigma); lensing leak 1.060 / 1.528
+
+======================================================================================================================
+H3  THE IDENTITY READING'S BUDGET: every galaxy's phantom out to x r_ta against the cold component's total amount
+======================================================================================================================
+    SPARC gas fraction: log(M_gas/M_*) = -0.456 log M_* +4.191 (175 galaxies); at M_* = 1e8/1e10/1e11: 3.51/0.43/0.15
+    (2 s)
+    canonical P2       z = 0.00 log M_* >=  7.0: Omega_ph(x) = 0.2: 0.113, 0.3: 0.171, 0.31: 0.177, 0.4: 0.229, 0.48: 0.275, 0.6: 0.345, 0.8: 0.460, 1: 0.576  (filling factor at x = 1: 0.16)
+    canonical P2       z = 0.00 log M_* >=  9.0: Omega_ph(x) = 0.2: 0.085, 0.3: 0.129, 0.31: 0.134, 0.4: 0.173, 0.48: 0.208, 0.6: 0.260, 0.8: 0.348, 1: 0.435  (filling factor at x = 1: 0.12)
+    canonical P2       z = 0.00 log M_* >= 10.0: Omega_ph(x) = 0.2: 0.064, 0.3: 0.097, 0.31: 0.100, 0.4: 0.130, 0.48: 0.156, 0.6: 0.196, 0.8: 0.261, 1: 0.327  (filling factor at x = 1: 0.09)
+    canonical P2       z = 0.25 log M_* >=  7.0: Omega_ph(x) = 0.2: 0.093, 0.3: 0.141, 0.31: 0.145, 0.4: 0.188, 0.48: 0.226, 0.6: 0.284, 0.8: 0.379, 1: 0.474  (filling factor at x = 1: 0.17)
+    canonical P2       z = 0.25 log M_* >=  9.0: Omega_ph(x) = 0.2: 0.070, 0.3: 0.106, 0.31: 0.110, 0.4: 0.142, 0.48: 0.171, 0.6: 0.214, 0.8: 0.286, 1: 0.358  (filling factor at x = 1: 0.13)
+    canonical P2       z = 0.25 log M_* >= 10.0: Omega_ph(x) = 0.2: 0.053, 0.3: 0.080, 0.31: 0.082, 0.4: 0.107, 0.48: 0.128, 0.6: 0.161, 0.8: 0.215, 1: 0.269  (filling factor at x = 1: 0.10)
+    canonical nu_mono  z = 0.00 log M_* >=  7.0: Omega_ph(x) = 0.2: 0.115, 0.3: 0.172, 0.31: 0.178, 0.4: 0.230, 0.48: 0.277, 0.6: 0.346, 0.8: 0.462, 1: 0.577  (filling factor at x = 1: 0.16)
+    canonical nu_mono  z = 0.00 log M_* >=  9.0: Omega_ph(x) = 0.2: 0.087, 0.3: 0.130, 0.31: 0.135, 0.4: 0.174, 0.48: 0.209, 0.6: 0.262, 0.8: 0.349, 1: 0.437  (filling factor at x = 1: 0.12)
+    canonical nu_mono  z = 0.00 log M_* >= 10.0: Omega_ph(x) = 0.2: 0.065, 0.3: 0.098, 0.31: 0.101, 0.4: 0.131, 0.48: 0.157, 0.6: 0.197, 0.8: 0.263, 1: 0.329  (filling factor at x = 1: 0.09)
+    canonical nu_mono  z = 0.25 log M_* >=  7.0: Omega_ph(x) = 0.2: 0.094, 0.3: 0.142, 0.31: 0.147, 0.4: 0.190, 0.48: 0.228, 0.6: 0.285, 0.8: 0.381, 1: 0.476  (filling factor at x = 1: 0.17)
+    canonical nu_mono  z = 0.25 log M_* >=  9.0: Omega_ph(x) = 0.2: 0.071, 0.3: 0.107, 0.31: 0.111, 0.4: 0.143, 0.48: 0.172, 0.6: 0.216, 0.8: 0.288, 1: 0.360  (filling factor at x = 1: 0.13)
+    canonical nu_mono  z = 0.25 log M_* >= 10.0: Omega_ph(x) = 0.2: 0.053, 0.3: 0.081, 0.31: 0.083, 0.4: 0.108, 0.48: 0.130, 0.6: 0.162, 0.8: 0.216, 1: 0.271  (filling factor at x = 1: 0.10)
+    alt       P2       z = 0.00 log M_* >=  7.0: Omega_ph(x) = 0.2: 0.131, 0.3: 0.198, 0.31: 0.204, 0.4: 0.264, 0.48: 0.318, 0.6: 0.397, 0.8: 0.531, 1: 0.664  (filling factor at x = 1: 0.18)
+    alt       P2       z = 0.00 log M_* >=  9.0: Omega_ph(x) = 0.2: 0.099, 0.3: 0.149, 0.31: 0.154, 0.4: 0.200, 0.48: 0.240, 0.6: 0.300, 0.8: 0.401, 1: 0.502  (filling factor at x = 1: 0.14)
+    alt       P2       z = 0.00 log M_* >= 10.0: Omega_ph(x) = 0.2: 0.074, 0.3: 0.112, 0.31: 0.116, 0.4: 0.150, 0.48: 0.180, 0.6: 0.226, 0.8: 0.302, 1: 0.377  (filling factor at x = 1: 0.10)
+    alt       P2       z = 0.25 log M_* >=  7.0: Omega_ph(x) = 0.2: 0.108, 0.3: 0.163, 0.31: 0.168, 0.4: 0.217, 0.48: 0.261, 0.6: 0.327, 0.8: 0.437, 1: 0.547  (filling factor at x = 1: 0.20)
+    alt       P2       z = 0.25 log M_* >=  9.0: Omega_ph(x) = 0.2: 0.081, 0.3: 0.123, 0.31: 0.127, 0.4: 0.164, 0.48: 0.197, 0.6: 0.247, 0.8: 0.330, 1: 0.414  (filling factor at x = 1: 0.15)
+    alt       P2       z = 0.25 log M_* >= 10.0: Omega_ph(x) = 0.2: 0.061, 0.3: 0.092, 0.31: 0.095, 0.4: 0.123, 0.48: 0.148, 0.6: 0.186, 0.8: 0.248, 1: 0.311  (filling factor at x = 1: 0.11)
+    alt       nu_mono  z = 0.00 log M_* >=  7.0: Omega_ph(x) = 0.2: 0.132, 0.3: 0.199, 0.31: 0.206, 0.4: 0.266, 0.48: 0.319, 0.6: 0.399, 0.8: 0.532, 1: 0.666  (filling factor at x = 1: 0.18)
+    alt       nu_mono  z = 0.00 log M_* >=  9.0: Omega_ph(x) = 0.2: 0.100, 0.3: 0.150, 0.31: 0.155, 0.4: 0.201, 0.48: 0.241, 0.6: 0.302, 0.8: 0.403, 1: 0.504  (filling factor at x = 1: 0.14)
+    alt       nu_mono  z = 0.00 log M_* >= 10.0: Omega_ph(x) = 0.2: 0.075, 0.3: 0.113, 0.31: 0.117, 0.4: 0.151, 0.48: 0.181, 0.6: 0.227, 0.8: 0.303, 1: 0.379  (filling factor at x = 1: 0.10)
+    alt       nu_mono  z = 0.25 log M_* >=  7.0: Omega_ph(x) = 0.2: 0.109, 0.3: 0.164, 0.31: 0.169, 0.4: 0.219, 0.48: 0.263, 0.6: 0.329, 0.8: 0.439, 1: 0.549  (filling factor at x = 1: 0.20)
+    alt       nu_mono  z = 0.25 log M_* >=  9.0: Omega_ph(x) = 0.2: 0.082, 0.3: 0.124, 0.31: 0.128, 0.4: 0.165, 0.48: 0.199, 0.6: 0.249, 0.8: 0.332, 1: 0.415  (filling factor at x = 1: 0.15)
+    alt       nu_mono  z = 0.25 log M_* >= 10.0: Omega_ph(x) = 0.2: 0.062, 0.3: 0.093, 0.31: 0.096, 0.4: 0.124, 0.48: 0.149, 0.6: 0.187, 0.8: 0.250, 1: 0.312  (filling factor at x = 1: 0.11)
+    stars only (no gas), canonical P2, z = 0: Omega_ph at x = 0.31/0.48/1 = 0.124/0.192/0.402
+    the cold component: Omega_c = 0.2647; its turned-around share at the web's k = 1 h/Mpc scale (PS, z = 0) 0.60 -> 0.1594
+    canonical P2       z = 0.00 M_* >= 1e7: the budget allows x <= 0.46 (all of Omega_c) / 0.28 (its turned-around share); KiDS needs x >= 0.48 (no 2-halo) / 0.31 (2-halo)
+    canonical P2       z = 0.00 M_* >= 1e9: the budget allows x <= 0.61 (all of Omega_c) / 0.37 (its turned-around share); KiDS needs x >= 0.48 (no 2-halo) / 0.31 (2-halo)
+    canonical P2       z = 0.00 M_* >= 1e10: the budget allows x <= 0.81 (all of Omega_c) / 0.49 (its turned-around share); KiDS needs x >= 0.48 (no 2-halo) / 0.31 (2-halo)
+    canonical P2       z = 0.25 M_* >= 1e7: the budget allows x <= 0.56 (all of Omega_c) / 0.34 (its turned-around share); KiDS needs x >= 0.48 (no 2-halo) / 0.31 (2-halo)
+    canonical P2       z = 0.25 M_* >= 1e9: the budget allows x <= 0.74 (all of Omega_c) / 0.45 (its turned-around share); KiDS needs x >= 0.48 (no 2-halo) / 0.31 (2-halo)
+    canonical P2       z = 0.25 M_* >= 1e10: the budget allows x <= 0.98 (all of Omega_c) / 0.59 (its turned-around share); KiDS needs x >= 0.48 (no 2-halo) / 0.31 (2-halo)
+    canonical nu_mono  z = 0.00 M_* >= 1e7: the budget allows x <= 0.46 (all of Omega_c) / 0.28 (its turned-around share); KiDS needs x >= 0.50 (no 2-halo) / 0.30 (2-halo)
+    canonical nu_mono  z = 0.00 M_* >= 1e9: the budget allows x <= 0.61 (all of Omega_c) / 0.37 (its turned-around share); KiDS needs x >= 0.50 (no 2-halo) / 0.30 (2-halo)
+    canonical nu_mono  z = 0.00 M_* >= 1e10: the budget allows x <= 0.81 (all of Omega_c) / 0.49 (its turned-around share); KiDS needs x >= 0.50 (no 2-halo) / 0.30 (2-halo)
+    canonical nu_mono  z = 0.25 M_* >= 1e7: the budget allows x <= 0.56 (all of Omega_c) / 0.34 (its turned-around share); KiDS needs x >= 0.50 (no 2-halo) / 0.30 (2-halo)
+    canonical nu_mono  z = 0.25 M_* >= 1e9: the budget allows x <= 0.74 (all of Omega_c) / 0.44 (its turned-around share); KiDS needs x >= 0.50 (no 2-halo) / 0.30 (2-halo)
+    canonical nu_mono  z = 0.25 M_* >= 1e10: the budget allows x <= 0.98 (all of Omega_c) / 0.59 (its turned-around share); KiDS needs x >= 0.50 (no 2-halo) / 0.30 (2-halo)
+    alt       P2       z = 0.00 M_* >= 1e7: the budget allows x <= 0.40 (all of Omega_c) / 0.24 (its turned-around share); KiDS needs x >= 0.47 (no 2-halo) / 0.31 (2-halo)
+    alt       P2       z = 0.00 M_* >= 1e9: the budget allows x <= 0.53 (all of Omega_c) / 0.32 (its turned-around share); KiDS needs x >= 0.47 (no 2-halo) / 0.31 (2-halo)
+    alt       P2       z = 0.00 M_* >= 1e10: the budget allows x <= 0.70 (all of Omega_c) / 0.43 (its turned-around share); KiDS needs x >= 0.47 (no 2-halo) / 0.31 (2-halo)
+    alt       P2       z = 0.25 M_* >= 1e7: the budget allows x <= 0.49 (all of Omega_c) / 0.29 (its turned-around share); KiDS needs x >= 0.47 (no 2-halo) / 0.31 (2-halo)
+    alt       P2       z = 0.25 M_* >= 1e9: the budget allows x <= 0.64 (all of Omega_c) / 0.39 (its turned-around share); KiDS needs x >= 0.47 (no 2-halo) / 0.31 (2-halo)
+    alt       P2       z = 0.25 M_* >= 1e10: the budget allows x <= 0.85 (all of Omega_c) / 0.52 (its turned-around share); KiDS needs x >= 0.47 (no 2-halo) / 0.31 (2-halo)
+    alt       nu_mono  z = 0.00 M_* >= 1e7: the budget allows x <= 0.40 (all of Omega_c) / 0.24 (its turned-around share); KiDS needs x >= 0.49 (no 2-halo) / 0.31 (2-halo)
+    alt       nu_mono  z = 0.00 M_* >= 1e9: the budget allows x <= 0.53 (all of Omega_c) / 0.32 (its turned-around share); KiDS needs x >= 0.49 (no 2-halo) / 0.31 (2-halo)
+    alt       nu_mono  z = 0.00 M_* >= 1e10: the budget allows x <= 0.70 (all of Omega_c) / 0.42 (its turned-around share); KiDS needs x >= 0.49 (no 2-halo) / 0.31 (2-halo)
+    alt       nu_mono  z = 0.25 M_* >= 1e7: the budget allows x <= 0.48 (all of Omega_c) / 0.29 (its turned-around share); KiDS needs x >= 0.49 (no 2-halo) / 0.31 (2-halo)
+    alt       nu_mono  z = 0.25 M_* >= 1e9: the budget allows x <= 0.64 (all of Omega_c) / 0.39 (its turned-around share); KiDS needs x >= 0.49 (no 2-halo) / 0.31 (2-halo)
+    alt       nu_mono  z = 0.25 M_* >= 1e10: the budget allows x <= 0.85 (all of Omega_c) / 0.51 (its turned-around share); KiDS needs x >= 0.49 (no 2-halo) / 0.31 (2-halo)
+    DECISION canonical P2       (z = 0.25, every galaxy): Omega_ph(x = 1) = 0.474 vs Omega_c 0.265; budget edge x <= 0.56; KiDS x >= 0.48 / 0.31 -> window OPEN with the 2-halo, OPEN without; KiDS d chi^2 at the budget edge -11.8 (no 2h) / -31.4 (2h)
+    DECISION canonical nu_mono  (z = 0.25, every galaxy): Omega_ph(x = 1) = 0.476 vs Omega_c 0.265; budget edge x <= 0.56; KiDS x >= 0.50 / 0.30 -> window OPEN with the 2-halo, OPEN without; KiDS d chi^2 at the budget edge -3.6 (no 2h) / -33.5 (2h)
+    DECISION alt       P2       (z = 0.25, every galaxy): Omega_ph(x = 1) = 0.547 vs Omega_c 0.265; budget edge x <= 0.49; KiDS x >= 0.47 / 0.31 -> window OPEN with the 2-halo, OPEN without; KiDS d chi^2 at the budget edge +3.9 (no 2h) / -24.6 (2h)
+    DECISION alt       nu_mono  (z = 0.25, every galaxy): Omega_ph(x = 1) = 0.549 vs Omega_c 0.265; budget edge x <= 0.48; KiDS x >= 0.49 / 0.31 -> window OPEN with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge +13.0 (no 2h) / -25.1 (2h)
+  [PASS] (reported) H3 (reported; pre-declared UNCERTAIN) THE IDENTITY READING'S BUDGET: with every galaxy's phantom out to its own turnaround radius the phantoms would hold more than the whole cold component (Omega_ph(x = 1) > Omega_c) on both footings for both kernels
+         measured: can/P2: Omega_ph(1) 0.474, budget x <= 0.56, KiDS x >= 0.31 (2h) / 0.48; can/nu_mono: Omega_ph(1) 0.476, budget x <= 0.56, KiDS x >= 0.30 (2h) / 0.50; alt/P2: Omega_ph(1) 0.547, budget x <= 0.49, KiDS x >= 0.31 (2h) / 0.47; alt/nu_mono: Omega_ph(1) 0.549, budget x <= 0.48, KiDS x >= 0.31 (2h) / 0.49
+
+======================================================================================================================
+H4  THE FRAMEWORK'S OWN FINDINGS AS CONSTRAINTS ON THE TARGET (source, status, what each fixes)
+======================================================================================================================
+    cluster-kernel share on X-COP (canonical, P2): the law removes 40% of the Newtonian dark mass when only baryons source it (FP22's adopted reading), 57% when the extra component sources it too (the record's '74-89%' reading)
+    cluster-kernel share on X-COP (canonical, nu_mono): the law removes 47% of the Newtonian dark mass when only baryons source it (FP22's adopted reading), 69% when the extra component sources it too (the record's '74-89%' reading)
+    cluster-kernel share on X-COP (alt, P2): the law removes 45% of the Newtonian dark mass when only baryons source it (FP22's adopted reading), 64% when the extra component sources it too (the record's '74-89%' reading)
+    cluster-kernel share on X-COP (alt, nu_mono): the law removes 52% of the Newtonian dark mass when only baryons source it (FP22's adopted reading), 74% when the extra component sources it too (the record's '74-89%' reading)
+    * flat a0(z)
+        source: qwen_claude_field_theory/papers_2026/PAPER7_a0z_decisive_measurement_2026.tex (DOI 22833314 v3)
+        status: TIED (Lambda constant)
+        in the target: a0 is z-independent on a true Lambda: the law's a0 carries no z; the switch must keep the z = 2.5 discs ON (part 2)
+    * a0(z) ~ sqrt(rho_DE(z)) (labelled branch)
+        source: real_research/derivation_chain_2026/FP0_core_postulates.py R3b; XR20 (the sqrt V refinement)
+        status: TIED (to the dark-energy fit)
+        in the target: under evolving dark energy a0(z)/a0(0) = sqrt(rho_DE(z)/rho_DE(0)) (0.796 at z = 2.5 under the DES-Y5 pair); flat for w = -1: a labelled branch with 0 extra constants
+    * the unimodular tie
+        source: real_research/cross_thread_review_2026_09_26/XR20_README.md, XR30_README.md
+        status: TIED
+        in the target: a0 tied to the same integration constant as Lambda; no new local mode
+    * uniqueness of a0 = xi c sqrt(G rho)
+        source: real_research/reviews/mi_third_category_search_2026.py (det = 2)
+        status: DERIVED (form); FITTED (kappa)
+        in the target: the FORM of a0 is forced by (G, c, rho); kappa = 1/2 <=> Z identically; kappa stays FITTED
+    * the BIG-SPARC null: a0 set by rho_Lambda, not local density
+        source: real_research/reviews/A0_COSMICWEB_ENVIRONMENT_2026-06.md, reviews/project_sparc_a0_vs_cosmicweb.py
+        status: MEASURED (a constraint)
+        in the target: a0 universal (13-34 sigma against the local-density fork); part 1's intrinsic scatter <= 0.048 dex agrees; a density-keyed switch that modulates a0 is excluded
+    * the SN-Ia host step at the a0 scale
+        source: real_research/snia_massstep_acceleration_test.py, snia_hoststep_localSB.py
+        status: COINCIDENCE (not used)
+        in the target: the step's LOCATION coincides with g_bar = a0, but the record's own global and local tests found it an age/metallicity effect: recorded as a coincidence, not used as a constraint
+    * the GDM theorem
+        source: real_research/reviews/mi_particle_vs_mode_2026.py
+        status: DERIVED (a theorem)
+        in the target: linear cosmology sees the dark sector only as (w, c_s^2, c_vis^2) + amount: the target's cold component is the framework's field in a cold-fluid state, not a particle; its amount is initial data
+    * the ghost-condensate result: S8 neutral
+        source: opus_48_extended_research/reviews/GHOST_CONDENSATE_2026-06-19.md
+        status: DERIVED
+        in the target: a0 absent from linear growth: the target's linear growth is LCDM's; S8 moves only through the dark component's late fate (part 4)
+    * the coherence-length law; hbar/(xi c) ~ 2e-22 eV
+        source: hunt_2026/f29_coherence_length_law.py; qwen_claude_field_theory/closure_2026/ONE_NEW_THING_2026-09-04.md
+        status: FITTED (one knob: xi == M_*)
+        in the target: the Solar-System switch's scale: M_* = a0 xi^2/G is xi in mass form (FP17's window, xi in [0.024, 100] pc); the 2e-22 eV value is recorded as a coincidence (the dark field's mass window is 1.9-5.2e-19 eV)
+    * 'the kernel removes 74-89% of cluster dark matter'
+        source: real_research/reviews/mi_third_category_search_2026.py (E2)
+        status: MEASURED (reading-dependent)
+        in the target: re-measured on X-COP at 0.8 R500: 69-74% (nu_mono) when the extra component sources the law (the finding's reading), 40-52% when only baryons do (FP22's adopted reading; the one CMB lensing allows)
+  [PASS] (reported) H4 THE OWN FINDINGS: all ten are placed in the target with their status and none contradicts it; the cluster-kernel share is re-measured in both readings
+         measured: flat a0(z): TIED (Lambda constant); a0(z) ~ sqrt(rho_DE(z)) (lab: TIED (to the dark-energy fit); the unimodular tie: TIED; uniqueness of a0 = xi c sqrt: DERIVED (form); FITTED (kappa); the BIG-SPARC null: MEASURED (a constraint); the SN-Ia host step at the a: COINCIDENCE (not used); the GDM theorem: DERIVED (a theorem); the ghost-condensate result: DERIVED; the coherence-length law; hb: FITTED (one knob: xi == M_*); 'the kernel removes 74-89% o: MEASURED (reading-dependent)
+
+======================================================================================================================
+T  THE TARGET: equations, constants (fitted / declared / tied / derived), windows
+======================================================================================================================
+    T1 the scale:  a0 = kappa c sqrt(G rho_Lambda) = c H0 sqrt(Omega_L)/Z,  Z = 2 sqrt(8 pi/3) = 5.7888
+        - kappa = 1/2: FITTED
+        - the form (G, c, rho): DERIVED (uniqueness, det = 2)
+        - a0 <-> Lambda: TIED (unimodular, XR20/XR30)
+        - flat in z; sqrt(rho_DE) branch: TIED
+    T2 the galaxy law (ON regions):  g = nu(|g_N,b|/a0) g_N,b (spherical/monopole reading); rho_eff = div[(nu - 1) g_N,b]/(4 pi G)
+        - nu's shape: DECLARED (one function; no continuous constant)
+        - declared: nu_mono (adopted) or P2; the SPARC band at fixed a0: beta in [0.40, 0.59] (canonical) of (1 + y^-beta)^(1/2beta) with Upsilon ~0.45; nu_mono at Upsilon 0.61; intrinsic scatter <= 0.048 dex (95%)
+    T3 the switch:  ON iff the region lies inside a bound system's EDGE -- the top-level system has turned around (enclosed overdensity >= Delta_ta(z): 11.81 / 8.89 at z = 0 / 0.25, the GR top-hat contrast) and the phantom ends at r_edge = x_e r_ta with x_e in [KiDS floor, budget edge] (see VERDICT; the turnaround radius itself, x_e = 1, is excluded by the cold budget) -- AND the system's baryonic mass M_b >= M_*.  The edge is a DENSITY edge: the phantom's source density ends there and the field outside is Newtonian from the enclosed (baryons + phantom) mass; a RESPONSE edge (the law's boost switched off, so the enclosed phantom stops gravitating) must lie beyond 1.67/2.07/3.44/2.77 Mpc (the record's h72, part 2 K4/H7)
+        - Delta_ta(z): DERIVED (GR collapse; no constant)
+        - x_e (the edge): CONSTRAINED to a window [0.31, ~0.5]; DERIVED if it is the 3D shell-crossing (splashback) radius
+        - M_* (== a0 xi^2/G): FITTED within a window (FP17)
+        - windows: {'M_star_Msun': [1.0, 6715328.21115625], 'kids_x_no_2halo': {'canonical|P2': [0.47511869790672895, 1.469230563702297], 'canonical|nu_mono': [0.4984584207169369, 'inf'], 'alt|P2': [0.47162381879885124, 1.4461737552070626], 'alt|nu_mono': [0.49373093996566486, 1.4964826430693665]}, 'kids_x_2halo': {'canonical|P2': [0.30938042131864685, 1.4722133641190205], 'canonical|nu_mono': [0.3032954782129123, 'inf'], 'alt|P2': [0.3100016251245503, 1.4540590730865053], 'alt|nu_mono': [0.3064168081168568, 'inf']}, 'edge_x': 'see VERDICT (the KiDS floor with the 2-halo term up to the cold budget edge)'}
+    T4 the dark component:  a cold fluid (w, c_s^2, c_vis^2 ~ 0), Omega_c h^2 = 0.1200; CDM wherever the law is off
+        - Omega_c h^2: FITTED (initial data, as LCDM's)
+    T5 bound regions (the bookkeeping):  IDENTITY: the cold component in a bound region supplies the phantom; dark = max(M_ph, (Omega_c/Omega_b) M_b) -- clusters (baryon-complete) keep the cosmic share; the additive reading fails X-COP
+        - the max rule: DECLARED (the bookkeeping principle; no constant)
+    T6 the late allowance:  after z ~ 1-2 up to F_max of the cold component may stream out of galaxy-scale regions (v_k <= 600 km/s: F_max ~ 1); a truly non-clustering form <= 0.1; decay into radiation <= 0.05
+    CONSTANT COUNT: FITTED 3 (kappa = 1/2, M_* (xi), Omega_c h^2); DECLARED 3 (nu's shape, the max rule (bookkeeping), x_e (window [0.31, ~0.5]; derived if = shell crossing)); TIED 2 (a0 <-> Lambda (unimodular), flat a0(z) / sqrt(rho_DE) branch); DERIVED 4 (the form of a0 (uniqueness), Delta_ta(z) (GR collapse), the cluster content (cosmic share), linear growth = LCDM)
+    (Upsilon, the stellar mass-to-light ratio, is an astrophysical nuisance of the data, not a constant of the target.)
+
+======================================================================================================================
+VERDICT: one consistent effective description, or the minimal conflict
+======================================================================================================================
+    [lenient: z = 0.25, all of Omega_c, every galaxy its own system]
+        canonical P2      : budget x <= 0.56; KiDS x >= 0.31 (2-halo) / 0.48 (none) -> OPEN with the 2-halo, OPEN without; KiDS d chi^2 at the budget edge -31.4 (2-halo) / -11.8
+        canonical nu_mono : budget x <= 0.56; KiDS x >= 0.30 (2-halo) / 0.50 (none) -> OPEN with the 2-halo, OPEN without; KiDS d chi^2 at the budget edge -33.5 (2-halo) / -3.6
+        alt       P2      : budget x <= 0.49; KiDS x >= 0.31 (2-halo) / 0.47 (none) -> OPEN with the 2-halo, OPEN without; KiDS d chi^2 at the budget edge -24.6 (2-halo) / +3.9
+        alt       nu_mono : budget x <= 0.48; KiDS x >= 0.31 (2-halo) / 0.49 (none) -> OPEN with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge -25.1 (2-halo) / +13.0
+    [z = 0, all of Omega_c, every galaxy]
+        canonical P2      : budget x <= 0.46; KiDS x >= 0.31 (2-halo) / 0.48 (none) -> OPEN with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge -20.6 (2-halo) / +13.8
+        canonical nu_mono : budget x <= 0.46; KiDS x >= 0.30 (2-halo) / 0.50 (none) -> OPEN with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge -22.1 (2-halo) / +24.3
+        alt       P2      : budget x <= 0.40; KiDS x >= 0.31 (2-halo) / 0.47 (none) -> OPEN with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge -11.0 (2-halo) / +34.2
+        alt       nu_mono : budget x <= 0.40; KiDS x >= 0.31 (2-halo) / 0.49 (none) -> OPEN with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge -11.0 (2-halo) / +46.0
+    [z = 0.25, only the turned-around cold share, every galaxy]
+        canonical P2      : budget x <= 0.34; KiDS x >= 0.31 (2-halo) / 0.48 (none) -> OPEN with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge +2.5 (2-halo) / +69.4
+        canonical nu_mono : budget x <= 0.34; KiDS x >= 0.30 (2-halo) / 0.50 (none) -> OPEN with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge +1.6 (2-halo) / +83.2
+        alt       P2      : budget x <= 0.29; KiDS x >= 0.31 (2-halo) / 0.47 (none) -> CLOSED with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge +14.1 (2-halo) / +95.4
+        alt       nu_mono : budget x <= 0.29; KiDS x >= 0.31 (2-halo) / 0.49 (none) -> CLOSED with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge +14.9 (2-halo) / +108.0
+    [strict: z = 0, only the turned-around cold share, every galaxy]
+        canonical P2      : budget x <= 0.28; KiDS x >= 0.31 (2-halo) / 0.48 (none) -> CLOSED with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge +21.3 (2-halo) / +111.3
+        canonical nu_mono : budget x <= 0.28; KiDS x >= 0.30 (2-halo) / 0.50 (none) -> CLOSED with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge +22.4 (2-halo) / +127.0
+        alt       P2      : budget x <= 0.24; KiDS x >= 0.31 (2-halo) / 0.47 (none) -> CLOSED with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge +40.6 (2-halo) / +146.2
+        alt       nu_mono : budget x <= 0.24; KiDS x >= 0.31 (2-halo) / 0.49 (none) -> CLOSED with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge +44.0 (2-halo) / +161.8
+    [satellites merged (proxy: log M_* >= 9 carry phantoms), z = 0, turned-around share]
+        canonical P2      : budget x <= 0.37; KiDS x >= 0.31 (2-halo) / 0.48 (none) -> OPEN with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge -4.0 (2-halo) / +53.0
+        canonical nu_mono : budget x <= 0.37; KiDS x >= 0.30 (2-halo) / 0.50 (none) -> OPEN with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge -5.0 (2-halo) / +66.4
+        alt       P2      : budget x <= 0.32; KiDS x >= 0.31 (2-halo) / 0.47 (none) -> OPEN with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge +6.7 (2-halo) / +78.6
+        alt       nu_mono : budget x <= 0.32; KiDS x >= 0.31 (2-halo) / 0.49 (none) -> OPEN with the 2-halo, CLOSED without; KiDS d chi^2 at the budget edge +6.5 (2-halo) / +89.9
+
+    CONSISTENT IN A NARROW WINDOW: one description fits every fact if (i) the phantom of each top-level bound system ends at x ~ 0.3-0.5 of its turnaround radius, (ii) the unbound cold component's own clustering supplies KiDS's lensing beyond that edge, and (iii) satellites share their host's phantom; at the strict end (every galaxy its own system, only the turned-around cold share, z = 0) the window closes -- that edge is the minimal conflict
+    the edge window (lenient, both footings, both kernels): x in [0.31, 0.48] of r_ta; for the isothermal outer phantom that is an enclosed overdensity Delta_e in [38, 93] x the mean at z = 0.25, i.e. r_edge = 1.47-2.29 r_200m.  Cold collisionless collapse puts its outermost caustic (splashback) near there (the self-similar value 0.36 r_ta) -- a candidate constant-free edge (3D shell crossing) for the lanes that must derive it; it is NOT derived here.
+    THE MINIMAL CONFLICT the window narrowly avoids (named precisely): the KiDS-1000 isolated-lens lensing profile at 0.3-1.5 Mpc (with the BTFR normalisation, the phantom must reach x >= 0.31 of r_ta even with a 2-halo term, >= 0.48 without) against the CMB's cold-component amount Omega_c h^2 = 0.1200 (the summed phantoms of all galaxies must fit inside it): at the strict budget KiDS pays d chi^2 = +44.0 (2-halo) / +161.8 (none) at the budget edge.
+    THE SMALLEST RESOLVING INGREDIENT: an edge of the law set by the bound system's own collapse -- the region the cold component has crossed in all three directions (inside the splashback radius) -- carried by the TOP-LEVEL bound system (satellites share their host's phantom), with the cold component outside it single-stream CDM whose clustering supplies the lensing beyond.  No new constant if the edge is the shell-crossing radius.
+  [PASS] (reported) V (reported) the verdict is stated from the numbers (window or minimal conflict), with the lenient and strict budgets
+         measured: CONSISTENT IN A NARROW WINDOW; lenient open True, satellites-merged open True, strict open False; edge x in [0.31, 0.48]
+
+======================================================================================================================
+W  THE LEDGER: part 5 (the target)
+======================================================================================================================
+    T1       FITTED      a0 = kappa c sqrt(G rho_L), kappa = 1/2; form DERIVED (uniqueness), Lambda-tie TIED (unimodular), flat in z  --  T
+    T2       DECLARED    the galaxy law nu (nu_mono/P2) with the SPARC band and the scatter bound of part 1  --  part 1
+    T3       DERIVED+FITTED the switch: bound (Delta >= Delta_ta(z), derived) AND M_b >= M_* (fitted window, == xi)  --  part 2
+    T4       FITTED      the cold component Omega_c h^2 = 0.12, CDM where the law is off  --  part 4
+    T5       DECLARED    identity bookkeeping (dark = max(phantom, cosmic share)); additive reading fails X-COP by +32%  --  H2, part 3
+    T6       CONSTRAINT  the budget: the phantom's edge x in [0.31, 0.48] r_ta (lenient); strict budget closes it (KiDS d chi^2 +44.0 with the 2-halo): CONSISTENT IN A NARROW WINDOW  --  H3, VERDICT
+  [PASS] (reported) W (reported) the ledger of part 5
+         measured: 6 rows
+
+  6/6 checks pass; load-bearing failures: 0; wrote CFG4_target_results.json (2 s)
+rc = 0

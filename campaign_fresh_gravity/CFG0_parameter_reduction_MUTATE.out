@@ -1,0 +1,351 @@
+CFG0 -- THE PARAMETER-REDUCTION MAP: can the framework's own findings fix, tie or remove the free constants of the record's
+working constructions?
+
+WHY.  The campaign's rule 0 (CHARTER.md): build on the framework's own findings and reduce the parameter space.  The inventory
+of those findings is CFG0_own_findings_inventory.md.  This script takes every free or declared constant of the record's working
+constructions -- the derivation chain's knob ledger (real_research/derivation_chain_2026/README.md and CHAIN_STATUS.md) -- and,
+for each one, computes whether one of those findings fixes it, ties it to another constant, or makes it unnecessary.  Every
+candidate is checked on the gates it touches, on both a0 footings (canonical 9.3603e-11, alt 1.1312e-10 m/s^2) wherever a0
+enters.
+
+RULES APPLIED.
+  * kappa = 1/2 is FITTED (Z = c H_Lambda/a0 = sqrt(32 pi/3) = 5.7888 is kappa restated, never ~21); nothing here derives it.
+  * A coincidence counts as a reduction ONLY if it passes every gate it touches AND an action-level mechanism for it exists in
+    the record.  Otherwise it is reported as numerology, with its look-elsewhere rate.
+  * Withdrawn or superseded items are never used as inputs.
+  * Only committed files are read, read-only.  Nothing else in the repository is run or written.
+
+INPUTS (committed, read-only):
+  real_research/derivation_chain_2026/: README.md, CHAIN_STATUS.md, FP0/FP7/FP12/FP15/FP17/FP19 results JSON;
+  real_research/cross_thread_review_2026_09_26/: XR20 (both parts), XR22, XR25 results JSON;
+  real_research/dark_fluid_2026/FL1_order_parameter_results.json and FL1_order_parameter.py (text);
+  qwen_claude_field_theory/papers_2026/mnras_submission_2026_v2/paper_numbers.json (the measured kappa);
+  hunt_2026/h72_where_the_boost_ends.out and .py (text); fable_independent_2026/L274_a0z_theories_chart.out;
+  real_research/reviews/A0_COSMICWEB_ENVIRONMENT_2026-06.md and mi_snia_power_curve_2026.py (text).
+  External data used as a gate: Planck 2018's omega_c = 0.1200 +- 0.0012 (TT,TE,EE+lowE+lensing), for the dark amount only.
+
+PRE-DECLARED HYPOTHESES (written into this docstring before the first run of this script.  They rest on pencil-and-paper
+estimates and on reading the committed files above; no exploratory numerics were run before them):
+  H1  kappa: no own finding fixes it.  Both measured values lie within 1 sigma of 1/2 (0.465 +- 0.076; 0.547 +- 0.175), and so
+      does the horizon coefficient 0.461.  FITTED stays FITTED.
+  H2  xi = the Compton length hbar/(m c), for m in [1.9, 5.2]e-19 eV, lies >= 500x below xi's AQUAL floor on both footings.
+      FAILS.  (This is the tie the MUTATE adopts.)
+  H3  ONE_NEW_THING's mass hbar c/xi, over xi's whole window [floor, 100 pc], is <= 3e-22 eV, >= 500x below the chain's
+      dark-mass floor.  The "fuzzy mass" coincidence cannot tie xi to the chain's m.
+  H4  de Broglie at the theory's own speed, hbar/(m v_k) with v_k = 575-650 km/s, lies below the AQUAL floor for every allowed m
+      on both footings (FP17 B1 reproduced).  FAILS.
+  H5  de Broglie at a galaxy speed, hbar/(m x 200 km/s), lies inside xi's window only at the light end of m (m <~ 4e-19 eV).
+      200 km/s is no constant of the theory, so the tie trades xi for a declared velocity.  NOT a reduction.
+  H6  xi look-elsewhere: of the lengths built from (hbar/m, a0, c, H_Lambda, v_k) with simple exponents, >= 2 land in xi's window,
+      and the chance that >= 1 lands is >= 50%.  Every landing is numerology.
+  H7  lambda: over lambda in (0, 0.03] every scored observable moves by <= 1.5% (the tracking speed, alpha_2 v^2, sigma_8); the
+      tracking gate holds with a margin >= 5; strong coupling stays at ell_sc <= 2 cm.  lambda can be pinned to its inert range:
+      KNOB -> REGULATOR (a declared range, not a derivation).
+  H8a the full turnaround trigger, R(z) = 1 + delta_ta(z) (LCDM spherical collapse): at z = 2.5, R sits >= 5x below the
+      forest/flagship band.  FAILS.  delta_t0 and q are not removed.
+  H8b the LCDM turnaround contrast today, 1 + delta_ta(0), lies in [10, 12.5]: below FP15's floor-mass band [12.59, 14.63] and
+      below the web's filament line (delta_t0 >= 12.74), but inside XR12's plain-reading band [7.54, 14.6].  As a tie of zeta
+      alone (FK1's q = 7/4 kept) it FAILS, narrowly, on the floor-mass reading.
+  H8c the turnaround contrast runs the wrong way for q: R_ta(2.5)/R_ta(0) < 1, against the ~4.7 the gates need.
+  H9  the turnaround separator as a response gate (MOND on only inside the turned-around region): the chain's own zero-velocity
+      radius (FP12/FP11), at the baryonic masses of the four KiDS bins, lies below h72's 3-sigma lower bound on where the boost
+      ends, in every bin and on both footings.  FAILS KiDS; L_Lambda is not removed.  (The source-gate version is not decided.)
+  H10 L_Lambda: FP19 B1 reproduces (kappa^8 a0/H_Lambda^2 = 3.63 Mpc in [2.65, 4.6]; chances 80% / 31%).  In the sigma_8-tight
+      window [2.65, 3.0] no power of kappa or Z lands.  An extended grammar of own lengths lands with chance >= 30%: numerology.
+  H11 the dark amount: no committed relation ties Omega_c to (kappa, Omega_Lambda).  In the grammar kappa^a (8 pi/3)^(b/2)
+      pi^c Omega_Lambda^d with small exponents the hits within Planck's 1 sigma are consistent with chance (>= 0.5 expected), and
+      kappa^2 = 1/4 fails by >= 3 sigma.  The amount stays initial data.
+  H12 GDM: at the chain's mass floor the field's GDM parameters are <= 1e-15 (c_s^2) and <= 1e-19 (w at recombination), and the
+      record's own CMB bound (w0 <= 2e-14) is met for any m >= 1e-25 eV.  GDM fixes the form (a cold fluid plus an amount), not m.
+  H13 the SN-Ia step and the environment null fix no constant and no kernel shape (the step is not an acceleration effect; the
+      environment null is shape-blind).  The null does select rho_Lambda over rho_local for P1's density (L0b).
+  H14 q = n - 1/4 (n_t ~ L^-2, with H_K1's n = 2) reproduces the data-pinned q = 7/4 exactly.  But the identifications
+      n_t ~ L^-k (k = 1, 2, 3) hit the q-window with chance >= 30%, and no action term selects k: numerology, not counted.
+  H15 eps: no own finding fixes it.  (hbar a0/m)^(1/3) << v_k (>= 50x); c kappa^9 = 585.5 km/s lands in [575, 650] with chance
+      >= 15% (numerology, FP15 E3); and the construction's window is empty (FP16).
+  H16 the count: exactly one constant changes class (lambda: KNOB -> REGULATOR); kappa stays FITTED; no constant becomes DERIVED.
+
+  *** MUTATE=1: the Compton tie xi = hbar/(m_floor c) is ADOPTED as a reduction -- N1 and N2 must FAIL (rc = 1) ***
+
+======================================================================================================================
+C  CONTROLS: committed numbers reproduced
+======================================================================================================================
+  [PASS] C1 CONTROL: FP0's a0 (9.3603e-11 canonical / 1.1312e-10 alt), Z = sqrt(32 pi/3), rho_Lambda and H_Lambda reproduced to 1e-12; the form a0 = xi c sqrt(G rho) is unique (|det| = 2, exponents (1/2, 1, 1/2)); kappa Z = sqrt(8 pi/3) exactly
+         measured: a0 9.3603e-11 / 1.1312e-10; Z 5.7888100365; max rel dev 1.1e-16; unique True; kappa Z identity True
+  [PASS] C2 CONTROL: the measured kappa -- estimator A 0.465 (a0 8.7091e-11 / c sqrt(G rho_Lambda)) +- 0.076; estimator B 0.547 +- 0.175 (= sqrt(ml_grid^2 + gas^2 + stat^2), quoted 0.55 +- 0.17, superseding 0.551 +- 0.043); the pulls of 1/2 and k03's horizon coefficient 0.461 reproduce paper_numbers.json exactly
+         measured: kappa_A 0.46511; kappa_B 0.54704 +- 0.17471; pulls of 1/2 +0.4605 / -0.2686; horizon 0.460659
+  [PASS] C3 CONTROL: the flat law (a0(z)/a0(0) = sqrt(rho_DE(z)/rho_DE0) = 1 exactly for w = -1); the rival E(z) at z = 0.5-1100 (FP0 R3); FP0 R3b's DESY5 sqrt(rho_DE) = 0.7956 at z = 2.5; XR20 E2's DESY5 sqrt(V) / density / pressure tracks (21 numbers); PAPER7/L274's z = 2.5 row (own 0.000, LCDM-emergent +0.334 dex)
+         measured: E max dev 0.0e+00; R3b 0.7956404958 (dev 0.0e+00); XR20 E2 max dev 4.2e-17 dex; flat True; L274 z = 2.5: own +0.000, DESI-pressure +0.030, density -0.098, H(z) +0.575, LCDM +0.334
+  [PASS] C4 CONTROL: XR20 T1's tie -- Lambda/alpha^2 = 8 pi/kappa^2 = 32 pi = 100.531 (alt 68.834, kappa_alt 0.6043), the vacuum-energy caveat Delta log a0 = (1/2) log10(1 - rho_vac/rho_Lambda) (-0.0229 dex at 0.1), Lambda itself -- and XR30's a0 = (kappa/sqrt(24 pi)) c^2 K_inf with K_inf = sqrt(3 Lambda) equal to the canonical a0
+         measured: 32 pi 100.530965, alt 68.833552 (dev 2.2e-16); vacuum dev 0.0e+00; XR30 a0 9.360325e-11 (rel dev 2.2e-16); Lambda dev 0.0e+00
+  [PASS] C5 CONTROL: xi's window -- FP7 A4's AQUAL floors 0.02428 / 0.02683 pc (the Saturn monopole binds), ceiling ~100 pc -- and FP17 B1/B2's lengths (hbar/(m v) for 8 (m, v) cells; the Compton lengths; xi_q = ((hbar/m)^2/a0)^(1/3)) and B1's monopole ratio at the kick (FP7's table, FP17's interpolation rule) reproduced
+         measured: floors 0.02428 / 0.02683 pc; B1 dev 0.0e+00; B2 dev 0.0e+00; monopole at 0.0175 pc: 1.925 / 2.551 (dev 0.0e+00); FP17 M2's length window 0.0206-84.0 / 0.0212-84.3 pc
+  [PASS] C6 CONTROL: XR25 L4's MOND-regime lambda dependence at c_2 = infinity -- the tracking speed c_s(0) sqrt(3/(lambda + 3)) reproduces all 6 committed entries to 1e-9, and alpha_2 v^2 is affine in lambda to 1e-6 (lambda = 0 ... 274.8)
+         measured: c_s max rel dev 2.2e-16 (17308.5 -> 1798.7 km/s); alpha_2 v^2 = 4.2347e-04 lambda + 1.2662e-03, max rel dev 2.4e-15
+  [PASS] C7 CONTROL: FP15 T6d's natural numbers (1 + delta_c = 2.686, 9 pi^2/16, 18 pi^2) and its delta_t0 band at the floor mass (canonical [12.59, 14.63], alt [12.59, 22.79]; lower edge = 5.31 x the forest's zeta edge 2.371)
+         measured: dev 0.0e+00; band 12.592-14.633 / 12.592-22.793; 5.31 recovered as 5.3112; width x1.162 (FP15 M1: x1.16)
+  [PASS] C8 CONTROL: FP19 B1's separator-length census -- window [2.65, 4.6] Mpc (sigma_8-tight [2.65, 3.0]); a0/H_Lambda^2 kappa^k hits k = 8 only; Z^-k none; look-elsewhere 80% (kappa) / 31% (Z)
+         measured: a0/H_L^2 = 928.6 Mpc; hits kappa^[8] (3.627 Mpc), Z^-[]; rates 0.796 / 0.314
+  [PASS] C9 CONTROL: FL1 F5's GDM parameters of the free order parameter (max c_s^2 over k = 0.1-1 Mpc^-1 and recombination..today; w_rec ~ (H_rec/m)^2) reproduced for m = 2e-19, 5e-19, 1e-15, 1e-6 eV
+         measured: max rel dev 0.0e+00; m = 2e-19: c_s^2 3.10e-16, w_rec 2.88e-20
+  [PASS] C10 CONTROL: h72's committed 3-sigma lower bounds on where the KiDS sqrt boost ends (Brouwer+2021 isolated lenses, four bins, full 60x60 covariance): > 1.67 / 2.07 / 3.44 / 2.77 Mpc on both footings, at M_b = 10^logM* (1 + f_gas) = 1.50 / 3.66 / 6.01 / 9.13e10 Msun
+         measured: canonical [1.67, 2.07, 3.44, 2.77], alt [1.67, 2.07, 3.44, 2.77]; M_b 1.500e+10, 3.664e+10, 6.014e+10, 9.135e+10
+  [PASS] C11 CONTROL: the chain's own zero-velocity radii at z = 0 -- FP12's M81/Cen A/M83/IC 342 rows (1.37/1.35/1.24/1.38 Mpc canonical), FP11's Local Group (1.53 canonical / 1.52 alt at the timing mass 1.65e11 / 1.37e11), and FP12's committed slope d log R0/d log M_b = 0.19 (recovered from the M83-IC 342 pair to < 0.03)
+         measured: M81: 1.366/1.408; CenA: 1.350/1.392; M83: 1.239/1.279; IC342: 1.384/1.427; LG (FP11, timing mass): 1.530/1.520; slope 0.19 (pair 0.190)
+  [PASS] C12 CONTROL: the LCDM top-hat solver -- the EdS limits (turnaround 9 pi^2/16, virial 18 pi^2 at z = 1000), the virial contrast for collapse today against Bryan & Norman 1998's fit (within 2%), and the turnaround time by quadrature against a direct ODE integration of R'' = -GM/R^2 + H_L^2 R (within 1e-6)
+         measured: EdS turnaround 5.551652 (9 pi^2/16 = 5.551652); Delta_vir(z = 1000) 177.65 (18 pi^2 = 177.65); Delta_vir(0) 329.6 vs BN98 327.4; t_ta 0.78669711 vs ODE 0.78669711
+
+======================================================================================================================
+L  THE CONSTANT LIST, READ FROM THE CHAIN'S KNOB LEDGER (README) AND CHAIN_STATUS
+======================================================================================================================
+    kappa          [core (input)] ledger: FITTED (FP0 L0c; accepted)
+    xi             [core] ledger: KNOB: irreducible by a threshold-mass theorem. MEASURABLE by Gaia DR4 wide binaries with a separation-resolved statistic...
+    m              [dark] ledger: FITTED BY DATA: zeta's band is x1.16 wide at the mass floor; sharing q with the separator FAILS the web; m is pinned on ...
+    eps            [dark] ledger: IRREDUCIBLE (the only Z4-odd term; a khronon-frame coupling only relabels it) and FITTED (the flagship sets the window's...
+    zeta           [dark] ledger: FITTED BY DATA: zeta's band is x1.16 wide at the mass floor; sharing q with the separator FAILS the web; m is pinned on ...
+    q              [dark] ledger: FITTED BY DATA: zeta's band is x1.16 wide at the mass floor; sharing q with the separator FAILS the web; m is pinned on ...
+    lambda         [core] ledger: REGULATOR in a DECLARED range 0 < lambda <= 0.03 (XR18b, 3c0cf3c37): only there are the MOND-regime observables lambda-i...
+    alpha_c        [core] ledger: REGULATOR (every observable moves <= 1.6e-9)
+    c_2            [core] ledger: ELIMINATED on Minkowski and FRW (c_2 -> infinity: a multiplier). At black holes the limit is not uniform: at c_2 = infin...
+    L_Lambda       [separator] ledger: DECLARED in H_K1: 2.9 Mpc, inside the window 2.8-4.6 with the exact KiDS projector (FP20b; 2.65-4.6 before) (sigma_8 <= ...
+    c_y            [separator] ledger: natural choices in H_K1 (c_y chosen after scoring: the only one of four natural normalizations passing both yardsticks);...
+    n              [separator] ledger: natural choices in H_K1 (c_y chosen after scoring: the only one of four natural normalizations passing both yardsticks);...
+    ramp           [separator] ledger: natural choices in H_K1 (c_y chosen after scoring: the only one of four natural normalizations passing both yardsticks);...
+    cross quartic  [dark] ledger: POSTULATED (radiatively stable)
+    amount         [dark] ledger: initial data (the amount has the status of LCDM's omega_c)
+    misalignment   [dark] ledger: initial data (the amount has the status of LCDM's omega_c)
+  [PASS] L1 THE CONSTANT LIST IS THE RECORD'S: every constant named for this lane (kappa, xi, m, eps, zeta/delta_t0, q, lambda, alpha_c, L_Lambda, c_y, n, the ramp, the amount, the misalignment) is found in the chain's knob ledger (README) or CHAIN_STATUS (kappa: FP0 L0c FITTED); c_2 and the cross quartic are found too
+         measured: 10 ledger rows; found ['L_Lambda', 'alpha_c', 'amount', 'c_2', 'c_y', 'cross quartic', 'eps', 'kappa', 'lambda', 'm', 'misalignment', 'n', 'q', 'ramp', 'xi', 'zeta']; missing []; ledger now: xi=KNOB, m=FITTED, eps=FITTED, zeta=FITTED, q=FITTED, lambda=REGULATOR, alpha_c=REGULATOR, c_2=ELIMINATED, L_Lambda=DECLARED, c_y=NATURAL CHOICE, n=NATURAL CHOICE, ramp=NATURAL CHOICE, cross quartic=POSTULATED, amount=INITIAL DATA, misalignment=INITIAL DATA, kappa=FITTED; lambda at the lane's start: KNOB (XR18b has since made it REGULATOR)
+
+======================================================================================================================
+R1  kappa: can an own finding fix it?
+======================================================================================================================
+    measured: A 0.465 +- 0.076 (pull of 1/2: +0.46), B 0.547 +- 0.175 (pull -0.27); horizon 0.461 pulls -0.06 / -0.49
+    underivable in the present action class: kappa_closure/k01-k03 (zero-mode theorem; the global constraint misses by 1e5; 0.461 vs 1/2 degenerate with H0); KS01 slot NOT LIVE; channel-count capstone closed; postquantum gravity (L313-L314) gives 1.30-1.45
+    no own finding supplies kappa: the uniqueness theorem fixes the FORM only; the flat a0(z) is exactly kappa-blind; the unimodular tie carries kappa as its coupling
+  [PASS] (reported) H1 kappa: no own finding fixes it; both measurements lie within 1 sigma of 1/2, and the horizon coefficient 0.461 within 1 sigma of both: FITTED stays FITTED
+         measured: pulls of 1/2: +0.46 / -0.27; of 0.461: -0.06 / -0.49
+    MAP  kappa              FITTED           -> FITTED           | no own finding fixes it; consistent with 1/2; underivable in the present class
+
+======================================================================================================================
+R2  xi (the heat filter's length) and its ties to the dark field's mass m
+======================================================================================================================
+    Compton hbar/(m c), m = 1.9e-19                                    xi = 3.366e-05 pc  SS floor x0.00139 (can) / x0.00125 (alt); window pass: none; DR4 gamma_hat nan / nan
+    hbar/(m v_k), m = 1.9e-19, v_k = 575                               xi = 1.755e-02 pc  SS floor x0.723 (can) / x0.654 (alt); window pass: none; DR4 gamma_hat nan / nan
+    h/(m v_k), m = 1.9e-19, v_k = 575                                  xi = 1.103e-01 pc  SS floor x4.54 (can) / x4.11 (alt); window pass: ['canonical', 'alt']; DR4 gamma_hat 1.0107 / 1.0126
+    hbar/(m v_k), m = 1.9e-19, v_k = 650                               xi = 1.552e-02 pc  SS floor x0.639 (can) / x0.579 (alt); window pass: none; DR4 gamma_hat nan / nan
+    h/(m v_k), m = 1.9e-19, v_k = 650                                  xi = 9.754e-02 pc  SS floor x4.02 (can) / x3.64 (alt); window pass: ['canonical', 'alt']; DR4 gamma_hat 1.0134 / 1.0160
+    hbar/(m v), m = 1.9e-19, v = 100 (galaxy speed)                    xi = 1.009e-01 pc  SS floor x4.16 (can) / x3.76 (alt); window pass: ['canonical', 'alt']; DR4 gamma_hat 1.0123 / 1.0148
+    hbar/(m v), m = 1.9e-19, v = 200 (galaxy speed)                    xi = 5.045e-02 pc  SS floor x2.08 (can) / x1.88 (alt); window pass: ['canonical', 'alt']; DR4 gamma_hat 1.0396 / 1.0519
+    hbar/(m v), m = 1.9e-19, v = 300 (galaxy speed)                    xi = 3.363e-02 pc  SS floor x1.39 (can) / x1.25 (alt); window pass: ['canonical', 'alt']; DR4 gamma_hat 1.0590 / 1.0796
+    xi_q = ((hbar/m)^2/a0)^(1/3), m = 1.9e-19, canonical               xi = 3.279e+00 pc  SS floor x135 (can) / x122 (alt); window pass: ['canonical']; DR4 gamma_hat 1.0000 / 1.0000
+    xi_q = ((hbar/m)^2/a0)^(1/3), m = 1.9e-19, alt                     xi = 3.078e+00 pc  SS floor x127 (can) / x115 (alt); window pass: ['alt']; DR4 gamma_hat 1.0000 / 1.0000
+    Compton hbar/(m c), m = 5.2e-19                                    xi = 1.230e-05 pc  SS floor x0.000506 (can) / x0.000458 (alt); window pass: none; DR4 gamma_hat nan / nan
+    hbar/(m v_k), m = 5.2e-19, v_k = 575                               xi = 6.412e-03 pc  SS floor x0.264 (can) / x0.239 (alt); window pass: none; DR4 gamma_hat nan / nan
+    h/(m v_k), m = 5.2e-19, v_k = 575                                  xi = 4.029e-02 pc  SS floor x1.66 (can) / x1.5 (alt); window pass: ['canonical', 'alt']; DR4 gamma_hat 1.0497 / 1.0670
+    hbar/(m v_k), m = 5.2e-19, v_k = 650                               xi = 5.672e-03 pc  SS floor x0.234 (can) / x0.211 (alt); window pass: none; DR4 gamma_hat nan / nan
+    h/(m v_k), m = 5.2e-19, v_k = 650                                  xi = 3.564e-02 pc  SS floor x1.47 (can) / x1.33 (alt); window pass: ['canonical', 'alt']; DR4 gamma_hat 1.0560 / 1.0755
+    hbar/(m v), m = 5.2e-19, v = 100 (galaxy speed)                    xi = 3.687e-02 pc  SS floor x1.52 (can) / x1.37 (alt); window pass: ['canonical', 'alt']; DR4 gamma_hat 1.0543 / 1.0732
+    hbar/(m v), m = 5.2e-19, v = 200 (galaxy speed)                    xi = 1.843e-02 pc  SS floor x0.759 (can) / x0.687 (alt); window pass: none; DR4 gamma_hat nan / nan
+    hbar/(m v), m = 5.2e-19, v = 300 (galaxy speed)                    xi = 1.229e-02 pc  SS floor x0.506 (can) / x0.458 (alt); window pass: none; DR4 gamma_hat nan / nan
+    xi_q = ((hbar/m)^2/a0)^(1/3), m = 5.2e-19, canonical               xi = 1.676e+00 pc  SS floor x69 (can) / x62.5 (alt); window pass: ['canonical']; DR4 gamma_hat 1.0000 / 1.0000
+    xi_q = ((hbar/m)^2/a0)^(1/3), m = 5.2e-19, alt                     xi = 1.573e+00 pc  SS floor x64.8 (can) / x58.6 (alt); window pass: ['alt']; DR4 gamma_hat 1.0000 / 1.0000
+    r_M(M_Ch) = sqrt(G M_Ch/a0), M_Ch = (hbar c/G)^(3/2)/m_p^2, canonical xi = 5.253e-02 pc  SS floor x2.16 (can) / x1.96 (alt); window pass: ['canonical']; DR4 gamma_hat 1.0378 / 1.0492
+    r_M(M_Ch) = sqrt(G M_Ch/a0), M_Ch = (hbar c/G)^(3/2)/m_p^2, alt    xi = 4.779e-02 pc  SS floor x1.97 (can) / x1.78 (alt); window pass: ['alt']; DR4 gamma_hat 1.0420 / 1.0555
+  [PASS] (reported) H2 xi = hbar/(m c) (the Compton length, m = 1.9-5.2e-19 eV) lies >= 500x below xi's AQUAL floor on both footings: FAILS
+         measured: Compton 1.23e-05-3.37e-05 pc; at least 721x below the floor
+    ONE_NEW_THING: hbar c/xi = 2.13e-22 eV at xi = 0.03 pc (the memo's 2e-22); over the window: canonical 6.4e-26-2.6e-22 eV, alt 6.4e-26-2.4e-22 eV; the chain's floor 1.9e-19 eV is 721x above
+  [PASS] (reported) H3 ONE_NEW_THING's mass hbar c/xi over xi's whole window is <= 3e-22 eV, >= 500x below the chain's dark-mass floor: the 'fuzzy mass' coincidence cannot tie xi to the chain's m
+         measured: hbar c/xi <= 2.63e-22 eV; floor/that = 721
+  [PASS] (reported) H4 de Broglie at the theory's own speed, hbar/(m v_k) (v_k = 575-650 km/s), lies below the AQUAL floor for every allowed m on both footings (FP17 B1 reproduced): FAILS
+         measured: hbar/(m v_k) = 0.0057-0.0175 pc vs floors 0.0243 / 0.0268; monopole at the largest 1.93x / 2.55x the bound
+    the h-version (the full de Broglie wavelength of a kicked daughter), h/(m v_k) = 0.0356-0.1103 pc: inside the window for every (m, v_k) on both footings: True; it would predict DR4 gamma_hat = 1.0107-1.0755.  Choosing h over hbar is a factor 2 pi picked after the fact, and no action term couples the heat filter to the daughters (FP17 B4); the daughters have left the galaxies (FP10: retained ~0 in SPARC discs, FP17 B3)
+  [PASS] (reported) H5 de Broglie at a galaxy speed, hbar/(m x 200 km/s), lies inside xi's window only at the light end of m (m <~ 4e-19 eV); 200 km/s is no constant of the theory, so the tie trades xi for a declared velocity: NOT a reduction
+         measured: xi = 0.0505 pc at 1.9e-19 eV (the task's ~0.05 pc), 0.0184 pc at 5.2e-19; the floor is reached at m = 3.95e-19 (can) / 3.57e-19 (alt) eV
+    the family: 48 members over 15.4 decades; xi's window is 3.61 decades; members inside: 20; p(one) = 0.23; p(>= 1 of 12 constructions) = 0.96
+    inside: lambda_C (lambda_C a0/c^2)^(-1/4), m = 1.9e-19, canonical; lambda_C (lambda_C a0/c^2)^(-1/3), m = 1.9e-19, canonical; (lambda_C^2 c/H_L)^(1/3), m = 1.9e-19, canonical; h/(m v_k 575), m = 1.9e-19, canonical; h/(m v_k 650), m = 1.9e-19, canonical; lambda_C (lambda_C a0/c^2)^(-1/4), m = 5.2e-19, canonical; lambda_C (lambda_C a0/c^2)^(-1/3), m = 5.2e-19, canonical; (lambda_C^2 c/H_L)^(1/3), m = 5.2e-19, canonical; h/(m v_k 575), m = 5.2e-19, canonical; h/(m v_k 650), m = 5.2e-19, canonical
+  [PASS] (reported) H6 xi look-elsewhere: of the lengths built from (hbar/m, a0, c, H_Lambda, v_k) with simple exponents >= 2 land in xi's window, and the chance that >= 1 lands is >= 50%: every landing is numerology
+         measured: 20 of 48 inside; p(one) 0.23; p(>= 1) 0.96
+    MAP  xi                 KNOB             -> KNOB             | no own finding fixes it; every m-tie is numerology (no action couples the filter to the dark field) or fails the floor; measurable by Gaia DR4 with a separation-resolved statistic (XR22)
+    MAP  m                  FITTED           -> FITTED           | pinned near its floor on the canonical footing, bounded on alt; not tied to xi; GDM does not pin it (R13)
+
+======================================================================================================================
+R3  eps (the splitting; the kick speed v_k)
+======================================================================================================================
+    (hbar a0/m)^(1/3) = 2.20-3.28 km/s: 175x below v_k
+    eps/m^2 = v^2/(2c^2 - v^2) = 1.839e-06-2.350e-06; kappa^19 = 1.9073e-06 inside (v = c kappa^9 = 585.5 km/s); chance for kappa powers 0.35 (FP15 E3: 0.35); in v alone 0.18
+    (G M a0)^(1/4) = v_k at M = canonical: 8.80e+12-1.44e+13 Msun; alt: 7.28e+12-1.19e+13 Msun -- a selection mass (FP4 L10l), not a constant of the theory
+    the construction's window with re-accretion: EMPTY (FP16 L16l): True
+  [PASS] (reported) H15 eps: no own finding fixes it -- (hbar a0/m)^(1/3) << v_k (>= 50x); c kappa^9 = 585.5 km/s lands in [575, 650] with chance >= 15% (numerology, FP15 E3); the construction's window is empty (FP16)
+         measured: ratio 175; c kappa^9 = 585.5 km/s, chance 0.18 (v) / 0.35 (eps/m^2; FP15 E3 dev 6.7e-05); FP16 empty True
+    MAP  eps (v_k)          FITTED           -> FITTED           | irreducible (the only Z4-odd term) and fitted; kappa^19 is numerology; the construction it belongs to has an empty window (FP16)
+
+======================================================================================================================
+R4  delta_t0 (zeta) and q: can a turnaround gate replace them?
+======================================================================================================================
+    z_ta   omega      1 + delta_ta   R_band_lo(z) (q = 7/4, FP15 floor)   ratio
+     0.0  0.36917     11.765           12.59                          0.934
+     0.3  0.23200      8.521           10.87                          0.784
+     0.5  0.17105      7.523           11.41                          0.659
+     1.0  0.08475      6.406           16.19                          0.396
+     1.5  0.04637      5.994           25.37                          0.236
+     2.0  0.02769      5.809           39.45                          0.147
+     2.5  0.01773      5.714           59.25                          0.096
+     3.0  0.01199      5.661           85.65                          0.066
+     4.0  0.00620      5.608          161.96                          0.035
+     6.0  0.00227      5.572          434.83                          0.013
+    running: R_ta(2.5)/R_ta(0) = 0.486 vs the 4.705 FK1's q = 7/4 gives; the turnaround's own effective q = 0.89 (FP15 T3b's window: canonical [1.75] on its grid, alt [1.5, 1.75])
+    TA-full (R = 1 + delta_ta(z) at every z): forest anchor z = 2.5: 5.71 vs >= 59.2; web: min over z <= 2 5.81 vs 11
+    TA-z0 (delta_t0 = 1 + delta_ta(0) = 11.765, FK1's q = 7/4 kept): FP15 floor band [12.59, 14.63] (alt top 22.79); web line delta_t0 >= 12.74 (R_min = 10.16 vs 11); XR12 plain [7.54, 14.63]; XR12 sqrt(sigma) floor 14.71
+    the virialised contrast for collapse today: Delta_vir = 329.6 (x mean matter) -- far above the flagship cap 14.6 / 22.8
+    TA-z0 is the one near miss: 6.6% below the floor-mass band's lower edge, which rests on XR12's calibrated forest proxy (its ~2x systematic is OPEN in FP15 L15r: True); it is inside XR12's plain-reading band.  It is still not a tie: it keeps FK1's declared q = 7/4 running, which the turnaround contrast does not have (its own running is q_ta above), so the match holds at one epoch only
+  [PASS] (reported) H8a the full turnaround trigger R(z) = 1 + delta_ta(z) sits >= 5x below the forest/flagship band at z = 2.5: FAILS; delta_t0 and q are not removed
+         measured: R_ta(2.5) = 5.71 vs band >= 59.2 (x10.4); web min 5.81 < 11
+  [PASS] (reported) H8b the LCDM turnaround contrast today lies in [10, 12.5]: below FP15's floor-mass band and the web line, inside XR12's plain band -- as a tie of zeta alone it FAILS narrowly on the floor-mass reading
+         measured: 1 + delta_ta(0) = 11.765; floor band 12.59-14.63 (-6.6% at the lower edge); web line 12.74 (-7.6%); XR12 plain 7.54-14.63
+  [PASS] (reported) H8c the turnaround contrast runs the wrong way for q: R_ta(2.5)/R_ta(0) < 1 against the ~4.7 the gates need
+         measured: 0.486 vs 4.705; effective q_ta = 0.89
+    MAP  zeta (delta_t0)    FITTED           -> FITTED           | the LCDM turnaround contrast today (11.76) lands 7% below the floor-mass band: not a tie; the full turnaround gate fails the forest by ~10x
+
+======================================================================================================================
+R5  q (the trigger's running): a tie to the separator's n?
+======================================================================================================================
+    identifications n_t ~ L^-k (k = 1, 2, 3; H_K1: L ~ Omega_L^(n/2), n = 2) give q = [0.75, 1.75, 2.75]; the data-pinned window (FP15 T3b, forest x A4 x filaments): canonical [1.75] (open interval width <= 0.5), alt [1.5, 1.75] (<= 0.75); hits: {2: 1.75}; chance for a unit-spaced family: 0.50 / 0.75
+    FP15 T1: the action does not fix the exponent (three inequivalent identifications with H_Y's p' failed the web); nothing selects k = 2; the normalisation of n_t ~ L^-2 has no own scale (FP15 T1b: a0/(4 pi G L) runs as q = 3/4)
+  [PASS] (reported) H14 q = n - 1/4 (n_t ~ L^-2, H_K1's n = 2) reproduces the data-pinned q = 7/4 exactly, but the identifications n_t ~ L^-k hit the q-window with chance >= 30% and no action term selects k: numerology, not counted
+         measured: q(k = 2) = 1.75; in window True; chance 0.50 (canonical) / 0.75 (alt)
+    MAP  q                  FITTED           -> FITTED           | pinned by the forest and the web at 7/4 (canonical); the turnaround gate runs the wrong way; q = n - 1/4 is a post-hoc hit
+
+======================================================================================================================
+R6  lambda (the MOND scalar's inertia): pinned to its inert range?
+======================================================================================================================
+    over lambda in (0, 0.03]: tracking speed                           moves by 4.96e-03 (fraction)
+    over lambda in (0, 0.03]: alpha_2 v^2                              moves by 1.00e-02 (fraction)
+    over lambda in (0, 0.03]: sigma_8 (H_S, XR25 L1)                   moves by 2.50e-04 (fraction)
+    over lambda in (0, 0.03]: sigma_8 (H_K1, XR18b R5)                 moves by 3.60e-07 (fraction)
+    tracking 17223-17309 km/s vs the moving-source gate 1800 (margin x9.6); worst ell_sc 1.53 cm (lambda = 1e-9, sub-xi); XR26 F1: Omega_phi,0 < 1.7e-25 is a bound on initial data (phidot_0 < 7e-13 H0/sqrt(lambda)); met by phidot = 0 at any lambda > 0; needs c_2 -> infinity (FP14); at FP2's c_2 floor the lambda window is empty (XR25 L2)
+    cross-check with XR18b (3c0cf3c37, committed while this lane ran): 1% drift at lambda = 0.0609 (tracking) / 0.0299 (alpha_2 v^2); sigma_8 spread 3.6e-07 for lambda <= 0.03 under H_K1 -- the record now DECLARES lambda <= 0.03 a regulator (ledger now: REGULATOR); this lane reproduces that verdict from XR25's committed numbers
+  [PASS] (reported) H7 lambda: over (0, 0.03] every scored observable moves by <= 1.5%, the tracking gate holds with margin >= 5, strong coupling stays at ell_sc <= 2 cm: KNOB -> REGULATOR (a declared range, not a derivation)
+         measured: tracking speed 0.4963%; alpha_2 v^2 1.0033%; sigma_8 (H_S, XR25 L1) 0.0250%; sigma_8 (H_K1, XR18b R5) 0.0000%; margin x9.6; ell_sc 1.53 cm; XR18b: 1% at 0.0609/0.0299
+    MAP  lambda             KNOB             -> REGULATOR        | a REGULATOR in the declared range (0, 0.03] -- made so by the record's XR18b while this lane ran; verified here: required > 0, its value moves no scored observable by more than ~1%, with c_2 -> infinity
+
+======================================================================================================================
+R7  alpha_c and c_2 (already reduced in the record)
+======================================================================================================================
+    alpha_c: REGULATOR in [alpha_sc, 3.2e-9] (FP14 F14f; XR25: [8.2e-16, 3.2e-9]); every observable moves <= 1.6e-9; alpha_c > 0 load-bearing
+    c_2: ELIMINATED (c_2 -> infinity, a multiplier; FP14 F14h) on Minkowski and FRW; at black-hole universal horizons the limit is singular at O(alpha_c) (XR25): OPEN
+    MAP  alpha_c            REGULATOR        -> REGULATOR        | unchanged
+    MAP  c_2                ELIMINATED       -> ELIMINATED       | unchanged; OPEN at black-hole universal horizons (XR25)
+
+======================================================================================================================
+R8  the separator: L_Lambda (and n, the ramp, c_y)
+======================================================================================================================
+    grammar: 14 own lengths x (9 simple factors + kappa^1..20 + Z^-1..8) = 518 members
+    hits in the wide window [2.65, 4.6] Mpc: 23; in the sigma_8-tight window [2.65, 3.0]: 5 -> 1/pi x v_k/H_0 (575) = 2.716; 1/3 x v_k/H_0 (575) = 2.844; 1/2 x Lambda-edge 0.555 v_k/H_Lambda (575) = 2.861; kappa^1 x Lambda-edge 0.555 v_k/H_Lambda (575) = 2.861; kappa^2 x v_k/H_Lambda (650) = 2.914
+    chance that some member lands in a window of the same width placed at random over 1-10 Mpc: tight 0.98, wide 1.00
+    the record's CURRENT window (FP20b, exact projector): [2.8, 4.6] Mpc, sigma_8-tight [2.8, 3.0]: hits 22 / 4 (1/3 x v_k/H_0 (575) = 2.844; 1/2 x Lambda-edge 0.555 v_k/H_Lambda (575) = 2.861; kappa^1 x Lambda-edge 0.555 v_k/H_Lambda (575) = 2.861; kappa^2 x v_k/H_Lambda (650) = 2.914); pure powers in the current wide window: ['kappa^8 x a0/H_L^2 (canonical)', 'kappa^8 x a0/H_L^2 (alt)']; chance for the tight width 0.90
+    no hit carries a mechanism: the separator's length is not produced by any term of the chain's action (FP19 R19f: zero modes give only c/H (a0/cH)^p; FP13 R13h: the dark field's scales are sub-kpc)
+  [PASS] (reported) H10 L_Lambda: FP19 B1 reproduces; in the sigma_8-tight window no power of kappa or Z times a0/H_L^2 or c/H_L lands; the extended grammar of own lengths lands with chance >= 30%: numerology
+         measured: B1 control True; tight-window power hits []; grammar hits 5 (tight) / 23 (wide); chance 0.98 / 1.00
+    canonical chain R0 (z = 0, upper bound on the turned-around region) at the KiDS bins: bin 1 0.97 Mpc vs r_end > 1.67 (x1.72), bin 2 1.15 Mpc vs r_end > 2.07 (x1.80), bin 3 1.26 Mpc vs r_end > 3.44 (x2.72), bin 4 1.37 Mpc vs r_end > 2.77 (x2.03)
+    alt       chain R0 (z = 0, upper bound on the turned-around region) at the KiDS bins: bin 1 1.00 Mpc vs r_end > 1.67 (x1.67), bin 2 1.18 Mpc vs r_end > 2.07 (x1.75), bin 3 1.30 Mpc vs r_end > 3.44 (x2.65), bin 4 1.41 Mpc vs r_end > 2.77 (x1.97)
+    a response gate truncates the phantom at the turned-around radius (outside it the field is Newtonian from the baryons, Gauss); the KiDS lenses sit at z ~ 0.1-0.5 (the chain scores z = 0.25 and 0.4), where the turned-around region was smaller still; the effective band-pass L ~ R/2 (0.49-0.68 Mpc) is the LG's corner of the pincer (FP20: L(0.25) = 0.56 Mpc costs KiDS +254/+260; the KiDS floor is 1.23/1.24 Mpc)
+  [PASS] (reported) H9 the turnaround separator as a response gate: the chain's own zero-velocity radius at the four KiDS bins' baryonic masses lies below h72's 3-sigma lower bound on where the boost ends, in every bin and on both footings: FAILS KiDS
+         measured: failing bins canonical [1, 2, 3, 4], alt [1, 2, 3, 4]; shortfall x1.72-2.72
+    MAP  L_Lambda           DECLARED         -> DECLARED         | no identity fixes it (hits are numerology); the turnaround response gate fails KiDS in every bin; the source-gate version is OPEN
+    MAP  n                  NATURAL CHOICE   -> NATURAL CHOICE   | unchanged: a natural choice, no continuous freedom; not derived
+    MAP  ramp               NATURAL CHOICE   -> NATURAL CHOICE   | unchanged: a natural choice, no continuous freedom; not derived
+    MAP  c_y                NATURAL CHOICE   -> NATURAL CHOICE   | unchanged: a natural choice, no continuous freedom; not derived
+
+======================================================================================================================
+R9  the dark amount: a framework relation between Omega_c, Omega_Lambda and kappa?
+======================================================================================================================
+    target Omega_c = 0.2642 +- 0.0026 (Planck omega_c 0.1200 +- 0.0012 at h = 0.674)
+    the record: the amount is initial data (FP15 L15q POSTULATED: True); the ghost-condensate reading proves the mean is not set by thermal/fluctuation physics (the shift-charge theorem); no committed relation to kappa
+    grammar kappa^a (8 pi/3)^(b/2) pi^c Omega_L^d: 625 members (625 distinct); within 1 sigma: 3, 2 sigma: 4; expected by chance within 1 sigma: 1.86; kappa^2 = 1/4 pulls -5.4 sigma
+    1-sigma hits: kappa^3 (8pi/3)^(0/2) pi^0 OmL^-2 = 0.2666; kappa^4 (8pi/3)^(1/2) pi^0 OmL^-1 = 0.2642; kappa^4 (8pi/3)^(1/2) pi^1 OmL^2 = 0.2664
+  [PASS] (reported) H11 the dark amount: no committed relation ties Omega_c to (kappa, Omega_L); the grammar's 1-sigma hits are consistent with chance (>= 0.5 expected); kappa^2 fails by >= 3 sigma: initial data stays
+         measured: record relation none (L15q True); hits 3 vs expected 1.86; kappa^2 -5.4 sigma
+    MAP  amount             INITIAL DATA     -> INITIAL DATA     | as LCDM's omega_c; no framework relation; grammar hits are chance
+
+======================================================================================================================
+R10  the misalignment
+======================================================================================================================
+    the flagship's retained-carrier allowance S <= 0.059 (MS2/DE4, XR16) bounds the cold phi_L share: theta <= 14.06 deg; FK1 declares ~14 deg; FP15 N1's isotropic prior 0.1556 (= 14/90: 0.1556)
+    MAP  misalignment       INITIAL DATA     -> INITIAL DATA     | bounded by the flagship (theta <~ 14 deg), not fixed; belongs to the construction whose window is empty (FP16)
+
+======================================================================================================================
+R11  the SN-Ia step and the environment null: do they fix the kernel's shape or a constant?
+======================================================================================================================
+    SN-Ia (recorded; no committed output): partial correlation with acceleration at fixed mass -0.04 vs with mass at fixed acceleration -0.20; Fisher SE at N = 449 0.047: the acceleration adds 0.8 SE -- the step is a mass/age effect; its location at Sigma_a0 = a0/(2 pi G) stays a coincidence (the null is itself underpowered, ~18%)
+    environment (recorded): 2MRS slope +0.052 +- 0.043 -> 10.42 sigma from the rho_local fork (+0.5; the writeup quotes 10.5); 2M++ real-space -0.046 +- 0.081 -> 6.74 sigma (writeup 6.8); minimum detectable slope ~0.15: rho_local excluded, rho_Lambda kept; the test compares a0 across environments at fixed kernel -- blind to the kernel's shape
+  [PASS] (reported) H13 the SN-Ia step and the environment null fix no constant and no kernel shape; the null selects rho_Lambda over rho_local for P1's density (L0b)
+         measured: SN: acceleration partial -0.04 (0.8 SE) vs mass -0.20; environment 6.7 sigma against +0.5
+    MAP  P1's density (L0b, a choice) POSTULATED       -> DATA-SELECTED vs rho_local | rho_local excluded; rho_Lambda vs cosmic rho_m/rho_total is decided only by a0(z)
+    MAP  kernel shape (nu_mono / P2) POSTULATED       -> POSTULATED       | not fixed by the SN-Ia step (no acceleration dependence) nor by the environment null (shape-blind)
+
+======================================================================================================================
+R12  the GDM theorem: does it fix the dark component's form or its mass?
+======================================================================================================================
+    at the chain's floor (1.9e-19 eV): max c_s^2 3.43e-16, w_rec 3.19e-20; the record's CMB bound w0 <= 2e-14 (w = w0 a^-3) gives w_rec <= 2.67e-05, met for m >= 6.6e-27 eV -- 7.5 decades below the floor
+    the GDM theorem fixes the FORM linear cosmology sees -- a cold fluid (w, c_s^2, c_vis^2) = (0, 0, 0) plus an amount -- and nothing else: m's floor comes from L383 (dwarf heating) and the forest's minihalos (FP15 M1), not from GDM
+  [PASS] (reported) H12 GDM: at the mass floor the field's GDM parameters are <= 1e-15 (c_s^2) and <= 1e-19 (w_rec); the record's own CMB bound is met for any m >= 1e-25 eV: GDM fixes the form, not m
+         measured: c_s^2 3.43e-16, w_rec 3.19e-20; m_min(GDM) 6.6e-27 eV
+
+======================================================================================================================
+R13  ties already in the record (kept)
+======================================================================================================================
+    a0 <-> Lambda: TIED by the Henneaux-Teitelboim unimodular multiplier (XR20 T1; FP0 L2b); in the khronon's terms a0 = (kappa/sqrt(24 pi)) c^2 K_inf (XR30); kappa is its coupling, FITTED.  Not a new reduction, but the reason a0 is not counted as a constant.
+    the dark component's coupling: FK1 on the Einstein-frame metric g~ = g + (1 - e^-2chi) n n (FP22 L22d): no new field, no new constant
+    MAP  a0 (the MOND scale) TIED             -> TIED             | tied to Lambda's integration constant; kappa its coupling
+
+======================================================================================================================
+N  THE COUNT: fitted / declared / tied / derived (plus regulators, eliminated, initial data)
+======================================================================================================================
+    kappa          lane start FITTED           ledger now FITTED           CFG0 FITTED
+    xi             lane start KNOB             ledger now KNOB             CFG0 TIED
+    m              lane start FITTED           ledger now FITTED           CFG0 FITTED
+    eps            lane start FITTED           ledger now FITTED           CFG0 FITTED
+    zeta           lane start FITTED           ledger now FITTED           CFG0 FITTED
+    q              lane start FITTED           ledger now FITTED           CFG0 FITTED
+    lambda         lane start KNOB             ledger now REGULATOR        CFG0 REGULATOR
+    alpha_c        lane start REGULATOR        ledger now REGULATOR        CFG0 REGULATOR
+    c_2            lane start ELIMINATED       ledger now ELIMINATED       CFG0 ELIMINATED
+    L_Lambda       lane start DECLARED         ledger now DECLARED         CFG0 DECLARED
+    n              lane start NATURAL CHOICE   ledger now NATURAL CHOICE   CFG0 NATURAL CHOICE
+    ramp           lane start NATURAL CHOICE   ledger now NATURAL CHOICE   CFG0 NATURAL CHOICE
+    c_y            lane start NATURAL CHOICE   ledger now NATURAL CHOICE   CFG0 NATURAL CHOICE
+    amount         lane start INITIAL DATA     ledger now INITIAL DATA     CFG0 INITIAL DATA
+    misalignment   lane start INITIAL DATA     ledger now INITIAL DATA     CFG0 INITIAL DATA
+    LANE START: fitted 5 / declared 3 / declared (natural) 3 / tied 1 / derived 0 / regulator 1 / eliminated 1 / initial data 2
+    LEDGER NOW: fitted 5 / declared 2 / declared (natural) 3 / tied 1 / derived 0 / regulator 2 / eliminated 1 / initial data 2
+    CFG0:       fitted 5 / declared 1 / declared (natural) 3 / tied 2 / derived 0 / regulator 2 / eliminated 1 / initial data 2
+    moved by the record during this lane: ['lambda'] (each re-verified here: lambda pass)
+    adopted by this lane itself: ['xi -> TIED to hbar/(m_floor c) (MUTATE)']
+  [FAIL] N1 EVERY CHANGE TO THE COUNT PASSES EVERY GATE IT TOUCHES (both footings): the record's moves during this lane are re-verified here, and every reduction this lane adopts must pass its own gates
+         measured: lambda (record): pass; xi (CFG0: xi -> TIED to hbar/(m_floor c) (MUTATE)): FAIL
+  [FAIL] N2 THE COUNT'S BOOKKEEPING: the constants that change class are exactly the verified record moves plus this lane's adoptions, and the count credits only those that pass their gates; kappa stays FITTED; no constant is DERIVED; the total is conserved
+         measured: moved ['xi', 'lambda']; credited ['lambda', 'xi']; kappa FITTED; derived 0; totals 16 / 16 / 16
+  [FAIL] (reported) H16 the count: exactly one constant changes class (lambda: KNOB -> REGULATOR); kappa stays FITTED; nothing becomes DERIVED
+         measured: moved ['xi', 'lambda'] (by the record's XR18b during this lane, re-verified here; this lane's own new adoptions: ['xi -> TIED to hbar/(m_floor c) (MUTATE)'])
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  R1   kappa                        FITTED                   no own finding fixes it; 0.465 +- 0.076 / 0.55 +- 0.17 consistent with 1/2; underivable (k01-k03)
+  R2   xi                           KNOB                     Compton tie fails x721; de Broglie at v_k fails the floor; h/(m v_k), galaxy-speed and xi_q ties are numerology
+  R2   m                            FITTED                   pinned near its floor (canonical); no tie to xi; GDM leaves it free above ~1e-26 eV
+  R3   eps                          FITTED                   irreducible; kappa^19 numerology; the construction's window is empty (FP16)
+  R4   zeta                         FITTED                   the LCDM turnaround contrast today (11.76) lands just below the floor-mass band; the full turnaround gate fails x10
+  R5   q                            FITTED                   turnaround runs the wrong way (q_ta = 0.89); q = n - 1/4 is a post-hoc hit (chance 0.50)
+  R6   lambda                       REGULATOR                REGULATOR in the declared range (0, 0.03] -- the record's move (XR18b) during this lane, re-verified here: <= ~1% on every scored observable, c_2 -> infinity
+  R7   alpha_c / c_2                REGULATOR / ELIMINATED   unchanged (c_2: OPEN at black-hole universal horizons)
+  R8   L_Lambda                     DECLARED                 identity hits are numerology (chance 0.98); turnaround response gate fails KiDS in 4/4 bins
+  R8   n / ramp / c_y               NATURAL CHOICE           unchanged
+  R9   amount                       INITIAL DATA             no framework relation; grammar hits consistent with chance
+  R10  misalignment                 INITIAL DATA             bounded (<~ 14 deg), not fixed
+  R11  P1's density (L0b)           DATA-SELECTED            rho_local excluded by the environment null; the kernel shape stays postulated
+  R12  the dark component's form    FIXED AS A FLUID         GDM: cold (0, 0, 0) + amount; m not pinned
+
+  30/33 checks pass; load-bearing failures: 2   (0.2 s)
+rc = 1

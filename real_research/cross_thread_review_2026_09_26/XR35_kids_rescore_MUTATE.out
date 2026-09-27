@@ -1,0 +1,381 @@
+XR35_kids_rescore.py -- THE M* KiDS CHAIN RE-SCORED WITH THE CORRECTED PROJECTION: DE10 -> XR9 -> XR14.
+Cross-thread review lane XR35 (2026-09-27).  Read-only on every committed file.
+
+WHY.  FP20 (derivation_chain_2026/FP20_esd_projection_fix.py, 7a8c25321) found that the record's three KiDS projectors
+share one defect: the trapezoid over the Abel integral skips the 1/sqrt end interval, and the projected mass inside the
+first projected radius is carried by a disc term that is exact only for Sigma ~ 1/R.  L352's project_M2 and DE8's
+esd_from_mlens (the 'P2 family') are off by -2..-3% on a singular isothermal sphere, -3..+11% on NFW halos and
++187% / -123% at 35 kpc on cored / hollowed carrier templates; FP6's esd_of_M (P1) also loses half the inner projected mass
+(-59% at 35 kpc on the SIS).  FP20 supplied drop-in fixes (CellFix for DE8's cells, M2Fix for project_M2's node densities,
+an exact-shell model_M2 path) and re-scored the chain's lanes, but left the M* KiDS chain open (its ledger F20n): DE10
+(dabce1b73; the converged model), XR9 (the small-region door's KiDS scan) and XR14 (b667f56bb; KiDS on M*'s own carrier,
+the only scorecard row validated ON M*).  Each of them projects a cored / hollowed carrier template with project_M2 and the
+switched lens with esd_from_mlens.  This lane re-scores them with ONLY the projector replaced.
+
+WHAT IS SWAPPED (nothing else):
+  (a) DE8's esd_from_mlens (point mass + the switched phantom's lensing mass inside DE8's cell faces): its m2_of_rho ->
+      FP20's CellFix(faces, Rp) (the cells as exact uniform shells);
+  (b) L352's project_M2 on the carrier templates' node densities (DE10/XR9/XR14's template()) -> FP20's M2Fix(rr, Rp)
+      (trapezoid shell masses between nodes, exact shell kernels, the core inside the first node);
+  (c) L352's model_M2 (the unswitched baseline: esd_bin / fit_model; and L360's fit_comb in DE10's C1) -> FP20's
+      model_M2_factory(direct=True) (exact shells straight from M(r)); every baseline chi^2 is recomputed with it.
+  FP20's drop-ins are exec'd from FP20's committed source (git HEAD), not re-typed.
+  KEPT AS COMMITTED: the data and covariance; the fits (L352's M_b grid, the 2-halo amplitude bounds); the linear 2-halo
+  template (its own inner-disc approximation, FP20 V5 -- priced in S2); the exact annulus average; the gates, operators and
+  caps; the carrier halos (the cached shell-model histograms at their committed masses and seeds); the flagship.
+HOW.  Each lane's committed main block is exec'd in this lane's namespace (file writes refused, stdout captured), TWICE:
+  with the committed projectors (the control: every committed number must come back exactly) and with FP20's drop-ins
+  spliced in right after DE8 is loaded.  DE10's halo generation is replaced by the cached halos: XR9's cache holds DE10's
+  eight halos (L390's masses, DE10's seeds, N = 60000), from which XR9 C1 and XR14 C1 already reproduced DE10's table.
+
+  *** MUTATE=1: the committed projectors are put in the corrected slot everywhere -- V1 must FAIL, and every 'after' number must equal its 'before' ***
+
+  FP20's drop-ins exec'd from git HEAD (66 + 23 lines; working tree identical: True)
+  loaded read-only: DE8's head (L352's KiDS machinery, esd_from_mlens), FP6's machinery (esd_of_M); L352 grids r = 0.001-30 Mpc x 4000, R = 0.005-6 x 700; DE8 cells 4000; KiDS radii 0.0354-2.6035 Mpc x 15   [1 s]
+  this lane's reference projector: 40000 log shells 1e-05-30 Mpc for M_2D on 1200 radii (cubic spline in ln R; the annulus averages), 400000 for the point values; edges snapped onto 0.05, 0.1, 19.47 Mpc   [2 s]
+
+======================================================================================================================
+V0-V2  THE ANALYTIC STANDARD: this lane's reference against closed forms and quadrature; the committed projectors and FP20's drop-ins against the reference, at the 15 KiDS radii
+======================================================================================================================
+    reference vs closed form / quadrature, max relative deviation at the 15 radii (point; annulus):
+      SIS V=200                                6.61e-08; 2.37e-08
+      NFW 5.0e+11 c8                           4.83e-07; 4.98e-07
+      NFW 3.0e+12 c4                           7.22e-07; 7.47e-07
+      NFW 1.0e+13 c2                           1.18e-06; 1.23e-06
+      Plummer 1e11 a=50 kpc                    1.50e-07; 4.70e-08
+      Plummer 1e11 a=150 kpc                   8.52e-08; 4.85e-08
+      hollow NFW 3e12 c4 (empty < 100 kpc)     5.14e-08; nan
+      capped NFW 3e12 c4 (flat < 50 kpc)       7.34e-08; nan
+    [3 s]
+
+    error of each projector vs R [%] at the KiDS radii 0.035, 0.048, 0.065, 0.089, 0.121, 0.164, 0.223, 0.304, 0.413, 0.561, 0.762, 1.036, 1.409, 1.915, 2.603 Mpc
+    (smooth profiles: relative to the reference; profiles with density jumps: relative to the peak |Delta Sigma|)
+    -- SIS V=200
+       P2 node rho, committed project_M2        -2.569   -2.664   -2.956   -2.631   -2.038   -2.234   -2.380   -2.065   -2.219   -2.361   -2.712   -2.300   -2.052   -2.286   -2.080   | max |.| 2.956%
+       P2 model_M2 path, committed              -2.569   -2.664   -2.956   -2.631   -2.038   -2.234   -2.380   -2.065   -2.219   -2.361   -2.712   -2.300   -2.052   -2.286   -2.080   | max |.| 2.956%
+       DE8 cells, committed esd_from_mlens      -2.569   -2.664   -2.956   -2.632   -2.038   -2.234   -2.380   -2.066   -2.220   -2.361   -2.713   -2.301   -2.052   -2.286   -2.080   | max |.| 2.956%
+       P1 FP6 esd_of_M, committed              -58.556  -42.710  -34.004  -24.869  -19.434  -13.309  -11.676  -10.360   -7.408   -5.694   -4.920   -6.496   -3.608   -4.117  -13.935   | max |.| 58.556%
+       P2 node rho, FP20 M2Fix                  -2.569   -2.664   -2.956   -2.631   -2.038   -2.234   -2.380   -2.065   -2.219   -2.361   -2.712   -2.300   -2.052   -2.286   -2.080   | max |.| 2.956%
+       P2 model_M2 path, FP20 direct            -2.569   -2.664   -2.956   -2.631   -2.038   -2.234   -2.380   -2.065   -2.219   -2.361   -2.712   -2.300   -2.052   -2.286   -2.080   | max |.| 2.956%
+       DE8 cells, FP20 CellFix                  -2.569   -2.664   -2.956   -2.632   -2.038   -2.234   -2.380   -2.066   -2.220   -2.361   -2.713   -2.301   -2.052   -2.286   -2.080   | max |.| 2.956%
+       P1, FP20 ESDFix                         -58.556  -42.710  -34.004  -24.869  -19.434  -13.309  -11.676  -10.360   -7.408   -5.694   -4.920   -6.496   -3.608   -4.117  -13.935   | max |.| 58.556%
+    -- NFW 5.0e+11 c8
+       P2 node rho, committed project_M2        +5.347   +2.843   +0.990   +0.231   -0.168   -0.869   -1.350   -1.561   -1.904   -2.164   -2.457   -2.449   -2.505   -2.649   -2.679   | max |.| 5.347%
+       P2 model_M2 path, committed              +5.347   +2.843   +0.990   +0.231   -0.168   -0.869   -1.349   -1.561   -1.904   -2.163   -2.457   -2.449   -2.505   -2.649   -2.679   | max |.| 5.347%
+       DE8 cells, committed esd_from_mlens      +5.347   +2.843   +0.990   +0.231   -0.168   -0.869   -1.350   -1.562   -1.904   -2.164   -2.457   -2.449   -2.505   -2.649   -2.680   | max |.| 5.347%
+       P1 FP6 esd_of_M, committed              -50.394  -35.818  -28.974  -22.317  -18.695  -14.996  -13.832  -12.780  -11.194  -10.202   -9.609   -9.700   -8.645   -8.485  -10.223   | max |.| 50.394%
+       P2 node rho, FP20 M2Fix                  +5.347   +2.843   +0.990   +0.231   -0.168   -0.869   -1.350   -1.561   -1.904   -2.164   -2.457   -2.449   -2.505   -2.649   -2.679   | max |.| 5.347%
+       P2 model_M2 path, FP20 direct            +5.347   +2.843   +0.990   +0.231   -0.168   -0.869   -1.349   -1.561   -1.904   -2.163   -2.457   -2.449   -2.505   -2.649   -2.679   | max |.| 5.347%
+       DE8 cells, FP20 CellFix                  +5.347   +2.843   +0.990   +0.231   -0.168   -0.869   -1.350   -1.562   -1.904   -2.164   -2.457   -2.449   -2.505   -2.649   -2.680   | max |.| 5.347%
+       P1, FP20 ESDFix                         -50.394  -35.818  -28.974  -22.317  -18.695  -14.996  -13.832  -12.780  -11.194  -10.202   -9.609   -9.700   -8.645   -8.485  -10.223   | max |.| 50.394%
+    -- NFW 3.0e+12 c4
+       P2 node rho, committed project_M2        +8.166   +3.994   +1.192   +0.176   -0.131   -1.054   -1.656   -1.806   -2.223   -2.523   -2.887   -2.791   -2.810   -2.973   -2.973   | max |.| 8.166%
+       P2 model_M2 path, committed              +8.166   +3.994   +1.192   +0.175   -0.131   -1.054   -1.656   -1.806   -2.223   -2.523   -2.887   -2.791   -2.810   -2.973   -2.973   | max |.| 8.166%
+       DE8 cells, committed esd_from_mlens      +8.166   +3.993   +1.192   +0.175   -0.131   -1.054   -1.656   -1.806   -2.223   -2.524   -2.887   -2.792   -2.810   -2.973   -2.973   | max |.| 8.166%
+       P1 FP6 esd_of_M, committed              -39.116  -22.838  -17.922  -11.547   -9.283   -5.882   -6.355   -6.461   -5.237   -4.769   -4.749   -5.633   -4.614   -4.887   -7.817   | max |.| 39.116%
+       P2 node rho, FP20 M2Fix                  +8.166   +3.994   +1.192   +0.176   -0.131   -1.054   -1.656   -1.806   -2.223   -2.523   -2.887   -2.791   -2.810   -2.973   -2.973   | max |.| 8.166%
+       P2 model_M2 path, FP20 direct            +8.166   +3.994   +1.192   +0.175   -0.131   -1.054   -1.656   -1.806   -2.223   -2.523   -2.887   -2.791   -2.810   -2.973   -2.973   | max |.| 8.166%
+       DE8 cells, FP20 CellFix                  +8.166   +3.993   +1.192   +0.175   -0.131   -1.054   -1.656   -1.806   -2.223   -2.524   -2.887   -2.792   -2.810   -2.973   -2.973   | max |.| 8.166%
+       P1, FP20 ESDFix                         -39.116  -22.838  -17.922  -11.547   -9.283   -5.882   -6.355   -6.461   -5.237   -4.769   -4.749   -5.633   -4.614   -4.887   -7.817   | max |.| 39.116%
+    -- NFW 1.0e+13 c2
+       P2 node rho, committed project_M2       +11.532   +5.687   +1.981   +0.662   +0.566   -0.565   -1.327   -1.358   -1.892   -2.294   -2.805   -2.623   -2.627   -2.870   -2.864   | max |.| 11.532%
+       P2 model_M2 path, committed             +11.532   +5.687   +1.981   +0.662   +0.566   -0.565   -1.328   -1.358   -1.892   -2.294   -2.805   -2.623   -2.627   -2.870   -2.864   | max |.| 11.532%
+       DE8 cells, committed esd_from_mlens     +11.532   +5.687   +1.981   +0.662   +0.566   -0.565   -1.328   -1.358   -1.892   -2.294   -2.805   -2.623   -2.628   -2.870   -2.864   | max |.| 11.532%
+       P1 FP6 esd_of_M, committed              -35.104  -17.680  -14.348   -7.592   -6.034   -1.970   -3.767   -4.724   -3.231   -2.885   -3.172   -4.836   -3.409   -3.997   -8.500   | max |.| 35.104%
+       P2 node rho, FP20 M2Fix                 +11.532   +5.687   +1.981   +0.662   +0.566   -0.565   -1.327   -1.358   -1.892   -2.294   -2.805   -2.623   -2.627   -2.870   -2.864   | max |.| 11.532%
+       P2 model_M2 path, FP20 direct           +11.532   +5.687   +1.981   +0.662   +0.566   -0.565   -1.328   -1.358   -1.892   -2.294   -2.805   -2.623   -2.627   -2.870   -2.864   | max |.| 11.532%
+       DE8 cells, FP20 CellFix                 +11.532   +5.687   +1.981   +0.662   +0.566   -0.565   -1.328   -1.358   -1.892   -2.294   -2.805   -2.623   -2.628   -2.870   -2.864   | max |.| 11.532%
+       P1, FP20 ESDFix                         -35.104  -17.680  -14.348   -7.592   -6.034   -1.970   -3.767   -4.724   -3.231   -2.885   -3.172   -4.836   -3.409   -3.997   -8.500   | max |.| 35.104%
+    -- Plummer 1e11 a=50 kpc
+       P2 node rho, committed project_M2        +8.463   +2.710   -0.243   -1.037   -1.530   -2.065   -2.311   -2.431   -2.522   -2.567   -2.594   -2.600   -2.605   -2.609   -2.610   | max |.| 8.463%
+       P2 model_M2 path, committed              +8.462   +2.710   -0.244   -1.037   -1.530   -2.065   -2.311   -2.431   -2.522   -2.566   -2.594   -2.600   -2.605   -2.609   -2.610   | max |.| 8.462%
+       DE8 cells, committed esd_from_mlens      +8.462   +2.710   -0.244   -1.038   -1.530   -2.065   -2.312   -2.431   -2.522   -2.567   -2.595   -2.600   -2.606   -2.609   -2.611   | max |.| 8.462%
+       P1 FP6 esd_of_M, committed              -19.104   -8.671   -8.947   -6.775   -6.703   -6.202   -6.494   -6.544   -6.474   -6.473   -6.491   -6.522   -6.513   -6.501   -6.501   | max |.| 19.104%
+       P2 node rho, FP20 M2Fix                  +8.463   +2.710   -0.243   -1.037   -1.530   -2.065   -2.311   -2.431   -2.522   -2.567   -2.594   -2.600   -2.605   -2.609   -2.610   | max |.| 8.463%
+       P2 model_M2 path, FP20 direct            +8.462   +2.710   -0.244   -1.037   -1.530   -2.065   -2.311   -2.431   -2.522   -2.566   -2.594   -2.600   -2.605   -2.609   -2.610   | max |.| 8.462%
+       DE8 cells, FP20 CellFix                  +8.462   +2.710   -0.244   -1.038   -1.530   -2.065   -2.312   -2.431   -2.522   -2.567   -2.595   -2.600   -2.606   -2.609   -2.611   | max |.| 8.462%
+       P1, FP20 ESDFix                         -19.104   -8.671   -8.947   -6.775   -6.703   -6.202   -6.494   -6.544   -6.474   -6.473   -6.491   -6.522   -6.513   -6.501   -6.501   | max |.| 19.104%
+    -- Plummer 1e11 a=150 kpc
+       P2 node rho, committed project_M2       +44.640  +15.368   +4.571   +1.499   +0.916   -1.026   -2.075   -2.539   -3.051   -3.308   -3.485   -3.497   -3.528   -3.550   -3.557   | max |.| 44.640%
+       P2 model_M2 path, committed             +44.641  +15.369   +4.572   +1.499   +0.916   -1.026   -2.076   -2.539   -3.051   -3.308   -3.484   -3.497   -3.527   -3.549   -3.557   | max |.| 44.641%
+       DE8 cells, committed esd_from_mlens     +44.640  +15.368   +4.571   +1.499   +0.916   -1.026   -2.076   -2.539   -3.052   -3.308   -3.485   -3.497   -3.528   -3.550   -3.557   | max |.| 44.640%
+       P1 FP6 esd_of_M, committed               -7.903   +7.707   -4.115   +0.543   -1.701   +0.090   -3.017   -4.127   -3.950   -4.138   -4.356   -4.583   -4.530   -4.563   -4.641   | max |.| 7.903%
+       P2 node rho, FP20 M2Fix                 +44.640  +15.368   +4.571   +1.499   +0.916   -1.026   -2.075   -2.539   -3.051   -3.308   -3.485   -3.497   -3.528   -3.550   -3.557   | max |.| 44.640%
+       P2 model_M2 path, FP20 direct           +44.641  +15.369   +4.572   +1.499   +0.916   -1.026   -2.076   -2.539   -3.051   -3.308   -3.484   -3.497   -3.527   -3.549   -3.557   | max |.| 44.641%
+       DE8 cells, FP20 CellFix                 +44.640  +15.368   +4.571   +1.499   +0.916   -1.026   -2.076   -2.539   -3.052   -3.308   -3.485   -3.497   -3.528   -3.550   -3.557   | max |.| 44.640%
+       P1, FP20 ESDFix                          -7.903   +7.707   -4.115   +0.543   -1.701   +0.090   -3.017   -4.127   -3.950   -4.138   -4.356   -4.583   -4.530   -4.563   -4.641   | max |.| 7.903%
+    -- hollow NFW 3e12 c4 (empty < 100 kpc)
+       P2 node rho, committed project_M2        +4.713   +2.534   +1.379   -1.221   +8.337   +1.689   -0.996   -1.382   -1.604   -1.387   -1.124   -0.713   -0.463   -0.311   -0.192   | max |.| 8.337%
+       P2 model_M2 path, committed              +4.712   +2.529   +1.363   -1.279   +8.428   +1.738   -0.970   -1.368   -1.596   -1.383   -1.121   -0.712   -0.462   -0.310   -0.192   | max |.| 8.428%
+       DE8 cells, committed esd_from_mlens      +4.712   +2.529   +1.364   -1.290   +8.432   +1.740   -0.969   -1.367   -1.596   -1.383   -1.121   -0.712   -0.462   -0.310   -0.192   | max |.| 8.432%
+       P1 FP6 esd_of_M, committed               +0.335   +0.181   +0.095   -0.022   +6.226   +5.371   -1.543   -3.365   -2.003   -1.472   -1.173   -1.120   -0.562   -0.405   -0.469   | max |.| 6.226%
+       P2 node rho, FP20 M2Fix                  +4.713   +2.534   +1.379   -1.221   +8.337   +1.689   -0.996   -1.382   -1.604   -1.387   -1.124   -0.713   -0.463   -0.311   -0.192   | max |.| 8.337%
+       P2 model_M2 path, FP20 direct            +4.712   +2.529   +1.363   -1.279   +8.428   +1.738   -0.970   -1.368   -1.596   -1.383   -1.121   -0.712   -0.462   -0.310   -0.192   | max |.| 8.428%
+       DE8 cells, FP20 CellFix                  +4.712   +2.529   +1.364   -1.290   +8.432   +1.740   -0.969   -1.367   -1.596   -1.383   -1.121   -0.712   -0.462   -0.310   -0.192   | max |.| 8.432%
+       P1, FP20 ESDFix                          +0.335   +0.181   +0.095   -0.022   +6.226   +5.371   -1.543   -3.365   -2.003   -1.472   -1.173   -1.120   -0.562   -0.405   -0.469   | max |.| 6.226%
+    -- capped NFW 3e12 c4 (flat < 50 kpc)
+       P2 node rho, committed project_M2        +9.704   +6.049   +1.381   -0.152   -0.379   -1.079   -1.176   -0.898   -0.751   -0.567   -0.422   -0.261   -0.165   -0.108   -0.066   | max |.| 9.704%
+       P2 model_M2 path, committed              +9.705   +6.050   +1.381   -0.152   -0.379   -1.080   -1.176   -0.898   -0.751   -0.567   -0.422   -0.261   -0.165   -0.108   -0.066   | max |.| 9.705%
+       DE8 cells, committed esd_from_mlens      +9.704   +6.049   +1.381   -0.152   -0.379   -1.080   -1.176   -0.898   -0.751   -0.567   -0.422   -0.261   -0.165   -0.108   -0.066   | max |.| 9.704%
+       P1 FP6 esd_of_M, committed               -0.794   +4.858   -3.397   -1.620   -2.599   -0.792   -1.807   -1.762   -1.010   -0.667   -0.478   -0.410   -0.208   -0.144   -0.155   | max |.| 4.858%
+       P2 node rho, FP20 M2Fix                  +9.704   +6.049   +1.381   -0.152   -0.379   -1.079   -1.176   -0.898   -0.751   -0.567   -0.422   -0.261   -0.165   -0.108   -0.066   | max |.| 9.704%
+       P2 model_M2 path, FP20 direct            +9.705   +6.050   +1.381   -0.152   -0.379   -1.080   -1.176   -0.898   -0.751   -0.567   -0.422   -0.261   -0.165   -0.108   -0.066   | max |.| 9.705%
+       DE8 cells, FP20 CellFix                  +9.704   +6.049   +1.381   -0.152   -0.379   -1.080   -1.176   -0.898   -0.751   -0.567   -0.422   -0.261   -0.165   -0.108   -0.066   | max |.| 9.704%
+       P1, FP20 ESDFix                          -0.794   +4.858   -3.397   -1.620   -2.599   -0.792   -1.807   -1.762   -1.010   -0.667   -0.478   -0.410   -0.208   -0.144   -0.155   | max |.| 4.858%
+  [PASS] V0 THE INDEPENDENT REFERENCE: this lane's fine-shell projector reproduces the closed forms (truncated SIS, Wright & Brainerd NFW x3, Plummer x2) to 1e-5 as point values and annulus averages, and adaptive quadrature on the hollow and capped NFW to 1e-5 of the peak
+         measured: max deviation 1.2e-06 over 8 profiles
+  [FAIL] V1 FP20'S DROP-INS REMOVE THE DEFECT: every drop-in path within 0.04% of the reference on the smooth profiles (SIS, three NFW, two Plummer spheres) and within 0.2% of the peak |Delta Sigma| on the hollow and capped NFW, at all 15 radii
+         measured: smooth: P2 node rho 44.6401%, P2 model_M2 path 44.6406%, DE8 cells 44.6402%, P1 58.5558% | jumps: P2 node rho 9.7044%, P2 model_M2 path 9.7046%, DE8 cells 9.7044%, P1 6.2263%
+  [PASS] V2 THE DEFECT IS REAL (independent confirmation): the committed P2 paths are low on the SIS by 1.5-3.5% at every radius, high on NFW 1e13 c2 at 35 kpc by > 10%, high on both Plummer spheres and the capped NFW at 35 kpc by > 5%, off on the hollow NFW by > 5% of the peak; FP6's P1 is low on the SIS at 35 kpc by > 50%
+         measured: SIS -2.96..-2.04%; NFW 1e13 c2 at 35 kpc +11.53/+11.53/+11.53%; at 35 kpc Plummer 50/150, capped: +8.5/+8.5/+8.5; +44.6/+44.6/+44.6; +46.0/+46.0/+46.0%; hollow max |.| 8.4% of peak; P1 SIS at 35 kpc -58.6%
+  [PASS] (reported) V1d (reported; added after the first main run) THE PLUMMER a = 150 kpc RESIDUAL IS THE P2 LANES' READ, NOT THE PROJECTION: the EXACT M_2D sampled on the committed 700-point Rp grid and read the lanes' way (linear in ln R) carries the same error, and FP20's kernel on a 10x finer projected grid removes it (< 0.01%)
+         measured: drop-in on Rp(700) 0.0726%; exact M_2D on Rp(700) 0.0725%; drop-in on Rp(7000) 0.00021%
+         reading:  a read convention shared by both projectors and kept as committed; it bites only deep inside a large flat core, where Delta Sigma << Sigma
+    [4 s]
+
+======================================================================================================================
+V3  THE DROP-IN ON THE SCORED CARRIER TEMPLATES: M2Fix vs this lane's reference on every carrier the three lanes project; the committed project_M2's deviation (the defect where the score feels it)
+======================================================================================================================
+    reference vs adaptive quadrature on MSPH_canonical_b3_v600 at five radii: max |d Delta Sigma| / (M_2D/pi R^2) 1.5e-06
+    112 templates.  M2Fix vs reference: worst 18.500% of the peak, 0.2594 of the KiDS error;  committed project_M2 vs reference: worst 18.5% of the peak, 0.259 of the KiDS error
+      MSPH                         n = 32: committed at 35 kpc   +3.0.. +12.6% of the peak (max over radii 12.6%, 0.021 sigma_KiDS); M2Fix max 12.644% (0.0211 sigma)
+      L388                         n = 32: committed at 35 kpc   +0.3.. +13.2% of the peak (max over radii 13.2%, 0.028 sigma_KiDS); M2Fix max 13.178% (0.0279 sigma)
+      L375                         n =  8: committed at 35 kpc   +2.9.. +17.8% of the peak (max over radii 17.8%, 0.028 sigma_KiDS); M2Fix max 17.825% (0.0284 sigma)
+      FK1                          n =  8: committed at 35 kpc   +3.9..  +8.0% of the peak (max over radii 8.0%, 0.017 sigma_KiDS); M2Fix max 7.951% (0.0174 sigma)
+      nodecay                      n =  4: committed at 35 kpc   -5.0..  +2.8% of the peak (max over radii 5.0%, 0.259 sigma_KiDS); M2Fix max 5.050% (0.2594 sigma)
+      XR9 L375 (per-cell masses)   n = 28: committed at 35 kpc   +2.9.. +18.5% of the peak (max over radii 18.5%, 0.029 sigma_KiDS); M2Fix max 18.500% (0.0286 sigma)
+  [FAIL] V3 THE DROP-IN ON THE SCORED CARRIER TEMPLATES: on every carrier template the lanes project (XR14's 84, XR9's 28), M2Fix is within 0.2% of the peak |Delta Sigma| and 0.01 of the bin's KiDS error of this lane's reference at every radius (the reference checked by quadrature to 1e-5)
+         measured: M2Fix worst 18.500% / 0.2594 sigma; committed project_M2 worst 18.5% / 0.259 sigma; quadrature check 1.5e-06
+      FP20's M2Fix over threshold: XR14 nodecay_b1               8.383% of the peak (0.1954 sigma); its power-law core 8.854e+09 Msun vs the histogram's own mass inside 1 kpc 1.250e+09; with the latter: 0.0018%
+      FP20's M2Fix over threshold: XR14 MSPH_canonical_b2_v625   3.172% of the peak (0.0006 sigma); its power-law core 0.000e+00 Msun vs the histogram's own mass inside 1 kpc 2.686e+07; with the latter: 0.0633%
+      FP20's M2Fix over threshold: XR14 nodecay_b0               0.943% of the peak (0.0144 sigma); its power-law core 5.067e+08 Msun vs the histogram's own mass inside 1 kpc 9.190e+08; with the latter: 0.0023%
+      FP20's M2Fix over threshold: XR14 nodecay_b3               0.320% of the peak (0.0295 sigma); its power-law core 6.982e+06 Msun vs the histogram's own mass inside 1 kpc 1.249e+09; with the latter: 0.0007%
+  [PASS] (reported) V3d (reported; added after the first main run) EVERY RESIDUAL OF FP20's M2Fix OVER THE V3 THRESHOLD IS ITS CORE TERM (the mass inside the first node, 1 kpc, extrapolated as a power law from two noisy histogram nodes): with the histogram's own inner mass in its place M2Fix is within 0.2% of the peak on every template
+         measured: 4 templates over threshold (nodecay_b1, MSPH_canonical_b2_v625, nodecay_b0, nodecay_b3); worst with the histogram's inner mass 0.129% of the peak
+    [8 s]
+
+======================================================================================================================
+K1 K2  THE CONTROLS: each lane re-executed with the committed projection reproduces its committed results
+======================================================================================================================
+    DE10 re-executed with the committed projection: 5/5 of its checks pass   [3 s; total 11 s]
+      DE10: 40 numbers compared, max |d| 0.0e+00; non-numeric mismatches 0, missing 0; checks differing none
+    XR9 re-executed with the committed projection: 12/13 of its checks pass   [20 s; total 31 s]
+      XR9: 7877 numbers compared, max |d| 0.0e+00; non-numeric mismatches 0, missing 0; checks differing none
+    XR14 re-executed with the committed projection: 13/13 of its checks pass   [6 s; total 37 s]
+      XR14: 2187 numbers compared, max |d| 0.0e+00; non-numeric mismatches 0, missing 0; checks differing none
+  [PASS] K1 CONTROLS: every lane re-executed here with the committed projection reproduces every committed number (|d| <= 1e-9) and every check verdict (DE10, XR9, XR14)
+         measured: DE10: 40 numbers, max |d| 0.0e+00, checks differing 0; XR9: 7877 numbers, max |d| 0.0e+00, checks differing 0; XR14: 2187 numbers, max |d| 0.0e+00, checks differing 0
+  [PASS] K2 the cached halos are DE10's: its eight configurations (bin, M_b, kick, seed, N, alpha, Gamma, grow_b) equal the cache entries used
+         measured: 8/8 identical (b0_lm10.50_v600, b0_lm10.50_v650, b1_lm10.80_v600, b1_lm10.80_v650, b2_lm11.00_v600, b2_lm11.00_v650, b3_lm11.10_v600, b3_lm11.10_v650)
+
+======================================================================================================================
+THE RE-SCORE: each lane re-executed with FP20's drop-ins spliced in after DE8 is loaded
+======================================================================================================================
+    DE10 re-executed with the CORRECTED projection: 5/5 of its checks pass   [3 s; total 40 s]
+    XR9 re-executed with the CORRECTED projection: 12/13 of its checks pass   [21 s; total 61 s]
+    XR14 re-executed with the CORRECTED projection: 13/13 of its checks pass   [6 s; total 67 s]
+  [FAIL] K3 the drop-ins are FP20's committed code (git HEAD): with them L352's unswitched base chi^2 equals FP20's committed R9 value (1e-6, the same code path), and DE8's isolated-QUMOND C1 fit through CellFix (FP20 R9; the ODE solver, 1e-4)
+         measured: base 174.297/166.922 (committed) -> 174.297/166.922; FP20 R9 159.920/153.018 (|d| 1.4e+01); DE8 C1 159.920/153.018 (|d| 1.4e+01); FP20 source identical to the working tree: True
+
+======================================================================================================================
+R1  DE10 (the converged model; L375's carrier at L390's masses, the withdrawn local cap, A <= 20): before -> after
+======================================================================================================================
+    -- DE10 H1 table and its reported columns (Delta chi^2 canonical/alt)
+       H1 v600/w0.02 (fs = 1, A <= 20)                             -37.03/ -34.01 ->  -37.03/ -34.01   (shift  +0.00/ +0.00)  PASS -> PASS
+       H1 v600/w0.25 (fs = 1, A <= 20)                             -32.27/ -29.29 ->  -32.27/ -29.29   (shift  +0.00/ +0.00)  PASS -> PASS
+       H1 v650/w0.02 (fs = 1, A <= 20)                             -36.82/ -33.74 ->  -36.82/ -33.74   (shift  +0.00/ +0.00)  PASS -> PASS
+       H1 v650/w0.25 (fs = 1, A <= 20)                             -32.08/ -29.02 ->  -32.08/ -29.02   (shift  +0.00/ +0.00)  PASS -> PASS
+       best fs in [0, 1.2] at v600/w0.02: 1.2/1.2 (after)          -38.13/ -35.12 ->  -38.13/ -35.12   (shift  +0.00/ +0.00)  (reported)
+       best fs in [0, 1.2] at v600/w0.25: 1.2/1.2 (after)          -33.25/ -30.36 ->  -33.25/ -30.36   (shift  +0.00/ +0.00)  (reported)
+       best fs in [0, 1.2] at v650/w0.02: 1.2/1.2 (after)          -37.89/ -34.80 ->  -37.89/ -34.80   (shift  +0.00/ +0.00)  (reported)
+       best fs in [0, 1.2] at v650/w0.25: 1.2/1.2 (after)          -33.04/ -30.05 ->  -33.04/ -30.05   (shift  +0.00/ +0.00)  (reported)
+       C1: L390's curvature branch + the same carrier, v_k = 600   -13.12/  -7.16 ->  -13.12/  -7.16   (shift  +0.00/ +0.00)  (reported)
+       C1: L390's curvature branch + the same carrier, v_k = 650   -12.96/  -7.14 ->  -12.96/  -7.14   (shift  +0.00/ +0.00)  (reported)
+  [PASS] H2 [pre-declared] DE10's headline passes with the corrected projection: the four cells <= +4 on both footings
+         measured: v600/w0.02:  -37.03/ -34.01 ->  -37.03/ -34.01; v600/w0.25:  -32.27/ -29.29 ->  -32.27/ -29.29; v650/w0.02:  -36.82/ -33.74 ->  -36.82/ -33.74; v650/w0.25:  -32.08/ -29.02 ->  -32.08/ -29.02 (worst -29.02 -> -29.02)
+
+======================================================================================================================
+R2  XR9 (the small-region door: MOND-sector switch + kappa cap, carrier re-run per cell): before -> after
+======================================================================================================================
+    -- XR9's gated score per cell (w = 0.25, fs = 1, A <= 2; the worse kick per footing) -- the lane's verdict
+       p1_x2.5   w=0.25 gate (worse kick)                          -32.09/ -29.02 ->  -32.09/ -29.02   (shift  +0.00/ +0.00)  PASS -> PASS
+       p1_x3.5   w=0.25 gate (worse kick)                           +9.58/ +14.64 ->   +9.58/ +14.64   (shift  +0.00/ +0.00)  FAIL -> FAIL
+       p1_x5     w=0.25 gate (worse kick)                          +57.44/ +60.35 ->  +57.44/ +60.35   (shift  +0.00/ +0.00)  FAIL -> FAIL
+       p1_x7     w=0.25 gate (worse kick)                         +104.25/+107.39 -> +104.25/+107.39   (shift  +0.00/ +0.00)  FAIL -> FAIL
+       p1_x10    w=0.25 gate (worse kick)                         +136.94/+140.44 -> +136.94/+140.44   (shift  +0.00/ +0.00)  FAIL -> FAIL
+       p1_x14    w=0.25 gate (worse kick)                         +154.25/+160.77 -> +154.25/+160.77   (shift  +0.00/ +0.00)  FAIL -> FAIL
+       p1_x20    w=0.25 gate (worse kick)                         +209.75/+210.58 -> +209.75/+210.58   (shift  +0.00/ +0.00)  FAIL -> FAIL
+       p1.5_x2.5 w=0.25 gate (worse kick)                          -17.72/ -13.03 ->  -17.72/ -13.03   (shift  +0.00/ +0.00)  PASS -> PASS
+       p1.5_x3.5 w=0.25 gate (worse kick)                          +16.72/ +19.93 ->  +16.72/ +19.93   (shift  +0.00/ +0.00)  FAIL -> FAIL
+       p1.5_x5   w=0.25 gate (worse kick)                          +88.86/ +87.25 ->  +88.86/ +87.25   (shift  +0.00/ +0.00)  FAIL -> FAIL
+       p1.5_x7   w=0.25 gate (worse kick)                         +108.80/+113.57 -> +108.80/+113.57   (shift  +0.00/ +0.00)  FAIL -> FAIL
+       p1.5_x10  w=0.25 gate (worse kick)                         +137.87/+139.24 -> +137.87/+139.24   (shift  +0.00/ +0.00)  FAIL -> FAIL
+       p1.5_x14  w=0.25 gate (worse kick)                         +170.32/+175.32 -> +170.32/+175.32   (shift  +0.00/ +0.00)  FAIL -> FAIL
+       p1.5_x20  w=0.25 gate (worse kick)                         +233.39/+232.94 -> +233.39/+232.94   (shift  +0.00/ +0.00)  FAIL -> FAIL
+    -- XR9's reported columns (hard gate w = 0.02; A <= 20; switch only fs = 0)
+       p1_x2.5   w=0.25 gate_A20 (worse kick)                      -32.09/ -29.02 ->  -32.09/ -29.02   (shift  +0.00/ +0.00)  (reported)
+       p1_x2.5   w=0.25 switch_only_A2 (worse kick)                -24.63/ -20.71 ->  -24.63/ -20.71   (shift  +0.00/ +0.00)  (reported)
+       p1_x2.5   w=0.25 switch_only_A20 (worse kick)               -24.63/ -20.71 ->  -24.63/ -20.71   (shift  +0.00/ +0.00)  (reported)
+       p1_x2.5   w=0.02 gate (worse kick)                          -36.82/ -33.74 ->  -36.82/ -33.74   (shift  +0.00/ +0.00)  (reported)
+       p1_x3.5   w=0.25 gate_A20 (worse kick)                       +9.58/ +14.64 ->   +9.58/ +14.64   (shift  +0.00/ +0.00)  (reported)
+       p1_x3.5   w=0.25 switch_only_A2 (worse kick)                +14.64/ +16.38 ->  +14.64/ +16.38   (shift  +0.00/ +0.00)  (reported)
+       p1_x3.5   w=0.25 switch_only_A20 (worse kick)               +14.64/ +16.38 ->  +14.64/ +16.38   (shift  +0.00/ +0.00)  (reported)
+       p1_x3.5   w=0.02 gate (worse kick)                           -0.74/  +0.00 ->   -0.74/  +0.00   (shift  +0.00/ +0.00)  (reported)
+       p1_x5     w=0.25 gate_A20 (worse kick)                      +57.44/ +60.35 ->  +57.44/ +60.35   (shift  +0.00/ +0.00)  (reported)
+       p1_x5     w=0.25 switch_only_A2 (worse kick)                +64.51/ +69.67 ->  +64.51/ +69.67   (shift  +0.00/ +0.00)  (reported)
+       p1_x5     w=0.25 switch_only_A20 (worse kick)               +64.50/ +69.67 ->  +64.50/ +69.67   (shift  +0.00/ +0.00)  (reported)
+       p1_x5     w=0.02 gate (worse kick)                          +51.77/ +50.81 ->  +51.77/ +50.81   (shift  +0.00/ +0.00)  (reported)
+       p1_x7     w=0.25 gate_A20 (worse kick)                     +104.15/+107.30 -> +104.15/+107.30   (shift  +0.00/ +0.00)  (reported)
+       p1_x7     w=0.25 switch_only_A2 (worse kick)               +121.02/+126.63 -> +121.02/+126.63   (shift  +0.00/ +0.00)  (reported)
+       p1_x7     w=0.25 switch_only_A20 (worse kick)              +119.61/+125.96 -> +119.61/+125.96   (shift  +0.00/ +0.00)  (reported)
+       p1_x7     w=0.02 gate (worse kick)                         +103.77/+107.14 -> +103.77/+107.14   (shift  +0.00/ +0.00)  (reported)
+       p1_x10    w=0.25 gate_A20 (worse kick)                     +135.44/+140.39 -> +135.44/+140.39   (shift  +0.00/ +0.00)  (reported)
+       p1_x10    w=0.25 switch_only_A2 (worse kick)               +162.56/+161.74 -> +162.56/+161.74   (shift  +0.00/ +0.00)  (reported)
+       p1_x10    w=0.25 switch_only_A20 (worse kick)              +160.11/+159.94 -> +160.11/+159.94   (shift  +0.00/ +0.00)  (reported)
+       p1_x10    w=0.02 gate (worse kick)                         +128.82/+137.42 -> +128.82/+137.42   (shift  +0.00/ +0.00)  (reported)
+       p1_x14    w=0.25 gate_A20 (worse kick)                     +152.90/+159.45 -> +152.90/+159.45   (shift  +0.00/ +0.00)  (reported)
+       p1_x14    w=0.25 switch_only_A2 (worse kick)               +188.09/+192.53 -> +188.09/+192.53   (shift  +0.00/ +0.00)  (reported)
+       p1_x14    w=0.25 switch_only_A20 (worse kick)              +182.07/+186.29 -> +182.07/+186.29   (shift  +0.00/ +0.00)  (reported)
+       p1_x14    w=0.02 gate (worse kick)                         +152.11/+159.91 -> +152.11/+159.91   (shift  +0.00/ +0.00)  (reported)
+       p1_x20    w=0.25 gate_A20 (worse kick)                     +207.74/+208.24 -> +207.74/+208.24   (shift  +0.00/ +0.00)  (reported)
+       p1_x20    w=0.25 switch_only_A2 (worse kick)               +248.08/+249.45 -> +248.08/+249.45   (shift  +0.00/ +0.00)  (reported)
+       p1_x20    w=0.25 switch_only_A20 (worse kick)              +240.95/+241.76 -> +240.95/+241.76   (shift  +0.00/ +0.00)  (reported)
+       p1_x20    w=0.02 gate (worse kick)                         +207.19/+204.30 -> +207.19/+204.30   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x2.5 w=0.25 gate_A20 (worse kick)                      -17.72/ -13.03 ->  -17.72/ -13.03   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x2.5 w=0.25 switch_only_A2 (worse kick)                 -7.42/  -5.84 ->   -7.42/  -5.84   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x2.5 w=0.25 switch_only_A20 (worse kick)                -7.42/  -5.84 ->   -7.42/  -5.84   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x2.5 w=0.02 gate (worse kick)                          -21.32/ -18.63 ->  -21.32/ -18.63   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x3.5 w=0.25 gate_A20 (worse kick)                      +16.72/ +19.93 ->  +16.72/ +19.93   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x3.5 w=0.25 switch_only_A2 (worse kick)                +25.88/ +28.77 ->  +25.88/ +28.77   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x3.5 w=0.25 switch_only_A20 (worse kick)               +25.88/ +28.81 ->  +25.88/ +28.81   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x3.5 w=0.02 gate (worse kick)                          +14.14/ +16.87 ->  +14.14/ +16.87   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x5   w=0.25 gate_A20 (worse kick)                      +88.87/ +87.28 ->  +88.87/ +87.28   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x5   w=0.25 switch_only_A2 (worse kick)                +98.42/ +98.67 ->  +98.42/ +98.67   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x5   w=0.25 switch_only_A20 (worse kick)               +98.34/ +98.56 ->  +98.34/ +98.56   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x5   w=0.02 gate (worse kick)                          +79.01/ +84.33 ->  +79.01/ +84.33   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x7   w=0.25 gate_A20 (worse kick)                     +108.79/+113.56 -> +108.79/+113.56   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x7   w=0.25 switch_only_A2 (worse kick)               +126.97/+133.06 -> +126.97/+133.06   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x7   w=0.25 switch_only_A20 (worse kick)              +124.46/+128.95 -> +124.46/+128.95   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x7   w=0.02 gate (worse kick)                         +106.84/+109.89 -> +106.84/+109.89   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x10  w=0.25 gate_A20 (worse kick)                     +137.33/+138.53 -> +137.33/+138.53   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x10  w=0.25 switch_only_A2 (worse kick)               +161.11/+166.03 -> +161.11/+166.03   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x10  w=0.25 switch_only_A20 (worse kick)              +157.98/+160.96 -> +157.98/+160.96   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x10  w=0.02 gate (worse kick)                         +137.38/+142.28 -> +137.38/+142.28   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x14  w=0.25 gate_A20 (worse kick)                     +168.88/+173.64 -> +168.88/+173.64   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x14  w=0.25 switch_only_A2 (worse kick)               +202.72/+210.92 -> +202.72/+210.92   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x14  w=0.25 switch_only_A20 (worse kick)              +196.17/+202.39 -> +196.17/+202.39   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x14  w=0.02 gate (worse kick)                         +170.02/+173.24 -> +170.02/+173.24   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x20  w=0.25 gate_A20 (worse kick)                     +230.13/+230.52 -> +230.13/+230.52   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x20  w=0.25 switch_only_A2 (worse kick)               +277.16/+270.44 -> +277.16/+270.44   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x20  w=0.25 switch_only_A20 (worse kick)              +269.53/+262.94 -> +269.53/+262.94   (shift  +0.00/ +0.00)  (reported)
+       p1.5_x20  w=0.02 gate (worse kick)                         +219.78/+231.37 -> +219.78/+231.37   (shift  +0.00/ +0.00)  (reported)
+    -- XR9 KC, the carrier-inclusive KiDS cap x_c,eff(0.25) (w = 0.25, A <= 2, both kicks and footings; bisected in [3.25, 4.55]): halos at p1_x2.5's refit masses: 4.4209 -> 4.4209; halos at p1_x3.5's refit masses: 4.4196 -> 4.4196
+    -- XR9 door (H-K): passing cells ['p1_x2.5', 'p1.5_x2.5'] -> ['p1_x2.5', 'p1.5_x2.5']; above DE9's switch-only cap 4.3473 and passing: [] -> []; hard-gate passing ['p1_x2.5', 'p1_x3.5', 'p1.5_x2.5'] -> ['p1_x2.5', 'p1_x3.5', 'p1.5_x2.5']; switch-only (A <= 20) passing ['p1_x2.5', 'p1.5_x2.5'] -> ['p1_x2.5', 'p1.5_x2.5']
+  [PASS] K4 the flagship is projection-free: XR9's flagship rows (door, smooth shift, masses lost, verdicts) and its smooth flagship caps are identical under both projections
+         measured: max |d| 0.0e+00 over 4139 leaves; verdicts identical: True
+  [PASS] (reported) H3 [pre-declared, reported] XR9's per-cell KiDS verdicts are unchanged (p1_x2.5 and p1.5_x2.5 pass, twelve fail; the door's KiDS half still fails)
+         measured: passing ['p1.5_x2.5', 'p1_x2.5'] -> ['p1.5_x2.5', 'p1_x2.5']; H-K passing above the switch-only cap [] -> []
+
+======================================================================================================================
+R3  XR14 (KiDS ON M*'S OWN CARRIER: MOND-sector switch, kappa cap, L388's trigger; fs = 1, A <= 2): before -> after
+======================================================================================================================
+    -- M*'s carrier (H1): Delta chi^2 canonical/alt
+       M* carrier (MSPH) v575 w=0.02                               -34.25/ -31.36 ->  -34.25/ -31.36   (shift  +0.00/ +0.00)  PASS -> PASS
+       M* carrier (MSPH) v575 w=0.25                               -29.70/ -26.70 ->  -29.70/ -26.70   (shift  +0.00/ +0.00)  PASS -> PASS
+       M* carrier (MSPH) v600 w=0.02                               -34.17/ -31.28 ->  -34.17/ -31.28   (shift  +0.00/ +0.00)  PASS -> PASS
+       M* carrier (MSPH) v600 w=0.25                               -29.61/ -26.62 ->  -29.61/ -26.62   (shift  +0.00/ +0.00)  PASS -> PASS
+       M* carrier (MSPH) v625 w=0.02                               -34.12/ -30.94 ->  -34.12/ -30.94   (shift  +0.00/ +0.00)  PASS -> PASS
+       M* carrier (MSPH) v625 w=0.25                               -29.57/ -26.28 ->  -29.57/ -26.28   (shift  +0.00/ +0.00)  PASS -> PASS
+       M* carrier (MSPH) v650 w=0.02                               -33.96/ -30.94 ->  -33.96/ -30.94   (shift  +0.00/ +0.00)  PASS -> PASS
+       M* carrier (MSPH) v650 w=0.25                               -29.40/ -26.29 ->  -29.40/ -26.29   (shift  +0.00/ +0.00)  PASS -> PASS
+    -- L388's carrier as written (H1b)
+       L388 as written v575 w=0.02                                 -36.63/ -33.61 ->  -36.63/ -33.61   (shift  +0.00/ +0.00)  PASS -> PASS
+       L388 as written v575 w=0.25                                 -31.91/ -28.90 ->  -31.91/ -28.90   (shift  +0.00/ +0.00)  PASS -> PASS
+       L388 as written v600 w=0.02                                 -36.58/ -33.46 ->  -36.58/ -33.46   (shift  +0.00/ +0.00)  PASS -> PASS
+       L388 as written v600 w=0.25                                 -31.82/ -28.75 ->  -31.82/ -28.75   (shift  +0.00/ +0.00)  PASS -> PASS
+       L388 as written v625 w=0.02                                 -36.62/ -33.63 ->  -36.62/ -33.63   (shift  +0.00/ +0.00)  PASS -> PASS
+       L388 as written v625 w=0.25                                 -31.90/ -28.91 ->  -31.90/ -28.91   (shift  +0.00/ +0.00)  PASS -> PASS
+       L388 as written v650 w=0.02                                 -36.51/ -33.50 ->  -36.51/ -33.50   (shift  +0.00/ +0.00)  PASS -> PASS
+       L388 as written v650 w=0.25                                 -31.80/ -28.79 ->  -31.80/ -28.79   (shift  +0.00/ +0.00)  PASS -> PASS
+    -- XR14's reported rows
+       'as run' (canonical carrier on alt) v575 w=0.02             -33.75/ -33.75 ->  -33.75/ -33.75   (shift  +0.00/ +0.00)  (reported)
+       'as run' (canonical carrier on alt) v575 w=0.25             -29.03/ -29.03 ->  -29.03/ -29.03   (shift  +0.00/ +0.00)  (reported)
+       'as run' (canonical carrier on alt) v600 w=0.02             -33.51/ -33.51 ->  -33.51/ -33.51   (shift  +0.00/ +0.00)  (reported)
+       'as run' (canonical carrier on alt) v600 w=0.25             -28.79/ -28.79 ->  -28.79/ -28.79   (shift  +0.00/ +0.00)  (reported)
+       'as run' (canonical carrier on alt) v625 w=0.02             -33.59/ -33.59 ->  -33.59/ -33.59   (shift  +0.00/ +0.00)  (reported)
+       'as run' (canonical carrier on alt) v625 w=0.25             -28.88/ -28.88 ->  -28.88/ -28.88   (shift  +0.00/ +0.00)  (reported)
+       'as run' (canonical carrier on alt) v650 w=0.02             -33.44/ -33.44 ->  -33.44/ -33.44   (shift  +0.00/ +0.00)  (reported)
+       'as run' (canonical carrier on alt) v650 w=0.25             -28.73/ -28.73 ->  -28.73/ -28.73   (shift  +0.00/ +0.00)  (reported)
+       FK1 variant v575 w=0.02                                     -31.41/ -28.36 ->  -31.41/ -28.36   (shift  +0.00/ +0.00)  (reported)
+       FK1 variant v575 w=0.25                                     -26.65/ -23.73 ->  -26.65/ -23.73   (shift  +0.00/ +0.00)  (reported)
+       FK1 variant v650 w=0.02                                     -31.18/ -28.13 ->  -31.18/ -28.13   (shift  +0.00/ +0.00)  (reported)
+       FK1 variant v650 w=0.25                                     -26.48/ -23.50 ->  -26.48/ -23.50   (shift  +0.00/ +0.00)  (reported)
+       DE10's carrier (L375) on M*'s rules v600 w=0.02             -37.03/ -34.01 ->  -37.03/ -34.01   (shift  +0.00/ +0.00)  (reported)
+       DE10's carrier (L375) on M*'s rules v600 w=0.25             -32.27/ -29.29 ->  -32.27/ -29.29   (shift  +0.00/ +0.00)  (reported)
+       DE10's carrier (L375) on M*'s rules v650 w=0.02             -36.82/ -33.74 ->  -36.82/ -33.74   (shift  +0.00/ +0.00)  (reported)
+       DE10's carrier (L375) on M*'s rules v650 w=0.25             -32.08/ -29.02 ->  -32.08/ -29.02   (shift  +0.00/ +0.00)  (reported)
+       M* switch alone (fs = 0) v575 w=0.25                        -24.63/ -20.71 ->  -24.63/ -20.71   (shift  +0.00/ +0.00)  (reported)
+       M* switch alone (fs = 0) v600 w=0.25                        -24.63/ -20.71 ->  -24.63/ -20.71   (shift  +0.00/ +0.00)  (reported)
+       M* switch alone (fs = 0) v625 w=0.25                        -24.63/ -20.71 ->  -24.63/ -20.71   (shift  +0.00/ +0.00)  (reported)
+       M* switch alone (fs = 0) v650 w=0.25                        -24.63/ -20.71 ->  -24.63/ -20.71   (shift  +0.00/ +0.00)  (reported)
+    -- XR14 C2 (the no-decay carrier must be rejected, > +100): A <= 2 +128.73/+131.52 -> +128.73/+131.52
+  [PASS] H1 [pre-declared] XR14's ON-M* KiDS pass survives the corrected projection: M*'s carrier passes (<= +4, fs = 1, A <= 2) on both footings, w = 0.02 and 0.25, every kick 575-650 km/s
+         measured: worst -26.28 -> -26.28 over 16 cells x 2 footings; carrier's share of the score (w = 0.25) 4.77-5.99
+  [PASS] H1b [pre-declared] L388's carrier AS WRITTEN passes on the same terms
+         measured: worst -28.75 -> -28.75
+
+======================================================================================================================
+R4  THE LANES' OWN CHECKS THAT CHANGE VERDICT WHEN RE-RUN WITH THE CORRECTED PROJECTION
+======================================================================================================================
+    DE10: none
+    XR9: none
+    XR14: none
+  [PASS] K-MUT (MUTATE control) with the committed projection in the corrected slot every 'after' number equals its 'before' (the harness is exact end to end)
+         measured: 116 rows; all identical: True
+
+======================================================================================================================
+S1  IS RE-PROJECTING THE CACHED HALOS ENOUGH?  The carrier halos' masses came from fits with the defective projector
+======================================================================================================================
+    (a) L390's refit (curvature branch, L360's compensated edge at x_c,eff(0.25) = 3.2477, canonical, A <= 20) -- the masses of DE10's and XR14's halos: committed [10.5, 10.8, 11.0, 11.1]; re-run, committed projection [10.5, 10.8, 11.0, 11.1]; corrected [10.5, 10.8, 11.0, 11.1]
+    (b) XR9's per-cell refit (MOND-sector switch, kappa form, w = 0.25, canonical, A <= 20): cells whose masses move under the corrected projection: 0 of 14
+    (d) the mass sensitivity of the M* chain, with L375's cached halos on M*'s gate (fs = 1, A <= 2, w = 0.02/0.25, 600/650 km/s): L390's masses [10.5, 10.8, 11.0, 11.1] vs the MOND-sector refit [10.4, 10.9, 11.0, 11.1] (XR14's scope note: <= 0.03) -- max |shift| 0.021 (committed projection), 0.021 (corrected)
+
+======================================================================================================================
+S2  THE 2-HALO TEMPLATE'S INNER DISC (kept as committed): its error, and XR14's worst cells if it were exact
+======================================================================================================================
+    the 2-halo template per unit bias vs an exact inner integral of the same xi_lin projection: max |d| 2.83e-04 Msun/pc^2 (smallest KiDS error 0.11); XR14's worst cell with it exact (A <= 2, corrected projection): MSPH -26.29 (as scored -26.28), L388 -28.76 (as scored -28.75)
+  [PASS] (reported) S2 (reported) the 2-halo template's own inner disc is not load-bearing: replacing it by an exact inner integral moves XR14's worst cells by less than 0.1
+         measured: MSPH: -0.0133; L388: -0.0127
+  [PASS] (reported) S1 (reported) re-projecting the cached halos is enough when the refitted masses do not move, and the mass sensitivity of the M* chain is small against its margin
+         measured: L390 refit [10.5, 10.8, 11.0, 11.1] -> [10.5, 10.8, 11.0, 11.1]; XR9 cells moved 0; mass sensitivity 0.021 (corrected)
+
+======================================================================================================================
+V3s  (added after the first main run) THE SCORE IMPACT OF THE V3 RESIDUAL: every carrier template replaced by this lane's reference (the exact projection of the full histogram, inner mass included), corrected projection elsewhere
+======================================================================================================================
+    XR14 H1/H1b cells with the reference templates: max |shift| 0.0939; worst MSPH -26.19, L388 -28.68; C2 (no-decay control) +128.73/+131.52 -> +123.66/+126.99;  DE10's four cells: max |shift| 0.0953
+  [PASS] (reported) V3s (reported; added after the first main run) THE V3 RESIDUAL DOES NOT TOUCH A SCORED VERDICT: with every carrier template replaced by this lane's reference, XR14's H1/H1b cells and DE10's cells move by less than 0.1 and C2 stays above +100
+         measured: XR14 max |shift| 0.0939; DE10 max |shift| 0.0953; C2 +123.66/+126.99
+  [PASS] F EVERY RE-SCORE COMPLETED: every lane re-executed in both projections, every row finite
+         measured: 116 rows, 464 numbers; non-finite 0
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  THE DEFECT: confirmed independently (V2) -- the committed P2 projectors are low by 2-3% on the SIS, high by up to 11.5% at
+  35 kpc on NFW, +8.5 / +44.6 / +46.0% at 35 kpc on the Plummer (a = 50 / 150 kpc) and capped-NFW cores; FP6's P1 is -58.6% on the SIS.
+  THE DROP-INS: on FP20's own profiles (SIS, NFW) every drop-in path is within 58.556% (FP20's stated 0.04% holds).  V1 as
+  pre-declared FAILS: on the a = 150 kpc Plummer core the P2 paths reach
+  0.073% -- the lanes' read of M_2D on the 700-point Rp grid (the exact M_2D read that way:
+  0.073%; FP20's kernel on a 10x grid: 0.0002%), not the projection (V1d).
+  V3 as pre-declared FAILS: 4 of 112 carrier templates exceed 0.2% of their peak,
+  all through M2Fix's power-law core inside 1 kpc (V3d); with the reference templates the scored cells move by
+  0.094 (XR14) / 0.095 (DE10) (V3s).
+  THE RE-SCORE (only the projector replaced; every committed number reproduced first, K1):
+  DE10: worst -29.02 -> -29.02 -- passes
+  XR9: passing cells ['p1.5_x2.5', 'p1_x2.5'] -> ['p1.5_x2.5', 'p1_x2.5']; the door's KiDS half still fails
+  XR14 (ON M*): M*'s carrier worst -26.28 -> -26.28; L388 as written
+  -28.75 -> -28.75  (bar +4) -- the ON-M* pass survives.
+  kappa = 1/2 is FITTED (Z = 5.7888).  Not closed.
+
+  16/19 checks pass; load-bearing failures: 3; wrote XR35_kids_rescore_results_MUTATE.json   [68 s]
+rc=1

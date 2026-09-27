@@ -1,0 +1,107 @@
+CFG4 (part 4 of 5) -- COSMOLOGY: the cold component the CMB demands, and how much of it can LEAVE (stop clustering on small
+scales: kicked, streaming daughters) or CHANGE FORM (decay into radiation) by z ~ 0 without violating CMB lensing, S8, BAO
+and RSD.  CLASS 3.3.4 for every linear spectrum (FP6's T_EH98 carries an h-units error and is not used).
+
+THE BASE.  a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 FITTED, flat in z (a0 enters no linear coefficient: XR26 part 1, the
+record's S8-neutral theorem of the ghost-condensate thread).  The dark component, where one is needed, is the framework's own
+field -- a cold fluid, not a particle species (the record's GDM theorem: linear cosmology sees only (w, c_s^2, c_vis^2) and the
+amount) -- and a mass is still required: Omega_c h^2 is initial data, like LCDM's.
+
+THE FACT (published, not refitted here): Planck 2018 TT,TE,EE+lowE+lensing, Omega_c h^2 = 0.1200 +- 0.0012, a cold,
+pressureless component clustering in the perturbations at z ~ 1100.
+
+WHAT IS COMPUTED.  Starting from the Planck 2018 best fit (XR26's CLASS parameters, H0 from CAMB's theta_MC):
+  (a) THE KICK MODE ('leave'): at z_c a fraction F of the cold component converts into daughters that keep w = 0 (the
+      background, hence BAO, is unchanged) but stream with a velocity dispersion v_k (a_c/a) (Hubble-cooled), so they stop
+      clustering below their free-streaming scale.  Two-fluid linear growth per k (the daughters inherit the parent's density
+      and bulk flow at birth; fluid approximation, c_s^2 = v^2/3).  This is the record's FK1/FP10/XR19 conversion channel.
+  (b) THE SMOOTH LIMIT: v_k -> oo (the converted part never clusters again).
+  (c) THE RADIATION MODE ('change form'): CLASS's decaying cold component -> dark radiation (omega_ini_dcdm, Gamma_dcdm), with
+      h re-fitted to hold the CMB acoustic scale 100 theta_s fixed.
+  Gates: Planck 2018 lensing 8-400 amplitude within 2 sigma of 1.011 +- 0.028 (the MV band powers, XR26's table); S8 >= the
+  record's floor 0.752 (PAPER34 correction); RSD f sigma_8 (6dFGS, SDSS MGS, BOSS DR12, eBOSS DR16; published values) with
+  Delta chi^2 <= 4 against LCDM; BAO: DESI DR1's fractional errors on D_M/r_d, D_H/r_d, D_V/r_d with the shift's chi^2 <= 4
+  (automatically passed where the background is unchanged).
+
+PRE-DECLARED (written before any run of this script):
+  H1 CONTROLS.  (a) CLASS at XR26's Planck 2018 parameters, with this lane's own band-power code, reproduces XR26's committed
+     LCDM lensing chi^2 = 10.1456 (9 MV bins) and pull -0.39, and sigma_8 = 0.812 +- 0.002; (b) this lane's Limber integral
+     reproduces CLASS's own C_L^phiphi to <= 1% at 30 <= L <= 1000 (linear) and the two-fluid solver returns LCDM exactly at
+     F = 0.  EXPECT TRUE.
+  H2 [HEADLINE] A LATE COLD COMPONENT CAN LEAVE.  In the kick mode with v_k <= 600 km/s, a converted fraction F >= 0.3 after
+     z_c = 1 passes every gate (CMB lensing, S8 floor, RSD, BAO): the daughters still cluster on the scales these probes weigh
+     (the record's XR19: S8 ratio 0.912-0.938 even for F = 1).  The smooth limit (no clustering at all) allows much less.  The
+     radiation mode is limited to a few per cent by the background (BAO) at fixed theta_s.  EXPECT TRUE.
+  H3 CROSS-CHECK (reported).  The step model reproduces the record's 'whole carrier converts at z_web' S8 bracket (XR19 X:
+     0.912 / 0.924 / 0.938 at z_web = 1.8 / 1.2 / 0.5; FP10 A8's 0.918 / 0.929 / 0.948) within 0.02 at v_k = 600 km/s.
+     UNCERTAIN (a different solver and velocity treatment).
+MUTATE=1 makes the headline's converted component smooth (v_k -> oo) and whole (F = 1 at z_c = 1): H2 must FAIL (rc = 1).
+
+  Planck 2018 best fit (XR26's CLASS inputs): h = 0.673317, omega_b 0.022383, omega_cdm 0.12011, YHe 0.24543; lensing gate 1.011 +- 0.028 (8-400); S8 floor 0.752; 8 f sigma_8 points; 12 DESI DR1 BAO numbers
+
+======================================================================================================================
+K  CONTROLS: CLASS at XR26's parameters reproduces XR26's LCDM lensing chi^2 and sigma_8; Limber vs CLASS; the solver at F = 0
+======================================================================================================================
+    LCDM: lensing chi^2 10.1456 (XR26 committed 10.1456), pull -0.393; sigma_8 0.8116 (Planck 0.8120; XR26's CAMB 0.8120) (3 s)
+  [PASS] K1 CONTROL: CLASS at XR26's Planck 2018 parameters, with this lane's own band-power code, reproduces XR26's committed LCDM lensing chi^2 (9 MV bins, 8-400) and sigma_8 = 0.812 +- 0.002
+         measured: chi^2 10.145612 vs 10.145612; sigma_8 0.8116
+    Limber (halofit) / CLASS C_L^pp at 30-1000: max deviation 0.0013
+  [PASS] K2 CONTROL: this lane's Limber integral on CLASS's halofit P(k, z) reproduces CLASS's own C_L^phiphi to <= 1% at 30-1000, and the two-fluid solver returns LCDM exactly at F = 0
+         measured: Limber max dev 0.0013; solver F = 0 vs LCDM 0.0e+00
+    LCDM: S8 = 0.8327 (Omega_m 0.3157); f sigma_8 chi^2 = 7.31 over 8 points
+
+======================================================================================================================
+H3  CROSS-CHECK: the record's 'whole carrier converts at z_web' S8 bracket (XR19 X; FP10 A8) with this lane's step model
+======================================================================================================================
+    z_web = 1.8: this lane S8 ratio 0.934 (v_k = 600 km/s, F = 1) vs XR19 0.912, FP10 0.918
+    z_web = 1.2: this lane S8 ratio 0.944 (v_k = 600 km/s, F = 1) vs XR19 0.924, FP10 0.929
+    z_web = 0.5: this lane S8 ratio 0.974 (v_k = 600 km/s, F = 1) vs XR19 0.938, FP10 0.948
+  [FAIL] (reported) H3 (reported; pre-declared UNCERTAIN) the step model reproduces the record's whole-carrier S8 bracket within 0.02
+         measured: z_web 1.8: 0.934 vs 0.912; z_web 1.2: 0.944 vs 0.924; z_web 0.5: 0.974 vs 0.938
+         reading:  the record's numbers come from L319's solver with its own velocity treatment; the difference is the modelling spread
+
+======================================================================================================================
+H2  HOW MUCH CAN LEAVE: the converted fraction F allowed by CMB lensing, S8, RSD (BAO unchanged), per z_c and v_k
+======================================================================================================================
+    z_c = 0.5, v_k =  200.0: F_max = 1.00;  at F = 1: lensing 1.000 (lin, -0.4 sigma) / 1.000 (NL), S8 0.830 (ratio 0.997), d chi^2 RSD -0.0
+    z_c = 0.5, v_k =  400.0: F_max = 1.00;  at F = 1: lensing 1.000 (lin, -0.4 sigma) / 0.999 (NL), S8 0.823 (ratio 0.988), d chi^2 RSD +0.0
+    z_c = 0.5, v_k =  600.0: F_max = 1.00;  at F = 1: lensing 0.999 (lin, -0.4 sigma) / 0.998 (NL), S8 0.811 (ratio 0.974), d chi^2 RSD +0.1
+    z_c = 0.5, v_k = 1000.0: F_max = 1.00;  at F = 1: lensing 0.998 (lin, -0.5 sigma) / 0.996 (NL), S8 0.777 (ratio 0.934), d chi^2 RSD +1.3
+    z_c = 0.5, v_k = smooth: F_max = 0.10;  at F = 1: lensing 0.933 (lin, -2.8 sigma) / 0.927 (NL), S8 0.129 (ratio 0.155), d chi^2 RSD +143.1
+    z_c = 1.0, v_k =  200.0: F_max = 1.00;  at F = 1: lensing 1.000 (lin, -0.4 sigma) / 0.999 (NL), S8 0.827 (ratio 0.994), d chi^2 RSD -0.1
+    z_c = 1.0, v_k =  400.0: F_max = 1.00;  at F = 1: lensing 0.999 (lin, -0.4 sigma) / 0.997 (NL), S8 0.813 (ratio 0.976), d chi^2 RSD -0.3
+    z_c = 1.0, v_k =  600.0: F_max = 1.00;  at F = 1: lensing 0.997 (lin, -0.5 sigma) / 0.995 (NL), S8 0.791 (ratio 0.950), d chi^2 RSD +0.1
+    z_c = 1.0, v_k = 1000.0: F_max = 0.70;  at F = 1: lensing 0.993 (lin, -0.6 sigma) / 0.990 (NL), S8 0.730 (ratio 0.877), d chi^2 RSD +5.2
+    z_c = 1.0, v_k = smooth: F_max = 0.10;  at F = 1: lensing 0.770 (lin, -8.6 sigma) / 0.764 (NL), S8 0.119 (ratio 0.143), d chi^2 RSD +492.2
+    z_c = 2.0, v_k =  200.0: F_max = 1.00;  at F = 1: lensing 0.999 (lin, -0.4 sigma) / 0.998 (NL), S8 0.825 (ratio 0.991), d chi^2 RSD -0.2
+    z_c = 2.0, v_k =  400.0: F_max = 1.00;  at F = 1: lensing 0.997 (lin, -0.5 sigma) / 0.995 (NL), S8 0.806 (ratio 0.968), d chi^2 RSD -0.2
+    z_c = 2.0, v_k =  600.0: F_max = 1.00;  at F = 1: lensing 0.994 (lin, -0.6 sigma) / 0.991 (NL), S8 0.777 (ratio 0.933), d chi^2 RSD +1.2
+    z_c = 2.0, v_k = 1000.0: F_max = 0.50;  at F = 1: lensing 0.985 (lin, -0.9 sigma) / 0.980 (NL), S8 0.700 (ratio 0.840), d chi^2 RSD +14.2
+    z_c = 2.0, v_k = smooth: F_max = 0.00;  at F = 1: lensing 0.501 (lin, -18.2 sigma) / 0.496 (NL), S8 0.101 (ratio 0.121), d chi^2 RSD +623.2
+    (90 s)
+  [PASS] H2 [HEADLINE] A LATE COLD COMPONENT CAN LEAVE: in the kick mode (v_k <= 600 km/s) a converted fraction F >= 0.3 after z_c = 1 passes CMB lensing (8-400 within 2 sigma), the S8 floor, RSD (Delta chi^2 <= 4) and BAO (background unchanged)
+         measured: z_c 1.0, v 200.0: F_max 1.00; z_c 1.0, v 400.0: F_max 1.00; z_c 1.0, v 600.0: F_max 1.00; z_c 1.0, v 1000.0: F_max 0.70; z_c 1.0, v smooth: F_max 0.10
+
+======================================================================================================================
+H4  CHANGE OF FORM: decay into radiation (CLASS dcdm -> dr), h re-fitted to hold 100 theta_s; BAO, S8, CMB lensing
+======================================================================================================================
+    F = 0.01 (Gamma 0.71 km/s/Mpc): h re-fitted 0.6739 (LCDM 0.6733); BAO shift chi^2 0.00 (max fractional shift 0.0006); lensing amplitude 0.994 (-0.6 sigma); S8 0.827
+    F = 0.02 (Gamma 1.43 km/s/Mpc): h re-fitted 0.6745 (LCDM 0.6733); BAO shift chi^2 0.01 (max fractional shift 0.0011); lensing amplitude 0.989 (-0.8 sigma); S8 0.822
+    F = 0.05 (Gamma 3.64 km/s/Mpc): h re-fitted 0.6763 (LCDM 0.6733); BAO shift chi^2 0.08 (max fractional shift 0.0028); lensing amplitude 0.972 (-1.4 sigma); S8 0.807
+    F = 0.10 (Gamma 7.47 km/s/Mpc): h re-fitted 0.6795 (LCDM 0.6733); BAO shift chi^2 0.32 (max fractional shift 0.0058); lensing amplitude 0.944 (-2.4 sigma); S8 0.780
+    radiation mode: F_max = 0.05 (43 s)
+  [PASS] (reported) H4 (reported) THE RADIATION MODE is limited by the background: at fixed 100 theta_s the BAO shift and the lensing and S8 gates allow at most the printed decayed fraction
+         measured: F_max = 0.05; F 0.01: BAO chi^2 0.0, amp 0.994, S8 0.827; F 0.02: BAO chi^2 0.0, amp 0.989, S8 0.822; F 0.05: BAO chi^2 0.1, amp 0.972, S8 0.807; F 0.1: BAO chi^2 0.3, amp 0.944, S8 0.780
+
+======================================================================================================================
+W  THE LEDGER: part 4 (cosmology)
+======================================================================================================================
+    Q1       MEASURED    the cold component at z ~ 1100: Omega_c h^2 = 0.1200 +- 0.0012 (Planck 2018), a cold fluid (w, c_s^2, c_vis^2 ~ 0: the record's GDM theorem); CMB-scale physics is GR + CDM (XR26: TT/TE/EE = LCDM to 7.8e-8)  --  published; XR26
+    Q2       CONSTRAINT  kick mode, F_max by (z_c, v_k): (0.5, 200.0) 1.00; (0.5, 400.0) 1.00; (0.5, 600.0) 1.00; (0.5, 1000.0) 1.00; (0.5, smooth) 0.10; (1.0, 200.0) 1.00; (1.0, 400.0) 1.00; (1.0, 600.0) 1.00; (1.0, 1000.0) 0.70; (1.0, smooth) 0.10; (2.0, 200.0) 1.00; (2.0, 400.0) 1.00; (2.0, 600.0) 1.00; (2.0, 1000.0) 0.50; (2.0, smooth) 0.00  --  H2
+    Q3       CONSTRAINT  radiation mode (decay at fixed theta_s): F_max = 0.05  --  H4
+    Q4       CONSTRAINT  the forest bounds what converts before z ~ 2 (the record's XR12/XR19 calibrated gas proxy: bias-weighted converted fraction F_b(2) ~ 0.4 already sits at the 10% line)  --  XR12, XR19 (quoted)
+  [PASS] (reported) W (reported) the ledger of part 4
+         measured: 4 rows
+
+  5/6 checks pass; load-bearing failures: 0; wrote CFG4_cosmology_results.json (139 s)
+rc = 0

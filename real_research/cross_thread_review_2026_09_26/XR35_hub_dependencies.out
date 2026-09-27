@@ -1,0 +1,174 @@
+XR35_hub_dependencies.py -- WHICH HUB LANES LEAN ON THE DEFECTIVE KiDS PROJECTORS, BY HOW MUCH, AND DOES ANY VERDICT MOVE?
+Cross-thread review lane XR35, part 2 (2026-09-27).  Read-only on every committed file; XR28 (in flight in another lane) is
+read, never run.
+
+WHY.  FP20 (7a8c25321) listed the hub lanes that use either defective projection with a token scan of the sources (its H
+section).  A token scan cannot tell a call from a docstring, a regex, a substring or a same-named local function.  This lane
+traces the lanes the review asked about -- XR10's validator rows, XR18 (frw_yield_crossing; state_separator via FP9/FP13's
+kids_class), XR25_lambda_regulator, XR29_mw_outer_curve, and XR28 (list only) -- at the level of the code, says which of their
+checks consume a projected number, prices each, and re-runs only where a verdict could flip.  XR35_kids_rescore.py re-scores
+the M* chain itself (DE10, XR9, XR14); its results are read here for XR10's rows.
+
+WHERE A VERDICT COULD FLIP.  XR10's check E fails (rc = 1) whenever an enabled approximation rule's committed evidence stops
+holding.  Two enabled rules rest on KiDS numbers computed with the defective P2 projector:
+  SIGMA0_FOR_SIGMA1 : DE8's sigma_shift_by_branch r200/upper <= 0.4 and nfw/upper <= 0.4 (committed 0.39991 and 0.31318 --
+                      the first sits 9e-5 under its bar);
+  HARDW_FOR_SMOOTH  : DE9's MOND-sector window at p = 1 contains x_c0 = 2.5 at w = 0.1 and 0.25 (its upper edge is DE9's
+                      switch-only KiDS cap / E(0.25)^2; this rule is one of the two that carry XR14.kids, the only row
+                      claimed ON M*).
+Both are re-scored here with FP20's drop-ins (DE8's upper-branch scan re-run whole; DE9's cap_kids re-run at the two widths),
+each after a control that reproduces the committed numbers exactly with the committed projector.
+
+======================================================================================================================
+P0  THE CORRECTED SLOT IS FP20's DROP-IN (the SIS and an NFW halo, annulus averages at the 15 KiDS radii)
+======================================================================================================================
+  [PASS] P0 THE CORRECTED SLOT IS FP20's DROP-IN: M2Fix (node densities) and CellFix (DE8's cells) reproduce the SIS and NFW 3e12 c4 annulus Delta Sigma to 0.04% at the 15 KiDS radii
+         measured: SIS V=200: nodes 0.0037%, cells 0.0037%; NFW 3e12 c4: nodes 0.0063%, cells 0.0053%
+
+======================================================================================================================
+D1  THE TRACE: code-level references to the defective projectors in the hub lanes named, and the checks they feed
+======================================================================================================================
+    -- XR10_answer_validator.py (committed); exec'd / named sources: none
+       line  426  gates          (name      )  gates = set(row["gates"])
+       line  426  gates          (string key)  gates = set(row["gates"])
+       line  427  gates          (name      )  if "gates_only" in ru and not gates <= set(ru["gates_only"]):
+       line  428  gates          (name      )  return False, f"{rid}: covers only {ru['gates_only']}, row scores {sorted(gates - set(ru['gates_only']))}"
+       line  429  gates          (name      )  if ru.get("exclude_efe") and gates & EFE_GATES:
+       line  430  gates          (name      )  return False, f"{rid}: not controlled for the EFE ({sorted(gates & EFE_GATES)})"
+       line  728  gates          (string key)  P(f"\n  {row['id']}  [{row['lane']}, {cm}, claim {row['claim']}, {row['kind']}-level]  gates {row['gates']}  -> {STAT[row['id']]}"
+       none of these is a CALL of a projector or of machinery that calls one (a same-named variable / key only)
+    -- XR18_frw_yield_crossing.py (committed); exec'd / named sources: ['FP9_web_galaxy_separator.py']
+       line  124  kids_class     (name      )  bandpass_model, L_phys, y_th_z, law_dev_dex, kids_class = (NS9[k] for k in ("bandpass_model", "L_phys", "y_th_z", "law_dev_dex", "kids_class"))
+       line  124  kids_class     (string key)  bandpass_model, L_phys, y_th_z, law_dev_dex, kids_class = (NS9[k] for k in ("bandpass_model", "L_phys", "y_th_z", "law_dev_dex", "kids_class"))
+       line  137  kids_class     (name      )  KB = {f: kids_class(A0[f]) for f in FOOTS}
+       line  166  kids_class     (name      )  k1["kids"][f] = kids_class(A0[f], HEAD["L25"], y_th_z(FLh, Z_KIDS), YIELD) - KB[f]
+       calls ['kids_class@137', 'kids_class@166']; 'kids'-keyed accesses ['Z_KIDS@128', 'kids@166', 'kids@175']; checks fed: ['K1']
+       later use of the container 'k1' (after the check fed) at line 342, key 's8': ref0 = {m: (k1["s8"][str(("canonical", m))] if not MUTATE else s8_aq(model_e, "canonical", m)) for m in MODES}
+       later use of the container 'k1' (after the check fed) at line 343, key 'forest': f0 = k1["forest"][str(("canonical", "permode", 15.0))] if not MUTATE else forest_aq(model_e, "canonical", "permode", kFs=(15.0,))
+    -- XR18_state_separator.py (committed); exec'd / named sources: ['FP13_separator_from_state.py']
+       line  164  gates          (name      )  L_table, fun_of, yth_state, gates, model_of = NS["L_table"], NS["fun_of"], NS["yth_state"], NS["gates"], NS["model_of"]
+       line  164  gates          (string key)  L_table, fun_of, yth_state, gates, model_of = NS["L_table"], NS["fun_of"], NS["yth_state"], NS["gates"], NS["model_of"]
+       line  179  gates          (name      )  H = gates(Lh, yh, extra=True)
+       calls ['gates@179']; 'kids'-keyed accesses ['kids@192', 'kids@0.4@192']; checks fed: ['K1']
+       later use of the container 'H' (after the check fed) at line 440, key 's8': n3[(f, m)] = dict(fp13=H["s8"][(f, m)], rebuilt=s0, B=sB, B_Ygauss=sBG, B_Yhalo=sBH)
+       later use of the container 'H' (after the check fed) at line 506, key 's8': f"{min(H['s8'].values()):.4f}-{max(H['s8'].values()):.4f}; this lane's rebuild of FP13's yardstick without the terms: max dev {reb:.1e}); "
+    -- XR25_lambda_regulator.py (committed); exec'd / named sources: ['FP9_web_galaxy_separator.py']
+       line   96  kids_class     (name      )  law_dev_dex, kids_class = ns9["law_dev_dex"], ns9["kids_class"]
+       line   96  kids_class     (string key)  law_dev_dex, kids_class = ns9["law_dev_dex"], ns9["kids_class"]
+       line  204  kids_class     (name      )  KB = {f: kids_class(A0[f]) for f in FOOTS}
+       line  237  kids_class     (name      )  v_ = kids_class(A0[f], Lh(1 / (1 + Z_KIDS)), yh[f](1 / (1 + Z_KIDS)), YIELD) - KB[f]
+       calls ['kids_class@204', 'kids_class@237']; 'kids'-keyed accesses ['kids_class@96', 'Z_KIDS@101', 'kids@238', 'kids @238', 'kids@239']; checks fed: ['K1']
+       later use of the container 'rows_k1' (after the check fed) at line 324, key '.items': s8_floor0 = {k_: v_[0] for k_, v_ in rows_k1.items() if k_.startswith("s8")}
+    -- XR25_common.py (committed); exec'd / named sources: none
+       no code-level reference to any of the three projectors or the machinery that calls them
+    -- XR29_mw_outer_curve.py (committed); exec'd / named sources: ['FP11_local_group_flyby.py', 'FP7_aqual_type_repair.py', 'mi_aqual_mcmillan2017_2026.py', 'mi_aqual_mond_refit_2026.py']
+       no code-level reference to any of the three projectors or the machinery that calls them
+    -- XR28_common.py (UNCOMMITTED, in flight: read only); exec'd / named sources: none
+       line  612  model_esd      (def       , own def)  def model_esd(st, key="lens", mean=1.0):
+       none of these is a CALL of a projector or of machinery that calls one (a same-named variable / key only)
+    -- XR28_controls.py (UNCOMMITTED, in flight: read only); exec'd / named sources: ['FP6_gate_survey.py']
+       line  330  model_esd      (attribute )  got = X.model_esd(st_c, "lens", mean=0.0)
+       line  335  model_esd      (attribute )  got_h = X.model_esd(st_h, "lens", mean=1.0)
+       line  346  model_esd      (string key)  all(v_ <= 2e-3 for k_, v_ in K5b.items() if "model_esd" not in k_) and K5b["compact mass (model_esd)"] < 1e-9
+       line  369  model_esd      (attribute )  fw = X.dk14_fit(X.model_esd(st), "esd", r200h=r200h if window else None)
+       calls ['model_esd@330', 'model_esd@335', 'model_esd@369']; 'kids'-keyed accesses []; checks fed: ['K5b', 'K6']
+    -- XR28_outskirts_L.py (UNCOMMITTED, in flight: read only); exec'd / named sources: none
+       line   93  model_esd      (attribute )  e = X.model_esd(st); g = X.model_sigma(st)
+       calls ['model_esd@93']; 'kids'-keyed accesses []; checks fed: ['O1']
+    -- XR28_hot_phase.py (UNCOMMITTED, in flight: read only); exec'd / named sources: none
+       no code-level reference to any of the three projectors or the machinery that calls them
+    XR29 exec's FP11_local_group_flyby.py whole (FP11 computes KiDS rows internally); XR29 reads from it only: ['Efac', 'Grid', 'L_of_a', 'MPC', 'RG', 'W_pair', 'YIELD', 'dg_body', 'g_iso', 'phantom', 'yth_of_a']
+  [PASS] D1 THE TRACE: XR18_frw and XR25 reach FP6's esd_of_M only through kids_class and XR18_state only through FP13's gates(), and every call and every 'kids'-keyed access feeds only the K1 control (the containers' later uses are printed with their keys); XR10, XR29 (and XR25_common) call nothing of the kind, and XR29 reads nothing projected from the FP11 it exec's; the XR28 files call only their own model_esd
+         measured: XR18_frw_yield_crossing.py: calls ['kids_class'] -> ['K1']; XR18_state_separator.py: calls ['gates'] -> ['K1']; XR25_lambda_regulator.py: calls ['kids_class'] -> ['K1'] | no calls in XR10/XR29/XR25_common: True (XR10's 'gates' is a local set of a row's gate names); XR29 reads from FP11 ['Efac', 'Grid', 'L_of_a', 'MPC', 'RG', 'W_pair', 'YIELD', 'dg_body', 'g_iso', 'phantom', 'yth_of_a']; XR28 calls: [[], ['model_esd'], ['model_esd'], []]
+
+======================================================================================================================
+D2  THE P1 CONSUMERS' K1 CONTROLS, PRICED BY FP20's COMMITTED RE-SCORE (FP9 H2, FP13 H1)
+======================================================================================================================
+    XR18_frw_yield_crossing  K1: FP9 H2 KiDS (z = 0.25) canonical committed in the lane    -2.402 | FP20 before    -2.402 -> after    -2.630  (shift  -0.228)
+    XR18_frw_yield_crossing  K1: FP9 H2 KiDS (z = 0.25) alt     committed in the lane    -5.570 | FP20 before    -5.570 -> after    -1.938  (shift  +3.632)
+    XR18_state_separator     K1: FP13 H1 KiDS (z = 0.25) canonical committed in the lane    -6.245 | FP20 before    -6.245 -> after    -8.625  (shift  -2.380)
+    XR18_state_separator     K1: FP13 H1 KiDS (z = 0.25) alt    committed in the lane    -7.671 | FP20 before    -7.671 -> after   -10.346  (shift  -2.675)
+    XR18_state_separator     K1: FP13 H1 KiDS (z = 0.4) canonical committed in the lane    -7.828 | FP20 before    -7.828 -> after    -8.818  (shift  -0.989)
+    XR18_state_separator     K1: FP13 H1 KiDS (z = 0.4) alt     committed in the lane   -10.668 | FP20 before   -10.668 -> after    -9.662  (shift  +1.006)
+    XR18_state_separator     K1: FP13 H1 KiDS (z = 0.7) canonical committed in the lane      +nan | FP20 before  +542.720 -> after  +558.692  (shift +15.973)
+    XR18_state_separator     K1: FP13 H1 KiDS (z = 0.7) alt     committed in the lane      +nan | FP20 before  +575.735 -> after  +595.265  (shift +19.530)
+    XR25_lambda_regulator    K1: FP13 H1 KiDS (z = 0.25) canonical committed in the lane    -6.245 | FP20 before    -6.245 -> after    -8.625  (shift  -2.380)
+    XR25_lambda_regulator    K1: FP13 H1 KiDS (z = 0.25) alt    committed in the lane    -7.671 | FP20 before    -7.671 -> after   -10.346  (shift  -2.675)
+  [PASS] (reported) D2 (reported) THE P1 CONSUMERS' K1 CONTROLS: each lane's committed K1 KiDS value is FP20's 'before', FP20's committed re-score moves it by the shift printed; each K1 would fail on a re-run (pinned to a defective-projection number); no other check of these lanes consumes KiDS (D1)
+         measured: 8 of 8 committed values equal FP20's 'before'; largest shift 19.53
+
+======================================================================================================================
+X1  XR10's SIGMA0_FOR_SIGMA1 EVIDENCE: DE8's upper-branch sigma shift, committed vs corrected projection
+======================================================================================================================
+    committed projection: L352 base 174.297/166.922; sigma shift r200/upper 0.39991, nfw/upper 0.31318; cells passing (sigma = 0 / 1): r200 22/22 of 36, nfw 35/35 of 36   [56 s]
+    corrected projection: L352 base 159.920/153.018; sigma shift r200/upper 0.36364, nfw/upper 0.27522; cells passing (sigma = 0 / 1): r200 5/5 of 36, nfw 31/31 of 36   [64 s]
+  [PASS] K1 CONTROL: with the committed projector DE8's upper-branch scan (2 outer conventions x 36 cells x 2 sigma x 2 footings) and its two sigma shifts are reproduced exactly
+         measured: 288 numbers, max |d| 0.0e+00; shifts max |d| 0.0e+00
+    the largest corrected-projection sigma shift sits at r200/upper/0.5/3.39/2.0_cap_1000.0/500/0.25 (0.36364)
+  [PASS] (reported) X1 (reported; = HX1, pre-declared) XR10's SIGMA0_FOR_SIGMA1 evidence under the corrected projection: DE8's upper-branch sigma shift <= 0.4 on both outer conventions (XR10's json_le evidence)
+         measured: r200/upper 0.39991 -> 0.36364; nfw/upper 0.31318 -> 0.27522
+         reading:  the evidence would still hold when DE8 is re-run with the corrected projection
+
+======================================================================================================================
+X2  XR10's HARDW_FOR_SMOOTH EVIDENCE: DE9's MOND-sector switch-only KiDS cap and its p = 1 window
+======================================================================================================================
+    committed projection: MOND-sector switch-only KiDS cap x_c,eff(0.25) at w = 0.1: 4.478906250000001, w = 0.25: 4.347265625000002   [36 s]
+    corrected projection: MOND-sector switch-only KiDS cap x_c,eff(0.25) at w = 0.1: 4.385546875000003, w = 0.25: 4.304296875000002   [37 s]
+  [PASS] K2 CONTROL: with the committed projector DE9's MOND-sector switch-only KiDS caps at w = 0.1 and 0.25 are reproduced exactly
+         measured: {0.1: 4.478906250000001, 0.25: 4.347265625000002} vs DE9 4.478906250000001/4.347265625000002 (max |d| 0.0e+00)
+    DE9's committed window (mond, p = 1): w = 0.1 [1.667, 3.448], w = 0.25 [2.0, 3.346]; recomputed committed {0.1: (1.667, 3.448), 0.25: (2.0, 3.346)}; corrected {0.1: (1.667, 3.376), 0.25: (2.0, 3.313)}
+  [PASS] (reported) X2 (reported; = HX2, pre-declared) XR10's HARDW_FOR_SMOOTH evidence under the corrected projection: DE9's MOND-sector window at p = 1 still contains x_c0 = 2.5 at w = 0.1 and 0.25
+         measured: caps w = 0.1: 4.4789 -> 4.385546875000003; w = 0.25: 4.3473 -> 4.304296875000002; windows {0.1: (1.667, 3.448), 0.25: (2.0, 3.346)} -> {0.1: (1.667, 3.376), 0.25: (2.0, 3.313)}
+
+======================================================================================================================
+X3  XR10's KiDS ROWS: the projector each row scores with, and before -> after where re-scored
+======================================================================================================================
+    DE2.window       [comparison] P2 (project_M2 / esd_from_mlens via L352 / DE8)
+                      on the defective projector; NOT re-scored (here, in XR35_kids_rescore or in FP20); a comparison row
+    DE8.kids         [comparison] P2 (project_M2 / esd_from_mlens via L352 / DE8)
+                      upper branch (X1): sigma shift r200 0.3999 -> 0.3636, nfw 0.3132 -> 0.2752; passing cells r200 22 -> 5 of 36, nfw 35 -> 31 of 36 (sigma = 1); lower branches not re-scored
+    DE9.msc          [comparison] P2 (project_M2 / esd_from_mlens via L352 / DE8)
+                      MOND-sector caps (X2) w = 0.1 4.4789 -> 4.385546875000003, w = 0.25 4.3473 -> 4.304296875000002
+    DE9.curv         [comparison] P2 (project_M2 / esd_from_mlens via L352 / DE8)
+                      on the defective projector; NOT re-scored (here, in XR35_kids_rescore or in FP20); a comparison row
+    DE10.kids        [comparison] P2 (project_M2 / esd_from_mlens via L352 / DE8)
+                      worst -29.02 -> -24.04 (still passes; XR35_kids_rescore R1)
+    L390.kids        [comparison] P2 (project_M2 / esd_from_mlens via L352 / DE8)
+                      v_k = 600: -13.12/-7.16 -> -9.61/-3.65; v_k = 650: -12.96/-7.14 -> -9.35/-3.52 (its R1 at 600/650 km/s = DE10's C1, re-scored in XR35_kids_rescore; bar +4)
+    L392.curvature   [comparison] P2 (project_M2 / esd_from_mlens via L352 / DE8)
+                      on the defective projector; NOT re-scored (here, in XR35_kids_rescore or in FP20); a comparison row
+    L392.matter      [comparison] P2 (project_M2 / esd_from_mlens via L352 / DE8)
+                      on the defective projector; NOT re-scored (here, in XR35_kids_rescore or in FP20); a comparison row
+    AT3.gates        [comparison] P1 (esd_of_M via kids_* / gates), P2 (project_M2 / esd_from_mlens via L352 / DE8)
+                      FP20 R11: window cells keep their KiDS pass [['(0.1, 600.0)', '0.25'], ['(0.03, 600.0)', '0.25']]; gate moves [0.6777561833437176, 6.124924681013027]
+    XR9.kids         [pending   ] P2 (project_M2 / esd_from_mlens via L352 / DE8)
+                      passing cells ['p1.5_x2.5', 'p1_x2.5'] -> ['p1.5_x2.5', 'p1_x2.5'] (XR35_kids_rescore R2)
+    XR14.kids        [M*        ] P2 (project_M2 / esd_from_mlens via L352 / DE8)
+                      M* worst -26.28 -> -21.72, L388 -28.75 -> -23.83 (still passes; XR35_kids_rescore R3)
+  [PASS] (reported) X3 (reported) XR10's KiDS rows mapped: every row that scores KiDS uses a defective projector; the rows re-scored here, in XR35_kids_rescore and in FP20 are listed before -> after; XR10's own verdicts are axis classifications from the code and consume no projected number
+         measured: 11 rows; re-scored 7; not re-scored ['DE2.window', 'DE9.curv', 'L392.curvature', 'L392.matter']
+
+======================================================================================================================
+XR28 (IN FLIGHT IN ANOTHER LANE: LISTED FROM ITS SOURCES, NOT RUN)
+======================================================================================================================
+    XR28_common's model_esd projects its stacked profiles with its own uniform-shell kernel (shell_esd_kernel: the exact uniform-shell Sigma and cylinder mass, the same closed form as FP20's shell_mats): True; XR28_controls K5 checks it against Wright & Brainerd; FP6 is exec'd there only for phantom() (K4).  It does not use esd_of_M, project_M2 or esd_from_mlens; FP20's H flagged it on the name model_esd (DE8 has a function of that name) and on esd_of_M in K5's docstring.
+  [PASS] (reported) XR28 (reported) the in-flight lane uses none of the three defective projectors (its own exact uniform-shell kernel)
+         measured: own kernel present: True; code references [['model_esd'], ['model_esd'], ['model_esd'], []]
+  [PASS] F EVERY RE-SCORE COMPLETED: DE8's upper branch and DE9's caps in both projections, every number finite
+         measured: 580 numbers; non-finite 0; DE9 caps found: True
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  XR18_frw / XR18_state / XR25: the projected KiDS number feeds only each lane's K1 control (FP9 H2, FP13 H1), which FP20's
+  committed re-score moves by up to 19.53; each K1 would fail on a re-run (pinned to a defective number); no
+  physics check of those lanes moves.  XR29: no dependency.  XR28: its own exact kernel (listed, not run).
+  XR10: its verdicts consume no projected number, but two enabled rules rest on KiDS evidence computed with the defective P2:
+    SIGMA0_FOR_SIGMA1 (DE8 upper sigma shift <= 0.4): r200 0.39991 -> 0.36364, nfw
+    0.31318 -> 0.27522 -- holds;
+    HARDW_FOR_SMOOTH (DE9 window contains x_c0 = 2.5): caps 4.479/4.347 -> 4.386/
+    4.304, windows {0.1: (1.667, 3.376), 0.25: (2.0, 3.313)} -- holds.
+  kappa = 1/2 is FITTED (Z = 5.7888).  Not closed.
+
+  10/10 checks pass; load-bearing failures: 0; wrote XR35_hub_dependencies_results.json   [198 s]
+rc=0
