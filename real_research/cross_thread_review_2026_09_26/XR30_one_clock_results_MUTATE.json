@@ -1,0 +1,527 @@
+{
+ "lane": "XR30",
+ "mutate": true,
+ "checks": {
+  "C1 CONTROL XR20 T1 reproduced EXACTLY from XR20's own source (read-only slices): inputs, the unimodular-clock table, the vacuum table, and the T1a-T1e measured strings (incl. T1c's lattice count: rank 4, 2 phase-space dimensions)": {
+   "ok": true,
+   "measured": "inputs True; clock True; vacuum True; strings {'T1a': True, 'T1b': True, 'T1c': True, 'T1d': True, 'T1e': True}",
+   "load_bearing": true
+  },
+  "C2 CONTROL FP14's Dirac count and York/CMC check reproduced EXACTLY from FP14's own source (read-only slices): K1, L2, C1 and C2 measured strings equal the committed JSON (K1's timing aside), the det line and the Dirac bookkeeping line are verbatim in FP14's committed .out, and FP5 A3's count formula gives N_phys = 3": {
+   "ok": true,
+   "measured": "strings {'K1': True, 'L2': True, 'C1': True, 'C2': True}; .out lines True; FP14 count 3; FP5 N_phys 3 (committed: 'N_phys = 3' in A3: True)",
+   "load_bearing": true
+  },
+  "C3 CONTROL FP14 C1b (the multiplier on FRW) re-run through FP2's committed machinery: FP14's committed C1b numbers EXACTLY": {
+   "ok": true,
+   "measured": "dict equal True: G_eff -2/(alpha_c - 2), slip 1, mu eq/Q -2*a(t)**3",
+   "load_bearing": true
+  },
+  "M1 THE COMBINED ACTION ON FRW: sqrt(-g) R = -6 a adot^2/N + a total derivative (from the metric); the CMC term vanishes on a homogeneous leaf and, on ANY leaf, has no global part (Sum_j v_j (K_j - <K>) = 0 identically) and an exact zero-mode symmetry mu N -> mu N + c(t): its multiplier's zero mode is pure gauge; HT gives Lambda-dot = 0 and T-dot = N a^3; Friedmann is GR + Lambda_0": {
+   "ok": true,
+   "measured": "R identity True; leaf sum 0; zero-mode change 0; EL(T) = -2*Derivative(Lambda(t), t)",
+   "load_bearing": true
+  },
+  "M2 YORK TIME IS A CLOCK, Lambda IS CONSERVED: on dust FRW dK/dt = -12 pi G rho_m (never zero while rho_m > 0), while Lambda-dot = 0; the only conserved combination of the leaf data is the Friedmann (global Hamiltonian) one, Q = K^2/3 - 8 pi G rho_m = Lambda_0; K -> K_inf = sqrt(3 Lambda_0) as rho_m -> 0": {
+   "ok": true,
+   "measured": "dK/dt = -12*pi*G*m/a(t)**3; Q = Lambda_0; K_inf = sqrt(3)*sqrt(Lambda_0)",
+   "load_bearing": true
+  },
+  "M3 MERGER MB (ONE term 2 f(K)(T-dot - N a^3) replacing both mu and HT, f a generic cubic): T's equation is proportional to f'(K) dK/dt, so K is frozen; with K = K_0 the lapse equation is solved by the clock rate (the dust is absorbed into T-dot) and the scale-factor equation is then identically satisfied -- H = K_0/3 at every z for any dust.  This merger FAILS FRW (E(z) = 1 vs 1.322 / 1.791 / 3.769 / 8.294)": {
+   "ok": true,
+   "measured": "T-dot absorbs m: True; EL(a) under K = K_0: 0",
+   "load_bearing": true
+  },
+  "M4 MERGER MA (T^m = l sqrt(-g) n^m, the linear-cuscuton form of the HT term): Lambda's equation pins K = 1/l (a NEW constant) and the lapse equation makes Lambda(t) = 1/(3 l^2) - 8 pi G rho_m, not constant: with l set today, Lambda falls to zero at z = Omega_m^(-1/3) - 1 = 0.469 and a0 = alpha(Lambda) is undefined beyond -> FAILS": {
+   "ok": true,
+   "measured": "K = 1/ell; Lambda(t) = -8*pi*G*m/a(t)**3 + 1/(3*ell**2)",
+   "load_bearing": true
+  },
+  "M5 HT CARRIES NO FOLIATION (H1): the HT term is invariant under T^m -> T^m + d_n omega^{mn} (d_m d_n omega^{mn} = 0 in 3+1), T[S2] - T[S1] is the four-volume between the two surfaces (Stokes, 1+1), and a visibly different surface enclosing zero four-volume has the same T -- the four-volume time labels equivalence classes, not a foliation (Kuchar 1991).  On the khronon's leaves dT/dtau = N a^3 > 0: T is a monotone RELABELING of the CMC leaves, a gauge choice of the khronon's global reparametrization, not a merger": {
+   "ok": true,
+   "measured": "3-form identity True; Stokes 0.0e+00; zero-volume deformation 0.293 -> dT -4.4e-16; dT/dtau = N(t)*a(t)**3",
+   "load_bearing": true
+  },
+  "F1 FRW + PERTURBATIONS OF THE COMBINED ROOT: T^x's equation forces delta Lambda_k = 0 on every k != 0 mode, delta Lambda's equation is the unimodular clock, the multiplier's background is pure gauge, and with delta Lambda = 0 all eight remaining linear equations EQUAL FP14 C1b's: G_eff/G = 2/(2 - alpha_c), no slip -- HT adds nothing to FRW growth": {
+   "ok": true,
+   "measured": "clock -2*a(t)**3 + 2*Derivative(Tbar(t), t); equations equal True; G_eff/G -2/(alpha_c - 2); slip 1",
+   "load_bearing": true
+  },
+  "L0 CONTROL this lane's extended block (FP14's unitary-gauge construction, copied) reproduces FP14's committed multiplier determinant string exactly": {
+   "ok": true,
+   "measured": "det = 128*k**6*(C_phi*alpha_c*k**4 + 3*C_phi*alpha_c*k**2*omega**2 - 2*C_phi*k**4 - alpha_c*k**2*lambda*omega**2 - 3*alpha_c*k**2*omega**2*sigma**2 - 3*alpha_c*lambda*omega**4 + 2*k**2*lambda*omega**2 + 6*k**2*omega**2*sigma**2)",
+   "load_bearing": true
+  },
+  "L1 THE COMBINED BLOCK (FP14's multiplier + HT, generic delta Lambda couplings m_L, g_phi): det = -4 x det(FP14), D's row forces delta Lambda = 0, and with delta Lambda = 0 FP14's five equations are unchanged -- so the count (deg_omega 4; 2 at lambda = 0), the health, and every response FP14 C2 scored (static MOND pole, equal-time part c_2-blind and EFE-blind) carry over; the static Newtonian-limit coupling is 2/(2 - alpha_c) of GR's, not the York/CMC 2: THE KILL STAYS EVADED": {
+   "ok": true,
+   "measured": "det ratio -4; equations unchanged True; G_N/G = -2/(alpha_c - 2); FP14 C2 flags (reproduced) static True, equal-time True, EFE-blind True",
+   "load_bearing": true
+  },
+  "L2 MB LOCALLY: det(MB) = f_1^2 x det(FP14 multiplier block) -- at k != 0 the merged single term IS FP14's CMC multiplier in other variables (mu <-> -f_1 (D - delta sqrt(-g))); its failure is purely global (M3: the zero mode freezes York time)": {
+   "ok": true,
+   "measured": "det ratio f_1**2",
+   "load_bearing": true
+  },
+  "L3 MC (the multiplier made the HT field, mu = mubar + b_1 delta Lambda; b_1 needs a NEW constant): HT forces delta Lambda = 0, so delta mu = 0; the constant-mubar term is a total derivative (sqrt(-g) K = d_m(sqrt(-g) n^m); no field-equation change); the block is FP14's c_2 = 0 block, whose only scalar root at lambda = 0 is omega = 0: the khronon is FROZEN (FP5 B4's exceptional surface) and the CMC condition is lost -> FAILS": {
+   "ok": true,
+   "measured": "total derivative True; det ratio -4; lambda = 0 roots [0]",
+   "load_bearing": true
+  },
+  "L4 SQ (ONE GLOBAL multiplier c(t) with Int N sqrt(h)(K - <K>)^2 = 0, the only global way to impose CMC): its fluctuation is ABSENT at quadratic order (the second-order term is -K1**2*cbar); the quadratic action is FP14's c_2 block at c_2 = cbar, a value no equation fixes (the knob FP14 eliminated returns); the scalar mode and a time-dependent forced response both carry delta K != 0, which the forceless constraint forbids: irregular, not FP14's regular CMC limit -> FAILS": {
+   "ok": true,
+   "measured": "|dK|/|mode| 0.314, forced 0.940; |dK|/|mode| 4.924, forced 2.825",
+   "load_bearing": true
+  },
+  "D1 THE LATTICE COUNT (MOND-free trace sector, N_L = 3 and 4): physical phase-space dimension 2 N_L for the combined root, 2 N_L - 2 for the core without HT (HT adds exactly ONE global pair), 2 N_L with no CMC term at all (the multiplier adds no degree of freedom -- FP14's 'same count'), 2 N_L for ONE global pair 2 Lambda_0 (T-dot - Sum N v) (the local HT fields are not needed on the khronon's leaves), and 2 N_L for the merged MB; every constraint surface and consistency condition solved to < 1e-10 (no tertiary constraints), rank gaps > 1e10": {
+   "ok": true,
+   "measured": "comb/3: 6; comb/4: 8; core/3: 4; core/4: 6; noCMC/3: 6; noCMC/4: 8; globalHT/3: 6; globalHT/4: 8; MB/3: 6; MB/4: 8",
+   "load_bearing": true
+  },
+  "D1m THE SAME WITH THE MOND SCALAR (lambda = 0, auxiliary; alpha read from the HT momentum, so the MOND sector feeds the clock): the counts are unchanged -- combined 2 N_L, core 2 N_L - 2, no-CMC 2 N_L, global pair 2 N_L; the phi zero mode is one more first-class constraint (FP14 L1's shift symmetry)": {
+   "ok": true,
+   "measured": "comb/3: 6 (FC 9, SC 12); comb/4: 8 (FC 11, SC 18); core/3: 4 (FC 4, SC 12); core/4: 6 (FC 4, SC 18); noCMC/3: 6 (FC 8, SC 8); noCMC/4: 8 (FC 10, SC 12); globalHT/3: 6 (FC 4, SC 12); globalHT/4: 8 (FC 4, SC 18)",
+   "load_bearing": true
+  },
+  "D2 THE CLASSES DO NOT MATCH: HT's spatial constraints and pi_X are FIRST class (their bracket rows vanish identically: no constraint depends on T or X), the CMC constraints are SECOND class (their bracket block with pi_mu has rank N_L - 1, full on the non-zero modes), and the mu zero mode (Sum pi_mu/N), the lapse scaling and the global Hamiltonian H_T = H_c + u.phi are first class.  A first-class family cannot be identified with a second-class one (the rank of the bracket matrix is a canonical invariant): the local parts cannot be one term, and the CMC's global part is pure gauge while HT's is a physical pair": {
+   "ok": true,
+   "measured": "HT rows 0e+00; CMC rank 3; FC 10 = 2 N_L + 2, SC 12 = 4 N_L - 4",
+   "load_bearing": true
+  },
+  "D3 THE GLOBAL STRUCTURE: {T_tot, H} = Sum N v != 0 (the four-volume rate), so T - tau is an admissible gauge for the khronon's global reparametrization (the four-volume time can LABEL the CMC leaves); on the constraint surface p_T (= 2 Lambda_0) is conserved exactly while the York clock Kbar ticks; in the merged MB the site values of K are frozen": {
+   "ok": true,
+   "measured": "{T_tot, H} 4.4944 (Sum N v 4.4944); p_T-dot 0e+00; Kbar-dot -0.2188; MB K-dot 0e+00",
+   "load_bearing": true
+  },
+  "A1 THE FOOTING IDENTITY: the canonical a0 is (kappa/sqrt(24 pi)) c^2 K_inf with K_inf = sqrt(3 Lambda) the asymptotic York time, and the alt a0 is the same coefficient on today's York time K_0 = 3 H_0/c -- an algebraic identity (kappa stays FITTED; nothing is derived): applied at every z, the alt reading IS the rival a0 proportional to H(z)": {
+   "ok": true,
+   "measured": "canonical 9.360325e-11 vs FP0 9.360325e-11; alt 1.131204e-10 vs FP0 1.131204e-10",
+   "load_bearing": true
+  },
+  "A2 K_inf AND THE VACUUM: a constant matter vacuum energy is absorbed into HT's Lambda by the field redefinition Lambda' = Lambda + 8 pi G rho_vac, which changes the action by -16 pi G rho_vac d_m T^m (a total derivative: identical field equations); so whether alpha reads Lambda or Lambda_obs = Lambda' (= K_inf^2/3, what K_inf sees) is a CHOICE in the action, not new physics -- XR20 T1e's caveat is that choice.  The leading large-volume global Hamiltonian of unimodular shape dynamics, 2 Lambda - (3/8) P^2, vanishes exactly at K = sqrt(3 Lambda)": {
+   "ok": true,
+   "measured": "total derivative True; H_gl root K = [sqrt(3)*sqrt(Lambda_g)]",
+   "load_bearing": true
+  },
+  "A3 THE LOCAL YORK TIME IS EXACTLY LEAF-UNIFORM ON THE CMC ROOT: mu appears only in the CMC term, so its equation is N sqrt(h)(K - <K>) = 0 whatever else the action contains (a K-dependent MOND coupling included): a tie to the local K has NO local variation on FP14's root (XR20 T3c's estimate scales to zero exactly), and fails only through K(z) = 3 H(z)/c": {
+   "ok": true,
+   "measured": "dL/dmu_j + 2 N_j v_j (K_j - <K>) = [0, 0, 0, 0]",
+   "load_bearing": true
+  },
+  "HEADLINE-FLAT the tie read from the conserved combination of the CMC leaf data, Q = K^2/3 - 8 pi G rho_m (= Lambda_0 = K_inf^2/3 on shell, the global constraint's value): a0(z)/a0(0) = 1 at z = 0.5, 1, 2.5, 5, 1100 on both footings, to 1e-12, and uniform on every leaf (a leaf-global quantity)": {
+   "ok": false,
+   "measured": "canonical: 1.322436, 1.790838, 3.768712, 8.293944, 20513.651077; alt: 1.322436, 1.790838, 3.768712, 8.293944, 20513.651077",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "C1": {
+   "clock": {
+    "canonical": {
+     "0.001": 1.0482108630026466e-07,
+     "0.01": 3.3058337426887534e-06,
+     "0.1": 0.00010186526706221082,
+     "1.0": 0.002650128623577549,
+     "10.0": 0.042870061815783914,
+     "100.0": 0.484927869455304
+    },
+    "alt": {
+     "0.001": 1.530905305977284e-07,
+     "0.01": 4.828149178747996e-06,
+     "0.1": 0.000148773575379306,
+     "1.0": 0.0038704960180773306,
+     "10.0": 0.06261145292213219,
+     "100.0": 0.7082340725212559
+    }
+   },
+   "eps": {
+    "canonical": 0.009947183943243459,
+    "alt": 0.014527798953181624
+   }
+  },
+  "M3": {
+   "T_dot": "(-8*pi*G*m + 2*K_0**3*c3*exp(K_0*t) + K_0**2*c2*exp(K_0*t) + K_0**2*exp(K_0*t)/3)/(K_0*(3*K_0**2*c3 + 2*K_0*c2 + c1))",
+   "E_LCDM": {
+    "0.5": 1.3224361988390971,
+    "1.0": 1.7908377927662795,
+    "2.5": 3.768711649887797,
+    "5.0": 8.293943573475769
+   }
+  },
+  "L": {
+   "det_comb_ratio": "-4",
+   "GN_ratio": "-2/(alpha_c - 2)",
+   "det_MB_ratio": "f_1**2",
+   "det_MC_ratio": "-4",
+   "c2_zero_lambda0": "128*k**8*omega**2*(C_phi*alpha_c - alpha_c*sigma**2 + 2*sigma**2)",
+   "SQ": [
+    {
+     "pars": {
+      "alpha_c": "1/3",
+      "C_phi": "1/5",
+      "sigma": "7/10",
+      "cbar": "3/2",
+      "k": "1"
+     },
+     "omega": 0.2950978288503027,
+     "dK_mode_over_norm": 0.3141000735018797,
+     "dK_forced_over_J": 0.9402023919043239
+    },
+    {
+     "pars": {
+      "alpha_c": "1/100",
+      "C_phi": "3",
+      "sigma": "1/2",
+      "cbar": "1/20",
+      "k": "2"
+     },
+     "omega": 1.026057505302822,
+     "dK_mode_over_norm": 4.923610628595836,
+     "dK_forced_over_J": 2.825065801222078
+    }
+   ]
+  },
+  "D3_clock_mond": 0.9999540322927875,
+  "D": {
+   "comb|NL=3|phi=False": {
+    "n": 15,
+    "nconstr": 18,
+    "rankJ": 16,
+    "SC": 8,
+    "FC": 8,
+    "dims": 6,
+    "surface_res": 3.1988300897012323e-15,
+    "consistency_res": 3.1988300897012323e-15,
+    "Kbar_dot": -0.22416945900638593,
+    "pT0_dot": 0.0,
+    "T_G": 3.330447300971759
+   },
+   "comb|NL=4|phi=False": {
+    "n": 20,
+    "nconstr": 24,
+    "rankJ": 22,
+    "SC": 12,
+    "FC": 10,
+    "dims": 8,
+    "surface_res": 2.4514353220983498e-15,
+    "consistency_res": 2.4514353220983498e-15,
+    "Kbar_dot": -0.21882138132534507,
+    "pT0_dot": 0.0,
+    "T_G": 4.494402912334921
+   },
+   "core|NL=3|phi=False": {
+    "n": 9,
+    "nconstr": 12,
+    "rankJ": 11,
+    "SC": 8,
+    "FC": 3,
+    "dims": 4,
+    "surface_res": 1.8375925781022318e-14,
+    "consistency_res": 1.8375925781022318e-14,
+    "Kbar_dot": -0.22442601942736773
+   },
+   "core|NL=4|phi=False": {
+    "n": 12,
+    "nconstr": 16,
+    "rankJ": 15,
+    "SC": 12,
+    "FC": 3,
+    "dims": 6,
+    "surface_res": 6.5329686105286555e-15,
+    "consistency_res": 6.5329686105286555e-15,
+    "Kbar_dot": -0.21944676040661573
+   },
+   "noCMC|NL=3|phi=False": {
+    "n": 12,
+    "nconstr": 12,
+    "rankJ": 11,
+    "SC": 4,
+    "FC": 7,
+    "dims": 6,
+    "surface_res": 2.0220370516854658e-15,
+    "consistency_res": 2.0220370516854658e-15,
+    "pT0_dot": 0.0,
+    "T_G": 3.330447300971759
+   },
+   "noCMC|NL=4|phi=False": {
+    "n": 16,
+    "nconstr": 16,
+    "rankJ": 15,
+    "SC": 6,
+    "FC": 9,
+    "dims": 8,
+    "surface_res": 2.2022314527525566e-15,
+    "consistency_res": 2.2022314527525566e-15,
+    "pT0_dot": 0.0,
+    "T_G": 4.494402912334921
+   },
+   "globalHT|NL=3|phi=False": {
+    "n": 10,
+    "nconstr": 12,
+    "rankJ": 11,
+    "SC": 8,
+    "FC": 3,
+    "dims": 6,
+    "surface_res": 3.1988300897012323e-15,
+    "consistency_res": 3.1988300897012323e-15,
+    "Kbar_dot": -0.2241694590063859
+   },
+   "globalHT|NL=4|phi=False": {
+    "n": 13,
+    "nconstr": 16,
+    "rankJ": 15,
+    "SC": 12,
+    "FC": 3,
+    "dims": 8,
+    "surface_res": 2.4514353220983498e-15,
+    "consistency_res": 2.4514353220983498e-15,
+    "Kbar_dot": -0.21882138132534507
+   },
+   "MB|NL=3|phi=False": {
+    "n": 12,
+    "nconstr": 12,
+    "rankJ": 11,
+    "SC": 4,
+    "FC": 7,
+    "dims": 6,
+    "surface_res": 2.585388500508934e-15,
+    "consistency_res": 2.585388500508934e-15,
+    "pT0_dot": 0.0,
+    "K0site_dot": 0.0,
+    "T_G": 2.1615136806863866
+   },
+   "MB|NL=4|phi=False": {
+    "n": 16,
+    "nconstr": 16,
+    "rankJ": 15,
+    "SC": 6,
+    "FC": 9,
+    "dims": 8,
+    "surface_res": 2.5717275531356165e-15,
+    "consistency_res": 2.5717275531356165e-15,
+    "pT0_dot": 0.0,
+    "K0site_dot": 0.0,
+    "T_G": 2.95607632214705
+   },
+   "comb|NL=3|phi=True": {
+    "n": 18,
+    "nconstr": 24,
+    "rankJ": 21,
+    "SC": 12,
+    "FC": 9,
+    "dims": 6,
+    "surface_res": 2.9559688030644793e-15,
+    "consistency_res": 2.9559688030644793e-15,
+    "Kbar_dot": -0.2250518079462499,
+    "pT0_dot": 0.0,
+    "T_G": 3.3304458109997648
+   },
+   "comb|NL=4|phi=True": {
+    "n": 24,
+    "nconstr": 32,
+    "rankJ": 29,
+    "SC": 18,
+    "FC": 11,
+    "dims": 8,
+    "surface_res": 2.121566811119635e-15,
+    "consistency_res": 2.121566811119635e-15,
+    "Kbar_dot": -0.21847884938975615,
+    "pT0_dot": 0.0,
+    "T_G": 4.494196314937752
+   },
+   "core|NL=3|phi=True": {
+    "n": 12,
+    "nconstr": 18,
+    "rankJ": 16,
+    "SC": 12,
+    "FC": 4,
+    "dims": 4,
+    "surface_res": 1.84071508035899e-14,
+    "consistency_res": 1.84071508035899e-14,
+    "Kbar_dot": -0.22509800700748603
+   },
+   "core|NL=4|phi=True": {
+    "n": 16,
+    "nconstr": 24,
+    "rankJ": 22,
+    "SC": 18,
+    "FC": 4,
+    "dims": 6,
+    "surface_res": 8.56259507742152e-15,
+    "consistency_res": 8.56259507742152e-15,
+    "Kbar_dot": -0.2185940253946564
+   },
+   "noCMC|NL=3|phi=True": {
+    "n": 15,
+    "nconstr": 18,
+    "rankJ": 16,
+    "SC": 8,
+    "FC": 8,
+    "dims": 6,
+    "surface_res": 2.0539125955565396e-15,
+    "consistency_res": 2.0539125955565396e-15,
+    "pT0_dot": 0.0,
+    "T_G": 3.330447232114839
+   },
+   "noCMC|NL=4|phi=True": {
+    "n": 20,
+    "nconstr": 24,
+    "rankJ": 22,
+    "SC": 12,
+    "FC": 10,
+    "dims": 8,
+    "surface_res": 1.5543122344752192e-15,
+    "consistency_res": 1.5543122344752192e-15,
+    "pT0_dot": 0.0,
+    "T_G": 4.494390184728651
+   },
+   "globalHT|NL=3|phi=True": {
+    "n": 13,
+    "nconstr": 18,
+    "rankJ": 16,
+    "SC": 12,
+    "FC": 4,
+    "dims": 6,
+    "surface_res": 2.9559688030644793e-15,
+    "consistency_res": 2.9559688030644793e-15,
+    "Kbar_dot": -0.22505180794624993
+   },
+   "globalHT|NL=4|phi=True": {
+    "n": 17,
+    "nconstr": 24,
+    "rankJ": 22,
+    "SC": 18,
+    "FC": 4,
+    "dims": 8,
+    "surface_res": 2.121566811119635e-15,
+    "consistency_res": 2.121566811119635e-15,
+    "Kbar_dot": -0.21847884938975615
+   }
+  },
+  "A1": {
+   "coef": 0.057582358245222585,
+   "K_inf": 1.8086730482441696e-26,
+   "K_0": 2.185797390292089e-26,
+   "a0_Kinf": 9.360324825027976e-11,
+   "a0_K0": 1.1312035414413024e-10
+  },
+  "headline": {
+   "ratio": {
+    "canonical": {
+     "0.0": 1.0,
+     "0.5": 1.322436198839097,
+     "1.0": 1.7908377927662797,
+     "2.5": 3.768711649887797,
+     "5.0": 8.293943573475769,
+     "1100.0": 20513.65107653925
+    },
+    "alt": {
+     "0.0": 1.0,
+     "0.5": 1.3224361988390971,
+     "1.0": 1.7908377927662795,
+     "2.5": 3.768711649887797,
+     "5.0": 8.293943573475769,
+     "1100.0": 20513.65107653925
+    }
+   },
+   "a0": {
+    "canonical": {
+     "0.0": 9.360324825027975e-11,
+     "0.5": 1.237843238150923e-10,
+     "1.0": 1.676282344922851e-10,
+     "2.5": 3.527636521481688e-10,
+     "5.0": 7.763400592818646e-10,
+     "1100.0": 1.9201443742369218e-06
+    },
+    "alt": {
+     "0.0": 1.1312035414413022e-10,
+     "0.5": 1.4959445114569607e-10,
+     "1.0": 2.0258020533241403e-10,
+     "2.5": 4.263179965024169e-10,
+     "5.0": 9.382138342830119e-10,
+     "1100.0": 2.320511474567238e-06
+    }
+   },
+   "Q_dev": 0.0
+  }
+ },
+ "ledger": [
+  {
+   "id": "X30-merge",
+   "claim": "the khronon's CMC foliation and the HT unimodular clock CANNOT be merged into one term: the CMC family is local and second class with a pure-gauge global part; HT's local family is first class and its content is one global conserved pair; a conserved momentum cannot be the York clock (dK/dt = -12 pi G rho_m)",
+   "status": "DERIVED",
+   "evidence": "M1, M2, D1-D3, L1-L4"
+  },
+  {
+   "id": "X30-fol",
+   "claim": "'the HT time's foliation is the khronon's' holds only as a relabeling: HT has no foliation (3-form gauge, Kuchar's equivalence classes); T - tau is an admissible gauge for the khronon's global reparametrization",
+   "status": "DERIVED",
+   "evidence": "M5, D3"
+  },
+  {
+   "id": "X30-MB",
+   "claim": "the only one-term merger that keeps both local structures, 2 f(K)(d_m T^m - sqrt(-g)), is FP14's multiplier at k != 0 but freezes York time: H(z) = const for any dust",
+   "status": "FAILS (FRW)",
+   "evidence": "M3, L2, D1, D3"
+  },
+  {
+   "id": "X30-MA",
+   "claim": "T^m = l sqrt(-g) n^m (the linear-cuscuton form): K pinned to 1/l (new constant), Lambda(t) drifts to zero at z = 0.47",
+   "status": "FAILS",
+   "evidence": "M4"
+  },
+  {
+   "id": "X30-MC",
+   "claim": "mu = beta sqrt(Lambda) (new constant): the CMC condition is lost, the khronon frozen (FP14's c_2 = 0 block)",
+   "status": "FAILS",
+   "evidence": "L3"
+  },
+  {
+   "id": "X30-SQ",
+   "claim": "one global multiplier on Int N sqrt(h)(K - <K>)^2: irregular (no reaction force, c_2 returns undetermined, the scalar mode and time-dependent sources excluded)",
+   "status": "FAILS",
+   "evidence": "L4"
+  },
+  {
+   "id": "X30-count",
+   "claim": "the combined root: FP14's local count (2 tensor + 1 khronon scalar at lambda = 0; det x -4) + ONE global pair (Lambda_0, T); lattice: 2 N_L vs 2 N_L - 2 without HT; classes as D2",
+   "status": "DERIVED",
+   "evidence": "L1, D1, D2"
+  },
+  {
+   "id": "X30-global",
+   "claim": "on the khronon's leaves one global pair 2 Lambda_0 (T-dot - Int N sqrt(h)) does everything the local HT fields do (same count; the MOND sector feeds its clock)",
+   "status": "DERIVED",
+   "evidence": "D1 (globalHT), D1m"
+  },
+  {
+   "id": "X30-kill",
+   "claim": "with HT added, FRW growth (G_eff/G = 2/(2 - alpha_c), no slip), the static Newtonian coupling (not 2G) and every response FP14 C2 scored are unchanged: the York/CMC kill stays evaded; PPN unchanged (HT is metric-free, XR20 T1d)",
+   "status": "DERIVED",
+   "evidence": "F1, L1, C2, C3"
+  },
+  {
+   "id": "X30-a0",
+   "claim": "a0 stays TIED through the conserved Lambda_0 (= Q = K_inf^2/3 on shell); the K_inf reading is T1 re-expressed, not a new tie; the local York time is exactly leaf-uniform on the CMC root but gives the rival a0(z) ~ H(z)",
+   "status": "TIED (as XR20 T1)",
+   "evidence": "A1-A3, HEADLINE-FLAT; kappa FITTED"
+  },
+  {
+   "id": "X30-foot",
+   "claim": "canonical a0 = (kappa/sqrt(24 pi)) c^2 K_inf and alt a0 = the same coefficient on K_0 = 3 H_0/c (an identity)",
+   "status": "IDENTITY",
+   "evidence": "A1"
+  },
+  {
+   "id": "X30-vac",
+   "claim": "XR20 T1e's vacuum caveat is a choice of which variable alpha reads (the shift is a total derivative)",
+   "status": "READING",
+   "evidence": "A2"
+  }
+ ],
+ "verdict": {
+  "pass_": 21,
+  "total": 22,
+  "load_bearing_failures": 1,
+  "time_s": 91.40381908416748
+ }
+}

@@ -1,0 +1,289 @@
+XR30 -- ONE CLOCK OR TWO?  The derivation chain carries two global time structures: the khronon's constant-mean-curvature
+(CMC) foliation (FP14: c_2 -> oo turns the leaf-averaged term into the multiplier term -2 mu (K - <K>_h), so every leaf has
+K = <K>_h) and the Henneaux-Teitelboim (HT) unimodular clock (XR20 T1: Lambda -> Lambda(x) plus 2 Lambda d_m T^m, with
+alpha = alpha(Lambda), so d Lambda = 0 is a field equation, Lambda is conjugate to the four-volume time T, and
+a0 = kappa c sqrt(G rho_Lambda) holds on every solution).  Can the two be merged into one term?  If they can, what changes
+(field content, the Dirac count, PPN, FRW, the York/CMC G_eff = 2G kill, the a0 tie)?  If they cannot, why not, and what is
+the minimal honest content?
+
+kappa = 1/2 is FITTED (equivalently Z = 5.7888) and is never derived here.  Both a0 footings are carried wherever a0
+enters: canonical 9.3603e-11 and alt 1.1312e-10 m/s^2.  No new constant is adopted: every candidate below that needs one
+is reported as needing it and is not adopted.
+
+THE ACTION VARIED HERE (per 1/16 pi G, c = 1; FP14's zero-knob root at lambda = 0 plus XR20's T1 term):
+  I = Int sqrt(-g) { R - 2 Lambda(x) + alpha_c a^2 - 2 mu (K - <K>_h) + (2 - alpha_c) h^mn (2 a_m - D_m chi) D_n chi
+                     - 2 alpha(Lambda)^2 J_P2(h^mn D_m phi D_n phi / alpha(Lambda)^2) + heat pair } + 2 Int Lambda d_m T^m + S_m[g],
+  alpha(Lambda) = kappa sqrt(Lambda/8 pi),  K = nabla.n on the khronon's leaves,  <K>_h = Int sqrt(h) K / Int sqrt(h).
+
+LITERATURE (read before the hypotheses were written; cited in XR30_README.md): Henneaux-Teitelboim 1989 and Unruh 1989
+(Lambda conjugate to the four-volume time); Kuchar 1991 (the four-volume time labels only equivalence classes of
+hypersurfaces enclosing zero four-volume -- it needs a separate hypertime); York 1972 (mean curvature conjugate to the
+3-volume); Gomes-Gryb-Koslowski 2011 and Barbour-Koslowski-Mercati 2014 (shape dynamics: a volume-preserving CMC constraint
+plus ONE global Hamiltonian constraint; a cosmological constant is an extra input there); Gryb-Thebault 2012 ('unimodular
+shape dynamics': the unimodular pair ADDED to shape dynamics' single global Hamiltonian constraint); Afshordi 2009,
+Bhattacharyya et al. 2018, Gomes-Guariento 2017 (the cuscuton: CMC leaves with K tied to the scalar; with a linear
+potential the scalar is a multiplier pinning K to a constant K_0; the homogeneous cuscuton on a CMC foliation carries one
+global degree of freedom and acts as a time-dependent cosmological constant).
+
+PRE-DECLARED (written into this docstring before any code of this lane was run; the expectations come from the reading
+above and pencil-and-paper algebra, not from any script output):
+  H1  SAME FOLIATION?  The HT term is invariant under T^m -> T^m + d_n omega^{mn} (omega antisymmetric), so only the charge
+      T[Sigma] is physical and HT carries no foliation of its own (Kuchar's equivalence classes).  On the khronon's leaves
+      T(tau) is monotone (dT/dtau = Int N sqrt(h)(1 - eps F) > 0), so "the HT time's foliation is the khronon's" holds only as
+      a gauge choice (T - tau fixes the khronon's global reparametrization).  EXPECT TRUE: a relabeling, not a merger.
+  H2  ONE TERM, Lambda == f(K).  2 f(K)(d_m T^m - sqrt(-g)) alone gives K spatially constant AND d f(K) = 0, but T^0's
+      equation then freezes York time: on FRW with dust K = K_0 at all times, H(z) = const, against E(z) = 1.322, 1.791,
+      3.769, 8.294 at z = 0.5, 1, 2.5, 5.  At k != 0 about Minkowski it is FP14's CMC multiplier in other variables.
+      EXPECT TRUE (this merger FAILS on FRW).
+  H3  OTHER ONE-TERM MERGERS.  (a) mu == beta sqrt(Lambda) (beta new): HT forces delta Lambda = 0, so delta mu = 0; the
+      constant-mu term is a total derivative (sqrt(-g) K = d_m(sqrt(-g) n^m)); the linear theory is FP14's block at c_2 = 0,
+      whose scalar is frozen (omega^2 prop. to c_2 = 0; FP5 B4).  (b) T^m == l sqrt(-g) n^m (l new; the linear-potential
+      cuscuton's form): Lambda's equation pins K = 1/l and Lambda(t) is no longer constant.  EXPECT both FAIL.
+  H4  THE GLOBAL PART.  The mu-term is invariant under mu N -> mu N + c(t) and Int sqrt(h)(K - <K>_h) = 0 identically: the
+      CMC condition has NO global part and the multiplier's zero mode is pure gauge.  HT's physical content is purely global
+      (Lambda_0 conserved, T its clock).  A conserved momentum cannot be a function of the York clock: on dust FRW
+      dK/dt = -12 pi G rho_m N != 0.  The only conserved combination of the CMC leaf data is the Friedmann (global
+      Hamiltonian) combination K^2/3 - 8 pi G rho_m = Lambda, i.e. Lambda itself.  EXPECT TRUE.
+  H5  ONE GLOBAL CONSTRAINT.  A single global multiplier c(t) can impose K = <K>_h only through the positive square
+      Int N sqrt(h)(K - <K>_h)^2 = 0 (FP14's c_2 made a global multiplier).  That constraint is irregular: its fluctuation
+      drops out of the quadratic action, which becomes FP14's finite-c_2 block with c_2 = c-bar undetermined, and the
+      forceless condition delta K = 0 then removes the scalar (it carries delta K != 0) and admits no time-dependent source.
+      EXPECT: not FP14's regular CMC limit -> FAILS.  (A single global pair CAN give d Lambda = 0: the global HT form
+      2 Lambda_0 (T-dot - Int N sqrt(h)) on the khronon's leaves; expected equivalent to the local HT.)
+  H6  THE COMBINED (UNMERGED) COUNT.  FP14 core + HT: at k != 0 det(combined) = const x det(FP14 multiplier block) (the HT
+      sector sets delta Lambda = 0), so FP14's local count holds (3 modes at lambda = 0); globally HT adds one pair
+      (Lambda_0, T).  On a periodic-lattice model of the trace sector: physical phase-space dimension 2 N_L with HT, 2 N_L - 2
+      without; HT's spatial constraints first class, the CMC constraints second class, the mu and phi zero modes and the
+      global reparametrization first class; no tertiary constraints.  The merged Lambda == f(K) model has the same count but
+      frozen K.  EXPECT TRUE.
+  H7  PPN / FRW / THE YORK-CMC KILL WITH HT ADDED.  The combined FRW perturbations are FP14 C1b's (G_eff/G = 2/(2 - alpha_c),
+      no slip, delta Lambda = 0 at k != 0); the static and equal-time responses equal FP14's, and the Newtonian-limit
+      coupling is G/(1 - alpha_c/2), not 2G: the kill stays evaded.  EXPECT TRUE.
+  H8  THE a0 TIE.  a0 = (kappa/sqrt(24 pi)) c^2 K_inf with K_inf = sqrt(3 Lambda) IS the canonical footing, and the same
+      coefficient on today's York time K_0 = 3 H_0/c gives the alt footing's number.  Tying a0 to K_inf is, on shell, the
+      HT tie (K_inf^2/3 = Lambda_obs, the global constraint's value); a constant matter vacuum energy shifts HT's Lambda by a
+      total derivative, so reading Lambda_obs (= K_inf^2/3) is a choice of variable, not new physics.  Tying a0 to the
+      local York time (the CMC leaf value, exactly leaf-uniform by mu's equation) gives a0 proportional to H(z): the rival.
+      EXPECT TRUE.
+  VERDICT EXPECTED: NO MERGE.  Minimal honest content: two structures -- the khronon's CMC foliation (a local constraint
+      family whose global part is pure gauge) and one global HT pair (Lambda_0, T) living on that foliation (the pairing the
+      literature calls unimodular shape dynamics).  a0 stays tied through Lambda_0 (= K_inf^2/3 on shell), not York time.
+MUTATE=1: the headline tie reads the CMC leaf's York time K(z) = 3 H(z)/c instead of the conserved HT quantity:
+HEADLINE-FLAT must FAIL (rc = 1).  Every other check is unchanged by the mutation.
+CHECKS
+  C1 CONTROL XR20 T1, reproduced from XR20's own source (read-only slices): the inputs (a0, rho_Lambda, Lambda, kappa, eps), the
+     unimodular-clock table (12 numbers), the vacuum table (4 numbers) and the five T1a-T1e measured strings, all EXACTLY equal
+     to XR20's committed JSON.
+  C2 CONTROL FP14's Dirac count and York/CMC check, reproduced from FP14's own source (read-only slices): K1, L2, C1 and C2
+     measured strings EXACTLY equal to FP14's committed JSON (K1's timing field aside); the det line and the Dirac bookkeeping
+     line (22 - 2x6 - 4 = 6 -> 3 modes) found verbatim in FP14's committed .out; FP5 A3's count formula gives N_phys = 3.
+  C3 CONTROL FP14 C1b (FRW, the multiplier) re-run through FP2's machinery: FP14's committed C1b numbers EXACTLY.
+  M1 MINISUPERSPACE, the combined action on FRW: the CMC term vanishes identically on a homogeneous leaf (and on any leaf,
+     Sum_j v_j (K_j - <K>) = 0 and mu N -> mu N + c(t) is an exact symmetry); HT gives Lambda-dot = 0 and T-dot = N a^3;
+     Friedmann is GR + Lambda_0; sqrt(-g) R = -6 a adot^2/N + a total derivative (sympy, from the metric).
+  M2 YORK TIME IS A CLOCK, Lambda IS CONSERVED: on dust FRW dK/dt = -12 pi G rho_m (N = 1), Q = K^2/3 - 8 pi G rho_m = Lambda_0
+     on shell, K -> K_inf = sqrt(3 Lambda_0).
+  M3 MERGER MB (one term 2 f(K)(T-dot - N a^3), f a generic cubic): T's equation forces dK/dt = 0; with K = K_0 the lapse
+     equation is solved by the clock rate for ANY dust and the scale-factor equation is then identically satisfied: H(z) = const,
+     E(z) = 1 against the LCDM E(z) -> this merger FAILS FRW.
+  M4 MERGER MA (T^m = l sqrt(-g) n^m, the linear-cuscuton form): K = 1/l (a new constant) and Lambda(t) = 1/(3 l^2) - 8 pi G rho_m
+     (not constant; with l set by today it reaches zero at z = Omega_m^(-1/3) - 1) -> FAILS.
+  M5 HT HAS NO FOLIATION (H1): d_m d_n omega^{mn} = 0 in 3+1 (the 3-form gauge); 1+1 Stokes: T[S2] - T[S1] = the four-volume
+     between them, and a visibly different hypersurface enclosing zero four-volume has the same T (Kuchar's equivalence
+     classes); on the khronon's FRW leaves dT/dtau = N a^3 > 0 (a monotone relabeling).
+  F1 FRW + PERTURBATIONS (FP2's machinery + FP14's multiplier + HT): T^x's equation forces delta Lambda_k = 0 (k != 0); the
+     delta Lambda equation is the clock; with delta Lambda = 0 all eight remaining equations EQUAL FP14 C1b's; G_eff/G =
+     2/(2 - alpha_c), no slip.
+  L0 CONTROL: this lane's extended Minkowski block (FP14's unitary-gauge construction, copied) reproduces FP14's committed
+     multiplier det string exactly.
+  L1 COMBINED BLOCK (multiplier + HT with generic delta Lambda couplings): det = -4 x det(FP14 multiplier block); D's row forces
+     delta Lambda = 0; with delta Lambda = 0 the five FP14 equations are unchanged (so every response FP14 C2 scored is
+     unchanged); the static Newtonian-limit lapse response is 2/(2 - alpha_c) of GR's, not 2 (the York/CMC 2G).
+  L2 MB LOCALLY: det(MB) = f_1^2 det(FP14 multiplier block): at k != 0 the merged term IS FP14's multiplier in other variables.
+  L3 MC (mu = mubar + b_1 delta Lambda): the constant-mubar term adds nothing to the field equations (a total derivative);
+     det(MC) = -4 det(FP14 c_2 block at c_2 = 0) = ... omega^2 (...): at lambda = 0 the khronon scalar is frozen (omega = 0) -> FAILS.
+  L4 SQ (one global multiplier, positive square): its fluctuation is absent at quadratic order; the quadratic action is FP14's
+     c_2 block at c_2 = cbar (undetermined); the scalar mode and a time-dependent forced response both carry delta K != 0, which
+     the forceless constraint forbids -> irregular, FAILS.
+  D1 LATTICE (the trace sector of the actual action on a periodic leaf, N_L = 3, 4; MOND-free): physical phase-space dimension
+     2 N_L (combined), 2 N_L - 2 (core without HT), 2 N_L (no CMC term: mu adds nothing), 2 N_L (global HT pair), 2 N_L (MB);
+     constraint surface and consistency residuals < 1e-10; singular-value gaps > 1e10.
+  D1m the same with the MOND scalar phi (lambda = 0, alpha(Lambda) read from the HT momentum): combined 2 N_L, core 2 N_L - 2.
+  D2 CLASSES: HT's spatial constraints and pi_X first class (their bracket rows vanish); the CMC constraints second class (their
+     bracket block with pi_mu has rank N_L - 1); the mu zero-mode generator Sum_j pi_mu_j/N_j, the lapse scaling Sum_j N_j pi_N_j
+     and the global Hamiltonian G = Sum_j N_j dH/dN_j first class.
+  D3 GLOBAL STRUCTURE: {T_tot, G} != 0 (T - tau is an admissible gauge for the khronon's global reparametrization); p_T is
+     conserved exactly while dKbar/dt != 0 (York time ticks); in MB dK_j/dt = 0 (frozen).
+  A1 THE FOOTING IDENTITY: a0_can = (kappa/sqrt(24 pi)) c^2 K_inf, K_inf = sqrt(3 Lambda); a0_alt = the same coefficient x c^2 K_0,
+     K_0 = 3 H_0/c -- both to 1e-12 against FP0's committed values.
+  A2 K_inf AND THE VACUUM: a constant matter vacuum energy is absorbed into HT's Lambda by a field redefinition that changes the
+     action by a total derivative (identical field equations), so alpha(Lambda) vs alpha(Lambda_obs) is a choice; K_inf^2 =
+     3 Lambda_obs; the Gryb-Thebault large-volume global constraint 2 Lambda - (3/8) P^2 = 0 is K^2 = 3 Lambda.
+  A3 THE LOCAL YORK TIME IS EXACTLY LEAF-UNIFORM on the CMC root: mu's equation is N sqrt(h)(K - <K>) = 0 whatever else the
+     action contains (a K-dependent MOND coupling included).
+  HEADLINE-FLAT the tie read from the conserved combination of the leaf data, Q = K^2/3 - 8 pi G rho_m (= Lambda_0 = K_inf^2/3
+     on shell): a0(z)/a0(0) = 1 at z = 0.5, 1, 2.5, 5, 1100 on both footings, uniform on the leaf.  MUTATE=1 reads K(z) alone.
+  W  the ledger.
+
+  *** MUTATE=1: the headline tie reads the CMC leaf's York time K(z) = 3 H(z)/c instead of the conserved quantity; HEADLINE-FLAT must FAIL ***
+
+  inputs (FP0): a0 = 9.3603e-11 (canonical) / 1.1312e-10 (alt) m/s^2; Lambda = 1.0904e-52 1/m^2; kappa = 1/2 (fitted)
+
+==================================================================================================================
+C   CONTROLS: XR20 T1, FP14's Dirac count and York/CMC check, FP14's FRW limit -- reproduced from their own sources
+==================================================================================================================
+    XR20 T1 clock (kappa^2/8pi) F at y = 1e-3 ... 100 (canonical): 1.05e-07, 3.31e-06, 1.02e-04, 2.65e-03, 4.29e-02, 4.85e-01
+  [PASS] C1 CONTROL XR20 T1 reproduced EXACTLY from XR20's own source (read-only slices): inputs, the unimodular-clock table, the vacuum table, and the T1a-T1e measured strings (incl. T1c's lattice count: rank 4, 2 phase-space dimensions)
+         measured: inputs True; clock True; vacuum True; strings {'T1a': True, 'T1b': True, 'T1c': True, 'T1d': True, 'T1e': True}
+    FP14 C1 measured: det ratio 2; deg 4; T, V limit True; CMC True; mu finite True; bracket -3/2
+    FP14 C2 measured: UV speed^2 at c_2 = oo: -(alpha_c - 2)/(3*alpha_c); double limit (alpha_c -> 0): oo; static MOND response both forms: True; equal-time part c_2-independent: Tru ...
+    FP14's bookkeeping: metric + lapse/shift + multiplier 22 - 2 x 6 (first class) - 4 (second class) = 6 -> 3 modes; FP5 A3's formula: N_phys = 3 for every heat-point number n
+  [PASS] C2 CONTROL FP14's Dirac count and York/CMC check reproduced EXACTLY from FP14's own source (read-only slices): K1, L2, C1 and C2 measured strings equal the committed JSON (K1's timing aside), the det line and the Dirac bookkeeping line are verbatim in FP14's committed .out, and FP5 A3's count formula gives N_phys = 3
+         measured: strings {'K1': True, 'L2': True, 'C1': True, 'C2': True}; .out lines True; FP14 count 3; FP5 N_phys 3 (committed: 'N_phys = 3' in A3: True)
+  [PASS] C3 CONTROL FP14 C1b (the multiplier on FRW) re-run through FP2's committed machinery: FP14's committed C1b numbers EXACTLY
+         measured: dict equal True: G_eff -2/(alpha_c - 2), slip 1, mu eq/Q -2*a(t)**3
+    (19.7 s)
+
+==================================================================================================================
+M   MINISUPERSPACE: the combined action on FRW, York time vs Lambda, and the one-term mergers
+==================================================================================================================
+    EL(T) = -2*Derivative(Lambda(t), t);  EL(Lambda) = -2*N(t)*a(t)**3 + 2*Derivative(T(t), t);  Friedmann: adot^2 = (8*pi*G*m + Lambda(t)*a(t)**3)/(3*a(t))
+    any leaf: Sum_j v_j (K_j - <K>) = 0;  change of the CMC term under mu_j -> mu_j + c/N_j: 0
+  [PASS] M1 THE COMBINED ACTION ON FRW: sqrt(-g) R = -6 a adot^2/N + a total derivative (from the metric); the CMC term vanishes on a homogeneous leaf and, on ANY leaf, has no global part (Sum_j v_j (K_j - <K>) = 0 identically) and an exact zero-mode symmetry mu N -> mu N + c(t): its multiplier's zero mode is pure gauge; HT gives Lambda-dot = 0 and T-dot = N a^3; Friedmann is GR + Lambda_0
+         measured: R identity True; leaf sum 0; zero-mode change 0; EL(T) = -2*Derivative(Lambda(t), t)
+         reading:  the CMC condition's global part is EMPTY; HT's content is purely global -- the two live in complementary sectors
+    dust FRW (N = 1): dK/dt = -12*pi*G*m/a(t)**3;  Q = K^2/3 - 8 pi G rho_m on shell = Lambda_0;  K_inf = sqrt(3)*sqrt(Lambda_0)
+  [PASS] M2 YORK TIME IS A CLOCK, Lambda IS CONSERVED: on dust FRW dK/dt = -12 pi G rho_m (never zero while rho_m > 0), while Lambda-dot = 0; the only conserved combination of the leaf data is the Friedmann (global Hamiltonian) one, Q = K^2/3 - 8 pi G rho_m = Lambda_0; K -> K_inf = sqrt(3 Lambda_0) as rho_m -> 0
+         measured: dK/dt = -12*pi*G*m/a(t)**3; Q = Lambda_0; K_inf = sqrt(3)*sqrt(Lambda_0)
+         reading:  a conserved momentum (Lambda_0) cannot be a function of a ticking clock (K): any identification Lambda == F(K) either freezes K or makes F constant (M3)
+    EL(T) = 6*(c1*N(t)**2*a(t)**2 + 6*c2*N(t)*a(t)*Derivative(a(t), t) + 27*c3*Derivative(a(t), t)**2)*(-N(t)*a(t)*Derivative(a(t), (t, 2)) + N(t)*Derivative(a(t), t)**2 + a(t)*Derivative(N(t), t)*Derivative(a(t), t))/(N(t)**4*a(t)**4)
+    with K = K_0 (a = exp(K_0 t/3), N = 1): T-dot = (-8*pi*G*m + 2*K_0**3*c3*exp(K_0*t) + K_0**2*c2*exp(K_0*t) + K_0**2*exp(K_0*t)/3)/(K_0*(3*K_0**2*c3 + 2*K_0*c2 + c1));  EL(a) -> 0;  EL(T) -> 0
+    so H = K_0/3 at every z for ANY dust: E(z) = 1, against LCDM E(z) = 1.322, 1.791, 3.769, 8.294 at z = 0.5, 1, 2.5, 5
+  [PASS] M3 MERGER MB (ONE term 2 f(K)(T-dot - N a^3) replacing both mu and HT, f a generic cubic): T's equation is proportional to f'(K) dK/dt, so K is frozen; with K = K_0 the lapse equation is solved by the clock rate (the dust is absorbed into T-dot) and the scale-factor equation is then identically satisfied -- H = K_0/3 at every z for any dust.  This merger FAILS FRW (E(z) = 1 vs 1.322 / 1.791 / 3.769 / 8.294)
+         measured: T-dot absorbs m: True; EL(a) under K = K_0: 0
+         reading:  the only one-term merger that keeps both local structures pays with York time: the CMC leaf value becomes HT's conserved momentum (compare the linear-potential cuscuton, whose multiplier pins K = K_0)
+    MA: Lambda's equation gives K = 1/ell; the lapse equation gives Lambda(t) = -8*pi*G*m/a(t)**3 + 1/(3*ell**2)
+  [PASS] M4 MERGER MA (T^m = l sqrt(-g) n^m, the linear-cuscuton form of the HT term): Lambda's equation pins K = 1/l (a NEW constant) and the lapse equation makes Lambda(t) = 1/(3 l^2) - 8 pi G rho_m, not constant: with l set today, Lambda falls to zero at z = Omega_m^(-1/3) - 1 = 0.469 and a0 = alpha(Lambda) is undefined beyond -> FAILS
+         measured: K = 1/ell; Lambda(t) = -8*pi*G*m/a(t)**3 + 1/(3*ell**2)
+    3+1: d_m d_n omega^mn = 0;  1+1: T[S2] - T[S1] - (four-volume between) = 0.0e+00;  a surface displaced by up to 0.293 but enclosing zero four-volume: T[S3] - T[S1] = -4.4e-16;  on the FRW leaves dT/dtau = N(t)*a(t)**3
+  [PASS] M5 HT CARRIES NO FOLIATION (H1): the HT term is invariant under T^m -> T^m + d_n omega^{mn} (d_m d_n omega^{mn} = 0 in 3+1), T[S2] - T[S1] is the four-volume between the two surfaces (Stokes, 1+1), and a visibly different surface enclosing zero four-volume has the same T -- the four-volume time labels equivalence classes, not a foliation (Kuchar 1991).  On the khronon's leaves dT/dtau = N a^3 > 0: T is a monotone RELABELING of the CMC leaves, a gauge choice of the khronon's global reparametrization, not a merger
+         measured: 3-form identity True; Stokes 0.0e+00; zero-volume deformation 0.293 -> dT -4.4e-16; dT/dtau = N(t)*a(t)**3
+
+==================================================================================================================
+F   FRW + PERTURBATIONS: FP2's machinery + FP14's multiplier + the HT sector (delta Lambda, T^t, T^x)
+==================================================================================================================
+    background: EL(dLambda) = -2*a(t)**3 + 2*Derivative(Tbar(t), t) (the clock, T-bar-dot = a^3), EL(mu) = 0 (mu-bar gauge)
+    perturbations: EL(T^t)_k = -2*Derivative(dLambdak(t), t);  EL(T^x)_k = -2*I*k*dLambdak(t)  ->  delta Lambda_k = 0 (k != 0);  EL(dLambda)_k = 2*I*(k*Txk(t) + I*Phik(t)*a(t)**3 - 3*I*Psik(t)*a(t)**3 - I*Derivative(Ttk(t), t))
+    with delta Lambda_k = 0, equations == FP14 C1b's: {'Phi': True, 'Psi': True, 'B': True, 'E': True, 'pi': True, 'theta': True, 'delta': True, 'mu': True};  G_eff/G = -2/(alpha_c - 2), slip 1  (2.6 s)
+  [PASS] F1 FRW + PERTURBATIONS OF THE COMBINED ROOT: T^x's equation forces delta Lambda_k = 0 on every k != 0 mode, delta Lambda's equation is the unimodular clock, the multiplier's background is pure gauge, and with delta Lambda = 0 all eight remaining linear equations EQUAL FP14 C1b's: G_eff/G = 2/(2 - alpha_c), no slip -- HT adds nothing to FRW growth
+         measured: clock -2*a(t)**3 + 2*Derivative(Tbar(t), t); equations equal True; G_eff/G -2/(alpha_c - 2); slip 1
+
+==================================================================================================================
+L   THE LINEAR BLOCK ABOUT MINKOWSKI (FP14's unitary-gauge construction, extended by the HT sector and the mergers)
+==================================================================================================================
+  [PASS] L0 CONTROL this lane's extended block (FP14's unitary-gauge construction, copied) reproduces FP14's committed multiplier determinant string exactly
+         measured: det = 128*k**6*(C_phi*alpha_c*k**4 + 3*C_phi*alpha_c*k**2*omega**2 - 2*C_phi*k**4 - alpha_c*k**2*lambda*omega**2 - 3*alpha_c*k**2*omega**2*sigma**2 - 3*alpha_c*lambda*omega**4 + 2*k**2*lambda*omega**2 + 6*k**2*omega**2*sigma**2)
+    combined: det = -4 x det(FP14 multiplier);  E_D = 2*A_L;  A_D only in ['dLambda'];  equations at A_L = 0 == FP14's: {'n': True, 'psi': True, 'B': True, 'phi': True, 'mu': True}
+    static lapse response n/J = (2*C_phi - alpha_c*sigma**2 + 2*sigma**2)/(4*C_phi*k**2*(alpha_c - 2));  Newtonian limit (C_phi -> oo) relative to alpha_c = 0: -2/(alpha_c - 2)  (York/CMC: 2)
+  [PASS] L1 THE COMBINED BLOCK (FP14's multiplier + HT, generic delta Lambda couplings m_L, g_phi): det = -4 x det(FP14), D's row forces delta Lambda = 0, and with delta Lambda = 0 FP14's five equations are unchanged -- so the count (deg_omega 4; 2 at lambda = 0), the health, and every response FP14 C2 scored (static MOND pole, equal-time part c_2-blind and EFE-blind) carry over; the static Newtonian-limit coupling is 2/(2 - alpha_c) of GR's, not the York/CMC 2: THE KILL STAYS EVADED
+         measured: det ratio -4; equations unchanged True; G_N/G = -2/(alpha_c - 2); FP14 C2 flags (reproduced) static True, equal-time True, EFE-blind True
+  [PASS] L2 MB LOCALLY: det(MB) = f_1^2 x det(FP14 multiplier block) -- at k != 0 the merged single term IS FP14's CMC multiplier in other variables (mu <-> -f_1 (D - delta sqrt(-g))); its failure is purely global (M3: the zero mode freezes York time)
+         measured: det ratio f_1**2
+    MC: the constant-mubar term's contribution to the field equations: [0, 0, 0, 0];  det(MC) = -4 x det(c_2 = 0) = -4 x 128*k**6*omega**2*(C_phi*alpha_c*k**2 - alpha_c*k**2*sigma**2 - alpha_c*lambda*omega**2 + 2*k**2*sigma**2);  at lambda = 0: 128*k**8*omega**2*(C_phi*alpha_c - alpha_c*sigma**2 + 2*sigma**2) -> omega roots [0]
+  [PASS] L3 MC (the multiplier made the HT field, mu = mubar + b_1 delta Lambda; b_1 needs a NEW constant): HT forces delta Lambda = 0, so delta mu = 0; the constant-mubar term is a total derivative (sqrt(-g) K = d_m(sqrt(-g) n^m); no field-equation change); the block is FP14's c_2 = 0 block, whose only scalar root at lambda = 0 is omega = 0: the khronon is FROZEN (FP5 B4's exceptional surface) and the CMC condition is lost -> FAILS
+         measured: total derivative True; det ratio -4; lambda = 0 roots [0]
+    SQ at {'alpha_c': '1/3', 'C_phi': '1/5', 'sigma': '7/10', 'cbar': '3/2', 'k': '1'}: scalar root omega = 0.2951, |delta K|/|mode| = 0.314; forced at omega = 3/7: |delta K/J| = 0.940
+    SQ at {'alpha_c': '1/100', 'C_phi': '3', 'sigma': '1/2', 'cbar': '1/20', 'k': '2'}: scalar root omega = 1.0261, |delta K|/|mode| = 4.924; forced at omega = 3/7: |delta K/J| = 2.825
+  [PASS] L4 SQ (ONE GLOBAL multiplier c(t) with Int N sqrt(h)(K - <K>)^2 = 0, the only global way to impose CMC): its fluctuation is ABSENT at quadratic order (the second-order term is -K1**2*cbar); the quadratic action is FP14's c_2 block at c_2 = cbar, a value no equation fixes (the knob FP14 eliminated returns); the scalar mode and a time-dependent forced response both carry delta K != 0, which the forceless constraint forbids: irregular, not FP14's regular CMC limit -> FAILS
+         measured: |dK|/|mode| 0.314, forced 0.940; |dK|/|mode| 4.924, forced 2.825
+    (8.5 s)
+
+==================================================================================================================
+D   THE DIRAC ANALYSIS: the trace sector of the actual action on a periodic leaf of N_L sites (sympy + exact brackets, numeric rank)
+==================================================================================================================
+    comb      phi=no  N_L=3: phase space 30, constraints 18 (independent 16), SC  8, FC  8 -> physical dimension  6 (2 N_L = 6); residuals: surface 3e-15, consistency 3e-15; rank gaps 1e+15; finite True
+    comb      phi=no  N_L=4: phase space 40, constraints 24 (independent 22), SC 12, FC 10 -> physical dimension  8 (2 N_L = 8); residuals: surface 2e-15, consistency 2e-15; rank gaps 1e+15; finite True
+    core      phi=no  N_L=3: phase space 18, constraints 12 (independent 11), SC  8, FC  3 -> physical dimension  4 (2 N_L = 6); residuals: surface 2e-14, consistency 2e-14; rank gaps 1e+15; finite True
+    core      phi=no  N_L=4: phase space 24, constraints 16 (independent 15), SC 12, FC  3 -> physical dimension  6 (2 N_L = 8); residuals: surface 7e-15, consistency 7e-15; rank gaps 8e+14; finite True
+    noCMC     phi=no  N_L=3: phase space 24, constraints 12 (independent 11), SC  4, FC  7 -> physical dimension  6 (2 N_L = 6); residuals: surface 2e-15, consistency 2e-15; rank gaps 6e+15; finite True
+    noCMC     phi=no  N_L=4: phase space 32, constraints 16 (independent 15), SC  6, FC  9 -> physical dimension  8 (2 N_L = 8); residuals: surface 2e-15, consistency 2e-15; rank gaps 6e+15; finite True
+    globalHT  phi=no  N_L=3: phase space 20, constraints 12 (independent 11), SC  8, FC  3 -> physical dimension  6 (2 N_L = 6); residuals: surface 3e-15, consistency 3e-15; rank gaps 1e+15; finite True
+    globalHT  phi=no  N_L=4: phase space 26, constraints 16 (independent 15), SC 12, FC  3 -> physical dimension  8 (2 N_L = 8); residuals: surface 2e-15, consistency 2e-15; rank gaps 9e+14; finite True
+    MB        phi=no  N_L=3: phase space 24, constraints 12 (independent 11), SC  4, FC  7 -> physical dimension  6 (2 N_L = 6); residuals: surface 3e-15, consistency 3e-15; rank gaps 9e+15; finite True
+    MB        phi=no  N_L=4: phase space 32, constraints 16 (independent 15), SC  6, FC  9 -> physical dimension  8 (2 N_L = 8); residuals: surface 3e-15, consistency 3e-15; rank gaps 3e+15; finite True
+    comb      phi=yes N_L=3: phase space 36, constraints 24 (independent 21), SC 12, FC  9 -> physical dimension  6 (2 N_L = 6); residuals: surface 3e-15, consistency 3e-15; rank gaps 4e+14; finite True
+    comb      phi=yes N_L=4: phase space 48, constraints 32 (independent 29), SC 18, FC 11 -> physical dimension  8 (2 N_L = 8); residuals: surface 2e-15, consistency 2e-15; rank gaps 5e+14; finite True
+    core      phi=yes N_L=3: phase space 24, constraints 18 (independent 16), SC 12, FC  4 -> physical dimension  4 (2 N_L = 6); residuals: surface 2e-14, consistency 2e-14; rank gaps 7e+13; finite True
+    core      phi=yes N_L=4: phase space 32, constraints 24 (independent 22), SC 18, FC  4 -> physical dimension  6 (2 N_L = 8); residuals: surface 9e-15, consistency 9e-15; rank gaps 6e+14; finite True
+    noCMC     phi=yes N_L=3: phase space 30, constraints 18 (independent 16), SC  8, FC  8 -> physical dimension  6 (2 N_L = 6); residuals: surface 2e-15, consistency 2e-15; rank gaps 7e+13; finite True
+    noCMC     phi=yes N_L=4: phase space 40, constraints 24 (independent 22), SC 12, FC 10 -> physical dimension  8 (2 N_L = 8); residuals: surface 2e-15, consistency 2e-15; rank gaps 3e+14; finite True
+    globalHT  phi=yes N_L=3: phase space 26, constraints 18 (independent 16), SC 12, FC  4 -> physical dimension  6 (2 N_L = 6); residuals: surface 3e-15, consistency 3e-15; rank gaps 8e+14; finite True
+    globalHT  phi=yes N_L=4: phase space 34, constraints 24 (independent 22), SC 18, FC  4 -> physical dimension  8 (2 N_L = 8); residuals: surface 2e-15, consistency 2e-15; rank gaps 2e+14; finite True
+  [PASS] D1 THE LATTICE COUNT (MOND-free trace sector, N_L = 3 and 4): physical phase-space dimension 2 N_L for the combined root, 2 N_L - 2 for the core without HT (HT adds exactly ONE global pair), 2 N_L with no CMC term at all (the multiplier adds no degree of freedom -- FP14's 'same count'), 2 N_L for ONE global pair 2 Lambda_0 (T-dot - Sum N v) (the local HT fields are not needed on the khronon's leaves), and 2 N_L for the merged MB; every constraint surface and consistency condition solved to < 1e-10 (no tertiary constraints), rank gaps > 1e10
+         measured: comb/3: 6; comb/4: 8; core/3: 4; core/4: 6; noCMC/3: 6; noCMC/4: 8; globalHT/3: 6; globalHT/4: 8; MB/3: 6; MB/4: 8
+  [PASS] D1m THE SAME WITH THE MOND SCALAR (lambda = 0, auxiliary; alpha read from the HT momentum, so the MOND sector feeds the clock): the counts are unchanged -- combined 2 N_L, core 2 N_L - 2, no-CMC 2 N_L, global pair 2 N_L; the phi zero mode is one more first-class constraint (FP14 L1's shift symmetry)
+         measured: comb/3: 6 (FC 9, SC 12); comb/4: 8 (FC 11, SC 18); core/3: 4 (FC 4, SC 12); core/4: 6 (FC 4, SC 18); noCMC/3: 6 (FC 8, SC 8); noCMC/4: 8 (FC 10, SC 12); globalHT/3: 6 (FC 4, SC 12); globalHT/4: 8 (FC 4, SC 18)
+    combined, N_L = 4: HT constraint + pi_X bracket rows max 0e+00; CMC block {K_j - <K>, pi_mu_k} rank 3 (= N_L - 1); brackets of Sum pi_mu/N 2e-15, Sum N pi_N 1e-15; the global Hamiltonian H_T = H_c + u.phi (second-class multipliers solved): brackets = the consistency residual 2e-15
+  [PASS] D2 THE CLASSES DO NOT MATCH: HT's spatial constraints and pi_X are FIRST class (their bracket rows vanish identically: no constraint depends on T or X), the CMC constraints are SECOND class (their bracket block with pi_mu has rank N_L - 1, full on the non-zero modes), and the mu zero mode (Sum pi_mu/N), the lapse scaling and the global Hamiltonian H_T = H_c + u.phi are first class.  A first-class family cannot be identified with a second-class one (the rank of the bracket matrix is a canonical invariant): the local parts cannot be one term, and the CMC's global part is pure gauge while HT's is a physical pair
+         measured: HT rows 0e+00; CMC rank 3; FC 10 = 2 N_L + 2, SC 12 = 4 N_L - 4
+    with the MOND scalar (combined, N_L = 4): {T_tot, H}/Sum N v = 0.999954 -- the unimodular clock's MOND correction (XR20 T1b's 1 - (kappa^2/8 pi) F, on the lattice)
+    combined: {T_tot, H} = 4.4944 (Sum N v = 4.4944); p_T-dot = 0e+00; Kbar-dot = -0.2188;  MB: p_T-dot = 0e+00, K-dot = 0e+00
+  [PASS] D3 THE GLOBAL STRUCTURE: {T_tot, H} = Sum N v != 0 (the four-volume rate), so T - tau is an admissible gauge for the khronon's global reparametrization (the four-volume time can LABEL the CMC leaves); on the constraint surface p_T (= 2 Lambda_0) is conserved exactly while the York clock Kbar ticks; in the merged MB the site values of K are frozen
+         measured: {T_tot, H} 4.4944 (Sum N v 4.4944); p_T-dot 0e+00; Kbar-dot -0.2188; MB K-dot 0e+00
+    (59.5 s)
+
+==================================================================================================================
+A   THE a0 TIE: K_inf, K_0, the vacuum, and the local York time
+==================================================================================================================
+    (kappa/sqrt(24 pi)) = 0.057582;  K_inf = sqrt(3 Lambda) = 1.80867e-26 1/m -> a0 = 9.360325e-11;  K_0 = 3 H_0/c = 2.18580e-26 1/m -> a0 = 1.131204e-10;  K_0/K_inf = 1.20851 = 1/sqrt(Omega_Lambda)
+  [PASS] A1 THE FOOTING IDENTITY: the canonical a0 is (kappa/sqrt(24 pi)) c^2 K_inf with K_inf = sqrt(3 Lambda) the asymptotic York time, and the alt a0 is the same coefficient on today's York time K_0 = 3 H_0/c -- an algebraic identity (kappa stays FITTED; nothing is derived): applied at every z, the alt reading IS the rival a0 proportional to H(z)
+         measured: canonical 9.360325e-11 vs FP0 9.360325e-11; alt 1.131204e-10 vs FP0 1.131204e-10
+    L(Lambda) + vacuum - L(Lambda' = Lambda + 8 pi G rho_vac) = -16*pi*G*rho_vac*(Derivative(T0(t, x), t) + Derivative(T1(t, x), x));  its Euler-Lagrange terms: [0, 0, 0, 0]
+    Gryb-Thebault H_gl = 2 Lambda - (3/8) P^2 (P = (2/3) <h_ij pi^ij>/<sqrt h> = -4*K/3) vanishes at K = [sqrt(3)*sqrt(Lambda_g)]
+  [PASS] A2 K_inf AND THE VACUUM: a constant matter vacuum energy is absorbed into HT's Lambda by the field redefinition Lambda' = Lambda + 8 pi G rho_vac, which changes the action by -16 pi G rho_vac d_m T^m (a total derivative: identical field equations); so whether alpha reads Lambda or Lambda_obs = Lambda' (= K_inf^2/3, what K_inf sees) is a CHOICE in the action, not new physics -- XR20 T1e's caveat is that choice.  The leading large-volume global Hamiltonian of unimodular shape dynamics, 2 Lambda - (3/8) P^2, vanishes exactly at K = sqrt(3 Lambda)
+         measured: total derivative True; H_gl root K = [sqrt(3)*sqrt(Lambda_g)]
+  [PASS] A3 THE LOCAL YORK TIME IS EXACTLY LEAF-UNIFORM ON THE CMC ROOT: mu appears only in the CMC term, so its equation is N sqrt(h)(K - <K>) = 0 whatever else the action contains (a K-dependent MOND coupling included): a tie to the local K has NO local variation on FP14's root (XR20 T3c's estimate scales to zero exactly), and fails only through K(z) = 3 H(z)/c
+         measured: dL/dmu_j + 2 N_j v_j (K_j - <K>) = [0, 0, 0, 0]
+
+==================================================================================================================
+HEADLINE-FLAT  the tie on the combined root's FRW solutions  [MUTATE: the tie reads the leaf's York time K(z)]
+==================================================================================================================
+    canonical a0(z)/a0(0) at z = 0.5, 1, 2.5, 5, 1100: 1.322436, 1.790838, 3.768712, 8.293944, 20513.651077  (a0(0) = 9.360325e-11)
+    alt       a0(z)/a0(0) at z = 0.5, 1, 2.5, 5, 1100: 1.322436, 1.790838, 3.768712, 8.293944, 20513.651077  (a0(0) = 1.131204e-10)
+    Q(z) = K(z)^2/3 - 8 pi G rho_m(z) against Lambda_0 over z = 0..1100: max |Q/Lambda - 1| = 0.0e+00 (50-digit arithmetic)
+  [FAIL] HEADLINE-FLAT the tie read from the conserved combination of the CMC leaf data, Q = K^2/3 - 8 pi G rho_m (= Lambda_0 = K_inf^2/3 on shell, the global constraint's value): a0(z)/a0(0) = 1 at z = 0.5, 1, 2.5, 5, 1100 on both footings, to 1e-12, and uniform on every leaf (a leaf-global quantity)
+         measured: canonical: 1.322436, 1.790838, 3.768712, 8.293944, 20513.651077; alt: 1.322436, 1.790838, 3.768712, 8.293944, 20513.651077
+         reading:  MUTATE: reading the York clock K(z) alone ties a0 to the expansion rate -- the rival a0 proportional to H(z), XR20 T3
+
+==================================================================================================================
+W   THE LEDGER
+==================================================================================================================
+    X30-merge  DERIVED            the khronon's CMC foliation and the HT unimodular clock CANNOT be merged into one term: the CMC family is local and second class with a pure-gauge global part; HT's local family is first class and its content is one global conserved pair; a conserved momentum cannot be the York clock (dK/dt = -12 pi G rho_m)  --  M1, M2, D1-D3, L1-L4
+    X30-fol    DERIVED            'the HT time's foliation is the khronon's' holds only as a relabeling: HT has no foliation (3-form gauge, Kuchar's equivalence classes); T - tau is an admissible gauge for the khronon's global reparametrization  --  M5, D3
+    X30-MB     FAILS (FRW)        the only one-term merger that keeps both local structures, 2 f(K)(d_m T^m - sqrt(-g)), is FP14's multiplier at k != 0 but freezes York time: H(z) = const for any dust  --  M3, L2, D1, D3
+    X30-MA     FAILS              T^m = l sqrt(-g) n^m (the linear-cuscuton form): K pinned to 1/l (new constant), Lambda(t) drifts to zero at z = 0.47  --  M4
+    X30-MC     FAILS              mu = beta sqrt(Lambda) (new constant): the CMC condition is lost, the khronon frozen (FP14's c_2 = 0 block)  --  L3
+    X30-SQ     FAILS              one global multiplier on Int N sqrt(h)(K - <K>)^2: irregular (no reaction force, c_2 returns undetermined, the scalar mode and time-dependent sources excluded)  --  L4
+    X30-count  DERIVED            the combined root: FP14's local count (2 tensor + 1 khronon scalar at lambda = 0; det x -4) + ONE global pair (Lambda_0, T); lattice: 2 N_L vs 2 N_L - 2 without HT; classes as D2  --  L1, D1, D2
+    X30-global DERIVED            on the khronon's leaves one global pair 2 Lambda_0 (T-dot - Int N sqrt(h)) does everything the local HT fields do (same count; the MOND sector feeds its clock)  --  D1 (globalHT), D1m
+    X30-kill   DERIVED            with HT added, FRW growth (G_eff/G = 2/(2 - alpha_c), no slip), the static Newtonian coupling (not 2G) and every response FP14 C2 scored are unchanged: the York/CMC kill stays evaded; PPN unchanged (HT is metric-free, XR20 T1d)  --  F1, L1, C2, C3
+    X30-a0     TIED (as XR20 T1)  a0 stays TIED through the conserved Lambda_0 (= Q = K_inf^2/3 on shell); the K_inf reading is T1 re-expressed, not a new tie; the local York time is exactly leaf-uniform on the CMC root but gives the rival a0(z) ~ H(z)  --  A1-A3, HEADLINE-FLAT; kappa FITTED
+    X30-foot   IDENTITY           canonical a0 = (kappa/sqrt(24 pi)) c^2 K_inf and alt a0 = the same coefficient on K_0 = 3 H_0/c (an identity)  --  A1
+    X30-vac    READING            XR20 T1e's vacuum caveat is a choice of which variable alpha reads (the shift is a total derivative)  --  A2
+
+==================================================================================================================
+VERDICT
+==================================================================================================================
+  NO MERGE.  The CMC foliation and the unimodular clock are two structures, and they fit together rather than fuse:
+  - the CMC multiplier is a LOCAL second-class constraint family whose global part is pure gauge (mu N -> mu N + c(t));
+  - HT's local constraints are first class (gauge) and its content is ONE global pair (Lambda_0, T), which on the khronon's
+    leaves can be written as a single global term; T labels the CMC leaves (a gauge choice), it defines none (Kuchar 1991);
+  - every single-term merger fails: Lambda == f(K) freezes York time (H(z) = const), the flux form pins K = 1/l and lets Lambda
+    drift, mu == beta sqrt(Lambda) loses the CMC condition and freezes the khronon, and one global squared constraint is irregular.
+  Combined (not merged): FP14's local count + one global pair; FRW growth, the static coupling and the York/CMC evasion unchanged.
+  The a0 tie stays XR20's T1: a0 reads the conserved Lambda_0 = K_inf^2/3; K_inf adds nothing new, and the local York time gives
+  the rival a0 ~ H(z).  The literature's 'unimodular shape dynamics' (Gryb-Thebault 2012) is the same pairing.
+  kappa = 1/2 stays FITTED; nothing here derives it.  The closure target stays open.
+
+  21/22 checks pass; load-bearing failures: 1; time 91 s
+  wrote XR30_one_clock_results_MUTATE.json and XR30_one_clock_MUTATE.out
