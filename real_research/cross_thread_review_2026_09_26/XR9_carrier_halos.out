@@ -1,0 +1,258 @@
+######## call 1 of XR9_carrier_halos.py (XR9_MAXN=6, single-threaded; the cache is written after every halo)
+XR9_carrier_halos.py -- the carrier halos for XR9's small-region door, re-run with each cell's own refitted lens masses.
+
+WHY.  The KiDS gate of the small-region door (XR9_small_region_kids_flagship_shear.py) scores the converged model's
+triggered carrier resolved around each KiDS lens, as DE10 did at p = 1, x_c0 = 2.5.  The carrier is L375's shell model:
+its infall feels the bin's baryons (Hernquist M_b + the rest of f_b M_200 as an NFW-shaped CGM), so the halo depends on
+the cell through the bin's fitted baryonic mass.  DE10 reused L390's masses (refitted on the curvature branch at
+x_c,eff(0.25) = 3.2477).  At a higher threshold the best-fit M_b per bin moves; the carrier halo must be re-run with the
+new masses, exactly as L390 did at its own cell (rule 3 of the KiDS machinery's owner, 2026-09-26).
+
+WHAT THIS SCRIPT DOES (nothing else; the scoring is the main XR9 script's):
+  1. THE REFIT, L390's recipe on the scored switch.  For every XR9 cell (p in {1, 1.5}, x_c0 in {2.5, 3.5, 5, 7, 10, 14,
+     20}) the four KiDS bins' baryonic masses are refitted on the model being scored: DE8's region operator (sigma = 1,
+     1/m = 0.1 Mpc, loaded unedited), the MOND-sector reading x = 4 pi G (rho_b + rho_ph - f_b rho_bar_m)/H^2 (MS2's
+     door, carrier-blind), MS3's local cap (v_cap = 325 km/s), the smooth gate at w = 0.25, x_c,eff(0.25) = x_c0 E^(2p)
+     (L359's background), switch only, canonical footing, the free 2-halo amplitude A in [0, 20] (L352's fit_model, as
+     L390 ran it).  M_b per bin = the best grid mass (L352's LM grid, 0.1 dex) of that fit.
+  2. THE HALOS.  L375's halo() imported unchanged; each distinct (bin, M_b, kick) is run once with L390/DE10's seed rule
+     seed = 1200 + 10 b + int(v_k)//25 (the same seed at every mass, so the mass effect is not Monte-Carlo noise), alpha =
+     0.75, Gamma = 10 H, grow_b = True, N = 60000 -- DE10's configuration exactly.  DE10's own eight halos (L390's masses,
+     v_k = 600 and 650) are in the list, for the main script's control.
+  3. THE CACHE.  Each halo's radial histogram (L375's 240 edges to 20 Mpc: the carrier's own infall region is kept, no
+     r_200 truncation) is written to XR9_carrier_halos_results.json after EVERY halo, so the run can be split: each call
+     runs at most XR9_MAXN (default 6) missing halos, single-threaded (~70 s each on the loaded machine), and exits.
+     Re-run until it reports "all halos present".
+  DE8 loaded   [2s]
+    cell p = 1, x_c0 =  2.5: x_c,eff(0.25) =   3.248; refitted log M_b per bin [10.4, 10.9, 11.0, 11.1]   [2s]
+    cell p = 1, x_c0 =  3.5: x_c,eff(0.25) =   4.547; refitted log M_b per bin [10.4, 10.9, 10.9, 11.2]   [2s]
+    cell p = 1, x_c0 =  5.0: x_c,eff(0.25) =   6.495; refitted log M_b per bin [10.5, 11.0, 11.0, 11.1]   [3s]
+    cell p = 1, x_c0 =  7.0: x_c,eff(0.25) =   9.094; refitted log M_b per bin [10.3, 10.8, 10.9, 11.1]   [3s]
+    cell p = 1, x_c0 = 10.0: x_c,eff(0.25) =  12.991; refitted log M_b per bin [10.2, 10.8, 11.1, 11.1]   [3s]
+    cell p = 1, x_c0 = 14.0: x_c,eff(0.25) =  18.187; refitted log M_b per bin [10.3, 10.9, 10.9, 11.1]   [3s]
+    cell p = 1, x_c0 = 20.0: x_c,eff(0.25) =  25.982; refitted log M_b per bin [10.2, 10.8, 10.9, 11.2]   [4s]
+    cell p = 1.5, x_c0 =  2.5: x_c,eff(0.25) =   3.702; refitted log M_b per bin [10.5, 10.8, 10.9, 11.1]   [4s]
+    cell p = 1.5, x_c0 =  3.5: x_c,eff(0.25) =   5.182; refitted log M_b per bin [10.4, 10.9, 10.9, 11.1]   [4s]
+    cell p = 1.5, x_c0 =  5.0: x_c,eff(0.25) =   7.403; refitted log M_b per bin [10.3, 10.8, 10.9, 11.2]   [4s]
+    cell p = 1.5, x_c0 =  7.0: x_c,eff(0.25) =  10.365; refitted log M_b per bin [10.4, 10.9, 10.9, 11.1]   [4s]
+    cell p = 1.5, x_c0 = 10.0: x_c,eff(0.25) =  14.807; refitted log M_b per bin [10.2, 10.8, 10.9, 11.2]   [5s]
+    cell p = 1.5, x_c0 = 14.0: x_c,eff(0.25) =  20.729; refitted log M_b per bin [10.4, 10.9, 11.0, 11.1]   [5s]
+    cell p = 1.5, x_c0 = 20.0: x_c,eff(0.25) =  29.613; refitted log M_b per bin [10.3, 10.8, 10.8, 11.3]   [5s]
+  P1 (reported) refitted masses above.  P2 (reported): L390's masses at p = 1, x_c0 = 2.5 (curvature branch) = [10.5, 10.8, 11.0, 11.1]; the MOND-sector refit there = [10.4, 10.9, 11.0, 11.1] -> DIFFERENT
+  28 distinct halos planned (0 already cached, 28 missing); this call runs up to 6   [5s]
+    halo b0_lm10.50_v600        (M_b 3.162e+10, v_k 600, seed 1224): n = 59999, M(<0.5 Mpc/h) = 9.178e+10 Msun   [64s; total 69s]
+    halo b0_lm10.50_v650        (M_b 3.162e+10, v_k 650, seed 1226): n = 59999, M(<0.5 Mpc/h) = 9.079e+10 Msun   [68s; total 137s]
+    halo b1_lm10.80_v600        (M_b 6.310e+10, v_k 600, seed 1234): n = 59999, M(<0.5 Mpc/h) = 1.910e+11 Msun   [66s; total 203s]
+    halo b1_lm10.80_v650        (M_b 6.310e+10, v_k 650, seed 1236): n = 59999, M(<0.5 Mpc/h) = 1.851e+11 Msun   [72s; total 275s]
+    halo b2_lm11.00_v600        (M_b 1.000e+11, v_k 600, seed 1244): n = 59999, M(<0.5 Mpc/h) = 3.798e+11 Msun   [71s; total 346s]
+    halo b2_lm11.00_v650        (M_b 1.000e+11, v_k 650, seed 1246): n = 59999, M(<0.5 Mpc/h) = 3.707e+11 Msun   [66s; total 413s]
+
+  22 halos still missing: re-run this script.   [413s]
+rc=0
+
+######## call 2 of XR9_carrier_halos.py (XR9_MAXN=6, single-threaded; the cache is written after every halo)
+XR9_carrier_halos.py -- the carrier halos for XR9's small-region door, re-run with each cell's own refitted lens masses.
+
+WHY.  The KiDS gate of the small-region door (XR9_small_region_kids_flagship_shear.py) scores the converged model's
+triggered carrier resolved around each KiDS lens, as DE10 did at p = 1, x_c0 = 2.5.  The carrier is L375's shell model:
+its infall feels the bin's baryons (Hernquist M_b + the rest of f_b M_200 as an NFW-shaped CGM), so the halo depends on
+the cell through the bin's fitted baryonic mass.  DE10 reused L390's masses (refitted on the curvature branch at
+x_c,eff(0.25) = 3.2477).  At a higher threshold the best-fit M_b per bin moves; the carrier halo must be re-run with the
+new masses, exactly as L390 did at its own cell (rule 3 of the KiDS machinery's owner, 2026-09-26).
+
+WHAT THIS SCRIPT DOES (nothing else; the scoring is the main XR9 script's):
+  1. THE REFIT, L390's recipe on the scored switch.  For every XR9 cell (p in {1, 1.5}, x_c0 in {2.5, 3.5, 5, 7, 10, 14,
+     20}) the four KiDS bins' baryonic masses are refitted on the model being scored: DE8's region operator (sigma = 1,
+     1/m = 0.1 Mpc, loaded unedited), the MOND-sector reading x = 4 pi G (rho_b + rho_ph - f_b rho_bar_m)/H^2 (MS2's
+     door, carrier-blind), MS3's local cap (v_cap = 325 km/s), the smooth gate at w = 0.25, x_c,eff(0.25) = x_c0 E^(2p)
+     (L359's background), switch only, canonical footing, the free 2-halo amplitude A in [0, 20] (L352's fit_model, as
+     L390 ran it).  M_b per bin = the best grid mass (L352's LM grid, 0.1 dex) of that fit.
+  2. THE HALOS.  L375's halo() imported unchanged; each distinct (bin, M_b, kick) is run once with L390/DE10's seed rule
+     seed = 1200 + 10 b + int(v_k)//25 (the same seed at every mass, so the mass effect is not Monte-Carlo noise), alpha =
+     0.75, Gamma = 10 H, grow_b = True, N = 60000 -- DE10's configuration exactly.  DE10's own eight halos (L390's masses,
+     v_k = 600 and 650) are in the list, for the main script's control.
+  3. THE CACHE.  Each halo's radial histogram (L375's 240 edges to 20 Mpc: the carrier's own infall region is kept, no
+     r_200 truncation) is written to XR9_carrier_halos_results.json after EVERY halo, so the run can be split: each call
+     runs at most XR9_MAXN (default 6) missing halos, single-threaded (~70 s each on the loaded machine), and exits.
+     Re-run until it reports "all halos present".
+  DE8 loaded   [2s]
+    cell p = 1, x_c0 =  2.5: x_c,eff(0.25) =   3.248; refitted log M_b per bin [10.4, 10.9, 11.0, 11.1]   [2s]
+    cell p = 1, x_c0 =  3.5: x_c,eff(0.25) =   4.547; refitted log M_b per bin [10.4, 10.9, 10.9, 11.2]   [2s]
+    cell p = 1, x_c0 =  5.0: x_c,eff(0.25) =   6.495; refitted log M_b per bin [10.5, 11.0, 11.0, 11.1]   [3s]
+    cell p = 1, x_c0 =  7.0: x_c,eff(0.25) =   9.094; refitted log M_b per bin [10.3, 10.8, 10.9, 11.1]   [3s]
+    cell p = 1, x_c0 = 10.0: x_c,eff(0.25) =  12.991; refitted log M_b per bin [10.2, 10.8, 11.1, 11.1]   [3s]
+    cell p = 1, x_c0 = 14.0: x_c,eff(0.25) =  18.187; refitted log M_b per bin [10.3, 10.9, 10.9, 11.1]   [3s]
+    cell p = 1, x_c0 = 20.0: x_c,eff(0.25) =  25.982; refitted log M_b per bin [10.2, 10.8, 10.9, 11.2]   [4s]
+    cell p = 1.5, x_c0 =  2.5: x_c,eff(0.25) =   3.702; refitted log M_b per bin [10.5, 10.8, 10.9, 11.1]   [4s]
+    cell p = 1.5, x_c0 =  3.5: x_c,eff(0.25) =   5.182; refitted log M_b per bin [10.4, 10.9, 10.9, 11.1]   [5s]
+    cell p = 1.5, x_c0 =  5.0: x_c,eff(0.25) =   7.403; refitted log M_b per bin [10.3, 10.8, 10.9, 11.2]   [5s]
+    cell p = 1.5, x_c0 =  7.0: x_c,eff(0.25) =  10.365; refitted log M_b per bin [10.4, 10.9, 10.9, 11.1]   [5s]
+    cell p = 1.5, x_c0 = 10.0: x_c,eff(0.25) =  14.807; refitted log M_b per bin [10.2, 10.8, 10.9, 11.2]   [5s]
+    cell p = 1.5, x_c0 = 14.0: x_c,eff(0.25) =  20.729; refitted log M_b per bin [10.4, 10.9, 11.0, 11.1]   [5s]
+    cell p = 1.5, x_c0 = 20.0: x_c,eff(0.25) =  29.613; refitted log M_b per bin [10.3, 10.8, 10.8, 11.3]   [6s]
+  P1 (reported) refitted masses above.  P2 (reported): L390's masses at p = 1, x_c0 = 2.5 (curvature branch) = [10.5, 10.8, 11.0, 11.1]; the MOND-sector refit there = [10.4, 10.9, 11.0, 11.1] -> DIFFERENT
+  28 distinct halos planned (6 already cached, 22 missing); this call runs up to 6   [6s]
+    halo b3_lm11.10_v600        (M_b 1.259e+11, v_k 600, seed 1254): n = 59999, M(<0.5 Mpc/h) = 1.024e+12 Msun   [67s; total 72s]
+    halo b3_lm11.10_v650        (M_b 1.259e+11, v_k 650, seed 1256): n = 59999, M(<0.5 Mpc/h) = 1.001e+12 Msun   [66s; total 138s]
+    halo b0_lm10.40_v600        (M_b 2.512e+10, v_k 600, seed 1224): n = 59999, M(<0.5 Mpc/h) = 9.180e+10 Msun   [64s; total 202s]
+    halo b0_lm10.40_v650        (M_b 2.512e+10, v_k 650, seed 1226): n = 59999, M(<0.5 Mpc/h) = 9.068e+10 Msun   [62s; total 264s]
+    halo b1_lm10.90_v600        (M_b 7.943e+10, v_k 600, seed 1234): n = 59999, M(<0.5 Mpc/h) = 1.904e+11 Msun   [63s; total 326s]
+    halo b1_lm10.90_v650        (M_b 7.943e+10, v_k 650, seed 1236): n = 59999, M(<0.5 Mpc/h) = 1.851e+11 Msun   [65s; total 391s]
+
+  16 halos still missing: re-run this script.   [391s]
+rc=0
+
+######## call 3 of XR9_carrier_halos.py (XR9_MAXN=6, single-threaded; the cache is written after every halo)
+XR9_carrier_halos.py -- the carrier halos for XR9's small-region door, re-run with each cell's own refitted lens masses.
+
+WHY.  The KiDS gate of the small-region door (XR9_small_region_kids_flagship_shear.py) scores the converged model's
+triggered carrier resolved around each KiDS lens, as DE10 did at p = 1, x_c0 = 2.5.  The carrier is L375's shell model:
+its infall feels the bin's baryons (Hernquist M_b + the rest of f_b M_200 as an NFW-shaped CGM), so the halo depends on
+the cell through the bin's fitted baryonic mass.  DE10 reused L390's masses (refitted on the curvature branch at
+x_c,eff(0.25) = 3.2477).  At a higher threshold the best-fit M_b per bin moves; the carrier halo must be re-run with the
+new masses, exactly as L390 did at its own cell (rule 3 of the KiDS machinery's owner, 2026-09-26).
+
+WHAT THIS SCRIPT DOES (nothing else; the scoring is the main XR9 script's):
+  1. THE REFIT, L390's recipe on the scored switch.  For every XR9 cell (p in {1, 1.5}, x_c0 in {2.5, 3.5, 5, 7, 10, 14,
+     20}) the four KiDS bins' baryonic masses are refitted on the model being scored: DE8's region operator (sigma = 1,
+     1/m = 0.1 Mpc, loaded unedited), the MOND-sector reading x = 4 pi G (rho_b + rho_ph - f_b rho_bar_m)/H^2 (MS2's
+     door, carrier-blind), MS3's local cap (v_cap = 325 km/s), the smooth gate at w = 0.25, x_c,eff(0.25) = x_c0 E^(2p)
+     (L359's background), switch only, canonical footing, the free 2-halo amplitude A in [0, 20] (L352's fit_model, as
+     L390 ran it).  M_b per bin = the best grid mass (L352's LM grid, 0.1 dex) of that fit.
+  2. THE HALOS.  L375's halo() imported unchanged; each distinct (bin, M_b, kick) is run once with L390/DE10's seed rule
+     seed = 1200 + 10 b + int(v_k)//25 (the same seed at every mass, so the mass effect is not Monte-Carlo noise), alpha =
+     0.75, Gamma = 10 H, grow_b = True, N = 60000 -- DE10's configuration exactly.  DE10's own eight halos (L390's masses,
+     v_k = 600 and 650) are in the list, for the main script's control.
+  3. THE CACHE.  Each halo's radial histogram (L375's 240 edges to 20 Mpc: the carrier's own infall region is kept, no
+     r_200 truncation) is written to XR9_carrier_halos_results.json after EVERY halo, so the run can be split: each call
+     runs at most XR9_MAXN (default 6) missing halos, single-threaded (~70 s each on the loaded machine), and exits.
+     Re-run until it reports "all halos present".
+  DE8 loaded   [2s]
+    cell p = 1, x_c0 =  2.5: x_c,eff(0.25) =   3.248; refitted log M_b per bin [10.4, 10.9, 11.0, 11.1]   [2s]
+    cell p = 1, x_c0 =  3.5: x_c,eff(0.25) =   4.547; refitted log M_b per bin [10.4, 10.9, 10.9, 11.2]   [3s]
+    cell p = 1, x_c0 =  5.0: x_c,eff(0.25) =   6.495; refitted log M_b per bin [10.5, 11.0, 11.0, 11.1]   [3s]
+    cell p = 1, x_c0 =  7.0: x_c,eff(0.25) =   9.094; refitted log M_b per bin [10.3, 10.8, 10.9, 11.1]   [4s]
+    cell p = 1, x_c0 = 10.0: x_c,eff(0.25) =  12.991; refitted log M_b per bin [10.2, 10.8, 11.1, 11.1]   [4s]
+    cell p = 1, x_c0 = 14.0: x_c,eff(0.25) =  18.187; refitted log M_b per bin [10.3, 10.9, 10.9, 11.1]   [4s]
+    cell p = 1, x_c0 = 20.0: x_c,eff(0.25) =  25.982; refitted log M_b per bin [10.2, 10.8, 10.9, 11.2]   [5s]
+    cell p = 1.5, x_c0 =  2.5: x_c,eff(0.25) =   3.702; refitted log M_b per bin [10.5, 10.8, 10.9, 11.1]   [5s]
+    cell p = 1.5, x_c0 =  3.5: x_c,eff(0.25) =   5.182; refitted log M_b per bin [10.4, 10.9, 10.9, 11.1]   [5s]
+    cell p = 1.5, x_c0 =  5.0: x_c,eff(0.25) =   7.403; refitted log M_b per bin [10.3, 10.8, 10.9, 11.2]   [5s]
+    cell p = 1.5, x_c0 =  7.0: x_c,eff(0.25) =  10.365; refitted log M_b per bin [10.4, 10.9, 10.9, 11.1]   [6s]
+    cell p = 1.5, x_c0 = 10.0: x_c,eff(0.25) =  14.807; refitted log M_b per bin [10.2, 10.8, 10.9, 11.2]   [6s]
+    cell p = 1.5, x_c0 = 14.0: x_c,eff(0.25) =  20.729; refitted log M_b per bin [10.4, 10.9, 11.0, 11.1]   [6s]
+    cell p = 1.5, x_c0 = 20.0: x_c,eff(0.25) =  29.613; refitted log M_b per bin [10.3, 10.8, 10.8, 11.3]   [6s]
+  P1 (reported) refitted masses above.  P2 (reported): L390's masses at p = 1, x_c0 = 2.5 (curvature branch) = [10.5, 10.8, 11.0, 11.1]; the MOND-sector refit there = [10.4, 10.9, 11.0, 11.1] -> DIFFERENT
+  28 distinct halos planned (12 already cached, 16 missing); this call runs up to 6   [6s]
+    halo b2_lm10.90_v600        (M_b 7.943e+10, v_k 600, seed 1244): n = 59999, M(<0.5 Mpc/h) = 3.803e+11 Msun   [67s; total 73s]
+    halo b2_lm10.90_v650        (M_b 7.943e+10, v_k 650, seed 1246): n = 59999, M(<0.5 Mpc/h) = 3.693e+11 Msun   [63s; total 136s]
+    halo b3_lm11.20_v600        (M_b 1.585e+11, v_k 600, seed 1254): n = 59999, M(<0.5 Mpc/h) = 1.024e+12 Msun   [62s; total 197s]
+    halo b3_lm11.20_v650        (M_b 1.585e+11, v_k 650, seed 1256): n = 59999, M(<0.5 Mpc/h) = 1.001e+12 Msun   [65s; total 262s]
+    halo b1_lm11.00_v600        (M_b 1.000e+11, v_k 600, seed 1234): n = 59999, M(<0.5 Mpc/h) = 1.932e+11 Msun   [75s; total 337s]
+    halo b1_lm11.00_v650        (M_b 1.000e+11, v_k 650, seed 1236): n = 59999, M(<0.5 Mpc/h) = 1.866e+11 Msun   [67s; total 404s]
+
+  10 halos still missing: re-run this script.   [404s]
+rc=0
+
+######## call 4 of XR9_carrier_halos.py (XR9_MAXN=6, single-threaded; the cache is written after every halo)
+XR9_carrier_halos.py -- the carrier halos for XR9's small-region door, re-run with each cell's own refitted lens masses.
+
+WHY.  The KiDS gate of the small-region door (XR9_small_region_kids_flagship_shear.py) scores the converged model's
+triggered carrier resolved around each KiDS lens, as DE10 did at p = 1, x_c0 = 2.5.  The carrier is L375's shell model:
+its infall feels the bin's baryons (Hernquist M_b + the rest of f_b M_200 as an NFW-shaped CGM), so the halo depends on
+the cell through the bin's fitted baryonic mass.  DE10 reused L390's masses (refitted on the curvature branch at
+x_c,eff(0.25) = 3.2477).  At a higher threshold the best-fit M_b per bin moves; the carrier halo must be re-run with the
+new masses, exactly as L390 did at its own cell (rule 3 of the KiDS machinery's owner, 2026-09-26).
+
+WHAT THIS SCRIPT DOES (nothing else; the scoring is the main XR9 script's):
+  1. THE REFIT, L390's recipe on the scored switch.  For every XR9 cell (p in {1, 1.5}, x_c0 in {2.5, 3.5, 5, 7, 10, 14,
+     20}) the four KiDS bins' baryonic masses are refitted on the model being scored: DE8's region operator (sigma = 1,
+     1/m = 0.1 Mpc, loaded unedited), the MOND-sector reading x = 4 pi G (rho_b + rho_ph - f_b rho_bar_m)/H^2 (MS2's
+     door, carrier-blind), MS3's local cap (v_cap = 325 km/s), the smooth gate at w = 0.25, x_c,eff(0.25) = x_c0 E^(2p)
+     (L359's background), switch only, canonical footing, the free 2-halo amplitude A in [0, 20] (L352's fit_model, as
+     L390 ran it).  M_b per bin = the best grid mass (L352's LM grid, 0.1 dex) of that fit.
+  2. THE HALOS.  L375's halo() imported unchanged; each distinct (bin, M_b, kick) is run once with L390/DE10's seed rule
+     seed = 1200 + 10 b + int(v_k)//25 (the same seed at every mass, so the mass effect is not Monte-Carlo noise), alpha =
+     0.75, Gamma = 10 H, grow_b = True, N = 60000 -- DE10's configuration exactly.  DE10's own eight halos (L390's masses,
+     v_k = 600 and 650) are in the list, for the main script's control.
+  3. THE CACHE.  Each halo's radial histogram (L375's 240 edges to 20 Mpc: the carrier's own infall region is kept, no
+     r_200 truncation) is written to XR9_carrier_halos_results.json after EVERY halo, so the run can be split: each call
+     runs at most XR9_MAXN (default 6) missing halos, single-threaded (~70 s each on the loaded machine), and exits.
+     Re-run until it reports "all halos present".
+  DE8 loaded   [2s]
+    cell p = 1, x_c0 =  2.5: x_c,eff(0.25) =   3.248; refitted log M_b per bin [10.4, 10.9, 11.0, 11.1]   [2s]
+    cell p = 1, x_c0 =  3.5: x_c,eff(0.25) =   4.547; refitted log M_b per bin [10.4, 10.9, 10.9, 11.2]   [2s]
+    cell p = 1, x_c0 =  5.0: x_c,eff(0.25) =   6.495; refitted log M_b per bin [10.5, 11.0, 11.0, 11.1]   [3s]
+    cell p = 1, x_c0 =  7.0: x_c,eff(0.25) =   9.094; refitted log M_b per bin [10.3, 10.8, 10.9, 11.1]   [3s]
+    cell p = 1, x_c0 = 10.0: x_c,eff(0.25) =  12.991; refitted log M_b per bin [10.2, 10.8, 11.1, 11.1]   [3s]
+    cell p = 1, x_c0 = 14.0: x_c,eff(0.25) =  18.187; refitted log M_b per bin [10.3, 10.9, 10.9, 11.1]   [4s]
+    cell p = 1, x_c0 = 20.0: x_c,eff(0.25) =  25.982; refitted log M_b per bin [10.2, 10.8, 10.9, 11.2]   [4s]
+    cell p = 1.5, x_c0 =  2.5: x_c,eff(0.25) =   3.702; refitted log M_b per bin [10.5, 10.8, 10.9, 11.1]   [4s]
+    cell p = 1.5, x_c0 =  3.5: x_c,eff(0.25) =   5.182; refitted log M_b per bin [10.4, 10.9, 10.9, 11.1]   [4s]
+    cell p = 1.5, x_c0 =  5.0: x_c,eff(0.25) =   7.403; refitted log M_b per bin [10.3, 10.8, 10.9, 11.2]   [5s]
+    cell p = 1.5, x_c0 =  7.0: x_c,eff(0.25) =  10.365; refitted log M_b per bin [10.4, 10.9, 10.9, 11.1]   [5s]
+    cell p = 1.5, x_c0 = 10.0: x_c,eff(0.25) =  14.807; refitted log M_b per bin [10.2, 10.8, 10.9, 11.2]   [5s]
+    cell p = 1.5, x_c0 = 14.0: x_c,eff(0.25) =  20.729; refitted log M_b per bin [10.4, 10.9, 11.0, 11.1]   [5s]
+    cell p = 1.5, x_c0 = 20.0: x_c,eff(0.25) =  29.613; refitted log M_b per bin [10.3, 10.8, 10.8, 11.3]   [6s]
+  P1 (reported) refitted masses above.  P2 (reported): L390's masses at p = 1, x_c0 = 2.5 (curvature branch) = [10.5, 10.8, 11.0, 11.1]; the MOND-sector refit there = [10.4, 10.9, 11.0, 11.1] -> DIFFERENT
+  28 distinct halos planned (18 already cached, 10 missing); this call runs up to 6   [6s]
+    halo b0_lm10.30_v600        (M_b 1.995e+10, v_k 600, seed 1224): n = 59999, M(<0.5 Mpc/h) = 9.150e+10 Msun   [59s; total 64s]
+    halo b0_lm10.30_v650        (M_b 1.995e+10, v_k 650, seed 1226): n = 59999, M(<0.5 Mpc/h) = 9.054e+10 Msun   [59s; total 124s]
+    halo b0_lm10.20_v600        (M_b 1.585e+10, v_k 600, seed 1224): n = 59999, M(<0.5 Mpc/h) = 9.142e+10 Msun   [61s; total 184s]
+    halo b0_lm10.20_v650        (M_b 1.585e+10, v_k 650, seed 1226): n = 59999, M(<0.5 Mpc/h) = 9.062e+10 Msun   [61s; total 246s]
+    halo b2_lm11.10_v600        (M_b 1.259e+11, v_k 600, seed 1244): n = 59999, M(<0.5 Mpc/h) = 3.809e+11 Msun   [64s; total 310s]
+    halo b2_lm11.10_v650        (M_b 1.259e+11, v_k 650, seed 1246): n = 59999, M(<0.5 Mpc/h) = 3.689e+11 Msun   [71s; total 381s]
+
+  4 halos still missing: re-run this script.   [381s]
+rc=0
+
+######## call 5 of XR9_carrier_halos.py (XR9_MAXN=6, single-threaded; the cache is written after every halo)
+XR9_carrier_halos.py -- the carrier halos for XR9's small-region door, re-run with each cell's own refitted lens masses.
+
+WHY.  The KiDS gate of the small-region door (XR9_small_region_kids_flagship_shear.py) scores the converged model's
+triggered carrier resolved around each KiDS lens, as DE10 did at p = 1, x_c0 = 2.5.  The carrier is L375's shell model:
+its infall feels the bin's baryons (Hernquist M_b + the rest of f_b M_200 as an NFW-shaped CGM), so the halo depends on
+the cell through the bin's fitted baryonic mass.  DE10 reused L390's masses (refitted on the curvature branch at
+x_c,eff(0.25) = 3.2477).  At a higher threshold the best-fit M_b per bin moves; the carrier halo must be re-run with the
+new masses, exactly as L390 did at its own cell (rule 3 of the KiDS machinery's owner, 2026-09-26).
+
+WHAT THIS SCRIPT DOES (nothing else; the scoring is the main XR9 script's):
+  1. THE REFIT, L390's recipe on the scored switch.  For every XR9 cell (p in {1, 1.5}, x_c0 in {2.5, 3.5, 5, 7, 10, 14,
+     20}) the four KiDS bins' baryonic masses are refitted on the model being scored: DE8's region operator (sigma = 1,
+     1/m = 0.1 Mpc, loaded unedited), the MOND-sector reading x = 4 pi G (rho_b + rho_ph - f_b rho_bar_m)/H^2 (MS2's
+     door, carrier-blind), MS3's local cap (v_cap = 325 km/s), the smooth gate at w = 0.25, x_c,eff(0.25) = x_c0 E^(2p)
+     (L359's background), switch only, canonical footing, the free 2-halo amplitude A in [0, 20] (L352's fit_model, as
+     L390 ran it).  M_b per bin = the best grid mass (L352's LM grid, 0.1 dex) of that fit.
+  2. THE HALOS.  L375's halo() imported unchanged; each distinct (bin, M_b, kick) is run once with L390/DE10's seed rule
+     seed = 1200 + 10 b + int(v_k)//25 (the same seed at every mass, so the mass effect is not Monte-Carlo noise), alpha =
+     0.75, Gamma = 10 H, grow_b = True, N = 60000 -- DE10's configuration exactly.  DE10's own eight halos (L390's masses,
+     v_k = 600 and 650) are in the list, for the main script's control.
+  3. THE CACHE.  Each halo's radial histogram (L375's 240 edges to 20 Mpc: the carrier's own infall region is kept, no
+     r_200 truncation) is written to XR9_carrier_halos_results.json after EVERY halo, so the run can be split: each call
+     runs at most XR9_MAXN (default 6) missing halos, single-threaded (~70 s each on the loaded machine), and exits.
+     Re-run until it reports "all halos present".
+  DE8 loaded   [2s]
+    cell p = 1, x_c0 =  2.5: x_c,eff(0.25) =   3.248; refitted log M_b per bin [10.4, 10.9, 11.0, 11.1]   [2s]
+    cell p = 1, x_c0 =  3.5: x_c,eff(0.25) =   4.547; refitted log M_b per bin [10.4, 10.9, 10.9, 11.2]   [3s]
+    cell p = 1, x_c0 =  5.0: x_c,eff(0.25) =   6.495; refitted log M_b per bin [10.5, 11.0, 11.0, 11.1]   [3s]
+    cell p = 1, x_c0 =  7.0: x_c,eff(0.25) =   9.094; refitted log M_b per bin [10.3, 10.8, 10.9, 11.1]   [3s]
+    cell p = 1, x_c0 = 10.0: x_c,eff(0.25) =  12.991; refitted log M_b per bin [10.2, 10.8, 11.1, 11.1]   [3s]
+    cell p = 1, x_c0 = 14.0: x_c,eff(0.25) =  18.187; refitted log M_b per bin [10.3, 10.9, 10.9, 11.1]   [4s]
+    cell p = 1, x_c0 = 20.0: x_c,eff(0.25) =  25.982; refitted log M_b per bin [10.2, 10.8, 10.9, 11.2]   [4s]
+    cell p = 1.5, x_c0 =  2.5: x_c,eff(0.25) =   3.702; refitted log M_b per bin [10.5, 10.8, 10.9, 11.1]   [4s]
+    cell p = 1.5, x_c0 =  3.5: x_c,eff(0.25) =   5.182; refitted log M_b per bin [10.4, 10.9, 10.9, 11.1]   [4s]
+    cell p = 1.5, x_c0 =  5.0: x_c,eff(0.25) =   7.403; refitted log M_b per bin [10.3, 10.8, 10.9, 11.2]   [4s]
+    cell p = 1.5, x_c0 =  7.0: x_c,eff(0.25) =  10.365; refitted log M_b per bin [10.4, 10.9, 10.9, 11.1]   [5s]
+    cell p = 1.5, x_c0 = 10.0: x_c,eff(0.25) =  14.807; refitted log M_b per bin [10.2, 10.8, 10.9, 11.2]   [5s]
+    cell p = 1.5, x_c0 = 14.0: x_c,eff(0.25) =  20.729; refitted log M_b per bin [10.4, 10.9, 11.0, 11.1]   [5s]
+    cell p = 1.5, x_c0 = 20.0: x_c,eff(0.25) =  29.613; refitted log M_b per bin [10.3, 10.8, 10.8, 11.3]   [6s]
+  P1 (reported) refitted masses above.  P2 (reported): L390's masses at p = 1, x_c0 = 2.5 (curvature branch) = [10.5, 10.8, 11.0, 11.1]; the MOND-sector refit there = [10.4, 10.9, 11.0, 11.1] -> DIFFERENT
+  28 distinct halos planned (24 already cached, 4 missing); this call runs up to 6   [6s]
+    halo b2_lm10.80_v600        (M_b 6.310e+10, v_k 600, seed 1244): n = 59999, M(<0.5 Mpc/h) = 3.808e+11 Msun   [65s; total 71s]
+    halo b2_lm10.80_v650        (M_b 6.310e+10, v_k 650, seed 1246): n = 59999, M(<0.5 Mpc/h) = 3.700e+11 Msun   [68s; total 139s]
+    halo b3_lm11.30_v600        (M_b 1.995e+11, v_k 600, seed 1254): n = 59999, M(<0.5 Mpc/h) = 1.024e+12 Msun   [72s; total 211s]
+    halo b3_lm11.30_v650        (M_b 1.995e+11, v_k 650, seed 1256): n = 59999, M(<0.5 Mpc/h) = 1.004e+12 Msun   [68s; total 279s]
+
+  H1 all 28 planned halos present; particle counts within 1% of N: True   [279s]
+rc=0
+

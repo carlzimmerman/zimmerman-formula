@@ -1,0 +1,1203 @@
+XR10 -- THE ANSWER VALIDATOR: is every row the answer calls an M* result actually run on M*?
+
+WHY.  The final answer (ANSWER_AS_IT_STANDS.md) is assembled from lanes run by parallel sessions.  On 2026-09-26 alone
+results were silently mixed across settings five times: switch cells (L381), switch branches (L388 vs DE2), cap forms
+(L395's local form vs MS5's kappa form), force operators (PM vs action vs merger) and epochs (retention at z = 0 used at
+z = 0.4 or 0.5).  Docstrings and README rows drifted from the code each time.  This gate reads the CODE.
+
+WHAT IT DOES.  XR10_answer_rows.json holds one row per result that bears on the target model M*.  Every axis of every
+row carries a trace: a file, a regular expression that finds the defining line, and a derivation (a signature table
+classifies the line, or numbers are parsed from it).  The validator re-derives each axis from the source -- the
+committed version (git show HEAD:) for committed lanes, the working tree for uncommitted ones -- and compares:
+  (D) the registry against the source: a registered value the code no longer supports is DRIFT;
+  (M) the derived value against M* (the parameter block MSTAR below): MATCH, COMPAT (a committed lane has shown the
+      difference is controlled for this row's gates, the rule is enabled, and the row's scope states it), MISMATCH,
+      or N/A (the axis does not enter the row);
+and prints a per-row table.  Nothing is imported from or executed in the lanes; results are read only from committed
+JSON / .out files.
+
+  registry: 54 rows, 14 shared traces, 12 rules; inspected 2026-09-26T22:16:37-0400 at 6daea932c; now HEAD eb4557ce3
+  M* = switch_reading mond_sector_constrained, switch_equivalent ('mond_sector_phiX',), cap_form kappa_MS5, p 1.0, x_c0 2.5, w_max 0.25, kernel nu_mono, sigma 1.0, operator A, carrier L388_density_trigger, kick_kms (575.0, 650.0), footings ('canonical', 'alt'), epoch_dz_tol 0.1
+
+========================================================================================================================
+E  THE APPROXIMATION RULES: each one's evidence, re-checked in the committed files
+========================================================================================================================
+  [PASS] OP_B_FOR_A                 enabled : operator ['B'] -> A  | the PM operator (all-baryon field, masked response) for L361's action operator: controlled at static-field scope (XR5: monopole <= 2.2e-3, Harvey |d beta| <= 5e-5); NOT for the EFE beyond the cap (XR6)
+           cross_thread_review_2026_09_26/XR5_README.md [HEAD] contains "The PM operator (B) matches the action's operator (A) to ≤ 2": True
+           cross_thread_review_2026_09_26/XR5_operator_identity.out [HEAD] contains '[PASS] H1 HARVEY': True
+           cross_thread_review_2026_09_26/XR5_operator_identity.out [HEAD] contains '13/13 checks pass': True
+  [PASS] ABS_FOR_CONSTRAINED        enabled : switch_reading ['mond_sector_abs'] -> mond_sector_constrained  | MS3/L395/L396's door (rho_b + the positive untruncated phantom) for CV3's constrained form: the same leak-free physics (MS1 A3; CV3 G1/G2); data gates only, a mismatch for action-level rows
+           mond_sector_gate_2026/MS1_gate_variation_reciprocity_results.json check A3: ok=True ((c) 0; (d) 0; (a) -B*C*Wp/2; (b) matches -C W' B/8piG: True)
+           chk_v0_2026/CV3_gate_varied_results.json check G1: ok=True (A+: [True, True, True, True, True]; A: [True, True, True, True, True];)
+           chk_v0_2026/CV3_gate_varied_results.json check G2: ok=True (residuals 5.2e-172, 8.1e-174, 4.0e-174; leak 0)
+  [PASS] SIGMA0_FOR_SIGMA1          enabled : sigma [0.0] -> 1.0  | sigma = 0 for sigma = 1: negligible for KiDS (DE8 |dd chi^2| <= 0.40) and Harvey (XR5 H1); a mismatch elsewhere
+           dark_energy_2026/DE8_kids_sigma_axis_both_branches_results.json numbers/sigma_shift_by_branch/r200/upper = 0.3999 <= 0.4
+           dark_energy_2026/DE8_kids_sigma_axis_both_branches_results.json numbers/sigma_shift_by_branch/nfw/upper = 0.3132 <= 0.4
+           cross_thread_review_2026_09_26/XR5_operator_identity.out [HEAD] contains '[PASS] H1 HARVEY': True
+  [PASS] HARDW_FOR_SMOOTH           enabled : w [0.0] -> 0 < w <= w_max  | a hard switch (w = 0) for the smooth gate: inside DE9's window at M*'s (p, x_c0), where the near-hard gate reproduces the hard caps
+           dark_energy_2026/DE9_smooth_gate_window_results.json check C2: ok=True (canonical 361.9 vs 364.5, alt 479.1 vs 482.5 (0.7%))
+           DE9 window mond/1.0 at w = ['0.1', '0.25']: [[1.667, 3.448], [2.0, 3.346]] contains x_c0 = 2.5: True
+  [PASS] HARDCAP_FOR_KAPPA_SHEAR    enabled : cap_form ['hard_radius_MS3'] -> kappa_MS5  | MS3's hard 1.75 Mpc radius for the kappa form: equal on the halo model at z = 0.5 (MS5 S1 reproduces MS3 K1 exactly); a mismatch for particle-mesh dynamics; evidence at x_c0 = 2.5 only
+           mond_sector_gate_2026/MS5_cap_as_action_term_results.json check S1: ok=True (kappa 1.047/1.121 (MS3 diff 0.0e+00); L395 past r200 1.418/1.567)
+           numbers/S1/kappa/canonical 1.046713 vs mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector_results.json numbers/K1/1.75/canonical/worst 1.046713
+           numbers/S1/kappa/alt 1.121400 vs mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector_results.json numbers/K1/1.75/alt/worst 1.121400
+           evidence computed at x_c0 = 2.5 (M*: 2.5)
+  [PASS] C_FOR_A_HARVEY             enabled : operator ['C'] -> A  | L370's region-own operator for A on Harvey (XR5 H1 includes C; XR5 README: 'B, and equally C')
+           cross_thread_review_2026_09_26/XR5_README.md [HEAD] contains 'B, and equally C, is a controlled approximation to A': True
+           cross_thread_review_2026_09_26/XR5_operator_identity.out [HEAD] contains '[PASS] H1 HARVEY': True
+  [PASS] NU_RAR_BELOW_YSTAR         enabled : kernel ['nu_RAR'] -> nu_mono  | nu_RAR = nu_mono for y <= 2.337 (XC4); the flagship is scored at y = 0.1
+           cross_thread_review_2026_09_26/XR5_operator_identity.out [HEAD] contains '[PASS] K2 nu_mono = nu_RAR below the phantom peak': True
+  [PASS] CAP_NONBINDING_KIDS        enabled : cap_form ['withdrawn_vloc', 'none'] -> kappa_MS5  | no cap form binds on a KiDS lens: DE10 S1 scaling 1.0000; MS3 K1 l_cap(0.25) = 2.35 Mpc above every lens edge
+           dark_energy_2026/DE10_kids_converged_model_results.json check S1: ok=True (max 1.0000)
+           mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector_results.json check K1: ok=True (largest passing cap 1.75 Mpc (z = 0.5), v_cap 325 km/s; KiDS lenses v_)
+  [PASS] FLAGSHIP_CAP_NONBINDING    enabled : cap_form ['none'] -> kappa_MS5  | the kappa cap ends regions at l_cap(2.5), far outside the flagship radius r_F <= 38.6 kpc
+           l_cap(z = 2.5) = 216 kpc (M*'s cell) vs 38.6 kpc
+  [PASS] FOREST_CAP_NONBINDING      CANDIDATE (not enabled): cap_form ['none'] -> kappa_MS5  | DE11's argument: the cap binds only above v_cap, not in the IGM (not computed with the kappa form)
+           dark_energy_2026/DE11_forest_converged_model.py [HEAD] contains 'the cap is not applied (it binds only above': True
+  [PASS] DE11_CONSERVATIVE_OP       CANDIDATE (not enabled): operator ['B_all_matter'] -> A  | DE11's argument: an all-matter single-fluid kernel over-states the phantom, so a forest pass carries over
+           dark_energy_2026/DE11_forest_converged_model.py [HEAD] contains 'A pass therefore carries over': True
+  [PASS] DE11_CONSERVATIVE_CARRIER  CANDIDATE (not enabled): carrier ['intact'] -> L388_density_trigger  | DE11's argument: every particle feels the phantom (no clearing), so a forest pass carries over
+           dark_energy_2026/DE11_forest_converged_model.py [HEAD] contains 'A pass therefore carries over': True
+
+========================================================================================================================
+D  REGISTRY vs SOURCE (drift on a committed row is a failure; on a pending row it is reported)
+========================================================================================================================
+  0 drift item(s); 662 traced axis entries
+  (reported) since the registry's snapshot: 0 axis trace(s) moved or changed line; scripts re-committed: none
+
+========================================================================================================================
+THE TABLE: per row, each axis against M*  (ok = match, ~ = compatible approximation, X = mismatch, - = n/a)
+========================================================================================================================
+  row                      commit     claim      switch    cap      p   x_c0      w   kern    sig     op   carr   kick   foot  epoch  status    verdict (committed)
+  MS1.A3                   2a5def6d9  structural      X      -      -      -      -      -      -      -      -      -      -      -  OFF-M*    5/5; A3: (c) 0; (d) 0; (a) -B*C*Wp/2; (b) matches -C W' B/8piG: True
+  MS1.N1                   2a5def6d9  comparison      X      -     ok     ok      -      X      -      -      -      -     ok      -  OFF-M*    5/5; N1: max |F_leak|/g_N over hosts, footings, widths: 2317.821; min 
+  MS2.F1                   2a5def6d9  comparison     ok      X     ok     ok      ~      X      -      -      X      -     ok      -  OFF-M*    7/7; F1: door: all on and |shift| <= 0.10 for f_CGM in ['0.0', '0.1', 
+  MS3.K1                   2a5def6d9  comparison      ~      ~     ok     ok      ~     ok      -      -     ok     ok     ok      X  OFF-M*    5/5; K1: largest passing cap 1.75 Mpc (z = 0.5), v_cap 325 km/s; KiDS 
+  MS4.S1                   969a15e7f  comparison      ~      ~     ok     ok     ok     ok      -      -     ok     ok     ok      X  OFF-M*    4/4; S1: w 0.25, x_c0 2.5: 1.049/1.124; w 0.5, x_c0 3.0: 1.025/1.096
+  MS5.A1                   61a3a0858  structural      X     ok      -      -      -      -      -      -      -      -      -      -  OFF-M*    5/5; A1: v + Phi gate terms 0; others [0, 0, 0, 0]; V_d - u_N = 0
+  MS5.S1_kappa             61a3a0858  comparison      ~     ok     ok     ok      ~     ok      -      -     ok     ok     ok      X  OFF-M*    5/5; S1: kappa 1.047/1.121 (MS3 diff 0.0e+00); L395 past r200 1.418/1.
+  MS5.S1_vloc              61a3a0858  comparison      X      X     ok     ok      X     ok      -      -     ok     ok     ok      X  OFF-M*    5/5; S1: kappa 1.047/1.121 (MS3 diff 0.0e+00); L395 past r200 1.418/1.
+  DE1.F1                   0b4e319b7  comparison      X      X     ok     ok      X     ok      -      -      -      -     ok      -  OFF-M*    5/6, load-bearing FAIL ['F1']; F1: worst shift -1.134 dex; failing (fo
+  DE2.window               c8bb50813  comparison      X      X      -      -      X     ok      -      -      X      -     ok      -  OFF-M*    8/8; W1: 600: 28438 cells; 650: 34370 cells
+  DE4.F1                   ecffd2af3  comparison      X      X      -      -      -      X      -      -      X      -      -      -  OFF-M*    4/5, load-bearing FAIL ['F1']; F1: passing S by f_CGM: 0.1: none; 0.3:
+  DE5.tmax                 d62efdcef  comparison      X      X      -     ok      -      -      -      -      -      -     ok      -  OFF-M*    5/5; L1: all >=: True; largest gain in T_max +0.0090
+  DE5b.growth              e56c00165  comparison      X      -      -     ok      -     ok      -      -      -      -      X      -  OFF-M*    2/3, load-bearing FAIL ['C1']; G1: 4.74e+10: 0.24 vs 1.14 Mpc; 5.00e+1
+  DE6.zmax                 4132da393  comparison      X      X      -      -      -      X      -      -      -      -     ok      -  OFF-M*    4/5, load-bearing FAIL ['H1']; H1: (a) True; (b) False
+  DE7.action               095ab610a  structural      X      -     ok     ok     ok     ok      -      -      -      -     ok      -  OFF-M*    15/15; U1: 3766/3766
+  DE8.kids                 d522b1767  comparison      X      X     ok     ok      -     ok     ok     ok      X      -     ok      -  OFF-M*    6/8, load-bearing FAIL ['C3', 'H1']; V1: {'r200/upper': {'cells': 36, 
+  DE9.msc                  aa5705194  comparison     ok      X      -      -     ok     ok     ok     ok      X      -     ok      -  OFF-M*    7/7; E1: {'curvature/0.5': [0.1, 0.25, 0.5], 'curvature/1.0': [0.1, 0.
+  DE9.curv                 aa5705194  comparison      X      X      -      -     ok     ok     ok     ok      X      -     ok      -  OFF-M*    7/7; K1: {'curvature': {0.1: 3.895312500000002, 0.25: 3.80195312500000
+  DE10.kids                dabce1b73  comparison     ok      X     ok     ok     ok     ok     ok     ok      X     ok     ok     ok  OFF-M*    5/5; H1: v600/w0.02: -37.0/-34.0; v600/w0.25: -32.3/-29.3; v650/w0.02:
+  DE11.forest              aa6588d56  comparison     ok      X     ok     ok     ok     ok      -      X      X      -     ok      -  OFF-M*    4/4; F1: worst 0.0041
+  DE11b.conv               uncommitted pending        ok      X     ok     ok      -     ok      -      X      X      -      -      -  OFF-M*    pending: no committed results
+  DE12.action              7f84b3546  structural     ok     ok      -     ok      -      -      -      -      -      -     ok      -  ON-M*     8/8; G1: min c_gate 1526 km/s; min Gamma/H 2.0e+04
+  DE13.repair              6daea932c  structural     ok     ok      -     ok     ok      -      -      -      -      -     ok      -  ON-M*     10/11, load-bearing FAIL ['R1']; E2: no stable lambda on 24/24 galaxy 
+  L388.pooled              78fc5dd81  comparison      X      X     ok     ok      X     ok      -      X     ok     ok      X     ok  OFF-M*    4/4; R1: pooled window: ['v575', 'v600', 'v625', 'v650']
+  L389.harvey              uncommitted pending         X      X     ok     ok      X     ok      X      X     ok      -      X      X  OFF-M*    pending: no committed results (an uncommitted results JSON is on disk,
+  L390.kids                b3ba1f6fa  comparison      X      X      -      -      -      -      X      -      X     ok     ok      -  OFF-M*    4/4; R1: v575: -13.1/-7.1; v600: -13.1/-7.2; v625: -13.1/-7.2; v650: -
+  L391.rar_rc100           441d811e2  comparison      X      -      -      -      -     ok      -      -      X     ok      -      -  OFF-M*    3/3; R1: RAR worst {'dwarf': 0.0, 'milky_way': 7.189094827143263e-05, 
+  L392.curvature           3d3fe8184  comparison      X      X     ok     ok      -      -      -      -      X      -      -      -  OFF-M*    7/9, load-bearing FAIL ['RA[r200]', 'RA[nfw]']; RB[r200]: passing cell
+  L392.matter              3d3fe8184  comparison      X      X     ok     ok      -      -      -      -      X      -      -      -  OFF-M*    7/9, load-bearing FAIL ['RA[r200]', 'RA[nfw]']; RA[r200]: passing cell
+  L393.pm                  4188b89f6  pending         X      -      -      -      -      -      -      X      X      -      -      -  OFF-M*    pending: no committed results
+  L394.pm                  6e1e449e4  pending         ~     ok     ok     ok      ~      -      -      -      X      -      X      -  OFF-M*    pending: no committed results
+  L395.c_msc               uncommitted pending         ~      X     ok     ok      ~     ok      -      ~     ok     ok      X      X  OFF-M*    pending: no committed results
+  L395.b_curv              uncommitted pending         X      X     ok     ok      X     ok      -      X     ok     ok      X      X  OFF-M*    pending: no committed results
+  L395.a_matter            uncommitted pending         X      X     ok     ok      X     ok      -      X     ok     ok      X      X  OFF-M*    pending: no committed results
+  L396.msck                uncommitted pending         ~      ~     ok     ok      ~     ok      -      ~     ok     ok      X      X  OFF-M*    pending: no committed results
+  L397.harvey              uncommitted pending         X      X     ok     ok      X     ok      X      X     ok      -      X     ok  OFF-M*    pending: no committed results
+  AT1.highz                dd1d6a0d6  comparison      -      -      -      -      -     ok      -      -      X      X      -      -  OFF-M*    9/9; A2: worst |shift| 0.074 dex over 4 cells x 5 redshifts
+  AT2.forest               dd1d6a0d6  comparison      -      -      -      -      -      -      -      -      X      -      -      -  OFF-M*    8/8; F1: worst deviation 0.0250; largest band deviation to 6.5 h/Mpc 0
+  AT3.gates                dd1d6a0d6  comparison      X      -      -      -      -      -      -      X      X      X      -      -  OFF-M*    8/8; W1: ([(0.1, 600.0, 0.25), (0.03, 600.0, 0.25)], {'0.1|600.0|0.25'
+  AT4.shear                b844a87b3  comparison      X      X      -      -      -      -      -      -      X      X      -      -  OFF-M*    4/4
+  CV1.nr                   cc2b55bbb  structural      -      -      -      -      -      -      -      -      -      -      -      -  n/a       6/6; A3: residuals ['0', '0', '0', '0']; forces equal True; sigma diff
+  CV2.covariant            db21f7edf  structural      X      -      -      -      -      -      -      -      -      -      -      -  OFF-M*    4/4; B3: aux solution [{Psi(t): 0, Y(t): 0}]; aux force 0; H^2 ratio 1
+  CV3.gate                 ab6f31b61  structural     ok      X      -      -     ok      -      -      -      -      -      -      -  OFF-M*    7/7; G3: det A/A+ = a**2*b**2; det B = b**2*(-X_PhiPhi*X_uu + X_Phiu**
+  CV4.K                    ab6f31b61  structural      X      -      -      -      -      -      -      -      -      -      -      -  OFF-M*    3/3; K1: background 3*Derivative(a(t), t)/a(t); linear-K residual 0; h
+  XR2.de1_edge             05627f376  comparison      X      X     ok     ok      X      -      -      -      -      -      -      -  OFF-M*    7/7
+  XR2.fixed_cell           05627f376  structural      -      -      -      -      -      -      -      -      -      -      -      -  n/a       6/6
+  XR5.operators            05627f376  structural      -      -      -      -      -      -      -      -      -      -      -      -  n/a       13/13 checks pass; load-bearing failures: 0   [53s]
+  XR6.efe_udg_A            6566c53b3  comparison      ~      X      -      -      ~     ok      -     ok     ok     ok     ok      -  OFF-M*    14/18; K1: fraction beyond: 0.357-0.357
+  XR6.efe_udg_B            6566c53b3  comparison      ~      X      -      -      ~     ok      -      X     ok     ok     ok      -  OFF-M*    14/18; K1: fraction beyond: 0.357-0.357
+  XR6.lg                   6566c53b3  comparison      ~      X     ok     ok      ~     ok      -      -      -      -     ok      -  OFF-M*    9/11
+  XR7.kick_cap             6566c53b3  structural      -      -      -      -      -      -      -      -     ok      -      -      -  PARTIAL   5/5
+  XR9.kids                 uncommitted pending        ok     ok     ok     ok     ok     ok     ok     ok      X     ok     ok      -  OFF-M*    pending: no committed results (an uncommitted results JSON is on disk,
+  XR9.shear                uncommitted pending         ~     ok     ok     ok     ok     ok      -      -     ok     ok     ok      X  OFF-M*    pending: no committed results (an uncommitted results JSON is on disk,
+  XR9.environment          uncommitted pending         -     ok     ok     ok     ok      -      -      -      -      -      -      -  PARTIAL   pending: no committed results (an uncommitted results JSON is on disk,
+
+========================================================================================================================
+DETAIL: every axis entry with its value, file:line and status (mismatches and approximations first)
+========================================================================================================================
+
+  MS1.A3  [MS1, 2a5def6d9, claim structural, action-level]  gates ['action_reciprocity']  -> OFF-M*
+    verdict: 5/5; A3: (c) 0; (d) 0; (a) -B*C*Wp/2; (b) matches -C W' B/8piG: True
+    owner says: V_d - u_N = 0 identically on the MOND-sector and baryon readings
+    MISMATCH switch[action]             mond_sector_phiX                                             mond_sector_gate_2026/MS1_gate_variation_reciprocity.py:152
+             action-level: CV3 G3/G3b -- lap(Phi - v) reads the multiplier Phi; only CV3's constrained form keeps the lapse constraint regular
+    N/A      cap                        n/a                                                          reciprocity identity; the cap as an action term is MS5 A1
+    N/A      p                          n/a                                                          an identity for any cell
+    N/A      x_c0                       n/a                                                          an identity for any cell
+    N/A      w                          n/a                                                          mond_sector_gate_2026/MS1_gate_variation_reciprocity.py:98
+             generic gate function W
+    N/A      kern                       generic                                                      mond_sector_gate_2026/MS1_gate_variation_reciprocity.py:17
+             generic kernel (a symbolic identity)
+    N/A      sig                        n/a                                                          mond_sector_gate_2026/MS1_gate_variation_reciprocity.py:94
+             B keeps sigma symbolic
+    N/A      op                         n/a                                                          CV1's Lagrangian itself (the action's operator), 1-d
+    N/A      carr                       n/a                                                          no carrier in a symbolic identity
+    N/A      kick                       n/a                                                          no carrier
+    N/A      foot                       n/a                                                          symbolic: no a0
+    N/A      epoch                      n/a                                                          no carrier retention
+
+  MS1.N1  [MS1, 2a5def6d9, claim comparison, action-level]  gates ['action_leak_size']  -> OFF-M*
+    verdict: 5/5; N1: max |F_leak|/g_N over hosts, footings, widths: 2317.821; min 0.0644
+    MISMATCH switch[branch_door_a]      curvature_signed                                             mond_sector_gate_2026/MS1_gate_variation_reciprocity.py:150
+    MISMATCH switch[branch_door_b]      matter_only                                                  mond_sector_gate_2026/MS1_gate_variation_reciprocity.py:151
+    N/A      cap                        n/a                                                          no cap in the leak estimate
+    MATCH    p                          1.0                                                          mond_sector_gate_2026/MS1_gate_variation_reciprocity.py:273
+    MATCH    x_c0                       2.5                                                          mond_sector_gate_2026/MS1_gate_variation_reciprocity.py:273
+    N/A      w                          n/a                                                          widths are Delta = 0.1-1 in ln U, not DE9's w
+    MISMATCH kern                       nu_RAR                                                       mond_sector_gate_2026/MS1_gate_variation_reciprocity.py:242
+             NU_RAR_BELOW_YSTAR: not for action-level rows
+    N/A      sig                        n/a                                                          kernel term of B only (sigma-independent)
+    N/A      op                         n/a                                                          closed forms of A3 on spherical hosts
+    N/A      carr                       n/a                                                          the carrier is the test body (its untruncated NFW excess)
+    N/A      kick                       n/a                                                          no kick
+    MATCH    foot                       canonical/alt                                                mond_sector_gate_2026/MS1_gate_variation_reciprocity.py:235
+    N/A      epoch                      n/a                                                          no retention
+
+  MS2.F1  [MS2, 2a5def6d9, claim comparison, data-level]  gates ['flagship_z2.5']  -> OFF-M*
+    verdict: 7/7; F1: door: all on and |shift| <= 0.10 for f_CGM in ['0.0', '0.1', '0.3', '1.0']: True; the matter door loses r_F at f_CGM = ['0.0', '0.1']
+    owner says: the flagship passes on the MOND-sector door with no CGM (answer page, scorecard row 1)
+    MATCH    switch[flagship]           mond_sector_phiX                                             mond_sector_gate_2026/MS2_mond_sector_door_flagship_web.py:109 via mond_sector_gate_2026/MS2_mond_sector_door_flagship_w
+             phiX: the same gate value as CV3's constrained form (recorded)
+    MISMATCH cap   [flagship]           none                                                         mond_sector_gate_2026/MS2_mond_sector_door_flagship_web.py:103 (and no /v_cap|VCAP|V_CAP|\brcap\b|kappa_X|vloc/ in mond_
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['flagship_z2.5']; FLAGSHIP_CAP_NONBINDING would apply, but the row's scope does not state [FLAGSHIP_CAP_NONBINDING]
+    MATCH    p                          1.0                                                          mond_sector_gate_2026/MS2_mond_sector_door_flagship_web.py:218
+    MATCH    x_c0                       2.5                                                          mond_sector_gate_2026/MS2_mond_sector_door_flagship_web.py:218
+    COMPAT   w                          0.0                                                          mond_sector_gate_2026/MS2_mond_sector_door_flagship_web.py:130
+             [HARDW_FOR_SMOOTH]
+    MISMATCH kern                       nu_RAR                                                       dark_energy_2026/DE4_flagship_matter_only_switch.py:90 via mond_sector_gate_2026/MS2_mond_sector_door_flagship_web.py:86
+             NU_RAR_BELOW_YSTAR would apply, but the row's scope does not state [NU_RAR_BELOW_YSTAR]
+    N/A      sig                        n/a                                                          no region operator: the switch is evaluated at r_F
+    N/A      op                         analytic_radial                                              dark_energy_2026/DE4_flagship_matter_only_switch.py:130 via mond_sector_gate_2026/MS2_mond_sector_door_flagship_web.py:8
+             no field operator: the exact spherical phantom of an isolated system
+    MISMATCH carr                       none                                                         mond_sector_gate_2026/MS2_mond_sector_door_flagship_web.py:218
+    N/A      kick                       n/a                                                          carrier cleared (S = 0); F1_Smax: S <= 0.059 retained at r_F still passes
+    MATCH    foot                       canonical/alt                                                mond_sector_gate_2026/MS2_mond_sector_door_flagship_web.py:95
+    N/A      epoch                      n/a                                                          no retention: S is a parameter (L388's retention at r_F, z = 2.5, is not measured anywhere)
+
+  MS3.K1  [MS3, 2a5def6d9, claim comparison, data-level]  gates ['cosmic_shear_halo_model']  -> OFF-M*   FLAGS: EPOCH-MIXED
+    verdict: 5/5; K1: largest passing cap 1.75 Mpc (z = 0.5), v_cap 325 km/s; KiDS lenses v_f 139, 188, 247 km/s
+    owner says: cosmic shear passes on the halo model with the 1.75 Mpc cap and L388's retention (1.047/1.121)
+    COMPAT   switch[halo_model_shear]   mond_sector_abs                                              mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:121
+             [ABS_FOR_CONSTRAINED]
+    COMPAT   cap   [halo_model_shear]   hard_radius_MS3                                              mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:124
+             [HARDCAP_FOR_KAPPA_SHEAR]
+    MATCH    p                          1.0                                                          mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:94
+    MATCH    x_c0                       2.5                                                          mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:94
+    COMPAT   w                          0.0                                                          mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:122
+             [HARDW_FOR_SMOOTH]
+    MATCH    kern                       nu_mono                                                      mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:115
+    N/A      sig                        n/a                                                          analytic per-halo phantom: no edge-layer operator
+    N/A      op                         halo_model                                                   mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:108
+             no field operator: the exact spherical phantom of an isolated system
+    MATCH    carr  [halo_model_shear]   L388_density_trigger                                         mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:100
+    MATCH    kick                       600                                                          mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:100
+    MATCH    foot                       canonical/alt                                                mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:63
+    MISMATCH epoch [halo_model_shear]   retention z = [0.0, 2.0] for scoring z = 0.5                 halo-model lens epoch (GP3's ZS, via L363) generated_phantom_2026/GP3_lensing_power_and_growth.py:100 via mond_sector_ga
+             EPOCH-MIXED: clusters: L388's pooled medians by M(<1 Mpc/h) at z = 0; galaxies (the 1e13 anchor): L388's fixed-cell clearing at z = 2
+
+  MS4.S1  [MS4, 969a15e7f, claim comparison, data-level]  gates ['cosmic_shear_halo_model']  -> OFF-M*   FLAGS: EPOCH-MIXED
+    verdict: 4/4; S1: w 0.25, x_c0 2.5: 1.049/1.124; w 0.5, x_c0 3.0: 1.025/1.096
+    owner says: the smooth gate keeps MS3's pass: 1.049/1.124 at (w, x_c0) = (0.25, 2.5)
+    COMPAT   switch[halo_model_shear]   mond_sector_abs                                              mond_sector_gate_2026/MS4_smooth_gate_shear.py:86
+             [ABS_FOR_CONSTRAINED]
+    COMPAT   cap   [halo_model_shear]   hard_radius_MS3                                              mond_sector_gate_2026/MS4_smooth_gate_shear.py:91
+             [HARDCAP_FOR_KAPPA_SHEAR]
+    MATCH    p                          1.0                                                          mond_sector_gate_2026/MS4_smooth_gate_shear.py:126
+    MATCH    x_c0                       2.5                                                          mond_sector_gate_2026/MS4_smooth_gate_shear.py:123
+    MATCH    w                          0.25                                                         mond_sector_gate_2026/MS4_smooth_gate_shear.py:123
+    MATCH    kern                       nu_mono                                                      mond_sector_gate_2026/MS4_smooth_gate_shear.py:67
+    N/A      sig                        n/a                                                          analytic per-halo phantom: no edge-layer operator
+    N/A      op                         halo_model                                                   mond_sector_gate_2026/MS4_smooth_gate_shear.py:78
+             no field operator: the exact spherical phantom of an isolated system
+    MATCH    carr  [halo_model_shear]   L388_density_trigger                                         mond_sector_gate_2026/MS4_smooth_gate_shear.py:69
+    MATCH    kick                       600                                                          mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:100
+    MATCH    foot                       canonical/alt                                                mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:63
+    MISMATCH epoch [halo_model_shear]   retention z = [0.0, 2.0] for scoring z = 0.5                 halo-model lens epoch (GP3's ZS, via L363) generated_phantom_2026/GP3_lensing_power_and_growth.py:100 via mond_sector_ga
+             EPOCH-MIXED: clusters: L388's pooled medians by M(<1 Mpc/h) at z = 0; galaxies (the 1e13 anchor): L388's fixed-cell clearing at z = 2
+
+  MS5.A1  [MS5, 61a3a0858, claim structural, action-level]  gates ['action_cap']  -> OFF-M*
+    verdict: 5/5; A1: v + Phi gate terms 0; others [0, 0, 0, 0]; V_d - u_N = 0
+    owner says: any cap built from Phi - v keeps the carrier Newtonian (A1)
+    MISMATCH switch[action]             mond_sector_phiX                                             mond_sector_gate_2026/MS5_cap_as_action_term.py:94
+             action-level: CV3 G3/G3b -- lap(Phi - v) reads the multiplier Phi; only CV3's constrained form keeps the lapse constraint regular
+    MATCH    cap   [action]             kappa_MS5                                                    mond_sector_gate_2026/MS5_cap_as_action_term.py:95
+    N/A      p                          n/a                                                          an identity for any cell
+    N/A      x_c0                       n/a                                                          an identity for any cell
+    N/A      w                          n/a                                                          generic gate
+    N/A      kern                       generic                                                      mond_sector_gate_2026/MS5_cap_as_action_term.py:93
+             generic kernel (a symbolic identity)
+    N/A      sig                        n/a                                                          MS1's symbolic B
+    N/A      op                         n/a                                                          CV1's Lagrangian, 1-d
+    N/A      carr                       n/a                                                          no carrier in a symbolic identity
+    N/A      kick                       n/a                                                          no carrier
+    N/A      foot                       n/a                                                          symbolic
+    N/A      epoch                      n/a                                                          no carrier retention
+
+  MS5.S1_kappa  [MS5, 61a3a0858, claim comparison, data-level]  gates ['cosmic_shear_halo_model']  -> OFF-M*   FLAGS: EPOCH-MIXED
+    verdict: 5/5; S1: kappa 1.047/1.121 (MS3 diff 0.0e+00); L395 past r200 1.418/1.567
+    owner says: the kappa form reproduces MS3's K1 and passes: 1.047/1.121
+    COMPAT   switch[halo_model_shear]   mond_sector_abs                                              mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:121 via mond_sector_gate_2026/MS5_cap_as_action_term.py:223
+             [ABS_FOR_CONSTRAINED]
+    MATCH    cap   [halo_model_shear]   kappa_MS5                                                    mond_sector_gate_2026/MS5_cap_as_action_term.py:233
+    MATCH    p                          1.0                                                          mond_sector_gate_2026/MS5_cap_as_action_term.py:170
+    MATCH    x_c0                       2.5                                                          mond_sector_gate_2026/MS5_cap_as_action_term.py:170
+    COMPAT   w                          0.0                                                          mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:122
+             [HARDW_FOR_SMOOTH]
+    MATCH    kern                       nu_mono                                                      mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:115
+    N/A      sig                        n/a                                                          analytic per-halo phantom
+    N/A      op                         halo_model                                                   mond_sector_gate_2026/MS5_cap_as_action_term.py:218
+             no field operator: the exact spherical phantom of an isolated system
+    MATCH    carr  [halo_model_shear]   L388_density_trigger                                         mond_sector_gate_2026/MS5_cap_as_action_term.py:163
+    MATCH    kick                       600                                                          mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:100
+    MATCH    foot                       canonical/alt                                                mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:63
+    MISMATCH epoch [halo_model_shear]   retention z = [0.0, 2.0] for scoring z = 0.5                 halo-model lens epoch (GP3's ZS, via L363) generated_phantom_2026/GP3_lensing_power_and_growth.py:100 via mond_sector_ga
+             EPOCH-MIXED: clusters: L388's pooled medians by M(<1 Mpc/h) at z = 0; galaxies (the 1e13 anchor): L388's fixed-cell clearing at z = 2
+
+  MS5.S1_vloc  [MS5, 61a3a0858, claim comparison, data-level]  gates ['cosmic_shear_halo_model']  -> OFF-M*   FLAGS: EPOCH-MIXED
+    verdict: 5/5; S1: kappa 1.047/1.121 (MS3 diff 0.0e+00); L395 past r200 1.418/1.567
+    MISMATCH switch[halo_model_shear]   mond_sector_abs                                              mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:121
+             ABS_FOR_CONSTRAINED would apply, but the row's scope does not state [ABS_FOR_CONSTRAINED]
+    MISMATCH cap   [halo_model_shear]   withdrawn_vloc                                               mond_sector_gate_2026/MS5_cap_as_action_term.py:236
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['cosmic_shear_halo_model']
+    MATCH    p                          1.0                                                          mond_sector_gate_2026/MS5_cap_as_action_term.py:170
+    MATCH    x_c0                       2.5                                                          mond_sector_gate_2026/MS5_cap_as_action_term.py:170
+    MISMATCH w                          0.0                                                          mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:122
+             hard switch (w = 0); HARDW_FOR_SMOOTH would apply, but the row's scope does not state [HARDW_FOR_SMOOTH]
+    MATCH    kern                       nu_mono                                                      mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:115
+    N/A      sig                        n/a                                                          analytic per-halo phantom
+    N/A      op                         halo_model                                                   mond_sector_gate_2026/MS5_cap_as_action_term.py:218
+             no field operator: the exact spherical phantom of an isolated system
+    MATCH    carr  [halo_model_shear]   L388_density_trigger                                         mond_sector_gate_2026/MS5_cap_as_action_term.py:163
+    MATCH    kick                       600                                                          mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:100
+    MATCH    foot                       canonical/alt                                                mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:63
+    MISMATCH epoch [halo_model_shear]   retention z = [0.0, 2.0] for scoring z = 0.5                 halo-model lens epoch (GP3's ZS, via L363) generated_phantom_2026/GP3_lensing_power_and_growth.py:100 via mond_sector_ga
+             EPOCH-MIXED: clusters: L388's pooled medians by M(<1 Mpc/h) at z = 0; galaxies (the 1e13 anchor): L388's fixed-cell clearing at z = 2
+
+  DE1.F1  [DE1, 0b4e319b7, claim comparison, data-level]  gates ['flagship_z2.5']  -> OFF-M*
+    verdict: 5/6, load-bearing FAIL ['F1']; F1: worst shift -1.134 dex; failing (footing, log M_b): [('canonical', 11.0)]
+    MISMATCH switch[flagship]           curvature_signed                                             dark_energy_2026/DE1_vacuum_gate_flagship.py:167
+    MISMATCH cap                        none                                                         dark_energy_2026/DE1_vacuum_gate_flagship.py:119 (and no /v_cap|VCAP|V_CAP|\brcap\b|kappa_X|vloc/ in dark_energy_2026/DE
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['flagship_z2.5']; FLAGSHIP_CAP_NONBINDING would apply, but the row's scope does not state [FLAGSHIP_CAP_NONBINDING]
+    MATCH    p                          [0.5, 1.5]/[0.5, 2.0]/[0.5, 2.5]/[1.0, 1.5]/[1.0, 2.0]/[1.0, dark_energy_2026/DE1_vacuum_gate_flagship.py:119
+             M*'s (p, x_c0) is one cell of the scan
+    MATCH    x_c0                       [0.5, 1.5]/[0.5, 2.0]/[0.5, 2.5]/[1.0, 1.5]/[1.0, 2.0]/[1.0, dark_energy_2026/DE1_vacuum_gate_flagship.py:119
+             M*'s (p, x_c0) is one cell of the scan
+    MISMATCH w                          0.0                                                          dark_energy_2026/DE1_vacuum_gate_flagship.py:164
+             hard switch (w = 0); HARDW_FOR_SMOOTH would apply, but the row's scope does not state [HARDW_FOR_SMOOTH]
+    MATCH    kern                       nu_mono                                                      dark_energy_2026/DE1_vacuum_gate_flagship.py:155
+    N/A      sig                        n/a                                                          no region operator (L352's edge law)
+    N/A      op                         analytic_radial                                              dark_energy_2026/DE1_vacuum_gate_flagship.py:155
+             no field operator: the exact spherical phantom of an isolated system
+    N/A      carr                       n/a                                                          switch only (point-mass baryons)
+    N/A      kick                       n/a                                                          no carrier
+    MATCH    foot                       canonical/alt                                                dark_energy_2026/DE1_vacuum_gate_flagship.py:122
+    N/A      epoch                      n/a                                                          no carrier
+
+  DE2.window  [DE2, c8bb50813, claim comparison, data-level]  gates ['kids', 'cosmic_shear_mock', 'flagship_z2.5', 'forest']  -> OFF-M*
+    verdict: 8/8; W1: 600: 28438 cells; 650: 34370 cells
+    MISMATCH switch                     curvature_signed                                             dark_energy_2026/DE2_vacuum_gate_joint_window.py:177
+    MISMATCH cap                        none                                                         dark_energy_2026/DE2_vacuum_gate_joint_window.py:81 (and no /v_cap|VCAP|V_CAP|\brcap\b|kappa_X|vloc/ in dark_energy_2026
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['cosmic_shear_mock', 'flagship_z2.5', 'forest']; FLAGSHIP_CAP_NONBINDING: covers only ['flagship_z2.5'], row scores ['cosmic_shear_mock
+    N/A      p                          n/a                                                          a (p, x_c0) window: p1_x2.5 is a member (W2)
+    N/A      x_c0                       n/a                                                          a (p, x_c0) window: p1_x2.5 is a member (W2)
+    MISMATCH w                          0.0                                                          dark_energy_2026/DE2_vacuum_gate_joint_window.py:177
+             hard switch (w = 0); HARDW_FOR_SMOOTH would apply, but the row's scope does not state [HARDW_FOR_SMOOTH]
+    MATCH    kern                       nu_mono                                                      dark_energy_2026/DE2_vacuum_gate_joint_window.py:175
+    N/A      sig                        n/a                                                          L352's compensated edge
+    N/A      op                         analytic_radial                                              dark_energy_2026/DE2_vacuum_gate_joint_window.py:175
+             no field operator: the exact spherical phantom of an isolated system
+    MISMATCH carr  [cosmic_shear_mock]  L366_newtonian_transfers                                     dark_energy_2026/DE2_vacuum_gate_joint_window.py:121
+    N/A      kick                       n/a                                                          L367's transfers at 600/650/700 km/s (shear side only)
+    MATCH    foot                       canonical/alt                                                dark_energy_2026/DE2_vacuum_gate_joint_window.py:81
+    N/A      epoch                      n/a                                                          mock transfers, not a retention function
+
+  DE4.F1  [DE4, ecffd2af3, claim comparison, data-level]  gates ['flagship_z2.5']  -> OFF-M*
+    verdict: 4/5, load-bearing FAIL ['F1']; F1: passing S by f_CGM: 0.1: none; 0.3: [0.0]; 1.0: [0.0]
+    MISMATCH switch                     matter_only                                                  dark_energy_2026/DE4_flagship_matter_only_switch.py:121
+    MISMATCH cap                        none                                                         dark_energy_2026/DE4_flagship_matter_only_switch.py:103 (and no /v_cap|VCAP|V_CAP|\brcap\b|kappa_X|vloc/ in dark_energy_
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['flagship_z2.5']; FLAGSHIP_CAP_NONBINDING would apply, but the row's scope does not state [FLAGSHIP_CAP_NONBINDING]
+    N/A      p                          n/a                                                          the linear cell in F1 (p = 1, x_c0 = 2.5), traced via MS2's control C1
+    N/A      x_c0                       n/a                                                          see p
+    N/A      w                          n/a                                                          threshold step
+    MISMATCH kern                       nu_RAR                                                       dark_energy_2026/DE4_flagship_matter_only_switch.py:90
+             NU_RAR_BELOW_YSTAR would apply, but the row's scope does not state [NU_RAR_BELOW_YSTAR]
+    N/A      sig                        n/a                                                          no operator
+    N/A      op                         analytic_radial                                              dark_energy_2026/DE4_flagship_matter_only_switch.py:130
+             no field operator: the exact spherical phantom of an isolated system
+    MISMATCH carr                       parametric_S                                                 dark_energy_2026/DE4_flagship_matter_only_switch.py:121
+    N/A      kick                       n/a                                                          parametric S
+    N/A      foot                       n/a                                                          both (F1 loops FEET)
+    N/A      epoch                      n/a                                                          S is a parameter
+
+  DE5.tmax  [DE5, d62efdcef, claim comparison, data-level]  gates ['cosmic_shear_mock']  -> OFF-M*
+    verdict: 5/5; L1: all >=: True; largest gain in T_max +0.0090
+    MISMATCH switch[branch_lower]       matter_only                                                  dark_energy_2026/DE5_tmax_window_both_branches.py:109
+    MISMATCH switch[branch_upper]       curvature_signed                                             dark_energy_2026/DE5_tmax_window_both_branches.py:105
+    MISMATCH cap                        none                                                         dark_energy_2026/DE5_tmax_window_both_branches.py:50 (and no /v_cap|VCAP|V_CAP|\brcap\b|kappa_X|vloc/ in dark_energy_202
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['cosmic_shear_mock']; FLAGSHIP_CAP_NONBINDING: covers only ['flagship_z2.5'], row scores ['cosmic_shear_mock']
+    N/A      p                          n/a                                                          thresholds x = 2.5 ... x_max at z = 0.5 (a lens-epoch scan)
+    MATCH    x_c0                       2.5/3/3.5/4/4.2/4.4/5/5.5/6/6.5                              dark_energy_2026/DE5_tmax_window_both_branches.py:132
+             M*'s value is one cell of the scan
+    N/A      w                          n/a                                                          hard mask
+    N/A      kern                       n/a                                                          L363's nu_mono (mock builder)
+    N/A      sig                        n/a                                                          L363's Dirichlet regions
+    N/A      op                         n/a                                                          L363's per-region Dirichlet phantom on the mock
+    N/A      carr                       n/a                                                          T_max: a bound on any carrier's transfer
+    N/A      kick                       n/a                                                          no carrier
+    MATCH    foot                       canonical/alt                                                dark_energy_2026/DE5_tmax_window_both_branches.py:50
+    N/A      epoch                      n/a                                                          no retention
+
+  DE5b.growth  [DE5b, e56c00165, claim comparison, data-level]  gates ['cosmic_shear_mock']  -> OFF-M*   FLAGS: FOOTING-PARTIAL
+    verdict: 2/3, load-bearing FAIL ['C1']; G1: 4.74e+10: 0.24 vs 1.14 Mpc; 5.00e+11: 0.24 vs 2.06 Mpc; 8.63e+12: 0.24 vs 4.20 Mpc
+    MISMATCH switch                     curvature_signed                                             dark_energy_2026/DE5b_mock_region_growth_check.py:103
+    N/A      cap                        n/a                                                          builder test
+    N/A      p                          n/a                                                          x_c,eff(0.5) of the linear cell
+    MATCH    x_c0                       2.5                                                          dark_energy_2026/DE5b_mock_region_growth_check.py:65
+    N/A      w                          n/a                                                          hard mask
+    MATCH    kern                       nu_mono                                                      dark_energy_2026/DE5b_mock_region_growth_check.py:64
+    N/A      sig                        n/a                                                          builder test
+    N/A      op                         n/a                                                          L363's builder
+    N/A      carr                       n/a                                                          no carrier
+    N/A      kick                       n/a                                                          no carrier
+    MISMATCH foot                       canonical                                                    dark_energy_2026/DE5b_mock_region_growth_check.py:103
+             canonical only
+    N/A      epoch                      n/a                                                          no retention
+
+  DE6.zmax  [DE6, 4132da393, claim comparison, data-level]  gates ['flagship_z2.5']  -> OFF-M*
+    verdict: 4/5, load-bearing FAIL ['H1']; H1: (a) True; (b) False
+    MISMATCH switch                     matter_only                                                  dark_energy_2026/DE6_flagship_window_matter_only.py:97
+    MISMATCH cap                        none                                                         dark_energy_2026/DE6_flagship_window_matter_only.py:92 (and no /v_cap|VCAP|V_CAP|\brcap\b|kappa_X|vloc/ in dark_energy_2
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['flagship_z2.5']; FLAGSHIP_CAP_NONBINDING would apply, but the row's scope does not state [FLAGSHIP_CAP_NONBINDING]
+    N/A      p                          n/a                                                          DE6's eleven cells; p1_x2.5 among them (C1)
+    N/A      x_c0                       n/a                                                          see p
+    N/A      w                          n/a                                                          threshold step
+    MISMATCH kern                       nu_RAR                                                       dark_energy_2026/DE6_flagship_window_matter_only.py:79
+             NU_RAR_BELOW_YSTAR would apply, but the row's scope does not state [NU_RAR_BELOW_YSTAR]
+    N/A      sig                        n/a                                                          no operator
+    N/A      op                         n/a                                                          analytic radial (DE4's galaxy)
+    N/A      carr                       n/a                                                          parametric S in {0, 0.06}
+    N/A      kick                       n/a                                                          parametric S
+    MATCH    foot                       canonical/alt                                                dark_energy_2026/DE6_flagship_window_matter_only.py:87
+    N/A      epoch                      n/a                                                          S is a parameter
+
+  DE7.action  [DE7, 095ab610a, claim structural, action-level]  gates ['action_wellposedness', 'action_slip']  -> OFF-M*
+    verdict: 15/15; U1: 3766/3766
+    MISMATCH switch[action]             curvature_signed                                             dark_energy_2026/DE7_gate_action_term_mond_normalised.py:18
+    N/A      cap                        n/a                                                          no cap in DE7
+    MATCH    p                          [1.0, 2.005]/[1.0, 2.5]/[1.0, 2.975]/[0.5, 3.39]/[1.9042, 2. dark_energy_2026/DE7_gate_action_term_mond_normalised.py:521
+             M*'s (p, x_c0) is one cell of the scan
+    MATCH    x_c0                       [1.0, 2.005]/[1.0, 2.5]/[1.0, 2.975]/[0.5, 3.39]/[1.9042, 2. dark_energy_2026/DE7_gate_action_term_mond_normalised.py:521
+             M*'s (p, x_c0) is one cell of the scan
+    MATCH    w                          1/0.5/0.25                                                   dark_energy_2026/DE7_gate_action_term_mond_normalised.py:522
+             widths above w_max also scored: [1.0, 0.5]
+    MATCH    kern                       nu_mono                                                      dark_energy_2026/DE7_gate_action_term_mond_normalised.py:144
+    N/A      sig                        n/a                                                          principal symbol: sigma enters below the k^4 order
+    N/A      op                         n/a                                                          ADM principal operator
+    N/A      carr                       n/a                                                          no carrier in a symbolic identity
+    N/A      kick                       n/a                                                          no carrier
+    MATCH    foot                       canonical/alt                                                dark_energy_2026/DE7_gate_action_term_mond_normalised.py:454
+    N/A      epoch                      n/a                                                          no carrier retention
+
+  DE8.kids  [DE8, d522b1767, claim comparison, data-level]  gates ['kids']  -> OFF-M*
+    verdict: 6/8, load-bearing FAIL ['C3', 'H1']; V1: {'r200/upper': {'cells': 36, 'pass_sigma0': 22, 'pass_sigma1': 22, 'sigma1_where_sigma0': 22, 'best_sigma1': -16.17829725385667}, 'r200/lower': {'cell
+    MISMATCH switch[branch_upper]       curvature_signed                                             dark_energy_2026/DE8_kids_sigma_axis_both_branches.py:236
+    MISMATCH switch[branch_lower]       matter_only                                                  dark_energy_2026/DE8_kids_sigma_axis_both_branches.py:353
+    MISMATCH cap                        none                                                         dark_energy_2026/DE8_kids_sigma_axis_both_branches.py:352 (and no /v_cap|VCAP|V_CAP|vloc/ in dark_energy_2026/DE8_kids_s
+             CAP_NONBINDING_KIDS would apply, but the row's scope does not state [CAP_NONBINDING_KIDS]; FLAGSHIP_CAP_NONBINDING: covers only ['flagship_z2.5'], row scores ['kids']
+    MATCH    p                          [1.0, 2.5]/[0.5, 2.65]/[0.5, 3.39]                           dark_energy_2026/DE8_kids_sigma_axis_both_branches.py:352
+             M*'s (p, x_c0) is one cell of the scan
+    MATCH    x_c0                       [1.0, 2.5]/[0.5, 2.65]/[0.5, 3.39]                           dark_energy_2026/DE8_kids_sigma_axis_both_branches.py:352
+             M*'s (p, x_c0) is one cell of the scan
+    N/A      w                          n/a                                                          w in {0.25, 1} and hard
+    MATCH    kern                       nu_mono                                                      g03_audit_2026/L352_switch_gauss_compensation.py:90
+    MATCH    sig                        0/1                                                          dark_energy_2026/DE8_kids_sigma_axis_both_branches.py:262
+             both sigma scored
+    MATCH    op                         A                                                            dark_energy_2026/DE8_kids_sigma_axis_both_branches.py:135
+    MISMATCH carr                       L360_template                                                dark_energy_2026/DE8_kids_sigma_axis_both_branches.py:18
+    N/A      kick                       n/a                                                          L360's post-decay template (L357 cells)
+    MATCH    foot                       canonical/alt                                                dark_energy_2026/DE8_kids_sigma_axis_both_branches.py:311
+    N/A      epoch                      n/a                                                          templates
+
+  DE9.msc  [DE9, aa5705194, claim comparison, data-level]  gates ['kids', 'flagship_z2.5', 'forest']  -> OFF-M*
+    verdict: 7/7; E1: {'curvature/0.5': [0.1, 0.25, 0.5], 'curvature/1.0': [0.1, 0.25], 'curvature/1.5': [0.1, 0.25], 'curvature/1.9': [0.1, 0.25], 'mond/0.5': [0.1, 0.25, 
+    MATCH    switch                     mond_sector_phiX                                             dark_energy_2026/DE9_smooth_gate_window.py:153
+             phiX: the same gate value as CV3's constrained form (recorded)
+    MISMATCH cap                        none                                                         dark_energy_2026/DE9_smooth_gate_window.py:206 (and no /v_cap|VCAP|V_CAP|vloc|rcap/ in dark_energy_2026/DE9_smooth_gate_
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['flagship_z2.5', 'forest']; FLAGSHIP_CAP_NONBINDING: covers only ['flagship_z2.5'], row scores ['forest', 'kids']
+    N/A      p                          n/a                                                          a (p, x_c0, w) window: p = 1 row allows x_c0 in [2.0, 3.35] at w = 0.25
+    N/A      x_c0                       n/a                                                          see p
+    MATCH    w                          0.1/0.25/0.5/0.75                                            dark_energy_2026/DE9_smooth_gate_window.py:206
+             widths above w_max also scored: [0.5, 0.75]
+    MATCH    kern                       nu_mono                                                      g03_audit_2026/L352_switch_gauss_compensation.py:90
+    MATCH    sig                        1.0                                                          dark_energy_2026/DE9_smooth_gate_window.py:208
+    MATCH    op                         A                                                            dark_energy_2026/DE8_kids_sigma_axis_both_branches.py:135 via dark_energy_2026/DE9_smooth_gate_window.py:84
+    MISMATCH carr                       none                                                         dark_energy_2026/DE9_smooth_gate_window.py:151
+    N/A      kick                       n/a                                                          no carrier
+    MATCH    foot                       canonical/alt                                                dark_energy_2026/DE9_smooth_gate_window.py:174
+    N/A      epoch                      n/a                                                          no carrier
+
+  DE9.curv  [DE9, aa5705194, claim comparison, data-level]  gates ['kids', 'flagship_z2.5', 'forest']  -> OFF-M*
+    verdict: 7/7; K1: {'curvature': {0.1: 3.895312500000002, 0.25: 3.801953125000002, 0.5: 3.500390625000002, 0.75: 3.2703125000000015}, 'mond': {0.1: 4.478906250000001, 0.
+    MISMATCH switch                     curvature_signed                                             dark_energy_2026/DE9_smooth_gate_window.py:166
+    MISMATCH cap                        none                                                         dark_energy_2026/DE9_smooth_gate_window.py:206 (and no /v_cap|VCAP|V_CAP|vloc|rcap/ in dark_energy_2026/DE9_smooth_gate_
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['flagship_z2.5', 'forest']; FLAGSHIP_CAP_NONBINDING: covers only ['flagship_z2.5'], row scores ['forest', 'kids']
+    N/A      p                          n/a                                                          window
+    N/A      x_c0                       n/a                                                          window
+    MATCH    w                          0.1/0.25/0.5/0.75                                            dark_energy_2026/DE9_smooth_gate_window.py:206
+             widths above w_max also scored: [0.5, 0.75]
+    MATCH    kern                       nu_mono                                                      g03_audit_2026/L352_switch_gauss_compensation.py:90
+    MATCH    sig                        1.0                                                          dark_energy_2026/DE9_smooth_gate_window.py:208
+    MATCH    op                         A                                                            dark_energy_2026/DE8_kids_sigma_axis_both_branches.py:135 via dark_energy_2026/DE9_smooth_gate_window.py:84
+    MISMATCH carr                       none                                                         dark_energy_2026/DE9_smooth_gate_window.py:151
+    N/A      kick                       n/a                                                          no carrier
+    MATCH    foot                       canonical/alt                                                dark_energy_2026/DE9_smooth_gate_window.py:174
+    N/A      epoch                      n/a                                                          no carrier
+
+  DE10.kids  [DE10, dabce1b73, claim comparison, data-level]  gates ['kids']  -> OFF-M*
+    verdict: 5/5; H1: v600/w0.02: -37.0/-34.0; v600/w0.25: -32.3/-29.3; v650/w0.02: -36.8/-33.7; v650/w0.25: -32.1/-29.0
+    owner says: KiDS for the converged model: -37.0/-34.0 (hard), -32.3/-29.3 (w = 0.25); 'the result carries to M* unchanged'
+    MATCH    switch[kids_gate]          mond_sector_phiX                                             dark_energy_2026/DE10_kids_converged_model.py:147
+             phiX: the same gate value as CV3's constrained form (recorded)
+    MISMATCH cap   [kids_gate]          withdrawn_vloc                                               dark_energy_2026/DE10_kids_converged_model.py:150
+             CAP_NONBINDING_KIDS would apply, but the row's scope does not state [CAP_NONBINDING_KIDS]
+    MATCH    p                          1.0                                                          dark_energy_2026/DE10_kids_converged_model.py:102
+    MATCH    x_c0                       2.5                                                          dark_energy_2026/DE10_kids_converged_model.py:102
+    MATCH    w                          0.02/0.25                                                    dark_energy_2026/DE10_kids_converged_model.py:62
+    MATCH    kern                       nu_mono                                                      g03_audit_2026/L352_switch_gauss_compensation.py:90
+    MATCH    sig                        1.0                                                          dark_energy_2026/DE10_kids_converged_model.py:164
+    MATCH    op                         A                                                            dark_energy_2026/DE8_kids_sigma_axis_both_branches.py:135 via dark_energy_2026/DE10_kids_converged_model.py:92
+    MISMATCH carr                       L375_resolved_shell                                          dark_energy_2026/DE10_kids_converged_model.py:54
+    MATCH    kick                       600/650                                                      dark_energy_2026/DE10_kids_converged_model.py:61
+    MATCH    foot                       canonical/alt                                                dark_energy_2026/DE10_kids_converged_model.py:132
+    MATCH    epoch [kids_gate]          retention z = [0.25] for scoring z = 0.25                    KiDS lens epoch dark_energy_2026/DE10_kids_converged_model.py:103; L375's shell model evolved to z_l dark_sector_2026/L3
+
+  DE11.forest  [DE11, aa6588d56, claim comparison, data-level]  gates ['forest']  -> OFF-M*
+    verdict: 4/4; F1: worst 0.0041
+    owner says: the forest for the converged model: worst 0.0041 against 0.10 (conservative)
+    MATCH    switch[forest]             mond_sector_phiX                                             dark_energy_2026/DE11_forest_converged_model.py:116
+             phiX: the same gate value as CV3's constrained form (recorded)
+    MISMATCH cap   [forest]             none                                                         dark_energy_2026/DE11_forest_converged_model.py:56 (and no /VCAP|V_CAP|vloc|\brcap\b|kappa_X/ in dark_energy_2026/DE11_f
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['forest']; FLAGSHIP_CAP_NONBINDING: covers only ['flagship_z2.5'], row scores ['forest']; candidate rule(s), not enabled: ['FOREST_CAP_
+    MATCH    p                          1.0                                                          dark_energy_2026/DE11_forest_converged_model.py:56
+    MATCH    x_c0                       2.5                                                          dark_energy_2026/DE11_forest_converged_model.py:56
+    MATCH    w                          0.25/0.02                                                    dark_energy_2026/DE11_forest_converged_model.py:149
+    MATCH    kern                       nu_mono                                                      dark_energy_2026/DE11_forest_converged_model.py:109
+    N/A      sig                        n/a                                                          PM operator: no web self-term
+    MISMATCH op                         B_all_matter                                                 dark_energy_2026/DE11_forest_converged_model.py:48
+             candidate rule(s), not enabled: ['DE11_CONSERVATIVE_OP']
+    MISMATCH carr                       intact                                                       dark_energy_2026/DE11_forest_converged_model.py:22
+             candidate rule(s), not enabled: ['DE11_CONSERVATIVE_CARRIER']
+    N/A      kick                       n/a                                                          no clearing
+    MATCH    foot                       canonical/alt                                                dark_energy_2026/DE11_forest_converged_model.py:148
+    N/A      epoch                      n/a                                                          no carrier retention (single fluid)
+
+  DE11b.conv  [DE11b, uncommitted, claim pending, data-level]  gates ['forest']  -> OFF-M*
+    verdict: pending: no committed results
+    MATCH    switch                     mond_sector_phiX                                             dark_energy_2026/DE11b_forest_convergence.py:103 [WT]
+             phiX: the same gate value as CV3's constrained form (recorded)
+    MISMATCH cap   [forest]             none                                                         dark_energy_2026/DE11_forest_converged_model.py:56 (and no /VCAP|V_CAP|vloc|\brcap\b|kappa_X/ in dark_energy_2026/DE11_f
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['forest']; FLAGSHIP_CAP_NONBINDING: covers only ['flagship_z2.5'], row scores ['forest']; candidate rule(s), not enabled: ['FOREST_CAP_
+    MATCH    p                          1.0                                                          dark_energy_2026/DE11_forest_converged_model.py:56
+    MATCH    x_c0                       2.5                                                          dark_energy_2026/DE11_forest_converged_model.py:56
+    N/A      w                          n/a                                                          w = 0.25 only
+    MATCH    kern                       nu_mono                                                      dark_energy_2026/DE11b_forest_convergence.py:97 [WT]
+    N/A      sig                        n/a                                                          PM
+    MISMATCH op                         B_all_matter                                                 dark_energy_2026/DE11_forest_converged_model.py:48
+             candidate rule(s), not enabled: ['DE11_CONSERVATIVE_OP']
+    MISMATCH carr                       intact                                                       dark_energy_2026/DE11_forest_converged_model.py:22
+             candidate rule(s), not enabled: ['DE11_CONSERVATIVE_CARRIER']
+    N/A      kick                       n/a                                                          no clearing
+    N/A      foot                       n/a                                                          alt at B and C; canonical at B (docstring)
+    N/A      epoch                      n/a                                                          no carrier
+
+  DE12.action  [DE12, 7f84b3546, claim structural, action-level]  gates ['action_wellposedness']  -> ON-M*
+    verdict: 8/8; G1: min c_gate 1526 km/s; min Gamma/H 2.0e+04
+    owner says: an ACTION-LEVEL obstruction: gradient instability of transition-layer gas (answer page section 6)
+    MATCH    switch[action]             mond_sector_constrained                                      dark_energy_2026/DE12_mond_sector_gate_stiffness.py:7
+    MATCH    cap                        kappa_MS5                                                    dark_energy_2026/DE12_mond_sector_gate_stiffness.py:191
+    N/A      p                          n/a                                                          p = 1 (x_c,eff = 2.5 E(z)^2)
+    MATCH    x_c0                       2.5                                                          dark_energy_2026/DE12_mond_sector_gate_stiffness.py:181
+    N/A      w                          n/a                                                          w = 0.25 (M*) and 1 (the lead track's)
+    N/A      kern                       n/a                                                          nu_mono via L352 (A = nu + y nu' cos^2)
+    N/A      sig                        n/a                                                          frozen-background reduction
+    N/A      op                         n/a                                                          reduction of CV3's constrained form
+    N/A      carr                       n/a                                                          no carrier in a symbolic identity
+    N/A      kick                       n/a                                                          no carrier
+    MATCH    foot                       canonical/alt                                                dark_energy_2026/DE12_mond_sector_gate_stiffness.py:237,295
+    N/A      epoch                      n/a                                                          no carrier retention
+
+  DE13.repair  [DE13, 6daea932c, claim structural, action-level]  gates ['action_wellposedness']  -> ON-M*
+    verdict: 10/11, load-bearing FAIL ['R1']; E2: no stable lambda on 24/24 galaxy layers; fewest modes left 2-4 at lambda 0.18-1.8
+    owner says: can a gradient stiffness repair DE12's obstruction (6daea932c)
+    MATCH    switch[action]             mond_sector_constrained                                      dark_energy_2026/DE12_mond_sector_gate_stiffness.py:7
+    MATCH    cap                        kappa_MS5                                                    dark_energy_2026/DE12_mond_sector_gate_stiffness.py:191
+    N/A      p                          n/a                                                          p = 1 (x_c,eff = 2.5 E(z)^2)
+    MATCH    x_c0                       2.5                                                          dark_energy_2026/DE12_mond_sector_gate_stiffness.py:181
+    MATCH    w                          0.25                                                         dark_energy_2026/DE13_gate_gradient_repair.py:111
+    N/A      kern                       n/a                                                          DE12's (nu_mono via L352)
+    N/A      sig                        n/a                                                          frozen-background reduction
+    N/A      op                         n/a                                                          reduction of CV3's constrained form (DE12's)
+    N/A      carr                       n/a                                                          no carrier in a symbolic identity
+    N/A      kick                       n/a                                                          no carrier
+    MATCH    foot                       canonical/alt                                                dark_energy_2026/DE13_gate_gradient_repair.py:113
+    N/A      epoch                      n/a                                                          no carrier retention
+
+  L388.pooled  [L388, 78fc5dd81, claim comparison, data-level]  gates ['s8', 'forest', 'clearing', 'xcop', 'cosmic_shear_mock']  -> OFF-M*   FLAGS: FOOTING-PARTIAL
+    verdict: 4/4; R1: pooled window: ['v575', 'v600', 'v625', 'v650']
+    MISMATCH switch[pm_dynamics]        matter_only                                                  dark_sector_2026/L377_full_construction_pm.py:120 via dark_sector_2026/L388_linear_gate_pooled.py:41
+    MISMATCH cap   [pm_dynamics]        none                                                         dark_sector_2026/L388_linear_gate_pooled.py:54 (and no /VCAP|vloc|kappa|rcap/ in dark_sector_2026/L388_linear_gate_poole
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['clearing', 'cosmic_shear_mock', 'forest', 's8', 'xcop']; FLAGSHIP_CAP_NONBINDING: covers only ['flagship_z2.5'], row scores ['clearing
+    MATCH    p                          1.0                                                          dark_sector_2026/L388_linear_gate_pooled.py:42
+    MATCH    x_c0                       2.5                                                          dark_sector_2026/L388_linear_gate_pooled.py:42
+    MISMATCH w                          0.0                                                          dark_sector_2026/L377_full_construction_pm.py:120
+             hard switch (w = 0); HARDW_FOR_SMOOTH would apply, but the row's scope does not state [HARDW_FOR_SMOOTH]
+    MATCH    kern                       nu_mono                                                      dark_sector_2026/L377_full_construction_pm.py:252
+    N/A      sig                        n/a                                                          operator B: no web self-term
+    MISMATCH op                         B                                                            dark_sector_2026/L388_linear_gate_pooled.py:41
+             OP_B_FOR_A would apply, but the row's scope does not state [OP_B_FOR_A]
+    MATCH    carr                       L388_density_trigger                                         dark_sector_2026/L388_linear_gate_pooled.py:92
+    MATCH    kick                       575/600/625/650                                              dark_sector_2026/L388_linear_gate_pooled.py:54
+    MISMATCH foot                       canonical                                                    dark_sector_2026/L388_linear_gate_pooled.py:87,89,92
+             canonical only
+    MATCH    epoch [xcop]               retention z = [0.0] for scoring z = 0.0                      X-COP at z = 0 dark_sector_2026/L388_linear_gate_pooled.py:107; retention at z = 0 dark_sector_2026/L388_linear_gate_poo
+
+  L389.harvey  [L389, uncommitted, claim pending, data-level]  gates ['harvey']  -> OFF-M*   FLAGS: FOOTING-PARTIAL | EPOCH-MIXED
+    verdict: pending: no committed results (an uncommitted results JSON is on disk, not read)
+    owner says: Harvey knife-edge: S2 passes only at 575 km/s (provisional)
+    MISMATCH switch[harvey_map]         matter_only                                                  merger_infall_2026/L370_boosted_infall_mergers.py:296 via dark_sector_2026/L389_harvey_same_cell_linear_gate.py:40
+    MISMATCH switch[harvey_lensing_root] matter_only                                                  merger_infall_2026/L370_boosted_infall_mergers.py:230
+    MISMATCH switch[retention_source]   matter_only                                                  dark_sector_2026/L377_full_construction_pm.py:120
+    MISMATCH cap   [harvey_map]         none                                                         merger_infall_2026/L370_boosted_infall_mergers.py:163 (and no /VCAP|vloc|kappa_X|v_cap/ in merger_infall_2026/L370_boost
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['harvey']; FLAGSHIP_CAP_NONBINDING: covers only ['flagship_z2.5'], row scores ['harvey']
+    MATCH    p                          1.0                                                          dark_sector_2026/L389_harvey_same_cell_linear_gate.py:56 [WT]
+    MATCH    x_c0                       2.5                                                          dark_sector_2026/L389_harvey_same_cell_linear_gate.py:56 [WT]
+    MISMATCH w                          0.0                                                          merger_infall_2026/L370_boosted_infall_mergers.py:296
+             hard switch (w = 0); HARDW_FOR_SMOOTH would apply, but the row's scope does not state [HARDW_FOR_SMOOTH]
+    MATCH    kern                       nu_mono                                                      merger_infall_2026/L370_boosted_infall_mergers.py:155
+    MISMATCH sig                        0.0                                                          merger_infall_2026/L370_boosted_infall_mergers.py:292
+             SIGMA0_FOR_SIGMA1 would apply, but the row's scope does not state [SIGMA0_FOR_SIGMA1]
+    MISMATCH op                         C                                                            merger_infall_2026/L370_boosted_infall_mergers.py:292 via dark_sector_2026/L389_harvey_same_cell_linear_gate.py:76
+             C_FOR_A_HARVEY would apply, but the row's scope does not state [C_FOR_A_HARVEY]
+    MATCH    carr                       L388_density_trigger                                         dark_sector_2026/L389_harvey_same_cell_linear_gate.py:105 [WT]
+    N/A      kick                       n/a                                                          every kick of L388's pooled window (575-650)
+    MISMATCH foot                       canonical                                                    dark_sector_2026/L389_harvey_same_cell_linear_gate.py:54 [WT]
+             canonical only
+    MISMATCH epoch [harvey]             retention z = [0.0] for scoring z = 0.4                      Harvey merger epoch dark_sector_2026/L389_harvey_same_cell_linear_gate.py:98 [WT]; L388's retention at z = 0 dark_sector
+             EPOCH-MIXED: L388's retention at z = 0 at z = 0
+
+  L390.kids  [L390, b3ba1f6fa, claim comparison, data-level]  gates ['kids']  -> OFF-M*
+    verdict: 4/4; R1: v575: -13.1/-7.1; v600: -13.1/-7.2; v625: -13.1/-7.2; v650: -13.0/-7.1
+    MISMATCH switch                     curvature_signed                                             dark_sector_2026/L390_kids_resolved_linear_gate.py:70
+    MISMATCH cap                        none                                                         dark_sector_2026/L390_kids_resolved_linear_gate.py:42 (and no /VCAP|vloc|kappa|V_CAP/ in dark_sector_2026/L390_kids_reso
+             CAP_NONBINDING_KIDS would apply, but the row's scope does not state [CAP_NONBINDING_KIDS]; FLAGSHIP_CAP_NONBINDING: covers only ['flagship_z2.5'], row scores ['kids']
+    N/A      p                          n/a                                                          L359's x_c,eff(0.25) at p = 1, x_c0 = 2.5 (NEW)
+    N/A      x_c0                       n/a                                                          see p
+    N/A      w                          n/a                                                          L352's compensated hard edge
+    N/A      kern                       n/a                                                          L352's nu_mono (via L360)
+    MISMATCH sig                        0.0                                                          dark_sector_2026/L390_kids_resolved_linear_gate.py:41
+             SIGMA0_FOR_SIGMA1 would apply, but the row's scope does not state [SIGMA0_FOR_SIGMA1]
+    N/A      op                         n/a                                                          L352's compensated edge (no field operator)
+    MISMATCH carr                       L375_resolved_shell                                          dark_sector_2026/L390_kids_resolved_linear_gate.py:33
+    MATCH    kick                       575/600/625/650                                              dark_sector_2026/L390_kids_resolved_linear_gate.py:42
+    MATCH    foot                       canonical/alt                                                dark_sector_2026/L390_kids_resolved_linear_gate.py:69
+    N/A      epoch                      n/a                                                          L375's shell model at z_l = 0.25 (own epoch)
+
+  L391.rar_rc100  [L391, 441d811e2, claim comparison, data-level]  gates ['rar', 'rc100']  -> OFF-M*
+    verdict: 3/3; R1: RAR worst {'dwarf': 0.0, 'milky_way': 7.189094827143263e-05, 'massive': 0.00012377428464026166}; RC100 carrier ratio {'z1': 0.0, 'z2': 0.0}
+    owner says: RAR and RC100 pass with nu_mono
+    MISMATCH switch[inner_galaxy]       none                                                         dark_sector_2026/L391_inner_galaxies_nu_mono.py:32
+    N/A      cap                        n/a                                                          no switch, so no regions to cap
+    N/A      p                          n/a                                                          no switch
+    N/A      x_c0                       n/a                                                          no switch
+    N/A      w                          n/a                                                          no switch
+    MATCH    kern                       nu_mono                                                      dark_sector_2026/L391_inner_galaxies_nu_mono.py:32
+    N/A      sig                        n/a                                                          no region operator
+    N/A      op                         n/a                                                          g_MOND = nu g_N inside the galaxy (no field operator)
+    MISMATCH carr                       L375_resolved_shell                                          dark_sector_2026/L391_inner_galaxies_nu_mono.py:31
+    MATCH    kick                       650                                                          dark_sector_2026/L391_inner_galaxies_nu_mono.py:63
+    N/A      foot                       n/a                                                          both footings (L376's gate arithmetic)
+    N/A      epoch                      n/a                                                          L376's own epochs (z = 0, 1, 2)
+
+  L392.curvature  [L392, 3d3fe8184, claim comparison, data-level]  gates ['kids', 'harvey']  -> OFF-M*
+    verdict: 7/9, load-bearing FAIL ['RA[r200]', 'RA[nfw]']; RB[r200]: passing cells: [(0.25, 750.0), (0.25, 900.0), (0.25, 1050.0)]
+    MISMATCH switch                     curvature_signed                                             merger_infall_2026/L392_l372_linear_gate_branches.py:11
+    MISMATCH cap                        none                                                         merger_infall_2026/L392_l372_linear_gate_branches.py:75 (and no /VCAP|vloc|kappa|V_CAP/ in merger_infall_2026/L392_l372_
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['harvey']; FLAGSHIP_CAP_NONBINDING: covers only ['flagship_z2.5'], row scores ['harvey', 'kids']
+    MATCH    p                          1.0                                                          merger_infall_2026/L392_l372_linear_gate_branches.py:75
+    MATCH    x_c0                       2.5                                                          merger_infall_2026/L392_l372_linear_gate_branches.py:75
+    N/A      w                          n/a                                                          hard (w = 0), per the owner's row
+    N/A      kern                       n/a                                                          nu_mono (L352 / L370)
+    N/A      sig                        n/a                                                          sigma = 0 (L370's operator; L352's edge)
+    N/A      op                         n/a                                                          L352 (KiDS) and L370's C (Harvey)
+    MISMATCH carr                       L372_two_mode                                                merger_infall_2026/L392_l372_linear_gate_branches.py:77
+    N/A      kick                       n/a                                                          v_G = 750/900/1050 km/s
+    N/A      foot                       n/a                                                          canonical for every cell, alt for the central cell
+    N/A      epoch                      n/a                                                          static retention
+
+  L392.matter  [L392, 3d3fe8184, claim comparison, data-level]  gates ['kids', 'harvey']  -> OFF-M*
+    verdict: 7/9, load-bearing FAIL ['RA[r200]', 'RA[nfw]']; RA[r200]: passing cells: none
+    MISMATCH switch                     matter_only                                                  merger_infall_2026/L392_l372_linear_gate_branches.py:10
+    MISMATCH cap                        none                                                         merger_infall_2026/L392_l372_linear_gate_branches.py:75 (and no /VCAP|vloc|kappa|V_CAP/ in merger_infall_2026/L392_l372_
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['harvey']; FLAGSHIP_CAP_NONBINDING: covers only ['flagship_z2.5'], row scores ['harvey', 'kids']
+    MATCH    p                          1.0                                                          merger_infall_2026/L392_l372_linear_gate_branches.py:75
+    MATCH    x_c0                       2.5                                                          merger_infall_2026/L392_l372_linear_gate_branches.py:75
+    N/A      w                          n/a                                                          hard (w = 0), per the owner's row
+    N/A      kern                       n/a                                                          nu_mono (L352 / L370)
+    N/A      sig                        n/a                                                          sigma = 0 (L370's operator; L352's edge)
+    N/A      op                         n/a                                                          L352 (KiDS) and L370's C (Harvey)
+    MISMATCH carr                       L372_two_mode                                                merger_infall_2026/L392_l372_linear_gate_branches.py:77
+    N/A      kick                       n/a                                                          v_G = 750/900/1050 km/s
+    N/A      foot                       n/a                                                          canonical for every cell, alt for the central cell
+    N/A      epoch                      n/a                                                          static retention
+
+  L393.pm  [L393, 4188b89f6, claim pending, data-level]  gates ['s8', 'forest', 'xcop', 'cosmic_shear_halo_model', 'harvey']  -> OFF-M*
+    verdict: pending: no committed results
+    MISMATCH switch[pm_dynamics]        curvature_signed                                             merger_infall_2026/L393_two_mode_carrier_pm_linear_gate_curvature.py:12
+    N/A      cap                        n/a                                                          uncapped by design (MS3 X1 expected fail)
+    N/A      p                          n/a                                                          p = 1 (docstring)
+    N/A      x_c0                       n/a                                                          x_c0 = 2.5 (docstring)
+    N/A      w                          n/a                                                          hard mask
+    N/A      kern                       n/a                                                          L377's nu_mono
+    N/A      sig                        n/a                                                          PM
+    MISMATCH op    [pm_dynamics]        B                                                            merger_infall_2026/L393_two_mode_carrier_pm_linear_gate_curvature.py:66
+             OP_B_FOR_A would apply, but the row's scope does not state [OP_B_FOR_A]
+    MISMATCH carr                       L372_two_mode                                                merger_infall_2026/L393_two_mode_carrier_pm_linear_gate_curvature.py:3
+    N/A      kick                       n/a                                                          v_G = 600-1050 km/s
+    N/A      foot                       n/a                                                          canonical PM; shear both footings
+    N/A      epoch                      n/a                                                          z = 0.4 cluster medians + z = 2 galaxy anchor for z = 0.5 shear (docstring)
+
+  L394.pm  [L394, 6e1e449e4, claim pending, data-level]  gates ['s8', 'forest', 'xcop', 'cosmic_shear_halo_model', 'harvey']  -> OFF-M*   FLAGS: FOOTING-PARTIAL
+    verdict: pending: no committed results
+    COMPAT   switch[pm_dynamics]        mond_sector_abs                                              merger_infall_2026/L394_two_mode_carrier_pm_mond_sector_cap.py:95
+             [ABS_FOR_CONSTRAINED]
+    MATCH    cap   [pm_dynamics]        kappa_MS5                                                    merger_infall_2026/L394_two_mode_carrier_pm_mond_sector_cap.py:161
+    MATCH    p                          1.0                                                          merger_infall_2026/L394_two_mode_carrier_pm_mond_sector_cap.py:95
+    MATCH    x_c0                       2.5                                                          merger_infall_2026/L394_two_mode_carrier_pm_mond_sector_cap.py:95
+    COMPAT   w                          0.0                                                          merger_infall_2026/L394_two_mode_carrier_pm_mond_sector_cap.py:163
+             [HARDW_FOR_SMOOTH]
+    N/A      kern                       n/a                                                          L377's nu_mono
+    N/A      sig                        n/a                                                          PM
+    N/A      op                         n/a                                                          L377's PM (B)
+    MISMATCH carr                       L372_two_mode                                                merger_infall_2026/L394_two_mode_carrier_pm_mond_sector_cap.py:5
+    N/A      kick                       n/a                                                          v_G = 600-1050 km/s
+    MISMATCH foot                       canonical                                                    merger_infall_2026/L394_two_mode_carrier_pm_mond_sector_cap.py:482
+             canonical only
+    N/A      epoch                      n/a                                                          pending
+
+  L395.c_msc  [L395, uncommitted, claim pending, data-level]  gates ['s8', 'forest', 'clearing', 'xcop', 'cosmic_shear_halo_model']  -> OFF-M*   FLAGS: CAP-SPLIT: pm_dynamics=withdrawn_vloc, halo_model_shear=hard_radius_MS3 | FOOTING-PARTIAL | EPOCH-MIXED
+    verdict: pending: no committed results
+    owner says: the primary cell (running); the answer page labels it mixed
+    COMPAT   switch[pm_dynamics]        mond_sector_abs                                              dark_sector_2026/L395_two_switch_branches.py:123 [WT]
+             [ABS_FOR_CONSTRAINED]
+    MISMATCH cap   [pm_dynamics]        withdrawn_vloc                                               dark_sector_2026/L395_two_switch_branches.py:127 [WT]
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['clearing', 'cosmic_shear_halo_model', 'forest', 's8', 'xcop']
+    COMPAT   cap   [halo_model_shear]   hard_radius_MS3                                              dark_sector_2026/L395_two_switch_branches.py:92 [WT]
+             [HARDCAP_FOR_KAPPA_SHEAR]
+    MATCH    p                          1.0                                                          dark_sector_2026/L395_two_switch_branches.py:71 [WT]
+    MATCH    x_c0                       2.5                                                          dark_sector_2026/L395_two_switch_branches.py:71 [WT]
+    COMPAT   w                          0.0                                                          dark_sector_2026/L395_two_switch_branches.py:128 [WT]
+             [HARDW_FOR_SMOOTH]
+    MATCH    kern                       nu_mono                                                      dark_sector_2026/L377_full_construction_pm.py:252 via dark_sector_2026/L395_two_switch_branches.py:70
+    N/A      sig                        n/a                                                          operator B carries no web self-term (XR5 compared it with A at sigma = 1)
+    COMPAT   op    [pm_dynamics]        B                                                            dark_sector_2026/L395_two_switch_branches.py:70 [WT]
+             [OP_B_FOR_A]
+    MATCH    carr                       L388_density_trigger                                         dark_sector_2026/L395_two_switch_branches.py:257 [WT]
+    MATCH    kick                       600/650                                                      dark_sector_2026/L395_two_switch_branches.py:89 [WT]
+    MISMATCH foot  [pooled_gates]       canonical                                                    dark_sector_2026/L395_two_switch_branches.py:257 [WT]
+             canonical only
+    MISMATCH epoch [halo_model_shear]   retention z = [0.0, 2.0] for scoring z = 0.5                 halo-model lens epoch (GP3's ZS, via L363) generated_phantom_2026/GP3_lensing_power_and_growth.py:100 via dark_sector_20
+             EPOCH-MIXED: clusters: the cell's own pooled z = 0 medians at z = 0; galaxies (the 1e13 anchor): the cell's fixed-cell clearing B at z = 2 at z = 2
+    MATCH    epoch [xcop]               retention z = [0.0] for scoring z = 0.0                      X-COP at z = 0 dark_sector_2026/L395_two_switch_branches.py:308 [WT]; retention at z = 0 dark_sector_2026/L395_two_switc
+
+  L395.b_curv  [L395, uncommitted, claim pending, data-level]  gates ['s8', 'forest', 'clearing', 'xcop', 'cosmic_shear_halo_model']  -> OFF-M*   FLAGS: FOOTING-PARTIAL | EPOCH-MIXED
+    verdict: pending: no committed results
+    MISMATCH switch[pm_dynamics]        curvature_clipped                                            dark_sector_2026/L395_two_switch_branches.py:121 [WT]
+    MISMATCH cap   [pm_dynamics]        none                                                         dark_sector_2026/L395_two_switch_branches.py:92 [WT]
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['clearing', 'cosmic_shear_halo_model', 'forest', 's8', 'xcop']; FLAGSHIP_CAP_NONBINDING: covers only ['flagship_z2.5'], row scores ['cl
+    MATCH    p                          1.0                                                          dark_sector_2026/L395_two_switch_branches.py:71 [WT]
+    MATCH    x_c0                       2.5                                                          dark_sector_2026/L395_two_switch_branches.py:71 [WT]
+    MISMATCH w                          0.0                                                          dark_sector_2026/L395_two_switch_branches.py:121 [WT]
+             hard switch (w = 0); HARDW_FOR_SMOOTH would apply, but the row's scope does not state [HARDW_FOR_SMOOTH]
+    MATCH    kern                       nu_mono                                                      dark_sector_2026/L377_full_construction_pm.py:252 via dark_sector_2026/L395_two_switch_branches.py:70
+    N/A      sig                        n/a                                                          operator B carries no web self-term (XR5 compared it with A at sigma = 1)
+    MISMATCH op    [pm_dynamics]        B                                                            dark_sector_2026/L395_two_switch_branches.py:70 [WT]
+             OP_B_FOR_A would apply, but the row's scope does not state [OP_B_FOR_A]
+    MATCH    carr                       L388_density_trigger                                         dark_sector_2026/L395_two_switch_branches.py:257 [WT]
+    MATCH    kick                       600/650                                                      dark_sector_2026/L395_two_switch_branches.py:89 [WT]
+    MISMATCH foot                       canonical                                                    dark_sector_2026/L395_two_switch_branches.py:257 [WT]
+             canonical only
+    MISMATCH epoch [halo_model_shear]   retention z = [0.0, 2.0] for scoring z = 0.5                 halo-model lens epoch (GP3's ZS, via L363) generated_phantom_2026/GP3_lensing_power_and_growth.py:100 via dark_sector_20
+             EPOCH-MIXED: clusters: the cell's own pooled z = 0 medians at z = 0; galaxies (the 1e13 anchor): the cell's fixed-cell clearing B at z = 2 at z = 2
+    MATCH    epoch [xcop]               retention z = [0.0] for scoring z = 0.0                      X-COP at z = 0 dark_sector_2026/L395_two_switch_branches.py:308 [WT]; retention at z = 0 dark_sector_2026/L395_two_switc
+
+  L395.a_matter  [L395, uncommitted, claim pending, data-level]  gates ['s8', 'forest', 'clearing', 'xcop']  -> OFF-M*   FLAGS: FOOTING-PARTIAL | EPOCH-MIXED
+    verdict: pending: no committed results
+    MISMATCH switch[pm_dynamics]        matter_only                                                  dark_sector_2026/L377_full_construction_pm.py:120 via dark_sector_2026/L395_two_switch_branches.py:108
+    MISMATCH cap   [pm_dynamics]        none                                                         dark_sector_2026/L395_two_switch_branches.py:92 [WT]
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['clearing', 'forest', 's8', 'xcop']; FLAGSHIP_CAP_NONBINDING: covers only ['flagship_z2.5'], row scores ['clearing', 'forest', 's8', 'x
+    MATCH    p                          1.0                                                          dark_sector_2026/L395_two_switch_branches.py:71 [WT]
+    MATCH    x_c0                       2.5                                                          dark_sector_2026/L395_two_switch_branches.py:71 [WT]
+    MISMATCH w                          0.0                                                          dark_sector_2026/L377_full_construction_pm.py:120
+             hard switch (w = 0); HARDW_FOR_SMOOTH would apply, but the row's scope does not state [HARDW_FOR_SMOOTH]
+    MATCH    kern                       nu_mono                                                      dark_sector_2026/L377_full_construction_pm.py:252 via dark_sector_2026/L395_two_switch_branches.py:70
+    N/A      sig                        n/a                                                          operator B carries no web self-term (XR5 compared it with A at sigma = 1)
+    MISMATCH op    [pm_dynamics]        B                                                            dark_sector_2026/L395_two_switch_branches.py:70 [WT]
+             OP_B_FOR_A would apply, but the row's scope does not state [OP_B_FOR_A]
+    MATCH    carr                       L388_density_trigger                                         dark_sector_2026/L395_two_switch_branches.py:257 [WT]
+    MATCH    kick                       600/650                                                      dark_sector_2026/L395_two_switch_branches.py:89 [WT]
+    MISMATCH foot                       canonical                                                    dark_sector_2026/L395_two_switch_branches.py:261 [WT]
+             canonical only
+    MISMATCH epoch [halo_model_shear]   retention z = [0.0, 2.0] for scoring z = 0.5                 halo-model lens epoch (GP3's ZS, via L363) generated_phantom_2026/GP3_lensing_power_and_growth.py:100 via dark_sector_20
+             EPOCH-MIXED: clusters: the cell's own pooled z = 0 medians at z = 0; galaxies (the 1e13 anchor): the cell's fixed-cell clearing B at z = 2 at z = 2
+    MATCH    epoch [xcop]               retention z = [0.0] for scoring z = 0.0                      X-COP at z = 0 dark_sector_2026/L395_two_switch_branches.py:308 [WT]; retention at z = 0 dark_sector_2026/L395_two_switc
+
+  L396.msck  [L396, uncommitted, claim pending, data-level]  gates ['s8', 'forest', 'clearing', 'xcop', 'cosmic_shear_halo_model']  -> OFF-M*   FLAGS: FOOTING-PARTIAL | EPOCH-MIXED
+    verdict: pending: no committed results
+    owner says: the decisive same-model run (being built)
+    COMPAT   switch[pm_dynamics]        mond_sector_abs                                              dark_sector_2026/L396_msc_cell_575.py:105 [WT]
+             [ABS_FOR_CONSTRAINED]
+    COMPAT   cap   [halo_model_shear]   hard_radius_MS3                                              dark_sector_2026/L396_msc_cell_575.py:263 [WT]
+             [HARDCAP_FOR_KAPPA_SHEAR]
+    MATCH    cap   [pm_dynamics]        kappa_MS5                                                    dark_sector_2026/L396_msc_cell_575.py:108 [WT]
+    MATCH    p                          1.0                                                          dark_sector_2026/L395_two_switch_branches.py:71 [WT] via dark_sector_2026/L396_msc_cell_575.py:52
+    MATCH    x_c0                       2.5                                                          dark_sector_2026/L395_two_switch_branches.py:71 [WT] via dark_sector_2026/L396_msc_cell_575.py:52
+    COMPAT   w                          0.0                                                          dark_sector_2026/L396_msc_cell_575.py:110 [WT]
+             [HARDW_FOR_SMOOTH]
+    MATCH    kern                       nu_mono                                                      dark_sector_2026/L377_full_construction_pm.py:252 via dark_sector_2026/L396_msc_cell_575.py:97
+    N/A      sig                        n/a                                                          operator B carries no web self-term (XR5 compared it with A at sigma = 1)
+    COMPAT   op    [pm_dynamics]        B                                                            dark_sector_2026/L396_msc_cell_575.py:52 [WT]
+             [OP_B_FOR_A]
+    MATCH    carr                       L388_density_trigger                                         dark_sector_2026/L396_msc_cell_575.py:183 [WT]
+    MATCH    kick                       575/600/650                                                  dark_sector_2026/L396_msc_cell_575.py:66 [WT]
+    MISMATCH foot                       canonical                                                    dark_sector_2026/L396_msc_cell_575.py:183 [WT]
+             canonical only
+    MISMATCH epoch [halo_model_shear]   retention z = [0.0, 2.0] for scoring z = 0.5                 halo-model lens epoch (GP3's ZS, via L363) generated_phantom_2026/GP3_lensing_power_and_growth.py:100 via dark_sector_20
+             EPOCH-MIXED: clusters: the cell's own pooled z = 0 medians at z = 0; galaxies (the 1e13 anchor): fixed-cell clearing B at z = 2 at z = 2
+    MATCH    epoch [xcop]               retention z = [0.0] for scoring z = 0.0                      X-COP at z = 0 dark_sector_2026/L396_msc_cell_575.py:221 [WT]; retention at z = 0 dark_sector_2026/L396_msc_cell_575.py:
+
+  L397.harvey  [L397, uncommitted, claim pending, data-level]  gates ['harvey']  -> OFF-M*   FLAGS: CAP-SPLIT: harvey_map=none, retention_source=kappa_MS5 | SWITCH-SPLIT: harvey_map=matter_only, harvey_lensing_root=matter_only, retention_source=mond_sector_abs | FOOTING-PARTIAL
+    verdict: pending: no committed results
+    owner says: Harvey at its own epoch, same cell, same model
+    MISMATCH switch[harvey_map]         matter_only                                                  merger_infall_2026/L370_boosted_infall_mergers.py:296 via dark_sector_2026/L397_harvey_same_epoch_msc.py:36
+    MISMATCH switch[harvey_lensing_root] matter_only                                                  merger_infall_2026/L370_boosted_infall_mergers.py:230
+    COMPAT   switch[retention_source]   mond_sector_abs                                              dark_sector_2026/L396_msc_cell_575.py:105 [WT]
+             [ABS_FOR_CONSTRAINED]
+    MISMATCH cap   [harvey_map]         none                                                         merger_infall_2026/L370_boosted_infall_mergers.py:163 (and no /VCAP|vloc|kappa_X|v_cap/ in merger_infall_2026/L370_boost
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['harvey']; FLAGSHIP_CAP_NONBINDING: covers only ['flagship_z2.5'], row scores ['harvey']
+    MATCH    cap   [retention_source]   kappa_MS5                                                    dark_sector_2026/L396_msc_cell_575.py:108 [WT]
+    MATCH    p                          1.0                                                          dark_sector_2026/L389_harvey_same_cell_linear_gate.py:56 [WT]
+    MATCH    x_c0                       2.5                                                          dark_sector_2026/L389_harvey_same_cell_linear_gate.py:56 [WT]
+    MISMATCH w                          0.0                                                          merger_infall_2026/L370_boosted_infall_mergers.py:296
+             hard switch (w = 0); HARDW_FOR_SMOOTH would apply, but the row's scope does not state [HARDW_FOR_SMOOTH]
+    MATCH    kern                       nu_mono                                                      merger_infall_2026/L370_boosted_infall_mergers.py:155
+    MISMATCH sig                        0.0                                                          merger_infall_2026/L370_boosted_infall_mergers.py:292
+             SIGMA0_FOR_SIGMA1 would apply, but the row's scope does not state [SIGMA0_FOR_SIGMA1]
+    MISMATCH op                         C                                                            merger_infall_2026/L370_boosted_infall_mergers.py:292 via dark_sector_2026/L397_harvey_same_epoch_msc.py:36
+             C_FOR_A_HARVEY would apply, but the row's scope does not state [C_FOR_A_HARVEY]
+    MATCH    carr                       L388_density_trigger                                         dark_sector_2026/L397_harvey_same_epoch_msc.py:64 [WT]
+    N/A      kick                       n/a                                                          every kick of L396's pooled window (575/600/650)
+    MISMATCH foot                       canonical                                                    dark_sector_2026/L389_harvey_same_cell_linear_gate.py:54 [WT]
+             canonical only
+    MATCH    epoch [harvey]             retention z = [0.4] for scoring z = 0.4                      Harvey merger epoch dark_sector_2026/L389_harvey_same_cell_linear_gate.py:98 [WT]; L396's retention at z = 0.4 dark_sect
+
+  AT1.highz  [AT1, dd1d6a0d6, claim comparison, data-level]  gates ['flagship_z2.5', 'rc100']  -> OFF-M*
+    verdict: 9/9; A2: worst |shift| 0.074 dex over 4 cells x 5 redshifts
+    N/A      switch                     n/a                                                          the flagship edge by construction (L359's edge)
+    N/A      cap                        n/a                                                          no cap
+    N/A      p                          n/a                                                          n/a
+    N/A      x_c0                       n/a                                                          n/a
+    N/A      w                          n/a                                                          n/a
+    MATCH    kern                       nu_mono                                                      acceleration_trigger_2026/AT1_acceleration_trigger_highz.py:131
+    N/A      sig                        n/a                                                          AT's own machinery
+    N/A      op                         n/a                                                          halo model
+    MISMATCH carr                       AT_acceleration_trigger                                      acceleration_trigger_2026/AT1_acceleration_trigger_highz.py:17
+    MISMATCH kick                       300/450/600/800/1000                                         acceleration_trigger_2026/AT1_acceleration_trigger_highz.py:389
+             kicks outside 575-650: [300.0, 450.0, 800.0, 1000.0]
+    N/A      foot                       n/a                                                          both where scored
+    N/A      epoch                      n/a                                                          AT's own retention
+
+  AT2.forest  [AT2, dd1d6a0d6, claim comparison, data-level]  gates ['forest']  -> OFF-M*
+    verdict: 8/8; F1: worst deviation 0.0250; largest band deviation to 6.5 h/Mpc 0.0171
+    N/A      switch                     n/a                                                          the carrier's decay budget; the switch is not the variable
+    N/A      cap                        n/a                                                          no cap
+    N/A      p                          n/a                                                          n/a
+    N/A      x_c0                       n/a                                                          n/a
+    N/A      w                          n/a                                                          n/a
+    N/A      kern                       n/a                                                          L347's machinery
+    N/A      sig                        n/a                                                          AT's own machinery
+    N/A      op                         n/a                                                          PM (L365/L366 boxes)
+    MISMATCH carr                       AT_acceleration_trigger                                      acceleration_trigger_2026/AT2_forest_flux_calibrated.py:4
+    N/A      kick                       n/a                                                          AT1's cells
+    N/A      foot                       n/a                                                          both where scored
+    N/A      epoch                      n/a                                                          AT's own retention
+
+  AT3.gates  [AT3, dd1d6a0d6, claim comparison, data-level]  gates ['kids', 'harvey', 's8', 'forest', 'flagship_z2.5', 'cosmic_shear_mock']  -> OFF-M*
+    verdict: 8/8; W1: ([(0.1, 600.0, 0.25), (0.03, 600.0, 0.25)], {'0.1|600.0|0.25': {'S8_strict': True, 'xcop_strict': False}, '0.03|600.0|0.25': {'S8_strict': True, 'xcop
+    MISMATCH switch[kids_gate]          curvature_signed                                             acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py:141
+    N/A      cap                        n/a                                                          no cap
+    N/A      p                          n/a                                                          common cell p = 1, x_c0 = 2.5
+    N/A      x_c0                       n/a                                                          see p
+    N/A      w                          n/a                                                          hard
+    N/A      kern                       n/a                                                          L352/L370's nu_mono
+    N/A      sig                        n/a                                                          AT's own machinery
+    MISMATCH op    [harvey_map]         C                                                            acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py:401
+             C_FOR_A_HARVEY: covers only ['harvey'], row scores ['cosmic_shear_mock', 'flagship_z2.5', 'forest', 'kids', 's8']
+    MISMATCH carr                       AT_acceleration_trigger                                      acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py:267
+    MISMATCH kick                       600/800                                                      acceleration_trigger_2026/AT3_acceleration_trigger_full_gates.py:264
+             kicks outside 575-650: [800.0]
+    N/A      foot                       n/a                                                          both where scored
+    N/A      epoch                      n/a                                                          AT's own retention
+
+  AT4.shear  [AT4, b844a87b3, claim comparison, data-level]  gates ['cosmic_shear_halo_model']  -> OFF-M*
+    verdict: 4/4
+    MISMATCH switch[halo_model_shear]   mond_sector_abs                                              acceleration_trigger_2026/AT4_halo_model_cosmic_shear.py:141
+             ABS_FOR_CONSTRAINED would apply, but the row's scope does not state [ABS_FOR_CONSTRAINED]
+    MISMATCH cap   [halo_model_shear]   hard_radius_MS3                                              acceleration_trigger_2026/AT4_halo_model_cosmic_shear.py:141
+             HARDCAP_FOR_KAPPA_SHEAR would apply, but the row's scope does not state [HARDCAP_FOR_KAPPA_SHEAR]
+    N/A      p                          n/a                                                          MS3's linear cell and DE5's corner
+    N/A      x_c0                       n/a                                                          see p
+    N/A      w                          n/a                                                          hard
+    N/A      kern                       n/a                                                          MS3's nu_mono
+    N/A      sig                        n/a                                                          AT's own machinery
+    N/A      op                         halo_model                                                   acceleration_trigger_2026/AT4_halo_model_cosmic_shear.py:82
+             no field operator: the exact spherical phantom of an isolated system
+    MISMATCH carr                       AT_acceleration_trigger                                      acceleration_trigger_2026/AT4_halo_model_cosmic_shear.py:154
+    MISMATCH kick                       600/700/800/1200/2000                                        acceleration_trigger_2026/AT4_halo_model_cosmic_shear.py:154
+             kicks outside 575-650: [700.0, 800.0, 1200.0, 2000.0]
+    N/A      foot                       n/a                                                          both where scored
+    N/A      epoch                      n/a                                                          AT's own retention
+
+  CV1.nr  [CV1, cc2b55bbb, claim structural, action-level]  gates ['action_reduction']  -> n/a
+    verdict: 6/6; A3: residuals ['0', '0', '0', '0']; forces equal True; sigma difference M2(x)*w(x)
+    N/A      switch                     n/a                                                          chk_v0_2026/CV1_nr_assembly.py:17
+             the gate is prescribed here (varied in CV3)
+    N/A      cap                        n/a                                                          no cap
+    N/A      p                          n/a                                                          prescribed f
+    N/A      x_c0                       n/a                                                          prescribed f
+    N/A      w                          n/a                                                          prescribed f
+    N/A      kern                       n/a                                                          nu_mono via q' = nu - 1
+    N/A      sig                        n/a                                                          chk_v0_2026/CV1_nr_assembly.py:22
+             both sigma checked (A3/A5)
+    N/A      op                         n/a                                                          the action's operator itself
+    N/A      carr                       n/a                                                          no carrier in a symbolic identity
+    N/A      kick                       n/a                                                          no carrier
+    N/A      foot                       n/a                                                          no a0 numbers
+    N/A      epoch                      n/a                                                          no carrier retention
+
+  CV2.covariant  [CV2, db21f7edf, claim structural, action-level]  gates ['action_reduction']  -> OFF-M*
+    verdict: 4/4; B3: aux solution [{Psi(t): 0, Y(t): 0}]; aux force 0; H^2 ratio 1
+    MISMATCH switch[action]             curvature_signed                                             chk_v0_2026/CV2_covariant_action.py:17
+    N/A      cap                        n/a                                                          no cap
+    N/A      p                          n/a                                                          symbolic
+    N/A      x_c0                       n/a                                                          symbolic
+    N/A      w                          n/a                                                          symbolic
+    N/A      kern                       n/a                                                          symbolic
+    N/A      sig                        n/a                                                          symbolic sigma
+    N/A      op                         n/a                                                          the action itself
+    N/A      carr                       n/a                                                          no carrier in a symbolic identity
+    N/A      kick                       n/a                                                          no carrier
+    N/A      foot                       n/a                                                          no a0 numbers
+    N/A      epoch                      n/a                                                          no carrier retention
+
+  CV3.gate  [CV3, ab6f31b61, claim structural, action-level]  gates ['action_wellposedness', 'action_reciprocity']  -> OFF-M*
+    verdict: 7/7; G3: det A/A+ = a**2*b**2; det B = b**2*(-X_PhiPhi*X_uu + X_Phiu**2 + 2*X_Phiu*a + a**2); reading B zero at [1/(4*pi*BW2*C**2*G)]
+    owner says: THE RULE: a gate reading only the constrained fields keeps every constraint invertible
+    MATCH    switch[action]             mond_sector_constrained                                      chk_v0_2026/CV3_gate_varied.py:132 [HEAD*]
+    MISMATCH cap   [action]             withdrawn_vloc                                               chk_v0_2026/CV3_gate_varied.py:347 [HEAD*]
+             CAP_NONBINDING_KIDS: not for action-level rows
+    N/A      p                          n/a                                                          symbolic (G3b uses the linear gate)
+    N/A      x_c0                       n/a                                                          symbolic
+    MATCH    w                          0.25                                                         chk_v0_2026/CV3_gate_varied.py:71 [HEAD*]
+    N/A      kern                       n/a                                                          generic nu
+    N/A      sig                        n/a                                                          chk_v0_2026/CV3_gate_varied.py:96 [HEAD*]
+             symbolic sigma
+    N/A      op                         n/a                                                          V0's Lagrangian itself
+    N/A      carr                       n/a                                                          no carrier in a symbolic identity
+    N/A      kick                       n/a                                                          no carrier
+    N/A      foot                       n/a                                                          symbolic (G4 margins at one edge)
+    N/A      epoch                      n/a                                                          no carrier retention
+
+  CV4.K  [CV4, ab6f31b61, claim structural, action-level]  gates ['action_gate_variable']  -> OFF-M*
+    verdict: 3/3; K1: background 3*Derivative(a(t), t)/a(t); linear-K residual 0; harmonic equation True
+    MISMATCH switch[action]             khronon_K                                                    chk_v0_2026/CV4_khronon_K_profile.py:15
+    N/A      cap                        n/a                                                          no cap
+    N/A      p                          n/a                                                          z = 0.25 and 2.5 at L340's window ends
+    N/A      x_c0                       n/a                                                          n/a
+    N/A      w                          n/a                                                          n/a
+    N/A      kern                       n/a                                                          n/a
+    N/A      sig                        n/a                                                          n/a
+    N/A      op                         n/a                                                          the khronon equation
+    N/A      carr                       n/a                                                          no carrier in a symbolic identity
+    N/A      kick                       n/a                                                          no carrier
+    N/A      foot                       n/a                                                          n/a
+    N/A      epoch                      n/a                                                          no carrier retention
+
+  XR2.de1_edge  [XR2, 05627f376, claim comparison, data-level]  gates ['flagship_z2.5']  -> OFF-M*
+    verdict: 7/7
+    MISMATCH switch[flagship]           curvature_signed                                             dark_energy_2026/DE1_vacuum_gate_flagship.py:167
+    MISMATCH cap                        none                                                         dark_energy_2026/DE1_vacuum_gate_flagship.py:119 (and no /v_cap|VCAP|V_CAP|\brcap\b|kappa_X|vloc/ in dark_energy_2026/DE
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['flagship_z2.5']; FLAGSHIP_CAP_NONBINDING would apply, but the row's scope does not state [FLAGSHIP_CAP_NONBINDING]
+    MATCH    p                          [2.0, 2.0]/[1.0, 2.5]/[1.0, 1.5]                             cross_thread_review_2026_09_26/XR2_de1_edge_check.py:283
+             M*'s (p, x_c0) is one cell of the scan
+    MATCH    x_c0                       [2.0, 2.0]/[1.0, 2.5]/[1.0, 1.5]                             cross_thread_review_2026_09_26/XR2_de1_edge_check.py:283
+             M*'s (p, x_c0) is one cell of the scan
+    MISMATCH w                          0.0                                                          dark_energy_2026/DE1_vacuum_gate_flagship.py:164
+             hard switch (w = 0); HARDW_FOR_SMOOTH would apply, but the row's scope does not state [HARDW_FOR_SMOOTH]
+    N/A      kern                       n/a                                                          nu_mono
+    N/A      sig                        n/a                                                          n/a
+    N/A      op                         n/a                                                          analytic
+    N/A      carr                       n/a                                                          switch only
+    N/A      kick                       n/a                                                          n/a
+    N/A      foot                       n/a                                                          both
+    N/A      epoch                      n/a                                                          n/a
+
+  XR2.fixed_cell  [XR2, 05627f376, claim structural, data-level]  gates ['clearing']  -> n/a
+    verdict: 6/6
+    N/A      switch                     n/a                                                          L380's matter-only PM (p = 2)
+    N/A      cap                        n/a                                                          no cap
+    N/A      p                          n/a                                                          p = 2 (L380)
+    N/A      x_c0                       n/a                                                          x_c0 = 2 (L380)
+    N/A      w                          n/a                                                          hard
+    N/A      kern                       n/a                                                          nu_mono
+    N/A      sig                        n/a                                                          PM
+    N/A      op                         n/a                                                          PM (B)
+    N/A      carr                       n/a                                                          L380's triggered carrier
+    N/A      kick                       n/a                                                          600-675
+    N/A      foot                       n/a                                                          canonical
+    N/A      epoch                      n/a                                                          z = 2 clearing
+
+  XR5.operators  [XR5, 05627f376, claim structural, data-level]  gates ['xcop', 'harvey']  -> n/a
+    verdict: 13/13 checks pass; load-bearing failures: 0   [53s]
+    N/A      switch                     n/a                                                          operators compared on one gate
+    N/A      cap                        n/a                                                          no cap
+    N/A      p                          n/a                                                          p = 2 and p = 1 test beds
+    N/A      x_c0                       n/a                                                          x_c0 = 2 and 2.5
+    N/A      w                          n/a                                                          hard
+    N/A      kern                       n/a                                                          nu_mono (K1 checks L340's)
+    N/A      sig                        n/a                                                          A at sigma = 1; C at sigma = 0
+    N/A      op                         n/a                                                          A, B, C compared
+    N/A      carr                       n/a                                                          static fields
+    N/A      kick                       n/a                                                          n/a
+    N/A      foot                       n/a                                                          both where scored
+    N/A      epoch                      n/a                                                          static fields
+
+  XR6.efe_udg_A  [XR6, 6566c53b3, claim comparison, data-level]  gates ['efe_cluster_infall', 'efe_lv_dwarfs', 'coma_udg']  -> OFF-M*
+    verdict: 14/18; K1: fraction beyond: 0.357-0.357
+    owner says: EFE and UDG liabilities for the converged model (the answer page's rows; every operator-A variant)
+    COMPAT   switch[efe]                mond_sector_abs                                              cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py:18
+             [ABS_FOR_CONSTRAINED]
+    MISMATCH cap   [efe]                withdrawn_vloc                                               cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py:19 via cross_thread_review_2026_09_26/XR6_efe_udg_under_ca
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['coma_udg', 'efe_cluster_infall', 'efe_lv_dwarfs']
+    N/A      p                          n/a                                                          p = 1, x_c0 = 2.5 (the CANDIDATE block)
+    N/A      x_c0                       n/a                                                          see p
+    COMPAT   w                          0.0                                                          cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py:19
+             [HARDW_FOR_SMOOTH]
+    MATCH    kern                       nu_mono                                                      cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py:12
+    N/A      sig                        n/a                                                          A at 1/m = 0.2/0.5 Mpc and Dirichlet (sigma enters the edge layer only)
+    MATCH    op    [efe]                A                                                            cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py:41
+    MATCH    carr                       L388_density_trigger                                         cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py:27
+    MATCH    kick                       575/650                                                      cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py:27
+    MATCH    foot                       canonical/alt                                                cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py:622
+    N/A      epoch                      n/a                                                          L388's z = 0 retention for hosts at z = 0.02-0.06 (inside the tolerance); not load-bearing for the EFE arms
+
+  XR6.efe_udg_B  [XR6, 6566c53b3, claim comparison, data-level]  gates ['efe_cluster_infall', 'efe_lv_dwarfs', 'coma_udg']  -> OFF-M*
+    verdict: 14/18; K1: fraction beyond: 0.357-0.357
+    COMPAT   switch[efe]                mond_sector_abs                                              cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py:18
+             [ABS_FOR_CONSTRAINED]
+    MISMATCH cap   [efe]                withdrawn_vloc                                               cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py:19 via cross_thread_review_2026_09_26/XR6_efe_udg_under_ca
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['coma_udg', 'efe_cluster_infall', 'efe_lv_dwarfs']
+    N/A      p                          n/a                                                          p = 1, x_c0 = 2.5 (the CANDIDATE block)
+    N/A      x_c0                       n/a                                                          see p
+    COMPAT   w                          0.0                                                          cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py:19
+             [HARDW_FOR_SMOOTH]
+    MATCH    kern                       nu_mono                                                      cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py:12
+    N/A      sig                        n/a                                                          A at 1/m = 0.2/0.5 Mpc and Dirichlet (sigma enters the edge layer only)
+    MISMATCH op    [efe]                B                                                            cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py:42
+             OP_B_FOR_A: not controlled for the EFE (['coma_udg', 'efe_cluster_infall', 'efe_lv_dwarfs'])
+    MATCH    carr                       L388_density_trigger                                         cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py:27
+    MATCH    kick                       575/650                                                      cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py:27
+    MATCH    foot                       canonical/alt                                                cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py:622
+    N/A      epoch                      n/a                                                          L388's z = 0 retention for hosts at z = 0.02-0.06 (inside the tolerance); not load-bearing for the EFE arms
+
+  XR6.lg  [XR6, 6566c53b3, claim comparison, data-level]  gates ['lg_zero_velocity']  -> OFF-M*
+    verdict: 9/11
+    owner says: LG R0 1.41/1.48 Mpc (+0.17/+0.19 dex)
+    COMPAT   switch[lg]                 mond_sector_abs                                              cross_thread_review_2026_09_26/XR6_lg_zero_velocity_mond_sector.py:14
+             [ABS_FOR_CONSTRAINED]
+    MISMATCH cap   [lg]                 withdrawn_vloc                                               cross_thread_review_2026_09_26/XR6_lg_zero_velocity_mond_sector.py:17
+             CAP_NONBINDING_KIDS: covers only ['kids'], row scores ['lg_zero_velocity']
+    MATCH    p                          1.0                                                          cross_thread_review_2026_09_26/XR6_lg_zero_velocity_mond_sector.py:234
+    MATCH    x_c0                       2.5                                                          cross_thread_review_2026_09_26/XR6_lg_zero_velocity_mond_sector.py:234
+    COMPAT   w                          0.0                                                          cross_thread_review_2026_09_26/XR6_lg_zero_velocity_mond_sector.py:17
+             [HARDW_FOR_SMOOTH]
+    MATCH    kern                       nu_mono                                                      cross_thread_review_2026_09_26/XR6_lg_zero_velocity_mond_sector.py:115
+    N/A      sig                        n/a                                                          point-mass profile
+    N/A      op                         n/a                                                          the LG's own point-mass MOND-sector profile (analytic)
+    N/A      carr                       n/a                                                          R0 from the LG's baryons; the carrier Newtonian
+    N/A      kick                       n/a                                                          n/a
+    MATCH    foot                       canonical/alt                                                cross_thread_review_2026_09_26/XR6_lg_zero_velocity_mond_sector.py:228
+    N/A      epoch                      n/a                                                          no retention
+
+  XR7.kick_cap  [XR7, 6566c53b3, claim structural, data-level]  gates ['kick_vs_cap']  -> PARTIAL
+    verdict: 5/5
+    N/A      switch                     n/a                                                          reads L388's matter-only PM retention
+    N/A      cap                        n/a                                                          MS3's K1 rows read
+    N/A      p                          n/a                                                          p1_x2.5 (L388)
+    N/A      x_c0                       n/a                                                          2.5
+    N/A      w                          n/a                                                          hard
+    N/A      kern                       n/a                                                          n/a
+    N/A      sig                        n/a                                                          n/a
+    N/A      op                         n/a                                                          n/a
+    MATCH    carr                       L388_density_trigger                                         cross_thread_review_2026_09_26/XR7_kick_escape_vs_cap.py:96
+    N/A      kick                       n/a                                                          575-650
+    N/A      foot                       n/a                                                          both floors
+    N/A      epoch                      n/a                                                          z = 0 retention
+
+  XR9.kids  [XR9, uncommitted, claim pending, data-level]  gates ['kids']  -> OFF-M*
+    verdict: pending: no committed results (an uncommitted results JSON is on disk, not read)
+    MATCH    switch[kids_gate]          mond_sector_phiX                                             cross_thread_review_2026_09_26/XR9_kids_flagship.py:178 [WT]
+             phiX: the same gate value as CV3's constrained form (recorded)
+    MATCH    cap   [kids_gate]          kappa_MS5                                                    cross_thread_review_2026_09_26/XR9_kids_flagship.py:184 [WT]
+    MATCH    p                          1/1.5                                                        cross_thread_review_2026_09_26/XR9_kids_flagship.py:101 [WT]
+             M*'s value is one cell of the scan
+    MATCH    x_c0                       2.5/3.5/5/7/10/14/20                                         cross_thread_review_2026_09_26/XR9_kids_flagship.py:102 [WT]
+             M*'s value is one cell of the scan
+    MATCH    w                          0.25/0.02                                                    cross_thread_review_2026_09_26/XR9_kids_flagship.py:105 [WT]
+    MATCH    kern                       nu_mono                                                      g03_audit_2026/L352_switch_gauss_compensation.py:90
+    MATCH    sig                        1.0                                                          cross_thread_review_2026_09_26/XR9_kids_flagship.py:436 [WT]
+    MATCH    op                         A                                                            dark_energy_2026/DE8_kids_sigma_axis_both_branches.py:135
+    MISMATCH carr                       L375_resolved_shell                                          cross_thread_review_2026_09_26/XR9_kids_flagship.py:144 [WT]
+    MATCH    kick                       600/650                                                      cross_thread_review_2026_09_26/XR9_kids_flagship.py:104 [WT]
+    MATCH    foot                       canonical/alt                                                cross_thread_review_2026_09_26/XR9_kids_flagship.py:100 [WT]
+    N/A      epoch                      n/a                                                          L375's shell halos at z_l = 0.25 (own epoch)
+
+  XR9.shear  [XR9, uncommitted, claim pending, data-level]  gates ['cosmic_shear_halo_model']  -> OFF-M*   FLAGS: EPOCH-MIXED
+    verdict: pending: no committed results (an uncommitted results JSON is on disk, not read)
+    COMPAT   switch[halo_model_shear]   mond_sector_abs                                              mond_sector_gate_2026/MS4_smooth_gate_shear.py:86 via cross_thread_review_2026_09_26/XR9_cosmic_shear.py:88
+             [ABS_FOR_CONSTRAINED]
+    MATCH    cap   [halo_model_shear]   kappa_MS5                                                    cross_thread_review_2026_09_26/XR9_cosmic_shear.py:91 [WT]
+    MATCH    p                          1/1.5                                                        cross_thread_review_2026_09_26/XR9_cosmic_shear.py:57 [WT]
+             M*'s value is one cell of the scan
+    MATCH    x_c0                       2.5/3.5/5/7/10/14/20                                         cross_thread_review_2026_09_26/XR9_cosmic_shear.py:58 [WT]
+             M*'s value is one cell of the scan
+    MATCH    w                          0.25                                                         cross_thread_review_2026_09_26/XR9_cosmic_shear.py:60 [WT]
+    MATCH    kern                       nu_mono                                                      mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:115
+    N/A      sig                        n/a                                                          analytic per-halo phantom
+    N/A      op                         n/a                                                          L363's halo model (MS4's transform_smooth)
+    MATCH    carr  [halo_model_shear]   L388_density_trigger                                         cross_thread_review_2026_09_26/XR9_cosmic_shear.py:88 [WT]
+    MATCH    kick                       600                                                          mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:100
+    MATCH    foot                       canonical/alt                                                mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.py:63
+    MISMATCH epoch [halo_model_shear]   retention z = [0.0, 2.0] for scoring z = 0.5                 halo-model lens epoch (GP3's ZS, via L363) generated_phantom_2026/GP3_lensing_power_and_growth.py:100 via mond_sector_ga
+             EPOCH-MIXED: clusters: L388's pooled medians by M(<1 Mpc/h) at z = 0; galaxies (the 1e13 anchor): L388's fixed-cell clearing at z = 2
+
+  XR9.environment  [XR9, uncommitted, claim pending, data-level]  gates ['efe_cluster_infall', 'efe_lv_dwarfs', 'coma_udg', 'lg_zero_velocity']  -> PARTIAL
+    verdict: pending: no committed results (an uncommitted results JSON is on disk, not read)
+    N/A      switch                     n/a                                                          the door's density condition (XR6's, re-scored with the kappa cap)
+    MATCH    cap   [efe]                kappa_MS5                                                    cross_thread_review_2026_09_26/XR9_environment.py:18 [WT]
+    MATCH    p                          1/1.5                                                        cross_thread_review_2026_09_26/XR9_environment.py:89 [WT]
+             M*'s value is one cell of the scan
+    MATCH    x_c0                       2.5/3.5/5/7/10/14/20                                         cross_thread_review_2026_09_26/XR9_environment.py:90 [WT]
+             M*'s value is one cell of the scan
+    MATCH    w                          0.25                                                         cross_thread_review_2026_09_26/XR9_environment.py:93 [WT]
+    N/A      kern                       n/a                                                          nu_mono (XR6's)
+    N/A      sig                        n/a                                                          A's gap variants
+    N/A      op                         n/a                                                          operator-A variants gated (XR9_gate_table)
+    N/A      carr                       n/a                                                          carrier histories none / decay / full (LG); L388's retention (EFE)
+    N/A      kick                       n/a                                                          575-650
+    N/A      foot                       n/a                                                          both
+    N/A      epoch                      n/a                                                          hosts at z = 0.02-0.06
+
+========================================================================================================================
+M  CLAIMS: rows claimed as M* results must be committed, derived from code and match M* on every axis
+========================================================================================================================
+  0 row(s) claimed as M* results
+
+========================================================================================================================
+CONTROLS
+========================================================================================================================
+  [PASS] C1 CONTROL: L395's cell (c) is flagged from its source -- dynamics withdrawn_vloc (dark_sector_2026/L395_two_switch_branches.py:127 [WT]), shear hard_radius_MS3 (dark_sector_2026/L395_two_switch_branches.py:92 [WT]); flags ['CAP-SPLIT: pm_dynamics=withdrawn_vloc, halo_model_shear=hard_radius_MS3', 'FOOTING-PARTIAL', 'EPOCH-MIXED']
+  [PASS] C2 NEGATIVE CONTROL: MS5.S1_kappa cap form MATCH
+  [PASS] C2 NEGATIVE CONTROL: MS3.K1 hard radius on halo-model shear COMPAT [HARDCAP_FOR_KAPPA_SHEAR]
+  [PASS] C2 NEGATIVE CONTROL: L396 kappa cap in the dynamics MATCH, hard radius in its shear COMPAT, no CAP-SPLIT
+  [PASS] C3 CONTROL (the gate can pass): MS5.S1_kappa with the epoch tolerance widened to 2 is ON-M*~; an M* claim on it: on M*
+
+========================================================================================================================
+SCORECARD AUDIT (reported): rows the current answer page cites as M* evidence, and what keeps each off M*
+========================================================================================================================
+  MS2.F1                   2a5def6d9  OFF-M*  cap[flagship]=none; kern=nu_RAR; carr=none
+  MS3.K1                   2a5def6d9  OFF-M*  epoch[halo_model_shear]=retention z = [0.0, 2.0] for scoring z = 0.5
+  MS4.S1                   969a15e7f  OFF-M*  epoch[halo_model_shear]=retention z = [0.0, 2.0] for scoring z = 0.5
+  MS5.S1_kappa             61a3a0858  OFF-M*  epoch[halo_model_shear]=retention z = [0.0, 2.0] for scoring z = 0.5
+  DE10.kids                dabce1b73  OFF-M*  cap[kids_gate]=withdrawn_vloc; carr=L375_resolved_shell
+  DE11.forest              aa6588d56  OFF-M*  cap[forest]=none; op=B_all_matter; carr=intact
+  L389.harvey              uncommitted OFF-M*  switch[harvey_map]=matter_only; switch[harvey_lensing_root]=matter_only; switch[retention_source]=matter_only; cap[harvey_map]=none; w=0.0; sig=0.0; op=C; foot=canonical; epoch[harvey]=reten
+  L391.rar_rc100           441d811e2  OFF-M*  switch[inner_galaxy]=none; carr=L375_resolved_shell
+  L396.msck                uncommitted OFF-M*  foot=canonical; epoch[halo_model_shear]=retention z = [0.0, 2.0] for scoring z = 0.5
+  L397.harvey              uncommitted OFF-M*  switch[harvey_map]=matter_only; switch[harvey_lensing_root]=matter_only; cap[harvey_map]=none; w=0.0; sig=0.0; op=C; foot=canonical
+  XR6.efe_udg_A            6566c53b3  OFF-M*  cap[efe]=withdrawn_vloc
+  XR6.lg                   6566c53b3  OFF-M*  cap[lg]=withdrawn_vloc
+
+========================================================================================================================
+PER LANE
+========================================================================================================================
+  MS1      A3, N1                                       claim comparison/structural  OFF-M*
+  MS2      F1                                           claim comparison             OFF-M*
+  MS3      K1                                           claim comparison             OFF-M*
+  MS4      S1                                           claim comparison             OFF-M*
+  MS5      A1, S1_kappa, S1_vloc                        claim comparison/structural  OFF-M*
+  DE1      F1                                           claim comparison             OFF-M*
+  DE2      window                                       claim comparison             OFF-M*
+  DE4      F1                                           claim comparison             OFF-M*
+  DE5      tmax                                         claim comparison             OFF-M*
+  DE5b     growth                                       claim comparison             OFF-M*
+  DE6      zmax                                         claim comparison             OFF-M*
+  DE7      action                                       claim structural             OFF-M*
+  DE8      kids                                         claim comparison             OFF-M*
+  DE9      msc, curv                                    claim comparison             OFF-M*
+  DE10     kids                                         claim comparison             OFF-M*
+  DE11     forest                                       claim comparison             OFF-M*
+  DE11b    conv                                         claim pending                OFF-M*
+  DE12     action                                       claim structural             ON-M*
+  DE13     repair                                       claim structural             ON-M*
+  L388     pooled                                       claim comparison             OFF-M*
+  L389     harvey                                       claim pending                OFF-M*
+  L390     kids                                         claim comparison             OFF-M*
+  L391     rar_rc100                                    claim comparison             OFF-M*
+  L392     curvature, matter                            claim comparison             OFF-M*
+  L393     pm                                           claim pending                OFF-M*
+  L394     pm                                           claim pending                OFF-M*
+  L395     c_msc, b_curv, a_matter                      claim pending                OFF-M*
+  L396     msck                                         claim pending                OFF-M*
+  L397     harvey                                       claim pending                OFF-M*
+  AT1      highz                                        claim comparison             OFF-M*
+  AT2      forest                                       claim comparison             OFF-M*
+  AT3      gates                                        claim comparison             OFF-M*
+  AT4      shear                                        claim comparison             OFF-M*
+  CV1      nr                                           claim structural             n/a
+  CV2      covariant                                    claim structural             OFF-M*
+  CV3      gate                                         claim structural             OFF-M*
+  CV4      K                                            claim structural             OFF-M*
+  XR2      de1_edge, fixed_cell                         claim comparison/structural  OFF-M*/n/a
+  XR5      operators                                    claim structural             n/a
+  XR6      efe_udg_A, efe_udg_B, lg                     claim comparison             OFF-M*
+  XR7      kick_cap                                     claim structural             PARTIAL
+  XR9      kids, shear, environment                     claim pending                OFF-M*/PARTIAL
+
+========================================================================================================================
+VERDICT
+========================================================================================================================
+  54 rows: 2 on M*, 0 on M* with stated approximations, 47 off M*; 0 claimed as M* results
+  checks D/M/E/C1/C2/C3: all pass   [4.6s]
+rc=0

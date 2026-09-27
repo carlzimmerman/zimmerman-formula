@@ -1,0 +1,259 @@
+{
+ "lane": "XR8-3",
+ "mutate": false,
+ "checks": {
+  "C0 SINGLE STREAM: no node event before the first crossing in any run": {
+   "ok": true,
+   "measured": "node events before crossing: 0",
+   "load_bearing": true
+  },
+  "C1 GENUINE ZEROS: windings are +-1 only, and the free-streaming census at L/100 and L/200 is unchanged on twice the grid (node count by 3 t_sc within 2%, first node within 1%)": {
+   "ok": true,
+   "measured": "windings [-1, 1]; L/100: 796 vs 796 events, first 1.0765 vs 1.0767 t_sc; L/200: 3112 vs 3112 events, first 1.0530 vs 1.0530 t_sc; (reported) fraction with a plaquette corner |psi|^2 <= 0.05: [0.982, 0.776, 0.949, 0.796, 1.0, 0.946, 0.981]",
+   "load_bearing": true
+  },
+  "C2 CONVERGENCE OF THE FIRST NODE (free, L/100): 2x grid and 4x coarser sampling agree to 1%": {
+   "ok": true,
+   "measured": "first node 1.0765 / 1.0767 (4096) / 1.0765 (every 4 steps) t_sc; node events by 3 t_sc 796 / 796 / 796",
+   "load_bearing": true
+  },
+  "C3 POLAR-FORM RESOLUTION: the Madelung breakdown at 2x grid agrees within 20% and falls after the first node": {
+   "ok": true,
+   "measured": "breakdown 1.2167734461910356 (2048) vs 1.207658805433617 (4096) t_sc; first node 1.0765 t_sc",
+   "load_bearing": true
+  },
+  "R3: every tracking wave-field run has no node before the first crossing and at least one after it (its phase is undefined at isolated space-time points and winds by +-2 pi around each)": {
+   "ok": true,
+   "measured": "{'SP|free|L/100|W=0': 'tracks True, first node 1.077 t_sc, 796 node events', 'SP|free|L/200|W=0': 'tracks True, first node 1.053 t_sc, 3112 node events', 'SP|gravity|L/100|W=0': 'tracks True, first node 1.049 t_sc, 28420 node events', 'SP|gravity|L/200|W=0': 'tracks True, first node 1.034 t_sc, 111140 node events', 'GP|free|L/100|W=0.001': 'tracks True, first node 1.085 t_sc, 778 node events', 'GP|gravity|L/100|W=0.001': 'tracks True, first node 1.053 t_sc, 28114 node events', 'GP3|free|L/100|W=0.001': 'tracks False, first node 1.099 t_sc, 646 node events (reported, not claimed)'}",
+   "load_bearing": true
+  },
+  "R4 (pre-declared failure): the polar form tracks its wave form to <= 1e-5 before the first node, departs after it (>= 10x within 0.1 t_sc), becomes singular before 1.5 t_sc and fails L374's rule": {
+   "ok": true,
+   "measured": "{'free|W=0': 'dev before 2.5e-07; breaks at 1.2167734461910356 t_sc (first node 1.077)', 'gravity|W=0': 'dev before 1.0e-06; breaks at 1.1249730706923662 t_sc (first node 1.049)', 'free|W=0.001': 'dev before 2.2e-06; breaks at 1.220411308816119 t_sc (first node 1.085)'}",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "l374_sha256": "e3248164fc68b129d235c3c07f6e13482fa85d499c49d07a4de27b9506843ee3",
+  "census": {
+   "SP|free|L/100|W=0": {
+    "tracks": true,
+    "M_post": {
+     "0.2387": 0.0007653629706386627,
+     "0.3183": 0.0018527769704354997,
+     "0.4775": 0.005341052417755197
+    },
+    "first_node_over_tsc": 1.0765,
+    "n_pre": 0,
+    "nodes_by_checkpoint": {
+     "0.50": 0,
+     "1.50": 54,
+     "2.00": 242,
+     "3.00": 796
+    },
+    "n_nodes": 796,
+    "frac_depth_le_0p05": 0.9824120603015075,
+    "median_depth": 0.005386162558768552
+   },
+   "SP|free|L/200|W=0": {
+    "tracks": true,
+    "M_post": {
+     "0.2387": 0.0001912793289487243,
+     "0.3183": 0.00046342743155010217,
+     "0.4775": 0.0013341702424043442
+    },
+    "first_node_over_tsc": 1.053,
+    "n_pre": 0,
+    "nodes_by_checkpoint": {
+     "0.50": 0,
+     "1.50": 176,
+     "2.00": 918,
+     "3.00": 3112
+    },
+    "n_nodes": 3112,
+    "frac_depth_le_0p05": 0.7763496143958869,
+    "median_depth": 0.020836704742112383
+   },
+   "SP|gravity|L/100|W=0": {
+    "tracks": true,
+    "M_post": {
+     "0.3000": 0.00021065142337109696,
+     "0.6000": 0.0008427283493631371,
+     "1.0000": 0.0028448760446948534,
+     "1.5000": 0.010293289754038891
+    },
+    "first_node_over_tsc": 1.0490140845070424,
+    "n_pre": 0,
+    "nodes_by_checkpoint": {
+     "0.36": 0,
+     "2.14": 2582,
+     "4.27": 8240,
+     "7.12": 14836,
+     "10.68": 28420
+    },
+    "n_nodes": 28420,
+    "frac_depth_le_0p05": 0.9493314567206192,
+    "median_depth": 0.002984240862109983
+   },
+   "SP|gravity|L/200|W=0": {
+    "tracks": true,
+    "M_post": {
+     "0.3000": 6.421842946898597e-05,
+     "0.6000": 0.00022448763410114162,
+     "1.0000": 0.0003214226713297622,
+     "1.5000": 0.00520874328367562
+    },
+    "first_node_over_tsc": 1.0338028169014084,
+    "n_pre": 0,
+    "nodes_by_checkpoint": {
+     "0.36": 0,
+     "2.14": 8852,
+     "4.27": 28280,
+     "7.12": 56130,
+     "10.68": 111140
+    },
+    "n_nodes": 111140,
+    "frac_depth_le_0p05": 0.7963829404354867,
+    "median_depth": 0.009512784648909763
+   },
+   "GP|free|L/100|W=0.001": {
+    "tracks": true,
+    "M_post": {
+     "0.2387": 0.004952973031925969,
+     "0.3183": 0.006844691978022114,
+     "0.4775": 0.012267124996429938
+    },
+    "first_node_over_tsc": 1.0845,
+    "n_pre": 0,
+    "nodes_by_checkpoint": {
+     "0.50": 0,
+     "1.50": 48,
+     "2.00": 230,
+     "3.00": 778
+    },
+    "n_nodes": 778,
+    "frac_depth_le_0p05": 1.0,
+    "median_depth": 0.005844890272536731
+   },
+   "GP|gravity|L/100|W=0.001": {
+    "tracks": true,
+    "M_post": {
+     "0.3000": 0.0029338118592482513,
+     "0.6000": 0.005700906954192149,
+     "1.0000": 0.004950565979154619,
+     "1.5000": 0.013844279103983084
+    },
+    "first_node_over_tsc": 1.0529577464788733,
+    "n_pre": 0,
+    "nodes_by_checkpoint": {
+     "0.36": 0,
+     "2.14": 2588,
+     "4.27": 8110,
+     "7.12": 14584,
+     "10.68": 28114
+    },
+    "n_nodes": 28114,
+    "frac_depth_le_0p05": 0.946147826705556,
+    "median_depth": 0.00316347220454049
+   },
+   "GP3|free|L/100|W=0.001": {
+    "tracks": false,
+    "M_post": {
+     "0.2387": 0.00985869086236505,
+     "0.3183": 0.049924101779266955,
+     "0.4775": 0.10809772645346888
+    },
+    "first_node_over_tsc": 1.0985,
+    "n_pre": 0,
+    "nodes_by_checkpoint": {
+     "0.50": 0,
+     "1.50": 32,
+     "2.00": 170,
+     "3.00": 646
+    },
+    "n_nodes": 646,
+    "frac_depth_le_0p05": 0.9814241486068112,
+    "median_depth": 0.005687063778702069
+   }
+  },
+  "polar": {
+   "free|L/100|W=0": {
+    "first_node": 1.0765,
+    "t_break": 1.2167734461910356,
+    "why": "a node reached (rho -> 0): the fluid form is singular there",
+    "dev_before": 2.4652256713933264e-07,
+    "dev_after": {
+     "1.08": 6.161456733271835e-06,
+     "1.10": 1.2988648719882501e-05,
+     "1.12": 8.349805851038234e-05,
+     "1.15": 0.00034101142192945893,
+     "1.20": 0.0016657489188135672
+    },
+    "tracks": false
+   },
+   "gravity|L/100|W=0": {
+    "first_node": 1.0490140845070424,
+    "t_break": 1.1249730706923662,
+    "why": "a node reached (rho -> 0): the fluid form is singular there",
+    "dev_before": 1.004250333636146e-06,
+    "dev_after": {
+     "1.06": 2.1537924636172597e-05,
+     "1.08": 2.5261411153074702e-05,
+     "1.10": 9.79565296868585e-05,
+     "1.12": 0.00035609334689850193
+    },
+    "tracks": false
+   },
+   "free|L/100|W=0.001": {
+    "first_node": 1.0845,
+    "t_break": 1.220411308816119,
+    "why": "a node reached (rho -> 0): the fluid form is singular there",
+    "dev_before": 2.2091036529851233e-06,
+    "dev_after": {
+     "1.10": 7.23111906315728e-05,
+     "1.12": 0.00033574223828743095,
+     "1.15": 0.0008453818234666899,
+     "1.20": 0.0017594898998823177
+    },
+    "tracks": false
+   }
+  },
+  "C1": {
+   "L/100": {
+    "n": [
+     796,
+     796
+    ],
+    "first": [
+     1.0765,
+     1.0766524252324703
+    ]
+   },
+   "L/200": {
+    "n": [
+     3112,
+     3112
+    ],
+    "first": [
+     1.053,
+     1.0530283990952498
+    ]
+   }
+  },
+  "C2": {
+   "first": [
+    1.0765,
+    1.0766524252324703,
+    1.0765267655189745
+   ],
+   "counts": [
+    796,
+    796,
+    796
+   ]
+  }
+ },
+ "n_checks": 6,
+ "n_fail_load_bearing": 0,
+ "runtime_s": 93.2
+}

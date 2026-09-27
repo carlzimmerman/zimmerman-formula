@@ -1,0 +1,264 @@
+{
+ "lane": "XR8-4",
+ "mutate": false,
+ "checks": {
+  "C0 VLASOV SOLVER: mass conserved to 1e-12; free streaming matches the Gaussian-warm sheet answer of the same sigma": {
+   "ok": true,
+   "measured": "mass err 0.0e+00; M(Vlasov free, Gaussian sheets) 2.5e-04",
+   "load_bearing": true
+  },
+  "C1 TARGETS: the self-gravitating cold sheet answer at 20 000 sheets agrees with 50 000": {
+   "ok": true,
+   "measured": "max M 1.4e-05",
+   "load_bearing": true
+  },
+  "C2 VELOCITY SAMPLING: the 21-velocity comb and the uniform water-bag give the same collisionless answer to a tenth of the pass tolerance (M <= 5e-3)": {
+   "ok": true,
+   "measured": "max M 2.1e-03",
+   "load_bearing": true
+  },
+  "R5 (control / ceiling): the Vlasov continuum tracks the cold collisionless answer (L374's rule), both tests": {
+   "ok": true,
+   "measured": "{'free': 0.0075352007003615185, 'gravity': 0.00876585719932594}",
+   "load_bearing": true
+  },
+  "R6: the mixed-state wave field tracks the warm collisionless answer (post-crossing M <= 0.05), both tests": {
+   "ok": true,
+   "measured": "{'free': 0.001, 'gravity': 0.0027}",
+   "load_bearing": true
+  },
+  "R7: against the warm answer of the same sound speed, no single-velocity form at W = 0.1 tracks (the index is not the obstruction); the warm answer's own distance from the cold one is the warmth part of L374's 21.5%": {
+   "ok": true,
+   "measured": "{'gamma=2 condensate (L374)|free': 'max post M vs warm 0.1325', 'gamma=2 condensate (L374)|gravity': 'no post-crossing checkpoint (broke), breaks at 1.56 t_sc', 'gamma=3 condensate|free': 'no post-crossing checkpoint (broke), breaks at 1.07 t_sc', 'gamma=3 condensate|gravity': 'no post-crossing checkpoint (broke), breaks at 1.07 t_sc', 'gamma=2 coherent order parameter (GP)|free': 'max post M vs warm 0.1323', 'gamma=2 coherent order parameter (GP)|gravity': 'max post M vs warm 0.1477', 'gamma=3 coherent order parameter (|psi|^6)|free': 'max post M vs warm 0.1900', 'gamma=3 coherent order parameter (|psi|^6)|gravity': 'max post M vs warm 0.5651', 'warm vs cold at the last checkpoint': {'free': 0.1682, 'gravity': 0.1243}}",
+   "load_bearing": true
+  },
+  "R8: sticky dust is well-posed and wrong (post-crossing M > 0.05 in both tests) and dissipates most of its kinetic energy": {
+   "ok": true,
+   "measured": "{'free': 'max M 0.631; K kept 0.117; well-posed True', 'gravity': 'max M 0.695; K kept 0.002; well-posed True'}",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "l374_sha256": "e3248164fc68b129d235c3c07f6e13482fa85d499c49d07a4de27b9506843ee3",
+  "vlasov": {
+   "free": {
+    "0.0796": 8.162614640564066e-08,
+    "0.2387": 0.002478431109352257,
+    "0.3183": 0.004259780031631593,
+    "0.4775": 0.0075352007003615185
+   },
+   "gravity": {
+    "0.0500": 5.928568901074132e-06,
+    "0.3000": 0.0012973926331146294,
+    "0.6000": 0.004693450285587268,
+    "1.0000": 0.00876585719932594,
+    "1.5000": 0.007284169511105216
+   }
+  },
+  "mixed": {
+   "free": {
+    "warm": {
+     "0.0796": 1.4923611322932698e-05,
+     "0.2387": 0.0007561004262406775,
+     "0.3183": 0.0006256237994436242,
+     "0.4775": 0.0009651359927926205
+    },
+    "comb": {
+     "0.0796": 9.909941936878002e-07,
+     "0.2387": 0.0001486832185658751,
+     "0.3183": 0.0002659836996197462,
+     "0.4775": 0.000540331069966093
+    }
+   },
+   "gravity": {
+    "warm": {
+     "0.0500": 2.0954723390513076e-06,
+     "0.3000": 0.00024990370222004844,
+     "0.6000": 0.0008409196192029654,
+     "1.0000": 0.0008260219831841239,
+     "1.5000": 0.002728902131597235
+    },
+    "comb": {
+     "0.0500": 1.5219525084777868e-07,
+     "0.3000": 0.00010278243886365064,
+     "0.6000": 0.00020673333723614798,
+     "1.0000": 0.0003549378879415479,
+     "1.5000": 0.0015003231812644635
+    }
+   }
+  },
+  "index": {
+   "forms": {
+    "gamma=2 condensate (L374)|free": {
+     "M_warm": {
+      "0.0796": 0.0004444255329788049,
+      "0.2387": 0.11918086341772942,
+      "0.3183": 0.13247781440615197,
+      "0.4775": 0.1167534762561177
+     },
+     "M_cold": {
+      "0.0796": 0.0012475453487620432,
+      "0.2387": 0.05134642078610963,
+      "0.3183": 0.18777288134222458,
+      "0.4775": 0.21571199447732065
+     },
+     "t_break_over_tsc": null,
+     "min_rho": -7.925816993865863,
+     "tracks_warm": false
+    },
+    "gamma=2 condensate (L374)|gravity": {
+     "M_warm": {
+      "0.0500": 5.539463615368838e-05
+     },
+     "M_cold": {
+      "0.0500": 0.00019121949344063851
+     },
+     "t_break_over_tsc": 1.556982012468146,
+     "min_rho": -9532.162945685992,
+     "tracks_warm": false
+    },
+    "gamma=3 condensate|free": {
+     "M_warm": {
+      "0.0796": 5.1679454741813355e-05
+     },
+     "M_cold": {
+      "0.0796": 0.0016133584131132663
+     },
+     "t_break_over_tsc": 1.0706688589753437,
+     "min_rho": -8863.159189867683,
+     "tracks_warm": false
+    },
+    "gamma=3 condensate|gravity": {
+     "M_warm": {
+      "0.0500": 2.842034693926462e-05
+     },
+     "M_cold": {
+      "0.0500": 0.00021775519292091202
+     },
+     "t_break_over_tsc": 1.0693163623151307,
+     "min_rho": -9971.121426548529,
+     "tracks_warm": false
+    },
+    "gamma=2 coherent order parameter (GP)|free": {
+     "M_warm": {
+      "0.0796": 0.00042077824801643206,
+      "0.2387": 0.11897336052486167,
+      "0.3183": 0.13229127577330033,
+      "0.4775": 0.1166648344468004
+     },
+     "M_cold": {
+      "0.0796": 0.0012987160988042821,
+      "0.2387": 0.05120991560970116,
+      "0.3183": 0.18734990476293645,
+      "0.4775": 0.21522150897063347
+     },
+     "t_break_over_tsc": null,
+     "min_rho": null,
+     "tracks_warm": false
+    },
+    "gamma=2 coherent order parameter (GP)|gravity": {
+     "M_warm": {
+      "0.0500": 3.7919028414774223e-05,
+      "0.3000": 0.10759860380118112,
+      "0.6000": 0.10659251659597155,
+      "1.0000": 0.14767686149620357,
+      "1.5000": 0.14293700791277933
+     },
+     "M_cold": {
+      "0.0500": 0.00021920122236292517,
+      "0.3000": 0.1256521198037126,
+      "0.6000": 0.22267164473243345,
+      "1.0000": 0.23872016573944393,
+      "1.5000": 0.229389551667695
+     },
+     "t_break_over_tsc": null,
+     "min_rho": null,
+     "tracks_warm": false
+    },
+    "gamma=3 coherent order parameter (|psi|^6)|free": {
+     "M_warm": {
+      "0.0796": 1.5451425639373395e-06,
+      "0.2387": 0.02225633937761455,
+      "0.3183": 0.08255279412218378,
+      "0.4775": 0.19000580260920327
+     },
+     "M_cold": {
+      "0.0796": 0.0016618218771138026,
+      "0.2387": 0.1067075225389691,
+      "0.3183": 0.17696206883195284,
+      "0.4775": 0.2977142468558909
+     },
+     "t_break_over_tsc": null,
+     "min_rho": null,
+     "tracks_warm": false
+    },
+    "gamma=3 coherent order parameter (|psi|^6)|gravity": {
+     "M_warm": {
+      "0.0500": 3.6528399981555445e-07,
+      "0.3000": 0.08587337735096195,
+      "0.6000": 0.40863254468980564,
+      "1.0000": 0.565134364191165,
+      "1.5000": 0.49154215437889326
+     },
+     "M_cold": {
+      "0.0500": 0.00024496148549099704,
+      "0.3000": 0.09456400958877319,
+      "0.6000": 0.45828795977905024,
+      "1.0000": 0.538067818091456,
+      "1.5000": 0.47580510160631084
+     },
+     "t_break_over_tsc": null,
+     "min_rho": null,
+     "tracks_warm": false
+    }
+   },
+   "warm_vs_cold": {
+    "free": {
+     "0.0796": 0.0016603642661725232,
+     "0.2387": 0.11719270949773325,
+     "0.3183": 0.1457655099822128,
+     "0.4775": 0.16824426323437336
+    },
+    "gravity": {
+     "0.0500": 0.0002446091172661749,
+     "0.3000": 0.02993718903872161,
+     "0.6000": 0.13670350842980583,
+     "1.0000": 0.11255743320935241,
+     "1.5000": 0.12433558305022965
+    }
+   }
+  },
+  "sticky": {
+   "free": {
+    "M": {
+     "0.0796": 0.000175575677915396,
+     "0.2387": 0.17623550149084333,
+     "0.3183": 0.4359442388950513,
+     "0.4775": 0.6308339153508664
+    },
+    "clusters": 5493,
+    "K_frac": 0.11734243851917633,
+    "mass": 0.9999999999999284,
+    "wellposed": true,
+    "wrong": true
+   },
+   "gravity": {
+    "M": {
+     "0.0500": 6.12032408442236e-09,
+     "0.3000": 0.5551452100609591,
+     "0.6000": 0.592705711058827,
+     "1.0000": 0.6283981030991748,
+     "1.5000": 0.6953488258031504
+    },
+    "clusters": 5,
+    "K_frac": 0.0018943796315245172,
+    "mass": 0.9999999999998979,
+    "wellposed": true,
+    "wrong": true
+   }
+  }
+ },
+ "n_checks": 7,
+ "n_fail_load_bearing": 0,
+ "runtime_s": 183.7
+}

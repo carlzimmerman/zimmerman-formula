@@ -1,0 +1,64 @@
+XR9_cosmic_shear.py -- THE SMALL-REGION DOOR, part 2 of 3: cosmic shear on MS3/MS4's resolution-free halo model as the
+vacuum gate's threshold is raised, with MS5's kappa-form cap and without any cap.  Independent cross-thread review
+(2026-09-26, night).  Read-only on every committed file: MS4's machinery (which loads MS3's and L363's) is loaded
+unedited; its committed numbers are the control.
+
+THE DOOR (XR9_kids_flagship.py's docstring has the full statement and the pre-declared hypothesis).  Raising x_c0 shrinks
+every MOND region, r_e ~ v_f/(H sqrt(x_c,eff)), and MS5's kappa-form cap shrinks with it: every spherical region stops at
+l_cap(z) = v_cap/(H(z) sqrt(x_c,eff(z))) (61a3a0858; 1.75 Mpc at z = 0.5 at the converged cell).  Smaller regions carry
+less phantom, so cosmic shear should get easier.  This lane verifies it cell by cell.
+
+THE MODEL AS SCORED: MS4's R_smooth (L363's halo model at z = 0.5: Sheth-Tormen + NFW P_NL, GP0's observed bound baryons,
+the MOND-sector door variable x = 1.5 Omega_m(z)(f_b rho_host + rho_ph)/rho_bar_m with the ungated phantom, DE7/DE9's
+smooth gate at w = 0.25, L388's carrier retention by halo mass at 600 km/s), at x_c = x_c0 E(0.5)^(2p) for p in {1, 1.5},
+x_c0 in {2.5, 3.5, 5, 7, 10, 14, 20}:
+  capped    MS4's hard cut at l_cap(0.5) = 1.75 Mpc sqrt(x_lin/x_c) -- MS5's kappa form on a spherical halo (MS5 S1 shows
+            it reproduces MS3's K1 exactly at 1.75 Mpc; v_cap = 325.3 km/s is MS3's, defined by that radius);
+  uncapped  no cap (the region ends where the door's density falls below the threshold).
+  kappa-smooth (reported at three cells) the cap inside the smooth gate, U = min(x, x_c (l_cap/r)^2), in place of the hard
+            cut: it bounds the difference between the two ways of writing MS5's cap.
+Pass = worst R <= 1.2 over k = 0.1-1 h/Mpc on both footings (GP3's gate, MS3/MS4's rule).
+
+  *** MUTATE=1: no cap in the gated column; S1 must FAIL ***
+  MS4/MS3/L363 loaded: z = 0.5, E(0.5)^2 = 1.745209, x_lin = 4.363022   [2s]
+
+======================================================================================================================
+C1  CONTROL: MS4's committed numbers at the converged cell (w = 0.25, x_c0 = 2.5)
+======================================================================================================================
+  [PASS] C1 CONTROL: MS4's committed worst R at w = 0.25, x_c0 = 2.5 reproduced exactly -- capped at 1.75 Mpc and uncapped, both footings (this lane's R(k) is MS4's R_smooth before its maximum is taken)
+         measured: capped 1.049101/1.124278 vs 1.049101/1.124278; uncapped 2.719078/3.180918 vs 2.719078/3.180918 (max |diff| 0.0e+00; against MS4's R_smooth called directly 0.0e+00)
+
+======================================================================================================================
+THE SCAN: R(k) over k = 0.1-1 h/Mpc, capped (kappa form) and uncapped, both footings (max gated; min reported)
+======================================================================================================================
+  p1_x2.5   x_c(0.5)   4.36  l_cap 1.75 Mpc: capped max 1.049/1.124 (min 0.904/0.921) ok;  uncapped max 2.719/3.181 (min 1.002/1.007) FAIL   [16s]
+  p1_x3.5   x_c(0.5)   6.11  l_cap 1.48 Mpc: capped max 0.985/0.986 (min 0.819/0.839) ok;  uncapped max 2.265/2.666 (min 0.994/0.997) FAIL   [27s]
+  p1_x5     x_c(0.5)   8.73  l_cap 1.24 Mpc: capped max 0.984/0.985 (min 0.735/0.757) ok;  uncapped max 1.780/2.092 (min 0.980/0.988) FAIL   [38s]
+  p1_x7     x_c(0.5)  12.22  l_cap 1.05 Mpc: capped max 0.984/0.984 (min 0.673/0.686) ok;  uncapped max 1.393/1.616 (min 0.950/0.963) FAIL   [49s]
+  p1_x10    x_c(0.5)  17.45  l_cap 0.88 Mpc: capped max 0.983/0.983 (min 0.635/0.642) ok;  uncapped max 1.090/1.234 (min 0.891/0.919) FAIL   [60s]
+  p1_x14    x_c(0.5)  24.43  l_cap 0.74 Mpc: capped max 0.983/0.983 (min 0.615/0.619) ok;  uncapped max 0.984/0.989 (min 0.829/0.868) ok   [70s]
+  p1_x20    x_c(0.5)  34.90  l_cap 0.62 Mpc: capped max 0.983/0.983 (min 0.602/0.604) ok;  uncapped max 0.983/0.984 (min 0.770/0.794) ok   [81s]
+  p1.5_x2.5 x_c(0.5)   5.76  l_cap 1.52 Mpc: capped max 0.986/0.986 (min 0.832/0.853) ok;  uncapped max 2.346/2.760 (min 0.995/0.998) FAIL   [92s]
+  p1.5_x3.5 x_c(0.5)   8.07  l_cap 1.29 Mpc: capped max 0.984/0.985 (min 0.755/0.781) ok;  uncapped max 1.882/2.215 (min 0.984/0.992) FAIL   [104s]
+  p1.5_x5   x_c(0.5)  11.53  l_cap 1.08 Mpc: capped max 0.984/0.984 (min 0.681/0.695) ok;  uncapped max 1.453/1.691 (min 0.955/0.969) FAIL   [118s]
+  p1.5_x7   x_c(0.5)  16.14  l_cap 0.91 Mpc: capped max 0.983/0.983 (min 0.642/0.650) ok;  uncapped max 1.147/1.306 (min 0.904/0.936) FAIL   [131s]
+  p1.5_x10  x_c(0.5)  23.06  l_cap 0.76 Mpc: capped max 0.983/0.983 (min 0.617/0.622) ok;  uncapped max 0.984/1.024 (min 0.842/0.875) ok   [143s]
+  p1.5_x14  x_c(0.5)  32.28  l_cap 0.64 Mpc: capped max 0.983/0.983 (min 0.604/0.607) ok;  uncapped max 0.983/0.984 (min 0.781/0.807) ok   [154s]
+  p1.5_x20  x_c(0.5)  46.11  l_cap 0.54 Mpc: capped max 0.983/0.983 (min 0.596/0.597) ok;  uncapped max 0.983/0.983 (min 0.707/0.742) ok   [165s]
+
+======================================================================================================================
+S1-S5
+======================================================================================================================
+  [FAIL] S1 THE CONVERGED CELL PASSES WITH THE CAP: worst R <= 1.2 on both footings at p = 1, x_c0 = 2.5 (the gated column) -- MUTATE (no cap) must fail this
+         measured: 2.719/3.181
+  [PASS] (reported) S2 (reported, pre-declared expectation) SMALLER REGIONS HELP: along each p the worst R (worse footing), capped and uncapped, does not rise as x_c0 rises
+         measured: p1/capped: monotone; p1/uncapped: monotone; p1.5/capped: monotone; p1.5/uncapped: monotone; capped worst by cell: p1_x2.5 1.124, p1_x3.5 0.986, p1_x5 0.985, p1_x7 0.984, p1_x10 0.983, p1_x14 0.983, p1_x20 0.983, p1.5_x2.5 0.986, p1.5_x3.5 0.985, p1.5_x5 0.984, p1.5_x7 0.983, p1.5_x10 0.983, p1.5_x14 0.983, p1.5_x20 0.983
+  [PASS] (reported) S3 (reported) the cells where even the UNCAPPED model passes cosmic shear (the cap no longer needed for shear)
+         measured: ['p1_x14', 'p1_x20', 'p1.5_x10', 'p1.5_x14', 'p1.5_x20']; uncapped worst by cell: p1_x2.5 3.18, p1_x3.5 2.67, p1_x5 2.09, p1_x7 1.62, p1_x10 1.23, p1_x14 0.99, p1_x20 0.98, p1.5_x2.5 2.76, p1.5_x3.5 2.21, p1.5_x5 1.69, p1.5_x7 1.31, p1.5_x10 1.02, p1.5_x14 0.98, p1.5_x20 0.98
+  [PASS] (reported) S4 (reported) MS5's cap written inside the smooth gate (U = min(x, x_c (l_cap/r)^2)) against MS4's hard cut at l_cap
+         measured: p1_x2.5: smooth 1.054/1.130 vs hard 1.049/1.124; p1_x7: smooth 0.984/0.984 vs hard 0.984/0.984; p1_x20: smooth 0.983/0.983 vs hard 0.983/0.983
+  [PASS] (reported) S5 (reported) THE OTHER SIDE: the smallest R(k) over k = 0.1-1 h/Mpc with the cap (the kicked carrier removes small-scale power; the gate's rule is one-sided, R <= 1.2, and a two-sided reading 0.8 <= R <= 1.2 is shown beside it)
+         measured: p1_x2.5 0.904, p1_x3.5 0.819, p1_x5 0.735, p1_x7 0.673, p1_x10 0.635, p1_x14 0.615, p1_x20 0.602, p1.5_x2.5 0.832, p1.5_x3.5 0.755, p1.5_x5 0.681, p1.5_x7 0.642, p1.5_x10 0.617, p1.5_x14 0.604, p1.5_x20 0.596; two-sided band held at 3/14 cells
+
+  5/6 checks pass; load-bearing failures: 1; wrote XR9_cosmic_shear_results_MUTATE.json   [181s]
+rc=1

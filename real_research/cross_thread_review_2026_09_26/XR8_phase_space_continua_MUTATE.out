@@ -1,0 +1,96 @@
+XR8 (4/4) -- THE COLLISIONLESS CONTINUUM ITSELF, ITS FIELD REALISATION, THE INDEX QUESTION, AND THE STICKY FOIL.
+
+WHY.  "Collisionless fluid" has one exact non-particle meaning: a fluid in PHASE SPACE, f(x, v, t), obeying Vlasov
+  (Liouville) -- incompressible flow of phase-space density.  It is the reference every configuration-space candidate is
+  judged against.  Four questions from the task and the owner of L374, all on L374's problem (both tests, L/50
+  coarse-graining, L374's pass rule):
+  (v)  the Vlasov continuum on an Eulerian (x, v) grid -- no particles anywhere.  The owner's caveat, adopted: Vlasov is
+       the collisionless equation itself and L374's sheet N-body is its exact solution, so a pass is a CEILING/CONTROL,
+       and f(x, v) is the continuum limit of particles.  It answers "not particles" only through a FIELD that realises f.
+       A cold beam is singular on a grid; it is represented with a Gaussian velocity width sigma, and the grid's numerical
+       diffusion acts as extra warmth.
+  (3)  that field: a MIXED-STATE wave field -- N incoherent wavefunctions in their common Schroedinger-Poisson potential
+       (Widrow & Kaiser 1993; Mocz et al. 2018), whose Wigner function obeys Vlasov as hbar -> 0.  It carries velocity
+       dispersion without one coherent phase.  Tested against a WARM collisionless answer (a water-bag of half-width
+       sqrt(W) v0, W = 0.1: the sound speed of L374's warmest cell).
+  (2)  the index question: L374's warmest cell (gamma = 2, W = 0.1) misplaced 21.5% against the COLD answer.  How much of
+       that is warmth, and does the 1-D collisionless index gamma = 3 (P ~ rho^3; P ~ X^{3/2}) fix the rest?  Every
+       single-velocity form at W = 0.1 -- the gamma = 2 and gamma = 3 condensates and the coherent gamma = 2 / gamma = 3
+       order parameters (a heavy radial mode) -- is scored against the warm water-bag of the same sound speed.
+  (4)  the adhesion / sticky-dust foil (zero-viscosity Burgers): well-posed but wrong -- streams stick instead of crossing.
+
+PRE-DECLARED (before any run of this script; the prototype numbers that preceded it are listed in XR8_README.md).
+  R5 [control/ceiling]: the Vlasov continuum tracks the cold collisionless answer (L374's rule), both tests.
+  R6 [the field realisation of a warm continuum]: the mixed-state wave field tracks the warm collisionless answer
+     (post-crossing M <= 0.05), both tests.
+  R7 [the index is not the obstruction]: against the warm answer of the same sound speed, NO single-velocity form at
+     W = 0.1 (gamma = 2 / gamma = 3 condensate; coherent gamma = 2 / gamma = 3 order parameter) tracks; the warm answer
+     itself is reported against the cold one (the part of L374's 21.5% that is warmth).
+  R8 [the foil]: sticky dust is well-posed (no breakdown, rho >= 0, mass conserved) and wrong (post-crossing M > 0.05 in
+     both tests), dissipating most of its kinetic energy.
+
+  *** MUTATE=1: BGK collisions (nu t_sc = 50) added to the Vlasov continuum ***
+  targets done   [51s]
+
+====================================================================================================================
+(v) THE VLASOV CONTINUUM f(x, v): Eulerian grid, no particles (a CONTROL / CEILING -- the collisionless equation itself)
+====================================================================================================================
+    free     sigma = 0.02 v0, 256 x 1024: M 0.50tsc 0.0000, 1.50tsc 0.0682, 2.00tsc 0.2253, 3.00tsc 0.3396 | min f / max f0 -0.002 | mass err 8.9e-16 | fails
+    gravity  sigma = 0.02 v0, 256 x 1024: M 0.36tsc 0.0000, 2.14tsc 0.2493, 4.27tsc 0.3219, 7.12tsc 0.2103, 10.68tsc 0.3744 | min f / max f0 +0.000 | mass err 6.7e-16 | fails
+  [92s]
+
+====================================================================================================================
+(3) THE MIXED-STATE WAVE FIELD (21 incoherent wavefunctions) against the WARM collisionless answer (water-bag, W = 0.1)
+====================================================================================================================
+    free     lambda = L/100, velocity comb -0.30..+0.30 v0 (step 0.03): M vs warm 0.50tsc 0.0000, 1.50tsc 0.0008, 2.00tsc 0.0006, 3.00tsc 0.0010 | vs the comb's own answer 0.0000, 0.0001, 0.0003, 0.0005 | TRACKS
+    gravity  lambda = L/100, velocity comb -0.30..+0.30 v0 (step 0.03): M vs warm 0.36tsc 0.0000, 2.14tsc 0.0002, 4.27tsc 0.0008, 7.12tsc 0.0008, 10.68tsc 0.0027 | vs the comb's own answer 0.0000, 0.0001, 0.0002, 0.0004, 0.0015 | TRACKS
+  [146s]
+
+====================================================================================================================
+(2) THE INDEX QUESTION at W = 0.1: single-velocity forms against the WARM answer of the same sound speed
+====================================================================================================================
+    the warm water-bag itself vs the COLD answer (free): 0.50tsc 0.0017, 1.50tsc 0.1172, 2.00tsc 0.1458, 3.00tsc 0.1682
+    the warm water-bag itself vs the COLD answer (gravity): 0.36tsc 0.0002, 2.14tsc 0.0299, 4.27tsc 0.1367, 7.12tsc 0.1126, 10.68tsc 0.1243
+    gamma=2 condensate (L374)                    free    : M vs warm 1.50tsc 0.1192, 2.00tsc 0.1325, 3.00tsc 0.1168 | vs cold 0.0513, 0.1878, 0.2157 | min rho -7.93 | does not track the warm answer
+    gamma=2 condensate (L374)                    gravity : M vs warm  | vs cold  | BREAKS DOWN at 1.56 t_sc | min rho -9.53e+03 | does not track the warm answer
+    gamma=3 condensate                           free    : M vs warm  | vs cold  | BREAKS DOWN at 1.07 t_sc | min rho -8.86e+03 | does not track the warm answer
+    gamma=3 condensate                           gravity : M vs warm  | vs cold  | BREAKS DOWN at 1.07 t_sc | min rho -9.97e+03 | does not track the warm answer
+    gamma=2 coherent order parameter (GP)        free    : M vs warm 1.50tsc 0.1190, 2.00tsc 0.1323, 3.00tsc 0.1167 | vs cold 0.0512, 0.1873, 0.2152 | does not track the warm answer
+    gamma=2 coherent order parameter (GP)        gravity : M vs warm 2.14tsc 0.1076, 4.27tsc 0.1066, 7.12tsc 0.1477, 10.68tsc 0.1429 | vs cold 0.1257, 0.2227, 0.2387, 0.2294 | does not track the warm answer
+    gamma=3 coherent order parameter (|psi|^6)   free    : M vs warm 1.50tsc 0.0223, 2.00tsc 0.0826, 3.00tsc 0.1900 | vs cold 0.1067, 0.1770, 0.2977 | does not track the warm answer
+    gamma=3 coherent order parameter (|psi|^6)   gravity : M vs warm 2.14tsc 0.0859, 4.27tsc 0.4086, 7.12tsc 0.5651, 10.68tsc 0.4915 | vs cold 0.0946, 0.4583, 0.5381, 0.4758 | does not track the warm answer
+  [178s]
+
+====================================================================================================================
+(4) THE ADHESION / STICKY-DUST FOIL (zero-viscosity Burgers dust)
+====================================================================================================================
+    free    : M 0.50tsc 0.0002, 1.50tsc 0.1762, 2.00tsc 0.4359, 3.00tsc 0.6308 | 5493 of 20000 sheets left | kinetic energy kept 0.117 | mass 1.000000000000 | well-posed True
+    gravity : M 0.36tsc 0.0000, 2.14tsc 0.5551, 4.27tsc 0.5927, 7.12tsc 0.6284, 10.68tsc 0.6953 | 5 of 20000 sheets left | kinetic energy kept 0.002 | mass 1.000000000000 | well-posed True
+
+====================================================================================================================
+CHECKS
+====================================================================================================================
+
+====================================================================================================================
+R5-R8
+====================================================================================================================
+  [FAIL] R5 (control / ceiling): the Vlasov continuum tracks the cold collisionless answer (L374's rule), both tests
+         measured: {'free': 0.33957192386389196, 'gravity': 0.374388921648876}
+         reading:  f(x, v) is the collisionless equation itself -- the particle continuum; it is 'not particles' only through a field whose Wigner function is f (R6)
+  [PASS] R6: the mixed-state wave field tracks the warm collisionless answer (post-crossing M <= 0.05), both tests
+         measured: {'free': 0.001, 'gravity': 0.0027}
+         reading:  a field carries a warm phase-space continuum as an incoherent (mixed) state: no single coherent phase
+  [PASS] R7: against the warm answer of the same sound speed, no single-velocity form at W = 0.1 tracks (the index is not the obstruction); the warm answer's own distance from the cold one is the warmth part of L374's 21.5%
+         measured: {'gamma=2 condensate (L374)|free': 'max post M vs warm 0.1325', 'gamma=2 condensate (L374)|gravity': 'no post-crossing checkpoint (broke), breaks at 1.56 t_sc', 'gamma=3 condensate|free': 'no post-crossing checkpoint (broke), breaks at 1.07 t_sc', 'gamma=3 condensate|gravity': 'no post-crossing checkpoint (broke), breaks at 1.07 t_sc', 'gamma=2 coherent order parameter (GP)|free': 'max post M vs warm 0.1323', 'gamma=2 coherent order parameter (GP)|gravity': 'max post M vs warm 0.1477', 'gamma=3 coherent order parameter (|psi|^6)|free': 'max post M vs warm 0.1900', 'gamma=3 coherent order parameter (|psi|^6)|gravity': 'max post M vs warm 0.5651', 'warm vs cold at the last checkpoint': {'free': 0.1682, 'gravity': 0.1243}}
+  [PASS] R8: sticky dust is well-posed and wrong (post-crossing M > 0.05 in both tests) and dissipates most of its kinetic energy
+         measured: {'free': 'max M 0.631; K kept 0.117; well-posed True', 'gravity': 'max M 0.695; K kept 0.002; well-posed True'}
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  3/4 checks pass; load-bearing failures: 1; wrote XR8_phase_space_continua_MUTATE_results.json   [181s]
+rc=1
+
+real	3m0.911s
+user	1m50.375s
+sys	0m33.989s

@@ -1,0 +1,233 @@
+{
+ "lane": "XR8-3",
+ "mutate": true,
+ "checks": {
+  "C0 SINGLE STREAM: no node event before the first crossing in any run": {
+   "ok": true,
+   "measured": "node events before crossing: 0",
+   "load_bearing": true
+  },
+  "C1 GENUINE ZEROS: windings are +-1 only, and the free-streaming census at L/100 and L/200 is unchanged on twice the grid (node count by 3 t_sc within 2%, first node within 1%)": {
+   "ok": true,
+   "measured": "windings [-1, 1]; ; (reported) fraction with a plaquette corner |psi|^2 <= 0.05: [0.982, 0.776, 0.949, 0.796, 1.0, 0.946, 0.981]",
+   "load_bearing": true
+  },
+  "R3: every tracking wave-field run has no node before the first crossing and at least one after it (its phase is undefined at isolated space-time points and winds by +-2 pi around each)": {
+   "ok": true,
+   "measured": "{'SP|free|L/100|W=0': 'tracks True, first node 1.077 t_sc, 796 node events', 'SP|free|L/200|W=0': 'tracks True, first node 1.053 t_sc, 3112 node events', 'SP|gravity|L/100|W=0': 'tracks True, first node 1.049 t_sc, 28420 node events', 'SP|gravity|L/200|W=0': 'tracks True, first node 1.034 t_sc, 111140 node events', 'GP|free|L/100|W=0.001': 'tracks True, first node 1.085 t_sc, 778 node events', 'GP|gravity|L/100|W=0.001': 'tracks True, first node 1.053 t_sc, 28114 node events', 'GP3|free|L/100|W=0.001': 'tracks False, first node 1.099 t_sc, 646 node events (reported, not claimed)'}",
+   "load_bearing": true
+  },
+  "R4 (pre-declared failure): the polar form tracks its wave form to <= 1e-5 before the first node, departs after it (>= 10x within 0.1 t_sc), becomes singular before 1.5 t_sc and fails L374's rule": {
+   "ok": false,
+   "measured": "{'free|W=0': 'dev before 1.2e-16; breaks at None t_sc (first node 1.077)', 'gravity|W=0': 'dev before 3.2e-15; breaks at None t_sc (first node 1.049)', 'free|W=0.001': 'dev before 1.4e-15; breaks at None t_sc (first node 1.085)'}",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "l374_sha256": "e3248164fc68b129d235c3c07f6e13482fa85d499c49d07a4de27b9506843ee3",
+  "census": {
+   "SP|free|L/100|W=0": {
+    "tracks": true,
+    "M_post": {
+     "0.2387": 0.0007653629706386627,
+     "0.3183": 0.0018527769704354104,
+     "0.4775": 0.005341052417755197
+    },
+    "first_node_over_tsc": 1.0765,
+    "n_pre": 0,
+    "nodes_by_checkpoint": {
+     "0.50": 0,
+     "1.50": 54,
+     "2.00": 242,
+     "3.00": 796
+    },
+    "n_nodes": 796,
+    "frac_depth_le_0p05": 0.9824120603015075,
+    "median_depth": 0.005386162558768552
+   },
+   "SP|free|L/200|W=0": {
+    "tracks": true,
+    "M_post": {
+     "0.2387": 0.0001912793289487243,
+     "0.3183": 0.0004634274315501127,
+     "0.4775": 0.0013341702424043442
+    },
+    "first_node_over_tsc": 1.053,
+    "n_pre": 0,
+    "nodes_by_checkpoint": {
+     "0.50": 0,
+     "1.50": 176,
+     "2.00": 918,
+     "3.00": 3112
+    },
+    "n_nodes": 3112,
+    "frac_depth_le_0p05": 0.7763496143958869,
+    "median_depth": 0.020836704742112383
+   },
+   "SP|gravity|L/100|W=0": {
+    "tracks": true,
+    "M_post": {
+     "0.3000": 0.00021065142337008008,
+     "0.6000": 0.0008427283493628206,
+     "1.0000": 0.002844876044696902,
+     "1.5000": 0.01029328975404016
+    },
+    "first_node_over_tsc": 1.0490140845070424,
+    "n_pre": 0,
+    "nodes_by_checkpoint": {
+     "0.36": 0,
+     "2.14": 2582,
+     "4.27": 8240,
+     "7.12": 14836,
+     "10.68": 28420
+    },
+    "n_nodes": 28420,
+    "frac_depth_le_0p05": 0.9493314567206192,
+    "median_depth": 0.0029842408621718196
+   },
+   "SP|gravity|L/200|W=0": {
+    "tracks": true,
+    "M_post": {
+     "0.3000": 6.421842946802495e-05,
+     "0.6000": 0.00022448763410122532,
+     "1.0000": 0.0003214226713283508,
+     "1.5000": 0.005208743283676468
+    },
+    "first_node_over_tsc": 1.0338028169014084,
+    "n_pre": 0,
+    "nodes_by_checkpoint": {
+     "0.36": 0,
+     "2.14": 8852,
+     "4.27": 28280,
+     "7.12": 56130,
+     "10.68": 111140
+    },
+    "n_nodes": 111140,
+    "frac_depth_le_0p05": 0.7963829404354867,
+    "median_depth": 0.009512784649417537
+   },
+   "GP|free|L/100|W=0.001": {
+    "tracks": true,
+    "M_post": {
+     "0.2387": 0.00495297303192644,
+     "0.3183": 0.006844691978021687,
+     "0.4775": 0.012267124996429037
+    },
+    "first_node_over_tsc": 1.0845,
+    "n_pre": 0,
+    "nodes_by_checkpoint": {
+     "0.50": 0,
+     "1.50": 48,
+     "2.00": 230,
+     "3.00": 778
+    },
+    "n_nodes": 778,
+    "frac_depth_le_0p05": 1.0,
+    "median_depth": 0.005844890272536377
+   },
+   "GP|gravity|L/100|W=0.001": {
+    "tracks": true,
+    "M_post": {
+     "0.3000": 0.0029338118592482274,
+     "0.6000": 0.0057009069541897675,
+     "1.0000": 0.004950565979152583,
+     "1.5000": 0.013844279103988038
+    },
+    "first_node_over_tsc": 1.0529577464788733,
+    "n_pre": 0,
+    "nodes_by_checkpoint": {
+     "0.36": 0,
+     "2.14": 2588,
+     "4.27": 8110,
+     "7.12": 14584,
+     "10.68": 28114
+    },
+    "n_nodes": 28114,
+    "frac_depth_le_0p05": 0.946147826705556,
+    "median_depth": 0.0031634722044569024
+   },
+   "GP3|free|L/100|W=0.001": {
+    "tracks": false,
+    "M_post": {
+     "0.2387": 0.009858690862365325,
+     "0.3183": 0.04992410177926698,
+     "0.4775": 0.10809772645346968
+    },
+    "first_node_over_tsc": 1.0985,
+    "n_pre": 0,
+    "nodes_by_checkpoint": {
+     "0.50": 0,
+     "1.50": 32,
+     "2.00": 170,
+     "3.00": 646
+    },
+    "n_nodes": 646,
+    "frac_depth_le_0p05": 0.9814241486068112,
+    "median_depth": 0.005687063778701122
+   }
+  },
+  "polar": {
+   "free|L/100|W=0": {
+    "first_node": 1.0765,
+    "t_break": null,
+    "why": null,
+    "dev_before": 1.2319247184863564e-16,
+    "dev_after": {
+     "1.08": 0.0,
+     "1.10": 0.0,
+     "1.12": 0.0,
+     "1.15": 3.6456298049815583e-17,
+     "1.20": 9.455598196786633e-17,
+     "1.30": 0.0,
+     "1.40": 9.070706425554008e-17,
+     "1.50": 0.0,
+     "2.00": 1.2855927260241152e-16,
+     "3.00": 3.718813451622731e-17
+    },
+    "tracks": true
+   },
+   "gravity|L/100|W=0": {
+    "first_node": 1.0490140845070424,
+    "t_break": null,
+    "why": null,
+    "dev_before": 3.2352186251145256e-15,
+    "dev_after": {
+     "1.06": 3.4777004409908306e-15,
+     "1.08": 3.4127160732774767e-15,
+     "1.10": 3.666541354383403e-15,
+     "1.12": 3.6277946792441905e-15,
+     "1.15": 3.586500128999633e-15,
+     "1.20": 3.800874003554225e-15,
+     "1.30": 3.688469343321719e-15,
+     "1.40": 3.897747467665564e-15,
+     "2.14": 3.721930532869214e-15,
+     "4.27": 9.127003623354216e-15,
+     "7.12": 2.3983378759497748e-14,
+     "10.68": 3.186982470453841e-14
+    },
+    "tracks": true
+   },
+   "free|L/100|W=0.001": {
+    "first_node": 1.0845,
+    "t_break": null,
+    "why": null,
+    "dev_before": 1.4067252137452798e-15,
+    "dev_after": {
+     "1.10": 1.330017910041945e-15,
+     "1.12": 1.4010738099211902e-15,
+     "1.15": 1.4273386075496356e-15,
+     "1.20": 1.5064582610867284e-15,
+     "1.30": 1.4963616283554264e-15,
+     "1.40": 1.3464029153735395e-15,
+     "1.50": 1.5778800791990895e-15,
+     "2.00": 1.3221438917640035e-15,
+     "3.00": 2.4583471109462212e-15
+    },
+    "tracks": true
+   }
+  }
+ },
+ "n_checks": 4,
+ "n_fail_load_bearing": 1,
+ "runtime_s": 60.8
+}

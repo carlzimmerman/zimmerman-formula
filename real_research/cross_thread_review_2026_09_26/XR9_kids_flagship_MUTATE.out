@@ -1,0 +1,166 @@
+XR9_kids_flagship.py -- THE SMALL-REGION DOOR, part 1 of 3: KiDS-1000 with the carrier's own lensing, and the z = 2.5
+flagship, scanned over the vacuum gate's threshold.  Independent cross-thread review (2026-09-26, night).  Read-only on
+every committed file: DE8's operator and fit, MS2's door and DE9's smooth flagship are loaded unedited or reimplemented
+with a control that reproduces their committed numbers.
+
+THE DOOR.  The converged model's MOND regions are large (an L* galaxy's edge ~1.4-1.7 Mpc at z = 0) because the
+switch-only KiDS cap x_c,eff(0.25) <= 3.867 (DE2; 4.35 on the MOND-sector reading at w = 0.25, DE9) was derived with
+NO carrier lensing.  DE10 then found that with the carrier's lensing KiDS passes easily at p = 1, x_c0 = 2.5 (-37/-34
+hard, -32/-29 at w = 0.25).  The door: RAISE the threshold (smaller regions, r_e ~ v_f/(H sqrt(x_c,eff))) and let the
+CDM-like carrier and the correlated matter (the 2-halo term) supply the lensing at 0.5-3 Mpc.
+
+PRE-DECLARED HYPOTHESIS (given by the coordinating review before any scan cell was computed; reported either way):
+  H  some threshold ABOVE the switch-only KiDS cap passes KiDS with the carrier, and at that threshold the Local Group
+     zero-velocity radius and the cluster-infall EFE slope move into their bands (the second half is scored by
+     XR9_environment.py; the verdict is XR9_gate_table.py's).
+  The door FAILS if KiDS needs the private phantom out to >~ 1.5 Mpc even with the carrier.
+
+THE MODEL AS SCORED (each piece from its committed source):
+  switch   DE8's region operator (L361/CV1: screened w, gated phantom P, sigma = 1, 1/m = 0.1 Mpc; lensing on Phi = u + f P
+           with f' P), MS2's MOND-sector reading x = 4 pi G (rho_b + rho_ph - f_b rho_bar_m)/H^2 (carrier-blind), the smooth
+           gate f = W(t), t = (U/x_c,eff - 1)/(2w) + 1/2 at w = 0.25 (DE9's window width; w = 0.02 reported beside it);
+  cap      MS5's kappa form (61a3a0858): U = min(x, v_cap^2 kappa_X^2/H^2), kappa_X = 1/r for a spherical lens, so every
+           region stops at l_cap(z) = v_cap/(H sqrt(x_c,eff)), v_cap = 325 km/s (MS3).  The withdrawn local form
+           threshold x max(1, v_loc^2/v_cap^2) is used ONLY in the control that reproduces DE10 (labelled);
+  gate     x_c,eff(z) = x_c0 E(z)^(2p) (L359's background), p in {1, 1.5}, x_c0 in {2.5, 3.5, 5, 7, 10, 14, 20};
+  carrier  L375's shell-model halos, re-run with each cell's refitted lens masses (XR9_carrier_halos.py, L390's recipe on
+           the scored switch; seeds DE10's), v_k = 600 and 650 km/s, projected to 20 Mpc (the carrier's own infall kept);
+  fit      L352's KiDS machinery through DE8 (Brouwer+21 four bins, full covariance, M_b profiled per bin, linear 2-halo
+           term per bin); Delta chi^2 against L352's unswitched model with the same 2-halo bound; pass = <= +4 on both
+           footings (DE10's rule).
+  THE OWNER'S FIVE RULES (2026-09-26), built in before scoring:
+    1 the carrier amplitude is physical, fs = 1 in every gated score; fitted amplitudes are DIAGNOSTICS, labelled
+      (fs in [0, 1] -- at most the halo's own post-trigger carrier -- and fs in [0, 3], unphysical above 1);
+    2 the 2-halo amplitude (the lens bias) is capped at A <= 2 in the gated score; A per bin is reported for every
+      cell, and the uncapped A <= 20 (DE10's) is reported beside it;
+    3 the carrier halos are re-run with each cell's refitted masses (not DE10's L390 masses);
+    4 the flagship caps x_c0 hard (DE9's MOND-sector cap), heavier galaxies first: cells above it are MARKED failing;
+    5 the forest only gets easier as the threshold rises: every cell carries DE11's pass (worst 0.0041) as a lower
+      bound "by monotonicity from DE11" (every scan cell's x_c,eff(z) >= the converged cell's at every z >= 0).
+  THE FLAGSHIP (z = 2.5, M_b = 1e10, 1e10.5, 1e11, 1e11.5, both footings, carrier cleared):
+    (a) MS2's door at r_F (g_bar = 0.1 a0), hard, loaded unedited, f_CGM = 0 gated (0.1, 0.3, 1 reported), plus the
+        kappa cap (r_F <= l_cap(2.5));
+    (b) DE9's smooth flagship on DE8's operator (MOND-sector reading, w = 0.25, sigma = 1, 1/m = 0.1 Mpc) with the kappa
+        cap: the zero-point shift at r_F must stay >= -0.05 dex (DE9's tolerance).  Gate = (a) and (b).
+
+  *** MUTATE=1: the carrier's lensing is switched off (fs = 0 in every gated score); M1 must FAIL ***
+  DE8 loaded (L352's KiDS data, operator, 2-halo template)   [2s]
+
+======================================================================================================================
+C0  CONTROL: this lane's fit loop reproduces L352's unswitched baseline; the baseline with A <= 2
+======================================================================================================================
+  [PASS] C0 CONTROL: the fit loop with A <= 20 reproduces L352's unswitched baseline chi^2 (both footings)
+         measured: {'canonical': 174.297, 'alt': 166.9219} vs L352 {'canonical': 174.297, 'alt': 166.9219} (max |diff| 0.0e+00); baseline A per bin (A <= 20): {'canonical': [0.0, 0.0, 0.417, 0.138], 'alt': [0.0, 0.0, 0.468, 0.202]}; with A <= 2: chi^2 {'canonical': 174.297, 'alt': 166.922}, A {'canonical': [0.0, 0.0, 0.417, 0.138], 'alt': [0.0, 0.0, 0.468, 0.202]}
+         reading:  the unswitched (isolated-QUMOND) baseline is scored against the same 2-halo bound as the model it is compared with
+
+======================================================================================================================
+C1-C3  CONTROLS: DE10's committed KiDS table; the halos' masses; the kappa cap at the converged cell
+======================================================================================================================
+  [PASS] C1 CONTROL: DE10's configuration (L390-mass halos re-run here with DE10's seeds, the WITHDRAWN local cap, fs = 1, A <= 20) reproduces DE10's committed KiDS table and preferred amplitudes, 2 kicks x 2 widths x 2 footings
+         measured: v600/w0.02: -37.026/-34.010; v600/w0.25: -32.266/-29.286; v650/w0.02: -36.821/-33.736; v650/w0.25: -32.082/-29.016 (max |diff| 0.0e+00)
+         reading:  the carrier halos, templates, operator and fit are DE10's; this is the control for the withdrawn cap form
+  [PASS] C2 CONTROL: the carrier halos' masses (XR9_carrier_halos.py's plan) are the refit on the scored kappa-form switch (L390's recipe) at every cell
+         measured: identical at 14/14 cells
+  [PASS] (reported) C3 (reported) at p = 1, x_c0 = 2.5 the kappa-form cap scores DE10's configuration as the withdrawn local form does (w = 0.25): neither cap binds on the fitted KiDS lenses
+         measured: max |diff| 0.0e+00
+
+======================================================================================================================
+THE KiDS SCAN: kappa-cap MOND-sector switch, carrier re-run per cell, fs = 1 gated with A <= 2 (and A <= 20 beside it)
+======================================================================================================================
+  p1_x2.5   x_c,eff(0.25)   3.25 (l_cap 2.35 Mpc): gate fs=0, A<=2: v600  -24.6/ -20.7 v650  -24.6/ -20.7 PASS | A<=20  -24.6/ -20.7 | switch only A<=20  -24.6/ -20.7 A<=2  -24.6/ -20.7 | hard w:  -28.6/ -25.6   [7s]
+      A per bin (gate, v600): canonical [0.638, 0.782, 1.591, 1.67], alt [0.573, 0.814, 1.629, 1.715];  A<=20: canonical [0.638, 0.782, 1.591, 1.67];  lens log M_b [10.4, 10.9, 11.0, 11.1];  regions (canonical) full-on / f=0 0.86/1.08, 1.14/1.44, 1.21/1.53, 1.28/1.62 Mpc
+  p1_x3.5   x_c,eff(0.25)   4.55 (l_cap 1.99 Mpc): gate fs=0, A<=2: v600  +14.6/ +16.4 v650  +14.6/ +16.4 fail | A<=20  +14.6/ +16.4 | switch only A<=20  +14.6/ +16.4 A<=2  +14.6/ +16.4 | hard w:   +4.5/  +5.9   [8s]
+      A per bin (gate, v600): canonical [0.711, 0.93, 1.95, 1.734], alt [0.731, 0.951, 1.971, 1.494];  A<=20: canonical [0.711, 0.93, 1.95, 1.734];  lens log M_b [10.4, 10.9, 10.9, 11.2];  regions (canonical) full-on / f=0 0.73/0.92, 0.97/1.23, 0.97/1.23, 1.15/1.46 Mpc
+  p1_x5     x_c,eff(0.25)   6.50 (l_cap 1.66 Mpc): gate fs=0, A<=2: v600  +64.5/ +69.7 v650  +64.5/ +69.7 fail | A<=20  +64.5/ +69.7 | switch only A<=20  +64.5/ +69.7 A<=2  +64.5/ +69.7 | hard w:  +58.8/ +60.0   [8s]
+      A per bin (gate, v600): canonical [0.704, 0.946, 1.967, 2.0], alt [0.714, 0.981, 2.0, 1.996];  A<=20: canonical [0.704, 0.946, 1.967, 2.102];  lens log M_b [10.5, 11.0, 11.0, 11.1];  regions (canonical) full-on / f=0 0.64/0.82, 0.86/1.10, 0.86/1.10, 0.91/1.16 Mpc
+  p1_x7     x_c,eff(0.25)   9.09 (l_cap 1.40 Mpc): gate fs=0, A<=2: v600 +121.0/+126.6 v650 +121.0/+126.6 fail | A<=20 +119.6/+126.0 | switch only A<=20 +119.6/+126.0 A<=2 +121.0/+126.6 | hard w: +125.4/+115.1   [9s]
+      A per bin (gate, v600): canonical [0.819, 1.232, 2.0, 2.0], alt [0.825, 1.198, 2.0, 2.0];  A<=20: canonical [0.819, 1.232, 2.21, 2.26];  lens log M_b [10.3, 10.8, 10.9, 11.1];  regions (canonical) full-on / f=0 0.49/0.62, 0.65/0.83, 0.69/0.88, 0.77/0.98 Mpc
+  p1_x10    x_c,eff(0.25)  12.99 (l_cap 1.17 Mpc): gate fs=0, A<=2: v600 +162.6/+161.7 v650 +162.6/+161.7 fail | A<=20 +160.1/+159.9 | switch only A<=20 +160.1/+159.9 A<=2 +162.6/+161.7 | hard w: +153.7/+156.3   [10s]
+      A per bin (gate, v600): canonical [0.88, 1.313, 2.0, 2.0], alt [0.855, 1.334, 2.0, 2.0];  A<=20: canonical [0.88, 1.313, 2.104, 2.395];  lens log M_b [10.2, 10.8, 11.1, 11.1];  regions (canonical) full-on / f=0 0.38/0.49, 0.54/0.69, 0.65/0.83, 0.65/0.83 Mpc
+  p1_x14    x_c,eff(0.25)  18.19 (l_cap 0.99 Mpc): gate fs=0, A<=2: v600 +188.1/+192.5 v650 +188.1/+192.5 fail | A<=20 +182.1/+186.3 | switch only A<=20 +182.1/+186.3 A<=2 +188.1/+192.5 | hard w: +184.1/+192.6   [11s]
+      A per bin (gate, v600): canonical [0.872, 1.314, 2.0, 2.0], alt [0.878, 1.327, 2.0, 2.0];  A<=20: canonical [0.872, 1.314, 2.335, 2.5];  lens log M_b [10.3, 10.9, 10.9, 11.1];  regions (canonical) full-on / f=0 0.34/0.44, 0.49/0.62, 0.49/0.62, 0.55/0.70 Mpc
+  p1_x20    x_c,eff(0.25)  25.98 (l_cap 0.83 Mpc): gate fs=0, A<=2: v600 +248.1/+249.5 v650 +248.1/+249.5 fail | A<=20 +241.0/+241.8 | switch only A<=20 +241.0/+241.8 A<=2 +248.1/+249.5 | hard w: +244.8/+243.6   [12s]
+      A per bin (gate, v600): canonical [0.904, 1.435, 2.0, 2.0], alt [0.906, 1.385, 2.0, 2.0];  A<=20: canonical [0.904, 1.435, 2.394, 2.509];  lens log M_b [10.2, 10.8, 10.9, 11.2];  regions (canonical) full-on / f=0 0.27/0.35, 0.38/0.49, 0.41/0.52, 0.49/0.62 Mpc
+  p1.5_x2.5 x_c,eff(0.25)   3.70 (l_cap 2.20 Mpc): gate fs=0, A<=2: v600   -7.4/  -5.8 v650   -7.4/  -5.8 PASS | A<=20   -7.4/  -5.8 | switch only A<=20   -7.4/  -5.8 A<=2   -7.4/  -5.8 | hard w:  -14.6/ -14.1   [12s]
+      A per bin (gate, v600): canonical [0.604, 0.954, 1.842, 1.764], alt [0.619, 0.988, 1.869, 1.578];  A<=20: canonical [0.604, 0.954, 1.842, 1.764];  lens log M_b [10.5, 10.8, 10.9, 11.1];  regions (canonical) full-on / f=0 0.85/1.08, 1.01/1.28, 1.07/1.36, 1.20/1.52 Mpc
+  p1.5_x3.5 x_c,eff(0.25)   5.18 (l_cap 1.86 Mpc): gate fs=0, A<=2: v600  +25.9/ +28.8 v650  +25.9/ +28.8 fail | A<=20  +25.9/ +28.8 | switch only A<=20  +25.9/ +28.8 A<=2  +25.9/ +28.8 | hard w:  +23.3/ +27.7   [13s]
+      A per bin (gate, v600): canonical [0.728, 0.96, 1.98, 1.984], alt [0.734, 0.985, 1.895, 2.0];  A<=20: canonical [0.728, 0.96, 1.98, 1.984];  lens log M_b [10.4, 10.9, 10.9, 11.1];  regions (canonical) full-on / f=0 0.68/0.86, 0.91/1.15, 0.91/1.15, 1.02/1.30 Mpc
+  p1.5_x5   x_c,eff(0.25)   7.40 (l_cap 1.56 Mpc): gate fs=0, A<=2: v600  +98.4/ +98.7 v650  +98.4/ +98.7 fail | A<=20  +98.3/ +98.6 | switch only A<=20  +98.3/ +98.6 A<=2  +98.4/ +98.7 | hard w:  +95.3/ +91.6   [14s]
+      A per bin (gate, v600): canonical [0.807, 1.222, 2.0, 2.0], alt [0.817, 1.245, 2.0, 2.0];  A<=20: canonical [0.807, 1.222, 2.112, 2.009];  lens log M_b [10.3, 10.8, 10.9, 11.2];  regions (canonical) full-on / f=0 0.54/0.69, 0.72/0.91, 0.76/0.97, 0.90/1.15 Mpc
+  p1.5_x7   x_c,eff(0.25)  10.36 (l_cap 1.31 Mpc): gate fs=0, A<=2: v600 +127.0/+133.1 v650 +127.0/+133.1 fail | A<=20 +124.5/+128.9 | switch only A<=20 +124.5/+128.9 A<=2 +127.0/+133.1 | hard w: +124.5/+129.6   [15s]
+      A per bin (gate, v600): canonical [0.804, 1.191, 2.0, 2.0], alt [0.811, 1.208, 2.0, 2.0];  A<=20: canonical [0.804, 1.191, 2.211, 2.362];  lens log M_b [10.4, 10.9, 10.9, 11.1];  regions (canonical) full-on / f=0 0.48/0.62, 0.64/0.82, 0.64/0.82, 0.72/0.92 Mpc
+  p1.5_x10  x_c,eff(0.25)  14.81 (l_cap 1.10 Mpc): gate fs=0, A<=2: v600 +161.1/+166.0 v650 +161.1/+166.0 fail | A<=20 +158.0/+161.0 | switch only A<=20 +158.0/+161.0 A<=2 +161.1/+166.0 | hard w: +161.4/+168.9   [16s]
+      A per bin (gate, v600): canonical [0.878, 1.341, 2.0, 2.0], alt [0.881, 1.349, 2.0, 2.0];  A<=20: canonical [0.878, 1.341, 2.309, 2.335];  lens log M_b [10.2, 10.8, 10.9, 11.2];  regions (canonical) full-on / f=0 0.36/0.46, 0.51/0.65, 0.54/0.69, 0.64/0.82 Mpc
+  p1.5_x14  x_c,eff(0.25)  20.73 (l_cap 0.93 Mpc): gate fs=0, A<=2: v600 +202.7/+210.9 v650 +202.7/+210.9 fail | A<=20 +196.2/+202.4 | switch only A<=20 +196.2/+202.4 A<=2 +202.7/+210.9 | hard w: +202.6/+202.5   [16s]
+      A per bin (gate, v600): canonical [0.863, 1.357, 2.0, 2.0], alt [0.872, 1.37, 2.0, 2.0];  A<=20: canonical [0.863, 1.357, 2.302, 2.547];  lens log M_b [10.4, 10.9, 11.0, 11.1];  regions (canonical) full-on / f=0 0.34/0.44, 0.46/0.58, 0.48/0.62, 0.51/0.65 Mpc
+  p1.5_x20  x_c,eff(0.25)  29.61 (l_cap 0.78 Mpc): gate fs=0, A<=2: v600 +277.2/+270.4 v650 +277.2/+270.4 fail | A<=20 +269.5/+262.9 | switch only A<=20 +269.5/+262.9 A<=2 +277.2/+270.4 | hard w: +262.3/+269.1   [17s]
+      A per bin (gate, v600): canonical [0.897, 1.43, 2.0, 2.0], alt [0.9, 1.424, 2.0, 2.0];  A<=20: canonical [0.897, 1.43, 2.45, 2.461];  lens log M_b [10.3, 10.8, 10.9, 11.3];  regions (canonical) full-on / f=0 0.27/0.35, 0.36/0.46, 0.38/0.49, 0.48/0.61 Mpc
+
+======================================================================================================================
+C6 M1 SO H-K H-R  THE SWITCH-ONLY CAP, THE CARRIER'S ROLE, AND THE DOOR'S KiDS HALF
+======================================================================================================================
+  [PASS] C6 CONTROL: with fs = 0 and A <= 20 (DE9's switch-only fit, no cap) the switch alone passes at DE9's MOND-sector w = 0.25 KiDS cap x_c,eff(0.25) = 4.3473 and fails 1/256 of DE9's grid step above it
+         measured: at 4.3473: +0.47/+3.98; at 4.3477: +0.48/+4.00
+  [FAIL] M1 THE CARRIER'S LENSING IS IN THE SCORE: at every cell |Delta chi^2(run's fs) - Delta chi^2(fs = 0)| > 1 on both footings (w = 0.25, v_k = 600, A <= 2) -- MUTATE (fs = 0) must fail this
+         measured: smallest difference 0.00
+  [PASS] (reported) SO (reported) switch-only behaviour: with fs = 0 (A <= 20) KiDS passes below DE9's switch-only cap (4.35) and fails at every cell above it -- under MUTATE this is the gated column
+         measured: cells above the cap: ['p1_x3.5', 'p1_x5', 'p1_x7', 'p1_x10', 'p1_x14', 'p1_x20', 'p1.5_x3.5', 'p1.5_x5', 'p1.5_x7', 'p1.5_x10', 'p1.5_x14', 'p1.5_x20']; switch-only passes there: []; below: ['p1_x2.5', 'p1.5_x2.5'] pass [True, True]
+  [FAIL] (reported) H-K [pre-declared, reported] the KiDS half of the door: some cell with x_c,eff(0.25) above the switch-only cap passes KiDS with the carrier (fs = 1, A <= 2, both kicks, both footings, w = 0.25)
+         measured: passing cells: ['p1_x2.5', 'p1.5_x2.5']; above the switch-only cap: []; with A <= 20 (DE10's bound) passing: ['p1_x2.5', 'p1.5_x2.5']; hard gate (w = 0.02) passing: ['p1_x2.5', 'p1.5_x2.5']
+  [PASS] (reported) H-R (reported) the lens regions of the passing cells: the largest fully-on radius and f = 0 radius over the four fitted lenses at z = 0.25 (the door fails if KiDS needs the phantom out to >~ 1.5 Mpc)
+         measured: p1_x2.5: 1.28/1.62 Mpc (passes); p1_x3.5: 1.21/1.53 Mpc; p1_x5: 0.95/1.21 Mpc; p1_x7: 0.86/1.09 Mpc; p1_x10: 0.68/0.86 Mpc; p1_x14: 0.55/0.70 Mpc; p1_x20: 0.49/0.62 Mpc; p1.5_x2.5: 1.26/1.60 Mpc (passes); p1.5_x3.5: 1.02/1.30 Mpc; p1.5_x5: 0.90/1.15 Mpc; p1.5_x7: 0.76/0.97 Mpc; p1.5_x10: 0.64/0.82 Mpc; p1.5_x14: 0.54/0.69 Mpc; p1.5_x20: 0.48/0.61 Mpc
+
+======================================================================================================================
+KC  THE KiDS CAP ITSELF: the largest x_c,eff(0.25) that passes (w = 0.25, run's fs, A <= 2, both kicks and footings)
+======================================================================================================================
+    halos at p1_x2.5's refit masses: cap x_c,eff(0.25) = 4.3473 -> x_c0 <= 3.346 at p = 1, 2.936 at p = 1.5   [23s]
+    halos at p1_x3.5's refit masses: cap x_c,eff(0.25) = 4.3473 -> x_c0 <= 3.346 at p = 1, 2.936 at p = 1.5   [23s]
+  [PASS] (reported) KC (reported) THE KiDS CAP WITH THE CARRIER at w = 0.25 (the largest x_c,eff(0.25) passing on both kicks and footings, A <= 2; bisected, the fit is a step function of the threshold) against the switch-only cap 4.3473 (DE9)
+         measured: halos at p1_x2.5's refit masses: 4.3473; halos at p1_x3.5's refit masses: 4.3473
+         reading:  how far the carrier's own lensing moves the threshold KiDS allows
+
+======================================================================================================================
+F  THE FLAGSHIP AT z = 2.5: (a) MS2's door at r_F with the kappa cap; (b) DE9's smooth operator, w = 0.25, kappa cap
+======================================================================================================================
+  [PASS] C4 CONTROL: MS2's committed F1 rows (door on at r_F and the zero-point shift; p = 1, x_c0 = 2.5; M_b = 1e10-1e11; f_CGM = 0, 0.1, 0.3, 1; both footings) are reproduced exactly
+         measured: max |diff| 0.0e+00
+  [PASS] C5 CONTROL: DE9's committed smooth flagship cap on the MOND-sector reading at w = 0.25 (1e11 Msun; DE9's gate, no cap) is reproduced
+         measured: 329.3633/436.1862 vs DE9 329.3633/436.1862 (max rel diff 0.0e+00)
+  p1_x2.5   x_c,eff(2.5)    35.4 (l_cap   216 kpc): door (a) ok, smooth (b) ok -> PASS (to 1e11 only: pass); masses lost -; smooth shifts canonical +0.00 +0.00 +0.00 +0.00
+  p1_x3.5   x_c,eff(2.5)    49.5 (l_cap   182 kpc): door (a) ok, smooth (b) ok -> PASS (to 1e11 only: pass); masses lost -; smooth shifts canonical +0.00 +0.00 +0.00 +0.00
+  p1_x5     x_c,eff(2.5)    70.7 (l_cap   153 kpc): door (a) ok, smooth (b) ok -> PASS (to 1e11 only: pass); masses lost -; smooth shifts canonical +0.00 +0.00 +0.00 +0.00
+  p1_x7     x_c,eff(2.5)    99.0 (l_cap   129 kpc): door (a) ok, smooth (b) ok -> PASS (to 1e11 only: pass); masses lost -; smooth shifts canonical +0.00 +0.00 +0.00 +0.00
+  p1_x10    x_c,eff(2.5)   141.4 (l_cap   108 kpc): door (a) ok, smooth (b) ok -> PASS (to 1e11 only: pass); masses lost -; smooth shifts canonical +0.00 +0.00 +0.00 +0.00
+  p1_x14    x_c,eff(2.5)   198.0 (l_cap    91 kpc): door (a) ok, smooth (b) FAIL -> FAIL (to 1e11 only: pass); masses lost [11.5]; smooth shifts canonical +0.00 +0.00 +0.00 -0.62
+  p1_x20    x_c,eff(2.5)   282.8 (l_cap    76 kpc): door (a) FAIL, smooth (b) FAIL -> FAIL (to 1e11 only: pass); masses lost [11.5]; smooth shifts canonical +0.00 +0.00 +0.00 -1.13
+  p1.5_x2.5 x_c,eff(2.5)   132.9 (l_cap   111 kpc): door (a) ok, smooth (b) ok -> PASS (to 1e11 only: pass); masses lost -; smooth shifts canonical +0.00 +0.00 +0.00 +0.00
+  p1.5_x3.5 x_c,eff(2.5)   186.1 (l_cap    94 kpc): door (a) ok, smooth (b) FAIL -> FAIL (to 1e11 only: pass); masses lost [11.5]; smooth shifts canonical +0.00 +0.00 +0.00 -0.11
+  p1.5_x5   x_c,eff(2.5)   265.9 (l_cap    79 kpc): door (a) FAIL, smooth (b) FAIL -> FAIL (to 1e11 only: pass); masses lost [11.5]; smooth shifts canonical +0.00 +0.00 +0.00 -1.13
+  p1.5_x7   x_c,eff(2.5)   372.2 (l_cap    67 kpc): door (a) FAIL, smooth (b) FAIL -> FAIL (to 1e11 only: fail); masses lost [11.0, 11.5]; smooth shifts canonical +0.00 +0.00 -1.13 -1.13
+  p1.5_x10  x_c,eff(2.5)   531.7 (l_cap    56 kpc): door (a) FAIL, smooth (b) FAIL -> FAIL (to 1e11 only: fail); masses lost [11.0, 11.5]; smooth shifts canonical +0.00 +0.00 -1.13 -1.13
+  p1.5_x14  x_c,eff(2.5)   744.4 (l_cap    47 kpc): door (a) FAIL, smooth (b) FAIL -> FAIL (to 1e11 only: fail); masses lost [10.5, 11.0, 11.5]; smooth shifts canonical +0.00 -1.39 -1.13 -1.13
+  p1.5_x20  x_c,eff(2.5)  1063.5 (l_cap    39 kpc): door (a) FAIL, smooth (b) FAIL -> FAIL (to 1e11 only: fail); masses lost [10.0, 10.5, 11.0, 11.5]; smooth shifts canonical -0.07 -1.13 -1.13 -1.13
+  the smooth flagship cap x_c,eff(2.5) with the kappa cap, by mass (canonical/alt): 1e10.0: 1060/1403; 1e10.5: 591/783; 1e11.0: 329/436; 1e11.5: 184/244  -> x_c0 max at p = 1: 1e10.0: 75.0, 1e10.5: 41.8, 1e11.0: 23.3, 1e11.5: 13.0; at p = 1.5: 1e10.0: 19.93, 1e10.5: 11.11, 1e11.0: 6.19, 1e11.5: 3.46
+  [PASS] (reported) F1 (reported) the flagship per cell (M_b 1e10-1e11.5, both footings, carrier cleared): MS2's door at r_F with the kappa cap AND DE9's smooth shift >= -0.05 dex
+         measured: p1_x2.5: PASS; p1_x3.5: PASS; p1_x5: PASS; p1_x7: PASS; p1_x10: PASS; p1_x14: FAIL (lost [11.5]); p1_x20: FAIL (lost [11.5]); p1.5_x2.5: PASS; p1.5_x3.5: FAIL (lost [11.5]); p1.5_x5: FAIL (lost [11.5]); p1.5_x7: FAIL (lost [11.0, 11.5]); p1.5_x10: FAIL (lost [11.0, 11.5]); p1.5_x14: FAIL (lost [10.5, 11.0, 11.5]); p1.5_x20: FAIL (lost [10.0, 10.5, 11.0, 11.5])
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  p1_x2.5   KiDS (fs = 0, A <= 2) PASS  worst  -20.7  |  flagship PASS  |  lens regions full-on <= 1.28 Mpc
+  p1_x3.5   KiDS (fs = 0, A <= 2) fail  worst  +16.4  |  flagship PASS  |  lens regions full-on <= 1.21 Mpc
+  p1_x5     KiDS (fs = 0, A <= 2) fail  worst  +69.7  |  flagship PASS  |  lens regions full-on <= 0.95 Mpc
+  p1_x7     KiDS (fs = 0, A <= 2) fail  worst +126.6  |  flagship PASS  |  lens regions full-on <= 0.86 Mpc
+  p1_x10    KiDS (fs = 0, A <= 2) fail  worst +162.6  |  flagship PASS  |  lens regions full-on <= 0.68 Mpc
+  p1_x14    KiDS (fs = 0, A <= 2) fail  worst +192.5  |  flagship fail  |  lens regions full-on <= 0.55 Mpc
+  p1_x20    KiDS (fs = 0, A <= 2) fail  worst +249.5  |  flagship fail  |  lens regions full-on <= 0.49 Mpc
+  p1.5_x2.5 KiDS (fs = 0, A <= 2) PASS  worst   -5.8  |  flagship PASS  |  lens regions full-on <= 1.26 Mpc
+  p1.5_x3.5 KiDS (fs = 0, A <= 2) fail  worst  +28.8  |  flagship fail  |  lens regions full-on <= 1.02 Mpc
+  p1.5_x5   KiDS (fs = 0, A <= 2) fail  worst  +98.7  |  flagship fail  |  lens regions full-on <= 0.90 Mpc
+  p1.5_x7   KiDS (fs = 0, A <= 2) fail  worst +133.1  |  flagship fail  |  lens regions full-on <= 0.76 Mpc
+  p1.5_x10  KiDS (fs = 0, A <= 2) fail  worst +166.0  |  flagship fail  |  lens regions full-on <= 0.64 Mpc
+  p1.5_x14  KiDS (fs = 0, A <= 2) fail  worst +210.9  |  flagship fail  |  lens regions full-on <= 0.54 Mpc
+  p1.5_x20  KiDS (fs = 0, A <= 2) fail  worst +277.2  |  flagship fail  |  lens regions full-on <= 0.48 Mpc
+
+  11/13 checks pass; load-bearing failures: 1; wrote XR9_kids_flagship_results_MUTATE.json   [25s]
+rc=1

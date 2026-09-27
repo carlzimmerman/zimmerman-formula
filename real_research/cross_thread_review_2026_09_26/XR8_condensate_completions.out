@@ -1,0 +1,142 @@
+XR8 (1/4) -- CAN ANY COMPLETION OF THE CONDENSATE'S SINGLE-VELOCITY FLUID PASS THROUGH SHELL CROSSING?
+
+WHY.  L374 (real_research/condensate_dust_2026/, 4366a5625) showed that the record's ghost-condensate dust -- P(X)
+  quadratic about its minimum plus the (box phi)^2 term, i.e. a dispersive gamma = 2 fluid with one velocity per point --
+  breaks down at the first stream crossing (cold) or collides like a fluid (warm), and named its untested completions:
+  the cubic operator and other completions.  XR8 part B tests them on L374's own problem.  The question for the author
+  ("we need to find out what the 'Fluid' is.. which is not particles") is whether ANY phase-only (single-velocity)
+  completion of the condensate multistreams.
+
+THE COMPLETIONS (one-dimensional, non-relativistic, weak field; the Hamiltonian form is in XR8_common.fluid):
+  (i)   control: L374's condensate itself, run through L374's own imported function.
+  (ii)  cubic operators.
+        (ii-a) the ghost condensate's spatial cubic (lap pi)(grad pi)^2 (the Galileon-type operator): in ONE dimension it
+               is a total derivative (Euler-Lagrange identically zero, sympy), so L374's 1-D test cannot see it; in 2-D
+               it is not (Monge-Ampere form).  Scope statement, not a pass.
+        (ii-b) the cubic term of P(X) about its minimum, P'''(X - X0)^3: an adiabatic index gamma = 3 (P ~ rho^3, the
+               X^{3/2}-type index of the Berezhiani-Khoury superfluid and of a 1-D collisionless gas) in place of 2, at
+               the same sound speed at rho_bar and the same k^4 term.
+        (ii-c) the X-dependence of the k^4 coefficient, alpha(X) -> the cubic operator delta (lap pi)^2: the k^4
+               coefficient becomes beta (1 + b delta_rho), b = +0.5 and -0.5.
+  (iii) higher-order dispersion: a k^6 term (gamma6 / 2)(d_x^2 v)^2, (a) ADDED to L374's k^4 with gamma6 = beta
+        (lambda/2pi)^2, and (b) REPLACING it (beta = 0) with the same gamma6.
+  WHAT IS HELD FIXED (the owner's pitfall d): the de Broglie length lambda = 4 pi D / v0 with D = sqrt(eps beta), as L374;
+  eps = W v0^2 / rho_bar; the k^6 length lambda / 2 pi.  So beta = D^2 / eps grows as W falls (L374's C1 effect, which
+  bends the large-scale flow as D^2 / W); both W (1e-1 ... 1e-4) and lambda (L/100, L/200) are scanned, and the
+  pre-crossing deviation is reported for every cell.
+
+PRE-DECLARED (written before any run of this script; the code tests that preceded it are listed in XR8_README.md).
+  R1 [the structural expectation]: NO single-velocity completion tracks the collisionless answer under L374's own pass
+     rule (L374 lines 41-44: M <= max(0.05, 2 x SP's M) at every post-crossing checkpoint in BOTH tests, min rho >=
+     -0.01 rho_bar, energy to 1%, no breakdown).  Reason: one velocity per point cannot represent three streams; the
+     best a single-velocity fluid can do is replace crossing by pressure (collision) or by a density that leaves the
+     condensate's domain (rho < 0, below the minimum).  If any cell tracks, R1 FAILS and that is the headline.
+
+  L374 source sha256 e3248164fc68b129...  (imported: Grid, v_init, S_init, condensate, schrodinger)
+  targets + SP done   [11s]
+  39 completion cells done   [91s]
+
+====================================================================================================================
+MISPLACED MASS vs the collisionless answer (L/50 coarse-graining), per completion and cell
+====================================================================================================================
+    (i) L374 condensate (control)                    free     L/100 W=0.001  : pre-crossing M 0.0054;  | below the minimum at 0.94 t_sc | BREAKS DOWN at 1.20 t_sc | min rho -9.23e+03 | E drift 7.5e-13
+    (i) L374 condensate (control)                    free     L/100 W=0.0001 : pre-crossing M 0.0537;  | below the minimum at 0.84 t_sc | BREAKS DOWN at 1.16 t_sc | min rho -9.94e+03 | E drift 6.8e-13
+    (ii-b) gamma = 3 (P''' / X^{3/2} index)          free     L/100 W=0.1    : pre-crossing M 0.0016;  | below the minimum at 1.04 t_sc | BREAKS DOWN at 1.07 t_sc | min rho -8.86e+03 | E drift 9.3e-11
+    (ii-b) gamma = 3 (P''' / X^{3/2} index)          free     L/100 W=0.01   : pre-crossing M 0.0004;  | below the minimum at 0.99 t_sc | BREAKS DOWN at 1.01 t_sc | min rho -9.94e+03 | E drift 1.2e-12
+    (ii-b) gamma = 3 (P''' / X^{3/2} index)          free     L/100 W=0.001  : pre-crossing M 0.0054;  | below the minimum at 0.92 t_sc | BREAKS DOWN at 0.93 t_sc | min rho -9.53e+03 | E drift 2.5e-14
+    (ii-b) gamma = 3 (P''' / X^{3/2} index)          free     L/100 W=0.0001 : pre-crossing M 0.0537;  | below the minimum at 0.81 t_sc | BREAKS DOWN at 0.82 t_sc | min rho -9.88e+03 | E drift 2.2e-14
+    (ii-b) gamma = 3 (P''' / X^{3/2} index)          free     L/200 W=0.001  : pre-crossing M 0.0013;  | below the minimum at 0.96 t_sc | BREAKS DOWN at 0.98 t_sc | min rho -9.76e+03 | E drift 1.2e-12
+    (iii-a) k^4 + k^6                                free     L/100 W=0.01   : pre-crossing M 0.0004;  | below the minimum at 1.04 t_sc | BREAKS DOWN at 1.50 t_sc | min rho -9.78e+03 | E drift 5.0e-12
+    (iii-a) k^4 + k^6                                free     L/100 W=0.001  : pre-crossing M 0.0054;  | below the minimum at 0.93 t_sc | BREAKS DOWN at 1.23 t_sc | min rho -9.89e+03 | E drift 3.2e-13
+    (iii-a) k^4 + k^6                                free     L/100 W=0.0001 : pre-crossing M 0.0537;  | below the minimum at 0.84 t_sc | BREAKS DOWN at 1.18 t_sc | min rho -1e+04 | E drift 3.7e-13
+    (iii-a) k^4 + k^6                                free     L/200 W=0.001  : pre-crossing M 0.0013;  | below the minimum at 0.98 t_sc | BREAKS DOWN at 1.17 t_sc | min rho -9.88e+03 | E drift 3.0e-13
+    (iii-b) k^6 only                                 free     L/100 W=0.01   : pre-crossing M 0.0001; t=1.50tsc 0.0996 | below the minimum at 1.05 t_sc | BREAKS DOWN at 1.60 t_sc | min rho -9.79e+03 | E drift 1.5e-07
+    (iii-b) k^6 only                                 free     L/100 W=0.001  : pre-crossing M 0.0000;  | below the minimum at 0.96 t_sc | BREAKS DOWN at 1.19 t_sc | min rho -9.92e+03 | E drift 6.7e-13
+    (iii-b) k^6 only                                 free     L/100 W=0.0001 : pre-crossing M 0.0000;  | below the minimum at 0.89 t_sc | BREAKS DOWN at 1.14 t_sc | min rho -9.96e+03 | E drift 6.4e-13
+    (iii-b) k^6 only                                 free     L/200 W=0.001  : pre-crossing M 0.0000;  | below the minimum at 1.00 t_sc | BREAKS DOWN at 1.16 t_sc | min rho -9.69e+03 | E drift 3.6e-12
+    (ii-c) alpha(X): k^4 coefficient x (1 + 0.5 delta) free     L/100 W=0.01   : pre-crossing M 0.0005;  | below the minimum at 0.94 t_sc | BREAKS DOWN at 0.94 t_sc | min rho -8.86e+03 | E drift 6.6e-09
+    (ii-c) alpha(X): k^4 coefficient x (1 + 0.5 delta) free     L/100 W=0.001  : pre-crossing M nan;  | below the minimum at 0.01 t_sc | BREAKS DOWN at 0.01 t_sc | min rho -1.4e+03 | E drift 2.2e-04
+    (ii-c) alpha(X): k^4 coefficient x (1 - 0.5 delta) free     L/100 W=0.01   : pre-crossing M 0.0004;  | below the minimum at 0.62 t_sc | BREAKS DOWN at 0.62 t_sc | min rho -119 | E drift 6.6e-06
+    (ii-c) alpha(X): k^4 coefficient x (1 - 0.5 delta) free     L/100 W=0.001  : pre-crossing M nan;  | below the minimum at 0.01 t_sc | BREAKS DOWN at 0.01 t_sc | min rho -639 | E drift 6.4e-04
+    (i) L374 condensate (control)                    gravity  L/100 W=0.001  : pre-crossing M 0.0029;  | below the minimum at 0.94 t_sc | BREAKS DOWN at 1.10 t_sc | min rho -9.65e+03 | E drift 1.8e-11
+    (i) L374 condensate (control)                    gravity  L/100 W=0.0001 : pre-crossing M 0.0290;  | below the minimum at 0.81 t_sc | BREAKS DOWN at 0.99 t_sc | min rho -9.93e+03 | E drift 2.3e-11
+    (ii-b) gamma = 3 (P''' / X^{3/2} index)          gravity  L/100 W=0.1    : pre-crossing M 0.0002;  | below the minimum at 1.04 t_sc | BREAKS DOWN at 1.07 t_sc | min rho -9.97e+03 | E drift 8.6e-11
+    (ii-b) gamma = 3 (P''' / X^{3/2} index)          gravity  L/100 W=0.01   : pre-crossing M 0.0003;  | below the minimum at 0.99 t_sc | BREAKS DOWN at 1.01 t_sc | min rho -9.99e+03 | E drift 5.0e-12
+    (ii-b) gamma = 3 (P''' / X^{3/2} index)          gravity  L/100 W=0.001  : pre-crossing M 0.0029;  | below the minimum at 0.92 t_sc | BREAKS DOWN at 0.93 t_sc | min rho -9.58e+03 | E drift 6.8e-14
+    (ii-b) gamma = 3 (P''' / X^{3/2} index)          gravity  L/100 W=0.0001 : pre-crossing M 0.0290;  | below the minimum at 0.79 t_sc | BREAKS DOWN at 0.80 t_sc | min rho -9.81e+03 | E drift 2.2e-14
+    (ii-b) gamma = 3 (P''' / X^{3/2} index)          gravity  L/200 W=0.001  : pre-crossing M 0.0007;  | below the minimum at 0.97 t_sc | BREAKS DOWN at 0.98 t_sc | min rho -1e+04 | E drift 9.2e-13
+    (iii-a) k^4 + k^6                                gravity  L/100 W=0.01   : pre-crossing M 0.0003;  | below the minimum at 1.01 t_sc | BREAKS DOWN at 1.24 t_sc | min rho -9.68e+03 | E drift 2.1e-11
+    (iii-a) k^4 + k^6                                gravity  L/100 W=0.001  : pre-crossing M 0.0029;  | below the minimum at 0.93 t_sc | BREAKS DOWN at 1.13 t_sc | min rho -9.8e+03 | E drift 8.1e-13
+    (iii-a) k^4 + k^6                                gravity  L/100 W=0.0001 : pre-crossing M 0.0290;  | below the minimum at 0.81 t_sc | BREAKS DOWN at 1.07 t_sc | min rho -9.98e+03 | E drift 2.5e-12
+    (iii-a) k^4 + k^6                                gravity  L/200 W=0.001  : pre-crossing M 0.0007;  | below the minimum at 0.97 t_sc | BREAKS DOWN at 1.10 t_sc | min rho -9.82e+03 | E drift 1.4e-12
+    (iii-b) k^6 only                                 gravity  L/100 W=0.01   : pre-crossing M 0.0000;  | below the minimum at 1.02 t_sc | BREAKS DOWN at 1.26 t_sc | min rho -9.86e+03 | E drift 6.2e-11
+    (iii-b) k^6 only                                 gravity  L/100 W=0.001  : pre-crossing M 0.0000;  | below the minimum at 0.96 t_sc | BREAKS DOWN at 1.12 t_sc | min rho -9.92e+03 | E drift 2.3e-12
+    (iii-b) k^6 only                                 gravity  L/100 W=0.0001 : pre-crossing M 0.0000;  | below the minimum at 0.90 t_sc | BREAKS DOWN at 1.37 t_sc | min rho -9.97e+03 | E drift 4.6e-13
+    (iii-b) k^6 only                                 gravity  L/200 W=0.001  : pre-crossing M 0.0000;  | below the minimum at 0.99 t_sc | BREAKS DOWN at 1.09 t_sc | min rho -9.81e+03 | E drift 2.7e-12
+    (ii-c) alpha(X): k^4 coefficient x (1 + 0.5 delta) gravity  L/100 W=0.01   : pre-crossing M 0.0003;  | below the minimum at 0.91 t_sc | BREAKS DOWN at 0.92 t_sc | min rho -8.1e+03 | E drift 1.7e-07
+    (ii-c) alpha(X): k^4 coefficient x (1 + 0.5 delta) gravity  L/100 W=0.001  : pre-crossing M nan;  | below the minimum at 0.01 t_sc | BREAKS DOWN at 0.01 t_sc | min rho -1.44e+03 | E drift 2.2e-04
+    (ii-c) alpha(X): k^4 coefficient x (1 - 0.5 delta) gravity  L/100 W=0.01   : pre-crossing M 0.0003;  | below the minimum at 0.64 t_sc | BREAKS DOWN at 0.64 t_sc | min rho -202 | E drift 4.7e-06
+    (ii-c) alpha(X): k^4 coefficient x (1 - 0.5 delta) gravity  L/100 W=0.001  : pre-crossing M nan;  | below the minimum at 0.01 t_sc | BREAKS DOWN at 0.01 t_sc | min rho -651 | E drift 6.5e-04
+    (i) L374 condensate (control)                    free     L/100 W=0.1    : pre-crossing M 0.0012; t=1.50tsc 0.0513, t=2.00tsc 0.1878, t=3.00tsc 0.2157 | below the minimum at 1.16 t_sc | min rho -7.93 | E drift 1.6e-05
+
+====================================================================================================================
+CHECKS
+====================================================================================================================
+  [PASS] C0 IMPORT: the generalised solver reproduces L374's imported condensate() exactly (base completion, same grid)
+         measured: t_neg 0.1502174715459448 vs 0.1502174715459448; t_break 0.19025727308545717 vs 0.19025727308545717; max |d rho_s| 4.4e-16
+  [PASS] C1 CONTROL: L374's committed first-negative and breakdown times reproduced to <= 1e-3 relative at nx = 4096, and its W = 0.1 free-streaming misplacement at 3 t_sc to 1e-3 (the 2048 grid used for the completions is printed too)
+         measured: {'free|W=0.001': 't_neg 1.2e-14, t_break 1.6e-04 (2048: 2.0e-03)', 'free|W=0.0001': 't_neg 7.7e-14, t_break 3.2e-05 (2048: 1.7e-03)', 'gravity|W=0.001': 't_neg 1.2e-13, t_break 2.4e-04 (2048: 2.6e-03)', 'gravity|W=0.0001': 't_neg 1.5e-13, t_break 8.4e-04 (2048: 1.3e-02)', 'M(W=0.1, 3 t_sc)': '0.2152 vs L374 0.2152'}
+  [PASS] C2 POSITIVE CONTROL: Schroedinger-Poisson at the same D tracks after crossing (this run: free, L/100, M <= 0.05); L374's committed SP misplacement, the pass rule's reference, is below 0.025 everywhere, so the rule's threshold is 0.05
+         measured: this run 0.0053; L374 max post-crossing SP M {'free|L/100': 0.0053, 'free|L/200': 0.0013, 'gravity|L/100': 0.0103, 'gravity|L/200': 0.0052}
+  [PASS] C3 NEGATIVE CONTROL (L374's own pressureless run): central density 20 rho_bar at 0.95 t_sc (10%), then max rho > 50 rho_bar or breakdown by 1.05 t_sc
+         measured: rho_c(0.95 t_sc) 19.997; max rho by 1.05 t_sc 332.9; t_break 0.2115235277877273
+  [PASS] C4 NUMERICAL TRUST: every well-posed completion run conserves its Hamiltonian to 1% while min rho >= -rho_bar (alpha(X) is diagnosed separately in C5b)
+         measured: max drift 1.6e-05 over 31 runs
+  [PASS] C5 RESOLUTION AND TIME STEP, per completion (gamma = 3, k^4 + k^6, k^6): the (free, L/100, W = 1e-3) cell at 2x grid (4096) and at dt/2 gives the same verdict, with first-negative / breakdown times within 20%
+         measured: {'g3': 'verdicts (False, False, False); t_neg [0.9154, 0.9149, 0.9154] t_sc; t_break [0.9266, 0.919, 0.9266] t_sc; max spread 8.3e-03', 'k4k6': 'verdicts (False, False, False); t_neg [0.9348, 0.9348, 0.9348] t_sc; t_break [1.2317, 1.2314, 1.2316] t_sc; max spread 1.9e-04', 'k6': 'verdicts (False, False, False); t_neg [0.964, 0.964, 0.964] t_sc; t_break [1.1924, 1.1923, 1.1924] t_sc; max spread 5.0e-05'}
+  [PASS] C5b alpha(X) (the delta (lap pi)^2 cubic): at W = 1e-3 the completion is ILL-POSED on the initial flow (|b d_x v| = 3.1 > eps/D = 1.26: its Hamiltonian loses positivity, breakdown within 0.1 t_sc and earlier on the finer grid); at W = 1e-2 (eps/D = 12.6) its breakdown converges within 20%
+         measured: {'W=0.001': 't_break 2048 0.0061 t_sc, 4096 0.0014 t_sc; eps/D 1.26 vs |b d_x v| 3.14', 'W=0.01': 't_break 2048 0.9418 t_sc, 4096 0.9331 t_sc; eps/D 12.57 vs |b d_x v| 3.14'}
+  [PASS] C5c TIME STEP, k^6 COMPLETIONS WITH GRAVITY: every self-gravitating k^4+k^6 and k^6 cell (every W and lambda), run at half L374's step, re-run at a further half gives the same verdict and first-negative / breakdown times within 5%
+         measured: 8 cells; max spread 1.8e-04; outliers none
+  [PASS] C6 SYMBOLIC (ii-a): the ghost condensate's spatial cubic (lap pi)(grad pi)^2 is a total derivative in 1-D (Euler-Lagrange identically 0) but not in 2-D -- L374's 1-D test cannot see it
+         measured: 1-D: 0; 2-D: -4*(Derivative(pi(x, y, t), (x, 2))*Derivative(pi(x, y, t), (y, 2)) - Derivative(pi(x, y, t), x, y)**2)
+         reading:  the leading Galileon-type cubic needs a 2-D/3-D shell-crossing test; this lane does not run one
+
+====================================================================================================================
+R1  THE STRUCTURAL EXPECTATION (set before any run): no single-velocity completion tracks
+====================================================================================================================
+    (i) L374 condensate (control)                    L/100 W=0.0001 : free does NOT track, self-gravitating does NOT track
+    (i) L374 condensate (control)                    L/100 W=0.001  : free does NOT track, self-gravitating does NOT track
+    (i) L374 condensate (control)                    L/100 W=0.1    : free does NOT track, self-gravitating -
+    (ii-b) gamma = 3 (P''' / X^{3/2} index)          L/100 W=0.0001 : free does NOT track, self-gravitating does NOT track
+    (ii-b) gamma = 3 (P''' / X^{3/2} index)          L/100 W=0.001  : free does NOT track, self-gravitating does NOT track
+    (ii-b) gamma = 3 (P''' / X^{3/2} index)          L/100 W=0.01   : free does NOT track, self-gravitating does NOT track
+    (ii-b) gamma = 3 (P''' / X^{3/2} index)          L/100 W=0.1    : free does NOT track, self-gravitating does NOT track
+    (ii-b) gamma = 3 (P''' / X^{3/2} index)          L/200 W=0.001  : free does NOT track, self-gravitating does NOT track
+    (ii-c) alpha(X): k^4 coefficient x (1 + 0.5 delta) L/100 W=0.001  : free does NOT track, self-gravitating does NOT track
+    (ii-c) alpha(X): k^4 coefficient x (1 + 0.5 delta) L/100 W=0.01   : free does NOT track, self-gravitating does NOT track
+    (ii-c) alpha(X): k^4 coefficient x (1 - 0.5 delta) L/100 W=0.001  : free does NOT track, self-gravitating does NOT track
+    (ii-c) alpha(X): k^4 coefficient x (1 - 0.5 delta) L/100 W=0.01   : free does NOT track, self-gravitating does NOT track
+    (iii-a) k^4 + k^6                                L/100 W=0.0001 : free does NOT track, self-gravitating does NOT track
+    (iii-a) k^4 + k^6                                L/100 W=0.001  : free does NOT track, self-gravitating does NOT track
+    (iii-a) k^4 + k^6                                L/100 W=0.01   : free does NOT track, self-gravitating does NOT track
+    (iii-a) k^4 + k^6                                L/200 W=0.001  : free does NOT track, self-gravitating does NOT track
+    (iii-b) k^6 only                                 L/100 W=0.0001 : free does NOT track, self-gravitating does NOT track
+    (iii-b) k^6 only                                 L/100 W=0.001  : free does NOT track, self-gravitating does NOT track
+    (iii-b) k^6 only                                 L/100 W=0.01   : free does NOT track, self-gravitating does NOT track
+    (iii-b) k^6 only                                 L/200 W=0.001  : free does NOT track, self-gravitating does NOT track
+  [PASS] R1: no single-velocity completion of the condensate tracks the collisionless answer in both tests (L374's rule)
+         measured: tracking cells: none
+         reading:  every completion either leaves the condensate's domain (rho < 0, below the minimum, then runs away) or replaces crossing by pressure; one velocity per point cannot carry three streams
+  [PASS] W (reported) the failure modes in the table above
+         measured: see above
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  11/11 checks pass; load-bearing failures: 0; wrote XR8_condensate_completions_results.json   [258s]
+rc=0
+
+real	4m18.684s
+user	2m36.172s
+sys	0m32.351s

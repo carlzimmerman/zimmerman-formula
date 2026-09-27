@@ -1,0 +1,200 @@
+XR9_environment.py -- THE SMALL-REGION DOOR, part 3 of 3: the galaxy-environment gates as the vacuum gate's threshold is
+raised -- the Local Group zero-velocity radius, the two EFE samples (cluster-infall BTFR N = 314, Local Volume dwarfs
+N = 92), the Coma ultra-diffuse galaxies, and the rotation-curve radii of SPARC.  Independent cross-thread review
+(2026-09-26, night).  Read-only on every committed file.  XR6's two scripts are loaded as libraries (their definitions only,
+MUTATE forced off; neither main block is run) and their committed numbers are the controls; KC/KD's loaders are imported
+exactly as XR6 imported them (main() never called).
+
+THE DOOR (XR9_kids_flagship.py has the full statement and the pre-declared hypothesis H).  XR6 found the converged model
+(p = 1, x_c0 = 2.5) does not fix the EFE samples, the Local Group's R_0 (1.41/1.48 Mpc against 0.96 +- 0.03) or the Coma
+UDGs: the data say galaxies behave as if isolated, with less MOND pull at ~1 Mpc than a large region gives.  Raising the
+threshold shrinks every region (r_e ~ v_f/(H sqrt(x_c,eff))) and MS5's kappa-form cap with it (l_cap = v_cap/(H sqrt(x_c,eff))).
+This lane asks, cell by cell (p in {1, 1.5}, x_c0 in {2.5, 3.5, 5, 7, 10, 14, 20}), whether those liabilities move into
+their bands, and whether any new failure appears (a galaxy whose own region no longer covers its kinematics).
+
+THE CAP.  MS5's kappa form (61a3a0858, the coordinating review's correction): U_cap = C min(lap Phi_X, v_cap^2 kappa_X^2),
+kappa_X = 1/r for every spherical profile, so a spherical host's region = {the door's density condition} AND
+{r <= l_cap(z)}, v_cap = 325 km/s.  The form XR6 used (threshold x max(1, v_loc^2/v_cap^2)) is WITHDRAWN; it is used here
+ONLY to reproduce XR6's committed numbers (labelled "withdrawn-form control").  At the converged cell the kappa form puts
+the clusters' edges at 2.9-3.0 Mpc (XR6: 3.5-3.7), so the model's own EFE numbers at x_c0 = 2.5 are this lane's, not XR6's.
+A member galaxy's own region beyond its host's: the density condition as XR6 wrote it (host density + the galaxy's
+scalar-sum phantom) with no v_loc term, and the kappa condition read two ways (both scored, a pass must hold under both):
+  'galaxy'    kappa = 1/s: the member's own equipotentials as if it were alone, so its region is capped at s <= l_cap;
+  'twofield'  kappa of the member's radial MOND field plus its host's (locally uniform) field and the host's curvature:
+              exact for that superposition (derivation in galaxy_region_k's docstring).  Toward the host kappa =
+              g_g/(s |g_g - g_h|) sets the region's extent; ACROSS the host's field kappa -> g_g^3/(s |F|^3) (deep MOND), so a
+              member deep in a strong external field beyond its host's cap can lose the kappa condition at its own disc --
+              such a galaxy is Newtonian with its carrier cleared: a NEW FAILURE, counted, never dropped.
+  (A first development run read the second way as 'the galaxy's field must exceed the host's' and flagged 234 member-
+  variants as new failures at the converged cell.  That prompted re-deriving the curvature: the step at g_g = g_h was
+  wrong -- the curvature near a satellite falls as (g_g/g_h)^3/s across the external field and rises toward the saddle.
+  The reading was replaced by the exact two-field form; none of that run's numbers is used.)
+
+THE GATES (definitions fixed before the scan; each reported per cell, both footings):
+  LG    XR6's (k02/XR4's) point-mass + Lambda shell model, the edge from the capped switch solved numerically at 97 epochs
+        (kappa form; the closed form beside it), M_b = 1.145e11 and 1.72e11, carrier histories none / decay / full.
+        Band |log10(R_0/0.96)| <= 0.10.  Gated on the model's own history ('decay': L388-like kicked retention):
+        pass if some M_b lands in the band on BOTH footings.
+  EFE-C the cluster-infall BTFR slope (d Delta/d log g_e) under operator A (L361's action: the host's in-region baryons,
+        screened beyond: gaps Dirichlet, 1/m = 0.2, 0.5 Mpc), both forms (scalar sum, subtract), f_b(R500) 0.10/0.13/0.157,
+        r = R_proj and 1.3 R_proj, baryons extended or cut at r200, kappa 'galaxy' and 'twofield'.  Pass = every variant within
+        2 sigma of the observed slope AND no new failure.  The members inside a host's region are counted.
+  EFE-D the Local Volume dwarfs' statistic C (XR4/XR6), host baryons x1, x1.5, x2; pass = every variant within 2 sigma.
+  UDG   the eleven Coma UDGs (L23's pipeline as XR6 rebuilt it): inside Coma's region the EFE of Coma's baryons (L361);
+        beyond it the screened, transmitted field (and Newtonian if its own region no longer covers r_1/2); the systematic
+        floor recomputed on each cell's arm.  Pass = the central arm (beta-model, Einasto 3-D, f_b 0.13) below 2 sigma on
+        both footings for every gap and kappa reading, with no Newtonian UDG.
+  RC    SPARC's 175 rotation curves: every galaxy's fully-on radius at z = 0 (U = x_c,eff (1 + w), w = 0.25, kappa cap)
+        must reach 3 R_last, so the RAR is untouched.
+
+  *** MUTATE=1: every scan cell uses the converged cell's threshold; E1 must FAIL ***
+  XR6's LG and EFE/UDG definitions loaded (mains not run)   [1s]
+
+======================================================================================================================
+PART 1 -- THE LOCAL GROUP's ZERO-VELOCITY RADIUS (XR6/XR4/k02's shell model; kappa-form edge)
+======================================================================================================================
+  [PASS] C1 CONTROL (LG): XR6's committed R_0 table (closed-form MOND-sector edge, x_c0 = 2.0/2.5/2.97, both M_b, three histories, both footings; 36 cells) and its numerical capped-table R_0 (withdrawn local cap) are reproduced exactly
+         measured: max relative difference 0.0e+00
+    kappa-form numerical table at the converged cell: R_0 = 1.4132 / 1.4810 Mpc (withdrawn-form table 1.4132 / 1.4810): the kappa cap does not bind on the LG (v_f = 195-226 km/s < v_cap)
+    56 kappa-form edge tables built   [16s]
+  p1_x2.5   LG edge at z = 0 (M_b 1.145e11) 1.85/1.94 Mpc | R_0 [Mpc] decay: 1.440 1.506 1.597 1.670 | none: 1.413 1.481 1.565 1.640 | full: 1.455 1.520 1.616 1.687  -> out (any history: no)
+  p1_x3.5   LG edge at z = 0 (M_b 1.145e11) 1.85/1.94 Mpc | R_0 [Mpc] decay: 1.440 1.506 1.597 1.670 | none: 1.413 1.481 1.565 1.640 | full: 1.455 1.520 1.616 1.687  -> out (any history: no)
+  p1_x5     LG edge at z = 0 (M_b 1.145e11) 1.85/1.94 Mpc | R_0 [Mpc] decay: 1.440 1.506 1.597 1.670 | none: 1.413 1.481 1.565 1.640 | full: 1.455 1.520 1.616 1.687  -> out (any history: no)
+  p1_x7     LG edge at z = 0 (M_b 1.145e11) 1.85/1.94 Mpc | R_0 [Mpc] decay: 1.440 1.506 1.597 1.670 | none: 1.413 1.481 1.565 1.640 | full: 1.455 1.520 1.616 1.687  -> out (any history: no)
+  p1_x10    LG edge at z = 0 (M_b 1.145e11) 1.85/1.94 Mpc | R_0 [Mpc] decay: 1.440 1.506 1.597 1.670 | none: 1.413 1.481 1.565 1.640 | full: 1.455 1.520 1.616 1.687  -> out (any history: no)
+  p1_x14    LG edge at z = 0 (M_b 1.145e11) 1.85/1.94 Mpc | R_0 [Mpc] decay: 1.440 1.506 1.597 1.670 | none: 1.413 1.481 1.565 1.640 | full: 1.455 1.520 1.616 1.687  -> out (any history: no)
+  p1_x20    LG edge at z = 0 (M_b 1.145e11) 1.85/1.94 Mpc | R_0 [Mpc] decay: 1.440 1.506 1.597 1.670 | none: 1.413 1.481 1.565 1.640 | full: 1.455 1.520 1.616 1.687  -> out (any history: no)
+  p1.5_x2.5 LG edge at z = 0 (M_b 1.145e11) 1.85/1.94 Mpc | R_0 [Mpc] decay: 1.440 1.506 1.597 1.670 | none: 1.413 1.481 1.565 1.640 | full: 1.455 1.520 1.616 1.687  -> out (any history: no)
+  p1.5_x3.5 LG edge at z = 0 (M_b 1.145e11) 1.85/1.94 Mpc | R_0 [Mpc] decay: 1.440 1.506 1.597 1.670 | none: 1.413 1.481 1.565 1.640 | full: 1.455 1.520 1.616 1.687  -> out (any history: no)
+  p1.5_x5   LG edge at z = 0 (M_b 1.145e11) 1.85/1.94 Mpc | R_0 [Mpc] decay: 1.440 1.506 1.597 1.670 | none: 1.413 1.481 1.565 1.640 | full: 1.455 1.520 1.616 1.687  -> out (any history: no)
+  p1.5_x7   LG edge at z = 0 (M_b 1.145e11) 1.85/1.94 Mpc | R_0 [Mpc] decay: 1.440 1.506 1.597 1.670 | none: 1.413 1.481 1.565 1.640 | full: 1.455 1.520 1.616 1.687  -> out (any history: no)
+  p1.5_x10  LG edge at z = 0 (M_b 1.145e11) 1.85/1.94 Mpc | R_0 [Mpc] decay: 1.440 1.506 1.597 1.670 | none: 1.413 1.481 1.565 1.640 | full: 1.455 1.520 1.616 1.687  -> out (any history: no)
+  p1.5_x14  LG edge at z = 0 (M_b 1.145e11) 1.85/1.94 Mpc | R_0 [Mpc] decay: 1.440 1.506 1.597 1.670 | none: 1.413 1.481 1.565 1.640 | full: 1.455 1.520 1.616 1.687  -> out (any history: no)
+  p1.5_x20  LG edge at z = 0 (M_b 1.145e11) 1.85/1.94 Mpc | R_0 [Mpc] decay: 1.440 1.506 1.597 1.670 | none: 1.413 1.481 1.565 1.640 | full: 1.455 1.520 1.616 1.687  -> out (any history: no)
+    (order in each group: M_b 1.145e11 canonical, alt; 1.72e11 canonical, alt; band 0.76-1.21 Mpc; closed-form edges in the JSON)
+
+======================================================================================================================
+PART 2 -- THE CLUSTER-INFALL BTFR (N = 314): operator A with the kappa cap, cell by cell
+======================================================================================================================
+  [PASS] C2 CONTROL (EFE, withdrawn-form control): with XR6's own switch functions at p = 1, x_c0 = 2.5 this lane's scoring loop reproduces XR6's committed cluster table (24 variants x 6 scenarios x 8 numbers, members beyond the edge) and its classification exactly
+         measured: max |diff| 0.0e+00; classification max |diff| 0
+    [49s]
+  p1_x2.5   cluster edges (kappa) 2.88-3.01 Mpc; members inside (a + merged, canonical) galaxy-kappa 0.92 two-field 0.51 uncapped 1.00; slope sigma, operator A kappa: all variants 2.23-6.28, central 2.62-6.03 (uncapped 2.21-4.91); zero point 0.01-3.15 sigma; new failures {'galaxy': 0, 'twofield': 0} -> fail   [55s]
+      by form (operator A kappa): scalar sum 2.23-3.36, subtract 3.46-6.28;  by scenario (max over systematics): galaxy/Dirichlet: 5.4, galaxy/1/m=0.2: 5.1, galaxy/1/m=0.5: 4.9, twofield/Dirichlet: 6.3, twofield/1/m=0.2: 6.1, twofield/1/m=0.5: 5.8, A uncapped/Dirichlet: 4.9, A uncapped/1/m=0.2: 4.9, A uncapped/1/m=0.5: 4.9, B (PM: all baryons, unscreened): 4.9
+  p1_x3.5   cluster edges (kappa) 2.88-3.01 Mpc; members inside (a + merged, canonical) galaxy-kappa 0.92 two-field 0.51 uncapped 1.00; slope sigma, operator A kappa: all variants 2.23-6.28, central 2.62-6.03 (uncapped 2.21-4.91); zero point 0.01-3.15 sigma; new failures {'galaxy': 0, 'twofield': 0} -> fail   [60s]
+      by form (operator A kappa): scalar sum 2.23-3.36, subtract 3.46-6.28;  by scenario (max over systematics): galaxy/Dirichlet: 5.4, galaxy/1/m=0.2: 5.1, galaxy/1/m=0.5: 4.9, twofield/Dirichlet: 6.3, twofield/1/m=0.2: 6.1, twofield/1/m=0.5: 5.8, A uncapped/Dirichlet: 4.9, A uncapped/1/m=0.2: 4.9, A uncapped/1/m=0.5: 4.9, B (PM: all baryons, unscreened): 4.9
+  p1_x5     cluster edges (kappa) 2.88-3.01 Mpc; members inside (a + merged, canonical) galaxy-kappa 0.92 two-field 0.51 uncapped 1.00; slope sigma, operator A kappa: all variants 2.23-6.28, central 2.62-6.03 (uncapped 2.21-4.91); zero point 0.01-3.15 sigma; new failures {'galaxy': 0, 'twofield': 0} -> fail   [65s]
+      by form (operator A kappa): scalar sum 2.23-3.36, subtract 3.46-6.28;  by scenario (max over systematics): galaxy/Dirichlet: 5.4, galaxy/1/m=0.2: 5.1, galaxy/1/m=0.5: 4.9, twofield/Dirichlet: 6.3, twofield/1/m=0.2: 6.1, twofield/1/m=0.5: 5.8, A uncapped/Dirichlet: 4.9, A uncapped/1/m=0.2: 4.9, A uncapped/1/m=0.5: 4.9, B (PM: all baryons, unscreened): 4.9
+  p1_x7     cluster edges (kappa) 2.88-3.01 Mpc; members inside (a + merged, canonical) galaxy-kappa 0.92 two-field 0.51 uncapped 1.00; slope sigma, operator A kappa: all variants 2.23-6.28, central 2.62-6.03 (uncapped 2.21-4.91); zero point 0.01-3.15 sigma; new failures {'galaxy': 0, 'twofield': 0} -> fail   [70s]
+      by form (operator A kappa): scalar sum 2.23-3.36, subtract 3.46-6.28;  by scenario (max over systematics): galaxy/Dirichlet: 5.4, galaxy/1/m=0.2: 5.1, galaxy/1/m=0.5: 4.9, twofield/Dirichlet: 6.3, twofield/1/m=0.2: 6.1, twofield/1/m=0.5: 5.8, A uncapped/Dirichlet: 4.9, A uncapped/1/m=0.2: 4.9, A uncapped/1/m=0.5: 4.9, B (PM: all baryons, unscreened): 4.9
+  p1_x10    cluster edges (kappa) 2.88-3.01 Mpc; members inside (a + merged, canonical) galaxy-kappa 0.92 two-field 0.51 uncapped 1.00; slope sigma, operator A kappa: all variants 2.23-6.28, central 2.62-6.03 (uncapped 2.21-4.91); zero point 0.01-3.15 sigma; new failures {'galaxy': 0, 'twofield': 0} -> fail   [75s]
+      by form (operator A kappa): scalar sum 2.23-3.36, subtract 3.46-6.28;  by scenario (max over systematics): galaxy/Dirichlet: 5.4, galaxy/1/m=0.2: 5.1, galaxy/1/m=0.5: 4.9, twofield/Dirichlet: 6.3, twofield/1/m=0.2: 6.1, twofield/1/m=0.5: 5.8, A uncapped/Dirichlet: 4.9, A uncapped/1/m=0.2: 4.9, A uncapped/1/m=0.5: 4.9, B (PM: all baryons, unscreened): 4.9
+  p1_x14    cluster edges (kappa) 2.88-3.01 Mpc; members inside (a + merged, canonical) galaxy-kappa 0.92 two-field 0.51 uncapped 1.00; slope sigma, operator A kappa: all variants 2.23-6.28, central 2.62-6.03 (uncapped 2.21-4.91); zero point 0.01-3.15 sigma; new failures {'galaxy': 0, 'twofield': 0} -> fail   [80s]
+      by form (operator A kappa): scalar sum 2.23-3.36, subtract 3.46-6.28;  by scenario (max over systematics): galaxy/Dirichlet: 5.4, galaxy/1/m=0.2: 5.1, galaxy/1/m=0.5: 4.9, twofield/Dirichlet: 6.3, twofield/1/m=0.2: 6.1, twofield/1/m=0.5: 5.8, A uncapped/Dirichlet: 4.9, A uncapped/1/m=0.2: 4.9, A uncapped/1/m=0.5: 4.9, B (PM: all baryons, unscreened): 4.9
+  p1_x20    cluster edges (kappa) 2.88-3.01 Mpc; members inside (a + merged, canonical) galaxy-kappa 0.92 two-field 0.51 uncapped 1.00; slope sigma, operator A kappa: all variants 2.23-6.28, central 2.62-6.03 (uncapped 2.21-4.91); zero point 0.01-3.15 sigma; new failures {'galaxy': 0, 'twofield': 0} -> fail   [85s]
+      by form (operator A kappa): scalar sum 2.23-3.36, subtract 3.46-6.28;  by scenario (max over systematics): galaxy/Dirichlet: 5.4, galaxy/1/m=0.2: 5.1, galaxy/1/m=0.5: 4.9, twofield/Dirichlet: 6.3, twofield/1/m=0.2: 6.1, twofield/1/m=0.5: 5.8, A uncapped/Dirichlet: 4.9, A uncapped/1/m=0.2: 4.9, A uncapped/1/m=0.5: 4.9, B (PM: all baryons, unscreened): 4.9
+  p1.5_x2.5 cluster edges (kappa) 2.88-3.01 Mpc; members inside (a + merged, canonical) galaxy-kappa 0.92 two-field 0.51 uncapped 1.00; slope sigma, operator A kappa: all variants 2.23-6.28, central 2.62-6.03 (uncapped 2.21-4.91); zero point 0.01-3.15 sigma; new failures {'galaxy': 0, 'twofield': 0} -> fail   [90s]
+      by form (operator A kappa): scalar sum 2.23-3.36, subtract 3.46-6.28;  by scenario (max over systematics): galaxy/Dirichlet: 5.4, galaxy/1/m=0.2: 5.1, galaxy/1/m=0.5: 4.9, twofield/Dirichlet: 6.3, twofield/1/m=0.2: 6.1, twofield/1/m=0.5: 5.8, A uncapped/Dirichlet: 4.9, A uncapped/1/m=0.2: 4.9, A uncapped/1/m=0.5: 4.9, B (PM: all baryons, unscreened): 4.9
+  p1.5_x3.5 cluster edges (kappa) 2.88-3.01 Mpc; members inside (a + merged, canonical) galaxy-kappa 0.92 two-field 0.51 uncapped 1.00; slope sigma, operator A kappa: all variants 2.23-6.28, central 2.62-6.03 (uncapped 2.21-4.91); zero point 0.01-3.15 sigma; new failures {'galaxy': 0, 'twofield': 0} -> fail   [96s]
+      by form (operator A kappa): scalar sum 2.23-3.36, subtract 3.46-6.28;  by scenario (max over systematics): galaxy/Dirichlet: 5.4, galaxy/1/m=0.2: 5.1, galaxy/1/m=0.5: 4.9, twofield/Dirichlet: 6.3, twofield/1/m=0.2: 6.1, twofield/1/m=0.5: 5.8, A uncapped/Dirichlet: 4.9, A uncapped/1/m=0.2: 4.9, A uncapped/1/m=0.5: 4.9, B (PM: all baryons, unscreened): 4.9
+  p1.5_x5   cluster edges (kappa) 2.88-3.01 Mpc; members inside (a + merged, canonical) galaxy-kappa 0.92 two-field 0.51 uncapped 1.00; slope sigma, operator A kappa: all variants 2.23-6.28, central 2.62-6.03 (uncapped 2.21-4.91); zero point 0.01-3.15 sigma; new failures {'galaxy': 0, 'twofield': 0} -> fail   [101s]
+      by form (operator A kappa): scalar sum 2.23-3.36, subtract 3.46-6.28;  by scenario (max over systematics): galaxy/Dirichlet: 5.4, galaxy/1/m=0.2: 5.1, galaxy/1/m=0.5: 4.9, twofield/Dirichlet: 6.3, twofield/1/m=0.2: 6.1, twofield/1/m=0.5: 5.8, A uncapped/Dirichlet: 4.9, A uncapped/1/m=0.2: 4.9, A uncapped/1/m=0.5: 4.9, B (PM: all baryons, unscreened): 4.9
+  p1.5_x7   cluster edges (kappa) 2.88-3.01 Mpc; members inside (a + merged, canonical) galaxy-kappa 0.92 two-field 0.51 uncapped 1.00; slope sigma, operator A kappa: all variants 2.23-6.28, central 2.62-6.03 (uncapped 2.21-4.91); zero point 0.01-3.15 sigma; new failures {'galaxy': 0, 'twofield': 0} -> fail   [106s]
+      by form (operator A kappa): scalar sum 2.23-3.36, subtract 3.46-6.28;  by scenario (max over systematics): galaxy/Dirichlet: 5.4, galaxy/1/m=0.2: 5.1, galaxy/1/m=0.5: 4.9, twofield/Dirichlet: 6.3, twofield/1/m=0.2: 6.1, twofield/1/m=0.5: 5.8, A uncapped/Dirichlet: 4.9, A uncapped/1/m=0.2: 4.9, A uncapped/1/m=0.5: 4.9, B (PM: all baryons, unscreened): 4.9
+  p1.5_x10  cluster edges (kappa) 2.88-3.01 Mpc; members inside (a + merged, canonical) galaxy-kappa 0.92 two-field 0.51 uncapped 1.00; slope sigma, operator A kappa: all variants 2.23-6.28, central 2.62-6.03 (uncapped 2.21-4.91); zero point 0.01-3.15 sigma; new failures {'galaxy': 0, 'twofield': 0} -> fail   [112s]
+      by form (operator A kappa): scalar sum 2.23-3.36, subtract 3.46-6.28;  by scenario (max over systematics): galaxy/Dirichlet: 5.4, galaxy/1/m=0.2: 5.1, galaxy/1/m=0.5: 4.9, twofield/Dirichlet: 6.3, twofield/1/m=0.2: 6.1, twofield/1/m=0.5: 5.8, A uncapped/Dirichlet: 4.9, A uncapped/1/m=0.2: 4.9, A uncapped/1/m=0.5: 4.9, B (PM: all baryons, unscreened): 4.9
+  p1.5_x14  cluster edges (kappa) 2.88-3.01 Mpc; members inside (a + merged, canonical) galaxy-kappa 0.92 two-field 0.51 uncapped 1.00; slope sigma, operator A kappa: all variants 2.23-6.28, central 2.62-6.03 (uncapped 2.21-4.91); zero point 0.01-3.15 sigma; new failures {'galaxy': 0, 'twofield': 0} -> fail   [117s]
+      by form (operator A kappa): scalar sum 2.23-3.36, subtract 3.46-6.28;  by scenario (max over systematics): galaxy/Dirichlet: 5.4, galaxy/1/m=0.2: 5.1, galaxy/1/m=0.5: 4.9, twofield/Dirichlet: 6.3, twofield/1/m=0.2: 6.1, twofield/1/m=0.5: 5.8, A uncapped/Dirichlet: 4.9, A uncapped/1/m=0.2: 4.9, A uncapped/1/m=0.5: 4.9, B (PM: all baryons, unscreened): 4.9
+  p1.5_x20  cluster edges (kappa) 2.88-3.01 Mpc; members inside (a + merged, canonical) galaxy-kappa 0.92 two-field 0.51 uncapped 1.00; slope sigma, operator A kappa: all variants 2.23-6.28, central 2.62-6.03 (uncapped 2.21-4.91); zero point 0.01-3.15 sigma; new failures {'galaxy': 0, 'twofield': 0} -> fail   [122s]
+      by form (operator A kappa): scalar sum 2.23-3.36, subtract 3.46-6.28;  by scenario (max over systematics): galaxy/Dirichlet: 5.4, galaxy/1/m=0.2: 5.1, galaxy/1/m=0.5: 4.9, twofield/Dirichlet: 6.3, twofield/1/m=0.2: 6.1, twofield/1/m=0.5: 5.8, A uncapped/Dirichlet: 4.9, A uncapped/1/m=0.2: 4.9, A uncapped/1/m=0.5: 4.9, B (PM: all baryons, unscreened): 4.9
+  K1 (reported) the kappa form at the converged cell: cluster edges 2.88-3.01 Mpc (XR6's withdrawn form: 3.53-3.73); slope sigma 2.23-6.28 (XR6: 2.18-6.63)
+
+======================================================================================================================
+PART 3 -- THE LOCAL VOLUME DWARFS (N = 92): statistic C with each host's kappa-capped region
+======================================================================================================================
+  [PASS] C3 CONTROL (dwarfs, withdrawn-form control): XR6's committed candidate rows (host baryons x1/x1.5/x2, both footings: slope, sigma, dwarfs outside, host edges) and the observed statistic are reproduced exactly
+         measured: max |diff| 0.0e+00
+  p1_x2.5   host edges (x1, canonical) MW 1.57 / M31 1.87 Mpc; dwarfs inside 92/92; statistic C sigma 3.87-4.48 (x1 canonical 3.87) -> fail
+  p1_x3.5   host edges (x1, canonical) MW 1.57 / M31 1.87 Mpc; dwarfs inside 92/92; statistic C sigma 3.87-4.48 (x1 canonical 3.87) -> fail
+  p1_x5     host edges (x1, canonical) MW 1.57 / M31 1.87 Mpc; dwarfs inside 92/92; statistic C sigma 3.87-4.48 (x1 canonical 3.87) -> fail
+  p1_x7     host edges (x1, canonical) MW 1.57 / M31 1.87 Mpc; dwarfs inside 92/92; statistic C sigma 3.87-4.48 (x1 canonical 3.87) -> fail
+  p1_x10    host edges (x1, canonical) MW 1.57 / M31 1.87 Mpc; dwarfs inside 92/92; statistic C sigma 3.87-4.48 (x1 canonical 3.87) -> fail
+  p1_x14    host edges (x1, canonical) MW 1.57 / M31 1.87 Mpc; dwarfs inside 92/92; statistic C sigma 3.87-4.48 (x1 canonical 3.87) -> fail
+  p1_x20    host edges (x1, canonical) MW 1.57 / M31 1.87 Mpc; dwarfs inside 92/92; statistic C sigma 3.87-4.48 (x1 canonical 3.87) -> fail
+  p1.5_x2.5 host edges (x1, canonical) MW 1.57 / M31 1.87 Mpc; dwarfs inside 92/92; statistic C sigma 3.87-4.48 (x1 canonical 3.87) -> fail
+  p1.5_x3.5 host edges (x1, canonical) MW 1.57 / M31 1.87 Mpc; dwarfs inside 92/92; statistic C sigma 3.87-4.48 (x1 canonical 3.87) -> fail
+  p1.5_x5   host edges (x1, canonical) MW 1.57 / M31 1.87 Mpc; dwarfs inside 92/92; statistic C sigma 3.87-4.48 (x1 canonical 3.87) -> fail
+  p1.5_x7   host edges (x1, canonical) MW 1.57 / M31 1.87 Mpc; dwarfs inside 92/92; statistic C sigma 3.87-4.48 (x1 canonical 3.87) -> fail
+  p1.5_x10  host edges (x1, canonical) MW 1.57 / M31 1.87 Mpc; dwarfs inside 92/92; statistic C sigma 3.87-4.48 (x1 canonical 3.87) -> fail
+  p1.5_x14  host edges (x1, canonical) MW 1.57 / M31 1.87 Mpc; dwarfs inside 92/92; statistic C sigma 3.87-4.48 (x1 canonical 3.87) -> fail
+  p1.5_x20  host edges (x1, canonical) MW 1.57 / M31 1.87 Mpc; dwarfs inside 92/92; statistic C sigma 3.87-4.48 (x1 canonical 3.87) -> fail
+
+======================================================================================================================
+PART 4 -- THE COMA UDGs: inside Coma's kappa-capped region (EFE of Coma's baryons) or beyond it (screened)
+======================================================================================================================
+  [PASS] C4 CONTROL (UDGs, withdrawn-form control): XR6's committed Coma numbers -- Coma's capped edges (3 mass models x 3 f_b x 2 footings), the candidate offsets (6), the recomputed floor and the two sigmas -- are reproduced exactly
+         measured: edges max |diff| 0.0e+00 kpc; offsets/floor/sigma max |diff| 0.0e+00 (floor 0.2175, sigma 4.35/4.20)
+  p1_x2.5   Coma edge 2.99-2.99 Mpc; UDGs inside (Einasto 3-D / projected, canonical beta) 11/11 / 11/11; offset (galaxy-kappa, Dirichlet) +0.982 / +0.949 dex, two-field +0.982 (0 UDG(s) Newtonian); floor 0.218; sigma over gaps and kappa readings 4.20-4.35 -> fail   [123s]
+  p1_x3.5   Coma edge 2.99-2.99 Mpc; UDGs inside (Einasto 3-D / projected, canonical beta) 11/11 / 11/11; offset (galaxy-kappa, Dirichlet) +0.982 / +0.949 dex, two-field +0.982 (0 UDG(s) Newtonian); floor 0.218; sigma over gaps and kappa readings 4.20-4.35 -> fail   [123s]
+  p1_x5     Coma edge 2.99-2.99 Mpc; UDGs inside (Einasto 3-D / projected, canonical beta) 11/11 / 11/11; offset (galaxy-kappa, Dirichlet) +0.982 / +0.949 dex, two-field +0.982 (0 UDG(s) Newtonian); floor 0.218; sigma over gaps and kappa readings 4.20-4.35 -> fail   [123s]
+  p1_x7     Coma edge 2.99-2.99 Mpc; UDGs inside (Einasto 3-D / projected, canonical beta) 11/11 / 11/11; offset (galaxy-kappa, Dirichlet) +0.982 / +0.949 dex, two-field +0.982 (0 UDG(s) Newtonian); floor 0.218; sigma over gaps and kappa readings 4.20-4.35 -> fail   [123s]
+  p1_x10    Coma edge 2.99-2.99 Mpc; UDGs inside (Einasto 3-D / projected, canonical beta) 11/11 / 11/11; offset (galaxy-kappa, Dirichlet) +0.982 / +0.949 dex, two-field +0.982 (0 UDG(s) Newtonian); floor 0.218; sigma over gaps and kappa readings 4.20-4.35 -> fail   [123s]
+  p1_x14    Coma edge 2.99-2.99 Mpc; UDGs inside (Einasto 3-D / projected, canonical beta) 11/11 / 11/11; offset (galaxy-kappa, Dirichlet) +0.982 / +0.949 dex, two-field +0.982 (0 UDG(s) Newtonian); floor 0.218; sigma over gaps and kappa readings 4.20-4.35 -> fail   [123s]
+  p1_x20    Coma edge 2.99-2.99 Mpc; UDGs inside (Einasto 3-D / projected, canonical beta) 11/11 / 11/11; offset (galaxy-kappa, Dirichlet) +0.982 / +0.949 dex, two-field +0.982 (0 UDG(s) Newtonian); floor 0.218; sigma over gaps and kappa readings 4.20-4.35 -> fail   [123s]
+  p1.5_x2.5 Coma edge 2.99-2.99 Mpc; UDGs inside (Einasto 3-D / projected, canonical beta) 11/11 / 11/11; offset (galaxy-kappa, Dirichlet) +0.982 / +0.949 dex, two-field +0.982 (0 UDG(s) Newtonian); floor 0.218; sigma over gaps and kappa readings 4.20-4.35 -> fail   [124s]
+  p1.5_x3.5 Coma edge 2.99-2.99 Mpc; UDGs inside (Einasto 3-D / projected, canonical beta) 11/11 / 11/11; offset (galaxy-kappa, Dirichlet) +0.982 / +0.949 dex, two-field +0.982 (0 UDG(s) Newtonian); floor 0.218; sigma over gaps and kappa readings 4.20-4.35 -> fail   [124s]
+  p1.5_x5   Coma edge 2.99-2.99 Mpc; UDGs inside (Einasto 3-D / projected, canonical beta) 11/11 / 11/11; offset (galaxy-kappa, Dirichlet) +0.982 / +0.949 dex, two-field +0.982 (0 UDG(s) Newtonian); floor 0.218; sigma over gaps and kappa readings 4.20-4.35 -> fail   [124s]
+  p1.5_x7   Coma edge 2.99-2.99 Mpc; UDGs inside (Einasto 3-D / projected, canonical beta) 11/11 / 11/11; offset (galaxy-kappa, Dirichlet) +0.982 / +0.949 dex, two-field +0.982 (0 UDG(s) Newtonian); floor 0.218; sigma over gaps and kappa readings 4.20-4.35 -> fail   [124s]
+  p1.5_x10  Coma edge 2.99-2.99 Mpc; UDGs inside (Einasto 3-D / projected, canonical beta) 11/11 / 11/11; offset (galaxy-kappa, Dirichlet) +0.982 / +0.949 dex, two-field +0.982 (0 UDG(s) Newtonian); floor 0.218; sigma over gaps and kappa readings 4.20-4.35 -> fail   [124s]
+  p1.5_x14  Coma edge 2.99-2.99 Mpc; UDGs inside (Einasto 3-D / projected, canonical beta) 11/11 / 11/11; offset (galaxy-kappa, Dirichlet) +0.982 / +0.949 dex, two-field +0.982 (0 UDG(s) Newtonian); floor 0.218; sigma over gaps and kappa readings 4.20-4.35 -> fail   [124s]
+  p1.5_x20  Coma edge 2.99-2.99 Mpc; UDGs inside (Einasto 3-D / projected, canonical beta) 11/11 / 11/11; offset (galaxy-kappa, Dirichlet) +0.982 / +0.949 dex, two-field +0.982 (0 UDG(s) Newtonian); floor 0.218; sigma over gaps and kappa readings 4.20-4.35 -> fail   [124s]
+
+======================================================================================================================
+PART 5 -- ROTATION CURVES (SPARC, 175): the fully-on radius at z = 0 against 3 R_last
+======================================================================================================================
+    175 SPARC galaxies with rotmod files; M_b = 0.5 L[3.6] + 1.33 M_HI; R_last 0.7-108.3 kpc
+  p1_x2.5   fully-on radius: L* 1595 kpc, dwarf 1e9 505 kpc; min r_full/R_last 17.2 (UGC09133 (canonical, r_full 1862 kpc, R_last 108.3)); galaxy-footings below 3: 0 -> PASS
+  p1_x3.5   fully-on radius: L* 1595 kpc, dwarf 1e9 505 kpc; min r_full/R_last 17.2 (UGC09133 (canonical, r_full 1862 kpc, R_last 108.3)); galaxy-footings below 3: 0 -> PASS
+  p1_x5     fully-on radius: L* 1595 kpc, dwarf 1e9 505 kpc; min r_full/R_last 17.2 (UGC09133 (canonical, r_full 1862 kpc, R_last 108.3)); galaxy-footings below 3: 0 -> PASS
+  p1_x7     fully-on radius: L* 1595 kpc, dwarf 1e9 505 kpc; min r_full/R_last 17.2 (UGC09133 (canonical, r_full 1862 kpc, R_last 108.3)); galaxy-footings below 3: 0 -> PASS
+  p1_x10    fully-on radius: L* 1595 kpc, dwarf 1e9 505 kpc; min r_full/R_last 17.2 (UGC09133 (canonical, r_full 1862 kpc, R_last 108.3)); galaxy-footings below 3: 0 -> PASS
+  p1_x14    fully-on radius: L* 1595 kpc, dwarf 1e9 505 kpc; min r_full/R_last 17.2 (UGC09133 (canonical, r_full 1862 kpc, R_last 108.3)); galaxy-footings below 3: 0 -> PASS
+  p1_x20    fully-on radius: L* 1595 kpc, dwarf 1e9 505 kpc; min r_full/R_last 17.2 (UGC09133 (canonical, r_full 1862 kpc, R_last 108.3)); galaxy-footings below 3: 0 -> PASS
+  p1.5_x2.5 fully-on radius: L* 1595 kpc, dwarf 1e9 505 kpc; min r_full/R_last 17.2 (UGC09133 (canonical, r_full 1862 kpc, R_last 108.3)); galaxy-footings below 3: 0 -> PASS
+  p1.5_x3.5 fully-on radius: L* 1595 kpc, dwarf 1e9 505 kpc; min r_full/R_last 17.2 (UGC09133 (canonical, r_full 1862 kpc, R_last 108.3)); galaxy-footings below 3: 0 -> PASS
+  p1.5_x5   fully-on radius: L* 1595 kpc, dwarf 1e9 505 kpc; min r_full/R_last 17.2 (UGC09133 (canonical, r_full 1862 kpc, R_last 108.3)); galaxy-footings below 3: 0 -> PASS
+  p1.5_x7   fully-on radius: L* 1595 kpc, dwarf 1e9 505 kpc; min r_full/R_last 17.2 (UGC09133 (canonical, r_full 1862 kpc, R_last 108.3)); galaxy-footings below 3: 0 -> PASS
+  p1.5_x10  fully-on radius: L* 1595 kpc, dwarf 1e9 505 kpc; min r_full/R_last 17.2 (UGC09133 (canonical, r_full 1862 kpc, R_last 108.3)); galaxy-footings below 3: 0 -> PASS
+  p1.5_x14  fully-on radius: L* 1595 kpc, dwarf 1e9 505 kpc; min r_full/R_last 17.2 (UGC09133 (canonical, r_full 1862 kpc, R_last 108.3)); galaxy-footings below 3: 0 -> PASS
+  p1.5_x20  fully-on radius: L* 1595 kpc, dwarf 1e9 505 kpc; min r_full/R_last 17.2 (UGC09133 (canonical, r_full 1862 kpc, R_last 108.3)); galaxy-footings below 3: 0 -> PASS
+
+======================================================================================================================
+PART 6 -- DIAGNOSTIC: the threshold at which each z ~ 0 liability would pass, beyond the scanned cells (x_c,eff at the sample's epoch; reported, not gated)
+======================================================================================================================
+
+======================================================================================================================
+E1  THE REGIONS SHRINK AS THE DOOR SAYS (MUTATE freezes the threshold)
+======================================================================================================================
+  [FAIL] E1 THE REGIONS SHRINK: from x_c0 = 2.5 to 20 (p = 1) the LG's z = 0 edge and Coma's kappa edge fall by sqrt(8) = 2.83 within 5% -- MUTATE (threshold frozen) must fail this
+         measured: LG 1.852 -> 1.852 Mpc (ratio 1.000); Coma 2.986 -> 2.986 Mpc (ratio 1.000)
+
+======================================================================================================================
+SUMMARY (per cell: LG | EFE clusters | EFE dwarfs | Coma UDGs | rotation curves)
+======================================================================================================================
+  p1_x2.5   LG fail (decay dex +0.176..+0.241) | clusters fail (2.2-6.3 s, new fail 0) | dwarfs fail (3.9-4.5 s) | UDGs fail (4.2-4.3 s) | RC PASS (min 17.2)
+  p1_x3.5   LG fail (decay dex +0.176..+0.241) | clusters fail (2.2-6.3 s, new fail 0) | dwarfs fail (3.9-4.5 s) | UDGs fail (4.2-4.3 s) | RC PASS (min 17.2)
+  p1_x5     LG fail (decay dex +0.176..+0.241) | clusters fail (2.2-6.3 s, new fail 0) | dwarfs fail (3.9-4.5 s) | UDGs fail (4.2-4.3 s) | RC PASS (min 17.2)
+  p1_x7     LG fail (decay dex +0.176..+0.241) | clusters fail (2.2-6.3 s, new fail 0) | dwarfs fail (3.9-4.5 s) | UDGs fail (4.2-4.3 s) | RC PASS (min 17.2)
+  p1_x10    LG fail (decay dex +0.176..+0.241) | clusters fail (2.2-6.3 s, new fail 0) | dwarfs fail (3.9-4.5 s) | UDGs fail (4.2-4.3 s) | RC PASS (min 17.2)
+  p1_x14    LG fail (decay dex +0.176..+0.241) | clusters fail (2.2-6.3 s, new fail 0) | dwarfs fail (3.9-4.5 s) | UDGs fail (4.2-4.3 s) | RC PASS (min 17.2)
+  p1_x20    LG fail (decay dex +0.176..+0.241) | clusters fail (2.2-6.3 s, new fail 0) | dwarfs fail (3.9-4.5 s) | UDGs fail (4.2-4.3 s) | RC PASS (min 17.2)
+  p1.5_x2.5 LG fail (decay dex +0.176..+0.241) | clusters fail (2.2-6.3 s, new fail 0) | dwarfs fail (3.9-4.5 s) | UDGs fail (4.2-4.3 s) | RC PASS (min 17.2)
+  p1.5_x3.5 LG fail (decay dex +0.176..+0.241) | clusters fail (2.2-6.3 s, new fail 0) | dwarfs fail (3.9-4.5 s) | UDGs fail (4.2-4.3 s) | RC PASS (min 17.2)
+  p1.5_x5   LG fail (decay dex +0.176..+0.241) | clusters fail (2.2-6.3 s, new fail 0) | dwarfs fail (3.9-4.5 s) | UDGs fail (4.2-4.3 s) | RC PASS (min 17.2)
+  p1.5_x7   LG fail (decay dex +0.176..+0.241) | clusters fail (2.2-6.3 s, new fail 0) | dwarfs fail (3.9-4.5 s) | UDGs fail (4.2-4.3 s) | RC PASS (min 17.2)
+  p1.5_x10  LG fail (decay dex +0.176..+0.241) | clusters fail (2.2-6.3 s, new fail 0) | dwarfs fail (3.9-4.5 s) | UDGs fail (4.2-4.3 s) | RC PASS (min 17.2)
+  p1.5_x14  LG fail (decay dex +0.176..+0.241) | clusters fail (2.2-6.3 s, new fail 0) | dwarfs fail (3.9-4.5 s) | UDGs fail (4.2-4.3 s) | RC PASS (min 17.2)
+  p1.5_x20  LG fail (decay dex +0.176..+0.241) | clusters fail (2.2-6.3 s, new fail 0) | dwarfs fail (3.9-4.5 s) | UDGs fail (4.2-4.3 s) | RC PASS (min 17.2)
+
+  4/5 checks pass; load-bearing failures: 1; wrote XR9_environment_results_MUTATE.json   [131s]
+rc=1

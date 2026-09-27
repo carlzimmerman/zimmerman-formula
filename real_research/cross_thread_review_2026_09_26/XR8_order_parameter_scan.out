@@ -1,0 +1,110 @@
+XR8 (2/4) -- THE ORDER PARAMETER WITH ITS RADIAL MODE: HOW LIGHT MUST THE RADIAL MODE BE FOR THE FIELD TO PASS THROUGH
+SHELL CROSSING?
+
+WHY.  L374's condensate is a phase-only field: its dust density is slaved to the phase (rho = 2 P''(X0)(X - X0)), it has
+  no amplitude that can pass through zero, and it fails at the first crossing.  L374's MUTATE -- a linear complex field
+  with the same D and eps (Gross-Pitaevskii-Poisson) -- passes for W <= 1e-3.  The owner of L374 and the V0 writer (DF1,
+  real_research/dark_fluid_2026/FL1_order_parameter.py, uncommitted) read both as limits of ONE superfluid order
+  parameter Phi = sqrt(n) e^{i theta}: the condensate is its phase-only (Thomas-Fermi) limit, GP its full form.  What sets
+  which limit applies is the order parameter's RADIAL (amplitude) mode.
+
+THE RADIAL MASS.  For a complex scalar about its rotating state T = Omega t, R = R0 (the lead track's covariant clock,
+  real_research/closure_push_2026_09_26/covariant_clock/RESULT.md section 3), the radial mode has mass mu^2 = V''(R0) -
+  Omega^2 and the soft branch is omega_-^2 = (mu^2/A) k^2 + (16 Omega^4/A^3) k^4 + ..., A = mu^2 + 4 Omega^2.  Its
+  non-relativistic limit (mu << Omega) is Bogoliubov's omega^2 = c_s^2 k^2 + D^2 k^4 with D = 1/(2 Omega) = hbar/2m and
+  c_s = mu D (checked symbolically below, S1).  So at fixed de Broglie length (fixed D) the radial mass is
+      m_r = mu = c_s / D = 1 / xi   (xi = the healing length),   W = c_s^2 / v0^2 = (m_r D / v0)^2,
+  and a scan of L374's warmth W at fixed lambda IS a scan of m_r.  In L374's units (L = v0 = 1): m_r = 4 pi sqrt(W) /
+  lambda (an inverse length); m_r v0 t_sc = 2 sqrt(W) L / lambda; the healing rate omega_h = c_s m_r = W v0^2 / D gives
+  omega_h t_sc = 2 W L / lambda.  Heavy radial mode (m_r -> infinity at fixed D): the amplitude is slaved (Thomas-Fermi),
+  the field is a pressure-supported phase-only fluid.  Light radial mode: the amplitude is free to go to zero.
+
+THE TEST.  L374's problem, grid and pass rule; the wave form of the order parameter (Gross-Pitaevskii-Poisson, gamma = 2)
+  scanned in W at lambda = L/100 and L/200, free-streaming and self-gravitating, plus its gamma = 3 version (a |psi|^6
+  self-interaction: the order-parameter form of the P ~ X^{3/2} index).  nx = 2048 (checked against 4096 in C1).
+
+PRE-DECLARED (before any run of this script).
+  R1 [the radial-mass window]: the gamma = 2 order parameter tracks the collisionless answer (L374's rule) at every
+     W <= 1e-3 and fails at every W >= 3e-2, in both tests at every lambda scanned.  (L374's MUTATE bracket: W = 1e-3
+     tracked, W = 1e-2 failed free streaming by 6.4-6.6% and tracked with gravity.)  The largest tracking W on the scan
+     (W_c) is reported per lambda with its m_r, m_r v0 t_sc and omega_h t_sc.
+  R2 [the index does not matter when the radial mode is light]: the gamma = 3 order parameter tracks at W = 1e-3 in both
+     tests (and is reported at W = 0.1).
+
+  L374 source sha256 e3248164fc68b129...
+
+====================================================================================================================
+S1  the radial mass of the order parameter and the non-relativistic sound speed
+====================================================================================================================
+  [PASS] S1 SYMBOLIC: the gyroscopic soft branch gives c_s^2 = mu^2/(4 Omega^2) and D^2 = 1/(4 Omega^2) at mu << Omega, so c_s = mu D (the radial mass is the inverse healing length at fixed D)
+         measured: k^2 coeff mu**2/(4*Omega**2 + mu**2) -> mu**2/(4*Omega**2); k^4 coeff 16*Omega**4/(4*Omega**2 + mu**2)**3 -> 1/(4*Omega**2)
+  targets + SP done   [21s]
+  27 order-parameter cells done   [88s]
+
+====================================================================================================================
+MISPLACED MASS of the order parameter vs the collisionless answer, by radial mass
+====================================================================================================================
+    gamma=2 free     L/100 W=0.0001  (m_r =    12.6/L, xi = L/13, m_r v0 t_sc =   2.00, omega_h t_sc =  0.020): 1.50tsc 0.0011, 2.00tsc 0.0022, 3.00tsc 0.0059 | peak rho 50, h(peak) / (v0^2/2) = 0.0101 | TRACKS
+    gamma=2 free     L/100 W=0.0003  (m_r =    21.8/L, xi = L/22, m_r v0 t_sc =   3.46, omega_h t_sc =  0.060): 1.50tsc 0.0019, 2.00tsc 0.0032, 3.00tsc 0.0072 | peak rho 50, h(peak) / (v0^2/2) = 0.03 | TRACKS
+    gamma=2 free     L/100 W=0.001   (m_r =    39.7/L, xi = L/40, m_r v0 t_sc =   6.32, omega_h t_sc =  0.200): 1.50tsc 0.0050, 2.00tsc 0.0068, 3.00tsc 0.0123 | peak rho 48, h(peak) / (v0^2/2) = 0.0965 | TRACKS
+    gamma=2 free     L/100 W=0.002   (m_r =    56.2/L, xi = L/56, m_r v0 t_sc =   8.94, omega_h t_sc =  0.400): 1.50tsc 0.0093, 2.00tsc 0.0123, 3.00tsc 0.0197 | peak rho 46, h(peak) / (v0^2/2) = 0.183 | TRACKS
+    gamma=2 free     L/100 W=0.003   (m_r =    68.8/L, xi = L/69, m_r v0 t_sc =  10.95, omega_h t_sc =  0.600): 1.50tsc 0.0137, 2.00tsc 0.0176, 3.00tsc 0.0269 | peak rho 43, h(peak) / (v0^2/2) = 0.26 | TRACKS
+    gamma=2 free     L/100 W=0.005   (m_r =    88.9/L, xi = L/89, m_r v0 t_sc =  14.14, omega_h t_sc =  1.000): 1.50tsc 0.0219, 2.00tsc 0.0278, 3.00tsc 0.0398 | peak rho 39, h(peak) / (v0^2/2) = 0.388 | TRACKS
+    gamma=2 free     L/100 W=0.01    (m_r =   125.7/L, xi = L/126, m_r v0 t_sc =  20.00, omega_h t_sc =  2.000): 1.50tsc 0.0398, 2.00tsc 0.0497, 3.00tsc 0.0656 | peak rho 30, h(peak) / (v0^2/2) = 0.597 | fails
+    gamma=2 free     L/100 W=0.03    (m_r =   217.7/L, xi = L/218, m_r v0 t_sc =  34.64, omega_h t_sc =  6.000): 1.50tsc 0.0753, 2.00tsc 0.1078, 3.00tsc 0.1260 | peak rho 15, h(peak) / (v0^2/2) = 0.905 | fails
+    gamma=2 free     L/100 W=0.1     (m_r =   397.4/L, xi = L/397, m_r v0 t_sc =  63.25, omega_h t_sc = 20.000): 1.50tsc 0.0512, 2.00tsc 0.1873, 3.00tsc 0.2152 | peak rho 7, h(peak) / (v0^2/2) = 1.33 | fails
+    gamma=2 free     L/200 W=0.001   (m_r =    79.5/L, xi = L/79, m_r v0 t_sc =  12.65, omega_h t_sc =  0.400): 1.50tsc 0.0052, 2.00tsc 0.0068, 3.00tsc 0.0102 | peak rho 67, h(peak) / (v0^2/2) = 0.133 | TRACKS
+    gamma=2 free     L/200 W=0.003   (m_r =   137.7/L, xi = L/138, m_r v0 t_sc =  21.91, omega_h t_sc =  1.200): 1.50tsc 0.0150, 2.00tsc 0.0187, 3.00tsc 0.0260 | peak rho 55, h(peak) / (v0^2/2) = 0.328 | TRACKS
+    gamma=2 free     L/200 W=0.005   (m_r =   177.7/L, xi = L/178, m_r v0 t_sc =  28.28, omega_h t_sc =  2.000): 1.50tsc 0.0236, 2.00tsc 0.0290, 3.00tsc 0.0388 | peak rho 45, h(peak) / (v0^2/2) = 0.454 | TRACKS
+    gamma=2 free     L/200 W=0.01    (m_r =   251.3/L, xi = L/251, m_r v0 t_sc =  40.00, omega_h t_sc =  4.000): 1.50tsc 0.0413, 2.00tsc 0.0504, 3.00tsc 0.0643 | peak rho 32, h(peak) / (v0^2/2) = 0.64 | fails
+    gamma=2 free     L/200 W=0.03    (m_r =   435.3/L, xi = L/435, m_r v0 t_sc =  69.28, omega_h t_sc = 12.000): 1.50tsc 0.0755, 2.00tsc 0.1074, 3.00tsc 0.1255 | peak rho 15, h(peak) / (v0^2/2) = 0.906 | fails
+    gamma=2 gravity  L/100 W=0.001   (m_r =    39.7/L, xi = L/40, m_r v0 t_sc =   6.32, omega_h t_sc =  0.200): 2.14tsc 0.0029, 4.27tsc 0.0057, 7.12tsc 0.0050, 10.68tsc 0.0138 | peak rho 61, h(peak) / (v0^2/2) = 0.122 | TRACKS
+    gamma=2 gravity  L/100 W=0.01    (m_r =   125.7/L, xi = L/126, m_r v0 t_sc =  20.00, omega_h t_sc =  2.000): 2.14tsc 0.0264, 4.27tsc 0.0241, 7.12tsc 0.0317, 10.68tsc 0.0442 | peak rho 46, h(peak) / (v0^2/2) = 0.92 | TRACKS
+    gamma=2 gravity  L/100 W=0.03    (m_r =   217.7/L, xi = L/218, m_r v0 t_sc =  34.64, omega_h t_sc =  6.000): 2.14tsc 0.0645, 4.27tsc 0.0887, 7.12tsc 0.0619, 10.68tsc 0.0842 | peak rho 29, h(peak) / (v0^2/2) = 1.74 | fails
+    gamma=2 gravity  L/200 W=0.001   (m_r =    79.5/L, xi = L/79, m_r v0 t_sc =  12.65, omega_h t_sc =  0.400): 2.14tsc 0.0033, 4.27tsc 0.0062, 7.12tsc 0.0042, 10.68tsc 0.0074 | peak rho 85, h(peak) / (v0^2/2) = 0.169 | TRACKS
+    gamma=2 gravity  L/200 W=0.01    (m_r =   251.3/L, xi = L/251, m_r v0 t_sc =  40.00, omega_h t_sc =  4.000): 2.14tsc 0.0284, 4.27tsc 0.0251, 7.12tsc 0.0339, 10.68tsc 0.0426 | peak rho 52, h(peak) / (v0^2/2) = 1.04 | TRACKS
+    gamma=2 gravity  L/200 W=0.03    (m_r =   435.3/L, xi = L/435, m_r v0 t_sc =  69.28, omega_h t_sc = 12.000): 2.14tsc 0.0657, 4.27tsc 0.0905, 7.12tsc 0.0646, 10.68tsc 0.0901 | peak rho 30, h(peak) / (v0^2/2) = 1.81 | fails
+    gamma=3 free     L/100 W=0.001   (m_r =    39.7/L, xi = L/40, m_r v0 t_sc =   6.32, omega_h t_sc =  0.200): 1.50tsc 0.0099, 2.00tsc 0.0499, 3.00tsc 0.1081 | peak rho 24, h(peak) / (v0^2/2) = 0.567 | fails
+    gamma=3 free     L/100 W=0.1     (m_r =   397.4/L, xi = L/397, m_r v0 t_sc =  63.25, omega_h t_sc = 20.000): 1.50tsc 0.1067, 2.00tsc 0.1770, 3.00tsc 0.2977 | peak rho 4, h(peak) / (v0^2/2) = 1.73 | fails
+    gamma=3 gravity  L/100 W=0.001   (m_r =    39.7/L, xi = L/40, m_r v0 t_sc =   6.32, omega_h t_sc =  0.200): 2.14tsc 0.0703, 4.27tsc 0.1988, 7.12tsc 0.2196, 10.68tsc 0.2782 | peak rho 39, h(peak) / (v0^2/2) = 1.53 | fails
+    gamma=3 free     L/100 W=0.0001  (m_r =    12.6/L, xi = L/13, m_r v0 t_sc =   2.00, omega_h t_sc =  0.020): 1.50tsc 0.0029, 2.00tsc 0.0194, 3.00tsc 0.0357 | peak rho 43, h(peak) / (v0^2/2) = 0.189 | TRACKS [post hoc]
+    gamma=3 free     L/100 W=1e-05   (m_r =     4.0/L, xi = L/4, m_r v0 t_sc =   0.63, omega_h t_sc =  0.002): 1.50tsc 0.0008, 2.00tsc 0.0038, 3.00tsc 0.0082 | peak rho 50, h(peak) / (v0^2/2) = 0.0248 | TRACKS [post hoc]
+    gamma=3 gravity  L/100 W=0.0001  (m_r =    12.6/L, xi = L/13, m_r v0 t_sc =   2.00, omega_h t_sc =  0.020): 2.14tsc 0.0173, 4.27tsc 0.0190, 7.12tsc 0.0576, 10.68tsc 0.0656 | peak rho 55, h(peak) / (v0^2/2) = 0.305 | fails [post hoc]
+    gamma=3 gravity  L/100 W=1e-05   (m_r =     4.0/L, xi = L/4, m_r v0 t_sc =   0.63, omega_h t_sc =  0.002): 2.14tsc 0.0022, 4.27tsc 0.0052, 7.12tsc 0.0074, 10.68tsc 0.0114 | peak rho 62, h(peak) / (v0^2/2) = 0.0383 | TRACKS [post hoc]
+
+====================================================================================================================
+CHECKS
+====================================================================================================================
+  [PASS] C0 IMPORT: this lane's wave() reproduces L374's imported schrodinger() at the same grid
+         measured: max M between them 0.0e+00
+  [PASS] C1 POSITIVE CONTROL AND RESOLUTION: Schroedinger-Poisson (m_r = 0) tracks after crossing (M <= 0.05) at both lambda in both tests, and nx = 2048 agrees with 4096 to |dM| <= 2e-3 (free, L/100)
+         measured: max post-crossing M {'free|L/100': 0.0053, 'free|L/200': 0.0013, 'gravity|L/100': 0.0103, 'gravity|L/200': 0.0052}; |dM| 2048 vs 4096 max 3.4e-07
+  [PASS] C2 UNITARITY: the wave field's norm is conserved to 1e-10 in every run
+         measured: max |norm - 1| 3.3e-12
+
+====================================================================================================================
+R1  THE RADIAL-MASS WINDOW (set before any run)
+====================================================================================================================
+    free     L/100: tracks at W = ['0.0001', '0.0003', '0.001', '0.002', '0.003', '0.005']; fails at ['0.01', '0.03', '0.1']
+    gravity  L/100: tracks at W = ['0.001', '0.01']; fails at ['0.03']
+    free     L/200: tracks at W = ['0.001', '0.003', '0.005']; fails at ['0.01', '0.03']
+    gravity  L/200: tracks at W = ['0.001', '0.01']; fails at ['0.03']
+  [PASS] R1: the gamma = 2 order parameter tracks at every W <= 1e-3 and fails at every W >= 3e-2 (both tests, every lambda scanned)
+         measured: {'free|L/100': 'W_c = 0.005: m_r = 88.9/L, xi = L/89, m_r v0 t_sc = 14.14, omega_h t_sc = 1.000', 'gravity|L/100': 'W_c = 0.01: m_r = 125.7/L, xi = L/126, m_r v0 t_sc = 20.00, omega_h t_sc = 2.000', 'free|L/200': 'W_c = 0.005: m_r = 177.7/L, xi = L/178, m_r v0 t_sc = 28.28, omega_h t_sc = 2.000', 'gravity|L/200': 'W_c = 0.01: m_r = 251.3/L, xi = L/251, m_r v0 t_sc = 40.00, omega_h t_sc = 4.000'}
+         reading:  the radial mode must be light: W = (m_r D / v0)^2 below a few e-3, i.e. healing length xi = 1/m_r >~ lambda / (4 pi sqrt(W_c)) -- the self-interaction energy far below the streams' kinetic energy
+  [FAIL] R2: the gamma = 3 order parameter (|psi|^6, the P ~ X^{3/2} index) tracks at W = 1e-3 in both tests
+         measured: {'free|W=0.001': False, 'free|W=0.1': False, 'gravity|W=0.001': False}
+         reading:  FALSIFIED: at the same sound speed at rho_bar the gamma = 3 order parameter does not track -- the index matters (see the post-hoc item below)
+  [PASS] W (post hoc, after R2 failed; not load-bearing): the gamma = 3 order parameter at lower W, and the self-interaction energy at the densest caustic point, h(rho_peak), against the streams' kinetic energy v0^2/2
+         measured: gamma = 3: {'free|W=0.0001': 'tracks, h_peak/(v0^2/2) = 0.189', 'free|W=1e-05': 'tracks, h_peak/(v0^2/2) = 0.0248', 'gravity|W=0.0001': 'fails, h_peak/(v0^2/2) = 0.305', 'gravity|W=1e-05': 'tracks, h_peak/(v0^2/2) = 0.0383'}; largest h_peak/(v0^2/2) among tracking gamma = 2 cells 1.04
+         reading:  gamma = 3 needs W ~ 100x below gamma = 2's (free <= 1e-4, self-gravitating <= 1e-5, against 5e-3 / 1e-2): its |psi|^6 interaction grows as rho^2 where streams pile up.  In free streaming both indices change verdict near h(rho_peak) ~ 0.2-0.6 of v0^2/2; with gravity they do not share one threshold, so no single number (W at rho_bar or h at the caustic peak) is index-independent in this scan
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  6/7 checks pass; load-bearing failures: 1; wrote XR8_order_parameter_scan_results.json   [95s]
+rc=1
+
+real	1m35.457s
+user	1m13.454s
+sys	0m5.049s
