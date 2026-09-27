@@ -86,7 +86,7 @@ This list of declared constants is what the new direction is trying to eliminate
 | Gate | Verdict | Numbers | Lane | Off M* on |
 |---|---|---|---|---|
 | Flat-a₀ flagship, z = 2.5 | **not established** for M*'s carrier | L388's z = 2 residue S = 0.063–0.075 against S_crit = 0.059 gives +0.106 to +0.126 dex (XR17, a committed script). The fluid's own conversion does clear r_F on the record's grid (XR16: S ≤ 7e-5 via early escape at z = 3.8–6.9; M_b = 1e11.5 mostly fails) | MS2, XR17, XR16 | carrier: M*'s is L388's, not the fluid's own conversion |
-| KiDS-1000, carrier lensing included | **pass, ON M\*** | M*'s carrier: −34.3 to −26.3 (worst −26.28) against +4; DE10's L375 carrier −37.0/−34.0 (hard), −32.3/−29.3 (w 0.25) | XR14 b667f56bb; DE10 dabce1b73 | (on M*, two stated trigger approximations) |
+| KiDS-1000, carrier lensing included | **pass, ON M\*** (provisional: projection defect, XR35 re-scoring) | M*'s carrier: −34.3 to −26.3 (worst −26.28) against +4; DE10's L375 carrier −37.0/−34.0 (hard), −32.3/−29.3 (w 0.25) | XR14 b667f56bb; DE10 dabce1b73 | (on M*, two stated trigger approximations) |
 | Cosmic shear, halo model, κ cap | pass | 1.049/1.124 (w 0.25). Uncapped fails at 2.7/3.2 | MS3/MS4/MS5 | epoch: retention taken at z = 0/2, scored at z = 0.5 (L396 never ran) |
 | Lyman-α forest, the switch | pass, converged | worst 0.0046 at three resolutions (DE11b) | DE11 aa6588d56, DE11b e35112739 | carrier and cap absent; phantom over-stated |
 | Lyman-α forest with the fluid's own conversion | **not established** | 11.3% / 8.0% at the nominal cell against the 10% line (XR12); conversion not mass-selective, budget 4–6.5× AT1's (XR16) | XR12, XR16 | a different carrier; needs a flux run with sub-grid conversion |
@@ -162,7 +162,12 @@ Where the chain stands, from its own ledger (chain lead's commits; checked again
   5–14% at 0.3–2.6 Mpc.
   - It feeds the chain's KiDS scores (FP1, FP6, FP9, FP11–FP14), and also the record's L355 and AT3.
   - FP20 is fixing it and re-scoring. Until then the chain's KiDS passes are provisional.
-  - M*'s KiDS path (DE8 → DE10 → XR9 → XR14) uses a different projection and is not affected.
+  - **Correction (FP20, 7a8c25321):** I wrote earlier that M*'s KiDS path was unaffected. That was wrong. DE8's
+    esd_from_mlens and L352's project_M2 have the same Abel-projection defect. Its size depends on the profile:
+    SIS −2 to −3%, NFW −3 to +11%, cored/hollow carrier templates +187% / −123% at 35 kpc.
+  - FP20 finds none of the chain's deciding verdicts flips. FP9 at z = 0.4 still fails. L360's passing pairs halve.
+  - XR35 is re-scoring DE10 → XR9 → XR14 (the ON-M* KiDS pass) with FP20's drop-in fix. Until then the KiDS row in §3
+    is provisional.
 - FP13 (27faacc84) replaces FP9's four constants with readouts of the state (the separator H_S).
   - What is still chosen by hand:
     - δ_c, which can sit anywhere in 1.3–2.6;
