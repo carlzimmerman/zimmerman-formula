@@ -203,9 +203,14 @@ Running here:
       z ≈ 2.5 test.
     - The DESI fits cross w = −1, which only a ghost field can follow.
     - Under the unimodular tie with a true cosmological constant, a₀ stays flat.
-  - **Flag to the κ-closure record:** k04 (2fb80ca12) promoted a₀ with a four-form and recorded it "stable (F6)". F6
-    tests the flux stiffness, not the kernel's monotonicity. Under k04's own kernel the boost falls above y ≈ 2.4
-    (XR20 T2f), so that verdict does not establish health.
+  - **Correction to the κ-closure record, confirmed by XR31 (c1932dcf8):**
+    - k04's four-form promotion is UNSTABLE for 2.39 < g_N/a₀ < 155. F6 cannot fail, so it never tested stability.
+    - The unstable band covers 17% of SPARC points, a shell from 639 to 5154 AU around every solar-mass star, and
+      wide binaries at 2–5 kAU.
+    - A correction note now sits beside k04 (`kappa_closure/k04_F6_CORRECTION_2026-09-27.md`).
+    - PAPER6 (DOI 10.5281/zenodo.22559892) carries the F6 claim, the "205 AU" figure (should be about 639 AU) and
+      the 2 kAU wide-binary shift. The DR4 pre-registration's Amendment 11 records the same variant (without
+      registering it). An erratum or amendment is the author's call.
 - **XR21:** the chain's model in a particle-mesh box.
   - Stage 1 (build and code tests) is running. It now includes H_S with its readouts computed on the fly from the box's
     own matter field, plus a frozen-readout control.
