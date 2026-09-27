@@ -1,0 +1,175 @@
+{
+ "lane": "FK1",
+ "mutate": false,
+ "checks": {
+  "K1 one NR component has no universal latent heat: the release per particle follows V' - mu_c and varies by > 2x across the unstable range, with a dense phase among the products; NR relativistic branches coincide": {
+   "ok": true,
+   "measured": "identity residual 0; Delta spread 3.9x; branch identity 0",
+   "load_bearing": true
+  },
+  "K2 Phi's two real components are split by eps Re(Phi^2) (m_H^2 - m_L^2 = 2 eps); both quartics are Z2 x Z2 symmetric, so a lone phi_H is stable and phi_H phi_H -> phi_L phi_L is the conversion; the pair leaves at v_k = sqrt(2 eps/(m^2 + eps)), i.e. eps/m^2 = v_k^2/(2c^2 - v_k^2)": {
+   "ok": true,
+   "measured": "m_H^2 - m_L^2 = 2*epsilon; Z2xZ2 {'lam|Phi|^4': True, 'lam(ImPhi^2)^2': True}; vertices {'lam|Phi|^4': lambda/2, 'lam(ImPhi^2)^2': lambda}; kick reproduced at 575-650: True",
+   "load_bearing": true
+  },
+  "K5 lambda|Phi|^4 gives each component a self-coupling 3x the conversion coupling (g_HH = g_LL = 3 lambda/4m^2, G/n = lambda/4m^2); lambda(Im Phi^2)^2 has no self-coupling (g_HH = g_LL = 0) and G/n = lambda/2m^2": {
+   "ok": true,
+   "measured": "{'lam|Phi|^4': {'g_HH': '3*lambda/(4*m**2)', 'g_LL': '3*lambda/(4*m**2)', 'cross': 'lambda/(2*m**2)', 'pair': 'lambda/(4*m**2)'}, 'lam(ImPhi^2)^2': {'g_HH': '0', 'g_LL': '0', 'cross': 'lambda/m**2', 'pair': 'lambda/(2*m**2)'}}",
+   "load_bearing": false
+  },
+  "K3 a heavy condensate at rest is unstable to phi_L pairs with growth sqrt(G^2 - D^2); the growth peaks on the shell |v| = v_k (1 + O(G/delta)) for both quartics -- the kick speed is the splitting's, shifted only by the coupling's mean field": {
+   "ok": true,
+   "measured": "eigenvalues [-sqrt((D - G)*(D + G)), sqrt((D - G)*(D + G))]; v_res/v_k at G = 1e-3 delta: [1.0005, 0.999]",
+   "load_bearing": true
+  },
+  "K4 a mode crossing the resonance shell grows by pi G^2/(4 H delta) e-folds": {
+   "ok": true,
+   "measured": "pi*G**2/(4*H*delta)",
+   "load_bearing": false
+  },
+  "N1 the products are classical waves (lambda_dB at v_k <= 0.2 pc for m >= 2e-19 eV, Vlasov limit: L388's ballistic kick) and the conversion needs ~60-190 e-folds, so the threshold is sharp (complete at n_t, negligible 6% below)": {
+   "ok": true,
+   "measured": "lambda_dB 1.00e-01 pc at 2e-19 eV; e-folds 61-178; negligible below 0.942 n_t",
+   "load_bearing": false
+  },
+  "N2 (reported) a constant coupling converts the mean background at z ~ 0.9-4 for the record's threshold (delta_t 5-25), so the coupling must be vacuum-gated: q > 3/4, and q = 1.75 keeps the background below 6% of the trigger's exponent": {
+   "ok": true,
+   "measured": "z_convert(delta_t = 5) = 0.86-1.48; (25) 2.69-4.01; q = 1.75 peak 1.35x at z = 0.30",
+   "load_bearing": false
+  },
+  "N3 (reported) with lambda|Phi|^4 the trigger implies a self-interaction pressure (sound speed ~22 km/s at the trigger for m = 2e-19 eV, falling as m^(-1/4)) and products that relax where they are made (~10^3 C_k per Hubble time at the trigger density); the pure cross term lambda(Im Phi^2)^2 has neither": {
+   "ok": true,
+   "measured": "{'2e-19': 'c_s 22.07 km/s', '1e-17': 'c_s 8.30 km/s', '1e-15': 'c_s 2.62 km/s', '1e-10': 'c_s 0.15 km/s'}",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "K1": {
+   "spinodals": [
+    0.2890725938208938,
+    0.9609274061791062
+   ],
+   "binodal": [
+    0.043156664840667484,
+    1.2068433351564196
+   ],
+   "Delta": [
+    0.10572703883407453,
+    0.12442477566937392,
+    0.12429590586737739,
+    0.11002604167013597,
+    0.08652496762782848,
+    0.05877880016898602,
+    0.031805513255988294
+   ],
+   "spread": 3.9120505513599095
+  },
+  "K2": {
+   "eps_over_m2": {
+    "575.0": 1.8393530071269004e-06,
+    "600.0": 2.0027741119926234e-06,
+    "625.0": 2.1731493632976165e-06,
+    "650.0": 2.3504787681507226e-06
+   },
+   "vertex": {
+    "lam|Phi|^4": "lambda/2",
+    "lam(ImPhi^2)^2": "lambda"
+   }
+  },
+  "K5": {
+   "lam|Phi|^4": {
+    "g_HH": "3*lambda/(4*m**2)",
+    "g_LL": "3*lambda/(4*m**2)",
+    "cross": "lambda/(2*m**2)",
+    "pair": "lambda/(4*m**2)"
+   },
+   "lam(ImPhi^2)^2": {
+    "g_HH": "0",
+    "g_LL": "0",
+    "cross": "lambda/m**2",
+    "pair": "lambda/(2*m**2)"
+   }
+  },
+  "K3": {
+   "lam|Phi|^4": {
+    "eps_k_res": "delta + lambda*n/(4*m**2)",
+    "v_res_over_vk_at_q_1e_3": 1.000499875062461
+   },
+   "lam(ImPhi^2)^2": {
+    "eps_k_res": "delta - lambda*n/m**2",
+    "v_res_over_vk_at_q_1e_3": 0.9989994994993742
+   }
+  },
+  "K4": "pi*G**2/(4*H*delta)",
+  "N1": {
+   "by_mass": {
+    "2e-19": {
+     "lambda_dB_pc": 0.10038113339645825,
+     "N_final": 1.0643995374857433e+77,
+     "efolds": 178.05461016669227
+    },
+    "1e-17": {
+     "lambda_dB_pc": 0.002007622667929165,
+     "N_final": 1.7030392599771893e+70,
+     "efolds": 162.40651814497969
+    },
+    "1e-15": {
+     "lambda_dB_pc": 2.0076226679291652e-05,
+     "N_final": 1.7030392599771906e+62,
+     "efolds": 143.9858374010273
+    },
+    "1e-10": {
+     "lambda_dB_pc": 2.0076226679291648e-10,
+     "N_final": 1.70303925997719e+42,
+     "efolds": 97.9341355411464
+    },
+    "1e-06": {
+     "lambda_dB_pc": 2.0076226679291646e-14,
+     "N_final": 1.7030392599771893e+26,
+     "efolds": 61.092774053241676
+    }
+   },
+   "sharp_below": 0.9421650124200086
+  },
+  "N2": {
+   "z_convert_constant": {
+    "5/1": 0.8573544246252237,
+    "5/4": 1.4829085960793404,
+    "25/1": 2.693426011817658,
+    "25/4": 4.011887443451851,
+    "100/1": 5.812304724652592,
+    "100/4": 8.265844508605285,
+    "1000/1": 17.9418069554205,
+    "1000/4": 24.77526583167829,
+    "10000/1": 51.70490651371537,
+    "10000/4": 70.72023795401189
+   },
+   "q_min": 0.75,
+   "q_linear_gate": 1.75,
+   "bg_peak_z": 0.298,
+   "bg_peak_factor": 1.3479466713684294
+  },
+  "N3": {
+   "2e-19": {
+    "G_over_mc2": 1.8060914224948324e-09,
+    "c_s_kms": 22.067401427712618
+   },
+   "1e-17": {
+    "G_over_mc2": 2.5541989845779077e-10,
+    "c_s_kms": 8.298673806543517
+   },
+   "1e-15": {
+    "G_over_mc2": 2.5541989845779075e-11,
+    "c_s_kms": 2.624271078745705
+   },
+   "1e-10": {
+    "G_over_mc2": 8.077086388555476e-14,
+    "c_s_kms": 0.14757360760805668
+   }
+  }
+ },
+ "summary": {
+  "load_bearing_failed": 0,
+  "runtime_s": 0.3
+ }
+}
