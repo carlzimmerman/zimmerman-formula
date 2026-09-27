@@ -29,6 +29,13 @@ chains** that start from the core framework and a stated founding principle. No 
 
 ## Rules
 
+0. **Build on the framework's own findings, and reduce the parameter space.** This rule comes first, at the author's
+   instruction.
+   - Every lane uses the framework's own results as its building blocks and constraints, and cites the record's
+     files, not other people's theories. The full inventory is CFG0's (`CFG0_own_findings_inventory.md`).
+   - Every new constant must be fixed or tied by one of those results wherever possible.
+   - Constant counts are reported as fitted / declared / tied / derived.
+   - The aim is independent results that appear nowhere in the literature.
 1. **Fresh.**
    - Import no published theory as a base. That includes AQUAL, QUMOND, TeVeS, AeST, Einstein–aether,
      khronometric/Hořava gravity, superfluid or dipolar dark matter, emergent gravity, νHDM and their relatives.
@@ -115,6 +122,19 @@ and expanding matter. Each lane takes one of these.
 - **CFG5, the radial acceleration relation as a fossil of collapse.** Gravity is GR, and there is no MOND field. As
   matter collapses, a process keyed to a₀ = κc√(Gρ_Λ) rearranges or removes the framework's dark field. The halo that
   survives encodes a₀, so the RAR is written in during formation.
+
+## Third wave (2026-09-27)
+
+- **CFG0, the framework's own findings and the parameter-reduction map.**
+  - Inventories every original result in the record, with its status and commit.
+  - For each current free constant (ξ, the dark field's mass, ε, the trigger normalisation, q, λ, α_c, the
+    separator's constants, the dark amount), tests whether one of those results fixes it, ties it or removes it.
+  - Checks every candidate reduction on the gates it touches.
+- **CFG6, a₀ following the dark energy.**
+  - Develops the framework's own finding a₀(z) ∝ √ρ_DE(z) (FP0 R3b; the field-tie refinement √V in XR20) against
+    the unimodular flat branch.
+  - Covers the novelty check, the predictions under the current dark-energy fits, the confrontation with the
+    record's a₀(z) evidence, and where the branch matters in the record's calculations.
 
 ## Files
 
