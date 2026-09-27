@@ -1,0 +1,69 @@
+XR33 part 2/2 -- THE JOINT LENSING + DYNAMICS TEST OF THE CHAIN'S LAW ON SLACS, AND THE LCDM CONTROL.
+
+QUESTION.  With the IMF normalisation the chain needs for the Einstein mass (part 1), does the chain's law also predict the SDSS
+aperture velocity dispersions of the same lenses?  And does the same Jeans + lensing machinery, run with the standard stellar +
+NFW decomposition, reproduce the published LCDM results (Auger+2010's dark fractions, Treu+2010's per-lens IMF)?
+
+THE LAW.  As in part 1 (XR33_lensing_imf.py): spherical, g = g_N + a0 x_P2(y - y_th), PPN gamma = 1, band-pass cut at 2 L(z_l).
+The tracer is the de Vaucouleurs light with Auger+2010's rest-frame-V r_e (exactly deprojected); orbits isotropic (Treu+2010,
+Auger+2010's baseline), constant-beta brackets; the SDSS fibre (radius 1.5") with Gaussian seeing FWHM 1.5" (Posacki+2015's
+'typical for SDSS'), brackets 1.0" and 1.8".  sigma_SDSS and its error from Auger+2009 (= Bolton+2008).
+
+THE LCDM CONTROL.  Stars (de Vaucouleurs as above; Hernquist with a = r_e/1.8153 where reproducing Treu+2010) + NFW halo:
+  LC1  NFW with break radius 30 kpc (Treu+2010) normalised to the lensing mass at a fixed Chabrier or Salpeter IMF: the projected
+       dark fraction inside r_e/2 against Auger+2010 Table 1's f_DM (their power-law lensing + dynamics mass at r_e/2).
+  LC2  per lens, the stellar mass and the halo normalisation from M_E and sigma_SDSS together (Treu+2010's method: Hernquist
+       stars, isotropic, r_b = 30 kpc): log alpha_Salp against Treu+2010's per-lens values.
+  LC3  (reported) Moster+2013 abundance-matched halos (Dutton & Maccio 2014 c200): alpha from lensing alone and the dispersions
+       it predicts.
+
+  SLACS: 59 lenses (53 non-outliers); a0 = 9.3603e-11 / 1.1312e-10 m/s^2; fibre radius 1.5", seeing FWHM 1.5"
+
+======================================================================================================================
+V  JEANS MACHINERY
+======================================================================================================================
+  [PASS] V1 JEANS MACHINERY: a r^-3 tracer in a singular isothermal potential gives sigma_ap = v_c/sqrt(3) for any aperture, seeing and constant beta
+         measured: max rel dev 7.7e-05
+  [PASS] V2 THE RECORD'S OWN SPHERICAL JEANS SOLVER (h53 item 54b, committed f33d4e86a), re-typed, reproduces its committed Salpeter sigma_pred/sigma_obs medians exactly (70 lenses, 1.5" fibre, no seeing, isotropic, nu_RAR, a0 = 9.36e-11)
+         measured: canonical/V 0.8556 vs 0.856; canonical/I 0.9547 vs 0.955; newton/V 0.8241 vs 0.824; newton/I 0.9339 vs 0.934
+         reading:  under MUTATE the 'canonical' row is computed at a0 = 0 and becomes the Newtonian one
+  [PASS] (reported) V2b (reported) this lane's Jeans integrator on h53's inputs (no seeing; exact instead of Prugniel-Simien deprojection) agrees with h53's solver
+         measured: median rel dev -0.1443% (20 lenses)
+
+======================================================================================================================
+LC  THE LCDM CONTROL: stars + NFW
+======================================================================================================================
+  [PASS] LC1 LCDM CONTROL -- AUGER+2010'S DARK FRACTIONS: stars (de Vaucouleurs, r_e,V) + NFW (break radius 30 kpc) normalised to the lensing mass reproduce Auger+2010 Table 1's projected f_DM inside r_e/2 at both IMFs
+         measured: Chabrier: median diff +0.000, median |diff| 0.026; Salpeter: median diff +0.018, median |diff| 0.029
+         reading:  Auger's f_DM uses the power-law lensing + dynamics mass at r_e/2; this uses the NFW-extrapolated lensing mass -- the extrapolation from R_E ~ 0.58 r_e to 0.5 r_e is short, so the two must agree
+  [PASS] LC2 LCDM CONTROL -- TREU+2010'S PER-LENS IMF: stars (Hernquist, a = r_e/1.8153) + NFW (r_b = 30 kpc), isotropic, alpha and the halo from M_E and sigma_SDSS together, reproduce Treu+2010's log alpha_Salp lens by lens
+         measured: 51 lenses in common: median (mine - Treu) +0.018 dex, Pearson r 0.97; median log alpha mine +0.037 vs Treu +0.010; 18 lenses with > 50% of the posterior at f* > 0.9
+         reading:  Treu's aperture/seeing treatment is not specified beyond the SDSS fibre; FWHM 1.5" used here
+  LC2 with de Vaucouleurs stars (53 non-outliers): median log alpha_Salp +0.016
+  LC3 Moster+2013 abundance-matched NFW (median log M200 14.05): lensing-only log alpha_Salp median -0.174 (5 lenses need a negative stellar mass); its sigma_pred/sigma_obs median 0.848
+
+======================================================================================================================
+J  THE CHAIN'S JOINT TEST: the lensing IMF's predicted sigma_SDSS, and the dynamics-only IMF
+======================================================================================================================
+  canonical (53 non-outliers): sigma_pred/sigma_obs median 0.989 (mean 1.004); chi^2/N 2.78 (sigma errors only); log alpha_dyn - log alpha_lens: mean -0.001 +- 0.011, median +0.010; log alpha_dyn median +0.092 vs lensing +0.105; the phantom lifts sigma by 0.021 at fixed IMF
+             all 59: sigma ratio median 0.973
+  alt       (53 non-outliers): sigma_pred/sigma_obs median 0.986 (mean 1.000); chi^2/N 2.81 (sigma errors only); log alpha_dyn - log alpha_lens: mean +0.003 +- 0.011, median +0.013; log alpha_dyn median +0.088 vs lensing +0.096; the phantom lifts sigma by 0.026 at fixed IMF
+             all 59: sigma ratio median 0.970
+  brackets (canonical; median sigma_pred/sigma_obs at the lensing IMF, 53 non-outliers; primary 0.989): beta = +0.2: 1.011; beta = -0.2: 0.971; seeing FWHM 1.0": 0.992; seeing FWHM 1.8": 0.987; kernel nu_mono: 0.983; kernel nu_RAR: 0.983; Sersic n = 3: 0.956; Sersic n = 6: 1.079; Hernquist stars: 0.945; dark fluid XR19 nominal (f = 0.203 of the Salpeter-LCDM dark mass): 0.971; dark fluid XR19 halo-only (f = 0.503 of the Salpeter-LCDM dark mass): 0.946
+  S4TM (40, reported): sigma_pred/sigma_obs median at the lensing IMF: canonical 1.008; alt 1.005
+
+======================================================================================================================
+H  THE PRE-DECLARED HYPOTHESIS AND THE MUTATE TARGET
+======================================================================================================================
+  [PASS] (reported) H7 joint lensing + dynamics in the chain's law: with the lensing-required IMF the predicted SDSS aperture dispersion matches sigma_SDSS -- median ratio in [0.95, 1.05], both footings (53 non-outliers, isotropic, FWHM 1.5")
+         measured: canonical: 0.989 (log alpha_dyn - log alpha_lens mean -0.001); alt: 0.986 (log alpha_dyn - log alpha_lens mean +0.003)
+  [PASS] P2 THE CHAIN'S PHANTOM RAISES THE PREDICTED APERTURE DISPERSION AT FIXED IMF BY >= 2% (median, both footings)
+         measured: canonical: +0.0212; alt: +0.0257
+         reading:  load-bearing MUTATE target: with a0 -> 0 the lift is exactly zero
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  7/7 checks pass; load-bearing failures: 0
+  pre-declared hypothesis: H7 HELD
+  (140 s)

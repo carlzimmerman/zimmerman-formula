@@ -1,0 +1,139 @@
+XR33 part 1/2 -- GALAXY-SCALE STRONG LENSING FROM BARYONS ALONE IN THE DERIVATION CHAIN'S LAW, AND THE IMF IT REQUIRES.
+
+QUESTION.  Does the chain's static law (FP7's AQUAL-type root with FP9's yield and band-pass; heat filter irrelevant at kpc)
+reproduce the Einstein masses of SLACS early-type lenses (and S4TM, BELLS, SNELLS) from their baryons alone?  If so, what stellar
+IMF normalisation does it need, and is that consistent with independent (spectroscopic; dynamics-with-halo) IMF evidence?
+
+THE LAW (read from the chain; nothing re-derived):  PPN gamma = 1 (FP2 L6a, FP7 R7p), so the lensing mass is the dynamical mass;
+in spherical symmetry the AQUAL root gives g = g_N + a0 x_P2(y - y_th), x_P2(D) = sqrt(D^2 + D) - D (FP7 A2: P2 EXACTLY; FP9 Y1),
+y_th(z) = y_th(0.25) (Omega_L(0.25)/Omega_L(z))^p' and L(z) = L_Lambda Omega_L(z)^(n/2) with FP9's committed headline constants.
+The band-pass removes the phantom beyond ~2L (FP6 G6e); it is applied here as a hard line-of-sight cut at 2 L(z_l) (primary),
+with L and 10 Mpc as brackets.  The heat filter changes the law by <= 3e-5 at galaxy scales (FP1 B3) and is not modelled.
+
+DATA (all published; copied/transcribed unchanged into XR33_data_*.tsv with provenance headers, except the first):
+  SLACS  Auger et al. 2009, ApJ 705, 1099 (VizieR J/ApJ/705/1099; the record's real_research/data/slacs_auger2009_lenses.tsv):
+         z_l, z_s, sigma_SDSS, R_E (kpc), log M_E, f*_Ein, log M* (Chabrier, Salpeter);  Auger et al. 2010, ApJ 724, 511, Table 1:
+         rest-frame V effective radius r_e,V, sigma_e2, outlier flags (the 59 lenses with robust lensing + kinematics).
+  S4TM   Shu et al. 2017, ApJ 851, 48 (VizieR J/ApJ/851/48): 40 grade-A lower-mass lenses, Chabrier M* from Shu et al. 2015.
+  BELLS  Brownstein et al. 2012, ApJ 744, 41: 25 grade-A z ~ 0.5 lenses (22 early type); M* is NOT published -- derived here from
+         F814W with a calibration on SLACS's own SPS masses (part S; a calibration-limited sample, reported, not load-bearing).
+  SNELLS Smith, Lucey & Conroy 2015, MNRAS 449, 3441: three z < 0.055 lenses with R_Ein ~ 2 kpc (J-band L_Ein, Upsilon_ref).
+  IMF    Conroy & van Dokkum 2012, ApJ 760, 71, Table 2 (spectroscopic, gravity-independent: 34 ETGs);  relations quoted from
+         Cappellari et al. 2013, MNRAS 432, 1862 (ATLAS3D XX; dynamics with dark halos), Posacki et al. 2015, MNRAS 446, 493
+         (lensing + dynamics with a halo), Treu et al. 2010, ApJ 709, 1195 and Auger et al. 2010, ApJ 721, L163 (SLACS + NFW);
+         Barnabe et al. 2013, MNRAS 436, 253 (SSP slopes of two SLACS lenses).
+  Cosmology for lens geometry: (Om, OL, h) = (0.3, 0.7, 0.7) -- the SLACS tables' own; M*/M_E scales as h^-1 (bracket).
+
+UNITS OF THE IMF NORMALISATION.  alpha_Salp = M*(required)/M*(SPS, Salpeter) on Auger et al.'s scale (Salpeter - Chabrier =
+0.25 dex); CvD12b's (M/L)/(M/L)_MW is converted with their 'Salpeter ~ 1.6'; SNELLS's Kroupa alpha with their 'Salpeter = 1.55'.
+
+  inputs: a0 = 9.3603e-11 / 1.1312e-10 m/s^2 (FP0); FP9 (H_Y): n = 2.0, L(0.25) = 1.3 Mpc (L_Lambda = 2.462 Mpc), y_th(0.25) = 1e-06, p' = 4.0
+
+  SLACS: 59 lenses with Auger+2010's rest-frame-V effective radius (53 non-outliers); median z_l 0.191, R_E 4.18 kpc, r_e,V 6.87 kpc, R_E/r_e 0.582, sigma_SDSS 244 km/s
+
+======================================================================================================================
+C  CONTROLS
+======================================================================================================================
+  [PASS] C1 LENS GEOMETRY: M_E = pi Sigma_cr R_E^2 recomputed from R_E, z_l, z_s in (0.3, 0.7, 0.7) reproduces Auger+2009's tabulated log M_E (59 SLACS) and, from bSIE, Shu+2017's log M_Ein (40 S4TM)
+         measured: SLACS median +0.0011 dex, rms 0.0031; S4TM median +0.0012, rms 0.0042
+         reading:  the table values are rounded to 0.01 dex (SLACS) and 0.01 dex (S4TM); S4TM's own WMAP7 geometry differs by < 0.001 dex
+  [PASS] C2 NEWTONIAN STARS-ONLY LIMIT: a de Vaucouleurs stellar body with Auger+2010's rest-frame-V r_e and Auger+2009's M* puts exactly Auger+2009's stellar-only Einstein mass f*_Ein M_E inside R_E (both IMFs)
+         measured: model/Auger: Chabrier median 1.0005 (rms 0.0044 dex), Salpeter 0.9992 (rms 0.0033 dex)
+         reading:  this settles the record's h53 validation-B offset (-8%/+12% with the observed-band radii): Auger used r_e interpolated to rest-frame 5500 A; with it the stellar model is Auger's own to rounding
+  [PASS] C3 THE RECORD'S OWN SPHERICAL MOND LENSING SOLVER (h53_h54_slacs_lenses.py, committed f33d4e86a), re-typed with its constants, nu_RAR kernel, Prugniel-Simien deprojection, grid and 70-lens sample, reproduces its committed .out exactly
+         measured: N 70; boost(V) 1.1677 vs 1.168; kappa_bar(Salp, V) 0.8246 vs 0.825; boost(I) 1.1359 vs 1.136; kappa_bar(Salp, I) 0.7938 vs 0.794; R_E ratio(V) 0.8402 vs 0.840
+         reading:  a0 = 9.36e-11 (the hunt's rounded canonical value); under MUTATE the same computation at a0 = 0 cannot reproduce it
+  [PASS] C3b this lane's projection integrator on h53's inputs (same kernel, a0, radii; exact instead of Prugniel-Simien deprojection) agrees with h53's boost lens by lens
+         measured: median (mine/h53 - 1) = +0.0060%
+         reading:  the residual is the Prugniel-Simien approximation plus h53's np.gradient grid; the physics is the same
+  [PASS] C4 THE CHAIN'S LAW AS IMPLEMENTED: the phantom equals FP7 A2's closed form x = sqrt(y^2+y) - y and satisfies the AQUAL first integral mu_s(x) x = y (mu_s = x/(1-2x)); FP9's committed y_th(z) table and L(0) = 1.69 Mpc follow from its constants; XC4's committed nu_mono splice y* = 2.3374124053 is reproduced
+         measured: max rel |h - x_cl| 6.0e-11; max rel |mu_s x - y| 1.4e-10; y_th(0/0.25/1/2) = 3.51e-07/1e-06/3.67e-05/0.00248 (max rel dev 2.7e-15); L(0) = 1.689 Mpc; y* = 2.3374124053
+  [PASS] C5 NUMERICS: the exact Abel deprojection of the de Vaucouleurs law projects back to the incomplete-gamma law, and the phantom's u-substitution projection equals a brute-force (400k-shell) projection
+         measured: deprojection round trip max rel dev 1.2e-05; phantom projection max rel dev 4.0e-07
+
+======================================================================================================================
+L  SLACS (59 lenses, 53 non-outliers) IN THE CHAIN'S LAW: Einstein masses at fixed IMF, predicted Einstein radii, and the IMF normalisation required
+======================================================================================================================
+  canonical: y_N(R_E) at Salpeter median 10.86;  kappa_bar = M_2D(R_E)/M_E: Chabrier 0.490, Salpeter 0.804;  R_E(pred)/R_E(obs): Chabrier 0.526, Salpeter 0.837;  required log alpha_Salp +0.105 +- 0.012 (median; mean +0.101, scatter 0.107 vs median SPS error 0.080); log alpha_Chab +0.349;  phantom share of M_E 0.095
+             non-outliers (53): log alpha_Salp median +0.105, kappa_bar Salpeter 0.804
+  alt      : y_N(R_E) at Salpeter median 8.99;  kappa_bar = M_2D(R_E)/M_E: Chabrier 0.505, Salpeter 0.822;  R_E(pred)/R_E(obs): Chabrier 0.533, Salpeter 0.849;  required log alpha_Salp +0.096 +- 0.012 (median; mean +0.093, scatter 0.107 vs median SPS error 0.080); log alpha_Chab +0.341;  phantom share of M_E 0.111
+             non-outliers (53): log alpha_Salp median +0.096, kappa_bar Salpeter 0.822
+  [PASS] (reported) L1 (reported) the chain's Einstein masses at the two standard IMFs and the IMF it requires (both footings)
+         measured: canonical: kappa_bar Chab 0.490 / Salp 0.804, log alpha_Salp +0.105; alt: kappa_bar Chab 0.505 / Salp 0.822, log alpha_Salp +0.096
+  [PASS] P1 AT THE CHAIN'S REQUIRED IMF THE PHANTOM SUPPLIES >= 5% OF THE SLACS EINSTEIN MASS (median; both footings) -- the chain's law is active at R_E, a few a0
+         measured: canonical: 0.095; alt: 0.111
+         reading:  load-bearing MUTATE target: with a0 -> 0 the share is exactly zero
+  kernel sensitivity (the record's other kernels; NOT the chain's law): median log alpha_Salp nu_mono/canonical +0.088; nu_mono/alt +0.078; nu_RAR/canonical +0.096; nu_RAR/alt +0.087
+
+======================================================================================================================
+B  BRACKETS ON THE REQUIRED IMF (median shift of log alpha_Salp over the 59 SLACS lenses, canonical footing)
+======================================================================================================================
+    band-pass cut at L(z_l) instead of 2 L(z_l)                d log alpha = +0.0001
+    no band-pass (line of sight to 10 Mpc)                     d log alpha = -0.0001
+    no yield (y_th = 0)                                        d log alpha = -0.0000
+    hot gas 2% of the stellar mass, same profile               d log alpha = -0.0086
+    hot gas 5% of the stellar mass, same profile               d log alpha = -0.0212
+    hot gas 10% of the stellar mass, same profile              d log alpha = -0.0414
+    Sersic n = 3 at fixed M*, r_e (profile systematic)         d log alpha = +0.0232
+    Sersic n = 6 at fixed M*, r_e (profile systematic)         d log alpha = -0.0275
+    r_e +3.5% (Auger's quoted model error)                     d log alpha = +0.0103
+    r_e -3.5%                                                  d log alpha = -0.0102
+    h = 0.674 instead of 0.7 (M*/M_E ~ h^-1, y unchanged)      d log alpha = -0.0164
+    external field (algebraic, angle-averaged; relative to g_e = 0): g_e = 0 a0: +0.0000; g_e = 0.01 a0: +0.0014; g_e = 0.03 a0: +0.0025; g_e = 0.1 a0: +0.0047; g_e = 0.3 a0: +0.0079
+  [PASS] (reported) B1 (reported) THE EXTERNAL FIELD DOES NOT MATTER at R_E: g_e <= 0.1 a0 moves the median required IMF by <= 0.02 dex (the phantom it removes lies at r >~ sqrt(GM/g_e) ~ 70 kpc, weighted by R_E^2/2r^2 in the Einstein cylinder)
+         measured: 0 a0: +0.0000; 0.01 a0: +0.0014; 0.03 a0: +0.0025; 0.1 a0: +0.0047; 0.3 a0: +0.0079
+  [PASS] (reported) B2 (reported) the chain's separator is irrelevant at R_E: band-pass cut (L, 2L, none) and yield on/off move the median required IMF by < 0.01 dex
+         measured: band-pass cut at L(z_l) instead of 2 L(z_l): +0.0001; no band-pass (line of sight to 10 Mpc): -0.0001; no yield (y_th = 0): -0.0000
+    dark fluid retained as f x the LCDM dark matter, kernel-invisible (Newtonian only): nfw_lens: XR19 nominal (1 - F_esc(0)): f = 0.203 -> d log alpha -0.0296; nfw_lens: XR19 halo-only (1 - F_esc(0)): f = 0.503 -> d log alpha -0.0772; nfw_am: XR19 nominal (1 - F_esc(0)): f = 0.203 -> d log alpha -0.0585; nfw_am: XR19 halo-only (1 - F_esc(0)): f = 0.503 -> d log alpha -0.1621
+      anchors: nfw_lens = NFW (r_s 30 kpc) carrying (1 - f*_Salp) M_E inside R_E (median share of M_E 0.290); nfw_am = Moster+2013 halo, median log M200 14.05 (the Chabrier-LCDM halo; an upper bracket)
+
+======================================================================================================================
+S  THE OTHER SAMPLES: S4TM (lower masses), BELLS (z ~ 0.5, R_E ~ R_e), SNELLS (R_Ein ~ 2 kpc)
+======================================================================================================================
+  S4TM canonical: median log alpha_Salp -0.094 (N = 40; median sigma 202 km/s, R_E/R_e 0.53)
+  S4TM alt      : median log alpha_Salp -0.100 (N = 40; median sigma 202 km/s, R_E/R_e 0.53)
+  BELLS calibration on 79 SLACS lenses (z 0.06-0.51): log M*_Chab + 0.4 (I - DM) = 2.0580 -0.0758 z (rms 0.057 dex); quadratic bracket 1.998 +0.490 z -1.122 z^2
+  BELLS canonical: median log alpha_Salp +0.120 (quadratic calibration +0.170); N = 22, median z 0.52, R_E/R_e 1.00
+  BELLS alt      : median log alpha_Salp +0.109 (quadratic calibration +0.159); N = 22, median z 0.52, R_E/R_e 1.00
+  [PASS] C6 SNELLS: this lane's Newtonian (a0 -> 0) IMF factor from M_Ein, L_Ein and Upsilon_ref reproduces SNELLS's own 'no dark matter' alpha (Smith+2015 Table, case c) for all three lenses
+         measured: 1.247 vs 1.24; 1.408 vs 1.42; 1.262 vs 1.27
+         reading:  agreement to their two-decimal rounding of M_Ein, L_Ein
+  SNELLS canonical: SNL-0: y_N(R_Ein) 39.6, phantom share 0.040, alpha_Kroupa 1.197 -> log alpha_Salp -0.112; SNL-1: y_N(R_Ein) 47.5, phantom share 0.035, alpha_Kroupa 1.358 -> log alpha_Salp -0.057; SNL-2: y_N(R_Ein) 23.8, phantom share 0.061, alpha_Kroupa 1.184 -> log alpha_Salp -0.117
+  SNELLS alt      : SNL-0: y_N(R_Ein) 32.5, phantom share 0.047, alpha_Kroupa 1.189 -> log alpha_Salp -0.115; SNL-1: y_N(R_Ein) 39.0, phantom share 0.042, alpha_Kroupa 1.349 -> log alpha_Salp -0.060; SNL-2: y_N(R_Ein) 19.5, phantom share 0.072, alpha_Kroupa 1.171 -> log alpha_Salp -0.122
+
+======================================================================================================================
+I  THE REQUIRED IMF AGAINST INDEPENDENT IMF EVIDENCE (Salpeter units, Auger+ SPS scale)
+======================================================================================================================
+  CvD12b (34 ETGs, spectroscopic): log alpha_MW = +0.111 +0.628 log(sigma_Re/8 / 200) (rms 0.123 dex); Salpeter = 1.6 in these units; heaviest: NGC4552 alpha_MW 2.04 -> alpha_Salp 1.275
+  canonical: SLACS chain - CvD12b: mean +0.118 +- 0.013 dex (median +0.112; chi2/N 1.06 with SPS error + relation scatter); chain - ATLAS3D XX (dynamics + halo) +0.138; chain - Posacki+15 (lensing + dynamics + halo) +0.143
+             S4TM chain - CvD12b mean -0.042; BELLS +0.208 (quadratic calibration +0.276); SNELLS -0.150; SNELLS mean log alpha_Salp -0.095 vs SLACS (sigma_SDSS >= 280, N = 12) +0.161
+  alt      : SLACS chain - CvD12b: mean +0.110 +- 0.013 dex (median +0.106; chi2/N 0.98 with SPS error + relation scatter); chain - ATLAS3D XX (dynamics + halo) +0.130; chain - Posacki+15 (lensing + dynamics + halo) +0.131
+             S4TM chain - CvD12b mean -0.049; BELLS +0.197 (quadratic calibration +0.265); SNELLS -0.153; SNELLS mean log alpha_Salp -0.099 vs SLACS (sigma_SDSS >= 280, N = 12) +0.154
+  Treu+2010 (SLACS, stars + NFW, lensing + dynamics) on the 51 lenses in common: median log alpha_Salp +0.010; the chain's (canonical) +0.100; median difference chain - LCDM +0.061 dex
+  Barnabe+2013 SSP slope for J0936+0913: x = 2.10 +- 0.15 (slightly sub-Salpeter); the chain requires log alpha_Salp -0.056 (canonical)
+  Barnabe+2013 SSP slope for J0912+0029: x = 2.60 +- 0.30 (super-Salpeter); the chain requires log alpha_Salp +0.185 (canonical)
+  LCDM's own IMF on the same tests: Treu+2010 - CvD12b mean +0.021 dex; SNELLS (EAGLE dark matter) mean log alpha_Salp -0.167 vs Treu+2010 at sigma_SDSS >= 280 (11 lenses) +0.130 (diff -0.297)
+
+======================================================================================================================
+H  THE PRE-DECLARED HYPOTHESES
+======================================================================================================================
+  [FAIL] (reported) H1 the chain reproduces the SLACS Einstein masses with a STANDARD IMF (median kappa_bar in [0.9, 1.1] for Chabrier or for Salpeter, both footings)
+         measured: canonical: Chab 0.490, Salp 0.804; alt: Chab 0.505, Salp 0.822
+  [PASS] H2 THE REQUIRED IMF IS PHYSICALLY ATTAINABLE: SLACS median alpha_Salp <= 1.275 (the heaviest spectroscopic IMF of CvD12b's 34 ETGs), both footings
+         measured: canonical: alpha_Salp 1.273; alt: alpha_Salp 1.248; ceiling 1.275
+         reading:  load-bearing MUTATE target: an a0-free law needs alpha_Salp ~ 1/f*_Salp
+  [FAIL] (reported) H3 the chain's IMF agrees with spectroscopy at matched sigma: SLACS mean offset from the CvD12b relation within +-0.10 dex, both footings
+         measured: canonical: +0.118 +- 0.013; alt: +0.110 +- 0.013
+  [FAIL] (reported) H4 one IMF(sigma) serves both radii: the chain's SNELLS mean log alpha_Salp is not below its SLACS (sigma >= 280) median by more than 0.10 dex, both footings
+         measured: canonical: SNELLS -0.095 vs SLACS +0.161 (diff -0.256); alt: SNELLS -0.099 vs SLACS +0.154 (diff -0.253)
+  [PASS] (reported) H5 lower-mass lenses: the chain's S4TM mean offset from the CvD12b relation is within +-0.10 dex, both footings
+         measured: canonical: -0.042; alt: -0.049
+  [FAIL] (reported) H6 (reported; calibration-limited) BELLS mean offset from the CvD12b relation within +-0.15 dex, both footings (linear SLACS calibration; the quadratic bracket shown)
+         measured: canonical: +0.208 (quad +0.276); alt: +0.197 (quad +0.265)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  13/17 checks pass; load-bearing failures: 0
+  pre-declared hypotheses: H1 FELL, H2 HELD, H3 FELL, H4 FELL, H5 HELD, H6 FELL
+  (50 s)
