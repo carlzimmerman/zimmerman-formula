@@ -3,7 +3,8 @@
 One covariant action at the root, every observable varied out of it, nothing posited by hand below the postulates.
 Each lane `FPn_*.py` is a runnable script with named checks, a verdict line
 `N/M checks pass; load-bearing failures: K`, a results JSON carrying its `ledger`, and a `MUTATE=1` control that must
-fail (rc = 1). `run_chain.py` assembles every lane's ledger into `CHAIN_STATUS.md` and enforces that contract.
+fail (rc = 1). `run_chain.py` assembles every lane's ledger into `CHAIN_STATUS.md` and enforces that contract. The standing, the
+open decisions and the next steps are in `HANDOFF_2026-09-27.md`.
 
 ```bash
 python3 real_research/derivation_chain_2026/run_chain.py
@@ -62,10 +63,10 @@ merger/offset gates (Harvey, the Bullet cluster) must score it (OPEN).
 | core | c_2 | ELIMINATED on Minkowski and FRW (c_2 -> infinity: a multiplier). At black holes the limit is not uniform: at c_2 = infinity with alpha_c > 0 the multiplier diverges logarithmically at the universal horizon (r = 3M/2), a curvature singularity at O(alpha_c); finite c_2 is regular. OPEN (XR25) | FP14, XR25 |
 | core | alpha_c | REGULATOR (every observable moves <= 1.6e-9) | FP14 |
 | core | xi (heat filter) | KNOB: irreducible by a threshold-mass theorem. MEASURABLE by Gaia DR4 wide binaries with a separation-resolved statistic: sigma(ln xi) ~ 0.20/0.15 at the floor, 91% of the information at 5-30 kAU. The frozen pre-registered statistic can only kill the chain from above (gamma_hat >~ 1.157/1.174); a Newtonian result only bounds xi > 0.036/0.047 pc (the hub's XR22, 661ea3cff, re-run pending) | FP17, XR22 |
-| separator | L_Lambda | DECLARED in H_K1: 2.9 Mpc, inside the window 2.8-4.6 with the exact KiDS projector (FP20b; 2.65-4.6 before) (sigma_8 <= 1.02 needs <= 3.0); zero modes alone cannot give it (FP19) | FP19, FP20b |
+| separator | L_Lambda | DECLARED in H_K1: 2.9 Mpc. Its window's lower edge is 2.8 with the exact KiDS projector (FP20b) and its upper edge >= 5.0 with the corrected spectrum (FP24; sigma_8 <= 1.02 up to ~3.3); the two fixes were not run jointly. Zero modes alone cannot give it (FP19). The band-pass family is now squeezed by KiDS with the web's field (FP23), cluster outskirts (XR28) and CMASS (FP23) | FP19, FP20b, FP24 |
 | separator | n = 2, the q = 0 ramp, c_y = 2 | natural choices in H_K1 (c_y chosen after scoring: the only one of four natural normalizations passing both yardsticks); H_Y's y_Lambda and p' are gone | FP13, FP19 |
 | dark | eps | IRREDUCIBLE (the only Z4-odd term; a khronon-frame coupling only relabels it) and FITTED (the flagship sets the window's lower end, Harvey its upper) | FP10, FP15 |
-| dark | zeta (lambda_0), q, m | FITTED BY DATA: zeta's band is x1.16 wide at the mass floor; sharing q with the separator FAILS the web; m is pinned on the canonical footing, bounded on alt. The yield-onset trigger removes q but keeps zeta and adds a postulated gate form | FP15 |
+| dark | zeta (lambda_0), q, m | FITTED BY DATA: zeta's band is x1.16 wide at the mass floor; sharing q with the separator FAILS the web; m is pinned on the canonical footing, bounded on alt. The yield-onset trigger removes q but keeps zeta and adds a postulated gate form. Keying conversion to the baryon flow's turnaround (theta_b <= 0; zero constants) FAILS: the web converts, and the forest, mass selectivity and S_8 fail (FP25) | FP15, FP25 |
 | dark | cross quartic | POSTULATED (radiatively stable) | FP15 |
 | dark | amount, misalignment | initial data (the amount has the status of LCDM's omega_c) | FP10, FP15 |
 
@@ -88,9 +89,14 @@ merger/offset gates (Harvey, the Bullet cluster) must score it (OPEN).
   Einstein-frame coupling (baryons only) the real-space cut is 0.13-0.26 (H_K1 0.13-0.19): it passes Planck and ACT DR6
   on the linear base and fails ACT on the halofit base (>= 3.8 sigma). UNDECIDED until the nonlinear phantom is computed
   (the hub's XR21 stage 2a, reading "chain"). FK1's late conversion offsets only ~1.5% at L = 1000 (XR19).
-- KiDS and the web's external field (FP22, a risk, not a result): in the baryons-only reading the web's band-passed field
-  enters the kernel of an isolated lens at an estimated Delta chi^2 +205-232 with H_Y or H_K1 (all matter: +575-714), 6-8x
-  over the field KiDS tolerates. No committed KiDS model includes that field; FP23 computes it.
+- KiDS with the web's external field FAILS for H_K1 (FP23, 625dca2b0; FP22 had flagged the risk). In the adopted reading
+  the web's band-passed field at isolated lenses enters the AQUAL kernel: Delta chi^2 +110.9/+135.4 (canonical, z = 0.25/
+  0.4) and +126.9/+152.6 (alt), against a gate of +9. The committed KiDS passes all omitted that field. Passing needs the
+  field below ~2e-5 to 6e-5 a0, which only silencing every source inside 3 Mpc gives.
+- BOSS CMASS lensing FAILS for H_K1 (FP23): for CMASS-like lenses the chain predicts 1.40-2.07x LCDM at R = 1 Mpc (the
+  lens's own band-passed phantom plus the web's two-halo term), where the published signal sits at 0.71-0.83x
+  (Leauthaud+17, Amon+23; quoted, not re-measured) -- the wrong sign. H_K1's z-structure test needs CMASS split by z
+  (BOSS DR12 CMASS North is not on disk).
 - Cluster outskirts cap the band-pass length (the hub's XR28, ef74b985d, re-run pending). Any band-pass that Gauss-compensates an
   isolated system puts a compensation trough at 1.7-2.9 L(z), just outside splashback. Read as observers read it
   (projection plus a DK14 fit with Shin+21 priors), splashback moves in to 0.87-0.91 r200m (measured 0.97-1.16) and the
@@ -156,6 +162,13 @@ merger/offset gates (Harvey, the Bullet cluster) must score it (OPEN).
 - **The record's forest particle-mesh codes** (L346, L347, L362, DE11, DE11b) pass (1+z) times the physical field to the
   MOND kernel, so MOND is evaluated about sqrt(1+z) too weak in the deep limit at z = 2-3 (the hub's XR21 flag, confirmed by
   FP22; the hub's XR34 re-scores DE11b). The chain's own forest proxies (FP9, FP13) use the physical field.
+- **The linear spectrum had an h-units bug** (the hub's XR23, 6b7ab8243; fixed and re-scored by FP24, eda09db87). T_EH98
+  (from L341; in FP3, FP6, FP7 and, through FP6, FP9/FP13/FP14/FP17/FP19) was 0.44x CLASS at 0.01 h/Mpc and 1.29-1.65x
+  at 1-100 h/Mpc at fixed sigma_8. No gate verdict flips. FP13's A6 "systematic" was the bug. One load-bearing flip:
+  FP13 A2 -- "n = 2 is the state's own running" is no longer derived (n_eff = 2.21 nonlinear / 2.98 linear); FP19
+  already treats n = 2 as a postulate.
+- **FK1 as written cannot convert above rho_block** (FP25): galaxy centres at z = 2.5 (r <~ 0.05 r200) and cluster cores
+  at z <~ 0.4 stay unconverted, which FP10 and FP16 omitted.
 - **FP19's "the <K>_h read acts at k = 0 only" is wrong** (XR18b): its second variation is a local operator at every k.
   It is harmless: the constraint determinant is identical with and without it (|eps_C| <= 9.1e-6, rho_extra/rho_bar <=
   2.6e-5). FP19's "lambda any value <~ 100" is also wrong at c_2 = infinity: lambda must be declared <= 0.03.

@@ -1,6 +1,6 @@
 # The first-principles derivation chain -- status ledger
 
-Assembled by `run_chain.py` on 2026-09-27 11:59. A lane counts only if its main run has a verdict and its MUTATE control flips (rc = 1). Status meanings: DERIVED (varied out of the chain above it, with a script), TIED (an input implemented as an exact action-level relation, coupling chosen), POSTULATED (an input), FITTED (a constant set by data), CONSTRAINT (a derived requirement on a lower link), OPEN (owed), FAILS (derived and contradicted by data).
+Assembled by `run_chain.py` on 2026-09-27 15:34. A lane counts only if its main run has a verdict and its MUTATE control flips (rc = 1). Status meanings: DERIVED (varied out of the chain above it, with a script), TIED (an input implemented as an exact action-level relation, coupling chosen), POSTULATED (an input), FITTED (a constant set by data), CONSTRAINT (a derived requirement on a lower link), OPEN (owed), FAILS (derived and contradicted by data).
 
 ## Lanes
 
@@ -30,6 +30,9 @@ Assembled by `run_chain.py` on 2026-09-27 11:59. A lane counts only if its main 
 | FP20b_rescore_fp15_fp16_fp19 | 5/5 | 0 | 0 | 1 | ok |
 | FP21_isolated_spiral_lensing | 18/19 | 0 | 0 | 1 | ok |
 | FP22_who_feels_mond | 24/24 | 0 | 0 | 1 | ok |
+| FP23_galaxy_lensing_web_field | 18/18 | 0 | 0 | 1 | ok |
+| FP24_transfer_function_fix | 10/10 | 0 | 0 | 1 | ok |
+| FP25_constructive_dark_sector | 33/33 | 0 | 0 | 1 | ok |
 
 ## Links
 
@@ -390,5 +393,46 @@ Assembled by `run_chain.py` on 2026-09-27 11:59. A lane counts only if its main 
 | FP22 | L22k | OPEN | CMB lensing in (b): the lensing phantom is cut only ~sqrt(f_b)-like (not f_b^2); real-space f_eff 0.13-0.26 vs the needed 0.62 (linear) / 0.18 (halofit): passes Planck and ACT on the linear base, fails ACT on the halofit base | L1, L2: decided by the nonlinear phantom (a particle-mesh question, not run here) |
 | FP22 | L22l | OPEN | KiDS: the isolated-lens term is reading-independent; the web's external field in the kernel (omitted by the committed KiDS models) is a risk in both readings (~+200 (b), ~+600 (a) with H_Y/H_K1; uniform-rms estimate) | D1, D2 (FP18's projection) |
 | FP22 | L22m | DERIVED | the PM forest codes' kernel argument is (1+z) x physical (MOND 1.9-2.5x too weak at z = 2-3); FP9/FP13's linear proxies are physical | E1-E2 |
+| FP23 | F23a | DERIVED | the band-pass localises the web's field: canonical/0.25: 0.96, canonical/0.4: 0.99, alt/0.25: 0.96, alt/0.4: 0.99 of its variance is sourced within B21's 3 Mpc isolation radius | W1 (reading (b), H_K1, the engine's growth, CLASS) |
+| FP23 | F23b | DERIVED | in linear theory B21-like isolation leaves the external band-passed field at lens peaks within 20% of its value at all lens peaks (0.7-1.3 sigma_U by bin mass); a low-density selection leaves it unchanged (a dipole is independent of a monopole) | W2 (Gaussian-field Monte Carlo; conditioning stated; Moster+13 SHMR for the Lagrangian scales) |
+| FP23 | F23c | FAILS | KiDS (B21, lead grade, exact projector) with the web's field in the AQUAL kernel, reading (b), H_K1: canonical/0.25: +110.9, canonical/0.4: +135.4, alt/0.25: +126.9, alt/0.4: +152.6 (gate +9); the committed passes need the field omitted | D2 (web field in the kernel; MUTATE switches it off) |
+| FP23 | F23d | CONSTRAINT | to pass, the field at isolated KiDS lenses must be below sigma* = canonical/0.25: 6.3e-05, canonical/0.4: 2.3e-05, alt/0.25: 4.4e-05, alt/0.4: 1.7e-05 a0, i.e. the linear conditioned field shrunk several-fold -- only the exterior-only bound (every source inside 3 Mpc silenced) does it | D1, D3 |
+| FP23 | F23e | CONSTRAINT | H_K1's z = 0.7 KiDS prediction in reading (b), exact projector: isolated canonical: +500.1, alt: +524.0; with the web's field canonical: +403.0, alt: +427.7 | Z1 (a prediction; FP19's +496 was all-matter + the old projector) |
+| FP23 | F23f | DERIVED | CMASS-like lenses: chain/LCDM at 0.1/0.3/1/3/10 Mpc (bracket ranges): z = 0.5: 0.76-0.99, 0.77-1.07, 1.46-2.07, 0.82-1.09, 0.95-1.00; z = 0.65: 0.73-0.97, 0.75-1.06, 1.40-2.02, 0.56-0.70, 0.95-1.00; z = 0.7: 0.73-0.96, 0.76-1.06, 1.18-1.84, 0.57-0.70, 0.96-1.00; jump 0.65/0.5: 0.968-0.980, 0.976-0.990, 0.964-0.986, 0.597-0.771, 1.000-1.009 | C1/C2 (inputs: White+11 HOD, Sheth-Tormen, Duffy+08 c(M), beta-model gas, FP16's retention; QUMOND form for the extended source) |
+| FP23 | F23g | FAILS | against the published CMASS lensing (quoted, not re-measured: Leauthaud+17's clustering-predicted signal 20-40% above the observed; Amon+23's A = 0.79 at Planck): the chain predicts 1.40-2.07x LCDM at R = 1 Mpc (the lens's own band-passed phantom, isothermal out to ~L, plus the web phantom's 2-halo term) where the data sit at 0.71-0.83x -- the wrong sign, 1.7-2.9x the observed; the deficit is not reproduced (a bump at ~1 Mpc and a trough at ~3 Mpc instead) | C1, C3 (every bracket; the linear web phantom removed as well) |
+| FP23 | F23i | OPEN | the direct test of H_K1's z-structure: no step at 0.635 for CMASS-like hosts (the yield's cut radius lies beyond L); a smooth ~30% fall of Delta Sigma at 2-5 Mpc from z = 0.5 to 0.6 (L(z)) and ~10% more across the switch; needs CMASS lensing split by z: BOSS DR12 galaxy_DR12v5_CMASS_North x the on-disk KiDS-1000 shear catalogue | C2 (fetching the BOSS catalogue needs the user's go) |
+| FP23 | F23h | POSTULATED | the isolation conditioning's Lagrangian-peak proxy (Moster+13 SHMR, delta_c = 1.686 on top-hat scales, 3 Mpc proper) | W2 variants bracket it; the verdict does not move across them |
+| FP24 | R24a | DERIVED | the corrected T_EH98 is EH98's published zero-baryon form (q = (k/h) Theta^2/Gamma_eff, 0.43 k s; colossus to 6e-16); against CLASS's no-wiggle spectrum at fixed sigma_8 it is within 3.3% on 0.01-20 h/Mpc (the formula's own broad-band error; the 2% target NOT met) | V1, V2 |
+| FP24 | R24b | FAILS | the chain's committed T_EH98 (L341 -> FP3/FP6/FP7 -> FP9/FP13/FP14/FP17/FP19) is EH98 | corrected by FP24: q = k Theta^2/Gamma and 0.43 k s/h with k in 1/Mpc; at fixed sigma_8 0.44x CLASS at 0.01 h/Mpc, 1.29/1.50/1.65x at 1/10/100 h/Mpc (V2) |
+| FP24 | R24c | FAILS | FP7 B5: sigma_8 with no gate at lambda_eff = 277 (can rms/pm, alt rms/pm): [22.07, 16.82, 26.09, 19.80] -> [20.66, 16.83, 24.40, 19.82] x LCDM (still >> 1.02: the ungated AQUAL scalar fails sigma_8) | corrected by FP24 (R3); CLASS no-wiggle [20.62, 16.81, 24.36, 19.80] |
+| FP24 | R24d | CONSTRAINT | FP7 B5/T: sigma_8 <= 1.02 needs lambda_eff >= [3.954e+07, 9.488e+06] (linear, k<=20 / k<=1; was [4.297e+07, 1.070e+07]), physical [4.361e+08, 4.289e+07, 4.362e+08, 4.790e+07] (was [4.361e+08, 4.811e+07, 4.362e+08, 5.344e+07]); the sigma_8-vs-tracking pincer stands | corrected by FP24 (R3) |
+| FP24 | R24e | DERIVED | H_Y (FP9 headline) sigma_8 gate [0.922, 1.05]: sigma_8/LCDM 1.0128-1.0180 -> 1.0109-1.0154 (CLASS nw 1.0111-1.0156); <= 1.02: yes | corrected by FP24 (R, FP9 re-run whole) |
+| FP24 | R24f | DERIVED | H_S (FP13 headline) sigma_8 gate [0.922, 1.05]: sigma_8/LCDM 1.0184-1.0227 -> 1.0148-1.0184 (CLASS nw 1.0151-1.0187); <= 1.02: yes | corrected by FP24 (R, FP13 re-run whole) |
+| FP24 | R24g | DERIVED | H_K1 (FP19 headline) sigma_8 gate [0.922, 1.05]: sigma_8/LCDM 1.0117-1.0151 -> 1.0099-1.0127 (CLASS nw 1.0101-1.0129); <= 1.02: yes | corrected by FP24 (R, FP19 re-run whole) |
+| FP24 | R24h | DERIVED | H_Y via FP14 C3 sigma_8 gate [0.922, 1.05]: sigma_8/LCDM 1.0128-1.0180 -> 1.0109-1.0154 (CLASS nw 1.0111-1.0156); <= 1.02: yes | corrected by FP24 (R, FP14 re-run whole) |
+| FP24 | R24i | CONSTRAINT | H_K1's L_Lambda window [2.65, 4.60] -> [2.65, 5.00] Mpc (grid); sigma_8 <= 1.02 part [2.65, 3.00] -> [2.65, 3.30]; interpolated sigma_8 = 1.02/1.05 edges [3.24, 4.75] -> [3.46, 5.06 (extrap.)] Mpc | corrected by FP24 (R8) |
+| FP24 | R24j | FAILS | FP13 A6's 'linear-spectrum systematic' (CLASS vs the chain's EH98) is a property of the linear reading | corrected by FP24: it was the h-units bug -- lin z = 0/0.25/1/2.5: [-0.133, -0.161, -0.251, -0.415] -> [0.022, 0.027, 0.039, 0.044] (R5) |
+| FP24 | R24k | CONSTRAINT | H_S's band-pass closes (L at the floor) for z >= 13.6 on its own reading (committed spectrum: 17.4); the JWST-era state moves with the spectrum | corrected by FP24 (R5b) |
+| FP24 | R24o | CONSTRAINT | the separator windows widen: FP6 (H) 43 -> 48 of 81 cells; FP9 (H_Y) 28 -> 29 of 48 | corrected by FP24 (R2, R4) |
+| FP24 | R24p | FAILS | FP13 A2: n = 2 is the state's own running (derived: n_eff 2.06 NL / 2.66 lin within A2's bands) | corrected by FP24 (R5): n_eff (NL, lin at delta_c) [2.057, 2.664] -> [2.209, 2.980] (CLASS [2.180, 2.966]); the linear value and the NL scan leave A2's bands, so n = 2 is a postulate, not the state's running (FP19 already carries it as POSTULATED; its n window still passes) |
+| FP24 | R24q | CONSTRAINT | H_S's price: the 1e11 flagship keeps MOND to z_max 4.24 -> 3.79 (CLASS 3.85) | corrected by FP24 (R5) |
+| FP24 | R24r | OPEN | the hub's XR18 coefficients (FP19 K2/K4's references) were computed on the committed spectrum: FP19's two controls against them now fail; XR18 needs its own re-run | R8, H |
+| FP24 | R24l | OPEN | the hub's and the record's files that carry the committed form (8 outside the chain) or name the chain's EH98 lanes (15) are not re-scored here | H |
+| FP24 | R24m | DERIVED | FP18's _T_nw (only the 0.43 k s term wrong) moves its 2-halo spectrum by <= 0.3% at k >= 0.1 h/Mpc: no FP18 verdict moves; FP1's copy is correct; FP4/FP10/FP15/FP16 use CLASS (L319/L357) | V4, SCOPE |
+| FP24 | R24n | FITTED | kappa = 1/2 (Z = 5.7888): the only accepted fitted input; not derived here | FP0 |
+| FP25 | L25a | DERIVED | the unified gate lambda_on Theta(-theta_b) vanishes on FRW (theta = 3H) and in linear theory (theta/H = 3 - f delta_L): no background conversion, threshold 0 scale-free | A1, A2 (sympy) |
+| FP25 | L25b | DERIVED | caustic theorem: theta -> -inf at shell crossing; the gate opens in forming sheets (x* = 3/(3+f)), filaments (2/(2+f)) and halos (1/(1+f)) | A3 (sympy) |
+| FP25 | L25c | DERIVED | baryon reading: the gas passes theta_b <= 0 before its accretion shock unless the shock stands off >= 3/4 (sheets) / 8/9 (filaments) of the turnaround distance; the self-similar 0.347 does not shut it | A4; the stand-off is a literature input (Bertschinger 1985), bracketed in B1 |
+| FP25 | L25d | CONSTRAINT | lambda_on is not a regulator: the channel closes above G_block = eps(m^2+eps)/(2m^3) ~ m v_k^2/4 and needs G >= G_min; the open window is <= 1e4 wide in density | A5 (derived from V and FP10 A5's rate) |
+| FP25 | L25e | DERIVED | FK1-as-written cannot convert above rho_block = rho_t (v_k^2/4)/(G_t/m) (~555/sqrt(E) rho_t at 600 km/s): galaxy centres at z = 2.5 (r <~ 0.05 r200) and cluster cores at z <~ 0.4 (r <~ 0.15-0.2 r200); omitted by FP10/FP16 | A5b; small in FK1's timing (conversion at the front, before the carrier is dense) |
+| FP25 | L25f | FAILS | the unified theta_b trigger converts the web (the history of every shell-crossing element) in both readings | B1: ever-opened fraction by z = 3 at the baryon scale >= ~0.5 |
+| FP25 | L25g | DERIVED | the formed web is shut NOW under the theta gate (useful for XR36's reversible MOND gate) | B2 (MUTATE: a delta >= delta_c key turns it on) |
+| FP25 | L25h | FAILS | the unified trigger fails the forest (XR12's calibrated gas proxy), mass selectivity and S_8 | C2, C3, C4 |
+| FP25 | L25i | FAILS | XR32's gates (eRASS1 counts, DESI RSD, Sum m_nu-equivalent lensing) move further from the data under the unified trigger than under FK1-as-is (approximate linear proxies scaled by XR32) | C5 (approximate) |
+| FP25 | L25j | FAILS | with the theta trigger X-COP's strict window opens at v_k ~ 871 km/s (FK1: ~1047); the window stays EMPTY (forest, S_8 at every kick) | E1, E8 |
+| FP25 | L25k | CONSTRAINT | the 3-axis gate spares the forming web but still fails the forest; Newtonian-core retention fails the flagship; a second fast channel needs a second field (FP15's Z4) | F1, F2, F4 |
+| FP25 | L25l | OPEN | FP22's merger price: galaxy-carrier centroid offsets of tens of kpc from the phantom acting on baryons only | E6b (estimate; needs a merger run) |
+| FP25 | L25m | OPEN | FK1 + theta_b veto (zero constants): can only remove late web conversion (XR32's direction) | F5 |
+| FP25 | L25n | DERIVED | FK1-as-is's late-time linear suppression P/P_LCDM (k = 0.1-3 h/Mpc, z = 0-2) and at the CMB-lensing weights | C6 (L319's CLASS-validated solver) |
 
-Totals: DERIVED 136, TIED 2, POSTULATED 30, FITTED 15, CONSTRAINT 45, OPEN 47, FAILS 80
+Totals: DERIVED 151, TIED 2, POSTULATED 31, FITTED 16, CONSTRAINT 54, OPEN 52, FAILS 90
