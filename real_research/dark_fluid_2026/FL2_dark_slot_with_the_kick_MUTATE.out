@@ -1,0 +1,126 @@
+FL2 -- V0'S DARK SLOT WITH FK1'S KICK POTENTIAL: the field-side checks (kernel invisibility, the khronon's equation with
+the gated conversion as a source, CV3's rule, the criterion-B fold condition, and which piece may carry the gate).
+
+FK1 (c2e1fa119, real_research/dark_fluid_kick_2026/) builds the kick inside FL1's field.  One complex scalar,
+  V = m^2 |Phi|^2 + eps Re(Phi^2) + lambda(K) (Im Phi^2)^2,     Phi = (phi_H + i phi_L)/sqrt 2,   lambda ~ K^(-2q), q = 1.75.
+eps splits the two real components (m_H^2 - m_L^2 = 2 eps).  The cold fluid is the heavy one.  The pure cross term
+lambda phi_H^2 phi_L^2 converts heavy pairs into light pairs that leave back to back at v_k.  Its coupling carries the
+vacuum gate through the khronon's K.  FK1 hands two checks to the V0 writer: the khronon's equation with the lambda'(K)
+source, and whether the cross coupling keeps FL1 F2's kernel invisibility.  The review session adds three more: CV3's rule
+(the gate must not re-enter the constraint Hessian), the criterion-B fold condition with both components multistreaming,
+and a plain statement of the field content.
+
+  *** MUTATE=1: the splitting eps(K) carries the gate instead of the conversion; V3, V4 and V7 must FAIL ***
+
+  FK1 inputs: G_t/mc^2 = {'2e-19': 1.8060914224948324e-09, '1e-17': 2.5541989845779077e-10, '1e-15': 2.5541989845779075e-11, '1e-10': 8.077086388555476e-14}; eps/m^2(600 km/s) = 2.0028e-06; q = 1.75
+
+==============================================================================================================
+V1  KERNEL INVISIBILITY: both components in V0's static action, coupled as FL1 F2's dark slot
+==============================================================================================================
+    residuals against i psi_j,t = -lap psi_j/2m_j + m_j (Phi + lam/2) psi_j + dU/dpsi_j*: [0, 0, 0, 0]
+    lap u = 4 pi G (rho_b + m_H n_H + m_L n_L): True;  the fluid's potential contains no V0 field: True
+  [PASS] V1 both components obey Schrodinger equations with m_j (Phi + lam/2) and lap u = 4 pi G (rho_b + m_H n_H + m_L n_L); the splitting and the cross term carry no metric field, so on shell (CV3 carrier_blind: Phi + lam/2 = u) the fluid feels and sources only the Newtonian potential of all matter
+         measured: residuals [0, 0, 0, 0]; lap u True; potential metric-free True
+         reading:  FK1's potential keeps FL1 F2's kernel invisibility: L353's reciprocity holds for the two-component fluid, whatever its composition; the conversion energy gravitates only through rho_d at relative order G_t/mc^2 ~ 1e-9, like a pressure
+
+==============================================================================================================
+V2  THE SLOW PART OF THE CROSS TERM: FK1 K5 reproduced; its energy is >= 0 and transient
+==============================================================================================================
+    <phi_H^2 phi_L^2>_fast = [4 n_H n_L + psi_H^2 psi_L*^2 e^(-2id) + cc]/(4 m_H m_L): True
+    so lambda <..> = g_x n_H n_L + g_c (psi_H^2 psi_L*^2 + cc) with g_x = lambda/m_H m_L, g_c = lambda/4 m_H m_L, pair G/n = 2 g_c = lambda/2m^2 (FK1 K5: {'g_HH': '0', 'g_LL': '0', 'cross': 'lambda/m**2', 'pair': 'lambda/(2*m**2)'})
+    E_int/g_c = 6 a^2 + 2 b^2 with a + i b = psi_H psi_L*: True;  zero in both pure states: True
+  [PASS] V2 the fast-phase average of phi_H^2 phi_L^2 gives FK1's couplings (cross lambda/m^2, pair G/n = lambda/2m^2), and the conversion energy is g_c (6 a^2 + 2 b^2) >= 0, zero in both pure states
+         measured: average True; square form True; pure states True
+         reading:  the gated energy lives only where both components coexist (during the conversion) and is never negative
+
+==============================================================================================================
+V3  THE KHRONON'S EQUATION WITH THE lambda'(K) SOURCE (CV4's quasi-static lambda-term + the gated energy)
+==============================================================================================================
+    Euler-Lagrange in pi = lap[dL/d(delta K)]/a^2 (up to sign): True  -> dL/d(delta K) = harmonic -> 0 at infinity
+    linear response delta K/K = 2*E_0*q/(4*E_0*q**2 + 2*E_0*q + K_0**2*S*c_2): True;  exact x (1+x)^(2q+1) = 2q E0/(c2 S K0^2): True
+    S K0^2 = (c^4/8 pi G)(3H/c)^2 = 3 rho_c c^2: True
+    second variation (delta K)^2 coefficient = (E_0*q*(2*q + 1) + K_0**2*S*c_2/2)/K_0**2: True;  gated energy (eps/2m)(n_H - n_L): -eps/2m at n_H = 0, n_L = 1: non-negative False
+  [FAIL] V3 with the gated term the khronon's quasi-static equation is lap[dL/d(delta K)] = 0: delta K/K solves x (1+x)^(2q+1) = 2q E/(3 c_2 rho_c c^2), and the second variation's coefficient c_2 S/2 + q(2q+1) E/K^2 is positive because the gated energy is non-negative
+         measured: EL form True; linear response True; exact response True; units True; stiffness True; gated energy non-negative False
+         reading:  a convex gate (lambda ~ K^(-2q)) times a non-negative energy adds stiffness to the khronon: FK1's K-gate cannot destabilise it; a gate on the splitting could (its energy changes sign)
+
+==============================================================================================================
+V4  THE NUMBERS: the self-consistent shift delta K/K at conversion (FK1's trigger couplings)
+==============================================================================================================
+    m = 2e-19 eV, delta_t = 25, c_2 = 1e-04, z =  0.0: e = 1.00e-06, x0 = 8.02e-02, delta K/K = 6.13e-02, coupling factor 0.812
+    m = 2e-19 eV, delta_t = 25, c_2 = 1e-04, z =  1.0: e = 1.00e-06, x0 = 2.57e-01, delta K/K = 1.42e-01, coupling factor 0.629
+    m = 2e-19 eV, delta_t = 25, c_2 = 1e-04, z =  2.5: e = 1.00e-06, x0 = 1.14e+00, delta K/K = 3.23e-01, coupling factor 0.375
+    m = 2e-19 eV, delta_t = 25, c_2 = 1e-04, z =  4.0: e = 1.00e-06, x0 = 3.22e+00, delta K/K = 5.07e-01, coupling factor 0.238
+    m = 2e-19 eV, delta_t = 25, c_2 = 1e-04, z = 10.0: e = 1.00e-06, x0 = 3.37e+01, delta K/K = 1.13e+00, coupling factor 0.071
+    m = 2e-19 eV, delta_t = 25, c_2 = 1e-03, z =  0.0: e = 1.00e-06, x0 = 8.02e-03, delta K/K = 7.75e-03, coupling factor 0.973
+    m = 2e-19 eV, delta_t = 25, c_2 = 1e-03, z =  1.0: e = 1.00e-06, x0 = 2.57e-02, delta K/K = 2.32e-02, coupling factor 0.923
+    m = 2e-19 eV, delta_t = 25, c_2 = 1e-03, z =  2.5: e = 1.00e-06, x0 = 1.14e-01, delta K/K = 8.04e-02, coupling factor 0.763
+    m = 2e-19 eV, delta_t = 25, c_2 = 1e-03, z =  4.0: e = 1.00e-06, x0 = 3.22e-01, delta K/K = 1.63e-01, coupling factor 0.590
+    m = 2e-19 eV, delta_t = 25, c_2 = 1e-03, z = 10.0: e = 1.00e-06, x0 = 3.37e+00, delta K/K = 5.17e-01, coupling factor 0.233
+    worst delta K/K at z <= 4: 5.073e-01;  at z = 10: 1.128e+00
+    the non-CMC gate's force on the fluid relative to gravity (v_c = 200 km/s), worst z <= 4: 1.4e-02
+  [FAIL] V4 at conversion the gated energy shifts the khronon's K by < 10% for z <= 4 at every m of FK1's list, delta_t in {5, 25} and c_2 >= 1e-4: the leaves stay CMC to that accuracy and the K-gate stays force-free
+         measured: max delta K/K (z <= 4) = 5.07e-01; at z = 10 1.13e+00; relative gate force 1.4e-02
+         reading:  the shift is set by G_t/mc^2 x rho_t/rho_c / c_2 (~1e-9 x 7E^2 / c_2), small because the conversion energy is transient and lives at the trigger density; at z ~ 10 with c_2 = 1e-4 it reaches ~0.2 and self-quenches the coupling by ~(1+x)^(-2q) (reported)
+
+==============================================================================================================
+V5  CV3'S RULE: the K-gated term cannot re-enter the constraint block
+==============================================================================================================
+    explicit block inverse True; Schur correction zero True; det A = -det(M)^2 True; 5 exact 8x8 tests True
+    V0's instance (Phi, u, Psi, w, tau): det = Z*a**2*b**2;  the gated term touches multipliers/constrained fields: none
+  [PASS] V5 with the multipliers linear and coupled only to constrained fields, det H = (-1)^n det(M)^2 det(Z) for any X and Y; the K-gated conversion depends only on the khronon and the fluid, so its entries sit in Z and the constraint block is untouched
+         measured: inverse True; Schur True; det A True; random True; 5x5 Z*a**2*b**2
+         reading:  the K-gate obeys CV3's rule by construction; whether Z itself stays positive is V3 (it gains + q(2q+1) E/K^2)
+
+==============================================================================================================
+V6  CRITERION B: both components multistreaming -- singular fluid velocity, smooth stress, unfolded leaves
+==============================================================================================================
+    psi_H node at [0.2906, 2.7895]: max|v| r at r = 1e-2..1e-5: [1.4142, 1.3845, 1.3817, 1.3814]; circulation m/(2 pi hbar) x loop = [1.0, 1.0, 1.0, 1.0]
+      total stress |grad psi|^2/m range on the loops: [(76.211, 77.045), (76.607, 76.69), (76.644, 76.653), (76.648, 76.649)]; max E_int/g_c [0.033, 0.0, 0.0, 0.0]
+    psi_L node at [2.6547, 1.7653]: max|v| r at r = 1e-2..1e-5: [1.7482, 1.7165, 1.7133, 1.713]; circulation m/(2 pi hbar) x loop = [-1.0, -1.0, -1.0, -1.0]
+      total stress |grad psi|^2/m range on the loops: [(78.105, 80.19), (79.08, 79.289), (79.174, 79.195), (79.184, 79.186)]; max E_int/g_c [0.02, 0.0, 0.0, 0.0]
+  [PASS] V6 at a node of either multistreaming component the fluid velocity diverges (|v| r -> const, one quantum of circulation), while the density, stress and conversion energy stay finite and continuous through it
+         measured: |v| r converged True; winding +-1 True; stress continuous at r = 1e-5 True
+         reading:  the khronon is sourced by the smooth stress and answers E_int algebraically (V3): its leaves never fold; a dust khronon (grad tau = v) would inherit the 1/r singularity and the multiple values -- the fold criterion B forbids
+
+==============================================================================================================
+V7  WHICH PIECE MAY CARRY A REGION GATE: the gate force's edge potential at a 1e11 Msun edge (z = 0.25)
+==============================================================================================================
+    conversion, rho_d/rho_th = 0.3: edge potential 1.560e+02 (km/s)^2 = 4.43e-03 v_f^2 (v_f = 187.7 km/s, r_e = 1355 kpc, W'_max = 4.000)
+    conversion, rho_d/rho_th = 1.0: edge potential 5.200e+02 (km/s)^2 = 1.48e-02 v_f^2 (v_f = 187.7 km/s, r_e = 1355 kpc, W'_max = 4.000)
+     splitting, rho_d/rho_th = 0.3: edge potential 1.080e+05 (km/s)^2 = 3.06e+00 v_f^2 (v_f = 187.7 km/s, r_e = 1355 kpc, W'_max = 4.000)
+     splitting, rho_d/rho_th = 1.0: edge potential 3.600e+05 (km/s)^2 = 1.02e+01 v_f^2 (v_f = 187.7 km/s, r_e = 1355 kpc, W'_max = 4.000)
+    the splitting's energy fraction over the conversion's at z = 0.25: 692x (m = 2e-19 eV) to 1.5e+07x (m = 1e-10 eV)
+  [FAIL] V7 the design's gated piece (splitting) exerts less than 0.05 v_f^2 at a region edge even if region-gated; the other piece is reported
+         measured: splitting: 1.02e+01 v_f^2 at rho_d = rho_th; conversion 1.48e-02, splitting 1.02e+01
+         reading:  the splitting's rest energy (eps/2m^2 = 1e-6 of mc^2, i.e. v_k^2/4) is far too large to carry any gate -- region (an edge wall ~10 v_f^2) or K (V4's MUTATE); the conversion's energy is ~1e-9 of mc^2, so it can carry either, and FK1's K-gate is the force-free choice
+
+==============================================================================================================
+(4)  THE DARK SLOT'S FIELD CONTENT, SAID PLAINLY
+==============================================================================================================
+    Phi: one complex scalar = two real fields phi_H, phi_L                   declared (new field content; FL1 F1: V0 has no room for it)
+    m                                                                        declared (>= 2-5e-19 eV, L383); the fluid's mass is still required
+    eps (eps/m^2 = v_k^2/(2c^2 - v_k^2) = 1.84-2.35e-6)                      fitted to L388's kick window 575-650 km/s (FK1 K2)
+    lambda(K) = lambda_0 (K/K_0)^(-2q), pure cross term (Im Phi^2)^2         declared; lambda_0 set by the trigger, q = 1.75 matched to the linear gate (FK1 N2); force-free and khronon-stiffening (V3-V5)
+    initial misalignment near phi_H (within ~14 deg) and its amplitude       declared (the amount, free like I0; FK1)
+    Z2 x Z2, kernel invisibility, pair-only conversion at v_k                derived from the declared potential (FK1 K2, V1, V2)
+    Its quanta, if quantised, would be bosons of masses m_H and m_L; at occupations ~1e77 per de Broglie cell (FL1 F6) it is
+    a classical field, not a gas of particles.  With eps != 0 the U(1) is broken: the amount is the non-relativistic number
+    n_H + n_L (an adiabatic invariant the conversion conserves), set by the misalignment amplitude, not a U(1) charge.
+  [PASS] (4) reported: one complex scalar with one explicit U(1)-breaking constant eps (fitted to the kick window), a declared mass, a declared gated cross coupling and a declared initial condition
+         measured: listed
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  FK1's kick potential fits V0's dark slot without touching the gravity sector.  The two components couple to V0 exactly
+  as FL1's one did: the Newtonian potential of all matter, kernel-invisible for any composition (V1).  The gated cross
+  term's energy is non-negative and lives only while both components coexist (V2).  Through the khronon's K it therefore
+  adds stiffness rather than removing it (V3).  It shifts K by at most 5.1e-01 at conversion for z <= 4 and c_2 >= 1e-4
+  (V4).  Its Hessian entries never reach a multiplier row (V5).  A multistreaming two-component fluid has a singular
+  velocity but a smooth stress, so the leaves do not fold (V6).  The splitting itself cannot carry a gate: its rest
+  energy is 692x (m = 2e-19 eV) to 2e+07x (1e-10 eV) the conversion's, and it changes sign
+  (V7, MUTATE).
+  Declared, not derived: m, eps (fitted to the kick window), lambda_0, q and the initial misalignment.  Time 3 s.
+
+  5/8 checks pass; load-bearing failures: 3; wrote FL2_dark_slot_with_the_kick_results_MUTATE.json
