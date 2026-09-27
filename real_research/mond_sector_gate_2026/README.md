@@ -81,7 +81,8 @@ standard axioms (propext, Classical.choice, Quot.sound). It certifies:
 - **The cap is a design target, not a mechanism.** MS5's action term is a construction with one new constant,
   (v_cap/c)² = 1.18e-6, separate from the kick (XR7). Its lower limit is the KiDS lenses (v_f ≤ 247 km/s); the grid's
   largest pass is 325 km/s.
-- **What fails in the converged model (XR6, cross_thread_review_2026_09_26, scored with L395's form of the cap).**
+- **What fails in the converged model (XR6, cross_thread_review_2026_09_26). ⚠️ These numbers use the withdrawn
+  cap form (edges at 3.5–3.7 Mpc).** They stand until XR9 re-scores EFE with the κ form (2.9–3.0 Mpc).
   - Cluster-infall BTFR: worse. The cap screens members beyond its edge, so the EFE becomes a step: 3.00–3.07σ
     (scalar) and 4.87–5.52σ (subtract), against XR4's 2.66/3.83. Both EFE samples in quadrature give 4.4–8.0σ.
   - Local Volume dwarfs: unchanged at 3.87–4.48σ.
