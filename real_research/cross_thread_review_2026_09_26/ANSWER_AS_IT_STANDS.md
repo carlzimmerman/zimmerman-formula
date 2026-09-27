@@ -144,19 +144,37 @@ Where the chain stands, from its own ledger (chain lead's commits; checked again
 - FP9's separator H_Y passes the linear gates with FOUR declared constants.
 - FP10's dark sector clears galaxies before clusters, with ε FITTED.
 - FP11: the MW–M31 timing works with baryons only, but R0 overshoots by +0.20 dex. The Local Group fails.
+- FP13 (27faacc84) replaces FP9's four constants with readouts of the state (the separator H_S).
+  - What is still chosen by hand:
+    - δ_c, which can sit anywhere in 1.3–2.6;
+    - c_y = 1;
+    - the form of the onset ramp. MOND's yield switches on when the cosmic expansion starts to accelerate, at z = 0.635.
+  - Semi-analytic scores, with a standard ΛCDM nonlinear field (halofit) standing in:
+    - σ₈ 1.018–1.023, forest 0, flagship ≤ 0.013 dex, SPARC 1.8e-3;
+    - KiDS −6.2/−7.7. This includes z = 0.4, where FP9's cell fails at +20.6.
+  - The pass holds only if the action reads the actual nonlinear matter field.
+  - The Local Group still fails (R0 1.54 Mpc).
+- FP14 (03db97f14) takes the gravity core down to one knob (ξ) plus one regulator (α_c).
 - In flight on the chain lead's side:
   - FP12: other groups' R0.
-  - FP13: deriving the four separator constants.
-  - FP14: the core's constants.
   - FP15: the dark sector's constants.
   - FP16: re-accretion.
+  - FP17: ξ.
 
 Running here:
-- **XR18:** an adversarial well-posedness audit of H_Y. It covers the yield surface, a DE12-type second variation,
-  the leaf-average nonlocality, the degree-of-freedom count, and growth across the yield.
+- **XR18:** an adversarial well-posedness audit, now with H_S as its priority. It checks:
+  - the yield surface;
+  - a DE12-type second variation;
+  - the global terms that the leaf-averaged readouts put into every field equation;
+  - whether an action can read the matter readout;
+  - growth across the onset ramp.
+  H_Y's findings are still reported.
 - **XR19:** does the fluid's own conversion run away through the cosmic web? XR12 and XR16 both flagged this, unscored.
 - **XR20:** can a₀ and Λ come from one field? It tests unimodular Λ, a 4-form, K, sequestering, and evolving dark
   energy against the a₀(z) evidence.
-- **XR21:** the chain's model in a particle-mesh box. Stage 1 (build and code tests) is running. Stage 2 (H_Y's
-  nonlinear cosmology) waits on XR18 and FP13. Stage 3 (conversion with re-accretion) waits on XR19.
+- **XR21:** the chain's model in a particle-mesh box.
+  - Stage 1 (build and code tests) is running. It now includes H_S with its readouts computed on the fly from the box's
+    own matter field, plus a frozen-readout control.
+  - Stage 2 (H_S's nonlinear cosmology) waits on XR18. It is the test FP13's pass depends on.
+  - Stage 3 (conversion with re-accretion) waits on XR19.
 - **FP10_FULL:** the chain's full grid, launched here. The chain lead commits its outputs.
