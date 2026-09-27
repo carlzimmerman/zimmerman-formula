@@ -1,0 +1,532 @@
+FP15 -- ELIMINATE THE DARK SECTOR'S KNOBS: can the conversion trigger be the separator's own gate, can eps come from a
+mechanism, is the dark mass m pinned or tied, can the amount come from dynamics?  One constant at a time, from the action,
+every gate re-scored, both a0 footings (FP0's 9.3603e-11 / 1.1312e-10; the loaded machinery's 9.3619e-11 / 1.1279e-10).
+
+WHY.  The target is ZERO knobs beyond kappa = 1/2 (FITTED, accepted).  FP10 (committed d9cb8b837) wrote FK1's dark sector as an
+action -- one complex field, V = m^2|Phi|^2 + eps Re(Phi^2) + lambda_0 (K/3H_0)^(-2q) (Im Phi^2)^2, kernel-invisible through
+L353's pair -- and priced it: eps FITTED (eps/m^2 = 1.84-2.35e-6), m DECLARED (floor 1.9-5.2e-19 eV), lambda_0 and q DECLARED
+(borrowed from the old switch's x_c0 and p), the amount and the misalignment initial data, the pure cross quartic POSTULATED.
+FP4/FP8: the MOND sector cannot pay for the kick (reciprocity), so the energy is the dark field's own.  FP9's separator has its
+own onset, y_th = y_Lambda Omega_L(<K>_h)^(-p'), p' = 4.  The hub's committed lanes add gates a shared trigger must also pass:
+XR12 (the forest on its calibrated gas proxy sits at the 10% line; the flagship with stream infall bounds FK1's normalisation
+zeta = f_t to <= 2.54-2.76 canonical / 4.09-4.29 alt), XR16 (FK1's conversion is not mass-selective), XR19 (running, not used:
+does the conversion run away through the web?).
+
+NOTATION.  zeta = FP10's f_t = XR12's delta_t0/5.31: rho_t(z) = zeta (5/3) rho_crit0 E(z)^(2q + 1/2) (total-matter units).
+R(z) = rho_t(z)/rho_bar_m(z) is the trigger's height above the cosmic mean; a region of overdensity delta converts
+spontaneously where 1 + delta >= R (FP10 A4: N = E_need (rho/rho_t)^2 e-folds per Hubble sweep), is seed-stimulable (>= 1
+e-fold per sweep) where (1 + delta) sqrt(E_need) >= R, and cold filaments convert at ~0.21 n_t (XR12's cone estimate).
+zeta_eq = the q = 7/4 normalisation with the same threshold at z = 2.5: zeta = zeta_eq E(2.5)^(7/2 - 2q).  The flagship bounds
+the threshold at z = 2.5 (the anchor): XR12-W2's resolved bound (the own-density cap with stream infall) zeta_eq <= 2.54/2.76
+(canonical) / 4.09/4.29 (alt), or FP10's no-cap reach (the scoring-epoch stimulated front covers r_F) at K = 36/185/947.
+
+======================================================================================================================
+LOADING the committed machinery (read-only exec of FP10's head + its budget/progenitor definitions, and XR12's head)
+======================================================================================================================
+  FP10 head (AT3's head: AT1, L357, L320, BK1, L321, L355, L360; MS3's halo model) + budget/progenitor defs loaded   [18s]
+  XR12's head (L319's solver with its cold component, L357's halo model re-implemented, CLASS) loaded   [21s]
+  XR12-W2 flagship bounds (zeta_eq): canonical 2.54/2.76, alt 4.09/4.29; own-density cap (1e12 host) 2.70/3.22; gas-proxy calibration 1.1326; FK1 E_need 61-178
+
+======================================================================================================================
+C0  CONTROLS: the loaded machinery reproduces committed numbers
+======================================================================================================================
+  [PASS] C0a CONTROL: FP10's machinery -- budget(600 km/s, K_mid) bit-identical to FP10's committed A6 row, L319's S_8 ratio equal to its B6 row, and the progenitor passage of the 1e11 z = 2.5 host (alpha = 0.8, 575 km/s, three K) equal to its committed B1 row
+         measured: budget max |dev| 0.0e+00; S_8 0.961654 (|dev| 0.0e+00); passage z' [4.3523, 4.6317, 4.7385] vs [4.3523, 4.6317, 4.7385] (|dev| 0.0e+00)
+  [PASS] C0b CONTROL: XR12's calibrated gas-proxy forest (its fk1_history, proxies and committed calibration) reproduces its committed H2 nominal row, and this lane's generalised evaluator at q = 7/4 with XR12's hard cut is identical to it
+         measured: z = 2/3: 0.11339/0.05160 vs committed 0.11339/0.05160 (|dev| 0.0e+00); generalised |dev| 0.0e+00
+  [PASS] C0c CONTROL: this lane's trigger-to-mean ratio R(z) at FK1's cell reproduces XR12's committed A1 table (5.3/4.8/6.8/16.5/24.8/35.8/67.7/182 at z = 0/0.5/1/2/2.5/3/4/6) and FP10's A4 background peak (z = 0.30, N_bg/E_need = 0.048)
+         measured: R = [5.31, 4.79, 6.78, 16.5, 24.77, 35.79, 67.68, 181.67] (max rel dev 2.5e-03); peak z 0.30 at 0.0478
+  [PASS] C0d CONTROL: FP9's committed yield y_th(z) at z = 0/0.25/1/2/2.5/3 and its band-pass length (L(0.25) = 1.3 Mpc, L(2.5) = 119 kpc) are reproduced from FP9's headline constants (y_th(0.25) = 1e-6, p' = 4, L(0.25) = 1.3 Mpc, n = 2) on its cosmology
+         measured: max rel dev 2.7e-15; L(0.25) 1300.0 kpc, L(2.5) 119.3 kpc, L(0) 1689 kpc
+  controls done   [42s]
+
+======================================================================================================================
+T1  THE K-GATE IS A POWER OF THE SEPARATOR'S Omega_L(<K>_h): the running variable is shared; the exponent is not fixed
+======================================================================================================================
+    (K/3H_0)^(-2q) / (Omega_L(K)/Omega_L0)^q = 1 identically on CMC leaves (K = <K>_h = 3H): True
+    trigger density n_t ~ H^(2q + 1/2) = Omega_L^(-q - 1/4); in rho_crit(z) units Omega_L^(3/4 - q); FP9's yield y_th ~ Omega_L^(-p'), p' = 4
+      identification [n_t ~ y_th (absolute threshold runs as the yield)]: q = p' - 1/4 = 3.75
+      identification [lambda ~ 1/y_th (the coupling runs as the inverse yield)]: q = p' = 4.00
+      identification [rho_t/rho_crit(z) ~ y_th (FP10's convention q = p + 3/4)]: q = p' + 3/4 = 4.75
+  [PASS] T1 DERIVED: on CMC leaves FK1's K-gate (K/3H_0)^(-2q) IS (Omega_L(<K>_h)/Omega_L0)^q -- the separator's own variable, so the running VARIABLE is already shared; but the action does not fix the EXPONENT: three inequivalent identifications with FP9's y_th ~ Omega_L^(-p') give q = p' - 1/4, p', p' + 3/4 = 3.75, 4, 4.75, and none is selected by a term of the action
+         measured: identity True; n_t ~ Omega_L^(-q - 1/4); q = [3.75, 4.0, 4.75]
+         reading:  sharing the variable costs nothing; sharing the exponent is a choice among three -- it would remove q only if the web and the gates accepted the result (T3)
+
+======================================================================================================================
+T1b CAN lambda_0's NORMALISATION BE SHARED? the framework's own maps from the yield (an acceleration) to a density
+======================================================================================================================
+    the trigger the flagship and forest need at z = 2.5: rho_t = 800-918 rho_crit0 (zeta_eq 2.4-2.76, q = 7/4)
+    (i)  y_th(2.5)^2 rho_Lambda = 1.36e-04 rho_crit0: 6.8 decades too low (the whole universe would convert); it runs as Omega_L^(-2p') = E^(4p') (q = 7.75)
+    (ii) y_th(2.5) a0/(4 pi G L(2.5)) = 50/61 rho_crit0; with y -> 1: 3556/4298 (x4.4 the band) -- the right order only with an O(1) coefficient put in, and it runs as 1/L ~ Omega_L^(-n/2) = E^2: q = 3/4, the background's marginal value, where the forest band is closed (T3b)
+  [PASS] T1b DERIVED: lambda_0's normalisation cannot be shared with the yield: the framework's one m-free map from an acceleration to a density, a0^2 = kappa^2 c^2 G rho_Lambda, turns y_th(2.5) a0 into y_th^2 rho_Lambda, >= 5 decades below the trigger the flagship and the forest need at z = 2.5; the band-pass length gives a0/(4 pi G L) of the right order only with a coefficient put in and the running q = 3/4 (the marginal background value)
+         measured: (i) 1.4e-04 vs 800 rho_crit0 (6.8 decades); (ii) y -> 1: x4.4, with y_th: x0.06
+         reading:  zeta stays a constant of the dark sector; its value is set by data (M1, T3b)
+
+======================================================================================================================
+T2  THE ANCHOR LAW: with the threshold pinned at z = 2.5, how the trigger sits against the web at every other epoch
+======================================================================================================================
+    d ln R / d ln(1+z) = 3*(Omega_L + Omega_m*(z + 1)**3)**(-q - 5/4)*(Omega_m*(Omega_L + Omega_m*(z + 1)**3)**(q + 1/4)*(4*q + 1)*(z + 1)**3 - 4*(Omega_L + Omega_m*(z + 1)**3)**(q + 5/4))/4  =  (3/2)(2q + 1/2) Omega_m(z) - 3 : True
+    R rises into the past iff Omega_m(z) > 1/(q + 1/4); at z = 0 that needs q > q* = 1/Omega_m0 - 1/4 = 2.937: for q >= q* the trigger's lowest point against the mean is TODAY, R(0)/R(2.5) = (3.5)^3/E(2.5)^(2q + 1/2)
+      shared q = 3.75: R(0)/R(2.5) = 1.073e-03
+      shared q = 4.00: R(0)/R(2.5) = 5.532e-04
+      shared q = 4.75: R(0)/R(2.5) = 7.588e-05
+      FK1 q = 1.75: minimum at Omega_m(z) = 1/2 (z = 0.30); R(0)/R(2.5) = 0.214
+  [PASS] T2 DERIVED: with the threshold held at z = 2.5 (the flagship's anchor), d ln R/d ln(1+z) = (3/2)(2q + 1/2) Omega_m(z) - 3, so for q >= 1/Omega_m0 - 1/4 = 2.94 the trigger's closest approach to the cosmic mean is at z = 0; every shared exponent sits above that line and brings the threshold down by (3.5)^3/E(2.5)^(2q + 1/2) <= 1.1e-3 between z = 2.5 and today (FK1's q = 7/4: its minimum at z = 0.30, 0.21)
+         measured: form True; q* = 2.937; shared R(0)/R(2.5) = 1.07e-03, 5.53e-04, 7.59e-05; FK1 0.214 (min at z = 0.30)
+         reading:  a running steep enough to switch the forest-epoch conversion off (the separator's job) must switch the late web on: that is the price XR19's runaway measures
+
+======================================================================================================================
+T3  EVERY SHARED EXPONENT ON THE WEB, at every flagship anchor on the record (W2's resolved bound; FP10's no-cap reach)
+======================================================================================================================
+    FP10's no-cap reach (scoring-epoch front covers r_F on every z = 2.5 host): K 36/canonical: zeta_eq <= 20.3; K 36/alt: zeta_eq <= 23.7; K 185/canonical: zeta_eq <= 45.9; K 185/alt: zeta_eq <= 53.7; K 947/canonical: zeta_eq <= 103.8; K 947/alt: zeta_eq <= 121.6
+    n_t ~ y_th (absolute threshold runs as the yield) (q = 3.75):
+      W2 canonical (streams C_s=10)      zeta 0.0127: R_min   0.0674 at z 0.00; mean converts spont. z<= 1.035, seeded z<= 1.895; walls(d=2) 1.385; filaments(d=10) 1.825; cone 2.42
+      W2 canonical (+ upstream)          zeta 0.0138: R_min   0.0732 at z 0.00; mean converts spont. z<= 1.01, seeded z<= 1.865; walls(d=2) 1.36; filaments(d=10) 1.8; cone 2.39
+      W2 alt (streams C_s=10)            zeta 0.0205: R_min    0.109 at z 0.00; mean converts spont. z<= 0.89, seeded z<= 1.725; walls(d=2) 1.235; filaments(d=10) 1.6600000000000001; cone 2.23
+      W2 alt (+ upstream)                zeta 0.0215: R_min    0.114 at z 0.00; mean converts spont. z<= 0.875, seeded z<= 1.71; walls(d=2) 1.215; filaments(d=10) 1.645; cone 2.215
+      FP10 reach K=36 canonical          zeta 0.101: R_min    0.538 at z 0.00; mean converts spont. z<= 0.35000000000000003, seeded z<= 1.2; walls(d=2) 0.73; filaments(d=10) 1.1400000000000001; cone 1.645
+      FP10 reach K=36 alt                zeta 0.119: R_min     0.63 at z 0.00; mean converts spont. z<= 0.28500000000000003, seeded z<= 1.1500000000000001; walls(d=2) 0.68; filaments(d=10) 1.09; cone 1.595
+      FP10 reach K=185 canonical         zeta 0.229: R_min     1.22 at z 0.00; mean converts spont. z<= None, seeded z<= 0.9450000000000001; walls(d=2) 0.46; filaments(d=10) 0.885; cone 1.375
+      FP10 reach K=185 alt               zeta 0.269: R_min     1.43 at z 0.00; mean converts spont. z<= None, seeded z<= 0.895; walls(d=2) 0.4; filaments(d=10) 0.835; cone 1.325
+      FP10 reach K=947 canonical         zeta 0.519: R_min     2.76 at z 0.00; mean converts spont. z<= None, seeded z<= 0.685; walls(d=2) 0.08; filaments(d=10) 0.625; cone 1.115
+      FP10 reach K=947 alt               zeta 0.608: R_min     3.23 at z 0.00; mean converts spont. z<= None, seeded z<= 0.635; walls(d=2) None; filaments(d=10) 0.5700000000000001; cone 1.065
+    lambda ~ 1/y_th (the coupling runs as the inverse yield) (q = 4.00):
+      W2 canonical (streams C_s=10)      zeta 0.00655: R_min   0.0348 at z 0.00; mean converts spont. z<= 1.1400000000000001, seeded z<= 1.94; walls(d=2) 1.465; filaments(d=10) 1.875; cone 2.43
+      W2 canonical (+ upstream)          zeta 0.00711: R_min   0.0377 at z 0.00; mean converts spont. z<= 1.115, seeded z<= 1.915; walls(d=2) 1.44; filaments(d=10) 1.85; cone 2.395
+      W2 alt (streams C_s=10)            zeta 0.0106: R_min    0.056 at z 0.00; mean converts spont. z<= 1.0050000000000001, seeded z<= 1.7850000000000001; walls(d=2) 1.32; filaments(d=10) 1.72; cone 2.25
+      W2 alt (+ upstream)                zeta 0.0111: R_min   0.0588 at z 0.00; mean converts spont. z<= 0.99, seeded z<= 1.77; walls(d=2) 1.31; filaments(d=10) 1.705; cone 2.235
+      FP10 reach K=36 canonical          zeta 0.0523: R_min    0.278 at z 0.00; mean converts spont. z<= 0.54, seeded z<= 1.29; walls(d=2) 0.86; filaments(d=10) 1.235; cone 1.71
+      FP10 reach K=36 alt                zeta 0.0612: R_min    0.325 at z 0.00; mean converts spont. z<= 0.49, seeded z<= 1.245; walls(d=2) 0.8150000000000001; filaments(d=10) 1.19; cone 1.6600000000000001
+      FP10 reach K=185 canonical         zeta 0.118: R_min    0.628 at z 0.00; mean converts spont. z<= 0.255, seeded z<= 1.055; walls(d=2) 0.625; filaments(d=10) 1.0; cone 1.455
+      FP10 reach K=185 alt               zeta 0.139: R_min    0.735 at z 0.00; mean converts spont. z<= 0.19, seeded z<= 1.01; walls(d=2) 0.5750000000000001; filaments(d=10) 0.9550000000000001; cone 1.405
+      FP10 reach K=947 canonical         zeta 0.268: R_min     1.42 at z 0.00; mean converts spont. z<= None, seeded z<= 0.8200000000000001; walls(d=2) 0.365; filaments(d=10) 0.765; cone 1.21
+      FP10 reach K=947 alt               zeta 0.314: R_min     1.66 at z 0.00; mean converts spont. z<= None, seeded z<= 0.775; walls(d=2) 0.305; filaments(d=10) 0.72; cone 1.165
+    rho_t/rho_crit(z) ~ y_th (FP10's convention q = p + 3/4) (q = 4.75):
+      W2 canonical (streams C_s=10)      zeta 0.000898: R_min  0.00477 at z 0.00; mean converts spont. z<= 1.375, seeded z<= 2.04; walls(d=2) 1.645; filaments(d=10) 1.99; cone 2.44
+      W2 canonical (+ upstream)          zeta 0.000975: R_min  0.00517 at z 0.00; mean converts spont. z<= 1.355, seeded z<= 2.02; walls(d=2) 1.625; filaments(d=10) 1.965; cone 2.415
+      W2 alt (streams C_s=10)            zeta 0.00145: R_min  0.00769 at z 0.00; mean converts spont. z<= 1.26, seeded z<= 1.9100000000000001; walls(d=2) 1.5250000000000001; filaments(d=10) 1.86; cone 2.295
+      W2 alt (+ upstream)                zeta 0.00152: R_min  0.00806 at z 0.00; mean converts spont. z<= 1.25, seeded z<= 1.9000000000000001; walls(d=2) 1.5150000000000001; filaments(d=10) 1.845; cone 2.285
+      FP10 reach K=36 canonical          zeta 0.00717: R_min   0.0381 at z 0.00; mean converts spont. z<= 0.89, seeded z<= 1.5; walls(d=2) 1.145; filaments(d=10) 1.45; cone 1.85
+      FP10 reach K=36 alt                zeta 0.0084: R_min   0.0446 at z 0.00; mean converts spont. z<= 0.855, seeded z<= 1.46; walls(d=2) 1.105; filaments(d=10) 1.415; cone 1.805
+      FP10 reach K=185 canonical         zeta 0.0162: R_min   0.0861 at z 0.00; mean converts spont. z<= 0.705, seeded z<= 1.3; walls(d=2) 0.9550000000000001; filaments(d=10) 1.2550000000000001; cone 1.635
+      FP10 reach K=185 alt               zeta 0.019: R_min    0.101 at z 0.00; mean converts spont. z<= 0.67, seeded z<= 1.2650000000000001; walls(d=2) 0.92; filaments(d=10) 1.22; cone 1.595
+      FP10 reach K=947 canonical         zeta 0.0367: R_min    0.195 at z 0.00; mean converts spont. z<= 0.515, seeded z<= 1.11; walls(d=2) 0.77; filaments(d=10) 1.065; cone 1.435
+      FP10 reach K=947 alt               zeta 0.043: R_min    0.228 at z 0.00; mean converts spont. z<= 0.47500000000000003, seeded z<= 1.075; walls(d=2) 0.735; filaments(d=10) 1.03; cone 1.395
+    FK1 q = 7/4 (q = 1.75):
+      W2 canonical (streams C_s=10)      zeta 2.54: R_min     11.6 at z 0.30; mean converts spont. z<= None, seeded z<= 0.665; walls(d=2) None; filaments(d=10) None; cone 2.265
+      W2 canonical (+ upstream)          zeta 2.76: R_min     12.6 at z 0.30; mean converts spont. z<= None, seeded z<= 0.52; walls(d=2) None; filaments(d=10) None; cone 2.165
+      W2 alt (streams C_s=10)            zeta 4.09: R_min     18.7 at z 0.30; mean converts spont. z<= None, seeded z<= None; walls(d=2) None; filaments(d=10) None; cone 1.705
+      W2 alt (+ upstream)                zeta 4.29: R_min     19.6 at z 0.30; mean converts spont. z<= None, seeded z<= None; walls(d=2) None; filaments(d=10) None; cone 1.6500000000000001
+      FP10 reach K=36 canonical          zeta 20.3: R_min     92.7 at z 0.30; mean converts spont. z<= None, seeded z<= None; walls(d=2) None; filaments(d=10) None; cone None
+      FP10 reach K=36 alt                zeta 23.7: R_min      109 at z 0.30; mean converts spont. z<= None, seeded z<= None; walls(d=2) None; filaments(d=10) None; cone None
+      FP10 reach K=185 canonical         zeta 45.9: R_min      210 at z 0.30; mean converts spont. z<= None, seeded z<= None; walls(d=2) None; filaments(d=10) None; cone None
+      FP10 reach K=185 alt               zeta 53.7: R_min      246 at z 0.30; mean converts spont. z<= None, seeded z<= None; walls(d=2) None; filaments(d=10) None; cone None
+      FP10 reach K=947 canonical         zeta 104: R_min      475 at z 0.30; mean converts spont. z<= None, seeded z<= None; walls(d=2) None; filaments(d=10) None; cone None
+      FP10 reach K=947 alt               zeta 122: R_min      556 at z 0.30; mean converts spont. z<= None, seeded z<= None; walls(d=2) None; filaments(d=10) None; cone None
+  [PASS] T3 THE SHARED EXPONENT FAILS ON THE WEB: at every flagship anchor on the record (XR12-W2's resolved bound, both footings; FP10's no-cap reach at K = 36-947) every shared q (3.75, 4, 4.75) puts delta = 10 filaments above the trigger (spontaneous conversion) at some z <= 2, and at W2's anchor the cosmic MEAN itself crosses -- FP10's own A4 requirement (no background conversion) fails at z <= 0.9-1.4; FK1's q = 7/4 keeps R_min >= 11.6 > 11 at W2's canonical anchors (no spontaneous filament conversion); the shared gate lowers the web's margin by >= 30x at every anchor: it makes XR19's runaway categorically worse
+         measured: filaments cross for every shared q at every anchor: True; mean crosses at W2: True (z <= 0.875-1.375); FK1 R_min at W2 canonical 11.6 (filaments [None, None, None, None]); FK1/shared R_min >= 172.2
+         reading:  the separator's running is steep (E^8) because the forest needs the MOND scalar off at z = 2-3 and on at 2.5 in galaxies; the same steepness in the dark trigger, anchored where the flagship needs it, drops the threshold under the late web
+    [44s]
+
+======================================================================================================================
+T3b THE q-WINDOW: the forest's band (XR12's calibrated proxy at the dark-mass floor) x the web x A4 x the flagship's passage
+======================================================================================================================
+    q 1.00: canonical top 2.76: forest 0.185 (CLOSED), R_min 57 (A4 ok, filaments safe, seeded mean z<= None); alt top 4.29: forest 0.147 (CLOSED), R_min 88.7 (A4 ok, filaments safe, seeded mean z<= None); flagship passage escaped 378/378 (v_esc <= 373 km/s, z' >= 3.37)   [69s]
+    q 1.25: canonical top 2.76: forest 0.142 (CLOSED), R_min 37.2 (A4 ok, filaments safe, seeded mean z<= None); alt top 4.29: forest 0.113 (CLOSED), R_min 57.9 (A4 ok, filaments safe, seeded mean z<= None); flagship passage escaped 378/378 (v_esc <= 401 km/s, z' >= 3.30)   [94s]
+    q 1.50: canonical top 2.76: forest 0.113 (CLOSED), R_min 22.2 (A4 ok, filaments safe, seeded mean z<= None); alt top 4.29: forest 0.090 (open), R_min 34.5 (A4 ok, filaments safe, seeded mean z<= None); flagship passage escaped 378/378 (v_esc <= 428 km/s, z' >= 3.23)   [120s]
+    q 1.75: canonical top 2.76: forest 0.093 (open), R_min 12.6 (A4 ok, filaments safe, seeded mean z<= 0.52); alt top 4.29: forest 0.073 (open), R_min 19.6 (A4 ok, filaments safe, seeded mean z<= None); flagship passage escaped 378/378 (v_esc <= 450 km/s, z' >= 3.18)   [146s]
+    q 2.00: canonical top 2.76: forest 0.077 (open), R_min 6.94 (A4 ok, filaments CONVERT, seeded mean z<= 1.03); alt top 4.29: forest 0.061 (open), R_min 10.8 (A4 ok, filaments CONVERT, seeded mean z<= 0.61); flagship passage escaped 378/378 (v_esc <= 470 km/s, z' >= 3.13)   [171s]
+    q 2.50: canonical top 2.76: forest 0.056 (open), R_min 1.98 (A4 ok, filaments CONVERT, seeded mean z<= 1.445); alt top 4.29: forest 0.044 (open), R_min 3.08 (A4 ok, filaments CONVERT, seeded mean z<= 1.19); flagship passage escaped 378/378 (v_esc <= 501 km/s, z' >= 3.04)   [198s]
+    q 3.00: canonical top 2.76: forest 0.042 (open), R_min 0.533 (A4 FAIL, filaments CONVERT, seeded mean z<= 1.67); alt top 4.29: forest 0.033 (open), R_min 0.831 (A4 FAIL, filaments CONVERT, seeded mean z<= 1.465); flagship passage escaped 378/378 (v_esc <= 523 km/s, z' >= 2.97)   [225s]
+    q 3.75: canonical top 2.76: forest 0.030 (open), R_min 0.0732 (A4 FAIL, filaments CONVERT, seeded mean z<= 1.865); alt top 4.29: forest 0.023 (open), R_min 0.114 (A4 FAIL, filaments CONVERT, seeded mean z<= 1.71); flagship passage escaped 378/378 (v_esc <= 545 km/s, z' >= 2.90)   [252s]
+    q 4.00: canonical top 2.76: forest 0.027 (open), R_min 0.0377 (A4 FAIL, filaments CONVERT, seeded mean z<= 1.915); alt top 4.29: forest 0.021 (open), R_min 0.0588 (A4 FAIL, filaments CONVERT, seeded mean z<= 1.77); flagship passage escaped 378/378 (v_esc <= 551 km/s, z' >= 2.88)   [279s]
+    q 4.75: canonical top 2.76: forest 0.021 (open), R_min 0.00517 (A4 FAIL, filaments CONVERT, seeded mean z<= 2.02); alt top 4.29: forest 0.016 (open), R_min 0.00806 (A4 FAIL, filaments CONVERT, seeded mean z<= 1.9000000000000001); flagship passage escaped 378/378 (v_esc <= 563 km/s, z' >= 2.83)   [307s]
+    forest edge at q = 1.75: zeta_eq >= 2.371 (scan [(1.0, 0.1448), (1.5, 0.1235), (2.0, 0.1084), (2.5, 0.0974)])
+    forest edge at q = 2.5: zeta_eq >= <= 1.0 (the grid's first point passes) (scan [(1.0, 0.0897)])
+  [PASS] T3b (reported) THE q-WINDOW at the dark-mass floor (m = 1.9e-19 eV): the forest closes the band for shallow runnings (early conversion) and the web for steep ones; FK1's q = 7/4 sits in the narrow overlap; the flagship's progenitor passage escapes in every scanned cell (the anchor keeps it)
+         measured: canonical: band open & A4 [1.75, 2.0, 2.5], + filaments safe [1.75]; alt: [1.5, 1.75, 2.0, 2.5] / [1.5, 1.75]; edges {1.75: 2.3708049556940303, 2.5: 0.0}
+         reading:  q is not shared and not free: a window set by data, degenerate with zeta at z = 2.5 (the anchor) and fixed at the ends by the forest (below) and the web (above)
+
+======================================================================================================================
+T3c (reported) THE SHARED CELLS' OTHER GATES under the web bracket: S_8, X-COP and Harvey in FP10's optimistic reading
+======================================================================================================================
+    n_t ~ y_th (absolute threshold runs as the yield) (q 3.75, zeta 0.0138): S_8 halo-only 0.9516; with the web converting at z_web = 1.01: 0.9192, 1.80: 0.9080 (strict >= 0.922); X-COP optimistic (F_b -> 1.00) 575: 0.63/0.68, 650: 0.63/0.68 (0.8-1.2); Harvey uniform factor 0.00 (FP10: 650 fails at 0.499, 575 passes at 0.514); F(4/3/2) 0.228/0.357/0.437
+    lambda ~ 1/y_th (the coupling runs as the inverse yield) (q 4.00, zeta 0.00711): S_8 halo-only 0.9512; with the web converting at z_web = 1.11: 0.9188, 1.85: 0.9077 (strict >= 0.922); X-COP optimistic (F_b -> 1.00) 575: 0.63/0.68, 650: 0.63/0.68 (0.8-1.2); Harvey uniform factor 0.00 (FP10: 650 fails at 0.499, 575 passes at 0.514); F(4/3/2) 0.207/0.357/0.437
+    rho_t/rho_crit(z) ~ y_th (FP10's convention q = p + 3/4) (q 4.75, zeta 0.000975): S_8 halo-only 0.9505; with the web converting at z_web = 1.35: 0.9132, 1.97: 0.9070 (strict >= 0.922); X-COP optimistic (F_b -> 1.00) 575: 0.63/0.68, 650: 0.63/0.68 (0.8-1.2); Harvey uniform factor 0.00 (FP10: 650 fails at 0.499, 575 passes at 0.514); F(4/3/2) 0.134/0.355/0.437
+  [PASS] T3c (reported) the shared cells' other gates: with the web converting, S_8 falls below the strict ratio in both of FP10's maximal-web brackets (above the alt floor), and FP10's only passing cluster reading (optimistic) loses X-COP (too little mass) and Harvey (hollow cores)
+         measured: {'n_t ~ y_th (absolute threshold runs as the yield)': {'S8_web': {'1.01': 0.9192, '1.80': 0.908}, 'xcop': {'575': (0.6273813916829709, 0.679203631524044), '650': (0.6273813916829709, 0.679203631524044)}, 'us': 0.0}, 'lambda ~ 1/y_th (the coupling runs as the inverse yield)': {'S8_web': {'1.11': 0.9188, '1.85': 0.9077}, 'xcop': {'575': (0.6273813916829709, 0.679203631524044), '650': (0.6273813916829709, 0.679203631524044)}, 'us': 0.0}, "rho_t/rho_crit(z) ~ y_th (FP10's convention q = p + 3/4)": {'S8_web': {'1.35': 0.9132, '1.97': 0.907}, 'xcop': {'575': (0.6273813916829709, 0.679203631524044), '650': (0.6273813916829709, 0.679203631524044)}, 'us': 0.0}}
+         reading:  the in-place cluster reading fails for every trigger (FP10 L11l: one splitting cannot empty a cluster); the optimistic one needs the escaped fraction near ~0.5, not the web's ~1
+    [441s]
+
+======================================================================================================================
+T4a THE YIELD ONSET AS THE TRIGGER: lambda -> lambda_0 g(Y) with g reading the MOND scalar (sympy)
+======================================================================================================================
+    J_Y = 2*sqrt(Y)*y_th - sqrt(Y)/2 - Y/2 - log(1 - 2*sqrt(Y))/4
+    phi's flux coefficient (a0^2/8 pi G) J_Y'(Y) + u_gate g'(Y) = (a0^2/8 pi G) J_Y' (1 + delta_Y), delta_Y = 8*pi*G*u_gate*(2*Y**(3/2) - Y)*exp(-Y/(w**2*y_th**2))/(a_0**2*w**2*y_th**2*(-Y**(3/2) - sqrt(Y)*y_th + 2*Y*y_th))
+    flux F(x) = x J_Y'(x^2) = (-x**2 + 2*x*y_th - y_th)/(2*x - 1)  (-> y_th at x -> 0+);  g(Y = 0) = 0: on FRW (every source below the yield, FP9 Y3) and inside every yield surface phi is frozen, so the gate is EXACTLY off -- no background and no z >= 2.5 IGM conversion at any q
+  [PASS] T4a DERIVED: a trigger gated by the MOND scalar's own on-state, -lambda_0 g(Y)(Im Phi^2)^2 with g(0) = 0 and width tied to the yield (g = 1 - exp(-Y/(w y_th)^2)), is exactly off wherever phi is frozen -- on FRW and inside every yield surface (FP9 Y3) -- so the early universe and the z >= 2.5 IGM cannot convert whatever q is: the K-running is not needed (q -> 0) and its job is done by the separator's own p' (SHARED); the price is a reciprocal source: phi's flux coefficient becomes (1 + delta_Y), delta_Y = 8 pi G u_gate g'(Y)/(a0^2 J_Y'(Y))
+         measured: g(0) = 0; F(0+) = y_th; delta_Y = 8*pi*G*u_gate*(2*Y**(3/2) - Y)*exp(-Y/(w**2*y_th**2))/(a_0**2*w**2*y_th**2*(-Y**(3/2) - sqrt(Y)*y_th + 2*Y*y_th))
+         reading:  g's form (the exponential, w = 1) is a POSTULATED structure; it adds no constant only because its width is the yield's
+
+======================================================================================================================
+T4b THE RECIPROCAL FLUX AT THE YIELD SURFACE during conversion, and the dark mass it needs
+======================================================================================================================
+    canonical: flagship 1e11 at z = 2.5: r_Y 94.9 kpc (0.82 r200), rho(r_Y) 1252 rho_crit0; zeta 32 (q = 0): G_p/(m c^2/hbar) 4.33e-08 -> delta_Y,max 14.4 at m = 1.9e-19 eV (w = 1); <= 0.1 needs m >= 3.9e-15 eV
+    canonical: flagship 1e11 at z = 2.5: r_Y 94.9 kpc (0.82 r200), rho(r_Y) 1252 rho_crit0; zeta 95 (q = 0): G_p/(m c^2/hbar) 1.47e-08 -> delta_Y,max 4.88 at m = 1.9e-19 eV (w = 1); <= 0.1 needs m >= 4.5e-16 eV
+    canonical: flagship 1e11 at z = 2.5: r_Y 94.9 kpc (0.82 r200), rho(r_Y) 1252 rho_crit0; zeta 279 (q = 0): G_p/(m c^2/hbar) 5.00e-09 -> delta_Y,max 1.66 at m = 1.9e-19 eV (w = 1); <= 0.1 needs m >= 5.2e-17 eV
+    alt: flagship 1e11 at z = 2.5: r_Y 87.2 kpc (0.76 r200), rho(r_Y) 1546 rho_crit0; zeta 32 (q = 0): G_p/(m c^2/hbar) 5.35e-08 -> delta_Y,max 15 at m = 1.9e-19 eV (w = 1); <= 0.1 needs m >= 4.3e-15 eV
+    alt: flagship 1e11 at z = 2.5: r_Y 87.2 kpc (0.76 r200), rho(r_Y) 1546 rho_crit0; zeta 95 (q = 0): G_p/(m c^2/hbar) 1.82e-08 -> delta_Y,max 5.09 at m = 1.9e-19 eV (w = 1); <= 0.1 needs m >= 4.9e-16 eV
+    alt: flagship 1e11 at z = 2.5: r_Y 87.2 kpc (0.76 r200), rho(r_Y) 1546 rho_crit0; zeta 279 (q = 0): G_p/(m c^2/hbar) 6.17e-09 -> delta_Y,max 1.73 at m = 1.9e-19 eV (w = 1); <= 0.1 needs m >= 5.7e-17 eV
+  [PASS] T4b (reported, CONSTRAINT) during the conversion the gate's reciprocal flux at the yield surface exceeds the MOND flux there at the dark-mass floor (delta_Y >> 1, a thin transient shell at x ~ w y_th, where the MOND field is weakest; r_F lies well inside it, x(r_F)/y_th ~ 15, g' ~ e^-225); it falls as m^(-1/2) at fixed trigger density, so delta_Y <= 0.1 needs a dark mass far above the floor
+         measured: delta_Y,max 1.66-15; m >= 5.2e-17-4.3e-15 eV
+         reading:  the flagship itself is not moved (Gauss: the shell sits outside r_F); what the shell does to the MOND region's edge during conversion is not scored by any gate on the record
+
+======================================================================================================================
+T4c THE FLAGSHIP UNDER THE YIELD ONSET: when the MOND scalar reaches r_F in the progenitors, and what is left at r_F
+======================================================================================================================
+    the yield-onset trigger's zeta window (q = 0): filaments at z = 2 need zeta >= 32.1 (cone 153; seeded 429); the flagship's own-density cap zeta <= 279/332 (W2 streams 262/422); the lane's cell zeta = 94.6 (geometric centre, canonical)
+    host z 2.5 lMb 10.0 mf 0.67 v_k 575: r_v 0.39 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.0 mf 0.67 v_k 650: r_v 0.39 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.0 mf 1.00 v_k 575: r_v 0.41 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.0 mf 1.00 v_k 650: r_v 0.41 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.0 mf 1.50 v_k 575: r_v 0.44 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.0 mf 1.50 v_k 650: r_v 0.44 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.5 mf 0.67 v_k 575: r_v 0.55 r200; progenitors escaped True; S(r_F) 0.0007/0.0007 -> |shift| 0.0014 dex
+    host z 2.5 lMb 10.5 mf 0.67 v_k 650: r_v 0.55 r200; progenitors escaped True; S(r_F) 0.0002/0.0002 -> |shift| 0.0004 dex
+    host z 2.5 lMb 10.5 mf 1.00 v_k 575: r_v 0.58 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.5 mf 1.00 v_k 650: r_v 0.58 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.5 mf 1.50 v_k 575: r_v 0.62 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.5 mf 1.50 v_k 650: r_v 0.62 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 11.0 mf 0.67 v_k 575: r_v 0.70 r200; progenitors escaped False; S(r_F) 0.2163/0.2125 -> |shift| 0.3564 dex (in place self/intact 0.018/0.356)
+    host z 2.5 lMb 11.0 mf 0.67 v_k 650: r_v 0.70 r200; progenitors escaped True; S(r_F) 0.0015/0.0015 -> |shift| 0.0031 dex
+    host z 2.5 lMb 11.0 mf 1.00 v_k 575: r_v 0.76 r200; progenitors escaped True; S(r_F) 0.0012/0.0012 -> |shift| 0.0022 dex (in place self/intact 0.016/0.262)
+    host z 2.5 lMb 11.0 mf 1.00 v_k 650: r_v 0.76 r200; progenitors escaped True; S(r_F) 0.0001/0.0002 -> |shift| 0.0003 dex (in place self/intact 0.005/0.171)
+    host z 2.5 lMb 11.0 mf 1.50 v_k 575: r_v 0.82 r200; progenitors escaped True; S(r_F) 0.0001/0.0001 -> |shift| 0.0002 dex
+    host z 2.5 lMb 11.0 mf 1.50 v_k 650: r_v 0.82 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    progenitor passage under the yield: escaped 753/756; z' (z = 2.5 hosts) 2.90-3.02; v_esc(r_F) at passage <= 577 km/s; the flagship's worst |shift| per kick (FP10's convention): 575: 0.3564, 650: 0.0031 dex (worst cell z 2.5 lMb 11.0 mf 0.67 v_k 575)
+  [PASS] T4c (reported) THE FLAGSHIP UNDER THE YIELD ONSET on FP9's H_Y: the MOND scalar reaches r_F in the progenitors only at z' ~ 2.9-3.0 (FK1's own trigger: 3.7-6.9), so the in-place population leaves late, from deeper wells; FP10's convention on every host (z = 0.5-2.5, the gas range at 2.5): the flagship's worst |shift| per kick
+         measured: escaped 753/756 (v_esc <= 577 km/s); worst |shift| 575: 0.356, 650: 0.003 dex (gate 0.074); 1e11 in place self/intact 0.016/0.262 dex
+         reading:  a cell whose progenitor does not escape is scored in place (FP10's pessimistic max of self and intact): the late passage on H_Y puts the heaviest hosts' v_esc(r_F) next to the slow end of the kick window
+    [833s]
+
+======================================================================================================================
+T4d THE YIELD ONSET'S BUDGET: the forest (XR12's proxy with the yield cut), S_8, mass-selectivity
+======================================================================================================================
+    zeta 32 (window floor), floor m     : forest z = 2/3 0.0033/0.0001; F_b(4/3/2/1/0) 0.003/0.038/0.223/0.345/0.359; S_8 ratio 0.9659   [851s]
+    zeta 95 (centre), floor m           : forest z = 2/3 0.0033/0.0001; F_b(4/3/2/1/0) 0.003/0.038/0.223/0.320/0.320; S_8 ratio 0.9684   [870s]
+    zeta 279 (cap), floor m             : forest z = 2/3 0.0033/0.0001; F_b(4/3/2/1/0) 0.003/0.038/0.195/0.223/0.223; S_8 ratio 0.9772   [888s]
+    zeta 95 (centre), m = 1e-15 eV      : forest z = 2/3 0.0033/0.0001; F_b(4/3/2/1/0) 0.003/0.038/0.223/0.320/0.320; S_8 ratio 0.9684   [906s]
+    FP10's derived-front budget with the yield cut (zeta 95, q = 0): F(4/3/2/1/0.5/0) 0.008/0.062/0.213/0.410/0.501/0.574; share in hosts >= 1e10.5 at z = 2/3/4 0.86/0.97/1.00 (FK1: 0.45/0.31/0.21); S_8 ratio 0.9643
+  [PASS] T4d (reported) THE YIELD ONSET'S BUDGET: the MOND scalar's own frozen IGM keeps the forest-epoch conversion inside galaxies' yield surfaces -- the conversion becomes mass-selective (XR16's objection answered) and the forest passes across the zeta window at the floor mass; S_8 stays above the strict ratio
+         measured: {'zeta 32 (window floor), floor m': {'forest': 0.0033, 'S8': 0.9659}, 'zeta 95 (centre), floor m': {'forest': 0.0033, 'S8': 0.9684}, 'zeta 279 (cap), floor m': {'forest': 0.0033, 'S8': 0.9772}, 'zeta 95 (centre), m = 1e-15 eV': {'forest': 0.0033, 'S8': 0.9684}, 'selectivity': {2.0: 0.8630527264267844, 3.0: 0.967508059595396, 4.0: 0.9993173682390758}, 'S8_FP10_budget': 0.9643}
+         reading:  the window's lower end is the z = 2 web (FP9's dense lumps switch on); with XR12's cone estimate it narrows to [153, 279] and with the seeded criterion it closes
+
+======================================================================================================================
+T4e THE YIELD ONSET UNDER FP13's STATE SEPARATOR (H_S): the gate reads the MOND scalar, so it inherits the committed separator
+======================================================================================================================
+    H_S: y_th = the web's band-passed NL leaf-rms x max(0, 2q) (zero once the leaf accelerates, z < 0.635); L(z) the web's collapse scale
+      y_th: z 0: 0.00e+00, z 0.5: 0.00e+00, z 0.634818: 0.00e+00, z 1: 3.72e-03, z 2: 9.43e-03, z 2.5: 1.10e-02, z 3: 1.22e-02, z 4: 1.40e-02, z 6: 1.65e-02 (FP9's H_Y: 2.5e-03, 1.4e-02, 6.6e-02, 9.0e-01 at z = 2/2.5/3/4)
+      L: z 0: 2879 kpc, z 0.25: 1914 kpc, z 1: 702 kpc, z 2: 252 kpc, z 2.5: 164 kpc, z 3: 111 kpc, z 4: 57 kpc
+    zeta 8 (window floor, web on below z = 0.635 only)        : forest z = 2/3 0.0314/0.0141; F_b(4/3/2/1/0) 0.088/0.119/0.142/0.178/0.444; S_8 ratio 0.9711   [1440s]
+    zeta 95 (centre)                                          : forest z = 2/3 0.0314/0.0141; F_b(4/3/2/1/0) 0.088/0.119/0.142/0.177/0.349; S_8 ratio 0.9756   [1466s]
+    zeta 279 (cap)                                            : forest z = 2/3 0.0314/0.0141; F_b(4/3/2/1/0) 0.088/0.119/0.138/0.139/0.240; S_8 ratio 0.9820   [1486s]
+    host z 2.5 lMb 10.0 mf 0.67 v_k 575: r_v 0.45 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.0 mf 0.67 v_k 650: r_v 0.45 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.0 mf 1.00 v_k 575: r_v 0.47 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.0 mf 1.00 v_k 650: r_v 0.47 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.0 mf 1.50 v_k 575: r_v 0.50 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.0 mf 1.50 v_k 650: r_v 0.50 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.5 mf 0.67 v_k 575: r_v 0.63 r200; progenitors escaped True; S(r_F) 0.0002/0.0002 -> |shift| 0.0003 dex
+    host z 2.5 lMb 10.5 mf 0.67 v_k 650: r_v 0.63 r200; progenitors escaped True; S(r_F) 0.0002/0.0002 -> |shift| 0.0004 dex
+    host z 2.5 lMb 10.5 mf 1.00 v_k 575: r_v 0.66 r200; progenitors escaped True; S(r_F) 0.0003/0.0003 -> |shift| 0.0004 dex
+    host z 2.5 lMb 10.5 mf 1.00 v_k 650: r_v 0.66 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.5 mf 1.50 v_k 575: r_v 0.71 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 10.5 mf 1.50 v_k 650: r_v 0.71 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 11.0 mf 0.67 v_k 575: r_v 0.81 r200; progenitors escaped True; S(r_F) 0.0009/0.0008 -> |shift| 0.0018 dex
+    host z 2.5 lMb 11.0 mf 0.67 v_k 650: r_v 0.81 r200; progenitors escaped True; S(r_F) 0.0002/0.0002 -> |shift| 0.0004 dex
+    host z 2.5 lMb 11.0 mf 1.00 v_k 575: r_v 0.87 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex (in place self/intact 0.017/0.260)
+    host z 2.5 lMb 11.0 mf 1.00 v_k 650: r_v 0.87 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex (in place self/intact 0.004/0.171)
+    host z 2.5 lMb 11.0 mf 1.50 v_k 575: r_v 0.94 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    host z 2.5 lMb 11.0 mf 1.50 v_k 650: r_v 0.94 r200; progenitors escaped True; S(r_F) 0.0000/0.0000 -> |shift| 0.0000 dex
+    the flagship's worst |shift| per kick (FP10's convention, every host): 575: 0.0018, 650: 0.0004 dex
+    passage under H_S: escaped 756/756; z' (z = 2.5 hosts) 3.73-4.93; v_esc <= 370 km/s; FP10 budget with the H_S cut: share >= 1e10.5 at z = 2/3/4 0.94/0.88/0.76; S_8 0.9694
+  [PASS] T4e (reported) THE YIELD ONSET UNDER H_S: the gate inherits FP13's separator -- the web is MOND-on below z = 0.635 (the yield vanishes), so the density normalisation alone must hold the late web (zeta >= ~8-32), and the flatter state yield (~1e-2 at z >= 1) lets the progenitors convert earlier; the q-running stays unnecessary
+         measured: {'window_floor': {'web on below the q = 0 epoch only': 7.6, 'web on up to z = 2 (FP13 H4: its z >= 2 lumps are off)': 32.1}, 'escaped': '756/756', 'z_pass': [3.73, 4.93], 'flag_worst_per_kick': {'575': 0.0018, '650': 0.0004}, 'forest': {'zeta 8 (window floor, web on below z = 0.635 only)': 0.0314, 'zeta 95 (centre)': 0.0314, 'zeta 279 (cap)': 0.0314}, 'S8': 0.9694, 'selectivity': {2.0: 0.9365944105422732, 3.0: 0.8782365608614503, 4.0: 0.7595406161730942}}
+         reading:  the yield onset's verdict holds on either committed separator; on H_S the yield vanishes below z = 0.635, so a gate whose width is the yield would become a step there (a singular reciprocal source): its width must be tied to the web's rms instead -- another postulated form; the prices (the gate's form, the reciprocal flux, zeta) remain
+
+======================================================================================================================
+T6  FP13's STATE QUANTITIES AS THE DARK TRIGGER (the coordinator's test): the q-sign onset and the collapse threshold
+======================================================================================================================
+    (a) accelerating sign (convert once the leaf accelerates, z < 0.635): the flagship at z = 1-2.5 keeps its whole carrier: |shift| 0.71-1.05 dex (gate 0.074); the web converts below z = 0.635 wherever the density allows (the runaway)
+    (a) decelerating sign (convert while it decelerates, z > 0.635): with FK1's density criterion at q = 0 and the largest zeta that still clears the flagship (279), the background is above the trigger at recombination (R(1100) = 1.7e-04): the CMB's cold carrier converts unless a second factor holds it
+    (b) the nonlinearity factor: threshold 1 + delta_c = 2.686 x the mean on the L-smoothed field; the web's filaments (delta ~ 10, diameters 2-4 Mpc/h comoving, Cautun+14) are wider than FP13's L(z) at every z -- z 0: 2969-5938 vs L 2879 kpc, z 0.5: 1979-3959 vs L 1327 kpc, z 1: 1485-2969 vs L 702 kpc, z 2: 990-1979 vs L 252 kpc, z 2.5: 848-1697 vs L 164 kpc, z 3: 742-1485 vs L 111 kpc -- so their smoothed contrast ~10 exceeds 1.686: filaments and walls convert in every allowed epoch; the gates need the trigger at R(2.5) = 63-106 (W2), 23-40x above 1 + delta_c
+    (c) Delta = 18 pi^2 = 177.7 (the spherical-collapse partner of delta_c = 1.686): R = 178 at every z -- the background and the web are far below it; at z = 2.5 it is zeta_eq = 7.17: XR12-W2 allows <= 2.76/4.29; the own-density cap leaves S(r_F) = 0.157/0.131 (gate 0.059) -> FAILS on the resolved reading; on FP10's no-cap reading the scoring front reaches 1.72 r_F and the progenitors escape 378/378; forest 0.1492 (z = 2/3 0.1492/0.0949); S_8 0.9623; share >= 1e10.5 at z = 2/3/4 0.45/0.31/0.21
+  [PASS] T6 A STATE-KEYED DARK TRIGGER WITH NO NEW CONSTANT FAILS: (a) the q-sign onset is global -- keyed to it the conversion either starts only at z < 0.635 (the flagship at z = 1-2.5 keeps its carrier, and the late web converts: the runaway) or runs at every z > 0.635 (the background converts before recombination unless a second factor holds it); (b) the local nonlinearity factor at FP13's delta_c converts the web itself (filaments, delta ~ 10, are wider than L(z) and far above 1 + delta_c at every z), while the gates need the trigger >= 20x higher; (c) its spherical-collapse partner Delta = 18 pi^2 spares the web and the background but fails the flagship's own-density cap (XR12-W2) on both footings, and its constant threshold converts z >= 4 halos earlier than FK1's running (the forest; reported: on FP10's no-cap reading the flagship itself passes)
+         measured: (a) flagship |shift| >= 0.71 dex; R(1100) = 1.7e-04; (b) filaments wider than L at all z: True; needed/(1 + delta_c) = 23-40x; (c) zeta_eq 7.17 vs W2 <= 4.29; S_cap 0.157/0.131; FP10 no-cap: front 1.72 r_F, escaped 378/378, forest 0.149, S_8 0.962
+         reading:  the state supplies the onset (when) and the collapse scale (where MOND's web is), not the HEIGHT of the dark threshold: sparing filaments while clearing z = 2.5 galaxies needs a trigger ~20-60x above the web's own nonlinearity -- zeta, or a virial partner the own-density cap and the forest exclude
+    [1531s]
+
+======================================================================================================================
+T6d THE THRESHOLD delta_t0 ITSELF (XR19: the dominant lever) AGAINST SPHERICAL COLLAPSE'S NATURAL NUMBERS
+======================================================================================================================
+    1 + delta_c (the collapse threshold, FP13's s)  : delta_t0    2.69 (zeta 0.506): forest 0.178 at the floor; web R_min 2.31 (filaments convert z <= 2.33); in the band: canonical False, alt False   [1544s]
+    9 pi^2/16 (turnaround, EdS)                     : delta_t0    5.55 (zeta 1.045): forest 0.143 at the floor; web R_min 4.78 (filaments convert z <= 1.49); in the band: canonical False, alt False   [1557s]
+    18 pi^2 (virialised, EdS)                       : delta_t0  177.65 (zeta 33.448): forest 0.018 at the floor; web R_min 152.99 (filaments convert z <= None); in the band: canonical False, alt False   [1569s]
+    the band the gates leave at the floor mass (q = 7/4): delta_t0 in [12.6, 14.6] (canonical), [12.6, 22.8] (alt); FP10's no-cap reach allows up to 108-551
+  [PASS] T6d (reported) THE THRESHOLD CANNOT BE SHARED WITH SPHERICAL COLLAPSE'S NATURAL NUMBERS (GR, EdS): the gates want delta_t0 inside the printed band at the floor mass with FK1's running; the collapse threshold 1 + delta_c = 2.7 and the turnaround contrast 9 pi^2/16 = 5.55 sit below it (the forest fails and the web's filaments convert), the virial 18 pi^2 = 178 above it (the flagship's own-density cap fails; FP10's no-cap reach at the upper K allows it)
+         measured: {"1 + delta_c (the collapse threshold, FP13's s)": {'delta_t0': 2.69, 'forest': 0.178, 'R_min': 2.31, 'in_band': {'canonical': False, 'alt': False}}, '9 pi^2/16 (turnaround, EdS)': {'delta_t0': 5.55, 'forest': 0.143, 'R_min': 4.78, 'in_band': {'canonical': False, 'alt': False}}, '18 pi^2 (virialised, EdS)': {'delta_t0': 177.65, 'forest': 0.018, 'R_min': 152.99, 'in_band': {'canonical': False, 'alt': False}}, 'band': {'canonical': (12.591910748321807, 14.633254869392989), 'alt': (12.591910748321807, 22.792565218662382)}}
+         reading:  the band sits between turnaround and virialisation; the virial 18 pi^2 (with FK1's running) passes the forest and the web and lies inside FP10's no-cap reach for K >= 185 -- the own-density cap alone excludes it, so the resolved run that settles the cap settles it too; the chain's OWN spherical collapse (MOND on the web; XR23, pending) could move all three numbers; the running q stays needed (a mean-tracking threshold converts z >= 4 halos too early: T6c)
+
+======================================================================================================================
+T5  THE GATE TABLE RE-SCORED: FK1's own trigger, the shared-exponent cell, and the yield-onset cell (both footings)
+======================================================================================================================
+    FK1 q=7/4 (zeta_eq 2.76):
+      flagship     history pass (0.0005 dex)
+      z0_galaxies  pass (FP10 B2: <= 0.0003 dex)
+      xcop         in place FAIL / optimistic pass (FP10 B3)
+      kids         pass (FP10 B4)
+      harvey       650 in place pass; 575 opt pass; 650 opt FAIL (FP10 B5)
+      S8           0.964-0.955
+      shear        in place FAIL / optimistic pass (FP10 B8)
+      forest       0.093 at the floor (pass)
+      web          R_min 12.6 (filaments sub-threshold; seeded mean z <= 0.52)
+    shared q=3.75:
+      flagship     history pass (passage escaped 378/378)
+      z0_galaxies  pass (fronts at r200, FP10 B2)
+      xcop         in place FAIL / optimistic 0.63 FAIL
+      kids         pass (FP10 B4)
+      harvey       optimistic uniform factor 0.00: 650 FAIL, 575 not established
+      S8           halo 0.952; web 0.919, 0.908
+      shear        in place FAIL / optimistic pass
+      forest       halo model 0.030; filaments cross at z <= 1.8
+      web          FAIL: mean converts at z <= 1.01 (A4)
+    yield onset on H_S (zeta 95, q = 0):
+      flagship     FP10's convention, every host: 575 pass (0.0018 dex), 650 pass (0.0004 dex); 1e11 in place self/intact 0.017/0.260
+      z0_galaxies  0.0003 dex (pass)
+      xcop         575: in place 1.36/1.41, optimistic 1.04/1.09; 650: in place 1.34/1.40, optimistic 1.03/1.08
+      kids         575: -6.0/-0.5 (opt -6.1/-1.0); 650: -6.0/-0.8 (opt -6.1/-1.0)
+      harvey       optimistic uniform factor 0.59 (650 fails at <= 0.499; 575 passes at >= 0.514)
+      S8           0.969 (FP10 budget) / 0.976 (XR12 history)
+      shear        575: in place 1.54/1.63, optimistic 1.01/1.08; 650: in place 1.50/1.59, optimistic 0.98/1.05
+      forest       0.0314
+      web          filaments held below the trigger for zeta >= 8-32 (the web is MOND-on below z = 0.635)
+  [PASS] T5 (reported) the gate table re-scored for FK1's own trigger, the shared-exponent cell and the yield-onset cell
+         measured: {'FK1 q=7/4 (zeta_eq 2.76)': ['flagship', 'z0_galaxies', 'xcop', 'kids', 'harvey', 'S8', 'shear', 'forest', 'web'], 'shared q=3.75': ['flagship', 'z0_galaxies', 'xcop', 'kids', 'harvey', 'S8', 'shear', 'forest', 'web'], 'yield onset on H_S (zeta 95, q = 0)': ['flagship', 'z0_galaxies', 'xcop', 'kids', 'harvey', 'S8', 'shear', 'forest', 'web']}
+  part T done   [1815s]
+
+======================================================================================================================
+E1  THE Z4 THEOREM: eps is the only term odd under Phi -> i Phi, so nothing else can make it (sympy)
+======================================================================================================================
+    |dPhi|^2 (kinetic, and every coupling to T_mn, the metric, L353's pair) : Z4-even True, Z4-odd False
+    m^2 |Phi|^2                                                             : Z4-even True, Z4-odd False
+    lambda (Im Phi^2)^2                                                     : Z4-even True, Z4-odd False
+    FK1's gate lambda(K) (Im Phi^2)^2 (K is a Z4 singlet)                   : Z4-even True, Z4-odd False
+    eps Re(Phi^2)                                                           : Z4-even False, Z4-odd True
+    one loop: delta(m_H^2 - m_L^2) = 2 lambda [I(m_L^2) - I(m_H^2)] = epsilon*lambda*(log(Lambda_UV**2/m**2) - 1)/(4*pi**2) + O(eps^2);  at eps = 0: 0
+    a phi_H condensate (the cold dark matter itself, <phi_H^2> = rho_H/m^2) shifts m_L^2 by 2*lambda_p*rho_H/m**2 > 0 (lambda > 0): it RAISES the light mass -- the wrong sign; it cannot supply the heavy->light channel
+  [PASS] E1 DERIVED: every term of the action but eps Re(Phi^2) is invariant under Z4: Phi -> i Phi (phi_H -> -phi_L, phi_L -> phi_H) -- the kinetic term and every coupling through T_mn (gravity, L353's pair), m^2|Phi|^2, the cross quartic and FK1's K-gate -- while eps Re(Phi^2) is odd; so eps = 0 is radiatively stable (the one-loop split is 2 lambda [I(m_L^2) - I(m_H^2)] ~ eps: multiplicative) and no coupling present can generate it; the condensate's own lambda-shift raises m_L (the wrong sign)
+         measured: even 4/5, eps odd True; split at eps = 0: 0; linear: epsilon*lambda*(log(Lambda_UV**2/m**2) - 1)/(4*pi**2)
+         reading:  eps is a symmetry-breaking spurion: IRREDUCIBLE unless the action is given another Z4-odd term, whose coefficient would then be the fitted number (E2)
+
+======================================================================================================================
+E2  EVERY CANDIDATE MECHANISM FOR eps (the coordinator's list)
+======================================================================================================================
+    (a) L353's pair and (b) the leaf average couple to T_mn / the metric / the khronon: Z4 singlets (E1) -> eps contribution 0
+    (c) the only lowest-order Z4-odd frame coupling c_K Re[(n.dPhi)^2]: its slow part = m**2*(A_H**2 - A_L**2)/4 = m^2 x <Re Phi^2> (True) -> eps_eff = -c_K m^2, eps/m^2 = |c_K|: the fitted 1.84-2.35e-6 moves into c_K (a relabelling, not a derivation)
+    (d) a Z4-odd coupling c mu^2 Re(Phi^2), mu = hbar H_0                               1.438e-33 eV: eps/m^2 = 5.73e-29 c at the floor -> c = 3.2e+22; with c = 1 it needs m = 1.06e-30 eV
+    (d) a Z4-odd coupling c mu^2 Re(Phi^2), mu = hbar sqrt(Lambda) c (Lambda-mass)      2.061e-33 eV: eps/m^2 = 1.18e-28 c at the floor -> c = 1.6e+22; with c = 1 it needs m = 1.52e-30 eV
+    (d) a Z4-odd coupling c mu^2 Re(Phi^2), mu = hbar a0/c (canonical)                  2.055e-34 eV: eps/m^2 = 1.17e-30 c at the floor -> c = 1.6e+24; with c = 1 it needs m = 1.52e-31 eV
+    (d) a Z4-odd coupling c mu^2 Re(Phi^2), mu = rho_Lambda^(1/4) (dark-energy scale)   2.240e-03 eV: eps/m^2 = 1.39e+32 c at the floor -> c = 1.3e-38; with c = 1 it needs m = 1.65e+00 eV
+  [PASS] E2 DERIVED: no present coupling induces eps -- L353's pair and the leaf average are Z4 singlets (0); a frame coupling c_K Re[(n.dPhi)^2] gives eps/m^2 = |c_K| exactly (a relabelling); a vacuum/Hubble-scale splitting c mu^2 with mu = hbar H_0, the Lambda-mass or hbar a0/c gives eps/m^2 <= 1e-28 c at the floor mass (c ~ 1e22 needed, or m ~ 1e-30 eV, below the floor); the dark-energy scale rho_Lambda^(1/4) hits the window only through a tuned m (FP10 C3's class: a tie through m, not a mechanism)
+         measured: frame relabelling True; Hubble-class eps/m^2 at the floor 1.2e-28; rho_Lambda^(1/4) needs m = 1.65 eV at c = 1
+         reading:  eps stays FITTED: its value is set by the gates (E4), its existence by hand (E1)
+
+======================================================================================================================
+E3  (reported) THE m-FREE NUMEROLOGY CENSUS (FP10 C2 reproduced) -- NUMEROLOGY-FLAGGED, not a tie
+======================================================================================================================
+    kappa^19 = 1.9073e-06 -> v_k = 585.5 km/s
+    Z^-7.5 = 1.9080e-06 -> v_k = 585.6 km/s
+    Omega_Lambda^34.5 = 2.1123e-06 -> v_k = 616.2 km/s
+    chance that some integer power of each base lands in the window: kappa 0.35, Z 0.14, a0/(c H0) canonical 0.13, Omega_Lambda 0.65; any of the four 0.83
+  [PASS] E3 (reported) the only integer-power m-free 'tie' is eps/m^2 = kappa^19 (v_k = kappa^9 c = 585.5 km/s), with a 35% chance for kappa alone and 83% for any base: NUMEROLOGY-FLAGGED (nothing produces the exponent 19)
+         measured: integer hits [('kappa', 19.0)]; P(chance) kappa 0.35, any 0.83
+
+======================================================================================================================
+E4  (reported) eps IS FITTED BY DATA: the kick window's two ends are set by gates
+======================================================================================================================
+    lower end (the flagship's daughters must escape): AT1 S1 at y_v = 0.1: 450 km/s leaves 0.201 dex (> 0.10), 600 km/s 0.016; FP10's history reading passes at 575
+    upper end (group cores must stay loaded): FP10 B5 Harvey optimistic: 575 pass (fit +0.088), 650 FAIL (fit +0.111) against +0.10
+  [PASS] E4 (reported) eps/m^2 = v_k^2/(2c^2 - v_k^2) is FITTED BY DATA: the flagship sets the kick's lower end (450 km/s fails, 575-600 passes) and Harvey its upper end (650 fails in the optimistic reading); eps/m^2 = 1.84-2.35e-6 (+-12%)
+         measured: 450: 0.201 dex, 600: 0.016; Harvey 650 optimistic +0.111
+  part E done   [1815s]
+
+======================================================================================================================
+M1  THE DARK MASS ON XR12's RESOLVED READING: the forest's lower bound on zeta rises with m (the fluid's minihalos convert)
+======================================================================================================================
+    m = 1.9e-19 eV: forest needs zeta >= 2.371 (scan [(2.0, 0.1084), (2.5, 0.0974)]); canonical band vs (2.539492294372279, 2.7551492268093125): OPEN (width x1.16); alt vs (4.093147252482232, 4.2913841793697545): OPEN   [1815s]
+    m = 5.2e-19 eV: forest needs zeta >= 2.539 (scan [(2.0, 0.1123), (2.5, 0.1008), (2.76, 0.0958)]); canonical band vs (2.539492294372279, 2.7551492268093125): OPEN (width x1.09); alt vs (4.093147252482232, 4.2913841793697545): OPEN   [1844s]
+    m = 1.0e-18 eV: forest needs zeta >= 2.602 (scan [(2.0, 0.1137), (2.5, 0.102), (2.76, 0.097)]); canonical band vs (2.539492294372279, 2.7551492268093125): OPEN (width x1.06); alt vs (4.093147252482232, 4.2913841793697545): OPEN   [1872s]
+    m = 1.0e-17 eV: forest needs zeta >= 2.659 (scan [(2.0, 0.115), (2.5, 0.1032), (2.76, 0.0981)]); canonical band vs (2.539492294372279, 2.7551492268093125): OPEN (width x1.04); alt vs (4.093147252482232, 4.2913841793697545): OPEN   [1901s]
+  [PASS] M1 THE COMBINED GATES PIN (zeta, m) ON THE CANONICAL FOOTING (XR12's resolved reading): at the dark-mass floor (1.9e-19 eV, L383) the forest needs zeta >= ~2.4 against the flagship's <= 2.54-2.76 -- a band <= 1.25 wide -- and it narrows as m grows (the fluid's minihalos convert): the streams-C_s=10 bound closes it above the floor, the upstream bound leaves a sliver; the alt band stays open over the grid.  zeta is FITTED BY DATA, and m on the canonical C_s=10 bound; m is not free
+         measured: zeta_f(m) = {'1.9e-19': 2.371, '5.2e-19': 2.539, '1.0e-18': 2.602, '1.0e-17': 2.659}; canonical width at the floor x1.16; closes (C_s=10) at m in ['1.0e-18', '1.0e-17']; upstream-bound m_max ~ None
+         reading:  on the canonical footing the dark sector's window is a sliver at the floor mass; the forest proxy's ~2x systematic (XR12 C2) is the band's largest uncertainty
+
+======================================================================================================================
+M2  (reported) FP10's DERIVED-FRONT READING (no own-density cap): the budget and S_8 against m, and the no-cap reach
+======================================================================================================================
+    m = 1.9e-19 eV: F(2/3) 0.436/0.357; S_8 ratio 0.9617
+    m = 5.2e-19 eV: F(2/3) 0.451/0.372; S_8 ratio 0.9614
+    m = 1.0e-18 eV: F(2/3) 0.456/0.378; S_8 ratio 0.9614
+    m = 1.0e-17 eV: F(2/3) 0.461/0.384; S_8 ratio 0.9613
+    FP10's no-cap reach bounds zeta_eq by 20, 46, 104 (K = 36/185/947, canonical): with that upper bound the forest's lower one (~2.4) leaves a decade-wide window, m unpinned
+  [PASS] M2 (reported) on FP10's own reading (the stimulated front, no own-density cap) the budget and S_8 barely feel m and the flagship allows zeta_eq up to ~25-115: m and zeta are bounded, not pinned -- the pinning of M1 rests on the own-density cap XR12 resolved
+         measured: {'1.9e-19': {'F2': 0.436, 'S8': 0.9617}, '5.2e-19': {'F2': 0.451, 'S8': 0.9614}, '1.0e-18': {'F2': 0.456, 'S8': 0.9614}, '1.0e-17': {'F2': 0.461, 'S8': 0.9613}}
+
+======================================================================================================================
+M3  (reported) THE CEILING: Bose stimulation needs a highly occupied pump (FK1 N1's occupation ~ m^-4)
+======================================================================================================================
+    FK1 N1: occupation 1.06e+77 at 2e-19 eV, ~ m^-4 (1e-6 eV: 1.70e+26); E_need 2e-19: 178, 1e-17: 162, 1e-15: 144, 1e-10: 98, 1e-06: 61
+    occupation 1 at m = 3.61 eV, 1e3 at m = 0.64 eV: the stimulated conversion needs m <~ 1 eV
+  [PASS] M3 (reported) CONSTRAINT: the Bose-stimulated conversion needs a highly occupied pump: occupation ~ m^-4 reaches 1e3 at ~0.6 eV and 1 at ~3.6 eV -- m <~ 1 eV; E_need falls only logarithmically (178 -> 61 e-folds from 2e-19 to 1e-6 eV)
+         measured: m(occ 1e3) 0.64 eV, m(occ 1) 3.61 eV
+
+======================================================================================================================
+M4  (reported) L383's DWARF-HEATING FLOOR MOVES WITH THE CLEARING EPOCH (heating ~ m^-3 x exposure)
+======================================================================================================================
+    FK1 (virial halos above threshold to z ~ 6: XR12 A1): cleared at z ~ 6.0: exposure 0.29 Gyr (L383's 0.88) -> floor 1.30e-19-3.36e-19 eV (L383 1.88e-19-4.86e-19)
+    the yield onset (UFD baryons on the yield at z ~ 2): cleared at z ~ 2.0: exposure 2.64 Gyr (L383's 0.88) -> floor 2.71e-19-6.99e-19 eV (L383 1.88e-19-4.86e-19)
+  [PASS] M4 (reported) the dwarf-heating floor scales as exposure^(1/3): the trigger's own clearing epoch moves it (earlier clearing, lower floor)
+         measured: {'FK1 (virial halos above threshold to z ~ 6: XR12 A1)': ['3.36e-19', '2.12e-19', '1.30e-19'], 'the yield onset (UFD baryons on the yield at z ~ 2)': ['6.99e-19', '4.41e-19', '2.71e-19']}
+
+======================================================================================================================
+M5  (reported) THE m-NUMEROLOGY CENSUS: dimensional combinations of the Planck mass and the framework's scales
+======================================================================================================================
+    m_P^0.25 (hbar a0/c)^0.75          = 5.706e-19 eV   <- in the canonical window
+    m_P^0.25 (hbar H0)^0.75            = 2.454e-18 eV   <- in the canonical window
+    m_P^0.333 (hbar a0/c)^0.667        = 8.019e-14 eV
+    m_P^0.333 (hbar H0)^0.667          = 2.933e-13 eV
+    m_P^0.5 (hbar a0/c)^0.5            = 1.584e-03 eV
+    m_P^0.5 (hbar H0)^0.5              = 4.190e-03 eV
+    m_P^0.25 (rho_L^(1/4))^0.75        = 1.082e+05 eV
+    m_P^0.667 (hbar a0/c)^0.333        = 3.129e+07 eV
+    m_P^0.333 (rho_L^(1/4))^0.667      = 3.942e+07 eV
+    m_P^0.667 (hbar H0)^0.333          = 5.984e+07 eV
+    m_P^0.75 (hbar a0/c)^0.25          = 4.398e+12 eV
+    m_P^0.5 (rho_L^(1/4))^0.5          = 5.230e+12 eV
+    m_P^0.75 (hbar H0)^0.25            = 7.152e+12 eV
+    m_P^0.667 (rho_L^(1/4))^0.333      = 6.938e+17 eV
+    m_P^0.75 (rho_L^(1/4))^0.25        = 2.527e+20 eV
+  [PASS] M5 (reported) NUMEROLOGY-FLAGGED: the Planck-scale geometric means that land in the scanned window (m_P^0.25 (hbar H0)^0.75 = 2.5e-18 eV, m_P^0.25 (hbar a0/c)^0.75 = 5.7e-19 eV; m_P^(1/4)(hbar H0)^(3/4) = 2.5e-18 eV) have no mechanism producing their exponents, and some of 15 such combinations lands in a window this wide by chance with probability ~0.67
+         measured: {'hits': {'m_P^0.25 (hbar H0)^0.75': '2.45e-18', 'm_P^0.25 (hbar a0/c)^0.75': '5.71e-19'}, 'p_chance': 0.67}
+  part M done   [1939s]
+
+======================================================================================================================
+N1  (reported) THE AMOUNT: misalignment of a free field, the inflationary equilibrium, and the misalignment's prior (sympy)
+======================================================================================================================
+    a_osc = sqrt(H_0)*Omega_r**(1/4)/sqrt(m);  rho_today = (m^2 phi_i^2/2) a_osc^3 = H_0**(3/2)*Omega_r**(3/4)*sqrt(m)*phi_i**2/2  (~ m^(1/2) phi_i^2)
+    at m = 1.9e-19 eV: phi_i = 2.96e+25 eV = 1.21e-02 M_P(reduced) for Omega_c = 0.266; the action has no scale that fixes it (no vev, no periodicity: Phi is not an angle)
+    a light spectator in long inflation relaxes to <phi^2> = 3 H_I^4/(8 pi^2 m^2): the amount is then set by H_I = 5.37e+03 eV -- a new constant outside the framework, not a derivation
+    the misalignment within 14 deg of the heavy axis (either sign) under an isotropic prior: 0.156 (m_L^2/m_H^2 = 1 - 4e-6: the equilibrium is isotropic to 4e-6)
+  [PASS] N1 (reported) the amount is INITIAL DATA: the free field's relic density ~ m^(1/2) phi_i^2 and nothing in the action fixes phi_i; the inflationary equilibrium trades it for H_I (outside the framework); the misalignment is a ~16% draw under an isotropic prior
+         measured: phi_i 2.96e+25 eV (1.2e-02 M_P); H_I 5.37e+03 eV; P(misalignment) 0.156
+  [PASS] N2 (reported) THE FAIR COMPARISON: LCDM carries Omega_c (omega_c) as a fitted parameter too; the framework's amount has exactly that status; the misalignment angle is the one extra piece of initial data the dark sector carries beyond LCDM
+         measured: amount ~ omega_c (same status); misalignment: +1 initial datum
+
+======================================================================================================================
+D  THE HONEST CONSTANT COUNT
+======================================================================================================================
+    eps/m^2 (the splitting)                  1.84-2.35e-6 (575-650 km/s)                  FITTED-BY-DATA; IRREDUCIBLE        Z4 spurion (E1, E2); window's ends from the flagship and Harvey (E4); kappa^19 NUMEROLOGY-FLAGGED (E3)
+    zeta = f_t (lambda_0's normalisation)    canonical [2.37, 2.76] at the floor mass     FITTED-BY-DATA                     forest from below, flagship from above (XR12 W2); a decade-wide window on FP10's no-cap reading (M2); not shared: the yield-to-density maps miss by >= 5 decades (T1b) and FP13's state gives the onset and the collapse scale, not the threshold's height (T6); in XR19's delta_t0 the band sits between GR collapse's turnaround and virial contrasts (T6d)
+    q (the K-gate exponent)                  forest + A4: [1.75, 2.0, 2.5] canonical / [1.5, 1.75, 2.0, 2.5] alt; + filaments: [1.75] / [1.5, 1.75] FITTED-BY-DATA; sharing FAILS      FP9's p' identifications convert the web (T3); FP13's q-sign ramp is global and fails the flagship or the background (T6a); forest below, web above (T3b); degenerate with zeta at z = 2.5
+      or, in the yield-onset construction    q = 0                                        SHARED (with the separator's frozen state) T4a/T4e: the frozen MOND scalar protects FRW and the forest-epoch IGM on either committed separator (H_Y, H_S); price: a MOND-scalar coupling (T4b), a POSTULATED gate form, zeta kept
+      or, the state-keyed virial trigger     Delta = 18 pi^2 (no zeta, no q)              FAILS (resolved reading)           T6c: web- and background-safe, but the flagship's own-density cap (XR12-W2) fails on both footings; passes only on FP10's no-cap reading
+    m (the dark mass)                        canonical C_s=10: [1.9e-19, <1.0e-18] eV; upstream: a sliver to the grid's end; alt: >= floor FITTED-BY-DATA (canonical) / CONSTRAINED (alt) M1 (XR12 reading); M2: unpinned on FP10's reading; M3 ceiling ~1 eV; M5 NUMEROLOGY-FLAGGED
+    the pure cross quartic                   structure                                    POSTULATED                         Z4-even; its self-quartics are generated at O(lambda^2/16 pi^2) ~ 0 (lambda ~ 1e-76 at the floor)
+    the amount (Omega_dm)                    initial data                                 IRREDUCIBLE (as LCDM's omega_c)    N1-N2
+    the misalignment                         <= ~14 deg                                   IRREDUCIBLE (initial data, ~16% prior) N1
+    WHOLE THEORY: fitted ['kappa (accepted)', 'eps/m^2', 'zeta', 'q', 'm (canonical)']; bounded ['xi', 'alpha_c', 'c_2', 'm (alt)', 'lambda_phi > 0 (FP13: required, value free)']; separator FP13's H_S (27faacc84): FP9's four declared constants replaced by state functionals; delta_c = 1.686, c_y = 1, the q = 0 onset POSTULATED (natural O(1) choices); FP14 TBD; postulated ['J_P2', 'the band-pass / yield forms', 'the pure cross quartic']; initial data ['phibar-dot', 'the amount', 'the misalignment']; measured ['G', 'Lambda']
+  [PASS] D (reported) the count: the dark sector is not knob-free -- eps FITTED-BY-DATA and irreducible, zeta and (canonical) m FITTED-BY-DATA, q constrained (or traded for the yield onset at a price), the amount and the misalignment initial data
+         measured: {'dark': [('eps/m^2 (the splitting)', 'FITTED-BY-DATA; IRREDUCIBLE'), ("zeta = f_t (lambda_0's normalisation)", 'FITTED-BY-DATA'), ('q (the K-gate exponent)', 'FITTED-BY-DATA; sharing FAILS'), ('  or, in the yield-onset construction', "SHARED (with the separator's frozen state)"), ('  or, the state-keyed virial trigger', 'FAILS (resolved reading)'), ('m (the dark mass)', 'FITTED-BY-DATA (canonical) / CONSTRAINED (alt)'), ('the pure cross quartic', 'POSTULATED'), ('the amount (Omega_dm)', "IRREDUCIBLE (as LCDM's omega_c)"), ('the misalignment', 'IRREDUCIBLE (initial data, ~16% prior)')], 'whole': {'fitted': ['kappa (accepted)', 'eps/m^2', 'zeta', 'q', 'm (canonical)'], 'bounded': ['xi', 'alpha_c', 'c_2', 'm (alt)', 'lambda_phi > 0 (FP13: required, value free)'], 'separator': "FP13's H_S (27faacc84): FP9's four declared constants replaced by state functionals; delta_c = 1.686, c_y = 1, the q = 0 onset POSTULATED (natural O(1) choices)", 'FP14': 'TBD', 'postulated': ['J_P2', 'the band-pass / yield forms', 'the pure cross quartic'], 'initial': ['phibar-dot', 'the amount', 'the misalignment'], 'measured': ['G', 'Lambda']}}
+
+======================================================================================================================
+H  (reported) THE PRE-DECLARED HYPOTHESES, AS THEY FELL
+======================================================================================================================
+    H1 exponent sharing EXCLUDED (web)                           held
+    H2 the shared gate makes the runaway WORSE                   held
+    H3 canonical band a sliver/closed at the floor; alt open     held
+    H4 q has a window; zeta pinned (window found: [1.75, 2.0, 2.5] canonical; its lower edge is the forest's, not the background's 3/4) held
+    H5 yield-onset delta_Y >> 1 at the floor                     held
+    H6 eps Z4-protected, FITTED-BY-DATA                          held
+    H7 m pinned on XR12's reading, not on FP10's                 held
+    H8 the amount irreducible initial data                       held
+    H9 not zero knobs                                            held
+  [PASS] H (reported) the pre-declared hypotheses as they fell
+         measured: {'H1 exponent sharing EXCLUDED (web)': True, 'H2 the shared gate makes the runaway WORSE': True, 'H3 canonical band a sliver/closed at the floor; alt open': True, "H4 q has a window; zeta pinned (window found: [1.75, 2.0, 2.5] canonical; its lower edge is the forest's, not the background's 3/4)": True, 'H5 yield-onset delta_Y >> 1 at the floor': True, 'H6 eps Z4-protected, FITTED-BY-DATA': True, "H7 m pinned on XR12's reading, not on FP10's": True, 'H8 the amount irreducible initial data': True, 'H9 not zero knobs': True}
+
+======================================================================================================================
+W  THE LEDGER: what this lane settles (link / status / basis)
+======================================================================================================================
+    L15a   DERIVED    FK1's K-gate is (Omega_L(<K>_h)/Omega_L0)^q on CMC leaves: the trigger's running VARIABLE is the separator's own  --  check T1
+    L15b   DERIVED    the trigger's EXPONENT is not fixed by the action: three inequivalent identifications with FP9's p' (q = 3.75, 4, 4.75)  --  check T1
+    L15c   DERIVED    the anchor law: at a fixed z = 2.5 threshold, R(z) falls to z = 0 monotonically iff q >= 1/Omega_m0 - 1/4 = 2.94  --  check T2
+    L15d   FAILS      sharing the exponent: every identification puts delta = 10 filaments above the trigger at every flagship anchor, and the cosmic mean at W2's (FP10's A4 fails): the web runaway made categorically worse  --  check T3 (T3c: S_8 below the strict 0.922 in both web brackets; X-COP/Harvey lose the optimistic reading)
+    L15e   FITTED     q is set by data, not shared: at the dark-mass floor the forest needs q >= ~1.75 (canonical; 1.5 alt) and A4 q <~ 2.9; keeping delta = 10 filaments below the trigger needs q <~ 1.75 -- FK1's declared 7/4 is where the two meet; degenerate with zeta at z = 2.5  --  check T3b
+    L15f   FITTED     zeta = f_t (lambda_0's normalisation): pinned between the forest and the flagship (canonical band <= 1.25 wide at the floor mass, XR12's resolved reading); a decade on FP10's no-cap reading; no dimensionless map to y_Lambda  --  checks M1, M2, T3b
+    L15g   DERIVED    the yield onset as the trigger (-lambda_0 g(Y)(Im Phi^2)^2): exactly off on FRW and in the z >= 2.5 IGM (phi frozen), so q is not needed -- its job is done by the separator's p'  --  check T4a
+    L15h   POSTULATED the yield-onset gate's form g (width tied to y_th)  --  check T4a
+    L15i   CONSTRAINT the yield-onset gate's reciprocal flux at the yield surface during conversion (delta_Y >> 1 at the floor; <= 0.1 needs a much heavier dark mass)  --  check T4b
+    L15j   OPEN       the yield-onset cell on the gates: mass-selective budget, forest, S_8 and the flagship's later passage (T4c-T4d); the cluster gates keep FP10's reading-dependence  --  checks T4c, T4d, T5
+    L15k   DERIVED    eps is the only Z4-odd term (Phi -> i Phi): multiplicatively renormalised, generated by nothing present  --  check E1
+    L15l   DERIVED    no present coupling induces eps (pair, leaf average: 0; frame coupling: a relabelling; vacuum/Hubble scales: <= 1e-28 at the floor)  --  check E2
+    L15m   FITTED     eps/m^2 = 1.84-2.35e-6 set by the flagship (lower) and Harvey (upper); kappa^19 is numerology  --  checks E3, E4
+    L15n   FITTED     m: pinned near its floor on the canonical footing (the forest's minihalos vs the flagship's cap), open on alt; unpinned on FP10's no-cap reading  --  checks M1, M2
+    L15o   CONSTRAINT m <~ 1 eV (Bose occupation of the pump)  --  check M3
+    L15p   OPEN       a mechanism for m (the ties m_P^a mu^(1-a) that land in the window are numerology)  --  check M5
+    L15q   POSTULATED the amount (as LCDM's omega_c) and the misalignment (~16% prior): initial data  --  checks N1, N2
+    L15r   OPEN       XR19's seeded web runaway (FK1's band top is seed-stimulable at the mean for z <~ 0.5), the forest proxy's ~2x systematic, the own-density cap in FP10's reading, the chain's own spherical-collapse numbers (XR23) as a derived threshold, and a particle-mesh run with the trigger  --  scope; not computed here
+    L15s   DERIVED    lambda_0's normalisation is not shared with the yield: a0^2 = kappa^2 c^2 G rho_Lambda maps y_th a0 to a density >= 5 decades too low; a0/(4 pi G L) needs a coefficient and runs as q = 3/4  --  check T1b
+    L15t   OPEN       the yield-onset gate on FP13's H_S: the web is MOND-on below z = 0.635, so zeta alone holds the late web; the q-running stays unnecessary; the flagship's passage comes earlier  --  check T4e
+    L15u   FAILS      a dark trigger keyed to FP13's state with no new constant (the q-sign onset and/or the local nonlinearity at delta_c): the onset is global (flagship or background fail) and delta_c sits below the web's filaments (the web converts)  --  check T6 (a), (b)
+    L15w   FAILS      sharing the threshold delta_t0 (XR19's dominant lever) with GR spherical collapse: the gates' band sits between the turnaround (9 pi^2/16) and the virial (18 pi^2) contrasts, and neither they nor 1 + delta_c land in it  --  check T6d (the chain's own collapse, XR23, is pending: OPEN in L15r)
+    L15v   FAILS      the spherical-collapse partner Delta = 18 pi^2 as the trigger (no zeta, no q): web- and background-safe, fails the flagship's own-density cap on both footings and the forest (early z >= 4 conversion); the flagship passes only on FP10's no-cap reading  --  check T6 (c)
+  [PASS] W (reported) the ledger of this lane's links
+         measured: 23 links
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  TRIGGER SHARING.  The running VARIABLE is already shared: on CMC leaves FK1's K-gate is (Omega_L(<K>_h)/Omega_L0)^q.  The
+  EXPONENT is not: the action allows three identifications with the separator's p' = 4 (q = 3.75, 4, 4.75), and every one fails the
+  web -- anchored where the flagship needs the threshold at z = 2.5, the steep running drops it under delta = 10 filaments at every
+  anchor on the record and under the cosmic mean itself at W2's (FP10's own A4 requirement), >= 172x worse than FK1's q = 7/4.
+  q is therefore not shared but set by data: the forest (from below) and the web's filaments (from above) meet at FK1's declared 7/4.
+  The YIELD ONSET can replace q outright: a trigger gated by the MOND scalar's own on-state is exactly off on FRW and in the frozen
+  z >= 2.5 IGM, so the K-running is not needed and the conversion becomes mass-selective (share >= 1e10.5 at z = 2/3/4:
+  0.86/0.97/1.00 vs FK1's 0.45/0.31/0.21); its price is a POSTULATED gate form, a
+  reciprocal flux at the yield surface (delta_Y,max 1.7+ at the floor mass) and, on FP9's H_Y, a late clearing of r_F (z' ~
+  2.9-3.0: 3/756 progenitor cells do not escape (v_esc up to 577 km/s) and fall to FP10's in-place bracket -- worst flagship shift per kick 575: 0.356, 650: 0.003 dex); on FP13's H_S 756/756 progenitor cells escape
+  (z' ~ 3.7-4.9; worst flagship shift 0.0018 dex).
+  lambda_0 cannot be shared: the framework's own yield-to-density map lands >= 5 decades too low, so zeta is FITTED BY DATA.
+  FP13'S STATE (H_S).  The yield-onset gate works on H_S too (forest 0.031, progenitors
+  cleared at z' ~ 3.7-4.9, share >= 1e10.5 0.94/0.88/0.76); the web is MOND-on below z = 0.635, so zeta holds the late web.  A
+  trigger keyed to H_S's quantities with no new constant fails: the q-sign onset is global (keyed to it alone the flagship or the
+  background fails), and the local nonlinearity at delta_c = 1.686 sits under the web's filaments (the web converts); the state
+  gives WHEN and WHERE, not the HEIGHT the dark threshold needs (>= 23x above 1 + delta_c).  Its spherical-collapse
+  partner 18 pi^2 has the right order and no constant, but the flagship's own-density cap rejects it on both footings (S(r_F) =
+  0.16/0.13 > 0.059) and so does the forest (0.15: it converts z >= 4 halos too early).
+  XR19's dominant lever, the threshold delta_t0, wants [12.6, 14.6] (canonical; alt to 22.8):
+  between spherical collapse's turnaround (5.55) and virial (178) contrasts -- no GR collapse number lands in it; the virial 178 (with
+  FK1's running) passes the forest and the web and only the own-density cap excludes it (the chain's own collapse, XR23, is pending).
+  eps.  Z4 (Phi -> i Phi) protects it: every other term is even, eps is odd, the one-loop split is proportional to eps and nothing
+  present generates it; a frame coupling only relabels it, Hubble-scale splittings are >= 1e20 too small.  IRREDUCIBLE; its value is
+  FITTED BY DATA (flagship below, Harvey above); kappa^19 is numerology.
+  m.  On XR12's resolved reading the forest's lower bound on zeta rises with m (the fluid's minihalos convert) into the flagship's
+  upper bound: at the floor the canonical band is x1.16 wide and it closes for heavier fluids -- m is pinned near its floor
+  on the canonical footing (FITTED BY DATA), open on alt; on FP10's no-cap reading it is only bounded.  Its ties (m_P^(1/4)(hbar H0)^(3/4)
+  etc.) are numerology.  The amount is initial data, as LCDM's omega_c; the misalignment is one extra datum.
+  THE COUNT.  Dark sector: eps FITTED (irreducible), zeta FITTED, q FITTED, m FITTED (canonical) / bounded (alt) -- or, with the
+  yield onset, q eliminated and zeta, m bounded to wide windows at the price of a postulated gate form; 1 postulated structure
+  (the cross quartic), 2 initial data -- not zero knobs.  Not 'closed' as a theory.
+
+  32/32 checks pass; load-bearing failures: 0; wrote FP15_zero_knob_dark_sector_results.json   [1939s]
+rc=0

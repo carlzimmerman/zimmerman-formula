@@ -1,0 +1,3197 @@
+{
+ "lane": "FP15",
+ "mutate": false,
+ "smoke": false,
+ "checks": {
+  "C0a CONTROL: FP10's machinery -- budget(600 km/s, K_mid) bit-identical to FP10's committed A6 row, L319's S_8 ratio equal to its B6 row, and the progenitor passage of the 1e11 z = 2.5 host (alpha = 0.8, 575 km/s, three K) equal to its committed B1 row": {
+   "ok": true,
+   "measured": "budget max |dev| 0.0e+00; S_8 0.961654 (|dev| 0.0e+00); passage z' [4.3523, 4.6317, 4.7385] vs [4.3523, 4.6317, 4.7385] (|dev| 0.0e+00)",
+   "load_bearing": true
+  },
+  "C0b CONTROL: XR12's calibrated gas-proxy forest (its fk1_history, proxies and committed calibration) reproduces its committed H2 nominal row, and this lane's generalised evaluator at q = 7/4 with XR12's hard cut is identical to it": {
+   "ok": true,
+   "measured": "z = 2/3: 0.11339/0.05160 vs committed 0.11339/0.05160 (|dev| 0.0e+00); generalised |dev| 0.0e+00",
+   "load_bearing": true
+  },
+  "C0c CONTROL: this lane's trigger-to-mean ratio R(z) at FK1's cell reproduces XR12's committed A1 table (5.3/4.8/6.8/16.5/24.8/35.8/67.7/182 at z = 0/0.5/1/2/2.5/3/4/6) and FP10's A4 background peak (z = 0.30, N_bg/E_need = 0.048)": {
+   "ok": true,
+   "measured": "R = [5.31, 4.79, 6.78, 16.5, 24.77, 35.79, 67.68, 181.67] (max rel dev 2.5e-03); peak z 0.30 at 0.0478",
+   "load_bearing": true
+  },
+  "C0d CONTROL: FP9's committed yield y_th(z) at z = 0/0.25/1/2/2.5/3 and its band-pass length (L(0.25) = 1.3 Mpc, L(2.5) = 119 kpc) are reproduced from FP9's headline constants (y_th(0.25) = 1e-6, p' = 4, L(0.25) = 1.3 Mpc, n = 2) on its cosmology": {
+   "ok": true,
+   "measured": "max rel dev 2.7e-15; L(0.25) 1300.0 kpc, L(2.5) 119.3 kpc, L(0) 1689 kpc",
+   "load_bearing": true
+  },
+  "T1 DERIVED: on CMC leaves FK1's K-gate (K/3H_0)^(-2q) IS (Omega_L(<K>_h)/Omega_L0)^q -- the separator's own variable, so the running VARIABLE is already shared; but the action does not fix the EXPONENT: three inequivalent identifications with FP9's y_th ~ Omega_L^(-p') give q = p' - 1/4, p', p' + 3/4 = 3.75, 4, 4.75, and none is selected by a term of the action": {
+   "ok": true,
+   "measured": "identity True; n_t ~ Omega_L^(-q - 1/4); q = [3.75, 4.0, 4.75]",
+   "load_bearing": true
+  },
+  "T1b DERIVED: lambda_0's normalisation cannot be shared with the yield: the framework's one m-free map from an acceleration to a density, a0^2 = kappa^2 c^2 G rho_Lambda, turns y_th(2.5) a0 into y_th^2 rho_Lambda, >= 5 decades below the trigger the flagship and the forest need at z = 2.5; the band-pass length gives a0/(4 pi G L) of the right order only with a coefficient put in and the running q = 3/4 (the marginal background value)": {
+   "ok": true,
+   "measured": "(i) 1.4e-04 vs 800 rho_crit0 (6.8 decades); (ii) y -> 1: x4.4, with y_th: x0.06",
+   "load_bearing": true
+  },
+  "T2 DERIVED: with the threshold held at z = 2.5 (the flagship's anchor), d ln R/d ln(1+z) = (3/2)(2q + 1/2) Omega_m(z) - 3, so for q >= 1/Omega_m0 - 1/4 = 2.94 the trigger's closest approach to the cosmic mean is at z = 0; every shared exponent sits above that line and brings the threshold down by (3.5)^3/E(2.5)^(2q + 1/2) <= 1.1e-3 between z = 2.5 and today (FK1's q = 7/4: its minimum at z = 0.30, 0.21)": {
+   "ok": true,
+   "measured": "form True; q* = 2.937; shared R(0)/R(2.5) = 1.07e-03, 5.53e-04, 7.59e-05; FK1 0.214 (min at z = 0.30)",
+   "load_bearing": true
+  },
+  "T3 THE SHARED EXPONENT FAILS ON THE WEB: at every flagship anchor on the record (XR12-W2's resolved bound, both footings; FP10's no-cap reach at K = 36-947) every shared q (3.75, 4, 4.75) puts delta = 10 filaments above the trigger (spontaneous conversion) at some z <= 2, and at W2's anchor the cosmic MEAN itself crosses -- FP10's own A4 requirement (no background conversion) fails at z <= 0.9-1.4; FK1's q = 7/4 keeps R_min >= 11.6 > 11 at W2's canonical anchors (no spontaneous filament conversion); the shared gate lowers the web's margin by >= 30x at every anchor: it makes XR19's runaway categorically worse": {
+   "ok": true,
+   "measured": "filaments cross for every shared q at every anchor: True; mean crosses at W2: True (z <= 0.875-1.375); FK1 R_min at W2 canonical 11.6 (filaments [None, None, None, None]); FK1/shared R_min >= 172.2",
+   "load_bearing": true
+  },
+  "T3b (reported) THE q-WINDOW at the dark-mass floor (m = 1.9e-19 eV): the forest closes the band for shallow runnings (early conversion) and the web for steep ones; FK1's q = 7/4 sits in the narrow overlap; the flagship's progenitor passage escapes in every scanned cell (the anchor keeps it)": {
+   "ok": true,
+   "measured": "canonical: band open & A4 [1.75, 2.0, 2.5], + filaments safe [1.75]; alt: [1.5, 1.75, 2.0, 2.5] / [1.5, 1.75]; edges {1.75: 2.3708049556940303, 2.5: 0.0}",
+   "load_bearing": false
+  },
+  "T3c (reported) the shared cells' other gates: with the web converting, S_8 falls below the strict ratio in both of FP10's maximal-web brackets (above the alt floor), and FP10's only passing cluster reading (optimistic) loses X-COP (too little mass) and Harvey (hollow cores)": {
+   "ok": true,
+   "measured": "{'n_t ~ y_th (absolute threshold runs as the yield)': {'S8_web': {'1.01': 0.9192, '1.80': 0.908}, 'xcop': {'575': (0.6273813916829709, 0.679203631524044), '650': (0.6273813916829709, 0.679203631524044)}, 'us': 0.0}, 'lambda ~ 1/y_th (the coupling runs as the inverse yield)': {'S8_web': {'1.11': 0.9188, '1.85': 0.9077}, 'xcop': {'575': (0.6273813916829709, 0.679203631524044), '650': (0.6273813916829709, 0.679203631524044)}, 'us': 0.0}, \"rho_t/rho_crit(z) ~ y_th (FP10's convention q = p + 3/4)\": {'S8_web': {'1.35': 0.9132, '1.97': 0.907}, 'xcop': {'575': (0.6273813916829709, 0.679203631524044), '650': (0.6273813916829709, 0.679203631524044)}, 'us': 0.0}}",
+   "load_bearing": false
+  },
+  "T4a DERIVED: a trigger gated by the MOND scalar's own on-state, -lambda_0 g(Y)(Im Phi^2)^2 with g(0) = 0 and width tied to the yield (g = 1 - exp(-Y/(w y_th)^2)), is exactly off wherever phi is frozen -- on FRW and inside every yield surface (FP9 Y3) -- so the early universe and the z >= 2.5 IGM cannot convert whatever q is: the K-running is not needed (q -> 0) and its job is done by the separator's own p' (SHARED); the price is a reciprocal source: phi's flux coefficient becomes (1 + delta_Y), delta_Y = 8 pi G u_gate g'(Y)/(a0^2 J_Y'(Y))": {
+   "ok": true,
+   "measured": "g(0) = 0; F(0+) = y_th; delta_Y = 8*pi*G*u_gate*(2*Y**(3/2) - Y)*exp(-Y/(w**2*y_th**2))/(a_0**2*w**2*y_th**2*(-Y**(3/2) - sqrt(Y)*y_th + 2*Y*y_th))",
+   "load_bearing": true
+  },
+  "T4b (reported, CONSTRAINT) during the conversion the gate's reciprocal flux at the yield surface exceeds the MOND flux there at the dark-mass floor (delta_Y >> 1, a thin transient shell at x ~ w y_th, where the MOND field is weakest; r_F lies well inside it, x(r_F)/y_th ~ 15, g' ~ e^-225); it falls as m^(-1/2) at fixed trigger density, so delta_Y <= 0.1 needs a dark mass far above the floor": {
+   "ok": true,
+   "measured": "delta_Y,max 1.66-15; m >= 5.2e-17-4.3e-15 eV",
+   "load_bearing": false
+  },
+  "T4c (reported) THE FLAGSHIP UNDER THE YIELD ONSET on FP9's H_Y: the MOND scalar reaches r_F in the progenitors only at z' ~ 2.9-3.0 (FK1's own trigger: 3.7-6.9), so the in-place population leaves late, from deeper wells; FP10's convention on every host (z = 0.5-2.5, the gas range at 2.5): the flagship's worst |shift| per kick": {
+   "ok": true,
+   "measured": "escaped 753/756 (v_esc <= 577 km/s); worst |shift| 575: 0.356, 650: 0.003 dex (gate 0.074); 1e11 in place self/intact 0.016/0.262 dex",
+   "load_bearing": false
+  },
+  "T4d (reported) THE YIELD ONSET'S BUDGET: the MOND scalar's own frozen IGM keeps the forest-epoch conversion inside galaxies' yield surfaces -- the conversion becomes mass-selective (XR16's objection answered) and the forest passes across the zeta window at the floor mass; S_8 stays above the strict ratio": {
+   "ok": true,
+   "measured": "{'zeta 32 (window floor), floor m': {'forest': 0.0033, 'S8': 0.9659}, 'zeta 95 (centre), floor m': {'forest': 0.0033, 'S8': 0.9684}, 'zeta 279 (cap), floor m': {'forest': 0.0033, 'S8': 0.9772}, 'zeta 95 (centre), m = 1e-15 eV': {'forest': 0.0033, 'S8': 0.9684}, 'selectivity': {2.0: 0.8630527264267844, 3.0: 0.967508059595396, 4.0: 0.9993173682390758}, 'S8_FP10_budget': 0.9643}",
+   "load_bearing": false
+  },
+  "T4e (reported) THE YIELD ONSET UNDER H_S: the gate inherits FP13's separator -- the web is MOND-on below z = 0.635 (the yield vanishes), so the density normalisation alone must hold the late web (zeta >= ~8-32), and the flatter state yield (~1e-2 at z >= 1) lets the progenitors convert earlier; the q-running stays unnecessary": {
+   "ok": true,
+   "measured": "{'window_floor': {'web on below the q = 0 epoch only': 7.6, 'web on up to z = 2 (FP13 H4: its z >= 2 lumps are off)': 32.1}, 'escaped': '756/756', 'z_pass': [3.73, 4.93], 'flag_worst_per_kick': {'575': 0.0018, '650': 0.0004}, 'forest': {'zeta 8 (window floor, web on below z = 0.635 only)': 0.0314, 'zeta 95 (centre)': 0.0314, 'zeta 279 (cap)': 0.0314}, 'S8': 0.9694, 'selectivity': {2.0: 0.9365944105422732, 3.0: 0.8782365608614503, 4.0: 0.7595406161730942}}",
+   "load_bearing": false
+  },
+  "T6 A STATE-KEYED DARK TRIGGER WITH NO NEW CONSTANT FAILS: (a) the q-sign onset is global -- keyed to it the conversion either starts only at z < 0.635 (the flagship at z = 1-2.5 keeps its carrier, and the late web converts: the runaway) or runs at every z > 0.635 (the background converts before recombination unless a second factor holds it); (b) the local nonlinearity factor at FP13's delta_c converts the web itself (filaments, delta ~ 10, are wider than L(z) and far above 1 + delta_c at every z), while the gates need the trigger >= 20x higher; (c) its spherical-collapse partner Delta = 18 pi^2 spares the web and the background but fails the flagship's own-density cap (XR12-W2) on both footings, and its constant threshold converts z >= 4 halos earlier than FK1's running (the forest; reported: on FP10's no-cap reading the flagship itself passes)": {
+   "ok": true,
+   "measured": "(a) flagship |shift| >= 0.71 dex; R(1100) = 1.7e-04; (b) filaments wider than L at all z: True; needed/(1 + delta_c) = 23-40x; (c) zeta_eq 7.17 vs W2 <= 4.29; S_cap 0.157/0.131; FP10 no-cap: front 1.72 r_F, escaped 378/378, forest 0.149, S_8 0.962",
+   "load_bearing": true
+  },
+  "T6d (reported) THE THRESHOLD CANNOT BE SHARED WITH SPHERICAL COLLAPSE'S NATURAL NUMBERS (GR, EdS): the gates want delta_t0 inside the printed band at the floor mass with FK1's running; the collapse threshold 1 + delta_c = 2.7 and the turnaround contrast 9 pi^2/16 = 5.55 sit below it (the forest fails and the web's filaments convert), the virial 18 pi^2 = 178 above it (the flagship's own-density cap fails; FP10's no-cap reach at the upper K allows it)": {
+   "ok": true,
+   "measured": "{\"1 + delta_c (the collapse threshold, FP13's s)\": {'delta_t0': 2.69, 'forest': 0.178, 'R_min': 2.31, 'in_band': {'canonical': False, 'alt': False}}, '9 pi^2/16 (turnaround, EdS)': {'delta_t0': 5.55, 'forest': 0.143, 'R_min': 4.78, 'in_band': {'canonical': False, 'alt': False}}, '18 pi^2 (virialised, EdS)': {'delta_t0': 177.65, 'forest': 0.018, 'R_min': 152.99, 'in_band': {'canonical': False, 'alt': False}}, 'band': {'canonical': (12.591910748321807, 14.633254869392989), 'alt': (12.591910748321807, 22.792565218662382)}}",
+   "load_bearing": false
+  },
+  "T5 (reported) the gate table re-scored for FK1's own trigger, the shared-exponent cell and the yield-onset cell": {
+   "ok": true,
+   "measured": "{'FK1 q=7/4 (zeta_eq 2.76)': ['flagship', 'z0_galaxies', 'xcop', 'kids', 'harvey', 'S8', 'shear', 'forest', 'web'], 'shared q=3.75': ['flagship', 'z0_galaxies', 'xcop', 'kids', 'harvey', 'S8', 'shear', 'forest', 'web'], 'yield onset on H_S (zeta 95, q = 0)': ['flagship', 'z0_galaxies', 'xcop', 'kids', 'harvey', 'S8', 'shear', 'forest', 'web']}",
+   "load_bearing": false
+  },
+  "E1 DERIVED: every term of the action but eps Re(Phi^2) is invariant under Z4: Phi -> i Phi (phi_H -> -phi_L, phi_L -> phi_H) -- the kinetic term and every coupling through T_mn (gravity, L353's pair), m^2|Phi|^2, the cross quartic and FK1's K-gate -- while eps Re(Phi^2) is odd; so eps = 0 is radiatively stable (the one-loop split is 2 lambda [I(m_L^2) - I(m_H^2)] ~ eps: multiplicative) and no coupling present can generate it; the condensate's own lambda-shift raises m_L (the wrong sign)": {
+   "ok": true,
+   "measured": "even 4/5, eps odd True; split at eps = 0: 0; linear: epsilon*lambda*(log(Lambda_UV**2/m**2) - 1)/(4*pi**2)",
+   "load_bearing": true
+  },
+  "E2 DERIVED: no present coupling induces eps -- L353's pair and the leaf average are Z4 singlets (0); a frame coupling c_K Re[(n.dPhi)^2] gives eps/m^2 = |c_K| exactly (a relabelling); a vacuum/Hubble-scale splitting c mu^2 with mu = hbar H_0, the Lambda-mass or hbar a0/c gives eps/m^2 <= 1e-28 c at the floor mass (c ~ 1e22 needed, or m ~ 1e-30 eV, below the floor); the dark-energy scale rho_Lambda^(1/4) hits the window only through a tuned m (FP10 C3's class: a tie through m, not a mechanism)": {
+   "ok": true,
+   "measured": "frame relabelling True; Hubble-class eps/m^2 at the floor 1.2e-28; rho_Lambda^(1/4) needs m = 1.65 eV at c = 1",
+   "load_bearing": true
+  },
+  "E3 (reported) the only integer-power m-free 'tie' is eps/m^2 = kappa^19 (v_k = kappa^9 c = 585.5 km/s), with a 35% chance for kappa alone and 83% for any base: NUMEROLOGY-FLAGGED (nothing produces the exponent 19)": {
+   "ok": true,
+   "measured": "integer hits [('kappa', 19.0)]; P(chance) kappa 0.35, any 0.83",
+   "load_bearing": false
+  },
+  "E4 (reported) eps/m^2 = v_k^2/(2c^2 - v_k^2) is FITTED BY DATA: the flagship sets the kick's lower end (450 km/s fails, 575-600 passes) and Harvey its upper end (650 fails in the optimistic reading); eps/m^2 = 1.84-2.35e-6 (+-12%)": {
+   "ok": true,
+   "measured": "450: 0.201 dex, 600: 0.016; Harvey 650 optimistic +0.111",
+   "load_bearing": false
+  },
+  "M1 THE COMBINED GATES PIN (zeta, m) ON THE CANONICAL FOOTING (XR12's resolved reading): at the dark-mass floor (1.9e-19 eV, L383) the forest needs zeta >= ~2.4 against the flagship's <= 2.54-2.76 -- a band <= 1.25 wide -- and it narrows as m grows (the fluid's minihalos convert): the streams-C_s=10 bound closes it above the floor, the upstream bound leaves a sliver; the alt band stays open over the grid.  zeta is FITTED BY DATA, and m on the canonical C_s=10 bound; m is not free": {
+   "ok": true,
+   "measured": "zeta_f(m) = {'1.9e-19': 2.371, '5.2e-19': 2.539, '1.0e-18': 2.602, '1.0e-17': 2.659}; canonical width at the floor x1.16; closes (C_s=10) at m in ['1.0e-18', '1.0e-17']; upstream-bound m_max ~ None",
+   "load_bearing": true
+  },
+  "M2 (reported) on FP10's own reading (the stimulated front, no own-density cap) the budget and S_8 barely feel m and the flagship allows zeta_eq up to ~25-115: m and zeta are bounded, not pinned -- the pinning of M1 rests on the own-density cap XR12 resolved": {
+   "ok": true,
+   "measured": "{'1.9e-19': {'F2': 0.436, 'S8': 0.9617}, '5.2e-19': {'F2': 0.451, 'S8': 0.9614}, '1.0e-18': {'F2': 0.456, 'S8': 0.9614}, '1.0e-17': {'F2': 0.461, 'S8': 0.9613}}",
+   "load_bearing": false
+  },
+  "M3 (reported) CONSTRAINT: the Bose-stimulated conversion needs a highly occupied pump: occupation ~ m^-4 reaches 1e3 at ~0.6 eV and 1 at ~3.6 eV -- m <~ 1 eV; E_need falls only logarithmically (178 -> 61 e-folds from 2e-19 to 1e-6 eV)": {
+   "ok": true,
+   "measured": "m(occ 1e3) 0.64 eV, m(occ 1) 3.61 eV",
+   "load_bearing": false
+  },
+  "M4 (reported) the dwarf-heating floor scales as exposure^(1/3): the trigger's own clearing epoch moves it (earlier clearing, lower floor)": {
+   "ok": true,
+   "measured": "{'FK1 (virial halos above threshold to z ~ 6: XR12 A1)': ['3.36e-19', '2.12e-19', '1.30e-19'], 'the yield onset (UFD baryons on the yield at z ~ 2)': ['6.99e-19', '4.41e-19', '2.71e-19']}",
+   "load_bearing": false
+  },
+  "M5 (reported) NUMEROLOGY-FLAGGED: the Planck-scale geometric means that land in the scanned window (m_P^0.25 (hbar H0)^0.75 = 2.5e-18 eV, m_P^0.25 (hbar a0/c)^0.75 = 5.7e-19 eV; m_P^(1/4)(hbar H0)^(3/4) = 2.5e-18 eV) have no mechanism producing their exponents, and some of 15 such combinations lands in a window this wide by chance with probability ~0.67": {
+   "ok": true,
+   "measured": "{'hits': {'m_P^0.25 (hbar H0)^0.75': '2.45e-18', 'm_P^0.25 (hbar a0/c)^0.75': '5.71e-19'}, 'p_chance': 0.67}",
+   "load_bearing": false
+  },
+  "N1 (reported) the amount is INITIAL DATA: the free field's relic density ~ m^(1/2) phi_i^2 and nothing in the action fixes phi_i; the inflationary equilibrium trades it for H_I (outside the framework); the misalignment is a ~16% draw under an isotropic prior": {
+   "ok": true,
+   "measured": "phi_i 2.96e+25 eV (1.2e-02 M_P); H_I 5.37e+03 eV; P(misalignment) 0.156",
+   "load_bearing": false
+  },
+  "N2 (reported) THE FAIR COMPARISON: LCDM carries Omega_c (omega_c) as a fitted parameter too; the framework's amount has exactly that status; the misalignment angle is the one extra piece of initial data the dark sector carries beyond LCDM": {
+   "ok": true,
+   "measured": "amount ~ omega_c (same status); misalignment: +1 initial datum",
+   "load_bearing": false
+  },
+  "D (reported) the count: the dark sector is not knob-free -- eps FITTED-BY-DATA and irreducible, zeta and (canonical) m FITTED-BY-DATA, q constrained (or traded for the yield onset at a price), the amount and the misalignment initial data": {
+   "ok": true,
+   "measured": "{'dark': [('eps/m^2 (the splitting)', 'FITTED-BY-DATA; IRREDUCIBLE'), (\"zeta = f_t (lambda_0's normalisation)\", 'FITTED-BY-DATA'), ('q (the K-gate exponent)', 'FITTED-BY-DATA; sharing FAILS'), ('  or, in the yield-onset construction', \"SHARED (with the separator's frozen state)\"), ('  or, the state-keyed virial trigger', 'FAILS (resolved reading)'), ('m (the dark mass)', 'FITTED-BY-DATA (canonical) / CONSTRAINED (alt)'), ('the pure cross quartic', 'POSTULATED'), ('the amount (Omega_dm)', \"IRREDUCIBLE (as LCDM's omega_c)\"), ('the misalignment', 'IRREDUCIBLE (initial data, ~16% prior)')], 'whole': {'fitted': ['kappa (accepted)', 'eps/m^2', 'zeta', 'q', 'm (canonical)'], 'bounded': ['xi', 'alpha_c', 'c_2', 'm (alt)', 'lambda_phi > 0 (FP13: required, value free)'], 'separator': \"FP13's H_S (27faacc84): FP9's four declared constants replaced by state functionals; delta_c = 1.686, c_y = 1, the q = 0 onset POSTULATED (natural O(1) choices)\", 'FP14': 'TBD', 'postulated': ['J_P2', 'the band-pass / yield forms', 'the pure cross quartic'], 'initial': ['phibar-dot', 'the amount', 'the misalignment'], 'measured': ['G', 'Lambda']}}",
+   "load_bearing": false
+  },
+  "H (reported) the pre-declared hypotheses as they fell": {
+   "ok": true,
+   "measured": "{'H1 exponent sharing EXCLUDED (web)': True, 'H2 the shared gate makes the runaway WORSE': True, 'H3 canonical band a sliver/closed at the floor; alt open': True, \"H4 q has a window; zeta pinned (window found: [1.75, 2.0, 2.5] canonical; its lower edge is the forest's, not the background's 3/4)\": True, 'H5 yield-onset delta_Y >> 1 at the floor': True, 'H6 eps Z4-protected, FITTED-BY-DATA': True, \"H7 m pinned on XR12's reading, not on FP10's\": True, 'H8 the amount irreducible initial data': True, 'H9 not zero knobs': True}",
+   "load_bearing": false
+  },
+  "W (reported) the ledger of this lane's links": {
+   "ok": true,
+   "measured": "23 links",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "a0_FP0": {
+   "canonical": 9.360324825027975e-11,
+   "alt": 1.1312035414413022e-10
+  },
+  "C0": {
+   "budget": 0.0,
+   "S8": 0.0,
+   "passage": 0.0,
+   "XR12": 0.0,
+   "XR12_general": 0.0,
+   "A1": [
+    5.310055266853854,
+    4.792673401571231,
+    6.783059226658104,
+    16.49925125653141,
+    24.766851911805883,
+    35.79499665478539,
+    67.67609644020992,
+    181.6672480502385
+   ],
+   "bg_peak": [
+    0.3,
+    0.04780112442028207
+   ],
+   "y_th": 2.6645352591003757e-15
+  },
+  "T1": {
+   "identity": true,
+   "n_t_exponent": "-q - 1/4",
+   "ratio_exponent": "3/4 - q",
+   "q_shared": {
+    "n_t ~ y_th (absolute threshold runs as the yield)": 3.75,
+    "lambda ~ 1/y_th (the coupling runs as the inverse yield)": 4.0,
+    "rho_t/rho_crit(z) ~ y_th (FP10's convention q = p + 3/4)": 4.75
+   },
+   "p_prime": 4.0
+  },
+  "T1b": {
+   "rho_t25": [
+    799.6510469805314,
+    917.9824849190286
+   ],
+   "map_i": 0.0001360774507842451,
+   "decades": 6.76911434540452,
+   "map_ii": {
+    "canonical": 50.07982387247791,
+    "alt": 60.52191048736856
+   },
+   "map_ii_y1": {
+    "canonical": 3556.10614899166,
+    "alt": 4297.585761900666
+   }
+  },
+  "T2": {
+   "q_star": 2.937026480297815,
+   "R0_over_R25": {
+    "n_t ~ y_th (absolute threshold runs as the yield)": 0.001072810697214281,
+    "lambda ~ 1/y_th (the coupling runs as the inverse yield)": 0.0005532456787336372,
+    "rho_t/rho_crit(z) ~ y_th (FP10's convention q = p + 3/4)": 7.587572186180849e-05
+   },
+   "fk1": 0.2144685493098284,
+   "fk1_zmin": 0.29802985210300603
+  },
+  "T3": {
+   "anchors": {
+    "W2 canonical (streams C_s=10)": 2.539492294372279,
+    "W2 canonical (+ upstream)": 2.7551492268093125,
+    "W2 alt (streams C_s=10)": 4.093147252482232,
+    "W2 alt (+ upstream)": 4.2913841793697545,
+    "FP10 reach K=36 canonical": 20.266575815839907,
+    "FP10 reach K=36 alt": 23.733167933587517,
+    "FP10 reach K=185 canonical": 45.865047683565486,
+    "FP10 reach K=185 alt": 53.710251245174234,
+    "FP10 reach K=947 canonical": 103.79664616908815,
+    "FP10 reach K=947 alt": 121.55103342770127
+   },
+   "reach": {
+    "36|canonical": 20.266575815839907,
+    "36|alt": 23.733167933587517,
+    "185|canonical": 45.865047683565486,
+    "185|alt": 53.710251245174234,
+    "947|canonical": 103.79664616908815,
+    "947|alt": 121.55103342770127
+   },
+   "web": {
+    "n_t ~ y_th (absolute threshold runs as the yield)": {
+     "W2 canonical (streams C_s=10)": {
+      "zeta": 0.012703002410670797,
+      "R_min": 0.06743262116241494,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.06743262116241494,
+       "0.3": 0.1099167562044171,
+       "1.0": 0.8802644525547152,
+       "1.5": 4.212917686307624,
+       "2.0": 17.577786914590185,
+       "2.5": 62.89522958589038,
+       "3.0": 196.10857559354926
+      },
+      "mean_spont": 1.035,
+      "mean_seeded": 1.895,
+      "walls": 1.385,
+      "filaments": 1.825,
+      "filaments_cone": 2.42
+     },
+     "W2 canonical (+ upstream)": {
+      "zeta": 0.013781757616463875,
+      "R_min": 0.07315908556567458,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.07315908556567458,
+       "0.3": 0.11925102767238122,
+       "1.0": 0.9550176353038828,
+       "1.5": 4.5706840425404165,
+       "2.0": 19.070515052979502,
+       "2.5": 68.2363728953127,
+       "3.0": 212.7623665622495
+      },
+      "mean_spont": 1.01,
+      "mean_seeded": 1.865,
+      "walls": 1.36,
+      "filaments": 1.8,
+      "filaments_cone": 2.39
+     },
+     "W2 alt (streams C_s=10)": {
+      "zeta": 0.02047466713355975,
+      "R_min": 0.1086877281141109,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.1086877281141109,
+       "0.3": 0.17716354944525575,
+       "1.0": 1.4188080166326016,
+       "1.5": 6.790370063676964,
+       "2.0": 28.331832458644033,
+       "2.5": 101.37437185544255,
+       "3.0": 316.08730578068355
+      },
+      "mean_spont": 0.89,
+      "mean_seeded": 1.725,
+      "walls": 1.235,
+      "filaments": 1.6600000000000001,
+      "filaments_cone": 2.23
+     },
+     "W2 alt (+ upstream)": {
+      "zeta": 0.021466284302754046,
+      "R_min": 0.11395162894217462,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.11395162894217462,
+       "0.3": 0.1857438314219706,
+       "1.0": 1.4875229012217308,
+       "1.5": 7.119237316873395,
+       "2.0": 29.703983288616676,
+       "2.5": 106.28407646711732,
+       "3.0": 331.39586231700656
+      },
+      "mean_spont": 0.875,
+      "mean_seeded": 1.71,
+      "walls": 1.215,
+      "filaments": 1.645,
+      "filaments_cone": 2.215
+     },
+     "FP10 reach K=36 canonical": {
+      "zeta": 0.10137709888515072,
+      "R_min": 0.5381502169852818,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.5381502169852818,
+       "0.3": 0.8771974925793764,
+       "1.0": 7.025005078859154,
+       "1.5": 33.62145098241032,
+       "2.0": 140.28061907046572,
+       "2.5": 501.9392819902934,
+       "3.0": 1565.0566549111961
+      },
+      "mean_spont": 0.35000000000000003,
+      "mean_seeded": 1.2,
+      "walls": 0.73,
+      "filaments": 1.1400000000000001,
+      "filaments_cone": 1.645
+     },
+     "FP10 reach K=36 alt": {
+      "zeta": 0.11871762325931319,
+      "R_min": 0.6302006608943744,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.6302006608943744,
+       "0.3": 1.0272418780303683,
+       "1.0": 8.226630230280957,
+       "1.5": 39.37239075743472,
+       "2.0": 164.2755796775927,
+       "2.5": 587.795855609182,
+       "3.0": 1832.759157447575
+      },
+      "mean_spont": 0.28500000000000003,
+      "mean_seeded": 1.1500000000000001,
+      "walls": 0.68,
+      "filaments": 1.09,
+      "filaments_cone": 1.595
+     },
+     "FP10 reach K=185 canonical": {
+      "zeta": 0.22942531173691885,
+      "R_min": 1.217881381997443,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 1.217881381997443,
+       "0.3": 1.9851752555857114,
+       "1.0": 15.8982057870545,
+       "1.5": 76.08830749265879,
+       "2.0": 317.46740747977464,
+       "2.5": 1135.9328439067817,
+       "3.0": 3541.861178585519
+      },
+      "mean_spont": null,
+      "mean_seeded": 0.9450000000000001,
+      "walls": 0.46,
+      "filaments": 0.885,
+      "filaments_cone": 1.375
+     },
+     "FP10 reach K=185 alt": {
+      "zeta": 0.2686684470581673,
+      "R_min": 1.4261996513162152,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 1.4261996513162152,
+       "0.3": 2.3247389270984553,
+       "1.0": 18.61758943458269,
+       "1.5": 89.10319118048457,
+       "2.0": 371.7701186213454,
+       "2.5": 1330.2338387351174,
+       "3.0": 4147.695541272106
+      },
+      "mean_spont": null,
+      "mean_seeded": 0.895,
+      "walls": 0.4,
+      "filaments": 0.835,
+      "filaments_cone": 1.325
+     },
+     "FP10 reach K=947 canonical": {
+      "zeta": 0.5192097055885689,
+      "R_min": 2.7561729305343126,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 2.7561729305343126,
+       "0.3": 4.492626607722754,
+       "1.0": 35.979041212106786,
+       "1.5": 172.19454746692037,
+       "2.0": 718.4567296591601,
+       "2.5": 2570.7161646119193,
+       "3.0": 8015.544082065834
+      },
+      "mean_spont": null,
+      "mean_seeded": 0.685,
+      "walls": 0.08,
+      "filaments": 0.625,
+      "filaments_cone": 1.115
+     },
+     "FP10 reach K=947 alt": {
+      "zeta": 0.6080203803230216,
+      "R_min": 3.227615538426454,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 3.227615538426454,
+       "0.3": 5.261089130798127,
+       "1.0": 42.13324613538285,
+       "1.5": 201.64837658745913,
+       "2.0": 841.34855206107,
+       "2.5": 3010.4364446308437,
+       "3.0": 9386.60065252238
+      },
+      "mean_spont": null,
+      "mean_seeded": 0.635,
+      "walls": null,
+      "filaments": 0.5700000000000001,
+      "filaments_cone": 1.065
+     }
+    },
+    "lambda ~ 1/y_th (the coupling runs as the inverse yield)": {
+     "W2 canonical (streams C_s=10)": {
+      "zeta": 0.006550905214587788,
+      "R_min": 0.03477347187826186,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.03477347187826186,
+       "0.3": 0.06138586936031101,
+       "1.0": 0.6069714254936429,
+       "1.5": 3.340464004159908,
+       "2.0": 15.769151584769007,
+       "2.5": 62.895229585890384,
+       "3.0": 215.8924750489289
+      },
+      "mean_spont": 1.1400000000000001,
+      "mean_seeded": 1.94,
+      "walls": 1.465,
+      "filaments": 1.875,
+      "filaments_cone": 2.43
+     },
+     "W2 canonical (+ upstream)": {
+      "zeta": 0.007107216460892623,
+      "R_min": 0.03772647956884241,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.03772647956884241,
+       "0.3": 0.06659883586962559,
+       "1.0": 0.6585162149734031,
+       "1.5": 3.6241404782527438,
+       "2.0": 17.108288098568302,
+       "2.5": 68.23637289531271,
+       "3.0": 234.2263400535476
+      },
+      "mean_spont": 1.115,
+      "mean_seeded": 1.915,
+      "walls": 1.44,
+      "filaments": 1.85,
+      "filaments_cone": 2.395
+     },
+     "W2 alt (streams C_s=10)": {
+      "zeta": 0.010558732444190961,
+      "R_min": 0.0560477939599175,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.0560477939599175,
+       "0.3": 0.0989415888641229,
+       "1.0": 0.9783150073344232,
+       "1.5": 5.384151427016897,
+       "2.0": 25.416678611788292,
+       "2.5": 101.37437185544252,
+       "3.0": 347.9749448487865
+      },
+      "mean_spont": 1.0050000000000001,
+      "mean_seeded": 1.7850000000000001,
+      "walls": 1.32,
+      "filaments": 1.72,
+      "filaments_cone": 2.25
+     },
+     "W2 alt (+ upstream)": {
+      "zeta": 0.011070106832272077,
+      "R_min": 0.05876226811588664,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.05876226811588664,
+       "0.3": 0.10373347034502929,
+       "1.0": 1.0256961907170414,
+       "1.5": 5.644913517152215,
+       "2.0": 26.647644406295978,
+       "2.5": 106.28407646711732,
+       "3.0": 364.8278649724996
+      },
+      "mean_spont": 0.99,
+      "mean_seeded": 1.77,
+      "walls": 1.31,
+      "filaments": 1.705,
+      "filaments_cone": 2.235
+     },
+     "FP10 reach K=36 canonical": {
+      "zeta": 0.05227990551026326,
+      "R_min": 0.27751184981444127,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.27751184981444127,
+       "0.3": 0.4898937390631081,
+       "1.0": 4.843973120168887,
+       "1.5": 26.658780241396716,
+       "2.0": 125.84669260561378,
+       "2.5": 501.9392819902934,
+       "3.0": 1722.943291989776
+      },
+      "mean_spont": 0.54,
+      "mean_seeded": 1.29,
+      "walls": 0.86,
+      "filaments": 1.235,
+      "filaments_cone": 1.71
+     },
+     "FP10 reach K=36 alt": {
+      "zeta": 0.061222368707071304,
+      "R_min": 0.32498017400941487,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.32498017400941487,
+       "0.3": 0.5736899259375948,
+       "1.0": 5.6725333658436625,
+       "1.5": 31.21875713603137,
+       "2.0": 147.3727341330758,
+       "2.5": 587.7958556091819,
+       "3.0": 2017.6522595830934
+      },
+      "mean_spont": 0.49,
+      "mean_seeded": 1.245,
+      "walls": 0.8150000000000001,
+      "filaments": 1.19,
+      "filaments_cone": 1.6600000000000001
+     },
+     "FP10 reach K=185 canonical": {
+      "zeta": 0.11831403493659935,
+      "R_min": 0.6280337803560193,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.6280337803560193,
+       "0.3": 1.1086727183803968,
+       "1.0": 10.962338194339326,
+       "1.5": 60.331169807270236,
+       "2.0": 284.80215945824676,
+       "2.5": 1135.9328439067815,
+       "3.0": 3899.172556886883
+      },
+      "mean_spont": 0.255,
+      "mean_seeded": 1.055,
+      "walls": 0.625,
+      "filaments": 1.0,
+      "filaments_cone": 1.455
+     },
+     "FP10 reach K=185 alt": {
+      "zeta": 0.13855161747825026,
+      "R_min": 0.7354587826028856,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.7354587826028856,
+       "0.3": 1.2983108763717373,
+       "1.0": 12.837443072440369,
+       "1.5": 70.65079950685119,
+       "2.0": 333.51748907375077,
+       "2.5": 1330.2338387351176,
+       "3.0": 4566.1249307656335
+      },
+      "mean_spont": 0.19,
+      "mean_seeded": 1.01,
+      "walls": 0.5750000000000001,
+      "filaments": 0.9550000000000001,
+      "filaments_cone": 1.405
+     },
+     "FP10 reach K=947 canonical": {
+      "zeta": 0.2677550911072477,
+      "R_min": 1.4212958096456285,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 1.4212958096456285,
+       "0.3": 2.509024097412762,
+       "1.0": 24.808737725382098,
+       "1.5": 136.53475580482794,
+       "2.0": 644.5323937616321,
+       "2.5": 2570.7161646119193,
+       "3.0": 8824.171230163738
+      },
+      "mean_spont": null,
+      "mean_seeded": 0.8200000000000001,
+      "walls": 0.365,
+      "filaments": 0.765,
+      "filaments_cone": 1.21
+     },
+     "FP10 reach K=947 alt": {
+      "zeta": 0.313554524455404,
+      "R_min": 1.6644080598467108,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 1.6644080598467108,
+       "0.3": 2.9381919666143475,
+       "1.0": 29.052265365535984,
+       "1.5": 159.88898754821363,
+       "2.0": 754.7794792110354,
+       "2.5": 3010.436444630844,
+       "3.0": 10333.543247843603
+      },
+      "mean_spont": null,
+      "mean_seeded": 0.775,
+      "walls": 0.305,
+      "filaments": 0.72,
+      "filaments_cone": 1.165
+     }
+    },
+    "rho_t/rho_crit(z) ~ y_th (FP10's convention q = p + 3/4)": {
+     "W2 canonical (streams C_s=10)": {
+      "zeta": 0.0008984338804830378,
+      "R_min": 0.004768503346880251,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.004768503346880251,
+       "0.3": 0.010692565845949712,
+       "1.0": 0.1989910263815669,
+       "1.5": 1.6652454810240978,
+       "2.0": 11.38520160685206,
+       "2.5": 62.895229585890355,
+       "3.0": 288.0449496914071
+      },
+      "mean_spont": 1.375,
+      "mean_seeded": 2.04,
+      "walls": 1.645,
+      "filaments": 1.99,
+      "filaments_cone": 2.44
+     },
+     "W2 canonical (+ upstream)": {
+      "zeta": 0.0009747300342819078,
+      "R_min": 0.005173450747737837,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.005173450747737837,
+       "0.3": 0.011600592208277579,
+       "1.0": 0.21588959875646482,
+       "1.5": 1.8066602563270715,
+       "2.0": 12.352047483546405,
+       "2.5": 68.2363728953127,
+       "3.0": 312.50609509125303
+      },
+      "mean_spont": 1.355,
+      "mean_seeded": 2.02,
+      "walls": 1.625,
+      "filaments": 1.965,
+      "filaments_cone": 2.415
+     },
+     "W2 alt (streams C_s=10)": {
+      "zeta": 0.0014480934545797056,
+      "R_min": 0.007685861625171737,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.007685861625171737,
+       "0.3": 0.017234250567061758,
+       "1.0": 0.3207332326651776,
+       "1.5": 2.6840384514917637,
+       "2.0": 18.350639133387045,
+       "2.5": 101.37437185544252,
+       "3.0": 464.27012085586887
+      },
+      "mean_spont": 1.26,
+      "mean_seeded": 1.9100000000000001,
+      "walls": 1.5250000000000001,
+      "filaments": 1.86,
+      "filaments_cone": 2.295
+     },
+     "W2 alt (+ upstream)": {
+      "zeta": 0.0015182266744651447,
+      "R_min": 0.008058098804797464,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.008058098804797464,
+       "0.3": 0.018068929765947653,
+       "1.0": 0.3362667980299926,
+       "1.5": 2.814030240560433,
+       "2.0": 19.239386613951904,
+       "2.5": 106.28407646711727,
+       "3.0": 486.75538129900406
+      },
+      "mean_spont": 1.25,
+      "mean_seeded": 1.9000000000000001,
+      "walls": 1.5150000000000001,
+      "filaments": 1.845,
+      "filaments_cone": 2.285
+     },
+     "FP10 reach K=36 canonical": {
+      "zeta": 0.007170007325747567,
+      "R_min": 0.03805533681744173,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.03805533681744173,
+       "0.3": 0.08533268514459713,
+       "1.0": 1.588060232264136,
+       "1.5": 13.289594880027716,
+       "2.0": 90.86030780846474,
+       "2.5": 501.9392819902933,
+       "3.0": 2298.760592511928
+      },
+      "mean_spont": 0.89,
+      "mean_seeded": 1.5,
+      "walls": 1.145,
+      "filaments": 1.45,
+      "filaments_cone": 1.85
+     },
+     "FP10 reach K=36 alt": {
+      "zeta": 0.008396435070892489,
+      "R_min": 0.044564691522861,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.044564691522861,
+       "0.3": 0.09992881704159463,
+       "1.0": 1.8596974902646999,
+       "1.5": 15.562776362572789,
+       "2.0": 106.4019380141341,
+       "2.5": 587.7958556091819,
+       "3.0": 2691.9629481048437
+      },
+      "mean_spont": 0.855,
+      "mean_seeded": 1.46,
+      "walls": 1.105,
+      "filaments": 1.415,
+      "filaments_cone": 1.805
+     },
+     "FP10 reach K=185 canonical": {
+      "zeta": 0.016226358654524264,
+      "R_min": 0.08612258200923792,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.08612258200923792,
+       "0.3": 0.1931153890369925,
+       "1.0": 3.5939203020295767,
+       "1.5": 30.075524765823808,
+       "2.0": 205.62488641626345,
+       "2.5": 1135.9328439067815,
+       "3.0": 5202.297869492926
+      },
+      "mean_spont": 0.705,
+      "mean_seeded": 1.3,
+      "walls": 0.9550000000000001,
+      "filaments": 1.2550000000000001,
+      "filaments_cone": 1.635
+     },
+     "FP10 reach K=185 alt": {
+      "zeta": 0.019001872758132813,
+      "R_min": 0.1008538255429913,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.1008538255429913,
+       "0.3": 0.22614772224913787,
+       "1.0": 4.208659363201933,
+       "1.5": 35.21993485426331,
+       "2.0": 240.79696565180515,
+       "2.5": 1330.2338387351174,
+       "3.0": 6092.149463148191
+      },
+      "mean_spont": 0.67,
+      "mean_seeded": 1.2650000000000001,
+      "walls": 0.92,
+      "filaments": 1.22,
+      "filaments_cone": 1.595
+     },
+     "FP10 reach K=947 canonical": {
+      "zeta": 0.03672168007970652,
+      "R_min": 0.19490299527551308,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.19490299527551308,
+       "0.3": 0.43703714959531176,
+       "1.0": 8.133358467723435,
+       "1.5": 68.06356387124075,
+       "2.0": 465.34724494695325,
+       "2.5": 2570.7161646119193,
+       "3.0": 11773.25869039587
+      },
+      "mean_spont": 0.515,
+      "mean_seeded": 1.11,
+      "walls": 0.77,
+      "filaments": 1.065,
+      "filaments_cone": 1.435
+     },
+     "FP10 reach K=947 alt": {
+      "zeta": 0.04300291317330693,
+      "R_min": 0.22824109803413228,
+      "z_min": 0.0,
+      "R_at": {
+       "0.0": 0.22824109803413228,
+       "0.3": 0.511792231639826,
+       "1.0": 9.524567155852385,
+       "1.5": 79.70581740998023,
+       "2.0": 544.9447608730258,
+       "2.5": 3010.4364446308427,
+       "3.0": 13787.071292246308
+      },
+      "mean_spont": 0.47500000000000003,
+      "mean_seeded": 1.075,
+      "walls": 0.735,
+      "filaments": 1.03,
+      "filaments_cone": 1.395
+     }
+    },
+    "FK1 q = 7/4": {
+     "W2 canonical (streams C_s=10)": {
+      "zeta": 2.539492294372279,
+      "R_min": 11.615230779397134,
+      "z_min": 0.3,
+      "R_at": {
+       "0.0": 13.484844432866296,
+       "0.3": 11.615230779397134,
+       "1.0": 17.225526638369043,
+       "1.5": 26.9645013766803,
+       "2.0": 41.899721428873654,
+       "2.5": 62.895229585890384,
+       "3.0": 90.90111818190901
+      },
+      "mean_spont": null,
+      "mean_seeded": 0.665,
+      "walls": null,
+      "filaments": null,
+      "filaments_cone": 2.265
+     },
+     "W2 canonical (+ upstream)": {
+      "zeta": 2.7551492268093125,
+      "R_min": 12.601611027521562,
+      "z_min": 0.3,
+      "R_at": {
+       "0.0": 14.629994662787114,
+       "0.3": 12.601611027521562,
+       "1.0": 18.688340383728846,
+       "1.5": 29.254361308319293,
+       "2.0": 45.457899342365096,
+       "2.5": 68.23637289531273,
+       "3.0": 98.6205573570739
+      },
+      "mean_spont": null,
+      "mean_seeded": 0.52,
+      "walls": null,
+      "filaments": null,
+      "filaments_cone": 2.165
+     },
+     "W2 alt (streams C_s=10)": {
+      "zeta": 4.093147252482232,
+      "R_min": 18.721399571479406,
+      "z_min": 0.3,
+      "R_at": {
+       "0.0": 21.734838126051656,
+       "0.3": 18.721399571479406,
+       "1.0": 27.76406023701987,
+       "1.5": 43.461315070378625,
+       "2.0": 67.53386494868555,
+       "2.5": 101.37437185544256,
+       "3.0": 146.51419221014552
+      },
+      "mean_spont": null,
+      "mean_seeded": null,
+      "walls": null,
+      "filaments": null,
+      "filaments_cone": 1.705
+     },
+     "W2 alt (+ upstream)": {
+      "zeta": 4.2913841793697545,
+      "R_min": 19.628103505923203,
+      "z_min": 0.3,
+      "R_at": {
+       "0.0": 22.78748716375567,
+       "0.3": 19.628103505923203,
+       "1.0": 29.108713053008625,
+       "1.5": 45.56620820189678,
+       "2.0": 70.80462581372544,
+       "2.5": 106.28407646711732,
+       "3.0": 153.61008234493931
+      },
+      "mean_spont": null,
+      "mean_seeded": null,
+      "walls": null,
+      "filaments": null,
+      "filaments_cone": 1.6500000000000001
+     },
+     "FP10 reach K=36 canonical": {
+      "zeta": 20.266575815839907,
+      "R_min": 92.69606989192168,
+      "z_min": 0.3,
+      "R_at": {
+       "0.0": 107.61663765199366,
+       "0.3": 92.69606989192168,
+       "1.0": 137.4693840803989,
+       "1.5": 215.19187622575217,
+       "2.0": 334.3833264950857,
+       "2.5": 501.93928199029347,
+       "3.0": 725.4420135319442
+      },
+      "mean_spont": null,
+      "mean_seeded": null,
+      "walls": null,
+      "filaments": null,
+      "filaments_cone": null
+     },
+     "FP10 reach K=36 alt": {
+      "zeta": 23.733167933587517,
+      "R_min": 108.55170668787046,
+      "z_min": 0.3,
+      "R_at": {
+       "0.0": 126.0244333848734,
+       "0.3": 108.55170668787046,
+       "1.0": 160.98348372974704,
+       "1.5": 252.00038639077314,
+       "2.0": 391.5795008497148,
+       "2.5": 587.795855609182,
+       "3.0": 849.5286667902251
+      },
+      "mean_spont": null,
+      "mean_seeded": null,
+      "walls": null,
+      "filaments": null,
+      "filaments_cone": null
+     },
+     "FP10 reach K=185 canonical": {
+      "zeta": 45.865047683565486,
+      "R_min": 209.7793778438497,
+      "z_min": 0.3,
+      "R_at": {
+       "0.0": 243.54593801662006,
+       "0.3": 209.7793778438497,
+       "1.0": 311.1053348711227,
+       "1.5": 486.99818626963315,
+       "2.0": 756.7389456239408,
+       "2.5": 1135.9328439067817,
+       "3.0": 1641.739228404799
+      },
+      "mean_spont": null,
+      "mean_seeded": null,
+      "walls": null,
+      "filaments": null,
+      "filaments_cone": null
+     },
+     "FP10 reach K=185 alt": {
+      "zeta": 53.710251245174234,
+      "R_min": 245.66208167460036,
+      "z_min": 0.3,
+      "R_at": {
+       "0.0": 285.2044025084812,
+       "0.3": 245.66208167460036,
+       "1.0": 364.319815274704,
+       "1.5": 570.2990896455286,
+       "2.0": 886.1789303455588,
+       "2.5": 1330.2338387351176,
+       "3.0": 1922.558263648695
+      },
+      "mean_spont": null,
+      "mean_seeded": null,
+      "walls": null,
+      "filaments": null,
+      "filaments_cone": null
+     },
+     "FP10 reach K=947 canonical": {
+      "zeta": 103.79664616908815,
+      "R_min": 474.7492252893,
+      "z_min": 0.3,
+      "R_at": {
+       "0.0": 551.1659276719325,
+       "0.3": 474.7492252893,
+       "1.0": 704.0587984933999,
+       "1.5": 1102.1198271495443,
+       "2.0": 1712.566944729074,
+       "2.5": 2570.71616461192,
+       "3.0": 3715.400602400454
+      },
+      "mean_spont": null,
+      "mean_seeded": null,
+      "walls": null,
+      "filaments": null,
+      "filaments_cone": null
+     },
+     "FP10 reach K=947 alt": {
+      "zeta": 121.55103342770127,
+      "R_min": 555.9549473198739,
+      "z_min": 0.3,
+      "R_at": {
+       "0.0": 645.442705244294,
+       "0.3": 555.9549473198739,
+       "1.0": 824.4878588015968,
+       "1.5": 1290.637114931008,
+       "2.0": 2005.5010410146917,
+       "2.5": 3010.436444630844,
+       "3.0": 4350.918834930275
+      },
+      "mean_spont": null,
+      "mean_seeded": null,
+      "walls": null,
+      "filaments": null,
+      "filaments_cone": null
+     }
+    }
+   }
+  },
+  "T3b": {
+   "scan": {
+    "1.0": {
+     "canonical": {
+      "forest": 0.184885794332647,
+      "open": false,
+      "R_min": 56.95790757507319,
+      "A4": true,
+      "R_min_rad": 57.035724581630554,
+      "fil_safe": true,
+      "seeded_mean": null
+     },
+     "alt": {
+      "forest": 0.14734849138306189,
+      "open": false,
+      "R_min": 88.71688730295806,
+      "A4": true,
+      "R_min_rad": 88.8380940483411,
+      "fil_safe": true,
+      "seeded_mean": null
+     },
+     "passage": {
+      "escaped": 378,
+      "n": 378,
+      "vmax": 373.1199626216261,
+      "zmin": 3.37024891957139
+     }
+    },
+    "1.25": {
+     "canonical": {
+      "forest": 0.14196885500601464,
+      "open": false,
+      "R_min": 37.15701137604056,
+      "A4": true,
+      "R_min_rad": 37.19485582896799,
+      "fil_safe": true,
+      "seeded_mean": null
+     },
+     "alt": {
+      "forest": 0.11314633875991009,
+      "open": false,
+      "R_min": 57.87527195267908,
+      "A4": true,
+      "R_min_rad": 57.93421797454583,
+      "fil_safe": true,
+      "seeded_mean": null
+     },
+     "passage": {
+      "escaped": 378,
+      "n": 378,
+      "vmax": 401.3710678986162,
+      "zmin": 3.3001278279217368
+     }
+    },
+    "1.5": {
+     "canonical": {
+      "forest": 0.11331769638868605,
+      "open": false,
+      "R_min": 22.176740986608195,
+      "A4": true,
+      "R_min_rad": 22.19301943248302,
+      "fil_safe": true,
+      "seeded_mean": null
+     },
+     "alt": {
+      "forest": 0.09001824138940541,
+      "open": true,
+      "R_min": 34.54219992654429,
+      "A4": true,
+      "R_min_rad": 34.56755501962317,
+      "fil_safe": true,
+      "seeded_mean": null
+     },
+     "passage": {
+      "escaped": 378,
+      "n": 378,
+      "vmax": 427.5660496196689,
+      "zmin": 3.2334811151120335
+     }
+    },
+    "1.75": {
+     "canonical": {
+      "forest": 0.09272015511344946,
+      "open": true,
+      "R_min": 12.601611027521562,
+      "A4": true,
+      "R_min_rad": 12.607519949413483,
+      "fil_safe": true,
+      "seeded_mean": 0.52
+     },
+     "alt": {
+      "forest": 0.07334086593146037,
+      "open": true,
+      "R_min": 19.628103505923203,
+      "A4": true,
+      "R_min_rad": 19.637307164903767,
+      "fil_safe": true,
+      "seeded_mean": null
+     },
+     "passage": {
+      "escaped": 378,
+      "n": 378,
+      "vmax": 449.91940040418064,
+      "zmin": 3.178591696266136
+     }
+    },
+    "2.0": {
+     "canonical": {
+      "forest": 0.07723968905863078,
+      "open": true,
+      "R_min": 6.936240222087872,
+      "A4": true,
+      "R_min_rad": 6.937796586408247,
+      "fil_safe": false,
+      "seeded_mean": 1.03
+     },
+     "alt": {
+      "forest": 0.060833328801583306,
+      "open": true,
+      "R_min": 10.803796492666782,
+      "A4": true,
+      "R_min_rad": 10.806220665251267,
+      "fil_safe": false,
+      "seeded_mean": 0.61
+     },
+     "passage": {
+      "escaped": 378,
+      "n": 378,
+      "vmax": 469.6652177309295,
+      "zmin": 3.1281678901767282
+     }
+    },
+    "2.5": {
+     "canonical": {
+      "forest": 0.055806166849260534,
+      "open": true,
+      "R_min": 1.9755069886044463,
+      "A4": true,
+      "R_min_rad": 1.9749763064863333,
+      "fil_safe": false,
+      "seeded_mean": 1.445
+     },
+     "alt": {
+      "forest": 0.043659603479370424,
+      "open": true,
+      "R_min": 3.0770236888218676,
+      "A4": true,
+      "R_min_rad": 3.076197105338191,
+      "fil_safe": false,
+      "seeded_mean": 1.19
+     },
+     "passage": {
+      "escaped": 378,
+      "n": 378,
+      "vmax": 500.6290308284467,
+      "zmin": 3.038764941048065
+     }
+    },
+    "3.0": {
+     "canonical": {
+      "forest": 0.042162144089425695,
+      "open": true,
+      "R_min": 0.5334997628179756,
+      "A4": false,
+      "R_min_rad": 0.5331487634664125,
+      "fil_safe": false,
+      "seeded_mean": 1.67
+     },
+     "alt": {
+      "forest": 0.032908959485088055,
+      "open": true,
+      "R_min": 0.8309722099902187,
+      "A4": false,
+      "R_min_rad": 0.8304254980191901,
+      "fil_safe": false,
+      "seeded_mean": 1.465
+     },
+     "passage": {
+      "escaped": 378,
+      "n": 378,
+      "vmax": 522.8636552313419,
+      "zmin": 2.9704669112064854
+     }
+    },
+    "3.75": {
+     "canonical": {
+      "forest": 0.02984555326250843,
+      "open": true,
+      "R_min": 0.07315908556567458,
+      "A4": false,
+      "R_min_rad": 0.07311728195820316,
+      "fil_safe": false,
+      "seeded_mean": 1.865
+     },
+     "alt": {
+      "forest": 0.023315567058558053,
+      "open": true,
+      "R_min": 0.11395162894217462,
+      "A4": false,
+      "R_min_rad": 0.11388651619329054,
+      "fil_safe": false,
+      "seeded_mean": 1.71
+     },
+     "passage": {
+      "escaped": 378,
+      "n": 378,
+      "vmax": 544.6775874848604,
+      "zmin": 2.8993403428750395
+     }
+    },
+    "4.0": {
+     "canonical": {
+      "forest": 0.02703939496078473,
+      "open": true,
+      "R_min": 0.03772647956884241,
+      "A4": false,
+      "R_min_rad": 0.03770601038582766,
+      "fil_safe": false,
+      "seeded_mean": 1.915
+     },
+     "alt": {
+      "forest": 0.021130313605705154,
+      "open": true,
+      "R_min": 0.05876226811588664,
+      "A4": false,
+      "R_min_rad": 0.058730385585786506,
+      "fil_safe": false,
+      "seeded_mean": 1.77
+     },
+     "passage": {
+      "escaped": 378,
+      "n": 378,
+      "vmax": 551.0743709054927,
+      "zmin": 2.8798767600501236
+     }
+    },
+    "4.75": {
+     "canonical": {
+      "forest": 0.02082768353613501,
+      "open": true,
+      "R_min": 0.005173450747737837,
+      "A4": false,
+      "R_min_rad": 0.00517109141353787,
+      "fil_safe": false,
+      "seeded_mean": 2.02
+     },
+     "alt": {
+      "forest": 0.01629930583087496,
+      "open": true,
+      "R_min": 0.008058098804797464,
+      "A4": false,
+      "R_min_rad": 0.008054423936895186,
+      "fil_safe": false,
+      "seeded_mean": 1.9000000000000001
+     },
+     "passage": {
+      "escaped": 378,
+      "n": 378,
+      "vmax": 563.1610648317902,
+      "zmin": 2.8294500263686033
+     }
+    }
+   },
+   "edges": {
+    "1.75": {
+     "edge": 2.3708049556940303,
+     "scan": [
+      [
+       1.0,
+       0.14481825867788964
+      ],
+      [
+       1.5,
+       0.12351086747697539
+      ],
+      [
+       2.0,
+       0.10844847254058233
+      ],
+      [
+       2.5,
+       0.0973643003876574
+      ]
+     ]
+    },
+    "2.5": {
+     "edge": 0.0,
+     "scan": [
+      [
+       1.0,
+       0.0897317815834598
+      ]
+     ]
+    }
+   },
+   "window": {
+    "canonical": [
+     1.75,
+     2.0,
+     2.5
+    ],
+    "canonical_fil": [
+     1.75
+    ],
+    "alt": [
+     1.5,
+     1.75,
+     2.0,
+     2.5
+    ],
+    "alt_fil": [
+     1.5,
+     1.75
+    ]
+   }
+  },
+  "T3c": {
+   "n_t ~ y_th (absolute threshold runs as the yield)": {
+    "q": 3.75,
+    "zeta": 0.013781757616463875,
+    "S8_halo": 0.9515958500984697,
+    "S8_web": {
+     "1.01": 0.9191712602958151,
+     "1.8": 0.9080457659267326
+    },
+    "xcop_opt": {
+     "575": [
+      0.6273813916829709,
+      0.679203631524044
+     ],
+     "650": [
+      0.6273813916829709,
+      0.679203631524044
+     ]
+    },
+    "harvey_us": 0.0,
+    "share_hi": {
+     "2.0": 0.44624059513319825,
+     "3.0": 0.31385776917347596,
+     "4.0": 0.20565849659531266
+    },
+    "F_z": {
+     "4.0": 0.2275785216918833,
+     "3.0": 0.3570525619532802,
+     "2.0": 0.43728063147235374
+    }
+   },
+   "lambda ~ 1/y_th (the coupling runs as the inverse yield)": {
+    "q": 4.0,
+    "zeta": 0.007107216460892623,
+    "S8_halo": 0.9512184056771119,
+    "S8_web": {
+     "1.115": 0.918795167258384,
+     "1.85": 0.9076736318140606
+    },
+    "xcop_opt": {
+     "575": [
+      0.6273813916829709,
+      0.679203631524044
+     ],
+     "650": [
+      0.6273813916829709,
+      0.679203631524044
+     ]
+    },
+    "harvey_us": 0.0,
+    "share_hi": {
+     "2.0": 0.4462406109055331,
+     "3.0": 0.3139023261037518,
+     "4.0": 0.20570329519982009
+    },
+    "F_z": {
+     "4.0": 0.20653087807741416,
+     "3.0": 0.3568217161493292,
+     "2.0": 0.4372807135424686
+    }
+   },
+   "rho_t/rho_crit(z) ~ y_th (FP10's convention q = p + 3/4)": {
+    "q": 4.75,
+    "zeta": 0.0009747300342819078,
+    "S8_halo": 0.9505263951380784,
+    "S8_web": {
+     "1.355": 0.9132119687274071,
+     "1.965": 0.9069838030128914
+    },
+    "xcop_opt": {
+     "575": [
+      0.6273813916829709,
+      0.679203631524044
+     ],
+     "650": [
+      0.6273813916829709,
+      0.679203631524044
+     ]
+    },
+    "harvey_us": 0.0,
+    "share_hi": {
+     "2.0": 0.4462406420791468,
+     "3.0": 0.3138381510508819,
+     "4.0": 0.20643178848533705
+    },
+    "F_z": {
+     "4.0": 0.13421265510531696,
+     "3.0": 0.3547171185221151,
+     "2.0": 0.43728087622808054
+    }
+   }
+  },
+  "T4a": {
+   "delta_Y": "8*pi*G*u_gate*(2*Y**(3/2) - Y)*exp(-Y/(w**2*y_th**2))/(a_0**2*w**2*y_th**2*(-Y**(3/2) - sqrt(Y)*y_th + 2*Y*y_th))",
+   "flux": "(-x**2 + 2*x*y_th - y_th)/(2*x - 1)"
+  },
+  "T4b": {
+   "canonical|32.142": {
+    "r_Y": 94.93319749331987,
+    "rho_Y": 1251.7628970374606,
+    "Gp_over_om": 4.3312023478539114e-08,
+    "delta_max": 14.357669659936764,
+    "m_rec": 3.916710883213505e-15
+   },
+   "canonical|94.6167": {
+    "r_Y": 94.93319749331987,
+    "rho_Y": 1251.7628970374606,
+    "Gp_over_om": 1.4713417311413105e-08,
+    "delta_max": 4.877407434698537,
+    "m_rec": 4.519929623969988e-16
+   },
+   "canonical|278.524": {
+    "r_Y": 94.93319749331987,
+    "rho_Y": 1251.7628970374606,
+    "Gp_over_om": 4.9982575643702685e-09,
+    "delta_max": 1.6568916716640312,
+    "m_rec": 5.216051022096291e-17
+   },
+   "alt|32.142": {
+    "r_Y": 87.23633839605245,
+    "rho_Y": 1545.6258101976557,
+    "Gp_over_om": 5.3479921428213984e-08,
+    "delta_max": 14.988178551873046,
+    "m_rec": 4.268264429753716e-15
+   },
+   "alt|94.6167": {
+    "r_Y": 87.23633839605245,
+    "rho_Y": 1545.6258101976557,
+    "Gp_over_om": 1.8167528057071438e-08,
+    "delta_max": 5.0915960063826065,
+    "m_rec": 4.925626479520147e-16
+   },
+   "alt|278.524": {
+    "r_Y": 87.23633839605245,
+    "rho_Y": 1545.6258101976557,
+    "Gp_over_om": 6.171644738624303e-09,
+    "delta_max": 1.7296531264615607,
+    "m_rec": 5.684229881968677e-17
+   }
+  },
+  "T4c": {
+   "zeta": 94.61669009324982,
+   "window": {
+    "lo": 32.141995089571985,
+    "cone": 153.0571194741523,
+    "seeded": 428.8934776794644,
+    "cap": {
+     "canonical": 278.5240312324773,
+     "alt": 332.18372181670935
+    },
+    "W2": {
+     "canonical": 261.8076626237732,
+     "alt": 421.98092796819395
+    }
+   },
+   "escaped": false,
+   "vmax": 577.0422389998552,
+   "z_pass": [
+    2.9002092727191666,
+    3.0245348405077683
+   ],
+   "worst_per_kick": {
+    "575.0": 0.3563897337321834,
+    "650.0": 0.0031111125530290397
+   },
+   "flag": {
+    "0.5|10.0|1.0|575": {
+     "rv": 0.7076629219048256,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "0.5|10.0|1.0|650": {
+     "rv": 0.7077646554168714,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "0.5|10.5|1.0|575": {
+     "rv": 0.7120707765197294,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "0.5|10.5|1.0|650": {
+     "rv": 0.7122334294207572,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "0.5|11.0|1.0|575": {
+     "rv": 0.7234578139029663,
+     "escaped": true,
+     "S": [
+      7.157280362575352e-07,
+      8.035250323094503e-07
+     ],
+     "shift": 1.021346602774605e-06
+    },
+    "0.5|11.0|1.0|650": {
+     "rv": 0.7239519109215228,
+     "escaped": true,
+     "S": [
+      1.2632863028356652e-09,
+      1.0253208780525343e-09
+     ],
+     "shift": 1.8027154998934291e-09
+    },
+    "1.0|10.0|1.0|575": {
+     "rv": 0.8351349633738141,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.0|10.0|1.0|650": {
+     "rv": 0.835169572464284,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.0|10.5|1.0|575": {
+     "rv": 0.8383397792520536,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.0|10.5|1.0|650": {
+     "rv": 0.8383931901734061,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.0|11.0|1.0|575": {
+     "rv": 0.844330889444819,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.0|11.0|1.0|650": {
+     "rv": 0.8444452405638353,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.5|10.0|1.0|575": {
+     "rv": 0.917929935540539,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.5|10.0|1.0|650": {
+     "rv": 0.9179359262713279,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.5|10.5|1.0|575": {
+     "rv": 0.9195552333627813,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.5|10.5|1.0|650": {
+     "rv": 0.9195650421900918,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.5|11.0|1.0|575": {
+     "rv": 0.9221712600859207,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.5|11.0|1.0|650": {
+     "rv": 0.9221888290684416,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "2.0|10.0|1.0|575": {
+     "rv": 0.855555357441755,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "2.0|10.0|1.0|650": {
+     "rv": 0.855555357441755,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "2.0|10.5|1.0|575": {
+     "rv": 0.9603317672958485,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "2.0|10.5|1.0|650": {
+     "rv": 0.9603332239935052,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "2.0|11.0|1.0|575": {
+     "rv": 0.9612776451798123,
+     "escaped": true,
+     "S": [
+      0.00016598936022245745,
+      0.00018247623021213862
+     ],
+     "shift": 0.0002724825520145103
+    },
+    "2.0|11.0|1.0|650": {
+     "rv": 0.9612801540152204,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "2.5|10.0|0.667|575": {
+     "rv": 0.39446517154204397,
+     "escaped": true,
+     "S": [
+      1.0873032684469105e-08,
+      1.0618956150209143e-08
+     ],
+     "shift": 1.961553443929227e-08
+    },
+    "2.5|10.0|0.667|650": {
+     "rv": 0.39446517154204397,
+     "escaped": true,
+     "S": [
+      8.908923911988073e-11,
+      4.272432104103404e-11
+     ],
+     "shift": 1.607217587186602e-10
+    },
+    "2.5|10.0|1.0|575": {
+     "rv": 0.4144501417571534,
+     "escaped": true,
+     "S": [
+      3.5656161340653262e-09,
+      3.2721632132396206e-09
+     ],
+     "shift": 6.017845996752934e-09
+    },
+    "2.5|10.0|1.0|650": {
+     "rv": 0.4144501417571534,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "2.5|10.0|1.5|575": {
+     "rv": 0.4363831966966931,
+     "escaped": true,
+     "S": [
+      5.87858341625872e-10,
+      6.516948352112635e-10
+     ],
+     "shift": 9.173431175124743e-10
+    },
+    "2.5|10.0|1.5|650": {
+     "rv": 0.4363831966966931,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "2.5|10.5|0.667|575": {
+     "rv": 0.5549491656886294,
+     "escaped": true,
+     "S": [
+      0.0007486843248841911,
+      0.0007367225264725095
+     ],
+     "shift": 0.001375754234485627
+    },
+    "2.5|10.5|0.667|650": {
+     "rv": 0.5549491656886294,
+     "escaped": true,
+     "S": [
+      0.00019680796535828386,
+      0.00021660468882965422
+     ],
+     "shift": 0.0003618581058940574
+    },
+    "2.5|10.5|1.0|575": {
+     "rv": 0.5832093805055557,
+     "escaped": true,
+     "S": [
+      9.166115378209016e-06,
+      9.296753289437437e-06
+     ],
+     "shift": 1.5547598567523474e-05
+    },
+    "2.5|10.5|1.0|650": {
+     "rv": 0.5832093805055557,
+     "escaped": true,
+     "S": [
+      1.507907198953621e-08,
+      1.3949960096131504e-08
+     ],
+     "shift": 2.5577405913996875e-08
+    },
+    "2.5|10.5|1.5|575": {
+     "rv": 0.6169689169446467,
+     "escaped": true,
+     "S": [
+      3.839482026382213e-08,
+      3.240222710787901e-08
+     ],
+     "shift": 5.934515655510231e-08
+    },
+    "2.5|10.5|1.5|650": {
+     "rv": 0.6169689169446467,
+     "escaped": true,
+     "S": [
+      2.439553268424907e-10,
+      1.6744701006330749e-10
+     ],
+     "shift": 3.7707074729333967e-10
+    },
+    "2.5|11.0|0.667|575": {
+     "rv": 0.7040836060353057,
+     "escaped": false,
+     "S": [
+      0.21632365864134526,
+      0.2125139609351533
+     ],
+     "shift": 0.3563897337321834,
+     "self": 0.018367516930631624,
+     "intact": 0.3563897337321834
+    },
+    "2.5|11.0|0.667|650": {
+     "rv": 0.7040836060353057,
+     "escaped": true,
+     "S": [
+      0.0015301462475901158,
+      0.0014986382500709592
+     ],
+     "shift": 0.0031111125530290397
+    },
+    "2.5|11.0|1.0|575": {
+     "rv": 0.7573325786490067,
+     "escaped": true,
+     "S": [
+      0.0012344440860361128,
+      0.0011821343770207684
+     ],
+     "shift": 0.0022131603472248206,
+     "self": 0.016473666347069902,
+     "intact": 0.2618858176448188
+    },
+    "2.5|11.0|1.0|650": {
+     "rv": 0.7573325786490067,
+     "escaped": true,
+     "S": [
+      0.00014437395608293414,
+      0.0001573509177963131
+     ],
+     "shift": 0.0002591307412316881,
+     "self": 0.004594709885303877,
+     "intact": 0.17100359640885401
+    },
+    "2.5|11.0|1.5|575": {
+     "rv": 0.8164246693784998,
+     "escaped": true,
+     "S": [
+      0.00010861813217573434,
+      0.00011793255729800222
+     ],
+     "shift": 0.00017071680494128828
+    },
+    "2.5|11.0|1.5|650": {
+     "rv": 0.8164246693784998,
+     "escaped": true,
+     "S": [
+      3.14103101968164e-11,
+      1.4002025130871722e-11
+     ],
+     "shift": 4.9372794824151823e-11
+    }
+   }
+  },
+  "T4d": {
+   "forest": {
+    "zeta 32 (window floor), floor m": {
+     "forest": 0.0033294931274704537,
+     "cal": {
+      "3.0": 0.00012998387210589417,
+      "2.0": 0.0033294931274704537
+     },
+     "Fb": {
+      "0.0": 0.3587261654066969,
+      "0.4": 0.3587261654066969,
+      "0.5": 0.3587261654066969,
+      "1.0": 0.34539781913650736,
+      "2.0": 0.22263278112296658,
+      "3.0": 0.03779753907217658,
+      "4.0": 0.0025219589218113646
+     },
+     "S8": 0.965887294764382
+    },
+    "zeta 95 (centre), floor m": {
+     "forest": 0.0033294931274704537,
+     "cal": {
+      "3.0": 0.00012998387210589417,
+      "2.0": 0.0033294931274704537
+     },
+     "Fb": {
+      "0.0": 0.3197456018096536,
+      "0.4": 0.3197456018096536,
+      "0.5": 0.3197456018096536,
+      "1.0": 0.3197456018096536,
+      "2.0": 0.22263278112296658,
+      "3.0": 0.03779753907217658,
+      "4.0": 0.0025219589218113646
+     },
+     "S8": 0.968427401780412
+    },
+    "zeta 279 (cap), floor m": {
+     "forest": 0.003305834735670201,
+     "cal": {
+      "3.0": 0.00012998387210589417,
+      "2.0": 0.003305834735670201
+     },
+     "Fb": {
+      "0.0": 0.22335414263107223,
+      "0.4": 0.22335414263107223,
+      "0.5": 0.22335414263107223,
+      "1.0": 0.22335414263107223,
+      "2.0": 0.19450015187713546,
+      "3.0": 0.03779753907217658,
+      "4.0": 0.0025219589218113646
+     },
+     "S8": 0.9771860424287621
+    },
+    "zeta 95 (centre), m = 1e-15 eV": {
+     "forest": 0.0033294983713566175,
+     "cal": {
+      "3.0": 0.00012998403128608877,
+      "2.0": 0.0033294983713566175
+     },
+     "Fb": {
+      "0.0": 0.3197500590828238,
+      "0.4": 0.3197500590828238,
+      "0.5": 0.3197500590828238,
+      "1.0": 0.3197500590828238,
+      "2.0": 0.22263349756227996,
+      "3.0": 0.03779758946573739,
+      "4.0": 0.0025219619512379873
+     },
+     "S8": 0.9684270169407114
+    }
+   },
+   "selectivity": {
+    "2.0": 0.8630527264267844,
+    "3.0": 0.967508059595396,
+    "4.0": 0.9993173682390758
+   },
+   "selectivity_fk1": {
+    "2.0": 0.446240615456908,
+    "3.0": 0.3138747740516182,
+    "4.0": 0.20622711753256004
+   },
+   "F": {
+    "4.0": 0.00830742168844074,
+    "3.0": 0.0617995432481424,
+    "2.0": 0.21282044247818666,
+    "1.0": 0.409946800184553,
+    "0.5": 0.5014735067681111,
+    "0.0": 0.5744288866945404
+   },
+   "S8_budget": 0.9643378193733075
+  },
+  "T4e": {
+   "y_th": {
+    "0.0": 0.0,
+    "0.5": 0.0,
+    "1.0": 0.0037152873117828407,
+    "2.0": 0.00943449518291068,
+    "2.5": 0.011027645248280992,
+    "3.0": 0.012235360991513388,
+    "4.0": 0.014027443717371689
+   },
+   "window_floor": {
+    "web on below the q = 0 epoch only": 7.555390380310162,
+    "web on up to z = 2 (FP13 H4: its z >= 2 lumps are off)": 32.141995089571985
+   },
+   "zeta": 94.61669009324982,
+   "escaped": 756,
+   "n": 756,
+   "z_pass": [
+    3.7294253565598114,
+    4.9344995161128935
+   ],
+   "vmax": 370.3081338437403,
+   "flag": {
+    "0.5|10.0|1.0|575": {
+     "rv": 0.7076629219048256,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "0.5|10.0|1.0|650": {
+     "rv": 0.7077646554168714,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "0.5|10.5|1.0|575": {
+     "rv": 0.7120707765197294,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "0.5|10.5|1.0|650": {
+     "rv": 0.7122334294207572,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "0.5|11.0|1.0|575": {
+     "rv": 0.7234578139029663,
+     "escaped": true,
+     "S": [
+      7.157280362575352e-07,
+      8.035250323094503e-07
+     ],
+     "shift": 1.021346602774605e-06
+    },
+    "0.5|11.0|1.0|650": {
+     "rv": 0.7239519109215228,
+     "escaped": true,
+     "S": [
+      1.2632863028356652e-09,
+      1.0253208780525343e-09
+     ],
+     "shift": 1.8027154998934291e-09
+    },
+    "1.0|10.0|1.0|575": {
+     "rv": 0.48756575415751474,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.0|10.0|1.0|650": {
+     "rv": 0.48756575415751474,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.0|10.5|1.0|575": {
+     "rv": 0.6888928502709011,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.0|10.5|1.0|650": {
+     "rv": 0.6888928502709011,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.0|11.0|1.0|575": {
+     "rv": 0.8244033783316551,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.0|11.0|1.0|650": {
+     "rv": 0.8244033783316551,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.5|10.0|1.0|575": {
+     "rv": 0.41691057862586933,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.5|10.0|1.0|650": {
+     "rv": 0.41691057862586933,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.5|10.5|1.0|575": {
+     "rv": 0.591267274172463,
+     "escaped": true,
+     "S": [
+      4.165274379131514e-06,
+      0.0
+     ],
+     "shift": 5.43380604773645e-06
+    },
+    "1.5|10.5|1.0|650": {
+     "rv": 0.591267274172463,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "1.5|11.0|1.0|575": {
+     "rv": 0.7533057765676285,
+     "escaped": true,
+     "S": [
+      0.00027513386254904347,
+      0.00030333330219336775
+     ],
+     "shift": 0.000411418814412958
+    },
+    "1.5|11.0|1.0|650": {
+     "rv": 0.7533057765676285,
+     "escaped": true,
+     "S": [
+      6.8213992391568395e-09,
+      6.720073721338207e-09
+     ],
+     "shift": 1.0202730728255397e-08
+    },
+    "2.0|10.0|1.0|575": {
+     "rv": 0.43283526008662054,
+     "escaped": true,
+     "S": [
+      6.438446445707294e-10,
+      3.3426483173697294e-10
+     ],
+     "shift": 9.586140186504674e-10
+    },
+    "2.0|10.0|1.0|650": {
+     "rv": 0.43283526008662054,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "2.0|10.5|1.0|575": {
+     "rv": 0.6117297710395109,
+     "escaped": true,
+     "S": [
+      8.593821689899798e-05,
+      9.550152090181655e-05
+     ],
+     "shift": 0.00012903743412137132
+    },
+    "2.0|10.5|1.0|650": {
+     "rv": 0.6117297710395109,
+     "escaped": true,
+     "S": [
+      8.929909279409921e-10,
+      4.914495626416556e-10
+     ],
+     "shift": 1.3409380358263563e-09
+    },
+    "2.0|11.0|1.0|575": {
+     "rv": 0.8038686682495358,
+     "escaped": true,
+     "S": [
+      0.00013320748778694122,
+      0.00014643290066271967
+     ],
+     "shift": 0.00021867570599330818
+    },
+    "2.0|11.0|1.0|650": {
+     "rv": 0.8038686682495358,
+     "escaped": true,
+     "S": [
+      6.647823273925496e-05,
+      7.307688929986109e-05
+     ],
+     "shift": 0.00010913869341759007
+    },
+    "2.5|10.0|0.667|575": {
+     "rv": 0.44892077566845845,
+     "escaped": true,
+     "S": [
+      4.586215119072129e-09,
+      4.20561858504259e-09
+     ],
+     "shift": 8.273778224208856e-09
+    },
+    "2.5|10.0|0.667|650": {
+     "rv": 0.44892077566845845,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "2.5|10.0|1.0|575": {
+     "rv": 0.4716646551739821,
+     "escaped": true,
+     "S": [
+      7.994494893516503e-10,
+      8.96831089697629e-10
+     ],
+     "shift": 1.3492657749491207e-09
+    },
+    "2.5|10.0|1.0|650": {
+     "rv": 0.4716646551739821,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "2.5|10.0|1.5|575": {
+     "rv": 0.49662555095534167,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "2.5|10.0|1.5|650": {
+     "rv": 0.49662555095534167,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "2.5|10.5|0.667|575": {
+     "rv": 0.6315594579455791,
+     "escaped": true,
+     "S": [
+      0.0001834781499320971,
+      0.0001988344423518519
+     ],
+     "shift": 0.0003373541933065173
+    },
+    "2.5|10.5|0.667|650": {
+     "rv": 0.6315594579455791,
+     "escaped": true,
+     "S": [
+      0.00019680054447188545,
+      0.00021659704716257827
+     ],
+     "shift": 0.00036184446443058096
+    },
+    "2.5|10.5|1.0|575": {
+     "rv": 0.6637209730080554,
+     "escaped": true,
+     "S": [
+      0.00026228576264939894,
+      0.00028785984447209616
+     ],
+     "shift": 0.0004447801564247231
+    },
+    "2.5|10.5|1.0|650": {
+     "rv": 0.6637209730080554,
+     "escaped": true,
+     "S": [
+      2.6371845580061037e-09,
+      1.901795487925662e-09
+     ],
+     "shift": 4.473242201149042e-09
+    },
+    "2.5|10.5|1.5|575": {
+     "rv": 0.7056419074257729,
+     "escaped": true,
+     "S": [
+      9.642632221625591e-09,
+      8.584592534202914e-09
+     ],
+     "shift": 1.4904185789571494e-08
+    },
+    "2.5|10.5|1.5|650": {
+     "rv": 0.7056419074257729,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "2.5|11.0|0.667|575": {
+     "rv": 0.8133273802308758,
+     "escaped": true,
+     "S": [
+      0.0009057939487004447,
+      0.0008146643537188908
+     ],
+     "shift": 0.0018430171270763227
+    },
+    "2.5|11.0|0.667|650": {
+     "rv": 0.8133273802308758,
+     "escaped": true,
+     "S": [
+      0.00021695918959794725,
+      0.0002367898452399496
+     ],
+     "shift": 0.00044180272120738633
+    },
+    "2.5|11.0|1.0|575": {
+     "rv": 0.8748383244208126,
+     "escaped": true,
+     "S": [
+      2.7180957665680503e-09,
+      2.2520034821978667e-09
+     ],
+     "shift": 4.879323580976276e-09,
+     "self": 0.0165076419794464,
+     "intact": 0.26043727992560267
+    },
+    "2.5|11.0|1.0|650": {
+     "rv": 0.8748383244208126,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0,
+     "self": 0.0044402677970462314,
+     "intact": 0.17101662721338245
+    },
+    "2.5|11.0|1.5|575": {
+     "rv": 0.943098989679043,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    },
+    "2.5|11.0|1.5|650": {
+     "rv": 0.943098989679043,
+     "escaped": true,
+     "S": [
+      0.0,
+      0.0
+     ],
+     "shift": 0.0
+    }
+   },
+   "worst_per_kick": {
+    "575.0": 0.0018430171270763227,
+    "650.0": 0.00044180272120738633
+   },
+   "forest": {
+    "zeta 8 (window floor, web on below z = 0.635 only)": {
+     "forest": 0.031366878320288255,
+     "cal": {
+      "3.0": 0.014128381106220562,
+      "2.0": 0.031366878320288255
+     },
+     "Fb": {
+      "0.0": 0.44393648218008713,
+      "0.4": 0.44393648218008713,
+      "0.5": 0.44393648218008713,
+      "1.0": 0.17774708640154097,
+      "2.0": 0.14164850565435766,
+      "3.0": 0.11873182263745387,
+      "4.0": 0.08798963221277319
+     },
+     "S8": 0.9711381639760657
+    },
+    "zeta 95 (centre)": {
+     "forest": 0.031366878320288255,
+     "cal": {
+      "3.0": 0.014128381106220562,
+      "2.0": 0.031366878320288255
+     },
+     "Fb": {
+      "0.0": 0.34942388450014583,
+      "0.4": 0.34942388450014583,
+      "0.5": 0.34942388450014583,
+      "1.0": 0.1771771223984324,
+      "2.0": 0.14164850565435766,
+      "3.0": 0.11873182263745387,
+      "4.0": 0.08798963221277319
+     },
+     "S8": 0.975580111173517
+    },
+    "zeta 279 (cap)": {
+     "forest": 0.0313503470106322,
+     "cal": {
+      "3.0": 0.014128381106220562,
+      "2.0": 0.0313503470106322
+     },
+     "Fb": {
+      "0.0": 0.24025831792632768,
+      "0.4": 0.24025831792632768,
+      "0.5": 0.24025831792632768,
+      "1.0": 0.1394477626138669,
+      "2.0": 0.13806152963009546,
+      "3.0": 0.11873182263745387,
+      "4.0": 0.08798963221277319
+     },
+     "S8": 0.9819766898046065
+    }
+   },
+   "selectivity": {
+    "2.0": 0.9365944105422732,
+    "3.0": 0.8782365608614503,
+    "4.0": 0.7595406161730942
+   },
+   "S8_budget": 0.9693951865045776
+  },
+  "T6": {
+   "acc_flag": {
+    "1.0|10.0|1.0": 0.7120647247580418,
+    "1.0|10.5|1.0": 0.715533101053909,
+    "1.0|11.0|1.0": 0.8302468177481436,
+    "1.5|10.0|1.0": 0.7917530561671746,
+    "1.5|10.5|1.0": 0.7965477606878806,
+    "1.5|11.0|1.0": 0.8697705580611703,
+    "2.0|10.0|1.0": 0.8672670846780618,
+    "2.0|10.5|1.0": 0.8719466807465113,
+    "2.0|11.0|1.0": 0.9218616843402931,
+    "2.5|10.0|0.667": 0.9762531742350533,
+    "2.5|10.0|1.0": 0.937606118125886,
+    "2.5|10.0|1.5": 0.8932522884326708,
+    "2.5|10.5|0.667": 0.9875427961494468,
+    "2.5|10.5|1.0": 0.9404810434831505,
+    "2.5|10.5|1.5": 0.887933812271412,
+    "2.5|11.0|0.667": 1.048797344845774,
+    "2.5|11.0|1.0": 0.973346789153845,
+    "2.5|11.0|1.5": 0.8973144028785263
+   },
+   "R1100": 0.00017037677330733318,
+   "filaments": {
+    "0.0": {
+     "L": 2879.2890622037,
+     "width": [
+      2969.121140142518,
+      5938.242280285036
+     ]
+    },
+    "0.5": {
+     "L": 1327.4519982660947,
+     "width": [
+      1979.4140934283453,
+      3958.8281868566905
+     ]
+    },
+    "1.0": {
+     "L": 702.3494245090917,
+     "width": [
+      1484.560570071259,
+      2969.121140142518
+     ]
+    },
+    "2.0": {
+     "L": 252.1107932770407,
+     "width": [
+      989.7070467141726,
+      1979.4140934283453
+     ]
+    },
+    "2.5": {
+     "L": 164.11949498016045,
+     "width": [
+      848.3203257550052,
+      1696.6406515100105
+     ]
+    },
+    "3.0": {
+     "L": 111.12539743159905,
+     "width": [
+      742.2802850356295,
+      1484.560570071259
+     ]
+    }
+   },
+   "need_ratio": {
+    "W2 canonical": 23.418921865823286,
+    "W2 alt": 39.57467837788117
+   },
+   "virial": {
+    "Delta": 177.65287921960845,
+    "zeta_eq": 7.173010112557936,
+    "S_cap": {
+     "canonical": 0.15666242603228814,
+     "alt": 0.13135577566094273
+    },
+    "front_over_rF": 1.7235710651808256,
+    "escaped": 378,
+    "n": 378,
+    "forest": 0.14917389546270626,
+    "forest_cal": {
+     "3.0": 0.09488827472131194,
+     "2.0": 0.14917389546270626
+    },
+    "S8": 0.9622971747436206,
+    "selectivity": {
+     "2.0": 0.4462725855847458,
+     "3.0": 0.313881323820643,
+     "4.0": 0.2062221509572533
+    }
+   }
+  },
+  "T6d": {
+   "band_delta_t0": {
+    "canonical": [
+     12.591910748321807,
+     14.633254869392989
+    ],
+    "alt": [
+     12.591910748321807,
+     22.792565218662382
+    ]
+   },
+   "reach_delta_t0": [
+    107.64061937454802,
+    551.2887516947532
+   ],
+   "candidates": {
+    "1 + delta_c (the collapse threshold, FP13's s)": {
+     "delta_t0": 2.686,
+     "zeta": 0.5057200800000001,
+     "forest": 0.17791053668397616,
+     "R_min": 2.3130826000112568,
+     "filaments": 2.33,
+     "mean_seeded": 2.58,
+     "in_band": {
+      "canonical": false,
+      "alt": false
+     },
+     "in_reach": true
+    },
+    "9 pi^2/16 (turnaround, EdS)": {
+     "delta_t0": 5.551652475612764,
+     "zeta": 1.0452651281083716,
+     "forest": 0.14255565568333428,
+     "R_min": 4.780875183413739,
+     "filaments": 1.49,
+     "mean_seeded": 1.705,
+     "in_band": {
+      "canonical": false,
+      "alt": false
+     },
+     "in_reach": true
+    },
+    "18 pi^2 (virialised, EdS)": {
+     "delta_t0": 177.65287921960845,
+     "zeta": 33.44848409946789,
+     "forest": 0.018261142972706885,
+     "R_min": 152.98800586923966,
+     "filaments": null,
+     "mean_seeded": null,
+     "in_band": {
+      "canonical": false,
+      "alt": false
+     },
+     "in_reach": true
+    }
+   }
+  },
+  "T5": {
+   "table": {
+    "FK1 q=7/4 (zeta_eq 2.76)": {
+     "flagship": "history pass (0.0005 dex)",
+     "z0_galaxies": "pass (FP10 B2: <= 0.0003 dex)",
+     "xcop": "in place FAIL / optimistic pass (FP10 B3)",
+     "kids": "pass (FP10 B4)",
+     "harvey": "650 in place pass; 575 opt pass; 650 opt FAIL (FP10 B5)",
+     "S8": "0.964-0.955",
+     "shear": "in place FAIL / optimistic pass (FP10 B8)",
+     "forest": "0.093 at the floor (pass)",
+     "web": "R_min 12.6 (filaments sub-threshold; seeded mean z <= 0.52)"
+    },
+    "shared q=3.75": {
+     "flagship": "history pass (passage escaped 378/378)",
+     "z0_galaxies": "pass (fronts at r200, FP10 B2)",
+     "xcop": "in place FAIL / optimistic 0.63 FAIL",
+     "kids": "pass (FP10 B4)",
+     "harvey": "optimistic uniform factor 0.00: 650 FAIL, 575 not established",
+     "S8": "halo 0.952; web 0.919, 0.908",
+     "shear": "in place FAIL / optimistic pass",
+     "forest": "halo model 0.030; filaments cross at z <= 1.8",
+     "web": "FAIL: mean converts at z <= 1.01 (A4)"
+    },
+    "yield onset on H_S (zeta 95, q = 0)": {
+     "flagship": "FP10's convention, every host: 575 pass (0.0018 dex), 650 pass (0.0004 dex); 1e11 in place self/intact 0.017/0.260",
+     "z0_galaxies": "0.0003 dex (pass)",
+     "xcop": "575: in place 1.36/1.41, optimistic 1.04/1.09; 650: in place 1.34/1.40, optimistic 1.03/1.08",
+     "kids": "575: -6.0/-0.5 (opt -6.1/-1.0); 650: -6.0/-0.8 (opt -6.1/-1.0)",
+     "harvey": "optimistic uniform factor 0.59 (650 fails at <= 0.499; 575 passes at >= 0.514)",
+     "S8": "0.969 (FP10 budget) / 0.976 (XR12 history)",
+     "shear": "575: in place 1.54/1.63, optimistic 1.01/1.08; 650: in place 1.50/1.59, optimistic 0.98/1.05",
+     "forest": "0.0314",
+     "web": "filaments held below the trigger for zeta >= 8-32 (the web is MOND-on below z = 0.635)"
+    }
+   },
+   "yield_cell": {
+    "galaxies": 0.00031745915590629127,
+    "xcop": {
+     "575": {
+      "front": 0.9557439236600708,
+      "eps": 0.9400502815533308,
+      "inplace": [
+       1.3576234345371563,
+       1.409388421922869
+      ],
+      "optimistic": [
+       1.0386460529436312,
+       1.0906407581169186
+      ],
+      "Fcl": 0.41385436185221264
+     },
+     "650": {
+      "front": 0.9559303169528175,
+      "eps": 0.9229683095516356,
+      "inplace": [
+       1.3443261112871714,
+       1.3960910986728838
+      ],
+      "optimistic": [
+       1.025544332154626,
+       1.0775390373279132
+      ],
+      "Fcl": 0.41385436185221264
+     }
+    },
+    "kids": {
+     "575": {
+      "inplace": {
+       "canonical": -6.006995132648598,
+       "alt": -0.5028796845537045
+      },
+      "optimistic": {
+       "canonical": -6.078914951678399,
+       "alt": -0.9556285423028044
+      }
+     },
+     "650": {
+      "inplace": {
+       "canonical": -6.0360533248824595,
+       "alt": -0.8190266949571878
+      },
+      "optimistic": {
+       "canonical": -6.078914951678399,
+       "alt": -0.9556285423028044
+      }
+     }
+    },
+    "shear": {
+     "575": {
+      "in place": {
+       "canonical": 1.5404016652883266,
+       "alt": 1.6348044639336803
+      },
+      "optimistic": {
+       "canonical": 1.0060822873410402,
+       "alt": 1.0820294270263593
+      }
+     },
+     "650": {
+      "in place": {
+       "canonical": 1.5013516562899445,
+       "alt": 1.5936845232481147
+      },
+      "optimistic": {
+       "canonical": 0.9837420550659737,
+       "alt": 1.0533833569770819
+      }
+     }
+    },
+    "harvey_us": 0.5861456381477874
+   }
+  },
+  "E1": {
+   "parity": {
+    "|dPhi|^2 (kinetic, and every coupling to T_mn, the metric, L353's pair)": true,
+    "m^2 |Phi|^2": true,
+    "lambda (Im Phi^2)^2": true,
+    "FK1's gate lambda(K) (Im Phi^2)^2 (K is a Z4 singlet)": true,
+    "eps Re(Phi^2)": false
+   },
+   "split": "epsilon*lambda*(log(Lambda_UV**2/m**2) - 1)/(4*pi**2)",
+   "condensate_shift": "2*lambda_p*rho_H/m**2"
+  },
+  "E2": {
+   "frame_relabelling": true,
+   "scales": {
+    "hbar H_0": {
+     "mu_eV": 1.4377226629626768e-33,
+     "eps_over_m2_at_floor": 5.725890458716041e-29,
+     "m_for_O1": 1.0600760617579467e-30,
+     "coefficient_needed": 3.2124261078030864e+22
+    },
+    "hbar sqrt(Lambda) c (Lambda-mass)": {
+     "mu_eV": 2.0605630600495466e-33,
+     "eps_over_m2_at_floor": 1.176155159124862e-28,
+     "m_for_O1": 1.519314976366852e-30,
+     "coefficient_needed": 1.5639093071433165e+22
+    },
+    "hbar a0/c (canonical)": {
+     "mu_eV": 2.0551143152178007e-34,
+     "eps_over_m2_at_floor": 1.1699431713609778e-30,
+     "m_for_O1": 1.5152974532996016e-31,
+     "coefficient_needed": 1.5722131168646873e+24
+    },
+    "rho_Lambda^(1/4) (dark-energy scale)": {
+     "mu_eV": 0.002240119988064853,
+     "eps_over_m2_at_floor": 1.3900658063511571e+32,
+     "m_for_O1": 1.6517076874336611,
+     "coefficient_needed": 1.3232467064478905e-38
+    }
+   }
+  },
+  "E3": {
+   "hits": [
+    [
+     "kappa",
+     19.0,
+     1.9073486328125e-06,
+     585.5315861250812
+    ],
+    [
+     "Z",
+     -7.5,
+     1.9080083189160052e-06,
+     585.6328347677455
+    ],
+    [
+     "Omega_Lambda",
+     34.5,
+     2.112327783796033e-06,
+     616.1917761059984
+    ]
+   ],
+   "p_chance": {
+    "kappa": 0.3537324350039444,
+    "Z": 0.13963489080447888,
+    "a0/(c H0) canonical": 0.1260406497085083,
+    "Omega_Lambda": 0.6473208851720965
+   },
+   "p_any": 0.8286176375353994
+  },
+  "E4": {
+   "lo_450": 0.20085560403033237,
+   "lo_600": 0.015552858118552048,
+   "harvey650": 0.11075312865655891
+  },
+  "M1": {
+   "rows": {
+    "1.9e-19": {
+     "edge": 2.3708049556940303,
+     "scan": [
+      [
+       2.0,
+       0.10844847254058233
+      ],
+      [
+       2.5,
+       0.0973643003876574
+      ]
+     ],
+     "open": {
+      "canonical/0": true,
+      "canonical/1": true,
+      "alt/0": true,
+      "alt/1": true
+     }
+    },
+    "5.2e-19": {
+     "edge": 2.538641604675414,
+     "scan": [
+      [
+       2.0,
+       0.11230989227750528
+      ],
+      [
+       2.5,
+       0.10076225895860194
+      ],
+      [
+       2.76,
+       0.09584532902698753
+      ]
+     ],
+     "open": {
+      "canonical/0": true,
+      "canonical/1": true,
+      "alt/0": true,
+      "alt/1": true
+     }
+    },
+    "1.0e-18": {
+     "edge": 2.6021128214357323,
+     "scan": [
+      [
+       2.0,
+       0.11373803057715738
+      ],
+      [
+       2.5,
+       0.10201801868980818
+      ],
+      [
+       2.76,
+       0.09703056758417053
+      ]
+     ],
+     "open": {
+      "canonical/0": false,
+      "canonical/1": true,
+      "alt/0": true,
+      "alt/1": true
+     }
+    },
+    "1.0e-17": {
+     "edge": 2.659133693306988,
+     "scan": [
+      [
+       2.0,
+       0.11502631349431706
+      ],
+      [
+       2.5,
+       0.10315045496165065
+      ],
+      [
+       2.76,
+       0.09809928701873293
+      ]
+     ],
+     "open": {
+      "canonical/0": false,
+      "canonical/1": true,
+      "alt/0": true,
+      "alt/1": true
+     }
+    }
+   },
+   "width_floor": 1.1621155170070787,
+   "closes": [
+    1e-18,
+    1e-17
+   ],
+   "m_max_canonical": null
+  },
+  "M2": {
+   "1.9e-19": {
+    "F2": 0.43638415028911565,
+    "F3": 0.35663133795473834,
+    "S8": 0.9616703368692832
+   },
+   "5.2e-19": {
+    "F2": 0.4505214263737509,
+    "F3": 0.3723465019883766,
+    "S8": 0.9614337141376497
+   },
+   "1.0e-18": {
+    "F2": 0.45585026579489024,
+    "F3": 0.3782927952144641,
+    "S8": 0.9613581599365459
+   },
+   "1.0e-17": {
+    "F2": 0.4607058879850059,
+    "F3": 0.3837205599745831,
+    "S8": 0.9612913124933297
+   }
+  },
+  "M3": {
+   "m_occ1": 3.612485935725364,
+   "m_occ1e3": 0.6424009358555606
+  },
+  "M4": {
+   "FK1 (virial halos above threshold to z ~ 6: XR12 A1)": {
+    "z_clear": 6.0,
+    "exposure": 0.2921247812427934,
+    "floors": [
+     3.3579727786221176e-19,
+     2.1192360870238812e-19,
+     1.300338691947441e-19
+    ]
+   },
+   "the yield onset (UFD baryons on the yield at z ~ 2)": {
+    "z_clear": 2.0,
+    "exposure": 2.6403763524911867,
+    "floors": [
+     6.994816341618073e-19,
+     4.414469142702224e-19,
+     2.7086670833003165e-19
+    ]
+   }
+  },
+  "M5": {
+   "candidates": {
+    "m_P^0.25 (hbar H0)^0.75": 2.454287712673803e-18,
+    "m_P^0.333 (hbar H0)^0.667": 2.93320392814226e-13,
+    "m_P^0.5 (hbar H0)^0.5": 0.004189631513611313,
+    "m_P^0.667 (hbar H0)^0.333": 59842454.36000759,
+    "m_P^0.75 (hbar H0)^0.25": 7151978200926.592,
+    "m_P^0.25 (hbar a0/c)^0.75": 5.705531697179497e-19,
+    "m_P^0.333 (hbar a0/c)^0.667": 8.018925311333698e-14,
+    "m_P^0.5 (hbar a0/c)^0.5": 0.0015840039508493219,
+    "m_P^0.667 (hbar a0/c)^0.333": 31289336.399729166,
+    "m_P^0.75 (hbar a0/c)^0.25": 4397606830484.5405,
+    "m_P^0.25 (rho_L^(1/4))^0.75": 108236.21459101357,
+    "m_P^0.333 (rho_L^(1/4))^0.667": 39422094.950728305,
+    "m_P^0.5 (rho_L^(1/4))^0.5": 5229665469443.049,
+    "m_P^0.667 (rho_L^(1/4))^0.333": 6.937581819654058e+17,
+    "m_P^0.75 (rho_L^(1/4))^0.25": 2.5268253352751402e+20
+   },
+   "hits": {
+    "m_P^0.25 (hbar H0)^0.75": 2.454287712673803e-18,
+    "m_P^0.25 (hbar a0/c)^0.75": 5.705531697179497e-19
+   },
+   "p_chance": 0.6680771496454365
+  },
+  "N1": {
+   "phi_i_eV": 2.9581465234228844e+25,
+   "phi_i_over_MP": 0.012146833402048007,
+   "H_I_eV": 5369.746217578207,
+   "p_misalignment": 0.15555555555555556
+  },
+  "D": {
+   "dark": [
+    [
+     "eps/m^2 (the splitting)",
+     "1.84-2.35e-6 (575-650 km/s)",
+     "FITTED-BY-DATA; IRREDUCIBLE",
+     "Z4 spurion (E1, E2); window's ends from the flagship and Harvey (E4); kappa^19 NUMEROLOGY-FLAGGED (E3)"
+    ],
+    [
+     "zeta = f_t (lambda_0's normalisation)",
+     "canonical [2.37, 2.76] at the floor mass",
+     "FITTED-BY-DATA",
+     "forest from below, flagship from above (XR12 W2); a decade-wide window on FP10's no-cap reading (M2); not shared: the yield-to-density maps miss by >= 5 decades (T1b) and FP13's state gives the onset and the collapse scale, not the threshold's height (T6); in XR19's delta_t0 the band sits between GR collapse's turnaround and virial contrasts (T6d)"
+    ],
+    [
+     "q (the K-gate exponent)",
+     "forest + A4: [1.75, 2.0, 2.5] canonical / [1.5, 1.75, 2.0, 2.5] alt; + filaments: [1.75] / [1.5, 1.75]",
+     "FITTED-BY-DATA; sharing FAILS",
+     "FP9's p' identifications convert the web (T3); FP13's q-sign ramp is global and fails the flagship or the background (T6a); forest below, web above (T3b); degenerate with zeta at z = 2.5"
+    ],
+    [
+     "  or, in the yield-onset construction",
+     "q = 0",
+     "SHARED (with the separator's frozen state)",
+     "T4a/T4e: the frozen MOND scalar protects FRW and the forest-epoch IGM on either committed separator (H_Y, H_S); price: a MOND-scalar coupling (T4b), a POSTULATED gate form, zeta kept"
+    ],
+    [
+     "  or, the state-keyed virial trigger",
+     "Delta = 18 pi^2 (no zeta, no q)",
+     "FAILS (resolved reading)",
+     "T6c: web- and background-safe, but the flagship's own-density cap (XR12-W2) fails on both footings; passes only on FP10's no-cap reading"
+    ],
+    [
+     "m (the dark mass)",
+     "canonical C_s=10: [1.9e-19, <1.0e-18] eV; upstream: a sliver to the grid's end; alt: >= floor",
+     "FITTED-BY-DATA (canonical) / CONSTRAINED (alt)",
+     "M1 (XR12 reading); M2: unpinned on FP10's reading; M3 ceiling ~1 eV; M5 NUMEROLOGY-FLAGGED"
+    ],
+    [
+     "the pure cross quartic",
+     "structure",
+     "POSTULATED",
+     "Z4-even; its self-quartics are generated at O(lambda^2/16 pi^2) ~ 0 (lambda ~ 1e-76 at the floor)"
+    ],
+    [
+     "the amount (Omega_dm)",
+     "initial data",
+     "IRREDUCIBLE (as LCDM's omega_c)",
+     "N1-N2"
+    ],
+    [
+     "the misalignment",
+     "<= ~14 deg",
+     "IRREDUCIBLE (initial data, ~16% prior)",
+     "N1"
+    ]
+   ],
+   "whole": {
+    "fitted": [
+     "kappa (accepted)",
+     "eps/m^2",
+     "zeta",
+     "q",
+     "m (canonical)"
+    ],
+    "bounded": [
+     "xi",
+     "alpha_c",
+     "c_2",
+     "m (alt)",
+     "lambda_phi > 0 (FP13: required, value free)"
+    ],
+    "separator": "FP13's H_S (27faacc84): FP9's four declared constants replaced by state functionals; delta_c = 1.686, c_y = 1, the q = 0 onset POSTULATED (natural O(1) choices)",
+    "FP14": "TBD",
+    "postulated": [
+     "J_P2",
+     "the band-pass / yield forms",
+     "the pure cross quartic"
+    ],
+    "initial": [
+     "phibar-dot",
+     "the amount",
+     "the misalignment"
+    ],
+    "measured": [
+     "G",
+     "Lambda"
+    ]
+   }
+  }
+ },
+ "ledger": [
+  {
+   "link": "L15a",
+   "what": "FK1's K-gate is (Omega_L(<K>_h)/Omega_L0)^q on CMC leaves: the trigger's running VARIABLE is the separator's own",
+   "status": "DERIVED",
+   "basis": "check T1"
+  },
+  {
+   "link": "L15b",
+   "what": "the trigger's EXPONENT is not fixed by the action: three inequivalent identifications with FP9's p' (q = 3.75, 4, 4.75)",
+   "status": "DERIVED",
+   "basis": "check T1"
+  },
+  {
+   "link": "L15c",
+   "what": "the anchor law: at a fixed z = 2.5 threshold, R(z) falls to z = 0 monotonically iff q >= 1/Omega_m0 - 1/4 = 2.94",
+   "status": "DERIVED",
+   "basis": "check T2"
+  },
+  {
+   "link": "L15d",
+   "what": "sharing the exponent: every identification puts delta = 10 filaments above the trigger at every flagship anchor, and the cosmic mean at W2's (FP10's A4 fails): the web runaway made categorically worse",
+   "status": "FAILS",
+   "basis": "check T3 (T3c: S_8 below the strict 0.922 in both web brackets; X-COP/Harvey lose the optimistic reading)"
+  },
+  {
+   "link": "L15e",
+   "what": "q is set by data, not shared: at the dark-mass floor the forest needs q >= ~1.75 (canonical; 1.5 alt) and A4 q <~ 2.9; keeping delta = 10 filaments below the trigger needs q <~ 1.75 -- FK1's declared 7/4 is where the two meet; degenerate with zeta at z = 2.5",
+   "status": "FITTED",
+   "basis": "check T3b"
+  },
+  {
+   "link": "L15f",
+   "what": "zeta = f_t (lambda_0's normalisation): pinned between the forest and the flagship (canonical band <= 1.25 wide at the floor mass, XR12's resolved reading); a decade on FP10's no-cap reading; no dimensionless map to y_Lambda",
+   "status": "FITTED",
+   "basis": "checks M1, M2, T3b"
+  },
+  {
+   "link": "L15g",
+   "what": "the yield onset as the trigger (-lambda_0 g(Y)(Im Phi^2)^2): exactly off on FRW and in the z >= 2.5 IGM (phi frozen), so q is not needed -- its job is done by the separator's p'",
+   "status": "DERIVED",
+   "basis": "check T4a"
+  },
+  {
+   "link": "L15h",
+   "what": "the yield-onset gate's form g (width tied to y_th)",
+   "status": "POSTULATED",
+   "basis": "check T4a"
+  },
+  {
+   "link": "L15i",
+   "what": "the yield-onset gate's reciprocal flux at the yield surface during conversion (delta_Y >> 1 at the floor; <= 0.1 needs a much heavier dark mass)",
+   "status": "CONSTRAINT",
+   "basis": "check T4b"
+  },
+  {
+   "link": "L15j",
+   "what": "the yield-onset cell on the gates: mass-selective budget, forest, S_8 and the flagship's later passage (T4c-T4d); the cluster gates keep FP10's reading-dependence",
+   "status": "OPEN",
+   "basis": "checks T4c, T4d, T5"
+  },
+  {
+   "link": "L15k",
+   "what": "eps is the only Z4-odd term (Phi -> i Phi): multiplicatively renormalised, generated by nothing present",
+   "status": "DERIVED",
+   "basis": "check E1"
+  },
+  {
+   "link": "L15l",
+   "what": "no present coupling induces eps (pair, leaf average: 0; frame coupling: a relabelling; vacuum/Hubble scales: <= 1e-28 at the floor)",
+   "status": "DERIVED",
+   "basis": "check E2"
+  },
+  {
+   "link": "L15m",
+   "what": "eps/m^2 = 1.84-2.35e-6 set by the flagship (lower) and Harvey (upper); kappa^19 is numerology",
+   "status": "FITTED",
+   "basis": "checks E3, E4"
+  },
+  {
+   "link": "L15n",
+   "what": "m: pinned near its floor on the canonical footing (the forest's minihalos vs the flagship's cap), open on alt; unpinned on FP10's no-cap reading",
+   "status": "FITTED",
+   "basis": "checks M1, M2"
+  },
+  {
+   "link": "L15o",
+   "what": "m <~ 1 eV (Bose occupation of the pump)",
+   "status": "CONSTRAINT",
+   "basis": "check M3"
+  },
+  {
+   "link": "L15p",
+   "what": "a mechanism for m (the ties m_P^a mu^(1-a) that land in the window are numerology)",
+   "status": "OPEN",
+   "basis": "check M5"
+  },
+  {
+   "link": "L15q",
+   "what": "the amount (as LCDM's omega_c) and the misalignment (~16% prior): initial data",
+   "status": "POSTULATED",
+   "basis": "checks N1, N2"
+  },
+  {
+   "link": "L15r",
+   "what": "XR19's seeded web runaway (FK1's band top is seed-stimulable at the mean for z <~ 0.5), the forest proxy's ~2x systematic, the own-density cap in FP10's reading, the chain's own spherical-collapse numbers (XR23) as a derived threshold, and a particle-mesh run with the trigger",
+   "status": "OPEN",
+   "basis": "scope; not computed here"
+  },
+  {
+   "link": "L15s",
+   "what": "lambda_0's normalisation is not shared with the yield: a0^2 = kappa^2 c^2 G rho_Lambda maps y_th a0 to a density >= 5 decades too low; a0/(4 pi G L) needs a coefficient and runs as q = 3/4",
+   "status": "DERIVED",
+   "basis": "check T1b"
+  },
+  {
+   "link": "L15t",
+   "what": "the yield-onset gate on FP13's H_S: the web is MOND-on below z = 0.635, so zeta alone holds the late web; the q-running stays unnecessary; the flagship's passage comes earlier",
+   "status": "OPEN",
+   "basis": "check T4e"
+  },
+  {
+   "link": "L15u",
+   "what": "a dark trigger keyed to FP13's state with no new constant (the q-sign onset and/or the local nonlinearity at delta_c): the onset is global (flagship or background fail) and delta_c sits below the web's filaments (the web converts)",
+   "status": "FAILS",
+   "basis": "check T6 (a), (b)"
+  },
+  {
+   "link": "L15w",
+   "what": "sharing the threshold delta_t0 (XR19's dominant lever) with GR spherical collapse: the gates' band sits between the turnaround (9 pi^2/16) and the virial (18 pi^2) contrasts, and neither they nor 1 + delta_c land in it",
+   "status": "FAILS",
+   "basis": "check T6d (the chain's own collapse, XR23, is pending: OPEN in L15r)"
+  },
+  {
+   "link": "L15v",
+   "what": "the spherical-collapse partner Delta = 18 pi^2 as the trigger (no zeta, no q): web- and background-safe, fails the flagship's own-density cap on both footings and the forest (early z >= 4 conversion); the flagship passes only on FP10's no-cap reading",
+   "status": "FAILS",
+   "basis": "check T6 (c)"
+  }
+ ],
+ "n_checks": 32,
+ "n_fail_load_bearing": 0,
+ "runtime_s": 1938.5447940826416
+}
