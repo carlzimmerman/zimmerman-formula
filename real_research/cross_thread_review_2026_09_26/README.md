@@ -85,6 +85,36 @@ declared input; no new dark-matter particle species; the dark mass is still requ
 - L388: 4/4, a pooled window at 575–650 km/s at p1_x2.5 on the matter-only branch.
 - AT3 at p1_x2.5: every gate passes on the alternative set except cosmic shear, R = 1.47–1.58 (T(k=1) = 0.85–0.89 against T_max 0.76/0.72). A scan of the window has been requested.
 
+### Late evening: the switch variable at action level, and cosmic shear
+
+- **What the switch may read.** MS1–MS3 (`2a5def6d9`, `real_research/mond_sector_gate_2026/`) settle it.
+  - MS1: once the gate is an action term, a switch that reads the dark carrier leaks a force onto it. Through curvature
+    this is 0.06–6× the carrier's own gravity around an L\* lens; through matter density it is 0.6–60×.
+  - The **MOND-sector reading**, baryons plus their phantom (U = C∇²(Φ − v)), leaks nothing.
+  - DE7 (`095ab610a`) independently finds that a curvature-reading gate makes lensing differ from dynamics in
+    transition layers. DE7 also proves that an unrepaired smooth gate is ill-posed on every transition, and that the
+    lead track's Λ-scaled repair fixes the principal part.
+  - MS2: with the MOND-sector switch the z = 2.5 flagship holds with no CGM at all. The unbound web needs 6.36× the
+    matter reading's overdensity to switch on, which eases XR4's filament concern.
+- **KiDS on each branch.**
+  - The matter-only branch fails everywhere, at both σ (DE8 `d522b1767`; L392 `1eaac841b`).
+  - The curvature branch passes (L392: −41/−34 and −60/−55, with Harvey +0.046..+0.062 on the alternative set).
+  - σ is negligible for both KiDS and Harvey.
+- **Cosmic shear is not established by any mock-based score** (MS3).
+  - L363's region builder cannot grow a region from an isolated seed, and the 100 Mpc mock is cluster-poor. DE3/DE5's
+    T_max, L388's shear pass (corrected in `c7de159cc`), AT3's shear numbers and L364's 1.12/1.17 are therefore not
+    established.
+  - On the resolution-free halo model every uncapped carrier fails (R 2.47–4.32).
+  - Capping MOND regions at 1.75 Mpc (v_cap ≈ 325 km/s) with L388's density-trigger retention passes (1.05/1.12). The
+    cap has no action yet.
+  - AT3's galaxy-only clearing fails even when capped (AT1–AT3 `dd1d6a0d6`).
+- **The candidate the threads now converge on (C-H/K branch):** the MOND-sector switch, the linear vacuum gate
+  (p = 1, x_c0 = 2.5), a ~1.75 Mpc region cap and a density-triggered carrier that also clears groups and clusters.
+  - L395's first cell tests it in the particle-mesh boxes, with shear scored on MS3's halo model.
+  - V0's CV3 writes the gate with this reading.
+  - Open: an action for the cap and for the trigger; the carrier as a state of the framework's own field; the Local
+    Group zero-velocity radius and the EFE samples (XR4); Harvey's perpendicular orientation.
+
 **Follow-up for the checker:** XR1's registry tracks the cell, footing, kernel and operator. It should also track the switch branch (upper/lower, contrast/absolute) and σ, so that pooling across either is flagged automatically.
 
 ## Files
