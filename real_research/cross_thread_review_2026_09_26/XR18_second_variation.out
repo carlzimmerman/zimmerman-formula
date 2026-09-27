@@ -1,0 +1,240 @@
+XR18 (b) -- A DE12-TYPE SECOND VARIATION OF THE FULL H_Y ACTION ON GALAXY BACKGROUNDS.  Does any term of FP9's separator
+land a k^0 stiffness of the wrong sign on the baryons (or on phi), and what growth does H_Y's own stiffness structure give
+against H -- on DE12's 24 host systems, so the numbers compare with DE12 / DE13 / XR15?
+
+WHY.  DE12 (dark_energy_2026/DE12_mond_sector_gate_stiffness.py) showed that a LOCAL region gate f = W(U), once varied as
+an action term, is a k^0 negative bulk modulus on edge-layer gas: U reads the local dynamical density (lap(u - v) =
+4 pi G rho_b is a constraint), so d^2(B W)/d rho_b^2 = B W'' t_U^2 U_rho^2 is local; Gamma = c_gate k with c_gate
+1500-3700 km/s at z = 0.25, 2-5e4 H at k = 1/kpc.  DE13 and XR15 showed no gradient energy and no smoothing repairs it.
+FP9 (derivation_chain_2026/FP9_web_galaxy_separator.py, b510eebfe) replaced every local gate by (H_Y): a band-pass on the
+chassis and a yield floor in J, both run by the leaf average <K>_h.  This lane asks whether H_Y re-creates DE12's
+obstruction anywhere once the WHOLE action is varied.
+
+THE ACTION VARIED (FP9's (H_Y) on FP7's root; per 1/16 pi G, c = 1, alpha = a0/c^2):
+  R - 2 Lambda + alpha_c a^2 - c_2 (K - <K>_h)^2 + (2 - alpha_c) h^mn (2 a_m - D_m chi) D_n chi - 2 alpha^2 J_Y(Y)
+  + 2 lambda (n.d phi)^2 + heat pair (W_0 = phi; chi = W_b - W_B = (S_xi - S_L) phi, B = L^2/2) + S_m[g],
+  J_Y = J_P2(Y) + 2 y_th sqrt(Y),  y_th = y_Lambda Omega_L(<K>_h)^(-p'),  L = L_Lambda Omega_L(<K>_h)^(n/2);
+  headline cell L_Lambda = 2.46 Mpc, n = 2, y_Lambda = 7.78e-8, p' = 4.  Both footings a0 = 9.3603e-11 / 1.1312e-10 m/s^2.
+
+METHOD.
+ (1) THE WKB ORDER COUNT (sympy, exact in the frozen-coefficient planar reduction).  A baryon perturbation delta rho e^{ikx}
+     on a static background; the constraint-slaved first-order responses are solved exactly:
+       delta Phi_N = -4 pi G_N delta rho/k^2,  C_theta delta phi'' = 4 pi G h delta rho  ->  delta phi = -4 pi G h delta rho/(C k^2),
+       delta chi = h delta phi,  delta Phi = delta Phi_N + delta chi,  delta lap Phi = 4 pi G A delta rho,  A = G_N/G + h^2/C_theta,
+     with C_theta = C_L (along g) or C_T (across), h the band-pass gain at k; <K>_h's perturbation is 0 at k != 0 and its
+     second order is ~ (delta Psi)^2 ~ k^-4.  Every term's second-order energy density is written out, the responses
+     inserted, and the k^0 coefficient taken as k -> oo at fixed h.  The same engine, with DE12's gate term -B W(t(U))
+     inserted (U reading the local dynamical density), must return DE12's S = B W'' t_U^2 U_rho^2 (control K1).
+ (2) THE EXACT RADIAL (l = 0) SECTOR (spherical perturbations are exact in a spherical background).  The reduced
+     (on-shell) energy of a spherical system under H_Y's static law is
+       E[M] = -Int G M^2/(2 r^2) dr - Int (r^2 a0^2/G) Q(y_bp) dr + Int 4 pi r^2 rho e(rho) dr,
+       y_bp = G M_bp/(a0 r^2),  M_bp = enclosed mass of (S_xi - S_L) rho,  Q' = x(y) = x_P2(y - y_th) above the yield, 0 below;
+     its gradient is FP9's law (control K2), its second variation for radial displacements xi (delta M = -4 pi r^2 rho xi)
+       V2 = (1/2) Int 4 pi r^2 (c_s^2/rho) delta rho^2 dr - (1/2) Int (G/r^2) [delta M^2 + Q''(y_bp) delta M_bp^2] dr,
+     Q'' = dx/dy (the longitudinal MOND susceptibility, = 1/C_L^phi: it DIVERGES as (y - y_th)^(-1/2) at the yield surface and
+     is 0 in the plug).  Kinetic T = (1/2) Int 4 pi r^2 rho xi'^2 dr; growth Gamma^2 = -min eig(K, M).  The singular weight is
+     integrated exactly per cell (Int Q'' dr = Int dx/(dy_bp/dr)); the yield is also regularised (J_eps: y_th sqrt(Y + eps^2))
+     to test eps -> 0.  Backgrounds: DE12's 24 host systems (z = 0.25, 1, 2.5, 4; M_b = 1e10, 1e11, 1e12; both footings) with
+     DE12's gas profile rho_b = f_b(rho_NFW + rho_bar) and FP9's point-mass band-passed field; the domain brackets H_Y's own
+     transition, the yield surface r_Y: [max(r_Y/3, 1 kpc), 3 r_Y].
+
+PRE-DECLARED (written into this file before its first full run).  Exploratory runs made BEFORE these were written are
+disclosed in XR18_README.md: a scratch map of r_Y and the local dx/dy on DE12's 24 hosts (it showed the divergent
+susceptibility and local pressureless rates of ~20-60 H at 1 kpc from r_Y), and 1-D prototypes for part (a).
+ H1 [load-bearing] No term of the full H_Y action (EH, Lambda, alpha_c a^2, c_2 (K - <K>_h)^2 with the leaf average, the
+    chassis with the band-pass, J_Y with y_th(<K>_h), phi's inertia, the heat pair with L(<K>_h), matter) has a k^0 part:
+    the baryons' k^0 coefficient is c_s^2/rho_b (the gas alone, positive), and the phi-phi block has no k^0 (mass) term.
+ H2 [load-bearing] DE12's own convention on the same 24 hosts (WKB growth at k = 1/kpc, 1e6 K gas, over the whole profile
+    1 kpc - 20 Mpc, the susceptibility window-averaged over 1/k): Gamma(1/kpc) = 0 for H_Y on all 24 (DE12's gate: 1.3e3 -
+    4.9e4 H).
+ H3 [load-bearing] The exact radial sector of H_Y around each yield surface, gas at 1e6 K and 1e5 K: the maximum growth
+    rate is converged (grid doubling < 5%; the regularised yield at eps/sqrt(y_th) = 1e-3 and 1e-4 within 5% of eps = 0), and
+    the yield raises it over plain band-passed P2 (FP9's route (i), no yield) on the same domain by less than a factor 2.
+ H4 [load-bearing; the adversarial case] Cold (pressureless) matter at the yield surface: the growth rate of the most
+    localised radial mode grows with resolution as Gamma ~ d_min^(-p), p in [0.20, 0.30] (the (y - y_th)^(-1/2)
+    susceptibility averaged over the mode: Gamma^2 ~ 4 pi G rho (s d)^(-1/2)), for d_min from 3 kpc down to 40 xi, and
+    saturates (d_min = xi/3 vs xi/10 within 10%) once the xi filter is resolved: BOUNDED by xi, but resolution-dependent in
+    any code that does not resolve xi (a particle-mesh run).
+The writer's expectation: H1, H2 pass by derivative-order counting (H_Y reads only first derivatives and leaf averages);
+H3 passes; H4 holds.
+
+  machinery: FP9 exec'd read-only up to its CONTROLS banner (FP6 inside it); DE12's transition() definitions only; a0 = 9.3603e-11 / 1.1312e-10; H_Y headline L_Lambda = 2.462 Mpc, n = 2, y_th(0.25) = 1e-6, p' = 4   [0 s]
+
+================================================================================================================
+K1  CONTROL + B1: THE WKB ORDER COUNT OF THE FULL ACTION (sympy), and DE12's gate term as the control
+================================================================================================================
+    gas (rho e(rho), isothermal)                                                                                           leading k-order    0;  k^0 coefficient c_s**2/(2*rho)
+    matter coupling rho Phi (bilinear)                                                                                     leading k-order   -2;  k^0 coefficient 0
+    EH + alpha_c a^2 + chassis (Psi = Phi branch): (2 - a_c)|grad(Phi - chi)|^2/(16 pi G)                                  leading k-order   -2;  k^0 coefficient 0
+    J_Y on phi (C_theta = C_L or C_T of J_Y, y_th(<K>_h) inside): C |grad dphi|^2/(8 pi G)                                 leading k-order   -2;  k^0 coefficient 0
+    phi's inertia 2 lambda (n.dphi)^2 (growth rate Gamma)                                                                  leading k-order   -4;  k^0 coefficient 0
+    khronon c_2 (K - <K>_h)^2 (delta K ~ 3 Gamma delta Psi/c^2)                                                            leading k-order   -4;  k^0 coefficient 0
+    Lambda sqrt(-g) (delta^2 sqrt(-g) ~ (delta Phi/c^2)^2)                                                                 leading k-order   -4;  k^0 coefficient 0
+    leaf average: Q d^2<K>_h via y_th(<K>_h), L(<K>_h) (k != 0: first order 0; second ~ (K - <K>)(delta Psi/c^2)^2)        leading k-order   -4;  k^0 coefficient 0
+    heat pair's metric coupling: -2 delta L [2 dPsi lap W - grad dPsi.grad W]/c^2 (lap W ~ 4 pi G rho_ph, |grad W| ~ g_ph) leading k-order   -1;  k^0 coefficient 0
+    A (the amplification in delta lap Phi = 4 pi G A delta rho) = G_N_over_G + h**2/C_theta;  H_Y's k^-2 coefficient per |delta rho|^2: 2*pi*G*(2*C_theta - h**2*(alpha_c - 2))/(C_theta*(alpha_c - 2)) (= -2 pi G A: True);  phi-phi mass term d^2 L/d phi^2 = 0
+    gate term through the engine: leading k-order 0, k^0 coefficient -S/2 with S == DE12's B[W'' t_U^2 U_rho^2 + W' t_U U_rhorho]: True;  on DE12's profiles: c_gate_max 0.25/1e+10/canonical: 1526, 0.25/1e+10/alt: 1691, 0.25/1e+11/canonical: 2235, 0.25/1e+11/alt: 2457, 0.25/1e+12/canonical: 3436, 0.25/1e+12/alt: 3741 ... km/s
+  [PASS] K1 CONTROL (DE12): this lane's WKB engine, given DE12's gate term -B W(t(U)) with U reading the local dynamical density lap Phi/(4 pi G), returns its k^0 coefficient as DE12's S = B[W'' t_U^2 U_rho^2 + W' t_U U_rhorho] identically, and on DE12's own profiles (definitions loaded unedited) reproduces DE12's committed c_gate_max and Gamma(1/kpc)/H on all 24 layers
+         measured: symbolic identity True; max relative deviation over 24 layers 4.4e-16 (e.g. z = 0.25/1e10/can 1526.2 vs 1526.2 km/s)
+  [PASS] K1b the AQUAL-form amplification A = G_N/G + h^2/C_L^phi equals the QUMOND-form A_par = d(y nu)/dy (DE12's nu + y nu') at h = 1, G_N = G (the duality C_L^phi = 1/C_L^Q), P2 kernel, y = 1e-6..1e3
+         measured: max relative deviation 6.7e-16
+  [PASS] B1 [H1, pre-declared] NO k^0 TERM IN THE FULL H_Y ACTION: every term's second variation (EH, Lambda, alpha_c a^2, c_2 (K - <K>_h)^2, the chassis with the band-pass, J_Y with y_th(<K>_h), phi's inertia, the heat pair with L(<K>_h), matter) is O(k^-1) or smaller except the gas's own c_s^2/rho_b; the phi-phi block has no mass term; the Jeans coefficient is -2 pi G A with A = G_N/G + h^2/C_theta
+         measured: k^0 total per |delta rho|^2: c_s**2/(2*rho) (gas only: True); other terms with a k^0 part: none; Jeans form True; phi mass 0
+         reading:  DE12's obstruction needs a term that reads a SECOND derivative of a constraint-slaved potential (the local density); H_Y's separators read first derivatives (grad phi, a = grad ln N) and leaf averages only, so the only k^0 stiffness is pressure
+    [1 s]
+
+================================================================================================================
+B2  DE12's CONVENTION ON THE SAME 24 HOSTS: WKB growth at k = 1/kpc, 1e6 K gas, whole profile 1 kpc - 20 Mpc
+================================================================================================================
+    0.25/1e+10/canonical  : r_Y =   2323.7 kpc; max window-averaged Q''   11527.1; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 0 (Newton only 0; its max at r = 1.0 kpc)   (DE12's gate: 1.98e+04)
+    0.25/1e+10/alt        : r_Y =   2226.3 kpc; max window-averaged Q''   13729.9; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 0 (Newton only 0; its max at r = 1.0 kpc)   (DE12's gate: 2.20e+04)
+    0.25/1e+11/canonical  : r_Y =   3397.6 kpc; max window-averaged Q''    9034.8; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 0 (Newton only 0; its max at r = 1.0 kpc)   (DE12's gate: 2.91e+04)
+    0.25/1e+11/alt        : r_Y =   3316.9 kpc; max window-averaged Q''   10794.4; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 0 (Newton only 0; its max at r = 1.0 kpc)   (DE12's gate: 3.20e+04)
+    0.25/1e+12/canonical  : r_Y =   4289.4 kpc; max window-averaged Q''    9140.9; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 100 (Newton only 100; its max at r = 1.0 kpc)   (DE12's gate: 4.47e+04)
+    0.25/1e+12/alt        : r_Y =   4221.5 kpc; max window-averaged Q''    8703.7; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 100 (Newton only 100; its max at r = 1.0 kpc)   (DE12's gate: 4.87e+04)
+    1.0/1e+10/canonical   : r_Y =    559.6 kpc; max window-averaged Q''    2046.6; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 0 (Newton only 0; its max at r = 1.0 kpc)   (DE12's gate: 8.39e+03)
+    1.0/1e+10/alt         : r_Y =    520.9 kpc; max window-averaged Q''    2086.4; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 0 (Newton only 0; its max at r = 1.0 kpc)   (DE12's gate: 9.14e+03)
+    1.0/1e+11/canonical   : r_Y =   1046.3 kpc; max window-averaged Q''    2191.2; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 0 (Newton only 0; its max at r = 1.0 kpc)   (DE12's gate: 1.36e+04)
+    1.0/1e+11/alt         : r_Y =   1008.1 kpc; max window-averaged Q''    2225.2; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 0 (Newton only 0; its max at r = 1.0 kpc)   (DE12's gate: 1.47e+04)
+    1.0/1e+12/canonical   : r_Y =   1464.7 kpc; max window-averaged Q''    1359.7; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 197 (Newton only 197; its max at r = 1.0 kpc)   (DE12's gate: 2.26e+04)
+    1.0/1e+12/alt         : r_Y =   1433.2 kpc; max window-averaged Q''    1434.1; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 197 (Newton only 197; its max at r = 1.0 kpc)   (DE12's gate: 2.43e+04)
+    2.5/1e+10/canonical   : r_Y =     32.4 kpc; max window-averaged Q''      32.2; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 0 (Newton only 0; its max at r = 1.0 kpc)   (DE12's gate: 2.75e+03)
+    2.5/1e+10/alt         : r_Y =     29.5 kpc; max window-averaged Q''      30.7; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 0 (Newton only 0; its max at r = 1.0 kpc)   (DE12's gate: 2.94e+03)
+    2.5/1e+11/canonical   : r_Y =     96.7 kpc; max window-averaged Q''      51.3; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 112 (Newton only 112; its max at r = 1.0 kpc)   (DE12's gate: 4.67e+03)
+    2.5/1e+11/alt         : r_Y =     89.1 kpc; max window-averaged Q''      50.7; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 112 (Newton only 112; its max at r = 1.0 kpc)   (DE12's gate: 5.02e+03)
+    2.5/1e+12/canonical   : r_Y =    205.2 kpc; max window-averaged Q''      54.7; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 191 (Newton only 191; its max at r = 1.0 kpc)   (DE12's gate: 7.57e+03)
+    2.5/1e+12/alt         : r_Y =    196.2 kpc; max window-averaged Q''      55.4; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 191 (Newton only 191; its max at r = 1.0 kpc)   (DE12's gate: 8.21e+03)
+    4.0/1e+10/canonical   : r_Y =      4.1 kpc; max window-averaged Q''       0.7; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 51.4 (Newton only 51.3; its max at r = 1.0 kpc)   (DE12's gate: 1.33e+03)
+    4.0/1e+10/alt         : r_Y =      3.7 kpc; max window-averaged Q''       0.7; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 51.4 (Newton only 51.3; its max at r = 1.0 kpc)   (DE12's gate: 1.43e+03)
+    4.0/1e+11/canonical   : r_Y =     12.9 kpc; max window-averaged Q''       1.8; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 107 (Newton only 107; its max at r = 1.0 kpc)   (DE12's gate: 2.13e+03)
+    4.0/1e+11/alt         : r_Y =     11.7 kpc; max window-averaged Q''       1.7; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 107 (Newton only 107; its max at r = 1.0 kpc)   (DE12's gate: 2.31e+03)
+    4.0/1e+12/canonical   : r_Y =     37.6 kpc; max window-averaged Q''       3.2; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 161 (Newton only 161; its max at r = 1.0 kpc)   (DE12's gate: 3.27e+03)
+    4.0/1e+12/alt         : r_Y =     34.8 kpc; max window-averaged Q''       3.1; Gamma(1/kpc)/H: 1e6 K 0, 1e5 K 161 (Newton only 161; its max at r = 1.0 kpc)   (DE12's gate: 3.58e+03)
+  [PASS] B2 [H2, pre-declared] DE12's CONVENTION: H_Y's WKB growth at k = 1/kpc for 1e6 K gas is ZERO on all 24 hosts over the whole profile (1 kpc - 20 Mpc, the yield surface included, its susceptibility averaged over the 1 kpc window), against DE12's gate at 1.3e3 - 4.9e4 H
+         measured: max Gamma(1/kpc)/H over 24 hosts: 0 (1e5 K gas, reported: max 197 at 1.0/1e+12/alt; the same gas with Newton only: max 197)
+         reading:  the 1e5 K column is the gas's own (MOND-amplified) Jeans growth, a k^-2 gravity term at the printed radius, not a gate term
+    [3 s]
+
+================================================================================================================
+K2  CONTROL: the reduced energy E[M] has FP9's spherical law as its gradient (test-shell finite differences)
+================================================================================================================
+    phantom acceleration at the test shell (energy derivative / FP9's law on FP6's grid / FP6's algorithm at 20x resolution): 2.5/canonical/0.2: 3.226125e-11 / 3.226158e-11 / 3.226125e-11, 2.5/canonical/0.5: 1.650788e-11 / 1.650758e-11 / 1.650788e-11, 2.5/canonical/0.8: 8.065686e-12 / 8.063903e-12 / 8.065679e-12, 2.5/alt/0.2: 3.875824e-11 / 3.875860e-11 / 3.875824e-11, 2.5/alt/0.5: 1.975693e-11 / 1.975682e-11 / 1.975692e-11, 2.5/alt/0.8: 9.654130e-12 / 9.651397e-12 / 9.654128e-12, 0.25/canonical/0.2: 1.532382e-12 / 1.532354e-12 / 1.532382e-12, 0.25/canonical/0.5: 3.836874e-13 / 3.836554e-13 / 3.836877e-13, 0.25/canonical/0.8: 7.418126e-14 / 7.412550e-14 / 7.418169e-14
+  [PASS] K2 CONTROL: the reduced energy's gradient IS FP9's spherical H_Y law -- the exact derivative of E[M] with respect to a test shell's radius (band-pass and yield inside Q(y_bp)) gives the phantom acceleration of FP6's phantom() with FP9's yield hook (the output band-pass is the input's adjoint), 1e11 at z = 2.5 (both footings) and z = 0.25, three radii inside r_Y
+         measured: max relative deviation vs FP6's grid 7.5e-04 (that grid's own error); vs FP6's algorithm at 20x resolution 5.8e-06
+         reading:  a first run finite-differenced the TOTAL energy and was dominated by quadrature noise (up to 10%); replaced by the exact derivative before the recorded runs (disclosed in XR18_README.md)
+    [3 s]
+  [PASS] K3 CONTROL: the discrete radial operator gives the analytic Jeans rate Gamma^2 = 4 pi G rho (1 + Q'') - c_s^2 k^2 for a uniform shell of constant Q'' (lowest mode k = pi/L, far from the centre)
+         measured: numerical 5.07357e-17 vs analytic 5.07357e-17 s^-1 (rel 3.9e-07)
+
+================================================================================================================
+B3  THE EXACT RADIAL SECTOR AROUND EACH YIELD SURFACE: gas at 1e6 K and 1e5 K, convergence, yield vs plain P2
+================================================================================================================
+    0.25/1e+10/canonical   r_Y   2323.7 kpc | 1e6 K: H_Y 7.68 (fine 7.68, eps 7.66/7.68), plain P2 232, Newton 0 | 1e5 K: H_Y 13.2 (fine 13.2), plain P2 236, Newton 0.12  [Gamma/H]
+    0.25/1e+10/alt         r_Y   2226.3 kpc | 1e6 K: H_Y 7.78 (fine 7.78, eps 7.75/7.77), plain P2 178, Newton 0 | 1e5 K: H_Y 13.3 (fine 13.3), plain P2 183, Newton 0.0769  [Gamma/H]
+    0.25/1e+11/canonical   r_Y   3397.6 kpc | 1e6 K: H_Y 7.14 (fine 7.14, eps 7.12/7.13), plain P2 8.23e+03, Newton 0 | 1e5 K: H_Y 12.6 (fine 12.6), plain P2 8.23e+03, Newton 0.263  [Gamma/H]
+    0.25/1e+11/alt         r_Y   3316.9 kpc | 1e6 K: H_Y 7.22 (fine 7.22, eps 7.2/7.22), plain P2 6.01e+03, Newton 0 | 1e5 K: H_Y 12.7 (fine 12.7), plain P2 6.01e+03, Newton 0.259  [Gamma/H]
+    0.25/1e+12/canonical   r_Y   4289.4 kpc | 1e6 K: H_Y 7.78 (fine 7.78, eps 7.76/7.78), plain P2 3.93e+04, Newton 0 | 1e5 K: H_Y 13.5 (fine 13.5), plain P2 3.93e+04, Newton 0.338  [Gamma/H]
+    0.25/1e+12/alt         r_Y   4221.5 kpc | 1e6 K: H_Y 7.9 (fine 7.9, eps 7.88/7.9), plain P2 4.13e+04, Newton 0 | 1e5 K: H_Y 13.6 (fine 13.6), plain P2 4.13e+04, Newton 0.34  [Gamma/H]
+    1.0/1e+10/canonical    r_Y    559.6 kpc | 1e6 K: H_Y 2.04 (fine 2.04, eps 2.03/2.04), plain P2 8.07, Newton 0 | 1e5 K: H_Y 5.4 (fine 5.4), plain P2 13.4, Newton 0  [Gamma/H]
+    1.0/1e+10/alt          r_Y    520.9 kpc | 1e6 K: H_Y 2.29 (fine 2.29, eps 2.29/2.29), plain P2 6.31, Newton 0 | 1e5 K: H_Y 5.61 (fine 5.61), plain P2 11.4, Newton 0  [Gamma/H]
+    1.0/1e+11/canonical    r_Y   1046.3 kpc | 1e6 K: H_Y 2.17 (fine 2.17, eps 2.16/2.17), plain P2 247, Newton 0 | 1e5 K: H_Y 5.55 (fine 5.55), plain P2 253, Newton 0.308  [Gamma/H]
+    1.0/1e+11/alt          r_Y   1008.1 kpc | 1e6 K: H_Y 2.44 (fine 2.44, eps 2.44/2.44), plain P2 184, Newton 0 | 1e5 K: H_Y 5.76 (fine 5.76), plain P2 192, Newton 0.307  [Gamma/H]
+    1.0/1e+12/canonical    r_Y   1464.7 kpc | 1e6 K: H_Y 3.92 (fine 3.92, eps 3.92/3.92), plain P2 1.04e+04, Newton 0 | 1e5 K: H_Y 8.35 (fine 8.35), plain P2 1.04e+04, Newton 0.926  [Gamma/H]
+    1.0/1e+12/alt          r_Y   1433.2 kpc | 1e6 K: H_Y 4.24 (fine 4.24, eps 4.23/4.24), plain P2 7.54e+03, Newton 0 | 1e5 K: H_Y 8.66 (fine 8.66), plain P2 7.54e+03, Newton 0.954  [Gamma/H]
+    2.5/1e+10/canonical    r_Y     32.4 kpc | 1e6 K: H_Y 0 (fine 0, eps 0/0), plain P2 0, Newton 0 | 1e5 K: H_Y 15.3 (fine 15.3), plain P2 10.6, Newton 0  [Gamma/H]
+    2.5/1e+10/alt          r_Y     29.5 kpc | 1e6 K: H_Y 0 (fine 0, eps 0/0), plain P2 0, Newton 0 | 1e5 K: H_Y 17.3 (fine 17.3), plain P2 12.1, Newton 0  [Gamma/H]
+    2.5/1e+11/canonical    r_Y     96.7 kpc | 1e6 K: H_Y 5.26 (fine 5.26, eps 5.25/5.25), plain P2 3.44, Newton 0 | 1e5 K: H_Y 12.8 (fine 12.8), plain P2 10.7, Newton 4.87  [Gamma/H]
+    2.5/1e+11/alt          r_Y     89.1 kpc | 1e6 K: H_Y 6.34 (fine 6.34, eps 6.34/6.34), plain P2 4.26, Newton 0 | 1e5 K: H_Y 14.3 (fine 14.3), plain P2 11.9, Newton 5.42  [Gamma/H]
+    2.5/1e+12/canonical    r_Y    205.2 kpc | 1e6 K: H_Y 7.44 (fine 7.44, eps 7.44/7.44), plain P2 38.3, Newton 3.02 | 1e5 K: H_Y 12.6 (fine 12.6), plain P2 52.2, Newton 8.62  [Gamma/H]
+    2.5/1e+12/alt          r_Y    196.2 kpc | 1e6 K: H_Y 8.34 (fine 8.34, eps 8.34/8.34), plain P2 29.1, Newton 3.21 | 1e5 K: H_Y 13.6 (fine 13.6), plain P2 41.8, Newton 9.05  [Gamma/H]
+    4.0/1e+10/canonical    r_Y      4.1 kpc | 1e6 K: H_Y 0 (fine 0, eps 0/0), plain P2 0, Newton 0 | 1e5 K: H_Y 18 (fine 18), plain P2 15.6, Newton 10.8  [Gamma/H]
+    4.0/1e+10/alt          r_Y      3.7 kpc | 1e6 K: H_Y 0 (fine 0, eps 0/0), plain P2 0, Newton 0 | 1e5 K: H_Y 18.1 (fine 18.1), plain P2 15.8, Newton 9.85  [Gamma/H]
+    4.0/1e+11/canonical    r_Y     12.9 kpc | 1e6 K: H_Y 0 (fine 0, eps 0/0), plain P2 0, Newton 0 | 1e5 K: H_Y 29.3 (fine 29.3), plain P2 26.5, Newton 25.8  [Gamma/H]
+    4.0/1e+11/alt          r_Y     11.7 kpc | 1e6 K: H_Y 0 (fine 0, eps 0/0), plain P2 0, Newton 0 | 1e5 K: H_Y 31.2 (fine 31.2), plain P2 28.1, Newton 27.3  [Gamma/H]
+    4.0/1e+12/canonical    r_Y     37.6 kpc | 1e6 K: H_Y 16 (fine 16, eps 16/16), plain P2 14.5, Newton 13.6 | 1e5 K: H_Y 28 (fine 28), plain P2 27.9, Newton 27.7  [Gamma/H]
+    4.0/1e+12/alt          r_Y     34.8 kpc | 1e6 K: H_Y 16.9 (fine 16.9, eps 16.9/16.9), plain P2 15.2, Newton 14.3 | 1e5 K: H_Y 29.5 (fine 29.5), plain P2 29.3, Newton 29.2  [Gamma/H]
+  [PASS] B3 [H3, pre-declared] THE EXACT RADIAL SECTOR AROUND EACH YIELD SURFACE (24 hosts, gas at 1e6 K and 1e5 K): the maximum growth rate is converged under grid doubling (< 5%) and under the regularised yield eps/sqrt(y_th) = 1e-3, 1e-4 vs eps = 0 (< 5%), and the yield raises it over plain band-passed P2 on the same domain by less than a factor 2
+         measured: max grid change 0.0%; max eps change 1.2%; max H_Y/plain-P2 ratio 1.53; max Gamma/H 31.2
+    [16 s]
+
+================================================================================================================
+B4  COLD (PRESSURELESS) MATTER AT THE YIELD SURFACE: growth vs resolution, and the xi filter's cap
+================================================================================================================
+    0.25/1e+10/canonical  : Gamma/H at d_min = 3 kpc 32.2, 1 kpc 42.4, 10 pc 134, 0.1 pc 408, xi 435, xi/10 443; fitted p = 0.250; saturation 0.2%
+    0.25/1e+10/alt        : Gamma/H at d_min = 3 kpc 32.3, 1 kpc 42.6, 10 pc 135, 0.1 pc 402, xi 426, xi/10 434; fitted p = 0.250; saturation 0.2%
+    0.25/1e+11/canonical  : Gamma/H at d_min = 3 kpc 31.2, 1 kpc 41.1, 10 pc 130, 0.1 pc 396, xi 422, xi/10 429; fitted p = 0.250; saturation 0.2%
+    0.25/1e+11/alt        : Gamma/H at d_min = 3 kpc 31.4, 1 kpc 41.3, 10 pc 131, 0.1 pc 390, xi 414, xi/10 421; fitted p = 0.250; saturation 0.2%
+    0.25/1e+12/canonical  : Gamma/H at d_min = 3 kpc 32.8, 1 kpc 43.2, 10 pc 137, 0.1 pc 416, xi 443, xi/10 452; fitted p = 0.250; saturation 0.2%
+    0.25/1e+12/alt        : Gamma/H at d_min = 3 kpc 33.1, 1 kpc 43.6, 10 pc 138, 0.1 pc 411, xi 436, xi/10 444; fitted p = 0.250; saturation 0.2%
+    1.0/1e+10/canonical   : Gamma/H at d_min = 3 kpc 15.7, 1 kpc 19.7, 10 pc 62.2, 0.1 pc 189, xi 202, xi/10 205; fitted p = 0.246; saturation 0.2%
+    1.0/1e+10/alt         : Gamma/H at d_min = 3 kpc 16.3, 1 kpc 20, 10 pc 63.2, 0.1 pc 188, xi 200, xi/10 204; fitted p = 0.244; saturation 0.2%
+    1.0/1e+11/canonical   : Gamma/H at d_min = 3 kpc 15.9, 1 kpc 20.9, 10 pc 66, 0.1 pc 201, xi 214, xi/10 218; fitted p = 0.250; saturation 0.2%
+    1.0/1e+11/alt         : Gamma/H at d_min = 3 kpc 16.2, 1 kpc 21.3, 10 pc 67.4, 0.1 pc 201, xi 213, xi/10 217; fitted p = 0.250; saturation 0.2%
+    1.0/1e+12/canonical   : Gamma/H at d_min = 3 kpc 20.9, 1 kpc 27.6, 10 pc 87.3, 0.1 pc 266, xi 283, xi/10 288; fitted p = 0.250; saturation 0.2%
+    1.0/1e+12/alt         : Gamma/H at d_min = 3 kpc 21.4, 1 kpc 28.3, 10 pc 89.4, 0.1 pc 267, xi 283, xi/10 288; fitted p = 0.250; saturation 0.2%
+    2.5/1e+10/canonical   : Gamma/H at d_min = 3 kpc 49.9, 1 kpc 49.9, 10 pc 96.6, 0.1 pc 294, xi 313, xi/10 319; fitted p = 0.163; saturation 0.2%
+    2.5/1e+10/alt         : Gamma/H at d_min = 3 kpc 56.1, 1 kpc 56.1, 10 pc 106, 0.1 pc 316, xi 336, xi/10 342; fitted p = 0.138; saturation 0.2%
+    2.5/1e+11/canonical   : Gamma/H at d_min = 3 kpc 33, 1 kpc 33, 10 pc 83.8, 0.1 pc 255, xi 272, xi/10 277; fitted p = 0.203; saturation 0.2%
+    2.5/1e+11/alt         : Gamma/H at d_min = 3 kpc 36.9, 1 kpc 36.9, 10 pc 91.8, 0.1 pc 273, xi 290, xi/10 296; fitted p = 0.187; saturation 0.2%
+    2.5/1e+12/canonical   : Gamma/H at d_min = 3 kpc 30, 1 kpc 30, 10 pc 91.9, 0.1 pc 280, xi 298, xi/10 303; fitted p = 0.226; saturation 0.2%
+    2.5/1e+12/alt         : Gamma/H at d_min = 3 kpc 32.1, 1 kpc 32.1, 10 pc 97.4, 0.1 pc 290, xi 308, xi/10 314; fitted p = 0.218; saturation 0.2%
+    4.0/1e+10/canonical   : Gamma/H at d_min = 3 kpc 110, 1 kpc 110, 10 pc 126, 0.1 pc 377, xi 401, xi/10 408; fitted p = 0.077; saturation 0.2%
+    4.0/1e+10/alt         : Gamma/H at d_min = 3 kpc 119, 1 kpc 119, 10 pc 133, 0.1 pc 389, xi 413, xi/10 420; fitted p = 0.045; saturation 0.2%
+    4.0/1e+11/canonical   : Gamma/H at d_min = 3 kpc 75.2, 1 kpc 75.2, 10 pc 114, 0.1 pc 342, xi 364, xi/10 371; fitted p = 0.122; saturation 0.2%
+    4.0/1e+11/alt         : Gamma/H at d_min = 3 kpc 81.4, 1 kpc 81.4, 10 pc 120, 0.1 pc 355, xi 376, xi/10 383; fitted p = 0.092; saturation 0.2%
+    4.0/1e+12/canonical   : Gamma/H at d_min = 3 kpc 52.6, 1 kpc 52.6, 10 pc 103, 0.1 pc 312, xi 332, xi/10 339; fitted p = 0.165; saturation 0.2%
+    4.0/1e+12/alt         : Gamma/H at d_min = 3 kpc 56.8, 1 kpc 56.8, 10 pc 109, 0.1 pc 324, xi 344, xi/10 350; fitted p = 0.141; saturation 0.2%
+  [FAIL] B4 [H4, pre-declared] COLD MATTER AT THE YIELD SURFACE: Gamma ~ d_min^(-p) with p in [0.20, 0.30] for d_min from 3 kpc to 40 xi on every host (the divergent susceptibility (y - y_th)^(-1/2) averaged over the mode), saturating (xi/3 vs xi/10 within 10%) once the xi filter is resolved -- bounded by xi, resolution-dependent below it
+         measured: p in [0.045, 0.250]; saturation change max 0.2%; Gamma(xi)/H in [200, 443]; Gamma(1 kpc)/H in [19.7, 119]
+         reading:  cold matter is the adversarial case: pressure (gas) or dispersion (stars, a wave field's quantum pressure) caps the mode width; a PM run with CDM-like particles is capped only by its cell size
+    [21 s]
+
+================================================================================================================
+B4b [added after B4's first run] THE SURFACE MODE ISOLATED: cold matter on the layer |r - r_Y| <= max(30 d_min, 10 xi)
+================================================================================================================
+    0.25/1e+10/canonical  : surface-mode Gamma/H at d_min = 1e+03 pc 42.4, 300 pc 57.3, 100 pc 75.4, 30 pc 102, 10 pc 134, 3 pc 181, 1 pc 239, 0.0081 pc 442, 0.00243 pc 443; p = 0.250 (7 points); saturation 0.2%
+    0.25/1e+10/alt        : surface-mode Gamma/H at d_min = 1e+03 pc 42.6, 300 pc 57.6, 100 pc 75.7, 30 pc 102, 10 pc 135, 3 pc 182, 1 pc 240, 0.00893 pc 433, 0.00268 pc 434; p = 0.250 (6 points); saturation 0.2%
+    0.25/1e+11/canonical  : surface-mode Gamma/H at d_min = 1e+03 pc 41.1, 300 pc 55.5, 100 pc 73.1, 30 pc 98.8, 10 pc 130, 3 pc 176, 1 pc 231, 0.0081 pc 429, 0.00243 pc 429; p = 0.250 (7 points); saturation 0.2%
+    0.25/1e+11/alt        : surface-mode Gamma/H at d_min = 1e+03 pc 41.3, 300 pc 55.9, 100 pc 73.5, 30 pc 99.3, 10 pc 131, 3 pc 177, 1 pc 232, 0.00893 pc 421, 0.00268 pc 421; p = 0.250 (6 points); saturation 0.2%
+    0.25/1e+12/canonical  : surface-mode Gamma/H at d_min = 1e+03 pc 43.2, 300 pc 58.4, 100 pc 76.9, 30 pc 104, 10 pc 137, 3 pc 185, 1 pc 243, 0.0081 pc 451, 0.00243 pc 451; p = 0.250 (7 points); saturation 0.2%
+    0.25/1e+12/alt        : surface-mode Gamma/H at d_min = 1e+03 pc 43.6, 300 pc 58.9, 100 pc 77.5, 30 pc 105, 10 pc 138, 3 pc 186, 1 pc 245, 0.00893 pc 443, 0.00268 pc 444; p = 0.250 (6 points); saturation 0.2%
+    1.0/1e+10/canonical   : surface-mode Gamma/H at d_min = 1e+03 pc 19.7, 300 pc 26.6, 100 pc 35, 30 pc 47.3, 10 pc 62.2, 3 pc 84, 1 pc 111, 0.0081 pc 205, 0.00243 pc 205; p = 0.250 (7 points); saturation 0.2%
+    1.0/1e+10/alt         : surface-mode Gamma/H at d_min = 1e+03 pc 20, 300 pc 27, 100 pc 35.5, 30 pc 48, 10 pc 63.2, 3 pc 85.4, 1 pc 112, 0.00893 pc 203, 0.00268 pc 204; p = 0.250 (6 points); saturation 0.2%
+    1.0/1e+11/canonical   : surface-mode Gamma/H at d_min = 1e+03 pc 20.9, 300 pc 28.2, 100 pc 37.1, 30 pc 50.2, 10 pc 66, 3 pc 89.2, 1 pc 117, 0.0081 pc 218, 0.00243 pc 218; p = 0.250 (7 points); saturation 0.2%
+    1.0/1e+11/alt         : surface-mode Gamma/H at d_min = 1e+03 pc 21.3, 300 pc 28.8, 100 pc 37.9, 30 pc 51.2, 10 pc 67.4, 3 pc 91.1, 1 pc 120, 0.00893 pc 217, 0.00268 pc 217; p = 0.250 (6 points); saturation 0.2%
+    1.0/1e+12/canonical   : surface-mode Gamma/H at d_min = 1e+03 pc 27.6, 300 pc 37.3, 100 pc 49.1, 30 pc 66.3, 10 pc 87.3, 3 pc 118, 1 pc 155, 0.0081 pc 288, 0.00243 pc 288; p = 0.250 (7 points); saturation 0.2%
+    1.0/1e+12/alt         : surface-mode Gamma/H at d_min = 1e+03 pc 28.2, 300 pc 38.2, 100 pc 50.3, 30 pc 67.9, 10 pc 89.4, 3 pc 121, 1 pc 159, 0.00893 pc 288, 0.00268 pc 288; p = 0.250 (6 points); saturation 0.2%
+    2.5/1e+10/canonical   : surface-mode Gamma/H at d_min = 300 pc 41.4, 100 pc 54.4, 30 pc 73.4, 10 pc 96.6, 3 pc 130, 1 pc 172, 0.0081 pc 318, 0.00243 pc 319; p = 0.249 (6 points); saturation 0.2%
+    2.5/1e+10/alt         : surface-mode Gamma/H at d_min = 300 pc 45.5, 100 pc 59.8, 30 pc 80.7, 10 pc 106, 3 pc 143, 1 pc 189, 0.00893 pc 341, 0.00268 pc 342; p = 0.249 (4 points); saturation 0.2%
+    2.5/1e+11/canonical   : surface-mode Gamma/H at d_min = 1e+03 pc 26.6, 300 pc 35.9, 100 pc 47.2, 30 pc 63.7, 10 pc 83.8, 3 pc 113, 1 pc 149, 0.0081 pc 276, 0.00243 pc 277; p = 0.249 (6 points); saturation 0.2%
+    2.5/1e+11/alt         : surface-mode Gamma/H at d_min = 1e+03 pc 29.2, 300 pc 39.3, 100 pc 51.7, 30 pc 69.8, 10 pc 91.8, 3 pc 124, 1 pc 163, 0.00893 pc 295, 0.00268 pc 296; p = 0.249 (5 points); saturation 0.2%
+    2.5/1e+12/canonical   : surface-mode Gamma/H at d_min = 1e+03 pc 29.2, 300 pc 39.4, 100 pc 51.7, 30 pc 69.9, 10 pc 91.9, 3 pc 124, 1 pc 163, 0.0081 pc 303, 0.00243 pc 303; p = 0.249 (7 points); saturation 0.2%
+    2.5/1e+12/alt         : surface-mode Gamma/H at d_min = 1e+03 pc 30.9, 300 pc 41.7, 100 pc 54.8, 30 pc 74, 10 pc 97.4, 3 pc 132, 1 pc 173, 0.00893 pc 313, 0.00268 pc 314; p = 0.249 (6 points); saturation 0.2%
+    4.0/1e+10/canonical   : surface-mode Gamma/H at d_min = 30 pc 97.6, 10 pc 126, 3 pc 169, 1 pc 221, 0.0081 pc 407, 0.00243 pc 408; p = 0.240 (4 points); saturation 0.2%
+    4.0/1e+10/alt         : surface-mode Gamma/H at d_min = 30 pc 103, 10 pc 133, 3 pc 178, 1 pc 233, 0.00893 pc 420, 0.00268 pc 420; p = 0.238 (3 points); saturation 0.2%
+    4.0/1e+11/canonical   : surface-mode Gamma/H at d_min = 100 pc 65.7, 30 pc 87.2, 10 pc 114, 3 pc 153, 1 pc 200, 0.0081 pc 370, 0.00243 pc 371; p = 0.242 (5 points); saturation 0.2%
+    4.0/1e+11/alt         : surface-mode Gamma/H at d_min = 100 pc 69.7, 30 pc 92.3, 10 pc 120, 3 pc 162, 1 pc 212, 0.00893 pc 382, 0.00268 pc 383; p = 0.240 (4 points); saturation 0.2%
+    4.0/1e+12/canonical   : surface-mode Gamma/H at d_min = 300 pc 45.8, 100 pc 59.2, 30 pc 79, 10 pc 103, 3 pc 139, 1 pc 183, 0.0081 pc 338, 0.00243 pc 338; p = 0.243 (6 points); saturation 0.2%
+    4.0/1e+12/alt         : surface-mode Gamma/H at d_min = 300 pc 48.6, 100 pc 62.7, 30 pc 83.7, 10 pc 109, 3 pc 147, 1 pc 193, 0.00893 pc 349, 0.00268 pc 350; p = 0.241 (5 points); saturation 0.2%
+  [PASS] B4b [added after B4's first run; pre-declared before its own] THE SURFACE MODE ISOLATED (cold matter, xi filter on): Gamma ~ d_min^(-p), p in [0.20, 0.30] on all 24 hosts (fit over 40 xi <= d_min <= min(1 kpc, 0.01 r_Y)), saturating within 10% between d_min = xi/3 and xi/10
+         measured: p in [0.238, 0.250] (hosts with a fit: 24); saturation max 0.2%; Gamma(xi/10)/H in [204, 451]
+    [22 s]
+
+================================================================================================================
+B5  (reported) H_Y's exact radial growth on DE12's OWN layers (t in (0,1) +- 30%), 1e6 K gas
+================================================================================================================
+    0.25/1e+10/canonical: 0, 0.25/1e+10/alt: 0, 0.25/1e+11/canonical: 0, 0.25/1e+11/alt: 0, 0.25/1e+12/canonical: 1.69, 0.25/1e+12/alt: 2.09, 1.0/1e+10/canonical: 0, 1.0/1e+10/alt: 0, 1.0/1e+11/canonical: 0, 1.0/1e+11/alt: 0, 1.0/1e+12/canonical: 1.54, 1.0/1e+12/alt: 2.93, 2.5/1e+10/canonical: 0, 2.5/1e+10/alt: 0, 2.5/1e+11/canonical: 0, 2.5/1e+11/alt: 0, 2.5/1e+12/canonical: 0, 2.5/1e+12/alt: 0, 4.0/1e+10/canonical: 0, 4.0/1e+10/alt: 0, 4.0/1e+11/canonical: 0, 4.0/1e+11/alt: 0, 4.0/1e+12/canonical: 0, 4.0/1e+12/alt: 0  [Gamma/H]
+  [PASS] B5 (reported) H_Y on DE12's own layers: the exact radial growth rate against DE12's gate (2e4 - 5e4 H at 1/kpc) and XR15's smoothed residual (1.1 - 2.8 H)
+         measured: max 2.93 H, median 0 H
+  [PASS] B6 (reported) the heat pair's metric coupling (the leafwise Laplacian depends on h_ij): its second variation is O(k^-1 g_ph/c^2) -- post-Newtonian and below the k^0 order; at k = 1/kpc its size relative to 1e6 K gas pressure
+         measured: max ratio 3.6e-47
+
+================================================================================================================
+VERDICT
+================================================================================================================
+  (b) DE12's mechanism is absent from H_Y: the WKB count of the full action finds no k^0 term except the gas's own pressure (B1: PASS), and DE12's convention (k = 1/kpc, 1e6 K) gives zero growth on all 24 hosts (B2: PASS).
+      H_Y's yield surfaces carry a divergent longitudinal susceptibility, Q'' = dx/dy ~ (y - y_th)^(-1/2): it enters the baryons'
+      k^-2 (Jeans) term; gas growth stays bounded and converged (B3: PASS; max 31.2 H); cold matter grows faster the finer it is resolved, Gamma ~ d_min^(-1/4), up to the xi filter: the isolated surface mode has p = 0.238-0.250 and reaches 204-451 H at xi (B4b: PASS);
+      B4 as declared (FAIL) fitted the whole domain's maximum, which at z >= 2.5 and d_min >= 1 kpc is an interior dense-gas mode (p down to 0.045).
+  Not 'closed'.  10/11 checks pass; load-bearing failures: 1.  Time 23 s.
+  wrote XR18_second_variation_results.json

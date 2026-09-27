@@ -1,0 +1,83 @@
+XR18 (c) + (d) -- THE BAND-PASS'S DEGREES OF FREEDOM WITH TWO HEAT DEPTHS, and the size of H_Y's leaf-average (<K>_h) global
+terms.
+
+WHY.  (d) FP5 (derivation_chain_2026/FP5_dof_and_a0_field.py, A3/B2) showed on the C-H core that the heat filter (W, L,
+lambda_0) is a second-class auxiliary sector: its block determinant is kernel-independent and its Schur complement only
+multiplies the tangent by sigma_n(k)^2.  FP9's band-pass reads the heat branch at TWO depths, chi = W_b - W_B, on FP7's AQUAL
+root (J on phi, the chassis on chi); H_Y's depth B = L(<K>_h)^2/2 and H_S's B[state] depend on leaf averages.  This lane builds
+explicit two-segment heat chains on FP7's unitary-gauge block and counts.
+(c) H_Y's y_th and L depend on <K>_h.  Varying the metric through <K>_h gives the field equations a term (Q/V) x (a local
+operator), Q = Int_leaf N sqrt(h) dL/d<K>: an intensive coefficient (the leaf-averaged sensitivity), not an O(1/V) one.  Its
+local operator reads K = nabla.n (the leaves' expansion: velocities) and sqrt(h), so it enters the Newtonian equations only at
+O(Phi/c^2).  This lane sizes it, both readings of the web's one-point field (Gaussian and halo), both footings, and
+states what conservation requires (XR18_state_separator.py N2 checks the translation Noether identity on leaves).
+
+PRE-DECLARED (written into this file before its first full run; no exploratory run was made for this file)
+ H1 [load-bearing] For explicit band-pass chains (n1, n2) = (1, 1), (1, 2), (2, 1), (2, 2) on FP7's unitary-gauge block: the
+    heat block's determinant is nonzero and independent of omega, C_phi, lambda, c_2 and alpha_c (second class, no dynamics);
+    its Schur complement onto (psi, n, B, phi) equals FP9's K2 block with h -> sigma_b(k) (1 - (1 + (B - b) k^2/n2)^(-n2)) exactly;
+    and deg_omega of the full scalar determinant is 4 (lambda > 0) and 2 (lambda = 0), with the heat block contributing 0:
+    N = 2 tensor + 2 scalar (lambda > 0) / + 1 (lambda = 0) -- the band-pass adds no mode.
+ H2 [load-bearing] The leaf-averaged depth adds no velocity: at k != 0 the leaf average's perturbation vanishes (the depth is a
+    constant on each leaf, H1 applies leaf by leaf), and at k = 0 the band-pass gain vanishes (h(0) = 0: the chassis does not
+    couple the homogeneous mode); the MOND sector's correction to the scale factor's kinetic coefficient through <K>_h is below
+    1e-5 of GR's at z = 0.25, 1, 2.5 (both footings, both readings) -- the Legendre map stays invertible.
+ H3 [load-bearing] H_Y's <K>_h global term is (v/c)^2-suppressed: the effective extra density it adds to the psi-equation,
+    rho_extra/rho_bar ~ 6 p' a0^2 y_th <x>/(4 pi G rho_bar c^2) (the yield) plus the band-pass's n-term, is below 1e-4 at z = 0.25,
+    1, 2.5 in both readings of <x> and both footings.
+The writer's expectation: all three pass.
+
+  *** MUTATE=1: the second heat segment gets a time derivative (a dynamical heat depth) -- D1 must FAIL ***
+
+================================================================================================================
+K1  CONTROL: a single-depth chain eliminated by Schur complement reproduces FP7's committed det M (sigma -> sigma_n)
+================================================================================================================
+    n = 1: Schur det == FP7's det(sigma -> (1 + b k^2/1)^-1): True   [2 s]
+    n = 2: Schur det == FP7's det(sigma -> (1 + b k^2/2)^-2): True   [4 s]
+  [PASS] K1 CONTROL: a single-depth heat chain on FP7's block, eliminated by Schur complement, gives FP7's committed det M with sigma -> sigma_n(k) = (1 + b k^2/n)^(-n) exactly (n = 1, 2)
+         measured: {1: True, 2: True}
+
+================================================================================================================
+D1  THE BAND-PASS (two heat depths): heat determinant, Schur complement, mode count
+================================================================================================================
+    (n1, n2) = (1, 1): heat det = -(b*k**2 + 1)**2*(B_d**2*k**4 + 2*B_d*k**2 + omega**2*tau_h**2 + 1) (free of omega/C_phi/lambda/c_2/alpha_c: False); Schur det == FP9 block with h = sigma_b (1 - (1 + (B - b) k^2/n2)^-n2): None; deg_omega of the full scalar det: lambda > 0 6, lambda = 0 4   [6 s]
+    (n1, n2) = (1, 2): heat det = (b*k**2 + 1)**2*(B_d**2*k**4 + 4*B_d*k**2 + 4*omega**2*tau_h**2 + 4)**2/16 (free of omega/C_phi/lambda/c_2/alpha_c: False); Schur det == FP9 block with h = sigma_b (1 - (1 + (B - b) k^2/n2)^-n2): None; deg_omega of the full scalar det: lambda > 0 8, lambda = 0 6   [10 s]
+    (n1, n2) = (2, 1): heat det = (b*k**2 + 2)**4*(B_d**2*k**4 + 2*B_d*k**2 + omega**2*tau_h**2 + 1)/16 (free of omega/C_phi/lambda/c_2/alpha_c: False); Schur det == FP9 block with h = sigma_b (1 - (1 + (B - b) k^2/n2)^-n2): None; deg_omega of the full scalar det: lambda > 0 6, lambda = 0 4   [13 s]
+    (n1, n2) = (2, 2): heat det = -(b*k**2 + 2)**4*(B_d**2*k**4 + 4*B_d*k**2 + 4*omega**2*tau_h**2 + 4)**2/256 (free of omega/C_phi/lambda/c_2/alpha_c: False); Schur det == FP9 block with h = sigma_b (1 - (1 + (B - b) k^2/n2)^-n2): None; deg_omega of the full scalar det: lambda > 0 8, lambda = 0 6   [19 s]
+  [FAIL] D1 [H1, pre-declared] THE BAND-PASS ADDS NO MODE: for explicit two-segment heat chains (n1, n2) = (1,1), (1,2), (2,1), (2,2) the heat block's determinant is nonzero and free of omega, C_phi, lambda, c_2, alpha_c (second class); the Schur complement is FP9's block with h = sigma_b(k)(1 - (1 + (B - b)k^2/n2)^(-n2)) exactly; the full scalar determinant has deg_omega = 4 (lambda > 0) and 2 (lambda = 0): 2 tensor + 2 scalar modes (+ 1 at lambda = 0), the heat pair adds none
+         measured: (1, 1): heat-free False, Schur None, deg {'True': 6, 'False': 4}; (1, 2): heat-free False, Schur None, deg {'True': 8, 'False': 6}; (2, 1): heat-free False, Schur None, deg {'True': 6, 'False': 4}; (2, 2): heat-free False, Schur None, deg {'True': 8, 'False': 6}
+  [PASS] D3 (reported) Dirac bookkeeping per point with n1 + n2 heat points (lambda > 0): (dim P - 2 N_FC - N_SC)/2 = 4 = 2 tensor + khronon + phi, independent of n1, n2, in the unitary-gauge and the covariant counting alike; in a plug (phi frozen by the yield) phi's pair drops and the local count is 3
+         measured: N_phys unitary gauge 4, covariant 4; plug 3/3
+         reading:  the first recorded main run mixed the two conventions (tau kept, lapse pair second class) and printed 5; corrected here (disclosed in XR18_README.md); the load-bearing count is D1's determinant degree
+
+================================================================================================================
+D2 C1  H_Y's <K>_h CHANNEL: the global coefficient's size (v/c)^2, both readings of the web, both footings
+================================================================================================================
+    z = 0.25 canonical gauss: <x> = 4.360e-02 (y_rms 2.38e-03, y_th 1.00e-06); rho_extra/rho_bar = 1.48e-05; kinetic correction / GR's = 3.50e-06
+    z = 0.25 canonical halo : <x> = 1.260e-02 (y_rms 2.38e-03, y_th 1.00e-06); rho_extra/rho_bar = 3.69e-07; kinetic correction / GR's = 9.14e-08
+    z = 0.25 alt       gauss: <x> = 3.983e-02 (y_rms 1.97e-03, y_th 1.00e-06); rho_extra/rho_bar = 1.65e-05; kinetic correction / GR's = 3.91e-06
+    z = 0.25 alt       halo : <x> = 1.059e-02 (y_rms 1.97e-03, y_th 1.00e-06); rho_extra/rho_bar = 3.26e-07; kinetic correction / GR's = 8.20e-08
+    z = 1.00 canonical gauss: <x> = 4.941e-02 (y_rms 3.15e-03, y_th 3.67e-05); rho_extra/rho_bar = 5.72e-06; kinetic correction / GR's = 2.49e-06
+    z = 1.00 canonical halo : <x> = 3.239e-03 (y_rms 3.15e-03, y_th 3.67e-05); rho_extra/rho_bar = 3.25e-08; kinetic correction / GR's = 2.90e-08
+    z = 1.00 alt       gauss: <x> = 4.510e-02 (y_rms 2.60e-03, y_th 3.67e-05); rho_extra/rho_bar = 6.45e-06; kinetic correction / GR's = 2.86e-06
+    z = 1.00 alt       halo : <x> = 2.645e-03 (y_rms 2.60e-03, y_th 3.67e-05); rho_extra/rho_bar = 3.82e-08; kinetic correction / GR's = 3.43e-08
+    z = 2.50 canonical gauss: <x> = 2.991e-17 (y_rms 2.89e-03, y_th 1.41e-02); rho_extra/rho_bar = 2.05e-20; kinetic correction / GR's = 2.27e-20
+    z = 2.50 canonical halo : <x> = 2.953e-05 (y_rms 2.89e-03, y_th 1.41e-02); rho_extra/rho_bar = 2.02e-08; kinetic correction / GR's = 2.24e-08
+    z = 2.50 alt       gauss: <x> = 1.722e-24 (y_rms 2.39e-03, y_th 1.41e-02); rho_extra/rho_bar = 1.72e-27; kinetic correction / GR's = 1.91e-27
+    z = 2.50 alt       halo : <x> = 2.250e-05 (y_rms 2.39e-03, y_th 1.41e-02); rho_extra/rho_bar = 2.25e-08; kinetic correction / GR's = 2.50e-08
+  [PASS] D2 [H2, pre-declared] THE LEAF-AVERAGED DEPTH ADDS NO VELOCITY: at k != 0 the depth is constant on each leaf (D1 applies leaf by leaf); at k = 0 the band-pass gain h(0) = 0 decouples the homogeneous mode from the chassis; the MOND sector's correction to the scale factor's kinetic coefficient through <K>_h stays below 1e-5 of GR's (z = 0.25, 1, 2.5; both footings; both readings)
+         measured: max correction 3.9e-06
+  [PASS] C1 [H3, pre-declared] H_Y's <K>_h GLOBAL TERM IS (v/c)^2-SUPPRESSED: its effective extra density in the psi-equation is below 1e-4 of rho_bar at z = 0.25, 1, 2.5 in both readings of <x> and both footings (unlike H_S's state functionals, which read Newtonian-order quantities: XR18_state_separator.py)
+         measured: max rho_extra/rho_bar 1.6e-05
+         reading:  local physics in H_Y depends on the whole leaf's state only through <K>_h, weighted by a0^2/(G rho c^2) ~ (v/c)^2; one distant structure changes <K>_h by its share of the leaf's volume
+  [PASS] C2 (reported) conservation: the leaf average is a covariant functional of (g, tau); the action is diffeomorphism invariant, so nabla_mu T^mu_nu = 0 holds for minimally coupled matter once every non-matter field equation holds -- the khronon's including its global (Q/V) term; the translation identity is checked on leaves in XR18_state_separator.py N2
+         measured: structural
+
+================================================================================================================
+VERDICT
+================================================================================================================
+  (d) The band-pass read at two heat depths is NOT second class as declared: extra modes appear (D1: FAIL); the count is FP7's: 2 tensor + khronon + phi (lambda > 0), phi dropping where the yield freezes it (Dirac bookkeeping, both conventions: 4/4, plug 3/3) (D3: PASS);
+      a leaf-averaged depth adds no velocity (D2: PASS; max 3.9e-06).
+  (c) H_Y's <K>_h channel is a real global term with an intensive coefficient, but (v/c)^2-suppressed (max rho_extra/rho_bar 1.6e-05) (C1: PASS).
+  Not 'closed'.  5/6 checks pass; load-bearing failures: 1.  Time 19 s.
+  wrote XR18_nonlocal_dof_results_MUTATE.json

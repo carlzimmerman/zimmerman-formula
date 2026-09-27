@@ -1,0 +1,199 @@
+XR18 (H_S) -- FP13's STATE SEPARATOR, AUDITED AS AN ACTION: what varying H_S's leaf-averaged state functionals puts into the
+field equations, whether the matter readout is something an action can read, and whether FRW growth across the q = 0 ramp
+is well posed.
+
+WHY.  FP13 (derivation_chain_2026/FP13_separator_from_state.py, 27faacc84) replaced FP9's four declared constants by state
+functionals (per 1/16 pi G, c = 1):
+  chi = (S_xi - S_B) phi,  B = L^2/2 fixed by <(S_B delta_m)^2>_h = delta_c^2 (delta_c = 1.686),
+  delta_m = D_i(a^i - D^i chi)/(<K>_h^2/6 - Lambda/2)   (the MATTER readout: the chassis's Newtonian combination),
+  J_Y = J_P2 + 2 y_th sqrt(Y),  y_th = c_y <|(S_xi - S_B)(a - D chi)|^2>_h^(1/2)/a0 x max(0, 2q),  2q = 1 + Omega_r - 9 Lambda/<K>_h^2,
+  c_y = 1, the ramp switching the yield off once the leaf accelerates (z = 0.635); FP7's lambda > 0 required.
+FP13 A1 checked that the derivative of the leaf-averaged VARIANCE with respect to a local field is O(1/V) and concluded that
+the state-length term "adds no local term to the field equations"; its scoring then treats L(a) and y_th(a) as given
+background functions.  But the action depends on B (and y_th) through an integral over the whole leaf, dS/dB = O(V), so the
+variation through the state functional is O(V) x O(1/V) = O(1): a LOCAL term with a leaf-averaged (intensive) coefficient.
+This lane derives those terms, measures them on FP13's own headline state, and asks what they do.
+
+THE MEAN-FIELD TERMS (derived here; weak field, psi = Phi - chi the Newtonian combination, delta_m = lap psi/(4 pi G rho_bar)):
+  (B)  d^2 S = (dS/dB) d^2 B = E_B Int (S_B d delta_m)^2 d^3x,   E_B = <dL/dB>/(2 <|grad S_B delta_m|^2>) > 0,
+       <dL/dB> = rho_bar <delta lap S_B phi> = 4 pi G rho_bar^2 Int Delta^2 h C^Q e^(-B k^2) dln k  (phi_k = -4 pi G h C^Q rho_bar delta_k/k^2);
+       in the psi-equation: psi_k = -4 pi G rho_k/(k^2 (1 - R_B)),  R_B(k) = [Int Delta^2 h C^Q e^(-Bk'^2) / Int k'^2 Delta^2 e^(-2Bk'^2)] k^2 e^(-2Bk^2)
+       -- an ENHANCEMENT of Newtonian gravity at k ~ 1/L, singular at R_B = 1; UV-suppressed as e^(-2Bk^2) (DE12's mechanism evaded).
+  (Y)  d^2 S = (dS/dy_th) d^2 y_th = -(a0 <x> c_y 2q / (8 pi G g_rms)) Int |d g_bp|^2 d^3x  (x = |grad phi|/a0; <x> the leaf mean)
+       -- an extra gradient energy on psi: psi_k = -4 pi G rho_k/(k^2 (1 + kappa h^2 - R_B)),  kappa = c_y 2q <x>/y_rms (y_rms = g_rms/a0):
+       a SCREENING of sub-L Newtonian gravity at z > 0.635 (the MOND scalar's own source B^T rho is not screened).
+  Both act on psi only; their coefficients are leaf averages of the whole state (the power spectrum, the MOND response, the
+  one-point distribution of |g_bp|), so local physics depends on the whole leaf's state; one distant structure changes them
+  by its share of the leaf (~V_struct/V_leaf).
+
+PRE-DECLARED (written into this file before its first full run; this file is written after the coordinator's 2026-09-27
+redirect; exploratory runs disclosed in XR18_README.md: none for this file beyond reading FP13's committed outputs)
+ HS1 [load-bearing] THE LOCAL TERM EXISTS: on periodic leaves with a fixed cell size (N = 8, 16, 32), for an action whose only
+     dependence on the density contrast is through B[delta] (a leaf-averaged variance condition), the derivative of B itself
+     scales as 1/V (FP13 A1 reproduced: N^3 |dB/d delta| N-independent within 20%), while the ACTION's gradient per cell is
+     N-independent (within 20%) and equals the derived 2 E_B (S_B^2 delta)(x) within 5%: FP13 A1's "adds no local term" does
+     not hold for the action.
+ HS2 [load-bearing] MOMENTUM IS CONSERVED WITH THE MEAN-FIELD TERMS: the net mean-field force Int delta grad(S_B^2 delta) (the
+     translation Noether identity, the leaf average being translation-covariant) vanishes to 1e-10 relative on the leaves.
+ HS3 [load-bearing] ON FP13's HEADLINE STATE THE B-TERM IS BOUNDED AND DOES NOT MOVE sigma_8 OUT OF THE BAND: R_B(k) < 1 at
+     every scanned epoch z = 0 .. 3 (the psi-constraint stays regular), and sigma_8 with the B-term in the growth yardstick stays in
+     [0.922, 1.05] on both footings and both modes.
+ HS4 [load-bearing; the adversarial one] THE Y-TERM IS O(1) IN FP13's OWN (GAUSSIAN, PER-MODE) READING OF THE WEB: with the
+     band-passed field's one-point distribution Gaussian (Maxwell |g|, the reading FP13's per-mode yardstick implies),
+     kappa(z = 1 .. 3) > 1 and the flagship (1e10, 1e11 at 0.1 a0, z = 2.5) moves by more than 0.05 dex once the Newtonian part is
+     screened; with a halo-dominated field (Press-Schechter halos, FP9's yield-law bubbles) kappa < 0.1.
+ HS5 [load-bearing] FRW GROWTH ACROSS THE q = 0 RAMP IS WELL POSED: with the ramp smoothed (softplus width eps), sigma_8 converges
+     monotonically to FP13's value (within 1e-4 at the smallest eps); every sigma_8 mode crosses the yield at most once (y_th
+     falls, the field grows); the chord G_eff is continuous through z = 0.635 with the ramp (the step variant's jump is reported).
+ HS6 [load-bearing] lambda AT THE SWITCH-OFF: on exact FRW with the band-pass closed (h = 0) FP7's block determinant is
+     proportional to lambda (phi has no equation at lambda = 0: FP13 A1 reproduced from FP7's committed det); with structure, the
+     rate at which phi un-freezes, omega_r = c k sqrt(C_L^phi/lambda_eff), exceeds 10 H(z = 0.635) for every sub-L sigma_8 mode
+     (h >= 0.4) at lambda <= 100 for c_2 = 7.29e-3 and c_2 -> oo (FP14): the quasi-static yardstick holds through the switch-off.
+ HS7 [load-bearing; the shared yield structure] at z >= 1 H_S's yield surfaces on DE12's hosts (z = 1, 2.5, 4; three masses; both
+     footings) obey criterion B's causal part (all roots of the exact block real and >= 0) and the degenerate exponents
+     (C_L ~ d^(0.50 +- 0.02)).
+The writer's expectation before running: HS1, HS2, HS5, HS6, HS7 pass; HS3 is uncertain (a rough estimate put R_B ~ 0.5 at
+z = 0.25); HS4 is uncertain in both parts.
+
+  FP13's machinery exec'd read-only (module + main()'s body up to its K banner; FP9/FP6 inside); a0 = 9.3603e-11 / 1.1312e-10; q = 0 at z = 0.6348   [0 s]
+
+================================================================================================================
+K1  CONTROL: FP13's committed headline (H_S), recomputed with its own machinery
+================================================================================================================
+    sigma_8: can/rms: 1.018447, can/permode: 1.020241, alt/rms: 1.020756, alt/permode: 1.022713; KiDS {'canonical': -6.245165925136391, 'alt': -7.6713257751607955}; KiDS@0.4 {'canonical': -7.828340447585006, 'alt': -10.667762173928935}; L(0.25) = 1913.7 kpc; y_th(2.5) = 1.1027e-02
+  [PASS] K1 CONTROL: FP13's machinery, exec'd read-only, reproduces FP13's committed H_S headline -- L(z) and y_th(z) tables, sigma_8 (4), forest (4), flagships (4), SPARC (2), KiDS at z = 0.25/0.4/0.7 (6)
+         measured: max relative deviation 0.0e+00 over 35 numbers
+    [1 s]
+
+================================================================================================================
+K2  CONTROL: FP7's committed det M at sigma -> 0 (band-pass closed), C_phi = 0: proportional to lambda (FP13 A1)
+================================================================================================================
+    det M(sigma = 0, C_phi = 0) = -64*k**6*lam_*omega**2*(alpha_c*c_2*k**2 + 3*alpha_c*c_2*omega**2 + 2*alpha_c*omega**2 - 2*c_2*k**2);  at lambda = 0: 0
+  [PASS] K2 CONTROL: FP7's committed zero-field det M with the band-pass closed (sigma -> 0) and no yield (C_phi = 0) equals FP13 A1's printed determinant and vanishes identically at lambda = 0 (phi has no equation)
+         measured: match True
+
+================================================================================================================
+N1 N2  THE LOCAL MEAN-FIELD TERM ON PERIODIC LEAVES (fixed cell size), and momentum conservation
+================================================================================================================
+    N =  8: B = 2.0000; rms dB/d delta_j = 3.906e-04 (x N^3 = 0.200); rms dS/d delta_j = 1.9986 (dS/dB = -5116.2); FD vs derived 2 E_B S_B^2 delta: max dev 2.5e-08; net mean-field force / sum |.| = 5.1e-17
+    N = 16: B = 2.0000; rms dB/d delta_j = 4.883e-05 (x N^3 = 0.200); rms dS/d delta_j = 1.9986 (dS/dB = -40929.8); FD vs derived 2 E_B S_B^2 delta: max dev 2.6e-07; net mean-field force / sum |.| = 6.3e-17
+    N = 32: B = 2.0000; rms dB/d delta_j = 6.104e-06 (x N^3 = 0.200); rms dS/d delta_j = 1.9986 (dS/dB = -327438.4); FD vs derived 2 E_B S_B^2 delta: max dev 9.9e-07; net mean-field force / sum |.| = 3.4e-17
+  [PASS] N1 [HS1, pre-declared] THE LOCAL TERM EXISTS: on periodic leaves of fixed cell size the derivative of B[delta] scales as 1/V (N^3 |dB/d delta| is N-independent: FP13 A1's check reproduced), but the ACTION's gradient per cell through B is N-independent and equals the derived mean-field form (dS/dB)(dB/d delta) = 2 E_B (S_B^2 delta)(x): FP13 A1's 'adds no local term to the field equations' does not hold for the action
+         measured: N^3 rms dB/d delta: [0.2, 0.2, 0.2]; rms dS/d delta: [1.9986, 1.9986, 1.9986]; FD vs derived max dev 9.9e-07
+         reading:  dS/dB is an integral over the whole leaf (O(V)); the O(1/V) derivative of the leaf average multiplies it: an O(1) local force with a leaf-averaged coefficient -- a mean field
+  [PASS] N2 [HS2, pre-declared] MOMENTUM IS CONSERVED WITH THE MEAN-FIELD TERM: the net force Sum delta grad(S_B^2 delta) vanishes on every leaf (the leaf average is translation-covariant; the Noether identity of the full diffeomorphism-invariant action then gives matter conservation on shell, the global terms included)
+         measured: max |net|/Sum|.| = 6.3e-17
+         reading:  MUTATE's position-weighted window breaks translation covariance and must fail this
+    [1 s]
+
+================================================================================================================
+N3 N4  THE MEAN-FIELD COEFFICIENTS ON FP13's HEADLINE STATE: R_B(k, z) and kappa(z), and what they do
+================================================================================================================
+    canonical z = 0.000: max_k R_B = 7.473 at k = 0.50 h/Mpc (rms chord: 7.346; R_B at 1/1 Mpc 0.043, at 1/0.3 Mpc 1.59e-34); R_B >= 1 on k = 0.12-1.03 h/Mpc; y_rms = 7.05e-03; kappa: Gaussian reading 0.000, halo reading 0.00e+00
+    canonical z = 0.250: max_k R_B = 7.116 at k = 0.60 h/Mpc (rms chord: 8.094; R_B at 1/1 Mpc 0.367, at 1/0.3 Mpc 2.56e-23); R_B >= 1 on k = 0.16-1.24 h/Mpc; y_rms = 8.76e-03; kappa: Gaussian reading 0.000, halo reading 0.00e+00
+    canonical z = 0.500: max_k R_B = 7.096 at k = 0.72 h/Mpc (rms chord: 8.937; R_B at 1/1 Mpc 1.460, at 1/0.3 Mpc 1.10e-15); R_B >= 1 on k = 0.19-1.48 h/Mpc; y_rms = 1.01e-02; kappa: Gaussian reading 0.000, halo reading 0.00e+00
+    canonical z = 0.635: max_k R_B = 6.917 at k = 0.79 h/Mpc (rms chord: 8.867; R_B at 1/1 Mpc 2.354, at 1/0.3 Mpc 1.11e-12); R_B >= 1 on k = 0.21-1.62 h/Mpc; y_rms = 1.06e-02; kappa: Gaussian reading 0.002, halo reading 4.13e-05
+    canonical z = 0.800: max_k R_B = 2.602 at k = 0.94 h/Mpc (rms chord: 0.000; R_B at 1/1 Mpc 1.376, at 1/0.3 Mpc 3.27e-10); R_B >= 1 on k = 0.39-1.62 h/Mpc; y_rms = 1.12e-02; kappa: Gaussian reading 1.295, halo reading 2.97e-03
+    canonical z = 1.000: max_k R_B = 0.000 at k = 1.03 h/Mpc (rms chord: 0.000; R_B at 1/1 Mpc 0.000, at 1/0.3 Mpc 1.91e-308); R_B >= 1 on k = none; y_rms = 1.18e-02; kappa: Gaussian reading 2.089, halo reading 2.93e-03
+    canonical z = 1.500: max_k R_B = 0.000 at k = 1.48 h/Mpc (rms chord: 0.000; R_B at 1/1 Mpc 0.000, at 1/0.3 Mpc 1.57e-304); R_B >= 1 on k = none; y_rms = 1.27e-02; kappa: Gaussian reading 2.412, halo reading 2.76e-03
+    canonical z = 2.000: max_k R_B = 0.000 at k = 1.94 h/Mpc (rms chord: 0.000; R_B at 1/1 Mpc 0.000, at 1/0.3 Mpc 1.15e-302); R_B >= 1 on k = none; y_rms = 1.30e-02; kappa: Gaussian reading 2.207, halo reading 2.67e-03
+    canonical z = 2.500: max_k R_B = 0.000 at k = 2.53 h/Mpc (rms chord: 0.000; R_B at 1/1 Mpc 0.000, at 1/0.3 Mpc 8.97e-302); R_B >= 1 on k = none; y_rms = 1.29e-02; kappa: Gaussian reading 2.038, halo reading 2.61e-03
+    canonical z = 3.000: max_k R_B = 0.000 at k = 3.31 h/Mpc (rms chord: 0.000; R_B at 1/1 Mpc 0.000, at 1/0.3 Mpc 2.28e-301); R_B >= 1 on k = none; y_rms = 1.26e-02; kappa: Gaussian reading 1.938, halo reading 2.58e-03
+    alt       z = 0.000: max_k R_B = 8.133 at k = 0.50 h/Mpc (rms chord: 7.818; R_B at 1/1 Mpc 0.047, at 1/0.3 Mpc 1.73e-34); R_B >= 1 on k = 0.12-1.03 h/Mpc; y_rms = 5.83e-03; kappa: Gaussian reading 0.000, halo reading 0.00e+00
+    alt       z = 0.250: max_k R_B = 7.780 at k = 0.60 h/Mpc (rms chord: 8.739; R_B at 1/1 Mpc 0.401, at 1/0.3 Mpc 2.80e-23); R_B >= 1 on k = 0.14-1.24 h/Mpc; y_rms = 7.25e-03; kappa: Gaussian reading 0.000, halo reading 0.00e+00
+    alt       z = 0.500: max_k R_B = 7.801 at k = 0.72 h/Mpc (rms chord: 9.787; R_B at 1/1 Mpc 1.605, at 1/0.3 Mpc 1.21e-15); R_B >= 1 on k = 0.17-1.48 h/Mpc; y_rms = 8.36e-03; kappa: Gaussian reading 0.000, halo reading 0.00e+00
+    alt       z = 0.635: max_k R_B = 7.624 at k = 0.79 h/Mpc (rms chord: 9.760; R_B at 1/1 Mpc 2.595, at 1/0.3 Mpc 1.22e-12); R_B >= 1 on k = 0.19-1.62 h/Mpc; y_rms = 8.75e-03; kappa: Gaussian reading 0.002, halo reading 4.55e-05
+    alt       z = 0.800: max_k R_B = 2.868 at k = 0.94 h/Mpc (rms chord: 0.000; R_B at 1/1 Mpc 1.516, at 1/0.3 Mpc 3.61e-10); R_B >= 1 on k = 0.39-1.62 h/Mpc; y_rms = 9.23e-03; kappa: Gaussian reading 1.436, halo reading 3.29e-03
+    alt       z = 1.000: max_k R_B = 0.000 at k = 1.03 h/Mpc (rms chord: 0.000; R_B at 1/1 Mpc 0.000, at 1/0.3 Mpc 1.91e-308); R_B >= 1 on k = none; y_rms = 9.76e-03; kappa: Gaussian reading 2.314, halo reading 3.25e-03
+    alt       z = 1.500: max_k R_B = 0.000 at k = 1.48 h/Mpc (rms chord: 0.000; R_B at 1/1 Mpc 0.000, at 1/0.3 Mpc 1.57e-304); R_B >= 1 on k = none; y_rms = 1.05e-02; kappa: Gaussian reading 2.671, halo reading 3.08e-03
+    alt       z = 2.000: max_k R_B = 0.000 at k = 1.94 h/Mpc (rms chord: 0.000; R_B at 1/1 Mpc 0.000, at 1/0.3 Mpc 1.15e-302); R_B >= 1 on k = none; y_rms = 1.07e-02; kappa: Gaussian reading 2.442, halo reading 2.98e-03
+    alt       z = 2.500: max_k R_B = 0.000 at k = 2.53 h/Mpc (rms chord: 0.000; R_B at 1/1 Mpc 0.000, at 1/0.3 Mpc 8.97e-302); R_B >= 1 on k = none; y_rms = 1.07e-02; kappa: Gaussian reading 2.255, halo reading 2.92e-03
+    alt       z = 3.000: max_k R_B = 0.000 at k = 3.31 h/Mpc (rms chord: 0.000; R_B at 1/1 Mpc 0.000, at 1/0.3 Mpc 2.28e-301); R_B >= 1 on k = none; y_rms = 1.04e-02; kappa: Gaussian reading 2.144, halo reading 2.88e-03
+    [1 s]
+    ('canonical', 'rms'): {'fp13': 1.0184469972511851, 'rebuilt': 1.0184469972511851, 'B': 126.56954735142456, 'B_Ygauss': 131.39847699150073, 'B_Yhalo': 126.58301924180168}
+    ('canonical', 'permode'): {'fp13': 1.0202412194030035, 'rebuilt': 1.0202412194030035, 'B': 666.8506892377357, 'B_Ygauss': 2512.884800308691, 'B_Yhalo': 669.041751254195}
+    ('canonical', 'forest', 'B'): 0.0
+    ('canonical', 'forest', 'B+Y gauss'): 0.13651586836983387
+    ('canonical', 'forest', 'B+Y halo'): 0.00040869468154858257
+    ('alt', 'rms'): {'fp13': 1.0207561808796728, 'rebuilt': 1.0207561808796728, 'B': 154.4897636458079, 'B_Ygauss': 160.33255606078436, 'B_Yhalo': 154.50600028779843}
+    ('alt', 'permode'): {'fp13': 1.0227126772232236, 'rebuilt': 1.0227126772232236, 'B': 748.9231739389501, 'B_Ygauss': 3485.8863416588233, 'B_Yhalo': 750.6963602423863}
+    ('alt', 'forest', 'B'): 0.0
+    ('alt', 'forest', 'B+Y gauss'): 0.14340537833107225
+    ('alt', 'forest', 'B+Y halo'): 0.0004561421853328529
+    lattice q = 2 pi 1/32 = 0.196 (q L = 0.48): B-part/Newton = +1.6575, derived R_B = 1.5374
+    lattice q = 2 pi 2/32 = 0.393 (q L = 0.96): B-part/Newton = +3.0724, derived R_B = 3.0723
+    lattice q = 2 pi 3/32 = 0.589 (q L = 1.44): B-part/Newton = +2.1792, derived R_B = 2.1744
+    lattice q = 2 pi 4/32 = 0.785 (q L = 1.92): B-part/Newton = +0.7659, derived R_B = 0.7656
+    lattice q = 2 pi 5/32 = 0.982 (q L = 2.40): B-part/Newton = +0.1492, derived R_B = 0.1492
+    lattice q = 2 pi 6/32 = 1.178 (q L = 2.89): B-part/Newton = +0.0169, derived R_B = 0.0169
+  [PASS] N3b [added after the first run; pre-declared before its own] THE B-TERM, INDEPENDENTLY: the exact second derivative of the linearised H_S reduced action on a 32^3 leaf (B re-solved from the variance condition at every step) carries a B-part that is positive (adds to gravity's drive) and equals the derived R_B(q) x the Newtonian part within 10%, q = 2 pi j/32, j = 1..6
+         measured: B0 = 3.000 cells^2; max relative deviation 7.81e-02; B-part/Newton at q ~ 1/L: 3.072
+         reading:  the mean-field term is the action's own second variation: adding variance raises B, which lets more of the web's MOND potential into chi, which binds all matter deeper -- a destabilising term whose size scales with the web's MOND energy
+  [FAIL] N3 [HS3, pre-declared] THE B-TERM ON FP13's HEADLINE STATE: max_k R_B < 1 at every scanned epoch (the psi-constraint's symbol k^2 (1 - R_B) stays regular) and sigma_8 with the B-term in the growth yardstick stays in [0.922, 1.05], both footings, both modes
+         measured: max R_B over z = 0..3 and both footings 8.133; sigma_8 with the B-term 126.5695-748.9232 (FP13: 1.0184-1.0227; this lane's rebuild of FP13's yardstick without the terms: max dev 0.0e+00); forest with the B-term 0
+         reading:  R_B multiplies the Newtonian response by 1/(1 - R_B) at k ~ 1/L: a real, derived part of H_S's physics that FP13's yardstick (L(a) as a given function) leaves out; where R_B >= 1 the psi-constraint's symbol k^2 (1 - R_B) vanishes or flips (a singular constraint), and the sigma_8 numbers of the floored yardstick are then not meaningful
+    kappa at z = 2.5: Gaussian {'canonical': 2.0377429234831417, 'alt': 2.254950519959104}, halo {'canonical': 0.0026135811656333506, 'alt': 0.0029158648266642832}; flagship shift from the screened Newtonian part (0.1 a0, r_F << L): Gaussian {'canonical': -0.1013, 'alt': -0.1045} dex, halo {'canonical': -0.00035, 'alt': -0.00039} dex; sigma_8 with B + Y (Gaussian / halo): {"('canonical', 'rms')": (131.3985, 126.583), "('canonical', 'permode')": (2512.8848, 669.0418), "('alt', 'rms')": (160.3326, 154.506), "('alt', 'permode')": (3485.8863, 750.6964)}
+  [PASS] N4 [HS4, pre-declared] THE Y-TERM IS O(1) IN FP13's OWN GAUSSIAN READING OF THE WEB: kappa(z = 1..3) > 1 and the 1e11 flagship moves by > 0.05 dex once its Newtonian part is screened; in a halo-dominated reading kappa < 0.1
+         measured: kappa_Gauss(z = 1..3) in [1.938, 2.671]; flagship shift (Gauss) -0.1045..-0.1013 dex; kappa_halo(z = 1..3) in [2.58e-03, 3.25e-03]; forest with B+Y (Gauss/halo) 0.143/0.000456
+         reading:  which reading holds is a property of H_S's own nonlinear web (the one-point distribution of |g_bp| at z > 0.635) -- a PM run's job, and only if the run carries the y-term
+    [20 s]
+    the leaf-averaged read's k^0-type coefficient at k = 1/kpc relative to 1e6 K gas pressure: max 0.0e+00 (e^(-2Bk^2) with L >= 100 kpc)
+  [PASS] R1 (item 2) THE MATTER READOUT: D_i a^i contains no time derivative (a_i = D_i ln N; the lapse stays non-dynamical: no Ostrogradsky mode, no new velocity); the only structural change is the psi-constraint's symbol k^2 (1 + kappa h^2 - R_B) (N3); the read's k^0-type second variation is smoothed by S_B, so DE12's UV mechanism (Gamma = c_gate k) is absent: at k = 1/kpc it is negligible against gas pressure
+         measured: max relative size at 1/kpc 0.0e+00
+
+================================================================================================================
+Q1  FRW GROWTH ACROSS THE q = 0 RAMP: smoothed ramp (eps -> 0), single crossings, continuity of the chord G_eff
+================================================================================================================
+    sigma_8 (canonical) with the ramp smoothed: eps 0.05: rms 1.018015, per-mode 1.019544; eps 0.01: rms 1.018435, per-mode 1.020216; eps 0.002: rms 1.018447, per-mode 1.020241; eps 0: rms 1.018447, per-mode 1.020241
+    the sigma_8 modes' first above-yield epochs (canonical, grid z = 3 -> 0.5): z = 0.619 - 0.876 (48 of 48 modes cross; none within 0.02 of z_q0 = 0.6348: False)
+    FP13's tabulated (interpolated) y_th near z_q0: z - z_q0 = +0.020: 2.86e-04, z - z_q0 = +0.000: 9.82e-05, z - z_q0 = -0.005: 5.10e-05, z - z_q0 = -0.010: 3.64e-06, z - z_q0 = -0.011: 0.00e+00
+    per-mode crossings of the yield (canonical, 48 sigma_8 modes, z = 3 -> 0.5): max 1; the chord G_eff's largest step near z = 0.635: ramp 5.936e-01 (dz = 1e-3) -> 5.985e-02 (dz = 1e-4), shrink x9.92; step variant 2.404e+01 -> 9.126e+00, shrink x2.63
+  [PASS] Q1 [HS5, pre-declared] FRW GROWTH ACROSS THE q = 0 RAMP IS WELL POSED: the smoothed ramp's sigma_8 converges monotonically to FP13's (within 1e-4 at eps = 0.002), every sigma_8 mode crosses the yield at most once, and the chord G_eff is continuous through z = 0.635 with the ramp (its largest epoch step shrinks under 10x refinement; a jump would not); the step variant's jump is reported
+         measured: |d sigma_8| at eps 0.05/0.01/0.002: 7.0e-04/2.5e-05/1.1e-07; max crossings 1; ramp step shrinks x9.92; step-variant step shrinks x2.63 (24.04 -> 9.13)
+         reading:  some sigma_8 modes cross the ramp's yield within 0.02 of z_q0 (printed); FP13's y_th(a) is a linearly interpolated table (printed: its zero sits below z_q0), so the step variant is also a linear ramp across one table cell; its step shrinking by ~sqrt(10) marks sqrt onsets, not a jump.  Development record (XR18_README.md): a one-grid 5x test was replaced by this refinement test before the recorded runs, and the first recorded main run's step included growth_aq's appended z = 0 epoch (fixed; MUTATE and main re-run)
+    [20 s]
+
+================================================================================================================
+Q2  lambda AT THE SWITCH-OFF: how fast phi un-freezes when the yield vanishes (z = 0.635)
+================================================================================================================
+    ('c2=7.29e-3', 0.0): min over sub-L sigma_8 modes (h >= 0.4) of omega_r/H = 127
+    ('c2=7.29e-3', 1.0): min over sub-L sigma_8 modes (h >= 0.4) of omega_r/H = 127
+    ('c2=7.29e-3', 100.0): min over sub-L sigma_8 modes (h >= 0.4) of omega_r/H = 79.3
+    ('c2=7.29e-3', 10000.0): min over sub-L sigma_8 modes (h >= 0.4) of omega_r/H = 9.97
+    ('c2->oo', 0.0): min over sub-L sigma_8 modes (h >= 0.4) of omega_r/H = 1.22e+03
+    ('c2->oo', 1.0): min over sub-L sigma_8 modes (h >= 0.4) of omega_r/H = 781
+    ('c2->oo', 100.0): min over sub-L sigma_8 modes (h >= 0.4) of omega_r/H = 99.7
+    ('c2->oo', 10000.0): min over sub-L sigma_8 modes (h >= 0.4) of omega_r/H = 10
+  [PASS] Q2 [HS6, pre-declared] lambda AT THE SWITCH-OFF: on exact FRW with the band-pass closed phi has no equation at lambda = 0 (K2); with structure phi un-freezes at omega_r = c k sqrt(C_L^phi/lambda_eff) > 10 H for every sub-L sigma_8 mode at lambda <= 100, for c_2 = 7.29e-3 and c_2 -> oo: the quasi-static yardstick holds through z = 0.635
+         measured: c2=7.29e-3, lambda 0: 127; c2=7.29e-3, lambda 1: 127; c2=7.29e-3, lambda 100: 79.3; c2=7.29e-3, lambda 10000: 9.97; c2->oo, lambda 0: 1.22e+03; c2->oo, lambda 1: 781; c2->oo, lambda 100: 99.7; c2->oo, lambda 10000: 10
+         reading:  lambda > 0 is what keeps phi determined where the band-pass closes and the yield vanishes; its value only sets the un-freezing rate, which stays fast unless lambda >~ 1e4
+
+================================================================================================================
+Y1  THE SHARED YIELD STRUCTURE AT H_S's z >= 1 YIELD SURFACES: criterion B's roots and the surface exponents
+================================================================================================================
+  [PASS] Y1 [HS7, pre-declared] THE SHARED YIELD STRUCTURE: at H_S's z >= 1 yield surfaces on DE12's hosts every root of the exact block is real and >= 0 (criterion B's causal part) and C_L ~ d^(0.50 +- 0.02); for z < 0.635 there is no yield, and the zeros of the band-passed field carry the same (y)^(-1/2) susceptibility (the plain P2 zero-field limit)
+         measured: violations 0 of 138240; slopes [0.5000, 0.5001] (18 surfaces)
+    [21 s]
+  [PASS] R2 (reported) THE RAMP: max(0, 2q) is Lipschitz in <K>_h, so the action is well defined; its <K>-derivative jumps at q = 0 by the printed finite amount (a coefficient jump in the (v/c)^2-suppressed khronon channel, no delta-function force); the y-term's coefficient kappa is proportional to 2q and continuous
+         measured: d(2q)/d<K> at q = 0: 2/(3*sqrt(Lambda)) (left 0)
+
+================================================================================================================
+VERDICT
+================================================================================================================
+  (H_S) 1. Nonlocality: varying the action through B[state] and y_th[state] gives O(1) LOCAL mean-field terms with leaf-averaged coefficients (N1: PASS); momentum is conserved with them (N2: PASS).  On FP13's headline state the B-term
+        multiplies Newtonian gravity at k ~ 1/L by 1/(1 - R_B), max R_B = 8.133 (N3: FAIL; independent lattice check N3b:
+        PASS); the y-term screens sub-L Newtonian gravity at z > 0.635 by 1/(1 + kappa h^2), kappa = 1.94-2.67 in FP13's Gaussian reading and 2.6e-03-3.3e-03 in a halo
+        reading (N4: PASS).
+      2. The matter readout adds no time derivative and no mode; it changes the psi-constraint's symbol to k^2 (1 + kappa h^2 - R_B),
+         singular where R_B = 1 + kappa h^2 (on FP13's state at z <= 0.635, where kappa <= 0.002: wherever R_B ~ 1); DE12's UV mechanism
+         is absent (R1: PASS).
+      3. The q = 0 ramp: |d sigma_8| 7.0e-04/2.5e-05/1.1e-07 at eps = 0.05/0.01/0.002, at most 1 crossing per sigma_8
+         mode, the chord's largest step through z_q0 shrinks x9.9 under 10x refinement (Q1: PASS); lambda > 0 keeps phi
+         determined where the yield vanishes, un-freezing at >= 79 H for lambda <= 100 (Q2: PASS).
+      Shared yield structure (criterion B's roots, d^(1/2) exponents) at H_S's z >= 1 surfaces (Y1: PASS).
+      Particle mesh: as formulated (B and y_th read from the state and varied), H_S's linearised psi-constraint is singular: R_B >= 1
+      on k = 0.12-1.62 h/Mpc at z <= 0.635, where the y-term is off or negligible (kappa <= 0.002; max R_B 8.1); if B is not varied, the field equations are
+      not an action's.  A PM run of H_S as it stands would evolve an ill-posed (or non-conservative) system; it should wait for a
+      reformulation of the state read.
+  Not 'closed'.  11/12 checks pass; load-bearing failures: 1.  Time 21 s.
+  wrote XR18_state_separator_results.json

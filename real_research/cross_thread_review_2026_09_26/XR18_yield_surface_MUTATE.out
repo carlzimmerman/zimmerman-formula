@@ -1,0 +1,123 @@
+XR18 (a) -- H_Y's YIELD SURFACE: characteristic speeds on each side and at the surface, the record's causality criterion B,
+and whether the Cauchy problem is well posed across it.
+
+WHY.  FP9 (derivation_chain_2026/FP9_web_galaxy_separator.py, b510eebfe) adds the yield floor J_Y = J_P2(Y) + 2 y_th sqrt(Y).
+Its flux is F(x) = F_P2(x) + y_th (x = |grad phi|/a0), so phi is frozen wherever the band-passed source is below y_th a0
+and flows above it: a free boundary (Bingham type).  The sqrt term adds nothing to the longitudinal stiffness
+C_L = J' + 2Y J'' = F_P2'(x) and y_th/x to the transverse one, C_T = F/x: at the surface (x -> 0+) C_L -> 0 and C_T -> oo.
+With phi's inertia 2 lambda (n.d phi)^2 (and the khronon's, locked to phi by the chassis) this is a degenerate hyperbolic
+problem.  FP9's H2b showed E stays in the BPS window at every field; this lane computes the speeds, checks criterion B as
+the record defines it, and tests the linearised Cauchy problem across the surface.
+
+CRITERION B (qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md, requirement 7 as amended 2026-09-26): the theory
+must admit a global time function (the khronon's) compatible with every characteristic cone, including degenerate cones
+lying in its leaves; no signal may propagate backward in that time and there may be no closed causal curves;
+superluminal or leafwise-instantaneous propagation is allowed; the mixed Cauchy problem must be well posed.
+
+THE BLOCK.  FP7's unitary-gauge Minkowski block (B3, committed det M) with the filter factor sigma -> h (FP9 K2) and the
+MOND stiffness C_phi -> C(theta) = C_T sin^2 theta + C_L cos^2 theta for a plane wave at angle theta to grad phi (frozen
+coefficients).  Its roots U = omega^2/k^2: principal part (k >> 1/xi, h -> 0): phi's own cone U = C(theta)/lambda and the
+BPS khronon U_K = c_2 (2 - alpha_c)/(alpha_c (2 + 3 c_2)) (E = alpha_c); effective (1/L << k << 1/xi, h ~ 1): the coupled
+slow and fast roots.  Backgrounds: FP9's spherical H_Y law (point mass, band-passed field, the yield) on DE12's 24 host
+systems (z = 0.25, 1, 2.5, 4; M_b = 1e10, 1e11, 1e12; both footings), each profile run through its yield surface r_Y on a
+geometric approach d/r_Y = 1e-12 .. 1, into the plug, and to the zero-field (FRW) point.
+
+PRE-DECLARED (written into this file before its first full run; exploratory runs disclosed in XR18_README.md: a scratch
+map of r_Y on DE12's hosts, a 1-D wave-packet prototype abandoned for numerical fragility at small eps, a prototype of
+A3's spectral test, and a prototype of A4's loading ramp)
+ H1 [load-bearing] Criterion B's causal part: at every background point (yielded side, surface approach, plug, zero field)
+    of the 24 hosts, every angle, alpha_c in {9.62e-14, 3.2e-9}, c_2 in {7.29e-3, 0.1}, lambda in {0, 1, 100}, h in {0, 0.3, 1},
+    all roots U are real and >= 0 (no complex characteristic, so no backward-in-tau signal); cones are centred on the
+    khronon's normal; the only divergent speeds are phi's transverse ones at the surface (lambda > 0), which lie in the leaf.
+ H2 [load-bearing] The surface is a degenerate (weakly hyperbolic) locus: on the real backgrounds C_L ~ d^(1/2) and
+    C_T ~ d^(-1/2) (fitted exponents 0.50 +- 0.02 and -0.50 +- 0.02 over d/r_Y = 1e-10 .. 1e-5); the longitudinal effective
+    speed -> 0 as d^(1/4); at lambda = 0 the effective transverse root tends to the BPS khronon root (finite) within 1%.
+ H3 [load-bearing] The linearised phi-sector across the surface (the plug rigid: u = 0 there; a flux condition at the inner
+    end), lambda u_tt = (C_L u_x)_x with C_L ~ d^(1/2), is a non-negative self-adjoint degenerate operator: every discrete
+    eigenvalue is > 0, the lowest five converge with observed order 0.4-0.6 (the d^(1/2) eigenfunction), their order-1/2
+    Richardson extrapolation from N = 1600/3200 matches a shooting reference started on the exact local solution
+    u ~ d^(1/4) J_(1/3)((4/3) kappa d^(3/4)) to 1e-3, and the eigenfunctions' gradient diverges as d^(-1/2) at the surface
+    (fitted exponent -0.50 +- 0.05): well posed in the energy norm, not in C^1.  The same structure holds on a real host's
+    radial profile (the 1e11 flagship at z = 2.5): positive spectrum, converging.
+The writer's expectation: all three pass; the nonlinear (variational-inequality) Cauchy problem stays OPEN.
+
+  *** MUTATE=1: the yield term's sign is flipped (J_P2 - 2 y_th sqrt(Y)) -- A1 and A2 must FAIL ***
+
+  machinery: FP9 exec'd read-only up to its CONTROLS banner; DE12's host definitions; a0 = 9.3603e-11 / 1.1312e-10 m/s^2   [0 s]
+
+================================================================================================================
+K1  CONTROL: this lane's own unitary-gauge second variation of FP7's action reproduces FP7's committed det M
+================================================================================================================
+    det M = -64*k**6*(-C_phi*alpha_c*c_2*k**4 - 3*C_phi*alpha_c*c_2*k**2*omega**2 - 2*C_phi*alpha_c*k**2*omega**2 + 2*C_phi*c_2*k**4 + 3*alpha_c*c_2*h**2*k**2*omega**2 + alpha_c*c_2*k**2*lambda*omega**2 + 3*alpha_c*c_2*lambda*omega**4 + 2*alpha_c*h**2*k**2*omega**2 + 2*alpha_c*lambda*omega**4 - 6*c_2*h**2*k**2*omega**2 - 2*c_2*k**2*lambda*omega**2 - 4*h**2*k**2*omega**2)
+    quadratic in U = omega^2/k^2 (coefficients / k^10): [64*alpha_c*lambda*(-3*c_2 - 2), 192*C_phi*alpha_c*c_2 + 128*C_phi*alpha_c - 192*alpha_c*c_2*h**2 - 64*alpha_c*c_2*lambda - 128*alpha_c*h**2 + 384*c_2*h**2 + 128*c_2*lambda + 256*h**2, 64*C_phi*c_2*(alpha_c - 2)]
+  [PASS] K1 CONTROL: this lane's own second variation of FP7's repaired action about Minkowski (unitary gauge; filter factor h) reproduces FP7's committed zero-field determinant exactly (sigma -> h)
+         measured: det M == FP7's committed det: True
+  [PASS] K2 CONTROL: J_Y's transverse and longitudinal stiffnesses from sympy (C_T = F/x, C_L = F'(x), F = x J_Y'(x^2)) reproduce FP9 Y1's committed expressions exactly
+         measured: C_T = (-x**2 + 2*x*y_th - y_th)/(x*(2*x - 1)); C_L = 2*x*(1 - x)/(4*x**2 - 4*x + 1); match True
+
+================================================================================================================
+A1  CRITERION B's CAUSAL PART: all characteristic roots real and >= 0 on every background point of the 24 hosts
+================================================================================================================
+    hosts: 0.25/1e+10/canonical: r_Y 2323.6 kpc, 192/36064, 0.25/1e+10/alt: r_Y 2226.1 kpc, 192/36064, 0.25/1e+11/canonical: r_Y 3397.5 kpc, 192/36064, 0.25/1e+11/alt: r_Y 3316.8 kpc, 192/36064, 0.25/1e+12/canonical: r_Y 4289.4 kpc, 192/36064, 0.25/1e+12/alt: r_Y 4221.4 kpc, 192/36064, 1.0/1e+10/canonical: r_Y 559.5 kpc, 192/36064, 1.0/1e+10/alt: r_Y 520.8 kpc, 192/36064 ...
+  [FAIL] A1 [H1, pre-declared] CRITERION B's CAUSAL PART HOLDS ACROSS THE YIELD SURFACE: on all 24 hosts (yielded side, a geometric approach to d/r_Y = 1e-12, the plug, the zero-field point), every angle, both alpha_c ends, c_2 = 7.29e-3/0.1, lambda = 0/1/100 and h = 0/0.3/1, every root U = omega^2/k^2 of the exact block is real and >= 0; the cones are centred on the khronon's normal (phi's inertia is (n.d phi)^2), so tau is a global time function compatible with every cone; divergent speeds are phi's transverse ones at the surface (lambda > 0), all in the leaf
+         measured: violations 4320 of 865536 (root, cell) evaluations
+         reading (written for the unmutated theory; this MUTATE run fails the check):  the plug is rigid (phi frozen: no phi characteristic; the khronon at E = alpha_c); a leafwise-instantaneous response is allowed by criterion B
+    [4 s]
+
+================================================================================================================
+A2  THE SURFACE IS DEGENERATE: C_L ~ d^(1/2), C_T ~ d^(-1/2); effective speeds; the lambda = 0 transverse limit
+================================================================================================================
+    0.25/1e+10/canonical  : slope C_L 0.0000, C_T 0.0000, c_par 0.0000; lambda = 0 transverse U/U_K at d = 1e-10 r_Y: 0.00000; c_par at d/r_Y = 1e-6/1e-3/0.1: 959/959/1.02e+03 km/s
+    0.25/1e+11/alt        : slope C_L 0.0000, C_T 0.0000, c_par 0.0000; lambda = 0 transverse U/U_K at d = 1e-10 r_Y: 0.00000; c_par at d/r_Y = 1e-6/1e-3/0.1: 959/960/1.07e+03 km/s
+    1.0/1e+10/canonical   : slope C_L 0.0000, C_T 0.0000, c_par 0.0000; lambda = 0 transverse U/U_K at d = 1e-10 r_Y: 0.00000; c_par at d/r_Y = 1e-6/1e-3/0.1: 2.38e+03/2.38e+03/2.47e+03 km/s
+    1.0/1e+11/alt         : slope C_L 0.0000, C_T 0.0000, c_par 0.0000; lambda = 0 transverse U/U_K at d = 1e-10 r_Y: 0.00000; c_par at d/r_Y = 1e-6/1e-3/0.1: 2.38e+03/2.38e+03/2.55e+03 km/s
+    2.5/1e+10/canonical   : slope C_L 0.0000, C_T 0.0000, c_par 0.0000; lambda = 0 transverse U/U_K at d = 1e-10 r_Y: 0.00000; c_par at d/r_Y = 1e-6/1e-3/0.1: 1.24e+04/1.24e+04/1.29e+04 km/s
+    2.5/1e+11/alt         : slope C_L 0.0000, C_T 0.0000, c_par 0.0000; lambda = 0 transverse U/U_K at d = 1e-10 r_Y: 0.00000; c_par at d/r_Y = 1e-6/1e-3/0.1: 1.24e+04/1.24e+04/1.3e+04 km/s
+    4.0/1e+10/canonical   : slope C_L 0.0000, C_T 0.0000, c_par 0.0000; lambda = 0 transverse U/U_K at d = 1e-10 r_Y: 0.00000; c_par at d/r_Y = 1e-6/1e-3/0.1: 1.15e+05/1.15e+05/1.25e+05 km/s
+    4.0/1e+11/alt         : slope C_L 0.0000, C_T 0.0000, c_par 0.0000; lambda = 0 transverse U/U_K at d = 1e-10 r_Y: 0.00000; c_par at d/r_Y = 1e-6/1e-3/0.1: 1.15e+05/1.15e+05/1.25e+05 km/s
+  [FAIL] A2 [H2, pre-declared] THE YIELD SURFACE IS A DEGENERATE (WEAKLY HYPERBOLIC) LOCUS on all 24 hosts: C_L ~ d^(1/2) and C_T ~ d^(-1/2) (fitted over d/r_Y = 1e-10 .. 1e-5, +-0.02), the longitudinal effective speed ~ d^(1/4) -> 0, and at lambda = 0 the effective transverse root tends to the BPS khronon root c_2 (2 - alpha_c)/(alpha_c (2 + 3 c_2)) within 1%
+         measured: C_L slopes [0.0000, 0.0000]; C_T slopes [0.0000, 0.0000]; lambda = 0 transverse/U_K [0.00000, 0.00000] (24 of 24 hosts with a surface)
+    (reported) lambda = 0, h = 1, alpha_c = 3.2e-9, c_2 = 7.29e-3: the transverse root U = U_K C_T alpha_c/(C_T alpha_c + (2 - alpha_c) h^2) (max dev 4.4e-16) ~ c_2 C_T/((2 + 3 c_2) h^2) (max dev 3.2e-09); fitted slope in d over 1e-10..1e-5 r_Y: 0.0000 .. 0.0000 (divergent, like lambda > 0); it would reach U_K only at d/r_Y ~ 1e-34 .. 1e-27 (9e-12 .. 1e-06 m, against the xi floor 0.0243 pc = 7.5e+14 m below which the band-pass smooths phi): A2's third clause was mis-stated (the limit lies far inside the xi filter); the lambda = 0 roots are all real and >= 0 (A1 scans lambda = 0)
+    [4 s]
+
+================================================================================================================
+A3  THE LINEARISED phi-SECTOR ACROSS THE SURFACE: a degenerate Sturm-Liouville operator (rigid plug)
+================================================================================================================
+    shooting reference (exact local Bessel start, nu = 1/3): omega = [0.862643 3.150728 5.398795 7.641712 9.882959]
+    N =   200: omega = [0.876112 3.181017 5.442042 7.695878 9.946428]; rel. error [0.015614 0.009613 0.00801  0.007088 0.006422]; min eigenvalue 0.7676
+    N =   400: omega = [0.872097 3.171967 5.429189 7.680012 9.928305]; rel. error [0.01096  0.006741 0.00563  0.005012 0.004588]; min eigenvalue 0.7606
+    N =   800: omega = [0.869293 3.165648 5.420146 7.668658 9.914961]; rel. error [0.00771  0.004735 0.003955 0.003526 0.003238]; min eigenvalue 0.7557
+    N =  1600: omega = [0.867328 3.161226 5.413809 7.660661 9.905478]; rel. error [0.005432 0.003332 0.002781 0.00248  0.002279]; min eigenvalue 0.7523
+    N =  3200: omega = [0.865947 3.158125 5.409366 7.655049 9.898807]; rel. error [0.003831 0.002348 0.001958 0.001745 0.001604]; min eigenvalue 0.7499
+    observed order (successive differences) 0.510; order-1/2 Richardson from 1600/3200: max rel error 3.42e-05; mode-1 gradient near the surface ~ d^-0.500
+    real host (1e11, z = 2.5, canonical; r in [0.3 r_Y, r_Y], lambda_eff = 277): omega/H = N = 400: [1901.7 4592.5 7404.4]; N = 800: [1901.7 4592.5 7404.5]; N = 1600: [1901.7 4592.5 7404.5]; N = 3200: [1901.7 4592.5 7404.5]  (last change 7.6e-07)
+  [PASS] A3 [H3, pre-declared] THE LINEARISED CAUCHY PROBLEM ACROSS THE SURFACE IS WELL POSED IN THE ENERGY NORM, NOT IN C^1: the discrete degenerate operator (rigid plug u = 0) has only positive eigenvalues, converges with the order of a d^(1/2) eigenfunction, its Richardson limit matches the shooting reference built on u ~ d^(1/4) J_(1/3)((4/3) kappa d^(3/4)), and the eigenfunction's gradient diverges as d^(-1/2) at the surface; the 1e11 flagship's radial profile at z = 2.5 behaves the same (positive, converging)
+         measured: min eigenvalue 0.750 > 0; observed order 0.510; Richardson vs reference 3.4e-05; gradient exponent -0.500; real host omega_1/H = 1.9e+03 (change 7.6e-07)
+         reading:  linear: a unitary (energy-conserving) evolution, no growth; the surface is reached by characteristics in finite time (A5) and the rigid plug supplies the boundary condition; the free boundary's motion is O(amplitude) with energy O(amplitude^(5/2)), so it does not enter the quadratic energy
+    [45 s]
+
+================================================================================================================
+A4  (reported) THE NONLINEAR phi-SECTOR UNDER SLOW LOADING (1-D slab, eps-regularised yield, AVF steps)
+================================================================================================================
+  [PASS] A4 (reported) not run under MUTATE (the flipped yield has no surface)
+         measured: skipped
+
+================================================================================================================
+A5  (reported) WKB STRUCTURE AT THE SURFACE, and the non-adiabatic layer on each host
+================================================================================================================
+    c_par = sqrt(2)*d**(1/4)*s**(1/4)/sqrt(lambda_e);  travel time from d to the surface = 2*sqrt(2)*d**(3/4)*sqrt(lambda_e)/(3*s**(1/4)) (finite);  WKB amplitude ~ 2**(3/4)/(2*d**(1/8)*lambda_e**(1/4)*s**(1/8)), gradient ~ 2**(1/4)*lambda_e**(1/4)/(2*d**(3/8)*s**(3/8))
+    genuine nonlinearity: F_P2''(x) = -2/(8*x**3 - 12*x**2 + 6*x - 1) > 0 -> finite-amplitude phi waves steepen; the relative amplitude dv/v0 grows toward the surface (v0 ~ d^(1/2), dv ~ d^(-3/8)), so any finite-amplitude wave arriving there is nonlinear in a layer d_nl ~ amplitude^(8/7): caustics at the surface are generic for incoming waves; the action supplies no dissipation (no entropy condition), so weak-solution uniqueness is OPEN
+    non-adiabatic layer (c_par < 300 km/s; lambda = 0, c_2 = 7.29e-3): 0.25/1e+10/canonical: 0 kpc (0.0e+00 r_Y), 0.25/1e+10/alt: 0 kpc (0.0e+00 r_Y), 0.25/1e+11/canonical: 0 kpc (0.0e+00 r_Y), 0.25/1e+11/alt: 0 kpc (0.0e+00 r_Y), 0.25/1e+12/canonical: 0 kpc (0.0e+00 r_Y), 0.25/1e+12/alt: 0 kpc (0.0e+00 r_Y), 1.0/1e+10/canonical: 0 kpc (0.0e+00 r_Y), 1.0/1e+10/alt: 0 kpc (0.0e+00 r_Y), 1.0/1e+11/canonical: 0 kpc (0.0e+00 r_Y), 1.0/1e+11/alt: 0 kpc (0.0e+00 r_Y), 1.0/1e+12/canonical: 0 kpc (0.0e+00 r_Y), 1.0/1e+12/alt: 0 kpc (0.0e+00 r_Y), 2.5/1e+10/canonical: 0 kpc (0.0e+00 r_Y), 2.5/1e+10/alt: 0 kpc (0.0e+00 r_Y), 2.5/1e+11/canonical: 0 kpc (0.0e+00 r_Y), 2.5/1e+11/alt: 0 kpc (0.0e+00 r_Y), 2.5/1e+12/canonical: 0 kpc (0.0e+00 r_Y), 2.5/1e+12/alt: 0 kpc (0.0e+00 r_Y), 4.0/1e+10/canonical: 0 kpc (0.0e+00 r_Y), 4.0/1e+10/alt: 0 kpc (0.0e+00 r_Y), 4.0/1e+11/canonical: 0 kpc (0.0e+00 r_Y), 4.0/1e+11/alt: 0 kpc (0.0e+00 r_Y), 4.0/1e+12/canonical: 0 kpc (0.0e+00 r_Y), 4.0/1e+12/alt: 0 kpc (0.0e+00 r_Y)
+  [PASS] A5 (reported) WKB structure: characteristics reach the surface in finite time (~ d^(3/4)); linear focusing is mild (amplitude ~ d^(-1/8)); finite-amplitude waves steepen there (genuine nonlinearity); the layer where phi cannot follow baryons quasi-statically (c_par < 300 km/s) is thin
+         measured: max layer 0 kpc (z = 0.25 hosts, at r_Y ~ 2-4 Mpc); at z >= 2.5 < 0.0e+00 kpc
+
+================================================================================================================
+VERDICT
+================================================================================================================
+  (a) Characteristic speeds: yielded side -- phi's cone c_par^2 = C_L/lambda_eff, c_perp^2 = C_T/lambda_eff (effective, h ~ 1;
+      principal: C/lambda), the khronon's fast BPS cone, light; the declared surface structure (C_L -> 0, C_T -> oo) does NOT hold on these backgrounds.
+      Criterion B's causal part FAILS (A1: FAIL); the surface exponents do NOT hold (A2: FAIL);
+      the linearised Cauchy problem with the rigid plug is well posed in the energy norm but not in C^1 (A3: PASS).
+      The linear problem fails as printed; the nonlinear Cauchy problem is OPEN.
+  Not 'closed'.  5/7 checks pass; load-bearing failures: 2.  Time 45 s.
+  wrote XR18_yield_surface_results_MUTATE.json
