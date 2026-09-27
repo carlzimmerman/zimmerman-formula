@@ -1,0 +1,130 @@
+XR12 (3/4) -- WHEN THE CONVERSION HAPPENS IN THE INFALL STREAMS, NOT THE HALO CENTRE: the flagship's clearing at r_F and
+cluster retention, in the record's resolved shell model with FK1's own trigger.
+
+WHY.  XR12_filament_trigger.py shows FK1's n^2 trigger (the fluid's own density, K-gated: rho_t(z) = delta_t0 rhobar_c0
+E^4, delta_t0 = 5.31 nominal, 25 FK1's upper bracket) fires in the streams: every stream near r_vir (delta ~ 100) and the
+densest filaments are above it at z = 2-3, and every clump the streams carry.  L375/L376 resolved galaxy hosts with a
+shell model whose trigger reads the LOCAL TOTAL density, un-gated (x~ > 5).  This lane swaps in FK1's trigger and asks
+where the carrier converts and what that does to (i) the flat-a0 flagship, which needs a retained fraction S <= 0.059 at
+r_F (MS2), and (ii) cluster retention, which X-COP needs inside 0.286-0.768 (L366's two-sided gate, both footings).
+
+MODEL.  L376's halo2() -- L375's spherical shell model (secondary infall on a Wechsler history, alpha = 0.75; Hernquist
+baryons + an NFW-shaped CGM/ICM grown with the halo; a Newtonian, kernel-invisible carrier; the decay at Gamma = 10 H above
+threshold; an isotropic kick) -- re-implemented with the trigger as a parameter.  Trigger variants:
+  x5      L375/L376's own: x~ = 1.5 (rho_tot - rhobar_m)/rho_crit(z) > 5 (the local total density, un-gated)  [control]
+  fk1     FK1: the COLD carrier's own shell density > delta_t0 rhobar_c0 E(z)^4;  delta_t0 = 5.31 or 25.
+  +C_s    streams: outside r_200(z) the infalling carrier is concentrated into streams of local density C_s x the shell
+          average (C_s = 10: a stream covering ~10% of the sphere), so it meets the threshold earlier.
+  +up     upstream conversion: a fraction F_u(z) of newly accreted carrier arrives ALREADY converted -- the escaped
+          daughters of the minihalos and galaxies that fired upstream (XR12_forest_halo_model H1's unweighted F_u(z),
+          read from its results JSON), moving at w(z) = v_k <(1+z)/(1+z_c)> relative to the infall (their peculiar
+          momentum decays as 1/a since conversion).
+Hosts: the flagship (M_200 = 1e12, M_b = 1e11, z_obs = 2.5, from z = 5.25) and an X-COP-like cluster (M_200 = 8e14, BCG
+1e12, ICM = f_b M - M_b, z_obs = 0, from z = 2.75).  Kick 600 km/s (L388's window centre).
+
+================================================================================================================
+C1  CONTROL: the re-implementation with L375/L376's own trigger reproduces L376's committed RC100 z = 2 numbers
+================================================================================================================
+    carrier inside R_e / LCDM's = 3.956624e-04 (L376 3.956624e-04);  f_DM,LCDM(<R_e) = 0.453032 (L376 0.453032);  a small-N run is bit-identical to L376's halo2(): True   [14s]
+  [PASS] C1 CONTROL: with L375/L376's own trigger the re-implementation reproduces L376's committed RC100 z = 2 numbers exactly and is bit-identical to L376's halo2() on a fresh configuration
+         measured: carrier ratio 3.956624e-04 vs 3.956624e-04; f_DM 0.453032 vs 0.453032; identical True
+
+================================================================================================================
+UPSTREAM  the converted-and-escaped fraction F_u(z) and the daughters' speed w(z), from XR12_forest_halo_model H1
+================================================================================================================
+    delta_t0 = 5.31 : F_u(z = 0/1/2/2.5/3) = 0.404/0.387/0.330/0.297/0.263;  w(z = 0/1/2/2.5) = 144/271/352/384 km/s
+    delta_t0 = 25   : F_u(z = 0/1/2/2.5/3) = 0.404/0.387/0.294/0.230/0.177;  w(z = 0/1/2/2.5) = 168/319/411/434 km/s
+
+================================================================================================================
+FLAGSHIP  M_200 = 1e12, M_b = 1e11, z = 2.5: where the carrier converts, and S(r_F)
+================================================================================================================
+    x5 (L375/L376 trigger)                  : S(r_F) canonical 0.0303 (cold 0.0126), alt 0.0163;  conversions outside r_200: 0.57, median r/r_200 1.16, conversions / accreted particles 0.88
+    FK1 5.31 @10H                           : S(r_F) canonical 0.1822 (cold 0.1463), alt 0.0467;  conversions outside r_200: 0.00, median r/r_200 0.48, conversions / accreted particles 0.55
+    FK1 5.31, streams C_s=10 @10H           : S(r_F) canonical 0.0849 (cold 0.0646), alt 0.0356;  conversions outside r_200: 0.60, median r/r_200 1.14, conversions / accreted particles 0.82
+    FK1 5.31, streams + upstream @10H       : S(r_F) canonical 0.0749 (cold 0.0546), alt 0.0359;  conversions outside r_200: 0.53, median r/r_200 1.03, conversions / accreted particles 0.65
+    FK1 25 @10H                             : S(r_F) canonical 0.3011 (cold 0.2615), alt 0.1884;  conversions outside r_200: 0.00, median r/r_200 0.37, conversions / accreted particles 0.34
+    FK1 25, streams C_s=10 @10H             : S(r_F) canonical 0.2319 (cold 0.2005), alt 0.0976;  conversions outside r_200: 0.47, median r/r_200 0.44, conversions / accreted particles 0.56
+    FK1 25, streams + upstream @10H         : S(r_F) canonical 0.2033 (cold 0.1756), alt 0.0758;  conversions outside r_200: 0.40, median r/r_200 0.41, conversions / accreted particles 0.46
+    FK1 5.31 @FK1 rate                      : S(r_F) canonical 0.0524 (cold 0.0076), alt 0.0389;  conversions outside r_200: 0.00, median r/r_200 0.52, conversions / accreted particles 0.81
+    FK1 5.31, streams C_s=10 @FK1 rate      : S(r_F) canonical 0.0187 (cold 0.0019), alt 0.0168;  conversions outside r_200: 0.75, median r/r_200 1.36, conversions / accreted particles 1.02
+    FK1 5.31, streams + upstream @FK1 rate  : S(r_F) canonical 0.0167 (cold 0.0019), alt 0.0136;  conversions outside r_200: 0.67, median r/r_200 1.19, conversions / accreted particles 0.79
+    FK1 25 @FK1 rate                        : S(r_F) canonical 0.1369 (cold 0.0544), alt 0.0699;  conversions outside r_200: 0.00, median r/r_200 0.40, conversions / accreted particles 0.73
+    FK1 25, streams C_s=10 @FK1 rate        : S(r_F) canonical 0.1262 (cold 0.0502), alt 0.0668;  conversions outside r_200: 0.07, median r/r_200 0.41, conversions / accreted particles 0.77
+    FK1 25, streams + upstream @FK1 rate    : S(r_F) canonical 0.1149 (cold 0.0487), alt 0.0648;  conversions outside r_200: 0.01, median r/r_200 0.40, conversions / accreted particles 0.65
+    r_F = 38.6 / 35.2 kpc (canonical / alt);  gate S <= 0.059 (MS2)   [49s]
+    the own-density cap S_cap = rho_t (4 pi/3) r_F^3 / M_c,LCDM(<r_F): delta_t0 = 5.311: 0.0433 (canonical) / 0.0366 (alt); delta_t0 = 25: 0.2038 (canonical) / 0.1721 (alt)
+  [FAIL] R10 [first run's pre-declared F1 and F2, FALSIFIED, kept as run] at Gamma = 10 H: with streams >= 50% of conversions outside r_200 at both delta_t0, and S(r_F) <= 0.059 for every FK1 variant on both footings
+         measured: outside r_200: FK1 5.31, streams C_s=10 0.60, FK1 5.31, streams + upstream 0.53, FK1 25, streams C_s=10 0.47, FK1 25, streams + upstream 0.40; S(r_F) can/alt: FK1 5.31 0.182/0.047, FK1 5.31, streams C_s=10 0.085/0.036, FK1 5.31, streams + upstream 0.075/0.036, FK1 25 0.301/0.188, FK1 25, streams C_s=10 0.232/0.098, FK1 25, streams + upstream 0.203/0.076
+         reading:  at 10 H the refilling carrier overshoots the own-density cap while it waits to convert
+  [PASS] F1' at FK1's rate, with streams >= 50% of the flagship's conversions fall outside r_200 at delta_t0 = 5.31, and without clumping <= 10% do (both delta_t0): the streams convert upstream, the smooth infall only inside r_200
+         measured: streams: FK1 5.31, streams C_s=10 0.75, FK1 5.31, streams + upstream 0.67; smooth: FK1 5.31 0.00, FK1 25 0.00
+  [PASS] F2a THE OWN-DENSITY CAP: at FK1's rate the cold carrier inside r_F stays at or below the threshold, S_cold(r_F) <= 1.5 S_cap, for every FK1 variant and both footings
+         measured: FK1 5.31: S_cold/S_cap 0.17 (daughters 0.045), FK1 5.31, streams C_s=10: S_cold/S_cap 0.06 (daughters 0.017), FK1 5.31, streams + upstream: S_cold/S_cap 0.05 (daughters 0.015), FK1 25: S_cold/S_cap 0.27 (daughters 0.082), FK1 25, streams C_s=10: S_cold/S_cap 0.25 (daughters 0.076), FK1 25, streams + upstream: S_cold/S_cap 0.24 (daughters 0.066)
+         reading:  at FK1's rate the cold carrier transits r_F thin and converts where it crosses n_t; what the flagship retains is mostly the daughters of conversions near r_F, not a carrier parked at the cap
+  [PASS] F2b the flagship at FK1's rate: S(r_F) <= 0.059 on both footings at delta_t0 = 5.31 (every variant), and S(r_F) > 0.059 on the canonical footing at delta_t0 = 25 (every variant)
+         measured: 5.31: FK1 5.31 0.0524/0.0389, FK1 5.31, streams C_s=10 0.0187/0.0168, FK1 5.31, streams + upstream 0.0167/0.0136; 25: FK1 25 0.1369/0.0699, FK1 25, streams C_s=10 0.1262/0.0668, FK1 25, streams + upstream 0.1149/0.0648
+         reading:  the flagship bounds FK1's normalisation from ABOVE: a higher threshold moves the conversion inward (median 0.40 r_200 at delta_t0 = 25 against 1.2-1.4 r_200 with streams at 5.31), so more of the cold carrier and of the daughters stay inside r_F: it holds at the linear cell's matter reading and fails at FK1's upper bracket
+    I50 FK1 5.31                         @50H: S(r_F) canonical 0.0666, alt 0.0404;  conversions outside r_200 0.00
+    I50 FK1 5.31, streams C_s=10         @50H: S(r_F) canonical 0.0224, alt 0.0204;  conversions outside r_200 0.73
+    I50 FK1 5.31, streams + upstream     @50H: S(r_F) canonical 0.0213, alt 0.0185;  conversions outside r_200 0.65
+    I50 FK1 25, streams C_s=10           @50H: S(r_F) canonical 0.1600, alt 0.0608;  conversions outside r_200 0.16
+  [PASS] I50 (reported) at a realistic-stream rate (50 H) the flagship at delta_t0 = 5.31 with streams stays within S <= 0.059 on both footings
+         measured: FK1 5.31: 0.0666/0.0404; FK1 5.31, streams C_s=10: 0.0224/0.0204; FK1 5.31, streams + upstream: 0.0213/0.0185; FK1 25, streams C_s=10: 0.1600/0.0608
+         reading:  between the record's 10 H (fails) and the cold limit (passes): where a real stream's rate puts the nominal cell
+    W2 canonical streams C_s=10      : S(r_F) = 0.0187 (5.31) / 0.1262 (25) -> the flagship allows zeta <= 2.54 (delta_t0 <= 13.5);  forest needs >= 1.42 (plain) / 2.77 (sqrt sigma) -> OPEN / CLOSED
+    W2 canonical streams + upstream  : S(r_F) = 0.0167 (5.31) / 0.1149 (25) -> the flagship allows zeta <= 2.76 (delta_t0 <= 14.6);  forest needs >= 1.42 (plain) / 2.77 (sqrt sigma) -> OPEN / CLOSED
+    W2 alt       streams C_s=10      : S(r_F) = 0.0168 (5.31) / 0.0668 (25) -> the flagship allows zeta <= 4.09 (delta_t0 <= 21.7);  forest needs >= 1.42 (plain) / 2.77 (sqrt sigma) -> OPEN / OPEN
+    W2 alt       streams + upstream  : S(r_F) = 0.0136 (5.31) / 0.0648 (25) -> the flagship allows zeta <= 4.29 (delta_t0 <= 22.8);  forest needs >= 1.42 (plain) / 2.77 (sqrt sigma) -> OPEN / OPEN
+  [PASS] W2 (reported) the band between the forest's smallest and the flagship's largest normalisation of FK1's trigger, per footing and stream variant
+         measured: canonical/streams C_s=10: <= 2.54 vs forest 1.42/2.77 -> open/closed; canonical/streams + upstream: <= 2.76 vs forest 1.42/2.77 -> open/closed; alt/streams C_s=10: <= 4.09 vs forest 1.42/2.77 -> open/open; alt/streams + upstream: <= 4.29 vs forest 1.42/2.77 -> open/open
+         reading:  open on the plain forest proxy is a narrow band, not a window; with FK1's sqrt(sigma) modulation the minihalos convert more easily and the band's two ends meet or cross
+
+================================================================================================================
+CLUSTER  M_200 = 8e14, BCG 1e12, z = 0: retention inside 1 Mpc/h and R_500, against the two-sided X-COP gate
+================================================================================================================
+    ... nodecay done   [65s]
+    ... x5 (L375/L376 trigger) done   [80s]
+    ... FK1 5.31 @10H done   [92s]
+    ... FK1 5.31, streams C_s=10 @10H done   [103s]
+    ... FK1 5.31, streams + upstream @10H done   [114s]
+    ... FK1 25 @10H done   [125s]
+    ... FK1 25, streams C_s=10 @10H done   [136s]
+    ... FK1 25, streams + upstream @10H done   [147s]
+    ... FK1 5.31 @FK1 rate done   [159s]
+    ... FK1 5.31, streams C_s=10 @FK1 rate done   [169s]
+    ... FK1 5.31, streams + upstream @FK1 rate done   [180s]
+    ... FK1 25 @FK1 rate done   [191s]
+    ... FK1 25, streams C_s=10 @FK1 rate done   [202s]
+    ... FK1 25, streams + upstream @FK1 rate done   [213s]
+    x5 (L375/L376 trigger)                  : eps(<1 Mpc/h) 0.981, eps(<R_500) 0.994; x1.00 of the x5 trigger's -> L388 pooled 575-650 would read 0.374-0.607 (inside 0.286-0.768);  conversions outside r_200: 0.56
+    FK1 5.31 @10H                           : eps(<1 Mpc/h) 1.020, eps(<R_500) 1.038; x1.04 of the x5 trigger's -> L388 pooled 575-650 would read 0.389-0.631 (inside 0.286-0.768);  conversions outside r_200: 0.36
+    FK1 5.31, streams C_s=10 @10H           : eps(<1 Mpc/h) 0.963, eps(<R_500) 0.977; x0.98 of the x5 trigger's -> L388 pooled 575-650 would read 0.368-0.596 (inside 0.286-0.768);  conversions outside r_200: 0.61
+    FK1 5.31, streams + upstream @10H       : eps(<1 Mpc/h) 0.968, eps(<R_500) 0.978; x0.99 of the x5 trigger's -> L388 pooled 575-650 would read 0.369-0.599 (inside 0.286-0.768);  conversions outside r_200: 0.57
+    FK1 25 @10H                             : eps(<1 Mpc/h) 1.061, eps(<R_500) 1.072; x1.08 of the x5 trigger's -> L388 pooled 575-650 would read 0.405-0.656 (inside 0.286-0.768);  conversions outside r_200: 0.00
+    FK1 25, streams C_s=10 @10H             : eps(<1 Mpc/h) 0.989, eps(<R_500) 1.009; x1.01 of the x5 trigger's -> L388 pooled 575-650 would read 0.377-0.612 (inside 0.286-0.768);  conversions outside r_200: 0.65
+    FK1 25, streams + upstream @10H         : eps(<1 Mpc/h) 0.958, eps(<R_500) 0.963; x0.98 of the x5 trigger's -> L388 pooled 575-650 would read 0.366-0.593 (inside 0.286-0.768);  conversions outside r_200: 0.58
+    FK1 5.31 @FK1 rate                      : eps(<1 Mpc/h) 1.025, eps(<R_500) 1.046; x1.05 of the x5 trigger's -> L388 pooled 575-650 would read 0.391-0.634 (inside 0.286-0.768);  conversions outside r_200: 0.39
+    FK1 5.31, streams C_s=10 @FK1 rate      : eps(<1 Mpc/h) 0.880, eps(<R_500) 0.903; x0.90 of the x5 trigger's -> L388 pooled 575-650 would read 0.336-0.544 (inside 0.286-0.768);  conversions outside r_200: 0.84
+    FK1 5.31, streams + upstream @FK1 rate  : eps(<1 Mpc/h) 0.914, eps(<R_500) 0.939; x0.93 of the x5 trigger's -> L388 pooled 575-650 would read 0.349-0.566 (inside 0.286-0.768);  conversions outside r_200: 0.76
+    FK1 25 @FK1 rate                        : eps(<1 Mpc/h) 1.155, eps(<R_500) 1.170; x1.18 of the x5 trigger's -> L388 pooled 575-650 would read 0.441-0.715 (inside 0.286-0.768);  conversions outside r_200: 0.00
+    FK1 25, streams C_s=10 @FK1 rate        : eps(<1 Mpc/h) 0.971, eps(<R_500) 1.001; x0.99 of the x5 trigger's -> L388 pooled 575-650 would read 0.371-0.601 (inside 0.286-0.768);  conversions outside r_200: 0.68
+    FK1 25, streams + upstream @FK1 rate    : eps(<1 Mpc/h) 1.003, eps(<R_500) 1.008; x1.02 of the x5 trigger's -> L388 pooled 575-650 would read 0.383-0.620 (inside 0.286-0.768);  conversions outside r_200: 0.52
+    r_200 = 1965 kpc, R_500 = 1286 kpc, 1 Mpc/h = 1485 kpc (z = 0);  L388 pooled eps 575-650: v575 0.607, v600 0.526, v625 0.436, v650 0.374
+  [PASS] X1 (reported) cluster retention under FK1's trigger, scaled onto L388's pooled 575-650 km/s values by the shell model's shift against the record's x5 trigger, stays inside the two-sided X-COP gate for every variant
+         measured: FK1 5.31 @10H: x1.04 -> 0.39-0.63; FK1 5.31, streams C_s=10 @10H: x0.98 -> 0.37-0.60; FK1 5.31, streams + upstream @10H: x0.99 -> 0.37-0.60; FK1 25 @10H: x1.08 -> 0.40-0.66; FK1 25, streams C_s=10 @10H: x1.01 -> 0.38-0.61; FK1 25, streams + upstream @10H: x0.98 -> 0.37-0.59; FK1 5.31 @FK1 rate: x1.05 -> 0.39-0.63; FK1 5.31, streams C_s=10 @FK1 rate: x0.90 -> 0.34-0.54; FK1 5.31, streams + upstream @FK1 rate: x0.93 -> 0.35-0.57; FK1 25 @FK1 rate: x1.18 -> 0.44-0.71; FK1 25, streams C_s=10 @FK1 rate: x0.99 -> 0.37-0.60; FK1 25, streams + upstream @FK1 rate: x1.02 -> 0.38-0.62
+         reading:  a shift estimate on a spherical, smooth model: the PM owners should re-run with FK1's trigger variable
+
+================================================================================================================
+SUMMARY
+================================================================================================================
+  Question (A), the flagship and clusters, in the record's resolved shell model with FK1's own trigger:
+  - Where it converts (FK1's rate): with streams 67%-75% of the flagship's conversions fall outside r_200
+    (delta_t0 = 5.31); smooth spherical infall converts only inside it (0% outside) (F1').
+  - The own-density cap holds: the cold carrier inside r_F stays below n_t (S_cold/S_cap <= 0.27); what r_F retains is
+    mostly daughters of conversions near it (<= 0.082) (F2a).  So the flagship holds at the linear cell's reading
+    (S(r_F) <= 0.0524) and fails at FK1's upper bracket (S(r_F) >= 0.115 canonical) (F2b).
+  - The band (W2): forest zeta >= 1.42 (plain) / 2.77 (sqrt sigma) against the flagship's zeta <= 2.54, 2.76, 4.09, 4.29.
+  - Clusters at FK1's rate: shifts against the x5 trigger x0.90-1.18 -> L388's pooled
+    eps would read 0.34-0.71 against 0.286-0.768 (X1).
+
+  checks: 7/8 pass; load-bearing failures: 0   [213s]

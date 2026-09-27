@@ -1,0 +1,139 @@
+XR12 (1/4) -- DOES FK1's n^2 TRIGGER FIRE IN THE WEB'S FILAMENTS AND INFALL STREAMS BEFORE THE FLUID REACHES HALOS?
+
+THE IDEA, VERBATIM (the author): "the halos is like a fluid of dark energy swirling down between the bands".  This lane
+reads the bands as the cosmic web's filaments: the dark fluid (FL1's order parameter Phi, m >~ 2-5e-19 eV) spirals into
+halos along filaments.  FK1 (real_research/dark_fluid_kick_2026, c2e1fa119) gives that fluid its kick: phi_H phi_H ->
+phi_L phi_L, Bose-stimulated, with an exponent that grows as n^2 in the fluid's OWN density and a coupling vacuum-gated as
+lambda ~ K^(-2q), q = 1.75.  So the trigger is a sharp density threshold n_t(z) = delta_t0 nbar_0 E(z)^4 (FK1 N2), with
+delta_t0 in FK1's bracket {5, 25}; delta_t0 = 5.31 is exactly the linear cell's matter reading, (2/3) x_c0 / Omega_m0 at
+x_c0 = 2.5 (XR4 R1's 5.3/4.6/4.8/6.8/16.5 at z = 0/0.25/0.5/1/2).  Question (A): does that threshold fire in the streams
+before the fluid reaches halos?  This script does the threshold arithmetic, reads the record's particle-mesh density
+field, sizes the trigger's own resolution, and estimates how the growth mechanism itself depends on the environment.
+XR12_forest_halo_model.py scores the forest; XR12_stream_shells.py the flagship and clusters; XR12_spin_retention.py (B).
+
+================================================================================================================
+C0  CONTROL: FK1's N1-N3 numbers reproduced from its own formulas, against its committed JSON
+================================================================================================================
+    constant coupling, background converts by z: 5/1 -> 0.8574 (FK1 0.8574), 5/4 -> 1.4829 (FK1 1.4829), 25/1 -> 2.6934 (FK1 2.6934), 25/4 -> 4.0119 (FK1 4.0119)
+    q = 1.75: background exponent peaks at z = 0.298 (FK1 0.298) at 1.3479x its z = 0 value (FK1 1.3479) -> 0.0539 of the trigger's at delta_t = 5 (FK1 README: 0.054)
+    N1 e-folds at 2e-19 eV: 178.05 (FK1 178.05);  N3 G_t/mc^2: 1.806e-09 (FK1 1.806e-09)
+  [PASS] C0 CONTROL: FK1's N2 (z_convert 0.86/1.48/2.69/4.01; q = 1.75 peak z = 0.30, 1.35x, 0.054 of the trigger's), N1's e-folds and N3's G_t/mc^2 reproduced from FK1's formulas to <= 1e-3 against its committed JSON
+         measured: max |dz| = 0.0e+00; peak z 0.298, factor 1.3479; E_need 178.05; G_t/mc^2 1.806e-09
+
+================================================================================================================
+B1  THE COSMIC BACKGROUND UNDER THE GATE (q = 1.75): exponent / trigger exponent, z = 0-10
+================================================================================================================
+    largest background/trigger exponent ratio for z <= 10: 0.0478 at z = 0.30; never crosses
+  [PASS] B1 with the K-gate (q = 1.75) the mean background's exponent stays below 0.1 of the trigger's for every z <= 10, so only overdense structure can convert
+         measured: max ratio 0.0478 at z = 0.30
+         reading:  the gate does its job for the mean density; the question is what the web's structure does
+
+================================================================================================================
+A1  FK1's THRESHOLD AGAINST THE WEB: rho_t/rho_bar(z) = delta_t0 E^4/(1+z)^3 (FK1 N2) [(1+delta_t0) E^4/(1+z)^3, FL2]
+================================================================================================================
+    delta_t0 = 5.31 (linear cell): z=0: 5.3 [6.3]  z=0.3: 4.6 [5.4]  z=0.5: 4.8 [5.7]  z=1: 6.8 [8.1]  z=2: 16.5 [19.6]  z=2.5: 24.8 [29.4]  z=3: 35.8 [42.5]  z=4: 67.7 [80.4]  z=6: 181.7 [215.9]
+    delta_t0 = 25 (FK1 upper)    : z=0: 25.0 [26.0]  z=0.3: 21.5 [22.4]  z=0.5: 22.6 [23.5]  z=1: 31.9 [33.2]  z=2: 77.7 [80.8]  z=2.5: 116.6 [121.3]  z=3: 168.5 [175.2]  z=4: 318.6 [331.3]  z=6: 855.2 [889.4]
+    virial overdensity (mean units): z=0: 328  z=0.3: 253  z=0.5: 230  z=1: 202  z=2: 185  z=2.5: 182  z=3: 181  z=4: 179  z=6: 178
+    standard web values used (the task's): filaments delta ~ 10-30; streams feeding halos ~100 near r_vir
+    a stream at delta = 100 is above the threshold for z <= 5.31 (linear cell): 4.72, 25 (FK1 upper): 2.31
+    a halo at its virial radius is above the threshold for z <= 5.31 (linear cell): 5.96, 25 (FK1 upper): 3.10
+  [PASS] A1 at z = 2-3 FK1's threshold (delta_t0 = 5.31) lies inside the filament range and below the r_vir streams (~100) and the virial overdensity; at delta_t0 = 25 it lies above the filaments but still below the virial overdensity
+         measured: delta_t(2/2.5/3) = 16.5/24.8/35.8 (5.31), 78/117/169 (25); virial 185/182/181; streams at 100 cross for z <= 4.72 / 2.31; every virialised halo for z <= 5.96 / 3.10
+         reading:  the densest filaments and every stream near r_vir cross at the nominal cell; every collapsed halo in the streams crosses at both brackets -- which is the question the PM's mesh cannot see (A3)
+
+================================================================================================================
+A2  THE RECORD'S PARTICLE-MESH FIELD (L388, LCDM runs, z = 2, 256^3 on 100 Mpc/h): mass above threshold, by web type
+================================================================================================================
+    box  7: web mass fractions void 0.04, sheet 0.33, filament 0.47, knot 0.15
+            above PM trigger x~>5  (rho/rho_bar >   4.60): mass 0.3024, volume 0.02646; of it: void 0.00, sheet 0.04, filament 0.55, knot 0.41
+            above FK1 5.31         (rho/rho_bar >  16.50): mass 0.1280, volume 0.00365; of it: void 0.00, sheet 0.00, filament 0.34, knot 0.66
+            above FK1 25           (rho/rho_bar >  77.67): mass 0.0298, volume 0.00023; of it: void 0.00, sheet 0.00, filament 0.04, knot 0.96
+    box 17: web mass fractions void 0.04, sheet 0.33, filament 0.48, knot 0.15
+            above PM trigger x~>5  (rho/rho_bar >   4.60): mass 0.2990, volume 0.02628; of it: void 0.00, sheet 0.03, filament 0.55, knot 0.41
+            above FK1 5.31         (rho/rho_bar >  16.50): mass 0.1259, volume 0.00357; of it: void 0.00, sheet 0.00, filament 0.34, knot 0.66
+            above FK1 25           (rho/rho_bar >  77.67): mass 0.0296, volume 0.00022; of it: void 0.00, sheet 0.00, filament 0.06, knot 0.94
+    box 29: web mass fractions void 0.04, sheet 0.32, filament 0.48, knot 0.15
+            above PM trigger x~>5  (rho/rho_bar >   4.60): mass 0.2962, volume 0.02639; of it: void 0.00, sheet 0.03, filament 0.55, knot 0.42
+            above FK1 5.31         (rho/rho_bar >  16.50): mass 0.1217, volume 0.00351; of it: void 0.00, sheet 0.00, filament 0.33, knot 0.67
+            above FK1 25           (rho/rho_bar >  77.67): mass 0.0272, volume 0.00021; of it: void 0.00, sheet 0.00, filament 0.05, knot 0.95
+    pooled: above the PM trigger 0.299 (L366's decayed fraction at z = 2: 0.275, x1.09); above FK1 5.31: 0.125 (filament 0.33 + knot 0.66 of it); above FK1 25: 0.0289
+  [PASS] A2 on the record's z = 2 mesh FK1's threshold (delta_t0 = 5.31) is exceeded by >= 5% of the carrier, >= 50% of it in T-web filaments and knots; CONTROL: the mass above the PM's own trigger is within 15% of L366's decayed fraction
+         measured: above FK1 5.31: 0.125 of the carrier (filaments 0.33, knots 0.66); above FK1 25: 0.0289; PM trigger 0.299 vs L366 0.275
+         reading:  the smooth (0.39 Mpc/h) web already crosses at the nominal cell -- mostly filament and knot cells; at delta_t0 = 25 only ~3% does.  The mesh smooths away everything below ~5e9 Msun/h per cell (A3)
+
+================================================================================================================
+A3  FK1's TRIGGER IS LOCAL: gain length at the threshold density vs host sizes and the PM cell
+================================================================================================================
+    minihalo 1e6 (z=2.5)    : r_s      0.14 kpc, sigma     1.6 km/s, n(r_s) =   159.1 n_t;  gain length there     0.115 pc = 8.3e-04 r_s   [at the bare threshold with this sigma: 0.06 kpc = 0.42 r_s -- reported]
+    dwarf 1e9 (z=2.5)       : r_s      1.77 kpc, sigma    15.7 km/s, n(r_s) =    89.6 n_t;  gain length there     0.215 pc = 1.2e-04 r_s   [at the bare threshold with this sigma: 0.55 kpc = 0.31 r_s -- reported]
+    flagship 1e12 (z=2.5)   : r_s     22.73 kpc, sigma   156.7 km/s, n(r_s) =    51.4 n_t;  gain length there     2.095 pc = 9.2e-05 r_s   [at the bare threshold with this sigma: 5.46 kpc = 0.24 r_s -- reported]
+    cluster 1e15 (z=0)      : r_s    508.48 kpc, sigma  1008.0 km/s, n(r_s) =   863.5 n_t;  gain length there     0.182 pc = 3.6e-07 r_s   [at the bare threshold with this sigma: 132.02 kpc = 0.26 r_s -- reported]
+    cold stream at the threshold density, sigma    5 km/s, z = 2.5: gain length   0.175 kpc -> Gamma L/v_k =  114.2 for a 20 kpc stream (absolute growth if >= 1, S1) = 0.0011 PM cells (166 kpc proper)
+    cold stream at the threshold density, sigma    5 km/s, z = 0.0: gain length   0.656 kpc -> Gamma L/v_k =   30.5 for a 20 kpc stream (absolute growth if >= 1, S1) = 0.0011 PM cells (580 kpc proper)
+    cold stream at the threshold density, sigma   20 km/s, z = 2.5: gain length   0.697 kpc -> Gamma L/v_k =   28.7 for a 20 kpc stream (absolute growth if >= 1, S1) = 0.0042 PM cells (166 kpc proper)
+    cold stream at the threshold density, sigma   20 km/s, z = 0.0: gain length   2.620 kpc -> Gamma L/v_k =    7.6 for a 20 kpc stream (absolute growth if >= 1, S1) = 0.0045 PM cells (580 kpc proper)
+    cold stream at the threshold density, sigma   60 km/s, z = 2.5: gain length   2.090 kpc -> Gamma L/v_k =    9.6 for a 20 kpc stream (absolute growth if >= 1, S1) = 0.0126 PM cells (166 kpc proper)
+    cold stream at the threshold density, sigma   60 km/s, z = 0.0: gain length   7.858 kpc -> Gamma L/v_k =    2.5 for a 20 kpc stream (absolute growth if >= 1, S1) = 0.0136 PM cells (580 kpc proper)
+  [PASS] A3 FK1's trigger is local: at each host's own scale-radius density (1e6 Msun minihalo to 1e15 Msun cluster) the gain length is < 1e-3 r_s; a cold stream (sigma <= 60 km/s, z = 0-2.5) at the bare threshold is an absolute amplifier (Gamma L/v_k >= 1 for L = 20 kpc) with a gain length < 0.1 of the PM cell
+         measured: minihalo 1e6 (z=2.5): 8.3e-04 r_s; dwarf 1e9 (z=2.5): 1.2e-04 r_s; flagship 1e12 (z=2.5): 9.2e-05 r_s; cluster 1e15 (z=0): 3.6e-07 r_s; streams: sigma=5/z=2.5 0.18 kpc, sigma=5/z=0 0.66 kpc, sigma=20/z=2.5 0.70 kpc, sigma=20/z=0 2.62 kpc, sigma=60/z=2.5 2.09 kpc, sigma=60/z=0 7.86 kpc
+         reading:  the conversion reads the fluid's density on sub-kpc scales: every collapsed clump the streams carry is resolved by the trigger.  The record's PM runs read a 0.39 Mpc/h mesh average, so they could not see this (L357 V1's open question, 'whether the carrier's small halos fire', is answered by FK1's own rate: they do).  Only a hot host AT the bare threshold has a gain length approaching r_s -- and a hot host is never at the bare threshold
+
+================================================================================================================
+S1  THE GROWTH EXPONENTS (sympy): linear sweep, second-order sweep, and the counter-propagating kinetic amplifier
+================================================================================================================
+    K4: int sqrt(G^2 - D^2) dt, dD/dt = 2 H delta:  pi*G**2/(4*H*delta)
+    second-order sweep D = alpha t^2: int sqrt(G^2 - alpha^2 t^4) dt = G**(3/2)*gamma(1/4)*hyper((-1/2, 1/4), (5/4,), 1)/(2*sqrt(alpha)*gamma(5/4)) = C4 G^(3/2)/sqrt(alpha), C4 = 1.748038 (numerical check 2.089305 vs 2.089305)
+    counter-propagating amplifier, steady state N+ + N- = S: requires W = [v/L]  (i.e. Gamma L / v = 1)
+  [PASS] S1 the exponents: K4 = pi G^2/(4 H delta); a first-order-vanishing sweep gives C4 G^(3/2)/alpha^(1/2) with C4 = 1.7480; counter-propagating kinetic amplification turns absolute at Gamma L / v = 1
+         measured: K4 pi*G**2/(4*H*delta); C4 1.7480; numeric 2.08931/2.08931; feedback W = [v/L]
+
+================================================================================================================
+E   THE GROWTH MECHANISM BY ENVIRONMENT (ESTIMATE, O(1) factors): effective threshold n_env / n_t
+================================================================================================================
+    reference: E_need = 178 e-folds at 2e-19 eV (FK1 N1); G_t/delta = 1.75e-03 at z = 2.5
+    filament z=2.5, W=50 kpc, |T|=H                     : exponent at n_t =    7.5 E_need (t* = 23 Myr) -> converts at n = 0.26 n_t
+    filament z=2.5, W=100 kpc, |T|=H                    : exponent at n_t =   10.3 E_need (t* = 31 Myr) -> converts at n = 0.21 n_t
+    filament z=2.5, W=300 kpc, |T|=2H                   : exponent at n_t =   10.1 E_need (t* = 31 Myr) -> converts at n = 0.21 n_t
+    sheet z=0.3, W=1 Mpc, |T|=H                         : exponent at n_t =   21.9 E_need (t* = 119 Myr) -> converts at n = 0.13 n_t
+    infall stream r_vir(1e12, z=2.5), W=20 kpc, |T|=9H  : exponent at n_t =    1.5 E_need (t* = 4 Myr) -> converts at n = 0.77 n_t
+    virialised halo sigma=2 km/s, t_av=0.1/H (z=2.5)    : exponent at n_t =    18.47 E_need -> converts at n = 0.23 n_t
+    virialised halo sigma=2 km/s, t_av=1/H (z=2.5)      : exponent at n_t =   184.74 E_need -> converts at n = 0.07 n_t
+    virialised halo sigma=5 km/s, t_av=0.1/H (z=2.5)    : exponent at n_t =     7.60 E_need -> converts at n = 0.36 n_t
+    virialised halo sigma=5 km/s, t_av=1/H (z=2.5)      : exponent at n_t =    75.98 E_need -> converts at n = 0.11 n_t
+    virialised halo sigma=20 km/s, t_av=0.1/H (z=2.5)   : exponent at n_t =     1.91 E_need -> converts at n = 0.72 n_t
+    virialised halo sigma=20 km/s, t_av=1/H (z=2.5)     : exponent at n_t =    19.09 E_need -> converts at n = 0.23 n_t
+    virialised halo sigma=150 km/s, t_av=0.1/H (z=2.5)  : exponent at n_t =     0.25 E_need -> converts at n = 1.98 n_t
+    virialised halo sigma=150 km/s, t_av=1/H (z=2.5)    : exponent at n_t =     2.55 E_need -> converts at n = 0.63 n_t
+    cluster sigma=1000 km/s, t_av=0.1/H (z=0)           : exponent at n_t =     0.04 E_need -> converts at n = 5.12 n_t
+    cluster sigma=1000 km/s, t_av=1/H (z=0)             : exponent at n_t =     0.38 E_need -> converts at n = 1.62 n_t
+  [PASS] E (ESTIMATE) every cold environment the streams contain -- filaments and sheets with a zero-strain direction, converging streams near r_vir, low-sigma minihalos -- converts BELOW FK1's nominal n_t; only hot, high-sigma hosts (clusters) sit above it
+         measured: cold environments: n/n_t = 0.07-0.77; clusters: 5.12/1.62
+         reading:  FK1's K4 normalisation is the Hubble-swept background; the streams are the environments where the sweep is weakest or the pump coldest.  This only strengthens A1-A3; the forest verdict (XR12_forest_halo_model) scans the threshold factor so as not to rest on these O(1) numbers
+
+================================================================================================================
+E2  FK1's CONVERSION RATE ABOVE THRESHOLD, in units of H: the bracket for XR12_stream_shells' two rates
+================================================================================================================
+    z = 2.5, n = 2 n_t: sigma     0:  1456.2 H (   2.7 Myr);  sigma     2:   676.5 H (   5.7 Myr);  sigma     5:   299.1 H (  12.9 Myr);  sigma    20:    76.3 H (  50.6 Myr);  sigma    60:    25.5 H ( 151.6 Myr);  sigma   150:    10.2 H ( 379.0 Myr)
+    z = 2.5, n = 5 n_t: sigma     0:  3640.5 H (   1.1 Myr);  sigma     2:  2895.0 H (   1.3 Myr);  sigma     5:  1691.2 H (   2.3 Myr);  sigma    20:   473.4 H (   8.2 Myr);  sigma    60:   159.0 H (  24.3 Myr);  sigma   150:    63.7 H (  60.6 Myr)
+    z =   0, n = 2 n_t: sigma     0:  2823.8 H (   5.1 Myr);  sigma     2:   737.4 H (  19.7 Myr);  sigma     5:   303.8 H (  47.8 Myr);  sigma    20:    76.4 H ( 190.1 Myr);  sigma    60:    25.5 H ( 570.0 Myr);  sigma   150:    10.2 H (1425.0 Myr)
+    z =   0, n = 5 n_t: sigma     0:  7059.5 H (   2.1 Myr);  sigma     2:  3955.0 H (   3.7 Myr);  sigma     5:  1843.6 H (   7.9 Myr);  sigma    20:   476.4 H (  30.5 Myr);  sigma    60:   159.1 H (  91.2 Myr);  sigma   150:    63.7 H ( 228.0 Myr)
+  [PASS] E2 (reported) at z = 2.5 and twice the threshold FK1's conversion runs at ~1e3 H in a cold (coherent) stream, ~25-75 H at sigma = 20-60 km/s and ~10 H at sigma = 150 km/s: the record's 10 H and the cold limit 1e3 H bracket a real stream
+         measured: sigma=0: 1456 H, sigma=2: 676 H, sigma=5: 299 H, sigma=20: 76 H, sigma=60: 25 H, sigma=150: 10 H
+         reading:  the rate rises as n^2 above the threshold, so dense streams convert faster than these numbers
+
+================================================================================================================
+SUMMARY
+================================================================================================================
+  Question (A), first half: yes -- FK1's n^2 trigger fires in the web before the fluid reaches halos.
+  - FK1's threshold (linear-cell reading delta_t0 = 5.31) is rho/rho_bar = 16.5/24.8/35.8 at z = 2/2.5/3:
+    inside the filament range; every stream near r_vir (delta ~ 100) is above it for z <= 4.7; every collapsed
+    halo for z <= 6.0.  At FK1's upper bracket (25) the smooth filaments stay below it; collapsed halos still cross
+    for z <= 3.1.
+  - On the record's own z = 2 mesh, 0.125 of the carrier is above the nominal threshold, mostly in filament
+    and knot cells.
+  - The trigger is local (gain length ~pc at halo densities, <= 8 kpc in a cold stream at the bare threshold), so it
+    resolves every clump the streams carry -- which the PM's 0.39 Mpc/h mesh cannot; and every cold environment in the
+    streams converts below n_t (estimate E).
+  The forest, the flagship and cluster retention are scored in XR12_forest_halo_model.py and XR12_stream_shells.py.
+
+  checks: 8/8 pass; load-bearing failures: 0   [4s]

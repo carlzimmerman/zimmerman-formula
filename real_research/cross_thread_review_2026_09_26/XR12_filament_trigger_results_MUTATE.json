@@ -1,0 +1,587 @@
+{
+ "lane": "XR12",
+ "part": "1/4 filament trigger",
+ "mutate": true,
+ "checks": {
+  "C0": {
+   "ok": true,
+   "claim": "C0 CONTROL: FK1's N2 (z_convert 0.86/1.48/2.69/4.01; q = 1.75 peak z = 0.30, 1.35x, 0.054 of the trigger's), N1's e-folds and N3's G_t/mc^2 reproduced from FK1's formulas to <= 1e-3 against its committed JSON",
+   "measured": "max |dz| = 0.0e+00; peak z 0.298, factor 1.3479; E_need 178.05; G_t/mc^2 1.806e-09",
+   "load_bearing": true
+  },
+  "B1": {
+   "ok": false,
+   "claim": "B1 with the K-gate (q = 1.75) the mean background's exponent stays below 0.1 of the trigger's for every z <= 10, so only overdense structure can convert",
+   "measured": "max ratio 3070.3828 at z = 10.00",
+   "load_bearing": true
+  },
+  "A1": {
+   "ok": true,
+   "claim": "A1 at z = 2-3 FK1's threshold (delta_t0 = 5.31) lies inside the filament range and below the r_vir streams (~100) and the virial overdensity; at delta_t0 = 25 it lies above the filaments but still below the virial overdensity",
+   "measured": "delta_t(2/2.5/3) = 16.5/24.8/35.8 (5.31), 78/117/169 (25); virial 185/182/181; streams at 100 cross for z <= 4.72 / 2.31; every virialised halo for z <= 5.96 / 3.10",
+   "load_bearing": true
+  },
+  "A2": {
+   "ok": true,
+   "claim": "A2 on the record's z = 2 mesh FK1's threshold (delta_t0 = 5.31) is exceeded by >= 5% of the carrier, >= 50% of it in T-web filaments and knots; CONTROL: the mass above the PM's own trigger is within 15% of L366's decayed fraction",
+   "measured": "above FK1 5.31: 0.125 of the carrier (filaments 0.33, knots 0.66); above FK1 25: 0.0289; PM trigger 0.299 vs L366 0.275",
+   "load_bearing": true
+  },
+  "A3": {
+   "ok": true,
+   "claim": "A3 FK1's trigger is local: at each host's own scale-radius density (1e6 Msun minihalo to 1e15 Msun cluster) the gain length is < 1e-3 r_s; a cold stream (sigma <= 60 km/s, z = 0-2.5) at the bare threshold is an absolute amplifier (Gamma L/v_k >= 1 for L = 20 kpc) with a gain length < 0.1 of the PM cell",
+   "measured": "minihalo 1e6 (z=2.5): 8.3e-04 r_s; dwarf 1e9 (z=2.5): 1.2e-04 r_s; flagship 1e12 (z=2.5): 9.2e-05 r_s; cluster 1e15 (z=0): 3.6e-07 r_s; streams: sigma=5/z=2.5 0.18 kpc, sigma=5/z=0 0.66 kpc, sigma=20/z=2.5 0.70 kpc, sigma=20/z=0 2.62 kpc, sigma=60/z=2.5 2.09 kpc, sigma=60/z=0 7.86 kpc",
+   "load_bearing": true
+  },
+  "S1": {
+   "ok": true,
+   "claim": "S1 the exponents: K4 = pi G^2/(4 H delta); a first-order-vanishing sweep gives C4 G^(3/2)/alpha^(1/2) with C4 = 1.7480; counter-propagating kinetic amplification turns absolute at Gamma L / v = 1",
+   "measured": "K4 pi*G**2/(4*H*delta); C4 1.7480; numeric 2.08931/2.08931; feedback W = [v/L]",
+   "load_bearing": true
+  },
+  "E": {
+   "ok": true,
+   "claim": "E (ESTIMATE) every cold environment the streams contain -- filaments and sheets with a zero-strain direction, converging streams near r_vir, low-sigma minihalos -- converts BELOW FK1's nominal n_t; only hot, high-sigma hosts (clusters) sit above it",
+   "measured": "cold environments: n/n_t = 0.07-0.77; clusters: 5.12/1.62",
+   "load_bearing": false
+  },
+  "E2": {
+   "ok": true,
+   "claim": "E2 (reported) at z = 2.5 and twice the threshold FK1's conversion runs at ~1e3 H in a cold (coherent) stream, ~25-75 H at sigma = 20-60 km/s and ~10 H at sigma = 150 km/s: the record's 10 H and the cold limit 1e3 H bracket a real stream",
+   "measured": "sigma=0: 1456 H, sigma=2: 676 H, sigma=5: 299 H, sigma=20: 76 H, sigma=60: 25 H, sigma=150: 10 H",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "C0": {
+   "z_convert_constant": {
+    "5/1": 0.8573544246252237,
+    "5/4": 1.4829085960793404,
+    "25/1": 2.693426011817658,
+    "25/4": 4.011887443451851
+   },
+   "bg_peak_z": 0.298,
+   "bg_peak_factor": 1.3479466713684294,
+   "E_need": 178.05461016669227,
+   "G_over_mc2": 1.8060914224948324e-09
+  },
+  "B1": {
+   "q": 0.0,
+   "max_ratio": 3070.382819945475,
+   "z_at_max": 10.0,
+   "z_cross": 0.904
+  },
+  "A1": {
+   "table": {
+    "5.31 (linear cell)": {
+     "0.0": {
+      "fk1": 5.31123858083705,
+      "fl2": 6.31123858083705,
+      "vir": 328.29997469601165
+     },
+     "0.3": {
+      "fk1": 4.574691710440169,
+      "fl2": 5.436014665681846,
+      "vir": 253.49564535046747
+     },
+     "0.5": {
+      "fk1": 4.793467295556656,
+      "fl2": 5.695981317964063,
+      "vir": 229.6934919958108
+     },
+     "1.0": {
+      "fk1": 6.783946489271297,
+      "fl2": 8.061227934271297,
+      "vir": 201.5104988592205
+     },
+     "2.0": {
+      "fk1": 16.500959453611244,
+      "fl2": 19.60776009953717,
+      "vir": 185.16320017467973
+     },
+     "2.5": {
+      "fk1": 24.769288484878608,
+      "fl2": 29.43285012081155,
+      "vir": 182.43491281763602
+     },
+     "3.0": {
+      "fk1": 35.798409977825564,
+      "fl2": 42.53853460845056,
+      "vir": 180.87710757348154
+     },
+     "4.0": {
+      "fk1": 67.68234057531335,
+      "fl2": 80.42557165883335,
+      "vir": 179.31449516797738
+     },
+     "6.0": {
+      "fk1": 181.68362460227652,
+      "fl2": 215.89101744239315,
+      "vir": 178.26112415910023
+     }
+    },
+    "25 (FK1 upper)": {
+     "0.0": {
+      "fk1": 25.0,
+      "fl2": 26.0,
+      "vir": 328.29997469601165
+     },
+     "0.3": {
+      "fk1": 21.533073881041886,
+      "fl2": 22.394396836283562,
+      "vir": 253.49564535046747
+     },
+     "0.5": {
+      "fk1": 22.562850560185186,
+      "fl2": 23.465364582592592,
+      "vir": 229.6934919958108
+     },
+     "1.0": {
+      "fk1": 31.932036125000003,
+      "fl2": 33.20931757,
+      "vir": 201.5104988592205
+     },
+     "2.0": {
+      "fk1": 77.67001614814815,
+      "fl2": 80.77681679407407,
+      "vir": 185.16320017467973
+     },
+     "2.5": {
+      "fk1": 116.58904089832363,
+      "fl2": 121.25260253425658,
+      "vir": 182.43491281763602
+     },
+     "3.0": {
+      "fk1": 168.50311576562498,
+      "fl2": 175.24324039624997,
+      "vir": 180.87710757348154
+     },
+     "4.0": {
+      "fk1": 318.580777088,
+      "fl2": 331.32400817151995,
+      "vir": 179.31449516797738
+     },
+     "6.0": {
+      "fk1": 855.1848210029158,
+      "fl2": 889.3922138430324,
+      "vir": 178.26112415910023
+     }
+    }
+   },
+   "z_stream100_above": {
+    "5.31 (linear cell)": 4.7164958143045395,
+    "25 (FK1 upper)": 2.3054527788543706
+   },
+   "z_virial_above": {
+    "5.31 (linear cell)": 5.955350050428012,
+    "25 (FK1 upper)": 3.1003598818421256
+   }
+  },
+  "A2": {
+   "per_box": {
+    "7": {
+     "type_mass_frac": {
+      "void": 0.042113365862668596,
+      "sheet": 0.3327245402723977,
+      "filament": 0.4741501841398204,
+      "knot": 0.15101190972511236
+     },
+     "PM trigger x~>5": {
+      "threshold": 4.60330162327188,
+      "mass_frac": 0.3024083332933039,
+      "vol_frac": 0.026456475257873535,
+      "by_type": {
+       "void": 7.079167011675923e-06,
+       "sheet": 0.035194920675723655,
+       "filament": 0.5514947014446432,
+       "knot": 0.41330329871262145
+      }
+     },
+     "FK1 5.31": {
+      "threshold": 16.500959453611244,
+      "mass_frac": 0.12804115362645455,
+      "vol_frac": 0.003648102283477783,
+      "by_type": {
+       "void": 0.0,
+       "sheet": 0.0016669161021832548,
+       "filament": 0.33760817198884396,
+       "knot": 0.6607249119089728
+      }
+     },
+     "FK1 25": {
+      "threshold": 77.67001614814815,
+      "mass_frac": 0.02977988870316355,
+      "vol_frac": 0.0002269148826599121,
+      "by_type": {
+       "void": 0.0,
+       "sheet": 0.0,
+       "filament": 0.04451882443670293,
+       "knot": 0.955481175563297
+      }
+     }
+    },
+    "17": {
+     "type_mass_frac": {
+      "void": 0.04244508971437535,
+      "sheet": 0.32547240268895594,
+      "filament": 0.4811619008517747,
+      "knot": 0.15092060674489638
+     },
+     "PM trigger x~>5": {
+      "threshold": 4.60330162327188,
+      "mass_frac": 0.29900412298184337,
+      "vol_frac": 0.02627807855606079,
+      "by_type": {
+       "void": 9.196207765841818e-06,
+       "sheet": 0.03293948869181864,
+       "filament": 0.5526072214862595,
+       "knot": 0.414444093614156
+      }
+     },
+     "FK1 5.31": {
+      "threshold": 16.500959453611244,
+      "mass_frac": 0.12594362837035727,
+      "vol_frac": 0.0035697221755981445,
+      "by_type": {
+       "void": 0.0,
+       "sheet": 0.0013136332228268041,
+       "filament": 0.3366194352067046,
+       "knot": 0.6620669315704686
+      }
+     },
+     "FK1 25": {
+      "threshold": 77.67001614814815,
+      "mass_frac": 0.029630027220132107,
+      "vol_frac": 0.0002218484878540039,
+      "by_type": {
+       "void": 0.0,
+       "sheet": 0.0,
+       "filament": 0.05866880748201136,
+       "knot": 0.9413311925179887
+      }
+     }
+    },
+    "29": {
+     "type_mass_frac": {
+      "void": 0.044300109522015005,
+      "sheet": 0.3242893230003022,
+      "filament": 0.4782350075291582,
+      "knot": 0.15317555994852153
+     },
+     "PM trigger x~>5": {
+      "threshold": 4.60330162327188,
+      "mass_frac": 0.2962415960358921,
+      "vol_frac": 0.026389896869659424,
+      "by_type": {
+       "void": 1.4424972245586237e-05,
+       "sheet": 0.034850404863541885,
+       "filament": 0.5452358615770933,
+       "knot": 0.4198993085871193
+      }
+     },
+     "FK1 5.31": {
+      "threshold": 16.500959453611244,
+      "mass_frac": 0.12170347264289805,
+      "vol_frac": 0.0035126209259033203,
+      "by_type": {
+       "void": 0.0,
+       "sheet": 0.0016431789799477249,
+       "filament": 0.3278057036155064,
+       "knot": 0.6705511174045459
+      }
+     },
+     "FK1 25": {
+      "threshold": 77.67001614814815,
+      "mass_frac": 0.027191377139959456,
+      "vol_frac": 0.00020647048950195312,
+      "by_type": {
+       "void": 0.0,
+       "sheet": 0.0,
+       "filament": 0.048650509667873175,
+       "knot": 0.9513494903321268
+      }
+     }
+    }
+   },
+   "pooled": {
+    "PM trigger x~>5": 0.29921801743701315,
+    "FK1 5.31": 0.12522941821323663,
+    "FK1 25": 0.028867097687751708
+   },
+   "fk1_531_filament_plus_knot": 0.9984587572316808,
+   "fk1_531_filament": 0.334011103603685,
+   "L366_decayed_z2": 0.2754359775119357,
+   "T_web_smoothing_Mpc_h": 1.0
+  },
+  "A3": {
+   "hosts": {
+    "minihalo 1e6 (z=2.5)": {
+     "r200_kpc": 0.8752210906352318,
+     "rs_kpc": 0.13822611802417736,
+     "sigma_kms": 1.5674954622009933,
+     "n_rs_over_nt": 159.0657292562206,
+     "gain_at_rs_kpc": 0.00011488908668955712,
+     "over_rs": 0.0008311677151308097,
+     "gain_at_threshold_host_sigma_kpc": 0.05756993740434802,
+     "threshold_over_rs": 0.41649102374616614
+    },
+    "dwarf 1e9 (z=2.5)": {
+     "r200_kpc": 8.752210906352317,
+     "rs_kpc": 1.7725157846422332,
+     "sigma_kms": 15.674954622009935,
+     "n_rs_over_nt": 89.64301209125492,
+     "gain_at_rs_kpc": 0.00021485117921059223,
+     "over_rs": 0.00012121256186948882,
+     "gain_at_threshold_host_sigma_kpc": 0.5462400084004835,
+     "threshold_over_rs": 0.30817215459141156
+    },
+    "flagship 1e12 (z=2.5)": {
+     "r200_kpc": 87.52210906352316,
+     "rs_kpc": 22.729511988872698,
+     "sigma_kms": 156.74954622009935,
+     "n_rs_over_nt": 51.41712822328536,
+     "gain_at_rs_kpc": 0.0020953758005417275,
+     "over_rs": 9.218745222367842e-05,
+     "gain_at_threshold_host_sigma_kpc": 5.459373870256489,
+     "threshold_over_rs": 0.2401887850882651
+    },
+    "cluster 1e15 (z=0)": {
+     "r200_kpc": 2116.434099636082,
+     "rs_kpc": 508.4793965577094,
+     "sigma_kms": 1008.0052740441639,
+     "n_rs_over_nt": 863.4957172342803,
+     "gain_at_rs_kpc": 0.00018174711147833558,
+     "over_rs": 3.5743259748324605e-07,
+     "gain_at_threshold_host_sigma_kpc": 132.0162510772715,
+     "threshold_over_rs": 0.25962949919110134
+    }
+   },
+   "streams": {
+    "sigma=5/z=2.5": {
+     "gain_kpc": 0.1750981813977548,
+     "over_cell": 0.0010567973695061674,
+     "feedback_20kpc": 114.22163177450598
+    },
+    "sigma=5/z=0": {
+     "gain_kpc": 0.6557969340899369,
+     "over_cell": 0.0011308667258956326,
+     "feedback_20kpc": 30.497245351953982
+    },
+    "sigma=20/z=2.5": {
+     "gain_kpc": 0.6968085450612729,
+     "over_cell": 0.00420555731414133,
+     "feedback_20kpc": 28.70228865841668
+    },
+    "sigma=20/z=0": {
+     "gain_kpc": 2.6195958930974133,
+     "over_cell": 0.0045172730715914685,
+     "feedback_20kpc": 7.634765366940615
+    },
+    "sigma=60/z=2.5": {
+     "gain_kpc": 2.089786711138752,
+     "over_cell": 0.012612815744462647,
+     "feedback_20kpc": 9.57035466509486
+    },
+    "sigma=60/z=0": {
+     "gain_kpc": 7.858148665627252,
+     "over_cell": 0.013550717289386283,
+     "feedback_20kpc": 2.5451287384626697
+    }
+   },
+   "pm_cell_proper_kpc": {
+    "0.0": 579.9064726840855,
+    "2.5": 165.68756362402445
+   }
+  },
+  "S1": {
+   "K4": "pi*G**2/(4*H*delta)",
+   "C4": 1.74803836952808,
+   "feedback_threshold": "[v/L]"
+  },
+  "E": {
+   "filament z=2.5, W=50 kpc, |T|=H": {
+    "E_at_nt": 1335.1968628677223,
+    "ratio": 7.4988053475151775,
+    "n_over_nt": 0.2610188947579351,
+    "t_star_Myr": 22.742520363748472
+   },
+   "filament z=2.5, W=100 kpc, |T|=H": {
+    "E_at_nt": 1834.4204065300971,
+    "ratio": 10.302571805429459,
+    "n_over_nt": 0.21120437002795392,
+    "t_star_Myr": 31.245836933425753
+   },
+   "filament z=2.5, W=300 kpc, |T|=2H": {
+    "E_at_nt": 1797.6098542508785,
+    "ratio": 10.09583437670039,
+    "n_over_nt": 0.21407790948226782,
+    "t_star_Myr": 30.618839703209897
+   },
+   "sheet z=0.3, W=1 Mpc, |T|=H": {
+    "E_at_nt": 3895.8961436336554,
+    "ratio": 21.880344125807085,
+    "n_over_nt": 0.12782934627075856,
+    "t_star_Myr": 118.82050172767948
+   },
+   "infall stream r_vir(1e12, z=2.5), W=20 kpc, |T|=9H": {
+    "E_at_nt": 261.93488658416584,
+    "ratio": 1.4710929772553825,
+    "n_over_nt": 0.7731075571028271,
+    "t_star_Myr": 4.4615589339552715
+   },
+   "virialised halo sigma=2 km/s, t_av=0.1/H (z=2.5)": {
+    "E_at_nt": 3289.311931581422,
+    "ratio": 18.473612834298496,
+    "n_over_nt": 0.2326612629476952
+   },
+   "virialised halo sigma=2 km/s, t_av=1/H (z=2.5)": {
+    "E_at_nt": 32893.11931581422,
+    "ratio": 184.73612834298495,
+    "n_over_nt": 0.07357395142060576
+   },
+   "virialised halo sigma=5 km/s, t_av=0.1/H (z=2.5)": {
+    "E_at_nt": 1352.8108348824014,
+    "ratio": 7.5977298965520665,
+    "n_over_nt": 0.3627923117383639
+   },
+   "virialised halo sigma=5 km/s, t_av=1/H (z=2.5)": {
+    "E_at_nt": 13528.108348824011,
+    "ratio": 75.97729896552065,
+    "n_over_nt": 0.11472500226910709
+   },
+   "virialised halo sigma=20 km/s, t_av=0.1/H (z=2.5)": {
+    "E_at_nt": 339.9423251077633,
+    "ratio": 1.9092026024460358,
+    "n_over_nt": 0.7237256936020635
+   },
+   "virialised halo sigma=20 km/s, t_av=1/H (z=2.5)": {
+    "E_at_nt": 3399.423251077633,
+    "ratio": 19.09202602446036,
+    "n_over_nt": 0.2288621592967671
+   },
+   "virialised halo sigma=150 km/s, t_av=0.1/H (z=2.5)": {
+    "E_at_nt": 45.34095684689744,
+    "ratio": 0.25464635150109205,
+    "n_over_nt": 1.9816697088334516
+   },
+   "virialised halo sigma=150 km/s, t_av=1/H (z=2.5)": {
+    "E_at_nt": 453.40956846897444,
+    "ratio": 2.5464635150109207,
+    "n_over_nt": 0.6266589850076401
+   },
+   "cluster sigma=1000 km/s, t_av=0.1/H (z=0)": {
+    "E_at_nt": 6.80118487470563,
+    "ratio": 0.0381971849442059,
+    "n_over_nt": 5.116633633355583
+   },
+   "cluster sigma=1000 km/s, t_av=1/H (z=0)": {
+    "E_at_nt": 68.0118487470563,
+    "ratio": 0.3819718494420591,
+    "n_over_nt": 1.6180216234026528
+   }
+  },
+  "E2": {
+   "z=2.5/n=2n_t/sigma=0": {
+    "t_conv_Myr": 2.65074210979348,
+    "Gamma_over_H": 1456.1854475993132
+   },
+   "z=2.5/n=2n_t/sigma=2": {
+    "t_conv_Myr": 5.705797629508754,
+    "Gamma_over_H": 676.4999981172297
+   },
+   "z=2.5/n=2n_t/sigma=5": {
+    "t_conv_Myr": 12.90685918743802,
+    "Gamma_over_H": 299.06362419889086
+   },
+   "z=2.5/n=2n_t/sigma=20": {
+    "t_conv_Myr": 50.59640026088976,
+    "Gamma_over_H": 76.28946062796616
+   },
+   "z=2.5/n=2n_t/sigma=60": {
+    "t_conv_Myr": 151.60392476575413,
+    "Gamma_over_H": 25.460898136931984
+   },
+   "z=2.5/n=2n_t/sigma=150": {
+    "t_conv_Myr": 378.9611441167569,
+    "Gamma_over_H": 10.18566717338894
+   },
+   "z=2.5/n=5n_t/sigma=0": {
+    "t_conv_Myr": 1.0602968439173919,
+    "Gamma_over_H": 3640.4636189982825
+   },
+   "z=2.5/n=5n_t/sigma=2": {
+    "t_conv_Myr": 1.3333377420375645,
+    "Gamma_over_H": 2894.969491916788
+   },
+   "z=2.5/n=5n_t/sigma=5": {
+    "t_conv_Myr": 2.2823190518035017,
+    "Gamma_over_H": 1691.2499952930743
+   },
+   "z=2.5/n=5n_t/sigma=20": {
+    "t_conv_Myr": 8.153541752470888,
+    "Gamma_over_H": 473.4104764288748
+   },
+   "z=2.5/n=5n_t/sigma=60": {
+    "t_conv_Myr": 24.276086027319252,
+    "Gamma_over_H": 159.00306504418054
+   },
+   "z=2.5/n=5n_t/sigma=150": {
+    "t_conv_Myr": 60.641569906301655,
+    "Gamma_over_H": 63.65224534232995
+   },
+   "z=0/n=2n_t/sigma=0": {
+    "t_conv_Myr": 5.140231859911215,
+    "Gamma_over_H": 2823.7868950111606
+   },
+   "z=0/n=2n_t/sigma=2": {
+    "t_conv_Myr": 19.68302350240431,
+    "Gamma_over_H": 737.4334213218368
+   },
+   "z=0/n=2n_t/sigma=5": {
+    "t_conv_Myr": 47.77727938010503,
+    "Gamma_over_H": 303.8038069907409
+   },
+   "z=0/n=2n_t/sigma=20": {
+    "t_conv_Myr": 190.06936903622596,
+    "Gamma_over_H": 76.36643104007825
+   },
+   "z=0/n=2n_t/sigma=60": {
+    "t_conv_Myr": 570.0227272169701,
+    "Gamma_over_H": 25.46375551410472
+   },
+   "z=0/n=2n_t/sigma=150": {
+    "t_conv_Myr": 1425.008147076865,
+    "Gamma_over_H": 10.18585009012808
+   },
+   "z=0/n=5n_t/sigma=0": {
+    "t_conv_Myr": 2.0560927439644856,
+    "Gamma_over_H": 7059.467237527902
+   },
+   "z=0/n=5n_t/sigma=2": {
+    "t_conv_Myr": 3.6700276287407965,
+    "Gamma_over_H": 3954.9891258764906
+   },
+   "z=0/n=5n_t/sigma=5": {
+    "t_conv_Myr": 7.873209400961722,
+    "Gamma_over_H": 1843.5835533045924
+   },
+   "z=0/n=5n_t/sigma=20": {
+    "t_conv_Myr": 30.46942828091006,
+    "Gamma_over_H": 476.3764921847954
+   },
+   "z=0/n=5n_t/sigma=60": {
+    "t_conv_Myr": 91.2231023311279,
+    "Gamma_over_H": 159.11451148250669
+   },
+   "z=0/n=5n_t/sigma=150": {
+    "t_conv_Myr": 228.00909088678802,
+    "Gamma_over_H": 63.65938878526181
+   }
+  }
+ },
+ "summary": {
+  "load_bearing_failed": 1,
+  "n_checks": 8,
+  "runtime_s": 4.4
+ }
+}

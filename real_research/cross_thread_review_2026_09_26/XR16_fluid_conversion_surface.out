@@ -1,0 +1,280 @@
+XR16 (the FK2 lane) -- THE DARK FLUID'S OWN CONVERSION SURFACE: does the fluid's phi_H phi_H -> phi_L phi_L conversion
+clear the flat-a0 flagship radius by z = 2.5, and is its early conversion budget safe for the Lyman-alpha forest?
+
+WHY.  FK1 (c2e1fa119) builds the kick inside the dark fluid's order parameter: a U(1)-breaking splitting eps/m^2 =
+1.84-2.35e-6 (v_k = 575-650 km/s), a pure cross quartic lambda(K)(Im Phi^2)^2, the coupling vacuum-gated through K
+(q = 1.75), Bose-stimulated, so the trigger is the fluid's OWN density (n^2).  FL2 (e96b71eb0) puts it in V0's dark slot.
+The flat-a0 flagship at z = 2.5 tolerates a retained carrier fraction S <= 0.059 at r_F (MS2 on DE4's galaxy; M_b = 1e11
+canonical is the worst host).  The record's particle-mesh residue at z = 2 is S = 0.063-0.075 (L388): the row is 'not
+established'.  AT1 (dd1d6a0d6) scores a hand-put acceleration trigger on the halo model; this lane puts the fluid's own
+conversion surface into AT1's machinery.
+
+THE DESIGN (supplied by the session that built FK1; implemented here, not re-derived).
+  * Conversion depth (per E_need e-folds):  S_c(r) = (2 C H/pi) Int_r^inf (rho_c/rho_bg)^2 D dr'/sigma(r').
+    Spontaneous ignition where S_c >= 1; a stimulated front where S_c >= 1/E_need (E_need 60-180, FK1 N1).
+    rho_bg = delta_t(z) rho_bar_carrier, delta_t = 2.5 E^2/(1.5 Omega_m(z)) (the linear cell's threshold, carrier reading).
+    C ~ 1 (broadband prefactor), bracketed 0.3-3.  D = exp(-(Delta v/sigma)^2/2), Delta v = v_k - sqrt(v_k^2 - 2 Delta Phi).
+    The front depends on K = C E_need only: the design's six corners are K = 18, 54, 60, 180, 540.
+  * Method: AT1's machinery, exec'd from the committed file only up to 'NFW loss cone + escape (added)' and from
+    'retention with decay on entry (added)' through flagship_rows (its main and tables are NOT run); r_v = the fluid's
+    surface.  AT1's retained_acc decays everything inside r_v IN PLACE (L388-like).  In the fluid's history the interior
+    converted earlier, in smaller progenitors: the z = 2.5 state drops the in-place population that escaped then and keeps
+    only the daughters converting on entry at the surface, GATED by a progenitor check -- a mass accretion history
+    M(z) = M(2.5) exp(-alpha (z - 2.5)), alpha = dlnM/dz magnitude 0.8 (0.6-1.0); the epoch z_pass the front passes r_F;
+    the INTACT progenitor's v_esc(r_F) at z_pass against v_k (G1: escaped iff v_esc < v_k).
+  * Part B: the early conversion budget F(z) over the halo mass function, minihalos down to the fluid's own scale
+    (m >= 2e-19 eV), scored against the budget AT2 put through the particle mesh (no particle-mesh run here).
+IMPLEMENTATION CHOICES (declared; each is the conservative side for the verdict it feeds).
+  * The carrier density is AT1's truncated NFW, (1 - f_b) rho_NFW(r < r200): no infall region, so S_c(r200) = 0 and the
+    front lies inside r200 -- a SMALLER front, i.e. a later passage of r_F in a bigger progenitor (pessimistic for A) and a
+    smaller budget (optimistic for 'the budget is large', i.e. conservative for B).
+  * sigma(r) in S_c is the untruncated isotropic Jeans dispersion (baryons + untruncated carrier): larger than the
+    truncated one near r200, so again a smaller front.
+  * The retained fraction is scored in TWO readings of the potential's response: AT1's own self-consistent iteration
+    (iters = 2: the potential drops as the carrier leaves) and the INTACT halo held fixed (iters = 0: the daughters feel
+    the pre-conversion potential).  The truth for a front that sweeps out over Gyr lies between; the load-bearing
+    flagship checks require BOTH.
+  * G2 (a refinement, reported): each in-place particle converted when the front reached its pericentre r_p; it is kept
+    with weight 1 - P_esc, P_esc = L357's escape table at u = v_k/v_esc,prog(r_p, z_pass(r_p)), s = sigma_prog/v_esc,prog;
+    kept daughters are then treated in place at z = 2.5 (pessimistic: the z = 2.5 well is deeper).
+  * Halo concentration: AT1's Dutton-Maccio c(M, z) with a floor c >= 3 (simulated concentrations flatten at c ~ 3-4 at
+    high peak height; D-M is fitted to z <= 5 and its extrapolation gives c < 1 for small halos at z > 6).  The floor
+    binds only for halos below ~1e11 Msun at z >~ 4.5 (the M_b = 1e10 hosts' progenitors meet r_F there); the gate
+    without it is reported (F2).
+
+PRE-DECLARED (written 2026-09-26 22:45 in the session's scratch notes, before any XR16 number was computed).
+  H-A1: with conversion at the fluid's surface and the in-place population dropped where the intact progenitor's
+        v_esc(r_F) at the front's passage is below v_k, S at r_F <= 0.059 and the GP5 flagship |shift| <= 0.10 dex for
+        M_b = 1e10-1e11, both footings, L356's gas range, both kernels, over C, E_need, alpha, v_k 600 (575).  EXPECT TRUE.
+  H-A2: the in-place population kept (no early escape, L388-like) at the same surface: S at r_F > 0.059 and/or
+        |shift| > 0.10, the flagship FAILS (designer: S ~ 0.1-0.2).  EXPECT TRUE.
+  H-B:  the fluid's early conversion budget exceeds the budget AT2 scored (AT1's A2 cell, F_trig 0.052/0.083 at z = 3/2),
+        so AT2's <= 0.33%/<= 1.7% flux result does not carry over.  EXPECT TRUE.
+  AFTER THE EXPLORATORY COMPONENT RUN (not committed: the fronts at z = 2.5, the passages, and ~75 retention calls on the
+  M_b = 1e11 and 1e11.5 hosts -- in place, surface-only, the intact-potential reading and G2, v_k 575-600): the in-place S
+  at M_b = 1e11 came out 0.006-0.010 in AT1's self-consistent reading and 0.12-0.21 with the intact potential held fixed.
+  H-A2 is therefore kept as pre-declared and reported as it falls (T1).  The one change made after that run makes A1
+  STRICTER: the pass must hold in BOTH readings of the potential's response (it was pre-declared for AT1's reading only).
+
+  AT1 loaded as designed (head to 'NFW loss cone + escape', then 'retention with decay on entry' through flagship_rows); h = 0.6736, Om = 0.3138, f_b = 0.16   [8s]
+
+======================================================================================================================
+C1-C5  CONTROLS
+======================================================================================================================
+    C1 rows computed   [161s]
+  [PASS] C1 CONTROL: r_v = AT1's y_v = 0.1 trigger radius, through this lane's copy of retained_acc and flagship arithmetic, reproduces AT1's committed A2 rows at z = 2.5, v_A = 600 (retained, shift, r_v, loss cone, r_out) exactly
+         measured: 36 rows (of 36 committed), max |dev| 0.0e+00
+  [PASS] C2 CONTROL: the copy with no gate is bit-identical to AT1's retained_acc at the fluid's surface (M_b 1e11, gas x1/1.5, K = 60, both footings' r_F, identical draws)
+         measured: AT1 [0.00578003 0.00598733], copy [0.00578003 0.00598733], max |dev| 0.0e+00
+  [PASS] C3 CONTROL: the depth integral -- a singular isothermal sphere with D -> 1 against (2H/pi) q0^2 r0^4 (r^-3 - R^-3)/(3 sigma), and with D at v_k = 600 against adaptive quadrature (three radii)
+         measured: max rel dev 8.6e-05 (closed form), 8.8e-05 (with D)
+  [PASS] C4 CONTROL: v_esc from L321's potential (AT1's intact halo: truncated NFW carrier + Hernquist) against the closed form at 0.5-300 kpc
+         measured: max rel dev 6.4e-06
+  [PASS] C5 CONTROL: AT2's own band_dev / forest_D / l365_rule (exec'd from its source text; its main is not run) reproduce its committed F4 table from L365's committed flux power, and its cells' rule values (densest-first and its MUTATE, sparsest-first)
+         measured: 15 L365 runs + 10 AT2 cells, max |dev| 0.0e+00
+
+======================================================================================================================
+F1  THE FLUID'S SURFACE AT z = 2.5: stimulated front (K = C E_need) and spontaneous ignition (C), against r_F
+======================================================================================================================
+    M_b 1e10.0 gas x0.67: M_h 5.45e+11, c 3.94, r200   71.5 kpc; r_F/r200 0.171 (canonical) 0.155 (alt); front r_s/r200 K18 0.924 K54 0.971 K60 0.974 K180 0.991 K540 0.997; spontaneous r/r200 C0.3 0.441 C1.0 0.595 C3.0 0.745; S_c(r_min) 2.2e+06
+    M_b 1e10.0 gas x1.00: M_h 4.77e+11, c 3.95, r200   68.4 kpc; r_F/r200 0.178 (canonical) 0.163 (alt); front r_s/r200 K18 0.924 K54 0.971 K60 0.974 K180 0.991 K540 0.997; spontaneous r/r200 C0.3 0.441 C1.0 0.595 C3.0 0.745; S_c(r_min) 2.1e+06
+    M_b 1e10.0 gas x1.50: M_h 4.09e+11, c 3.98, r200   65.0 kpc; r_F/r200 0.188 (canonical) 0.171 (alt); front r_s/r200 K18 0.924 K54 0.971 K60 0.974 K180 0.991 K540 0.997; spontaneous r/r200 C0.3 0.440 C1.0 0.594 C3.0 0.744; S_c(r_min) 2.0e+06
+    M_b 1e10.5 gas x0.67: M_h 1.12e+12, c 3.83, r200   91.0 kpc; r_F/r200 0.239 (canonical) 0.217 (alt); front r_s/r200 K18 0.925 K54 0.972 K60 0.974 K180 0.991 K540 0.997; spontaneous r/r200 C0.3 0.440 C1.0 0.595 C3.0 0.746; S_c(r_min) 1.7e+06
+    M_b 1e10.5 gas x1.00: M_h 9.67e+11, c 3.86, r200   86.6 kpc; r_F/r200 0.251 (canonical) 0.228 (alt); front r_s/r200 K18 0.925 K54 0.972 K60 0.974 K180 0.991 K540 0.997; spontaneous r/r200 C0.3 0.440 C1.0 0.595 C3.0 0.746; S_c(r_min) 1.6e+06
+    M_b 1e10.5 gas x1.50: M_h 8.17e+11, c 3.88, r200   81.8 kpc; r_F/r200 0.265 (canonical) 0.242 (alt); front r_s/r200 K18 0.924 K54 0.971 K60 0.974 K180 0.991 K540 0.997; spontaneous r/r200 C0.3 0.439 C1.0 0.594 C3.0 0.745; S_c(r_min) 1.5e+06
+    M_b 1e11.0 gas x0.67: M_h 2.84e+12, c 3.71, r200  123.9 kpc; r_F/r200 0.311 (canonical) 0.284 (alt); front r_s/r200 K18 0.926 K54 0.972 K60 0.975 K180 0.991 K540 0.997; spontaneous r/r200 C0.3 0.439 C1.0 0.596 C3.0 0.748; S_c(r_min) 1.3e+06
+    M_b 1e11.0 gas x1.00: M_h 2.28e+12, c 3.74, r200  115.2 kpc; r_F/r200 0.335 (canonical) 0.305 (alt); front r_s/r200 K18 0.926 K54 0.972 K60 0.975 K180 0.991 K540 0.997; spontaneous r/r200 C0.3 0.438 C1.0 0.595 C3.0 0.747; S_c(r_min) 1.2e+06
+    M_b 1e11.0 gas x1.50: M_h 1.82e+12, c 3.77, r200  106.9 kpc; r_F/r200 0.361 (canonical) 0.329 (alt); front r_s/r200 K18 0.925 K54 0.972 K60 0.974 K180 0.991 K540 0.997; spontaneous r/r200 C0.3 0.437 C1.0 0.594 C3.0 0.745; S_c(r_min) 1.1e+06
+    M_b 1e11.5 gas x0.67: M_h 6.11e+13, c 3.32, r200  344.6 kpc; r_F/r200 0.199 (canonical) 0.181 (alt); front r_s/r200 K18 0.931 K54 0.974 K60 0.977 K180 0.992 K540 0.997; spontaneous r/r200 C0.3 0.419 C1.0 0.577 C3.0 0.745; S_c(r_min) 1.1e+06
+    M_b 1e11.5 gas x1.00: M_h 1.85e+13, c 3.47, r200  231.6 kpc; r_F/r200 0.296 (canonical) 0.270 (alt); front r_s/r200 K18 0.929 K54 0.974 K60 0.976 K180 0.992 K540 0.997; spontaneous r/r200 C0.3 0.427 C1.0 0.592 C3.0 0.751; S_c(r_min) 9.6e+05
+    M_b 1e11.5 gas x1.50: M_h 7.76e+12, c 3.58, r200  173.2 kpc; r_F/r200 0.396 (canonical) 0.361 (alt); front r_s/r200 K18 0.928 K54 0.973 K60 0.975 K180 0.991 K540 0.997; spontaneous r/r200 C0.3 0.434 C1.0 0.594 C3.0 0.749; S_c(r_min) 8.6e+05
+  [PASS] F1 THE SURFACE: at z = 2.5 the flagship radius lies inside the fluid's stimulated front for every host (M_b 1e10-1e11.5, gas range), footing, K = 18-540 and v_k = 575-650
+         measured: all inside: True; inside even the spontaneous region at C = 0.3: True; front r_s/r200 0.924-0.997; r_F/r200 0.155-0.396
+         reading:  the truncated profile puts the front just inside r200 (S_c(r200) = 0 by construction); with an infall region it would lie beyond.  The carrier at r_F has converted by z = 2.5 in every host: what remains is the daughters' retention
+    [176s]
+
+======================================================================================================================
+F2  THE PASSAGE: when the front passed r_F in the main progenitor (M ~ exp(-alpha (z - 2.5))), and the intact progenitor's v_esc there
+======================================================================================================================
+    M_b 1e10.0 gas x0.67 (v_k 600, K 18-540, both footings): alpha 0.6: z_pass 5.3-6.9, v_esc(r_F) 161-230; alpha 0.8: z_pass 5.0-6.3, v_esc(r_F) 132-196; alpha 1.0: z_pass 4.8-5.8, v_esc(r_F) 113-172   [179s]
+    M_b 1e10.0 gas x1.00 (v_k 600, K 18-540, both footings): alpha 0.6: z_pass 5.2-6.7, v_esc(r_F) 156-221; alpha 0.8: z_pass 5.0-6.2, v_esc(r_F) 128-189; alpha 1.0: z_pass 4.7-5.7, v_esc(r_F) 111-167   [180s]
+    M_b 1e10.0 gas x1.50 (v_k 600, K 18-540, both footings): alpha 0.6: z_pass 5.2-6.6, v_esc(r_F) 150-211; alpha 0.8: z_pass 4.9-6.1, v_esc(r_F) 124-182; alpha 1.0: z_pass 4.7-5.6, v_esc(r_F) 107-160   [183s]
+    M_b 1e10.5 gas x0.67 (v_k 600, K 18-540, both footings): alpha 0.6: z_pass 4.7-6.1, v_esc(r_F) 221-302; alpha 0.8: z_pass 4.5-5.6, v_esc(r_F) 188-265; alpha 1.0: z_pass 4.3-5.2, v_esc(r_F) 166-238   [184s]
+    M_b 1e10.5 gas x1.00 (v_k 600, K 18-540, both footings): alpha 0.6: z_pass 4.7-6.0, v_esc(r_F) 213-289; alpha 0.8: z_pass 4.5-5.5, v_esc(r_F) 182-254; alpha 1.0: z_pass 4.3-5.1, v_esc(r_F) 162-229   [186s]
+    M_b 1e10.5 gas x1.50 (v_k 600, K 18-540, both footings): alpha 0.6: z_pass 4.6-5.8, v_esc(r_F) 204-275; alpha 0.8: z_pass 4.4-5.4, v_esc(r_F) 176-243; alpha 1.0: z_pass 4.2-5.0, v_esc(r_F) 157-220   [188s]
+    M_b 1e11.0 gas x0.67 (v_k 600, K 18-540, both footings): alpha 0.6: z_pass 4.3-5.4, v_esc(r_F) 322-421; alpha 0.8: z_pass 4.1-5.0, v_esc(r_F) 282-378; alpha 1.0: z_pass 4.0-4.7, v_esc(r_F) 255-346   [190s]
+    M_b 1e11.0 gas x1.00 (v_k 600, K 18-540, both footings): alpha 0.6: z_pass 4.2-5.3, v_esc(r_F) 306-394; alpha 0.8: z_pass 4.0-4.9, v_esc(r_F) 269-356; alpha 1.0: z_pass 3.9-4.6, v_esc(r_F) 245-327   [192s]
+    M_b 1e11.0 gas x1.50 (v_k 600, K 18-540, both footings): alpha 0.6: z_pass 4.1-5.1, v_esc(r_F) 290-369; alpha 0.8: z_pass 3.9-4.7, v_esc(r_F) 257-335; alpha 1.0: z_pass 3.8-4.4, v_esc(r_F) 235-309   [193s]
+    M_b 1e11.5 gas x0.67 (v_k 600, K 18-540, both footings): alpha 0.6: z_pass 5.0-6.4, v_esc(r_F) 842-1168; alpha 0.8: z_pass 4.7-5.9, v_esc(r_F) 700-1010; alpha 1.0: z_pass 4.6-5.5, v_esc(r_F) 607-895   [195s]
+    M_b 1e11.5 gas x1.00 (v_k 600, K 18-540, both footings): alpha 0.6: z_pass 4.4-5.5, v_esc(r_F) 619-802; alpha 0.8: z_pass 4.2-5.1, v_esc(r_F) 536-719; alpha 1.0: z_pass 4.0-4.8, v_esc(r_F) 481-656   [197s]
+    M_b 1e11.5 gas x1.50 (v_k 600, K 18-540, both footings): alpha 0.6: z_pass 3.9-4.8, v_esc(r_F) 496-612; alpha 0.8: z_pass 3.8-4.5, v_esc(r_F) 443-562; alpha 1.0: z_pass 3.7-4.3, v_esc(r_F) 407-523   [199s]
+    fronts grow monotonically in physical radius with time in every progenitor: True; the cusp ignites at every epoch (min S_c(r_min) = 1.5e+01, x C = 0.3 -> 4.5e+00 >= 1)
+    record grid (M_b 1e10-1e11), v_k 575-600: v_esc(r_F) at the passage 107-421 km/s, z_pass 3.8-6.9; escaped at 540/540 cells
+    M_b 1e11.5: v_esc(r_F) 407-1170 km/s; escaped at 77/180 cells
+    at v_k = 650: escaped at 270/270 record-grid cells and 51/90 M_b 1e11.5 cells
+    without the c >= 3 floor (alpha 0.8, K 60, v_k 600): v_esc(r_F) changes by at most 0.6 km/s   [201s]
+    alpha_crit (worst record host M_b 1e11.0 gas x0.67, K 18, v_k 575): the daughters escape for dlnM/dz magnitude >= 0.213   [203s]
+  [PASS] F2 (reported) THE PASSAGE: fronts monotone in time; the cusp ignites at every progenitor epoch; z_pass(r_F) and v_esc(r_F)
+         measured: monotone True; min S_c(r_min) 1.5e+01; record grid v_esc(r_F) 107-421 km/s at z_pass 3.8-6.9 (540/540 escaped); alpha_crit 0.213
+
+======================================================================================================================
+A  RETENTION AT r_F (z = 2.5): in place (AT1's rule) and surface-only (the in-place population gone), two potential readings
+======================================================================================================================
+    M_b 1e10.0 gas x0.67 v_k 575: in place S (self / intact) K18 0.0000/0.0037 K54 0.0000/0.0037 K60 0.0000/0.0037 K180 0.0000/0.0037 K540 0.0000/0.0037; surface-only 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 (canonical)   [269s]
+    M_b 1e10.0 gas x0.67 v_k 600: in place S (self / intact) K18 0.0000/0.0019 K54 0.0000/0.0019 K60 0.0000/0.0019 K180 0.0000/0.0019 K540 0.0000/0.0019; surface-only 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 (canonical)   [335s]
+    M_b 1e10.0 gas x1.00 v_k 575: in place S (self / intact) K18 0.0000/0.0022 K54 0.0000/0.0022 K60 0.0000/0.0022 K180 0.0000/0.0022 K540 0.0000/0.0022; surface-only 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 (canonical)   [406s]
+    M_b 1e10.0 gas x1.00 v_k 600: in place S (self / intact) K18 0.0000/0.0017 K54 0.0000/0.0017 K60 0.0000/0.0017 K180 0.0000/0.0017 K540 0.0000/0.0017; surface-only 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 (canonical)   [473s]
+    M_b 1e10.0 gas x1.50 v_k 575: in place S (self / intact) K18 0.0000/0.0019 K54 0.0000/0.0019 K60 0.0000/0.0019 K180 0.0000/0.0019 K540 0.0000/0.0019; surface-only 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 (canonical)   [540s]
+    M_b 1e10.0 gas x1.50 v_k 600: in place S (self / intact) K18 0.0000/0.0007 K54 0.0000/0.0007 K60 0.0000/0.0007 K180 0.0000/0.0007 K540 0.0000/0.0007; surface-only 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 (canonical)   [607s]
+    M_b 1e10.5 gas x0.67 v_k 575: in place S (self / intact) K18 0.0009/0.0410 K54 0.0009/0.0410 K60 0.0009/0.0410 K180 0.0009/0.0410 K540 0.0009/0.0410; surface-only 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 (canonical)   [676s]
+    M_b 1e10.5 gas x0.67 v_k 600: in place S (self / intact) K18 0.0004/0.0289 K54 0.0004/0.0289 K60 0.0004/0.0289 K180 0.0004/0.0289 K540 0.0004/0.0289; surface-only 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 (canonical)   [745s]
+    M_b 1e10.5 gas x1.00 v_k 575: in place S (self / intact) K18 0.0007/0.0345 K54 0.0007/0.0345 K60 0.0007/0.0345 K180 0.0007/0.0345 K540 0.0007/0.0345; surface-only 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 (canonical)   [814s]
+    M_b 1e10.5 gas x1.00 v_k 600: in place S (self / intact) K18 0.0007/0.0208 K54 0.0007/0.0208 K60 0.0007/0.0208 K180 0.0007/0.0208 K540 0.0007/0.0208; surface-only 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 (canonical)   [883s]
+    M_b 1e10.5 gas x1.50 v_k 575: in place S (self / intact) K18 0.0007/0.0221 K54 0.0007/0.0221 K60 0.0007/0.0221 K180 0.0007/0.0221 K540 0.0007/0.0221; surface-only 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 (canonical)   [954s]
+    M_b 1e10.5 gas x1.50 v_k 600: in place S (self / intact) K18 0.0007/0.0148 K54 0.0007/0.0148 K60 0.0007/0.0148 K180 0.0007/0.0148 K540 0.0007/0.0148; surface-only 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 (canonical)   [1024s]
+    M_b 1e11.0 gas x0.67 v_k 575: in place S (self / intact) K18 0.0094/0.2108 K54 0.0096/0.2109 K60 0.0094/0.2109 K180 0.0093/0.2108 K540 0.0098/0.2109; surface-only 0.0000/0.0000 0.0000/0.0001 0.0000/0.0001 0.0000/0.0000 0.0000/0.0001 (canonical)   [1105s]
+    M_b 1e11.0 gas x0.67 v_k 600: in place S (self / intact) K18 0.0056/0.1789 K54 0.0058/0.1788 K60 0.0058/0.1789 K180 0.0057/0.1789 K540 0.0058/0.1789; surface-only 0.0000/0.0001 0.0000/0.0000 0.0000/0.0001 0.0000/0.0001 0.0000/0.0001 (canonical)   [1186s]
+    M_b 1e11.0 gas x1.00 v_k 575: in place S (self / intact) K18 0.0094/0.1692 K54 0.0094/0.1692 K60 0.0094/0.1692 K180 0.0094/0.1692 K540 0.0094/0.1692; surface-only 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 (canonical)   [1267s]
+    M_b 1e11.0 gas x1.00 v_k 600: in place S (self / intact) K18 0.0056/0.1451 K54 0.0056/0.1451 K60 0.0056/0.1451 K180 0.0056/0.1451 K540 0.0056/0.1451; surface-only 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 (canonical)   [1346s]
+    M_b 1e11.0 gas x1.50 v_k 575: in place S (self / intact) K18 0.0095/0.1419 K54 0.0098/0.1419 K60 0.0095/0.1419 K180 0.0095/0.1419 K540 0.0095/0.1419; surface-only 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 (canonical)   [1425s]
+    M_b 1e11.0 gas x1.50 v_k 600: in place S (self / intact) K18 0.0068/0.1205 K54 0.0068/0.1205 K60 0.0067/0.1205 K180 0.0068/0.1205 K540 0.0068/0.1205; surface-only 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 0.0000/0.0000 (canonical)   [1504s]
+    M_b 1e11.5 gas x0.67 v_k 575: in place S (self / intact) K18 0.5570/0.7232 K54 0.5602/0.7219 K60 0.5674/0.7230 K180 0.5686/0.7214 K540 0.5770/0.7217; surface-only 0.0000/0.0100 0.0000/0.0020 0.0000/0.0031 0.0000/0.0002 0.0000/0.0003 (canonical)   [1624s]
+    M_b 1e11.5 gas x0.67 v_k 600: in place S (self / intact) K18 0.5279/0.7238 K54 0.5230/0.7235 K60 0.5075/0.7228 K180 0.5158/0.7223 K540 0.5257/0.7229; surface-only 0.0000/0.0078 0.0000/0.0033 0.0000/0.0023 0.0000/0.0004 0.0000/0.0004 (canonical)   [1742s]
+    M_b 1e11.5 gas x1.00 v_k 575: in place S (self / intact) K18 0.2673/0.5856 K54 0.2731/0.5856 K60 0.2648/0.5857 K180 0.2650/0.5849 K540 0.2653/0.5853; surface-only 0.0000/0.0040 0.0000/0.0014 0.0000/0.0016 0.0000/0.0001 0.0000/0.0002 (canonical)   [1852s]
+    M_b 1e11.5 gas x1.00 v_k 600: in place S (self / intact) K18 0.2345/0.5657 K54 0.2308/0.5663 K60 0.2285/0.5656 K180 0.2250/0.5649 K540 0.2321/0.5649; surface-only 0.0000/0.0036 0.0000/0.0019 0.0000/0.0011 0.0000/0.0002 0.0000/0.0001 (canonical)   [1960s]
+    M_b 1e11.5 gas x1.50 v_k 575: in place S (self / intact) K18 0.1117/0.4620 K54 0.1089/0.4609 K60 0.1136/0.4605 K180 0.1090/0.4605 K540 0.1102/0.4605; surface-only 0.0000/0.0025 0.0000/0.0007 0.0000/0.0003 0.0000/0.0000 0.0000/0.0000 (canonical)   [2055s]
+    M_b 1e11.5 gas x1.50 v_k 600: in place S (self / intact) K18 0.0892/0.4316 K54 0.0901/0.4301 K60 0.0894/0.4303 K180 0.0890/0.4302 K540 0.0896/0.4301; surface-only 0.0000/0.0022 0.0000/0.0003 0.0000/0.0004 0.0000/0.0002 0.0000/0.0001 (canonical)   [2145s]
+
+    G1 (the design's gate) on the record's grid, worst over gas x1/1.5-1.5, both footings, K, alpha, v_k, both kernels:
+      M_b 1e10.0 (self   potential): max S at r_F 0.00000, max |shift| 0.0000 dex
+      M_b 1e10.0 (intact potential): max S at r_F 0.00000, max |shift| 0.0000 dex
+      M_b 1e10.5 (self   potential): max S at r_F 0.00000, max |shift| 0.0000 dex
+      M_b 1e10.5 (intact potential): max S at r_F 0.00000, max |shift| 0.0000 dex
+      M_b 1e11.0 (self   potential): max S at r_F 0.00000, max |shift| 0.0000 dex
+      M_b 1e11.0 (intact potential): max S at r_F 0.00007, max |shift| 0.0001 dex
+  [PASS] A1 = H-A1 (strict): on the record's grid (M_b 1e10-1e11, gas x1/1.5-1.5, both footings, both kernels) with the design's progenitor gate, S at r_F <= 0.059 and |shift| <= 0.10 dex over K = 18-540, alpha = 0.6-1.0, v_k = 575-600, in BOTH readings of the potential's response
+         measured: max S 0.00007 (self-consistent 0.00000, intact 0.00007); max |shift| 0.0001 dex (self 0.0000, intact 0.0001); gate escaped at 1080/1080 rows
+         reading:  the front passed r_F at z ~ 4-7 when the progenitor's v_esc(r_F) was below the kick; the surface daughters at ~r200 escape; nothing at r_F is left to retain
+  [PASS] A2 THE EARLY-ESCAPE STEP: at every cell where the progenitor gate escapes -- including the M_b = 1e11.5 hosts that in-place conversion leaves loaded -- S at r_F <= 0.059 and |shift| <= 0.10 dex in both readings
+         measured: 1234 escaped rows: max S 0.00251, max |shift| 0.0071; of them M_b 1e11.5: 154 rows, max S 0.00251, max |shift| 0.0071
+         reading:  what the step removes is exactly the retained carrier the in-place reading leaves (MUTATE keeps it)
+  [FAIL] T1 = H-A2 (pre-declared, reported as it falls): the in-place population kept (AT1's rule at the fluid's surface, no early escape) fails the flagship on the record's grid in AT1's own self-consistent reading (designer: S ~ 0.1-0.2)
+         measured: in place, record grid: max S 0.0102 / max |shift| 0.020 dex (self-consistent, AT1's reading); 0.2109 / 0.349 dex (intact potential held fixed)
+         reading:  in AT1's machinery the daughters born in place escape once the converted carrier's own mass has left the well; the designer's L388-like S appears only if the intact well is held fixed
+    [2145s]
+
+======================================================================================================================
+A3  (reported) G2: each in-place particle kept with 1 - P_esc at the front's passage of its pericentre (v_k 600)
+======================================================================================================================
+    M_b 1e10.0 gas x0.67: G2 S at r_F (self/intact, canonical) K18 a0.6: 0.0000/0.0000 K18 a0.8: 0.0000/0.0000 K18 a1.0: 0.0000/0.0000 K60 a0.6: 0.0000/0.0000 K60 a0.8: 0.0000/0.0000 K60 a1.0: 0.0000/0.0000; in-place kept fraction <= 0.000   [2184s]
+    M_b 1e10.0 gas x1.00: G2 S at r_F (self/intact, canonical) K18 a0.6: 0.0000/0.0000 K18 a0.8: 0.0000/0.0000 K18 a1.0: 0.0000/0.0000 K60 a0.6: 0.0000/0.0000 K60 a0.8: 0.0000/0.0000 K60 a1.0: 0.0000/0.0000; in-place kept fraction <= 0.000   [2224s]
+    M_b 1e10.0 gas x1.50: G2 S at r_F (self/intact, canonical) K18 a0.6: 0.0000/0.0000 K18 a0.8: 0.0000/0.0000 K18 a1.0: 0.0000/0.0000 K60 a0.6: 0.0000/0.0000 K60 a0.8: 0.0000/0.0000 K60 a1.0: 0.0000/0.0000; in-place kept fraction <= 0.000   [2266s]
+    M_b 1e10.5 gas x0.67: G2 S at r_F (self/intact, canonical) K18 a0.6: 0.0000/0.0000 K18 a0.8: 0.0000/0.0000 K18 a1.0: 0.0000/0.0000 K60 a0.6: 0.0000/0.0000 K60 a0.8: 0.0000/0.0000 K60 a1.0: 0.0000/0.0000; in-place kept fraction <= 0.001   [2310s]
+    M_b 1e10.5 gas x1.00: G2 S at r_F (self/intact, canonical) K18 a0.6: 0.0000/0.0000 K18 a0.8: 0.0000/0.0000 K18 a1.0: 0.0000/0.0000 K60 a0.6: 0.0000/0.0000 K60 a0.8: 0.0000/0.0000 K60 a1.0: 0.0000/0.0000; in-place kept fraction <= 0.000   [2350s]
+    M_b 1e10.5 gas x1.50: G2 S at r_F (self/intact, canonical) K18 a0.6: 0.0000/0.0000 K18 a0.8: 0.0000/0.0000 K18 a1.0: 0.0000/0.0000 K60 a0.6: 0.0000/0.0000 K60 a0.8: 0.0000/0.0000 K60 a1.0: 0.0000/0.0000; in-place kept fraction <= 0.000   [2391s]
+    M_b 1e11.0 gas x0.67: G2 S at r_F (self/intact, canonical) K18 a0.6: 0.0001/0.0042 K18 a0.8: 0.0000/0.0010 K18 a1.0: 0.0000/0.0004 K60 a0.6: 0.0000/0.0015 K60 a0.8: 0.0000/0.0003 K60 a1.0: 0.0000/0.0002; in-place kept fraction <= 0.042   [2440s]
+    M_b 1e11.0 gas x1.00: G2 S at r_F (self/intact, canonical) K18 a0.6: 0.0000/0.0017 K18 a0.8: 0.0000/0.0003 K18 a1.0: 0.0000/0.0001 K60 a0.6: 0.0000/0.0005 K60 a0.8: 0.0000/0.0001 K60 a1.0: 0.0000/0.0000; in-place kept fraction <= 0.023   [2487s]
+    M_b 1e11.0 gas x1.50: G2 S at r_F (self/intact, canonical) K18 a0.6: 0.0000/0.0006 K18 a0.8: 0.0000/0.0001 K18 a1.0: 0.0000/0.0000 K60 a0.6: 0.0000/0.0002 K60 a0.8: 0.0000/0.0000 K60 a1.0: 0.0000/0.0000; in-place kept fraction <= 0.011   [2533s]
+    M_b 1e11.5 gas x0.67: G2 S at r_F (self/intact, canonical) K18 a0.6: 0.2740/0.5592 K18 a0.8: 0.1439/0.4472 K18 a1.0: 0.0599/0.3410 K60 a0.6: 0.1862/0.4852 K60 a0.8: 0.0610/0.3430 K60 a1.0: 0.0172/0.2334; in-place kept fraction <= 0.784   [2608s]
+    M_b 1e11.5 gas x1.00: G2 S at r_F (self/intact, canonical) K18 a0.6: 0.0291/0.2839 K18 a0.8: 0.0097/0.1743 K18 a1.0: 0.0032/0.1070 K60 a0.6: 0.0144/0.2058 K60 a0.8: 0.0041/0.1051 K60 a1.0: 0.0013/0.0560; in-place kept fraction <= 0.552   [2670s]
+    M_b 1e11.5 gas x1.50: G2 S at r_F (self/intact, canonical) K18 a0.6: 0.0063/0.1036 K18 a0.8: 0.0018/0.0473 K18 a1.0: 0.0007/0.0245 K60 a0.6: 0.0031/0.0591 K60 a0.8: 0.0007/0.0217 K60 a1.0: 0.0002/0.0100; in-place kept fraction <= 0.296   [2722s]
+  [PASS] A3 (reported) G2, the per-particle refinement: S at r_F
+         measured: record grid max 0.00422; M_b 1e11.5 0.0002-0.5592
+
+======================================================================================================================
+A4  (reported) THE M_b = 1e11.5 EXTENSION under G1: cell by cell
+======================================================================================================================
+    gas x0.67 (M_h 6.11e+13): 0/120 rows pass; v_esc(r_F) at passage 607-1170 km/s; worst S 0.724, worst |shift| 1.688 dex
+    gas x1.00 (M_h 1.85e+13): 42/120 rows pass; v_esc(r_F) at passage 481-803 km/s; worst S 0.586, worst |shift| 1.109 dex
+    gas x1.50 (M_h 7.76e+12): 112/120 rows pass; v_esc(r_F) at passage 407-612 km/s; worst S 0.462, worst |shift| 0.698 dex
+  [PASS] A4 (reported) M_b = 1e11.5 (outside MS2's flagship grid) under G1
+         measured: {0.667: '0/120 pass', 1.0: '42/120 pass', 1.5: '112/120 pass'}
+
+======================================================================================================================
+B  THE EARLY CONVERSION BUDGET F(z): every halo's own cusp, the fluid's front, minihalos to the fluid's scale
+======================================================================================================================
+    z =  2.0: converted fraction of the carrier F(z) [m = 2e-19 eV; K 18/60/540] 0.424/0.433/0.437  (collapsed above the fluid's scale 0.437); record cut 1e8, K 18: 0.352   [2722s]
+    z =  2.5: converted fraction of the carrier F(z) [m = 2e-19 eV; K 18/60/540] 0.371/0.387/0.395  (collapsed above the fluid's scale 0.396); record cut 1e8, K 18: 0.297   [2722s]
+    z =  3.0: converted fraction of the carrier F(z) [m = 2e-19 eV; K 18/60/540] 0.317/0.342/0.356  (collapsed above the fluid's scale 0.358); record cut 1e8, K 18: 0.245   [2723s]
+    z =  3.5: converted fraction of the carrier F(z) [m = 2e-19 eV; K 18/60/540] 0.265/0.298/0.319  (collapsed above the fluid's scale 0.322); record cut 1e8, K 18: 0.196   [2723s]
+    z =  4.0: converted fraction of the carrier F(z) [m = 2e-19 eV; K 18/60/540] 0.216/0.255/0.285  (collapsed above the fluid's scale 0.290); record cut 1e8, K 18: 0.153   [2723s]
+    z =  4.5: converted fraction of the carrier F(z) [m = 2e-19 eV; K 18/60/540] 0.172/0.214/0.252  (collapsed above the fluid's scale 0.260); record cut 1e8, K 18: 0.117   [2723s]
+    z =  5.0: converted fraction of the carrier F(z) [m = 2e-19 eV; K 18/60/540] 0.136/0.177/0.221  (collapsed above the fluid's scale 0.232); record cut 1e8, K 18: 0.088   [2724s]
+    z =  6.0: converted fraction of the carrier F(z) [m = 2e-19 eV; K 18/60/540] 0.082/0.115/0.165  (collapsed above the fluid's scale 0.184); record cut 1e8, K 18: 0.048   [2724s]
+    z =  7.0: converted fraction of the carrier F(z) [m = 2e-19 eV; K 18/60/540] 0.049/0.073/0.118  (collapsed above the fluid's scale 0.144); record cut 1e8, K 18: 0.025   [2724s]
+    z =  8.0: converted fraction of the carrier F(z) [m = 2e-19 eV; K 18/60/540] 0.028/0.045/0.081  (collapsed above the fluid's scale 0.111); record cut 1e8, K 18: 0.013   [2724s]
+    z = 10.0: converted fraction of the carrier F(z) [m = 2e-19 eV; K 18/60/540] 0.009/0.016/0.035  (collapsed above the fluid's scale 0.063); record cut 1e8, K 18: 0.003   [2724s]
+    z = 12.0: converted fraction of the carrier F(z) [m = 2e-19 eV; K 18/60/540] 0.003/0.005/0.014  (collapsed above the fluid's scale 0.034); record cut 1e8, K 18: 0.001   [2724s]
+    z = 15.0: converted fraction of the carrier F(z) [m = 2e-19 eV; K 18/60/540] 0.000/0.001/0.003  (collapsed above the fluid's scale 0.012); record cut 1e8, K 18: 0.000   [2725s]
+
+    the running (irreversible) budget, unweighted converted fraction F and bias-weighted escaped F_b, at z = 4 / 3 / 2:
+      fluid m = 2e-19 eV                     K   18: F 0.216/0.317/0.424; F_b,esc 0.339/0.435/0.486
+      fluid m = 2e-19 eV                     K   60: F 0.255/0.342/0.433; F_b,esc 0.403/0.471/0.497
+      fluid m = 2e-19 eV                     K  540: F 0.285/0.356/0.437; F_b,esc 0.451/0.490/0.502
+      fluid m = 1e-18 eV                     K   18: F 0.232/0.335/0.442; F_b,esc 0.354/0.449/0.499
+      fluid m = 1e-18 eV                     K   60: F 0.274/0.362/0.451; F_b,esc 0.421/0.487/0.511
+      fluid m = 1e-18 eV                     K  540: F 0.306/0.376/0.455; F_b,esc 0.470/0.507/0.516
+      grid floor 1.5e5 Msun (heavier m)      K   18: F 0.236/0.340/0.447; F_b,esc 0.358/0.453/0.503
+      grid floor 1.5e5 Msun (heavier m)      K   60: F 0.280/0.368/0.456; F_b,esc 0.425/0.491/0.515
+      grid floor 1.5e5 Msun (heavier m)      K  540: F 0.312/0.382/0.460; F_b,esc 0.476/0.511/0.520
+      record M_min = 1e8 (most favourable)   K   18: F 0.153/0.245/0.352; F_b,esc 0.277/0.372/0.431
+      record M_min = 1e8 (most favourable)   K   60: F 0.181/0.264/0.359; F_b,esc 0.330/0.404/0.441
+      record M_min = 1e8 (most favourable)   K  540: F 0.202/0.275/0.362; F_b,esc 0.369/0.420/0.445
+      AT1's A2 cell (y_v 0.1, v_A 600; what AT2 scored): F_trig 0.032/0.052/0.083; F_b,esc 0.083/0.100/0.107
+    ignition at the soliton core (m = 2e-19 eV, C = 0.3): fails in 36 halo evaluations (z = [10.0, 12.0, 15.0], M_h 1.5e+05-1.9e+06 Msun; counted unconverted); min C S_c(r_core) 6.2e-02
+    mass selectivity (fiducial m = 2e-19 eV, K = 60): the share of the converted carrier in hosts >= 1e10.5 Msun is 0.206 (z = 4), 0.314 (z = 3), 0.446 (z = 2)  [AT1's acceleration trigger: >= 0.98 at z = 2-3]
+  [PASS] B1 = H-B: the fluid's early conversion budget exceeds the one AT2 scored (AT1's A2 cell) at z = 3 and 2 even at the most favourable corner (K = 18, the record's M_min = 1e8 cut)
+         measured: most favourable F(4/3/2) = 0.153/0.245/0.352 (4.7x / 4.2x AT1's 0.052/0.083); fiducial (m = 2e-19 eV, K = 60) 0.255/0.342/0.433
+         reading:  the gate's threshold in rho_crit(z) units, (5/3) E^2 = 15 / 35 / 66 at z = 2 / 3 / 4, lies below every halo's mean density (200 rho_crit) for z <~ 6: at z <~ 4 every halo above the fluid's scale converts almost whole, so the budget tracks the collapsed fraction, not the massive hosts
+
+======================================================================================================================
+B2  (reported) A CONSERVATIVE FOREST BOUND from the committed particle-mesh responses (no particle-mesh run here)
+======================================================================================================================
+      AT2 densest 0.1|600.0       : F(2) 0.084; L365 rule per unit F(2) 0.298; band max per unit F(2) 0.204
+      AT2 densest 0.05|600.0      : F(2) 0.111; L365 rule per unit F(2) 0.265; band max per unit F(2) 0.198
+      AT2 densest 0.3|600.0       : F(2) 0.046; L365 rule per unit F(2) 0.312; band max per unit F(2) 0.227
+      AT2 densest 1.0|600.0       : F(2) 0.018; L365 rule per unit F(2) 0.284; band max per unit F(2) 0.193
+      AT2 sparsest 0.1|600.0      : F(2) 0.084; L365 rule per unit F(2) 0.076; band max per unit F(2) 0.070
+      AT2 sparsest 0.05|600.0     : F(2) 0.111; L365 rule per unit F(2) 0.083; band max per unit F(2) 0.074
+      AT2 sparsest 0.3|600.0      : F(2) 0.046; L365 rule per unit F(2) 0.062; band max per unit F(2) 0.062
+      AT2 sparsest 1.0|600.0      : F(2) 0.018; L365 rule per unit F(2) 0.091; band max per unit F(2) 0.054
+      L365 x5_v700                : F(2) 0.268; L365 rule per unit F(2) 0.205; band max per unit F(2) 0.151
+      L365 x10_v700               : F(2) 0.174; L365 rule per unit F(2) 0.179; band max per unit F(2) 0.137
+      L365 x20_v700               : F(2) 0.105; L365 rule per unit F(2) 0.166; band max per unit F(2) 0.139
+      L365 x5_v400                : F(2) 0.283; L365 rule per unit F(2) 0.107; band max per unit F(2) 0.083
+      L365 x5_v550                : F(2) 0.275; L365 rule per unit F(2) 0.155; band max per unit F(2) 0.120
+    projected L365 rule at z = 2 for record M_min = 1e8 (most favourable), K 18 (F(2) = 0.352): 0.022-0.110 (gate 0.10)
+    projected L365 rule at z = 2 for fluid m = 2e-19 eV, K 60 (F(2) = 0.433): 0.027-0.135 (gate 0.10)
+    the largest committed particle-mesh budget is F(2) = 0.283: every projection above is an EXTRAPOLATION
+  [PASS] B2 (reported) the forest bound: AT2's regime does not carry over; the projected L365 rule at the fluid's F(2)
+         measured: {'record M_min = 1e8 (most favourable)|K18': '0.022-0.110', 'fluid m = 2e-19 eV|K60': '0.027-0.135'}
+
+======================================================================================================================
+B3  (reported flag) THE DESIGN'S STIMULATED CRITERION IN THE HUBBLE FLOW: gain (rho/rho_bg)^2 E_need >= 1 e-fold
+======================================================================================================================
+    E_need 60: the web meets the stimulated criterion above delta = 1.13 (z = 2), 3.62 (z = 3), 7.74 (z = 4) [3 e-folds: 2.69, 7.00, 14.13]; the MEAN density meets it below z = 1.15
+    E_need 180: the web meets the stimulated criterion above delta = 0.23 (z = 2), 1.67 (z = 3), 4.04 (z = 4) [3 e-folds: 1.13, 3.62, 7.74]; the MEAN density meets it below z = 1.76
+  [PASS] B3 (reported flag) the stimulated criterion in the Hubble flow reaches filament densities at z = 2-4 and the mean density at low z; the halo model above does not score the web
+         measured: {60.0: 1.1520000000000001, 180.0: 1.762}
+         reading:  whether seeds from converted halos actually drive a front through the web (the gain needed is ln(pump/seed), not 1) is not computed here; if it does, F(z) above is a LOWER bound
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  PART A (the flagship at z = 2.5).  The fluid's stimulated front sits at 0.92-1.00 r200 in every flagship host,
+  far outside r_F.  In the main progenitor the front passed r_F at z = 3.8-6.9, when the intact progenitor's
+  v_esc(r_F) was 107-421 km/s (M_b 1e10-1e11), below every kick in 575-650: the in-place population left then.
+  With the design's gate the retained carrier at r_F on the record's grid is S <= 0.00007 (both potential readings), the
+  flagship shift <= 0.0001 dex: PASS against S <= 0.059 and 0.10 dex.
+  The trap: kept in place, S = 0.0102 in AT1's self-consistent reading but 0.211 with the intact well held
+  fixed -- the designer's L388-like number.  The early escape is what makes the pass independent of that unresolved response.
+  M_b = 1e11.5 (outside MS2's grid): gas x0.667: 0/120, gas x1.0: 42/120, gas x1.5: 112/120 rows pass; its progenitor's v_esc(r_F) reaches
+  1170 km/s.
+  PART B (the forest).  Not mass-selective: by z = 3 / 2 the fluid has converted F = 0.34 / 0.43 of the carrier (m = 2e-19 eV,
+  K = 60; >= 0.24 / 0.35 at the most favourable corner), 5x / 4x AT1's cell that AT2 scored.  AT2's
+  <= 0.33% / 1.7% does not carry over; the committed responses project an L365 rule of 0.02-0.14 at z = 2
+  (an extrapolation past the committed F(2) <= 0.28).  Forest: NOT established; a particle-mesh run with this budget is the
+  owner's call.  Flag: the design's stimulated criterion reaches filament densities at z = 2-4 (B3).
+
+  14/15 checks pass; load-bearing failures: 0; wrote XR16_fluid_conversion_surface_results.json   [2725s]
+rc=0

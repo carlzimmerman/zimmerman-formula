@@ -1,0 +1,74 @@
+XR13_gate_table.py -- THE PER-OBJECT DOOR: the scorecard.  Bookkeeping over the three XR13 results files (no new physics):
+every gate the task names, M*'s committed number beside the door's, and a verdict -- FLIPS (M* failed, the door passes),
+IMPROVES (closer, still failing), PARTWAY, BREAKS (M* passed, the door fails), NEW FAILURE (a test M* did not carry),
+UNCHANGED, or RISK (unchanged in the committed model, not established for real systems).
+
+  *** MUTATE=1: the three lanes' MUTATE results (scored column = M*, regions merged); T1 must FAIL ***
+  [FAIL] T1 THE THREE LANES SCORED THE DOOR with no load-bearing failure -- MUTATE (their M* columns) must fail
+         measured: door in the scored column: [False, False, False]; load-bearing failures [3, 1, 2]
+
+  --------------------------------------------------------------------------------------------------------------------
+  (a) EFE, cluster-infall BTFR slope (N = 314)         | M*: 2.2-6.3 sigma
+                                                       | scored (M*): 2.23-6.28 sigma; zero point 3.15 sigma
+                                                       | => no flip
+  --------------------------------------------------------------------------------------------------------------------
+  (b) EFE, LV dwarfs statistic C (N = 92)              | M*: 3.9-4.5 sigma
+                                                       | scored (M*): 3.87-4.48 sigma at l_obj = 1 kpc (passes for l_obj <= 1.5 kpc; the size rule fails)
+                                                       | => no flip
+  --------------------------------------------------------------------------------------------------------------------
+  (c) Coma UDGs (11)                                   | M*: 4.2-4.3 sigma
+                                                       | scored (M*): 4.20 / 4.35 sigma at +0.98 / +0.95 dex
+                                                       | => no change
+  --------------------------------------------------------------------------------------------------------------------
+  (d) Local Group R_0 (decay history)                  | M*: +0.18 to +0.24 dex
+                                                       | scored (M*): +0.18 to +0.24 dex
+                                                       | => no change
+  --------------------------------------------------------------------------------------------------------------------
+  MW-M31 timing at 0.78 Mpc (measured -110 km/s)       | M*: -200 to -142 km/s (over-predicts; past-flyby escape)
+                                                       | scored (M*): -200 to -142 km/s
+                                                       | => over-predicts (item 13)
+  --------------------------------------------------------------------------------------------------------------------
+  (e) KiDS-1000 (isolated lenses)                      | M*: -32.2 / -29.3
+                                                       | scored (M*): unchanged in the committed model; a MW-like satellite system's basins cover 0.35 of the host's sky
+                                                       | => UNCHANGED (committed) / RISK
+  --------------------------------------------------------------------------------------------------------------------
+  (f) cosmic shear, halo model (two-sided 0.8-1.2)     | M*: 0.90-1.12
+                                                       | scored (M*): 0.90-1.12 (one-sided R <= 1.2 passes)
+                                                       | => passes
+  --------------------------------------------------------------------------------------------------------------------
+  (g) X-COP (L388 retention, 575-650 km/s)             | M*: carrier 0.29-0.77; window ['v575', 'v600', 'v625', 'v650']
+                                                       | scored (M*): carrier 0.29-0.77; window ['v575', 'v600', 'v625', 'v650'] (top bin holds 0.79-0.85)
+                                                       | => passes
+  --------------------------------------------------------------------------------------------------------------------
+  (h) El Gordo (L370)                                  | M*: Delta chi from -0.58 to -0.12
+                                                       | scored (M*): Delta chi from -0.58 to -0.12
+                                                       | => unchanged
+  --------------------------------------------------------------------------------------------------------------------
+  (h) Harvey (L370)                                    | M*: intact beta +0.001 to +0.072
+                                                       | scored (M*): intact beta +0.001 to +0.072; core-decayed cleared_2000 beta +0.010 to +0.369; cap_1000 beta +0.009 to +0.224
+                                                       | => passes if the cluster carrier is intact or uniformly depleted
+  --------------------------------------------------------------------------------------------------------------------
+  (i) groups at 2e13 (item 7)                          | M*: kicks passing ['v575', 'v600', 'v625', 'v650']
+                                                       | scored (M*): kicks passing ['v575', 'v600', 'v625', 'v650']
+                                                       | => passes
+  --------------------------------------------------------------------------------------------------------------------
+  RAR, RC100 (SPARC below M_cap)                       | M*: pass
+                                                       | scored (M*): unchanged (SPARC max 2.7e+11 Msun)
+                                                       | => UNCHANGED
+  --------------------------------------------------------------------------------------------------------------------
+  Gaia DR4 wide binaries (the Sun keeps the Galaxy)    | M*: untouched
+                                                       | scored (M*): untouched (s*(Sun) = 0.12 kpc < l_obj)
+                                                       | => UNCHANGED
+  --------------------------------------------------------------------------------------------------------------------
+  hunt item 93, outer-halo globulars (M/L_V needed)    | M*: 0.76 (with EFE)
+                                                       | scored (M*): 0.68 under R1 at 1 kpc (all four separate); unchanged under R2
+                                                       | => WORSE under R1
+  --------------------------------------------------------------------------------------------------------------------
+  the object rule (R1 at l_obj = 1 kpc)                | M*: -
+                                                       | scored (M*): separates 52/157 Milky Way globulars (29 inside 20 kpc); window 0.55-1.08 kpc
+                                                       | => NEW CONSTANT + a type rule
+  --------------------------------------------------------------------------------------------------------------------
+  [PASS] (reported) T2 (reported) THE NET: gates the door flips to a pass against gates it breaks or newly fails (the task's gates plus the MW-M31 timing the partition forces)
+         measured: 0 flip(s), 0 broken or new
+
+  1/2 checks pass; load-bearing failures: 1; wrote XR13_gate_table_results_MUTATE.json

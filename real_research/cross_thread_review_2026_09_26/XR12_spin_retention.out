@@ -1,0 +1,90 @@
+XR12 (4/4) -- DOES HALO SPIN, FED BY FILAMENTS, CHANGE RETENTION?  ("swirling down between the bands", question B)
+
+WHY.  If the dark fluid spirals into halos along filaments, the halo's inner fluid rotates.  Three ways that could move
+the construction's clearing and retention numbers: (1) centrifugal support lowers the inner density, and FK1's
+conversion rate goes as n^2; (2) a superfluid can rotate only through quantised vortices, whose cores are empty; (3)
+the kicked daughters leave a rotating pump, so a prograde daughter starts faster than a retrograde one.  This lane
+sizes all three and compares them with the gates' tolerances: the flagship's S <= 0.059 at r_F (MS2), and the X-COP
+window, where L388's pooled retention (0.374-0.607 over 575-650 km/s) sits 0.088 above the floor (0.286) and 0.161
+below the ceiling (0.768).
+
+MODEL.  NFW hosts (Dutton & Maccio 2014 c(M, z)).  Rotation v_phi(r, theta) = eta v_c(r) sin(theta), with eta fixed by the
+Bullock spin lambda' = J/(sqrt(2) M_200 V_200 r_200) (J = (2/3) eta int r v_c dM), lambda' = 0.03-0.05 (0.035 the median).
+Escape: XR7's static model (an NFW halo with isotropic Jeans velocities, every carrier element converting at once, a
+daughter kept iff its energy stays bound), re-implemented, with the rotation added to each pump element's velocity --
+either on top of the Jeans dispersion ('added') or at fixed kinetic energy ('energy-conserving': sigma^2 -> sigma^2 -
+(2/9) eta^2 v_c^2).  Each converting pair leaves back to back in the pump's frame, so one daughter is prograde and one
+retrograde: the pair average removes the first order in v_rot/v_k.
+
+================================================================================================================
+B0  CONTROL: XR7's committed static-model 50% retention v_200 reproduced exactly
+================================================================================================================
+    50% retention v_200: 575/inf 263.7506 (XR7 263.7506), 575/2r200 355.9847 (XR7 355.9847), 600/inf 275.1858 (XR7 275.1858), 600/2r200 372.1288 (XR7 372.1288), 625/inf 286.6431 (XR7 286.6431), 625/2r200 388.2889 (XR7 388.2889), 650/inf 298.1620 (XR7 298.1620), 650/2r200 404.4755 (XR7 404.4755)
+  [PASS] B0 CONTROL: XR7's static-model 50% transition reproduced exactly (8 cells)
+         measured: max |dv_200| = 0.00e+00 km/s
+
+================================================================================================================
+SPIN  eta(lambda') for the rotation law v_phi = eta v_c(r) sin(theta)
+================================================================================================================
+    lambda' = 0.03: eta = c=4 0.129, c=7 0.136, c=10 0.141  -> rotational share of the support (2/3) eta^2 = 0.0111, 0.0123, 0.0132
+    lambda' = 0.035: eta = c=4 0.150, c=7 0.158, c=10 0.164  -> rotational share of the support (2/3) eta^2 = 0.0151, 0.0167, 0.0180
+    lambda' = 0.05: eta = c=4 0.215, c=7 0.226, c=10 0.235  -> rotational share of the support (2/3) eta^2 = 0.0308, 0.0341, 0.0367
+
+================================================================================================================
+B1  CENTRIFUGAL SUPPORT: the inner density, the n^2 rate, and where the conversion edge sits
+================================================================================================================
+    r_F in the flagship host (~0.44 r_200)  : support share 0.0367 -> density lower by 5.842%, n^2 rate lower by 11.343%
+    0.1 r_200                               : support share 0.0367 -> density lower by 15.535%, n^2 rate lower by 28.657%
+    conversion edge ~1-3 r_200              : support share 0.0367 -> density lower by 0.000%, n^2 rate lower by 0.000%
+    the conversion edge (n = n_t, where rho ~ r^-2 to r^-3) moves inward by <= 1.83%; FK1's threshold is sharp to 6% in density (N1: negligible below 0.942 n_t)
+    the flagship: rho(r_F) = 12.7-44x the nominal threshold (XR12_forest_halo_model W) -> a <= 10% drop cannot un-trigger r_F
+  [PASS] B1 centrifugal support at lambda' <= 0.05 is <= 5% of the support, lowers the density at r_F by <= 10% and the n^2 rate there by <= 20%, and moves the conversion edge by <= 4% -- inside the flagship's trigger margin (>= 12.7x) and FK1's 6% sharpness (0.1 r_200 is reported, not gated: no gate sits there)
+         measured: support 0.0367; density drop at r_F 5.842% (rate 11.343%); at 0.1 r_200 15.535%; edge shift 1.83%
+         reading:  spin cannot switch the trigger off where it matters: r_F sits an order of magnitude above threshold
+
+================================================================================================================
+B2  THE VORTEX LATTICE a rotating superfluid halo must carry (Feynman: n_v = m Omega / (pi hbar))
+================================================================================================================
+    flagship r_F (1e12, z=2.5)   m = 2e-19 eV: v_rot  48.6 km/s -> spacing   154.63 pc, 2.0e+05 vortices; core ~ lambda_dB/2pi = 0.0597 pc, filling 4.7e-07; lattice / random tangle 5.9e-06
+    flagship r_F (1e12, z=2.5)   m = 5e-19 eV: v_rot  48.6 km/s -> spacing    97.80 pc, 4.9e+05 vortices; core ~ lambda_dB/2pi = 0.0239 pc, filling 1.9e-07; lattice / random tangle 2.4e-06
+    flagship r_F (1e12, z=2.5)   m = 1e-17 eV: v_rot  48.6 km/s -> spacing    21.87 pc, 9.8e+06 vortices; core ~ lambda_dB/2pi = 0.0012 pc, filling 9.4e-09; lattice / random tangle 1.2e-07
+    cluster R_500 (8e14, z=0)    m = 2e-19 eV: v_rot 297.5 km/s -> spacing   318.18 pc, 3.1e+07 vortices; core ~ lambda_dB/2pi = 0.0098 pc, filling 3.0e-09; lattice / random tangle 3.8e-08
+    cluster R_500 (8e14, z=0)    m = 5e-19 eV: v_rot 297.5 km/s -> spacing   201.24 pc, 7.8e+07 vortices; core ~ lambda_dB/2pi = 0.0039 pc, filling 1.2e-09; lattice / random tangle 1.5e-08
+    cluster R_500 (8e14, z=0)    m = 1e-17 eV: v_rot 297.5 km/s -> spacing    45.00 pc, 1.6e+09 vortices; core ~ lambda_dB/2pi = 0.0002 pc, filling 6.0e-11; lattice / random tangle 7.6e-10
+  [PASS] B2 the rotation's vortex lattice is sparse (spacing >= 10 pc for m <= 1e-17 eV), its cores fill < 1e-5 of the volume, and it is < 1e-3 of the random vortex tangle the multistreaming field already carries
+         measured: min spacing 21.9 pc; max filling 4.7e-07; max lattice/tangle 5.9e-06
+         reading:  the superfluid carries its spin as a vanishing polarisation of nodes it already has: no effect on n^2
+
+================================================================================================================
+B3  ESCAPE FROM A ROTATING PUMP: pair-averaged retention and the prograde/retrograde split (eta = 0.235)
+================================================================================================================
+    v_k 575: inf/added: dR 0.0064, d v50 0.10%, pro-retro +0.108; inf/energy: dR 0.0019, d v50 0.12%, pro-retro +0.110; 2r200/added: dR 0.0030, d v50 0.37%, pro-retro +0.105; 2r200/energy: dR 0.0021, d v50 0.25%, pro-retro +0.106
+    v_k 600: inf/added: dR 0.0064, d v50 0.06%, pro-retro +0.109; inf/energy: dR 0.0021, d v50 0.13%, pro-retro +0.110; 2r200/added: dR 0.0029, d v50 0.36%, pro-retro +0.105; 2r200/energy: dR 0.0024, d v50 0.29%, pro-retro +0.105
+    v_k 625: inf/added: dR 0.0062, d v50 0.07%, pro-retro +0.108; inf/energy: dR 0.0020, d v50 0.14%, pro-retro +0.110; 2r200/added: dR 0.0034, d v50 0.34%, pro-retro +0.105; 2r200/energy: dR 0.0024, d v50 0.25%, pro-retro +0.105
+    v_k 650: inf/added: dR 0.0062, d v50 0.07%, pro-retro +0.109; inf/energy: dR 0.0019, d v50 0.14%, pro-retro +0.110; 2r200/added: dR 0.0034, d v50 0.32%, pro-retro +0.105; 2r200/energy: dR 0.0027, d v50 0.27%, pro-retro +0.106
+    an X-COP-like host (8e14, 600 km/s, Phi(inf)): retention added: 0.9946 -> 0.9940, energy: 0.9946 -> 0.9949
+  [PASS] B3 with lambda' = 0.05 the pair-averaged retention moves by < 0.0088 (a tenth of the X-COP margin) at every host mass and the 50% transition by < 5% in v_200, both rotation variants and every kick -- although single daughters show a first-order prograde/retrograde asymmetry
+         measured: max |dR| = 0.0064; max v50 shift 0.37%; max prograde - retrograde +0.110
+         reading:  back-to-back pairs cancel the first order in v_rot/v_k; what is left is second order, (v_rot/v_k)^2 against a Jeans dispersion that already dwarfs v_rot
+
+================================================================================================================
+B4  THE FLAGSHIP: escape of daughters born at r_F, with and without the rotation (both footings)
+================================================================================================================
+    canonical r_F = 38.6 kpc: v_c 227, sigma 145, v_esc (full LCDM halo) 531 km/s; escape 575: 0.7156 -> 0.7153, 600: 0.7693 -> 0.7682, 625: 0.8165 -> 0.8150, 650: 0.8577 -> 0.8557
+    alt       r_F = 35.2 kpc: v_c 226, sigma 146, v_esc (full LCDM halo) 540 km/s; escape 575: 0.6936 -> 0.6938, 600: 0.7489 -> 0.7488, 625: 0.7988 -> 0.7972, 650: 0.8417 -> 0.8401
+  [PASS] B4 at the flagship radius the rotation changes the daughters' escape fraction by < 0.0059 (a tenth of S's tolerance), both footings, every kick -- even in the full, uncleared LCDM potential
+         measured: max |d escape| = 0.0019
+         reading:  spin cannot bring S(r_F) near 0.059
+
+================================================================================================================
+SUMMARY
+================================================================================================================
+  Question (B): does filament-fed spin change retention?  No, not at any level the gates can see.
+  - Centrifugal support at lambda' <= 0.05: 3.7% of the support; the density at r_F drops <= 5.8%; r_F stays 12.7-44x
+    above threshold; the conversion edge moves <= 1.8% (B1).
+  - The vortex lattice: spacing >= 22 pc, filling <= 5e-07, a
+    <= 6e-06 polarisation of the random node tangle (B2).
+  - Escape: single daughters split prograde/retrograde by up to +0.110, but each pair has one of each, and the pair-averaged
+    retention moves by <= 0.0064 (X-COP margin 0.088), the 50% transition by <= 0.4% (B3); at r_F by <= 0.0019 (B4).
+
+  checks: 5/5 pass; load-bearing failures: 0   [15s]

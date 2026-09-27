@@ -1,0 +1,113 @@
+XR11 (input lane) -- THE DARK FLUID'S VELOCITY STRUCTURE AROUND KiDS L* HOSTS, FROM L375's OWN SHELL MODEL.
+
+WHY.  XR11 asks whether the dark fluid can carry the MOND-sector gate's stiffness in the edge layers.  That needs the
+fluid's own stiffness there: its velocity dispersion along a perturbation's wavevector, and whether the fluid at a given
+radius is phase-mixed (many streams) or a cold infall stream.  The record's infall model for these hosts is L375's
+spherical shell model (secondary infall on a Wechsler accretion history, the bin's baryons, Newtonian only per L353,
+L365's trigger and the isotropic kick).  Its halo() returns radial mass histograms only.  This lane loads L375's halo()
+source UNEDITED except its return line, which also hands back the particles' final phase-space state (r, v_r, L, cold);
+nothing else changes, so the Monte-Carlo sequence is L375's own.
+
+WHAT IT WRITES (XR11_shell_model_velocities_results.json, read by XR11_dark_channel_gate.py):
+  per run (KiDS bins 1 and 2 = M_200 8.97e11 / 1.91e12 Msun at z_l = 0.25 with L390's fitted baryonic masses 6.31e10 /
+  1.00e11 Msun; the fiducial kicked carrier, v_k = 650 km/s, Gamma = 10 H, alpha = 0.75; and the same halo with the decay
+  off), in 48 log radial bins from 5 kpc to 8 Mpc: the density of the undecayed (phi_H, 'cold') and decayed/kicked
+  (phi_L, 'kicked') carrier; their mean radial velocity, radial dispersion about the mean, per-component tangential
+  dispersion <v_t^2>/2; the share of cold elements moving outward; the outermost bin where inflow and outflow coexist
+  (0.1 <= outgoing share <= 0.9, >= 20 elements: the model's multistream edge); and 2 r_200, where L375 injects its cold
+  infall shells (v_r = -v_200, v_t = 0.4 v_200, a single velocity: zero intrinsic dispersion).  Bins holding only outgoing
+  cold elements at large r are the initial Jeans-Gaussian tail escaping (densities <~1e-2 of the mean): an artefact of the
+  initial condition, reported, not used.
+
+==============================================================================================================
+C1  CONTROL: the extended halo() is L375's halo() (N = 3000, decaying and non-decaying)
+==============================================================================================================
+  [PASS] C1 CONTROL: the extended halo() returns L375's histograms exactly (all and cold; decaying and non-decaying runs)
+         measured: max |difference| in counts: [0, 0]
+
+==============================================================================================================
+THE RUNS: KiDS bins 1 and 2, fiducial kick (650 km/s) and decay off, N = 30000
+==============================================================================================================
+    b1_fid     : M_b 6.31e+10, r200 187 kpc, v200 144 km/s; n = 29999, cold 5383; outermost multistream bin 399 kpc; cold shells injected at 374 kpc   [25s]
+    b1_nodecay : M_b 6.31e+10, r200 187 kpc, v200 144 km/s; n = 29999, cold 29999; outermost multistream bin 399 kpc; cold shells injected at 374 kpc   [33s]
+    b2_fid     : M_b 1.00e+11, r200 241 kpc, v200 185 km/s; n = 29999, cold 5213; outermost multistream bin 466 kpc; cold shells injected at 481 kpc   [54s]
+    b2_nodecay : M_b 1.00e+11, r200 241 kpc, v200 185 km/s; n = 29999, cold 29999; outermost multistream bin 543 kpc; cold shells injected at 481 kpc   [62s]
+
+==============================================================================================================
+C2 R1  CONTROLS ON THE RUNS; THE DISPERSION PROFILES
+==============================================================================================================
+  [PASS] C2 CONTROL: decay off keeps every element cold; the fiducial retention inside 0.5 Mpc/h is in L375's range for its bin
+         measured: {'b1': 0.245, 'b2': 0.23}
+    b1_fid: r [kpc] | cold rho [Msun/kpc^3], <v_r>, sig_r, sig_t1 [km/s], f_out | kicked rho, sig_r
+            5 | 0.00e+00    -    -    -    - | 0.00e+00    -
+            9 | 0.00e+00    -    -    -    - | 0.00e+00    -
+           14 | 0.00e+00    -    -    -    - | 0.00e+00    -
+           22 | 0.00e+00    -    -    -    - | 0.00e+00    -
+           34 | 0.00e+00    -    -    -    - | 6.50e+02    -
+           54 | 0.00e+00    -    -    -    - | 2.44e+02    -
+           86 | 0.00e+00    -    -    -    - | 4.70e+02 342
+          136 | 1.52e+03 -32 102 97 0.33 | 3.28e+02 388
+          216 | 6.02e+02 -97 96 64 0.14 | 2.16e+02 341
+          343 | 2.50e+02 -109 91 42 0.12 | 5.83e+01 99
+          543 | 1.17e+01 122 11 16 1.00 | 2.11e+01 95
+          861 | 7.49e-01 87 3 3 1.00 | 8.01e+00 96
+         1366 | 1.52e-02    -    -    -    - | 3.51e+00 94
+         2166 | 2.54e-03    -    -    -    - | 1.51e+00 97
+         3435 | 0.00e+00    -    -    -    - | 6.64e-01 93
+         5448 | 0.00e+00    -    -    -    - | 3.13e-01 56
+    b1_nodecay: r [kpc] | cold rho [Msun/kpc^3], <v_r>, sig_r, sig_t1 [km/s], f_out | kicked rho, sig_r
+            5 | 1.42e+07 6 134 122 0.53 | 0.00e+00    -
+            9 | 4.68e+06 -2 112 112 0.49 | 0.00e+00    -
+           14 | 1.66e+06 -13 89 97 0.44 | 0.00e+00    -
+           22 | 3.16e+05 3 88 83 0.50 | 0.00e+00    -
+           34 | 3.28e+04 35 131 78 0.65 | 0.00e+00    -
+           54 | 9.69e+03 -6 125 53 0.49 | 0.00e+00    -
+           86 | 2.31e+04 1 63 134 0.52 | 0.00e+00    -
+          136 | 4.28e+03 -1 131 85 0.48 | 0.00e+00    -
+          216 | 1.48e+03 0 139 55 0.46 | 0.00e+00    -
+          343 | 6.72e+02 9 123 34 0.47 | 0.00e+00    -
+          543 | 5.92e+02 68 25 14 1.00 | 0.00e+00    -
+          861 | 1.21e-01 110 61 2 1.00 | 0.00e+00    -
+         1366 | 4.06e-02 1108 925 0 1.00 | 0.00e+00    -
+         2166 | 8.91e-03 482 202 1 1.00 | 0.00e+00    -
+         3435 | 3.51e-03 802 567 0 1.00 | 0.00e+00    -
+         5448 | 4.80e-04 1442 786 0 1.00 | 0.00e+00    -
+    b2_fid: r [kpc] | cold rho [Msun/kpc^3], <v_r>, sig_r, sig_t1 [km/s], f_out | kicked rho, sig_r
+            5 | 0.00e+00    -    -    -    - | 0.00e+00    -
+            9 | 0.00e+00    -    -    -    - | 0.00e+00    -
+           14 | 0.00e+00    -    -    -    - | 0.00e+00    -
+           22 | 0.00e+00    -    -    -    - | 2.76e+03    -
+           34 | 0.00e+00    -    -    -    - | 0.00e+00    -
+           54 | 0.00e+00    -    -    -    - | 6.94e+02    -
+           86 | 0.00e+00    -    -    -    - | 5.22e+02 362
+          136 | 5.01e+03 -6 58 159 0.45 | 6.43e+02 338
+          216 | 8.97e+02 -77 143 102 0.25 | 3.20e+02 356
+          343 | 4.28e+02 -141 113 68 0.11 | 1.30e+02 189
+          543 | 2.01e+01 165 25 30 1.00 | 5.26e+01 124
+          861 | 8.79e+00 141 10 13 1.00 | 1.88e+01 129
+         1366 | 3.24e-02    -    -    -    - | 7.75e+00 126
+         2166 | 2.71e-03    -    -    -    - | 3.24e+00 127
+         3435 | 0.00e+00    -    -    -    - | 1.54e+00 121
+         5448 | 0.00e+00    -    -    -    - | 6.05e-01 69
+    b2_nodecay: r [kpc] | cold rho [Msun/kpc^3], <v_r>, sig_r, sig_t1 [km/s], f_out | kicked rho, sig_r
+            5 | 2.03e+07 3 158 166 0.52 | 0.00e+00    -
+            9 | 9.48e+06 13 144 151 0.51 | 0.00e+00    -
+           14 | 3.10e+06 22 132 126 0.56 | 0.00e+00    -
+           22 | 9.02e+05 -5 103 110 0.45 | 0.00e+00    -
+           34 | 9.89e+04 -7 123 92 0.48 | 0.00e+00    -
+           54 | 1.94e+04 -2 164 82 0.47 | 0.00e+00    -
+           86 | 8.83e+03 28 145 55 0.62 | 0.00e+00    -
+          136 | 1.02e+04 3 129 130 0.47 | 0.00e+00    -
+          216 | 3.38e+03 2 156 79 0.47 | 0.00e+00    -
+          343 | 1.01e+03 5 173 57 0.47 | 0.00e+00    -
+          543 | 3.88e+02 99 79 26 0.77 | 0.00e+00    -
+          861 | 2.15e-01 674 732 2 1.00 | 0.00e+00    -
+         1366 | 6.48e-02 305 258 2 1.00 | 0.00e+00    -
+         2166 | 1.08e-02    -    -    -    - | 0.00e+00    -
+         3435 | 3.40e-03 1206 788 0 1.00 | 0.00e+00    -
+         5448 | 8.52e-04 1436 822 0 1.00 | 0.00e+00    -
+  [PASS] R1 (reported) the cold and kicked carrier's velocity structure per run (see table)
+         measured: see table
+
+  3/3 checks pass; load-bearing failures: 0; wrote XR11_shell_model_velocities_results.json   [62s]
+rc=0

@@ -1,0 +1,122 @@
+XR13_door_cosmology.py -- THE PER-OBJECT DOOR, part 3 of 3: what the door costs where clusters and groups lose their MOND
+regions (part (2): no region above v_cap), and what it leaves alone -- (e) KiDS, (f) cosmic shear on MS3/MS4's halo model,
+(g) X-COP with L388's retention, (h) Harvey and El Gordo, (i) the 2e13 groups of hunt item 7.  Independent cross-thread
+review (2026-09-26/27).  Read-only on every committed file: MS4's machinery is loaded exactly as XR9_cosmic_shear.py loads
+it (MS4's main never run); L321's X-COP loader and observable are reimplemented and checked against L354's committed rows;
+hunt item 7's group computation is reimplemented and checked against its committed medians; L370's and XR9's committed
+results are read.
+
+THE DOOR (XR13_door_environment.py has the full statement).  Part (2): a system whose baryons exceed M_cap = v_cap^4/(G a0)
+(8.98e11 / 7.45e11 Msun) has no MOND region; its member galaxies are regions of their own.
+
+THE GATES (definitions fixed before scoring; the model's cell p = 1, x_c0 = 2.5, w = 0.25; both footings).
+  (f) SHEAR   MS4's R(k) (L363's halo model at z = 0.5, the MOND-sector door variable, L388's retention at 600 km/s, MS5's
+              kappa cap at 1.75 Mpc).  Door: halos whose observed bound baryons (GP0) exceed M_cap carry no halo phantom; the
+              bracket's upper end gives them their central galaxy's own phantom (Moster+13 stars + cold gas, if below M_cap).
+              Gate: XR9's gate-table reading 0.8 <= R <= 1.2 over k = 0.1-1 h/Mpc on both footings; MS3/MS4's one-sided
+              R <= 1.2 reported beside it.
+  (g) X-COP   L321/L354's observable on the 12 X-COP clusters: M_dyn(R500)/M_HSE with the retained carrier eps x (1 - f_b)
+              x the cluster's NFW; M* (additive: nu_mono on the baryons + the carrier) against the door (no region: baryons
+              + carrier, Newtonian).  Two-sided rule after 6% non-thermal support: 0.8 <= ratio <= 1.2, i.e. eps in
+              [eps_lo, eps_hi] (L366's eps_bounds).  The window: the kicks in 575-650 km/s whose L388 retention lies in the
+              bounds -- L388's own statistic (median over halos >= 1e14 Msun/h) and, per mass bin, its top bin (every X-COP
+              cluster has M(<1 Mpc/h) >= 5e14).
+  (h) MERGERS  L370's own kernel-off run (MUTATE: nu = 1, real mass = lensing mass) is the door's cluster physics exactly;
+              its committed El Gordo and Harvey numbers are read beside L370's main run.
+  (i) GROUPS  hunt item 7's 20 Lovisari X-ray groups (2-14e13 Msun) at R500: the carrier retention each needs, M* (the
+              group's own MOND region) against the door (no group region: the baryons, plus the central galaxy's own phantom
+              if it is below M_cap -- M_BGG = 0.3-0.6 of the SHMR stars -- or nothing); against L388's retention at those
+              masses (its lowest bin, 6e13-1e14 in M(<1 Mpc/h), is an upper bound for the lighter groups).  Gate: the same
+              two-sided 20% rule as X-COP on the median group, at some kick in 575-650 km/s.
+  (e) KiDS    the committed score (XR9 at the cell, DE10) and whether the door changes any input of that model.  Scoped: the
+              satellites a real lens carries have their own watershed basins (cones behind them), which the model has not got;
+              the phantom-flux fraction they would take is estimated from the Milky Way's own satellites.
+
+======================================================================================================================
+(f) COSMIC SHEAR on MS3/MS4's halo model: M*'s halo phantoms against the door's (none above M_cap)
+======================================================================================================================
+  MS4/MS3/L363 loaded (main not run): z = 0.5, x_lin = 4.3630; M_cap = 8.977e+11 / 7.451e+11 Msun   [1s]
+  [PASS] C1 CONTROL: MS4's committed worst R at the cell (w = 0.25, x_c0 = 2.5, capped at 1.75 Mpc) is reproduced exactly with the door off
+         measured: 1.049101 / 1.124278 vs 1.049101 / 1.124278 (max |diff| 0.0e+00)
+    canonical/Mstar         : R(k) 0.1:0.987 0.2:0.969 0.3:0.945 0.5:0.904 0.7:0.910 1.0:1.049  -> max 1.049, min 0.904
+    canonical/door          : R(k) 0.1:0.985 0.2:0.958 0.3:0.919 0.5:0.825 0.7:0.741 1.0:0.662  -> max 0.985, min 0.662
+    canonical/door+central  : R(k) 0.1:0.985 0.2:0.959 0.3:0.920 0.5:0.830 0.7:0.751 1.0:0.682  -> max 0.985, min 0.682
+    alt/Mstar               : R(k) 0.1:0.988 0.2:0.972 0.3:0.952 0.5:0.921 0.7:0.944 1.0:1.124  -> max 1.124, min 0.921
+    alt/door                : R(k) 0.1:0.985 0.2:0.959 0.3:0.921 0.5:0.830 0.7:0.750 1.0:0.675  -> max 0.985, min 0.675
+    alt/door+central        : R(k) 0.1:0.985 0.2:0.960 0.3:0.924 0.5:0.837 0.7:0.763 1.0:0.701  -> max 0.985, min 0.701
+    halos lose their phantom above M = 10^13.19 / 10^13.13 Msun (observed bound baryons = M_cap at z = 0.5)
+  [PASS] D5 THE DOOR REMOVES THE CLUSTER PHANTOMS FROM THE SHEAR MODEL: in the scored configuration no halo above M_cap carries a halo phantom (its largest one-halo phantom power over k) -- MUTATE (regions merged: M*) must fail
+         measured: 0.000e+00
+  [FAIL] (reported) G5 (reported, pre-declared) (f) SHEAR PASSES WITH THE DOOR: 0.8 <= R(k) <= 1.2 over k = 0.1-1 h/Mpc on both footings (XR9's gate-table reading), under both ends of the central-galaxy bracket
+         measured: door: max 0.985, min 0.662; with the central galaxies' phantoms min 0.682; M*: max 1.124, min 0.904; one-sided R <= 1.2 (MS3/MS4's code): door True, M* True
+    [11s]
+
+======================================================================================================================
+(g) X-COP: M_dyn(R500)/M_HSE with the retained carrier -- M* (additive, nu_mono on the baryons) and the door (Newtonian)
+======================================================================================================================
+  [PASS] C2 CONTROL: L354's committed X-COP rows (median M_dyn/M_HSE at each committed eps, both footings, f_d 0.8-0.95) are reproduced from the X-COP data with L321's additive observable, and L366's two-sided bounds from them
+         measured: rows max |diff| 0.0e+00; bounds 0.2863-0.7679 (L388 used 0.2863-0.7679)
+    the carrier fraction X-COP needs (two-sided 20% after 6% non-thermal support): M* 0.286-0.768; the door (no region: baryons + carrier) 0.868-1.405
+    X-COP clusters' M(<1 Mpc/h) 5.03e+14-8.68e+14 Msun: every one in L388's top bin (>= 2.5e14 Msun/h)
+    v575: L388 retention pooled >= 1e14 0.607 / top bin 0.847 -> M* in/out; door ratio 0.608 / 0.784 -> OUT/OUT
+    v600: L388 retention pooled >= 1e14 0.526 / top bin 0.824 -> M* in/out; door ratio 0.549 / 0.767 -> OUT/OUT
+    v625: L388 retention pooled >= 1e14 0.436 / top bin 0.804 -> M* in/out; door ratio 0.482 / 0.753 -> OUT/OUT
+    v650: L388 retention pooled >= 1e14 0.374 / top bin 0.787 -> M* in/out; door ratio 0.435 / 0.741 -> OUT/OUT
+    the top bin's retention falls -0.079 per 100 km/s; reaching the door's 0.868 needs v_k ~ 546 km/s (a linear extrapolation below L388's range, not a run)
+  [PASS] D6 THE DOOR REMOVES THE X-COP CLUSTERS' PHANTOM: the scored observable carries no MOND term (the scored ratio minus its Newtonian part at eps = 0.5) -- MUTATE (regions merged: M*'s additive observable) must fail
+         measured: 0.000e+00
+  [FAIL] (reported) G6 (reported, pre-declared) (g) X-COP HAS A WINDOW WITH THE DOOR: some kick in 575-650 km/s puts L388's retention inside the door's two-sided bounds (L388's pooled statistic; its top mass bin reported beside it)
+         measured: door window: pooled none, top bin none (needs eps >= 0.868; the top bin holds 0.787-0.847); M*'s window (pooled): ['v575', 'v600', 'v625', 'v650']
+    [12s]
+
+======================================================================================================================
+(i) THE 2e13 GROUPS (hunt item 7's 20 Lovisari X-ray groups at R500): the carrier each needs, M* against the door
+======================================================================================================================
+  [PASS] C3 CONTROL: hunt item 7's eta(R500) medians over the stellar bracket are reproduced from its data and formula: canonical 1.80-2.11, alt 1.54-1.81
+         measured: canonical 1.80-2.11, alt 1.54-1.81
+    20 groups, M500 2.1e+13-1.4e+14; baryons inside R500 above M_cap in 20/20 (every variant): no group keeps a region; 5 groups lie below L388's lowest mass bin (its retention is an upper bound)
+    canonical/stars x1.50/BGG 0.3     : non-carrier share of M500 -- M* 0.73, door 0.32 (BGG's own phantom) / 0.11 (none); carrier needed eps 0.32 / 0.81 / 1.06; with L388's retention the NT-corrected ratio at 575/650: M* 1.07/0.93, door 0.63/0.49
+    canonical/stars x1.50/BGG 0.6     : non-carrier share of M500 -- M* 0.73, door 0.27 (BGG's own phantom) / 0.11 (none); carrier needed eps 0.32 / 0.87 / 1.06; with L388's retention the NT-corrected ratio at 575/650: M* 1.07/0.93, door 0.66/0.53
+    canonical/stars x0.67/BGG 0.3     : non-carrier share of M500 -- M* 0.66, door 0.23 (BGG's own phantom) / 0.09 (none); carrier needed eps 0.40 / 0.92 / 1.08; with L388's retention the NT-corrected ratio at 575/650: M* 0.98/0.84, door 0.53/0.40
+    canonical/stars x0.67/BGG 0.6     : non-carrier share of M500 -- M* 0.66, door 0.29 (BGG's own phantom) / 0.09 (none); carrier needed eps 0.40 / 0.85 / 1.08; with L388's retention the NT-corrected ratio at 575/650: M* 0.98/0.84, door 0.60/0.45
+    alt/stars x1.50/BGG 0.3           : non-carrier share of M500 -- M* 0.79, door 0.34 (BGG's own phantom) / 0.11 (none); carrier needed eps 0.24 / 0.78 / 1.06; with L388's retention the NT-corrected ratio at 575/650: M* 1.13/0.99, door 0.63/0.49
+    alt/stars x1.50/BGG 0.6           : non-carrier share of M500 -- M* 0.79, door 0.11 (BGG's own phantom) / 0.11 (none); carrier needed eps 0.24 / 1.06 / 1.06; with L388's retention the NT-corrected ratio at 575/650: M* 1.13/0.99, door 0.62/0.49
+    alt/stars x0.67/BGG 0.3           : non-carrier share of M500 -- M* 0.73, door 0.24 (BGG's own phantom) / 0.09 (none); carrier needed eps 0.33 / 0.90 / 1.08; with L388's retention the NT-corrected ratio at 575/650: M* 1.05/0.91, door 0.55/0.41
+    alt/stars x0.67/BGG 0.6           : non-carrier share of M500 -- M* 0.73, door 0.31 (BGG's own phantom) / 0.09 (none); carrier needed eps 0.33 / 0.82 / 1.08; with L388's retention the NT-corrected ratio at 575/650: M* 1.05/0.91, door 0.62/0.47
+  [FAIL] (reported) G7 (reported, pre-declared) (i) THE GROUPS PASS WITH THE DOOR: at some kick in 575-650 km/s the median group's M_dyn(R500)/M_HSE (6% non-thermal) lies within 20% in every variant (stellar bracket, BGG share, BGG region or none, both footings), with L388's retention
+         measured: door kicks passing: none; M*: ['v575', 'v600', 'v625', 'v650']; the door needs eps 0.78-1.08 where L388's lowest bin holds 0.17-0.34 (M* needs 0.24-0.40)
+    the step part (2) puts at M_b = M_cap: the non-carrier mass at 300-500 kpc falls by a factor nu = canonical/300 kpc 8.7, canonical/500 kpc 14.2, alt/300 kpc 10.4, alt/500 kpc 17.0 from just below M_cap to just above it (h55: eta flat from 5e12 to 1.6e15, no step)
+    [12s]
+
+======================================================================================================================
+(h) HARVEY AND EL GORDO: L370's own kernel-off run IS the door's cluster physics (no phantom; real = lensing mass)
+======================================================================================================================
+    L370 main      : El Gordo Delta chi from -0.58 to -0.12; Harvey intact beta +0.001 to +0.072, NFW fit beta -0.005 to +0.056; core-decayed cleared_2000 beta +0.010 to +0.369; cap_1000 beta +0.009 to +0.224; uniform 0.55 beta +0.001 to +0.098
+                     population (100 kpc / 150 kpc / NFW), sigma from Harvey's mean: cleared_2000 +2.5/+4.0/+1.7; cap_1000 +1.9/+2.7/+3.0; intact +0.7/+1.1/+0.9; uniform_0.55 +0.8/+1.3/+1.3
+    L370 kernel_off: El Gordo Delta chi from -0.07 to +0.11; Harvey intact beta -0.000 to -0.000, NFW fit beta -0.000 to +0.000; core-decayed cleared_2000 beta +0.010 to +0.778; cap_1000 beta +0.010 to +0.119; uniform 0.55 beta +0.001 to +0.018
+                     population (100 kpc / 150 kpc / NFW), sigma from Harvey's mean: cleared_2000 +1.2/+5.9/+2.1; cap_1000 +0.9/+2.1/+3.3; intact +0.6/+0.6/+0.6; uniform_0.55 +0.6/+0.7/+0.8
+  [PASS] (reported) G9 (reported) (h) WHAT THE DOOR DOES TO THE MERGERS (L370's own kernel-off run): El Gordo reverts to LCDM's tension (the phantom's ease is lost); Harvey passes with an intact or uniformly depleted carrier, and a core-decayed carrier fails harder at 100 kpc apertures than with the phantom
+         measured: El Gordo Delta chi: M*-like Delta chi from -0.58 to -0.12 -> door Delta chi from -0.07 to +0.11; Harvey intact beta -0.000 to -0.000; core-decayed cleared_2000 beta +0.010 to +0.369; cap_1000 beta +0.009 to +0.224 -> cleared_2000 beta +0.010 to +0.778; cap_1000 beta +0.010 to +0.119
+
+======================================================================================================================
+(e) KiDS-1000: the committed score and whether the door changes any input of it; the watershed's satellites (scoped)
+======================================================================================================================
+    XR9 at the cell (kappa cap, w = 0.25, v_k = 600, fs = 1, A <= 2): Delta chi^2 -32.24 / -29.27 (DE10: -32.3 / -29.3); fitted lens baryons up to 10^11.1 Msun < M_cap
+    the Milky Way's 67 catalogued satellites within 300 kpc (LVD, Upsilon_V = 2; the LMC and SMC included); far-field basin half-angles lmc 60 deg, smc 52 deg, sagittarius_1 29 deg, the rest 4-28 deg
+    sky fraction of the host's region inside satellite basins (the union over real directions; refined rule: each basin only out to the satellite's own edge / strict: to the host's edge / refined without the Magellanic Clouds):
+      R 50 kpc: 0.213 / 0.217 / 0.097; R 100 kpc: 0.346 / 0.366 / 0.158; R 200 kpc: 0.341 / 0.450 / 0.185; R 300 kpc: 0.306 / 0.481 / 0.095; R 500 kpc: 0.270 / 0.489 / 0.000; R 1000 kpc: 0.000 / 0.493 / 0.000
+  [PASS] (reported) G8 (reported) (e) KiDS IS UNCHANGED IN THE COMMITTED MODEL: every fitted lens bin is below M_cap and the lenses are isolated (no neighbour > 10% in stellar mass within 3 Mpc), so the door changes no input of XR9's/DE10's score.  NOT established for real lenses: satellites below the isolation cut own watershed basins that the committed model has not got, and the phantom flux through a sphere at R falls by the sky fraction they cover
+         measured: XR9 -32.24 / -29.27 (pass <= +4); lens baryons <= 10^11.1 Msun; a Milky-Way-like satellite system covers up to 0.35 of the host's sky (refined rule; 0.19 without the Magellanic Clouds)
+    rule (1) alone, the members' basins (far-field sky fraction per member): mu 1e-02: 0.147, mu 1e-03: 0.070, mu 1e-04: 0.033, mu 1e-05: 0.015, mu 1e-06: 0.007; union for random placements: rich cluster: 100 members at mu = 1e-5-1e-3: 0.99; group: 15 members at mu = 1e-3-1e-1: 0.86
+  [PASS] (reported) G10 (reported) PART (2) IS NOT THE ONLY THING THAT EMPTIES THE CLUSTERS: under rule (1)'s watershed alone a rich cluster's members carve most of its region's sky into their own basins, so dropping part (2) would not restore the cluster phantoms that X-COP, shear, the groups and El Gordo leaned on
+         measured: rich cluster: 100 members at mu = 1e-5-1e-3: 0.99 of the sky; group: 15 members at mu = 1e-3-1e-1: 0.86 of the sky
+
+======================================================================================================================
+SUMMARY (scored column: the door)
+======================================================================================================================
+  (f) shear R(k): max 0.985, min 0.662 (two-sided band 0.8-1.2)
+  (g) X-COP carrier bounds: 0.868-1.405; L388 pooled 0.374-0.607, top bin 0.787-0.847
+  (i) groups: kicks passing none
+  (h) El Gordo Delta chi from -0.07 to +0.11; (e) KiDS -32.24 / -29.27
+
+  8/11 checks pass; load-bearing failures: 0; wrote XR13_door_cosmology_results.json   [12s]

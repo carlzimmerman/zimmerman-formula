@@ -86,7 +86,8 @@ SIG = {
         ("mond_sector_phiX", [r"d_\(Phi, 2\) - d_\(v, 2\)", r"PX = Phi - v", r"rho - FB \* rho_bar\) / H_L",
                               r"rho - FB \* D8\[\"rho_bar\"\]", r"sub = 1\.0 if reading == \"curvature\" else FB",
                               r"FB \* delta \+ state\[\"dph\"\]", r"FB if door == \"mond\" else 1\.0", r"xce = 2\.5 \* E2\(z\)",
-                              r"the MOND-sector reading x = 4 pi G \(rho_b \+ rho_ph - f_b rho_bar_m\)", r"rho - FB \* rhob\) / H \*\* 2"]),
+                              r"the MOND-sector reading x = 4 pi G \(rho_b \+ rho_ph - f_b rho_bar_m\)", r"rho - FB \* rhob\) / H \*\* 2",
+                              r"x = 1\.5 \* \(rho_dyn - FB \* Om \* RHOC0 \* \(1 \+ z\) \*\* 3\) / \(RHOC0 \* E\(z\) \*\* 2\)"]),   # XR14's trigger gate (shell units)
         ("mond_sector_abs", [r"\(rb \+ dpos\)", r"rb \+ np\.maximum\(dph_all, 0\.0\)", r"FB \* rho_h \+ np\.maximum\(rho_ph, 0\)",
                              r"ON where x >= x_c,eff\(z\) max\(1, v_loc", r"R_of\(XLIN, A0\[f_\], rc_, \"door\"",
                              r"'ms_abs'  r_e = v_f/\(H sqrt\(x_c,eff - 1\.5 Om\(z\) f_b\)\)", r"rho_b \+ max\(rho_ph,all, 0\)\)/rho_bar_m \(absolute"]),
@@ -106,7 +107,8 @@ SIG = {
     "cap_form": [
         ("kappa_MS5", [r"VCAP(_CODE)?2 \* kap \*\* 2", r"np\.minimum\(x, \(V_CAP / \(rr \* H\)\) \*\* 2\)", r"lcap = lambda xc: 1\.75 \* math\.sqrt\(XLIN / xc\)",
                        r"THE CAP\.  MS5's kappa form", r"\"kappa\": lambda M, Mb, a0: RCAP", r"U = C \* F\(d_\(PX\), d_\(PX, 2\)\)",
-                       r"xkap = \(V_CAP \*\* 2 / r \*\* 2\) / H \*\* 2", r"x_cap = v_cap\^2 kappa_X\^2/H\(a\)\^2"]),
+                       r"xkap = \(V_CAP \*\* 2 / r \*\* 2\) / H \*\* 2", r"x_cap = v_cap\^2 kappa_X\^2/H\(a\)\^2",
+                       r"x = np\.minimum\(x, \(V_CAP / \(rmid \* H0 \* E\(z\)\)\) \*\* 2\)"]),                       # XR14's trigger gate (shell units)
         ("withdrawn_vloc", [r"thr = X_C0 \* np\.maximum\(1\.0, vloc2 / VCAP_CODE2\)", r"scale = np\.maximum\(1\.0, vloc2 / V_CAP \*\* 2\)",
                             r"\"L395/nfw_ext\": lambda M, Mb, a0: edge_L395", r"ON where x >= x_c,eff\(z\) max\(1, v_loc",
                             r"F2 = \(d_\(sAB, 2\).*/ \(1 \+ d_\(sAB\) \*\* 2", r"MS3's local cap \(v_cap = 325 km/s\)",

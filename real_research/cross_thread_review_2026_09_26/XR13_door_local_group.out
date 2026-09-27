@@ -1,0 +1,192 @@
+XR13_door_local_group.py -- THE PER-OBJECT DOOR, part 2 of 3: the Local Group's zero-velocity radius R_0 with the Milky Way
+and M31 as two partitioned MOND regions (not one merged point mass), and the Milky Way--M31 timing (hunt item 13) under
+the same partition.  Independent cross-thread review (2026-09-26/27).  Read-only on every committed file: XR6's LG
+definitions are loaded exactly as XR9 loaded them (main never run); XR9's kappa-form edge function is copied verbatim; the
+merged shell model is XR4/XR6/XR9's and its committed numbers are the controls.
+
+THE DOOR (XR13_door_environment.py has the full statement).  The Milky Way and M31 are each their own MOND region, cut at
+the watershed of the MOND-sector density; neither reads the other's baryons in its kernel.
+
+THE MODEL (the task's specification, reading 'T').  XR4/k02's point-mass + Lambda shell model generalised to two
+partitioned regions, axisymmetric: a Hubble-flow tracer on a fixed ray at angle theta from the MW->M31 axis (origin at the
+baryonic barycentre) moves radially under the MOND phantom of the ONE galaxy whose watershed basin it is in (inside that
+galaxy's own kappa-form switch edge, XR6's 2% tanh edge), both galaxies' Newtonian baryons and carriers (M_d = 5.36 M_b x
+retained(z), XR4's histories none/decay/full), and Lambda.
+   * The watershed of two isolated deep-MOND MOND-sector densities (rho = A_i/r_i^2, A_i ~ sqrt(M_i)) is scale-free: it is
+     computed once in units of the separation d (descent flow from the saddle) and checked against direct gradient ascent.
+   * The pair's separation d(t) is prescribed: 'kinematic' (the Newtonian radial timing orbit ending at 0.78 Mpc, -110 km/s:
+     the observed pair history; timing mass 4.8e12) or 'door-own' (the pair's own orbit under the door).
+   * R_0(theta) is found with a root-finder built for two regions (XR6's run_cells can lock onto the chaotic inner crossings of
+     tracers that start inside the pair; C2b shows the new one returns XR6's merged numbers): the outermost zero-velocity
+     tracer that ends outside the pair (r > 0.6 Mpc), bisected, with a continuity check.  The gated number is the solid-angle
+     mean over the 6 of 8 Gauss-Legendre rays with |cos theta| <= 0.9 (90% of the sky; the two rays within 16 deg of the axis
+     graze a galaxy early on, where a fixed radial ray is not a valid model); the all-ray mean, median and perpendicular value
+     are reported beside it.
+   * Masses: M_b(LG) = 1.145e11 and 1.72e11 (XR9's), MW:M31 = 1:2 (KD's and item 13's 6e10 : 1.2e11) and 1:1 (reported).
+   * References computed with the same machinery: M* as ONE point (XR9's, the control) and M* as TWO points in one merged region
+     (QUMOND on their summed Newtonian field), which separates the partition's effect from the geometry's.
+   * The tracers are galaxies too, so under rule (1) each sits in a hole of its host's region; the host's phantom inside a
+     small hole is (1 - N) of the unperturbed one (N: 1/3 for a sphere, ~0.15 at the uphill end of a cone-shaped basin, 1 for a
+     fully screened tracer).  D_f = 0.85, 2/3, 0 are run (reported).
+READING P (reported beside T): L361/L370 build the phantom as the curl-free projection of f V, so a bounded, curved watershed
+leaks part of each galaxy's phantom into the other's basin AND makes each region lopsided: the Gauss layer on the cut face
+carries negative phantom mass and repels its own galaxy from the partner.  Both are computed (a volume integral of the
+dipole kernel, checked by Gauss cancellation) against the region's size r_e/d, and the pair's timing is run with them.
+MEASURED: R_0 = 0.96 +- 0.03 Mpc; band |log10(R_0/0.96)| <= 0.10 (XR4's).  Timing: 0.78 Mpc, -110 km/s (item 13's values;
+van der Marel+2012: -109.3 +- 4.4 km/s).
+  XR6's LG definitions loaded (main not run)   [0s]
+
+======================================================================================================================
+C1-C3  CONTROLS: XR9's merged R_0 (XR6's run_cells), the two-region integrator in merged mode, item 13's timing
+======================================================================================================================
+  [PASS] C1 CONTROL: XR9's committed merged R_0 at the cell (kappa-form numerical edge; 2 footings x 2 M_b x 3 histories) is reproduced exactly with XR6's run_cells
+         measured: max relative difference 0.0e+00; canonical/1.145e11: none 1.4132, decay 1.4402 Mpc
+  [PASS] C2 CONTROL: the two-region integrator in merged mode (one galaxy at the barycentre with the LG's mass and edge) reproduces XR9's twelve merged R_0 -- where the door is off it is XR6's integrator
+         measured: max relative difference 6.7e-16
+  [PASS] C2b CONTROL: this lane's two-region root-finder (fine grid over the physical r_i range, outermost crossing outside the pair, bisection, continuity check) returns XR6's merged R_0 in the merged case
+         measured: max relative difference 1.0e-12
+    [13s]
+  [PASS] C3 CONTROL: hunt item 13's radial MOND timing (M_b = 1.8e11, test-particle MOND, no carrier) is reproduced with its own scheme: -223 / -241 km/s at 0.78 Mpc
+         measured: canonical -222.5 km/s at 0.780 Mpc; alt -241.5
+    [20s]
+
+======================================================================================================================
+W1  THE WATERSHED OF THE MILKY WAY AND M31 (isolated deep-MOND MOND-sector densities, A ~ sqrt(M_b))
+======================================================================================================================
+    MW:M31 = 1:2: saddle at 0.4712 d from the MW; the MW's basin far away is a cone of half-angle 82.2 deg about the -axis (43% of the sky); basin assignment vs direct ascent: 0/200 mismatches
+    MW:M31 = 1:1: saddle at 0.5000 d from the MW; the MW's basin far away is a cone of half-angle 90.0 deg about the -axis (50% of the sky); basin assignment vs direct ascent: 0/200 mismatches
+  [PASS] W1 the watershed separatrix: the saddle sits at z_s = 1/(1 + q^(1/3)) and the curve assigns 200 random points per mass ratio to the same basin as direct gradient ascent
+         measured: 1:2: 0/200 mismatches; 1:1: 0/200 mismatches
+
+======================================================================================================================
+THE PAIR'S HISTORY d(t): the kinematic timing orbit (0.78 Mpc, -110 km/s today) and the door's own orbit
+======================================================================================================================
+    kinematic (P1): the Newtonian timing mass for -110 km/s at 0.78 Mpc (first approach, Lambda, from the Hubble flow at a = 0.02) is 4.829e+12 Msun (item 13: 'needs 5e12'); today 0.780 Mpc at -108.9 km/s; max separation 1.041 Mpc   [30s]
+    the door's own pair (Newtonian baryons + carrier) at 0.78 Mpc today: M_b 1.145e+11 none: approach none, recede +48.7 km/s; M_b 1.145e+11 decay: approach none, recede +23.3 km/s; M_b 1.145e+11 full: approach none, recede +9.1 km/s; M_b 1.718e+11 none: approach none, recede +43.3 km/s; M_b 1.718e+11 decay: approach none, recede +12.4 km/s; M_b 1.718e+11 full: approach -6.9, recede none km/s
+    [55s]
+
+======================================================================================================================
+(d) R_0 WITH TWO PARTITIONED REGIONS: 8 Gauss-Legendre rays per cell; the primary cells, the split and d(t) variants, and the tracer-hole variants in one batch
+======================================================================================================================
+    10 kappa-form edge tables for the single galaxies   [56s]
+    352 rays integrated   [129s]
+    solid-angle-mean R_0 [Mpc] over the rays with |cos theta| <= 0.9 (90% of the sky; the two rays within 16 deg of the MW-M31
+    axis graze a galaxy early on and are reported, not averaged), dex from 0.96; [all 8 rays | median | perpendicular]; merged M*:
+      T/1:2/kinematic              canonical 1.145e+11 none : 1.278 +0.124 dex  [1.259 | 1.326 | 1.219]   merged 1.413 (+0.168)
+      T/1:2/kinematic              canonical 1.145e+11 decay: 1.313 +0.136 dex  [1.343 | 1.414 | 1.250]   merged 1.440 (+0.176)
+      T/1:2/kinematic              canonical 1.145e+11 full : 1.334 +0.143 dex  [nan | 1.427 | 1.268]   merged 1.455 (+0.181)
+      T/1:2/kinematic              canonical 1.718e+11 none : 1.425 +0.171 dex  [nan | 1.525 | 1.362]   merged 1.565 (+0.212)
+      T/1:2/kinematic              canonical 1.718e+11 decay: 1.464 +0.183 dex  [1.440 | 1.504 | 1.399]   merged 1.597 (+0.221)
+      T/1:2/kinematic              canonical 1.718e+11 full : 1.487 +0.190 dex  [1.461 | 1.524 | 1.421]   merged 1.616 (+0.226)
+      T/1:2/kinematic              alt       1.145e+11 none : 1.343 +0.146 dex  [1.323 | 1.390 | 1.283]   merged 1.481 (+0.188)
+      T/1:2/kinematic              alt       1.145e+11 decay: 1.375 +0.156 dex  [1.404 | 1.475 | 1.312]   merged 1.506 (+0.196)
+      T/1:2/kinematic              alt       1.145e+11 full : 1.393 +0.162 dex  [nan | 1.487 | 1.328]   merged 1.520 (+0.200)
+      T/1:2/kinematic              alt       1.718e+11 none : 1.494 +0.192 dex  [1.524 | 1.596 | 1.432]   merged 1.640 (+0.233)
+      T/1:2/kinematic              alt       1.718e+11 decay: 1.530 +0.202 dex  [1.504 | 1.571 | 1.466]   merged 1.670 (+0.241)
+      T/1:2/kinematic              alt       1.718e+11 full : 1.552 +0.209 dex  [1.579 | 1.646 | 1.487]   merged 1.687 (+0.245)
+      T/1:1/kinematic              canonical 1.145e+11 decay: 1.298 +0.131 dex  [nan | 1.323 | 1.155]   merged 1.440 (+0.176)
+      T/1:1/kinematic              canonical 1.718e+11 decay: 1.449 +0.179 dex  [nan | 1.474 | 1.308]   merged 1.597 (+0.221)
+      T/1:1/kinematic              alt       1.145e+11 decay: 1.358 +0.151 dex  [1.391 | 1.469 | 1.215]   merged 1.506 (+0.196)
+      T/1:1/kinematic              alt       1.718e+11 decay: 1.513 +0.198 dex  [1.544 | 1.622 | 1.373]   merged 1.670 (+0.241)
+      T/1:2/door-own d(t)          canonical 1.145e+11 decay: 1.319 +0.138 dex  [1.336 | 1.377 | 1.280]   merged 1.440 (+0.176)
+      T/1:2/door-own d(t)          canonical 1.718e+11 decay: 1.461 +0.182 dex  [1.479 | 1.521 | 1.421]   merged 1.597 (+0.221)
+      T/1:2/door-own d(t)          alt       1.145e+11 decay: 1.376 +0.156 dex  [1.393 | 1.433 | 1.339]   merged 1.506 (+0.196)
+      T/1:2/door-own d(t)          alt       1.718e+11 decay: 1.523 +0.201 dex  [1.541 | 1.583 | 1.483]   merged 1.670 (+0.241)
+      holes D_f=0.85/1:2/kinematic canonical 1.145e+11 decay: 1.252 +0.115 dex  [1.235 | 1.294 | 1.196]   merged 1.440 (+0.176)
+      holes D_f=0.85/1:2/kinematic canonical 1.718e+11 decay: 1.401 +0.164 dex  [1.380 | 1.441 | 1.342]   merged 1.597 (+0.221)
+      holes D_f=0.85/1:2/kinematic alt       1.145e+11 decay: 1.312 +0.136 dex  [1.341 | 1.408 | 1.255]   merged 1.506 (+0.196)
+      holes D_f=0.85/1:2/kinematic alt       1.718e+11 decay: 1.465 +0.183 dex  [1.441 | 1.503 | 1.406]   merged 1.670 (+0.241)
+      holes D_f=2/3/1:2/kinematic  canonical 1.145e+11 decay: 1.157 +0.081 dex  [nan | 1.226 | 1.114]   merged 1.440 (+0.176)
+      holes D_f=2/3/1:2/kinematic  canonical 1.718e+11 decay: 1.305 +0.133 dex  [1.287 | 1.340 | 1.254]   merged 1.597 (+0.221)
+      holes D_f=2/3/1:2/kinematic  alt       1.145e+11 decay: 1.213 +0.102 dex  [nan | 1.285 | 1.168]   merged 1.506 (+0.196)
+      holes D_f=2/3/1:2/kinematic  alt       1.718e+11 decay: 1.363 +0.152 dex  [1.343 | 1.398 | 1.312]   merged 1.670 (+0.241)
+      screened D_f=0/1:2/kinematic canonical 1.145e+11 decay: nan +nan dex  [nan | 0.501 | 0.424]   merged 1.440 (+0.176)
+      screened D_f=0/1:2/kinematic canonical 1.718e+11 decay: nan +nan dex  [nan | 0.655 | 0.533]   merged 1.597 (+0.221)
+      screened D_f=0/1:2/kinematic alt       1.145e+11 decay: nan +nan dex  [nan | 0.501 | 0.424]   merged 1.506 (+0.196)
+      screened D_f=0/1:2/kinematic alt       1.718e+11 decay: nan +nan dex  [nan | 0.655 | 0.533]   merged 1.670 (+0.241)
+      M* two points/1:2/kinematic  canonical 1.145e+11 none : 1.398 +0.163 dex  [nan | 1.407 | 1.381]   merged 1.413 (+0.168)
+      M* two points/1:2/kinematic  canonical 1.145e+11 decay: 1.423 +0.171 dex  [1.429 | 1.438 | 1.406]   merged 1.440 (+0.176)
+      M* two points/1:2/kinematic  canonical 1.145e+11 full : 1.438 +0.176 dex  [nan | 1.450 | 1.421]   merged 1.455 (+0.181)
+      M* two points/1:2/kinematic  canonical 1.718e+11 none : 1.552 +0.209 dex  [1.558 | 1.567 | 1.536]   merged 1.565 (+0.212)
+      M* two points/1:2/kinematic  canonical 1.718e+11 decay: 1.582 +0.217 dex  [1.590 | 1.597 | 1.566]   merged 1.597 (+0.221)
+      M* two points/1:2/kinematic  canonical 1.718e+11 full : 1.601 +0.222 dex  [1.608 | 1.616 | 1.584]   merged 1.616 (+0.226)
+      M* two points/1:2/kinematic  alt       1.145e+11 none : 1.467 +0.184 dex  [1.473 | 1.483 | 1.451]   merged 1.481 (+0.188)
+      M* two points/1:2/kinematic  alt       1.145e+11 decay: 1.490 +0.191 dex  [1.496 | 1.505 | 1.473]   merged 1.506 (+0.196)
+      M* two points/1:2/kinematic  alt       1.145e+11 full : 1.505 +0.195 dex  [nan | 1.516 | 1.487]   merged 1.520 (+0.200)
+      M* two points/1:2/kinematic  alt       1.718e+11 none : 1.628 +0.229 dex  [1.634 | 1.643 | 1.612]   merged 1.640 (+0.233)
+      M* two points/1:2/kinematic  alt       1.718e+11 decay: 1.657 +0.237 dex  [1.663 | 1.671 | 1.640]   merged 1.670 (+0.241)
+      M* two points/1:2/kinematic  alt       1.718e+11 full : 1.674 +0.241 dex  [1.681 | 1.688 | 1.657]   merged 1.687 (+0.245)
+  [PASS] D4 THE DOOR SPLITS THE LOCAL GROUP: in the scored configuration every cell's solid-angle-mean R_0 differs from XR9's merged R_0 by more than 2% -- MUTATE (merged) must fail
+         measured: smallest relative change 0.079
+  [FAIL] (reported) G4 (reported, pre-declared) (d) FLIPS: the scored solid-angle-mean R_0 on the model's own 'decay' carrier history lands within +-0.10 dex of 0.96 on both footings for some M_b (MW:M31 = 1:2, kinematic d(t))
+         measured: decay: canonical/1.145e+11 +0.136, canonical/1.718e+11 +0.183, alt/1.145e+11 +0.156, alt/1.718e+11 +0.202 dex; every reading-T variant (split, d(t), histories) +0.124 to +0.209; M* as two points in one region +0.163 to +0.241; merged M* (one point) +0.168 to +0.245
+
+======================================================================================================================
+P  THE PARTITION AS L361/L370 BUILD IT: each region's phantom is the curl-free projection of f V, so a bounded, curved watershed leaks part of each galaxy's phantom into the other's basin and makes each region lopsided (reading T sets both to zero)
+======================================================================================================================
+  [PASS] C5 CONTROL (the projection integral): a region that is a full ball (no watershed cut) leaves no phantom field outside itself -- L361's Gauss cancellation -- at three outside points, to 1% of the uncut phantom there
+         measured: |g|/V = 4.6e-03 (worst of three)
+    per unit of the galaxy's own phantom at d, against its region's radius r_e/d (the watershed fixed at 0.47 d from the MW):
+      r_e/d:              0.30   0.45   0.50   0.60   0.80   1.00   1.25   1.60   2.00   2.50   3.20   4.50   6.00
+      MW region on M31 +0.000 +0.000 +0.002 +0.036 +0.124 +0.199 +0.267 +0.335 +0.386 +0.430 +0.468 +0.510 +0.536   (the leak across the watershed)
+      MW region on MW  -0.000 -0.000 -0.003 -0.050 -0.166 -0.264 -0.350 -0.433 -0.493 -0.542 -0.586 -0.630 -0.658   (the lopsided region's self-pull toward M31)
+      M31 region on MW +0.000 +0.000 +0.000 +0.017 +0.119 +0.217 +0.309 +0.395 +0.458 +0.510 +0.557 +0.602 +0.630
+      M31 region on M31+0.000 +0.000 +0.000 -0.012 -0.087 -0.163 -0.234 -0.305 -0.357 -0.402 -0.443 -0.487 -0.513
+    today (M_b 1.145e11, 1:2): r_e(MW) = 1.41 Mpc, r_e(M31) = 1.67 Mpc (canonical): the closing phantom pull is -0.10 x the MW's and 0.10 x M31's own phantom at d (reading T: 0, 0; merged M*: the combined baryons' full phantom)
+    tracers at 1.3 Mpc today, inward phantom pull reading P / reading T: 10 deg 0.97; 40 deg 0.96; 70 deg 0.93; 90 deg 0.88; 110 deg 1.22; 140 deg 1.10; 170 deg 1.06
+  [FAIL] (reported) P1 (reported, pre-declared) READING T IS THE DOOR'S MOST FAVOURABLE READING FOR R_0: under the exact projection the tracers feel at least reading T's phantom pull in every direction today (the partner's phantom leaks into their basin)
+         measured: P/T = 0.88-1.22 over 7 directions x 2 footings (below 1 near the perpendicular: the Gauss layer on the cut face repels); solid-angle estimate of R_0(P)/R_0(T) with R_0 ~ pull^(1/2) (XR9's M_b scaling): canonical 1.006 (+0.002 dex), alt 1.005 (+0.002 dex)
+    [131s]
+
+======================================================================================================================
+T1-T2  THE MILKY WAY--M31 TIMING UNDER THE DOOR AND UNDER M* (XR4's Hubble-flow scheme; item 13's own scheme beside it)
+======================================================================================================================
+    Mstar/1.145e+11/decay/canonical             :  -141.9 km/s at 0.78 Mpc (approach)
+    Mstar/1.145e+11/decay/alt                   :  -156.9 km/s at 0.78 Mpc (approach)
+    Mstar/1.718e+11/decay/canonical             :  -178.3 km/s at 0.78 Mpc (approach)
+    Mstar/1.718e+11/decay/alt                   :  -195.3 km/s at 0.78 Mpc (approach)
+    Mstar/1.800e+11/none/canonical              :  -174.9 km/s at 0.78 Mpc (approach)
+    Mstar/1.800e+11/none/alt                    :  -192.7 km/s at 0.78 Mpc (approach)
+    Mstar/1.800e+11/decay/canonical             :  -182.9 km/s at 0.78 Mpc (approach)
+    Mstar/1.800e+11/decay/alt                   :  -200.1 km/s at 0.78 Mpc (approach)
+    door reading P/1.145e+11/decay/canonical    :   +17.4 km/s at 0.78 Mpc (recede)
+    door reading P/1.145e+11/decay/alt          :   +16.6 km/s at 0.78 Mpc (recede)
+    door reading P, leak only/1.145e+11/decay/canonical:   -69.9 km/s at 0.78 Mpc (approach)
+    door reading P/1.718e+11/decay/canonical    :    +5.6 km/s at 0.78 Mpc (recede)
+    door reading P/1.718e+11/decay/alt          :    +4.8 km/s at 0.78 Mpc (recede)
+    door reading P, leak only/1.718e+11/decay/canonical:   -98.9 km/s at 0.78 Mpc (approach)
+    door/1.145e+11/none                         :   +48.7 km/s at 0.78 Mpc (recede)
+    door/1.145e+11/decay                        :   +23.3 km/s at 0.78 Mpc (recede)
+    door/1.145e+11/full                         :    +9.1 km/s at 0.78 Mpc (recede)
+    door/1.718e+11/none                         :   +43.3 km/s at 0.78 Mpc (recede)
+    door/1.718e+11/decay                        :   +12.4 km/s at 0.78 Mpc (recede)
+    door/1.718e+11/full                         :    -6.9 km/s at 0.78 Mpc (approach)
+    item13 (h76 scheme)/1.800e+11/none/canonical:  -222.5 km/s at 0.78 Mpc (approach)
+    item13 (h76 scheme)/1.800e+11/none/alt      :  -241.5 km/s at 0.78 Mpc (approach)
+    measured: -110 km/s (vdM12 -109.3 +- 4.4); the Newtonian timing mass that reproduces it: 4.83e+12 Msun
+  [PASS] (reported) T1 (reported) THE MW--M31 TIMING UNDER THE DOOR, READING T: two partitioned regions attract as Newtonian real masses (baryons + carrier), so the pair barely decelerates: at 0.78 Mpc today it recedes or falls back at a few km/s, missing the measured -110 km/s by more than 20 sigma
+         measured: reading T: -6.9 to +48.7 km/s over M_b 1.1-1.7e11 and the three carrier histories (a0-blind); closest 23 sigma from -109.3 +- 4.4
+  [FAIL] (reported) T1P (reported) THE SAME UNDER READING P (the exact projection: leak + lopsided self-pull, z = 0-geometry tables): the measured approach lies within 3 sigma
+         measured: reading P: +4.8 to +17.4 km/s (decay, M_b 1.1-1.7e11, both footings)
+  [PASS] (reported) T2 (reported) M* (the pair inside one merged region) falls together faster than measured: the approach at 0.78 Mpc is more negative than -110 km/s in every M* variant (item 13: over-predicted by the simple radial model; the published MOND reading is a past close encounter, Zhao+2013, which the door's Newtonian pair cannot have had)
+         measured: M* (XR4 scheme, edge + carrier): -200 to -142 km/s; item 13 (h76 scheme, no edge/carrier) -223/-241
+    [210s]
+
+======================================================================================================================
+SUMMARY (scored column: the door, reading T, MW:M31 1:2, kinematic d(t))
+======================================================================================================================
+  canonical/1.145e+11/none                     R_0 = 1.278 Mpc (+0.124 dex)
+  canonical/1.145e+11/decay                    R_0 = 1.313 Mpc (+0.136 dex)
+  canonical/1.145e+11/full                     R_0 = 1.334 Mpc (+0.143 dex)
+  canonical/1.718e+11/none                     R_0 = 1.425 Mpc (+0.171 dex)
+  canonical/1.718e+11/decay                    R_0 = 1.464 Mpc (+0.183 dex)
+  canonical/1.718e+11/full                     R_0 = 1.487 Mpc (+0.190 dex)
+  alt/1.145e+11/none                           R_0 = 1.343 Mpc (+0.146 dex)
+  alt/1.145e+11/decay                          R_0 = 1.375 Mpc (+0.156 dex)
+  alt/1.145e+11/full                           R_0 = 1.393 Mpc (+0.162 dex)
+  alt/1.718e+11/none                           R_0 = 1.494 Mpc (+0.192 dex)
+  alt/1.718e+11/decay                          R_0 = 1.530 Mpc (+0.202 dex)
+  alt/1.718e+11/full                           R_0 = 1.552 Mpc (+0.209 dex)
+  timing at 0.78 Mpc: door -6.9 to +48.7 km/s | M* -200 to -142 | measured -110
+
+  9/12 checks pass; load-bearing failures: 0; wrote XR13_door_local_group_results.json   [210s]

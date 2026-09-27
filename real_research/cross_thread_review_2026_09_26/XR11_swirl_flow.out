@@ -1,0 +1,77 @@
+XR11 (B) -- THE AUTHOR'S IDEA, READING (B): "the halos is like a fluid of dark energy swirling down between the bands".  Does
+swirl or flow of the gas (or of the dark fluid) through the edge layer stabilise DE12's gradient instability?
+
+WHY.  DE12 (7f84b3546): the varied MOND-sector gate is a k^0 negative bulk modulus on the layer's gas, so its perturbations
+obey omega^2 = c_eff^2 k^2 with c_eff^2 = c_s^2 - c_gate^2 < 0: Gamma = k sqrt(c_gate^2 - c_s^2), UV-dominated.  A flow can
+only (a) carry the gas through the layer before it grows, or (b) add a restoring frequency: rotation's epicyclic kappa,
+or shear.  Both are k-independent, while Gamma grows with k.  Expected: no help.  This lane verifies it instead of
+assuming it, on the gas (DE12's channel) and on reading (A)'s dark channel (XR11_dark_channel_gate.py).
+
+==============================================================================================================
+C1  CONTROL: DE12's committed c_gate_max from XR11_common
+==============================================================================================================
+  [PASS] C1 CONTROL: XR11_common reproduces DE12's c_gate_max on all 24 galaxy layers
+         measured: max rel dev 0.0e+00
+
+==============================================================================================================
+X1  THE ROTATING, COMPRESSIBLE LAYER WITH THE GATE'S ANTI-PRESSURE (sympy)
+==============================================================================================================
+    det M = 4*Omega**2*c2*k**2*cos(theta)**2 - 4*Omega**2*omega**2 - c2*k**2*omega**2 + omega**4
+    det M / [omega^4 - omega^2 (c2 k^2 + 4 Omega^2) + 4 Omega^2 c2 k^2 cos^2 theta] = 1
+    product of the two omega^2 roots = 4*Omega**2*c2*k**2*cos(theta)**2;   shearing sheet (axisymmetric): det = -I*omega*(4*Omega**2 - 2*Omega*S + c2*k**2 - omega**2); = i omega (omega^2 - kappa^2 - c2 k^2): True
+  [PASS] X1 [sympy] the rotating layer's dispersion relation is omega^4 - omega^2 (c_eff^2 k^2 + 4 Omega^2) + 4 Omega^2 c_eff^2 k^2 cos^2 theta = 0; with the gate's anti-pressure (c_eff^2 < 0) a root has omega^2 < 0 for every theta != 90 deg at every Omega (1e-3 to 1e3 |c_eff| k); the shearing sheet's axisymmetric modes obey omega^2 = kappa^2 + c_eff^2 k^2
+         measured: det ratio 1; root product 4*Omega**2*c2*k**2*cos(theta)**2; shearing sheet True; unstable in 30/30 (Omega, theta) cases
+         reading:  rotation is a k-independent frequency that never enters modes along its axis: it cannot remove a UV instability
+
+==============================================================================================================
+X2  SHEARING WAVES WITH ROTATION: does shear or swirl stop the growth? (|c_eff| = k0 = 1 units)
+==============================================================================================================
+    |delta(t = 10)| per (Omega, S) over the wave angles (-80, -45, -10, 10, 45, 80):
+      Omega  0.0, S  0.0: 1.10e+04, 1.10e+04, 1.10e+04, 1.10e+04, 1.10e+04, 1.10e+04
+      Omega  0.0, S  0.1: 2.33e+04, 1.32e+03, 4.31e+03, 2.78e+04, 2.19e+05, 1.07e+05
+      Omega  0.0, S  1.0: 2.97e+21, 1.10e+13, 5.79e+01, 9.25e+07, 6.58e+18, 7.51e+22
+      Omega  0.0, S 10.0: 3.77e+213, 7.68e+150, 2.23e+33, 1.45e+42, 1.05e+157, 1.20e+215
+      Omega  0.1, S  0.1: 2.46e+04, 1.41e+03, 3.97e+03, 2.59e+04, 2.14e+05, 1.10e+05
+      Omega  0.3, S  0.3: 2.34e+07, 8.14e+03, 2.56e+02, 9.74e+04, 1.28e+08, 2.88e+08
+    k along the rotation axis: |delta(10)| = 1.1013e+04 unsheared; max relative change with (Omega, S) = 0.0e+00
+    reported, kappa = 1.41 |c_eff| k0 (Omega = S = 1): -80: 6.92e+20, -45: 2.17e+12, -10: 1.66e+00, 10: 4.94e+05, 45: 8.06e+17, 80: 1.62e+22  -- the long-wave regime where X1's axisymmetric modes are held
+  [PASS] X2 [numeric] no shearing wave is stabilised: every perturbation grows by more than e^3 within 10/(|c_eff| k0) for every (Omega, S) and angle; along the rotation axis the growth is unchanged (1e-10)
+         measured: min |delta(10)| = 5.79e+01 (e^3 = 20.1); axis mode change 0.0e+00
+         reading:  shear turns a wave's k; a trailing wave's |k| grows and so does its rate; a leading wave's rate dips to |c_eff||k_y| and recovers -- the anti-pressure is local, so there is no scale at which shear or swirl can hold it
+
+==============================================================================================================
+X3  DE12's GAS LAYERS: the flow needed to cross before growing, and the swirl's reach (1e6 K gas)
+==============================================================================================================
+    z 0.25 M_b 1e+10: layer  198.3 kpc wide at    768 kpc; c_gate  1526 km/s; flow to cross in 1/Gamma:   9561 km/s (k = 2pi/L),   301777 km/s (k = 1/kpc) vs v_f  106, Hubble flow across 15.2; e-folds per crossing at v_f 91; swirl at v_f holds only lambda > 49.1 Mpc (Gamma(2pi/L)/kappa = 248)
+    z 0.25 M_b 1e+11: layer  353.3 kpc wide at   1373 kpc; c_gate  2235 km/s; flow to cross in 1/Gamma:  14026 km/s (k = 2pi/L),   788668 km/s (k = 1/kpc) vs v_f  188, Hubble flow across 27.1; e-folds per crossing at v_f 75; swirl at v_f holds only lambda > 72.5 Mpc (Gamma(2pi/L)/kappa = 205)
+    z 0.25 M_b 1e+12: layer  627.8 kpc wide at   2469 kpc; c_gate  3436 km/s; flow to cross in 1/Gamma:  21576 km/s (k = 2pi/L),  2155878 km/s (k = 1/kpc) vs v_f  334, Hubble flow across 48.2; e-folds per crossing at v_f 65; swirl at v_f holds only lambda > 112.8 Mpc (Gamma(2pi/L)/kappa = 180)
+    z 1.00 M_b 1e+10: layer   80.7 kpc wide at    315 kpc; c_gate  1018 km/s; flow to cross in 1/Gamma:   6351 km/s (k = 2pi/L),    81608 km/s (k = 1/kpc) vs v_f  106, Hubble flow across 9.7; e-folds per crossing at v_f 60; swirl at v_f holds only lambda > 13.4 Mpc (Gamma(2pi/L)/kappa = 166)
+    z 1.00 M_b 1e+11: layer  144.0 kpc wide at    568 kpc; c_gate  1642 km/s; flow to cross in 1/Gamma:  10292 km/s (k = 2pi/L),   235793 km/s (k = 1/kpc) vs v_f  188, Hubble flow across 17.3; e-folds per crossing at v_f 55; swirl at v_f holds only lambda > 22.0 Mpc (Gamma(2pi/L)/kappa = 153)
+    z 1.00 M_b 1e+12: layer  257.6 kpc wide at   1038 kpc; c_gate  2726 km/s; flow to cross in 1/Gamma:  17114 km/s (k = 2pi/L),   701662 km/s (k = 1/kpc) vs v_f  334, Hubble flow across 31.0; e-folds per crossing at v_f 51; swirl at v_f holds only lambda > 37.6 Mpc (Gamma(2pi/L)/kappa = 146)
+    z 2.50 M_b 1e+10: layer   18.5 kpc wide at     75 kpc; c_gate   706 km/s; flow to cross in 1/Gamma:   4373 km/s (k = 2pi/L),    12897 km/s (k = 1/kpc) vs v_f  106, Hubble flow across 4.7; e-folds per crossing at v_f 41; swirl at v_f holds only lambda > 2.2 Mpc (Gamma(2pi/L)/kappa = 118)
+    z 2.50 M_b 1e+11: layer   33.9 kpc wide at    139 kpc; c_gate  1188 km/s; flow to cross in 1/Gamma:   7427 km/s (k = 2pi/L),    40037 km/s (k = 1/kpc) vs v_f  188, Hubble flow across 8.6; e-folds per crossing at v_f 40; swirl at v_f holds only lambda > 3.9 Mpc (Gamma(2pi/L)/kappa = 115)
+    z 2.50 M_b 1e+12: layer   63.4 kpc wide at    265 kpc; c_gate  1921 km/s; flow to cross in 1/Gamma:  12048 km/s (k = 2pi/L),   121644 km/s (k = 1/kpc) vs v_f  334, Hubble flow across 16.1; e-folds per crossing at v_f 36; swirl at v_f holds only lambda > 6.8 Mpc (Gamma(2pi/L)/kappa = 107)
+    z 4.00 M_b 1e+10: layer    6.9 kpc wide at     28 kpc; c_gate   576 km/s; flow to cross in 1/Gamma:   3545 km/s (k = 2pi/L),     3909 km/s (k = 1/kpc) vs v_f  106, Hubble flow across 2.9; e-folds per crossing at v_f 34; swirl at v_f holds only lambda > 0.7 Mpc (Gamma(2pi/L)/kappa = 97)
+    z 4.00 M_b 1e+11: layer   13.2 kpc wide at     54 kpc; c_gate   914 km/s; flow to cross in 1/Gamma:   5693 km/s (k = 2pi/L),    11939 km/s (k = 1/kpc) vs v_f  188, Hubble flow across 5.6; e-folds per crossing at v_f 30; swirl at v_f holds only lambda > 1.2 Mpc (Gamma(2pi/L)/kappa = 88)
+    z 4.00 M_b 1e+12: layer   26.0 kpc wide at    106 kpc; c_gate  1398 km/s; flow to cross in 1/Gamma:   8755 km/s (k = 2pi/L),    36249 km/s (k = 1/kpc) vs v_f  334, Hubble flow across 11.1; e-folds per crossing at v_f 26; swirl at v_f holds only lambda > 2.0 Mpc (Gamma(2pi/L)/kappa = 75)
+  [PASS] X3 [pre-declared] on every DE12 galaxy layer: crossing within 1/Gamma needs a flow above 10 v_f, and swirl at v_f stabilises no mode that fits in the layer
+         measured: (i) 24/24; (ii) 24/24; min v_need/v_f = 26.2; min lambda_rot/L = 75.3
+         reading:  the gas would have to stream through the layer at thousands of km/s, and the swirl's epicyclic frequency is ~1e3-1e4 below Gamma at the layer's own scale
+
+==============================================================================================================
+X4  READING (A)'s DARK CHANNEL: flow and swirl of the dark fluid through its own layers (phi_H door, S = 1)
+==============================================================================================================
+    z 0.25 M_b 1e+10: c_gate,d  148 vs sigma_J   38 km/s; layer    53 kpc; flow to cross in 1/Gamma   900 km/s (phase-mixed) /   931 (cold) vs v_f 106; swirl at v_f holds lambda > 1.9 Mpc (cold), at FL3's spin > 26 Mpc; vortex spacing at the layer 1.10 kpc
+    z 0.25 M_b 1e+11: c_gate,d  247 vs sigma_J   82 km/s; layer   119 kpc; flow to cross in 1/Gamma  1465 km/s (phase-mixed) /  1553 (cold) vs v_f 188; swirl at v_f holds lambda > 3.9 Mpc (cold), at FL3's spin > 56 Mpc; vortex spacing at the layer 1.23 kpc
+    z 0.25 M_b 1e+12: c_gate,d  410 vs sigma_J  180 km/s; layer   271 kpc; flow to cross in 1/Gamma  2318 km/s (phase-mixed) /  2578 (cold) vs v_f 334; swirl at v_f holds lambda > 8.3 Mpc (cold), at FL3's spin > 117 Mpc; vortex spacing at the layer 1.39 kpc
+    z 2.50 M_b 1e+10: c_gate,d  127 vs sigma_J   73 km/s; layer    12 kpc; flow to cross in 1/Gamma   653 km/s (phase-mixed) /   798 (cold) vs v_f 106; swirl at v_f holds lambda > 0.3 Mpc (cold), at FL3's spin > 5 Mpc; vortex spacing at the layer 0.51 kpc
+    z 2.50 M_b 1e+11: c_gate,d  212 vs sigma_J  159 km/s; layer    27 kpc; flow to cross in 1/Gamma   877 km/s (phase-mixed) /  1331 (cold) vs v_f 188; swirl at v_f holds lambda > 0.7 Mpc (cold), at FL3's spin > 10 Mpc; vortex spacing at the layer 0.57 kpc
+    z 2.50 M_b 1e+12: c_gate,d  351 vs sigma_J  349 km/s; layer    63 kpc; flow to cross in 1/Gamma   245 km/s (phase-mixed) /  2208 (cold) vs v_f 334; swirl at v_f holds lambda > 1.5 Mpc (cold), at FL3's spin > 21 Mpc; vortex spacing at the layer 0.64 kpc
+    z 4.00 M_b 1e+10: c_gate,d  127 vs sigma_J   95 km/s; layer     6 kpc; flow to cross in 1/Gamma   527 km/s (phase-mixed) /   798 (cold) vs v_f 106; swirl at v_f holds lambda > 0.2 Mpc (cold), at FL3's spin > 2 Mpc; vortex spacing at the layer 0.35 kpc
+    z 4.00 M_b 1e+11: c_gate,d  213 vs sigma_J  208 km/s; layer    14 kpc; flow to cross in 1/Gamma   299 km/s (phase-mixed) /  1338 (cold) vs v_f 188; swirl at v_f holds lambda > 0.3 Mpc (cold), at FL3's spin > 5 Mpc; vortex spacing at the layer 0.40 kpc
+    z 4.00 M_b 1e+12: c_gate,d  355 vs sigma_J  454 km/s; layer    33 kpc; flow to cross in 1/Gamma     0 km/s (phase-mixed) /  2232 (cold) vs v_f 334; swirl at v_f holds lambda > 0.7 Mpc (cold), at FL3's spin > 10 Mpc; vortex spacing at the layer 0.44 kpc
+  [PASS] X4 (reported) the dark fluid's own flow or swirl cannot hold its channel either: the needed flow is several times its v_f, the swirl holds only Mpc-scale modes, and below the vortex spacing the superfluid has no Coriolis force
+         measured: {'0.25/1e+10/canonical': 'v_need 931 km/s, swirl lambda > 1.9 Mpc', '0.25/1e+11/canonical': 'v_need 1553 km/s, swirl lambda > 3.9 Mpc', '0.25/1e+12/canonical': 'v_need 2578 km/s, swirl lambda > 8.3 Mpc', '2.5/1e+10/canonical': 'v_need 798 km/s, swirl lambda > 0.3 Mpc', '2.5/1e+11/canonical': 'v_need 1331 km/s, swirl lambda > 0.7 Mpc', '2.5/1e+12/canonical': 'v_need 2208 km/s, swirl lambda > 1.5 Mpc', '4.0/1e+10/canonical': 'v_need 798 km/s, swirl lambda > 0.2 Mpc', '4.0/1e+11/canonical': 'v_need 1338 km/s, swirl lambda > 0.3 Mpc', '4.0/1e+12/canonical': 'v_need 2232 km/s, swirl lambda > 0.7 Mpc'}
+
+  5/5 checks pass; load-bearing failures: 0; wrote XR11_swirl_flow_results.json   [3s]
+rc=0

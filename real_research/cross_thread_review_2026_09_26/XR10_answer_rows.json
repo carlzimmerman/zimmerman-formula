@@ -9769,6 +9769,242 @@
      ]
     }
    }
+  },
+  {
+   "id": "XR14.kids",
+   "lane": "XR14",
+   "script": "real_research/cross_thread_review_2026_09_26/XR14_kids_mstar_carrier.py",
+   "results": "real_research/cross_thread_review_2026_09_26/XR14_kids_mstar_carrier_results.json",
+   "out": "real_research/cross_thread_review_2026_09_26/XR14_kids_mstar_carrier.out",
+   "claim": "M*",
+   "scorecard": false,
+   "kind": "data",
+   "gates": [
+    "kids"
+   ],
+   "scope": "isolated spherical lenses; the gate on-branch and prescribed; M*'s carrier = L388's trigger rule (L377's run at L388's cell, read from source) reading the phantom of M*'s own gate (MOND-sector reading + MS5's kappa cap, as L396), resolved in L375's shell model with L390's masses and DE10's seeds, each footing's a0; the trigger's phantom is L377's spherical QUMOND form [OP_B_FOR_A], switched hard [HARDW_FOR_SMOOTH]",
+   "owner_claim": "",
+   "headline_check": "H1",
+   "notes": "claim set to 'M*' when the lane was committed (the claim gate needs a commit). Two stages: kids_gate (DE10's fit on DE8's operator) and carrier_trigger (the shell model's trigger). L388's carrier AS WRITTEN (the phantom in its trigger switched by L388's matter-only reading, H1b) is scored beside it; as a row it would be OFF-M* (a matter-only switch in the carrier_trigger stage). FK1's conversion is a labelled variant (V4).",
+   "axes": {
+    "switch_reading": [
+     {
+      "value": "mond_sector_phiX",
+      "src": "real_research/cross_thread_review_2026_09_26/XR14_kids_mstar_carrier.py",
+      "pattern": "x = 4 \\* math\\.pi \\* G \\* \\(rho - FB \\* rhob\\) / H \\*\\* 2",
+      "derive": "classify",
+      "use": "kids_gate"
+     },
+     {
+      "value": "mond_sector_phiX",
+      "src": "real_research/cross_thread_review_2026_09_26/XR14_carrier_halos.py",
+      "pattern": "x = 1\\.5 \\* \\(rho_dyn - FB \\* Om \\* RHOC0",
+      "derive": "classify",
+      "use": "carrier_trigger"
+     }
+    ],
+    "cap_form": [
+     {
+      "value": "kappa_MS5",
+      "src": "real_research/cross_thread_review_2026_09_26/XR14_kids_mstar_carrier.py",
+      "pattern": "t = \\(np\\.minimum\\(x, \\(V_CAP / \\(rr \\* H\\)\\) \\*\\* 2\\) / xce - 1\\)",
+      "derive": "classify",
+      "use": "kids_gate"
+     },
+     {
+      "value": "kappa_MS5",
+      "src": "real_research/cross_thread_review_2026_09_26/XR14_carrier_halos.py",
+      "pattern": "x = np\\.minimum\\(x, \\(V_CAP / \\(rmid \\* H0 \\* E\\(z\\)\\)\\) \\*\\* 2\\)",
+      "derive": "classify",
+      "use": "carrier_trigger"
+     }
+    ],
+    "p": [
+     {
+      "value": 1.0,
+      "src": "real_research/cross_thread_review_2026_09_26/XR14_kids_mstar_carrier.py",
+      "pattern": "XCE = 2\\.5 \\* \\(0\\.3138 \\* 1\\.25 \\*\\* 3 \\+ 0\\.6862\\)(?: \\*\\* ([\\d.]+))?",
+      "derive": "power",
+      "group": 1
+     },
+     {
+      "value": 1.0,
+      "src": "real_research/dark_sector_2026/L388_linear_gate_pooled.py",
+      "pattern": "^L79\\.L77\\.X_C0, L79\\.L77\\.P_GATE = ([\\d.]+), ([\\d.]+)",
+      "derive": "float",
+      "group": 2,
+      "use": "carrier_trigger",
+      "via": [
+       {
+        "src": "real_research/cross_thread_review_2026_09_26/XR14_carrier_halos.py",
+        "pattern": "L77\\.X_C0, L77\\.P_GATE = float\\(_m\\.group\\(1\\)\\), int\\(_m\\.group\\(2\\)\\)"
+       }
+      ]
+     }
+    ],
+    "x_c0": [
+     {
+      "value": 2.5,
+      "src": "real_research/cross_thread_review_2026_09_26/XR14_kids_mstar_carrier.py",
+      "pattern": "XCE = ([\\d.]+) \\* \\(0\\.3138 \\* 1\\.25 \\*\\* 3 \\+ 0\\.6862\\)",
+      "derive": "float",
+      "group": 1
+     },
+     {
+      "value": 2.5,
+      "src": "real_research/dark_sector_2026/L388_linear_gate_pooled.py",
+      "pattern": "^L79\\.L77\\.X_C0, L79\\.L77\\.P_GATE = ([\\d.]+), ([\\d.]+)",
+      "derive": "float",
+      "group": 1,
+      "use": "carrier_trigger",
+      "via": [
+       {
+        "src": "real_research/cross_thread_review_2026_09_26/XR14_carrier_halos.py",
+        "pattern": "L77\\.X_C0, L77\\.P_GATE = float\\(_m\\.group\\(1\\)\\), int\\(_m\\.group\\(2\\)\\)"
+       }
+      ]
+     }
+    ],
+    "w": [
+     {
+      "value": [
+       0.02,
+       0.25
+      ],
+      "src": "real_research/cross_thread_review_2026_09_26/XR14_kids_mstar_carrier.py",
+      "pattern": "^WS = (\\(.*\\))",
+      "derive": "floats",
+      "group": 1,
+      "use": "kids_gate"
+     },
+     {
+      "value": 0.0,
+      "src": "real_research/cross_thread_review_2026_09_26/XR14_carrier_halos.py",
+      "pattern": "f = x \\* gate_factor\\(z\\) > L77\\.X_C0()",
+      "derive": "present",
+      "group": 1,
+      "use": "carrier_trigger"
+     }
+    ],
+    "kernel": [
+     {
+      "atom": "kernel.L352",
+      "use": "kids_gate"
+     },
+     {
+      "atom": "kernel.L377",
+      "use": "carrier_trigger",
+      "via": [
+       {
+        "src": "real_research/cross_thread_review_2026_09_26/XR14_carrier_halos.py",
+        "pattern": "nu = L77\\.nu_vec\\(gN / a0k\\)"
+       }
+      ]
+     }
+    ],
+    "sigma": [
+     {
+      "value": 1.0,
+      "src": "real_research/cross_thread_review_2026_09_26/XR14_kids_mstar_carrier.py",
+      "pattern": "extra = solve_region\\(Mb, a0, f, 100 \\* KPC_, ([\\d.]+)\\)",
+      "derive": "float",
+      "group": 1,
+      "use": "kids_gate"
+     },
+     {
+      "value": "n/a",
+      "derive": "na",
+      "reason": "the trigger's phantom is operator B's form (no web self-term)",
+      "use": "carrier_trigger"
+     }
+    ],
+    "operator": [
+     {
+      "atom": "op.A.DE8",
+      "use": "kids_gate",
+      "via": [
+       {
+        "src": "real_research/cross_thread_review_2026_09_26/XR14_kids_mstar_carrier.py",
+        "pattern": "P8 = os\\.path\\.join\\(DEDIR, \\\"DE8_kids"
+       }
+      ]
+     },
+     {
+      "value": "B",
+      "src": "real_research/cross_thread_review_2026_09_26/XR14_carrier_halos.py",
+      "pattern": "^import L377_full_construction_pm as L77",
+      "derive": "classify",
+      "use": "carrier_trigger"
+     }
+    ],
+    "carrier": [
+     {
+      "value": "L388_density_trigger",
+      "src": "real_research/cross_thread_review_2026_09_26/XR14_carrier_halos.py",
+      "pattern": "^XC_TRIG = L77\\.XC_TRIG",
+      "derive": "classify",
+      "via": [
+       {
+        "src": "real_research/cross_thread_review_2026_09_26/XR14_kids_mstar_carrier.py",
+        "pattern": "XR14_carrier_halos_results\\.json"
+       }
+      ]
+     }
+    ],
+    "kick": [
+     {
+      "value": [
+       575.0,
+       600.0,
+       625.0,
+       650.0
+      ],
+      "src": "real_research/cross_thread_review_2026_09_26/XR14_kids_mstar_carrier.py",
+      "pattern": "^VK = (\\(.*\\))",
+      "derive": "floats",
+      "group": 1
+     }
+    ],
+    "footings": [
+     {
+      "value": [
+       "canonical",
+       "alt"
+      ],
+      "src": "real_research/cross_thread_review_2026_09_26/XR14_kids_mstar_carrier.py",
+      "pattern": "^FEET = \\(\\\"canonical\\\", \\\"alt\\\"\\)",
+      "derive": "footings"
+     }
+    ],
+    "epoch": [
+     {
+      "role": "score",
+      "value": 0.25,
+      "src": "real_research/cross_thread_review_2026_09_26/XR14_kids_mstar_carrier.py",
+      "pattern": "x_c,eff\\(0\\.25\\) = \\{XCE:\\.4f\\}()",
+      "derive": "present",
+      "group": 1,
+      "what": "KiDS lens epoch",
+      "use": "kids_gate"
+     },
+     {
+      "role": "retention",
+      "value": 0.25,
+      "src": "real_research/dark_sector_2026/L375_triggered_carrier_galaxy_retention.py",
+      "pattern": "^ZL = ([\\d.]+); ZSTART = 3\\.0",
+      "derive": "float",
+      "group": 1,
+      "what": "L375's shell model (copied in XR14_carrier_halos.py) evolved to z_l",
+      "use": "kids_gate",
+      "via": [
+       {
+        "src": "real_research/cross_thread_review_2026_09_26/XR14_carrier_halos.py",
+        "pattern": "from L375_triggered_carrier_galaxy_retention import \\(G, TU, Om, OL, FB, H0, RHOC0, ZL"
+       }
+      ]
+     }
+    ]
+   }
   }
  ]
 }

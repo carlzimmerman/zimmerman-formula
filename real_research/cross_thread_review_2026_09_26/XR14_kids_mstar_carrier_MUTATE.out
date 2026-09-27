@@ -1,0 +1,124 @@
+XR14_kids_mstar_carrier.py -- KiDS-1000 ON M*'S OWN CARRIER.  Part 2 of 2: DE10's KiDS fit on M*'s gate, scored on the
+carrier halos XR14_carrier_halos.py re-ran with L388's phantom-inclusive trigger.  Cross-thread review, 2026-09-26
+(night).  Read-only on every other file.
+
+WHY.  DE10 (dabce1b73) scored KiDS for the converged model at -37.0/-34.0 (hard) and -32.3/-29.3 (w = 0.25) at 600 km/s,
+but with L375's carrier (the Newtonian-matter trigger).  XR10 finds that row off M* on the carrier.  M*'s carrier is L388's
+trigger, which reads the PHANTOM-INCLUSIVE x~.  This lane moves the KiDS row onto it.
+
+THE MODEL AS SCORED (DE10's code path; each piece loaded from its committed source):
+  gate     DE8's region operator (L361/CV1, operator A: screened w, gated phantom, sigma = 1, 1/m = 0.1 Mpc; lensing on
+           Phi = u + f P with f' P), MS2's MOND-sector reading x = 4 pi G (rho_b + rho_ph - f_b rho_bar_m)/H^2
+           (carrier-blind), p = 1, x_c0 = 2.5 at z_l = 0.25, the smooth gate W(t) at w = 0.02 (hard) and 0.25, the region
+           connected to the centre;
+  cap      MS5's kappa form: U = min(x, v_cap^2 kappa_X^2/H^2), kappa_X = 1/r for a spherical lens, v_cap = 325 km/s.
+           Every region stops at l_cap(0.25) = v_cap/(H sqrt(x_c,eff)) = 2.35 Mpc; it binds only where v_f > v_cap, and
+           KiDS lenses have v_f <= 247 km/s (K1 checks it does not bind anywhere on the fit's mass grid).  DE10's withdrawn
+           local form appears ONLY in C1, which reproduces DE10, and in K1's comparison (labelled);
+  carrier  XR14_carrier_halos.py: L375's shell model (secondary infall, the bins' baryons + CGM, L390's refitted masses and
+           DE10's seeds, N = 60000) with L388's trigger rule (x~_m + x~_ph > 5, Gamma = 10 H, kick v_k) at every kick
+           575-650 km/s, on each footing's a0.  Two readings of "the phantom" the trigger reads, scored separately:
+             M*    ('MSPH') the phantom of M*'s own gate (MOND-sector reading + kappa cap), as the same-model PM run L396;
+             L388  ('L388') the phantom switched by L388's own matter-only reading, as L388's code does (a branch mix).
+           Variant: FK1's conversion (n^2 trigger on the cold carrier's own density, E^4 gate, sharp), 575 and 650 km/s.
+           Each carrier's projected profile enters the lens through DE10's template (L375's), at FIXED amplitude fs = 1;
+  fit      L352's KiDS machinery through DE8 (Brouwer+21 four bins, full covariance, M_b profiled per bin on L352's grid,
+           a linear 2-halo term per bin); Delta chi^2 against L352's unswitched model; pass = <= +4 on both footings.
+  THE ANTI-FAKE RULES (the DE thread's, set for XR9): the carrier amplitude is fixed at fs = 1 in every gated score
+  (fitted amplitudes are labelled diagnostics); the 2-halo amplitude is capped at A <= 2 in the gated score, re-scored
+  against the unswitched baseline with the same bound, and reported per bin; DE10's A <= 20 is reported beside it.
+
+  *** MUTATE=1: the scored carriers are the v_k = 0 halos (triggered, nothing kicked); H1 and H1b must FAIL ***
+  DE8 loaded (L352's KiDS data, operator A, 2-halo template); x_c,eff(0.25) = 3.2477   [1s]
+
+======================================================================================================================
+C0 T0  CONTROLS: the fit loop's baseline; the halo cache's trace and mesh controls, and its cell
+======================================================================================================================
+  [PASS] C0 CONTROL: the fit loop (A <= 20) reproduces L352's unswitched baseline chi^2 on both footings
+         measured: {'canonical': 174.297, 'alt': 166.9219} vs L352 {'canonical': 174.297, 'alt': 166.9219} (max |diff| 0.0e+00); A <= 2 baseline {'canonical': 174.297, 'alt': 166.9219}, A per bin {'canonical': [0.0, 0.0, 0.417, 0.138], 'alt': [0.0, 0.0, 0.468, 0.202]}
+         reading:  the A <= 2 score is taken against the unswitched model fitted with the same bound
+  [PASS] T0 CONTROL: the halo cache's trace control (L388's trigger read from its source) and its mesh control (C3: the spherical phantom = L377's phantom() on a 3-d mesh) passed, and the carrier's cell is the scored gate's cell
+         measured: T0 True, C3 True (edge mesh/sphere 1.099/1.096 Mpc/h; enclosed phantom mesh/sphere 0.9862, 0.9944, 0.9944); carrier cell (X_C0, P_GATE) = (2.5, 1) -> x_c,eff(0.25) 3.2477 = XCE 3.2477; kicks [575.0, 600.0, 625.0, 650.0]; XC_TRIG 5.0, Gamma 10.0 H
+
+======================================================================================================================
+C1  CONTROL (L375's trigger restored): XR9's halos bit for bit, L390's S, DE10's committed table
+======================================================================================================================
+  [PASS] C1 CONTROL: with L375's trigger restored, (a) the halos equal XR9's cache of L375's own halo() bit for bit, (b) their retention equals L390's committed S, (c) DE10's configuration (withdrawn local cap, fs = 1, A <= 20) reproduces DE10's committed KiDS table and preferred amplitudes (2 kicks x 2 widths x 2 footings)
+         measured: (a) histograms identical: True; (b) max |S - S_L390| 0.0e+00; (c) v600/w0.02: -37.026/-34.010; v600/w0.25: -32.266/-29.286; v650/w0.02: -36.821/-33.736; v650/w0.25: -32.082/-29.016 (max |diff| 0.0e+00)
+         reading:  this lane's copy of L375's shell model and DE10's scoring path are exact; only the trigger differs in what follows
+
+======================================================================================================================
+C2 C3b K1  CONTROLS: a retained carrier fails; the trigger's gate is the scored gate; the kappa cap does not bind
+======================================================================================================================
+  [PASS] C2 CONTROL: the no-decay (CDM-like) carrier halo on M*'s gate is rejected: Delta chi^2 > +100 on both footings (fs = 1, w = 0.25, A <= 2 and A <= 20)
+         measured: {'A<=2': {'canonical': 128.7, 'alt': 131.5}, 'A<=20': {'canonical': 128.7, 'alt': 131.5}}
+         reading:  the pipeline sees a retained halo
+  [PASS] C3b CONTROL: the gate M*'s carrier's trigger reads is the scored gate: for point-mass baryons the hard edges agree (z = 0.25 and 1; M_b = 1e11, 1e12; both footings), including where the kappa cap binds
+         measured: z0.25/1e11/can: 1334 vs 1333 kpc; z0.25/1e11/alt: 1397 vs 1396 kpc; z0.25/1e12/can: 2348 vs 2344 kpc (cap binds; uncapped 2368); z0.25/1e12/alt: 2348 vs 2344 kpc (cap binds; uncapped 2480); z1/1e11/can: 545 vs 545 kpc; z1/1e11/alt: 571 vs 571 kpc; z1/1e12/can: 954 vs 953 kpc (cap binds; uncapped 968); z1/1e12/alt: 954 vs 953 kpc (cap binds; uncapped 1014); max rel diff 1.8e-03
+  [PASS] K1 CONTROL: MS5's kappa cap does not bind on KiDS lenses: with M*'s carrier the kappa-capped, uncapped and withdrawn-local-form scores are identical (every kick, width, footing; A <= 2), and the kappa cap changes f nowhere on the fit's mass grid
+         measured: max score spread 0.0e+00; max |f_kappa - f_none| over 21 masses x 4 bins x 2 footings x 2 widths = 0.0e+00; l_cap(0.25) = 2.35 Mpc; largest grid v_f 298/312 km/s < 325
+         reading:  the kappa form binds only where v_f > v_cap; stated as non-binding, not assumed
+
+======================================================================================================================
+KiDS ON M*'S CARRIER: fs = 1, A <= 2 gated (A <= 20 beside it); every kick, both widths, both footings
+======================================================================================================================
+  M* (MSPH)        v_k 575: w 0.02 +133.28/+136.30   w 0.25 +133.22/+135.68   | A<=20: +133.28/+136.30, +133.22/+135.68 | switch alone (w 0.25) -24.63/-20.71   [5s]
+      A per bin (A <= 2, w 0.25) canonical [0.645, 0.949, 1.795, 1.787] alt [0.654, 0.868, 1.81, 1.795]; log M_b [10.2, 10.6, 10.6, 10.2] / [10.1, 10.6, 10.5, 10.1]
+  M* (MSPH)        v_k 600: w 0.02 +133.28/+136.30   w 0.25 +133.22/+135.68   | A<=20: +133.28/+136.30, +133.22/+135.68 | switch alone (w 0.25) -24.63/-20.71   [5s]
+      A per bin (A <= 2, w 0.25) canonical [0.645, 0.949, 1.795, 1.787] alt [0.654, 0.868, 1.81, 1.795]; log M_b [10.2, 10.6, 10.6, 10.2] / [10.1, 10.6, 10.5, 10.1]
+  M* (MSPH)        v_k 625: w 0.02 +133.28/+136.30   w 0.25 +133.22/+135.68   | A<=20: +133.28/+136.30, +133.22/+135.68 | switch alone (w 0.25) -24.63/-20.71   [5s]
+      A per bin (A <= 2, w 0.25) canonical [0.645, 0.949, 1.795, 1.787] alt [0.654, 0.868, 1.81, 1.795]; log M_b [10.2, 10.6, 10.6, 10.2] / [10.1, 10.6, 10.5, 10.1]
+  M* (MSPH)        v_k 650: w 0.02 +133.28/+136.30   w 0.25 +133.22/+135.68   | A<=20: +133.28/+136.30, +133.22/+135.68 | switch alone (w 0.25) -24.63/-20.71   [5s]
+      A per bin (A <= 2, w 0.25) canonical [0.645, 0.949, 1.795, 1.787] alt [0.654, 0.868, 1.81, 1.795]; log M_b [10.2, 10.6, 10.6, 10.2] / [10.1, 10.6, 10.5, 10.1]
+  L388 as written  v_k 575: w 0.02 +133.17/+132.59   w 0.25 +133.91/+133.31   | A<=20: +133.17/+132.59, +133.91/+133.31 | switch alone (w 0.25) -24.63/-20.71   [5s]
+      A per bin (A <= 2, w 0.25) canonical [0.645, 0.949, 1.796, 1.787] alt [0.654, 0.868, 1.809, 1.711]; log M_b [10.2, 10.6, 10.6, 10.2] / [10.1, 10.6, 10.5, 10.3]
+  L388 as written  v_k 600: w 0.02 +133.17/+132.59   w 0.25 +133.91/+133.31   | A<=20: +133.17/+132.59, +133.91/+133.31 | switch alone (w 0.25) -24.63/-20.71   [5s]
+      A per bin (A <= 2, w 0.25) canonical [0.645, 0.949, 1.796, 1.787] alt [0.654, 0.868, 1.809, 1.711]; log M_b [10.2, 10.6, 10.6, 10.2] / [10.1, 10.6, 10.5, 10.3]
+  L388 as written  v_k 625: w 0.02 +133.17/+132.59   w 0.25 +133.91/+133.31   | A<=20: +133.17/+132.59, +133.91/+133.31 | switch alone (w 0.25) -24.63/-20.71   [5s]
+      A per bin (A <= 2, w 0.25) canonical [0.645, 0.949, 1.796, 1.787] alt [0.654, 0.868, 1.809, 1.711]; log M_b [10.2, 10.6, 10.6, 10.2] / [10.1, 10.6, 10.5, 10.3]
+  L388 as written  v_k 650: w 0.02 +133.17/+132.59   w 0.25 +133.91/+133.31   | A<=20: +133.17/+132.59, +133.91/+133.31 | switch alone (w 0.25) -24.63/-20.71   [6s]
+      A per bin (A <= 2, w 0.25) canonical [0.645, 0.949, 1.796, 1.787] alt [0.654, 0.868, 1.809, 1.711]; log M_b [10.2, 10.6, 10.6, 10.2] / [10.1, 10.6, 10.5, 10.3]
+
+======================================================================================================================
+H1 H1b  THE PRE-DECLARED HYPOTHESES
+======================================================================================================================
+  [FAIL] H1 [pre-declared] M*'S CARRIER (L388's trigger reading M*'s own gate's phantom) passes KiDS: Delta chi^2 <= +4 on both footings, w = 0.02 and 0.25, every kick 575-650 km/s (fs = 1, A <= 2)
+         measured: v575: w0.02 +133.3/+136.3, w0.25 +133.2/+135.7; v600: w0.02 +133.3/+136.3, w0.25 +133.2/+135.7; v625: w0.02 +133.3/+136.3, w0.25 +133.2/+135.7; v650: w0.02 +133.3/+136.3, w0.25 +133.2/+135.7  (worst +136.30)
+  [FAIL] H1b [pre-declared] L388's carrier AS WRITTEN (its matter-only switch in the trigger) passes on the same terms
+         measured: v575: w0.02 +133.2/+132.6, w0.25 +133.9/+133.3; v600: w0.02 +133.2/+132.6, w0.25 +133.9/+133.3; v625: w0.02 +133.2/+132.6, w0.25 +133.9/+133.3; v650: w0.02 +133.2/+132.6, w0.25 +133.9/+133.3  (worst +133.91)
+
+======================================================================================================================
+V1-V5  REPORTED: DE10 beside M*'s carrier, the carrier's share, retention, the variants, 'as run'
+======================================================================================================================
+    v600/w0.02: DE10 committed (A<=20, withdrawn cap, L375 carrier)  -37.03/ -34.01 | M*'s carrier +133.28/+136.30 | L388 as written +133.17/+132.59
+    v600/w0.25: DE10 committed (A<=20, withdrawn cap, L375 carrier)  -32.27/ -29.29 | M*'s carrier +133.22/+135.68 | L388 as written +133.91/+133.31
+    v650/w0.02: DE10 committed (A<=20, withdrawn cap, L375 carrier)  -36.82/ -33.74 | M*'s carrier +133.28/+136.30 | L388 as written +133.17/+132.59
+    v650/w0.25: DE10 committed (A<=20, withdrawn cap, L375 carrier)  -32.08/ -29.02 | M*'s carrier +133.22/+135.68 | L388 as written +133.91/+133.31
+  [PASS] (reported) V1 the carrier's share of the score: |Delta chi^2(fs = 1) - Delta chi^2(fs = 0)| at w = 0.25 (A <= 2), and the diagnostic best amplitude
+         measured: MSPH: 156.39-157.85; L388: 154.02-158.54
+    retention L388 as written, can   (v_k = 0): S by bin [1.0, 1.0, 1.001, 1.0], decayed [0.896, 0.895, 0.895, 0.897], phantom-only share [0.004, 0.004, 0.004, 0.004], trigger reach at z_l [274, 359, 470, 650] kpc, phantom switched to [422, 552, 724, 1056] kpc
+    retention L388 as written, alt   (v_k = 0): S by bin [1.0, 1.0, 1.001, 0.999], decayed [0.896, 0.895, 0.895, 0.897], phantom-only share [0.004, 0.005, 0.004, 0.004], trigger reach at z_l [274, 359, 470, 650] kpc, phantom switched to [422, 552, 724, 1056] kpc
+    retention M* (MSPH), can         (v_k = 0): S by bin [1.0, 1.0, 1.0, 1.0], decayed [0.907, 0.905, 0.905, 0.907], phantom-only share [0.077, 0.072, 0.066, 0.056], trigger reach at z_l [898, 1114, 1310, 1716] kpc, phantom switched to [1176, 1383, 1716, 2248] kpc
+    retention M* (MSPH), alt         (v_k = 0): S by bin [1.0, 1.0, 1.001, 1.0], decayed [0.907, 0.905, 0.906, 0.907], phantom-only share [0.078, 0.075, 0.067, 0.059], trigger reach at z_l [948, 1114, 1383, 1811] kpc, phantom switched to [1241, 1460, 1811, 2248] kpc
+    retention FK1 variant            (v_k = 0): S by bin [1.0, 1.0, 1.0, 1.002], decayed [0.934, 0.932, 0.933, 0.934], phantom-only share [0.0, 0.0, 0.0, 0.0], conversion front at z_l [445, 552, 724, 1056] kpc
+  [PASS] (reported) V2 retention per bin (M(<0.5 Mpc/h) against the no-decay halo), decayed fraction, the decays the phantom alone caused, and the trigger's reach at z_l, per trigger
+         measured: see the retention lines and the results JSON
+  [PASS] (reported) V3 'as run': L388 ran canonical only; its canonical-a0 carrier scored on the alt footing
+         measured: v575: w0.02 +137.1, w0.25 +136.6; v600: w0.02 +137.1, w0.25 +136.6; v625: w0.02 +137.1, w0.25 +136.6; v650: w0.02 +137.1, w0.25 +136.6 (worst +137.12)
+  [PASS] (reported) V4 the FK1 variant (n^2 trigger on the cold carrier's own density, E^4 gate, sharp): its KiDS score
+         measured: v575: w0.02 +133.9/+137.3, w0.25 +133.8/+136.4; v650: w0.02 +133.9/+137.3, w0.25 +133.8/+136.4 (worst +137.26; FAILS the <= +4 rule)
+  [PASS] (reported) V5 DE10's bound A <= 20: the same scores with the 2-halo amplitude free to 20
+         measured: MSPH worst +136.30; L388 worst +133.91
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  KiDS-1000 on M*'s gate (MOND-sector switch, p = 1, x_c0 = 2.5, MS5's kappa cap -- non-binding, sigma = 1, 1/m = 0.1 Mpc),
+  fs = 1, A <= 2, both footings, w = 0.02/0.25, kicks 575-650 km/s:
+    M*'s carrier (L388's trigger on M*'s own gate's phantom): worst Delta chi^2 +136.30 -> FAIL
+    L388's carrier as written (its matter-only switch):         worst Delta chi^2 +133.91 -> FAIL
+    FK1 variant (575/650):                                       worst Delta chi^2 +137.26 -> FAIL
+    'as run' (canonical carrier on alt):                         worst Delta chi^2 +137.12
+
+  11/13 checks pass; load-bearing failures: 2; wrote XR14_kids_mstar_carrier_results_MUTATE.json   [6s]
+rc=1

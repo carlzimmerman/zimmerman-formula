@@ -1,0 +1,116 @@
+XR15b -- DOOR (b): A GRADIENT STIFFNESS THAT SWITCHES OFF INSIDE COLLAPSED REGIONS, (1/2) h(U) |grad U|^2, h = mu S(U).
+Run because door (c) failed (XR15_smoothed_gate.py: no smoothing length brings every layer to Gamma <= H, one constant l
+cannot also keep the flagship, and the capped branch and V0's loop are untouched).
+
+WHY.  DE13's form (i), -(mu/2)|grad U|^2 with a constant mu, stabilises every DE12 layer from mu_U ~ 0.05 B r^2 (lambda_U =
+0.21-0.22; universal eta_U = 8 pi G mu_U/c^4 = 3.2e-14), but acts wherever U varies: its potential is 32 v_f^2 at the
+flagship radius and 2e8 v_f^2 at the Sun's distance (DE13 N1).  DE13's second open door: let the coefficient switch off
+inside collapsed regions, h(U) = mu S(U), S = 1 on the layer and 0 deep inside, so the potential vanishes at r_F and at
+the Sun.  Where it switches off, the switch has its own background term.
+
+THE SECOND VARIATION (per delta U; checked against finite differences in B2):
+    delta^2 [(1/2) int h(U) |grad U|^2] = int { h |grad dU|^2 - [ (1/2) h'' |grad U|^2 + h' lap U ] dU^2 },
+so in DE13's variable eps = t_U dU:  s = S(U)/t_U^2 (the stiffness) and K0 = [(1/2) S'' |grad U|^2 + S' lap U]/t_U^2
+(the switch's own term, destabilising where positive), entering DE13's E2 = 1/2 int {base eps^2 + mu s |grad eps|^2
+- mu K0 eps^2} unchanged.  The switch: S = 1 - W(tau), tau = ln(U/U_1)/ln R, W DE12's smooth transition, U_1 = 1 + w (the
+layer's inner edge, t = 1), so S = 1 across the whole layer and S = 0 for U >= U_1 R.
+
+THE FIRST VARIATION (the repair's force on the baryons, A = 1 as DE13 N1):  Phi_rep = 4 pi G C mu [-div(S grad U) +
+(1/2) S' |grad U|^2]; zero wherever U >= U_1 R.  The flagship (z = 2.5, M_b = 1e10, 1e10.5, 1e11, both footings) therefore
+caps the switch width: R <= R_max = min U(r_F)/U_1.
+
+METHOD.  DE13's machinery loaded unedited (its definitions only; its checks never run, its JSON never written): DE12's
+transitions, DE13's base (gas at 1e6 K + the gate, the transverse A), its tridiagonal form with weights r^2 dr and Dirichlet
+ends, and its exact negative-mode count (LDL^T pivots).  Each layer is resampled on 8000 points uniform in ln r from
+U = 1.1 U_1 R (inside the switch) out to t = 0.004; negative modes are counted in DE13's five half-layer windows (in t) and in
+three half-switch windows (in tau).  mu is one constant of the action: DE13's committed universal mu_U (galaxies).  A second
+convention (the exact radial response A_par, with its own universal mu re-derived by DE13's bisection) is reported beside it.
+
+PRE-DECLARED (written into this file before the main run):
+  H_b [load-bearing]: some switch width R <= R_max leaves ALL 24 galaxy layers free of negative modes at the universal mu --
+     in DE13's layer windows (the stiffness) and in the half-switch windows (the switch's own term against 1e6 K gas) --
+     in DE13's convention; so the repair exerts no force at r_F (z = 2.5) or at the Sun.
+  The writer's expectation before the run: H_b FAILS.  The universal mu is set by the most demanding layer and is orders of
+  magnitude above what the low-redshift layers need, so their switch zones' own term overwhelms their gas, unless R is
+  far larger than the flagship allows.
+
+  *** MUTATE=1: the switch's own background term K0 is dropped; B3 must FAIL ***
+  DE13 machinery loaded (definitions only); DE13's universal eta_U = 3.206e-14, mu_U = 1.544e+29 J/m   [0s]
+
+==============================================================================================================
+B1  CONTROL: without the switch this lane's assembly is DE13's form (i), and DE13's bisection returns its lambda_U
+==============================================================================================================
+    0.25/1e+11/canonical: arrays differ by 0.0e+00; lambda_U 0.222187477315 vs DE13's committed 0.222187477315
+    2.5/1e+10/alt: arrays differ by 0.0e+00; lambda_U 0.212798262553 vs DE13's committed 0.212798262553
+    4.0/1e+12/canonical: arrays differ by 0.0e+00; lambda_U 0.212568340682 vs DE13's committed 0.212568340682
+  [PASS] B1 CONTROL: with S = 1 the switched assembly reproduces DE13's form (i) arrays exactly and DE13's committed lambda_U (1e-12)
+         measured: {'0.25/1e+11/canonical': '0e+00 / 0e+00', '2.5/1e+10/alt': '0e+00 / 0e+00', '4.0/1e+12/canonical': '0e+00 / 0e+00'}
+
+==============================================================================================================
+B2  CONTROL: the switched stiffness's second variation against finite differences of its discretised functional
+==============================================================================================================
+    with K0: 6.4e-08, 2.3e-07, 1.4e-06; without: 6.1e-03, 4.6e-03, 7.5e-02
+  [PASS] B2 CONTROL: stiffness + K0 match the finite-difference second variation of (1/2) sum h(U)|grad U|^2 r^2 dr (1e-4); without K0 they miss by >= 1e-3
+         measured: with 1.4e-06; without 7.5e-02
+         reading:  the switch's own term -[(1/2) h''|grad U|^2 + h' lap U] is real and is in every count below
+
+==============================================================================================================
+R1  THE FLAGSHIP CAPS THE SWITCH WIDTH: the repair must be off (U >= U1 R) at r_F
+==============================================================================================================
+    U(r_F)/U1: 2.5/1.00e+10/canonical: 34.69, 2.5/1.00e+10/alt: 44.95, 2.5/3.16e+10/canonical: 20.29, 2.5/3.16e+10/alt: 26.25, 2.5/1.00e+11/canonical: 11.93, 2.5/1.00e+11/alt: 15.41, 4.0/1.00e+10/canonical: 4.69, 4.0/1.00e+10/alt: 6.07, 4.0/3.16e+10/canonical: 2.77, 4.0/3.16e+10/alt: 3.57, 4.0/1.00e+11/canonical: 1.64, 4.0/1.00e+11/alt: 2.12
+    R_max (z = 2.5, the flagship's epoch) = 11.93; at z = 4 the cap would be 1.64
+  [1s]
+
+==============================================================================================================
+R2  EVERY GALAXY LAYER, EVERY SWITCH WIDTH: the layer (DE13's windows) and the switch zone (half-switch windows)
+==============================================================================================================
+    0.25/1e+10/canonical   mu/mu_own  6278.9; evolves at  5.4 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [1s]
+    0.25/1e+10/alt         mu/mu_own  5969.9; evolves at  5.4 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [1s]
+    0.25/1e+11/canonical   mu/mu_own   357.4; evolves at  5.4 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [1s]
+    0.25/1e+11/alt         mu/mu_own   339.4; evolves at  5.4 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [1s]
+    0.25/1e+12/canonical   mu/mu_own    20.7; evolves at  5.4 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [2s]
+    0.25/1e+12/alt         mu/mu_own    19.6; evolves at  5.4 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [2s]
+    1.0/1e+10/canonical    mu/mu_own  2651.5; evolves at  9.0 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [2s]
+    1.0/1e+10/alt          mu/mu_own  2509.1; evolves at  9.0 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [2s]
+    1.0/1e+11/canonical    mu/mu_own   153.2; evolves at  9.0 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [2s]
+    1.0/1e+11/alt          mu/mu_own   144.7; evolves at  9.0 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [2s]
+    1.0/1e+12/canonical    mu/mu_own     9.2; evolves at  9.0 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [3s]
+    1.0/1e+12/alt          mu/mu_own     8.6; evolves at  9.0 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [3s]
+    2.5/1e+10/canonical    mu/mu_own   690.0; evolves at 10.9 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [3s]
+    2.5/1e+10/alt          mu/mu_own   644.1; evolves at 10.9 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [3s]
+    2.5/1e+11/canonical    mu/mu_own    41.7; evolves at 10.8 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [3s]
+    2.5/1e+11/alt          mu/mu_own    38.8; evolves at 10.8 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [3s]
+    2.5/1e+12/canonical    mu/mu_own     2.6; evolves at 10.6 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [4s]
+    2.5/1e+12/alt          mu/mu_own     2.4; evolves at 10.7 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [4s]
+    4.0/1e+10/canonical    mu/mu_own   286.4; evolves at 11.1 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [4s]
+    4.0/1e+10/alt          mu/mu_own   264.1; evolves at 11.1 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [4s]
+    4.0/1e+11/canonical    mu/mu_own    17.4; evolves at 10.9 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [4s]
+    4.0/1e+11/alt          mu/mu_own    16.0; evolves at 10.9 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [4s]
+    4.0/1e+12/canonical    mu/mu_own     1.1; evolves at 10.7 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [5s]
+    4.0/1e+12/alt          mu/mu_own     1.0; evolves at 10.7 H | switch-zone Gamma/H (universal mu) by R: 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 | own mu at R_max: 0.0e+00   [5s]
+    (R = 1.5, 2.0, 3.0, 5.0, 8.0, 11.93, 20.0, 50.0, 100.0, 1000.0; R_max = 11.93 from the flagship)
+  [FAIL] B3 [MUTATE's target] the switch's own term destabilises: for every R <= R_max some galaxy layer's switch zone has a negative mode at the universal mu
+         measured: layers with a negative switch-zone mode at R = 1.5, 2.0, 3.0, 5.0, 8.0: 0, 0, 0, 0, 0 of 24; fastest Gamma/H 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00
+         reading:  where h switches off, -[(1/2) h''|grad U|^2 + h' lap U] ~ mu/r^2 exceeds the gas's stiffness; a wider switch only moves it inward, where mu/r^2 is larger
+  [PASS] H_b [pre-declared] some R <= R_max leaves all 24 galaxy layers free of negative modes at the universal mu (layer and switch zone), so the repair is off at r_F and at the Sun
+         measured: R clearing every layer and switch zone: [2.0, 5.0, 8.0, 11.93, 20.0, 50.0, 100.0, 1000.0] (scanned 1.5-1000.0)
+    even with each layer's OWN mu_U (not one constant): layers with a negative switch-zone mode by R: {1.5: 0, 2.0: 0, 3.0: 0, 5.0: 0, 8.0: 0, 11.93: 0, 20.0: 0, 50.0: 0, 100.0: 0, 1000.0: 0}
+
+==============================================================================================================
+R3  THE EXACT RADIAL RESPONSE (A_par): its own universal mu (DE13's bisection), and the switch zones at R_max
+==============================================================================================================
+    universal mu_par = 1.517e+29 J/m (eta = 3.15e-14; DE13's convention 3.21e-14); at R_max: switch zones unstable on 0/24 layers, fastest 0.00e+00 H; layers unstable 0
+
+==============================================================================================================
+R4  THE REPAIR'S OWN FORCE at R_max: in the switch zone and the layer (the lenses' interior), at r_F and at the Sun
+==============================================================================================================
+    0.25/1e+11/canonical  : switch zone 365-1229 kpc; max |Phi_rep| 5.00e+00 v_f^2 there, 3.34e-01 in the layer; max |g_rep|/g_MOND 4.61e+02
+    0.25/1e+11/alt        : switch zone 381-1286 kpc; max |Phi_rep| 4.16e+00 v_f^2 there, 2.76e-01 in the layer; max |g_rep|/g_MOND 3.88e+02
+    0.25/1e+12/canonical  : switch zone 668-2214 kpc; max |Phi_rep| 4.89e-01 v_f^2 there, 3.38e-02 in the layer; max |g_rep|/g_MOND 4.72e+01
+    1.0/1e+11/canonical   : switch zone 155-510 kpc; max |Phi_rep| 4.81e+00 v_f^2 there, 3.37e-01 in the layer; max |g_rep|/g_MOND 4.68e+02
+    2.5/1e+11/canonical   : switch zone 39-125 kpc; max |Phi_rep| 3.97e+00 v_f^2 there, 3.13e-01 in the layer; max |g_rep|/g_MOND 4.26e+02
+    4.0/1e+10/canonical   : switch zone 8-26 kpc; max |Phi_rep| 3.71e+01 v_f^2 there, 2.86e+00 in the layer; max |g_rep|/g_MOND 3.83e+03
+    at r_F (z = 2.5, R <= R_max) and at the Sun (U ~ 1e4-1e6 >> U1 R): S = S' = 0, the repair exerts no force (by construction)
+
+  3/4 checks pass; load-bearing failures: 1 (B3); wrote XR15_switched_stiffness_results_MUTATE.json   [9s]
+rc=1

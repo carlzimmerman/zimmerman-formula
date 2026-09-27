@@ -1,0 +1,279 @@
+XR11 -- THE AUTHOR'S IDEA, READING (A): "the halos is like a fluid of dark energy swirling down between the bands" (the
+bands = the MOND regions' edge layers).  Can the DARK FLUID carry the edge layer's stiffness, and can the gate's edge force
+on it clear galaxies while clusters keep theirs?
+
+WHY NOW.  DE12 (7f84b3546): varied as an action term, the MOND-sector gate f = W(U), U = C[lap(u - v) + div((nu - 1) grad
+S w)] (CV3's reading A+), has a second variation that is a NEGATIVE bulk modulus on the transition-layer GAS, amplified by
+the phantom's response squared, A^2 with A = nu + y nu' cos^2(theta) ~ 50-100: c_gate = 1500-3700 km/s against 37-117 km/s
+gas.  The A = 1 control (the baryons alone) is ~18 km/s.  DE13 (6daea932c): gradient repairs fail or cost too much.
+The dark fluid (FL1/FL2/FK1: a superfluid order parameter, phi_H the cold carrier, phi_L the kicked products) does not
+source the phantom (L353, FL1 F2), so a gate that reads IT has A = 1 on its channel.  MS1 found the price: a gate reading
+the carrier puts an edge potential on it.  This lane tests whether that trade can work.
+
+THE DERIVATION (S1 checks it with sympy on CV1's Lagrangian, MS1's chassis term for term, two dark components).
+  Let the gate read a dark-fluid density rho (phi_H's, or the total), U = U(rho), t = (U - 1)/(2w) + 1/2, and write
+  V(rho) = W(t(U(rho))) for the gate as a function of that density.  With B = dL/df (DE12's kernel term a0^2 q/(8 pi G)):
+    first variation:   V_H - u_N = -B V'(rho)       (MS1 A3's matter-door form restricted to the dark fluid)
+       a WELL where V' > 0 (a density reading), a BARRIER where V' < 0 (a depletion reading).  The baryons and light feel
+       nothing from it: U reads no metric field and no baryon (Phi = u_N + f Psi/2 unchanged).  phi_L is untouched if U
+       reads phi_H only.
+    second variation (the k^0, UV part):  delta^2 E = -(1/2) B V''(rho) (delta rho)^2 on the dark fluid only:
+       c_gate,d^2 = rho B V''(rho), with A = 1 because the dark fluid is kernel-invisible.  The gas block is identically
+       zero (dU/d rho_b = 0): no A^2 and no A.  (The gas-dark cross term through B(w) is O(1/k).)
+    the weighted MOND-sector door U = U_MS g(rho): the gas keeps g^2 x DE12's A^2 term; the dark fluid adds its own.
+  THE DARK FLUID'S OWN STIFFNESS.  FK1's quartic is the pure cross term: g_HH = 0, so phi_H has no pressure of its own.
+  Quantum pressure gives c_q = hbar k/(2m), metres per second at kpc scales for m >= 2e-19 eV.  What is left is its
+  velocity distribution.  Vlasov (WKB): a phase-mixed, single-humped distribution with dispersion sigma along k is stable
+  iff sigma^2 > c_gate,d^2 (Penrose; a Maxwellian's static response is -rho/sigma^2).  A set of COLD streams is unstable for
+  every c_gate,d > 0 (1 = -rho_s c^2 k^2 sum 1/(omega - k.V_s)^2 has no real roots), each stream growing at
+  k c_gate,d sqrt(rho_s/rho) down to the quantum scale k_q = 2 m c_gate,d/hbar, fastest at Gamma_max = m c_gate,d^2/hbar.
+  THE PINCER (exact).  A smooth gate that switches on or off in rho has V' = 0 at the layer's end, so by the mean-value
+  theorem max(rho V'') >= rho_min max|V'|/Delta rho over the rising half.  Hence
+      max c_gate,d^2 >= (B_min/B_max) (rho_min/Delta rho) |delta V|max,
+  and for a power-law depletion reading U = (rho/rho_c)^n, n < 0, exactly c_gate,d^2 = (1 + |n|)(rho/rho_c)|delta V| at the
+  layer's centre.  A barrier or well strong enough to move the fluid (|delta V| >~ sigma^2) is unstable unless the layer
+  spans a density ratio of order v_esc^2/(2 sigma^2).
+
+THE READINGS SCORED.  (e) the phi_H density door U = (x_d/x_c,eff)^n, n > 0, x_d = 4 pi G (rho_H - <rho_H>)/H^2 at the
+vacuum gate's own threshold (p = 1, x_c0 = 2.5, w = 0.25, CV1/DE12's C-infinity W); (f) its depletion mirror, n < 0;
+(g) the weighted MOND-sector door U = g U_MS.  Hosts: DE12's (point-mass baryons M_b = 1e10-1e14 in an NFW host continued
+past r200, M_200 = M_b/(0.3 f_b) for galaxies, M_b/f_b above), the carrier (1 - f_b)(S rho_NFW + rho_bar) with retained
+fraction S, and the KiDS L* bins from L375's own shell model (XR11_shell_model_velocities.py, bins 1-2, L390's masses).
+
+  *** MUTATE=1: the phantom's amplification A = nu is put back on the dark channel; H1 must FAIL ***
+  constants loaded (XR11_common)   [0s]
+
+==============================================================================================================
+C1  CONTROL: DE12's committed numbers from this lane's reimplementation
+==============================================================================================================
+  [PASS] C1 CONTROL: DE12's c_gate_max and edge on all 24 galaxy layers, and its A = 1 control, reproduced (1e-9)
+         measured: max rel dev 0.0e+00 over 24 layers; A = 1 control: 0.25/1e+11: 18.39 km/s, 2.5/1e+11: 93.38 km/s (DE12: 18.39, 93.38)
+
+==============================================================================================================
+S1  THE DARK DOORS ON CV1's LAGRANGIAN (MS1's chassis, two dark components): first and second variations
+==============================================================================================================
+    b_matter (MS1 control)      : EL residuals ['0', '0', '0', '0', '0', '0']; V_H - u_N = C*Wp*(a0*(-a0**2*d1*log((a0**2 + Derivative(w(x), x)**2)/a0**2) - m2*sigma*w(x)**2 - m2*Psi(x)*w(x) + Psi(x)*Derivative(u(x), (x, 2)) - Psi(x)*Derivative(v(x), ...; V_L - u_N = C*Wp*(a0*(-a0**2*d1*log((a0**2 + Derivative(w(x), x)**2)/a0**2) - m2*sigma*w(x)**2 - m2*Psi(x)*w(x) + Psi(x)*Derivative(u(x), (x, 2)) - Psi(x)*Derivative(v(x), (x, 2))) - c1*(Derivative(w(x), x)**2)**(3/2))/(8*pi*G*a0)
+    c_mond_sector (MS1 control) : EL residuals ['0', '0', '0', '0', '0', '0']; V_H - u_N = 0; V_L - u_N = 0
+    e_phiH_door                 : EL residuals ['0', '0', '0', '0', '0', '0']; V_H - u_N = C*Wp*(a0*(-a0**2*d1*log((a0**2 + Derivative(w(x), x)**2)/a0**2) - m2*sigma*w(x)**2 - m2*Psi(x)*w(x) + Psi(x)*Derivative(u(x), (x, 2)) - Psi(x)*Derivative(v(x), ...; V_L - u_N = 0
+    g_weighted_MS               : EL residuals ['0', '0', '0', '0', '0', '0']; V_H - u_N = C*Wp*(a0*(-a0**2*d1*(-B*C*Wp*Derivative(g(rho_H(x)), rho_H(x))*Derivative(rho_H(x), (x, 2))/2 - B*C*Wp*Derivative(g(rho_H(x)), (rho_H(x), 2))*Derivative(rho_H(x...; V_L - u_N = 0
+    B = 8 pi G dL/df = a0**2*d1*log(1 + Derivative(w(x), x)**2/a0**2) + m2*sigma*w(x)**2 + m2*Psi(x)*w(x) - Psi(x)*Derivative(u(x), (x, 2)) + Psi(x)*Derivative(v(x), (x, 2)) + c1*(Derivative(w(x), x)**2)**(3/2)/a0
+    phi_H door: d2L/drho_b^2 = 0, d2L/drho_b drho_H = 0, d2L/drho_H^2 - (B/8piG) d2W/drho_H^2 = 0
+    matter door (control): d2L/drho_b^2 = (B/8piG) C^2 W'' : True
+  [PASS] S1 [sympy] the varied EL equations of every door have the stated closed form; MS1's leak (matter) and zero (MOND sector) are reproduced; the phi_H door leaks -(B/8piG) C W'(U) F'(rho_H) onto phi_H only, the weighted door -(B/8piG) C W'(U) lap(Phi - v) g'(rho_H); the phi_H door's gate Hessian is (B/8piG) W''-type on phi_H and exactly zero on the gas and the gas-dark cross term
+         measured: EL residuals zero: True; matter leak True; MOND-sector zero True; phi_H door leak True; weighted leak True; Hessian (gas 0, cross 0, phi_H) True; matter door gas Hessian True
+         reading:  moving the gate's reading onto the dark fluid moves the whole second variation onto it: the gas sees no gate term at all (no A^2, no A); the price is MS1's edge potential, now on phi_H
+  [2s]
+
+==============================================================================================================
+N0  THE DARK FLUID'S OWN STIFFNESS: quantum pressure, FK1's quartic, Jeans, and L375's shell model
+==============================================================================================================
+    m = 2e-19 eV: quantum pressure c_q = hbar k/2m = 4.79e+00 m/s at k = 1/kpc, 4.79e+02 m/s at k = 1/(10 pc)
+    m = 1e-17 eV: quantum pressure c_q = hbar k/2m = 9.59e-02 m/s at k = 1/kpc, 9.59e+00 m/s at k = 1/(10 pc)
+    m = 1e-15 eV: quantum pressure c_q = hbar k/2m = 9.59e-04 m/s at k = 1/kpc, 9.59e-02 m/s at k = 1/(10 pc)
+    FK1 K5: with the pure cross quartic lambda (Im Phi^2)^2 the cold carrier has g_HH = 0 -- no pressure of its own
+    shell model b1_fid     : cold carrier present 100-861 kpc; sigma_r 1-133, sigma_t1 3-126 km/s; multistream to 399 kpc; shells injected cold at 374 kpc (r200 187)
+    shell model b1_nodecay : cold carrier present 5-543 kpc; sigma_r 25-139, sigma_t1 14-134 km/s; multistream to 399 kpc; shells injected cold at 374 kpc (r200 187)
+    shell model b2_fid     : cold carrier present 136-1171 kpc; sigma_r 3-143, sigma_t1 4-159 km/s; multistream to 466 kpc; shells injected cold at 481 kpc (r200 241)
+    shell model b2_nodecay : cold carrier present 5-739 kpc; sigma_r 23-177, sigma_t1 17-172 km/s; multistream to 543 kpc; shells injected cold at 481 kpc (r200 241)
+  [PASS] N0 (reported) the fluid's own stiffness: quantum pressure is m/s at kpc scales; phi_H has no self-pressure (FK1); its velocity dispersion is phase-mixed only inside the shell model's multistream zone (~2 r200), cold outside
+         measured: {'2e-19': '4.8e+00 m/s', '1e-17': '9.6e-02 m/s', '1e-15': '9.6e-04 m/s'}
+
+==============================================================================================================
+N1  THE phi_H DENSITY DOOR (n = 1, vacuum threshold, w = 0.25) ON DE12's HOSTS: stiffness, sigma, growth, edge force
+==============================================================================================================
+    z 0.25 M_b 1e+10 canonical: edge     299 kpc (2.58 r200); c_gate,d  12147 km/s vs sigma_J   38; Gamma(1/kpc)/H mixed 1.6e+05 cold 1.6e+05; well sqrt(2|dV|)   625 km/s vs v_esc 137-282; F_leak/g_N 1318.42
+    z 0.25 M_b 1e+11 canonical: edge     671 kpc (2.69 r200); c_gate,d  14436 km/s vs sigma_J   82; Gamma(1/kpc)/H mixed 1.9e+05 cold 1.9e+05; well sqrt(2|dV|)   881 km/s vs v_esc 292-597; F_leak/g_N 551.82
+    z 0.25 M_b 1e+11 alt      : edge     671 kpc (2.69 r200); c_gate,d  16593 km/s vs sigma_J   82; Gamma(1/kpc)/H mixed 2.2e+05 cold 2.2e+05; well sqrt(2|dV|)   967 km/s vs v_esc 292-597; F_leak/g_N 664.68
+    z 0.25 M_b 1e+12 canonical: edge    1512 kpc (2.82 r200); c_gate,d  17136 km/s vs sigma_J  180; Gamma(1/kpc)/H mixed 2.2e+05 cold 2.2e+05; well sqrt(2|dV|)  1237 km/s vs v_esc 623-1270; F_leak/g_N 227.94
+    z 0.25 M_b 1e+13 canonical: edge    2231 kpc (2.88 r200); c_gate,d  25301 km/s vs sigma_J  268; Gamma(1/kpc)/H mixed 3.3e+05 cold 3.3e+05; well sqrt(2|dV|)  2656 km/s vs v_esc 1257-2024; F_leak/g_N 469.86
+    z 0.25 M_b 1e+14 canonical: edge    5056 kpc (3.03 r200); c_gate,d  30071 km/s vs sigma_J  591; Gamma(1/kpc)/H mixed 3.9e+05 cold 3.9e+05; well sqrt(2|dV|)  3711 km/s vs v_esc 2701-4333; F_leak/g_N 190.74
+    z 1.00 M_b 1e+10 canonical: edge     169 kpc (1.97 r200); c_gate,d   6394 km/s vs sigma_J   49; Gamma(1/kpc)/H mixed 5.3e+04 cold 5.3e+04; well sqrt(2|dV|)   450 km/s vs v_esc 157-322; F_leak/g_N 413.45
+    z 1.00 M_b 1e+11 canonical: edge     380 kpc (2.06 r200); c_gate,d   7603 km/s vs sigma_J  106; Gamma(1/kpc)/H mixed 6.3e+04 cold 6.3e+04; well sqrt(2|dV|)   633 km/s vs v_esc 336-685; F_leak/g_N 172.82
+    z 1.00 M_b 1e+11 alt      : edge     380 kpc (2.06 r200); c_gate,d   8735 km/s vs sigma_J  106; Gamma(1/kpc)/H mixed 7.3e+04 cold 7.3e+04; well sqrt(2|dV|)   695 km/s vs v_esc 336-685; F_leak/g_N 208.14
+    z 1.00 M_b 1e+12 canonical: edge     856 kpc (2.15 r200); c_gate,d   9035 km/s vs sigma_J  233; Gamma(1/kpc)/H mixed 7.5e+04 cold 7.5e+04; well sqrt(2|dV|)   889 km/s vs v_esc 720-1461; F_leak/g_N 71.26
+    z 1.00 M_b 1e+13 canonical: edge    1264 kpc (2.20 r200); c_gate,d  13421 km/s vs sigma_J  349; Gamma(1/kpc)/H mixed 1.1e+05 cold 1.1e+05; well sqrt(2|dV|)  1911 km/s vs v_esc 1457-2337; F_leak/g_N 146.30
+    z 1.00 M_b 1e+14 canonical: edge    2865 kpc (2.32 r200); c_gate,d  16017 km/s vs sigma_J  769; Gamma(1/kpc)/H mixed 1.3e+05 cold 1.3e+05; well sqrt(2|dV|)  2671 km/s vs v_esc 3136-5023; F_leak/g_N 59.33
+    z 2.50 M_b 1e+10 canonical: edge      63 kpc (1.22 r200); c_gate,d   2269 km/s vs sigma_J   73; Gamma(1/kpc)/H mixed 9.0e+03 cold 9.0e+03; well sqrt(2|dV|)   271 km/s vs v_esc 200-406; F_leak/g_N 68.91
+    z 2.50 M_b 1e+11 canonical: edge     142 kpc (1.26 r200); c_gate,d   2715 km/s vs sigma_J  159; Gamma(1/kpc)/H mixed 1.1e+04 cold 1.1e+04; well sqrt(2|dV|)   384 km/s vs v_esc 427-868; F_leak/g_N 29.23
+    z 2.50 M_b 1e+11 alt      : edge     142 kpc (1.26 r200); c_gate,d   3115 km/s vs sigma_J  159; Gamma(1/kpc)/H mixed 1.2e+04 cold 1.2e+04; well sqrt(2|dV|)   421 km/s vs v_esc 427-868; F_leak/g_N 35.19
+    z 2.50 M_b 1e+12 canonical: edge     319 kpc (1.32 r200); c_gate,d   3253 km/s vs sigma_J  349; Gamma(1/kpc)/H mixed 1.3e+04 cold 1.3e+04; well sqrt(2|dV|)   542 km/s vs v_esc 918-1861; F_leak/g_N 12.26
+    z 2.50 M_b 1e+13 canonical: edge     470 kpc (1.34 r200); c_gate,d   4953 km/s vs sigma_J  526; Gamma(1/kpc)/H mixed 1.9e+04 cold 2.0e+04; well sqrt(2|dV|)  1172 km/s vs v_esc 1865-2987; F_leak/g_N 25.07
+    z 2.50 M_b 1e+14 canonical: edge    1059 kpc (1.41 r200); c_gate,d   6028 km/s vs sigma_J 1158; Gamma(1/kpc)/H mixed 2.3e+04 cold 2.4e+04; well sqrt(2|dV|)  1653 km/s vs v_esc 4023-6457; F_leak/g_N 10.40
+    z 4.00 M_b 1e+10 canonical: edge      31 kpc (0.84 r200); c_gate,d   1152 km/s vs sigma_J   95; Gamma(1/kpc)/H mixed 2.7e+03 cold 2.7e+03; well sqrt(2|dV|)   196 km/s vs v_esc 236-480; F_leak/g_N 21.77
+    z 4.00 M_b 1e+11 canonical: edge      69 kpc (0.87 r200); c_gate,d   1393 km/s vs sigma_J  208; Gamma(1/kpc)/H mixed 3.2e+03 cold 3.3e+03; well sqrt(2|dV|)   280 km/s vs v_esc 507-1027; F_leak/g_N 9.48
+    z 4.00 M_b 1e+11 alt      : edge      69 kpc (0.87 r200); c_gate,d   1595 km/s vs sigma_J  208; Gamma(1/kpc)/H mixed 3.7e+03 cold 3.7e+03; well sqrt(2|dV|)   307 km/s vs v_esc 507-1027; F_leak/g_N 11.41
+    z 4.00 M_b 1e+12 canonical: edge     154 kpc (0.90 r200); c_gate,d   1693 km/s vs sigma_J  454; Gamma(1/kpc)/H mixed 3.8e+03 cold 4.0e+03; well sqrt(2|dV|)   400 km/s vs v_esc 1092-2213; F_leak/g_N 4.10
+    z 4.00 M_b 1e+13 canonical: edge     226 kpc (0.91 r200); c_gate,d   2679 km/s vs sigma_J  689; Gamma(1/kpc)/H mixed 6.1e+03 cold 6.3e+03; well sqrt(2|dV|)   873 km/s vs v_esc 2219-3559; F_leak/g_N 8.32
+    z 4.00 M_b 1e+14 canonical: edge     503 kpc (0.94 r200); c_gate,d   3362 km/s vs sigma_J 1514; Gamma(1/kpc)/H mixed 7.1e+03 cold 7.9e+03; well sqrt(2|dV|)  1247 km/s vs v_esc 4795-7725; F_leak/g_N 3.57
+  [3s]
+
+==============================================================================================================
+N1b  THE phi_H DOOR ON L375's SHELL-MODEL KiDS HOSTS (z = 0.25): where it is on, and the stiffness at its layers
+==============================================================================================================
+    b1_fid      cold: on (t >= 1) at [100, 117, 136, 159, 185, 216, 252] kpc; off inside 50 kpc: True
+        layer at     87 kpc: c_gate,d 37756 km/s vs cold sigma_r None / sigma_t1 None km/s (outgoing share None); well sqrt(2|dV|) 5412 km/s
+        layer at    296 kpc: c_gate,d 19973 km/s vs cold sigma_r 92 / sigma_t1 49 km/s (outgoing share 0.12); well sqrt(2|dV|) 1582 km/s
+    b1_fid      all : on (t >= 1) at [34, 86, 100, 117, 136, 159, 185, 216, 252] kpc; off inside 50 kpc: False
+        layer at     32 kpc: c_gate,d 65989 km/s vs cold sigma_r None / sigma_t1 None km/s (outgoing share None); well sqrt(2|dV|) 14918 km/s
+        layer at     37 kpc: c_gate,d 60844 km/s vs cold sigma_r None / sigma_t1 None km/s (outgoing share None); well sqrt(2|dV|) 12948 km/s
+        layer at     70 kpc: c_gate,d 42348 km/s vs cold sigma_r None / sigma_t1 None km/s (outgoing share None); well sqrt(2|dV|) 6711 km/s
+        layer at    324 kpc: c_gate,d 19074 km/s vs cold sigma_r 91 / sigma_t1 42 km/s (outgoing share 0.12); well sqrt(2|dV|) 1445 km/s
+    b1_nodecay  cold: on (t >= 1) at [5, 6, 7, 9, 10, 12, 14, 16, 18, 22, 25, 29, 34, 40, 46, 54, 63, 74, 86, 100, 117, 136, 159, 185, 216, 252, 294, 343, 543] kpc; off inside 50 kpc: False
+        layer at    578 kpc: c_gate,d 14227 km/s vs cold sigma_r 25 / sigma_t1 14 km/s (outgoing share 1.0); well sqrt(2|dV|) 810 km/s
+    b2_fid      cold: on (t >= 1) at [136, 159, 185, 216, 252, 294] kpc; off inside 50 kpc: True
+        layer at    118 kpc: c_gate,d 36264 km/s vs cold sigma_r None / sigma_t1 None km/s (outgoing share None); well sqrt(2|dV|) 5015 km/s
+        layer at    379 kpc: c_gate,d 19793 km/s vs cold sigma_r 117 / sigma_t1 59 km/s (outgoing share 0.12); well sqrt(2|dV|) 1554 km/s
+    b2_fid      all : on (t >= 1) at [22, 54, 63, 86, 136, 159, 185, 216, 252, 294, 343] kpc; off inside 50 kpc: False
+        layer at     19 kpc: c_gate,d 105406 km/s vs cold sigma_r None / sigma_t1 None km/s (outgoing share None); well sqrt(2|dV|) 32121 km/s
+        layer at     25 kpc: c_gate,d 88689 km/s vs cold sigma_r None / sigma_t1 None km/s (outgoing share None); well sqrt(2|dV|) 24467 km/s
+        layer at     39 kpc: c_gate,d 67380 km/s vs cold sigma_r None / sigma_t1 None km/s (outgoing share None); well sqrt(2|dV|) 15465 km/s
+        layer at     43 kpc: c_gate,d 63292 km/s vs cold sigma_r None / sigma_t1 None km/s (outgoing share None); well sqrt(2|dV|) 13874 km/s
+        layer at     48 kpc: c_gate,d 59590 km/s vs cold sigma_r None / sigma_t1 None km/s (outgoing share None); well sqrt(2|dV|) 12481 km/s
+        layer at     98 kpc: c_gate,d 40021 km/s vs cold sigma_r None / sigma_t1 None km/s (outgoing share None); well sqrt(2|dV|) 6038 km/s
+        layer at    112 kpc: c_gate,d 37268 km/s vs cold sigma_r None / sigma_t1 None km/s (outgoing share None); well sqrt(2|dV|) 5281 km/s
+        layer at    424 kpc: c_gate,d 18708 km/s vs cold sigma_r 117 / sigma_t1 59 km/s (outgoing share 0.12); well sqrt(2|dV|) 1391 km/s
+    b2_nodecay  cold: on (t >= 1) at [5, 6, 7, 9, 10, 12, 14, 16, 18, 22, 25, 29, 34, 40, 46, 54, 63, 74, 86, 100, 117, 136, 159, 185, 216, 252, 294, 343, 399, 466, 633] kpc; off inside 50 kpc: False
+        layer at    747 kpc: c_gate,d 14039 km/s vs cold sigma_r 23 / sigma_t1 17 km/s (outgoing share 1.0); well sqrt(2|dV|) 789 km/s
+
+==============================================================================================================
+H1 H2  THE PRE-DECLARED HYPOTHESES ON THE DARK CHANNEL'S SIZE AND STABILITY
+==============================================================================================================
+  [FAIL] H1 [pre-declared] with A = 1 the dark channel's anti-stiffness on every z = 0.25 galaxy layer (1e10-1e12, S = 1, n = 1, both footings) is below 300 km/s
+         measured: max c_gate,d = 19693 km/s over 6 layers (DE12's gas channel: 1526-3741 km/s)
+         reading:  FAILED as declared and kept: 12147-19693 km/s; the 1e12 (group) host exceeds 300 km/s, the galaxies 1e10-1e11 do not; A = 1 lowers the channel ~10x (H1b) but not below 300 km/s everywhere
+  [FAIL] H1b [added after the first run, the MUTATE's target] the dark channel's anti-stiffness is below DE12's gas channel on the same host on every z = 0.25 galaxy layer (ratio < 1)
+         measured: c_gate,d / c_gate,DE12: 0.25/1e+10/canonical: 7.959, 0.25/1e+10/alt: 8.256, 0.25/1e+11/canonical: 6.458, 0.25/1e+11/alt: 6.754, 0.25/1e+12/canonical: 4.987, 0.25/1e+12/alt: 5.264
+         reading:  A = 1 lowers the channel by the phantom's amplification (~10x here); it does not bring it below the fluid's own stiffness at the layer (H1, N1, H2)
+  [PASS] H2 [pre-declared] at z = 2.5 the dark channel beats even the phase-mixed (Jeans) dispersion on every galaxy layer
+         measured: 2.5/1e+10/canonical: 2269 vs 73 km/s; 2.5/1e+10/alt: 2605 vs 73 km/s; 2.5/1e+11/canonical: 2715 vs 159 km/s; 2.5/1e+11/alt: 3115 vs 159 km/s; 2.5/1e+12/canonical: 3253 vs 349 km/s; 2.5/1e+12/alt: 3729 vs 349 km/s
+         reading:  the dark-fluid gate is unstable where the flagship lives, before any cold-stream argument; the thinnest margin is the 1e12 host, c_gate,d/sigma_J = 9.315
+
+==============================================================================================================
+N1c  A DARK READING TUNED TO THE MOND-SECTOR DOOR'S OWN EDGE (where KiDS wants the regions): stiffness there
+==============================================================================================================
+    z 0.25 M_b 1e+10: MOND-sector edge    768 kpc; a phi_H reading placed there: c_gate,d   276 km/s vs sigma_J   27 (cold stream: 0); edge potential sqrt(2|dV|)   69 km/s; its threshold (x 0.062 of the vacuum one) switches on every dark overdensity delta_d >= 0.34
+    z 0.25 M_b 1e+11: MOND-sector edge   1373 kpc; a phi_H reading placed there: c_gate,d   362 km/s vs sigma_J   65 (cold stream: 0); edge potential sqrt(2|dV|)  116 km/s; its threshold (x 0.123 of the vacuum one) switches on every dark overdensity delta_d >= 0.67
+    z 0.25 M_b 1e+12: MOND-sector edge   2469 kpc; a phi_H reading placed there: c_gate,d   501 km/s vs sigma_J  154 (cold stream: 0); edge potential sqrt(2|dV|)  193 km/s; its threshold (x 0.241 of the vacuum one) switches on every dark overdensity delta_d >= 1.31
+    z 2.50 M_b 1e+10: MOND-sector edge     75 kpc; a phi_H reading placed there: c_gate,d   126 km/s vs sigma_J   70 (cold stream: 0); edge potential sqrt(2|dV|)   65 km/s; its threshold (x 0.640 of the vacuum one) switches on every dark overdensity delta_d >= 18.80
+    z 2.50 M_b 1e+11: MOND-sector edge    139 kpc; a phi_H reading placed there: c_gate,d   212 km/s vs sigma_J  160 (cold stream: 0); edge potential sqrt(2|dV|)  111 km/s; its threshold (x 1.060 of the vacuum one) switches on every dark overdensity delta_d >= 31.14
+    z 2.50 M_b 1e+12: MOND-sector edge    265 kpc; a phi_H reading placed there: c_gate,d   360 km/s vs sigma_J  362 (cold stream: 0); edge potential sqrt(2|dV|)  190 km/s; its threshold (x 1.619 of the vacuum one) switches on every dark overdensity delta_d >= 47.57
+  [PASS] N1c (reported) placed where KiDS wants the regions, a dark reading's layer has c_gate,d above the Jeans dispersion and a threshold that switches on every overdensity delta_d >~ 0.1-1
+         measured: {'0.25/1e+10/canonical': '276 vs 27 km/s, web delta >= 0.34', '0.25/1e+11/canonical': '362 vs 65 km/s, web delta >= 0.67', '0.25/1e+12/canonical': '501 vs 154 km/s, web delta >= 1.31', '2.5/1e+10/canonical': '126 vs 70 km/s, web delta >= 18.80', '2.5/1e+11/canonical': '212 vs 160 km/s, web delta >= 31.14', '2.5/1e+12/canonical': '360 vs 362 km/s, web delta >= 47.57'}
+
+==============================================================================================================
+N2  PLACEMENT: KiDS (~1.5 Mpc around L*), the flagship (on at r_F, z = 2.5, S <= 0.059), the web
+==============================================================================================================
+    KiDS bin 1 (M_b 6.31e+10) canonical: phi_H-door edge (S = 1)   571 kpc; an edge at 1.5 Mpc needs the threshold x 0.059, which switches on every dark overdensity delta_d >= 0.32 (XR4 filaments 3.7-6.3)
+    KiDS bin 1 (M_b 6.31e+10) alt      : phi_H-door edge (S = 1)   571 kpc; an edge at 1.5 Mpc needs the threshold x 0.059, which switches on every dark overdensity delta_d >= 0.32 (XR4 filaments 3.7-6.3)
+    KiDS bin 2 (M_b 1.00e+11) canonical: phi_H-door edge (S = 1)   671 kpc; an edge at 1.5 Mpc needs the threshold x 0.095, which switches on every dark overdensity delta_d >= 0.52 (XR4 filaments 3.7-6.3)
+    KiDS bin 2 (M_b 1.00e+11) alt      : phi_H-door edge (S = 1)   671 kpc; an edge at 1.5 Mpc needs the threshold x 0.095, which switches on every dark overdensity delta_d >= 0.52 (XR4 filaments 3.7-6.3)
+    shell model b1_nodecay: outermost phi_H-door layer 578 kpc (the model injects cold shells at 374 kpc)
+    shell model b2_nodecay: outermost phi_H-door layer 747 kpc (the model injects cold shells at 481 kpc)
+    flagship M_b 1.0e+10 canonical: r_F 12.2 kpc; phi_H door fully on at r_F needs S >= 0.022 (half: 0.018); MS2's zero point needs S <= 0.059; at S = 0.059 t(r_F) = 5.23, edge 21 kpc, c_gate,d 644 km/s, well 340 km/s = 7.0 sigma_J^2 (a phase-mixed carrier would pile up by e^7); depletion mirror (vacuum reference) on at r_F: False; a reference that turns r_F on turns on every delta_d <= 98.9
+    flagship M_b 1.0e+10 alt      : r_F 11.1 kpc; phi_H door fully on at r_F needs S >= 0.018 (half: 0.014); MS2's zero point needs S <= 0.059; at S = 0.059 t(r_F) = 6.67, edge 21 kpc, c_gate,d 677 km/s, well 357 km/s = 7.7 sigma_J^2 (a phase-mixed carrier would pile up by e^8); depletion mirror (vacuum reference) on at r_F: False; a reference that turns r_F on turns on every delta_d <= 120.0
+    flagship M_b 3.2e+10 canonical: r_F 21.7 kpc; phi_H door fully on at r_F needs S >= 0.033 (half: 0.027); MS2's zero point needs S <= 0.059; at S = 0.059 t(r_F) = 2.90, edge 31 kpc, c_gate,d 847 km/s, well 448 km/s = 5.7 sigma_J^2 (a phase-mixed carrier would pile up by e^6); depletion mirror (vacuum reference) on at r_F: False; a reference that turns r_F on turns on every delta_d <= 64.7
+    flagship M_b 3.2e+10 alt      : r_F 19.8 kpc; phi_H door fully on at r_F needs S >= 0.028 (half: 0.022); MS2's zero point needs S <= 0.059; at S = 0.059 t(r_F) = 3.86, edge 31 kpc, c_gate,d 891 km/s, well 471 km/s = 6.3 sigma_J^2 (a phase-mixed carrier would pile up by e^6); depletion mirror (vacuum reference) on at r_F: False; a reference that turns r_F on turns on every delta_d <= 78.8
+    flagship M_b 1.0e+11 canonical: r_F 38.6 kpc; phi_H door fully on at r_F needs S >= 0.051 (half: 0.041); MS2's zero point needs S <= 0.059; at S = 0.059 t(r_F) = 1.38, edge 46 kpc, c_gate,d 1115 km/s, well 591 km/s = 4.6 sigma_J^2 (a phase-mixed carrier would pile up by e^5); depletion mirror (vacuum reference) on at r_F: False; a reference that turns r_F on turns on every delta_d <= 42.4
+    flagship M_b 1.0e+11 alt      : r_F 35.2 kpc; phi_H door fully on at r_F needs S >= 0.042 (half: 0.033); MS2's zero point needs S <= 0.059; at S = 0.059 t(r_F) = 2.02, edge 46 kpc, c_gate,d 1173 km/s, well 622 km/s = 5.1 sigma_J^2 (a phase-mixed carrier would pile up by e^5); depletion mirror (vacuum reference) on at r_F: False; a reference that turns r_F on turns on every delta_d <= 51.8
+    web, z = 0.25: the phi_H density door switches on at delta_d >= 5.4; its depletion mirror (n = -1, vacuum reference) is ON wherever delta_d <= 4.2 -- voids, sheets, most filaments and the forest's IGM
+    web, z = 2.5: the phi_H density door switches on at delta_d >= 29.4; its depletion mirror (n = -1, vacuum reference) is ON wherever delta_d <= 23.3 -- voids, sheets, most filaments and the forest's IGM
+    depletion mirror (vacuum reference) on the shell model's kicked bin 1: ON at [5, 6, 7, 9, 10, 12, 14, 16, 18, 22, 25, 29, 34, 40, 46, 54, 63, 74, 86, 343, 399, 466, 543, 633, 739, 861, 1004, 1171, 1366, 1593, 1858, 2166, 2526, 2946] kpc, OFF at [100, 117, 136, 159, 185, 216] kpc (the model has no carrier beyond ~2 r200 but its mean: the web beyond is ON wherever delta_d <= 4.2)
+    depletion mirror (vacuum reference) on the shell model's kicked bin 2: ON at [5, 6, 7, 9, 10, 12, 14, 16, 18, 22, 25, 29, 34, 40, 46, 54, 63, 74, 86, 100, 117, 466, 543, 633, 739, 861, 1004, 1171, 1366, 1593, 1858, 2166, 2526, 2946] kpc, OFF at [136, 159, 185, 216, 252, 294] kpc (the model has no carrier beyond ~2 r200 but its mean: the web beyond is ON wherever delta_d <= 4.2)
+  [PASS] H3 [pre-declared] a dark-density door cannot place the regions: (i) on the kicked carrier the phi_H door is off inside 50 kpc; (ii) uncleared, the L* edge lies inside 1.0 Mpc (KiDS needs ~1.5)
+         measured: (i) off inside 50 kpc, bins 1-2: True; (ii) edges 571, 571, 671, 671, 578, 747 kpc
+         reading:  the kick clears phi_H exactly where MOND must be on, and the uncleared carrier's density falls as r^-3, not the phantom's r^-2: the regions follow the fluid, not the galaxies
+
+==============================================================================================================
+N3  THE DEPLETION MIRROR (n < 0): a barrier, locked to its own instability
+==============================================================================================================
+    z 0.25 M_b 1e+10: n = -1 barrier sqrt(2 dV) 65 km/s, c_gate,d 132 km/s; lock c^2/|dV| at t = 1/2 = 2.000000 vs (1 + |n|) rho/rho_c = 2.000000
+    z 0.25 M_b 1e+11: n = -1 barrier sqrt(2 dV) 109 km/s, c_gate,d 221 km/s; lock c^2/|dV| at t = 1/2 = 2.000000 vs (1 + |n|) rho/rho_c = 2.000000
+    z 0.25 M_b 1e+12: n = -1 barrier sqrt(2 dV) 181 km/s, c_gate,d 367 km/s; lock c^2/|dV| at t = 1/2 = 2.000000 vs (1 + |n|) rho/rho_c = 2.000000
+    z 2.5 M_b 1e+10: n = -1 barrier sqrt(2 dV) 65 km/s, c_gate,d 131 km/s; lock c^2/|dV| at t = 1/2 = 2.000000 vs (1 + |n|) rho/rho_c = 2.000000
+    z 2.5 M_b 1e+11: n = -1 barrier sqrt(2 dV) 108 km/s, c_gate,d 219 km/s; lock c^2/|dV| at t = 1/2 = 2.000000 vs (1 + |n|) rho/rho_c = 2.000000
+    z 2.5 M_b 1e+12: n = -1 barrier sqrt(2 dV) 180 km/s, c_gate,d 364 km/s; lock c^2/|dV| at t = 1/2 = 2.000000 vs (1 + |n|) rho/rho_c = 2.000000
+
+==============================================================================================================
+N4  THE WEIGHTED MOND-SECTOR DOOR U = g U_MS: the gas keeps g^2 A^2; how small must g be for 1e6 K gas?
+==============================================================================================================
+    z 0.25 M_b 1e+10: c_gate [km/s] (edge [kpc]) vs g: g 1e+00: 1526 (768), g 1e-01: 713 (245), g 1e-02: 589 (80), g 1e-03: 445 (26); never stable before the region leaves the grid (g = 1.0e-04: c_gate 285 km/s at 8.2 kpc)
+    z 0.25 M_b 1e+11: c_gate [km/s] (edge [kpc]) vs g: g 1e+00: 2235 (1373), g 1e-01: 1261 (443), g 1e-02: 1008 (146), g 1e-03: 712 (48); never stable before the region leaves the grid (g = 1.0e-04: c_gate 451 km/s at 14.5 kpc)
+    z 0.25 M_b 1e+12: c_gate [km/s] (edge [kpc]) vs g: g 1e+00: 3436 (2469), g 1e-01: 2209 (809), g 1e-02: 1669 (270), g 1e-03: 1123 (87); never stable before the region leaves the grid (g = 1.0e-04: c_gate 762 km/s at 24.0 kpc)
+    z 1.00 M_b 1e+10: c_gate [km/s] (edge [kpc]) vs g: g 1e+00: 1018 (315), g 1e-01: 667 (102), g 1e-02: 514 (34), g 1e-03: 344 (11); never stable before the region leaves the grid (g = 1.0e-04: c_gate 214 km/s at 3.1 kpc)
+    z 1.00 M_b 1e+11: c_gate [km/s] (edge [kpc]) vs g: g 1e+00: 1642 (568), g 1e-01: 1152 (187), g 1e-02: 833 (62), g 1e-03: 541 (19); never stable before the region leaves the grid (g = 1.0e-04: c_gate 504 km/s at 4.1 kpc)
+    z 1.00 M_b 1e+12: c_gate [km/s] (edge [kpc]) vs g: g 1e+00: 2726 (1038), g 1e-01: 1923 (349), g 1e-02: 1316 (116), g 1e-03: 877 (34); never stable before the region leaves the grid (g = 1.0e-04: c_gate 1548 km/s at 5.0 kpc)
+    z 2.50 M_b 1e+10: c_gate [km/s] (edge [kpc]) vs g: g 1e+00: 706 (75), g 1e-01: 519 (25), g 1e-02: 345 (8), g 1e-03: 245 (2); never stable before the region leaves the grid (g = 7.1e-04: c_gate 277 km/s at 1.5 kpc)
+    z 2.50 M_b 1e+11: c_gate [km/s] (edge [kpc]) vs g: g 1e+00: 1188 (139), g 1e-01: 825 (47), g 1e-02: 549 (14), g 1e-03: 714 (3); never stable before the region leaves the grid (g = 5.6e-04: c_gate 913 km/s at 1.5 kpc)
+    z 2.50 M_b 1e+12: c_gate [km/s] (edge [kpc]) vs g: g 1e+00: 1921 (265), g 1e-01: 1281 (89), g 1e-02: 916 (25), g 1e-03: 2022 (3); never stable before the region leaves the grid (g = 4.5e-04: c_gate 2920 km/s at 1.6 kpc)
+    z 4.00 M_b 1e+10: c_gate [km/s] (edge [kpc]) vs g: g 1e+00: 576 (28), g 1e-01: 391 (9), g 1e-02: 270 (3); never stable before the region leaves the grid (g = 5.6e-03: c_gate 295 km/s at 1.7 kpc)
+    z 4.00 M_b 1e+11: c_gate [km/s] (edge [kpc]) vs g: g 1e+00: 914 (54), g 1e-01: 612 (17), g 1e-02: 647 (4); never stable before the region leaves the grid (g = 4.0e-03: c_gate 933 km/s at 1.6 kpc)
+    z 4.00 M_b 1e+12: c_gate [km/s] (edge [kpc]) vs g: g 1e+00: 1398 (106), g 1e-01: 977 (32), g 1e-02: 1643 (5); never stable before the region leaves the grid (g = 2.8e-03: c_gate 2881 km/s at 1.6 kpc)
+  [PASS] N4 (reported) the weighted door keeps DE12's gas term times g^2 (S1); a uniform g is a threshold rise, and none makes 1e6 K gas stable while a region survives outside ~1-2 kpc (XR9's KiDS cap: x_c,eff(0.25) <= 4.42)
+         measured: {'0.25/1e+10': 'never (g 1e-04: 285 km/s)', '0.25/1e+11': 'never (g 1e-04: 451 km/s)', '0.25/1e+12': 'never (g 1e-04: 762 km/s)', '1.0/1e+10': 'never (g 1e-04: 214 km/s)', '1.0/1e+11': 'never (g 1e-04: 504 km/s)', '1.0/1e+12': 'never (g 1e-04: 1548 km/s)', '2.5/1e+10': 'never (g 7e-04: 277 km/s)', '2.5/1e+11': 'never (g 6e-04: 913 km/s)', '2.5/1e+12': 'never (g 4e-04: 2920 km/s)', '4.0/1e+10': 'never (g 6e-03: 295 km/s)', '4.0/1e+11': 'never (g 4e-03: 933 km/s)', '4.0/1e+12': 'never (g 3e-03: 2881 km/s)'}
+         reading:  the gas instability is nearly scale-free in the MOND-sector door: moving the layer inward raises B and rho_b as fast as g and A fall
+
+==============================================================================================================
+H4  THE PINCER ON REAL LAYERS: the depletion lock, and max c^2 >= (B_min/B_max)(rho_min/Delta rho)|dV|max
+==============================================================================================================
+    MVT bound: max c^2 / bound over 72 layer-readings: min 3.071, median 4.92; rising-half density span (w = 0.25): 1.16-2.20
+    depletion lock: max |c^2/|dV| / ((1 + |n|) rho/rho_c) - 1| = 3.3e-14 over 36 layers
+  [PASS] H4 [pre-declared] the pincer holds on real layers: the depletion lock (1e-6) and the mean-value bound on every layer and reading
+         measured: lock dev 3.3e-14; bound satisfied on 72/72
+         reading:  a gate on the dark fluid cannot push or hold it harder than its own anti-stiffness allows: a clearing-strength edge force (|dV| ~ v_esc^2/2) at sigma ~ 100-150 km/s needs a rising half-layer spanning a density ratio ~ v_esc^2/sigma^2
+
+==============================================================================================================
+H5  CAN THE EDGE FORCE CLEAR?  sqrt(2|dV|max) against escape speeds (z = 0.25; well for n = +1, barrier for n = -1)
+==============================================================================================================
+    M_b 1e+10 canonical: edge    299 kpc; well/barrier sqrt(2|dV|)   625 km/s; v_esc(0.1 r200) 137 (carrier removed) - 282 (carrier kept) km/s
+    M_b 1e+10 alt      : edge    299 kpc; well/barrier sqrt(2|dV|)   686 km/s; v_esc(0.1 r200) 137 (carrier removed) - 282 (carrier kept) km/s
+    M_b 1e+11 canonical: edge    671 kpc; well/barrier sqrt(2|dV|)   881 km/s; v_esc(0.1 r200) 292 (carrier removed) - 597 (carrier kept) km/s
+    M_b 1e+11 alt      : edge    671 kpc; well/barrier sqrt(2|dV|)   967 km/s; v_esc(0.1 r200) 292 (carrier removed) - 597 (carrier kept) km/s
+    M_b 1e+12 canonical: edge   1512 kpc; well/barrier sqrt(2|dV|)  1237 km/s; v_esc(0.1 r200) 623 (carrier removed) - 1270 (carrier kept) km/s
+    M_b 1e+12 alt      : edge   1512 kpc; well/barrier sqrt(2|dV|)  1357 km/s; v_esc(0.1 r200) 623 (carrier removed) - 1270 (carrier kept) km/s
+    M_b 1e+13 canonical: edge   2231 kpc; well/barrier sqrt(2|dV|)  2656 km/s; v_esc(0.1 r200) 1257 (carrier removed) - 2024 (carrier kept) km/s
+    M_b 1e+13 alt      : edge   2231 kpc; well/barrier sqrt(2|dV|)  2914 km/s; v_esc(0.1 r200) 1257 (carrier removed) - 2024 (carrier kept) km/s
+    M_b 1e+14 canonical: edge   5056 kpc; well/barrier sqrt(2|dV|)  3711 km/s; v_esc(0.1 r200) 2701 (carrier removed) - 4333 (carrier kept) km/s
+    M_b 1e+14 alt      : edge   5056 kpc; well/barrier sqrt(2|dV|)  4072 km/s; v_esc(0.1 r200) 2701 (carrier removed) - 4333 (carrier kept) km/s
+  [FAIL] H5 [pre-declared] the edge force cannot clear or hold: sqrt(2|dV|max) < the host's escape speed (carrier removed) on every z = 0.25 layer, galaxies to clusters, both footings, well and barrier
+         measured: max sqrt(2|dV|)/v_esc = 5.014
+         reading:  the edge potential is a small perturbation on every host's own well at z = 0.25
+
+==============================================================================================================
+K1  THE COSTS: kernel invisibility at the edges; would KiDS or the flagship notice?
+==============================================================================================================
+    z 0.25 M_b 6.31e+10 canonical: edge force / the carrier's Newtonian gravity at the layer, max 11.5; |dV|/sigma_J^2 = 1.17; an equilibrium (phase-mixed) carrier gains 5.5% of its mass inside 2 Mpc in the layer; edge 571 kpc against the MOND-sector door's 1222 kpc (= that door at x_c,eff 14.9)
+    z 0.25 M_b 6.31e+10 alt      : edge force / the carrier's Newtonian gravity at the layer, max 12.6; |dV|/sigma_J^2 = 1.28; an equilibrium (phase-mixed) carrier gains 6.4% of its mass inside 2 Mpc in the layer; edge 571 kpc against the MOND-sector door's 1278 kpc (= that door at x_c,eff 16.3)
+    z 0.25 M_b 1.00e+11 canonical: edge force / the carrier's Newtonian gravity at the layer, max 10.3; |dV|/sigma_J^2 = 1.05; an equilibrium (phase-mixed) carrier gains 4.9% of its mass inside 2 Mpc in the layer; edge 671 kpc against the MOND-sector door's 1373 kpc (= that door at x_c,eff 13.6)
+    z 0.25 M_b 1.00e+11 alt      : edge force / the carrier's Newtonian gravity at the layer, max 11.3; |dV|/sigma_J^2 = 1.15; an equilibrium (phase-mixed) carrier gains 5.7% of its mass inside 2 Mpc in the layer; edge 671 kpc against the MOND-sector door's 1436 kpc (= that door at x_c,eff 14.9)
+    z 2.50 M_b 1.00e+11 canonical: edge force / the carrier's Newtonian gravity at the layer, max 2.5; |dV|/sigma_J^2 = 0.24; an equilibrium (phase-mixed) carrier gains 0.5% of its mass inside 2 Mpc in the layer; edge 142 kpc against the MOND-sector door's 139 kpc (= that door at x_c,eff 33.9)
+    z 2.50 M_b 1.00e+11 alt      : edge force / the carrier's Newtonian gravity at the layer, max 2.7; |dV|/sigma_J^2 = 0.27; an equilibrium (phase-mixed) carrier gains 0.6% of its mass inside 2 Mpc in the layer; edge 142 kpc against the MOND-sector door's 144 kpc (= that door at x_c,eff 36.3)
+    KiDS (DE10, XR9): the carrier's whole lensing is worth ~8 in Delta chi^2 (-32.3/-29.3 with it, -24.6/-20.7 switch-only);
+    XR9's scan puts the MOND-sector door at x_c,eff(0.25) = 18.2 at Delta chi^2 = +161 and caps KiDS at 4.42.  The dark door's
+    edge is where that door would sit at the x_c,eff printed above -- KiDS sees the placement before it sees the edge force.
+  [PASS] K1 (reported) the costs: the carrier stops being kernel-invisible at every edge (a force several times its own gravity there, an O(1) equilibrium response at z = 0.25); KiDS sees the regions' size first; the flagship's window sits next to a well that piles the carrier up
+         measured: {'0.25/6.31e+10/canonical': 'F/g_N 11.5, dM/M 0.055, x_equiv 14.9', '0.25/6.31e+10/alt': 'F/g_N 12.6, dM/M 0.064, x_equiv 16.3', '0.25/1.00e+11/canonical': 'F/g_N 10.3, dM/M 0.049, x_equiv 13.6', '0.25/1.00e+11/alt': 'F/g_N 11.3, dM/M 0.057, x_equiv 14.9', '2.5/1.00e+11/canonical': 'F/g_N 2.5, dM/M 0.005, x_equiv 33.9', '2.5/1.00e+11/alt': 'F/g_N 2.7, dM/M 0.006, x_equiv 36.3'}
+
+==============================================================================================================
+BARRIER/WELL TABLE for the review: L*, groups, clusters, z = 0.25 and 2.5, both footings (n = +1 well, n = -1 barrier)
+==============================================================================================================
+    z 0.25 L*         (M_b 6.3e+10) canonical: edge    571 kpc; well   822 / barrier   761 km/s against v_esc   251-  514 km/s
+    z 0.25 L*         (M_b 6.3e+10) alt      : edge    571 kpc; well   903 / barrier   835 km/s against v_esc   251-  514 km/s
+    z 0.25 group      (M_b 1.0e+12) canonical: edge   1512 kpc; well  1237 / barrier  1144 km/s against v_esc   623- 1270 km/s
+    z 0.25 group      (M_b 1.0e+12) alt      : edge   1512 kpc; well  1357 / barrier  1255 km/s against v_esc   623- 1270 km/s
+    z 0.25 rich group (M_b 1.0e+13) canonical: edge   2231 kpc; well  2656 / barrier  2455 km/s against v_esc  1257- 2024 km/s
+    z 0.25 rich group (M_b 1.0e+13) alt      : edge   2231 kpc; well  2914 / barrier  2694 km/s against v_esc  1257- 2024 km/s
+    z 0.25 cluster    (M_b 1.0e+14) canonical: edge   5056 kpc; well  3711 / barrier  3431 km/s against v_esc  2701- 4333 km/s
+    z 0.25 cluster    (M_b 1.0e+14) alt      : edge   5056 kpc; well  4072 / barrier  3764 km/s against v_esc  2701- 4333 km/s
+    z 2.50 L*         (M_b 6.3e+10) canonical: edge    121 kpc; well   358 / barrier   354 km/s against v_esc   367-  745 km/s
+    z 2.50 L*         (M_b 6.3e+10) alt      : edge    121 kpc; well   393 / barrier   389 km/s against v_esc   367-  745 km/s
+    z 2.50 group      (M_b 1.0e+12) canonical: edge    319 kpc; well   542 / barrier   536 km/s against v_esc   918- 1861 km/s
+    z 2.50 group      (M_b 1.0e+12) alt      : edge    319 kpc; well   594 / barrier   588 km/s against v_esc   918- 1861 km/s
+    z 2.50 rich group (M_b 1.0e+13) canonical: edge    470 kpc; well  1172 / barrier  1159 km/s against v_esc  1865- 2987 km/s
+    z 2.50 rich group (M_b 1.0e+13) alt      : edge    470 kpc; well  1285 / barrier  1271 km/s against v_esc  1865- 2987 km/s
+    z 2.50 cluster    (M_b 1.0e+14) canonical: edge   1059 kpc; well  1653 / barrier  1633 km/s against v_esc  4023- 6457 km/s
+    z 2.50 cluster    (M_b 1.0e+14) alt      : edge   1059 kpc; well  1812 / barrier  1790 km/s against v_esc  4023- 6457 km/s
+  [PASS] BT (reported) the edge potential's height against escape speeds, L* to clusters, z = 0.25 and 2.5, both footings
+         measured: see table
+
+  10/13 checks pass; load-bearing failures: 3; wrote XR11_dark_channel_gate_results_MUTATE.json   [6s]
+rc=1

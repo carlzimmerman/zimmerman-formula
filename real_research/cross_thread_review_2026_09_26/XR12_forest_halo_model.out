@@ -1,0 +1,146 @@
+XR12 (2/4) -- IF FK1's TRIGGER FIRES IN THE STREAMS' FILAMENTS AND CLUMPS, WHAT HAPPENS TO THE LYMAN-ALPHA FOREST?
+
+WHY.  XR12_filament_trigger.py finds that FK1's n^2 trigger (the fluid's own density, K-gated, threshold
+n_t(z) = delta_t0 nbar_0 E^4) is local: it resolves every clump the infall streams carry, and at the nominal cell
+(delta_t0 = 5.31, the linear cell's matter reading) every collapsed halo is above it for z <~ 6.  The record met this case
+once, as L357's V1 ("the plain virialization trigger at its natural threshold ... FAILS the forest"; "the two lanes bracket
+the plain trigger, and the verdict hinges on whether the carrier's small halos fire").  FK1's rate says they fire.  This
+lane scores the forest for FK1's trigger with the record's own halo model, and asks what normalisation would pass.
+
+METHOD (the record's machinery; nothing re-chosen).
+  * Halo model: L357's, re-implemented line for line (CLASS linear P(k) in L319's cosmology, Sheth-Tormen mass function
+    and peak-background bias, Dutton & Maccio 2014 NFW, L357's escape table for the kicked daughters, the running maximum
+    in time).  FK1's trigger in a halo: the carrier's own density exceeds n_t(z); for a tracer halo that is a total density
+    rho/rho_crit(z) > zeta delta_t0 Omega_m0 E(z)^2 (the carrier fraction cancels), zeta = 1 nominal.  'cleared' picture.
+  * The decayed fraction that matters for large-scale power is bias-weighted, F_b(z) (L357).  L319's validated linear
+    solver (its definitions executed from the committed file, as L357 does; nothing edited) is then run with
+    S(t) = 1 - F_b(t).
+  * TWO forest proxies.  (i) L357's gate: the TOTAL matter T^2(k = 5 h/Mpc) at z = 3 and 2 against the 5.3 keV relic
+    (strict) or 0.9 (loose).  (ii) the GAS proxy: the forest traces the gas, which follows the solver's COLD component
+    (baryons + unconverted carrier, one fluid), not the hot daughters.  Its 3D ratio T_c^2(k) is projected to the 1D flux
+    power, P1D(k_par) ~ int_{k_par} (1 + beta k_par^2/k^2)^2 P_lin T_c^2 exp(-(k/k_F)^2) k dk (beta = 1.5, k_F = 5 h/Mpc
+    as a PM-like cut, 12 h/Mpc physical), and scored with DE11's rule: worst |ratio - 1| <= 0.10 for k_par in [0.2, 2]
+    h/Mpc at z = 3 and 2.
+  * CALIBRATION against the record's particle mesh (C2): L366's own decay history -- its committed decayed fractions
+    (0.1587 at z = 3, 0.2754 at z = 2, x~ > 5, 600 km/s) extended with a lognormal whose width is fitted to z = 2 and
+    scaled by D(z), bias-weighted with the bias measured here from L388's z = 2 LCDM field -- is run through both proxies
+    and compared with L366's MEASURED flux-power deviations (from its JSON: 0.0056 at z = 3, 0.0418 at z = 2).
+  L319 solver loaded (N_A = 420); LCDM reference reproduced by the two-output copy: max |total - L319 run| = 0.0e+00   [1s]
+  halo model ready: CLASS sigma8 = 0.8228; FK1 nominal delta_t0 = 5.311   [5s]
+
+================================================================================================================
+C1  CONTROL: L357's V1 cell (x_v = 30, p = 0, 'cleared', 700 km/s, M_min = 1e8) reproduced exactly
+================================================================================================================
+    F_b(z=2,3) = 0.458335/0.429317 (L357 0.458335/0.429317); T^2(k=5) z=2,3 = 0.301392/0.367012 (L357 0.301392/0.367012)
+    the same cell on the gas proxy: T_c^2(k=5) z=3,2 = 0.867/0.786; 1D (k_F = 5) worst 0.114/0.192
+  [PASS] C1 CONTROL: L357's V1 cell reproduced exactly by the re-implemented halo model and L319's solver
+         measured: max |dev| = 0.0e+00 over F_b(z=2,3) and T^2(k=5, z=2,3)
+
+================================================================================================================
+C2  CALIBRATION: L366's own decay history through both proxies, against its MEASURED flux power
+================================================================================================================
+    L366 measured worst |P1D/P1D_LCDM - 1| (k_par 0.2-2): z = 3 0.0056, z = 2 0.0418
+    history: lognormal width at z = 2 fitted to f_d = 0.2754 -> sigma_ln = 1.250; predicts f_d(z = 3) = 0.1344 (L366 0.1587); bias of the triggered mesh mass (L388 z = 2, k < 0.25 h/Mpc) = 2.35, 2.40, 2.24
+    bias-weighted F_b: z=2: 0.642, z=2.5: 0.455, z=3: 0.313, z=3.5: 0.209, z=4: 0.135, z=5: 0.052, z=6: 0.017
+    total-matter proxy T^2(k=5): z = 3 0.607, z = 2 0.249   (L357's loose gate needs >= 0.9)
+    gas proxy, 1D worst deviation: k_F = 5: z = 3 0.0109, z = 2 0.0473;  k_F = 12: 0.0122, 0.0507;  3D cold (0.2-2): 0.0074, 0.0361
+    calibration factor (proxy / PM measured, k_F = 5): z = 3 1.94, z = 2 1.13
+    shape at z = 3.0: k_par = 0.20 0.30 0.50 0.70 1.00 1.40 2.00
+      PM measured ratio:   0.9963 0.9956 0.9959 0.9965 1.0003 1.0038 1.0041
+      gas proxy ratio:     0.9981 0.9977 0.9968 0.9958 0.9942 0.9920 0.9891
+    shape at z = 2.0: k_par = 0.20 0.30 0.50 0.70 1.00 1.40 2.00
+      PM measured ratio:   0.9847 0.9911 1.0009 1.0163 1.0300 1.0336 1.0321
+      gas proxy ratio:     0.9908 0.9890 0.9846 0.9798 0.9723 0.9631 0.9527
+    -> the proxy matches the PM's worst |deviation| and its large-scale end; at k_par >= 0.5 the PM's flux power RISES (nonlinear flux response) where the linear proxy falls, so the proxy is a magnitude calibration with a ~2x systematic
+  [PASS] C2 CALIBRATION: on L366's own history the gas proxy reproduces the PM's measured flux deviation within a factor 2 at z = 2 (<= 2% at z = 3), while the total-matter proxy FAILS L357's loose gate for the same, passing, construction
+         measured: gas proxy/PM at z = 2: 1.13 (0.0473 vs 0.0418); z = 3: 0.0109; total-matter T^2(k=5) 0.249/0.607
+         reading:  the forest sees the gas, which follows the cold component; the hot daughters' missing clustering is in the total matter T^2 but not in the absorbers.  L357's V1 ('destroys the forest') was scored on the total matter; on the gas proxy V1 reads 0.192 at z = 2 -- a fail on DE11's rule, but by far less than T^2 = 0.30 says
+
+================================================================================================================
+H1  FK1's TRIGGER, LOCAL, AT THE NOMINAL CELL (delta_t0 = 5.31): which halos convert, when, and how much
+================================================================================================================
+    fraction of halos (by number of mass bins >= M_min) converting WHOLE (trigger radius beyond r_200): z=1.0: 1.00, z=2.0: 1.00, z=2.5: 1.00, z=3.0: 1.00, z=4.0: 0.00, z=5.0: 0.00, z=6.0: 0.00
+    FK1 nominal, bias-weighted F_b: z=0: 0.438, z=0.1: 0.438, z=0.25: 0.438, z=0.4: 0.438, z=0.6: 0.438, z=0.8: 0.438, z=1: 0.438, z=1.25: 0.438, z=1.5: 0.438, z=1.75: 0.438, z=2: 0.438, z=2.5: 0.431, z=3: 0.417, z=3.5: 0.397, z=4: 0.351, z=5: 0.246, z=6: 0.162, z=8: 0.056
+    FK1 nominal, unweighted F_u:    z=0: 0.404, z=0.1: 0.404, z=0.25: 0.404, z=0.4: 0.403, z=0.6: 0.400, z=0.8: 0.394, z=1: 0.387, z=1.25: 0.375, z=1.5: 0.361, z=1.75: 0.346, z=2: 0.330, z=2.5: 0.297, z=3: 0.263, z=3.5: 0.231, z=4: 0.189, z=5: 0.115, z=6: 0.066, z=8: 0.017
+    against the PM's mesh trigger (C2): F_b(z = 3) 0.417 vs 0.313; F_b(z = 4) 0.351 vs 0.135 (2.6x); F_b(z = 5) 0.246 vs 0.052
+  [PASS] H1 at FK1's nominal cell every halo above M_min converts WHOLE for z <= 3, the bias-weighted converted fraction is >= 0.35 by z = 3, and it starts earlier than the PM's mesh trigger (F_b(z = 4) >= 2x)
+         measured: whole at z = 1/2/3: 1.00/1.00/1.00; F_b(3) = 0.417; F_b(4) = 0.351 vs PM 0.135
+         reading:  the streams' clumps convert as they collapse, from z ~ 6: the forest's dark scaffolding is kicked earlier and more uniformly than the PM runs model
+
+================================================================================================================
+H2  THE FOREST: FK1's cell on both proxies (gas proxy calibrated by C2's factor)
+================================================================================================================
+    nominal 5.31, M_min 1e8, 600                  : F_b(2,3) 0.438/0.417 | total T^2(k5) z3,z2 0.396/0.341 | gas 1D raw kF5 0.058/0.128, kF12 0.063/0.134 | CALIBRATED 0.052/0.113   [47s]
+    nominal 5.31, M_min 1e6 (FDM floor), 600      : F_b(2,3) 0.505/0.498 | total T^2(k5) z3,z2 0.302/0.269 | gas 1D raw kF5 0.083/0.169, kF12 0.088/0.175 | CALIBRATED 0.073/0.149   [56s]
+    nominal 5.31, M_min 1e8, 575                  : F_b(2,3) 0.432/0.413 | total T^2(k5) z3,z2 0.402/0.345 | gas 1D raw kF5 0.056/0.125, kF12 0.061/0.131 | CALIBRATED 0.050/0.111   [64s]
+    nominal 5.31, M_min 1e8, 650                  : F_b(2,3) 0.449/0.424 | total T^2(k5) z3,z2 0.388/0.334 | gas 1D raw kF5 0.062/0.134, kF12 0.066/0.139 | CALIBRATED 0.055/0.118   [73s]
+    upper 25, M_min 1e8, 600                      : F_b(2,3) 0.389/0.276 | total T^2(k5) z3,z2 0.605/0.439 | gas 1D raw kF5 0.024/0.064, kF12 0.026/0.067 | CALIBRATED 0.021/0.056   [81s]
+    upper 25, M_min 1e6, 600                      : F_b(2,3) 0.447/0.332 | total T^2(k5) z3,z2 0.532/0.371 | gas 1D raw kF5 0.031/0.081, kF12 0.034/0.085 | CALIBRATED 0.028/0.072   [89s]
+    nominal 5.31, M_min 1e8, 600, 'cap' (refilled): F_b(2,3) 0.402/0.342 | total T^2(k5) z3,z2 0.509/0.400 | gas 1D raw kF5 0.037/0.090, kF12 0.040/0.094 | CALIBRATED 0.033/0.080   [97s]
+    the z = 2 curves, calibrated deficit 1 - P1D ratio (k_par = 0.2 0.3 0.5 0.7 1 1.4 2 h/Mpc); C2 validated the proxy against the PM at k_par <= 0.3-0.5, where both fall, and NOT at k_par >= 1, where the PM's flux power rose:
+      nominal 5.31, M_min 1e8, 600                  : 0.024 0.030 0.041 0.054 0.073 0.094 0.113
+      nominal 5.31, M_min 1e8, 600, 'cap' (refilled): 0.017 0.020 0.028 0.037 0.051 0.065 0.080
+      nominal 5.31, M_min 1e6 (FDM floor), 600      : 0.033 0.040 0.056 0.073 0.098 0.125 0.149
+      upper 25, M_min 1e8, 600                      : 0.012 0.014 0.020 0.026 0.035 0.046 0.056
+    the nominal cell's gas deficit at z = 2 is 2.7x the PM mesh trigger's (the record's passing 4%)
+  [PASS] H2 (the forest verdict) on the calibrated gas proxy FK1's nominal cell sits AT DE11's 10% line at z = 2 (8-20%), above it at the FDM floor, at >= 2x the PM's own deficit; FK1's upper bracket (25) passes (<= 10%); the total-matter proxy fails L357's loose gate at both brackets
+         measured: calibrated z = 2: nominal 0.113 ('cap' 0.080; 0.041 at k_par <= 0.5), FDM floor 0.149, upper 0.056 (z = 3: 0.052/0.073/0.021); nominal/PM 2.7x; total T^2(k5) z = 2: 0.34 / 0.44
+         reading:  the forest neither clearly passes nor clearly fails the nominal cell: it constrains the normalisation (W).  The PM's 4% pass does NOT carry over to FK1's local trigger
+
+================================================================================================================
+W   THE WINDOW: threshold factor zeta (delta_t0 = 5.31 zeta) -- forest from below, flagship from above
+================================================================================================================
+    flagship: r_F = canonical 38.6 kpc, alt 35.2 kpc (M_b = 1e11, z = 2.5); zeta_F = rho_NFW(r_F)/rho_t:
+      host M_200 = 7e11/canonical  : c = 3.90, r_200 = 78 kpc, rho(r_F) = 298 rho_crit -> zeta_F = 12.7;  rho_bar(<r_F) = 860 rho_crit -> cap bound zeta <= 2.15
+      host M_200 = 7e11/alt        : c = 3.90, r_200 = 78 kpc, rho(r_F) = 370 rho_crit -> zeta_F = 15.7;  rho_bar(<r_F) = 1031 rho_crit -> cap bound zeta <= 2.58
+      host M_200 = 1e12/canonical  : c = 3.85, r_200 = 88 kpc, rho(r_F) = 392 rho_crit -> zeta_F = 16.6;  rho_bar(<r_F) = 1079 rho_crit -> cap bound zeta <= 2.70
+      host M_200 = 1e12/alt        : c = 3.85, r_200 = 88 kpc, rho(r_F) = 483 rho_crit -> zeta_F = 20.5;  rho_bar(<r_F) = 1287 rho_crit -> cap bound zeta <= 3.22
+      host M_200 = 3e12/canonical  : c = 3.70, r_200 = 126 kpc, rho(r_F) = 865 rho_crit -> zeta_F = 36.7;  rho_bar(<r_F) = 2080 rho_crit -> cap bound zeta <= 5.21
+      host M_200 = 3e12/alt        : c = 3.70, r_200 = 126 kpc, rho(r_F) = 1045 rho_crit -> zeta_F = 44.4;  rho_bar(<r_F) = 2445 rho_crit -> cap bound zeta <= 6.12
+    the own-density CAP (a fast own-density trigger holds the cold carrier at or below n_t; a region refilled to the cap keeps S_cap = rho_t/rho_bar(<r_F)): the worst case S_cap <= 0.059 needs zeta <= 7e11/canonical 2.15, 7e11/alt 2.58, 1e12/canonical 2.70, 1e12/alt 3.22, 3e12/canonical 5.21, 3e12/alt 6.12
+    plain      zeta =     1 (delta_t0 =    5.3): F_b(2) 0.438, calibrated gas worst 0.113, total T^2(k5) 0.341   [97s]
+    plain      zeta =   1.5 (delta_t0 =    8.0): F_b(2) 0.438, calibrated gas worst 0.098, total T^2(k5) 0.352   [105s]
+    plain      zeta =     2 (delta_t0 =   10.6): F_b(2) 0.438, calibrated gas worst 0.087, total T^2(k5) 0.353   [113s]
+    plain      zeta =     3 (delta_t0 =   15.9): F_b(2) 0.438, calibrated gas worst 0.071, total T^2(k5) 0.376   [122s]
+    plain      zeta =  4.71 (delta_t0 =   25.0): F_b(2) 0.389, calibrated gas worst 0.056, total T^2(k5) 0.439   [122s]
+    plain      zeta =     8 (delta_t0 =   42.5): F_b(2) 0.322, calibrated gas worst 0.041, total T^2(k5) 0.522   [130s]
+    sqrt_sigma zeta =     1 (delta_t0 =    5.3): F_b(2) 0.438, calibrated gas worst 0.136, total T^2(k5) 0.335   [138s]
+    sqrt_sigma zeta =   1.5 (delta_t0 =    8.0): F_b(2) 0.438, calibrated gas worst 0.123, total T^2(k5) 0.340   [146s]
+    sqrt_sigma zeta =     2 (delta_t0 =   10.6): F_b(2) 0.438, calibrated gas worst 0.113, total T^2(k5) 0.345   [153s]
+    sqrt_sigma zeta =     3 (delta_t0 =   15.9): F_b(2) 0.433, calibrated gas worst 0.097, total T^2(k5) 0.360   [161s]
+    sqrt_sigma zeta =  4.71 (delta_t0 =   25.0): F_b(2) 0.410, calibrated gas worst 0.079, total T^2(k5) 0.396   [169s]
+    sqrt_sigma zeta =     8 (delta_t0 =   42.5): F_b(2) 0.363, calibrated gas worst 0.061, total T^2(k5) 0.459   [177s]
+    plain     : forest needs zeta >= 1.42;  reach bound zeta <= 12.7 -> window;  CAP bound (worst case): 1e12 host zeta <= 2.70 (canonical) / 3.22 (alt) -> canonical OPEN, alt OPEN  [delta_t0 7.5-14.3 canonical]
+    sqrt_sigma: forest needs zeta >= 2.77;  reach bound zeta <= 12.7 -> window;  CAP bound (worst case): 1e12 host zeta <= 2.70 (canonical) / 3.22 (alt) -> canonical CLOSED, alt OPEN  [delta_t0 14.7-14.3 canonical]
+  [PASS] W (reported; the cap bound was added after XR12_stream_shells' first run) with the trigger's REACH as the flagship bound a window exists; with the own-density CAP as the worst-case bound the window is the band [zeta_forest, zeta_cap] -- reported open or closed per variant and footing
+         measured: plain: forest >= 1.42, cap(1e12) <= 2.70/3.22, open(can/alt) = True/True; sqrt_sigma: forest >= 2.77, cap(1e12) <= 2.70/3.22, open(can/alt) = False/True
+         reading:  the trigger's reach is not what bounds FK1's normalisation from above: what the flagship retains is -- the capped cold carrier plus the daughters of conversions near r_F, both growing with the threshold.  A band, not a wide window; its upper end from the resolved shells is XR12_stream_shells W2.  On L357's total-matter gate there is no window at any zeta scanned
+
+================================================================================================================
+K   ESTIMATE: the cone-enhanced smooth web (cold sheets/filaments convert at ~0.21 n_t, XR12_filament_trigger E)
+================================================================================================================
+    nominal 5.31  : F_b(2) with the smooth web 0.950 (halos only: 0.438); calibrated gas worst 0.120
+    upper 25      : F_b(2) with the smooth web 0.478 (halos only: 0.389); calibrated gas worst 0.057
+  [FAIL] K (ESTIMATE) with the smooth web's cone enhancement both of FK1's brackets exceed DE11's 10% on the calibrated gas proxy
+         measured: nominal 5.31: 0.120; upper 25: 0.057
+         reading:  if the second-order-sweep estimate holds, the smooth filaments themselves convert and the window of W narrows or closes; this rests on O(1) factors (the smooth web's local density on the mesh, its bias) and is flagged, not scored
+
+================================================================================================================
+SUMMARY
+================================================================================================================
+  The forest under FK1's local trigger (question A, the forest):
+  - Controls: L357's V1 reproduced exactly (C1).  The gas proxy, fed L366's own history and the measured bias of its
+    triggered mass, reproduces the PM's measured flux deviation (x1.13 at z = 2); the total-matter proxy would fail that
+    same passing construction (T^2(k=5) = 0.25) -- so it is not a forest proxy for kicked carriers (C2).
+  - FK1's trigger converts every halo above M_min whole for z <= 3 (nominal cell), F_b = 0.42 by z = 3,
+    earlier than the PM's mesh trigger (H1).
+  - Calibrated gas proxy at z = 2: nominal 0.113, FDM floor 0.149, upper bracket 0.056
+    against DE11's 0.10 (H2): the nominal cell is AT the line, not safely inside it.
+  - Window (W): forest zeta >= 1.42 (plain) / 2.77 (sqrt sigma); the flagship's worst-case bound is the
+    own-density cap, zeta <= 2.70 (canonical) / 3.22 (alt) for the 1e12 host (the trigger's reach
+    alone would allow 12.7); the resolved bound is XR12_stream_shells W2.
+  - The smooth web's cone enhancement (an estimate) gives nominal 0.120 / upper 0.057
+    (K; its pre-declared 'both brackets over 10%' did not hold: the smooth web converts late, z <~ 2.5, when F_b(2) jumps to
+    0.95 -- harmless to the z = 2-3 gas but a threat to everything after it, flagged for S8 / X-COP).
+
+  checks: 5/6 pass; load-bearing failures: 0   [194s]

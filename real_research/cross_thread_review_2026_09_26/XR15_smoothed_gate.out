@@ -1,0 +1,292 @@
+XR15 -- DOOR (c): THE GATE READS A SMOOTHED VARIABLE, (1 - l^2 lap) chi = U, IMPOSED AS A LINEAR CONSTRAINT.  Does it
+repair the action-level obstruction of V0's MOND-sector gate (DE12, 7f84b3546; DE13, 6daea932c + a7abb4d4f), and at
+what cost?
+
+WHY.  Varied as an action term, the converged model's gate f = W(U), U = C[lap(u - v) + div((nu - 1) grad S w)] (CV3's
+reading A+), has a second variation that is a k^0 NEGATIVE bulk modulus on the edge-layer gas, amplified by the phantom's
+response A^2 (DE12): Gamma = c_gate k with c_gate 1500-3700 km/s against 37-117 km/s gas, 2-5e4 H at k = 1/kpc.  No
+gradient energy of any strength repairs it (DE13 + completion).  DE13 left three doors; this lane opens door (c): the
+gate reads chi, with (1 - l^2 lap) chi = U enforced by a multiplier zeta that enters linearly (CV3's rule), f = W(chi).
+
+THE CONSTRUCTION AND ITS EXACT VARIATIONS (sympy, part A).  L -> L_V0(f = W(chi)) + zeta [(chi - l^2 chi'') - U]/(8 pi G).
+  zeta-equation: (1 - l^2 lap) chi = U;   chi-equation: (1 - l^2 lap) zeta = -8 pi G B W'(chi),  B = dL/df (CV3's);
+  so zeta = -8 pi G Xi with Xi = G_l(B W'(chi)) the SMOOTHED gate force; the gate's u-part is -C zeta'', its v-part the
+  opposite (the carrier stays blind), no slip.  First variation on the baryons: DE12's -4 pi G C B W' t smoothed by G_l.
+  Second variation, per the reduced gate functional -int B(y) W(t(chi)) with chi = G_l U (DE12's reduction, exact):
+    T1 = int B W'' t^2 (G_l dU)^2              the main term; the smoothing suppresses it as (1 + l^2 k^2)^-2
+    T2 = int Xi d2U                             the ANALOGUE of DE13's background term: the smoothed gate force times U's
+                                                own second-order response (the phantom's curvature h''); NOT suppressed
+    T3 = 2 int B' W' t (G_l dU)                 the cross term: the kernel coefficient's response B' = a0 h(y)/(4 pi G) dg_N
+                                                times the gate's; suppressed only once
+    T4 = int B'' W                              the gated kernel's own second variation = the MOND-enhanced self-gravity of
+                                                the gas (no W', W''): not a gate term; neglected with Newtonian self-gravity
+                                                and buoyancy (DE13's scope), its size reported as the gas's MOND Jeans growth
+  The smoothing is linear, so it has no gradient-of-background term of its own (unlike DE13's form (ii)); T2 and T3 are the
+  terms it exposes.  C3 checks T1 + T2 + T3 + T4 against finite differences of the discretised functional.
+
+THE LAYERS (part C).  DE12's transitions, loaded unedited (its definitions only; its checks never run, its JSON never
+written): 24 galaxy layers (z = 0.25, 1, 2.5, 4; M_b = 1e10, 1e11, 1e12; canonical 9.36e-11 and alt 1.13e-10) and DE13's
+eight uncapped 1e14 clusters; the kappa-capped 1e14 cluster of DE12's G6 separately.  Gas at 1e6 K (117 km/s).
+  * THE EXACT l = 0 SECTOR ('par').  Spherical perturbations are exact in a spherical background: radial displacement xi,
+    delta rho = -div(rho xi), dg_N = -4 pi G rho xi, dU = C div(A_par dg_N), A_par = d(y nu)/dy, d2U = C div(h'' dg_N^2/a0);
+    chi's perturbation G_l dU solved on the radial Yukawa operator.  A negative mode here is a real instability.
+  * DE13's CONVENTION ('perp'): radial modes carrying the transverse response A_perp = nu (dU = C 4 pi G nu delta rho),
+    DE13's conservative choice; with it, the WKB gate term bounds every direction.
+  Growth: M xi'' = -K xi (kinetic weight rho r^2), Gamma = sqrt(-lambda_min).  Where l is below 5 grid cells the WKB rate
+  Gamma = max_r max_k k sqrt(c_gate^2/(1 + l^2 k^2)^2 - c_s^2) is used and labelled.
+  The layer's own evolution rate: the edge's motion across its own width, (1 + z) H |dr_e/dz| / L.
+
+PRE-DECLARED (written into this file before the main run; single-layer exploratory runs on z = 0.25/1e11 and 1e12,
+z = 2.5/1e11 and z = 4/1e10, canonical, were used to build and debug the machinery and are disclosed in the README):
+  H1 [the review's example, per layer; load-bearing]: on EVERY galaxy layer some l <= 0.3 r_e (that layer's own edge
+     radius) brings the gate-driven growth of the exact l = 0 sector to Gamma <= H(z), and at that l the layer's own
+     edges (t = 1, 1/2, 0) move by less than 10%.
+  H2 [the construction, one constant l; load-bearing]: a single l brings all 24 galaxy layers to Gamma <= H(z) (exact
+     l = 0 sector) while (i) the KiDS lenses' edges (1e11 at z = 0.25, both footings; t = 1/2 and t = 0) move < 10%,
+     (ii) MOND stays fully on (t_chi >= 1) at r_F for 1e10, 1e10.5, 1e11 at z = 2.5, both footings, and (iii) at the Sun
+     (z = 0, 6e10, 8 kpc).
+  The writer's expectation before the run: H1 fails at z = 0.25 (a residual Gamma ~ 1-3 H seen in exploration), H2 fails
+  (the z = 0.25 layers need l of hundreds of kpc; the z >= 2.5 regions are ~30-270 kpc).
+  DE12 machinery loaded (definitions only)   [0s]
+
+==============================================================================================================
+A1 A2  THE chi-EXTENDED V0: its Euler-Lagrange equations and its constraint Jacobian (sympy, CV3's chassis)
+==============================================================================================================
+    zeta-eq is the constraint                        residual 0.0e+00
+    chi-eq: (1 - l^2 d^2) zeta = -8 pi G B W'(chi)   residual 3.2e-173
+    gate's u-part = -C zeta''                        residual 3.2e-173
+    no leak: u-part + v-part                         residual 3.2e-173
+    no slip (psi = Phi)                              residual 0.0e+00
+    (the gate's u-part itself, not vacuous: 7.77e-02)
+  [PASS] A1 [sympy] the chi-extended V0: zeta's equation is the linear constraint, chi's is (1 - l^2 d^2) zeta = -8 pi G B W'(chi) (zeta = -8 pi G x the smoothed gate force), the gate's u-part -C zeta'' cancels its v-part (no leak), no slip
+         measured: zeta-eq is the constraint: 0e+00; chi-eq: (1 - l^2 d^2) zeta = -8 pi G B W'(chi): 3e-173; gate's u-part = -C zeta'': 3e-173; no leak: u-part + v-part: 3e-173; no slip (psi = Phi): 0e+00
+         reading:  door (c) keeps V0's leak-free, slip-free structure; the baryons feel DE12's gate potential smoothed by G_l
+    (Psi, chi) entry = [m^2 w - (u'' - v'')] W'(chi): residual 1.0e-174 (the entry itself 5.82e-03)
+    (zeta, w) entry = -C d/dx[(A_par - 1) d/dx]: residual 5.1e-175
+    CV3's A+ as written (l = 0): (Psi, w) entry = d^2 - M^2 + [m^2 w - (u'' - v'')] W'(U) C d/dx[(A_par - 1) d/dx]: residual 5.1e-175; its d^2 coefficient 1 - G_loop at the test points: 1.007969, 1.001245, 1.006908
+    det K [V0 as written, l = 0 (rows Phi, lam, Psi; cols u, v, w)] = 2*k**4*(G_loop*k**2 - M2 - k**2)
+    det K [V0 + chi (rows Phi, lam, Psi, zeta; cols u, v, w, chi)] = -2*k**4*(A*C*gamma*k**2 - C*gamma*k**2 + M2*k**2*l**2 + M2 + k**4*l**2 + k**2)
+    det K [U reads an ungated phantom + chi (adds Psi~, w~; lap w~ = lap(u - v))] = 2*k**6*(M2 + k**2)*(k**2*l**2 + 1)
+    V0 + chi with gamma C = -G_loop/(A - 1):  det K = -2*k**4*(-G_loop*k**2 + M2*k**2*l**2 + M2 + k**4*l**2 + k**2)
+    COUNT: the new pair (zeta, chi) adds two fields and two constraints (zeta's and chi's equations); neither carries a time
+    derivative (the smoothing acts on the leaves), so chi adds no propagating mode WHERE det K != 0.  The ungated variant
+    adds one more pair (Psi~, w~), again 0 degrees of freedom.
+  [PASS] A2 [sympy] the constraint Jacobian with the new multiplier pair: (Psi, chi) = [m^2 w - lap(u - v)] W'(chi), (zeta, w) = -C x the phantom operator; det K = 2 k^4 [G_loop k^2 - (1 + l^2 k^2)(k^2 + M^2)] is GATE-DEPENDENT (so is CV3's A+ at l = 0, whose (Psi, w) entry carries 1 - G_loop); with U reading an ungated phantom det K = 2 k^6 (k^2 + M^2)(1 + l^2 k^2)
+         measured: entry residuals 1e-174, 5e-175, 5e-175; det(V0 + chi) = -2*k**4*(-G_loop*k**2 + M2*k**2*l**2 + M2 + k**4*l**2 + k**2); det(ungated) = 2*k**6*(M2 + k**2)*(k**2*l**2 + 1)
+         reading:  CV3's rule (the determinant is gate-free when the gate reads constrained fields) needs one more condition: the fields the gate reads must not be determined by a constraint the gate itself enters.  V0's w is (its source is f lap(u - v)).
+  [2s]
+
+==============================================================================================================
+C1  CONTROL: at l = 0 this lane's code path returns DE12's committed c_gate and Gamma(k = 1/kpc)/H
+==============================================================================================================
+    0.25/1e+10/canonical: 1526 km/s, 1.98e+04 H; 0.25/1e+10/alt: 1691 km/s, 2.20e+04 H; 0.25/1e+11/canonical: 2235 km/s, 2.91e+04 H; 0.25/1e+11/alt: 2457 km/s, 3.20e+04 H; 0.25/1e+12/canonical: 3436 km/s, 4.47e+04 H; 0.25/1e+12/alt: 3741 km/s, 4.87e+04 H ...
+  [PASS] C1 CONTROL: at l = 0 the smoothed-gate code path gives DE12's committed c_gate and Gamma(k = 1/kpc)/H on all 24 galaxy layers and its kappa-capped cluster's c_gate
+         measured: max rel dev 2.2e-16 over 49 numbers (Gamma/H 1.3e+03-4.9e+04; capped cluster 4460 km/s)
+
+==============================================================================================================
+C2  CONTROL: the radial smoothing solver, the point mass's Yukawa field, and the closed-form kernel
+==============================================================================================================
+    l=0.05: 2.2e-03; l=0.3: 6.0e-05; l=1.0: 4.8e-06; point_mass_homogeneous_resid: 1.7e-05; h_closed_form_vs_DE12_table: 4.9e-09; A_par_closed_form_vs_DE12_table: 1.8e-09
+  [PASS] C2 CONTROL: the FD Yukawa smoothing matches the exact spherical integral (<= 3e-3 at l/dr >= 5, <= 1e-4 for l >= 0.3); e^{-r/l}/r solves the homogeneous equation to the grid's accuracy; the closed-form kernel equals DE12's table below y = 0.5
+         measured: {'l=0.05': 0.002181602273139016, 'l=0.3': 5.960144103389631e-05, 'l=1.0': 4.777336812811228e-06, 'point_mass_homogeneous_resid': 1.7069404050464272e-05, 'h_closed_form_vs_DE12_table': 4.942060094492717e-09, 'A_par_closed_form_vs_DE12_table': 1.830673945768524e-09}
+
+==============================================================================================================
+C3  CONTROL: T1 + T2 + T3 + T4 against finite differences of the discretised l = 0 functional
+==============================================================================================================
+    0.25/1e+11/canonical l=0.0 r_e: with T2+T3 1.9e-07, 1.1e-07, 3.5e-07; without 4.4e-04, 1.4e-03, 1.7e-03; gas 2.2e-08, 9.2e-08, 2.6e-08
+    0.25/1e+11/canonical l=0.1 r_e: with T2+T3 2.6e-06, 6.0e-08, 1.3e-07; without 1.2e-01, 1.8e-01, 1.2e-01; gas 3.2e-09, 1.8e-09, 2.8e-09
+    2.5/1e+11/alt l=0.1 r_e: with T2+T3 1.8e-06, 2.7e-08, 7.4e-08; without 1.1e-01, 1.8e-01, 1.3e-01; gas 2.7e-09, 1.3e-08, 1.1e-08
+  [PASS] C3 CONTROL: T1 + T2 + T3 + T4 is the exact second variation of the discretised l = 0 functional (to 1e-5 of the terms' summed size, three random directions, l = 0 and l = 0.1 r_e); without the exposed terms T2 + T3 it misses by >= 1e-3 at l > 0
+         measured: {'0.25/1e+11/canonical l=0.0 r_e': ['1.9e-07/4.4e-04', '1.1e-07/1.4e-03', '3.5e-07/1.7e-03'], '0.25/1e+11/canonical l=0.1 r_e': ['2.6e-06/1.2e-01', '6.0e-08/1.8e-01', '1.3e-07/1.2e-01'], '2.5/1e+11/alt l=0.1 r_e': ['1.8e-06/1.1e-01', '2.7e-08/1.8e-01', '7.4e-08/1.3e-01']}
+         reading:  the smoothing's own analogue of DE13's background term is T2 (the smoothed gate force times the phantom's curvature) together with the cross term T3; both are in every stability number below
+  [2s]
+
+==============================================================================================================
+C4  CONTROL: DE12's instability in this lane's discrete form at l = 0, and the discrete growth against WKB at small l
+==============================================================================================================
+    discrete vs WKB growth at l = 0.02 r_e (Gamma/H): 0.25/1e+11/canonical: 202 vs 260; 1.0/1e+12/alt: 221 vs 282; 2.5/1e+10/canonical: 241 vs 395; 4.0/1e+11/alt: 362 vs 519
+  [PASS] C4 CONTROL: at l = 0 the discrete l = 0 sector has negative modes on every galaxy layer and gas alone none (DE12 in this lane's form); at l = 0.02 r_e the discrete growth is within 50% of the WKB rate max_k k sqrt(c^2/(1+l^2k^2)^2 - c_s^2)
+         measured: unstable 24/24; gas stable 24/24; discrete/WKB 0.77, 0.78, 0.61, 0.70
+
+==============================================================================================================
+L1  V0 AS WRITTEN: U reads the phantom of the GATED w, so the gate sits inside the constraint that fixes what it reads
+==============================================================================================================
+    0.25/1e+10/canonical  : max G_loop 4.66 (radial A) / 9.34 (transverse A); share of the layer above 1: 0.62/0.68; l needed for invertibility with L361's screening: 1083 kpc (1/m 0.2 Mpc), 2709 kpc (0.5 Mpc)
+    0.25/1e+11/canonical  : max G_loop 5.19 (radial A) / 10.43 (transverse A); share of the layer above 1: 0.63/0.69; l needed for invertibility with L361's screening: 1199 kpc (1/m 0.2 Mpc), 2996 kpc (0.5 Mpc)
+    0.25/1e+12/canonical  : max G_loop 5.73 (radial A) / 11.55 (transverse A); share of the layer above 1: 0.64/0.70; l needed for invertibility with L361's screening: 1312 kpc (1/m 0.2 Mpc), 3280 kpc (0.5 Mpc)
+    1.0/1e+10/canonical   : max G_loop 5.01 (radial A) / 10.08 (transverse A); share of the layer above 1: 0.63/0.68; l needed for invertibility with L361's screening: 1160 kpc (1/m 0.2 Mpc), 2900 kpc (0.5 Mpc)
+    1.0/1e+11/canonical   : max G_loop 5.41 (radial A) / 10.95 (transverse A); share of the layer above 1: 0.64/0.69; l needed for invertibility with L361's screening: 1247 kpc (1/m 0.2 Mpc), 3118 kpc (0.5 Mpc)
+    1.0/1e+12/canonical   : max G_loop 5.67 (radial A) / 11.55 (transverse A); share of the layer above 1: 0.64/0.69; l needed for invertibility with L361's screening: 1303 kpc (1/m 0.2 Mpc), 3256 kpc (0.5 Mpc)
+    2.5/1e+10/canonical   : max G_loop 4.43 (radial A) / 9.09 (transverse A); share of the layer above 1: 0.62/0.68; l needed for invertibility with L361's screening: 1042 kpc (1/m 0.2 Mpc), 2606 kpc (0.5 Mpc)
+    2.5/1e+11/canonical   : max G_loop 4.15 (radial A) / 8.69 (transverse A); share of the layer above 1: 0.61/0.68; l needed for invertibility with L361's screening: 993 kpc (1/m 0.2 Mpc), 2482 kpc (0.5 Mpc)
+    2.5/1e+12/canonical   : max G_loop 3.59 (radial A) / 7.76 (transverse A); share of the layer above 1: 0.60/0.67; l needed for invertibility with L361's screening: 883 kpc (1/m 0.2 Mpc), 2208 kpc (0.5 Mpc)
+    4.0/1e+10/canonical   : max G_loop 3.05 (radial A) / 6.56 (transverse A); share of the layer above 1: 0.57/0.65; l needed for invertibility with L361's screening: 748 kpc (1/m 0.2 Mpc), 1870 kpc (0.5 Mpc)
+    4.0/1e+11/canonical   : max G_loop 2.40 (radial A) / 5.43 (transverse A); share of the layer above 1: 0.54/0.64; l needed for invertibility with L361's screening: 608 kpc (1/m 0.2 Mpc), 1520 kpc (0.5 Mpc)
+    4.0/1e+12/canonical   : max G_loop 1.66 (radial A) / 4.12 (transverse A); share of the layer above 1: 0.46/0.61; l needed for invertibility with L361's screening: 440 kpc (1/m 0.2 Mpc), 1101 kpc (0.5 Mpc)
+  [PASS] L1 in V0 as written the loop gain G_loop = U_b W' t (A - 1) exceeds 1 inside every galaxy layer, for radial and transverse directions (baryon contrast, no screening credit): the constraint symbol vanishes inside every layer -- at l = 0 on surfaces, and for any l > 0 at k* = sqrt(G_loop - 1)/l unless (1 + M l)^2 > G_loop
+         measured: min over the 24 layers of max G_loop = 1.66; max 11.8
+         reading:  a finding about V0, beyond DE12's reduction: DE12 (and the stability numbers below) price the gate reading an UNGATED phantom; with U reading w (gated) the static constraints are singular in every layer and smoothing cannot remove it
+  [3s]
+
+==============================================================================================================
+R1  GROWTH vs l ON EVERY LAYER (per-layer l in units of its own edge radius r_e; 'par' = the exact l = 0 sector)
+==============================================================================================================
+    0.25/1e+10/canonical   r_e    768 kpc, layer evolves at  5.4 H | Gamma/H par: 5.2e+02 2.3e+02 1.4e+02 7.5e+01 4.7e+01 2.6e+01 1.0e+01 4.7e+00 2.7e+00 2.5e+00 2.4e+00 2.5e+00 2.6e+00   [4s]
+    0.25/1e+10/alt         r_e    804 kpc, layer evolves at  5.4 H | Gamma/H par: 5.6e+02 2.5e+02 1.6e+02 8.2e+01 5.2e+01 3.0e+01 1.2e+01 5.8e+00 3.1e+00 2.8e+00 2.7e+00 2.7e+00 2.9e+00   [6s]
+    0.25/1e+11/canonical   r_e   1373 kpc, layer evolves at  5.4 H | Gamma/H par: 4.5e+02 2.0e+02 1.3e+02 6.7e+01 4.4e+01 2.6e+01 1.2e+01 5.4e+00 2.6e+00 2.3e+00 2.3e+00 2.3e+00 2.3e+00   [7s]
+    0.25/1e+11/alt         r_e   1436 kpc, layer evolves at  5.4 H | Gamma/H par: 4.7e+02 2.1e+02 1.3e+02 7.2e+01 4.7e+01 2.8e+01 1.3e+01 6.3e+00 2.9e+00 2.5e+00 2.5e+00 2.5e+00 2.5e+00   [8s]
+    0.25/1e+12/canonical   r_e   2469 kpc, layer evolves at  5.4 H | Gamma/H par: 3.9e+02 1.8e+02 1.1e+02 6.1e+01 4.0e+01 2.4e+01 1.2e+01 5.6e+00 2.4e+00 2.0e+00 2.0e+00 1.9e+00 1.8e+00   [9s]
+    0.25/1e+12/alt         r_e   2580 kpc, layer evolves at  5.4 H | Gamma/H par: 4.1e+02 1.9e+02 1.2e+02 6.4e+01 4.2e+01 2.5e+01 1.3e+01 6.2e+00 2.6e+00 2.2e+00 2.1e+00 2.0e+00 2.0e+00   [10s]
+    1.0/1e+10/canonical    r_e    315 kpc, layer evolves at  9.0 H | Gamma/H par: 4.9e+02 2.1e+02 1.3e+02 6.3e+01 3.7e+01 1.6e+01 2.7e+00 1.1e+00 1.5e+00 1.7e+00 1.9e+00 2.2e+00 2.5e+00   [11s]
+    1.0/1e+10/alt          r_e    329 kpc, layer evolves at  9.0 H | Gamma/H par: 5.2e+02 2.3e+02 1.4e+02 7.0e+01 4.2e+01 2.0e+01 4.6e+00 2.1e+00 1.9e+00 2.0e+00 2.2e+00 2.4e+00 2.8e+00   [12s]
+    1.0/1e+11/canonical    r_e    568 kpc, layer evolves at  9.0 H | Gamma/H par: 4.9e+02 2.2e+02 1.4e+02 7.1e+01 4.4e+01 2.4e+01 8.8e+00 3.4e+00 2.2e+00 2.1e+00 2.2e+00 2.3e+00 2.5e+00   [13s]
+    1.0/1e+11/alt          r_e    593 kpc, layer evolves at  9.0 H | Gamma/H par: 5.1e+02 2.3e+02 1.4e+02 7.5e+01 4.7e+01 2.7e+01 1.0e+01 4.1e+00 2.4e+00 2.3e+00 2.3e+00 2.4e+00 2.7e+00   [15s]
+    1.0/1e+12/canonical    r_e   1038 kpc, layer evolves at  9.0 H | Gamma/H par: 4.7e+02 2.1e+02 1.3e+02 7.2e+01 4.6e+01 2.7e+01 1.2e+01 4.8e+00 2.3e+00 2.1e+00 2.0e+00 1.9e+00 1.9e+00   [16s]
+    1.0/1e+12/alt          r_e   1081 kpc, layer evolves at  9.0 H | Gamma/H par: 4.9e+02 2.2e+02 1.4e+02 7.5e+01 4.8e+01 2.9e+01 1.3e+01 5.5e+00 2.5e+00 2.2e+00 2.1e+00 2.1e+00 2.1e+00   [17s]
+    2.5/1e+10/canonical    r_e     75 kpc, layer evolves at 10.9 H | Gamma/H par: 5.8e+02 2.4e+02 1.4e+02 6.0e+01 2.2e+01 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 1.2e+00   [18s]
+    2.5/1e+10/alt          r_e     78 kpc, layer evolves at 10.9 H | Gamma/H par: 6.2e+02 2.6e+02 1.5e+02 6.8e+01 3.0e+01 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 4.5e-01 1.7e+00   [19s]
+    2.5/1e+11/canonical    r_e    139 kpc, layer evolves at 10.8 H | Gamma/H par: 6.7e+02 2.9e+02 1.8e+02 8.9e+01 5.3e+01 2.4e+01 3.0e+00 0.0e+00 4.5e-01 1.4e+00 1.8e+00 2.1e+00 2.5e+00   [20s]
+    2.5/1e+11/alt          r_e    144 kpc, layer evolves at 10.8 H | Gamma/H par: 7.0e+02 3.1e+02 1.9e+02 9.5e+01 5.7e+01 2.8e+01 5.2e+00 8.3e-01 1.4e+00 1.8e+00 2.1e+00 2.4e+00 2.9e+00   [21s]
+    2.5/1e+12/canonical    r_e    265 kpc, layer evolves at 10.6 H | Gamma/H par: 6.3e+02 2.8e+02 1.7e+02 9.2e+01 5.8e+01 3.2e+01 1.1e+01 3.9e+00 2.5e+00 2.4e+00 2.3e+00 2.3e+00 2.4e+00   [23s]
+    2.5/1e+12/alt          r_e    273 kpc, layer evolves at 10.7 H | Gamma/H par: 6.6e+02 3.0e+02 1.8e+02 9.8e+01 6.2e+01 3.5e+01 1.3e+01 4.5e+00 2.8e+00 2.6e+00 2.5e+00 2.6e+00 2.7e+00   [24s]
+    4.0/1e+10/canonical    r_e     28 kpc, layer evolves at 11.1 H | Gamma/H par: 6.7e+02 2.7e+02 1.5e+02 4.8e+01 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00   [25s]
+    4.0/1e+10/alt          r_e     29 kpc, layer evolves at 11.1 H | Gamma/H par: 7.4e+02 3.0e+02 1.7e+02 6.4e+01 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00   [26s]
+    4.0/1e+11/canonical    r_e     54 kpc, layer evolves at 10.9 H | Gamma/H par: 7.8e+02 3.4e+02 2.0e+02 9.7e+01 5.4e+01 1.8e+01 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 8.9e-01 1.6e+00   [27s]
+    4.0/1e+11/alt          r_e     56 kpc, layer evolves at 10.9 H | Gamma/H par: 8.3e+02 3.6e+02 2.2e+02 1.1e+02 6.1e+01 2.4e+01 0.0e+00 0.0e+00 0.0e+00 0.0e+00 0.0e+00 1.7e+00 2.2e+00   [28s]
+    4.0/1e+12/canonical    r_e    106 kpc, layer evolves at 10.7 H | Gamma/H par: 7.3e+02 3.2e+02 2.0e+02 1.0e+02 6.4e+01 3.4e+01 9.2e+00 3.4e+00 2.4e+00 2.4e+00 2.4e+00 2.5e+00 2.5e+00   [29s]
+    4.0/1e+12/alt          r_e    108 kpc, layer evolves at 10.7 H | Gamma/H par: 7.7e+02 3.4e+02 2.1e+02 1.1e+02 6.9e+01 3.7e+01 1.2e+01 4.1e+00 2.8e+00 2.7e+00 2.7e+00 2.8e+00 3.0e+00   [31s]
+    0.25/1e+14/canonical   r_e   7841 kpc, layer evolves at  5.4 H | Gamma/H par: 2.4e+02 1.1e+02 6.9e+01 3.8e+01 2.5e+01 1.5e+01 8.1e+00 2.9e+00 1.3e+00 1.1e+00 1.0e+00 9.2e-01 8.2e-01   [32s]
+    0.25/1e+14/alt         r_e   8188 kpc, layer evolves at  5.4 H | Gamma/H par: 2.5e+02 1.1e+02 7.1e+01 3.9e+01 2.6e+01 1.6e+01 8.5e+00 3.2e+00 1.4e+00 1.2e+00 1.1e+00 1.0e+00 9.0e-01   [33s]
+    1.0/1e+14/canonical    r_e   3313 kpc, layer evolves at  8.9 H | Gamma/H par: 3.0e+02 1.4e+02 8.6e+01 4.7e+01 3.1e+01 1.9e+01 9.5e+00 2.9e+00 1.3e+00 1.0e+00 9.2e-01 7.8e-01 6.8e-01   [34s]
+    1.0/1e+14/alt          r_e   3446 kpc, layer evolves at  9.0 H | Gamma/H par: 3.1e+02 1.4e+02 8.9e+01 4.9e+01 3.2e+01 2.0e+01 9.9e+00 3.3e+00 1.4e+00 1.1e+00 1.0e+00 8.6e-01 7.5e-01   [35s]
+    2.5/1e+14/canonical    r_e    846 kpc, layer evolves at 10.5 H | Gamma/H par: 4.6e+02 2.1e+02 1.3e+02 7.2e+01 4.7e+01 2.9e+01 1.4e+01 3.9e+00 1.5e+00 1.2e+00 9.8e-01 7.8e-01 6.5e-01   [36s]
+    2.5/1e+14/alt          r_e    873 kpc, layer evolves at 10.6 H | Gamma/H par: 4.7e+02 2.2e+02 1.4e+02 7.4e+01 4.9e+01 2.9e+01 1.4e+01 4.3e+00 1.6e+00 1.3e+00 1.1e+00 8.7e-01 7.2e-01   [37s]
+    4.0/1e+14/canonical    r_e    326 kpc, layer evolves at 10.5 H | Gamma/H par: 7.1e+02 3.2e+02 2.0e+02 1.1e+02 7.4e+01 4.6e+01 1.9e+01 7.4e+00 1.8e+00 1.3e+00 1.1e+00 9.1e-01 7.6e-01   [38s]
+    4.0/1e+14/alt          r_e    336 kpc, layer evolves at 10.5 H | Gamma/H par: 7.1e+02 3.2e+02 2.0e+02 1.1e+02 7.4e+01 4.6e+01 2.3e+01 7.7e+00 1.9e+00 1.5e+00 1.3e+00 1.0e+00 8.7e-01   [40s]
+    (columns: l/r_e = 0.01, 0.02, 0.03, 0.05, 0.07, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.7, 1.0; 'w' = WKB where l < 5 cells)
+    0.25/1e+10/canonical   l/r_e for Gamma <= H: par never (l <= r_e), perp never (l <= r_e); stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (5.4 H): par 0.189; min Gamma/H par 2.42 at 0.5 r_e, perp 1.46
+    0.25/1e+10/alt         l/r_e for Gamma <= H: par never (l <= r_e), perp never (l <= r_e); stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (5.4 H): par 0.205; min Gamma/H par 2.70 at 0.5 r_e, perp 1.66
+    0.25/1e+11/canonical   l/r_e for Gamma <= H: par never (l <= r_e), perp never (l <= r_e); stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (5.4 H): par 0.201; min Gamma/H par 2.27 at 0.5 r_e, perp 1.55
+    0.25/1e+11/alt         l/r_e for Gamma <= H: par never (l <= r_e), perp never (l <= r_e); stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (5.4 H): par 0.213; min Gamma/H par 2.46 at 0.7 r_e, perp 1.70
+    0.25/1e+12/canonical   l/r_e for Gamma <= H: par never (l <= r_e), perp never (l <= r_e); stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (5.4 H): par 0.203; min Gamma/H par 1.80 at 1.0 r_e, perp 1.52
+    0.25/1e+12/alt         l/r_e for Gamma <= H: par never (l <= r_e), perp never (l <= r_e); stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (5.4 H): par 0.211; min Gamma/H par 1.96 at 1.0 r_e, perp 1.67
+    1.0/1e+10/canonical    l/r_e for Gamma <= H: par never (l <= r_e), perp 0.425; stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (9.0 H): par 0.118; min Gamma/H par 1.10 at 0.2 r_e, perp 0.97
+    1.0/1e+10/alt          l/r_e for Gamma <= H: par never (l <= r_e), perp never (l <= r_e); stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (9.0 H): par 0.128; min Gamma/H par 1.91 at 0.3 r_e, perp 1.21
+    1.0/1e+11/canonical    l/r_e for Gamma <= H: par never (l <= r_e), perp never (l <= r_e); stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (9.0 H): par 0.149; min Gamma/H par 2.14 at 0.4 r_e, perp 1.42
+    1.0/1e+11/alt          l/r_e for Gamma <= H: par never (l <= r_e), perp never (l <= r_e); stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (9.0 H): par 0.156; min Gamma/H par 2.32 at 0.4 r_e, perp 1.56
+    1.0/1e+12/canonical    l/r_e for Gamma <= H: par never (l <= r_e), perp never (l <= r_e); stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (9.0 H): par 0.165; min Gamma/H par 1.94 at 0.7 r_e, perp 1.46
+    1.0/1e+12/alt          l/r_e for Gamma <= H: par never (l <= r_e), perp never (l <= r_e); stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (9.0 H): par 0.171; min Gamma/H par 2.10 at 0.7 r_e, perp 1.61
+    2.5/1e+10/canonical    l/r_e for Gamma <= H: par 0.080, perp 0.163; stable: par 0.080, perp 0.164; Gamma <= evolution rate (10.9 H): par 0.077; min Gamma/H par 0.00 at 0.1 r_e, perp 0.00
+    2.5/1e+10/alt          l/r_e for Gamma <= H: par 0.088, perp 0.174; stable: par 0.088, perp 0.174; Gamma <= evolution rate (10.9 H): par 0.084; min Gamma/H par 0.00 at 0.1 r_e, perp 0.00
+    2.5/1e+11/canonical    l/r_e for Gamma <= H: par 0.162, perp 0.262; stable: par 0.164, perp 0.269; Gamma <= evolution rate (10.8 H): par 0.124; min Gamma/H par 0.00 at 0.2 r_e, perp 0.00
+    2.5/1e+11/alt          l/r_e for Gamma <= H: par 0.194, perp 0.298; stable: par never (l <= r_e), perp 0.327; Gamma <= evolution rate (10.8 H): par 0.131; min Gamma/H par 0.83 at 0.2 r_e, perp 0.00
+    2.5/1e+12/canonical    l/r_e for Gamma <= H: par never (l <= r_e), perp never (l <= r_e); stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (10.6 H): par 0.153; min Gamma/H par 2.32 at 0.5 r_e, perp 1.45
+    2.5/1e+12/alt          l/r_e for Gamma <= H: par never (l <= r_e), perp never (l <= r_e); stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (10.7 H): par 0.158; min Gamma/H par 2.54 at 0.5 r_e, perp 1.63
+    4.0/1e+10/canonical    l/r_e for Gamma <= H: par 0.060, perp 0.133; stable: par 0.060, perp 0.133; Gamma <= evolution rate (11.1 H): par 0.059; min Gamma/H par 0.00 at 0.07 r_e, perp 0.00
+    4.0/1e+10/alt          l/r_e for Gamma <= H: par 0.068, perp 0.143; stable: par 0.068, perp 0.143; Gamma <= evolution rate (11.1 H): par 0.067; min Gamma/H par 0.00 at 0.07 r_e, perp 0.00
+    4.0/1e+11/canonical    l/r_e for Gamma <= H: par 0.120, perp 0.201; stable: par 0.120, perp 0.202; Gamma <= evolution rate (10.9 H): par 0.109; min Gamma/H par 0.00 at 0.15 r_e, perp 0.00
+    4.0/1e+11/alt          l/r_e for Gamma <= H: par 0.133, perp 0.219; stable: par 0.133, perp 0.220; Gamma <= evolution rate (10.9 H): par 0.117; min Gamma/H par 0.00 at 0.15 r_e, perp 0.00
+    4.0/1e+12/canonical    l/r_e for Gamma <= H: par never (l <= r_e), perp never (l <= r_e); stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (10.7 H): par 0.147; min Gamma/H par 2.37 at 0.4 r_e, perp 1.43
+    4.0/1e+12/alt          l/r_e for Gamma <= H: par never (l <= r_e), perp never (l <= r_e); stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (10.7 H): par 0.155; min Gamma/H par 2.75 at 0.4 r_e, perp 1.68
+    0.25/1e+14/canonical   l/r_e for Gamma <= H: par 0.700, perp 1.000; stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (5.4 H): par 0.200; min Gamma/H par 0.82 at 1.0 r_e, perp 0.94
+    0.25/1e+14/alt         l/r_e for Gamma <= H: par 1.000, perp never (l <= r_e); stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (5.4 H): par 0.200; min Gamma/H par 0.90 at 1.0 r_e, perp 1.03
+    1.0/1e+14/canonical    l/r_e for Gamma <= H: par 0.500, perp 0.700; stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (8.9 H): par 0.200; min Gamma/H par 0.68 at 1.0 r_e, perp 0.77
+    1.0/1e+14/alt          l/r_e for Gamma <= H: par 0.700, perp 0.700; stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (9.0 H): par 0.200; min Gamma/H par 0.75 at 1.0 r_e, perp 0.85
+    2.5/1e+14/canonical    l/r_e for Gamma <= H: par 0.500, perp 0.700; stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (10.5 H): par 0.200; min Gamma/H par 0.65 at 1.0 r_e, perp 0.62
+    2.5/1e+14/alt          l/r_e for Gamma <= H: par 0.700, perp 0.700; stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (10.6 H): par 0.200; min Gamma/H par 0.72 at 1.0 r_e, perp 0.71
+    4.0/1e+14/canonical    l/r_e for Gamma <= H: par 0.700, perp 0.700; stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (10.5 H): par 0.200; min Gamma/H par 0.76 at 1.0 r_e, perp 0.66
+    4.0/1e+14/alt          l/r_e for Gamma <= H: par 1.000, perp 0.700; stable: par never (l <= r_e), perp never (l <= r_e); Gamma <= evolution rate (10.5 H): par 0.200; min Gamma/H par 0.87 at 1.0 r_e, perp 0.76
+
+==============================================================================================================
+C5  CONTROL: the growth rates and thresholds are converged (grid points, domain margin)
+==============================================================================================================
+    0.25/1e+11/canonical l=0.1r_e: {'Np800': 25.51486683985911, 'Np1600': 25.69544431497994, 'margin9l': 25.698668818863837, 'margin2l_first_run': 25.303660795113945}
+    0.25/1e+11/canonical l=0.3r_e: {'Np800': 2.639362247933572, 'Np1600': 2.680818728904818, 'margin9l': 2.624925059747506, 'margin2l_first_run': 1.1514647205271988}
+    2.5/1e+11/canonical l=0.1r_e: {'Np800': 24.07619955826181, 'Np1600': 24.087143848967518, 'margin9l': 24.122699637768388, 'margin2l_first_run': 16.596933157130437}
+    1.0/1e+12/alt l=0.3r_e: {'Np800': 2.461642751059963, 'Np1600': 2.555897048625997, 'margin9l': 2.416954616484468, 'margin2l_first_run': 1.840284486236036}
+    stable threshold 2.5/1e11/canonical, Np 800 vs 1600: (0.16447909135934075, 0.16596443571002212)
+  [PASS] C5 CONTROL: Gamma/H with 1600 grid points is within 5% of 800, a 9 l domain margin within 3% of the 6 l used, and the stability threshold within 3% (the first development run's 2 l margin, reported, truncated the fastest mode)
+         measured: {'0.25/1e+11/canonical l=0.1r_e': {'Np800': 25.515, 'Np1600': 25.695, 'margin9l': 25.699, 'margin2l_first_run': 25.304}, '0.25/1e+11/canonical l=0.3r_e': {'Np800': 2.639, 'Np1600': 2.681, 'margin9l': 2.625, 'margin2l_first_run': 1.151}, '2.5/1e+11/canonical l=0.1r_e': {'Np800': 24.076, 'Np1600': 24.087, 'margin9l': 24.123, 'margin2l_first_run': 16.597}, '1.0/1e+12/alt l=0.3r_e': {'Np800': 2.462, 'Np1600': 2.556, 'margin9l': 2.417, 'margin2l_first_run': 1.84}, 'stable threshold 2.5/1e11/canonical, Np 800 vs 1600': (0.16447909135934075, 0.16596443571002212)}
+
+==============================================================================================================
+R2  THE RESIDUAL MODE: which term drives it, against the gas's own MOND Jeans growth (T4, not a gate term)
+==============================================================================================================
+    0.25/1e+10/canonical   l = 0.1 r_e: Gamma/H all 26.35 | gas + T1 alone 27.96, + T2 0.00, + T3 6.62 | gas + T4 (MOND Jeans) 0.00; mode at 898 kpc, layer 698-892 kpc
+    0.25/1e+10/canonical   l = 0.3 r_e: Gamma/H all 2.69 | gas + T1 alone 0.57, + T2 0.00, + T3 3.89 | gas + T4 (MOND Jeans) 5.22; mode at 1064 kpc, layer 738-943 kpc
+    0.25/1e+10/canonical   l = 0.5 r_e: Gamma/H all 2.42 | gas + T1 alone 0.00, + T2 0.00, + T3 3.55 | gas + T4 (MOND Jeans) 5.21; mode at 917 kpc, layer 686-933 kpc
+    0.25/1e+11/canonical   l = 0.1 r_e: Gamma/H all 25.51 | gas + T1 alone 26.85, + T2 0.00, + T3 7.32 | gas + T4 (MOND Jeans) 1.81; mode at 1580 kpc, layer 1250-1596 kpc
+    0.25/1e+11/canonical   l = 0.3 r_e: Gamma/H all 2.64 | gas + T1 alone 2.41, + T2 0.00, + T3 3.76 | gas + T4 (MOND Jeans) 9.92; mode at 1903 kpc, layer 1325-1690 kpc
+    0.25/1e+11/canonical   l = 0.5 r_e: Gamma/H all 2.27 | gas + T1 alone 0.56, + T2 0.00, + T3 3.17 | gas + T4 (MOND Jeans) 9.92; mode at 1679 kpc, layer 1236-1675 kpc
+    0.25/1e+12/alt         l = 0.1 r_e: Gamma/H all 25.15 | gas + T1 alone 26.36, + T2 1.82, + T3 8.18 | gas + T4 (MOND Jeans) 3.07; mode at 2935 kpc, layer 2349-2996 kpc
+    0.25/1e+12/alt         l = 0.3 r_e: Gamma/H all 2.57 | gas + T1 alone 3.13, + T2 0.00, + T3 3.79 | gas + T4 (MOND Jeans) 14.56; mode at 3569 kpc, layer 2499-3180 kpc
+    0.25/1e+12/alt         l = 0.5 r_e: Gamma/H all 2.12 | gas + T1 alone 1.05, + T2 0.00, + T3 2.90 | gas + T4 (MOND Jeans) 14.59; mode at 3279 kpc, layer 2340-3155 kpc
+    1.0/1e+11/canonical    l = 0.1 r_e: Gamma/H all 24.47 | gas + T1 alone 26.20, + T2 0.00, + T3 6.60 | gas + T4 (MOND Jeans) 1.32; mode at 662 kpc, layer 518-659 kpc
+    1.0/1e+11/canonical    l = 0.3 r_e: Gamma/H all 2.22 | gas + T1 alone 0.00, + T2 0.00, + T3 3.35 | gas + T4 (MOND Jeans) 8.09; mode at 782 kpc, layer 552-701 kpc
+    1.0/1e+11/canonical    l = 0.5 r_e: Gamma/H all 2.16 | gas + T1 alone 0.00, + T2 0.00, + T3 2.98 | gas + T4 (MOND Jeans) 8.09; mode at 714 kpc, layer 518-697 kpc
+    2.5/1e+11/canonical    l = 0.1 r_e: Gamma/H all 24.08 | gas + T1 alone 27.36, + T2 0.00, + T3 5.64 | gas + T4 (MOND Jeans) 0.00; mode at 166 kpc, layer 127-161 kpc
+    2.5/1e+11/canonical    l = 0.3 r_e: Gamma/H all 0.45 | gas + T1 alone 0.00, + T2 0.00, + T3 3.01 | gas + T4 (MOND Jeans) 5.33; mode at 196 kpc, layer 136-171 kpc
+    2.5/1e+11/canonical    l = 0.5 r_e: Gamma/H all 1.77 | gas + T1 alone 0.00, + T2 0.00, + T3 2.96 | gas + T4 (MOND Jeans) 5.33; mode at 197 kpc, layer 128-171 kpc
+    4.0/1e+10/alt          l = 0.1 r_e: Gamma/H all 0.00 | gas + T1 alone 0.00, + T2 0.00, + T3 0.00 | gas + T4 (MOND Jeans) 0.00; mode at 35 kpc, layer 27-34 kpc
+    4.0/1e+10/alt          l = 0.3 r_e: Gamma/H all 0.00 | gas + T1 alone 0.00, + T2 0.00, + T3 0.00 | gas + T4 (MOND Jeans) 0.00; mode at 44 kpc, layer 29-36 kpc
+    4.0/1e+10/alt          l = 0.5 r_e: Gamma/H all 0.00 | gas + T1 alone 0.00, + T2 0.00, + T3 0.00 | gas + T4 (MOND Jeans) 0.00; mode at 56 kpc, layer 27-36 kpc
+  [72s]
+
+==============================================================================================================
+R3  ONE CONSTANT l FOR EVERY LAYER: growth, edges, the KiDS lenses, the flagship radius and the Sun
+==============================================================================================================
+    l =      1 kpc: max Gamma/H par  z=0.25  1.22e+04  z=1  6.10e+03  z=2.5  2.01e+03  z=4  8.45e+02 (max Gamma/evolution rate 2.25e+03; regions gone: 0) | KiDS edge shift   0.0% | z = 4 edges   0.2% | flagship on at r_F: True (|shift| <= 0.000 dex) | Sun on: True (gate force 0.0e+00 g)   [73s]
+    l =      3 kpc: max Gamma/H par  z=0.25  4.06e+03  z=1  1.95e+03  z=2.5  5.95e+02  z=4  2.34e+02 (max Gamma/evolution rate 7.49e+02; regions gone: 0) | KiDS edge shift   0.0% | z = 4 edges   1.8% | flagship on at r_F: True (|shift| <= 0.000 dex) | Sun on: True (gate force 2.3e-206 g)   [75s]
+    l =     10 kpc: max Gamma/H par  z=0.25  1.15e+03  z=1  5.33e+02  z=2.5  1.45e+02  z=4  4.34e+01 (max Gamma/evolution rate 2.13e+02; regions gone: 0) | KiDS edge shift   0.0% | z = 4 edges   8.1% | flagship on at r_F: True (|shift| <= 0.000 dex) | Sun on: True (gate force 3.2e-64 g)   [78s]
+    l =     20 kpc: max Gamma/H par  z=0.25  5.46e+02  z=1  2.42e+02  z=2.5  5.79e+01  z=4  5.16e+00 (max Gamma/evolution rate 1.01e+02; regions gone: 0) | KiDS edge shift   0.0% | z = 4 edges  14.0% | flagship on at r_F: True (|shift| <= 0.002 dex) | Sun on: True (gate force 8.6e-34 g)   [80s]
+    l =     30 kpc: max Gamma/H par  z=0.25  3.46e+02  z=1  1.52e+02  z=2.5  2.89e+01  z=4  2.91e+00 (max Gamma/evolution rate 6.39e+01; regions gone: 0) | KiDS edge shift   0.0% | z = 4 edges  46.8% | flagship on at r_F: True (|shift| <= 0.003 dex) | Sun on: True (gate force 8.2e-24 g)   [82s]
+    l =     50 kpc: max Gamma/H par  z=0.25  1.93e+02  z=1  8.21e+01  z=2.5  6.08e+00  z=4  2.74e+00 (max Gamma/evolution rate 3.57e+01; regions gone: 0) | KiDS edge shift   0.1% | z = 4 edges  89.0% | flagship on at r_F: True (|shift| <= 0.003 dex) | Sun on: True (gate force 4.7e-16 g)   [84s]
+    l =    100 kpc: max Gamma/H par  z=0.25  8.70e+01  z=1  3.24e+01  z=2.5  2.63e+00  z=4  2.93e+00 (max Gamma/evolution rate 1.61e+01; regions gone: 0) | KiDS edge shift   0.6% | z = 4 edges  99.0% | flagship on at r_F: True (|shift| <= 0.002 dex) | Sun on: True (gate force 1.1e-10 g)   [86s]
+    l =    150 kpc: max Gamma/H par  z=0.25  5.31e+01  z=1  1.56e+01  z=2.5  2.92e+00  z=4  2.80e+00 (max Gamma/evolution rate 9.81e+00; regions gone: 0) | KiDS edge shift   1.5% | z = 4 edges  99.6% | flagship on at r_F: False (|shift| <= 0.651 dex) | Sun on: True (gate force 3.4e-09 g)   [88s]
+    l =    200 kpc: max Gamma/H par  z=0.25  3.66e+01  z=1  7.04e+00  z=2.5  3.20e+00  z=4  1.90e+00 (max Gamma/evolution rate 6.77e+00; regions gone: 0) | KiDS edge shift   2.8% | z = 4 edges  99.8% | flagship on at r_F: False (|shift| <= 0.999 dex) | Sun on: True (gate force 1.3e-08 g)   [91s]
+    l =    300 kpc: max Gamma/H par  z=0.25  2.02e+01  z=1  2.66e+00  z=2.5  2.74e+00  z=4  0.00e+00 (max Gamma/evolution rate 3.73e+00; regions gone: 2) | KiDS edge shift   5.7% | z = 4 edges 100.0% | flagship on at r_F: False (|shift| <= 1.125 dex) | Sun on: True (gate force 3.0e-08 g)   [93s]
+    l =    500 kpc: max Gamma/H par  z=0.25  6.79e+00  z=1  3.39e+00  z=2.5  2.70e+00  z=4  0.00e+00 (max Gamma/evolution rate 1.25e+00; regions gone: 2) | KiDS edge shift   7.5% | z = 4 edges 100.0% | flagship on at r_F: False (|shift| <= 1.133 dex) | Sun on: True (gate force 3.3e-08 g)   [95s]
+    l =    700 kpc: max Gamma/H par  z=0.25  2.95e+00  z=1  2.91e+00  z=2.5  1.83e+00  z=4  0.00e+00 (max Gamma/evolution rate 5.46e-01; regions gone: 2) | KiDS edge shift   6.0% | z = 4 edges 100.0% | flagship on at r_F: False (|shift| <= 1.134 dex) | Sun on: True (gate force 2.8e-08 g)   [97s]
+    l =   1000 kpc: max Gamma/H par  z=0.25  3.07e+00  z=1  3.12e+00  z=2.5  2.64e-01  z=4  0.00e+00 (max Gamma/evolution rate 5.66e-01; regions gone: 6) | KiDS edge shift  11.2% | z = 4 edges 100.0% | flagship on at r_F: False (|shift| <= 1.134 dex) | Sun on: True (gate force 2.2e-08 g)   [98s]
+    l =   1500 kpc: max Gamma/H par  z=0.25  3.47e+00  z=1  2.44e+00  z=2.5  0.00e+00  z=4  0.00e+00 (max Gamma/evolution rate 6.38e-01; regions gone: 6) | KiDS edge shift  42.2% | z = 4 edges 100.0% | flagship on at r_F: False (|shift| <= 1.134 dex) | Sun on: True (gate force 2.0e-08 g)   [100s]
+
+==============================================================================================================
+R4  THE KAPPA CAP WITH chi (MS5): chi = G_l(U_cap); the capped branch's k^0 term Xi U_rhorho is not smoothed away
+==============================================================================================================
+    DE12 G6 cluster, z = 0.25, l =      0 kpc: edge 2349 kpc (l_cap 2349 kpc; shift 0.0%); cap active on 1.00 of the layer; k^0 term c_rhorho = sqrt(rho Xi U_rhorho) = 1140 km/s (1e6 K gas 117, ICM ~1000)
+    DE12 G6 cluster, z = 0.25, l =     10 kpc: edge 2349 kpc (l_cap 2349 kpc; shift 0.0%); cap active on 1.00 of the layer; k^0 term c_rhorho = sqrt(rho Xi U_rhorho) = 1138 km/s (1e6 K gas 117, ICM ~1000)
+    DE12 G6 cluster, z = 0.25, l =     30 kpc: edge 2349 kpc (l_cap 2349 kpc; shift 0.0%); cap active on 1.00 of the layer; k^0 term c_rhorho = sqrt(rho Xi U_rhorho) = 1120 km/s (1e6 K gas 117, ICM ~1000)
+    DE12 G6 cluster, z = 0.25, l =    100 kpc: edge 2353 kpc (l_cap 2349 kpc; shift 0.2%); cap active on 1.00 of the layer; k^0 term c_rhorho = sqrt(rho Xi U_rhorho) = 975 km/s (1e6 K gas 117, ICM ~1000)
+    DE12 G6 cluster, z = 0.25, l =    300 kpc: edge 2432 kpc (l_cap 2349 kpc; shift 3.5%); cap active on 1.00 of the layer; k^0 term c_rhorho = sqrt(rho Xi U_rhorho) = 653 km/s (1e6 K gas 117, ICM ~1000)
+    DE12 G6 cluster, z = 0.25, l =   1000 kpc: edge 3076 kpc (l_cap 2349 kpc; shift 30.9%); cap active on 1.00 of the layer; k^0 term c_rhorho = sqrt(rho Xi U_rhorho) = 336 km/s (1e6 K gas 117, ICM ~1000)
+    MS3's shear cap epoch, z = 0.5, l =      0 kpc: edge 1749 kpc (l_cap 1749 kpc; shift 0.0%); cap active on 1.00 of the layer; k^0 term c_rhorho = sqrt(rho Xi U_rhorho) = 1109 km/s (1e6 K gas 117, ICM ~1000)
+    MS3's shear cap epoch, z = 0.5, l =     10 kpc: edge 1749 kpc (l_cap 1749 kpc; shift 0.0%); cap active on 1.00 of the layer; k^0 term c_rhorho = sqrt(rho Xi U_rhorho) = 1106 km/s (1e6 K gas 117, ICM ~1000)
+    MS3's shear cap epoch, z = 0.5, l =     30 kpc: edge 1749 kpc (l_cap 1749 kpc; shift 0.0%); cap active on 1.00 of the layer; k^0 term c_rhorho = sqrt(rho Xi U_rhorho) = 1074 km/s (1e6 K gas 117, ICM ~1000)
+    MS3's shear cap epoch, z = 0.5, l =    100 kpc: edge 1754 kpc (l_cap 1749 kpc; shift 0.3%); cap active on 1.00 of the layer; k^0 term c_rhorho = sqrt(rho Xi U_rhorho) = 882 km/s (1e6 K gas 117, ICM ~1000)
+    MS3's shear cap epoch, z = 0.5, l =    300 kpc: edge 1923 kpc (l_cap 1749 kpc; shift 10.0%); cap active on 1.00 of the layer; k^0 term c_rhorho = sqrt(rho Xi U_rhorho) = 515 km/s (1e6 K gas 117, ICM ~1000)
+    MS3's shear cap epoch, z = 0.5, l =   1000 kpc: edge 2448 kpc (l_cap 1749 kpc; shift 40.0%); cap active on 1.00 of the layer; k^0 term c_rhorho = sqrt(rho Xi U_rhorho) = 289 km/s (1e6 K gas 117, ICM ~1000)
+  [100s]
+
+==============================================================================================================
+R5  (not pre-declared) A SMOOTHING LENGTH THAT DEPENDS ON COSMIC TIME ONLY, l(z): still linear on each leaf
+==============================================================================================================
+    z = 0.0: l(z) =    801 kpc (= 0.263 of MS5's l_cap 3052 kpc; Gamma <= H would need inf kpc): max Gamma/H 3.58; worst edge shift 1e10-1e12 26.5%; 1e9 dwarfs 80.0%; the Sun t = 46
+    z = 0.25: l(z) =    545 kpc (= 0.232 of MS5's l_cap 2349 kpc; Gamma <= H would need inf kpc): max Gamma/H 5.40; worst edge shift 1e10-1e12 17.1%; 1e9 dwarfs 68.8%; the KiDS lenses (1e11) 7.5%
+    z = 1.0: l(z) =    185 kpc (= 0.193 of MS5's l_cap 955 kpc; Gamma <= H would need inf kpc): max Gamma/H 8.95; worst edge shift 1e10-1e12 8.1%; 1e9 dwarfs 49.7%
+    z = 2.5: l(z) =     43 kpc (= 0.200 of MS5's l_cap 216 kpc; Gamma <= H would need inf kpc): max Gamma/H 10.61; worst edge shift 1e10-1e12 8.4%; 1e9 dwarfs 47.9%; flagship t(r_F) min 10.53
+    z = 4.0: l(z) =     17 kpc (= 0.219 of MS5's l_cap 76 kpc; Gamma <= H would need inf kpc): max Gamma/H 10.26; worst edge shift 1e10-1e12 7.8%; 1e9 dwarfs 51.4%
+  [114s]
+
+==============================================================================================================
+S1 H1 H2  VERDICTS
+==============================================================================================================
+  [PASS] S1 [MUTATE's target] the smoothing is effective: on every galaxy layer the gate-driven growth of the exact l = 0 sector falls from DE12's 1e3-1e5 H to <= 10 H at some l <= r_e
+         measured: min over l of Gamma/H per layer: 0.00-2.75
+         reading:  the UV catastrophe is gone: what remains lives at the layer's own scale
+  [FAIL] H1 [pre-declared] on every galaxy layer some l <= 0.3 r_e brings Gamma <= H(z) (exact l = 0 sector) with that layer's own edges moved < 10%
+         measured: 8/24 layers; failing: 0.25/1e+10/canonical, 0.25/1e+10/alt, 0.25/1e+11/canonical, 0.25/1e+11/alt, 0.25/1e+12/canonical, 0.25/1e+12/alt, 1.0/1e+10/canonical, 1.0/1e+10/alt, 1.0/1e+11/canonical, 1.0/1e+11/alt, 1.0/1e+12/canonical, 1.0/1e+12/alt, 2.5/1e+12/canonical, 2.5/1e+12/alt, 4.0/1e+12/canonical, 4.0/1e+12/alt
+         reading:  per layer only: l is one constant of the action, so H1 is necessary, not sufficient (H2)
+  [FAIL] H2 [pre-declared] one constant l brings all 24 galaxy layers to Gamma <= H while the KiDS edges move < 10% and MOND stays on at r_F (z = 2.5) and at the Sun
+         measured: no l in 1-1500 kpc has all four (all layers <= H at: none); the pincer: every layer <= 10 H needs l >= 500.0 kpc (<= its own evolution rate: l >= 700.0 kpc), while the flagship (with KiDS and the Sun) holds only to l = 100.0 kpc and the z = 4 regions' edges stay within 10% only to l = 10.0 kpc
+
+  9/11 checks pass; load-bearing failures: 2 (H1, H2); wrote XR15_smoothed_gate_results.json   [114s]
+rc=1

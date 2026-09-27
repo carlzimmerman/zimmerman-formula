@@ -1,0 +1,80 @@
+XR14_carrier_halos.py -- M*'s CARRIER RESOLVED AROUND THE KiDS LENSES: L375's self-consistent spherical shell model with the
+carrier's trigger replaced by L388's (the phantom-inclusive x~).  Part 1 of 2 (the halos); XR14_kids_mstar_carrier.py
+scores them.  Cross-thread review, 2026-09-26 (night).  Read-only on every other file.
+
+WHY.  XR10's validator finds DE10's KiDS pass (dabce1b73: -37.0/-34.0 hard, -32.3/-29.3 at w = 0.25, 600 km/s) off M* on
+the carrier: DE10 re-ran L375's shell model with L375's OWN trigger (the Newtonian matter density, x~ > 5), not M*'s carrier,
+which is L388's (78fc5dd81): L377's full construction at L388's cell, whose trigger reads the PHANTOM-INCLUSIVE x~.
+
+THE SHELL MODEL (L375, 7 of its pieces kept exactly): secondary infall on M(z) = M_200 exp[-0.75 (z - 0.25)] from an NFW
+(c = 4) at z = 3; new shells at 2 r_200(z) with v_r = -v_200, v_t = 0.4 v_200; exact spherical self-gravity of the
+carrier; static baryons = Hernquist M_b + the rest of f_b M_200 as an NFW-shaped CGM, grown with M(z); L390's refitted M_b
+(p = 1, x_c0 = 2.5) and L390/DE10's seed rule 1200 + 10 b + int(v_k)//25; N = 60000; 1 Myr leapfrog steps.  L375's halo()
+is copied line for line (control C1 of the scoring script: in 'L375' mode it reproduces DE10's committed table and XR9's
+cached histograms exactly); only the trigger block is a choice.
+
+THE TRIGGERS (a label per halo; never pooled).  L388's trigger rule is read from L388's / L377's source at run time and
+every defining line is asserted verbatim (check T0):
+    x~ = 1.5 Omega_m(a) (delta_m + delta_ph) > XC_TRIG,  Gamma = GAMMA_TRIG H,  isotropic kick v_k,
+with delta_ph the baryons' QUMOND phantom where the switch is on, rho_ph = (1/4 pi r^2) d/dr [f (nu_mono(g_N,b/a0) - 1)
+M_b(<r)] (L377's phantom() in spherical form, the switch edge Gauss-compensated by centred differences as L377's mesh
+divergence; C3 checks it against L377's own phantom() on a mesh).  a0 is the footing's: L388 ran canonical only; both are
+run here, each carrier scored on its own footing (the canonical carrier on the alt footing is reported as 'as run').
+The rule reads "the phantom", so it needs a switch.  L388 used its own, the matter-only reading; M* has one switch, the
+MOND-sector gate, and the same-model PM run L396 (pending) feeds the trigger that gate's phantom.  Both are run, labelled:
+  'MSPH'  M*'S CARRIER (the XR10 row): L388's trigger rule reading the phantom of M*'S OWN GATE, as L396 does: MS2's
+          MOND-sector reading x = 4 pi G (rho_b + rho_ph,all - f_b rho_bar_m)/H^2 (the baryons + their untruncated phantom,
+          carrier-blind), MS5's kappa cap x -> min(x, (v_cap/(r H))^2), the vacuum gate at L388's cell, hard, the region
+          connected to the centre.
+  'L388'  L388'S CARRIER AS WRITTEN: the phantom switched as L377's phantom() switches it at L388's cell, where
+          x~_m [Omega_L(a)/Omega_L0]^P_GATE > X_C0 per cell (here per radial bin), x~_m the MATTER-ONLY variable (carrier +
+          baryons) -- L388's own branch, a different switch from M*'s (a switch-branch mix inside M*).
+  'L375'  L375's own (DE10's carrier; the C1 control): a cold element decays at Gamma = 10 H(z) where
+          x~ = (3/2)(rho_tot - rho_bar_m)/rho_crit(z) > 5, rho_tot = carrier + the bin's baryons (Newtonian, no phantom).
+  'FK1'   VARIANT (labelled): FK1's field-derived conversion (c2e1fa119).  The pair instability's exponent grows as n^2 on
+          the HEAVY (cold) component's own density; with the gated coupling lambda ~ K^(-2q), q = 1.75, the threshold is
+          n_t(z) = delta_t0 n_bar_c0 E(z)^(1/2 + 2q) with FK1's delta_t0 = 5 (its N2), sharp (complete at n_t, negligible
+          6% below): every cold element in a bin whose cold-carrier density exceeds n_t converts in that step and is kicked
+          at v_k.  FK1's sqrt(sigma) halo modulation (an O(1) estimate) is not modelled.
+
+  *** MUTATE=1: v_k = 0 in every decaying run (separate cache); the scoring script's H1 must FAIL on it ***
+
+  T0 (trace) L388's cell X_C0 = 2.5, P_GATE = 1; trigger XC_TRIG = 5.0; rate 10.0 H; mode 'full'; kicks (575.0, 600.0, 625.0, 650.0); FK1: q = 1.75, delta_t0 = 5.0; lines found verbatim: 11/11
+  [PASS] T0 CONTROL: L388's trigger definition is read from its source
+
+  C3 the sphere vs L377's phantom() on a 80^3 mesh (z = 0.25, L388's cell, canonical a0): switch edge mesh 1.099 / sphere 1.096 comoving Mpc/h (mesh cell 0.100)
+     M_ph(<0.5 Mpc/h): mesh 9.8571e+12  sphere f(nu-1)M_b 9.9945e+12  sphere binned (the trigger's rho_ph integrated) 9.9941e+12  Msun
+     M_ph(<0.7 Mpc/h): mesh 1.4077e+13  sphere f(nu-1)M_b 1.4157e+13  sphere binned (the trigger's rho_ph integrated) 1.4157e+13  Msun
+     M_ph(<0.9 Mpc/h): mesh 1.8163e+13  sphere f(nu-1)M_b 1.8265e+13  sphere binned (the trigger's rho_ph integrated) 1.8265e+13  Msun
+     M_ph(<1.6 Mpc/h): mesh 8.8181e-04  sphere f(nu-1)M_b 0.0000e+00  sphere binned (the trigger's rho_ph integrated) 5.0342e+04  Msun
+     M_ph(<2.2 Mpc/h): mesh 8.8181e-04  sphere f(nu-1)M_b 0.0000e+00  sphere binned (the trigger's rho_ph integrated) 5.0342e+04  Msun
+  [PASS] C3 CONTROL: same switched region (within one mesh cell), enclosed phantom inside it within 10%, both compensated beyond it (< 10% of the peak)
+
+  24 halos planned (0 cached, 24 missing); this call runs up to 200   [0s]
+    nodecay_b0               n = 59999, decayed 0.000 (phantom-only 0.000), M(<0.5 Mpc/h) = 3.503e+11, trigger reach at z_l 274 kpc   [18s; total 18s]
+    nodecay_b1               n = 59999, decayed 0.000 (phantom-only 0.000), M(<0.5 Mpc/h) = 7.530e+11, trigger reach at z_l 359 kpc   [18s; total 36s]
+    nodecay_b2               n = 59999, decayed 0.000 (phantom-only 0.000), M(<0.5 Mpc/h) = 1.604e+12, trigger reach at z_l 470 kpc   [18s; total 54s]
+    nodecay_b3               n = 59999, decayed 0.000 (phantom-only 0.000), M(<0.5 Mpc/h) = 2.846e+12, trigger reach at z_l 650 kpc   [18s; total 72s]
+    L388_canonical_b0_v0     n = 59999, decayed 0.896 (phantom-only 0.004), M(<0.5 Mpc/h) = 3.501e+11, trigger reach at z_l 274 kpc, phantom switched to 422 kpc   [39s; total 111s]
+    MSPH_canonical_b0_v0     n = 59999, decayed 0.907 (phantom-only 0.077), M(<0.5 Mpc/h) = 3.501e+11, trigger reach at z_l 898 kpc, phantom switched to 1176 kpc   [39s; total 149s]
+    L388_alt_b0_v0           n = 59999, decayed 0.896 (phantom-only 0.004), M(<0.5 Mpc/h) = 3.502e+11, trigger reach at z_l 274 kpc, phantom switched to 422 kpc   [39s; total 188s]
+    MSPH_alt_b0_v0           n = 59999, decayed 0.907 (phantom-only 0.078), M(<0.5 Mpc/h) = 3.501e+11, trigger reach at z_l 948 kpc, phantom switched to 1241 kpc   [39s; total 227s]
+    FK1_b0_v0                n = 59999, decayed 0.934 (phantom-only 0.000), M(<0.5 Mpc/h) = 3.502e+11, trigger reach at z_l 0 kpc   [23s; total 250s]
+    L388_canonical_b1_v0     n = 59999, decayed 0.895 (phantom-only 0.004), M(<0.5 Mpc/h) = 7.531e+11, trigger reach at z_l 359 kpc, phantom switched to 552 kpc   [39s; total 289s]
+    MSPH_canonical_b1_v0     n = 59999, decayed 0.905 (phantom-only 0.072), M(<0.5 Mpc/h) = 7.532e+11, trigger reach at z_l 1114 kpc, phantom switched to 1383 kpc   [38s; total 327s]
+    L388_alt_b1_v0           n = 59999, decayed 0.895 (phantom-only 0.005), M(<0.5 Mpc/h) = 7.530e+11, trigger reach at z_l 359 kpc, phantom switched to 552 kpc   [38s; total 366s]
+    MSPH_alt_b1_v0           n = 59999, decayed 0.905 (phantom-only 0.075), M(<0.5 Mpc/h) = 7.530e+11, trigger reach at z_l 1114 kpc, phantom switched to 1460 kpc   [38s; total 404s]
+    FK1_b1_v0                n = 59999, decayed 0.932 (phantom-only 0.000), M(<0.5 Mpc/h) = 7.531e+11, trigger reach at z_l 0 kpc   [23s; total 427s]
+    L388_canonical_b2_v0     n = 59999, decayed 0.895 (phantom-only 0.004), M(<0.5 Mpc/h) = 1.605e+12, trigger reach at z_l 470 kpc, phantom switched to 724 kpc   [38s; total 465s]
+    MSPH_canonical_b2_v0     n = 59999, decayed 0.905 (phantom-only 0.066), M(<0.5 Mpc/h) = 1.604e+12, trigger reach at z_l 1310 kpc, phantom switched to 1716 kpc   [40s; total 505s]
+    L388_alt_b2_v0           n = 59999, decayed 0.895 (phantom-only 0.004), M(<0.5 Mpc/h) = 1.604e+12, trigger reach at z_l 470 kpc, phantom switched to 724 kpc   [40s; total 544s]
+    MSPH_alt_b2_v0           n = 59999, decayed 0.906 (phantom-only 0.067), M(<0.5 Mpc/h) = 1.605e+12, trigger reach at z_l 1383 kpc, phantom switched to 1811 kpc   [40s; total 584s]
+    FK1_b2_v0                n = 59999, decayed 0.933 (phantom-only 0.000), M(<0.5 Mpc/h) = 1.604e+12, trigger reach at z_l 0 kpc   [23s; total 608s]
+    L388_canonical_b3_v0     n = 59999, decayed 0.897 (phantom-only 0.004), M(<0.5 Mpc/h) = 2.847e+12, trigger reach at z_l 650 kpc, phantom switched to 1056 kpc   [40s; total 647s]
+    MSPH_canonical_b3_v0     n = 59999, decayed 0.907 (phantom-only 0.056), M(<0.5 Mpc/h) = 2.845e+12, trigger reach at z_l 1716 kpc, phantom switched to 2248 kpc   [40s; total 687s]
+    L388_alt_b3_v0           n = 59999, decayed 0.897 (phantom-only 0.004), M(<0.5 Mpc/h) = 2.844e+12, trigger reach at z_l 650 kpc, phantom switched to 1056 kpc   [40s; total 727s]
+    MSPH_alt_b3_v0           n = 59999, decayed 0.907 (phantom-only 0.059), M(<0.5 Mpc/h) = 2.845e+12, trigger reach at z_l 1811 kpc, phantom switched to 2248 kpc   [40s; total 767s]
+    FK1_b3_v0                n = 59999, decayed 0.934 (phantom-only 0.000), M(<0.5 Mpc/h) = 2.851e+12, trigger reach at z_l 0 kpc   [24s; total 790s]
+
+  [PASS] H1 all 24 planned halos present; particle counts within 1% of N: True   [790s]
+rc=0
