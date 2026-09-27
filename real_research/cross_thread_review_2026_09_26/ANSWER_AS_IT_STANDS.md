@@ -149,6 +149,20 @@ Where the chain stands, from its own ledger (chain lead's commits; checked again
   - the 14-group stack sits at +0.12 to +0.14 dex;
   - Cen A matches;
   - it predicts R0(M83) = 1.24/1.28 Mpc.
+- FP18 (09990b398), a data-only test: is the KiDS vs local-flow R0 pincer in the data itself? **UNDECIDED.**
+  - At face value, no single mass profile fits both, at 9.8σ. KiDS needs more than 5.9e12 M☉ inside 0.76 Mpc,
+    while R0 = 0.93 Mpc allows at most 1.44e12.
+  - Profiling the comparability systematics (galaxy type, isolation, stellar-mass scale and others) cuts it to 2.3σ.
+  - **LCDM shares the pincer.** Its KiDS-fitted halos turn around at 1.85–1.94 Mpc, against 0.91–0.93 observed.
+    So the R0 overshoot does not single out the chain.
+  - The R0 errors used so far were too small: ±0.12 for the 14-group stack, not ±0.02. FP12's offsets stand, but
+    its significances are overstated.
+  - The decisive measurement is FP21: lensing around spectroscopically isolated spirals at 0.3–1.5 Mpc.
+- **Bug found (FP18):** FP6's KiDS projection (esd_of_M) under-projects the lensing signal, by 59% at 35 kpc and
+  5–14% at 0.3–2.6 Mpc.
+  - It feeds the chain's KiDS scores (FP1, FP6, FP9, FP11–FP14), and also the record's L355 and AT3.
+  - FP20 is fixing it and re-scoring. Until then the chain's KiDS passes are provisional.
+  - M*'s KiDS path (DE8 → DE10 → XR9 → XR14) uses a different projection and is not affected.
 - FP13 (27faacc84) replaces FP9's four constants with readouts of the state (the separator H_S).
   - What is still chosen by hand:
     - δ_c, which can sit anywhere in 1.3–2.6;
