@@ -89,6 +89,11 @@ merger/offset gates (Harvey, the Bullet cluster) must score it (OPEN).
 - KiDS and the web's external field (FP22, a risk, not a result): in the baryons-only reading the web's band-passed field
   enters the kernel of an isolated lens at an estimated Delta chi^2 +205-232 with H_Y or H_K1 (all matter: +575-714), 6-8x
   over the field KiDS tolerates. No committed KiDS model includes that field; FP23 computes it.
+- FK1's conversion alone, without the phantom (the hub's XR32, fa341733d, re-run pending): the survey-inferred S8 is
+  0.752-0.766 (on KiDS-1000, DES Y3 and HSC Y3, ~2 sigma below KiDS-Legacy), but with a poor fit shape; its costs are
+  cluster counts 0.64-0.81 of LCDM (5-9 sigma below eRASS1), DESI RSD -2.2 sigma, CMB lensing 0.976 (-1.6 sigma vs ACT
+  DR6), and a lensing suppression equivalent to +0.098 eV of neutrino mass. These favour less late conversion or more
+  cluster recapture, while X-COP (FP16) needs less recapture inside R500: a pincer for the dark sector (FP25).
 - The Milky Way's outer curve (the hub's XR29, 633c161b5, re-run pending): the Gaia DR3 decline needs M_* = 7.3-8.2e10
   (4-5 sigma above the McMillan/Cautun censuses) and the 8-19 kpc slope misfits (-2.2 to -2.9 vs -1.7 km/s/kpc); LCDM's
   control needs a concentration 1.9-3.8 sigma above the c-M relation.
