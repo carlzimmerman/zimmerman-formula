@@ -524,3 +524,37 @@ L388's "cosmic shear at the cell ✓" is scored against DE3's T_max on GP3's 100
 - **K1:** with **L388's own retention**, shear passes (1.05/1.12) only if MOND regions are capped near **1.75 Mpc at z = 0.5** (v_cap ≈ 325 km/s).
 
 **So L388's cosmic-shear pass is not established on the mock, and not refuted either.** On the halo model it passes only with a 1.75 Mpc region cap. The truth lies between the two estimates (MS3's own caveat). MS1 also shows that once the gate is an action term, a switch that reads the carrier (matter) or the curvature leaks force onto the carrier. Only the MOND-sector reading (baryons plus their phantom) is leak-free. L395 is redesigned around that reading, with the cap, scored on MS3's halo model.
+
+## L389 — Harvey+2015 at the same cell (p = 1, x_c0 = 2.5) on L388's retention: the phase-mixed shape passes at 575 km/s (PROVISIONAL)
+
+`L389_harvey_same_cell_linear_gate.py` (4/4; **PARTIAL: its MUTATE control was never run** -- the chain was stopped by user decision, 2026-09-26; not citable as a controlled result). This is L381's Harvey test with the merger step's switch **set to the PM runs' cell**, fixing the defect behind L381's withdrawal. The adapter adds the cell to L370's switch table and sets `SW_DEF`, which reaches all three active uses.
+- C1 (gate-matched): with L371's own switch and L381's inputs, the adapter reproduces L381's committed values exactly, so the switch assignment is the only change.
+- C2: every job ran at x_c,eff(0.4) = 3.868 (this cell), not L371's 2.321.
+
+| v_k | S1, cusp kept | S2, phase-mixed daughters | S3, recaptured |
+|---|---|---|---|
+| 575 | **pass** (fit +0.067, 1.5σ) | **pass** (fit +0.096, 1.9σ) | fails (6.0σ) |
+| 600 | **pass** (+0.078) | +0.110 (2.1σ) | fails |
+| 625 | **pass** (+0.093) | +0.122 | fails |
+| 650 | +0.103 | +0.134 | fails |
+
+- **The pre-declared hypothesis holds: S2 passes same-cell at 575 km/s, narrowly** (+0.096 against the +0.10 bound).
+- **The intact carrier's β is identical to L371's** (+0.006/+0.040/+0.026) even though the switch cell changed. At this level Harvey is insensitive to where the region edge sits, which matches XR5.
+
+**PROVISIONAL, on either sign.**
+- The retention is measured at z = 0 (L388) and applied at the z = 0.4 merger epoch.
+- It is the **matter-only branch's** retention.
+- It is the same cell but not yet the same model (the ledger under L388).
+- It is canonical only.
+
+L395 re-derives the retention on the leak-free MOND-sector cell, with the z = 0.4 fields saved for a same-epoch re-run.
+
+## L395 / L396 / L397 — built, NOT run: the carrier chain was stopped by user decision (2026-09-26)
+
+The user stopped the triggered-carrier chain. The judgement, delegated to a coordinating session, was that scanning switch branches, caps and kicks on a hand-posited carrier adds knobs rather than deriving them. The direction is now a derivation chain from the framework's first principles: one action at the root, the dark sector as a state of the same field, and no posited carrier, trigger or kick. **None of these three lanes produced a result.** Their scripts are committed as design records only, and there are no outputs.
+- **`L395_two_switch_branches.py`** was stopped mid-run.
+  - It holds XR2 §5's particle-tracked clearing estimators (A–E, E_rank, L), with the controls K0–K3 recast for 0.42 baryon particles per cell.
+  - It holds the MS3 halo-model loader, with a C3 that reproduced MS3's committed K1 exactly in a code test.
+  - Its primary cell uses MS5's **withdrawn** v_loc cap form, so it is superseded by L396.
+- **`L396_msc_cell_575.py`** was never started. It holds the MOND-sector switch with MS5's mean-curvature cap on the mesh, using a fourth-order κ operator. In a code test that operator gave κr = 0.961/0.997/0.998 at r = 1/2/3 Mpc/h (the second-order version was 14% low at 3 cells). That result is a code test, not a committed one. The parallel merger_infall_2026 L394 copies this switch and checks it against this file.
+- **`L397_harvey_same_epoch_msc.py`** was never started. It is Harvey at the merger epoch (z = 0.4 retention) through L389's same-cell adapter.

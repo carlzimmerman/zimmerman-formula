@@ -1,0 +1,76 @@
+
+L389 -- HARVEY+2015 SAME-CELL AT THE LINEAR VACUUM GATE (p = 1, x_c0 = 2.5): the merger step with the SAME switch as the
+particle-mesh runs whose retention it uses.
+
+WHY.  L381's Harvey verdict is withdrawn (correction 3151d88f2): its adapter never replaced L370/L371's switch
+(SW_DEF = "p1_x1.5", active in the lensing-mass root and both phantom maps) while its retentions came from L377's p = 2,
+x_c0 = 2 cell.  DE1/DE2 moved the construction to the linear gate p = 1, x_c0 = 2.5, and L388 re-ran the pooled
+cosmology there.  This lane runs Harvey at that SAME cell on L388's pooled retention.
+
+METHOD.  L371's script, loaded unedited except for its inputs (as L381), now INCLUDING the switch: right after L371 binds
+L370's machinery, the cell is added to L370's SWITCH table and SW_DEF is set to it, which reaches all three active uses
+(L370's lensing() and phantom_felt() take the cell explicitly; no default argument carries it).  L371's own checks and
+output files are cut; its committed results are never touched.  The resolved cell, x_c,eff at the merger epoch z = 0.4
+and the retention used are recorded per job.  Retention: L388's pooled medians in L371's bins and mapping (M(<1 Mpc/h)
+6e13-1e14 -> lensing 1e14 Msun; 1.5e14-2.5e14 -> 3e14; >= 2.5e14 -> the 1e15 main cluster).  One process per job.
+PRE-DECLARED (before the run): H: at some kick in L388's pooled window the phase-mixed shape S2 passes Harvey SAME-CELL --
+the population-mean excess beta is <= +0.10 on all three estimators (100 kpc, 150 kpc, Lenstool-like fit).
+PROVISIONAL, EITHER SIGN: retention is measured at z = 0 (L388) and applied at the z = 0.4 merger epoch (L371's inherited
+practice); retention is not strictly monotone in time (L375: retained carrier is mostly undecayed infall), so the verdict
+stands only until a same-epoch re-run.  Same cell, NOT yet the same model (XR1): the PM and merger phantom operators and
+switch variables differ, and both stages are canonical-footing only.
+CHECKS
+  C1 CONTROL (gate-matched): the adapter with the switch LEFT at L371's p = 1, x_c0 = 1.5 and L381's inputs (L380's 600 km/s
+     retention) reproduces L381's committed S1/S2/S3 and intact values exactly -- the switch assignment is the only change.
+  C2 CONTROL: the switch took effect -- x_c,eff(0.4) of the jobs equals 2.5 E(0.4)^2 (the cell), not L371's 1.5 E(0.4)^2.
+  R1 = H.  W (informational): S1, S2, S3 and the intact carrier at the new cell, every kick; carrier/baryons inside 150 kpc.
+MUTATE=1: every retention is quartered (a hollowed carrier): R1 must FAIL (rc = 1).
+L389_POOL sets the pool size (default 3; each job needs ~13 GB).
+
+Run from the repository root after L388:  python3 real_research/dark_sector_2026/L389_harvey_same_cell_linear_gate.py
+
+  L388's pooled window (cell p = 1, x_c0 = 2.5): ['v575', 'v600', 'v625', 'v650']; kicks scored here: ['v575', 'v600', 'v625', 'v650']
+    v575: retention used (lensing 1e14 / 3e14 / 1e15) = 0.339 / 0.683 / 0.847
+    v600: retention used (lensing 1e14 / 3e14 / 1e15) = 0.275 / 0.630 / 0.824
+    v625: retention used (lensing 1e14 / 3e14 / 1e15) = 0.216 / 0.559 / 0.804
+    v650: retention used (lensing 1e14 / 3e14 / 1e15) = 0.168 / 0.521 / 0.787
+  5 jobs done   [3160s]
+
+==============================================================================================================
+C1, C2  CONTROLS
+==============================================================================================================
+  [PASS] C1 (gate-matched) the adapter with L371's own switch and L381's inputs reproduces L381's committed intact, S1, S2 and S3 values exactly -- the switch assignment is the only change
+         measured: max |difference| 0.0e+00
+  [PASS] C2 the switch took effect: every job ran at x_c,eff(0.4) = 2.5 E(0.4)^2 (the cell), not L371's 1.5 E(0.4)^2
+         measured: x_c,eff(0.4) = [3.867657] vs cell 3.867657, L371 2.320594; SW_DEF ['p1_x2.5']
+
+==============================================================================================================
+HARVEY+2015 SAME-CELL (population-mean excess beta: 100 / 150 kpc / fit; bound <= +0.10)
+==============================================================================================================
+    v575 intact (same cell): +0.006/+0.040/+0.026
+    v575 S1_med: +0.023/+0.069/+0.067  (+0.9/+1.6/+1.5 sigma)  -> pass;  carrier/baryons in 150 kpc: 3.56 (1e14), 6.70 (3e14)
+    v575 S2_med: +0.027/+0.088/+0.096  (+1.0/+1.8/+1.9 sigma)  -> pass;  carrier/baryons in 150 kpc: 2.80 (1e14), 5.55 (3e14)
+    v575 S3_med: +0.100/+0.241/+0.383  (+2.0/+4.0/+6.0 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 0.13 (1e14), 0.26 (3e14)
+    v600 intact (same cell): +0.006/+0.040/+0.026
+    v600 S1_med: +0.024/+0.074/+0.078  (+0.9/+1.6/+1.7 sigma)  -> pass;  carrier/baryons in 150 kpc: 2.88 (1e14), 6.13 (3e14)
+    v600 S2_med: +0.040/+0.088/+0.110  (+1.1/+1.8/+2.1 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 2.23 (1e14), 5.06 (3e14)
+    v600 S3_med: +0.099/+0.234/+0.373  (+2.0/+3.9/+5.9 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 0.10 (1e14), 0.25 (3e14)
+    v625 intact (same cell): +0.006/+0.040/+0.026
+    v625 S1_med: +0.026/+0.085/+0.093  (+0.9/+1.8/+1.9 sigma)  -> pass;  carrier/baryons in 150 kpc: 2.25 (1e14), 5.38 (3e14)
+    v625 S2_med: +0.039/+0.096/+0.122  (+1.1/+1.9/+2.3 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 1.71 (1e14), 4.36 (3e14)
+    v625 S3_med: +0.097/+0.225/+0.362  (+2.0/+3.8/+5.7 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 0.08 (1e14), 0.22 (3e14)
+    v650 intact (same cell): +0.006/+0.040/+0.026
+    v650 S1_med: +0.030/+0.086/+0.103  (+1.0/+1.8/+2.0 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 1.73 (1e14), 4.98 (3e14)
+    v650 S2_med: +0.040/+0.099/+0.134  (+1.1/+2.0/+2.5 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 1.31 (1e14), 3.96 (3e14)
+    v650 S3_med: +0.096/+0.223/+0.354  (+1.9/+3.8/+5.6 sigma)  -> FAIL;  carrier/baryons in 150 kpc: 0.06 (1e14), 0.20 (3e14)
+  [PASS] W (informational) S1, S2, S3 and the intact carrier at the new cell, every kick
+         measured: see table
+         reading:  reported either way
+
+==============================================================================================================
+R1  THE HYPOTHESIS (set before the run)
+==============================================================================================================
+  [PASS] R1 = H (PROVISIONAL: z = 0 retention at z = 0.4): at some kick in L388's pooled window the phase-mixed shape S2 passes Harvey same-cell (all three estimators)
+         measured: S2 passes at: ['v575'] (window ['v575', 'v600', 'v625', 'v650'])
+
+  4/4 checks pass; load-bearing failures: 0; wrote L389_harvey_same_cell_linear_gate_results.json   [3160s]
