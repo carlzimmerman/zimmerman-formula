@@ -1,0 +1,41 @@
+P34b -- IS GP4's COSMIC-SHEAR WINDOW RESOLVED?  GP4's two window cells re-scored in GP3's finer box.
+  boxes: 200 Mpc cell 0.781 Mpc; 100 Mpc cell 0.391 Mpc   [27s]
+  spectra measured (2 boxes x 2 footings x lambda (1.0, 2.0))   [68s]
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: the 200 Mpc box reproduces GP4's committed cosmic-shear scores for its two window cells (1e-9)
+         measured: max |diff| = 0.0e+00
+  [PASS] C2 CONTROL: the 100 Mpc box reproduces GP3's committed L2 ratios at lambda = 2 (1e-9)
+         measured: max |diff| = 0.0e+00
+
+======================================================================================================================
+H  GP4's WINDOW CELLS IN THE BOX AT TWICE THE RESOLUTION (lambda = 1 Mpc)
+======================================================================================================================
+    cell f_d(0) 0.95, v_k 1200, 200 Mpc box: worst R canonical 1.091, alt 1.145
+    cell f_d(0) 0.95, v_k 1200, 100 Mpc box: worst R canonical 1.111, alt 1.167
+    cell f_d(0) 0.9, v_k 1400, 200 Mpc box: worst R canonical 1.134, alt 1.190
+    cell f_d(0) 0.9, v_k 1400, 100 Mpc box: worst R canonical 1.152, alt 1.208
+  [FAIL] H GP4's two window cells still pass cosmic shear (worst R <= 1.2, k = 0.1-1, both footings) in the box at twice the resolution
+         measured: {'0.95|1200': {'canonical': 1.111, 'alt': 1.167}, '0.9|1400': {'canonical': 1.152, 'alt': 1.208}}
+
+======================================================================================================================
+D1  (reported) RESOLUTION OR REALISATION?  The kernel-alone ratio in both boxes, and the cluster cells
+======================================================================================================================
+    lambda 1.0 canonical: fine/coarse - 1 at k 0.3/0.5/0.7/1: +0.002 / +0.006 / +0.005 / +0.005
+    lambda 1.0 alt      : fine/coarse - 1 at k 0.3/0.5/0.7/1: +0.002 / +0.006 / +0.005 / +0.006
+    lambda 2.0 canonical: fine/coarse - 1 at k 0.3/0.5/0.7/1: +0.007 / -0.001 / -0.011 / +0.003
+    lambda 2.0 alt      : fine/coarse - 1 at k 0.3/0.5/0.7/1: +0.007 / -0.002 / -0.013 / +0.003
+    cells holding >= 2e12 Msun of bound baryons (~cluster cores): 200 Mpc 279 (34.88 per 1e6 Mpc^3), 100 Mpc 28 (28.00 per 1e6 Mpc^3)
+  [PASS] D1 (reported) the kernel-alone ratio changes between the boxes by at most X at lambda = 1 against Y at lambda = 2
+         measured: lambda 1: 0.006; lambda 2: 0.013
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  GP4's window cells, worst cosmic-shear R on the alternative footing (200 Mpc -> 100 Mpc at twice the resolution): {'0.95|1200': (1.145, 1.167), '0.9|1400': (1.19, 1.208)}.
+  The kernel-alone ratio moves by up to 0.006 at lambda = 1 and 0.013 at lambda = 2 between the boxes.
+  3/4 checks pass; load-bearing failures: 1   [68s]
+  wrote P34b_gp4_window_resolution_results.json
+rc=1
