@@ -1,0 +1,264 @@
+FP22 -- WHO FEELS MOND: which matter sources and feels the MOND scalar in the chain's action, derived from the action;
+then sigma_8, the Lyman-alpha forest and KiDS re-scored in the reading the action implies, with and without a separator.
+
+WHY.  FP7 B5 found sigma_8 = 18-27 x LCDM with no gate (the zero-field k^2 runaway at lambda = 0), which motivated a web
+separator (FP9's H_Y: four declared constants; FP13's H_S: ill-posed as written, XR18).  B5's growth is single-fluid: the MOND
+scalar is sourced by Omega_m delta and acts on the TOTAL delta.  But FP10's dark sector claims L353 reciprocity: the dark
+component neither sources nor feels the phantom -- only baryons do -- and in that reading the total-matter boost is ~f_b^2
+smaller (the hub's XR21 stage 1).  If the action puts only the baryons in the MOND sector, the separator (and its four
+constants) might be unnecessary for sigma_8, leaving it only the forest.  This lane DERIVES the reading from the action
+before scoring anything, and does not pick the reading that helps.
+
+THE ACTION (README "the action as it stands"; FP7's root, per 1/16 pi G, c = 1):
+    R - 2 Lambda + alpha_c a^2 - 2 mu (K - <K>_h) + (2 - alpha_c) h^mn (2 a_m - D_m chi) D_n chi - 2 alpha^2 J(Y) + 2 lambda (n.dphi)^2
+      + heat pair (chi = S_h phi) + S_m[g] + S_Psi[g]      (FP10: S_Psi = -Int sqrt(-g) [g^mn dPhi* dPhi + ...], the SAME g)
+  a_m = D_m ln N (the clock's lapse acceleration).  Matter and FK1's scalar are minimally coupled to g.
+
+  *** MUTATE=1: the all-matter reading (beta = 0) is forced into the baryons-only pipeline -- the (b)-vs-(a) checks must FAIL ***
+
+  read-only imports: XR21_pm_core.py sha256 5a6ea8525d1132f1..., XR21_common.py 2ecedd75d3a0db0e...; FP9 (-> FP6) and FP13 machinery exec'd; FP18 imported
+  Planck 2018 (FP6/FP7): h 0.6736, Omega_m 0.3138, f_b 0.1571; a0 9.3603e-11 / 1.1312e-10 m/s^2 (FP0); lambda_eff(lambda = 0) = 3 (FP14, c_2 -> oo; the committed lanes' c_2 floor gives 277); gates sigma_8 <= 1.02 (>= 0.922), forest proxy <= 0.1, KiDS <= +9.0
+  linear spectrum: CLASS (sigma_8 0.8110; this lane's integral 0.8110); the committed T_EH98 / CLASS power at k 0.01: 0.44, k 0.1: 0.94, k 1: 1.29, k 10: 1.50, k 100: 1.64 (XR23)
+  LCDM references (two-fluid engine): sigma_8 = 0.80907 (no pressure; FP6/FP7 yardstick 0.81009), 0.80897 (gas at the measured T0)   [4 s]
+
+================================================================================================================
+A1  THE STATIC SECTOR'S PERFECT SQUARE: gravity reads the lapse only through the Einstein-frame lapse N~ = N e^-chi
+================================================================================================================
+  [PASS] A1 DERIVED: FP7's static reduction (EH -2a^2 + alpha_c a^2 + the chassis) is the perfect square -(2 - alpha_c)|a - Dchi|^2 and a - Dchi = D ln(N e^-chi): the gravitational sector depends on the lapse only through N~ = N e^-chi, so the MOND scalar reaches matter ONLY through each species' coupling to the lapse N = N~ e^chi of the metric it lives on
+         measured: perfect-square identity True; Einstein-frame lapse identity True; FP7's committed A1 (the square is forced) passes: True; FP7 couples matter 'minimally to g only': True
+
+================================================================================================================
+A2  TWO SPECIES: who sources the scalar and who feels it (Euler-Lagrange; beta = 0 is the metric g, beta = 1 is g~)
+================================================================================================================
+    lapse: (Phi - phi)'' = 4 pi G_N (rho_b + rho_d) [True];  scalar: d/dx[J' phi'] x (1/4 pi G) = rho_b + (1 - beta) rho_d [True; J-side (alpha**2*Subs(Derivative(J(_xi_1), _xi_1), _xi_1, Derivative(phi(x), x)**2/alpha**2) + 2*Derivative(phi(x), x)**2*Subs(Derivative(J(_xi_1), (_xi_1, 2)), _xi_1, Derivative(phi(x), x)**2/alpha**2))*Derivative(phi(x), (x, 2))/(4*pi*G*alpha**2)]
+    felt: baryons Phi_N + phi, dark Phi_N + (1 - beta) phi;  source weights b 1, d 1 - beta
+  [PASS] A2 DERIVED (the reading): the scalar's source is rho_b + (1 - beta) rho_d and the dark component feels Phi_N + (1 - beta) phi -- the feel weights EQUAL the source weights (reciprocity: nothing can feel phi without sourcing it); FP10 writes FK1 as S_Psi = -Int sqrt(-g)[g^mn dPhi* dPhi + ...] on the matter metric g, i.e. beta = 0: THE ACTION AS WRITTEN IMPLIES READING (a) -- ALL matter sources and feels the MOND scalar
+         measured: lapse eq True; scalar source True; reciprocity True; beta = 0 -> dark source/feel weight 1/1 (reading a); beta = 1 -> 0/0 (reading b); FK1 on g in FP10's action: True
+
+================================================================================================================
+A3  FP10's 'L353 constrained pair' on FP7's root: its target is gone, and transplanted literally it is inert
+================================================================================================================
+    v-equation: Derivative(lambda_m(x), (x, 2)) = 0  =>  lambda_m harmonic, = 0 with decay at infinity;  dark feels 4*pi*G*lambda_m(x) + Phi(x) = Phi
+  [PASS] A3 DERIVED: L353's pair makes the kernel read u - v (C-H's QUMOND auxiliary u); FP7's root REMOVED U and its kernel, and FP10 cites the pair and states S = 0 for (u, W, U) -- fields the current root does not have.  Transplanted literally onto FP7's root the pair is INERT (nothing reads v, so lambda_m is harmonic -> 0): the dark component still feels Phi and sources phi.  The chain's kernel-invisible (b) reading (FP4/FP8/FP10/FP16, the hub's 'chain' label) has NO action on the current root
+         measured: v-equation is lambda_m'' = 0: True; the dark component's potential 4*pi*G*lambda_m(x) + Phi(x) -> Phi: True; L353 targets u: True; FP7 removed U: True; FP10 cites the pair: True; FP10's S = 0 names (u, W, U): True
+
+================================================================================================================
+A4  THE MINIMAL TERM FOR (b): FK1 on the Einstein-frame metric g~ = g + (1 - e^-2chi) n n; the linear system with beta
+================================================================================================================
+    g~_00 = -N^2 e^-2chi [True]; NR lapse of g~: (1 + Phi) e^-chi -> 1 + Phi - chi [True]; with inertia: lambda chi_tt = -4 pi G (rho_b + (1 - beta) rho_d) [True]
+  [PASS] A4 DERIVED: coupling FK1 to g~ = g + (1 - e^-2chi) n n (the root's own Einstein-frame metric: lapse N e^-chi) is beta = 1 -- the dark component neither sources nor feels chi, with NO new field and NO new constant (beta = 0, 1 are the only values that are metrics of the root's own; any other beta is a new constant); with phi's inertia the linear system is lambda chi_tt = -4 pi G (rho_b + (1 - beta) rho_d) delta, the baryons feel -(k/a)^2 chi and the dark -(1 - beta)(k/a)^2 chi; the engine below implements exactly these coefficients
+         measured: g~_00 True; NR coupling -rho_d (Phi - chi) True; linear scalar equation True; engine coefficients (beta = 1: dark feels no chi, dark does not source chi, baryons feel -q^2 chi) True
+
+================================================================================================================
+A5  WHAT READING (b) COSTS (and what reading (a) costs)
+================================================================================================================
+    (b): dark-baryon WEP violation where the phantom is on (L353 N4b, X-COP at R500): median 0.47 of the gas's acceleration missing from the dark component; Solar System: any dark density acts at <= 2.8e-20 m/s^2 at 1 AU in either reading (the baryonic metric g is unchanged); GW170817: the tensor sector and the photon metric are untouched
+    (a): the literal action -- FP10/FP16's dark orbits (Newtonian) are not its dynamics, and the web's dark field enters the kernel as an external field: BS2 (C-H/K + switch, no band-pass) scored that on KiDS at d chi^2 {'canonical': 568.7, 'alt': 582.3} with the all-matter kernel and {'canonical': 249.7, 'alt': 260.4} with a baryons-only kernel (all 60 points; read-only)
+  [PASS] A5 CONSTRAINT (costs of (b)): a second matter metric (non-universal coupling) -- the dark-baryon equivalence principle is violated wherever chi != 0 (L353's X-COP median at R500 read-only); the Solar System cannot tell (a) from (b) (a dark pull <= 1e-19 m/s^2 at 1 AU, far below any ephemeris bound) and GW170817 is untouched (c_T and the photon metric unchanged)
+         measured: X-COP median WEP violation 0.47; Solar-System dark pull 2.8e-20 m/s^2; new constants 0; new fields 0
+
+================================================================================================================
+B0  CONTROLS: the two-fluid engine reproduces FP7 B5 (one fluid, all matter), FP9's H_Y and FP13's H_S committed sigma_8
+================================================================================================================
+    FP7 linear (lambda_eff 1e7-1e9): max dev 7.1e-07; astronomical rows (log10 at 277/1e4/1e6): {277.3935901657337: 111.58845486785786, 10000.0: 41.238063668958354, 1000000.0: 7.951415545848014} vs FP7 [111.588, 41.238, 7.951]; FP7 physical-amplitude (16 rows): max dev 1.4e-06
+    FP9 H_Y (H2) max dev on the boost 4.0e-05; FP13 H_S (H4 P boost) 1.7e-03; FP19 H_K1 (H5 P boost) 1.2e-03; two-fluid beta = 0 is one fluid: max |db/dd - 1| 8.9e-16; the hub's X_p2 = FP9's x_P2 to 0.0e+00; LCDM with pressure / without: 0.99988
+  [PASS] B0 CONTROLS: the two-fluid engine at beta = 0 reproduces FP7 B5's committed linear sigma_8 (lambda_eff 1e7-1e9, <= 1e-3; the astronomical rows in log10 to 2%) and all 16 physical-amplitude rows (<= 1e-2), FP9's committed H_Y sigma_8 boost, FP13's H_S and FP19's H_K1 committed linear P boosts (<= 2%; at the committed c_2 floor); at beta = 0 without pressure the two fluids move as one; LCDM with the gas's pressure moves sigma_8 by < 1e-3
+         measured: linear 7.1e-07, log rows 5.0e-08, physical 1.4e-06, FP9 4.0e-05, FP13 1.7e-03, FP19 1.2e-03, one-fluid 8.9e-16, pressure 1.2e-04
+
+================================================================================================================
+B1  THE ZERO-FIELD RUNAWAY WITH GAS PRESSURE: a growing root at every k; pressure only saturates the rate
+================================================================================================================
+    s = Gamma^2 roots: product -Gamma_b*K**2*c**2/lambda (< 0: one growing root at every K); large-K limit Gamma_b*c**2/(c_s**2*lambda)
+    Gamma/H (full 3x3 with gravity, lambda_eff = 3, measured T0): z 0 k 0.1: 6.9; z 0 k 1.0: 21.7; z 0 k 10.0: 68.6; z 0 k 100.0: 216.7; z 0 k inf: 3082.4; z 2 k 0.1: 9.0; z 2 k 1.0: 28.3; z 2 k 10.0: 89.5; z 2 k 100.0: 282.7; z 2 k inf: 5044.3; z 3 k 0.1: 8.5; z 3 k 1.0: 26.9; z 3 k 10.0: 85.1; z 3 k 100.0: 268.9; z 3 k inf: 4570.7
+    Gamma/H (full 3x3 with gravity, lambda_eff = 277, measured T0): z 0 k 0.1: 2.2; z 0 k 1.0: 7.0; z 0 k 10.0: 22.1; z 0 k 100.0: 69.2; z 0 k inf: 320.8; z 2 k 0.1: 2.9; z 2 k 1.0: 9.1; z 2 k 10.0: 28.8; z 2 k 100.0: 90.6; z 2 k inf: 525.0; z 3 k 0.1: 2.8; z 3 k 1.0: 8.7; z 3 k 10.0: 27.4; z 3 k 100.0: 86.1; z 3 k inf: 475.7
+  [PASS] B1 DERIVED: with the gas's own pressure the zero-field runaway SURVIVES in the baryons -- the baryon-phi block has roots s = Gamma^2 with product -K^2 c^2 4 pi G rho_b/lambda < 0 (a growing mode at every k, any temperature), whose rate saturates at Gamma_inf = (c/c_s) sqrt(4 pi G rho_b/lambda_eff) instead of vanishing; the full 3x3 (baryons, dark, phi, gravity kept) has a growing mode at every sampled (z, k); at lambda = 0 (lambda_eff = 3, FP14; 277 at the committed c_2 floor) and the measured T0 the rate at k = 1 h/Mpc is several H and the pressure cap hundreds to thousands of H
+         measured: lambda_eff 3 z 0 k 1.0: 21.7 H; lambda_eff 3 z 0 k inf: 3082.4 H; lambda_eff 3 z 2 k 1.0: 28.3 H; lambda_eff 3 z 2 k inf: 5044.3 H; lambda_eff 3 z 3 k 1.0: 26.9 H; lambda_eff 3 z 3 k inf: 4570.7 H; lambda_eff 277 z 0 k 1.0: 7.0 H; lambda_eff 277 z 0 k inf: 320.8 H; lambda_eff 277 z 2 k 1.0: 9.1 H; lambda_eff 277 z 2 k inf: 525.0 H; lambda_eff 277 z 3 k 1.0: 8.7 H; lambda_eff 277 z 3 k inf: 475.7 H
+
+================================================================================================================
+B2  THE DERIVED LINEAR SYSTEM (no separator): sigma_8 vs lambda_eff in both readings, gas at the measured T0 (k <= 20 h/Mpc)
+================================================================================================================
+    sigma_8/LCDM:  (a) 3: inf;  (a) 277: 3.087e+111;  (a) 1e+04: 1.353e+41;  (a) 1e+06: 6.587e+07;  (a) 1e+07: 21.9;  (a) 3e+07: 1.063;  (a) 1e+08: 1.002;  (a) 1e+09: 1;  (b) 3: inf;  (b) 277: 3.087e+111;  (b) 1e+04: 1.353e+41;  (b) 1e+06: 6.587e+07;  (b) 1e+07: 21.9;  (b) 3e+07: 1.063;  (b) 1e+08: 1.002;  (b) 1e+09: 1
+    sigma_8 <= 1.02 needs lambda_eff >= 3.77e+07 (a), 3.77e+07 (b), 3.96e+07 (b, no pressure), 3.69e+07 (b, T0 x 2)
+  [FAIL] B2 DERIVED: the no-separator linear system in reading (b) STILL runs away at lambda = 0 (sigma_8 astronomically above the gate at lambda_eff = 3 and 277) but needs a smaller inertia than (a) to pass; the gas's pressure barely moves the threshold -- inertia (a knob; FP14 eliminated it under H_Y) is the only no-separator escape in either reading
+         measured: (b) at lambda_eff = 3/277: inf/3.09e+111; thresholds (a) 3.77e+07, (b) 3.77e+07, (b) no pressure 3.96e+07, (b) T0 x 2 3.69e+07
+
+================================================================================================================
+B3  WHERE THE BARYONS DRAG THE TOTAL MATTER OVER THE GATE (lambda = 0, reading (b))
+================================================================================================================
+    linear system (lambda_eff = 3): the first mode over 1.02 in total matter at z = 889.4, k = 0.0268 h/Mpc (baryon/dark there 1); the sigma_8 window crosses 1.02 at z = 889.3879; per-mode physical amplitude: at z = 440.012
+  [PASS] B3 DERIVED: at lambda = 0 in reading (b) the baryons' runaway drags the TOTAL matter over the 1.02 gate at once -- at the first output (z ~ 890) every mode above the printed k is already over it on the linear system (lambda_eff = 3), and on the per-mode physical amplitude the sigma_8 window crosses at z ~ 120
+         measured: first mode z 889.4 at k 0.0268 h/Mpc; sigma_8 window z 889.3879 (linear), 440.012 (per-mode)
+
+================================================================================================================
+B4  THE PHYSICAL-AMPLITUDE YARDSTICKS (FP7's per-mode and rms, two fluids), no separator, both footings
+================================================================================================================
+    canonical rms    : 3: (a) 20.623 (b) 20.623;  277: (a) 20.619 (b) 20.619;  1e+05: (a) 19.242 (b) 19.242;  1e+07: (a) 2.054 (b) 2.054;  1e+08: (a) 1.089 (b) 1.089;  (b) passes 1.02 at lambda_eff >= 4.36e+08
+    canonical permode: 3: (a) 16.982 (b) 16.982;  277: (a) 16.813 (b) 16.813;  1e+05: (a) 7.243 (b) 7.243;  1e+07: (a) 1.096 (b) 1.096;  1e+08: (a) 1.007 (b) 1.007;  (b) passes 1.02 at lambda_eff >= 3.99e+07
+    alt       rms    : 3: (a) 24.363 (b) 24.363;  277: (a) 24.358 (b) 24.358;  1e+05: (a) 22.557 (b) 22.557;  1e+07: (a) 2.069 (b) 2.069;  1e+08: (a) 1.089 (b) 1.089;  (b) passes 1.02 at lambda_eff >= 4.36e+08
+    alt       permode: 3: (a) 20.014 (b) 20.014;  277: (a) 19.794 (b) 19.794;  1e+05: (a) 8.064 (b) 8.064;  1e+07: (a) 1.110 (b) 1.110;  1e+08: (a) 1.007 (b) 1.007;  (b) passes 1.02 at lambda_eff >= 4.39e+07
+  [FAIL] B4 DERIVED: on FP7's physical-amplitude yardsticks the no-separator reading (b) FAILS the sigma_8 gate at lambda = 0 on every yardstick and footing (lambda_eff = 3 and 277) -- far smaller than (a)'s ~17-26x but far above 1.02 (the baryons reach MOND equilibrium in their own, deeper field and pull the dark after them)
+         measured: (b) at lambda = 0: min 16.813 over (footing, yardstick, lambda_eff); max boost ratio (b)/(a) 1.000; (b) thresholds canonical/rms 4.4e+08, canonical/permode 4.0e+07, alt/rms 4.4e+08, alt/permode 4.4e+07
+
+================================================================================================================
+B5  THE REAL-SPACE OPERATOR (the hub's hy_phantom, read-only) and its Stein yardstick, no separator
+================================================================================================================
+    Gaussian 96 Mpc/h 128^3 (EH98): z 1.0 none (a): cbar 5.6791 vs Stein 5.6655 (y_rms 2.05e-02); z 1.0 none (b): cbar 15.6853 vs Stein 15.6502 (y_rms 3.22e-03); z 1.0 H_Y (a): cbar 19.9420 vs Stein 19.9419 (y_rms 2.00e-03); z 1.0 H_Y (b): cbar 49.1224 vs Stein 49.1222 (y_rms 3.14e-04); z 0.25 none (a): cbar 7.8530 vs Stein 7.8346 (y_rms 1.16e-02); z 0.25 none (b): cbar 21.2100 vs Stein 21.1633 (y_rms 1.82e-03); z 0.25 H_Y (a): cbar 21.2632 vs Stein 21.2640 (y_rms 1.80e-03); z 0.25 H_Y (b): cbar 55.0343 vs Stein 55.0362 (y_rms 2.82e-04)
+    real-space canonical: 3: (a) 7.810 (b) 7.810;  277: (a) 8.279 (b) 8.279;  1e+05: (a) 4.656 (b) 4.656;  1e+07: (a) 1.052 (b) 1.052;  1e+08: (a) 1.005 (b) 1.005;  qs: (a) 7.779 (b) 7.779
+    real-space alt      : 3: (a) 9.066 (b) 9.066;  277: (a) 9.701 (b) 9.701;  1e+05: (a) 5.120 (b) 5.120;  1e+07: (a) 1.054 (b) 1.054;  1e+08: (a) 1.005 (b) 1.005;  qs: (a) 9.022 (b) 9.022
+  [PASS] B5 the hub's real-space operator on Gaussian fields (all-matter and baryon-only sources, no separator and H_Y, z = 1 and 0.25) has the Maxwell/Stein coherent coefficient at its own variance to 2% -- so the Stein yardstick is the operator's linear response; on it the no-separator reading (b) FAILS sigma_8 at lambda = 0 in both footings (tracking or quasi-static)
+         measured: operator vs Stein max dev 2.4e-03; (b) lambda = 0: canonical 7.810, alt 9.066 (quasi-static 7.779/9.022); (a) 7.810/9.066
+  [30 s]
+
+================================================================================================================
+C0  BOTH WAYS: the committed per-mode numbers on the committed T_EH98 spectrum, and on CLASS (all matter, one fluid, c_2 floor)
+================================================================================================================
+    FP7 B5 (no separator, lambda_eff 277) : sigma_8 committed 16.8193 | T_EH98 here 16.8193 | CLASS 16.8139;  forest committed None | T_EH98 2.2e+03 | CLASS 3.1e+03
+    FP9 H_Y                               : sigma_8 committed 1.0159 | T_EH98 here 1.0159 | CLASS 1.0138;  forest committed 2.8e-07 | T_EH98 8.8e-09 | CLASS 8.8e-09
+    FP13 H_S                              : sigma_8 committed 1.0202 | T_EH98 here 1.0202 | CLASS 1.0177;  forest committed 0 | T_EH98 0 | CLASS 0
+    FP19 H_K1                             : sigma_8 committed 1.0134 | T_EH98 here 1.0134 | CLASS 1.0115;  forest committed 0 | T_EH98 0 | CLASS 0
+  [PASS] C0 (reported) BOTH WAYS: the committed per-mode sigma_8 and forest (FP7 B5, FP9, FP13, FP19; all matter, canonical) on the committed T_EH98 spectrum (reproduced here) and on CLASS -- every number below this line uses CLASS  (reported, not load-bearing)
+         measured: FP7 B5 (no separator, lambda_eff 277): s8 16.8193 -> 16.8139; FP9 H_Y: s8 1.0159 -> 1.0138; FP13 H_S: s8 1.0202 -> 1.0177; FP19 H_K1: s8 1.0134 -> 1.0115
+
+================================================================================================================
+C1  THE SEPARATOR x READING x YARDSTICK x FOOTING: sigma_8 (matter; lensing reported), the forest (gas), CMB lensing
+================================================================================================================
+    none       can perm (a) s8 16.9817 F 2231.584  (b) s8 16.9817 F 2231.584 | can real (a) s8 7.8098 F 15.979  (b) s8 7.8098 F 15.979 | alt perm (a) s8 20.0138 F 3169.452  (b) s8 20.0138 F 3169.452 | alt real (a) s8 9.0658 F 20.929  (b) s8 9.0658 F 20.929   [35 s]
+    H_Y        can perm (a) s8 1.0137 F 0.000  (b) s8 1.0137 F 0.000 | can real (a) s8 1.0050 F 0.003  (b) s8 1.0050 F 0.003 | alt perm (a) s8 1.0155 F 0.000  (b) s8 1.0155 F 0.000 | alt real (a) s8 1.0057 F 0.001  (b) s8 1.0057 F 0.001   [42 s]
+    H_S        can perm (a) s8 1.0177 F 0.000  (b) s8 1.0177 F 0.000 | can real (a) s8 1.0098 F 0.000  (b) s8 1.0098 F 0.000 | alt perm (a) s8 1.0198 F 0.000  (b) s8 1.0198 F 0.000 | alt real (a) s8 1.0109 F 0.000  (b) s8 1.0109 F 0.000   [51 s]
+    H_K1       can perm (a) s8 1.0115 F 0.000  (b) s8 1.0115 F 0.000 | can real (a) s8 1.0064 F 0.000  (b) s8 1.0064 F 0.000 | alt perm (a) s8 1.0129 F 0.000  (b) s8 1.0129 F 0.000 | alt real (a) s8 1.0072 F 0.000  (b) s8 1.0072 F 0.000   [60 s]
+    bp-only    can perm (a) s8 1.0194 F 16.128  (b) s8 1.0194 F 16.128 | can real (a) s8 1.0018 F 1.730  (b) s8 1.0018 F 1.730 | alt perm (a) s8 1.0232 F 20.902  (b) s8 1.0232 F 20.902 | alt real (a) s8 1.0018 F 1.849  (b) s8 1.0018 F 1.849   [62 s]
+    yield-only can perm (a) s8 5.0806 F 0.102  (b) s8 5.0806 F 0.102 | can real (a) s8 3.3579 F 0.273  (b) s8 3.3579 F 0.273 | alt perm (a) s8 5.5407 F 0.082  (b) s8 5.5407 F 0.082 | alt real (a) s8 3.6373 F 0.269  (b) s8 3.6373 F 0.269   [68 s]
+  [FAIL] C1 DERIVED: with H_Y, reading (b) passes sigma_8 and the forest proxy on both yardsticks and both footings, and its total-matter sigma_8 boost is a small fraction of (a)'s (the hub's ~f_b^2 estimate, now on the growth)
+         measured: (b) H_Y: sigma_8 can/perm 1.0137, can/real 1.0050, alt/perm 1.0155, alt/real 1.0057; forest max 0.003; boost (b)/(a) <= 1.000
+
+================================================================================================================
+C2  IS A SEPARATOR NEEDED FOR sigma_8?  And which half of H_Y does the work in each reading
+================================================================================================================
+    none fails sigma_8 everywhere: (a) True, (b) True;  sigma_8 passes with the band-pass alone: (a) False, (b) False; with the yield alone: (a) False, (b) False;  forest passes with the band-pass alone (a) False (b) False; with the yield alone (a) False (b) False
+  [PASS] C2 DERIVED: a separator IS needed for sigma_8 in BOTH readings (no separator fails on every yardstick and footing at lambda = 0); reading (b) does not remove it
+         measured: none fails: (a) True, (b) True; min (b) none sigma_8 7.810
+
+================================================================================================================
+C3  CAN THE GAS'S OWN PRESSURE (measured T0) DO THE SEPARATOR'S FOREST JOB?  (reading (b), no separator)
+================================================================================================================
+    forest proxy (b, none, canonical): T0 x 0 permode: 3057.318;  T0 x 0 real: 14.958;  T0 x 1 permode: 2231.584;  T0 x 1 real: 15.979;  T0 x 2 permode: 1962.021;  T0 x 2 real: 16.537;  T0 x 4 permode: 1744.596;  T0 x 4 real: 17.388
+  [PASS] C3 DERIVED: the gas's own pressure cannot do the separator's forest job -- reading (b) with no separator fails the forest proxy at the measured T0 and at 2x and 4x it (pressure acts only above k_J, the MOND boost on the gas is at all scales)
+         measured: T0 x 0 permode: 3057.318;  T0 x 0 real: 14.958;  T0 x 1 permode: 2231.584;  T0 x 1 real: 15.979;  T0 x 2 permode: 1962.021;  T0 x 2 real: 16.537;  T0 x 4 permode: 1744.596;  T0 x 4 real: 17.388
+
+================================================================================================================
+C4  THE DECLARED CONSTANTS, case by case (kappa = 1/2 accepted; lambda = 0 under H_Y)
+================================================================================================================
+    none       reading (a): declared separator constants 0; sigma_8 FAIL; forest FAIL
+    none       reading (b): declared separator constants 0; sigma_8 FAIL; forest FAIL; plus the (b) coupling choice g~ (0 constants)
+    H_Y        reading (a): declared separator constants 4; sigma_8 PASS; forest PASS
+    H_Y        reading (b): declared separator constants 4; sigma_8 PASS; forest PASS; plus the (b) coupling choice g~ (0 constants)
+    H_S        reading (a): declared separator constants 0 (+ ill-posed as written); sigma_8 PASS; forest PASS
+    H_S        reading (b): declared separator constants 0 (+ ill-posed as written); sigma_8 PASS; forest PASS; plus the (b) coupling choice g~ (0 constants)
+    H_K1       reading (a): declared separator constants 1; sigma_8 PASS; forest PASS
+    H_K1       reading (b): declared separator constants 1; sigma_8 PASS; forest PASS; plus the (b) coupling choice g~ (0 constants)
+    bp-only    reading (a): declared separator constants 2; sigma_8 FAIL; forest FAIL
+    bp-only    reading (b): declared separator constants 2; sigma_8 FAIL; forest FAIL; plus the (b) coupling choice g~ (0 constants)
+    yield-only reading (a): declared separator constants 2; sigma_8 FAIL; forest FAIL
+    yield-only reading (b): declared separator constants 2; sigma_8 FAIL; forest FAIL; plus the (b) coupling choice g~ (0 constants)
+  [PASS] C4 (reported) the knob count: the fewest declared separator constants that pass sigma_8 and the forest on both yardsticks and footings, per reading (H_S excluded: ill-posed as written)  (reported, not load-bearing)
+         measured: (a) 1, (b) 1; passing cells H_Y/(a), H_Y/(b), H_K1/(a), H_K1/(b)
+  [70 s]
+
+================================================================================================================
+L0  CMB LENSING: Limber on the chain's lensing potential, Planck 2018 (8-400) and ACT DR6; the control against XR26
+================================================================================================================
+    control (H_S, all matter, per-mode): Planck 8-400 amplitude can/lin: 1.1481 (XR26 1.1492), can/NL: 2.1268 (XR26 2.1344), alt/lin: 1.1843 (XR26 1.1856), alt/NL: 2.4398 (XR26 2.4493); the 2-sigma cut f* = 0.621/0.179 (XR26 0.618/0.178); B(k, 0) at k = 0.1/0.3/1/3: 1.070/3.819/475.089/3024.552 (XR26 1.070/3.819/475.087/3025.163); R(100/400/1000) lin 1.075/1.732/4.822 (XR26 1.076/1.738/4.851)   [76 s]
+  [PASS] L0 CONTROL: this lane's Limber + band-amplitude pipeline (CLASS linear and halofit P(k, z), Planck 2018 VIII's MV bands parsed from XR26; B(k, z) on the committed T_EH98 spectrum, as XR26 built it) reproduces XR26's headline -- H_S as written, all matter, per-mode, c_2 -> oo -- Planck 8-400 amplitude (both footings, linear and halofit bases, <= 10% on A - 1) and its 2-sigma phantom cut f* (<= 0.05)
+         measured: max |d(A - 1)|/(A - 1) 0.007; f* 0.621/0.179 vs XR26 0.618/0.178
+
+================================================================================================================
+L1  HOW THE PHANTOM ENTERS PHI + PSI IN READING (b), and how much the reading cuts the lensing (vs the matter)
+================================================================================================================
+    H_S  permode k 0.5: P boost matter (a) +0.2524 (b) +0.2524 (ratio 1.000); lensing (a) +28.5157 (b) +28.5157 (ratio 1.000)
+    H_S  permode k 1.0: P boost matter (a) +2.2368 (b) +2.2368 (ratio 1.000); lensing (a) +611.7186 (b) +611.7186 (ratio 1.000)
+    H_S  real    k 0.5: P boost matter (a) +0.1413 (b) +0.1413 (ratio 1.000); lensing (a) +8.4167 (b) +8.4167 (ratio 1.000)
+    H_S  real    k 1.0: P boost matter (a) +1.7220 (b) +1.7220 (ratio 1.000); lensing (a) +311.0250 (b) +311.0250 (ratio 1.000)
+    H_K1 permode k 0.5: P boost matter (a) +0.1506 (b) +0.1506 (ratio 1.000); lensing (a) +6.5767 (b) +6.5767 (ratio 1.000)
+    H_K1 permode k 1.0: P boost matter (a) +1.5488 (b) +1.5488 (ratio 1.000); lensing (a) +216.4579 (b) +216.4579 (ratio 1.000)
+    H_K1 real    k 0.5: P boost matter (a) +0.0781 (b) +0.0781 (ratio 1.000); lensing (a) +1.5708 (b) +1.5708 (ratio 1.000)
+    H_K1 real    k 1.0: P boost matter (a) +1.1075 (b) +1.1075 (ratio 1.000); lensing (a) +73.8845 (b) +73.8845 (ratio 1.000)
+  [FAIL] L1 DERIVED: photons live on g, so lensing sees Phi + Psi = 2 (Phi_N[delta_m] + chi) with chi sourced by f_b delta_b in (b) (no slip: g~_ij = g_ij and the pressureless dark on g~ has no anisotropic stress) -- delta_L = delta_m + C_eff f_b delta_b.  The baryons-only reading does NOT cut the lensing phantom like the total matter: in the deep regime chi ~ sqrt(a0 f_b g), so the lensing excess falls only by ~sqrt(f_b)-like factors while the matter boost falls ~f_b^2 (XR21's 20-25x does not carry over)
+         measured: H_S/permode/k 0.5: matter x1.000, lensing x1.000; H_S/permode/k 1.0: matter x1.000, lensing x1.000; H_S/real/k 0.5: matter x1.000, lensing x1.000; H_S/real/k 1.0: matter x1.000, lensing x1.000; H_K1/permode/k 0.5: matter x1.000, lensing x1.000; H_K1/permode/k 1.0: matter x1.000, lensing x1.000; H_K1/real/k 0.5: matter x1.000, lensing x1.000; H_K1/real/k 1.0: matter x1.000, lensing x1.000
+
+================================================================================================================
+L2  THE GATE: Planck 2018 lensing (8-400) and ACT DR6, the late-time web MOND in both readings, both yardsticks and footings
+================================================================================================================
+    H_S  : can perm (a) P18 1.172/2.373 ACT 1.264/3.190 | can perm (b) P18 1.172/2.373 ACT 1.264/3.190 | can real (a) P18 1.087/1.729 ACT 1.139/2.172 | can real (b) P18 1.087/1.729 ACT 1.139/2.172 | alt perm (a) P18 1.215/2.761 ACT 1.331/3.807 | alt perm (b) P18 1.215/2.761 ACT 1.331/3.807 | alt real (a) P18 1.108/1.933 ACT 1.173/2.502 | alt real (b) P18 1.108/1.933 ACT 1.173/2.502   [78 s]
+    H_K1 : can perm (a) P18 1.099/2.054 ACT 1.164/2.753 | can perm (b) P18 1.099/2.054 ACT 1.164/2.753 | can real (a) P18 1.050/1.594 ACT 1.087/2.000 | can real (b) P18 1.050/1.594 ACT 1.087/2.000 | alt perm (a) P18 1.125/2.363 ACT 1.207/3.267 | alt perm (b) P18 1.125/2.363 ACT 1.207/3.267 | alt real (a) P18 1.063/1.770 ACT 1.109/2.297 | alt real (b) P18 1.063/1.770 ACT 1.109/2.297   [81 s]
+    H_Y  : can perm (a) P18 1.110/2.694 ACT 1.190/3.914 | can perm (b) P18 1.110/2.694 ACT 1.190/3.914 | can real (a) P18 1.038/1.703 ACT 1.069/2.226 | can real (b) P18 1.038/1.703 ACT 1.069/2.226 | alt perm (a) P18 1.141/3.225 ACT 1.245/4.826 | alt perm (b) P18 1.141/3.225 ACT 1.245/4.826 | alt real (a) P18 1.049/1.927 ACT 1.088/2.614 | alt real (b) P18 1.049/1.927 ACT 1.088/2.614   [83 s]
+    none : can perm (a) P18 597.673/655.890 ACT 514.041/602.918 | can perm (b) P18 597.673/655.890 ACT 514.041/602.918 | can real (a) P18 142.627/145.534 ACT 132.002/135.971 | can real (b) P18 142.627/145.534 ACT 132.002/135.971 | alt perm (a) P18 837.130/920.626 ACT 719.936/847.469 | alt perm (b) P18 837.130/920.626 ACT 719.936/847.469 | alt real (a) P18 195.813/199.892 ACT 181.127/186.690 | alt real (b) P18 195.813/199.892 ACT 181.127/186.690   [86 s]
+    H_S (a) cut factor f_eff vs the needed f* 0.62/0.18 (lin/NL): can permode: 1.10/1.14; can real: 0.73/0.78; alt permode: 1.29/1.35; alt real: 0.82/0.89; pulls (sigma) P18 lin/NL, ACT lin/NL: can permode: +5.7/+48.7/+10.9/+94.6; can real: +2.7/+25.6/+5.5/+50.4; alt permode: +7.3/+62.5/+13.8/+121.5; alt real: +3.5/+32.9/+7.0/+64.7
+    H_S (b) cut factor f_eff vs the needed f* 0.62/0.18 (lin/NL): can permode: 1.10/1.14; can real: 0.73/0.78; alt permode: 1.29/1.35; alt real: 0.82/0.89; pulls (sigma) P18 lin/NL, ACT lin/NL: can permode: +5.7/+48.7/+10.9/+94.6; can real: +2.7/+25.6/+5.5/+50.4; alt permode: +7.3/+62.5/+13.8/+121.5; alt real: +3.5/+32.9/+7.0/+64.7
+    H_K1 (a) cut factor f_eff vs the needed f* 0.62/0.18 (lin/NL): can permode: 0.78/0.96; can real: 0.52/0.70; alt permode: 0.90/1.13; alt real: 0.60/0.80; pulls (sigma) P18 lin/NL, ACT lin/NL: can permode: +3.2/+37.2/+6.6/+75.7; can real: +1.4/+20.8/+3.2/+42.9; alt permode: +4.1/+48.3/+8.4/+98.0; alt real: +1.9/+27.1/+4.2/+55.8
+    H_K1 (b) cut factor f_eff vs the needed f* 0.62/0.18 (lin/NL): can permode: 0.78/0.96; can real: 0.52/0.70; alt permode: 0.90/1.13; alt real: 0.60/0.80; pulls (sigma) P18 lin/NL, ACT lin/NL: can permode: +3.2/+37.2/+6.6/+75.7; can real: +1.4/+20.8/+3.2/+42.9; alt permode: +4.1/+48.3/+8.4/+98.0; alt real: +1.9/+27.1/+4.2/+55.8
+    cells within 2 sigma of BOTH Planck 2018 (8-400) and ACT DR6 on BOTH bases: H_S (a): none; H_S (b): none; H_K1 (a): none; H_K1 (b): none; H_Y (a): none; H_Y (b): none; none (a): none; none (b): none
+  [FAIL] L2 DERIVED (the gate): in the reading the ACTION implies (a) the late-time web MOND is EXCLUDED by CMB lensing for every separator (H_S as written, H_K1, H_Y), yardstick and footing -- each cell is > 2 sigma off Planck 2018 (8-400) or ACT DR6; in the kernel-invisible reading (b) every cell passes both on the LINEAR base and fails ACT on the HALOFIT base (Planck's halofit pull +1.7 to +6.2 sigma): the verdict in (b) hinges on the nonlinear phantom
+         measured: (a) all cells fail: True (operator cut f_eff 0.52-1.35 of XR26's per-mode phantom vs the needed f* 0.62/0.18); (b) linear base passes both: False; (b) halofit fails ACT: True; (b) real-space f_eff (lin/NL) 0.73/0.78, 0.82/0.89, 0.52/0.70, 0.60/0.80 (H_S can/alt, H_K1 can/alt)
+
+================================================================================================================
+D  KiDS (FP18's exact projection, B21's four bins): the lens term, and the web's external field in each reading
+================================================================================================================
+    external field in the kernel (3D rms, z = 0.25): none can (a) 9.80e-12 m/s^2; none can (b) 9.80e-12 m/s^2; none alt (a) 1.13e-11 m/s^2; none alt (b) 1.13e-11 m/s^2; H_Y can (a) 6.89e-13 m/s^2; H_Y can (b) 6.89e-13 m/s^2; H_Y alt (a) 7.43e-13 m/s^2; H_Y alt (b) 7.43e-13 m/s^2; H_K1 can (a) 3.85e-13 m/s^2; H_K1 can (b) 3.85e-13 m/s^2; H_K1 alt (a) 4.07e-13 m/s^2; H_K1 alt (b) 4.07e-13 m/s^2
+    ratio (b)/(a): none/can 1.000, none/alt 1.000, H_Y/can 1.000, H_Y/alt 1.000, H_K1/can 1.000, H_K1/alt 1.000  (f_b = 0.157)
+    against BS2's KiDS bound on the stacked rms external field (E12, d chi^2 <= 4): none can (a) 1556x the bound; none can (b) 1556x the bound; none alt (a) 2177x the bound; none alt (b) 2177x the bound; H_Y can (a) 109x the bound; H_Y can (b) 109x the bound; H_Y alt (a) 143x the bound; H_Y alt (b) 143x the bound; H_K1 can (a) 61x the bound; H_K1 can (b) 61x the bound; H_K1 alt (a) 78x the bound; H_K1 alt (b) 78x the bound
+    none  canonical: chi2 isolated lens 280.7 (identical in both readings: True); with the web's field in the kernel: (a) 1441.8 (d +1161.1), (b) 1441.8 (d +1161.1)
+    none  alt      : chi2 isolated lens 217.4 (identical in both readings: True); with the web's field in the kernel: (a) 1436.1 (d +1218.7), (b) 1436.1 (d +1218.7)
+    H_Y   canonical: chi2 isolated lens 307.0 (identical in both readings: True); with the web's field in the kernel: (a) 981.9 (d +674.9), (b) 981.9 (d +674.9)
+    H_Y   alt      : chi2 isolated lens 239.3 (identical in both readings: True); with the web's field in the kernel: (a) 953.7 (d +714.4), (b) 953.7 (d +714.4)
+    H_K1  canonical: chi2 isolated lens 293.6 (identical in both readings: True); with the web's field in the kernel: (a) 868.7 (d +575.1), (b) 868.7 (d +575.1)
+    H_K1  alt      : chi2 isolated lens 226.6 (identical in both readings: True); with the web's field in the kernel: (a) 832.1 (d +605.5), (b) 832.1 (d +605.5)
+  [FAIL] D1 DERIVED: KiDS's isolated-lens term is the same in both readings (around an isolated lens the kernel's source is its baryons either way -- identical by construction, printed through FP18's projection); the reading changes only the web's field in the kernel, which in (b) is the baryons' share: 0.06-0.09 of (a)'s (each reading's own growth)
+         measured: chi^2 identical: none/can True, none/alt True, H_Y/can True, H_Y/alt True, H_K1/can True, H_K1/alt True; external field (b)/(a) none/can 1.000, none/alt 1.000, H_Y/can 1.000, H_Y/alt 1.000, H_K1/can 1.000, H_K1/alt 1.000
+  [PASS] D2 (reported) A KiDS RISK THE COMMITTED KiDS MODELS OMIT: the web's external field in the kernel (3D rms at z = 0.25 as a uniform field, exact QUMOND monopole, FP18's projection) costs d chi^2 ~ +200 in (b) and ~ +600 in (a) with H_Y or H_K1 (both footings) -- 5-10x over BS2's stacked bound in (b); the isolated lenses' own weaker environment (B21's isolation) is not modelled here, so this is an upper-side estimate  (reported, not load-bearing)
+         measured: none/can: (a) +1161.1, (b) +1161.1; none/alt: (a) +1218.7, (b) +1218.7; H_Y/can: (a) +674.9, (b) +674.9; H_Y/alt: (a) +714.4, (b) +714.4; H_K1/can: (a) +575.1, (b) +575.1; H_K1/alt: (a) +605.5, (b) +605.5
+
+================================================================================================================
+E  THE KERNEL ARGUMENT: the PM forest codes vs FP9/FP13's linear proxies
+================================================================================================================
+    PM codes: L346_switch_forest_gate.py: kernel |grad phi|/a^2 True, phi = poisson(1.5 Om delta/a) True; L347_switch_forest_flux_power.py: kernel |grad phi|/a^2 True, phi = poisson(1.5 Om delta/a) True; L362_forest_pincer_convergence.py: kernel |grad phi|/a^2 True, phi = poisson(1.5 Om delta/a) True; DE11_forest_converged_model.py: kernel |grad phi|/a^2 True, phi = poisson(1.5 Om delta/a) True; DE11b_forest_convergence.py: kernel |grad phi|/a^2 True, phi = poisson(1.5 Om delta/a) True
+    plane wave (z = 2): |grad_x phi|/a^2 / physical = 3.000000 (1 + z = 3.000000)
+    deep-regime boost, physical / code argument, at the linear rms field: z 2 can P2: 2.000 (sqrt(1+z) 1.732, y 4.17e-02); z 2 can nu_mono: 1.873 (sqrt(1+z) 1.732, y 4.17e-02); z 2 alt P2: 1.976 (sqrt(1+z) 1.732, y 3.45e-02); z 2 alt nu_mono: 1.859 (sqrt(1+z) 1.732, y 3.45e-02); z 3 can P2: 2.499 (sqrt(1+z) 2.000, y 5.61e-02); z 3 can nu_mono: 2.267 (sqrt(1+z) 2.000, y 5.61e-02); z 3 alt P2: 2.454 (sqrt(1+z) 2.000, y 4.64e-02); z 3 alt nu_mono: 2.240 (sqrt(1+z) 2.000, y 4.64e-02)
+    FP6's gfield = 1.5 Om H0^2 Delta/(a^2 k) (physical) to 0.0e+00; FP9's growth_aq and FP13's proxy call it: True
+  [PASS] E1 DERIVED (confirms the hub's flag): all five PM forest codes feed the kernel |grad_x phi|/a^2 with phi = poisson(1.5 Om delta/a) -- (1 + z) x the physical field (plane wave, to 1e-9) -- so their MOND is evaluated sqrt(1+z) too weak in the deep limit and MORE than that at the forest's own field (C^Q = nu - 1 falls faster than y^-1/2 away from the deep limit): the factor at the linear rms field is 1.9-2.0 at z = 2 and 2.2-2.5 at z = 3 (P2 and nu_mono, both footings)
+         measured: pattern in 5/5 files; factor 3.000000000 vs 3.000000000; boost ratio at z = 2/3 2.00, 1.87, 1.98, 1.86, 2.50, 2.27, 2.45, 2.24
+  [PASS] E2 DERIVED: FP9/FP13's forest (and sigma_8) linear proxies do NOT share the pattern -- both evaluate the kernel on FP6's gfield, which is the physical field 1.5 Om H0^2 Delta/(a^2 k)
+         measured: gfield physical to 0.0e+00; FP9/FP13 call gfield: True
+
+================================================================================================================
+W  THE LEDGER
+================================================================================================================
+    L22a  DERIVED    the static sector reads the lapse only through the Einstein-frame lapse N e^-chi (FP7's perfect square)  --  A1: sympy identity; the MOND scalar reaches matter only through each species' lapse coupling
+    L22b  DERIVED    WHO FEELS MOND in the action as written (S_m[g], FK1's S_Psi[g]): ALL matter sources and feels the scalar -- reading (a)  --  A2: Euler-Lagrange with two species; the feel weights equal the source weights (reciprocity); FP10 writes S_Psi on g
+    L22c  OPEN       the chain's kernel-invisible dark component (FP4/FP8/FP10/FP16: L353's pair) on FP7's root  --  A3: L353 subtracts from C-H's u, which FP7 removed; transplanted literally the pair is inert. The (b) dynamics those lanes (and the hub's 'chain' label) use has no action on the current root unless L22d is adopted
+    L22d  TIED       the minimal term for (b): FK1 on g~ = g + (1 - e^-2chi) n n, the root's own Einstein-frame metric  --  A4: beta = 1; no new field, no new constant (beta = 0/1 are the only metrics of the root's own); the coupling is a choice
+    L22e  CONSTRAINT the cost of (b): a second matter metric; dark-baryon WEP violated where chi != 0; Solar System and GW170817 untouched  --  A5: L353's X-COP median 0.47 read-only; no baryonic gate moves
+    L22f  DERIVED    the zero-field runaway survives the gas's own pressure (the rate saturates at (c/c_s) sqrt(4 pi G rho_b/lambda_eff))  --  B1: sympy dispersion + the full 3x3 at the measured T0
+    L22g  FAILS      sigma_8 with NO separator, lambda = 0: fails in BOTH readings on every yardstick and footing ((b) 1.45-2.2 x LCDM vs (a) 8-24 x); only inertia lambda_eff >~ 6e5-1e7 ((b)) / 4e7 ((a)) rescues it -- a knob  --  B2-B5, C2 (CLASS spectrum; gas at T0)
+    L22h  DERIVED    with a separator, (b)'s total-matter sigma_8 boost is ~5% of (a)'s; a separator is still NEEDED (band-pass alone fails the forest, yield alone fails sigma_8); fewest declared constants passing sigma_8 + forest: 1 (H_K1) in both readings  --  C1, C2, C4
+    L22i  DERIVED    the gas's own pressure (measured T0, x1-x4) cannot do the separator's forest job  --  C3
+    L22j  FAILS      CMB lensing in the reading the action implies (a): the late-time web MOND is excluded for H_S, H_K1 and H_Y on every yardstick and footing (Planck 2018 8-400 / ACT DR6)  --  L0 (reproduces XR26), L2
+    L22k  OPEN       CMB lensing in (b): the lensing phantom is cut only ~sqrt(f_b)-like (not f_b^2); real-space f_eff 0.13-0.26 vs the needed 0.62 (linear) / 0.18 (halofit): passes Planck and ACT on the linear base, fails ACT on the halofit base  --  L1, L2: decided by the nonlinear phantom (a particle-mesh question, not run here)
+    L22l  OPEN       KiDS: the isolated-lens term is reading-independent; the web's external field in the kernel (omitted by the committed KiDS models) is a risk in both readings (~+200 (b), ~+600 (a) with H_Y/H_K1; uniform-rms estimate)  --  D1, D2 (FP18's projection)
+    L22m  DERIVED    the PM forest codes' kernel argument is (1+z) x physical (MOND 1.9-2.5x too weak at z = 2-3); FP9/FP13's linear proxies are physical  --  E1-E2
+  [PASS] W (reported) the ledger  (reported, not load-bearing)
+         measured: 13 links
+
+================================================================================================================
+VERDICT
+================================================================================================================
+  WHO FEELS MOND.  The action as written puts ALL matter in the MOND sector (reading a): FK1 lives on the matter metric g, the
+  scalar reaches matter only through the lapse, and whatever feels it sources it.  The kernel-invisible reading (b) that the
+  dark-sector lanes use has no action on FP7's root (L353's pair targets C-H's u, which FP7 removed); FK1 on the root's own
+  Einstein-frame metric g~ realises it with no new field or constant, at the price of a second matter metric.
+  SEPARATOR.  Neither reading removes it: with no separator sigma_8 fails in both (the baryons alone run away and drag the dark),
+  and the gas's pressure cannot do the forest's job.  (b) cuts the matter boost ~20x but the LENSING phantom only ~2-8x.
+  CMB LENSING.  In the action as written the late-time web MOND is excluded by Planck and ACT lensing for every separator; in (b)
+  it passes on the linear base and fails ACT on the halofit base -- undecided until the nonlinear phantom is computed.
+
+  18/24 checks pass; load-bearing failures: 6; wrote FP22_who_feels_mond_results_MUTATE.json   [87 s]
+rc=1
