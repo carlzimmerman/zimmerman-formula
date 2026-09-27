@@ -1,0 +1,208 @@
+XR31 -- IS k04's 'STABLE (F6)' RIGHT?  The four-form promotion's slaved kernel on k04's own kernel and couplings
+  (independent derivation from k04's definitions; XR20's code is run only as a cross-check of its T2f number)
+
+  *** MUTATE=1: route B's slaved force law is replaced by its running maximum (a kernel made monotone by hand); every check that requires the fold must FAIL ***
+
+======================================================================================================================
+C   CONTROLS: k04's committed rows, XR20's T2f number, the SPARC loader, the kernel's constants
+======================================================================================================================
+  [PASS] C0 CONTROL: k04's own script, run unmodified from the repository root, reproduces its committed .out verbatim
+         measured: rc = 0; 27 lines identical: True; committed F6 row: '[PASS] F6 [stability] the effective flux stiffness Z_eff = Z + (2-K_B) beta^2 (s Delta - j)/(8 pi) is positive everywhere (s Delta - j >= 0)   (min(s ...'
+         reading:  every F-row this lane re-examines is k04's own, as committed
+  [PASS] C0b CONTROL: this lane's route B (bracketed root of the flux equation, its own quadrature) in k04's convention reproduces k04's committed F3 rows (K_B = 0, 0.25) and F5 rows (both footings) to the printed digits
+         measured: 4/4 rows found verbatim in k04's committed .out
+         reading:  route B solves k04's own equation; k04 iterates it, route B brackets it
+    XR20's T2f line (fresh run, scratch mirror): k04's saturated nu_RAR    : the slaved boost u(y) peaks at y = 2.40 (canonical) / 2.31 (alt) and falls beyond it (u(100) = 0.231)
+  [PASS] C1 CONTROL: XR20's own script (byte-identical copy, run from a scratch mirror with its inputs copied; nothing in the repository written) reproduces its committed T2f line for k04's kernel verbatim
+         measured: XR20 rc = 0; source sha256 identical: True; line identical to the committed .out: True
+  [PASS] C1b CROSS-CHECK: this lane's solver in XR20's convention (c = kappa^2/8 pi, K_B = 0) on XR20's own 400-point grid returns XR20's printed peaks and u(100); the precise fold lies within one grid step of each
+         measured: canonical: grid argmax 2.3976 (XR20 2.40), precise fold 2.3851, grid step 0.045; alt: grid argmax 2.3140 (XR20 2.31), precise fold 2.3229, grid step 0.042; u(100) 0.2315 (XR20 0.231)
+         reading:  XR20's 2.40 / 2.31 are grid values of a real fold; the precise numbers are H1's
+  [PASS] C2 CONTROL: the SPARC loader reads 175 galaxies and reproduces FP7's count of 3391 points under FP7's own selection (V_obs > 0, errV > 0); the RAR cuts of FP1 (Upsilon_bul = 1.4 Upsilon, g_bar > 0, g_obs > 0) leave the reported number at Upsilon = 0.7
+         measured: 175 galaxies; FP7 selection 3391 points; with FP1's RAR cuts at Upsilon = 0.7: 3389 points
+         reading:  C2 was re-specified after debug run 1 (see the README): the pre-declared text compared FP7's count with FP1's RAR cuts, which drop the 2 points whose gas term makes g_bar <= 0
+  [PASS] C3 CONTROL: the kernel's constants (exact saturation point: e^t (1 - t/2) = 1, t = sqrt(s)) equal the record's printed values (k01: s_sat, Delta_sat; k04 F2: I = j_sat)
+         measured: s_sat = 2.539638 (k01 2.540), Delta_sat = 0.647610 (0.6476), j_sat = 0.452525 (0.4525); 40-digit route: s_sat 2.53963828219, Delta_sat 0.647610237892, j_sat 0.452524896675
+
+======================================================================================================================
+A   THE ALGEBRA (sympy on generic kernels, then k04's): k04's F3 equation, the fold identity, F6's quantity, the saturated branch
+======================================================================================================================
+  [PASS] A1 k04's F3 equation re-derived: dL/dr|_Y = r [Zt + (2 - K_B)(s Delta - j)/(8 pi)] (the three-form's conserved conjugate) and J_Y = s/Delta, so the scalar's law J_Y g_phi = g_N is y = s r
+         measured: ds/dr|_Y = -Delta/(Deltap*r); conjugate identity True; J_Y = s/Delta True
+  [PASS] A2 THE FOLD IDENTITY: on shell L_rr|_Y = Zt N/Delta' and du/ds = N/(1 + cF)^2 with N = Delta'(1 + c(F + s Delta)) - c Delta^2, so the Legendre map q -> Pi at fixed Y degenerates exactly where the slaved force peaks; dy/ds = (1 + c(F - s F'))/(1 + cF)^2, so C_L,eff = dy/du = (1 + c(F - sF'))/N
+         measured: du/ds True; L_rr|_Y True; dy/ds True
+         reading:  F6's Z_eff = Pi/q = Zt (1 + cF) is the secant; the stability-relevant quantity is the tangent L_rr|_Y ~ N, or C_L,eff ~ 1/N
+  [PASS] A3 F6'S QUANTITY IS POSITIVE BY CONSTRUCTION: for k04's kernel F' = Delta - s Delta' = Delta (sqrt(s)/2) e^sqrt(s)/(e^sqrt(s) - 1) > 0 (F' = Delta_sat on the saturated branch) and F(0) = 0, so F >= 0 and F6's Z_eff = Z (1 + cF) >= Z at every s -- whatever the slaved kernel does
+         measured: identity (sympy True, 30-digit spot values 0.0e+00) True; F' > 0 on (0, s_sat) True; min F on k04's own 60-point grid 1.054e-05 (k04 printed 1.05e-05); min F on 1e-6..1e4 3.333e-10
+         reading:  F = Y J_Y - J >= 0 is the Legendre-positivity of any kernel convex in Y: F6 can only fail for a kernel that is not a kernel
+  [PASS] A4 THE SATURATED BRANCH: the flux equation is linear there, r = (1 - c D_sat y)/(1 - c j_sat); the slaved force FALLS at du/dy = -c D_sat^2/(1 - c j_sat) to zero at y_off = 1/(c D_sat); C_L,eff = -(1 - c j_sat)/(c D_sat^2) < 0
+         measured: r = (D_sat*c*y - 1)/(c*j_sat - 1); du/dy = D_sat**2*c/(c*j_sat - 1); y_off = 1/(D_sat*c); C_L,eff: K0 -238.62 (y_off 155.23), K25 -272.87 (y_off 177.41), TA -163.05 (y_off 106.29)
+         reading:  k04's kernel is FLAT above s_sat (the bounded boost); a0_loc falling with g_N tilts that flat branch downward
+  [PASS] A5 THE FLUX EQUATION IS WELL-POSED (the restricted sense of F6): dy/ds = (1 + c(s^2 Delta' - j))/(1 + cF)^2 >= (1 - c j_sat)/(1 + cF)^2 > 0, so r(y) is single-valued: exactly one root, 0 < a0_loc <= a0, at every y below y_off
+         measured: F - sF' = s^2 Delta' - j: True; min_s (1 + c(F - sF')): K0 0.99550, K25 0.99606, TA 0.99343
+
+======================================================================================================================
+H1  THE FOLD: route A (Legendre map at fixed Y, 40 digits) vs route B (root-finding of the field equations, peak of u)
+======================================================================================================================
+    K0   k04 convention, K_B = 0, Zt = 8 (kappa = 1/2; = XR20 'canonical')
+         route A (L_rr|_Y = 0 on shell): y_f = 2.385081513004, u_f = 0.6402869715, a0_loc/a0 = 0.9890814833, local s = 2.41141054 (s_sat 2.53964); residuals Pi - Zt = -3.0e-30, L_rr = 5.1e-22; bracket L_rr -298.4 .. 7.998
+         route B (peak of u(y)):          y_f = None, u_f = nan; switch-off y_off = 155.233748685 (A4: 155.233748685)
+         route C (dual Schur = 0):         y_f = 2.385081513004
+         du/dy: min below the fold 3.193e-03 (120 points), max on the band 3.115e-03 (200 points); g_N at the fold = 2.233e-10 / 2.698e-10 m/s^2 (can / alt a0); 1.4 s
+  [FAIL] H1-K0 THE SLAVED KERNEL FOLDS (K0): u(y) peaks at y_f in [2.2, 2.6], routes A and B agree to < 1e-6, du/dy > 0 below and < 0 on the whole band up to the switch-off y_off = 1/(c D_sat)
+         measured: y_f A 2.385081513 / B None / C 2.385081513; |A - B| = n/a; y_off 155.2337; signs below/band True/False
+         reading:  the fold sits just below the kernel's own saturation point: the whole flat (saturated) branch turns non-monotone
+    K25  k04 convention, K_B = 0.25, Zt = 8
+         route A (L_rr|_Y = 0 on shell): y_f = 2.402858080774, u_f = 0.6411657284, a0_loc/a0 = 0.9903523054, local s = 2.42626595 (s_sat 2.53964); residuals Pi - Zt = -3.0e-30, L_rr = 9.2e-23; bracket L_rr -231 .. 7.998
+         route B (peak of u(y)):          y_f = None, u_f = nan; switch-off y_off = 177.409998497 (A4: 177.409998497)
+         route C (dual Schur = 0):         y_f = 2.402858080774
+         du/dy: min below the fold 3.805e-03 (120 points), max on the band 3.728e-03 (200 points); g_N at the fold = 2.249e-10 / 2.718e-10 m/s^2 (can / alt a0); 1.5 s
+  [FAIL] H1-K25 THE SLAVED KERNEL FOLDS (K25): u(y) peaks at y_f in [2.2, 2.6], routes A and B agree to < 1e-6, du/dy > 0 below and < 0 on the whole band up to the switch-off y_off = 1/(c D_sat)
+         measured: y_f A 2.402858081 / B None / C 2.402858080; |A - B| = n/a; y_off 177.4100; signs below/band True/False
+         reading:  the fold sits just below the kernel's own saturation point: the whole flat (saturated) branch turns non-monotone
+    TA   tied alt footing: kappa = 0.6043 on rho_Lambda, Zt = 2/kappa^2, K_B = 0 (= XR20 'alt')
+         route A (L_rr|_Y = 0 on shell): y_f = 2.322851251808, u_f = 0.6371314801, a0_loc/a0 = 0.9846005546, local s = 2.35918134 (s_sat 2.53964); residuals Pi - Zt = 2.5e-29, L_rr = 7.1e-21; bracket L_rr -413.8 .. 5.476
+         route B (peak of u(y)):          y_f = None, u_f = nan; switch-off y_off = 106.288649450 (A4: 106.288649450)
+         route C (dual Schur = 0):         y_f = 2.322851251808
+         du/dy: min below the fold 9.243e-04 (120 points), max on the band 8.459e-04 (200 points); g_N at the fold = 2.174e-10 / 2.628e-10 m/s^2 (can / alt a0); 1.2 s
+  [FAIL] H1-TA THE SLAVED KERNEL FOLDS (TA): u(y) peaks at y_f in [2.2, 2.6], routes A and B agree to < 1e-6, du/dy > 0 below and < 0 on the whole band up to the switch-off y_off = 1/(c D_sat)
+         measured: y_f A 2.322851252 / B None / C 2.322851251; |A - B| = n/a; y_off 106.2886; signs below/band True/False
+         reading:  the fold sits just below the kernel's own saturation point: the whole flat (saturated) branch turns non-monotone
+
+======================================================================================================================
+H2  THE RAR ITSELF STAYS MONOTONE (the fold is in the scalar's force, not in g_obs); MONO (reported)
+======================================================================================================================
+  [PASS] H2 dg_obs/dg_N = 1 + du/dy >= 0.99 everywhere below y_off (all cases)
+         measured: K0: min 1.00000, K25: min 1.00000, TA: min 1.00000
+         reading:  the RAR shows no fold: the non-monotone quantity is the scalar's own force, which is what its field equation's ellipticity depends on (the record's health theorem: C_L >= 0 <=> the phantom is non-decreasing, FP7 C1 / FP14 X5)
+  [PASS] MONO the slaved scalar force u(y) is monotone non-decreasing on (0, y_off) (pre-declared EXPECT FALSE on the main run, TRUE under MUTATE)  [reported]
+         measured: K0: True, K25: True, TA: True
+
+======================================================================================================================
+H3  F6 IS VACUOUS: the secant stiffness stays >= Z on the band; the tangent stiffness flips at the fold; the dual stays > 0
+======================================================================================================================
+    K0   F6's Z_eff/Z - 1 = cF on the band: min 0.0115 (> 0); tangent L_rr|_Y at y_f -/+ 0.05: 2.49069 / -5.82778 (local s 2.46276 < s_sat); dual Lstar_rr|_y min over 8 states 7.96399 (Zt 8.0000)
+    K25  F6's Z_eff/Z - 1 = cF on the band: min 0.0100 (> 0); tangent L_rr|_Y at y_f -/+ 0.05: 2.68274 / -7.10999 (local s 2.47745 < s_sat); dual Lstar_rr|_y min over 8 states 7.96849 (Zt 8.0000)
+    TA   F6's Z_eff/Z - 1 = cF on the band: min 0.0169 (> 0); tangent L_rr|_Y at y_f -/+ 0.05: 1.38007 / -2.50137 (local s 2.4111 < s_sat); dual Lstar_rr|_y min over 8 states 5.44159 (Zt 5.4776)
+  [PASS] H3 F6'S CRITERION HOLDS ON THE UNSTABLE BAND (secant c F > 0 there), while the tangent stiffness L_rr|_Y changes sign at the fold (+ below, - above); the dual stiffness at fixed flux stays positive (the flux equation is well-posed)
+         measured: K0: secant 0.011, L_rr 2.49 -> -5.83, dual min 7.964; K25: secant 0.010, L_rr 2.68 -> -7.11, dual min 7.968; TA: secant 0.017, L_rr 1.38 -> -2.5, dual min 5.442
+         reading:  F6 tests Pi/q, which cannot fail; the Legendre map at fixed scalar gradient folds anyway
+
+======================================================================================================================
+H4  STATIC ELLIPTICITY ON THE BAND: C_L,eff (route B finite differences vs route C's dual Schur complement), C_T,eff
+======================================================================================================================
+    K0   y: C_L,eff route B / route C (rel diff), C_T,eff; saturated-branch constant -238.6234
+           y =    2.45 (local s    2.478, unsat): C_L          inf /    -446.2261 (inf), C_T    3.8264
+           y =    3.00 (local s    3.045, sat): C_L          inf /    -238.6234 (inf), C_T    4.6854
+           y =    5.00 (local s    5.143, sat): C_L          inf /    -238.6234 (inf), C_T    7.8090
+           y =   10.00 (local s   10.640, sat): C_L          inf /    -238.6234 (inf), C_T   15.6180
+           y =   20.00 (local s   22.855, sat): C_L          inf /    -238.6234 (inf), C_T   31.2360
+           y =   50.00 (local s   73.425, sat): C_L          inf /    -238.6234 (inf), C_T   78.0900
+           y =  100.00 (local s  279.784, sat): C_L          inf /    -238.6234 (inf), C_T  156.1800
+           y =  150.00 (local s 4428.995, sat): C_L          inf /    -238.6234 (inf), C_T  234.2700
+    K25  y: C_L,eff route B / route C (rel diff), C_T,eff; saturated-branch constant -272.8667
+           y =    2.45 (local s    2.475, unsat): C_L          inf /    -622.2085 (inf), C_T    3.8212
+           y =    3.00 (local s    3.040, sat): C_L          inf /    -272.8667 (inf), C_T    4.6790
+           y =    5.00 (local s    5.125, sat): C_L          inf /    -272.8667 (inf), C_T    7.7983
+           y =   10.00 (local s   10.556, sat): C_L          inf /    -272.8667 (inf), C_T   15.5966
+           y =   20.00 (local s   22.452, sat): C_L          inf /    -272.8667 (inf), C_T   31.1932
+           y =   50.00 (local s   69.347, sat): C_L          inf /    -272.8667 (inf), C_T   77.9830
+           y =  100.00 (local s  228.280, sat): C_L          inf /    -272.8667 (inf), C_T  155.9659
+           y =  150.00 (local s  967.044, sat): C_L          inf /    -272.8667 (inf), C_T  233.9489
+    TA   y: C_L,eff route B / route C (rel diff), C_T,eff; saturated-branch constant -163.0454
+           y =    2.45 (local s    2.491, unsat): C_L          inf /    -217.8836 (inf), C_T    3.8454
+           y =    3.00 (local s    3.067, sat): C_L          inf /    -163.0454 (inf), C_T    4.7086
+           y =    5.00 (local s    5.212, sat): C_L          inf /    -163.0454 (inf), C_T    7.8477
+           y =   10.00 (local s   10.966, sat): C_L          inf /    -163.0454 (inf), C_T   15.6953
+           y =   20.00 (local s   24.474, sat): C_L          inf /    -163.0454 (inf), C_T   31.3907
+           y =   50.00 (local s   93.793, sat): C_L          inf /    -163.0454 (inf), C_T   78.4767
+           y =  100.00 (local s 1679.055, sat): C_L          inf /    -163.0454 (inf), C_T  156.9535
+    K0   primal Schur (route A's Hessian) at route C's state y = 2.45: y back 2.45, C_L,eff -446.2261216 vs dual -446.2261215
+    K25  primal Schur (route A's Hessian) at route C's state y = 2.45: y back 2.45, C_L,eff -622.2085048 vs dual -622.2085048
+    TA   primal Schur (route A's Hessian) at route C's state y = 2.45: y back 2.45, C_L,eff -217.8836238 vs dual -217.8836237
+  [FAIL] H4 STATIC ELLIPTICITY FAILS ON THE BAND: C_L,eff < 0 (C_T,eff > 0) at every band point, route B = route C to 1e-6, = A4's constant on the saturated branch to 1e-8, and = route A's primal Schur complement in the unsaturated slice
+         measured: sign False; B vs C False (max rel inf); saturated constant False; primal Schur True; C_L,eff at y = 20: K0 -238.62, K25 -272.87, TA -163.05
+         reading:  the scalar's static equation is not elliptic on the band: a static solution there is a saddle of its energy
+
+======================================================================================================================
+H5  DYNAMICS: the scalar's own sector (inertia-free) and the chain root's committed quadratic form (FP7 C1, FP14 L2)
+======================================================================================================================
+    FP7 C1 (committed): T = [[12 + 8/c_2, 0], [0, 4*lambda]];  V = [[4*k**2*(2 - alpha_c)/alpha_c, 4*k**2*sigma*(alpha_c - 2)/alpha_c], [4*k**2*sigma*(alpha_...;  det V parse identity True
+    FP7's parameters read from its .out: alpha_c = 3.2e-09, c_2 = 0.00729, lambda = 1 (default), 277 (tracking edge), 1.07e+07 (sigma_8 edge); FP14 L2's lambda = 0 formula = det V/(V_22 T_11): True
+    K0   y: omega^2_par/omega^2_perp (scalar sector) | FP7 T,V omega^2_-/(ck)^2 at lambda = 1 / 277 / 1.07e+07 (sigma = 1), lambda = 1 sigma = 0.1 | FP14 lambda = 0: c_2 / c_2 -> oo | e-fold at k = 1/kpc (lambda = 1, 1.07e+07)
+           y =    2.45:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =    3.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =    5.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =   10.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =   20.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =   50.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =  100.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =  150.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+    K25  y: omega^2_par/omega^2_perp (scalar sector) | FP7 T,V omega^2_-/(ck)^2 at lambda = 1 / 277 / 1.07e+07 (sigma = 1), lambda = 1 sigma = 0.1 | FP14 lambda = 0: c_2 / c_2 -> oo | e-fold at k = 1/kpc (lambda = 1, 1.07e+07)
+           y =    2.45:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =    3.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =    5.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =   10.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =   20.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =   50.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =  100.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =  150.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+    TA   y: omega^2_par/omega^2_perp (scalar sector) | FP7 T,V omega^2_-/(ck)^2 at lambda = 1 / 277 / 1.07e+07 (sigma = 1), lambda = 1 sigma = 0.1 | FP14 lambda = 0: c_2 / c_2 -> oo | e-fold at k = 1/kpc (lambda = 1, 1.07e+07)
+           y =    2.45:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =    3.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =    5.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =   10.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =   20.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =   50.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+           y =  100.00:       inf | 2253483.1580 /  2.253e+06 /  2.253e+06, 2253483.158 | 2253483.1580 / 208333333.000 | inf yr, inf yr
+    CONTROL y=1 (fixed a0, unsaturated): C_phi = 8.221; smallest omega^2/(ck)^2 over lambda = 1, 277, 1.07e+07: 7.683e-07; FP14 lambda = 0: 0.02964 / 2.74
+    CONTROL saturated wall (fixed a0, C_phi -> oo): C_phi = inf; smallest omega^2/(ck)^2 over lambda = 1, 277, 1.07e+07: 2.253e+06; FP14 lambda = 0: 2.253e+06 / 2.083e+08
+  [FAIL] H5 DYNAMICAL INSTABILITY ON THE BAND: omega^2_par/omega^2_perp < 0 in the scalar's own sector (any inertia), and with C_phi = C_L,eff the chain root's committed quadratic form has exactly one omega^2 < 0 (lambda = 1, 277, 1.07e7; sigma = 1, 0.1), scaling as k^2 (Hadamard), and FP14's lambda = 0 roots are negative, at every band point
+         measured: K0: omega^2_-(y = 20, lambda = 1) = 2253483.158 (ck)^2, e-fold inf yr at k = 1/kpc; K25: omega^2_-(y = 20, lambda = 1) = 2253483.158 (ck)^2, e-fold inf yr at k = 1/kpc; TA: omega^2_-(y = 20, lambda = 1) = 2253483.158 (ck)^2, e-fold inf yr at k = 1/kpc; omega^2(10 k)/omega^2(k) = 100 to 0.0e+00
+         reading:  growth ~ k (Hadamard): shorter wavelengths grow faster; the rate depends on the inertia and the mixing, the sign does not
+  [PASS] H5c CONTROLS at fixed a0 (no four-form): both roots positive at y = 1 and in the saturated wall's limit; FP14's lambda = 0 roots positive
+         measured: y=1 (fixed a0, unsaturated): min root 7.683e-07, FP14 0.02964 / 2.74; saturated wall (fixed a0, C_phi -> oo): min root 2.253e+06, FP14 2.253e+06 / 2.083e+08
+
+======================================================================================================================
+H6  WHERE THE BAND SITS: SPARC, the shell around a solar-mass star, wide binaries (FP0 footings a0 = 9.3603e-11 / 1.1312e-10)
+======================================================================================================================
+    SPARC, canonical: fraction of points in the band (galaxies with >= 1 band point; points past y_off) at Upsilon 0.5 / 0.7 / 0.9:
+           K0  : 0.000 (0; 0) / 0.000 (0; 0) / 0.000 (0; 0)   (max y 141.2 at Upsilon 0.9)
+           K25 : 0.000 (0; 0) / 0.000 (0; 0) / 0.000 (0; 0)   (max y 141.2 at Upsilon 0.9)
+    SPARC, alt      : fraction of points in the band (galaxies with >= 1 band point; points past y_off) at Upsilon 0.5 / 0.7 / 0.9:
+           K0  : 0.000 (0; 0) / 0.000 (0; 0) / 0.000 (0; 0)   (max y 116.8 at Upsilon 0.9)
+           K25 : 0.000 (0; 0) / 0.000 (0; 0) / 0.000 (0; 0)   (max y 116.8 at Upsilon 0.9)
+           TA  : 0.000 (0; 0) / 0.000 (0; 0) / 0.000 (0; 0)   (max y 116.8 at Upsilon 0.9)
+    RAR shift (K0, Upsilon 0.7, canonical): max |Delta log g_obs| below the fold 0.00000 dex, in the band 0.00000 dex (static numbers; the band's static solution is unstable)
+    RAR shift (K0, Upsilon 0.7, alt): max |Delta log g_obs| below the fold 0.00000 dex, in the band 0.00000 dex (static numbers; the band's static solution is unstable)
+  [PASS] H6a SPARC: the band holds a sizeable fraction of the inner points (reported)  [reported]
+         measured: canonical/K0/U0.7: 0.000; canonical/K25/U0.7: 0.000; alt/K0/U0.7: 0.000; alt/K25/U0.7: 0.000; alt/TA/U0.7: 0.000
+  [FAIL] H6b a solar-mass star: the scalar is off inside ~640 AU and unstable in a shell out to ~5000 AU (reported)  [reported]
+         measured: 
+    wide binaries 1.5 Msun (canonical, K0): 2 kAU y = 23.76 [----]; 3 kAU y = 10.56 [----]; 5 kAU y = 3.80 [----]; 10 kAU y = 0.95 [----]; 20 kAU y = 0.24 [----]   ([B/-] = in the band or not: isolated, aligned, perpendicular, anti-aligned)
+    wide binaries 1.5 Msun (alt, K0): 2 kAU y = 19.66 [----]; 3 kAU y = 8.74 [----]; 5 kAU y = 3.15 [----]; 10 kAU y = 0.79 [----]; 20 kAU y = 0.20 [----]   ([B/-] = in the band or not: isolated, aligned, perpendicular, anti-aligned)
+  [FAIL] H6c WIDE BINARIES: DR4's 2 kAU bin (1.5 Msun) lies in the unstable band on both footings, in isolation and for every orientation of the Galactic field
+         measured: canonical: 2 kAU y = 23.76, all in band False; alt: 2 kAU y = 19.66, all in band False
+
+======================================================================================================================
+H7  k04's OTHER HEADLINE CLAIMS AGAINST THE BAND (k04's own inputs)
+======================================================================================================================
+  [PASS] H7a F1 (sign) and F2 (coefficient) live on the Y = 0 background: r = 1 there and y = 0 lies outside the band -- F6 does not touch them (F2 remains k04's own FAIL: Z/beta^2 is free)
+         measured: r(0) = 1.0, 0 in band: False
+  [FAIL] H7b F3's rows: s = 0.01, 0.1, 1 lie below the fold (stable, their < 0.0005 dex shifts stand); s = 2.54, 10, 100 lie in the unstable band (static numbers of an unstable solution); s = 1000 in the switched-off core
+         measured: K0: 0.01 below, 0.1 below, 1 below, 2.54 below, 10 below, 100 below, 1000 below; K25: 0.01 below, 0.1 below, 1 below, 2.54 below, 10 below, 100 below, 1000 below
+  [FAIL] H7c F4 (monopole screening): every planet lies in the switched-off core (y > y_off) -- a static statement F6 does not touch; but the core is wrapped in the unstable shell, so its standing needs a stable exterior the construction lacks
+         measured: min planet y 58236.9 vs y_off None
+  [FAIL] H7d k04's quoted switch-off radius ('inside 205 AU', 'r < 205 AU') is the radius where g_N = y_off a0 around 1 Msun (pre-declared EXPECT FALSE)  [reported]
+         measured: quoted [205] AU vs computed 638.9 AU (y_off = 155.23, k04's a0 9.3619e-11); ratio 3.116
+         reading:  a hard-coded number in k04's text, not computed by its code; the planets (<= 30 AU) are inside either radius, so F4's verdict does not change
+  [FAIL] H7e F5 (DR4's 2 kAU bin, k04's own inputs): the bin lies in the unstable band on both footings, so its dgamma_v = -0.019 / -0.015 is a number of an unstable static solution, not a prediction
+         measured: canonical: y = 23.76, in band False, alt: y = 19.72, in band False
+
+======================================================================================================================
+VERDICT AND THE PROPOSED CORRECTION NOTE (for the coordinator; k04's files are not edited)
+======================================================================================================================
+  k04 F6 (correction proposed by XR31): F6's Z_eff = Z + (2 - K_B) beta^2 (s Delta - j)/(8 pi) is the flux's secant stiffness Pi/q; it is >= Z for every kernel convex in Y (F = s Delta - j = Y J_Y - J >= 0) and cannot fail, so it does not test stability.  The test is the slaved scalar's longitudinal coefficient C_L,eff = dg_N/dg_phi at fixed Pi.  On k04's own kernel and couplings (F3's Z = 8 beta^2) the slaved force g_phi = a0_loc Delta(g_N/a0_loc) peaks at g_N = 2.385 a0 (K_B = 0; 2.403 at K_B = 0.25; 2.323 with kappa tied on the alt footing) and falls linearly to zero at 155.2 a0 (177.4; 106.3), so C_L,eff < 0 on the whole band (-238.6 at 20 a0): the static scalar equation is not elliptic there and longitudinal perturbations grow at a rate ~ k (omega^2 = 2253483.16 (ck)^2 in the chain root's quadratic form at lambda = 1).  The band holds 0% / 0% of SPARC points (Upsilon 0.7, can / alt), a shell from nan to nan AU around every solar-mass star, and wide binaries at 2-5 kAU.  'stable (F6)' should read 'UNSTABLE for 2.39 < g_N/a0 < 155: the four-form's feedback tilts the saturated kernel's flat branch downward'.  F1-F2 are unaffected; F3's RAR shift stands below 2.39 a0; F4's planets sit in the switched-off core (the '205 AU' should read ~639 AU); F5's 2 kAU number is computed on an unstable solution.
+
+  17/28 checks pass; load-bearing failures: 9 ['H1-K0', 'H1-K25', 'H1-TA', 'H4', 'H5', 'H6c', 'H7b', 'H7c', 'H7e']; reported failures: ['H6b', 'H7d']; wrote XR31_k04_f6_stability_results_MUTATE.json  (12 s)
+rc = 1
