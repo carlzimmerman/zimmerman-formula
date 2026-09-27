@@ -218,3 +218,13 @@ On the alternative footing at 900 km/s, Harvey gives +0.063 (matter) and +0.062 
 - No 2-halo matter enters the matter branch's switch variable; Brouwer's lenses are isolated.
 - The ESD keeps L352's point-mass baryons; only the switch reads the resolved baryons.
 
+
+## L393 and L394 — stopped before any result (the author's decision, 2026-09-26)
+
+Both scripts are committed with their pre-declared gates: `L393_two_mode_carrier_pm_linear_gate_curvature.py` (4188b89f6) and `L394_two_mode_carrier_pm_mond_sector_cap.py` (6e1e449e4). Neither produced a result.
+- **L393** put L372's two-mode carrier in the particle-mesh box at the linear gate p = 1, x_c0 = 2.5, on the curvature switch. It was a labelled comparison: MS1 shows the curvature reading leaks force onto the carrier. Cosmic shear was gated on MS3's halo model.
+  - It was stopped 2 h 10 min into its mesh stage, with 1 of 21 runs complete (the (7, 11) ΛCDM box) and three model runs at z = 2. Nothing was scored.
+- **L394** would have put the same carrier on M*'s switch and cap: L396's MOND-sector reading with MS5's mean-curvature cap, checked identical to L396's function at run time (C6). It was cancelled in its queue before it started.
+  - Its 64³ code test ran end to end; C5 and C6 passed, so the same-switch check was in place.
+- **Why they were stopped.** The two-mode carrier's decay rates, kick speeds, trigger threshold and switch cell are free parameters fitted by hand, not derived. The program moved to a derivation chain from one action, with the dark sector as a state of the same field and no hand-posited carriers or triggers. A window found here could not have entered that chain.
+- Both scripts remain runnable as committed. L393 would have to start again from its beginning, since no mesh checkpoint was written.
