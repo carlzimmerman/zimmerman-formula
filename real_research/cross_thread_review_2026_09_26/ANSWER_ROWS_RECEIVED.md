@@ -151,3 +151,44 @@ corrected to the JSON's 11/14 in 51a8a009a.
     to 1.9–5.2e-19 eV, still 10–25× above the forest bound. Heating goes as ρ², with a coefficient 3–5× the textbook
     value.
   - **Checks:** 8/9, rc = 1; MUTATE (frozen granules) still fails R1.
+
+## MOND-sector gate lanes, "Path forward" (condensed from the owner's rows)
+
+The front-page synthesis is real_research/mond_sector_gate_2026/README.md (the four-step path plus "Said plainly").
+
+- **MS1 | 2a5def6d9**
+  - **Method:** all four switch readings, with the gate varied as an action term (CV1's non-relativistic Lagrangian,
+    1-D, sympy).
+  - **Verdict:** V_d − u_N = 0 identically on the MOND-sector and baryon-only readings. The curvature reading leaks
+    −½CW′B and the matter reading −CW′B/8πG. Around an L* lens that is 0.06–6× and 0.6–60× the carrier's own gravity;
+    around a z = 2.5 flagship host, 1.5–150× and 23–2300×.
+  - **Checks:** 5/5, Lean 8 theorems; MUTATE fails A3.
+- **MS2 | 2a5def6d9**
+  - **Verdict:** the MOND-sector switch is carrier-blind (0 of 3696 states change). It is on at r_F at every CGM share,
+    including none, and needs S ≤ 0.059 retained at r_F. z_max is 4.26/4.52, against the matter reading's
+    1.95/2.15. The web switches on only at δ ≥ 29–34 (z ≤ 0.5) and 105–228 (z = 2–3).
+  - **Checks:** 7/7; MUTATE fails D1.
+- **MS3 | 2a5def6d9**
+  - **U1/M1:** the mock cannot grow regions from isolated seeds and is cluster-poor.
+  - **On the halo model:** s²(k = 1) = 0.80/1.07, ≥ 73% of it from ≥ 1e14 halos. Uncapped fails at 2.47–4.32. A
+    1.75 Mpc cap with L388's retention PASSES (1.047/1.121). A 2.0 Mpc cap gives 1.244/1.357 and 1.5 Mpc gives
+    0.986/0.987. With the carrier intact only 1.0 Mpc passes. Clearing only below 1e13 fails at 1.75 Mpc
+    (1.64/1.74).
+  - **Checks:** 5/5; MUTATE fails K1.
+- **MS4 | e53409e64** (scope fix 969a15e7f)
+  - **Verdict:** with the smooth C∞ gate and the 1.75 Mpc cap, (0.25, 2.5) gives 1.049/1.124 and (0.5, 3.0) gives
+    1.025/1.096, both PASS. Uncapped fails. The width doesn't matter; the cap binds.
+  - **Checks:** 4/4; MUTATE fails S1.
+- **MS5 | 61a3a0858** (README label ed555bc34)
+  - **The cap as an action term:** U_cap = C·min(∇²Φ_X, v_cap² κ_X²).
+  - **A1:** reciprocity holds for any F(Φ_X′, Φ_X″).
+  - **A2:** κ = 1/r for any spherical profile.
+  - **N1 and S1:** the κ form reproduces MS3 K1 (1.047/1.121). L395's form on extended baryons FAILS (1.418/1.567).
+  - **P1:** the fourth-order term changes sign in the layer, so DE7's repair is still needed.
+  - (v_cap/c)² = 1.18e-6, declared.
+  - **Checks:** 5/5; MUTATE fails A1 and S1.
+
+**Next (Path forward):** the kick, built on FL1's order parameter Φ in real_research/dark_fluid_kick_2026/. A small
+U(1)-breaking mass term splits Φ into two real components, with δm/m = v_k²/2c² ≈ 2e-6. |Φ|⁴ then converts
+φ_Hφ_H → φ_Lφ_L into back-to-back waves at v_k. The conversion is density-triggered (rate ∝ n²), with its coupling
+vacuum-gated through K. One new constant, ε.
