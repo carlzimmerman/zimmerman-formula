@@ -1,0 +1,786 @@
+{
+ "lane": "XR20",
+ "part": "the ties T1-T4 in FP7's root",
+ "mutate": false,
+ "checks": {
+  "C1 CONTROL FP5 D3 reproduced from FP5's own nu_mono: (q - Z q')/s^1.5 minimum and deep value, and the symbolic identity d_sigma[2 sigma^2 q(Z/sigma^2)] = 4 sigma (q - Z q')": {
+   "ok": true,
+   "measured": "this lane: min 9.782e-04 at s = 1.0e+06, deep-MOND value 0.3333; identity True; FP5 committed: 'symbolic identity (two test primitives) True; (q - Z q')/s^1.5: min 9.782e-04 at s = 1.0e+06, deep-MOND value 0.3333'",
+   "load_bearing": true
+  },
+  "C2 CONTROL FP0 R3 / FP5 D4: the rival E(z) at z = 0.5, 1, 2.5, 5 and log10 E(2.5) = 0.576": {
+   "ok": true,
+   "measured": "this lane: 1.322, 1.791, 3.769, 8.294 (+0.576 dex at z = 2.5); FP0 committed '...00; rival 1.322, 1.791, 3.769, 8.294 (+0.576 dex at z = 2.5)'; FP5 D4 has 'log10 E(2.5) = 0.576': True",
+   "load_bearing": true
+  },
+  "C3 CONTROL FP5 D5: Lambda/alpha^2 = 8 pi/kappa^2 on both footings and kappa_alt, to 1e-12": {
+   "ok": true,
+   "measured": "100.530965 (32 pi = 100.530965) / 68.833552; kappa_alt 0.6042544263; FP5: 100.530965 / 68.833552, 0.6042544263",
+   "load_bearing": true
+  },
+  "C4 CONTROL FP7's static law at one point (A4): the Sun's Galactic field g_ext = 2.32e-10 m/s^2 on P2's AQUAL law": {
+   "ok": true,
+   "measured": "this lane: x_e = 0.4501, mu_T = 4.507, mu_L = 49.64 (y_N,ext = 2.0285); in FP7's committed .out: True",
+   "load_bearing": true
+  },
+  "C5 CONTROL this lane's four-form solver in k04's convention and kernel reproduces k04's committed F3 rows to the printed digits (K_B = 0 and 0.25), and agrees with k04's own fixed-point iteration to < 1e-9": {
+   "ok": true,
+   "measured": "both rows found verbatim in the committed k04 output: True",
+   "load_bearing": true
+  },
+  "C6 CONTROL SPARC: FP1's C0 RAR statistic and FP7's median per-point error in log g_obs": {
+   "ok": true,
+   "measured": "rms at Upsilon = 0.70: 0.1083 dex (175 galaxies; FP1: '0.1083 dex (a0 = 9.3614e-11, 175 galaxies)'); median error 0.0370 dex over 3391 points (FP7: 0.0370)",
+   "load_bearing": true
+  },
+  "A  THE ALGEBRA: J_P2' = mu_s(sqrt s), J(0) = 0; d/dalpha[-2 alpha^2 J(Y/alpha^2)] = 4 alpha (s J' - J) for any J; F = s J' - J = x^3/(1-2x) + ln(1-2x)/4 + x/2 + x^2/2; along P2's law dF/dy = x/(2(1-x)), F = 2 Int x dy - y x (envelope), x F'(y)/x'(y) = x^3/(1-2x)^2 (the fold identity); the closed form (+ series below x = 2e-3) equals direct quadrature": {
+   "ok": true,
+   "measured": "J' True; alpha-derivative True; F closed form True; dF/dy True; envelope True; fold identity True; max rel |closed - quadrature| over y = 1e-6..1e3: 2.2e-12",
+   "load_bearing": true
+  },
+  "T1a HT VARIED: the multiplier's equations are -2 d_t Lambda = -2 d_x Lambda = 0 (Lambda uniform in space AND time, exactly); phi's equation on shell is the root's at alpha(Lambda_0); Lambda's own equation contains 2 d_m T^m and the MOND term's dL/dLambda = (kappa^2/4 pi) F": {
+   "ok": true,
+   "measured": "EL(T0) = -2*Derivative(Lambda(t, x), t), EL(T1) = -2*Derivative(Lambda(t, x), x): True; phi on shell = root at alpha(Lambda_0): True; dL_M/dLambda = (kappa^2/4pi) F: True; d_m T^m in Lambda's equation: True",
+   "load_bearing": true
+  },
+  "T1b THE CLOCK: d_m T^m = sqrt(-g) [1 - (kappa^2/8 pi) F]: the MOND sector's dL/dLambda goes only there.  FP5 D3's obstruction, re-derived for the root: a FREE alpha-field sigma obeys sqrt(-g) 4 sigma F = 0, i.e. F = 0 (no MOND, since F > 0 for every y > 0); in T1 the same term is absorbed by the multiplier's divergence": {
+   "ok": true,
+   "measured": "free-field equation = sqrt(-g) 4 sigma F: True; clock shift at the RAR knee (y = 1): 2.65e-03 / 3.87e-03 (can/alt), at y = 100: 4.85e-01 / 7.08e-01",
+   "load_bearing": true
+  },
+  "T1c THE DIRAC COUNT (periodic lattice, N = 5; the same algebra holds for T2's (A, Pi) pair): {C_i, C_j} = 0 (first class), {C_i, H} = 0 with the MOND coupling alpha(Lambda) in H (no secondary constraint), rank N - 1, so the (T0, Lambda) sector keeps 2N - 2(N - 1) = 2 phase-space dimensions: ONE global degree of freedom, no local mode": {
+   "ok": true,
+   "measured": "brackets zero True; {C, H} = [0, 0, 0, 0, 0]; rank 4; physical dims 2; gauge shift of T0_k: xi_0/2 - xi_1/2",
+   "load_bearing": true
+  },
+  "T1d FRW AND PPN: the HT term 2 Lambda d_m T^m contains no metric (T^m is a density), so the metric's equations are the root's at Lambda = Lambda_0, alpha = alpha(Lambda_0): FP7 B1 (the FRW background is GR + Lambda, a0 absent) and D2 (gamma = 1, alpha_3 = 0, the khronometric alpha_1, alpha_2) carry over exactly": {
+   "ok": true,
+   "measured": "d/dg of the HT Lagrangian = d/dg of the root's: True",
+   "load_bearing": true
+  },
+  "T1e (reported) THE VACUUM-ENERGY CAVEAT: the tie is to the HT integration constant; a vacuum energy of the matter sector adds to the observed Lambda but not to a0, so a0 = kappa c sqrt(G rho_Lambda,obs) needs |rho_vac| << rho_Lambda (the cosmological-constant problem, now shared by a0; unchanged from P1 as declared)": {
+   "ok": true,
+   "measured": "Delta log a0 = -0.0229 dex at rho_vac = 0.1 rho_Lambda",
+   "load_bearing": false
+  },
+  "T2a BT VARIED: the 3-form's equations are d_x(L_q) = d_t(L_q) = 0, so the CONJUGATE Pi = L_q = Z_q q + 4 beta^2 q F is constant, not q; the four-form gravitates through the Legendre form q P' - P, Lambda_eff = Z_q q^2/4; the flux amplitude cancels, alpha_0^2/Lambda_0 = 4 beta^2/Z_q = kappa^2/8 pi (one coupling, beta^2/Z_q = kappa^2/32 pi); locally a0_loc/a0 = q/q_0 = 1/(1 + (kappa^2/8 pi) F(y_loc))": {
+   "ok": true,
+   "measured": "L_q form True; EL(A0), EL(A1) total derivatives of L_q True; Legendre energy True; Lambda_eff = Z_q*q**2/4, alpha^2/Lambda = 4*beta**2/Z_q, q/q_0 = Z_q/(4*F*beta**2 + Z_q): True",
+   "load_bearing": true
+  },
+  "T2b (reported) THE LOCAL a0 in the root's spherical law (both footings): a0 is lowest where the MOND sector's alpha-conjugate density F is largest; at the RAR knee (y = 1) and the Sun's Galactic field": {
+   "ok": true,
+   "measured": "a0_loc/a0 at y = 1: 0.99735 / 0.99612 (can/alt); at the Sun's y_e = 2.028: 0.99339; at y = 100: 0.5098 / 0.2800",
+   "load_bearing": false
+  },
+  "T2c = H2a SPARC: with the four-form's local a0 the RAR moves by < 0.01 dex at every SPARC point and the C0 statistic by < 0.001 dex, both footings (vs the median per-point error 0.037 dex and the RAR scatter 0.108 dex)": {
+   "ok": true,
+   "measured": "max per-point shift 0.0011 / 0.0015 dex; rms change -0.00009 / -0.00018 dex (can/alt); interpolant vs exact 2.2e-16",
+   "load_bearing": true
+  },
+  "T2d THE FOLD, located two independent ways: the four-form's Legendre map q -> Pi at fixed Y (L_qq|_Y, 40-digit differences of J_P2 itself) degenerates exactly where the slaved scalar force u(y) = (a0_loc/a0) x(y_loc) peaks; below it C_L,eff = dy/du > 0, on the whole band from the fold to the switch-off y_off = 16 pi/kappa^2 C_L,eff < 0": {
+   "ok": true,
+   "measured": "y_fold = 6.8724 / 5.6538 (can/alt), routes agree to 2.5e-14; y_off = 201.06 / 137.67; du/dy > 0 below: True; du/dy < 0 on the band: True",
+   "load_bearing": true
+  },
+  "T2d2 THE FOLD'S CONSEQUENCE IN FP7'S OWN QUADRATIC FORM (T and V of FP7 C1, read from its committed output; alpha_c = 3.2e-9, c_2 = 7.29e-3, lambda = 1, unfiltered sigma = 1): on the band (y = 20) the slaved coefficient makes one omega^2 negative, proportional to k^2 (growth ~ k: Hadamard); CONTROL: at fixed alpha (the root) both roots are positive": {
+   "ok": true,
+   "measured": "canonical: slaved min omega^2/(ck)^2 -1.67, fixed min 12.1; alt: slaved min omega^2/(ck)^2 -1.09, fixed min 12.1",
+   "load_bearing": true
+  },
+  "T2d3 ON FP14'S ZERO-KNOB ROOT (lambda = 0, c_2 finite and c_2 -> oo; FP14 L2's one-mode formulas read from its committed output, cross-checked against FP7's T, V at lambda = 0): the slaved coefficient makes the one remaining scalar's omega^2 negative (growth ~ k); CONTROL: at fixed alpha it is positive -- the four-form's failure does not depend on the MOND scalar's inertia or on c_2": {
+   "ok": true,
+   "measured": "canonical c_2: -1.68 (fixed 12.1); canonical c_2 -> oo: -155 (fixed 1.12e+03); alt c_2: -1.1 (fixed 12.1); alt c_2 -> oo: -101 (fixed 1.12e+03)",
+   "load_bearing": true
+  },
+  "T2e = H2b (pre-declared EXPECT FALSE, reported as it falls): the slaved kernel stays monotone up to the switch-off -- it does NOT: the band y_fold < y < y_off holds a fraction of SPARC's inner points, a shell around every solar-mass star, and wide binaries at 2-3 kAU": {
+   "ok": false,
+   "measured": "SPARC fraction in band (Upsilon 0.7): 0.076 / 0.077; 1-Msun shell 561-3036 AU (canonical)",
+   "load_bearing": false
+  },
+  "T2f (reported) THE SAME FOLD ON THE RECORD'S OTHER KERNELS: the C-H core's nu_mono and k04's saturated nu_RAR also turn non-monotone under the four-form's feedback (k04 F6's Z_eff > 0 is the flux stiffness at fixed s; it does not test the slaved kernel's monotonicity) -- a reading note for kappa_closure/k04, not an edit": {
+   "ok": true,
+   "measured": "nu_mono (C-H core, FP5) canonical: peak y = 5.18; nu_mono (C-H core, FP5) alt: peak y = 2.92; k04's saturated nu_RAR canonical: peak y = 2.40; k04's saturated nu_RAR alt: peak y = 2.31",
+   "load_bearing": false
+  },
+  "T2g (reported) the fold is not special to the quadratic four-form: every power law P ~ q^n (n = 1.5, 2, 3) folds at y ~ 5-9; the HT tie (T1) is not a limit of these -- it reads the conserved conjugate, not the field strength": {
+   "ok": true,
+   "measured": "peaks at y = 7.88, 6.86, 5.62",
+   "load_bearing": false
+  },
+  "T2h FRW AND DOF: on the homogeneous background Y = 0, so F = 0 and J = 0: q = q_0, Lambda_eff = Z_q q_0^2/4 is constant, the background is GR + Lambda and a0(z) is flat; the (A, Pi) pair counts as T1c (one global degree of freedom, no local mode) wherever the Legendre map is invertible -- it is not at the fold (T2d)": {
+   "ok": true,
+   "measured": "F(0) = 0.0, J(0) = 0",
+   "load_bearing": true
+  },
+  "T3a/T3b THE K TIE IS THE RIVAL LAW: on FRW K = nabla.n = 3 adot/(a N) (sympy), so a0 = kappa_K c K gives a0(z)/a0(0) = H(z)/H0 = E(z) whatever kappa_K is -- +0.576 dex at z = 2.5 on both footings (FP5 D4), the rho_total rival that L37 kills at recombination (committed S8b FAIL): this candidate FAILS the flat law": {
+   "ok": true,
+   "measured": "K_FRW = 3*Derivative(a(t), t)/(N(t)*a(t)): True; kappa_K = 0.04765 / 0.05758; a0(z)/a0(0) at z = 0.5, 1, 2.5, 5: 1.322, 1.791, 3.769, 8.294 (+0.576 dex at 2.5); L37 S8b FAIL found True",
+   "load_bearing": true
+  },
+  "T3c (reported) the K tie is not locally constant either: the MOND term now depends on K, shifting the khronon's lambda by O(c_2) at the RAR knee and by >> c_2 at y ~ 10, and (following CV4 K1's leaf-harmonic K) sourcing delta K/K = 2 kappa_K^2 F/c_2 -- a few to ~20 percent at the knee over L340's c_2 window, non-perturbative near stars (F ~ y/2); the full khronon equation with the tie is not solved here": {
+   "ok": true,
+   "measured": "at y = 1: delta lambda = 9.75e-03, delta K/K = 0.018-0.166",
+   "load_bearing": false
+  },
+  "T4a/T4b SEQUESTERING VARIED: the global equations give Lambda_s = <T>/4 and sigma' = lambda^4 mu^4 Vol (the lambda-scaling identity d/dlambda[lambda^4 L(lambda^-2 g)] = lambda^3 T~ holds on a scalar field); with T = -4 V_vac + tau the Einstein equation keeps only tau_mn - (<tau>/4) g_mn (the vacuum energy cancels) while Lambda_s = -V_vac + <tau>/4 carries it (dLambda_s/dV_vac = -1); tau = -rho(1 - 3w) > 0 only for w > 1/3": {
+   "ok": true,
+   "measured": "Lambda_s = I_T/(4*Vol), sigma' = Vol*lambda**4*mu**4: True; scaling identity True; residual coefficient -tau_avg/4 = -<tau>/4 and dLambda_s/dV_vac = -1: True; tau > 0 needs 1/3 < w",
+   "load_bearing": true
+  },
+  "T4c (record) k02's committed magnitudes for the one sequestering-type construction on the MOND scalar's OWN spacetime average: <= 2.3e-5 of rho_Lambda today, and the de Sitter future drives the average to zero": {
+   "ok": true,
+   "measured": "k02 G2 largest = 2.3e-05; G3 ratio(10 t0/t0) = 9.4e-09-9.6e-09",
+   "load_bearing": true
+  },
+  "HEADLINE-FLAT the headline tie evaluated on the solutions of its own field equations: a0(z)/a0(0) = 1 at z = 0.5, 1, 2.5, 5, 1100 and a0 uniform across a galaxy, to 1e-12, with a0(0) = the canonical 9.3603e-11": {
+   "ok": true,
+   "measured": "a0(z)/a0(0) = 1.000000, 1.000000, 1.000000, 1.000000, 1.000000; across 0-100 kpc max |dev| 0.0e+00; a0(0) = 9.360325e-11",
+   "load_bearing": true
+  },
+  "W (reported) the ledger": {
+   "ok": true,
+   "measured": "7 links",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "inputs": {
+   "a0": {
+    "canonical": 9.360324825027975e-11,
+    "alt": 1.1312035414413022e-10
+   },
+   "rho_Lambda": 5.8424459306123106e-27,
+   "Lambda": 1.090432731814952e-52,
+   "kappa": {
+    "canonical": 0.5,
+    "alt": 0.6042544263082886
+   },
+   "eps": {
+    "canonical": 0.009947183943243459,
+    "alt": 0.014527798953181624
+   }
+  },
+  "controls": {
+   "C1": "min 9.782e-04 at s = 1.0e+06, deep-MOND value 0.3333",
+   "C2": "1.322, 1.791, 3.769, 8.294 (+0.576 dex at z = 2.5)",
+   "C3": {
+    "canonical": 100.53096491487335,
+    "alt": 68.8335516772138
+   },
+   "C4": "x_e = 0.4501, mu_T = 4.507, mu_L = 49.64",
+   "C5": [
+    "F3: K_B = 0.00 canonical: a0_loc/a0 (Delta log g_obs): s=0.01: 1.0000 (-0.0000 dex), s=0.1: 0.9999 (-0.0000 dex), s=1: 0.9968 (-0.0004 dex), s=2.54: 0.9881 (-0.0011 dex), s=10: 0.9398 (-0.0016 dex), s=100: 0.3574 (-0.0018 dex), s=1000: 0.0000 (-0.0003 dex)",
+    "F3: K_B = 0.25 canonical: a0_loc/a0 (Delta log g_obs): s=0.01: 1.0000 (-0.0000 dex), s=0.1: 0.9999 (-0.0000 dex), s=1: 0.9972 (-0.0003 dex), s=2.54: 0.9896 (-0.0009 dex), s=10: 0.9474 (-0.0014 dex), s=100: 0.4381 (-0.0016 dex), s=1000: 0.0000 (-0.0003 dex)"
+   ],
+   "C6": {
+    "rms70": 0.10826846744056075,
+    "sparc_med": 0.03700743404303242
+   }
+  },
+  "A": {
+   "series": [
+    [
+     3,
+     0.3333333333333333
+    ],
+    [
+     4,
+     1.0
+    ],
+    [
+     5,
+     2.4
+    ],
+    [
+     6,
+     5.333333333333333
+    ],
+    [
+     7,
+     11.428571428571429
+    ],
+    [
+     8,
+     24.0
+    ],
+    [
+     9,
+     49.77777777777778
+    ],
+    [
+     10,
+     102.4
+    ],
+    [
+     11,
+     209.45454545454547
+    ]
+   ],
+   "quad_rel": 2.2492008255881046e-12
+  },
+  "T1_clock": {
+   "canonical": {
+    "0.001": 1.0482108630026466e-07,
+    "0.01": 3.3058337426887534e-06,
+    "0.1": 0.00010186526706221082,
+    "1.0": 0.002650128623577549,
+    "10.0": 0.042870061815783914,
+    "100.0": 0.484927869455304
+   },
+   "alt": {
+    "0.001": 1.530905305977284e-07,
+    "0.01": 4.828149178747996e-06,
+    "0.1": 0.000148773575379306,
+    "1.0": 0.0038704960180773306,
+    "10.0": 0.06261145292213219,
+    "100.0": 0.7082340725212559
+   }
+  },
+  "T1_vacuum": {
+   "0.001": -0.00021725588700884584,
+   "0.01": -0.002182402701225044,
+   "0.1": -0.022878745280337558,
+   "0.5": -0.1505149978319906
+  },
+  "T2a": {
+   "Zq_over_beta2_for_kappa_half": 402.1238596594935
+  },
+  "T2b": {
+   "canonical": [
+    {
+     "y": 0.01,
+     "a0_ratio": 0.9999966941608255,
+     "u": 0.09049859173942815,
+     "dlog_gobs": -7.107475550520136e-07
+    },
+    {
+     "y": 0.1,
+     "a0_ratio": 0.9998981298332226,
+     "u": 0.2316471211744831,
+     "dlog_gobs": -2.0110772736983134e-05
+    },
+    {
+     "y": 1.0,
+     "a0_ratio": 0.9973475693323176,
+     "u": 0.4132754753876958,
+     "dlog_gobs": -0.00028817513405821494
+    },
+    {
+     "y": 2.028476334833778,
+     "a0_ratio": 0.9933912766119678,
+     "u": 0.4473643177160524,
+     "dlog_gobs": -0.00047437522011615016
+    },
+    {
+     "y": 10.0,
+     "a0_ratio": 0.9569318908555012,
+     "u": 0.4675364297696625,
+     "dlog_gobs": -0.000851861554615851
+    },
+    {
+     "y": 30.0,
+     "a0_ratio": 0.8592548124849868,
+     "u": 0.4265943604365556,
+     "dlog_gobs": -0.0009881296493789557
+    },
+    {
+     "y": 100.0,
+     "a0_ratio": 0.5098281311043699,
+     "u": 0.25458998524923887,
+     "dlog_gobs": -0.0010564217124904977
+    }
+   ],
+   "alt": [
+    {
+     "y": 0.01,
+     "a0_ratio": 0.999995171839235,
+     "u": 0.09049851600094577,
+     "dlog_gobs": -1.038043856334891e-06
+    },
+    {
+     "y": 0.1,
+     "a0_ratio": 0.999851215972745,
+     "u": 0.2316400482409724,
+     "dlog_gobs": -2.937293288825617e-05
+    },
+    {
+     "y": 1.0,
+     "a0_ratio": 0.9961245886023908,
+     "u": 0.4128427331456218,
+     "dlog_gobs": -0.0004211756353964392
+    },
+    {
+     "y": 1.6109817518538998,
+     "a0_ratio": 0.9927844926662172,
+     "u": 0.43709537218588296,
+     "dlog_gobs": -0.0006009220428721838
+    },
+    {
+     "y": 10.0,
+     "a0_ratio": 0.9369631249037007,
+     "u": 0.45799365313619833,
+     "dlog_gobs": -0.0012479686548736014
+    },
+    {
+     "y": 30.0,
+     "a0_ratio": 0.7937240241663036,
+     "u": 0.39427118265856875,
+     "dlog_gobs": -0.0014497402806256472
+    },
+    {
+     "y": 100.0,
+     "a0_ratio": 0.27998243614543744,
+     "u": 0.13989336730164376,
+     "dlog_gobs": -0.00155356228116854
+    }
+   ]
+  },
+  "T2c": {
+   "canonical": {
+    "rms70_p2": 0.10827186091007052,
+    "rms70_bt": 0.10818365690861961,
+    "best_p2": [
+     0.10827186091007052,
+     0.7
+    ],
+    "best_bt": [
+     0.10818365690861961,
+     0.7
+    ],
+    "max_shift": 0.0010596683195287704,
+    "med_shift": 7.275880716938032e-05
+   },
+   "alt": {
+    "rms70_p2": 0.1058079547550375,
+    "rms70_bt": 0.1056309011570675,
+    "best_p2": [
+     0.10354897613321767,
+     0.65
+    ],
+    "best_bt": [
+     0.10346266119937121,
+     0.65
+    ],
+    "max_shift": 0.0015478876663952324,
+    "med_shift": 8.397522595792657e-05
+   }
+  },
+  "T2d": {
+   "canonical": {
+    "y_fold": 6.872391141148075,
+    "Y_fold": 7.0723810887473615,
+    "r_fold": 0.971722402244771,
+    "u_fold": 0.46980311028470984,
+    "y_fold_fd": 6.872391141147905,
+    "y_off": 201.06192982974676,
+    "dudy_below_min": 0.00014140996587378807,
+    "dudy_band_max": -0.00013013549018461767,
+    "r_at_0p999_off": 0.001032254223273344,
+    "CL_eff_band_max": -394.04311090739316,
+    "u_at": {
+     "20.0": 0.4491863514513587,
+     "50.0": 0.3785589383097006,
+     "100.0": 0.25458998524923887
+    }
+   },
+   "alt": {
+    "y_fold": 5.653777313686501,
+    "Y_fold": 5.84725711190308,
+    "r_fold": 0.9669110157953004,
+    "u_fold": 0.4643839687751821,
+    "y_fold_fd": 5.653777313686506,
+    "y_off": 137.6671033544276,
+    "dudy_below_min": 0.00020265534938397148,
+    "dudy_band_max": -0.00018674876312444662,
+    "r_at_0p999_off": 0.0010462555284881357,
+    "CL_eff_band_max": -267.64151138240305,
+    "u_at": {
+     "20.0": 0.4283682241734905,
+     "50.0": 0.3229393529465089,
+     "100.0": 0.13989336730164376
+    }
+   }
+  },
+  "T2d2": {
+   "canonical": {
+    "y": 20.0,
+    "C_eff": -465.7179972340374,
+    "C_fixed": 3360.4999256174488,
+    "w2_over_k2_slaved": [
+     -1.672877387192536,
+     627252651.1809133
+    ],
+    "w2_over_k2_fixed": [
+     12.070974710989606,
+     627256463.654984
+    ],
+    "growth_over_kc": 1.2933976137261642,
+    "efold_yr_at_kpc": 2521.7206518213766,
+    "growth_over_kc_lambda_1e7": 0.006597265958287402,
+    "efold_yr_at_kpc_lambda_1e7": 494384.7184836608
+   },
+   "alt": {
+    "y": 20.0,
+    "C_eff": -303.9779893263417,
+    "C_fixed": 3360.4999256174488,
+    "w2_over_k2_slaved": [
+     -1.0919006285390542,
+     627252812.3399445
+    ],
+    "w2_over_k2_fixed": [
+     12.070974710989606,
+     627256463.654984
+    ],
+    "growth_over_kc": 1.044940490429505,
+    "efold_yr_at_kpc": 3121.3140876655434,
+    "growth_over_kc_lambda_1e7": 0.005329955103045653,
+    "efold_yr_at_kpc_lambda_1e7": 611935.2622099975
+   }
+  },
+  "T2d3": {
+   "canonical|c_2": {
+    "slaved": -1.678908095840461,
+    "fixed": 12.114489938182032
+   },
+   "canonical|c_2 -> oo": {
+    "slaved": -155.23944808783375,
+    "fixed": 1120.1606189929903
+   },
+   "alt|c_2": {
+    "slaved": -1.095836918902796,
+    "fixed": 12.114489938182032
+   },
+   "alt|c_2 -> oo": {
+    "slaved": -101.3260457235342,
+    "fixed": 1120.1606189929903
+   }
+  },
+  "T2e": {
+   "canonical": {
+    "sparc_frac": {
+     "0.5": 0.0554735910298023,
+     "0.7": 0.07642372381233402,
+     "0.9": 0.0944231336677486
+    },
+    "r_fold_AU": 3036.204435031751,
+    "r_off_AU": 561.3322853560229,
+    "wb": [
+     {
+      "kAU": 2,
+      "case": "internal",
+      "y": 23.757522961840902,
+      "a0_ratio": 0.8900254127392822,
+      "in_band": true
+     },
+     {
+      "kAU": 2,
+      "case": "with Galaxy",
+      "y": 23.843963880264926,
+      "a0_ratio": 0.8896004262285876,
+      "in_band": true
+     },
+     {
+      "kAU": 3,
+      "case": "internal",
+      "y": 10.558899094151512,
+      "a0_ratio": 0.9542604437407286,
+      "in_band": true
+     },
+     {
+      "kAU": 3,
+      "case": "with Galaxy",
+      "y": 10.751979646625745,
+      "a0_ratio": 0.953336005088792,
+      "in_band": true
+     },
+     {
+      "kAU": 5,
+      "case": "internal",
+      "y": 3.801203673894544,
+      "a0_ratio": 0.9857818255436548,
+      "in_band": false
+     },
+     {
+      "kAU": 5,
+      "case": "with Galaxy",
+      "y": 4.308580463610962,
+      "a0_ratio": 0.9835121846249999,
+      "in_band": false
+     },
+     {
+      "kAU": 10,
+      "case": "internal",
+      "y": 0.950300918473636,
+      "a0_ratio": 0.9975215054213473,
+      "in_band": false
+     },
+     {
+      "kAU": 10,
+      "case": "with Galaxy",
+      "y": 2.240041980997792,
+      "a0_ratio": 0.9925205686367989,
+      "in_band": false
+     },
+     {
+      "kAU": 20,
+      "case": "internal",
+      "y": 0.237575229618409,
+      "a0_ratio": 0.9996403294470997,
+      "in_band": false
+     },
+     {
+      "kAU": 20,
+      "case": "with Galaxy",
+      "y": 2.042341359985866,
+      "a0_ratio": 0.9933346513429605,
+      "in_band": false
+     }
+    ]
+   },
+   "alt": {
+    "sparc_frac": {
+     "0.5": 0.0554735910298023,
+     "0.7": 0.07701386839775745,
+     "0.9": 0.09619356742401888
+    },
+    "r_fold_AU": 3045.023702372059,
+    "r_off_AU": 617.0849287977813,
+    "wb": [
+     {
+      "kAU": 2,
+      "case": "internal",
+      "y": 19.658542765659355,
+      "a0_ratio": 0.868362172247232,
+      "in_band": true
+     },
+     {
+      "kAU": 2,
+      "case": "with Galaxy",
+      "y": 19.72444082538372,
+      "a0_ratio": 0.8678892925838047,
+      "in_band": true
+     },
+     {
+      "kAU": 3,
+      "case": "internal",
+      "y": 8.737130118070825,
+      "a0_ratio": 0.9457654268673197,
+      "in_band": true
+     },
+     {
+      "kAU": 3,
+      "case": "with Galaxy",
+      "y": 8.884407965920214,
+      "a0_ratio": 0.94474218708044,
+      "in_band": true
+     },
+     {
+      "kAU": 5,
+      "case": "internal",
+      "y": 3.1453668425054966,
+      "a0_ratio": 0.9834297283029834,
+      "in_band": false
+     },
+     {
+      "kAU": 5,
+      "case": "with Galaxy",
+      "y": 3.5339205959867375,
+      "a0_ratio": 0.9809400319032707,
+      "in_band": false
+     },
+     {
+      "kAU": 10,
+      "case": "internal",
+      "y": 0.7863417106263741,
+      "a0_ratio": 0.9971919335256552,
+      "in_band": false
+     },
+     {
+      "kAU": 10,
+      "case": "with Galaxy",
+      "y": 1.792650409499039,
+      "a0_ratio": 0.9917335959254794,
+      "in_band": false
+     },
+     {
+      "kAU": 20,
+      "case": "internal",
+      "y": 0.19658542765659354,
+      "a0_ratio": 0.9996004024586154,
+      "in_band": false
+     },
+     {
+      "kAU": 20,
+      "case": "with Galaxy",
+      "y": 1.6229319256127737,
+      "a0_ratio": 0.9927160272923807,
+      "in_band": false
+     }
+    ]
+   }
+  },
+  "T2f": {
+   "nu_mono (C-H core, FP5)|canonical": {
+    "y_peak": 5.182171319181209,
+    "u_peak": 0.643466812111719,
+    "u_at_100": 0.221170456018845
+   },
+   "nu_mono (C-H core, FP5)|alt": {
+    "y_peak": 2.9183655660422545,
+    "u_peak": 0.637363865288523,
+    "u_at_100": 0.0
+   },
+   "k04's saturated nu_RAR|canonical": {
+    "y_peak": 2.397583575537361,
+    "u_peak": 0.6402842012343156,
+    "u_at_100": 0.2314682370905294
+   },
+   "k04's saturated nu_RAR|alt": {
+    "y_peak": 2.3139975147132756,
+    "u_peak": 0.6371299649820676,
+    "u_at_100": 0.03856933536327385
+   }
+  },
+  "T2g": {
+   "1.5": 7.879418302766868,
+   "2.0": 6.861103804261538,
+   "3.0": 5.618011679391243
+  },
+  "T3": {
+   "kappa_K": {
+    "canonical": 0.04764744430340693,
+    "alt": 0.05758235824522258
+   },
+   "track": {
+    "0.5": 1.3224361988390971,
+    "1.0": 1.7908377927662795,
+    "2.5": 3.768711649887797,
+    "5.0": 8.293943573475769
+   },
+   "local": [
+    {
+     "y": 0.1,
+     "dlambda": 0.0001495007489099721,
+     "dK_over_K": {
+      "FP2 tracking floor": 0.006379390147211772,
+      "L340 upper window": 0.0006940014761939874
+     }
+    },
+    {
+     "y": 1.0,
+     "dlambda": 0.00975218107734153,
+     "dK_over_K": {
+      "FP2 tracking floor": 0.16596632903116632,
+      "L340 upper window": 0.018055154911080073
+     }
+    },
+    {
+     "y": 10.0,
+     "dlambda": 0.9107047653433344,
+     "dK_over_K": {
+      "FP2 tracking floor": 2.684770362315447,
+      "L340 upper window": 0.29207095846037057
+     }
+    }
+   ]
+  },
+  "headline": {
+   "ratio_z": {
+    "0.0": 1.0,
+    "0.5": 1.0,
+    "1.0": 1.0,
+    "2.5": 1.0,
+    "5.0": 1.0,
+    "1100.0": 1.0
+   },
+   "a0_0": 9.360324825027973e-11
+  },
+  "table": [
+   [
+    "T1 HT",
+    "0 (+1 global)",
+    "unchanged",
+    "unchanged",
+    "0 (exact)",
+    "flat (exact)",
+    "TIED"
+   ],
+   [
+    "T2 BT",
+    "0 (+1 global)",
+    "unchanged",
+    "unchanged at 1 AU (off inside r_off)",
+    "0.265% at the knee; fold y ~ 6.9",
+    "flat",
+    "FAILS (health)"
+   ],
+   [
+    "T3 K",
+    "0",
+    "background unchanged",
+    "not established",
+    "O(0.1-1) (T3c)",
+    "E(z): +0.576 dex at 2.5",
+    "FAILS (flat law)"
+   ],
+   [
+    "T4 seq.",
+    "0 (global numbers)",
+    "residual <tau>/4 <= 0 kept",
+    "unchanged",
+    "0",
+    "flat",
+    "NOT TIED"
+   ]
+  ]
+ },
+ "ledger": [
+  {
+   "link": "X20-T1",
+   "what": "HT unimodular: a0 = kappa c sqrt(G rho_Lambda) holds on every solution; Lambda (and a0) exactly constant in space and time; the MOND sector's dL/dLambda feeds only the unimodular clock; 0 local DOF (+1 global); FRW and PPN = FP7's",
+   "status": "TIED",
+   "basis": "T1a-T1d, HEADLINE-FLAT; kappa stays a coupling (FITTED), the sqrt(Lambda) power is dimensional (FP0 C1)"
+  },
+  {
+   "link": "X20-T1v",
+   "what": "the HT tie is to the integration constant, not to the total observed Lambda: a matter vacuum energy moves Lambda_obs but not a0",
+   "status": "CONSTRAINT",
+   "basis": "T1e: |rho_vac| << rho_Lambda (the cosmological-constant problem, shared)"
+  },
+  {
+   "link": "X20-T2",
+   "what": "BT four-form: tied (flux amplitude cancels, one coupling), local a0 0.265% / 0.388% low at the RAR knee, RAR shift <= 0.0015 dex; BUT the slaved kernel folds at y = 6.87 / 5.65 and is non-monotone up to y_off = 201 / 138 (can/alt)",
+   "status": "FAILS",
+   "basis": "T2d-T2e: C_L,eff < 0 on the band (FP7 C1's health condition), which holds SPARC inner points, a shell around every star, wide binaries at 2-3 kAU"
+  },
+  {
+   "link": "X20-T3",
+   "what": "khronon K: a0 = kappa_K c K = a0 E(z) on FRW",
+   "status": "FAILS",
+   "basis": "T3b: the rho_total rival (+0.576 dex at z = 2.5; L37)"
+  },
+  {
+   "link": "X20-T4",
+   "what": "sequestering: alpha of a global variable is exactly constant, but Lambda_s = -V_vac + <tau>/4 and the kept residual is <= 0 for ordinary matter",
+   "status": "NOT TIED",
+   "basis": "T4a-T4c: constant, not tied to the observed rho_Lambda"
+  },
+  {
+   "link": "L2b",
+   "what": "a0 as a field (FP0/FP5): tied to Lambda by T1's multiplier; still a coupling function written into the action",
+   "status": "TIED (T1)",
+   "basis": "was POSTULATED (FP5 D1-D5); the relation is now a consequence of the field equations given alpha(Lambda)"
+  },
+  {
+   "link": "L0c",
+   "what": "kappa = 1/2 (Z = 5.7888)",
+   "status": "FITTED",
+   "basis": "unchanged: no tie here fixes it (k01-k03)"
+  }
+ ],
+ "verdict": {
+  "n_checks": 28,
+  "n_fail_load_bearing": 0
+ }
+}

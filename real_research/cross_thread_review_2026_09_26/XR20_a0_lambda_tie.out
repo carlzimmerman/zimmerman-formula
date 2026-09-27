@@ -1,0 +1,277 @@
+XR20 -- ONE FIELD FOR a0 AND LAMBDA?  Four ties written into the chain's root action (FP7) and varied: the unimodular
+multiplier (Henneaux-Teitelboim), the four-form (Brown-Teitelboim), the khronon's leaf curvature K, and vacuum-energy
+sequestering.  For each: the flat law, the degree-of-freedom count, FRW and PPN, and the size of any local a0 variation.
+
+WHY.  The chain's top declares P1, a0 = kappa c sqrt(G rho_Lambda) (FP0; kappa = 1/2 FITTED, equivalently Z = 5.7888).
+FP5 (a26136bc4) found that no term of the core ties a0 to Lambda (D1-D5): promoted to a free field, alpha = a0/c^2 obeys
+an equation that switches MOND off unless a potential is put in by hand (D3), and the khronon's only background scale is
+K = 3H, the rival footing (D4).  The record's four-form (kappa_closure/k04) links the two scales with a free coupling
+ratio.  Dimensional analysis already fixes the sqrt(G rho) form (FP0 C1); the only question here is whether a0 becomes a
+consequence of the field that sets Lambda, with kappa as the only coupling.  Nothing here derives kappa.
+
+THE ROOT (real_research/derivation_chain_2026/FP7_aqual_type_repair.py; units c = 1, per 1/16 pi G):
+  I = Int sqrt(-g) { R - 2 Lambda + alpha_c a^2 - c_2 (K - <K>_h)^2 + (2 - alpha_c) h(2a - Dchi).Dchi
+                     - 2 alpha^2 J_P2(Y/alpha^2) + 2 lambda (n.dphi)^2 + heat filter } + S_m,      Y = h^{mn} d_m phi d_n phi,
+  J_P2(s) = -(1/4) ln(1 - 2 sqrt s) - sqrt(s)/2 - s/2.  The kernel scale alpha = a0/c^2 enters ONLY through the J term, and
+      d/d alpha [-2 alpha^2 J(Y/alpha^2)] = 4 alpha F,   F = s J'(s) - J(s) >= 0
+  (F = x^3/3 in deep MOND and F -> y/2 in the Newtonian regime; x = sqrt(s) is the scalar's force in units of a0 and
+  y = g_N/a0).  On P2's spherical law F(y) = 2 Int_0^y h - y h(y) with h the MOND boost: the same density as FP5 D3's
+  (q - Z q') in the C-H core.
+
+THE FOUR TIES (each replaces the constant alpha; nothing else in the root changes):
+  T1 unimodular (Henneaux & Teitelboim 1989): Lambda -> Lambda(x) plus 2 Lambda d_m T^m (T^m a vector density: the
+     3-form multiplier), and alpha = alpha(Lambda) = kappa sqrt(Lambda/8 pi).
+  T2 four-form (Brown & Teitelboim 1987-88): F = dA with dual amplitude q; sqrt(-g) (Z_q/2) q^2 replaces -2 Lambda, and
+     alpha = beta |q|.  Z_q is the four-form's stiffness (the record's name, 738216fbd), NOT the framework's Z = 5.7888.
+  T3 khronon: alpha = kappa_K K, K = nabla.n the leaf mean curvature, kappa_K fixed by today's a0.
+  T4 sequestering (Kaloper & Padilla 2014): global Lambda and lambda with sigma(Lambda/(lambda^4 mu^4)); alpha a function
+     of a global variable.
+
+PRE-DECLARED (written into this docstring before any code of this lane was run; the expectations come from
+pencil-and-paper algebra done while planning the lane, not from any script output):
+  H1  T1: d Lambda = 0 is an exact field equation, so a0 is exactly constant in space and time; the MOND sector's
+      dL/dLambda goes only into d_m T^m (the unimodular clock), where it shifts the rate by (kappa^2/8 pi) F; no local
+      mode is added (0 local, 1 global); the metric equations are FP7's at Lambda = Lambda_0, so FRW and PPN are
+      unchanged.  EXPECT TRUE.  Status: TIED (a coupling function of one integration constant; kappa still fitted).
+  H2a T2: the conserved quantity is the conjugate Pi = dL/dq, not q, so a0_loc/a0 = 1/(1 + (kappa^2/8 pi) F(y_loc));
+      the flux amplitude cancels (the one coupling is beta^2/Z_q = kappa^2/32 pi); SPARC's RAR moves by < 0.01 dex.
+      EXPECT TRUE.
+  H2b T2 health: the slaved kernel stays monotone (C_L,eff > 0) up to the flux's switch-off.  EXPECT FALSE: the algebra
+      puts a fold of the four-form's Legendre map at (1 - 2x)^2 ~ kappa^2/(64 pi), i.e. y ~ 7, with the switch-off at
+      y = 16 pi/kappa^2 ~ 201.
+  H3  T3: a0 follows K = 3H(z), so a0(z)/a0(0) = E(z), +0.576 dex at z = 2.5 (FP5 D4): the flat law FAILS.  EXPECT TRUE.
+  H4  T4: alpha of a global variable is exactly constant, but the sequestered Lambda carries -V_vac and the residual
+      <tau>/4 is <= 0 for ordinary matter: constant, NOT tied to the observed rho_Lambda.  EXPECT TRUE.
+CHECKS
+  C1 CONTROL FP5 D3 (the 'a0 as a field' check) reproduced from FP5's own nu_mono functions: (q - Z q')/s^1.5 has its
+     minimum 9.782e-04 at s = 1e6 and the deep-MOND value 0.3333, and the symbolic identity holds.
+  C2 CONTROL FP0 R3 / FP5 D4: E(z) = 1.322, 1.791, 3.769, 8.294 at z = 0.5, 1, 2.5, 5 and log10 E(2.5) = 0.576.
+  C3 CONTROL FP5 D5: Lambda/alpha^2 = 100.531 (32 pi, canonical) / 68.834 (alt) and kappa_alt = 0.6043, to 1e-12.
+  C4 CONTROL FP7's static law at one point: the Sun's Galactic field (g_ext = 2.32e-10) gives x_e = 0.4501,
+     mu_T = 4.507, mu_L = 49.64 (FP7 A4, committed .out).
+  C5 CONTROL this lane's four-form solver, run in k04's own convention and kernel, reproduces k04's committed F3 rows
+     (a0_loc/a0 and the RAR shift at seven accelerations, K_B = 0 and 0.25) to the printed digits.
+  C6 CONTROL SPARC: FP1's C0 RAR statistic (0.1083 dex, 175 galaxies) and FP7's median per-point error (0.0370 dex).
+  A  the algebra (sympy): J_P2' = mu_s; d/dalpha[-2 alpha^2 J(Y/alpha^2)] = 4 alpha (s J' - J); along P2's spherical law
+     dF/dy = x/(2(1 - x)), F = 2 Int x dy - y x (the QUMOND/AQUAL envelope identity), and x F'(y)/x'(y) = x^3/(1 - 2x)^2
+     (the identity that makes the four-form's fold and the kernel's non-monotonicity one condition); the closed form
+     matches direct quadrature.
+  T1a HT, varied (1+1 toy with a background density sqrt(-g)): the multiplier's equations are d_t Lambda = d_x Lambda = 0;
+      Lambda's equation fixes d_m T^m; phi's equation on shell is the root's at alpha(Lambda_0).
+  T1b the unimodular clock: d_m T^m = sqrt(-g) [1 - (kappa^2/8 pi) F]; FP5 D3's obstruction (a free alpha-field forces
+      F = 0, no MOND) is absorbed by the multiplier.
+  T1c the Dirac count on a periodic lattice: the constraints are first class, no secondary constraint with the MOND
+      coupling, 2N - 2(N - 1) = 2 phase-space dimensions: one global degree of freedom, none local.
+  T1d FRW and PPN: the HT term is metric-free, so the metric equations are the root's at Lambda_0: FP7 B1 (GR + Lambda)
+      and D2 (gamma = 1, khronometric alphas) carry over exactly.
+  T1e (reported) the vacuum-energy caveat: a matter vacuum energy enters the observed Lambda but not a0.
+  T2a BT, varied: the conjugate Pi = dL/dq is constant; Lambda_eff = (q P' - P)/2 = Z_q q^2/4; the flux amplitude
+      cancels: alpha_0^2/Lambda_0 = 4 beta^2/Z_q = kappa^2/8 pi; locally a0_loc/a0 = 1/(1 + (kappa^2/8 pi) F(y_loc)).
+  T2b the local a0 and the RAR shift in galaxies, both footings.
+  T2c = H2a  SPARC: the RAR statistic with the four-form's local a0, both footings; max per-point shift < 0.01 dex.
+  T2d the fold, located two independent ways (the family's du/dy = 0, and L_qq|_Y = 0 by 40-digit finite differences of
+      the action's own J_P2), agreeing to < 1e-6; C_L,eff = dy/du < 0 on the whole band up to the switch-off y_off = 2/eps.
+  T2d2 the fold's consequence in FP7's own reduced quadratic form (T, V of FP7 C1): one omega^2 < 0, ~ k^2, on the band;
+      CONTROL: none at fixed alpha.
+  T2d3 the same on FP14's zero-knob root (lambda = 0; c_2 finite and -> oo), from FP14 L2's committed one-mode formulas
+      (added after FP14 landed during this lane; disclosed).
+  T2e (reported, = H2b as it falls) where the band sits: SPARC points, a solar-mass star's shell, wide binaries.
+  T2f (reported) the same test on the C-H core's nu_mono and on k04's saturated kernel.
+  T2g (reported) power-law four-forms P ~ q^n: the fold for n = 1.5, 2, 3.
+  T2h FRW: F = 0 on the homogeneous background, so q = q_0, Lambda_eff constant and a0(z) flat; DOF as T1c.
+  T3a the khronon's K on FRW is 3H (sympy); T3b the K tie gives a0(z)/a0(0) = E(z): +0.576 dex at z = 2.5 (FP5 D4) -- the
+      candidate FAILS the flat law (L37 S8b: the rival is killed at recombination, committed).
+  T3c (reported) the K tie's local structure: the khronon's lambda shifted by 2 kappa_K^2 (x^3/(1-2x)^2 - F), and the
+      leaf-harmonic estimate delta K/K = 2 kappa_K^2 F/c_2.
+  T4a sequestering, varied (the global equations, sympy): Lambda_s = <T>/4, the vacuum energy cancels from the Einstein
+      equation, lambda^4 = sigma'/(mu^4 Vol); the matter-scaling identity d/dlambda[lambda^4 L(lambda^-2 g)] = lambda^3 T~
+      verified on a scalar field.
+  T4b Lambda_s = -V_vac + <tau>/4: alpha(Lambda_s) inherits the vacuum energy; tau = -rho(1 - 3w) <= 0 for w <= 1/3.
+  T4c (record) k02's committed magnitudes for the MOND scalar's own spacetime average.
+  HEADLINE-FLAT  the headline tie (T1) on the solutions of its own field equations: a0(z)/a0(0) = 1 at z = 0.5, 1, 2.5,
+      5, 1100 and a0_loc/a0 = 1 across a galaxy, to 1e-12.
+  W  the ledger of the four ties.
+MUTATE=1: the headline tie reads the khronon's K (= 3H on FRW, T3) instead of the conserved HT field: HEADLINE-FLAT must
+FAIL (rc = 1).  Every other check is unchanged by the mutation.
+
+SCOPE.  The ties are varied at the level the task sets: the field equations of each tie in the root (sympy, 1+1 toys for
+the local structure, minisuperspace for FRW), the spherical static law for the local a0 (P2 is exact there in the root,
+FP7 A2), SPARC's RAR through FP1's C0 statistic, and a lattice Dirac count.  Discs are not re-solved with the local a0
+(the shifts are <= 0.002 dex, far inside FP7 A3's AQUAL/QUMOND disc difference).  Both a0 footings are carried
+(canonical 9.3603e-11, alt 1.1312e-10 m/s^2; on rho_Lambda the alt footing is kappa = 0.6043).
+
+Run from the repository root:  python3 real_research/cross_thread_review_2026_09_26/XR20_a0_lambda_tie.py   (MUTATE=1 for
+the control).  Writes XR20_a0_lambda_tie[_MUTATE].out and XR20_a0_lambda_tie_results[_MUTATE].json next to itself.
+
+  inputs (FP0): a0 = 9.3603e-11 (canonical) / 1.1312e-10 (alt) m/s^2; rho_Lambda = 5.8424e-27 kg/m^3; Lambda = 1.0904e-52 1/m^2;
+  kappa on rho_Lambda = 0.5000 / 0.6043; eps = kappa^2/8pi = 0.009947 / 0.014528
+
+==================================================================================================================
+C   CONTROLS: the committed numbers this lane builds on, reproduced
+==================================================================================================================
+  [PASS] C1 CONTROL FP5 D3 reproduced from FP5's own nu_mono: (q - Z q')/s^1.5 minimum and deep value, and the symbolic identity d_sigma[2 sigma^2 q(Z/sigma^2)] = 4 sigma (q - Z q')
+         measured: this lane: min 9.782e-04 at s = 1.0e+06, deep-MOND value 0.3333; identity True; FP5 committed: 'symbolic identity (two test primitives) True; (q - Z q')/s^1.5: min 9.782e-04 at s = 1.0e+06, deep-MOND value 0.3333'
+         reading:  (q - Z q') is the same alpha-conjugate density F that drives every tie below
+  [PASS] C2 CONTROL FP0 R3 / FP5 D4: the rival E(z) at z = 0.5, 1, 2.5, 5 and log10 E(2.5) = 0.576
+         measured: this lane: 1.322, 1.791, 3.769, 8.294 (+0.576 dex at z = 2.5); FP0 committed '...00; rival 1.322, 1.791, 3.769, 8.294 (+0.576 dex at z = 2.5)'; FP5 D4 has 'log10 E(2.5) = 0.576': True
+  [PASS] C3 CONTROL FP5 D5: Lambda/alpha^2 = 8 pi/kappa^2 on both footings and kappa_alt, to 1e-12
+         measured: 100.530965 (32 pi = 100.530965) / 68.833552; kappa_alt 0.6042544263; FP5: 100.530965 / 68.833552, 0.6042544263
+  [PASS] C4 CONTROL FP7's static law at one point (A4): the Sun's Galactic field g_ext = 2.32e-10 m/s^2 on P2's AQUAL law
+         measured: this lane: x_e = 0.4501, mu_T = 4.507, mu_L = 49.64 (y_N,ext = 2.0285); in FP7's committed .out: True
+    F3: K_B = 0.00 canonical: a0_loc/a0 (Delta log g_obs): s=0.01: 1.0000 (-0.0000 dex), s=0.1: 0.9999 (-0.0000 dex), s=1: 0.9968 (-0.0004 dex), s=2.54: 0.9881 (-0.0011 dex), s=10: 0.9398 (-0.0016 dex), s=100: 0.3574 (-0.0018 dex), s=1000: 0.0000 (-0.0003 dex)
+      (k04's own iteration vs this lane's bracketing solver: max |dr| = 1.9e-12)
+    F3: K_B = 0.25 canonical: a0_loc/a0 (Delta log g_obs): s=0.01: 1.0000 (-0.0000 dex), s=0.1: 0.9999 (-0.0000 dex), s=1: 0.9972 (-0.0003 dex), s=2.54: 0.9896 (-0.0009 dex), s=10: 0.9474 (-0.0014 dex), s=100: 0.4381 (-0.0016 dex), s=1000: 0.0000 (-0.0003 dex)
+      (k04's own iteration vs this lane's bracketing solver: max |dr| = 1.5e-12)
+  [PASS] C5 CONTROL this lane's four-form solver in k04's convention and kernel reproduces k04's committed F3 rows to the printed digits (K_B = 0 and 0.25), and agrees with k04's own fixed-point iteration to < 1e-9
+         measured: both rows found verbatim in the committed k04 output: True
+  [PASS] C6 CONTROL SPARC: FP1's C0 RAR statistic and FP7's median per-point error in log g_obs
+         measured: rms at Upsilon = 0.70: 0.1083 dex (175 galaxies; FP1: '0.1083 dex (a0 = 9.3614e-11, 175 galaxies)'); median error 0.0370 dex over 3391 points (FP7: 0.0370)
+
+==================================================================================================================
+A   THE ALGEBRA: the alpha-conjugate density F of the root's MOND term, on P2's law (sympy + quadrature)
+==================================================================================================================
+  [PASS] A  THE ALGEBRA: J_P2' = mu_s(sqrt s), J(0) = 0; d/dalpha[-2 alpha^2 J(Y/alpha^2)] = 4 alpha (s J' - J) for any J; F = s J' - J = x^3/(1-2x) + ln(1-2x)/4 + x/2 + x^2/2; along P2's law dF/dy = x/(2(1-x)), F = 2 Int x dy - y x (envelope), x F'(y)/x'(y) = x^3/(1-2x)^2 (the fold identity); the closed form (+ series below x = 2e-3) equals direct quadrature
+         measured: J' True; alpha-derivative True; F closed form True; dF/dy True; envelope True; fold identity True; max rel |closed - quadrature| over y = 1e-6..1e3: 2.2e-12
+         reading:  F > 0 for every y > 0 (F >= x^3/3); F -> y/2 at high y: the MOND term's alpha-derivative is Newton-strength there
+
+==================================================================================================================
+T1  HENNEAUX-TEITELBOIM: Lambda(x) with a 3-form multiplier, alpha = kappa sqrt(Lambda/8 pi)
+==================================================================================================================
+  [PASS] T1a HT VARIED: the multiplier's equations are -2 d_t Lambda = -2 d_x Lambda = 0 (Lambda uniform in space AND time, exactly); phi's equation on shell is the root's at alpha(Lambda_0); Lambda's own equation contains 2 d_m T^m and the MOND term's dL/dLambda = (kappa^2/4 pi) F
+         measured: EL(T0) = -2*Derivative(Lambda(t, x), t), EL(T1) = -2*Derivative(Lambda(t, x), x): True; phi on shell = root at alpha(Lambda_0): True; dL_M/dLambda = (kappa^2/4pi) F: True; d_m T^m in Lambda's equation: True
+         reading:  d Lambda = 0 is a field equation, not an assumption: a0 = alpha(Lambda) c^2 is constant on every solution
+    the unimodular clock d_m T^m = sqrt(-g)[1 - (kappa^2/8pi) F(y)]: rate shift (kappa^2/8pi) F at y = 1e-3, 0.01, 0.1, 1, 10, 100:
+      canonical 1.05e-07, 3.31e-06, 1.02e-04, 2.65e-03, 4.29e-02, 4.85e-01
+      alt       1.53e-07, 4.83e-06, 1.49e-04, 3.87e-03, 6.26e-02, 7.08e-01
+  [PASS] T1b THE CLOCK: d_m T^m = sqrt(-g) [1 - (kappa^2/8 pi) F]: the MOND sector's dL/dLambda goes only there.  FP5 D3's obstruction, re-derived for the root: a FREE alpha-field sigma obeys sqrt(-g) 4 sigma F = 0, i.e. F = 0 (no MOND, since F > 0 for every y > 0); in T1 the same term is absorbed by the multiplier's divergence
+         measured: free-field equation = sqrt(-g) 4 sigma F: True; clock shift at the RAR knee (y = 1): 2.65e-03 / 3.87e-03 (can/alt), at y = 100: 4.85e-01 / 7.08e-01
+         reading:  T^m appears nowhere else, so the clock is unobservable; only its global charge (the total 4-volume, conjugate to Lambda_0) is physical
+  [PASS] T1c THE DIRAC COUNT (periodic lattice, N = 5; the same algebra holds for T2's (A, Pi) pair): {C_i, C_j} = 0 (first class), {C_i, H} = 0 with the MOND coupling alpha(Lambda) in H (no secondary constraint), rank N - 1, so the (T0, Lambda) sector keeps 2N - 2(N - 1) = 2 phase-space dimensions: ONE global degree of freedom, no local mode
+         measured: brackets zero True; {C, H} = [0, 0, 0, 0, 0]; rank 4; physical dims 2; gauge shift of T0_k: xi_0/2 - xi_1/2
+         reading:  the root's count (FP7 E1: 2 tensor + khronon + MOND scalar = 4) is unchanged; the global pair is (Lambda_0, the total 4-volume)
+  [PASS] T1d FRW AND PPN: the HT term 2 Lambda d_m T^m contains no metric (T^m is a density), so the metric's equations are the root's at Lambda = Lambda_0, alpha = alpha(Lambda_0): FP7 B1 (the FRW background is GR + Lambda, a0 absent) and D2 (gamma = 1, alpha_3 = 0, the khronometric alpha_1, alpha_2) carry over exactly
+         measured: d/dg of the HT Lagrangian = d/dg of the root's: True
+    with a matter vacuum energy rho_vac: Lambda_obs = Lambda_HT + 8 pi G rho_vac/c^2 while alpha reads Lambda_HT;
+    Delta log a0 at rho_vac/rho_Lambda,obs = 1e-3, 1e-2, 0.1, 0.5: -0.0002, -0.0022, -0.0229, -0.1505 dex
+  [PASS] T1e (reported) THE VACUUM-ENERGY CAVEAT: the tie is to the HT integration constant; a vacuum energy of the matter sector adds to the observed Lambda but not to a0, so a0 = kappa c sqrt(G rho_Lambda,obs) needs |rho_vac| << rho_Lambda (the cosmological-constant problem, now shared by a0; unchanged from P1 as declared)
+         measured: Delta log a0 = -0.0229 dex at rho_vac = 0.1 rho_Lambda
+
+==================================================================================================================
+T2  BROWN-TEITELBOIM: a four-form F = dA, (Z_q/2) q^2, alpha = beta |q| (Z_q: the four-form's stiffness, not Z)
+==================================================================================================================
+  [PASS] T2a BT VARIED: the 3-form's equations are d_x(L_q) = d_t(L_q) = 0, so the CONJUGATE Pi = L_q = Z_q q + 4 beta^2 q F is constant, not q; the four-form gravitates through the Legendre form q P' - P, Lambda_eff = Z_q q^2/4; the flux amplitude cancels, alpha_0^2/Lambda_0 = 4 beta^2/Z_q = kappa^2/8 pi (one coupling, beta^2/Z_q = kappa^2/32 pi); locally a0_loc/a0 = q/q_0 = 1/(1 + (kappa^2/8 pi) F(y_loc))
+         measured: L_q form True; EL(A0), EL(A1) total derivatives of L_q True; Legendre energy True; Lambda_eff = Z_q*q**2/4, alpha^2/Lambda = 4*beta**2/Z_q, q/q_0 = Z_q/(4*F*beta**2 + Z_q): True
+         reading:  the root's alpha-derivative (A) is the four-form's source: where the MOND sector is active, q (and a0) drop
+    canonical y, a0_loc/a0, scalar force/a0 (P2: x(y)), Delta log g_obs [dex]:
+        y =   0.0100: a0_loc/a0 = 1.00000, u = 0.09050 (P2 0.09050), -0.00000 dex
+        y =   0.1000: a0_loc/a0 = 0.99990, u = 0.23165 (P2 0.23166), -0.00002 dex
+        y =   1.0000: a0_loc/a0 = 0.99735, u = 0.41328 (P2 0.41421), -0.00029 dex
+        y =   2.0285: a0_loc/a0 = 0.99339, u = 0.44736 (P2 0.45007), -0.00047 dex
+        y =  10.0000: a0_loc/a0 = 0.95693, u = 0.46754 (P2 0.48809), -0.00085 dex
+        y =  30.0000: a0_loc/a0 = 0.85925, u = 0.42659 (P2 0.49590), -0.00099 dex
+        y = 100.0000: a0_loc/a0 = 0.50983, u = 0.25459 (P2 0.49876), -0.00106 dex
+    alt       y, a0_loc/a0, scalar force/a0 (P2: x(y)), Delta log g_obs [dex]:
+        y =   0.0100: a0_loc/a0 = 1.00000, u = 0.09050 (P2 0.09050), -0.00000 dex
+        y =   0.1000: a0_loc/a0 = 0.99985, u = 0.23164 (P2 0.23166), -0.00003 dex
+        y =   1.0000: a0_loc/a0 = 0.99612, u = 0.41284 (P2 0.41421), -0.00042 dex
+        y =   1.6110: a0_loc/a0 = 0.99278, u = 0.43710 (P2 0.43993), -0.00060 dex
+        y =  10.0000: a0_loc/a0 = 0.93696, u = 0.45799 (P2 0.48809), -0.00125 dex
+        y =  30.0000: a0_loc/a0 = 0.79372, u = 0.39427 (P2 0.49590), -0.00145 dex
+        y = 100.0000: a0_loc/a0 = 0.27998, u = 0.13989 (P2 0.49876), -0.00155 dex
+  [PASS] T2b (reported) THE LOCAL a0 in the root's spherical law (both footings): a0 is lowest where the MOND sector's alpha-conjugate density F is largest; at the RAR knee (y = 1) and the Sun's Galactic field
+         measured: a0_loc/a0 at y = 1: 0.99735 / 0.99612 (can/alt); at the Sun's y_e = 2.028: 0.99339; at y = 100: 0.5098 / 0.2800
+    canonical RAR rms at Upsilon = 0.70: P2 0.10827, four-form 0.10818 dex; best Upsilon: P2 0.10827 (0.70), four-form 0.10818 (0.70); per-point |shift| max 0.00106, median 7.28e-05 dex
+    alt       RAR rms at Upsilon = 0.70: P2 0.10581, four-form 0.10563 dex; best Upsilon: P2 0.10355 (0.65), four-form 0.10346 (0.65); per-point |shift| max 0.00155, median 8.40e-05 dex
+  [PASS] T2c = H2a SPARC: with the four-form's local a0 the RAR moves by < 0.01 dex at every SPARC point and the C0 statistic by < 0.001 dex, both footings (vs the median per-point error 0.037 dex and the RAR scatter 0.108 dex)
+         measured: max per-point shift 0.0011 / 0.0015 dex; rms change -0.00009 / -0.00018 dex (can/alt); interpolant vs exact 2.2e-16
+         reading:  invisible in the RAR -- as k04 found for its kernel; the question is the health of the slaved kernel (T2d)
+    canonical fold (i) du/dy = 0: y = 6.87239114 (y_loc = 7.072381, a0_loc/a0 = 0.971722, u_max = 0.46980); (ii) L_qq|_Y = 0 by 40-digit differences: y = 6.87239114; switch-off y_off = 2/eps = 16 pi/kappa^2 = 201.062 (a0_loc/a0 at 0.999 y_off = 1.03e-03); du/dy min below the fold 1.414e-04, max on the band -1.301e-04; u at y = 20, 50, 100: 0.4492, 0.3786, 0.2546
+    alt       fold (i) du/dy = 0: y = 5.65377731 (y_loc = 5.847257, a0_loc/a0 = 0.966911, u_max = 0.46438); (ii) L_qq|_Y = 0 by 40-digit differences: y = 5.65377731; switch-off y_off = 2/eps = 16 pi/kappa^2 = 137.667 (a0_loc/a0 at 0.999 y_off = 1.05e-03); du/dy min below the fold 2.027e-04, max on the band -1.867e-04; u at y = 20, 50, 100: 0.4284, 0.3229, 0.1399
+  [PASS] T2d THE FOLD, located two independent ways: the four-form's Legendre map q -> Pi at fixed Y (L_qq|_Y, 40-digit differences of J_P2 itself) degenerates exactly where the slaved scalar force u(y) = (a0_loc/a0) x(y_loc) peaks; below it C_L,eff = dy/du > 0, on the whole band from the fold to the switch-off y_off = 16 pi/kappa^2 C_L,eff < 0
+         measured: y_fold = 6.8724 / 5.6538 (can/alt), routes agree to 2.5e-14; y_off = 201.06 / 137.67; du/dy > 0 below: True; du/dy < 0 on the band: True
+         reading:  past the fold the scalar's force DEcreases as g_N grows: the non-monotone kernel the record built nu_mono to exclude (FP7 C1: healthy iff C_phi > 0 in each channel) -- a gradient instability with growth ~ k (Hadamard), as FP5 G-2f
+    canonical y = 20: C_L,eff (slaved q) = -465.7 vs FP7's C_L at fixed alpha 3360; omega^2/(c k)^2 roots: slaved -1.673, 6.273e+08; fixed 12.07, 6.273e+08; growth rate 1.29 c k at lambda = 1 (e-fold 2.52e+03 yr at k = 1/kpc), 0.0066 c k at lambda = 1.07e7 (e-fold 4.94e+05 yr at k = 1/kpc); both grow ~ k
+    alt       y = 20: C_L,eff (slaved q) = -304 vs FP7's C_L at fixed alpha 3360; omega^2/(c k)^2 roots: slaved -1.092, 6.273e+08; fixed 12.07, 6.273e+08; growth rate 1.04 c k at lambda = 1 (e-fold 3.12e+03 yr at k = 1/kpc), 0.00533 c k at lambda = 1.07e7 (e-fold 6.12e+05 yr at k = 1/kpc); both grow ~ k
+  [PASS] T2d2 THE FOLD'S CONSEQUENCE IN FP7'S OWN QUADRATIC FORM (T and V of FP7 C1, read from its committed output; alpha_c = 3.2e-9, c_2 = 7.29e-3, lambda = 1, unfiltered sigma = 1): on the band (y = 20) the slaved coefficient makes one omega^2 negative, proportional to k^2 (growth ~ k: Hadamard); CONTROL: at fixed alpha (the root) both roots are positive
+         measured: canonical: slaved min omega^2/(ck)^2 -1.67, fixed min 12.1; alt: slaved min omega^2/(ck)^2 -1.09, fixed min 12.1
+         reading:  the four-form's feedback turns the root's healthy MOND scalar into a gradient-unstable one wherever the band reaches
+    FP14's lambda = 0 root, omega^2/(c k)^2 at y = 20 (slaved / fixed alpha): canonical c_2: -1.679 / 12.11; canonical c_2 -> oo: -155.2 / 1120; alt c_2: -1.096 / 12.11; alt c_2 -> oo: -101.3 / 1120; FP7's T, V at lambda = 0 give -1.67891 (canonical, finite c_2)
+  [PASS] T2d3 ON FP14'S ZERO-KNOB ROOT (lambda = 0, c_2 finite and c_2 -> oo; FP14 L2's one-mode formulas read from its committed output, cross-checked against FP7's T, V at lambda = 0): the slaved coefficient makes the one remaining scalar's omega^2 negative (growth ~ k); CONTROL: at fixed alpha it is positive -- the four-form's failure does not depend on the MOND scalar's inertia or on c_2
+         measured: canonical c_2: -1.68 (fixed 12.1); canonical c_2 -> oo: -155 (fixed 1.12e+03); alt c_2: -1.1 (fixed 12.1); alt c_2 -> oo: -101 (fixed 1.12e+03)
+    canonical SPARC points in the band (y_fold, y_off) at Upsilon = 0.5/0.7/0.9: 0.055/0.076/0.094; a 1-Msun star: MOND off inside 561 AU, unstable shell 561-3036 AU
+              wide binary (1.5 Msun): 2 kAU internal: y = 23.76, a0_loc/a0 = 0.890 [band]; 2 kAU with Galaxy: y = 23.84, a0_loc/a0 = 0.890 [band]; 3 kAU internal: y = 10.56, a0_loc/a0 = 0.954 [band]; 3 kAU with Galaxy: y = 10.75, a0_loc/a0 = 0.953 [band]; 5 kAU internal: y = 3.80, a0_loc/a0 = 0.986; 5 kAU with Galaxy: y = 4.31, a0_loc/a0 = 0.984; 10 kAU internal: y = 0.95, a0_loc/a0 = 0.998; 10 kAU with Galaxy: y = 2.24, a0_loc/a0 = 0.993; 20 kAU internal: y = 0.24, a0_loc/a0 = 1.000; 20 kAU with Galaxy: y = 2.04, a0_loc/a0 = 0.993
+    alt       SPARC points in the band (y_fold, y_off) at Upsilon = 0.5/0.7/0.9: 0.055/0.077/0.096; a 1-Msun star: MOND off inside 617 AU, unstable shell 617-3045 AU
+              wide binary (1.5 Msun): 2 kAU internal: y = 19.66, a0_loc/a0 = 0.868 [band]; 2 kAU with Galaxy: y = 19.72, a0_loc/a0 = 0.868 [band]; 3 kAU internal: y = 8.74, a0_loc/a0 = 0.946 [band]; 3 kAU with Galaxy: y = 8.88, a0_loc/a0 = 0.945 [band]; 5 kAU internal: y = 3.15, a0_loc/a0 = 0.983; 5 kAU with Galaxy: y = 3.53, a0_loc/a0 = 0.981; 10 kAU internal: y = 0.79, a0_loc/a0 = 0.997; 10 kAU with Galaxy: y = 1.79, a0_loc/a0 = 0.992; 20 kAU internal: y = 0.20, a0_loc/a0 = 1.000; 20 kAU with Galaxy: y = 1.62, a0_loc/a0 = 0.993
+  [FAIL] T2e = H2b (pre-declared EXPECT FALSE, reported as it falls): the slaved kernel stays monotone up to the switch-off -- it does NOT: the band y_fold < y < y_off holds a fraction of SPARC's inner points, a shell around every solar-mass star, and wide binaries at 2-3 kAU
+         measured: SPARC fraction in band (Upsilon 0.7): 0.076 / 0.077; 1-Msun shell 561-3036 AU (canonical)
+    nu_mono (C-H core, FP5)   : the slaved boost u(y) peaks at y = 5.18 (canonical) / 2.92 (alt) and falls beyond it (u(100) = 0.221)
+    k04's saturated nu_RAR    : the slaved boost u(y) peaks at y = 2.40 (canonical) / 2.31 (alt) and falls beyond it (u(100) = 0.231)
+  [PASS] T2f (reported) THE SAME FOLD ON THE RECORD'S OTHER KERNELS: the C-H core's nu_mono and k04's saturated nu_RAR also turn non-monotone under the four-form's feedback (k04 F6's Z_eff > 0 is the flux stiffness at fixed s; it does not test the slaved kernel's monotonicity) -- a reading note for kappa_closure/k04, not an edit
+         measured: nu_mono (C-H core, FP5) canonical: peak y = 5.18; nu_mono (C-H core, FP5) alt: peak y = 2.92; k04's saturated nu_RAR canonical: peak y = 2.40; k04's saturated nu_RAR alt: peak y = 2.31
+    power-law four-forms P ~ q^n with alpha ~ q^(n/2) (a0 ~ sqrt(rho_Lambda)), canonical: the slaved force peaks at y = 7.88 (n = 1.5), 6.86 (n = 2.0), 5.62 (n = 3.0)
+  [PASS] T2g (reported) the fold is not special to the quadratic four-form: every power law P ~ q^n (n = 1.5, 2, 3) folds at y ~ 5-9; the HT tie (T1) is not a limit of these -- it reads the conserved conjugate, not the field strength
+         measured: peaks at y = 7.88, 6.86, 5.62
+  [PASS] T2h FRW AND DOF: on the homogeneous background Y = 0, so F = 0 and J = 0: q = q_0, Lambda_eff = Z_q q_0^2/4 is constant, the background is GR + Lambda and a0(z) is flat; the (A, Pi) pair counts as T1c (one global degree of freedom, no local mode) wherever the Legendre map is invertible -- it is not at the fold (T2d)
+         measured: F(0) = 0.0, J(0) = 0
+
+==================================================================================================================
+T3  THE KHRONON'S LEAF CURVATURE: alpha = kappa_K K
+==================================================================================================================
+  [PASS] T3a/T3b THE K TIE IS THE RIVAL LAW: on FRW K = nabla.n = 3 adot/(a N) (sympy), so a0 = kappa_K c K gives a0(z)/a0(0) = H(z)/H0 = E(z) whatever kappa_K is -- +0.576 dex at z = 2.5 on both footings (FP5 D4), the rho_total rival that L37 kills at recombination (committed S8b FAIL): this candidate FAILS the flat law
+         measured: K_FRW = 3*Derivative(a(t), t)/(N(t)*a(t)): True; kappa_K = 0.04765 / 0.05758; a0(z)/a0(0) at z = 0.5, 1, 2.5, 5: 1.322, 1.791, 3.769, 8.294 (+0.576 dex at 2.5); L37 S8b FAIL found True
+    y =   0.1: the MOND term shifts the khronon's lambda by 2 kappa_K^2 (x^3/(1-2x)^2 - F) = 1.495e-04; leaf-harmonic delta K/K = 2 kappa_K^2 F/c_2 = 0.006 (FP2 tracking floor), 0.001 (L340 upper window)
+    y =   1.0: the MOND term shifts the khronon's lambda by 2 kappa_K^2 (x^3/(1-2x)^2 - F) = 9.752e-03; leaf-harmonic delta K/K = 2 kappa_K^2 F/c_2 = 0.166 (FP2 tracking floor), 0.018 (L340 upper window)
+    y =  10.0: the MOND term shifts the khronon's lambda by 2 kappa_K^2 (x^3/(1-2x)^2 - F) = 9.107e-01; leaf-harmonic delta K/K = 2 kappa_K^2 F/c_2 = 2.685 (FP2 tracking floor), 0.292 (L340 upper window)
+  [PASS] T3c (reported) the K tie is not locally constant either: the MOND term now depends on K, shifting the khronon's lambda by O(c_2) at the RAR knee and by >> c_2 at y ~ 10, and (following CV4 K1's leaf-harmonic K) sourcing delta K/K = 2 kappa_K^2 F/c_2 -- a few to ~20 percent at the knee over L340's c_2 window, non-perturbative near stars (F ~ y/2); the full khronon equation with the tie is not solved here
+         measured: at y = 1: delta lambda = 9.75e-03, delta K/K = 0.018-0.166
+
+==================================================================================================================
+T4  SEQUESTERING (Kaloper-Padilla): global Lambda and lambda; alpha of a global variable
+==================================================================================================================
+  [PASS] T4a/T4b SEQUESTERING VARIED: the global equations give Lambda_s = <T>/4 and sigma' = lambda^4 mu^4 Vol (the lambda-scaling identity d/dlambda[lambda^4 L(lambda^-2 g)] = lambda^3 T~ holds on a scalar field); with T = -4 V_vac + tau the Einstein equation keeps only tau_mn - (<tau>/4) g_mn (the vacuum energy cancels) while Lambda_s = -V_vac + <tau>/4 carries it (dLambda_s/dV_vac = -1); tau = -rho(1 - 3w) > 0 only for w > 1/3
+         measured: Lambda_s = I_T/(4*Vol), sigma' = Vol*lambda**4*mu**4: True; scaling identity True; residual coefficient -tau_avg/4 = -<tau>/4 and dLambda_s/dV_vac = -1: True; tau > 0 needs 1/3 < w
+         reading:  alpha(Lambda_s) is exactly constant (a global number) but reads -V_vac + <tau>/4: it inherits the matter vacuum energy the construction exists to cancel, and with ordinary matter (w <= 1/3) the residual the Einstein equation keeps is <= 0 -- the observed positive rho_Lambda must then come from another (dynamical) sector (see part 2)
+  [PASS] T4c (record) k02's committed magnitudes for the one sequestering-type construction on the MOND scalar's OWN spacetime average: <= 2.3e-5 of rho_Lambda today, and the de Sitter future drives the average to zero
+         measured: k02 G2 largest = 2.3e-05; G3 ratio(10 t0/t0) = 9.4e-09-9.6e-09
+
+==================================================================================================================
+HEADLINE-FLAT  the headline tie on the solutions of its own field equations
+==================================================================================================================
+  [PASS] HEADLINE-FLAT the headline tie evaluated on the solutions of its own field equations: a0(z)/a0(0) = 1 at z = 0.5, 1, 2.5, 5, 1100 and a0 uniform across a galaxy, to 1e-12, with a0(0) = the canonical 9.3603e-11
+         measured: a0(z)/a0(0) = 1.000000, 1.000000, 1.000000, 1.000000, 1.000000; across 0-100 kpc max |dev| 0.0e+00; a0(0) = 9.360325e-11
+         reading:  T1: d Lambda = 0 integrated in time and across a galaxy leaves Lambda, and so a0, unchanged
+
+==================================================================================================================
+W   THE LEDGER: which tie makes a0 and Lambda one field, and at what price
+==================================================================================================================
+    X20-T1   TIED        HT unimodular: a0 = kappa c sqrt(G rho_Lambda) holds on every solution; Lambda (and a0) exactly constant in space and time; the MOND sector's dL/dLambda feeds only the unimodular clock; 0 local DOF (+1 global); FRW and PPN = FP7's  --  T1a-T1d, HEADLINE-FLAT; kappa stays a coupling (FITTED), the sqrt(Lambda) power is dimensional (FP0 C1)
+    X20-T1v  CONSTRAINT  the HT tie is to the integration constant, not to the total observed Lambda: a matter vacuum energy moves Lambda_obs but not a0  --  T1e: |rho_vac| << rho_Lambda (the cosmological-constant problem, shared)
+    X20-T2   FAILS       BT four-form: tied (flux amplitude cancels, one coupling), local a0 0.265% / 0.388% low at the RAR knee, RAR shift <= 0.0015 dex; BUT the slaved kernel folds at y = 6.87 / 5.65 and is non-monotone up to y_off = 201 / 138 (can/alt)  --  T2d-T2e: C_L,eff < 0 on the band (FP7 C1's health condition), which holds SPARC inner points, a shell around every star, wide binaries at 2-3 kAU
+    X20-T3   FAILS       khronon K: a0 = kappa_K c K = a0 E(z) on FRW  --  T3b: the rho_total rival (+0.576 dex at z = 2.5; L37)
+    X20-T4   NOT TIED    sequestering: alpha of a global variable is exactly constant, but Lambda_s = -V_vac + <tau>/4 and the kept residual is <= 0 for ordinary matter  --  T4a-T4c: constant, not tied to the observed rho_Lambda
+    L2b      TIED (T1)   a0 as a field (FP0/FP5): tied to Lambda by T1's multiplier; still a coupling function written into the action  --  was POSTULATED (FP5 D1-D5); the relation is now a consequence of the field equations given alpha(Lambda)
+    L0c      FITTED      kappa = 1/2 (Z = 5.7888)  --  unchanged: no tie here fixes it (k01-k03)
+  [PASS] W (reported) the ledger
+         measured: 7 links
+
+    tie        local DOF       FRW                         PPN                                local a0                        a0(z)                  status
+    T1 HT | 0 (+1 global) | unchanged | unchanged | 0 (exact) | flat (exact) | TIED
+    T2 BT | 0 (+1 global) | unchanged | unchanged at 1 AU (off inside r_off) | 0.265% at the knee; fold y ~ 6.9 | flat | FAILS (health)
+    T3 K | 0 | background unchanged | not established | O(0.1-1) (T3c) | E(z): +0.576 dex at 2.5 | FAILS (flat law)
+    T4 seq. | 0 (global numbers) | residual <tau>/4 <= 0 kept | unchanged | 0 | flat | NOT TIED
+
+==================================================================================================================
+VERDICT
+==================================================================================================================
+  T1 (Henneaux-Teitelboim) TIES a0 to Lambda without touching the flat law: d Lambda = 0 is a field equation, so a0 is exactly
+  constant in space and time; the MOND sector's dL/dLambda goes into the unimodular clock, which nothing observes; no local
+  mode is added; the metric equations, FRW and PPN are FP7's.  It is a tie, not a derivation: alpha(Lambda) = kappa
+  sqrt(Lambda/8 pi) is a coupling function written into the action, kappa stays fitted, and the tie is to the HT integration
+  constant (a matter vacuum energy would move the observed Lambda but not a0).
+  T2 (Brown-Teitelboim) ties them too and leaves the RAR untouched (<= 0.0015 dex), but the four-form's Legendre map folds
+  at y = 6.87 (canonical) / 5.65 (alt): past it the slaved scalar force falls as g_N grows, up to the switch-off at y = 201 / 138 --
+  the non-monotone kernel FP7's health condition forbids.  T3 (K) is the rival law.  T4 (sequestering) is constant but not
+  tied to the observed rho_Lambda.  The closure target stays OPEN; kappa = 1/2 stays FITTED.
+
+  27/28 checks pass; load-bearing failures: 0; wrote XR20_a0_lambda_tie_results.json  (3 s)
+rc = 0

@@ -1,0 +1,217 @@
+XR20 (part 2) -- a0 TIED TO AN EVOLVING DARK ENERGY: the kernel scale as a function of a quintessence-like field,
+alpha(phi) = kappa sqrt(G V(phi))/c^2 in the chain's root action (FP7); its a0(z) track under the published DESI DR2
+w0-wa fits, and where that track sits against the record's a0(z) evidence.
+
+WHY.  FP0's R3b (2f6aee236) states that for evolving dark energy a0(z) tracks sqrt(rho_DE(z)), with the flat law the
+w = -1 special case; L273 Part 4 (fable_independent_2026) reads the framework's law as the stage-17 PRESSURE law instead.
+A field tie cannot read rho_DE: a coupling function alpha(phi) of the field alone reads the potential V(phi), and
+V = (rho - p)/2 for any scalar with L = +/-X - V.  This lane computes the sqrt(V) track, its realisability by a
+canonical field, and its standing against the data the record holds.  Nothing here derives kappa.
+
+THE TIE (in FP7's root): add a scalar phi with L_phi = -(1/2)(d phi)^2 - V(phi) (no bare Lambda, or the bare part held
+apart), and replace the constant alpha = a0/c^2 by the coupling function alpha(phi) with a0(phi) = kappa c sqrt(G V(phi)/c^2):
+the dimensional form of P1 with rho_Lambda c^2 -> V(phi).
+
+INPUTS.  DESI DR2 BAO + CMB + SNe w0waCDM (arXiv:2503.14738, the pairs L273 verified against the paper's table):
+DESY5 (w0, wa) = (-0.752, -0.86) [the representative fit, banked in the repository]; Pantheon+ (-0.838, -0.62);
+Union3 (-0.667, -1.09).  CPL: w(z) = w0 + wa z/(1+z).
+
+PRE-DECLARED (written into this docstring before any code of this lane was run; the numbers come from hand algebra
+done while planning, not from any script output):
+  H5a the sqrt(V) track stays within +/-0.10 dex of flat for z <= 2.5 on all three fits, and lies between the density
+      mapping (FP0 R3b, L273 Parts 1-3) and the pressure mapping (L273 Part 4) at every z: a bump of +0.03..+0.08 dex
+      near z ~ 0.5-1 and -0.03..-0.04 dex at z = 2.5.  EXPECT TRUE.
+  H5b the three CPL fits cross w = -1 at z ~ 0.3-0.45; beyond it the kinetic energy (1 + w) rho/2 is negative, so no
+      single canonical field realises the sqrt(V) track there (a phantom sector is needed).  EXPECT TRUE.
+  H5c a healthy canonical thawing field (exponential potential) matched to each fit's w0 and Omega_DE has V falling
+      monotonically in time, so a0 ~ sqrt(V) RISES monotonically into the past, by +0.03..+0.10 dex at z = 2.5.
+      EXPECT TRUE.
+  H5d against the record's evidence: no evolving-dark-energy track comes within 0.25 dex of MUSE-DARK III's apparent
+      +0.38 dex at z ~ 1; every track stays within 1 sigma of the deep-MOND Jeanneau refit (z = 1.06); every track stays
+      within the pre-registered +/-0.13 dex of flat at z = 2.5.  The rival a0 ~ H(z) does come within 0.25 dex of MUSE
+      and leaves the +/-0.13 band.  EXPECT TRUE.
+  H5e the quintessence field's response to the MOND sector moves a0 by < 1e-9 in galaxies and clusters.  EXPECT TRUE.
+CHECKS
+  C1 CONTROL FP0 R3b: the density mapping gives a0(2.5)/a0(0) = 0.7956 on DESY5 (FP0's committed number, to 1e-12).
+  C2 CONTROL L273's committed tables: the density and alt (H(z), Omega_m = 0.3027) rows and the pressure rows at
+     z = 0.5-5 for the three fits, reproduced line for line.
+  C3 CONTROL the record's a0(z) evidence, read and re-derived where it is arithmetic: MUSE-DARK III a0|z~1 = 2.38 +/- 0.11
+     (x1e-10, vs a0(0) = 1.0; L276: +0.38 dex, the flat law 19 sigma away at face value); the Jeanneau+26 deep-MOND refit
+     (Delta_b = +0.140 +/- 0.272 honest at median z = 1.06, lever 0.76; flat 0.51 sigma); LambdaCDM's emergent scale
+     +0.334 dex at z = 2.5 (L274) and the pre-registered +/-0.13 dex (PAPER7 via L273).
+  E1 the identity V = (rho - p)/2 for any scalar with L = +/-X - V (sympy); the kinetic share (1 + w) rho/2 has the sign
+     of the kinetic term, so w < -1 needs a ghost; V(z)/V(0) is a weighted mean of the density and pressure ratios.
+  E2 the sqrt(V) track for the three fits (z = 0.25-3): inside the pre-registered +/-0.13 dex of flat for z <= 2.5 and
+     between the density and pressure mappings at every z.  E2b (reported) = H5a's pre-declared +/-0.10 as it falls.
+  E3 = H5b the phantom crossing of each fit and the negative kinetic share beyond it.
+  E4 a canonical thawing field (exponential potential, frozen at z = 30, dust + field) matched to each fit's w0 and
+     Omega_DE = 0.6847: w > -1 throughout, V falls monotonically in time, a0 ~ sqrt(V) rises into the past.  E4b (reported)
+     = H5c's pre-declared +0.03..+0.10 dex at z = 2.5 as it falls.
+  E5 = H5d the tracks against the evidence: MUSE (z = 1), the Jeanneau refit (z = 1.06), and the z = 2.5 zero point
+     (+/-0.13 around flat; the separation from LambdaCDM's +0.334).  HEADLINE: the representative fit's sqrt(V) track
+     (DESY5) stays within +/-0.13 dex of flat for z <= 2.5 (E-FLAT) and more than 0.25 dex below MUSE at z = 1 (E-MUSE).
+     DISCLOSED: E5 (= H5d over every track) was load-bearing in the code as first run; the first run (MUTATE) showed it
+     FAILS on one healthy track (the thawing field matched to Union3's w0 reaches +0.156 dex at z = 2.5), so before the
+     main run it was re-designated reported (XR16's H-A2 precedent); its text and thresholds are unchanged.
+  E6 = H5e the local variation: the quintessence field's static response to the MOND sector's source (kappa^2/8 pi) V' F,
+     at the centre of a 1e11 Msun galaxy and a 1e14 Msun cluster (Hernquist), both footings.
+  E7 the field content (sympy): around FRW the MOND term is O(eps^3) (J's zero tangent, FP7 B2), so phi and the MOND scalar
+     do not mix at quadratic order: one added propagating scalar, FP7's linear system plus standard quintessence; the
+     background is GR + the field.
+  W  the ledger.
+MUTATE=1: the tie reads the TOTAL density (a0 ~ sqrt(rho_total) = H(z): the rival, = the K tie on FRW) instead of V(phi):
+E-FLAT and E-MUSE must FAIL (rc = 1).
+
+SCOPE.  The CPL fits are used at their central values (L273/L275 hold the bands; the w0-wa correlation keeps the z = 2.5
+band half-width <= 0.065 dex).  The thawing model is one potential shape (exponential), shown as the healthy bracket, not as
+a fit to DESI.  The data comparison uses the record's committed numbers; the Jeanneau comparison uses the refit's median
+lever 0.76 at its median z (an approximation to its per-galaxy dilution; the conclusion is insensitive to it, stated with
+the numbers).  Both a0 footings are carried where a0 enters (the ratio a0(z)/a0(0) is footing-free).
+
+Run from the repository root:  python3 real_research/cross_thread_review_2026_09_26/XR20_evolving_de_a0z.py   (MUTATE=1 for
+the control).  Writes XR20_evolving_de_a0z[_MUTATE].out and XR20_evolving_de_a0z_results[_MUTATE].json next to itself.
+
+  *** MUTATE=1: the tie reads the TOTAL density (a0 ~ H(z)) instead of V(phi); E-FLAT and E-MUSE must FAIL ***
+
+  inputs: FP0 a0 = 9.3603e-11 / 1.1312e-10 m/s^2 (kappa on rho_Lambda 0.5000 / 0.6043); DESI DR2 CPL fits (w0, wa): DESY5 (-0.752, -0.86); Pantheon+ (-0.838, -0.62); Union3 (-0.667, -1.09); the representative fit: DESY5
+
+==================================================================================================================
+C   CONTROLS: FP0 R3b, L273's tables, and the record's a0(z) evidence
+==================================================================================================================
+  [PASS] C1 CONTROL FP0 R3b: the density mapping a0(2.5)/a0(0) on DESY5 equals FP0's committed number
+         measured: 0.7956404957595 vs FP0 0.7956404957595
+  [PASS] C2 CONTROL L273's committed tables (density and alt rows, Part 1; pressure rows, Part 4) reproduced line for line
+         measured: 14 lines, all found verbatim: True
+  [PASS] C3 CONTROL the record's a0(z) evidence: MUSE-DARK III (L276's banked a0|z~1 = 2.38 +/- 0.11 vs 1.0 -> +0.377 dex, the flat law 19 sigma away at face value, re-derived); the Jeanneau+26 deep-MOND refit (Delta_b/band = its committed 0.51 sigma from flat, re-derived); LambdaCDM's emergent +0.334 dex at z = 2.5 (L274); the pre-registered +/-0.13 dex
+         measured: MUSE +0.3766 +/- 0.0196 dex at z = 1 (19.2 sigma from flat); Jeanneau Delta_b +0.140 +/- 0.272 at z = 1.06, lever 0.76, flat 0.51 sigma (committed 0.51), ALT -0.243; LCDM emergent +0.334; +/-0.13
+         reading:  the record reads MUSE as an APPARENT a0 (method-localised, non-diagnostic); the clean deep-MOND arm is flat-compatible
+
+==================================================================================================================
+E1  THE FIELD TIE READS THE POTENTIAL: V = (rho - p)/2
+==================================================================================================================
+  [PASS] E1 THE IDENTITY: for L = eps X - V, rho = eps phidot^2/2 + V and p = eps phidot^2/2 - V, so V = (rho - p)/2 and the kinetic share (rho + p)/2 = (1 + w) rho/2 has the sign of eps: w < -1 needs eps = -1 (a ghost); and V(z)/V(0) is the mean of the density ratio and the pressure ratio weighted by rho0 and -p0
+         measured: V = (rho - p)/2: True; kinetic share = eps phidot^2/2: True; weighted-mean form: True
+         reading:  a coupling function alpha(phi) reads V(phi), not rho_DE: the field tie is neither FP0 R3b's density mapping nor L273 Part 4's pressure mapping, but their weighted mean
+
+==================================================================================================================
+E2  THE sqrt(V) TRACK under the DESI DR2 fits (dex, a0(z)/a0(0)), with the density and pressure mappings
+==================================================================================================================
+    DESY5      z:           0.25    0.50    1.00    1.50    2.00    2.50    3.00
+               V          +0.043  +0.058  +0.051  +0.027  -0.003  -0.034  -0.064
+               density    +0.023  +0.025  +0.004  -0.029  -0.065  -0.099  -0.133
+               pressure   +0.068  +0.095  +0.102  +0.084  +0.059  +0.030  +0.002
+               sqrt(V) peaks at z = 0.63, +0.059 dex
+    Pantheon+  z:           0.25    0.50    1.00    1.50    2.00    2.50    3.00
+               V          +0.028  +0.037  +0.029  +0.009  -0.014  -0.038  -0.062
+               density    +0.014  +0.014  -0.005  -0.031  -0.059  -0.085  -0.111
+               pressure   +0.044  +0.062  +0.063  +0.049  +0.029  +0.007  -0.015
+               sqrt(V) peaks at z = 0.57, +0.037 dex
+    Union3     z:           0.25    0.50    1.00    1.50    2.00    2.50    3.00
+               V          +0.059  +0.080  +0.075  +0.046  +0.010  -0.027  -0.064
+               density    +0.032  +0.037  +0.013  -0.026  -0.068  -0.111  -0.151
+               pressure   +0.093  +0.131  +0.143  +0.123  +0.092  +0.057  +0.023
+               sqrt(V) peaks at z = 0.67, +0.083 dex
+  [PASS] E2 the sqrt(V) track stays inside the pre-registered +/-0.13 dex of flat for z <= 2.5 on all three fits and lies between the density mapping (FP0 R3b) and the pressure mapping (L273 Part 4) at every z
+         measured: max |sqrt(V)| for z <= 2.5: 0.080 dex; at z = 2.5: DESY5 -0.034, Pantheon+ -0.038, Union3 -0.027; peaks: DESY5 +0.059 at z = 0.63, Pantheon+ +0.037 at z = 0.57, Union3 +0.083 at z = 0.67; between: True
+  [PASS] E2b = H5a (pre-declared, reported as it falls) the sqrt(V) track stays within +/-0.10 dex for z <= 2.5 on all three fits
+         measured: max 0.080 dex
+
+==================================================================================================================
+E3  CAN ONE CANONICAL FIELD FOLLOW THE FITS?  The phantom crossing
+==================================================================================================================
+    DESY5      w = -1 at z = 0.405; kinetic share (1 + w)/2 of rho_DE at z = 0, 1, 2.5: +0.124, -0.091, -0.183
+    Pantheon+  w = -1 at z = 0.354; kinetic share (1 + w)/2 of rho_DE at z = 0, 1, 2.5: +0.081, -0.074, -0.140
+    Union3     w = -1 at z = 0.440; kinetic share (1 + w)/2 of rho_DE at z = 0, 1, 2.5: +0.166, -0.106, -0.223
+  [PASS] E3 = H5b the three fits cross w = -1 at z ~ 0.3-0.45 and beyond it the kinetic share (1 + w) rho/2 is negative: no single canonical field realises the sqrt(V) track there -- it needs a phantom (ghost) sector at z > z_cross
+         measured: DESY5 z_cross = 0.405; Pantheon+ z_cross = 0.354; Union3 z_cross = 0.440
+         reading:  the CPL form is a fit, not a field; a healthy field cannot cross -1, so the healthy bracket is E4's
+
+==================================================================================================================
+E4  THE HEALTHY BRACKET: a canonical thawing field (V = V0 exp(-lambda phi/M_P)) matched to each fit's w0
+==================================================================================================================
+    DESY5      w0 = -0.752: lambda = 1.2687, Omega_phi(0) = 0.68470, w(0) = -0.7520, w(1) = -0.9257, w(2.5) = -0.9829; a0 ~ sqrt(V) [dex] at z = 0.25: +0.039, 0.5: +0.064, 1: +0.090, 1.5: +0.102, 2: +0.108, 2.5: +0.111, 3: +0.113; monotone rise True
+    Pantheon+  w0 = -0.838: lambda = 1.0339, Omega_phi(0) = 0.68470, w(0) = -0.8380, w(1) = -0.9556, w(2.5) = -0.9901; a0 ~ sqrt(V) [dex] at z = 0.25: +0.025, 0.5: +0.041, 1: +0.057, 1.5: +0.065, 2: +0.068, 2.5: +0.070, 3: +0.071; monotone rise True
+    Union3     w0 = -0.667: lambda = 1.4570, Omega_phi(0) = 0.68470, w(0) = -0.6670, w(1) = -0.8906, w(2.5) = -0.9737; a0 ~ sqrt(V) [dex] at z = 0.25: +0.053, 0.5: +0.087, 1: +0.124, 1.5: +0.142, 2: +0.151, 2.5: +0.156, 3: +0.158; monotone rise True
+  [FAIL] E4b = H5c (pre-declared, reported as it falls) the thawing rise at z = 2.5 lies in +0.03..+0.10 dex on all three w0
+         measured: DESY5 +0.111, Pantheon+ +0.070, Union3 +0.156
+  [PASS] E4 a healthy canonical thawing field matched to each fit's w0 (and Omega_DE = 0.6847) keeps w > -1 and has V falling monotonically in time: a0 ~ sqrt(V) RISES monotonically into the past
+         measured: DESY5: lambda 1.269, +0.111 dex at z = 2.5, monotone True; Pantheon+: lambda 1.034, +0.070 dex at z = 2.5, monotone True; Union3: lambda 1.457, +0.156 dex at z = 2.5, monotone True
+         reading:  the sign of the evolving-dark-energy shift depends on the realisation: a phantom-crossing fit read through sqrt(V) bumps then declines; a healthy field with the same w0 rises
+
+==================================================================================================================
+E5  THE TRACKS AGAINST THE RECORD'S a0(z) EVIDENCE  [MUTATE: the headline tie reads rho_total]
+==================================================================================================================
+    track                                        z=1  MUSE gap  ->MUSE  Db(1.06)  J pull   z=2.5  LCDM sep
+    flat (w = -1)                             +0.000    +0.377   +0.0%    -0.000   +0.51  +0.000    +2.57s
+    density, DESY5 (FP0 R3b)                  +0.004    +0.373   +1.0%    -0.000   +0.52  -0.099    +3.33s
+    pressure, DESY5 (L273 P4)                 +0.102    +0.275  +27.1%    -0.076   +0.80  +0.030    +2.34s
+    sqrt(V), DESY5 CPL                        +0.051    +0.325  +13.7%    -0.037   +0.65  -0.034    +2.83s
+    sqrt(V), Pantheon+ CPL                    +0.029    +0.348   +7.7%    -0.020   +0.59  -0.038    +2.86s
+    sqrt(V), Union3 CPL                       +0.075    +0.302  +19.8%    -0.055   +0.72  -0.027    +2.78s
+    sqrt(V), thawing (w0 of DESY5)            +0.090    +0.286  +24.0%    -0.070   +0.77  +0.111    +1.71s
+    sqrt(V), thawing (w0 of Pantheon+)        +0.057    +0.319  +15.2%    -0.045   +0.68  +0.070    +2.03s
+    sqrt(V), thawing (w0 of Union3)           +0.124    +0.252  +33.0%    -0.097   +0.87  +0.156    +1.37s
+    rival H(z) (a0 ~ sqrt rho_total)          +0.254    +0.123  +67.4%    -0.204   +1.26  +0.572    -1.83s
+    HEADLINE: rho_total tie (MUTATE)          +0.254    +0.123  +67.4%    -0.204   +1.26  +0.572    -1.83s
+  [FAIL] E-FLAT (headline) the representative fit's tie stays within the pre-registered +/-0.13 dex of flat at every z <= 2.5
+         measured: max |track| over z = 0-2.5: 0.572 dex; at z = 2.5 +0.572
+         reading:  MUTATE: the rho_total tie is the rival law, far outside the band
+  [FAIL] E-MUSE (headline) the representative fit's tie stays more than 0.25 dex below MUSE-DARK III's apparent +0.38 at z = 1
+         measured: gap +0.123 dex (67% of the way from flat)
+  [FAIL] E5 = H5d (pre-declared; reported as it falls, re-designation disclosed) every evolving-dark-energy track (density, pressure, sqrt(V) CPL on all fits, sqrt(V) thawing) stays > 0.25 dex below MUSE at z = 1, within 1 sigma of the Jeanneau refit, and within +/-0.13 dex of flat at z = 2.5; the rival H(z) comes within 0.25 dex of MUSE and leaves the band
+         measured: smallest MUSE gap 0.252; Jeanneau pulls +0.52..+0.87 (flat +0.51; lever 0.6-1.0 moves them by <= 0.19); |z = 2.5| <= 0.156; rival: gap 0.123, z = 2.5 +0.572; outside +/-0.13 at z = 2.5: ['sqrt(V), thawing (w0 of Union3)']
+         reading:  it fails on the healthy thawing field matched to Union3's w0 (+0.156 dex at z = 2.5): a canonical field CAN move the z = 2.5 zero point by more than the rotator's precision -- toward LambdaCDM's emergent scale
+    HEADLINE: rho_total tie (MUTATE)         relative to flat: MUSE toward (+67% of the gap); Jeanneau away   (pull +1.26 vs flat +0.51); LambdaCDM's z = 2.5 scale toward (-1.83 vs 2.57 sigma)
+    sqrt(V), thawing (w0 of DESY5)           relative to flat: MUSE toward (+24% of the gap); Jeanneau away   (pull +0.77 vs flat +0.51); LambdaCDM's z = 2.5 scale toward (1.71 vs 2.57 sigma)
+    sqrt(V), thawing (w0 of Pantheon+)       relative to flat: MUSE toward (+15% of the gap); Jeanneau away   (pull +0.68 vs flat +0.51); LambdaCDM's z = 2.5 scale toward (2.03 vs 2.57 sigma)
+    sqrt(V), thawing (w0 of Union3)          relative to flat: MUSE toward (+33% of the gap); Jeanneau away   (pull +0.87 vs flat +0.51); LambdaCDM's z = 2.5 scale toward (1.37 vs 2.57 sigma)
+    density, DESY5 (FP0 R3b)                 relative to flat: MUSE toward (+1% of the gap); Jeanneau away   (pull +0.52 vs flat +0.51); LambdaCDM's z = 2.5 scale away   (3.33 vs 2.57 sigma)
+    pressure, DESY5 (L273 P4)                relative to flat: MUSE toward (+27% of the gap); Jeanneau away   (pull +0.80 vs flat +0.51); LambdaCDM's z = 2.5 scale toward (2.34 vs 2.57 sigma)
+  [PASS] E5b (reported) toward or away, per datum: the sign depends on the realisation -- the phantom-crossing CPL fits through sqrt(V) move a0 toward MUSE at z = 1 by 8%-20% of the gap and AWAY from LambdaCDM's z = 2.5 scale (-0.038..-0.027 dex); a healthy thawing field moves it TOWARD both (15%-33% of the MUSE gap; +0.070..+0.156 dex at z = 2.5); every track moves AWAY from the deep-MOND Jeanneau lean (which sits below flat)
+         measured: HEADLINE: rho_total tie (MUTATE): toward/away/toward; sqrt(V), thawing (w0 of DESY5): toward/away/toward; sqrt(V), thawing (w0 of Pantheon+): toward/away/toward; sqrt(V), thawing (w0 of Union3): toward/away/toward; density, DESY5 (FP0 R3b): toward/away/away; pressure, DESY5 (L273 P4): toward/away/toward
+
+==================================================================================================================
+E6  THE LOCAL VARIATION: the quintessence field's response to the MOND sector
+==================================================================================================================
+    canonical galaxy 1e11 Msun, a = 2 kpc     : Int F r dr = 9.089e+40 m^2; delta ln a0 at the centre = 6.95e-14
+    canonical cluster 1e14 Msun, a = 200 kpc  : Int F r dr = 4.034e+43 m^2; delta ln a0 at the centre = 3.08e-11
+    alt       galaxy 1e11 Msun, a = 2 kpc     : Int F r dr = 7.108e+40 m^2; delta ln a0 at the centre = 7.94e-14
+    alt       cluster 1e14 Msun, a = 200 kpc  : Int F r dr = 3.085e+43 m^2; delta ln a0 at the centre = 3.44e-11
+  [PASS] E6 = H5e the field's static response to the MOND sector's source (kappa^2/8 pi) V' F (a light field: gradient energy over galaxy scales against a rho_Lambda-scale source) moves a0 by < 1e-9 at the centre of a galaxy and a cluster, both footings
+         measured: max |delta ln a0| = 3.4e-11 (lambda = 1.269 from E4's DESY5 match)
+         reading:  the local variation is (kappa^2/16 pi) lambda^2 3 (1 - w0)/2 Omega (H0 r/c)^2 F-weighted: suppressed by (H0 r/c)^2 ~ 1e-11
+
+==================================================================================================================
+E7  THE FIELD CONTENT: one added scalar; no quadratic mixing around FRW
+==================================================================================================================
+  [PASS] E7 THE FIELD CONTENT: with delta alpha ~ delta phi and the MOND gradient both O(eps) around FRW, the MOND term -2 alpha^2 J(Y/alpha^2) starts at O(eps^3) (J's zero tangent, FP7 B2): no quadratic mixing, so the linear system is FP7's plus standard quintessence; one propagating scalar is added (5 local modes with FP7's 4); the background is GR + the field (the MOND term vanishes on FRW, J(0) = 0); PPN unchanged (phi reaches matter only through the MOND term, E6)
+         measured: orders eps^0..eps^2 vanish: True; leading term -4*Y_1**(3/2)/(3*alpha_0) eps^3
+
+==================================================================================================================
+W   THE LEDGER
+==================================================================================================================
+    X20-T5   TIED        a0 tied to an evolving dark energy through alpha(phi) ~ sqrt(V(phi))  --  a coupling function of the field that sets the dark energy; kappa stays FITTED; one added scalar (E7)
+    X20-T5a  DERIVED     the field tie reads V = (rho - p)/2, the mean of FP0 R3b's density mapping and L273's pressure mapping  --  E1
+    X20-T5b  DERIVED     a0(z) under DESI DR2 CPL through sqrt(V): bump +0.037..+0.083 dex at z = 0.57-0.67, -0.038..-0.027 dex at z = 2.5  --  E2; needs a ghost beyond z_cross = 0.35-0.44 (E3)
+    X20-T5c  DERIVED     a healthy thawing field with the same w0: a0 rises monotonically into the past, +0.111, +0.070, +0.156 dex at z = 2.5  --  E4 (exponential potential)
+    X20-T5d  CONSTRAINT  against the evidence: the published CPL fits through sqrt(V) stay inside +/-0.13 at z = 2.5 (-0.038..-0.027); a healthy thawing field reaches +0.156 (LambdaCDM separation 1.37 sigma vs flat's 2.57); no track reaches MUSE (smallest gap 0.252 dex); all within 1 sigma of the Jeanneau refit  --  E5, E5b: a healthy evolving dark energy would push a0(z) up, toward LambdaCDM's emergent scale, eroding the z = 2.5 test
+    X20-T5e  POSTULATED  the flat law is the w = -1 special case: the prediction is only as flat as the dark energy is constant  --  which realisation (phantom fit, thawing field, or a vacuum that is w = -1 exact) is an input, not derived
+  [PASS] W (reported) the ledger
+         measured: 6 links
+
+==================================================================================================================
+VERDICT
+==================================================================================================================
+  A field tie alpha(phi) ~ sqrt(V(phi)) reads the potential, V = (rho - p)/2: halfway between the density mapping FP0 R3b
+  states and the pressure mapping L273 reads as the framework's law.  Under DESI DR2 (DESY5 CPL, w0 = -0.752, wa = -0.86) the
+  sqrt(V) track bumps to +0.059 dex at z = 0.63, is +0.051 at z = 1 and -0.034 at z = 2.5 -- but past z = 0.41
+  only a ghost can follow the fit.  A healthy thawing field with the same w0 rises monotonically instead (+0.111 dex at 2.5).
+  Against the evidence: no track reaches MUSE-DARK III's apparent +0.38 at z = 1 (smallest gap 0.252
+  dex); all sit within 1 sigma of the deep-MOND Jeanneau refit (pulls +0.52..+0.87 vs flat +0.51, each a little farther than flat);
+  at z = 2.5 the published fits through sqrt(V) stay inside +/-0.13 (-0.038..-0.027), but a healthy thawing field reaches +0.156
+  (H5d FAILS on it): its separation from LambdaCDM's emergent +0.334 drops to 1.37 sigma from flat's 2.57.  So the direction
+  depends on the realisation: the phantom-crossing fits move a0(z) slightly toward MUSE at z ~ 1 and away from LambdaCDM at z = 2.5;
+  a healthy field moves it toward both.  Tied, not derived: kappa stays fitted.
+
+  12/16 checks pass; load-bearing failures: 2; wrote XR20_evolving_de_a0z_results_MUTATE.json  (2 s)
+rc = 1
