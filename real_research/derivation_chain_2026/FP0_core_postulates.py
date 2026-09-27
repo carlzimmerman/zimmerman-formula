@@ -172,8 +172,13 @@ LEDGER = [
     ("L1c", "the a0/2 tail vs the planets", "CONSTRAINT", "R2: the action's kernel must reach Newton faster (alpha >~ 1.5)"),
     ("L2a", "a0(z) flat (rho_Lambda, w = -1)", "DERIVED", "R3, from L0 + P3"),
     ("L2a'", "a0(z) ~ sqrt(rho_DE(z)) for evolving dark energy: -0.10 dex at z = 2.5 under DESI (vs the rival +0.58)",
-     "DERIVED", "R3b, from P1 + the measured w(z); reproduces L273"),
-    ("L2b", "a0 as a field (a0^2 = kappa^2 G (-p_Q))", "POSTULATED", "a chosen promotion; the action has to produce it"),
+     "DERIVED", "R3b, from P1 + the measured w(z); reproduces L273. Postulate level only: an ACTION-level field tie reads "
+     "sqrt(V), V = (rho - p)/2, not sqrt(rho_DE) (XR20, a075ad7f7): +0.051 dex at z = 1, -0.034 at z = 2.5 under DESI DR2 + CMB + DESY5; "
+     "DESI's w = -1 crossing needs a ghost; a healthy thawing field gives +0.07..+0.16 dex at z = 2.5; with a true Lambda a0 is flat"),
+    ("L2b", "a0 tied to Lambda inside the action", "TIED", "the Henneaux-Teitelboim unimodular multiplier (XR20, a075ad7f7): "
+     "d Lambda = 0 is a field equation, so a0 = kappa c sqrt(G rho_Lambda) holds on every solution, no local mode (1 global DOF), "
+     "FRW and PPN untouched; the coupling alpha(Lambda) = kappa sqrt(Lambda/8 pi) is chosen and kappa FITTED; a separate matter "
+     "vacuum energy would shift the observed Lambda but not a0 (-0.023 dex at 0.1 rho_Lambda)"),
     ("L3", "the covariant action (root)", "OPEN", "next lane: chosen after the candidate map; everything below is varied out of it"),
     ("L4-L10", "static limit/kernel, lensing, PPN, c_T = 1, stability, cosmology, clusters", "OPEN", "each derived from L3 or it fails"),
 ]

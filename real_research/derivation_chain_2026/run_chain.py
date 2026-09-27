@@ -19,7 +19,7 @@ Usage (from the repository root):
 import os, re, sys, glob, json, subprocess, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-STATUSES = ("DERIVED", "POSTULATED", "FITTED", "CONSTRAINT", "OPEN", "FAILS")
+STATUSES = ("DERIVED", "TIED", "POSTULATED", "FITTED", "CONSTRAINT", "OPEN", "FAILS")
 
 
 def lanes(only=None):
@@ -110,7 +110,7 @@ def main():
     lines = ["# The first-principles derivation chain -- status ledger", "",
              f"Assembled by `run_chain.py` on {time.strftime('%Y-%m-%d %H:%M')}. A lane counts only if its main run has a verdict "
              "and its MUTATE control flips (rc = 1). Status meanings: DERIVED (varied out of the chain above it, with a script), "
-             "POSTULATED (an input), FITTED (a constant set by data), CONSTRAINT (a derived requirement on a lower link), "
+             "TIED (an input implemented as an exact action-level relation, coupling chosen), POSTULATED (an input), FITTED (a constant set by data), CONSTRAINT (a derived requirement on a lower link), "
              "OPEN (owed), FAILS (derived and contradicted by data).", "",
              "## Lanes", "", "| lane | checks | load-bearing failures | main rc | MUTATE rc | contract |", "|---|---|---|---|---|---|"]
     lines += [f"| {r[1]} | {r[2]} | {r[3]} | {r[4]} | {r[5]} | {r[6]} |" for r in rows]
