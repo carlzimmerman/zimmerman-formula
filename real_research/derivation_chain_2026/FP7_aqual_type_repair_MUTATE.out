@@ -1,0 +1,349 @@
+FP7 -- THE AQUAL-TYPE REPAIR OF THE ROOT ACTION: the core's QUMOND sector replaced by an AQUAL-type MOND term on a scalar
+with its own a0-free inertia, varied as one action and scored on every gate the chain runs.
+
+WHY.  FP3 (committed 9b265b331) traced the ungated C-H/K core's two failures -- sigma_8 = 18-27 (L341) and FP5's
+Hadamard-ill-posed zero-field linearisation -- to one root: the core's QUMOND energy q ~ (4/3) Z^(3/4) reads the
+constraint-fixed U, is O(eps^(3/2)) around FRW and has an INFINITE zero-field tangent.  FP3 left one door (G1t): an
+AQUAL-type J ~ (2/3) Y^(3/2), O(eps^3) with ZERO tangent, on a field with its own inertia.  This lane builds that repair
+and runs it through statics, FRW, stability, c_T/PPN, the mode count and the constants.
+
+THE REPAIRED ACTION (units c = 1, x0 = ct; alpha = a0/c^2; per 1/(16 pi G)):
+  I = (1/16 pi G) Int d^4x sqrt(-g) {  R - 2 Lambda + alpha_c a_m a^m - c_2 (K - <K>_h)^2        kept: EH + BPS khronon, beta = 0, leaf average
+        + (2 - alpha_c) h^{mn} (2 a_m - D_m chi) D_n chi                                        the AQUAL chassis (A1: forced by statics)
+        - 2 alpha^2 J( h^{mn} D_m phi D_n phi / alpha^2 )                                       the MOND term, on phi (J = J_P2)
+        + 2 lambda (n^m d_m phi)^2                                                             phi's a0-free inertia (khronon frame)
+        + Int_0^b dz L (d_z W - Delta_h W) + lambda_0 (W_0 - phi) }  ,  chi = W_b = S_h phi      heat filter, adapted (A1b: forced)
+      + GHY + S_m[g]                                                                           matter minimally coupled to g only
+  J_P2(Y) = -(1/4) ln(1 - 2 sqrt Y) - sqrt(Y)/2 - Y/2,  J' = mu_s(sqrt Y),  mu_s(x) = x/(1 - 2x):  P2 in two-field AQUAL form.
+  Removed from the core: C-H's U, its chassis 2 h (DU - a)(DU - a) and its kernel 2 alpha^2 q(|D W_b|^2/alpha^2).
+  n_m = -d_m tau/sqrt(X) is the clock's unit normal, a_m = D_m ln N its acceleration, h = g + n n, K = nabla.n.
+
+  *** MUTATE=1: the chassis is the NAIVE 4 a.Dchi - 2 |Dchi|^2 (BPS alpha_c a^2 kept, not completed into the square): A1 and B3 must FAIL ***
+
+  inputs: a0 = 9.3603e-11 / 1.1312e-10 m/s^2 (FP0); FP1's QUMOND-P2 Solar-System floors 0.0294 / 0.0316 pc; alpha_c <= 3.2e-09 (FP2); tracking 3 x 600 km/s (FP2 C4)
+
+================================================================================================================
+A1  THE STATIC WEAK-FIELD LIMIT FROM THE ACTION: psi = Phi, and the chassis is FORCED
+================================================================================================================
+    leading O(eps^2) static density = the stated braces: True;  psi-equation solved by Psi = Phi: True
+    EL residuals vs [(4 - 2A) lap Phi - B lap chi = 16 pi G rho] and [-B lap Phi - 2C lap chi + 4 div(J' grad chi) = 0]: 0, 0
+    requirements (no Newtonian term in phi's equation; Phi = Phi_N[G_N] + chi; G_N = G/(1 - alpha_c/2)) -> [{A: alpha_c, B: 4 - 2*alpha_c, C: alpha_c - 2}]
+    the solution is the perfect square: 2 a^2 - (2 - alpha_c)|Dchi - a|^2 = alpha_c a^2 + (2 - alpha_c)(2a - Dchi).Dchi: True
+    CONTROL C-H chassis (2 + alpha_c, -4, 2): lapse coefficient 4 - 2A = -2*alpha_c -> 0 as alpha_c -> 0, so the Phi-equation becomes 4 lap chi = 16 pi G rho (chi pinned to Newton: QUMOND)
+    CONTROL naive chassis (alpha_c, 4, -2): residual Newtonian coefficient in phi's equation -4*alpha_c/(alpha_c - 2) (subtracted from 4 J': mu_eff = J' - alpha_c/(2 - alpha_c) < 0 below x ~ alpha_c/2)
+    chassis in use (naive): residual Newtonian coefficient -4*alpha_c/(alpha_c - 2)
+  [FAIL] A1 STATICS FROM THE ACTION: at leading weak-field order psi = Phi (no slip), the lapse equation is (4 - 2A) lap Phi - B lap chi = 16 pi G rho and phi's is -B lap Phi - 2C lap chi + 4 div(J' grad phi) = 0; requiring no Newtonian term in phi's equation and a GR + BPS Newtonian limit (Phi = Phi_N[G_N] + chi) has the UNIQUE solution A = alpha_c, B = 2(2 - alpha_c), C = -(2 - alpha_c): the perfect square; the chassis in use carries no Newtonian term
+         measured: series True; Psi = Phi True; EL residuals 0, 0; unique True; square identity True; residual of the chassis in use -4*alpha_c/(alpha_c - 2)
+         reading:  C-H's chassis (A = 2 + alpha_c) makes the lapse a multiplier that pins its field to Newton (QUMOND, an infinite zero-field tangent); the AQUAL chassis keeps GR's lapse and puts MOND on the non-Newtonian scalar
+
+================================================================================================================
+A1b  THE HEAT FILTER'S PLACEMENT: on the chassis (chi = S phi), not inside J
+================================================================================================================
+    discrete static action on a 10x10 periodic leaf, S = exp(-0.01 D^T D), chassis on S phi, J_P2 on phi: |FD gradient - (S^T[B D^TD Phi + 2C D^TD S phi] - 4 D^T(J' D phi))| = 3.3e-09
+    physical MOND response relative to the unfiltered law:  chassis on S phi: sigma**2;  J on S phi: sigma**(-2);  both: 1
+  [PASS] A1b THE FILTER'S PLACEMENT IS FORCED: the discrete action's phi-gradient is S^T[chassis source] + div(J' grad phi) (the variation itself puts S^T on the source; J reads phi unfiltered); in Fourier the physical MOND response is sigma^2 = e^{-xi^2 k^2} (double filter, bounded) with the chassis on S phi, 1/sigma^2 (backward heat, unbounded) with J on S phi, and 1 (no filtering at all) with both -- only the chassis placement is admissible
+         measured: adjoint residual 3.3e-09; gains sigma**2, sigma**(-2), 1
+         reading:  the coordinator's 'filter on the new field's gradient' is realised as chi = S_h phi in the chassis; a filter inside J would need S^{-1} of the matter source, and filtering both cancels
+
+================================================================================================================
+A2  P2 IN TWO-FIELD AQUAL FORM: J_P2 closed form, the spherical law, static health, the QUMOND duality
+================================================================================================================
+    J_P2(Y) = -sqrt(Y)/2 - Y/2 - log(1 - 2*sqrt(Y))/4;  J' = mu_s(sqrt Y): True;  J(0) = 0: True;  J/Y^(3/2) -> 2/3 (deep MOND)
+    spherical first integral mu_s(x) x = y  ->  x = sqrt(y^2 + y) - y,  g/a0 = x + y = sqrt(y^2 + y) (P2): True;  x -> 1/2 as y -> oo (the a0/2 tail)
+    C_T = mu_s = x/(1 - 2*x), C_L = (x mu_s)' = 2*x*(1 - x)/(2*x - 1)**2: positive on (0, 1/2): True, True;  C^QUMOND = 1/C^phi: T True, L True
+  [PASS] A2 P2 EMBEDS EXACTLY IN AQUAL FORM: J_P2 = -(1/4) ln(1 - 2 sqrt Y) - sqrt(Y)/2 - Y/2 has J' = mu_s(sqrt Y) = sqrt(Y)/(1 - 2 sqrt Y), J(0) = 0 and J -> (2/3) Y^(3/2) (ZERO tangent); the spherical law is g = sqrt(g_N^2 + g_N a0) EXACTLY, with the scalar saturating at a0/2 (P2's tail); the static operator is elliptic in both channels (C_T = mu_s, C_L = 2x(1-x)/(1-2x)^2 > 0 on 0 < x < 1/2), and each coefficient is the reciprocal of QUMOND's (nu - 1, nu - 1 + y nu')
+         measured: J' True; J(0) True; deep 2/3; spherical True; tail 1/2; C_L form True; positivity True/True; duality True/True
+    (1 s)
+
+================================================================================================================
+A3  THIN EXPONENTIAL DISCS: AQUAL vs QUMOND vs the algebraic P2 law (dual Kacanov), and what SPARC can tell
+================================================================================================================
+    CONTROL Plummer sphere (M = 3 a0 b^2/G): max |log gA/gQ| = 8.1e-05 dex, max |log gA/g_alg| = 1.6e-04 dex over 0.1 < r/b < 30 (78 Kacanov it, curl residual 3.7e-11)
+    disc y_d = GM/(R_d^2 a0) = 300: 183x176 cells, 260 Kacanov it (change 9.9e-06, curl residual 1.8e-05)
+    disc y_d = GM/(R_d^2 a0) = 30: 183x176 cells, 260 Kacanov it (change 1.5e-07, curl residual 1.2e-07)
+    disc y_d = GM/(R_d^2 a0) = 3: 183x176 cells, 83 Kacanov it (change 8.8e-09, curl residual 4.3e-09)
+    disc y_d = GM/(R_d^2 a0) = 0.3: 183x176 cells, 31 Kacanov it (change 7.5e-09, curl residual 7.2e-09)
+    y_d   300: y 5.45-77.2 over 0.3 <= R/R_d <= 8: AQUAL/QUMOND max 0.0009 dex, rms 0.0004; Upsilon-profiled (shift -0.04%) rms 0.0004; vs algebraic: AQUAL 0.003, QUMOND 0.002 dex
+        R =  0.29 R_d (y = 56.7): gA/gQ = 0.9987, gA/g_alg = 0.9937, gQ/g_alg = 0.9950
+        R =  0.98 R_d (y = 76.5): gA/gQ = 1.0002, gA/g_alg = 0.9979, gQ/g_alg = 0.9977
+        R =  2.21 R_d (y = 50.3): gA/gQ = 1.0004, gA/g_alg = 0.9994, gQ/g_alg = 0.9990
+        R =  4.96 R_d (y = 14.4): gA/gQ = 0.9986, gA/g_alg = 1.0001, gQ/g_alg = 1.0015
+    y_d    30: y 0.545-7.72 over 0.3 <= R/R_d <= 8: AQUAL/QUMOND max 0.0045 dex, rms 0.0018; Upsilon-profiled (shift -0.18%) rms 0.0016; vs algebraic: AQUAL 0.023, QUMOND 0.019 dex
+        R =  0.29 R_d (y = 5.67): gA/gQ = 0.9882, gA/g_alg = 0.9441, gQ/g_alg = 0.9553
+        R =  0.98 R_d (y = 7.65): gA/gQ = 1.0010, gA/g_alg = 0.9801, gQ/g_alg = 0.9791
+        R =  2.21 R_d (y = 5.03): gA/gQ = 1.0026, gA/g_alg = 0.9935, gQ/g_alg = 0.9910
+        R =  4.96 R_d (y = 1.44): gA/gQ = 0.9939, gA/g_alg = 1.0026, gQ/g_alg = 1.0088
+    y_d     3: y 0.0545-0.772 over 0.3 <= R/R_d <= 8: AQUAL/QUMOND max 0.0244 dex, rms 0.0062; Upsilon-profiled (shift -0.72%) rms 0.0059; vs algebraic: AQUAL 0.122, QUMOND 0.098 dex
+        R =  0.29 R_d (y = 0.567): gA/gQ = 0.9376, gA/g_alg = 0.7398, gQ/g_alg = 0.7890
+        R =  0.98 R_d (y = 0.765): gA/gQ = 1.0032, gA/g_alg = 0.8951, gQ/g_alg = 0.8922
+        R =  2.21 R_d (y = 0.503): gA/gQ = 1.0054, gA/g_alg = 0.9661, gQ/g_alg = 0.9610
+        R =  4.96 R_d (y = 0.144): gA/gQ = 0.9932, gA/g_alg = 1.0109, gQ/g_alg = 1.0178
+    y_d   0.3: y 0.0105-0.0772 over 0.3 <= R/R_d <= 8: AQUAL/QUMOND max 0.0353 dex, rms 0.0088; Upsilon-profiled (shift -1.17%) rms 0.0084; vs algebraic: AQUAL 0.210, QUMOND 0.175 dex
+        R =  0.29 R_d (y = 0.0567): gA/gQ = 0.9098, gA/g_alg = 0.5983, gQ/g_alg = 0.6576
+        R =  0.98 R_d (y = 0.0765): gA/gQ = 1.0057, gA/g_alg = 0.8199, gQ/g_alg = 0.8152
+        R =  2.21 R_d (y = 0.0503): gA/gQ = 1.0043, gA/g_alg = 0.9464, gQ/g_alg = 0.9423
+        R =  4.96 R_d (y = 0.0144): gA/gQ = 0.9947, gA/g_alg = 1.0144, gQ/g_alg = 1.0198
+    SPARC (read-only, 3391 points): median per-point error in log g_obs = 0.0370 dex; the RAR scatter at P1's a0 = 0.108 dex (FP1 C0)
+  [PASS] A3 CONTROL: the dual (flux) solver is exact where it must be -- for a Plummer sphere AQUAL, QUMOND and the algebraic law coincide to discretisation accuracy, and every disc solve satisfies the curl equation curl(w F) = 0 to < 1e-4
+         measured: Plummer max |dlog| AQUAL/QUMOND 8.1e-05, AQUAL/algebraic 1.6e-04; disc curl residuals 2e-05, 1e-07, 4e-09, 7e-09
+  [PASS] A3 (a) THIN DISCS, AQUAL vs QUMOND: over y = 0.01-100 and 0.3 <= R/R_d <= 8 of thin exponential discs (h = 0.1 R_d) the two-field AQUAL and QUMOND realisations of P2 differ by at most the printed dex, and after profiling Upsilon by less than SPARC's median per-point error: SPARC-level data cannot tell them apart (both differ from the algebraic law by more)
+         measured: max |AQUAL/QUMOND| 0.0353 dex, Upsilon-profiled rms <= 0.0084 dex vs SPARC median error 0.037 dex and RAR scatter 0.108 dex; algebraic-law deviations AQUAL 0.210, QUMOND 0.175 dex
+         reading:  the disc family is fixed by y_d = GM/(R_d^2 a0), so the comparison is footing-free; which galaxy sits at which y_d moves with a0.  The larger effect is common to both: the algebraic RAR is not exact for discs in either field theory (inner LSB discs)
+    (43 s)
+
+================================================================================================================
+A4  THE SOLAR SYSTEM UNDER THE DOUBLE FILTER: dual AQUAL for the smoothed Sun in the Galaxy's field (g02 read-only)
+================================================================================================================
+    CONTROL spherical (no external field): max |rho_AQUAL - rho_QUMOND| / max rho = 6.3e-15 (identical: two-field AQUAL = QUMOND in spherical symmetry)
+    CONTROL linear EFE far field (canonical, 2.32e-10: x_e = 0.4501, mu_T = 4.507, mu_L = 49.64): max relative error of the Sun's perturbation at r = 300 / 1000 r_M: 0.010 / 0.006 (the nonlinear core's own multipoles fall off as ~1/r)
+
+    the double filter, g_ext = 2.32e-10, AQUAL (QUMOND on the same grid in brackets):
+    footing           0.010         0.015         0.020         0.025         0.030         0.035         0.040         0.050         0.100         0.300         1.000   <- xi [pc]
+    canonical  3.390( 2.87)  1.428( 1.65)  0.685( 0.78)  0.368( 0.41)  0.217( 0.24)  0.138( 0.15)  0.093( 0.10)  0.048( 0.05)  0.006( 0.01)  0.000( 0.00)  0.000( 0.00)   Q2/ceil
+    canonical  6.511(18.99)  2.844( 6.34)  1.391( 2.68)  0.754( 1.37)  0.447( 0.80)  0.284( 0.50)  0.192( 0.34)  0.099( 0.17)  0.012( 0.02)  0.000( 0.00)  0.000( 0.00)   M(<Sat)/bnd
+    canonical  2.443( 7.13)  1.067( 2.38)  0.522( 1.01)  0.283( 0.52)  0.168( 0.30)  0.107( 0.19)  0.072( 0.13)  0.037( 0.06)  0.005( 0.01)  0.000( 0.00)  0.000( 0.00)   g_r/sunward
+    -> AQUAL  canonical: floors per gate (g_ext 2.00/2.32/2.64): Q2 0.0182/0.0172/0.0164; M 0.0243/0.0226/0.0212; gmax 0.0165/0.0154/0.0144;  BINDING 0.0243 pc (M at 2.00e-10); window to 1 pc: True
+    -> QUMOND canonical: floors per gate (g_ext 2.00/2.32/2.64): Q2 0.0190/0.0182/0.0175; M 0.0294/0.0278/0.0265; gmax 0.0212/0.0200/0.0191;  BINDING 0.0294 pc (M at 2.00e-10); window to 1 pc: True
+    alt        4.233( 3.32)  1.786( 1.96)  0.855( 0.94)  0.459( 0.50)  0.271( 0.29)  0.172( 0.18)  0.116( 0.12)  0.060( 0.06)  0.007( 0.01)  0.000( 0.00)  0.000( 0.00)   Q2/ceil
+    alt        8.657(23.07)  3.773( 7.85)  1.841( 3.33)  0.996( 1.71)  0.590( 0.99)  0.375( 0.62)  0.253( 0.42)  0.130( 0.21)  0.016( 0.03)  0.001( 0.00)  0.000( 0.00)   M(<Sat)/bnd
+    alt        3.249( 8.66)  1.416( 2.95)  0.691( 1.25)  0.374( 0.64)  0.221( 0.37)  0.141( 0.23)  0.095( 0.16)  0.049( 0.08)  0.006( 0.01)  0.000( 0.00)  0.000( 0.00)   g_r/sunward
+    -> AQUAL  alt: floors per gate (g_ext 2.00/2.32/2.64): Q2 0.0199/0.0188/0.0179; M 0.0268/0.0250/0.0234; gmax 0.0186/0.0172/0.0162;  BINDING 0.0268 pc (M at 2.00e-10); window to 1 pc: True
+    -> QUMOND alt: floors per gate (g_ext 2.00/2.32/2.64): Q2 0.0204/0.0195/0.0187; M 0.0316/0.0299/0.0284; gmax 0.0228/0.0215/0.0205;  BINDING 0.0316 pc (M at 2.00e-10); window to 1 pc: True
+    strict (xi -> 0): the scalar saturates at a0/2 (A2), so the Earth anomaly is a0/2 = 1279x / 1545x the bound (canonical / alt), exactly as for QUMOND; strict QUMOND Q2/ceiling on this grid 4.01-4.96 / 4.56-5.71 (FP1 committed 3.99-4.93 / 4.44-5.69); the strict AQUAL Q2 is NOT computed here (the dual iteration does not converge for an unsmoothed point source)
+  [PASS] A4 CONTROLS: spherical two-field AQUAL equals QUMOND identically; the dual solver reproduces the analytic linear EFE far field of the Sun to < 3% (r >= 300 r_M); the SAME grid's QUMOND reproduces FP1's committed P2 floors (0.0294 / 0.0316 pc) to < 3% and its strict Q2 to < 5%
+         measured: spherical 6.3e-15; far field 0.010/0.006; QUMOND floors 0.0294/0.0316 vs FP1 0.0294/0.0316; strict QUMOND max 4.96/5.71 vs FP1 4.93/5.69
+  [PASS] A4 THE FILTER CARRIES OVER: with the action's double filter the AQUAL scalar passes Cassini Q2, the Saturn monopole and the sunward anomaly at every planet for every xi from its binding floor to 1 pc, on both footings and at all three Galactic fields; the strict law (xi -> 0) is excluded by its exact a0/2 tail, so the filter is load-bearing here too
+         measured: canonical: AQUAL floor 0.0243 pc (M at 2.00e-10; QUMOND on the same grid 0.0294), tail 1279x; alt: AQUAL floor 0.0268 pc (M at 2.00e-10; QUMOND on the same grid 0.0316), tail 1545x
+         reading:  the AQUAL scalar leaks LESS than QUMOND's phantom here (its external-field suppression is stronger: mu_T ~ 4.5, mu_L ~ 50 at the Sun), so the floor drops; xi stays a declared constant
+    (249 s for A4; 292 s total)
+
+================================================================================================================
+B1  THE FRW BACKGROUND OF THE REPAIRED ACTION (minisuperspace, sympy)
+================================================================================================================
+    H^2 = 8*pi*G*rho_0/(3*a(t)**3) + Lambda/3 + lambda*Derivative(phibar(t), t)**2/3;  minus GR: lambda*Derivative(phibar(t), t)**2/3  (vanishes for phibar-dot = 0);  phi equation: lambda*(a(t)*Derivative(phibar(t), (t, 2)) + 3*Derivative(a(t), t)*Derivative(phibar(t), t))*a(t)**2/(4*pi*G) = 0  =>  phibar-dot ~ a^-3
+  [PASS] B1 THE FRW BACKGROUND IS GR: on FRW the chassis and J vanish identically (a_m = 0, no spatial gradient, J(0) = 0), the Friedmann equation is GR's plus the inertia's kination term (lambda/3) phibar-dot^2, which decays as a^-6 (d/dt(a^3 lambda phibar-dot) = 0); with the declared phibar-dot = 0 it is exactly GR, and a0 is absent: a0(z)/a0(0) = 1
+         measured: H^2 - H^2_GR = lambda*Derivative(phibar(t), t)**2/3; phi-equation lambda*(a(t)*Derivative(phibar(t), (t, 2)) + 3*Derivative(a(t), t)*Derivative(phibar(t), t))*a(t)**2/(4*pi*G); a0 / alpha_c in Friedmann: False
+         reading:  phibar-dot = 0 is declared initial data (like the dark mass): a free constant of motion, set to zero
+
+================================================================================================================
+B2  THE LINEAR FRW EQUATIONS, DERIVED FROM THE ACTION (FP2's D machinery, read-only reuse, + the new sector)
+================================================================================================================
+    [Phi  ] new-sector part: B_ch*k**2*a(t)*chik(t)
+    [Psi  ] new-sector part: 0
+    [B    ] new-sector part: 0
+    [E    ] new-sector part: 0
+    [pi   ] new-sector part: B_ch*k**2*(a(t)*Derivative(chik(t), t) + chik(t)*Derivative(a(t), t))
+    [theta] new-sector part: 0
+    [delta] new-sector part: 0
+    [chi  ] new-sector part: -(-B_ch*k**2*Phik(t) + B_ch*k**2*Derivative(pik(t), t) - 2*C_ch*k**2*chik(t) + 4*lambda*a(t)**2*Derivative(chik(t), (t, 2)) + 12*lambda*a(t)*Derivative(a(t), t)*Derivative(chik(t), t))*a(t)
+    J_P2 around zero field: leading order e^3 (the quadratic action has no J part); zero-field tangent J'(0) = 0
+    (5 s)
+  [PASS] B2 THE LINEAR FRW EQUATIONS, DERIVED: J_P2 is O(eps^3) around the zero-field background with J'(0) = 0 (no infinite tangent: FP3's G1t door, verified), so the quadratic action carries the chassis and the inertia only; the new sector enters exactly three equations -- the lapse (B_ch k^2 a chi), the khronon (B_ch k^2 d(a chi)/dt) and phi's own (4 lambda a^3 (chi'' + 3H chi') = k^2 a [B_ch (Phi - pi') + 2 C_ch chi]) -- and leaves the Psi, B, E and dust equations GR + khronon
+         measured: J order e^3; tangent 0; untouched equations True; touched True
+
+================================================================================================================
+B3  THE ZERO-FIELD LINEARISATION: the Minkowski block of the repaired action (unitary gauge, symbolic second variation)
+================================================================================================================
+    dL/dn   : 2*k**2*(A_n*alpha_c + 2*A_phi*sigma - 2*A_psi)
+    dL/dpsi : 2*I*(3*A_B*c_2*k**2*omega + 2*A_B*k**2*omega + 2*I*A_n*k**2 + 9*I*A_psi*c_2*omega**2 - 2*I*A_psi*k**2 + 6*I*A_psi*omega**2)
+    dL/dB   : -2*k**2*(A_B*c_2*k**2 + 3*I*A_psi*c_2*omega + 2*I*A_psi*omega)
+    dL/dS   : A_S*k**2
+    dL/dphi : 4*(A_n*k**2*sigma - A_phi*C_phi*k**2 - A_phi*k**2*sigma**2 + A_phi*lambda*omega**2)
+    det M = 64*k**6*(C_phi*alpha_c*c_2*k**4 + 3*C_phi*alpha_c*c_2*k**2*omega**2 + 2*C_phi*alpha_c*k**2*omega**2 - 2*C_phi*c_2*k**4 + alpha_c*c_2*k**4*sigma**2 - alpha_c*c_2*k**2*lambda*omega**2 + 3*alpha_c*c_2*k**2*omega**2*sigma**2 - 3*alpha_c*c_2*lambda*omega**4 + 2*alpha_c*k**2*omega**2*sigma**2 - 2*alpha_c*lambda*omega**4 + 2*c_2*k**2*lambda*omega**2 + 6*c_2*k**2*omega**2*sigma**2 + 4*k**2*omega**2*sigma**2)
+    zero field (C_phi = 0): omega^2/k^2 roots [(-alpha_c*c_2*lambda + 3*alpha_c*c_2*sigma**2 + 2*alpha_c*sigma**2 + 2*c_2*lambda + 6*c_2*sigma**2 + 4*sigma**2 - sqrt((c_2*lambda + 3*c_2*sigma**2 + 2*sigma**2)*(alpha_c**2*c_2*lambda + 3*alpha_c**2*c_2*sigma**2 + 2*alpha_c**2*sigma**2 - 4*alpha_c*c_2*lambda + 12*alpha_c*c_2*sigma**2 + 8*alpha_c*sigma**2 + 4*c_2*lambda + 12*c_2*sigma**2 + 8*sigma**2)))/(2*alpha_c*lambda*(3*c_2 + 2)), (-alpha_c*c_2*lambda + 3*alpha_c*c_2*sigma**2 + 2*alpha_c*sigma**2 + 2*c_2*lambda + 6*c_2*sigma**2 + 4*sigma**2 + sqrt((c_2*lambda + 3*c_2*sigma**2 + 2*sigma**2)*(alpha_c**2*c_2*lambda + 3*alpha_c**2*c_2*sigma**2 + 2*alpha_c**2*sigma**2 - 4*alpha_c*c_2*lambda + 12*alpha_c*c_2*sigma**2 + 8*alpha_c*sigma**2 + 4*c_2*lambda + 12*c_2*sigma**2 + 8*sigma**2)))/(2*alpha_c*lambda*(3*c_2 + 2))];  product of roots -c_2*sigma**2/(lambda*(3*c_2 + 2))
+    CONTROL naive chassis: product of the zero-field roots -c_2*sigma**2/(lambda*(3*c_2 + 2)) < 0 -> one growing mode, omega^2/k^2 ~ -alpha_c*c_2*sigma**2/(2*(c_2*lambda + 3*c_2*sigma**2 + 2*sigma**2)); with the filter the band is bounded: max rate sqrt(alpha_c/2 lambda_eff)/(sqrt(e) xi) -> e-fold 67287 yr at alpha_c = 3.2e-09, lambda = 1, c_2 = 7.29e-03, xi = 0.03 pc
+    E_AQUAL(C_phi) = (2*C_phi*alpha_c + sigma**2*(4 - 2*alpha_c))/(2*C_phi + sigma**2*(2 - alpha_c)): lambda = 0 root = BPS(E_AQUAL) False; E(0) = 2, E(oo) = alpha_c, dE/dC_phi = -2*sigma**2*(alpha_c - 2)**2/(2*C_phi - alpha_c*sigma**2 + 2*sigma**2)**2 < 0
+    (the C-H core, FP5 C3: E(C) = alpha_c + 2C/(1 + C) -> alpha_c + 2 > 2 at zero field: Hadamard ill-posed)  (2 s)
+  [FAIL] B3 ZERO-FIELD WELL-POSEDNESS RESTORED: at zero field the repaired action's scalar block has omega^2 = 0 (the marginal MOND-khronon mode: at most linear growth, no Hadamard instability) and omega^2 = (2 - alpha_c)(c_2 lambda + (2 + 3c_2) sigma^2) k^2/(alpha_c lambda (2 + 3c_2)) > 0 at every alpha_c, c_2, lambda and filter factor; the khronon's effective BPS coefficient is E(C_phi) = [2(2 - alpha_c) sigma^2 + 2 alpha_c C_phi]/[(2 - alpha_c) sigma^2 + 2 C_phi], in (alpha_c, 2] (= 2 only at exactly zero field) -- FP5's E = 2 + alpha_c > 2 band is gone.  CONTROL: the naive chassis has a growing mode
+         measured: roots [(-alpha_c*c_2*lambda + 3*alpha_c*c_2*sigma**2 + 2*alpha_c*sigma**2 + 2*c_2*lambda + 6*c_2*sigma**2 + 4*sigma**2 - sqrt((c_2*lambda + 3*c_2*sigma**2 + 2*sigma**2)*(alpha_c**2*c_2*lambda + 3*alpha_c**2*c_2*sigma**2 + 2*alpha_c**2*sigma**2 - 4*alpha_c*c_2*lambda + 12*alpha_c*c_2*sigma**2 + 8*alpha_c*sigma**2 + 4*c_2*lambda + 12*c_2*sigma**2 + 8*sigma**2)))/(2*alpha_c*lambda*(3*c_2 + 2)), (-alpha_c*c_2*lambda + 3*alpha_c*c_2*sigma**2 + 2*alpha_c*sigma**2 + 2*c_2*lambda + 6*c_2*sigma**2 + 4*sigma**2 + sqrt((c_2*lambda + 3*c_2*sigma**2 + 2*sigma**2)*(alpha_c**2*c_2*lambda + 3*alpha_c**2*c_2*sigma**2 + 2*alpha_c**2*sigma**2 - 4*alpha_c*c_2*lambda + 12*alpha_c*c_2*sigma**2 + 8*alpha_c*sigma**2 + 4*c_2*lambda + 12*c_2*sigma**2 + 8*sigma**2)))/(2*alpha_c*lambda*(3*c_2 + 2))]; fast root positive on the grid False; E = BPS False; naive product -c_2*sigma**2/(lambda*(3*c_2 + 2))
+         reading:  the perfect square is what makes the zero-field mode exactly marginal; any Newtonian residual of the wrong sign (the naive chassis) turns it into a growing band k xi <~ 1 with an e-fold of ~1e4-1e5 yr (bounded by the filter, but present)
+
+================================================================================================================
+B4  SUB-HORIZON REDUCTION OF THE DERIVED FRW EQUATIONS: slip, G_eff and phi's inertia-limited response
+================================================================================================================
+    leading order (k -> k/eps, potentials ~ eps^2, pi ~ eps^4, lambda ~ lambdahat/eps^2):
+      [Phi  ] 2*(Lambda*a(t)**2*deltak(t) + alpha_c*k**2*Phik(t) - 2*k**2*Psik(t) + 2*k**2*chik(t) - 3*deltak(t)*Derivative(a(t), t)**2)*a(t)
+      [Psi  ] -4*k**2*(Phik(t) - Psik(t))*a(t)
+      [chi  ] 4*(k**2*Phik(t) - k**2*chik(t) - lambdahat*a(t)**2*Derivative(chik(t), (t, 2)) - 3*lambdahat*a(t)*Derivative(a(t), t)*Derivative(chik(t), t))*a(t)
+      [delta] 2*(-Lambda*a(t)**2 + 3*Derivative(a(t), t)**2)*(-Phik(t) + Derivative(thetak(t), t))*a(t)
+      [theta] -2*(-Lambda*k**2*a(t)**2*thetak(t) - Lambda*a(t)**4*Derivative(deltak(t), t) - 3*Lambda*a(t)**3*deltak(t)*Derivative(a(t), t) + 3*k**2*thetak(t)*Derivative(a(t), t)**2 + 6*a(t)**2*deltak(t)*Derivative(a(t), t)*Derivative(a(t), (t, 2)) + 3*a(t)**2*Derivative(a(t), t)**2*Derivative(deltak(t), t) + 3*a(t)*deltak(t)*Derivative(a(t), t)**3)/a(t)
+    slip: Psi = [Phik(t)];  Poisson: (k/a)^2 (Phi - chi) + 4 pi G_N rho delta = -alpha_c*k**2*chik(t)/((alpha_c - 2)*a(t)**2);  phi: lambda (chi'' + 3H chi') + 4 pi G rho delta, ratio - 1 = 2*alpha_c*(-Lambda*a(t)**2*deltak(t) - 2*k**2*chik(t) + 3*deltak(t)*Derivative(a(t), t)**2)*a(t)/(alpha_c - 2)
+    dust: theta' = Phi and delta' = -(k/a)^2 theta: True  =>  delta'' + 2H delta' = 4 pi G_N rho delta - (k/a)^2 chi
+    matter era: chi = -3/(5*lambdahat) delta, so G_eff/G_N - 1 = (2/5)(ck/aH)^2/lambda_eff (x G/G_N);  slow Minkowski root C_phi*c_2/(c_2*lambda + 3*c_2*sigma**2 + 2*sigma**2)  =>  lambda_eff = lambda + 3*sigma**2 + 2*sigma**2/c_2
+  [FAIL] B4 LINEAR COSMOLOGY, DERIVED: sub-horizon the repaired action gives NO slip (Psi = Phi), the Poisson law (k/a)^2 (Phi - chi) = -4 pi G_N rho delta, phi's equation lambda (chi'' + 3H chi') = -4 pi G rho delta with NO restoring term at linear order, and the dust's delta'' + 2H delta' = 4 pi G_N rho delta - (k/a)^2 chi: the MOND scalar responds to the web by INERTIA alone, G_eff/G_N = 1 + (2/5)(ck/aH)^2/lambda_eff in the matter era, with lambda_eff = lambda + (2 + 3c_2)/c_2 (the khronon locked to phi adds its own inertia; next order, from the exact slow root)
+         measured: slip True; Poisson residual -alpha_c*k**2*chik(t)/((alpha_c - 2)*a(t)**2); phi residual 2*alpha_c*(-Lambda*a(t)**2*deltak(t) - 2*k**2*chik(t) + 3*deltak(t)*Derivative(a(t), t)**2)*a(t)/(alpha_c - 2); dust True; chi_part -3/(5*lambdahat); lambda_eff lambda + 3*sigma**2 + 2*sigma**2/c_2
+         reading:  FP3's order count is right for J (it drops out) but not for the scalar's linear coupling: the chassis is Newton-strength, and at zero field nothing but inertia resists the source -- a k^2-growing fifth force (ck/aH)^2/lambda_eff
+
+================================================================================================================
+B5  sigma_8 WITH NO GATE: the derived linear system, and the physical-amplitude yardstick (L341/FP3), both footings
+================================================================================================================
+    LCDM control: sigma_8 = 0.81009 (FP3/L341 yardstick: 0.81009); lambda_eff -> oo gives the ratio 1.000000
+    linear (derived system):  lambda_eff 277: 3.877e+111;  lambda_eff 1e+04: 1.73e+41;  lambda_eff 1e+06: 8.942e+07;  lambda_eff 1e+07: 30.95;  lambda_eff 3e+07: 1.119;  lambda_eff 1e+08: 1.003;  lambda_eff 1e+09: 1
+    sigma_8 <= 1.02 x LCDM needs lambda_eff >= 4.30e+07 (k <= 20 h/Mpc, the yardstick's range) / 1.07e+07 (k <= 1 h/Mpc only)
+    physical amplitude canonical rms    : lambda_eff 277: 22.07;  lambda_eff 1e+05: 20.53;  lambda_eff 1e+07: 2.06;  lambda_eff 1e+08: 1.089;  sigma_8 <= 1.02 needs lambda_eff >= 4.36e+08
+    physical amplitude canonical permode: lambda_eff 277: 16.82;  lambda_eff 1e+05: 7.414;  lambda_eff 1e+07: 1.113;  lambda_eff 1e+08: 1.008;  sigma_8 <= 1.02 needs lambda_eff >= 4.81e+07
+    physical amplitude alt       rms    : lambda_eff 277: 26.09;  lambda_eff 1e+05: 24.08;  lambda_eff 1e+07: 2.074;  lambda_eff 1e+08: 1.089;  sigma_8 <= 1.02 needs lambda_eff >= 4.36e+08
+    physical amplitude alt       permode: lambda_eff 277: 19.8;  lambda_eff 1e+05: 8.258;  lambda_eff 1e+07: 1.129;  lambda_eff 1e+08: 1.009;  sigma_8 <= 1.02 needs lambda_eff >= 5.34e+07
+    lower gate sigma_8/sigma_8,LCDM >= 0.922: the scalar only adds attraction, so every row passes it; the upper gate decides
+    (7 s)
+  [PASS] B5 sigma_8 WITH NO GATE, verified both ways: the LCDM limit (lambda_eff -> oo) is recovered and L341's yardstick reproduced; at the smallest inertia the action allows (lambda = 0, the khronon's own (2 + 3c_2)/c_2 = 277 at FP2's floor) the web reaches MOND equilibrium and sigma_8 is L341's ~ 20x; sigma_8 <= 1.02 x LCDM needs lambda_eff >~ 1e7-1e8 (linear and physical-amplitude yardsticks, both footings); the lower gate (>= 0.922) never binds
+         measured: LCDM 0.81009; at lambda_eff = 277: rms 22.1/26.1, per-mode 16.8/19.8; thresholds linear 4.3e+07 (k<=1: 1.1e+07), physical canonical/rms 4.4e+08, canonical/permode 4.8e+07, alt/rms 4.4e+08, alt/permode 5.3e+07
+         reading:  the linear sigma_8 at small lambda_eff is formally astronomical (the k^2 force runs away at high k); physically the web then sits in MOND equilibrium, which the physical-amplitude yardstick captures (the ungated core's L341 numbers)
+
+================================================================================================================
+B6  STRONG COUPLING AROUND ZERO FIELD (tree level) and the classical validity of the linearisation
+================================================================================================================
+    canonical web y ~ 1e-3                 lambda_eff       277: c_s = 1.08e-02 c, Lambda_sc = 3.76e-06 eV, ell_sc = 5.69e-04 m
+    canonical web y ~ 1e-3                 lambda_eff     1e+08: c_s = 1.81e-05 c, Lambda_sc = 3.10e-08 eV, ell_sc = 1.15e-04 m
+    canonical galaxy outskirts y ~ 0.1     lambda_eff       277: c_s = 3.94e-02 c, Lambda_sc = 6.87e-05 eV, ell_sc = 1.13e-04 m
+    canonical galaxy outskirts y ~ 0.1     lambda_eff     1e+08: c_s = 6.57e-05 c, Lambda_sc = 5.66e-07 eV, ell_sc = 2.29e-05 m
+    canonical Solar neighbourhood x_e      lambda_eff       277: c_s = 1.27e-01 c, Lambda_sc = 9.62e-04 eV, ell_sc = 2.62e-05 m
+    canonical Solar neighbourhood x_e      lambda_eff     1e+08: c_s = 2.12e-04 c, Lambda_sc = 7.93e-06 eV, ell_sc = 5.28e-06 m
+    alt       web y ~ 1e-3                 lambda_eff       277: c_s = 1.08e-02 c, Lambda_sc = 4.13e-06 eV, ell_sc = 5.18e-04 m
+    alt       web y ~ 1e-3                 lambda_eff     1e+08: c_s = 1.81e-05 c, Lambda_sc = 3.41e-08 eV, ell_sc = 1.05e-04 m
+    alt       galaxy outskirts y ~ 0.1     lambda_eff       277: c_s = 3.94e-02 c, Lambda_sc = 7.55e-05 eV, ell_sc = 1.03e-04 m
+    alt       galaxy outskirts y ~ 0.1     lambda_eff     1e+08: c_s = 6.57e-05 c, Lambda_sc = 6.23e-07 eV, ell_sc = 2.08e-05 m
+    alt       Solar neighbourhood x_e      lambda_eff       277: c_s = 1.15e-01 c, Lambda_sc = 8.37e-04 eV, ell_sc = 2.71e-05 m
+    alt       Solar neighbourhood x_e      lambda_eff     1e+08: c_s = 1.91e-04 c, Lambda_sc = 6.90e-06 eV, ell_sc = 5.47e-06 m
+    classical: J's force / inertia on the web (k = 0.2 h/Mpc, delta = 0.3, z = 0): lambda_eff 277: 3.5e+03, lambda_eff 1e+04: 2.7e+00, lambda_eff 1e+08: 2.7e-08  (>> 1: the web leaves the linear regime and sits in MOND equilibrium)
+  [PASS] B6 (reported) STRONG COUPLING: phi's gradient energy vanishes at exactly zero field, so the tree-level strong-coupling scale Lambda_sc = c_s^(9/4) [ (3/2) alpha M_P (2 lambda_eff)^(3/2) ]^(1/2) -> 0 there (c_s -> 0): the exact FRW background is formally infinitely strongly coupled.  In any real background (web y ~ 1e-3, galaxies, the Solar neighbourhood) the cutoff length is <= ~1 mm, far below every scale the classical theory is used on; the classical linearisation itself holds only while J's force is below the inertia (R_NL << 1), which needs lambda_eff >~ 1e5 on the web
+         measured: can/web y ~ 1e-3/3e+02: ell 5.7e-04 m; can/galaxy outsk/3e+02: ell 1.1e-04 m; can/Solar neighb/3e+02: ell 2.6e-05 m; alt/web y ~ 1e-3/3e+02: ell 5.2e-04 m; alt/galaxy outsk/3e+02: ell 1.0e-04 m; alt/Solar neighb/3e+02: ell 2.7e-05 m; R_NL 4e+03, 3e+00, 3e-08
+         reading:  safe as a classical EFT away from exact zero field; the quantum strong-coupling question at exact zero field is OPEN
+
+================================================================================================================
+C1  HEALTH: the two scalar modes' kinetic (T) and restoring (V) matrices, Minkowski and static MOND backgrounds (both channels)
+================================================================================================================
+    reduced (psi, phi) system after the lapse and shift constraints: T = [[12 + 8/c_2, 0], [0, 4*lambda]]
+    V = [[4*k**2*(2 - alpha_c)/alpha_c, -8*k**2*sigma/alpha_c], [-8*k**2*sigma/alpha_c, 4*k**2*(alpha_c*(C_phi + sigma**2) + 2*sigma**2)/alpha_c]];  det T = 16*lambda*(3*c_2 + 2)/c_2;  det V = -16*k**4*(C_phi*alpha_c - 2*C_phi + alpha_c*sigma**2)/alpha_c;  exact quadratic in omega: True
+    Sylvester: T = diag(12 + 8/c_2, 4*lambda) > 0 iff c_2 > 0, lambda > 0 (no ghost);  V_11 = 4*k**2*(2 - alpha_c)/alpha_c > 0 iff 0 < alpha_c < 2;  det V = -16*k**4*(C_phi*alpha_c - 2*C_phi + alpha_c*sigma**2)/alpha_c >= 0 iff C_phi >= 0 (= 0: the marginal zero-field mode)
+    P2 on static MOND backgrounds (y = 1e-3..1e4, both channels, both alpha_c ends, sigma = 1 and 0.1): cells with V not positive definite 0 of 456;  control nu_RAR partner (C_L^phi = 1/C_L^Q = -34.75 at y = 10): det V < 0 -> TACHYON
+  [FAIL] C1 NO GHOST, NO GRADIENT INSTABILITY, exactly: eliminating the lapse and shift (constraints) leaves two scalar modes with L = (1/2) x'.T.x' - (1/2) x.V.x, T = diag(4(2 + 3c_2)/c_2, 4 lambda) (the khronon's inertia and phi's) and det V = 16 C_phi k^4 (2 - alpha_c)/alpha_c: healthy iff c_2, lambda > 0, 0 < alpha_c < 2 and C_phi > 0 in each channel, marginal at C_phi = 0 (zero field); P2 has C_T, C_L > 0 at every y (both channels, both alpha_c ends); the non-monotone control (C_L < 0) is a tachyon.  The same holds on FRW sub-horizon (B3-B4)
+         measured: Hermitian True; reduction exact True; T True; V False; P2 cells unhealthy 0 of 456; control TACHYON
+         reading:  health needs a monotone scalar flux (C_T, C_L > 0): L340 H2/H3's condition in AQUAL form; P2 meets it at every x in (0, 1/2)
+
+================================================================================================================
+C2  THE FC-KH (yq)' THEOREM, RE-DERIVED FOR THE NEW TERM
+================================================================================================================
+    identity (W' = y mu): 1 - W'' = (y(1 - mu))': True
+    FC-KH's exponential mu on the lapse: (y(1 - mu))' = (1 - y)*exp(-y)  -> negative for y > 1 (the committed kill, reproduced)
+    P2 on the lapse (single-field mu_P2(z) = (sqrt(1 + 4z^2) - 1)/(2z)): (z(1 - mu))' = -2*z/sqrt(4*z**2 + 1) + 1 > 0 for all z: True (P2's slow a0/2 tail is FC-KH's own escape clause)
+    the repaired action: the lapse's function is alpha_c a^2 (f'' = 2 alpha_c > 0, no MOND on the lapse); the khronon sees 2 - E = -2*C_phi*(alpha_c - 2)/(2*C_phi - alpha_c*sigma**2 + 2*sigma**2), positive iff C_phi > 0 -- the analogue of FC-KH's condition is the monotone scalar flux (A2, C1)
+  [PASS] C2 THE FC-KH (yq)' OBSTRUCTION DOES NOT ARISE: re-derived, FC-KH's khronon coefficient is 1 - W'' = (y(1 - mu))' for a MOND function on the LAPSE, negative for y > 1 with the exponential mu (reproduced); in the repaired action the lapse carries only alpha_c a^2, the MOND function sits on phi, and the khronon's 2 - E = 2(2 - alpha_c) C_phi/((2 - alpha_c) sigma^2 + 2 C_phi) is positive iff C_phi > 0 in each channel -- which P2 satisfies everywhere (and P2 would pass FC-KH's own test anyway: its a0/2 tail is the theorem's escape clause, removed from the Solar System by the filter, A4)
+         measured: identity True; exp (1 - y)*exp(-y); P2 -2*z/sqrt(4*z**2 + 1) + 1 > 0: True; 2 - E = -2*C_phi*(alpha_c - 2)/(2*C_phi - alpha_c*sigma**2 + 2*sigma**2)
+
+================================================================================================================
+C3  TRACKING (the L330 gate) AND THE TRACKING SPEED
+================================================================================================================
+    det M(omega = 0) = 64*c_2*k_T**10*(C_phi*alpha_c - 2*C_phi + alpha_c*sigma**2)  (nonzero iff c_2 C_phi != 0);  control c_2 = 0: 0
+    omega -> 0 response psi/psi_N = -2*(C_phi + sigma**2)/(C_phi*alpha_c - 2*C_phi + alpha_c*sigma**2);  static linear law G_N/G + sigma^2/C_phi = (-2*C_phi + sigma**2*(alpha_c - 2))/(C_phi*(alpha_c - 2))
+    slow mode speed c_s^2 = C_phi/lambda_eff (B4); lambda = 0: c_s^2 = -c_2*(C_phi*alpha_c - 2*C_phi + alpha_c*sigma**2)/((3*c_2 + 2)*(C_phi*alpha_c + alpha_c*sigma**2 + 2*sigma**2))  ->  3 x 600 km/s at C_phi = 0.01 (FP2's C <= 100) needs c_2 >= 7.2888e-03 (FP2 C4: 7.2888e-03); with lambda > 0 it needs lambda_eff <= 0.01 (c/1800 km/s)^2 = 277.4
+  [FAIL] C3 TRACKING: with the khronon's c_2 channel the omega -> 0 response of the repaired block is the static MOND law (psi/psi_N -> G_N/G + sigma^2/C_phi, det M(0) proportional to c_2 C_phi, zero without c_2: L330's frozen phantom); the tracking speed is c_s^2 = C_phi/lambda_eff, and at lambda = 0 the exact root reproduces FP2's floor c_2 >= 7.29e-3 (the AQUAL block is the C-H/K block under C^Q = 1/C^phi)
+         measured: limit -2*(C_phi + sigma**2)/(C_phi*alpha_c - 2*C_phi + alpha_c*sigma**2); det0 64*c_2*k_T**10*(C_phi*alpha_c - 2*C_phi + alpha_c*sigma**2); control 0; c_2 floor 7.2888e-03 vs 7.2888e-03; lambda_eff <= 277.4
+    (0 s)
+
+================================================================================================================
+D1  c_T = 1: the tensor sector of the repaired action
+================================================================================================================
+    TT Euler-Lagrange: -A_T*(k - omega)*(k + omega);  omega roots [-k, k];  kinetic coefficient 1/2;  new sector on TT at zero field: identically 0
+    on a MOND background (x^2 mu_s alpha^2 mass-like term, 100 Hz): |c_T - 1| <~ 9.0e-42 (GW170817: 1e-15)
+  [PASS] D1 c_T = 1: the chassis, J and the inertia are scalar functions of (a_m, D phi, n.d phi), all zero on a transverse-traceless perturbation of flat space, so the tensor sector is GR's (omega^2 = k^2, kinetic 1/2) exactly; on a MOND background the J-term's anisotropic 'mass' leaves |c_T - 1| ~ 1e-40 at LIGO frequencies
+         measured: roots [-k, k]; kinetic 1/2; background estimate 9.0e-42
+
+================================================================================================================
+D2  THE FULL PREFERRED-FRAME PPN (FP2's moving-source pipeline, read-only reuse, on the repaired block)
+================================================================================================================
+    gamma = 1;  alpha_3 = 0;  alpha_1 = -4*(C_phi*alpha_c + alpha_c*sigma**2 + 2*sigma**2)/(C_phi + sigma**2)
+    alpha_2 = -(2*C_phi**2*alpha_c**2*c_2 + C_phi**2*alpha_c**2 - C_phi**2*alpha_c*c_2 + 4*C_phi*alpha_c**2*c_2*sigma**2 + 2*C_phi*alpha_c**2*sigma**2 + 6*C_phi*alpha_c*c_2*sigma**2 + 4*C_phi*alpha_c*sigma**2 - 2*C_phi*c_2*sigma**2 + 2*alpha_c**2*c_2*sigma**4 + alpha_c**2*sigma**4 + 7*alpha_c*c_2*sigma**4 + 4*alpha_c*sigma**4 + 2*c_2*lambda*sigma**2 + 6*c_2*sigma**4 + 4*sigma**4)/(c_2*(C_phi + sigma**2)*(C_phi*alpha_c - 2*C_phi + alpha_c*sigma**2))
+    filtered (sigma -> 0: the Solar System): alpha_1 + 4 alpha_c = 0, alpha_2 - Yagi+14 = 0;  MOND regime (alpha_c -> 0): alpha_1 = -8*sigma**2/(C_phi + sigma**2), alpha_2 = -sigma**2*(C_phi*c_2 - c_2*lambda - 3*c_2*sigma**2 - 2*sigma**2)/(C_phi*c_2*(C_phi + sigma**2))
+    leakage where the bounds live (xi at the AQUAL floor, C_phi of the Galactic field at the Sun, lambda up to 1e8): alpha_1 at 1 AU 1.3e-12, alpha_2 at R_sun / 10 km 4.2e-13;  alpha_c <= 3.20e-09  (28 s)
+  [PASS] D2 THE FULL PPN OF THE REPAIRED ACTION: gamma = 1 (no slip), alpha_3 = 0 (the g_0j and g_00 readings of alpha_1 agree), closed-form alpha_1 and alpha_2; with the filter (sigma -> 0) they are exactly the khronometric -4 alpha_c and Yagi+14's alpha_2, and the MOND sector's leakage where the bounds live (alpha_1 at 1 AU, alpha_2 at R_sun and 10 km) is negligible for any lambda <= 1e8, so the bounds CONSTRAIN alpha_c <= 3.2e-9 as before; in the MOND regime alpha_1 = -8 sigma^2/(C_phi + sigma^2) (FP2's -8C/(1+C) under C = 1/C_phi) and alpha_2 carries +lambda sigma^2/(C_phi (C_phi + sigma^2)): the inertia's moving-source lag
+         measured: gamma 1; alpha_3 0; filtered 0, 0; leak alpha_1 1.3e-12, alpha_2 4.2e-13; alpha_c <= 3.20e-09
+         reading:  beta = 1 is inherited (KM3): at 1 AU the filtered chi is smooth, its uniform gradient drops out of a.Dchi, and the sector reduces to GR + BPS
+
+================================================================================================================
+E1  THE MODE COUNT (deg_omega of the determinants), and E2 whether the extra scalar is physically harmful
+================================================================================================================
+    tensor: deg_omega 2 per polarisation (2 modes); vector (transverse shift): deg 0 (a constraint); scalar: deg 4 (lambda > 0) / 2 (lambda = 0)  ->  N = 4 / 3
+    lambda = 0 at exactly zero field: phi = [A_n/sigma] (the auxiliary phi inherits 1/sigma(k) = e^(+xi^2 k^2/2); lambda > 0 removes it)
+  [PASS] E1 THE MODE COUNT: 2 tensor + 1 khronon + 1 MOND scalar = 4 propagating modes for lambda > 0 (3 at lambda = 0, where phi is auxiliary and the khronon carries the MOND mode, but its exact-zero-field value then needs the inverse filter 1/sigma(k)); the heat filter adds none (FP5's G-2b: its pair is second class, the Schur complement only multiplies the chassis by sigma)
+         measured: deg tensor 2, vector 0, scalar 4/2; N = 4/3; phi(lambda = 0, zero field) = [A_n/sigma]
+    Cherenkov: the slow mode is subluminal in MOND regions (c_s^2 = C_phi/lambda_eff), but matter couples to it only through chi = S phi: the coupling is e^(-xi^2 k^2/2); coherent emission (k <~ 1/xi) by a 1e20 eV cosmic ray loses ~ G (E/c^2)^2/xi^2 x 100 Mpc = 1.2e-47 J of its 16 J
+    GW170817: c_T = 1 (D1) and on flat space the TT sector does not mix with the scalars at quadratic order; fifth force: it IS the MOND force, screened in the Solar System by the filter (A4); PPN: gamma = 1, khronometric alphas (D2)
+  [PASS] E2 (reported) THE FOURTH MODE IS NOT PHYSICALLY HARMFUL in the channels named: no fifth force in the Solar System (A4), gamma = 1 and khronometric alphas (D2), c_T = 1 and no TT mixing (D1), and Cherenkov losses of cosmic rays negligible because the filter decouples it above k ~ 1/xi; the spec's 'at most one extra scalar' (FRIED_CHICKEN_VERDICT Case 4) is therefore a preference here, not a physical exclusion -- but this mode's INERTIA is exactly what the sigma_8-vs-tracking pincer (T) turns on
+         measured: UHECR Cherenkov loss over 100 Mpc 1.2e-47 J vs 16 J; c_T - 1 < 9e-42; gamma = 1
+
+================================================================================================================
+F   THE CONSTANTS OF THE REPAIRED ACTION, AND THEIR STATUS
+================================================================================================================
+    G                          measured                       laboratory G_N = G/(1 - alpha_c/2) (the Newtonian limit, A1); the MOND scalar's source uses G (O(1e-9) apart)
+    Lambda                     measured                       fixed constant; the background is GR + Lambda (B1)
+    a0 = alpha c^2 (kappa)     declared (P1), kappa = 1/2 FITTED 9.3603e-11 / 1.1312e-10 m/s^2; enters only through J (statics), absent from linear cosmology (B2)
+    chassis (2, 2 - alpha_c)   DERIVED                        A1: the unique quadratic chassis with no Newtonian term in phi's equation and a GR + BPS Newtonian limit
+    J = J_P2                   POSTULATED                     FP0's L1a (P2) in two-field AQUAL form (A2); any monotone J is admissible (C1)
+    xi                         bounded (CONSTRAINT)           Solar-System floor 0.0243 / 0.0268 pc (A4; QUMOND's 0.0294/0.0316); ceiling ~100 pc (disc scales, inherited)
+    alpha_c                    bounded (CONSTRAINT)           0 < alpha_c <= 3.2e-9 (D2, khronometric); the L340 H4 lower edge (O(Phi/c^2) lobes) is not re-derived here (OPEN)
+    c_2                        bounded, in tension            tracking at lambda = 0 needs c_2 >= 7.29e-03 (C3); sigma_8 at lambda = 0 would need (2 + 3c_2)/c_2 >~ 1e7
+    lambda (NEW)               EMPTY WINDOW (FAILS)           sigma_8 needs lambda_eff >~ 1e7-4e8 (B5); tracking needs lambda_eff <= 277 (<= 2.8e4 even at C_phi >= 1) (C3, T)
+    beta                       fixed = 0                      GW170817 (D1)
+    phibar-dot                 declared = 0                   a free constant of motion on FRW (B1); its kination decays as a^-6
+    dark mass                  declared (cold, Omega_c)       not a state of these fields (as in FP3/FP5); sigma_8 is computed with it declared
+  [PASS] F (reported) the repaired action's constants: 2 measured (G, Lambda), 1 fitted coupling (kappa), 1 derived structure (the chassis), 1 postulated function (J_P2), 3 bounded knobs (xi, alpha_c, c_2), 1 NEW constant (lambda) whose window is empty, 1 fixed (beta), 2 declared data (phibar-dot, the dark mass)
+         measured: 12 rows
+
+================================================================================================================
+T   THE PINCER: sigma_8 needs a heavy MOND scalar, tracking a light one
+================================================================================================================
+    sigma_8 <= 1.02: lambda_eff >= 1.07e+07 (the most lenient yardstick: linear, k <= 1 h/Mpc; others 4.3e+07, 4.4e+08, 4.8e+07, 4.4e+08, 5.3e+07)
+    tracking 3 x 600 km/s: lambda_eff <= 277 (C_phi >= 0.01, FP2's convention) / 2.77e+04 (only where C_phi >= 1); internal rotation 200 km/s at y ~ 0.01: <= 2.25e+05
+    at lambda_eff = 1.1e+07 the MOND scalar moves at 9 km/s (C_phi = 0.01), 29 km/s (C_phi = 0.1), 92 km/s (C_phi = 1);  at lambda_eff = 277 sigma_8/LCDM = canonical 22.1 (rms) / 16.8 (per-mode), alt 26.1 (rms) / 19.8 (per-mode)
+  [PASS] T THE sigma_8-vs-TRACKING PINCER ON THE SCALAR'S INERTIA (verified both ways): sigma_8 within 2% needs lambda_eff >~ 1e7 on the most lenient yardstick, while a MOND field that follows a galaxy moving at 600 km/s (x3) needs lambda_eff <= 277 where C_phi >= 0.01 (<= 2.8e4 even if only C_phi >= 1 regions must track; <= 2e5 just to follow 200 km/s rotation): the window is EMPTY by >= 1.5 decades on the most generous reading.  At the tracking edge sigma_8 is L341's ~ 20x; at the sigma_8 edge the field moves at ~10-100 km/s
+         measured: lambda_sigma8 >= 1.07e+07 vs tracking <= 277 / 2.8e+04 / rotation 2.2e+05: gap x48; c_s at the sigma_8 edge 9, 29, 92 km/s
+         reading:  the a0-free inertia cannot separate the web from galaxies: FP3 C6's tracking-class pincer, now for the AQUAL scalar (the khronon-locked inertia at lambda = 0 is FP3's c_2 channel exactly)
+  [FAIL] G (reported) the AQUAL-type repair with an a0-free inertia passes sigma_8 AND keeps galaxies' MOND (tracking) with NO gate
+         measured: no: lambda_eff must be >= 1.1e+07 for sigma_8 and <= 2.8e+04 for tracking
+
+================================================================================================================
+W   THE LEDGER: FP7, the AQUAL-type repair of the root action
+================================================================================================================
+    R7a   POSTULATED  the repaired root: the core with C-H's U-sector replaced by (2 - alpha_c) h(2a - Dchi)Dchi - 2 alpha^2 J_P2(|Dphi|^2/alpha^2) + 2 lambda (n.dphi)^2, chi = S_h phi (khronon terms, leaf average, filter kept)  --  the coordinator's repair of FP3's G1t; the inertia's form is the suggested a0-free (n.dphi)^2
+    R7b   DERIVED     the chassis is forced: 2a^2 - (2 - alpha_c)|Dchi - a|^2 (no Newtonian term in phi's equation, GR + BPS Newtonian limit); C-H's sign pins its field to Newton (QUMOND)  --  A1 (sympy EL of the static density)
+    R7c   DERIVED     the filter must sit on the chassis (chi = S phi): J on S phi needs S^{-1}; filtering both cancels  --  A1b (discrete adjoint + Fourier gains)
+    R7d   DERIVED     static law: psi = Phi, Phi = Phi_N[G_N] + S phi, div(mu_s grad phi) = 4 pi G S rho (two-field AQUAL); P2 exact in spherical symmetry; C_T, C_L > 0; C^Q = 1/C^phi  --  A1, A2
+    R7e   DERIVED     thin exponential discs: AQUAL vs QUMOND <= 0.035 dex (y = 0.01-100, R >= 0.3 R_d), <= 0.008 dex after profiling Upsilon (SPARC median error 0.037 dex): not resolvable by SPARC  --  A3 (dual Kacanov; Plummer control)
+    R7f   DERIVED     Solar System under the double filter: AQUAL floors 0.0243 / 0.0268 pc (Saturn monopole binds; QUMOND 0.0294/0.0316); strict law excluded by its a0/2 tail (1279x / 1545x)  --  A4 (dual AQUAL; g02 read-only; FP1 reproduced)
+    R7g   DERIVED     FRW background = GR (chassis, J vanish; phibar-dot ~ a^-3, declared 0); a0 absent  --  B1
+    R7h   DERIVED     zero tangent: J is O(eps^3) around FRW and drops out of linear order  --  B2
+    R7i   DERIVED     zero-field well-posedness restored: omega^2 = 0 (marginal) + omega^2 > 0; E(C_phi) in (alpha_c, 2] (FP5's E > 2 band gone)  --  B3 (the naive chassis re-opens a growing band: MUTATE)
+    R7j   DERIVED     linear cosmology: no slip; G_eff/G_N = 1 + (2/5)(ck/aH)^2/lambda_eff (matter era), inertia-limited; lambda_eff = lambda + (2+3c_2)/c_2  --  B4 (sub-horizon reduction of the action's FRW equations)
+    R7k   FAILS       sigma_8 with no gate: lambda_eff <= 277 gives L341's ~ 20x; sigma_8 <= 1.02 needs lambda_eff >= 1.1e+07  --  B5 + T (linear and physical-amplitude yardsticks, both footings)
+    R7l   DERIVED     strong coupling: Lambda_sc -> 0 at exact zero field; ell_sc <= ~1 mm in real backgrounds (tree level)  --  B6 (reported); the quantum zero-field question is OPEN
+    R7m   DERIVED     stability: no ghost, no gradient instability for monotone J (T = diag(4(2+3c_2)/c_2, 4 lambda), det V ~ C_phi); FC-KH's (yq)' obstruction absent  --  C1, C2
+    R7n   DERIVED     tracking: omega -> 0 gives static MOND iff c_2 C_phi != 0; c_s^2 = C_phi/lambda_eff; lambda = 0 reproduces c_2 >= 7.29e-3  --  C3
+    R7o   DERIVED     c_T = 1 (exact on flat space; ~1e-41 on MOND backgrounds)  --  D1
+    R7p   DERIVED     PPN: gamma = 1, alpha_3 = 0, closed-form alpha_1, alpha_2; filtered = khronometric; alpha_c <= 3.2e-9 unchanged; beta = 1 inherited  --  D2 (FP2's pipeline)
+    R7q   DERIVED     mode count N = 4 (lambda > 0) / 3 (lambda = 0); the filter adds none  --  E1
+    R7r   DERIVED     the fourth mode is not harmful (fifth force, PPN, Cherenkov, GW170817): the spec's limit is a preference  --  E2 (reported)
+    R7s   FAILS       lambda (the MOND scalar's inertia): sigma_8 needs >= 1e7, tracking <= 2.8e4: EMPTY  --  T
+    R7t   OPEN        a web-vs-galaxy separation of the scalar's response (a new scale ~ Mpc in its inertia, or a density-read gate)  --  T; with the zero tangent a gate need not vanish on FRW, so FP3's convexity lemma no longer binds -- FP3's chord bound (L* outskirts, KiDS) does; untested
+    R7u   OPEN        nonlinear well-posedness; the L340 H4 O(Phi/c^2) lobes for the new sector; KiDS-EFE with AQUAL's EFE; Boltzmann-level cosmology  --  not computed here
+  [PASS] W (reported) the ledger of this lane
+         measured: 21 links
+
+================================================================================================================
+VERDICT
+================================================================================================================
+  The AQUAL-type repair, varied as one action: the chassis is forced to the perfect square 2a^2 - (2 - alpha_c)|Dchi - a|^2 and
+  the filter to the chassis (A1, A1b); the static law is two-field AQUAL with P2 exact in spherical symmetry (A2); thin discs differ
+  from QUMOND by <= 0.035 dex, below SPARC's resolution (A3); the filter carries over and the Solar System passes above
+  0.0243 / 0.0268 pc (A4).  On FRW the background is GR, J drops out of linear order (zero tangent), and the zero-field linearisation
+  is well-posed -- FP5's Hadamard failure is cured (B1-B3).  The repair is healthy for any monotone J (C1-C2), its omega -> 0
+  response is static MOND for sources slower than c_s = (C_phi/lambda_eff)^(1/2) c (C3), keeps c_T = 1 and khronometric PPN (D1-D2), and adds one propagating scalar that harms nothing in the channels
+  checked (E).  It does NOT fix sigma_8: at zero field the MOND scalar is still sourced at linear order through the chassis and
+  resisted only by inertia, a k^2-growing fifth force (ck/aH)^2/lambda_eff (B4); sigma_8 within 2% needs lambda_eff >= 1.1e+07,
+  tracking needs <= 277 (<= 2.8e4 at most) -- an empty window (T).  At the smallest inertia the action allows the web sits in MOND
+  equilibrium and sigma_8 is L341's ~ 20x.  FP3's root cause was half the story: the infinite tangent caused the ill-posedness
+  (fixed here); sigma_8 is the MOND response of the web itself, which no local, a0-free inertia can separate from galaxies.
+  Time 337 s.
+
+  18/24 checks pass; load-bearing failures: 5; wrote FP7_aqual_type_repair_results_MUTATE.json
+rc=1

@@ -1,0 +1,1056 @@
+{
+ "lane": "FP7",
+ "mutate": false,
+ "root": "AQUAL-type repair of the C-H/K core (perfect-square chassis, J_P2 on phi, lambda (n.dphi)^2 inertia, heat filter on the chassis)",
+ "checks": {
+  "A1 STATICS FROM THE ACTION: at leading weak-field order psi = Phi (no slip), the lapse equation is (4 - 2A) lap Phi - B lap chi = 16 pi G rho and phi's is -B lap Phi - 2C lap chi + 4 div(J' grad phi) = 0; requiring no Newtonian term in phi's equation and a GR + BPS Newtonian limit (Phi = Phi_N[G_N] + chi) has the UNIQUE solution A = alpha_c, B = 2(2 - alpha_c), C = -(2 - alpha_c): the perfect square; the chassis in use carries no Newtonian term": {
+   "ok": true,
+   "measured": "series True; Psi = Phi True; EL residuals 0, 0; unique True; square identity True; residual of the chassis in use 0",
+   "load_bearing": true
+  },
+  "A1b THE FILTER'S PLACEMENT IS FORCED: the discrete action's phi-gradient is S^T[chassis source] + div(J' grad phi) (the variation itself puts S^T on the source; J reads phi unfiltered); in Fourier the physical MOND response is sigma^2 = e^{-xi^2 k^2} (double filter, bounded) with the chassis on S phi, 1/sigma^2 (backward heat, unbounded) with J on S phi, and 1 (no filtering at all) with both -- only the chassis placement is admissible": {
+   "ok": true,
+   "measured": "adjoint residual 3.4e-09; gains sigma**2, sigma**(-2), 1",
+   "load_bearing": true
+  },
+  "A2 P2 EMBEDS EXACTLY IN AQUAL FORM: J_P2 = -(1/4) ln(1 - 2 sqrt Y) - sqrt(Y)/2 - Y/2 has J' = mu_s(sqrt Y) = sqrt(Y)/(1 - 2 sqrt Y), J(0) = 0 and J -> (2/3) Y^(3/2) (ZERO tangent); the spherical law is g = sqrt(g_N^2 + g_N a0) EXACTLY, with the scalar saturating at a0/2 (P2's tail); the static operator is elliptic in both channels (C_T = mu_s, C_L = 2x(1-x)/(1-2x)^2 > 0 on 0 < x < 1/2), and each coefficient is the reciprocal of QUMOND's (nu - 1, nu - 1 + y nu')": {
+   "ok": true,
+   "measured": "J' True; J(0) True; deep 2/3; spherical True; tail 1/2; C_L form True; positivity True/True; duality True/True",
+   "load_bearing": true
+  },
+  "A3 CONTROL: the dual (flux) solver is exact where it must be -- for a Plummer sphere AQUAL, QUMOND and the algebraic law coincide to discretisation accuracy, and every disc solve satisfies the curl equation curl(w F) = 0 to < 1e-4": {
+   "ok": true,
+   "measured": "Plummer max |dlog| AQUAL/QUMOND 8.1e-05, AQUAL/algebraic 1.6e-04; disc curl residuals 2e-05, 1e-07, 4e-09, 7e-09",
+   "load_bearing": true
+  },
+  "A3 (a) THIN DISCS, AQUAL vs QUMOND: over y = 0.01-100 and 0.3 <= R/R_d <= 8 of thin exponential discs (h = 0.1 R_d) the two-field AQUAL and QUMOND realisations of P2 differ by at most the printed dex, and after profiling Upsilon by less than SPARC's median per-point error: SPARC-level data cannot tell them apart (both differ from the algebraic law by more)": {
+   "ok": true,
+   "measured": "max |AQUAL/QUMOND| 0.0353 dex, Upsilon-profiled rms <= 0.0084 dex vs SPARC median error 0.037 dex and RAR scatter 0.108 dex; algebraic-law deviations AQUAL 0.210, QUMOND 0.175 dex",
+   "load_bearing": true
+  },
+  "A4 CONTROLS: spherical two-field AQUAL equals QUMOND identically; the dual solver reproduces the analytic linear EFE far field of the Sun to < 3% (r >= 300 r_M); the SAME grid's QUMOND reproduces FP1's committed P2 floors (0.0294 / 0.0316 pc) to < 3% and its strict Q2 to < 5%": {
+   "ok": true,
+   "measured": "spherical 6.3e-15; far field 0.010/0.006; QUMOND floors 0.0294/0.0316 vs FP1 0.0294/0.0316; strict QUMOND max 4.96/5.71 vs FP1 4.93/5.69",
+   "load_bearing": true
+  },
+  "A4 THE FILTER CARRIES OVER: with the action's double filter the AQUAL scalar passes Cassini Q2, the Saturn monopole and the sunward anomaly at every planet for every xi from its binding floor to 1 pc, on both footings and at all three Galactic fields; the strict law (xi -> 0) is excluded by its exact a0/2 tail, so the filter is load-bearing here too": {
+   "ok": true,
+   "measured": "canonical: AQUAL floor 0.0243 pc (M at 2.00e-10; QUMOND on the same grid 0.0294), tail 1279x; alt: AQUAL floor 0.0268 pc (M at 2.00e-10; QUMOND on the same grid 0.0316), tail 1545x",
+   "load_bearing": true
+  },
+  "B1 THE FRW BACKGROUND IS GR: on FRW the chassis and J vanish identically (a_m = 0, no spatial gradient, J(0) = 0), the Friedmann equation is GR's plus the inertia's kination term (lambda/3) phibar-dot^2, which decays as a^-6 (d/dt(a^3 lambda phibar-dot) = 0); with the declared phibar-dot = 0 it is exactly GR, and a0 is absent: a0(z)/a0(0) = 1": {
+   "ok": true,
+   "measured": "H^2 - H^2_GR = lambda*Derivative(phibar(t), t)**2/3; phi-equation lambda*(a(t)*Derivative(phibar(t), (t, 2)) + 3*Derivative(a(t), t)*Derivative(phibar(t), t))*a(t)**2/(4*pi*G); a0 / alpha_c in Friedmann: False",
+   "load_bearing": true
+  },
+  "B2 THE LINEAR FRW EQUATIONS, DERIVED: J_P2 is O(eps^3) around the zero-field background with J'(0) = 0 (no infinite tangent: FP3's G1t door, verified), so the quadratic action carries the chassis and the inertia only; the new sector enters exactly three equations -- the lapse (B_ch k^2 a chi), the khronon (B_ch k^2 d(a chi)/dt) and phi's own (4 lambda a^3 (chi'' + 3H chi') = k^2 a [B_ch (Phi - pi') + 2 C_ch chi]) -- and leaves the Psi, B, E and dust equations GR + khronon": {
+   "ok": true,
+   "measured": "J order e^3; tangent 0; untouched equations True; touched True",
+   "load_bearing": true
+  },
+  "B3 ZERO-FIELD WELL-POSEDNESS RESTORED: at zero field the repaired action's scalar block has omega^2 = 0 (the marginal MOND-khronon mode: at most linear growth, no Hadamard instability) and omega^2 = (2 - alpha_c)(c_2 lambda + (2 + 3c_2) sigma^2) k^2/(alpha_c lambda (2 + 3c_2)) > 0 at every alpha_c, c_2, lambda and filter factor; the khronon's effective BPS coefficient is E(C_phi) = [2(2 - alpha_c) sigma^2 + 2 alpha_c C_phi]/[(2 - alpha_c) sigma^2 + 2 C_phi], in (alpha_c, 2] (= 2 only at exactly zero field) -- FP5's E = 2 + alpha_c > 2 band is gone.  CONTROL: the naive chassis has a growing mode": {
+   "ok": true,
+   "measured": "roots [0, -(alpha_c - 2)*(c_2*lambda + 3*c_2*sigma**2 + 2*sigma**2)/(alpha_c*lambda*(3*c_2 + 2))]; fast root positive on the grid True; E = BPS True; naive product -c_2*sigma**2/(lambda*(3*c_2 + 2))",
+   "load_bearing": true
+  },
+  "B4 LINEAR COSMOLOGY, DERIVED: sub-horizon the repaired action gives NO slip (Psi = Phi), the Poisson law (k/a)^2 (Phi - chi) = -4 pi G_N rho delta, phi's equation lambda (chi'' + 3H chi') = -4 pi G rho delta with NO restoring term at linear order, and the dust's delta'' + 2H delta' = 4 pi G_N rho delta - (k/a)^2 chi: the MOND scalar responds to the web by INERTIA alone, G_eff/G_N = 1 + (2/5)(ck/aH)^2/lambda_eff in the matter era, with lambda_eff = lambda + (2 + 3c_2)/c_2 (the khronon locked to phi adds its own inertia; next order, from the exact slow root)": {
+   "ok": true,
+   "measured": "slip True; Poisson residual 0; phi residual 0; dust True; chi_part -3/(5*lambdahat); lambda_eff lambda + 3*sigma**2 + 2*sigma**2/c_2",
+   "load_bearing": true
+  },
+  "B5 sigma_8 WITH NO GATE, verified both ways: the LCDM limit (lambda_eff -> oo) is recovered and L341's yardstick reproduced; at the smallest inertia the action allows (lambda = 0, the khronon's own (2 + 3c_2)/c_2 = 277 at FP2's floor) the web reaches MOND equilibrium and sigma_8 is L341's ~ 20x; sigma_8 <= 1.02 x LCDM needs lambda_eff >~ 1e7-1e8 (linear and physical-amplitude yardsticks, both footings); the lower gate (>= 0.922) never binds": {
+   "ok": true,
+   "measured": "LCDM 0.81009; at lambda_eff = 277: rms 22.1/26.1, per-mode 16.8/19.8; thresholds linear 4.3e+07 (k<=1: 1.1e+07), physical canonical/rms 4.4e+08, canonical/permode 4.8e+07, alt/rms 4.4e+08, alt/permode 5.3e+07",
+   "load_bearing": true
+  },
+  "B6 (reported) STRONG COUPLING: phi's gradient energy vanishes at exactly zero field, so the tree-level strong-coupling scale Lambda_sc = c_s^(9/4) [ (3/2) alpha M_P (2 lambda_eff)^(3/2) ]^(1/2) -> 0 there (c_s -> 0): the exact FRW background is formally infinitely strongly coupled.  In any real background (web y ~ 1e-3, galaxies, the Solar neighbourhood) the cutoff length is <= ~1 mm, far below every scale the classical theory is used on; the classical linearisation itself holds only while J's force is below the inertia (R_NL << 1), which needs lambda_eff >~ 1e5 on the web": {
+   "ok": true,
+   "measured": "can/web y ~ 1e-3/3e+02: ell 5.7e-04 m; can/galaxy outsk/3e+02: ell 1.1e-04 m; can/Solar neighb/3e+02: ell 2.6e-05 m; alt/web y ~ 1e-3/3e+02: ell 5.2e-04 m; alt/galaxy outsk/3e+02: ell 1.0e-04 m; alt/Solar neighb/3e+02: ell 2.7e-05 m; R_NL 4e+03, 3e+00, 3e-08",
+   "load_bearing": false
+  },
+  "C1 NO GHOST, NO GRADIENT INSTABILITY, exactly: eliminating the lapse and shift (constraints) leaves two scalar modes with L = (1/2) x'.T.x' - (1/2) x.V.x, T = diag(4(2 + 3c_2)/c_2, 4 lambda) (the khronon's inertia and phi's) and det V = 16 C_phi k^4 (2 - alpha_c)/alpha_c: healthy iff c_2, lambda > 0, 0 < alpha_c < 2 and C_phi > 0 in each channel, marginal at C_phi = 0 (zero field); P2 has C_T, C_L > 0 at every y (both channels, both alpha_c ends); the non-monotone control (C_L < 0) is a tachyon.  The same holds on FRW sub-horizon (B3-B4)": {
+   "ok": true,
+   "measured": "Hermitian True; reduction exact True; T True; V True; P2 cells unhealthy 0 of 456; control TACHYON",
+   "load_bearing": true
+  },
+  "C2 THE FC-KH (yq)' OBSTRUCTION DOES NOT ARISE: re-derived, FC-KH's khronon coefficient is 1 - W'' = (y(1 - mu))' for a MOND function on the LAPSE, negative for y > 1 with the exponential mu (reproduced); in the repaired action the lapse carries only alpha_c a^2, the MOND function sits on phi, and the khronon's 2 - E = 2(2 - alpha_c) C_phi/((2 - alpha_c) sigma^2 + 2 C_phi) is positive iff C_phi > 0 in each channel -- which P2 satisfies everywhere (and P2 would pass FC-KH's own test anyway: its a0/2 tail is the theorem's escape clause, removed from the Solar System by the filter, A4)": {
+   "ok": true,
+   "measured": "identity True; exp (1 - y)*exp(-y); P2 -2*z/sqrt(4*z**2 + 1) + 1 > 0: True; 2 - E = -2*C_phi*(alpha_c - 2)/(2*C_phi - alpha_c*sigma**2 + 2*sigma**2)",
+   "load_bearing": true
+  },
+  "C3 TRACKING: with the khronon's c_2 channel the omega -> 0 response of the repaired block is the static MOND law (psi/psi_N -> G_N/G + sigma^2/C_phi, det M(0) proportional to c_2 C_phi, zero without c_2: L330's frozen phantom); the tracking speed is c_s^2 = C_phi/lambda_eff, and at lambda = 0 the exact root reproduces FP2's floor c_2 >= 7.29e-3 (the AQUAL block is the C-H/K block under C^Q = 1/C^phi)": {
+   "ok": true,
+   "measured": "limit -(2*C_phi - alpha_c*sigma**2 + 2*sigma**2)/(C_phi*(alpha_c - 2)); det0 64*C_phi*c_2*k_T**10*(alpha_c - 2); control 0; c_2 floor 7.2888e-03 vs 7.2888e-03; lambda_eff <= 277.4",
+   "load_bearing": true
+  },
+  "D1 c_T = 1: the chassis, J and the inertia are scalar functions of (a_m, D phi, n.d phi), all zero on a transverse-traceless perturbation of flat space, so the tensor sector is GR's (omega^2 = k^2, kinetic 1/2) exactly; on a MOND background the J-term's anisotropic 'mass' leaves |c_T - 1| ~ 1e-40 at LIGO frequencies": {
+   "ok": true,
+   "measured": "roots [-k, k]; kinetic 1/2; background estimate 9.0e-42",
+   "load_bearing": true
+  },
+  "D2 THE FULL PPN OF THE REPAIRED ACTION: gamma = 1 (no slip), alpha_3 = 0 (the g_0j and g_00 readings of alpha_1 agree), closed-form alpha_1 and alpha_2; with the filter (sigma -> 0) they are exactly the khronometric -4 alpha_c and Yagi+14's alpha_2, and the MOND sector's leakage where the bounds live (alpha_1 at 1 AU, alpha_2 at R_sun and 10 km) is negligible for any lambda <= 1e8, so the bounds CONSTRAIN alpha_c <= 3.2e-9 as before; in the MOND regime alpha_1 = -8 sigma^2/(C_phi + sigma^2) (FP2's -8C/(1+C) under C = 1/C_phi) and alpha_2 carries +lambda sigma^2/(C_phi (C_phi + sigma^2)): the inertia's moving-source lag": {
+   "ok": true,
+   "measured": "gamma 1; alpha_3 0; filtered 0, 0; leak alpha_1 1.3e-12, alpha_2 4.2e-13; alpha_c <= 3.20e-09",
+   "load_bearing": true
+  },
+  "E1 THE MODE COUNT: 2 tensor + 1 khronon + 1 MOND scalar = 4 propagating modes for lambda > 0 (3 at lambda = 0, where phi is auxiliary and the khronon carries the MOND mode, but its exact-zero-field value then needs the inverse filter 1/sigma(k)); the heat filter adds none (FP5's G-2b: its pair is second class, the Schur complement only multiplies the chassis by sigma)": {
+   "ok": true,
+   "measured": "deg tensor 2, vector 0, scalar 4/2; N = 4/3; phi(lambda = 0, zero field) = [A_n/sigma]",
+   "load_bearing": true
+  },
+  "E2 (reported) THE FOURTH MODE IS NOT PHYSICALLY HARMFUL in the channels named: no fifth force in the Solar System (A4), gamma = 1 and khronometric alphas (D2), c_T = 1 and no TT mixing (D1), and Cherenkov losses of cosmic rays negligible because the filter decouples it above k ~ 1/xi; the spec's 'at most one extra scalar' (FRIED_CHICKEN_VERDICT Case 4) is therefore a preference here, not a physical exclusion -- but this mode's INERTIA is exactly what the sigma_8-vs-tracking pincer (T) turns on": {
+   "ok": true,
+   "measured": "UHECR Cherenkov loss over 100 Mpc 1.2e-47 J vs 16 J; c_T - 1 < 9e-42; gamma = 1",
+   "load_bearing": false
+  },
+  "F (reported) the repaired action's constants: 2 measured (G, Lambda), 1 fitted coupling (kappa), 1 derived structure (the chassis), 1 postulated function (J_P2), 3 bounded knobs (xi, alpha_c, c_2), 1 NEW constant (lambda) whose window is empty, 1 fixed (beta), 2 declared data (phibar-dot, the dark mass)": {
+   "ok": true,
+   "measured": "12 rows",
+   "load_bearing": false
+  },
+  "T THE sigma_8-vs-TRACKING PINCER ON THE SCALAR'S INERTIA (verified both ways): sigma_8 within 2% needs lambda_eff >~ 1e7 on the most lenient yardstick, while a MOND field that follows a galaxy moving at 600 km/s (x3) needs lambda_eff <= 277 where C_phi >= 0.01 (<= 2.8e4 even if only C_phi >= 1 regions must track; <= 2e5 just to follow 200 km/s rotation): the window is EMPTY by >= 1.5 decades on the most generous reading.  At the tracking edge sigma_8 is L341's ~ 20x; at the sigma_8 edge the field moves at ~10-100 km/s": {
+   "ok": true,
+   "measured": "lambda_sigma8 >= 1.07e+07 vs tracking <= 277 / 2.8e+04 / rotation 2.2e+05: gap x48; c_s at the sigma_8 edge 9, 29, 92 km/s",
+   "load_bearing": true
+  },
+  "G (reported) the AQUAL-type repair with an a0-free inertia passes sigma_8 AND keeps galaxies' MOND (tracking) with NO gate": {
+   "ok": false,
+   "measured": "no: lambda_eff must be >= 1.1e+07 for sigma_8 and <= 2.8e+04 for tracking",
+   "load_bearing": false
+  },
+  "W (reported) the ledger of this lane": {
+   "ok": true,
+   "measured": "21 links",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "A1": {
+   "requirements": "[{A: alpha_c, B: 4 - 2*alpha_c, C: alpha_c - 2}]",
+   "naive_residual": "-4*alpha_c/(alpha_c - 2)",
+   "used_residual": "0"
+  },
+  "A2": {
+   "J": "-sqrt(Y)/2 - Y/2 - log(1 - 2*sqrt(Y))/4",
+   "C_T": "x/(1 - 2*x)",
+   "C_L": "2*x*(1 - x)/(2*x - 1)**2"
+  },
+  "A3": {
+   "plummer": {
+    "AQ": 8.144537293356081e-05,
+    "Aalg": 0.00016245073628014004
+   },
+   "discs": [
+    [
+     300.0,
+     5.448318413744706,
+     77.18833544113463,
+     0.0008757667755486933,
+     0.0004113171593947329,
+     -0.0004091663345806573,
+     0.00037253216744100384,
+     0.0025237586814349316,
+     0.0020514861523964778
+    ],
+    [
+     30.0,
+     0.5448318413744817,
+     7.718833544113474,
+     0.004469263025163102,
+     0.0017527909162746156,
+     -0.0017624744964658268,
+     0.0016178082238184368,
+     0.02308380475213412,
+     0.018614541726971016
+    ],
+    [
+     3.0,
+     0.054483184137446496,
+     0.7718833544113608,
+     0.02436666714403007,
+     0.006224301478153716,
+     -0.007213964354183644,
+     0.00588015740327611,
+     0.12230961957667835,
+     0.09794295243264835
+    ],
+    [
+     0.3,
+     0.010477075314345814,
+     0.07718833544113503,
+     0.03526765425457293,
+     0.008829257017151723,
+     -0.011728531464044623,
+     0.008410753461852409,
+     0.21032869088201706,
+     0.17506103662744416
+    ]
+   ],
+   "sparc_median_err": 0.03700743404303242,
+   "rar_scatter": 0.1083,
+   "hz": 0.1,
+   "time_s": 42.09372901916504
+  },
+  "A4": {
+   "spherical_identity": 6.2989711621422485e-15,
+   "far_field_err": [
+    0.009839505676541136,
+    0.006206411697101996
+   ],
+   "AQUAL_floors": {
+    "canonical": {
+     "floor": 0.024281419855163956,
+     "binding": [
+      "M",
+      "2.00"
+     ],
+     "per": {
+      "2.00": {
+       "Q2": 0.018237567775964025,
+       "M": 0.024281419855163956,
+       "gmax": 0.016522180703187714
+      },
+      "2.32": {
+       "Q2": 0.017243917601204327,
+       "M": 0.02255342426239937,
+       "gmax": 0.01539708125418099
+      },
+      "2.64": {
+       "Q2": 0.01642298220056974,
+       "M": 0.021176654389660543,
+       "gmax": 0.01440435855333589
+      }
+     },
+     "window": true
+    },
+    "alt": {
+     "floor": 0.026832267367263626,
+     "binding": [
+      "M",
+      "2.00"
+     ],
+     "per": {
+      "2.00": {
+       "Q2": 0.01992449973502064,
+       "M": 0.026832267367263626,
+       "gmax": 0.01857431751651373
+      },
+      "2.32": {
+       "Q2": 0.018816367753761793,
+       "M": 0.02496648361874101,
+       "gmax": 0.017244193205829362
+      },
+      "2.64": {
+       "Q2": 0.017906290093697267,
+       "M": 0.02340615698774485,
+       "gmax": 0.016196297360601068
+      }
+     },
+     "window": true
+    }
+   },
+   "QUMOND_floors": {
+    "canonical": 0.029406154079397916,
+    "alt": 0.031628403289318215
+   },
+   "strict_tail_over_bound": {
+    "canonical": 1278.7328995939854,
+    "alt": 1545.3600292913964
+   },
+   "strict_QUMOND_Q2": {
+    "canonical": [
+     4.013397954316807,
+     4.9600145052957805
+    ],
+    "alt": [
+     4.559118411448747,
+     5.714807412871978
+    ]
+   },
+   "time_s": 248.85767078399658,
+   "table_2p32": {
+    "canonical": [
+     {
+      "xi": 0.01,
+      "A": {
+       "Q2": 3.3899893589587777,
+       "M": 6.510947468041231,
+       "gmax": 2.4432043486147337,
+       "Earth": 2.9722141767853128e-15,
+       "Mars": 4.5331685828360486e-15
+      },
+      "Q": {
+       "Q2": 2.8686949364880685,
+       "M": 18.99207822635448,
+       "gmax": 7.126624392861825,
+       "Earth": 8.669795814307423e-15,
+       "Mars": 1.322301928651917e-14
+      }
+     },
+     {
+      "xi": 0.015,
+      "A": {
+       "Q2": 1.4280209084036408,
+       "M": 2.843807096471963,
+       "gmax": 1.0671328291931759,
+       "Earth": 1.298182464805809e-15,
+       "Mars": 1.979964994028768e-15
+      },
+      "Q": {
+       "Q2": 1.6515188116397017,
+       "M": 6.338644526801597,
+       "gmax": 2.3785579615321546,
+       "Earth": 2.893557478376095e-15,
+       "Mars": 4.413202804023346e-15
+      }
+     },
+     {
+      "xi": 0.02,
+      "A": {
+       "Q2": 0.684585266084117,
+       "M": 1.3905811883930232,
+       "gmax": 0.5218147545764356,
+       "Earth": 6.347924764237455e-16,
+       "Mars": 9.681742926538067e-16
+      },
+      "Q": {
+       "Q2": 0.782094703212835,
+       "M": 2.683192710702052,
+       "gmax": 1.0068658858981363,
+       "Earth": 1.2248624286961481e-15,
+       "Mars": 1.8681385782944266e-15
+      }
+     },
+     {
+      "xi": 0.025,
+      "A": {
+       "Q2": 0.36780753958215445,
+       "M": 0.7538087691215859,
+       "gmax": 0.28286690562639794,
+       "Earth": 3.441093717454105e-16,
+       "Mars": 5.248295484648953e-16
+      },
+      "Q": {
+       "Q2": 0.4125182112084853,
+       "M": 1.3748904427226447,
+       "gmax": 0.5159278561115903,
+       "Earth": 6.276295983132292e-16,
+       "Mars": 9.572496004058133e-16
+      }
+     },
+     {
+      "xi": 0.03,
+      "A": {
+       "Q2": 0.21710371792510277,
+       "M": 0.4467061400854507,
+       "gmax": 0.16762679430781505,
+       "Earth": 2.0391875680682212e-16,
+       "Mars": 3.110132942370284e-16
+      },
+      "Q": {
+       "Q2": 0.2412454231174305,
+       "M": 0.795873476302727,
+       "gmax": 0.2986520675799998,
+       "Earth": 3.6331161868743636e-16,
+       "Mars": 5.541164781606011e-16
+      }
+     },
+     {
+      "xi": 0.035,
+      "A": {
+       "Q2": 0.13795322957712178,
+       "M": 0.28437553571549073,
+       "gmax": 0.10671220725627897,
+       "Earth": 1.298157676074476e-16,
+       "Mars": 1.9799272128354219e-16
+      },
+      "Q": {
+       "Q2": 0.15260220938981953,
+       "M": 0.5012498490262356,
+       "gmax": 0.18809450889236165,
+       "Earth": 2.2881762276758253e-16,
+       "Mars": 3.4898860626037814e-16
+      }
+     },
+     {
+      "xi": 0.04,
+      "A": {
+       "Q2": 0.09283357121273766,
+       "M": 0.19154642648364067,
+       "gmax": 0.07187802883699428,
+       "Earth": 8.743981734640436e-17,
+       "Mars": 1.3336166876473413e-16
+      },
+      "Q": {
+       "Q2": 0.10245304923161186,
+       "M": 0.3358171122007298,
+       "gmax": 0.1260157777015555,
+       "Earth": 1.5329853715043063e-16,
+       "Mars": 2.338082278047315e-16
+      }
+     },
+     {
+      "xi": 0.05,
+      "A": {
+       "Q2": 0.04771265898307849,
+       "M": 0.09852668426663604,
+       "gmax": 0.036972281429252137,
+       "Earth": 4.497684880646852e-17,
+       "Mars": 6.859789739834449e-17
+      },
+      "Q": {
+       "Q2": 0.0525508272993654,
+       "M": 0.17194641691708107,
+       "gmax": 0.06452314275603757,
+       "Earth": 7.849252265449493e-17,
+       "Mars": 1.1971541267275355e-16
+      }
+     },
+     {
+      "xi": 0.1,
+      "A": {
+       "Q2": 0.005979113604364737,
+       "M": 0.012353513119964856,
+       "gmax": 0.004635677742387611,
+       "Earth": 5.639305156543618e-18,
+       "Mars": 8.600968883648331e-18
+      },
+      "Q": {
+       "Q2": 0.006576566500329339,
+       "M": 0.021493956298932113,
+       "gmax": 0.008065645286625477,
+       "Earth": 9.811863022778012e-18,
+       "Mars": 1.4964880638120723e-17
+      }
+     },
+     {
+      "xi": 0.3,
+      "A": {
+       "Q2": 0.0002214850829499307,
+       "M": 0.00045763010372636034,
+       "gmax": 0.00017172655332003825,
+       "Earth": 2.0890541056976997e-19,
+       "Mars": 3.186188522889918e-19
+      },
+      "Q": {
+       "Q2": 0.00024359483920987892,
+       "M": 0.0007960740667853282,
+       "gmax": 0.0002987282842036848,
+       "Earth": 3.634030593928694e-19,
+       "Mars": 5.542559447660031e-19
+      }
+     },
+     {
+      "xi": 1.0,
+      "A": {
+       "Q2": 5.979975842127977e-06,
+       "M": 1.2356053918207311e-05,
+       "gmax": 4.6366325042159315e-06,
+       "Earth": 5.640464837062077e-21,
+       "Mars": 8.602737611940152e-21
+      },
+      "Q": {
+       "Q2": 6.576909675705546e-06,
+       "M": 2.149400040510751e-05,
+       "gmax": 8.065664133897094e-06,
+       "Earth": 9.811882846680817e-21,
+       "Mars": 1.496491088012138e-20
+      }
+     }
+    ],
+    "alt": [
+     {
+      "xi": 0.01,
+      "A": {
+       "Q2": 4.233040832370662,
+       "M": 8.656982551588658,
+       "gmax": 3.248896895255922,
+       "Earth": 3.9523624228425125e-15,
+       "Mars": 6.0280672457027e-15
+      },
+      "Q": {
+       "Q2": 3.3208006857750907,
+       "M": 23.068623349133006,
+       "gmax": 8.657392031676608,
+       "Earth": 1.0532036098659392e-14,
+       "Mars": 1.6063258906275606e-14
+      }
+     },
+     {
+      "xi": 0.015,
+      "A": {
+       "Q2": 1.786086259319453,
+       "M": 3.7732607529697963,
+       "gmax": 1.4160841060734604,
+       "Earth": 1.7226883730530886e-15,
+       "Mars": 2.627411243157641e-15
+      },
+      "Q": {
+       "Q2": 1.9649740937554063,
+       "M": 7.8508897817940815,
+       "gmax": 2.9463893550704485,
+       "Earth": 3.584337471526363e-15,
+       "Mars": 5.4667626977157176e-15
+      }
+     },
+     {
+      "xi": 0.02,
+      "A": {
+       "Q2": 0.8554722860737854,
+       "M": 1.8406307507894972,
+       "gmax": 0.690781319979732,
+       "Earth": 8.403426213651158e-16,
+       "Mars": 1.281674445553918e-15
+      },
+      "Q": {
+       "Q2": 0.9408664231788025,
+       "M": 3.326745063432183,
+       "gmax": 1.2485133697111275,
+       "Earth": 1.5188303433242131e-15,
+       "Mars": 2.3164909014033356e-15
+      }
+     },
+     {
+      "xi": 0.025,
+      "A": {
+       "Q2": 0.4592573402828745,
+       "M": 0.9963166005736915,
+       "gmax": 0.37391443794523893,
+       "Earth": 4.548696684417984e-16,
+       "Mars": 6.937584948898243e-16
+      },
+      "Q": {
+       "Q2": 0.497620333982179,
+       "M": 1.7050524788144548,
+       "gmax": 0.6399006491542292,
+       "Earth": 7.784439893204664e-16,
+       "Mars": 1.1872678433349322e-15
+      }
+     },
+     {
+      "xi": 0.03,
+      "A": {
+       "Q2": 0.27096700365445475,
+       "M": 0.5899821966839793,
+       "gmax": 0.22141872252185815,
+       "Earth": 2.6935711727200794e-16,
+       "Mars": 4.1081831044700364e-16
+      },
+      "Q": {
+       "Q2": 0.2912915477888355,
+       "M": 0.9870717795754981,
+       "gmax": 0.37044534941265284,
+       "Earth": 4.506488706419344e-16,
+       "Mars": 6.873210164303668e-16
+      }
+     },
+     {
+      "xi": 0.035,
+      "A": {
+       "Q2": 0.17214161788230034,
+       "M": 0.3754484222938325,
+       "gmax": 0.1409048922385797,
+       "Earth": 1.7141143603285841e-16,
+       "Mars": 2.614334358378965e-16
+      },
+      "Q": {
+       "Q2": 0.18433383444326126,
+       "M": 0.6216897994201266,
+       "gmax": 0.23331868582675153,
+       "Earth": 2.838332383043756e-16,
+       "Mars": 4.3289701323271273e-16
+      }
+     },
+     {
+      "xi": 0.04,
+      "A": {
+       "Q2": 0.1158267672938724,
+       "M": 0.2528420085838462,
+       "gmax": 0.09489105043419488,
+       "Earth": 1.15435321118199e-16,
+       "Mars": 1.760597387310484e-16
+      },
+      "Q": {
+       "Q2": 0.12378096154554201,
+       "M": 0.41651383661790387,
+       "gmax": 0.1563167267917846,
+       "Earth": 1.9015988992449382e-16,
+       "Mars": 2.900282185080678e-16
+      }
+     },
+     {
+      "xi": 0.05,
+      "A": {
+       "Q2": 0.0595241731775838,
+       "M": 0.13003388937167354,
+       "gmax": 0.048801464341213824,
+       "Earth": 5.936712333871046e-17,
+       "Mars": 9.054559846923646e-17
+      },
+      "Q": {
+       "Q2": 0.0635007959921216,
+       "M": 0.21326798879989678,
+       "gmax": 0.08003905898775608,
+       "Earth": 9.736774818961604e-17,
+       "Mars": 1.4850342303296424e-16
+      }
+     },
+     {
+      "xi": 0.1,
+      "A": {
+       "Q2": 0.007458761453965845,
+       "M": 0.01630213083440693,
+       "gmax": 0.006118163093739588,
+       "Earth": 7.442756069527068e-18,
+       "Mars": 1.1351548898154739e-17
+      },
+      "Q": {
+       "Q2": 0.007947758458295274,
+       "M": 0.026659546103694632,
+       "gmax": 0.010005284143433614,
+       "Earth": 1.2171445596873768e-17,
+       "Mars": 1.8563655528082405e-17
+      }
+     },
+     {
+      "xi": 0.3,
+      "A": {
+       "Q2": 0.0002762944903819565,
+       "M": 0.0006039002802932585,
+       "gmax": 0.0002266428476128518,
+       "Earth": 2.7571134070946117e-19,
+       "Mars": 4.2050965232618034e-19
+      },
+      "Q": {
+       "Q2": 0.00029438546184861283,
+       "M": 0.000987393169947904,
+       "gmax": 0.0003705671400818148,
+       "Earth": 4.507954435123438e-19,
+       "Mars": 6.875445701066663e-19
+      }
+     },
+     {
+      "xi": 1.0,
+      "A": {
+       "Q2": 7.459760953832024e-06,
+       "M": 1.6305358119965364e-05,
+       "gmax": 6.119376036147166e-06,
+       "Earth": 7.444229254673724e-21,
+       "Mars": 1.1353795777180519e-20
+      },
+      "Q": {
+       "Q2": 7.948187289274827e-06,
+       "M": 2.6659616527595927e-05,
+       "gmax": 1.0005313425952796e-05,
+       "Earth": 1.217147736424108e-20,
+       "Mars": 1.8563703987677177e-20
+      }
+     }
+    ]
+   }
+  },
+  "B2": {
+   "Phi": "B_ch*k**2*a(t)*chik(t)",
+   "Psi": "0",
+   "B": "0",
+   "E": "0",
+   "pi": "B_ch*k**2*(a(t)*Derivative(chik(t), t) + chik(t)*Derivative(a(t), t))",
+   "theta": "0",
+   "delta": "0",
+   "chi": "-(-B_ch*k**2*Phik(t) + B_ch*k**2*Derivative(pik(t), t) - 2*C_ch*k**2*chik(t) + 4*lambda*a(t)**2*Derivative(chik(t), (t, 2)) + 12*lambda*a(t)*Derivative(a(t), t)*Derivative(chik(t), t))*a(t)"
+  },
+  "B3": {
+   "det": "64*k**6*(C_phi*alpha_c*c_2*k**4 + 3*C_phi*alpha_c*c_2*k**2*omega**2 + 2*C_phi*alpha_c*k**2*omega**2 - 2*C_phi*c_2*k**4 - alpha_c*c_2*k**2*lambda*omega**2 - 3*alpha_c*c_2*k**2*omega**2*sigma**2 - 3*alpha_c*c_2*lambda*omega**4 - 2*alpha_c*k**2*omega**2*sigma**2 - 2*alpha_c*lambda*omega**4 + 2*c_2*k**2*lambda*omega**2 + 6*c_2*k**2*omega**2*sigma**2 + 4*k**2*omega**2*sigma**2)",
+   "zero_field_roots": [
+    "0",
+    "-(alpha_c - 2)*(c_2*lambda + 3*c_2*sigma**2 + 2*sigma**2)/(alpha_c*lambda*(3*c_2 + 2))"
+   ],
+   "naive_product": "-c_2*sigma**2/(lambda*(3*c_2 + 2))",
+   "E_AQUAL": "(2*C_phi*alpha_c + sigma**2*(4 - 2*alpha_c))/(2*C_phi + sigma**2*(2 - alpha_c))"
+  },
+  "B4": {
+   "slow_root": "C_phi*c_2/(c_2*lambda + 3*c_2*sigma**2 + 2*sigma**2)",
+   "lambda_eff": "lambda + 3*sigma**2 + 2*sigma**2/c_2",
+   "chi_particular": "-3/(5*lambdahat)"
+  },
+  "B5": {
+   "S8_LCDM": 0.8100854474507065,
+   "linear": {
+    "277.4": 3.876648710177148e+111,
+    "1e+04": 1.7300731148109305e+41,
+    "1e+06": 89416145.18733811,
+    "1e+07": 30.946170203963216,
+    "3e+07": 1.1187471689050419,
+    "1e+08": 1.0026361009799503,
+    "1e+09": 1.0002310650578654
+   },
+   "lin_threshold": 42965024.85479691,
+   "lin_threshold_k1": 10701895.148176061,
+   "phys": {
+    "canonical/rms": {
+     "277.4": 22.069566498529813,
+     "1e+05": 20.532303288626732,
+     "1e+07": 2.060259825759171,
+     "1e+08": 1.0888263694602318
+    },
+    "canonical/permode": {
+     "277.4": 16.819272197370335,
+     "1e+05": 7.413955808642603,
+     "1e+07": 1.1125200495239214,
+     "1e+08": 1.008257885820155
+    },
+    "alt/rms": {
+     "277.4": 26.09461750734881,
+     "1e+05": 24.084596277736253,
+     "1e+07": 2.0744792347843672,
+     "1e+08": 1.0889153180741136
+    },
+    "alt/permode": {
+     "277.4": 19.79811806948959,
+     "1e+05": 8.258181553933316,
+     "1e+07": 1.1293345634852763,
+     "1e+08": 1.0090965499467859
+    }
+   },
+   "phys_threshold": {
+    "canonical/rms": 436096038.4146381,
+    "canonical/permode": 48105644.98792821,
+    "alt/rms": 436192356.44753176,
+    "alt/permode": 53441046.454392165
+   },
+   "lambda_eff_lambda0": 277.3935901657337
+  },
+  "B6": {
+   "rows": [
+    [
+     "canonical",
+     "web y ~ 1e-3",
+     277.3935901657337,
+     0.010847194911934248,
+     3.7607301018948895e-06,
+     0.0005691565626322773
+    ],
+    [
+     "canonical",
+     "web y ~ 1e-3",
+     100000000.0,
+     1.806615178700565e-05,
+     3.1005113418994276e-08,
+     0.00011497907236791285
+    ],
+    [
+     "canonical",
+     "galaxy outskirts y ~ 0.1",
+     277.3935901657337,
+     0.039447904628576676,
+     6.868498081599248e-05,
+     0.0001133309758696442
+    ],
+    [
+     "canonical",
+     "galaxy outskirts y ~ 0.1",
+     100000000.0,
+     6.570102579378348e-05,
+     5.66269198448534e-07,
+     2.289473816444584e-05
+    ],
+    [
+     "canonical",
+     "Solar neighbourhood x_e",
+     277.3935901657337,
+     0.12746667778604476,
+     0.0009615024994305132,
+     2.6159697602489407e-05
+    ],
+    [
+     "canonical",
+     "Solar neighbourhood x_e",
+     100000000.0,
+     0.0002122974987878585,
+     7.927049599350044e-06,
+     5.284693107725174e-06
+    ],
+    [
+     "alt",
+     "web y ~ 1e-3",
+     277.3935901657337,
+     0.010847194911934248,
+     4.134253324986629e-06,
+     0.0005177341709676563
+    ],
+    [
+     "alt",
+     "web y ~ 1e-3",
+     100000000.0,
+     1.806615178700565e-05,
+     3.4084603194331354e-08,
+     0.00010459089575585193
+    ],
+    [
+     "alt",
+     "galaxy outskirts y ~ 0.1",
+     277.3935901657337,
+     0.039447904628576676,
+     7.55069102598143e-05,
+     0.0001030917021591735
+    ],
+    [
+     "alt",
+     "galaxy outskirts y ~ 0.1",
+     100000000.0,
+     6.570102579378348e-05,
+     6.225121859565974e-07,
+     2.082623492606411e-05
+    ],
+    [
+     "alt",
+     "Solar neighbourhood x_e",
+     277.3935901657337,
+     0.11489594874983781,
+     0.0008367937842464149,
+     2.7093975904011126e-05
+    ],
+    [
+     "alt",
+     "Solar neighbourhood x_e",
+     100000000.0,
+     0.00019136077729578225,
+     6.898896088234802e-06,
+     5.473432831546718e-06
+    ]
+   ],
+   "R_NL": {
+    "277.3935901657337": 3525.4379412934345,
+    "10000.0": 2.7127259198223532,
+    "100000000.0": 2.7127259198223536e-08
+   }
+  },
+  "C3": {
+   "det0": "64*C_phi*c_2*k_T**10*(alpha_c - 2)",
+   "c2_floor": 0.00728880043784076,
+   "lambda_track": 277.393573684203
+  },
+  "D2": {
+   "alpha1": "-8*(C_phi*alpha_c - alpha_c*sigma**2 + 2*sigma**2)/(2*C_phi - alpha_c*sigma**2 + 2*sigma**2)",
+   "alpha2": "-(4*C_phi**2*alpha_c**2*c_2 + 2*C_phi**2*alpha_c**2 - 2*C_phi**2*alpha_c*c_2 - 7*C_phi*alpha_c**2*c_2*sigma**2 - 4*C_phi*alpha_c**2*sigma**2 + 16*C_phi*alpha_c*c_2*sigma**2 + 8*C_phi*alpha_c*sigma**2 - 4*C_phi*c_2*sigma**2 + alpha_c**2*c_2*lambda*sigma**2 + 3*alpha_c**2*c_2*sigma**4 + 2*alpha_c**2*sigma**4 - 4*alpha_c*c_2*lambda*sigma**2 - 12*alpha_c*c_2*sigma**4 - 8*alpha_c*sigma**4 + 4*c_2*lambda*sigma**2 + 12*c_2*sigma**4 + 8*sigma**4)/(C_phi*c_2*(alpha_c - 2)*(2*C_phi - alpha_c*sigma**2 + 2*sigma**2))",
+   "alpha1_MOND": "-8*sigma**2/(C_phi + sigma**2)",
+   "alpha2_MOND": "-sigma**2*(C_phi*c_2 - c_2*lambda - 3*c_2*sigma**2 - 2*sigma**2)/(C_phi*c_2*(C_phi + sigma**2))",
+   "leak": 1.328545429932086e-12,
+   "alpha_c_bound": 3.2000080000215094e-09
+  },
+  "F": [
+   {
+    "constant": "G",
+    "status": "measured",
+    "note": "laboratory G_N = G/(1 - alpha_c/2) (the Newtonian limit, A1); the MOND scalar's source uses G (O(1e-9) apart)"
+   },
+   {
+    "constant": "Lambda",
+    "status": "measured",
+    "note": "fixed constant; the background is GR + Lambda (B1)"
+   },
+   {
+    "constant": "a0 = alpha c^2 (kappa)",
+    "status": "declared (P1), kappa = 1/2 FITTED",
+    "note": "9.3603e-11 / 1.1312e-10 m/s^2; enters only through J (statics), absent from linear cosmology (B2)"
+   },
+   {
+    "constant": "chassis (2, 2 - alpha_c)",
+    "status": "DERIVED",
+    "note": "A1: the unique quadratic chassis with no Newtonian term in phi's equation and a GR + BPS Newtonian limit"
+   },
+   {
+    "constant": "J = J_P2",
+    "status": "POSTULATED",
+    "note": "FP0's L1a (P2) in two-field AQUAL form (A2); any monotone J is admissible (C1)"
+   },
+   {
+    "constant": "xi",
+    "status": "bounded (CONSTRAINT)",
+    "note": "Solar-System floor 0.0243 / 0.0268 pc (A4; QUMOND's 0.0294/0.0316); ceiling ~100 pc (disc scales, inherited)"
+   },
+   {
+    "constant": "alpha_c",
+    "status": "bounded (CONSTRAINT)",
+    "note": "0 < alpha_c <= 3.2e-9 (D2, khronometric); the L340 H4 lower edge (O(Phi/c^2) lobes) is not re-derived here (OPEN)"
+   },
+   {
+    "constant": "c_2",
+    "status": "bounded, in tension",
+    "note": "tracking at lambda = 0 needs c_2 >= 7.29e-03 (C3); sigma_8 at lambda = 0 would need (2 + 3c_2)/c_2 >~ 1e7"
+   },
+   {
+    "constant": "lambda (NEW)",
+    "status": "EMPTY WINDOW (FAILS)",
+    "note": "sigma_8 needs lambda_eff >~ 1e7-4e8 (B5); tracking needs lambda_eff <= 277 (<= 2.8e4 even at C_phi >= 1) (C3, T)"
+   },
+   {
+    "constant": "beta",
+    "status": "fixed = 0",
+    "note": "GW170817 (D1)"
+   },
+   {
+    "constant": "phibar-dot",
+    "status": "declared = 0",
+    "note": "a free constant of motion on FRW (B1); its kination decays as a^-6"
+   },
+   {
+    "constant": "dark mass",
+    "status": "declared (cold, Omega_c)",
+    "note": "not a state of these fields (as in FP3/FP5); sigma_8 is computed with it declared"
+   }
+  ],
+  "T": {
+   "lambda_sigma8": 10701895.148176061,
+   "lambda_track": 277.393573684203,
+   "lambda_track_generous": 27739.357368420297,
+   "lambda_rotation": 224688.79468420442,
+   "gap_min": 47.62985694599217,
+   "cs_at_sigma8_kms": {
+    "0.01": 9.164111341235762,
+    "0.1": 28.979464569685526,
+    "1.0": 91.64111341235761
+   },
+   "sigma8_at_track": {
+    "canonical": [
+     22.069566498529813,
+     16.819272197370335
+    ],
+    "alt": [
+     26.09461750734881,
+     19.79811806948959
+    ]
+   }
+  }
+ },
+ "ledger": [
+  {
+   "link": "R7a",
+   "what": "the repaired root: the core with C-H's U-sector replaced by (2 - alpha_c) h(2a - Dchi)Dchi - 2 alpha^2 J_P2(|Dphi|^2/alpha^2) + 2 lambda (n.dphi)^2, chi = S_h phi (khronon terms, leaf average, filter kept)",
+   "status": "POSTULATED",
+   "basis": "the coordinator's repair of FP3's G1t; the inertia's form is the suggested a0-free (n.dphi)^2"
+  },
+  {
+   "link": "R7b",
+   "what": "the chassis is forced: 2a^2 - (2 - alpha_c)|Dchi - a|^2 (no Newtonian term in phi's equation, GR + BPS Newtonian limit); C-H's sign pins its field to Newton (QUMOND)",
+   "status": "DERIVED",
+   "basis": "A1 (sympy EL of the static density)"
+  },
+  {
+   "link": "R7c",
+   "what": "the filter must sit on the chassis (chi = S phi): J on S phi needs S^{-1}; filtering both cancels",
+   "status": "DERIVED",
+   "basis": "A1b (discrete adjoint + Fourier gains)"
+  },
+  {
+   "link": "R7d",
+   "what": "static law: psi = Phi, Phi = Phi_N[G_N] + S phi, div(mu_s grad phi) = 4 pi G S rho (two-field AQUAL); P2 exact in spherical symmetry; C_T, C_L > 0; C^Q = 1/C^phi",
+   "status": "DERIVED",
+   "basis": "A1, A2"
+  },
+  {
+   "link": "R7e",
+   "what": "thin exponential discs: AQUAL vs QUMOND <= 0.035 dex (y = 0.01-100, R >= 0.3 R_d), <= 0.008 dex after profiling Upsilon (SPARC median error 0.037 dex): not resolvable by SPARC",
+   "status": "DERIVED",
+   "basis": "A3 (dual Kacanov; Plummer control)"
+  },
+  {
+   "link": "R7f",
+   "what": "Solar System under the double filter: AQUAL floors 0.0243 / 0.0268 pc (Saturn monopole binds; QUMOND 0.0294/0.0316); strict law excluded by its a0/2 tail (1279x / 1545x)",
+   "status": "DERIVED",
+   "basis": "A4 (dual AQUAL; g02 read-only; FP1 reproduced)"
+  },
+  {
+   "link": "R7g",
+   "what": "FRW background = GR (chassis, J vanish; phibar-dot ~ a^-3, declared 0); a0 absent",
+   "status": "DERIVED",
+   "basis": "B1"
+  },
+  {
+   "link": "R7h",
+   "what": "zero tangent: J is O(eps^3) around FRW and drops out of linear order",
+   "status": "DERIVED",
+   "basis": "B2"
+  },
+  {
+   "link": "R7i",
+   "what": "zero-field well-posedness restored: omega^2 = 0 (marginal) + omega^2 > 0; E(C_phi) in (alpha_c, 2] (FP5's E > 2 band gone)",
+   "status": "DERIVED",
+   "basis": "B3 (the naive chassis re-opens a growing band: MUTATE)"
+  },
+  {
+   "link": "R7j",
+   "what": "linear cosmology: no slip; G_eff/G_N = 1 + (2/5)(ck/aH)^2/lambda_eff (matter era), inertia-limited; lambda_eff = lambda + (2+3c_2)/c_2",
+   "status": "DERIVED",
+   "basis": "B4 (sub-horizon reduction of the action's FRW equations)"
+  },
+  {
+   "link": "R7k",
+   "what": "sigma_8 with no gate: lambda_eff <= 277 gives L341's ~ 20x; sigma_8 <= 1.02 needs lambda_eff >= 1.1e+07",
+   "status": "FAILS",
+   "basis": "B5 + T (linear and physical-amplitude yardsticks, both footings)"
+  },
+  {
+   "link": "R7l",
+   "what": "strong coupling: Lambda_sc -> 0 at exact zero field; ell_sc <= ~1 mm in real backgrounds (tree level)",
+   "status": "DERIVED",
+   "basis": "B6 (reported); the quantum zero-field question is OPEN"
+  },
+  {
+   "link": "R7m",
+   "what": "stability: no ghost, no gradient instability for monotone J (T = diag(4(2+3c_2)/c_2, 4 lambda), det V ~ C_phi); FC-KH's (yq)' obstruction absent",
+   "status": "DERIVED",
+   "basis": "C1, C2"
+  },
+  {
+   "link": "R7n",
+   "what": "tracking: omega -> 0 gives static MOND iff c_2 C_phi != 0; c_s^2 = C_phi/lambda_eff; lambda = 0 reproduces c_2 >= 7.29e-3",
+   "status": "DERIVED",
+   "basis": "C3"
+  },
+  {
+   "link": "R7o",
+   "what": "c_T = 1 (exact on flat space; ~1e-41 on MOND backgrounds)",
+   "status": "DERIVED",
+   "basis": "D1"
+  },
+  {
+   "link": "R7p",
+   "what": "PPN: gamma = 1, alpha_3 = 0, closed-form alpha_1, alpha_2; filtered = khronometric; alpha_c <= 3.2e-9 unchanged; beta = 1 inherited",
+   "status": "DERIVED",
+   "basis": "D2 (FP2's pipeline)"
+  },
+  {
+   "link": "R7q",
+   "what": "mode count N = 4 (lambda > 0) / 3 (lambda = 0); the filter adds none",
+   "status": "DERIVED",
+   "basis": "E1"
+  },
+  {
+   "link": "R7r",
+   "what": "the fourth mode is not harmful (fifth force, PPN, Cherenkov, GW170817): the spec's limit is a preference",
+   "status": "DERIVED",
+   "basis": "E2 (reported)"
+  },
+  {
+   "link": "R7s",
+   "what": "lambda (the MOND scalar's inertia): sigma_8 needs >= 1e7, tracking <= 2.8e4: EMPTY",
+   "status": "FAILS",
+   "basis": "T"
+  },
+  {
+   "link": "R7t",
+   "what": "a web-vs-galaxy separation of the scalar's response (a new scale ~ Mpc in its inertia, or a density-read gate)",
+   "status": "OPEN",
+   "basis": "T; with the zero tangent a gate need not vanish on FRW, so FP3's convexity lemma no longer binds -- FP3's chord bound (L* outskirts, KiDS) does; untested"
+  },
+  {
+   "link": "R7u",
+   "what": "nonlinear well-posedness; the L340 H4 O(Phi/c^2) lobes for the new sector; KiDS-EFE with AQUAL's EFE; Boltzmann-level cosmology",
+   "status": "OPEN",
+   "basis": "not computed here"
+  }
+ ],
+ "n_checks": 24,
+ "n_fail_load_bearing": 0
+}
