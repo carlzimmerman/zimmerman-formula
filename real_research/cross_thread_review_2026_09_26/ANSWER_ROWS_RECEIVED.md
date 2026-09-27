@@ -208,3 +208,11 @@ vacuum-gated through K. One new constant, ε.
 - **Scope:** the lattice geometry is illustrative (a product ansatz); the halo numbers are order-of-magnitude.
 - **Checks:** 4/4. MUTATE (a clock made of the fluid's own dust) gives a screw dislocation at every core and fails
   S4, rc = 1. Lean FL3: 4 theorems.
+
+**CV3 (corrected) | a7abb4d4f** (supersedes the G4 label of ab6f31b61)
+- **Rule, unchanged:** multipliers enter linearly, so a gate that reads only constrained fields leaves the constraint
+  determinant gate-independent. Reading B is singular at 4πGC²BW″k² = 1. Reading A+ is leak-free and slip-free.
+- **OBSTRUCTED when varied:** A+'s second variation is a k⁰ negative pressure on the gas, ∝ A². A ≈ 56 (radial) to 112
+  (transverse) at the z = 0.25 edge (DE12, DE13).
+- **The correction:** G4's c_g = 91 km/s was reading A's A = 1 scale, mislabelled as A+'s cost.
+- **Checks:** 7/7; MUTATE (the gate reads the carrier) fails G1. The V0 writer is now standing by.

@@ -20,7 +20,7 @@ The forest's conservative-argument rules stay off, because they are arguments, n
 
 - **Gravity.**
   - GR plus the khronon: C-H/K, BPS with α_c > 0 and β = 0, and the leaf average. Causality is criterion B. c_T = c.
-  - The one covariant action is V0 (`real_research/chk_v0_2026/`: CV1 cc2b55bbb, CV2 db21f7edf, CV3/CV4 ab6f31b61).
+  - The one covariant action is V0 (`real_research/chk_v0_2026/`: CV1 cc2b55bbb, CV2 db21f7edf, CV3 a7abb4d4f (corrected), CV4 ab6f31b61).
   - **V0 is not yet a complete action.** Its region gate is an open obstruction once varied (DE12 7f84b3546,
     DE13 6daea932c). The data passes use the gate as a prescribed mask.
 - **MOND.**
