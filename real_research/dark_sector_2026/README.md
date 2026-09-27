@@ -514,3 +514,13 @@ From the cross-thread reviews XR1 and XR2, in `real_research/cross_thread_review
 - the z = 0.4 fields;
 - the alt footing in one box;
 - any combined-action decision on the switch variable and operator.
+
+### Correction to L388's cosmic-shear pass (2026-09-26, from MS3)
+
+L388's "cosmic shear at the cell ✓" is scored against DE3's T_max on GP3's 100 Mpc mock. MS3 (`real_research/mond_sector_gate_2026/`, committed 2a5def6d9, 5/5; MUTATE fails, rc = 1) shows that mock cannot score the construction:
+- **U1:** it cannot grow a MOND region from an isolated galaxy's seed cell.
+- **D1:** it holds too few clusters, yet clusters carry at least 73% of the phantom's lensing power at k = 1.
+- **X1:** on L363's resolution-free halo model, every uncapped carrier history fails, with worst R 2.47–4.32 against 1.2.
+- **K1:** with **L388's own retention**, shear passes (1.05/1.12) only if MOND regions are capped near **1.75 Mpc at z = 0.5** (v_cap ≈ 325 km/s).
+
+**So L388's cosmic-shear pass is not established on the mock, and not refuted either.** On the halo model it passes only with a 1.75 Mpc region cap. The truth lies between the two estimates (MS3's own caveat). MS1 also shows that once the gate is an action term, a switch that reads the carrier (matter) or the curvature leaks force onto the carrier. Only the MOND-sector reading (baryons plus their phantom) is leak-free. L395 is redesigned around that reading, with the cap, scored on MS3's halo model.
