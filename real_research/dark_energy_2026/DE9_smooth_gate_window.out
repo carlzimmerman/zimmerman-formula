@@ -1,0 +1,89 @@
+DE9 -- THE SMOOTH GATE'S OWN EMPIRICAL WINDOW, AND ITS TRADE-OFF WITH WELL-POSEDNESS.
+
+DE2 pinned the vacuum gate with a HARD step at u = x_c0 (u = x~ [Omega_L(z)/Omega_L0]^p).  An action needs a smooth gate
+(DE7): f = W(t), t = (u/x_c0 - 1)/(2w) + 1/2, W = Mathlib's smoothTransition, active between u_lo = x_c0 (1 - w) and
+u_hi = x_c0 (1 + w).  The lead track's gate has w = 1: it starts turning on at u = 0.  This lane asks which (p, x_c0, w)
+the data allow for the smooth gate, on two readings of the switch, and sets that against DE7's finding that a narrower
+transition needs a stronger repair.
+
+THE READINGS (each its own labelled cell, the author's "all doors"):
+  curvature (DE1/DE2's upper branch, V0's default): x = 4 pi G (rho_dyn - rho_bar_m)/H^2, rho_dyn = baryons + phantom;
+  MOND-sector (MS1/MS2: lap(Phi - v), leak-free when varied): x = 4 pi G (rho_b + rho_ph - f_b rho_bar_m)/H^2, the
+    baryonic background subtracted (MS2's door).  Isolated lenses carry no carrier here, so the two readings differ only
+    by the background: x_MS = x_curv + (3/2) Omega_m(z) (1 - f_b).
+THE CONSTRAINTS:
+  KiDS, z = 0.25 (a CAP) and the flagship, z = 2.5, 1e11 Msun (a CAP): recomputed here with the smooth gate itself
+    (DE8's operator, loaded unedited, with the MOND-sector reading added; sigma = 1, 1/m = 0.1 Mpc; switch only, as
+    DE2's KiDS cap was);
+  the forest, z = 2-3 (a FLOOR): DE2's dominance, x_c0 >= 1.5 at p >= 0.5, applied at the transition's LOWER end
+    u_lo = x_c0 (1 - w) (sufficient if the forest deviation is monotone in the gate's activity, as across hard
+    thresholds, L358 F1).  The MOND-sector reading is less active in the web (1/f_b = 6.4x the overdensity, MS2), so
+    the same floor is sufficient for it a fortiori.
+  cosmic shear is NOT used: DE2's floor is mock-based and not established (DE5b, MS3); on the halo model the region
+    kernel needs a region cap (MS3), which a gate threshold alone does not supply.
+  DE8 machinery loaded; DE2's hard caps: X_K = 3.8673, X_F(1e11) = {'canonical': 364.49860252137546, 'alt': 482.4698046195027}; forest floor x_c0 >= 1.5   [1s]
+
+==============================================================================================================
+C1 C2  CONTROLS: the near-hard smooth gate reproduces DE2's hard caps
+==============================================================================================================
+  [PASS] C1 CONTROL: KiDS cap at w = 0.02, 1/m = 1 kpc, sigma = 0 reproduces DE2's hard cap
+         measured: 3.8644531250000025 vs 3.867 (0.1%)
+  [PASS] C2 CONTROL: flagship cap at w = 0.02, 1/m = 1 kpc reproduces DE2's hard caps (1e11)
+         measured: canonical 361.9 vs 364.5, alt 479.1 vs 482.5 (0.7%)
+  controls done   [11s]
+
+==============================================================================================================
+K1 F1  EACH READING'S SMOOTH CAPS (sigma = 1, 1/m = 0.1 Mpc; V0's choices), per transition width w
+==============================================================================================================
+    near-hard references (w = 0.02): KiDS {'curvature': 3.899218750000002, 'mond': 4.493750000000002}; flagship {'curvature': {'canonical': 358.08404985674804, 'alt': 473.8458248955108}, 'mond': {'canonical': 359.27188645359695, 'alt': 475.03416879480545}}   [34s]
+    curvature w = 0.10: KiDS cap x_c,eff(0.25) = 3.895312500000002  (bracket 3.545-4.332);  flagship cap x_c,eff(2.5) = 343.4/454.8   [44s]
+    curvature w = 0.25: KiDS cap x_c,eff(0.25) = 3.801953125000002  (bracket 3.119-5.199);  flagship cap x_c,eff(2.5) = 328.2/435.1   [55s]
+    curvature w = 0.50: KiDS cap x_c,eff(0.25) = 3.500390625000002  (bracket 2.599-7.798);  flagship cap x_c,eff(2.5) = 309.2/409.9   [64s]
+    curvature w = 0.75: KiDS cap x_c,eff(0.25) = 3.2703125000000015  (bracket 2.228-15.597);  flagship cap x_c,eff(2.5) = 294.1/389.9   [73s]
+    mond      w = 0.10: KiDS cap x_c,eff(0.25) = 4.478906250000001  (bracket 4.085-4.993);  flagship cap x_c,eff(2.5) = 344.5/456.0   [86s]
+    mond      w = 0.25: KiDS cap x_c,eff(0.25) = 4.347265625000002  (bracket 3.595-5.992);  flagship cap x_c,eff(2.5) = 329.4/436.2   [98s]
+    mond      w = 0.50: KiDS cap x_c,eff(0.25) = 4.008593750000002  (bracket 2.996-8.988);  flagship cap x_c,eff(2.5) = 310.3/411.0   [109s]
+    mond      w = 0.75: KiDS cap x_c,eff(0.25) = 3.758984375000002  (bracket 2.568-17.975);  flagship cap x_c,eff(2.5) = 295.2/390.9   [119s]
+  [PASS] K1 each reading's smooth KiDS cap lies between the hard caps of its transition's two ends, for every w (3%)
+         measured: {'curvature': {0.1: 3.895312500000002, 0.25: 3.801953125000002, 0.5: 3.500390625000002, 0.75: 3.2703125000000015}, 'mond': {0.1: 4.478906250000001, 0.25: 4.347265625000002, 0.5: 4.008593750000002, 0.75: 3.758984375000002}}
+         reading:  KiDS responds to the smooth gate between its two hard ends, so the bracket holds for it
+  [PASS] F1 the same for the flagship cap at z = 2.5, both footings
+         measured: {'curvature': {0.1: {'canonical': 343.4, 'alt': 454.8}, 0.25: {'canonical': 328.2, 'alt': 435.1}, 0.5: {'canonical': 309.2, 'alt': 409.9}, 0.75: {'canonical': 294.1, 'alt': 389.9}}, 'mond': {0.1: {'canonical': 344.5, 'alt': 456.0}, 0.25: {'canonical': 329.4, 'alt': 436.2}, 0.5: {'canonical': 310.3, 'alt': 411.0}, 0.75: {'canonical': 295.2, 'alt': 390.9}}}
+  [PASS] W1 the transition width matters: cap(w = 0.75)/cap(w = 0.1) <= 0.9 for KiDS and the flagship, both readings
+         measured: KiDS {'curvature': 0.84, 'mond': 0.839}; flagship {'curvature': 0.857, 'mond': 0.857}
+         reading:  a broad transition is active below x_c0, so it must sit at a lower threshold to keep the same data
+
+==============================================================================================================
+E1  WHERE THE SMOOTH CAPS SIT, AND THE WINDOW IN (p, x_c0, w) PER READING
+==============================================================================================================
+    curvature w = 0.10: the smooth KiDS cap acts like a hard gate at u = 1.001 x_c0, the flagship's at u = 1.043 x_c0 (u_lo = 0.90, u_hi = 1.10)
+    curvature w = 0.25: the smooth KiDS cap acts like a hard gate at u = 1.026 x_c0, the flagship's at u = 1.091 x_c0 (u_lo = 0.75, u_hi = 1.25)
+    curvature w = 0.50: the smooth KiDS cap acts like a hard gate at u = 1.114 x_c0, the flagship's at u = 1.158 x_c0 (u_lo = 0.50, u_hi = 1.50)
+    curvature w = 0.75: the smooth KiDS cap acts like a hard gate at u = 1.192 x_c0, the flagship's at u = 1.217 x_c0 (u_lo = 0.25, u_hi = 1.75)
+    mond      w = 0.10: the smooth KiDS cap acts like a hard gate at u = 1.003 x_c0, the flagship's at u = 1.043 x_c0 (u_lo = 0.90, u_hi = 1.10)
+    mond      w = 0.25: the smooth KiDS cap acts like a hard gate at u = 1.034 x_c0, the flagship's at u = 1.091 x_c0 (u_lo = 0.75, u_hi = 1.25)
+    mond      w = 0.50: the smooth KiDS cap acts like a hard gate at u = 1.121 x_c0, the flagship's at u = 1.158 x_c0 (u_lo = 0.50, u_hi = 1.50)
+    mond      w = 0.75: the smooth KiDS cap acts like a hard gate at u = 1.195 x_c0, the flagship's at u = 1.217 x_c0 (u_lo = 0.25, u_hi = 1.75)
+    curvature p = 0.5: x_c0 window per w 0.1: (1.667, 3.418), 0.25: (2.0, 3.336), 0.5: (3.0, 3.071), 0.75: None
+    curvature p = 1.0: x_c0 window per w 0.1: (1.667, 2.998), 0.25: (2.0, 2.927), 0.5: None, 0.75: None
+    curvature p = 1.5: x_c0 window per w 0.1: (1.667, 2.631), 0.25: (2.0, 2.568), 0.5: None, 0.75: None
+    curvature p = 1.9: x_c0 window per w 0.1: (1.667, 2.238), 0.25: (2.0, 2.14), 0.5: None, 0.75: None
+    mond      p = 0.5: x_c0 window per w 0.1: (1.667, 3.93), 0.25: (2.0, 3.814), 0.5: (3.0, 3.517), 0.75: None
+    mond      p = 1.0: x_c0 window per w 0.1: (1.667, 3.448), 0.25: (2.0, 3.346), 0.5: (3.0, 3.086), 0.75: None
+    mond      p = 1.5: x_c0 window per w 0.1: (1.667, 3.025), 0.25: (2.0, 2.936), 0.5: None, 0.75: None
+    mond      p = 1.9: x_c0 window per w 0.1: (1.667, 2.246), 0.25: (2.0, 2.147), 0.5: None, 0.75: None
+  [PASS] E1 (reported) the effective thresholds and the (p, x_c0, w) window per reading (KiDS + flagship caps direct, the forest floor at u_lo; shear not used)
+         measured: {'curvature/0.5': [0.1, 0.25, 0.5], 'curvature/1.0': [0.1, 0.25], 'curvature/1.5': [0.1, 0.25], 'curvature/1.9': [0.1, 0.25], 'mond/0.5': [0.1, 0.25, 0.5], 'mond/1.0': [0.1, 0.25, 0.5], 'mond/1.5': [0.1, 0.25], 'mond/1.9': [0.1, 0.25]}
+
+==============================================================================================================
+T1  THE TRADE-OFF: the widest transition the data allow vs DE7's well-posedness reach (committed)
+==============================================================================================================
+    DE7, baseline cell (p = 1, x_c0 = 2.5, 1e11, canonical, c2 = 7.3e-3): repaired window stays open to z_wp = w = 1.0: 6.0 (fails at 7.0), w = 0.5: 4.0 (fails at 5.0), w = 0.25: 3.5 (fails at 4.0)
+    this lane, p = 1: widths with a surviving x_c0 range -- curvature [0.1, 0.25], MOND-sector [0.1, 0.25, 0.5]
+    DE7's N3: the Lambda-scaled repair keeps KiDS lenses within 10% only for eta <= ~3e-8 (1e11), i.e. edges to z ~ 0.5
+    at w = 1 and fewer at narrower w; the MOND-sector reading's own stability is the matter-sector budget (not computed).
+  [PASS] T1 (reported) the pincer in numbers
+         measured: {'z_wp': {1.0: [6.0, 7.0], 0.5: [4.0, 5.0], 0.25: [3.5, 4.0]}, 'window_p1': {'curvature': [0.1, 0.25], 'mond': [0.1, 0.25, 0.5]}}
+
+  7/7 checks pass; load-bearing failures: 0; wrote DE9_smooth_gate_window_results.json   [119s]
+rc=0

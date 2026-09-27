@@ -149,6 +149,13 @@ most 0.4 there. The matter-only branch fails KiDS everywhere at both σ (best +4
 carrier), as the merger lane's L392 found with its own carrier. Two independent tests — the flagship (DE1/DE4/DE6)
 and KiDS (L392, DE8) — now favour the curvature branch.
 
+**DE9** (`DE9_smooth_gate_window.py`, 7/7; MUTATE fails W1). A smooth gate is active below its nominal threshold,
+so it must sit lower to keep the same data. KiDS and the flagship, recomputed with the smooth gate, allow transition
+half-widths up to w ≈ 0.25 on the curvature reading and w ≈ 0.5 on the MOND-sector reading ∇²(Φ − v) at p = 1. The
+lead track's broad gate (w = 1, on from u = 0) has no window on either. Narrow transitions are what the data want;
+DE7 says narrow transitions need the strongest repair. On the MOND-sector reading that repair question becomes the
+matter sector's stability budget, not yet computed.
+
 ## 4. The theory as it stands, sector by sector
 
 | sector | what is built | standing | open |
