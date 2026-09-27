@@ -1,0 +1,181 @@
+XR18b (4 of 4) -- A DE12-TYPE SECOND VARIATION OF H_K1 ON GALAXY BACKGROUNDS (item 5 of the re-audit: XR18's B1-B3 re-run for
+H_K1, with the <K>_h channel that XR18b_symbol_channel derives written into the WKB count).
+
+WHY.  DE12 showed that a local region gate, varied as an action term, is a k^0 negative bulk modulus on edge-layer gas (c_gate
+1500-3700 km/s, 2e3-5e4 H at k = 1/kpc).  XR18 (B1-B3) found no such term in FP9's H_Y: its separators read first derivatives
+and leaf averages only, DE12's convention gives zero growth on all 24 hosts, and the exact radial gas sector around each yield
+surface is bounded (<= 31 H) and converged.  H_K1 differs from H_Y in two ways that matter here: (i) its leaf-average channel is
+now a derived local operator, C a^3 [3 H A^2 - 9 H A zeta - 3 A zeta' + 9 zeta zeta' + a^-2 A lap beta] (XR18b_symbol_channel S2),
+and (ii) it has NO yield below z_q0, so on an isolated host at z = 0.25 the band-passed field falls to 1e-24 a0 in the far field
+(the Gaussian band-pass removes the host's monopole beyond ~3 L) and nothing plugs it.
+
+PRE-DECLARED HYPOTHESES (written into this file before its first full run; exploratory runs disclosed in XR18b_README.md: DE12's
+convention run on H_K1's 24 hosts -- 4e4-1.4e5 H at z = 0.25, located at r = 10-14 Mpc where the isolated host's y_bp is
+1e-24-1e-22, and 0 at z >= 1 -- made before this file existed; H1 and H2 below are written knowing it)
+ H1 [load-bearing] NO k^0 TERM IN THE FULL H_K1 ACTION: XR18's WKB engine (its own text, extracted) with the <K>_h channel's
+    derived operator added (A = dPhi/c^2, zeta = -dPhi/c^2, zeta' = Gamma zeta, a^-2 lap beta = 3 (zeta' - H A) from the CMC
+    condition) finds no k^0 coefficient except the gas's own c_s^2/(2 rho); the channel is O(k^-4).  MUTATE's DE12 gate must fail.
+ H2 [load-bearing; EXPECTED TO FAIL at z = 0.25 on the exploratory run -- kept exactly as XR18 declared it] DE12's CONVENTION ON
+    THE ISOLATED HOSTS: Gamma(1/kpc)/H = 0 for 1e6 K gas over the whole profile 1 kpc - 20 Mpc on all 24 hosts.
+ H2w [load-bearing] THE SAME HOSTS EMBEDDED IN THE WEB: with the host's band-passed field combined with the web's own band-passed
+    rms field (y_eff = (y_bp^2 + y_web^2)^(1/2), y_web = H_K1's band-passed NL rms at that z, the field the far field of any
+    real host sits in), Gamma(1/kpc)/H = 0 for 1e6 K gas on all 24 hosts.
+ H2z [load-bearing] AT THE ZEROS OF THE BAND-PASSED FIELD (below z_q0, unplugged): with the susceptibility window-averaged over
+    1 kpc around an isotropic zero (Q''_win = (3/5)/sqrt(s x 1 kpc)), 1e6 K gas at k = 1/kpc does not grow at the web's zeros
+    (s = y_rms/L, mean density) nor at cored centres (1e2-1e6 rho_bar, gas f_b x that); the 1e5 K rates are printed next to
+    Newton's.
+ H3 [load-bearing] THE EXACT RADIAL GAS SECTOR AROUND H_K1's YIELD SURFACES (z = 0.7, 0.8, 1, 2.5, 4; 30 hosts; 1e6 K and 1e5 K):
+    the maximum growth rate is converged under grid doubling (< 5%) and under the regularised yield (eps/sqrt(y_th) = 1e-3,
+    1e-4: < 5%), and the yield raises it over plain band-passed P2 on the same domain by less than x2 (XR18 H3 verbatim).
+The writer's expectation: H1, H2w, H2z, H3 pass; H2 fails at z = 0.25 (the isolated host's exponentially vanishing band-passed
+field, which H_K1 does not plug below z_q0 -- a real property of the separator on an isolated host, not of the web).
+
+  machinery: FP9 (FP6 inside), DE12's host definitions and FP19 exec'd read-only; XR18's WKB engine and radial functions extracted as text; a0 = 9.3603e-11 / 1.1312e-10   [0 s]
+
+======================================================================================================================
+K1 B1  THE WKB ORDER COUNT OF THE FULL H_K1 ACTION (XR18's engine, extracted), DE12's gate as the control
+======================================================================================================================
+    gas (rho e(rho), isothermal)                                                                                     leading k-order    0; k^0 coefficient c_s**2/(2*rho)
+    matter coupling rho Phi (bilinear)                                                                               leading k-order   -2; k^0 coefficient 0
+    EH + alpha_c a^2 + chassis (Psi = Phi branch): (2 - a_c)|grad(Phi - chi)|^2/(16 pi G)                            leading k-order   -2; k^0 coefficient 0
+    J_Y on phi (C_theta = C_L or C_T of J_Y, y_th(<K>_h) inside): C |grad dphi|^2/(8 pi G)                           leading k-order   -2; k^0 coefficient 0
+    phi's inertia 2 lambda (n.dphi)^2 (growth rate Gamma)                                                            leading k-order   -4; k^0 coefficient 0
+    khronon c_2 (K - <K>_h)^2 (delta K ~ 3 Gamma delta Psi/c^2)                                                      leading k-order   -4; k^0 coefficient 0
+    Lambda sqrt(-g) (delta^2 sqrt(-g) ~ (delta Phi/c^2)^2)                                                           leading k-order   -4; k^0 coefficient 0
+    leaf average: Q d^2<K>_h via y_th(<K>_h), L(<K>_h) (k != 0: first order 0; second ~ (K - <K>)(delta Psi/c^2)^2)  leading k-order   -4; k^0 coefficient 0
+    heat pair's metric coupling: -2 delta L [2 dPsi lap W - grad dPsi.grad W]/c^2 (lap W ~ 4 pi G rho_ph, |grad W| ~ leading k-order   -1; k^0 coefficient 0
+    H_K1's <K>_h channel: C [3H A^2 - 9H A zeta - 3 A zeta' + A a^-2 lap beta + 9 zeta zeta'] (XR18b S2; CMC shift)  leading k-order   -4; k^0 coefficient 0
+  [PASS] K1 CONTROL (DE12): XR18's WKB engine (its own text) given DE12's gate returns DE12's S = B[W'' t_U^2 U_rho^2 + W' t_U U_rhorho] identically, and DE12's committed c_gate_max and Gamma(1/kpc)/H on all 24 layers are reproduced
+         measured: symbolic identity True; max relative deviation 4.4e-16
+  [PASS] B1 [H1, pre-declared] NO k^0 TERM IN THE FULL H_K1 ACTION: with the <K>_h channel's derived operator added, every term's second variation is O(k^-1) or smaller except the gas's own c_s^2/(2 rho); the channel is O(k^-4)
+         measured: k^0 total c_s**2/(2*rho) (gas only: True); other k^0 terms: none; channel order -4
+         reading:  the <K>_h channel reads the metric's expansion and volume, (v/c)^2 relative to the Newtonian terms; DE12's obstruction needs a read of a second derivative of a constraint-slaved potential, which H_K1 does not have
+    [1 s]
+
+======================================================================================================================
+K2  CONTROL: XR18's committed B2 and B3 (H_Y) with XR18's own radial functions
+======================================================================================================================
+  [PASS] K2 CONTROL: XR18's committed B2 (H_Y: Gamma(1/kpc)/H at 1e6 K and 1e5 K, max window-averaged Q'', 24 hosts) and B3 base rates (1e6 K, the z = 0.25 hosts) reproduced with XR18's own radial functions
+         measured: max deviation 0.0e+00
+    [6 s]
+
+======================================================================================================================
+B2  DE12's CONVENTION ON H_K1's 24 ISOLATED HOSTS: Gamma(1/kpc)/H for 1e6 K gas, whole profile 1 kpc - 20 Mpc
+======================================================================================================================
+    0.25/1e+10/canonical  : isolated Gamma/H  1.36e+05 (max Q''_win 1.67e+11 at r =   13585 kpc, y_bp there 9.0e-24) | embedded (y_web 8.27e-03): Gamma/H 0 at 1e6 K, 0 at 1e5 K; max Q''_win 5
+    0.25/1e+10/alt        : isolated Gamma/H  1.43e+05 (max Q''_win 1.84e+11 at r =   13585 kpc, y_bp there 7.4e-24) | embedded (y_web 6.85e-03): Gamma/H 0 at 1e6 K, 0 at 1e5 K; max Q''_win 6
+    0.25/1e+11/canonical  : isolated Gamma/H  7.67e+04 (max Q''_win 5.28e+10 at r =   13585 kpc, y_bp there 9.0e-23) | embedded (y_web 8.27e-03): Gamma/H 0 at 1e6 K, 0 at 1e5 K; max Q''_win 4.88
+    0.25/1e+11/alt        : isolated Gamma/H  8.04e+04 (max Q''_win 5.81e+10 at r =   13585 kpc, y_bp there 7.4e-23) | embedded (y_web 6.85e-03): Gamma/H 0 at 1e6 K, 0 at 1e5 K; max Q''_win 6
+    0.25/1e+12/canonical  : isolated Gamma/H  4.33e+04 (max Q''_win 1.67e+10 at r =   13585 kpc, y_bp there 9.0e-22) | embedded (y_web 8.27e-03): Gamma/H 0 at 1e6 K, 100 at 1e5 K; max Q''_win 5
+    0.25/1e+12/alt        : isolated Gamma/H  4.54e+04 (max Q''_win 1.84e+10 at r =   13585 kpc, y_bp there 7.4e-22) | embedded (y_web 6.85e-03): Gamma/H 0 at 1e6 K, 100 at 1e5 K; max Q''_win 5.75
+    1.0/1e+10/canonical   : isolated Gamma/H         0 (max Q''_win 1.17e+02 at r =       1 kpc, y_bp there 1.5e+01) | embedded (y_web 1.14e-02): Gamma/H 0 at 1e6 K, 0 at 1e5 K; max Q''_win 4.75
+    1.0/1e+10/alt         : isolated Gamma/H         0 (max Q''_win 1.29e+02 at r =       1 kpc, y_bp there 1.2e+01) | embedded (y_web 9.39e-03): Gamma/H 0 at 1e6 K, 0 at 1e5 K; max Q''_win 5.33
+    1.0/1e+11/canonical   : isolated Gamma/H         0 (max Q''_win 1.94e+02 at r =       1 kpc, y_bp there 1.5e+02) | embedded (y_web 1.14e-02): Gamma/H 0 at 1e6 K, 0 at 1e5 K; max Q''_win 4.58
+    1.0/1e+11/alt         : isolated Gamma/H         0 (max Q''_win 2.14e+02 at r =       1 kpc, y_bp there 1.2e+02) | embedded (y_web 9.39e-03): Gamma/H 0 at 1e6 K, 0 at 1e5 K; max Q''_win 5.5
+    1.0/1e+12/canonical   : isolated Gamma/H         0 (max Q''_win 2.65e+02 at r =       1 kpc, y_bp there 1.5e+03) | embedded (y_web 1.14e-02): Gamma/H 0 at 1e6 K, 197 at 1e5 K; max Q''_win 4.79
+    1.0/1e+12/alt         : isolated Gamma/H         0 (max Q''_win 2.92e+02 at r =       1 kpc, y_bp there 1.2e+03) | embedded (y_web 9.39e-03): Gamma/H 0 at 1e6 K, 197 at 1e5 K; max Q''_win 5.5
+    2.5/1e+10/canonical   : isolated Gamma/H         0 (max Q''_win 5.18e+01 at r =       1 kpc, y_bp there 1.5e+01) | embedded (y_web 1.21e-02): Gamma/H 0 at 1e6 K, 0 at 1e5 K; max Q''_win 6.69
+    2.5/1e+10/alt         : isolated Gamma/H         0 (max Q''_win 5.70e+01 at r =       1 kpc, y_bp there 1.2e+01) | embedded (y_web 1.00e-02): Gamma/H 0 at 1e6 K, 0 at 1e5 K; max Q''_win 7.44
+    2.5/1e+11/canonical   : isolated Gamma/H         0 (max Q''_win 7.91e+01 at r =       1 kpc, y_bp there 1.5e+02) | embedded (y_web 1.21e-02): Gamma/H 0 at 1e6 K, 112 at 1e5 K; max Q''_win 6.65
+    2.5/1e+11/alt         : isolated Gamma/H         0 (max Q''_win 8.71e+01 at r =       1 kpc, y_bp there 1.2e+02) | embedded (y_web 1.00e-02): Gamma/H 0 at 1e6 K, 112 at 1e5 K; max Q''_win 7.6
+    2.5/1e+12/canonical   : isolated Gamma/H         0 (max Q''_win 7.84e+01 at r =       1 kpc, y_bp there 1.5e+03) | embedded (y_web 1.21e-02): Gamma/H 0 at 1e6 K, 191 at 1e5 K; max Q''_win 6.66
+    2.5/1e+12/alt         : isolated Gamma/H         0 (max Q''_win 8.63e+01 at r =       1 kpc, y_bp there 1.2e+03) | embedded (y_web 1.00e-02): Gamma/H 0 at 1e6 K, 191 at 1e5 K; max Q''_win 7.3
+    4.0/1e+10/canonical   : isolated Gamma/H         0 (max Q''_win 4.23e+01 at r =       1 kpc, y_bp there 1.5e+01) | embedded (y_web 1.13e-02): Gamma/H 0 at 1e6 K, 51.4 at 1e5 K; max Q''_win 9.02
+    4.0/1e+10/alt         : isolated Gamma/H         0 (max Q''_win 4.66e+01 at r =       1 kpc, y_bp there 1.2e+01) | embedded (y_web 9.35e-03): Gamma/H 0 at 1e6 K, 51.4 at 1e5 K; max Q''_win 9.98
+    4.0/1e+11/canonical   : isolated Gamma/H         0 (max Q''_win 4.63e+01 at r =       1 kpc, y_bp there 1.5e+02) | embedded (y_web 1.13e-02): Gamma/H 0 at 1e6 K, 107 at 1e5 K; max Q''_win 9.14
+    4.0/1e+11/alt         : isolated Gamma/H         0 (max Q''_win 5.10e+01 at r =       1 kpc, y_bp there 1.2e+02) | embedded (y_web 9.35e-03): Gamma/H 0 at 1e6 K, 107 at 1e5 K; max Q''_win 10
+    4.0/1e+12/canonical   : isolated Gamma/H         0 (max Q''_win 4.20e+01 at r =       1 kpc, y_bp there 1.5e+03) | embedded (y_web 1.13e-02): Gamma/H 0 at 1e6 K, 161 at 1e5 K; max Q''_win 9
+    4.0/1e+12/alt         : isolated Gamma/H         0 (max Q''_win 4.63e+01 at r =       1 kpc, y_bp there 1.2e+03) | embedded (y_web 9.35e-03): Gamma/H 0 at 1e6 K, 161 at 1e5 K; max Q''_win 9.97
+  [FAIL] B2 [H2, pre-declared as XR18 declared it; EXPECTED to fail at z = 0.25] DE12's CONVENTION ON THE ISOLATED HOSTS: Gamma(1/kpc)/H = 0 for 1e6 K gas over 1 kpc - 20 Mpc on all 24 hosts
+         measured: max Gamma/H 1.43e+05; hosts with growth: 6 (0.25); where: r = 13585-13585 kpc, y_bp 7e-24-9e-22
+         reading:  below z_q0 H_K1 has no yield, so the isolated host's far field, where the Gaussian band-pass has removed the monopole (y_bp ~ 1e-24), carries an unbounded P2 susceptibility dx/dy ~ y^(-1/2) and gas is linearly unstable there at 1/kpc; under H_Y the yield plugged it
+  [PASS] B2w [H2w, pre-declared] THE SAME HOSTS EMBEDDED IN THE WEB (y_eff = (y_bp^2 + y_web^2)^(1/2), y_web = H_K1's band-passed NL rms): Gamma(1/kpc)/H = 0 for 1e6 K gas on all 24 hosts
+         measured: max Gamma/H (1e6 K) 0; 1e5 K (reported) max 197; max Q''_win 10
+         reading:  the B2 growth lives only where the host's own band-passed field is below the web's by 20 orders of magnitude; a real host's far field sits in the web's field, whose susceptibility is <= 1/(2 sqrt(y_web)) ~ 5
+
+======================================================================================================================
+B2z  AT THE ZEROS OF THE BAND-PASSED FIELD BELOW z_q0: gas at k = 1/kpc with the window-averaged susceptibility
+======================================================================================================================
+    z = 0.0 web zero (mean density)     : s = 1.04e-25/m, Q''_win(1 kpc) 335; Gamma/H 1e6 K 0 (Newton 0); 1e5 K 0 (Newton 0)
+    z = 0.0 cored centre 1e+02 rho_bar  : s = 7.99e-25/m, Q''_win(1 kpc) 121; Gamma/H 1e6 K 0 (Newton 0); 1e5 K 0 (Newton 0)
+    z = 0.0 cored centre 1e+04 rho_bar  : s = 7.99e-23/m, Q''_win(1 kpc) 12.1; Gamma/H 1e6 K 0 (Newton 0); 1e5 K 0 (Newton 0)
+    z = 0.0 cored centre 1e+06 rho_bar  : s = 7.99e-21/m, Q''_win(1 kpc) 1.21; Gamma/H 1e6 K 0 (Newton 0); 1e5 K 0 (Newton 0)
+    z = 0.25 web zero (mean density)     : s = 1.75e-25/m, Q''_win(1 kpc) 258; Gamma/H 1e6 K 0 (Newton 0); 1e5 K 0 (Newton 0)
+    z = 0.25 cored centre 1e+02 rho_bar  : s = 1.56e-24/m, Q''_win(1 kpc) 86.5; Gamma/H 1e6 K 0 (Newton 0); 1e5 K 0 (Newton 0)
+    z = 0.25 cored centre 1e+04 rho_bar  : s = 1.56e-22/m, Q''_win(1 kpc) 8.65; Gamma/H 1e6 K 0 (Newton 0); 1e5 K 0 (Newton 0)
+    z = 0.25 cored centre 1e+06 rho_bar  : s = 1.56e-20/m, Q''_win(1 kpc) 0.865; Gamma/H 1e6 K 0 (Newton 0); 1e5 K 0 (Newton 0)
+    z = 0.5 web zero (mean density)     : s = 2.77e-25/m, Q''_win(1 kpc) 205; Gamma/H 1e6 K 0 (Newton 0); 1e5 K 0 (Newton 0)
+    z = 0.5 cored centre 1e+02 rho_bar  : s = 2.70e-24/m, Q''_win(1 kpc) 65.8; Gamma/H 1e6 K 0 (Newton 0); 1e5 K 0 (Newton 0)
+    z = 0.5 cored centre 1e+04 rho_bar  : s = 2.70e-22/m, Q''_win(1 kpc) 6.58; Gamma/H 1e6 K 0 (Newton 0); 1e5 K 0 (Newton 0)
+    z = 0.5 cored centre 1e+06 rho_bar  : s = 2.70e-20/m, Q''_win(1 kpc) 0.658; Gamma/H 1e6 K 0 (Newton 0); 1e5 K 252 (Newton 0)
+  [PASS] B2z [H2z, pre-declared] AT THE UNPLUGGED ZEROS BELOW z_q0: 1e6 K gas at k = 1/kpc, with the susceptibility window-averaged over 1 kpc around an isotropic zero, does not grow at the web's zeros (mean density) or at cored centres (1e2-1e6 rho_bar)
+         measured: max Gamma/H at 1e6 K 0; 1e5 K (reported): max 270 (Newton alone 0)
+    [12 s]
+
+======================================================================================================================
+B3  THE EXACT RADIAL GAS SECTOR AROUND H_K1's YIELD SURFACES (z = 0.7-4), gas at 1e6 K and 1e5 K
+======================================================================================================================
+    0.7/1e+10/canonical    r_Y   172.9 kpc | 1e6 K: H_K1 0 (fine 0, eps 0/0), plain P2 0 | 1e5 K: H_K1 9.12 (fine 9.12), plain P2 6.6  [Gamma/H]
+    0.7/1e+10/alt          r_Y   172.9 kpc | 1e6 K: H_K1 0 (fine 0, eps 0/0), plain P2 0 | 1e5 K: H_K1 9.76 (fine 9.76), plain P2 7.14  [Gamma/H]
+    0.7/1e+11/canonical    r_Y   533.0 kpc | 1e6 K: H_K1 4.18 (fine 4.18, eps 4.17/4.18), plain P2 3.22 | 1e5 K: H_K1 7.1 (fine 7.1), plain P2 6.13  [Gamma/H]
+    0.7/1e+11/alt          r_Y   533.0 kpc | 1e6 K: H_K1 4.62 (fine 4.62, eps 4.61/4.61), plain P2 3.5 | 1e5 K: H_K1 7.51 (fine 7.51), plain P2 6.55  [Gamma/H]
+    0.7/1e+12/canonical    r_Y  1289.1 kpc | 1e6 K: H_K1 4.26 (fine 4.26, eps 4.25/4.26), plain P2 14.5 | 1e5 K: H_K1 6.43 (fine 6.43), plain P2 19.4  [Gamma/H]
+    0.7/1e+12/alt          r_Y  1289.1 kpc | 1e6 K: H_K1 4.55 (fine 4.55, eps 4.55/4.55), plain P2 15.5 | 1e5 K: H_K1 6.81 (fine 6.81), plain P2 20.5  [Gamma/H]
+    0.8/1e+10/canonical    r_Y   109.3 kpc | 1e6 K: H_K1 0 (fine 0, eps 0/0), plain P2 0 | 1e5 K: H_K1 12.4 (fine 12.4), plain P2 8.76  [Gamma/H]
+    0.8/1e+10/alt          r_Y   109.3 kpc | 1e6 K: H_K1 0 (fine 0, eps 0/0), plain P2 0 | 1e5 K: H_K1 13.3 (fine 13.3), plain P2 9.5  [Gamma/H]
+    0.8/1e+11/canonical    r_Y   342.3 kpc | 1e6 K: H_K1 5.06 (fine 5.06, eps 5.06/5.06), plain P2 3.77 | 1e5 K: H_K1 9.67 (fine 9.67), plain P2 8.21  [Gamma/H]
+    0.8/1e+11/alt          r_Y   342.3 kpc | 1e6 K: H_K1 5.68 (fine 5.68, eps 5.68/5.68), plain P2 4.16 | 1e5 K: H_K1 10.2 (fine 10.2), plain P2 8.78  [Gamma/H]
+    0.8/1e+12/canonical    r_Y   923.8 kpc | 1e6 K: H_K1 5.6 (fine 5.6, eps 5.6/5.6), plain P2 4.67 | 1e5 K: H_K1 7.89 (fine 7.89), plain P2 7.51  [Gamma/H]
+    0.8/1e+12/alt          r_Y   923.8 kpc | 1e6 K: H_K1 5.99 (fine 5.99, eps 5.99/5.99), plain P2 5.02 | 1e5 K: H_K1 8.35 (fine 8.35), plain P2 7.96  [Gamma/H]
+    1.0/1e+10/canonical    r_Y    75.3 kpc | 1e6 K: H_K1 0 (fine 0, eps 0/0), plain P2 0 | 1e5 K: H_K1 14.9 (fine 14.9), plain P2 10.4  [Gamma/H]
+    1.0/1e+10/alt          r_Y    75.3 kpc | 1e6 K: H_K1 0 (fine 0, eps 0/0), plain P2 0 | 1e5 K: H_K1 16.1 (fine 16.1), plain P2 11.3  [Gamma/H]
+    1.0/1e+11/canonical    r_Y   236.4 kpc | 1e6 K: H_K1 5.73 (fine 5.73, eps 5.72/5.73), plain P2 4.14 | 1e5 K: H_K1 11.8 (fine 11.8), plain P2 9.87  [Gamma/H]
+    1.0/1e+11/alt          r_Y   236.4 kpc | 1e6 K: H_K1 6.51 (fine 6.51, eps 6.5/6.51), plain P2 4.66 | 1e5 K: H_K1 12.5 (fine 12.5), plain P2 10.5  [Gamma/H]
+    1.0/1e+12/canonical    r_Y   660.8 kpc | 1e6 K: H_K1 6.76 (fine 6.76, eps 6.76/6.76), plain P2 5.38 | 1e5 K: H_K1 9.3 (fine 9.3), plain P2 8.78  [Gamma/H]
+    1.0/1e+12/alt          r_Y   660.8 kpc | 1e6 K: H_K1 7.23 (fine 7.23, eps 7.23/7.23), plain P2 5.81 | 1e5 K: H_K1 9.84 (fine 9.84), plain P2 9.29  [Gamma/H]
+    2.5/1e+10/canonical    r_Y    44.0 kpc | 1e6 K: H_K1 0 (fine 0, eps 0/0), plain P2 0 | 1e5 K: H_K1 12.7 (fine 12.7), plain P2 8.95  [Gamma/H]
+    2.5/1e+10/alt          r_Y    44.0 kpc | 1e6 K: H_K1 0 (fine 0, eps 0/0), plain P2 0 | 1e5 K: H_K1 13.7 (fine 13.7), plain P2 9.67  [Gamma/H]
+    2.5/1e+11/canonical    r_Y   128.2 kpc | 1e6 K: H_K1 4.76 (fine 4.76, eps 4.76/4.76), plain P2 3.22 | 1e5 K: H_K1 10.4 (fine 10.4), plain P2 9  [Gamma/H]
+    2.5/1e+11/alt          r_Y   128.2 kpc | 1e6 K: H_K1 5.44 (fine 5.44, eps 5.44/5.44), plain P2 3.71 | 1e5 K: H_K1 11 (fine 11), plain P2 9.57  [Gamma/H]
+    2.5/1e+12/canonical    r_Y   257.5 kpc | 1e6 K: H_K1 6.25 (fine 6.25, eps 6.25/6.25), plain P2 59.5 | 1e5 K: H_K1 11 (fine 11), plain P2 74.1  [Gamma/H]
+    2.5/1e+12/alt          r_Y   257.5 kpc | 1e6 K: H_K1 6.68 (fine 6.68, eps 6.68/6.68), plain P2 63.3 | 1e5 K: H_K1 11.7 (fine 11.7), plain P2 78.1  [Gamma/H]
+    4.0/1e+10/canonical    r_Y    39.0 kpc | 1e6 K: H_K1 0 (fine 0, eps 0/0), plain P2 0 | 1e5 K: H_K1 9.4 (fine 9.4), plain P2 6.92  [Gamma/H]
+    4.0/1e+10/alt          r_Y    39.0 kpc | 1e6 K: H_K1 0 (fine 0, eps 0/0), plain P2 0 | 1e5 K: H_K1 10.1 (fine 10.1), plain P2 7.46  [Gamma/H]
+    4.0/1e+11/canonical    r_Y    84.1 kpc | 1e6 K: H_K1 2.2 (fine 2.2, eps 2.19/2.2), plain P2 19.3 | 1e5 K: H_K1 8.77 (fine 8.77), plain P2 36.6  [Gamma/H]
+    4.0/1e+11/alt          r_Y    84.1 kpc | 1e6 K: H_K1 2.74 (fine 2.74, eps 2.74/2.74), plain P2 21.4 | 1e5 K: H_K1 9.32 (fine 9.32), plain P2 38.8  [Gamma/H]
+    4.0/1e+12/canonical    r_Y   126.0 kpc | 1e6 K: H_K1 6.79 (fine 6.79, eps 6.79/6.79), plain P2 2.44e+03 | 1e5 K: H_K1 14.7 (fine 14.7), plain P2 2.45e+03  [Gamma/H]
+    4.0/1e+12/alt          r_Y   126.0 kpc | 1e6 K: H_K1 7.08 (fine 7.08, eps 7.08/7.08), plain P2 2.56e+03 | 1e5 K: H_K1 15.6 (fine 15.6), plain P2 2.56e+03  [Gamma/H]
+  [PASS] B3 [H3, pre-declared] THE EXACT RADIAL GAS SECTOR AROUND H_K1's YIELD SURFACES (30 hosts at z = 0.7-4, 1e6 K and 1e5 K): the maximum growth is converged under grid doubling (< 5%) and under the regularised yield (< 5%), and the yield raises it over plain band-passed P2 on the same domain by less than x2
+         measured: max grid change 0.0%; max eps change 0.2%; max H_K1/plain-P2 1.48; max Gamma/H 16.1
+    [28 s]
+
+======================================================================================================================
+B3r  (reported) THE RADIAL GAS SECTOR AT z = 0.25 (NO YIELD): host-dominated domain [1 kpc, 3 L] and the whole [1 kpc, 20 Mpc]
+======================================================================================================================
+    0.25/1e+10/canonical   [1 kpc, 3 L]     isolated : Gamma/H (1e6 K) 13.7
+    0.25/1e+10/canonical   [1 kpc, 3 L]     embedded : Gamma/H (1e6 K) 1.13
+    0.25/1e+10/canonical   [1 kpc, 20 Mpc]  isolated : Gamma/H (1e6 K) 1.24e+05
+    0.25/1e+10/canonical   [1 kpc, 20 Mpc]  embedded : Gamma/H (1e6 K) 1.13
+    0.25/1e+11/canonical   [1 kpc, 3 L]     isolated : Gamma/H (1e6 K) 13.5
+    0.25/1e+11/canonical   [1 kpc, 3 L]     embedded : Gamma/H (1e6 K) 12.1
+    0.25/1e+11/canonical   [1 kpc, 20 Mpc]  isolated : Gamma/H (1e6 K) 6.97e+04
+    0.25/1e+11/canonical   [1 kpc, 20 Mpc]  embedded : Gamma/H (1e6 K) 12.1
+    0.25/1e+12/canonical   [1 kpc, 3 L]     isolated : Gamma/H (1e6 K) 30.1
+    0.25/1e+12/canonical   [1 kpc, 3 L]     embedded : Gamma/H (1e6 K) 30.1
+    0.25/1e+12/canonical   [1 kpc, 20 Mpc]  isolated : Gamma/H (1e6 K) 3.93e+04
+    0.25/1e+12/canonical   [1 kpc, 20 Mpc]  embedded : Gamma/H (1e6 K) 30.1
+  [PASS] (reported) B3r (reported) z = 0.25, no yield: the exact radial 1e6 K gas sector on the host-dominated domain and on the whole profile, isolated and web-embedded
+         measured: isolated whole-profile max 1.3e+05; embedded whole-profile max 31.1; host-dominated max 31.1
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  Item 5 (the DE12-type second variation).  No k^0 term in H_K1's action, the <K>_h channel included (O(k^-4))
+    (B1: PASS).  DE12's convention on isolated hosts: FAIL -- max 1.43e+05 H at z = 0.25, in the far field where the host's
+    band-passed field is ~1e-24 a0 and H_K1 has no yield; embedded in the web's own band-passed field it is 0 (B2w: PASS), and at the
+    web's zeros and cored centres 1e6 K gas does not grow at 1/kpc (B2z: PASS).  Around H_K1's yield surfaces the exact radial gas
+    sector is bounded (16.1 H max), converged and not raised above plain P2 (B3: PASS).
+  Not 'closed'.  kappa = 1/2 FITTED.  7/8 checks pass; load-bearing failures: 1.
+
+  7/8 checks pass; load-bearing failures: 1; wrote XR18b_second_variation_results.json  (29 s)
+rc = 1

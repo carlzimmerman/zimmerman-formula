@@ -1,0 +1,846 @@
+{
+ "lane": "XR18b/symbol",
+ "mutate": false,
+ "checks": {
+  "K1": {
+   "ok": true,
+   "measured": "max relative deviation 0.0e+00 over 35 numbers; closed forms vs FP19 0.0e+00",
+   "load_bearing": true,
+   "name": "K1 CONTROL: FP19's committed H_K1 headline (sigma_8 x4, forest x4, flagships x4, SPARC x2, KiDS at z = 0.25/0.4/0.7 x6 [pre-FP20 projection]) and its L(z) and y_th(z) tables, with FP19's own code exec'd read-only; this lane's closed forms equal FP19's L_K and y_tied"
+  },
+  "K2": {
+   "ok": true,
+   "measured": "max deviation 0.0e+00; eps_K 4.9572e-03 vs committed 4.9572e-03",
+   "load_bearing": true,
+   "name": "K2 CONTROL: FP19's committed H3 symbol tables -- the headline's S(k, z) = 1 - eps_K (R_B = kappa = 0 for a <K>_h read) and FP13's H_S band -- with FP19's own symbol_table and eps_K (recomputed by FP19's K_channel)"
+  },
+  "K3": {
+   "ok": true,
+   "measured": "max relative deviation 0.0e+00; canonical 6.92-7.47, alt 7.62-8.13; band 0.12-1.62 h/Mpc",
+   "load_bearing": true,
+   "name": "K3 CONTROL: XR18's committed N3 on FP13's H_S -- max R_B (per-mode and rms chords) at z = 0..3 on both footings and the k-band where R_B >= 1 -- reproduced with XR18's own functions: R_B = 6.9-7.5 (canonical) / 7.6-8.1 (alt) at z <= 0.635 and the sign change on k = 0.12-1.62 h/Mpc"
+  },
+  "K4": {
+   "ok": true,
+   "measured": "Friedmann pair True; channel operator True",
+   "load_bearing": true,
+   "name": "K4 CONTROL: this lane's second-order ADM expansion about flat FRW gives, at C = 0, the standard Friedmann pair (3 M_p^2 H^2 = rho_bar + M_p^2 Lambda, 2 H' + 3 H^2 = Lambda) and, for the channel, the hand-derived operator C a^3 [3 H A^2 - 9 H A zeta - 3 A zeta' + 9 zeta zeta' + a^-2 A lap beta] up to a total derivative"
+  },
+  "S2": {
+   "ok": true,
+   "measured": "c_2 finite/sqrt h: identical; c_2 finite/N sqrt h: identical; c_2 = oo (CMC)/sqrt h: identical; c_2 = oo (CMC)/N sqrt h: identical; ratios A^2 -2*eps_C, A lap beta -eps_C, A zeta' -eps_C, A zeta -9*H**2*eps_C*a(t)**2/k**2",
+   "load_bearing": true,
+   "name": "S2 [H2, pre-declared] THE CONSTRAINED BLOCK IS UNCHANGED BY THE <K>_h CHANNEL: with Brown-Kuchar dust in unitary gauge about flat FRW, det(lapse, shift, dust multiplier [, CMC multiplier]) with the channel equals det without it IDENTICALLY, at finite c_2 and at c_2 = oo, for the sqrt(h) and the N sqrt(h) leaf weights; the channel's entries are eps_C x GR's same-structure entries (A^2: -2 eps_C, A lap beta: -eps_C, A zeta': -eps_C) or eps_C (aH/k)^2 x a GR k^2 entry (A zeta)"
+  },
+  "S3": {
+   "ok": true,
+   "measured": "max |rho_extra|/rho_bar 2.63e-05; max |eps_C| 9.09e-06 (z = 0.7)",
+   "load_bearing": true,
+   "name": "S3 [H3, pre-declared] THE CHANNEL IS (v/c)^2-SMALL ON THE REAL STATE: |eps_C| <= 1e-4 and |rho_extra|/rho_bar <= 1e-4 at every z = 0..2.5, both footings, every reading (B-channel: per-mode, rms and halo I(L); y-channel: Gaussian <x> and the reading-free Jensen bound y_rms^(1/2))"
+  },
+  "S1": {
+   "ok": true,
+   "measured": "min S = +0.999982; max channel bound at k = 1e-4 h/Mpc (super-horizon, reported) 4.7e-03 (law: <K>_h); FP19's own +0.995 = 1 - eps_K, eps_K = 4.96e-03",
+   "load_bearing": true,
+   "name": "S1 [H1, pre-declared] THE NEWTONIAN psi-SYMBOL OF THE HEADLINE's READ IS POSITIVE FOR EVERY SUB-HORIZON k: S = 1 + kappa h^2 - R_B (FP19's symbol_table on the headline law, eps_K NOT subtracted) minus the <K>_h channel's bound 2|eps_C| + 9|eps_C|(aH/k)^2(1 + |dln C/dln a + 3|), min over k = 10 aH/c..1e3 h/Mpc, z = 0..2.5, both footings and chords >= 0.99 (below 10 aH/c the relativistic block, S2)"
+  },
+  "S4": {
+   "ok": true,
+   "measured": "<x>_halo(1e8) = 0.294 vs Jensen 0.091 (x3.2); <x>_halo 1e7/1e8 = 2.30; I_halo 1e7/1e8 = 1.0002; derived max |rho_extra|/rho_bar 2.63e-05 vs eps_K 4.96e-03 (ratio 5.3e-03)",
+   "load_bearing": true,
+   "name": "S4 [H4, pre-declared] eps_K IS NOT THE SIZE OF ANY TERM, AND ITS SUBTRACTION HIDES NONE: the halo reading's <x> at z = 0.25 (M_min = 1e8, the input of eps_K) exceeds the reading-free Jensen bound y_rms^(1/2) and grows as M_min falls (the dilute-halo sum counts overlapping deep-MOND fields as scalars), while the B-channel's actual input I_halo converges (1e7 vs 1e8 within 5%); the derived channel stays below eps_K/10"
+  },
+  "S5": {
+   "ok": true,
+   "measured": "coefficients True; discriminant identity True; c_2 = oo True",
+   "load_bearing": true,
+   "name": "S5 [H5, pre-declared] THE phi-SYMBOL NEVER CHANGES SIGN: FP7's committed block, as a quadratic in U = omega^2/k^2, has leading coefficient -lambda alpha_c (3 c_2 + 2) <= 0, constant term -C_phi c_2 (2 - alpha_c) and discriminant (A - B)^2 + S^2 + 2 S (A + B) >= 0 -- so for every C_phi >= 0 (J_Y with y_th >= 0) all roots are real and >= 0, at finite c_2 and at c_2 = oo; C_phi = 0 (zero field below z_q0) is a degenerate, not a negative, symbol"
+  },
+  "B1": {
+   "ok": true,
+   "measured": "polynomial E(<K>, a): 0; transcendental E(<K>, a): 0; H_K1-like: 0; scale-factor read E(a) (the PM engine's form): 0; frozen residual nonzero True; max drift 9.1e-06",
+   "load_bearing": true,
+   "name": "B1 [H6 (i)-(iii), pre-declared] CONSERVATION AND THE BIANCHI IDENTITY: with the separator VARIED through <K>_h the reparametrisation Noether identity N dE_N/dt - a' E_a = 0 holds identically (four explicit test functions, one of them H_K1's ramp x (<K>^2/3 - Lambda) x L(<K>) smoothed); with the read FROZEN (prescribed in time) it fails, drifting the Friedmann constraint at |3 H' C|/(3 H rho_bar) <= 1e-4 on the real state; a scale-factor read E(a) satisfies it identically"
+  },
+  "B2": {
+   "ok": true,
+   "measured": "16/leaf: 2.6e-17; 16/posi: 5.3e-03; 32/leaf: 1.2e-17; 32/posi: 5.7e-03",
+   "load_bearing": true,
+   "name": "B2 [H6 (iv), pre-declared] TRANSLATION INVARIANCE: on periodic 3-D leaves (16^3, 32^3) the lapse equation with the channel's leaf-uniform k^0 coefficient exerts no net force on a real (random) density field (< 1e-12 of Sum|force|), and a position-weighted coefficient -- what a non-leaf-averaged read would give -- does (> 1e-4)"
+  },
+  "N1": {
+   "ok": true,
+   "measured": "XR18-C1 Gaussian 1.9e-05; derived 2.6e-05",
+   "load_bearing": false,
+   "name": "N1 (reported) THE (v/c)^2 GLOBAL TERMS: XR18 C1's estimate on H_K1 (FP19 B4: Gaussian 1.9e-5, halo 5.9e-8 converged, 5.0e-3 raw) against the derived rho_extra = -d e_M/d ln<K>_h (S3); XR18 found <= 1.6e-5 for H_Y"
+  }
+ },
+ "numbers": {
+  "K1": {
+   "dev": 0.0,
+   "closed_form_dev": 0.0
+  },
+  "K3": {
+   "canonical/0.0": {
+    "RB_max": 7.4731311007569765,
+    "RB_max_rms": 7.345993043466066,
+    "k_RBge1": [
+     0.12016016690166097,
+     1.0333255206934469
+    ]
+   },
+   "canonical/0.25": {
+    "RB_max": 7.116063357424457,
+    "RB_max_rms": 8.093996178072047,
+    "k_RBge1": [
+     0.15724255862613273,
+     1.2362611121646394
+    ]
+   },
+   "canonical/0.5": {
+    "RB_max": 7.095729873915909,
+    "RB_max_rms": 8.93662664022349,
+    "k_RBge1": [
+     0.18812354530477746,
+     1.4790513800771203
+    ]
+   },
+   "canonical/0.635": {
+    "RB_max": 6.91669665392249,
+    "RB_max_rms": 8.866620106615713,
+    "k_RBge1": [
+     0.20576887400237967,
+     1.6177812116876251
+    ]
+   },
+   "canonical/0.8": {
+    "RB_max": 2.6023993945681254,
+    "RB_max_rms": 3.580002486347627e-301,
+    "k_RBge1": [
+     0.38542099264536195,
+     1.6177812116876251
+    ]
+   },
+   "canonical/1.0": {
+    "RB_max": 3.5616079020618047e-301,
+    "RB_max_rms": 3.5616079020618047e-301,
+    "k_RBge1": null
+   },
+   "canonical/1.5": {
+    "RB_max": 3.519046720093743e-301,
+    "RB_max_rms": 3.519046720093743e-301,
+    "k_RBge1": null
+   },
+   "canonical/2.0": {
+    "RB_max": 3.4822468688828677e-301,
+    "RB_max_rms": 3.4822468688828677e-301,
+    "k_RBge1": null
+   },
+   "canonical/2.5": {
+    "RB_max": 3.4515099672236974e-301,
+    "RB_max_rms": 3.4515099672236974e-301,
+    "k_RBge1": null
+   },
+   "canonical/3.0": {
+    "RB_max": 3.4303393240577834e-301,
+    "RB_max_rms": 3.4303393240577834e-301,
+    "k_RBge1": null
+   },
+   "alt/0.0": {
+    "RB_max": 8.132616913185993,
+    "RB_max_rms": 7.818389556486508,
+    "k_RBge1": [
+     0.12016016690166097,
+     1.0333255206934469
+    ]
+   },
+   "alt/0.25": {
+    "RB_max": 7.780124892941294,
+    "RB_max_rms": 8.738786788607236,
+    "k_RBge1": [
+     0.14375851423087588,
+     1.2362611121646394
+    ]
+   },
+   "alt/0.5": {
+    "RB_max": 7.8012765667998165,
+    "RB_max_rms": 9.786603966700062,
+    "k_RBge1": [
+     0.17199135908975896,
+     1.4790513800771203
+    ]
+   },
+   "alt/0.635": {
+    "RB_max": 7.624391955271213,
+    "RB_max_rms": 9.75991076059464,
+    "k_RBge1": [
+     0.18812354530477746,
+     1.6177812116876251
+    ]
+   },
+   "alt/0.8": {
+    "RB_max": 2.8679880231904074,
+    "RB_max_rms": 3.580002486347627e-301,
+    "k_RBge1": [
+     0.38542099264536195,
+     1.6177812116876251
+    ]
+   },
+   "alt/1.0": {
+    "RB_max": 3.5616079020618047e-301,
+    "RB_max_rms": 3.5616079020618047e-301,
+    "k_RBge1": null
+   },
+   "alt/1.5": {
+    "RB_max": 3.519046720093743e-301,
+    "RB_max_rms": 3.519046720093743e-301,
+    "k_RBge1": null
+   },
+   "alt/2.0": {
+    "RB_max": 3.4822468688828677e-301,
+    "RB_max_rms": 3.4822468688828677e-301,
+    "k_RBge1": null
+   },
+   "alt/2.5": {
+    "RB_max": 3.4515099672236974e-301,
+    "RB_max_rms": 3.4515099672236974e-301,
+    "k_RBge1": null
+   },
+   "alt/3.0": {
+    "RB_max": 3.4303393240577834e-301,
+    "RB_max_rms": 3.4303393240577834e-301,
+    "k_RBge1": null
+   }
+  },
+  "S2": {
+   "c_2 finite|sqrt h": {
+    "fields": [
+     "A",
+     "beta",
+     "delta"
+    ],
+    "det": "M_p2*a_0**5*c_2*k**4*rho_b**2",
+    "det0": "M_p2*a_0**5*c_2*k**4*rho_b**2",
+    "same": true,
+    "AA": "a_0**3*(6*C*H - 9*H**2*M_p2*c_2 - 6*H**2*M_p2 + rho_b)",
+    "Abeta": "-a_0*k**2*(C - 3*H*M_p2*c_2 - 2*H*M_p2)"
+   },
+   "c_2 finite|N sqrt h": {
+    "fields": [
+     "A",
+     "beta",
+     "delta"
+    ],
+    "det": "M_p2*a_0**5*c_2*k**4*rho_b**2",
+    "det0": "M_p2*a_0**5*c_2*k**4*rho_b**2",
+    "same": true,
+    "AA": "-a_0**3*(9*H**2*M_p2*c_2 + 6*H**2*M_p2 - rho_b)",
+    "Abeta": "H*M_p2*a_0*k**2*(3*c_2 + 2)"
+   },
+   "c_2 = oo (CMC)|sqrt h": {
+    "fields": [
+     "A",
+     "beta",
+     "delta",
+     "mu"
+    ],
+    "det": "M_p2**2*a_0**8*k**4*rho_b**2",
+    "det0": "M_p2**2*a_0**8*k**4*rho_b**2",
+    "same": true,
+    "AA": "a_0**3*(6*C*H - 6*H**2*M_p2 + rho_b)",
+    "Abeta": "-a_0*k**2*(C - 2*H*M_p2)"
+   },
+   "c_2 = oo (CMC)|N sqrt h": {
+    "fields": [
+     "A",
+     "beta",
+     "delta",
+     "mu"
+    ],
+    "det": "M_p2**2*a_0**8*k**4*rho_b**2",
+    "det0": "M_p2**2*a_0**8*k**4*rho_b**2",
+    "same": true,
+    "AA": "-a_0**3*(6*H**2*M_p2 - rho_b)",
+    "Abeta": "2*H*M_p2*a_0*k**2"
+   }
+  },
+  "S3": {
+   "canonical/0.0": {
+    "L_kpc": 1989.7935063984082,
+    "yth": 0.0,
+    "I_pm": 114.0249434605094,
+    "I_rms": 112.65307268018695,
+    "I_halo": 0.1878653032873849,
+    "rB_I_lin": 2.1454293517263044e-05,
+    "rB_I_halo": 3.534768127145003e-08,
+    "y_rms": 0.006392531146980026,
+    "x_G": 0.06927380091187631,
+    "x_Jensen": 0.0799533060415892,
+    "dy_dlnK": -0.0,
+    "ry_x": 0.0,
+    "rho_extra": 2.1454293517263044e-05,
+    "eps_C": 3.365879394145828e-06
+   },
+   "canonical/0.25": {
+    "L_kpc": 1531.556489833718,
+    "yth": 0.0,
+    "I_pm": 80.9768009560155,
+    "I_rms": 90.5194973317093,
+    "I_halo": 0.11980928924373173,
+    "rB_I_lin": 1.9707727397577704e-05,
+    "rB_I_halo": 2.6084643438313458e-08,
+    "y_rms": 0.008273679193643817,
+    "x_G": 0.07796809346926159,
+    "x_Jensen": 0.09095976689528078,
+    "dy_dlnK": -0.0,
+    "ry_x": 0.0,
+    "rho_extra": 1.9707727397577704e-05,
+    "eps_C": 4.648104982244103e-06
+   },
+   "canonical/0.5": {
+    "L_kpc": 1139.9017588295696,
+    "yth": 0.0,
+    "I_pm": 69.21244250252661,
+    "I_rms": 86.01597644320724,
+    "I_halo": 0.09148050535644639,
+    "rB_I_lin": 1.7926111044136594e-05,
+    "rB_I_halo": 1.906494310944829e-08,
+    "y_rms": 0.009730572103247933,
+    "x_G": 0.08392360519478206,
+    "x_Jensen": 0.09864366225585876,
+    "dy_dlnK": -0.0,
+    "ry_x": 0.0,
+    "rho_extra": 1.7926111044136594e-05,
+    "eps_C": 5.4375542942897774e-06
+   },
+   "canonical/0.6348": {
+    "L_kpc": 966.9979062164862,
+    "yth": 0.0,
+    "I_pm": 66.43147136781285,
+    "I_rms": 85.43477954893298,
+    "I_halo": 0.08296535483031808,
+    "rB_I_lin": 1.6587387547363632e-05,
+    "rB_I_halo": 1.610794223196671e-08,
+    "y_rms": 0.01012090692952261,
+    "x_G": 0.08542715702039973,
+    "x_Jensen": 0.10060271830086208,
+    "dy_dlnK": 0.005548697682846512,
+    "ry_x": 5.553140634598545e-06,
+    "rho_extra": 2.2140528181962178e-05,
+    "eps_C": 7.375368449835982e-06
+   },
+   "canonical/0.7": {
+    "L_kpc": 892.8974434455481,
+    "yth": 0.0004975356683672082,
+    "I_pm": 56.198508990887774,
+    "I_rms": 67.80375931470944,
+    "I_halo": 0.02376921975734826,
+    "rB_I_lin": 1.2621240157596612e-05,
+    "rB_I_halo": 4.424489644058732e-09,
+    "y_rms": 0.01046713409920397,
+    "x_G": 0.0843834805990888,
+    "x_Jensen": 0.10230901279556934,
+    "dy_dlnK": 0.012436807801437412,
+    "ry_x": 1.1256615537113342e-05,
+    "rho_extra": 2.3877855694709956e-05,
+    "eps_C": 8.258857827685558e-06
+   },
+   "canonical/0.8": {
+    "L_kpc": 790.5346424580322,
+    "yth": 0.0012454995580694333,
+    "I_pm": 39.783275114154364,
+    "I_rms": 20.023969598392334,
+    "I_halo": 0.013487419400993683,
+    "rB_I_lin": 6.890618321758427e-06,
+    "rB_I_halo": 2.3360736131214474e-09,
+    "y_rms": 0.01066923282042916,
+    "x_G": 0.08142504166889283,
+    "x_Jensen": 0.10329197849024463,
+    "dy_dlnK": 0.012094707315273037,
+    "ry_x": 9.310569033174712e-06,
+    "rho_extra": 1.620118735493314e-05,
+    "eps_C": 5.88927167444888e-06
+   },
+   "canonical/1.0": {
+    "L_kpc": 622.2406333437316,
+    "yth": 0.0026277436373768654,
+    "I_pm": 3.4146953764285244,
+    "I_rms": 3.0785422304095716e-300,
+    "I_halo": 0.007734718120626026,
+    "rB_I_lin": 5.026399726790147e-07,
+    "rB_I_halo": 1.1385432890056578e-09,
+    "y_rms": 0.01135146252136622,
+    "x_G": 0.07668451581920027,
+    "x_Jensen": 0.10654324249508375,
+    "dy_dlnK": 0.010922731861667857,
+    "ry_x": 6.322647588476112e-06,
+    "rho_extra": 6.825287561155126e-06,
+    "eps_C": 2.6788329468972785e-06
+   },
+   "canonical/1.5": {
+    "L_kpc": 355.80145411718456,
+    "yth": 0.005204224273829488,
+    "I_pm": 2.992977501341398e-300,
+    "I_rms": 2.992977501341398e-300,
+    "I_halo": 0.004778560151602963,
+    "rB_I_lin": 2.8134373549493955e-307,
+    "rB_I_halo": 4.4919080171391153e-10,
+    "y_rms": 0.012195430346297624,
+    "x_G": 0.06456229979204936,
+    "x_Jensen": 0.1104329223841225,
+    "dy_dlnK": 0.007517386467886835,
+    "ry_x": 2.309283207110834e-06,
+    "rho_extra": 2.309732397912548e-06,
+    "eps_C": 1.012431698033098e-06
+   },
+   "canonical/2.0": {
+    "L_kpc": 217.0971710213884,
+    "yth": 0.006734265174406376,
+    "I_pm": 2.9229713609738217e-300,
+    "I_rms": 2.9229713609738217e-300,
+    "I_halo": 0.004234574423964062,
+    "rB_I_lin": 1.7676447459823452e-307,
+    "rB_I_halo": 2.5608267436111665e-10,
+    "y_rms": 0.012407874793289586,
+    "x_G": 0.055374343444360284,
+    "x_Jensen": 0.11139064051027621,
+    "dy_dlnK": 0.0049928731331886685,
+    "ry_x": 8.952972459461708e-07,
+    "rho_extra": 8.955533286205319e-07,
+    "eps_C": 4.1389073424094617e-07
+   },
+   "canonical/2.5": {
+    "L_kpc": 140.59212679935698,
+    "yth": 0.007633943036441491,
+    "I_pm": 2.826801386045697e-300,
+    "I_rms": 2.826801386045697e-300,
+    "I_halo": 0.004053141503819296,
+    "rB_I_lin": 1.1384652109043357e-307,
+    "rB_I_halo": 1.6323610918507442e-10,
+    "y_rms": 0.012115449872813199,
+    "x_G": 0.04744312316211537,
+    "x_Jensen": 0.11007020429168467,
+    "dy_dlnK": 0.0033804113930650036,
+    "ry_x": 3.7719591157844315e-07,
+    "rho_extra": 3.7735914768762824e-07,
+    "eps_C": 1.793479179375048e-07
+   },
+   "alt/0.0": {
+    "L_kpc": 1989.7935063984082,
+    "yth": 0.0,
+    "I_pm": 123.35221502584497,
+    "I_rms": 119.30255420496327,
+    "I_halo": 0.2069621734073832,
+    "rB_I_lin": 2.320926059556057e-05,
+    "rB_I_halo": 3.8940841192264994e-08,
+    "y_rms": 0.005289602250855981,
+    "x_G": 0.06346135568264887,
+    "x_Jensen": 0.07272965179935885,
+    "dy_dlnK": -0.0,
+    "ry_x": 0.0,
+    "rho_extra": 2.320926059556057e-05,
+    "eps_C": 3.6412092492861484e-06
+   },
+   "alt/0.25": {
+    "L_kpc": 1531.556489833718,
+    "yth": 0.0,
+    "I_pm": 88.2663713443649,
+    "I_rms": 97.25876432638604,
+    "I_halo": 0.13199591527958754,
+    "rB_I_lin": 2.1174987388029023e-05,
+    "rB_I_halo": 2.8737891753764903e-08,
+    "y_rms": 0.006846188321856507,
+    "x_G": 0.07149481337166054,
+    "x_Jensen": 0.08274169639218493,
+    "dy_dlnK": -0.0,
+    "ry_x": 0.0,
+    "rho_extra": 2.1174987388029023e-05,
+    "eps_C": 4.994161041082346e-06
+   },
+   "alt/0.5": {
+    "L_kpc": 1139.9017588295696,
+    "yth": 0.0,
+    "I_pm": 75.93045769375706,
+    "I_rms": 93.82077734112424,
+    "I_halo": 0.10079743869540897,
+    "rB_I_lin": 1.95526661721344e-05,
+    "rB_I_halo": 2.100663334574219e-08,
+    "y_rms": 0.008051717686784,
+    "x_G": 0.07700734626443578,
+    "x_Jensen": 0.08973136400826635,
+    "dy_dlnK": -0.0,
+    "ry_x": 0.0,
+    "rho_extra": 1.95526661721344e-05,
+    "eps_C": 5.930939713992197e-06
+   },
+   "alt/0.6348": {
+    "L_kpc": 966.9979062164862,
+    "yth": 0.0,
+    "I_pm": 73.09808441380449,
+    "I_rms": 93.77202581968504,
+    "I_halo": 0.09142233617537786,
+    "rB_I_lin": 1.82060858772583e-05,
+    "rB_I_halo": 1.774988744200832e-08,
+    "y_rms": 0.008374706488586778,
+    "x_G": 0.07840033012692843,
+    "x_Jensen": 0.09151342245040767,
+    "dy_dlnK": 0.00459135874001491,
+    "ry_x": 6.1046896508578704e-06,
+    "rho_extra": 2.431077552811617e-05,
+    "eps_C": 8.098312982758406e-06
+   },
+   "alt/0.7": {
+    "L_kpc": 892.8974434455481,
+    "yth": 0.0004116938550263652,
+    "I_pm": 61.907001116941714,
+    "I_rms": 74.64169680941139,
+    "I_halo": 0.026259040941999448,
+    "rB_I_lin": 1.3894078893612612e-05,
+    "rB_I_halo": 4.887954080818022e-09,
+    "y_rms": 0.008661197703716672,
+    "x_G": 0.07743790034543506,
+    "x_Jensen": 0.09306555594695963,
+    "dy_dlnK": 0.010291035745836638,
+    "ry_x": 1.237464506930653e-05,
+    "rho_extra": 2.626872396291914e-05,
+    "eps_C": 9.085809852370046e-06
+   },
+   "alt/0.8": {
+    "L_kpc": 790.5346424580322,
+    "yth": 0.0010306085514994504,
+    "I_pm": 43.862690536594414,
+    "I_rms": 22.338226378505034,
+    "I_halo": 0.014920211404106794,
+    "rB_I_lin": 7.597188974156229e-06,
+    "rB_I_halo": 2.584238772967916e-09,
+    "y_rms": 0.008828427526475207,
+    "x_G": 0.07470642826050743,
+    "x_Jensen": 0.09395971225198174,
+    "dy_dlnK": 0.010007959221057421,
+    "ry_x": 1.0235313340759843e-05,
+    "rho_extra": 1.783250231491607e-05,
+    "eps_C": 6.4822687662951674e-06
+   },
+   "alt/1.0": {
+    "L_kpc": 622.2406333437316,
+    "yth": 0.0021743685465666733,
+    "I_pm": 3.757369342943161,
+    "I_rms": 3.0785422304095716e-300,
+    "I_halo": 0.00857062174996962,
+    "rB_I_lin": 5.530812607528212e-07,
+    "rB_I_halo": 1.261587523146099e-09,
+    "y_rms": 0.00939294941595905,
+    "x_G": 0.07033998975522614,
+    "x_Jensen": 0.09691722971669717,
+    "dy_dlnK": 0.00903818936702025,
+    "ry_x": 6.9506255719356475e-06,
+    "rho_extra": 7.5037068326884684e-06,
+    "eps_C": 2.9451033245348168e-06
+   },
+   "alt/1.5": {
+    "L_kpc": 355.80145411718456,
+    "yth": 0.004306318702226858,
+    "I_pm": 2.992977501341398e-300,
+    "I_rms": 2.992977501341398e-300,
+    "I_halo": 0.005307538194945249,
+    "rB_I_lin": 2.8134373549493955e-307,
+    "rB_I_halo": 4.989154183012471e-10,
+    "y_rms": 0.010091304105793638,
+    "x_G": 0.059189703698908885,
+    "x_Jensen": 0.10045548320422155,
+    "dy_dlnK": 0.006220381796635971,
+    "ry_x": 2.538645826385357e-06,
+    "rho_extra": 2.539144741803658e-06,
+    "eps_C": 1.112990675811364e-06
+   },
+   "alt/2.0": {
+    "L_kpc": 217.0971710213884,
+    "yth": 0.005572375543485533,
+    "I_pm": 2.9229713609738217e-300,
+    "I_rms": 2.9229713609738217e-300,
+    "I_halo": 0.004709712065504145,
+    "rB_I_lin": 1.7676447459823452e-307,
+    "rB_I_halo": 2.848162626165608e-10,
+    "y_rms": 0.010267094664987302,
+    "x_G": 0.050747500621173655,
+    "x_Jensen": 0.10132667301844714,
+    "dy_dlnK": 0.004131432816877283,
+    "ry_x": 9.842199561297909e-07,
+    "rho_extra": 9.845047723924075e-07,
+    "eps_C": 4.550007130640317e-07
+   },
+   "alt/2.5": {
+    "L_kpc": 140.59212679935698,
+    "yth": 0.006316828395516526,
+    "I_pm": 2.826801386045697e-300,
+    "I_rms": 2.826801386045697e-300,
+    "I_halo": 0.004511949695270707,
+    "rB_I_lin": 1.1384652109043357e-307,
+    "rB_I_halo": 1.8171413763885427e-10,
+    "y_rms": 0.010025122982410671,
+    "x_G": 0.04346226782556834,
+    "x_Jensen": 0.10012553611547191,
+    "dy_dlnK": 0.002797175532265369,
+    "ry_x": 4.146597626957835e-07,
+    "rho_extra": 4.1484147683342233e-07,
+    "eps_C": 1.9716218779935825e-07
+   }
+  },
+  "S1": {
+   "canonical/0.0": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 7.936063362482802e-06,
+    "Delta_k1e4": 0.0007356510852771587,
+    "dlnC_dlna": -2.002418468763044,
+    "S": 0.9999920639366375,
+    "band": null
+   },
+   "canonical/0.25": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 1.0942670643362988e-05,
+    "Delta_k1e4": 0.0008977588879189186,
+    "dlnC_dlna": -1.8650774103947327,
+    "S": 0.9999890573293566,
+    "band": null
+   },
+   "canonical/0.5": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 1.2750003459279294e-05,
+    "Delta_k1e4": 0.0007814550039261191,
+    "dlnC_dlna": -3.670238532038269,
+    "S": 0.9999872499965408,
+    "band": null
+   },
+   "canonical/0.635": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 1.7756379965213804e-05,
+    "Delta_k1e4": 0.001353884956053417,
+    "dlnC_dlna": -4.141616344253775,
+    "S": 0.9999822436200347,
+    "band": null
+   },
+   "canonical/0.8": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 1.841913783216778e-05,
+    "Delta_k1e4": 0.004739582374142389,
+    "dlnC_dlna": 5.373035445226705,
+    "S": 0.9999815808621678,
+    "band": null
+   },
+   "canonical/1.0": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 8.343359687714839e-06,
+    "Delta_k1e4": 0.002201296982927494,
+    "dlnC_dlna": 5.31158711644423,
+    "S": 0.9999916566403123,
+    "band": null
+   },
+   "canonical/1.5": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 2.9602066117557266e-06,
+    "Delta_k1e4": 0.0007354373695461224,
+    "dlnC_dlna": 3.352182841099534,
+    "S": 0.9999970397933883,
+    "band": null
+   },
+   "canonical/2.0": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 1.2286965498648288e-06,
+    "Delta_k1e4": 0.0003629749648595426,
+    "dlnC_dlna": 3.803006780624173,
+    "S": 0.9999987713034502,
+    "band": null
+   },
+   "canonical/2.5": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 5.357922314268122e-07,
+    "Delta_k1e4": 0.0001832380473537728,
+    "dlnC_dlna": 4.015754427938328,
+    "S": 0.9999994642077685,
+    "band": null
+   },
+   "alt/0.0": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 7.936063362482802e-06,
+    "Delta_k1e4": 0.0007356510852771587,
+    "dlnC_dlna": -2.002418468763044,
+    "S": 0.9999920639366375,
+    "band": null
+   },
+   "alt/0.25": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 1.0942670643362988e-05,
+    "Delta_k1e4": 0.0008977588879189186,
+    "dlnC_dlna": -1.8650774103947327,
+    "S": 0.9999890573293566,
+    "band": null
+   },
+   "alt/0.5": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 1.2750003459279294e-05,
+    "Delta_k1e4": 0.0007814550039261191,
+    "dlnC_dlna": -3.670238532038269,
+    "S": 0.9999872499965408,
+    "band": null
+   },
+   "alt/0.635": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 1.7756379965213804e-05,
+    "Delta_k1e4": 0.001353884956053417,
+    "dlnC_dlna": -4.141616344253775,
+    "S": 0.9999822436200347,
+    "band": null
+   },
+   "alt/0.8": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 1.841913783216778e-05,
+    "Delta_k1e4": 0.004739582374142389,
+    "dlnC_dlna": 5.373035445226705,
+    "S": 0.9999815808621678,
+    "band": null
+   },
+   "alt/1.0": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 8.343359687714839e-06,
+    "Delta_k1e4": 0.002201296982927494,
+    "dlnC_dlna": 5.31158711644423,
+    "S": 0.9999916566403123,
+    "band": null
+   },
+   "alt/1.5": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 2.9602066117557266e-06,
+    "Delta_k1e4": 0.0007354373695461224,
+    "dlnC_dlna": 3.352182841099534,
+    "S": 0.9999970397933883,
+    "band": null
+   },
+   "alt/2.0": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 1.2286965498648288e-06,
+    "Delta_k1e4": 0.0003629749648595426,
+    "dlnC_dlna": 3.803006780624173,
+    "S": 0.9999987713034502,
+    "band": null
+   },
+   "alt/2.5": {
+    "S_FP19_no_epsK": 1.0,
+    "Delta_max_sub": 5.357922314268122e-07,
+    "Delta_k1e4": 0.0001832380473537728,
+    "dlnC_dlna": 4.015754427938328,
+    "S": 0.9999994642077685,
+    "band": null
+   }
+  },
+  "S4": {
+   "x_halo": {
+    "10000000.0": 0.6753953437500819,
+    "100000000.0": 0.29366861354119383,
+    "1000000000.0": 0.12876548588519396,
+    "10000000000.0": 0.055610744508626714
+   },
+   "I_halo": {
+    "10000000.0": 0.1198294069700319,
+    "100000000.0": 0.11980928924373173,
+    "1000000000.0": 0.11972819243626791
+   },
+   "x_Jensen": 0.09095976689528078,
+   "y_rms": 0.008273679193643817,
+   "eps_K": 0.004957228892374727,
+   "derived_max": 2.626872396291914e-05
+  },
+  "S5": {
+   "measure": {
+    "0.0": {
+     "frac_CL_below_1e2": 7.709283701168212e-08,
+     "plug": 0.0
+    },
+    "0.25": {
+     "frac_CL_below_1e2": 3.660693926984594e-08,
+     "plug": 0.0
+    },
+    "0.5": {
+     "frac_CL_below_1e2": 2.1617793350063476e-08,
+     "plug": 0.0
+    },
+    "1.0": {
+     "frac_CL_below_1e2": 0.0004466700833553848,
+     "plug": 0.016342108002849062
+    },
+    "2.5": {
+     "frac_CL_below_1e2": 0.0018535257347166711,
+     "plug": 0.24485588138384104
+    }
+   }
+  },
+  "B1": {
+   "identities": {
+    "polynomial E(<K>, a)": "0",
+    "transcendental E(<K>, a)": "0",
+    "H_K1-like: softplus ramp x (K^2/3 - Lambda) L(K) x e(a)": "0",
+    "scale-factor read E(a) (the PM engine's form)": "0"
+   },
+   "frozen": "-(-E_K(t)*a(t)*Derivative(K_b(t), t) - K_b(t)*a(t)*Derivative(E_K(t), t) + a(t)*Derivative(e(t), t) + 3*Derivative(E_K(t), t)*Derivative(a(t), t))*a(t)**2",
+   "drift": {
+    "0.0": 3.642635929725486e-06,
+    "0.25": 4.996607025156734e-06,
+    "0.5": 5.934425460799457e-06,
+    "0.6348": 8.103500269505717e-06,
+    "0.7": 9.091861778726813e-06,
+    "0.8": 6.486840496660781e-06,
+    "1.0": 2.947411195913406e-06,
+    "1.5": 1.1140808919439967e-06,
+    "2.0": 4.555355413911927e-07,
+    "2.5": 1.9743256666557663e-07
+   }
+  },
+  "N1": {
+   "b4": {
+    "(0.25, 'canonical', 'gauss')": 1.724137023054575e-05,
+    "(0.25, 'canonical', 'halo')": 0.004508834840195991,
+    "(0.25, 'alt', 'gauss')": 1.9215116220272506e-05,
+    "(0.25, 'alt', 'halo')": 0.004957228892374727,
+    "(1.0, 'canonical', 'gauss')": 7.99106681858105e-06,
+    "(1.0, 'canonical', 'halo')": 5.3059956834930176e-08,
+    "(1.0, 'alt', 'gauss')": 8.820123780976004e-06,
+    "(1.0, 'alt', 'halo')": 5.881491420299998e-08,
+    "(2.5, 'canonical', 'gauss')": 3.777723439200636e-10,
+    "(2.5, 'canonical', 'halo')": 1.1511258834686787e-09,
+    "(2.5, 'alt', 'gauss')": 4.161974841970098e-10,
+    "(2.5, 'alt', 'halo')": 1.2818604804056504e-09
+   },
+   "derived_max": 2.626872396291914e-05
+  }
+ },
+ "ledger": [
+  {
+   "link": "XR18b-S1",
+   "status": "DERIVED",
+   "what": "H_K1's Newtonian psi-symbol >= 1.0000 for every k, z = 0-2.5, both footings"
+  },
+  {
+   "link": "XR18b-S2",
+   "status": "DERIVED",
+   "what": "the <K>_h read's second variation is a local operator at every k (coefficient C); FP19 H4's 'k = 0 only' holds for its linear toy read, not for <K>_h; the constrained block's determinant is C-independent"
+  },
+  {
+   "link": "XR18b-S3",
+   "status": "DERIVED",
+   "what": "|rho_extra|/rho_bar <= 2.6e-05, |eps_C| <= 9.1e-06 on the real state"
+  },
+  {
+   "link": "XR18b-S4",
+   "status": "CORRECTION",
+   "what": "FP19's eps_K = 5e-3 is an unconverged halo-sum proxy that violates the Jensen bound; the subtraction was conservative and hid no term"
+  },
+  {
+   "link": "XR18b-B1",
+   "status": "DERIVED",
+   "what": "the full <K>_h variation is conservative; frozen reads drift the Friedmann constraint at <= 1e-5"
+  }
+ ],
+ "n_checks": 12,
+ "n_fail_load_bearing": 0,
+ "n_fail_reported": 0,
+ "elapsed_s": 9
+}

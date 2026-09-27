@@ -1,0 +1,223 @@
+XR18b (2 of 4) -- H_K1 ACROSS THE q = 0 RAMP, AND THE lambda QUESTION (item 3 of the re-audit).
+
+WHY.  H_K1's yield is tied to the leaf's zero modes, y_th = max(0, 2q) x 8 pi G rho_bar L/a0 (c_y = 2, 2q = 1 + Omega_r -
+9 Lambda/<K>_h^2), so the action has a KINK in <K>_h at q = 0 (z_q0 = 0.635): y_th is continuous there, its <K>_h-derivative
+jumps.  Below z_q0 there is no yield at all, and FP7's phi has no equation at lambda = 0 on exact FRW (XR18 Q2, XR25 K4): phi's
+inertia 2 lambda (n.d phi)^2 is required.  XR25 (43cfa1692) found that at the core's c_2 = oo the khronon contributes only 3 to
+lambda_eff = lambda + 3 h^2, so the MOND-regime observables (the tracking speed, galaxy alpha_2 v^2) move with lambda unless
+lambda <~ 0.03, with the upper bound lambda <= 274.4 from tracking; and that at exact zero field the strong-coupling scale is 0.
+This lane asks: is FRW growth across z = 0.635 well posed with H_K1's y_th (not FP13's tabulated one)?  What does the kink do to
+the background?  What does lambda > 0 do there, which lambda keeps the MOND regime lambda-independent, and is that range free of
+strong coupling in H_K1's real backgrounds -- including the zeros of the band-passed field, which H_K1 no longer plugs below z_q0?
+
+PRE-DECLARED HYPOTHESES (written into this file before its first full run; exploratory runs disclosed in XR18b_README.md: a
+sizing of the <K>_h channel on H_K1's state (whose y-channel at q = 0+ is the kink's jump used in R3), and back-of-envelope
+estimates of the strongly coupled radius around a zero of the band-passed field; no run of this file's own checks)
+ H1 [load-bearing] THE RAMP IS A KINK, NOT A JUMP: H_K1's y_th(z) is continuous at z_q0 (|y_th(z_q0 + 1e-6)| < 1e-8) with a
+    finite one-sided derivative dy_th/dln<K>_h = 2 (1 + Omega_r) x 8 pi G rho_bar L/a0 (sympy), and its zero sits at z_q0
+    exactly (FP13's tabulated y_th switched off ~0.010 lower, XR18 Q1).
+ H2 [load-bearing] FRW GROWTH ACROSS z_q0 IS WELL POSED UNDER H_K1: with the ramp smoothed (softplus width eps) sigma_8 converges
+    monotonically (|d sigma_8| < 1e-4 at eps = 0.002, both footings, both chords); every sigma_8 mode crosses H_K1's yield at most
+    once (z = 3 -> 0.5); the chord G_eff = C^Q h^2 is continuous through z_q0 (its largest epoch-to-epoch step within
+    |z - z_q0| <= 0.02 shrinks by >= x2 under 10x refinement).  MUTATE's hard step must fail the last clause.
+ H3 [load-bearing] THE BACKGROUND ACROSS THE KINK IS WELL POSED: the Friedmann function F(H) = 3 M_p^2 H^2 - e_M + <K> de_M/d<K>
+    is increasing with an UPWARD jump dF at H(z_q0), so H(rho) is continuous and non-decreasing (a pinned segment); on the real
+    state dF/rho_bar <= 1e-4 (Gaussian and Jensen readings of <x>) and the pinned interval H dt = dF/(3 rho_bar) <= 1e-4.
+ H4 [load-bearing] lambda AT THE SWITCH-OFF: at c_2 = oo, with the band-pass closed and zero field, every coefficient of FP7's
+    root polynomial is proportional to lambda (no phi equation at lambda = 0, sympy); with H_K1's structure phi un-freezes at
+    omega_r = c k sqrt(C_L/lambda_eff) >= 10 H for every sub-L sigma_8 mode (h >= 0.4) at z_q0 for lambda in [0, 274.4], at
+    c_2 = oo and at the c_2 floor.
+ H5 [load-bearing] H_K1's COSMOLOGICAL GATES ARE lambda-INERT BELOW 0.03: at c_2 = oo sigma_8 (both footings, both chords) moves by
+    < 1e-4 across lambda in {0, 1e-9, 1e-3, 0.03} and stays in the band [0.922, 1.05] with the forest proxy <= 10% for every lambda
+    in {0, 1e-9, 1e-3, 0.03, 1, 3, 30, 274.4}.
+ H6 [load-bearing] THE MOND-REGIME OBSERVABLES FIX THE WINDOW: at c_2 = oo the tracking speed (C^Q = 100) and galaxy alpha_2 v^2
+    (620 km/s) change by < 1% only for lambda <= 0.03 (XR25 L4's formulas; separator-independent) and by x9.6 / x93 across
+    (0, 274.4].
+ H7 [load-bearing] STRONG COUPLING IN H_K1's REAL BACKGROUNDS, lambda in [1e-9, 0.03]: every strongly coupled region -- the core
+    around a zero of the band-passed field below z_q0 (flattest zero s = y_rms/L of the web; cored halo centres at 1e2-1e6
+    rho_bar), the layer at H_K1's yield surfaces above z_q0 (DE12's hosts at z = 0.8, 1, 2.5) -- is smaller than xi (the filter
+    below which the metric never sees phi), in both phi sectors (metric-visible, lambda_eff = lambda + 3; sub-xi, lambda_eff =
+    lambda); the metric-visible sector's tree-level length at the xi scale is < xi; the lambda at which the flattest zero's sub-xi
+    core would reach xi is printed.
+The writer's expectation: all seven pass; H7 is the adversarial one (H_K1 has no yield below z_q0, so zeros are unplugged).
+
+  *** MUTATE=1: the ramp max(0, 2q) is replaced by a hard step at q = 0 -- R2's refinement clause must FAIL ***
+
+  machinery: FP19's module + main() slices exec'd read-only (FP13 -> FP9 -> FP6 inside); a0 = 9.3603e-11 / 1.1312e-10; z_q0 = 0.63482; xi = 0.0243 / 0.0268 pc   [0 s]
+
+======================================================================================================================
+K1  CONTROL: XR18's committed Q1 (FP13's H_S, smoothed ramp) with this lane's code on FP13's own yth_state
+======================================================================================================================
+  [PASS] K1 CONTROL: XR18's committed Q1 on FP13's H_S -- sigma_8 (canonical, both chords) with the ramp smoothed at eps = 0.05, 0.01, 0.002 and exact -- reproduced with this lane's smoothed-ramp code driving FP13's own yth_state
+         measured: max relative deviation 0.0e+00 over 8 numbers
+
+======================================================================================================================
+K2  CONTROL: XR18's committed Q2 (FP13's H_S, omega_r at z_q0) with this lane's code
+======================================================================================================================
+  [PASS] K2 CONTROL: XR18's committed Q2 on FP13's H_S -- min over sub-L sigma_8 modes of omega_r/H at z_q0 for c_2 = 7.29e-3 and oo, lambda = 0, 1, 100, 1e4 -- reproduced
+         measured: max relative deviation 0.0e+00
+
+======================================================================================================================
+K3  CONTROL: XR25's committed L2 (lambda_max) and L4 (tracking speed, galaxy alpha_2 v^2) with this lane's code
+======================================================================================================================
+  [PASS] K3 CONTROL: XR25's committed L2 (lambda_max = 274.39 at c_2 = oo from tracking) and L4 (tracking speed at C^Q = 100 and galaxy alpha_2 v^2 at 620 km/s, six lambdas) reproduced
+         measured: max relative deviation 0.0e+00; lambda_max 274.394
+
+======================================================================================================================
+K4  CONTROL: FP7 B6's 12 committed tree-level strong-coupling rows with this lane's ell_sc
+======================================================================================================================
+  [PASS] K4 CONTROL: FP7 B6's tree-level strong-coupling scale Lambda_sc = c_s^(9/4) [(3/2) alpha M_P (2 lambda_eff)^(3/2)]^(1/2) and ell_sc = c_s hbar c/Lambda_sc reproduced for its 12 committed rows
+         measured: max relative deviation 0.0e+00
+    [1 s]
+
+======================================================================================================================
+R1  THE RAMP: H_K1's y_th at q = 0 -- continuous, with a finite one-sided <K>_h-derivative (a kink), switching off at z_q0
+======================================================================================================================
+    sympy: dy_th/dln<K> at q = 0+ = -2*L_Lambda*Lambda*(Omega_r - 2)*(Omega_r + 1)/(3*alpha) = 2 (1 + Omega_r) (<K>^2/3 - Lambda) L/alpha: True; 0 at q = 0-
+    per footing: y_th(z_q0 + 1e-6) = canonical: 7.65e-09, alt: 6.33e-09; zero at z - z_q0 = canonical: +1.3e-10, alt: +1.6e-10; one-sided slope dy_th/dln<K> numeric/analytic canonical: 1.2509e-02/1.2505e-02, alt: 1.0351e-02/1.0348e-02  (FP13's table: zero ~0.010 below z_q0, XR18 Q1)
+  [PASS] R1 [H1, pre-declared] THE RAMP IS A KINK, NOT A JUMP: H_K1's y_th is continuous at z_q0, its zero sits at z_q0 exactly, and its one-sided <K>_h-derivative at q = 0+ is the finite 2 (1 + Omega_r) (<K>^2/3 - Lambda) L/alpha (0 at q = 0-)
+         measured: sympy True; max y_th(z_q0 + 1e-6) 7.7e-09; zero offset 1.6e-10; slope 1.251e-02 (canonical)
+
+======================================================================================================================
+R2  FRW GROWTH ACROSS z_q0 UNDER H_K1: smoothed ramp, single crossings, continuity of the chord by refinement
+======================================================================================================================
+    sigma_8 with the ramp smoothed: eps 0.05: can/rms 1.009728, can/permode 1.010976, alt/rms 1.010920, alt/permode 1.012248; eps 0.01: can/rms 1.009728, can/permode 1.010976, alt/rms 1.010920, alt/permode 1.012248; eps 0.002: can/rms 1.009728, can/permode 1.010976, alt/rms 1.010920, alt/permode 1.012248; eps 0: can/rms 1.009728, can/permode 1.010976, alt/rms 1.010920, alt/permode 1.012248
+    |d sigma_8| at eps 0.05/0.01/0.002: 0.0e+00/0.0e+00/0.0e+00 (monotone True); per-mode crossings of the yield (z = 3 -> 0.5): max canonical: 1, alt: 1; first above-yield epochs z = canonical: 0.632-0.632 (48 modes), alt: 0.632-0.632 (48 modes); the chord's largest step within 0.02 of z_q0: canonical: 4.381e+01 -> 4.381e+01 (x1.00), alt: 4.825e+01 -> 4.825e+01 (x1.00)
+  [FAIL] R2 [H2, pre-declared] FRW GROWTH ACROSS z_q0 IS WELL POSED UNDER H_K1: sigma_8 with the ramp smoothed converges monotonically (< 1e-4 at eps = 0.002, both footings and chords), every sigma_8 mode crosses the yield at most once, and the chord G_eff is continuous through z_q0 (its largest step within 0.02 of z_q0 shrinks >= x2 under 10x refinement)
+         measured: |d sigma_8| 0.0e+00/0.0e+00/0.0e+00; max crossings 1; shrink x1.00/x1.00
+         reading (written for the unmutated theory; this MUTATE run fails the check):  y_th -> 0 linearly at z_q0, so the chord x_P2(y - y_th)/y changes by O(dz) per step: a kink in time, not a jump; MUTATE's hard step switches every yielded mode's MOND off at once
+    [2 s]
+
+======================================================================================================================
+R3  THE BACKGROUND ACROSS THE KINK: the Friedmann function jumps UP at H(z_q0) -> H(rho) continuous, pinned for a moment
+======================================================================================================================
+    canonical: y_rms(z_q0) 1.012e-02, <x> Gauss 0.085 / Jensen 0.101: jump dF/rho_bar 1.06e-05 / 1.25e-05; pinned H dt = 3.5e-06 / 4.2e-06 (dz ~ 6.8e-06)
+    alt      : y_rms(z_q0) 8.375e-03, <x> Gauss 0.078 / Jensen 0.092: jump dF/rho_bar 1.18e-05 / 1.38e-05; pinned H dt = 3.9e-06 / 4.6e-06 (dz ~ 7.5e-06)
+  [PASS] R3 [H3, pre-declared] THE BACKGROUND ACROSS THE KINK IS WELL POSED: F(H) = 3 M_p^2 H^2 - e_M + <K> de_M/d<K> is increasing with an UPWARD jump dF = (a0^2 <x>/(4 pi G)) dy_th/dln<K>|+ at H(z_q0), so H(rho) is continuous (a pinned segment, H' jumps to 0 and back); on the real state dF/rho_bar and the pinned H dt are <= 1e-4 (Gaussian and Jensen <x>)
+         measured: canonical: dF/rho 1.3e-05, H dt 4.2e-06; alt: dF/rho 1.4e-05, H dt 4.6e-06; inverted H(rho) max step/H 2.2e-08 (continuous), pinned share of the scan 0.14
+         reading:  a Filippov sliding segment of ~1e-6 Hubble times: the kink is felt by the background only at the channel's (v/c)^2 size
+
+======================================================================================================================
+R4  lambda AT THE SWITCH-OFF: no phi equation at lambda = 0 on exact FRW; how fast phi un-freezes under H_K1
+======================================================================================================================
+    c_2 = oo, band-pass closed (sigma = 0), zero field (C_phi = 0): P(U) = -U*lam_*(3*U*alpha_c + alpha_c - 2)  (-> 0 at lambda = 0: True)
+    canonical: min over sub-L sigma_8 modes of omega_r/H at z_q0: c2=7.29e-3, lambda 0: 143; c2=7.29e-3, lambda 1e-09: 143; c2=7.29e-3, lambda 0.001: 143; c2=7.29e-3, lambda 0.03: 143; c2=7.29e-3, lambda 1: 142; c2=7.29e-3, lambda 100: 89.7; c2=7.29e-3, lambda 274.4: 62.2; c2->oo, lambda 0: 1.37e+03; c2->oo, lambda 1e-09: 1.37e+03; c2->oo, lambda 0.001: 1.37e+03; c2->oo, lambda 0.03: 1.35e+03; c2->oo, lambda 1: 884; c2->oo, lambda 100: 114; c2->oo, lambda 274.4: 68.7
+    alt      : min over sub-L sigma_8 modes of omega_r/H at z_q0: c2=7.29e-3, lambda 0: 136; c2=7.29e-3, lambda 1e-09: 136; c2=7.29e-3, lambda 0.001: 136; c2=7.29e-3, lambda 0.03: 136; c2=7.29e-3, lambda 1: 135; c2=7.29e-3, lambda 100: 85.3; c2=7.29e-3, lambda 274.4: 59.1; c2->oo, lambda 0: 1.31e+03; c2->oo, lambda 1e-09: 1.31e+03; c2->oo, lambda 0.001: 1.31e+03; c2->oo, lambda 0.03: 1.29e+03; c2->oo, lambda 1: 840; c2->oo, lambda 100: 108; c2->oo, lambda 274.4: 65.3
+  [PASS] R4 [H4, pre-declared] lambda AT THE SWITCH-OFF: at c_2 = oo with the band-pass closed and zero field every coefficient of FP7's root polynomial is proportional to lambda (phi has no equation at lambda = 0); under H_K1 phi un-freezes at omega_r >= 10 H for every sub-L sigma_8 mode at z_q0, lambda in [0, 274.4], c_2 = oo and the floor
+         measured: proportional to lambda True; min omega_r/H 59.1
+         reading:  at c_2 = oo the khronon's inertia 3 h^2 carries every band-passed mode; lambda matters only for h -> 0 modes and exact zero field, where it only has to be > 0
+    [2 s]
+
+======================================================================================================================
+R5  H_K1's sigma_8 AND FOREST OVER lambda AT c_2 = oo
+======================================================================================================================
+    lambda        0: sigma_8 can/rms 1.011725, can/permode 1.013383, alt/rms 1.013232, alt/permode 1.015063; forest max 0.00e+00
+    lambda    1e-09: sigma_8 can/rms 1.011725, can/permode 1.013383, alt/rms 1.013232, alt/permode 1.015062; forest max 0.00e+00
+    lambda    0.001: sigma_8 can/rms 1.011725, can/permode 1.013383, alt/rms 1.013232, alt/permode 1.015062; forest max 0.00e+00
+    lambda     0.03: sigma_8 can/rms 1.011725, can/permode 1.013383, alt/rms 1.013232, alt/permode 1.015062; forest max 0.00e+00
+    lambda        1: sigma_8 can/rms 1.011725, can/permode 1.013383, alt/rms 1.013232, alt/permode 1.015062; forest max 0.00e+00
+    lambda        3: sigma_8 can/rms 1.011725, can/permode 1.013381, alt/rms 1.013232, alt/permode 1.015060; forest max 0.00e+00
+    lambda       30: sigma_8 can/rms 1.011724, can/permode 1.013366, alt/rms 1.013231, alt/permode 1.015042; forest max 0.00e+00
+    lambda      274: sigma_8 can/rms 1.011717, can/permode 1.013243, alt/rms 1.013222, alt/permode 1.014894; forest max 0.00e+00
+  [PASS] R5 [H5, pre-declared] H_K1's COSMOLOGICAL GATES ARE lambda-INERT BELOW 0.03 AT c_2 = oo: sigma_8 moves by < 1e-4 across lambda in {0, 1e-9, 1e-3, 0.03} (both footings, both chords) and stays in [0.922, 1.05] with the forest proxy <= 10% for every lambda up to 274.4
+         measured: spread (lambda <= 0.03) 3.6e-07; spread (0..274.4) 1.7e-04; band kept True; forest kept True
+
+======================================================================================================================
+R6  THE MOND-REGIME OBSERVABLES OVER lambda (c_2 = oo; separator-independent): where lambda is inert, where it is a knob
+======================================================================================================================
+    tracking speed at C^Q = 100: 17,309 km/s at lambda -> 0; 1% lower at lambda = 0.0609; 1,800 km/s at lambda_max = 274.4
+    galaxy alpha_2 v^2 (620 km/s): 1.266e-03 at lambda -> 0; 1% higher at lambda = 0.0299; 1.175e-01 at lambda_max
+  [PASS] R6 [H6, pre-declared] THE MOND-REGIME OBSERVABLES FIX THE WINDOW: the tracking speed and galaxy alpha_2 v^2 stay within 1% of their lambda -> 0 values only for lambda <= ~0.03 (the khronon's own inertia at c_2 = oo is 3), and change by x9.6 / x93 across (0, 274.4]
+         measured: 1% at lambda = 0.0609 (tracking) / 0.0299 (alpha_2 v^2); x9.6 / x93 across the tracking window
+         reading:  inside (0, 0.03] lambda is a regulator (every observable lambda-independent to 1%); anywhere in (0.03, 274.4] the MOND regime reads lambda -- a bounded knob that no current datum selects
+    [7 s]
+
+======================================================================================================================
+R7  STRONG COUPLING IN H_K1's REAL BACKGROUNDS, lambda in [1e-9, 0.03]: zeros of the band-passed field, yield layers, the web
+======================================================================================================================
+    typical web z=0.0                  lambda   1e-09: ell_sc 5.4e-04 m (metric-visible) / 8.3e-03 m (sub-xi)
+    typical web z=0.0                  lambda   1e-03: ell_sc 5.4e-04 m (metric-visible) / 1.5e-03 m (sub-xi)
+    typical web z=0.0                  lambda   3e-02: ell_sc 5.4e-04 m (metric-visible) / 9.7e-04 m (sub-xi)
+    typical web z=0.25                 lambda   1e-09: ell_sc 5.0e-04 m (metric-visible) / 7.6e-03 m (sub-xi)
+    typical web z=0.25                 lambda   1e-03: ell_sc 5.0e-04 m (metric-visible) / 1.4e-03 m (sub-xi)
+    typical web z=0.25                 lambda   3e-02: ell_sc 5.0e-04 m (metric-visible) / 8.9e-04 m (sub-xi)
+    typical web z=0.5                  lambda   1e-09: ell_sc 4.7e-04 m (metric-visible) / 7.2e-03 m (sub-xi)
+    typical web z=0.5                  lambda   1e-03: ell_sc 4.7e-04 m (metric-visible) / 1.3e-03 m (sub-xi)
+    typical web z=0.5                  lambda   3e-02: ell_sc 4.7e-04 m (metric-visible) / 8.4e-04 m (sub-xi)
+    typical galaxy outskirts y = 0.1   lambda   1e-09: ell_sc 2.0e-04 m (metric-visible) / 3.1e-03 m (sub-xi)
+    typical galaxy outskirts y = 0.1   lambda   1e-03: ell_sc 2.0e-04 m (metric-visible) / 5.4e-04 m (sub-xi)
+    typical galaxy outskirts y = 0.1   lambda   3e-02: ell_sc 2.0e-04 m (metric-visible) / 3.5e-04 m (sub-xi)
+    zero at z = 0.0: web zero s = y_rms/L         s = 1.04e-25/m, lambda   1e-09: core r* 9.03e+02 m (visible) / 7.21e+03 m (sub-xi); visible ell_sc at the xi scale 1.7e-01 m
+    zero at z = 0.0: web zero s = y_rms/L         s = 1.04e-25/m, lambda   1e-03: core r* 9.03e+02 m (visible) / 1.93e+03 m (sub-xi); visible ell_sc at the xi scale 1.7e-01 m
+    zero at z = 0.0: web zero s = y_rms/L         s = 1.04e-25/m, lambda   3e-02: core r* 9.02e+02 m (visible) / 1.40e+03 m (sub-xi); visible ell_sc at the xi scale 1.7e-01 m
+    zero at z = 0.0: cored centre 1e+02 rho_bar   s = 7.99e-25/m, lambda   1e-09: core r* 5.56e+02 m (visible) / 4.44e+03 m (sub-xi); visible ell_sc at the xi scale 9.0e-02 m
+    zero at z = 0.0: cored centre 1e+02 rho_bar   s = 7.99e-25/m, lambda   1e-03: core r* 5.56e+02 m (visible) / 1.19e+03 m (sub-xi); visible ell_sc at the xi scale 9.0e-02 m
+    zero at z = 0.0: cored centre 1e+02 rho_bar   s = 7.99e-25/m, lambda   3e-02: core r* 5.55e+02 m (visible) / 8.62e+02 m (sub-xi); visible ell_sc at the xi scale 9.0e-02 m
+    zero at z = 0.0: cored centre 1e+04 rho_bar   s = 7.99e-23/m, lambda   1e-09: core r* 1.86e+02 m (visible) / 1.48e+03 m (sub-xi); visible ell_sc at the xi scale 2.1e-02 m
+    zero at z = 0.0: cored centre 1e+04 rho_bar   s = 7.99e-23/m, lambda   1e-03: core r* 1.86e+02 m (visible) / 3.98e+02 m (sub-xi); visible ell_sc at the xi scale 2.1e-02 m
+    zero at z = 0.0: cored centre 1e+04 rho_bar   s = 7.99e-23/m, lambda   3e-02: core r* 1.85e+02 m (visible) / 2.88e+02 m (sub-xi); visible ell_sc at the xi scale 2.1e-02 m
+    zero at z = 0.0: cored centre 1e+06 rho_bar   s = 7.99e-21/m, lambda   1e-09: core r* 6.20e+01 m (visible) / 4.95e+02 m (sub-xi); visible ell_sc at the xi scale 5.1e-03 m
+    zero at z = 0.0: cored centre 1e+06 rho_bar   s = 7.99e-21/m, lambda   1e-03: core r* 6.20e+01 m (visible) / 1.33e+02 m (sub-xi); visible ell_sc at the xi scale 5.1e-03 m
+    zero at z = 0.0: cored centre 1e+06 rho_bar   s = 7.99e-21/m, lambda   3e-02: core r* 6.19e+01 m (visible) / 9.61e+01 m (sub-xi); visible ell_sc at the xi scale 5.0e-03 m
+    zero at z = 0.5: web zero s = y_rms/L         s = 2.77e-25/m, lambda   1e-09: core r* 7.15e+02 m (visible) / 5.72e+03 m (sub-xi); visible ell_sc at the xi scale 1.3e-01 m
+    zero at z = 0.5: web zero s = y_rms/L         s = 2.77e-25/m, lambda   1e-03: core r* 7.15e+02 m (visible) / 1.53e+03 m (sub-xi); visible ell_sc at the xi scale 1.3e-01 m
+    zero at z = 0.5: web zero s = y_rms/L         s = 2.77e-25/m, lambda   3e-02: core r* 7.15e+02 m (visible) / 1.11e+03 m (sub-xi); visible ell_sc at the xi scale 1.3e-01 m
+    zero at z = 0.5: cored centre 1e+02 rho_bar   s = 2.70e-24/m, lambda   1e-09: core r* 4.16e+02 m (visible) / 3.32e+03 m (sub-xi); visible ell_sc at the xi scale 6.2e-02 m
+    zero at z = 0.5: cored centre 1e+02 rho_bar   s = 2.70e-24/m, lambda   1e-03: core r* 4.16e+02 m (visible) / 8.92e+02 m (sub-xi); visible ell_sc at the xi scale 6.2e-02 m
+    zero at z = 0.5: cored centre 1e+02 rho_bar   s = 2.70e-24/m, lambda   3e-02: core r* 4.16e+02 m (visible) / 6.45e+02 m (sub-xi); visible ell_sc at the xi scale 6.1e-02 m
+    zero at z = 0.5: cored centre 1e+04 rho_bar   s = 2.70e-22/m, lambda   1e-09: core r* 1.39e+02 m (visible) / 1.11e+03 m (sub-xi); visible ell_sc at the xi scale 1.5e-02 m
+    zero at z = 0.5: cored centre 1e+04 rho_bar   s = 2.70e-22/m, lambda   1e-03: core r* 1.39e+02 m (visible) / 2.98e+02 m (sub-xi); visible ell_sc at the xi scale 1.5e-02 m
+    zero at z = 0.5: cored centre 1e+04 rho_bar   s = 2.70e-22/m, lambda   3e-02: core r* 1.39e+02 m (visible) / 2.15e+02 m (sub-xi); visible ell_sc at the xi scale 1.5e-02 m
+    zero at z = 0.5: cored centre 1e+06 rho_bar   s = 2.70e-20/m, lambda   1e-09: core r* 4.64e+01 m (visible) / 3.71e+02 m (sub-xi); visible ell_sc at the xi scale 3.5e-03 m
+    zero at z = 0.5: cored centre 1e+06 rho_bar   s = 2.70e-20/m, lambda   1e-03: core r* 4.64e+01 m (visible) / 9.95e+01 m (sub-xi); visible ell_sc at the xi scale 3.4e-03 m
+    zero at z = 0.5: cored centre 1e+06 rho_bar   s = 2.70e-20/m, lambda   3e-02: core r* 4.64e+01 m (visible) / 7.20e+01 m (sub-xi); visible ell_sc at the xi scale 3.4e-03 m
+    yield layer z = 0.8 M_b 1e+10 (r_Y 109 kpc) lambda 1e-09: d* 4.07e+02 m (visible) / 3.25e+03 m (sub-xi)
+    yield layer z = 0.8 M_b 1e+10 (r_Y 109 kpc) lambda 3e-02: d* 4.06e+02 m (visible) / 6.31e+02 m (sub-xi)
+    yield layer z = 0.8 M_b 1e+11 (r_Y 342 kpc) lambda 1e-09: d* 5.30e+02 m (visible) / 4.24e+03 m (sub-xi)
+    yield layer z = 0.8 M_b 1e+11 (r_Y 342 kpc) lambda 3e-02: d* 5.30e+02 m (visible) / 8.22e+02 m (sub-xi)
+    yield layer z = 0.8 M_b 1e+12 (r_Y 924 kpc) lambda 1e-09: d* 6.19e+02 m (visible) / 4.95e+03 m (sub-xi)
+    yield layer z = 0.8 M_b 1e+12 (r_Y 924 kpc) lambda 3e-02: d* 6.19e+02 m (visible) / 9.60e+02 m (sub-xi)
+    yield layer z = 1.0 M_b 1e+10 (r_Y 75 kpc) lambda 1e-09: d* 3.12e+02 m (visible) / 2.49e+03 m (sub-xi)
+    yield layer z = 1.0 M_b 1e+10 (r_Y 75 kpc) lambda 3e-02: d* 3.11e+02 m (visible) / 4.83e+02 m (sub-xi)
+    yield layer z = 1.0 M_b 1e+11 (r_Y 236 kpc) lambda 1e-09: d* 4.07e+02 m (visible) / 3.26e+03 m (sub-xi)
+    yield layer z = 1.0 M_b 1e+11 (r_Y 236 kpc) lambda 3e-02: d* 4.07e+02 m (visible) / 6.32e+02 m (sub-xi)
+    yield layer z = 1.0 M_b 1e+12 (r_Y 661 kpc) lambda 1e-09: d* 4.87e+02 m (visible) / 3.89e+03 m (sub-xi)
+    yield layer z = 1.0 M_b 1e+12 (r_Y 661 kpc) lambda 3e-02: d* 4.86e+02 m (visible) / 7.54e+02 m (sub-xi)
+    yield layer z = 2.5 M_b 1e+10 (r_Y 44 kpc) lambda 1e-09: d* 2.12e+02 m (visible) / 1.70e+03 m (sub-xi)
+    yield layer z = 2.5 M_b 1e+10 (r_Y 44 kpc) lambda 3e-02: d* 2.12e+02 m (visible) / 3.29e+02 m (sub-xi)
+    yield layer z = 2.5 M_b 1e+11 (r_Y 128 kpc) lambda 1e-09: d* 2.61e+02 m (visible) / 2.09e+03 m (sub-xi)
+    yield layer z = 2.5 M_b 1e+11 (r_Y 128 kpc) lambda 3e-02: d* 2.61e+02 m (visible) / 4.05e+02 m (sub-xi)
+    yield layer z = 2.5 M_b 1e+12 (r_Y 258 kpc) lambda 1e-09: d* 2.65e+02 m (visible) / 2.11e+03 m (sub-xi)
+    yield layer z = 2.5 M_b 1e+12 (r_Y 258 kpc) lambda 3e-02: d* 2.64e+02 m (visible) / 4.10e+02 m (sub-xi)
+    lambda at which the web's flattest zero's sub-xi core reaches xi: canonical: 2.1e-125, alt: 5.7e-126
+  [PASS] R7 [H7, pre-declared] STRONG COUPLING IN H_K1's REAL BACKGROUNDS, lambda in [1e-9, 0.03]: every strongly coupled region -- the core around a zero of the band-passed field below z_q0 (web zeros, cored halo centres 1e2-1e6 rho_bar) and the layer at H_K1's yield surfaces above it -- is smaller than xi in both phi sectors, and the metric-visible sector's length at the xi scale is < xi
+         measured: largest core/layer 7.2e+03 m vs xi 7.5e+14 m; visible ell_sc at xi <= 1.7e-01 m; the flattest zero's sub-xi core reaches xi only at lambda ~ 6e-126
+         reading:  strong coupling is NOT absent -- every zero of the band-passed field below z_q0 carries a strongly coupled core, for every lambda (ell ~ lambda_eff^(-1/8)) -- but the cores are sub-xi, where the filter hides phi from the metric; lambda does not control them
+
+======================================================================================================================
+V  (reported) THE lambda VERDICT UNDER H_K1
+======================================================================================================================
+  * REQUIRED > 0 below z_q0 (R4: no phi equation at lambda = 0 on exact FRW); any positive value un-freezes phi fast (>= 59 H).
+  * H_K1's cosmological gates are lambda-inert (sigma_8 spread 4e-07 for lambda <= 0.03; 2e-04 up to 274.4; R5).
+  * The MOND-regime observables are lambda-independent (to 1%) ONLY for lambda <= 0.030 (R6).  So lambda must be
+    DECLARED in (0, ~0.03] -- a regulator window, with the limit lambda -> 0+ smooth for every observable computed here.  Left free in
+    (0, 274.4] it is a knob: the MOND regime reads it (x9.6 in tracking speed, x93 in alpha_2 v^2) and no datum in the
+    record selects a value; the data bound it only from above (tracking, 274.4).
+  * Strong coupling does not select lambda either: the cores around every zero of the band-passed field below z_q0 exist for every
+    lambda (weak lambda^(-1/8) dependence) and are sub-xi (<= 7e+03 m) for lambda >= 1e-9 (R7).
+  [PASS] (reported) V (reported) the lambda verdict: required > 0, a regulator only in (0, ~0.03]; a knob if left free in (0.03, 274.4]
+         measured: inert window 0.030; upper bound 274.4
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  Item 3.  H_K1's ramp is a kink, not a jump (R1: PASS); FRW growth across z_q0 is well posed [MUTATE: hard step] (R2: FAIL:
+    |d sigma_8| 0e+00 at eps = 0.002, <= 1 crossing per mode, chord step shrinks x1.0);
+    the background's Friedmann function jumps up by <= 1e-05 rho_bar at z_q0 -> H continuous (R3: PASS);
+    lambda > 0 is required there and un-freezes phi fast (R4: PASS); the gates are lambda-inert (R5: PASS); the MOND regime is
+    lambda-independent only for lambda <= 0.030 (R6: PASS); strongly coupled cores sit at every zero of the band-passed field
+    below z_q0 and in the yield layers above it, all sub-xi for lambda >= 1e-9 (R7: PASS).
+  Not 'closed'.  kappa = 1/2 FITTED.  11/12 checks pass; load-bearing failures: 1.
+
+  11/12 checks pass; load-bearing failures: 1; wrote XR18b_ramp_lambda_results_MUTATE.json  (7 s)
+rc = 1

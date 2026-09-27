@@ -1,0 +1,142 @@
+XR18b (3 of 4) -- H_K1's YIELD SURFACES AND ZERO-FIELD POINTS: criterion B, the degenerate exponents, and cold matter
+(items 4 and 5 of the re-audit: XR18's A1/A2 and B4/B4b re-run at H_K1's yield level, plus the zeros H_K1 no longer plugs).
+
+WHY.  XR18 found, for FP9's H_Y: criterion B's causal part holds at the yield surfaces (0 violations in 649,056 root
+evaluations), C_L ~ d^(1/2) and C_T ~ d^(-1/2) there, and cold (pressureless) matter at a yield surface grows faster the
+finer it is resolved, Gamma ~ d_min^(-1/4), 20-44 H at 1 kpc and 204-451 H at the xi floor -- bounded by xi, but
+resolution-dependent in any particle-mesh (PM) run.  H_K1 moves the yield: y_th(z) = max(0, 2q) x 8 pi G rho_bar L/a0 is
+1e-3 - 9e-3 above z_q0 = 0.635 (larger than H_Y's, so the surfaces sit deeper inside the hosts) and ZERO below it.  With no
+yield below z_q0, the zeros of the band-passed field -- halo centres, saddles of the web -- are no longer plugged: there the
+P2 susceptibility dx/dy = 1/(2 sqrt(y)) diverges at a POINT, not on a surface.
+
+PRE-DECLARED HYPOTHESES (written into this file before its first full run; exploratory runs disclosed in XR18b_README.md:
+XR18's B4b recipe run on H_K1's hosts at z = 0.7-4 (Gamma(xi/10) = 190-374 H, p ~ 0.25), made before this file existed)
+ H1 [load-bearing] CRITERION B's CAUSAL PART AT H_K1's BACKGROUNDS: on DE12's hosts (z = 0.7, 0.8, 1, 2.5, 4 with H_K1's yield:
+    the yielded side approaching d/r_Y = 1e-12, the plug, zero field; z = 0.25 without a yield: the whole profile to 50 Mpc,
+    including the exponentially vanishing far field), every angle, alpha_c in {9.62e-14, 3.2e-9}, c_2 in {7.29e-3, 0.1, oo},
+    lambda in {0, 1e-9, 1e-3, 0.03, 1, 100}, h in {0, 0.3, 1}: every root U = omega^2/k^2 of FP7's block is real and >= 0.
+    (XR18b_symbol_channel S5 proves it for any C_phi >= 0; this is the numerical check on the real profiles.)  MUTATE's sign-
+    flipped yield must fail.
+ H2 [load-bearing] THE DEGENERATE EXPONENTS: at H_K1's surfaces C_L ~ d^(0.50 +- 0.02) and C_T ~ d^(-0.50 +- 0.02) (fits over
+    d/r_Y = 1e-10 .. 1e-5, all 30 hosts); at a zero of the band-passed field below z_q0 (a Gaussian-cored halo centre) C_L and
+    C_T ~ r^(0.50 +- 0.02) (fits over r/sigma = 1e-8 .. 1e-4): the zero is a degenerate POINT for phi's symbol.
+ H3 [load-bearing] COLD MATTER AT H_K1's YIELD SURFACES (XR18's B4b recipe, the isolated surface mode, 30 hosts at z = 0.7, 0.8,
+    1, 2.5, 4): Gamma ~ d_min^(-p), p in [0.20, 0.30] (fit over 40 xi <= d_min <= min(1 kpc, 0.01 r_Y)), saturating within 10%
+    between xi/3 and xi/10: bounded by xi, resolution-dependent below it; Gamma(xi/10)/H printed against XR18's 204-451 H.
+ H4 [load-bearing] COLD MATTER AT THE UNPLUGGED ZEROS BELOW z_q0 (the exact radial sector about a Gaussian-cored centre,
+    sigma = 1 kpc, central density 1e2, 1e4, 1e6 rho_bar, z = 0.25 and 0.5, both footings, the cold medium the core itself):
+    the l = 0 growth rate grows with resolution, Gamma ~ d_min^(-p) with p in [0.20, 0.30] (fit over 40 xi <= d_min <= sigma/30),
+    and saturates within 10% between xi/3 and xi/10 -- the same resolution-dependence as at a yield surface, now at every
+    zero of the band-passed field below z_q0; the web's own zeros (1-D local form Gamma^2 = 4 pi G rho (1 + 1/sqrt(s d)),
+    s = y_rms/L) are printed.
+The writer's expectation: H1 and H2 pass; H3 passes with Gamma(xi) of the same order as XR18's; H4 passes (and is the new
+liability: below z_q0 H_K1 has cold-matter resolution-dependence at points, where H_Y had plugs).
+
+  *** MUTATE=1: the yield term's sign is flipped (J_P2 - 2 y_th sqrt(Y)) -- A1 must FAIL ***
+
+  machinery: FP9 (FP6 inside) and DE12's host definitions exec'd read-only; XR18's radial functions extracted as text; a0 = 9.3603e-11 / 1.1312e-10; H_K1: L(1) = 622.2 kpc, y_th(1) = 2.628e-03   [0 s]
+
+======================================================================================================================
+K1  CONTROL: XR18's committed B4b (H_Y, 24 hosts) with XR18's OWN radial functions
+======================================================================================================================
+  [PASS] K1 CONTROL: XR18's committed B4b surface-mode rates for H_Y (24 hosts, every resolution d_min = 1 kpc .. xi/10) reproduced with XR18's own radial functions (text extracted, run on FP9's and DE12's machinery)
+         measured: max relative deviation 0.0e+00 over 202 rates
+    [1 s]
+
+======================================================================================================================
+K2  CONTROL: XR18's committed A2 slopes (H_Y's surfaces, 24 hosts) with this lane's profile code
+======================================================================================================================
+  [PASS] K2 CONTROL: XR18's committed A2 exponents at H_Y's yield surfaces (C_L and C_T slopes over d/r_Y = 1e-10..1e-5, 24 hosts) reproduced with XR18_yield_surface's own host_profile and r_yield (text extracted) and this lane's stiffness code
+         measured: max absolute deviation 0.0e+00
+
+======================================================================================================================
+A1  CRITERION B's CAUSAL PART AT H_K1's BACKGROUNDS: every root real and >= 0 (c_2 = 7.29e-3, 0.1, oo; lambda down to 1e-9)
+======================================================================================================================
+    hosts: 0.25/1e+10/canonical: r_Y none (no yield), 0/143514; 0.7/1e+10/canonical: r_Y 172.9 kpc, 560/114954; 0.8/1e+10/canonical: r_Y 109.3 kpc, 552/114954; 1.0/1e+10/canonical: r_Y 75.3 kpc, 548/114954; 2.5/1e+10/canonical: r_Y 44.0 kpc, 552/114954; 4.0/1e+10/canonical: r_Y 39.0 kpc, 553/114954
+  [FAIL] A1 [H1, pre-declared] CRITERION B's CAUSAL PART AT H_K1's BACKGROUNDS: on DE12's hosts at z = 0.7-4 (H_K1's yield: yielded side to d/r_Y = 1e-12, plug, zero field) and z = 0.25 (no yield: the whole profile to 50 Mpc), every angle, alpha_c at both ends, c_2 = 7.29e-3, 0.1, oo, lambda = 0, 1e-9, 1e-3, 0.03, 1, 100, h = 0, 0.3, 1: every root U of FP7's block is real and >= 0
+         measured: violations 16587 of 4309704 (root, cell) evaluations
+         reading (written for the unmutated theory; this MUTATE run fails the check):  S5 of XR18b_symbol_channel proves it for every C_phi >= 0; below z_q0 the zero-field points carry a U = 0 (non-propagating) root, a degenerate cone, which criterion B allows
+    [14 s]
+
+======================================================================================================================
+A2  THE DEGENERATE EXPONENTS: surfaces above z_q0 (C_L ~ d^1/2, C_T ~ d^-1/2); a zero-field centre below it (C ~ r^1/2)
+======================================================================================================================
+    above z_q0 (30 hosts): C_L slopes [0.0000, 0.0000], C_T slopes [0.0000, 0.0000]
+    zero-field centre (1e4 rho_bar, sigma = 1 kpc): C_L / C_T slopes in r: can z=0.25: 0.5001/0.5001, can z=0.5: 0.5002/0.5001, alt z=0.25: 0.5001/0.5001, alt z=0.5: 0.5001/0.5001  (stable enclosed fraction P(3/2, x^2/2) vs FP6's gfrac_smooth on x = 0.01-6: 1.4e-11)
+  [FAIL] A2 [H2, pre-declared] THE DEGENERATE EXPONENTS: at H_K1's yield surfaces C_L ~ d^(0.50 +- 0.02) and C_T ~ d^(-0.50 +- 0.02) (all 30 hosts above z_q0); at a zero-field centre below z_q0 C_L and C_T ~ r^(0.50 +- 0.02): a degenerate point
+         measured: surfaces: C_L [0.0000, 0.0000], C_T [0.0000, 0.0000]; centre: 0.5001/0.5001, 0.5002/0.5001, 0.5001/0.5001, 0.5001/0.5001
+         reading (written for the unmutated theory; this MUTATE run fails the check):  above z_q0 H_K1's surfaces carry H_Y's structure (XR18 A2/A3: well posed in the energy norm, not in C^1); below z_q0 the transverse stiffness no longer diverges -- both stiffnesses vanish at the zero
+
+======================================================================================================================
+B4 B4b  COLD MATTER AT H_K1's YIELD SURFACES: growth against resolution, and the xi filter's cap
+======================================================================================================================
+    0.7/1e+10/canonical    r_Y   172.9 kpc: surface mode Gamma/H at 1 kpc 24.6, 1 pc 138, xi/10 257; p = 0.250 (7 pts), saturation 0.2% | whole-domain (B4) p = 0.221
+    0.7/1e+10/alt          r_Y   172.9 kpc: surface mode Gamma/H at 1 kpc 25.8, 1 pc 145, xi/10 263; p = 0.250 (6 pts), saturation 0.2% | whole-domain (B4) p = 0.214
+    0.7/1e+11/canonical    r_Y   533.0 kpc: surface mode Gamma/H at 1 kpc 21.5, 1 pc 121, xi/10 224; p = 0.250 (7 pts), saturation 0.2% | whole-domain (B4) p = 0.245
+    0.7/1e+11/alt          r_Y   533.0 kpc: surface mode Gamma/H at 1 kpc 22.5, 1 pc 127, xi/10 230; p = 0.250 (6 pts), saturation 0.2% | whole-domain (B4) p = 0.244
+    0.7/1e+12/canonical    r_Y  1289.1 kpc: surface mode Gamma/H at 1 kpc 21.9, 1 pc 123, xi/10 228; p = 0.250 (7 pts), saturation 0.2% | whole-domain (B4) p = 0.250
+    0.7/1e+12/alt          r_Y  1289.1 kpc: surface mode Gamma/H at 1 kpc 22.9, 1 pc 129, xi/10 234; p = 0.250 (6 pts), saturation 0.2% | whole-domain (B4) p = 0.250
+    0.8/1e+10/canonical    r_Y   109.3 kpc: surface mode Gamma/H at 1 kpc 30.8, 1 pc 173, xi/10 322; p = 0.250 (7 pts), saturation 0.2% | whole-domain (B4) p = 0.207
+    0.8/1e+10/alt          r_Y   109.3 kpc: surface mode Gamma/H at 1 kpc 32.3, 1 pc 182, xi/10 329; p = 0.250 (6 pts), saturation 0.2% | whole-domain (B4) p = 0.196
+    0.8/1e+11/canonical    r_Y   342.3 kpc: surface mode Gamma/H at 1 kpc 26, 1 pc 146, xi/10 271; p = 0.250 (7 pts), saturation 0.2% | whole-domain (B4) p = 0.237
+    0.8/1e+11/alt          r_Y   342.3 kpc: surface mode Gamma/H at 1 kpc 27.2, 1 pc 153, xi/10 277; p = 0.250 (6 pts), saturation 0.2% | whole-domain (B4) p = 0.234
+    0.8/1e+12/canonical    r_Y   923.8 kpc: surface mode Gamma/H at 1 kpc 24.2, 1 pc 136, xi/10 252; p = 0.250 (7 pts), saturation 0.2% | whole-domain (B4) p = 0.250
+    0.8/1e+12/alt          r_Y   923.8 kpc: surface mode Gamma/H at 1 kpc 25.3, 1 pc 142, xi/10 258; p = 0.250 (6 pts), saturation 0.2% | whole-domain (B4) p = 0.250
+    1.0/1e+10/canonical    r_Y    75.3 kpc: surface mode Gamma/H at 1 kpc 35.1, 1 pc 197, xi/10 366; p = 0.250 (6 pts), saturation 0.2% | whole-domain (B4) p = 0.195
+    1.0/1e+10/alt          r_Y    75.3 kpc: surface mode Gamma/H at 1 kpc 36.8, 1 pc 206, xi/10 374; p = 0.250 (5 pts), saturation 0.2% | whole-domain (B4) p = 0.181
+    1.0/1e+11/canonical    r_Y   236.4 kpc: surface mode Gamma/H at 1 kpc 29.4, 1 pc 165, xi/10 306; p = 0.250 (7 pts), saturation 0.2% | whole-domain (B4) p = 0.231
+    1.0/1e+11/alt          r_Y   236.4 kpc: surface mode Gamma/H at 1 kpc 30.8, 1 pc 173, xi/10 313; p = 0.250 (6 pts), saturation 0.2% | whole-domain (B4) p = 0.225
+    1.0/1e+12/canonical    r_Y   660.8 kpc: surface mode Gamma/H at 1 kpc 26.5, 1 pc 149, xi/10 276; p = 0.250 (7 pts), saturation 0.2% | whole-domain (B4) p = 0.249
+    1.0/1e+12/alt          r_Y   660.8 kpc: surface mode Gamma/H at 1 kpc 27.8, 1 pc 156, xi/10 283; p = 0.250 (6 pts), saturation 0.2% | whole-domain (B4) p = 0.249
+    2.5/1e+10/canonical    r_Y    44.0 kpc: surface mode Gamma/H at 1 kpc nan, 1 pc 146, xi/10 271; p = 0.249 (6 pts), saturation 0.2% | whole-domain (B4) p = 0.175
+    2.5/1e+10/alt          r_Y    44.0 kpc: surface mode Gamma/H at 1 kpc nan, 1 pc 153, xi/10 277; p = 0.249 (5 pts), saturation 0.2% | whole-domain (B4) p = 0.157
+    2.5/1e+11/canonical    r_Y   128.2 kpc: surface mode Gamma/H at 1 kpc 22.9, 1 pc 128, xi/10 238; p = 0.250 (7 pts), saturation 0.2% | whole-domain (B4) p = 0.212
+    2.5/1e+11/alt          r_Y   128.2 kpc: surface mode Gamma/H at 1 kpc 24, 1 pc 134, xi/10 243; p = 0.250 (6 pts), saturation 0.2% | whole-domain (B4) p = 0.202
+    2.5/1e+12/canonical    r_Y   257.5 kpc: surface mode Gamma/H at 1 kpc 26.5, 1 pc 149, xi/10 277; p = 0.250 (7 pts), saturation 0.2% | whole-domain (B4) p = 0.232
+    2.5/1e+12/alt          r_Y   257.5 kpc: surface mode Gamma/H at 1 kpc 27.8, 1 pc 156, xi/10 283; p = 0.250 (6 pts), saturation 0.2% | whole-domain (B4) p = 0.227
+    4.0/1e+10/canonical    r_Y    39.0 kpc: surface mode Gamma/H at 1 kpc nan, 1 pc 102, xi/10 190; p = 0.249 (6 pts), saturation 0.2% | whole-domain (B4) p = 0.170
+    4.0/1e+10/alt          r_Y    39.0 kpc: surface mode Gamma/H at 1 kpc nan, 1 pc 107, xi/10 194; p = 0.249 (5 pts), saturation 0.2% | whole-domain (B4) p = 0.151
+    4.0/1e+11/canonical    r_Y    84.1 kpc: surface mode Gamma/H at 1 kpc 19.9, 1 pc 111, xi/10 207; p = 0.250 (6 pts), saturation 0.2% | whole-domain (B4) p = 0.199
+    4.0/1e+11/alt          r_Y    84.1 kpc: surface mode Gamma/H at 1 kpc 20.8, 1 pc 117, xi/10 212; p = 0.250 (5 pts), saturation 0.2% | whole-domain (B4) p = 0.185
+    4.0/1e+12/canonical    r_Y   126.0 kpc: surface mode Gamma/H at 1 kpc 30.6, 1 pc 172, xi/10 319; p = 0.250 (7 pts), saturation 0.2% | whole-domain (B4) p = 0.211
+    4.0/1e+12/alt          r_Y   126.0 kpc: surface mode Gamma/H at 1 kpc 32, 1 pc 180, xi/10 326; p = 0.250 (6 pts), saturation 0.2% | whole-domain (B4) p = 0.201
+  [PASS] (reported) B4 (reported) XR18's whole-domain version at H_K1's surfaces ([r_Y/2, 2 r_Y], 3 kpc .. 40 xi): mixes the surface mode with interior dense-gas modes where r_Y is small (as XR18 found at z >= 2.5)
+         measured: p in [0.151, 0.250]; saturation max 0.2%
+  [PASS] B4b [H3, pre-declared] COLD MATTER AT H_K1's YIELD SURFACES (the isolated surface mode, 30 hosts at z = 0.7-4): Gamma ~ d_min^(-p), p in [0.20, 0.30] (40 xi <= d_min <= min(1 kpc, 0.01 r_Y)), saturating within 10% between xi/3 and xi/10
+         measured: p in [0.249, 0.250]; saturation max 0.2%; Gamma(1 kpc)/H in [19.9, 36.8]; Gamma(xi/10)/H in [190, 374] (XR18, H_Y: 204-451)
+         reading:  bounded by xi, resolution-dependent below it: a PM run of cold particles is capped only by its cell size, exactly as under H_Y; H_K1's surfaces sit deeper in the hosts (r_Y 40-1300 kpc against H_Y's 4-4300), which barely moves the rates
+    [22 s]
+
+======================================================================================================================
+Z1  COLD MATTER AT THE UNPLUGGED ZEROS BELOW z_q0: the exact radial sector about a Gaussian-cored centre
+======================================================================================================================
+    can z = 0.25 centre 1e+02 rho_bar (s = 1.56e-24/m): Gamma/H at d_min = 30 pc 171, 1 pc 377, xi/10 619 (Newton alone 8.41); p = 0.233; saturation 0.0%
+    can z = 0.25 centre 1e+04 rho_bar (s = 1.56e-22/m): Gamma/H at d_min = 30 pc 540, 1 pc 1.19e+03, xi/10 1.96e+03 (Newton alone 84.1); p = 0.233; saturation 0.0%
+    can z = 0.25 centre 1e+06 rho_bar (s = 1.56e-20/m): Gamma/H at d_min = 30 pc 1.73e+03, 1 pc 3.78e+03, xi/10 6.2e+03 (Newton alone 841); p = 0.231; saturation 0.0%
+    can z = 0.5 centre 1e+02 rho_bar (s = 2.70e-24/m): Gamma/H at d_min = 30 pc 169, 1 pc 373, xi/10 612 (Newton alone 9.54); p = 0.233; saturation 0.0%
+    can z = 0.5 centre 1e+04 rho_bar (s = 2.70e-22/m): Gamma/H at d_min = 30 pc 535, 1 pc 1.18e+03, xi/10 1.94e+03 (Newton alone 95.4); p = 0.233; saturation 0.0%
+    can z = 0.5 centre 1e+06 rho_bar (s = 2.70e-20/m): Gamma/H at d_min = 30 pc 1.72e+03, 1 pc 3.74e+03, xi/10 6.13e+03 (Newton alone 954); p = 0.229; saturation 0.0%
+    alt z = 0.25 centre 1e+02 rho_bar (s = 1.29e-24/m): Gamma/H at d_min = 30 pc 179, 1 pc 394, xi/10 633 (Newton alone 8.41); p = 0.240; saturation 0.0%
+    alt z = 0.25 centre 1e+04 rho_bar (s = 1.29e-22/m): Gamma/H at d_min = 30 pc 567, 1 pc 1.25e+03, xi/10 2e+03 (Newton alone 84.1); p = 0.240; saturation 0.0%
+    alt z = 0.25 centre 1e+06 rho_bar (s = 1.29e-20/m): Gamma/H at d_min = 30 pc 1.81e+03, 1 pc 3.95e+03, xi/10 6.34e+03 (Newton alone 841); p = 0.236; saturation 0.0%
+    alt z = 0.5 centre 1e+02 rho_bar (s = 2.23e-24/m): Gamma/H at d_min = 30 pc 177, 1 pc 390, xi/10 626 (Newton alone 9.54); p = 0.240; saturation 0.0%
+    alt z = 0.5 centre 1e+04 rho_bar (s = 2.23e-22/m): Gamma/H at d_min = 30 pc 560, 1 pc 1.23e+03, xi/10 1.98e+03 (Newton alone 95.4); p = 0.240; saturation 0.0%
+    alt z = 0.5 centre 1e+06 rho_bar (s = 2.23e-20/m): Gamma/H at d_min = 30 pc 1.8e+03, 1 pc 3.91e+03, xi/10 6.28e+03 (Newton alone 954); p = 0.234; saturation 0.0%
+    the web's zeros at mean density (1-D local form, s = y_rms/L): z = 0.0: PM cell 50 kpc 6.13, 1 kpc 16.2, 1 pc 91.1, xi 231; z = 0.25: PM cell 50 kpc 6.62, 1 kpc 17.5, 1 pc 98.1, xi 249; z = 0.5: PM cell 50 kpc 6.71, 1 kpc 17.7, 1 pc 99.2, xi 251  [Gamma/H]
+  [PASS] Z1 [H4, pre-declared] COLD MATTER AT THE UNPLUGGED ZEROS BELOW z_q0: about a Gaussian-cored centre (1e2-1e6 rho_bar, z = 0.25 and 0.5, both footings) the exact l = 0 growth rate scales as d_min^(-p), p in [0.20, 0.30] (40 xi <= d_min <= sigma/30), saturating within 10% between xi/3 and xi/10
+         measured: p in [0.229, 0.240]; saturation max 0.0%; Gamma(xi/10)/Gamma_Newton in [6.43, 75.23]; web zeros at mean density: 6.6 H at a 50 kpc cell -> 249 H at xi (z = 0.25)
+         reading:  below z_q0 H_K1 carries the yield surface's cold-matter resolution-dependence to every zero of the band-passed field (halo centres, saddles): H_Y plugged those points (y_th > 0 at every z); a PM run must show convergence there or give the matter a physical width
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  Item 5 (criterion B).  Every root of FP7's block is real and >= 0 at H_K1's backgrounds [MUTATE: sign-flipped yield] (16587 violations in 4309704;
+    A1: FAIL); the surfaces above z_q0 carry H_Y's degenerate exponents and the zeros below it are degenerate points (A2: FAIL).
+  Item 4 (cold matter).  At H_K1's yield surfaces the isolated surface mode grows as d_min^(-p), p = 0.249-0.250,
+    capped at xi: 190-374 H (XR18/H_Y: 204-451 H) -- resolution-dependent (B4b: PASS).  Below z_q0 the same
+    d_min^(-1/4) growth appears at every zero of the band-passed field, which H_K1 no longer plugs: p = 0.229-0.240, capped at xi
+    (Z1: PASS); at the web's zeros at mean density ~6.6 H at a 50 kpc cell, 249 H at xi.
+  Not 'closed'.  kappa = 1/2 FITTED.  5/7 checks pass; load-bearing failures: 2.
+
+  5/7 checks pass; load-bearing failures: 2; wrote XR18b_yield_surfaces_results_MUTATE.json  (23 s)
+rc = 1

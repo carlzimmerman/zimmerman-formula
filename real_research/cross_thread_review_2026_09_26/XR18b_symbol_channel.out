@@ -1,0 +1,225 @@
+XR18b (1 of 4) -- H_K1's LINEAR CONSTRAINT SYMBOLS AND ITS <K>_h CHANNEL, AUDITED AS AN ACTION (items 1 and 2 of the re-audit).
+
+WHY.  XR18 (53854a459) found FP13's state separator H_S linearly ILL POSED: B read a Newtonian-order leaf functional, so
+dS/dB (O(V)) x dB/d delta (O(1/V)) was an O(1) local term, R_B = 6.9-8.1, and the psi-constraint symbol k^2 (1 - R_B) changed
+sign on k = 0.12-1.62 h/Mpc.  FP19 (0c18c582f) repaired it with H_K1, a separator that reads only the leaf average <K>_h
+(per 1/16 pi G, c = 1, alpha = a0/c^2):
+    chi = (S_xi - S_B) phi,  B = L^2/2,  L = L_Lambda 3 Lambda/<K>_h^2  (L_Lambda = 2.9 Mpc, n = 2),
+    J_Y = J_P2 + 2 y_th sqrt(Y),  y_th = max(0, 1 + Omega_r - 9 Lambda/<K>_h^2) (<K>_h^2/3 - Lambda) L/alpha  (c_y = 2, the q = 0 ramp).
+FP19 H3 reports the psi-symbol "exactly 1, min +0.995", H4 a lattice B-part that vanishes for every plane wave.  Its symbol is
+S = 1 + kappa h^2 - R_B - eps_K with R_B = kappa = 0 for a <K>_h read, and eps_K = 4.96e-3 SUBTRACTED: the raw value of XR18 C1's
+<K>_h-channel proxy in the halo reading at z = 0.25, which does not converge in its lower mass cutoff.  This lane asks whether
+the subtraction is legitimate or hides a real term, and what varying the FULL action through <K>_h actually produces.
+
+WHAT THE VARIATION THROUGH <K>_h PRODUCES (derived here, exact in the ADM variables; sympy verifies it in S2):
+  <K>_h = Q/V, Q = Int sqrt(h) K d^3x, V = Int sqrt(h) d^3x (the leaf average weighs the leaf's proper volume).  For a plane wave
+  (k != 0) the first variation of <K>_h vanishes but the second does not: d^2<K>_h = (d^2 Q - <K>_h d^2 V)/V.  The action depends
+  on <K>_h through the whole leaf (dS/d<K>_h = O(V)), so
+      d^2 S  contains  (dS/d<K>_h) d^2<K>_h = C(t) d^2 Int [sqrt(h) K - <K>_h sqrt(h)] d^3x,   C = <N dL/d<K>_h>_h,
+  a LOCAL operator at EVERY k with a leaf-averaged coefficient -- not a k = 0 term.  In unitary (khronon) gauge, N = 1 + A,
+  N_i = d_i beta, h_ij = a^2 e^(2 zeta) delta_ij:
+      L_C^(2) = C a^3 [3 H A^2 - 9 H A zeta - 3 A zeta' + 9 zeta zeta' + a^-2 A lap beta].
+  FP19 H4's lattice read (B a LINEAR function of the leaf mean of psi) has d^2 B = 0 by construction; the real <K>_h does not.
+  Its size: 3 H C = rho_extra = -d e_M/d ln<K>_h (the MOND sector's energy density e_M varied at fixed fields: through B via
+  the chassis's MOND-binding rate dS/dB = V 4 pi G rho_bar^2 I(B) (FP19 A2's envelope identity) and through y_th via
+  d e_M/d y_th = a0^2 <x>/(4 pi G)), and every C-entry of the quadratic action is eps_C = C/(2 M_p^2 H) = rho_extra/(2 rho_crit)
+  times a GR entry of the same structure (or eps_C (aH/k)^2 times a GR k^2 entry).
+
+PRE-DECLARED HYPOTHESES (written into this file before its first full run; exploratory runs disclosed in XR18b_README.md:
+a sizing of I(L), I_halo and <x> on H_K1's grown state, a sympy prototype of the ADM expansion and of the minisuperspace
+identities, and a reload test of FP19's machinery)
+ H1 [load-bearing] THE NEWTONIAN psi-SYMBOL IS POSITIVE FOR EVERY SUB-HORIZON k: on H_K1's own grown state (z = 0, 0.25, 0.5,
+    z_q0, 0.8, 1, 1.5, 2, 2.5; both footings; both chords; k from 10 aH/c to 1e3 h/Mpc, where the Newtonian reading applies)
+    min S >= 0.99, where S = FP19's symbol (R_B = kappa = 0 for the headline's <K>_h read; eps_K NOT subtracted) minus the <K>_h
+    channel's bound Delta(k, z) = 2|eps_C| + 9|eps_C| (aH/k)^2 (1 + |dln C/dln a + 3|) (the summed relative changes the
+    C-entries make to the constraint's coefficients, S2's table: A^2 and A lap beta and A zeta' at eps_C, A zeta at
+    9 eps_C (aH/k)^2, the zeta zeta' mass term at 9 eps_C (aH/k)^2 |dln C/dln a + 3|).  Below 10 aH/c the relativistic block
+    (H2) is the object; Delta at k = 1e-4 h/Mpc is reported.  MUTATE's variance-fixed B must bring back the ill-posed band
+    (min S < 0).
+ H2 [load-bearing] THE CONSTRAINT BLOCK IS UNCHANGED: with Brown-Kuchar dust, in unitary gauge about flat FRW, the determinant
+    of the constrained block (lapse, shift, dust multiplier [, the CMC multiplier]) with the <K>_h channel equals the one
+    without it IDENTICALLY (sympy), at finite c_2 and at c_2 = oo; the C-entries are eps_C x the GR entries (A^2: 2 eps_C,
+    A lap beta: eps_C, A zeta': eps_C) or eps_C (aH/k)^2 x a GR k^2 entry (A zeta, zeta zeta'); the same holds with the
+    leaf average weighted by N sqrt(h) (robustness).
+ H3 [load-bearing] THE CHANNEL IS (v/c)^2-SMALL ON THE REAL STATE: |eps_C| <= 1e-4 and |rho_extra|/rho_bar <= 1e-4 at every
+    z = 0 .. 2.5, both footings, in every reading of the web: B-channel from I(L) (per-mode and rms chords on H_K1's grown
+    linear state; FP19's halo reading), y-channel from <x> (Gaussian reading and the reading-free Jensen bound
+    <x> <= <y>^(1/2) <= y_rms^(1/2) of the band-passed NL field, since x_P2(y) <= sqrt(y)).
+ H4 [load-bearing] eps_K IS NOT THE SIZE OF ANY TERM, AND ITS SUBTRACTION HIDES NONE: FP19's eps_K (4.96e-3) is XR18 C1's
+    proxy a0^2 <x>^3/(6 pi G) with the halo reading's <x> at z = 0.25; that <x> (M_min = 1e8) exceeds the Jensen bound
+    y_rms^(1/2) (the dilute-halo sum counts overlapping deep-MOND fields as scalars) and does not converge in M_min, while the
+    quantity the variation actually needs through B, I_halo = dS/dB/(V 4 pi G rho_bar^2), DOES converge (1e7 vs 1e8 within 5%);
+    the derived channel is below eps_K/10 everywhere (the subtraction is conservative).
+ H5 [load-bearing] THE phi-SYMBOL NEVER CHANGES SIGN: for every C_phi >= 0 (J_Y's C_T = (F_P2 + y_th)/x, C_L = F_P2'(x),
+    y_th >= 0) all roots U = omega^2/k^2 of FP7's block are real and >= 0 at finite c_2 and at c_2 = oo (sympy: the
+    discriminant is (A - B)^2 + S^2 + 2 S (A + B)); C_phi = 0 only at zero field (z < z_q0, no yield) -- a degenerate, not a
+    negative, symbol; the Gaussian state's volume fraction with C_L < 1e-2 is printed.
+ H6 [load-bearing] CONSERVATION AND THE BIANCHI IDENTITY: (i) for the full action with the separator varied through <K>_h
+    (minisuperspace, explicit test functions of <K> and a including a smoothed ramp) the reparametrisation Noether identity
+    N dE_N/dt - a' E_a = 0 holds identically; (ii) with the separator's read FROZEN (C prescribed in time, as a scoring or PM
+    run does) it fails, and on the real state the Friedmann constraint drifts at |3 H' C|/(3 H rho_bar) <= 1e-4 per Hubble
+    rate; (iii) a read of the scale factor instead (L(a), y_th(a): the PM engine's form) satisfies it identically;
+    (iv) on periodic 3-D leaves the channel's lapse term (a leaf-uniform coefficient) exerts no net force on a real density
+    field (< 1e-12 relative), while a position-weighted coefficient does (> 1e-4): translation invariance holds.
+The writer's expectation: all six pass (H1 because the channel is (v/c)^2-small, not because it is absent).
+
+  machinery: FP19's module + main() slices exec'd read-only (FP13 -> FP9 -> FP6 inside); a0 = 9.3603e-11 / 1.1312e-10 m/s^2; q = 0 at z = 0.6348   [0 s]
+
+======================================================================================================================
+K1  CONTROL: FP19's committed H_K1 headline with FP19's own code (KiDS numbers PRE-FP20: a code control only)
+======================================================================================================================
+    sigma_8 can/rms: 1.011722, can/permode: 1.013382, alt/rms: 1.013228, alt/permode: 1.015061; flagships -0.0100..-0.0070 dex; SPARC 3.88e-03; KiDS (pre-FP20) {'canonical': -7.841032537731863, 'alt': -10.669596977515795}
+  [PASS] K1 CONTROL: FP19's committed H_K1 headline (sigma_8 x4, forest x4, flagships x4, SPARC x2, KiDS at z = 0.25/0.4/0.7 x6 [pre-FP20 projection]) and its L(z) and y_th(z) tables, with FP19's own code exec'd read-only; this lane's closed forms equal FP19's L_K and y_tied
+         measured: max relative deviation 0.0e+00 over 35 numbers; closed forms vs FP19 0.0e+00
+
+======================================================================================================================
+K2  CONTROL: FP19's committed H3 symbol tables (headline and FP13's H_S) with FP19's own symbol_table
+======================================================================================================================
+    eps_K = 4.957229e-03 (FP19: 4.957229e-03); headline min S = +0.995043 (= 1 - eps_K: True); H_S min S = -8.811
+  [PASS] K2 CONTROL: FP19's committed H3 symbol tables -- the headline's S(k, z) = 1 - eps_K (R_B = kappa = 0 for a <K>_h read) and FP13's H_S band -- with FP19's own symbol_table and eps_K (recomputed by FP19's K_channel)
+         measured: max deviation 0.0e+00; eps_K 4.9572e-03 vs committed 4.9572e-03
+
+======================================================================================================================
+K3  CONTROL: XR18's committed N3 (R_B on FP13's headline) with XR18's OWN function text, run on FP13's machinery
+======================================================================================================================
+    per-mode max R_B at z <= 0.635: canonical 6.92-7.47, alt 7.62-8.13; R_B >= 1 on k = 0.12-1.62 h/Mpc (the psi-symbol k^2 (1 - R_B) changes sign there)
+  [PASS] K3 CONTROL: XR18's committed N3 on FP13's H_S -- max R_B (per-mode and rms chords) at z = 0..3 on both footings and the k-band where R_B >= 1 -- reproduced with XR18's own functions: R_B = 6.9-7.5 (canonical) / 7.6-8.1 (alt) at z <= 0.635 and the sign change on k = 0.12-1.62 h/Mpc
+         measured: max relative deviation 0.0e+00; canonical 6.92-7.47, alt 7.62-8.13; band 0.12-1.62 h/Mpc
+    [2 s]
+
+======================================================================================================================
+K4 S2  THE <K>_h CHANNEL IN THE ADM VARIABLES: second-order expansion about flat FRW (unitary gauge, sympy)
+======================================================================================================================
+    background (C = 0): 3*H**2*M_p2 - Lambda*M_p2 - rho_b = 0 ; 9*H**2*M_p2 + 6*Hdot*M_p2 - 3*Lambda*M_p2 = 0
+    background with the channel: -3*C*H + 3*H**2*M_p2 - Lambda*M_p2 - rho_b = 0 ; -9*C*H - 3*Cdot + 9*H**2*M_p2 + 6*Hdot*M_p2 - 3*Lambda*M_p2 = 0   (rho_extra = 3 H C)
+    second-order channel (sqrt h weight) - C a^3 [3H A^2 - 9H A zeta - 3 A zeta' + 9 zeta zeta' + a^-2 A lap beta] = total x-derivative: True
+  [PASS] K4 CONTROL: this lane's second-order ADM expansion about flat FRW gives, at C = 0, the standard Friedmann pair (3 M_p^2 H^2 = rho_bar + M_p^2 Lambda, 2 H' + 3 H^2 = Lambda) and, for the channel, the hand-derived operator C a^3 [3 H A^2 - 9 H A zeta - 3 A zeta' + 9 zeta zeta' + a^-2 A lap beta] up to a total derivative
+         measured: Friedmann pair True; channel operator True
+    [c_2 finite; leaf weight sqrt h] constrained fields ['A', 'beta', 'delta']: det = M_p2*a_0**5*c_2*k**4*rho_b**2  (without the channel: M_p2*a_0**5*c_2*k**4*rho_b**2); A-A entry a_0**3*(6*C*H - 9*H**2*M_p2*c_2 - 6*H**2*M_p2 + rho_b); A-beta entry -a_0*k**2*(C - 3*H*M_p2*c_2 - 2*H*M_p2)
+    [c_2 finite; leaf weight N sqrt h] constrained fields ['A', 'beta', 'delta']: det = M_p2*a_0**5*c_2*k**4*rho_b**2  (without the channel: M_p2*a_0**5*c_2*k**4*rho_b**2); A-A entry -a_0**3*(9*H**2*M_p2*c_2 + 6*H**2*M_p2 - rho_b); A-beta entry H*M_p2*a_0*k**2*(3*c_2 + 2)
+    [c_2 = oo (CMC); leaf weight sqrt h] constrained fields ['A', 'beta', 'delta', 'mu']: det = M_p2**2*a_0**8*k**4*rho_b**2  (without the channel: M_p2**2*a_0**8*k**4*rho_b**2); A-A entry a_0**3*(6*C*H - 6*H**2*M_p2 + rho_b); A-beta entry -a_0*k**2*(C - 2*H*M_p2)
+    [c_2 = oo (CMC); leaf weight N sqrt h] constrained fields ['A', 'beta', 'delta', 'mu']: det = M_p2**2*a_0**8*k**4*rho_b**2  (without the channel: M_p2**2*a_0**8*k**4*rho_b**2); A-A entry -a_0**3*(6*H**2*M_p2 - rho_b); A-beta entry 2*H*M_p2*a_0*k**2
+    entry A^2        : GR (-6*H**2*M_p2 + rho_b)*a(t)**3/2 | channel 3*C*H*a(t)**3
+    entry A lap beta : GR -2*H*M_p2*a(t) | channel C*a(t)
+    entry A zeta'    : GR 6*H*M_p2*a(t)**3 | channel -3*C*a(t)**3
+    entry A zeta     : GR 3*(3*H**2*M_p2 - Lambda*M_p2 - rho_b)*a(t)**3 | channel -9*C*H*a(t)**3
+    entry A lap zeta : GR -2*M_p2*a(t) | channel 0
+    ratios channel/GR: A^2 -2*eps_C (vs GR's -3 M_p^2 H^2 a^3); A lap beta -eps_C; A zeta' -eps_C; A zeta (k^0) vs GR's A lap zeta (k^2): -9*H**2*eps_C*a(t)**2/k**2
+  [PASS] S2 [H2, pre-declared] THE CONSTRAINED BLOCK IS UNCHANGED BY THE <K>_h CHANNEL: with Brown-Kuchar dust in unitary gauge about flat FRW, det(lapse, shift, dust multiplier [, CMC multiplier]) with the channel equals det without it IDENTICALLY, at finite c_2 and at c_2 = oo, for the sqrt(h) and the N sqrt(h) leaf weights; the channel's entries are eps_C x GR's same-structure entries (A^2: -2 eps_C, A lap beta: -eps_C, A zeta': -eps_C) or eps_C (aH/k)^2 x a GR k^2 entry (A zeta)
+         measured: c_2 finite/sqrt h: identical; c_2 finite/N sqrt h: identical; c_2 = oo (CMC)/sqrt h: identical; c_2 = oo (CMC)/N sqrt h: identical; ratios A^2 -2*eps_C, A lap beta -eps_C, A zeta' -eps_C, A zeta -9*H**2*eps_C*a(t)**2/k**2
+         reading:  the dust multiplier's row (-a^3 rho_bar, 0, 0) makes the determinant independent of the A-A and A-beta entries, the only ones the channel touches: the constraint stays solvable for ANY C; the channel moves the solution by O(eps_C), not its solvability
+    [7 s]
+
+======================================================================================================================
+S3  THE CHANNEL'S SIZE ON H_K1's REAL STATE: rho_extra = 3 H C = -d e_M/d ln<K>_h, both channels, every reading
+======================================================================================================================
+    can z = 0.0000: L  1989.8 kpc, y_th 0.00e+00; I = 114 (per-mode) / 113 (rms) / 0.188 (halo) -> B-channel |rho_extra|/rho_bar 2.15e-05 (linear) / 3.5e-08 (halo); y_rms 6.39e-03, <x> Gauss 0.069 <= Jensen 0.080; y-channel 0.00e+00; total 2.15e-05; eps_C 3.37e-06
+    can z = 0.2500: L  1531.6 kpc, y_th 0.00e+00; I = 81 (per-mode) / 90.5 (rms) / 0.12 (halo) -> B-channel |rho_extra|/rho_bar 1.97e-05 (linear) / 2.6e-08 (halo); y_rms 8.27e-03, <x> Gauss 0.078 <= Jensen 0.091; y-channel 0.00e+00; total 1.97e-05; eps_C 4.65e-06
+    can z = 0.5000: L  1139.9 kpc, y_th 0.00e+00; I = 69.2 (per-mode) / 86 (rms) / 0.0915 (halo) -> B-channel |rho_extra|/rho_bar 1.79e-05 (linear) / 1.9e-08 (halo); y_rms 9.73e-03, <x> Gauss 0.084 <= Jensen 0.099; y-channel 0.00e+00; total 1.79e-05; eps_C 5.44e-06
+    can z = 0.6348: L   967.0 kpc, y_th 0.00e+00; I = 66.4 (per-mode) / 85.4 (rms) / 0.083 (halo) -> B-channel |rho_extra|/rho_bar 1.66e-05 (linear) / 1.6e-08 (halo); y_rms 1.01e-02, <x> Gauss 0.085 <= Jensen 0.101; y-channel 5.55e-06; total 2.21e-05; eps_C 7.38e-06
+    can z = 0.7000: L   892.9 kpc, y_th 4.98e-04; I = 56.2 (per-mode) / 67.8 (rms) / 0.0238 (halo) -> B-channel |rho_extra|/rho_bar 1.26e-05 (linear) / 4.4e-09 (halo); y_rms 1.05e-02, <x> Gauss 0.084 <= Jensen 0.102; y-channel 1.13e-05; total 2.39e-05; eps_C 8.26e-06
+    can z = 0.8000: L   790.5 kpc, y_th 1.25e-03; I = 39.8 (per-mode) / 20 (rms) / 0.0135 (halo) -> B-channel |rho_extra|/rho_bar 6.89e-06 (linear) / 2.3e-09 (halo); y_rms 1.07e-02, <x> Gauss 0.081 <= Jensen 0.103; y-channel 9.31e-06; total 1.62e-05; eps_C 5.89e-06
+    can z = 1.0000: L   622.2 kpc, y_th 2.63e-03; I = 3.41 (per-mode) / 3.08e-300 (rms) / 0.00773 (halo) -> B-channel |rho_extra|/rho_bar 5.03e-07 (linear) / 1.1e-09 (halo); y_rms 1.14e-02, <x> Gauss 0.077 <= Jensen 0.107; y-channel 6.32e-06; total 6.83e-06; eps_C 2.68e-06
+    can z = 1.5000: L   355.8 kpc, y_th 5.20e-03; I = 2.99e-300 (per-mode) / 2.99e-300 (rms) / 0.00478 (halo) -> B-channel |rho_extra|/rho_bar 2.81e-307 (linear) / 4.5e-10 (halo); y_rms 1.22e-02, <x> Gauss 0.065 <= Jensen 0.110; y-channel 2.31e-06; total 2.31e-06; eps_C 1.01e-06
+    can z = 2.0000: L   217.1 kpc, y_th 6.73e-03; I = 2.92e-300 (per-mode) / 2.92e-300 (rms) / 0.00423 (halo) -> B-channel |rho_extra|/rho_bar 1.77e-307 (linear) / 2.6e-10 (halo); y_rms 1.24e-02, <x> Gauss 0.055 <= Jensen 0.111; y-channel 8.95e-07; total 8.96e-07; eps_C 4.14e-07
+    can z = 2.5000: L   140.6 kpc, y_th 7.63e-03; I = 2.83e-300 (per-mode) / 2.83e-300 (rms) / 0.00405 (halo) -> B-channel |rho_extra|/rho_bar 1.14e-307 (linear) / 1.6e-10 (halo); y_rms 1.21e-02, <x> Gauss 0.047 <= Jensen 0.110; y-channel 3.77e-07; total 3.77e-07; eps_C 1.79e-07
+    alt z = 0.0000: L  1989.8 kpc, y_th 0.00e+00; I = 123 (per-mode) / 119 (rms) / 0.207 (halo) -> B-channel |rho_extra|/rho_bar 2.32e-05 (linear) / 3.9e-08 (halo); y_rms 5.29e-03, <x> Gauss 0.063 <= Jensen 0.073; y-channel 0.00e+00; total 2.32e-05; eps_C 3.64e-06
+    alt z = 0.2500: L  1531.6 kpc, y_th 0.00e+00; I = 88.3 (per-mode) / 97.3 (rms) / 0.132 (halo) -> B-channel |rho_extra|/rho_bar 2.12e-05 (linear) / 2.9e-08 (halo); y_rms 6.85e-03, <x> Gauss 0.071 <= Jensen 0.083; y-channel 0.00e+00; total 2.12e-05; eps_C 4.99e-06
+    alt z = 0.5000: L  1139.9 kpc, y_th 0.00e+00; I = 75.9 (per-mode) / 93.8 (rms) / 0.101 (halo) -> B-channel |rho_extra|/rho_bar 1.96e-05 (linear) / 2.1e-08 (halo); y_rms 8.05e-03, <x> Gauss 0.077 <= Jensen 0.090; y-channel 0.00e+00; total 1.96e-05; eps_C 5.93e-06
+    alt z = 0.6348: L   967.0 kpc, y_th 0.00e+00; I = 73.1 (per-mode) / 93.8 (rms) / 0.0914 (halo) -> B-channel |rho_extra|/rho_bar 1.82e-05 (linear) / 1.8e-08 (halo); y_rms 8.37e-03, <x> Gauss 0.078 <= Jensen 0.092; y-channel 6.10e-06; total 2.43e-05; eps_C 8.10e-06
+    alt z = 0.7000: L   892.9 kpc, y_th 4.12e-04; I = 61.9 (per-mode) / 74.6 (rms) / 0.0263 (halo) -> B-channel |rho_extra|/rho_bar 1.39e-05 (linear) / 4.9e-09 (halo); y_rms 8.66e-03, <x> Gauss 0.077 <= Jensen 0.093; y-channel 1.24e-05; total 2.63e-05; eps_C 9.09e-06
+    alt z = 0.8000: L   790.5 kpc, y_th 1.03e-03; I = 43.9 (per-mode) / 22.3 (rms) / 0.0149 (halo) -> B-channel |rho_extra|/rho_bar 7.60e-06 (linear) / 2.6e-09 (halo); y_rms 8.83e-03, <x> Gauss 0.075 <= Jensen 0.094; y-channel 1.02e-05; total 1.78e-05; eps_C 6.48e-06
+    alt z = 1.0000: L   622.2 kpc, y_th 2.17e-03; I = 3.76 (per-mode) / 3.08e-300 (rms) / 0.00857 (halo) -> B-channel |rho_extra|/rho_bar 5.53e-07 (linear) / 1.3e-09 (halo); y_rms 9.39e-03, <x> Gauss 0.070 <= Jensen 0.097; y-channel 6.95e-06; total 7.50e-06; eps_C 2.95e-06
+    alt z = 1.5000: L   355.8 kpc, y_th 4.31e-03; I = 2.99e-300 (per-mode) / 2.99e-300 (rms) / 0.00531 (halo) -> B-channel |rho_extra|/rho_bar 2.81e-307 (linear) / 5.0e-10 (halo); y_rms 1.01e-02, <x> Gauss 0.059 <= Jensen 0.100; y-channel 2.54e-06; total 2.54e-06; eps_C 1.11e-06
+    alt z = 2.0000: L   217.1 kpc, y_th 5.57e-03; I = 2.92e-300 (per-mode) / 2.92e-300 (rms) / 0.00471 (halo) -> B-channel |rho_extra|/rho_bar 1.77e-307 (linear) / 2.8e-10 (halo); y_rms 1.03e-02, <x> Gauss 0.051 <= Jensen 0.101; y-channel 9.84e-07; total 9.85e-07; eps_C 4.55e-07
+    alt z = 2.5000: L   140.6 kpc, y_th 6.32e-03; I = 2.83e-300 (per-mode) / 2.83e-300 (rms) / 0.00451 (halo) -> B-channel |rho_extra|/rho_bar 1.14e-307 (linear) / 1.8e-10 (halo); y_rms 1.00e-02, <x> Gauss 0.043 <= Jensen 0.100; y-channel 4.15e-07; total 4.15e-07; eps_C 1.97e-07
+    control: this lane's halo_rate with M_min exposed equals FP19's at M_min = 1e8: 0.0e+00; dln C/dln a over z = 0..2.5: -4.2 .. +5.4
+  [PASS] S3 [H3, pre-declared] THE CHANNEL IS (v/c)^2-SMALL ON THE REAL STATE: |eps_C| <= 1e-4 and |rho_extra|/rho_bar <= 1e-4 at every z = 0..2.5, both footings, every reading (B-channel: per-mode, rms and halo I(L); y-channel: Gaussian <x> and the reading-free Jensen bound y_rms^(1/2))
+         measured: max |rho_extra|/rho_bar 2.63e-05; max |eps_C| 9.09e-06 (z = 0.7)
+         reading:  the B-channel dominates below z_q0 (the chassis's MOND-binding rate I ~ 60-120 at L ~ 1-2 Mpc, times 8 pi G rho_bar L^2/c^2 ~ 2e-7); the y-channel is on only above z_q0; both readings of the web agree it is ~1e-5 or less
+
+======================================================================================================================
+S1  THE NEWTONIAN psi-CONSTRAINT SYMBOL OF THE HEADLINE's READ, EVERY k, z = 0-2.5, BOTH FOOTINGS
+======================================================================================================================
+    can z = 0.000: FP19 symbol (eps_K undone) min +1.000000; channel bound, sub-horizon max 7.94e-06 (at k = 1e-4 h/Mpc, reported: 7.36e-04; dln C/dln a -2.0); S min +0.999992
+    can z = 0.250: FP19 symbol (eps_K undone) min +1.000000; channel bound, sub-horizon max 1.09e-05 (at k = 1e-4 h/Mpc, reported: 8.98e-04; dln C/dln a -1.9); S min +0.999989
+    can z = 0.635: FP19 symbol (eps_K undone) min +1.000000; channel bound, sub-horizon max 1.78e-05 (at k = 1e-4 h/Mpc, reported: 1.35e-03; dln C/dln a -4.1); S min +0.999982
+    can z = 0.800: FP19 symbol (eps_K undone) min +1.000000; channel bound, sub-horizon max 1.84e-05 (at k = 1e-4 h/Mpc, reported: 4.74e-03; dln C/dln a +5.4); S min +0.999982
+    can z = 2.500: FP19 symbol (eps_K undone) min +1.000000; channel bound, sub-horizon max 5.36e-07 (at k = 1e-4 h/Mpc, reported: 1.83e-04; dln C/dln a +4.0); S min +0.999999
+    alt z = 0.000: FP19 symbol (eps_K undone) min +1.000000; channel bound, sub-horizon max 7.94e-06 (at k = 1e-4 h/Mpc, reported: 7.36e-04; dln C/dln a -2.0); S min +0.999992
+    alt z = 0.250: FP19 symbol (eps_K undone) min +1.000000; channel bound, sub-horizon max 1.09e-05 (at k = 1e-4 h/Mpc, reported: 8.98e-04; dln C/dln a -1.9); S min +0.999989
+    alt z = 0.635: FP19 symbol (eps_K undone) min +1.000000; channel bound, sub-horizon max 1.78e-05 (at k = 1e-4 h/Mpc, reported: 1.35e-03; dln C/dln a -4.1); S min +0.999982
+    alt z = 0.800: FP19 symbol (eps_K undone) min +1.000000; channel bound, sub-horizon max 1.84e-05 (at k = 1e-4 h/Mpc, reported: 4.74e-03; dln C/dln a +5.4); S min +0.999982
+    alt z = 2.500: FP19 symbol (eps_K undone) min +1.000000; channel bound, sub-horizon max 5.36e-07 (at k = 1e-4 h/Mpc, reported: 1.83e-04; dln C/dln a +4.0); S min +0.999999
+  [PASS] S1 [H1, pre-declared] THE NEWTONIAN psi-SYMBOL OF THE HEADLINE's READ IS POSITIVE FOR EVERY SUB-HORIZON k: S = 1 + kappa h^2 - R_B (FP19's symbol_table on the headline law, eps_K NOT subtracted) minus the <K>_h channel's bound 2|eps_C| + 9|eps_C|(aH/k)^2(1 + |dln C/dln a + 3|), min over k = 10 aH/c..1e3 h/Mpc, z = 0..2.5, both footings and chords >= 0.99 (below 10 aH/c the relativistic block, S2)
+         measured: min S = +0.999982; max channel bound at k = 1e-4 h/Mpc (super-horizon, reported) 4.7e-03 (law: <K>_h); FP19's own +0.995 = 1 - eps_K, eps_K = 4.96e-03
+         reading:  the real <K>_h read is not 'k = 0 only' (S2: its second variation is a local operator at every k), but its coefficient is (v/c)^2-small, so the psi-symbol is 1 - O(1e-4) at the largest scales and 1 - O(1e-5) below the horizon
+    [7 s]
+
+======================================================================================================================
+S4  FP19's eps_K: WHAT IT MEASURES, AND WHETHER ITS SUBTRACTION HIDES A TERM
+======================================================================================================================
+    FP19 B4 (XR18 C1's proxy) on H_K1: z = 0.25 alt gauss: 1.92e-05; z = 0.25 alt halo: 4.96e-03; z = 0.25 can gauss: 1.72e-05; z = 0.25 can halo: 4.51e-03; z = 1.0 alt gauss: 8.82e-06; z = 1.0 alt halo: 5.88e-08; z = 1.0 can gauss: 7.99e-06; z = 1.0 can halo: 5.31e-08; z = 2.5 alt gauss: 4.16e-10; z = 2.5 alt halo: 1.28e-09; z = 2.5 can gauss: 3.78e-10; z = 2.5 can halo: 1.15e-09
+    z = 0.25 (no yield): halo reading <x> at M_min = 1e7/1e8/1e9/1e10: 0.675 / 0.294 / 0.129 / 0.056 vs the Jensen bound y_rms^(1/2) = 0.091 (y_rms = 8.27e-03); I_halo at M_min = 1e7/1e8/1e9: 0.1198 / 0.1198 / 0.1197
+  [PASS] S4 [H4, pre-declared] eps_K IS NOT THE SIZE OF ANY TERM, AND ITS SUBTRACTION HIDES NONE: the halo reading's <x> at z = 0.25 (M_min = 1e8, the input of eps_K) exceeds the reading-free Jensen bound y_rms^(1/2) and grows as M_min falls (the dilute-halo sum counts overlapping deep-MOND fields as scalars), while the B-channel's actual input I_halo converges (1e7 vs 1e8 within 5%); the derived channel stays below eps_K/10
+         measured: <x>_halo(1e8) = 0.294 vs Jensen 0.091 (x3.2); <x>_halo 1e7/1e8 = 2.30; I_halo 1e7/1e8 = 1.0002; derived max |rho_extra|/rho_bar 2.63e-05 vs eps_K 4.96e-03 (ratio 5.3e-03)
+         reading:  FP19's subtraction was conservative (it lowered the printed symbol by 5e-3 where the real channel is ~1e-5) and structurally misplaced (a homogeneous density does not enter the Newtonian symbol; the channel's local operator is post-Newtonian)
+
+======================================================================================================================
+S5  THE phi-SYMBOL: FP7's block with J_Y's stiffness C_phi >= 0 -- real, non-negative roots at finite c_2 and c_2 = oo
+======================================================================================================================
+    P(U) = det/(64 k^10) = (-alpha_c*lam_*(3*c_2 + 2)) U^2 + (3*C_phi*alpha_c*c_2 + 2*C_phi*alpha_c - alpha_c*c_2*lam_ - 3*alpha_c*c_2*sigma**2 - 2*alpha_c*sigma**2 + 2*c_2*lam_ + 6*c_2*sigma**2 + 4*sigma**2) U + (C_phi*c_2*(alpha_c - 2))
+    discriminant = (A - B)^2 + S^2 + 2 S (A + B), A = C_phi alpha_c (3 c_2 + 2), B = lambda c_2 (2 - alpha_c), S = sigma^2 (2 - alpha_c)(3 c_2 + 2): True
+    c_2 -> oo: P/c_2 -> (-3*alpha_c*lam_) U^2 + (3*C_phi*alpha_c - alpha_c*lam_ - 3*alpha_c*sigma**2 + 2*lam_ + 6*sigma**2) U + (C_phi*alpha_c - 2*C_phi); same structure: True
+    Gaussian (Maxwell) reading, canonical: volume fraction yielded with C_L < 1e-2 / in the plug: z = 0.0: 7.7e-08 / 0.00; z = 0.25: 3.7e-08 / 0.00; z = 0.5: 2.2e-08 / 0.00; z = 1.0: 4.5e-04 / 0.02; z = 2.5: 1.9e-03 / 0.24
+  [PASS] S5 [H5, pre-declared] THE phi-SYMBOL NEVER CHANGES SIGN: FP7's committed block, as a quadratic in U = omega^2/k^2, has leading coefficient -lambda alpha_c (3 c_2 + 2) <= 0, constant term -C_phi c_2 (2 - alpha_c) and discriminant (A - B)^2 + S^2 + 2 S (A + B) >= 0 -- so for every C_phi >= 0 (J_Y with y_th >= 0) all roots are real and >= 0, at finite c_2 and at c_2 = oo; C_phi = 0 (zero field below z_q0) is a degenerate, not a negative, symbol
+         measured: coefficients True; discriminant identity True; c_2 = oo True
+         reading:  criterion B's causal part is then automatic for H_K1 wherever C_phi >= 0: the separator changes only where C_phi is small (zero-field points below z_q0; C_L at the yield surfaces above it) -- XR18b_yield_surfaces.py scans those backgrounds
+    [8 s]
+
+======================================================================================================================
+B1  CONSERVATION AND THE BIANCHI IDENTITY (minisuperspace, sympy): the separator varied, frozen, or read from a
+======================================================================================================================
+    polynomial E(<K>, a)                                      : N dE_N/dt - a' E_a = 0
+    transcendental E(<K>, a)                                  : N dE_N/dt - a' E_a = 0
+    H_K1-like: softplus ramp x (K^2/3 - Lambda) L(K) x e(a)   : N dE_N/dt - a' E_a = 0
+    scale-factor read E(a) (the PM engine's form)             : N dE_N/dt - a' E_a = 0
+    frozen read (e(t) + E_K(t)(<K> - K_b(t)), prescribed): residual at N = 1: -(-E_K(t)*a(t)*Derivative(K_b(t), t) - K_b(t)*a(t)*Derivative(E_K(t), t) + a(t)*Derivative(e(t), t) + 3*Derivative(E_K(t), t)*Derivative(a(t), t))*a(t)**2
+    frozen-read drift of the Friedmann constraint |3 H' C|/(3 H rho_bar): z = 0.0: 3.6e-06, z = 0.25: 5.0e-06, z = 0.5: 5.9e-06, z = 0.6348: 8.1e-06, z = 0.7: 9.1e-06, z = 0.8: 6.5e-06, z = 1.0: 2.9e-06, z = 1.5: 1.1e-06, z = 2.0: 4.6e-07, z = 2.5: 2.0e-07
+  [PASS] B1 [H6 (i)-(iii), pre-declared] CONSERVATION AND THE BIANCHI IDENTITY: with the separator VARIED through <K>_h the reparametrisation Noether identity N dE_N/dt - a' E_a = 0 holds identically (four explicit test functions, one of them H_K1's ramp x (<K>^2/3 - Lambda) x L(<K>) smoothed); with the read FROZEN (prescribed in time) it fails, drifting the Friedmann constraint at |3 H' C|/(3 H rho_bar) <= 1e-4 on the real state; a scale-factor read E(a) satisfies it identically
+         measured: polynomial E(<K>, a): 0; transcendental E(<K>, a): 0; H_K1-like: 0; scale-factor read E(a) (the PM engine's form): 0; frozen residual nonzero True; max drift 9.1e-06
+         reading:  a scoring or PM run that prescribes L and y_th in time drops the channel and breaks the energy identity at the channel's own (v/c)^2 size; prescribing them as functions of the box's scale factor (XR21's form) is itself an action (a leaf-volume read)
+
+======================================================================================================================
+B2  TRANSLATION INVARIANCE ON PERIODIC LEAVES: the channel's lapse term exerts no net force on a real density field
+======================================================================================================================
+    net force / Sum|.|: N = 16, leaf-uniform coefficient: 2.6e-17; N = 16, position-weighted coefficient: 5.3e-03; N = 32, leaf-uniform coefficient: 1.2e-17; N = 32, position-weighted coefficient: 5.7e-03
+  [PASS] B2 [H6 (iv), pre-declared] TRANSLATION INVARIANCE: on periodic 3-D leaves (16^3, 32^3) the lapse equation with the channel's leaf-uniform k^0 coefficient exerts no net force on a real (random) density field (< 1e-12 of Sum|force|), and a position-weighted coefficient -- what a non-leaf-averaged read would give -- does (> 1e-4)
+         measured: 16/leaf: 2.6e-17; 16/posi: 5.3e-03; 32/leaf: 1.2e-17; 32/posi: 5.7e-03
+
+======================================================================================================================
+N1  (reported) XR18 C1's <K>_h-channel formula on H_K1 (FP19 B4) against the channel derived here
+======================================================================================================================
+    XR18 C1 / FP19 B4 on H_K1: Gaussian max 1.92e-05; halo (z > z_q0, converged) max 5.9e-08; halo z = 0.25 (unconverged) 4.96e-03; derived here: max 2.63e-05 (H_Y by XR18 C1: 1.6e-5)
+  [PASS] (reported) N1 (reported) THE (v/c)^2 GLOBAL TERMS: XR18 C1's estimate on H_K1 (FP19 B4: Gaussian 1.9e-5, halo 5.9e-8 converged, 5.0e-3 raw) against the derived rho_extra = -d e_M/d ln<K>_h (S3); XR18 found <= 1.6e-5 for H_Y
+         measured: XR18-C1 Gaussian 1.9e-05; derived 2.6e-05
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  Item 1 (the linear symbols).  The Newtonian psi-symbol of the headline's read: min S = +0.999982 over sub-horizon k (10 aH/c .. 1e3
+    h/Mpc), z = 0..2.5, both footings (S1: PASS); at k = 1e-4 h/Mpc the channel's bound is
+    4.7e-03 and the relativistic block (S2) is the exact statement.  FP19's +0.995 is 1 - eps_K by construction.
+    The real <K>_h read is NOT 'k = 0 only': its second variation is a local operator at every k with a leaf-averaged coefficient
+    C (S2), which FP19 H4's linear zero-mode lattice read cannot see -- but the constrained block's determinant is identical with
+    and without it (S2: PASS), and its entries are eps_C x GR's with max |eps_C| = 9.1e-06 (S3: PASS).
+    eps_K (4.96e-3) is not the size of any term: its halo <x> breaks the Jensen bound; the subtraction hides nothing (S4: PASS).
+    The phi-symbol has real non-negative roots for every C_phi >= 0, degenerate at zero field below z_q0 (S5: PASS).
+  Item 2 (nonlocality through <K>_h).  Varying the full action through <K>_h is conservative (reparametrisation identity holds;
+    B1: PASS); freezing the read breaks it at |3 H' C|/(3 H rho_bar) <= 9e-06; a scale-factor read (the PM engine's
+    form) is itself an action.  Translation invariance holds on leaves (B2: PASS).  The global terms: |rho_extra|/rho_bar <= 2.6e-05
+    (derived; XR18 C1's estimate gives 1.9e-05 Gaussian), the same (v/c)^2 order as H_Y's 1.6e-5.
+  Not 'closed'.  kappa = 1/2 FITTED.  12/12 checks pass; load-bearing failures: 0.
+
+  12/12 checks pass; load-bearing failures: 0; wrote XR18b_symbol_channel_results.json  (9 s)
+rc = 0
