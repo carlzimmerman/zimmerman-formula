@@ -1,0 +1,938 @@
+{
+ "lane": "FP17",
+ "mutate": true,
+ "root": "FP14's gravity core (FP7's AQUAL root at lambda = 0, c_2 -> oo; FP9's separator above it)",
+ "checks": {
+  "K1 CONTROL: this lane's vectorised copy of FP1's SPARC statistic and FP1 E's KiDS-1000 machinery (exec'd read-only) reproduce FP14's committed numbers -- P2 profiled 0.1083 / 0.1035 dex, Newtonian 0.2755; KiDS isolated P2 110.6 / 102.4, Newtonian 1230.3": {
+   "ok": true,
+   "measured": "SPARC P2 0.1083 (U 0.70) / 0.1035 (U 0.65); Newtonian 0.2755; KiDS P2 110.6 / 102.4, Newtonian 1230.3 / 1230.3 (175 galaxies)",
+   "load_bearing": true
+  },
+  "K2 CONTROL: FP7 A4's committed AQUAL double-filter table (g_ext = 2.32e-10) is read and this lane's log-log interpolation reproduces FP7's committed Saturn-monopole floor at that field (the binding gate) to < 1%": {
+   "ok": true,
+   "measured": "monopole floor 0.02255 / 0.02497 pc vs committed 0.02255 / 0.02497",
+   "load_bearing": true
+  },
+  "K3 CONTROL: FP14's direct QUMOND quadrupole (f28's dblquad, exec'd from FP14's source) and this lane's cumulative (trapezoid-in-mu, cumulative-in-v) version reproduce FP14 X5's committed strict P2 Q2/ceiling on both footings and all three Galactic fields (canonical 3.99 / 4.48 / 4.93, alt 4.53 / 5.13 / 5.68; X5 integrates to v = r_M/r = 100)": {
+   "ok": true,
+   "measured": "cumulative at v = 100: can 3.994, can 4.482, can 4.934, alt 4.537, alt 5.134, alt 5.687; max dev 4.9e-04; dblquad (canonical, 2.32e-10) 4.4808 vs committed 4.4808; extending to v = 400 moves Q2 by <= 1.5e-03",
+   "load_bearing": true
+  },
+  "K4 CONTROL (the reference, verified): BDEF 2011 = Babichev, Deffayet, Esposito-Farese, 'Improving relativistic MOND with Galileon k-mouflage', Phys. Rev. D 84, 061502(R) (arXiv:1106.2538).  Its spherical eq. (8) 4k (r_s/r^2) phi'^2 + (r^2 c^2/a0) phi'^2 + eps r^2 phi' = r_s/2 is solved by its eq. (9) (sympy); the three regimes come out as stated (phi' -> r/sqrt(8k) inside, sqrt(G M a0)/(r c^2) in the MOND range, G M/(eps r^2 c^2) outside); the transition is r_V = (8 k G M a0)^(1/4)/c; and its numbers reproduce: k^(1/4) = 4e-6 c^2/a0 = G(1e3 Msun) c^4/(8 a0^3) ~ 100 kpc and the Solar-System ratio (r/22 AU)^4 (a0 = 1.2e-10)": {
+   "ok": true,
+   "measured": "eq. (8)-(9) True; limits ok; r_V True; k^(1/4) = 97.1 kpc (eq. 6) / 96.2 kpc (1e3 Msun); r_22 = 21.7 AU",
+   "load_bearing": true
+  },
+  "K5 CONTROL (Route 2, route2_vainshtein_kmouflage_2026.py, 5ba86489b, re-derived): for the cubic Galileon on P2's k-mouflage J_P2 the spherical Euler-Lagrange expression is exactly the r-derivative of a flux (sympy), and the Galileon flux over the k-mouflage flux is k_3 alpha (1 - 2x)/r -> k_3 alpha/r in the deep regime -- the field strength cancels, so the Vainshtein trigger degenerates into a UNIVERSAL radius R_* = k_3 alpha (independent of the source mass): x^2/(1 - 2x) + (R_*/r) x^2 = y.  Route 2's monopole floor R_* >= G M_sun a0/(a_b^2 AU) is reproduced (1.373e6 / 1.654e6 Mpc at its a0 and Mars budget 1.4e-15 m/s^2)": {
+   "ok": true,
+   "measured": "flux residual 0; ratio alpha*k_3*(1 - 2*x)/r (deep alpha*k_3/r); floor 1.373e+06 / 1.654e+06 Mpc",
+   "load_bearing": true
+  },
+  "K6 CONTROL: this lane's copy of FP14's unitary-gauge second variation reproduces FP7 C1's V (no readout) and FP14 X3b's first-order readout block V_11 = 4k^2 (2 - alpha_c)(1 + K^2 k^2)/(alpha_c - (2 - alpha_c) K^2 k^2) exactly (Hermitian, exactly quadratic in omega, T = diag(12 + 8/c_2, 4 lambda))": {
+   "ok": true,
+   "measured": "V(no readout) == FP7: True; V_11(order 1) == FP14 X3b: True; Hermitian True; quadratic True; (3.3 s)",
+   "load_bearing": true
+  },
+  "K7 CONTROL: FP9's committed machinery (exec'd read-only, as FP14 K2) reproduces FP9's (H_Y) headline sigma_8 on both footings and both yardsticks (used for the FRW re-score in R)": {
+   "ok": true,
+   "measured": "sigma_8/LCDM ('canonical', 'rms'): 1.01277, ('canonical', 'permode'): 1.01585, ('alt', 'rms'): 1.01484, ('alt', 'permode'): 1.01798; max dev 0.0e+00; FP9's flagship gate 0.05 dex; the separator's band-pass length today L(0) = 1.689 Mpc",
+   "load_bearing": true
+  },
+  "M1 WHERE CASSINI'S Q2 IS MADE: in the strict law the cumulative quadrupole (the f28 integrand, K3) rises monotonically and 90% of it is generated at r = 1695-7280 AU from the Sun, where the total Newtonian field is y_N = 1.7-22 and the source compactness C = G M/(r c^2) is <= 2.9e-12 -- a 1-Msun system at its own EFE transition (the same y as the inner parts of galaxies).  Any screening must switch MOND off THERE (FP14 X5: tail cuts above y = 20 move Q2 by < 3%).  The integrand is P2's QUMOND realisation (FP1/FP14); FP7 A4's AQUAL Q2 floors lie within 10% of QUMOND's, so the region carries over to the AQUAL root": {
+   "ok": true,
+   "measured": "r 1695-7280 AU; y_N 1.66-22.2; C <= 2.91e-12; monotone in all 6 cells: True",
+   "load_bearing": true
+  },
+  "M2 THE ONLY LOCAL DISCRIMINANT IS A MASS (OR A LENGTH), AND NO O(1) THRESHOLD SEPARATES: for an isolated point source the local invariants built from (GM, r, a0, c, Lambda) are functions of y = GM/(r^2 a0), C = GM/(r c^2) and 8 pi/kappa^2 (Buckingham, sympy nullspace; an external field adds e/a0 and an angle -- those keys are C5's, outside this theorem); at fixed y, C ~ M^(1/2).  SPARC's points at the same y (1.7-22) have C >= 3.7e-09, the Sun's Q2 region C <= 2.9e-12 (1276x): a threshold mass between ~1 Msun and 1.7e+07 Msun.  Over EVERY power-law key y^p C^q (any exponents, each footing) the boundary that screens the Sun's Q2 region and the planets but no SPARC point with y <= 100 sits >= 8.8 decades from unity; the best is the length key C/y = r a0/(2c^2) with r_* in [0.021, 84] / [0.021, 84] pc -- xi's own window.  A curvature key is a C-key (tidal 2GM/r^3 = 2 y^2 a0^2/(C c^2))": {
+   "ok": true,
+   "measured": "rank/span True; C gap 2.91e-12 .. 3.71e-09 (1276x); min |log threshold| 8.87 (slope 1.02) / 8.79 (slope 1.02); length windows 0.021-84 pc / 0.021-84 pc",
+   "load_bearing": true
+  },
+  "M3 NO O(1) MASS FROM (a0, Lambda, G, c) LANDS IN THE WINDOW: G enters once (a mass needs 1/G), so every mass is M_H (8 pi/kappa^2)^D with M_H = c^4/(G a0) = 6.5e+23 Msun; the window (the heat filter's xi window read as a0 xi^2/G, 0.4-7e+06 Msun, consistent with M2) needs D in [-12.1, -8.5]: a pure number 1e-17..1e-24.  Integer D = -9..-12 land (4 hits) -- NUMEROLOGY; the stellar mass scale (hbar c/G)^(3/2)/m_p^2 = 1.85 Msun lands too, but the proton mass is not in the gravity core -- NUMEROLOGY": {
+   "ok": true,
+   "measured": "G exponent -1; D window [-12.09, -8.48] (canonical), [-11.97, -8.40] (alt); 4 integer hits; M_Ch-type 1.85 Msun",
+   "load_bearing": true
+  },
+  "M4 EVERY ROUTE IS A THRESHOLD MASS IN DISGUISE: the constant-free constructions (the cubic Galileon with r_c = c/H, Route 2's R_* = 2 a0/H^2, BDEF's k^(1/4) = c/H, a Weyl key at Lambda) put M_* at 1e20-1e22 Msun -- >= 13 decades above the window, so every galaxy is screened; the rows that land in the window carry a fitted length (xi, BDEF's k) or are numerology (xi_q(m), the Chandrasekhar-type mass)": {
+   "ok": false,
+   "measured": "constant-free rows >= 1e10 x the window top: False (3.7e+22, 2.3e+21, 5.5e+02, 2.6e+20 Msun vs <= 6.7e+06); in-window rows: ['constant-free', 'new constant', 'numerology', 'numerology']",
+   "load_bearing": true
+  },
+  "V1 THE CUBIC GALILEON WITH r_c = c/H_Lambda SCREENS GALAXIES: the decoupling-limit equation is a flux (sympy: r^2 pi' + 4 r pi'^2/Lambda_3^3 = beta M/(4 pi M_P)), so r_V = (4 beta r_g r_c^2)^(1/3); for a 1e11-Msun galaxy r_V = 502-1034 kpc over beta = 1/6..1 (the rough '~70 kpc' is low by 7-15x), and r_V/r_M >= 45 for every mass 1e7-1e11 Msun: MOND is screened throughout every galaxy (the Sun's own r_V is 0.11-0.22 kpc)": {
+   "ok": true,
+   "measured": "flux identity True; r_V(1e11) 502-1034 kpc; min r_V/r_M 45",
+   "load_bearing": true
+  },
+  "V2 THE CUBIC GALILEON ON THE CHAIN'S P2 k-MOUFLAGE FAILS FOR EVERY R_* (Route 2's kill, re-derived on the AQUAL root): the trigger is the universal radius R_* (K5); the constant-free R_* = 2 a0/H^2 = 1.86 / 1.54 Gpc screens SPARC (0.274 / 0.273 dex, Newtonian 0.275); and with R_* FREE the window is empty: the Earth gate needs >= 2.0 Gpc and the Saturn monopole >= 15 Gpc (P2's pole x -> 1/2 beats a Galileon flux that grows only as 1/r), SPARC allows <= 6.5 kpc -- empty by 2e+06": {
+   "ok": true,
+   "measured": "SPARC(free) 0.2736 / 0.2732; empty by 2.3e+06 / 2.2e+06",
+   "load_bearing": true
+  },
+  "V3 BDEF'S RIEMANN-COUPLED GALILEON WITH THE FRAMEWORK'S k FAILS GALAXIES: on the chain's P2 k-mouflage its flux is x^2/(1 - 2x) + (r_V/r)^4 x^2 = y with r_V = (8 k G M a0)^(1/4)/c -- mass-dependent, growing as r^-4 inward, so unlike the cubic Galileon it beats P2's pole (interior force c^2 r/sqrt(8k), sympy).  But with k^(1/4) from the framework (its O(1) lengths are c/H = 4.4-5.4 Gpc and c^2/a0 = 26-31 Gpc; c/H screens least) r_V(1e11 Msun) = 0.0 Mpc: SPARC 0.108 / 0.104 dex, KiDS d chi^2 +0 / +0, the flagship -0.00 / -0.00 dex (gate 0.074): FAILS": {
+   "ok": false,
+   "measured": "interior True; SPARC 0.1083/0.1035; KiDS 111/102; flagship -0.000/-0.000",
+   "load_bearing": true
+  },
+  "V4 (reported) BDEF WITH k FITTED REPLACES xi -- IT DOES NOT REMOVE IT: the interior's harmonic phantom 3 c^2/(4 pi G sqrt(8k)) needs k^(1/4) >= 104 kpc (Saturn monopole; Earth 12 kpc); Cassini Q2 passes by the excision estimate; SPARC allows up to ~13 Mpc; GW170817 (an ESTIMATE of the Paul term's c_T on the host's static gradient) caps it near 379 kpc.  One fitted length for one fitted length; the tie k = L(0)^4 to FP9's separator length passes the Solar System and SPARC but misses GW170817 by the estimate": {
+   "ok": true,
+   "measured": "window [104, ~379] kpc; tie to L: delay 2977 s",
+   "load_bearing": false
+  },
+  "B1 THE DE BROGLIE LENGTH, VERIFIED: hbar/(m v) = 0.0061-0.0505 pc for m = 1.9-5.2e-19 eV and v = 200-600 km/s (near 0.02-0.05 pc only at the light end; h/(m v) is 2 pi larger).  At FP10's own kick speeds (575-650 km/s) it is <= 0.0175 pc < the AQUAL floor 0.0243 / 0.0268 pc for every allowed m: as the filter length it FAILS the Saturn monopole (1.9x / 2.6x the bound, FP7's table)": {
+   "ok": true,
+   "measured": "range 0.0061-0.0505 pc; kick 0.0175 pc; monopole 1.93x / 2.55x",
+   "load_bearing": true
+  },
+  "B2 THE LENGTHS m SUPPLIES: from (hbar/m, a0, c) every length is lambda_C (lambda_C a0/c^2)^q (sympy); the Compton length hbar/(m c) = 1.2e-05-3.4e-05 pc is 721x below the floor, and the one c-free member, xi_q = ((hbar/m)^2/a0)^(1/3) (the dark field's Airy length at a0), is 1.57-3.28 pc -- inside the window.  So are other exponents (q = -1/4, the Lambda-mixed (lambda_C^2 c/H)^(1/3)): NUMEROLOGY until an action makes the MOND readout smooth over it (B3, B4)": {
+   "ok": true,
+   "measured": "exponents {p_c: -3*p_a - 1, p_h: p_a + 1}; lambda_C 3.4e-05 pc; xi_q 1.57-3.28 pc; m window 1.1e-21-3.0e-16 eV",
+   "load_bearing": true
+  },
+  "B3 A STATE COUPLING DIES WHERE FP10 CLEARED THE FIELD: a readout that smooths the MOND source over the dark field's coherence length needs the field present -- its kernel's amplitude is ~ |Psi|^2 (normalised, 0/0 where the field is gone).  FP10 clears galaxies at collapse: retained fraction dwarf 0.0, SPARC disc 0.0, Milky Way 9.6e-04 (575 km/s; 0.0 at 650).  With no field the MOND source is switched off (SPARC -> Newtonian 0.275 dex, KiDS 1230) or undefined; and any such coupling gives the dark field a MOND-sector source S != 0 (FP8's energy-reciprocity identity), which FP10's clearing was built to avoid": {
+   "ok": true,
+   "measured": "retained 575: {'dwarf': 0.0, 'SPARC disc': 0.0, 'Milky Way': 0.0009608099934318733}; 650: {'dwarf': 0.0, 'SPARC disc': 0.0, 'Milky Way': 0.0}; SPARC with the source off 0.2755 dex",
+   "load_bearing": true
+  },
+  "B4 (reported) THE PARAMETER TIE xi = xi_q(m) HAS NO DYNAMICS: the heat pair's depth b = xi^2/2 would be written as a function of another sector's mass parameter with nothing in the action connecting them (the dark field's Schroedinger kernel e^{i hbar t Delta/2m} is oscillatory, not the real heat kernel; a Wick rotation is not something an action does).  As FP10 C3 found for eps, a tie through a declared, floor-only m moves the knob into m: SHARED at best, and only by postulate": {
+   "ok": true,
+   "measured": "xi_q(m) = 1.57-3.28 pc at FP10's floor; m would then carry xi's role (window 1.1e-21-3.0e-16 eV)",
+   "load_bearing": false
+  },
+  "C1 DENSITY (RICCI) KEYS CANNOT SCREEN THE PLANETS: R = 8 pi G rho/c^2 reads the local matter, and the planets orbit in a vacuum no denser than a galaxy disc (solar wind 8e-21 kg/m^3 at 1 AU, 9e-23 at Saturn; the disc 7e-21; the Sun's Q2 region sits in the interstellar cloud, 3e-22): a threshold rho_* that screens Saturn screens every galaxy disc.  The constant-free ratio 4 pi G rho/|T| does separate the Sun's Q2 region (3e-07) from galaxy points (3e-04-3e+00), but only through a new small threshold (between 3e-07 and the gas-poor centres' 3e-04) and by switching MOND on and off with the local gas at sub-parsec scales: not a derivation (the record's L-closure: density keys swing with the averaging scale)": {
+   "ok": true,
+   "measured": "rho(Saturn)/rho_disc = 1.4e-02; rho(Earth)/rho_disc = 1.24; vacuum ratios 2.6e-07 vs 3.1e+00, 3.1e-02, 3.1e-04",
+   "load_bearing": true
+  },
+  "C2 TIDAL (WEYL) KEYS NEED A NEW LENGTH: the Weyl tensor is the tidal field, nonzero in vacuum, so it can see the Sun's Q2 region (|T| >= 2e-25 s^-2) against every SPARC point with y <= 22 (<= 2e-27) -- but only through a threshold (c/ell_*)^2 with ell_* in [21, 238] kpc; the framework's lengths (c/H_Lambda, c^2/a0) are Gpc (a Weyl key at Lambda is M4's constant-free row: galaxies screened).  This is M2's mass threshold again, now as a length": {
+   "ok": true,
+   "measured": "ell_* window 21-238 kpc vs 5.4 Gpc",
+   "load_bearing": true
+  },
+  "C3 A CURVATURE-KEYED READOUT DEPTH IS UNSTABLE UNLESS SATURATED (derived: FP14 X3b at one more derivative): if the depth reads the tidal field d_z^2 Phi/c^2 = d_z^2 delta n, the reduced block becomes V_11 = 4k^2 (2 - alpha_c)(1 + u)^2/(2 - (2 - alpha_c)(1 + u)^2) with u = K_2 k^2 (det V likewise, Hermitian True, quadratic True): a gradient instability for u > ~alpha_c/4 (K_2 > 0) or u < -2 (K_2 < 0) -- every nonzero K_2 at short enough wavelengths, since alpha_c <= 3.2e-9 is the lapse's only stiffness.  Control: K_2 = 0 returns FP7's healthy V.  So a Weyl key may only switch where nothing varies -- it cannot be the Solar System's screen": {
+   "ok": true,
+   "measured": "V_11 form True; det True; control True; thresholds u+ 8.00e-10, u- -2.0000; illustrative critical wavelengths 3133525 AU, 63 AU",
+   "load_bearing": true
+  },
+  "C4 (reported) c_T AND PPN OF CURVATURE KEYS: a key read from the matter's Newtonian field (the heat branch) leaves transverse-traceless modes untouched (c_T = 1, FP7 D1) and is saturated inside the Solar System (PPN = FP7 D2's filtered values); a key read from the metric's Weyl tensor E_ij (linear in h_TT) puts b'(E^2) (delta E)^2 ~ (d_t^2 h_TT)^2 into the graviton's action around every source (higher time derivatives, a direction-dependent c_T) -- the record's curvature-coupled clock (Case 3a: c_T excluded 1e7-1e9x) and door04 (Weyl^2: an opposite-residue spin-2 ghost).  Neither removes C2's new length or C3's instability": {
+   "ok": true,
+   "measured": "cited, not recomputed",
+   "load_bearing": false
+  },
+  "C5 (reported) EXTERNAL-FIELD KEYS ARE OUTSIDE THEOREM M, AND NOT A DERIVATION: at the Sun's Q2 region the Galaxy's field is e = 2.5 a0 (O(1)), so an external-field threshold of order a0 could screen the Sun with no small number -- but 'external' is relational (york/L_CLOSURE_VERDICT, Theorem 8: it needs a segmentation of rho), the record's ESCREEN realises it with an auxiliary field whose boundary data encode the segmentation and FITS its threshold (york/ESCREEN_Q2_VERDICT), a local proxy (the angle between g and the tidal axes) is direction-dependent around the Sun (aligned along e-hat) and would leave an anisotropic phantom, i.e. a Q2 of its own, and every such key screens all EFE-dominated systems alike (wide binaries at s ~ 7 kAU, satellites, the outer profiles of KiDS lenses in the web's field) while leaving the planets' aligned high-y region to a separate switch (k04: the monopole only).  OPEN as a construction; not pursued here": {
+   "ok": true,
+   "measured": "e/a0 at the Sun 2.48 / 2.05",
+   "load_bearing": false
+  },
+  "R1 THE BEST CONSTANT-FREE CANDIDATE, ON EVERY GATE, FAILS: BDEF's Riemann Galileon on the chain's root with k^(1/4) = c/H passes the Solar System (deeply screened), PPN, FRW (the term is cubic in phi and phibar is frozen: linear cosmology and sigma_8 = FP9's headline) and c_T on FRW -- and FAILS SPARC, KiDS and the flagship on both footings (V3), with a static-gradient GW170817 delay of ~9e+02 s by estimate": {
+   "ok": false,
+   "measured": "canonical: solar_system FAIL, sparc pass, kids pass, flagship pass, ppn pass, sigma8 pass; alt: solar_system FAIL, sparc pass, kids pass, flagship pass, ppn pass, sigma8 pass",
+   "load_bearing": true
+  },
+  "R2 (reported) THE TIE CANDIDATE PASSES EVERY GATE -- BECAUSE IT IS THE HEAT FILTER: xi = ((hbar/m)^2/a0)^(1/3) = 1.57-3.28 pc sits inside xi's window, so the Solar System, SPARC, KiDS, the flagship, c_T, PPN, sigma_8 and FP14's readout-force and X3b rows are the heat filter's own (all pass; a constant xi has no readout gradient).  It removes nothing: the relation to m is NUMEROLOGY (B2-B4), and it predicts Newtonian wide binaries to ~1e5-1e6 AU": {
+   "ok": true,
+   "measured": "SS {'Q2': 5.979975842127978e-06, 'M': 1.2356053918207303e-05, 'gmax': 4.636632504215933e-06}; SPARC <= 3.2e-04; sigma_8 factor 1.000e+00",
+   "load_bearing": false
+  },
+  "F (reported) THE COUNT IS UNCHANGED: beyond (kappa, G, Lambda) the gravity core keeps ONE knob (xi) and ONE regulator (alpha_c); no route here eliminates or shares xi by a derivation": {
+   "ok": true,
+   "measured": "xi: KNOB",
+   "load_bearing": false
+  },
+  "W (reported) the ledger of this lane": {
+   "ok": true,
+   "measured": "18 links",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "M1": {
+   "canonical|2e-10": {
+    "mono": true,
+    "v05": {
+     "v": 1.1177971775258864,
+     "r_AU": 7120.687658339238,
+     "r_pc": 0.034522067956706884,
+     "y_tot": 2.105271738111664,
+     "C": 6.930951888858666e-13
+    },
+    "v50": {
+     "v": 1.738989348940344,
+     "r_AU": 4577.074938029458,
+     "r_pc": 0.02219028549420263,
+     "y_tot": 3.466421246333529,
+     "C": 1.0782682006248004e-12
+    },
+    "v95": {
+     "v": 4.035964081484947,
+     "r_AU": 1972.1395943658872,
+     "r_pc": 0.009561202564063929,
+     "y_tot": 16.376895650204816,
+     "C": 2.5025177587090495e-12
+    }
+   },
+   "canonical|2.32e-10": {
+    "mono": true,
+    "v05": {
+     "v": 1.2210959514612467,
+     "r_AU": 6518.312141654513,
+     "r_pc": 0.03160166904016508,
+     "y_tot": 2.5175428216559053,
+     "C": 7.571460602531357e-13
+    },
+    "v50": {
+     "v": 1.8968504033592533,
+     "r_AU": 4196.158301381624,
+     "r_pc": 0.020343549526111632,
+     "y_tot": 4.130450161483863,
+     "C": 1.1761506604574224e-12
+    },
+    "v95": {
+     "v": 4.376036724541539,
+     "r_AU": 1818.8797461175097,
+     "r_pc": 0.008818177852108082,
+     "y_tot": 19.25683326274797,
+     "C": 2.713381337105199e-12
+    }
+   },
+   "canonical|2.64e-10": {
+    "mono": true,
+    "v05": {
+     "v": 1.3180490927846813,
+     "r_AU": 6038.837711058832,
+     "r_pc": 0.029277111403215164,
+     "y_tot": 2.934007165828989,
+     "C": 8.172622934568896e-13
+    },
+    "v50": {
+     "v": 2.041331933880142,
+     "r_AU": 3899.1623235941393,
+     "r_pc": 0.018903672393452864,
+     "y_tot": 4.791089458164829,
+     "C": 1.2657370860633106e-12
+    },
+    "v95": {
+     "v": 4.695266628902345,
+     "r_AU": 1695.2146056071313,
+     "r_pc": 0.008218632332150436,
+     "y_tot": 22.171957176227313,
+     "C": 2.9113212812287796e-12
+    }
+   },
+   "alt|2e-10": {
+    "mono": true,
+    "v05": {
+     "v": 0.9945219680893059,
+     "r_AU": 7280.239157312269,
+     "r_pc": 0.035295595452143474,
+     "y_tot": 1.6633769369795122,
+     "C": 6.779055263036058e-13
+    },
+    "v50": {
+     "v": 1.5541758790586044,
+     "r_AU": 4658.6476295569955,
+     "r_pc": 0.022585761062777408,
+     "y_tot": 2.7609808840972137,
+     "C": 1.0593877773115042e-12
+    },
+    "v95": {
+     "v": 3.63415672091026,
+     "r_AU": 1992.3075230166492,
+     "r_pc": 0.009658979441359232,
+     "y_tot": 13.274634300433451,
+     "C": 2.477185023164042e-12
+    }
+   },
+   "alt|2.32e-10": {
+    "mono": true,
+    "v05": {
+     "v": 1.089688607068237,
+     "r_AU": 6644.428259529038,
+     "r_pc": 0.032213097233705,
+     "y_tot": 2.0013074362514085,
+     "C": 7.427748731391544e-13
+    },
+    "v50": {
+     "v": 1.6978016333676396,
+     "r_AU": 4264.548715582023,
+     "r_pc": 0.02067511561072264,
+     "y_tot": 3.302157420922277,
+     "C": 1.1572887746647127e-12
+    },
+    "v95": {
+     "v": 3.9462804047402487,
+     "r_AU": 1834.7296776463104,
+     "r_pc": 0.0088950204886062,
+     "y_tot": 15.656232307876394,
+     "C": 2.689940876677364e-12
+    }
+   },
+   "alt|2.64e-10": {
+    "mono": true,
+    "v05": {
+     "v": 1.177971623960361,
+     "r_AU": 6146.461958522243,
+     "r_pc": 0.029798888479108967,
+     "y_tot": 2.3420791513530936,
+     "C": 8.029520707780418e-13
+    },
+    "v50": {
+     "v": 1.8326044729823885,
+     "r_AU": 3950.8567624022203,
+     "r_pc": 0.01915429410516724,
+     "y_tot": 3.852137972441844,
+     "C": 1.2491757242429356e-12
+    },
+    "v95": {
+     "v": 4.234159779499868,
+     "r_AU": 1709.9869045910796,
+     "r_pc": 0.008290250458639022,
+     "y_tot": 18.027116993445215,
+     "C": 2.886170849790284e-12
+    }
+   }
+  },
+  "M2": {
+   "C_gal": {
+    "0.5|canonical": [
+     7.878292851621417e-09,
+     543
+    ],
+    "0.5|alt": [
+     7.878292851621417e-09,
+     486
+    ],
+    "0.7|canonical": [
+     1.1031970813158918e-08,
+     663
+    ],
+    "0.7|alt": [
+     1.1031970813158918e-08,
+     608
+    ],
+    "0.9|canonical": [
+     3.714849860105989e-09,
+     765
+    ],
+    "0.9|alt": [
+     3.714849860105989e-09,
+     688
+    ]
+   },
+   "C_sun_max": 2.9113212812287796e-12,
+   "gap": 1276.0013414040188,
+   "M_gal_min": 17077892.92517743,
+   "y_range": [
+    1.6633769369795122,
+    22.171957176227313
+   ],
+   "best_line": {
+    "canonical": [
+     1.0200000000000031,
+     -8.869863946933135,
+     -12.480266892543089,
+     -8.869863946933135
+    ],
+    "alt": [
+     1.0200000000000031,
+     -8.785969114145468,
+     -12.385658369499666,
+     -8.785969114145468
+    ]
+   },
+   "n_feasible_slopes": {
+    "canonical": 299,
+    "alt": 282
+   },
+   "length_window_pc": {
+    "canonical": [
+     0.02059505915560389,
+     83.97808932871501
+    ],
+    "alt": [
+     0.021189549851510413,
+     84.29678008931378
+    ]
+   }
+  },
+  "M3": {
+   "exponents": "{e_G: -1, e_a: -2*e_L - 1, e_c: 4*e_L + 4}",
+   "M_H": {
+    "canonical": 6.50230182588672e+23,
+    "alt": 5.3804337566980993e+23
+   },
+   "window_Msun": {
+    "canonical": [
+     0.3959272565623082,
+     6715328.21115625
+    ],
+    "alt": [
+     0.5842945362445814,
+     8115533.591408172
+    ]
+   },
+   "D_window": {
+    "canonical": [
+     -12.093818871308585,
+     -8.483244840981198
+    ],
+    "alt": [
+     -11.968330043781448,
+     -8.401089477462905
+    ]
+   },
+   "hits": {
+    "M_H (8 pi/kappa^2)^-12": 0.6101953765601834,
+    "M_H (8 pi/kappa^2)^-11": 61.34352999218975,
+    "M_H (8 pi/kappa^2)^-10": 6166.92426139931,
+    "M_H (8 pi/kappa^2)^-9": 619966.8465554155
+   },
+   "M_chandra": 1.8531991700781751
+  },
+  "M4": [
+   {
+    "route": "heat filter (xi, FP7 floors .. 100 pc)",
+    "kind": "FITTED-class knob",
+    "Mstar": 0.3959272565623082
+   },
+   {
+    "route": "cubic Galileon, Newtonian-regime r_V = (4 beta r_g r_c^2)^(1/3), r_c = c/H, beta = 1",
+    "kind": "constant-free",
+    "Mstar": 3.7058676603669927e+22
+   },
+   {
+    "route": "cubic Galileon on P2 (Route 2), R_* = 2 a0/H^2",
+    "kind": "constant-free",
+    "Mstar": 2.31616728772937e+21
+   },
+   {
+    "route": "BDEF Riemann Galileon, k^(1/4) = c/H [MUTATE: 100 kpc]",
+    "kind": "constant-free",
+    "Mstar": 554.8266960357695
+   },
+   {
+    "route": "tidal (Weyl) key at T_* = Lambda c^2",
+    "kind": "constant-free",
+    "Mstar": 2.57351920858819e+20
+   },
+   {
+    "route": "BDEF Riemann Galileon, k^(1/4) = 104 kpc (fitted, V4)",
+    "kind": "new constant",
+    "Mstar": 649.0687596739626
+   },
+   {
+    "route": "xi = ((hbar/m)^2/a0)^(1/3) at m = 1.9e-19 eV (B2)",
+    "kind": "numerology",
+    "Mstar": 7219.5528948854435
+   },
+   {
+    "route": "r_M of the Chandrasekhar-type mass (M3)",
+    "kind": "numerology",
+    "Mstar": 1.8531991700781751
+   }
+  ],
+  "V1": {
+   "canonical|1e+00": {
+    "0.16666666666666666": 3.783683702244905e+18,
+    "0.25": 4.331236623276663e+18,
+    "0.5": 5.457016193741858e+18,
+    "1.0": 6.875409572112566e+18,
+    "rM": 1190739946458434.8
+   },
+   "canonical|1e+07": {
+    "0.16666666666666666": 8.15169942422469e+20,
+    "0.25": 9.331366431923797e+20,
+    "0.5": 1.1756784991863206e+21,
+    "1.0": 1.481262089033658e+21,
+    "rM": 3.765450331755601e+18
+   },
+   "canonical|1e+09": {
+    "0.16666666666666666": 3.7836837022449035e+21,
+    "0.25": 4.3312366232766613e+21,
+    "0.5": 5.457016193741856e+21,
+    "1.0": 6.875409572112564e+21,
+    "rM": 3.765450331755601e+19
+   },
+   "canonical|1e+11": {
+    "0.16666666666666666": 1.75623040222626e+22,
+    "0.25": 2.0103819546335665e+22,
+    "0.5": 2.5329225429716304e+22,
+    "1.0": 3.1912824296432086e+22,
+    "rM": 3.765450331755601e+20
+   },
+   "alt|1e+00": {
+    "0.16666666666666666": 3.3348906666241234e+18,
+    "0.25": 3.8174968434428093e+18,
+    "0.5": 4.809744630960828e+18,
+    "1.0": 6.059898505166396e+18,
+    "rM": 1083158483083381.9
+   },
+   "alt|1e+07": {
+    "0.16666666666666666": 7.184804139638564e+20,
+    "0.25": 8.224547628600402e+20,
+    "0.5": 1.0362280683136607e+21,
+    "1.0": 1.3055655557602838e+21,
+    "rM": 3.4252478734764477e+18
+   },
+   "alt|1e+09": {
+    "0.16666666666666666": 3.334890666624122e+21,
+    "0.25": 3.817496843442808e+21,
+    "0.5": 4.809744630960827e+21,
+    "1.0": 6.059898505166394e+21,
+    "rM": 3.425247873476448e+19
+   },
+   "alt|1e+11": {
+    "0.16666666666666666": 1.5479191279522e+22,
+    "0.25": 1.7719250720876166e+22,
+    "0.5": 2.232485697159679e+22,
+    "1.0": 2.81275572344071e+22,
+    "rM": 3.425247873476448e+20
+   }
+  },
+  "V2": {
+   "R_free_Gpc": {
+    "canonical": 1.8571686330780304,
+    "alt": 1.536743921285327
+   },
+   "sparc_free": {
+    "canonical": [
+     0.2736153784995007,
+     1.2
+    ],
+    "alt": [
+     0.2732324433392415,
+     1.2
+    ]
+   },
+   "sparc_scan": {
+    "canonical|0.3": [
+     0.10841523589777034,
+     0.7
+    ],
+    "canonical|1.0": [
+     0.10882738114907915,
+     0.7
+    ],
+    "canonical|3.0": [
+     0.11032700864238774,
+     0.7
+    ],
+    "canonical|10.0": [
+     0.11622159336721186,
+     0.72
+    ],
+    "canonical|30.0": [
+     0.13059974349997788,
+     0.75
+    ],
+    "alt|0.3": [
+     0.10359165618634722,
+     0.65
+    ],
+    "alt|1.0": [
+     0.103808194150281,
+     0.65
+    ],
+    "alt|3.0": [
+     0.10487495813510128,
+     0.66
+    ],
+    "alt|10.0": [
+     0.11010394852280907,
+     0.68
+    ],
+    "alt|30.0": [
+     0.12407952870957828,
+     0.72
+    ]
+   },
+   "floors_m": {
+    "canonical|earth": 6.192230918808737e+25,
+    "canonical|saturn": 4.566934419793466e+26,
+    "alt|earth": 7.483365882826636e+25,
+    "alt|saturn": 5.519180675639781e+26
+   },
+   "ceiling_m": {
+    "canonical": 2.0098867724745513e+20,
+    "alt": 2.4755932879535895e+20
+   },
+   "empty_factor": {
+    "canonical": 2272234.6762701985,
+    "alt": 2229437.566540716
+   }
+  },
+  "V3": {
+   "k14_m": {
+    "canonical": 3.0856775814913673e+21,
+    "alt": 3.0856775814913673e+21
+   },
+   "rV_1e11_kpc": {
+    "canonical": 0.10531875475230967,
+    "alt": 0.11042519492394184
+   },
+   "rV_sun_pc": {
+    "canonical": 0.18728475722161742,
+    "alt": 0.19636536598935328
+   },
+   "sparc": {
+    "canonical": [
+     0.10827186090058499,
+     0.7
+    ],
+    "alt": [
+     0.1035489761043329,
+     0.65
+    ]
+   },
+   "kids": {
+    "canonical": 110.63209934557251,
+    "alt": 102.40748325652598
+   },
+   "flagship_dex": {
+    "canonical": -3.154604441347225e-12,
+    "alt": -5.567882142794388e-12
+   }
+  },
+  "V4": {
+   "floor_earth_kpc": {
+    "canonical": 11.676236080345785,
+    "alt": 11.676236080369346
+   },
+   "floor_saturn_kpc": {
+    "canonical": 104.45090465897297,
+    "alt": 104.44999072014815
+   },
+   "q2_excised": {
+    "canonical": [
+     [
+      0.06484873676195226,
+      0.0014959781339042362
+     ],
+     [
+      0.02770107070953479,
+      0.5539404412547415
+     ]
+    ],
+    "alt": [
+     [
+      0.06870929210168396,
+      0.00131436164203328
+     ],
+     [
+      0.030797350493051212,
+      0.351793138055942
+     ]
+    ]
+   },
+   "ceil_sparc_Mpc": {
+    "canonical": 14.1547956572818,
+    "alt": 13.481045221149747
+   },
+   "ceil_gw_kpc": {
+    "canonical": 406.6228427250379,
+    "alt": 378.7460251257555
+   },
+   "kids_at_gw_ceiling": {
+    "canonical": 1.3927987652095908e-08,
+    "alt": 1.0698903452066588e-07
+   },
+   "flagship_at_gw_ceiling": {
+    "canonical": -8.6240022393166e-10,
+    "alt": -1.14573356879196e-09
+   },
+   "mond_fraction_1AU_at_floor": {
+    "canonical": 7.716769221359925e-14,
+    "alt": 7.716904265619842e-14
+   },
+   "alpha1_at_floor": {
+    "canonical": 6.173415377087463e-13,
+    "alt": 6.173523412495397e-13
+   },
+   "numerology": {
+    "(c^2/a0) Z^-7": 4.407835707864053e+21
+   },
+   "tie_L": {
+    "L0_Mpc": 1.688956023162276,
+    "saturn": {
+     "canonical": 0.003824550760786289,
+     "alt": 0.003824550760786292
+    },
+    "sparc": {
+     "canonical": [
+      0.10827121441915274,
+      0.7
+     ],
+     "alt": [
+      0.10354700019272675,
+      0.65
+     ]
+    },
+    "gw_delay_s": 2976.5026777023854
+   }
+  },
+  "B1": {
+   "db_pc": {
+    "1.9e-19|200000.0": 0.05045137781651564,
+    "1.9e-19|600000.0": 0.016817125938838547,
+    "1.9e-19|575000.0": 0.0175483053274837,
+    "1.9e-19|650000.0": 0.015523500866620198,
+    "5.2e-19|200000.0": 0.018434157279111484,
+    "5.2e-19|600000.0": 0.006144719093037161,
+    "5.2e-19|575000.0": 0.006411880792734429,
+    "5.2e-19|650000.0": 0.0056720483935727645
+   },
+   "kick_max_pc": 0.0175483053274837,
+   "monopole_at_kick": {
+    "canonical": 1.9250254710559247,
+    "alt": 2.550835544071165
+   }
+  },
+  "B2": {
+   "exponents": "{p_c: -3*p_a - 1, p_h: p_a + 1}",
+   "lambda_C_pc": {
+    "1.9e-19": 3.3657536385732325e-05,
+    "5.2e-19": 1.2297945987094501e-05
+   },
+   "xi_q_pc": {
+    "canonical|1.9e-19": 3.2788498518738844,
+    "canonical|5.2e-19": 1.6757981284319146,
+    "alt|1.9e-19": 3.078257295930207,
+    "alt|5.2e-19": 1.573276620886921
+   },
+   "xi_L_pc": {
+    "1.9e-19": 1.8261022719188726,
+    "5.2e-19": 0.9333086014469375
+   },
+   "m_window_eV": {
+    "canonical": [
+     1.128069598710546e-21,
+     2.9814311006053234e-16
+    ],
+    "alt": [
+     1.0261503017396642e-21,
+     2.3346668566786456e-16
+    ]
+   }
+  },
+  "C1": {
+   "rho_planets": {
+    "Mercury": 5.584005768884081e-20,
+    "Earth": 8.3631096e-21,
+    "Mars": 3.600790501581003e-21,
+    "Jupiter": 3.0893003707370437e-22,
+    "Saturn": 9.189058977097427e-23
+   },
+   "rho_disc": 6.7681099839808836e-21,
+   "rho_lism": 3.34524384e-22,
+   "vacuum_ratio_sun": 2.6147704296878975e-07,
+   "vacuum_ratio_galaxies": {
+    "solar-neighbourhood disc": 3.1055622609811864,
+    "inner disc": 0.031055622609811876,
+    "gas-poor (elliptical) centre": 0.0003105562260981187
+   }
+  },
+  "C2": {
+   "T_sun_min": 2.0546055408382142e-25,
+   "T_gal_max": 1.67322980648536e-27,
+   "ell_window_kpc": [
+    21.4341334446321,
+    237.51572151992858
+   ]
+  },
+  "C3": {
+   "V11": "-4*k**2*(alpha_c - 2)*(K_2*k**2 + 1)**2/(K_2**2*alpha_c*k**4 - 2*K_2**2*k**4 + 2*K_2*alpha_c*k**2 - 4*K_2*k**2 + alpha_c)",
+   "u_plus": 8.000000661922968e-10,
+   "u_minus": -2.0000000008,
+   "K2_illustrative": 4.4529462091323476e+24,
+   "lambda_crit_AU": {
+    "K_2 > 0": 3133525.0387761947,
+    "K_2 < 0": 62.670503355679976
+   }
+  },
+  "R1": {
+   "canonical": {
+    "ss": {
+     "Mercury": 1.9321093357565665e-16,
+     "Earth": 4.992530583350283e-16,
+     "Mars": 7.608616609025858e-16,
+     "Jupiter": 2.597613662517156e-15,
+     "Saturn": 4.762874176516164e-15
+    },
+    "mono": 1.0909808126869989,
+    "q2": 0.21395968594097703,
+    "sparc": 0.10827186090058499,
+    "kids": 5.0675907914410345e-11,
+    "flag": -3.154604441347225e-12,
+    "ct_delay_s": 904.3061494226558,
+    "ppn": 8.418988648963065e-14,
+    "s8": 1.0158502273395096
+   },
+   "alt": {
+    "ss": {
+     "Mercury": 1.9321093357565596e-16,
+     "Earth": 4.992530583350302e-16,
+     "Mars": 7.608616609025837e-16,
+     "Jupiter": 2.59761366251716e-15,
+     "Saturn": 4.762874176516177e-15
+    },
+    "mono": 1.090980812687002,
+    "q2": 0.20903779363407865,
+    "sparc": 0.1035489761043329,
+    "kids": 5.204583430895582e-10,
+    "flag": -5.567882142794388e-12,
+    "ct_delay_s": 1042.324296296894,
+    "ppn": 8.418988648963097e-14,
+    "s8": 1.0179788787904498
+   }
+  },
+  "R2": {
+   "xi_q_pc": [
+    1.573276620886921,
+    3.2788498518738844
+   ],
+   "solar_system": {
+    "canonical": {
+     "Q2": 5.979975842127978e-06,
+     "M": 1.2356053918207303e-05,
+     "gmax": 4.636632504215933e-06
+    },
+    "alt": {
+     "Q2": 7.459760953832023e-06,
+     "M": 1.630535811996536e-05,
+     "gmax": 6.119376036147166e-06
+    }
+   },
+   "sparc_bound": 0.0003225256905340019,
+   "s8_factor": 0.9999999980487756
+  },
+  "F": [
+   {
+    "constant": "xi (heat-filter length)",
+    "before": "KNOB [0.0243/0.0268 pc, ~100 pc] (FP14)",
+    "after": "KNOB: no constant-free screening exists in routes (a)-(c) (M: it is a threshold mass, 0.4-7e6 Msun); the Riemann Galileon REPLACES it with k^(1/4) in [~100, ~200-400] kpc; the xi_q(m) tie is numerology",
+    "basis": "M1-M4, V1-V4, B1-B4, C1-C3, R1-R2"
+   },
+   {
+    "constant": "k (BDEF Galileon coupling)",
+    "before": "-",
+    "after": "not adopted: one fitted length for another, plus a Riemann-coupled term whose static c_T and stability are OPEN",
+    "basis": "V4"
+   },
+   {
+    "constant": "m (dark mass)",
+    "before": "DECLARED floor (FP10)",
+    "after": "unchanged; not tied to xi (no mechanism)",
+    "basis": "B"
+   }
+  ]
+ },
+ "ledger": [
+  {
+   "link": "F17a",
+   "what": "the strict law's Cassini Q2 is made at 1695-7280 AU (y_N 1.7-22, C <= 3e-12): the Sun at its own EFE transition, at the same y as galaxy interiors",
+   "status": "DERIVED",
+   "basis": "M1 (f28's integrand, cumulative; FP14 X5 reproduced)"
+  },
+  {
+   "link": "F17b",
+   "what": "at fixed y a local key sees only C ~ M^(1/2) (Buckingham); SPARC at the same y has C >= 4e-09: every Solar-System screening is a threshold MASS in [~1, ~2e+07] Msun",
+   "status": "DERIVED",
+   "basis": "M2 (sympy nullspace; SPARC)"
+  },
+  {
+   "link": "F17c",
+   "what": "no O(1) mass from (a0, Lambda, G, c) in the window: M_H (8 pi/kappa^2)^D needs D in [-12.1, -8.5]; 4 integer hits and the Chandrasekhar-type 1.85 Msun (needs m_p) are NUMEROLOGY",
+   "status": "FAILS",
+   "basis": "M3"
+  },
+  {
+   "link": "F17d",
+   "what": "every constant-free construction puts the threshold mass at 1e20-1e22 Msun (galaxies screened); in-window rows carry a fitted length or are numerology",
+   "status": "DERIVED",
+   "basis": "M4"
+  },
+  {
+   "link": "F17e",
+   "what": "cubic Galileon, r_c = c/H_Lambda: r_V(1e11 Msun) = 502-1034 kpc (the '~70 kpc' is low), r_V/r_M >= 45: galaxies screened",
+   "status": "FAILS",
+   "basis": "V1 (sympy flux)"
+  },
+  {
+   "link": "F17f",
+   "what": "cubic Galileon on P2 (Route 2 on the AQUAL root): constant-free R_* screens SPARC; for ANY R_* the window is empty (>= 2e+06): P2's pole beats a 1/r Galileon flux",
+   "status": "FAILS",
+   "basis": "V2 (K5: Route 2 reproduced)"
+  },
+  {
+   "link": "F17g",
+   "what": "BDEF's Riemann Galileon on P2 beats the pole (interior force c^2 r/sqrt(8k)); with k^(1/4) = c/H it fails SPARC, KiDS and the flagship",
+   "status": "FAILS",
+   "basis": "V3, R1"
+  },
+  {
+   "link": "F17h",
+   "what": "BDEF with k fitted: k^(1/4) >= 104 kpc (Saturn), SPARC to ~13 Mpc, GW170817 (estimate) <= ~379 kpc: a REPLACEMENT of xi, not an elimination",
+   "status": "CONSTRAINT",
+   "basis": "V4 (reported)"
+  },
+  {
+   "link": "F17i",
+   "what": "the tie k = L(0)^4 to FP9's separator length: Solar System and SPARC pass, GW170817 missed by the static-gradient c_T estimate",
+   "status": "OPEN",
+   "basis": "V4 (an estimate; the Paul term's c_T on a static gradient is not derived here)"
+  },
+  {
+   "link": "F17j",
+   "what": "de Broglie hbar/(m v) = 0.006-0.050 pc (verified); at FP10's kick speed <= 0.0175 pc, below the floor (monopole 1.9x)",
+   "status": "FAILS",
+   "basis": "B1"
+  },
+  {
+   "link": "F17k",
+   "what": "xi_q = ((hbar/m)^2/a0)^(1/3) = 1.6-3.3 pc, the unique c-free length from (hbar/m, a0), inside the window: NUMEROLOGY (no action couples the heat depth to m); SHARED only by postulate",
+   "status": "FAILS",
+   "basis": "B2, B4, R2"
+  },
+  {
+   "link": "F17l",
+   "what": "a readout keyed to the dark field's local coherence is absent where FP10 cleared the field (SPARC discs, dwarfs): MOND off, and S != 0",
+   "status": "FAILS",
+   "basis": "B3 (FP10's retained fractions)"
+  },
+  {
+   "link": "F17m",
+   "what": "density (Ricci) keys: the planets' vacuum is no denser than a galaxy disc; the vacuum ratio needs a new small threshold",
+   "status": "FAILS",
+   "basis": "C1"
+  },
+  {
+   "link": "F17n",
+   "what": "tidal (Weyl) keys need ell_* in [21, 238] kpc -- a new length",
+   "status": "FAILS",
+   "basis": "C2"
+  },
+  {
+   "link": "F17o",
+   "what": "a curvature-keyed readout depth: V_11 = 4k^2 (2 - alpha_c)(1 + u)^2/(2 - (2 - alpha_c)(1 + u)^2), u = K_2 k^2: unstable unless saturated (the FC-KH lesson at one more derivative)",
+   "status": "DERIVED",
+   "basis": "C3 (sympy, FP14's block)"
+  },
+  {
+   "link": "F17p",
+   "what": "not derived here: the Paul term's c_T on static gradients, the Galileon-lapse mixing (FC-KH for R_0i0j couplings), BDEF's stability, a leaf-projected Galileon's second-order property",
+   "status": "OPEN",
+   "basis": "R1, V4"
+  },
+  {
+   "link": "F17q",
+   "what": "xi remains the gravity core's one knob; physically it encodes the stellar mass scale (a0 xi^2/G in [0.4, 7e6] Msun)",
+   "status": "CONSTRAINT",
+   "basis": "F (verdict)"
+  },
+  {
+   "link": "F17r",
+   "what": "keys on the EXTERNAL field (outside theorem M): relational (Theorem 8), threshold FITTED in the record (ESCREEN), a local angle proxy is direction-dependent around the Sun; they screen every EFE-dominated system alike",
+   "status": "OPEN",
+   "basis": "C5 (reported, not pursued)"
+  }
+ ]
+}
