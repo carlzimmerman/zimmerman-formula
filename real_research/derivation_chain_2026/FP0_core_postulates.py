@@ -12,7 +12,7 @@ that needs the action is explicit.
 THE POSTULATES (the inputs; nothing below them is added by hand):
   P1  the acceleration scale is set by the vacuum:  a0 = kappa c sqrt(G rho_Lambda)  (kappa = 1/2; rho_Lambda = Omega_L rho_c).
   P2  the galaxy law:  g_obs = sqrt(g_bar^2 + g_bar a0)  (the framework's interpolation; its form is Milgrom 1999, Eq. 9).
-  P3  the canonical reading of P1 in time: rho_Lambda with w = -1, so a0 does not follow H(z).
+  P3  the canonical reading of P1 in time: a0 tracks sqrt(rho_DE(z)), never H(z); with w = -1 (a true constant) a0 is flat.
 CHECKS
   C1 CONTROL (uniqueness): the only acceleration built from (G, c, rho) is G^(1/2) c rho^(1/2) -- the exponent matrix is
      nonsingular with |det| = 2 -- so P1's FORM is forced; kappa and the choice of rho are not.
@@ -26,6 +26,8 @@ CHECKS
      infrared law: the action's kernel must reach Newton faster than 1/(2y) (alpha >~ 1.5), invisible in galaxies.
   R3 P3's a0(z) (DERIVED from P1 + P3): a0(z)/a0(0) = 1 exactly at every z on the canonical reading; the rival rho_total
      reading gives a0 proportional to H(z) (a factor E(z) = 3.77 at z = 2.5), so the flat law is a distinguishing prediction.
+  R3b P1 with EVOLVING dark energy (DERIVED from P1 + the measured w(z)): a0(z)/a0(0) = sqrt(rho_DE(z)/rho_DE(0)); for DESI's
+     CPL fits a ~0.1 dex decline at z = 2.5 (reproducing the committed fable_independent_2026/L273_desi_a0z_band.out).
   W  the ledger of this lane's links and their status.
 MUTATE=1 replaces P2 by the exponential RAR kernel g = g_bar / (1 - exp(-sqrt(g_bar/a0))): the sum rule and the a0/2 tail are
 properties of the framework's own law, so R1 and R2 must FAIL (rc = 1).
@@ -138,6 +140,27 @@ check("R3 DERIVED from P1 + P3: a0(z)/a0(0) = 1 at every z (canonical); the rho_
       + f" (+{math.log10(rival[2.5]):.3f} dex at z = 2.5)", ok_r3)
 OUT["numbers"]["a0z_rival_E"] = rival
 
+# ---------------------------------------------------------------------------------------------- R3b a0(z) under evolving dark energy
+banner("R3b P1 with EVOLVING dark energy: a0(z) tracks sqrt(rho_DE(z)); w = -1 is the flat special case")
+# P1 says a0 ~ sqrt(rho_DE). For CPL w(z) = w0 + wa z/(1+z): rho_DE(z)/rho_DE(0) = (1+z)^(3(1+w0+wa)) exp(-3 wa z/(1+z)).
+a0z_cpl = lambda z, w0, wa: (1 + z) ** (1.5 * (1 + w0 + wa)) * math.exp(-1.5 * wa * z / (1 + z))
+src73 = os.path.join(REPO, "fable_independent_2026", "L273_desi_a0z_band.out")
+m73 = re.search(r"banked \((-?[0-9.]+), (-?[0-9.]+)\); a0\(2\.5\)/a0\(0\) = ([0-9.]+)", open(src73).read()) \
+    if os.path.exists(src73) else None
+if m73:
+    w0_, wa_, ref_ = float(m73.group(1)), float(m73.group(2)), float(m73.group(3))
+    r25 = a0z_cpl(2.5, w0_, wa_)
+    lam = a0z_cpl(2.5, -1.0, 0.0)
+    ok_r3b = abs(r25 - ref_) < 1e-3 and abs(lam - 1.0) < 1e-12 and r25 < 1.0 < rival[2.5]
+    meas = (f"DESY5 CPL (w0, wa) = ({w0_}, {wa_}) from {os.path.relpath(src73, REPO)}: a0(2.5)/a0(0) = {r25:.4f} "
+            f"({math.log10(r25):+.3f} dex) vs the committed {ref_}; w = -1 gives {lam:.4f} (flat); the rho_total rival "
+            f"+{math.log10(rival[2.5]):.3f} dex -- the scaling predicts a small DECLINE under DESI, the rival a large rise")
+    OUT["numbers"].update(a0z_desy5_z25=r25, a0z_desy5_pair=[w0_, wa_])
+else:
+    ok_r3b, meas = False, f"could not read the DESY5 pair from {src73}"
+check("R3b DERIVED from P1 (a0 ~ sqrt rho_DE) + measured w(z): a0(z)/a0(0) = sqrt(rho_DE(z)/rho_DE(0)); flat for w = -1, a "
+      "~0.1 dex decline at z = 2.5 under DESI's evolving dark energy (reproduces L273)", meas, ok_r3b)
+
 # ---------------------------------------------------------------------------------------------- W ledger
 banner("W  THE LEDGER: what this top of the chain derives, and where the action has to take over")
 LEDGER = [
@@ -148,6 +171,8 @@ LEDGER = [
     ("L1b", "deep limit, BTFR v^4 = G M a0, slope s(y), sum rule 3/2", "DERIVED", "R1, from L1a"),
     ("L1c", "the a0/2 tail vs the planets", "CONSTRAINT", "R2: the action's kernel must reach Newton faster (alpha >~ 1.5)"),
     ("L2a", "a0(z) flat (rho_Lambda, w = -1)", "DERIVED", "R3, from L0 + P3"),
+    ("L2a'", "a0(z) ~ sqrt(rho_DE(z)) for evolving dark energy: -0.10 dex at z = 2.5 under DESI (vs the rival +0.58)",
+     "DERIVED", "R3b, from P1 + the measured w(z); reproduces L273"),
     ("L2b", "a0 as a field (a0^2 = kappa^2 G (-p_Q))", "POSTULATED", "a chosen promotion; the action has to produce it"),
     ("L3", "the covariant action (root)", "OPEN", "next lane: chosen after the candidate map; everything below is varied out of it"),
     ("L4-L10", "static limit/kernel, lensing, PPN, c_T = 1, stability, cosmology, clusters", "OPEN", "each derived from L3 or it fails"),

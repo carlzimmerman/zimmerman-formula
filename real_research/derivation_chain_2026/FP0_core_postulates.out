@@ -9,7 +9,7 @@ that needs the action is explicit.
 THE POSTULATES (the inputs; nothing below them is added by hand):
   P1  the acceleration scale is set by the vacuum:  a0 = kappa c sqrt(G rho_Lambda)  (kappa = 1/2; rho_Lambda = Omega_L rho_c).
   P2  the galaxy law:  g_obs = sqrt(g_bar^2 + g_bar a0)  (the framework's interpolation; its form is Milgrom 1999, Eq. 9).
-  P3  the canonical reading of P1 in time: rho_Lambda with w = -1, so a0 does not follow H(z).
+  P3  the canonical reading of P1 in time: a0 tracks sqrt(rho_DE(z)), never H(z); with w = -1 (a true constant) a0 is flat.
 
 ==============================================================================================================
 C1  CONTROL: the form of P1 is forced by (G, c, rho)
@@ -42,6 +42,12 @@ R3  P1 + P3: a0(z) is flat on the canonical reading; the rival follows H(z)
          measured: canonical 1.000 at z = 0.5, 1, 2.5, 5, 1100; rival 1.322, 1.791, 3.769, 8.294 (+0.576 dex at z = 2.5)
 
 ==============================================================================================================
+R3b P1 with EVOLVING dark energy: a0(z) tracks sqrt(rho_DE(z)); w = -1 is the flat special case
+==============================================================================================================
+  [PASS] R3b DERIVED from P1 (a0 ~ sqrt rho_DE) + measured w(z): a0(z)/a0(0) = sqrt(rho_DE(z)/rho_DE(0)); flat for w = -1, a ~0.1 dex decline at z = 2.5 under DESI's evolving dark energy (reproduces L273)
+         measured: DESY5 CPL (w0, wa) = (-0.752, -0.86) from fable_independent_2026/L273_desi_a0z_band.out: a0(2.5)/a0(0) = 0.7956 (-0.099 dex) vs the committed 0.796; w = -1 gives 1.0000 (flat); the rho_total rival +0.576 dex -- the scaling predicts a small DECLINE under DESI, the rival a large rise
+
+==============================================================================================================
 W  THE LEDGER: what this top of the chain derives, and where the action has to take over
 ==============================================================================================================
     L0a     DERIVED     the FORM a0 ~ c sqrt(G rho)  --  C1: unique from (G, c, rho), |det| = 2
@@ -51,11 +57,12 @@ W  THE LEDGER: what this top of the chain derives, and where the action has to t
     L1b     DERIVED     deep limit, BTFR v^4 = G M a0, slope s(y), sum rule 3/2  --  R1, from L1a
     L1c     CONSTRAINT  the a0/2 tail vs the planets  --  R2: the action's kernel must reach Newton faster (alpha >~ 1.5)
     L2a     DERIVED     a0(z) flat (rho_Lambda, w = -1)  --  R3, from L0 + P3
+    L2a'    DERIVED     a0(z) ~ sqrt(rho_DE(z)) for evolving dark energy: -0.10 dex at z = 2.5 under DESI (vs the rival +0.58)  --  R3b, from P1 + the measured w(z); reproduces L273
     L2b     POSTULATED  a0 as a field (a0^2 = kappa^2 G (-p_Q))  --  a chosen promotion; the action has to produce it
     L3      OPEN        the covariant action (root)  --  next lane: chosen after the candidate map; everything below is varied out of it
     L4-L10  OPEN        static limit/kernel, lensing, PPN, c_T = 1, stability, cosmology, clusters  --  each derived from L3 or it fails
   [PASS] W (reported) the ledger of the chain's top
-         measured: 10 links
+         measured: 11 links
 
 ==============================================================================================================
 VERDICT
@@ -64,5 +71,5 @@ VERDICT
   exactly; P2 must be an infrared law (its a0/2 tail is 1279x the Earth bound); a0(z) is flat on the canonical
   reading.  Everything from the static limit down is owed by the root action (L3).
 
-  6/6 checks pass; load-bearing failures: 0; wrote FP0_core_postulates_results.json
+  7/7 checks pass; load-bearing failures: 0; wrote FP0_core_postulates_results.json
 rc=0
