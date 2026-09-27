@@ -1,0 +1,245 @@
+{
+ "lane": "MS1",
+ "mutate": true,
+ "checks": {
+  "A1 CONTROL: CV1's six Euler-Lagrange equations (f prescribed, M^2 = m^2(1 - f)) are reproduced with zero residual": {
+   "ok": true,
+   "measured": "{'Phi': '0', 'lam': '0', 'Psi': '0', 'w': '0', 'u': '0', 'v': '0'}",
+   "load_bearing": false
+  },
+  "A2 for every door the varied Euler-Lagrange equations have the stated closed form (zero residual): the gate adds lap(C W' B) to the Phi equation when U reads lap Phi, and to the v equation when U reads lap v": {
+   "ok": true,
+   "measured": "{'a_curvature': {'Phi': '0', 'lam': '0', 'Psi': '0', 'w': '0', 'u': '0', 'v': '0'}, 'b_matter': {'Phi': '0', 'lam': '0', 'Psi': '0', 'w': '0', 'u': '0', 'v': '0'}, 'c_mond_sector': {'Phi': '0', 'lam': '0', 'Psi': '0', 'w': '0', 'u': '0', 'v': '0'}, 'd_baryons': {'Phi': '0', 'lam': '0', 'Psi': '0', 'w': '0', 'u': '0', 'v': '0'}}",
+   "load_bearing": true
+  },
+  "A3 THE RECIPROCITY TEST: with the gate varied, the dark component's potential is EXACTLY Newtonian (V_d = u_N) on the MOND-sector door (c) and the baryons door (d), and carries the gate's edge term on the curvature door (a), -(1/2) C W'(U) B, and the matter door (b), -C W'(U) B/(8 pi G)": {
+   "ok": false,
+   "measured": "(c) C*Wp*(a0*(-a0**2*d1*log((a0**2 + Derivative(w(x), x)**2)/a0**2) - m2*sigma*w(x)**2 - m2*Psi(x)*w(x) + Psi(x)*Derivative(u(x), (x, 2)) - Psi(x)*Derivative(v(x), (x, 2))) - c1*(Derivative(w(x), x)**2)**(3/2))/(8*pi*G*a0); (d) 0; (a) -B*C*Wp/2; (b) matches -C W' B/8piG: True",
+   "load_bearing": true
+  },
+  "A4 on flat FRW the contrast of the MOND-sector door and of the baryons door vanishes, so CV1's C-infinity gate and all its derivatives are zero there: the homogeneous background is off-plateau for both": {
+   "ok": true,
+   "measured": "(c) 0; (d) 0",
+   "load_bearing": false
+  },
+  "N1 (reported) the leaked edge force on the carrier, doors (a) and (b), kernel term of B only, is non-zero in every host with a region; doors (c) and (d) leak nothing by A3": {
+   "ok": true,
+   "measured": "max |F_leak|/g_N over hosts, footings, widths: 2317.821; min 0.0644",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "B": "a0**2*d1*log(1 + Derivative(w(x), x)**2/a0**2) + m2*sigma*w(x)**2 + m2*Psi(x)*w(x) - Psi(x)*Derivative(u(x), (x, 2)) + Psi(x)*Derivative(v(x), (x, 2)) + c1*(Derivative(w(x), x)**2)**(3/2)/a0",
+  "A3_leaks": {
+   "a_curvature": "-B*C*Wp/2",
+   "b_matter": "C*Wp*(a0*(-a0**2*d1*log((a0**2 + Derivative(w(x), x)**2)/a0**2) - m2*sigma*w(x)**2 - m2*Psi(x)*w(x) + Psi(x)*Derivative(u(x), (x, 2)) - Psi(x)*Derivative(v(x), (x, 2))) - c1*(Derivative(w(x), x)**2)**(3/2))/(8*pi*G*a0)",
+   "c_mond_sector": "C*Wp*(a0*(-a0**2*d1*log((a0**2 + Derivative(w(x), x)**2)/a0**2) - m2*sigma*w(x)**2 - m2*Psi(x)*w(x) + Psi(x)*Derivative(u(x), (x, 2)) - Psi(x)*Derivative(v(x), (x, 2))) - c1*(Derivative(w(x), x)**2)**(3/2))/(8*pi*G*a0)",
+   "d_baryons": "0"
+  },
+  "N1": {
+   "KiDS L* lens, z = 0.25/canonical": {
+    "a/0.1": {
+     "r_edge_kpc": 1261.871572591512,
+     "force_ratio_max": 6.377184505777047,
+     "well_depth_kms2": -1219.3302588185663,
+     "depth_over_vc2": 0.12435541727352852
+    },
+    "b/0.1": {
+     "r_edge_kpc": 583.3957179991439,
+     "force_ratio_max": 54.59074802856342,
+     "well_depth_kms2": -12263.00059727902,
+     "depth_over_vc2": 0.7645117849674509
+    },
+    "a/0.25": {
+     "r_edge_kpc": 1261.871572591512,
+     "force_ratio_max": 1.0267530637177973,
+     "well_depth_kms2": -488.87198437744246,
+     "depth_over_vc2": 0.04985841954705462
+    },
+    "b/0.25": {
+     "r_edge_kpc": 583.3957179991439,
+     "force_ratio_max": 8.997139176703975,
+     "well_depth_kms2": -4905.9934617684385,
+     "depth_over_vc2": 0.3058541658497069
+    },
+    "a/0.5": {
+     "r_edge_kpc": 1261.871572591512,
+     "force_ratio_max": 0.2572939789330472,
+     "well_depth_kms2": -246.41944466674883,
+     "depth_over_vc2": 0.0251314954617266
+    },
+    "b/0.5": {
+     "r_edge_kpc": 583.3957179991439,
+     "force_ratio_max": 2.316673547585353,
+     "well_depth_kms2": -2453.0533444794964,
+     "depth_over_vc2": 0.1529306123840943
+    },
+    "a/1.0": {
+     "r_edge_kpc": 1261.871572591512,
+     "force_ratio_max": 0.06465338435166561,
+     "well_depth_kms2": -126.76349691495163,
+     "depth_over_vc2": 0.01292818532132898
+    },
+    "b/1.0": {
+     "r_edge_kpc": 583.3957179991439,
+     "force_ratio_max": 0.6130146262680826,
+     "well_depth_kms2": -1226.7206700132233,
+     "depth_over_vc2": 0.07647740058794175
+    }
+   },
+   "KiDS L* lens, z = 0.25/alt": {
+    "a/0.1": {
+     "r_edge_kpc": 1312.2593365581351,
+     "force_ratio_max": 6.352114142721845,
+     "well_depth_kms2": -1186.9416216924276,
+     "depth_over_vc2": 0.12431554232261988
+    },
+    "b/0.1": {
+     "r_edge_kpc": 583.3957179991439,
+     "force_ratio_max": 59.95202052126371,
+     "well_depth_kms2": -13467.441779434103,
+     "depth_over_vc2": 0.8396002162818881
+    },
+    "a/0.25": {
+     "r_edge_kpc": 1312.2593365581351,
+     "force_ratio_max": 1.0218825276985635,
+     "well_depth_kms2": -475.9639836023615,
+     "depth_over_vc2": 0.04985057366443485
+    },
+    "b/0.25": {
+     "r_edge_kpc": 583.3957179991439,
+     "force_ratio_max": 9.880670306047977,
+     "well_depth_kms2": -5387.847842991301,
+     "depth_over_vc2": 0.33589439541349053
+    },
+    "a/0.5": {
+     "r_edge_kpc": 1312.2593365581351,
+     "force_ratio_max": 0.25606822467129875,
+     "well_depth_kms2": -239.9722837922877,
+     "depth_over_vc2": 0.025133742095503276
+    },
+    "b/0.5": {
+     "r_edge_kpc": 583.3957179991439,
+     "force_ratio_max": 2.544129099275417,
+     "well_depth_kms2": -2693.9860955363574,
+     "depth_over_vc2": 0.16795107382062638
+    },
+    "a/1.0": {
+     "r_edge_kpc": 1312.2593365581351,
+     "force_ratio_max": 0.06436606431662839,
+     "well_depth_kms2": -123.56256592838089,
+     "depth_over_vc2": 0.012941451469414876
+    },
+    "b/1.0": {
+     "r_edge_kpc": 583.3957179991439,
+     "force_ratio_max": 0.6731747464246662,
+     "well_depth_kms2": -1347.209283972978,
+     "depth_over_vc2": 0.08398901771589534
+    }
+   },
+   "flagship host, z = 2.5/canonical": {
+    "a/0.1": {
+     "r_edge_kpc": 128.74042207652673,
+     "force_ratio_max": 150.58598891366455,
+     "well_depth_kms2": -20162.013639114044,
+     "depth_over_vc2": 3.014006537731721
+    },
+    "b/0.1": {
+     "r_edge_kpc": 42.57747854700825,
+     "force_ratio_max": 2091.385684568812,
+     "well_depth_kms2": -518175.9897974067,
+     "depth_over_vc2": 37.2333294174388
+    },
+    "a/0.25": {
+     "r_edge_kpc": 128.74042207652673,
+     "force_ratio_max": 24.22910181884394,
+     "well_depth_kms2": -8086.255730690736,
+     "depth_over_vc2": 1.2088092030049546
+    },
+    "b/0.25": {
+     "r_edge_kpc": 42.57747854700825,
+     "force_ratio_max": 342.6549051045559,
+     "well_depth_kms2": -207493.9214141366,
+     "depth_over_vc2": 14.90939310242694
+    },
+    "a/0.5": {
+     "r_edge_kpc": 128.74042207652673,
+     "force_ratio_max": 6.07108734013964,
+     "well_depth_kms2": -4079.550373460196,
+     "depth_over_vc2": 0.6098493789708206
+    },
+    "b/0.5": {
+     "r_edge_kpc": 42.57747854700825,
+     "force_ratio_max": 88.13883931619512,
+     "well_depth_kms2": -104097.80502518578,
+     "depth_over_vc2": 7.479906329991163
+    },
+    "a/1.0": {
+     "r_edge_kpc": 128.74042207652673,
+     "force_ratio_max": 1.5236733133600224,
+     "well_depth_kms2": -2105.1534219189243,
+     "depth_over_vc2": 0.31469804009470703
+    },
+    "b/1.0": {
+     "r_edge_kpc": 42.57747854700825,
+     "force_ratio_max": 23.248717619994395,
+     "well_depth_kms2": -52736.3648591104,
+     "depth_over_vc2": 3.789350498168003
+    }
+   },
+   "flagship host, z = 2.5/alt": {
+    "a/0.1": {
+     "r_edge_kpc": 134.46486924004364,
+     "force_ratio_max": 149.32977610961385,
+     "well_depth_kms2": -19541.359226940047,
+     "depth_over_vc2": 3.004546806377067
+    },
+    "b/0.1": {
+     "r_edge_kpc": 42.57747854700825,
+     "force_ratio_max": 2317.8214739104683,
+     "well_depth_kms2": -574391.4892421293,
+     "depth_over_vc2": 41.2726717459198
+    },
+    "a/0.25": {
+     "r_edge_kpc": 134.46486924004364,
+     "force_ratio_max": 24.10278929474163,
+     "well_depth_kms2": -7837.726015280451,
+     "depth_over_vc2": 1.2050755730443017
+    },
+    "b/0.25": {
+     "r_edge_kpc": 42.57747854700825,
+     "force_ratio_max": 379.6585611441987,
+     "well_depth_kms2": -230011.13115391193,
+     "depth_over_vc2": 16.527358242283004
+    },
+    "a/0.5": {
+     "r_edge_kpc": 134.46486924004364,
+     "force_ratio_max": 6.045211854624477,
+     "well_depth_kms2": -3954.846672448072,
+     "depth_over_vc2": 0.6080703906734071
+    },
+    "b/0.5": {
+     "r_edge_kpc": 42.57747854700825,
+     "force_ratio_max": 97.61542201271318,
+     "well_depth_kms2": -115406.43659188217,
+     "depth_over_vc2": 8.29248354829855
+    },
+    "a/1.0": {
+     "r_edge_kpc": 134.46486924004364,
+     "force_ratio_max": 1.5187204676703439,
+     "well_depth_kms2": -2042.0526126149264,
+     "depth_over_vc2": 0.3139721543641497
+    },
+    "b/1.0": {
+     "r_edge_kpc": 42.57747854700825,
+     "force_ratio_max": 25.72822772160391,
+     "well_depth_kms2": -58490.24903016561,
+     "depth_over_vc2": 4.202793554173833
+    }
+   }
+  }
+ },
+ "n_checks": 5,
+ "n_fail_load_bearing": 1,
+ "elapsed_s": 2.6677627563476562
+}

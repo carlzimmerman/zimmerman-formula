@@ -1,0 +1,98 @@
+MS1 -- THE GATE VARIED ON V0's CHASSIS: WHICH SWITCH VARIABLE KEEPS THE DARK COMPONENT KERNEL-INVISIBLE?
+
+WHY.  The construction's dark component is kernel-invisible (L353): the MOND kernel reads the baryons' field only, so by
+reciprocity the dark component feels Newtonian gravity only.  CV1 (real_research/chk_v0_2026, commit cc2b55bbb) carries
+that property to the region kernel -- but with the gate f PRESCRIBED.  CV3 (the gate varied as an action term) is
+"awaiting the gate functional", and the author's 2026-09-26 decision opened every reading of the switch variable as its
+own door.  Once f = W(U) is varied, whatever U reads feels the gate: if U reads the dark component's density (directly,
+or through the curvature it sources), the dark component feels a force at every region's edge and is no longer
+kernel-invisible.  This lane derives, on CV1's own Lagrangian, which readings keep reciprocity exact.
+
+THE LAGRANGIAN: CV1's, term for term (C-H's chassis, the region kernel, the region field, L353's pair with its projected
+source, L361's web self-term), with the prescribed gate replaced by f = W(U) and the screening mass M^2 = m^2 (1 - f)
+varying with it, as CV1 defines it.  One dimension, S = 1 (CV1 A1's reduction), a concrete non-trivial kernel (CV1's
+q = c1 s^(3/2) + d1 log(1 + s)) and a generic gate function W.
+THE FOUR DOORS (switch variables; C > 0 is the gate's normalisation, (3/2)[Omega_L/Omega_L0]^p / rho_crit):
+  (a) curvature    U = C lap Phi            the leaf curvature, the reading CV1 A6 uses (DE1/DE2's upper branch reads
+                                            the same density: baryons + dark component + phantom)
+  (b) matter       U = C (rho_b + rho_d)    the particle-mesh runs' matter-only reading (L377, L380, L388)
+  (c) MOND sector  U = C lap(Phi - v)       Phi minus the dark component's own potential v (L353's pair):
+                                            lap(Phi - v) = 4 pi G (rho_b + <rho_d>) + lap(f P) + (the gate's own term),
+                                            i.e. the baryons and their phantom; the carrier enters only as its mean
+  (d) baryons      U = C rho_b              the baryons alone
+
+  *** MUTATE=1: the carrier's density is added to the MOND-sector variable (door c); A3 must FAIL ***
+
+==============================================================================================================
+A1  CONTROL: with f prescribed (and M^2 = m^2 (1 - f)), CV1's field equations are reproduced
+==============================================================================================================
+    delta Phi: residual against CV1's field equation = 0
+    delta lam: residual against CV1's field equation = 0
+    delta Psi: residual against CV1's field equation = 0
+    delta w  : residual against CV1's field equation = 0
+    delta u  : residual against CV1's field equation = 0
+    delta v  : residual against CV1's field equation = 0
+  [PASS] A1 CONTROL: CV1's six Euler-Lagrange equations (f prescribed, M^2 = m^2(1 - f)) are reproduced with zero residual
+         measured: {'Phi': '0', 'lam': '0', 'Psi': '0', 'w': '0', 'u': '0', 'v': '0'}
+    B = 8 pi G dL/df = a0**2*d1*log(1 + Derivative(w(x), x)**2/a0**2) + m2*sigma*w(x)**2 + m2*Psi(x)*w(x) - Psi(x)*Derivative(u(x), (x, 2)) + Psi(x)*Derivative(v(x), (x, 2)) + c1*(Derivative(w(x), x)**2)**(3/2)/a0
+
+==============================================================================================================
+A2  THE GATE VARIED: f = W(U) on each door; the Euler-Lagrange equations in closed form
+==============================================================================================================
+    door a_curvature   : residuals Phi 0, lam 0, Psi 0, w 0, u 0, v 0
+    door b_matter      : residuals Phi 0, lam 0, Psi 0, w 0, u 0, v 0
+    door c_mond_sector : residuals Phi 0, lam 0, Psi 0, w 0, u 0, v 0
+    door d_baryons     : residuals Phi 0, lam 0, Psi 0, w 0, u 0, v 0
+  [PASS] A2 for every door the varied Euler-Lagrange equations have the stated closed form (zero residual): the gate adds lap(C W' B) to the Phi equation when U reads lap Phi, and to the v equation when U reads lap v
+         measured: {'a_curvature': {'Phi': '0', 'lam': '0', 'Psi': '0', 'w': '0', 'u': '0', 'v': '0'}, 'b_matter': {'Phi': '0', 'lam': '0', 'Psi': '0', 'w': '0', 'u': '0', 'v': '0'}, 'c_mond_sector': {'Phi': '0', 'lam': '0', 'Psi': '0', 'w': '0', 'u': '0', 'v': '0'}, 'd_baryons': {'Phi': '0', 'lam': '0', 'Psi': '0', 'w': '0', 'u': '0', 'v': '0'}}
+
+==============================================================================================================
+A3  THE RECIPROCITY TEST: the potential the dark component feels, minus the Newtonian potential of all matter
+==============================================================================================================
+    door a_curvature   : V_d - u_N = -B*C*Wp/2
+    door b_matter      : V_d - u_N = C*Wp*(a0*(-a0**2*d1*log((a0**2 + Derivative(w(x), x)**2)/a0**2) - m2*sigma*w(x)**2 - m2*Psi(x)*w(x) + Psi(x)*Derivative(u(x), (x, 2)) - Psi(x)*Derivative(v(x), (x, 2))) - c1*(Derivative(w(x), x)**2)**(3/2))/(8*pi*G*a0)
+    door c_mond_sector : V_d - u_N = C*Wp*(a0*(-a0**2*d1*log((a0**2 + Derivative(w(x), x)**2)/a0**2) - m2*sigma*w(x)**2 - m2*Psi(x)*w(x) + Psi(x)*Derivative(u(x), (x, 2)) - Psi(x)*Derivative(v(x), (x, 2))) - c1*(Derivative(w(x), x)**2)**(3/2))/(8*pi*G*a0)
+    door d_baryons     : V_d - u_N = 0
+    door b_matter: V_d - u_N + C W'(U) B/(8 pi G) = 0
+  [FAIL] A3 THE RECIPROCITY TEST: with the gate varied, the dark component's potential is EXACTLY Newtonian (V_d = u_N) on the MOND-sector door (c) and the baryons door (d), and carries the gate's edge term on the curvature door (a), -(1/2) C W'(U) B, and the matter door (b), -C W'(U) B/(8 pi G)
+         measured: (c) C*Wp*(a0*(-a0**2*d1*log((a0**2 + Derivative(w(x), x)**2)/a0**2) - m2*sigma*w(x)**2 - m2*Psi(x)*w(x) + Psi(x)*Derivative(u(x), (x, 2)) - Psi(x)*Derivative(v(x), (x, 2))) - c1*(Derivative(w(x), x)**2)**(3/2))/(8*pi*G*a0); (d) 0; (a) -B*C*Wp/2; (b) matches -C W' B/8piG: True
+         reading:  a switch variable that reads the carrier -- directly (matter) or through the curvature it sources -- hands the gate's variation to the carrier; one that reads only the baryons and their phantom (lap(Phi - v)) does not
+
+==============================================================================================================
+A4  THE HOMOGENEOUS ZERO (CV1 A6's requirement for every door)
+==============================================================================================================
+    door (c) contrast on flat FRW: lap(Phi - v) - 4 pi G (<rho_b> + <rho_d>) = 0;  door (d): rho_b - <rho_b> = 0
+  [PASS] A4 on flat FRW the contrast of the MOND-sector door and of the baryons door vanishes, so CV1's C-infinity gate and all its derivatives are zero there: the homogeneous background is off-plateau for both
+         measured: (c) 0; (d) 0
+
+==============================================================================================================
+N1  THE SIZE OF THE LEAK ON DOORS (a) AND (b): two spherical hosts at the linear vacuum gate (p = 1, x_c0 = 2.5)
+==============================================================================================================
+    KiDS L* lens, z = 0.25   canonical door (a): D = 0.1: edge   1262 kpc, max |F_leak|/g_N 6.377, well 0.1244 v_c^2; D = 0.25: edge   1262 kpc, max |F_leak|/g_N 1.027, well 0.0499 v_c^2; D = 0.5: edge   1262 kpc, max |F_leak|/g_N 0.257, well 0.0251 v_c^2; D = 1.0: edge   1262 kpc, max |F_leak|/g_N 0.065, well 0.0129 v_c^2
+    KiDS L* lens, z = 0.25   canonical door (b): D = 0.1: edge    583 kpc, max |F_leak|/g_N 54.591, well 0.7645 v_c^2; D = 0.25: edge    583 kpc, max |F_leak|/g_N 8.997, well 0.3059 v_c^2; D = 0.5: edge    583 kpc, max |F_leak|/g_N 2.317, well 0.1529 v_c^2; D = 1.0: edge    583 kpc, max |F_leak|/g_N 0.613, well 0.0765 v_c^2
+    KiDS L* lens, z = 0.25   alt       door (a): D = 0.1: edge   1312 kpc, max |F_leak|/g_N 6.352, well 0.1243 v_c^2; D = 0.25: edge   1312 kpc, max |F_leak|/g_N 1.022, well 0.0499 v_c^2; D = 0.5: edge   1312 kpc, max |F_leak|/g_N 0.256, well 0.0251 v_c^2; D = 1.0: edge   1312 kpc, max |F_leak|/g_N 0.064, well 0.0129 v_c^2
+    KiDS L* lens, z = 0.25   alt       door (b): D = 0.1: edge    583 kpc, max |F_leak|/g_N 59.952, well 0.8396 v_c^2; D = 0.25: edge    583 kpc, max |F_leak|/g_N 9.881, well 0.3359 v_c^2; D = 0.5: edge    583 kpc, max |F_leak|/g_N 2.544, well 0.1680 v_c^2; D = 1.0: edge    583 kpc, max |F_leak|/g_N 0.673, well 0.0840 v_c^2
+    flagship host, z = 2.5   canonical door (a): D = 0.1: edge    129 kpc, max |F_leak|/g_N 150.586, well 3.0140 v_c^2; D = 0.25: edge    129 kpc, max |F_leak|/g_N 24.229, well 1.2088 v_c^2; D = 0.5: edge    129 kpc, max |F_leak|/g_N 6.071, well 0.6098 v_c^2; D = 1.0: edge    129 kpc, max |F_leak|/g_N 1.524, well 0.3147 v_c^2
+    flagship host, z = 2.5   canonical door (b): D = 0.1: edge     43 kpc, max |F_leak|/g_N 2091.386, well 37.2333 v_c^2; D = 0.25: edge     43 kpc, max |F_leak|/g_N 342.655, well 14.9094 v_c^2; D = 0.5: edge     43 kpc, max |F_leak|/g_N 88.139, well 7.4799 v_c^2; D = 1.0: edge     43 kpc, max |F_leak|/g_N 23.249, well 3.7894 v_c^2
+    flagship host, z = 2.5   alt       door (a): D = 0.1: edge    134 kpc, max |F_leak|/g_N 149.330, well 3.0045 v_c^2; D = 0.25: edge    134 kpc, max |F_leak|/g_N 24.103, well 1.2051 v_c^2; D = 0.5: edge    134 kpc, max |F_leak|/g_N 6.045, well 0.6081 v_c^2; D = 1.0: edge    134 kpc, max |F_leak|/g_N 1.519, well 0.3140 v_c^2
+    flagship host, z = 2.5   alt       door (b): D = 0.1: edge     43 kpc, max |F_leak|/g_N 2317.821, well 41.2727 v_c^2; D = 0.25: edge     43 kpc, max |F_leak|/g_N 379.659, well 16.5274 v_c^2; D = 0.5: edge     43 kpc, max |F_leak|/g_N 97.615, well 8.2925 v_c^2; D = 1.0: edge     43 kpc, max |F_leak|/g_N 25.728, well 4.2028 v_c^2
+  [PASS] N1 (reported) the leaked edge force on the carrier, doors (a) and (b), kernel term of B only, is non-zero in every host with a region; doors (c) and (d) leak nothing by A3
+         measured: max |F_leak|/g_N over hosts, footings, widths: 2317.821; min 0.0644
+
+==============================================================================================================
+SUMMARY
+==============================================================================================================
+  Varying the gate on CV1's own Lagrangian decides the switch-variable doors by reciprocity alone.  A switch that reads the
+  dark component -- directly (the particle-mesh runs' matter-only reading) or through the curvature it sources (the leaf
+  curvature, DE1/DE2's upper branch) -- makes the dark component feel the gate's variation at every region's edge, so it
+  is no longer kernel-invisible once f is an action term.  Two readings keep L353's reciprocity exact with the gate varied:
+  the MOND-sector density lap(Phi - v) = 4 pi G (rho_b + <rho_d>) + lap(f P) + ... (baryons and their phantom; the carrier
+  only as its mean), and the baryons alone.  Their homogeneous backgrounds are off-plateau (CV1 A6).  On every door the
+  BARYONS carry the gate's edge term (CV1's sigma layer is one part of it).  The leak on doors (a) and (b) is NOT small
+  (N1, kernel term only): for gate widths Delta = 0.1-1 in ln U the edge force on the carrier is 0.06-6x its Newtonian
+  gravity for an L* KiDS lens on the curvature door and 0.6-60x on the matter door, and at z = 2.5 around a flagship host
+  1.5-150x (well 0.3-3 v_c^2) and 23-2300x (well 4-41 v_c^2).  A varied gate on those doors would pile the carrier into
+  every region's edge -- physics the prescribed-mask runs (L377-L388) do not contain.  MS2 scores the MOND-sector door's
+  phenomenology; CV3 (the gate varied) can take lap(Phi - v) as its functional and keep the kernel-invisible carrier.
+
+  4/5 checks pass; load-bearing failures: 1; wrote MS1_gate_variation_reciprocity_results_MUTATE.json   [3s]

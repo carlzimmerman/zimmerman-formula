@@ -1,0 +1,105 @@
+MS3 -- COSMIC SHEAR ON THE MOND-SECTOR DOOR, RESOLUTION-FREE: why the record's mock cannot score it, where the region
+kernel's lensing power actually comes from, and the one design target that passes.
+
+WHY.  A construction passes cosmic shear iff the lensing power -- carrier + baryons + the MOND phantom its regions carry
+-- stays within 20% of LCDM's P_NL at k = 0.1-1 h/Mpc (GP3's gate, R <= 1.2).  Every "shear ok" since L364 (L364,
+L367, DE2/DE3/DE5, L388, AT3) scores the phantom on GP3's 100 Mpc mock.  L363 itself called its halo model "the
+resolution-free, converged estimate" and found it FAILS (worst R 2.9-9.2), and L364 moved to the mock because groups
+there share a collective field.  This lane asks, on the MOND-sector door (MS1/MS2): can the mock score phantom-supported
+regions at all, and what does the resolution-free estimate say?
+
+WHAT IS COMPUTED (L363's machinery -- region_phantom, the halo model's per-halo compensated phantom transform, GP3's
+Sheth-Tormen + NFW P_NL, GP0's bound baryons -- loaded unedited; the lane adds a size cap on each region and the door's
+edge reading):
+  U1  the mock's region builder, started from ONE isolated seed cell (the way the mock deposits a galaxy's bound baryons),
+      on L364's cell size (0.39 Mpc), at the linear cell's lens-epoch threshold, for the halo model's bound baryons of
+      1e12, 1e13 and 1e14 Msun halos: how far does the region grow, against the analytic phantom edge?
+  M1  L364's mock (seed 20260926): how many cluster-mass systems it holds, against the halo model's expectation.
+  D1  the halo model at the linear cell (p = 1, x_c0 = 2.5; x(0.5) = 4.363), both footings: the phantom's power at
+      k = 1 split by halo mass.
+  X1  the door in the halo model: beyond r200 the door's edge is where the phantom alone reaches the gate (a host in the
+      mean density: the ambient baryons cancel the door's baryonic background); L363's upper convention subtracts the
+      full matter background (a host in vacuum).  Worst R over k = 0.1-1 for the carrier intact, cleared below 1e13,
+      cleared below 1e14, and with L388's own retention by mass (v_k = 600 km/s, fixed-cell galaxy clearing 0.07).
+  K1  THE DESIGN TARGET: every region's radius capped at r_cap (physical, z = 0.5); the largest cap that passes on both
+      footings with L388's retention (reported beside it: the same caps with the carrier intact and with only galaxies
+      cleared); its velocity form v_cap = r_cap H(0.5) sqrt(x) (the door's edge law beyond r200) and
+      baryonic-mass form M_cap = v_cap^4/(G a0); against the KiDS lenses' own edges at z = 0.25 (DE1's law, M_b up to
+      3e11 Msun).
+
+  *** MUTATE=1: no cap on any region; K1 must FAIL ***
+  L363 loaded: z = 0.5, E^2 = 1.745209, x_lin = 4.363022, f_b = 0.1571, H(0.5) = 88.99 km/s/Mpc   [1s]
+  L388 retention (v_k = 600, pooled; galaxies at its fixed-cell clearing): 1e13.00: 0.070, 1e13.89: 0.275, 1e14.09: 0.402, 1e14.29: 0.630, 1e14.70: 0.824
+
+==============================================================================================================
+C1  CONTROL: with no cap the lane's halo model reproduces L363's committed R(k)
+==============================================================================================================
+  [PASS] C1 CONTROL: no cap, observed baryons: L363's committed halo-model R(k) reproduced at its two cells, both footings
+         measured: max |diff| = 0.0e+00
+
+==============================================================================================================
+U1  CAN THE MOCK SCORE THE DOOR? L363's region builder from one isolated seed cell (L364's cell size)
+==============================================================================================================
+    halo 1e12 (bound baryons 4.74e+10): region 1 cell(s), radius 0.24 Mpc comoving after 1 iteration(s); the door's analytic edge 1.26 Mpc comoving (3.2 cells)
+    halo 1e13 (bound baryons 5.00e+11): region 1 cell(s), radius 0.24 Mpc comoving after 1 iteration(s); the door's analytic edge 2.26 Mpc comoving (5.8 cells)
+    halo 1e14 (bound baryons 8.63e+12): region 1 cell(s), radius 0.24 Mpc comoving after 1 iteration(s); the door's analytic edge 4.61 Mpc comoving (11.8 cells)
+  [PASS] U1 THE MOCK CANNOT SCORE THE DOOR: from an isolated seed cell L363's builder stops short of half the analytic phantom edge for 1e12, 1e13 and 1e14 Msun hosts -- a region grows only where a matter-contrast region already surrounds it
+         measured: 1e12: 0.24 vs 1.26 Mpc; 1e13: 0.24 vs 2.26 Mpc; 1e14: 0.24 vs 4.61 Mpc
+         reading:  the one-cell Dirichlet phantom vanishes (centred gradients see the zero boundary), so phantom-supported regions -- the door's, and every isolated galaxy's on the record's branches -- are absent from the mock
+
+==============================================================================================================
+M1  THE MOCK'S CLUSTERS: L364's 100 Mpc box against the halo model's expectation
+==============================================================================================================
+    cells holding bound baryons >= those of a 1e13.5 halo: 28; halo-model expectation for halos >= 1e13.5 in the box: 41.0
+    cells holding bound baryons >= those of a 1e14.0 halo: 4; halo-model expectation for halos >= 1e14.0 in the box: 7.4
+    cells holding bound baryons >= those of a 1e14.5 halo: 0; halo-model expectation for halos >= 1e14.5 in the box: 0.8
+
+==============================================================================================================
+D1  WHERE THE PHANTOM'S POWER AT k = 1 COMES FROM (halo model, linear cell, no cap, upper convention)
+==============================================================================================================
+    canonical: phantom power s^2(k = 1) = 0.799; one-halo share by log M: [10.0-12.0] 0.0001, [12.0-13.0] 0.0027, [13.0-14.0] 0.1592, [14.0-15.6] 0.6052
+    alt      : phantom power s^2(k = 1) = 1.074; one-halo share by log M: [10.0-12.0] 0.0001, [12.0-13.0] 0.0042, [13.0-14.0] 0.2381, [14.0-15.6] 0.7860
+  [PASS] D1 (reported) clusters (>= 1e14 Msun) carry most of the phantom's power at k = 1; galaxies below 1e13 almost none
+         measured: cluster share of s^2(1) >= 0.73 on both footings; halos below 1e13 give <= 0.0043 of P_NL
+
+==============================================================================================================
+X1  THE LINEAR CELL WITH NO CAP: every carrier scenario, both edge conventions, both footings
+==============================================================================================================
+    upper intact         : worst R canonical 3.42, alt 3.95
+    upper cleared<1e13   : worst R canonical 3.38, alt 3.90
+    upper cleared<1e14   : worst R canonical 2.91, alt 3.37
+    upper L388 retention : worst R canonical 2.47, alt 2.90
+    door  intact         : worst R canonical 3.75, alt 4.32
+    door  cleared<1e13   : worst R canonical 3.71, alt 4.27
+    door  cleared<1e14   : worst R canonical 3.17, alt 3.66
+    door  L388 retention : worst R canonical 2.72, alt 3.18
+  [PASS] X1 THE RECORD'S MOCK-BASED PASS DOES NOT SURVIVE THE RESOLUTION-FREE ESTIMATE: at the linear cell with no cap, worst R > 1.2 for every carrier scenario, both edge conventions and both footings
+         measured: min worst R = 2.47
+         reading:  DE3/DE5's bound, and L388's 'shear ok', rest on a 100 Mpc mock that holds too few clusters (M1) and cannot grow phantom-supported regions (U1); on L363's own converged estimate the region kernel's cluster phantoms fail cosmic shear
+
+==============================================================================================================
+K1  THE DESIGN TARGET: cap every region at r_cap (physical, z = 0.5); L388's retention; the door's edges
+==============================================================================================================
+    r_cap   inf Mpc: worst R canonical 2.718, alt 3.181  (s^2(1) 0.974/1.288);  same cap, carrier intact 3.75/4.32, galaxies only cleared 3.71/4.27
+    caps that pass with the carrier INTACT (the cap alone): none -- the PM's group/cluster clearing (L388's retention) is needed as well
+    largest passing cap (both footings): None Mpc at z = 0.5
+    KiDS lens M_b = 3e+10: v_f 139 km/s, own edge at z = 0.25 0.91 Mpc (host in vacuum, the record's KiDS convention) / 1.00 Mpc (host in the mean)
+    KiDS lens M_b = 1e+11: v_f 188 km/s, own edge at z = 0.25 1.23 Mpc (host in vacuum, the record's KiDS convention) / 1.36 Mpc (host in the mean)
+    KiDS lens M_b = 3e+11: v_f 247 km/s, own edge at z = 0.25 1.62 Mpc (host in vacuum, the record's KiDS convention) / 1.79 Mpc (host in the mean)
+  [FAIL] K1 A CAP PASSES: some region-size cap passes cosmic shear on both footings with L388's retention, and at a fixed velocity scale it sits above every KiDS lens's own region (M_b <= 3e11 Msun, v_f <= v_cap), so KiDS is untouched
+         measured: largest passing cap None Mpc (z = 0.5), v_cap None km/s; KiDS lenses v_f 139, 188, 247 km/s
+         reading:  cosmic shear is a group-and-cluster phantom problem: regions must stop growing near the largest galaxies' scale
+
+==============================================================================================================
+SUMMARY
+==============================================================================================================
+  The mock cannot score phantom-supported regions (U1) and holds too few clusters (M1), so the record's mock-based
+  cosmic-shear passes are not evidence.  On L363's resolution-free halo model the region kernel's lensing power at k = 1 is
+  dominated by groups and clusters (D1), and at the linear cell it fails cosmic shear for every carrier history, on either
+  edge convention (X1).  It passes once every region stops growing at ~None Mpc at z = 0.5 -- a velocity scale
+  v_cap ~ None km/s, i.e. baryonic masses above ~None Msun -- with L388's retention (K1);
+  the cap alone, with the carrier intact, passes at no cap tested: the density trigger's group/cluster clearing is needed too.
+  Every KiDS lens (v_f <= 247 km/s) keeps its own region, so the KiDS-shear pincer is a galaxy-versus-cluster
+  separation, not a single scale.  What produces the cap is the open piece.
+
+  4/5 checks pass; load-bearing failures: 1; wrote MS3_cosmic_shear_bound_mond_sector_results_MUTATE.json   [59s]
