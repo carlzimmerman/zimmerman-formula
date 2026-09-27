@@ -1,0 +1,494 @@
+FP16 -- RE-ACCRETION OF THE KICKED DARK MATTER: where FK1's escaped phi_L daughters go, modelled semi-analytically in the
+chain's own (Newtonian, kernel-invisible) dynamics, and FP10's gates re-scored with the modelled re-accretion in place of
+its two limiting readings.
+
+WHY.  FP10 (committed) wrote FK1's internal splitting as an action: phi_H phi_H -> phi_L phi_L back to back at
+v_k = sqrt(2 eps/(m^2 + eps)) = 575-650 km/s, S = 0 in the MOND equation, conversion at halo collapse at the front
+r_F >= 0.95 r200 in < 0.1 t_dyn.  It scored X-COP, cosmic shear and Harvey in two limiting readings of the escaped
+daughters: IN PLACE (they stay or come back: 0/6 cells pass; X-COP 1.35-1.41, shear 1.50-1.64 FAIL) and OPTIMISTIC (every
+escaped daughter stays out: 3/6 cells pass, 575 km/s only; Harvey fails at 650).  Which reading holds is a dynamical
+question FP10 left OPEN (L11m, L11o).  This lane models where the daughters go.
+
+THE DYNAMICS (derived from the chain, not posited).  FP4/L353: the dark state is kernel-invisible -- it feels and sources
+Newtonian gravity only (baryons + carrier + daughters).  FP10 A1: a daughter leaves its parent at v_k isotropically in the
+parent's frame.  So a daughter's history is a Newtonian orbit in the expanding background:
+    comoving x, momentum p = a^2 dx/dt = a v_pec:   dp/dt = -G dM(<x)/(a x^2),  dx/dt = p/a^2   (spherical, Gauss),
+with dM(<x) the mass excess over the comoving mean inside x.  A free daughter's peculiar speed decays as 1/a; its comoving
+reach from birth at a_e is  x_fs = v_inf a_e Int_{a_e}^{1} da/(a^3 H(a))  ~= 0.72-0.79 v_inf/H0 for any z_e = 2-6 (A1).
+
+THE MODEL (a semi-analytic, spherical, self-consistent shell model; every approximation is listed in the ledger):
+  * HOSTS.  Lagrangian shells around a host of mass M at z_f: inside its Lagrangian radius R_f the shells collapse on an
+    EPS mass-accretion history (Correa+2015a from the machinery's sigma(M); exponential alpha = 0.8 for the flagship,
+    FP10/XR16's form) -- delta_L(<q) = 1.686/D(z_c(q)) -- outside it the constrained mean profile
+    delta_L(<q) = 1.686/D(z_f) sigma^2(q, R_f)/sigma^2(R_f) from the machinery's CLASS P(k), with its conditional scatter
+    (3-node Gauss-Hermite, t = 0, +-sqrt(3)) as an environment ensemble.  Zel'dovich initial conditions at z = 150; each
+    cold shell receives a tangential velocity j v_c (j uniform in 0.15-0.35) at its turnaround (the LCDM control C0d checks
+    the resulting halo against NFW).  Every particle is integrated in comoving coordinates (KDK leapfrog in ln a), the force
+    from the sorted enclosed mass (exact for spherical symmetry), cold shells and daughters alike -- the daughters' own mass
+    is in the potential (self-consistent); the fixed-potential bracket (daughters massless, cold shells intact) is run
+    beside it.  Flagship / galaxy hosts carry their central Hernquist galaxy as a mass-conserving redistribution inside r200.
+  * THE EMISSION (FK1's timing, FP10's budget per shell).  A shell's carrier converts when it enters a halo above the fluid's
+    cut-off: FP10's own halo-model budget (FP10's lc x fluid cut-off, escape fraction fe from AT1's table) with the
+    Sheth-Tormen barrier shifted by the shell's local linear density (peak-background form), halos above half the host's
+    current mass excluded (the host is the dynamics' business); irreversible (running maximum).  The escaping daughters'
+    residual speed v_inf is drawn from the sub-halo's truncated-NFW well (this lane's table, checked against AT1's I_ES).
+    What never escapes (bound in groups, or never in a halo) converts at the HOST's front (FP10's front table) with v_k in
+    the host frame -- in place, dynamically, bound or not as the host's well decides.
+  * THE PM EMULATION (validation only).  The committed particle-mesh track (L366/L388: x~ = 1.5 Om(a) delta > 5 on a
+    0.39 Mpc/h mesh, rate 10 H, kick v_k) emulated in the same shell model: its sub-grid conversion as an excursion-set
+    crossing of its own threshold (mapped to a linear barrier, 1 + delta_NL = (1 - delta_L/1.686)^-1.686) on one effective
+    scale M_eff, FITTED to the PM's committed GLOBAL decay history (L366: 0.159/0.275/0.536 at z = 3/2/0 -- never to the
+    retention), the mesh-softened wells of the converting halos, the host region above threshold converting at 10 H, and
+    a comoving softening of one mesh cell.  Its retention is then compared with the PM's per-halo retention (V1-V3).
+  * THE WEB CHANNEL (XR19, relayed by the coordinator; its results JSON is read when present).  XR19 finds FK1's
+    conversion spreads through the collapsed and turned-around web at z <~ 1.5 (F_tot(z = 1/0) = 0.81/0.91 nominal,
+    0.67/0.84 most conservative, against the halo-only 0.53/0.63).  Bracketed here three ways: each shell's carrier that the
+    halos did not convert converts at an epoch drawn from XR19's web share f_web(z) = (F_tot - F_halo)/(1 - F_halo) (nominal;
+    most conservative), or when the shell has turned around at z <= 1.5 (the environment-aware extreme); web daughters leave
+    at v_k in the local frame and are tracked separately (G11).
+  * TIME AVERAGING.  A one-dimensional collapse rings (shells fall in coherently): the LCDM reference's mass inside R500
+    swings by ~+-15% over Delta z ~ 0.1.  Every retention below is the ratio of window-averaged masses over
+    Delta ln a = +-0.12 (7 snapshots; +-0.08 at z = 2.5) around the scoring epoch, model and LCDM alike (C0h).
+
+WHAT IS COMPUTED
+  PART A  A1 the free-streaming reach against the hosts' Lagrangian radii (the ordering, analytic); A2 the emission (the
+          escaped / bound / never-converted split per shell and host class); A3 (reported flag) the web: how long a
+          daughter beam stays resonant with a pump of dispersion sigma, and the escaped mass that exits its halo resonant.
+  PART V  the validation against the committed PM retention (L388 pooled, 3 boxes, 118 halos, 575-650 km/s; L366, 1 box,
+          40 halos, 550-700 km/s): per mass bin and kick, both brackets.
+  PART R  the recapture fractions: the galaxy's own later halo (flagship residue at r_F and r200 at z = 2.5, 1, 0.5),
+          groups and clusters (own daughters inside r200 / 1 Mpc/h at z ~ 0), the field; the cosmic split (halo mass
+          function weighted) at z = 2.5 and z = 0.
+  PART G  FP10's gates re-scored with the modelled re-accretion: G1 flagship z = 0.5-2.5 (0.074 dex, both footings and
+          kernels); G2 z = 0 galaxies (0.06 dex); G3 X-COP (xcop_from_eps strict, both footings; L354's two-sided bounds
+          reported); G4 KiDS (<= +4); G5 Harvey (<= +0.10 on all three estimators; 575 and 650, 600/625 by monotonicity as
+          FP10's harvey_at); G6 S_8 (>= 0.922); G7 cosmic shear (MS3, 1.75 Mpc cap, door, R <= 1.2); G8 the forest
+          (projection); G9 the window; G10 (reported) the X-COP kick scan.  Both a0 footings: FP0's 9.3603e-11 /
+          1.1312e-10 (the machinery's 9.3619e-11 / 1.1279e-10 wherever a committed function is called).
+  G11     XR19's web channel: X-COP (raw and PM-calibrated) in the three web brackets, the recapture of the proto-cluster's own
+          (Hubble-cooled) web daughters, cosmic shear and KiDS with the nominal web.
+  PART X  explicit predictions for the hub's particle-mesh lane XR21 (FK1's conversion with re-accretion, 575/600/625).
+HISTORY (stated, not hidden).  No hypothesis was pre-declared before the exploratory runs.  Exploratory component runs in a
+  scratch directory (not committed) came first and exposed four bugs/artifacts, each fixed before any check direction was
+  set: (1) differentiating the enclosed-sphere conditional mass function across the host's collapse front drove inner
+  shells to F_esc = 1 -- replaced by the shell's own local density (peak-background form); (2) the residual-speed table
+  was clipped at u = v_k/V200 = 8, throttling small halos to v_inf ~ 250 km/s -- replaced by v_inf^2 = Q(u_max)^2 + u^2 -
+  u_max^2 beyond the edge; (3) the flagship's central galaxy first removed its mass from the diffuse shells at z = 150,
+  stalling the host's collapse (M200 5x low) -- replaced by the mass-conserving redistribution; (4) single-snapshot
+  retention rang by +-15% -- replaced by window averages (C0h).  The PM emulation was first run with a free escape
+  (v_inf = v_k), then with the mesh-softened well of the crossing region (ill-posed: the region is the whole proto-cluster),
+  then with the conditional halo mass function's wells (kept).  After these, the check directions were fixed; nothing was
+  retuned to the gates.  The only fitted constant is the PM emulation's M_eff (validation only).  A smoke run (FP16_SMOKE,
+  not committed) then fixed three reporting points: A1's reach is 0.72-0.79 v_inf/H0 (Lambda), not the EdS 0.87 first
+  written; G5 (Harvey) is reported, not load-bearing (its outcome was unknown and the window is decided by X-COP); the XR21
+  table carries the PM-calibrated values.  The first main run was stopped ~2 min in, before any gate number, to restrict the
+  PM-calibrated offset to the PM's measured mass range (zero below 6e13 Msun/h, instead of a flat extrapolation).  The
+  first complete main run (28/29, rc = 1) had V1 fall at 600 km/s (offset 0.111 against the 0.10 set after the smoke run;
+  0.072-0.111 over the kicks): the model OVER-predicts the PM.  V1 is kept as it fell and reported (as XR16 reported its T1);
+  V4 (load-bearing, added then) reads the committed PM itself at its most X-COP-like mass, so the X-COP verdict does not rest
+  on the model's bias; G5 (reported) now prints Harvey's own outcome (it printed PASS as a reported line while Harvey FAILED
+  at both kicks); V2's smoke-grid wording ('under-shoots near 7e13') was replaced by the measured offsets.  No number changed.
+  The second complete main run (28/30, rc = 0) preceded the coordinator's relay of XR19; the web channel (G11, C0i) was then
+  added as a bracket, the halo-only numbers above unchanged.  Its first complete run (30/32, rc = 0) showed the turned-around
+  web + calibration corner entering L354's non-thermal window; G11b and the verdict now say so explicitly (no number changed).
+
+  *** MUTATE=1: the daughters feel no gravity (free streaming, no recapture) -- R1, G3 and G9 must FAIL ***
+
+======================================================================================================================
+LOADING the committed machinery (read-only exec of FP10's head: AT3's head, MS3's halo model, FP10's depth/budget)
+======================================================================================================================
+  FP10's head loaded (AT3 head, MS3, FP10's depth, fronts and budget)   [17s]
+  footings: FP0 9.3603e-11 / 1.1312e-10 m/s^2; the machinery's 9.3619e-11 / 1.1279e-10
+
+======================================================================================================================
+C0  CONTROLS: the model reproduces the committed machinery, and the integrator and hosts behave
+======================================================================================================================
+  [PASS] C0a CONTROL: the model's emission with no environment (delta_e = 0, no cap) reproduces FP10's committed budget at 600 km/s: converted F(z) and bias-weighted escaped F_b(z) on FP10's grid
+         measured: max |dev| 1.7e-16; F(4/2/0) 0.290/0.437/0.629 (FP10 0.290/0.437/0.629)
+  [PASS] C0b CONTROL: this lane's residual-speed table (truncated NFW, isotropic Jeans, whole halo converted) reproduces AT1's committed escape table I_ES at x_v = 1 (the fraction that escapes)
+         measured: max |dev| 0.010, mean 0.0010
+  [PASS] C0c CONTROL: the integrator's drift (KDK in ln a, the step used for the hosts) reproduces the analytic comoving reach of a free daughter, v a_e Int da/(a^3 H), from z_e = 2 and 4
+         measured: max relative error 1.5e-07
+  controls C0a-C0c done   [20s]
+  [PASS] C0f CONTROL (FITTED, validation only): the PM emulation's one constant M_eff fitted to the committed PM's GLOBAL decay history (L366 x_c = 5, 600 km/s: decayed 0.159/0.275/0.536 at z = 3/2/0) -- never to its retention
+         measured: M_eff = 1e11.90 Msun: [0.145, 0.264, 0.573] (rms 0.024)
+
+======================================================================================================================
+THE RUNS: the host classes (both brackets where they matter), the PM emulation, the X-COP kick scan
+======================================================================================================================
+    all hosts (389 model runs + references, 2 threads): 461 runs   [708s]
+    host M0 1e+12: LCDM M200 / MAH at z = 1, 0: 0.76, 0.98; M(<0.1/0.2/0.5 r200)/M200 0.077 (NFW c 8.4: 0.114), 0.219 (NFW c 8.4: 0.266), 0.557 (NFW c 8.4: 0.624)
+    host M0 1e+13: LCDM M200 / MAH at z = 1, 0: 0.77, 0.89; M(<0.1/0.2/0.5 r200)/M200 0.089 (NFW c 6.7: 0.095), 0.228 (NFW c 6.7: 0.237), 0.577 (NFW c 6.7: 0.598)
+    host M0 3e+13: LCDM M200 / MAH at z = 1, 0: 0.81, 0.84; M(<0.1/0.2/0.5 r200)/M200 0.080 (NFW c 6.0: 0.088), 0.204 (NFW c 6.0: 0.224), 0.579 (NFW c 6.0: 0.585)
+    host M0 1e+14: LCDM M200 / MAH at z = 1, 0: 0.85, 0.84; M(<0.1/0.2/0.5 r200)/M200 0.079 (NFW c 5.3: 0.079), 0.215 (NFW c 5.3: 0.209), 0.552 (NFW c 5.3: 0.570)
+    host M0 2e+14: LCDM M200 / MAH at z = 1, 0: 0.86, 0.75; M(<0.1/0.2/0.5 r200)/M200 0.078 (NFW c 5.0: 0.076), 0.215 (NFW c 5.0: 0.203), 0.587 (NFW c 5.0: 0.563)
+    host M0 4e+14: LCDM M200 / MAH at z = 1, 0: 0.91, 0.74; M(<0.1/0.2/0.5 r200)/M200 0.078 (NFW c 4.7: 0.072), 0.221 (NFW c 4.7: 0.195), 0.582 (NFW c 4.7: 0.554)
+    host M0 8e+14: LCDM M200 / MAH at z = 1, 0: 0.93, 0.78; M(<0.1/0.2/0.5 r200)/M200 0.081 (NFW c 4.4: 0.067), 0.209 (NFW c 4.4: 0.186), 0.572 (NFW c 4.4: 0.545)
+  [PASS] C0d CONTROL: the LCDM host (the model with no conversion) follows its EPS accretion history (M200 within 0.55-1.45 of the MAH at z = 1 and 0; a 1-D collapse puts M200 below the virial mass at z = 0) and its window-averaged inner profile is NFW-like (M(<0.1/0.2/0.5 r200)/M200 within 0.08 of NFW(c_DM14) for M >= 1e13)
+         measured: 1e+12: [0.76, 0.98]; 1e+13: [0.77, 0.89]; 3e+13: [0.81, 0.84]; 1e+14: [0.85, 0.84]; 2e+14: [0.86, 0.75]; 4e+14: [0.91, 0.74]; 8e+14: [0.93, 0.78]
+  [PASS] C0e CONTROL: the loaded gate machinery reproduces AT3's committed X-COP row (xcop_from_eps) and MS3's committed K1 cosmic-shear row (L388's retention, 1.75 Mpc cap, door)
+         measured: max |dev| X-COP 0.0e+00, shear 0.0e+00
+  [PASS] C0g CONTROL (resolution): the X-COP-mass retention inside R500 moves by <= 0.05 from 2000 to 3000 shells (575, 650)
+         measured: |delta eps| [0.007, 0.001]
+  [PASS] C0h CONTROL (reported): the 1-D collapse rings -- the LCDM carrier inside R500 and the single-snapshot retention scatter across the 7-snapshot window; every retention is the window average (the model and LCDM alike)
+         measured: LCDM M(<R500) rms/mean 0.199; single-snapshot eps 0.163-0.260, window average 0.198
+  [PASS] C0i CONTROL: the embedded web fractions f_web(z) = (F_tot - F_halo)/(1 - F_halo) reproduce XR19's results JSON (nominal and most conservative, 17 epochs)
+         measured: max |dev| 4.9e-05
+  controls done   [711s]
+
+======================================================================================================================
+A1  THE REACH: a free daughter's comoving path against the hosts' Lagrangian radii (derived, analytic)
+======================================================================================================================
+    born at z = 2: reach at v_inf = 575/650 km/s 6.17/6.97 comoving Mpc (= 0.722 v_inf/H0)
+    born at z = 3: reach at v_inf = 575/650 km/s 6.61/7.48 comoving Mpc (= 0.775 v_inf/H0)
+    born at z = 4: reach at v_inf = 575/650 km/s 6.71/7.59 comoving Mpc (= 0.786 v_inf/H0)
+    born at z = 6: reach at v_inf = 575/650 km/s 6.57/7.43 comoving Mpc (= 0.770 v_inf/H0)
+    Lagrangian radii: 1e+12 Msun 1.8 Mpc, 1e+13 Msun 3.9 Mpc, 1e+14 Msun 8.5 Mpc, 3e+14 Msun 12.2 Mpc, 1e+15 Msun 18.2 Mpc
+  [PASS] A1 DERIVED (the ordering): a daughter's peculiar speed decays as 1/a, so its comoving reach from any birth epoch z_e = 2-6 saturates at v_inf a_e Int da/(a^3 H) ~= 0.72-0.79 v_inf/H0 (Lambda cuts the late drift) -- 6-8 comoving Mpc at 575-650 km/s -- larger than a galaxy's or group's Lagrangian radius (<= 1e13 Msun: <= 3.9 Mpc) and well inside a cluster's (>= 3e14 Msun: >= 12 Mpc): clusters contain their daughters' reach, galaxies cannot
+         measured: reach 6.2-7.6 Mpc; reach/R_L 1e+12: 3.39-4.17, 1e+13: 1.57-1.93, 1e+14: 0.73-0.90, 3e+14: 0.51-0.62, 1e+15: 0.34-0.42
+         reading:  the geometry alone predicts the mass trend the PM measured (retention rising from groups to clusters) and puts the turnover near 1e14 Msun; gravity (the proto-cluster's pull, the host's growth) only shortens the reach
+
+======================================================================================================================
+A2  THE EMISSION: what each host's own carrier does (FK1's timing, FP10's budget per shell)
+======================================================================================================================
+    host M0 1e+11, v_k 575: own region escaped 0.354 of its carrier, converted in sub-halos 0.354 (the rest converts at the host's front, in place)
+    host M0 1e+11, v_k 650: own region escaped 0.354 of its carrier, converted in sub-halos 0.354 (the rest converts at the host's front, in place)
+    host M0 1e+12, v_k 575: own region escaped 0.425 of its carrier, converted in sub-halos 0.425 (the rest converts at the host's front, in place)
+    host M0 1e+12, v_k 650: own region escaped 0.425 of its carrier, converted in sub-halos 0.425 (the rest converts at the host's front, in place)
+    host M0 1e+13, v_k 575: own region escaped 0.481 of its carrier, converted in sub-halos 0.499 (the rest converts at the host's front, in place)
+    host M0 1e+13, v_k 650: own region escaped 0.490 of its carrier, converted in sub-halos 0.499 (the rest converts at the host's front, in place)
+    host M0 3e+13, v_k 575: own region escaped 0.476 of its carrier, converted in sub-halos 0.536 (the rest converts at the host's front, in place)
+    host M0 3e+13, v_k 650: own region escaped 0.494 of its carrier, converted in sub-halos 0.536 (the rest converts at the host's front, in place)
+    host M0 1e+14, v_k 575: own region escaped 0.452 of its carrier, converted in sub-halos 0.577 (the rest converts at the host's front, in place)
+    host M0 1e+14, v_k 650: own region escaped 0.475 of its carrier, converted in sub-halos 0.577 (the rest converts at the host's front, in place)
+    host M0 2e+14, v_k 575: own region escaped 0.440 of its carrier, converted in sub-halos 0.600 (the rest converts at the host's front, in place)
+    host M0 2e+14, v_k 650: own region escaped 0.461 of its carrier, converted in sub-halos 0.600 (the rest converts at the host's front, in place)
+    host M0 4e+14, v_k 575: own region escaped 0.432 of its carrier, converted in sub-halos 0.625 (the rest converts at the host's front, in place)
+    host M0 4e+14, v_k 650: own region escaped 0.452 of its carrier, converted in sub-halos 0.625 (the rest converts at the host's front, in place)
+    host M0 8e+14, v_k 575: own region escaped 0.428 of its carrier, converted in sub-halos 0.648 (the rest converts at the host's front, in place)
+    host M0 8e+14, v_k 650: own region escaped 0.445 of its carrier, converted in sub-halos 0.648 (the rest converts at the host's front, in place)
+    cosmic (no environment) escaped fraction F_esc(z = 2.5/1/0) = 0.376/0.443/0.446
+  [PASS] A2 DERIVED + NUMBERS (the emission): FK1's halo-collapse trigger is not mass-selective (FP10 A6), so every host class's own Lagrangian region sends out about the cosmic share of its carrier (within 0.12 of F_esc = 0.45); the rest is bound in sub-halos or converts at the host's own front
+         measured: own-region escaped 0.354-0.494
+         reading:  so what a cluster keeps is decided by what it recaptures: ~half of its carrier never left
+
+======================================================================================================================
+A3  (reported flag) THE WEB: how long a daughter beam stays resonant with the pump it crosses
+======================================================================================================================
+    z = 2: escaped mass leaving its halo within sigma of v_k: 0.75 (sigma 30 km/s), 0.82 (60); a beam stays resonant for Delta ln a ~ sigma/v_k, i.e. a path sigma/H = 0.15-0.29 physical Mpc
+    z = 3: escaped mass leaving its halo within sigma of v_k: 0.80 (sigma 30 km/s), 0.87 (60); a beam stays resonant for Delta ln a ~ sigma/v_k, i.e. a path sigma/H = 0.10-0.20 physical Mpc
+    z = 4: escaped mass leaving its halo within sigma of v_k: 0.85 (sigma 30 km/s), 0.91 (60); a beam stays resonant for Delta ln a ~ sigma/v_k, i.e. a path sigma/H = 0.07-0.14 physical Mpc
+  [PASS] A3 (reported flag, XR19 owns it) THE WEB: a daughter beam detunes from the pump it crosses after Delta ln a ~ sigma/v_k (Hubble drag) -- a path of sigma/H ~ 0.1-0.3 physical Mpc at z = 2-4 -- and most escaped mass leaves its (small) halo still resonant; so seeds reach only the ~0.1-0.3 Mpc of web next to each converted halo.  A runaway would need a self-propagating front (each converted cell re-seeding the next); the trajectories neither make it unavoidable nor exclude it
+         measured: {2.0: {'resonant_exit': {'30.0': 0.746729845481503, '60.0': 0.8174620040797695}, 'L_res_phys_Mpc': {'30': 0.14716925321660593, '60': 0.29433850643321186}}, 3.0: {'resonant_exit': {'30.0': 0.8024727761707148, '60.0': 0.8674297687113695}, 'L_res_phys_Mpc': {'30': 0.09772947752938059, '60': 0.19545895505876118}}, 4.0: {'resonant_exit': {'30.0': 0.8503916006278585, '60.0': 0.906506102954865}, 'L_res_phys_Mpc': {'30': 0.07050024158302776, '60': 0.1410004831660555}}}
+         reading:  the mean density is itself above the stimulated criterion below z ~ 1.2-1.8 (FP10 A8, XR16 B3): if a front propagates, everything unconverted converts and the escaped budget here is a lower bound -- flagged, not scored
+
+======================================================================================================================
+V  THE VALIDATION: the PM emulation of the same shell model against the committed particle-mesh retention (L388, L366)
+======================================================================================================================
+    v_k 575 bin >= 6.0e+13 (n = 47, median M(<1 Mpc/h) 8.77e+13): PM median 0.34 (10-90% 0.13-0.58); SAM self-consistent 0.07, fixed potential 0.08; environment nodes [0.08, 0.07, 0.01]
+    v_k 575 bin >= 1.0e+14 (n = 38, median M(<1 Mpc/h) 1.15e+14): PM median 0.50 (10-90% 0.24-0.71); SAM self-consistent 0.06, fixed potential 0.08; environment nodes [0.07, 0.06, 0.01]
+    v_k 575 bin >= 1.5e+14 (n = 26, median M(<1 Mpc/h) 1.73e+14): PM median 0.68 (10-90% 0.37-0.87); SAM self-consistent 0.05, fixed potential 0.07; environment nodes [0.05, 0.05, 0.01]
+    v_k 575 bin >= 2.5e+14 (n = 7, median M(<1 Mpc/h) 3.24e+14): PM median 0.85 (10-90% 0.74-0.94); SAM self-consistent 0.04, fixed potential 0.06; environment nodes [0.04, 0.04, 0.02]
+    v_k 600 bin >= 6.0e+13 (n = 47, median M(<1 Mpc/h) 8.77e+13): PM median 0.28 (10-90% 0.10-0.46); SAM self-consistent 0.07; environment nodes [0.08, 0.07, 0.02]
+    v_k 600 bin >= 1.0e+14 (n = 38, median M(<1 Mpc/h) 1.15e+14): PM median 0.40 (10-90% 0.20-0.65); SAM self-consistent 0.07; environment nodes [0.07, 0.07, 0.02]
+    v_k 600 bin >= 1.5e+14 (n = 26, median M(<1 Mpc/h) 1.73e+14): PM median 0.63 (10-90% 0.29-0.84); SAM self-consistent 0.05; environment nodes [0.04, 0.05, 0.02]
+    v_k 600 bin >= 2.5e+14 (n = 7, median M(<1 Mpc/h) 3.24e+14): PM median 0.82 (10-90% 0.74-0.91); SAM self-consistent 0.04; environment nodes [0.04, 0.04, 0.02]
+    v_k 625 bin >= 6.0e+13 (n = 47, median M(<1 Mpc/h) 8.77e+13): PM median 0.22 (10-90% 0.07-0.38); SAM self-consistent 0.07; environment nodes [0.07, 0.07, 0.02]
+    v_k 625 bin >= 1.0e+14 (n = 38, median M(<1 Mpc/h) 1.15e+14): PM median 0.34 (10-90% 0.16-0.59); SAM self-consistent 0.06; environment nodes [0.06, 0.06, 0.02]
+    v_k 625 bin >= 1.5e+14 (n = 26, median M(<1 Mpc/h) 1.73e+14): PM median 0.56 (10-90% 0.22-0.82); SAM self-consistent 0.05; environment nodes [0.05, 0.05, 0.02]
+    v_k 625 bin >= 2.5e+14 (n = 7, median M(<1 Mpc/h) 3.24e+14): PM median 0.80 (10-90% 0.71-0.91); SAM self-consistent 0.04; environment nodes [0.04, 0.04, 0.02]
+    v_k 650 bin >= 6.0e+13 (n = 47, median M(<1 Mpc/h) 8.77e+13): PM median 0.17 (10-90% 0.06-0.28); SAM self-consistent 0.07, fixed potential 0.07; environment nodes [0.07, 0.07, 0.02]
+    v_k 650 bin >= 1.0e+14 (n = 38, median M(<1 Mpc/h) 1.15e+14): PM median 0.27 (10-90% 0.12-0.50); SAM self-consistent 0.06, fixed potential 0.07; environment nodes [0.06, 0.06, 0.02]
+    v_k 650 bin >= 1.5e+14 (n = 26, median M(<1 Mpc/h) 1.73e+14): PM median 0.52 (10-90% 0.19-0.78); SAM self-consistent 0.04, fixed potential 0.06; environment nodes [0.05, 0.04, 0.02]
+    v_k 650 bin >= 2.5e+14 (n = 7, median M(<1 Mpc/h) 3.24e+14): PM median 0.79 (10-90% 0.69-0.89); SAM self-consistent 0.03, fixed potential 0.05; environment nodes [0.03, 0.03, 0.02]
+  [FAIL] V1 (reported, as it fell: the 0.10 tolerance was set after the smoke run and fell at 600 km/s in the first complete run) THE MASSIVE END: the model's PM emulation reproduces the committed PM's median retention inside 1 Mpc/h for its most massive halos (L388 pooled, M(<1 Mpc/h) > 2.5e14 Msun/h, n = 7) within 0.10 at every kick 575-650 km/s
+         measured: {'575': -0.809, '600': -0.782, '625': -0.766, '650': -0.756}
+         reading:  the model OVER-predicts the PM's massive-end retention (every offset positive): the direction that strengthens an X-COP FAIL, so the PM-calibrated reading (G3) subtracts it, and V4 reads the PM itself; the emulation's one constant was fitted to the PM's global decay history only
+  [PASS] V2 (reported) THE INTERMEDIATE MASSES: offsets (model - PM median) per bin and kick -- the model over-predicts the PM at 6e13-2.5e14 by -0.64 to -0.10; its mean profile per mass hides the PM's halo-to-halo spread (10-90% ranges above), the rich-environment node sits at the PM's low tail
+         measured: {'575|6.0e+13': -0.266, '575|1.0e+14': -0.44, '575|1.5e+14': -0.637, '575|2.5e+14': -0.809, '600|6.0e+13': -0.201, '600|1.0e+14': -0.335, '600|1.5e+14': -0.581, '600|2.5e+14': -0.782, '625|6.0e+13': -0.146, '625|1.0e+14': -0.276, '625|1.5e+14': -0.514, '625|2.5e+14': -0.766, '650|6.0e+13': -0.097, '650|1.0e+14': -0.202, '650|1.5e+14': -0.477, '650|2.5e+14': -0.756}
+         reading:  stated as the model's structural bias (spherical coherence, no centre offsets, no filaments); the PM-CALIBRATED reading removes it (eps - offset at the host's mass, inside the PM's mass range only)
+  [PASS] V3 (reported) THE SECOND PM (L366, Newtonian x_c = 5, one box, 600-700 km/s): PM median vs model per bin (PM, model, n)
+         measured: {'600|6.0e+13': (0.318, 0.074, 17), '600|1.0e+14': (0.342, 0.068, 12), '600|1.5e+14': (0.561, 0.047, 8), '600|2.5e+14': (0.788, 0.03, 2), '650|6.0e+13': (0.182, 0.07, 17), '650|1.0e+14': (0.235, 0.065, 12), '650|1.5e+14': (0.399, 0.041, 8), '650|2.5e+14': (0.754, 0.027, 2), '700|6.0e+13': (0.101, 0.065, 17), '700|1.0e+14': (0.127, 0.064, 12), '700|1.5e+14': (0.265, 0.041, 8), '700|2.5e+14': (0.676, 0.026, 2)}
+  [PASS] V4 THE COMMITTED PM ITSELF, READ AT ITS MOST X-COP-LIKE MASS: L388's most massive halos (M(<1 Mpc/h) > 2.5e14 Msun/h, below X-COP's masses; retention rises with mass in the PM and in A1/R1) keep a median above X-COP's strict upper bound (alt footing, 0.669) and its non-thermal one (0.769) at every kick 575-650 km/s -- model-independent: FP10's PM proxy (the pooled median over all >= 1e14 halos, 0.37-0.61) was mass-mismatched
+         measured: {'575': 0.847, '600': 0.824, '625': 0.804, '650': 0.787}
+         reading:  so the X-COP verdict does not rest on the model's bias: the PM's own clusters keep their daughters
+
+======================================================================================================================
+R  WHERE THE DAUGHTERS GO: the galaxy's own later halo, groups and clusters, the field
+======================================================================================================================
+    host M0 1e+11 v_k 575: own daughters recaptured inside r200 at z = 2.5/1/0: 0.000/0.000/0.000 (M200 2.2e+10/4.6e+10/9.2e+10); carrier kept inside r200 at z = 0: 0.043
+    host M0 1e+11 v_k 600: own daughters recaptured inside r200 at z = 2.5/1/0: 0.000/0.000/0.000 (M200 2.2e+10/4.6e+10/9.2e+10); carrier kept inside r200 at z = 0: 0.049
+    host M0 1e+11 v_k 625: own daughters recaptured inside r200 at z = 2.5/1/0: 0.000/0.000/0.000 (M200 2.2e+10/4.6e+10/9.2e+10); carrier kept inside r200 at z = 0: 0.050
+    host M0 1e+11 v_k 650: own daughters recaptured inside r200 at z = 2.5/1/0: 0.000/0.000/0.000 (M200 2.2e+10/4.6e+10/9.2e+10); carrier kept inside r200 at z = 0: 0.044
+    host M0 1e+12 v_k 575: own daughters recaptured inside r200 at z = 2.5/1/0: 0.000/0.000/0.000 (M200 2.0e+11/4.3e+11/9.8e+11); carrier kept inside r200 at z = 0: 0.050
+    host M0 1e+12 v_k 600: own daughters recaptured inside r200 at z = 2.5/1/0: 0.000/0.000/0.000 (M200 2.0e+11/4.3e+11/9.8e+11); carrier kept inside r200 at z = 0: 0.049
+    host M0 1e+12 v_k 625: own daughters recaptured inside r200 at z = 2.5/1/0: 0.000/0.000/0.000 (M200 2.0e+11/4.3e+11/9.8e+11); carrier kept inside r200 at z = 0: 0.045
+    host M0 1e+12 v_k 650: own daughters recaptured inside r200 at z = 2.5/1/0: 0.000/0.000/0.000 (M200 2.0e+11/4.3e+11/9.8e+11); carrier kept inside r200 at z = 0: 0.039
+    host M0 1e+13 v_k 575: own daughters recaptured inside r200 at z = 2.5/1/0: 0.000/0.000/0.000 (M200 1.6e+12/3.9e+12/8.9e+12); carrier kept inside r200 at z = 0: 0.065
+    host M0 1e+13 v_k 600: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.000/0.000 (M200 1.6e+12/3.9e+12/8.9e+12); carrier kept inside r200 at z = 0: 0.068
+    host M0 1e+13 v_k 625: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.000/0.000 (M200 1.6e+12/3.9e+12/8.9e+12); carrier kept inside r200 at z = 0: 0.061
+    host M0 1e+13 v_k 650: own daughters recaptured inside r200 at z = 2.5/1/0: 0.000/0.000/0.000 (M200 1.6e+12/3.9e+12/8.9e+12); carrier kept inside r200 at z = 0: 0.064
+    host M0 3e+13 v_k 575: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.000/0.000 (M200 4.1e+12/1.1e+13/2.5e+13); carrier kept inside r200 at z = 0: 0.082
+    host M0 3e+13 v_k 600: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.001/0.000 (M200 4.1e+12/1.1e+13/2.5e+13); carrier kept inside r200 at z = 0: 0.080
+    host M0 3e+13 v_k 625: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.000/0.000 (M200 4.1e+12/1.1e+13/2.5e+13); carrier kept inside r200 at z = 0: 0.074
+    host M0 3e+13 v_k 650: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.000/0.000 (M200 4.1e+12/1.1e+13/2.5e+13); carrier kept inside r200 at z = 0: 0.075
+    host M0 1e+14 v_k 575: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.002/0.001 (M200 1.1e+13/3.5e+13/8.4e+13); carrier kept inside r200 at z = 0: 0.130
+    host M0 1e+14 v_k 600: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.002/0.001 (M200 1.1e+13/3.5e+13/8.4e+13); carrier kept inside r200 at z = 0: 0.119
+    host M0 1e+14 v_k 625: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.003/0.001 (M200 1.1e+13/3.5e+13/8.4e+13); carrier kept inside r200 at z = 0: 0.111
+    host M0 1e+14 v_k 650: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.003/0.000 (M200 1.1e+13/3.5e+13/8.4e+13); carrier kept inside r200 at z = 0: 0.109
+    host M0 2e+14 v_k 575: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.003/0.003 (M200 1.8e+13/6.6e+13/1.5e+14); carrier kept inside r200 at z = 0: 0.166
+    host M0 2e+14 v_k 600: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.003/0.002 (M200 1.8e+13/6.6e+13/1.5e+14); carrier kept inside r200 at z = 0: 0.162
+    host M0 2e+14 v_k 625: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.003/0.001 (M200 1.8e+13/6.6e+13/1.5e+14); carrier kept inside r200 at z = 0: 0.156
+    host M0 2e+14 v_k 650: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.002/0.002 (M200 1.8e+13/6.6e+13/1.5e+14); carrier kept inside r200 at z = 0: 0.146
+    host M0 4e+14 v_k 575: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.003/0.002 (M200 2.8e+13/1.3e+14/3.0e+14); carrier kept inside r200 at z = 0: 0.190
+    host M0 4e+14 v_k 600: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.003/0.003 (M200 2.8e+13/1.3e+14/3.0e+14); carrier kept inside r200 at z = 0: 0.196
+    host M0 4e+14 v_k 625: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.003/0.001 (M200 2.8e+13/1.3e+14/3.0e+14); carrier kept inside r200 at z = 0: 0.181
+    host M0 4e+14 v_k 650: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.003/0.001 (M200 2.8e+13/1.3e+14/3.0e+14); carrier kept inside r200 at z = 0: 0.185
+    host M0 8e+14 v_k 575: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.003/0.004 (M200 4.1e+13/2.3e+14/6.3e+14); carrier kept inside r200 at z = 0: 0.199
+    host M0 8e+14 v_k 600: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.003/0.003 (M200 4.1e+13/2.3e+14/6.3e+14); carrier kept inside r200 at z = 0: 0.200
+    host M0 8e+14 v_k 625: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.004/0.005 (M200 4.1e+13/2.3e+14/6.3e+14); carrier kept inside r200 at z = 0: 0.191
+    host M0 8e+14 v_k 650: own daughters recaptured inside r200 at z = 2.5/1/0: 0.001/0.003/0.003 (M200 4.1e+13/2.3e+14/6.3e+14); carrier kept inside r200 at z = 0: 0.192
+    flagship hosts (z = [0.5, 1.0, 1.5, 2.0, 2.5]): own daughters back inside r200 0.0000-0.0004; escaped daughters (own + neighbours') inside r_F / the NFW carrier there: <= 0.0045
+  [FAIL] R1 CLUSTERS RECAPTURE: hosts with M0 >= 4e14 Msun hold >= 40% of their own escaped daughters inside r200 at z = 0, at every kick (self-consistent potential)
+         measured: own recaptured 0.001-0.005
+         reading:  the daughters' reach (A1) is inside the cluster's Lagrangian region, and the region collapses into the cluster by z = 0
+  [PASS] R2 GALAXIES DO NOT: the flagship hosts (M_b 1e10-1e11, z = 0.5-2.5) hold <= 5% of their own escaped daughters inside r200, and escaped daughters (their own and their neighbours') refill r_F to <= 1% of the NFW carrier
+         measured: own inside r200 <= 0.0004; escaped inside r_F <= 0.0045
+    z = 2.5, v_k 575: escaped daughters inside r200 of galaxies (<1e13) 0.001, groups 0.000, clusters (>1e14) 0.000; the field 0.999
+    z = 2.5, v_k 650: escaped daughters inside r200 of galaxies (<1e13) 0.003, groups 0.000, clusters (>1e14) 0.000; the field 0.997
+    z = 0.0, v_k 575: escaped daughters inside r200 of galaxies (<1e13) 0.000, groups 0.000, clusters (>1e14) 0.000; the field 1.000
+    z = 0.0, v_k 650: escaped daughters inside r200 of galaxies (<1e13) 0.000, groups 0.000, clusters (>1e14) 0.000; the field 0.999
+  [PASS] R3 (reported) THE COSMIC SPLIT of the escaped daughters (ST-weighted over the host grid; interpolated in mass, flat beyond it)
+         measured: {'2.5|575': {'galaxies': 0.001, 'groups': 0.0, 'clusters': 0.0, 'field': 0.999}, '2.5|650': {'galaxies': 0.003, 'groups': 0.0, 'clusters': 0.0, 'field': 0.997}, '0.0|575': {'galaxies': 0.0, 'groups': 0.0, 'clusters': 0.0, 'field': 1.0}, '0.0|650': {'galaxies': 0.0, 'groups': 0.0, 'clusters': 0.0, 'field': 0.999}}
+         reading:  at z = 2.5 almost every escaped daughter is in the field (the web is not yet collapsed on their reach); by z = 0 the ones born inside proto-clusters are back in clusters
+
+======================================================================================================================
+G1  THE FLAGSHIP at z = 0.5-2.5 with the modelled re-accretion (FP10's hosts and arithmetic; 0.074 dex)
+======================================================================================================================
+    z 0.5 M_b 1e10.5 v_k 575: S(r_F) canonical 0.0009, alt 0.0010 -> max |shift| 0.0008 dex
+    z 0.5 M_b 1e10.5 v_k 600: S(r_F) canonical 0.0000, alt 0.0000 -> max |shift| 0.0000 dex
+    z 0.5 M_b 1e10.5 v_k 625: S(r_F) canonical 0.0000, alt 0.0000 -> max |shift| 0.0000 dex
+    z 0.5 M_b 1e10.5 v_k 650: S(r_F) canonical 0.0007, alt 0.0008 -> max |shift| 0.0006 dex
+    z 0.5 M_b 1e11.0 v_k 575: S(r_F) canonical 0.0021, alt 0.0024 -> max |shift| 0.0030 dex
+    z 0.5 M_b 1e11.0 v_k 600: S(r_F) canonical 0.0028, alt 0.0021 -> max |shift| 0.0040 dex
+    z 0.5 M_b 1e11.0 v_k 625: S(r_F) canonical 0.0018, alt 0.0015 -> max |shift| 0.0026 dex
+    z 0.5 M_b 1e11.0 v_k 650: S(r_F) canonical 0.0000, alt 0.0000 -> max |shift| 0.0000 dex
+    z 1.0 M_b 1e10.5 v_k 575: S(r_F) canonical 0.0004, alt 0.0005 -> max |shift| 0.0005 dex
+    z 1.0 M_b 1e10.5 v_k 600: S(r_F) canonical 0.0004, alt 0.0000 -> max |shift| 0.0005 dex
+    z 1.0 M_b 1e10.5 v_k 625: S(r_F) canonical 0.0000, alt 0.0000 -> max |shift| 0.0000 dex
+    z 1.0 M_b 1e10.5 v_k 650: S(r_F) canonical 0.0004, alt 0.0005 -> max |shift| 0.0005 dex
+    z 1.0 M_b 1e11.0 v_k 575: S(r_F) canonical 0.0031, alt 0.0033 -> max |shift| 0.0044 dex
+    z 1.0 M_b 1e11.0 v_k 600: S(r_F) canonical 0.0020, alt 0.0021 -> max |shift| 0.0028 dex
+    z 1.0 M_b 1e11.0 v_k 625: S(r_F) canonical 0.0024, alt 0.0020 -> max |shift| 0.0034 dex
+    z 1.0 M_b 1e11.0 v_k 650: S(r_F) canonical 0.0024, alt 0.0028 -> max |shift| 0.0034 dex
+    z 1.5 M_b 1e11.0 v_k 575: S(r_F) canonical 0.0019, alt 0.0015 -> max |shift| 0.0029 dex
+    z 1.5 M_b 1e11.0 v_k 600: S(r_F) canonical 0.0141, alt 0.0130 -> max |shift| 0.0208 dex
+    z 1.5 M_b 1e11.0 v_k 625: S(r_F) canonical 0.0099, alt 0.0095 -> max |shift| 0.0147 dex
+    z 1.5 M_b 1e11.0 v_k 650: S(r_F) canonical 0.0085, alt 0.0087 -> max |shift| 0.0126 dex
+    z 2.0 M_b 1e11.0 v_k 575: S(r_F) canonical 0.0126, alt 0.0109 -> max |shift| 0.0204 dex
+    z 2.0 M_b 1e11.0 v_k 600: S(r_F) canonical 0.0116, alt 0.0099 -> max |shift| 0.0189 dex
+    z 2.0 M_b 1e11.0 v_k 625: S(r_F) canonical 0.0137, alt 0.0130 -> max |shift| 0.0222 dex
+    z 2.0 M_b 1e11.0 v_k 650: S(r_F) canonical 0.0083, alt 0.0068 -> max |shift| 0.0135 dex
+    z 2.5 M_b 1e10.0 v_k 575: S(r_F) canonical 0.0034, alt 0.0031 -> max |shift| 0.0057 dex
+    z 2.5 M_b 1e10.0 v_k 600: S(r_F) canonical 0.0016, alt 0.0013 -> max |shift| 0.0028 dex
+    z 2.5 M_b 1e10.0 v_k 625: S(r_F) canonical 0.0004, alt 0.0005 -> max |shift| 0.0007 dex
+    z 2.5 M_b 1e10.0 v_k 650: S(r_F) canonical 0.0041, alt 0.0033 -> max |shift| 0.0068 dex
+    z 2.5 M_b 1e10.5 v_k 575: S(r_F) canonical 0.0043, alt 0.0037 -> max |shift| 0.0072 dex
+    z 2.5 M_b 1e10.5 v_k 600: S(r_F) canonical 0.0063, alt 0.0050 -> max |shift| 0.0106 dex
+    z 2.5 M_b 1e10.5 v_k 625: S(r_F) canonical 0.0052, alt 0.0033 -> max |shift| 0.0088 dex
+    z 2.5 M_b 1e10.5 v_k 650: S(r_F) canonical 0.0095, alt 0.0090 -> max |shift| 0.0159 dex
+    z 2.5 M_b 1e11.0 v_k 575: S(r_F) canonical 0.0235, alt 0.0184 -> max |shift| 0.0411 dex
+    z 2.5 M_b 1e11.0 v_k 600: S(r_F) canonical 0.0217, alt 0.0166 -> max |shift| 0.0382 dex
+    z 2.5 M_b 1e11.0 v_k 625: S(r_F) canonical 0.0267, alt 0.0223 -> max |shift| 0.0467 dex
+    z 2.5 M_b 1e11.0 v_k 650: S(r_F) canonical 0.0191, alt 0.0142 -> max |shift| 0.0337 dex
+    accretion-rate bracket (M_b 1e11, z = 2.5): alpha 0.6 v 575: 0.0330, alpha 0.6 v 650: 0.0361, alpha 1.0 v 575: 0.0447, alpha 1.0 v 650: 0.0361
+  [PASS] G1 THE FLAGSHIP PASSES with the modelled re-accretion: every host (M_b 1e10-1e11), z (0.5-2.5), kick, footing and kernel stays within 0.074 dex (and 0.05)
+         measured: max |shift| 0.0467 dex; max S(r_F) 0.0267
+         reading:  the residue at r_F is the host's own late in-place conversion (FP10's self-consistent reading), not recaptured daughters (R2)
+
+======================================================================================================================
+G2  z = 0 GALAXIES / RAR (L321's three hosts, their baryons; <= 0.06 dex)
+======================================================================================================================
+    v_k 575: retained dwarf 0.0000, SPARC disc 0.0000, Milky Way 0.0000 -> max |shift| 0.0000 dex
+    v_k 600: retained dwarf 0.0000, SPARC disc 0.0000, Milky Way 0.0000 -> max |shift| 0.0000 dex
+    v_k 625: retained dwarf 0.0000, SPARC disc 0.0000, Milky Way 0.0011 -> max |shift| 0.0004 dex
+    v_k 650: retained dwarf 0.0000, SPARC disc 0.0000, Milky Way 0.0000 -> max |shift| 0.0000 dex
+  [PASS] G2 z = 0 GALAXIES PASS: every host keeps <= 0.06 dex with the modelled re-accretion (both footings, every kick)
+         measured: {'575': 0.0, '600': 0.0, '625': 0.0004, '650': 0.0}
+
+======================================================================================================================
+G3  X-COP (L321's twelve clusters through xcop_from_eps; the reference cluster's mass range, the environment ensemble)
+======================================================================================================================
+    v_k 575: eps(R500) by M200 5.0e+14: 0.165 (env 0.19/0.17/0.11), 1.0e+15: 0.190 (env 0.21/0.20/0.14), 1.5e+15: 0.207 (env 0.21/0.22/0.16); A2319-mass 0.190 (fixed potential 0.294) -> ratio 0.775/0.826; PM-calibrated 0.999 (offset -0.809) -> 1.403/1.455
+    v_k 600: eps(R500) by M200 5.0e+14: 0.164 (env 0.18/0.17/0.10), 1.0e+15: 0.180 (env 0.20/0.19/0.13), 1.5e+15: 0.201 (env 0.22/0.21/0.15); A2319-mass 0.180 (fixed potential nan) -> ratio 0.767/0.818; PM-calibrated 0.962 (offset -0.782) -> 1.375/1.427
+    v_k 625: eps(R500) by M200 5.0e+14: 0.151 (env 0.17/0.16/0.09), 1.0e+15: 0.179 (env 0.20/0.19/0.13), 1.5e+15: 0.191 (env 0.21/0.20/0.15); A2319-mass 0.179 (fixed potential nan) -> ratio 0.766/0.817; PM-calibrated 0.945 (offset -0.766) -> 1.361/1.413
+    v_k 650: eps(R500) by M200 5.0e+14: 0.150 (env 0.17/0.16/0.09), 1.0e+15: 0.176 (env 0.19/0.18/0.14), 1.5e+15: 0.190 (env 0.20/0.20/0.15); A2319-mass 0.176 (fixed potential 0.273) -> ratio 0.764/0.815; PM-calibrated 0.932 (offset -0.756) -> 1.351/1.403
+  [PASS] G3 X-COP FAILS with the modelled re-accretion at every kick 575-650 km/s, in the raw model and in the PM-calibrated reading: the A2319-mass cluster keeps eps(R500) far above the strict window on both footings (xcop_from_eps: canonical 0.221-0.737, alt 0.157-0.669)
+         measured: 575: eps 0.190 -> 0.78/0.83, calibrated 0.999 -> 1.40/1.46; 600: eps 0.180 -> 0.77/0.82, calibrated 0.962 -> 1.37/1.43; 625: eps 0.179 -> 0.77/0.82, calibrated 0.945 -> 1.36/1.41; 650: eps 0.176 -> 0.76/0.81, calibrated 0.932 -> 1.35/1.40
+         reading:  FP10's OPTIMISTIC reading (eps 0.42-0.46) is excluded by the dynamics: X-COP clusters recapture their escaped daughters (R1) -- the in-place reading's verdict stands; the non-thermal (L354 two-sided, <= 0.769) reading fails too
+
+======================================================================================================================
+G4  KiDS-1000 (L360's switched fit at the common cell; the lens halos' modelled carrier profile)
+======================================================================================================================
+    v_k 575: Delta chi^2 -15.4/-10.4 (gate <= +4); retention at r200 by bin [0.044, 0.048, 0.07, 0.065]
+    v_k 600: Delta chi^2 -15.2/-10.8 (gate <= +4); retention at r200 by bin [0.044, 0.048, 0.073, 0.063]
+    v_k 625: Delta chi^2 -14.7/-10.2 (gate <= +4); retention at r200 by bin [0.048, 0.065, 0.06, 0.056]
+    v_k 650: Delta chi^2 -15.2/-10.4 (gate <= +4); retention at r200 by bin [0.044, 0.053, 0.067, 0.058]
+  [PASS] G4 KiDS PASSES with the modelled re-accretion (both footings, every kick)
+         measured: {'575': {'canonical': -15.393505758677719, 'alt': -10.447679615751952}, '600': {'canonical': -15.210914961559041, 'alt': -10.763303703137467}, '625': {'canonical': -14.697411720081817, 'alt': -10.15233871274026}, '650': {'canonical': -15.16981296260903, 'alt': -10.350449405227039}}
+
+======================================================================================================================
+G6  S_8 (L319's solver on FP10's budget: re-accretion is nonlinear and only adds cluster-scale power)
+======================================================================================================================
+  [PASS] G6 S_8 PASSES: FP10's linear budget is unchanged by the modelled re-accretion (the solver already re-clusters the daughters linearly; the nonlinear recapture of R1 only returns power to clusters), ratio >= 0.922 at every kick
+         measured: ratio 0.9546-0.9650 (FP10's committed K_mid row reproduced to 0.0e+00)
+
+======================================================================================================================
+G7  COSMIC SHEAR (MS3's halo model; the halos' modelled retention at z = 0.5; 1.75 Mpc cap, door; R <= 1.2)
+======================================================================================================================
+    v_k 575: retention inside r200 by M200 1.2e+11: 0.07, 1.1e+12: 0.06, 1.1e+13: 0.08, 3.0e+13: 0.13, 9.5e+13: 0.19, 2.8e+14: 0.23, 9.2e+14: 0.28 (fixed potential 1e+14: 0.29, 3e+14: 0.33); worst R raw|1.75: 0.98/0.98; raw|inf: 2.08/2.50; PM-calibrated|1.75: 1.23/1.31; PM-calibrated|inf: 3.05/3.54
+    v_k 600: retention inside r200 by M200 1.2e+11: 0.07, 1.1e+12: 0.06, 1.1e+13: 0.08, 3.0e+13: 0.11, 9.5e+13: 0.18, 2.8e+14: 0.23, 9.2e+14: 0.27; worst R raw|1.75: 0.98/0.98; raw|inf: 2.06/2.48; PM-calibrated|1.75: 1.17/1.25; PM-calibrated|inf: 2.94/3.42
+    v_k 625: retention inside r200 by M200 1.2e+11: 0.05, 1.1e+12: 0.06, 1.1e+13: 0.07, 3.0e+13: 0.11, 9.5e+13: 0.17, 2.8e+14: 0.23, 9.2e+14: 0.28; worst R raw|1.75: 0.98/0.98; raw|inf: 2.06/2.48; PM-calibrated|1.75: 1.13/1.21; PM-calibrated|inf: 2.86/3.33
+    v_k 650: retention inside r200 by M200 1.2e+11: 0.05, 1.1e+12: 0.06, 1.1e+13: 0.07, 3.0e+13: 0.10, 9.5e+13: 0.17, 2.8e+14: 0.22, 9.2e+14: 0.27 (fixed potential 1e+14: 0.26, 3e+14: 0.31); worst R raw|1.75: 0.98/0.98; raw|inf: 2.05/2.47; PM-calibrated|1.75: 1.09/1.17; PM-calibrated|inf: 2.79/3.25
+  [FAIL] G7 COSMIC SHEAR FAILS at the KiDS-safe 1.75 Mpc cap with the modelled retention, at every kick on some footing: groups and clusters recapture their daughters (R1), and the phantom's k ~ 1 power lives there (MS3 D1)
+         measured: 575: raw 0.98/0.98, PM-calibrated 1.23/1.31; 600: raw 0.98/0.98, PM-calibrated 1.17/1.25; 625: raw 0.98/0.98, PM-calibrated 1.13/1.21; 650: raw 0.98/0.98, PM-calibrated 1.09/1.17
+         reading:  the PM-calibrated reading (the model's over-prediction removed inside the PM's mass range) is printed beside it and passes at some kicks: the shear verdict is reading-dependent, X-COP's is not
+
+======================================================================================================================
+G8  THE LYMAN-ALPHA FOREST (projection): the refill of halos by escaped daughters at z = 2-2.5
+======================================================================================================================
+  [PASS] G8 (reported) THE FOREST IS NOT ESTABLISHED: by z = 2.5 only a fraction 0.003 of the escaped daughters is back inside any halo's r200, so the budget FP10 projected is essentially untouched -- the 'cleared' reading (XR12: 11.3% at the nominal cell) rather than the 'refilled' one (8.0%)
+         measured: projection 0.027-0.136 (FP10 0.027-0.137; closest analog 0.068-0.090); gate 0.10
+         reading:  deciding it needs a flux run with sub-grid conversion (XR12)
+
+======================================================================================================================
+G5  HARVEY+2015 (L370's machinery via L372's harvey(), AT3's wiring, FP10's switch cell; the modelled retention profiles)
+======================================================================================================================
+    v_k 575: modelled retention at 0.1/0.2/0.5/1 r200 (z = 0.4): 1e+14: 0.01/0.04/0.11/0.17; 3e+14: 0.04/0.07/0.16/0.22; 1e+15: 0.06/0.09/0.20/0.27
+    v_k 600: modelled retention at 0.1/0.2/0.5/1 r200 (z = 0.4): 1e+14: 0.01/0.03/0.11/0.17; 3e+14: 0.03/0.06/0.15/0.21; 1e+15: 0.06/0.09/0.20/0.26
+    v_k 625: modelled retention at 0.1/0.2/0.5/1 r200 (z = 0.4): 1e+14: 0.01/0.03/0.10/0.17; 3e+14: 0.03/0.06/0.15/0.22; 1e+15: 0.05/0.09/0.19/0.26
+    v_k 650: modelled retention at 0.1/0.2/0.5/1 r200 (z = 0.4): 1e+14: 0.01/0.03/0.10/0.15; 3e+14: 0.03/0.06/0.14/0.20; 1e+15: 0.05/0.09/0.19/0.25
+    Harvey not run under MUTATE / SMOKE (the flips are R1, G3 and G9)
+
+======================================================================================================================
+G9  THE GATE TABLE AND THE WINDOW with the modelled re-accretion (cells: kick x footing)
+======================================================================================================================
+    v_k 575 canonical raw          : flagship pass, galaxies pass, KiDS pass, X_COP FAIL, S8 pass, shear pass, Harvey n/a, forest n/a
+    v_k 575 canonical PM-calibrated: flagship pass, galaxies pass, KiDS pass, X_COP FAIL, S8 pass, shear FAIL, Harvey n/a, forest n/a
+    v_k 575 alt       raw          : flagship pass, galaxies pass, KiDS pass, X_COP pass, S8 pass, shear pass, Harvey n/a, forest n/a
+    v_k 575 alt       PM-calibrated: flagship pass, galaxies pass, KiDS pass, X_COP FAIL, S8 pass, shear FAIL, Harvey n/a, forest n/a
+    v_k 600 canonical raw          : flagship pass, galaxies pass, KiDS pass, X_COP FAIL, S8 pass, shear pass, Harvey n/a, forest n/a
+    v_k 600 canonical PM-calibrated: flagship pass, galaxies pass, KiDS pass, X_COP FAIL, S8 pass, shear pass, Harvey n/a, forest n/a
+    v_k 600 alt       raw          : flagship pass, galaxies pass, KiDS pass, X_COP pass, S8 pass, shear pass, Harvey n/a, forest n/a
+    v_k 600 alt       PM-calibrated: flagship pass, galaxies pass, KiDS pass, X_COP FAIL, S8 pass, shear FAIL, Harvey n/a, forest n/a
+    v_k 625 canonical raw          : flagship pass, galaxies pass, KiDS pass, X_COP FAIL, S8 pass, shear pass, Harvey n/a, forest n/a
+    v_k 625 canonical PM-calibrated: flagship pass, galaxies pass, KiDS pass, X_COP FAIL, S8 pass, shear pass, Harvey n/a, forest n/a
+    v_k 625 alt       raw          : flagship pass, galaxies pass, KiDS pass, X_COP pass, S8 pass, shear pass, Harvey n/a, forest n/a
+    v_k 625 alt       PM-calibrated: flagship pass, galaxies pass, KiDS pass, X_COP FAIL, S8 pass, shear FAIL, Harvey n/a, forest n/a
+    v_k 650 canonical raw          : flagship pass, galaxies pass, KiDS pass, X_COP FAIL, S8 pass, shear pass, Harvey n/a, forest n/a
+    v_k 650 canonical PM-calibrated: flagship pass, galaxies pass, KiDS pass, X_COP FAIL, S8 pass, shear pass, Harvey n/a, forest n/a
+    v_k 650 alt       raw          : flagship pass, galaxies pass, KiDS pass, X_COP pass, S8 pass, shear pass, Harvey n/a, forest n/a
+    v_k 650 alt       PM-calibrated: flagship pass, galaxies pass, KiDS pass, X_COP FAIL, S8 pass, shear pass, Harvey n/a, forest n/a
+  [FAIL] G9 THE WINDOW WITH THE MODELLED RE-ACCRETION IS EMPTY: no kick in 575-650 km/s passes every decided gate on either footing, in the raw model or the PM-calibrated reading (X-COP fails everywhere; cosmic shear in the raw model; Harvey where scored)
+         measured: cells passing: raw 4/8, PM-calibrated 0/8 -> SLIVER
+         reading:  FP10's 3/6 optimistic cells relied on daughters that never return; clusters recapture them
+
+======================================================================================================================
+G10 (reported) THE X-COP KICK SCAN: where would the reference cluster's retention enter X-COP's window?
+======================================================================================================================
+    eps(R500) at the A2319 mass (t = 0): 575 km/s 0.198, 650 km/s 0.182, 750 km/s 0.171, 850 km/s 0.151, 1000 km/s 0.135, 1150 km/s 0.116, 1300 km/s 0.097
+  [PASS] G10 (reported, CONSTRAINT) with re-accretion X-COP's strict window (alt footing binds, eps <= 0.669) needs v_k above the scanned 1300 km/s, the non-thermal one (<= 0.769) above the scanned 1300 km/s -- L354's old requirement (1000-1200); there L372's pincer (hollowed cores, Harvey) and S_8 are not scored here
+         measured: {'575': 0.198, '650': 0.182, '750': 0.171, '850': 0.151, '1000': 0.135, '1150': 0.116, '1300': 0.097}
+
+======================================================================================================================
+G11 THE WEB CHANNEL (XR19): the carrier the halos did not convert converts in the web -- X-COP, shear and KiDS again
+======================================================================================================================
+    web nominal      v_k 575: eps(R500) 0.139 (web daughters 0.005 of it) -> 0.73/0.79; PM-calibrated 0.948 -> 1.36/1.42; the proto-cluster's OWN web daughters inside R500: 0.010
+    web nominal      v_k 600: eps(R500) 0.126 (web daughters 0.002 of it) -> 0.72/0.78; PM-calibrated 0.908 -> 1.33/1.38; the proto-cluster's OWN web daughters inside R500: 0.004
+    web nominal      v_k 625: eps(R500) 0.128 (web daughters 0.002 of it) -> 0.73/0.78; PM-calibrated 0.894 -> 1.32/1.37; the proto-cluster's OWN web daughters inside R500: 0.005
+    web nominal      v_k 650: eps(R500) 0.120 (web daughters 0.002 of it) -> 0.72/0.77; PM-calibrated 0.876 -> 1.31/1.36; the proto-cluster's OWN web daughters inside R500: 0.005
+    web conservative v_k 575: eps(R500) 0.167 (web daughters 0.001 of it) -> 0.76/0.81; PM-calibrated 0.975 -> 1.39/1.44; the proto-cluster's OWN web daughters inside R500: 0.005
+    web conservative v_k 600: eps(R500) 0.154 (web daughters 0.001 of it) -> 0.75/0.80; PM-calibrated 0.936 -> 1.35/1.41; the proto-cluster's OWN web daughters inside R500: 0.003
+    web conservative v_k 625: eps(R500) 0.155 (web daughters 0.001 of it) -> 0.75/0.80; PM-calibrated 0.921 -> 1.34/1.39; the proto-cluster's OWN web daughters inside R500: 0.004
+    web conservative v_k 650: eps(R500) 0.147 (web daughters 0.001 of it) -> 0.74/0.79; PM-calibrated 0.904 -> 1.33/1.38; the proto-cluster's OWN web daughters inside R500: 0.005
+    web turned       v_k 575: eps(R500) 0.117 (web daughters 0.002 of it) -> 0.72/0.77; PM-calibrated 0.926 -> 1.35/1.40; the proto-cluster's OWN web daughters inside R500: 0.004
+    web turned       v_k 600: eps(R500) 0.107 (web daughters 0.002 of it) -> 0.71/0.76; PM-calibrated 0.889 -> 1.32/1.37; the proto-cluster's OWN web daughters inside R500: 0.004
+    web turned       v_k 625: eps(R500) 0.106 (web daughters 0.002 of it) -> 0.71/0.76; PM-calibrated 0.872 -> 1.30/1.36; the proto-cluster's OWN web daughters inside R500: 0.004
+    web turned       v_k 650: eps(R500) 0.098 (web daughters 0.001 of it) -> 0.70/0.75; PM-calibrated 0.855 -> 1.29/1.34; the proto-cluster's OWN web daughters inside R500: 0.002
+    web nominal, cluster M0 4e+14 v_k 575: own web daughters inside r200 at z = 0 0.012; carrier kept inside r200 0.129 (halo-only 0.190)
+    web nominal, cluster M0 4e+14 v_k 650: own web daughters inside r200 at z = 0 0.009; carrier kept inside r200 0.116 (halo-only 0.185)
+    web nominal, cluster M0 8e+14 v_k 575: own web daughters inside r200 at z = 0 0.019; carrier kept inside r200 0.137 (halo-only 0.199)
+    web nominal, cluster M0 8e+14 v_k 650: own web daughters inside r200 at z = 0 0.008; carrier kept inside r200 0.127 (halo-only 0.192)
+    web nominal, shear v_k 575: retention inside r200 1.2e+11: 0.039, 1.1e+12: 0.023, 1.1e+13: 0.036, 3.0e+13: 0.083, 9.5e+13: 0.127, 2.8e+14: 0.157, 9.2e+14: 0.202; worst R (1.75 Mpc) raw 0.98/0.98, PM-calibrated 1.16/1.23
+    web nominal, shear v_k 650: retention inside r200 1.2e+11: 0.027, 1.1e+12: 0.019, 1.1e+13: 0.031, 3.0e+13: 0.059, 9.5e+13: 0.111, 2.8e+14: 0.149, 9.2e+14: 0.19; worst R (1.75 Mpc) raw 0.98/0.98, PM-calibrated 1.02/1.09
+    web nominal, KiDS v_k 575: Delta chi^2 -10.6/-5.8
+    web nominal, KiDS v_k 650: Delta chi^2 -11.3/-6.5
+  [PASS] G11 WITH XR19's WEB CHANNEL X-COP STILL FAILS at every kick, in every web bracket (nominal, most conservative, the turned-around shells at z <= 1.5), raw and PM-calibrated: the web daughters are born in the cluster's own infall region, Hubble-cooled and bound, and the cluster recaptures them
+         measured: nominal|575: eps 0.139 (cal 0.948), own web daughters in R500 0.01; nominal|600: eps 0.126 (cal 0.908), own web daughters in R500 0.00; nominal|625: eps 0.128 (cal 0.894), own web daughters in R500 0.00; nominal|650: eps 0.120 (cal 0.876), own web daughters in R500 0.00; conservative|575: eps 0.167 (cal 0.975), own web daughters in R500 0.00; conservative|600: eps 0.154 (cal 0.936), own web daughters in R500 0.00; conservative|625: eps 0.155 (cal 0.921), own web daughters in R500 0.00; conservative|650: eps 0.147 (cal 0.904), own web daughters in R500 0.01; turned|575: eps 0.117 (cal 0.926), own web daughters in R500 0.00; turned|600: eps 0.107 (cal 0.889), own web daughters in R500 0.00; turned|625: eps 0.106 (cal 0.872), own web daughters in R500 0.00; turned|650: eps 0.098 (cal 0.855), own web daughters in R500 0.00
+         reading:  XR19's order-of-magnitude reading (24-38% of late cluster carrier arrives converted, recaptured) confirmed dynamically; the web moves the shear and KiDS retention of groups and galaxies (printed), not the clusters' verdict
+  [PASS] G11b (reported) THE NON-THERMAL READING (L354's two-sided window, 0.284-0.769 after X-COP's 6% non-thermal support) in the web brackets: which cells enter it -- the raw model never; the PM-calibrated one only where the web converts the turned-around shells.  There Harvey (halo-only profiles) fails at 575 and 650 and is not re-scored with the web, and the strict window still fails: at most a sliver candidate on the non-thermal criterion, not a window
+         measured: {'nominal|575': {'cal': False, 'raw': False}, 'nominal|600': {'cal': False, 'raw': False}, 'nominal|625': {'cal': False, 'raw': False}, 'nominal|650': {'cal': False, 'raw': False}, 'conservative|575': {'cal': False, 'raw': False}, 'conservative|600': {'cal': False, 'raw': False}, 'conservative|625': {'cal': False, 'raw': False}, 'conservative|650': {'cal': False, 'raw': False}, 'turned|575': {'cal': False, 'raw': False}, 'turned|600': {'cal': False, 'raw': False}, 'turned|625': {'cal': False, 'raw': False}, 'turned|650': {'cal': False, 'raw': False}}
+
+======================================================================================================================
+X  EXPLICIT PREDICTIONS for the hub's particle-mesh lane XR21 (FK1's conversion with re-accretion)
+======================================================================================================================
+    v_k 575: eps(<1 Mpc/h, z = 0) at L388's bin masses {'6.0e+13': 0.175, '1.0e+14': 0.181, '1.5e+14': 0.189, '2.5e+14': 0.194} (PM-calibrated {'6.0e+13': 0.441, '1.0e+14': 0.621, '1.5e+14': 0.826, '2.5e+14': 1.003}); A2319-mass eps(R500) 0.19 (calibrated 0.999); flagship S(r_F, z = 2.5, M_b 1e11) 0.0235
+    v_k 600: eps(<1 Mpc/h, z = 0) at L388's bin masses {'6.0e+13': 0.167, '1.0e+14': 0.178, '1.5e+14': 0.191, '2.5e+14': 0.196} (PM-calibrated {'6.0e+13': 0.368, '1.0e+14': 0.513, '1.5e+14': 0.772, '2.5e+14': 0.978}); A2319-mass eps(R500) 0.18 (calibrated 0.962); flagship S(r_F, z = 2.5, M_b 1e11) 0.0217
+    v_k 625: eps(<1 Mpc/h, z = 0) at L388's bin masses {'6.0e+13': 0.16, '1.0e+14': 0.173, '1.5e+14': 0.181, '2.5e+14': 0.185} (PM-calibrated {'6.0e+13': 0.306, '1.0e+14': 0.449, '1.5e+14': 0.695, '2.5e+14': 0.951}); A2319-mass eps(R500) 0.179 (calibrated 0.945); flagship S(r_F, z = 2.5, M_b 1e11) 0.0267
+    v_k 650: eps(<1 Mpc/h, z = 0) at L388's bin masses {'6.0e+13': 0.153, '1.0e+14': 0.163, '1.5e+14': 0.179, '2.5e+14': 0.186} (PM-calibrated {'6.0e+13': 0.25, '1.0e+14': 0.365, '1.5e+14': 0.656, '2.5e+14': 0.942}); A2319-mass eps(R500) 0.176 (calibrated 0.932); flagship S(r_F, z = 2.5, M_b 1e11) 0.0191
+  [PASS] X1 (reported) the predictions table for XR21: FK1's own trigger with re-accretion, 575-650 km/s (the model's retention inside 1 Mpc/h at z = 0 at L388's bin masses; the X-COP-mass eps(R500); the z = 0.5 group retention; the flagship residue; the own-daughter recapture by host mass) -- the model OVER-predicts the PM: +0.07-0.11 at the massive end, up to +0.40 at 1-2.5e14 (V1, V2); compare XR21 with both columns
+         measured: {'575': {'raw': {'6.0e+13': 0.175, '1.0e+14': 0.181, '1.5e+14': 0.189, '2.5e+14': 0.194}, 'calibrated': {'6.0e+13': 0.441, '1.0e+14': 0.621, '1.5e+14': 0.826, '2.5e+14': 1.003}}, '600': {'raw': {'6.0e+13': 0.167, '1.0e+14': 0.178, '1.5e+14': 0.191, '2.5e+14': 0.196}, 'calibrated': {'6.0e+13': 0.368, '1.0e+14': 0.513, '1.5e+14': 0.772, '2.5e+14': 0.978}}, '625': {'raw': {'6.0e+13': 0.16, '1.0e+14': 0.173, '1.5e+14': 0.181, '2.5e+14': 0.185}, 'calibrated': {'6.0e+13': 0.306, '1.0e+14': 0.449, '1.5e+14': 0.695, '2.5e+14': 0.951}}, '650': {'raw': {'6.0e+13': 0.153, '1.0e+14': 0.163, '1.5e+14': 0.179, '2.5e+14': 0.186}, 'calibrated': {'6.0e+13': 0.25, '1.0e+14': 0.365, '1.5e+14': 0.656, '2.5e+14': 0.942}}}
+
+======================================================================================================================
+W  THE LEDGER: what this lane settles (link / status / basis)
+======================================================================================================================
+    L16a   DERIVED    the daughters' dynamics: Newtonian orbits in the expanding background (FP4/L353's kernel-invisible pair; FP10 A1's isotropic kick); peculiar speed ~ 1/a, comoving reach ~0.72-0.79 v_inf/H0 = 6.2-7.6 Mpc from any z_e = 2-6  --  A1, C0c
+    L16b   DERIVED    the ordering: the reach exceeds the Lagrangian radius of every host <= 1e13 Msun and sits well inside every cluster's >= 3e14 Msun -- galaxies lose their daughters, clusters keep them (turnover near 1e14)  --  A1
+    L16c   DERIVED    the emission: FK1's halo-collapse trigger sends out the cosmic share of every host's carrier (~0.45); the rest is bound in sub-halos or converts at the host's own front  --  A2, C0a
+    L16d   POSTULATED the semi-analytic model: spherical symmetry, one EPS MAH per mass (Correa; alpha = 0.8 for the flagship), the constrained mean outer profile with a 3-node environment ensemble, tangential kick j v_c (j 0.15-0.35) at turnaround, the barrier-shifted ST emission with host-sized halos excluded, window averaging -- biases in V2  --  C0d, C0g, C0h
+    L16e   FITTED     the PM emulation's M_eff = 1e11.90 Msun, fitted to the PM's global decay history (validation only)  --  C0f
+    L16f   CONSTRAINT the validation is PARTIAL: the model OVER-predicts the committed PM's retention in every bin (massive end -0.81 to -0.76 -- V1's 0.10 tolerance fell where |offset| > 0.10; 6e13-2.5e14 -0.64 to -0.10); the direction strengthens the cluster failures, so the PM-calibrated reading removes it; the PM's own massive halos fail X-COP (V4)  --  V1-V4
+    L16g   DERIVED    where the daughters go: clusters (M0 >= 4e14) hold 0.00-0.00 of their own escaped daughters inside r200 by z = 0; the flagship hosts <= 0.000; at z = 2.5 the escaped daughters are almost all in the field  --  R1, R2, R3
+    L16h   DERIVED    the flagship z = 0.5-2.5 with re-accretion: max |shift| 0.0467 dex (the residue is the host's own in-place conversion, not recaptured daughters); z = 0 galaxies, KiDS and S_8 pass  --  G1, G2, G4, G6
+    L16i   FAILS      X-COP with re-accretion at every kick 575-650 km/s, both footings, raw and PM-calibrated: the A2319-mass cluster keeps eps(R500) 0.18-0.19 -- FP10's optimistic reading (0.42-0.46) is excluded  --  G3
+    L16j   FAILS      cosmic shear at the 1.75 Mpc cap with the modelled retention (raw 0.98-0.98)  --  G7
+    L16k   OPEN       Harvey with re-accretion: not run  --  G5
+    L16l   FAILS      the window with the modelled re-accretion: SLIVER (cells raw 4/8, PM-calibrated 0/8)  --  G9
+    L16m   CONSTRAINT X-COP would need v_k above the scanned 1300 km/s (strict) / above the scanned 1300 km/s (non-thermal) with re-accretion -- where L372's pincer (Harvey) and S_8 are unscored  --  G10
+    L16p   FAILS      with XR19's web channel (f_web from its F_tot: nominal, most conservative, turned-around shells) X-COP still fails the strict window: eps(R500) 0.10-0.17 raw, 0.85-0.98 PM-calibrated; the proto-cluster's own web daughters sit 0.00-0.01 inside R500 -- the Hubble-cooled population is recaptured.  Only the turned-around web + calibration corner enters L354's non-thermal window (no cell), where Harvey (halo-only) fails  --  G11, G11b
+    L16n   OPEN       the forest (projection 0.027-0.136, not established); the web runaway (a daughter beam detunes after sigma/H ~ 0.1-0.3 Mpc, but most escaped mass exits resonant: a propagating front is neither forced nor excluded -- XR19)  --  G8, A3
+    L16o   OPEN       what the model cannot see: 3-D structure (filaments, mergers, centre offsets), the PM-calibrated offsets measured at z = 0 applied at z = 0.05-0.5, the web's own conversion (XR12/XR19) -- a PM run with FK1's trigger and re-accretion (XR21) decides  --  V2, X1
+  [PASS] W (reported) the ledger of this lane's links
+         measured: 16 links
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  THE DYNAMICS.  A daughter is a Newtonian particle in the expanding background (the kernel-invisible pair): its peculiar
+  speed decays as 1/a and its comoving reach saturates at ~0.72-0.79 v_inf/H0 = 6.2-7.6 Mpc whatever its birth epoch.
+  That is larger than any galaxy's or group's Lagrangian radius and well inside any X-COP cluster's (A1).  FK1's trigger sends out
+  the cosmic share (~0.45) of every host's carrier (A2), so what a host keeps is what it recaptures.
+  WHERE THEY GO.  Galaxies do not get them back: the flagship hosts hold <= 0.000 of their own escaped daughters
+  inside r200, and escaped daughters refill r_F to <= 0.0045 of the NFW carrier (R2).  Clusters do: hosts >= 4e14 hold
+  0.00-0.00 of their own inside r200 by z = 0 (R1).  At z = 2.5 almost every escaped daughter is in the field (R3).
+  THE VALIDATION.  The same shell model with the PM's own trigger over-predicts the committed PM's retention: by
+  -0.81 to -0.76 at its most massive halos (V1's 0.10 fell at 575, 600, 625, 650) and up to -0.10 at 6e13-2.5e14 (V2).
+  PARTIAL.  The bias strengthens the cluster failures; the PM-calibrated reading removes it, and the PM's own most massive
+  halos already keep 0.79-0.85 > 0.769 (V4): X-COP's failure does not rest on the model.
+  THE GATES.  Flagship (max 0.0467 dex), z = 0 galaxies, KiDS, S_8: pass.  X-COP: FAIL at every kick, both footings, raw
+  and calibrated (eps(R500) 0.18-0.19 against <= 0.669).
+  Cosmic shear (1.75 Mpc): FAIL in the raw model, reading-dependent once calibrated.  Harvey: not run
+  (hollow cores: the recaptured daughters load the outskirts).  Forest: not established.
+  THE WEB (XR19).  With the carrier the halos did not convert converted in the web (nominal, most conservative, turned-
+  around shells), X-COP still fails the strict window (eps(R500) 0.10-0.17 raw, 0.85-0.98 calibrated): the web
+  daughters are born in the cluster's own infall region, Hubble-cooled and bound (0.00-0.01 of the proto-cluster's
+  own web daughters inside R500).  Only the turned-around-web + calibration corner enters L354's NON-THERMAL window
+  (no kick km/s); Harvey fails there in the halo-only profiles (unscored with the web).
+  THE WINDOW.  SLIVER on FP10's strict X-COP criterion in every reading (halo-only raw and calibrated; the three web
+  brackets): FP10's optimistic 3/6 cells assumed daughters that never return; the dynamics returns them to the clusters,
+  which is FP10's IN-PLACE verdict for X-COP (and, raw, for shear).  One splitting cannot clear galaxies and clusters with the
+  same kick -- X-COP alone would need v_k above the scanned 1300 km/s (G10), L372's single-channel pincer again.
+  NOT settled here: 3-D structure, the web's own conversion (XR19), the forest.  Not 'closed' as a theory.
+
+  28/32 checks pass; load-bearing failures: 3; wrote FP16_daughter_reaccretion_results_MUTATE.json   [822s]
+rc=1
