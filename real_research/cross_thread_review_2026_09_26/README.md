@@ -174,6 +174,11 @@ kicked at 575–650 km/s (L388).
   - FP10_FULL.
 
   The answer page's §7 has the details.
+- **Reproduction check.** All 27 runs (main and MUTATE) of XR11, XR12, XR13, XR15 and XR14's score were re-run in a
+  scratch mirror that shares only read-only inputs with the repository. Every committed `_results*.json` and `.out`
+  reproduces exactly: timing lines aside, the only difference is the trailing `rc=` line the lanes append, and every
+  return code matches. Not re-run: XR16 (about 2 h) and XR14's halo cache (about 65 min). Their outputs post-date
+  their scripts.
 
 ## Files
 
