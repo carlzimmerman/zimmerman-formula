@@ -472,6 +472,108 @@ row(s, "no free streaming: shear at l = 1", (round(m1["canonical"], 2), round(m1
 row(s, "no free streaming: shear fails at every l", min(r["shear"][f] for r in nm["scan"] for f in ("canonical", "alt")), "> 1.2",
     min(r["shear"][f] for r in nm["scan"] if r["lam"] >= 1.0 for f in ("canonical", "alt")) > 1.2)
 
+# ------------------------------------------------------------------------------------------------------------ v2: DE1, GP5, L373, statuses
+s = "v2"
+d1 = N("dark_energy_2026/DE1_vacuum_gate_flagship_results.json")
+row(s, "DE1 p_max at x_c0 = 2 (numeric)", (round(d1["P1"]["2.0/canonical"]["pmax_numeric"], 3), round(d1["P1"]["2.0/alt"]["pmax_numeric"], 3)), (1.97, 2.07),
+    near(d1["P1"]["2.0/canonical"]["pmax_numeric"], 1.97, 2) and near(d1["P1"]["2.0/alt"]["pmax_numeric"], 2.07, 2))
+row(s, "DE1 p = 2, x_c0 = 2 keeps the flagship to z", (round(d1["F2"]["2.0/2.0/canonical"], 3), round(d1["F2"]["2.0/2.0/alt"], 3)), (2.46, 2.58),
+    near(d1["F2"]["2.0/2.0/canonical"], 2.46, 2) and near(d1["F2"]["2.0/2.0/alt"], 2.58, 2))
+row(s, "DE1 p = 1, x_c0 = 1.5 keeps the flagship to z", (round(d1["F2"]["1.0/1.5/canonical"], 3), round(d1["F2"]["1.0/1.5/alt"], 3)), (4.68, 4.96),
+    near(d1["F2"]["1.0/1.5/canonical"], 4.68, 2) and near(d1["F2"]["1.0/1.5/alt"], 4.96, 2))
+row(s, "DE1 p <= 1 cells and p = 2, x_c0 = 1.5 pass z = 2.5", min(v for k, v in d1["F2"].items() if not k.startswith("2.0/2.0")), "> 2.5",
+    min(v for k, v in d1["F2"].items() if not k.startswith("2.0/2.0")) > 2.5)
+worst = min(r["shift_dex"] for r in d1["F1"])
+wrow = [r for r in d1["F1"] if r["shift_dex"] == worst][0]
+row(s, "DE1 worst shift at z = 2.5 (dex; canonical, M_b 1e11)", (round(worst, 3), wrow["foot"], wrow["lMb"]), (-1.13, "canonical", 11.0),
+    near(worst, -1.13, 2) and wrow["foot"] == "canonical" and wrow["lMb"] == 11.0)
+g5 = N("generated_phantom_2026/GP5_window_at_high_z_results.json")
+def g5rng(z):
+    return (min(v["shift_min"] for k, v in g5["F"].items() if k.split("|")[2] == z), max(v["shift_max"] for k, v in g5["F"].items() if k.split("|")[2] == z))
+lo, hi = g5rng("2.5")
+row(s, "GP5 shift at z = 2.5 (dex)", (round(lo, 3), round(hi, 3)), (0.82, 1.05), near(lo, 0.82, 2) and near(hi, 1.05, 2))
+lo, hi = g5rng("0.5")
+row(s, "GP5 shift at z = 0.5 (dex)", (round(lo, 3), round(hi, 3)), (0.38, 0.70), near(lo, 0.38, 2) and near(hi, 0.70, 2))
+sl = [r["slope"] for v in g5["R1"].values() for r in v]; fdm = [r["median_fdm"] for v in g5["R1"].values() for r in v]
+row(s, "GP5 RC100 f_DM", (round(min(fdm), 3), round(max(fdm), 3)), (0.48, 0.58), near(min(fdm), 0.48, 2) and near(max(fdm), 0.58, 2))
+row(s, "GP5 RC100 slope", (round(min(sl), 3), round(max(sl), 3)), (0.10, 0.14), near(min(sl), 0.10, 2) and near(max(sl), 0.14, 2))
+g5c = [v for k, v in J("generated_phantom_2026/GP5_window_at_high_z_results.json")["checks"].items() if k.startswith("F1")][0]
+row(s, "GP5 flagship gate fails", g5c["ok"], False, g5c["ok"] is False)
+l373 = J("merger_infall_2026/L373_two_mode_carrier_pm_results.json")["checks"]
+r1 = [v for k, v in l373.items() if k.startswith("R1")][0]
+row(s, "L373: no window after assembly", r1["measured"], "window none", (r1["ok"] is False) and r1["measured"].startswith("window none"))
+c2 = [v for k, v in l373.items() if k.startswith("C2")][0]
+row(s, "L373 ran at p = 2, x_c0 = 2", c2["measured"], "p2_x2.0", "p2_x2.0" in c2["measured"])
+de1c = J("dark_energy_2026/DE1_vacuum_gate_flagship_results.json")["checks"]
+row(s, "DE1 checks", f"{sum(v['ok'] for v in de1c.values())}/{len(de1c)}", "5/6", sum(v["ok"] for v in de1c.values()) == 5 and len(de1c) == 6)
+g5all = J("generated_phantom_2026/GP5_window_at_high_z_results.json")["checks"]
+row(s, "GP5 checks", f"{sum(v['ok'] for v in g5all.values())}/{len(g5all)}", "4/5", sum(v["ok"] for v in g5all.values()) == 4 and len(g5all) == 5)
+
+# ------------------------------------------------------------------------------------------------------------ v2: L392, V0
+s = "v2 L392/V0"
+l392 = J("merger_infall_2026/L392_l372_linear_gate_branches_results.json")
+ck = l392["checks"]
+row(s, "L392 checks", f"{sum(v['ok'] for v in ck.values())}/{len(ck)}", "7/9", sum(v["ok"] for v in ck.values()) == 7 and len(ck) == 9)
+rb = [v for k, v in ck.items() if k.startswith("RB[")]
+ra = [v for k, v in ck.items() if k.startswith("RA[")]
+row(s, "curvature branch: all three kicks pass (both conventions)", [v["measured"] for v in rb], "(0.25, 750/900/1050)",
+    len(rb) == 2 and all(v["ok"] and "(0.25, 750.0), (0.25, 900.0), (0.25, 1050.0)" in v["measured"] for v in rb))
+row(s, "matter branch: no cell passes (both conventions)", [v["measured"] for v in ra], "none", len(ra) == 2 and all((not v["ok"]) and "none" in v["measured"] for v in ra))
+t392 = TXT("merger_infall_2026/L392_l372_linear_gate_branches.out")
+def kids(branch, conv):
+    vals = re.findall(rf"v_G\s+\d+\s+{branch}\|{conv}\s*: KiDS Delta chi\^2\s+([+-][0-9.]+) /\s+([+-][0-9.]+)", t392)
+    return [(float(a), float(b)) for a, b in vals]
+for branch, conv, c_, a_ in (("curvature", "r200", -41, -34), ("curvature", "nfw", -60, -55), ("matter", "nfw", 118, 128), ("matter", "r200", 322, 332)):
+    v = kids(branch, conv)
+    row(s, f"L392 KiDS {branch}|{conv} (lowest kick, rounded)", v[0], (c_, a_), len(v) == 3 and near(v[0][0], c_, 0) and near(v[0][1], a_, 0))
+hv = [float(x) for x in re.findall(r"curvature\|r200\s+f_U\(0\) 0.25 v_G\s+\d+: KiDS [^;]+; Harvey fit ([+-][0-9.]+)", t392)]
+row(s, "L392 Harvey fit, curvature (canonical)", hv, (0.046, 0.062), len(hv) == 3 and near(min(hv), 0.046, 3) and near(max(hv), 0.062, 3))
+edges = re.findall(r"matter\|nfw\s*: KiDS Delta chi\^2[^;]+; edges \(Mpc, canonical\) \[([0-9.]+), [0-9.]+, [0-9.]+, ([0-9.]+)\]", t392)
+row(s, "L392 matter-branch edges, NFW-continued (Mpc)", edges[0], ("0.35", "0.88"), near(float(edges[0][0]), 0.35, 2) and near(float(edges[0][1]), 0.88, 2))
+rd = TXT("merger_infall_2026/README.md")
+row(s, "L392 alt-footing Harvey at 900 km/s (curvature)", "+0.062" in rd, "+0.062", "+0.063 (matter) and +0.062 (curvature)" in rd)
+cv1 = [v for k, v in J("chk_v0_2026/CV1_nr_assembly_results.json")["checks"].items() if k.startswith("A5")][0]["measured"]
+m5 = re.search(r"1/m = 100: .*?layer ([0-9.e+-]+), .*?1/m = 500: .*?layer ([0-9.e+-]+),", cv1)
+row(s, "V0 edge-layer force (g_N) at 1/m = 100 / 500 kpc", (float(m5.group(1)), float(m5.group(2))), (1.4, 0.8), near(float(m5.group(1)), 1.4, 1) and near(float(m5.group(2)), 0.8, 1))
+
+# ------------------------------------------------------------------------------------------------------------ v2: DE8
+s = "v2 DE8"
+de8 = J("dark_energy_2026/DE8_kids_sigma_axis_both_branches_results.json")["checks"]
+ok8 = lambda v: bool(v.get("ok", v.get("pass")))                     # DE8's JSON names the flag "pass"
+row(s, "DE8 checks", f"{sum(ok8(v) for v in de8.values())}/{len(de8)}", "6/8", sum(ok8(v) for v in de8.values()) == 6 and len(de8) == 8)
+v1 = eval([v for k, v in de8.items() if k.startswith("V1")][0]["measured"])
+up = [v1[k] for k in ("r200/upper", "nfw/upper")]
+lo = [v1[k] for k in v1 if k.split("/")[1].startswith("lower")]
+row(s, "DE8 curvature branch: sigma = 1 passes wherever sigma = 0 does", [(u["pass_sigma0"], u["pass_sigma1"], u["sigma1_where_sigma0"]) for u in up], "same counts",
+    all(u["pass_sigma0"] == u["pass_sigma1"] == u["sigma1_where_sigma0"] for u in up))
+row(s, "DE8 matter branch: no cell passes at either sigma", [(l["pass_sigma0"], l["pass_sigma1"]) for l in lo], "(0, 0)", all(l["pass_sigma0"] == 0 and l["pass_sigma1"] == 0 for l in lo))
+msg = TXT("dark_energy_2026/DE8_kids_sigma_axis_both_branches.out")
+m8 = re.search(r"per outer convention and branch: r200/upper: ([0-9.]+); .*?nfw/upper: ([0-9.]+);", msg)
+row(s, "DE8 curvature-branch sigma shift (max |dDelta chi^2|)", (float(m8.group(1)), float(m8.group(2))), "<= 0.4", max(float(m8.group(1)), float(m8.group(2))) <= 0.4 + 1e-9)
+m9 = re.search(r"r200/lower: ([0-9.]+); r200/lower_abs: ([0-9.]+);", msg)
+row(s, "DE8 matter-branch hard-edge shifts (88-93)", (float(m9.group(1)), float(m9.group(2))), (88, 93), near(float(m9.group(1)), 88, 0) and near(float(m9.group(2)), 93, 0))
+# ------------------------------------------------------------------------------------------------------------ v2: MS1, XR5
+s = "v2 MS1/XR5"
+ms1 = J("mond_sector_gate_2026/MS1_gate_variation_reciprocity_results.json")
+lk = ms1["numbers"]["A3_leaks"]
+row(s, "MS1 doors (c) MOND sector and (d) baryons leak nothing", (lk["c_mond_sector"], lk["d_baryons"]), ("0", "0"), lk["c_mond_sector"] == "0" and lk["d_baryons"] == "0")
+n1 = ms1["numbers"]["N1"]
+def fr(host, door):
+    return [v["force_ratio_max"] for k, v in n1[host].items() if k.startswith(door + "/")]
+lstar = [h for h in n1 if h.startswith("KiDS L* lens")]
+flag = [h for h in n1 if h.startswith("flagship host")]
+ca = [x for h in lstar for x in fr(h, "a")]; cb = [x for h in lstar for x in fr(h, "b")]
+row(s, "MS1 L* lens, curvature door (x g_N)", (round(min(ca), 3), round(max(ca), 2)), (0.06, 6), near(min(ca), 0.06, 2) and near(max(ca), 6, 0))
+row(s, "MS1 L* lens, matter door (x g_N)", (round(min(cb), 2), round(max(cb), 1)), (0.6, 60), near(min(cb), 0.6, 1) and near(max(cb), 60, 0))
+fa = [x for h in flag for x in fr(h, "a")]
+row(s, "MS1 flagship host larger than L* (curvature door)", (round(min(fa), 2), round(max(fa), 1)), "> L* range", min(fa) > min(ca) and max(fa) > max(ca))
+ms1c = ms1["checks"]
+row(s, "MS1 checks", f"{sum(bool(v.get('ok', v.get('pass'))) for v in ms1c.values())}/{len(ms1c)}", "5/5", all(bool(v.get("ok", v.get("pass"))) for v in ms1c.values()) and len(ms1c) == 5)
+x5 = TXT("cross_thread_review_2026_09_26/XR5_operator_identity.out")
+mh = re.search(r"\[PASS\] H1 HARVEY.*?\n\s+measured: A_0\.2 ([0-9.e-]+), A_0\.5 ([0-9.e-]+), C ([0-9.e-]+)", x5, re.S)
+row(s, "XR5 H1: sigma = 1 (A) vs L370 (C) Harvey centroid, |d_beta| <= 0.002", (mh.group(1), mh.group(2), mh.group(3)), "<= 0.002", bool(mh) and max(float(mh.group(1)), float(mh.group(2)), float(mh.group(3))) <= 0.002)
+row(s, "XR5 Harvey configuration is toward-main", "toward-main orientation" in x5, True, "toward-main orientation" in x5)
+
 # ============================================================================================================== REPORT
 banner("THE NUMBERS PAPER34 QUOTES, AGAINST THE COMMITTED OUTPUTS")
 bad = [r for r in ROWS if not r[4]]

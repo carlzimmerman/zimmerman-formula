@@ -1,12 +1,12 @@
 # paper34_audit_2026: the numbers behind PAPER34
 
-PAPER34 is "A Dark Sector the MOND Kernel Cannot See: Reciprocity, Bound-Region Kernels, and the Cosmic-Shear Pincer" (`qwen_claude_field_theory/papers_2026/PAPER34_kernel_blind_dark_sector_2026.tex`). It reports lanes L353–L364, L370–L372 and the generated-phantom lanes GP0–GP4.
+PAPER34 is "A Dark Sector the MOND Kernel Cannot See: Reciprocity, Bound-Region Kernels, and the Cosmic-Shear Pincer" (`qwen_claude_field_theory/papers_2026/PAPER34_kernel_blind_dark_sector_2026.tex`). It reports lanes L353–L364, L370–L372 and the generated-phantom lanes GP0–GP4; version 2 adds GP5, DE1, DE8, L373, L392, MS1, V0 and XR5.
 
 | Lane | Script | Checks | Result |
 |---|---|---|---|
 | P34 | `P34_paper_numbers.py` | 7/7 (MUTATE: the floor read as in the old GP4 summary; X1 and X1b fail, rc = 1) | See below. |
 
-**N1: every quoted number.** 244 values the paper quotes are re-derived from the lanes' committed results JSON, or from the committed `.out` where a number is printed but not stored. Each is compared with the paper at the paper's own precision.
+**N1: every quoted number.** 281 values (version 2; 244 in version 1) the paper quotes are re-derived from the lanes' committed results JSON, or from the committed `.out` where a number is printed but not stored. Each is compared with the paper at the paper's own precision.
 
 **X1: the KiDS realisable floor.** GP4's two window cells score **+19.1 to +21.5** in KiDS-1000 Δχ² above GP2's realisable floor, given the same freedom in the dark component's halo. The floor is the best isolated QUMOND lens in one uniform external field.
 - The GP4 summary had said "about +8". +8.2/+8.3 is the floor's own distance from the Gauss-forbidden comparator.
@@ -45,3 +45,5 @@ The deposit needs no change.
 - RC100 gives f_DM 0.48–0.58.
 
 This agrees with the paper's estimate.
+
+**Version 2 audit.** The script now also checks the numbers version 2 adds (DE1, GP5, L373, L392, V0, DE8, MS1, XR5). For v2 it was run inside a clean checkout of the committed state, so that uncommitted edits by other sessions (for example to L373's files) cannot enter it. Result: 7/7 checks, 281 values.
