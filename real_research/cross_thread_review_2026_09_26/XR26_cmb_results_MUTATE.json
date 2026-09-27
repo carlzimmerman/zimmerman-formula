@@ -1,0 +1,757 @@
+{
+ "lane": "XR26",
+ "part": "2: the CMB",
+ "mutate": true,
+ "checks": {
+  "K1": {
+   "ok": true,
+   "measured": "H0 67.33167 (d = +1.2e-02); 100theta_star 1.04112 (d = +3.1e-05); r_drag 147.04911 (d = +1.1e-04); sigma8 0.81198 (d = -2.1e-05)",
+   "load_bearing": true,
+   "name": "K1 CONTROL: CAMB 1.6.6 at the Planck 2018 Table 1 best fit (theta_MC input, one 0.06 eV neutrino, N_eff = 3.046, PArthENoPE BBN) reproduces its derived H0, 100 theta_*, r_drag and sigma_8 to CAMB-version precision (theta_* tolerance amended to 1e-4 before the first full run, see the docstring)"
+  },
+  "K2": {
+   "ok": true,
+   "measured": "TT 3.1e-03, EE 5.4e-03, TE 4.1e-03, pp 9.5e-03 / 5.4e-02; CLASS precision 1.9e-03 / 7.0e-04",
+   "load_bearing": true,
+   "name": "K2 CONTROL: CLASS 3.3.4 at the same parameters agrees with CAMB (same Takahashi halofit) on the lensed TT (<= 0.5%), EE (<= 1%), TE (<= 1% of sqrt(TT EE)) to l = 2500 and on C_L^pp (<= 3% to L = 1000; <= 6% at 1000 < L <= 2000, amendment (d)); tightening CLASS's precision moves its spectra by the printed amount (CLASS's own precision, the floor any chain-vs-LCDM difference must be compared with)"
+  },
+  "K3": {
+   "ok": true,
+   "measured": "max relative difference TT/EE 9.3e-06, pp 1.5e-07; build ok True",
+   "load_bearing": true,
+   "name": "K3 CONTROL: the patched CLASS (built from the installed classy's source, both switches at 1) reproduces the installed classy's lensed TT, EE and C_L^pp at identical settings (amendment (e))"
+  },
+  "K4": {
+   "ok": true,
+   "measured": "max |sigma_8 dev| 0.0e+00 (relative); max |P boost dev| 0.0e+00",
+   "load_bearing": true,
+   "name": "K4 CONTROL: this lane's replication of FP13's (H_S) growth yardstick (FP9/FP6 machinery exec'd read-only, FP13's state reading re-typed, FP9's growth right-hand side re-typed to expose C_eff) reproduces FP13's committed sigma_8/LCDM (both footings, both modes: 1.0184-1.0227) and its linear P(k) boost at z = 0 and 0.25 (k = 0.1-1 h/Mpc)"
+  },
+  "K5": {
+   "ok": true,
+   "measured": "max |Limber/CLASS - 1| = 0.001",
+   "load_bearing": true,
+   "name": "K5 CONTROL: the Limber integral for the Weyl-potential power on CLASS's own P(k, z) (halofit; a^2-scaled beyond z = 50) reproduces CLASS's full C_L^pp to <= 3% for 30 <= L <= 2000 -- so R(L), a ratio of two such integrals, is well defined"
+  },
+  "K6": {
+   "ok": true,
+   "measured": "TT/EE 6.7e-04, TE 1.4e-04",
+   "load_bearing": true,
+   "name": "K6 CONTROL: CAMB's full-sky re-lensing (correlation-function method) of CLASS's unlensed spectra with CLASS's C_L^pp reproduces CLASS's own lensed TT/EE to <= 0.5% and TE to <= 0.5% of sqrt(TT EE) at l <= 2500 -- the chain's spectra are re-lensed this way"
+  },
+  "C1": {
+   "ok": false,
+   "measured": "max relative shift 2.99e+02",
+   "load_bearing": true,
+   "name": "C1 [HEADLINE] THE CHAIN'S PRIMARY CMB IS LCDM'S: with the patched CLASS the TT/TE/EE response to G_cos (Friedmann) and to G_eff (the perturbed Einstein equations) is O(1-10) per unit ln G, so the chain's regulator-sized departure (alpha_c/2 <= 1.6e-9, part 1) moves every C_l (l <= 2500) by <= 1e-6 -- orders of magnitude below CLASS's own precision"
+  },
+  "C2": {
+   "ok": false,
+   "measured": "|dR/R|, |dl_A/l_A| = 2.5e-01, 6.4e-02; chi^2 at the best fit LCDM 1.664143, chain 110921.423078 (diff +1.1e+05); fitted 1.89e-14 / 2.64e+03",
+   "load_bearing": true,
+   "name": "C2 THE DISTANCE PRIORS (Chen, Huang & Wang 2019), MATCHED CONTROL: LCDM at the Planck best fit and LCDM fitted to the priors (omega_b, omega_c, h, n_s) reach the printed chi^2; the chain's G_cos moves R and l_A by <= 1e-8 (H2), so fitted the same way it reaches the same chi^2 to <= 1e-6 (at fixed parameters the difference is printed; amendment (f))"
+  },
+  "C3": {
+   "ok": false,
+   "measured": "dr_d/r_d = +8.1e-10, dH0 = -5.5e-08 km/s/Mpc (PPN edge); -1.5e-14 km/s/Mpc (floor)",
+   "load_bearing": true,
+   "name": "C3 THE SOUND HORIZON AND THE INFERRED H0 (the coordinator's question): the chain's G_cos is BELOW G_N by alpha_c/2 at every epoch, so r_d is LARGER and the H0 a Planck + BAO analysis infers is LOWER, by <= 1e-9 fractionally -- the sign that worsens the Hubble tension, the size of nothing (G_cos = G_N is not exact: the regulator alpha_c >= 8e-16 keeps it below)"
+  },
+  "L1": {
+   "ok": true,
+   "measured": "headline (FP14 c2->oo, lam 0 | canonical | permode, halofit base): R(100) = 1.5421, R(400) = 7.0097, R(1000) = 34.5482, R(2000) = 99.3704; B -> 1 at z = 5 and k = 0.02: True",
+   "load_bearing": true,
+   "name": "L1 THE CHAIN'S LENSING POTENTIAL: B(k, z) = [(1 + C_eff) D_chain/D_LCDM]^2 from FP13's (H_S) yardstick is 1 at z >= 5 and at the largest scales (k = 0.02 h/Mpc), and R(L) = C_L^pp(chain)/C_L^pp(LCDM) is printed for every variant (both footings, both yardstick modes, FP13's committed and FP14's c_2, lambda = 0/1/100; halofit and linear bases)"
+  },
+  "L2": {
+   "ok": false,
+   "measured": "Delta chi^2 (9 MV bins, headline) +71.02 (linear base) / +4239.30 (halofit base); aggressive 8-2048 (reported, Planck advises against it; K2's code spread ~5% at L = 2000): headline amplitude 3.1971, pull +84.70 sigma, Delta chi^2 +46777.77",
+   "load_bearing": false,
+   "name": "L2 (the conservative-range gate) PLANCK 2018 LENSING, 8 <= L <= 400: the chain's lensing amplitude relative to the Planck best fit lies within 2 sigma of the measured 1.011 +- 0.028 in every printed variant (headline, linear base (most favourable): 1.1492, pull +4.93 sigma; halofit base 2.1344, pull +40.12; LCDM -0.39)"
+  },
+  "L2b": {
+   "ok": true,
+   "measured": "f* = 0.62 (linear base) / 0.18 (halofit base)",
+   "load_bearing": false,
+   "name": "L2b (reported; added after the result, amendment (f)) THE PHANTOM BUDGET CMB LENSING ALLOWS: scaling the headline's linear-web phantom C_eff by f, Planck's conservative amplitude reaches its 2-sigma edge at the printed f -- the late sub-L MOND boost of the linear web must be cut by the factor 1/f for the chain to pass"
+  },
+  "L3": {
+   "ok": false,
+   "measured": "lin: A_eff = 1.433, Delta chi^2(A_L) = +7.5; NL: A_eff = 5.252, Delta chi^2(A_L) = +3917.3",
+   "load_bearing": false,
+   "name": "L3 (reported) THE LENSED TT/TE/EE: the chain's extra late lensing smooths the acoustic peaks as an effective A_lens > 1, in the direction Planck's TT,TE,EE prefer (A_L = 1.18 +- 0.065) -- printed with its Delta chi^2 against that preference for the linear base (most favourable) and the halofit base; the verdict is whether A_eff stays within 2 sigma of 1.18"
+  },
+  "L5": {
+   "ok": true,
+   "measured": "7.4e-04",
+   "load_bearing": false,
+   "name": "L5 (reported) THE LATE ISW: the chain's growing sub-L potentials change the Limber late-ISW power by a negligible fraction of the primary TT at l >= 30"
+  },
+  "W": {
+   "ok": true,
+   "measured": "10 links",
+   "load_bearing": false,
+   "name": "W (reported) the ledger"
+  }
+ },
+ "numbers": {
+  "K1": {
+   "H0": 67.33167477753146,
+   "100theta_star": 1.0411160224703064,
+   "r_drag": 147.0491106383495,
+   "sigma8": 0.8119788057361015,
+   "zstar": 1089.914347629108,
+   "rstar": 144.39379958213422,
+   "YHe": 0.24542729109261943
+  },
+  "K2": {
+   "dTT": 0.003134983892193244,
+   "dEE": 0.005405714808520701,
+   "dTE": 0.0041128520849406545,
+   "dPP": 0.009503071355333126,
+   "dPP_hi": 0.05373255567362012,
+   "class_precision": 0.0018970981966339728,
+   "class_precision_te": 0.0007014651621656554
+  },
+  "K3": {
+   "diff": 9.254031118288708e-06,
+   "diff_pp": 1.5036086464803589e-07
+  },
+  "K4": {
+   "s8": {
+    "('canonical', 'rms')": 1.0184469972511851,
+    "('canonical', 'permode')": 1.0202412194030035,
+    "('alt', 'rms')": 1.0207561808796728,
+    "('alt', 'permode')": 1.0227126772232236
+   },
+   "Pboost": {
+    "0.0": {
+     "0.1": 0.0016049197830561024,
+     "0.3": 0.04843113033535906,
+     "0.5": 0.23542791419841524,
+     "1.0": 1.9221777816685215
+    },
+    "0.25": {
+     "0.1": 0.00045408561511250944,
+     "0.3": 0.01456092418340793,
+     "0.5": 0.07341368145802929,
+     "1.0": 0.5990527928077425
+    }
+   }
+  },
+  "K5": {
+   "max_dev": 0.0005605968168653774
+  },
+  "K6": {
+   "dev": 0.0006667641756236131,
+   "dev_te": 0.00014426315756240865
+  },
+  "C1": {
+   "dlnC_dlnG": {
+    "tt": [
+     23.933838293136013,
+     24.55924745253497
+    ],
+    "ee": [
+     2.8881715433514095,
+     2.522207616398641
+    ],
+    "te": [
+     22.354968116296146,
+     22.404497543726894
+    ]
+   },
+   "shift": 298.5599477143958
+  },
+  "C2": {
+   "x_lcdm": [
+    1.749880890348718,
+    301.5654180038224,
+    0.022383,
+    0.96605
+   ],
+   "x_test": [
+    1.316933931713797,
+    320.9608300008324,
+    0.022383,
+    0.96605
+   ],
+   "chi2_lcdm": 1.6641430541394218,
+   "chi2_test": 110921.42307839628,
+   "chi2_min_lcdm": 1.8935267595283574e-14,
+   "chi2_min_test": 2642.1491668830013,
+   "fit_lcdm": [
+    0.022359999982624952,
+    0.12037617840437732,
+    0.6732827237469954,
+    0.9648999996495307
+   ],
+   "dlnx_dlnG": [
+    -0.4033018459423948,
+    0.0967231108878807
+   ],
+   "mutate_refit": {
+    "chi2_min": 2642.1491668830013,
+    "p": [
+     0.027697175036689874,
+     0.4295120271037415,
+     0.40000000000000213,
+     1.127927289680949
+    ]
+   }
+  },
+  "C3": {
+   "dlnrd_dlnG": -0.5079628552735027,
+   "dlnh_dlnG": 0.5404879596429601,
+   "rows": {
+    "PPN edge (alpha_c = 3.2e-9)": {
+     "G_cos_over_G_N": 0.9999999984,
+     "dr_d_over_r_d": 8.127405792888548e-10,
+     "dH0_over_H0_cmb_bao": -8.127405792888548e-10,
+     "dH0_kms_cmb_bao": -5.472318436317969e-08,
+     "dH0_over_H0_cmb_theta": -8.647807469747973e-10
+    },
+    "regulator floor": {
+     "G_cos_over_G_N": 0.9999999999999996,
+     "dr_d_over_r_d": 2.2558082303159153e-16,
+     "dH0_over_H0_cmb_bao": -2.2558082303159153e-16,
+     "dH0_kms_cmb_bao": -1.5188734612411e-14,
+     "dH0_over_H0_cmb_theta": -2.400248709313147e-16
+    },
+    "MUTATE G_cos = 2 G_N": {
+     "G_cos_over_G_N": 2.0,
+     "dr_d_over_r_d": -0.29736776139176924,
+     "dH0_over_H0_cmb_bao": 0.29736776139176924,
+     "dH0_kms_cmb_bao": 20.02226939935318,
+     "dH0_over_H0_cmb_theta": 0.4607888762455632
+    }
+   },
+   "rd": {
+    "1.0": 147.053234,
+    "1.01": 146.31187,
+    "0.99": 147.805866,
+    "2.0": 103.324343
+   },
+   "h": {
+    "1.0": 0.6733143570323733,
+    "1.01": 0.6769457480773814,
+    "0.99": 0.6696675362844445,
+    "2.0": 0.9835701229693246
+   }
+  },
+  "L1": {
+   "R": {
+    "FP14 c2->oo, lam 0 | canonical | rms || NL": {
+     "10": 1.1088075266646849,
+     "40": 1.3170845934476825,
+     "100": 2.0048592539285544,
+     "200": 4.198044989060273,
+     "400": 12.418343460489025,
+     "700": 34.10912512164283,
+     "1000": 62.571094481951405,
+     "2000": 157.00100318189268
+    },
+    "FP14 c2->oo, lam 0 | canonical | rms || lin": {
+     "10": 1.0125925960129931,
+     "40": 1.0360379807532323,
+     "100": 1.1134551688041914,
+     "200": 1.3595528073615917,
+     "400": 2.2884423649834194,
+     "700": 4.818051888003601,
+     "1000": 8.293587267023984,
+     "2000": 20.78252027524704
+    },
+    "FP13 committed c2 = 0.0073 | canonical | rms || NL": {
+     "10": 1.1086712208972738,
+     "40": 1.3166837926745705,
+     "100": 2.0035872753333965,
+     "200": 4.19398859031852,
+     "400": 12.403780172351905,
+     "700": 34.066533967910345,
+     "1000": 62.49125791095766,
+     "2000": 156.7948773941288
+    },
+    "FP13 committed c2 = 0.0073 | canonical | rms || lin": {
+     "10": 1.012581010281331,
+     "40": 1.0360042674753163,
+     "100": 1.1133475226890415,
+     "200": 1.359205054456841,
+     "400": 2.2871541660735324,
+     "700": 4.814075381495995,
+     "1000": 8.285725373329205,
+     "2000": 20.759198411342485
+    },
+    "FP14 c2->oo, lam 0 | canonical | permode || NL": {
+     "10": 1.0591756036294124,
+     "40": 1.1728447717290296,
+     "100": 1.5420926100087262,
+     "200": 2.7014779272184417,
+     "400": 7.009694462227019,
+     "700": 18.572631823080794,
+     "1000": 34.54815193510232,
+     "2000": 99.37043243892849
+    },
+    "FP14 c2->oo, lam 0 | canonical | permode || lin": {
+     "10": 1.0094711078564527,
+     "40": 1.0257105674962614,
+     "100": 1.07586567787358,
+     "200": 1.2239570986055666,
+     "400": 1.737953620703656,
+     "700": 3.0545063552893796,
+     "1000": 4.85067158498531,
+     "2000": 12.272108439667308
+    },
+    "FP13 committed c2 = 0.0073 | canonical | permode || NL": {
+     "10": 1.059148905672038,
+     "40": 1.1727711639882508,
+     "100": 1.5418757343426757,
+     "200": 2.700856031750305,
+     "400": 7.007825868155795,
+     "700": 18.568165863219022,
+     "1000": 34.540955892582545,
+     "2000": 99.35689019027706
+    },
+    "FP13 committed c2 = 0.0073 | canonical | permode || lin": {
+     "10": 1.0094662077799272,
+     "40": 1.0256974499118061,
+     "100": 1.075828601115804,
+     "200": 1.223855892250687,
+     "400": 1.7376673141187,
+     "700": 3.0538487891152593,
+     "1000": 4.849624718527863,
+     "2000": 12.270106502815464
+    },
+    "FP14 c2->oo, lam 0 | alt | rms || NL": {
+     "10": 1.1403064261480695,
+     "40": 1.4092558462561424,
+     "100": 2.2972411145827807,
+     "200": 5.129169329374822,
+     "400": 15.741103105785314,
+     "700": 43.69533404677139,
+     "1000": 80.24310747320487,
+     "2000": 199.93353085999124
+    },
+    "FP14 c2->oo, lam 0 | alt | rms || lin": {
+     "10": 1.0157641973171743,
+     "40": 1.0451872926084353,
+     "100": 1.1425001182776657,
+     "200": 1.4525522598641338,
+     "400": 2.6262763460233813,
+     "700": 5.828337728996063,
+     "1000": 10.224813141778538,
+     "2000": 25.881747888755154
+    },
+    "FP13 committed c2 = 0.0073 | alt | rms || NL": {
+     "10": 1.1401143888263447,
+     "40": 1.4086904676202539,
+     "100": 2.2954455782996406,
+     "200": 5.12343720766947,
+     "400": 15.720489156859008,
+     "700": 43.634963205495616,
+     "1000": 80.12988796795602,
+     "2000": 199.64240208122737
+    },
+    "FP13 committed c2 = 0.0073 | alt | rms || lin": {
+     "10": 1.015748152087243,
+     "40": 1.0451405203105992,
+     "100": 1.1423506417680198,
+     "200": 1.4520686204016688,
+     "400": 2.624479798668771,
+     "700": 5.822775673302544,
+     "1000": 10.213796036857792,
+     "2000": 25.84914068248391
+    },
+    "FP14 c2->oo, lam 0 | alt | permode || NL": {
+     "10": 1.0753406584174108,
+     "40": 1.2204517237290111,
+     "100": 1.6921647756990683,
+     "200": 3.174073194308452,
+     "400": 8.681017597328438,
+     "700": 23.44375359632821,
+     "1000": 43.79147038316237,
+     "2000": 125.8474890349763
+    },
+    "FP14 c2->oo, lam 0 | alt | permode || lin": {
+     "10": 1.0116150161538715,
+     "40": 1.031684932164478,
+     "100": 1.0939536715197942,
+     "200": 1.2786693286416377,
+     "400": 1.9224165281103462,
+     "700": 3.5750889785549833,
+     "1000": 5.828574593652323,
+     "2000": 15.106326041932663
+    },
+    "FP13 committed c2 = 0.0073 | alt | permode || NL": {
+     "10": 1.0753036818905644,
+     "40": 1.220349724092893,
+     "100": 1.6918639627215162,
+     "200": 3.1732098052140887,
+     "400": 8.678421862829298,
+     "700": 23.43755197846935,
+     "1000": 43.78148602712898,
+     "2000": 125.82879863377347
+    },
+    "FP13 committed c2 = 0.0073 | alt | permode || lin": {
+     "10": 1.0116083295261418,
+     "40": 1.031667015520931,
+     "100": 1.0939029199254235,
+     "200": 1.278530484360554,
+     "400": 1.9220229819723846,
+     "700": 3.5741843021951896,
+     "1000": 5.82713432149957,
+     "2000": 15.10358195858696
+    },
+    "FP14 c2->oo, lam 1 | canonical | permode || NL": {
+     "10": 1.0591565140905712,
+     "40": 1.1728382632346952,
+     "100": 1.5420883407557102,
+     "200": 2.701471861736593,
+     "400": 7.009680870688834,
+     "700": 18.572603800916696,
+     "1000": 34.548111209653044,
+     "2000": 99.37037524726155
+    },
+    "FP14 c2->oo, lam 1 | canonical | permode || lin": {
+     "10": 1.009452066622676,
+     "40": 1.0257044495146206,
+     "100": 1.0758626395154554,
+     "200": 1.223954436466894,
+     "400": 1.737949929467354,
+     "700": 3.0545005025686227,
+     "1000": 4.850663897108357,
+     "2000": 12.272098904283338
+    },
+    "FP14 c2->oo, lam 100 | canonical | permode || NL": {
+     "10": 1.0588390875213611,
+     "40": 1.1724721331763626,
+     "100": 1.5416748511622855,
+     "200": 2.7008515588678943,
+     "400": 7.008380962649935,
+     "700": 18.570048758177577,
+     "1000": 34.54440122890916,
+     "2000": 99.36465281813693
+    },
+    "FP14 c2->oo, lam 100 | canonical | permode || lin": {
+     "10": 1.0091510768914085,
+     "40": 1.0253858282810198,
+     "100": 1.0755843198327597,
+     "200": 1.2236885357788583,
+     "400": 1.7375907641039954,
+     "700": 3.0539542516875806,
+     "1000": 4.849955065021316,
+     "2000": 12.271161274346618
+    }
+   },
+   "B_z0": {
+    "FP14 c2->oo, lam 0 | canonical | rms": {
+     "0.1": 1.013788164295309,
+     "0.3": 2.2277509983174593,
+     "1.0": 774.6567771661587,
+     "3.0": 5771.109418512805
+    },
+    "FP13 committed c2 = 0.0073 | canonical | rms": {
+     "0.1": 1.0137908069948325,
+     "0.3": 2.228011715278022,
+     "1.0": 774.1691575681501,
+     "3.0": 5761.037981571548
+    },
+    "FP14 c2->oo, lam 0 | canonical | permode": {
+     "0.1": 1.0702667419032037,
+     "0.3": 3.819210419863206,
+     "1.0": 475.08711621813273,
+     "3.0": 3025.1627992620483
+    },
+    "FP13 committed c2 = 0.0073 | canonical | permode": {
+     "0.1": 1.070259591572535,
+     "0.3": 3.8180808322138686,
+     "1.0": 474.73827250984175,
+     "3.0": 3024.7508071648435
+    },
+    "FP14 c2->oo, lam 0 | alt | rms": {
+     "0.1": 1.014649213144035,
+     "0.3": 2.3224432140901583,
+     "1.0": 952.8853893271977,
+     "3.0": 7723.753609150081
+    },
+    "FP13 committed c2 = 0.0073 | alt | rms": {
+     "0.1": 1.0146522750864049,
+     "0.3": 2.3227704288978726,
+     "1.0": 952.2675803491377,
+     "3.0": 7709.112929377193
+    },
+    "FP14 c2->oo, lam 0 | alt | permode": {
+     "0.1": 1.0774522513545777,
+     "0.3": 4.214578155607538,
+     "1.0": 598.7787342599622,
+     "3.0": 3964.8683229754824
+    },
+    "FP13 committed c2 = 0.0073 | alt | permode": {
+     "0.1": 1.077443549074566,
+     "0.3": 4.213133186926112,
+     "1.0": 598.2951536208484,
+     "3.0": 3964.2842552097036
+    },
+    "FP14 c2->oo, lam 1 | canonical | permode": {
+     "0.1": 1.0701900963840987,
+     "0.3": 3.819041534461649,
+     "1.0": 475.08612643751206,
+     "3.0": 3025.1601184116203
+    },
+    "FP14 c2->oo, lam 100 | canonical | permode": {
+     "0.1": 1.0633496971822274,
+     "0.3": 3.8022551114875474,
+     "1.0": 474.8964581793896,
+     "3.0": 3025.012498657812
+    }
+   }
+  },
+  "L2b": {
+   "f": [
+    0.0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.7,
+    1.0
+   ],
+   "amps": {
+    "lin": [
+     1.0007761999223235,
+     1.005468880656838,
+     1.0124165636846625,
+     1.0216192490057978,
+     1.033076936620244,
+     1.0467896265280003,
+     1.0809800132234457,
+     1.149178110466443
+    ],
+    "NL": [
+     1.0044932660626735,
+     1.0313260976220784,
+     1.0773042394909726,
+     1.1424276916693565,
+     1.2266964541572296,
+     1.3301105269545923,
+     1.5943746034777866,
+     2.1343605455837484
+    ]
+   },
+   "f_star": {
+    "lin": 0.6182225498180276,
+    "NL": 0.1775888301002789
+   },
+   "target": 1.067
+  },
+  "L2": {
+   "8-400": {
+    "chi2_lcdm": 10.145611670315688,
+    "pull_lcdm": -0.39285714285713924,
+    "lcdm_over_fid": [
+     0.9215083248955126,
+     0.9825892588268216,
+     0.9828303384696501,
+     0.9792198549712818,
+     0.9782457147616995,
+     0.9778484347499536,
+     0.9790943194900091,
+     0.9811480033387727,
+     0.9840592885937341
+    ],
+    "rows": {
+     "FP14 c2->oo, lam 0 | canonical | permode || NL": {
+      "chi2": 4249.448782034985,
+      "amp": 2.1343605455837484,
+      "pull": 40.120019485133874
+     },
+     "FP14 c2->oo, lam 0 | canonical | permode || lin": {
+      "chi2": 81.16290362649667,
+      "amp": 1.149178110466443,
+      "pull": 4.934932516658679
+     },
+     "FP14 c2->oo, lam 0 | alt | permode || NL": {
+      "chi2": 6927.658361538303,
+      "amp": 2.4492525339822797,
+      "pull": 51.36616192793856
+     },
+     "FP14 c2->oo, lam 0 | alt | permode || lin": {
+      "chi2": 119.85309397165874,
+      "amp": 1.1855907188242856,
+      "pull": 6.235382815153059
+     },
+     "FP14 c2->oo, lam 0 | canonical | rms || NL": {
+      "chi2": 15138.00785858637,
+      "amp": 3.1327918581810175,
+      "pull": 75.77828064932206
+     },
+     "FP14 c2->oo, lam 0 | canonical | rms || lin": {
+      "chi2": 204.77708197026135,
+      "amp": 1.2402210599620618,
+      "pull": 8.186466427216496
+     },
+     "FP14 c2->oo, lam 0 | alt | rms || NL": {
+      "chi2": 25217.08097845225,
+      "amp": 3.7536330756431675,
+      "pull": 97.95118127297027
+     },
+     "FP14 c2->oo, lam 0 | alt | rms || lin": {
+      "chi2": 318.21752589454985,
+      "amp": 1.3024263698316143,
+      "pull": 10.408084636843371
+     }
+    }
+   },
+   "8-2048": {
+    "chi2_lcdm": 13.599722737666447,
+    "pull_lcdm": 0.19230769230769248,
+    "lcdm_over_fid": [
+     0.9429156840323183,
+     0.9773363224638605,
+     0.9846137576619675,
+     0.9879313961953005,
+     0.9810363325814818,
+     0.9759974038408263,
+     0.9721504094862827,
+     0.9768833810112474,
+     0.9831234836770535,
+     0.9830337343138603,
+     0.9790444189360417,
+     0.9810748781898531,
+     0.9774435478400394,
+     0.7902000363029472
+    ],
+    "rows": {
+     "FP14 c2->oo, lam 0 | canonical | permode || NL": {
+      "chi2": 46791.36552230685,
+      "amp": 3.1971152332453947,
+      "pull": 84.69673974020749
+     },
+     "FP14 c2->oo, lam 0 | canonical | permode || lin": {
+      "chi2": 726.2670912948445,
+      "amp": 1.2725554295305004,
+      "pull": 10.675208828096169
+     },
+     "FP14 c2->oo, lam 0 | alt | permode || NL": {
+      "chi2": 75818.8739335069,
+      "amp": 3.8050612634702192,
+      "pull": 108.0792793642392
+     },
+     "FP14 c2->oo, lam 0 | alt | permode || lin": {
+      "chi2": 1105.5061059515463,
+      "amp": 1.3402244331332025,
+      "pull": 13.277862812815481
+     },
+     "FP14 c2->oo, lam 0 | canonical | rms || NL": {
+      "chi2": 152274.14971544253,
+      "amp": 5.081612223983426,
+      "pull": 157.17739323013177
+     },
+     "FP14 c2->oo, lam 0 | canonical | rms || lin": {
+      "chi2": 2275.251420989396,
+      "amp": 1.4689716026017685,
+      "pull": 18.229677023144944
+     },
+     "FP14 c2->oo, lam 0 | alt | rms || NL": {
+      "chi2": 251495.81838124158,
+      "amp": 6.26226238104318,
+      "pull": 202.58701465550692
+     },
+     "FP14 c2->oo, lam 0 | alt | rms || lin": {
+      "chi2": 3570.7988327056537,
+      "amp": 1.5915003351031762,
+      "pull": 22.942320580891394
+     }
+    }
+   }
+  },
+  "L3": {
+   "lin": {
+    "A_eff": 1.4334462105614383,
+    "dchi2_AL": 7.534906898923777,
+    "max_rel": 0.27208578265217453,
+    "dchi2_fixed": 449.81784364211626,
+    "chi2_at_best_A": 303.90473692101324
+   },
+   "NL": {
+    "A_eff": 5.252227187588422,
+    "dchi2_AL": 3917.3098857595996,
+    "max_rel": 2.3195020593984643,
+    "dchi2_fixed": 36239.43717248134,
+    "chi2_at_best_A": 27307.707317584827
+   }
+  },
+  "L4": {},
+  "L5": {
+   "max_rel": 0.0007414664522018543
+  },
+  "M1": {}
+ },
+ "ledger": [
+  {
+   "link": "X26-2a",
+   "what": "the chain's primary CMB (TT/TE/EE, l <= 2500) equals LCDM's to <= 3e+02 (regulator-sized G_cos, G_eff; patched CLASS)",
+   "status": "DERIVED",
+   "basis": "C1 (part 1 B-C)"
+  },
+  {
+   "link": "X26-2b",
+   "what": "distance priors: LCDM chi^2 1.664 at the best fit, 0.000 fitted; the chain identical to <= 1e-6",
+   "status": "DERIVED",
+   "basis": "C2"
+  },
+  {
+   "link": "X26-2c",
+   "what": "r_d larger by 8e-10, Planck + BAO H0 lower by 5e-08 km/s/Mpc (sign: worsens the tension; size: null)",
+   "status": "DERIVED",
+   "basis": "C3"
+  },
+  {
+   "link": "X26-2d",
+   "what": "late-time lensing: R(100) = 1.542, R(400) = 7.010, R(1000) = 34.548 (headline, halofit base; linear yardstick)",
+   "status": "DERIVED",
+   "basis": "L1 (FP13's yardstick)"
+  },
+  {
+   "link": "X26-2e",
+   "what": "Planck 2018 lensing 8-400: chain amplitude 1.149 (linear base, pull +4.9 sigma) / 2.134 (halofit base, +40.1 sigma); LCDM -0.39; gate FAILED (every variant: both footings, both yardstick modes)",
+   "status": "FAILS",
+   "basis": "L2"
+  },
+  {
+   "link": "X26-2f",
+   "what": "Planck 2018 lensing 8-2048 (reported): amplitude 3.197 (pull +84.70 sigma)",
+   "status": "FAILS",
+   "basis": "L2 (aggressive; code spread ~5% at L = 2000)"
+  },
+  {
+   "link": "X26-2g",
+   "what": "lensed spectra: effective A_lens = 1.43 (linear base) / 5.25 (halofit base); against Planck's A_L = 1.180 +- 0.065: Delta chi^2 = +7.5 / +3917.3",
+   "status": "FAILS",
+   "basis": "L3"
+  },
+  {
+   "link": "X26-2h",
+   "what": "Planck-like binned TT/TE/EE (forecast noise), fitted the same way: scored in the main run",
+   "status": "DERIVED",
+   "basis": "L4"
+  },
+  {
+   "link": "X26-2i",
+   "what": "binned TT/TE/EE against Planck's PUBLISHED band powers and errors: not run (no Planck data file is on disk and none was downloaded); the compressed priors (C2) and the lensing band powers (L2) are the data comparisons here",
+   "status": "OPEN",
+   "basis": "scope"
+  },
+  {
+   "link": "X26-2j",
+   "what": "the chain's nonlinear P(k) (no PM run): R(L) above L ~ 500 applies a linear boost to halofit and is indicative only",
+   "status": "OPEN",
+   "basis": "L1"
+  }
+ ],
+ "verdict": {
+  "n_checks": 15,
+  "n_fail_load_bearing": 3,
+  "elapsed_s": 55
+ }
+}

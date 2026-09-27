@@ -1,0 +1,265 @@
+XR26 (part 1) -- THE CHAIN'S LINEAR COSMOLOGY ON FRW FOR z >~ 10: derived from the full action, compared with GR + CDM.
+
+WHY.  The most basic cosmological test of any theory is the cosmic microwave background and Big Bang nucleosynthesis, and
+it has not been run on the derivation chain (real_research/derivation_chain_2026/).  FP3/FP7 derived pieces of the linear
+cosmology and FP9/FP13 scored sigma_8 and today's P(k) boost with the chain's growth yardstick; nobody has written the
+chain's full linear system at the CMB epoch.  This script derives it.  The CMB spectra are XR26_cmb.py; BBN is XR26_bbn.py.
+
+THE ACTION (per 1/16 pi G, c = 1; FP7's AQUAL-type root with FP14's limits and FP13's separator):
+  R - 2 Lambda + alpha_c a^2 - 2 mu (K - <K>_h)                      [khronon; FP14: c_2 -> oo is the CMC multiplier mu]
+  + (2 - alpha_c) h^mn (2 a_m - D_m chi) D_n chi,  chi = (S_xi - S_B) phi   [chassis; FP13: B[state] = L^2/2]
+  - 2 alpha^2 J_P2(h^mn D_m phi D_n phi/alpha^2) - 4 alpha^2 y_th sqrt(Y/alpha^2) + 2 lambda (n.d phi)^2   [MOND scalar + yield]
+  + 16 pi G (L_dark[Phi_d] + L_baryons + L_photons + L_neutrinos)       [matter, minimally coupled to g]
+  alpha = a0/c^2 (a0 = 9.3603e-11 canonical, 1.1312e-10 m/s^2 alt, FP0); kappa = 1/2 FITTED (Z = kappa = 5.7888).
+  alpha_c in [8e-16, 3.2e-9] (FP14 A3's strong-coupling floor, FP2's PPN bound): a regulator.  lambda > 0 (FP13 A1).
+  The separator (FP13 H_S): <(S_B delta_m)^2>_h = delta_c^2 sets B; with no root the band-pass closes (B = b = xi^2/2, chi = 0);
+  y_th = <|g_bp|^2>_h^(1/2)/a0 x max(0, 2q) (zero when the band-pass is closed).
+  The dark field (FL1/FK1/FP4 L10f): V = m^2 |Phi_d|^2 + eps Re(Phi_d^2) + lambda(K)(Im Phi_d^2)^2, lambda ~ K^(-3.5),
+  m >= 1.9-5.2e-19 eV, eps/m^2 ~ 2e-6; initial misalignment near the heavy axis (declared); not a particle species.
+
+PRE-DECLARED (written before any full run of this script).  DISCLOSURE: an exploratory sympy derivation of the background and
+of the linear equations (dust + a radiation fluid + khronon + multiplier + the lambda-scalar; scratch files outside the
+repository) was run while planning, so the STRUCTURE behind H1-H4 had been seen; none of the numbers in H3, H5-H7 had been
+computed.  The pencil-and-paper expectations:
+  H1  BACKGROUND.  Friedmann and the acceleration equation are GR's with the bare G for any matter content: alpha_c a^2 and
+      (K - <K>_h) vanish on FRW, the multiplier has no background equation, J and the chassis vanish, and with the declared
+      datum phibar-dot = 0 the lambda-term is zero.  So G_cos = G, while the local Newton constant is G_N = G/(1 - alpha_c/2)
+      (FP14).  EXPECT TRUE.
+  H2  LINEAR EQUATIONS (band-pass closed).  The metric equations are Einstein's with the matter stress plus khronon terms that
+      are ALL proportional to alpha_c or to the multiplier mu, with no matter variable in them; the traceless (slip) equation
+      has no khronon term; mu's own equation is the CMC condition Q = 0; the khronon's equation fixes mu = O(alpha_c); mu
+      CANCELS from the comoving Poisson equation, which becomes (k^2/a^2)[Psi - (alpha_c/2)(Phi - pidot)] = -4 pi G rho Delta;
+      the matter equations (dust, radiation, the dark scalar) are GR's; delta phi decouples (ddot + 3H dot = 0); J has no
+      quadratic part; a0 appears in no linear coefficient (identical for both footings).  EXPECT TRUE.
+  H3  THE LEADING DIFFERENCE AND ITS SIZE.  With Phi = Psi, G_eff/G = 1/(1 - (alpha_c/2) F), F = (Phi - pidot)/Psi: F -> 1
+      sub-horizon (G_eff = G_N, FP14 C1b) and F -> 0 super-horizon (pi = (H Phi + Psidot)/(k^2/a^2 - 3 Hdot) makes
+      pidot -> Phi on any power-law background), so |G_eff/G - 1| <= alpha_c/2 everywhere; with G_cos = G the whole
+      departure from GR + CDM relative to the measured G_N is G_cos/G_N = 1 - alpha_c/2 >= 1 - 1.6e-9.  Evaluated on CLASS's
+      own GR solution for k = 1e-4..0.3 /Mpc and z = 1e5..10, 0 <= F <= ~1 and the multiplier's term in the momentum
+      constraint is <= alpha_c x O(1) of GR's.  EXPECT TRUE.
+  H4  YORK/CMC.  The multiplier alone (alpha_c -> 0) gives G_eff = G on cosmological perturbations, not 2G: the York kill is
+      not reproduced (FP14 C2 in the static limit; here for the linear cosmology).  EXPECT TRUE.
+  H5  THE SEPARATOR'S STATE.  At z = 1000-1100 the leaf-rms density contrast of the actual field, unsmoothed to FP13's grid edge
+      (k = 1000 h/Mpc), is <= ~0.1 << delta_c = 1.686 in both readings, so L = xi and chi = 0 (checked in FP13's source: its
+      L_table returns the xi floor when sigma(RMIN) < s); the band-pass first opens at some z_open ~ 20-100; below z_open the
+      linear growth source C_eff at k <= 1 h/Mpc stays negligible down to z = 10 (the band-pass passes only k >~ 1/L).
+      EXPECT TRUE (the value of z_open is not predicted).
+  H6  THE DARK FIELD.  For m >= 1.9e-19 eV it is frozen (w = -1, rho_d/rho_r <~ 1e-4) through BBN, oscillates at z_osc ~ 1e8,
+      has w ~ (H/m)^2 ~ 1e-20 at recombination, and its Jeans wavenumber at recombination is >~ 100 /Mpc, >= 300x beyond the
+      CMB's k <= 0.3 /Mpc: the relative change of its density contrast against CDM at k <= 0.3 /Mpc is < 1e-8 through z = 0.
+      FK1's conversion is off at z >= 10 (its background e-fold exponent scales as H^-8 a^-6).  EXPECT TRUE.
+  H7  THE DATUM.  With FP13's lambda > 0, phibar-dot is physical: a nonzero value is a stiff (a^-6) component; the chain's
+      phibar-dot = 0 is a declared datum, and BBN bounds any nonzero value to Omega_phi,0 <~ 1e-24.  EXPECT TRUE (a price).
+CHECKS
+  K  CONTROLS: K1 FP2's committed FRW machinery (exec'd read-only, as FP14 K3 does) + this lane's multiplier reproduces FP14's
+     committed C1b (G_eff/G = -2/(alpha_c - 2), slip 1, mu's equation / Q = -2a^3, R_mu); K2 this lane's replication of FP13's
+     state reading (FP9's machinery exec'd read-only + FP13's halofit / L_table / yield) reproduces FP13's committed (H_S)
+     L(0.25), L(2.5) and y_th(z = 1); K3 FL1's committed F5 dark-field sound speed (m = 2e-19 eV) is reproduced; K4 CLASS's own
+     Newtonian-gauge GR solution satisfies the GR 00 and 0i constraints (Ma & Bertschinger 1995 eqs. 23a-b) to <= 1e-2 (the
+     variable map psi_CLASS = Phi (lapse), phi_CLASS = Psi (curvature) used in C4).
+  A  THE BACKGROUND: A1 the chain's background equations equal GR's (dust + a radiation fluid + the dark scalar, any Lambda);
+     no multiplier equation at background order; A2 (reported) with phibar-dot = p0/a^3 the only change is a stiff a^-6 term.
+  B  THE LINEAR EQUATIONS (sympy, Newtonian gauge after variation, all fields varied): B1 metric-equation differences from GR are
+     proportional to alpha_c or mu and contain no matter variable and no delta phi [HEADLINE]; B2 the slip equation is GR's;
+     B3 mu's equation is the CMC condition; B4 the khronon's equation gives mu = O(alpha_c); B5 the comoving Poisson equation
+     (00 with 0i eliminated): mu cancels, alpha_c term = (alpha_c/2) k^2 (Phi - pidot); B6 the matter equations are GR's;
+     B7 delta phi decouples; B8 J_P2 (and the yield term at y_th = 0) has no quadratic part; B9 a0-free.
+  C  THE LEADING DIFFERENCE: C1 sub-horizon G_eff = G_N = G/(1 - alpha_c/2), no slip; C2 super-horizon: Phi - pidot = 0 on
+     every power-law background (G_eff -> G); C3 the numbers at the alpha_c window's ends; C4 on CLASS's GR solution
+     (k = 1e-4..0.3 /Mpc, z = 1e5..10): the Poisson modification (alpha_c/2)|Phi - pidot| against the envelope of |Psi|, and F at
+     recombination; C5 York/CMC: the multiplier alone adds nothing to G_eff.
+  D  THE SEPARATOR'S STATE: D1 sigma(R -> 0) at z = 999 (FP13's EH98 state) and at z = 1000/1100 from CLASS's linear spectrum,
+     with and without the dark field's cutoff; D2 the opening redshift; D3 the MOND growth source C_eff(k <= 1 h/Mpc) at
+     z = 999..10 with FP13's (H_S) model on FP9's growth yardstick (both modes, both footings).
+  E  THE DARK FIELD: E1 misalignment (homogeneous KG, both masses): the oscillation epoch, rho_d/rho_r through BBN, w at
+     recombination; E2 the Jeans wavenumber at recombination and the first-order growth deficit against CDM at k = 1e-3..1 /Mpc
+     (+ the Hu-Barkana-Gruzinov 2000 transfer function as a cross-check); E3 FK1's conversion is off at z >= 10.
+  F  THE DATUM: F1 the stiff component a nonzero phibar-dot would add, bounded by BBN (Delta N_eff < 0.5 at T = 1 MeV).
+  W  the ledger.
+MUTATE=1 opens the band-pass at z >~ 10 (chi = S_xi phi ~ phi, the yield off): the chassis (2 - alpha_c) h(2a - D chi).D chi
+enters the linear equations, so B1 (the headline) must FAIL (rc = 1).
+
+SCOPE.  Linear order on FRW, scalar sector, one Fourier mode (1+1 dependence suffices for the scalar sector; the machinery is
+FP2's).  Matter is represented by action-level fields -- Brown-Kuchar dust, a radiation fluid P(X) = c_r X^2 (w = c_s^2 = 1/3)
+and a real scalar of mass M_d for the dark field; photons' Thomson coupling and neutrino free-streaming live in the matter
+sector, which couples only through T_mn and is therefore GR's (B1/B6 show the gravity side carries no matter variable).
+The heat pair that builds chi = W(b) - W(B) is not written out: its multiplier is sourced by dS/dchi at diffusion times b and B
+with opposite signs, which cancel identically at B = b, so with the band-pass closed the pair carries no stress.  The khronon
+is FP2's Stueckelberg tau = t + pi with FP14's multiplier (first order; mu-bar = 0 as the c_2 -> oo limit gives).
+C4 evaluates the O(alpha_c) terms on CLASS's GR solution (first-order in alpha_c); the CMB-level size is XR26_cmb.py's.
+No particle-mesh run.  At most 2 threads.
+
+Run from the repository root:  python3 real_research/cross_thread_review_2026_09_26/XR26_linear_equations.py   (MUTATE=1
+for the control).  Writes XR26_linear_equations[_MUTATE].out and XR26_linear_equations_results[_MUTATE].json next to itself.
+
+  *** MUTATE=1: the band-pass is OPEN at z >~ 10 (chi = S_xi phi ~ phi, yield off): the chassis enters the linear equations -- B1 must FAIL ***
+
+  inputs: a0 = 9.3603e-11 / 1.1312e-10 m/s^2 (FP0); alpha_c in [8.15e-16 (FP14 A3, c_2 -> oo), 3.2e-09 (PPN)]; dark mass 1.9e-19-5.2e-19 eV; delta_c = 1.68647
+
+==================================================================================================================
+DERIVATION: the chain's action on perturbed FRW (FP2's machinery + multiplier + radiation fluid + dark scalar + MOND scalar)
+==================================================================================================================
+    derived GR, the chain (band-pass closed), the stiff-datum variant and the OPEN band-pass (MUTATE) (15.8 s): 11 field equations each
+
+==================================================================================================================
+K  CONTROLS: FP14's committed FRW result, FP13's committed separator state, FL1's committed sound speed, CLASS's GR solution
+==================================================================================================================
+    quasi-static (dust): G_eff/G = -2/(alpha_c - 2), slip = 1;  R_mu (dust) = -(-3*Lambda*a(t)**2 + 2*k**2 + 9*Derivative(a(t), t)**2)*a(t);  mu-equation / Q = -2*a(t)**3
+  [PASS] K1 CONTROL: FP2's committed FRW machinery (exec'd read-only) with this lane's multiplier reproduces FP14's committed C1b: G_eff/G = -2/(alpha_c - 2), slip 1, R_mu = -(-3 Lambda a^2 + 2k^2 + 9 adot^2) a, mu's equation / Q = -2a^3
+         measured: G_eff -2/(alpha_c - 2); slip 1; R_mu == FP14: True; mu-eq/Q -2*a(t)**3
+  [PASS] K2 CONTROL: this lane's replication of FP13's state reading (FP9's machinery exec'd read-only; FP13's halofit, L_table and state yield re-typed) reproduces FP13's committed (H_S) headline: L(0.25) = 1913.69 kpc, L(2.5) = 164.12 kpc, y_th(z = 1) = 4.21e-3
+         measured: L(0.25) 1913.6938 kpc, L(2.5) 164.1195 kpc, y_th(1) 4.207607e-03; max rel. deviation 0.0e+00 (0.2 s)
+  [PASS] K3 CONTROL: FL1's committed F5 (the free order parameter's effective sound speed c_s^2 = q^2/(1 + q^2), q = k/(2 m a)) is reproduced at m = 2e-19 eV (max over k = 0.1-1 /Mpc, recombination..today)
+         measured: 3.098291e-16 vs committed 3.098291e-16
+  [PASS] K4 CONTROL: CLASS's own Newtonian-gauge GR solution (Planck 2018 best fit) satisfies the GR 00 and 0i constraints k^2 phi + 3H(phi' + H psi) = -4 pi G a^2 delta rho and k^2 (phi' + H psi) = 4 pi G a^2 (rho + p) theta (MB95 23a-b) at z = 1e5..10 for the six k -- so psi_CLASS is the lapse Phi and phi_CLASS the curvature Psi in C4
+         measured: k=0.0001: 7.6e-04/5.6e-04; k=0.001: 7.5e-04/5.4e-04; k=0.01: 2.3e-05/2.4e-05; k=0.05: 1.3e-04/1.2e-03; k=0.1: 5.4e-05/6.3e-03; k=0.3: 6.5e-04/1.2e-03 (0.7 s)
+    [18 s]
+
+==================================================================================================================
+A  THE BACKGROUND: Friedmann and the acceleration equation
+==================================================================================================================
+    chain's Friedmann (vary the lapse): 2*(-4*pi*G*M_d**2*a(t)**4*phidbar(t)**2 - 24*pi*G*c_r - 8*pi*G*a(t)**4*rhobar(t) - 4*pi*G*a(t)**4*Derivative(phidbar(t), t)**2 - Lambda*a(t)**4 + 3*a(t)**2*Derivative(a(t), t)**2)/a(t) = 0
+    background equations present: chain ['Phi', 'Psi', 'theta'], GR ['Phi', 'Psi', 'theta']; rho_dust and addot identical: True
+  [PASS] A1 THE BACKGROUND IS GR'S WITH THE BARE G: with dust, a radiation fluid, the dark scalar and Lambda the chain's Friedmann and acceleration equations are GR's (alpha_c a^2 and K - <K>_h vanish on FRW; the multiplier has no background equation; J, the chassis and the lambda-term vanish at phibar-dot = 0): G_cos = G, while the locally measured G_N = G/(1 - alpha_c/2)
+         measured: identical: True; multiplier background equation: False
+    with phibar-dot = p0/a^3: rho_dust(chain) - rho_dust(GR) = -lambda_s*p_0**2/(8*pi*G*a(t)**6)  (a stiff component, a^-6)
+  [PASS] (reported) A2 (reported) with a nonzero datum phibar-dot = p0/a^3 (FP13's lambda > 0 makes it physical) the only background change is a stiff a^-6 energy density 2 lambda p0^2/(16 pi G a^6) (it takes the dust's place at fixed H): F1 bounds it
+         measured: -lambda_s*p_0**2/(8*pi*G*a(t)**6); power -6
+    [18 s]
+
+==================================================================================================================
+B  THE LINEAR EQUATIONS (Newtonian gauge after variation): the gravity side against GR's, field by field  [MUTATE: band-pass OPEN]
+==================================================================================================================
+    metric eq. [Phi] chain - GR = 2*alpha_c*k**2*Phik(t)*a(t) - 2*alpha_c*k**2*a(t)*Derivative(pik(t), t) + (-2*alpha_c*k**2*a(t) + 4*k**2*a(t))*dphik(t) + 6*a(t)**2*muk(t)*Derivative(a(t), t)
+    metric eq. [Psi] chain - GR = -6*a(t)**3*Derivative(muk(t), t) - 18*a(t)**2*muk(t)*Derivative(a(t), t)
+    metric eq. [B  ] chain - GR = -2*k**2*a(t)**2*muk(t)
+    metric eq. [E  ] chain - GR = -2*k**2*a(t)**3*Derivative(muk(t), t) - 6*k**2*a(t)**2*muk(t)*Derivative(a(t), t)
+  [FAIL] B1 [HEADLINE] THE GRAVITY SIDE: every metric equation (00, trace ij, 0i, xx) differs from GR's only by terms proportional to alpha_c or to the multiplier mu; the differences contain no matter variable (dust, radiation, the dark field) and no delta phi -- the MOND scalar is decoupled at linear order because the band-pass is closed (chi = (S_xi - S_B) phi = 0 at B = b)
+         measured: Phi: no matter True, only alpha_c/mu False, no delta phi False; Psi: no matter True, only alpha_c/mu True, no delta phi True; B: no matter True, only alpha_c/mu True, no delta phi True; E: no matter True, only alpha_c/mu True, no delta phi True
+         reading:  MUTATE: with the band-pass open the chassis puts delta phi into the 00 equation at O(1) -- the MOND scalar gravitates at linear order and the reduction to GR fails
+    slip combination (trace - 3 x xx/k^2): chain -4*k**2*(Phik(t) - Psik(t))*a(t); GR -4*k**2*(Phik(t) - Psik(t))*a(t)
+  [PASS] B2 NO ANISOTROPIC STRESS FROM THE KHRONON OR THE MULTIPLIER: the slip combination (trace - 3 xx/k^2) is GR's exactly, -4k^2 a (Phi - Psi) for this matter content (neutrinos would add their own GR shear)
+         measured: identical to GR: True
+  [PASS] B3 THE MULTIPLIER'S OWN EQUATION IS THE CMC CONDITION on the khronon's leaves: -2a(k^2 - 3a^2 Hdot) pi + 6a^3 (H Phi + Psidot) = 0, i.e. pi = 3a^2 (H Phi + Psidot)/(k^2 - 3 a^2 Hdot) (FP2's Q = 0, with radiation and the dark field in Hdot)
+         measured: mu-equation == CMC form: True
+  [FAIL] B4 THE KHRONON'S EQUATION FIXES THE MULTIPLIER AT O(alpha_c): R_mu mu + 2 alpha_c k^2 d/dt[a (Phi - pidot)] = 0 with R_mu = -2a(k^2 - 3 a^2 Hdot) < 0 (Hdot < 0), so mu = alpha_c k^2 d/dt[a(Phi - pidot)]/(a (k^2 - 3 a^2 Hdot)): finite, and zero at alpha_c = 0
+         measured: R_mu form True; remainder 2*k**2*(-alpha_c*a(t)*Derivative(dphik(t), t) - alpha_c*dphik(t)*Derivative(a(t), t) + 2*a(t)*Derivative(dphik(t), t) + 2*dphik(t)*Derivative(a(t), t))
+    comoving Poisson (00 with the 0i equation's Psidot inserted): mu coefficient 0; alpha_c part -2*k**2*(-Phik(t) + dphik(t) + Derivative(pik(t), t))*a(t); Psi coefficient -4*k**2*a(t); (chain - GR - alpha_c part) = 4*k**2*a(t)*dphik(t)
+  [FAIL] B5 THE MULTIPLIER CANCELS FROM THE COMOVING POISSON EQUATION: eliminating Psidot with the 0i equation, the 00 equation is GR's plus exactly 2 alpha_c k^2 a (Phi - pidot) with Psi's coefficient -4 k^2 a, i.e. (k^2/a^2)[Psi - (alpha_c/2)(Phi - pidot)] = -4 pi G rho Delta: the only change the constraints make to the gravitating source
+         measured: mu coefficient 0; alpha_c part == 2 alpha_c k^2 a (Phi - pidot): False; rest == GR: False
+  [PASS] B6 THE MATTER EQUATIONS ARE GR'S: the dust (theta, delta), the radiation fluid and the dark scalar's perturbation equations are identical to GR's (minimal coupling: the khronon, the multiplier and the MOND scalar never reach them)
+         measured: theta: True; delta: True; dsig: True; dphid: True
+    delta phi's equation: 2*(-alpha_c*k**2*Phik(t) + alpha_c*k**2*dphik(t) + alpha_c*k**2*Derivative(pik(t), t) + 2*k**2*Phik(t) - 2*k**2*dphik(t) - 2*k**2*Derivative(pik(t), t) - 2*lambda_s*a(t)**2*Derivative(dphik(t), (t, 2)) - 6*lambda_s*a(t)*Derivative(a(t), t)*Derivative(dphik(t), t))*a(t)
+  [FAIL] B7 THE MOND SCALAR DECOUPLES: its equation is lambda (ddot delta phi + 3H dot delta phi) = 0 (inertia only; J has no quadratic part, the chassis is zero) and delta phi appears in no other equation
+         measured: form False; absent elsewhere False
+    -2 alpha^2 J_P2(eps^2 y/alpha^2) - 4 alpha^2 y_th sqrt(eps^2 y/alpha^2): eps^1 -4*alpha*sqrt(y)*y_th, eps^2 0, eps^3 -4*y**(3/2)/(3*alpha), eps^4 -2*y**2/alpha**2
+  [PASS] B8 THE MOND TERM HAS NO QUADRATIC PART: -2 alpha^2 J_P2(Y/alpha^2) = -(4/3) |D phi|^3/alpha + O(eps^4) about zero field (FP7 B2's zero tangent), and the yield's eps^1 term is y_th |D phi| (zero when the band-pass is closed; for y_th > 0 it freezes delta phi below the yield) -- nothing of either enters the linear equations
+         measured: eps^1 (y_th = 0): 0; eps^2: 0; eps^3: -4*y**(3/2)/(3*alpha)
+  [PASS] B9 a0 IS ABSENT AT LINEAR ORDER: the MOND scale alpha = a0/c^2 enters the action only through J and the yield (B8), neither of which has a quadratic part, so the linear system (B1-B7) carries no a0 -- the canonical (9.3603e-11) and alt (1.1312e-10 m/s^2) footings give identical linear equations and an identical CMB epoch
+         measured: free symbols of the linear system: ['G', 'Lambda', 'M_d', 'alpha_c', 'c_r', 'k', 'lambda_s', 't']
+    [19 s]
+
+==================================================================================================================
+C  THE LEADING DIFFERENCE AND ITS SIZE
+==================================================================================================================
+  [FAIL] C1 SUB-HORIZON: G_eff/G = 2/(2 - alpha_c) = G_N/G with no slip -- matter clusters with the locally measured Newton constant
+         measured: G_eff/G = SINGULAR (no quasi-static solution), slip None
+    k -> 0, constant Phi = Psi: pi = H Phi/(-Hdot); on a = t^p: Phi - pidot = 0; on any a(t): (Phi - pidot)/Phi = (2*(a(t)*Derivative(a(t), (t, 2)) - Derivative(a(t), t)**2)**2 - (a(t)**2*Derivative(a(t), (t, 3)) - 3*a(t)*Derivative(a(t), t)*Derivative(a(t), (t, 2)) + 2*Derivative(a(t), t)**3)*Derivative(a(t), t))/(a(t)*Derivative(a(t), (t, 2)) - Derivative(a(t), t)**2)**2
+  [PASS] C2 SUPER-HORIZON: the CMC khronon's time shift makes pidot = Phi exactly on every power-law background (Phi - pidot = 0 for a = t^p, any p), so the Poisson modification vanishes as k -> 0 (G_eff -> G): the khronon cannot change the conserved super-horizon curvature perturbation; the general residue is (Phi - pidot)/Phi = 2 - H Hddot/Hdot^2, zero wherever a is a power law
+         measured: a = t^p: 0; general: (2*(a(t)*Derivative(a(t), (t, 2)) - Derivative(a(t), t)**2)**2 - (a(t)**2*Derivative(a(t), (t, 3)) - 3*a(t)*Derivative(a(t), t)*Derivative(a(t), (t, 2)) + 2*Derivative(a(t), t)**3)*Derivative(a(t), t))/(a(t)*Derivative(a(t), (t, 2)) - Derivative(a(t), t)**2)**2
+    alpha_c = 3.20e-09 (PPN edge): G_cos/G_N - 1 = -alpha_c/2 = -1.60e-09; G_eff/G_N - 1 in [-1.60e-09, 0]
+    alpha_c = 8.15e-16 (strong-coupling floor (c_2 -> oo)): G_cos/G_N - 1 = -alpha_c/2 = -4.08e-16; G_eff/G_N - 1 in [-4.08e-16, 0]
+  [PASS] C3 THE NUMBERS: relative to the measured G_N the Friedmann equation uses G_cos = G_N (1 - alpha_c/2) and the constraints G_eff between G and G_N, so every departure from GR + CDM at the CMB epoch is <= alpha_c/2 <= 1.6e-9 (PPN edge) and >= 4.1e-16 (the regulator's floor): G_cos is NOT exactly G_N -- it is below it by a regulator's worth
+         measured: alpha_c/2 in [4.08e-16, 1.60e-09]
+    k = 0.0001 /Mpc (k/aH 7.7e-03..2.4e-01): max |Phi - pidot|/env|Psi| = 0.020; F = (Phi - pidot)/Psi at z = 1e5 +0.000, recombination +0.000, z = 10 +0.0202; |Int mu/2 dt|/env|Psi| per alpha_c/2 = 0.000
+    k = 0.001 /Mpc (k/aH 7.0e-02..2.4e+00): max |Phi - pidot|/env|Psi| = 0.718; F = (Phi - pidot)/Psi at z = 1e5 +0.002, recombination +0.018, z = 10 +0.7198; |Int mu/2 dt|/env|Psi| per alpha_c/2 = 0.533
+    k = 0.01 /Mpc (k/aH 7.0e-02..2.4e+01): max |Phi - pidot|/env|Psi| = 0.995; F = (Phi - pidot)/Psi at z = 1e5 +0.002, recombination +0.753, z = 10 +0.9974; |Int mu/2 dt|/env|Psi| per alpha_c/2 = 4.412
+    k = 0.05 /Mpc (k/aH 2.3e-01..1.2e+02): max |Phi - pidot|/env|Psi| = 1.003; F = (Phi - pidot)/Psi at z = 1e5 +0.025, recombination +0.992, z = 10 +0.9999; |Int mu/2 dt|/env|Psi| per alpha_c/2 = 7.689
+    k = 0.1 /Mpc (k/aH 4.6e-01..2.4e+02): max |Phi - pidot|/env|Psi| = 1.069; F = (Phi - pidot)/Psi at z = 1e5 +0.096, recombination +1.009, z = 10 +1.0000; |Int mu/2 dt|/env|Psi| per alpha_c/2 = 9.938
+    k = 0.3 /Mpc (k/aH 1.4e+00..7.1e+02): max |Phi - pidot|/env|Psi| = 1.267; F = (Phi - pidot)/Psi at z = 1e5 +0.611, recombination +0.999, z = 10 +1.0000; |Int mu/2 dt|/env|Psi| per alpha_c/2 = 10.736
+  [PASS] C4 ON CLASS'S GR SOLUTION (first order in alpha_c; k = 1e-4..0.3 /Mpc, z = 1e5..10; pi and pidot from the CMC condition and the total momentum conservation, no numerical derivative of the perturbations): the Poisson modification (alpha_c/2)|Phi - pidot| is <= (alpha_c/2) x O(1) of the envelope of |Psi|, F -> 1 deep inside the horizon and -> 0 outside it (k = 1e-4 at recombination): at the PPN edge the gravitating source moves by <= 2.0e-09 of Psi.  The multiplier's term in the momentum constraint is not independent (the Bianchi identity fixes it given this Poisson term); its time integral is reported: <= 10.74 x (alpha_c/2) of the envelope of |Psi|
+         measured: max |Phi - pidot|/env|Psi| = 1.267; F(k = 0.3, z = 10) = 1.0000; F(k = 1e-4, rec) = 0.0002; max |Int mu/2 dt|/env|Psi| per alpha_c/2 = 10.736 (reported)
+  [FAIL] C5 THE YORK/CMC KILL IS NOT REPRODUCED IN THE LINEAR COSMOLOGY: the multiplier cancels from the comoving Poisson equation for every alpha_c (B5) and G_eff/G -> 1 as alpha_c -> 0 -- the CMC leaves add no gravitating source; the '2G' of the York/CMC construction (an elliptic lapse with no alpha_c term, record's DHF gates) has no counterpart here
+         measured: lim G_eff/G (alpha_c -> 0) = 1; mu cancels: True
+    [19 s]
+
+==================================================================================================================
+D  THE SEPARATOR'S STATE AT z >~ 10: is the band-pass closed at the CMB epoch, and when does it open?
+==================================================================================================================
+    sigma(R -> 0, k <= 1000 h/Mpc) [EH98 linear] = 0.0201
+    sigma(R -> 0, k <= 1000 h/Mpc) [EH98 nonlinear (FP13's reading)] = 0.0201
+    sigma(R -> 0, k <= 1000 h/Mpc) [EH98 x T_HBG^2 (m = 1.9e-19)] = 0.0151
+    sigma(R -> 0, k <= 1000 h/Mpc) [EH98 x T_HBG^2 (m = 5.2e-19)] = 0.0164
+    sigma(R -> 0, k <= 1000 h/Mpc) [CLASS linear z = 1100] = 0.0164
+    sigma(R -> 0, k <= 1000 h/Mpc) [CLASS x T_HBG^2 z = 1100 (m = 1.9e-19)] = 0.0124
+    sigma(R -> 0, k <= 1000 h/Mpc) [CLASS x T_HBG^2 z = 1100 (m = 5.2e-19)] = 0.0134
+    sigma(R -> 0, k <= 1000 h/Mpc) [CLASS linear z = 1000] = 0.0177
+    sigma(R -> 0, k <= 1000 h/Mpc) [CLASS x T_HBG^2 z = 1000 (m = 1.9e-19)] = 0.0134
+    sigma(R -> 0, k <= 1000 h/Mpc) [CLASS x T_HBG^2 z = 1000 (m = 5.2e-19)] = 0.0145
+  [PASS] D1 THE BAND-PASS IS CLOSED AT THE CMB EPOCH (checked in FP13's source: L_table returns the xi floor when sigma(RMIN) < s): the leaf-rms contrast of the actual field, unsmoothed to FP13's grid edge, is <= 0.02 at z = 999-1100 -- in FP13's own EH98 state and in CLASS's linear spectrum, with or without the dark field's cutoff -- far below delta_c = 1.686, so L = xi, chi = 0 and the state yield is zero: the MOND scalar is out of the CMB epoch's equations (FP13's L(z = 999) = 0.0243 pc = xi)
+         measured: max sigma = 0.0201 (18 s for CLASS to 1000 h/Mpc)
+    first open epoch (FP13's EH98 nonlinear state, delta_c): z = 16.95 (previous grid epoch 17.37 still closed); with the dark field's cutoff: m = 1.9e-19: z = 12.30, m = 5.2e-19: z = 13.58
+    L(z) [pc, physical]: z = 30: 0.0243, z = 20: 0.0243, z = 17: 118, z = 15: 432, z = 12: 1.18e+03, z = 10: 2.7e+03
+  [PASS] D2 THE BAND-PASS OPENS ONLY AT z_open ~ 17 (FP13's EH98 state, nonlinear reading) and later with the dark field's cutoff; at z = 10 it passes only scales below L(10) ~ 3 kpc (physical)
+         measured: z_open = 16.95 (EH98), 12.30 (m = 1.9e-19), 13.58 (m = 5.2e-19); L(10) = 2.7e+03 pc
+    max C_eff (k <= 1 h/Mpc) [canonical, rms]: z = 999: 0.00e+00, z = 500: 0.00e+00, z = 100: 0.00e+00, z = 30: 0.00e+00, z = 17: 0.00e+00, z = 12: 0.00e+00, z = 10: 0.00e+00
+    max C_eff (all k <= 100 h/Mpc) [canonical, rms]: z = 999: 0.00e+00, z = 500: 0.00e+00, z = 100: 0.00e+00, z = 30: 0.00e+00, z = 17: 0.00e+00, z = 12: 0.00e+00, z = 10: 0.00e+00
+    max C_eff (k <= 1 h/Mpc) [canonical, permode]: z = 999: 0.00e+00, z = 500: 0.00e+00, z = 100: 0.00e+00, z = 30: 0.00e+00, z = 17: 0.00e+00, z = 12: 0.00e+00, z = 10: 0.00e+00
+    max C_eff (all k <= 100 h/Mpc) [canonical, permode]: z = 999: 0.00e+00, z = 500: 0.00e+00, z = 100: 0.00e+00, z = 30: 0.00e+00, z = 17: 0.00e+00, z = 12: 0.00e+00, z = 10: 0.00e+00
+    max C_eff (k <= 1 h/Mpc) [alt, rms]: z = 999: 0.00e+00, z = 500: 0.00e+00, z = 100: 0.00e+00, z = 30: 0.00e+00, z = 17: 0.00e+00, z = 12: 0.00e+00, z = 10: 0.00e+00
+    max C_eff (all k <= 100 h/Mpc) [alt, rms]: z = 999: 0.00e+00, z = 500: 0.00e+00, z = 100: 0.00e+00, z = 30: 0.00e+00, z = 17: 0.00e+00, z = 12: 0.00e+00, z = 10: 0.00e+00
+    max C_eff (k <= 1 h/Mpc) [alt, permode]: z = 999: 0.00e+00, z = 500: 0.00e+00, z = 100: 0.00e+00, z = 30: 0.00e+00, z = 17: 0.00e+00, z = 12: 0.00e+00, z = 10: 0.00e+00
+    max C_eff (all k <= 100 h/Mpc) [alt, permode]: z = 999: 0.00e+00, z = 500: 0.00e+00, z = 100: 0.00e+00, z = 30: 0.00e+00, z = 17: 0.00e+00, z = 12: 0.00e+00, z = 10: 0.00e+00
+  [PASS] D3 THE MOND GROWTH SOURCE STAYS OFF FOR THE CMB'S AND LENSING'S LINEAR SCALES AT z >= 10: on FP9's growth yardstick with FP13's (H_S) model, max C_eff over k <= 1 h/Mpc is below 1e-3 at every epoch z = 999..10, both yardstick modes, both footings (the band-pass is closed above z_open; below it L is kpc-scale and the web-rms yield sits above every linear mode)
+         measured: max C_eff(k <= 1 h/Mpc, z >= 10) = 0.00e+00
+    [38 s]
+
+==================================================================================================================
+E  THE DARK FIELD (FL1/FK1's order parameter, m >= 1.9-5.2e-19 eV): BBN, recombination, Jeans scale, the conversion gate
+==================================================================================================================
+    m = 1.9e-19 eV: H = m at z = 1.174e+08 (T_gamma = 27.6 keV); T = 1 MeV: rho_d/rho_r = 6.75e-12 (Delta N_eff 5.0e-11); T = 100 keV: rho_d/rho_r = 6.75e-08 (Delta N_eff 5.0e-07); T = 70 keV (D bottleneck): rho_d/rho_r = 2.81e-07 (Delta N_eff 2.1e-06); T = 30 keV: rho_d/rho_r = 7.98e-06 (Delta N_eff 5.9e-05); w at recombination ~ (H/m)^2 = 3.1e-20
+    m = 5.2e-19 eV: H = m at z = 1.942e+08 (T_gamma = 45.6 keV); T = 1 MeV: rho_d/rho_r = 3.06e-11 (Delta N_eff 2.3e-10); T = 100 keV: rho_d/rho_r = 3.05e-07 (Delta N_eff 2.3e-06); T = 70 keV (D bottleneck): rho_d/rho_r = 1.26e-06 (Delta N_eff 9.4e-06); T = 30 keV: rho_d/rho_r = 2.73e-05 (Delta N_eff 2.0e-04); w at recombination ~ (H/m)^2 = 4.1e-21
+  [PASS] E1 THE DARK FIELD AT BBN AND RECOMBINATION (homogeneous Klein-Gordon from misalignment, normalised to Omega_c h^2 = 0.12011): it is frozen (w = -1) until H = m at T_gamma ~ 28-46 keV -- after the deuterium bottleneck -- and is a negligible energy density throughout BBN (Delta N_eff-equivalent <= 1e-2 at every listed temperature); at recombination w ~ (H/m)^2 ~ 1e-20: cold
+         measured: m = 1.9e-19: z_osc 1.17e+08, max Delta N_eff 5.9e-05, w_rec 3.1e-20; m = 5.2e-19: z_osc 1.94e+08, max Delta N_eff 2.0e-04, w_rec 4.1e-21
+         reading:  the temperature-to-a map uses the post-annihilation relation; above ~0.5 MeV the true radiation density is larger (g* = 10.75), which only lowers the dark field's share
+    m = 1.9e-19 eV: comoving k_J at recombination = 505 /Mpc (x1683 the CMB's 0.3 /Mpc); HBG half-power k today ~ 129 /Mpc; first-order growth deficit delta_1/delta_0 (rec, today): k = 0.001: -1.4e-22, -1.5e-22, k = 0.01: -1.4e-18, -1.5e-18, k = 0.1: -1.4e-14, -1.5e-14, k = 0.3: -1.1e-12, -1.2e-12, k = 1: -1.4e-10, -1.5e-10; 1 - T_HBG(0.3) = 0.0e+00, (1.0) = 3.0e-14
+    m = 5.2e-19 eV: comoving k_J at recombination = 835 /Mpc (x2784 the CMB's 0.3 /Mpc); HBG half-power k today ~ 202 /Mpc; first-order growth deficit delta_1/delta_0 (rec, today): k = 0.001: -1.8e-23, -2.0e-23, k = 0.01: -1.8e-19, -2.0e-19, k = 0.1: -1.8e-15, -2.0e-15, k = 0.3: -1.5e-13, -1.6e-13, k = 1: -1.8e-11, -2.0e-11; 1 - T_HBG(0.3) = 0.0e+00, (1.0) = 2.0e-15
+  [PASS] E2 THE WAVE SCALE IS FAR BELOW THE CMB's: the dark field's comoving Jeans wavenumber at recombination is >= 300x the CMB's k = 0.3 /Mpc, and its first-order growth deficit against CDM (quantum pressure c_s = hbar k/2m) at k <= 0.3 /Mpc is < 1e-8 at recombination and today (Hu-Barkana-Gruzinov's transfer function agrees: 1 - T ~ x^6 negligible) -- on CMB and CMB-lensing scales the dark field is CDM
+         measured: m = 1.9e-19: k_J(rec) 505 /Mpc, max deficit(k <= 0.3) 1.2e-12; m = 5.2e-19: k_J(rec) 835 /Mpc, max deficit(k <= 0.3) 1.6e-13
+    FK1's background conversion exponent relative to its z = 0.298 peak (q = 1.75): z = 10: 4.2e-05, z = 100: 6.4e-11, z = 1090: 1.5e-17, z = 4e+08: 9.8e-71
+  [PASS] E3 FK1'S CONVERSION IS OFF IN THE EARLY UNIVERSE: the gated pair coupling lambda(K) ~ K^(-2q) (q = 1.75) makes the background's parametric-growth exponent scale as H^-(4q+1) a^-6; relative to its z = 0.30 peak (itself below the trigger's, FK1 N2) it is <= 1e-4 at z = 10 and ~1e-16 or less at recombination and BBN: no conversion, no kick -- the field stays cold
+         measured: z = 10: 4.2e-05, z = 100: 6.4e-11, z = 1090: 1.5e-17, z = 4e+08: 9.8e-71
+    [38 s]
+
+==================================================================================================================
+F  THE DATUM phibar-dot: with FP13's lambda > 0 it is physical; BBN bounds it
+==================================================================================================================
+    at T = 1 MeV: a = 1.677e-10; a stiff Omega_s0 a^-6 must stay below Delta N_eff = 0.5 of one neutrino: Omega_s0 < 1.7e-25
+    with rho_phi = (2 lambda/16 pi G) phibar-dot^2: Omega_phi0 = lambda phibar-dot_0^2/(3 H0^2) -> |phibar-dot_0|/H0 < 7.2e-13/sqrt(lambda)
+  [PASS] (reported) F1 THE DATUM phibar-dot = 0 IS LOAD-BEARING: with lambda > 0 (FP13 A1) a nonzero phibar-dot = p0/a^3 is a stiff a^-6 component (A2); BBN (Delta N_eff < 0.5 at T = 1 MeV) requires Omega_phi,0 < ~1e-24, i.e. |phibar-dot_0| < ~1e-12 H0/sqrt(lambda) -- the chain's declared datum is not tested by the CMB or BBN beyond this bound (at lambda = 0, FP14 L1, phibar is gauge instead)
+         measured: Omega_phi,0 < 1.7e-25
+    [38 s]
+
+==================================================================================================================
+W  THE LEDGER: XR26 part 1
+==================================================================================================================
+    X26-1a   DERIVED     the chain's FRW background is GR's with the bare G (any matter content); G_cos = G = G_N (1 - alpha_c/2)  --  A1
+    X26-1b   DERIVED     at z >~ z_open (~17) the linear metric equations are GR's plus terms proportional to alpha_c or mu only; no slip; matter equations GR's; delta phi decoupled; no a0 at linear order (both footings identical)  --  B1-B9
+    X26-1c   DERIVED     the multiplier is the CMC condition and cancels from the comoving Poisson equation; the only change to the gravitating source is (k^2/a^2)[Psi - (alpha_c/2)(Phi - pidot)] = -4 pi G rho Delta  --  B3-B5
+    X26-1d   DERIVED     leading difference from GR + CDM: G_eff between G (super-horizon) and G_N (sub-horizon), G_cos = G; size <= alpha_c/2 <= 1.6e-9 (>= 4e-16 at the regulator's floor) -- not exactly zero  --  C1-C4
+    X26-1e   DERIVED     the York/CMC 2G is not reproduced in the linear cosmology (the multiplier adds no gravitating source)  --  C5
+    X26-1f   DERIVED     the band-pass is closed at the CMB epoch (sigma <= 0.02 at z = 999-1100) and opens at z ~ 17; the MOND growth source is < 1e-3 at k <= 1 h/Mpc for z >= 10  --  D1-D3 (FP13's state reading, linear + halofit)
+    X26-1g   DERIVED     the dark field (m >= 1.9e-19 eV) is frozen and negligible through BBN, cold at recombination, CDM on CMB scales (k_J(rec) >= 500 /Mpc); FK1's conversion is off at z >= 10  --  E1-E3
+    X26-1h   CONSTRAINT  phibar-dot = 0 is a declared datum made physical by lambda > 0: BBN bounds a nonzero value to Omega_phi,0 < ~1e-24  --  F1, A2
+    X26-1i   OPEN        not covered: second-order effects (the band-pass reads the NONLINEAR field, a leaf average of second-order quantities, whose back-reaction on the linear equations is O(delta^2)); the khronon's fast mode if excited by non-adiabatic initial data (it would oscillate at ~k/sqrt(alpha_c)); reionization-era structure (z < 17) beyond FP13's linear yardstick  --  scope
+  [PASS] (reported) W (reported) the ledger
+         measured: 9 links
+
+==================================================================================================================
+VERDICT  [MUTATE]
+==================================================================================================================
+  MUTATE: with the band-pass open at z >~ 10 the chassis couples delta phi to the lapse at O(1): the linear equations are not
+  GR's -- the reduction rests on the separator's closed band-pass.
+
+  22/28 checks pass; load-bearing failures: 6; wrote XR26_linear_equations_results_MUTATE.json (38 s)
+rc = 1
