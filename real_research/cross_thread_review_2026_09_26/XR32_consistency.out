@@ -1,0 +1,134 @@
+XR32 (3/3) -- WHAT THE CONVERSION MUST ALSO PASS: CMB lensing (ACT DR6 + Planck PR4), cluster counts (eRASS1, SPT),
+DESI redshift-space distortions (f sigma8) and DESI's sum m_nu preference.
+
+WHY.  A late-time suppression that lowers weak-lensing S8 must not lower the high-z lensing (z ~ 1-3), must leave the
+cluster counts (recapture keeps clusters' carrier), and must not strain RSD growth or DESI's preference for little
+growth suppression (a positive neutrino mass suppresses growth; DESI + CMB prefer less than the minimal mass).
+
+METHOD (the chain's P(k, z) as in XR32_matter_power: L319's two-component linear solve on XR19's histories, the halo-model
+response R(k, z) on Planck-2018 HMcode-2020; normalised to Planck 2018 -- an ASSUMPTION pending XR26)
+  CMB LENSING.  C_L^kappakappa by Limber to the last-scattering distance (P above z = 10 continued as a^2); the chain uses
+    R(k, z) to z = 4 and the linear T^2(k, z) above.  The amplitude over ACT DR6's baseline L = 40-763: (a) equal weight
+    per band in ten log-spaced bands (ACT's per-band S/N is roughly flat; a proxy, not ACT's bandpower covariance), (b)
+    cosmic-variance weights (2L + 1).  Against ACT DR6 A_lens = 1.013 +- 0.023 (Qu+24) and ACT+Planck sigma8 = 0.812 +-
+    0.013 (Madhavacheril+24).  Control: this Limber against CAMB's own (non-Limber) lensing potential.
+  CLUSTER COUNTS.  Sheth-Tormen counts per steradian, N(> M_thr) = int dz (dV/dz dOmega) int dlnM n(M) P(M_obs > M_thr),
+    lognormal scatter 0.2 in ln M (same for LCDM and the chain); M500c from M_vir (NFW, Duffy+08).  The chain's cluster
+    (weak-lensing-calibrated) mass: M_obs = M500c (f_b + f_c ret(M, z)) [+ the stand-in phantom inside R500: (nu_mono - 1)
+    x the GP0 observed bound baryons, both footings].  Halo population LCDM's (primary) or the cold field's (bracket).
+    Selections (proxies, disclosed): eRASS1-like z 0.1-0.8, M500c > 1.5e14 (and 3e14) Msun; SPT-like z 0.25-1.78, M500c >
+    3.5e14 (and 5e14) Msun.  The count-equivalent S8: the LCDM sigma8 (Omega_m fixed) that gives the same count.  Against
+    eRASS1 S8 = 0.86 +- 0.01 (Ghirardini+24) and SPT S8 = 0.795 +- 0.029 (Bocquet+24).
+  RSD.  f = d ln delta/d ln a at k ~ 0.1 h/Mpc (0.05 and 0.2 reported) from the solver, sigma8(z) from T^2; f sigma8 of
+    the chain against LCDM's at DESI DR1's z_eff (0.295, 0.510, 0.706, 0.930, 1.317, 1.491); the implied sigma8 against
+    DESI DR1 full shape + BAO, sigma8 = 0.842 +- 0.034 (DESI 2024 VII; equal weights per bin: a proxy).
+  SUM m_nu.  CAMB (non-Limber) C_L^phiphi for sum m_nu = 0.06/0.12/0.18 eV (three degenerate states) at fixed theta_*,
+    omega_b, omega_c, A_s, n_s, tau: the lensing amplitude's slope; the chain's lensing change as an equivalent sum m_nu.
+    Against DESI DR2 + CMB: sum m_nu < 0.0642 eV (95%), sigma = 0.020 eV; sigma(sum m_nu,eff) = 0.053 eV, 3 sigma below
+    the oscillation floor (Elbers+25).  The conversion leaves the expansion history alone (daughters: w ~ sigma_d^2/c^2 ~
+    1e-7), so the BAO/geometry part of DESI's constraint is untouched: only the lensing channel moves.
+  base and 10 histories ready; Planck-2018 sigma8 0.8109, S8 0.8312   [77s]
+
+======================================================================================================================
+CMB LENSING: C_L^kappakappa (Limber) of the chain against LCDM; the amplitude over ACT DR6's L = 40-763
+======================================================================================================================
+  [PASS] C1 CONTROL: this lane's Limber C_L^kappakappa (Planck 2018, HMcode-2020) against CAMB's own lensing potential (non-Limber) at L = 40-763
+         measured: max |ratio - 1| = 0.0021
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom none: C_L ratio L=40/100/300/763/1000/2000 0.999/0.995/0.972/0.899/0.858/0.697; A(40-763) band 0.9757, CV 0.9542; sigma8_CMBL 0.8010   [78s]
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical: C_L ratio L=40/100/300/763/1000/2000 1.001/1.005/1.041/1.267/1.470/2.861; A(40-763) band 1.0447, CV 1.0955; sigma8_CMBL 0.8288   [92s]
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt: C_L ratio L=40/100/300/763/1000/2000 1.002/1.006/1.048/1.310/1.547/3.194; A(40-763) band 1.0523, CV 1.1112; sigma8_CMBL 0.8318   [104s]
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom running L canonical (sensitivity): C_L ratio L=40/100/300/763/1000/2000 1.000/0.996/0.977/0.918/0.888/0.792; A(40-763) band 0.9802, CV 0.9623; sigma8_CMBL 0.8028   [117s]
+    nominal (dt0 5.31) | in place | pop lcdm | phantom none: C_L ratio L=40/100/300/763/1000/2000 0.999/0.995/0.975/0.915/0.884/0.769; A(40-763) band 0.9789, CV 0.9605; sigma8_CMBL 0.8023   [117s]
+    nominal (dt0 5.31) | no recapture | pop lcdm | phantom none: C_L ratio L=40/100/300/763/1000/2000 0.998/0.992/0.962/0.872/0.824/0.641; A(40-763) band 0.9679, CV 0.9406; sigma8_CMBL 0.7978   [117s]
+    nominal (dt0 5.31) | PM (L388) | pop lcdm | phantom none: C_L ratio L=40/100/300/763/1000/2000 0.999/0.994/0.970/0.894/0.851/0.686; A(40-763) band 0.9740, CV 0.9513; sigma8_CMBL 0.8003   [117s]
+    halo only | phase-space recapture (primary) | pop lcdm | phantom none: C_L ratio L=40/100/300/763/1000/2000 0.999/0.997/0.980/0.926/0.896/0.775; A(40-763) band 0.9828, CV 0.9671; sigma8_CMBL 0.8039   [117s]
+    most conservative | phase-space recapture (primary) | pop lcdm | phantom none: C_L ratio L=40/100/300/763/1000/2000 0.999/0.995/0.974/0.906/0.868/0.717; A(40-763) band 0.9776, CV 0.9577; sigma8_CMBL 0.8018   [117s]
+    pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom none: C_L ratio L=40/100/300/763/1000/2000 0.999/0.994/0.970/0.895/0.854/0.690; A(40-763) band 0.9746, CV 0.9522; sigma8_CMBL 0.8005   [117s]
+    dt0 7.54 (forest floor) | phase-space recapture (primary) | pop lcdm | phantom none: C_L ratio L=40/100/300/763/1000/2000 0.999/0.995/0.972/0.902/0.862/0.704; A(40-763) band 0.9763, CV 0.9552; sigma8_CMBL 0.8012   [117s]
+    dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom none: C_L ratio L=40/100/300/763/1000/2000 0.999/0.995/0.975/0.911/0.875/0.733; A(40-763) band 0.9784, CV 0.9595; sigma8_CMBL 0.8021   [117s]
+    dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom none: C_L ratio L=40/100/300/763/1000/2000 0.999/0.995/0.977/0.919/0.886/0.754; A(40-763) band 0.9802, CV 0.9629; sigma8_CMBL 0.8028   [118s]
+    dt0 25 (FK1 upper) | phase-space recapture (primary) | pop lcdm | phantom none: C_L ratio L=40/100/300/763/1000/2000 0.999/0.995/0.978/0.920/0.888/0.758; A(40-763) band 0.9806, CV 0.9636; sigma8_CMBL 0.8030   [118s]
+    v_k 575 | phase-space recapture (primary) | pop lcdm | phantom none: C_L ratio L=40/100/300/763/1000/2000 0.999/0.995/0.974/0.905/0.866/0.710; A(40-763) band 0.9774, CV 0.9571; sigma8_CMBL 0.8017   [118s]
+    v_k 650 | phase-space recapture (primary) | pop lcdm | phantom none: C_L ratio L=40/100/300/763/1000/2000 0.998/0.993/0.968/0.888/0.844/0.673; A(40-763) band 0.9723, CV 0.9483; sigma8_CMBL 0.7996   [118s]
+    dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical: C_L ratio L=40/100/300/763/1000/2000 1.001/1.005/1.045/1.289/1.510/3.067; A(40-763) band 1.0487, CV 1.1038; sigma8_CMBL 0.8304   [118s]
+    dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt: C_L ratio L=40/100/300/763/1000/2000 1.002/1.007/1.055/1.348/1.614/3.542; A(40-763) band 1.0590, CV 1.1253; sigma8_CMBL 0.8345   [118s]
+
+======================================================================================================================
+SUM m_nu: CAMB's lensing slope, and the conversion as an equivalent neutrino mass (lensing channel only)
+======================================================================================================================
+  [PASS] (reported) C4 (reported) CAMB's C_L^phiphi response to sum m_nu at fixed theta_* (three degenerate states; band-weighted over L = 40-763)
+         measured: dA = -0.0148 per +0.06 eV, -0.0300 per +0.12 eV (slope -0.246 per eV)
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom none: dA -0.0243 -> lensing-equivalent sum m_nu 0.158 eV (+0.098 over the 0.06 eV baseline)
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical: dA +0.0447 -> lensing-equivalent sum m_nu -0.121 eV (+-0.181 over the 0.06 eV baseline)
+
+======================================================================================================================
+CLUSTER COUNTS: count-equivalent S8 for eRASS1-like and SPT-like selections
+======================================================================================================================
+  [PASS] C3 CONTROL: the count-equivalent inversion returns a known sigma8 (LCDM counts at sigma8 = 0.78, SPT-like selection)
+         measured: 0.780000
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.641, S8_eq 0.768; eRASS1-like 3e14: N/N_LCDM 0.759, S8_eq 0.800; SPT-like 3.5e14: N/N_LCDM 0.759, S8_eq 0.805; SPT-like 5e14: N/N_LCDM 0.805, S8_eq 0.813   [123s]
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical: eRASS1-like 1.5e14: N/N_LCDM 1.631, S8_eq 0.921; eRASS1-like 3e14: N/N_LCDM 2.265, S8_eq 0.946; SPT-like 3.5e14: N/N_LCDM 2.439, S8_eq 0.933; SPT-like 5e14: N/N_LCDM 2.911, S8_eq 0.940   [125s]
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop cold | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.609, S8_eq 0.762; eRASS1-like 3e14: N/N_LCDM 0.724, S8_eq 0.795; SPT-like 3.5e14: N/N_LCDM 0.726, S8_eq 0.801; SPT-like 5e14: N/N_LCDM 0.772, S8_eq 0.809   [127s]
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop cold | phantom L1.7 canonical: eRASS1-like 1.5e14: N/N_LCDM 1.541, S8_eq 0.909; eRASS1-like 3e14: N/N_LCDM 2.154, S8_eq 0.938; SPT-like 3.5e14: N/N_LCDM 2.325, S8_eq 0.927; SPT-like 5e14: N/N_LCDM 2.782, S8_eq 0.935   [129s]
+    nominal (dt0 5.31) | in place | pop lcdm | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.738, S8_eq 0.787; eRASS1-like 3e14: N/N_LCDM 0.722, S8_eq 0.795; SPT-like 3.5e14: N/N_LCDM 0.701, S8_eq 0.797; SPT-like 5e14: N/N_LCDM 0.686, S8_eq 0.800   [130s]
+    nominal (dt0 5.31) | in place | pop lcdm | phantom L1.7 canonical: eRASS1-like 1.5e14: N/N_LCDM 2.035, S8_eq 0.971; eRASS1-like 3e14: N/N_LCDM 2.374, S8_eq 0.954; SPT-like 3.5e14: N/N_LCDM 2.502, S8_eq 0.936; SPT-like 5e14: N/N_LCDM 2.787, S8_eq 0.935   [132s]
+    nominal (dt0 5.31) | in place | pop cold | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.701, S8_eq 0.780; eRASS1-like 3e14: N/N_LCDM 0.689, S8_eq 0.790; SPT-like 3.5e14: N/N_LCDM 0.670, S8_eq 0.793; SPT-like 5e14: N/N_LCDM 0.658, S8_eq 0.796   [133s]
+    nominal (dt0 5.31) | in place | pop cold | phantom L1.7 canonical: eRASS1-like 1.5e14: N/N_LCDM 1.921, S8_eq 0.957; eRASS1-like 3e14: N/N_LCDM 2.257, S8_eq 0.946; SPT-like 3.5e14: N/N_LCDM 2.385, S8_eq 0.930; SPT-like 5e14: N/N_LCDM 2.663, S8_eq 0.929   [134s]
+    nominal (dt0 5.31) | no recapture | pop lcdm | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.053, S8_eq 0.561; eRASS1-like 3e14: N/N_LCDM 0.024, S8_eq 0.566; SPT-like 3.5e14: N/N_LCDM 0.016, S8_eq 0.570; SPT-like 5e14: N/N_LCDM 0.009, S8_eq 0.570   [136s]
+    nominal (dt0 5.31) | no recapture | pop lcdm | phantom L1.7 canonical: eRASS1-like 1.5e14: N/N_LCDM 0.699, S8_eq 0.779; eRASS1-like 3e14: N/N_LCDM 0.585, S8_eq 0.774; SPT-like 3.5e14: N/N_LCDM 0.493, S8_eq 0.767; SPT-like 5e14: N/N_LCDM 0.439, S8_eq 0.765   [138s]
+    nominal (dt0 5.31) | no recapture | pop cold | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.051, S8_eq 0.559; eRASS1-like 3e14: N/N_LCDM 0.023, S8_eq 0.565; SPT-like 3.5e14: N/N_LCDM 0.015, S8_eq 0.568; SPT-like 5e14: N/N_LCDM 0.009, S8_eq 0.569   [139s]
+    nominal (dt0 5.31) | no recapture | pop cold | phantom L1.7 canonical: eRASS1-like 1.5e14: N/N_LCDM 0.663, S8_eq 0.772; eRASS1-like 3e14: N/N_LCDM 0.559, S8_eq 0.769; SPT-like 3.5e14: N/N_LCDM 0.472, S8_eq 0.763; SPT-like 5e14: N/N_LCDM 0.420, S8_eq 0.762   [140s]
+    nominal (dt0 5.31) | PM (L388) | pop lcdm | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.547, S8_eq 0.749; eRASS1-like 3e14: N/N_LCDM 0.624, S8_eq 0.780; SPT-like 3.5e14: N/N_LCDM 0.596, S8_eq 0.783; SPT-like 5e14: N/N_LCDM 0.566, S8_eq 0.784   [142s]
+    nominal (dt0 5.31) | PM (L388) | pop lcdm | phantom L1.7 canonical: eRASS1-like 1.5e14: N/N_LCDM 1.515, S8_eq 0.905; eRASS1-like 3e14: N/N_LCDM 2.027, S8_eq 0.928; SPT-like 3.5e14: N/N_LCDM 2.166, S8_eq 0.918; SPT-like 5e14: N/N_LCDM 2.506, S8_eq 0.923   [144s]
+    nominal (dt0 5.31) | PM (L388) | pop cold | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.520, S8_eq 0.743; eRASS1-like 3e14: N/N_LCDM 0.596, S8_eq 0.775; SPT-like 3.5e14: N/N_LCDM 0.570, S8_eq 0.779; SPT-like 5e14: N/N_LCDM 0.542, S8_eq 0.781   [145s]
+    nominal (dt0 5.31) | PM (L388) | pop cold | phantom L1.7 canonical: eRASS1-like 1.5e14: N/N_LCDM 1.433, S8_eq 0.894; eRASS1-like 3e14: N/N_LCDM 1.928, S8_eq 0.920; SPT-like 3.5e14: N/N_LCDM 2.066, S8_eq 0.912; SPT-like 5e14: N/N_LCDM 2.395, S8_eq 0.918   [147s]
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt: eRASS1-like 1.5e14: N/N_LCDM 1.767, S8_eq 0.938; eRASS1-like 3e14: N/N_LCDM 2.495, S8_eq 0.963; SPT-like 3.5e14: N/N_LCDM 2.711, S8_eq 0.947; SPT-like 5e14: N/N_LCDM 3.277, S8_eq 0.954   [148s]
+    halo only | phase-space recapture (primary) | pop lcdm | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.819, S8_eq 0.801; eRASS1-like 3e14: N/N_LCDM 0.834, S8_eq 0.810; SPT-like 3.5e14: N/N_LCDM 0.823, S8_eq 0.812; SPT-like 5e14: N/N_LCDM 0.822, S8_eq 0.814   [150s]
+    most conservative | phase-space recapture (primary) | pop lcdm | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.632, S8_eq 0.766; eRASS1-like 3e14: N/N_LCDM 0.733, S8_eq 0.796; SPT-like 3.5e14: N/N_LCDM 0.741, S8_eq 0.803; SPT-like 5e14: N/N_LCDM 0.776, S8_eq 0.810   [151s]
+    pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.688, S8_eq 0.777; eRASS1-like 3e14: N/N_LCDM 0.801, S8_eq 0.806; SPT-like 3.5e14: N/N_LCDM 0.798, S8_eq 0.809; SPT-like 5e14: N/N_LCDM 0.844, S8_eq 0.817   [153s]
+    dt0 7.54 (forest floor) | phase-space recapture (primary) | pop lcdm | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.596, S8_eq 0.759; eRASS1-like 3e14: N/N_LCDM 0.718, S8_eq 0.794; SPT-like 3.5e14: N/N_LCDM 0.723, S8_eq 0.800; SPT-like 5e14: N/N_LCDM 0.771, S8_eq 0.809   [154s]
+    dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.605, S8_eq 0.761; eRASS1-like 3e14: N/N_LCDM 0.705, S8_eq 0.792; SPT-like 3.5e14: N/N_LCDM 0.712, S8_eq 0.799; SPT-like 5e14: N/N_LCDM 0.748, S8_eq 0.806   [156s]
+    dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.640, S8_eq 0.768; eRASS1-like 3e14: N/N_LCDM 0.721, S8_eq 0.795; SPT-like 3.5e14: N/N_LCDM 0.721, S8_eq 0.800; SPT-like 5e14: N/N_LCDM 0.750, S8_eq 0.807   [157s]
+    dt0 25 (FK1 upper) | phase-space recapture (primary) | pop lcdm | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.644, S8_eq 0.769; eRASS1-like 3e14: N/N_LCDM 0.723, S8_eq 0.795; SPT-like 3.5e14: N/N_LCDM 0.721, S8_eq 0.800; SPT-like 5e14: N/N_LCDM 0.749, S8_eq 0.807   [159s]
+    v_k 575 | phase-space recapture (primary) | pop lcdm | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.674, S8_eq 0.774; eRASS1-like 3e14: N/N_LCDM 0.782, S8_eq 0.803; SPT-like 3.5e14: N/N_LCDM 0.782, S8_eq 0.808; SPT-like 5e14: N/N_LCDM 0.824, S8_eq 0.815   [161s]
+    v_k 650 | phase-space recapture (primary) | pop lcdm | phantom none: eRASS1-like 1.5e14: N/N_LCDM 0.576, S8_eq 0.755; eRASS1-like 3e14: N/N_LCDM 0.709, S8_eq 0.793; SPT-like 3.5e14: N/N_LCDM 0.709, S8_eq 0.798; SPT-like 5e14: N/N_LCDM 0.766, S8_eq 0.808   [162s]
+  [PASS] C2 CONTROL: no conversion gives the LCDM CMB-lensing amplitude and the LCDM cluster counts exactly
+         measured: |A - 1| = 0.0e+00 (band), 0.0e+00 (CV); max |N/N_LCDM - 1| = 0.0e+00
+
+======================================================================================================================
+RSD: f sigma8 of the chain against LCDM at DESI DR1's effective redshifts
+======================================================================================================================
+    halo only                 : f sigma8 ratio at z_eff 0.9538/0.9565/0.9591/0.9621/0.9674/0.9697; f ratio k=0.05/0.1/0.2 at z=0.51 0.9985/0.9937/0.9658; implied sigma8 0.7796
+    nominal (dt0 5.31)        : f sigma8 ratio at z_eff 0.9270/0.9348/0.9419/0.9496/0.9610/0.9652; f ratio k=0.05/0.1/0.2 at z=0.51 0.9968/0.9857/0.9184; implied sigma8 0.7676
+    most conservative         : f sigma8 ratio at z_eff 0.9392/0.9459/0.9516/0.9573/0.9653/0.9683; f ratio k=0.05/0.1/0.2 at z=0.51 0.9977/0.9892/0.9383; implied sigma8 0.7741
+    pump s = 1                : f sigma8 ratio at z_eff 0.9193/0.9271/0.9344/0.9427/0.9559/0.9612; f ratio k=0.05/0.1/0.2 at z=0.51 0.9964/0.9841/0.9098; implied sigma8 0.7623
+    dt0 7.54 (forest floor)   : f sigma8 ratio at z_eff 0.9310/0.9390/0.9461/0.9535/0.9639/0.9677; f ratio k=0.05/0.1/0.2 at z=0.51 0.9971/0.9864/0.9220; implied sigma8 0.7705
+    dt0 14.6 (canonical top)  : f sigma8 ratio at z_eff 0.9405/0.9476/0.9535/0.9596/0.9684/0.9718; f ratio k=0.05/0.1/0.2 at z=0.51 0.9976/0.9885/0.9348; implied sigma8 0.7760
+    dt0 22.8 (alt top)        : f sigma8 ratio at z_eff 0.9460/0.9521/0.9574/0.9631/0.9716/0.9750; f ratio k=0.05/0.1/0.2 at z=0.51 0.9977/0.9894/0.9405; implied sigma8 0.7792
+    dt0 25 (FK1 upper)        : f sigma8 ratio at z_eff 0.9470/0.9530/0.9582/0.9638/0.9724/0.9758; f ratio k=0.05/0.1/0.2 at z=0.51 0.9977/0.9895/0.9412; implied sigma8 0.7798
+    v_k 575                   : f sigma8 ratio at z_eff 0.9325/0.9398/0.9464/0.9536/0.9642/0.9681; f ratio k=0.05/0.1/0.2 at z=0.51 0.9971/0.9869/0.9252; implied sigma8 0.7710
+    v_k 650                   : f sigma8 ratio at z_eff 0.9153/0.9240/0.9321/0.9410/0.9543/0.9592; f ratio k=0.05/0.1/0.2 at z=0.51 0.9961/0.9830/0.9035; implied sigma8 0.7603
+
+======================================================================================================================
+H3a-H3e
+======================================================================================================================
+  [PASS] H3a the conversion lowers the CMB-lensing amplitude over ACT DR6's L = 40-763 (A < 1; nominal, primary, no phantom)
+         measured: A = 0.9757 (band-weighted), 0.9542 (cosmic-variance-weighted)
+  [FAIL] H3b CMB lensing stays Planck-like: |A - 1| <= 0.023 (ACT DR6's 1 sigma) under the S/N-like (band) weighting
+         measured: A - 1 = -0.0243 (band); -0.0458 (CV); against ACT DR6 A_lens = 1.013 +- 0.023: -1.62 sigma; sigma8_CMBL 0.8010 vs ACT+Planck 0.812 +- 0.013: -0.85 sigma
+  [PASS] H3c without the phantom the cluster-count-equivalent S8 is below Planck's for both selections (nominal, primary, LCDM population)
+         measured: eRASS1-like (z 0.1-0.8, M500c > 1.5e14): 0.768; eRASS1-like (z 0.1-0.8, M500c > 3e14): 0.800; SPT-like (z 0.25-1.78, M500c > 3.5e14): 0.805; SPT-like (z 0.25-1.78, M500c > 5e14): 0.813 (Planck 0.831; eRASS1 0.86 +- 0.01; SPT 0.795 +- 0.029)
+  [FAIL] H3d the chain's f sigma8-implied sigma8 lies within 2 sigma of DESI DR1 full shape + BAO (0.842 +- 0.034)
+         measured: 0.7676: -2.19 sigma (Planck-2018 LCDM 0.8109: -0.91 sigma)
+  [PASS] H3e the conversion acts as a positive lensing-equivalent sum m_nu of >= 0.02 eV (lensing channel)
+         measured: +0.098 eV (= 4.9 x DESI DR2's sigma(sum m_nu) = 0.020 eV if lensing carried the whole constraint; the BAO/geometry part is untouched)
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  CMB lensing (L = 40-763): A = 0.9757 at the nominal cell without the phantom; 0.9679-0.9828 over every history and
+  reading; ACT DR6 measures 1.013 +- 0.023.  Equivalent sum m_nu (lensing channel): 0.158 eV.
+  Clusters (nominal, primary, no phantom): count-equivalent S8 0.768-0.813 (eRASS1 0.86 +- 0.01, SPT 0.795 +- 0.029).
+  RSD: implied sigma8 0.7676 (DESI DR1 0.842 +- 0.034).
+
+  checks: 7/9 pass; load-bearing failures: 2   [162s]

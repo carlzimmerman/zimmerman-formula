@@ -1,0 +1,1445 @@
+{
+ "lane": "XR32",
+ "part": "3/3 consistency",
+ "mutate": true,
+ "checks": {
+  "C1": {
+   "ok": true,
+   "claim": "C1 CONTROL: this lane's Limber C_L^kappakappa (Planck 2018, HMcode-2020) against CAMB's own lensing potential (non-Limber) at L = 40-763",
+   "measured": "max |ratio - 1| = 0.0021",
+   "load_bearing": true
+  },
+  "C4": {
+   "ok": true,
+   "claim": "C4 (reported) CAMB's C_L^phiphi response to sum m_nu at fixed theta_* (three degenerate states; band-weighted over L = 40-763)",
+   "measured": "dA = -0.0148 per +0.06 eV, -0.0300 per +0.12 eV (slope -0.246 per eV)",
+   "load_bearing": false
+  },
+  "C3": {
+   "ok": true,
+   "claim": "C3 CONTROL: the count-equivalent inversion returns a known sigma8 (LCDM counts at sigma8 = 0.78, SPT-like selection)",
+   "measured": "0.780000",
+   "load_bearing": true
+  },
+  "C2": {
+   "ok": true,
+   "claim": "C2 CONTROL: no conversion gives the LCDM CMB-lensing amplitude and the LCDM cluster counts exactly",
+   "measured": "|A - 1| = 0.0e+00 (band), 0.0e+00 (CV); max |N/N_LCDM - 1| = 0.0e+00",
+   "load_bearing": true
+  },
+  "H3a": {
+   "ok": false,
+   "claim": "H3a the conversion lowers the CMB-lensing amplitude over ACT DR6's L = 40-763 (A < 1; nominal, primary, no phantom)",
+   "measured": "A = 1.0000 (band-weighted), 1.0000 (cosmic-variance-weighted)",
+   "load_bearing": true
+  },
+  "H3b": {
+   "ok": true,
+   "claim": "H3b CMB lensing stays Planck-like: |A - 1| <= 0.023 (ACT DR6's 1 sigma) under the S/N-like (band) weighting",
+   "measured": "A - 1 = +0.0000 (band); +0.0000 (CV); against ACT DR6 A_lens = 1.013 +- 0.023: -0.57 sigma; sigma8_CMBL 0.8109 vs ACT+Planck 0.812 +- 0.013: -0.09 sigma",
+   "load_bearing": true
+  },
+  "H3c": {
+   "ok": false,
+   "claim": "H3c without the phantom the cluster-count-equivalent S8 is below Planck's for both selections (nominal, primary, LCDM population)",
+   "measured": "eRASS1-like (z 0.1-0.8, M500c > 1.5e14): 0.831; eRASS1-like (z 0.1-0.8, M500c > 3e14): 0.831; SPT-like (z 0.25-1.78, M500c > 3.5e14): 0.831; SPT-like (z 0.25-1.78, M500c > 5e14): 0.831 (Planck 0.831; eRASS1 0.86 +- 0.01; SPT 0.795 +- 0.029)",
+   "load_bearing": true
+  },
+  "H3d": {
+   "ok": true,
+   "claim": "H3d the chain's f sigma8-implied sigma8 lies within 2 sigma of DESI DR1 full shape + BAO (0.842 +- 0.034)",
+   "measured": "0.8109: -0.91 sigma (Planck-2018 LCDM 0.8109: -0.91 sigma)",
+   "load_bearing": true
+  },
+  "H3e": {
+   "ok": false,
+   "claim": "H3e the conversion acts as a positive lensing-equivalent sum m_nu of >= 0.02 eV (lensing channel)",
+   "measured": "+0.000 eV (= 0.0 x DESI DR2's sigma(sum m_nu) = 0.020 eV if lensing carried the whole constraint; the BAO/geometry part is untouched)",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "cmb_lensing": {
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "A_band": 1.0,
+    "A_cv": 1.0,
+    "ratio_at": {
+     "40": 1.0,
+     "100": 1.0,
+     "300": 1.0,
+     "763": 1.0,
+     "1000": 1.0,
+     "2000": 1.0
+    },
+    "sigma8_cmbl": 0.8108919279246382
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "A_band": 1.0789453185602036,
+    "A_cv": 1.1641846017140023,
+    "ratio_at": {
+     "40": 1.0026221895427285,
+     "100": 1.0107565779154455,
+     "300": 1.0757828697264773,
+     "763": 1.4444261017781979,
+     "1000": 1.7737417682018364,
+     "2000": 4.209661386752053
+    },
+    "sigma8_cmbl": 0.8422920366534375
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "A_band": 1.0876602431337625,
+    "A_cv": 1.1826029790563592,
+    "ratio_at": {
+     "40": 1.0028911399981417,
+     "100": 1.0118581972335419,
+     "300": 1.0837499325806048,
+     "763": 1.496613395407918,
+     "1000": 1.870188560006265,
+     "2000": 4.688675257263865
+    },
+    "sigma8_cmbl": 0.8456869020817173
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom running L canonical (sensitivity)": {
+    "A_band": 1.007706527372957,
+    "A_cv": 1.0147987158463287,
+    "ratio_at": {
+     "40": 1.000833553366719,
+     "100": 1.0018873450522872,
+     "300": 1.0078945866364584,
+     "763": 1.0364647421843056,
+     "1000": 1.0582849724750452,
+     "2000": 1.1853316955927327
+    },
+    "sigma8_cmbl": 0.8140105115132323
+   },
+   "nominal (dt0 5.31) | in place | pop lcdm | phantom none": {
+    "A_band": 1.0,
+    "A_cv": 1.0,
+    "ratio_at": {
+     "40": 1.0,
+     "100": 1.0,
+     "300": 1.0,
+     "763": 1.0,
+     "1000": 1.0,
+     "2000": 1.0
+    },
+    "sigma8_cmbl": 0.8108919279246382
+   },
+   "nominal (dt0 5.31) | no recapture | pop lcdm | phantom none": {
+    "A_band": 1.0,
+    "A_cv": 1.0,
+    "ratio_at": {
+     "40": 1.0,
+     "100": 1.0,
+     "300": 1.0,
+     "763": 1.0,
+     "1000": 1.0,
+     "2000": 1.0
+    },
+    "sigma8_cmbl": 0.8108919279246382
+   },
+   "nominal (dt0 5.31) | PM (L388) | pop lcdm | phantom none": {
+    "A_band": 1.0,
+    "A_cv": 1.0,
+    "ratio_at": {
+     "40": 1.0,
+     "100": 1.0,
+     "300": 1.0,
+     "763": 1.0,
+     "1000": 1.0,
+     "2000": 1.0
+    },
+    "sigma8_cmbl": 0.8108919279246382
+   },
+   "halo only | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "A_band": 1.0,
+    "A_cv": 1.0,
+    "ratio_at": {
+     "40": 1.0,
+     "100": 1.0,
+     "300": 1.0,
+     "763": 1.0,
+     "1000": 1.0,
+     "2000": 1.0
+    },
+    "sigma8_cmbl": 0.8108919279246382
+   },
+   "most conservative | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "A_band": 1.0,
+    "A_cv": 1.0,
+    "ratio_at": {
+     "40": 1.0,
+     "100": 1.0,
+     "300": 1.0,
+     "763": 1.0,
+     "1000": 1.0,
+     "2000": 1.0
+    },
+    "sigma8_cmbl": 0.8108919279246382
+   },
+   "pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "A_band": 1.0,
+    "A_cv": 1.0,
+    "ratio_at": {
+     "40": 1.0,
+     "100": 1.0,
+     "300": 1.0,
+     "763": 1.0,
+     "1000": 1.0,
+     "2000": 1.0
+    },
+    "sigma8_cmbl": 0.8108919279246382
+   },
+   "dt0 7.54 (forest floor) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "A_band": 1.0,
+    "A_cv": 1.0,
+    "ratio_at": {
+     "40": 1.0,
+     "100": 1.0,
+     "300": 1.0,
+     "763": 1.0,
+     "1000": 1.0,
+     "2000": 1.0
+    },
+    "sigma8_cmbl": 0.8108919279246382
+   },
+   "dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "A_band": 1.0,
+    "A_cv": 1.0,
+    "ratio_at": {
+     "40": 1.0,
+     "100": 1.0,
+     "300": 1.0,
+     "763": 1.0,
+     "1000": 1.0,
+     "2000": 1.0
+    },
+    "sigma8_cmbl": 0.8108919279246382
+   },
+   "dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "A_band": 1.0,
+    "A_cv": 1.0,
+    "ratio_at": {
+     "40": 1.0,
+     "100": 1.0,
+     "300": 1.0,
+     "763": 1.0,
+     "1000": 1.0,
+     "2000": 1.0
+    },
+    "sigma8_cmbl": 0.8108919279246382
+   },
+   "dt0 25 (FK1 upper) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "A_band": 1.0,
+    "A_cv": 1.0,
+    "ratio_at": {
+     "40": 1.0,
+     "100": 1.0,
+     "300": 1.0,
+     "763": 1.0,
+     "1000": 1.0,
+     "2000": 1.0
+    },
+    "sigma8_cmbl": 0.8108919279246382
+   },
+   "v_k 575 | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "A_band": 1.0,
+    "A_cv": 1.0,
+    "ratio_at": {
+     "40": 1.0,
+     "100": 1.0,
+     "300": 1.0,
+     "763": 1.0,
+     "1000": 1.0,
+     "2000": 1.0
+    },
+    "sigma8_cmbl": 0.8108919279246382
+   },
+   "v_k 650 | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "A_band": 1.0,
+    "A_cv": 1.0,
+    "ratio_at": {
+     "40": 1.0,
+     "100": 1.0,
+     "300": 1.0,
+     "763": 1.0,
+     "1000": 1.0,
+     "2000": 1.0
+    },
+    "sigma8_cmbl": 0.8108919279246382
+   },
+   "dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "A_band": 1.0789453185602036,
+    "A_cv": 1.1641846017140023,
+    "ratio_at": {
+     "40": 1.0026221895427285,
+     "100": 1.0107565779154455,
+     "300": 1.0757828697264773,
+     "763": 1.4444261017781979,
+     "1000": 1.7737417682018364,
+     "2000": 4.209661386752053
+    },
+    "sigma8_cmbl": 0.8422920366534375
+   },
+   "dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "A_band": 1.0876602431337625,
+    "A_cv": 1.1826029790563592,
+    "ratio_at": {
+     "40": 1.0028911399981417,
+     "100": 1.0118581972335419,
+     "300": 1.0837499325806048,
+     "763": 1.496613395407918,
+     "1000": 1.870188560006265,
+     "2000": 4.688675257263865
+    },
+    "sigma8_cmbl": 0.8456869020817173
+   }
+  },
+  "mnu": {
+   "slope_per_eV": -0.24646981284018507,
+   "dA_012": -0.014788188770411104,
+   "dA_018": -0.030010422438834006,
+   "configs": {
+    "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom none": {
+     "dA": 0.0,
+     "mnu_eq": 0.06
+    },
+    "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+     "dA": 0.07894531856020359,
+     "mnu_eq": -0.26030420947084904
+    },
+    "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+     "dA": 0.08766024313376253,
+     "mnu_eq": -0.2956632032280676
+    },
+    "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom running L canonical (sensitivity)": {
+     "dA": 0.007706527372957073,
+     "mnu_eq": 0.02873236813810498
+    },
+    "nominal (dt0 5.31) | in place | pop lcdm | phantom none": {
+     "dA": 0.0,
+     "mnu_eq": 0.06
+    },
+    "nominal (dt0 5.31) | no recapture | pop lcdm | phantom none": {
+     "dA": 0.0,
+     "mnu_eq": 0.06
+    },
+    "nominal (dt0 5.31) | PM (L388) | pop lcdm | phantom none": {
+     "dA": 0.0,
+     "mnu_eq": 0.06
+    },
+    "halo only | phase-space recapture (primary) | pop lcdm | phantom none": {
+     "dA": 0.0,
+     "mnu_eq": 0.06
+    },
+    "most conservative | phase-space recapture (primary) | pop lcdm | phantom none": {
+     "dA": 0.0,
+     "mnu_eq": 0.06
+    },
+    "pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom none": {
+     "dA": 0.0,
+     "mnu_eq": 0.06
+    },
+    "dt0 7.54 (forest floor) | phase-space recapture (primary) | pop lcdm | phantom none": {
+     "dA": 0.0,
+     "mnu_eq": 0.06
+    },
+    "dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom none": {
+     "dA": 0.0,
+     "mnu_eq": 0.06
+    },
+    "dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom none": {
+     "dA": 0.0,
+     "mnu_eq": 0.06
+    },
+    "dt0 25 (FK1 upper) | phase-space recapture (primary) | pop lcdm | phantom none": {
+     "dA": 0.0,
+     "mnu_eq": 0.06
+    },
+    "v_k 575 | phase-space recapture (primary) | pop lcdm | phantom none": {
+     "dA": 0.0,
+     "mnu_eq": 0.06
+    },
+    "v_k 650 | phase-space recapture (primary) | pop lcdm | phantom none": {
+     "dA": 0.0,
+     "mnu_eq": 0.06
+    },
+    "dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+     "dA": 0.07894531856020359,
+     "mnu_eq": -0.26030420947084904
+    },
+    "dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+     "dA": 0.08766024313376253,
+     "mnu_eq": -0.2956632032280676
+    }
+   }
+  },
+  "clusters": {
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 2.477179823329146,
+     "S8_eq": 1.023292855195734
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 2.914377451767176,
+     "S8_eq": 0.9916565252273184
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 3.139309610076242,
+     "S8_eq": 0.9669194955028738
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 3.539079274916592,
+     "S8_eq": 0.9633901837181145
+    }
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop cold | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop cold | phantom L1.7 canonical": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 2.477179823329146,
+     "S8_eq": 1.023292855195734
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 2.914377451767176,
+     "S8_eq": 0.9916565252273184
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 3.139309610076242,
+     "S8_eq": 0.9669194955028738
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 3.539079274916592,
+     "S8_eq": 0.9633901837181145
+    }
+   },
+   "nominal (dt0 5.31) | in place | pop lcdm | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   },
+   "nominal (dt0 5.31) | in place | pop lcdm | phantom L1.7 canonical": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 2.477179823329146,
+     "S8_eq": 1.023292855195734
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 2.914377451767176,
+     "S8_eq": 0.9916565252273184
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 3.139309610076242,
+     "S8_eq": 0.9669194955028738
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 3.539079274916592,
+     "S8_eq": 0.9633901837181145
+    }
+   },
+   "nominal (dt0 5.31) | in place | pop cold | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   },
+   "nominal (dt0 5.31) | in place | pop cold | phantom L1.7 canonical": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 2.477179823329146,
+     "S8_eq": 1.023292855195734
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 2.914377451767176,
+     "S8_eq": 0.9916565252273184
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 3.139309610076242,
+     "S8_eq": 0.9669194955028738
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 3.539079274916592,
+     "S8_eq": 0.9633901837181145
+    }
+   },
+   "nominal (dt0 5.31) | no recapture | pop lcdm | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   },
+   "nominal (dt0 5.31) | no recapture | pop lcdm | phantom L1.7 canonical": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 2.477179823329146,
+     "S8_eq": 1.023292855195734
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 2.914377451767176,
+     "S8_eq": 0.9916565252273184
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 3.139309610076242,
+     "S8_eq": 0.9669194955028738
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 3.539079274916592,
+     "S8_eq": 0.9633901837181145
+    }
+   },
+   "nominal (dt0 5.31) | no recapture | pop cold | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   },
+   "nominal (dt0 5.31) | no recapture | pop cold | phantom L1.7 canonical": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 2.477179823329146,
+     "S8_eq": 1.023292855195734
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 2.914377451767176,
+     "S8_eq": 0.9916565252273184
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 3.139309610076242,
+     "S8_eq": 0.9669194955028738
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 3.539079274916592,
+     "S8_eq": 0.9633901837181145
+    }
+   },
+   "nominal (dt0 5.31) | PM (L388) | pop lcdm | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   },
+   "nominal (dt0 5.31) | PM (L388) | pop lcdm | phantom L1.7 canonical": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 2.477179823329146,
+     "S8_eq": 1.023292855195734
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 2.914377451767176,
+     "S8_eq": 0.9916565252273184
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 3.139309610076242,
+     "S8_eq": 0.9669194955028738
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 3.539079274916592,
+     "S8_eq": 0.9633901837181145
+    }
+   },
+   "nominal (dt0 5.31) | PM (L388) | pop cold | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   },
+   "nominal (dt0 5.31) | PM (L388) | pop cold | phantom L1.7 canonical": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 2.477179823329146,
+     "S8_eq": 1.023292855195734
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 2.914377451767176,
+     "S8_eq": 0.9916565252273184
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 3.139309610076242,
+     "S8_eq": 0.9669194955028738
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 3.539079274916592,
+     "S8_eq": 0.9633901837181145
+    }
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 2.6779822235273096,
+     "S8_eq": 1.046405833778007
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 3.203474543134803,
+     "S8_eq": 1.0102701278745865
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 3.4820225392889403,
+     "S8_eq": 0.9818362305495197
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 3.9742887312003257,
+     "S8_eq": 0.9780633387957703
+    }
+   },
+   "halo only | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   },
+   "most conservative | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   },
+   "pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   },
+   "dt0 7.54 (forest floor) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   },
+   "dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   },
+   "dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   },
+   "dt0 25 (FK1 upper) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   },
+   "v_k 575 | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   },
+   "v_k 650 | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "eRASS1-like (z 0.1-0.8, M500c > 1.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719225351967
+    },
+    "eRASS1-like (z 0.1-0.8, M500c > 3e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719224095127
+    },
+    "SPT-like (z 0.25-1.78, M500c > 3.5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719255289266
+    },
+    "SPT-like (z 0.25-1.78, M500c > 5e14)": {
+     "N_ratio": 1.0,
+     "S8_eq": 0.8311719260216949
+    }
+   }
+  },
+  "rsd": {
+   "halo only": {
+    "bins": {
+     "0.295": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.51": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.706": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.93": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.317": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.491": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     }
+    },
+    "sigma8_implied": 0.8108919279246382
+   },
+   "nominal (dt0 5.31)": {
+    "bins": {
+     "0.295": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.51": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.706": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.93": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.317": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.491": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     }
+    },
+    "sigma8_implied": 0.8108919279246382
+   },
+   "most conservative": {
+    "bins": {
+     "0.295": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.51": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.706": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.93": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.317": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.491": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     }
+    },
+    "sigma8_implied": 0.8108919279246382
+   },
+   "pump s = 1": {
+    "bins": {
+     "0.295": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.51": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.706": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.93": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.317": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.491": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     }
+    },
+    "sigma8_implied": 0.8108919279246382
+   },
+   "dt0 7.54 (forest floor)": {
+    "bins": {
+     "0.295": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.51": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.706": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.93": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.317": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.491": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     }
+    },
+    "sigma8_implied": 0.8108919279246382
+   },
+   "dt0 14.6 (canonical top)": {
+    "bins": {
+     "0.295": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.51": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.706": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.93": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.317": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.491": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     }
+    },
+    "sigma8_implied": 0.8108919279246382
+   },
+   "dt0 22.8 (alt top)": {
+    "bins": {
+     "0.295": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.51": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.706": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.93": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.317": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.491": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     }
+    },
+    "sigma8_implied": 0.8108919279246382
+   },
+   "dt0 25 (FK1 upper)": {
+    "bins": {
+     "0.295": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.51": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.706": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.93": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.317": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.491": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     }
+    },
+    "sigma8_implied": 0.8108919279246382
+   },
+   "v_k 575": {
+    "bins": {
+     "0.295": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.51": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.706": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.93": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.317": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.491": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     }
+    },
+    "sigma8_implied": 0.8108919279246382
+   },
+   "v_k 650": {
+    "bins": {
+     "0.295": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.51": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.706": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "0.93": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.317": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     },
+     "1.491": {
+      "sigma8_ratio": 1.0,
+      "f_ratio": {
+       "0.05": 1.0,
+       "0.1": 1.0,
+       "0.2": 1.0
+      },
+      "fs8_ratio": 1.0
+     }
+    },
+    "sigma8_implied": 0.8108919279246382
+   }
+  }
+ },
+ "summary": {
+  "n_checks": 9,
+  "load_bearing_failed": 3,
+  "runtime_s": 87.5
+ }
+}

@@ -1,0 +1,185 @@
+XR32 (2/3) -- THE S8 A LENSING SURVEY WOULD INFER FROM THE CHAIN: xi+- in the KiDS-1000 and DES-Y3 set-ups, fitted with
+LCDM templates the way the surveys fit, against the published KiDS-1000, KiDS-Legacy, DES Y3 and HSC Y3 values.
+
+WHY.  A scale-dependent suppression is not a lower sigma8: a survey fits xi+- over its own scales with LCDM templates and
+nuisance parameters that can absorb part of it (baryon feedback, intrinsic alignments).  XR32_matter_power builds the
+chain's P(k, z); this part asks what S8 a survey would report, and whether that lands on the low-z weak-lensing values.
+
+METHOD
+  THE SET-UPS.
+    KiDS-1000: five tomographic bins (Z_B 0.1-0.3-0.5-0.7-0.9-1.2).  n(z): lensfit-weighted stacks of Gaussian photo-z
+      PDFs (Z_B, half the 68% interval) from the DR4.1 gold catalogue in the repository, moment-matched to Asgari+21 Table
+      A.1's SOM means (0.26/0.40/0.56/0.79/0.98) and stds (0.16/0.16/0.20/0.16/0.25) -- an approximation (the SOM n(z)
+      needs the spectroscopic calibration sample; its tails come out ~3x lighter than Table A.1's).  theta: 9 log bins
+      0.5-300 arcmin, xi- only above 4 arcmin (225 points, Asgari+21 Table 3's DoF).  Covariance: analytic Gaussian
+      (sample variance, shape noise from Table 1's n_eff and sigma_e, the mixed term, E and B shape noise), A = 777.4 deg^2.
+    DES Y3: the official 2pt file (repository copy): source n(z), 20 theta bins 2.5-250 arcmin, the LCDM-optimised scale
+      cuts (cosmosis-standard-library des-y3-LCDM-optimised-scale-cuts.ini), the official covariance.
+    Both: Limber with l + 1/2 (checked against CAMB's own lensing source windows), NLA intrinsic alignments, xi+- averaged
+      over each theta bin with theta d theta weights through analytic Bessel integrals.
+  THE CHAIN'S DATA.  P_chain(k, z) = R(k, z) x P_template(k, z; Planck-2018 truth), R = XR32_common's halo-model response
+    (the model XR32_matter_power documents), noiseless, no intrinsic alignment in the truth.  Normalised to Planck 2018
+    (an ASSUMPTION pending XR26).
+  THE FIT, the way the surveys fit.  LCDM templates on grids (Omega_m 0.18-0.46 in 0.02, S8 0.44-1.12 in 0.04; cubic
+    interpolation): KiDS -- CAMB HMcode (mead2016) with A_bary in [2, 3.13] (eta_0 = 0.98 - 0.12 A_bary), NLA A_IA in
+    [-6, 6] (Asgari+21's model and priors); DES -- CAMB Takahashi halofit, NLA A_1 in [-5, 5], eta_1 in [-3, 3], z_0 = 0.62.
+    Fixed at the truth (disclosed): h, omega_b, n_s, sum m_nu; no photo-z or shear-calibration nuisances (priors centred
+    on the truth).  Inferred S8 = the best fit (minimum chi^2 with the survey covariance); the Delta chi^2 = 1 width of
+    the S8 profile is reported for the key cells; chi^2_min measures how well LCDM can mimic the chain.
+  CONFIGURATIONS.  The ten histories of XR32_matter_power (delta_t0 5.31-25, conservative, pump, halo only, v_k 575/650);
+    four recapture readings and two halo populations at the nominal cell; the phantom bracket: none / the 1.7 Mpc
+    stand-in on both a0 footings (canonical 9.3603e-11, alt 1.1312e-10); sensitivities: running L(z), heat-kernel edge.
+  KiDS-1000: 225 points; DES Y3: 273 of 400 after the LCDM-optimised cuts   [16s]
+  truth: Omega_m 0.31519, S8 0.83117 (Planck 2018 posterior means; quoted 0.832 +- 0.013)   [21s]
+
+======================================================================================================================
+C1-C2, C6  CONTROLS: Limber and xi+- against CAMB's own lensing source windows; the Hankel transform; the KiDS n(z)
+======================================================================================================================
+  [PASS] C1 CONTROL: Limber C_ell (KiDS-1000 n(z), HMcode-2020, Planck 2018) against CAMB 1.6.6: its exact (non-Limber) source-window C_ell at l = 30-99 and its Limber C_ell at l = 100-3000; all 15 pairs within 1% point-wise
+         measured: max |ratio - 1| = 0.0034 (CAMB's own Limber output departs from its exact one by up to 0.0115 at l < 100)
+         reading:  CAMB's limber_windows output has a ~1% transition dip at l ~ 40-45 (found in the smoke run), hence its exact result below l = 100
+  [PASS] (reported) C1b (reported) xi+- from CAMB's C_ell (spliced to this lane's above l = 5500) and from this lane's, same Hankel transform, theta >= 4 arcmin
+         measured: max |ratio - 1| = 0.0308
+  [PASS] C2 CONTROL: the Hankel transform reproduces an analytic Gaussian (<= 1e-3) and the J_4 bin average matches quadrature (<= 1e-8)
+         measured: Gaussian 5.1e-04; J_4 1.3e-14
+  [PASS] (reported) C6 (reported) the KiDS-1000 n(z): catalogue stacks moment-matched to Asgari+21 Table A.1
+         measured: [{'bin': '0.1-0.3', 'n_gal': 1792136, 'stack_mean': 0.23091935917883905, 'stack_std': 0.10054116691537081, 'mean': 0.26000460680147325, 'std': 0.15999799966408154, 'frac_z_gt_2': 0.0003008159498266331}, {'bin': '0.3-0.5', 'n_gal': 3681319, 'stack_mean': 0.41180593811827726, 'stack_std': 0.10484430797701007, 'mean': 0.40000279284166024, 'std': 0.15999756822669187, 'frac_z_gt_2': 0.000132400419694687}, {'bin': '0.5-0.7', 'n_gal': 6148102, 'stack_mean': 0.604352445666306, 'stack_std': 0.12313811452201938, 'mean': 0.560003935929728, 'std': 0.1999961890050047, 'frac_z_gt_2': 0.0005780307817851658}, {'bin': '0.7-0.9', 'n_gal': 4544395, 'stack_mean': 0.7963381532665965, 'stack_std': 0.12192223429518059, 'mean': 0.7900004513356704, 'std': 0.15999893047022645, 'frac_z_gt_2': 0.0002547372427467592}, {'bin': '0.9-1.2', 'n_gal': 5096059, 'stack_mean': 1.0253632135501947, 'stack_std': 0.16989013415109364, 'mean': 0.9800028681080749, 'std': 0.24999481343931568, 'frac_z_gt_2': 0.0029505627863359307}]
+         reading:  means and stds hit Table A.1 exactly; the tails beyond z = 2 come out lighter (0.01-0.3% against 0.1-1%)
+  KiDS-1000 Gaussian covariance: (225, 225), min eigenvalue 7.49e-15 (> 0), condition 1.1e+06   [176s]
+
+======================================================================================================================
+TEMPLATES: CAMB LCDM on (Omega_m, S8[, A_bary]); NLA intrinsic alignments
+======================================================================================================================
+    Omega_m 0.18 done   [219s]
+    Omega_m 0.20 done   [260s]
+    Omega_m 0.22 done   [309s]
+    Omega_m 0.24 done   [357s]
+    Omega_m 0.26 done   [429s]
+    Omega_m 0.28 done   [478s]
+    Omega_m 0.30 done   [523s]
+    Omega_m 0.32 done   [569s]
+    Omega_m 0.34 done   [616s]
+    Omega_m 0.36 done   [659s]
+    Omega_m 0.38 done   [699s]
+    Omega_m 0.40 done   [729s]
+    Omega_m 0.42 done   [764s]
+    Omega_m 0.44 done   [801s]
+    Omega_m 0.46 done   [830s]
+  [PASS] (reported) C7 (reported) the templates hit their sigma8 targets
+         measured: max |sigma8 - target| = 8.9e-16
+
+======================================================================================================================
+C3-C5  CONTROLS: truth recovery; the real DES Y3 data
+======================================================================================================================
+    kids: S8 0.8312 (truth 0.8312), Om 0.315, A_IA +0.01, nuisance 3.13, chi2 3.53e-02, 1 sigma (0.8212, 0.8462); des: S8 0.8304 (truth 0.8312), Om 0.316, A_IA +0.01, nuisance 1.80, chi2 1.88e-01, 1 sigma (0.8204, 0.8404)
+  [PASS] C3 CONTROL: the fit recovers the truth from the no-conversion data vector (|S8 - S8_true| <= 0.003, both set-ups)
+         measured: kids +0.0000; des -0.0008
+  [PASS] C4 CONTROL: the real DES Y3 xi+- (LCDM-optimised cuts, m at its prior means) fitted with these templates: S8 within 0.03 of the published 0.772
+         measured: S8 0.7945, Om 0.310, A_1 +0.58, eta_1 +2.06, chi2 285.8 for 273 points
+         reading:  h, omega_b, n_s fixed at Planck's and no photo-z nuisances: a best fit, not DES's marginal posterior
+  [PASS] (reported) C5 (reported) the Delta chi^2 = 1 width of the truth fit's S8 profile against the published 1 sigma
+         measured: KiDS (0.8212, 0.8462) (published +-0.018); DES (0.8204, 0.8404) (published +0.018/-0.017)
+
+======================================================================================================================
+THE CHAIN: inferred S8 by configuration (KiDS-1000 and DES-Y3 set-ups)
+======================================================================================================================
+  histories ready   [985s]
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom none: KiDS S8 0.7664 (Om 0.264, A_IA -0.18, A_bary 2.00, chi2 40.4) | DES S8 0.7518 (Om 0.271, A_1 +0.05, eta -3.00, chi2 26.9)   [987s]
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical: KiDS S8 0.7708 (Om 0.204, A_IA +0.01, A_bary 3.13, chi2 1001.1) | DES S8 0.7604 (Om 0.275, A_1 -0.28, eta -2.49, chi2 141.4)   [1008s]
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt: KiDS S8 0.7656 (Om 0.187, A_IA -0.04, A_bary 3.13, chi2 1508.5) | DES S8 0.7599 (Om 0.276, A_1 -0.32, eta -2.64, chi2 195.4)   [1022s]
+    nominal (dt0 5.31) | in place | pop lcdm | phantom none: KiDS S8 0.7525 (Om 0.283, A_IA -0.05, A_bary 2.00, chi2 5.0) | DES S8 0.7568 (Om 0.272, A_1 +0.04, eta -3.00, chi2 20.3)   [1023s]
+    nominal (dt0 5.31) | in place | pop lcdm | phantom L1.7 canonical: KiDS S8 0.7649 (Om 0.183, A_IA +0.01, A_bary 3.13, chi2 1859.2) | DES S8 0.7625 (Om 0.278, A_1 -0.32, eta -2.77, chi2 205.9)   [1023s]
+    nominal (dt0 5.31) | in place | pop lcdm | phantom L1.7 alt: KiDS S8 0.7535 (Om 0.180, A_IA -0.05, A_bary 3.13, chi2 2639.2) | DES S8 0.7619 (Om 0.280, A_1 -0.36, eta -2.87, chi2 278.2)   [1024s]
+    nominal (dt0 5.31) | no recapture | pop lcdm | phantom none: KiDS S8 0.7547 (Om 0.227, A_IA -0.09, A_bary 2.00, chi2 197.3) | DES S8 0.6952 (Om 0.251, A_1 +0.18, eta -3.00, chi2 90.1)   [1025s]
+    nominal (dt0 5.31) | no recapture | pop lcdm | phantom L1.7 canonical: KiDS S8 0.7041 (Om 0.230, A_IA +0.31, A_bary 3.13, chi2 539.6) | DES S8 0.6868 (Om 0.226, A_1 -0.72, eta +1.62, chi2 145.0)   [1025s]
+    nominal (dt0 5.31) | no recapture | pop lcdm | phantom L1.7 alt: KiDS S8 0.7092 (Om 0.211, A_IA +0.27, A_bary 3.13, chi2 843.1) | DES S8 0.6830 (Om 0.224, A_1 -0.90, eta +1.58, chi2 182.1)   [1026s]
+    nominal (dt0 5.31) | PM (L388) | pop lcdm | phantom none: KiDS S8 0.7604 (Om 0.256, A_IA -0.14, A_bary 2.00, chi2 62.4) | DES S8 0.7383 (Om 0.266, A_1 +0.08, eta -3.00, chi2 38.6)   [1026s]
+    nominal (dt0 5.31) | PM (L388) | pop lcdm | phantom L1.7 canonical: KiDS S8 0.7576 (Om 0.210, A_IA +0.09, A_bary 3.13, chi2 884.3) | DES S8 0.7322 (Om 0.257, A_1 -0.85, eta +1.78, chi2 136.5)   [1027s]
+    nominal (dt0 5.31) | PM (L388) | pop lcdm | phantom L1.7 alt: KiDS S8 0.7549 (Om 0.193, A_IA +0.05, A_bary 3.13, chi2 1341.3) | DES S8 0.7289 (Om 0.257, A_1 -0.99, eta +1.80, chi2 186.9)   [1027s]
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop cold | phantom none: KiDS S8 0.7652 (Om 0.262, A_IA -0.17, A_bary 2.00, chi2 47.5) | DES S8 0.7482 (Om 0.269, A_1 +0.06, eta -3.00, chi2 29.9)   [1028s]
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop cold | phantom L1.7 canonical: KiDS S8 0.7666 (Om 0.215, A_IA +0.04, A_bary 3.13, chi2 720.7) | DES S8 0.7437 (Om 0.263, A_1 -0.79, eta +1.87, chi2 112.0)   [1028s]
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom running L canonical (sensitivity): KiDS S8 0.7386 (Om 0.287, A_IA -0.21, A_bary 3.13, chi2 335.3) | DES S8 0.7533 (Om 0.263, A_1 -0.58, eta +1.94, chi2 48.6)   [1043s]
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom heat-kernel L1.7 canonical (sensitivity): KiDS S8 1.1200 (Om 0.180, A_IA -0.26, A_bary 2.80, chi2 383.3) | DES S8 1.1200 (Om 0.458, A_1 -0.10, eta +3.00, chi2 892.7)   [1056s]
+    halo only | phase-space recapture (primary) | pop lcdm | phantom none: KiDS S8 0.7794 (Om 0.289, A_IA -0.08, A_bary 2.00, chi2 3.9) | DES S8 0.7778 (Om 0.285, A_1 +0.03, eta -3.00, chi2 12.4)   [1056s]
+    halo only | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical: KiDS S8 0.7927 (Om 0.184, A_IA -0.01, A_bary 3.13, chi2 1974.5) | DES S8 0.7900 (Om 0.295, A_1 -0.32, eta -2.82, chi2 204.2)   [1057s]
+    halo only | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt: KiDS S8 0.7747 (Om 0.180, A_IA -0.08, A_bary 3.13, chi2 2877.4) | DES S8 0.7899 (Om 0.298, A_1 -0.36, eta -2.89, chi2 280.4)   [1057s]
+    most conservative | phase-space recapture (primary) | pop lcdm | phantom none: KiDS S8 0.7723 (Om 0.268, A_IA -0.15, A_bary 2.00, chi2 47.1) | DES S8 0.7551 (Om 0.274, A_1 +0.06, eta -3.00, chi2 28.1)   [1057s]
+    most conservative | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical: KiDS S8 0.7770 (Om 0.205, A_IA +0.07, A_bary 3.13, chi2 1036.4) | DES S8 0.7653 (Om 0.279, A_1 -0.27, eta -2.49, chi2 137.5)   [1058s]
+    most conservative | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt: KiDS S8 0.7725 (Om 0.189, A_IA +0.03, A_bary 3.13, chi2 1560.7) | DES S8 0.7649 (Om 0.281, A_1 -0.31, eta -2.65, chi2 191.3)   [1058s]
+    pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom none: KiDS S8 0.7615 (Om 0.264, A_IA -0.18, A_bary 2.00, chi2 30.6) | DES S8 0.7501 (Om 0.268, A_1 +0.04, eta -3.00, chi2 25.3)   [1059s]
+    pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical: KiDS S8 0.7667 (Om 0.201, A_IA -0.02, A_bary 3.13, chi2 1046.3) | DES S8 0.7574 (Om 0.272, A_1 -0.30, eta -2.51, chi2 149.0)   [1059s]
+    pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt: KiDS S8 0.7599 (Om 0.183, A_IA -0.07, A_bary 3.13, chi2 1569.2) | DES S8 0.7568 (Om 0.274, A_1 -0.34, eta -2.65, chi2 204.6)   [1060s]
+    dt0 7.54 (forest floor) | phase-space recapture (primary) | pop lcdm | phantom none: KiDS S8 0.7690 (Om 0.264, A_IA -0.17, A_bary 2.00, chi2 51.9) | DES S8 0.7508 (Om 0.271, A_1 +0.06, eta -3.00, chi2 29.6)   [1060s]
+    dt0 7.54 (forest floor) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical: KiDS S8 0.7712 (Om 0.207, A_IA +0.04, A_bary 3.13, chi2 945.9) | DES S8 0.7458 (Om 0.266, A_1 -0.85, eta +1.90, chi2 134.8)   [1060s]
+    dt0 7.54 (forest floor) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt: KiDS S8 0.7676 (Om 0.191, A_IA +0.00, A_bary 3.13, chi2 1432.4) | DES S8 0.7596 (Om 0.277, A_1 -0.32, eta -2.60, chi2 186.9)   [1061s]
+    dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom none: KiDS S8 0.7729 (Om 0.268, A_IA -0.13, A_bary 2.00, chi2 50.1) | DES S8 0.7546 (Om 0.275, A_1 +0.07, eta -3.00, chi2 29.2)   [1061s]
+    dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical: KiDS S8 0.7771 (Om 0.205, A_IA +0.09, A_bary 3.13, chi2 1063.1) | DES S8 0.7648 (Om 0.279, A_1 -0.27, eta -2.49, chi2 138.8)   [1062s]
+    dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt: KiDS S8 0.7720 (Om 0.188, A_IA +0.05, A_bary 3.13, chi2 1602.9) | DES S8 0.7644 (Om 0.281, A_1 -0.31, eta -2.65, chi2 193.4)   [1062s]
+    dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom none: KiDS S8 0.7757 (Om 0.273, A_IA -0.11, A_bary 2.00, chi2 37.6) | DES S8 0.7609 (Om 0.278, A_1 +0.06, eta -3.00, chi2 25.0)   [1063s]
+    dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical: KiDS S8 0.7835 (Om 0.199, A_IA +0.08, A_bary 3.13, chi2 1252.3) | DES S8 0.7721 (Om 0.284, A_1 -0.28, eta -2.62, chi2 150.7)   [1063s]
+    dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt: KiDS S8 0.7753 (Om 0.181, A_IA +0.03, A_bary 3.13, chi2 1875.3) | DES S8 0.7719 (Om 0.286, A_1 -0.32, eta -2.74, chi2 210.5)   [1063s]
+    dt0 25 (FK1 upper) | phase-space recapture (primary) | pop lcdm | phantom none: KiDS S8 0.7763 (Om 0.274, A_IA -0.11, A_bary 2.00, chi2 35.5) | DES S8 0.7621 (Om 0.279, A_1 +0.06, eta -3.00, chi2 24.2)   [1064s]
+    dt0 25 (FK1 upper) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical: KiDS S8 0.7847 (Om 0.198, A_IA +0.07, A_bary 3.13, chi2 1290.1) | DES S8 0.7736 (Om 0.285, A_1 -0.28, eta -2.64, chi2 153.2)   [1064s]
+    dt0 25 (FK1 upper) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt: KiDS S8 0.7759 (Om 0.180, A_IA +0.02, A_bary 3.13, chi2 1929.7) | DES S8 0.7734 (Om 0.287, A_1 -0.32, eta -2.75, chi2 214.1)   [1065s]
+    v_k 575 | phase-space recapture (primary) | pop lcdm | phantom none: KiDS S8 0.7701 (Om 0.268, A_IA -0.17, A_bary 2.00, chi2 35.4) | DES S8 0.7568 (Om 0.274, A_1 +0.05, eta -3.00, chi2 24.6)   [1065s]
+    v_k 575 | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical: KiDS S8 0.7767 (Om 0.204, A_IA +0.01, A_bary 3.13, chi2 1056.5) | DES S8 0.7663 (Om 0.279, A_1 -0.28, eta -2.55, chi2 142.8)   [1065s]
+    v_k 575 | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt: KiDS S8 0.7714 (Om 0.187, A_IA -0.04, A_bary 3.13, chi2 1583.5) | DES S8 0.7659 (Om 0.281, A_1 -0.32, eta -2.69, chi2 197.9)   [1066s]
+    v_k 650 | phase-space recapture (primary) | pop lcdm | phantom none: KiDS S8 0.7591 (Om 0.257, A_IA -0.20, A_bary 2.00, chi2 50.2) | DES S8 0.7414 (Om 0.265, A_1 +0.06, eta -3.00, chi2 31.7)   [1066s]
+    v_k 650 | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical: KiDS S8 0.7585 (Om 0.204, A_IA +0.01, A_bary 3.13, chi2 907.5) | DES S8 0.7340 (Om 0.258, A_1 -0.90, eta +1.83, chi2 139.8)   [1067s]
+    v_k 650 | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt: KiDS S8 0.7538 (Om 0.187, A_IA -0.03, A_bary 3.13, chi2 1378.4) | DES S8 0.7476 (Om 0.268, A_1 -0.34, eta -2.53, chi2 192.1)   [1067s]
+
+======================================================================================================================
+THE COMPARISON: inferred S8 against the published low-z weak-lensing values
+======================================================================================================================
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom none [kids] S8 0.7664: KiDS-1000 xi+- +0.1 sigma (+0.1 with Planck's error); KiDS-Legacy -2.3 sigma (-2.0 with Planck's error); HSC Y3 -0.1 sigma (-0.1 with Planck's error)
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom none [des] S8 0.7518: DES Y3 -1.2 sigma (-0.9 with Planck's error); DES Y3 -0.3 sigma (-0.3 with Planck's error); HSC Y3 -0.7 sigma (-0.7 with Planck's error)
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical [kids] S8 0.7708: KiDS-1000 xi+- +0.4 sigma (+0.3 with Planck's error); KiDS-Legacy -2.1 sigma (-1.8 with Planck's error); HSC Y3 +0.1 sigma (+0.1 with Planck's error)
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical [des] S8 0.7604: DES Y3 -0.7 sigma (-0.5 with Planck's error); DES Y3 +0.1 sigma (+0.0 with Planck's error); HSC Y3 -0.5 sigma (-0.4 with Planck's error)
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt [kids] S8 0.7656: KiDS-1000 xi+- +0.1 sigma (+0.1 with Planck's error); KiDS-Legacy -2.4 sigma (-2.0 with Planck's error); HSC Y3 -0.1 sigma (-0.1 with Planck's error)
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt [des] S8 0.7599: DES Y3 -0.7 sigma (-0.6 with Planck's error); DES Y3 +0.0 sigma (+0.0 with Planck's error); HSC Y3 -0.5 sigma (-0.5 with Planck's error)
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom running L canonical (sensitivity) [kids] S8 0.7386: KiDS-1000 xi+- -1.5 sigma (-1.2 with Planck's error); KiDS-Legacy -3.6 sigma (-3.1 with Planck's error); HSC Y3 -0.9 sigma (-0.8 with Planck's error)
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom running L canonical (sensitivity) [des] S8 0.7533: DES Y3 -1.1 sigma (-0.9 with Planck's error); DES Y3 -0.2 sigma (-0.2 with Planck's error); HSC Y3 -0.7 sigma (-0.6 with Planck's error)
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom heat-kernel L1.7 canonical (sensitivity) [kids] S8 1.1200: KiDS-1000 xi+- +19.8 sigma (+16.0 with Planck's error); KiDS-Legacy +19.1 sigma (+14.8 with Planck's error); HSC Y3 +11.3 sigma (+10.4 with Planck's error)
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom heat-kernel L1.7 canonical (sensitivity) [des] S8 1.1200: DES Y3 +19.3 sigma (+15.7 with Planck's error); DES Y3 +14.4 sigma (+12.8 with Planck's error); HSC Y3 +10.8 sigma (+10.0 with Planck's error)
+    halo only | phase-space recapture (primary) | pop lcdm | phantom none [kids] S8 0.7794: KiDS-1000 xi+- +0.9 sigma (+0.7 with Planck's error); KiDS-Legacy -1.7 sigma (-1.4 with Planck's error); HSC Y3 +0.3 sigma (+0.3 with Planck's error)
+    halo only | phase-space recapture (primary) | pop lcdm | phantom none [des] S8 0.7778: DES Y3 +0.3 sigma (+0.3 with Planck's error); DES Y3 +0.8 sigma (+0.7 with Planck's error); HSC Y3 +0.1 sigma (+0.1 with Planck's error)
+    halo only | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical [kids] S8 0.7927: KiDS-1000 xi+- +1.6 sigma (+1.3 with Planck's error); KiDS-Legacy -1.1 sigma (-0.9 with Planck's error); HSC Y3 +0.8 sigma (+0.7 with Planck's error)
+    halo only | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical [des] S8 0.7900: DES Y3 +1.0 sigma (+0.8 with Planck's error); DES Y3 +1.2 sigma (+1.1 with Planck's error); HSC Y3 +0.4 sigma (+0.4 with Planck's error)
+    halo only | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt [kids] S8 0.7747: KiDS-1000 xi+- +0.6 sigma (+0.5 with Planck's error); KiDS-Legacy -1.9 sigma (-1.6 with Planck's error); HSC Y3 +0.2 sigma (+0.2 with Planck's error)
+    halo only | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt [des] S8 0.7899: DES Y3 +1.0 sigma (+0.8 with Planck's error); DES Y3 +1.2 sigma (+1.1 with Planck's error); HSC Y3 +0.4 sigma (+0.4 with Planck's error)
+    most conservative | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical [kids] S8 0.7770: KiDS-1000 xi+- +0.7 sigma (+0.6 with Planck's error); KiDS-Legacy -1.8 sigma (-1.5 with Planck's error); HSC Y3 +0.3 sigma (+0.2 with Planck's error)
+    most conservative | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical [des] S8 0.7653: DES Y3 -0.4 sigma (-0.3 with Planck's error); DES Y3 +0.3 sigma (+0.2 with Planck's error); HSC Y3 -0.3 sigma (-0.3 with Planck's error)
+    most conservative | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt [kids] S8 0.7725: KiDS-1000 xi+- +0.5 sigma (+0.4 with Planck's error); KiDS-Legacy -2.0 sigma (-1.7 with Planck's error); HSC Y3 +0.1 sigma (+0.1 with Planck's error)
+    most conservative | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt [des] S8 0.7649: DES Y3 -0.4 sigma (-0.3 with Planck's error); DES Y3 +0.2 sigma (+0.2 with Planck's error); HSC Y3 -0.3 sigma (-0.3 with Planck's error)
+    pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical [kids] S8 0.7667: KiDS-1000 xi+- +0.1 sigma (+0.1 with Planck's error); KiDS-Legacy -2.3 sigma (-2.0 with Planck's error); HSC Y3 -0.1 sigma (-0.1 with Planck's error)
+    pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical [des] S8 0.7574: DES Y3 -0.9 sigma (-0.7 with Planck's error); DES Y3 -0.1 sigma (-0.1 with Planck's error); HSC Y3 -0.6 sigma (-0.5 with Planck's error)
+    pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt [kids] S8 0.7599: KiDS-1000 xi+- -0.2 sigma (-0.2 with Planck's error); KiDS-Legacy -2.6 sigma (-2.2 with Planck's error); HSC Y3 -0.3 sigma (-0.3 with Planck's error)
+    pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt [des] S8 0.7568: DES Y3 -0.9 sigma (-0.7 with Planck's error); DES Y3 -0.1 sigma (-0.1 with Planck's error); HSC Y3 -0.6 sigma (-0.5 with Planck's error)
+    dt0 7.54 (forest floor) | phase-space recapture (primary) | pop lcdm | phantom none [kids] S8 0.7690: KiDS-1000 xi+- +0.3 sigma (+0.2 with Planck's error); KiDS-Legacy -2.2 sigma (-1.9 with Planck's error); HSC Y3 -0.0 sigma (-0.0 with Planck's error)
+    dt0 7.54 (forest floor) | phase-space recapture (primary) | pop lcdm | phantom none [des] S8 0.7508: DES Y3 -1.2 sigma (-1.0 with Planck's error); DES Y3 -0.4 sigma (-0.3 with Planck's error); HSC Y3 -0.8 sigma (-0.7 with Planck's error)
+
+======================================================================================================================
+H2a-H2e
+======================================================================================================================
+  [PASS] H2a without the phantom the conversion lowers the survey-inferred S8 below the Planck-LCDM truth by >= 0.02 in both set-ups (nominal, primary)
+         measured: KiDS -0.0647, DES -0.0794 (truth 0.8312)
+  [PASS] H2b without the phantom the inferred S8 is no higher than the chain's linear S8 (small scales add to the suppression), both set-ups
+         measured: linear S8 0.7738; KiDS 0.7664, DES 0.7518
+  [FAIL] H2c with the 1.7 Mpc phantom stand-in the inferred S8 exceeds the Planck truth, both set-ups and both footings
+         measured: canonical: KiDS 0.7708, DES 0.7604; alt: KiDS 0.7656, DES 0.7599
+  [FAIL] H2d without the phantom (nominal) the inferred S8 lies more than 2 sigma below KiDS-1000's and DES Y3's published values
+         measured: KiDS-1000 xi+-: +0.14 sigma; DES Y3 LCDM-optimised: -1.19 sigma (published errors)
+  [PASS] H2e without the phantom (nominal) LCDM templates fit the chain poorly in the KiDS-1000 set-up (chi2_min >= 10, noiseless)
+         measured: chi2_min KiDS 40.4 (225 points), DES 26.9 (273 points)
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  Truth (Planck 2018): S8 0.831.  Without the MOND phantom the chain's survey-inferred S8 is 0.766 (KiDS-1000 set-up) and
+  0.752 (DES-Y3) at the nominal cell (linear S8 0.774); over every history, reading and population: KiDS 0.752-0.779,
+  DES 0.695-0.778.  With the 1.7 Mpc phantom stand-in: KiDS 0.704-0.793, DES 0.683-0.790.
+  chi2_min of those phantom fits: KiDS 540-2877, DES 112-280 (noiseless).
+  Sensitivities (canonical, nominal): running L canonical (sensitivity): KiDS 0.739 (chi2 335), DES 0.753 (chi2 49); heat-kernel L1.7 canonical (sensitivity): KiDS 1.120 (chi2 383), DES 1.120 (chi2 893).
+  Published: KiDS-1000 0.764, KiDS-Legacy 0.815, DES Y3 0.759/0.772, HSC Y3 0.769/0.776.
+
+  checks: 11/13 pass; load-bearing failures: 2   [1067s]

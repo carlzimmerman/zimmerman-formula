@@ -1,0 +1,3565 @@
+{
+ "lane": "XR32",
+ "part": "2/3 survey S8",
+ "mutate": false,
+ "checks": {
+  "C1": {
+   "ok": true,
+   "claim": "C1 CONTROL: Limber C_ell (KiDS-1000 n(z), HMcode-2020, Planck 2018) against CAMB 1.6.6: its exact (non-Limber) source-window C_ell at l = 30-99 and its Limber C_ell at l = 100-3000; all 15 pairs within 1% point-wise",
+   "measured": "max |ratio - 1| = 0.0034 (CAMB's own Limber output departs from its exact one by up to 0.0115 at l < 100)",
+   "load_bearing": true
+  },
+  "C1b": {
+   "ok": true,
+   "claim": "C1b (reported) xi+- from CAMB's C_ell (spliced to this lane's above l = 5500) and from this lane's, same Hankel transform, theta >= 4 arcmin",
+   "measured": "max |ratio - 1| = 0.0308",
+   "load_bearing": false
+  },
+  "C2": {
+   "ok": true,
+   "claim": "C2 CONTROL: the Hankel transform reproduces an analytic Gaussian (<= 1e-3) and the J_4 bin average matches quadrature (<= 1e-8)",
+   "measured": "Gaussian 5.1e-04; J_4 1.3e-14",
+   "load_bearing": true
+  },
+  "C6": {
+   "ok": true,
+   "claim": "C6 (reported) the KiDS-1000 n(z): catalogue stacks moment-matched to Asgari+21 Table A.1",
+   "measured": "[{'bin': '0.1-0.3', 'n_gal': 1792136, 'stack_mean': 0.23091935917883905, 'stack_std': 0.10054116691537081, 'mean': 0.26000460680147325, 'std': 0.15999799966408154, 'frac_z_gt_2': 0.0003008159498266331}, {'bin': '0.3-0.5', 'n_gal': 3681319, 'stack_mean': 0.41180593811827726, 'stack_std': 0.10484430797701007, 'mean': 0.40000279284166024, 'std': 0.15999756822669187, 'frac_z_gt_2': 0.000132400419694687}, {'bin': '0.5-0.7', 'n_gal': 6148102, 'stack_mean': 0.604352445666306, 'stack_std': 0.12313811452201938, 'mean': 0.560003935929728, 'std': 0.1999961890050047, 'frac_z_gt_2': 0.0005780307817851658}, {'bin': '0.7-0.9', 'n_gal': 4544395, 'stack_mean': 0.7963381532665965, 'stack_std': 0.12192223429518059, 'mean': 0.7900004513356704, 'std': 0.15999893047022645, 'frac_z_gt_2': 0.0002547372427467592}, {'bin': '0.9-1.2', 'n_gal': 5096059, 'stack_mean': 1.0253632135501947, 'stack_std': 0.16989013415109364, 'mean': 0.9800028681080749, 'std': 0.24999481343931568, 'frac_z_gt_2': 0.0029505627863359307}]",
+   "load_bearing": false
+  },
+  "C7": {
+   "ok": true,
+   "claim": "C7 (reported) the templates hit their sigma8 targets",
+   "measured": "max |sigma8 - target| = 8.9e-16",
+   "load_bearing": false
+  },
+  "C3": {
+   "ok": true,
+   "claim": "C3 CONTROL: the fit recovers the truth from the no-conversion data vector (|S8 - S8_true| <= 0.003, both set-ups)",
+   "measured": "kids +0.0000; des -0.0008",
+   "load_bearing": true
+  },
+  "C4": {
+   "ok": true,
+   "claim": "C4 CONTROL: the real DES Y3 xi+- (LCDM-optimised cuts, m at its prior means) fitted with these templates: S8 within 0.03 of the published 0.772",
+   "measured": "S8 0.7945, Om 0.310, A_1 +0.58, eta_1 +2.06, chi2 285.8 for 273 points",
+   "load_bearing": true
+  },
+  "C5": {
+   "ok": true,
+   "claim": "C5 (reported) the Delta chi^2 = 1 width of the truth fit's S8 profile against the published 1 sigma",
+   "measured": "KiDS (0.8212, 0.8462) (published +-0.018); DES (0.8204, 0.8404) (published +0.018/-0.017)",
+   "load_bearing": false
+  },
+  "H2a": {
+   "ok": true,
+   "claim": "H2a without the phantom the conversion lowers the survey-inferred S8 below the Planck-LCDM truth by >= 0.02 in both set-ups (nominal, primary)",
+   "measured": "KiDS -0.0647, DES -0.0794 (truth 0.8312)",
+   "load_bearing": true
+  },
+  "H2b": {
+   "ok": true,
+   "claim": "H2b without the phantom the inferred S8 is no higher than the chain's linear S8 (small scales add to the suppression), both set-ups",
+   "measured": "linear S8 0.7738; KiDS 0.7664, DES 0.7518",
+   "load_bearing": true
+  },
+  "H2c": {
+   "ok": false,
+   "claim": "H2c with the 1.7 Mpc phantom stand-in the inferred S8 exceeds the Planck truth, both set-ups and both footings",
+   "measured": "canonical: KiDS 0.7708, DES 0.7604; alt: KiDS 0.7656, DES 0.7599",
+   "load_bearing": true
+  },
+  "H2d": {
+   "ok": false,
+   "claim": "H2d without the phantom (nominal) the inferred S8 lies more than 2 sigma below KiDS-1000's and DES Y3's published values",
+   "measured": "KiDS-1000 xi+-: +0.14 sigma; DES Y3 LCDM-optimised: -1.19 sigma (published errors)",
+   "load_bearing": true
+  },
+  "H2e": {
+   "ok": true,
+   "claim": "H2e without the phantom (nominal) LCDM templates fit the chain poorly in the KiDS-1000 set-up (chi2_min >= 10, noiseless)",
+   "measured": "chi2_min KiDS 40.4 (225 points), DES 26.9 (273 points)",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "C1": {
+   "max_cl_dev": 0.0033552283837928742,
+   "max_xi_dev_theta_ge_4": 0.03076739207090462
+  },
+  "C6": [
+   {
+    "bin": "0.1-0.3",
+    "n_gal": 1792136,
+    "stack_mean": 0.23091935917883905,
+    "stack_std": 0.10054116691537081,
+    "mean": 0.26000460680147325,
+    "std": 0.15999799966408154,
+    "frac_z_gt_2": 0.0003008159498266331
+   },
+   {
+    "bin": "0.3-0.5",
+    "n_gal": 3681319,
+    "stack_mean": 0.41180593811827726,
+    "stack_std": 0.10484430797701007,
+    "mean": 0.40000279284166024,
+    "std": 0.15999756822669187,
+    "frac_z_gt_2": 0.000132400419694687
+   },
+   {
+    "bin": "0.5-0.7",
+    "n_gal": 6148102,
+    "stack_mean": 0.604352445666306,
+    "stack_std": 0.12313811452201938,
+    "mean": 0.560003935929728,
+    "std": 0.1999961890050047,
+    "frac_z_gt_2": 0.0005780307817851658
+   },
+   {
+    "bin": "0.7-0.9",
+    "n_gal": 4544395,
+    "stack_mean": 0.7963381532665965,
+    "stack_std": 0.12192223429518059,
+    "mean": 0.7900004513356704,
+    "std": 0.15999893047022645,
+    "frac_z_gt_2": 0.0002547372427467592
+   },
+   {
+    "bin": "0.9-1.2",
+    "n_gal": 5096059,
+    "stack_mean": 1.0253632135501947,
+    "stack_std": 0.16989013415109364,
+    "mean": 0.9800028681080749,
+    "std": 0.24999481343931568,
+    "frac_z_gt_2": 0.0029505627863359307
+   }
+  ],
+  "truth": {
+   "S8": 0.8311719223898937,
+   "Om": 0.31519333706168684,
+   "fits": {
+    "kids": {
+     "S8": 0.8311853384706065,
+     "Om": 0.3150704409426772,
+     "A_IA": 0.0054898146142076856,
+     "nuis": 3.13,
+     "chi2": 0.03534089712743572,
+     "S8_1sigma": [
+      0.8212,
+      0.8462
+     ]
+    },
+    "des": {
+     "S8": 0.8303688198328476,
+     "Om": 0.3160494202177256,
+     "A_IA": 0.013052157984574389,
+     "nuis": 1.8017184564188822,
+     "chi2": 0.1876641187269391,
+     "S8_1sigma": [
+      0.8204,
+      0.8404
+     ]
+    }
+   },
+   "des_data_fit": {
+    "S8": 0.7945073174943609,
+    "Om": 0.3104361304831886,
+    "A1": 0.5807305541109725,
+    "eta1": 2.0601559561583453,
+    "chi2": 285.812080267617,
+    "n": 273
+   }
+  },
+  "configs": {
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "S8": 0.7664302975550233,
+     "Om": 0.26443780539762707,
+     "A_IA": -0.17742449227203594,
+     "nuis": 2.0,
+     "chi2": 40.354170302767926,
+     "S8_1sigma": [
+      0.6864,
+      0.7664
+     ]
+    },
+    "des": {
+     "S8": 0.7517532067597171,
+     "Om": 0.270583815016472,
+     "A_IA": 0.05230089234751671,
+     "nuis": -3.0,
+     "chi2": 26.92769399887909,
+     "S8_1sigma": [
+      0.7418,
+      0.7618
+     ]
+    }
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "S8": 0.7707810726462535,
+     "Om": 0.20429963772418352,
+     "A_IA": 0.0092937570156983,
+     "nuis": 3.13,
+     "chi2": 1001.1150918768501,
+     "S8_1sigma": [
+      0.7708,
+      0.8458
+     ]
+    },
+    "des": {
+     "S8": 0.760377202765264,
+     "Om": 0.27477620502879074,
+     "A_IA": -0.28482844608069924,
+     "nuis": -2.488083997996956,
+     "chi2": 141.44271820121256,
+     "S8_1sigma": [
+      0.7354,
+      0.7704
+     ]
+    }
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "S8": 0.7655631221998777,
+     "Om": 0.1874313953376146,
+     "A_IA": -0.03554546247917622,
+     "nuis": 3.13,
+     "chi2": 1508.5176645896286
+    },
+    "des": {
+     "S8": 0.7598819090451655,
+     "Om": 0.27645941473531754,
+     "A_IA": -0.32403992820930616,
+     "nuis": -2.6403453208834455,
+     "chi2": 195.3966666944355
+    }
+   },
+   "nominal (dt0 5.31) | in place | pop lcdm | phantom none": {
+    "kids": {
+     "S8": 0.7524980508376271,
+     "Om": 0.2825924850911593,
+     "A_IA": -0.05342732205713942,
+     "nuis": 2.0,
+     "chi2": 4.963652240918494
+    },
+    "des": {
+     "S8": 0.7568309263507323,
+     "Om": 0.27186412601380694,
+     "A_IA": 0.035190319482261145,
+     "nuis": -3.0,
+     "chi2": 20.313885622750075
+    }
+   },
+   "nominal (dt0 5.31) | in place | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "S8": 0.7649404005862214,
+     "Om": 0.1834264585780945,
+     "A_IA": 0.00894657235727346,
+     "nuis": 3.13,
+     "chi2": 1859.202154138637
+    },
+    "des": {
+     "S8": 0.762506439687739,
+     "Om": 0.2780004889063803,
+     "A_IA": -0.3209239023667447,
+     "nuis": -2.7684623336677,
+     "chi2": 205.9184814382129
+    }
+   },
+   "nominal (dt0 5.31) | in place | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "S8": 0.7534511571665431,
+     "Om": 0.18,
+     "A_IA": -0.05055893835206058,
+     "nuis": 3.13,
+     "chi2": 2639.150609976976
+    },
+    "des": {
+     "S8": 0.7618743576774234,
+     "Om": 0.280301815769849,
+     "A_IA": -0.36097057291551105,
+     "nuis": -2.8707399786739,
+     "chi2": 278.163684083251
+    }
+   },
+   "nominal (dt0 5.31) | no recapture | pop lcdm | phantom none": {
+    "kids": {
+     "S8": 0.7547045586629916,
+     "Om": 0.22704922026366406,
+     "A_IA": -0.08939480448971215,
+     "nuis": 2.0,
+     "chi2": 197.32775861321193
+    },
+    "des": {
+     "S8": 0.6951915886340059,
+     "Om": 0.25114802870293,
+     "A_IA": 0.17704148376437157,
+     "nuis": -3.0,
+     "chi2": 90.08202351022685
+    }
+   },
+   "nominal (dt0 5.31) | no recapture | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "S8": 0.7040793540170243,
+     "Om": 0.22965826235857775,
+     "A_IA": 0.30520361102574334,
+     "nuis": 3.13,
+     "chi2": 539.6119524570632
+    },
+    "des": {
+     "S8": 0.6868022887253428,
+     "Om": 0.22639004954502742,
+     "A_IA": -0.7197892720727076,
+     "nuis": 1.6246901240128224,
+     "chi2": 144.9604361212304
+    }
+   },
+   "nominal (dt0 5.31) | no recapture | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "S8": 0.7091613107813963,
+     "Om": 0.21143417328911218,
+     "A_IA": 0.2745070193179615,
+     "nuis": 3.13,
+     "chi2": 843.1057002343468
+    },
+    "des": {
+     "S8": 0.6829693288813894,
+     "Om": 0.2240839639020153,
+     "A_IA": -0.8982197024479062,
+     "nuis": 1.5819594788468168,
+     "chi2": 182.14372569184462
+    }
+   },
+   "nominal (dt0 5.31) | PM (L388) | pop lcdm | phantom none": {
+    "kids": {
+     "S8": 0.7604051306156211,
+     "Om": 0.25603635844968176,
+     "A_IA": -0.14335870139466336,
+     "nuis": 2.0,
+     "chi2": 62.366884672342515
+    },
+    "des": {
+     "S8": 0.7382850462359067,
+     "Om": 0.2656597578097246,
+     "A_IA": 0.08060817923218974,
+     "nuis": -3.0,
+     "chi2": 38.64628147403812
+    }
+   },
+   "nominal (dt0 5.31) | PM (L388) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "S8": 0.7576007383230201,
+     "Om": 0.20985535711682396,
+     "A_IA": 0.0949548216482621,
+     "nuis": 3.13,
+     "chi2": 884.3448535800419
+    },
+    "des": {
+     "S8": 0.7321744567516955,
+     "Om": 0.2565398311773199,
+     "A_IA": -0.8487788118485535,
+     "nuis": 1.7836295547278074,
+     "chi2": 136.4957323464797
+    }
+   },
+   "nominal (dt0 5.31) | PM (L388) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "S8": 0.75488923913582,
+     "Om": 0.19287049618891627,
+     "A_IA": 0.05376968429596611,
+     "nuis": 3.13,
+     "chi2": 1341.286320971093
+    },
+    "des": {
+     "S8": 0.7289136444357089,
+     "Om": 0.25715998353492886,
+     "A_IA": -0.9905719462754932,
+     "nuis": 1.7960556706060806,
+     "chi2": 186.92569806270947
+    }
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop cold | phantom none": {
+    "kids": {
+     "S8": 0.7651753142278753,
+     "Om": 0.2620639544016148,
+     "A_IA": -0.1736126653360015,
+     "nuis": 2.0,
+     "chi2": 47.45614871160025
+    },
+    "des": {
+     "S8": 0.7482488088322916,
+     "Om": 0.2692868247947259,
+     "A_IA": 0.059487078094378254,
+     "nuis": -3.0,
+     "chi2": 29.90843430913726
+    }
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop cold | phantom L1.7 canonical": {
+    "kids": {
+     "S8": 0.7666032243637595,
+     "Om": 0.2146009894368448,
+     "A_IA": 0.0373254764457004,
+     "nuis": 3.13,
+     "chi2": 720.712503664486
+    },
+    "des": {
+     "S8": 0.7436854739035069,
+     "Om": 0.2628072786040062,
+     "A_IA": -0.7907264142420587,
+     "nuis": 1.8706929504109882,
+     "chi2": 112.04546128233883
+    }
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom running L canonical (sensitivity)": {
+    "kids": {
+     "S8": 0.7385887836612044,
+     "Om": 0.2867012852086954,
+     "A_IA": -0.20665799653171835,
+     "nuis": 3.13,
+     "chi2": 335.3311976125164
+    },
+    "des": {
+     "S8": 0.7532912852321336,
+     "Om": 0.26298946167317094,
+     "A_IA": -0.5765998677299796,
+     "nuis": 1.9433235412175747,
+     "chi2": 48.55447057066294
+    }
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom heat-kernel L1.7 canonical (sensitivity)": {
+    "kids": {
+     "S8": 1.12,
+     "Om": 0.18,
+     "A_IA": -0.26251218620190775,
+     "nuis": 2.7955462161350644,
+     "chi2": 383.319213510052
+    },
+    "des": {
+     "S8": 1.12,
+     "Om": 0.458303589869139,
+     "A_IA": -0.09627828712994498,
+     "nuis": 3.0,
+     "chi2": 892.6723370852781
+    }
+   },
+   "halo only | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "S8": 0.779382005631569,
+     "Om": 0.28911844296409306,
+     "A_IA": -0.08037764648797371,
+     "nuis": 2.0,
+     "chi2": 3.9309925434064206
+    },
+    "des": {
+     "S8": 0.7778454307667182,
+     "Om": 0.2854860901988195,
+     "A_IA": 0.027777316318655564,
+     "nuis": -3.0,
+     "chi2": 12.442397197603915
+    }
+   },
+   "halo only | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "S8": 0.7927342604092211,
+     "Om": 0.18376022928143168,
+     "A_IA": -0.00992875225157159,
+     "nuis": 3.13,
+     "chi2": 1974.524340240992
+    },
+    "des": {
+     "S8": 0.7899631148100007,
+     "Om": 0.29508971619361085,
+     "A_IA": -0.31506706788986816,
+     "nuis": -2.8205117499529955,
+     "chi2": 204.16983321512225
+    }
+   },
+   "halo only | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "S8": 0.7746792786425183,
+     "Om": 0.18,
+     "A_IA": -0.08253653780818004,
+     "nuis": 3.13,
+     "chi2": 2877.3841947949422
+    },
+    "des": {
+     "S8": 0.789916368888486,
+     "Om": 0.29771886055702906,
+     "A_IA": -0.3562358804196062,
+     "nuis": -2.8931058615399285,
+     "chi2": 280.4430089887705
+    }
+   },
+   "most conservative | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "S8": 0.7723231265387508,
+     "Om": 0.26763901205700713,
+     "A_IA": -0.14510425475272384,
+     "nuis": 2.0,
+     "chi2": 47.1445168987739
+    },
+    "des": {
+     "S8": 0.7551010705770725,
+     "Om": 0.27429774139070684,
+     "A_IA": 0.0637461015056589,
+     "nuis": -3.0,
+     "chi2": 28.122215795315892
+    }
+   },
+   "most conservative | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "S8": 0.7770379563210346,
+     "Om": 0.20544990163358426,
+     "A_IA": 0.06574737275744377,
+     "nuis": 3.13,
+     "chi2": 1036.3782642749052
+    },
+    "des": {
+     "S8": 0.7652541201948226,
+     "Om": 0.27914703256382034,
+     "A_IA": -0.2735395596804363,
+     "nuis": -2.491565362984667,
+     "chi2": 137.4793701958144
+    }
+   },
+   "most conservative | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "S8": 0.7725288823932781,
+     "Om": 0.18908130675603627,
+     "A_IA": 0.025981510385701848,
+     "nuis": 3.13,
+     "chi2": 1560.6939915722537
+    },
+    "des": {
+     "S8": 0.7648863926216632,
+     "Om": 0.28098878096054514,
+     "A_IA": -0.31314924413172085,
+     "nuis": -2.6457817038863047,
+     "chi2": 191.34939539502074
+    }
+   },
+   "pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "S8": 0.7615151486601881,
+     "Om": 0.2636482083739677,
+     "A_IA": -0.18460271704822476,
+     "nuis": 2.0,
+     "chi2": 30.57354396122293
+    },
+    "des": {
+     "S8": 0.7501265019234993,
+     "Om": 0.2683237940583446,
+     "A_IA": 0.04245225612506527,
+     "nuis": -3.0,
+     "chi2": 25.319035155413804
+    }
+   },
+   "pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "S8": 0.7666657031193217,
+     "Om": 0.20072367580594075,
+     "A_IA": -0.018712574471733183,
+     "nuis": 3.13,
+     "chi2": 1046.2529885198028
+    },
+    "des": {
+     "S8": 0.7574083493538943,
+     "Om": 0.27226521091364275,
+     "A_IA": -0.29732937780490865,
+     "nuis": -2.510476719304233,
+     "chi2": 149.00542400539342
+    }
+   },
+   "pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "S8": 0.7598517772503679,
+     "Om": 0.18330994177987145,
+     "A_IA": -0.07016334396544736,
+     "nuis": 3.13,
+     "chi2": 1569.2292123419384
+    },
+    "des": {
+     "S8": 0.7568058362473313,
+     "Om": 0.2738948098977575,
+     "A_IA": -0.3365905355256836,
+     "nuis": -2.65459713928232,
+     "chi2": 204.62061496986277
+    }
+   },
+   "dt0 7.54 (forest floor) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "S8": 0.7689708042433634,
+     "Om": 0.2635807704542455,
+     "A_IA": -0.17038178572205015,
+     "nuis": 2.0,
+     "chi2": 51.864165161468065
+    },
+    "des": {
+     "S8": 0.7507757534229652,
+     "Om": 0.2712285535952337,
+     "A_IA": 0.06234979655789773,
+     "nuis": -3.0,
+     "chi2": 29.62664870707915
+    }
+   },
+   "dt0 7.54 (forest floor) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "S8": 0.7712464208032592,
+     "Om": 0.20731660660090379,
+     "A_IA": 0.04002201142777076,
+     "nuis": 3.13,
+     "chi2": 945.9258696325599
+    },
+    "des": {
+     "S8": 0.7458102215061732,
+     "Om": 0.26649048947339105,
+     "A_IA": -0.8541095439655528,
+     "nuis": 1.9016322862105075,
+     "chi2": 134.81294805942417
+    }
+   },
+   "dt0 7.54 (forest floor) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "S8": 0.7675612088924308,
+     "Om": 0.1909688244101513,
+     "A_IA": 0.0013920253278087579,
+     "nuis": 3.13,
+     "chi2": 1432.4276932103458
+    },
+    "des": {
+     "S8": 0.7595514887819417,
+     "Om": 0.2766461742767619,
+     "A_IA": -0.31548128056920066,
+     "nuis": -2.600532174020974,
+     "chi2": 186.90081302582348
+    }
+   },
+   "dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "S8": 0.7728818822731598,
+     "Om": 0.26771316051202954,
+     "A_IA": -0.13172182919574066,
+     "nuis": 2.0,
+     "chi2": 50.133769904624266
+    },
+    "des": {
+     "S8": 0.7545705887358827,
+     "Om": 0.27460964302038626,
+     "A_IA": 0.06951189819450854,
+     "nuis": -3.0,
+     "chi2": 29.229493851086254
+    }
+   },
+   "dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "S8": 0.7770909893665008,
+     "Om": 0.20458711532902013,
+     "A_IA": 0.08707755111903823,
+     "nuis": 3.13,
+     "chi2": 1063.1407247503544
+    },
+    "des": {
+     "S8": 0.7647903047304736,
+     "Om": 0.27914803072124117,
+     "A_IA": -0.27209503590647344,
+     "nuis": -2.4909050162820776,
+     "chi2": 138.79069413966428
+    }
+   },
+   "dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "S8": 0.7720494785481745,
+     "Om": 0.1878206802907576,
+     "A_IA": 0.04540213169070387,
+     "nuis": 3.13,
+     "chi2": 1602.882772126366
+    },
+    "des": {
+     "S8": 0.7644249201574662,
+     "Om": 0.2809847136850409,
+     "A_IA": -0.3120899881781137,
+     "nuis": -2.648624892258228,
+     "chi2": 193.3995099850805
+    }
+   },
+   "dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "S8": 0.775682537856446,
+     "Om": 0.2732275218285454,
+     "A_IA": -0.11489904382481803,
+     "nuis": 2.0,
+     "chi2": 37.567893163898205
+    },
+    "des": {
+     "S8": 0.7608561590854034,
+     "Om": 0.2780834388542825,
+     "A_IA": 0.06337485715307667,
+     "nuis": -3.0,
+     "chi2": 25.015780847686788
+    }
+   },
+   "dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "S8": 0.7834948461934786,
+     "Om": 0.19871505216418336,
+     "A_IA": 0.07592412252737099,
+     "nuis": 3.13,
+     "chi2": 1252.2834437880306
+    },
+    "des": {
+     "S8": 0.772137372447176,
+     "Om": 0.28407510722671414,
+     "A_IA": -0.27784055070056507,
+     "nuis": -2.619132505961634,
+     "chi2": 150.69279756453423
+    }
+   },
+   "dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "S8": 0.7753232749855772,
+     "Om": 0.18112540090179852,
+     "A_IA": 0.025959624801161093,
+     "nuis": 3.13,
+     "chi2": 1875.2965676532244
+    },
+    "des": {
+     "S8": 0.7718799763758559,
+     "Om": 0.2859643304762399,
+     "A_IA": -0.31998471289973424,
+     "nuis": -2.7354991700148883,
+     "chi2": 210.50002074980412
+    }
+   },
+   "dt0 25 (FK1 upper) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "S8": 0.7763337656594724,
+     "Om": 0.27426456854097486,
+     "A_IA": -0.11291928713484814,
+     "nuis": 2.0,
+     "chi2": 35.485222567259754
+    },
+    "des": {
+     "S8": 0.7621163047794173,
+     "Om": 0.27879256281662734,
+     "A_IA": 0.062052453531611554,
+     "nuis": -3.0,
+     "chi2": 24.199995421672448
+    }
+   },
+   "dt0 25 (FK1 upper) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "S8": 0.7846875464280585,
+     "Om": 0.1976044610606329,
+     "A_IA": 0.07187649428510877,
+     "nuis": 3.13,
+     "chi2": 1290.0860133889926
+    },
+    "des": {
+     "S8": 0.7736450502649915,
+     "Om": 0.28500333099046327,
+     "A_IA": -0.279425676302835,
+     "nuis": -2.6390034806065845,
+     "chi2": 153.18932292928528
+    }
+   },
+   "dt0 25 (FK1 upper) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "S8": 0.7759211640068799,
+     "Om": 0.18,
+     "A_IA": 0.020532693444057865,
+     "nuis": 3.13,
+     "chi2": 1929.7353693131206
+    },
+    "des": {
+     "S8": 0.7734156874082907,
+     "Om": 0.2869098482538829,
+     "A_IA": -0.3218383147598103,
+     "nuis": -2.749460290911613,
+     "chi2": 214.05309305144576
+    }
+   },
+   "v_k 575 | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "S8": 0.7700615658422935,
+     "Om": 0.2683080366280004,
+     "A_IA": -0.16753052863848067,
+     "nuis": 2.0,
+     "chi2": 35.362901573464356
+    },
+    "des": {
+     "S8": 0.7568106453194159,
+     "Om": 0.2735534986215679,
+     "A_IA": 0.04993639272888068,
+     "nuis": -3.0,
+     "chi2": 24.55704082783867
+    }
+   },
+   "v_k 575 | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "S8": 0.7767213536179061,
+     "Om": 0.20388442196047518,
+     "A_IA": 0.006633451781706401,
+     "nuis": 3.13,
+     "chi2": 1056.5273481894758
+    },
+    "des": {
+     "S8": 0.7663176114819009,
+     "Om": 0.27896783924352786,
+     "A_IA": -0.28009252636171256,
+     "nuis": -2.5547406529832424,
+     "chi2": 142.82784584352288
+    }
+   },
+   "v_k 575 | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "S8": 0.7714131032515806,
+     "Om": 0.18743793105684692,
+     "A_IA": -0.036951166576397076,
+     "nuis": 3.13,
+     "chi2": 1583.4854916250165
+    },
+    "des": {
+     "S8": 0.7658900446133461,
+     "Om": 0.28083544817902484,
+     "A_IA": -0.3197228212256218,
+     "nuis": -2.6872746964096894,
+     "chi2": 197.8710186126833
+    }
+   },
+   "v_k 650 | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "S8": 0.7590974318242022,
+     "Om": 0.256758915004028,
+     "A_IA": -0.19588072448482208,
+     "nuis": 2.0,
+     "chi2": 50.15437724038396
+    },
+    "des": {
+     "S8": 0.74144239394873,
+     "Om": 0.26474270850665943,
+     "A_IA": 0.056633245426470274,
+     "nuis": -3.0,
+     "chi2": 31.72830306512372
+    }
+   },
+   "v_k 650 | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "S8": 0.7584835299503346,
+     "Om": 0.20446946082857287,
+     "A_IA": 0.014182412606697128,
+     "nuis": 3.13,
+     "chi2": 907.5109251731251
+    },
+    "des": {
+     "S8": 0.7339731944699457,
+     "Om": 0.2575727053865488,
+     "A_IA": -0.8961616984986892,
+     "nuis": 1.829364339406827,
+     "chi2": 139.84696123155572
+    }
+   },
+   "v_k 650 | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "S8": 0.7538384466138753,
+     "Om": 0.18725453525954522,
+     "A_IA": -0.03112280139763443,
+     "nuis": 3.13,
+     "chi2": 1378.415362376719
+    },
+    "des": {
+     "S8": 0.7475628264149419,
+     "Om": 0.2677555281069947,
+     "A_IA": -0.3366183007663903,
+     "nuis": -2.5254691122651014,
+     "chi2": 192.11601849846784
+    }
+   }
+  },
+  "S8_linear": {
+   "halo only": 0.7943137436509282,
+   "nominal (dt0 5.31)": 0.7738369438862099,
+   "most conservative": 0.7828070811514768,
+   "pump s = 1": 0.7679653099261691,
+   "dt0 7.54 (forest floor)": 0.7768217104548757,
+   "dt0 14.6 (canonical top)": 0.7840511964750954,
+   "dt0 22.8 (alt top)": 0.7884594812697657,
+   "dt0 25 (FK1 upper)": 0.7892827329978306,
+   "v_k 575": 0.7780239151722125,
+   "v_k 650": 0.7649647140776107
+  },
+  "tensions": {
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.1350165308346295,
+      "t_with_planck": 0.10945509703824619
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.30959573145930563,
+      "t_with_planck": 0.27222503954624383
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.3128429735703144,
+      "t_with_planck": -1.9665297701887536
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.2972119022009334,
+      "t_with_planck": 0.26369139315956147
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.3276295555868633,
+      "t_with_planck": -0.26025510379526257
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.07557948367578451,
+      "t_with_planck": -0.07059515540446418
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.2899909831811115,
+      "t_with_planck": -0.2698100445929862
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.7203996023695813,
+      "t_with_planck": -0.5722550670159343
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.34508539239442276,
+      "t_with_planck": -0.2934140817840822
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -3.0117520590610862,
+      "t_with_planck": -2.5607878062850444
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.3150779669688208,
+      "t_with_planck": -0.27429516934254533
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.1909878376636993,
+      "t_with_planck": -0.9460705178287329
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.5072586247142026,
+      "t_with_planck": -0.473805849158339
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.7347513103116028,
+      "t_with_planck": -0.6836187857472704
+     }
+    }
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.37672625812519417,
+      "t_with_planck": 0.3054041522549068
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.4908780269272291,
+      "t_with_planck": 0.4316251056265348
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.105663207321259,
+      "t_with_planck": -1.7903720358482438
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.47124290585013995,
+      "t_with_planck": 0.41809462353285665
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.07170160904391251,
+      "t_with_planck": -0.05695673478110047
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.057453956330757734,
+      "t_with_planck": 0.05298371574204654
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.15814931374989444,
+      "t_with_planck": -0.14714344883116523
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.21310571969035405,
+      "t_with_planck": -0.16928219768827546
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.05738344855266604,
+      "t_with_planck": 0.050456805324535524
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.6010855826064736,
+      "t_with_planck": -2.211612414442576
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.055088110610559404,
+      "t_with_planck": 0.048875097281958074
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.683693954984472,
+      "t_with_planck": -0.5430976485010739
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.2536116833745889,
+      "t_with_planck": -0.23688645819570728
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.4734180980223039,
+      "t_with_planck": -0.4404721717114561
+     }
+    }
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.08684012221542459,
+      "t_with_planck": 0.07039948327175176
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.27346342499490195,
+      "t_with_planck": 0.24045419273964894
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.3541370381010616,
+      "t_with_planck": -2.0016406740243275
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.26252488799510587,
+      "t_with_planck": 0.2329164913714882
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.3786398705954332,
+      "t_with_planck": -0.3007755470849543
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.10108464118006946,
+      "t_with_planck": -0.09441829456950747
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.31626902424613235,
+      "t_with_planck": -0.29425935454667373
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.24224064440202986,
+      "t_with_planck": -0.192425753346196
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.036746210215229023,
+      "t_with_planck": 0.03231064744292242
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.624670997849259,
+      "t_with_planck": -2.2316662709936765
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.03527636180661986,
+      "t_with_planck": 0.03129778088126352
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.7128288796961479,
+      "t_with_planck": -0.5662412041589945
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.26817914573042684,
+      "t_with_planck": -0.2504932231383018
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.48842699863134903,
+      "t_with_planck": -0.4544365788050692
+     }
+    }
+   },
+   "nominal (dt0 5.31) | in place | pop lcdm | phantom none": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.6765852448454649,
+      "t_with_planck": -0.5374507889197891
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.3096166267796619,
+      "t_with_planck": -0.26325622658581016
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.9762832934463255,
+      "t_with_planck": -2.5306299510867722
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.2826934418423,
+      "t_with_planck": -0.2461024052177979
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.147173480139583,
+      "t_with_planck": -0.9112662397325877
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.48535144595214436,
+      "t_with_planck": -0.45334340863922784
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.712180277647664,
+      "t_with_planck": -0.6626185075221931
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.42171021466280384,
+      "t_with_planck": -0.33498881226389304
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.10328922139369813,
+      "t_with_planck": -0.08782322497958778
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.7699558880603616,
+      "t_with_planck": -2.35519694948055
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.09430754996815918,
+      "t_with_planck": -0.08210064841302156
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.8922984499569219,
+      "t_with_planck": -0.7088042630766915
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.3579139308608138,
+      "t_with_planck": -0.3343101638393076
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.580881019674778,
+      "t_with_planck": -0.5404565759335636
+     }
+    }
+   },
+   "nominal (dt0 5.31) | in place | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.052244477012297626,
+      "t_with_planck": 0.042353512312484756
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.24751669109255672,
+      "t_with_planck": 0.21763943806144942
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.38379044827517,
+      "t_with_planck": -2.0268539351758115
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.23761602344885446,
+      "t_with_planck": 0.2108169282463772
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.41527055375168526,
+      "t_with_planck": -0.32987341717742896
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.1193999827581955,
+      "t_with_planck": -0.11152577297648046
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.3351393761751107,
+      "t_with_planck": -0.31181648835680736
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.0878564889565294,
+      "t_with_planck": -0.06978949018049364
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.14610165365579186,
+      "t_with_planck": 0.1284660103572759
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.4996933482029013,
+      "t_with_planck": -2.1254021313844125
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.1402575875095602,
+      "t_with_planck": 0.12443888813911329
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.5584447242506474,
+      "t_with_planck": -0.4436049409932921
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.1909870680076766,
+      "t_with_planck": -0.17839182130539935
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.4088957670382124,
+      "t_with_planck": -0.3804400534397351
+     }
+    }
+   },
+   "nominal (dt0 5.31) | in place | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.6205201666739363,
+      "t_with_planck": -0.49291505491775656
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.26423061111699586,
+      "t_with_planck": -0.22466607932081584
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.9308972777836595,
+      "t_with_planck": -2.492039803821778
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.24125403623725708,
+      "t_with_planck": -0.2100267986393967
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.0911084019680544,
+      "t_with_planck": -0.8667305057305551
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.45731890686638,
+      "t_with_planck": -0.4271595640706349
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.6832982676805129,
+      "t_with_planck": -0.6357464430473289
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.12503778368097734,
+      "t_with_planck": -0.09932474288509259
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.11976490322597455,
+      "t_with_planck": 0.10530831727965359
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.529792491551264,
+      "t_with_planck": -2.150994383918687
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.11497430709693557,
+      "t_with_planck": 0.10200713696670718
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.5956260189750954,
+      "t_with_planck": -0.47314019369789106
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.20957771536990055,
+      "t_with_planck": -0.19575644958515415
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.4280497673508068,
+      "t_with_planck": -0.3982610960865941
+     }
+    }
+   },
+   "nominal (dt0 5.31) | no recapture | pop lcdm | phantom none": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.5467906668828492,
+      "t_with_planck": -0.434347449237216
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.2045448255718301,
+      "t_with_planck": -0.1739173361190752
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.8712114922384937,
+      "t_with_planck": -2.4412910606200375
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.18675831900036663,
+      "t_with_planck": -0.16258485234355954
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.0173789021769672,
+      "t_with_planck": -0.8081629000500145
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.4204541569708365,
+      "t_with_planck": -0.3927259767893761
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.645316404151771,
+      "t_with_planck": -0.600407798445354
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -4.0475536097643605,
+      "t_with_planck": -3.2152059143114453
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -3.038495779333054,
+      "t_with_planck": -2.5835270595250677
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -5.705162445999718,
+      "t_with_planck": -4.85090078402603
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -2.7742787550432233,
+      "t_with_planck": -2.4151839883913886
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -4.518141845058479,
+      "t_with_planck": -3.589021365124244
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -2.1708356284115924,
+      "t_with_planck": -2.027673001877957
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -2.448739738363459,
+      "t_with_planck": -2.278328004398091
+     }
+    }
+   },
+   "nominal (dt0 5.31) | no recapture | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -3.5247438813515144,
+      "t_with_planck": -2.7999079113900205
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -2.6152688563321784,
+      "t_with_planck": -2.223671957757476
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -5.281935522998841,
+      "t_with_planck": -4.491045682258438
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -2.3878541731728586,
+      "t_with_planck": -2.078777107447083
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -3.9953321166456326,
+      "t_with_planck": -3.173723362202819
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -1.909430764205169,
+      "t_with_planck": -1.7835073088269484
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -2.179413514635629,
+      "t_with_planck": -2.027744625435984
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -4.54104183968572,
+      "t_with_planck": -3.6072121552315286
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -3.437986251174154,
+      "t_with_planck": -2.9231998841654443
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -6.104652917840817,
+      "t_with_planck": -5.190573608666406
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -3.1390309249850974,
+      "t_with_planck": -2.7327236728853155
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -5.011630074979838,
+      "t_with_planck": -3.9810276060443273
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -2.4175797433722717,
+      "t_with_planck": -2.258144795195687
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -2.7029609477168863,
+      "t_with_planck": -2.5148575512126308
+     }
+    }
+   },
+   "nominal (dt0 5.31) | no recapture | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -3.225805248153158,
+      "t_with_planck": -2.562443666529409
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -2.3732709151716036,
+      "t_with_planck": -2.0179095428184195
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -5.0399375818382675,
+      "t_with_planck": -4.2852832673193815
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -2.1668995312436383,
+      "t_with_planck": -1.8864222071407901
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -3.696393483447276,
+      "t_with_planck": -2.9362591173422072
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -1.7599614476059908,
+      "t_with_planck": -1.643895219403548
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -2.0254148248061727,
+      "t_with_planck": -1.884462951935822
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -4.766510065800625,
+      "t_with_planck": -3.7863146067333764
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -3.6205081485052673,
+      "t_with_planck": -3.0783918919734297
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -6.287174815171931,
+      "t_with_planck": -5.345765616474392
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -3.30568135298307,
+      "t_with_planck": -2.877803342557156
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -5.2370983010947425,
+      "t_with_planck": -4.1601300575461755
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -2.530313856429724,
+      "t_with_planck": -2.3634443003473096
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -2.8191112460185037,
+      "t_with_planck": -2.6229247635806643
+     }
+    }
+   },
+   "nominal (dt0 5.31) | PM (L388) | pop lcdm | phantom none": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.21146290496346576,
+      "t_with_planck": -0.16797721494184142
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.05854710898421193,
+      "t_with_planck": 0.05148000259377054
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.5997556849704213,
+      "t_with_planck": -2.210481648833978
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.05620522462484345,
+      "t_with_planck": 0.0498662196043255
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.6820511402575837,
+      "t_with_planck": -0.5417926657546399
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.2527902760111448,
+      "t_with_planck": -0.2361192211407221
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.4725717995266342,
+      "t_with_planck": -0.4396847684882565
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -1.51264433906431,
+      "t_with_planck": -1.2015808792443485
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.986426369718727,
+      "t_with_planck": -0.8387239619456685
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -3.6530930363853904,
+      "t_with_planck": -3.1060976864466308
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.9006501636562291,
+      "t_with_planck": -0.7840725631663203
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.983232574358428,
+      "t_with_planck": -1.575396330057147
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.9033809930615669,
+      "t_with_planck": -0.8438046741387523
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -1.1428773867907056,
+      "t_with_planck": -1.0633427126309378
+     }
+    }
+   },
+   "nominal (dt0 5.31) | PM (L388) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.3764271574694062,
+      "t_with_planck": -0.2990178610811633
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.06663150842761435,
+      "t_with_planck": -0.05665444928723902
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.7332981750942777,
+      "t_with_planck": -2.3240281737882014
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.06083746421651746,
+      "t_with_planck": -0.05296283554886603
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.8470153927635242,
+      "t_with_planck": -0.6728333118939618
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.335272402264115,
+      "t_with_planck": -0.3131618025097278
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.5575533841509065,
+      "t_with_planck": -0.5187523480575754
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -1.8720907793120325,
+      "t_with_planck": -1.4871099745908964
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -1.2774068213478356,
+      "t_with_planck": -1.0861344983333927
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -3.9440734880144994,
+      "t_with_planck": -3.3535082228343547
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -1.1663279673175893,
+      "t_with_planck": -1.0153617861066844
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -2.3426790146061505,
+      "t_with_planck": -1.860925425403695
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -1.083104213185428,
+      "t_with_planck": -1.0116754776607904
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -1.3280467651001382,
+      "t_with_planck": -1.2356258563027571
+     }
+    }
+   },
+   "nominal (dt0 5.31) | PM (L388) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.5359271096576503,
+      "t_with_planck": -0.4257178974613833
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.1957505173419072,
+      "t_with_planck": -0.1664398423419416
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.862417184008571,
+      "t_with_planck": -2.4338135668429035
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.17872873322521965,
+      "t_with_planck": -0.1555945933574008
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.0065153449517683,
+      "t_with_planck": -0.7995333482741818
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.4150223783582371,
+      "t_with_planck": -0.38765241400977274
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.6397200261872747,
+      "t_with_planck": -0.5952008814178099
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -2.06390326848771,
+      "t_with_planck": -1.6394777278304495
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -1.4326835982995745,
+      "t_with_planck": -1.2181609298654814
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -4.0993502649662386,
+      "t_with_planck": -3.4855346543664436
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -1.308102415838742,
+      "t_with_planck": -1.1387853524692408
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -2.534491503781828,
+      "t_with_planck": -2.013293178643248
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -1.179010457773267,
+      "t_with_planck": -1.101256881391738
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -1.4268592595239722,
+      "t_with_planck": -1.3275618304298842
+     }
+    }
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop cold | phantom none": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.06529523488196182,
+      "t_with_planck": 0.0529334906322978
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.25730475949480486,
+      "t_with_planck": 0.22624600797545866
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.3726040843868867,
+      "t_with_planck": -2.0173425598434362
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.24701256911501268,
+      "t_with_planck": 0.2191537014349609
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.40145210424262906,
+      "t_with_planck": -0.3188966235703103
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.1124907580036674,
+      "t_with_planck": -0.10507219891711496
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.3280207809734757,
+      "t_with_planck": -0.3051932876361387
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.9265406569240235,
+      "t_with_planck": -0.736004828399435
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.5119614841765903,
+      "t_with_planck": -0.4353030064419439
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -3.1786281508432537,
+      "t_with_planck": -2.702676730942906
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.46744309424819114,
+      "t_with_planck": -0.40693858706882857
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.3971288922181415,
+      "t_with_planck": -1.1098202792122336
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.6103291519914237,
+      "t_with_planck": -0.5700790642806962
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.8409451869002549,
+      "t_with_planck": -0.7824224597911348
+     }
+    }
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop cold | phantom L1.7 canonical": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.14462357576441567,
+      "t_with_planck": 0.11724332880912823
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.31680101515664527,
+      "t_with_planck": 0.27856058761793295
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.3046083636304977,
+      "t_with_planck": -1.959528168360358
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.30412897455037946,
+      "t_with_planck": 0.26982833596334527
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.3174573903670897,
+      "t_with_planck": -0.2521747646745972
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.07049340106589772,
+      "t_with_planck": -0.06584449061049522
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.2847507768557736,
+      "t_with_planck": -0.26493451264779855
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -1.194972123323123,
+      "t_with_planck": -0.9492354663511147
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.7292631474520517,
+      "t_with_planck": -0.6200670370423705
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -3.3959298141187153,
+      "t_with_planck": -2.8874407615433326
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.6658489607170908,
+      "t_with_planck": -0.5796633614007217
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.665560358617241,
+      "t_with_planck": -1.323050917163913
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.7445448851909733,
+      "t_with_planck": -0.6954435161416194
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.979228063530094,
+      "t_with_planck": -0.9110820087904274
+     }
+    }
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom running L canonical (sensitivity)": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -1.4947774316938598,
+      "t_with_planck": -1.1873881614235533
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.971962682799791,
+      "t_with_planck": -0.8264259930658919
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -3.6386293494664548,
+      "t_with_planck": -3.093799717566854
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.8874441886432876,
+      "t_with_planck": -0.7725759320709867
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.9653656669879778,
+      "t_with_planck": -1.5612036122363517
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.8944475393763417,
+      "t_with_planck": -0.8354603653325104
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -1.1336732223877461,
+      "t_with_planck": -1.054779080821556
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.6299243981097876,
+      "t_with_planck": -0.5003853798219554
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.27184356037458973,
+      "t_with_planck": -0.23113910473805116
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.9385102270412533,
+      "t_with_planck": -2.4985128292390133
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.24820498990723414,
+      "t_with_planck": -0.21607804059814403
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.1005126334039057,
+      "t_with_planck": -0.874200830634754
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.46202102258430566,
+      "t_with_planck": -0.4315515838846455
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.6881428717535273,
+      "t_with_planck": -0.6402539033367372
+     }
+    }
+   },
+   "nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom heat-kernel L1.7 canonical (sensitivity)": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 19.777777777777786,
+      "t_with_planck": 16.033433628353208
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 15.04166666666667,
+      "t_with_planck": 13.22601666332398
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": 19.06250000000001,
+      "t_with_planck": 14.79467312721632
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 14.440000000000003,
+      "t_with_planck": 12.811410609827558
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 19.33333333333334,
+      "t_with_planck": 15.673131749064371
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 11.322580645161294,
+      "t_with_planck": 10.441620258768209
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": 10.750000000000002,
+      "t_with_planck": 9.959515704064826
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 19.777777777777786,
+      "t_with_planck": 16.033433628353208
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 15.04166666666667,
+      "t_with_planck": 13.22601666332398
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": 19.06250000000001,
+      "t_with_planck": 14.79467312721632
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 14.440000000000003,
+      "t_with_planck": 12.811410609827558
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 19.33333333333334,
+      "t_with_planck": 15.673131749064371
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 11.322580645161294,
+      "t_with_planck": 10.441620258768209
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": 10.750000000000002,
+      "t_with_planck": 9.959515704064826
+     }
+    }
+   },
+   "halo only | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.8545558684204998,
+      "t_with_planck": 0.6927706920357211
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.8492502346487083,
+      "t_with_planck": 0.7467389089060795
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.6960949699252827,
+      "t_with_planck": -1.442130438400065
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.81528022526276,
+      "t_with_planck": 0.723330313567446
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.41011142397605493,
+      "t_with_planck": 0.33246881274688467
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.33490340746996744,
+      "t_with_planck": 0.3088460408240353
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": 0.10568767598653078,
+      "t_with_planck": 0.09791609941525284
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.7691905981510101,
+      "t_with_planck": 0.6235668406015038
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.785226281946591,
+      "t_with_planck": 0.6904431616291774
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.7692652015848453,
+      "t_with_planck": -1.5043445361552679
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.7538172306687274,
+      "t_with_planck": 0.6687993121094292
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.32474615370656523,
+      "t_with_planck": 0.26326496131266747
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.2853364763457476,
+      "t_with_planck": 0.263135695416798
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": 0.05766971145994282,
+      "t_with_planck": 0.05342906017992442
+     }
+    }
+   },
+   "halo only | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 1.5963478005122842,
+      "t_with_planck": 1.2941260031771455
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 1.4055941837175465,
+      "t_with_planck": 1.235927673953653
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.0602733138466105,
+      "t_with_planck": -0.9015134447270136
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 1.3493704163688447,
+      "t_with_planck": 1.19718410449136
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 1.1519033560678393,
+      "t_with_planck": 0.9338241238883093
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.7656213035232615,
+      "t_with_planck": 0.7060516647173882
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": 0.5229456377881594,
+      "t_with_planck": 0.4844916550626389
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 1.4423952672222604,
+      "t_with_planck": 1.1693198822793822
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 1.2901297837500287,
+      "t_with_planck": 1.1344007546412258
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.1922326280952023,
+      "t_with_planck": -1.013713850413422
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 1.2385245924000277,
+      "t_with_planck": 1.0988398271195332
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.9979508227778157,
+      "t_with_planck": 0.8090180029905459
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.6762295100000221,
+      "t_with_planck": 0.6236150549486807
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": 0.4363473378125211,
+      "t_with_planck": 0.40426122449959834
+     }
+    }
+   },
+   "halo only | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.593293257917682,
+      "t_with_planck": 0.480970520543558
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.6533032767715949,
+      "t_with_planck": 0.5744443229774141
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.9200343503562693,
+      "t_with_planck": -1.6325382885514068
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.6271711457007312,
+      "t_with_planck": 0.5564367777152389
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.1488488134732371,
+      "t_with_planck": 0.12066864125472168
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.1832025368554281,
+      "t_with_planck": 0.16894835022481017
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.04002185931762835,
+      "t_with_planck": -0.03723667380526633
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 1.4397982715825572,
+      "t_with_planck": 1.16721455185803
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 1.2881820370202515,
+      "t_with_planck": 1.1326881165888842
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.1944586243578048,
+      "t_with_planck": -1.0156065374521706
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 1.2366547555394414,
+      "t_with_planck": 1.0971808764412534
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.9953538271381125,
+      "t_with_planck": 0.8069126725691935
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.6747215770479363,
+      "t_with_planck": 0.6222244476520932
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": 0.4348865277651881,
+      "t_with_planck": 0.40290783281521986
+     }
+    }
+   },
+   "most conservative | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.46239591881948783,
+      "t_with_planck": 0.3748547666838364
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.5551302724479493,
+      "t_with_planck": 0.4881215889448525
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.032232069583293,
+      "t_with_planck": -1.7279360987480155
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.5329250615500314,
+      "t_with_planck": 0.4728200684061686
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.017951474375042954,
+      "t_with_planck": 0.014552887395000057
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.10719763028228309,
+      "t_with_planck": 0.09885705239165346
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.11142040791664334,
+      "t_with_planck": -0.10366648265674887
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.5234664366427924,
+      "t_with_planck": -0.41581966424786326
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.18566330585368887,
+      "t_with_planck": -0.1578630379862401
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.8523299725203524,
+      "t_with_planck": -2.425236762487202
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.16951867056206374,
+      "t_with_planck": -0.1475766550605735
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.9940546719369104,
+      "t_with_planck": -0.7896351150606618
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.4087920418508081,
+      "t_with_planck": -0.38183295676326895
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.633300891603863,
+      "t_with_planck": -0.5892284647267813
+     }
+    }
+   },
+   "most conservative | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.7243309067241417,
+      "t_with_planck": 0.5872000205693133
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.7515815133764397,
+      "t_with_planck": 0.6608595869094545
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.8077163656650181,
+      "t_with_planck": -1.537038220822215
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.7215182528413822,
+      "t_with_planck": 0.6401431163183049
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.2798864622796968,
+      "t_with_planck": 0.226898141280477
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.25928891358175954,
+      "t_with_planck": 0.2391147793755221
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": 0.03243613503232934,
+      "t_with_planck": 0.03005099499847918
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.06967334415681266,
+      "t_with_planck": 0.05648273288108424
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.260588341450943,
+      "t_with_planck": 0.22913323521095602
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.3688514192941574,
+      "t_with_planck": -2.0141517995078964
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.2501648077929053,
+      "t_with_planck": 0.22195042055148875
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.3968164591280811,
+      "t_with_planck": -0.31521426256266666
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.11017293544639342,
+      "t_with_planck": -0.10290723250463396
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.3256327213690116,
+      "t_with_planck": -0.3029714169375978
+     }
+    }
+   },
+   "most conservative | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.4738267996265607,
+      "t_with_planck": 0.38412154431644524
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.563703433053254,
+      "t_with_planck": 0.4956599001929265
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.022434171748659,
+      "t_with_planck": -1.7196052877084178
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.5411552957311239,
+      "t_with_planck": 0.48012207044972904
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.02938235518211584,
+      "t_with_planck": 0.023819665027608912
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.11383491591219638,
+      "t_with_planck": 0.10497791991015075
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.10518538202187631,
+      "t_with_planck": -0.09786536223482573
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.049244034536846365,
+      "t_with_planck": 0.039921115921627705
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.2452663592359683,
+      "t_with_planck": 0.2156607393379094
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.3863622561112714,
+      "t_with_planck": -2.0290406537428267
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.23545570486652956,
+      "t_with_planck": 0.20890025730411924
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.41844749284333954,
+      "t_with_planck": -0.332397043629776
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.12098845230402264,
+      "t_with_planck": -0.11300948587036537
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.3367759811617205,
+      "t_with_planck": -0.31333919937207544
+     }
+    }
+   },
+   "pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.14616772587128887,
+      "t_with_planck": -0.11610947797432188
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.10479786084117056,
+      "t_with_planck": 0.09214791714788005
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.546897682848183,
+      "t_with_planck": -2.1655383319058856
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.10060594640752374,
+      "t_with_planck": 0.08925928595686232
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.6167559611654069,
+      "t_with_planck": -0.48992492878712035
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.22014268646505633,
+      "t_with_planck": -0.20562468022173305
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.4389348890852097,
+      "t_with_planck": -0.4083887047051183
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.8160881221471019,
+      "t_with_planck": -0.6482659922272013
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.4225475274524157,
+      "t_with_planck": -0.35927743541192153
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -3.089214194119079,
+      "t_with_planck": -2.6266511599128837
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.3858042641956839,
+      "t_with_planck": -0.33586685542852723
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.2866763574412199,
+      "t_with_planck": -1.0220814430399998
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.5551028846029629,
+      "t_with_planck": -0.5184948678945278
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.7840453962575983,
+      "t_with_planck": -0.7294824170276717
+     }
+    }
+   },
+   "pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.1480946177400935,
+      "t_with_planck": 0.12005723043971434
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.31940429663840364,
+      "t_with_planck": 0.28084963211147707
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.3016331847942024,
+      "t_with_planck": -1.956998477490693
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.3066281247728675,
+      "t_with_planck": 0.2720456240295458
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.3137821694516661,
+      "t_with_planck": -0.24925532415250884
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.06865579060818593,
+      "t_with_planck": -0.06412806719072797
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.28285748123267657,
+      "t_with_planck": -0.2631729745099852
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.38774415565327486,
+      "t_with_planck": -0.3080076072343081
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.07579288790979376,
+      "t_with_planck": -0.06444405095651745
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.7424595545764574,
+      "t_with_planck": -2.3318177754574796
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.0692022020045943,
+      "t_with_planck": -0.06024486542280379
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.8583323909473929,
+      "t_with_planck": -0.6818230580471065
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.3409309013560493,
+      "t_with_planck": -0.3184471339690523
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.5633833529122935,
+      "t_with_planck": -0.5241765999230312
+     }
+    }
+   },
+   "pump s = 1 | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.24401310291953607,
+      "t_with_planck": -0.1938337196532042
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.0354907187653288,
+      "t_with_planck": 0.031206703896969546
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.6261058452205734,
+      "t_with_planck": -2.2328862717043223
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.034071090014715644,
+      "t_with_planck": 0.030228443497431968
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.7146013382136541,
+      "t_with_planck": -0.5676491704660027
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.26906537498917993,
+      "t_with_planck": -0.25132100720353884
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.48934008332218554,
+      "t_with_planck": -0.4552861204647763
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.4231861030981577,
+      "t_with_planck": -0.3361611958031168
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.10448398822231791,
+      "t_with_planck": -0.08883909357238197
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.7711506548889817,
+      "t_with_planck": -2.356212818073344
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.09539842402907289,
+      "t_with_planck": -0.08305032283217677
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.8937743383922757,
+      "t_with_planck": -0.7099766466159153
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.3586518750784907,
+      "t_with_planck": -0.33499944198984655
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.5816413258384452,
+      "t_with_planck": -0.54116397116935
+     }
+    }
+   },
+   "dt0 7.54 (forest floor) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.2761557912979656,
+      "t_with_planck": 0.2238737638075933
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.4154501768068077,
+      "t_with_planck": 0.3653020029625084
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.1918664646017407,
+      "t_with_planck": -1.863667661044804
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.3988321697345354,
+      "t_with_planck": 0.3538506018613276
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.17818798568450744,
+      "t_with_planck": -0.141545022170917
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.0008586987246065913,
+      "t_with_planck": -0.0008020691193030734
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.21300593201929183,
+      "t_with_planck": -0.19818250687057595
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.7778968574726355,
+      "t_with_planck": -0.6179284619817336
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.3916307893826095,
+      "t_with_planck": -0.33299001058188754
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -3.058297456049273,
+      "t_with_planck": -2.60036373508285
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.3575759381319478,
+      "t_with_planck": -0.3112923237581636
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.2484850927667535,
+      "t_with_planck": -0.991743912794532
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.5360072522657297,
+      "t_with_planck": -0.5006585574722934
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.7643711083949943,
+      "t_with_planck": -0.7111772944776055
+     }
+    }
+   },
+   "dt0 7.54 (forest floor) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.4025789335144007,
+      "t_with_planck": 0.32636237919150135
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.510267533469134,
+      "t_with_planck": 0.44867414296394403
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.0835037712733677,
+      "t_with_planck": -1.7715306397064632
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.4898568321303687,
+      "t_with_planck": 0.4346092116656177
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.04432818804357615,
+      "t_with_planck": -0.035212443394100804
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.07246518720190993,
+      "t_with_planck": 0.06682698851575411
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.14404785444669085,
+      "t_with_planck": -0.13402333274449596
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -1.0699869702251092,
+      "t_with_planck": -0.8499525309818534
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.6280846901822311,
+      "t_with_planck": -0.5340385212301949
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -3.2947513568488946,
+      "t_with_planck": -2.801412245731157
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.5734686301663849,
+      "t_with_planck": -0.4992404785945949
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.5405752055192272,
+      "t_with_planck": -1.2237679817946518
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.6820523086419665,
+      "t_with_planck": -0.6370722103514476
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.9148417725402082,
+      "t_with_planck": -0.8511764632710742
+     }
+    }
+   },
+   "dt0 7.54 (forest floor) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.19784493846837967,
+      "t_with_planck": 0.16038878206036797
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.3567170371846183,
+      "t_with_planck": 0.31365842512323455
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.2589900527413858,
+      "t_with_planck": -1.9207405085605749
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.34244835569723353,
+      "t_with_planck": 0.3038259347297464
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.2611053592687749,
+      "t_with_planck": -0.20741108736747627
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.04231738551674031,
+      "t_with_planck": -0.039526631588012034
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.2557209426536114,
+      "t_with_planck": -0.2379249112640182
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.26167713047401986,
+      "t_with_planck": -0.20786527830303342
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.022978699247569456,
+      "t_with_planck": 0.020204985649852437
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.6404052960980127,
+      "t_with_planck": -2.245044596402184
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.022059551277666678,
+      "t_with_planck": 0.019571604521241955
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.7322653657681378,
+      "t_with_planck": -0.5816807291158319
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.2778973887664218,
+      "t_with_planck": -0.2595705658776017
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.49843973388055596,
+      "t_with_planck": -0.46375251171598686
+     }
+    }
+   },
+   "dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.4934379040644323,
+      "t_with_planck": 0.40001985933020845
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.5784117613816577,
+      "t_with_planck": 0.508592815133277
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.005624653659055,
+      "t_with_planck": -1.7053127403442083
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.5552752909263914,
+      "t_with_planck": 0.4926495674203222
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.0489934596199874,
+      "t_with_planck": 0.03971798004137211
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.12522200881160567,
+      "t_with_planck": 0.11547903300734555
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.09448841596485547,
+      "t_with_planck": -0.08791281523769398
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.5546712508304316,
+      "t_with_planck": -0.44060745282441244
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.2109243459103492,
+      "t_with_planck": -0.17934161991550435
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.877591012577013,
+      "t_with_planck": -2.4467153444164667
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.19258309843988405,
+      "t_with_planck": -0.16765568886734453
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.0252594861245496,
+      "t_with_planck": -0.8144229036372109
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.4243944489446277,
+      "t_with_planck": -0.39640641373734475
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.6493760989126469,
+      "t_with_planck": -0.6041849725231484
+     }
+    }
+   },
+   "dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.7272771870278207,
+      "t_with_planck": 0.5895885088125496
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.753791223604199,
+      "t_with_planck": 0.6628025673610973
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.8051909825475791,
+      "t_with_planck": -1.5348909755754228
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.723639574660031,
+      "t_with_planck": 0.6420251886766357
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.2828327425833758,
+      "t_with_planck": 0.22928662952371326
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.2609996569838957,
+      "t_with_planck": 0.24069241732972232
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": 0.034093417703148776,
+      "t_with_planck": 0.031586412001837386
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.04390581835964389,
+      "t_with_planck": 0.035593534950061435
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.24126269710306641,
+      "t_with_planck": 0.21214035138772133
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.390937869977445,
+      "t_with_planck": -2.032931138737936
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.23161218921894378,
+      "t_with_planck": 0.20549022564577307
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.424099721736848,
+      "t_with_planck": -0.3368869359251145
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.12381456675077689,
+      "t_with_planck": -0.11564922325485534
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.33968773544019454,
+      "t_with_planck": -0.3160483199905888
+     }
+    }
+   },
+   "dt0 14.6 (canonical top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.4471932526763614,
+      "t_with_planck": 0.36253028102530566
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.5437282728406045,
+      "t_with_planck": 0.4780959022876588
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.045262926277401,
+      "t_with_planck": -1.7390157820265
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.5219791419269804,
+      "t_with_planck": 0.46310866461163425
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.002748808231916527,
+      "t_with_planck": 0.0022284017364693313
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.09837027574756452,
+      "t_with_planck": 0.0907165156333274
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.11971277126743957,
+      "t_with_planck": -0.11138176711461854
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.023606675414789006,
+      "t_with_planck": 0.01913744141034759
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.22603833989442526,
+      "t_with_planck": 0.19875369639847693
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.408337135358749,
+      "t_with_planck": -2.0477251276696316
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.21699680629864826,
+      "t_with_planck": 0.19252321236240974
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.4455929319137532,
+      "t_with_planck": -0.3539602357849643
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.13456117183922947,
+      "t_with_planck": -0.1256871094561445
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.3507599952282972,
+      "t_with_planck": -0.3263500434248907
+     }
+    }
+   },
+   "dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.6490298809136678,
+      "t_with_planck": 0.5261550430675588
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.6951057440185843,
+      "t_with_planck": 0.6112008966091084
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.872260102073996,
+      "t_with_planck": -1.5919175103277772
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.6673015142578409,
+      "t_with_planck": 0.5920411149388431
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.20458543646922284,
+      "t_with_planck": 0.16585316377872245
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.21556573730471013,
+      "t_with_planck": 0.19879351185712865
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.009620064956181593,
+      "t_with_planck": -0.00895058917467694
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.18493181850568408,
+      "t_with_planck": -0.14690203859670733
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.0773399618918073,
+      "t_with_planck": 0.0680044071837264
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.578278138790312,
+      "t_with_planck": -2.1922200398806524
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.074246363416135,
+      "t_with_planck": 0.06587262105336456
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.6555200537998022,
+      "t_with_planck": -0.5207174894095058
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.23952473278225392,
+      "t_with_planck": -0.2237285161474802
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.4589042701392921,
+      "t_with_planck": -0.42696838443719914
+     }
+    }
+   },
+   "dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 1.083047010748813,
+      "t_with_planck": 0.8780037149946454
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 1.0206185913949433,
+      "t_with_planck": 0.8974217283116518
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.5002454193581571,
+      "t_with_planck": -1.2756063915583562
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.9797938477391455,
+      "t_with_planck": 0.8692895634604606
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.6386025663043681,
+      "t_with_planck": 0.517701835705809
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.46757568366060087,
+      "t_with_planck": 0.4311956685514406
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": 0.23421394354620692,
+      "t_with_planck": 0.21699139059157205
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.45207624706533,
+      "t_with_planck": 0.3664888231488357
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.547390518632331,
+      "t_with_planck": 0.48131608559180694
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.0410775025154284,
+      "t_with_planck": -1.735457062077575
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.5254948978870377,
+      "t_with_planck": 0.4662279023684378
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.0076318026208851055,
+      "t_with_planck": 0.006186943859999326
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.10120556281212692,
+      "t_with_planck": 0.09333120143513794
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.11704931978254762,
+      "t_with_planck": -0.10890366949921393
+     }
+    }
+   },
+   "dt0 22.8 (alt top) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.6290708325320651,
+      "t_with_planck": 0.5099746571259652
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.6801364577323823,
+      "t_with_planck": 0.5980385234328619
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.8893678578296553,
+      "t_with_planck": -1.606463638784863
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.652930999423087,
+      "t_with_planck": 0.5792913527350585
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.18462638808762016,
+      "t_with_planck": 0.1496727778371289
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.20397661243797308,
+      "t_with_planck": 0.18810608601471443
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.020506818618873966,
+      "t_with_planck": -0.019079716152978137
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.4377764653253285,
+      "t_with_planck": 0.35489628712156457
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.5366656823273299,
+      "t_with_planck": 0.47188582318639755
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.0533344582925723,
+      "t_with_planck": -1.7458787243793752
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.5151990550342367,
+      "t_with_planck": 0.4570932576065616
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.007060213184946729,
+      "t_with_planck": -0.005608335645951311
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.09290246373728736,
+      "t_with_planck": 0.08567413011655524
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.12484920073163933,
+      "t_with_planck": -0.11616074419722298
+     }
+    }
+   },
+   "dt0 25 (FK1 upper) | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.6852092033040232,
+      "t_with_planck": 0.5554848682270027
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.7222402358113509,
+      "t_with_planck": 0.6350600372585462
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.841249254310834,
+      "t_with_planck": -1.5655500673055174
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.6933506263788969,
+      "t_with_planck": 0.6151523248698878
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.24076475885957838,
+      "t_with_planck": 0.1951829889381664
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.23657308578943267,
+      "t_with_planck": 0.2181663706068539
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": 0.010430176858512719,
+      "t_with_planck": 0.009663210252886597
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.11080560121074924,
+      "t_with_planck": -0.08801929725950615
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.12984603247571946,
+      "t_with_planck": 0.1141725732425732
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.518271200980127,
+      "t_with_planck": -2.1411982321011855
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.12465219117669069,
+      "t_with_planck": 0.11059351832266673
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.5813938365048673,
+      "t_with_planck": -0.4618347480723046
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.2024616241347865,
+      "t_with_planck": -0.18910965151002812
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.420718036987356,
+      "t_with_planck": -0.39143959262256756
+     }
+    }
+   },
+   "dt0 25 (FK1 upper) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 1.149308134892138,
+      "t_with_planck": 0.9317202319880646
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 1.0703144345024367,
+      "t_with_planck": 0.9411188839263429
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.4434501700924502,
+      "t_with_planck": -1.2273153706102762
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 1.0275018571223393,
+      "t_with_planck": 0.9116169109386879
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.7048636904476929,
+      "t_with_planck": 0.5714183526992282
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.5060498847760798,
+      "t_with_planck": 0.46667636066547624
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": 0.2714858258768271,
+      "t_with_planck": 0.25152254383732725
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.5358361258328621,
+      "t_with_planck": 0.43439121703896616
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.6102104277079801,
+      "t_with_planck": 0.5365531269805958
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.9692833207146865,
+      "t_with_planck": -1.6744129715574325
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.5858020105996609,
+      "t_with_planck": 0.5197333860010255
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.09139168138841723,
+      "t_with_planck": 0.07408933775012984
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.14984033112875847,
+      "t_with_planck": 0.1381819115382678
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.07136211318207555,
+      "t_with_planck": -0.0663959090337663
+     }
+    }
+   },
+   "dt0 25 (FK1 upper) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.662286889271107,
+      "t_with_planck": 0.5369022243736584
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.7050485002866638,
+      "t_with_planck": 0.6199434823208638
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.8608969520533336,
+      "t_with_planck": -1.5822558199086227
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.6768465602751972,
+      "t_with_planck": 0.600509640133999
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.21784244482666212,
+      "t_with_planck": 0.1766003450848221
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.2232633550606426,
+      "t_with_planck": 0.20589221170511313
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.0023889694884874388,
+      "t_with_planck": -0.0022227172622726675
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.5230937449050381,
+      "t_with_planck": 0.42406123350042046
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.600653642012112,
+      "t_with_planck": 0.5281499220923055
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.9802053615099642,
+      "t_with_planck": -1.68369960217636
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.5766274963316276,
+      "t_with_planck": 0.5115936027992598
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.07864930046059322,
+      "t_with_planck": 0.06375935421158412
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.14244152929969936,
+      "t_with_planck": 0.13135877805924684
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.07831250277907047,
+      "t_with_planck": -0.07286260984815897
+     }
+    }
+   },
+   "v_k 575 | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.3367536579051916,
+      "t_with_planck": 0.2729991955514182
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.4608985767622272,
+      "t_with_planck": 0.405264415935259
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.139925436081261,
+      "t_with_planck": -1.81950401481072
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.4424626336917381,
+      "t_with_planck": 0.3925602825298183
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.1140255386886211,
+      "t_with_planck": -0.0905770798167505
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.034244059428820764,
+      "t_with_planck": 0.03157967921626084
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.17995255023353218,
+      "t_with_planck": -0.1674293630461176
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.42290321650494855,
+      "t_with_planck": -0.3359364826219569
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.10425498478972006,
+      "t_with_planck": -0.08864437993517212
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.7709216514563835,
+      "t_with_planck": -2.356018104436134
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.09518933393844006,
+      "t_with_planck": -0.0828682967693272
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.8934914517990665,
+      "t_with_planck": -0.7097519334347554
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.35851043178188613,
+      "t_with_planck": -0.33486732661912566
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.5814955963813374,
+      "t_with_planck": -0.5410283832593763
+     }
+    }
+   },
+   "v_k 575 | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.7067418676614473,
+      "t_with_planck": 0.5729409519536729
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.738389734079419,
+      "t_with_planck": 0.6492601613492579
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -1.8227926848616134,
+      "t_with_planck": -1.5498570895754211
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.7088541447162422,
+      "t_with_planck": 0.6289073068170292
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": 0.26229742321700245,
+      "t_with_planck": 0.21263907266483656
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.24907592315825955,
+      "t_with_planck": 0.22969641698530185
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": 0.022542300559563744,
+      "t_with_planck": 0.020884688039881333
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.12875619343893918,
+      "t_with_planck": 0.10437997154878505
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.3049004784125379,
+      "t_with_planck": 0.2680965412613637
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.3182089770523344,
+      "t_with_planck": -1.9710922959265214
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.2927044592760364,
+      "t_with_planck": 0.2596923140659868
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.33425814812347654,
+      "t_with_planck": -0.26552057819833547
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.07889377994409115,
+      "t_with_planck": -0.0736908799151161
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.29340571266966986,
+      "t_with_planck": -0.27298713756834087
+     }
+    }
+   },
+   "v_k 575 | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.4118390695322568,
+      "t_with_planck": 0.33386937911333486
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.517212635482526,
+      "t_with_planck": 0.45478091537109805
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.075566511829491,
+      "t_with_planck": -1.7647818646411157
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.49652413006322504,
+      "t_with_planck": 0.4405245504104846
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.03452333814231679,
+      "t_with_planck": -0.027423884073869743
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": 0.0778420403735683,
+      "t_with_planck": 0.07178549230257436
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.1389968711642239,
+      "t_with_planck": -0.12932385550650988
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": 0.10500247851922644,
+      "t_with_planck": 0.08512332826604156
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.28708519222275336,
+      "t_with_planck": 0.2524317032331326
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.338569304126374,
+      "t_with_planck": -1.9884039724127422
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.2756017845338432,
+      "t_with_planck": 0.24451853368866247
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.3594091403914077,
+      "t_with_planck": -0.2854994659135155
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.09146927607805672,
+      "t_with_planck": -0.08543704515320936
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.3063622844440586,
+      "t_with_planck": -0.2850420406893692
+     }
+    }
+   },
+   "v_k 650 | phase-space recapture (primary) | pop lcdm | phantom none": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.2883863632822245,
+      "t_with_planck": -0.2290819665970423
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": 0.004059659341757819,
+      "t_with_planck": 0.0035696258460836184
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.662027055990369,
+      "t_with_planck": -2.263428825248708
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": 0.0038972729680875062,
+      "t_with_planck": 0.0034577260562846535
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.7589745985763425,
+      "t_with_planck": -0.6028974174098408
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.29125200517052413,
+      "t_with_planck": -0.2720444698335859
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.5121990356302372,
+      "t_with_planck": -0.4765542815431931
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -1.326918003015882,
+      "t_with_planck": -1.0540477094141247
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.8360764786319043,
+      "t_with_planck": -0.710886689746227
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -3.502743145298568,
+      "t_with_planck": -2.978260414247189
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.7633741761421735,
+      "t_with_planck": -0.6645651897879744
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.79750623831,
+      "t_with_planck": -1.4278631602269232
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.8105178250373529,
+      "t_with_planck": -0.7570656616556505
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -1.0472001833718183,
+      "t_with_planck": -0.974323839568737
+     }
+    }
+   },
+   "v_k 650 | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.32449823821561047,
+      "t_with_planck": -0.2577677173138703
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.02459381188882733,
+      "t_with_planck": -0.02091126107326745
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.691260478555491,
+      "t_with_planck": -2.2882849855742298
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.022455219550668436,
+      "t_with_planck": -0.019548679676113772
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -0.7950864735097285,
+      "t_with_planck": -0.6315831681266688
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.3093079426372171,
+      "t_with_planck": -0.2889096513543069
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.530802122717133,
+      "t_with_planck": -0.49386274990114826
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -1.7662826782384895,
+      "t_with_planck": -1.4030604807106848
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -1.1917526442883009,
+      "t_with_planck": -1.0133057369114393
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -3.8584193109549645,
+      "t_with_planck": -3.2806794614124013
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -1.0881219795675792,
+      "t_with_planck": -0.9472785594061236
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -2.2368709135326075,
+      "t_with_planck": -1.7768759315234832
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -1.0302001626486565,
+      "t_with_planck": -0.9622603521858644
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -1.273539561516798,
+      "t_with_planck": -1.1849118966198273
+     }
+    }
+   },
+   "v_k 650 | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt": {
+    "kids": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.5977384344779222,
+      "t_with_planck": -0.474818207499064
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.24578825648212727,
+      "t_with_planck": -0.20898518795192975
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -2.912454923148791,
+      "t_with_planck": -2.4763589124528917
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.22441536461411624,
+      "t_with_planck": -0.195367676870879
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.0683266697720402,
+      "t_with_planck": -0.8486336583118625
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.44592804076837295,
+      "t_with_planck": -0.4165199046912484
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.6715622238219602,
+      "t_with_planck": -0.6248271293428619
+     }
+    },
+    "des": {
+     "KiDS-1000 xi+- (Asgari+21 Table 3, best fit+PJ-HPD)": {
+      "t_pub": -0.9668925638269493,
+      "t_with_planck": -0.7680586817233408
+     },
+     "KiDS-1000 COSEBIs (Asgari+21 fiducial)": {
+      "t_pub": -0.5446273135741969,
+      "t_with_planck": -0.46307762266638064
+     },
+     "KiDS-Legacy (Wright+25)": {
+      "t_pub": -3.2112939802408604,
+      "t_with_planck": -2.730451347167343
+     },
+     "DES Y3 (Amon+22/Secco+22 fiducial)": {
+      "t_pub": -0.49726841674165806,
+      "t_with_planck": -0.4329034044844846
+     },
+     "DES Y3 (Amon+22/Secco+22 LCDM-optimised)": {
+      "t_pub": -1.4374807991210674,
+      "t_with_planck": -1.1418741325361392
+     },
+     "HSC Y3 (Li+23 xi+-)": {
+      "t_pub": -0.6305051054428865,
+      "t_with_planck": -0.5889244506219052
+     },
+     "HSC Y3 (Dalal+23 C_ell)": {
+      "t_pub": -0.86173253288055,
+      "t_with_planck": -0.801763180955594
+     }
+    }
+   }
+  }
+ },
+ "summary": {
+  "n_checks": 13,
+  "load_bearing_failed": 2,
+  "runtime_s": 1067.0
+ }
+}
