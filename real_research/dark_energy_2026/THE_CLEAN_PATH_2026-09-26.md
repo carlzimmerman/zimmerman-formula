@@ -139,6 +139,14 @@ multiplies; the V0 writer's full ∂L/∂f agrees with it to ~10% at transitions
    regions and the Hubble flow (on the CMC-like leaves used so far, K = 3H everywhere and such a gate is blind). Whether
    it does is the khronon's own profile around a bound region, not yet computed.
 
+**DE8** (`DE8_kids_sigma_axis_both_branches.py`, 6/8 with C3 and the pre-declared H1 recorded; MUTATE fails S1). V0's
+region kernel carries a web self-term σ = 1 that moves the force inside a region's edge layer by ~1 g_N; every
+earlier KiDS score used σ = 0. Solved exactly as radial ODEs inside L352's KiDS fit, σ = 1 passes in every cell where
+σ = 0 passes on the curvature branch (22/36 with the carrier cut at r200, 35/36 continued as NFW), moving Δχ² by at
+most 0.4 there. The matter-only branch fails KiDS everywhere at both σ (best +47 to +58 with the NFW-continued
+carrier), as the merger lane's L392 found with its own carrier. Two independent tests — the flagship (DE1/DE4/DE6)
+and KiDS (L392, DE8) — now favour the curvature branch.
+
 ## 4. The theory as it stands, sector by sector
 
 | sector | what is built | standing | open |

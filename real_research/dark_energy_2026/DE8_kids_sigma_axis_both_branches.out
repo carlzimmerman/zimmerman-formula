@@ -1,0 +1,298 @@
+DE8 -- KiDS-1000 WITH THE REGION KERNEL'S WEB SELF-TERM sigma AS A LABELLED AXIS, ON BOTH SWITCH BRANCHES.
+
+WHY.  V0 (CV1/CV2, real_research/chk_v0_2026/) takes L361's region operator with the web self-term sigma = 1.  CV1's A5
+showed that sigma moves the baryon force inside a region's edge layer by ~1 g_N.  Every committed KiDS score so far
+(L352, L360, AT3's hard edge, L361 R3 edgeless) and L370's Harvey runs used sigma = 0.  The sigma = 1 edge layer's
+lensing has never been scored.  A 3-d sigma = 1 Harvey operator lane is waiting on this verdict.  The user's
+"all doors" asks for every branch and reading to be scored and labelled separately, never pooled.
+
+THE MODEL (L361/CV1's operator, solved exactly as radial ODEs on L352's own grid; SI units)
+  (lap - M^2) w = 4 pi G f rho_b,                  M^2 = m^2 (1 - f)          the gated, screened baryon field
+  (lap - M^2) P = div[f (nu_mono(|w'|/a0) - 1) grad w] + sigma M^2 w           the gated phantom
+  lensing = dynamics on Phi = u + f P,  lap u = 4 pi G rho_all               (CV1: baryons and light feel Phi)
+  so M_lens(<r) = M_all(<r) + r^2 (f P)'/G.  The edge-layer term f' P is included.  sigma enters only where 0 < f < 1
+  and M > 0.  Baryons: L352's point mass M_b = 10^lm (the kernel's source and the lensing mass), with Hernquist
+  (a = 3 kpc (M_b/1e11)^0.3) for the matter density a switch reads.  The carrier: L360's post-decay template for each
+  L357 cell ((1 - f_b) NFW of the bin's Moster host, cleared or capped at the trigger density), amplitude 1 (L360's
+  criterion).  It is kernel-invisible (Newtonian only) but gravitates and is read by the switch.  Its OUTER PROFILE is an
+  axis, labelled per cell: 'r200' = L360's template, cut at r200; 'nfw' = the host NFW continued (the gate reads, and
+  the lens carries, the same density).  With a cut carrier the matter-only edge sits AT r200 and the gate is a hard
+  step there -- a convention, flagged by the merger lane (L392), not physics.
+  The gate: f = W(t) (Mathlib's smoothTransition), t = (x/x_c,eff - 1)/(2w) + 1/2, x = 4 pi G (rho - rho_bar)/H(z)^2 at
+  z_l = 0.25, x_c,eff = x_c0 E(0.25)^(2p); f = 0 beyond the first radius where t <= 0 (the region connected to the centre):
+    UPPER (curvature) branch: rho = the ungated dynamical density (stars' QUMOND phantom + carrier), L352's on-branch
+                              convention;
+    LOWER (matter-only) branch, contrast reading: rho = Hernquist stars + carrier;
+    LOWER, absolute reading: x = (3/2) Omega_m(z) rho/rho_bar (L342's).
+  The fit: L352's KiDS machinery, loaded unedited: the four Brouwer+21 bins with full covariance, M_b profiled per bin,
+  the linear 2-halo term free per bin, exact annulus averages.  The pass criterion is L352's/L360's:
+  Delta chi^2 <= +4 against the unswitched model, both footings.
+  L352 KiDS machinery loaded (grid 4000 radii, 700 projected radii)   [1s]
+
+==============================================================================================================
+C0  CONTROL: the projection matrix is L352's project_M2
+==============================================================================================================
+  [PASS] C0 CONTROL: this lane's projection matrix reproduces L352's project_M2
+         measured: max rel diff 4.5e-17
+  carrier templates built for [(1.0, 'cap', 700.0), (1.0, 'cleared', 1000.0), (2.0, 'cap', 1000.0)] x outer ('r200', 'nfw')   [1s]
+  L352's unswitched baseline chi^2: canonical 174.30, alt 166.92   [2s]
+
+==============================================================================================================
+C1-C3  CONTROLS: isolated QUMOND, the hard compensated edge, and L360's committed pair
+==============================================================================================================
+  [PASS] C1 CONTROL: with f = 1 the ODE solve reproduces L352's isolated QUMOND ESD and its KiDS score
+         measured: max rel ESD diff 2.2e-06; Delta chi^2 +0.00/+0.00
+  [PASS] C2 CONTROL: a hard upper-branch edge with sigma = 0 in the Dirichlet limit (1/m = 1 kpc, below the 2.6 kpc cells at 1 Mpc) reproduces L352's compensated ESD (the operator's sigma = 0 hard-edge limit)
+         measured: max |diff| / max |ESD| = 1.5e-03 (x_c,eff = 3.2477)
+  [FAIL] C3 CONTROL: with C2's settings and L360's carrier template, L360's committed score for (1, 2.5) + (1, cap, 700) is reproduced
+         measured: this lane -20.3/-11.5 vs L360 -18.6/-11.5 (max |diff| 1.76)
+  [PASS] C3b CONTROL: L352's own compensated ESD plus this lane's carrier template reproduces L360's committed score exactly (the template is L360's)
+         measured: -18.564/-11.537 vs L360 -18.564/-11.537 (max |diff| 0.0e+00)
+         reading:  so C3's residual is the ODE profile's 1.5e-3 difference (C2) moving one bin's best M_b on the discrete 0.1-dex grid: a KiDS score here carries ~2 of grid noise, which bounds how small a sigma shift can be read
+  controls done   [3s]
+
+==============================================================================================================
+S1  sigma IS EXERCISED: the sigma = 1 and sigma = 0 ESDs at 1/m = 0.1 Mpc, w = 1
+==============================================================================================================
+  [PASS] S1 sigma = 1 changes the lensing ESD (max |ESD(sigma=1) - ESD(sigma=0)| > 1e-3 Msun/pc^2 somewhere)
+         measured: 3.234e-02 Msun/pc^2
+         reading:  the edge layer's f' P term and the M^2 w source move the lensing mass near the edge
+
+==============================================================================================================
+THE SCAN: branch x switch cell x carrier x 1/m x w x sigma x footing (amplitude 1, L352's criterion)
+==============================================================================================================
+    r200 upper     cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0    -0.6/   +3.7   sigma=1    -0.4/   +3.9   [4s]
+    r200 upper     cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   -18.5/  -11.3   sigma=1   -18.4/  -11.3   [5s]
+    r200 upper     cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   -18.1/   -9.9   sigma=1   -17.9/   -9.7   [6s]
+    r200 upper     cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   -19.2/  -12.2   sigma=1   -19.1/  -12.1   [6s]
+    r200 upper     cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0    -6.4/   -0.1   sigma=1    -6.2/   +0.0   [7s]
+    r200 upper     cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0    -5.9/   -4.4   sigma=1    -5.8/   -4.3   [8s]
+    r200 upper     cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   -14.6/   -9.4   sigma=1   -14.5/   -9.3   [9s]
+    r200 upper     cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0    -6.2/   -6.8   sigma=1    -6.0/   -6.5   [10s]
+    r200 upper     cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +26.2/  +32.3   sigma=1   +26.4/  +32.4   [11s]
+    r200 upper     cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0    +1.3/   +7.9   sigma=1    +1.4/   +8.0   [12s]
+    r200 upper     cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0    +6.8/  +11.8   sigma=1    +7.0/  +12.0   [13s]
+    r200 upper     cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0    -0.3/   +6.4   sigma=1    -0.1/   +6.5   [13s]
+    r200 upper     cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   -12.0/   -3.4   sigma=1   -11.9/   -3.3   [14s]
+    r200 upper     cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   -21.1/  -14.4   sigma=1   -21.1/  -14.4   [15s]
+    r200 upper     cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   -24.5/  -16.3   sigma=1   -24.4/  -16.2   [16s]
+    r200 upper     cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   -21.4/  -14.9   sigma=1   -21.3/  -14.8   [16s]
+    r200 upper     cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0    -8.6/   -3.2   sigma=1    -8.5/   -3.1   [17s]
+    r200 upper     cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   -16.6/   -9.3   sigma=1   -16.4/   -9.3   [18s]
+    r200 upper     cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   -17.9/  -11.2   sigma=1   -17.7/  -11.1   [19s]
+    r200 upper     cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   -19.5/  -10.3   sigma=1   -19.1/  -10.2   [19s]
+    r200 upper     cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +13.7/  +19.2   sigma=1   +13.9/  +19.3   [20s]
+    r200 upper     cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0    -4.8/   +1.2   sigma=1    -4.7/   +1.2   [21s]
+    r200 upper     cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0    -1.9/   +3.4   sigma=1    -1.8/   +3.6   [22s]
+    r200 upper     cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0    -6.5/   +0.1   sigma=1    -6.4/   +0.2   [22s]
+    r200 upper     cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +33.7/  +38.8   sigma=1   +34.0/  +39.0   [23s]
+    r200 upper     cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0    -1.7/   +4.5   sigma=1    -1.5/   +4.6   [24s]
+    r200 upper     cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0    +8.5/  +12.7   sigma=1    +8.8/  +13.0   [25s]
+    r200 upper     cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0    -3.7/   +2.9   sigma=1    -3.4/   +3.1   [26s]
+    r200 upper     cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +18.3/  +24.3   sigma=1   +18.5/  +24.5   [26s]
+    r200 upper     cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0    -2.5/   +3.1   sigma=1    -2.5/   +3.1   [27s]
+    r200 upper     cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0    -2.9/   +5.9   sigma=1    -2.6/   +6.2   [28s]
+    r200 upper     cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0    -3.1/   +2.3   sigma=1    -3.0/   +2.4   [29s]
+    r200 upper     cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +52.5/  +59.7   sigma=1   +52.6/  +59.9   [29s]
+    r200 upper     cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   +25.3/  +30.0   sigma=1   +25.5/  +30.2   [30s]
+    r200 upper     cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   +34.7/  +40.4   sigma=1   +35.0/  +40.7   [31s]
+    r200 upper     cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   +22.7/  +26.9   sigma=1   +23.1/  +27.3   [31s]
+    r200 lower     cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +228.3/ +242.7   [32s]
+    r200 lower     cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +228.3/ +242.7   [33s]
+    r200 lower     cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +226.9/ +241.6   [33s]
+    r200 lower     cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +226.9/ +241.6   [34s]
+    r200 lower     cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +391.2/ +446.8   sigma=1  +329.4/ +383.0   [34s]
+    r200 lower     cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +335.3/ +345.7   sigma=1  +303.7/ +320.8   [35s]
+    r200 lower     cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +391.9/ +447.6   sigma=1  +321.5/ +373.9   [36s]
+    r200 lower     cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +335.3/ +345.6   sigma=1  +294.5/ +320.6   [36s]
+    r200 lower     cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +218.0/ +230.2   [37s]
+    r200 lower     cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +218.0/ +230.2   [38s]
+    r200 lower     cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +217.5/ +229.8   [38s]
+    r200 lower     cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +217.5/ +229.8   [39s]
+    r200 lower     cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +228.3/ +242.7   [40s]
+    r200 lower     cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +228.3/ +242.7   [40s]
+    r200 lower     cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +226.9/ +241.6   [42s]
+    r200 lower     cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +226.9/ +241.6   [42s]
+    r200 lower     cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +362.5/ +416.7   sigma=1  +299.1/ +351.2   [43s]
+    r200 lower     cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +325.8/ +343.4   sigma=1  +274.1/ +310.1   [43s]
+    r200 lower     cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +362.6/ +416.8   sigma=1  +290.1/ +340.8   [44s]
+    r200 lower     cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +325.9/ +343.4   sigma=1  +267.6/ +302.7   [45s]
+    r200 lower     cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +218.0/ +230.2   [45s]
+    r200 lower     cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +218.0/ +230.2   [46s]
+    r200 lower     cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +217.5/ +229.8   [46s]
+    r200 lower     cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +217.5/ +229.8   [47s]
+    r200 lower     cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +228.3/ +242.7   [48s]
+    r200 lower     cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +228.3/ +242.7   [48s]
+    r200 lower     cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +226.9/ +241.6   [49s]
+    r200 lower     cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +226.9/ +241.6   [49s]
+    r200 lower     cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +432.0/ +477.3   sigma=1  +356.9/ +431.2   [50s]
+    r200 lower     cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +330.3/ +345.7   sigma=1  +296.7/ +315.8   [51s]
+    r200 lower     cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +432.0/ +477.2   sigma=1  +344.0/ +416.4   [52s]
+    r200 lower     cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +330.3/ +345.7   sigma=1  +294.5/ +316.9   [52s]
+    r200 lower     cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +218.0/ +230.2   [53s]
+    r200 lower     cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +218.0/ +230.2   [53s]
+    r200 lower     cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +217.5/ +229.8   [54s]
+    r200 lower     cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +217.5/ +229.8   [55s]
+    r200 lower_abs cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +228.3/ +242.7   [55s]
+    r200 lower_abs cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +228.3/ +242.7   [56s]
+    r200 lower_abs cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +226.9/ +241.6   [56s]
+    r200 lower_abs cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +226.9/ +241.6   [57s]
+    r200 lower_abs cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +367.0/ +421.1   sigma=1  +303.1/ +357.3   [57s]
+    r200 lower_abs cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +326.8/ +337.9   sigma=1  +274.9/ +311.4   [58s]
+    r200 lower_abs cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +367.0/ +421.2   sigma=1  +293.8/ +346.7   [59s]
+    r200 lower_abs cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +326.8/ +338.0   sigma=1  +268.3/ +304.0   [59s]
+    r200 lower_abs cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +218.0/ +230.2   [60s]
+    r200 lower_abs cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +218.0/ +230.2   [61s]
+    r200 lower_abs cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +217.5/ +229.8   [61s]
+    r200 lower_abs cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +217.5/ +229.8   [62s]
+    r200 lower_abs cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +228.3/ +242.7   [62s]
+    r200 lower_abs cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +228.3/ +242.7   [63s]
+    r200 lower_abs cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +226.9/ +241.6   [64s]
+    r200 lower_abs cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +226.9/ +241.6   [64s]
+    r200 lower_abs cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +363.9/ +415.3   sigma=1  +303.7/ +354.9   [65s]
+    r200 lower_abs cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +326.8/ +350.5   sigma=1  +274.9/ +311.4   [66s]
+    r200 lower_abs cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +363.9/ +415.3   sigma=1  +294.5/ +344.4   [66s]
+    r200 lower_abs cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +326.8/ +350.5   sigma=1  +268.3/ +304.0   [67s]
+    r200 lower_abs cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +218.0/ +230.2   [68s]
+    r200 lower_abs cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +218.0/ +230.2   [68s]
+    r200 lower_abs cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +217.5/ +229.8   [69s]
+    r200 lower_abs cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +217.5/ +229.8   [70s]
+    r200 lower_abs cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +228.3/ +242.7   [70s]
+    r200 lower_abs cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +228.3/ +242.7   [71s]
+    r200 lower_abs cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +226.9/ +241.6   [71s]
+    r200 lower_abs cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +255.6/ +265.1   sigma=1  +226.9/ +241.6   [72s]
+    r200 lower_abs cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +430.0/ +507.4   sigma=1  +354.7/ +428.9   [73s]
+    r200 lower_abs cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +335.4/ +344.7   sigma=1  +303.7/ +319.7   [73s]
+    r200 lower_abs cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +430.0/ +507.4   sigma=1  +341.8/ +414.1   [74s]
+    r200 lower_abs cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +335.3/ +344.7   sigma=1  +294.5/ +319.6   [75s]
+    r200 lower_abs cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +218.0/ +230.2   [76s]
+    r200 lower_abs cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +218.0/ +230.2   [76s]
+    r200 lower_abs cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +217.5/ +229.8   [77s]
+    r200 lower_abs cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +235.7/ +245.0   sigma=1  +217.5/ +229.8   [77s]
+    nfw  upper     cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   -30.6/  -24.4   sigma=1   -30.5/  -24.3   [78s]
+    nfw  upper     cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   -43.0/  -37.5   sigma=1   -43.0/  -37.4   [79s]
+    nfw  upper     cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   -42.6/  -35.2   sigma=1   -42.4/  -35.1   [80s]
+    nfw  upper     cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   -44.1/  -38.5   sigma=1   -44.0/  -38.4   [81s]
+    nfw  upper     cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   -22.9/  -15.5   sigma=1   -22.8/  -15.4   [81s]
+    nfw  upper     cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   -37.6/  -28.6   sigma=1   -37.6/  -28.6   [82s]
+    nfw  upper     cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   -36.1/  -26.7   sigma=1   -35.9/  -26.6   [83s]
+    nfw  upper     cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   -38.0/  -29.3   sigma=1   -38.0/  -29.2   [83s]
+    nfw  upper     cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   -22.2/  -16.1   sigma=1   -22.1/  -16.0   [84s]
+    nfw  upper     cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   -31.7/  -23.8   sigma=1   -31.7/  -23.8   [85s]
+    nfw  upper     cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   -33.0/  -25.8   sigma=1   -32.9/  -25.7   [85s]
+    nfw  upper     cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   -32.4/  -24.2   sigma=1   -32.3/  -24.2   [86s]
+    nfw  upper     cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   -36.6/  -29.0   sigma=1   -36.5/  -28.9   [87s]
+    nfw  upper     cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   -49.9/  -40.9   sigma=1   -49.9/  -40.8   [88s]
+    nfw  upper     cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   -47.7/  -39.5   sigma=1   -47.5/  -39.4   [89s]
+    nfw  upper     cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   -51.0/  -41.9   sigma=1   -50.9/  -41.8   [89s]
+    nfw  upper     cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   -30.6/  -21.6   sigma=1   -30.5/  -21.6   [90s]
+    nfw  upper     cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   -38.2/  -30.1   sigma=1   -38.2/  -30.1   [91s]
+    nfw  upper     cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   -40.0/  -31.4   sigma=1   -39.9/  -31.3   [91s]
+    nfw  upper     cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   -38.1/  -30.2   sigma=1   -38.1/  -30.2   [92s]
+    nfw  upper     cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   -28.4/  -21.7   sigma=1   -28.5/  -21.6   [93s]
+    nfw  upper     cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   -35.6/  -27.7   sigma=1   -35.6/  -27.7   [94s]
+    nfw  upper     cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   -38.7/  -31.0   sigma=1   -38.6/  -31.0   [95s]
+    nfw  upper     cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   -37.2/  -28.9   sigma=1   -37.1/  -28.8   [95s]
+    nfw  upper     cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   -11.9/   -4.3   sigma=1   -11.8/   -4.2   [96s]
+    nfw  upper     cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   -27.0/  -20.1   sigma=1   -27.0/  -20.1   [97s]
+    nfw  upper     cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   -26.4/  -19.7   sigma=1   -26.2/  -19.5   [98s]
+    nfw  upper     cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   -27.9/  -20.7   sigma=1   -27.7/  -20.6   [98s]
+    nfw  upper     cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0    -2.8/   +2.9   sigma=1    -2.6/   +3.0   [99s]
+    nfw  upper     cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   -24.1/  -17.0   sigma=1   -24.0/  -16.9   [100s]
+    nfw  upper     cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   -17.9/  -12.6   sigma=1   -17.7/  -12.5   [100s]
+    nfw  upper     cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   -26.6/  -18.2   sigma=1   -26.3/  -18.1   [101s]
+    nfw  upper     cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0    -0.9/   +6.2   sigma=1    -0.7/   +6.3   [102s]
+    nfw  upper     cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   -21.3/  -14.8   sigma=1   -21.2/  -14.7   [103s]
+    nfw  upper     cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   -16.2/  -10.1   sigma=1   -16.0/   -9.9   [103s]
+    nfw  upper     cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   -22.5/  -15.9   sigma=1   -22.3/  -15.8   [104s]
+    nfw  lower     cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +59.9/  +68.6   sigma=1   +60.0/  +68.7   [105s]
+    nfw  lower     cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   +63.7/  +72.7   sigma=1   +63.7/  +72.7   [105s]
+    nfw  lower     cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   +58.6/  +67.4   sigma=1   +58.8/  +67.5   [106s]
+    nfw  lower     cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   +63.9/  +72.8   sigma=1   +63.9/  +72.8   [107s]
+    nfw  lower     cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +252.2/ +277.8   sigma=1  +252.3/ +279.0   [107s]
+    nfw  lower     cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +145.0/ +153.1   sigma=1  +142.8/ +155.4   [108s]
+    nfw  lower     cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +253.5/ +277.6   sigma=1  +253.7/ +278.2   [108s]
+    nfw  lower     cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +145.1/ +153.1   sigma=1  +143.8/ +154.3   [109s]
+    nfw  lower     cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +53.1/  +61.3   sigma=1   +53.2/  +61.4   [110s]
+    nfw  lower     cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   +55.4/  +63.9   sigma=1   +55.4/  +63.9   [110s]
+    nfw  lower     cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   +51.6/  +59.8   sigma=1   +51.8/  +60.0   [111s]
+    nfw  lower     cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   +55.5/  +64.0   sigma=1   +55.5/  +64.0   [111s]
+    nfw  lower     cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +58.4/  +67.0   sigma=1   +58.5/  +67.1   [112s]
+    nfw  lower     cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   +65.9/  +74.9   sigma=1   +66.0/  +75.0   [112s]
+    nfw  lower     cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   +56.2/  +64.6   sigma=1   +56.4/  +64.8   [113s]
+    nfw  lower     cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   +65.8/  +74.8   sigma=1   +66.0/  +74.9   [113s]
+    nfw  lower     cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +161.2/ +220.2   sigma=1  +161.4/ +220.4   [114s]
+    nfw  lower     cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +142.1/ +153.0   sigma=1  +142.2/ +155.1   [115s]
+    nfw  lower     cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +158.8/ +218.1   sigma=1  +159.2/ +218.4   [115s]
+    nfw  lower     cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +142.1/ +153.0   sigma=1  +142.4/ +154.1   [116s]
+    nfw  lower     cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +51.5/  +60.1   sigma=1   +51.6/  +60.2   [116s]
+    nfw  lower     cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   +56.7/  +65.3   sigma=1   +56.8/  +65.4   [117s]
+    nfw  lower     cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   +49.4/  +57.9   sigma=1   +49.6/  +58.0   [117s]
+    nfw  lower     cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   +56.7/  +65.2   sigma=1   +56.8/  +65.3   [118s]
+    nfw  lower     cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +58.7/  +67.0   sigma=1   +58.7/  +67.1   [119s]
+    nfw  lower     cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   +59.1/  +67.5   sigma=1   +59.1/  +67.5   [120s]
+    nfw  lower     cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   +58.9/  +67.6   sigma=1   +59.0/  +67.7   [120s]
+    nfw  lower     cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   +59.2/  +67.7   sigma=1   +59.2/  +67.6   [121s]
+    nfw  lower     cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +243.9/ +281.7   sigma=1  +243.7/ +283.3   [122s]
+    nfw  lower     cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +135.5/ +150.9   sigma=1  +135.4/ +149.8   [123s]
+    nfw  lower     cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +252.7/ +281.4   sigma=1  +252.4/ +282.0   [123s]
+    nfw  lower     cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +135.5/ +151.0   sigma=1  +135.4/ +150.3   [124s]
+    nfw  lower     cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +53.3/  +61.8   sigma=1   +53.4/  +61.9   [125s]
+    nfw  lower     cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   +53.2/  +61.8   sigma=1   +53.2/  +61.8   [125s]
+    nfw  lower     cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   +52.7/  +61.5   sigma=1   +52.9/  +61.6   [126s]
+    nfw  lower     cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   +53.3/  +61.9   sigma=1   +53.3/  +61.9   [126s]
+    nfw  lower_abs cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +54.2/  +62.6   sigma=1   +54.3/  +62.7   [127s]
+    nfw  lower_abs cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   +51.7/  +60.3   sigma=1   +51.9/  +60.5   [127s]
+    nfw  lower_abs cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   +48.6/  +56.8   sigma=1   +48.9/  +57.0   [128s]
+    nfw  lower_abs cell (1, 2.5) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   +50.7/  +59.1   sigma=1   +51.1/  +59.6   [129s]
+    nfw  lower_abs cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +168.6/ +231.4   sigma=1  +168.9/ +231.8   [130s]
+    nfw  lower_abs cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +117.2/ +141.0   sigma=1  +117.7/ +140.0   [130s]
+    nfw  lower_abs cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +159.9/ +222.0   sigma=1  +160.3/ +222.4   [131s]
+    nfw  lower_abs cell (1, 2.5) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +114.9/ +140.7   sigma=1  +116.0/ +140.3   [131s]
+    nfw  lower_abs cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +47.5/  +56.1   sigma=1   +47.6/  +56.2   [132s]
+    nfw  lower_abs cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   +45.6/  +53.8   sigma=1   +45.7/  +54.0   [132s]
+    nfw  lower_abs cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   +42.8/  +51.2   sigma=1   +43.0/  +51.3   [133s]
+    nfw  lower_abs cell (1, 2.5) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   +44.8/  +53.0   sigma=1   +45.1/  +53.3   [134s]
+    nfw  lower_abs cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +51.2/  +59.6   sigma=1   +51.4/  +59.7   [134s]
+    nfw  lower_abs cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   +43.5/  +51.2   sigma=1   +43.8/  +51.4   [135s]
+    nfw  lower_abs cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   +44.8/  +52.8   sigma=1   +45.0/  +53.0   [135s]
+    nfw  lower_abs cell (0.5, 2.65) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   +42.6/  +50.3   sigma=1   +43.0/  +50.6   [136s]
+    nfw  lower_abs cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +164.9/ +223.1   sigma=1  +165.3/ +223.4   [137s]
+    nfw  lower_abs cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +100.4/ +136.3   sigma=1  +100.8/ +136.7   [138s]
+    nfw  lower_abs cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +154.0/ +210.9   sigma=1  +154.4/ +211.3   [138s]
+    nfw  lower_abs cell (0.5, 2.65) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   +98.9/ +134.5   sigma=1   +99.7/ +135.3   [139s]
+    nfw  lower_abs cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +44.9/  +53.4   sigma=1   +45.0/  +53.5   [140s]
+    nfw  lower_abs cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   +39.3/  +47.2   sigma=1   +39.4/  +47.3   [141s]
+    nfw  lower_abs cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   +39.5/  +47.8   sigma=1   +39.7/  +48.0   [141s]
+    nfw  lower_abs cell (0.5, 2.65) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   +38.6/  +46.5   sigma=1   +38.9/  +46.8   [142s]
+    nfw  lower_abs cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +59.1/  +67.7   sigma=1   +59.2/  +67.8   [143s]
+    nfw  lower_abs cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   +64.2/  +73.2   sigma=1   +64.3/  +73.2   [143s]
+    nfw  lower_abs cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   +57.0/  +65.6   sigma=1   +57.2/  +65.8   [144s]
+    nfw  lower_abs cell (0.5, 3.39) carrier (1.0, 'cap', 700.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   +64.3/  +73.2   sigma=1   +64.4/  +73.3   [144s]
+    nfw  lower_abs cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0  +250.6/ +338.5   sigma=1  +250.7/ +338.5   [145s]
+    nfw  lower_abs cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0  +145.3/ +152.5   sigma=1  +147.8/ +154.8   [145s]
+    nfw  lower_abs cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0  +252.0/ +341.3   sigma=1  +252.2/ +341.4   [146s]
+    nfw  lower_abs cell (0.5, 3.39) carrier (1.0, 'cleared', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0  +145.3/ +152.6   sigma=1  +146.6/ +153.7   [147s]
+    nfw  lower_abs cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 1: Delta chi^2 sigma=0   +52.4/  +60.7   sigma=1   +52.5/  +60.8   [147s]
+    nfw  lower_abs cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 100 kpc w = 0.25: Delta chi^2 sigma=0   +55.6/  +64.1   sigma=1   +55.7/  +64.2   [148s]
+    nfw  lower_abs cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 1: Delta chi^2 sigma=0   +50.1/  +58.3   sigma=1   +50.2/  +58.4   [148s]
+    nfw  lower_abs cell (0.5, 3.39) carrier (2.0, 'cap', 1000.0) 1/m = 500 kpc w = 0.25: Delta chi^2 sigma=0   +55.6/  +64.1   sigma=1   +55.7/  +64.2   [149s]
+    max |Delta chi^2(sigma=1) - Delta chi^2(sigma=0)| per outer convention and branch: r200/upper: 0.40; r200/lower: 88.00; r200/lower_abs: 93.29; nfw/upper: 0.31; nfw/lower: 2.32; nfw/lower_abs: 2.55
+  [FAIL] H1 [pre-declared] sigma is a sub-dominant axis for KiDS: |Delta chi^2(sigma=1) - Delta chi^2(sigma=0)| <= 4 in every cell
+         measured: max |difference| = 93.29
+         reading:  the edge layer is thin against KiDS's log-spaced radial bins, or the 2-halo term absorbs it
+
+==============================================================================================================
+V1  THE VERDICT PER BRANCH
+==============================================================================================================
+    r200 upper    : 36 cells; pass at sigma = 0: 22; at sigma = 1: 22; sigma = 1 passes in 22 of the 22 sigma = 0 passes; best sigma = 1 score (worse footing) -16.2
+    r200 lower    : 36 cells; pass at sigma = 0: 0; at sigma = 1: 0; sigma = 1 passes in 0 of the 0 sigma = 0 passes; best sigma = 1 score (worse footing) +229.8
+    r200 lower_abs: 36 cells; pass at sigma = 0: 0; at sigma = 1: 0; sigma = 1 passes in 0 of the 0 sigma = 0 passes; best sigma = 1 score (worse footing) +229.8
+    nfw  upper    : 36 cells; pass at sigma = 0: 35; at sigma = 1: 35; sigma = 1 passes in 35 of the 35 sigma = 0 passes; best sigma = 1 score (worse footing) -41.8
+    nfw  lower    : 36 cells; pass at sigma = 0: 0; at sigma = 1: 0; sigma = 1 passes in 0 of the 0 sigma = 0 passes; best sigma = 1 score (worse footing) +58.0
+    nfw  lower_abs: 36 cells; pass at sigma = 0: 0; at sigma = 1: 0; sigma = 1 passes in 0 of the 0 sigma = 0 passes; best sigma = 1 score (worse footing) +46.8
+  [PASS] V1 (reported) KiDS verdict per branch at sigma = 0 and sigma = 1
+         measured: {'r200/upper': {'cells': 36, 'pass_sigma0': 22, 'pass_sigma1': 22, 'sigma1_where_sigma0': 22, 'best_sigma1': -16.17829725385667}, 'r200/lower': {'cells': 36, 'pass_sigma0': 0, 'pass_sigma1': 0, 'sigma1_where_sigma0': 0, 'best_sigma1': 229.7937822689231}, 'r200/lower_abs': {'cells': 36, 'pass_sigma0': 0, 'pass_sigma1': 0, 'sigma1_where_sigma0': 0, 'best_sigma1': 229.7937822689231}, 'nfw/upper': {'cells': 36, 'pass_sigma0': 35, 'pass_sigma1': 35, 'sigma1_where_sigma0': 35, 'best_sigma1': -41.82501033652292}, 'nfw/lower': {'cells': 36, 'pass_sigma0': 0, 'pass_sigma1': 0, 'sigma1_where_sigma0': 0, 'best_sigma1': 58.03852042270029}, 'nfw/lower_abs': {'cells': 36, 'pass_sigma0': 0, 'pass_sigma1': 0, 'sigma1_where_sigma0': 0, 'best_sigma1': 46.76686177819346}}
+
+  6/8 checks pass; load-bearing failures: 2; wrote DE8_kids_sigma_axis_both_branches_results.json   [149s]
+rc=1
