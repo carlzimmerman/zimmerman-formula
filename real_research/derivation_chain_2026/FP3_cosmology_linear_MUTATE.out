@@ -1,0 +1,311 @@
+FP3 -- GATE G-1, LINEAR COSMOLOGY WITH NO PRESCRIBED MASK, on the ungated C-H/K core: what, in the core's own
+variables, can keep the MOND sector off in the linear web and on in galaxies -- and what no local mechanism can do.
+
+WHY.  The ungated C-H/K core drives sigma_8 to 18-27 (L341, committed) and has no well-posed linearisation on its own
+FRW (FP5, committed a26136bc4: at zero field U is pinned and the khronon's alpha_eff = alpha_c + 2 > 2).  Every repair
+on the record is either posited (L359's vacuum gate, a prescribed mask) or, as a varied action term, unstable (a
+threshold gate flat at both ends has W'' of both signs: DE7, DE12, DE13, CV3), blind (K-only: CV4) or leaks/slips
+(curvature or matter readings: MS1, DE7).  This lane derives, from the core's own action: (i) why the core fails linear
+cosmology; (ii) FP5's criterion and C1's stability rule for any local gate on the MOND energy; (iii) the most a stable
+local gate can deliver (the chord bound) and one explicit construction at that bound; (iv) the construction proposed in
+the G-1 brief (a leaf-average global factor times a convex local ramp), tested; (v) the resulting trilemma.
+
+THE ACTION (the ungated core: astra's C-H, ACTION.md; L340's BPS terms with beta = 0; L350's leaf average; nu_mono):
+    I = c^3/(16 pi G) Int d^4x sqrt(-g) { R - 2 Lambda + 2 h^{mn}(D_m U - a_m)(D_n U - a_n)
+          + 2 alpha^2 q(h^{mn} D_m W_b D_n W_b / alpha^2) + Int_0^b dz L (d_z W - Delta_h W) + lambda_0 (W_0 - U)
+          + alpha_c a_m a^m - c_2 (K - <K>_h)^2 } + GHY + S_m[g] + S_dark[g; declared cold state]
+    alpha = a0/c^2;  q'(Z) = nu_mono(sqrt Z) - 1, q(0) = 0;  n_m = -d_m tau/sqrt(X), a_m = D_m ln N, K = nabla_m n^m.
+    The dark mass is declared cold initial data at Omega_c (FP4 owns it).
+THE GATES TESTED (one factor on the MOND term, 2 alpha^2 q -> 2 alpha^2 W q, varied with everything else):
+    concave:  W = w(rho_dyn/rho_*(<K>_h)), w(u) = u/(1+u^4)^(1/4),  rho_dyn = (c^2/8 pi G)(<K>_h^2/3 - Lambda + 2 D_i a^i)
+              (the dynamical density read off the clock's own acceleration divergence D_i a^i -- the physical
+              potential's Laplacian -- plus the leaf mean); rho_* > 0 a function of the LEAF-AVERAGED expansion only.
+    proposal: W = [Omega_L(<K>_h)/Omega_L0]^p ((x - x_c)_+ / (x_N - x_c))^n,  x = 4 pi G (rho_dyn - rho_bar)/H^2
+              (proposed in the G-1 brief: a leaf-average global factor times a convex local ramp, flat only at the low end).
+    threshold (control): a C^inf step flat at both ends (CV3's transition).
+The footings: a0 = 9.3603e-11 (rho_Lambda) and 1.1312e-10 (rho_total), FP0.
+
+  *** MUTATE=1: C4's concave gate is replaced by the threshold (flat-flat) gate with the same edge -- C4(c) and C4(d) must FAIL ***
+
+================================================================================================================
+A  THE CORE ON FRW: minisuperspace variation (sympy), leaf average vs plain c_2
+================================================================================================================
+  [PASS] A1 on FRW every C-H/K term but R - 2 Lambda vanishes (a_m = 0, U homogeneous, q(0) = 0, K = <K>), and the minisuperspace variation gives GR's Friedmann and acceleration equations: G_cos = G
+         measured: H^2 = 8*pi*G*rho_0/(3*a(t)**3) + Lambda/3; a''/a = -4*pi*G*rho_0/(3*a(t)**3) + Lambda/3
+  [PASS] A2 CONTROL: the plain -c_2 K^2 term (no leaf average) renormalises the Friedmann equation, H^2 (1 + 3 c_2/2) = 8 pi G rho/3 + Lambda/3 (L350's G_cos/G = 1/(1 + 3 c_2/2) at alpha_c = 0)
+         measured: H^2 = 2*(8*pi*G*rho_0 + Lambda*a(t)**3)/(3*(3*c_2 + 2)*a(t)**3)
+  [PASS] A3 a0 is absent from the background: the MOND term 2 alpha^2 q(0) = 0 and its first variation ~ (nu - 1) s -> 0 on FRW, so Friedmann is a0-blind; in the action a0 is a constant coupling: a0(z)/a0(0) = 1 on both footings
+         measured: lim (nu-1)s = 0; a0 in the background equations: False; a0 = 9.3603e-11 / 1.1312e-10 m/s^2, a0(z)/a0(0) = 1 (canonical and alt)
+
+================================================================================================================
+B  WHY THE CORE FAILS LINEAR COSMOLOGY: the MOND energy is O(eps^(3/2)) around FRW
+================================================================================================================
+  [PASS] B1 ORDER COUNTING: q(Z) = (4/3) Z^(3/4) + ... ; with Z = |grad S U|^2/alpha^2 = O(eps^2) around FRW the core's MOND energy is O(eps^(3/2)), BELOW the O(eps^2) quadratic action, and its zero-field tangent q'(0) is infinite (FP5's pinned U); an AQUAL-type J(Y) ~ Y^(3/2) is O(eps^3) with zero tangent and drops out of linear order
+         measured: q = -w**7/1260 + w**5/15 - w**4/2 + 4*w**3/3 (w = Z^(1/4)); leading Z exponent 3/4 (coef 4/3); eps order: core 3/2, AQUAL-type 3; zero-field tangent: core oo, AQUAL-type 0
+
+================================================================================================================
+B2-B3  THE YARDSTICK (L341's, re-implemented) AND THE UNGATED CORE
+================================================================================================================
+  [PASS] B2 CONTROL: the re-implemented yardstick reproduces L341's committed sigma_8 -- LCDM and the ungated core (canonical, c_2 = 0.0073, rms) -- to 1e-3; nu_mono = nu_RAR below the phantom peak (the kernel B1 expanded)
+         measured: LCDM 0.81009 vs 0.81009; ungated 23.3139 vs 23.3139; |nu_mono/nu_RAR - 1| <= 4.9e-09
+  [PASS] B3 THE UNGATED CORE FAILS G-1: at FP0's footings its MOND kernel on the linear web gives sigma_8 > 10 (both footings, rms and per-mode) -- the record's L341 failure, on this lane's inputs
+         measured: canonical/rms 23.31, canonical/permode 17.71, alt/rms 27.55, alt/permode 20.84
+
+================================================================================================================
+C0  FP5'S WELL-POSEDNESS CRITERION, APPLIED TO A GATE (FP5's committed E(C), read and checked)
+================================================================================================================
+  [PASS] C0 FP5's committed reduced khronon E(C) (c_CH = 2) is E = alpha_c + 2C/(1+C): E(0) = alpha_c, E(inf) = alpha_c + 2, dE/dC > 0, and w^2 = c_2 (2 - E) k^2/(E (2 + 3 c_2)); with a gate the zero-field tangent is C_eff = W C_T, so the linearisation on FRW is well-posed iff C_eff < (2 - alpha_c)/alpha_c, and the MOND tangent vanishes IDENTICALLY on FRW iff W(FRW) = 0 with W = o(sqrt y) (C_T ~ y^(-1/2))
+         measured: E = ((C_e + 1)*(alpha_c + 2) - 2)/(C_e + 1); E(0) = alpha_c; E(inf) = alpha_c + 2; dE/dC = 2/(C_e + 1)**2; E = 2 at C = [(2 - alpha_c)/alpha_c]; w^2 form check 0
+
+================================================================================================================
+C1  THE STABILITY RULE: a gate on the dynamical density is stable iff it is concave (sympy symbol)
+================================================================================================================
+  [PASS] C1 THE STABILITY RULE: B = 2 alpha^2 q >= 0 (q' = nu_mono - 1 >= 0, q(0) = 0); for a gate reading the lapse Laplacian the static symbol det = 16 k^6 [B W'' C^2 k^2 (1 + W C_T) - 4] has a zero at k^2 = 4/(B W'' C^2 (1+W C_T)) iff B W'' > 0; the gate's local term on matter is delta phi_loc = -pi G B W'' C^2 (1 + W C_T)^2 delta rho (an anti-pressure iff W'' > 0; CV3 G3/G4 in this reading); psi = phi (no slip).  STABLE <=> W CONCAVE
+         measured: q >= 0 on the grid: True; det = 16*k2**3*(B*C**2*C_T*W2*Wbar*k2 + B*C**2*W2*k2 - 4); zero at k^2 = [4/(B*C**2*W2*(C_T*Wbar + 1))]; Newtonian part 4*pi*G*delta_rho*(-C_T*Wbar - 1)/k2; local part -pi*G*delta_rho*e*(C_T*Wbar + 1)**2 (k-independent: True); psi = phi: True; leaf-average lemma: delta<K> of a k != 0 mode = 0, so a factor F(<K>_h) adds 0 to the local second variation
+
+================================================================================================================
+C2  THE SIGMA_8 TOLERANCE: how much MOND the linear web may carry
+================================================================================================================
+    canonical rms    : uniform f_max = 1.783e-03;  active only at z <= 0.5: 3.329e-02
+    canonical permode: uniform f_max = 2.135e-03;  active only at z <= 0.5: 3.927e-02
+    alt       rms    : uniform f_max = 1.603e-03;  active only at z <= 0.5: 3.018e-02
+    alt       permode: uniform f_max = 1.916e-03;  active only at z <= 0.5: 3.558e-02
+  [PASS] C2 sigma_8 <= 1.02 x LCDM allows a uniform web on-fraction of at most f_max ~ 2e-3 (both footings, rms and per-mode); a gate active only at z <= 0.5 may carry more (the low-z budget C3 uses)
+         measured: canonical/rms 1.78e-03 (z<=0.5: 3.33e-02); canonical/permode 2.13e-03 (z<=0.5: 3.93e-02); alt/rms 1.60e-03 (z<=0.5: 3.02e-02); alt/permode 1.92e-03 (z<=0.5: 3.56e-02)
+
+================================================================================================================
+C3  THE CHORD BOUND: a concave gate's on/off ratio is capped by the density ratio
+================================================================================================================
+    4000 random concave gates: 0 violations of w(u)/u non-increasing; a smooth threshold gate violates: True
+    canonical M_b = 1e+10: a stable gate is at most half on beyond r = 0.107 Mpc (epoch-independent budget) / 0.458 Mpc (budget spent at z <= 0.5), z = 0.25
+    canonical M_b = 1e+11: a stable gate is at most half on beyond r = 0.190 Mpc (epoch-independent budget) / 0.815 Mpc (budget spent at z <= 0.5), z = 0.25
+    canonical M_b = 1e+12: a stable gate is at most half on beyond r = 0.338 Mpc (epoch-independent budget) / 1.449 Mpc (budget spent at z <= 0.5), z = 0.25
+    alt       M_b = 1e+10: a stable gate is at most half on beyond r = 0.112 Mpc (epoch-independent budget) / 0.480 Mpc (budget spent at z <= 0.5), z = 0.25
+    alt       M_b = 1e+11: a stable gate is at most half on beyond r = 0.199 Mpc (epoch-independent budget) / 0.854 Mpc (budget spent at z <= 0.5), z = 0.25
+    alt       M_b = 1e+12: a stable gate is at most half on beyond r = 0.354 Mpc (epoch-independent budget) / 1.519 Mpc (budget spent at z <= 0.5), z = 0.25
+  [PASS] C3 THE CHORD BOUND: a concave W >= 0 with W(0) >= 0 has W(rho)/rho non-increasing, so W(rho) <= (rho/rho_bar) W(rho_bar) <= (rho/rho_bar) f -- a stable local gate is at most half on where rho_dyn < rho_bar/(2 f).  With an epoch-independent amplitude (f = f_max) that is beyond ~0.2-0.5 Mpc of an isolated M_b = 1e10-1e12 galaxy at z = 0.25; only an amplitude that spends the sigma_8 budget at z <= 0.5 (f ~ 3e-2) reaches ~0.5-1.5 Mpc (both footings)
+         measured: random concave: 0/4000 violations; threshold gate violates: True; half-on radius (Mpc), uniform / low-z: can/1e+10 0.11/0.46, can/1e+11 0.19/0.81, can/1e+12 0.34/1.45, alt/1e+10 0.11/0.48, alt/1e+11 0.20/0.85, alt/1e+12 0.35/1.52
+  [PASS] C3b (reported: KiDS at lead grade) L341 F7's committed hard-truncation scores: a phantom cut inside 0.5 Mpc costs chi^2 >= 223 (0.3 Mpc: 374) against 107-118 uncut or cut at 1 Mpc.  An epoch-independent stable gate is cut there; reaching the KiDS scale needs the sigma_8 budget spent at z <= 0.5, which C4's KiDS-plus-flagship design tests
+         measured: F7 chi^2: none 118.0, 1 Mpc 106.8, 0.5 Mpc 223.0, 0.3 Mpc 374.0; stable-gate half-on radii: uniform <= 0.35 Mpc, low-z >= 0.46 Mpc
+
+================================================================================================================
+C4  THE CONCAVE CONSTRUCTION at the chord bound: W = w(rho_dyn/rho_*(<K>_h)), w concave
+================================================================================================================
+    gate: threshold (flat-flat) C^inf step at u = 0.75..1.25
+    D1 (M_b <= 1e11) canonical: rho_*0 = 10426.7 rho_m0 (the design galaxy at g/g_MOND = 0.95 at 0.1 a0, z = 0)
+    D1 (M_b <= 1e11) alt      : rho_*0 = 13851.9 rho_m0 (the design galaxy at g/g_MOND = 0.95 at 0.1 a0, z = 0)
+    D2 (M_b <= 1e12) canonical: rho_*0 = 3298.1 rho_m0 (the design galaxy at g/g_MOND = 0.95 at 0.1 a0, z = 0)
+    D2 (M_b <= 1e12) alt      : rho_*0 = 4381.2 rho_m0 (the design galaxy at g/g_MOND = 0.95 at 0.1 a0, z = 0)
+    D3 (RAR tail, 1e10 at 0.01 a0) canonical: rho_*0 = 3325.9 rho_m0 (the design galaxy at g/g_MOND = 0.95 at 0.01 a0, z = 0)
+    D3 (RAR tail, 1e10 at 0.01 a0) alt      : rho_*0 = 4418.1 rho_m0 (the design galaxy at g/g_MOND = 0.95 at 0.01 a0, z = 0)
+    D4 (RAR tail, 1e11 at 0.01 a0) canonical: rho_*0 = 1052.6 rho_m0 (the design galaxy at g/g_MOND = 0.95 at 0.01 a0, z = 0)
+    D4 (RAR tail, 1e11 at 0.01 a0) alt      : rho_*0 = 1398.0 rho_m0 (the design galaxy at g/g_MOND = 0.95 at 0.01 a0, z = 0)
+    D1 (M_b <= 1e11) canonical rms    : sigma_8 <= 1.02 keeps the design galaxies on up to z_on = 12.00
+    D1 (M_b <= 1e11) canonical permode: sigma_8 <= 1.02 keeps the design galaxies on up to z_on = 12.00
+    D1 (M_b <= 1e11) alt       rms    : sigma_8 <= 1.02 keeps the design galaxies on up to z_on = 12.00
+    D1 (M_b <= 1e11) alt       permode: sigma_8 <= 1.02 keeps the design galaxies on up to z_on = 12.00
+    D2 (M_b <= 1e12) canonical rms    : sigma_8 <= 1.02 keeps the design galaxies on up to z_on = 12.00
+    D2 (M_b <= 1e12) canonical permode: sigma_8 <= 1.02 keeps the design galaxies on up to z_on = 12.00
+    D2 (M_b <= 1e12) alt       rms    : sigma_8 <= 1.02 keeps the design galaxies on up to z_on = 12.00
+    D2 (M_b <= 1e12) alt       permode: sigma_8 <= 1.02 keeps the design galaxies on up to z_on = 12.00
+    D3 (RAR tail, 1e10 at 0.01 a0) canonical rms    : sigma_8 <= 1.02 keeps the design galaxies on up to z_on = 12.00
+    D3 (RAR tail, 1e10 at 0.01 a0) canonical permode: sigma_8 <= 1.02 keeps the design galaxies on up to z_on = 12.00
+    D3 (RAR tail, 1e10 at 0.01 a0) alt       rms    : sigma_8 <= 1.02 keeps the design galaxies on up to z_on = 12.00
+    D3 (RAR tail, 1e10 at 0.01 a0) alt       permode: sigma_8 <= 1.02 keeps the design galaxies on up to z_on = 12.00
+    D4 (RAR tail, 1e11 at 0.01 a0) canonical rms    : sigma_8 <= 1.02 keeps the design galaxies on up to z_on = 9.78
+    D4 (RAR tail, 1e11 at 0.01 a0) canonical permode: sigma_8 <= 1.02 keeps the design galaxies on up to z_on = 9.80
+    D4 (RAR tail, 1e11 at 0.01 a0) alt       rms    : sigma_8 <= 1.02 keeps the design galaxies on up to z_on = 10.84
+    D4 (RAR tail, 1e11 at 0.01 a0) alt       permode: sigma_8 <= 1.02 keeps the design galaxies on up to z_on = 10.87
+    D1 (M_b <= 1e11): design z_on = 12.00; sigma_8 ratio canonical/rms 1.0000, canonical/permode 1.0000, alt/rms 1.0000, alt/permode 1.0000
+    D2 (M_b <= 1e12): design z_on = 12.00; sigma_8 ratio canonical/rms 1.0000, canonical/permode 1.0000, alt/rms 1.0000, alt/permode 1.0000
+    D3 (RAR tail, 1e10 at 0.01 a0): design z_on = 12.00; sigma_8 ratio canonical/rms 1.0000, canonical/permode 1.0000, alt/rms 1.0000, alt/permode 1.0000
+    D4 (RAR tail, 1e11 at 0.01 a0): design z_on = 9.75; sigma_8 ratio canonical/rms 1.0159, canonical/permode 1.0133, alt/rms 1.0000, alt/permode 1.0000
+    D1 (M_b <= 1e11) canonical: web on-fraction W(rho_bar) at z = 0/1/2.5/5/10: 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00
+    D1 (M_b <= 1e11) alt      : web on-fraction W(rho_bar) at z = 0/1/2.5/5/10: 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00
+    D2 (M_b <= 1e12) canonical: web on-fraction W(rho_bar) at z = 0/1/2.5/5/10: 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00
+    D2 (M_b <= 1e12) alt      : web on-fraction W(rho_bar) at z = 0/1/2.5/5/10: 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00
+    D3 (RAR tail, 1e10 at 0.01 a0) canonical: web on-fraction W(rho_bar) at z = 0/1/2.5/5/10: 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00
+    D3 (RAR tail, 1e10 at 0.01 a0) alt      : web on-fraction W(rho_bar) at z = 0/1/2.5/5/10: 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00
+    D4 (RAR tail, 1e11 at 0.01 a0) canonical: web on-fraction W(rho_bar) at z = 0/1/2.5/5/10: 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00, 4.1e-03
+    D4 (RAR tail, 1e11 at 0.01 a0) alt      : web on-fraction W(rho_bar) at z = 0/1/2.5/5/10: 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00, 0.0e+00
+  [PASS] C4a sigma_8 WITHIN 2%: the concave gate, designed at the chord bound, keeps sigma_8 <= 1.02 x LCDM on both footings (rms and per-mode) with the design galaxies on up to z_on >= 2.5 (headline design D1; D2-D4 reported)
+         measured: z_on: D1 (M_b <= 1e11) 12.00, D2 (M_b <= 1e12) 12.00, D3 (RAR tail, 1e10 at 0.01 a0) 12.00, D4 (RAR tail, 1e11 at 0.01 a0) 9.75; D1/can/rms 1.0000, D1/can/permode 1.0000, D1/alt/rms 1.0000, D1/alt/permode 1.0000, D2/can/rms 1.0000, D2/can/permode 1.0000, D2/alt/rms 1.0000, D2/alt/permode 1.0000, D3/can/rms 1.0000, D3/can/permode 1.0000, D3/alt/rms 1.0000, D3/alt/permode 1.0000, D4/can/rms 1.0159, D4/can/permode 1.0133, D4/alt/rms 1.0000, D4/alt/permode 1.0000
+    D1 canonical M_b = 1e+10 z = 2.5 g_bar = 0.10 a0 (r = 12 kpc): g/g_MOND = 1.0000 (-0.000 dex)
+    D1 canonical M_b = 1e+10 z = 0.0 g_bar = 0.10 a0 (r = 12 kpc): g/g_MOND = 1.0000 (-0.000 dex)
+    D1 canonical M_b = 1e+10 z = 0.0 g_bar = 0.03 a0 (r = 22 kpc): g/g_MOND = 0.9363 (-0.057 dex)
+    D1 canonical M_b = 1e+10 z = 0.0 g_bar = 0.01 a0 (r = 39 kpc): g/g_MOND = 0.5608 (-0.502 dex)
+    D1 canonical M_b = 1e+11 z = 2.5 g_bar = 0.10 a0 (r = 39 kpc): g/g_MOND = 0.9640 (-0.032 dex)
+    D1 canonical M_b = 1e+11 z = 0.0 g_bar = 0.10 a0 (r = 39 kpc): g/g_MOND = 0.9409 (-0.053 dex)
+    D1 canonical M_b = 1e+11 z = 0.0 g_bar = 0.03 a0 (r = 70 kpc): g/g_MOND = 0.5636 (-0.498 dex)
+    D1 canonical M_b = 1e+11 z = 0.0 g_bar = 0.01 a0 (r = 122 kpc): g/g_MOND = 0.3376 (-0.943 dex)
+    D1 canonical M_b = 1e+12 z = 2.5 g_bar = 0.10 a0 (r = 122 kpc): g/g_MOND = 0.5971 (-0.448 dex)
+    D1 canonical M_b = 1e+12 z = 0.0 g_bar = 0.10 a0 (r = 122 kpc): g/g_MOND = 0.5971 (-0.448 dex)
+    D1 canonical M_b = 1e+12 z = 0.0 g_bar = 0.03 a0 (r = 223 kpc): g/g_MOND = 0.3492 (-0.914 dex)
+    D1 canonical M_b = 1e+12 z = 0.0 g_bar = 0.01 a0 (r = 386 kpc): g/g_MOND = 0.2091 (-1.359 dex)
+    D1 alt       M_b = 1e+10 z = 2.5 g_bar = 0.10 a0 (r = 11 kpc): g/g_MOND = 1.0000 (-0.000 dex)
+    D1 alt       M_b = 1e+10 z = 0.0 g_bar = 0.10 a0 (r = 11 kpc): g/g_MOND = 1.0000 (-0.000 dex)
+    D1 alt       M_b = 1e+10 z = 0.0 g_bar = 0.03 a0 (r = 20 kpc): g/g_MOND = 0.9363 (-0.057 dex)
+    D1 alt       M_b = 1e+10 z = 0.0 g_bar = 0.01 a0 (r = 35 kpc): g/g_MOND = 0.5608 (-0.502 dex)
+    D1 alt       M_b = 1e+11 z = 2.5 g_bar = 0.10 a0 (r = 35 kpc): g/g_MOND = 0.9640 (-0.032 dex)
+    D1 alt       M_b = 1e+11 z = 0.0 g_bar = 0.10 a0 (r = 35 kpc): g/g_MOND = 0.9409 (-0.053 dex)
+    D1 alt       M_b = 1e+11 z = 0.0 g_bar = 0.03 a0 (r = 64 kpc): g/g_MOND = 0.5636 (-0.498 dex)
+    D1 alt       M_b = 1e+11 z = 0.0 g_bar = 0.01 a0 (r = 111 kpc): g/g_MOND = 0.3376 (-0.943 dex)
+    D1 alt       M_b = 1e+12 z = 2.5 g_bar = 0.10 a0 (r = 111 kpc): g/g_MOND = 0.5971 (-0.448 dex)
+    D1 alt       M_b = 1e+12 z = 0.0 g_bar = 0.10 a0 (r = 111 kpc): g/g_MOND = 0.5971 (-0.448 dex)
+    D1 alt       M_b = 1e+12 z = 0.0 g_bar = 0.03 a0 (r = 203 kpc): g/g_MOND = 0.3492 (-0.914 dex)
+    D1 alt       M_b = 1e+12 z = 0.0 g_bar = 0.01 a0 (r = 351 kpc): g/g_MOND = 0.2091 (-1.359 dex)
+  [FAIL] C4b GALAXY INTERIORS ON (D1): at the flagship radius (g_bar = 0.1 a0) the deep-MOND BTFR zero point moves by <= 0.05 dex (flagship precision 0.13) for M_b = 1e10-1e11 at z = 2.5 and z = 0, both footings; the 1e12 rows, D2 and the RAR tail are reported
+         measured: D1 flagship: can/1e+10/z2.5 -0.000, can/1e+10/z0 -0.000, can/1e+11/z2.5 -0.032, can/1e+11/z0 -0.053, can/1e+12/z2.5 -0.448, can/1e+12/z0 -0.448, alt/1e+10/z2.5 -0.000, alt/1e+10/z0 -0.000, alt/1e+11/z2.5 -0.032, alt/1e+11/z0 -0.053, alt/1e+12/z2.5 -0.448, alt/1e+12/z0 -0.448 | D1 RAR tail z = 0 (0.03/0.01 a0): can/1e+10 -0.06/-0.50, can/1e+11 -0.50/-0.94, alt/1e+10 -0.06/-0.50, alt/1e+11 -0.50/-0.94
+    D1 (M_b <= 1e11)                can: z_on 12.00; dex 1e+10/z0/y0.01 -0.50, 1e+11/z0/y0.01 -0.94, 1e+11/z0/y0.03 -0.50, 1e+11/z2.5/y0.1 -0.03, 1e+12/z2.5/y0.1 -0.45, 1e+12/z0/y0.1 -0.45, IGM boost z2.5 delta1 +0.00, IGM boost z2.5 delta10 +0.00
+    D1 (M_b <= 1e11)                alt: z_on 12.00; dex 1e+10/z0/y0.01 -0.50, 1e+11/z0/y0.01 -0.94, 1e+11/z0/y0.03 -0.50, 1e+11/z2.5/y0.1 -0.03, 1e+12/z2.5/y0.1 -0.45, 1e+12/z0/y0.1 -0.45, IGM boost z2.5 delta1 +0.00, IGM boost z2.5 delta10 +0.00
+    D2 (M_b <= 1e12)                can: z_on 12.00; dex 1e+10/z0/y0.01 -0.04, 1e+11/z0/y0.01 -0.50, 1e+11/z0/y0.03 -0.06, 1e+11/z2.5/y0.1 -0.00, 1e+12/z2.5/y0.1 -0.03, 1e+12/z0/y0.1 -0.05, IGM boost z2.5 delta1 +0.00, IGM boost z2.5 delta10 +0.00
+    D2 (M_b <= 1e12)                alt: z_on 12.00; dex 1e+10/z0/y0.01 -0.04, 1e+11/z0/y0.01 -0.50, 1e+11/z0/y0.03 -0.06, 1e+11/z2.5/y0.1 -0.00, 1e+12/z2.5/y0.1 -0.03, 1e+12/z0/y0.1 -0.05, IGM boost z2.5 delta1 +0.00, IGM boost z2.5 delta10 +0.00
+    D3 (RAR tail, 1e10 at 0.01 a0)  can: z_on 12.00; dex 1e+10/z0/y0.01 -0.04, 1e+11/z0/y0.01 -0.50, 1e+11/z0/y0.03 -0.06, 1e+11/z2.5/y0.1 -0.00, 1e+12/z2.5/y0.1 -0.03, 1e+12/z0/y0.1 -0.05, IGM boost z2.5 delta1 +0.00, IGM boost z2.5 delta10 +0.00
+    D3 (RAR tail, 1e10 at 0.01 a0)  alt: z_on 12.00; dex 1e+10/z0/y0.01 -0.04, 1e+11/z0/y0.01 -0.50, 1e+11/z0/y0.03 -0.06, 1e+11/z2.5/y0.1 -0.00, 1e+12/z2.5/y0.1 -0.03, 1e+12/z0/y0.1 -0.05, IGM boost z2.5 delta1 +0.00, IGM boost z2.5 delta10 +0.00
+    D4 (RAR tail, 1e11 at 0.01 a0)  can: z_on 9.75; dex 1e+10/z0/y0.01 -0.00, 1e+11/z0/y0.01 -0.04, 1e+11/z0/y0.03 -0.00, 1e+11/z2.5/y0.1 -0.00, 1e+12/z2.5/y0.1 -0.00, 1e+12/z0/y0.1 -0.00, IGM boost z2.5 delta1 +0.00, IGM boost z2.5 delta10 +0.00
+    D4 (RAR tail, 1e11 at 0.01 a0)  alt: z_on 9.75; dex 1e+10/z0/y0.01 -0.00, 1e+11/z0/y0.01 -0.04, 1e+11/z0/y0.03 -0.00, 1e+11/z2.5/y0.1 -0.00, 1e+12/z2.5/y0.1 -0.00, 1e+12/z0/y0.1 -0.00, IGM boost z2.5 delta1 +0.00, IGM boost z2.5 delta10 +0.00
+  [PASS] C4b' (reported) THE TRADE: one 2% sigma_8 budget, spent four ways (D1-D4).  Designs keeping the dwarf RAR tail (1e10 at 0.01 a0, z = 0) AND the 1e11 flagship (z = 2.5) within 0.05 dex, and designs keeping the L* outskirts (1e11 at 0.03 a0) with the 1e11 and 1e12 flagships, are listed; the z = 2.5 IGM force boost of each design is printed
+         measured: dwarf tail + 1e11 flagship: ['D2 (M_b <= 1e12)', 'D3 (RAR tail, 1e10 at 0.01 a0)', 'D4 (RAR tail, 1e11 at 0.01 a0)']; L* outskirts + 1e11/1e12 flagships: ['D4 (RAR tail, 1e11 at 0.01 a0)']; IGM boost (delta = 1/10): D1/can 0.00/0.00, D1/alt 0.00/0.00, D2/can 0.00/0.00, D2/alt 0.00/0.00, D3/can 0.00/0.00, D3/alt 0.00/0.00, D4/can 0.00/0.00, D4/alt 0.00/0.00
+    u^2 w'' in [-5.137e+01, 2.919e+01]; CONTROL, the same rho_* read off the LOCAL K: max alpha^2 q |W_KK| / c_2 = D1/can 2.50e-01, D1/alt 3.65e-01, D2/can 2.50e-01, D2/alt 3.65e-01, D3/can 9.34e-03, D3/alt 1.36e-02, D4/can 1.12e-01, D4/alt 1.63e-01
+  [FAIL] C4c NON-NEGATIVE SECOND VARIATION: u^2 w'' <= 0 everywhere (C1: no symbol zero, the gate adds only pressure), and the clock enters only through leaf averages (<K>_h in rho_* and rho_bar), which add nothing to the local second variation (C1's lemma).  CONTROL: read off the LOCAL K instead, the same rho_* would overwhelm the khronon's stiffness c_2 (its threshold climbs into dense cores where q is huge) -- the leaf average is required
+         measured: u^2 w'' in [-5.14e+01, 2.92e+01]; leaf-average second variation 0; local-K control ratio D1/can 2.5e-01, D1/alt 3.7e-01, D2/can 2.5e-01, D2/alt 3.7e-01, D3/can 9.3e-03, D3/alt 1.4e-02, D4/can 1.1e-01, D4/alt 1.6e-01
+    self-consistent rho = rho_m + w(rho/rho_*) p on 950 cells (units rho_*): 195 cells with != 1 solution
+  [FAIL] C4d A UNIQUE SELF-CONSISTENT STATE: with the gate reading the density it helps create (matter + phantom), a concave w gives exactly one solution in every cell (no bistability, no history dependence)
+         measured: 195/950 cells not unique
+    price canonical r_half_Mpc (1e11, z=0.25): 0.0363
+    price canonical W_IGM z=2.5 delta=1: 0
+    price canonical IGM force boost W(nu-1) z=2.5 delta=1: 0
+    price canonical W_IGM z=2.5 delta=10: 0
+    price canonical IGM force boost W(nu-1) z=2.5 delta=10: 0
+    price canonical W_IGM z=3.0 delta=1: 0
+    price canonical IGM force boost W(nu-1) z=3.0 delta=1: 0
+    price canonical W_IGM z=3.0 delta=10: 0
+    price canonical IGM force boost W(nu-1) z=3.0 delta=10: 0
+    price canonical flagship dex z=4.0 1e11: -0.0318
+    price canonical flagship dex z=6.0 1e11: -0.0318
+    price canonical gate potential / v_f^2 at u = 1 (D1): 0.795
+    price canonical gate pressure c_g [km/s] at u = 1 (D1): 0
+    price alt       r_half_Mpc (1e11, z=0.25): 3e-05
+    price alt       W_IGM z=2.5 delta=1: 0
+    price alt       IGM force boost W(nu-1) z=2.5 delta=1: 0
+    price alt       W_IGM z=2.5 delta=10: 0
+    price alt       IGM force boost W(nu-1) z=2.5 delta=10: 0
+    price alt       W_IGM z=3.0 delta=1: 0
+    price alt       IGM force boost W(nu-1) z=3.0 delta=1: 0
+    price alt       W_IGM z=3.0 delta=10: 0
+    price alt       IGM force boost W(nu-1) z=3.0 delta=10: 0
+    price alt       flagship dex z=4.0 1e11: -0.0318
+    price alt       flagship dex z=6.0 1e11: -0.0318
+    price alt       gate potential / v_f^2 at u = 1 (D1): 0.795
+    price alt       gate pressure c_g [km/s] at u = 1 (D1): 0
+    KiDS-plus-flagship design (1e11 half on at 1 Mpc at z = 0.25, D1 above z = 0.5): can/rho_low/rho_m0 15.65, can/rms 1, can/permode 1, alt/rho_low/rho_m0 16.99, alt/rms 1, alt/permode 1
+  [PASS] C4e (reported) THE PRICES of the concave gate (D1): the 1e11 phantom is half on only to r_half at z = 0.25; the z = 2.5-3 IGM carries W ~ 1e-3-1e-2 (a forest cost to price); galaxy MOND fades above z_on; the gate's own potential and (positive) pressure at its edge; and serving KiDS (1 Mpc at z = 0.25) as well costs sigma_8
+         measured: can r_half_Mpc (1e11, z=0.25) 0.0363; can W_IGM z=2.5 delta=1 0; can IGM force boost W(nu-1) z=2.5 delta=1 0; can W_IGM z=2.5 delta=10 0; can IGM force boost W(nu-1) z=2.5 delta=10 0; can W_IGM z=3.0 delta=1 0; can IGM force boost W(nu-1) z=3.0 delta=1 0; can W_IGM z=3.0 delta=10 0; can IGM force boost W(nu-1) z=3.0 delta=10 0; can flagship dex z=4.0 1e11 -0.0318; can flagship dex z=6.0 1e11 -0.0318; can gate potential / v_f^2 at u = 1 (D1) 0.795; can gate pressure c_g [km/s] at u = 1 (D1) 0; alt r_half_Mpc (1e11, z=0.25) 3e-05; alt W_IGM z=2.5 delta=1 0; alt IGM force boost W(nu-1) z=2.5 delta=1 0; alt W_IGM z=2.5 delta=10 0; alt IGM force boost W(nu-1) z=2.5 delta=10 0; alt W_IGM z=3.0 delta=1 0; alt IGM force boost W(nu-1) z=3.0 delta=1 0; alt W_IGM z=3.0 delta=10 0; alt IGM force boost W(nu-1) z=3.0 delta=10 0; alt flagship dex z=4.0 1e11 -0.0318; alt flagship dex z=6.0 1e11 -0.0318; alt gate potential / v_f^2 at u = 1 (D1) 0.795; alt gate pressure c_g [km/s] at u = 1 (D1) 0 | KiDS+flagship sigma_8: can/rms 1.0000, can/permode 1.0000, alt/rms 1.0000, alt/permode 1.0000
+    FP5 band (E > 2 below y*): ungated alpha_c=9.6e-14: y* = 2.32e-27, alpha_c=3.2e-09: y* = 2.56e-18 | concave gate can/9.6e-14: y* = 0.00e+00, can/3.2e-09: y* = 0.00e+00, alt/9.6e-14: y* = 0.00e+00, alt/3.2e-09: y* = 0.00e+00
+  [FAIL] C4f FP5 (the strict form): the concave gate is NOT zero on FRW (W(FRW) = w(rho_bar/rho_*) > 0), so its zero-field tangent C_eff = W C_T is still infinite: the ill-posed band y < y* survives, shrunk from the ungated core's by ~ W(FRW)^2 -- amplitude-harmless (FP5 C4) but the MOND tangent does not vanish identically on FRW
+         measured: W(FRW, z = 0) = canonical 0.00e+00, alt 0.00e+00; y* (gate) max 0.0e+00 vs ungated 2.6e-18
+
+================================================================================================================
+C5  CONTROL (both ways): the threshold gate -- passes the data gates and FP5, fails stability
+================================================================================================================
+  [PASS] C5 CONTROL: a threshold gate flat at both ends (same edge) keeps the web exactly off (sigma_8 = LCDM), keeps the flagship on and vanishes on FRW (FP5 satisfied), but u^2 W'' takes both signs (an anti-pressure on half of every layer, a symbol zero there by C1) and the self-consistent state is bistable -- the record's obstruction
+         measured: u^2 W'' in [-51.36, 29.19]; bistable cells 147/289; W(FRW) {'canonical': 0.0, 'alt': 0.0}; sigma_8 ratio can/rms 1.00000, can/permode 1.00000, alt/rms 1.00000, alt/permode 1.00000; flagship (1e11, z = 2.5) can -0.032 dex, alt -0.032 dex
+
+================================================================================================================
+C8  THE PROPOSED CONSTRUCTION: a leaf-average global factor x a convex local ramp (flat only at the low end)
+================================================================================================================
+    W(FRW) all z: 0
+    W_IGM z=2.0 delta=1: 0
+    W_IGM z=2.0 delta=10: 5.272e-07
+    W_IGM z=3.0 delta=1: 0
+    W_IGM z=3.0 delta=10: 2.586e-07
+    RAR dex at g_bar=0.01 a0 (no plateau): -1.964
+    W at g_bar=0.01 a0: 0.01005
+    RAR dex at g_bar=0.1 a0 (no plateau): 0
+    W at g_bar=0.1 a0: 1
+    RAR dex at g_bar=1.0 a0 (no plateau): 3.02
+    W at g_bar=1.0 a0: 86.28
+    c_g^2 sign at flagship z=0.0: -1
+    |c_g| km/s at flagship z=0.0: 115.3
+    c_g^2 sign at flagship z=2.5: -1
+    |c_g| km/s at flagship z=2.5: 2.166
+    W at the 1e11 flagship radius, z = 2.5: 0.0003456
+    flagship dex z = 2.5 (1e11): -1.133
+  [PASS] C8a the leaf-average global factor [Omega_L(<K>)/Omega_L0]^p has NO local second variation (C1's lemma: a k != 0 mode of K leaves <K>_h unchanged, so d^2 F(<K>)/d eps^2 = 0) -- that part sidesteps CV3's obstruction
+         measured: delta<K> of a k != 0 mode = 0; d^2F/d eps^2 = 0
+  [PASS] C8b the proposal passes FP5 (W = 0 identically near FRW: the MOND tangent vanishes on the background), sigma_8 (web exactly off) and the z = 2-3 IGM (W < 1e-3 at delta <= 10) at L359's cell p = 1, x_c = 2.5 (DECLARED, not derived)
+         measured: W(FRW) = 0.0; sigma_8 can/rms 1.00000, can/permode 1.00000, alt/rms 1.00000, alt/permode 1.00000; IGM W_IGM z=2.0 delta=1=0.0e+00, W_IGM z=2.0 delta=10=5.3e-07, W_IGM z=3.0 delta=1=0.0e+00, W_IGM z=3.0 delta=10=2.6e-07
+  [PASS] C8c THE CONVEX RAMP FAILS THE SECOND VARIATION: W'' > 0 wherever the ramp curves, which by C1 is an anti-pressure (and a symbol zero) at every galaxy's MOND radius -- the sign CV3/DE12 found for the unstable half of a threshold; one-signed W'' of the CONVEX sign is not a repair
+         measured: c_g^2 sign at flagship z=0.0 -1; |c_g| km/s at flagship z=0.0 115; c_g^2 sign at flagship z=2.5 -1; |c_g| km/s at flagship z=2.5 2.17
+  [PASS] C8d WITHOUT AN UPPER PLATEAU THE RAR FAILS: the kernel saturates in the field y, not in the density x, so W grows ~ x^n across a galaxy's MOND region (W = 1 at 0.1 a0 by normalisation) -- a plateau is needed, and a plateau makes W concave there: W'' of both signs again (C5); normalised at z = 0, the global factor also switches the z = 2.5 flagship off (reported)
+         measured: RAR dex at g_bar=0.01 a0 (no plateau) -1.96; W at g_bar=0.01 a0 0.01; RAR dex at g_bar=0.1 a0 (no plateau) 0; W at g_bar=0.1 a0 1; RAR dex at g_bar=1.0 a0 (no plateau) 3.02; W at g_bar=1.0 a0 86.3; W at the 1e11 flagship radius, z = 2.5 0.000346; flagship dex z = 2.5 (1e11) -1.13
+
+================================================================================================================
+C6  THE TRACKING CLASS: the khronon's finite response speed cannot separate the web from galaxies
+================================================================================================================
+  [PASS] C6 THE TRACKING CLASS FAILS: sigma_8 <= 1.02 needs c_2 <= c_2,max (the phantom must not follow the linear modes), while a galaxy moving at 600 km/s needs c_s > 600 km/s (KM2's pole), i.e. c_2 >= 2 C (v/c)^2 -- apart by >= 2 decades for every constitutive C = 1-100
+         measured: c_2,max: can/rms 4.59e-09, can/permode 3.79e-08, alt/rms 4.58e-09, alt/permode 3.41e-08; c_2,min(C = 1/10/100): 8.0e-06, 8.0e-05, 8.0e-04
+
+================================================================================================================
+C7  THE K-FLOOR WITH BACKREACTION: can the MOND energy pull the clock's K down inside galaxies?
+================================================================================================================
+    delta K / K inside a galaxy (s = g_N/a0) relative to the web, z = 0, c_2 = 7.3e-3: can/s=0.1 -9.03e-08, can/s=1.0 -9.03e-04, can/s=2.54 -3.70e-02, alt/s=0.1 -2.31e-07, alt/s=1.0 -2.31e-03, alt/s=2.54 -9.33e-02
+  [PASS] C7 THE K-FLOOR CANNOT UNBLIND ITSELF: the static khronon equation with a K-dependent MOND energy B(K) is lap^2(2 c_2 dK - B_K) = 0, so delta K = (B_K - <B_K>)/(2 c_2); inside a galaxy the floor dominates (s << kappa = cH/a0 ~ 6-7), so delta K/K = O((s/kappa)^4): K drops by <= 0.3% for s <= 1 (4-9% at the phantom peak), and the back-reacted floor leaves < 1% of the free MOND tangent in the MOND region -- galaxies stay Newtonian (L341 F6)
+         measured: EL = lap^2(flux): True; flux = 2 c_2 dK - B'(K): True; delta K/K can/s=0.1 -9.0e-08, can/s=1.0 -9.0e-04, can/s=2.54 -3.7e-02, alt/s=0.1 -2.3e-07, alt/s=1.0 -2.3e-03, alt/s=2.54 -9.3e-02; floored/free tangent can/s=0.1 7.3e-06, can/s=1.0 3.4e-03, can/s=2.54 5.4e-02, alt/s=0.1 1.3e-05, alt/s=1.0 5.9e-03, alt/s=2.54 1.1e-01
+
+================================================================================================================
+T  THE TRILEMMA: FP5 (tangent zero on FRW), non-negative second variation, sigma_8 + galaxies
+================================================================================================================
+    ungated core                       FP5 False  stable True   sigma_8+galaxies False
+    concave gate (C4)                  FP5 True   stable False  sigma_8+galaxies False
+    threshold gate (C5)                FP5 True   stable False  sigma_8+galaxies True
+    convex ramp x leaf average (C8)    FP5 True   stable False  sigma_8+galaxies False
+    tracking (C6)                      FP5 False  stable True   sigma_8+galaxies False
+    K-floor + backreaction (C7)        FP5 True   stable True   sigma_8+galaxies False
+  [PASS] T THE TRILEMMA: no local mechanism tested meets all three of FP5 (MOND tangent zero on FRW), a non-negative second variation, and sigma_8 within 2% with galaxy interiors on; the reason is one lemma: a gate that is exactly zero on FRW and one in galaxies switches on from zero, so it is convex somewhere (DE13's Lean lemma), and convex where the MOND energy B > 0 is C1's anti-pressure
+         measured: classes meeting all three: 0 of 6
+
+================================================================================================================
+W  THE LEDGER: FP3 / G-1 on the ungated C-H/K core
+================================================================================================================
+    G1a   DERIVED     FRW background of the core (leaf average): Friedmann = GR, G_cos = G  --  A1 sympy minisuperspace; A2 control
+    G1b   DERIVED     a0 absent from the background; a0(z)/a0(0) = 1 (canonical reading)  --  A3; both footings
+    G1c   POSTULATED  the dark mass on FRW: cold, w = 0, Omega_c  --  declared field initial data (FP4 owns it)
+    G1d   DERIVED     the core's MOND energy around FRW: O(eps^(3/2)), infinite zero-field tangent  --  B1 sympy; FP5's pinned U
+    G1e   FAILS       ungated core in linear cosmology: sigma_8 18-27  --  B2 (L341 reproduced), B3 at FP0's footings
+    G1f   DERIVED     well-posed on FRW iff the gated tangent W C_T < (2 - alpha_c)/alpha_c  --  C0 on FP5's committed E(C)
+    G1g   DERIVED     a local gate has a non-negative second variation iff it is concave; leaf averages add none  --  C1 static symbol + local pressure + leaf-average lemma
+    G1h   CONSTRAINT  sigma_8 within 2% caps the web's MOND on-fraction at ~2e-3 (3e-2 if spent at z <= 0.5)  --  C2, L341 yardstick, both footings
+    G1i   DERIVED     chord bound: a stable local gate's on-fraction <= (rho/rho_bar) x its web value  --  C3 theorem
+    G1j   POSTULATED  the concave gate W = w(rho_dyn/rho_*(<K>_h)): the form and rho_*  --  chosen inside the class G1g allows; rho_* bounded by C2-C4
+    G1k   DERIVED     sigma_8 within 2% with the flagship on (M_b <= 1e11, z <= 2.5) or the dwarf RAR tail; stable, unique  --  C4a-C4d (D1, D3), given G1j
+    G1l   FAILS       L* outskirts (1e11 beyond ~70 kpc), 1e12 at the flagship radius, KiDS 1 Mpc, galaxies at z >~ 4  --  C4b/C4b'/C4e: the chord bound spends the sigma_8 budget
+    G1m   OPEN        the z = 2.5-3 IGM under the concave gate (force boost 11-28% for D1)  --  C4e; a P1D run owed; likely fails
+    G1n   FAILS       the concave gate's MOND tangent on FRW (FP5 strict)  --  C4f: W(FRW) > 0; the band y < y* shrinks, survives
+    G1o   DERIVED     leaf-average global factor: no local second variation  --  C1 lemma, C8a
+    G1p   FAILS       convex local ramp (the proposal; p = 1, x_c = 2.5 declared)  --  C8c anti-pressure; C8d RAR without plateau
+    G1q   FAILS       tracking (khronon c_s) as the switch  --  C6: sigma_8 vs KM2's moving-source pole
+    G1r   FAILS       K-floor with backreaction  --  C7: delta K/K = O((s/kappa)^4)
+    G1s   FAILS       G-1 by any local gate on the MOND energy  --  T: FP5 x second variation x data trilemma
+    G1t   OPEN        a MOND term with ZERO zero-field tangent on a field with its own inertia (AQUAL-type, O(eps^3))  --  B1 + C0: meets FP5 by order counting with no gate; not in the core (its kernel reads the constrained U)
+  [PASS] W (reported) the ledger
+         measured: 20 links
+  [FAIL] G1 (reported) G-1 passed by a mechanism in the core's own variables (FP5 tangent zero on FRW, sigma_8 within 2%, galaxies on, non-negative second variation)
+         measured: no: the concave gate meets sigma_8 + galaxy interiors (z <= 12.00) + stability but not FP5's strict form; every FP5-exact gate is convex somewhere (T)
+
+================================================================================================================
+VERDICT
+================================================================================================================
+  The ungated core fails linear cosmology because its MOND energy is O(eps^(3/2)) around FRW with an infinite
+  zero-field tangent (sigma_8 ~ 20; FP5's pinned U).  A local gate on the MOND energy is stable iff concave (C1),
+  and a concave gate's on-fraction is capped by the density ratio (C3).  Spent at that bound, one concave gate built
+  from the clock's D_i a^i and leaf average <K>_h keeps sigma_8 within 2% (D1 max 1.0000)
+  with the flagship on for M_b <= 1e11 to z_on = 12.00, stable and unique -- but it cuts the L* outskirts, the
+  1e12 flagship and KiDS, pushes 11-28% extra force into the z = 2.5-3 IGM, and is not zero on FRW (FP5's band
+  shrinks to y < 0e+00 but survives).  Every gate that IS zero on FRW switches on from zero and is
+  convex somewhere: the proposed convex ramp and the threshold carry C1's anti-pressure.  No local gate meets all
+  three; the door left is a MOND term with a ZERO zero-field tangent on a field with its own inertia -- not in the core.
+  Time 16 s.
+
+  23/28 checks pass; load-bearing failures: 4; wrote FP3_cosmology_linear_results_MUTATE.json
+rc=1

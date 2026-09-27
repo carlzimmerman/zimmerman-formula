@@ -1,0 +1,817 @@
+{
+ "lane": "FP3",
+ "gate": "G-1",
+ "mutate": false,
+ "checks": {
+  "A1 on FRW every C-H/K term but R - 2 Lambda vanishes (a_m = 0, U homogeneous, q(0) = 0, K = <K>), and the minisuperspace variation gives GR's Friedmann and acceleration equations: G_cos = G": {
+   "ok": true,
+   "measured": "H^2 = 8*pi*G*rho_0/(3*a(t)**3) + Lambda/3; a''/a = -4*pi*G*rho_0/(3*a(t)**3) + Lambda/3",
+   "load_bearing": true
+  },
+  "A2 CONTROL: the plain -c_2 K^2 term (no leaf average) renormalises the Friedmann equation, H^2 (1 + 3 c_2/2) = 8 pi G rho/3 + Lambda/3 (L350's G_cos/G = 1/(1 + 3 c_2/2) at alpha_c = 0)": {
+   "ok": true,
+   "measured": "H^2 = 2*(8*pi*G*rho_0 + Lambda*a(t)**3)/(3*(3*c_2 + 2)*a(t)**3)",
+   "load_bearing": true
+  },
+  "A3 a0 is absent from the background: the MOND term 2 alpha^2 q(0) = 0 and its first variation ~ (nu - 1) s -> 0 on FRW, so Friedmann is a0-blind; in the action a0 is a constant coupling: a0(z)/a0(0) = 1 on both footings": {
+   "ok": true,
+   "measured": "lim (nu-1)s = 0; a0 in the background equations: False; a0 = 9.3603e-11 / 1.1312e-10 m/s^2, a0(z)/a0(0) = 1 (canonical and alt)",
+   "load_bearing": true
+  },
+  "B1 ORDER COUNTING: q(Z) = (4/3) Z^(3/4) + ... ; with Z = |grad S U|^2/alpha^2 = O(eps^2) around FRW the core's MOND energy is O(eps^(3/2)), BELOW the O(eps^2) quadratic action, and its zero-field tangent q'(0) is infinite (FP5's pinned U); an AQUAL-type J(Y) ~ Y^(3/2) is O(eps^3) with zero tangent and drops out of linear order": {
+   "ok": true,
+   "measured": "q = -w**7/1260 + w**5/15 - w**4/2 + 4*w**3/3 (w = Z^(1/4)); leading Z exponent 3/4 (coef 4/3); eps order: core 3/2, AQUAL-type 3; zero-field tangent: core oo, AQUAL-type 0",
+   "load_bearing": true
+  },
+  "B2 CONTROL: the re-implemented yardstick reproduces L341's committed sigma_8 -- LCDM and the ungated core (canonical, c_2 = 0.0073, rms) -- to 1e-3; nu_mono = nu_RAR below the phantom peak (the kernel B1 expanded)": {
+   "ok": true,
+   "measured": "LCDM 0.81009 vs 0.81009; ungated 23.3139 vs 23.3139; |nu_mono/nu_RAR - 1| <= 4.9e-09",
+   "load_bearing": true
+  },
+  "B3 THE UNGATED CORE FAILS G-1: at FP0's footings its MOND kernel on the linear web gives sigma_8 > 10 (both footings, rms and per-mode) -- the record's L341 failure, on this lane's inputs": {
+   "ok": true,
+   "measured": "canonical/rms 23.31, canonical/permode 17.71, alt/rms 27.55, alt/permode 20.84",
+   "load_bearing": true
+  },
+  "C0 FP5's committed reduced khronon E(C) (c_CH = 2) is E = alpha_c + 2C/(1+C): E(0) = alpha_c, E(inf) = alpha_c + 2, dE/dC > 0, and w^2 = c_2 (2 - E) k^2/(E (2 + 3 c_2)); with a gate the zero-field tangent is C_eff = W C_T, so the linearisation on FRW is well-posed iff C_eff < (2 - alpha_c)/alpha_c, and the MOND tangent vanishes IDENTICALLY on FRW iff W(FRW) = 0 with W = o(sqrt y) (C_T ~ y^(-1/2))": {
+   "ok": true,
+   "measured": "E = ((C_e + 1)*(alpha_c + 2) - 2)/(C_e + 1); E(0) = alpha_c; E(inf) = alpha_c + 2; dE/dC = 2/(C_e + 1)**2; E = 2 at C = [(2 - alpha_c)/alpha_c]; w^2 form check 0",
+   "load_bearing": true
+  },
+  "C1 THE STABILITY RULE: B = 2 alpha^2 q >= 0 (q' = nu_mono - 1 >= 0, q(0) = 0); for a gate reading the lapse Laplacian the static symbol det = 16 k^6 [B W'' C^2 k^2 (1 + W C_T) - 4] has a zero at k^2 = 4/(B W'' C^2 (1+W C_T)) iff B W'' > 0; the gate's local term on matter is delta phi_loc = -pi G B W'' C^2 (1 + W C_T)^2 delta rho (an anti-pressure iff W'' > 0; CV3 G3/G4 in this reading); psi = phi (no slip).  STABLE <=> W CONCAVE": {
+   "ok": true,
+   "measured": "q >= 0 on the grid: True; det = 16*k2**3*(B*C**2*C_T*W2*Wbar*k2 + B*C**2*W2*k2 - 4); zero at k^2 = [4/(B*C**2*W2*(C_T*Wbar + 1))]; Newtonian part 4*pi*G*delta_rho*(-C_T*Wbar - 1)/k2; local part -pi*G*delta_rho*e*(C_T*Wbar + 1)**2 (k-independent: True); psi = phi: True; leaf-average lemma: delta<K> of a k != 0 mode = 0, so a factor F(<K>_h) adds 0 to the local second variation",
+   "load_bearing": true
+  },
+  "C2 sigma_8 <= 1.02 x LCDM allows a uniform web on-fraction of at most f_max ~ 2e-3 (both footings, rms and per-mode); a gate active only at z <= 0.5 may carry more (the low-z budget C3 uses)": {
+   "ok": true,
+   "measured": "canonical/rms 1.78e-03 (z<=0.5: 3.33e-02); canonical/permode 2.13e-03 (z<=0.5: 3.93e-02); alt/rms 1.60e-03 (z<=0.5: 3.02e-02); alt/permode 1.92e-03 (z<=0.5: 3.56e-02)",
+   "load_bearing": true
+  },
+  "C3 THE CHORD BOUND: a concave W >= 0 with W(0) >= 0 has W(rho)/rho non-increasing, so W(rho) <= (rho/rho_bar) W(rho_bar) <= (rho/rho_bar) f -- a stable local gate is at most half on where rho_dyn < rho_bar/(2 f).  With an epoch-independent amplitude (f = f_max) that is beyond ~0.2-0.5 Mpc of an isolated M_b = 1e10-1e12 galaxy at z = 0.25; only an amplitude that spends the sigma_8 budget at z <= 0.5 (f ~ 3e-2) reaches ~0.5-1.5 Mpc (both footings)": {
+   "ok": true,
+   "measured": "random concave: 0/4000 violations; threshold gate violates: True; half-on radius (Mpc), uniform / low-z: can/1e+10 0.11/0.46, can/1e+11 0.19/0.81, can/1e+12 0.34/1.45, alt/1e+10 0.11/0.48, alt/1e+11 0.20/0.85, alt/1e+12 0.35/1.52",
+   "load_bearing": true
+  },
+  "C3b (reported: KiDS at lead grade) L341 F7's committed hard-truncation scores: a phantom cut inside 0.5 Mpc costs chi^2 >= 223 (0.3 Mpc: 374) against 107-118 uncut or cut at 1 Mpc.  An epoch-independent stable gate is cut there; reaching the KiDS scale needs the sigma_8 budget spent at z <= 0.5, which C4's KiDS-plus-flagship design tests": {
+   "ok": true,
+   "measured": "F7 chi^2: none 118.0, 1 Mpc 106.8, 0.5 Mpc 223.0, 0.3 Mpc 374.0; stable-gate half-on radii: uniform <= 0.35 Mpc, low-z >= 0.46 Mpc",
+   "load_bearing": false
+  },
+  "C4a sigma_8 WITHIN 2%: the concave gate, designed at the chord bound, keeps sigma_8 <= 1.02 x LCDM on both footings (rms and per-mode) with the design galaxies on up to z_on >= 2.5 (headline design D1; D2-D4 reported)": {
+   "ok": true,
+   "measured": "z_on: D1 (M_b <= 1e11) 4.10, D2 (M_b <= 1e12) 2.40, D3 (RAR tail, 1e10 at 0.01 a0) 2.40, D4 (RAR tail, 1e11 at 0.01 a0) 1.40; D1/can/rms 1.0197, D1/can/permode 1.0166, D1/alt/rms 1.0164, D1/alt/permode 1.0139, D2/can/rms 1.0195, D2/can/permode 1.0165, D2/alt/rms 1.0163, D2/alt/permode 1.0137, D3/can/rms 1.0197, D3/can/permode 1.0166, D3/alt/rms 1.0164, D3/alt/permode 1.0138, D4/can/rms 1.0199, D4/can/permode 1.0168, D4/alt/rms 1.0165, D4/alt/permode 1.0140",
+   "load_bearing": true
+  },
+  "C4b GALAXY INTERIORS ON (D1): at the flagship radius (g_bar = 0.1 a0) the deep-MOND BTFR zero point moves by <= 0.05 dex (flagship precision 0.13) for M_b = 1e10-1e11 at z = 2.5 and z = 0, both footings; the 1e12 rows, D2 and the RAR tail are reported": {
+   "ok": true,
+   "measured": "D1 flagship: can/1e+10/z2.5 -0.000, can/1e+10/z0 -0.000, can/1e+11/z2.5 -0.042, can/1e+11/z0 -0.044, can/1e+12/z2.5 -0.438, can/1e+12/z0 -0.451, alt/1e+10/z2.5 -0.000, alt/1e+10/z0 -0.000, alt/1e+11/z2.5 -0.043, alt/1e+11/z0 -0.044, alt/1e+12/z2.5 -0.440, alt/1e+12/z0 -0.451 | D1 RAR tail z = 0 (0.03/0.01 a0): can/1e+10 -0.07/-0.51, can/1e+11 -0.51/-0.95, alt/1e+10 -0.07/-0.51, alt/1e+11 -0.51/-0.95",
+   "load_bearing": true
+  },
+  "C4b' (reported) THE TRADE: one 2% sigma_8 budget, spent four ways (D1-D4).  Designs keeping the dwarf RAR tail (1e10 at 0.01 a0, z = 0) AND the 1e11 flagship (z = 2.5) within 0.05 dex, and designs keeping the L* outskirts (1e11 at 0.03 a0) with the 1e11 and 1e12 flagships, are listed; the z = 2.5 IGM force boost of each design is printed": {
+   "ok": true,
+   "measured": "dwarf tail + 1e11 flagship: ['D2 (M_b <= 1e12)', 'D3 (RAR tail, 1e10 at 0.01 a0)']; L* outskirts + 1e11/1e12 flagships: none; IGM boost (delta = 1/10): D1/can 0.13/0.22, D1/alt 0.11/0.18, D2/can 0.26/0.43, D2/alt 0.22/0.36, D3/can 0.27/0.43, D3/alt 0.22/0.36, D4/can 0.04/0.07, D4/alt 0.04/0.06",
+   "load_bearing": false
+  },
+  "C4c NON-NEGATIVE SECOND VARIATION: u^2 w'' <= 0 everywhere (C1: no symbol zero, the gate adds only pressure), and the clock enters only through leaf averages (<K>_h in rho_* and rho_bar), which add nothing to the local second variation (C1's lemma).  CONTROL: read off the LOCAL K instead, the same rho_* would overwhelm the khronon's stiffness c_2 (its threshold climbs into dense cores where q is huge) -- the leaf average is required": {
+   "ok": true,
+   "measured": "u^2 w'' in [-1.07e+00, -5.00e-30]; leaf-average second variation 0; local-K control ratio D1/can 4.0e+04, D1/alt 5.9e+04, D2/can 2.4e+07, D2/alt 2.9e+07, D3/can 2.2e+05, D3/alt 2.7e+05, D4/can 4.4e+06, D4/alt 5.4e+06",
+   "load_bearing": true
+  },
+  "C4d A UNIQUE SELF-CONSISTENT STATE: with the gate reading the density it helps create (matter + phantom), a concave w gives exactly one solution in every cell (no bistability, no history dependence)": {
+   "ok": true,
+   "measured": "0/950 cells not unique",
+   "load_bearing": true
+  },
+  "C4e (reported) THE PRICES of the concave gate (D1): the 1e11 phantom is half on only to r_half at z = 0.25; the z = 2.5-3 IGM carries W ~ 1e-3-1e-2 (a forest cost to price); galaxy MOND fades above z_on; the gate's own potential and (positive) pressure at its edge; and serving KiDS (1 Mpc at z = 0.25) as well costs sigma_8": {
+   "ok": true,
+   "measured": "can r_half_Mpc (1e11, z=0.25) 0.0374; can W_IGM z=2.5 delta=1 0.00745; can IGM force boost W(nu-1) z=2.5 delta=1 0.132; can W_IGM z=2.5 delta=10 0.041; can IGM force boost W(nu-1) z=2.5 delta=10 0.216; can W_IGM z=3.0 delta=1 0.0111; can IGM force boost W(nu-1) z=3.0 delta=1 0.171; can W_IGM z=3.0 delta=10 0.061; can IGM force boost W(nu-1) z=3.0 delta=10 0.278; can flagship dex z=4.0 1e11 -0.117; can flagship dex z=6.0 1e11 -0.92; can gate potential / v_f^2 at u = 1 (D1) 0.0757; can gate pressure c_g [km/s] at u = 1 (D1) 81.7; alt r_half_Mpc (1e11, z=0.25) 0.0343; alt W_IGM z=2.5 delta=1 0.00561; alt IGM force boost W(nu-1) z=2.5 delta=1 0.109; alt W_IGM z=2.5 delta=10 0.0308; alt IGM force boost W(nu-1) z=2.5 delta=10 0.18; alt W_IGM z=3.0 delta=1 0.00834; alt IGM force boost W(nu-1) z=3.0 delta=1 0.142; alt W_IGM z=3.0 delta=10 0.0459; alt IGM force boost W(nu-1) z=3.0 delta=10 0.232; alt flagship dex z=4.0 1e11 -0.12; alt flagship dex z=6.0 1e11 -0.921; alt gate potential / v_f^2 at u = 1 (D1) 0.0757; alt gate pressure c_g [km/s] at u = 1 (D1) 70.8 | KiDS+flagship sigma_8: can/rms 1.0740, can/permode 1.0625, alt/rms 1.0713, alt/permode 1.0603",
+   "load_bearing": false
+  },
+  "C4f FP5 (the strict form): the concave gate is NOT zero on FRW (W(FRW) = w(rho_bar/rho_*) > 0), so its zero-field tangent C_eff = W C_T is still infinite: the ill-posed band y < y* survives, shrunk from the ungated core's by ~ W(FRW)^2 -- amplitude-harmless (FP5 C4) but the MOND tangent does not vanish identically on FRW": {
+   "ok": true,
+   "measured": "W(FRW, z = 0) = canonical 8.69e-05, alt 6.54e-05; y* (gate) max 1.9e-26 vs ungated 2.6e-18",
+   "load_bearing": true
+  },
+  "C5 CONTROL: a threshold gate flat at both ends (same edge) keeps the web exactly off (sigma_8 = LCDM), keeps the flagship on and vanishes on FRW (FP5 satisfied), but u^2 W'' takes both signs (an anti-pressure on half of every layer, a symbol zero there by C1) and the self-consistent state is bistable -- the record's obstruction": {
+   "ok": true,
+   "measured": "u^2 W'' in [-51.36, 29.19]; bistable cells 147/289; W(FRW) {'canonical': 0.0, 'alt': 0.0}; sigma_8 ratio can/rms 1.00000, can/permode 1.00000, alt/rms 1.00000, alt/permode 1.00000; flagship (1e11, z = 2.5) can -0.074 dex, alt -0.074 dex",
+   "load_bearing": true
+  },
+  "C8a the leaf-average global factor [Omega_L(<K>)/Omega_L0]^p has NO local second variation (C1's lemma: a k != 0 mode of K leaves <K>_h unchanged, so d^2 F(<K>)/d eps^2 = 0) -- that part sidesteps CV3's obstruction": {
+   "ok": true,
+   "measured": "delta<K> of a k != 0 mode = 0; d^2F/d eps^2 = 0",
+   "load_bearing": true
+  },
+  "C8b the proposal passes FP5 (W = 0 identically near FRW: the MOND tangent vanishes on the background), sigma_8 (web exactly off) and the z = 2-3 IGM (W < 1e-3 at delta <= 10) at L359's cell p = 1, x_c = 2.5 (DECLARED, not derived)": {
+   "ok": true,
+   "measured": "W(FRW) = 0.0; sigma_8 can/rms 1.00000, can/permode 1.00000, alt/rms 1.00000, alt/permode 1.00000; IGM W_IGM z=2.0 delta=1=0.0e+00, W_IGM z=2.0 delta=10=5.3e-07, W_IGM z=3.0 delta=1=0.0e+00, W_IGM z=3.0 delta=10=2.6e-07",
+   "load_bearing": true
+  },
+  "C8c THE CONVEX RAMP FAILS THE SECOND VARIATION: W'' > 0 wherever the ramp curves, which by C1 is an anti-pressure (and a symbol zero) at every galaxy's MOND radius -- the sign CV3/DE12 found for the unstable half of a threshold; one-signed W'' of the CONVEX sign is not a repair": {
+   "ok": true,
+   "measured": "c_g^2 sign at flagship z=0.0 -1; |c_g| km/s at flagship z=0.0 115; c_g^2 sign at flagship z=2.5 -1; |c_g| km/s at flagship z=2.5 2.17",
+   "load_bearing": true
+  },
+  "C8d WITHOUT AN UPPER PLATEAU THE RAR FAILS: the kernel saturates in the field y, not in the density x, so W grows ~ x^n across a galaxy's MOND region (W = 1 at 0.1 a0 by normalisation) -- a plateau is needed, and a plateau makes W concave there: W'' of both signs again (C5); normalised at z = 0, the global factor also switches the z = 2.5 flagship off (reported)": {
+   "ok": true,
+   "measured": "RAR dex at g_bar=0.01 a0 (no plateau) -1.96; W at g_bar=0.01 a0 0.01; RAR dex at g_bar=0.1 a0 (no plateau) 0; W at g_bar=0.1 a0 1; RAR dex at g_bar=1.0 a0 (no plateau) 3.02; W at g_bar=1.0 a0 86.3; W at the 1e11 flagship radius, z = 2.5 0.000346; flagship dex z = 2.5 (1e11) -1.13",
+   "load_bearing": true
+  },
+  "C6 THE TRACKING CLASS FAILS: sigma_8 <= 1.02 needs c_2 <= c_2,max (the phantom must not follow the linear modes), while a galaxy moving at 600 km/s needs c_s > 600 km/s (KM2's pole), i.e. c_2 >= 2 C (v/c)^2 -- apart by >= 2 decades for every constitutive C = 1-100": {
+   "ok": true,
+   "measured": "c_2,max: can/rms 4.59e-09, can/permode 3.79e-08, alt/rms 4.58e-09, alt/permode 3.41e-08; c_2,min(C = 1/10/100): 8.0e-06, 8.0e-05, 8.0e-04",
+   "load_bearing": true
+  },
+  "C7 THE K-FLOOR CANNOT UNBLIND ITSELF: the static khronon equation with a K-dependent MOND energy B(K) is lap^2(2 c_2 dK - B_K) = 0, so delta K = (B_K - <B_K>)/(2 c_2); inside a galaxy the floor dominates (s << kappa = cH/a0 ~ 6-7), so delta K/K = O((s/kappa)^4): K drops by <= 0.3% for s <= 1 (4-9% at the phantom peak), and the back-reacted floor leaves < 1% of the free MOND tangent in the MOND region -- galaxies stay Newtonian (L341 F6)": {
+   "ok": true,
+   "measured": "EL = lap^2(flux): True; flux = 2 c_2 dK - B'(K): True; delta K/K can/s=0.1 -9.0e-08, can/s=1.0 -9.0e-04, can/s=2.54 -3.7e-02, alt/s=0.1 -2.3e-07, alt/s=1.0 -2.3e-03, alt/s=2.54 -9.3e-02; floored/free tangent can/s=0.1 7.3e-06, can/s=1.0 3.4e-03, can/s=2.54 5.4e-02, alt/s=0.1 1.3e-05, alt/s=1.0 5.9e-03, alt/s=2.54 1.1e-01",
+   "load_bearing": true
+  },
+  "T THE TRILEMMA: no local mechanism tested meets all three of FP5 (MOND tangent zero on FRW), a non-negative second variation, and sigma_8 within 2% with galaxy interiors on; the reason is one lemma: a gate that is exactly zero on FRW and one in galaxies switches on from zero, so it is convex somewhere (DE13's Lean lemma), and convex where the MOND energy B > 0 is C1's anti-pressure": {
+   "ok": true,
+   "measured": "classes meeting all three: 0 of 6",
+   "load_bearing": true
+  },
+  "W (reported) the ledger": {
+   "ok": true,
+   "measured": "20 links",
+   "load_bearing": false
+  },
+  "G1 (reported) G-1 passed by a mechanism in the core's own variables (FP5 tangent zero on FRW, sigma_8 within 2%, galaxies on, non-negative second variation)": {
+   "ok": false,
+   "measured": "no: the concave gate meets sigma_8 + galaxy interiors (z <= 4.10) + stability but not FP5's strict form; every FP5-exact gate is convex somewhere (T)",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "A": {
+   "H2_core": "8*pi*G*rho_0/(3*a(t)**3) + Lambda/3",
+   "H2_plain_c2": "2*(8*pi*G*rho_0 + Lambda*a(t)**3)/(3*(3*c_2 + 2)*a(t)**3)",
+   "a0": {
+    "canonical": 9.3603e-11,
+    "alt": 1.1312e-10
+   }
+  },
+  "B1": {
+   "q_series": "-w**7/1260 + w**5/15 - w**4/2 + 4*w**3/3",
+   "order_core": "3/2",
+   "order_aqual": "3"
+  },
+  "B": {
+   "sigma8_LCDM": 0.8100856100697766,
+   "ungated": {
+    "canonical/rms": 23.31038842694226,
+    "canonical/permode": 17.709959866657137,
+    "alt/rms": 27.545440346728423,
+    "alt/permode": 20.836325608818303
+   }
+  },
+  "C0": {
+   "E": "((C_e + 1)*(alpha_c + 2) - 2)/(C_e + 1)",
+   "C_edge": "[(2 - alpha_c)/alpha_c]"
+  },
+  "C1": {
+   "det": "16*k2**3*(B*C**2*C_T*W2*Wbar*k2 + B*C**2*W2*k2 - 4)",
+   "zero_k2": "[4/(B*C**2*W2*(C_T*Wbar + 1))]",
+   "local_term": "-pi*G*delta_rho*e*(C_T*Wbar + 1)**2",
+   "newtonian": "4*pi*G*delta_rho*(-C_T*Wbar - 1)/k2"
+  },
+  "C2": {
+   "fmax": {
+    "canonical/rms": 0.0017827949120191,
+    "canonical/permode": 0.002134524693325809,
+    "alt/rms": 0.0016026392632703622,
+    "alt/permode": 0.0019156165595280075
+   },
+   "fmax_z_le_0.5": {
+    "canonical/rms": 0.03328949065331724,
+    "canonical/permode": 0.039267563015732004,
+    "alt/rms": 0.030182722027361428,
+    "alt/permode": 0.035582627377952494
+   }
+  },
+  "C3": {
+   "violations": 0,
+   "threshold_violates": true,
+   "half_on_radius_Mpc_z0.25_uniform": {
+    "canonical/1e+10": 0.1068023628858487,
+    "canonical/1e+11": 0.189902153882529,
+    "canonical/1e+12": 0.33756467831496967,
+    "alt/1e+10": 0.1119786931373595,
+    "alt/1e+11": 0.19911734328392577,
+    "alt/1e+12": 0.35398022549784824
+   },
+   "half_on_radius_Mpc_z0.25_lowz": {
+    "canonical/1e+10": 0.45809655239302544,
+    "canonical/1e+11": 0.8146202837722297,
+    "canonical/1e+12": 1.4486029478473759,
+    "alt/1e+10": 0.4803124569145096,
+    "alt/1e+11": 0.8541270386735207,
+    "alt/1e+12": 1.5188610043670698
+   }
+  },
+  "C4": {
+   "gate": "concave softmin u/(1+u^4)^(1/4)",
+   "rho_star0_over_rho_m0": {
+    "D1 (M_b <= 1e11)/canonical": 11508.669191889587,
+    "D1 (M_b <= 1e11)/alt": 15289.024486035702,
+    "D2 (M_b <= 1e12)/canonical": 3640.803554258814,
+    "D2 (M_b <= 1e12)/alt": 4836.258176900119,
+    "D3 (RAR tail, 1e10 at 0.01 a0)/canonical": 3612.663664921491,
+    "D3 (RAR tail, 1e10 at 0.01 a0)/alt": 4799.039329355814,
+    "D4 (RAR tail, 1e11 at 0.01 a0)/canonical": 1144.6074267044405,
+    "D4 (RAR tail, 1e11 at 0.01 a0)/alt": 1518.6894211722297
+   },
+   "zon_max": {
+    "D1 (M_b <= 1e11)/canonical/rms": 4.12486733834291,
+    "D1 (M_b <= 1e11)/canonical/permode": 4.4587576116211185,
+    "D1 (M_b <= 1e11)/alt/rms": 4.482661786330181,
+    "D1 (M_b <= 1e11)/alt/permode": 4.842027041488143,
+    "D2 (M_b <= 1e12)/canonical/rms": 2.4258816063306505,
+    "D2 (M_b <= 1e12)/canonical/permode": 2.6241686144297858,
+    "D2 (M_b <= 1e12)/alt/rms": 2.6425689051859425,
+    "D2 (M_b <= 1e12)/alt/permode": 2.8565615185045914,
+    "D3 (RAR tail, 1e10 at 0.01 a0)/canonical/rms": 2.4176112108274834,
+    "D3 (RAR tail, 1e10 at 0.01 a0)/canonical/permode": 2.6147043032061936,
+    "D3 (RAR tail, 1e10 at 0.01 a0)/alt/rms": 2.633110682815396,
+    "D3 (RAR tail, 1e10 at 0.01 a0)/alt/permode": 2.8463475076390186,
+    "D4 (RAR tail, 1e11 at 0.01 a0)/canonical/rms": 1.4046182794564976,
+    "D4 (RAR tail, 1e11 at 0.01 a0)/canonical/permode": 1.5217950323794225,
+    "D4 (RAR tail, 1e11 at 0.01 a0)/alt/rms": 1.5336352947523548,
+    "D4 (RAR tail, 1e11 at 0.01 a0)/alt/permode": 1.6599067289348308
+   },
+   "z_on": {
+    "D1 (M_b <= 1e11)": 4.1,
+    "D2 (M_b <= 1e12)": 2.4,
+    "D3 (RAR tail, 1e10 at 0.01 a0)": 2.4,
+    "D4 (RAR tail, 1e11 at 0.01 a0)": 1.4
+   },
+   "sigma8_ratio": {
+    "D1 (M_b <= 1e11)/canonical/rms": 1.0197363626633151,
+    "D1 (M_b <= 1e11)/canonical/permode": 1.0166366393759425,
+    "D1 (M_b <= 1e11)/alt/rms": 1.0164312202716574,
+    "D1 (M_b <= 1e11)/alt/permode": 1.013867088970414,
+    "D2 (M_b <= 1e12)/canonical/rms": 1.019539864801695,
+    "D2 (M_b <= 1e12)/canonical/permode": 1.0165059363350146,
+    "D2 (M_b <= 1e12)/alt/rms": 1.0162511292579663,
+    "D2 (M_b <= 1e12)/alt/permode": 1.013741660798451,
+    "D3 (RAR tail, 1e10 at 0.01 a0)/canonical/rms": 1.01969217836397,
+    "D3 (RAR tail, 1e10 at 0.01 a0)/canonical/permode": 1.0166347447704651,
+    "D3 (RAR tail, 1e10 at 0.01 a0)/alt/rms": 1.0163773984962696,
+    "D3 (RAR tail, 1e10 at 0.01 a0)/alt/permode": 1.0138484156783718,
+    "D4 (RAR tail, 1e11 at 0.01 a0)/canonical/rms": 1.0198628321607732,
+    "D4 (RAR tail, 1e11 at 0.01 a0)/canonical/permode": 1.0168032908810163,
+    "D4 (RAR tail, 1e11 at 0.01 a0)/alt/rms": 1.0165258536369968,
+    "D4 (RAR tail, 1e11 at 0.01 a0)/alt/permode": 1.01399252970669
+   },
+   "web_gate": {
+    "D1 (M_b <= 1e11)/canonical": {
+     "0.0": 8.689101957198657e-05,
+     "1.0": 0.0006951281542612657,
+     "2.5": 0.0037245525937672553,
+     "5.0": 0.004273337717544045,
+     "10.0": 0.00011448545803059907
+    },
+    "D1 (M_b <= 1e11)/alt": {
+     "0.0": 6.540639665489131e-05,
+     "1.0": 0.0005232511714968376,
+     "2.5": 0.0028036218877150994,
+     "5.0": 0.003216714721344181,
+     "10.0": 8.617785032390634e-05
+    },
+    "D2 (M_b <= 1e12)/canonical": {
+     "0.0": 0.00027466464067243994,
+     "1.0": 0.0021972927966800305,
+     "2.5": 0.00742666642330347,
+     "5.0": 0.0003574400618967316,
+     "10.0": 9.413625046279894e-06
+    },
+    "D2 (M_b <= 1e12)/alt": {
+     "0.0": 0.00020677142605120537,
+     "1.0": 0.0016541530934271317,
+     "2.5": 0.005590899520907748,
+     "5.0": 0.00026908593383288907,
+     "10.0": 7.086710070743905e-06
+    },
+    "D3 (RAR tail, 1e10 at 0.01 a0)/canonical": {
+     "0.0": 0.000276804068338637,
+     "1.0": 0.002214408028507222,
+     "2.5": 0.00748451447948372,
+     "5.0": 0.00036022424684153134,
+     "10.0": 9.486949991980623e-06
+    },
+    "D3 (RAR tail, 1e10 at 0.01 a0)/alt": {
+     "0.0": 0.00020837503745227125,
+     "1.0": 0.0016669818425941027,
+     "2.5": 0.00563425962329825,
+     "5.0": 0.00027117282407493836,
+     "10.0": 7.14167090011246e-06
+    },
+    "D4 (RAR tail, 1e11 at 0.01 a0)/canonical": {
+     "0.0": 0.0008736619783125104,
+     "1.0": 0.006908775890522207,
+     "2.5": 0.0012552583935441042,
+     "5.0": 4.946945336784118e-05,
+     "10.0": 1.3028322636080243e-06
+    },
+    "D4 (RAR tail, 1e11 at 0.01 a0)/alt": {
+     "0.0": 0.0006584624709073319,
+     "1.0": 0.0052070134199494415,
+     "2.5": 0.0009460644550847442,
+     "5.0": 3.7284189203171235e-05,
+     "10.0": 9.819199790862218e-07
+    }
+   },
+   "galaxies": {
+    "D1 (M_b <= 1e11)/canonical/1e+10/z2.5/y0.1": [
+     0.999697594542607,
+     -0.00026270576671752434,
+     12.203009632729389
+    ],
+    "D1 (M_b <= 1e11)/canonical/1e+10/z0.0/y0.1": [
+     0.9996956301997475,
+     -0.00026441249104545164,
+     12.203009632729389
+    ],
+    "D1 (M_b <= 1e11)/canonical/1e+10/z0.0/y0.03": [
+     0.9261540940571399,
+     -0.06663349827517245,
+     22.279545484329066
+    ],
+    "D1 (M_b <= 1e11)/canonical/1e+10/z0.0/y0.01": [
+     0.5541466266469607,
+     -0.5127506123546468,
+     38.58930474839969
+    ],
+    "D1 (M_b <= 1e11)/canonical/1e+11/z2.5/y0.1": [
+     0.95275093889879,
+     -0.04204122915071363,
+     38.58930474839969
+    ],
+    "D1 (M_b <= 1e11)/canonical/1e+11/z0.0/y0.1": [
+     0.9501537197835683,
+     -0.0444122541525236,
+     38.58930474839969
+    ],
+    "D1 (M_b <= 1e11)/canonical/1e+11/z0.0/y0.03": [
+     0.5570155164501351,
+     -0.5082654135490828,
+     70.4541089637991
+    ],
+    "D1 (M_b <= 1e11)/canonical/1e+11/z0.0/y0.01": [
+     0.33345209171100704,
+     -0.9539331079034685,
+     122.0300963272939
+    ],
+    "D1 (M_b <= 1e11)/canonical/1e+12/z2.5/y0.1": [
+     0.6040054499748686,
+     -0.43791828539570454,
+     122.0300963272939
+    ],
+    "D1 (M_b <= 1e11)/canonical/1e+12/z0.0/y0.1": [
+     0.594844391061394,
+     -0.45119325826372286,
+     122.0300963272939
+    ],
+    "D1 (M_b <= 1e11)/canonical/1e+12/z0.0/y0.03": [
+     0.35082065830207837,
+     -0.9098296816813317,
+     222.79545484329066
+    ],
+    "D1 (M_b <= 1e11)/canonical/1e+12/z0.0/y0.01": [
+     0.2096460612989144,
+     -1.3570265848820535,
+     385.8930474839969
+    ],
+    "D1 (M_b <= 1e11)/alt/1e+10/z2.5/y0.1": [
+     0.9996970812201308,
+     -0.00026315176794289443,
+     11.100489745654572
+    ],
+    "D1 (M_b <= 1e11)/alt/1e+10/z0.0/y0.1": [
+     0.9996956687616936,
+     -0.00026437898636749686,
+     11.100489745654572
+    ],
+    "D1 (M_b <= 1e11)/alt/1e+10/z0.0/y0.03": [
+     0.9261358085943953,
+     -0.06665064737382688,
+     20.266628776832643
+    ],
+    "D1 (M_b <= 1e11)/alt/1e+10/z0.0/y0.01": [
+     0.5541134726586058,
+     -0.5128025806397414,
+     35.102830739611626
+    ],
+    "D1 (M_b <= 1e11)/alt/1e+11/z2.5/y0.1": [
+     0.9519877073552476,
+     -0.04273731890805049,
+     35.102830739611626
+    ],
+    "D1 (M_b <= 1e11)/alt/1e+11/z0.0/y0.1": [
+     0.9501485020842375,
+     -0.04441702395808723,
+     35.102830739611626
+    ],
+    "D1 (M_b <= 1e11)/alt/1e+11/z0.0/y0.03": [
+     0.5569829847606089,
+     -0.5083161437187801,
+     64.08870742790347
+    ],
+    "D1 (M_b <= 1e11)/alt/1e+11/z0.0/y0.01": [
+     0.3334231111764612,
+     -0.9540086008064244,
+     111.0048974565457
+    ],
+    "D1 (M_b <= 1e11)/alt/1e+12/z2.5/y0.1": [
+     0.6023819247751796,
+     -0.4402561363244447,
+     111.0048974565457
+    ],
+    "D1 (M_b <= 1e11)/alt/1e+12/z0.0/y0.1": [
+     0.5947640587342302,
+     -0.4513105670688669,
+     111.0048974565457
+    ],
+    "D1 (M_b <= 1e11)/alt/1e+12/z0.0/y0.03": [
+     0.35079455959908934,
+     -0.9098943012757134,
+     202.66628776832644
+    ],
+    "D1 (M_b <= 1e11)/alt/1e+12/z0.0/y0.01": [
+     0.20958227969646923,
+     -1.357290879973715,
+     351.0283073961163
+    ]
+   },
+   "kids_plus_flagship": {
+    "canonical/rho_low/rho_m0": 20.05323482406532,
+    "canonical/rms": 1.0739608766860973,
+    "canonical/permode": 1.062464475134264,
+    "alt/rho_low/rho_m0": 21.70846917871373,
+    "alt/rms": 1.0713482525443687,
+    "alt/permode": 1.0603147424069062
+   },
+   "design_table_dex": {
+    "D1 (M_b <= 1e11)/canonical": {
+     "z_on": 4.1,
+     "1e+10/z0/y0.01": -0.5127506123546468,
+     "1e+11/z0/y0.01": -0.9539331079034685,
+     "1e+11/z0/y0.03": -0.5082654135490828,
+     "1e+11/z2.5/y0.1": -0.04204122915071363,
+     "1e+12/z2.5/y0.1": -0.43791828539570454,
+     "1e+12/z0/y0.1": -0.45119325826372286,
+     "IGM boost z2.5 delta1": 0.13187904867794065,
+     "IGM boost z2.5 delta10": 0.21589735752338915
+    },
+    "D1 (M_b <= 1e11)/alt": {
+     "z_on": 4.1,
+     "1e+10/z0/y0.01": -0.5128025806397414,
+     "1e+11/z0/y0.01": -0.9540086008064244,
+     "1e+11/z0/y0.03": -0.5083161437187801,
+     "1e+11/z2.5/y0.1": -0.04273731890805049,
+     "1e+12/z2.5/y0.1": -0.4402561363244447,
+     "1e+12/z0/y0.1": -0.4513105670688669,
+     "IGM boost z2.5 delta1": 0.10940404246891912,
+     "IGM boost z2.5 delta10": 0.18010294316595696
+    },
+    "D2 (M_b <= 1e12)/canonical": {
+     "z_on": 2.4,
+     "1e+10/z0/y0.01": -0.047083565881743804,
+     "1e+11/z0/y0.01": -0.5122962447643635,
+     "1e+11/z0/y0.03": -0.06648222925098268,
+     "1e+11/z2.5/y0.1": -0.0015873598387309649,
+     "1e+12/z2.5/y0.1": -0.19844590413099686,
+     "1e+12/z0/y0.1": -0.04470061133270723,
+     "IGM boost z2.5 delta1": 0.26296358223703853,
+     "IGM boost z2.5 delta10": 0.43048954014841007
+    },
+    "D2 (M_b <= 1e12)/alt": {
+     "z_on": 2.4,
+     "1e+10/z0/y0.01": -0.04710360735628619,
+     "1e+11/z0/y0.01": -0.5124590148776622,
+     "1e+11/z0/y0.03": -0.06653597176202446,
+     "1e+11/z2.5/y0.1": -0.0015962342252377783,
+     "1e+12/z2.5/y0.1": -0.20134098598113814,
+     "1e+12/z0/y0.1": -0.04471562427240581,
+     "IGM boost z2.5 delta1": 0.21817029222293052,
+     "IGM boost z2.5 delta10": 0.3591547383437371
+    },
+    "D3 (RAR tail, 1e10 at 0.01 a0)/canonical": {
+     "z_on": 2.4,
+     "1e+10/z0/y0.01": -0.044707047679427445,
+     "1e+11/z0/y0.01": -0.509959887034721,
+     "1e+11/z0/y0.03": -0.06505429581562902,
+     "1e+11/z2.5/y0.1": -0.0015405146274035132,
+     "1e+12/z2.5/y0.1": -0.19605825251171427,
+     "1e+12/z0/y0.1": -0.042207366318664744,
+     "IGM boost z2.5 delta1": 0.2650118674977183,
+     "IGM boost z2.5 delta10": 0.433842572434467
+    },
+    "D3 (RAR tail, 1e10 at 0.01 a0)/alt": {
+     "z_on": 2.4,
+     "1e+10/z0/y0.01": -0.04473529035326883,
+     "1e+11/z0/y0.01": -0.5101407832139299,
+     "1e+11/z0/y0.03": -0.06512356519620735,
+     "1e+11/z2.5/y0.1": -0.0015493327949489691,
+     "1e+12/z2.5/y0.1": -0.19910457003390897,
+     "1e+12/z0/y0.1": -0.04222820530232592,
+     "IGM boost z2.5 delta1": 0.21986230726140896,
+     "IGM boost z2.5 delta10": 0.361940114661041
+    },
+    "D4 (RAR tail, 1e11 at 0.01 a0)/canonical": {
+     "z_on": 1.4,
+     "1e+10/z0/y0.01": -0.0002681434282289319,
+     "1e+11/z0/y0.01": -0.0445527968690007,
+     "1e+11/z0/y0.03": -0.00032343983384785927,
+     "1e+11/z2.5/y0.1": -0.42266580275889676,
+     "1e+12/z2.5/y0.1": -0.7674676410619194,
+     "1e+12/z0/y0.1": -0.0002586643276813879,
+     "IGM boost z2.5 delta1": 0.04444621970986288,
+     "IGM boost z2.5 delta10": 0.07276233903767686
+    },
+    "D4 (RAR tail, 1e11 at 0.01 a0)/alt": {
+     "z_on": 1.4,
+     "1e+10/z0/y0.01": -0.00026691768660515005,
+     "1e+11/z0/y0.01": -0.04455567015051783,
+     "1e+11/z0/y0.03": -0.0003219810826955523,
+     "1e+11/z2.5/y0.1": -0.4228957874038792,
+     "1e+12/z2.5/y0.1": -0.7679810791464793,
+     "1e+12/z0/y0.1": -0.000257528849366839,
+     "IGM boost z2.5 delta1": 0.036917701455972465,
+     "IGM boost z2.5 delta10": 0.060774611427667324
+    }
+   },
+   "u2_wpp_range": [
+    -1.065851859236687,
+    -5e-30
+   ],
+   "Kblock": {
+    "D1 (M_b <= 1e11)/canonical": 40320.280342731734,
+    "D1 (M_b <= 1e11)/alt": 58882.93659222825,
+    "D2 (M_b <= 1e12)/canonical": 23502636.694643985,
+    "D2 (M_b <= 1e12)/alt": 29250798.630476255,
+    "D3 (RAR tail, 1e10 at 0.01 a0)/canonical": 216281.51413384566,
+    "D3 (RAR tail, 1e10 at 0.01 a0)/alt": 267998.35390956106,
+    "D4 (RAR tail, 1e11 at 0.01 a0)/canonical": 4370980.856640018,
+    "D4 (RAR tail, 1e11 at 0.01 a0)/alt": 5447828.275006759
+   },
+   "nonunique_cells": 0,
+   "prices": {
+    "canonical/r_half_Mpc (1e11, z=0.25)": 0.03735591254205091,
+    "canonical/W_IGM z=2.5 delta=1": 0.0074491051821588515,
+    "canonical/IGM force boost W(nu-1) z=2.5 delta=1": 0.13187904867794065,
+    "canonical/W_IGM z=2.5 delta=10": 0.04097004967494595,
+    "canonical/IGM force boost W(nu-1) z=2.5 delta=10": 0.21589735752338915,
+    "canonical/W_IGM z=3.0 delta=1": 0.011083435175687911,
+    "canonical/IGM force boost W(nu-1) z=3.0 delta=1": 0.17101448970602212,
+    "canonical/W_IGM z=3.0 delta=10": 0.06095868325947722,
+    "canonical/IGM force boost W(nu-1) z=3.0 delta=10": 0.27750269133915106,
+    "canonical/flagship dex z=4.0 1e11": -0.11707181067179963,
+    "canonical/flagship dex z=6.0 1e11": -0.9198766926268916,
+    "canonical/gate potential / v_f^2 at u = 1 (D1)": 0.07566477406197618,
+    "canonical/gate pressure c_g [km/s] at u = 1 (D1)": 81.65269206974294,
+    "alt/r_half_Mpc (1e11, z=0.25)": 0.0342582650416759,
+    "alt/W_IGM z=2.5 delta=1": 0.005607243774131052,
+    "alt/IGM force boost W(nu-1) z=2.5 delta=1": 0.10940404246891912,
+    "alt/W_IGM z=2.5 delta=10": 0.03083983379104609,
+    "alt/IGM force boost W(nu-1) z=2.5 delta=10": 0.18010294316595696,
+    "alt/W_IGM z=3.0 delta=1": 0.008342951467568418,
+    "alt/IGM force boost W(nu-1) z=3.0 delta=1": 0.14192122701092882,
+    "alt/W_IGM z=3.0 delta=10": 0.04588618227019198,
+    "alt/IGM force boost W(nu-1) z=3.0 delta=10": 0.23177004484026115,
+    "alt/flagship dex z=4.0 1e11": -0.11978578876989761,
+    "alt/flagship dex z=6.0 1e11": -0.9214700852575057,
+    "alt/gate potential / v_f^2 at u = 1 (D1)": 0.07566821907181803,
+    "alt/gate pressure c_g [km/s] at u = 1 (D1)": 70.8423848912378
+   },
+   "fp5_band_ystar": {
+    "canonical/9.624e-14": 1.7482398834768526e-35,
+    "canonical/3.2e-09": 1.9328126224431262e-26,
+    "alt/9.624e-14": 9.905848576067628e-36,
+    "alt/3.2e-09": 1.0951671646889265e-26
+   },
+   "fp5_band_ungated": {
+    "9.624e-14": 2.3155344000001112e-27,
+    "3.2e-09": 2.560000004096e-18
+   }
+  },
+  "C8": {
+   "p": 1.0,
+   "x_c": 2.5,
+   "n": 2,
+   "x_N": 5172.655794426475,
+   "results": {
+    "W(FRW) all z": 0.0,
+    "W_IGM z=2.0 delta=1": 0.0,
+    "W_IGM z=2.0 delta=10": 5.271899446436941e-07,
+    "W_IGM z=3.0 delta=1": 0.0,
+    "W_IGM z=3.0 delta=10": 2.585853967229346e-07,
+    "RAR dex at g_bar=0.01 a0 (no plateau)": -1.9638177709410134,
+    "W at g_bar=0.01 a0": 0.010047143380601597,
+    "RAR dex at g_bar=0.1 a0 (no plateau)": 0.0,
+    "W at g_bar=0.1 a0": 1.0,
+    "RAR dex at g_bar=1.0 a0 (no plateau)": 3.020317576213437,
+    "W at g_bar=1.0 a0": 86.27576039481438,
+    "c_g^2 sign at flagship z=0.0": -1.0,
+    "|c_g| km/s at flagship z=0.0": 115.31810916962516,
+    "c_g^2 sign at flagship z=2.5": -1.0,
+    "|c_g| km/s at flagship z=2.5": 2.16584314091385,
+    "W at the 1e11 flagship radius, z = 2.5": 0.0003456036993918695,
+    "flagship dex z = 2.5 (1e11)": -1.1329131613341301
+   },
+   "sigma8": {
+    "canonical/rms": 1.0,
+    "canonical/permode": 0.9999999999956514,
+    "alt/rms": 1.0,
+    "alt/permode": 0.9999999999956514
+   }
+  },
+  "C6": {
+   "c2max": {
+    "canonical/rms": 4.585764998138967e-09,
+    "canonical/permode": 3.793826279764051e-08,
+    "alt/rms": 4.584868824571034e-09,
+    "alt/permode": 3.4073943322051525e-08
+   },
+   "c2min_moving": {
+    "1.0": 8.011080403586053e-06,
+    "10.0": 8.011080403586053e-05,
+    "100.0": 0.0008011080403586054
+   }
+  },
+  "C7": {
+   "dK_over_K": {
+    "canonical/s=0.1": -9.029083891564919e-08,
+    "canonical/s=1.0": -0.0009025792461351368,
+    "canonical/s=2.54": -0.03702070457410214,
+    "alt/s=0.1": -2.3135437521772037e-07,
+    "alt/s=1.0": -0.0023117466661192747,
+    "alt/s=2.54": -0.09328248419137544
+   },
+   "floored_over_free_tangent": {
+    "canonical/s=0.1": 7.276658036025889e-06,
+    "canonical/s=1.0": 0.0033695943688356123,
+    "canonical/s=2.54": 0.05448918865629205,
+    "alt/s=0.1": 1.2759267720676151e-05,
+    "alt/s=1.0": 0.005931099529707756,
+    "alt/s=2.54": 0.1114330677692023
+   }
+  },
+  "T": {
+   "ungated core": {
+    "fp5": false,
+    "stable": true,
+    "data": false
+   },
+   "concave gate (C4)": {
+    "fp5": false,
+    "stable": true,
+    "data": true
+   },
+   "threshold gate (C5)": {
+    "fp5": true,
+    "stable": false,
+    "data": true
+   },
+   "convex ramp x leaf average (C8)": {
+    "fp5": true,
+    "stable": false,
+    "data": false
+   },
+   "tracking (C6)": {
+    "fp5": false,
+    "stable": true,
+    "data": false
+   },
+   "K-floor + backreaction (C7)": {
+    "fp5": true,
+    "stable": true,
+    "data": false
+   }
+  }
+ },
+ "ledger": [
+  {
+   "link": "G1a",
+   "what": "FRW background of the core (leaf average): Friedmann = GR, G_cos = G",
+   "status": "DERIVED",
+   "basis": "A1 sympy minisuperspace; A2 control"
+  },
+  {
+   "link": "G1b",
+   "what": "a0 absent from the background; a0(z)/a0(0) = 1 (canonical reading)",
+   "status": "DERIVED",
+   "basis": "A3; both footings"
+  },
+  {
+   "link": "G1c",
+   "what": "the dark mass on FRW: cold, w = 0, Omega_c",
+   "status": "POSTULATED",
+   "basis": "declared field initial data (FP4 owns it)"
+  },
+  {
+   "link": "G1d",
+   "what": "the core's MOND energy around FRW: O(eps^(3/2)), infinite zero-field tangent",
+   "status": "DERIVED",
+   "basis": "B1 sympy; FP5's pinned U"
+  },
+  {
+   "link": "G1e",
+   "what": "ungated core in linear cosmology: sigma_8 18-27",
+   "status": "FAILS",
+   "basis": "B2 (L341 reproduced), B3 at FP0's footings"
+  },
+  {
+   "link": "G1f",
+   "what": "well-posed on FRW iff the gated tangent W C_T < (2 - alpha_c)/alpha_c",
+   "status": "DERIVED",
+   "basis": "C0 on FP5's committed E(C)"
+  },
+  {
+   "link": "G1g",
+   "what": "a local gate has a non-negative second variation iff it is concave; leaf averages add none",
+   "status": "DERIVED",
+   "basis": "C1 static symbol + local pressure + leaf-average lemma"
+  },
+  {
+   "link": "G1h",
+   "what": "sigma_8 within 2% caps the web's MOND on-fraction at ~2e-3 (3e-2 if spent at z <= 0.5)",
+   "status": "CONSTRAINT",
+   "basis": "C2, L341 yardstick, both footings"
+  },
+  {
+   "link": "G1i",
+   "what": "chord bound: a stable local gate's on-fraction <= (rho/rho_bar) x its web value",
+   "status": "DERIVED",
+   "basis": "C3 theorem"
+  },
+  {
+   "link": "G1j",
+   "what": "the concave gate W = w(rho_dyn/rho_*(<K>_h)): the form and rho_*",
+   "status": "POSTULATED",
+   "basis": "chosen inside the class G1g allows; rho_* bounded by C2-C4"
+  },
+  {
+   "link": "G1k",
+   "what": "sigma_8 within 2% with the flagship on (M_b <= 1e11, z <= 2.5) or the dwarf RAR tail; stable, unique",
+   "status": "DERIVED",
+   "basis": "C4a-C4d (D1, D3), given G1j"
+  },
+  {
+   "link": "G1l",
+   "what": "L* outskirts (1e11 beyond ~70 kpc), 1e12 at the flagship radius, KiDS 1 Mpc, galaxies at z >~ 4",
+   "status": "FAILS",
+   "basis": "C4b/C4b'/C4e: the chord bound spends the sigma_8 budget"
+  },
+  {
+   "link": "G1m",
+   "what": "the z = 2.5-3 IGM under the concave gate (force boost 11-28% for D1)",
+   "status": "OPEN",
+   "basis": "C4e; a P1D run owed; likely fails"
+  },
+  {
+   "link": "G1n",
+   "what": "the concave gate's MOND tangent on FRW (FP5 strict)",
+   "status": "FAILS",
+   "basis": "C4f: W(FRW) > 0; the band y < y* shrinks, survives"
+  },
+  {
+   "link": "G1o",
+   "what": "leaf-average global factor: no local second variation",
+   "status": "DERIVED",
+   "basis": "C1 lemma, C8a"
+  },
+  {
+   "link": "G1p",
+   "what": "convex local ramp (the proposal; p = 1, x_c = 2.5 declared)",
+   "status": "FAILS",
+   "basis": "C8c anti-pressure; C8d RAR without plateau"
+  },
+  {
+   "link": "G1q",
+   "what": "tracking (khronon c_s) as the switch",
+   "status": "FAILS",
+   "basis": "C6: sigma_8 vs KM2's moving-source pole"
+  },
+  {
+   "link": "G1r",
+   "what": "K-floor with backreaction",
+   "status": "FAILS",
+   "basis": "C7: delta K/K = O((s/kappa)^4)"
+  },
+  {
+   "link": "G1s",
+   "what": "G-1 by any local gate on the MOND energy",
+   "status": "FAILS",
+   "basis": "T: FP5 x second variation x data trilemma"
+  },
+  {
+   "link": "G1t",
+   "what": "a MOND term with ZERO zero-field tangent on a field with its own inertia (AQUAL-type, O(eps^3))",
+   "status": "OPEN",
+   "basis": "B1 + C0: meets FP5 by order counting with no gate; not in the core (its kernel reads the constrained U)"
+  }
+ ]
+}
