@@ -82,9 +82,14 @@ light complex scalar whose own rest energy powers the kick.
   z <= 0.635, so the psi-constraint symbol k^2(1 - R_B) changes sign on k = 0.12-1.62 h/Mpc. H_S as written is linearly
   ill-posed. FP19 carries the correction in its ledger and tests the repairs (stationary B, a <K>_h-only readout).
 - **FP9's H_Y fails KiDS at z = 0.4** (+20.6; found by FP13). Its z = 0.25 KiDS pass stands.
-- **FP6's KiDS projection `esd_of_M` under-projects** (found by FP18): -59% at 35 kpc, -5 to -14% at 0.3-2.6 Mpc on a
-  singular isothermal sphere. Every KiDS chi^2 that used it (FP1, FP6, FP9, FP11, FP12, FP13, FP14) is provisional
-  until FP20 re-scores it with an exact projection.
+- **FP6's KiDS projection `esd_of_M` under-projects** (found by FP18; fixed and re-scored by FP20, 7a8c25321). It
+  treated the inner projected mass as a flat disc and skipped the Abel integral's 1/sqrt end interval: -59% at 35 kpc and
+  -4 to -14% outside on a singular isothermal sphere. The record's other projector (L352's `project_M2`, DE8's
+  `esd_from_mlens`) shares the end-interval defect and is badly off on cored/hollow carrier templates (+187% / -123% at
+  35 kpc). With the exact projector (< 0.04%) none of the chain's deciding KiDS verdicts flips: FP6, FP9 (z = 0.25),
+  FP11, FP12 K7 and FP13 (z = 0.25, 0.4) still pass; FP9 at z = 0.4 still fails; the KiDS-LG pincer stands. What flips:
+  L360's passing pairs (70 -> 35 of 96), FP13's A3 window edges, FP11 P1's band edge (now passes). FP15/FP16 (L352's
+  projector) and FP19 (the old one) were committed before the fix; FP20b re-scores them.
 - **FP7's sigma_8 failure used the all-matter reading** (the MOND scalar sourced by, and acting on, the total delta),
   while FP10's dark component does not source the phantom. FP22 derives which reading the action implies and re-scores
   sigma_8, the forest and KiDS in it.

@@ -1,6 +1,6 @@
 # The first-principles derivation chain -- status ledger
 
-Assembled by `run_chain.py` on 2026-09-27 11:03. A lane counts only if its main run has a verdict and its MUTATE control flips (rc = 1). Status meanings: DERIVED (varied out of the chain above it, with a script), TIED (an input implemented as an exact action-level relation, coupling chosen), POSTULATED (an input), FITTED (a constant set by data), CONSTRAINT (a derived requirement on a lower link), OPEN (owed), FAILS (derived and contradicted by data).
+Assembled by `run_chain.py` on 2026-09-27 11:18. A lane counts only if its main run has a verdict and its MUTATE control flips (rc = 1). Status meanings: DERIVED (varied out of the chain above it, with a script), TIED (an input implemented as an exact action-level relation, coupling chosen), POSTULATED (an input), FITTED (a constant set by data), CONSTRAINT (a derived requirement on a lower link), OPEN (owed), FAILS (derived and contradicted by data).
 
 ## Lanes
 
@@ -26,6 +26,7 @@ Assembled by `run_chain.py` on 2026-09-27 11:03. A lane counts only if its main 
 | FP17_screening_without_xi | 28/28 | 0 | 0 | 1 | ok |
 | FP18_kids_vs_hubble_flow_data | 20/20 | 0 | 0 | 1 | ok |
 | FP19_hs_repair | 24/24 | 0 | 0 | 1 | ok |
+| FP20_esd_projection_fix | 12/12 | 0 | 0 | 1 | ok |
 
 ## Links
 
@@ -341,5 +342,21 @@ Assembled by `run_chain.py` on 2026-09-27 11:03. A lane counts only if its main 
 | FP19 | R19l | OPEN | the forest beyond the linear proxy: the headline's yield (y_th(2.5) = 7.6e-03) turns MOND on in 0/27 of FP13's z = 2-3 IGM test lumps (H_S 0/27, H_K with y* = 0.013 0/27); KiDS for lenses at z_l > 0.64 (a prediction: large chi^2 at 0.7); the sub-L P boost and cosmic shear (PM); the Local Group's R0 (still failing); cold matter at the yield surfaces (XR18 B4b) at the headline's yield; the baryons-only reading (FP22; every number here is the all-matter reading); a khronon-shear read of the web's velocities (a (v/c)-suppressed candidate for the length, not computed here) | H5; XR18; XR21 |
 | FP19 | R19n | CONSTRAINT | the separator's yield must sit above the real-space band-passed rms field at z = 2-3, not just the per-mode fields: FP9's rule is optimistic there (XR21); the Stein yardstick sets c_y >~ 1.3 for the tied yield, and b_real/b_per-mode < 1 for sigma_8 (this lane's Stein vs XR21's box printed) | H7, B3; XR21 stage 1 (ea9eeea08) |
 | FP19 | R19m | FITTED | kappa = 1/2 (Z = 5.7888): the only accepted fitted input; not derived here | FP0 |
+| FP20 | F20a | DERIVED | the correct KiDS projection: Delta Sigma(R) = M_2D(<R)/(pi R^2) - Sigma(R) with exact uniform-shell kernels (the 1/sqrt end point integrated analytically, the inner projected mass carried exactly, the mass inside the first node kept); it reproduces the SIS, NFW (Wright & Brainerd 2000), a point mass and the P2 lanes' cored/hollow carrier templates to < 0.1% (< 0.2% where the input has jumps) | V1, V1b |
+| FP20 | F20b | FAILS | the record's P1 projection (FP6 esd_of_M = FP1 E's [FP14/FP17] = L355's [L357/AT1/AT3] = BS2's) is accurate | corrected by FP20: -59% at 35 kpc on the SIS, -3..-14% at 0.3-2.6 Mpc; defect A (inner disc pi R_0^2 Sig(R_0), R_0 = 20 kpc) + defect B (trapezoid over the 1/sqrt end point); no truncation defect (V2, B1) |
+| FP20 | F20c | FAILS | L352's P2 projection (L352/L359/L360, AT3's gate, FP4/FP10/FP15/FP16 via kids_switched, DE8/DE10, XR9/XR14) is accurate | corrected by FP20: -3% (SIS) to +11% (NFW) on halos, up to +187% / -123% at 35 kpc on cored / hollowed carrier templates (V4, V1b) |
+| FP20 | F20d | DERIVED | FP6's (H) headline passes KiDS (<= +9): d chi^2 -1.0/-3.2 -> -1.5/-0.6 | corrected by FP20 (R1: FP6 re-run whole; its only check that flips is K2, the control pinned to L341 F7's buggy 118.0) |
+| FP20 | F20e | DERIVED | FP9's (H_Y) headline at z = 0.25 passes KiDS: -2.4/-5.6 -> -2.6/-1.9 (inherited by FP11 K7/G1, FP12 K7) | corrected by FP20 (R2: FP9 re-run whole; its window stays 28/48; only the K1 control flips) |
+| FP20 | F20f | DERIVED | FP13's H_S passes KiDS at z = 0.25 (-6.2/-7.7 -> -8.6/-10.3) and 0.4 (-7.8/-10.7 -> -8.8/-9.7) | corrected by FP20 (R3; controls reproduce 92 committed numbers) |
+| FP20 | F20g | FAILS | FP9's own (H_Y) at z = 0.4 (FP13 H5): +20.6/+18.3 -> +19.2/+20.3 -- still FAILS the lens spread | corrected by FP20 (R3) |
+| FP20 | F20h | CONSTRAINT | the KiDS floor on the band-pass length: L_KiDS +1.23/+1.17 -> +1.23/+1.24 Mpc; the KiDS-LG pincer (FP6 B6/H3, FP9 H3, FP11 X1, FP12 U1: the LG needs L(0.25) ~ 0.5-0.6 Mpc, KiDS costs +250..+300 there) is unchanged | corrected by FP20 (R1, R2, R4) |
+| FP20 | F20i | CONSTRAINT | FP1 E3's KiDS tolerance on the lenses' external field (2-halo, 1e-4 a0): +5.2/+3.7 -> +4.7/+3.1; no 2-halo +2.3/+1.7 -> +1.7/+1.2 (x1e-4); the LG needs +7.0/+6.6 -> +7.8/+7.9 times more (FP11 P1 holds); the band-edge reading (reported) +0.93/+0.90 -> +1.04/+1.07x crosses 1 | corrected by FP20 (R6, R5) |
+| FP20 | F20j | CONSTRAINT | FP13's A3 threshold windows narrow (the other gates as committed): NL/FP9 yield: [1.686, 2.0, 2.4, 2.6, 2.7] -> [1.686, 2.0, 2.4]; NL/state yield: [1.3, 1.5, 1.686, 2.0, 2.4, 2.6] -> [1.3, 1.5, 1.686, 2.0, 2.4, 2.6]; lin/FP9 yield: [1.2, 1.4, 1.6, 1.65] -> [1.2, 1.4, 1.6]; lin/state yield: [1.1, 1.2, 1.4, 1.6, 1.65] -> [1.1, 1.2, 1.4, 1.6, 1.65]; delta_c stays inside both nonlinear windows (A3a holds) | corrected by FP20 (R3) |
+| FP20 | F20k | CONSTRAINT | L355's 'KiDS needs a web-blind kernel': the baryons-only deficit +233.4/+241.0 -> +283.7/+304.4 and the carrier + 2-halo +130.6/+144.7 -> +173.9/+189.5 -- the claim survives, stronger | corrected by FP20 (R8) |
+| FP20 | F20l | CONSTRAINT | L360's assembled construction: pairs passing KiDS 70 -> 35 of 96 (the carrier templates move d chi^2 by +13..+22); the M2 claim (some pairs pass) survives | corrected by FP20 (R9: L360 re-run whole) |
+| FP20 | F20m | CONSTRAINT | AT3's KiDS gate at its window cells (switched fit, <= +4): passing cells 0.1|600|0.25, 0.03|600|0.25 -> 0.1|600|0.25, 0.03|600|0.25 (d chi^2 moves +0.7..+6.1); its switch-free KiDS (reported) improves | corrected by FP20 (R11: AT3's retention profiles recomputed with its own functions; FP4 C4 and FP10 B4 are estimates from these shifts) |
+| FP20 | F20n | OPEN | the P2 lanes downstream of DE8 (DE10's converged model, the hub's XR9 and XR14 ON-M* KiDS pass) carry the carrier-template error (V1b) and must be re-scored with the corrected projection; so must FP15/FP16 (uncommitted, kids_switched) | V4, V1b, R9, H |
+| FP20 | F20o | CONSTRAINT | the isolated-P2 KiDS base itself: P1 lanes +112.3/+105.6 -> +141.6/+134.9 (the lead grade flattered the inner phantom); P2 lanes (nu_mono, 2-halo) +174.3/+166.9 -> +159.9/+153.0 -- every gate here is a difference to its lane's base | R1, R9 |
+| FP20 | F20p | OPEN | the P1 lanes score point values at the bin centres, not B21's annulus averages (a ~1-2% convention, unchanged here); the 2-halo templates keep their own inner-disc approximation (V5) | scope |
 
-Totals: DERIVED 123, TIED 1, POSTULATED 30, FITTED 14, CONSTRAINT 29, OPEN 38, FAILS 75
+Totals: DERIVED 127, TIED 1, POSTULATED 30, FITTED 14, CONSTRAINT 36, OPEN 40, FAILS 78
