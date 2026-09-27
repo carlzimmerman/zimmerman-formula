@@ -1,0 +1,298 @@
+FP21 -- WEAK LENSING AROUND SPECTROSCOPICALLY ISOLATED SPIRALS OF LOCAL-VOLUME MASS.  A MEASUREMENT, favouring no theory:
+the excess surface density Delta Sigma(R) at 0.03-3 Mpc around galaxies with SPECTROSCOPIC redshifts in the KiDS-1000
+footprint, whose masses are defined exactly as the Local Volume (LV) centrals' masses are, compared with (a) the published
+mixed-type KiDS isolated-lens bins (Brouwer+21, B21) at the same mass and (b) the mass the LV groups' zero-velocity radii
+R0 allow.  It decides whether FP18's KiDS-versus-Hubble-flow pincer is real -- or says what sample would decide it.
+
+WHY.  FP18 (09990b398): at face value no mass profile fits both B21's isolated lenses at the LV centrals' mass and the LV
+groups' R0 (T = 102, 9.8 sigma); six comparability systematics profiled under priors bring it to 2.3 sigma (UNDECIDED).
+Reconciliation needs the lensing of SPIRALS beyond 0.3 Mpc ~0.5 dex below B21's mixed-type bins (the measured blue/red
+contrast supplies -0.18 to -0.25 dex of it), plus R0 +0.08 dex.  The three largest systematics -- the stellar-mass scale
+(B21's LePhare M* vs the LV's 0.6 L_K), photometric isolation leakage beyond 0.3 Mpc, and galaxy type -- are properties of
+the LENS SAMPLE.  A lens sample with spectroscopic redshifts, K-band masses and type labels removes or measures each.
+
+THE DATA (each read at its source for this lane; none quoted from memory)
+  (a) SOURCES: KiDS-1000 SOM-gold weak-lensing catalogue (Giblin+21; real_research/data/lensing_rar/KiDS_DR4.1_SOM_gold_WL_cat
+      .fits, 21,262,011 rows, 833-byte records; streamed column-wise, ~35 s): RAJ2000, DECJ2000, e1, e2, weight, Z_B, MASK.
+  (b) LENSES: 2M++ (Lavaux & Hudson 2011, MNRAS 416, 2840; VizieR J/MNRAS/416/2840, the record's gext_vectors_2026/data/raw/
+      2mpp_vizier.tsv, 72,973 rows): a redshift compilation (2MRS + 6dFGS + SDSS + literature) complete to K2M++ <= 12.5 in the
+      SDSS (flag M1) and 6dFGS (flag M2) regions -- BOTH KiDS regions are inside them (2,173 of the 2,176 2M++ galaxies in the
+      KiDS footprint carry M1 or M2).  Columns: Ks (isophotal, extinction-corrected), Vcmb, completeness c11.5 / c12.5, Ref
+      ("none" = no measured redshift, velocity assigned by 2M++).  THIS IS THE ONLY SPECTROSCOPIC CATALOGUE ON DISK THAT
+      COVERS THE KiDS FOOTPRINT: GAMA DR4 and SDSS DR7 are not in the record; fetching them needs the user's go.
+  (c) MAGNITUDE SYSTEM: 2MRS (Huchra+12; real_research/data/2mrs_catalog.csv) extinction-corrected TOTAL Ks (Ktmag).  2M++'s
+      Ks is isophotal: median K2M++ - Ktot = +0.24 mag, rising with K; the calibration uses K2M++ <= 11.75 only (the 2MRS limit
+      Ktot < 11.75 truncates the offset distribution above that).
+  (d) TYPE LABELS: ALFALFA a100 HI detections (Haynes+18, positions/velocities from Durbala+20 Table 1: real_research/data/
+      alfalfa_sdss_durbala2020_t1.tsv) = gas-rich = LATE; the 6dFGS Fundamental-Plane sample (Campbell+14: fp_6dfgs_campbell
+      2014.tsv; its RAJ2000 column is in HOURS despite the 'deg' label -- detected and converted) = spectroscopic EARLY types;
+      KiDS-bright LePhare rest-frame u - r (Bilicki+21; KiDS_DR4_brightsample*_LePhare.fits) for the rest.  CAVEAT, measured in
+      T1: at z ~ 0.026 the KiDS GAaP aperture (~2") samples the central ~1 kpc, i.e. the BULGE of a nearby spiral, so the colour
+      is a weak type indicator here; the cut is calibrated on the labels (below), never on the lensing.
+  (e) THE LV SIDE (FP18, committed): R0 = 0.93 (stack) / 0.91 (LG) Mpc with FP18's HONEST errors (bootstrap (+) quoted:
+      0.117 / 0.111, read from FP18_kids_vs_hubble_flow_data_results.json); eq. (4) M_T = COEF R0^3 with COEF from the record's
+      shell integrator (1.9553e12, FP18 K3); the LV centrals' M_gal targets (FP18 mapping (i)); UNGC (Karachentsev+13) to check
+      the L_K formula; B21 Fig-3 profiles + (m,n,i,j)-ordered covariance through FP18's loaders.
+  (f) PIPELINE VALIDATION: the record's photometric reconstruction of B21's isolated lenses (lr_lenses.npz; FP18 K6: it
+      reproduces B21's four bin mean masses to <= 0.013 dex), bins 2 (10.3 <= log M* < 10.6) and 3 (10.6-10.8).
+
+CONVENTIONS (stated)
+  * Cosmology B21's (WMAP9 flat, Om 0.2793, h = 0.7; h70 units); R = PROPER transverse separation (B21 Sect. 3.1); Sigma_crit
+    from D_l D_ls / D_s with the source's Z_B; sources Z_B > z_l + 0.2 (B21); weights w_ls = w_s Sigma_crit^-2; Delta Sigma =
+    sum w_ls e_t Sigma_crit / sum w_ls.  Tangential ellipticity e_t = e1 cos 2PA + e2 sin 2PA (PA east of north, exact spherical
+    geometry) -- identical to the record's validated handedness (lr_esd_remeasure v3: e_t = -(e1 cos 2phi - e2 sin 2phi),
+    phi from +RA); e_x the 45-degree component (null test).  60 fine log bins 0.03-3 Mpc (4 per B21 bin; B21's 15 bins reused).
+  * Lens mass = FP18's mapping (i) EXACTLY: log L_K = 0.4 (3.28 - M_K), M_K = K_tot - 5 log10(d_L/10 pc) + 6 log10(1+z)
+    (Kochanek+01 K-correction), d_L from Vcmb; M* = 0.6 L_K (FP18's Upsilon_K); M_gal = M* (1 + f_cold) with B21's Boselli
+    f_cold.  K4 checks the L_K formula against UNGC's own L_K (the source of K&K's LV-central masses).  So the stellar-mass-
+    scale systematic (FP18's largest nuisance, -0.28 dex at the profiled optimum) is ABSENT by construction; the lenses are at
+    z ~ 0.026, so the epoch systematic is absent too.  Lens redshift z >= 0.01 (Vcmb >= 3000 km/s: peculiar velocities <= 10%
+    of the distance, apertures <= 4 deg).  Target 10.4 <= log M_gal <= 10.8 (the LV centrals, mapping (i): 10.40-10.82).
+  * Type: LATE = ALFALFA-detected (30", |dV| <= 300 km/s, heliocentric) and not 6dF-FP, or (no label and GAaP u - r < 2.35);
+    EARLY = 6dF-FP (10", |dV| <= 300) and not HI-detected, or (no label and u - r >= 2.50); otherwise ambiguous/unknown.  The
+    cuts are FIXED from the label calibration (T1: 0/28 FP early types have u - r < 2.35 at the target mass; 64-77% of HI-rich
+    spirals have u - r < 2.3-2.4) before any lensing was run with them.
+  * ISOLATION (spectroscopic; the whole-sky 2M++ is the neighbour pool, complete for "brighter than the lens" because the lens
+    itself is above the flux limit): PRIMARY = no 2M++ galaxy brighter in total Ks within projected proper R_p <= 3 Mpc and
+    |dVcmb| <= 500 km/s (~2 group velocity dispersions; B21's own 3-Mpc radius).  Variants: the redshift-space 3-Mpc sphere
+    sqrt(R_p^2 + (dV/H0)^2) <= 3 Mpc (B21's GAMA-like definition), +-1000 / +-2000 km/s, and "group centrals" (brightest within
+    R_p <= 1.0 / 1.5 Mpc, +-500): by the shell theorem of FP18 K7 a brighter galaxy OUTSIDE R adds nothing positive to the
+    stacked Delta Sigma(< R), so the group-central samples are the like-for-like lensing analogs of R0 (the flow measures the
+    group's mass inside R0 ~ 0.93 Mpc).  Leakage is tested three ways (L1).
+CORRECTIONS (all applied; each printed)
+  * additive c: the weighted mean e1, e2 subtracted per KiDS region (N/S) x tomographic bin (Z_B edges 0.1/.3/.5/.7/.9/1.2);
+  * multiplicative m: divided by B21's released (1+K) = 0.98531 (read from the Fig-3 files: the same value the comparison bins
+    carry);
+  * photo-z dilution: a declared model p(z_true | Z_B) = 0.9 N(Z_B, 0.06 (1 + Z_B)) + 0.1 n_all(z) gives f = <Sigma_crit^-1
+    (z_true)> / Sigma_crit^-1(Z_B) per pair; Delta Sigma is divided by the weighted mean f (~1% at z_l ~ 0.026; larger at z_l ~
+    0.3, where K6 tests it against B21);
+  * boost: B(R) = [sum_L w_ls / N_L] / [sum_R w_rs / N_R] against randoms re-weighted to the lens redshift distribution; the
+    lens signal is multiplied by max(B, 1): B > 1 is dilution by lens-associated sources, B < 1 is obscuration by the bright
+    lenses' own masks (no shear bias) -- raw-B and no-boost variants are reported;
+  * random points: 12,000 uniform in the footprint (HEALPix nside 256 source-density mask), redshifts drawn from the lens
+    candidates, subtracted after the same corrections.
+COVARIANCE.  Jackknife over 40 equal-area sky patches (20 RA stripes in KiDS-N, 20 in KiDS-S), leave-one-patch-out of lenses
+  AND randoms (the full estimator, boost included, recomputed each time), over the patches that hold the sample's lenses;
+  Hartlap-corrected wherever inverted.  Shape-noise-only errors are printed beside it.
+COMPARISONS.  (a) B21 mixed-type at the same mass: FP18's kids_for over the sample's lensing-weighted M_gal distribution,
+  its covariance from the corrected C60; the amplitude A = band(sample) / band(mixed) over the BAND = B21 bins 8-13 (R 0.26-1.62
+  Mpc) with the sample's own pair weights.  (b) the flow: the two R0 combined (independent galaxy sets: 0.93 +- 0.117,
+  0.91 +- 0.111 -> 0.920 +- 0.080); the rigorous envelope Delta Sigma(R) <= M_max(<R)/(pi R^2) with M_max = COEF R0^3 - mean
+  inside R0 and the outermost-crossing cap beyond (FP18 B, K7; exact, any non-negative profile); the NFW-family envelope
+  (profiles turning around at R0, projected with FP18's uniform-shell kernel, < 0.5% vs analytic; FP6's esd_of_M is NOT used);
+  the joint free-profile statistic T = min over profiles [chi2_lens + chi2_R0] - min [chi2_lens] (FP18's T_free, full R0
+  definition) on 6 wide bins with the pair-weight-averaged shell kernel, mass-matched to the LV centrals by B21's mass trend.
+RULE (fixed before this lane's committed run; designed after EXPLORATORY prototype runs on the same data, which showed: only
+  ~10-15% of target-mass 2M++ galaxies are the brightest within 3 Mpc; the unselected target-mass stack sits ~2x above B21's
+  isolated bins at 0.5-1.4 Mpc; the pipeline reproduces B21's bins 2/3 at 1.06-1.08 before corrections).  A development run
+  of this script (reduced randoms) then showed: the honest jackknife error at z ~ 0.026 is ~2x shape noise (0.3-1.6 Mpc is
+  ~1 deg, where cosmic-shear noise equals shape noise and is shared by clustered lenses), so the target-mass stack alone is a
+  ~3-sigma detection -- the load-bearing DETECTION control D1 was therefore moved to the full 2M++ candidate stack (same
+  threshold; the target-mass S/N is reported as D1b); the null tests use the exact Hotelling T^2 -> F test (a Hartlap chi^2 is
+  anticonservative in the tail for 40 patches); A_rec scales the WHOLE mixed profile (scaling only R > 0.26 Mpc cannot reach
+  compatibility, because B21's inner lensing already fixes the mass).  The first COMMITTED run then failed K6 as first declared
+  (every correction applied: bin 3 at 1.28 +- 0.10, outside [0.80, 1.20]; bin 2 at 1.00): the excess sits entirely inside
+  0.3 Mpc (1.65 there, 1.04 beyond) and is the BOOST correction -- against uniform randoms the photometric bin-3 lenses show
+  B = 1.15-1.23 inside 0.3 Mpc, which is largely an artefact (those lenses are selected unmasked, while uniform randoms fall in
+  the footprint's masked holes, ~19% of it: 957 deg^2 of pixels vs KiDS's ~777 deg^2 effective area), and B21's published bins
+  match the pipeline WITHOUT it.  So K6 is now the like-for-like validation (B21's convention: no boost); the first-declared
+  form is kept, reported, as K6b, and it still fails.  For the 2M++ lenses B <= 1 in the band (obscuration by their own
+  masks), so max(B, 1) never acts there and no 2M++ number changes.  The verdict rule below is unchanged.  PRIMARY: the LATE-
+  type, primary-isolated, target-mass sample; T with the combined R0, dof 1; A over the band.
+    RECONCILED   if T <= 3.84 (p >= 0.05) AND (1 - A) / sigma_A >= 2: spiral lensing is measurably below the mixed level and
+                 meets the flow.
+    PINCER REAL  if T > 9.0 (3 sigma): no profile fits the spirals' lensing and the flow together (A is quoted beside it).
+    UNDECIDED    otherwise -- and the sample size that would decide is computed: N such that A = 1 and A = A_rec (the
+                 face-value reconciliation amplitude, from T on B21's own precision) differ by 3 sigma.
+  Reported, not in the rule: all-type / early-type / group-central / window variants; the non-isolated sample; the Z_B > 0.5,
+  MASK == 0, raw-boost and no-boost variants; the FP18-style two-system T (dof 2); the model-independent mass bound.
+
+  *** MUTATE=1: every 2M++ lens is moved to a random footprint position before the stack; D1 must FAIL ***
+
+======================================================================================================================
+A  THE DATA: sources, footprint, corrections' inputs
+======================================================================================================================
+    sources: 21,262,011 (KiDS-1000 SOM-gold)  [17 s]
+    footprint (HEALPix 256, > 30% of median source density): 957 deg^2; c-terms subtracted: N1 (-5.8e-04, +4.7e-04), N2 (+7.4e-05, +9.0e-04), N3 (+8.6e-04, +7.3e-04), N4 (+5.4e-04, +7.4e-04), N5 (-6.0e-05, +1.3e-03), S1 (+8.4e-04, -1.2e-04), S2 (-2.9e-05, +5.4e-05), S3 (+3.7e-05, +5.7e-04), S4 (-8.7e-05, +7.5e-04), S5 (-9.7e-04, +4.0e-04)
+    m-correction: B21's (1+K) = 0.98531; photo-z dilution model f(z_l, Z_B) at Z_B = 0.3 / 0.7: z_l 0.026 -> 0.9956 / 0.9973; z_l 0.30 -> 0.9644 (Z_B 0.6) / 0.9630  [29 s]
+    2M++: 72,973 rows; in the footprint with z >= 0.01: 2,036; K offset (2MRS matches 36,719): 7.12:+0.234, 7.88:+0.185, 8.62:+0.149, 9.38:+0.160, 10.12:+0.198, 10.88:+0.241, 11.62:+0.266; K2M++ > 11.75: +0.260  [30 s]
+
+======================================================================================================================
+B  THE STACKS (per-lens accumulators; randoms per patch x redshift bin; the photometric validation sample)
+======================================================================================================================
+    stacked 2M++ lens candidates (MUTATED positions): 2,036 centres in 45 s
+    stacked randoms: 12,000 centres in 390 s
+    stacked B21-bin-2 photometric lenses: 41,748 centres in 17 s
+    stacked bin-2 randoms: 41,748 centres in 18 s
+    stacked B21-bin-3 photometric lenses: 43,721 centres in 14 s
+    stacked bin-3 randoms: 43,721 centres in 15 s
+    [530 s]
+
+======================================================================================================================
+K  CONTROLS: sources and the null, the projection, the T machinery, the mass scale, randoms, the pipeline vs B21
+======================================================================================================================
+  [PASS] K1 CONTROL: the source catalogue and the cross-shear null -- 21,262,011 SOM-gold sources, additive terms small, and the 45-degree (cross) Delta Sigma_x of the full 2M++ footprint stack consistent with zero (jackknife, Hartlap)
+         measured: N = 21,262,011; max |c| = 1.3e-03; cross Hotelling T^2 = 39.9 (15 bins, 40 patches), p = 0.115 (Hartlap chi2 23.5/15, p 0.073); Delta Sigma_x: +26.96, +41.86, -27.56, +22.80, +7.62, -3.49, -6.24, -4.12, +3.76, +2.32, -1.23, +0.46, +0.84, +0.73, +0.49
+  [PASS] K2 CONTROL: the projection -- FP18's uniform-shell kernel (used for every envelope and T here) reproduces the analytic NFW Delta Sigma (Wright & Brainerd 2000) and the SIS V^2/(4 G R) at B21's radii; FP6's esd_of_M is not used
+         measured: NFW max dev 5.23e-03; SIS max dev 3.30e-03
+  [PASS] K3 CONTROL: this lane's free-profile T (any kernel) reproduces FP18's T_free on FP18's own stack input (B21 at the stack's M_gal, R0 0.93 +- 0.117, full definition) and FP18's committed value
+         measured: T = 51.8810 (this lane) vs 51.8810 (FP18's function) vs 51.8810 (FP18 committed)
+  [PASS] K4 CONTROL: the mass scale -- the L_K formula used for the lenses (M_K,sun = 3.28) reproduces UNGC's own log L_K (the source of K&K's LV-central masses, FP18 mapping (i)); the 2M++ isophotal Ks is put on 2MRS's total-magnitude system
+         measured: UNGC: n = 861, median d = -0.0076 dex, MAD 0.0052; 2M++ - 2MRS total: +0.244 mag overall (36,719 matches), calibrated per 0.25 mag for K2M++ <= 11.75
+  [PASS] K5 CONTROL: random points -- the Delta Sigma around 12,000 random footprint points (redshifts from the lenses) is consistent with zero (jackknife, Hartlap); it is subtracted from every lens profile
+         measured: Hotelling T^2 = 25.6 (15 bins, 40 patches), p = 0.407 (Hartlap chi2 15.1/15); values at 0.3-1.4 Mpc: +0.58 +- 2.38, +0.68 +- 1.23, -1.14 +- 0.91, -0.20 +- 0.88, +0.45 +- 0.54, +0.73 +- 0.49
+    B21 bin 2 (record's reconstruction, 41,748 lenses, log <M_gal> 10.57): R | this pipeline +- jk | B21 +- err
+      0.04:  14.1+-17.0 /  33.4+-9.7 | 0.07:  26.9+- 9.7 /  23.5+-5.2 | 0.12:  24.5+- 5.1 /  14.4+-2.9 | 0.22:   4.2+- 2.6 /  11.3+-1.6 | 0.41:   6.4+- 1.4 /   6.6+-0.9 | 0.76:   2.3+- 0.8 /   2.8+-0.5 | 1.41:   0.9+- 0.5 /   1.1+-0.3 | 2.60:   0.4+- 0.2 /   0.3+-0.2
+      amplitude (B21's convention: no boost) 0.911 +- 0.099 (point-Z_B, no dilution correction: 0.880); chi2 vs B21 (summed covariances, lenient: the same sources) 10.4/15, p 0.79; mean dilution factor 0.966; with the measured boost 1.001 +- 0.107
+    B21 bin 3 (record's reconstruction, 43,721 lenses, log <M_gal> 10.77): R | this pipeline +- jk | B21 +- err
+      0.04:  53.3+-17.1 /  33.5+-10.4 | 0.07:  39.2+- 9.8 /  32.6+-5.6 | 0.12:  30.1+- 4.6 /  18.2+-3.1 | 0.22:  13.7+- 2.8 /   7.4+-1.7 | 0.41:   4.9+- 1.3 /   5.7+-0.9 | 0.76:   1.8+- 1.0 /   3.5+-0.5 | 1.41:   2.8+- 0.5 /   1.7+-0.3 | 2.60:   0.3+- 0.2 /   0.6+-0.2
+      amplitude (B21's convention: no boost) 1.146 +- 0.092 (point-Z_B, no dilution correction: 1.100); chi2 vs B21 (summed covariances, lenient: the same sources) 20.8/15, p 0.14; mean dilution factor 0.960; with the measured boost 1.278 +- 0.099
+  [PASS] K6 CONTROL: the pipeline with B21's convention (c, m, dilution model, randoms subtracted; no boost correction) reproduces B21's published Fig-3 Delta Sigma(R) of mass bins 2 and 3 from the record's photometric reconstruction of B21's isolated lenses: amplitude within [0.80, 1.20]
+         measured: bin 2: 0.911 +- 0.099; bin 3: 1.146 +- 0.092 (without the dilution model 0.880 / 1.100)
+  [FAIL] (reported) K6b (reported) K6 AS FIRST DECLARED, with the measured boost applied: fails for bin 3; the excess is inside 0.3 Mpc, where the boost against uniform randoms is large -- confounded by the photometric lenses' mask selection (see the docstring)
+         measured: bin 2: 1.001 +- 0.107; bin 3: 1.278 +- 0.099; inner (< 0.3 Mpc) / outer amplitude, no boost vs boost: bin 2 0.80/0.95 vs 0.97/1.01, bin 3 1.35/0.96 vs 1.61/1.04; bin-3 boost per B21 bin: 1.18 1.22 1.23 1.20 1.20 1.17 1.16 1.14 1.12 1.09 1.07 1.05 1.02 1.01 1.00
+    [530 s]
+
+======================================================================================================================
+S  THE SAMPLE: 2M++ in KiDS-1000, the mass mapping, the type labels, the isolation and its leakage
+======================================================================================================================
+    candidates (footprint, z >= 0.01): 2,036 (KiDS-N 947, KiDS-S 1,089); target mass 10.4-10.8: 621 (log <M_gal> 10.65; z 5/50/95%: 0.0157, 0.0275, 0.0400)
+    labels at the target mass: HI-detected 59, 6dF-FP 39, KiDS colour 508; LATE 227, EARLY 188, ambiguous/unknown 206
+  [PASS] (reported) T1 (reported) THE TYPE CUT, calibrated on the labels only: fraction with GAaP u - r below the cut among spectroscopic early types (6dF-FP), HI-rich spirals (ALFALFA) and ALFALFA-footprint non-detections, at the target mass
+         measured: u-r<2.2: FP 0.00, HI 0.47, non-det 0.14; u-r<2.3: FP 0.00, HI 0.62, non-det 0.22; u-r<2.35: FP 0.03, HI 0.70, non-det 0.30; u-r<2.4: FP 0.03, HI 0.75, non-det 0.35; u-r<2.5: FP 0.18, HI 0.87, non-det 0.53; FP u-r quantiles 10/50/90: 2.46, 2.58, 2.75
+         reading:  the cut 2.35 admits no FP early type and ~70% of HI-rich spirals; at z ~ 0.026 the GAaP colour is a bulge colour, so the LATE sample is spiral-ENRICHED, not a morphological sample
+    isolation (2M++ neighbour brighter in total Ks), target-mass counts all / LATE / EARLY:
+      3Mpc/500    :  108 /   52 /   30
+      3Mpc sphere :  205 /   91 /   54
+      3Mpc/1000   :   73 /   38 /   20
+      3Mpc/2000   :   38 /   21 /   11
+      1.5Mpc/500  :  235 /  105 /   60
+      1Mpc/500    :  309 /  134 /   79
+    [530 s]
+
+======================================================================================================================
+D  THE MEASUREMENT: Delta Sigma(R) with every correction; jackknife covariance; S/N per bin
+======================================================================================================================
+  [FAIL] D1 THE FULL 2M++ CANDIDATE STACK (all masses, environments and types; z >= 0.01) DETECTS weak lensing around the spectroscopic lenses: S/N of the single-bin Delta Sigma over 0.03-1.62 Mpc > 4 (jackknife)
+         measured: N = 2,036, Delta Sigma = 0.05 +- 0.79 Msun/pc^2 (S/N 0.1; 40 patches)
+  [PASS] (reported) D1b (reported) THE TARGET-MASS STACK ALONE (10.4-10.8, all environments and types): its detection S/N, jackknife vs shape noise only
+         measured: N = 621, Delta Sigma = -0.35 +- 1.48 (S/N -0.2; shape noise only -0.4; 40 patches)
+         reading:  at z ~ 0.026 the 0.3-1.6 Mpc annuli span ~1 deg: cosmic-shear noise, shared by clustered lenses, doubles the error
+    PRIMARY: LATE, isolated (no brighter 2M++ galaxy within 3 Mpc and +-500 km/s), 10.4 <= log M_gal <= 10.8: N = 52 (lensing-weighted log M_gal 10.66, median z 0.0301; 29 jackknife patches)
+      R [Mpc] | Delta Sigma +- jk (shape noise) | S/N  | Delta Sigma_x | boost | dilution f | B21 mixed at the same mass
+       0.036 |   184.50 +- 122.13 (190.58) |  +1.5 | +147.51 | 0.928 | 0.9966 |  33.05 +- 6.74
+       0.049 |   -41.91 +- 147.64 (132.61) |  -0.3 | +17.03 | 0.955 | 0.9966 |  34.07 +- 4.91
+       0.066 |   111.79 +-  97.36 ( 98.21) |  +1.1 | -94.56 | 0.988 | 0.9967 |  27.55 +- 3.61
+       0.089 |  -105.64 +-  70.87 ( 68.37) |  -1.5 | +52.66 | 1.037 | 0.9965 |  20.43 +- 2.68
+       0.122 |   -28.70 +-  64.49 ( 49.73) |  -0.4 |  +5.32 | 1.076 | 0.9965 |  16.03 +- 1.99
+       0.165 |    69.92 +-  43.81 ( 37.58) |  +1.6 | +16.93 | 1.054 | 0.9966 |  12.69 +- 1.47
+       0.225 |    26.23 +-  23.40 ( 28.09) |  +1.1 | +28.65 | 1.035 | 0.9966 |   9.10 +- 1.09
+       0.306 |    -8.19 +-  17.84 ( 20.83) |  -0.5 |  +5.26 | 1.024 | 0.9966 |   8.46 +- 0.81
+       0.416 |     9.90 +-  18.48 ( 15.05) |  +0.5 | +15.05 | 1.057 | 0.9966 |   5.89 +- 0.61
+       0.565 |    -0.44 +-  11.43 ( 11.13) |  -0.0 | -10.64 | 1.071 | 0.9966 |   4.29 +- 0.45
+       0.768 |     2.76 +-   8.22 (  8.23) |  +0.3 |  +6.95 | 1.088 | 0.9966 |   3.12 +- 0.34
+       1.043 |    11.76 +-   7.22 (  6.16) |  +1.6 |  -7.76 | 1.072 | 0.9966 |   2.72 +- 0.25
+       1.419 |    12.71 +-   7.23 (  4.64) |  +1.8 |  +3.78 | 1.059 | 0.9966 |   1.37 +- 0.19
+       1.928 |     4.12 +-   3.99 (  3.49) |  +1.0 |  -2.97 | 1.060 | 0.9966 |   1.07 +- 0.14
+       2.619 |    -4.74 +-   3.12 (  2.67) |  -1.5 |  +4.62 | 1.031 | 0.9966 |   0.42 +- 0.11
+  [PASS] (reported) D2 (reported) THE PRIMARY PROFILE: Delta Sigma(R) of spectroscopically isolated LATE-type 2M++ galaxies of LV-central mass, per B21 radial bin, with jackknife errors and S/N
+         measured: R 0.04: +184.5 +- 122.1 (x +147.5); R 0.05: -41.9 +- 147.6 (x +17.0); R 0.07: +111.8 +- 97.4 (x -94.6); R 0.09: -105.6 +- 70.9 (x +52.7); R 0.12: -28.7 +- 64.5 (x +5.3); R 0.17: +69.9 +- 43.8 (x +16.9); R 0.22: +26.2 +- 23.4 (x +28.7); R 0.31: -8.2 +- 17.8 (x +5.3); R 0.42: +9.9 +- 18.5 (x +15.0); R 0.57: -0.4 +- 11.4 (x -10.6); R 0.77: +2.8 +- 8.2 (x +6.9); R 1.04: +11.8 +- 7.2 (x -7.8); R 1.42: +12.7 +- 7.2 (x +3.8); R 1.93: +4.1 +- 4.0 (x -3.0); R 2.62: -4.7 +- 3.1 (x +4.6)
+         reading:  band (0.26-1.62 Mpc) 9.40 +- 5.06 Msun/pc^2 (S/N 1.9); cross-shear null p = 0.93 (Hotelling)
+    every sample (band = one bin over 0.26-1.62 Mpc, jackknife; A = band / B21 mixed at the sample's mass):
+      sample                                    N  log M |   band +-   err | B21 mix |      A +-    sA | Z_B>0.5 | MASK=0 | raw B | no B
+      PRIMARY late, 3Mpc/500                   52  10.66 |   9.40 +-  5.06 |    2.55 |   3.68 +-  1.99 |  12.37 |   9.24 |  9.40 |  8.85
+      all types, 3Mpc/500                     108  10.68 |   4.78 +-  3.02 |    2.62 |   1.82 +-  1.16 |   3.43 |   5.23 |  4.78 |  4.53
+      early, 3Mpc/500                          30  10.70 |  -5.27 +-  6.74 |    2.70 |  -1.95 +-  2.50 | -13.09 |  -4.20 | -5.27 | -5.02
+      late, 3Mpc sphere                        91  10.65 |   3.79 +-  4.00 |    2.52 |   1.50 +-  1.59 |   6.64 |   3.96 |  3.79 |  3.74
+      late, 3Mpc/1000                          38  10.67 |  11.51 +-  6.25 |    2.55 |   4.51 +-  2.46 |  14.91 |  11.02 | 11.50 | 10.71
+      late, 1.5Mpc/500 (group centrals)       105  10.65 |   2.05 +-  3.62 |    2.53 |   0.81 +-  1.43 |   4.93 |   2.60 |  2.04 |  2.05
+      late, 1Mpc/500 (group centrals)         134  10.64 |   3.27 +-  3.29 |    2.49 |   1.31 +-  1.32 |   4.62 |   4.13 |  3.27 |  3.27
+      all types, 1Mpc/500 (group centrals)    309  10.66 |   2.60 +-  1.99 |    2.57 |   1.01 +-  0.77 |   2.94 |   3.34 |  2.60 |  2.58
+      all late (no isolation)                 227  10.62 |   0.16 +-  2.32 |    2.45 |   0.07 +-  0.94 |   2.11 |   0.93 |  0.16 |  0.16
+      NON-isolated, all types                 513  10.64 |  -1.50 +-  1.59 |    2.50 |  -0.60 +-  0.64 |  -0.80 |  -0.77 | -1.47 | -1.50
+      all target mass                         621  10.65 |  -0.38 +-  1.47 |    2.52 |  -0.15 +-  0.58 |  -0.05 |   0.29 | -0.38 | -0.38
+  [PASS] (reported) D3 (reported) EVERY VARIANT: the band Delta Sigma for the isolation windows, the group-central radii, the types, the non-isolated sample, and the source-selection / boost / dilution variants
+         measured: PRIMARY late, 3Mpc/500: 9.40 +- 5.06 (N 52); all types, 3Mpc/500: 4.78 +- 3.02 (N 108); early, 3Mpc/500: -5.27 +- 6.74 (N 30); late, 3Mpc sphere: 3.79 +- 4.00 (N 91); late, 3Mpc/1000: 11.51 +- 6.25 (N 38); late, 1.5Mpc/500 (group centrals): 2.05 +- 3.62 (N 105); late, 1Mpc/500 (group centrals): 3.27 +- 3.29 (N 134); all types, 1Mpc/500 (group centrals): 2.60 +- 1.99 (N 309); all late (no isolation): 0.16 +- 2.32 (N 227); NON-isolated, all types: -1.50 +- 1.59 (N 513); all target mass: -0.38 +- 1.47 (N 621)
+  [PASS] (reported) L1 (reported) ISOLATION LEAKAGE: (i) the fraction of primary-isolated target-mass lenses with a brighter 2M++ galaxy at 500 < |dV| <= 1000 / 2000 km/s inside 3 Mpc (an upper bound on velocity leakage), (ii) 2M++ velocity-assigned ('none') galaxies near them, (iii) the 2M++ K <= 12.5 completeness there, (iv) the lensing's response to the window
+         measured: (i) 0.32 / 0.65; (ii) 2 within 3 Mpc / +-500 km/s of 108 lenses; (iii) mean c12.5 0.926; (iv) late-type band: late, 3Mpc sphere 3.79 +- 4.00, PRIMARY late, 3Mpc/500 9.40 +- 5.06, late, 3Mpc/1000 11.51 +- 6.25
+         reading:  a brighter neighbour is complete to K 12.5 whenever the lens is in 2M++, so the leakage is velocity leakage only
+    [532 s]
+
+======================================================================================================================
+C  THE COMPARISONS: B21 mixed-type at the same mass; the mass the LV groups' R0 allows; the joint free-profile T
+======================================================================================================================
+    the flow: R0 = 0.919 +- 0.080 Mpc (stack 0.93 +- 0.117 and LG 0.91 +- 0.111 combined); M_exc(<R0) <= 1.39e12 Msun (eq. 4, COEF 1.9553e12, minus the mean)
+    the LV centrals' mass (mapping (i), stack + LG): log M_gal 10.68; B21 mixed there, band 2.59
+      R [Mpc] | rigorous envelope | NFW envelope (c 1-30) | NFW c~8 | B21 mixed (LV mass) | PRIMARY x mass-match
+       0.035 |   353.59 |    91.41 |  47.99 |   33.36 +- 6.79 |  187.44 +- 124.08
+       0.048 |   191.35 |    59.50 |  33.76 |   34.49 +- 4.94 |  -42.58 +- 150.00
+       0.065 |   103.55 |    38.20 |  23.54 |   27.94 +- 3.63 |  113.57 +- 98.91
+       0.089 |    56.04 |    24.15 |  16.15 |   20.76 +- 2.70 | -107.32 +- 72.00
+       0.121 |    30.33 |    14.98 |  10.77 |   16.20 +- 2.00 |  -29.15 +- 65.52
+       0.164 |    16.41 |     9.20 |   7.07 |   12.90 +- 1.48 |   71.03 +- 44.51
+       0.223 |     8.88 |     5.58 |   4.55 |    9.29 +- 1.10 |   26.65 +- 23.78
+       0.304 |     4.81 |     3.35 |   2.88 |    8.61 +- 0.82 |   -8.32 +- 18.12
+       0.413 |     2.60 |     2.00 |   1.79 |    6.00 +- 0.61 |   10.05 +- 18.78
+       0.561 |     1.41 |     1.18 |   1.10 |    4.36 +- 0.45 |   -0.44 +- 11.62
+       0.762 |     0.76 |     0.69 |   0.67 |    3.16 +- 0.34 |    2.80 +-  8.35
+       1.036 |     0.59 |     0.41 |   0.40 |    2.75 +- 0.26 |   11.95 +-  7.33
+       1.409 |     0.80 |     0.25 |   0.24 |    1.40 +- 0.19 |   12.91 +-  7.35
+       1.915 |     1.09 |     0.16 |   0.14 |    1.09 +- 0.15 |    4.19 +-  4.05
+       2.603 |     1.48 |     0.10 |   0.08 |    0.43 +- 0.11 |   -4.81 +-  3.17
+    per sample (mass-matched to the LV centrals by B21's mass trend; T on 6 wide bins, Hartlap; dof 1 with the combined R0):
+      sample                                 fmass |   band +-   err | env: rigorous 0.96, NFW 0.57, c8 0.54 |      T (2-sys) | max z of pi R^2 dS above the cap
+      PRIMARY late, 3Mpc/500                  1.02 |   9.55 +-  5.14 | z vs rigorous  +1.7, vs NFW  +1.7, vs mixed  +1.4 |   3.74    7.49 |  +1.2
+      all types, 3Mpc/500                     1.00 |   4.75 +-  3.01 | z vs rigorous  +1.3, vs NFW  +1.4, vs mixed  +0.7 |   1.61    3.22 |  +0.8
+      early, 3Mpc/500                         0.97 |  -5.09 +-  6.50 | z vs rigorous  -0.9, vs NFW  -0.9, vs mixed  -1.2 |   3.24    6.48 |  +0.9
+      late, 3Mpc sphere                       1.03 |   3.92 +-  4.13 | z vs rigorous  +0.7, vs NFW  +0.8, vs mixed  +0.3 |   1.88    3.75 |  +1.1
+      late, 3Mpc/1000                         1.01 |  11.61 +-  6.31 | z vs rigorous  +1.7, vs NFW  +1.8, vs mixed  +1.4 |   7.66   15.32 |  +2.2
+      late, 1.5Mpc/500 (group centrals)       1.03 |   2.11 +-  3.73 | z vs rigorous  +0.3, vs NFW  +0.4, vs mixed  -0.1 |   1.58    3.15 |  +1.0
+      late, 1Mpc/500 (group centrals)         1.04 |   3.41 +-  3.42 | z vs rigorous  +0.7, vs NFW  +0.8, vs mixed  +0.2 |   1.90    3.78 |  +1.4
+      all types, 1Mpc/500 (group centrals)    1.01 |   2.64 +-  2.01 | z vs rigorous  +0.8, vs NFW  +1.0, vs mixed  +0.0 |   1.22    2.40 |  +1.7
+      all late (no isolation)                 1.06 |   0.17 +-  2.45 | z vs rigorous  -0.3, vs NFW  -0.2, vs mixed  -1.0 |   0.90    1.80 |  +0.7
+      NON-isolated, all types                 1.04 |  -1.57 +-  1.66 | z vs rigorous  -1.5, vs NFW  -1.3, vs mixed  -2.5 |   1.84    3.67 |  +0.5
+      all target mass                         1.03 |  -0.39 +-  1.52 | z vs rigorous  -0.9, vs NFW  -0.6, vs mixed  -2.0 |   0.34    0.68 |  +0.4
+  [PASS] (reported) C1 (reported) VS THE PUBLISHED MIXED-TYPE BINS AT THE SAME MASS: the amplitude A of the band Delta Sigma relative to B21's isolated mixed-type lenses interpolated to each sample's lensing-weighted M_gal
+         measured: PRIMARY late, 3Mpc/500: A = 3.68 +- 1.99; all types, 3Mpc/500: A = 1.82 +- 1.16; early, 3Mpc/500: A = -1.95 +- 2.50; late, 3Mpc sphere: A = 1.50 +- 1.59; late, 3Mpc/1000: A = 4.51 +- 2.46; late, 1.5Mpc/500 (group centrals): A = 0.81 +- 1.43; late, 1Mpc/500 (group centrals): A = 1.31 +- 1.32; all types, 1Mpc/500 (group centrals): A = 1.01 +- 0.77; all late (no isolation): A = 0.07 +- 0.94; NON-isolated, all types: A = -0.60 +- 0.64; all target mass: A = -0.15 +- 0.58
+         reading:  FP18's reconciliation needs ~0.29-0.33 beyond 0.3 Mpc (profiled optimum); B21's measured blue/red contrast there is 0.50
+  [PASS] (reported) C2 (reported) VS THE FLOW: the band Delta Sigma the combined R0 allows -- rigorous (any non-negative profile), the NFW family (any c), a c ~ 8 NFW -- and the model-independent mass bound pi R^2 Delta Sigma(R) against the cap M_exc(<R0)
+         measured: allowed band: rigorous <= 0.96, NFW <= 0.57, c~8 0.54; B21 mixed at the LV mass 2.59; PRIMARY (mass-matched) 9.55 +- 5.14
+  [PASS] (reported) C3 (reported) THE JOINT FREE-PROFILE STATISTIC T (FP18's, full R0 definition) with each sample's lensing and the combined R0; and A_rec, the largest fraction of the mixed-type profile (all radii) that B21-precision data at the LV mass could show and still meet the flow at p = 0.05
+         measured: A_rec = 0.307 (T at A = 1: 82.5; scaling only R > 0.26 Mpc by 0.1 / 0.3 / 0.5: T = 22.9 / 9.2 / 17.4); PRIMARY late, 3Mpc/500: T 3.74; all types, 3Mpc/500: T 1.61; early, 3Mpc/500: T 3.24; late, 3Mpc sphere: T 1.88; late, 3Mpc/1000: T 7.66; late, 1.5Mpc/500 (group centrals): T 1.58; late, 1Mpc/500 (group centrals): T 1.90; all types, 1Mpc/500 (group centrals): T 1.22; all late (no isolation): T 0.90; NON-isolated, all types: T 1.84; all target mass: T 0.34
+    [541 s]
+
+======================================================================================================================
+V  THE VERDICT (the rule declared in the docstring) AND THE SAMPLE THAT WOULD DECIDE
+======================================================================================================================
+  [PASS] (reported) V1 (reported) THE VERDICT BY THE DECLARED RULE on the primary sample, and the same rule on every variant
+         measured: PRIMARY: UNDECIDED -- T = 3.74 (p 0.05, 1.9 sigma), A = 3.68 +- 1.99 ((1 - A)/sigma_A = -1.3); PRIMARY late, 3Mpc/500: UNDECIDED; all types, 3Mpc/500: UNDECIDED; early, 3Mpc/500: UNDECIDED; late, 3Mpc sphere: UNDECIDED; late, 3Mpc/1000: UNDECIDED; late, 1.5Mpc/500 (group centrals): UNDECIDED; late, 1Mpc/500 (group centrals): UNDECIDED; all types, 1Mpc/500 (group centrals): UNDECIDED; all late (no isolation): UNDECIDED (not an LV analog: no isolation); NON-isolated, all types: RECONCILED (not an LV analog: no isolation); all target mass: UNDECIDED (not an LV analog: no isolation)
+    the primary's amplitude error sigma_A = 1.99 from N = 52; deciding A = 1 vs A_rec = 0.31 at 3 sigma needs sigma_A <= 0.231: N ~ 3871 late-type isolated centrals at z ~ 0.026 (2 sigma: 1721); the fractional per-lens variance of a KiDS-bright photometric lens at z ~ 0.3 is 3.6x that of a 2M++ lens, so ~14021 spectroscopic isolated spirals at z ~ 0.1-0.4 (GAMA/SDSS-like) would do the same; 2M++ holds 227 late-type target-mass galaxies in the whole KiDS-1000 footprint (621 of all types) -- the on-disk data CANNOT decide it
+  [PASS] (reported) V2 (reported) THE SAMPLE THAT WOULD DECIDE: the number of spectroscopically isolated late-type centrals at LV-central mass that separates the mixed level (A = 1) from the face-value reconciliation level (A_rec) at 3 sigma
+         measured: N_3sigma ~ 3871 at z ~ 0.026 (2M++-like; 1721 for 2 sigma), ~14021 at z ~ 0.3 (KiDS-bright-like per-lens noise); available here 52
+
+======================================================================================================================
+W  THE LEDGER: FP21, weak lensing of spectroscopically isolated spirals of LV-central mass
+======================================================================================================================
+    F21a  CONSTRAINT  the like-for-like lens sample exists and is small: 2M++ (spectroscopic, K <= 12.5, complete in both KiDS regions) holds 2,036 galaxies in the KiDS-1000 footprint (z >= 0.01), 621 at 10.4 <= log M_gal <= 10.8 with the LV centrals' own mass mapping (0.6 L_K + Boselli gas; UNGC L_K reproduced to -0.008 dex), 227 LATE-labelled; only 108 are the brightest within 3 Mpc / +-500 km/s, 52 of them LATE (the primary)  --  K4, S, T1
+    F21b  CONSTRAINT  the pipeline (exact spherical geometry, c, m = B21's 1+K, dilution model, randoms, jackknife) reproduces B21's published bins 2 / 3 from the record's photometric reconstruction at A = 0.91 +- 0.10 / 1.15 +- 0.09 with B21's convention (no boost); applying the boost measured against uniform randoms gives 1.00 / 1.28 (K6 as first declared FAILS for bin 3) -- that boost is confounded by the lens samples' mask selection, and is inactive for the 2M++ lenses (B <= 1 in the band); cross-shear and random nulls pass  --  K1, K5, K6, K6b
+    F21c  CONSTRAINT  the measurement: the primary sample's Delta Sigma over 0.26-1.62 Mpc is 9.40 +- 5.06 Msun/pc^2 (S/N 1.9), A = 3.68 +- 1.99 of B21's mixed-type isolated lenses at the same mass; all types isolated A = 1.82 +- 1.16; group centrals (1 Mpc) A = 1.01 +- 0.77  --  D1, D2, D3, C1
+    F21d  CONSTRAINT  against the flow (R0 = 0.919 +- 0.080 Mpc): the band Delta Sigma allowed is <= 0.96 (rigorous, any profile) / 0.57 (any NFW); the primary's mass-matched band is 9.55 +- 5.14; the joint free-profile T = 3.74 (p 0.05); at B21's precision the flow tolerates at most A_rec = 0.31 of the mixed-type profile (all radii scaled) at face value -- FP18's -0.5 dex reconciliation, recovered independently  --  C2, C3
+    F21e  OPEN        the verdict by the declared rule: UNDECIDED  --  V1
+    F21f  CONSTRAINT  FP18's comparability systematics tested directly (L_K masses as the LV's, spectroscopic isolation, z ~ 0): no sample is measurably BELOW B21's mixed level -- isolated all types A = 1.82 +- 1.16, group centrals 1.01 +- 0.77, the primary 3.68 +- 1.99, non-isolated -0.60 +- 0.64 (isolated and non-isolated do not differ measurably); FP18's reconciled level A ~ 0.3 lies 0.4-1.7 sigma below the isolated samples -- a lean against reconciliation, not a result  --  D3, C1
+    F21g  OPEN        for the chain's universal law (R0 = 1.24-1.53 Mpc for the stack / LG, FP12; no type dependence possible): nothing moves: FP18's standing holds -- the chain's R0 = 1.24-1.53 Mpc overshoot of the LV is neither confirmed as a law-specific failure nor excused as a data-data pincer; the chain's universal law cannot produce a type dependence, so a future RECONCILED would FAIL it  --  V1, FP12, FP18
+    F21h  OPEN        for LCDM: unchanged: LCDM's KiDS-fitted halos turn around at 1.65-2.26 Mpc (FP18 L1); a type split in halo mass at fixed M* is standard LCDM, so a future RECONCILED would be comfortable for it  --  V1, FP18 L1
+    F21i  OPEN        what would decide it: ~3871 spectroscopically isolated late-type centrals at LV-central mass at z ~ 0.03 (3 sigma between A = 1 and A_rec = 0.31), or ~14021 at z ~ 0.1-0.4; the on-disk 2M++ holds 52; GAMA DR4 (G09/G12/G15/G23, r < 19.65) or SDSS DR7 spectroscopy over KiDS-N is the next step, and fetching it needs the user's go  --  V2
+    F21j  FITTED      the type cut is FITTED to labels, not to lensing: GAaP u - r < 2.35 (no 6dF-FP early type below it; ~70% of HI-rich spirals) -- at z ~ 0.026 it is a bulge colour, so LATE is spiral-enriched, not morphological  --  T1
+  [PASS] (reported) W (reported) the ledger of this lane
+         measured: 10 links
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  PRIMARY (LATE, isolated 3 Mpc / +-500 km/s, 10.4-10.8, N = 52): band Delta Sigma(0.26-1.62 Mpc) = 9.40 +- 5.06 Msun/pc^2; A = 3.68 +- 1.99 of B21's mixed bins at the same mass; the flow allows <= 0.96 (rigorous) / 0.57 (NFW); T = 3.74.
+  VERDICT (declared rule): UNDECIDED.  Sample that would decide at 3 sigma: ~3871 such centrals at z ~ 0.03 or ~14021 at z ~ 0.3; the whole KiDS-1000 footprint holds 227 LATE target-mass 2M++ galaxies.
+  No isolated sample is measurably below the mixed level (all types 1.82 +- 1.16; group centrals 1.01 +- 0.77; non-isolated -0.60 +- 0.64); FP18's reconciled level A ~ 0.3 lies 0.4-1.7 sigma below the isolated samples -- a lean, not a result.
+  Not 'closed'.  Time 541 s.
+
+  17/19 checks pass; load-bearing failures: 1; wrote FP21_isolated_spiral_lensing_results_MUTATE.json
+rc=1
