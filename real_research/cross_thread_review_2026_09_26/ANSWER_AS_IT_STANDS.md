@@ -170,8 +170,24 @@ Running here:
   - growth across the onset ramp.
   H_Y's findings are still reported.
 - **XR19:** does the fluid's own conversion run away through the cosmic web? XR12 and XR16 both flagged this, unscored.
-- **XR20:** can a₀ and Λ come from one field? It tests unimodular Λ, a 4-form, K, sequestering, and evolving dark
-  energy against the a₀(z) evidence.
+- **XR20 (a075ad7f7): a₀ and Λ can be TIED through one field; κ stays fitted.**
+  - **The tie that works:** in unimodular gravity (Henneaux–Teitelboim), dΛ = 0 is a field equation. So
+    a₀ = κc√(Gρ_Λ) is exactly constant on every solution, with no new local mode and with FRW and PPN unchanged. This
+    moves FP5's "a₀ POSTULATED" to "a₀ TIED". The tie is to the unimodular constant: a separate vacuum energy would
+    shift the observed Λ but not a₀.
+  - **Routes that fail or don't tie:**
+    - A four-form: the kernel folds and becomes unstable (ω² < 0). The unstable band covers 7.6% of SPARC points and a
+      561–3036 AU shell around every solar-mass star.
+    - The khronon's K: a₀ tracks H(z), the rival law.
+    - Sequestering: a₀ is constant but not tied.
+  - **Evolving dark energy:** a field tie reads V = (ρ − p)/2, not ρ_DE.
+    - A healthy thawing field makes a₀ rise into the past, by +0.07 to +0.16 dex at z = 2.5. That would erode the
+      z ≈ 2.5 test.
+    - The DESI fits cross w = −1, which only a ghost field can follow.
+    - Under the unimodular tie with a true cosmological constant, a₀ stays flat.
+  - **Flag to the κ-closure record:** k04 (2fb80ca12) promoted a₀ with a four-form and recorded it "stable (F6)". F6
+    tests the flux stiffness, not the kernel's monotonicity. Under k04's own kernel the boost falls above y ≈ 2.4
+    (XR20 T2f), so that verdict does not establish health.
 - **XR21:** the chain's model in a particle-mesh box.
   - Stage 1 (build and code tests) is running. It now includes H_S with its readouts computed on the fly from the box's
     own matter field, plus a frozen-readout control.
