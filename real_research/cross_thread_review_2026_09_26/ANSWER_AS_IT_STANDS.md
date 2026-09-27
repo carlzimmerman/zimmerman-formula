@@ -144,6 +144,11 @@ Where the chain stands, from its own ledger (chain lead's commits; checked again
 - FP9's separator H_Y passes the linear gates with FOUR declared constants.
 - FP10's dark sector clears galaxies before clusters, with ε FITTED.
 - FP11: the MW–M31 timing works with baryons only, but R0 overshoots by +0.20 dex. The Local Group fails.
+- FP12 (59e537955), the verdict is mixed:
+  - the Local Group, M81 and IC 342 share a +0.20 dex R0 overshoot (p = 0.93);
+  - the 14-group stack sits at +0.12 to +0.14 dex;
+  - Cen A matches;
+  - it predicts R0(M83) = 1.24/1.28 Mpc.
 - FP13 (27faacc84) replaces FP9's four constants with readouts of the state (the separator H_S).
   - What is still chosen by hand:
     - δ_c, which can sit anywhere in 1.3–2.6;
