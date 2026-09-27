@@ -212,8 +212,16 @@ Running here:
       the 2 kAU wide-binary shift. The DR4 pre-registration's Amendment 11 records the same variant (without
       registering it). An erratum or amendment is the author's call.
 - **XR21:** the chain's model in a particle-mesh box.
-  - Stage 1 (build and code tests) is running. It now includes H_S with its readouts computed on the fly from the box's
-    own matter field, plus a frozen-readout control.
+  - Stage 1 is done: the engine is built, and all five code tests pass. It is committed once its re-run reproduces.
+  - It raised three flags, all sent to the chain lead:
+    - **Who feels MOND.** FP9 and FP13 applied the separator's MOND to all matter. The chain's own reciprocity lets only
+      baryons source and feel the phantom, which makes the total-matter linear boost 20–25× smaller. The σ₈ problem
+      the separator was built for may mostly be an artefact of that choice. The forest, which traces gas, is the real
+      test.
+    - **The per-mode yardstick** overstates the linear σ₈ boost: the real-space operator gives 0.28–0.91 of it.
+    - **A kernel-argument bug** in the record's forest PM codes (L346, L347, L362, DE11, DE11b). The kernel was fed
+      (1+z) × the physical field, so MOND was about √(1+z) too weak at z = 2–3. I checked this against L362's source.
+      XR34 is re-scoring those lanes. DE11b's margin (0.0046 against 0.10) is large.
   - Stage 2 (the separator's nonlinear cosmology) is on hold until FP19's repaired term passes a re-audit.
   - Stage 3 (conversion with re-accretion) waits on XR19.
 - **FP10_FULL (df13605e0), done:** the dark-sector window hinges on re-accretion.
