@@ -96,3 +96,58 @@ Format: `lane | commit | MODEL TAG | gate(s) | verdict + numbers | scope | contr
 - **Liabilities (XR4/XR6):** LG, EFE, Coma UDGs, scored with the withdrawn cap form; the κ-form re-score is pending
   in XR9. Filament gas at z ≲ 0.5 is open.
 - **Controls:** MUTATE fails R1 and R3, rc = 1.
+
+## Merger lane (condensed from the owner's rows; every number is from committed results)
+
+Every lane in this group has a sharp switch (w = 0) and no cap. None was scored for cosmic shear on MS3's halo model:
+L373's shear column is mock-based, so not established, and L372/L392 have no shear gate. The L370 README's 10/14 is
+corrected to the JSON's 11/14 in 51a8a009a.
+
+- **L370 | 732bbe510** (scope 8850550c4, helpers 77f79072c)
+  - **Model tag:** an absolute density mask at p = 1, x_c0 = 1.5, w = 0; the carrier Newtonian-only; the operator
+    L370/L361 with σ = 0.
+  - **El Gordo:** slightly EASIER than in ΛCDM (Δχ −0.58..−0.12), because the lensing mass is phantom-heavy and the
+    infall slower.
+  - **Harvey:** the intact carrier passes; core-decayed carriers fail at 1.7–4.0σ, and it is the hollow core that does
+    it, not the boost.
+  - **Checks:** 11/14; MUTATE (kernel off) fails A1 and A2.
+- **L371 | fe4fb762d**
+  - L366's slow-kick carrier FAILS Harvey at 2.1σ, 2.5σ and 5.4σ. Only each bin's maximum retention passes.
+- **L372 | 5562a5dac**
+  - **Model tag:** KiDS was scored switch-free and Harvey at L370's p1_x1.5 cell (joined per XR1). The carrier is two
+    modes: a uniform mode U plus the gated density mode G, at 750–1050 km/s. Static retention.
+  - **Verdict:** passes the alternative set (forest, S₈, X-COP, galaxies, KiDS, Harvey); the strict set fails. No
+    shear gate. Its switch-dependent gates are superseded by L392.
+- **L373 | 9df26672f** (edge addendum 622987d9b)
+  - **Model tag:** particle-mesh, matter-only contrast switch, p = 2, x_c0 = 2 (a cell that fails the flagship), no
+    cap.
+  - **Verdict:** NO window. Four of five cells fall under the X-COP floor. u25_g750 fails Harvey S2 at +0.116; the
+    line-of-sight cap moves β by ≤ 0.0006, so the miss is real.
+  - **Checks:** 5/6. The MUTATE was not run, by its rule.
+- **L392 | 1eaac841b** (σ note 3d3fe8184)
+  - **Model tag:** static, p = 1, x_c0 = 2.5, w = 0, L372's two-mode carrier, branches never pooled.
+  - **Curvature (signed phantom):** PASSES KiDS (−41/−34 cut at r200; −60/−55 NFW-continued) and Harvey (+0.046 to
+    +0.062).
+  - **Matter:** FAILS KiDS (+322/+332, +118/+128).
+  - **Scope:** a prescribed-mask pass only (MS1: the curvature reading leaks). No shear gate; uncapped curvature fails
+    halo-model shear (MS3 X1). The carried gates are the alt set.
+  - **Checks:** 7/9; MUTATE (intact carrier) fails every cell.
+
+## Dark-fluid lanes (condensed)
+
+- **L374 | 4366a5625**
+  - **Model tag:** the minimal ghost condensate, i.e. a dispersive γ = 2 fluid with D = √(εβ).
+  - **Verdict:** FALSIFIED at shell crossing. The cold cells go c_s² < 0 at 0.81–1.05 t_sc and break down at
+    0.98–1.37 t_sc; the warm one misplaces 21.5%.
+  - **MUTATE:** a linear complex field (Gross–Pitaevskii–Poisson, same D and ε) passes 6/6. So the failure is in the
+    FORM of the dispersion.
+  - **Scope:** 1-D, the minimal action only. The completions are being tested in XR8.
+- **L382 | 9b6e560f8**
+  - At every forest-allowed boson mass, the particle-mesh box cannot tell a wave field from the collisionless carrier
+    (variance ≤ 1.3e-4). The box runs therefore ARE the wave field's runs. The de Broglie lengths are 9–30 pc.
+  - **Checks:** 5/5; MUTATE (1e-24 eV) flips it.
+- **L383 | f091dc718**
+  - **Verdict:** R1 FALSIFIED. The framework's clearing lowers the dwarf-heating floor on a wave field only ~2.5×,
+    to 1.9–5.2e-19 eV, still 10–25× above the forest bound. Heating goes as ρ², with a coefficient 3–5× the textbook
+    value.
+  - **Checks:** 8/9, rc = 1; MUTATE (frozen granules) still fails R1.
