@@ -1,0 +1,2299 @@
+{
+ "lane": "FP6",
+ "gate": "G-1 (survey)",
+ "mutate": false,
+ "checks": {
+  "K1 CONTROL: the generalised yardstick reproduces L341's committed sigma_8 -- LCDM 0.8101, the ungated core (nu_mono, canonical, c_2 = 0.0073) 23.314 rms / 17.713 per-mode": {
+   "ok": true,
+   "measured": "LCDM 0.8101; ungated rms 23.314, per-mode 17.713",
+   "load_bearing": true
+  },
+  "K2 CONTROL: the KiDS lead-grade machinery (Abel projection as a matrix) reproduces L341 F7's committed chi^2: 118.0 untruncated, 106.8 cut at 1 Mpc, 223.0 cut at 0.5 Mpc (nu_mono, M_b free per bin, full covariance)": {
+   "ok": true,
+   "measured": "118.0 / 106.8 / 223.0",
+   "load_bearing": true
+  },
+  "K3 CONTROL: the LG shell model reproduces FP1 E1 / XR4's isolated-MOND zero-velocity radius (nu_RAR, M_b = 1.145e11 Msun, no external field): 1.929 / 2.021 Mpc": {
+   "ok": true,
+   "measured": "1.9290 / 2.0214 Mpc",
+   "load_bearing": true
+  },
+  "K4 CONTROL: the Gaussian-smoothed shell's enclosed mass equals the direct quadrature of its density; the band-passed phantom tends to the isolated one as L -> oo (the core's P2 law, FP1 B1)": {
+   "ok": true,
+   "measured": "max |formula - quadrature| = 1.2e-15; max relative phantom change at L = 1e3 Mpc (r < 10 Mpc) = 3.3e-06; unfiltered phantom vs P2 law 1.4e-16 dex",
+   "load_bearing": true
+  },
+  "K5 CONTROL: FP2's committed quadratic block (read from FP2_relativistic_consistency.out) gives FP2's det M, FP5's khronon dispersion w^2 = c_2 (2 - E) k^2/(E (2 + 3 c_2)) with E = alpha_c + 2C/(1+C), the static gain (1+C)/(1 - alpha_c(1+C)/2) and no slip (psi/n = 1) -- for any C_eff: every class below enters the scalar block only through C_eff": {
+   "ok": true,
+   "measured": "det == FP2's: True; w^2 == FP5's: True; gain = 2*(-C_eff - 1)/(C_eff*alpha_c + alpha_c - 2); slip = 1",
+   "load_bearing": true
+  },
+  "S1 the band-pass as an action: C-H's heat branch W(z) extended to z = B = L^2/2 and read out at z = b and z = B is eliminated exactly -- the multiplier solves its adjoint equation with the kernel's jump at z = b, lambda_0 = -dS_red/dU -- and the reduced action is 2 C k^2 U^2 (e^{-bk^2} - e^{-Bk^2})^2, i.e. C_eff = C (e^{-xi^2 k^2/2} - e^{-L^2 k^2/2})^2": {
+   "ok": true,
+   "measured": "bulk equations True; force identity True; C_eff == C (e^-xi^2k^2/2 - e^-L^2k^2/2)^2: True",
+   "load_bearing": true
+  },
+  "S1b THE STATIC FIELD EQUATION, NONLINEAR: on a periodic 10x10 leaf with S_bp = e^{bLap} - e^{BLap} and the P2 kernel, the finite-difference gradient of the discrete action equals S_bp^T div[(nu - 1) grad S_bp u] (and fails without the output filter): the variation band-passes the phantom's output too (FP1 A3's double filter, now a band-pass on both sides)": {
+   "ok": true,
+   "measured": "relative |FD - equation with S_bp^T| = 5.1e-09; without the output filter 3.0e-01; field range y = 6.35e-02-1.03e+00",
+   "load_bearing": true
+  },
+  "S2 the discrete heat block (implicit Euler, n steps to b and m more to B): the Schur complement onto U is 4 C k^2 (sigma_n - sigma_{n+m})^2 with sigma_j = (1 + dz k^2)^(-j), and the auxiliary block's determinant does not contain the kernel: the extended branch is second class and adds no mode (FP5 B2's count, N = 3, unchanged)": {
+   "ok": true,
+   "measured": "(n,m)=(1, 1): Schur ok True, det kernel-free True; (n,m)=(2, 1): Schur ok True, det kernel-free True; (n,m)=(1, 2): Schur ok True, det kernel-free True; (n,m)=(2, 2): Schur ok True, det kernel-free True",
+   "load_bearing": true
+  },
+  "S3 WHY THE BAND-PASS ESCAPES FP3's LEMMA: its argument is linear in U, so the second variation of 2 alpha^2 q(|grad V|^2) is [2Q' + 4 g^2 Q''] h_k^2 k^2/2 per unit amplitude -- the constitutive block C_L times h_k^2, k^2-order, no W''(dX)^2 term; a multiplier gate W(C_g U'') B carries B W'' C_g^2 k^4/2 (FP3 C1's anti-pressure, k^4 order) -- absent here by construction": {
+   "ok": true,
+   "measured": "band-pass second variation == (2Q' + 4g^2Q'') h^2 k^2/2: True; multiplier gate's W'' coefficient == B C_g^2 k^4/2: True",
+   "load_bearing": true
+  },
+  "S4 THE KERNEL FAMILIES (class e) escape FP3's lemma: (e1) q_r has a closed form with q_r' = nu_P2(s + y_r) - 1, q_r(0) = 0, a FINITE zero-field tangent C_0 = sqrt(1 + 1/y_r) - 1, and C_L = C_L,P2(y + y_r) - y_r nu_P2' > 0; (e2/e3) the cut-off ON THE TANGENT has C_L = c C_L,P2 + y (nu - 1) c'/y_th -- a sum of non-negative terms with c' only (no c''), so C_T, C_L >= 0 for EVERY m and y_th, and a ZERO zero-field tangent (m > 1/2); CONTROL: the same cut-off multiplying the ENERGY puts c'' into C_L and turns it negative for sharp cut-offs": {
+   "ok": true,
+   "measured": "(e1) max |q_r' - (nu(s+y_r) - 1)| = 2.8e-13, q_r(0) = 0e+00, C_0 = (-sqrt(y_r) + sqrt(y_r + 1))/sqrt(y_r), C_L identity True; (e2) C_L identity True, c' = m x^(m-1)/(1+x^m)^2: True, zero-field tangent (m = 4) = 0, min C_L (tangent cut-off, m = 1-32, 3 y_th) = 5.90e-93; energy cut-off: first C_L < 0 at (m, y/y_th) = [(8, 1.086), (16, 1.023)]",
+   "load_bearing": true
+  },
+  "S5 THE FRW LINEARISATION OF EACH CLASS (from FP2's committed block): E(C) runs from alpha_c to alpha_c + 2, so the ungated core and the band-pass ALONE (C_eff = oo x h^2) are Hadamard ill-posed on FRW; the shifted kernel (e1) is well-posed iff y_r > y_r,min(alpha_c) (<= 2.6e-18 over the window); every cut-off class (e2, e3, H) has C_eff = 0 identically on FRW: E = alpha_c, w^2 > 0, G_eff = G/(1 - alpha_c/2), no slip -- FP5's strict form": {
+   "ok": true,
+   "measured": "E(oo) = alpha_c + 2; y_r,min = 2.31e-27 / 2.56e-18 (alpha_c ends); w^2/k^2 at C = 0: c_2*(2 - alpha_c)/(alpha_c*(3*c_2 + 2)); G_eff(C=0)/G = -2/(alpha_c - 2); slip 1",
+   "load_bearing": true
+  },
+  "S6 ORDER COUNTING around FRW (Z = O(eps^2)): the core's MOND energy q_P2 ~ (4/3) Z^(3/4) is O(eps^(3/2)) with an infinite tangent (FP3 B1); the shifted kernel is q_r ~ C_0 Z, O(eps^2) with a finite tangent; the cut-off kernel's tangent (m = 4) starts at Z^(7/4)/y_th^4, so its energy starts at Z^(11/4), O(eps^(11/2)): it drops out of the quadratic action and the linear theory on FRW is exactly GR + BPS khronon": {
+   "ok": true,
+   "measured": "q_P2/Z^(3/4) -> 4/3; q_r/Z at Z = 1e-28 = 99.005000 vs C_0(y_r = 1e-4) = 99.005000; cut-off tangent/Z^(7/4) -> y_th**(-4)",
+   "load_bearing": true
+  },
+  "S7 CLASS (d), a gate on the lapse's TIDAL invariant X = E:E/X_c (every Hessian invariant but the trace is non-linear, so d^2 X != 0): its second variation B[W'' (dX)^2 + 2 W' d^2X] has, in the directions with E:kk = 0 (they always exist for a traceless E), only the W' part, +B W' (4/3) k^4/X_c > 0 wherever W' > 0; in the C-H chassis' (Phi, u) block that makes det = H_PhiPhi (1+C) k^2/(4 pi G) - k^4/(16 pi^2 G^2) vanish at a real k -- singular throughout every transition, whatever the sign of W'' (strictly worse than FP3's density reading, singular only where W'' > 0)": {
+   "ok": true,
+   "measured": "E:kk at the magic direction = 0; H_PhiPhi there = 4*B_g*W1/(3*X_c) (per |k|^4); det zero at k^2 = [3*X_c/(16*pi*B_g*G_N*W1*(C + 1))] (real iff B W' > 0)",
+   "load_bearing": true
+  },
+  "E1 (e1) THE TRADE: every shifted kernel that keeps the galaxy law at y = 0.01-100 within 0.01 dex (y_r <~ 5e-4) leaves sigma_8 ~ 17-27 x LCDM, and the ones that tame growth move the galaxy law by ~1 dex: no member passes both": {
+   "ok": true,
+   "measured": "y_r=1e-08: 0.000 dex, s8 16.82-26.09; y_r=1e-06: 0.000 dex, s8 16.82-26.09; y_r=0.0001: 0.002 dex, s8 16.81-26.08; y_r=0.001: 0.020 dex, s8 16.73-25.94; y_r=0.01: 0.148 dex, s8 15.98-24.61; y_r=0.1: 0.500 dex, s8 10.65-15.20; y_r=1: 0.853 dex, s8 2.66-2.93",
+   "load_bearing": true
+  },
+  "E2 THE OVERLAP IN FIELD: at the KiDS epoch (z = 0.25) the linear web's field (L341 rms 4.8e-3, per-mode 3-8e-3, variance rms 1.3e-2 a0) lies INSIDE the range where KiDS's isolated lenses (y ~ 5e-5-1e-2 between 0.03 and 1 Mpc) and SPARC (0.01-100) need the P2 law at the same epoch; over cosmic time the web runs y ~ 4e-3 -> 5 (z = 0 -> 1000)": {
+   "ok": true,
+   "measured": "z = 0.25: 4.83e-03 / per-mode 3.2e-03-7.2e-03; z = 999: 4.99",
+   "load_bearing": true
+  },
+  "E3 CLASS (e) FAILS G-1 (THE OVERLAP): even the MOST GENEROUS local-in-y kernel -- P2 only on the range KiDS and SPARC need, [5e-5, 100], and only at z <= 0.25 (KiDS's median lens epoch; SPARC at z ~ 0), exactly Newtonian at every other field and every earlier epoch, i.e. the smallest boost any kernel of (y, <K>) keeping KiDS and SPARC can have at each (y, z) -- gives sigma_8/LCDM >= 1.15 on both footings and both yardstick modes, above the 1.05 ceiling (1.03 only if MOND waits until z = 0.1, which KiDS's lenses at z ~ 0.25 forbid)": {
+   "ok": true,
+   "measured": "min over footings/modes at [5e-5, 100], z <= 0.25: 1.153; z <= 0.3: 1.211; z <= 0.1: 1.028",
+   "load_bearing": true
+  },
+  "E4 (e) ON FRW: the finite tangent needs only y_r > 2.6e-18 (E < 2 across the alpha_c window) and the cut-off makes it zero (S5): regularisation alone cures FP5's Hadamard band -- the failure of (e) is growth (E3), not well-posedness": {
+   "ok": true,
+   "measured": "y_r,min 2.3e-27 (alpha_c = 9.6e-14) .. 2.6e-18 (3.2e-9)",
+   "load_bearing": true
+  },
+  "B1 (b) STATICS: the band-passed law keeps the SPARC range (y = 0.01-100, M_b = 1e9-1e12) within 0.01 dex once L(0) exceeds a floor (set by the 1e12 outskirts at y = 0.01, r ~ 0.4 Mpc) that sits below the KiDS-allowed L(0) = 1.44 Mpc (n = 2); the Galaxy's field at the Sun passes with gain 1 - O((8 kpc/L)^3) (FP1's Solar-System floors unchanged); and every isolated system is GAUSS-COMPENSATED: the phantom is the divergence of (nu - 1) grad V with V band-passed (so it vanishes beyond ~L) and the output filter (1 - S_L) keeps its monopole zero, so beyond ~2L the system weighs its baryons -- the record's L352 edge, now produced by the action": {
+   "ok": true,
+   "measured": "L_SPARC can/1e12: 1.26, can/1e11: 0.40, alt/1e12: 1.15, alt/1e11: 0.36 Mpc; smoothed fraction of the Galactic field at the Sun 4.9e-08; phantom/M_b peak 1e+10: 277, 1e+11: 87, 1e+12: 27; total at 80 Mpc -8.6e-15, -1.6e-15, 1.8e-16",
+   "load_bearing": true
+  },
+  "B2 (b) FIXES LATE-TIME GROWTH ONLY IF IT SHRINKS INTO THE PAST: a fixed scale (n = 0) boosts every sub-L mode at every epoch (sigma_8 3.5-19 x LCDM); with the vacuum share, L = L_Lambda Omega_L^(n/2), n >= 2 keeps sigma_8 <= 1.05 for L_Lambda <= 3 Mpc": {
+   "ok": true,
+   "measured": "n = 0 min 4.58; n = 2, L_Lambda <= 3: max 1.0367; n = 3, L_Lambda = 5: 1.0265",
+   "load_bearing": true
+  },
+  "B3 THE FLAGSHIP FLOOR: at z = 2.5 the 1e11 Msun flagship (g_bar = 0.1 a0 at r_F) stays within 0.05 dex of P2 only if L(2.5) >= ~50 kpc (both footings); the band-pass's edge then sits beyond ~1.3 r_F": {
+   "ok": true,
+   "measured": "L_flag = 52.0 / 47.3 kpc; r_F = 38.6 kpc (1e11), 12.2 kpc (1e10)",
+   "load_bearing": true
+  },
+  "B4 (b) FAILS THE FOREST WHEREVER IT KEEPS THE FLAGSHIP: at z ~ 2.5 the IGM's filtering length (1/k_F = 28 kpc physical at k_F = 15 h/Mpc) is shorter than the flagship floor L_flag ~ 50 kpc, so every IGM mode between them is MOND-boosted at full strength; for every epoch law tested (n = 1-4) with L(2.5) >= L_flag the linear forest proxy is off by > 10% on both footings and both yardstick modes -- a scale overlap no monotone L(z) removes (and the forest's data bracket z = 2.5)": {
+   "ok": true,
+   "measured": "1/k_F = 28 kpc vs L_flag = 52 kpc; smallest worst-deviation over the scan 0.407",
+   "load_bearing": true
+  },
+  "B5 (b) AND KiDS: with no external field in nu's argument (a harmonic field passes the band-pass with gain 0), isolated lenses tolerate the Gauss-compensated edge only if L(0.25) >~ 1.1-1.2 Mpc (d chi^2 <= +9; lead grade, L341 F7 machinery)": {
+   "ok": true,
+   "measured": "L_KiDS = canonical: 1.23 Mpc, alt: 1.17 Mpc",
+   "load_bearing": true
+  },
+  "B6 (b) DOES NOT RESOLVE THE KiDS-LG PINCER, IT TRANSFORMS IT: the band-pass removes the external field for the Local Group as for the lenses, so the LG's R0 is set by the truncation alone; for every epoch law (n = 1-4) and both footings R0 = 0.96 needs L(0.25) BELOW the floor KiDS sets (where KiDS's d chi^2 is >> +9), and at KiDS's floor R0 exceeds even the +0.10 dex band edge (1.21 Mpc)": {
+   "ok": true,
+   "measured": "n=1/can: L_LG 0.49 vs L_KiDS 1.23, R0(L_KiDS) 1.48; n=1/alt: L_LG 0.48 vs L_KiDS 1.17, R0(L_KiDS) 1.50; n=2/can: L_LG 0.51 vs L_KiDS 1.23, R0(L_KiDS) 1.39; n=2/alt: L_LG 0.50 vs L_KiDS 1.17, R0(L_KiDS) 1.41; n=3/can: L_LG 0.52 vs L_KiDS 1.23, R0(L_KiDS) 1.34; n=3/alt: L_LG 0.49 vs L_KiDS 1.17, R0(L_KiDS) 1.37; n=4/can: L_LG 0.51 vs L_KiDS 1.23, R0(L_KiDS) 1.31; n=4/alt: L_LG 0.48 vs L_KiDS 1.17, R0(L_KiDS) 1.34",
+   "load_bearing": true
+  },
+  "B7 (reported) the linear web field in nu's argument at z = 0.25: all matter 3D rms y = 1.3e-2 without the band-pass; with L(0.25) = 1.3 Mpc what survives is the sub-Mpc linear power (an upper bound: for a lens isolated within 3 Mpc its neighbours' fields are harmonic there and pass with gain ~0)": {
+   "ok": true,
+   "measured": "all 1.34e-02 a0 -> band-passed 2.38e-03 a0 (3.2% of the variance)",
+   "load_bearing": false
+  },
+  "H1 THE COMBINATION HAS A WINDOW on the linchpin's gates (canonical scan of 81 cells): sigma_8 in [0.922, 1.05], the linear forest proxy within 10% at z = 2 and 3, the 1e11 flagship within 0.05 dex at z = 2.5, and KiDS (lead grade, band-pass and floor together) within +9 -- the band-pass removes the late web, the floor the early web and the IGM; KiDS caps the floor at y_th(0.25) ~ 1e-6, the forest then needs p' ~ 4": {
+   "ok": true,
+   "measured": "43 of 81 cells in the window; e.g. [(1.5, 1.3, 3.5, 3e-06), (1.5, 1.3, 4.0, 1e-06), (1.5, 1.3, 4.0, 3e-06), (1.5, 1.3, 4.5, 3e-07)]",
+   "load_bearing": true
+  },
+  "H2 THE HEADLINE CELL passes every linchpin gate on both footings: sigma_8 in [0.922, 1.05] (rms, per-mode, and nu_mono), the forest proxy within 10% at k_F = 10, 15, 20 h/Mpc, the 1e10 and 1e11 flagships within 0.05 dex, the SPARC-range law within 0.01 dex, KiDS (lead grade) within +9 -- with the MOND tangent exactly zero on FRW (S5) and a non-negative second variation (S3, S4)": {
+   "ok": true,
+   "measured": "sigma_8 1.0134-1.0191; forest <= 0.00554; flagship -0.002..-0.000 dex; SPARC 5.4e-03 dex; KiDS -3.2..-1.0",
+   "load_bearing": true
+  },
+  "H2b THE WHOLE ILL-POSED BAND IS GONE: with the floor, C_eff <= max_y max(C_T, C_L) ~ y_th^(-1/2) at every field value, largest in the de Sitter limit (y_th -> y_Lambda); that stays far below (2 - alpha_c)/alpha_c, so E < 2 (the khronon healthy, FP5 C1) at every field and epoch -- the ungated core's band y < y* (FP5 C4) has no counterpart": {
+   "ok": true,
+   "measured": "max C_eff: z=0: 2.11e+03, de Sitter: 4.48e+03; E_max: z=0/alpha_c=9.6e-14: 2 - 9.48e-04, z=0/alpha_c=3.2e-09: 2 - 9.48e-04, de Sitter/alpha_c=9.6e-14: 2 - 4.46e-04, de Sitter/alpha_c=3.2e-09: 2 - 4.46e-04",
+   "load_bearing": true
+  },
+  "H2c (reported) the headline cell's 1e11 flagship (g_bar = 0.1 a0) stays within 0.05 dex of P2 up to z_max; beyond it the running floor switches MOND off (a prediction, like the vacuum gate's z_on; FP3's D1 reached 4.1, DE2's p = 1 gate 4.2-5.0)": {
+   "ok": true,
+   "measured": "z_max = 2.98 (canonical) / 2.99 (alt)",
+   "load_bearing": false
+  },
+  "H3 THE COMBINATION FAILS THE LOCAL GROUP (the pincer, verified at every KiDS-passing cell tested, both footings): with the EFE removed by the band-pass and the floor below 3e-4 at z < 1, the LG keeps its phantom to ~L and R0 = 1.3-1.5 Mpc against 0.96 +- 0.03 (and the +0.10 dex edge 1.21); R0 = 0.96 returns only at L(0.25) ~ 0.6 Mpc, which KiDS excludes": {
+   "ok": true,
+   "measured": "n=2.0 L25=1.3: 1.42/1.46; n=2.0 L25=1.6: 1.50/1.55; n=2.5 L25=1.3: 1.39/1.44; n=1.5 L25=1.3: 1.45/1.49; n=2.0 L25=1.0: 1.30/1.33; n=2.0 L25=0.6: 1.04/1.06",
+   "load_bearing": true
+  },
+  "H4 (reported) THE PRICE: the combination adds five constants, every one DECLARED (none derived): L_Lambda, n (the band-pass), y_Lambda, p', m (the floor); the epoch enters only through Omega_L(<K>_h), a leaf average (no local second variation)": {
+   "ok": true,
+   "measured": "5 new constants, 0 derived",
+   "load_bearing": false
+  },
+  "W (reported) the ledger": {
+   "ok": true,
+   "measured": "14 links",
+   "load_bearing": false
+  },
+  "G1 (reported) G-1 passed WHOLE by a class in this survey (linchpin gates AND the Local Group)": {
+   "ok": false,
+   "measured": "no: (H) meets the linchpin's gates but fails the LG; (b) and (e) alone fail growth or the forest",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "K1": {
+   "lcdm": 0.8100859265034036,
+   "rms": 23.31389915099458,
+   "permode": 17.712551635370613
+  },
+  "K2": {
+   "none": 117.9908012733161,
+   "1.0": 106.79664057578967,
+   "0.5": 222.9536288385631
+  },
+  "K3": [
+   1.9290002577518246,
+   2.021383613026777
+  ],
+  "S5": {
+   "9.62e-14": {
+    "C0_bound": 20790020790019.793,
+    "yr_min": 2.313609999999999e-27
+   },
+   "3.2e-09": {
+    "C0_bound": 624999999.0,
+    "yr_min": 2.56e-18
+   }
+  },
+  "E1": {
+   "1e-08": {
+    "C0": 9999.00005,
+    "galaxy_dev": 2.149971597176765e-07,
+    "s8": 16.81946419177241,
+    "s8max": 26.09455718991584
+   },
+   "1e-06": {
+    "C0": 999.000499999875,
+    "galaxy_dev": 2.1498641269465673e-05,
+    "s8": 16.81937868027295,
+    "s8max": 26.094404687034412
+   },
+   "0.0001": {
+    "C0": 99.00499987500625,
+    "galaxy_dev": 0.002139188228767083,
+    "s8": 16.810830459789983,
+    "s8max": 26.079159544971922
+   },
+   "0.001": {
+    "C0": 30.63858403911275,
+    "galaxy_dev": 0.020481451674933274,
+    "s8": 16.7333922206246,
+    "s8max": 25.941034439263934
+   },
+   "0.01": {
+    "C0": 9.04987562112089,
+    "galaxy_dev": 0.14837559884235307,
+    "s8": 15.9849043159164,
+    "s8max": 24.60571845333078
+   },
+   "0.1": {
+    "C0": 2.3166247903554,
+    "galaxy_dev": 0.5001955400771051,
+    "s8": 10.651130536499267,
+    "s8max": 15.201732014307925
+   },
+   "1.0": {
+    "C0": 0.41421356237309515,
+    "galaxy_dev": 0.8527233450723981,
+    "s8": 2.664081160951216,
+    "s8max": 2.933473762374333
+   }
+  },
+  "E2": {
+   "0.0": {
+    "rms341": 0.003531608434985361,
+    "rms_var": 0.009298699840374526,
+    "permode": [
+     0.005259602837098892,
+     0.004961684566686838,
+     0.0023087996729429247
+    ]
+   },
+   "0.25": {
+    "rms341": 0.004833226163357449,
+    "rms_var": 0.0127258500428551,
+    "permode": [
+     0.007198094157128947,
+     0.006790374443688037,
+     0.003159736191213714
+    ]
+   },
+   "0.5": {
+    "rms341": 0.006112830640192426,
+    "rms_var": 0.016095039510921724,
+    "permode": [
+     0.009103801276314032,
+     0.00858813710652464,
+     0.00399628147985502
+    ]
+   },
+   "1.0": {
+    "rms341": 0.008577678538725667,
+    "rms_var": 0.02258496646136903,
+    "permode": [
+     0.012774684172536471,
+     0.012051091169107053,
+     0.0056076832325556115
+    ]
+   },
+   "2.5": {
+    "rms341": 0.015566845746342232,
+    "rms_var": 0.0409873939088741,
+    "permode": [
+     0.023183608137599718,
+     0.021870425250567475,
+     0.01017687238819184
+    ]
+   },
+   "10.0": {
+    "rms341": 0.04942835996676806,
+    "rms_var": 0.13014451952821487,
+    "permode": [
+     0.07361335411337475,
+     0.06944369267392218,
+     0.03231393950554213
+    ]
+   },
+   "100.0": {
+    "rms341": 0.46182116501377396,
+    "rms_var": 1.2159718361905425,
+    "permode": [
+     0.687787435797318,
+     0.6488292768582872,
+     0.3019169804271752
+    ]
+   },
+   "999.0": {
+    "rms341": 4.9895114110186904,
+    "rms_var": 13.13734798613898,
+    "permode": [
+     7.430848820373253,
+     7.0099452470760495,
+     3.26190814354896
+    ]
+   }
+  },
+  "E3": {
+   "5e-05_0.25": {
+    "canonical_rms": 1.1852344696677486,
+    "canonical_permode": 1.1529700685175763,
+    "alt_rms": 1.2051942532832405,
+    "alt_permode": 1.1692684614122517
+   },
+   "5e-05_0.3": {
+    "canonical_rms": 1.2559084467023083,
+    "canonical_permode": 1.2112726324225398,
+    "alt_rms": 1.2836995968697797,
+    "alt_permode": 1.2339638898148828
+   },
+   "0.001_0.25": {
+    "canonical_rms": 1.1852344696677486,
+    "canonical_permode": 1.1529665898447665,
+    "alt_rms": 1.2051942532832405,
+    "alt_permode": 1.1692558019682346
+   },
+   "5e-05_0.1": {
+    "canonical_rms": 1.0338495559239282,
+    "canonical_permode": 1.0279432594825237,
+    "alt_rms": 1.0374309683031857,
+    "alt_permode": 1.0308614316530793
+   }
+  },
+  "B1": {
+   "L_sparc": {
+    "canonical_1e12": 1.2599714249887732,
+    "canonical_1e11": 0.3983652996652869,
+    "alt_1e12": 1.1459565238356626,
+    "alt_1e11": 0.36219430362480437
+   },
+   "dev": {
+    "canonical_0.69": 0.03535775592194974,
+    "canonical_1.44": 0.007571038553962551,
+    "canonical_1.78": 0.004879251774958351,
+    "alt_0.69": 0.028960686190929313,
+    "alt_1.44": 0.006220016210014771,
+    "alt_1.78": 0.004012485198916586
+   },
+   "gain_sun": 4.910878586162487e-08,
+   "phantom_total_far": {
+    "10000000000.0": -8.596527187904066e-15,
+    "100000000000.0": -1.6263618987977055e-15,
+    "1000000000000.0": 1.7875571939394893e-16
+   },
+   "phantom_peak": {
+    "10000000000.0": 277.318278764635,
+    "100000000000.0": 87.3176948019751,
+    "1000000000000.0": 27.24591279293787
+   }
+  },
+  "B2": {
+   "0_0.5": {
+    "rms": 4.57611735800863,
+    "permode": 3.547706058612
+   },
+   "0_1.0": {
+    "rms": 7.400464252387864,
+    "permode": 5.51123561492852
+   },
+   "0_2.0": {
+    "rms": 11.807250538344958,
+    "permode": 8.447767307249459
+   },
+   "0_3.0": {
+    "rms": 15.041705157935219,
+    "permode": 10.52443663492838
+   },
+   "0_5.0": {
+    "rms": 19.03776133948229,
+    "permode": 13.100916533756534
+   },
+   "1_0.5": {
+    "rms": 1.0597413505909064,
+    "permode": 1.0139599763450586
+   },
+   "1_1.0": {
+    "rms": 1.0969665425746777,
+    "permode": 1.0630373216302789
+   },
+   "1_2.0": {
+    "rms": 1.150572986323763,
+    "permode": 1.272830456773746
+   },
+   "1_3.0": {
+    "rms": 1.245388586565749,
+    "permode": 1.6360414127519303
+   },
+   "1_5.0": {
+    "rms": 1.6173395362437029,
+    "permode": 2.581458852087041
+   },
+   "2_0.5": {
+    "rms": 1.0009706976380104,
+    "permode": 1.0003377513813911
+   },
+   "2_1.0": {
+    "rms": 1.0039386616280888,
+    "permode": 1.0022693350011658
+   },
+   "2_2.0": {
+    "rms": 1.0110903177408743,
+    "permode": 1.0132311048157208
+   },
+   "2_3.0": {
+    "rms": 1.01977068127205,
+    "permode": 1.0366514357443801
+   },
+   "2_5.0": {
+    "rms": 1.0449389571768093,
+    "permode": 1.1267171568673298
+   },
+   "3_0.5": {
+    "rms": 1.0000764393094719,
+    "permode": 1.0000534508193768
+   },
+   "3_1.0": {
+    "rms": 1.000443805954558,
+    "permode": 1.0003892026002164
+   },
+   "3_2.0": {
+    "rms": 1.0017918893525402,
+    "permode": 1.002496703242315
+   },
+   "3_3.0": {
+    "rms": 1.0040102858182314,
+    "permode": 1.007199914183517
+   },
+   "3_5.0": {
+    "rms": 1.01200700886423,
+    "permode": 1.0265416533127583
+   }
+  },
+  "B3": {
+   "L_flag_kpc": {
+    "canonical": 51.98986988078945,
+    "alt": 47.29347996093027
+   },
+   "r_F_kpc": {
+    "10000000000.0": 12.203009632729389,
+    "100000000000.0": 38.58930474839969
+   }
+  },
+  "B4": {
+   "1.0_1.0": {
+    "canonical_rms": 4504732.485940342,
+    "canonical_permode": 31.342981809904437,
+    "alt_rms": 15870953.45303389,
+    "alt_permode": 42.18662106331493
+   },
+   "1.0_1.5": {
+    "canonical_rms": 579071.5559317045,
+    "canonical_permode": 110.23500027364057,
+    "alt_rms": 1568902.418562222,
+    "alt_permode": 150.7759704378121
+   },
+   "1.5_1.0": {
+    "canonical_rms": 1363.7095904348698,
+    "canonical_permode": 3.7646966636102306,
+    "alt_rms": 3124.6677168820956,
+    "alt_permode": 4.736353286027668
+   },
+   "1.5_1.5": {
+    "canonical_rms": 2996.422409042349,
+    "canonical_permode": 13.229852202953243,
+    "alt_rms": 6517.213871640971,
+    "alt_permode": 17.0819650380955
+   },
+   "2.0_1.0": {
+    "canonical_rms": 29.906181367357128,
+    "canonical_permode": 1.4011203410938138,
+    "alt_rms": 50.57926161835239,
+    "alt_permode": 1.692581893928112
+   },
+   "2.0_1.5": {
+    "canonical_rms": 94.34944166370799,
+    "canonical_permode": 4.335022771849306,
+    "alt_rms": 160.08039245251032,
+    "alt_permode": 5.374795180621737
+   },
+   "2.5_1.0": {
+    "canonical_rms": 5.353120561163289,
+    "canonical_permode": 0.8136897612602976,
+    "alt_rms": 7.702701715389052,
+    "alt_permode": 0.9601607043239371
+   },
+   "2.5_1.5": {
+    "canonical_rms": 16.26584566031965,
+    "canonical_permode": 2.256564549601039,
+    "alt_rms": 23.92689668139722,
+    "alt_permode": 2.7239293626476124
+   },
+   "3.0_1.0": {
+    "canonical_rms": 2.2166703874334104,
+    "canonical_permode": 0.583720920876696,
+    "alt_rms": 2.9211519290524923,
+    "alt_permode": 0.6790414625219374
+   },
+   "3.0_1.5": {
+    "canonical_rms": 6.101656277300409,
+    "canonical_permode": 1.4865846622245593,
+    "alt_rms": 8.248505073239805,
+    "alt_permode": 1.762820199285287
+   },
+   "4.0_1.0": {
+    "canonical_rms": 0.9716622915860891,
+    "canonical_permode": 0.4069624566266985,
+    "alt_rms": 1.1821881563391488,
+    "alt_permode": 0.4661045437387539
+   },
+   "4.0_1.5": {
+    "canonical_rms": 2.2630697940562334,
+    "canonical_permode": 0.9157766375354761,
+    "alt_rms": 2.809682382861411,
+    "alt_permode": 1.0634577068308455
+   }
+  },
+  "B5": {
+   "canonical_None": 112.31654369747477,
+   "canonical_0.3": 533.0144591027743,
+   "canonical_0.4": 394.4285779626074,
+   "canonical_0.5": 293.7134477586292,
+   "canonical_0.6": 216.91721805169342,
+   "canonical_0.75": 129.99157879251635,
+   "canonical_1.0": 39.11816071442823,
+   "canonical_1.3": -0.767152444418727,
+   "canonical_1.6": -8.081572591577043,
+   "canonical_2.0": -5.48965639996328,
+   "alt_None": 105.64053795953271,
+   "alt_0.3": 529.5120377151778,
+   "alt_0.4": 388.59658707951223,
+   "alt_0.5": 285.00774563236973,
+   "alt_0.6": 207.31389368625616,
+   "alt_0.75": 119.53423423796818,
+   "alt_1.0": 29.814031557055443,
+   "alt_1.3": -5.9588461993252935,
+   "alt_1.6": -10.51703681413683,
+   "alt_2.0": -6.716594046799202
+  },
+  "B6": {
+   "R0_isolated": {
+    "canonical": 1.9245771667837273,
+    "alt": 2.017866478912589
+   },
+   "cells": {
+    "1_0.4": {
+     "canonical": 0.8480276348389515,
+     "alt": 0.8607380570284412
+    },
+    "1_0.5": {
+     "canonical": 0.9720277422830975,
+     "alt": 0.9893034047502601
+    },
+    "1_0.6": {
+     "canonical": 1.0778638579568196,
+     "alt": 1.0995907309360577
+    },
+    "1_0.75": {
+     "canonical": 1.2096642367814294,
+     "alt": 1.2377873761568352
+    },
+    "1_1.0": {
+     "canonical": 1.375965196853853,
+     "alt": 1.4137787394168666
+    },
+    "1_1.3": {
+     "canonical": 1.5152678052487554,
+     "alt": 1.5629858187517516
+    },
+    "1_1.6": {
+     "canonical": 1.6117924482095394,
+     "alt": 1.6676099113613274
+    },
+    "2_0.4": {
+     "canonical": 0.8362366404596725,
+     "alt": 0.8503065698402995
+    },
+    "2_0.5": {
+     "canonical": 0.9470511131390186,
+     "alt": 0.9656072069988255
+    },
+    "2_0.6": {
+     "canonical": 1.0403857233754092,
+     "alt": 1.0631786215269823
+    },
+    "2_0.75": {
+     "canonical": 1.1553715542740752,
+     "alt": 1.18403771672592
+    },
+    "2_1.0": {
+     "canonical": 1.2994991634309578,
+     "alt": 1.3366640001505643
+    },
+    "2_1.3": {
+     "canonical": 1.4211094293362199,
+     "alt": 1.466590682848116
+    },
+    "2_1.6": {
+     "canonical": 1.507531597362858,
+     "alt": 1.55963583679355
+    },
+    "3_0.4": {
+     "canonical": 0.8447844992114757,
+     "alt": 0.8604666512191748
+    },
+    "3_0.5": {
+     "canonical": 0.9466237714663955,
+     "alt": 0.9668193435397696
+    },
+    "3_0.6": {
+     "canonical": 1.0311806243343504,
+     "alt": 1.055533532448708
+    },
+    "3_0.75": {
+     "canonical": 1.134001208330055,
+     "alt": 1.1639432744263987
+    },
+    "3_1.0": {
+     "canonical": 1.2612265416003365,
+     "alt": 1.2989750233735335
+    },
+    "3_1.3": {
+     "canonical": 1.367884667020268,
+     "alt": 1.4129959926804778
+    },
+    "3_1.6": {
+     "canonical": 1.4439464518762533,
+     "alt": 1.494781399610077
+    },
+    "4_0.4": {
+     "canonical": 0.8606012892143786,
+     "alt": 0.8780690324985544
+    },
+    "4_0.5": {
+     "canonical": 0.9552329821335478,
+     "alt": 0.977236589125434
+    },
+    "4_0.6": {
+     "canonical": 1.0327641672154384,
+     "alt": 1.0588378788948376
+    },
+    "4_0.75": {
+     "canonical": 1.1259089181920483,
+     "alt": 1.1573230307792082
+    },
+    "4_1.0": {
+     "canonical": 1.239811443244357,
+     "alt": 1.2784651105956457
+    },
+    "4_1.3": {
+     "canonical": 1.334673605831963,
+     "alt": 1.3799570879170864
+    },
+    "4_1.6": {
+     "canonical": 1.4023893467458126,
+     "alt": 1.452729458803872
+    }
+   },
+   "pincer": {
+    "1_canonical": {
+     "L_LG": 0.49030021624092923,
+     "R0_at_LKiDS": 1.4811552534259955,
+     "KiDS_at_LLG": 303.48259760108164
+    },
+    "1_alt": {
+     "L_LG": 0.4772073849839656,
+     "R0_at_LKiDS": 1.500593137714986,
+     "KiDS_at_LLG": 308.6183514629872
+    },
+    "2_canonical": {
+     "L_LG": 0.5138736175446444,
+     "R0_at_LKiDS": 1.3913293947362024,
+     "KiDS_at_LLG": 283.05903256038226
+    },
+    "2_alt": {
+     "L_LG": 0.49513688116821397,
+     "R0_at_LKiDS": 1.4122603246114334,
+     "KiDS_at_LLG": 290.0453940884147
+    },
+    "3_canonical": {
+     "L_LG": 0.5158192128490081,
+     "R0_at_LKiDS": 1.3417661264370826,
+     "KiDS_at_LLG": 281.5648887212758
+    },
+    "3_alt": {
+     "L_LG": 0.4935879916239327,
+     "R0_at_LKiDS": 1.3653167940715165,
+     "KiDS_at_LLG": 291.6498708226316
+    },
+    "4_canonical": {
+     "L_LG": 0.5061485167051388,
+     "R0_at_LKiDS": 1.3114436715573998,
+     "KiDS_at_LLG": 288.9916187461814
+    },
+    "4_alt": {
+     "L_LG": 0.48261872157414637,
+     "R0_at_LKiDS": 1.3375170334837791,
+     "KiDS_at_LLG": 303.01281058241364
+    }
+   }
+  },
+  "H1": {
+   "1.5_1.3_3.5_3e-07": {
+    "s8": {
+     "rms": 1.029735438321221,
+     "permode": 1.0325602912455876
+    },
+    "forest": {
+     "rms": 0.9375933584287441,
+     "permode": 1.1039049682675985
+    },
+    "flag": -0.0014246017251302073,
+    "kids": -1.751330703925916,
+    "Lflag_kpc": 216.8025259955395,
+    "yth2": 0.00027976749204732893,
+    "yth25": 0.0012800393536998818,
+    "yth3": 0.004918514301627598
+   },
+   "1.5_1.3_3.5_1e-06": {
+    "s8": {
+     "rms": 1.0260756132825444,
+     "permode": 1.0290525703705315
+    },
+    "forest": {
+     "rms": 0.1343275114596365,
+     "permode": 0.2601318984622709
+    },
+    "flag": -0.0006344677062408759,
+    "kids": -0.9677349516651645,
+    "Lflag_kpc": 216.8025259955395,
+    "yth2": 0.0009325583068244298,
+    "yth25": 0.004266797845666273,
+    "yth3": 0.016395047672091993
+   },
+   "1.5_1.3_3.5_3e-06": {
+    "s8": {
+     "rms": 1.0227326278399156,
+     "permode": 1.025434558172487
+    },
+    "forest": {
+     "rms": 0.0036824341983601183,
+     "permode": 0.020367195087284795
+    },
+    "flag": -0.00036558195832666804,
+    "kids": 3.771067147063718,
+    "Lflag_kpc": 216.8025259955395,
+    "yth2": 0.0027976749204732896,
+    "yth25": 0.012800393536998819,
+    "yth3": 0.04918514301627598
+   },
+   "1.5_1.3_4.0_3e-07": {
+    "s8": {
+     "rms": 1.0264680313676944,
+     "permode": 1.0294437978707318
+    },
+    "forest": {
+     "rms": 0.16702167977134152,
+     "permode": 0.27808779259533667
+    },
+    "flag": -0.0006393149585126768,
+    "kids": -1.751330703925916,
+    "Lflag_kpc": 216.8025259955395,
+    "yth2": 0.0007430818908190419,
+    "yth25": 0.004224830905568853,
+    "yth3": 0.019675951822751867
+   },
+   "1.5_1.3_4.0_1e-06": {
+    "s8": {
+     "rms": 1.0232718480269107,
+     "permode": 1.0260755836430475
+    },
+    "forest": {
+     "rms": 0.004550052031282448,
+     "permode": 0.022855556196520244
+    },
+    "flag": -0.0003882214416604632,
+    "kids": -0.9677349516651645,
+    "Lflag_kpc": 216.8025259955395,
+    "yth2": 0.002476939636063473,
+    "yth25": 0.014082769685229512,
+    "yth3": 0.06558650607583956
+   },
+   "1.5_1.3_4.0_3e-06": {
+    "s8": {
+     "rms": 1.0203248325081566,
+     "permode": 1.0226637801856473
+    },
+    "forest": {
+     "rms": 5.9902786409882225e-05,
+     "permode": 0.0004110362657394617
+    },
+    "flag": -0.009704439549199978,
+    "kids": 3.771067147063718,
+    "Lflag_kpc": 216.8025259955395,
+    "yth2": 0.00743081890819042,
+    "yth25": 0.042248309055688535,
+    "yth3": 0.19675951822751866
+   },
+   "1.5_1.3_4.5_3e-07": {
+    "s8": {
+     "rms": 1.023935599291173,
+     "permode": 1.0268177401929381
+    },
+    "forest": {
+     "rms": 0.00847021476011478,
+     "permode": 0.03414352849806557
+    },
+    "flag": -0.00038508798446536784,
+    "kids": -1.751330703925916,
+    "Lflag_kpc": 216.8025259955395,
+    "yth2": 0.001973677114601258,
+    "yth25": 0.013944255798899961,
+    "yth3": 0.07871138648578127
+   },
+   "1.5_1.3_4.5_1e-06": {
+    "s8": {
+     "rms": 1.021094549787207,
+     "permode": 1.0236110616276994
+    },
+    "forest": {
+     "rms": 7.71253168778685e-05,
+     "permode": 0.0005272336045150094
+    },
+    "flag": -0.014000322688891467,
+    "kids": -0.9677349516651645,
+    "Lflag_kpc": 216.8025259955395,
+    "yth2": 0.006578923715337527,
+    "yth25": 0.04648085266299987,
+    "yth3": 0.26237128828593753
+   },
+   "1.5_1.3_4.5_3e-06": {
+    "s8": {
+     "rms": 1.0183866006269429,
+     "permode": 1.0204045271284352
+    },
+    "forest": {
+     "rms": 1.3464993504630485e-06,
+     "permode": 7.860403846926545e-06
+    },
+    "flag": -0.3498332660863803,
+    "kids": 3.771067147063718,
+    "Lflag_kpc": 216.8025259955395,
+    "yth2": 0.01973677114601258,
+    "yth25": 0.13944255798899963,
+    "yth3": 0.7871138648578128
+   },
+   "1.5_1.6_3.5_3e-07": {
+    "s8": {
+     "rms": 1.0501030772216864,
+     "permode": 1.0562130451240912
+    },
+    "forest": {
+     "rms": 1.17629186122161,
+     "permode": 1.3279454366304315
+    },
+    "flag": -0.0007301768838601751,
+    "kids": -7.9367330015556945,
+    "Lflag_kpc": 266.8338781483563,
+    "yth2": 0.00027976749204732893,
+    "yth25": 0.0012800393536998818,
+    "yth3": 0.004918514301627598
+   },
+   "1.5_1.6_3.5_1e-06": {
+    "s8": {
+     "rms": 1.0463387163908247,
+     "permode": 1.0506490296163349
+    },
+    "forest": {
+     "rms": 0.19656233753554475,
+     "permode": 0.3293609967209479
+    },
+    "flag": -0.0002893533098311218,
+    "kids": -7.013127813778937,
+    "Lflag_kpc": 266.8338781483563,
+    "yth2": 0.0009325583068244298,
+    "yth25": 0.004266797845666273,
+    "yth3": 0.016395047672091993
+   },
+   "1.5_1.6_3.5_3e-06": {
+    "s8": {
+     "rms": 1.0420942927538752,
+     "permode": 1.044806806831821
+    },
+    "forest": {
+     "rms": 0.006889470387908103,
+     "permode": 0.030950879956394672
+    },
+    "flag": -0.00021470876017827266,
+    "kids": -1.9415513305764733,
+    "Lflag_kpc": 266.8338781483563,
+    "yth2": 0.0027976749204732896,
+    "yth25": 0.012800393536998819,
+    "yth3": 0.04918514301627598
+   },
+   "1.5_1.6_4.0_3e-07": {
+    "s8": {
+     "rms": 1.046738628178266,
+     "permode": 1.0511602700900213
+    },
+    "forest": {
+     "rms": 0.23176270838804935,
+     "permode": 0.34434050873234434
+    },
+    "flag": -0.0002916709613449453,
+    "kids": -7.9367330015556945,
+    "Lflag_kpc": 266.8338781483563,
+    "yth2": 0.0007430818908190419,
+    "yth25": 0.004224830905568853,
+    "yth3": 0.019675951822751867
+   },
+   "1.5_1.6_4.0_1e-06": {
+    "s8": {
+     "rms": 1.0428030012711953,
+     "permode": 1.0456983921396916
+    },
+    "forest": {
+     "rms": 0.008398192575902685,
+     "permode": 0.03362309401765584
+    },
+    "flag": -0.00024650431175899713,
+    "kids": -7.013127813778937,
+    "Lflag_kpc": 266.8338781483563,
+    "yth2": 0.002476939636063473,
+    "yth25": 0.014082769685229512,
+    "yth3": 0.06558650607583956
+   },
+   "1.5_1.6_4.0_3e-06": {
+    "s8": {
+     "rms": 1.0382360455676654,
+     "permode": 1.0400812180901515
+    },
+    "forest": {
+     "rms": 0.00011334661379525102,
+     "permode": 0.0006971061392246902
+    },
+    "flag": -0.009592489192059373,
+    "kids": -1.9415513305764733,
+    "Lflag_kpc": 266.8338781483563,
+    "yth2": 0.00743081890819042,
+    "yth25": 0.042248309055688535,
+    "yth3": 0.19675951822751866
+   },
+   "1.5_1.6_4.5_3e-07": {
+    "s8": {
+     "rms": 1.0436644516535551,
+     "permode": 1.0468020818301749
+    },
+    "forest": {
+     "rms": 0.015065824691361529,
+     "permode": 0.04760812030920536
+    },
+    "flag": -0.00024247093448893258,
+    "kids": -7.9367330015556945,
+    "Lflag_kpc": 266.8338781483563,
+    "yth2": 0.001973677114601258,
+    "yth25": 0.013944255798899961,
+    "yth3": 0.07871138648578127
+   },
+   "1.5_1.6_4.5_1e-06": {
+    "s8": {
+     "rms": 1.0394529121063745,
+     "permode": 1.0415110789243676
+    },
+    "forest": {
+     "rms": 0.00014589928450314815,
+     "permode": 0.0008899128230459574
+    },
+    "flag": -0.013879313001067952,
+    "kids": -7.013127813778937,
+    "Lflag_kpc": 266.8338781483563,
+    "yth2": 0.006578923715337527,
+    "yth25": 0.04648085266299987,
+    "yth3": 0.26237128828593753
+   },
+   "1.5_1.6_4.5_3e-06": {
+    "s8": {
+     "rms": 1.0347348811264472,
+     "permode": 1.0361581942116602
+    },
+    "forest": {
+     "rms": 2.3245201490329492e-06,
+     "permode": 1.2333475440939878e-05
+    },
+    "flag": -0.34948730659890653,
+    "kids": -1.9415513305764733,
+    "Lflag_kpc": 266.8338781483563,
+    "yth2": 0.01973677114601258,
+    "yth25": 0.13944255798899963,
+    "yth3": 0.7871138648578128
+   },
+   "1.5_2.0_3.5_3e-07": {
+    "s8": {
+     "rms": 1.0934476765335648,
+     "permode": 1.0996366329250238
+    },
+    "forest": {
+     "rms": 1.4195757055791733,
+     "permode": 1.545084371723887
+    },
+    "flag": -0.0003346852862108822,
+    "kids": -5.375651757185722,
+    "Lflag_kpc": 333.5423476854454,
+    "yth2": 0.00027976749204732893,
+    "yth25": 0.0012800393536998818,
+    "yth3": 0.004918514301627598
+   },
+   "1.5_2.0_3.5_1e-06": {
+    "s8": {
+     "rms": 1.0887820396331216,
+     "permode": 1.0904451722439241
+    },
+    "forest": {
+     "rms": 0.2708072584276884,
+     "permode": 0.3951108862813222
+    },
+    "flag": -0.00012162135006743319,
+    "kids": -4.4942653108312385,
+    "Lflag_kpc": 333.5423476854454,
+    "yth2": 0.0009325583068244298,
+    "yth25": 0.004266797845666273,
+    "yth3": 0.016395047672091993
+   },
+   "1.5_2.0_3.5_3e-06": {
+    "s8": {
+     "rms": 1.0811312686978205,
+     "permode": 1.0806314505686607
+    },
+    "forest": {
+     "rms": 0.012502340143781154,
+     "permode": 0.04216236913516713
+    },
+    "flag": -0.0001417011755811402,
+    "kids": 2.8560103772404375,
+    "Lflag_kpc": 333.5423476854454,
+    "yth2": 0.0027976749204732896,
+    "yth25": 0.012800393536998819,
+    "yth3": 0.04918514301627598
+   },
+   "1.5_2.0_4.0_3e-07": {
+    "s8": {
+     "rms": 1.0893403279161722,
+     "permode": 1.0910712890642844
+    },
+    "forest": {
+     "rms": 0.3044681779163969,
+     "permode": 0.4056568134172751
+    },
+    "flag": -0.00012256551426578863,
+    "kids": -5.375651757185722,
+    "Lflag_kpc": 333.5423476854454,
+    "yth2": 0.0007430818908190419,
+    "yth25": 0.004224830905568853,
+    "yth3": 0.019675951822751867
+   },
+   "1.5_2.0_4.0_1e-06": {
+    "s8": {
+     "rms": 1.0823379169900706,
+     "permode": 1.0818469094923264
+    },
+    "forest": {
+     "rms": 0.014925912418617626,
+     "permode": 0.044519149155229476
+    },
+    "flag": -0.00017741580474822479,
+    "kids": -4.4942653108312385,
+    "Lflag_kpc": 333.5423476854454,
+    "yth2": 0.002476939636063473,
+    "yth25": 0.014082769685229512,
+    "yth3": 0.06558650607583956
+   },
+   "1.5_2.0_4.0_3e-06": {
+    "s8": {
+     "rms": 1.0733113147941566,
+     "permode": 1.07225838403161
+    },
+    "forest": {
+     "rms": 0.00021200002963706055,
+     "permode": 0.0010620251853057372
+    },
+    "flag": -0.009531703913762223,
+    "kids": 2.8560103772404375,
+    "Lflag_kpc": 333.5423476854454,
+    "yth2": 0.00743081890819042,
+    "yth25": 0.042248309055688535,
+    "yth3": 0.19675951822751866
+   },
+   "1.5_2.0_4.5_3e-07": {
+    "s8": {
+     "rms": 1.0838698780490146,
+     "permode": 1.083507274353571
+    },
+    "forest": {
+     "rms": 0.025393044041143176,
+     "permode": 0.06049081162679193
+    },
+    "flag": -0.0001729998971279776,
+    "kids": -5.375651757185722,
+    "Lflag_kpc": 333.5423476854454,
+    "yth2": 0.001973677114601258,
+    "yth25": 0.013944255798899961,
+    "yth3": 0.07871138648578127
+   },
+   "1.5_2.0_4.5_1e-06": {
+    "s8": {
+     "rms": 1.0755719555819538,
+     "permode": 1.0744459153634902
+    },
+    "forest": {
+     "rms": 0.000272551790915454,
+     "permode": 0.0013438288108311713
+    },
+    "flag": -0.013813075527797895,
+    "kids": -4.4942653108312385,
+    "Lflag_kpc": 333.5423476854454,
+    "yth2": 0.006578923715337527,
+    "yth25": 0.04648085266299987,
+    "yth3": 0.26237128828593753
+   },
+   "1.5_2.0_4.5_3e-06": {
+    "s8": {
+     "rms": 1.0661980136800389,
+     "permode": 1.0652319448976149
+    },
+    "forest": {
+     "rms": 4.1320745578499185e-06,
+     "permode": 1.8298043396702823e-05
+    },
+    "flag": -0.3492919058002644,
+    "kids": 2.8560103772404375,
+    "Lflag_kpc": 333.5423476854454,
+    "yth2": 0.01973677114601258,
+    "yth25": 0.13944255798899963,
+    "yth3": 0.7871138648578128
+   },
+   "2.0_1.3_3.5_3e-07": {
+    "s8": {
+     "rms": 1.014545068818229,
+     "permode": 1.0190328586817363
+    },
+    "forest": {
+     "rms": 0.37899008177401927,
+     "permode": 0.5094145231423064
+    },
+    "flag": -0.007379902898693996,
+    "kids": -1.751330703925916,
+    "Lflag_kpc": 119.33596054234181,
+    "yth2": 0.00027976749204732893,
+    "yth25": 0.0012800393536998818,
+    "yth3": 0.004918514301627598
+   },
+   "2.0_1.3_3.5_1e-06": {
+    "s8": {
+     "rms": 1.0140356615764103,
+     "permode": 1.0178036637204035
+    },
+    "forest": {
+     "rms": 0.033530386373992416,
+     "permode": 0.10157354307671773
+    },
+    "flag": -0.004775782782084993,
+    "kids": -0.9677349516651645,
+    "Lflag_kpc": 119.33596054234181,
+    "yth2": 0.0009325583068244298,
+    "yth25": 0.004266797845666273,
+    "yth3": 0.016395047672091993
+   },
+   "2.0_1.3_3.5_3e-06": {
+    "s8": {
+     "rms": 1.0131539069364268,
+     "permode": 1.0163582333687757
+    },
+    "forest": {
+     "rms": 0.0005806839185786838,
+     "permode": 0.004541093778759553
+    },
+    "flag": -0.002573160826483203,
+    "kids": 3.771067147063718,
+    "Lflag_kpc": 119.33596054234181,
+    "yth2": 0.0027976749204732896,
+    "yth25": 0.012800393536998819,
+    "yth3": 0.04918514301627598
+   },
+   "2.0_1.3_4.0_3e-07": {
+    "s8": {
+     "rms": 1.014155332134827,
+     "permode": 1.0180236421936353
+    },
+    "forest": {
+     "rms": 0.049661143163179045,
+     "permode": 0.1185665853124882
+    },
+    "flag": -0.00479915705760157,
+    "kids": -1.751330703925916,
+    "Lflag_kpc": 119.33596054234181,
+    "yth2": 0.0007430818908190419,
+    "yth25": 0.004224830905568853,
+    "yth3": 0.019675951822751867
+   },
+   "2.0_1.3_4.0_1e-06": {
+    "s8": {
+     "rms": 1.0133703769258924,
+     "permode": 1.0167143781343193
+    },
+    "forest": {
+     "rms": 0.0007403800175458386,
+     "permode": 0.0055358999063856995
+    },
+    "flag": -0.0024638377140640193,
+    "kids": -0.9677349516651645,
+    "Lflag_kpc": 119.33596054234181,
+    "yth2": 0.002476939636063473,
+    "yth25": 0.014082769685229512,
+    "yth3": 0.06558650607583956
+   },
+   "2.0_1.3_4.0_3e-06": {
+    "s8": {
+     "rms": 1.0123745146760927,
+     "permode": 1.0152250264205533
+    },
+    "forest": {
+     "rms": 1.0268224527543168e-05,
+     "permode": 7.890804268129159e-05
+    },
+    "flag": -0.011086985990014201,
+    "kids": 3.771067147063718,
+    "Lflag_kpc": 119.33596054234181,
+    "yth2": 0.00743081890819042,
+    "yth25": 0.042248309055688535,
+    "yth3": 0.19675951822751866
+   },
+   "2.0_1.3_4.5_3e-07": {
+    "s8": {
+     "rms": 1.0136008857150784,
+     "permode": 1.0170776335977025
+    },
+    "forest": {
+     "rms": 0.0014591280350535474,
+     "permode": 0.00961674689594183
+    },
+    "flag": -0.002473967994570989,
+    "kids": -1.751330703925916,
+    "Lflag_kpc": 119.33596054234181,
+    "yth2": 0.001973677114601258,
+    "yth25": 0.013944255798899961,
+    "yth3": 0.07871138648578127
+   },
+   "2.0_1.3_4.5_1e-06": {
+    "s8": {
+     "rms": 1.0126882800334953,
+     "permode": 1.0157253846970848
+    },
+    "forest": {
+     "rms": 1.3191967633829904e-05,
+     "permode": 0.00010290056613726506
+    },
+    "flag": -0.01545945037485976,
+    "kids": -0.9677349516651645,
+    "Lflag_kpc": 119.33596054234181,
+    "yth2": 0.006578923715337527,
+    "yth25": 0.04648085266299987,
+    "yth3": 0.26237128828593753
+   },
+   "2.0_1.3_4.5_3e-06": {
+    "s8": {
+     "rms": 1.0116854180255697,
+     "permode": 1.0142232673589673
+    },
+    "forest": {
+     "rms": 5.993064762233047e-07,
+     "permode": 1.7137374219711177e-06
+    },
+    "flag": -0.35354526195231484,
+    "kids": 3.771067147063718,
+    "Lflag_kpc": 119.33596054234181,
+    "yth2": 0.01973677114601258,
+    "yth25": 0.13944255798899963,
+    "yth3": 0.7871138648578128
+   },
+   "2.0_1.6_3.5_3e-07": {
+    "s8": {
+     "rms": 1.0240961809130942,
+     "permode": 1.0325491160740885
+    },
+    "forest": {
+     "rms": 0.5406114461029841,
+     "permode": 0.6838988280948375
+    },
+    "flag": -0.004338686590365417,
+    "kids": -7.9367330015556945,
+    "Lflag_kpc": 146.8750283598053,
+    "yth2": 0.00027976749204732893,
+    "yth25": 0.0012800393536998818,
+    "yth3": 0.004918514301627598
+   },
+   "2.0_1.6_3.5_1e-06": {
+    "s8": {
+     "rms": 1.0237635939081877,
+     "permode": 1.0306687819232037
+    },
+    "forest": {
+     "rms": 0.06131542901980347,
+     "permode": 0.15063713617816044
+    },
+    "flag": -0.002481595949794739,
+    "kids": -7.013127813778937,
+    "Lflag_kpc": 146.8750283598053,
+    "yth2": 0.0009325583068244298,
+    "yth25": 0.004266797845666273,
+    "yth3": 0.016395047672091993
+   },
+   "2.0_1.6_3.5_3e-06": {
+    "s8": {
+     "rms": 1.0229527372517049,
+     "permode": 1.0284318118421052
+    },
+    "forest": {
+     "rms": 0.0012637772019599147,
+     "permode": 0.008696947675611355
+    },
+    "flag": -0.0012696615779481334,
+    "kids": -1.9415513305764733,
+    "Lflag_kpc": 146.8750283598053,
+    "yth2": 0.0027976749204732896,
+    "yth25": 0.012800393536998819,
+    "yth3": 0.04918514301627598
+   },
+   "2.0_1.6_4.0_3e-07": {
+    "s8": {
+     "rms": 1.0238684969678544,
+     "permode": 1.0309701032370697
+    },
+    "forest": {
+     "rms": 0.08424904533594879,
+     "permode": 0.16953371486439184
+    },
+    "flag": -0.0024964265204725144,
+    "kids": -7.9367330015556945,
+    "Lflag_kpc": 146.8750283598053,
+    "yth2": 0.0007430818908190419,
+    "yth25": 0.004224830905568853,
+    "yth3": 0.019675951822751867
+   },
+   "2.0_1.6_4.0_1e-06": {
+    "s8": {
+     "rms": 1.0231535675451637,
+     "permode": 1.0289327812329714
+    },
+    "forest": {
+     "rms": 0.001602436258365092,
+     "permode": 0.010327894249211766
+    },
+    "flag": -0.001235340748527614,
+    "kids": -7.013127813778937,
+    "Lflag_kpc": 146.8750283598053,
+    "yth2": 0.002476939636063473,
+    "yth25": 0.014082769685229512,
+    "yth3": 0.06558650607583956
+   },
+   "2.0_1.6_4.0_3e-06": {
+    "s8": {
+     "rms": 1.0221570052095015,
+     "permode": 1.0265862274768918
+    },
+    "forest": {
+     "rms": 2.1383646306993853e-05,
+     "permode": 0.0001589616767336821
+    },
+    "flag": -0.010287557127828667,
+    "kids": -1.9415513305764733,
+    "Lflag_kpc": 146.8750283598053,
+    "yth2": 0.00743081890819042,
+    "yth25": 0.042248309055688535,
+    "yth3": 0.19675951822751866
+   },
+   "2.0_1.6_4.5_3e-07": {
+    "s8": {
+     "rms": 1.0233657085461236,
+     "permode": 1.0294648485396636
+    },
+    "forest": {
+     "rms": 0.0031138768340137624,
+     "permode": 0.016930930516597886
+    },
+    "flag": -0.0012378861787454868,
+    "kids": -7.9367330015556945,
+    "Lflag_kpc": 146.8750283598053,
+    "yth2": 0.001973677114601258,
+    "yth25": 0.013944255798899961,
+    "yth3": 0.07871138648578127
+   },
+   "2.0_1.6_4.5_1e-06": {
+    "s8": {
+     "rms": 1.0224815202993314,
+     "permode": 1.0273270452666012
+    },
+    "forest": {
+     "rms": 2.769146633663233e-05,
+     "permode": 0.00020692335051419875
+    },
+    "flag": -0.01462065820075999,
+    "kids": -7.013127813778937,
+    "Lflag_kpc": 146.8750283598053,
+    "yth2": 0.006578923715337527,
+    "yth25": 0.04648085266299987,
+    "yth3": 0.26237128828593753
+   },
+   "2.0_1.6_4.5_3e-06": {
+    "s8": {
+     "rms": 1.0213293235804972,
+     "permode": 1.0249241564442313
+    },
+    "forest": {
+     "rms": 7.570361195696762e-07,
+     "permode": 3.221862674651632e-06
+    },
+    "flag": -0.3514838388567694,
+    "kids": -1.9415513305764733,
+    "Lflag_kpc": 146.8750283598053,
+    "yth2": 0.01973677114601258,
+    "yth25": 0.13944255798899963,
+    "yth3": 0.7871138648578128
+   },
+   "2.0_2.0_3.5_3e-07": {
+    "s8": {
+     "rms": 1.0422630126890553,
+     "permode": 1.0574090234547684
+    },
+    "forest": {
+     "rms": 0.7478326094200727,
+     "permode": 0.8970545702126871
+    },
+    "flag": -0.0023403427158331675,
+    "kids": -5.375651757185722,
+    "Lflag_kpc": 183.5937854497566,
+    "yth2": 0.00027976749204732893,
+    "yth25": 0.0012800393536998818,
+    "yth3": 0.004918514301627598
+   },
+   "2.0_2.0_3.5_1e-06": {
+    "s8": {
+     "rms": 1.0429621911938796,
+     "permode": 1.0544360867539468
+    },
+    "forest": {
+     "rms": 0.10531897561734849,
+     "permode": 0.21456786987359977
+    },
+    "flag": -0.0011589819548516807,
+    "kids": -4.4942653108312385,
+    "Lflag_kpc": 183.5937854497566,
+    "yth2": 0.0009325583068244298,
+    "yth25": 0.004266797845666273,
+    "yth3": 0.016395047672091993
+   },
+   "2.0_2.0_3.5_3e-06": {
+    "s8": {
+     "rms": 1.0429351413914176,
+     "permode": 1.050844847109563
+    },
+    "forest": {
+     "rms": 0.002730477625769945,
+     "permode": 0.016004485035683302
+    },
+    "flag": -0.0006058322179758777,
+    "kids": 2.8560103772404375,
+    "Lflag_kpc": 183.5937854497566,
+    "yth2": 0.0027976749204732896,
+    "yth25": 0.012800393536998819,
+    "yth3": 0.04918514301627598
+   },
+   "2.0_2.0_4.0_3e-07": {
+    "s8": {
+     "rms": 1.042963506755371,
+     "permode": 1.0548523485734802
+    },
+    "forest": {
+     "rms": 0.13479877838830623,
+     "permode": 0.23383905661894033
+    },
+    "flag": -0.0011671392665855078,
+    "kids": -5.375651757185722,
+    "Lflag_kpc": 183.5937854497566,
+    "yth2": 0.0007430818908190419,
+    "yth25": 0.004224830905568853,
+    "yth3": 0.019675951822751867
+   },
+   "2.0_2.0_4.0_1e-06": {
+    "s8": {
+     "rms": 1.0430621321723186,
+     "permode": 1.0515594466137395
+    },
+    "forest": {
+     "rms": 0.0034292597677210157,
+     "permode": 0.01836182078598636
+    },
+    "flag": -0.0006131803163588693,
+    "kids": -4.4942653108312385,
+    "Lflag_kpc": 183.5937854497566,
+    "yth2": 0.002476939636063473,
+    "yth25": 0.014082769685229512,
+    "yth3": 0.06558650607583956
+   },
+   "2.0_2.0_4.0_3e-06": {
+    "s8": {
+     "rms": 1.0422062935552245,
+     "permode": 1.0477133509825591
+    },
+    "forest": {
+     "rms": 4.570641665213593e-05,
+     "permode": 0.0003184196011671858
+    },
+    "flag": -0.009867560894029468,
+    "kids": 2.8560103772404375,
+    "Lflag_kpc": 183.5937854497566,
+    "yth2": 0.00743081890819042,
+    "yth25": 0.042248309055688535,
+    "yth3": 0.19675951822751866
+   },
+   "2.0_2.0_4.5_3e-07": {
+    "s8": {
+     "rms": 1.0431449515864135,
+     "permode": 1.0523590112597363
+    },
+    "forest": {
+     "rms": 0.0065041232164007035,
+     "permode": 0.028158318839322627
+    },
+    "flag": -0.0006115607016257829,
+    "kids": -5.375651757185722,
+    "Lflag_kpc": 183.5937854497566,
+    "yth2": 0.001973677114601258,
+    "yth25": 0.013944255798899961,
+    "yth3": 0.07871138648578127
+   },
+   "2.0_2.0_4.5_1e-06": {
+    "s8": {
+     "rms": 1.04259549662389,
+     "permode": 1.0488391883939543
+    },
+    "forest": {
+     "rms": 5.935494631348348e-05,
+     "permode": 0.0004130768859302858
+    },
+    "flag": -0.014175159392814222,
+    "kids": -4.4942653108312385,
+    "Lflag_kpc": 183.5937854497566,
+    "yth2": 0.006578923715337527,
+    "yth25": 0.04648085266299987,
+    "yth3": 0.26237128828593753
+   },
+   "2.0_2.0_4.5_3e-06": {
+    "s8": {
+     "rms": 1.040896891393348,
+     "permode": 1.0448347928380342
+    },
+    "forest": {
+     "rms": 1.0824019442967625e-06,
+     "permode": 6.1922030267780315e-06
+    },
+    "flag": -0.35031549885861235,
+    "kids": 2.8560103772404375,
+    "Lflag_kpc": 183.5937854497566,
+    "yth2": 0.01973677114601258,
+    "yth25": 0.13944255798899963,
+    "yth3": 0.7871138648578128
+   },
+   "2.5_1.3_3.5_3e-07": {
+    "s8": {
+     "rms": 1.0081971019372469,
+     "permode": 1.0128478032915584
+    },
+    "forest": {
+     "rms": 0.10645288690991173,
+     "permode": 0.1728917852449534
+    },
+    "flag": -0.028797676537961416,
+    "kids": -1.751330703925916,
+    "Lflag_kpc": 65.68683373576725,
+    "yth2": 0.00027976749204732893,
+    "yth25": 0.0012800393536998818,
+    "yth3": 0.004918514301627598
+   },
+   "2.5_1.3_3.5_1e-06": {
+    "s8": {
+     "rms": 1.0084306844975808,
+     "permode": 1.0123795361182497
+    },
+    "forest": {
+     "rms": 0.004584804534766951,
+     "permode": 0.02606448379108972
+    },
+    "flag": -0.023901816192504304,
+    "kids": -0.9677349516651645,
+    "Lflag_kpc": 65.68683373576725,
+    "yth2": 0.0009325583068244298,
+    "yth25": 0.004266797845666273,
+    "yth3": 0.016395047672091993
+   },
+   "2.5_1.3_3.5_3e-06": {
+    "s8": {
+     "rms": 1.0084636176517756,
+     "permode": 1.0117469897521894
+    },
+    "forest": {
+     "rms": 6.308180862046875e-05,
+     "permode": 0.0006664877284292547
+    },
+    "flag": -0.016768493322169203,
+    "kids": 3.771067147063718,
+    "Lflag_kpc": 65.68683373576725,
+    "yth2": 0.0027976749204732896,
+    "yth25": 0.012800393536998819,
+    "yth3": 0.04918514301627598
+   },
+   "2.5_1.3_4.0_3e-07": {
+    "s8": {
+     "rms": 1.0084086587835404,
+     "permode": 1.0124985583310682
+    },
+    "forest": {
+     "rms": 0.008198748161121427,
+     "permode": 0.03451577564651309
+    },
+    "flag": -0.023956891870245727,
+    "kids": -1.751330703925916,
+    "Lflag_kpc": 65.68683373576725,
+    "yth2": 0.0007430818908190419,
+    "yth25": 0.004224830905568853,
+    "yth3": 0.019675951822751867
+   },
+   "2.5_1.3_4.0_1e-06": {
+    "s8": {
+     "rms": 1.0084862533270973,
+     "permode": 1.011949495292999
+    },
+    "forest": {
+     "rms": 8.231358629284813e-05,
+     "permode": 0.0008558025988327778
+    },
+    "flag": -0.0161436119663781,
+    "kids": -0.9677349516651645,
+    "Lflag_kpc": 65.68683373576725,
+    "yth2": 0.002476939636063473,
+    "yth25": 0.014082769685229512,
+    "yth3": 0.06558650607583956
+   },
+   "2.5_1.3_4.0_3e-06": {
+    "s8": {
+     "rms": 1.0083622651212123,
+     "permode": 1.0112440477946065
+    },
+    "forest": {
+     "rms": 1.4221019077886865e-06,
+     "permode": 1.175298497146926e-05
+    },
+    "flag": -0.02098307373326913,
+    "kids": 3.771067147063718,
+    "Lflag_kpc": 65.68683373576725,
+    "yth2": 0.00743081890819042,
+    "yth25": 0.042248309055688535,
+    "yth3": 0.19675951822751866
+   },
+   "2.5_1.3_4.5_3e-07": {
+    "s8": {
+     "rms": 1.0084916963851471,
+     "permode": 1.0121354828548832
+    },
+    "forest": {
+     "rms": 0.00016656941361192779,
+     "permode": 0.0016535110351434401
+    },
+    "flag": -0.016207199618121913,
+    "kids": -1.751330703925916,
+    "Lflag_kpc": 65.68683373576725,
+    "yth2": 0.001973677114601258,
+    "yth25": 0.013944255798899961,
+    "yth3": 0.07871138648578127
+   },
+   "2.5_1.3_4.5_1e-06": {
+    "s8": {
+     "rms": 1.008432349741628,
+     "permode": 1.0115233761380575
+    },
+    "forest": {
+     "rms": 1.8089095670248412e-06,
+     "permode": 1.5403446509854035e-05
+    },
+    "flag": -0.025740442860013448,
+    "kids": -0.9677349516651645,
+    "Lflag_kpc": 65.68683373576725,
+    "yth2": 0.006578923715337527,
+    "yth25": 0.04648085266299987,
+    "yth3": 0.26237128828593753
+   },
+   "2.5_1.3_4.5_3e-06": {
+    "s8": {
+     "rms": 1.0081938958875871,
+     "permode": 1.0107656444329274
+    },
+    "forest": {
+     "rms": 1.2074926725169632e-07,
+     "permode": 4.7037343131606235e-07
+    },
+    "flag": -0.37495281863344615,
+    "kids": 3.771067147063718,
+    "Lflag_kpc": 65.68683373576725,
+    "yth2": 0.01973677114601258,
+    "yth25": 0.13944255798899963,
+    "yth3": 0.7871138648578128
+   },
+   "2.5_1.6_3.5_3e-07": {
+    "s8": {
+     "rms": 1.0136534110724063,
+     "permode": 1.0219181333806824
+    },
+    "forest": {
+     "rms": 0.179054955746488,
+     "permode": 0.2634891597431446
+    },
+    "flag": -0.01833976041519733,
+    "kids": -7.9367330015556945,
+    "Lflag_kpc": 80.84533382863661,
+    "yth2": 0.00027976749204732893,
+    "yth25": 0.0012800393536998818,
+    "yth3": 0.004918514301627598
+   },
+   "2.5_1.6_3.5_1e-06": {
+    "s8": {
+     "rms": 1.014309850394346,
+     "permode": 1.0212139376165714
+    },
+    "forest": {
+     "rms": 0.010924228490523546,
+     "permode": 0.04651918070484484
+    },
+    "flag": -0.014227265322339233,
+    "kids": -7.013127813778937,
+    "Lflag_kpc": 80.84533382863661,
+    "yth2": 0.0009325583068244298,
+    "yth25": 0.004266797845666273,
+    "yth3": 0.016395047672091993
+   },
+   "2.5_1.6_3.5_3e-06": {
+    "s8": {
+     "rms": 1.0146419889510827,
+     "permode": 1.0202587504159693
+    },
+    "forest": {
+     "rms": 0.00016128731383702188,
+     "permode": 0.001501796568592173
+    },
+    "flag": -0.009095589280155289,
+    "kids": -1.9415513305764733,
+    "Lflag_kpc": 80.84533382863661,
+    "yth2": 0.0027976749204732896,
+    "yth25": 0.012800393536998819,
+    "yth3": 0.04918514301627598
+   },
+   "2.5_1.6_4.0_3e-07": {
+    "s8": {
+     "rms": 1.0142305798710405,
+     "permode": 1.0213786358130268
+    },
+    "forest": {
+     "rms": 0.01820841571361953,
+     "permode": 0.05831619767636931
+    },
+    "flag": -0.014270812131067345,
+    "kids": -7.9367330015556945,
+    "Lflag_kpc": 80.84533382863661,
+    "yth2": 0.0007430818908190419,
+    "yth25": 0.004224830905568853,
+    "yth3": 0.019675951822751867
+   },
+   "2.5_1.6_4.0_1e-06": {
+    "s8": {
+     "rms": 1.0146157828861297,
+     "permode": 1.0205422303361467
+    },
+    "forest": {
+     "rms": 0.0002096994033078392,
+     "permode": 0.001902764408893809
+    },
+    "flag": -0.008702866301194932,
+    "kids": -7.013127813778937,
+    "Lflag_kpc": 80.84533382863661,
+    "yth2": 0.002476939636063473,
+    "yth25": 0.014082769685229512,
+    "yth3": 0.06558650607583956
+   },
+   "2.5_1.6_4.0_3e-06": {
+    "s8": {
+     "rms": 1.0146815435589074,
+     "permode": 1.0194606622720706
+    },
+    "forest": {
+     "rms": 3.248690437329671e-06,
+     "permode": 2.590740035968153e-05
+    },
+    "flag": -0.015335497928964367,
+    "kids": -1.9415513305764733,
+    "Lflag_kpc": 80.84533382863661,
+    "yth2": 0.00743081890819042,
+    "yth25": 0.042248309055688535,
+    "yth3": 0.19675951822751866
+   },
+   "2.5_1.6_4.5_3e-07": {
+    "s8": {
+     "rms": 1.0145574855037665,
+     "permode": 1.0208111877348736
+    },
+    "forest": {
+     "rms": 0.00042246690260094866,
+     "permode": 0.003556031479145627
+    },
+    "flag": -0.008742186896903445,
+    "kids": -7.9367330015556945,
+    "Lflag_kpc": 80.84533382863661,
+    "yth2": 0.001973677114601258,
+    "yth25": 0.013944255798899961,
+    "yth3": 0.07871138648578127
+   },
+   "2.5_1.6_4.5_1e-06": {
+    "s8": {
+     "rms": 1.0147069022270958,
+     "permode": 1.0198666991361793
+    },
+    "forest": {
+     "rms": 4.21116127902188e-06,
+     "permode": 3.396365077135144e-05
+    },
+    "flag": -0.019870800518175403,
+    "kids": -7.013127813778937,
+    "Lflag_kpc": 80.84533382863661,
+    "yth2": 0.006578923715337527,
+    "yth25": 0.04648085266299987,
+    "yth3": 0.26237128828593753
+   },
+   "2.5_1.6_4.5_3e-06": {
+    "s8": {
+     "rms": 1.0145852441577923,
+     "permode": 1.0186890337378038
+    },
+    "forest": {
+     "rms": 3.6678792270095073e-07,
+     "permode": 7.34739304952825e-07
+    },
+    "flag": -0.3632323612322526,
+    "kids": -1.9415513305764733,
+    "Lflag_kpc": 80.84533382863661,
+    "yth2": 0.01973677114601258,
+    "yth25": 0.13944255798899963,
+    "yth3": 0.7871138648578128
+   },
+   "2.5_2.0_3.5_3e-07": {
+    "s8": {
+     "rms": 1.0239925767308442,
+     "permode": 1.038541801771909
+    },
+    "forest": {
+     "rms": 0.2876388778110628,
+     "permode": 0.39034043887353365
+    },
+    "flag": -0.01101588049974533,
+    "kids": -5.375651757185722,
+    "Lflag_kpc": 101.05666728579575,
+    "yth2": 0.00027976749204732893,
+    "yth25": 0.0012800393536998818,
+    "yth3": 0.004918514301627598
+   },
+   "2.5_2.0_3.5_1e-06": {
+    "s8": {
+     "rms": 1.0255833167924648,
+     "permode": 1.0374538441520498
+    },
+    "forest": {
+     "rms": 0.024437574225907976,
+     "permode": 0.07897579188051607
+    },
+    "flag": -0.007770517061625544,
+    "kids": -4.4942653108312385,
+    "Lflag_kpc": 101.05666728579575,
+    "yth2": 0.0009325583068244298,
+    "yth25": 0.004266797845666273,
+    "yth3": 0.016395047672091993
+   },
+   "2.5_2.0_3.5_3e-06": {
+    "s8": {
+     "rms": 1.0266932407670954,
+     "permode": 1.0359665892112224
+    },
+    "forest": {
+     "rms": 0.0004086732865780096,
+     "permode": 0.0033383969334250807
+    },
+    "flag": -0.004479723651740633,
+    "kids": 2.8560103772404375,
+    "Lflag_kpc": 101.05666728579575,
+    "yth2": 0.0027976749204732896,
+    "yth25": 0.012800393536998819,
+    "yth3": 0.04918514301627598
+   },
+   "2.5_2.0_4.0_3e-07": {
+    "s8": {
+     "rms": 1.0253872752826356,
+     "permode": 1.0376854973234593
+    },
+    "forest": {
+     "rms": 0.03743102460448311,
+     "permode": 0.09423281401510608
+    },
+    "flag": -0.00780204690651968,
+    "kids": -5.375651757185722,
+    "Lflag_kpc": 101.05666728579575,
+    "yth2": 0.0007430818908190419,
+    "yth25": 0.004224830905568853,
+    "yth3": 0.019675951822751867
+   },
+   "2.5_2.0_4.0_1e-06": {
+    "s8": {
+     "rms": 1.0265370152208781,
+     "permode": 1.0363709010189086
+    },
+    "forest": {
+     "rms": 0.0005294796307857563,
+     "permode": 0.004147596539507248
+    },
+    "flag": -0.004274578561190778,
+    "kids": -4.4942653108312385,
+    "Lflag_kpc": 101.05666728579575,
+    "yth2": 0.002476939636063473,
+    "yth25": 0.014082769685229512,
+    "yth3": 0.06558650607583956
+   },
+   "2.5_2.0_4.0_3e-06": {
+    "s8": {
+     "rms": 1.0272155224699349,
+     "permode": 1.0346563205770782
+    },
+    "forest": {
+     "rms": 7.860484629862441e-06,
+     "permode": 5.837935903074687e-05
+    },
+    "flag": -0.012274781038959163,
+    "kids": 2.8560103772404375,
+    "Lflag_kpc": 101.05666728579575,
+    "yth2": 0.00743081890819042,
+    "yth25": 0.042248309055688535,
+    "yth3": 0.19675951822751866
+   },
+   "2.5_2.0_4.5_3e-07": {
+    "s8": {
+     "rms": 1.0263159022096098,
+     "permode": 1.036769628437599
+    },
+    "forest": {
+     "rms": 0.0010578861659502614,
+     "permode": 0.0073803834520602685
+    },
+    "flag": -0.004294503980303945,
+    "kids": -5.375651757185722,
+    "Lflag_kpc": 101.05666728579575,
+    "yth2": 0.001973677114601258,
+    "yth25": 0.013944255798899961,
+    "yth3": 0.07871138648578127
+   },
+   "2.5_2.0_4.5_1e-06": {
+    "s8": {
+     "rms": 1.0270935566113928,
+     "permode": 1.0352622444013615
+    },
+    "forest": {
+     "rms": 9.745227687041336e-06,
+     "permode": 7.69255295673954e-05
+    },
+    "flag": -0.016696402421934032,
+    "kids": -4.4942653108312385,
+    "Lflag_kpc": 101.05666728579575,
+    "yth2": 0.006578923715337527,
+    "yth25": 0.04648085266299987,
+    "yth3": 0.26237128828593753
+   },
+   "2.5_2.0_4.5_3e-06": {
+    "s8": {
+     "rms": 1.0273924395918288,
+     "permode": 1.0333641984554773
+    },
+    "forest": {
+     "rms": 5.359348858036128e-07,
+     "permode": 1.3404838483666026e-06
+    },
+    "flag": -0.3564017207917389,
+    "kids": 2.8560103772404375,
+    "Lflag_kpc": 101.05666728579575,
+    "yth2": 0.01973677114601258,
+    "yth25": 0.13944255798899963,
+    "yth3": 0.7871138648578128
+   }
+  },
+  "H2": {
+   "s8": {
+    "('canonical', 'rms')": 1.0133703769258924,
+    "('canonical', 'permode')": 1.0167143781343193,
+    "('canonical', 'mono_rms')": 1.014046930727769,
+    "('alt', 'rms')": 1.015683942775553,
+    "('alt', 'permode')": 1.019069820783145,
+    "('alt', 'mono_rms')": 1.0164549973740375
+   },
+   "forest": {
+    "('canonical', 'rms', 10.0)": 0.0006405589293290159,
+    "('canonical', 'rms', 15.0)": 0.0007403800175458386,
+    "('canonical', 'rms', 20.0)": 0.0007959028008159841,
+    "('canonical', 'permode', 10.0)": 0.0052749789629837895,
+    "('canonical', 'permode', 15.0)": 0.0055358999063856995,
+    "('canonical', 'permode', 20.0)": 0.005512638709000095,
+    "('alt', 'rms', 10.0)": 0.0003338955251861453,
+    "('alt', 'rms', 15.0)": 0.0003859160129511263,
+    "('alt', 'rms', 20.0)": 0.00041485213942582533,
+    "('alt', 'permode', 10.0)": 0.002921438918424224,
+    "('alt', 'permode', 15.0)": 0.003056320691367631,
+    "('alt', 'permode', 20.0)": 0.0030386695731854374
+   },
+   "flag": {
+    "('canonical', 10000000000.0)": -0.0001567143699499217,
+    "('canonical', 100000000000.0)": -0.0024638377140640193,
+    "('alt', 10000000000.0)": -0.00014636256985829164,
+    "('alt', 100000000000.0)": -0.001795565784436956
+   },
+   "sparc": {
+    "canonical": 0.005434630921133503,
+    "alt": 0.0044671865680365975
+   },
+   "kids": {
+    "canonical": -0.9677349516651645,
+    "alt": -3.202613632448447
+   },
+   "Geff": {
+    "max_sigma8_modes": 0.6335676247620183,
+    "max_all": 11.938907626924657
+   },
+   "s8_rtol": [
+    1.0133703769258924,
+    1.0133703377784702
+   ],
+   "forest_conv": {
+    "rms": [
+     0.0007403800175458386,
+     0.0007333190272595935
+    ],
+    "permode": [
+     0.0055358999063856995,
+     0.005467097042596958
+    ]
+   }
+  },
+  "H2b": {
+   "Cmax": {
+    "z=0": 2109.742871008326,
+    "de Sitter": 4482.705606090822
+   },
+   "Emax": {
+    "z=0_9.62e-14": 1.999052466301193,
+    "z=0_3.2e-09": 1.999052469501097,
+    "de Sitter_9.62e-14": 1.999553940384299,
+    "de Sitter_3.2e-09": 1.999553943584203
+   }
+  },
+  "H2c": {
+   "canonical": 2.9830666899815883,
+   "alt": 2.987189233619084
+  },
+  "H3": {
+   "2.0_1.3": {
+    "canonical": 1.4167434325773474,
+    "alt": 1.461512817325426
+   },
+   "2.0_1.6": {
+    "canonical": 1.4998562371441093,
+    "alt": 1.5506608683298104
+   },
+   "2.5_1.3": {
+    "canonical": 1.3903359545275862,
+    "alt": 1.4356505911363804
+   },
+   "1.5_1.3": {
+    "canonical": 1.4465621202850354,
+    "alt": 1.4911931998293186
+   },
+   "2.0_1.0": {
+    "canonical": 1.2975523470219776,
+    "alt": 1.3344981238446016
+   },
+   "2.0_0.6": {
+    "canonical": 1.040416969617432,
+    "alt": 1.063278895888722
+   }
+  },
+  "H4": [
+   [
+    "L_Lambda",
+    "2.46 Mpc (headline)",
+    "DECLARED",
+    "band-pass length in the de Sitter limit; window from KiDS (L(0.25) >= ~1.2 Mpc) and the flagship (L(2.5) >= ~50 kpc)"
+   ],
+   [
+    "n",
+    "2.0",
+    "DECLARED",
+    "the vacuum-share power of L; growth needs n >= ~2 (B2); the vacuum gate's analogue is 1 + p"
+   ],
+   [
+    "y_Lambda",
+    "7.78e-08 (y_th(0.25) = 1e-06)",
+    "DECLARED",
+    "the field floor in the de Sitter limit; KiDS caps y_th(0.25) <~ 1e-6-3e-6 (H1)"
+   ],
+   [
+    "p'",
+    "4.0",
+    "DECLARED",
+    "the floor's vacuum-share power; with y_th(0.25) ~ 1e-6 the forest needs p' >~ 3.75, the flagship p' <~ 4.5 (H1)"
+   ],
+   [
+    "m",
+    "4",
+    "DECLARED",
+    "the cut-off's sharpness; health holds for every m (S4); m > 1/2 zeroes the FRW tangent"
+   ],
+   [
+    "xi, alpha_c, c_2, kappa",
+    "unchanged",
+    "as FP0/FP1/FP5",
+    "the core's own constants"
+   ]
+  ],
+  "table": [
+   [
+    "(a) local monotone gate",
+    "W(rho_dyn) x 2 alpha^2 q",
+    "iff W(FRW) = 0",
+    "concave 1.014-1.020 (FP3)",
+    "concave: L* outskirts/KiDS cut",
+    "rho_* (+ p)",
+    "FAILS (FP3 lemma: convex = anti-pressure; concave = chord-bounded, FP5 band survives)"
+   ],
+   [
+    "(b) band-pass (+e1)",
+    "q(|D(W_b - W_B)|^2/alpha^2), B = L(<K>)^2/2",
+    "alone NO (oo x h^2); with e1 yes",
+    "n>=2: <= 1.037",
+    "yes (SPARC, Sun); Gauss edge",
+    "L_Lambda, n (+y_r)",
+    "FAILS forest vs flagship (B4) and KiDS-LG (B6); escapes the lemma (S3)"
+   ],
+   [
+    "(c) khronon-variable gate",
+    "W(K) or W(K - <K>_h)",
+    "-",
+    "-",
+    "K = 3H in galaxies (CV4)",
+    "-",
+    "FAILS: blind (CV4), backreaction too weak (FP3 C7)"
+   ],
+   [
+    "(d) tidal-invariant gate",
+    "W(E:E/X_c) x 2 alpha^2 q",
+    "-",
+    "-",
+    "-",
+    "X_c",
+    "FAILS: (Phi,u) symbol zero wherever W' > 0 (S7)"
+   ],
+   [
+    "(e1) shifted kernel",
+    "q' = nu(y + y_r) - 1",
+    "yes, y_r > 2.6e-18",
+    "y_r<=1e-4: 17-26",
+    "yes at y_r <~ 5e-4",
+    "y_r",
+    "FAILS growth (E1, E3); escapes the lemma (S4)"
+   ],
+   [
+    "(e2/e3) cut-off tangent",
+    "q' = (nu - 1) c(y/y_th(<K>))",
+    "yes, zero tangent",
+    ">= 1.15 (E3 bound)",
+    "only if y_th below KiDS",
+    "y_Lambda, p', m",
+    "FAILS growth alone (E3); escapes the lemma (S4)"
+   ],
+   [
+    "(H) = (b) + (e3)",
+    "q_c(|D(W_b - W_B)|^2/alpha^2; <K>_h)",
+    "yes, zero tangent",
+    "1.013-1.019",
+    "yes (SPARC, Sun, KiDS lead; flagship to z ~ 3.0)",
+    "L_Lambda, n, y_Lambda, p', m",
+    "linchpin MET; FAILS the LG (H3); forest/KiDS proxy/lead grade"
+   ]
+  ]
+ },
+ "ledger": [
+  {
+   "link": "G6a",
+   "what": "the band-pass as an action: C-H's heat branch read at two diffusion times; linear theory C_eff = C (e^{-xi^2k^2/2} - e^{-L^2k^2/2})^2; no mode added",
+   "status": "DERIVED",
+   "basis": "S1 (exact elimination), S2 (Schur, kernel-free det)"
+  },
+  {
+   "link": "G6b",
+   "what": "(b) and (e) escape FP3's lemma: no multiplier on the MOND energy, no W''(dX)^2 term; health = monotone phantom (C_T, C_L >= 0) x h^2",
+   "status": "DERIVED",
+   "basis": "S3, S4; the energy-multiplied cut-off control carries c''"
+  },
+  {
+   "link": "G6c",
+   "what": "FRW linearisation per class: ungated and band-pass-alone ill-posed; (e1) well-posed iff y_r > 2.6e-18; cut-off classes exactly GR + BPS on FRW (G_eff = G/(1 - alpha_c/2), no slip)",
+   "status": "DERIVED",
+   "basis": "S5 on FP2's committed block; S6 order counting"
+  },
+  {
+   "link": "G6d",
+   "what": "class (e) alone (any kernel of the local field and the epoch): linear growth",
+   "status": "FAILS",
+   "basis": "E2-E3: the web's field at z = 0.25 lies in KiDS/SPARC's range; the most generous kernel gives sigma_8 >= 1.15"
+  },
+  {
+   "link": "G6e",
+   "what": "(b) Gauss compensation: every isolated system weighs its baryons beyond ~2L",
+   "status": "DERIVED",
+   "basis": "B1 (the record's L352 edge: the band-passed input vanishes beyond ~L, the output filter keeps the monopole zero)"
+  },
+  {
+   "link": "G6f",
+   "what": "(b) late-time growth: sigma_8 <= 1.05 needs L shrinking as Omega_L^(n/2), n >= 2",
+   "status": "DERIVED",
+   "basis": "B2"
+  },
+  {
+   "link": "G6g",
+   "what": "(b) alone: the forest (z = 2-3) against the 1e11 flagship (z = 2.5)",
+   "status": "FAILS",
+   "basis": "B3-B4: 1/k_F ~ 28 kpc < L_flag ~ 50 kpc -- a scale overlap no L(z) removes"
+  },
+  {
+   "link": "G6h",
+   "what": "(b): the KiDS-LG pincer",
+   "status": "FAILS",
+   "basis": "B5-B6: transformed from the EFE into the truncation scale (the LG needs L(0.25) ~ 0.5 Mpc, KiDS >= ~1.2 Mpc); not resolved"
+  },
+  {
+   "link": "G6i",
+   "what": "the combination (H): band-passed argument + running field floor, both through Omega_L(<K>_h)",
+   "status": "POSTULATED",
+   "basis": "chosen after the survey; five declared constants (H4)"
+  },
+  {
+   "link": "G6j",
+   "what": "(H) meets the linchpin: MOND tangent zero on FRW and E < 2 at every field, sigma_8 within 2%, forest proxy <= 10%, flagship <= 0.05 dex (to z ~ 3.0), SPARC and the Sun untouched, KiDS lead grade",
+   "status": "DERIVED",
+   "basis": "H1-H2c, given G6i and its constants (forest a linear proxy, KiDS lead grade)"
+  },
+  {
+   "link": "G6k",
+   "what": "(H): the Local Group's zero-velocity radius (the pincer)",
+   "status": "FAILS",
+   "basis": "H3: R0 = 1.3-1.5 Mpc at every KiDS-passing cell"
+  },
+  {
+   "link": "G6l",
+   "what": "(H)'s constants L_Lambda, n, y_Lambda, p', m",
+   "status": "POSTULATED",
+   "basis": "declared; windows set by KiDS, the flagship, the forest and sigma_8 (H1)"
+  },
+  {
+   "link": "G6m",
+   "what": "classes (a), (c), (d): local multiplier gates",
+   "status": "FAILS",
+   "basis": "FP3's lemma (C1, C3, C5, C7, T), CV4; (d) S7: symbol zero wherever W' > 0"
+  },
+  {
+   "link": "G6n",
+   "what": "(H) beyond linear order: the sub-L web keeps C_eff ~ 0.6 at k <= 0.5 h/Mpc and ~12 at 20 h/Mpc today (cosmic shear, halo masses); the flux P1D (PM); full KiDS (2-halo, and the isolated lenses' band-passed external field, estimated <~ 2e-4 a0 but not computed); the carrier in galaxies; nonlinear well-posedness of a Mpc-range leafwise filter",
+   "status": "OPEN",
+   "basis": "not computed here (no PM run in this lane)"
+  }
+ ]
+}

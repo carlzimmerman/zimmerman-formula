@@ -1,0 +1,280 @@
+FP6 -- THE LINCHPIN FROM A SURVEY ANGLE: which action-level mechanism can switch the C-H/K core's MOND sector off on its
+own FRW and in the linear web while leaving galaxies and the Solar System alone?  Nonlocal scale gates (b) and kernel
+regularisations (e), each tested against FP3's lemma, and their combination.
+
+WHY.  FP1/FP2/FP5 (committed) all point at one link.  Around the core's own FRW (zero field) the QUMOND tangent C = nu - 1 is
+infinite: FP5 finds U pinned and alpha_eff = 2 + alpha_c (Hadamard ill-posed, w^2/k^2 = -alpha_c c_2/((2+alpha_c)(2+3c_2))),
+and L341 finds sigma_8 = 18-27 in the linear web.  FP3 (committed 9b265b331) proved a lemma for LOCAL gates that multiply the
+MOND energy: exactly zero on FRW and one in galaxies means convex somewhere, and convex is an anti-pressure; stable local
+gates are concave and chord-bounded.  This lane surveys the classes FP3 does not cover and asks, for each, whether it
+escapes that lemma and why:
+  (b) a NONLOCAL scale gate: the kernel reads a band-passed field, built from C-H's own heat branch read out at two
+      diffusion times;
+  (e) a KERNEL REGULARISATION: a finite (or zero) zero-field tangent that keeps the galaxy law at y = 0.01-100;
+  (b)+(e) their combination (the class (f) outcome);
+  (a), (c), (d) are local multiplier gates: FP3's lemma, CV4 and one derived symbol (S7) close them; they are not re-run.
+
+THE CORE (as FP1/FP2/FP5 vary it; alpha = a0/c^2, b = xi^2/2, q'(Z) = nu(sqrt Z) - 1 with nu = P2, nu_mono the alternative):
+  I = c^3/(16 pi G) Int sqrt(-g) { R - 2 Lambda + 2 h^{mn}(D_m U - a_m)(D_n U - a_n) + 2 alpha^2 q(h^{mn} D_m W_b D_n W_b/alpha^2)
+        + Int_0^b dz L (d_z W - Delta_h W) + lambda_0 (W_0 - U) + alpha_c a_m a^m - c_2 (K - <K>_h)^2 } + GHY + S_m[g]
+THE CLASSES (the action terms tested; everything else in the core unchanged):
+  (b)  band-pass:  2 alpha^2 q(h^{mn} D_m(W_b - W_B) D_n(W_b - W_B)/alpha^2) + Int_0^B dz L (d_z W - Delta_h W) + lambda_0 (W_0 - U),
+       B = L(<K>_h)^2/2 > b,  L(<K>_h) = L_Lambda Omega_L(<K>_h)^(n/2),  Omega_L(K) = 3 Lambda/K^2 (the vacuum share, a leaf average).
+       One heat branch, read out at two diffusion times: the kernel sees (S_xi - S_L) U.
+  (e1) shifted kernel:  q_r'(Z) = sqrt(1 + 1/(sqrt Z + y_r)) - 1   (finite zero-field tangent C_0 = sqrt(1 + 1/y_r) - 1).
+  (e2) cut-off tangent:  q_c'(Z) = (nu(sqrt Z) - 1) c(sqrt Z/y_th),  c(x) = x^m/(1 + x^m)   (zero zero-field tangent).
+  (e3) running cut-off:  (e2) with y_th(<K>_h) = y_Lambda Omega_L(<K>_h)^(-p') (a leaf average; the floor rises into the past).
+  (H)  the combination (b) + (e3): the kernel q_c(|D(W_b - W_B)|^2/alpha^2; <K>_h).
+The footings: a0 = 9.3603e-11 (canonical) and 1.1312e-10 m/s^2 (alt), FP0.
+
+==================================================================================================================
+K  CONTROLS: the reused machinery reproduces the record
+==================================================================================================================
+  [PASS] K1 CONTROL: the generalised yardstick reproduces L341's committed sigma_8 -- LCDM 0.8101, the ungated core (nu_mono, canonical, c_2 = 0.0073) 23.314 rms / 17.713 per-mode
+         measured: LCDM 0.8101; ungated rms 23.314, per-mode 17.713
+  [PASS] K2 CONTROL: the KiDS lead-grade machinery (Abel projection as a matrix) reproduces L341 F7's committed chi^2: 118.0 untruncated, 106.8 cut at 1 Mpc, 223.0 cut at 0.5 Mpc (nu_mono, M_b free per bin, full covariance)
+         measured: 118.0 / 106.8 / 223.0
+    [0 s]
+  [PASS] K3 CONTROL: the LG shell model reproduces FP1 E1 / XR4's isolated-MOND zero-velocity radius (nu_RAR, M_b = 1.145e11 Msun, no external field): 1.929 / 2.021 Mpc
+         measured: 1.9290 / 2.0214 Mpc
+  [PASS] K4 CONTROL: the Gaussian-smoothed shell's enclosed mass equals the direct quadrature of its density; the band-passed phantom tends to the isolated one as L -> oo (the core's P2 law, FP1 B1)
+         measured: max |formula - quadrature| = 1.2e-15; max relative phantom change at L = 1e3 Mpc (r < 10 Mpc) = 3.3e-06; unfiltered phantom vs P2 law 1.4e-16 dex
+  [PASS] K5 CONTROL: FP2's committed quadratic block (read from FP2_relativistic_consistency.out) gives FP2's det M, FP5's khronon dispersion w^2 = c_2 (2 - E) k^2/(E (2 + 3 c_2)) with E = alpha_c + 2C/(1+C), the static gain (1+C)/(1 - alpha_c(1+C)/2) and no slip (psi/n = 1) -- for any C_eff: every class below enters the scalar block only through C_eff
+         measured: det == FP2's: True; w^2 == FP5's: True; gain = 2*(-C_eff - 1)/(C_eff*alpha_c + alpha_c - 2); slip = 1
+    [1 s]
+
+==================================================================================================================
+S  THE SECOND VARIATION OF EACH CLASS (sympy)
+==================================================================================================================
+  [PASS] S1 the band-pass as an action: C-H's heat branch W(z) extended to z = B = L^2/2 and read out at z = b and z = B is eliminated exactly -- the multiplier solves its adjoint equation with the kernel's jump at z = b, lambda_0 = -dS_red/dU -- and the reduced action is 2 C k^2 U^2 (e^{-bk^2} - e^{-Bk^2})^2, i.e. C_eff = C (e^{-xi^2 k^2/2} - e^{-L^2 k^2/2})^2
+         measured: bulk equations True; force identity True; C_eff == C (e^-xi^2k^2/2 - e^-L^2k^2/2)^2: True
+         reading:  the band-pass is a linear, leafwise operation on U: in linear theory it only multiplies the tangent by h(k)^2
+  [PASS] S1b THE STATIC FIELD EQUATION, NONLINEAR: on a periodic 10x10 leaf with S_bp = e^{bLap} - e^{BLap} and the P2 kernel, the finite-difference gradient of the discrete action equals S_bp^T div[(nu - 1) grad S_bp u] (and fails without the output filter): the variation band-passes the phantom's output too (FP1 A3's double filter, now a band-pass on both sides)
+         measured: relative |FD - equation with S_bp^T| = 5.1e-09; without the output filter 3.0e-01; field range y = 6.35e-02-1.03e+00
+  [PASS] S2 the discrete heat block (implicit Euler, n steps to b and m more to B): the Schur complement onto U is 4 C k^2 (sigma_n - sigma_{n+m})^2 with sigma_j = (1 + dz k^2)^(-j), and the auxiliary block's determinant does not contain the kernel: the extended branch is second class and adds no mode (FP5 B2's count, N = 3, unchanged)
+         measured: (n,m)=(1, 1): Schur ok True, det kernel-free True; (n,m)=(2, 1): Schur ok True, det kernel-free True; (n,m)=(1, 2): Schur ok True, det kernel-free True; (n,m)=(2, 2): Schur ok True, det kernel-free True
+  [PASS] S3 WHY THE BAND-PASS ESCAPES FP3's LEMMA: its argument is linear in U, so the second variation of 2 alpha^2 q(|grad V|^2) is [2Q' + 4 g^2 Q''] h_k^2 k^2/2 per unit amplitude -- the constitutive block C_L times h_k^2, k^2-order, no W''(dX)^2 term; a multiplier gate W(C_g U'') B carries B W'' C_g^2 k^4/2 (FP3 C1's anti-pressure, k^4 order) -- absent here by construction
+         measured: band-pass second variation == (2Q' + 4g^2Q'') h^2 k^2/2: True; multiplier gate's W'' coefficient == B C_g^2 k^4/2: True
+         reading:  health of (b) is the kernel's own (C_T, C_L >= 0) times h^2 >= 0; the epoch factor L(<K>_h) is a leaf average (FP3 C1 lemma: no local second variation)
+  [PASS] S4 THE KERNEL FAMILIES (class e) escape FP3's lemma: (e1) q_r has a closed form with q_r' = nu_P2(s + y_r) - 1, q_r(0) = 0, a FINITE zero-field tangent C_0 = sqrt(1 + 1/y_r) - 1, and C_L = C_L,P2(y + y_r) - y_r nu_P2' > 0; (e2/e3) the cut-off ON THE TANGENT has C_L = c C_L,P2 + y (nu - 1) c'/y_th -- a sum of non-negative terms with c' only (no c''), so C_T, C_L >= 0 for EVERY m and y_th, and a ZERO zero-field tangent (m > 1/2); CONTROL: the same cut-off multiplying the ENERGY puts c'' into C_L and turns it negative for sharp cut-offs
+         measured: (e1) max |q_r' - (nu(s+y_r) - 1)| = 2.8e-13, q_r(0) = 0e+00, C_0 = (-sqrt(y_r) + sqrt(y_r + 1))/sqrt(y_r), C_L identity True; (e2) C_L identity True, c' = m x^(m-1)/(1+x^m)^2: True, zero-field tangent (m = 4) = 0, min C_L (tangent cut-off, m = 1-32, 3 y_th) = 5.90e-93; energy cut-off: first C_L < 0 at (m, y/y_th) = [(8, 1.086), (16, 1.023)]
+         reading:  reshaping the PHANTOM LAW (the tangent) monotonically is healthy by FP2 C3's criterion whatever its switch shape; FP3's anti-pressure comes from gating the ENERGY on a density-type variable, which (e) never does
+    FRW (zero field) per class -- the tangent C_eff at k with the band-pass factor h(k)^2 = (e^{-xi^2k^2/2} - e^{-L^2k^2/2})^2:
+      ungated core             C_eff = oo            -> E = alpha_c + 2 > 2: Hadamard ill-posed (FP5 C3)
+      (b) band-pass alone      C_eff = oo * h(k)^2    -> E = alpha_c + 2 at every k with h > 0: ill-posed (the band-pass does not cure FRW)
+      (e1) shifted kernel      C_eff = C_0 finite     -> well-posed iff C_0 < (2 - alpha_c)/alpha_c = 2.079e+13, i.e. y_r > 2.31e-27 (alpha_c = 9.62e-14)
+      (e1) shifted kernel      C_eff = C_0 finite     -> well-posed iff C_0 < (2 - alpha_c)/alpha_c = 6.250e+08, i.e. y_r > 2.56e-18 (alpha_c = 3.20e-09)
+      (e2), (e3), (H) cut-off  C_eff = 0 exactly      -> E = alpha_c, w^2/k^2 = c_2*(2 - alpha_c)/(alpha_c*(3*c_2 + 2)) > 0: GR + BPS khronon (FP5 C5's cone)
+      G_eff/G on FRW = (1 + C_eff)/(1 - alpha_c (1 + C_eff)/2) -> -2/(alpha_c - 2) at C_eff = 0 (FP2 D3); slip psi/n = 1 for every C_eff (K5)
+  [PASS] S5 THE FRW LINEARISATION OF EACH CLASS (from FP2's committed block): E(C) runs from alpha_c to alpha_c + 2, so the ungated core and the band-pass ALONE (C_eff = oo x h^2) are Hadamard ill-posed on FRW; the shifted kernel (e1) is well-posed iff y_r > y_r,min(alpha_c) (<= 2.6e-18 over the window); every cut-off class (e2, e3, H) has C_eff = 0 identically on FRW: E = alpha_c, w^2 > 0, G_eff = G/(1 - alpha_c/2), no slip -- FP5's strict form
+         measured: E(oo) = alpha_c + 2; y_r,min = 2.31e-27 / 2.56e-18 (alpha_c ends); w^2/k^2 at C = 0: c_2*(2 - alpha_c)/(alpha_c*(3*c_2 + 2)); G_eff(C=0)/G = -2/(alpha_c - 2); slip 1
+  [PASS] S6 ORDER COUNTING around FRW (Z = O(eps^2)): the core's MOND energy q_P2 ~ (4/3) Z^(3/4) is O(eps^(3/2)) with an infinite tangent (FP3 B1); the shifted kernel is q_r ~ C_0 Z, O(eps^2) with a finite tangent; the cut-off kernel's tangent (m = 4) starts at Z^(7/4)/y_th^4, so its energy starts at Z^(11/4), O(eps^(11/2)): it drops out of the quadratic action and the linear theory on FRW is exactly GR + BPS khronon
+         measured: q_P2/Z^(3/4) -> 4/3; q_r/Z at Z = 1e-28 = 99.005000 vs C_0(y_r = 1e-4) = 99.005000; cut-off tangent/Z^(7/4) -> y_th**(-4)
+  [PASS] S7 CLASS (d), a gate on the lapse's TIDAL invariant X = E:E/X_c (every Hessian invariant but the trace is non-linear, so d^2 X != 0): its second variation B[W'' (dX)^2 + 2 W' d^2X] has, in the directions with E:kk = 0 (they always exist for a traceless E), only the W' part, +B W' (4/3) k^4/X_c > 0 wherever W' > 0; in the C-H chassis' (Phi, u) block that makes det = H_PhiPhi (1+C) k^2/(4 pi G) - k^4/(16 pi^2 G^2) vanish at a real k -- singular throughout every transition, whatever the sign of W'' (strictly worse than FP3's density reading, singular only where W'' > 0)
+         measured: E:kk at the magic direction = 0; H_PhiPhi there = 4*B_g*W1/(3*X_c) (per |k|^4); det zero at k^2 = [3*X_c/(16*pi*B_g*G_N*W1*(C + 1))] (real iff B W' > 0)
+    [3 s]
+
+==================================================================================================================
+E  CLASS (e): KERNEL REGULARISATIONS ALONE
+==================================================================================================================
+    (e1) y_r = 1e-08  : C_0 =     1e+04; galaxy law at y = 0.01-100 off by <= 0.0000 dex; sigma_8/LCDM 16.819-26.095 (both footings, rms/per-mode)
+    (e1) y_r = 1e-06  : C_0 =       999; galaxy law at y = 0.01-100 off by <= 0.0000 dex; sigma_8/LCDM 16.819-26.094 (both footings, rms/per-mode)
+    (e1) y_r = 0.0001 : C_0 =        99; galaxy law at y = 0.01-100 off by <= 0.0021 dex; sigma_8/LCDM 16.811-26.079 (both footings, rms/per-mode)
+    (e1) y_r = 0.001  : C_0 =      30.6; galaxy law at y = 0.01-100 off by <= 0.0205 dex; sigma_8/LCDM 16.733-25.941 (both footings, rms/per-mode)
+    (e1) y_r = 0.01   : C_0 =      9.05; galaxy law at y = 0.01-100 off by <= 0.1484 dex; sigma_8/LCDM 15.985-24.606 (both footings, rms/per-mode)
+    (e1) y_r = 0.1    : C_0 =      2.32; galaxy law at y = 0.01-100 off by <= 0.5002 dex; sigma_8/LCDM 10.651-15.202 (both footings, rms/per-mode)
+    (e1) y_r = 1      : C_0 =     0.414; galaxy law at y = 0.01-100 off by <= 0.8527 dex; sigma_8/LCDM 2.664-2.933 (both footings, rms/per-mode)
+  [PASS] E1 (e1) THE TRADE: every shifted kernel that keeps the galaxy law at y = 0.01-100 within 0.01 dex (y_r <~ 5e-4) leaves sigma_8 ~ 17-27 x LCDM, and the ones that tame growth move the galaxy law by ~1 dex: no member passes both
+         measured: y_r=1e-08: 0.000 dex, s8 16.82-26.09; y_r=1e-06: 0.000 dex, s8 16.82-26.09; y_r=0.0001: 0.002 dex, s8 16.81-26.08; y_r=0.001: 0.020 dex, s8 16.73-25.94; y_r=0.01: 0.148 dex, s8 15.98-24.61; y_r=0.1: 0.500 dex, s8 10.65-15.20; y_r=1: 0.853 dex, s8 2.66-2.93
+    z =   0.00: linear web field y = 3.53e-03 (L341 rms) / 9.30e-03 (variance rms); per-mode at k = 0.05/0.2/1 h/Mpc: 5.3e-03 / 5.0e-03 / 2.3e-03
+    z =   0.25: linear web field y = 4.83e-03 (L341 rms) / 1.27e-02 (variance rms); per-mode at k = 0.05/0.2/1 h/Mpc: 7.2e-03 / 6.8e-03 / 3.2e-03
+    z =   0.50: linear web field y = 6.11e-03 (L341 rms) / 1.61e-02 (variance rms); per-mode at k = 0.05/0.2/1 h/Mpc: 9.1e-03 / 8.6e-03 / 4.0e-03
+    z =   1.00: linear web field y = 8.58e-03 (L341 rms) / 2.26e-02 (variance rms); per-mode at k = 0.05/0.2/1 h/Mpc: 1.3e-02 / 1.2e-02 / 5.6e-03
+    z =   2.50: linear web field y = 1.56e-02 (L341 rms) / 4.10e-02 (variance rms); per-mode at k = 0.05/0.2/1 h/Mpc: 2.3e-02 / 2.2e-02 / 1.0e-02
+    z =  10.00: linear web field y = 4.94e-02 (L341 rms) / 1.30e-01 (variance rms); per-mode at k = 0.05/0.2/1 h/Mpc: 7.4e-02 / 6.9e-02 / 3.2e-02
+    z = 100.00: linear web field y = 4.62e-01 (L341 rms) / 1.22e+00 (variance rms); per-mode at k = 0.05/0.2/1 h/Mpc: 6.9e-01 / 6.5e-01 / 3.0e-01
+    z = 999.00: linear web field y = 4.99e+00 (L341 rms) / 1.31e+01 (variance rms); per-mode at k = 0.05/0.2/1 h/Mpc: 7.4e+00 / 7.0e+00 / 3.3e+00
+  [PASS] E2 THE OVERLAP IN FIELD: at the KiDS epoch (z = 0.25) the linear web's field (L341 rms 4.8e-3, per-mode 3-8e-3, variance rms 1.3e-2 a0) lies INSIDE the range where KiDS's isolated lenses (y ~ 5e-5-1e-2 between 0.03 and 1 Mpc) and SPARC (0.01-100) need the P2 law at the same epoch; over cosmic time the web runs y ~ 4e-3 -> 5 (z = 0 -> 1000)
+         measured: z = 0.25: 4.83e-03 / per-mode 3.2e-03-7.2e-03; z = 999: 4.99
+         reading:  a kernel that is a function of the local field (and of the epoch) cannot tell the web from a lens's outskirts
+    generous kernel: P2 on [5e-05, 100], Newtonian elsewhere and at every z > 0.25: sigma_8/LCDM = can/rms: 1.185, can/permode: 1.153, alt/rms: 1.205, alt/permode: 1.169
+    generous kernel: P2 on [5e-05, 100], Newtonian elsewhere and at every z > 0.3: sigma_8/LCDM = can/rms: 1.256, can/permode: 1.211, alt/rms: 1.284, alt/permode: 1.234
+    generous kernel: P2 on [0.001, 100], Newtonian elsewhere and at every z > 0.25: sigma_8/LCDM = can/rms: 1.185, can/permode: 1.153, alt/rms: 1.205, alt/permode: 1.169
+    generous kernel: P2 on [5e-05, 100], Newtonian elsewhere and at every z > 0.1: sigma_8/LCDM = can/rms: 1.034, can/permode: 1.028, alt/rms: 1.037, alt/permode: 1.031
+  [PASS] E3 CLASS (e) FAILS G-1 (THE OVERLAP): even the MOST GENEROUS local-in-y kernel -- P2 only on the range KiDS and SPARC need, [5e-5, 100], and only at z <= 0.25 (KiDS's median lens epoch; SPARC at z ~ 0), exactly Newtonian at every other field and every earlier epoch, i.e. the smallest boost any kernel of (y, <K>) keeping KiDS and SPARC can have at each (y, z) -- gives sigma_8/LCDM >= 1.15 on both footings and both yardstick modes, above the 1.05 ceiling (1.03 only if MOND waits until z = 0.1, which KiDS's lenses at z ~ 0.25 forbid)
+         measured: min over footings/modes at [5e-5, 100], z <= 0.25: 1.153; z <= 0.3: 1.211; z <= 0.1: 1.028
+         reading:  no regularisation of the kernel in the field alone -- finite tangent, zero tangent, epoch-dependent floor -- can pass linear growth while keeping KiDS and SPARC: the discriminator has to be something other than the local field
+  [PASS] E4 (e) ON FRW: the finite tangent needs only y_r > 2.6e-18 (E < 2 across the alpha_c window) and the cut-off makes it zero (S5): regularisation alone cures FP5's Hadamard band -- the failure of (e) is growth (E3), not well-posedness
+         measured: y_r,min 2.3e-27 (alpha_c = 9.6e-14) .. 2.6e-18 (3.2e-9)
+    [3 s]
+
+==================================================================================================================
+B  CLASS (b): THE BAND-PASS SCALE GATE, L = L_Lambda Omega_L(<K>_h)^(n/2)
+==================================================================================================================
+    the SPARC-range law (y = 0.01-100) at z = 0, max |dev| vs P2: can L(0) = 0.69: 3.5e-02 dex, can L(0) = 1.44: 7.6e-03 dex, can L(0) = 1.78: 4.9e-03 dex, alt L(0) = 0.69: 2.9e-02 dex, alt L(0) = 1.44: 6.2e-03 dex, alt L(0) = 1.78: 4.0e-03 dex
+    L(0) needed for <= 0.01 dex: can (M_b <= 1e12): 1.26 Mpc, can (M_b <= 1e11): 0.40 Mpc, alt (M_b <= 1e12): 1.15 Mpc, alt (M_b <= 1e11): 0.36 Mpc
+  [PASS] B1 (b) STATICS: the band-passed law keeps the SPARC range (y = 0.01-100, M_b = 1e9-1e12) within 0.01 dex once L(0) exceeds a floor (set by the 1e12 outskirts at y = 0.01, r ~ 0.4 Mpc) that sits below the KiDS-allowed L(0) = 1.44 Mpc (n = 2); the Galaxy's field at the Sun passes with gain 1 - O((8 kpc/L)^3) (FP1's Solar-System floors unchanged); and every isolated system is GAUSS-COMPENSATED: the phantom is the divergence of (nu - 1) grad V with V band-passed (so it vanishes beyond ~L) and the output filter (1 - S_L) keeps its monopole zero, so beyond ~2L the system weighs its baryons -- the record's L352 edge, now produced by the action
+         measured: L_SPARC can/1e12: 1.26, can/1e11: 0.40, alt/1e12: 1.15, alt/1e11: 0.36 Mpc; smoothed fraction of the Galactic field at the Sun 4.9e-08; phantom/M_b peak 1e+10: 277, 1e+11: 87, 1e+12: 27; total at 80 Mpc -8.6e-15, -1.6e-15, 1.8e-16
+    sigma_8/LCDM (canonical; rms / per-mode) for the band-pass + (e1, y_r = 1e-6):
+      n = 0: L_Lambda = 0.5: 4.576/3.548; L_Lambda = 1.0: 7.400/5.511; L_Lambda = 2.0: 11.807/8.448; L_Lambda = 3.0: 15.042/10.524; L_Lambda = 5.0: 19.038/13.101
+      n = 1: L_Lambda = 0.5: 1.060/1.014; L_Lambda = 1.0: 1.097/1.063; L_Lambda = 2.0: 1.151/1.273; L_Lambda = 3.0: 1.245/1.636; L_Lambda = 5.0: 1.617/2.581
+      n = 2: L_Lambda = 0.5: 1.001/1.000; L_Lambda = 1.0: 1.004/1.002; L_Lambda = 2.0: 1.011/1.013; L_Lambda = 3.0: 1.020/1.037; L_Lambda = 5.0: 1.045/1.127
+      n = 3: L_Lambda = 0.5: 1.000/1.000; L_Lambda = 1.0: 1.000/1.000; L_Lambda = 2.0: 1.002/1.002; L_Lambda = 3.0: 1.004/1.007; L_Lambda = 5.0: 1.012/1.027
+  [PASS] B2 (b) FIXES LATE-TIME GROWTH ONLY IF IT SHRINKS INTO THE PAST: a fixed scale (n = 0) boosts every sub-L mode at every epoch (sigma_8 3.5-19 x LCDM); with the vacuum share, L = L_Lambda Omega_L^(n/2), n >= 2 keeps sigma_8 <= 1.05 for L_Lambda <= 3 Mpc
+         measured: n = 0 min 4.58; n = 2, L_Lambda <= 3: max 1.0367; n = 3, L_Lambda = 5: 1.0265
+    [4 s]
+  [PASS] B3 THE FLAGSHIP FLOOR: at z = 2.5 the 1e11 Msun flagship (g_bar = 0.1 a0 at r_F) stays within 0.05 dex of P2 only if L(2.5) >= ~50 kpc (both footings); the band-pass's edge then sits beyond ~1.3 r_F
+         measured: L_flag = 52.0 / 47.3 kpc; r_F = 38.6 kpc (1e11), 12.2 kpc (1e10)
+    n = 1.0, L(2.5) = 1.0 x L_flag = 52 kpc (L_Lambda 0.24 Mpc): forest proxy worst |dP1D| can/rms: 4.5e+06, can/permode: 31.3, alt/rms: 1.59e+07, alt/permode: 42.2
+    n = 1.0, L(2.5) = 1.5 x L_flag = 78 kpc (L_Lambda 0.35 Mpc): forest proxy worst |dP1D| can/rms: 5.79e+05, can/permode: 110, alt/rms: 1.57e+06, alt/permode: 151
+    n = 1.5, L(2.5) = 1.0 x L_flag = 52 kpc (L_Lambda 0.50 Mpc): forest proxy worst |dP1D| can/rms: 1.36e+03, can/permode: 3.76, alt/rms: 3.12e+03, alt/permode: 4.74
+    n = 1.5, L(2.5) = 1.5 x L_flag = 78 kpc (L_Lambda 0.75 Mpc): forest proxy worst |dP1D| can/rms: 3e+03, can/permode: 13.2, alt/rms: 6.52e+03, alt/permode: 17.1
+    n = 2.0, L(2.5) = 1.0 x L_flag = 52 kpc (L_Lambda 1.07 Mpc): forest proxy worst |dP1D| can/rms: 29.9, can/permode: 1.4, alt/rms: 50.6, alt/permode: 1.69
+    n = 2.0, L(2.5) = 1.5 x L_flag = 78 kpc (L_Lambda 1.61 Mpc): forest proxy worst |dP1D| can/rms: 94.3, can/permode: 4.34, alt/rms: 160, alt/permode: 5.37
+    n = 2.5, L(2.5) = 1.0 x L_flag = 52 kpc (L_Lambda 2.29 Mpc): forest proxy worst |dP1D| can/rms: 5.35, can/permode: 0.814, alt/rms: 7.7, alt/permode: 0.96
+    n = 2.5, L(2.5) = 1.5 x L_flag = 78 kpc (L_Lambda 3.43 Mpc): forest proxy worst |dP1D| can/rms: 16.3, can/permode: 2.26, alt/rms: 23.9, alt/permode: 2.72
+    n = 3.0, L(2.5) = 1.0 x L_flag = 52 kpc (L_Lambda 4.87 Mpc): forest proxy worst |dP1D| can/rms: 2.22, can/permode: 0.584, alt/rms: 2.92, alt/permode: 0.679
+    n = 3.0, L(2.5) = 1.5 x L_flag = 78 kpc (L_Lambda 7.31 Mpc): forest proxy worst |dP1D| can/rms: 6.1, can/permode: 1.49, alt/rms: 8.25, alt/permode: 1.76
+    n = 4.0, L(2.5) = 1.0 x L_flag = 52 kpc (L_Lambda 22.12 Mpc): forest proxy worst |dP1D| can/rms: 0.972, can/permode: 0.407, alt/rms: 1.18, alt/permode: 0.466
+    n = 4.0, L(2.5) = 1.5 x L_flag = 78 kpc (L_Lambda 33.18 Mpc): forest proxy worst |dP1D| can/rms: 2.26, can/permode: 0.916, alt/rms: 2.81, alt/permode: 1.06
+  [PASS] B4 (b) FAILS THE FOREST WHEREVER IT KEEPS THE FLAGSHIP: at z ~ 2.5 the IGM's filtering length (1/k_F = 28 kpc physical at k_F = 15 h/Mpc) is shorter than the flagship floor L_flag ~ 50 kpc, so every IGM mode between them is MOND-boosted at full strength; for every epoch law tested (n = 1-4) with L(2.5) >= L_flag the linear forest proxy is off by > 10% on both footings and both yardstick modes -- a scale overlap no monotone L(z) removes (and the forest's data bracket z = 2.5)
+         measured: 1/k_F = 28 kpc vs L_flag = 52 kpc; smallest worst-deviation over the scan 0.407
+    [5 s]
+    KiDS lead grade, canonical: isolated P2 chi^2 112.3; d chi^2 at L(0.25) = 0.3: +533.0, 0.4: +394.4, 0.5: +293.7, 0.6: +216.9, 0.75: +130.0, 1.0: +39.1, 1.3: -0.8, 1.6: -8.1, 2.0: -5.5
+    KiDS lead grade, alt: isolated P2 chi^2 105.6; d chi^2 at L(0.25) = 0.3: +529.5, 0.4: +388.6, 0.5: +285.0, 0.6: +207.3, 0.75: +119.5, 1.0: +29.8, 1.3: -6.0, 1.6: -10.5, 2.0: -6.7
+  [PASS] B5 (b) AND KiDS: with no external field in nu's argument (a harmonic field passes the band-pass with gain 0), isolated lenses tolerate the Gauss-compensated edge only if L(0.25) >~ 1.1-1.2 Mpc (d chi^2 <= +9; lead grade, L341 F7 machinery)
+         measured: L_KiDS = canonical: 1.23 Mpc, alt: 1.17 Mpc
+         reading:  assumes the isolated lenses' band-passed external field is negligible: the band-pass removes the > L bulk flow (97% of the linear variance, B7), leaving sub-Mpc structure that the 3-Mpc isolation cut selects against -- an estimate, not computed; the 2.4e-3 a0 sub-Mpc linear rms at a random point is its upper bound
+    [6 s]
+    LG isolated (P2, no band-pass): R0 = 1.925 / 2.018 Mpc
+    n = 1: LG R0 at L(0.25) = 0.4: 0.848/0.861, 0.5: 0.972/0.989, 0.6: 1.078/1.100, 0.75: 1.210/1.238, 1.0: 1.376/1.414, 1.3: 1.515/1.563, 1.6: 1.612/1.668 Mpc (can/alt)
+    n = 2: LG R0 at L(0.25) = 0.4: 0.836/0.850, 0.5: 0.947/0.966, 0.6: 1.040/1.063, 0.75: 1.155/1.184, 1.0: 1.299/1.337, 1.3: 1.421/1.467, 1.6: 1.508/1.560 Mpc (can/alt)
+    n = 3: LG R0 at L(0.25) = 0.4: 0.845/0.860, 0.5: 0.947/0.967, 0.6: 1.031/1.056, 0.75: 1.134/1.164, 1.0: 1.261/1.299, 1.3: 1.368/1.413, 1.6: 1.444/1.495 Mpc (can/alt)
+    n = 4: LG R0 at L(0.25) = 0.4: 0.861/0.878, 0.5: 0.955/0.977, 0.6: 1.033/1.059, 0.75: 1.126/1.157, 1.0: 1.240/1.278, 1.3: 1.335/1.380, 1.6: 1.402/1.453 Mpc (can/alt)
+      n = 1 canonical: R0 = 0.96 at L(0.25) = 0.49 Mpc (KiDS d chi^2 there +303); at KiDS's floor L_KiDS = 1.23 Mpc, R0 = 1.481 Mpc
+      n = 1 alt      : R0 = 0.96 at L(0.25) = 0.48 Mpc (KiDS d chi^2 there +309); at KiDS's floor L_KiDS = 1.17 Mpc, R0 = 1.501 Mpc
+      n = 2 canonical: R0 = 0.96 at L(0.25) = 0.51 Mpc (KiDS d chi^2 there +283); at KiDS's floor L_KiDS = 1.23 Mpc, R0 = 1.391 Mpc
+      n = 2 alt      : R0 = 0.96 at L(0.25) = 0.50 Mpc (KiDS d chi^2 there +290); at KiDS's floor L_KiDS = 1.17 Mpc, R0 = 1.412 Mpc
+      n = 3 canonical: R0 = 0.96 at L(0.25) = 0.52 Mpc (KiDS d chi^2 there +282); at KiDS's floor L_KiDS = 1.23 Mpc, R0 = 1.342 Mpc
+      n = 3 alt      : R0 = 0.96 at L(0.25) = 0.49 Mpc (KiDS d chi^2 there +292); at KiDS's floor L_KiDS = 1.17 Mpc, R0 = 1.365 Mpc
+      n = 4 canonical: R0 = 0.96 at L(0.25) = 0.51 Mpc (KiDS d chi^2 there +289); at KiDS's floor L_KiDS = 1.23 Mpc, R0 = 1.311 Mpc
+      n = 4 alt      : R0 = 0.96 at L(0.25) = 0.48 Mpc (KiDS d chi^2 there +303); at KiDS's floor L_KiDS = 1.17 Mpc, R0 = 1.338 Mpc
+  [PASS] B6 (b) DOES NOT RESOLVE THE KiDS-LG PINCER, IT TRANSFORMS IT: the band-pass removes the external field for the Local Group as for the lenses, so the LG's R0 is set by the truncation alone; for every epoch law (n = 1-4) and both footings R0 = 0.96 needs L(0.25) BELOW the floor KiDS sets (where KiDS's d chi^2 is >> +9), and at KiDS's floor R0 exceeds even the +0.10 dex band edge (1.21 Mpc)
+         measured: n=1/can: L_LG 0.49 vs L_KiDS 1.23, R0(L_KiDS) 1.48; n=1/alt: L_LG 0.48 vs L_KiDS 1.17, R0(L_KiDS) 1.50; n=2/can: L_LG 0.51 vs L_KiDS 1.23, R0(L_KiDS) 1.39; n=2/alt: L_LG 0.50 vs L_KiDS 1.17, R0(L_KiDS) 1.41; n=3/can: L_LG 0.52 vs L_KiDS 1.23, R0(L_KiDS) 1.34; n=3/alt: L_LG 0.49 vs L_KiDS 1.17, R0(L_KiDS) 1.37; n=4/can: L_LG 0.51 vs L_KiDS 1.23, R0(L_KiDS) 1.31; n=4/alt: L_LG 0.48 vs L_KiDS 1.17, R0(L_KiDS) 1.34
+  [PASS] B7 (reported) the linear web field in nu's argument at z = 0.25: all matter 3D rms y = 1.3e-2 without the band-pass; with L(0.25) = 1.3 Mpc what survives is the sub-Mpc linear power (an upper bound: for a lens isolated within 3 Mpc its neighbours' fields are harmonic there and pass with gain ~0)
+         measured: all 1.34e-02 a0 -> band-passed 2.38e-03 a0 (3.2% of the variance)
+    [66 s]
+
+==================================================================================================================
+H  THE COMBINATION (b) + (e3): band-pass for the late web, a running field floor for the early web
+==================================================================================================================
+    the kernel's tangent: (nu_P2(y) - 1) c(y/y_th), c = x^m/(1+x^m), y = |grad (S_xi - S_L) U|/a0,
+    L = L_Lambda Omega_L(<K>_h)^(n/2),  y_th = y_Lambda Omega_L(<K>_h)^(-p')  (cells labelled by L(0.25), y_th(0.25))
+    KiDS (lead grade, canonical) with the floor at z = 0.25: L=1.3/y_th=3e-07: -1.8, L=1.3/y_th=1e-06: -1.0, L=1.3/y_th=3e-06: +3.8, L=1.6/y_th=3e-07: -7.9, L=1.6/y_th=1e-06: -7.0, L=1.6/y_th=3e-06: -1.9, L=2.0/y_th=3e-07: -5.4, L=2.0/y_th=1e-06: -4.5, L=2.0/y_th=3e-06: +2.9
+    81 cells (canonical): in the window (sigma_8 [0.922, 1.05], forest proxy <= 10%, flagship <= 0.05 dex, KiDS <= +9): 43; cells failing each gate: {'sigma_8': 18, 'forest': 21, 'flagship': 9, 'KiDS': 0}
+      n=2.0 L(0.25)=1.3 p'=3.5 y_th(0.25)=1e-06 (y_th = 9.3e-04/0.004/0.016 at z = 2/2.5/3): s8 1.0140/1.0178, forest 0.034/0.1, flagship -0.0048 dex, KiDS -1.0
+      n=2.0 L(0.25)=1.3 p'=4.0 y_th(0.25)=1e-06 (y_th = 2.5e-03/0.014/0.066 at z = 2/2.5/3): s8 1.0134/1.0167, forest 0.00074/0.0055, flagship -0.0025 dex, KiDS -1.0  <- window
+      n=2.0 L(0.25)=1.3 p'=4.5 y_th(0.25)=1e-06 (y_th = 6.6e-03/0.046/0.262 at z = 2/2.5/3): s8 1.0127/1.0157, forest 1.3e-05/0.0001, flagship -0.0155 dex, KiDS -1.0  <- window
+      n=2.0 L(0.25)=1.6 p'=3.5 y_th(0.25)=1e-06 (y_th = 9.3e-04/0.004/0.016 at z = 2/2.5/3): s8 1.0238/1.0307, forest 0.061/0.15, flagship -0.0025 dex, KiDS -7.0
+      n=2.0 L(0.25)=1.6 p'=4.0 y_th(0.25)=1e-06 (y_th = 2.5e-03/0.014/0.066 at z = 2/2.5/3): s8 1.0232/1.0289, forest 0.0016/0.01, flagship -0.0012 dex, KiDS -7.0  <- window
+      n=2.0 L(0.25)=1.6 p'=4.5 y_th(0.25)=1e-06 (y_th = 6.6e-03/0.046/0.262 at z = 2/2.5/3): s8 1.0225/1.0273, forest 2.8e-05/0.00021, flagship -0.0146 dex, KiDS -7.0  <- window
+      n=2.0 L(0.25)=2.0 p'=3.5 y_th(0.25)=1e-06 (y_th = 9.3e-04/0.004/0.016 at z = 2/2.5/3): s8 1.0430/1.0544, forest 0.11/0.21, flagship -0.0012 dex, KiDS -4.5
+      n=2.0 L(0.25)=2.0 p'=4.0 y_th(0.25)=1e-06 (y_th = 2.5e-03/0.014/0.066 at z = 2/2.5/3): s8 1.0431/1.0516, forest 0.0034/0.018, flagship -0.0006 dex, KiDS -4.5
+      n=2.0 L(0.25)=2.0 p'=4.5 y_th(0.25)=1e-06 (y_th = 6.6e-03/0.046/0.262 at z = 2/2.5/3): s8 1.0426/1.0488, forest 5.9e-05/0.00041, flagship -0.0142 dex, KiDS -4.5  <- window
+  [PASS] H1 THE COMBINATION HAS A WINDOW on the linchpin's gates (canonical scan of 81 cells): sigma_8 in [0.922, 1.05], the linear forest proxy within 10% at z = 2 and 3, the 1e11 flagship within 0.05 dex at z = 2.5, and KiDS (lead grade, band-pass and floor together) within +9 -- the band-pass removes the late web, the floor the early web and the IGM; KiDS caps the floor at y_th(0.25) ~ 1e-6, the forest then needs p' ~ 4
+         measured: 43 of 81 cells in the window; e.g. [(1.5, 1.3, 3.5, 3e-06), (1.5, 1.3, 4.0, 1e-06), (1.5, 1.3, 4.0, 3e-06), (1.5, 1.3, 4.5, 3e-07)]
+    [69 s]
+    headline cell: n = 2.0, L(0.25) = 1.3 Mpc (L_Lambda = 2.46 Mpc; L(0) = 1.69 Mpc, L(2.5) = 119 kpc), y_th(0.25) = 1e-06, p' = 4.0, m = 4 (y_th = 3.51e-07 / 3.67e-05 / 2.48e-03 / 0.014 / 0.066 at z = 0/1/2/2.5/3)
+      sigma_8/LCDM: can/rms: 1.0134, can/permode: 1.0167, can/mono_rms: 1.0140, alt/rms: 1.0157, alt/permode: 1.0191, alt/mono_rms: 1.0165
+      forest proxy worst |dP1D| (z = 2, 3; k_F = 10/15/20 h/Mpc): can/rms/10: 0.000641, can/rms/15: 0.00074, can/rms/20: 0.000796, can/permode/10: 0.00527, can/permode/15: 0.00554, can/permode/20: 0.00551, alt/rms/10: 0.000334, alt/rms/15: 0.000386, alt/rms/20: 0.000415, alt/permode/10: 0.00292, alt/permode/15: 0.00306, alt/permode/20: 0.00304
+      flagship (g_bar = 0.1 a0, z = 2.5): can 1e+10: -0.0002 dex, can 1e+11: -0.0025 dex, alt 1e+10: -0.0001 dex, alt 1e+11: -0.0018 dex
+      SPARC range (z = 0, M_b = 1e9-1e12, y = 0.01-100): max |dev| can: 5.4e-03 dex, alt: 4.5e-03 dex
+      KiDS lead grade d chi^2 (band-pass + floor at z = 0.25): can: -1.0, alt: -3.2
+      sigma_8 (canonical, rms) at ODE rtol 1e-6 / 1e-8: 1.01337 / 1.01337
+      forest proxy, 96 vs 144 k-points (canonical): rms: 7.40e-04 / 7.33e-04, permode: 5.54e-03 / 5.47e-03
+      linear web today: C_eff <= 6.34e-01 on the sigma_8 modes (0.05-0.5 h/Mpc), <= 11.94 on any mode to 20 h/Mpc (G_eff = G (1 + C_eff)/(1 - alpha_c(1 + C_eff)/2), no slip)
+  [PASS] H2 THE HEADLINE CELL passes every linchpin gate on both footings: sigma_8 in [0.922, 1.05] (rms, per-mode, and nu_mono), the forest proxy within 10% at k_F = 10, 15, 20 h/Mpc, the 1e10 and 1e11 flagships within 0.05 dex, the SPARC-range law within 0.01 dex, KiDS (lead grade) within +9 -- with the MOND tangent exactly zero on FRW (S5) and a non-negative second variation (S3, S4)
+         measured: sigma_8 1.0134-1.0191; forest <= 0.00554; flagship -0.002..-0.000 dex; SPARC 5.4e-03 dex; KiDS -3.2..-1.0
+         reading:  the LINCHPIN as posed (MOND tangent zero on FRW, small and finite in the linear web, galaxies and the Solar System untouched) is met by one action term -- at five DECLARED constants (H4), with the forest and KiDS at proxy/lead grade
+    [69 s]
+  [PASS] H2b THE WHOLE ILL-POSED BAND IS GONE: with the floor, C_eff <= max_y max(C_T, C_L) ~ y_th^(-1/2) at every field value, largest in the de Sitter limit (y_th -> y_Lambda); that stays far below (2 - alpha_c)/alpha_c, so E < 2 (the khronon healthy, FP5 C1) at every field and epoch -- the ungated core's band y < y* (FP5 C4) has no counterpart
+         measured: max C_eff: z=0: 2.11e+03, de Sitter: 4.48e+03; E_max: z=0/alpha_c=9.6e-14: 2 - 9.48e-04, z=0/alpha_c=3.2e-09: 2 - 9.48e-04, de Sitter/alpha_c=9.6e-14: 2 - 4.46e-04, de Sitter/alpha_c=3.2e-09: 2 - 4.46e-04
+  [PASS] H2c (reported) the headline cell's 1e11 flagship (g_bar = 0.1 a0) stays within 0.05 dex of P2 up to z_max; beyond it the running floor switches MOND off (a prediction, like the vacuum gate's z_on; FP3's D1 reached 4.1, DE2's p = 1 gate 4.2-5.0)
+         measured: z_max = 2.98 (canonical) / 2.99 (alt)
+    n = 2.0, L(0.25) = 1.3 Mpc + floor: LG R0 = 1.417 / 1.462 Mpc
+    n = 2.0, L(0.25) = 1.6 Mpc + floor: LG R0 = 1.500 / 1.551 Mpc
+    n = 2.5, L(0.25) = 1.3 Mpc + floor: LG R0 = 1.390 / 1.436 Mpc
+    n = 1.5, L(0.25) = 1.3 Mpc + floor: LG R0 = 1.447 / 1.491 Mpc
+    n = 2.0, L(0.25) = 1.0 Mpc + floor: LG R0 = 1.298 / 1.334 Mpc
+    n = 2.0, L(0.25) = 0.6 Mpc + floor: LG R0 = 1.040 / 1.063 Mpc
+  [PASS] H3 THE COMBINATION FAILS THE LOCAL GROUP (the pincer, verified at every KiDS-passing cell tested, both footings): with the EFE removed by the band-pass and the floor below 3e-4 at z < 1, the LG keeps its phantom to ~L and R0 = 1.3-1.5 Mpc against 0.96 +- 0.03 (and the +0.10 dex edge 1.21); R0 = 0.96 returns only at L(0.25) ~ 0.6 Mpc, which KiDS excludes
+         measured: n=2.0 L25=1.3: 1.42/1.46; n=2.0 L25=1.6: 1.50/1.55; n=2.5 L25=1.3: 1.39/1.44; n=1.5 L25=1.3: 1.45/1.49; n=2.0 L25=1.0: 1.30/1.33; n=2.0 L25=0.6: 1.04/1.06
+    L_Lambda               2.46 Mpc (headline)                DECLARED   band-pass length in the de Sitter limit; window from KiDS (L(0.25) >= ~1.2 Mpc) and the flagship (L(2.5) >= ~50 kpc)
+    n                      2.0                                DECLARED   the vacuum-share power of L; growth needs n >= ~2 (B2); the vacuum gate's analogue is 1 + p
+    y_Lambda               7.78e-08 (y_th(0.25) = 1e-06)      DECLARED   the field floor in the de Sitter limit; KiDS caps y_th(0.25) <~ 1e-6-3e-6 (H1)
+    p'                     4.0                                DECLARED   the floor's vacuum-share power; with y_th(0.25) ~ 1e-6 the forest needs p' >~ 3.75, the flagship p' <~ 4.5 (H1)
+    m                      4                                  DECLARED   the cut-off's sharpness; health holds for every m (S4); m > 1/2 zeroes the FRW tangent
+    xi, alpha_c, c_2, kappa unchanged                          as FP0/FP1/FP5 the core's own constants
+  [PASS] H4 (reported) THE PRICE: the combination adds five constants, every one DECLARED (none derived): L_Lambda, n (the band-pass), y_Lambda, p', m (the floor); the epoch enters only through Omega_L(<K>_h), a leaf average (no local second variation)
+         measured: 5 new constants, 0 derived
+    [83 s]
+
+==================================================================================================================
+T  THE CLASS TABLE
+==================================================================================================================
+    class                      | FRW well-posed?                | sigma_8 / LCDM           | galaxies intact?                 | new constants              | status
+    (a) local monotone gate    | iff W(FRW) = 0                 | concave 1.014-1.020 (FP3) | concave: L* outskirts/KiDS cut   | rho_* (+ p)                | FAILS (FP3 lemma: convex = anti-pressure; concave = chord-bounded, FP5 band survives)
+                                 action: W(rho_dyn) x 2 alpha^2 q
+    (b) band-pass (+e1)        | alone NO (oo x h^2); with e1 yes | n>=2: <= 1.037           | yes (SPARC, Sun); Gauss edge     | L_Lambda, n (+y_r)         | FAILS forest vs flagship (B4) and KiDS-LG (B6); escapes the lemma (S3)
+                                 action: q(|D(W_b - W_B)|^2/alpha^2), B = L(<K>)^2/2
+    (c) khronon-variable gate  | -                              | -                        | K = 3H in galaxies (CV4)         | -                          | FAILS: blind (CV4), backreaction too weak (FP3 C7)
+                                 action: W(K) or W(K - <K>_h)
+    (d) tidal-invariant gate   | -                              | -                        | -                                | X_c                        | FAILS: (Phi,u) symbol zero wherever W' > 0 (S7)
+                                 action: W(E:E/X_c) x 2 alpha^2 q
+    (e1) shifted kernel        | yes, y_r > 2.6e-18             | y_r<=1e-4: 17-26         | yes at y_r <~ 5e-4               | y_r                        | FAILS growth (E1, E3); escapes the lemma (S4)
+                                 action: q' = nu(y + y_r) - 1
+    (e2/e3) cut-off tangent    | yes, zero tangent              | >= 1.15 (E3 bound)       | only if y_th below KiDS          | y_Lambda, p', m            | FAILS growth alone (E3); escapes the lemma (S4)
+                                 action: q' = (nu - 1) c(y/y_th(<K>))
+    (H) = (b) + (e3)           | yes, zero tangent              | 1.013-1.019              | yes (SPARC, Sun, KiDS lead; flagship to z ~ 3.0) | L_Lambda, n, y_Lambda, p', m | linchpin MET; FAILS the LG (H3); forest/KiDS proxy/lead grade
+                                 action: q_c(|D(W_b - W_B)|^2/alpha^2; <K>_h)
+
+==================================================================================================================
+W  THE LEDGER
+==================================================================================================================
+    G6a   DERIVED     the band-pass as an action: C-H's heat branch read at two diffusion times; linear theory C_eff = C (e^{-xi^2k^2/2} - e^{-L^2k^2/2})^2; no mode added  --  S1 (exact elimination), S2 (Schur, kernel-free det)
+    G6b   DERIVED     (b) and (e) escape FP3's lemma: no multiplier on the MOND energy, no W''(dX)^2 term; health = monotone phantom (C_T, C_L >= 0) x h^2  --  S3, S4; the energy-multiplied cut-off control carries c''
+    G6c   DERIVED     FRW linearisation per class: ungated and band-pass-alone ill-posed; (e1) well-posed iff y_r > 2.6e-18; cut-off classes exactly GR + BPS on FRW (G_eff = G/(1 - alpha_c/2), no slip)  --  S5 on FP2's committed block; S6 order counting
+    G6d   FAILS       class (e) alone (any kernel of the local field and the epoch): linear growth  --  E2-E3: the web's field at z = 0.25 lies in KiDS/SPARC's range; the most generous kernel gives sigma_8 >= 1.15
+    G6e   DERIVED     (b) Gauss compensation: every isolated system weighs its baryons beyond ~2L  --  B1 (the record's L352 edge: the band-passed input vanishes beyond ~L, the output filter keeps the monopole zero)
+    G6f   DERIVED     (b) late-time growth: sigma_8 <= 1.05 needs L shrinking as Omega_L^(n/2), n >= 2  --  B2
+    G6g   FAILS       (b) alone: the forest (z = 2-3) against the 1e11 flagship (z = 2.5)  --  B3-B4: 1/k_F ~ 28 kpc < L_flag ~ 50 kpc -- a scale overlap no L(z) removes
+    G6h   FAILS       (b): the KiDS-LG pincer  --  B5-B6: transformed from the EFE into the truncation scale (the LG needs L(0.25) ~ 0.5 Mpc, KiDS >= ~1.2 Mpc); not resolved
+    G6i   POSTULATED  the combination (H): band-passed argument + running field floor, both through Omega_L(<K>_h)  --  chosen after the survey; five declared constants (H4)
+    G6j   DERIVED     (H) meets the linchpin: MOND tangent zero on FRW and E < 2 at every field, sigma_8 within 2%, forest proxy <= 10%, flagship <= 0.05 dex (to z ~ 3.0), SPARC and the Sun untouched, KiDS lead grade  --  H1-H2c, given G6i and its constants (forest a linear proxy, KiDS lead grade)
+    G6k   FAILS       (H): the Local Group's zero-velocity radius (the pincer)  --  H3: R0 = 1.3-1.5 Mpc at every KiDS-passing cell
+    G6l   POSTULATED  (H)'s constants L_Lambda, n, y_Lambda, p', m  --  declared; windows set by KiDS, the flagship, the forest and sigma_8 (H1)
+    G6m   FAILS       classes (a), (c), (d): local multiplier gates  --  FP3's lemma (C1, C3, C5, C7, T), CV4; (d) S7: symbol zero wherever W' > 0
+    G6n   OPEN        (H) beyond linear order: the sub-L web keeps C_eff ~ 0.6 at k <= 0.5 h/Mpc and ~12 at 20 h/Mpc today (cosmic shear, halo masses); the flux P1D (PM); full KiDS (2-halo, and the isolated lenses' band-passed external field, estimated <~ 2e-4 a0 but not computed); the carrier in galaxies; nonlinear well-posedness of a Mpc-range leafwise filter  --  not computed here (no PM run in this lane)
+  [PASS] W (reported) the ledger
+         measured: 14 links
+  [FAIL] G1 (reported) G-1 passed WHOLE by a class in this survey (linchpin gates AND the Local Group)
+         measured: no: (H) meets the linchpin's gates but fails the LG; (b) and (e) alone fail growth or the forest
+
+==================================================================================================================
+VERDICT
+==================================================================================================================
+  (e) Kernel regularisations escape FP3's lemma -- reshaping the phantom law monotonically is healthy for every switch shape
+      (C_L = c C_L,P2 + y (nu - 1) c'/y_th >= 0) -- and they cure FP5's Hadamard band (finite or zero tangent on FRW).  Alone they
+      FAIL growth: the linear web's field at z = 0.25 sits inside the range KiDS and SPARC need, so even the most generous local
+      kernel gives sigma_8 >= 1.15 x LCDM.
+  (b) A band-pass built from C-H's own heat branch (read at two diffusion times) also escapes the lemma (it is linear in U), and
+      the variation makes every isolated system Gauss-compensated.  Shrinking with the vacuum share (n >= 2) it fixes late growth.
+      Alone it is ill-posed on FRW, and it FAILS the forest against the flagship (IGM filtering length ~28 kpc < flagship floor
+      ~52 kpc at z ~ 2.5) and does not resolve the KiDS-LG pincer: it transforms it into a truncation scale.
+  (H) The combination -- band-pass for the late web, a running field floor y_th = y_Lambda Omega_L^(-p') for the early web -- meets
+      the linchpin as posed: MOND tangent zero on FRW, sigma_8 1.013-1.019, forest proxy <= 0.0055, flagship within 0.002 dex,
+      SPARC and the Sun untouched, KiDS (lead grade) within +9.  It FAILS the Local Group (R0 = 1.3-1.5 Mpc): the pincer survives.
+      Five DECLARED constants; nothing here is derived from the framework's first principles.  Not 'closed'.  Time 83 s.
+
+  31/32 checks pass; load-bearing failures: 0; wrote FP6_gate_survey_results.json
+rc=0
