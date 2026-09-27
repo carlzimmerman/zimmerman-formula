@@ -1,0 +1,122 @@
+{
+ "lane": "FP0",
+ "mutate": true,
+ "checks": {
+  "C1 CONTROL: G^a c^b rho^d = acceleration has the single solution (1/2, 1, 1/2); the exponent matrix has |det| = 2": {
+   "ok": true,
+   "measured": "solution [{a: 1/2, b: 1, d: 1/2}]; det -2",
+   "load_bearing": true
+  },
+  "C2 a0 = 9.36e-11 (rho_Lambda) / 1.13e-10 (rho_total); Z = c H_Lambda / a0 = sqrt(32 pi/3) and kappa Z = sqrt(8 pi/3) exactly": {
+   "ok": true,
+   "measured": "a0 9.3603e-11 / 1.1312e-10 m/s^2; Z 5.7888100365 vs sqrt(32pi/3) 5.7888100365; kappa Z identity True",
+   "load_bearing": true
+  },
+  "R1 DERIVED from P2: g -> sqrt(a0 g_bar) deep; v^4 = G M a0 exactly there; s(y) = (2y+1)/(2(y+1)); s(y) + s(1/y) = 3/2": {
+   "ok": false,
+   "measured": "deep-limit ratio 1; v^4 = G*M*a_0; slope closed form False; max |sum rule - 3/2| over 5 y = 8.2e-02",
+   "load_bearing": true
+  },
+  "R2 CONSTRAINT: g_obs - g_bar -> a0/2 as g_bar -> infinity; at the Sun that is far above the Earth ephemeris bound, so the root action's kernel must reach Newton faster than 1/(2y) (P2 is an infrared law)": {
+   "ok": false,
+   "measured": "tail 0 a0 = 0.000e+00 m/s^2; Earth bound 3.66e-14 m/s^2 (from real_research/reviews/mi_alpha1_solar_system_2026.out); ratio 0x",
+   "load_bearing": true
+  },
+  "R3 DERIVED from P1 + P3: a0(z)/a0(0) = 1 at every z (canonical); the rho_total rival gives E(z) -- the flat law is a distinguishing prediction, decided at z >~ 2 (the pre-registered test)": {
+   "ok": true,
+   "measured": "canonical 1.000 at z = 0.5, 1, 2.5, 5, 1100; rival 1.322, 1.791, 3.769, 8.294 (+0.576 dex at z = 2.5)",
+   "load_bearing": true
+  },
+  "W (reported) the ledger of the chain's top": {
+   "ok": true,
+   "measured": "10 links",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "exponents": {
+   "a": "1/2",
+   "b": "1",
+   "d": "1/2"
+  },
+  "a0_canonical": 9.360324825027975e-11,
+  "a0_rho_total": 1.1312035414413022e-10,
+  "Z": 5.788810036466142,
+  "rho_Lambda": 5.8424459306123106e-27,
+  "H_Lambda": 1.807421796171574e-18,
+  "sum_rule_max_dev": 0.08197670686932645,
+  "tail_over_a0": "0",
+  "sunward_anomaly": 0.0,
+  "earth_bound": 3.66e-14,
+  "over_bound": 0.0,
+  "a0z_rival_E": {
+   "0.5": 1.3224361988390971,
+   "1.0": 1.7908377927662795,
+   "2.5": 3.768711649887797,
+   "5.0": 8.293943573475769,
+   "1100.0": 20513.651076539252
+  }
+ },
+ "ledger": [
+  {
+   "link": "L0a",
+   "what": "the FORM a0 ~ c sqrt(G rho)",
+   "status": "DERIVED",
+   "basis": "C1: unique from (G, c, rho), |det| = 2"
+  },
+  {
+   "link": "L0b",
+   "what": "which density: rho_Lambda",
+   "status": "POSTULATED",
+   "basis": "physics input; the same form on rho_m or rho_local spans 609x"
+  },
+  {
+   "link": "L0c",
+   "what": "kappa = 1/2 (equivalently Z = 5.7888)",
+   "status": "FITTED",
+   "basis": "not derived by any route tried; the data prefer kappa ~ 0.56-0.64"
+  },
+  {
+   "link": "L1a",
+   "what": "the galaxy law g_obs = sqrt(g_bar^2 + g_bar a0)",
+   "status": "POSTULATED",
+   "basis": "form = Milgrom 1999 Eq. 9; the coefficient is the framework's"
+  },
+  {
+   "link": "L1b",
+   "what": "deep limit, BTFR v^4 = G M a0, slope s(y), sum rule 3/2",
+   "status": "DERIVED",
+   "basis": "R1, from L1a"
+  },
+  {
+   "link": "L1c",
+   "what": "the a0/2 tail vs the planets",
+   "status": "CONSTRAINT",
+   "basis": "R2: the action's kernel must reach Newton faster (alpha >~ 1.5)"
+  },
+  {
+   "link": "L2a",
+   "what": "a0(z) flat (rho_Lambda, w = -1)",
+   "status": "DERIVED",
+   "basis": "R3, from L0 + P3"
+  },
+  {
+   "link": "L2b",
+   "what": "a0 as a field (a0^2 = kappa^2 G (-p_Q))",
+   "status": "POSTULATED",
+   "basis": "a chosen promotion; the action has to produce it"
+  },
+  {
+   "link": "L3",
+   "what": "the covariant action (root)",
+   "status": "OPEN",
+   "basis": "next lane: chosen after the candidate map; everything below is varied out of it"
+  },
+  {
+   "link": "L4-L10",
+   "what": "static limit/kernel, lensing, PPN, c_T = 1, stability, cosmology, clusters",
+   "status": "OPEN",
+   "basis": "each derived from L3 or it fails"
+  }
+ ]
+}

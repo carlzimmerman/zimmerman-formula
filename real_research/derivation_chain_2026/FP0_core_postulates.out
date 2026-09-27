@@ -1,0 +1,68 @@
+FP0 -- THE TOP OF THE DERIVATION CHAIN: the framework's postulates and what follows from them by algebra alone.
+
+WHY.  The derivation chain is built from the framework's own first principles: one action at the root, every observable
+varied out of it, nothing posited by hand below the postulates.  Before the action, the chain has a top that needs no
+action at all: the acceleration postulate, the galaxy law, and the a0(z) reading.  This lane fixes that top, machine-checks
+every consequence that is pure algebra, and labels each link DERIVED / POSTULATED / FITTED / CONSTRAINT, so the first link
+that needs the action is explicit.
+
+THE POSTULATES (the inputs; nothing below them is added by hand):
+  P1  the acceleration scale is set by the vacuum:  a0 = kappa c sqrt(G rho_Lambda)  (kappa = 1/2; rho_Lambda = Omega_L rho_c).
+  P2  the galaxy law:  g_obs = sqrt(g_bar^2 + g_bar a0)  (the framework's interpolation; its form is Milgrom 1999, Eq. 9).
+  P3  the canonical reading of P1 in time: rho_Lambda with w = -1, so a0 does not follow H(z).
+
+==============================================================================================================
+C1  CONTROL: the form of P1 is forced by (G, c, rho)
+==============================================================================================================
+  [PASS] C1 CONTROL: G^a c^b rho^d = acceleration has the single solution (1/2, 1, 1/2); the exponent matrix has |det| = 2
+         measured: solution [{a: 1/2, b: 1, d: 1/2}]; det -2
+
+==============================================================================================================
+C2  P1 in numbers, both footings; Z is kappa
+==============================================================================================================
+  [PASS] C2 a0 = 9.36e-11 (rho_Lambda) / 1.13e-10 (rho_total); Z = c H_Lambda / a0 = sqrt(32 pi/3) and kappa Z = sqrt(8 pi/3) exactly
+         measured: a0 9.3603e-11 / 1.1312e-10 m/s^2; Z 5.7888100365 vs sqrt(32pi/3) 5.7888100365; kappa Z identity True
+
+==============================================================================================================
+R1  P2's consequences: deep limit, BTFR, the landmark slope and its sum rule
+==============================================================================================================
+  [PASS] R1 DERIVED from P2: g -> sqrt(a0 g_bar) deep; v^4 = G M a0 exactly there; s(y) = (2y+1)/(2(y+1)); s(y) + s(1/y) = 3/2
+         measured: deep-limit ratio 1; v^4 = G*M*a_0; slope closed form True; max |sum rule - 3/2| over 5 y = 0.0e+00
+
+==============================================================================================================
+R2  P2's high-acceleration tail: a derived constraint on the root action
+==============================================================================================================
+  [PASS] R2 CONSTRAINT: g_obs - g_bar -> a0/2 as g_bar -> infinity; at the Sun that is far above the Earth ephemeris bound, so the root action's kernel must reach Newton faster than 1/(2y) (P2 is an infrared law)
+         measured: tail 1/2 a0 = 4.680e-11 m/s^2; Earth bound 3.66e-14 m/s^2 (from real_research/reviews/mi_alpha1_solar_system_2026.out); ratio 1279x
+
+==============================================================================================================
+R3  P1 + P3: a0(z) is flat on the canonical reading; the rival follows H(z)
+==============================================================================================================
+  [PASS] R3 DERIVED from P1 + P3: a0(z)/a0(0) = 1 at every z (canonical); the rho_total rival gives E(z) -- the flat law is a distinguishing prediction, decided at z >~ 2 (the pre-registered test)
+         measured: canonical 1.000 at z = 0.5, 1, 2.5, 5, 1100; rival 1.322, 1.791, 3.769, 8.294 (+0.576 dex at z = 2.5)
+
+==============================================================================================================
+W  THE LEDGER: what this top of the chain derives, and where the action has to take over
+==============================================================================================================
+    L0a     DERIVED     the FORM a0 ~ c sqrt(G rho)  --  C1: unique from (G, c, rho), |det| = 2
+    L0b     POSTULATED  which density: rho_Lambda  --  physics input; the same form on rho_m or rho_local spans 609x
+    L0c     FITTED      kappa = 1/2 (equivalently Z = 5.7888)  --  not derived by any route tried; the data prefer kappa ~ 0.56-0.64
+    L1a     POSTULATED  the galaxy law g_obs = sqrt(g_bar^2 + g_bar a0)  --  form = Milgrom 1999 Eq. 9; the coefficient is the framework's
+    L1b     DERIVED     deep limit, BTFR v^4 = G M a0, slope s(y), sum rule 3/2  --  R1, from L1a
+    L1c     CONSTRAINT  the a0/2 tail vs the planets  --  R2: the action's kernel must reach Newton faster (alpha >~ 1.5)
+    L2a     DERIVED     a0(z) flat (rho_Lambda, w = -1)  --  R3, from L0 + P3
+    L2b     POSTULATED  a0 as a field (a0^2 = kappa^2 G (-p_Q))  --  a chosen promotion; the action has to produce it
+    L3      OPEN        the covariant action (root)  --  next lane: chosen after the candidate map; everything below is varied out of it
+    L4-L10  OPEN        static limit/kernel, lensing, PPN, c_T = 1, stability, cosmology, clusters  --  each derived from L3 or it fails
+  [PASS] W (reported) the ledger of the chain's top
+         measured: 10 links
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  The top of the chain is fixed: P1's form is forced, its density and coefficient are inputs; P2's deep-regime laws follow
+  exactly; P2 must be an infrared law (its a0/2 tail is 1279x the Earth bound); a0(z) is flat on the canonical
+  reading.  Everything from the static limit down is owed by the root action (L3).
+
+  6/6 checks pass; load-bearing failures: 0; wrote FP0_core_postulates_results.json
+rc=0
