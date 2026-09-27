@@ -18,7 +18,9 @@ CHECKS
   C1 CONTROL: a near-sharp gate (w = 1e-3) reproduces MS3's committed door numbers at the linear cell with L388's
      retention (no cap 2.72/3.18; cap 1.75 Mpc 1.047/1.121) within 1%.
   S1 PRE-DECLARED (written before the run): with the 1.75 Mpc cap, worst R <= 1.2 on both footings at w = 0.25 and 0.5
-     -- the smooth gate keeps MS3's pass.
+     -- the smooth gate keeps MS3's pass.  Scored IN DE9's window (fix aa5705194): the MOND-sector reading at p = 1 allows
+     x_c0 in [2.0, 3.35] at w = 0.25 and [3.0, 3.09] at w = 0.5, so the cells are (w, x_c0) = (0.25, 2.5) and (0.5, 3.0);
+     w = 0.5 at x_c0 = 2.5 (outside the window) is reported beside them.
   S2 (reported) without the cap, worst R at w = 0.25 and 0.5.
   S3 (reported) the largest passing cap at each width (1.5, 1.75, 2.0 Mpc).
 MUTATE=1 removes the cap: S1 must FAIL (rc = 1).
@@ -117,25 +119,30 @@ check("C1 CONTROL: w = 1e-3 reproduces MS3's committed door numbers (L388 retent
       f"max relative deviation {dev:.2e}", dev < 0.01, load_bearing=False)
 
 # ============================================================================================ S1-S3
-banner("S1-S3  THE SMOOTH GATE AT DE9's WIDTHS (p = 1, x_c0 = 2.5, L388 retention)")
+banner("S1-S3  THE SMOOTH GATE IN DE9's WINDOW (p = 1, L388 retention)")
+CELLS = [(0.25, 2.5, True), (0.5, 3.0, True), (0.5, 2.5, False)]          # (w, x_c0, inside DE9's window)
 TAB = {}
-for w in (0.25, 0.5):
+for w, x0, inside in CELLS:
+    xc = x0 * E2
     for rc_ in ([math.inf] if MUTATE else [math.inf, 2.0, 1.75, 1.5]):
-        TAB[(w, rc_)] = {f: R_smooth(XLIN, A0[f], rc_, w) for f in A0}
-        P(f"    w = {w:4.2f}, cap {rc_:5.2f} Mpc: worst R canonical {TAB[(w, rc_)]['canonical']:.3f}, alt {TAB[(w, rc_)]['alt']:.3f}")
-OUT["numbers"]["table"] = {f"{w}/{rc_}": v_ for (w, rc_), v_ in TAB.items()}
+        TAB[(w, x0, rc_)] = {f: R_smooth(xc, A0[f], rc_, w) for f in A0}
+        P(f"    w = {w:4.2f}, x_c0 = {x0:3.1f}{'' if inside else ' (outside DE9 window)'}, cap {rc_:5.2f} Mpc: worst R canonical "
+          f"{TAB[(w, x0, rc_)]['canonical']:.3f}, alt {TAB[(w, x0, rc_)]['alt']:.3f}")
+OUT["numbers"]["table"] = {f"{w}/{x0}/{rc_}": v_ for (w, x0, rc_), v_ in TAB.items()}
 cap_used = math.inf if MUTATE else 1.75
-s1 = all(TAB[(w, cap_used)][f] <= 1.2 for w in (0.25, 0.5) for f in A0)
+IN = [(w, x0) for w, x0, inside in CELLS if inside]
+s1 = all(TAB[(w, x0, cap_used)][f] <= 1.2 for w, x0 in IN for f in A0)
 check("S1 PRE-DECLARED: with the 1.75 Mpc cap the smooth MOND-sector gate keeps cosmic shear within 20% of LCDM (worst "
-      "R <= 1.2) on both footings at w = 0.25 and 0.5",
-      "; ".join(f"w {w}: {TAB[(w, cap_used)]['canonical']:.3f}/{TAB[(w, cap_used)]['alt']:.3f}" for w in (0.25, 0.5)), s1)
+      "R <= 1.2) on both footings at DE9's in-window cells (w, x_c0) = (0.25, 2.5) and (0.5, 3.0)",
+      "; ".join(f"w {w}, x_c0 {x0}: {TAB[(w, x0, cap_used)]['canonical']:.3f}/{TAB[(w, x0, cap_used)]['alt']:.3f}" for w, x0 in IN), s1)
 if not MUTATE:
-    nocap = {w: TAB[(w, math.inf)] for w in (0.25, 0.5)}
     check("S2 (reported) without the cap the smooth gate fails as the sharp one does",
-          "; ".join(f"w {w}: {v_['canonical']:.2f}/{v_['alt']:.2f}" for w, v_ in nocap.items()), True, load_bearing=False)
-    best = {w: max([rc_ for rc_ in (2.0, 1.75, 1.5) if all(TAB[(w, rc_)][f] <= 1.2 for f in A0)], default=None) for w in (0.25, 0.5)}
+          "; ".join(f"w {w}, x_c0 {x0}: {TAB[(w, x0, math.inf)]['canonical']:.2f}/{TAB[(w, x0, math.inf)]['alt']:.2f}" for w, x0, _ in CELLS),
+          True, load_bearing=False)
+    best = {f"{w}/{x0}": max([rc_ for rc_ in (2.0, 1.75, 1.5) if all(TAB[(w, x0, rc_)][f] <= 1.2 for f in A0)], default=None)
+            for w, x0, _ in CELLS}
     OUT["numbers"]["largest_passing_cap"] = best
-    check("S3 (reported) the largest passing cap at each width", best, True, load_bearing=False)
+    check("S3 (reported) the largest passing cap per cell", best, True, load_bearing=False)
 
 n_lb_fail = sum(1 for _, ok, lb in CH if lb and not ok)
 OUT["n_checks"] = len(CH); OUT["n_fail_load_bearing"] = n_lb_fail; OUT["elapsed_s"] = time.time() - T0
