@@ -1,0 +1,105 @@
+CV3 -- V0 FOR THE C-H/K BRANCH, STEP 3: THE GATE VARIED AS AN ACTION TERM, AND WHAT IT MAY READ.
+
+Up to CV2 the gate f was a prescribed function of the leaf geometry.  Varying it is where the construction has failed
+before, and the record now says why:
+  * the curvature reading (V0's first default, DE1/DE2's upper branch) produces slip, psi - phi = 2 delta G_R/M^2, and a
+    wrong-signed k^4 term on every transition that only a repair can cure -- and the repair is slip again (DE7, 095ab610a);
+  * it also stops the carrier being kernel-invisible (MS1, 2a5def6d9): a 0.06-150x edge force;
+  * a reading of the khronon's K is blind: K = 3H(1 + O(5e-3)) inside bound regions (CV4);
+  * MS1 recommends the MOND-sector density lap(Phi - v) (baryons + phantom) or the baryon density.
+This lane varies the gate in V0's own Lagrangian (CV1, term for term, M^2 = m^2 (1 - f)) and finds the rule that decides:
+
+  THE RULE.  V0's static action has three multiplier-field pairs -- (Phi, u), (Psi, w), (lam, v) -- each multiplier
+  entering linearly.  A gate that reads only the constrained fields (u, v, w) leaves every multiplier's diagonal block zero,
+  so the constraint Hessian's determinant is independent of the gate: the constraints stay invertible for EVERY gate shape.
+  A gate that reads a multiplier (Phi or Psi) puts a gate-dependent entry on that multiplier's diagonal, and the
+  determinant then vanishes somewhere on every transition (DE7's T1: W'' takes both signs).
+
+So the MOND-sector density must be built from the constrained fields.  V0's gate reads
+    U_g = C [ lap(u - v) + div((nu(|grad S w|/a0) - 1) grad S w) ]    (reading A+: baryons + their phantom),
+covariantly C [Delta_h(U - V) + D_i((nu - 1) D^i W_b)] on C-H's leaves.  Reading A (baryons only, lap(u - v)) is its
+phantom-free special case; reading B (MS1's lap(Phi - v)) reads the multiplier Phi.
+
+==============================================================================================================
+G1  READINGS A+ AND A: the MOND-sector density (and the baryon density) through the constrained fields
+==============================================================================================================
+    A+ (baryons + phantom via u - v and w): Phi-eq kept True; lam-eq kept True; w's constraint (Psi-eq) kept True; psi = Phi True; |gate parts u + v| = 6.5e-173 (the gate part itself: 3.54e-02)
+    A  (baryons via u - v)               : Phi-eq kept True; lam-eq kept True; w's constraint (Psi-eq) kept True; psi = Phi True; |gate parts u + v| = 3.2e-173 (the gate part itself: 3.50e-02)
+    reading A's gate force: u-equation residual 3.2e-173, v-equation residual 8.1e-174 (Phi = u + f P - 4 pi G C B W', lam = -f Psi + 8 pi G C B W')
+  [PASS] G1 readings A+ and A keep u, v and w constrained, give no slip, and leave the dark component's potential exactly u (the gate's u- and v-parts cancel); reading A's gate force is -4 pi G C B W' on Phi
+         measured: A+: [True, True, True, True, True]; A: [True, True, True, True, True]; gate-force residuals 3.2e-173, 8.1e-174
+         reading:  the gate force acts on baryons and light alike (lensing = dynamics); the carrier is blind to it as to the phantom
+
+==============================================================================================================
+G2  READING B: U_g = C lap(Phi - v) (MS1's first choice) reads the multiplier Phi
+==============================================================================================================
+    residuals: Phi-eq (u no longer constrained: lap u = 4 pi G rho - 4 pi G C lap(B W')) 5.2e-172; v-eq 8.1e-174; u-eq 4.0e-174
+    dark component's potential - Newtonian potential of all matter = 0
+  [PASS] G2 reading B is leak-free (MS1's A3 reproduced) but the gate enters the Phi-constraint itself, so u is no longer constrained
+         measured: residuals 5.2e-172, 8.1e-174, 4.0e-174; leak 0
+         reading:  reading a multiplier changes the constraint structure; G3 shows what that costs
+
+==============================================================================================================
+G3  THE RULE: a gate that reads only constrained fields leaves the constraint determinant alone
+==============================================================================================================
+    readings A/A+ (gate entries on u and w): det = a**2*b**2  (independent of the gate)
+    reading B (a gate entry on the multiplier Phi): det = b**2*(-X_PhiPhi*X_uu + X_Phiu**2 + 2*X_Phiu*a + a**2)
+    reading B's (Phi, u) symbol: det = k**4*(4*pi*BW2*C**2*G*k**2 - 1)/(16*pi**2*G**2); zero at k^2 = [1/(4*pi*BW2*C**2*G)]
+  [PASS] G3 THE RULE: with the multipliers' diagonal blocks zero (gate reading u, v, w only) the constraint Hessian's determinant is a^2 b^2 for every gate; a gate reading the multiplier Phi makes it gate-dependent, and reading B's (Phi, u) symbol vanishes at k^2 = 1/(4 pi G C^2 B W'')
+         measured: det A/A+ = a**2*b**2; det B = b**2*(-X_PhiPhi*X_uu + X_Phiu**2 + 2*X_Phiu*a + a**2); reading B zero at [1/(4*pi*BW2*C**2*G)]
+         reading:  so the MOND-sector density has to be assembled from the constrained fields (reading A+), not from the lapse
+
+==============================================================================================================
+G3b  READING B'S GLOBAL OPERATOR on a real transition: eigenvalues crossing zero as the universe expands
+==============================================================================================================
+    500 points: reading B's negative-eigenvalue count changes 1 times over z = 0.25..4; reading A's is constant: True
+    1000 points: reading B's negative-eigenvalue count changes 1 times over z = 0.25..4; reading A's is constant: True
+    z = 0.5: smallest |eigenvalue| (x r_e^2): reading B 1.574, reading A 1.573  (generic epochs: invertible)
+    z = 2.5: smallest |eigenvalue| (x r_e^2): reading B 1.574, reading A 1.573  (generic epochs: invertible)
+  [PASS] G3b reading B's constraint operator on a real transition has an eigenvalue crossing zero as z runs 0.25 -> 4 (the same count on both grids): the lapse constraint passes through a singular epoch; reading A's never does
+         measured: 500 points: 1 crossings, A constant True; 1000 points: 1 crossings, A constant True
+         reading:  the crossing is a mode near k ~ eps^(-1/2) sweeping through zero as the gate's coefficient grows with z: at that epoch the lapse's response to a generic density source diverges.  At generic epochs the operator is invertible, but not uniformly in time -- reading B would need a lapse-sector repair
+
+==============================================================================================================
+G4  READING A+'s CONDITION: the gate's second variation is a local matter pressure of either sign
+==============================================================================================================
+    z = 0.25: c_g = 91.3 km/s at w = 0.25; sigma_v^2/c_g^2 = 4.80 (200 km/s), 0.0120 (10 km/s)
+    z = 2.5: c_g = 301.7 km/s at w = 0.25; sigma_v^2/c_g^2 = 0.44 (200 km/s), 0.0011 (10 km/s)
+    z = 4.0: c_g = 506.8 km/s at w = 0.25; sigma_v^2/c_g^2 = 0.16 (200 km/s), 0.0004 (10 km/s)
+  [PASS] G4 the gate's second variation acts on the matter density only: delta Phi_g = -(4 pi G)^2 C^2 B W'' delta rho, a local pressure of either sign (sympy); the implied margins at a 1e11 edge are reported
+         measured: z = 0.25: c_g = 91 km/s, margins 4.80 (200) / 0.0120 (10); z = 2.5: c_g = 302 km/s, margins 0.44 (200) / 0.0011 (10); z = 4.0: c_g = 507 km/s, margins 0.16 (200) / 0.0004 (10)
+         reading:  the condition sits in the matter sector, not the metric: where W'' > 0 the gate acts as an anti-pressure that the matter's own velocity dispersion must beat.  At w = 0.25 the one-edge estimate is severe (a narrow gate has a large W''); the dark-energy thread computes the margins on DE7's real transitions
+
+==============================================================================================================
+G5  REDUCTION (ii) WITH f VARIED: on both plateaus every gate term vanishes
+==============================================================================================================
+    W = f0 constant: u-, v- and w-equation residuals vs CV1's: 0, 0, 0
+  [PASS] G5 on both plateaus the varied gate's terms vanish and V0's equations are CV1's -- L361's at sigma = 1 -- exactly: reduction (ii) holds with f varied
+         measured: residuals 0, 0, 0
+         reading:  inside regions and in the web V0 is L361; the gate's own physics lives only in transition layers
+
+==============================================================================================================
+G6  MS3's CAP INSIDE THE GATE: any gate built from the constrained fields keeps the carrier blind
+==============================================================================================================
+    cap-like F1(s', s'', w', w''): Phi-eq kept True; lam-eq kept True; w's constraint (Psi-eq) kept True; psi = Phi True; |gate parts u + v| = 4.0e-174 (the gate part itself: 6.14e-02)
+    cap-like F2 = U/(1 + v_loc^2-like): Phi-eq kept True; lam-eq kept True; w's constraint (Psi-eq) kept True; psi = Phi True; |gate parts u + v| = 4.0e-174 (the gate part itself: 1.65e-01)
+  [PASS] G6 gates built from the constrained fields with a cap-like dependence -- two concrete forms, one of them U_g/(1 + v_loc^2-like) -- keep u, v and w constrained, give no slip, and leave the carrier blind
+         measured: F1 [True, True, True, True, True]; F2 [True, True, True, True, True]
+         reading:  MS3's cap becomes part of V0's one gate term with v_cap a declared constant, at no cost to the constraint structure (G3's rule covers every such gate)
+
+==============================================================================================================
+VERDICT
+==============================================================================================================
+  Varying the gate decides what it may read, by one rule: V0's multipliers (Phi, Psi, lam) enter linearly, so a gate that
+  reads only the constrained fields (u, v, w) leaves the constraint determinant independent of the gate, and one that reads
+  a multiplier does not (G3).  The curvature reading leaks into the carrier and needs a slip-carrying repair (MS1, DE7);
+  K is blind (CV4); lap(Phi - v) reads the multiplier Phi and its lapse constraint passes through singular epochs (G2, G3b).
+  V0's gate reads the MOND-sector density assembled from the constrained fields,
+      U_g = C [lap(u - v) + div((nu - 1) grad S w)]   (reading A+; covariantly on C-H's leaves),
+  which is leak-free and slip-free and keeps every constraint invertible (G1, G3); the cap fits inside it (G6); on the
+  plateaus V0 is L361 exactly with f varied (G5).  Its cost is a matter-sector pressure of either sign in transition layers
+  (G4): at the narrow width the window needs (w = 0.25), the one-edge estimate puts c_g above 200 km/s by z = 2.5 --
+  a new pincer between the window (narrow w) and matter stability (wide w), for the real transitions to decide.
+  Time 999 s.
+
+  7/7 checks pass; load-bearing failures: 0; wrote CV3_gate_varied_results.json
