@@ -91,6 +91,14 @@ merger/offset gates (Harvey, the Bullet cluster) must score it (OPEN).
 - KiDS and the web's external field (FP22, a risk, not a result): in the baryons-only reading the web's band-passed field
   enters the kernel of an isolated lens at an estimated Delta chi^2 +205-232 with H_Y or H_K1 (all matter: +575-714), 6-8x
   over the field KiDS tolerates. No committed KiDS model includes that field; FP23 computes it.
+- Cluster outskirts cap the band-pass length (the hub's XR28, ef74b985d, re-run pending). Any band-pass that Gauss-compensates an
+  isolated system puts a compensation trough at 1.7-2.9 L(z), just outside splashback. Read as observers read it
+  (projection plus a DK14 fit with Shin+21 priors), splashback moves in to 0.87-0.91 r200m (measured 0.97-1.16) and the
+  lensing slope steepens to -4.3 to -4.6 (measured -3.4 to -3.5). Against the LCDM control on 8 published numbers,
+  H_K1 (L0 ~ 1.99 Mpc) is excluded at +30/+37, H_Y at +27/+33 and H_S at +31 to +51. The least-disfavoured L0 is ~0.75-1.0
+  Mpc, while KiDS needs L0 >= ~1.5: a pincer on the band-pass family (H_Y, H_S, H_K1). Caveats: the conversion reading
+  moves the slope by up to 0.55, and the DK14 read-out is fragile on 1-D profiles. The candidate that avoids the trough by
+  construction is the hub's turnaround-keyed gate XR36, which has no band-pass length.
 - FK1's conversion alone, without the phantom (the hub's XR32, fa341733d, re-run pending): the survey-inferred S8 is
   0.752-0.766 (on KiDS-1000, DES Y3 and HSC Y3, ~2 sigma below KiDS-Legacy), but with a poor fit shape; its costs are
   cluster counts 0.64-0.81 of LCDM (5-9 sigma below eRASS1), DESI RSD -2.2 sigma, CMB lensing 0.976 (-1.6 sigma vs ACT
