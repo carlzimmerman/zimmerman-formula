@@ -81,7 +81,7 @@ gradient instability (FC-KH, 09-01) and should not be reused as a current label.
 found" is out of date: Lean 4 + Mathlib (v4.34.0-rc2) are installed in `fable_independent_2026/lean_2026` with many
 checked algebraic certificates; they certify algebra only.
 
-## 6. Addendum (late 2026-09-26): what DE5–DE8 and the peer lanes change for I6
+## 6. Addendum (late 2026-09-26): what DE5–DE13 and the peer lanes change for I6
 
 Still proposals; the recipe itself is not edited here.
 
@@ -91,11 +91,17 @@ Still proposals; the recipe itself is not edited here.
   layers. The floor is set by the largest bound systems: 14–44% at KiDS lens masses, z = 0.25, if clusters set it
   (DE7 N4). A switch that reads the carrier leaks force onto it (MS1). The reading that stays leak-free is the MOND
   sector's own density, ∇²(Φ − v) = baryons + phantom (MS1/MS2). Its well-posedness budget is the matter sector's
-  velocity dispersion against the gate's curvature; that is not yet computed, and cold components are the risk.
+  velocity dispersion against the gate's curvature. That is now computed, and it fails. Varied as an action term, the
+  gate is a negative pressure on the transition-layer gas, amplified by the phantom's response: c_gate 1500–3700 km/s
+  against ≤ 117 km/s gas at z = 0.25 (DE12). A gradient energy on the gate cannot repair it at any strength, and one
+  on U repairs it only with a potential of ~30 v_f² at the flagship radius and ~10⁸ v_f² near the Sun (DE13). The
+  constraint side agrees: V0's constraint block never sees the convexity, which lands on δρ_b (CV3, FL2 V5).
   Proposed I6 wording: "the switch reads the MOND sector's own density; the gate's transition width is an explicit
-  ingredient."
-- **A gate on the leaf expansion K alone is blind in C-H/K.** K is harmonic on the leaf and equals 3H(z) inside bound
-  regions to ~1e-4 (the V0 writer's CV4, pending). Do not list it as a door.
+  ingredient; the gate is a prescribed mask, not a varied term of the action, until a construction that is not
+  varied (or a stiffness that survives DE13) exists."
+- **A gate on the leaf expansion K alone is blind in C-H/K.** The λ-term gives c₂∇²δK = 0 on each leaf, so bound
+  regions have K = 3H(z); moving sources add only a dipole, |K/3H − 1| ≤ 4.8×10⁻³ (CV4, ab6f31b61). Do not list it
+  as a door.
 - **Add a gate G22: lensing = dynamics in gate transition layers.** The slip is ψ − φ = 2δ𝒢_R/M² (DE7 S4). This is a
   new observable for any gate or repair that depends on R⁽³⁾.
 - **Cosmic shear needs a region cap, not a threshold.** The record's mock-based shear bounds (DE2's floor, DE3, DE5,
