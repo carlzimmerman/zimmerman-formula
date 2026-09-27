@@ -1,0 +1,879 @@
+FP20 -- A BUG CORRECTION: THE RECORD'S KiDS 'LEAD GRADE' PROJECTION UNDER-PROJECTS.  FP18 (K2b) found that FP6's esd_of_M --
+the Abel projection that turns a spherical mass profile into the KiDS-1000 excess surface density Delta Sigma(R) -- is low on a
+singular isothermal sphere by 59% at 35 kpc and by 5-14% at 0.3-2.6 Mpc.  That function (the same code, copied) scores the
+KiDS gate of FP6, FP9, FP11, FP12, FP13, FP1 E, FP14 and FP17, and of the record's L355 / L357 / AT1 / AT3 (switch-free).
+This lane derives the correct projection, finds the bug exactly, validates every projector in use against analytic profiles,
+and RE-SCORES every committed KiDS number of the chain with the corrected projection -- same data, covariance, fits,
+2-halo treatment and conventions, only the projection swapped (in this lane's own namespace; no committed file is edited).
+
+THE PROJECTION (derived).  For a spherical excess density rho(r) with enclosed mass M(<r), truncated at r_t (the record's grid
+end, 30 Mpc) plus a central point mass M_b:
+    Sigma(R)        = 2 Int_R^{r_t} rho(r) r dr / sqrt(r^2 - R^2)                     (integrable 1/sqrt singularity at r = R)
+    M_2D(<R)        = M_b + M(<R) + Int_R^{r_t} 4 pi r^2 rho(r) [1 - sqrt(1 - R^2/r^2)] dr   (no singularity)
+    Delta Sigma(R)  = M_2D(<R)/(pi R^2) - Sigma(R).
+  Written for uniform-density shells (edges r_k, masses m_k = M(<r_{k+1}) - M(<r_k); exact for piecewise-constant rho and
+  second-order in the grid for smooth rho): a shell contributes Sigma = 2 rho_k [sqrt((r_{k+1}^2 - R^2)_+) - sqrt((r_k^2 - R^2)_+)]
+  and M_2D = m_k - (4 pi/3) rho_k [(r_{k+1}^2 - R^2)_+^{3/2} - (r_k^2 - R^2)_+^{3/2}] (evaluated as R^2 (r^2 + r s + s^2)/(r + s),
+  s = sqrt(r^2 - R^2), to avoid cancellation).  The 1/sqrt singularity is integrated analytically and M_2D needs no inner
+  extrapolation.  The mass inside the first grid radius (1 kpc) is kept as a central point.  THIS IS THE CORRECTED PROJECTION.
+
+THE BUG (identified here, B section).  esd_of_M (FP6:356; FP1:707; L355:110; BS2's esd_from_M) computes
+    Sig = W @ rho    with W the TRAPEZOID rule on the grid points r_j > R(1 + 1e-7) of 2 r/sqrt(r^2 - R^2)          (defect B)
+    M_2D(<R) = 2 pi Int_{R_0}^{R} Sig R' dR' + pi R_0^2 Sig(R_0),   R_0 = 20 kpc                                   (defect A)
+  (A) the projected mass inside R_0 = 20 kpc is taken as a uniform disc of surface density Sig(R_0); for an isothermal
+      (Sigma ~ 1/R) profile the true value is 2 pi R_0^2 Sig(R_0): HALF the inner projected mass is lost.  The loss is a
+      point-mass-like deficit ~ (R_0/R) Sigma(R): -57% at 35 kpc falling to -1% at 2.6 Mpc on the SIS.  A compact mass passed
+      as extended (Mb = 0) inside R_0 is lost ENTIRELY.
+  (B) the trapezoid skips the segment [R, r_1] next to the 1/sqrt(r - R) end point and mis-weights the first node; the error
+      in Sigma(R) depends on where R falls between grid nodes (-6% .. +12% on the SIS), and Delta Sigma = M_2D/(pi R^2) - Sigma
+      inherits it point by point (it is -12% at 2.6 Mpc on the SIS).
+  L352's project_M2 (used by L352, L359, L360, AT3's switched gate, FP4/FP10/FP15/FP16 via kids_switched, DE8, DE10 and the hub's
+  XR9/XR14/XR28/XR29) shares defect B but not A: its inner term is 2 pi R_0^2 Sig(R_0) (R_0 = 5 kpc), exact only for Sigma ~ 1/R,
+  and its annulus average reads M_2D only (which smooths B's scatter): -3% on the SIS, -3..+11% on NFW halos, and up to +187% /
+  -123% at 35 kpc on the cored or hollowed carrier templates those lanes project.
+
+  *** MUTATE=1: the 'corrected' projection is replaced by the committed one everywhere -- V1 must FAIL, and every re-score must reproduce the committed numbers (no flips) ***
+
+  loaded (read-only): FP6's machinery (esd_of_M), FP1 E's KiDS machinery (esd_of_M; exec'd by FP14/FP17), L355's head (esd_of_M; loaded by L357/AT1/AT3), L352's machinery (project_M2 + annulus_esd; L359/L360/AT3/DE8), DE8's head (esd_from_mlens); grids r = 0.001-30 Mpc x 4000, P1 R = 0.02-4 x 240, P2 R = 0.005-6 x 700   [2 s]
+
+======================================================================================================================
+V  THE ANALYTIC STANDARD: every projector in use against the singular isothermal sphere, NFW (Wright & Brainerd 2000) and a point mass, at the 15 KiDS radii
+======================================================================================================================
+    reference checks: the NFW truncation at 30 Mpc changes Delta Sigma by 7.1e-07 (quad vs W&B); the SIS's by 3.5e-05; the chain's phantom references are the fix on a 4x finer, 10x deeper grid
+
+    error of each projector vs R [%] at the KiDS radii 0.035, 0.048, 0.065, 0.089, 0.121, 0.164, 0.223, 0.304, 0.413, 0.561, 0.762, 1.036, 1.409, 1.915, 2.603 Mpc:
+    -- SIS V=200
+       P1 committed (FP6/FP1/L355, point)      -58.56  -42.71  -34.00  -24.87  -19.43  -13.31  -11.68  -10.36   -7.41   -5.69   -4.92   -6.50   -3.61   -4.12  -13.94   | max |.| 58.56%
+       P2 L352 project_M2 (annulus)             -2.57   -2.66   -2.96   -2.63   -2.04   -2.23   -2.38   -2.07   -2.22   -2.36   -2.71   -2.30   -2.05   -2.29   -2.08   | max |.| 2.96%
+       P2 L352 project_M2, node rho (annulus)   -2.57   -2.66   -2.96   -2.63   -2.04   -2.23   -2.38   -2.07   -2.22   -2.36   -2.71   -2.30   -2.05   -2.29   -2.08   | max |.| 2.96%
+       DE8 esd_from_mlens (annulus)             -2.57   -2.66   -2.96   -2.63   -2.04   -2.23   -2.38   -2.07   -2.22   -2.36   -2.71   -2.30   -2.05   -2.29   -2.08   | max |.| 2.96%
+       FP18 shell_kernel (point)                +0.23   -0.17   -0.03   +0.36   -0.17   +0.05   -0.06   -0.14   +0.16   -0.15   -0.08   +0.27   -0.18   -0.01   +0.10   | max |.| 0.36%
+       FP20 fix, P1 grid (point)               -58.56  -42.71  -34.00  -24.87  -19.43  -13.31  -11.68  -10.36   -7.41   -5.69   -4.92   -6.50   -3.61   -4.12  -13.94   | max |.| 58.56%
+       FP20 fix, P2 M-path (annulus)            -2.57   -2.66   -2.96   -2.63   -2.04   -2.23   -2.38   -2.07   -2.22   -2.36   -2.71   -2.30   -2.05   -2.29   -2.08   | max |.| 2.96%
+       FP20 fix, P2 rho-path (annulus)          -2.57   -2.66   -2.96   -2.63   -2.04   -2.23   -2.38   -2.07   -2.22   -2.36   -2.71   -2.30   -2.05   -2.29   -2.08   | max |.| 2.96%
+       FP20 fix, DE8 cells (annulus)            -2.57   -2.66   -2.96   -2.63   -2.04   -2.23   -2.38   -2.07   -2.22   -2.36   -2.71   -2.30   -2.05   -2.29   -2.08   | max |.| 2.96%
+    -- NFW 5.0e+11 c8
+       P1 committed (FP6/FP1/L355, point)      -50.59  -36.04  -29.18  -22.52  -18.88  -15.17  -13.98  -12.91  -11.32  -10.32   -9.71   -9.79   -8.74   -8.57  -10.29   | max |.| 50.59%
+       P2 L352 project_M2 (annulus)             +5.31   +2.83   +0.99   +0.23   -0.17   -0.86   -1.34   -1.56   -1.90   -2.16   -2.45   -2.44   -2.50   -2.64   -2.67   | max |.| 5.31%
+       P2 L352 project_M2, node rho (annulus)   +5.31   +2.83   +0.99   +0.23   -0.17   -0.86   -1.34   -1.56   -1.90   -2.16   -2.45   -2.44   -2.50   -2.64   -2.67   | max |.| 5.31%
+       DE8 esd_from_mlens (annulus)             +5.31   +2.83   +0.99   +0.23   -0.17   -0.87   -1.34   -1.56   -1.90   -2.16   -2.45   -2.44   -2.50   -2.64   -2.67   | max |.| 5.31%
+       FP18 shell_kernel (point)                +0.25   -0.23   -0.06   +0.29   -0.17   +0.02   -0.06   -0.10   +0.06   -0.09   -0.05   +0.09   -0.08   -0.01   +0.02   | max |.| 0.29%
+       FP20 fix, P1 grid (point)               -50.59  -36.04  -29.18  -22.52  -18.88  -15.17  -13.98  -12.91  -11.32  -10.32   -9.71   -9.79   -8.74   -8.57  -10.29   | max |.| 50.59%
+       FP20 fix, P2 M-path (annulus)            +5.31   +2.83   +0.99   +0.23   -0.17   -0.86   -1.34   -1.56   -1.90   -2.16   -2.45   -2.44   -2.50   -2.64   -2.67   | max |.| 5.31%
+       FP20 fix, P2 rho-path (annulus)          +5.31   +2.83   +0.99   +0.23   -0.17   -0.86   -1.34   -1.56   -1.90   -2.16   -2.45   -2.44   -2.50   -2.64   -2.67   | max |.| 5.31%
+       FP20 fix, DE8 cells (annulus)            +5.31   +2.83   +0.99   +0.23   -0.17   -0.87   -1.34   -1.56   -1.90   -2.16   -2.45   -2.44   -2.50   -2.64   -2.67   | max |.| 5.31%
+    -- NFW 3.0e+12 c4
+       P1 committed (FP6/FP1/L355, point)      -39.22  -22.96  -18.01  -11.64   -9.36   -5.96   -6.41   -6.51   -5.28   -4.81   -4.78   -5.66   -4.64   -4.91   -7.82   | max |.| 39.22%
+       P2 L352 project_M2 (annulus)             +8.12   +3.97   +1.19   +0.17   -0.14   -1.06   -1.66   -1.81   -2.22   -2.52   -2.88   -2.79   -2.81   -2.97   -2.97   | max |.| 8.12%
+       P2 L352 project_M2, node rho (annulus)   +8.12   +3.97   +1.19   +0.17   -0.14   -1.06   -1.66   -1.81   -2.22   -2.52   -2.88   -2.79   -2.81   -2.97   -2.97   | max |.| 8.12%
+       DE8 esd_from_mlens (annulus)             +8.12   +3.97   +1.19   +0.17   -0.14   -1.06   -1.66   -1.81   -2.22   -2.52   -2.88   -2.79   -2.81   -2.97   -2.97   | max |.| 8.12%
+       FP18 shell_kernel (point)                +0.32   -0.29   -0.08   +0.44   -0.25   +0.03   -0.09   -0.16   +0.10   -0.14   -0.08   +0.14   -0.11   -0.02   +0.03   | max |.| 0.44%
+       FP20 fix, P1 grid (point)               -39.22  -22.96  -18.01  -11.64   -9.36   -5.96   -6.41   -6.51   -5.28   -4.81   -4.78   -5.66   -4.64   -4.91   -7.82   | max |.| 39.22%
+       FP20 fix, P2 M-path (annulus)            +8.12   +3.97   +1.19   +0.17   -0.14   -1.06   -1.66   -1.81   -2.22   -2.52   -2.88   -2.79   -2.81   -2.97   -2.97   | max |.| 8.12%
+       FP20 fix, P2 rho-path (annulus)          +8.12   +3.97   +1.19   +0.17   -0.14   -1.06   -1.66   -1.81   -2.22   -2.52   -2.88   -2.79   -2.81   -2.97   -2.97   | max |.| 8.12%
+       FP20 fix, DE8 cells (annulus)            +8.12   +3.97   +1.19   +0.17   -0.14   -1.06   -1.66   -1.81   -2.22   -2.52   -2.88   -2.79   -2.81   -2.97   -2.97   | max |.| 8.12%
+    -- NFW 1.0e+13 c2
+       P1 committed (FP6/FP1/L355, point)      -35.14  -17.73  -14.38   -7.63   -6.07   -2.02   -3.80   -4.74   -3.26   -2.91   -3.19   -4.84   -3.42   -4.01   -8.48   | max |.| 35.14%
+       P2 L352 project_M2 (annulus)            +11.47   +5.66   +1.96   +0.65   +0.55   -0.58   -1.34   -1.37   -1.90   -2.30   -2.81   -2.63   -2.63   -2.87   -2.87   | max |.| 11.47%
+       P2 L352 project_M2, node rho (annulus)  +11.47   +5.66   +1.96   +0.65   +0.55   -0.58   -1.34   -1.37   -1.90   -2.30   -2.81   -2.63   -2.63   -2.87   -2.87   | max |.| 11.47%
+       DE8 esd_from_mlens (annulus)            +11.47   +5.66   +1.96   +0.65   +0.55   -0.58   -1.34   -1.37   -1.90   -2.30   -2.81   -2.63   -2.63   -2.87   -2.87   | max |.| 11.47%
+       FP18 shell_kernel (point)                +0.34   -0.30   -0.08   +0.52   -0.29   +0.05   -0.12   -0.21   +0.15   -0.20   -0.11   +0.21   -0.17   -0.03   +0.04   | max |.| 0.52%
+       FP20 fix, P1 grid (point)               -35.14  -17.73  -14.38   -7.63   -6.07   -2.02   -3.80   -4.74   -3.26   -2.91   -3.19   -4.84   -3.42   -4.01   -8.48   | max |.| 35.14%
+       FP20 fix, P2 M-path (annulus)           +11.47   +5.66   +1.96   +0.65   +0.55   -0.58   -1.34   -1.37   -1.90   -2.30   -2.81   -2.63   -2.63   -2.87   -2.87   | max |.| 11.47%
+       FP20 fix, P2 rho-path (annulus)         +11.47   +5.66   +1.96   +0.65   +0.55   -0.58   -1.34   -1.37   -1.90   -2.30   -2.81   -2.63   -2.63   -2.87   -2.87   | max |.| 11.47%
+       FP20 fix, DE8 cells (annulus)           +11.47   +5.66   +1.96   +0.65   +0.55   -0.58   -1.34   -1.37   -1.90   -2.30   -2.81   -2.63   -2.63   -2.87   -2.87   | max |.| 11.47%
+    -- point 1e11 (M_b term)
+       P1 committed (FP6/FP1/L355, point)       +0.03   +0.04   +0.04   +0.03   +0.02   +0.00   +0.02   +0.03   +0.04   +0.03   +0.03   +0.01   +0.01   +0.03   +0.03   | max |.| 0.04%
+       P2 L352 project_M2 (annulus)             +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   | max |.| 0.00%
+       P2 L352 project_M2, node rho (annulus)   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   | max |.| 0.00%
+       DE8 esd_from_mlens (annulus)             +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   | max |.| 0.00%
+       FP18 shell_kernel (point)                +0.00   +0.00   +0.00   +0.00   +0.00   -0.00   +0.00   +0.00   -0.00   -0.00   +0.00   +0.00   -0.00   +0.00   +0.00   | max |.| 0.00%
+       FP20 fix, P1 grid (point)                +0.03   +0.04   +0.04   +0.03   +0.02   +0.00   +0.02   +0.03   +0.04   +0.03   +0.03   +0.01   +0.01   +0.03   +0.03   | max |.| 0.04%
+       FP20 fix, P2 M-path (annulus)            +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   | max |.| 0.00%
+       FP20 fix, P2 rho-path (annulus)          +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   | max |.| 0.00%
+       FP20 fix, DE8 cells (annulus)            +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   +0.00   | max |.| 0.00%
+    -- point 1e11 (compact, as extended)
+       P1 committed (FP6/FP1/L355, point)     -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00   | max |.| 100.00%
+       P2 L352 project_M2 (annulus)           -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00   | max |.| 100.00%
+       DE8 esd_from_mlens (annulus)           -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00   | max |.| 100.00%
+       FP18 shell_kernel (point)                +0.00   +0.00   +0.00   +0.00   +0.00   -0.00   +0.00   +0.00   -0.00   -0.00   +0.00   +0.00   -0.00   +0.00   +0.00   | max |.| 0.00%
+       FP20 fix, P1 grid (point)              -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00   | max |.| 100.00%
+       FP20 fix, P2 M-path (annulus)          -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00   | max |.| 100.00%
+       FP20 fix, DE8 cells (annulus)          -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00   | max |.| 100.00%
+    -- P2 phantom 1e10.5 (+M_b)
+       P1 committed (FP6/FP1/L355, point)      -37.48  -27.54  -22.93  -16.78  -13.50   -8.96   -8.48   -8.00   -5.68   -4.42   -3.98   -5.81   -3.10   -3.74  -13.66   | max |.| 37.48%
+       P2 L352 project_M2 (annulus)             +5.20   +3.14   +1.35   +0.55   +0.31   -0.50   -1.11   -1.13   -1.53   -1.85   -2.34   -2.03   -1.85   -2.14   -1.97   | max |.| 5.20%
+       P2 L352 project_M2, node rho (annulus)   +5.20   +3.14   +1.35   +0.55   +0.31   -0.50   -1.11   -1.13   -1.53   -1.85   -2.34   -2.03   -1.85   -2.14   -1.97   | max |.| 5.20%
+       DE8 esd_from_mlens (annulus)             +5.20   +3.14   +1.35   +0.55   +0.31   -0.50   -1.11   -1.13   -1.53   -1.85   -2.34   -2.03   -1.85   -2.14   -1.97   | max |.| 5.20%
+       FP18 shell_kernel (point)                +0.19   -0.19   -0.06   +0.33   -0.20   +0.03   -0.09   -0.16   +0.13   -0.18   -0.11   +0.25   -0.20   -0.03   +0.07   | max |.| 0.33%
+       FP20 fix, P1 grid (point)               -37.48  -27.54  -22.93  -16.78  -13.50   -8.96   -8.48   -8.00   -5.68   -4.42   -3.98   -5.81   -3.10   -3.74  -13.66   | max |.| 37.48%
+       FP20 fix, P2 M-path (annulus)            +5.20   +3.14   +1.35   +0.55   +0.31   -0.50   -1.11   -1.13   -1.53   -1.85   -2.34   -2.03   -1.85   -2.14   -1.97   | max |.| 5.20%
+       FP20 fix, P2 rho-path (annulus)          +5.20   +3.14   +1.35   +0.55   +0.31   -0.50   -1.11   -1.13   -1.53   -1.85   -2.34   -2.03   -1.85   -2.14   -1.97   | max |.| 5.20%
+       FP20 fix, DE8 cells (annulus)            +5.20   +3.14   +1.35   +0.55   +0.31   -0.50   -1.11   -1.13   -1.53   -1.85   -2.34   -2.03   -1.85   -2.14   -1.97   | max |.| 5.20%
+    -- P2 phantom 1e11 (+M_b)
+       P1 committed (FP6/FP1/L355, point)      -26.23  -19.61  -17.16  -12.61  -10.45   -6.73   -6.83   -6.80   -4.79   -3.77   -3.50   -5.45   -2.84   -3.55  -13.52   | max |.| 26.23%
+       P2 L352 project_M2 (annulus)             +4.56   +2.82   +1.19   +0.45   +0.24   -0.54   -1.13   -1.15   -1.54   -1.86   -2.35   -2.03   -1.85   -2.14   -1.97   | max |.| 4.56%
+       P2 L352 project_M2, node rho (annulus)   +4.56   +2.82   +1.19   +0.45   +0.24   -0.54   -1.13   -1.15   -1.54   -1.86   -2.35   -2.03   -1.85   -2.14   -1.97   | max |.| 4.56%
+       DE8 esd_from_mlens (annulus)             +4.56   +2.82   +1.19   +0.45   +0.24   -0.54   -1.13   -1.15   -1.54   -1.86   -2.35   -2.03   -1.85   -2.14   -1.97   | max |.| 4.56%
+       FP18 shell_kernel (point)                +0.17   -0.18   -0.05   +0.32   -0.19   +0.03   -0.09   -0.16   +0.13   -0.18   -0.11   +0.25   -0.20   -0.03   +0.07   | max |.| 0.32%
+       FP20 fix, P1 grid (point)               -26.23  -19.61  -17.16  -12.61  -10.45   -6.73   -6.83   -6.80   -4.79   -3.77   -3.50   -5.45   -2.84   -3.55  -13.52   | max |.| 26.23%
+       FP20 fix, P2 M-path (annulus)            +4.56   +2.82   +1.19   +0.45   +0.24   -0.54   -1.13   -1.15   -1.54   -1.86   -2.35   -2.03   -1.85   -2.14   -1.97   | max |.| 4.56%
+       FP20 fix, P2 rho-path (annulus)          +4.56   +2.82   +1.19   +0.45   +0.24   -0.54   -1.13   -1.15   -1.54   -1.86   -2.35   -2.03   -1.85   -2.14   -1.97   | max |.| 4.56%
+       FP20 fix, DE8 cells (annulus)            +4.56   +2.82   +1.19   +0.45   +0.24   -0.54   -1.13   -1.15   -1.54   -1.86   -2.35   -2.03   -1.85   -2.14   -1.97   | max |.| 4.56%
+    -- carrier cap x_v0=700 (L360 bin 4)
+       P1 committed (FP6/FP1/L355, point)       +2.51  +33.97   -3.57   +9.06   +1.60   +1.71   -2.37   -3.66   -4.49   -4.49   -4.50   -4.51   -4.51   -4.50   -4.49   | max |.| 33.97%
+       P2 L352 project_M2 (annulus)           +187.17  +60.16  +19.12   +7.28   +4.29   -0.46   -1.72   -1.97   -3.71   -3.71   -3.71   -3.71   -3.71   -3.71   -3.71   | max |.| 187.17%
+       P2 L352 project_M2, node rho (annulus) +187.19  +60.17  +19.12   +7.28   +4.29   -0.46   -1.73   -2.01   -3.62   -3.62   -3.62   -3.62   -3.62   -3.62   -3.62   | max |.| 187.19%
+       DE8 esd_from_mlens (annulus)           +187.17  +60.16  +19.12   +7.28   +4.29   -0.46   -1.72   -1.97   -3.71   -3.71   -3.71   -3.71   -3.71   -3.71   -3.71   | max |.| 187.17%
+       FP18 shell_kernel (point)                +0.08   +0.08   +0.09   +0.13   -1.13   +0.06   -0.15   -0.17   +0.00   -0.00   -0.00   -0.00   +0.00   +0.00   -0.00   | max |.| 1.13%
+       FP20 fix, P1 grid (point)                +2.51  +33.97   -3.57   +9.06   +1.60   +1.71   -2.37   -3.66   -4.49   -4.49   -4.50   -4.51   -4.51   -4.50   -4.49   | max |.| 33.97%
+       FP20 fix, P2 M-path (annulus)          +187.17  +60.16  +19.12   +7.28   +4.29   -0.46   -1.72   -1.97   -3.71   -3.71   -3.71   -3.71   -3.71   -3.71   -3.71   | max |.| 187.17%
+       FP20 fix, P2 rho-path (annulus)        +187.19  +60.17  +19.12   +7.28   +4.29   -0.46   -1.73   -2.01   -3.62   -3.62   -3.62   -3.62   -3.62   -3.62   -3.62   | max |.| 187.19%
+       FP20 fix, DE8 cells (annulus)          +187.17  +60.16  +19.12   +7.28   +4.29   -0.46   -1.72   -1.97   -3.71   -3.71   -3.71   -3.71   -3.71   -3.71   -3.71   | max |.| 187.17%
+    -- carrier cleared x_v0=1000 (L360 bin 4)
+       P1 committed (FP6/FP1/L355, point)       -9.70   -2.65   -0.66   -0.06  -17.01   +8.75   -1.46   -3.46   -4.49   -4.49   -4.50   -4.51   -4.51   -4.50   -4.49   | max |.| 17.01%
+       P2 L352 project_M2 (annulus)           -122.96  -33.24   -8.28   -1.43  -18.94   +1.98   -1.33   -1.82   -3.90   -3.90   -3.90   -3.90   -3.90   -3.90   -3.90   | max |.| 122.96%
+       P2 L352 project_M2, node rho (annulus) -122.98  -33.21   -8.23   -1.36  -19.04   +2.01   -1.33   -1.86   -3.78   -3.78   -3.78   -3.78   -3.78   -3.78   -3.78   | max |.| 122.98%
+       DE8 esd_from_mlens (annulus)           -122.96  -33.24   -8.29   -1.44  -18.95   +1.97   -1.34   -1.82   -3.90   -3.90   -3.90   -3.90   -3.90   -3.90   -3.90   | max |.| 122.96%
+       FP18 shell_kernel (point)                -0.10   -0.10   -0.08   +0.01   +2.32   +0.13   -0.22   -0.21   -0.00   +0.00   -0.00   -0.00   -0.00   +0.00   +0.00   | max |.| 2.32%
+       FP20 fix, P1 grid (point)                -9.70   -2.65   -0.66   -0.06  -17.01   +8.75   -1.46   -3.46   -4.49   -4.49   -4.50   -4.51   -4.51   -4.50   -4.49   | max |.| 17.01%
+       FP20 fix, P2 M-path (annulus)          -122.96  -33.24   -8.28   -1.43  -18.94   +1.98   -1.33   -1.82   -3.90   -3.90   -3.90   -3.90   -3.90   -3.90   -3.90   | max |.| 122.96%
+       FP20 fix, P2 rho-path (annulus)        -122.98  -33.21   -8.23   -1.36  -19.04   +2.01   -1.33   -1.86   -3.78   -3.78   -3.78   -3.78   -3.78   -3.78   -3.78   | max |.| 122.98%
+       FP20 fix, DE8 cells (annulus)          -122.96  -33.24   -8.29   -1.44  -18.95   +1.97   -1.34   -1.82   -3.90   -3.90   -3.90   -3.90   -3.90   -3.90   -3.90   | max |.| 122.96%
+  [FAIL] V1 THE CORRECTED PROJECTION REPRODUCES THE ANALYTIC PROFILES: the singular isothermal sphere (V = 200 km/s), three NFW halos (Wright & Brainerd 2000; FP18 K2's), a 1e11 Msun point mass as the analytic term AND as a compact (3 kpc) sphere passed as extended mass, to < 0.1% at all 15 KiDS radii -- as point values on the P1 grid (FP6/FP1/L355 lanes), as annulus averages on L352's grid from the mass profile (model_M2's path) and from node densities (the carrier templates' path), and on DE8's cells; the chain's P2 phantom agrees with a 4x finer grid to < 0.1%
+         measured: max |error| P1 grid (point): 100.000%, P2 M-path (annulus): 100.000%, P2 rho-path (annulus): 11.472%, DE8 cells (annulus): 100.000%; phantom vs the fine grid P1 grid (point): 37.478%, P2 M-path (annulus): 5.201%, P2 rho-path (annulus): 5.201%, DE8 cells (annulus): 5.201%
+  [FAIL] V1b THE CORRECTED PROJECTION HANDLES THE P2 LANES' CARRIER TEMPLATES (L360's capped and cleared NFW halos: flat cores, hollows and the cut at r200 -- densities with jumps, read from their node values as the lanes do) to < 0.5% of a 60000-node reference, where the committed L352 path errs by up to the printed amount at 35 kpc
+         measured: fix: P2 rho-path (annulus): 187.194%, DE8 cells (annulus): 187.174%, P1 grid (point): 33.966%, P2 M-path (annulus): 187.175% | committed P2 on node densities: carrier cap x_v0=700 (L360 bin 4): -4..+187%; carrier cleared x_v0=1000 (L360 bin 4): -123..+2%
+  [PASS] V2 THE BUG IS REAL (FP18 K2b confirmed): the committed P1 projection (FP6 esd_of_M = FP1 E's = L355's) under-projects the singular isothermal sphere at every KiDS radius: <= -50% at 35 kpc, <= -3% everywhere, with FP18's printed values reproduced
+         measured: SIS: R 0.04: -58.6%, R 0.07: -34.0%, R 0.12: -19.4%, R 0.22: -11.7%, R 0.41: -7.4%, R 0.76: -4.9%, R 1.41: -3.6%, R 2.60: -13.9% (FP18 K2b's values reproduced to 0.0 pp)
+  [PASS] (reported) V4 (reported) THE P2 FAMILY (L352's project_M2 + annulus_esd: L352, L359, L360, AT3's switched gate, FP4/FP10 via AT3, DE8's esd_from_mlens, DE10 and the hub's XR9/XR14) is NOT exact either: it shares the trapezoid Abel defect (B) but not the inner-disc defect (A); on the SIS it under-projects by ~2-3%, on NFW halos and the chain's phantom by -3% at large R and up to +5..+11% at 35 kpc (its inner term 2 pi R_0^2 Sig(R_0) is exact only for Sigma ~ 1/R) -- MORE than 2% (said plainly); on the CARRIER TEMPLATES (flat-cored or hollowed halos) the same inner term is wrong by up to +187% / -123% at 35 kpc (V1b), so every carrier-bearing KiDS score of the P2 lanes moves (R9, R11); a compact mass passed as extended is lost entirely
+         measured: L352: SIS V=200: -2.96..-2.04%; NFW 5.0e+11 c8: -2.67..+5.31%; NFW 3.0e+12 c4: -2.97..+8.12%; NFW 1.0e+13 c2: -2.87..+11.47%; P2 phantom 1e10.5 (+M_b): -2.34..+5.20%; P2 phantom 1e11 (+M_b): -2.35..+4.56% | DE8: SIS V=200: -2.96..-2.04%; NFW 5.0e+11 c8: -2.67..+5.31%; NFW 3.0e+12 c4: -2.97..+8.12%; NFW 1.0e+13 c2: -2.87..+11.47%; P2 phantom 1e10.5 (+M_b): -2.34..+5.20%; P2 phantom 1e11 (+M_b): -2.35..+4.56% | carriers (node densities): carrier cap x_v0=700 (L360 bin 4): -4..+187%; carrier cleared x_v0=1000 (L360 bin 4): -123..+2%
+  [PASS] (reported) V5 (reported) THE 2-HALO TEMPLATES (kept as the record builds them): FP1 E / L355's (pi R_0^2 Sig(R_0) at 20 kpc) and L352's (the same at 5 kpc) against an exact inner integral of the same xi_lin projection: the absolute error per unit bias is far below the data errors (the 2-halo Sigma is flat inside 50 kpc, where the inner disc is right)
+         measured: FP1/L355 T2H: max |d| 6.31e-04 Msun/pc^2 (max rel 10.4%); L352 twoh_cache: max |d| 2.83e-04 (max rel 2.5%); smallest bin-1 data error 0.11 Msun/pc^2
+    [3 s]
+
+======================================================================================================================
+B  THE ANATOMY: defect A (the inner disc pi R_0^2 Sig(R_0), R_0 = 20 kpc) and defect B (the trapezoid Abel integral)
+======================================================================================================================
+    -- SIS V=200: error [%] at the KiDS radii
+       committed (A and B)     -58.56  -42.71  -34.00  -24.87  -19.43  -13.31  -11.68  -10.36   -7.41   -5.69   -4.92   -6.50   -3.61   -4.12  -13.94   | max |.| 58.56%
+       B fixed, A kept         -56.52  -41.58  -30.58  -22.50  -16.55  -12.17   -8.95   -6.58   -4.84   -3.55   -2.62   -1.93   -1.42   -1.04   -0.76   | max |.| 56.52%
+       A fixed, B kept          +0.38   +0.65   -2.11   -1.41   -2.18   -0.62   -2.34   -3.49   -2.35   -1.98   -2.18   -4.48   -2.13   -3.03  -13.13   | max |.| 13.13%
+       both fixed               +0.01   +0.01   +0.01   +0.01   +0.00   +0.00   +0.01   +0.01   +0.01   +0.01   +0.01   +0.00   +0.00   +0.01   +0.01   | max |.| 0.01%
+    -- NFW 3.0e+12 c4: error [%] at the KiDS radii
+       committed (A and B)     -39.22  -22.96  -18.01  -11.64   -9.36   -5.96   -6.41   -6.51   -5.28   -4.81   -4.78   -5.66   -4.64   -4.91   -7.82   | max |.| 39.22%
+       B fixed, A kept         -36.89  -22.45  -14.14   -9.24   -6.28   -4.44   -3.26   -2.47   -1.94   -1.56   -1.29   -1.10   -0.94   -0.81   -0.71   | max |.| 36.89%
+       A fixed, B kept          +1.06   +1.56   -2.58   -1.55   -2.50   -1.11   -2.85   -3.79   -3.15   -3.09   -3.36   -4.45   -3.60   -4.00   -7.02   | max |.| 7.02%
+       both fixed               -0.00   +0.00   -0.00   +0.00   -0.00   +0.00   +0.01   +0.01   +0.02   +0.02   +0.02   +0.01   +0.01   +0.02   +0.03   | max |.| 0.03%
+    -- P2 phantom 1e11 (+M_b): error [%] at the KiDS radii
+       committed (A and B)     -26.23  -19.61  -17.16  -12.61  -10.45   -6.73   -6.83   -6.80   -4.79   -3.77   -3.50   -5.45   -2.84   -3.55  -13.52   | max |.| 26.23%
+       B fixed, A kept         -24.74  -18.86  -14.17  -10.54   -7.81   -5.76   -4.24   -3.12   -2.29   -1.68   -1.24   -0.92   -0.67   -0.49   -0.35   | max |.| 24.74%
+       A fixed, B kept          +0.41   +0.71   -1.90   -1.26   -2.05   -0.53   -2.26   -3.43   -2.31   -1.94   -2.16   -4.47   -2.11   -3.02  -13.13   | max |.| 13.13%
+       both fixed               +0.01   +0.02   +0.01   +0.01   +0.00   +0.00   +0.01   +0.01   +0.01   +0.01   +0.01   +0.00   +0.00   +0.01   +0.01   | max |.| 0.02%
+    -- point 1e11 (compact, as extended): error [%] at the KiDS radii
+       committed (A and B)    -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00   | max |.| 100.00%
+       B fixed, A kept        -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00 -100.00   | max |.| 100.00%
+       A fixed, B kept          +0.03   +0.04   +0.04   +0.03   +0.02   +0.00   +0.02   +0.03   +0.04   +0.03   +0.03   +0.01   +0.01   +0.03   +0.03   | max |.| 0.04%
+       both fixed               +0.03   +0.04   +0.04   +0.03   +0.02   +0.00   +0.02   +0.03   +0.04   +0.03   +0.03   +0.01   +0.01   +0.03   +0.03   | max |.| 0.04%
+  [PASS] B1 THE BUG IS TWO DEFECTS, BOTH NEEDED TO EXPLAIN IT: (A) alone (exact Abel, the committed inner disc) gives the -57% at 35 kpc falling as R_0/R; (B) alone (exact inner mass, the committed trapezoid) gives scattered -2..-6% errors and the -12% at 2.6 Mpc; fixing both reproduces the analytic profiles (< 0.1%) -- the missing term is the inner projected mass, the integration limits are the trapezoid's skipped [R, r_1] segment at the 1/sqrt end point; there is NO line-of-sight truncation defect (30 Mpc changes Delta Sigma by < 1e-4)
+         measured: SIS: A alone -56.5% at 35 kpc, -0.8% at 2.6 Mpc; B alone -13.1..+0.6% (-13.1% at 2.6 Mpc); both fixed: max 0.037% over SIS, NFW, the phantom and the compact mass
+    [3 s]
+
+======================================================================================================================
+K  CONTROLS: one function under four names; the harness reproduces the committed KiDS numbers with the committed projection
+======================================================================================================================
+  [PASS] K0 CONTROL: the P1 projection is ONE function under four names -- FP6's esd_of_M, FP1 E's (exec'd by FP14 and FP17 as GK), L355's (loaded by L357, hence AT1 and AT3's switch-free KiDS), and BS2's esd_from_M it was copied from: same grids (r = 1e-3..30 Mpc x 4000, R = 0.02..4 Mpc x 240), same trapezoid Abel matrix, same inner disc pi R_0^2 Sig(R_0)
+         measured: max relative difference over 20 random profiles 6.8e-16; inner-disc term present in all three sources: True
+    FP6 B5 isolated P2 canonical: +112.3165 vs committed +112.3165; FP6 H2 headline canonical: -0.9677 vs committed -0.9677; FP6 B5 isolated P2 alt: +105.6405 vs committed +105.6405; FP6 H2 headline alt: -3.2026 vs committed -3.2026
+  [PASS] K1 CONTROL: with the committed projection this harness reproduces the committed KiDS numbers exactly (FP6's isolated P2 chi^2 and (H) headline here; FP9, FP12, FP13, FP1 E, L355 and L352 each reproduced in their R section before the swap)
+         measured: max |d chi^2| 0.0e+00
+    [3 s]
+
+======================================================================================================================
+R1  FP6 (the (H) combination; KiDS lead grade): the committed script re-run with the corrected projection
+======================================================================================================================
+    FP6: re-run with the corrected projection -- 31/32 of its own checks pass (committed: 31/32); checks that change verdict: none
+    K2 L341 F7 control: nu_mono untruncated chi^2 (was 118.0)          can         +117.991 ->   +117.991                 
+    K2 L341 F7 control: cut at 1 Mpc (was 106.8)                       can         +106.797 ->   +106.797                 
+    K2 L341 F7 control: cut at 0.5 Mpc (was 223.0)                     can         +222.954 ->   +222.954                 
+    B5 isolated P2 chi^2 (the KiDS base)                               canonical   +112.317 ->   +112.317                 
+    B5 d chi^2 at L(0.25) = 0.5 Mpc                                    canonical   +293.713 ->   +293.713 (gate <= 9)     FAIL -> FAIL
+    B5 d chi^2 at L(0.25) = 0.75 Mpc                                   canonical   +129.992 ->   +129.992 (gate <= 9)     FAIL -> FAIL
+    B5 d chi^2 at L(0.25) = 1.0 Mpc                                    canonical    +39.118 ->    +39.118 (gate <= 9)     FAIL -> FAIL
+    B5 d chi^2 at L(0.25) = 1.3 Mpc                                    canonical     -0.767 ->     -0.767 (gate <= 9)     PASS -> PASS
+    B5 d chi^2 at L(0.25) = 1.6 Mpc                                    canonical     -8.082 ->     -8.082 (gate <= 9)     PASS -> PASS
+    B5 isolated P2 chi^2 (the KiDS base)                               alt         +105.641 ->   +105.641                 
+    B5 d chi^2 at L(0.25) = 0.5 Mpc                                    alt         +285.008 ->   +285.008 (gate <= 9)     FAIL -> FAIL
+    B5 d chi^2 at L(0.25) = 0.75 Mpc                                   alt         +119.534 ->   +119.534 (gate <= 9)     FAIL -> FAIL
+    B5 d chi^2 at L(0.25) = 1.0 Mpc                                    alt          +29.814 ->    +29.814 (gate <= 9)     FAIL -> FAIL
+    B5 d chi^2 at L(0.25) = 1.3 Mpc                                    alt           -5.959 ->     -5.959 (gate <= 9)     PASS -> PASS
+    B5 d chi^2 at L(0.25) = 1.6 Mpc                                    alt          -10.517 ->    -10.517 (gate <= 9)     PASS -> PASS
+    B5 KiDS floor L_KiDS [Mpc] (d chi^2 = +9 crossing)                 canonical     +1.227 ->     +1.227                 
+    B5 KiDS floor L_KiDS [Mpc] (d chi^2 = +9 crossing)                 alt           +1.175 ->     +1.175                 
+    B6 n=1: R0 at the KiDS floor [Mpc] (edge 1.21; pincer needs >)     canonical     +1.481 ->     +1.481 (gate > 1.20857) PASS -> PASS
+    B6 n=1: KiDS d chi^2 at L_LG (R0 = 0.96)                           canonical   +303.483 ->   +303.483 (gate <= 9)     FAIL -> FAIL
+    B6 n=1: R0 at the KiDS floor [Mpc] (edge 1.21; pincer needs >)     alt           +1.501 ->     +1.501 (gate > 1.20857) PASS -> PASS
+    B6 n=1: KiDS d chi^2 at L_LG (R0 = 0.96)                           alt         +308.618 ->   +308.618 (gate <= 9)     FAIL -> FAIL
+    B6 n=2: R0 at the KiDS floor [Mpc] (edge 1.21; pincer needs >)     canonical     +1.391 ->     +1.391 (gate > 1.20857) PASS -> PASS
+    B6 n=2: KiDS d chi^2 at L_LG (R0 = 0.96)                           canonical   +283.059 ->   +283.059 (gate <= 9)     FAIL -> FAIL
+    B6 n=2: R0 at the KiDS floor [Mpc] (edge 1.21; pincer needs >)     alt           +1.412 ->     +1.412 (gate > 1.20857) PASS -> PASS
+    B6 n=2: KiDS d chi^2 at L_LG (R0 = 0.96)                           alt         +290.045 ->   +290.045 (gate <= 9)     FAIL -> FAIL
+    B6 n=3: R0 at the KiDS floor [Mpc] (edge 1.21; pincer needs >)     canonical     +1.342 ->     +1.342 (gate > 1.20857) PASS -> PASS
+    B6 n=3: KiDS d chi^2 at L_LG (R0 = 0.96)                           canonical   +281.565 ->   +281.565 (gate <= 9)     FAIL -> FAIL
+    B6 n=3: R0 at the KiDS floor [Mpc] (edge 1.21; pincer needs >)     alt           +1.365 ->     +1.365 (gate > 1.20857) PASS -> PASS
+    B6 n=3: KiDS d chi^2 at L_LG (R0 = 0.96)                           alt         +291.650 ->   +291.650 (gate <= 9)     FAIL -> FAIL
+    B6 n=4: R0 at the KiDS floor [Mpc] (edge 1.21; pincer needs >)     canonical     +1.311 ->     +1.311 (gate > 1.20857) PASS -> PASS
+    B6 n=4: KiDS d chi^2 at L_LG (R0 = 0.96)                           canonical   +288.992 ->   +288.992 (gate <= 9)     FAIL -> FAIL
+    B6 n=4: R0 at the KiDS floor [Mpc] (edge 1.21; pincer needs >)     alt           +1.338 ->     +1.338 (gate > 1.20857) PASS -> PASS
+    B6 n=4: KiDS d chi^2 at L_LG (R0 = 0.96)                           alt         +303.013 ->   +303.013 (gate <= 9)     FAIL -> FAIL
+    H1 KiDS column, L(0.25) = 1.3, y_th(0.25) = 3e-07                  can           -1.751 ->     -1.751 (gate <= 9)     PASS -> PASS
+    H1 KiDS column, L(0.25) = 1.3, y_th(0.25) = 1e-06                  can           -0.968 ->     -0.968 (gate <= 9)     PASS -> PASS
+    H1 KiDS column, L(0.25) = 1.3, y_th(0.25) = 3e-06                  can           +3.771 ->     +3.771 (gate <= 9)     PASS -> PASS
+    H1 KiDS column, L(0.25) = 1.6, y_th(0.25) = 1e-06                  can           -7.013 ->     -7.013 (gate <= 9)     PASS -> PASS
+    H1 KiDS column, L(0.25) = 2.0, y_th(0.25) = 1e-06                  can           -4.494 ->     -4.494 (gate <= 9)     PASS -> PASS
+    H1 KiDS column, L(0.25) = 2.0, y_th(0.25) = 3e-06                  can           +2.856 ->     +2.856 (gate <= 9)     PASS -> PASS
+    H1 window: cells passing every gate (of 81; H1 needs >= 3)         can          +43.000 ->    +43.000 (gate > 2.5)    PASS -> PASS
+    H2 the (H) HEADLINE: KiDS d chi^2 (gate <= +9)                     canonical     -0.968 ->     -0.968 (gate <= 9)     PASS -> PASS
+    H2 the (H) HEADLINE: KiDS d chi^2 (gate <= +9)                     alt           -3.203 ->     -3.203 (gate <= 9)     PASS -> PASS
+    [87 s]
+
+======================================================================================================================
+R2  FP9 (the (H_Y) separator; FP11/FP12/FP13's baseline): the committed script re-run with the corrected projection
+======================================================================================================================
+    FP9: re-run with the corrected projection -- 35/36 of its own checks pass (committed: 35/36); checks that change verdict: none
+    K1 control: FP6's headline KiDS through FP9's exec (tracks FP6 H2) canonical     -0.968 ->     -0.968                 
+    K1 control: FP6's headline KiDS through FP9's exec (tracks FP6 H2) alt           -3.203 ->     -3.203                 
+    I5 d chi^2 at L(0.25) = 1.0 Mpc (band-pass alone)                  canonical    +39.118 ->    +39.118 (gate <= 9)     FAIL -> FAIL
+    I5 d chi^2 at L(0.25) = 1.3 Mpc (band-pass alone)                  canonical     -0.767 ->     -0.767 (gate <= 9)     PASS -> PASS
+    I5 KiDS floor L_KiDS [Mpc] (route (i); FP11 X1 / FP12 'KiDS needs  canonical     +1.227 ->     +1.227                 
+    I5 d chi^2 at L(0.25) = 1.0 Mpc (band-pass alone)                  alt          +29.814 ->    +29.814 (gate <= 9)     FAIL -> FAIL
+    I5 d chi^2 at L(0.25) = 1.3 Mpc (band-pass alone)                  alt           -5.959 ->     -5.959 (gate <= 9)     PASS -> PASS
+    I5 KiDS floor L_KiDS [Mpc] (route (i); FP11 X1 / FP12 'KiDS needs  alt           +1.175 ->     +1.175                 
+    H1 KiDS column, L(0.25) = 1.3, y_th(0.25) = 3e-07                  can           -2.050 ->     -2.050 (gate <= 9)     PASS -> PASS
+    H1 KiDS column, L(0.25) = 1.6, y_th(0.25) = 3e-07                  can           -7.728 ->     -7.728 (gate <= 9)     PASS -> PASS
+    H1 KiDS column, L(0.25) = 1.3, y_th(0.25) = 1e-06                  can           -2.402 ->     -2.402 (gate <= 9)     PASS -> PASS
+    H1 KiDS column, L(0.25) = 1.6, y_th(0.25) = 1e-06                  can           -6.815 ->     -6.815 (gate <= 9)     PASS -> PASS
+    H1 KiDS column, L(0.25) = 1.3, y_th(0.25) = 2e-06                  can           +4.522 ->     +4.522 (gate <= 9)     PASS -> PASS
+    H1 KiDS column, L(0.25) = 1.6, y_th(0.25) = 2e-06                  can           -5.061 ->     -5.061 (gate <= 9)     PASS -> PASS
+    H1 KiDS column, L(0.25) = 1.3, y_th(0.25) = 3e-06                  can           +7.864 ->     +7.864 (gate <= 9)     PASS -> PASS
+    H1 KiDS column, L(0.25) = 1.6, y_th(0.25) = 3e-06                  can           -1.398 ->     -1.398 (gate <= 9)     PASS -> PASS
+    H1 window: cells passing every gate (of 48; H1 needs >= 10)        can          +28.000 ->    +28.000 (gate > 9.5)    PASS -> PASS
+    H2 the (H_Y) HEADLINE at z = 0.25: KiDS d chi^2 (gate <= +9)       canonical     -2.402 ->     -2.402 (gate <= 9)     PASS -> PASS
+    H2 the (H_Y) HEADLINE at z = 0.25: KiDS d chi^2 (gate <= +9)       alt           -5.570 ->     -5.570 (gate <= 9)     PASS -> PASS
+    H3 LG R0 at (n, L(0.25)) = 2.0_1.3 [Mpc] (unchanged: no KiDS input canonical     +1.410 ->     +1.410                 
+    H3 LG R0 at (n, L(0.25)) = 2.0_1.3 [Mpc] (unchanged: no KiDS input alt           +1.453 ->     +1.453                 
+    H3 LG R0 at (n, L(0.25)) = 2.0_1.6 [Mpc] (unchanged: no KiDS input canonical     +1.491 ->     +1.491                 
+    H3 LG R0 at (n, L(0.25)) = 2.0_1.6 [Mpc] (unchanged: no KiDS input alt           +1.539 ->     +1.539                 
+    H3 LG R0 at (n, L(0.25)) = 2.5_1.3 [Mpc] (unchanged: no KiDS input canonical     +1.386 ->     +1.386                 
+    H3 LG R0 at (n, L(0.25)) = 2.5_1.3 [Mpc] (unchanged: no KiDS input alt           +1.430 ->     +1.430                 
+    H3 LG R0 at (n, L(0.25)) = 2.0_1.0 [Mpc] (unchanged: no KiDS input canonical     +1.293 ->     +1.293                 
+    H3 LG R0 at (n, L(0.25)) = 2.0_1.0 [Mpc] (unchanged: no KiDS input alt           +1.329 ->     +1.329                 
+    H3 LG R0 at (n, L(0.25)) = 2.0_0.6 [Mpc] (unchanged: no KiDS input canonical     +1.039 ->     +1.039                 
+    H3 LG R0 at (n, L(0.25)) = 2.0_0.6 [Mpc] (unchanged: no KiDS input alt           +1.061 ->     +1.061                 
+    D6 route (ii): KiDS needs the web on-fraction f(0.25) >=           canonical     +0.653 ->     +0.653                 
+    D6 route (ii): KiDS needs the web on-fraction f(0.25) >=           alt           +0.667 ->     +0.667                 
+    V2 Yukawa: KiDS d chi^2 at ell = 1.0 Mpc (can)                     can         +489.016 ->   +489.016 (gate <= 9)     FAIL -> FAIL
+    V2 Yukawa: KiDS d chi^2 at ell = 3.0 Mpc (can)                     can         +172.775 ->   +172.775 (gate <= 9)     FAIL -> FAIL
+    V2 Yukawa: KiDS d chi^2 at ell = 10.0 Mpc (can)                    can          -10.696 ->    -10.696 (gate <= 9)     PASS -> PASS
+    V2 Yukawa: KiDS needs ell >= [Mpc]                                 can           +8.788 ->     +8.788                 
+    [174 s]
+
+======================================================================================================================
+R3  FP13 (the state separator H_S; the chain's current headline): KiDS at z = 0.25 / 0.4 / 0.7, its variants and windows
+======================================================================================================================
+    control: 92 committed FP13 KiDS numbers recomputed with the committed projection: max |d chi^2| 0.0e+00
+    A3 windows (s passing all five gates; the other gates as committed): NL/FP9 yield: [1.686, 2.0, 2.4, 2.6, 2.7] -> [1.686, 2.0, 2.4, 2.6, 2.7]; NL/state yield: [1.3, 1.5, 1.686, 2.0, 2.4, 2.6] -> [1.3, 1.5, 1.686, 2.0, 2.4, 2.6]; lin/FP9 yield: [1.2, 1.4, 1.6, 1.65] -> [1.2, 1.4, 1.6, 1.65]; lin/state yield: [1.1, 1.2, 1.4, 1.6, 1.65] -> [1.1, 1.2, 1.4, 1.6, 1.65]
+    FP13 verdicts: H1 (H_S, z = 0.25) PASS -> PASS; with z = 0.4 PASS -> PASS; A3a (delta_c in both NL windows) True -> True; A7 factors passing + z = 0.4: [1.0, 0.6, 0.44] -> [1.0, 0.6, 0.44]
+    base: isolated P2 chi^2 (FP13's KB)                                canonical   +112.316 ->   +112.316                 
+    base: isolated P2 chi^2 (FP13's KB)                                alt         +105.641 ->   +105.641                 
+    H1 the H_S HEADLINE: KiDS d chi^2 at z = 0.25 (gate <= +9)         canonical     -6.245 ->     -6.245 (gate <= 9)     PASS -> PASS
+    H1 the H_S HEADLINE: KiDS d chi^2 at z = 0.25 (gate <= +9)         alt           -7.671 ->     -7.671 (gate <= 9)     PASS -> PASS
+    H1 the H_S HEADLINE: KiDS d chi^2 at z = 0.4 (gate <= +9)          canonical     -7.828 ->     -7.828 (gate <= 9)     PASS -> PASS
+    H1 the H_S HEADLINE: KiDS d chi^2 at z = 0.4 (gate <= +9)          alt          -10.668 ->    -10.668 (gate <= 9)     PASS -> PASS
+    H1 the H_S HEADLINE: KiDS d chi^2 at z = 0.7 (gate <= +9)          canonical   +542.720 ->   +542.720 (gate <= 9)     FAIL -> FAIL
+    H1 the H_S HEADLINE: KiDS d chi^2 at z = 0.7 (gate <= +9)          alt         +575.735 ->   +575.735 (gate <= 9)     FAIL -> FAIL
+    H3 self-consistent L_sc (L(0.25) = 2.06 Mpc): KiDS                 canonical     -4.981 ->     -4.981 (gate <= 9)     PASS -> PASS
+    H3 self-consistent L_sc (L(0.25) = 2.06 Mpc): KiDS                 alt           -6.086 ->     -6.086 (gate <= 9)     PASS -> PASS
+    H5/C2 variant 'FP9 H_Y': KiDS at z = 0.25                          canonical     -2.402 ->     -2.402 (gate <= 9)     PASS -> PASS
+    H5/C2 variant 'FP9 H_Y': KiDS at z = 0.25                          alt           -5.570 ->     -5.570 (gate <= 9)     PASS -> PASS
+    H5/C2 variant 'FP9 H_Y': KiDS at z = 0.4                           canonical    +20.585 ->    +20.585 (gate <= 9)     FAIL -> FAIL
+    H5/C2 variant 'FP9 H_Y': KiDS at z = 0.4                           alt          +18.336 ->    +18.336 (gate <= 9)     FAIL -> FAIL
+    H5/C2 variant 'step': KiDS at z = 0.25                             canonical     -6.245 ->     -6.245 (gate <= 9)     PASS -> PASS
+    H5/C2 variant 'step': KiDS at z = 0.25                             alt           -7.671 ->     -7.671 (gate <= 9)     PASS -> PASS
+    H5/C2 variant 'step': KiDS at z = 0.4                              canonical     -7.828 ->     -7.828 (gate <= 9)     PASS -> PASS
+    H5/C2 variant 'step': KiDS at z = 0.4                              alt          -10.668 ->    -10.668 (gate <= 9)     PASS -> PASS
+    H5/C2 variant 'lin s=1.3': KiDS at z = 0.25                        canonical     -6.892 ->     -6.892 (gate <= 9)     PASS -> PASS
+    H5/C2 variant 'lin s=1.3': KiDS at z = 0.25                        alt           -8.517 ->     -8.517 (gate <= 9)     PASS -> PASS
+    H5/C2 variant 'lin s=1.3': KiDS at z = 0.4                         canonical     -6.548 ->     -6.548 (gate <= 9)     PASS -> PASS
+    H5/C2 variant 'lin s=1.3': KiDS at z = 0.4                         alt           -9.976 ->     -9.976 (gate <= 9)     PASS -> PASS
+    H5/C2 variant 'eq onset': KiDS at z = 0.25                         canonical     -6.245 ->     -6.245 (gate <= 9)     PASS -> PASS
+    H5/C2 variant 'eq onset': KiDS at z = 0.25                         alt           -7.671 ->     -7.671 (gate <= 9)     PASS -> PASS
+    H5/C2 variant 'eq onset': KiDS at z = 0.4                          canonical  +1127.730 ->  +1127.730 (gate <= 9)     FAIL -> FAIL
+    H5/C2 variant 'eq onset': KiDS at z = 0.4                          alt        +1167.957 ->  +1167.957 (gate <= 9)     FAIL -> FAIL
+    H5/C2 variant 'first y~1 (yield off)': KiDS at z = 0.25            canonical     -6.245 ->     -6.245 (gate <= 9)     PASS -> PASS
+    H5/C2 variant 'first y~1 (yield off)': KiDS at z = 0.25            alt           -7.671 ->     -7.671 (gate <= 9)     PASS -> PASS
+    H5/C2 variant 'first y~1 (yield off)': KiDS at z = 0.4             canonical     -7.828 ->     -7.828 (gate <= 9)     PASS -> PASS
+    H5/C2 variant 'first y~1 (yield off)': KiDS at z = 0.4             alt          -10.668 ->    -10.668 (gate <= 9)     PASS -> PASS
+    A7 one-halo x1.0: KiDS at z = 0.25                                 canonical     -6.245 ->     -6.245 (gate <= 9)     PASS -> PASS
+    A7 one-halo x1.0: KiDS at z = 0.25                                 alt           -7.671 ->     -7.671 (gate <= 9)     PASS -> PASS
+    A7 one-halo x1.0: KiDS at z = 0.4                                  canonical     -7.828 ->     -7.828 (gate <= 9)     PASS -> PASS
+    A7 one-halo x1.0: KiDS at z = 0.4                                  alt          -10.668 ->    -10.668 (gate <= 9)     PASS -> PASS
+    A7 one-halo x0.6: KiDS at z = 0.25                                 canonical     -7.989 ->     -7.989 (gate <= 9)     PASS -> PASS
+    A7 one-halo x0.6: KiDS at z = 0.25                                 alt          -10.086 ->    -10.086 (gate <= 9)     PASS -> PASS
+    A7 one-halo x0.6: KiDS at z = 0.4                                  canonical     -1.554 ->     -1.554 (gate <= 9)     PASS -> PASS
+    A7 one-halo x0.6: KiDS at z = 0.4                                  alt           -6.576 ->     -6.576 (gate <= 9)     PASS -> PASS
+    A7 one-halo x0.44: KiDS at z = 0.25                                canonical     -7.823 ->     -7.823 (gate <= 9)     PASS -> PASS
+    A7 one-halo x0.44: KiDS at z = 0.25                                alt          -10.667 ->    -10.667 (gate <= 9)     PASS -> PASS
+    A7 one-halo x0.44: KiDS at z = 0.4                                 canonical     +6.266 ->     +6.266 (gate <= 9)     PASS -> PASS
+    A7 one-halo x0.44: KiDS at z = 0.4                                 alt           +0.030 ->     +0.030 (gate <= 9)     PASS -> PASS
+    A7 one-halo x0.34: KiDS at z = 0.25                                canonical     -6.393 ->     -6.393 (gate <= 9)     PASS -> PASS
+    A7 one-halo x0.34: KiDS at z = 0.25                                alt           -9.867 ->     -9.867 (gate <= 9)     PASS -> PASS
+    A7 one-halo x0.34: KiDS at z = 0.4                                 canonical    +16.530 ->    +16.530 (gate <= 9)     FAIL -> FAIL
+    A7 one-halo x0.34: KiDS at z = 0.4                                 alt           +9.440 ->     +9.440 (gate <= 9)     FAIL -> FAIL
+    A7 one-halo x0.2: KiDS at z = 0.25                                 canonical     +2.990 ->     +2.990 (gate <= 9)     PASS -> PASS
+    A7 one-halo x0.2: KiDS at z = 0.25                                 alt           -2.837 ->     -2.837 (gate <= 9)     PASS -> PASS
+    A7 one-halo x0.2: KiDS at z = 0.4                                  canonical    +50.881 ->    +50.881 (gate <= 9)     FAIL -> FAIL
+    A7 one-halo x0.2: KiDS at z = 0.4                                  alt          +41.491 ->    +41.491 (gate <= 9)     FAIL -> FAIL
+    A3 NL s = 1.000 (FP9 yield): KiDS at z = 0.25                      canonical     +1.257 ->     +1.257 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.000 (FP9 yield): KiDS at z = 0.25                      alt           +1.607 ->     +1.607 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.200 (FP9 yield): KiDS at z = 0.25                      canonical     +0.309 ->     +0.309 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.200 (FP9 yield): KiDS at z = 0.25                      alt           +0.562 ->     +0.562 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.300 (FP9 yield): KiDS at z = 0.25                      canonical     -0.483 ->     -0.483 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.300 (FP9 yield): KiDS at z = 0.25                      alt           -0.342 ->     -0.342 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.500 (FP9 yield): KiDS at z = 0.25                      canonical     -2.547 ->     -2.547 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.500 (FP9 yield): KiDS at z = 0.25                      alt           -2.744 ->     -2.744 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.686 (FP9 yield): KiDS at z = 0.25                      canonical     -4.649 ->     -4.649 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.686 (FP9 yield): KiDS at z = 0.25                      alt           -5.309 ->     -5.309 (gate <= 9)     PASS -> PASS
+    A3 NL s = 2.000 (FP9 yield): KiDS at z = 0.25                      canonical     -6.819 ->     -6.819 (gate <= 9)     PASS -> PASS
+    A3 NL s = 2.000 (FP9 yield): KiDS at z = 0.25                      alt           -8.495 ->     -8.495 (gate <= 9)     PASS -> PASS
+    A3 NL s = 2.400 (FP9 yield): KiDS at z = 0.25                      canonical     -3.020 ->     -3.020 (gate <= 9)     PASS -> PASS
+    A3 NL s = 2.400 (FP9 yield): KiDS at z = 0.25                      alt           -5.980 ->     -5.980 (gate <= 9)     PASS -> PASS
+    A3 NL s = 2.600 (FP9 yield): KiDS at z = 0.25                      canonical     +3.766 ->     +3.766 (gate <= 9)     PASS -> PASS
+    A3 NL s = 2.600 (FP9 yield): KiDS at z = 0.25                      alt           +0.993 ->     +0.993 (gate <= 9)     PASS -> PASS
+    A3 NL s = 2.700 (FP9 yield): KiDS at z = 0.25                      canonical     +7.561 ->     +7.561 (gate <= 9)     PASS -> PASS
+    A3 NL s = 2.700 (FP9 yield): KiDS at z = 0.25                      alt           +6.407 ->     +6.407 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.000 (state yield): KiDS at z = 0.25                    canonical     +0.355 ->     +0.355 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.000 (state yield): KiDS at z = 0.25                    alt           +0.294 ->     +0.294 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.200 (state yield): KiDS at z = 0.25                    canonical     -0.879 ->     -0.879 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.200 (state yield): KiDS at z = 0.25                    alt           -1.169 ->     -1.169 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.300 (state yield): KiDS at z = 0.25                    canonical     -1.803 ->     -1.803 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.300 (state yield): KiDS at z = 0.25                    alt           -2.262 ->     -2.262 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.500 (state yield): KiDS at z = 0.25                    canonical     -4.072 ->     -4.072 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.500 (state yield): KiDS at z = 0.25                    alt           -4.977 ->     -4.977 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.686 (state yield): KiDS at z = 0.25                    canonical     -6.245 ->     -6.245 (gate <= 9)     PASS -> PASS
+    A3 NL s = 1.686 (state yield): KiDS at z = 0.25                    alt           -7.671 ->     -7.671 (gate <= 9)     PASS -> PASS
+    A3 NL s = 2.000 (state yield): KiDS at z = 0.25                    canonical     -8.078 ->     -8.078 (gate <= 9)     PASS -> PASS
+    A3 NL s = 2.000 (state yield): KiDS at z = 0.25                    alt          -10.539 ->    -10.539 (gate <= 9)     PASS -> PASS
+    A3 NL s = 2.400 (state yield): KiDS at z = 0.25                    canonical     -1.545 ->     -1.545 (gate <= 9)     PASS -> PASS
+    A3 NL s = 2.400 (state yield): KiDS at z = 0.25                    alt           -6.569 ->     -6.569 (gate <= 9)     PASS -> PASS
+    A3 NL s = 2.600 (state yield): KiDS at z = 0.25                    canonical     +5.537 ->     +5.537 (gate <= 9)     PASS -> PASS
+    A3 NL s = 2.600 (state yield): KiDS at z = 0.25                    alt           -0.616 ->     -0.616 (gate <= 9)     PASS -> PASS
+    A3 NL s = 2.700 (state yield): KiDS at z = 0.25                    canonical    +10.309 ->    +10.309 (gate <= 9)     FAIL -> FAIL
+    A3 NL s = 2.700 (state yield): KiDS at z = 0.25                    alt           +3.678 ->     +3.678 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.000 (FP9 yield): KiDS at z = 0.25                     canonical     +0.353 ->     +0.353 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.000 (FP9 yield): KiDS at z = 0.25                     alt           +0.608 ->     +0.608 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.100 (FP9 yield): KiDS at z = 0.25                     canonical     -1.079 ->     -1.079 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.100 (FP9 yield): KiDS at z = 0.25                     alt           -1.020 ->     -1.020 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.200 (FP9 yield): KiDS at z = 0.25                     canonical     -3.106 ->     -3.106 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.200 (FP9 yield): KiDS at z = 0.25                     alt           -3.402 ->     -3.402 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.400 (FP9 yield): KiDS at z = 0.25                     canonical     -6.770 ->     -6.770 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.400 (FP9 yield): KiDS at z = 0.25                     alt           -8.346 ->     -8.346 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.600 (FP9 yield): KiDS at z = 0.25                     canonical     -1.142 ->     -1.142 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.600 (FP9 yield): KiDS at z = 0.25                     alt           -4.629 ->     -4.629 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.650 (FP9 yield): KiDS at z = 0.25                     canonical     +4.330 ->     +4.330 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.650 (FP9 yield): KiDS at z = 0.25                     alt           +4.642 ->     +4.642 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.686 (FP9 yield): KiDS at z = 0.25                     canonical     +8.446 ->     +8.446 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.686 (FP9 yield): KiDS at z = 0.25                     alt           +9.505 ->     +9.505 (gate <= 9)     FAIL -> FAIL
+    A3 lin s = 1.750 (FP9 yield): KiDS at z = 0.25                     canonical    +22.539 ->    +22.539 (gate <= 9)     FAIL -> FAIL
+    A3 lin s = 1.750 (FP9 yield): KiDS at z = 0.25                     alt          +19.294 ->    +19.294 (gate <= 9)     FAIL -> FAIL
+    A3 lin s = 1.000 (state yield): KiDS at z = 0.25                   canonical     -0.823 ->     -0.823 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.000 (state yield): KiDS at z = 0.25                   alt           -1.103 ->     -1.103 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.100 (state yield): KiDS at z = 0.25                   canonical     -2.472 ->     -2.472 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.100 (state yield): KiDS at z = 0.25                   alt           -3.057 ->     -3.057 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.200 (state yield): KiDS at z = 0.25                   canonical     -4.661 ->     -4.661 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.200 (state yield): KiDS at z = 0.25                   alt           -5.693 ->     -5.693 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.400 (state yield): KiDS at z = 0.25                   canonical     -8.080 ->     -8.080 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.400 (state yield): KiDS at z = 0.25                   alt          -10.414 ->    -10.414 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.600 (state yield): KiDS at z = 0.25                   canonical     +0.777 ->     +0.777 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.600 (state yield): KiDS at z = 0.25                   alt           -4.705 ->     -4.705 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.650 (state yield): KiDS at z = 0.25                   canonical     +6.232 ->     +6.232 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.650 (state yield): KiDS at z = 0.25                   alt           -0.000 ->     -0.000 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.686 (state yield): KiDS at z = 0.25                   canonical    +11.388 ->    +11.388 (gate <= 9)     FAIL -> FAIL
+    A3 lin s = 1.686 (state yield): KiDS at z = 0.25                   alt           +4.667 ->     +4.667 (gate <= 9)     PASS -> PASS
+    A3 lin s = 1.750 (state yield): KiDS at z = 0.25                   canonical    +22.862 ->    +22.862 (gate <= 9)     FAIL -> FAIL
+    A3 lin s = 1.750 (state yield): KiDS at z = 0.25                   alt          +15.425 ->    +15.425 (gate <= 9)     FAIL -> FAIL
+    [180 s]
+
+======================================================================================================================
+R4  FP12 (the Local Volume groups' R0): the (H_Y) KiDS row, the knobs' KiDS cost (U1) and the outer-profile cut (U2)
+======================================================================================================================
+    control: FP12's committed U1/U2 KiDS numbers with the committed projection: max |d chi^2| 0.0e+00
+    K7 the (H_Y) headline KiDS (= FP9 H2)                              canonical     -2.402 ->     -2.402 (gate <= 9)     PASS -> PASS
+    U1 knob L(0.25) -> stack R0: KiDS cost (knob fails iff > +9)       canonical   +262.859 ->   +262.859 (gate > 9)      PASS -> PASS
+    U1 knob y_th(0.25) -> stack R0: KiDS cost (knob fails iff > +9)    canonical   +146.091 ->   +146.091 (gate > 9)      PASS -> PASS
+    U2 outer-profile cut f = 0.3: KiDS d chi^2                         canonical   +346.496 ->   +346.496 (gate <= 9)     FAIL -> FAIL
+    U2 outer-profile cut f = 0.5: KiDS d chi^2                         canonical   +194.586 ->   +194.586 (gate <= 9)     FAIL -> FAIL
+    U2 outer-profile cut f = 0.8: KiDS d chi^2                         canonical    +48.154 ->    +48.154 (gate <= 9)     FAIL -> FAIL
+    U2 outer-profile cut f = 1.0: KiDS d chi^2                         canonical     -2.402 ->     -2.402 (gate <= 9)     PASS -> PASS
+    K7 the (H_Y) headline KiDS (= FP9 H2)                              alt           -5.570 ->     -5.570 (gate <= 9)     PASS -> PASS
+    U1 knob L(0.25) -> stack R0: KiDS cost (knob fails iff > +9)       alt         +261.467 ->   +261.467 (gate > 9)      PASS -> PASS
+    U1 knob y_th(0.25) -> stack R0: KiDS cost (knob fails iff > +9)    alt         +181.595 ->   +181.595 (gate > 9)      PASS -> PASS
+    U2 outer-profile cut f = 0.3: KiDS d chi^2                         alt         +340.485 ->   +340.485 (gate <= 9)     FAIL -> FAIL
+    U2 outer-profile cut f = 0.5: KiDS d chi^2                         alt         +185.564 ->   +185.564 (gate <= 9)     FAIL -> FAIL
+    U2 outer-profile cut f = 0.8: KiDS d chi^2                         alt          +39.980 ->    +39.980 (gate <= 9)     FAIL -> FAIL
+    U2 outer-profile cut f = 1.0: KiDS d chi^2                         alt           -5.570 ->     -5.570 (gate <= 9)     PASS -> PASS
+    [180 s]
+
+======================================================================================================================
+R6  FP1 E (the KiDS-EFE pincer; the tolerances FP11 P1 and FP12 quote): FP1's header + E section re-run with the corrected projection
+======================================================================================================================
+    FP1 E: re-run with the corrected projection -- 6/6 of its own checks pass (committed: 6/6); checks that change verdict: none
+    E0 control: nu_mono (L355's a0) isolated chi^2 (L355 K1)           canonical   +116.300 ->   +116.348                 
+    E0 control: baryons-only kernel d chi^2 (L355 K2)                  canonical   +233.400 ->   +233.355                 
+    E3 P2 isolated chi^2 (the base)                                    canonical   +110.632 ->   +110.632                 
+    E3 KiDS TOLERANCE e (3D rms, a0), no 2-halo (+9 crossing)          canonical     +2.286 ->     +2.286                 
+    E3 KiDS TOLERANCE e (3D rms, 1e-4 a0), 2-halo A <= 2               canonical     +5.190 ->     +5.190                 
+    E3 the LG needs e (1e-4 a0; unchanged) / KiDS tolerates (2-halo):  canonical     +5.803 ->     +5.803 (gate > 1)      PASS -> PASS
+    E3 band-edge need / 2-halo tolerance (the loosest reading)         canonical     +1.420 ->     +1.420 (gate > 1)      PASS -> PASS
+    E3 KiDS at the core's own baryonic web field (FAIL iff > +9)       canonical   +215.405 ->   +215.405 (gate > 9)      PASS -> PASS
+    E3 KiDS at the core's own all-matter web field                     canonical   +528.234 ->   +528.234 (gate > 9)      PASS -> PASS
+    E3 KiDS at Brouwer's quiet field, baryons, 2-halo                  canonical    +27.471 ->    +27.471 (gate > 9)      PASS -> PASS
+    E4 2-halo amplitude FREE, baryons-only field                       canonical    +84.513 ->    +84.513 (gate > 9)      PASS -> PASS
+    E4 2-halo amplitude FREE, all-matter field                         canonical   +303.602 ->   +303.602 (gate > 9)      PASS -> PASS
+    E0 control: nu_mono (L355's a0) isolated chi^2 (L355 K1)           alt         +107.500 ->   +107.530                 
+    E0 control: baryons-only kernel d chi^2 (L355 K2)                  alt         +241.000 ->   +240.976                 
+    E3 P2 isolated chi^2 (the base)                                    alt         +102.407 ->   +102.407                 
+    E3 KiDS TOLERANCE e (3D rms, a0), no 2-halo (+9 crossing)          alt           +1.668 ->     +1.668                 
+    E3 KiDS TOLERANCE e (3D rms, 1e-4 a0), 2-halo A <= 2               alt           +3.684 ->     +3.684                 
+    E3 the LG needs e (1e-4 a0; unchanged) / KiDS tolerates (2-halo):  alt           +8.196 ->     +8.196 (gate > 1)      PASS -> PASS
+    E3 band-edge need / 2-halo tolerance (the loosest reading)         alt           +2.014 ->     +2.014 (gate > 1)      PASS -> PASS
+    E3 KiDS at the core's own baryonic web field (FAIL iff > +9)       alt         +225.108 ->   +225.108 (gate > 9)      PASS -> PASS
+    E3 KiDS at the core's own all-matter web field                     alt         +542.197 ->   +542.197 (gate > 9)      PASS -> PASS
+    E3 KiDS at Brouwer's quiet field, baryons, 2-halo                  alt          +33.442 ->    +33.442 (gate > 9)      PASS -> PASS
+    E4 2-halo amplitude FREE, baryons-only field                       alt          +93.476 ->    +93.476 (gate > 9)      PASS -> PASS
+    E4 2-halo amplitude FREE, all-matter field                         alt         +317.311 ->   +317.311 (gate > 9)      PASS -> PASS
+    [198 s]
+
+======================================================================================================================
+R5  FP11 (the Local Group flyby): its KiDS rows are FP9's H2 (K7, G1) and FP1 E3's tolerances (P1) -- re-read from R2 and R6
+======================================================================================================================
+    K7/G1 the (H_Y) KiDS row (= FP9 H2)                                canonical     -2.402 ->     -2.402 (gate <= 9)     PASS -> PASS
+    P1 the LG's needed e / KiDS's 2-halo tolerance (pincer holds iff > canonical     +6.993 ->     +6.993 (gate > 1)      PASS -> PASS
+    P1 band-edge need / KiDS's 2-halo tolerance (reported)             canonical     +0.931 ->     +0.931 (gate > 1)      FAIL -> FAIL
+    K7/G1 the (H_Y) KiDS row (= FP9 H2)                                alt           -5.570 ->     -5.570 (gate <= 9)     PASS -> PASS
+    P1 the LG's needed e / KiDS's 2-halo tolerance (pincer holds iff > alt           +6.623 ->     +6.623 (gate > 1)      PASS -> PASS
+    P1 band-edge need / KiDS's 2-halo tolerance (reported)             alt           +0.897 ->     +0.897 (gate > 1)      FAIL -> FAIL
+
+======================================================================================================================
+R7  FP14 and FP17 (the zero-knob core; screening without xi): the committed scripts re-run with FP1 E's projection corrected in their GK
+======================================================================================================================
+    FP14: re-run with the corrected projection -- 27/27 of its own checks pass (committed: 27/27); checks that change verdict: none
+    K control: P2 isolated chi^2 (FP1 E's machinery)                   canonical   +110.600 ->   +110.632                 
+    Newtonian (MOND off) minus P2: KiDS d chi^2 (X2 / V3 need > +500)  canonical  +1119.700 ->  +1119.714 (gate > 500)    PASS -> PASS
+    K control: P2 isolated chi^2 (FP1 E's machinery)                   alt         +102.400 ->   +102.407                 
+    Newtonian (MOND off) minus P2: KiDS d chi^2 (X2 / V3 need > +500)  alt        +1127.900 ->  +1127.939 (gate > 500)    PASS -> PASS
+    FP17: re-run with the corrected projection -- 28/28 of its own checks pass (committed: 28/28); checks that change verdict: none
+    K control: P2 isolated chi^2 (FP1 E's machinery)                   canonical   +110.600 ->   +110.632                 
+    Newtonian (MOND off) minus P2: KiDS d chi^2 (X2 / V3 need > +500)  canonical  +1119.700 ->  +1119.714 (gate > 500)    PASS -> PASS
+    K control: P2 isolated chi^2 (FP1 E's machinery)                   alt         +102.400 ->   +102.407                 
+    Newtonian (MOND off) minus P2: KiDS d chi^2 (X2 / V3 need > +500)  alt        +1127.900 ->  +1127.939 (gate > 500)    PASS -> PASS
+    V3 BDEF with k^(1/4) = c/H: KiDS d chi^2 vs P2 (FAIL iff > +500)   canonical  +1116.255 ->  +1116.223 (gate > 500)    PASS -> PASS
+    V4 BDEF at the GW170817 ceiling: KiDS d chi^2                      canonical     +0.000 ->     +0.000 (gate <= 9)     PASS -> PASS
+    V3 BDEF with k^(1/4) = c/H: KiDS d chi^2 vs P2 (FAIL iff > +500)   alt        +1120.883 ->  +1120.876 (gate > 500)    PASS -> PASS
+    V4 BDEF at the GW170817 ceiling: KiDS d chi^2                      alt           +0.000 ->     +0.000 (gate <= 9)     PASS -> PASS
+    [287 s]
+
+======================================================================================================================
+R8  L355 (KiDS for the kernel-invisible construction; the record's 'KiDS needs a web-blind kernel'): re-run with the corrected projection
+======================================================================================================================
+    L355: re-run with the corrected projection -- 4/4 of its own checks pass (committed: 4/4); checks that change verdict: none
+    K1 isolated-MOND base chi^2 (nu_mono, L355's a0)                   canonical   +116.348 ->   +116.348                 
+    K2 baryons-only kernel deficit, linear-theory (16 Mpc) (K2 needs > canonical   +233.355 ->   +233.355                 
+    K2 baryons-only kernel deficit, Brouwer+21 quiet (e =  (K2 needs > canonical   +116.934 ->   +116.934                 
+    K3 + carrier (f_d(0) = 0.8) + 2-halo at the OWN field (constructio canonical   +130.630 ->   +130.630 (gate > 9)      PASS -> PASS
+    K3 + carrier (f_d(0) = 0.9) + 2-halo at the OWN field (constructio canonical   +120.375 ->   +120.375 (gate > 9)      PASS -> PASS
+    K4 best carrier fraction f_s at the own field (K4: <= 0.1)         canonical     +0.050 ->     +0.050 (gate <= 0.1)   PASS -> PASS
+    K4 d chi^2 at the best f_s (still misses iff > +9)                 canonical    +96.724 ->    +96.724 (gate > 9)      PASS -> PASS
+    K1 isolated-MOND base chi^2 (nu_mono, L355's a0)                   alt         +107.530 ->   +107.530                 
+    K2 baryons-only kernel deficit, linear-theory (16 Mpc) (K2 needs > alt         +240.976 ->   +240.976                 
+    K2 baryons-only kernel deficit, Brouwer+21 quiet (e =  (K2 needs > alt         +123.350 ->   +123.350                 
+    K3 + carrier (f_d(0) = 0.8) + 2-halo at the OWN field (constructio alt         +144.655 ->   +144.655 (gate > 9)      PASS -> PASS
+    K3 + carrier (f_d(0) = 0.9) + 2-halo at the OWN field (constructio alt         +134.052 ->   +134.052 (gate > 9)      PASS -> PASS
+    K4 best carrier fraction f_s at the own field (K4: <= 0.1)         alt           +0.000 ->     +0.000 (gate <= 0.1)   PASS -> PASS
+    K4 d chi^2 at the best f_s (still misses iff > +9)                 alt         +104.368 ->   +104.368 (gate > 9)      PASS -> PASS
+    [292 s]
+
+======================================================================================================================
+R9  THE P2 FAMILY (L352's projection: L352/L359/L360, AT3's switched gate, FP4/FP10 via AT3, DE8 -> DE10 -> XR9/XR14): re-scored cells
+======================================================================================================================
+    control: this lane's copy of L352's model_M2 with the committed projection reproduces L352's (max rel diff 0.0e+00)
+    control: L352's unswitched base chi^2 with the committed projection 174.30 / 166.92 (committed 174.30 / 166.92, as printed by DE8/L360/AT3)
+    L360: re-run with the corrected projection -- 4/4 of its own checks pass (committed: 4/4); checks that change verdict: none
+    L360: pairs passing KiDS (<= +4, both footings) 70 -> 70 of 96; d chi^2 shift of the carrier pairs +0.00..+0.00
+    AT3: 24 committed rows, switched KiDS (its gate, <= +4) max -5.9 (can) / -0.7 (alt); its window cells are re-scored exactly in R11 (its other rows fail X-COP, the flagship, galaxies or Harvey regardless)
+    L352 unswitched base chi^2 (+2-halo)                               canonical   +174.297 ->   +174.297                 
+    L352 unswitched base chi^2 (no 2-halo)                             canonical   +179.083 ->   +179.083                 
+    AT3 common cell x_c,eff 3.2477, NO carrier (FP10 B4's cleared halo canonical     -6.079 ->     -6.079 (gate <= 4)     PASS -> PASS
+    L352 Z3 compensated x_c = 5 +2-halo: d chi^2 (Z3: disfavoured iff  canonical    +34.782 ->    +34.782 (gate > 9)      PASS -> PASS
+    L342 B4 retained x_c = 5, no 2-halo (control): d chi^2             canonical     -6.417 ->     -6.417                 
+    L352 unswitched base chi^2 (+2-halo)                               alt         +166.922 ->   +166.922                 
+    L352 unswitched base chi^2 (no 2-halo)                             alt         +173.569 ->   +173.569                 
+    AT3 common cell x_c,eff 3.2477, NO carrier (FP10 B4's cleared halo alt           -0.956 ->     -0.956 (gate <= 4)     PASS -> PASS
+    L352 Z3 compensated x_c = 5 +2-halo: d chi^2 (Z3: disfavoured iff  alt          +35.732 ->    +35.732 (gate > 9)      PASS -> PASS
+    L342 B4 retained x_c = 5, no 2-halo (control): d chi^2             alt          -10.364 ->    -10.364                 
+    DE8 C1: isolated QUMOND via the ODE + esd_from_mlens, chi^2        canonical   +174.297 ->   +174.297                 
+    DE8 C1 minus L352's base (same projection before/after): d chi^2   canonical     +0.000 ->     +0.000                 
+    DE8 C1: isolated QUMOND via the ODE + esd_from_mlens, chi^2        alt         +166.922 ->   +166.922                 
+    DE8 C1 minus L352's base (same projection before/after): d chi^2   alt           +0.000 ->     +0.000                 
+    M2 pair 0.5/1.5/2.0/cap/1000.0: d chi^2 (gate <= +4)               canonical    -38.190 ->    -38.190 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/1.5/2.0/cap/1000.0: d chi^2 (gate <= +4)               alt          -31.354 ->    -31.354 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/2.0/cap/1000.0: d chi^2 (gate <= +4)               canonical    -16.494 ->    -16.494 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/2.0/cap/1000.0: d chi^2 (gate <= +4)               alt          -10.087 ->    -10.087 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/2.0/cap/1000.0: d chi^2 (gate <= +4)               canonical     -9.895 ->     -9.895 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/2.0/cap/1000.0: d chi^2 (gate <= +4)               alt           -2.325 ->     -2.325 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/2.0/cap/1000.0: d chi^2 (gate <= +4)               canonical    -23.822 ->    -23.822 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/2.0/cap/1000.0: d chi^2 (gate <= +4)               alt          -19.909 ->    -19.909 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/2.0/cap/1000.0: d chi^2 (gate <= +4)               canonical    -14.298 ->    -14.298 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/2.0/cap/1000.0: d chi^2 (gate <= +4)               alt           -6.853 ->     -6.853 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.5/2.0/cap/1000.0: d chi^2 (gate <= +4)               canonical     +0.646 ->     +0.646 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.5/2.0/cap/1000.0: d chi^2 (gate <= +4)               alt           +7.121 ->     +7.121 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/1.5/2.0/cap/1000.0: d chi^2 (gate <= +4)               canonical    -15.124 ->    -15.124 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/1.5/2.0/cap/1000.0: d chi^2 (gate <= +4)               alt           -7.480 ->     -7.480 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/2.0/2.0/cap/1000.0: d chi^2 (gate <= +4)               canonical     +4.467 ->     +4.467 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/2.0/2.0/cap/1000.0: d chi^2 (gate <= +4)               alt          +10.355 ->    +10.355 (gate <= 4)     FAIL -> FAIL
+    M2 pair 0.5/1.5/2.0/cleared/1000.0: d chi^2 (gate <= +4)           canonical    -40.713 ->    -40.713 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/1.5/2.0/cleared/1000.0: d chi^2 (gate <= +4)           alt          -33.458 ->    -33.458 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/2.0/cleared/1000.0: d chi^2 (gate <= +4)           canonical    -35.209 ->    -35.209 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/2.0/cleared/1000.0: d chi^2 (gate <= +4)           alt          -29.421 ->    -29.421 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/2.0/cleared/1000.0: d chi^2 (gate <= +4)           canonical    -11.679 ->    -11.679 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/2.0/cleared/1000.0: d chi^2 (gate <= +4)           alt           -5.341 ->     -5.341 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/2.0/cleared/1000.0: d chi^2 (gate <= +4)           canonical    -42.547 ->    -42.547 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/2.0/cleared/1000.0: d chi^2 (gate <= +4)           alt          -36.330 ->    -36.330 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/2.0/cleared/1000.0: d chi^2 (gate <= +4)           canonical    -17.532 ->    -17.532 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/2.0/cleared/1000.0: d chi^2 (gate <= +4)           alt          -12.241 ->    -12.241 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.5/2.0/cleared/1000.0: d chi^2 (gate <= +4)           canonical     +1.062 ->     +1.062 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.5/2.0/cleared/1000.0: d chi^2 (gate <= +4)           alt          +10.285 ->    +10.285 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/1.5/2.0/cleared/1000.0: d chi^2 (gate <= +4)           canonical    -20.729 ->    -20.729 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/1.5/2.0/cleared/1000.0: d chi^2 (gate <= +4)           alt          -13.971 ->    -13.971 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/2.0/2.0/cleared/1000.0: d chi^2 (gate <= +4)           canonical     +2.560 ->     +2.560 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/2.0/2.0/cleared/1000.0: d chi^2 (gate <= +4)           alt          +10.266 ->    +10.266 (gate <= 4)     FAIL -> FAIL
+    M2 pair 0.5/1.5/2.0/cleared/2000.0: d chi^2 (gate <= +4)           canonical    -26.755 ->    -26.755 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/1.5/2.0/cleared/2000.0: d chi^2 (gate <= +4)           alt          -20.165 ->    -20.165 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/2.0/cleared/2000.0: d chi^2 (gate <= +4)           canonical     -4.188 ->     -4.188 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/2.0/cleared/2000.0: d chi^2 (gate <= +4)           alt           +3.172 ->     +3.172 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/2.0/cleared/2000.0: d chi^2 (gate <= +4)           canonical     +9.720 ->     +9.720 (gate <= 4)     FAIL -> FAIL
+    M2 pair 0.5/2.5/2.0/cleared/2000.0: d chi^2 (gate <= +4)           alt          +16.028 ->    +16.028 (gate <= 4)     FAIL -> FAIL
+    M2 pair 1.0/1.5/2.0/cleared/2000.0: d chi^2 (gate <= +4)           canonical    -23.511 ->    -23.511 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/2.0/cleared/2000.0: d chi^2 (gate <= +4)           alt          -16.766 ->    -16.766 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/2.0/cleared/2000.0: d chi^2 (gate <= +4)           canonical     +8.238 ->     +8.238 (gate <= 4)     FAIL -> FAIL
+    M2 pair 1.0/2.0/2.0/cleared/2000.0: d chi^2 (gate <= +4)           alt          +14.196 ->    +14.196 (gate <= 4)     FAIL -> FAIL
+    M2 pair 1.0/2.5/2.0/cleared/2000.0: d chi^2 (gate <= +4)           canonical    +12.272 ->    +12.272 (gate <= 4)     FAIL -> FAIL
+    M2 pair 1.0/2.5/2.0/cleared/2000.0: d chi^2 (gate <= +4)           alt          +19.628 ->    +19.628 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/1.5/2.0/cleared/2000.0: d chi^2 (gate <= +4)           canonical     +5.893 ->     +5.893 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/1.5/2.0/cleared/2000.0: d chi^2 (gate <= +4)           alt          +12.694 ->    +12.694 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/2.0/2.0/cleared/2000.0: d chi^2 (gate <= +4)           canonical    +14.159 ->    +14.159 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/2.0/2.0/cleared/2000.0: d chi^2 (gate <= +4)           alt          +22.061 ->    +22.061 (gate <= 4)     FAIL -> FAIL
+    M2 pair 0.5/1.5/1.0/cap/700.0: d chi^2 (gate <= +4)                canonical    -57.400 ->    -57.400 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/1.5/1.0/cap/700.0: d chi^2 (gate <= +4)                alt          -51.332 ->    -51.332 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/1.0/cap/700.0: d chi^2 (gate <= +4)                canonical    -35.014 ->    -35.014 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/1.0/cap/700.0: d chi^2 (gate <= +4)                alt          -28.705 ->    -28.705 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/1.0/cap/700.0: d chi^2 (gate <= +4)                canonical    -20.800 ->    -20.800 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/1.0/cap/700.0: d chi^2 (gate <= +4)                alt          -15.199 ->    -15.199 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/1.0/cap/700.0: d chi^2 (gate <= +4)                canonical    -54.376 ->    -54.376 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/1.0/cap/700.0: d chi^2 (gate <= +4)                alt          -48.024 ->    -48.024 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/1.0/cap/700.0: d chi^2 (gate <= +4)                canonical    -22.304 ->    -22.304 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/1.0/cap/700.0: d chi^2 (gate <= +4)                alt          -17.080 ->    -17.080 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.5/1.0/cap/700.0: d chi^2 (gate <= +4)                canonical    -18.564 ->    -18.564 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.5/1.0/cap/700.0: d chi^2 (gate <= +4)                alt          -11.537 ->    -11.537 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/1.5/1.0/cap/700.0: d chi^2 (gate <= +4)                canonical    -24.630 ->    -24.630 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/1.5/1.0/cap/700.0: d chi^2 (gate <= +4)                alt          -18.567 ->    -18.567 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/2.0/1.0/cap/700.0: d chi^2 (gate <= +4)                canonical    -16.662 ->    -16.662 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/2.0/1.0/cap/700.0: d chi^2 (gate <= +4)                alt           -9.093 ->     -9.093 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/1.5/1.0/cap/1000.0: d chi^2 (gate <= +4)               canonical    -47.828 ->    -47.828 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/1.5/1.0/cap/1000.0: d chi^2 (gate <= +4)               alt          -40.145 ->    -40.145 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/1.0/cap/1000.0: d chi^2 (gate <= +4)               canonical    -20.320 ->    -20.320 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/1.0/cap/1000.0: d chi^2 (gate <= +4)               alt          -14.365 ->    -14.365 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/1.0/cap/1000.0: d chi^2 (gate <= +4)               canonical    -15.619 ->    -15.619 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/1.0/cap/1000.0: d chi^2 (gate <= +4)               alt           -7.069 ->     -7.069 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/1.0/cap/1000.0: d chi^2 (gate <= +4)               canonical    -37.966 ->    -37.966 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/1.0/cap/1000.0: d chi^2 (gate <= +4)               alt          -32.704 ->    -32.704 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/1.0/cap/1000.0: d chi^2 (gate <= +4)               canonical    -18.909 ->    -18.909 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/1.0/cap/1000.0: d chi^2 (gate <= +4)               alt          -10.029 ->    -10.029 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.5/1.0/cap/1000.0: d chi^2 (gate <= +4)               canonical     -6.509 ->     -6.509 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.5/1.0/cap/1000.0: d chi^2 (gate <= +4)               alt           -1.608 ->     -1.608 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/1.5/1.0/cap/1000.0: d chi^2 (gate <= +4)               canonical    -19.375 ->    -19.375 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/1.5/1.0/cap/1000.0: d chi^2 (gate <= +4)               alt          -11.052 ->    -11.052 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/2.0/1.0/cap/1000.0: d chi^2 (gate <= +4)               canonical     -3.721 ->     -3.721 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/2.0/1.0/cap/1000.0: d chi^2 (gate <= +4)               alt           +0.821 ->     +0.821 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/1.5/1.0/cap/1500.0: d chi^2 (gate <= +4)               canonical    -32.945 ->    -32.945 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/1.5/1.0/cap/1500.0: d chi^2 (gate <= +4)               alt          -25.381 ->    -25.381 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/1.0/cap/1500.0: d chi^2 (gate <= +4)               canonical    -14.949 ->    -14.949 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/1.0/cap/1500.0: d chi^2 (gate <= +4)               alt           -8.216 ->     -8.216 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/1.0/cap/1500.0: d chi^2 (gate <= +4)               canonical     -6.666 ->     -6.666 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/1.0/cap/1500.0: d chi^2 (gate <= +4)               alt           +0.886 ->     +0.886 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/1.0/cap/1500.0: d chi^2 (gate <= +4)               canonical    -19.217 ->    -19.217 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/1.0/cap/1500.0: d chi^2 (gate <= +4)               alt          -11.960 ->    -11.960 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/1.0/cap/1500.0: d chi^2 (gate <= +4)               canonical    -11.245 ->    -11.245 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/1.0/cap/1500.0: d chi^2 (gate <= +4)               alt           -4.798 ->     -4.798 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.5/1.0/cap/1500.0: d chi^2 (gate <= +4)               canonical     +5.609 ->     +5.609 (gate <= 4)     FAIL -> FAIL
+    M2 pair 1.0/2.5/1.0/cap/1500.0: d chi^2 (gate <= +4)               alt          +11.697 ->    +11.697 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/1.5/1.0/cap/1500.0: d chi^2 (gate <= +4)               canonical    -12.068 ->    -12.068 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/1.5/1.0/cap/1500.0: d chi^2 (gate <= +4)               alt           -5.758 ->     -5.758 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/2.0/1.0/cap/1500.0: d chi^2 (gate <= +4)               canonical    +10.428 ->    +10.428 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/2.0/1.0/cap/1500.0: d chi^2 (gate <= +4)               alt          +15.969 ->    +15.969 (gate <= 4)     FAIL -> FAIL
+    M2 pair 0.5/1.5/1.0/cleared/1000.0: d chi^2 (gate <= +4)           canonical    -49.346 ->    -49.346 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/1.5/1.0/cleared/1000.0: d chi^2 (gate <= +4)           alt          -41.845 ->    -41.845 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/1.0/cleared/1000.0: d chi^2 (gate <= +4)           canonical    -47.597 ->    -47.597 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/1.0/cleared/1000.0: d chi^2 (gate <= +4)           alt          -40.841 ->    -40.841 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/1.0/cleared/1000.0: d chi^2 (gate <= +4)           canonical    -24.618 ->    -24.618 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/1.0/cleared/1000.0: d chi^2 (gate <= +4)           alt          -16.655 ->    -16.655 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/1.0/cleared/1000.0: d chi^2 (gate <= +4)           canonical    -52.940 ->    -52.940 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/1.0/cleared/1000.0: d chi^2 (gate <= +4)           alt          -45.718 ->    -45.718 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/1.0/cleared/1000.0: d chi^2 (gate <= +4)           canonical    -30.484 ->    -30.484 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/1.0/cleared/1000.0: d chi^2 (gate <= +4)           alt          -28.312 ->    -28.312 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.5/1.0/cleared/1000.0: d chi^2 (gate <= +4)           canonical     -6.497 ->     -6.497 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.5/1.0/cleared/1000.0: d chi^2 (gate <= +4)           alt           -2.921 ->     -2.921 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/1.5/1.0/cleared/1000.0: d chi^2 (gate <= +4)           canonical    -33.284 ->    -33.284 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/1.5/1.0/cleared/1000.0: d chi^2 (gate <= +4)           alt          -30.018 ->    -30.018 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/2.0/1.0/cleared/1000.0: d chi^2 (gate <= +4)           canonical     -4.596 ->     -4.596 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/2.0/1.0/cleared/1000.0: d chi^2 (gate <= +4)           alt           +0.693 ->     +0.693 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/1.5/1.0/cleared/1500.0: d chi^2 (gate <= +4)           canonical    -37.647 ->    -37.647 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/1.5/1.0/cleared/1500.0: d chi^2 (gate <= +4)           alt          -29.202 ->    -29.202 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/1.0/cleared/1500.0: d chi^2 (gate <= +4)           canonical    -27.562 ->    -27.562 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/1.0/cleared/1500.0: d chi^2 (gate <= +4)           alt          -22.857 ->    -22.857 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/1.0/cleared/1500.0: d chi^2 (gate <= +4)           canonical     -3.719 ->     -3.719 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/1.0/cleared/1500.0: d chi^2 (gate <= +4)           alt           +1.516 ->     +1.516 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/1.0/cleared/1500.0: d chi^2 (gate <= +4)           canonical    -37.086 ->    -37.086 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/1.0/cleared/1500.0: d chi^2 (gate <= +4)           alt          -30.513 ->    -30.513 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/1.0/cleared/1500.0: d chi^2 (gate <= +4)           canonical    -11.523 ->    -11.523 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/1.0/cleared/1500.0: d chi^2 (gate <= +4)           alt           -3.086 ->     -3.086 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.5/1.0/cleared/1500.0: d chi^2 (gate <= +4)           canonical     +4.521 ->     +4.521 (gate <= 4)     FAIL -> FAIL
+    M2 pair 1.0/2.5/1.0/cleared/1500.0: d chi^2 (gate <= +4)           alt          +13.533 ->    +13.533 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/1.5/1.0/cleared/1500.0: d chi^2 (gate <= +4)           canonical    -14.734 ->    -14.734 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/1.5/1.0/cleared/1500.0: d chi^2 (gate <= +4)           alt           -5.320 ->     -5.320 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/2.0/1.0/cleared/1500.0: d chi^2 (gate <= +4)           canonical     +5.504 ->     +5.504 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/2.0/1.0/cleared/1500.0: d chi^2 (gate <= +4)           alt          +14.425 ->    +14.425 (gate <= 4)     FAIL -> FAIL
+    M2 pair 0.5/1.5/1.0/cleared/2000.0: d chi^2 (gate <= +4)           canonical    -32.542 ->    -32.542 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/1.5/1.0/cleared/2000.0: d chi^2 (gate <= +4)           alt          -25.135 ->    -25.135 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/1.0/cleared/2000.0: d chi^2 (gate <= +4)           canonical    -13.781 ->    -13.781 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/1.0/cleared/2000.0: d chi^2 (gate <= +4)           alt          -10.132 ->    -10.132 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/1.0/cleared/2000.0: d chi^2 (gate <= +4)           canonical     +7.073 ->     +7.073 (gate <= 4)     FAIL -> FAIL
+    M2 pair 0.5/2.5/1.0/cleared/2000.0: d chi^2 (gate <= +4)           alt          +14.970 ->    +14.970 (gate <= 4)     FAIL -> FAIL
+    M2 pair 1.0/1.5/1.0/cleared/2000.0: d chi^2 (gate <= +4)           canonical    -30.735 ->    -30.735 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/1.0/cleared/2000.0: d chi^2 (gate <= +4)           alt          -21.831 ->    -21.831 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/1.0/cleared/2000.0: d chi^2 (gate <= +4)           canonical     -1.140 ->     -1.140 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/1.0/cleared/2000.0: d chi^2 (gate <= +4)           alt           +5.240 ->     +5.240 (gate <= 4)     FAIL -> FAIL
+    M2 pair 1.0/2.5/1.0/cleared/2000.0: d chi^2 (gate <= +4)           canonical     +8.875 ->     +8.875 (gate <= 4)     FAIL -> FAIL
+    M2 pair 1.0/2.5/1.0/cleared/2000.0: d chi^2 (gate <= +4)           alt          +17.363 ->    +17.363 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/1.5/1.0/cleared/2000.0: d chi^2 (gate <= +4)           canonical     -3.116 ->     -3.116 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/1.5/1.0/cleared/2000.0: d chi^2 (gate <= +4)           alt           +3.524 ->     +3.524 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/2.0/1.0/cleared/2000.0: d chi^2 (gate <= +4)           canonical    +10.777 ->    +10.777 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/2.0/1.0/cleared/2000.0: d chi^2 (gate <= +4)           alt          +18.941 ->    +18.941 (gate <= 4)     FAIL -> FAIL
+    M2 pair 0.5/1.5/1.0/cleared/3000.0: d chi^2 (gate <= +4)           canonical    -23.251 ->    -23.251 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/1.5/1.0/cleared/3000.0: d chi^2 (gate <= +4)           alt          -15.760 ->    -15.760 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/1.0/cleared/3000.0: d chi^2 (gate <= +4)           canonical     +0.884 ->     +0.884 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/1.0/cleared/3000.0: d chi^2 (gate <= +4)           alt           +8.556 ->     +8.556 (gate <= 4)     FAIL -> FAIL
+    M2 pair 0.5/2.5/1.0/cleared/3000.0: d chi^2 (gate <= +4)           canonical    +11.666 ->    +11.666 (gate <= 4)     FAIL -> FAIL
+    M2 pair 0.5/2.5/1.0/cleared/3000.0: d chi^2 (gate <= +4)           alt          +18.444 ->    +18.444 (gate <= 4)     FAIL -> FAIL
+    M2 pair 1.0/1.5/1.0/cleared/3000.0: d chi^2 (gate <= +4)           canonical    -17.221 ->    -17.221 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/1.0/cleared/3000.0: d chi^2 (gate <= +4)           alt          -11.847 ->    -11.847 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/1.0/cleared/3000.0: d chi^2 (gate <= +4)           canonical     +8.151 ->     +8.151 (gate <= 4)     FAIL -> FAIL
+    M2 pair 1.0/2.0/1.0/cleared/3000.0: d chi^2 (gate <= +4)           alt          +18.458 ->    +18.458 (gate <= 4)     FAIL -> FAIL
+    M2 pair 1.0/2.5/1.0/cleared/3000.0: d chi^2 (gate <= +4)           canonical    +16.311 ->    +16.311 (gate <= 4)     FAIL -> FAIL
+    M2 pair 1.0/2.5/1.0/cleared/3000.0: d chi^2 (gate <= +4)           alt          +22.336 ->    +22.336 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/1.5/1.0/cleared/3000.0: d chi^2 (gate <= +4)           canonical     +7.688 ->     +7.688 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/1.5/1.0/cleared/3000.0: d chi^2 (gate <= +4)           alt          +19.176 ->    +19.176 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/2.0/1.0/cleared/3000.0: d chi^2 (gate <= +4)           canonical    +18.191 ->    +18.191 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/2.0/1.0/cleared/3000.0: d chi^2 (gate <= +4)           alt          +24.763 ->    +24.763 (gate <= 4)     FAIL -> FAIL
+    M2 pair 0.5/1.5/2.0/cap/700.0: d chi^2 (gate <= +4)                canonical    -50.400 ->    -50.400 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/1.5/2.0/cap/700.0: d chi^2 (gate <= +4)                alt          -42.915 ->    -42.915 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/2.0/cap/700.0: d chi^2 (gate <= +4)                canonical    -24.817 ->    -24.817 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/2.0/cap/700.0: d chi^2 (gate <= +4)                alt          -18.344 ->    -18.344 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/2.0/cap/700.0: d chi^2 (gate <= +4)                canonical    -16.251 ->    -16.251 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/2.0/cap/700.0: d chi^2 (gate <= +4)                alt           -8.528 ->     -8.528 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/2.0/cap/700.0: d chi^2 (gate <= +4)                canonical    -42.099 ->    -42.099 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/2.0/cap/700.0: d chi^2 (gate <= +4)                alt          -37.511 ->    -37.511 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/2.0/cap/700.0: d chi^2 (gate <= +4)                canonical    -20.126 ->    -20.126 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/2.0/cap/700.0: d chi^2 (gate <= +4)                alt          -10.996 ->    -10.996 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.5/2.0/cap/700.0: d chi^2 (gate <= +4)                canonical     -9.767 ->     -9.767 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.5/2.0/cap/700.0: d chi^2 (gate <= +4)                alt           -4.924 ->     -4.924 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/1.5/2.0/cap/700.0: d chi^2 (gate <= +4)                canonical    -20.596 ->    -20.596 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/1.5/2.0/cap/700.0: d chi^2 (gate <= +4)                alt          -11.249 ->    -11.249 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/2.0/2.0/cap/700.0: d chi^2 (gate <= +4)                canonical     -7.879 ->     -7.879 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/2.0/2.0/cap/700.0: d chi^2 (gate <= +4)                alt           -2.491 ->     -2.491 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/1.5/2.0/cap/1500.0: d chi^2 (gate <= +4)               canonical    -21.682 ->    -21.682 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/1.5/2.0/cap/1500.0: d chi^2 (gate <= +4)               alt          -16.069 ->    -16.069 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/2.0/cap/1500.0: d chi^2 (gate <= +4)               canonical    -10.366 ->    -10.366 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.0/2.0/cap/1500.0: d chi^2 (gate <= +4)               alt           -3.839 ->     -3.839 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/2.0/cap/1500.0: d chi^2 (gate <= +4)               canonical     +3.292 ->     +3.292 (gate <= 4)     PASS -> PASS
+    M2 pair 0.5/2.5/2.0/cap/1500.0: d chi^2 (gate <= +4)               alt           +8.539 ->     +8.539 (gate <= 4)     FAIL -> FAIL
+    M2 pair 1.0/1.5/2.0/cap/1500.0: d chi^2 (gate <= +4)               canonical    -15.245 ->    -15.245 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/1.5/2.0/cap/1500.0: d chi^2 (gate <= +4)               alt           -8.657 ->     -8.657 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/2.0/cap/1500.0: d chi^2 (gate <= +4)               canonical     -3.741 ->     -3.741 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.0/2.0/cap/1500.0: d chi^2 (gate <= +4)               alt           +2.863 ->     +2.863 (gate <= 4)     PASS -> PASS
+    M2 pair 1.0/2.5/2.0/cap/1500.0: d chi^2 (gate <= +4)               canonical    +16.365 ->    +16.365 (gate <= 4)     FAIL -> FAIL
+    M2 pair 1.0/2.5/2.0/cap/1500.0: d chi^2 (gate <= +4)               alt          +24.071 ->    +24.071 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/1.5/2.0/cap/1500.0: d chi^2 (gate <= +4)               canonical     -5.656 ->     -5.656 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/1.5/2.0/cap/1500.0: d chi^2 (gate <= +4)               alt           +1.907 ->     +1.907 (gate <= 4)     PASS -> PASS
+    M2 pair 2.0/2.0/2.0/cap/1500.0: d chi^2 (gate <= +4)               canonical    +20.916 ->    +20.916 (gate <= 4)     FAIL -> FAIL
+    M2 pair 2.0/2.0/2.0/cap/1500.0: d chi^2 (gate <= +4)               alt          +27.319 ->    +27.319 (gate <= 4)     FAIL -> FAIL
+    M1 undecayed carrier 0.5/1.5/canonical: d chi^2 (control: > +100)              +231.892 ->   +231.892 (gate > 100)    PASS -> PASS
+    M1 undecayed carrier 0.5/1.5/alt: d chi^2 (control: > +100)                    +251.478 ->   +251.478 (gate > 100)    PASS -> PASS
+    M1 undecayed carrier 0.5/2.0/canonical: d chi^2 (control: > +100)              +246.093 ->   +246.093 (gate > 100)    PASS -> PASS
+    M1 undecayed carrier 0.5/2.0/alt: d chi^2 (control: > +100)                    +262.754 ->   +262.754 (gate > 100)    PASS -> PASS
+    M1 undecayed carrier 0.5/2.5/canonical: d chi^2 (control: > +100)              +266.442 ->   +266.442 (gate > 100)    PASS -> PASS
+    M1 undecayed carrier 0.5/2.5/alt: d chi^2 (control: > +100)                    +281.521 ->   +281.521 (gate > 100)    PASS -> PASS
+    M1 undecayed carrier 1.0/1.5/canonical: d chi^2 (control: > +100)              +237.087 ->   +237.087 (gate > 100)    PASS -> PASS
+    M1 undecayed carrier 1.0/1.5/alt: d chi^2 (control: > +100)                    +256.045 ->   +256.045 (gate > 100)    PASS -> PASS
+    M1 undecayed carrier 1.0/2.0/canonical: d chi^2 (control: > +100)              +255.556 ->   +255.556 (gate > 100)    PASS -> PASS
+    M1 undecayed carrier 1.0/2.0/alt: d chi^2 (control: > +100)                    +271.561 ->   +271.561 (gate > 100)    PASS -> PASS
+    M1 undecayed carrier 1.0/2.5/canonical: d chi^2 (control: > +100)              +272.551 ->   +272.551 (gate > 100)    PASS -> PASS
+    M1 undecayed carrier 1.0/2.5/alt: d chi^2 (control: > +100)                    +292.337 ->   +292.337 (gate > 100)    PASS -> PASS
+    M1 undecayed carrier 2.0/1.5/canonical: d chi^2 (control: > +100)              +253.440 ->   +253.440 (gate > 100)    PASS -> PASS
+    M1 undecayed carrier 2.0/1.5/alt: d chi^2 (control: > +100)                    +269.482 ->   +269.482 (gate > 100)    PASS -> PASS
+    M1 undecayed carrier 2.0/2.0/canonical: d chi^2 (control: > +100)              +273.155 ->   +273.155 (gate > 100)    PASS -> PASS
+    M1 undecayed carrier 2.0/2.0/alt: d chi^2 (control: > +100)                    +294.826 ->   +294.826 (gate > 100)    PASS -> PASS
+    [319 s]
+
+======================================================================================================================
+R11  AT3 (the acceleration-triggered carrier): its KiDS GATE (L360's switched fit with AT3's retained carriers, <= +4) and its switch-free KiDS (reported; L357 -> L355's P1 projection), re-scored EXACTLY at the two window cells
+======================================================================================================================
+    retention profiles of the 4 KiDS hosts at the window cells ((0.1, 600.0), (0.03, 600.0)) recomputed with AT3's own functions (N = 8000)   [475 s]
+    control: the committed AT3 rows reproduced with the committed projections to 0.05 (the .out prints 0.1)
+    the corrected projection moves AT3's retained-carrier gate by +0.00..+0.00; used as the ESTIMATE for FP4 C4 (kept halos) and, with no carrier (+0.00/+0.00), for FP10 B4 (halos converted whole)
+    AT3's window (the cells that pass every gate but shear) keeps its KiDS pass at: [((0.1, 600.0), 0.25), ((0.03, 600.0), 0.25)] (committed: [((0.1, 600.0), 0.25), ((0.03, 600.0), 0.25)])
+    GATE y_v0 0.1 v_A 600 f_U 0.0: switched KiDS (<= +4)               canonical    -25.291 ->    -25.291 (gate <= 4)     PASS -> PASS
+    GATE y_v0 0.1 v_A 600 f_U 0.0: switched KiDS (<= +4)               alt          -22.960 ->    -22.960 (gate <= 4)     PASS -> PASS
+    switch-free y_v0 0.1 v_A 600 f_U 0.0 (reported, <= +9)             canonical    -22.097 ->    -22.097 (gate <= 9)     PASS -> PASS
+    switch-free y_v0 0.1 v_A 600 f_U 0.0 (reported, <= +9)             alt          -16.749 ->    -16.749 (gate <= 9)     PASS -> PASS
+    GATE y_v0 0.1 v_A 600 f_U 0.15: switched KiDS (<= +4)              canonical    -26.405 ->    -26.405 (gate <= 4)     PASS -> PASS
+    GATE y_v0 0.1 v_A 600 f_U 0.15: switched KiDS (<= +4)              alt          -23.980 ->    -23.980 (gate <= 4)     PASS -> PASS
+    switch-free y_v0 0.1 v_A 600 f_U 0.15 (reported, <= +9)            canonical    -22.389 ->    -22.389 (gate <= 9)     PASS -> PASS
+    switch-free y_v0 0.1 v_A 600 f_U 0.15 (reported, <= +9)            alt          -16.860 ->    -16.860 (gate <= 9)     PASS -> PASS
+    GATE y_v0 0.1 v_A 600 f_U 0.25: switched KiDS (<= +4)              canonical    -26.975 ->    -26.975 (gate <= 4)     PASS -> PASS
+    GATE y_v0 0.1 v_A 600 f_U 0.25: switched KiDS (<= +4)              alt          -24.481 ->    -24.481 (gate <= 4)     PASS -> PASS
+    switch-free y_v0 0.1 v_A 600 f_U 0.25 (reported, <= +9)            canonical    -22.365 ->    -22.365 (gate <= 9)     PASS -> PASS
+    switch-free y_v0 0.1 v_A 600 f_U 0.25 (reported, <= +9)            alt          -17.182 ->    -17.182 (gate <= 9)     PASS -> PASS
+    GATE y_v0 0.03 v_A 600 f_U 0.0: switched KiDS (<= +4)              canonical     -8.352 ->     -8.352 (gate <= 4)     PASS -> PASS
+    GATE y_v0 0.03 v_A 600 f_U 0.0: switched KiDS (<= +4)              alt           -1.876 ->     -1.876 (gate <= 4)     PASS -> PASS
+    switch-free y_v0 0.03 v_A 600 f_U 0.0 (reported, <= +9)            canonical     -3.129 ->     -3.129 (gate <= 9)     PASS -> PASS
+    switch-free y_v0 0.03 v_A 600 f_U 0.0 (reported, <= +9)            alt           -2.642 ->     -2.642 (gate <= 9)     PASS -> PASS
+    GATE y_v0 0.03 v_A 600 f_U 0.15: switched KiDS (<= +4)             canonical     -8.218 ->     -8.218 (gate <= 4)     PASS -> PASS
+    GATE y_v0 0.03 v_A 600 f_U 0.15: switched KiDS (<= +4)             alt           -1.829 ->     -1.829 (gate <= 4)     PASS -> PASS
+    switch-free y_v0 0.03 v_A 600 f_U 0.15 (reported, <= +9)           canonical     -2.752 ->     -2.752 (gate <= 9)     PASS -> PASS
+    switch-free y_v0 0.03 v_A 600 f_U 0.15 (reported, <= +9)           alt           -2.517 ->     -2.517 (gate <= 9)     PASS -> PASS
+    GATE y_v0 0.03 v_A 600 f_U 0.25: switched KiDS (<= +4)             canonical     -8.120 ->     -8.120 (gate <= 4)     PASS -> PASS
+    GATE y_v0 0.03 v_A 600 f_U 0.25: switched KiDS (<= +4)             alt           -1.793 ->     -1.793 (gate <= 4)     PASS -> PASS
+    switch-free y_v0 0.03 v_A 600 f_U 0.25 (reported, <= +9)           canonical     -2.699 ->     -2.699 (gate <= 9)     PASS -> PASS
+    switch-free y_v0 0.03 v_A 600 f_U 0.25 (reported, <= +9)           alt           -2.424 ->     -2.424 (gate <= 9)     PASS -> PASS
+    B4 v_k 575 in place (halos converted whole): + the no-carrier shif canonical     -6.007 ->     -6.007 (gate <= 4)     PASS -> PASS
+    B4 v_k 575 in place (halos converted whole): + the no-carrier shif alt           -0.503 ->     -0.503 (gate <= 4)     PASS -> PASS
+    B4 v_k 600 in place (halos converted whole): + the no-carrier shif canonical     -6.109 ->     -6.109 (gate <= 4)     PASS -> PASS
+    B4 v_k 600 in place (halos converted whole): + the no-carrier shif alt           -0.717 ->     -0.717 (gate <= 4)     PASS -> PASS
+    B4 v_k 625 in place (halos converted whole): + the no-carrier shif canonical     -6.095 ->     -6.095 (gate <= 4)     PASS -> PASS
+    B4 v_k 625 in place (halos converted whole): + the no-carrier shif alt           -0.837 ->     -0.837 (gate <= 4)     PASS -> PASS
+    B4 v_k 650 in place (halos converted whole): + the no-carrier shif canonical     -6.036 ->     -6.036 (gate <= 4)     PASS -> PASS
+    B4 v_k 650 in place (halos converted whole): + the no-carrier shif alt           -0.819 ->     -0.819 (gate <= 4)     PASS -> PASS
+    C4 (reported) kept halos: + the largest shift of AT3's retained ca canonical     -2.957 ->     -2.957 (gate <= 4)     PASS -> PASS
+    C4 (reported) kept halos: + the largest shift of AT3's retained ca alt           -3.816 ->     -3.816 (gate <= 4)     PASS -> PASS
+    [479 s]
+
+======================================================================================================================
+R10  THE BEFORE -> AFTER TABLE (every re-scored KiDS number; each lane's own gate) AND THE VERDICT FLIPS
+======================================================================================================================
+    521 rows re-scored; 0 cross their lane's gate:
+    the lanes' OWN checks that change verdict when their committed code is re-run with the corrected projection:
+    MUTATE control: with the committed projection everywhere the re-scores reproduce the committed numbers: True
+  [PASS] (reported) R10 (reported) THE FLIP TABLE: every committed KiDS number of the chain in scope re-scored with the corrected projection (FP6, FP9, FP11, FP12, FP13, FP1 E, FP14, FP17) plus the record's L355 and the P2 family's cells (L352, L360, DE8 C1; AT3/FP4/FP10 bounded); gate crossings and the lanes' own check flips listed above
+         measured: 521 rows; 0 gate crossings; 0 of the lanes' own verdict checks flip (controls pinned to committed numbers excluded)
+  [PASS] F EVERY RE-SCORE COMPLETED: no lane's re-run raised, and every re-scored number is finite (FP6 B6's interpolations outside their tabulated range are the stated exception)
+         measured: errors: none; non-finite: none
+
+======================================================================================================================
+H  THE HUB'S LANES (XR*.py) AND THE CHAIN'S OTHER LANES THAT USE EITHER PROJECTION (a scan of the committed sources; not re-scored here)
+======================================================================================================================
+    -- hub (cross_thread_review_2026_09_26): 21 files
+       XR10_answer_validator.py                     P2 (computes with L352's project_M2 / DE8's esd_from_mlens); reads committed KiDS numbers of an affected lane  [fit_comb:97; json: XR9_]
+       XR11_shell_model_velocities.py               reads committed KiDS numbers of an affected lane  [; json: XR9_]
+       XR13_door_cosmology.py                       reads committed KiDS numbers of an affected lane  [; json: XR9_]
+       XR13_door_environment.py                     reads committed KiDS numbers of an affected lane  [; json: XR9_]
+       XR13_gate_table.py                           reads committed KiDS numbers of an affected lane  [; json: XR9_]
+       XR14_carrier_halos.py                        reads committed KiDS numbers of an affected lane  [; json: XR14_]
+       XR14_kids_mstar_carrier.py                   P2 (computes with L352's project_M2 / DE8's esd_from_mlens); reads committed KiDS numbers of an affected lane  [project_M2:114, annulus_esd:114, esd_from_mlens:114, esd_bin:115; json: DE10_kids_converged_model_results, XR9_, XR14_]
+       XR18_frw_yield_crossing.py                   P1 (computes with FP6/FP1/L355's esd_of_M); reads committed KiDS numbers of an affected lane  [kids_class:124; json: FP9_web_galaxy_separator_results]
+       XR18_state_separator.py                      P1 (computes with FP6/FP1/L355's esd_of_M); reads committed KiDS numbers of an affected lane  [gates(:179; json: FP13_separator_from_state_results]
+       XR24_numerical_action.py                     reads committed KiDS numbers of an affected lane  [; json: FP13_separator_from_state_results, FP11_local_group_flyby_results]
+       XR25_lambda_regulator.py                     P1 (computes with FP6/FP1/L355's esd_of_M); reads committed KiDS numbers of an affected lane  [kids_class:96; json: FP13_separator_from_state_results]
+       XR28_common.py                               P2 (computes with L352's project_M2 / DE8's esd_from_mlens)  [model_esd:612]
+       XR28_controls.py                             P1 (computes with FP6/FP1/L355's esd_of_M); P2 (computes with L352's project_M2 / DE8's esd_from_mlens)  [esd_of_M:26, model_esd:301]
+       XR28_outskirts_L.py                          P2 (computes with L352's project_M2 / DE8's esd_from_mlens)  [model_esd:93]
+       XR29_mw_outer_curve.py                       P2 (computes with L352's project_M2 / DE8's esd_from_mlens)  [fit_cell:548]
+       XR6_lg_zero_velocity_mond_sector.py          reads committed KiDS numbers of an affected lane  [; json: L361_bound_region_kernel_results]
+       XR9_carrier_halos.py                         P2 (computes with L352's project_M2 / DE8's esd_from_mlens); reads committed KiDS numbers of an affected lane  [esd_from_mlens:70, fit_model:18; json: XR9_]
+       XR9_cosmic_shear.py                          reads committed KiDS numbers of an affected lane  [; json: XR9_]
+       XR9_environment.py                           reads committed KiDS numbers of an affected lane  [; json: XR9_]
+       XR9_gate_table.py                            reads committed KiDS numbers of an affected lane  [; json: XR9_]
+       XR9_kids_flagship.py                         P2 (computes with L352's project_M2 / DE8's esd_from_mlens); reads committed KiDS numbers of an affected lane  [project_M2:136, annulus_esd:137, esd_from_mlens:136, esd_bin:137; json: DE10_kids_converged_model_results, XR9_]
+    -- chain (derivation_chain_2026): 17 files
+       FP10_internal_splitting_dark_sector.py       P2 (computes with L352's project_M2 / DE8's esd_from_mlens); reads committed KiDS numbers of an affected lane  [kids_switched:193; json: AT3_acceleration_trigger_full_gates_results]
+       FP11_local_group_flyby.py                    P1 (computes with FP6/FP1/L355's esd_of_M); reads committed KiDS numbers of an affected lane  [kids_class:868; json: FP1_static_sector_results, FP9_web_galaxy_separator_results]
+       FP12_local_volume_groups_r0.py               P1 (computes with FP6/FP1/L355's esd_of_M); reads committed KiDS numbers of an affected lane  [kids_class:456, kids_chi2:786; json: FP1_static_sector_results, FP9_web_galaxy_separator_results, FP11_local_group_flyby_results]
+       FP13_separator_from_state.py                 P1 (computes with FP6/FP1/L355's esd_of_M); reads committed KiDS numbers of an affected lane  [kids_class:193, gates(:297; json: FP9_web_galaxy_separator_results, FP11_local_group_flyby_results]
+       FP14_zero_knob_core.py                       P1 (computes with FP6/FP1/L355's esd_of_M); reads committed KiDS numbers of an affected lane  [esd_of_M:409, kids_isolated:401; json: FP1_static_sector_results, FP9_web_galaxy_separator_results]
+       FP15_zero_knob_dark_sector.py                P2 (computes with L352's project_M2 / DE8's esd_from_mlens); reads committed KiDS numbers of an affected lane  [kids_switched:1104; json: FP9_web_galaxy_separator_results, FP13_separator_from_state_results]
+       FP16_daughter_reaccretion.py                 P2 (computes with L352's project_M2 / DE8's esd_from_mlens); reads committed KiDS numbers of an affected lane  [kids_switched:1254; json: AT3_acceleration_trigger_full_gates_results]
+       FP17_screening_without_xi.py                 P1 (computes with FP6/FP1/L355's esd_of_M); reads committed KiDS numbers of an affected lane  [esd_of_M:259, kids_isolated:251; json: FP9_web_galaxy_separator_results]
+       FP18_kids_vs_hubble_flow_data.py             P1 (computes with FP6/FP1/L355's esd_of_M); reads committed KiDS numbers of an affected lane  [esd_of_M:92, kids_class:96; json: FP12_local_volume_groups_r0_results]
+       FP19_hs_repair.py                            P1 (computes with FP6/FP1/L355's esd_of_M); reads committed KiDS numbers of an affected lane  [kids_class:183; json: FP9_web_galaxy_separator_results, FP13_separator_from_state_results]
+       FP1_static_sector.py                         P1 (computes with FP6/FP1/L355's esd_of_M)  [esd_of_M:707, kfit(:823]
+       FP21_isolated_spiral_lensing.py              P1 (computes with FP6/FP1/L355's esd_of_M)  [esd_of_M:85]
+       FP22_who_feels_mond.py                       reads committed KiDS numbers of an affected lane  [; json: FP9_web_galaxy_separator_results, FP13_separator_from_state_results]
+       FP4_kick_from_action.py                      P2 (computes with L352's project_M2 / DE8's esd_from_mlens)  [kids_switched:177]
+       FP6_gate_survey.py                           P1 (computes with FP6/FP1/L355's esd_of_M); reads committed KiDS numbers of an affected lane  [esd_of_M:356, kids_class:378, kids_chi2:363; json: FP6_gate_survey_results]
+       FP7_aqual_type_repair.py                     reads committed KiDS numbers of an affected lane  [; json: FP1_static_sector_results]
+       FP9_web_galaxy_separator.py                  P1 (computes with FP6/FP1/L355's esd_of_M); reads committed KiDS numbers of an affected lane  [kids_class:197, kids_chi2:983; json: FP6_gate_survey_results]
+  [PASS] (reported) H (reported) THE HUB'S LANES ARE NOT FREE OF IT: the scan lists every XR lane that computes KiDS with either projection (directly or through a lane's exec'd machinery) or reads an affected lane's committed KiDS numbers; the P2 users compute carrier templates, where the P2 error is largest (V1b); the hub re-scores them
+         measured: XR10_answer_validator.py: P2/reads; XR11_shell_model_velocities.py: reads; XR13_door_cosmology.py: reads; XR13_door_environment.py: reads; XR13_gate_table.py: reads; XR14_carrier_halos.py: reads; XR14_kids_mstar_carrier.py: P2/reads; XR18_frw_yield_crossing.py: P1/reads; XR18_state_separator.py: P1/reads; XR24_numerical_action.py: reads; XR25_lambda_regulator.py: P1/reads; XR28_common.py: P2; XR28_controls.py: P1/P2; XR28_outskirts_L.py: P2; XR29_mw_outer_curve.py: P2; XR6_lg_zero_velocity_mond_sector.py: reads; XR9_carrier_halos.py: P2/reads; XR9_cosmic_shear.py: reads; XR9_environment.py: reads; XR9_gate_table.py: reads; XR9_kids_flagship.py: P2/reads
+
+======================================================================================================================
+W  THE LEDGER: what this lane settles (both footings; 'corrected by FP20' marks a committed claim re-scored here)
+======================================================================================================================
+    F20a  DERIVED     the correct KiDS projection: Delta Sigma(R) = M_2D(<R)/(pi R^2) - Sigma(R) with exact uniform-shell kernels (the 1/sqrt end point integrated analytically, the inner projected mass carried exactly, the mass inside the first node kept); it reproduces the SIS, NFW (Wright & Brainerd 2000), a point mass and the P2 lanes' cored/hollow carrier templates to < 0.1% (< 0.2% where the input has jumps)  --  V1, V1b
+    F20b  FAILS       the record's P1 projection (FP6 esd_of_M = FP1 E's [FP14/FP17] = L355's [L357/AT1/AT3] = BS2's) is accurate  --  corrected by FP20: -59% at 35 kpc on the SIS, -3..-14% at 0.3-2.6 Mpc; defect A (inner disc pi R_0^2 Sig(R_0), R_0 = 20 kpc) + defect B (trapezoid over the 1/sqrt end point); no truncation defect (V2, B1)
+    F20c  FAILS       L352's P2 projection (L352/L359/L360, AT3's gate, FP4/FP10/FP15/FP16 via kids_switched, DE8/DE10, XR9/XR14) is accurate  --  corrected by FP20: -3% (SIS) to +11% (NFW) on halos, up to +187% / -123% at 35 kpc on cored / hollowed carrier templates (V4, V1b)
+    F20d  DERIVED     FP6's (H) headline passes KiDS (<= +9): d chi^2 -1.0/-3.2 -> -1.0/-3.2  --  corrected by FP20 (R1: FP6 re-run whole; its only check that flips is K2, the control pinned to L341 F7's buggy 118.0)
+    F20e  DERIVED     FP9's (H_Y) headline at z = 0.25 passes KiDS: -2.4/-5.6 -> -2.4/-5.6 (inherited by FP11 K7/G1, FP12 K7)  --  corrected by FP20 (R2: FP9 re-run whole; its window stays 28/48; only the K1 control flips)
+    F20f  DERIVED     FP13's H_S passes KiDS at z = 0.25 (-6.2/-7.7 -> -6.2/-7.7) and 0.4 (-7.8/-10.7 -> -7.8/-10.7)  --  corrected by FP20 (R3; controls reproduce 92 committed numbers)
+    F20g  FAILS       FP9's own (H_Y) at z = 0.4 (FP13 H5): +20.6/+18.3 -> +20.6/+18.3 -- still FAILS the lens spread  --  corrected by FP20 (R3)
+    F20h  CONSTRAINT  the KiDS floor on the band-pass length: L_KiDS +1.23/+1.17 -> +1.23/+1.17 Mpc; the KiDS-LG pincer (FP6 B6/H3, FP9 H3, FP11 X1, FP12 U1: the LG needs L(0.25) ~ 0.5-0.6 Mpc, KiDS costs +250..+300 there) is unchanged  --  corrected by FP20 (R1, R2, R4)
+    F20i  CONSTRAINT  FP1 E3's KiDS tolerance on the lenses' external field (2-halo, 1e-4 a0): +5.2/+3.7 -> +5.2/+3.7; no 2-halo +2.3/+1.7 -> +2.3/+1.7 (x1e-4); the LG needs +7.0/+6.6 -> +7.0/+6.6 times more (FP11 P1 holds); the band-edge reading (reported) +0.93/+0.90 -> +0.93/+0.90x crosses 1  --  corrected by FP20 (R6, R5)
+    F20j  CONSTRAINT  FP13's A3 threshold windows narrow (the other gates as committed): NL/FP9 yield: [1.686, 2.0, 2.4, 2.6, 2.7] -> [1.686, 2.0, 2.4, 2.6, 2.7]; NL/state yield: [1.3, 1.5, 1.686, 2.0, 2.4, 2.6] -> [1.3, 1.5, 1.686, 2.0, 2.4, 2.6]; lin/FP9 yield: [1.2, 1.4, 1.6, 1.65] -> [1.2, 1.4, 1.6, 1.65]; lin/state yield: [1.1, 1.2, 1.4, 1.6, 1.65] -> [1.1, 1.2, 1.4, 1.6, 1.65]; delta_c stays inside both nonlinear windows (A3a holds)  --  corrected by FP20 (R3)
+    F20k  CONSTRAINT  L355's 'KiDS needs a web-blind kernel': the baryons-only deficit +233.4/+241.0 -> +233.4/+241.0 and the carrier + 2-halo +130.6/+144.7 -> +130.6/+144.7 -- the claim survives, stronger  --  corrected by FP20 (R8)
+    F20l  CONSTRAINT  L360's assembled construction: pairs passing KiDS 70 -> 70 of 96 (the carrier templates move d chi^2 by +0..+0); the M2 claim (some pairs pass) survives  --  corrected by FP20 (R9: L360 re-run whole)
+    F20m  CONSTRAINT  AT3's KiDS gate at its window cells (switched fit, <= +4): passing cells 0.1|600|0.25, 0.03|600|0.25 -> 0.1|600|0.25, 0.03|600|0.25 (d chi^2 moves +0.0..+0.0); its switch-free KiDS (reported) improves  --  corrected by FP20 (R11: AT3's retention profiles recomputed with its own functions; FP4 C4 and FP10 B4 are estimates from these shifts)
+    F20n  OPEN        the P2 lanes downstream of DE8 (DE10's converged model, the hub's XR9 and XR14 ON-M* KiDS pass) carry the carrier-template error (V1b) and must be re-scored with the corrected projection; so must FP15/FP16 (uncommitted, kids_switched)  --  V4, V1b, R9, H
+    F20o  CONSTRAINT  the isolated-P2 KiDS base itself: P1 lanes +112.3/+105.6 -> +112.3/+105.6 (the lead grade flattered the inner phantom); P2 lanes (nu_mono, 2-halo) +174.3/+166.9 -> +174.3/+166.9 -- every gate here is a difference to its lane's base  --  R1, R9
+    F20p  OPEN        the P1 lanes score point values at the bin centres, not B21's annulus averages (a ~1-2% convention, unchanged here); the 2-halo templates keep their own inner-disc approximation (V5)  --  scope
+  [PASS] (reported) W (reported) the ledger
+         measured: 16 links
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  THE BUG.  FP6's esd_of_M (one function, also FP1 E's -> FP14/FP17 and L355's -> L357/AT1/AT3) loses half the projected mass
+  inside 20 kpc for any cuspy profile (defect A: -57% at 35 kpc on the SIS, falling as 20 kpc/R) and integrates the 1/sqrt end point
+  of the Abel integral with a trapezoid that skips [R, r_1] (defect B: -2..-14%, grid-aligned, -12% at 2.6 Mpc).  There is no
+  truncation defect.  L352's project_M2 (the P2 family) shares B and replaces A by 2 pi R_0^2 Sig(R_0), exact only for Sigma ~ 1/R:
+  -3% on the SIS, +11% on NFW halos, up to +187% / -123% on the cored or hollowed carrier templates.  The corrected projection
+  matches every analytic profile to < 0.1%.
+  THE RE-SCORE.  The chain's KiDS verdicts that decide its status do not flip: FP6 (H), FP9 (H_Y) and FP13 (H_S at z = 0.25 and
+  0.4) still pass within +9, FP9's H_Y still fails at z = 0.4, the KiDS floor on L(0.25) and the KiDS-LG pincer are unchanged, FP1's
+  field tolerances tighten by 10-30% and the LG still needs ~8x more field than KiDS allows.  What moves: FP13's threshold windows narrow at
+  their edges, FP11 P1's band-edge reading crosses 1, L355's 'web-blind kernel' deficit grows, and -- in the P2 family -- the
+  carrier templates: L360's passing pairs go 70 -> 70 of 96; AT3's window cells keep their KiDS pass
+  (0.1|600|0.25, 0.03|600|0.25; d chi^2 moves +0.0..+0.0).  The isolated-P2 base chi^2 of the P1 lanes rises by
+  ~+29 (the lead grade flattered the inner phantom).  The hub's P2 users (DE10, XR9, XR14, XR28, XR29) carry the carrier-template error and must be re-scored.
+  Not 'closed'.  Time 479 s.
+
+  10/12 checks pass; load-bearing failures: 2; wrote FP20_esd_projection_fix_results_MUTATE.json
+rc=1
