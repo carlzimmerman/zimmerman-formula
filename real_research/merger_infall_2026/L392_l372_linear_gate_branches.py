@@ -48,11 +48,13 @@ CHECKS
   W  (reported) L360's reference edge rule; the edges; the alternative footing; the switch-free gates carried from L372.
 MUTATE=1 scores an INTACT carrier (no decay: L357's template at x_v0 -> infinity, f_U = 0) on both branches: KiDS must reject
   it and RA, RB flip (Harvey is not run under MUTATE and never counts as a pass).  FAST=1 is a code test (coarse Harvey grid, one cell); it writes nothing here.
-SCOPE (sigma).  Harvey's region operator is L370's, which drops L361's web self-term (sigma = 0).  V0 (chk_v0_2026, CV1/CV2)
-  finds sigma physical (L361's action and V0 use sigma = 1), and the cross-thread review XR5 measured that the sigma = 1 far
-  edge layer moves a projected substructure centroid by 4.1 kpc against 0.52 kpc at sigma = 0 -- up to delta beta ~ 0.03-0.07
-  at these 60-120 kpc offsets.  Every Harvey number here is sigma = 0; a 3-D sigma = 1 operator (a screened solve with a
-  mask-dependent M^2) is not built here.
+SCOPE (sigma; corrected after commit 1eaac841b).  Harvey's region operator is L370's (sigma = 0).  The cross-thread review
+  XR5 (H1) finds that the action's own operator (L361's A, sigma = 1, at 1/m = 0.2 and 0.5 Mpc), the PM operator and L370's
+  give the same Harvey substructure centroid to |delta beta| <= 0.002 (toward-main geometry, far edge layer excluded).  The
+  4.1 kpc centroid shift XR5 also reports is the far edge layer of A's Dirichlet limit on its staircase meshes (0.5 kpc for
+  L370's operator), a numerical effect, not a sigma effect; L373's 3-D check bounds that layer at |delta beta| <= 0.0006.
+  (The first commit read the 4.1 kpc as a sigma shift of ~0.03-0.07 in beta: wrong.)  The perpendicular orientation is
+  not covered by XR5.
 L392_POOL sets the Harvey pool (default 2: each job holds a 400^3 grid).
 
 Run from the repository root:  python3 real_research/merger_infall_2026/L392_l372_linear_gate_branches.py

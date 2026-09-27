@@ -208,7 +208,7 @@ On the alternative footing at 900 km/s, Harvey gives +0.063 (matter) and +0.062 
 **The convention split.** The two outer-matter conventions were split after the first main run. With the templates cut at r200, the matter-branch edge sat exactly at r200, a truncation artefact. Both conventions are reported, never pooled.
 
 **Limits.**
-- σ = 0 only (L370's operator). V0 finds σ physical, and XR5 suggests σ = 1 could move β by about 0.03–0.07 here, comparable to these Harvey margins (0.04–0.05 below the line).
+- σ = 0 only (L370's operator). V0 finds σ physical, but the cross-thread review XR5 (H1) finds the action's σ = 1 operator and L370's give the same Harvey centroid to |Δβ| ≤ 0.002 (toward-main geometry, far edge layer excluded). That is far inside these margins (0.04–0.05 below the line). XR5's 4.1 kpc far-edge-layer shift is a staircase-mesh numerical effect, not a σ effect, and L373's 3-D check bounds that layer at |Δβ| ≤ 0.0006. The first version of this note misread it as Δβ ≈ 0.03–0.07. XR5 does not cover the perpendicular orientation.
 - The switch-free gates are L372's static ones, not re-derived.
 - No 2-halo matter enters the matter branch's switch variable; Brouwer's lenses are isolated.
 - The ESD keeps L352's point-mass baryons; only the switch reads the resolved baryons.
