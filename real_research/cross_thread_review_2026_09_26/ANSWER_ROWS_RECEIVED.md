@@ -192,3 +192,19 @@ The front-page synthesis is real_research/mond_sector_gate_2026/README.md (the f
 U(1)-breaking mass term splits Φ into two real components, with δm/m = v_k²/2c² ≈ 2e-6. |Φ|⁴ then converts
 φ_Hφ_H → φ_Lφ_L into back-to-back waves at v_k. The conversion is density-triggered (rate ∝ n²), with its coupling
 vacuum-gated through K. One new constant, ε.
+
+## The author's idea, reading 4 (the clock's time slices)
+
+**FL3 | ba60f163f** (V0 writer; within CV4's quasi-static linear khronon)
+- **Verdict:** the dark fluid CAN SWIRL WITHOUT DISTURBING THE CLOCK. A rotating halo's fluid holds its angular
+  momentum in quantised vortices.
+  - At every core the gate's khronon source vanishes smoothly, as r²; it is exactly zero at all 37 lattice cores and
+    before conversion.
+  - δK/K at the lattice scale is only the conversion's shift: ≤ 1.1e-3 at c₂ = 1e-3 and 1.5e-4 at 7.3e-3, both below
+    CV4's 4.8e-3. The swirl's own channel is ≤ 2e-13.
+  - No vorticity reaches τ at linear order: the khronon's normal is twist-free. The second-order leak is ≤ 2e-9.
+  - Criterion B holds: τ stays single-valued, with no fold.
+- **Vortex spacing:** 146–188 pc at 2e-19 eV (spin 0.03–0.05), and 2–27 pc at 1e-17 to 1e-15 eV.
+- **Scope:** the lattice geometry is illustrative (a product ansatz); the halo numbers are order-of-magnitude.
+- **Checks:** 4/4. MUTATE (a clock made of the fluid's own dust) gives a screw dislocation at every core and fails
+  S4, rc = 1. Lean FL3: 4 theorems.

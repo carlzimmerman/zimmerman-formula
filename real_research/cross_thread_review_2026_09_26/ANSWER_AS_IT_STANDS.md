@@ -129,7 +129,9 @@ The forest's conservative-argument rules stay off, because they are arguments, n
 - XR11: the edge layers. Can the dark fluid carry the gate's stiffness, and does the MS1 edge force clear galaxies?
 - XR12: filaments. Conversion in infall streams; spin.
 - FK2: the two energy levels. Where the drop happens, and whether r_F is cleared.
-- FL3: the clock's slices. Can the swirl disturb τ?
+- FL3, the clock's slices: **done** (ba60f163f). The dark fluid swirls through quantised vortices (spacing
+  ~150–190 pc at 2e-19 eV) without disturbing the clock: δK/K ≤ 1.1e-3, no vorticity reaches τ, and criterion B
+  holds.
 
 **Open doors from DE13, not yet sized:**
 - (b) h(U)|∇U|², switching off inside collapsed regions.
