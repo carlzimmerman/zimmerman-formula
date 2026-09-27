@@ -1,4 +1,4 @@
-# Cluster mergers as a test of the construction (L370–L373)
+# Cluster mergers as a test of the construction (L370–L373, L392)
 
 In the construction, a cluster's baryons fall toward a neighbour with the MOND boost of their shared bound region. Its dark carrier falls with Newtonian gravity alone: whatever feels the boost must also source it (reciprocity, L353), and L361's region kernel reads only a region's own baryons. Mergers are where this split force law shows up in cluster *dynamics* rather than statics. These lanes compute what it does to real mergers, and what the carrier must look like to pass them.
 
@@ -167,4 +167,49 @@ This is a scope gap, not a known failure: L360 finds a switched p = 1, x_c0 = 1.
 - The G trigger is the mesh proxy.
 - Three 100 Mpc/h boxes, with no halo ≥ 3e14 at z = 0.4.
 - Harvey is scored on the canonical footing, with eight configurations standing in for Harvey's 72 collisions.
+
+## L392 — L372's two-mode carrier re-scored same-cell at the linear gate, each switch branch on its own
+
+`L392_l372_linear_gate_branches.py`: 7/9 checks pass, rc = 1. The pre-declared hypothesis holds on the curvature branch and fails on the matter branch. `MUTATE=1` (an intact carrier) fails every cell, flipping the curvature pass.
+
+**Why.** L372's committed window joined two kernel setups (see its scope note, 8850550c4):
+- KiDS was scored switch-free, through L355.
+- Harvey was scored at L370's p = 1, x_c0 = 1.5 cell, on the canonical footing only.
+
+The construction now sits at the linear gate p = 1, x_c0 = 2.5. The switch variable has two readings, which are never pooled:
+- **Matter:** the matter density (baryons + carrier), background-subtracted.
+- **Curvature:** matter + the untruncated (switch-everywhere) phantom, background-subtracted. This is how L352 and DE1 set the edge. L395's "onbranch" cell iterates the masked phantom instead, which is not identical.
+
+**Method.** Only the switch-dependent gates are re-scored. Forest, S₈, X-COP and galaxies are switch-free in L372 and are read from its committed results.
+- **KiDS:** L372's own carrier templates go on L360's switched fit at x_c,eff(0.25) = 3.25. Each branch sets the edge from the lens's own matter: L375's baryons (Hernquist + NFW-shaped CGM) plus the retained carrier.
+- **Harvey:** L372's harvey(), with the branch's mask in both the 1-D lensing-mass root and the 3-D phantom map, using L370's region operator.
+
+**Controls, all exact:**
+- **C1:** L372's templates rebuilt here reproduce its switch-free KiDS to 6e-14; the data radii and hosts agree.
+- **C2:** L360's switched fit is reproduced exactly.
+- **C3:** L372's committed Harvey numbers are reproduced exactly at its own cell.
+- **C4:** x_c,eff(0.4) = 3.868 = 2.5 E(0.4)².
+
+| branch | lens matter beyond r200 | KiDS Δχ² (canonical / alt, all three kicks) | Harvey NFW-fit β (canonical; 750 / 900 / 1050) | verdict |
+|---|---|---|---|---|
+| matter | cut at r200 | +322 / +332 (edges 0.15–0.34 Mpc) | +0.047 / +0.056 / +0.062 | fails KiDS |
+| matter | continued as NFW | +118 / +128 (edges 0.35–0.88 Mpc) | same | fails KiDS |
+| curvature | cut at r200 | −41 / −34 | +0.046 / +0.055 / +0.062 | **passes every gate** |
+| curvature | continued as NFW | −60 / −55 (edges 0.81–1.36 Mpc) | same | **passes every gate** |
+| L360's own edge rule | — | −41 / −34 | — | (reference) |
+
+On the alternative footing at 900 km/s, Harvey gives +0.063 (matter) and +0.062 (curvature); both pass.
+
+**Reading.**
+- **On the curvature switch, L372's window survives same-cell at the linear gate.** All three kicks pass KiDS comfortably, pass Harvey (canonical, and the alternative footing at the central kick), and keep their committed switch-free gates.
+- **On the matter-only switch, it fails KiDS.** With the carrier cleared from galaxies, the switched region around an isolated lens ends at 0.35–0.9 Mpc, depending on how the lens's matter continues beyond r200. KiDS needs the MOND-like signal further out.
+- Harvey passes on both branches; the branch barely moves β.
+
+**The convention split.** The two outer-matter conventions were split after the first main run. With the templates cut at r200, the matter-branch edge sat exactly at r200, a truncation artefact. Both conventions are reported, never pooled.
+
+**Limits.**
+- σ = 0 only (L370's operator). V0 finds σ physical, and XR5 suggests σ = 1 could move β by about 0.03–0.07 here, comparable to these Harvey margins (0.04–0.05 below the line).
+- The switch-free gates are L372's static ones, not re-derived.
+- No 2-halo matter enters the matter branch's switch variable; Brouwer's lenses are isolated.
+- The ESD keeps L352's point-mass baryons; only the switch reads the resolved baryons.
 

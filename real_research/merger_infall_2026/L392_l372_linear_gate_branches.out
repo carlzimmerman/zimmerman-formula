@@ -1,0 +1,108 @@
+L392 -- L372'S TWO-MODE CARRIER RE-SCORED SAME-CELL AT THE LINEAR GATE (p = 1, x_c0 = 2.5), EACH SWITCH VARIABLE ON ITS OWN.
+
+WHY.  L372's committed window ("passes forest, S_8, X-COP, galaxies, KiDS and Harvey on the alternative set") joins two
+  kernel setups (cross-lane review XR1; scope note 8850550c4): KiDS was scored through L357 -> L355 with NO switch, Harvey at
+  L370's p = 1, x_c0 = 1.5 cell with an absolute-density matter mask, canonical footing only.  The construction now sits at
+  the linear gate p = 1, x_c0 = 2.5 (DE1/DE2; L388-L390), and the switch variable has two readings that must never be pooled:
+    MATTER     the gate reads the matter density (baryons + carrier), background-subtracted;
+    CURVATURE  the gate reads the dynamical (curvature) density: matter + the phantom of the switch-everywhere field -- the
+               untruncated dynamical density, as L352 and DE1 compute the edge -- background-subtracted.  (L395's "onbranch"
+               cell iterates the MASKED phantom to self-consistency instead; the two agree away from the edge layer but are
+               not operationally identical -- never pool them either.)
+  This lane re-scores L372's window cells at the linear gate on each reading separately, with KiDS switched (L360's fit and
+  data) and Harvey through L370's solver and region operator (L361), the reading applied to BOTH stages of each branch.
+WHAT IS RE-SCORED.  Only the switch-dependent gates.  Forest, S_8, X-COP and galaxies are switch-free in L372 (L319's
+  solver; the retained carrier inside clusters and galaxies; X-COP's R500 lies deep inside any switched region) and are
+  read from L372's committed results.  Cells: L372's window, f_U(0) = 0.25 with v_G = 750, 900, 1050 km/s (G: L357's
+  cleared picture at x_v0 = 2000, vacuum-gated p = 2; U: L319's law at 3000 km/s).
+METHOD.
+  KiDS: L372's own carrier templates (kids_templates_vk, U-scaled), added to L360's switched model at the cell's
+    x_c,eff(0.25) (L359's K1 entry, as L360/L390), 2-halo free, Delta chi^2 against L360's unswitched baseline.  The edge
+    is set per branch from the lens's own density (L375's resolved baryons -- Hernquist, a = 3 kpc (M_b/1e11)^0.3, plus the
+    rest of f_b M200 as an NFW-shaped CGM -- plus the bin's retained carrier; the ESD keeps L352's point-mass baryons), the
+    region connected to the centre, compensated as L352.  (A first code test with a bare stellar Hernquist and no CGM put
+    the matter-branch edges at 0.15-0.34 Mpc: the CGM fills the region the cleared carrier leaves, so it is included.)  L352's own edge rule
+    (the phantom density alone, outermost switched radius) is reported alongside as L360's reference.
+  Harvey: L372's harvey() re-implemented (its processed carrier, its U factor at z = 0.4, its eight configurations) with the
+    branch's mask in the 1-D lensing-mass root AND the 3-D phantom map; the region operator is L370's (each region's phantom
+    from its own baryons).  Canonical footing for every cell; the alternative footing for the central cell.  Every result
+    records the resolved model (cell, p, x_c0, x_c,eff, footing, a0, the branch's switch variable, the operator).
+PRE-DECLARED (before any run).  H: L372's window survives same-cell at the linear gate on EACH reading: on the matter
+  branch some window cell passes KiDS (Delta chi^2 <= +4, both footings; L390's standard) and Harvey (excess beta <= +0.10
+  on all three estimators, canonical), with its committed switch-free gates; and likewise on the curvature branch.
+
+====================================================================================================================
+KiDS  L372's carrier on L360's switched model at the linear gate, each branch's edge
+====================================================================================================================
+  [PASS] C1 CONTROL: L372's templates rebuilt here give its committed switch-free (L355) KiDS scores, and the KiDS data radii of L355 and L360 coincide
+         measured: max |difference| 5.7e-14 over 3 cells; radii identical True
+  [PASS] C2 CONTROL: the branch-aware lens model in L352's own edge mode reproduces L360's switched fit with the same templates
+         measured: max |chi^2 difference| 0.0e+00
+    f_U(0) 0.25 v_G   750  reference      : KiDS Delta chi^2   -41.3 /   -33.8; edges (Mpc, canonical) [0.776, 1.032, 1.032, 1.095]
+    f_U(0) 0.25 v_G   750  matter|r200    : KiDS Delta chi^2  +322.1 /  +331.7; edges (Mpc, canonical) [0.145, 0.187, 0.241, 0.343]
+    f_U(0) 0.25 v_G   750  matter|nfw     : KiDS Delta chi^2  +118.0 /  +127.6; edges (Mpc, canonical) [0.352, 0.457, 0.601, 0.88]
+    f_U(0) 0.25 v_G   750  curvature|r200 : KiDS Delta chi^2   -41.3 /   -33.8; edges (Mpc, canonical) [0.776, 1.032, 1.032, 1.095]
+    f_U(0) 0.25 v_G   750  curvature|nfw  : KiDS Delta chi^2   -60.5 /   -54.8; edges (Mpc, canonical) [0.81, 1.076, 1.127, 1.364]
+    f_U(0) 0.25 v_G   900  reference      : KiDS Delta chi^2   -40.8 /   -33.0; edges (Mpc, canonical) [0.776, 1.032, 1.032, 1.095]
+    f_U(0) 0.25 v_G   900  matter|r200    : KiDS Delta chi^2  +323.7 /  +333.3; edges (Mpc, canonical) [0.145, 0.187, 0.241, 0.343]
+    f_U(0) 0.25 v_G   900  matter|nfw     : KiDS Delta chi^2  +118.7 /  +127.8; edges (Mpc, canonical) [0.352, 0.457, 0.601, 0.88]
+    f_U(0) 0.25 v_G   900  curvature|r200 : KiDS Delta chi^2   -40.8 /   -33.0; edges (Mpc, canonical) [0.776, 1.032, 1.032, 1.095]
+    f_U(0) 0.25 v_G   900  curvature|nfw  : KiDS Delta chi^2   -60.6 /   -54.9; edges (Mpc, canonical) [0.81, 1.076, 1.127, 1.364]
+    f_U(0) 0.25 v_G  1050  reference      : KiDS Delta chi^2   -40.5 /   -32.7; edges (Mpc, canonical) [0.776, 1.032, 1.032, 1.095]
+    f_U(0) 0.25 v_G  1050  matter|r200    : KiDS Delta chi^2  +324.5 /  +334.2; edges (Mpc, canonical) [0.145, 0.187, 0.241, 0.343]
+    f_U(0) 0.25 v_G  1050  matter|nfw     : KiDS Delta chi^2  +119.2 /  +128.3; edges (Mpc, canonical) [0.352, 0.457, 0.601, 0.88]
+    f_U(0) 0.25 v_G  1050  curvature|r200 : KiDS Delta chi^2   -40.5 /   -32.7; edges (Mpc, canonical) [0.776, 1.032, 1.032, 1.095]
+    f_U(0) 0.25 v_G  1050  curvature|nfw  : KiDS Delta chi^2   -60.4 /   -54.6; edges (Mpc, canonical) [0.81, 1.076, 1.127, 1.364]
+    x_c,eff(0.25) = 3.2477 (L359's K1 entry); 2.5 E(0.25)^2 = 3.2473   [500s]
+
+====================================================================================================================
+HARVEY  L372's harvey() at the linear gate, each branch in the lensing root and the phantom map
+====================================================================================================================
+    LCDM reference maps done (8 configurations)   [785s]
+    9 Harvey jobs done   [3330s]
+    (0.25, 750.0) L370      canonical p1_x1.5: excess beta +0.019/+0.050/+0.048; carrier/baryons(<150 kpc) 7.36/7.93; x_c,eff(0.4) 2.321 -> PASS
+    (0.25, 750.0) matter    canonical p1_x2.5: excess beta +0.022/+0.050/+0.047; carrier/baryons(<150 kpc) 7.36/7.93; x_c,eff(0.4) 3.868 -> PASS
+    (0.25, 750.0) curvature canonical p1_x2.5: excess beta +0.027/+0.058/+0.046; carrier/baryons(<150 kpc) 7.36/7.93; x_c,eff(0.4) 3.868 -> PASS
+    (0.25, 900.0) matter    canonical p1_x2.5: excess beta +0.025/+0.060/+0.056; carrier/baryons(<150 kpc) 6.40/7.29; x_c,eff(0.4) 3.868 -> PASS
+    (0.25, 900.0) curvature canonical p1_x2.5: excess beta +0.029/+0.065/+0.055; carrier/baryons(<150 kpc) 6.40/7.29; x_c,eff(0.4) 3.868 -> PASS
+    (0.25, 1050.0) matter    canonical p1_x2.5: excess beta +0.030/+0.070/+0.062; carrier/baryons(<150 kpc) 5.68/6.58; x_c,eff(0.4) 3.868 -> PASS
+    (0.25, 1050.0) curvature canonical p1_x2.5: excess beta +0.030/+0.072/+0.062; carrier/baryons(<150 kpc) 5.68/6.58; x_c,eff(0.4) 3.868 -> PASS
+    (0.25, 900.0) matter    alt       p1_x2.5: excess beta +0.031/+0.070/+0.063; carrier/baryons(<150 kpc) 6.40/7.35; x_c,eff(0.4) 3.868 -> PASS
+    (0.25, 900.0) curvature alt       p1_x2.5: excess beta +0.039/+0.072/+0.062; carrier/baryons(<150 kpc) 6.40/7.35; x_c,eff(0.4) 3.868 -> PASS
+  [PASS] C3 CONTROL: the branch-aware Harvey in L370's own mode at L372's cell (p = 1, x_c0 = 1.5; absolute mask; canonical) reproduces L372's committed Harvey numbers for (0.25, 750)
+         measured: max |difference| 0.0e+00 (L372 {'100': 0.019240171419573605, '150': 0.05015567140386215, 'fit': 0.047756961906450665}, here {'100': 0.019240171419573605, '150': 0.05015567140386215, 'fit': 0.047756961906450665})
+  [PASS] C4 the cell took effect: x_c,eff(0.4) of every linear-gate Harvey job equals 2.5 E(0.4)^2
+         measured: [3.867657] vs 3.867657
+
+====================================================================================================================
+RA, RB  THE HYPOTHESIS ON EACH BRANCH (set before any run; never pooled)
+====================================================================================================================
+    matter|r200     f_U(0) 0.25 v_G   750: KiDS +322.1/+331.7; Harvey fit +0.047 -> fails KiDS
+    matter|r200     f_U(0) 0.25 v_G   900: KiDS +323.7/+333.3; Harvey fit +0.056 -> fails KiDS
+    matter|r200     f_U(0) 0.25 v_G  1050: KiDS +324.5/+334.2; Harvey fit +0.062 -> fails KiDS
+  [FAIL] RA[r200] = H on the matter branch, lens matter cut at r200: some window cell passes KiDS (<= +4, both footings) and Harvey (canonical), with its committed switch-free gates
+         measured: passing cells: none
+    matter|nfw      f_U(0) 0.25 v_G   750: KiDS +118.0/+127.6; Harvey fit +0.047 -> fails KiDS
+    matter|nfw      f_U(0) 0.25 v_G   900: KiDS +118.7/+127.8; Harvey fit +0.056 -> fails KiDS
+    matter|nfw      f_U(0) 0.25 v_G  1050: KiDS +119.2/+128.3; Harvey fit +0.062 -> fails KiDS
+  [FAIL] RA[nfw] = H on the matter branch, lens matter continued as NFW: some window cell passes KiDS (<= +4, both footings) and Harvey (canonical), with its committed switch-free gates
+         measured: passing cells: none
+    curvature|r200  f_U(0) 0.25 v_G   750: KiDS -41.3/-33.8; Harvey fit +0.046 -> PASSES EVERY GATE
+    curvature|r200  f_U(0) 0.25 v_G   900: KiDS -40.8/-33.0; Harvey fit +0.055 -> PASSES EVERY GATE
+    curvature|r200  f_U(0) 0.25 v_G  1050: KiDS -40.5/-32.7; Harvey fit +0.062 -> PASSES EVERY GATE
+  [PASS] RB[r200] = H on the curvature branch, lens matter cut at r200: some window cell passes KiDS (<= +4, both footings) and Harvey (canonical), with its committed switch-free gates
+         measured: passing cells: [(0.25, 750.0), (0.25, 900.0), (0.25, 1050.0)]
+    curvature|nfw   f_U(0) 0.25 v_G   750: KiDS -60.5/-54.8; Harvey fit +0.046 -> PASSES EVERY GATE
+    curvature|nfw   f_U(0) 0.25 v_G   900: KiDS -60.6/-54.9; Harvey fit +0.055 -> PASSES EVERY GATE
+    curvature|nfw   f_U(0) 0.25 v_G  1050: KiDS -60.4/-54.6; Harvey fit +0.062 -> PASSES EVERY GATE
+  [PASS] RB[nfw] = H on the curvature branch, lens matter continued as NFW: some window cell passes KiDS (<= +4, both footings) and Harvey (canonical), with its committed switch-free gates
+         measured: passing cells: [(0.25, 750.0), (0.25, 900.0), (0.25, 1050.0)]
+  [PASS] W (reported) L360's reference edge rule, the edges, the alternative footing, the switch-free gates
+         measured: see above
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  7/9 checks pass; load-bearing failures: 2; wrote L392_l372_linear_gate_branches_results.json   [3330s]
+rc=1
+L392 MAIN rc=1
