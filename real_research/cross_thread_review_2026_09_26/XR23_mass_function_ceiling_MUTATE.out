@@ -1,0 +1,139 @@
+XR23b -- THE CHAIN'S HALO MASS FUNCTION AT z = 6-20 AND THE KNOB-FREE BARYON CEILING (Boylan-Kolchin 2023): does the
+derivation chain raise or lower the ceiling that JWST's earliest massive galaxies press against?
+
+INPUTS.  The chain's linear power is read with FP13's own machinery (committed 27faacc84; exec'd read-only up to its K banner:
+  FP9's growth_aq with FP13's (H_S) model).  The chain's collapse threshold is XR23a's committed JSON
+  (XR23_collapse_threshold_results.json: A_chain/A_LCDM per (M, z), both readings, every state variant, both footings; the
+  MUTATE file for this lane's MUTATE).  The dark field's wave suppression is Hu, Barkana & Gruzinov 2000 (linear) and
+  Schive et al. 2016 (the halo mass function fit), at FP10's floor m = 1.9e-19 and 5.2e-19 eV.
+THE MASS FUNCTION.  Sheth & Tormen 1999 (A, a, p = 0.3222, 0.707, 0.3) on sigma(M, z) from a real-space top-hat filter in
+  Lagrangian radius; the barrier B(M, z) = delta_c^LCDM(z) x A_chain/A_LCDM(M, z) (XR23a), ST's nu = B/sigma with the barrier's
+  own mass slope in the Jacobian; Press-Schechter and the excursion-set moving-barrier series (Sheth & Tormen 2002) reported.
+  The linear spectrum is the textbook Eisenstein & Hu 1998 no-wiggle form at sigma_8 = 0.811 (K3: it matches CLASS; FP6's
+  transfer function, which the chain's machinery carries, does not).
+THE CEILING (Boylan-Kolchin 2023, Nature Astronomy 7, 731): rho_*(> M*) <= eps f_b rho_h(> M*/(eps f_b)), f_b = Omega_b/
+  Omega_m; the headline uses eps = 1 (f_b only) and reports the eps each data point requires (eps_req > 1 = above the ceiling).
+DATA (cited, transcribed; nothing fitted):
+  * Labbe et al. 2023, Nature 616, 266 (arXiv:2207.12446 v3, 'significant revision with updated calibration and stellar
+    masses'): the 13 candidates of the authors' public catalogue of that revision (id, z_phot, log M* with 16-84%; Salpeter
+    IMF), CEERS, 38 arcmin^2 (the survey area Boylan-Kolchin 2023 quotes), bins 7 < z < 8.5 and 8.5 < z < 10.
+  * as later revised by spectroscopy: ID 13050 = CEERS 3210 (coordinates agree to 0.05"), z_spec = 5.624 (Kocevski et al.
+    2023, ApJL 954, L4); ID 38094 = RUBIES-EGS-55604, z_spec = 6.98173; ID 14924 = RUBIES-EGS-966323, z_spec = 8.35304 with
+    log M* (Chabrier) max/medium/min 10.62/9.84/8.72 (Wang et al. 2024, ApJL 969, L13).  IMF: Salpeter -> Chabrier = x 0.61
+    (Madau & Dickinson 2014).
+  * JADES-GS-z14-0: z = 14.32 (+0.08 -0.20), log M* = 8.6 (+0.7 -0.2) (Chabrier), found in the 58 arcmin^2 of GOODS-S
+    (Carniani et al. 2024, Nature 633, 318); its abundance is taken as one object in 13.5 < z < 15 over that area (13 < z < 16
+    reported).
+
+  *** MUTATE=1: XR23a's MUTATE barrier (band-pass removed) is used for reading T -- B4 must FAIL ***
+
+  inputs: XR23a (A_chain/A_LCDM tables, 24 model/variant/reading/footing sets) + its MUTATE file; f_b = 0.1571; rho_m = 3.9512e+10 Msun/Mpc^3
+
+======================================================================================================================
+K  CONTROLS
+======================================================================================================================
+  [PASS] K1 CONTROL: FP13's committed linear boost of the sub-L power (its H4: P_H_S/P_LCDM - 1 at z = 0 and 0.25, k = 0.1-1 h/Mpc, canonical, per-mode) is reproduced EXACTLY by FP13's own machinery exec'd read-only
+         measured: z=0: k=0.1: +0.0016, k=0.3: +0.0484, k=0.5: +0.2354, k=1.0: +1.9222; z=0.25: +0.0005, +0.0146, +0.0734, +0.5991; max |dev| from the committed JSON 0.0e+00
+  [PASS] K2 CONTROL: this lane's Sheth-Tormen and Press-Schechter dn/dlnM equal colossus's (sheth99, press74) on the same spectrum and cosmology at M = 1e10 and 1e12 Msun/h, z = 0 (delta_c = 1.68647)
+         measured: sheth99 1e+10: 7.1443e-02 vs 7.1397e-02 (+6.4e-04), press74 1e+10: 9.2026e-02 vs 9.1964e-02 (+6.6e-04), sheth99 1e+12: 1.2086e-03 vs 1.2072e-03 (+1.2e-03), press74 1e+12: 1.7918e-03 vs 1.7896e-03 (+1.2e-03)
+         reading:  at z = 7 the two differ by 1-2% more because the chain's growth factor carries radiation (0.15888 vs 0.15869)
+  [PASS] K3 THE LINEAR SPECTRUM (a finding): at fixed sigma_8 the textbook EH98 no-wiggle spectrum matches CLASS within 6% (0.01-100 h/Mpc) and 3% in sigma(M); the spectrum the chain's machinery carries (FP6's T_EH98, from L341: k in 1/Mpc but q = k Theta^2/(Om h ...) and 0.43 k s/h) is 0.44x CLASS at 0.01 h/Mpc and 1.3-1.6x at 1-100 h/Mpc
+         measured: k=0.01: textbook 0.988, FP6 0.438; k=0.1: textbook 1.057, FP6 0.941; k=1.0: textbook 0.966, FP6 1.291; k=10.0: textbook 0.986, FP6 1.498; k=100.0: textbook 1.018, FP6 1.642; sigma(1e8/1e10/1e12) textbook/FP6/CLASS: 1e+08: 5.852/7.104/5.899, 1e+10: 3.863/4.550/3.910, 1e+12: 2.219/2.491/2.246
+         reading:  the high-z mass function below uses the textbook spectrum; the chain's own state (L, y_th) is scored on both (XR23a V0 vs V1), and FP13's A6 'linear-spectrum systematic' is this error
+    max_k |D_HS/D_LCDM - 1|: z=20: 0.0e+00/0.0e+00/0.0e+00/0.0e+00; z=14: 0.0e+00/0.0e+00/0.0e+00/0.0e+00; z=10: 0.0e+00/0.0e+00/0.0e+00/0.0e+00; z=7: 0.0e+00/0.0e+00/0.0e+00/0.0e+00; z=6: 0.0e+00/0.0e+00/0.0e+00/0.0e+00; z=3: 0.0e+00/0.0e+00/0.0e+00/0.0e+00; z=2: 0.0e+00/0.0e+00/0.0e+00/0.0e+00; z=1: 0.0e+00/0.0e+00/0.0e+00/0.0e+00; z=0.635: 2.9e-02/7.8e-02/3.2e-02/8.6e-02; z=0.25: 1.0e+00/1.5e+00/1.2e+00/1.7e+00
+  [PASS] K4 (H7) THE CHAIN'S LINEAR POWER AT z >= 6 IS LCDM'S: FP13's (H_S) growth with FP13's own machinery, both yardstick modes and footings, differs from LCDM's by <= 1e-9 at z = 6-20 on every k (0.02-20 h/Mpc): while the leaf decelerates the yield sits at the web's band-passed rms, above every linear mode
+         measured: max |dev| at z >= 6: 0.0e+00
+  [PASS] K5 CONTROL: the cumulative abundance n(> M*/f_b) at z = 9.1 (M* = 10^10.5) and z = 14.32 (M* = 10^8.6) equals colossus's integrated sheth99 on the same spectrum within 0.08 dex (the chain's growth factor carries radiation: its ratio to colossus's is printed)
+         measured: z=9.1: 10^-5.580 vs 10^-5.592 (D ratio 1.0016); z=14.32: 10^-3.284 vs 10^-3.302 (D ratio 1.0026)
+    6 s
+
+======================================================================================================================
+W  THE DARK FIELD'S WAVE CUT-OFF (FL1's free order parameter at FP10's mass floor)
+======================================================================================================================
+    m = 1.9e-19 eV: half-mode k = 195 h/Mpc, M_1/2 = 2.26e+06 Msun, Schive+2016 M_0 = 6.80e+05 Msun; n_wave/n_CDM (Schive | sharp-k PS, z = 10) at M = 1e+05: 0.008|0.000, 1e+06: 0.330|0.399, 1e+07: 0.895|0.995, 1e+08: 0.991|1.000, 1e+09: 0.999|1.000, 1e+10: 1.000|1.000, 1e+11: 1.000|1.000
+    m = 5.2e-19 eV: half-mode k = 305 h/Mpc, M_1/2 = 5.91e+05 Msun, Schive+2016 M_0 = 1.78e+05 Msun; n_wave/n_CDM (Schive | sharp-k PS, z = 10) at M = 1e+05: 0.097|0.000, 1e+06: 0.736|0.958, 1e+07: 0.974|1.000, 1e+08: 0.998|1.000, 1e+09: 1.000|1.000, 1e+10: 1.000|1.000, 1e+11: 1.000|1.000
+  [PASS] (reported) W1 (H8) THE WAVE CUT-OFF IS A MINI-HALO EFFECT: at m = 1.9e-19 and 5.2e-19 eV the half-mode mass is 1e5-1e7 Msun and halos above 1e9 Msun are suppressed by < 1% (Schive et al. 2016's fit and a sharp-k excursion set agree)
+         measured: m=1.9e-19: M_1/2 2.3e+06, 1e9: 0.9993/1.0000; m=5.2e-19: M_1/2 5.9e+05, 1e9: 0.9998/1.0000
+
+======================================================================================================================
+H  THE CHAIN'S HALO MASS FUNCTION AT z = 6-20 AGAINST LCDM'S
+======================================================================================================================
+    z = 7: n_chain/n_LCDM (dn/dlnM) at M = 1e+08, 1e+09, 1e+10, 1e+11, 1e+12, 1e+13
+      T V0 can        : 1.0798, 1.1881, 1.2082, 1.0177, 0.9973, 0.9983
+      T V0 alt        : 1.0714, 1.1989, 1.2244, 1.0190, 0.9969, 0.9980
+      T V1 can        : 1.0000, 1.0000, 0.8478, 79.6897, 90.8301, 395547.2895
+      T V1 alt        : 1.3300, 1.3155, 1.0561, 0.9990, 0.9983, 0.9992
+      B V0 can        : 1.0000, 1.0000, 0.9999, 0.9999, 0.9998, 1.0000
+      B V1 can        : 1.0000, 1.0000, 0.9999, 0.9999, 0.9998, 1.0000
+      B V1 alt        : 1.0000, 1.0000, 0.9999, 0.9999, 0.9998, 1.0000
+      top hat V1 can  : 1.3281, 1.6368, 1.6484, 1.5169, 1.4269, 1.3837
+      compact V1 can  : 1.3255, 1.2161, 0.9963, 0.9967, 1.0000, 1.0000
+    z = 10: n_chain/n_LCDM (dn/dlnM) at M = 1e+08, 1e+09, 1e+10, 1e+11, 1e+12, 1e+13
+      T V0 can        : 1.3993, 1.1389, 1.0069, 0.9984, 0.9989, 0.9997
+      T V0 alt        : 1.4262, 1.1508, 1.0073, 0.9982, 0.9987, 0.9997
+      T V1 can        : 1.0000, 1.0000, 0.8467, 2267.9657, 1631980.0647, 2705499834166.4194
+      T V1 alt        : 1.0828, 1.0084, 0.9989, 0.9993, 0.9994, 1.0000
+      B V0 can        : 1.0000, 0.9999, 0.9999, 0.9999, 0.9997, 1.0002
+      B V1 can        : 1.0000, 1.0000, 0.9999, 0.9998, 0.9997, 1.0002
+      B V1 alt        : 1.0000, 0.9999, 0.9999, 0.9998, 0.9997, 1.0002
+      top hat V1 can  : 1.8437, 1.6627, 1.3881, 1.2612, 1.2039, 1.1818
+      compact V1 can  : 0.9996, 0.9943, 0.9998, 1.0000, 1.0000, 1.0000
+    z = 14: n_chain/n_LCDM (dn/dlnM) at M = 1e+08, 1e+09, 1e+10, 1e+11, 1e+12, 1e+13
+      T V0 can        : 1.0333, 0.9988, 0.9994, 0.9999, 1.0002, 1.0001
+      T V0 alt        : 1.0341, 0.9986, 0.9993, 0.9999, 1.0001, 1.0001
+      T V1 can        : 1.0000, 1.0000, 0.8467, 2780340.5500, 248352327381.3393, 11633819269000685682688.0000
+      T V1 alt        : 1.0001, 1.0001, 1.0001, 1.0002, 1.0003, 1.0002
+      B V0 can        : 1.0000, 1.0000, 1.0001, 1.0002, 1.0003, 1.0002
+      B V1 can        : 1.0000, 1.0001, 1.0001, 1.0002, 1.0003, 1.0002
+      B V1 alt        : 1.0000, 1.0001, 1.0001, 1.0002, 1.0003, 1.0002
+      top hat V1 can  : 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000
+      compact V1 can  : 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000
+  [FAIL] (reported) H1 (H9) THE CHAIN'S HALO ABUNDANCE IS LCDM'S AT JWST MASSES: n_chain/n_LCDM within 10% at M >= 1e10 for z = 7, 10, 14 (reading T, multi-shell, V0 and V1, both footings) and within 1% at M >= 1e9 in reading B
+         measured: max |ratio - 1|: reading T 1163381926900068534714368.00% (M >= 1e10); reading B 0.03% (M >= 1e9)
+    excursion-set moving barrier (ST 2002, first order; V1 T canonical): z=7: 1.0000,1.0000,0.9233,48.8818,270.8319,40021220.1066; z=10: 1.0000,1.0000,0.9228,7545.9156,213959700.4587,437165834384852480.0000; z=14: 1.0000,1.0000,0.9228,204036063.2817,4458414820846033.0000,20326865132561777349764216520704.0000
+  [PASS] (reported) H2 (reported) the excursion-set first-crossing ratio for the chain's moving barrier (Press-Schechter normalisation)
+         measured: z=7: max |ratio-1| 4002121910.66%; z=10: max |ratio-1| 43716583438485250048.00%; z=14: max |ratio-1| 2032686513256177843062812708962304.00%
+
+======================================================================================================================
+B  THE KNOB-FREE BARYON CEILING (Boylan-Kolchin 2023): rho_*(> M*) <= f_b rho_h(> M*/f_b)
+======================================================================================================================
+    Labbe volume: 38 arcmin^2 -> 7<z<8.5: 1.216e+05 Mpc^3, 8.5<z<10: 1.048e+05 Mpc^3 (Boylan-Kolchin: ~1e5 each)
+    Labbe et al. 2023, published sample -- eps required (max over thresholds) [eps for the top object at its Poisson 84% lower bound]:
+      Salpeter 7.0<z<8.5 at z = 7.5: top log M* 10.89 (N = 7); LCDM: 1.275, T V0 can: 1.275, T V0 alt: 1.275, T V1 can: 0.001, T V1 alt: 1.275, B V0 can: 1.275, B V1 can: 1.275, B V1 alt: 1.275, top hat V1 can: 1.131, compact V1 can: 1.275  [LCDM top Poisson-lo 0.734]
+      Salpeter 7.0<z<8.5 at z = 7.0: top log M* 10.89 (N = 7); LCDM: 0.942, T V0 can: 0.942, T V0 alt: 0.942, T V1 can: 0.001, T V1 alt: 0.943, B V0 can: 0.942, B V1 can: 0.942, B V1 alt: 0.942, top hat V1 can: 0.836, compact V1 can: 0.942  [LCDM top Poisson-lo 0.540]
+      Salpeter 8.5<z<10.0 at z = 9.1: top log M* 10.40 (N = 5); LCDM: 1.072, T V0 can: 1.073, T V0 alt: 1.073, T V1 can: 0.000, T V1 alt: 1.073, B V0 can: 1.072, B V1 can: 1.072, B V1 alt: 1.072, top hat V1 can: 0.971, compact V1 can: 1.073  [LCDM top Poisson-lo 0.623]
+      Salpeter 8.5<z<10.0 at z = 8.5: top log M* 10.40 (N = 5); LCDM: 0.771, T V0 can: 0.772, T V0 alt: 0.772, T V1 can: 0.000, T V1 alt: 0.772, B V0 can: 0.771, B V1 can: 0.771, B V1 alt: 0.771, top hat V1 can: 0.690, compact V1 can: 0.771  [LCDM top Poisson-lo 0.446]
+      Chabrier 7.0<z<8.5 at z = 7.5: top log M* 10.67 (N = 7); LCDM: 0.778, T V0 can: 0.778, T V0 alt: 0.778, T V1 can: 0.000, T V1 alt: 0.778, B V0 can: 0.778, B V1 can: 0.778, B V1 alt: 0.778, top hat V1 can: 0.690, compact V1 can: 0.778  [LCDM top Poisson-lo 0.448]
+      Chabrier 7.0<z<8.5 at z = 7.0: top log M* 10.67 (N = 7); LCDM: 0.575, T V0 can: 0.575, T V0 alt: 0.575, T V1 can: 0.000, T V1 alt: 0.575, B V0 can: 0.575, B V1 can: 0.575, B V1 alt: 0.575, top hat V1 can: 0.510, compact V1 can: 0.575  [LCDM top Poisson-lo 0.329]
+      Chabrier 8.5<z<10.0 at z = 9.1: top log M* 10.18 (N = 5); LCDM: 0.654, T V0 can: 0.655, T V0 alt: 0.655, T V1 can: inf, T V1 alt: 0.654, B V0 can: 0.654, B V1 can: 0.654, B V1 alt: 0.654, top hat V1 can: 0.592, compact V1 can: 0.654  [LCDM top Poisson-lo 0.380]
+      Chabrier 8.5<z<10.0 at z = 8.5: top log M* 10.18 (N = 5); LCDM: 0.470, T V0 can: 0.471, T V0 alt: 0.471, T V1 can: 0.000, T V1 alt: 0.471, B V0 can: 0.470, B V1 can: 0.470, B V1 alt: 0.470, top hat V1 can: 0.421, compact V1 can: 0.471  [LCDM top Poisson-lo 0.272]
+    Labbe et al. 2023, revised sample -- eps required (max over thresholds) [eps for the top object at its Poisson 84% lower bound]:
+      Salpeter 7.0<z<8.5 at z = 7.5: top log M* 10.18 (N = 6); LCDM: 0.273, T V0 can: 0.273, T V0 alt: 0.273, T V1 can: 0.000, T V1 alt: 0.273, B V0 can: 0.273, B V1 can: 0.273, B V1 alt: 0.273, top hat V1 can: 0.239, compact V1 can: 0.273  [LCDM top Poisson-lo 0.144]
+      Salpeter 7.0<z<8.5 at z = 7.0: top log M* 10.18 (N = 6); LCDM: 0.203, T V0 can: 0.203, T V0 alt: 0.203, T V1 can: 0.000, T V1 alt: 0.203, B V0 can: 0.203, B V1 can: 0.203, B V1 alt: 0.203, top hat V1 can: 0.178, compact V1 can: 0.203  [LCDM top Poisson-lo 0.106]
+      Salpeter 8.5<z<10.0 at z = 9.1: top log M* 10.40 (N = 4); LCDM: 1.072, T V0 can: 1.073, T V0 alt: 1.073, T V1 can: 0.000, T V1 alt: 1.073, B V0 can: 1.072, B V1 can: 1.072, B V1 alt: 1.072, top hat V1 can: 0.971, compact V1 can: 1.073  [LCDM top Poisson-lo 0.623]
+      Salpeter 8.5<z<10.0 at z = 8.5: top log M* 10.40 (N = 4); LCDM: 0.771, T V0 can: 0.772, T V0 alt: 0.772, T V1 can: 0.000, T V1 alt: 0.772, B V0 can: 0.771, B V1 can: 0.771, B V1 alt: 0.771, top hat V1 can: 0.690, compact V1 can: 0.771  [LCDM top Poisson-lo 0.446]
+      Chabrier 7.0<z<8.5 at z = 7.5: top log M* 9.97 (N = 6); LCDM: 0.167, T V0 can: 0.167, T V0 alt: 0.167, T V1 can: inf, T V1 alt: 0.167, B V0 can: 0.167, B V1 can: 0.167, B V1 alt: 0.167, top hat V1 can: 0.146, compact V1 can: 0.167  [LCDM top Poisson-lo 0.088]
+      Chabrier 7.0<z<8.5 at z = 7.0: top log M* 9.97 (N = 6); LCDM: 0.124, T V0 can: 0.124, T V0 alt: 0.124, T V1 can: inf, T V1 alt: 0.124, B V0 can: 0.124, B V1 can: 0.124, B V1 alt: 0.124, top hat V1 can: 0.108, compact V1 can: 0.124  [LCDM top Poisson-lo 0.065]
+      Chabrier 8.5<z<10.0 at z = 9.1: top log M* 10.18 (N = 4); LCDM: 0.654, T V0 can: 0.655, T V0 alt: 0.655, T V1 can: inf, T V1 alt: 0.654, B V0 can: 0.654, B V1 can: 0.654, B V1 alt: 0.654, top hat V1 can: 0.592, compact V1 can: 0.654  [LCDM top Poisson-lo 0.380]
+      Chabrier 8.5<z<10.0 at z = 8.5: top log M* 10.18 (N = 4); LCDM: 0.470, T V0 can: 0.471, T V0 alt: 0.471, T V1 can: 0.000, T V1 alt: 0.471, B V0 can: 0.470, B V1 can: 0.470, B V1 alt: 0.470, top hat V1 can: 0.421, compact V1 can: 0.471  [LCDM top Poisson-lo 0.272]
+    for orientation: Boylan-Kolchin 2023 quotes eps(z ~ 9) = 0.99 and eps(z ~ 7.5) = 0.84 for the Labbe candidates as they stood before the published revision (his Planck cosmology); this lane uses the published revision's masses and its own volume
+  [PASS] (reported) B1 (H11, reported) LCDM's OWN STATUS against Labbe et al.: the published z ~ 7.5 top object needs eps > 1 (Salpeter); after the spectroscopic revisions the 7 < z < 8.5 bin does not
+         measured: published 7<z<8.5 (Salpeter, z_eff): eps_req 1.275; revised: 0.273; published 8.5<z<10: 1.072
+    JADES-GS-z14-0 at z = 14.32, window (13.5, 15.0): V = 1.054e+05 Mpc^3, n_obs = 9.49e-06; LCDM N_exp(eps = 1) 157.16/53.35/0.61 (log M* 8.4/8.6/9.3); eps_req LCDM: 0.234, T V0 can: 0.234, T V0 alt: 0.234, T V1 can: 0.001, T V1 alt: 0.234, B V0 can: 0.234, B V1 can: 0.234, B V1 alt: 0.234, top hat V1 can: 0.234, compact V1 can: 0.234
+    JADES-GS-z14-0 at z = 14.32, window (13.0, 16.0): V = 2.076e+05 Mpc^3, n_obs = 4.82e-06; LCDM N_exp(eps = 1) 309.44/105.04/1.20 (log M* 8.4/8.6/9.3); eps_req LCDM: 0.189, T V0 can: 0.189, T V0 alt: 0.189, T V1 can: 0.001, T V1 alt: 0.189, B V0 can: 0.189, B V1 can: 0.189, B V1 alt: 0.189, top hat V1 can: 0.189, compact V1 can: 0.189
+    JADES-GS-z14-0 at z = 14.12, window (13.5, 15.0): V = 1.054e+05 Mpc^3, n_obs = 9.49e-06; LCDM N_exp(eps = 1) 188.46/65.04/0.80 (log M* 8.4/8.6/9.3); eps_req LCDM: 0.214, T V0 can: 0.214, T V0 alt: 0.214, T V1 can: 0.001, T V1 alt: 0.214, B V0 can: 0.214, B V1 can: 0.214, B V1 alt: 0.214, top hat V1 can: 0.214, compact V1 can: 0.214
+    JADES-GS-z14-0 at z = 14.12, window (13.0, 16.0): V = 2.076e+05 Mpc^3, n_obs = 4.82e-06; LCDM N_exp(eps = 1) 371.06/128.06/1.57 (log M* 8.4/8.6/9.3); eps_req LCDM: 0.173, T V0 can: 0.173, T V0 alt: 0.173, T V1 can: 0.001, T V1 alt: 0.173, B V0 can: 0.173, B V1 can: 0.173, B V1 alt: 0.173, top hat V1 can: 0.173, compact V1 can: 0.173
+  [PASS] (reported) B3 (H11, reported) LCDM's OWN STATUS against JADES-GS-z14-0: one galaxy of 10^8.6 Msun in 58 arcmin^2 at 13.5 < z < 15 needs eps < 1 at the central mass
+         measured: eps_req 0.234 (central); 1.172 at +1 sigma mass
+  [FAIL] B4 (H10) THE CHAIN INHERITS LCDM's CEILING: at every data cell (Labbe published and revised, both IMFs, both redshift conventions; GS-z14-0 at both redshifts, both windows, three masses) the eps each point requires differs from LCDM's by < 10% in reading T (multi-shell, V0/V1, both footings) and < 1% in reading B
+         measured: max |eps_chain/eps_LCDM - 1|: reading T inf%, reading B 0.01%; the sharp-edged top-hat bracket 12.58%
+         reading:  the chain's MOND sector is confined by its band-pass to r <~ 2L(z) = 1-35 kpc at z = 6-13.6 and is exactly off above (V1): it cannot speed the collapse of the 1e10-1e12 Msun halos these galaxies need
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  MUTATE: with the band-pass removed from the force law the chain's MOND reads every halo's full peculiar field and its
+  halo abundance and ceiling leave LCDM's -- B4 fails, as pre-declared.
+  Not 'closed'.  Time 7 s.
+
+  9/11 checks pass; load-bearing failures: 1; wrote XR23_mass_function_ceiling_results_MUTATE.json
