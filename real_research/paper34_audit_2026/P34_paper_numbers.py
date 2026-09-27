@@ -574,6 +574,27 @@ mh = re.search(r"\[PASS\] H1 HARVEY.*?\n\s+measured: A_0\.2 ([0-9.e-]+), A_0\.5 
 row(s, "XR5 H1: sigma = 1 (A) vs L370 (C) Harvey centroid, |d_beta| <= 0.002", (mh.group(1), mh.group(2), mh.group(3)), "<= 0.002", bool(mh) and max(float(mh.group(1)), float(mh.group(2)), float(mh.group(3))) <= 0.002)
 row(s, "XR5 Harvey configuration is toward-main", "toward-main orientation" in x5, True, "toward-main orientation" in x5)
 
+# ------------------------------------------------------------------------------------------------------------ v3: MS3, P34b
+s = "v3 MS3/P34b"
+ms3 = J("mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector_results.json")["numbers"]
+u1 = ms3["U1"]
+row(s, "MS3 U1 region radius vs analytic edges (Mpc)", [(round(u1[k]["R_grid_Mpc"], 2), round(u1[k]["R_edge_Mpc"], 2)) for k in ("12.0", "13.0", "14.0")],
+    "0.24 vs 1.26/2.26/4.61", all(near(u1[k]["R_grid_Mpc"], 0.24, 2) for k in u1) and near(u1["12.0"]["R_edge_Mpc"], 1.26, 2) and near(u1["13.0"]["R_edge_Mpc"], 2.26, 2) and near(u1["14.0"]["R_edge_Mpc"], 4.61, 2))
+x1w = [v["worst"] for v in ms3["X1"].values()]
+row(s, "MS3 X1 min worst R, no cap", round(min(x1w), 3), 2.47, near(min(x1w), 2.47, 2) and min(x1w) > 1.2)
+t3 = TXT("mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector.out")
+mc = re.search(r"r_cap\s+1\.75 Mpc: worst R canonical ([0-9.]+), alt ([0-9.]+)", t3)
+row(s, "MS3 K1 1.75 Mpc cap with L388's retention", (mc.group(1), mc.group(2)), (1.05, 1.12), near(float(mc.group(1)), 1.05, 2) and near(float(mc.group(2)), 1.12, 2))
+row(s, "MS3 largest passing cap", ms3["K1_design"]["r_cap_z05"], 1.75, ms3["K1_design"]["r_cap_z05"] == 1.75)
+pb = J("paper34_audit_2026/P34b_gp4_window_resolution_results.json")["numbers"]
+w = pb["window"]
+row(s, "P34b (0.95, 1200) at twice the resolution", (round(w["0.95|1200|100"]["canonical"], 3), round(w["0.95|1200|100"]["alt"], 3)), (1.11, 1.17),
+    near(w["0.95|1200|100"]["canonical"], 1.11, 2) and near(w["0.95|1200|100"]["alt"], 1.17, 2))
+row(s, "P34b (0.90, 1400) alt at twice the resolution", round(w["0.9|1400|100"]["alt"], 4), 1.208, near(w["0.9|1400|100"]["alt"], 1.208, 3) and w["0.9|1400|100"]["alt"] > 1.2)
+dr = max(abs(v) for k, d in pb["drift"].items() if k.endswith("|1.0") for v in d.values())
+row(s, "P34b kernel-alone drift at lambda = 1 (%)", round(100 * dr, 2), 0.6, near(100 * dr, 0.6, 1))
+row(s, "GP3's 200 Mpc cells (Mpc) and cells per screening length at 1 Mpc", (round(200 / 256, 3), round(1 / (200 / 256), 2)), (0.78, 1.3), near(200 / 256, 0.78, 2) and near(256 / 200, 1.3, 1))
+
 # ============================================================================================================== REPORT
 banner("THE NUMBERS PAPER34 QUOTES, AGAINST THE COMMITTED OUTPUTS")
 bad = [r for r in ROWS if not r[4]]
