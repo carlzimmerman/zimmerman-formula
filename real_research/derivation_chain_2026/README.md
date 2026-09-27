@@ -40,6 +40,18 @@ with lambda > 0 required as a regulator (the yield vanishes below z = 0.635). It
 XR21 stage 2; H_Y (FP9; four declared constants) is the fallback. The dark sector is FK1's internal splitting (FP10), a
 light complex scalar whose own rest energy powers the kick.
 
+**Who feels MOND (FP22, adopted).** On the matter metric g, FK1 would source and feel chi like any matter (reciprocity),
+and late-time web MOND would then be excluded by CMB lensing. The dark lanes (FP4, FP8, FP10, FP15, FP16) assumed instead
+that the dark component feels Newtonian gravity only, via the L353 pair; that pair subtracts from C-H's field u, which FP7
+removed, so it had no action on this root. The chain therefore puts FK1 on the root's own Einstein-frame metric
+
+    S_Psi[g~],   g~ = g + (1 - e^(-2 chi)) n n
+
+so that baryons source and feel the phantom and the dark component feels Newtonian gravity only. This is a POSTULATED
+coupling with no new field and no new constant. Its price: dark-baryon free-fall universality is broken wherever chi != 0
+(the L353 estimate: a median of 0.47 across X-COP's clusters). The Solar System and GW170817 are unaffected. The
+merger/offset gates (Harvey, the Bullet cluster) must score it (OPEN).
+
 ## What is derived, and what is not (knob ledger; kappa = 1/2 accepted)
 
 | sector | constant | status | lane |
@@ -69,8 +81,14 @@ light complex scalar whose own rest energy powers the kick.
 - CMB lensing (XR26, re-run pending): below z ~ 0.64 the separator's yield vanishes and MOND switches on in the linear
   web; on FP13's per-mode yardstick C_L^phiphi rises x1.08/1.74/4.85 at L = 100/400/1000, and Planck's 8-400 amplitude
   (1.011 +- 0.028) becomes 1.149 on the linear base (+4.9 sigma) and 2.13 on halofit (+40 sigma); every variant scored
-  fails. Passing needs the web's phantom cut to 0.62x (linear) / 0.18x (halofit). The two ways out -- the reading the
-  action implies (baryons only?) and the real-space operator (0.28-0.91 of the per-mode boost) -- are FP22's test.
+  fails. Passing needs the web's phantom cut to 0.62x (linear) / 0.18x (halofit). FP22 (bfe9a2fe5): with all matter
+  feeling MOND it is EXCLUDED on every separator, yardstick and footing (real-space cut 0.52-1.35); with the adopted
+  Einstein-frame coupling (baryons only) the real-space cut is 0.13-0.26 (H_K1 0.13-0.19): it passes Planck and ACT DR6
+  on the linear base and fails ACT on the halofit base (>= 3.8 sigma). UNDECIDED until the nonlinear phantom is computed
+  (the hub's XR21 stage 2a, reading "chain"). FK1's late conversion offsets only ~1.5% at L = 1000 (XR19).
+- KiDS and the web's external field (FP22, a risk, not a result): in the baryons-only reading the web's band-passed field
+  enters the kernel of an isolated lens at an estimated Delta chi^2 +205-232 with H_Y or H_K1 (all matter: +575-714), 6-8x
+  over the field KiDS tolerates. No committed KiDS model includes that field; FP23 computes it.
 - The Milky Way's outer curve (the hub's XR29, 633c161b5, re-run pending): the Gaia DR3 decline needs M_* = 7.3-8.2e10
   (4-5 sigma above the McMillan/Cautun censuses) and the 8-19 kpc slope misfits (-2.2 to -2.9 vs -1.7 km/s/kpc); LCDM's
   control needs a concentration 1.9-3.8 sigma above the c-M relation.
@@ -110,9 +128,14 @@ light complex scalar whose own rest energy powers the kick.
   FP11, FP12 K7 and FP13 (z = 0.25, 0.4) still pass; FP9 at z = 0.4 still fails; the KiDS-LG pincer stands. What flips:
   L360's passing pairs (70 -> 35 of 96), FP13's A3 window edges, FP11 P1's band edge (now passes). FP15/FP16 (L352's
   projector) and FP19 (the old one) were committed before the fix; FP20b re-scores them.
-- **FP7's sigma_8 failure used the all-matter reading** (the MOND scalar sourced by, and acting on, the total delta),
-  while FP10's dark component does not source the phantom. FP22 derives which reading the action implies and re-scores
-  sigma_8, the forest and KiDS in it.
+- **The dark lanes' "Newtonian-only" dark component had no action on this root** (found by FP22): FP4, FP8, FP10, FP15
+  and FP16 used the L353 kernel-invisible pair, which subtracts from C-H's field u, removed by FP7. Their dynamics are
+  realised by the Einstein-frame coupling FP22 identified, now adopted (see "Who feels MOND"). FP7's sigma_8 failure used
+  the all-matter reading; in the adopted reading the no-separator sigma_8 still fails (real-space 1.45/1.51), so a
+  separator stays needed.
+- **The record's forest particle-mesh codes** (L346, L347, L362, DE11, DE11b) pass (1+z) times the physical field to the
+  MOND kernel, so MOND is evaluated about sqrt(1+z) too weak in the deep limit at z = 2-3 (the hub's XR21 flag, confirmed by
+  FP22; the hub's XR34 re-scores DE11b). The chain's own forest proxies (FP9, FP13) use the physical field.
 - **FP14's "sigma_8 unchanged for lambda = 0-100"** was measured at the c_2 floor, where lambda_eff = lambda + 277 (the
   hub's XR25, 43cfa1692). At that floor the lambda window is empty, so a required lambda > 0 (FP13, FP19) needs
   c_2 > 7.289e-3; FP14's "c_2 -> infinity is regular" holds on Minkowski and FRW but not uniformly at black holes.

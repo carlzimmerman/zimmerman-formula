@@ -1,6 +1,6 @@
 # The first-principles derivation chain -- status ledger
 
-Assembled by `run_chain.py` on 2026-09-27 11:22. A lane counts only if its main run has a verdict and its MUTATE control flips (rc = 1). Status meanings: DERIVED (varied out of the chain above it, with a script), TIED (an input implemented as an exact action-level relation, coupling chosen), POSTULATED (an input), FITTED (a constant set by data), CONSTRAINT (a derived requirement on a lower link), OPEN (owed), FAILS (derived and contradicted by data).
+Assembled by `run_chain.py` on 2026-09-27 11:42. A lane counts only if its main run has a verdict and its MUTATE control flips (rc = 1). Status meanings: DERIVED (varied out of the chain above it, with a script), TIED (an input implemented as an exact action-level relation, coupling chosen), POSTULATED (an input), FITTED (a constant set by data), CONSTRAINT (a derived requirement on a lower link), OPEN (owed), FAILS (derived and contradicted by data).
 
 ## Lanes
 
@@ -28,6 +28,7 @@ Assembled by `run_chain.py` on 2026-09-27 11:22. A lane counts only if its main 
 | FP19_hs_repair | 24/24 | 0 | 0 | 1 | ok |
 | FP20_esd_projection_fix | 12/12 | 0 | 0 | 1 | ok |
 | FP21_isolated_spiral_lensing | 18/19 | 0 | 0 | 1 | ok |
+| FP22_who_feels_mond | 24/24 | 0 | 0 | 1 | ok |
 
 ## Links
 
@@ -369,5 +370,18 @@ Assembled by `run_chain.py` on 2026-09-27 11:22. A lane counts only if its main 
 | FP21 | F21h | OPEN | for LCDM: unchanged: LCDM's KiDS-fitted halos turn around at 1.65-2.26 Mpc (FP18 L1); a type split in halo mass at fixed M* is standard LCDM, so a future RECONCILED would be comfortable for it | V1, FP18 L1 |
 | FP21 | F21i | OPEN | what would decide it: ~2084 spectroscopically isolated late-type centrals at LV-central mass at z ~ 0.03 (3 sigma between A = 1 and A_rec = 0.31), or ~13978 at z ~ 0.1-0.4; the on-disk 2M++ holds 52; GAMA DR4 (G09/G12/G15/G23, r < 19.65) or SDSS DR7 spectroscopy over KiDS-N is the next step, and fetching it needs the user's go | V2 |
 | FP21 | F21j | FITTED | the type cut is FITTED to labels, not to lensing: GAaP u - r < 2.35 (no 6dF-FP early type below it; ~70% of HI-rich spirals) -- at z ~ 0.026 it is a bulge colour, so LATE is spiral-enriched, not morphological | T1 |
+| FP22 | L22a | DERIVED | the static sector reads the lapse only through the Einstein-frame lapse N e^-chi (FP7's perfect square) | A1: sympy identity; the MOND scalar reaches matter only through each species' lapse coupling |
+| FP22 | L22b | DERIVED | WHO FEELS MOND in the action as written (S_m[g], FK1's S_Psi[g]): ALL matter sources and feels the scalar -- reading (a) | A2: Euler-Lagrange with two species; the feel weights equal the source weights (reciprocity); FP10 writes S_Psi on g |
+| FP22 | L22c | OPEN | the chain's kernel-invisible dark component (FP4/FP8/FP10/FP16: L353's pair) on FP7's root | A3: L353 subtracts from C-H's u, which FP7 removed; transplanted literally the pair is inert. The (b) dynamics those lanes (and the hub's 'chain' label) use has no action on the current root unless L22d is adopted |
+| FP22 | L22d | TIED | the minimal term for (b): FK1 on g~ = g + (1 - e^-2chi) n n, the root's own Einstein-frame metric | A4: beta = 1; no new field, no new constant (beta = 0/1 are the only metrics of the root's own); the coupling is a choice |
+| FP22 | L22e | CONSTRAINT | the cost of (b): a second matter metric; dark-baryon WEP violated where chi != 0; Solar System and GW170817 untouched | A5: L353's X-COP median 0.47 read-only; no baryonic gate moves |
+| FP22 | L22f | DERIVED | the zero-field runaway survives the gas's own pressure (the rate saturates at (c/c_s) sqrt(4 pi G rho_b/lambda_eff)) | B1: sympy dispersion + the full 3x3 at the measured T0 |
+| FP22 | L22g | FAILS | sigma_8 with NO separator, lambda = 0: fails in BOTH readings on every yardstick and footing ((b) 1.45-2.2 x LCDM vs (a) 8-24 x); only inertia lambda_eff >~ 6e5-1e7 ((b)) / 4e7 ((a)) rescues it -- a knob | B2-B5, C2 (CLASS spectrum; gas at T0) |
+| FP22 | L22h | DERIVED | with a separator, (b)'s total-matter sigma_8 boost is ~5% of (a)'s; a separator is still NEEDED (band-pass alone fails the forest, yield alone fails sigma_8); fewest declared constants passing sigma_8 + forest: 1 (H_K1) in both readings | C1, C2, C4 |
+| FP22 | L22i | DERIVED | the gas's own pressure (measured T0, x1-x4) cannot do the separator's forest job | C3 |
+| FP22 | L22j | FAILS | CMB lensing in the reading the action implies (a): the late-time web MOND is excluded for H_S, H_K1 and H_Y on every yardstick and footing (Planck 2018 8-400 / ACT DR6) | L0 (reproduces XR26), L2 |
+| FP22 | L22k | OPEN | CMB lensing in (b): the lensing phantom is cut only ~sqrt(f_b)-like (not f_b^2); real-space f_eff 0.13-0.26 vs the needed 0.62 (linear) / 0.18 (halofit): passes Planck and ACT on the linear base, fails ACT on the halofit base | L1, L2: decided by the nonlinear phantom (a particle-mesh question, not run here) |
+| FP22 | L22l | OPEN | KiDS: the isolated-lens term is reading-independent; the web's external field in the kernel (omitted by the committed KiDS models) is a risk in both readings (~+200 (b), ~+600 (a) with H_Y/H_K1; uniform-rms estimate) | D1, D2 (FP18's projection) |
+| FP22 | L22m | DERIVED | the PM forest codes' kernel argument is (1+z) x physical (MOND 1.9-2.5x too weak at z = 2-3); FP9/FP13's linear proxies are physical | E1-E2 |
 
-Totals: DERIVED 127, TIED 1, POSTULATED 30, FITTED 15, CONSTRAINT 41, OPEN 44, FAILS 78
+Totals: DERIVED 133, TIED 2, POSTULATED 30, FITTED 15, CONSTRAINT 42, OPEN 47, FAILS 80
