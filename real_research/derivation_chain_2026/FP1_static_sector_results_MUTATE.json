@@ -1,0 +1,586 @@
+{
+ "lane": "FP1",
+ "mutate": true,
+ "checks": {
+  "A1 on the static branch the clock's acceleration is a_i = d_i ln N (a_0 = 0), its expansion K vanishes, and the Einstein-Hilbert density is e^{phi-psi}(2|grad psi|^2 - 4 grad phi.grad psi) up to a divergence (Christoffel symbols, 4-d and leaf)": {
+   "ok": true,
+   "measured": "a_i = d_i phi: True; K = 0; EH identity True",
+   "load_bearing": true
+  },
+  "A2 at leading weak-field order the core's variation gives psi = Phi (lensing = dynamics), (1 - alpha_c/2) lap u - (alpha_c/2) div(q' grad u) = 4 pi G rho and lap Phi = lap u + div(q' grad u); at alpha_c = 0 this is ACTION.md's I_NR exactly, in linear response alpha_c renormalises G as L340's (1+C)/(1 - alpha_c(1+C)/2), and the c_2 (K - <K>)^2 term and its first variation vanish on static slices": {
+   "ok": true,
+   "measured": "series True; Psi = Phi True; I_NR diff 0; EL residuals 0, 0; linear True; c_2 inert True",
+   "load_bearing": true
+  },
+  "A3 the finite-difference gradient of the discrete action equals the stated u-equation with the OUTPUT filter S^T in place (and fails without it): the variation itself produces the double filter, S^T = S on a symmetric static leaf": {
+   "ok": true,
+   "measured": "with S^T 1.7e-09; without the output filter 1.4e-02; non-symmetric S (S^T kept) 1.9e-09",
+   "load_bearing": true
+  },
+  "A4 the linear response about a uniform filtered field is [nu_e - 1 + s_e nu'_e (khat.ehat)^2] times e^{-xi^2 k^2} (two Gaussian filters): the P2 flux reproduces the bracket by finite differences at s_e = 1e-3, 0.3, 2.5 and four angles": {
+   "ok": true,
+   "measured": "s_e=0.001 th=0.00: +14.8351 vs +14.8351; s_e=0.001 th=1.57: +30.6386 vs +30.6386; s_e=0.3 th=1.00: +0.8479 vs +0.8479; s_e=2.5 th=0.50: +0.0530 vs +0.0530",
+   "load_bearing": true
+  },
+  "A5 the heat filter S = e^{(xi^2/2) lap} passes every harmonic external field unchanged (uniform and tidal: S H - H = 0 exactly) while it does act on non-harmonic fields (r^2 -> r^2 + 3 xi^2): the Galaxy's field reaches the Sun's kernel, and the web's field reaches every lens's kernel, undiminished -- the filter cannot screen an external field": {
+   "ok": true,
+   "measured": "{'uniform  -e.x': '0', 'tidal  x^2 - y^2 + 2xz': '0', 'control r^2 (not harmonic)': '3*xi**2'}",
+   "load_bearing": true
+  },
+  "B1 nu enters only through q (q'(s^2) = nu(s) - 1, s = |grad S u|/a0), and for a spherical source at r >> xi the law is g = nu(g_N/a0) g_N EXACTLY (Gauss's theorem on lap Phi = div[nu grad u]): the kernel of the galaxy law is the action's free function, nothing else": {
+   "ok": true,
+   "measured": "spherical flux identity True",
+   "load_bearing": true
+  },
+  "B2 P2 embeds in the core in closed form: q_P2(s^2) = ((2s+1)/2) sqrt(s^2+s) - (1/4) ln(2s+1+2 sqrt(s^2+s)) - s^2 has q_P2' = sqrt(1+1/s) - 1 exactly, q(0) = 0, the deep-MOND (4/3) s^(3/2) and the alpha = 1 tail 2 s q' -> 1": {
+   "ok": true,
+   "measured": "identity True; q(0)=0 True; deep 4/3; tail 1",
+   "load_bearing": true
+  },
+  "B3 the kernel in use (nu_RAR) is the framework's P2 at every y in 1e-6..1e8 (so the core's galaxy law IS P2, not an approximation of it)": {
+   "ok": false,
+   "measured": "max |nu/nu_P2 - 1| = 1.4e-01",
+   "load_bearing": true
+  },
+  "B4 HEALTH (L340 A1: no ghost or tachyon in the scalar block needs C_T = nu - 1 > 0 and C_L = d(s nu)/ds - 1 > 0 at every y): the kernel in use (nu_RAR) satisfies both; for P2 it is analytic, so the framework's own law needs no repair (nu_RAR fails, nu_mono is its repair)": {
+   "ok": false,
+   "measured": "nu_RAR: min C_T 2.22e-14, min C_L -3.24e-02 (numeric, y = 1e-6..1e3); P2 symbolic, all y: True; nu_RAR -0.0324; nu_mono +3.27e-05.  The first run scanned to y = 1e7, where P2's C_L = 1/(8y^2) sinks below the finite difference's roundoff, and reported -1.3e-11 as a failure (a resolution artefact, kept in the record; the symbolic identity covers every y)",
+   "load_bearing": true
+  },
+  "C0 CONTROL: the committed real_research/rar_framework_a0_mlfit.py statistic is reproduced -- P2 at its a0 and Upsilon = 0.70 gives 0.108 dex": {
+   "ok": true,
+   "measured": "0.1083 dex (a0 = 9.3614e-11, 175 galaxies)",
+   "load_bearing": true
+  },
+  "C1 THE CORE'S GALAXY LAW IS P2: with q = q_P2 the spherical law at r >> xi is P2 (B1, B3), and the heat filter changes galaxy-scale forces by <= 7.5 (xi/a)^2 -- 3e-8 at xi = 0.05 pc and 3e-5 even at xi = 1 pc on a 0.5-kpc galaxy -- so the core's RAR residuals equal P2's on every SPARC point": {
+   "ok": false,
+   "measured": "kernel = P2 to 1.4e-01; filter correction <= 7.5e-08 (0.05 pc) / 3.0e-05 (1 pc)",
+   "load_bearing": true
+  },
+  "C2 (a) the coordinator's kernel nu_mono against P2 over SPARC's range (y = 0.005..110): the kernels differ by <= 0.06 dex (largest near y = 0.4); at P1's fixed a0 with Upsilon profiled SPARC prefers the nu_RAR shape by <= 0.01 dex rms -- a descriptive statistic that decides nothing about the kernel": {
+   "ok": true,
+   "measured": "max |dlog nu| = 0.057 dex at y = 0.39; canonical: P2 0.1083 vs mono 0.1003 (P2 worse in 1.00 of resamples); alt: P2 0.1035 vs mono 0.0991 (P2 worse in 0.99 of resamples)",
+   "load_bearing": false
+  },
+  "D0 CONTROLS: the reused machinery reproduces G02's V1 anchor (3.76x), f28's QUMOND nu_RAR quadrupole by two independent methods (6.23 / 6.83x), and L340 S1's input-only floors for nu_mono (0.031/0.045 pc canonical, 0.033/0.049 alt)": {
+   "ok": true,
+   "measured": "V1 3.755; nu_RAR grid 6.219/6.819 vs direct 6.231/6.834; L340 floors 0.031/0.046 and 0.033/0.050 pc",
+   "load_bearing": true
+  },
+  "D1 THE FILTER IS LOAD-BEARING: at xi -> 0 the core's law is strict QUMOND and fails Cassini on both footings and every external field (and strict AQUAL fails too, G01), while the kernel's own tail puts a constant sunward anomaly >= 1000x the Earth bound (P2: exactly a0/2, FP0's R2)": {
+   "ok": false,
+   "measured": "nu_RAR/canonical: Q2 5.37-7.03x, tail 0x; nu_RAR/alt: Q2 5.82-7.81x, tail 0x; nu_mono/canonical: Q2 5.24-6.75x, tail 3011x; nu_mono/alt: Q2 5.51-7.59x, tail 3620x; T-A 3.83-5.46x",
+   "load_bearing": true
+  },
+  "D2 THE CORE PASSES THE SOLAR SYSTEM ABOVE A FLOOR: with its own double heat filter and kernel nu_RAR, Cassini Q2, the Saturn monopole (Pitjev-Pitjeva) and the sunward anomaly at every planet all pass for every xi from the binding floor to 1 pc, on both footings and at all three Galactic fields": {
+   "ok": true,
+   "measured": "nu_RAR/canonical: floor 0.0344 pc (M), window True; nu_RAR/alt: floor 0.0373 pc (M), window True; nu_mono/canonical: floor 0.0344 pc (M), window True; nu_mono/alt: floor 0.0373 pc (M), window True",
+   "load_bearing": true
+  },
+  "D3 the quoted UV screen 'xi >= 0.031 pc canonical / 0.045 pc alt' re-scored: 0.031 is L340's input-only Q2 floor and 0.045 its canonical MONOPOLE floor; under the action's double filter nu_mono at 0.031 pc canonical still fails the Saturn monopole, P2 passes everything at both": {
+   "ok": true,
+   "measured": "nu_RAR/canonical at 0.031 pc: Q2 0.39, M 1.37, g_r 0.51 (worst of 3 fields); nu_RAR/alt at 0.045 pc: Q2 0.15, M 0.57, g_r 0.21 (worst of 3 fields); nu_mono/canonical at 0.031 pc: Q2 0.39, M 1.37, g_r 0.51 (worst of 3 fields); nu_mono/alt at 0.045 pc: Q2 0.15, M 0.57, g_r 0.21 (worst of 3 fields)",
+   "load_bearing": false
+  },
+  "D4 THE EPHEMERIS TAIL IS GONE: at the binding floor the Earth and Mars anomalous accelerations are below their 2-sigma bounds (3.66e-14, 3.72e-14 m/s^2) on both footings -- P2 keeps its exact alpha = 1 tail in galaxies, and the heat filter hides the Sun's high-y field from it (FP0's L1c constraint is met by the filter, not by a faster kernel)": {
+   "ok": true,
+   "measured": "canonical: Earth 0.013, Mars 0.019 of bound; alt: Earth 0.013, Mars 0.019 of bound",
+   "load_bearing": true
+  },
+  "E0 CONTROL: the copied KiDS-1000 machinery reproduces L355 (isolated 116.3 / 107.5; baryons-only kernel +233.4 / +241.0) and L361 R3 (all-matter kernel +548)": {
+   "ok": true,
+   "measured": "canonical: 116.3, +233.4, +548.3; alt: 107.5, +241.0, +561.6",
+   "load_bearing": true
+  },
+  "E1 CONTROL: the LG shell model reproduces XR4's isolated-MOND zero-velocity radius (nu_RAR, M_b = 1.145e11 Msun, no external field): 1.929 / 2.021 Mpc": {
+   "ok": true,
+   "measured": "1.9290 / 2.0214 Mpc",
+   "load_bearing": true
+  },
+  "E2 RIGIDITY: inside the core nothing changes the external field in nu's argument -- the heat filter passes it with gain 1 (A5), alpha_c changes G by <= 2e-7, the c_2 term is static-inert (A2) -- and the deep-MOND EFE suppression is kernel-independent to <= 10% (P2, nu_mono, nu_RAR), far below the >= 2x change in the suppression factor the pincer needs (E3: sqrt of the needed/tolerated field ratio)": {
+   "ok": true,
+   "measured": "kernel spread in N/nu <= 0.052 (largest at e = 1e-2, where the kernels leave the deep regime); alpha_c effect 1.6e-07.  As first written the criterion was '<= 5%' and it FAILED at 5.2% on the first run; kept in the record -- the load-bearing comparison is with the pincer's >= 2x",
+   "load_bearing": true
+  },
+  "E3 THE PINCER HOLDS INSIDE THE CORE: the field the Local Group needs in nu's argument (R0 = 0.96 Mpc) exceeds the largest field KiDS-1000's isolated lenses tolerate (d chi^2 <= +9), on both footings, and at the core's OWN web field KiDS fails whichever matter the kernel reads (baryons only, or all matter as the literal core's lap u = 4 pi G rho has it)": {
+   "ok": true,
+   "measured": "canonical: LG 3.2e-03 vs KiDS 4.7e-04 (6.8x; 1.6x at the loosest reading, 16.1x at the strictest); own field KiDS +233 / +548; Brouwer's quiet field (baryons, 2-halo) +31; alt: LG 3.2e-03 vs KiDS 3.6e-04 (9.1x; 2.2x at the loosest reading, 20.2x at the strictest); own field KiDS +241 / +562; Brouwer's quiet field (baryons, 2-halo) +35",
+   "load_bearing": true
+  },
+  "E4 THE ATTACK FAILS: the core's own linear response boosts every neighbour's lensing mass by F (4.2-9.6, a real, derived 2-halo enhancement the pincer's A <= 2 cap ignored), but with the 2-halo amplitude left FREE the fit still misses by far more than +9 at the core's own field -- the deficit is the isothermal phantom lost beyond each lens's EFE radius, and no 2-halo shape supplies it (and F^2 ~ 18-92 in the large-scale lensing power is what the cosmic-shear gate forbids -- an estimate, not a computed gate)": {
+   "ok": true,
+   "measured": "F = 4.20/4.52 (baryons), 8.77/9.59 (all); A free: canonical +93.0 (baryons), +317.6 (all); alt +100.6 (baryons), +329.6 (all)",
+   "load_bearing": true
+  },
+  "E5 WHAT A RESOLUTION NEEDS: the field in nu's argument must be <= e_KiDS (3D rms) across KiDS's isolated lenses and >= e_LG at the Local Group -- an environmental split the core's local law cannot make; its size is set by the numbers, not assumed": {
+   "ok": true,
+   "measured": "canonical: KiDS <= 2.0e-04 (no 2-halo) / 4.7e-04 (2-halo), LG >= 7.6e-04 (band edge) / 3.2e-03 (0.96 Mpc); linear-theory baryonic rms at z = 0.25 2.05e-03; alt: KiDS <= 1.6e-04 (no 2-halo) / 3.6e-04 (2-halo), LG >= 7.7e-04 (band edge) / 3.2e-03 (0.96 Mpc); linear-theory baryonic rms at z = 0.25 1.70e-03",
+   "load_bearing": false
+  },
+  "W the ledger of this lane": {
+   "ok": true,
+   "measured": "13 links",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "A2": {
+   "lead_ok": true,
+   "psi_ok": true,
+   "nr_diff": "0",
+   "res_Phi": "0",
+   "res_u": "0",
+   "lin": "2*(-C - 1)/(C*alpha_c + alpha_c - 2)"
+  },
+  "B4": {
+   "min_CT": 2.220446049250313e-14,
+   "min_CL": -0.032446028038013996,
+   "min_CL_rar": -0.032446028038013996,
+   "min_CL_mono": 3.267153820596391e-05
+  },
+  "C2": {
+   "max_dlog_mono_vs_P2": 0.05706702240668205,
+   "at_y": 0.3876194839404295,
+   "sparc": {
+    "canonical": {
+     "rms_P2": 0.10827186091007049,
+     "ups_P2": 0.7,
+     "rms_mono": 0.10032895429304414,
+     "ups_mono": 0.61,
+     "d_median": 0.007968230644444546,
+     "d_95": [
+      0.004440275911937641,
+      0.011142960582120033
+     ],
+     "frac_P2_worse": 1.0
+    },
+    "alt": {
+     "rms_P2": 0.10354897613321769,
+     "ups_P2": 0.65,
+     "rms_mono": 0.09910318914147401,
+     "ups_mono": 0.57,
+     "d_median": 0.004462934744194513,
+     "d_95": [
+      0.0008841826957931295,
+      0.0076486433133930035
+     ],
+     "frac_P2_worse": 0.988988988988989
+    }
+   }
+  },
+  "D0": {
+   "g02_V1": 3.75483131856047,
+   "rar_grid": {
+    "canonical": 6.218856719756999,
+    "alt": 6.818611077924258
+   },
+   "rar_direct": {
+    "canonical": 6.231393130646795,
+    "alt": 6.833754814273421
+   },
+   "mono_input_only_floors": {
+    "canonical": [
+     0.030966178611860507,
+     0.04559389439365699
+    ],
+    "alt": [
+     0.0326256247052615,
+     0.04952264260478802
+    ]
+   }
+  },
+  "D1": {
+   "nu_RAR/canonical": {
+    "Q2_min": 5.371562778688533,
+    "Q2_max": 7.02940889388142,
+    "earth": 0.0,
+    "over": 0.0
+   },
+   "nu_RAR/alt": {
+    "Q2_min": 5.815353233133203,
+    "Q2_max": 7.8051023174092675,
+    "earth": 0.0,
+    "over": 0.0
+   },
+   "nu_mono/canonical": {
+    "Q2_min": 5.24375656300542,
+    "Q2_max": 6.750668219535809,
+    "earth": 1.1020121406603575e-10,
+    "over": 3010.9621329517963
+   },
+   "nu_mono/alt": {
+    "Q2_min": 5.508876264982585,
+    "Q2_max": 7.588845084696841,
+    "earth": 1.32485139502263e-10,
+    "over": 3619.812554706639
+   },
+   "g01_strict_AQUAL_Q2_over_ceiling": [
+    3.83,
+    5.46
+   ]
+  },
+  "D2": {
+   "nu_RAR/canonical": {
+    "floor_pc": 0.03440826119812644,
+    "binding": [
+     "M",
+     "2.00"
+    ],
+    "per_gate": {
+     "2.00": {
+      "Q2": 0.022220494595195636,
+      "M": 0.03440826119812644,
+      "gmax": 0.024811708460004116
+     },
+     "2.32": {
+      "Q2": 0.021427551548971593,
+      "M": 0.03223079305302592,
+      "gmax": 0.02324296406793124
+     },
+     "2.64": {
+      "Q2": 0.02072502411235522,
+      "M": 0.030386718924151155,
+      "gmax": 0.02191551098664979
+     }
+    },
+    "window": true
+   },
+   "nu_RAR/alt": {
+    "floor_pc": 0.037288999716066654,
+    "binding": [
+     "M",
+     "2.00"
+    ],
+    "per_gate": {
+     "2.00": {
+      "Q2": 0.023459115427094605,
+      "M": 0.037288999716066654,
+      "gmax": 0.026890178650742863
+     },
+     "2.32": {
+      "Q2": 0.02262075582113736,
+      "M": 0.03502490709335746,
+      "gmax": 0.025261043683448562
+     },
+     "2.64": {
+      "Q2": 0.021889235503517075,
+      "M": 0.03310909787990364,
+      "gmax": 0.023880323908205256
+     }
+    },
+    "window": true
+   },
+   "nu_mono/canonical": {
+    "floor_pc": 0.034408261289313694,
+    "binding": [
+     "M",
+     "2.00"
+    ],
+    "per_gate": {
+     "2.00": {
+      "Q2": 0.02222049463683481,
+      "M": 0.034408261289313694,
+      "gmax": 0.024811708525971542
+     },
+     "2.32": {
+      "Q2": 0.021425571175585103,
+      "M": 0.03223079314014541,
+      "gmax": 0.023243776661176583
+     },
+     "2.64": {
+      "Q2": 0.02069260474015214,
+      "M": 0.0303913402937511,
+      "gmax": 0.021938240807568024
+     }
+    },
+    "window": true
+   },
+   "nu_mono/alt": {
+    "floor_pc": 0.0372889998102502,
+    "binding": [
+     "M",
+     "2.00"
+    ],
+    "per_gate": {
+     "2.00": {
+      "Q2": 0.02345911547106377,
+      "M": 0.0372889998102502,
+      "gmax": 0.02689017871863769
+     },
+     "2.32": {
+      "Q2": 0.022620755862156415,
+      "M": 0.035024907185490506,
+      "gmax": 0.025261043749912768
+     },
+     "2.64": {
+      "Q2": 0.021889235225005948,
+      "M": 0.033109097969900594,
+      "gmax": 0.02388032406802435
+     }
+    },
+    "window": true
+   }
+  },
+  "D3": {
+   "nu_RAR/canonical": {
+    "Q2": 0.3875357198297268,
+    "M": 1.3668948829768388,
+    "gmax": 0.5136447417077126
+   },
+   "nu_RAR/alt": {
+    "Q2": 0.14997329536760562,
+    "M": 0.5692052065903334,
+    "gmax": 0.21387769966334666
+   },
+   "nu_mono/canonical": {
+    "Q2": 0.38753572200314856,
+    "M": 1.3668948938093421,
+    "gmax": 0.513644745778295
+   },
+   "nu_mono/alt": {
+    "Q2": 0.14997329616174312,
+    "M": 0.5692052108825751,
+    "gmax": 0.2138777012761478
+   }
+  },
+  "D4": {
+   "canonical": [
+    0.03440826119812644,
+    4.576340569222545e-16,
+    6.974343005025461e-16
+   ],
+   "alt": [
+    0.037288999716066654,
+    4.5760352612607e-16,
+    6.973877719768324e-16
+   ]
+  },
+  "E3": {
+   "canonical": {
+    "R0_e0": 1.9290195972760966,
+    "e_LG": 0.0032138860891925327,
+    "e_LG_1sigma": [
+     0.0026506429835739336,
+     0.003922372885480151
+    ],
+    "e_LG_band_edge": 0.0007628203799528072,
+    "e_LG_Mb172": 0.007554909938112969,
+    "e_LG_scalar_sum": 0.004315275614741481,
+    "LG_field_baryons": 0.0020458132465955583,
+    "LG_field_all": 0.013020224940447456,
+    "R0_at_own_baryons": 1.0319479786518129,
+    "R0_at_own_all": 0.7700446781877976,
+    "KiDS_ref": 116.35369344347225,
+    "KiDS_best": [
+     0.0001,
+     -11.846201774686108
+    ],
+    "e_KiDS_no2h": 0.0002002094983407672,
+    "e_KiDS_2h": 0.00047027254785615713,
+    "KiDS_own_baryons": 233.34140553255793,
+    "KiDS_own_all": 548.2739006943322,
+    "KiDS_quiet_field": {
+     "baryons": [
+      116.92780901198091,
+      30.591238115549345
+     ],
+     "all": [
+      378.91639389230687,
+      200.62507265955907
+     ]
+    },
+    "ratio_central": 6.834092493477991,
+    "ratio_strict": 16.052615464438794,
+    "ratio_generous": 1.6220814577212617
+   },
+   "alt": {
+    "R0_e0": 2.021921138429887,
+    "e_LG": 0.0032214324267538837,
+    "e_LG_1sigma": [
+     0.0026577053923087955,
+     0.003930454254434767
+    ],
+    "e_LG_band_edge": 0.0007676263263855605,
+    "e_LG_Mb172": 0.007566551072141201,
+    "e_LG_scalar_sum": 0.004373561907472994,
+    "LG_field_baryons": 0.001692840927202237,
+    "LG_field_all": 0.010773793598828005,
+    "R0_at_own_baryons": 1.0645728505651515,
+    "R0_at_own_all": 0.7933248810721322,
+    "KiDS_ref": 107.5008537232392,
+    "KiDS_best": [
+     0.0001,
+     -8.749978738031302
+    ],
+    "e_KiDS_no2h": 0.00015983868803620113,
+    "e_KiDS_2h": 0.00035590871831670223,
+    "KiDS_own_baryons": 241.16842204731645,
+    "KiDS_own_all": 561.8112619608156,
+    "KiDS_quiet_field": {
+     "baryons": [
+      123.43776220154234,
+      35.489795585704684
+     ],
+     "all": [
+      388.51275387518115,
+      210.32638588573124
+     ]
+    },
+    "ratio_central": 9.051288324685883,
+    "ratio_strict": 20.15427219988365,
+    "ratio_generous": 2.1568067509447606
+   }
+  },
+  "E4": {
+   "F_baryons": [
+    4.1950007909076055,
+    4.520014790352678
+   ],
+   "F_all": [
+    8.767187019191988,
+    9.586328426631791
+   ],
+   "fits": {
+    "canonical": {
+     "A2": 97.79955086763664,
+     "pars2": [
+      0.92,
+      1.16,
+      2.0,
+      2.0
+     ],
+     "Ainf": 92.97330114383868,
+     "parsinf": [
+      0.92,
+      1.16,
+      2.43,
+      2.42
+     ],
+     "Ainf_all": 317.5769175501997,
+     "parsinf_all": [
+      1.07,
+      1.64,
+      2.95,
+      3.13
+     ]
+    },
+    "alt": {
+     "A2": 104.53092063831369,
+     "pars2": [
+      0.93,
+      1.18,
+      2.0,
+      2.0
+     ],
+     "Ainf": 100.61787775664794,
+     "parsinf": [
+      0.93,
+      1.18,
+      2.45,
+      2.45
+     ],
+     "Ainf_all": 329.6031078753805,
+     "parsinf_all": [
+      1.08,
+      1.65,
+      2.91,
+      3.07
+     ]
+    }
+   }
+  },
+  "E5": {
+   "frac_variance_gt_60Mpc": 0.9463145863664084,
+   "needed_reduction": {
+    "canonical": [
+     4.365531895176617,
+     10.254207837820603
+    ],
+    "alt": [
+     4.773075790686532,
+     10.628085777999974
+    ]
+   }
+  }
+ },
+ "ledger": [
+  {
+   "link": "L3",
+   "what": "the root action: the ungated C-H/K core (C-H + alpha_c a^2 - c_2 (K - <K>)^2, beta = 0)",
+   "status": "POSTULATED",
+   "basis": "chosen root (coordinator's redirect); one covariant, spatially nonlocal classical action"
+  },
+  {
+   "link": "L4a",
+   "what": "static weak-field law: psi = Phi; lap u = 4 pi G rho; lap Phi = 4 pi G rho + S* div[(nu(|grad S u|/a0) - 1) grad S u]",
+   "status": "DERIVED",
+   "basis": "A1-A3 (sympy EL of the core; discrete adjoint): QUMOND with a double heat filter = T-B, produced by an action"
+  },
+  {
+   "link": "L4b",
+   "what": "which function sets nu: only the kernel function q (q' = nu - 1); alpha_c renormalises G by <= 2e-7; c_2 static-inert; the filter passes harmonic external fields with gain 1",
+   "status": "DERIVED",
+   "basis": "A2, A5, B1, E2"
+  },
+  {
+   "link": "L4c",
+   "what": "P2 embeds exactly: q_P2(s^2) = ((2s+1)/2) sqrt(s^2+s) - (1/4) ln(2s+1+2 sqrt(s^2+s)) - s^2; healthy (C_T, C_L > 0) with no repair",
+   "status": "DERIVED",
+   "basis": "B2, B4 (sympy)"
+  },
+  {
+   "link": "L4d",
+   "what": "the kernel is P2 (not nu_mono)",
+   "status": "POSTULATED",
+   "basis": "P2 = the framework's L1a; SPARC at fixed a0 prefers the nu_RAR shape by <= 0.01 dex rms (C2, reported)"
+  },
+  {
+   "link": "L4e",
+   "what": "the RAR in P2's regime (galaxies, y <= 110): the core's law equals P2",
+   "status": "DERIVED",
+   "basis": "B1, B3, C1: filter correction <= 3e-5 even at xi = 1 pc"
+  },
+  {
+   "link": "L4f",
+   "what": "Solar System (Cassini Q2, Saturn monopole, Earth/Mars ephemeris) under the double filter: pass for xi >= 0.034 / 0.037 pc (P2), 0.034 / 0.037 pc (nu_mono); the Saturn monopole binds",
+   "status": "DERIVED",
+   "basis": "D0-D4 (g02 machinery, read-only)"
+  },
+  {
+   "link": "L4g",
+   "what": "xi, the heat filter's length",
+   "status": "POSTULATED",
+   "basis": "a new constant, floor-bounded by the Solar System (D2); not derived"
+  },
+  {
+   "link": "L4h",
+   "what": "the strict law (xi -> 0): Cassini Q2 5.2-7.8x the ceiling (P2 and nu_mono, both footings, 3 fields), the P2 tail 0x / 0x the Earth bound",
+   "status": "FAILS",
+   "basis": "D1: the filter, not the kernel, meets FP0's L1c constraint"
+  },
+  {
+   "link": "L1c'",
+   "what": "FP0's L1c (the kernel must reach Newton faster than 1/(2y)) is discharged by the heat filter: P2 keeps alpha = 1",
+   "status": "DERIVED",
+   "basis": "D4: Earth and Mars anomalies below their bounds at the floor"
+  },
+  {
+   "link": "L4i",
+   "what": "the KiDS-EFE pincer inside the ungated core",
+   "status": "FAILS",
+   "basis": "E2-E4: no in-core knob moves the field in nu's argument; the core's own field fails KiDS; a free 2-halo does not help"
+  },
+  {
+   "link": "L4j",
+   "what": "a resolution of the KiDS-EFE pincer",
+   "status": "OPEN",
+   "basis": "E5: needs an LG-vs-isolated-lens field split the local law cannot make; a selection-aware field is not expected to supply it"
+  },
+  {
+   "link": "L4k",
+   "what": "beyond static order: 1PN metric (beta, alpha_1, alpha_2), causality of the leaf filter, Dirac count, cosmology",
+   "status": "OPEN",
+   "basis": "other lanes; ACTION.md's own warnings stand"
+  }
+ ]
+}
