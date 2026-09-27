@@ -28,7 +28,7 @@ This directory builds V0 one step at a time. Each lane has a MUTATE control and 
 |---|---|---|
 | CV1 | the non-relativistic action V0 must reduce to; reductions (i) and (ii) at f prescribed; C7 named; the off-plateau | **6/6** (MUTATE rc = 1); Lean 8 thm |
 | CV2 | the covariant action; its NR limit = CV1; L340's static block (iii); FRW with the leaf average | **4/4** (MUTATE rc = 1); Lean 5 thm |
-| CV3 | the gate as a varied action term: what it may read; reduction (ii) with f varied | **7/7** (MUTATE rc = 1); Lean 4 thm |
+| CV3 | the gate as a varied action term: what it may read; reduction (ii) with f varied; G4 corrected after DE12 (reading A+ obstructed as a varied term) | **7/7** (MUTATE rc = 1); Lean 4 thm |
 | CV4 | the khronon's K around bound regions (the K-only gate door) | **3/3** (MUTATE rc = 1) |
 
 ## CV1 — the non-relativistic action on C-H's chassis (6/6; MUTATE ungated source fails A3, rc = 1)
@@ -189,9 +189,10 @@ linearly.
   crosses zero once as z runs from 0.25 to 4, the same on 500- and 1000-point grids. At that epoch the lapse's response
   to a generic density source diverges. Reading A's operator never crosses. At generic epochs both operators are
   invertible.
-- **G4, reading A+'s cost.** The gate's second variation acts on the matter density only:
-  δΦ_g = −(4πG)²C²BW″δρ. That is a local pressure of either sign, so stability needs σ_v² > c_g² where W″ > 0.
-  At a 10¹¹ M☉ edge with w = 0.25 (the width DE9's window needs at x_c0 = 2.5):
+- **G4, the gate's cost sits in the matter sector** (corrected after DE12, 7f84b3546; see the correction below). The gate's
+  second variation acts on the matter density only. For reading A it is δΦ_g = −(4πG)²C²BW″δρ: a local pressure of
+  either sign, so stability needs σ_v² > c_g² where W″ > 0. The table is that **A = 1 scale** at a 10¹¹ M☉ edge,
+  w = 0.25 (the width DE9's window needs at x_c0 = 2.5):
 
   | z | c_g | σ_v²/c_g² at 200 km/s | at 10 km/s |
   |---|---|---|---|
@@ -199,13 +200,33 @@ linearly.
   | 2.5 | 302 km/s | 0.44 | 0.001 |
   | 4 | 507 km/s | 0.16 | 0.0004 |
 
-  **This is a new pincer.** The window wants a narrow gate, but c_g ∝ 1/w, so matter stability wants a wide one. It is
-  a one-edge estimate; the dark-energy thread computes the margins on DE7's real transitions.
+  **Correction (after DE12).** This table was first labelled "reading A+'s cost". It is not. It uses ∂U/∂ρ = 4πGC (no
+  phantom response) and evaluates at ρ = ρ_th. It matches DE12's A = 1 control (18–93 km/s).
+  - Reading A+ also reads the phantom, so its second variation carries the phantom's response squared,
+    (4πGCA)² with A = ν + yν′cos²θ. At this edge (y ≈ 8×10⁻⁵) A ≈ 56 radially and 112 transversely. The second
+    variation acts on the layer's gas.
+  - DE12 prices it on real transitions: c_gate = 1500–3700 km/s at z = 0.25, against gas at 37–117 km/s. It grows at
+    2–5×10⁴ H at k = 1/kpc, on every galaxy edge, and even w = 1 gives 300–620 km/s.
+  - DE13 (the gradient-stiffness repair) finds no universal repair harmless: the repair's own potential exceeds v_f² by
+    ≥ 10⁵ on the layers, at the Sun and at the flagship radius.
+  - So the "pincer" framing above is superseded. At the action level reading A+ is obstructed, not marginal.
 - **G5, reduction (ii) with f varied.** On both plateaus W is constant, every gate term vanishes, and V0's equations are
   CV1's, which are L361's at σ = 1, exactly.
 - **G6, MS3's cap inside the gate.** Two concrete cap-like gates built from the constrained fields, one of them
   U/(1 + v_loc²-like), keep everything above. G3's rule covers every such gate.
 
-**V0's default gate is reading A+.** It is leak-free and slip-free, keeps every constraint invertible, and holds the cap.
-Its open cost is the matter-sector condition of G4. The curvature reading (DE7 slip + repair, MS1 leak), the K reading
-(CV4, blind) and reading B (G2–G3b, singular epochs) are recorded as labelled alternatives.
+**V0's gate: reading A+ is the best reading, and as a varied action term it is obstructed.**
+- It is leak-free and slip-free, keeps every constraint invertible, and holds the cap.
+- Its second variation, which lands on the baryons, is unstable at every galaxy edge (DE12). No universal gradient
+  repair is harmless (DE13).
+- The prescribed-mask data passes, which do not vary the gate, are unaffected.
+
+The labelled alternatives are no better:
+- the curvature reading (DE7's slip and repair, MS1's leak);
+- the K reading (CV4: blind);
+- reading B (G2–G3b: singular epochs).
+
+A threshold gate that is flat at both ends has W″ of both signs. So whatever the sign of B, one half of each layer has
+negative stiffness. Where it lands is set by what the gate reads, and no reading removes it. V0 therefore carries the
+region gate as an **open obstruction**: V0 is not yet a complete action for the C-H/K branch. By contrast, the dark
+fluid's conversion gate (FL2 V3) is safe: its λ(K) is convex and its gated energy is ≥ 0.

@@ -63,14 +63,14 @@ G3b  READING B'S GLOBAL OPERATOR on a real transition: eigenvalues crossing zero
          reading:  the crossing is a mode near k ~ eps^(-1/2) sweeping through zero as the gate's coefficient grows with z: at that epoch the lapse's response to a generic density source diverges.  At generic epochs the operator is invertible, but not uniformly in time -- reading B would need a lapse-sector repair
 
 ==============================================================================================================
-G4  READING A+'s CONDITION: the gate's second variation is a local matter pressure of either sign
+G4  THE GATE'S SECOND VARIATION IS A LOCAL MATTER PRESSURE (reading A's scale; A+ adds the phantom's A^2, DE12)
 ==============================================================================================================
-    z = 0.25: c_g = 91.3 km/s at w = 0.25; sigma_v^2/c_g^2 = 4.80 (200 km/s), 0.0120 (10 km/s)
-    z = 2.5: c_g = 301.7 km/s at w = 0.25; sigma_v^2/c_g^2 = 0.44 (200 km/s), 0.0011 (10 km/s)
-    z = 4.0: c_g = 506.8 km/s at w = 0.25; sigma_v^2/c_g^2 = 0.16 (200 km/s), 0.0004 (10 km/s)
-  [PASS] G4 the gate's second variation acts on the matter density only: delta Phi_g = -(4 pi G)^2 C^2 B W'' delta rho, a local pressure of either sign (sympy); the implied margins at a 1e11 edge are reported
+    z = 0.25: reading A's scale c_g = 91.3 km/s at w = 0.25; sigma_v^2/c_g^2 = 4.80 (200 km/s), 0.0120 (10 km/s);  the phantom's response at this edge (y = 8.1e-05): A = 56 (radial) - 112 (transverse), which reading A+'s second variation carries squared (DE12)
+    z = 2.5: reading A's scale c_g = 301.7 km/s at w = 0.25; sigma_v^2/c_g^2 = 0.44 (200 km/s), 0.0011 (10 km/s);  the phantom's response at this edge (y = 9.7e-03): A = 6 (radial) - 11 (transverse), which reading A+'s second variation carries squared (DE12)
+    z = 4.0: reading A's scale c_g = 506.8 km/s at w = 0.25; sigma_v^2/c_g^2 = 0.16 (200 km/s), 0.0004 (10 km/s);  the phantom's response at this edge (y = 7.7e-02): A = 2 (radial) - 4 (transverse), which reading A+'s second variation carries squared (DE12)
+  [PASS] G4 the gate's second variation acts on the matter density only: delta Phi_g = -(4 pi G)^2 C^2 B W'' delta rho for reading A, a local pressure of either sign (sympy); reading A's scale at a 1e11 edge and the phantom's response A there are reported (A+ carries A^2: DE12)
          measured: z = 0.25: c_g = 91 km/s, margins 4.80 (200) / 0.0120 (10); z = 2.5: c_g = 302 km/s, margins 0.44 (200) / 0.0011 (10); z = 4.0: c_g = 507 km/s, margins 0.16 (200) / 0.0004 (10)
-         reading:  the condition sits in the matter sector, not the metric: where W'' > 0 the gate acts as an anti-pressure that the matter's own velocity dispersion must beat.  At w = 0.25 the one-edge estimate is severe (a narrow gate has a large W''); the dark-energy thread computes the margins on DE7's real transitions
+         reading:  the condition sits in the matter sector, not the metric: where W'' > 0 the gate acts as an anti-pressure that the matter's own velocity dispersion must beat.  CORRECTED: the margins printed are reading A's (A = 1); reading A+'s second variation is A^2 larger on the layer's gas, and DE12 (7f84b3546) finds that layer unstable at every z = 0.25 galaxy edge (c_gate 1500-3700 km/s against 37-117 km/s gas); DE13 finds no universal gradient repair harmless
 
 ==============================================================================================================
 G5  REDUCTION (ii) WITH f VARIED: on both plateaus every gate term vanishes
@@ -100,8 +100,10 @@ VERDICT
       U_g = C [lap(u - v) + div((nu - 1) grad S w)]   (reading A+; covariantly on C-H's leaves),
   which is leak-free and slip-free and keeps every constraint invertible (G1, G3); the cap fits inside it (G6); on the
   plateaus V0 is L361 exactly with f varied (G5).  Its cost is a matter-sector pressure of either sign in transition layers
-  (G4): at the narrow width the window needs (w = 0.25), the one-edge estimate puts c_g above 200 km/s by z = 2.5 --
-  a new pincer between the window (narrow w) and matter stability (wide w), for the real transitions to decide.
-  Time 925 s.
+  (G4).  CORRECTED after DE12 (7f84b3546): the one-edge margins printed here are reading A's (A = 1).  Reading A+ carries
+  the phantom's response squared (A ~ 56-112 at this edge) on
+  the layer's gas.  DE12 finds that gas unstable at every z = 0.25 galaxy edge, and DE13 finds no universal gradient repair
+  harmless.  So reading A+ keeps the constraints and the carrier clean but is OBSTRUCTED as a varied action term.  The
+  prescribed-mask data passes are unaffected.  Time 760 s.
 
   6/7 checks pass; load-bearing failures: 1; wrote CV3_gate_varied_results_MUTATE.json

@@ -181,7 +181,9 @@ phantom's amplification from the gate's second variation.
 repair does not work. A gradient energy on the gate, μ|∇f|², cannot stabilise the transition layer at any strength.
 Its own second variation carries a background term that grows with μ as fast as its stiffness does, and that term
 destabilises every mode longer than the gate's own variation length. The instability survives at every strength
-(2–4 modes per layer, growing at 3×10³–10⁴ H at best). A gradient energy on U, μ|∇U|², does stabilise every layer,
+(2–4 modes per layer, growing at 3×10³–10⁴ H at best). One direction is destabilised by the gate and by the
+repair together, so no strength at all rescues it (E3; the logic step and the second-variation identity are
+certified in Lean, `DE13_gradient_repair_certificates`). A gradient energy on U, μ|∇U|², does stabilise every layer,
 but it acts wherever U varies. Its own potential is ~30 v_f² at the flagship radius and ~10⁸ v_f² at the Sun's
 distance. (The first run's sizing, λ ≈ 240, used a WKB criterion that missed that term; it is kept as run and
 superseded.) The constraint side reaches the same place independently (CV3, ab6f31b61; FL2 V5, e96b71eb0). V0's

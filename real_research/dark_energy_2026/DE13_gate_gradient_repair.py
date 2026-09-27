@@ -39,6 +39,10 @@ CHECKS
      galaxy layer, with a negative mode inside a half-layer window.
   E2 [load-bearing; added after R1] form (ii) stabilises no galaxy layer: for every lambda in 1e-3 to 1e5 (33 log steps,
      mu_f = lambda^2 B r^2 at t = 1/2), some half-layer window keeps a negative mode.
+  E3 [load-bearing; added after E2] on every galaxy layer one direction eps* has negative energy under the gate and gas
+     alone (G[eps*] < 0) and under the repair alone (R[eps*] < 0): eps* is the repair's lowest mode on the outer
+     half-window.  Then G + mu R < 0 for EVERY mu >= 0 (Lean DE13.no_mu_stabilises), so E2 holds for all mu, not only
+     the scanned range.
   G1 (reported) the fastest residual mode's growth rate at the lambda with the fewest modes: displacement formulation,
      with mass conservation built in, on 1500 and 3000 points.
   F1 (reported) form (i) stabilises every layer above a minimum mu_U; per layer, and the universal eta_U = 8 pi G mu_U/c^4.
@@ -46,7 +50,7 @@ CHECKS
      universal mu_U that stabilises every galaxy layer, exceeds v_f^2 at the flagship radius r_F (z = 2.5, 1e11) and at
      the Sun's distance (z = 0, 6e10 Msun, 8 kpc).
   R3 (reported) form (ii)'s edge potential per lambda^2: max |Phi_f|/v_f^2 at lambda = 1 on each layer.
-MUTATE=1 drops K0, the repair's own background term: E1 and E2 must FAIL (rc = 1).
+MUTATE=1 drops K0, the repair's own background term: E1, E2 and E3 must FAIL (rc = 1).
 RESULT.  First run: R1 FAILED (lambda = 241 on galaxies, 536 with the cluster).  Its criterion was the WKB stiffness
 mu' k^2 alone at k = 1/L; it has no K0, and it asks for stiffness at the layer's edges, where W'^2 -> 0.  The exact
 second variation (this run) supersedes it.  Form (ii) stabilises no layer at any strength.  Form (i) stabilises every
@@ -87,7 +91,7 @@ def banner(t): P("\n" + "=" * 110); P(t); P("=" * 110)
 
 
 P(__doc__.split("CHECKS")[0].strip())
-if MUTATE: P("\n  *** MUTATE=1: the repair's background term K0 is dropped; E1 and E2 must FAIL ***")
+if MUTATE: P("\n  *** MUTATE=1: the repair's background term K0 is dropped; E1, E2 and E3 must FAIL ***")
 
 # ---------------------------------------------------------------------------------- DE12's machinery, loaded unedited
 P12 = os.path.join(HERE, "DE12_mond_sector_gate_stiffness.py")
@@ -270,6 +274,26 @@ check("E2 form (ii) stabilises no galaxy layer: for every lambda in 1e-3 to 1e5,
       f" at lambda {min(v['lam_best'] for k, v in ROWS.items() if '1e+14' not in k):.2g}-"
       f"{max(v['lam_best'] for k, v in ROWS.items() if '1e+14' not in k):.2g}",
       all(e2_ok) and len(e2_ok) == len(GAL), "a gradient energy on the gate cannot repair DE12's obstruction at any strength")
+
+E3 = {}
+for (z, Mb, foot) in GAL:
+    q = quad(layer_fine(z, Mb, foot, 4000), "ii", drop_K0=MUTATE)
+    m = (q["t"] >= WINS[0][0]) & (q["t"] <= WINS[0][1])
+    aR, bR, wts = tri(q["r"][m], 0 * q["base"][m], q["s"][m], q["K0"][m], 1.0)
+    aG, bG, _ = tri(q["r"][m], q["base"][m], q["s"][m], 0 * q["K0"][m], 0.0)
+    Rm = np.diag(aR) + np.diag(bR, 1) + np.diag(bR, -1)
+    Gm = np.diag(aG) + np.diag(bG, 1) + np.diag(bG, -1)
+    ev, V = sl.eigh(Rm, np.diag(wts[1:-1]), subset_by_index=[0, 0])
+    v = V[:, 0]
+    Rv, Gv = float(v @ Rm @ v), float(v @ Gm @ v)
+    tv = float(np.sum(q["t"][m][1:-1] * v ** 2) / np.sum(v ** 2))
+    E3[f"{z}/{Mb:.0e}/{foot}"] = dict(R=Rv, G=Gv, t_mean=tv, both_negative=bool(Rv < 0 and Gv < 0))
+OUT["numbers"]["E3"] = E3
+nb = sum(v["both_negative"] for v in E3.values())
+check("E3 one direction is destabilised by the gate and gas AND by the repair on every galaxy layer: unstable for every mu >= 0",
+      f"{nb}/{len(E3)} layers; the direction sits at t ~ {min(v['t_mean'] for v in E3.values()):.3f}-"
+      f"{max(v['t_mean'] for v in E3.values()):.3f} (the outer, convex half)", nb == len(GAL),
+      "G + mu R < 0 for all mu >= 0 when G < 0 and R <= 0 (Lean DE13.no_mu_stabilises)")
 
 
 # ============================================================================================ G1 growth

@@ -37,9 +37,13 @@ WHAT THIS LANE CHECKS
      transition (flat MOND halo, linear gate, w = 0.25, 1e11 galaxy): its eigenvalues cross zero as z runs 0.25 -> 4, the
      same number of times on two grids -- the lapse constraint passes through a singular epoch; reading A's operator never
      does.  (At generic epochs L is invertible: its smallest |eigenvalue| is reported.)
-  G4 [reading A+'s condition] the gate's second variation acts on constrained fields only, i.e. on the matter density:
-     delta Phi_g = -(4 pi G)^2 C^2 B W'' delta rho, a local pressure of either sign; sigma_v^2 > c_g^2 where W'' > 0.
-     Margins at a 1e11 edge (w = 0.25) are REPORTED; the dark-energy thread computes them on real transitions.
+  G4 [the gate's second variation lands in the matter sector] it acts on constrained fields only, i.e. on the matter
+     density.  For reading A (U = C lap(u - v)): delta Phi_g = -(4 pi G)^2 C^2 B W'' delta rho, a local pressure of either
+     sign; sigma_v^2 > c_g^2 where W'' > 0.  The margins printed at a 1e11 edge (w = 0.25) are this A = 1 scale.
+     CORRECTED (after DE12, 7f84b3546): they are NOT reading A+'s.  A+ also reads the phantom, so its second variation
+     carries the phantom's response squared, (4 pi G C A)^2 with A = nu + y nu' cos^2(theta) (reported below at this
+     edge), and acts on the layer's gas density.  DE12 prices that on real transitions: c_gate = 1500-3700 km/s at
+     z = 0.25, unstable at every galaxy edge.  DE13 finds no universal gradient repair harmless.
   G5 [reduction (ii) with f varied] on both plateaus W is constant, every gate term vanishes, and V0's equations are CV1's
      -- L361's at sigma = 1 -- exactly.
   G6 [MS3's cap inside the gate] gates built from the constrained fields with a cap-like dependence (two concrete forms,
@@ -297,7 +301,7 @@ check("G3b reading B's constraint operator on a real transition has an eigenvalu
       "but not uniformly in time -- reading B would need a lapse-sector repair")
 
 # ============================================================================================ G4 reading A+'s condition
-banner("G4  READING A+'s CONDITION: the gate's second variation is a local matter pressure of either sign")
+banner("G4  THE GATE'S SECOND VARIATION IS A LOCAL MATTER PRESSURE (reading A's scale; A+ adds the phantom's A^2, DE12)")
 drho, BW2s, Cs = sp.symbols("delta_rho BW2 C_s", real=True)
 dPhi_g = -4 * sp.pi * G_ * Cs * BW2s * Cs * 4 * sp.pi * G_ * drho
 g4_sym = sp.simplify(dPhi_g - (-(4 * sp.pi * G_) ** 2 * Cs ** 2 * BW2s * drho)) == 0
@@ -311,17 +315,24 @@ for zz in (0.25, 2.5, 4.0):
     y_e = GKs * 1e11 / r_e ** 2 / A0K
     Bv = A0K ** 2 * (4.0 / 3.0) * y_e ** 1.5 / (8 * math.pi * GKs)
     cg2 = Bv * W2max / ((2 * W_WIDTH) ** 2 * rho_th)
-    rowsG4[zz] = {"c_g_kms": math.sqrt(cg2), "margin_200": 200.0 ** 2 / cg2, "margin_10": 10.0 ** 2 / cg2}
-    P(f"    z = {zz}: c_g = {math.sqrt(cg2):.1f} km/s at w = {W_WIDTH}; sigma_v^2/c_g^2 = {200.0 ** 2 / cg2:.2f} (200 km/s), "
-      f"{10.0 ** 2 / cg2:.4f} (10 km/s)")
+    sq_ = math.sqrt(y_e); nu_e = 1.0 / (1.0 - math.exp(-sq_))                 # nu_mono = nu_RAR below y* (the edge: y << 1)
+    ynup = -y_e * math.exp(-sq_) / (2 * sq_ * (1.0 - math.exp(-sq_)) ** 2)     # y nu'(y)
+    rowsG4[zz] = {"c_g_kms": math.sqrt(cg2), "margin_200": 200.0 ** 2 / cg2, "margin_10": 10.0 ** 2 / cg2,
+                  "y_edge": y_e, "A_radial": nu_e + ynup, "A_transverse": nu_e}
+    P(f"    z = {zz}: reading A's scale c_g = {math.sqrt(cg2):.1f} km/s at w = {W_WIDTH}; sigma_v^2/c_g^2 = "
+      f"{200.0 ** 2 / cg2:.2f} (200 km/s), {10.0 ** 2 / cg2:.4f} (10 km/s);  the phantom's response at this edge "
+      f"(y = {y_e:.1e}): A = {nu_e + ynup:.0f} (radial) - {nu_e:.0f} (transverse), which reading A+'s second variation "
+      f"carries squared (DE12)")
 OUT["numbers"]["G4"] = {"symbolic": g4_sym, "W2max": W2max, "rows": {str(k_): v_ for k_, v_ in rowsG4.items()}}
-check("G4 the gate's second variation acts on the matter density only: delta Phi_g = -(4 pi G)^2 C^2 B W'' delta rho, a "
-      "local pressure of either sign (sympy); the implied margins at a 1e11 edge are reported", "; ".join(
+check("G4 the gate's second variation acts on the matter density only: delta Phi_g = -(4 pi G)^2 C^2 B W'' delta rho for "
+      "reading A, a local pressure of either sign (sympy); reading A's scale at a 1e11 edge and the phantom's response A "
+      "there are reported (A+ carries A^2: DE12)", "; ".join(
           f"z = {k_}: c_g = {v_['c_g_kms']:.0f} km/s, margins {v_['margin_200']:.2f} (200) / {v_['margin_10']:.4f} (10)"
           for k_, v_ in rowsG4.items()), g4_sym,
       "the condition sits in the matter sector, not the metric: where W'' > 0 the gate acts as an anti-pressure that the "
-      "matter's own velocity dispersion must beat.  At w = 0.25 the one-edge estimate is severe (a narrow gate has a large "
-      "W''); the dark-energy thread computes the margins on DE7's real transitions")
+      "matter's own velocity dispersion must beat.  CORRECTED: the margins printed are reading A's (A = 1); reading A+'s "
+      "second variation is A^2 larger on the layer's gas, and DE12 (7f84b3546) finds that layer unstable at every z = 0.25 "
+      "galaxy edge (c_gate 1500-3700 km/s against 37-117 km/s gas); DE13 finds no universal gradient repair harmless")
 
 # ============================================================================================ G5 reduction (ii) with f varied
 banner("G5  REDUCTION (ii) WITH f VARIED: on both plateaus every gate term vanishes")
@@ -363,9 +374,11 @@ P(f"""  Varying the gate decides what it may read, by one rule: V0's multipliers
       U_g = C [lap(u - v) + div((nu - 1) grad S w)]   (reading A+; covariantly on C-H's leaves),
   which is leak-free and slip-free and keeps every constraint invertible (G1, G3); the cap fits inside it (G6); on the
   plateaus V0 is L361 exactly with f varied (G5).  Its cost is a matter-sector pressure of either sign in transition layers
-  (G4): at the narrow width the window needs (w = 0.25), the one-edge estimate puts c_g above 200 km/s by z = 2.5 --
-  a new pincer between the window (narrow w) and matter stability (wide w), for the real transitions to decide.
-  Time {time.time() - T0:.0f} s.""")
+  (G4).  CORRECTED after DE12 (7f84b3546): the one-edge margins printed here are reading A's (A = 1).  Reading A+ carries
+  the phantom's response squared (A ~ {rowsG4[0.25]['A_radial']:.0f}-{rowsG4[0.25]['A_transverse']:.0f} at this edge) on
+  the layer's gas.  DE12 finds that gas unstable at every z = 0.25 galaxy edge, and DE13 finds no universal gradient repair
+  harmless.  So reading A+ keeps the constraints and the carrier clean but is OBSTRUCTED as a varied action term.  The
+  prescribed-mask data passes are unaffected.  Time {time.time() - T0:.0f} s.""")
 n_fail = sum(1 for _, ok, lb in CH if lb and not ok)
 OUT["n_checks"], OUT["n_fail_load_bearing"] = len(CH), n_fail
 outname = f"{SLUG}_results{'_MUTATE' if MUTATE else ''}.json"
