@@ -72,8 +72,14 @@ declared input; no new dark-matter particle species; the dark mass is still requ
 **New axis: the web self-term σ** (V0, `real_research/chk_v0_2026/`: CV1 `cc2b55bbb`, CV2 `db21f7edf`). σ is a physical edge choice: it moves the baryon force inside a region's edge layer by 0.8–1.4 g_N.
 - L361's action and V0 use σ = 1.
 - Every committed KiDS score (L352, L360, AT3; L361 R3 edgeless) and L370's Harvey use σ = 0.
-- So the σ = 1 edge layer's lensing is unscored. It is routed to the KiDS re-fit and to the edge-layer Harvey check as labelled cells.
-- XR5's action operator "A" is σ = 1. In projection it moved the substructure centroid 4.1 kpc, against 0.52 kpc for σ = 0.
+- Scored since: σ is physical inside the thin edge layer but negligible for both observables. KiDS: σ = 1 passes wherever
+  σ = 0 does on the curvature branch, |ΔΔχ²| ≤ 0.40 (DE8 `d522b1767`). Harvey: XR5's H1 already bounds it. With the
+  far edge layer excluded, L361's operator at 1/m = 0.2/0.5 (σ = 1) and L370's (σ = 0) give the same substructure
+  centroid to |Δβ| ≤ 5e-5 (`XR5_operator_identity.out`, H1). No 3-D σ = 1 Harvey lane is needed.
+- **Correction (the orchestrator's misreading, not XR5's):** an earlier version of this section said XR5's σ = 1
+  operator moved the centroid 4.1 kpc against 0.52 kpc for σ = 0. XR5 labels that 4.1 kpc as NOISE: the far edge layer
+  of the Dirichlet limit on staircase meshes, varying from 0.06 to 6.5 kpc with the outer cell size. It is not a σ
+  effect. L373's 3-D check bounds that layer at |Δβ| ≤ 0.0006 for L370's operator.
 
 **Reported by owners, not yet committed when this section was written:**
 - L388: 4/4, a pooled window at 575–650 km/s at p1_x2.5 on the matter-only branch.
